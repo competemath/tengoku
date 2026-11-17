@@ -19,6 +19,9 @@ variable {R K₀ : Type} [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [
   [IsFractionRing R K₀] {ϖ : R}
   {K : Type} [Field K] [Algebra K₀ K] {Γ₀ : Type} [LinearOrderedCommGroupWithZero Γ₀] [Valued K Γ₀]
 
+/--
+@isnad1 id=eq.1h5v.s8.cb540d82e803 from=translated src=- shape=dcaad085 vocab=0e30dab5
+-/
 theorem v_algebraMap_units_eq_one
     (hint : ∀ a : R, Valued.v (algebraMap K₀ K (algebraMap R K₀ a)) ≤ 1) (u : Rˣ) :
     Valued.v (algebraMap K₀ K (algebraMap R K₀ (u : R))) = 1 := by
@@ -30,13 +33,22 @@ theorem v_algebraMap_units_eq_one
     _ ≤ Valued.v (algebraMap K₀ K (algebraMap R K₀ (u : R))) * 1 := mul_le_mul_right (hint _) _
     _ = _ := mul_one _
 
+/--
+@isnad1 id=ne.1h3v.s7.5a2cf9668069 from=translated src=- shape=c6d43a16 vocab=531db9f5
+-/
 theorem algebraMap_ne_zero_of_irreducible (hϖ : Irreducible ϖ) : algebraMap R K₀ ϖ ≠ 0 := fun h =>
   hϖ.ne_zero ((IsFractionRing.to_map_eq_zero_iff (K := K₀)).mp h)
 
+/--
+@isnad1 id=lt.1h5v.s8.cc7acc74060b from=translated src=- shape=7f35af98 vocab=147ddcf7
+-/
 theorem v_algebraMap_pos (hϖ : Irreducible ϖ) : 0 < Valued.v (algebraMap K₀ K (algebraMap R K₀ ϖ)) :=
   lt_of_le_of_ne zero_le (Ne.symm ((Valuation.ne_zero_iff _).mpr
     ((map_ne_zero _).mpr (algebraMap_ne_zero_of_irreducible hϖ))))
 
+/--
+@isnad1 id=lt.2h5v.s8.7bbcd65de50e from=translated src=- shape=3fe62867 vocab=1aa61e0c
+-/
 theorem v_algebraMap_lt_one (hϖ : Irreducible ϖ)
     (hv : ∀ a : K₀, Valued.v (algebraMap K₀ K a) ≤ 1 → IsLocalization.IsInteger R a) :
     Valued.v (algebraMap K₀ K (algebraMap R K₀ ϖ)) < 1 := by
@@ -52,6 +64,9 @@ theorem v_algebraMap_lt_one (hϖ : Irreducible ϖ)
   apply IsFractionRing.injective R K₀
   rw [map_mul, hb, map_one, mul_inv_cancel₀ hϖ0]
 
+/--
+@isnad1 id=ex.3h6v.s9.24cccbee6799 from=translated src=- shape=c81be635 vocab=f6ad003d
+-/
 theorem exists_v_algebraMap_eq_zpow (hϖ : Irreducible ϖ)
     (hint : ∀ a : R, Valued.v (algebraMap K₀ K (algebraMap R K₀ a)) ≤ 1) (a : K₀) (ha : a ≠ 0) :
     ∃ k : ℤ, Valued.v (algebraMap K₀ K a) = Valued.v (algebraMap K₀ K (algebraMap R K₀ ϖ)) ^ k := by
@@ -60,6 +75,9 @@ theorem exists_v_algebraMap_eq_zpow (hϖ : Irreducible ϖ)
   rw [Units.smul_def, Algebra.smul_def, map_mul, map_zpow₀, Valuation.map_mul, map_zpow₀,
     v_algebraMap_units_eq_one hint, one_mul]
 
+/--
+@isnad1 id=or.3h6v.s9.6160e48ac9e9 from=translated src=- shape=5346bfdc vocab=5d321af6
+-/
 theorem v_algebraMap_le_or_one_le (hϖ : Irreducible ϖ)
     (hint : ∀ a : R, Valued.v (algebraMap K₀ K (algebraMap R K₀ a)) ≤ 1)
     (hv : ∀ a : K₀, Valued.v (algebraMap K₀ K a) ≤ 1 → IsLocalization.IsInteger R a) (a : K₀) :
@@ -78,6 +96,9 @@ theorem v_algebraMap_le_or_one_le (hϖ : Irreducible ϖ)
         ≤ Valued.v (algebraMap K₀ K (algebraMap R K₀ ϖ)) ^ (1 : ℤ) := zpow_le_zpow_right_of_le_one₀ h0 h1 (by omega)
       _ = _ := zpow_one _
 
+/--
+@isnad1 id=dvd.4h6v.s9.e49db93ab307 from=translated src=- shape=0e4c621b vocab=a0879e04
+-/
 theorem dvd_of_v_algebraMap_lt_one (hϖ : Irreducible ϖ)
     (hint : ∀ a : R, Valued.v (algebraMap K₀ K (algebraMap R K₀ a)) ≤ 1)
     (hv : ∀ a : K₀, Valued.v (algebraMap K₀ K a) ≤ 1 → IsLocalization.IsInteger R a) (d : R)
@@ -96,6 +117,9 @@ theorem dvd_of_v_algebraMap_lt_one (hϖ : Irreducible ϖ)
   apply IsFractionRing.injective R K₀
   rw [map_mul, hc, mul_div_cancel₀ _ hϖ0]
 
+/--
+@isnad1 id=ex.3h5v.s10.dba87535c3a7 from=translated src=- shape=5bdd84c7 vocab=a06dbdbb
+-/
 theorem exists_finset_residue_representatives (hϖ : Irreducible ϖ) [Finite (R ⧸ Ideal.span {ϖ})]
     (hint : ∀ a : R, Valued.v (algebraMap K₀ K (algebraMap R K₀ a)) ≤ 1)
     (hv : ∀ a : K₀, Valued.v (algebraMap K₀ K a) ≤ 1 → IsLocalization.IsInteger R a) :
@@ -140,6 +164,9 @@ end UAP
 
 end
 
+/--
+@isnad1 id=ex.3h5v.s10.4d5ea6803028 from=translated src=- shape=81daf19a vocab=a06dbdbb
+-/
 theorem solution
     (R K₀ : Type) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [Field K₀] [Algebra R K₀]
     [IsFractionRing R K₀] (ϖ : R) (hϖ : Irreducible ϖ) [Finite (R ⧸ Ideal.span {ϖ})]

@@ -7,6 +7,9 @@ namespace P2MW.S_Bialgebra_exists_linearEquiv_baseChange_cotangent_ker_counit_co
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=ex.0h3v.s16.57500a1517a4 from=translated src=- shape=92370faa vocab=b7d0554b
+-/
 theorem solution
     (R : Type) [CommRing R] (S : Type) [CommRing S] [Algebra R S]
     (A : Type) [CommRing A] [Bialgebra R A] :

@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open CerednikDrinfeld
 
+/--
+@isnad1 id=isunit.3h5v.s7.aae602815a83 from=translated src=- shape=cafccd06 vocab=337bcf56
+-/
 theorem solution
     {q q' : ℕ} [Fact q.Prime] [Fact q'.Prime]
     (𝒪 : Type) [CommRing 𝒪] [IsDomain 𝒪] (hdvr : IsDiscreteValuationRing 𝒪)

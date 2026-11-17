@@ -20,6 +20,9 @@ def toSPoint (R : Type) [CommRing R] (π : R) (q : ℕ) (S : Type) [CommRing S] 
     refine ⟨?_, h₂, h₃⟩
     rw [h₁, IsScalarTower.algebraMap_apply R S T]⟩
 
+/--
+@isnad1 id=eq.2h6v.s11.58f39e53afe0 from=translated src=- shape=db47ec44 vocab=091e5d73
+-/
 theorem algHom_ext (R : Type) [CommRing R] (π : R) (q : ℕ) {B : Type} [CommRing B] [Algebra R B]
     (f g : chartERing R π q →ₐ[R] B) (hξ : f (chartERing.ξ R π q) = g (chartERing.ξ R π q))
     (hη : f (chartERing.η R π q) = g (chartERing.η R π q)) : f = g :=
@@ -28,6 +31,9 @@ theorem algHom_ext (R : Type) [CommRing R] (π : R) (q : ℕ) {B : Type} [CommRi
 end G2Body
 
 open G2Body in
+/--
+@isnad1 id=ex.0h4v.s14.05763e9b4e4a from=translated src=- shape=2016dc82 vocab=e107ea76
+-/
 theorem solution
     (R : Type) [CommRing R] (π : R) (q : ℕ) (S : Type) [CommRing S] [Algebra R S] :
     ∃ φ : chartERing R π q →+* chartERing S (algebraMap R S π) q,

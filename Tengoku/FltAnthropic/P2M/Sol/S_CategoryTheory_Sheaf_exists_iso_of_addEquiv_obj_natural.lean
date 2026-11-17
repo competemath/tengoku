@@ -11,6 +11,9 @@ open CategoryTheory CategoryTheory.Limits Opposite
 
 universe w v u
 
+/--
+@isnad1 id=ex.1h5v.s12.f416e8cdf9f7 from=translated src=- shape=56932003 vocab=b85e851f
+-/
 theorem solution
     {C : Type u} [Category.{v} C] (J : GrothendieckTopology C)
     (F G : Sheaf J Ab.{w}) (e : ∀ U : Cᵒᵖ, F.obj.obj U ≃+ G.obj.obj U)

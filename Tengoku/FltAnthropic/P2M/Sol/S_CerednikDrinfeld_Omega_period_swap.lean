@@ -14,17 +14,26 @@ open CerednikDrinfeld.Omega
 
 namespace SWAP
 
+/--
+@isnad1 id=eq.0h5v.s4.409ed94d0a6c from=translated src=- shape=856efcc1 vocab=bcb5cbdb
+-/
 theorem crossRatio_swap {K : Type*} [Field K] (z z₀ x y : K) : crossRatio z z₀ x y = crossRatio x y z z₀ := by
   unfold crossRatio
   rw [← neg_sub x z, ← neg_sub y z₀, ← neg_sub y z, ← neg_sub x z₀, neg_mul_neg, neg_mul_neg]
   ring_nf
 
+/--
+@isnad1 id=eq.0h5v.s4.338c5fcf983d from=translated src=- shape=57132617 vocab=bcb5cbdb
+-/
 theorem crossRatio_flip {K : Type*} [Field K] (z z₀ x y : K) : crossRatio z z₀ x y = crossRatio z₀ z y x := by
   unfold crossRatio
   ring_nf
 
 end SWAP
 
+/--
+@isnad1 id=eq.2h8v.s8.7a993da5c885 from=translated src=- shape=88e83dfa vocab=afac9d6e
+-/
 theorem solution
     {K₀ : Type*} [Field K₀] {K : Type*} [Field K] [Algebra K₀ K] [DecidableEq K] [TopologicalSpace K]
     {G : Type*} [Group G] (ρ : G →* PGL(2, K₀)) {a z₀ : K}

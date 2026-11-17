@@ -318,6 +318,9 @@ end Adelic
 attribute [local instance] NumberField.AdelicHaar.glBorel
 
 open NumberField.AdelicHaar in
+/--
+@isnad1 id=ismulrig.0h1v.s8.0571911e1a8f from=translated src=- shape=2c8b62bd vocab=d869842f
+-/
 theorem solution (F : Type) [Field F] [NumberField F] :
     (adelicGLHaar (Fin 2) (𝓞 F) F).IsMulRightInvariant := by
   haveI := borelSpace_glBorel (Fin 2) (𝓞 F) F

@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open CerednikDrinfeld CerednikDrinfeld.Mumford MulAction
 
+/--
+@isnad1 id=finite.3h4v.s6.35b7f3abad7b from=translated src=- shape=bcc8e0a1 vocab=06f8d5a4
+-/
 theorem solution
     (G : Type) [Group G] {W : Type} [MulAction G W] (𝒯 : SimpleGraph W) [GraphAction G 𝒯]
     (v : W) (hfin : (𝒯.neighborSet v).Finite) (hne : (𝒯.neighborSet v).Nonempty)

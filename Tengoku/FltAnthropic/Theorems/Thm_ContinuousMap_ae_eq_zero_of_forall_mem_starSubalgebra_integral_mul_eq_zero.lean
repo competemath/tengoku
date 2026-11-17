@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 open MeasureTheory
 
+/--
+@isnad1 id=eventual.2h4v.s9.0af629a3166e from=translated src=- shape=e9abd8fe vocab=ae804588
+-/
 theorem ContinuousMap.ae_eq_zero_of_forall_mem_starSubalgebra_integral_mul_eq_zero
     {X : Type*} [TopologicalSpace X] [CompactSpace X] [T2Space X]
     [MeasurableSpace X] [BorelSpace X]

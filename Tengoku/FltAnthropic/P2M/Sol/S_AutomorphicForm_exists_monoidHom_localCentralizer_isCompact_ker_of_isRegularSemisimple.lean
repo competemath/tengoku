@@ -840,6 +840,9 @@ set_option autoImplicit false
 
 open NumberField IsDedekindDomain
 
+/--
+@isnad1 id=ex.1h3v.s14.2caef91bf12e from=translated src=- shape=9d57a598 vocab=7eca504f
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K))
     (γ : GL (Fin 2) (v.adicCompletion K)) (hγ : AutomorphicForm.IsRegularSemisimple γ) :

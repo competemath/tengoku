@@ -13,6 +13,9 @@ set_option autoImplicit false
 open scoped MatrixGroups
 open CerednikDrinfeld.Omega
 
+/--
+@isnad1 id=ex.8h7v.s11.19cd933a58a2 from=translated src=- shape=99402965 vocab=1d661832
+-/
 theorem solution
     {K₀ : Type*} [Field K₀] {K : Type*} [Field K] [Algebra K₀ K] [DecidableEq K]
     [TopologicalSpace K] [IsTopologicalRing K] [T2Space K]

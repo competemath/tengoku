@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_LT_LatticeTree_exists_act_stdVertex_eq
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.0h3v.s7.c880406a3b91 from=translated src=- shape=62899c3f vocab=81adecf1
+-/
 theorem LT.LatticeTree.exists_act_stdVertex_eq
     (R K : Type) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [Field K] [Algebra R K]
     [IsFractionRing R K] (v : LT.LatticeTree.Vertex R K) :

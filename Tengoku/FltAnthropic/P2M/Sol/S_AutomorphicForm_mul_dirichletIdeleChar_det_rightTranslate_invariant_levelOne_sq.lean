@@ -289,6 +289,9 @@ end AutomorphicForm.PrincipalLevelLanding
 
 open NumberField NumberField.AdelicLevel IsDedekindDomain AdelicDock AutomorphicForm.PrincipalLevelLanding in
 
+/--
+@isnad1 id=eq.3h5v.s14.8f7dcf0bc81e from=translated src=- shape=016022bf vocab=af81856c
+-/
 theorem solution
     (M : ℕ) [NeZero M] (χ : DirichletCharacter ℂ M)
     (φ : GL (Fin 2) (NumberField.AdeleRing (NumberField.RingOfIntegers ℚ) ℚ) → ℂ)

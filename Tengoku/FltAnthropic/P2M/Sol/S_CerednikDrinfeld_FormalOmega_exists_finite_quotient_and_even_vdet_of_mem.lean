@@ -11,6 +11,9 @@ open scoped MatrixGroups
 
 namespace F6GroupParity
 
+/--
+@isnad1 id=ne.1h4v.s7.7fdbb8ae91b5 from=translated src=- shape=a570341f vocab=351852b0
+-/
 theorem relIndex_ne_zero_of_even {G : Type} [Group G] (χ : G →* Multiplicative ℤ)
     (Γ Γ' : Subgroup G) (hΓ' : ∀ x : G, x ∈ Γ' ↔ x ∈ Γ ∧ Even (Multiplicative.toAdd (χ x))) :
     Γ'.relIndex Γ ≠ 0 := by
@@ -34,6 +37,9 @@ theorem relIndex_ne_zero_of_even {G : Type} [Group G] (χ : G →* Multiplicativ
   rw [← hker, Subgroup.index_ker]
   exact Nat.card_pos.ne'
 
+/--
+@isnad1 id=ne.2h5v.s6.1bbd5138fa55 from=translated src=- shape=9e440e3e vocab=69c6164f
+-/
 theorem relIndex_map_ne_zero {G G' : Type} [Group G] [Group G'] (f : G →* G')
     (Γ Γ' : Subgroup G) (hle : Γ' ≤ Γ) (h : Γ'.relIndex Γ ≠ 0) :
     (Γ'.map f).relIndex (Γ.map f) ≠ 0 := by
@@ -62,6 +68,9 @@ end F6GroupParity
 
 open F6GroupParity in
 
+/--
+@isnad1 id=ex.8h10v.s12.9bf9a83deb90 from=translated src=- shape=4b294cc1 vocab=3522c900
+-/
 theorem solution
 
     (𝒪 : Type) [CommRing 𝒪] [IsDomain 𝒪] (hdvr : IsDiscreteValuationRing 𝒪)

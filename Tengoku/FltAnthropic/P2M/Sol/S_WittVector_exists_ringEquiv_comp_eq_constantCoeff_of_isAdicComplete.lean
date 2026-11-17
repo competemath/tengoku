@@ -25,11 +25,17 @@ noncomputable def resEquiv (hk : Surjective (algebraMap 𝓞 k))
   ((RingHom.quotientKerEquivOfSurjective hk).symm.trans (Ideal.quotEquivOfEq hker))
 
 omit hp in
+/--
+@isnad1 id=eq.2h4v.s10.e1a1ec19e0d9 from=translated src=- shape=c04beba9 vocab=4c13d81d
+-/
 theorem resEquiv_symm_mk (hk : Surjective (algebraMap 𝓞 k))
     (hker : RingHom.ker (algebraMap 𝓞 k) = Ideal.span {(p : 𝓞)}) (x : 𝓞) :
     (resEquiv hk hker).symm (Ideal.Quotient.mk _ x) = algebraMap 𝓞 k x := by
   simp [resEquiv, RingEquiv.symm_trans_apply]
 
+/--
+@isnad1 id=not.1h3v.s7.173219a4a781 from=translated src=- shape=a5f67a8d vocab=a0306ea8
+-/
 theorem not_isUnit_natCast [CharP k p]
     (hker : RingHom.ker (algebraMap 𝓞 k) = Ideal.span {(p : 𝓞)}) : ¬ IsUnit (p : 𝓞) := by
   haveI : Nontrivial k := CharP.nontrivial_of_char_ne_one (R := k) hp.out.ne_one
@@ -42,6 +48,9 @@ theorem not_isUnit_natCast [CharP k p]
 
 omit hp in
 
+/--
+@isnad1 id=perfectr.2h3v.s7.a7db1017357f from=translated src=- shape=84b5dde0 vocab=733ae241
+-/
 theorem perfectRing_modP [PerfectRing k p] (hk : Surjective (algebraMap 𝓞 k))
     (hker : RingHom.ker (algebraMap 𝓞 k) = Ideal.span {(p : 𝓞)}) :
     PerfectRing (ModP 𝓞 p) p := by
@@ -63,12 +72,18 @@ variable (hk : Surjective (algebraMap 𝓞 k))
 noncomputable def tiltEquiv : ModP 𝓞 p ≃+* PreTilt 𝓞 p :=
   (PerfectionMap.id p (ModP 𝓞 p)).equiv
 
+/--
+@isnad1 id=eq.0h3v.s9.d9234fbaa2d5 from=translated src=- shape=7a149d8b vocab=930694a3
+-/
 theorem preTilt_coeff_zero_tiltEquiv (x : ModP 𝓞 p) :
     PreTilt.coeff 0 (tiltEquiv (𝓞 := 𝓞) (p := p) x) = x :=
   (PerfectionMap.id p (ModP 𝓞 p)).comp_equiv x
 
 noncomputable def resTiltEquiv : k ≃+* PreTilt 𝓞 p := (resEquiv hk hker).trans tiltEquiv
 
+/--
+@isnad1 id=eq.2h4v.s9.7dff0d8f718b from=translated src=- shape=76bd907f vocab=bf8bed12
+-/
 theorem preTilt_coeff_zero_resTiltEquiv (c : k) :
     PreTilt.coeff 0 (resTiltEquiv hk hker c) = resEquiv hk hker c := by
   rw [resTiltEquiv, RingEquiv.trans_apply, preTilt_coeff_zero_tiltEquiv]
@@ -78,6 +93,9 @@ variable [IsAdicComplete (Ideal.span {(p : 𝓞)}) 𝓞]
 noncomputable def thetaW : 𝕎 k →+* 𝓞 :=
   (WittVector.fontaineTheta 𝓞 p).comp (WittVector.map (resTiltEquiv hk hker).toRingHom)
 
+/--
+@isnad1 id=eq.2h4v.s8.357dcb468171 from=translated src=- shape=5c088717 vocab=74a39029
+-/
 theorem algebraMap_theta (x : 𝕎 k) : algebraMap 𝓞 k (thetaW hk hker x) = x.coeff 0 := by
   have h1 : Ideal.Quotient.mk (Ideal.span {(p : 𝓞)}) (thetaW hk hker x) =
       resEquiv hk hker (x.coeff 0) := by
@@ -86,10 +104,16 @@ theorem algebraMap_theta (x : 𝕎 k) : algebraMap 𝓞 k (thetaW hk hker x) = x
   have h2 := congrArg (resEquiv hk hker).symm h1
   rwa [resEquiv_symm_mk, RingEquiv.symm_apply_apply] at h2
 
+/--
+@isnad1 id=eq.2h3v.s8.23966f0b56af from=translated src=- shape=b0c7d385 vocab=1da3c146
+-/
 theorem algebraMap_comp_theta :
     (algebraMap 𝓞 k).comp (thetaW hk hker) = WittVector.constantCoeff :=
   RingHom.ext fun x => algebraMap_theta hk hker x
 
+/--
+@isnad1 id=surjecti.2h3v.s8.1b868b786c97 from=translated src=- shape=eeef3988 vocab=aa1ca531
+-/
 theorem theta_surjective : Surjective (thetaW hk hker) := by
   refine (surjective_fontaineTheta ?_).comp
     (WittVector.map_surjective _ (resTiltEquiv hk hker).surjective)
@@ -97,6 +121,9 @@ theorem theta_surjective : Surjective (thetaW hk hker) := by
 
 variable [CharP k p] [PerfectRing k p]
 
+/--
+@isnad1 id=injectiv.3h3v.s8.57cae86bd738 from=translated src=- shape=e9720121 vocab=2b6b04f7
+-/
 theorem theta_injective (hp' : (p : 𝓞) ∈ nonZeroDivisors 𝓞) : Injective (thetaW hk hker) := by
   rw [injective_iff_map_eq_zero]
   intro x hx
@@ -123,6 +150,9 @@ theorem theta_injective (hp' : (p : 𝓞) ∈ nonZeroDivisors 𝓞) : Injective 
 omit [Fact ¬ IsUnit (p : 𝓞)] [PerfectRing (ModP 𝓞 p) p] [IsAdicComplete (Ideal.span {(p : 𝓞)}) 𝓞] in
 include hker in
 
+/--
+@isnad1 id=mem.3h7v.s9.8672a81beb7c from=translated src=- shape=5e65df29 vocab=057fa809
+-/
 theorem sub_teichmuller_mem_pow (g g' : 𝕎 k →+* 𝓞)
     (hg : (algebraMap 𝓞 k).comp g = WittVector.constantCoeff)
     (hg' : (algebraMap 𝓞 k).comp g' = WittVector.constantCoeff) (n : ℕ) (c : k) :
@@ -147,6 +177,9 @@ theorem sub_teichmuller_mem_pow (g g' : 𝕎 k →+* 𝓞)
 
 omit [Fact ¬ IsUnit (p : 𝓞)] [PerfectRing (ModP 𝓞 p) p] in
 include hker in
+/--
+@isnad1 id=eq.3h5v.s8.c3eb9563a701 from=translated src=- shape=111c42fa vocab=f2464a88
+-/
 theorem ringHom_eq_of_comp_eq (g g' : 𝕎 k →+* 𝓞)
     (hg : (algebraMap 𝓞 k).comp g = WittVector.constantCoeff)
     (hg' : (algebraMap 𝓞 k).comp g' = WittVector.constantCoeff) : g = g' := by
@@ -177,6 +210,9 @@ end WittUniv
 
 open WittUniv in
 
+/--
+@isnad1 id=ex.3h3v.s9.318dac11c129 from=translated src=- shape=67551871 vocab=2324d2ce
+-/
 theorem solution
     {𝓞 : Type u} [CommRing 𝓞] (p : ℕ) [Fact p.Prime] (hp : (p : 𝓞) ∈ nonZeroDivisors 𝓞)
     {k : Type v} [CommRing k] [CharP k p] [PerfectRing k p] [Algebra 𝓞 k]

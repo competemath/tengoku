@@ -20,6 +20,9 @@ variable (K : Type) [Field K] [NumberField K]
 
 open NumberField.InfinitePlace NumberField.InfinitePlace.Completion
 
+/--
+@isnad1 id=ne.0h3v.s6.ed19fa73a0a7 from=translated src=- shape=de0d78c3 vocab=612d5f11
+-/
 theorem unit_apply_ne_zero (p : (InfiniteAdeleRing K)ˣ) (v : InfinitePlace K) : (p : InfiniteAdeleRing K) v ≠ 0 := by
   intro h
   have h1 : (p : InfiniteAdeleRing K) v * ((p⁻¹ : (InfiniteAdeleRing K)ˣ) : InfiniteAdeleRing K) v = 1 :=
@@ -28,6 +31,9 @@ theorem unit_apply_ne_zero (p : (InfiniteAdeleRing K)ˣ) (v : InfinitePlace K) :
   exact zero_ne_one h1
 
 open scoped Classical in
+/--
+@isnad1 id=eq.1h3v.s10.769f98737d3e from=translated src=- shape=5fa8166e vocab=e037f51c
+-/
 theorem norm_symm_apply_of_isReal (X : NumberField.mixedEmbedding.mixedSpace K) (w : InfinitePlace K) (hw : w.IsReal) :
     ‖((NumberField.InfiniteAdeleRing.ringEquiv_mixedSpace K).symm X) w‖ = ‖X.1 ⟨w, hw⟩‖ := by
   have h := congrArg (fun Y : NumberField.mixedEmbedding.mixedSpace K => Y.1 ⟨w, hw⟩) ((NumberField.InfiniteAdeleRing.ringEquiv_mixedSpace K).apply_symm_apply X)
@@ -35,6 +41,9 @@ theorem norm_symm_apply_of_isReal (X : NumberField.mixedEmbedding.mixedSpace K) 
   rw [← h, (isometry_extensionEmbeddingOfIsReal hw).norm_map_of_map_zero (map_zero _)]
 
 open scoped Classical in
+/--
+@isnad1 id=eq.1h3v.s10.6ebc7b549be6 from=translated src=- shape=14a75256 vocab=fa7d6957
+-/
 theorem norm_symm_apply_of_isComplex (X : NumberField.mixedEmbedding.mixedSpace K) (w : InfinitePlace K) (hw : w.IsComplex) :
     ‖((NumberField.InfiniteAdeleRing.ringEquiv_mixedSpace K).symm X) w‖ = ‖X.2 ⟨w, hw⟩‖ := by
   have h := congrArg (fun Y : NumberField.mixedEmbedding.mixedSpace K => Y.2 ⟨w, hw⟩) ((NumberField.InfiniteAdeleRing.ringEquiv_mixedSpace K).apply_symm_apply X)
@@ -42,6 +51,9 @@ theorem norm_symm_apply_of_isComplex (X : NumberField.mixedEmbedding.mixedSpace 
   rw [← h, (isometry_extensionEmbedding w).norm_map_of_map_zero (map_zero _)]
 
 open scoped Classical in
+/--
+@isnad1 id=contdiff.1h3v.s11.debe3d9ea0a3 from=translated src=- shape=0e5c9e96 vocab=c7ee660e
+-/
 theorem contDiffAt_normComp (w : InfinitePlace K) (p : Fin 2 → NumberField.mixedEmbedding.mixedSpace K)
     (hp : ((NumberField.InfiniteAdeleRing.ringEquiv_mixedSpace K).symm (p 0)) w ≠ 0) :
     ContDiffAt ℝ (⊤ : ℕ∞) (fun p' : Fin 2 → NumberField.mixedEmbedding.mixedSpace K => ‖((NumberField.InfiniteAdeleRing.ringEquiv_mixedSpace K).symm (p' 0)) w‖) p := by
@@ -75,6 +87,9 @@ end URS
 end
 
 open scoped Classical in
+/--
+@isnad1 id=and.3h3v.s13.c33226bd44fd from=translated src=- shape=0bcdfdfc vocab=8815057a
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K]
     (F : (Fin 2 → NumberField.mixedEmbedding.mixedSpace K) → ℂ) (hF : ContDiff ℝ (⊤ : ℕ∞) F)

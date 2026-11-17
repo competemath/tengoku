@@ -11,6 +11,9 @@ set_option autoImplicit false
 open scoped TensorProduct
 
 set_option maxHeartbeats 6400000 in
+/--
+@isnad1 id=islocalr.2h4v.s10.f6c803cc3232 from=translated src=- shape=2e5fa820 vocab=df706085
+-/
 theorem solution
     (R : Type) [CommRing R]
     (H : Type) [CommRing H] [HopfAlgebra R H] [Module.Finite R H] [Module.Free R H] [Coalgebra.IsCocomm R H]

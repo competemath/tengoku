@@ -11,5 +11,8 @@ open scoped NumberField
 
 attribute [local instance] NumberField.AdelicHaar.glBorel
 
+/--
+@isnad1 id=ismulrig.0h1v.s8.0571911e1a8f from=translated src=- shape=2c8b62bd vocab=d869842f
+-/
 theorem NumberField.AdelicHaar.isMulRightInvariant_adelicGLHaar (F : Type) [Field F] [NumberField F] :
     (adelicGLHaar (Fin 2) (𝓞 F) F).IsMulRightInvariant := by exact @_root_.P2MW.S_NumberField_AdelicHaar_isMulRightInvariant_adelicGLHaar.solution F _ _

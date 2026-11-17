@@ -15,6 +15,9 @@ open CerednikDrinfeld.Omega
 
 namespace T4A
 
+/--
+@isnad1 id=eq.2h9v.s9.2dee1dc3520e from=translated src=- shape=4a64026d vocab=0b44b36a
+-/
 theorem theta_pmoebius_pmoebius_divisor
     {K₀ : Type*} [Field K₀] {K : Type*} [Field K] [Algebra K₀ K] [DecidableEq K] [TopologicalSpace K]
     {G : Type*} [Group G] (ρ : G →* PGL(2, K₀)) {a a' : K}
@@ -32,6 +35,9 @@ theorem theta_pmoebius_pmoebius_divisor
 
 end T4A
 
+/--
+@isnad1 id=eq.6h9v.s10.3d43dbaefdc1 from=translated src=- shape=b496fe53 vocab=47a70192
+-/
 theorem solution
     {K₀ : Type*} [Field K₀] {K : Type*} [Field K] [Algebra K₀ K] [DecidableEq K]
     [TopologicalSpace K] [IsTopologicalRing K] [T2Space K]

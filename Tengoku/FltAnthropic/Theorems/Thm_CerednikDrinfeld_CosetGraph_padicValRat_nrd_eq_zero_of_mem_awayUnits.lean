@@ -13,6 +13,9 @@ set_option autoImplicit false
 open scoped TensorProduct Quaternion NumberField
 open IsDedekindDomain QuaternionAlgebra CerednikDrinfeld
 
+/--
+@isnad1 id=and.2h5v.s10.e96c0e5b1bef from=translated src=- shape=8b9129c8 vocab=b3652a2b
+-/
 theorem CerednikDrinfeld.CosetGraph.padicValRat_nrd_eq_zero_of_mem_awayUnits
     {a b : ℚ} (R : Submodule ℤ ℍ[ℚ, a, b]) (hR : QuaternionAlgebra.IsOrder R)
     (r : ℕ) [Fact r.Prime] (v : HeightOneSpectrum (𝓞 ℚ)) (hv : ((r : ℕ) : 𝓞 ℚ) ∈ v.asIdeal) :

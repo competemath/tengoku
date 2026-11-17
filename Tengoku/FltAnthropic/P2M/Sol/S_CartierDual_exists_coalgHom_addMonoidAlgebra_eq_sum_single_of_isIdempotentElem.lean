@@ -22,6 +22,9 @@ noncomputable def famLin (e : M → CartierDual S B) : B →ₗ[S] AddMonoidAlge
   ∑ m : M, (AddMonoidAlgebra.lsingle m : S →ₗ[S] AddMonoidAlgebra S M) ∘ₗ (CartierDual.toDual S B (e m))
 
 omit [DecidableEq M] [Module.Finite S B] [Module.Free S B] in
+/--
+@isnad1 id=eq.0h5v.s8.2f932055bb24 from=translated src=- shape=7993e387 vocab=b29bd317
+-/
 theorem famLin_apply (e : M → CartierDual S B) (b : B) :
     famLin e b = ∑ m : M, AddMonoidAlgebra.single m (e m b) := by
   simp only [famLin, LinearMap.coe_sum, Finset.sum_apply, LinearMap.coe_comp, Function.comp_apply,
@@ -29,6 +32,9 @@ theorem famLin_apply (e : M → CartierDual S B) (b : B) :
   rfl
 
 omit [DecidableEq M] in
+/--
+@isnad1 id=eq.1h5v.s9.427067b84158 from=translated src=- shape=7685f7db vocab=4c7b5c2a
+-/
 theorem counit_famLin (e : M → CartierDual S B) (hsum : ∑ m, e m = 1) (b : B) :
     Coalgebra.counit (R := S) (famLin e b) = Coalgebra.counit (R := S) b := by
   rw [famLin_apply, map_sum]
@@ -42,11 +48,17 @@ theorem counit_famLin (e : M → CartierDual S B) (hsum : ∑ m, e m = 1) (b : B
 
 omit [DecidableEq M] [Fintype M] in
 
+/--
+@isnad1 id=eq.0h7v.s9.68fab2923124 from=translated src=- shape=45dc9354 vocab=67a32b56
+-/
 theorem mul_apply_repr (φ ψ : CartierDual S B) (b : B) {ι : Type*} (rep : Coalgebra.Repr S b ι) :
     (φ * ψ) b = ∑ i ∈ rep.index, φ (rep.left i) * ψ (rep.right i) := by
   rw [CartierDual.mul_apply, ← rep.eq, map_sum]
   simp only [LinearMap.coe_sum, Finset.sum_apply, TensorProduct.dualDistrib_apply, CartierDual.toDual_apply]
 
+/--
+@isnad1 id=eq.2h5v.s11.0c774451be86 from=translated src=- shape=147904d6 vocab=dd3ee563
+-/
 theorem comul_famLin (e : M → CartierDual S B)
     (hidem : ∀ m, IsIdempotentElem (e m)) (horth : ∀ a b, a ≠ b → e a * e b = 0) (b : B) :
     TensorProduct.map (famLin e) (famLin e) (Coalgebra.comul (R := S) b) =
@@ -88,6 +100,9 @@ theorem comul_famLin (e : M → CartierDual S B)
 
 end TLGenL4e
 
+/--
+@isnad1 id=ex.3h4v.s10.13ef74a6bb09 from=translated src=- shape=9e117263 vocab=d4e96c70
+-/
 theorem solution
     {S : Type u} [CommRing S] {B : Type v} [CommRing B] [Bialgebra S B] [Module.Finite S B] [Module.Free S B]
     (M : Type w) [Fintype M] [DecidableEq M]

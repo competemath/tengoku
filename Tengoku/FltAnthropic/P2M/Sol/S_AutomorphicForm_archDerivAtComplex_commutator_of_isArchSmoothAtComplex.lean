@@ -27,16 +27,25 @@ def dirM : ArchDirComplex → Matrix (Fin 2) (Fin 2) ℂ
   | .iFm => !![0, 0; I, 0]
 
 omit hw in
+/--
+@isnad1 id=eq.0h1v.s8.a94ffeb4d01f from=translated src=- shape=0190e490 vocab=a8b4cb04
+-/
 theorem splitTorusGL2Complex_coe (z : ℂ) :
     (splitTorusGL2Complex z : Matrix (Fin 2) (Fin 2) ℂ) = !![Complex.exp z, 0; 0, Complex.exp (-z)] :=
   rfl
 
 omit hw in
+/--
+@isnad1 id=hasderiv.0h2v.s6.df2a3964ce88 from=translated src=- shape=6e0b42a2 vocab=7f0edd17
+-/
 theorem hasDerivAt_ofReal_mul_const (c : ℂ) (t : ℝ) :
     HasDerivAt (fun s : ℝ => (s : ℂ) * c) c t := by
   simpa using (Complex.ofRealCLM.hasDerivAt (x := t)).mul_const c
 
 omit hw in
+/--
+@isnad1 id=hasderiv.0h1v.s6.6d9c64bc2870 from=translated src=- shape=2c443d48 vocab=a4119832
+-/
 theorem hasDerivAt_cexp_ofReal_mul_const (c : ℂ) :
     HasDerivAt (fun s : ℝ => Complex.exp ((s : ℂ) * c)) c 0 := by
   have h := (Complex.hasDerivAt_exp ((0 : ℝ) * c)).comp (0 : ℝ) (hasDerivAt_ofReal_mul_const c 0)
@@ -44,6 +53,9 @@ theorem hasDerivAt_cexp_ofReal_mul_const (c : ℂ) :
   exact h
 
 omit hw in
+/--
+@isnad1 id=hasderiv.0h1v.s6.d77fee80665e from=translated src=- shape=2cd38068 vocab=8a998b00
+-/
 theorem hasDerivAt_cexp_neg_ofReal_mul_const (c : ℂ) :
     HasDerivAt (fun s : ℝ => Complex.exp (-((s : ℂ) * c))) (-c) 0 := by
   have h0 : HasDerivAt (fun s : ℝ => -((s : ℂ) * c)) (-c) 0 := (hasDerivAt_ofReal_mul_const c 0).neg
@@ -53,6 +65,9 @@ theorem hasDerivAt_cexp_neg_ofReal_mul_const (c : ℂ) :
 
 omit hw in
 
+/--
+@isnad1 id=hasderiv.0h3v.s7.5e0463b0b09a from=translated src=- shape=14a2dc4c vocab=ce4c45ac
+-/
 theorem hasDerivAt_archFlowMatrixComplex_apply (d : ArchDirComplex) (i j : Fin 2) :
     HasDerivAt (fun t : ℝ => (archFlowMatrixComplex d t : Matrix (Fin 2) (Fin 2) ℂ) i j) (dirM d i j) 0 := by
   have e1 : HasDerivAt (fun s : ℝ => Complex.exp (s : ℂ)) 1 0 := by
@@ -71,6 +86,9 @@ theorem hasDerivAt_archFlowMatrixComplex_apply (d : ArchDirComplex) (i j : Fin 2
       | exact hasDerivAt_const _ _
       | exact e1 | exact e2 | exact e3 | exact e4 | exact e5 | exact e6
 
+/--
+@isnad1 id=eq.2h4v.s10.4b55a7356f9c from=translated src=- shape=10ade2f5 vocab=9a420100
+-/
 theorem archComplexLiftAt_mul_archComplexGLAt {e : Fin 2 → Fin 2 → ℂ}
     (h : (Matrix.of e).det ≠ 0) (m : GL (Fin 2) ℂ) :
     archComplexLiftAt hw e * archComplexGLAt hw m =
@@ -87,6 +105,9 @@ theorem archComplexLiftAt_mul_archComplexGLAt {e : Fin 2 → Fin 2 → ℂ}
 
 omit hw in
 
+/--
+@isnad1 id=hasderiv.0h2v.s10.10672a2fb879 from=translated src=- shape=a41c3521 vocab=bc958ca0
+-/
 theorem hasDerivAt_of_symm_mul_archFlowMatrixComplex (e : Fin 2 → Fin 2 → ℂ) (d : ArchDirComplex) :
     HasDerivAt
       (fun t : ℝ => (Matrix.of.symm (Matrix.of e * (archFlowMatrixComplex d t : Matrix (Fin 2) (Fin 2) ℂ)) :
@@ -100,10 +121,16 @@ theorem hasDerivAt_of_symm_mul_archFlowMatrixComplex (e : Fin 2 → Fin 2 → �
   exact HasDerivAt.fun_sum fun k _ => (hasDerivAt_archFlowMatrixComplex_apply d k j).const_mul (e i k)
 
 omit hw in
+/--
+@isnad1 id=eq.0h2v.s9.813205feea52 from=translated src=- shape=92744cc2 vocab=c1fea0da
+-/
 theorem of_symm_mul_archFlowMatrixComplex_zero (e : Fin 2 → Fin 2 → ℂ) (d : ArchDirComplex) :
     (Matrix.of.symm (Matrix.of e * (archFlowMatrixComplex d 0 : Matrix (Fin 2) (Fin 2) ℂ)) : Fin 2 → Fin 2 → ℂ) = e := by
   rw [archFlowMatrixComplex_zero, Units.val_one, mul_one, Equiv.symm_apply_apply]
 
+/--
+@isnad1 id=eq.1h2v.s8.e20660d450bf from=translated src=- shape=0f7a0381 vocab=966fb49d
+-/
 theorem archComplexLiftAt_of_symm_one :
     archComplexLiftAt hw (Matrix.of.symm (1 : Matrix (Fin 2) (Fin 2) ℂ)) = 1 := by
   have hdet : (Matrix.of (Matrix.of.symm (1 : Matrix (Fin 2) (Fin 2) ℂ))).det ≠ 0 := by
@@ -114,6 +141,9 @@ theorem archComplexLiftAt_of_symm_one :
   ext i j
   simp [GeneralLinearGroup.mkOfDetNeZero]
 
+/--
+@isnad1 id=eq.1h3v.s9.c7229c8525c7 from=translated src=- shape=00faa551 vocab=20f8dbd0
+-/
 theorem archComplexGLAt_eq_archComplexLiftAt (M : GL (Fin 2) ℂ) :
     archComplexGLAt hw M = archComplexLiftAt hw (Matrix.of.symm (M : Matrix (Fin 2) (Fin 2) ℂ)) := by
   have hdet : (Matrix.of (Matrix.of.symm (M : Matrix (Fin 2) (Fin 2) ℂ))).det ≠ 0 := by
@@ -130,6 +160,9 @@ def chart (φ : AdelicGL2 (𝓞 F) F → ℂ) (g : AdelicGL2 (𝓞 F) F) : (Fin 
 abbrev U : Set (Fin 2 → Fin 2 → ℂ) := {e | (Matrix.of e).det ≠ 0}
 
 omit hw in
+/--
+@isnad1 id=mem.0h0v.s8.23d0123df652 from=translated src=- shape=bc349a67 vocab=fb7c9c86
+-/
 theorem one_mem_U : (Matrix.of.symm (1 : Matrix (Fin 2) (Fin 2) ℂ)) ∈ U := by
   show (Matrix.of (Matrix.of.symm (1 : Matrix (Fin 2) (Fin 2) ℂ))).det ≠ 0
   rw [Equiv.apply_symm_apply, Matrix.det_one]
@@ -138,15 +171,24 @@ theorem one_mem_U : (Matrix.of.symm (1 : Matrix (Fin 2) (Fin 2) ℂ)) ∈ U := b
 def D1 (φ : AdelicGL2 (𝓞 F) F → ℂ) (g : AdelicGL2 (𝓞 F) F) (Y : Matrix (Fin 2) (Fin 2) ℂ) : ℂ :=
   fderiv ℝ (chart hw φ g) (Matrix.of.symm 1) (Matrix.of.symm Y)
 
+/--
+@isnad1 id=contdiff.3h5v.s9.be669ee9060f from=translated src=- shape=f0a0d44d vocab=52ce73fd
+-/
 theorem contDiffAt_chart {φ : AdelicGL2 (𝓞 F) F → ℂ} (hφ : IsArchSmoothAtComplex hw φ) (g : AdelicGL2 (𝓞 F) F)
     {e : Fin 2 → Fin 2 → ℂ} (he : (Matrix.of e).det ≠ 0) : ContDiffAt ℝ (⊤ : ℕ∞) (chart hw φ g) e :=
   (hφ g).contDiffAt (isOpen_setOf_det_ne_zero_complex.mem_nhds he)
 
+/--
+@isnad1 id=hasfderi.3h5v.s9.d8fc21a1e262 from=translated src=- shape=60ed9ef7 vocab=966e80e7
+-/
 theorem hasFDerivAt_chart {φ : AdelicGL2 (𝓞 F) F → ℂ} (hφ : IsArchSmoothAtComplex hw φ) (g : AdelicGL2 (𝓞 F) F)
     {e : Fin 2 → Fin 2 → ℂ} (he : (Matrix.of e).det ≠ 0) :
     HasFDerivAt (chart hw φ g) (fderiv ℝ (chart hw φ g) e) e :=
   ((contDiffAt_chart hw hφ g he).differentiableAt (by simp)).hasFDerivAt
 
+/--
+@isnad1 id=eq.3h6v.s10.d335922192ea from=translated src=- shape=494d706d vocab=c352d157
+-/
 theorem archDerivAtComplex_apply_mul_lift {φ : AdelicGL2 (𝓞 F) F → ℂ} (hφ : IsArchSmoothAtComplex hw φ)
     (d : ArchDirComplex) (g : AdelicGL2 (𝓞 F) F) {e : Fin 2 → Fin 2 → ℂ} (he : (Matrix.of e).det ≠ 0) :
     archDerivAtComplex hw d φ (g * archComplexLiftAt hw e) =
@@ -166,6 +208,9 @@ theorem archDerivAtComplex_apply_mul_lift {φ : AdelicGL2 (𝓞 F) F → ℂ} (h
   simpa only [Function.comp_def] using
     (hdiff.comp_hasDerivAt (0 : ℝ) (hasDerivAt_of_symm_mul_archFlowMatrixComplex e d)).deriv
 
+/--
+@isnad1 id=eq.2h5v.s6.7e1261efea59 from=translated src=- shape=aa916f96 vocab=b2e6fb3b
+-/
 theorem archDerivAtComplex_eq_D1 {φ : AdelicGL2 (𝓞 F) F → ℂ} (hφ : IsArchSmoothAtComplex hw φ) (d : ArchDirComplex)
     (g : AdelicGL2 (𝓞 F) F) : archDerivAtComplex hw d φ g = D1 hw φ g (dirM d) := by
   have h := archDerivAtComplex_apply_mul_lift hw hφ d g (e := Matrix.of.symm 1) one_mem_U
@@ -176,6 +221,9 @@ def D2 (φ : AdelicGL2 (𝓞 F) F → ℂ) (g : AdelicGL2 (𝓞 F) F) (Y Z : Mat
   fderiv ℝ (fderiv ℝ (chart hw φ g)) (Matrix.of.symm 1) (Matrix.of.symm Y) (Matrix.of.symm Z)
 
 omit hw in
+/--
+@isnad1 id=hasderiv.0h1v.s9.728f4bfeb93a from=translated src=- shape=c589e941 vocab=6c243fb1
+-/
 theorem hasDerivAt_flow_entries (d : ArchDirComplex) :
     HasDerivAt (fun t : ℝ => Matrix.of.symm ((archFlowMatrixComplex d t : Matrix (Fin 2) (Fin 2) ℂ)))
       (Matrix.of.symm (dirM d)) 0 := by
@@ -184,6 +232,9 @@ theorem hasDerivAt_flow_entries (d : ArchDirComplex) :
   exact h
 
 omit hw in
+/--
+@isnad1 id=hasderiv.0h2v.s9.e21a3d9e5a55 from=translated src=- shape=c1b531aa vocab=bc958ca0
+-/
 theorem hasDerivAt_flow_mul_const (d : ArchDirComplex) (X : Matrix (Fin 2) (Fin 2) ℂ) :
     HasDerivAt (fun t : ℝ => Matrix.of.symm ((archFlowMatrixComplex d t : Matrix (Fin 2) (Fin 2) ℂ) * X))
       (Matrix.of.symm (dirM d * X)) 0 := by
@@ -194,6 +245,9 @@ theorem hasDerivAt_flow_mul_const (d : ArchDirComplex) (X : Matrix (Fin 2) (Fin 
   simp only [Matrix.of_symm_apply, Matrix.mul_apply]
   exact HasDerivAt.fun_sum fun k _ => (hasDerivAt_archFlowMatrixComplex_apply d i k).mul_const (X k j)
 
+/--
+@isnad1 id=eq.2h6v.s7.eba57a204ba5 from=translated src=- shape=8a765322 vocab=4350130b
+-/
 theorem archDerivAtComplex_archDerivAtComplex_eq {φ : AdelicGL2 (𝓞 F) F → ℂ} (hφ : IsArchSmoothAtComplex hw φ)
     (i j : ArchDirComplex) (g : AdelicGL2 (𝓞 F) F) :
     archDerivAtComplex hw i (archDerivAtComplex hw j φ) g =
@@ -222,28 +276,43 @@ theorem archDerivAtComplex_archDerivAtComplex_eq {φ : AdelicGL2 (𝓞 F) F → 
   rw [hfun, h.deriv]
   simp only [archFlowMatrixComplex_zero, Units.val_one, Matrix.one_mul, D2, D1]
 
+/--
+@isnad1 id=eq.2h6v.s6.d2740255bf8f from=translated src=- shape=9e90e032 vocab=9855eca6
+-/
 theorem D2_symm {φ : AdelicGL2 (𝓞 F) F → ℂ} (hφ : IsArchSmoothAtComplex hw φ) (g : AdelicGL2 (𝓞 F) F)
     (Y Z : Matrix (Fin 2) (Fin 2) ℂ) : D2 hw φ g Y Z = D2 hw φ g Z Y :=
   ((contDiffAt_chart hw hφ g one_mem_U).isSymmSndFDerivAt (by simp)).eq _ _
 
+/--
+@isnad1 id=eq.1h6v.s7.6604e85d3922 from=translated src=- shape=c97b7a01 vocab=f7df5475
+-/
 theorem D1_sub (φ : AdelicGL2 (𝓞 F) F → ℂ) (g : AdelicGL2 (𝓞 F) F) (Y Z : Matrix (Fin 2) (Fin 2) ℂ) :
     D1 hw φ g (Y - Z) = D1 hw φ g Y - D1 hw φ g Z := by
   show fderiv ℝ (chart hw φ g) (Matrix.of.symm 1) (Matrix.of.symm Y - Matrix.of.symm Z) = _
   rw [map_sub]
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s7.b18b25b3df55 from=translated src=- shape=d5e3a18b vocab=e8aaa328
+-/
 theorem D1_smul (φ : AdelicGL2 (𝓞 F) F → ℂ) (g : AdelicGL2 (𝓞 F) F) (c : ℝ) (Y : Matrix (Fin 2) (Fin 2) ℂ) :
     D1 hw φ g (c • Y) = (c : ℂ) * D1 hw φ g Y := by
   show fderiv ℝ (chart hw φ g) (Matrix.of.symm 1) (c • Matrix.of.symm Y) = _
   rw [map_smul, Complex.real_smul]
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s6.198f0ad4d97a from=translated src=- shape=1b58a8e4 vocab=9f985a0d
+-/
 theorem D1_zero (φ : AdelicGL2 (𝓞 F) F → ℂ) (g : AdelicGL2 (𝓞 F) F) :
     D1 hw φ g 0 = 0 := by
   show fderiv ℝ (chart hw φ g) (Matrix.of.symm 1) (Matrix.of.symm 0) = 0
   have : (Matrix.of.symm (0 : Matrix (Fin 2) (Fin 2) ℂ) : Fin 2 → Fin 2 → ℂ) = 0 := rfl
   rw [this, map_zero]
 
+/--
+@isnad1 id=eq.2h6v.s8.5fd4b26232f4 from=translated src=- shape=cfd83fc5 vocab=301dfd29
+-/
 theorem archDerivAtComplex_comm {φ : AdelicGL2 (𝓞 F) F → ℂ} (hφ : IsArchSmoothAtComplex hw φ) (i j : ArchDirComplex)
     (g : AdelicGL2 (𝓞 F) F) :
     archDerivAtComplex hw i (archDerivAtComplex hw j φ) g - archDerivAtComplex hw j (archDerivAtComplex hw i φ) g =
@@ -252,6 +321,9 @@ theorem archDerivAtComplex_comm {φ : AdelicGL2 (𝓞 F) F → ℂ} (hφ : IsArc
     D2_symm hw hφ g (dirM j), D1_sub]
   ring
 
+/--
+@isnad1 id=eq.4h8v.s9.d86f05e0401e from=translated src=- shape=b791a733 vocab=bed936a7
+-/
 theorem comm_of_bracket {φ : AdelicGL2 (𝓞 F) F → ℂ} (hφ : IsArchSmoothAtComplex hw φ) {i j k : ArchDirComplex}
     {c : ℝ} {c' : ℂ} (hc : (c : ℂ) = c') (hb : dirM i * dirM j - dirM j * dirM i = c • dirM k) :
     archDerivAtComplex hw i (archDerivAtComplex hw j φ) - archDerivAtComplex hw j (archDerivAtComplex hw i φ) =
@@ -260,6 +332,9 @@ theorem comm_of_bracket {φ : AdelicGL2 (𝓞 F) F → ℂ} (hφ : IsArchSmoothA
   rw [Pi.sub_apply, Pi.smul_apply, smul_eq_mul, archDerivAtComplex_comm hw hφ, hb, D1_smul,
     ← archDerivAtComplex_eq_D1 hw hφ, hc]
 
+/--
+@isnad1 id=eq.3h5v.s9.dbd76bb17dc3 from=translated src=- shape=2aedf1c5 vocab=ab81d0ed
+-/
 theorem comm_of_bracket_zero {φ : AdelicGL2 (𝓞 F) F → ℂ} (hφ : IsArchSmoothAtComplex hw φ) {i j : ArchDirComplex}
     (hb : dirM i * dirM j - dirM j * dirM i = 0) :
     archDerivAtComplex hw i (archDerivAtComplex hw j φ) - archDerivAtComplex hw j (archDerivAtComplex hw i φ) = 0 := by
@@ -270,53 +345,101 @@ section brackets
 
 omit hw
 
+/--
+@isnad1 id=eq.0h0v.s8.4ba44febe909 from=translated src=- shape=bd47d77c vocab=25e6045b
+-/
 theorem br_H_E : dirM .H * dirM .E - dirM .E * dirM .H = (2 : ℝ) • dirM .E := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [dirM]; norm_num
 
+/--
+@isnad1 id=eq.0h0v.s8.c215baf6dfea from=translated src=- shape=11e52a98 vocab=0845dd33
+-/
 theorem br_H_Fm : dirM .H * dirM .Fm - dirM .Fm * dirM .H = (-2 : ℝ) • dirM .Fm := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [dirM]; norm_num
 
+/--
+@isnad1 id=eq.0h0v.s8.b69a0be629a9 from=translated src=- shape=e3e3a194 vocab=6a4ee398
+-/
 theorem br_E_Fm : dirM .E * dirM .Fm - dirM .Fm * dirM .E = (1 : ℝ) • dirM .H := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [dirM]
 
+/--
+@isnad1 id=eq.0h0v.s8.1880235ff6ee from=translated src=- shape=bd47d77c vocab=c760be1c
+-/
 theorem br_H_iE : dirM .H * dirM .iE - dirM .iE * dirM .H = (2 : ℝ) • dirM .iE := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [dirM]; ring
 
+/--
+@isnad1 id=eq.0h0v.s8.7888388a04e0 from=translated src=- shape=11e52a98 vocab=51e21fa7
+-/
 theorem br_H_iFm : dirM .H * dirM .iFm - dirM .iFm * dirM .H = (-2 : ℝ) • dirM .iFm := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [dirM]; ring
 
+/--
+@isnad1 id=eq.0h0v.s8.8e543e904897 from=translated src=- shape=e3e3a194 vocab=0c1b740c
+-/
 theorem br_E_iFm : dirM .E * dirM .iFm - dirM .iFm * dirM .E = (1 : ℝ) • dirM .iH := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [dirM]
 
+/--
+@isnad1 id=eq.0h0v.s8.e433911cc9d8 from=translated src=- shape=e3e3a194 vocab=ccda5b62
+-/
 theorem br_iE_Fm : dirM .iE * dirM .Fm - dirM .Fm * dirM .iE = (1 : ℝ) • dirM .iH := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [dirM]
 
+/--
+@isnad1 id=eq.0h0v.s8.01e688ed1492 from=translated src=- shape=e3e3a194 vocab=066de523
+-/
 theorem br_iH_E : dirM .iH * dirM .E - dirM .E * dirM .iH = (2 : ℝ) • dirM .iE := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [dirM]; ring
 
+/--
+@isnad1 id=eq.0h0v.s8.c19dae314a07 from=translated src=- shape=93ebb3b3 vocab=06b846f0
+-/
 theorem br_iH_Fm : dirM .iH * dirM .Fm - dirM .Fm * dirM .iH = (-2 : ℝ) • dirM .iFm := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [dirM]; ring
 
+/--
+@isnad1 id=eq.0h0v.s8.f8f51ccce3e6 from=translated src=- shape=93ebb3b3 vocab=a519f606
+-/
 theorem br_iH_iE : dirM .iH * dirM .iE - dirM .iE * dirM .iH = (-2 : ℝ) • dirM .E := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [dirM]; ring
 
+/--
+@isnad1 id=eq.0h0v.s8.200809e1a591 from=translated src=- shape=e3e3a194 vocab=71c6acb7
+-/
 theorem br_iH_iFm : dirM .iH * dirM .iFm - dirM .iFm * dirM .iH = (2 : ℝ) • dirM .Fm := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [dirM]; ring
 
+/--
+@isnad1 id=eq.0h0v.s8.01c766c29f7a from=translated src=- shape=93ebb3b3 vocab=62a1eaba
+-/
 theorem br_iE_iFm : dirM .iE * dirM .iFm - dirM .iFm * dirM .iE = (-1 : ℝ) • dirM .H := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [dirM]
 
+/--
+@isnad1 id=eq.0h0v.s8.b66e31bff3ac from=translated src=- shape=4c69180c vocab=0a4b5262
+-/
 theorem br_H_iH : dirM .H * dirM .iH - dirM .iH * dirM .H = 0 := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [dirM]
 
+/--
+@isnad1 id=eq.0h0v.s8.418bd0a408a9 from=translated src=- shape=4c69180c vocab=f6034938
+-/
 theorem br_E_iE : dirM .E * dirM .iE - dirM .iE * dirM .E = 0 := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [dirM]
 
+/--
+@isnad1 id=eq.0h0v.s8.607323139a21 from=translated src=- shape=4c69180c vocab=7482560d
+-/
 theorem br_Fm_iFm : dirM .Fm * dirM .iFm - dirM .iFm * dirM .Fm = 0 := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [dirM]
 
 end brackets
 
+/--
+@isnad1 id=and.2h3v.s11.092dc9e4a40a from=translated src=- shape=a74f675f vocab=04869e59
+-/
 theorem main (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArchSmoothAtComplex hw φ) :
     archDerivAtComplex hw .H (archDerivAtComplex hw .E φ) - archDerivAtComplex hw .E (archDerivAtComplex hw .H φ) =
       (2 : ℂ) • archDerivAtComplex hw .E φ ∧
@@ -368,6 +491,9 @@ theorem main (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArchSmoothAtComplex hw
 end Ws26.CommC
 
 end
+/--
+@isnad1 id=and.2h3v.s11.092dc9e4a40a from=translated src=- shape=a74f675f vocab=04869e59
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F] {w : InfinitePlace F} (hw : w.IsComplex)
     (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArchSmoothAtComplex hw φ) :

@@ -19,6 +19,9 @@ open Matrix Complex AutomorphicForm.WindowedSiegel
 variable {F : Type} [Field F] [NumberField F]
 
 omit [NumberField F] in
+/--
+@isnad1 id=eq.1h3v.s8.868a6a7f1d53 from=translated src=- shape=8114c758 vocab=dcb5c795
+-/
 theorem norm_ringEquivComplexOfIsComplex_symm {w : InfinitePlace F} (hw : w.IsComplex) (z : ℂ) :
     ‖(ringEquivComplexOfIsComplex hw).symm z‖ = ‖z‖ := by
   have h : ∀ x : w.Completion, ‖ringEquivComplexOfIsComplex hw x‖ = ‖x‖ := fun x =>
@@ -26,6 +29,9 @@ theorem norm_ringEquivComplexOfIsComplex_symm {w : InfinitePlace F} (hw : w.IsCo
   conv_rhs => rw [← (ringEquivComplexOfIsComplex hw).apply_symm_apply z]
   rw [h]
 
+/--
+@isnad1 id=eq.3h5v.s13.5879ee824c23 from=translated src=- shape=4082d0a0 vocab=7045eb9d
+-/
 theorem apply_mul_archComplexGLAt_of_mem {w : InfinitePlace F} (hw : w.IsComplex)
     {φ : AdelicGL2 (𝓞 F) F → ℂ} (hχ : HasArchCharacterAt₀ F w 1 φ)
     (m : GL (Fin 2) ℂ) (hm : m ∈ rowIsometrySubgroup₀ ℂ) (g : AdelicGL2 (𝓞 F) F) :
@@ -36,6 +42,9 @@ theorem apply_mul_archComplexGLAt_of_mem {w : InfinitePlace F} (hw : w.IsComplex
   rw [MonoidHom.one_apply, Units.val_one, one_mul] at h
   exact h
 
+/--
+@isnad1 id=mem.2h1v.s9.dda306d0ccab from=translated src=- shape=9958e5e8 vocab=fa88b774
+-/
 theorem mem_rowIsometrySubgroup₀_complex (m : GL (Fin 2) ℂ)
     (hdet : (m : Matrix (Fin 2) (Fin 2) ℂ).det = 1)
     (hiso : ∀ x y : ℂ,
@@ -73,6 +82,9 @@ noncomputable def swayGL (t : ℝ) : GL (Fin 2) ℂ where
       simp [Matrix.mul_apply, Fin.sum_univ_two, -Complex.ofReal_cos, -Complex.ofReal_sin] <;> ring_nf <;>
       simp only [Complex.I_sq] <;> first | linear_combination h | linear_combination -h | ring
 
+/--
+@isnad1 id=mem.0h1v.s8.36ab709065a2 from=translated src=- shape=21e1e76d vocab=8090d3ca
+-/
 theorem rotGL_mem (t : ℝ) : rotGL t ∈ rowIsometrySubgroup₀ ℂ := by
   have h : (Real.cos t : ℂ) ^ 2 + (Real.sin t : ℂ) ^ 2 = 1 := by exact_mod_cast Real.cos_sq_add_sin_sq t
   refine mem_rowIsometrySubgroup₀_complex _ ?_ ?_
@@ -86,6 +98,9 @@ theorem rotGL_mem (t : ℝ) : rotGL t ∈ rowIsometrySubgroup₀ ℂ := by
     ring_nf
     nlinarith [hr, sq_nonneg x.re, sq_nonneg x.im, sq_nonneg y.re, sq_nonneg y.im]
 
+/--
+@isnad1 id=mem.0h1v.s8.d705d29ed0be from=translated src=- shape=21e1e76d vocab=e8c03c91
+-/
 theorem swayGL_mem (t : ℝ) : swayGL t ∈ rowIsometrySubgroup₀ ℂ := by
   have h : (Real.cos t : ℂ) ^ 2 + (Real.sin t : ℂ) ^ 2 = 1 := by exact_mod_cast Real.cos_sq_add_sin_sq t
   refine mem_rowIsometrySubgroup₀_complex _ ?_ ?_
@@ -99,6 +114,9 @@ theorem swayGL_mem (t : ℝ) : swayGL t ∈ rowIsometrySubgroup₀ ℂ := by
     ring_nf
     nlinarith [hr, sq_nonneg x.re, sq_nonneg x.im, sq_nonneg y.re, sq_nonneg y.im]
 
+/--
+@isnad1 id=mem.0h1v.s8.9dc00c335023 from=translated src=- shape=5c742940 vocab=7223b0fe
+-/
 theorem flow_iH_mem (t : ℝ) : archFlowMatrixComplex .iH t ∈ rowIsometrySubgroup₀ ℂ := by
   have hcoe : ((archFlowMatrixComplex .iH t : GL (Fin 2) ℂ) : Matrix (Fin 2) (Fin 2) ℂ) =
       !![Complex.exp ((t : ℂ) * I), 0; 0, Complex.exp (-((t : ℂ) * I))] := by
@@ -115,6 +133,9 @@ theorem flow_iH_mem (t : ℝ) : archFlowMatrixComplex .iH t ∈ rowIsometrySubgr
     simp only [Matrix.of_apply, Matrix.cons_val', Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.empty_val',
       Matrix.cons_val_fin_one, mul_zero, add_zero, zero_add, norm_mul, hn1, hn2, mul_one]
 
+/--
+@isnad1 id=eq.1h3v.s9.c7229c8525c7 from=translated src=- shape=00faa551 vocab=20f8dbd0
+-/
 theorem archComplexGLAt_eq_lift {w : InfinitePlace F} (hw : w.IsComplex) (m : GL (Fin 2) ℂ) :
     archComplexGLAt hw m = archComplexLiftAt hw (Matrix.of.symm (m : Matrix (Fin 2) (Fin 2) ℂ)) := by
   have hdet : (Matrix.of (Matrix.of.symm (1 : Matrix (Fin 2) (Fin 2) ℂ))).det ≠ 0 := by
@@ -123,6 +144,9 @@ theorem archComplexGLAt_eq_lift {w : InfinitePlace F} (hw : w.IsComplex) (m : GL
   rw [archComplexLiftAt_of_symm_one, one_mul, Equiv.apply_symm_apply, one_mul] at h
   exact h
 
+/--
+@isnad1 id=hasderiv.4h6v.s11.5e0f3495a4e7 from=translated src=- shape=6eb01b97 vocab=15eb270b
+-/
 theorem hasDerivAt_chart {w : InfinitePlace F} {hw : w.IsComplex} {φ : AdelicGL2 (𝓞 F) F → ℂ}
     (hφ : IsArchSmoothAtComplex hw φ) (g : AdelicGL2 (𝓞 F) F)
     (M : ℝ → Matrix (Fin 2) (Fin 2) ℂ) (M' : Matrix (Fin 2) (Fin 2) ℂ) (hM0 : M 0 = 1)
@@ -141,6 +165,9 @@ theorem hasDerivAt_chart {w : InfinitePlace F} {hw : w.IsComplex} {φ : AdelicGL
     exact (((hφ g).contDiffAt (hopen.mem_nhds hdet)).differentiableAt (by simp)).hasFDerivAt
   exact hdiff.comp_hasDerivAt (0 : ℝ) hM
 
+/--
+@isnad1 id=eq.2h5v.s10.4ac4166daa11 from=translated src=- shape=acdb8462 vocab=08f0a0fe
+-/
 theorem archDerivAtComplex_eq {w : InfinitePlace F} {hw : w.IsComplex} {φ : AdelicGL2 (𝓞 F) F → ℂ}
     (hφ : IsArchSmoothAtComplex hw φ) (d : ArchDirComplex) (g : AdelicGL2 (𝓞 F) F) :
     archDerivAtComplex hw d φ g =
@@ -163,6 +190,9 @@ theorem archDerivAtComplex_eq {w : InfinitePlace F} {hw : w.IsComplex} {φ : Ade
   rw [hfun]
   exact h.deriv
 
+/--
+@isnad1 id=eq.6h6v.s13.3acb19561037 from=translated src=- shape=693383d0 vocab=fa068468
+-/
 theorem fderiv_apply_eq_zero_of_mem {w : InfinitePlace F} {hw : w.IsComplex} {φ : AdelicGL2 (𝓞 F) F → ℂ}
     (hφ : IsArchSmoothAtComplex hw φ) (hχ : HasArchCharacterAt₀ F w 1 φ) (g : AdelicGL2 (𝓞 F) F)
     (M : ℝ → GL (Fin 2) ℂ) (hmem : ∀ t, M t ∈ rowIsometrySubgroup₀ ℂ) (M' : Matrix (Fin 2) (Fin 2) ℂ)
@@ -180,6 +210,9 @@ theorem fderiv_apply_eq_zero_of_mem {w : InfinitePlace F} {hw : w.IsComplex} {φ
   rw [hconst] at h
   exact (h.unique (hasDerivAt_const (0 : ℝ) (φ g))).symm ▸ rfl
 
+/--
+@isnad1 id=hasderiv.0h0v.s9.e9e0d920b592 from=translated src=- shape=a9052840 vocab=fd33ccdb
+-/
 theorem hasDerivAt_rotGL :
     HasDerivAt (fun t : ℝ => (Matrix.of.symm ((rotGL t : GL (Fin 2) ℂ) : Matrix (Fin 2) (Fin 2) ℂ) :
       Fin 2 → Fin 2 → ℂ)) (Matrix.of.symm (archDirMatrixComplex .Fm - archDirMatrixComplex .E)) 0 := by
@@ -196,6 +229,9 @@ theorem hasDerivAt_rotGL :
   · simpa [rotGL, archDirMatrixComplex] using hs
   · simpa [rotGL, archDirMatrixComplex] using hc
 
+/--
+@isnad1 id=hasderiv.0h0v.s9.e11c1cff53cd from=translated src=- shape=a9052840 vocab=813849e4
+-/
 theorem hasDerivAt_swayGL :
     HasDerivAt (fun t : ℝ => (Matrix.of.symm ((swayGL t : GL (Fin 2) ℂ) : Matrix (Fin 2) (Fin 2) ℂ) :
       Fin 2 → Fin 2 → ℂ)) (Matrix.of.symm (archDirMatrixComplex .iE + archDirMatrixComplex .iFm)) 0 := by
@@ -210,9 +246,15 @@ theorem hasDerivAt_swayGL :
   · simpa [swayGL, archDirMatrixComplex] using hs
   · simpa [swayGL, archDirMatrixComplex] using hc
 
+/--
+@isnad1 id=eq.0h0v.s6.3959b264ba76 from=translated src=- shape=1300b827 vocab=00bd513b
+-/
 theorem rotGL_zero : rotGL 0 = 1 := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [rotGL]
 
+/--
+@isnad1 id=eq.0h0v.s6.ee33f35cea16 from=translated src=- shape=1300b827 vocab=0870d98f
+-/
 theorem swayGL_zero : swayGL 0 = 1 := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [swayGL]
 
@@ -220,6 +262,9 @@ end Ws50KDER0
 
 open Ws50KDER0 in
 
+/--
+@isnad1 id=and.3h3v.s13.76cd85996896 from=translated src=- shape=c82c40ab vocab=5f25d937
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F] (w : InfinitePlace F) (hw : w.IsComplex)
     (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArchSmoothAtComplex hw φ)

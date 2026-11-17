@@ -12,6 +12,9 @@ open scoped TensorProduct
 
 namespace G3UnramSplit
 
+/--
+@isnad1 id=ex.1h2v.s6.0f14ba7cea23 from=translated src=- shape=13cfbbcd vocab=df659a77
+-/
 theorem exists_finset_pow_eq_self {k : Type} [Field k] {r : ℕ} (hr : 1 < r) :
     ∃ T : Finset k, T.card ≤ r ∧ ∀ x : k, x ^ r = x → x ∈ T := by
   classical
@@ -30,6 +33,9 @@ end G3UnramSplit
 
 open G3UnramSplit in
 
+/--
+@isnad1 id=bijectiv.10h6v.s12.0c1d00230b62 from=translated src=- shape=f19c3979 vocab=90b4b328
+-/
 theorem solution
 
     {r : ℕ} [Fact r.Prime]

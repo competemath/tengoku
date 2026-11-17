@@ -37,6 +37,9 @@ private theorem isFinTestFactor_comp_mul_left (K : Type) [Field K] [NumberField 
 end TierTranslate
 
 open TierTranslate in
+/--
+@isnad1 id=isfactor.1h3v.s9.bc6d17da40f9 from=translated src=- shape=09ea5c2d vocab=4a28915e
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K]
     (f : GL (Fin 2) (AdeleRing (𝓞 K) K) → ℂ)

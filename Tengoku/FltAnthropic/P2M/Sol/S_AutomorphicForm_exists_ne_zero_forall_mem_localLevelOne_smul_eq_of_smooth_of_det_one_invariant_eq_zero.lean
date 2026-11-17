@@ -1191,6 +1191,9 @@ open scoped _root_.P2MW.S_AutomorphicForm_exists_ne_zero_forall_mem_localLevelOn
 end
 open scoped _root_.P2MW.S_AutomorphicForm_exists_ne_zero_forall_mem_localLevelOne_smul_eq_of_smooth_of_det_one_invariant_eq_zero.UnipotentAveraging
 
+/--
+@isnad1 id=ex.3h4v.s12.26ce3d71e4d3 from=translated src=- shape=e00be100 vocab=d0e54a67
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K))
     (W : Type) [AddCommGroup W] [Module ℂ W]

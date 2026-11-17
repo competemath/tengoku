@@ -21,10 +21,16 @@ open _root_.CerednikDrinfeld.Mumford open _root_.CerednikDrinfeld
 
 variable {W : Type} {𝒯 : SimpleGraph W}
 
+/--
+@isnad1 id=eq.1h2v.s7.c428a905436d from=translated src=- shape=4d784db5 vocab=014cf724
+-/
 theorem zmod2_eq_add_one_of_ne : ∀ a b : ZMod 2, a ≠ b → b = a + 1 := by decide
 
 def col (C : 𝒯.Coloring (Fin 2)) (w : W) : ZMod 2 := C w
 
+/--
+@isnad1 id=eq.0h6v.s7.08ab027f9aac from=translated src=- shape=233cf9f6 vocab=639dd073
+-/
 theorem length_walk_eq_col_sub (C : 𝒯.Coloring (Fin 2)) {u w : W} (p : 𝒯.Walk u w) :
     (p.length : ZMod 2) = col C w - col C u := by
   induction p with
@@ -34,6 +40,9 @@ theorem length_walk_eq_col_sub (C : 𝒯.Coloring (Fin 2)) {u w : W} (p : 𝒯.W
       have hxy : col C y = col C x + 1 := zmod2_eq_add_one_of_ne _ _ (C.valid h)
       rw [hxy]; ring
 
+/--
+@isnad1 id=eq.1h5v.s6.4bd7d1aefb4d from=translated src=- shape=e89d5185 vocab=83a3cede
+-/
 theorem vertexType_eq_col_sub (hc : 𝒯.Connected) (C : 𝒯.Coloring (Fin 2)) (w₀ w : W) :
     vertexType 𝒯 w₀ w = col C w - col C w₀ := by
   obtain ⟨p, hp⟩ := hc.exists_walk_length_eq_dist w₀ w
@@ -43,6 +52,9 @@ theorem vertexType_eq_col_sub (hc : 𝒯.Connected) (C : 𝒯.Coloring (Fin 2)) 
 def smulHom (G : Type) [Group G] [MulAction G W] [GraphAction G 𝒯] (g : G) : 𝒯 →g 𝒯 :=
   ⟨fun w => g • w, fun h => GraphAction.smul_adj g h⟩
 
+/--
+@isnad1 id=eq.1h7v.s8.70cecb9fa820 from=translated src=- shape=b6550d05 vocab=126cde6f
+-/
 theorem col_smul_sub (G : Type) [Group G] [MulAction G W] [GraphAction G 𝒯] (hc : 𝒯.Connected)
     (C : 𝒯.Coloring (Fin 2)) (g : G) (w₀ w : W) :
     col C (g • w) - col C (g • w₀) = col C w - col C w₀ := by
@@ -52,6 +64,9 @@ theorem col_smul_sub (G : Type) [Group G] [MulAction G W] [GraphAction G 𝒯] (
   rw [SimpleGraph.Walk.length_map] at h2
   exact h2.symm.trans h1
 
+/--
+@isnad1 id=and.2h4v.s9.8f1255e66e29 from=translated src=- shape=80d3041f vocab=df541fb2
+-/
 theorem main (G : Type) [Group G] [MulAction G W] (𝒯 : SimpleGraph W) [GraphAction G 𝒯]
     (hc : 𝒯.Connected) (hb : 𝒯.Colorable 2) (w₀ : W) :
     (∀ x y : W, 𝒯.Adj x y → vertexType 𝒯 w₀ y = vertexType 𝒯 w₀ x + 1) ∧
@@ -92,6 +107,9 @@ theorem main (G : Type) [Group G] [MulAction G W] (𝒯 : SimpleGraph W) [GraphA
 end CerednikDrinfeld.Mumford.VertexTypeLaws
 
 open CerednikDrinfeld.Mumford.VertexTypeLaws in
+/--
+@isnad1 id=and.2h4v.s9.c9476bd7da40 from=translated src=- shape=9e9d555d vocab=df541fb2
+-/
 theorem solution
     (G : Type) [Group G] {W : Type} [MulAction G W] (𝒯 : SimpleGraph W) [GraphAction G 𝒯]
     (hc : 𝒯.Connected) (hb : 𝒯.Colorable 2) (w₀ : W) :

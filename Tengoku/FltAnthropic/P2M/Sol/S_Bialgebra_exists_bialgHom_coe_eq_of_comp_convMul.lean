@@ -14,6 +14,9 @@ open scoped TensorProduct
 
 open Algebra.TensorProduct in
 
+/--
+@isnad1 id=eq.0h2v.s10.1d9e96a09acb from=translated src=- shape=7eb6f553 vocab=cd9b9ed0
+-/
 theorem L3b_conv_includeLeft_includeRight (R : Type u) [CommRing R] (C : Type u) [CommRing C] [Bialgebra R C] :
     (WithConv.toConv (includeLeft : C →ₐ[R] C ⊗[R] C) *
       WithConv.toConv (includeRight : C →ₐ[R] C ⊗[R] C)).ofConv = Bialgebra.comulAlgHom R C := by
@@ -27,6 +30,9 @@ theorem L3b_conv_includeLeft_includeRight (R : Type u) [CommRing R] (C : Type u)
   rw [← AlgHom.comp_assoc, h, AlgHom.id_comp]
 
 open Algebra.TensorProduct in
+/--
+@isnad1 id=ex.2h4v.s10.eb7d5271bcd3 from=translated src=- shape=24741ad0 vocab=475eed19
+-/
 theorem solution
     {R : Type u} [CommRing R] {H B : Type u} [CommRing H] [Bialgebra R H] [CommRing B] [Bialgebra R B]
     (ψ : H →ₐ[R] B)

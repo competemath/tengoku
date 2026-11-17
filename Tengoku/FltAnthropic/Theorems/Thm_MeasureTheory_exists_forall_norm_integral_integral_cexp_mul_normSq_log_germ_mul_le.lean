@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open MeasureTheory
 
+/--
+@isnad1 id=ex.1h1v.s9.6798f9e46202 from=translated src=- shape=0d04d1af vocab=fcf2287e
+-/
 theorem MeasureTheory.exists_forall_norm_integral_integral_cexp_mul_normSq_log_germ_mul_le
     (R : ℝ) (hR : 0 ≤ R) :
     ∃ K : ℝ, 0 ≤ K ∧

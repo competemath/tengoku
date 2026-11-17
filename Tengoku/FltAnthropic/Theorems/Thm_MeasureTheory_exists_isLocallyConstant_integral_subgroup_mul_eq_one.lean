@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open MeasureTheory
 
+/--
+@isnad1 id=ex.5h5v.s8.7dd19a973cf6 from=translated src=- shape=9cafbf9b vocab=b752fa4b
+-/
 theorem MeasureTheory.exists_isLocallyConstant_integral_subgroup_mul_eq_one
     {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
     (K₀ : Subgroup G) (hK₀ : IsCompact (K₀ : Set G)) (hK₀' : IsOpen (K₀ : Set G))

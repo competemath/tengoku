@@ -171,6 +171,9 @@ private theorem isMulRightInvariant_unipotentHaar : (unipotentHaar K).IsMulRight
 end UnipotentHaarProperties
 open scoped _root_.P2MW.S_AutomorphicForm_isHaarMeasure_and_isMulRightInvariant_unipotentHaar.UnipotentHaarProperties
 
+/--
+@isnad1 id=and.0h1v.s11.c4fdc84bfea4 from=translated src=- shape=677d14de vocab=ebf3636f
+-/
 theorem solution (K : Type*) [Field K]
     [NumberField K] :
     (AutomorphicForm.unipotentHaar K).IsHaarMeasure ∧

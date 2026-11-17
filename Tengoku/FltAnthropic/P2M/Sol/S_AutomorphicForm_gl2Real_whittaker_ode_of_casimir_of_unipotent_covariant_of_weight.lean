@@ -19,13 +19,22 @@ export _root_.AutomorphicForm (ArchDir lowerUnipotentGL2 lowerUnipotentGL2_coe s
 namespace IwasawaAux
 open _root_.AutomorphicForm
 
+/--
+@isnad1 id=eq.0h1v.s8.634cd59092ba from=translated src=- shape=0190e490 vocab=2d389f93
+-/
 theorem splitTorusGL2_coe' (t : ℝ) : (splitTorusGL2 t : Matrix (Fin 2) (Fin 2) ℝ) = !![Real.exp t, 0; 0, Real.exp (-t)] := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.d09d0ea55088 from=translated src=- shape=89b4e485 vocab=5ad934d7
+-/
 theorem splitTorusGL2_mul (s t : ℝ) : splitTorusGL2 s * splitTorusGL2 t = splitTorusGL2 (s + t) := by
   ext i j
   simp only [Units.val_mul, splitTorusGL2_coe']
   fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two, ← Real.exp_add] <;> ring_nf
 
+/--
+@isnad1 id=eq.0h2v.s8.505035039edb from=translated src=- shape=07c2549f vocab=646113e2
+-/
 theorem splitTorusGL2_mul_unipotentGL2 (s t : ℝ) :
     splitTorusGL2 s * unipotentGL2 t = unipotentGL2 (Real.exp (2 * s) * t) * splitTorusGL2 s := by
   ext i j
@@ -34,6 +43,9 @@ theorem splitTorusGL2_mul_unipotentGL2 (s t : ℝ) :
   rw [show (2 : ℝ) * s = s + s by ring, Real.exp_add, Real.exp_neg]
   field_simp
 
+/--
+@isnad1 id=eq.0h1v.s6.c2f95235c179 from=translated src=- shape=5e543350 vocab=425776c9
+-/
 theorem inv_sqrt_mul_inv_sqrt (t : ℝ) : (Real.sqrt (1 + t ^ 2))⁻¹ * (Real.sqrt (1 + t ^ 2))⁻¹ = (1 + t ^ 2)⁻¹ := by
   rw [← mul_inv, Real.mul_self_sqrt (by positivity)]
 
@@ -49,12 +61,24 @@ noncomputable def kIw (t : ℝ) : GL (Fin 2) ℝ :=
       rw [this, inv_sqrt_mul_inv_sqrt, mul_inv_cancel₀ hpos.ne']
       exact one_ne_zero)
 
+/--
+@isnad1 id=eq.0h1v.s8.845b7c429022 from=translated src=- shape=7a8c4d9f vocab=991f3744
+-/
 theorem kIw_coe (t : ℝ) : (kIw t : Matrix (Fin 2) (Fin 2) ℝ) =
     !![(Real.sqrt (1 + t ^ 2))⁻¹, -t * (Real.sqrt (1 + t ^ 2))⁻¹; t * (Real.sqrt (1 + t ^ 2))⁻¹, (Real.sqrt (1 + t ^ 2))⁻¹] := rfl
 
+/--
+@isnad1 id=lt.0h1v.s5.2b99a925531c from=translated src=- shape=2f69cd06 vocab=08bd26e6
+-/
 theorem sqrt_one_add_sq_pos (t : ℝ) : 0 < Real.sqrt (1 + t ^ 2) := Real.sqrt_pos.2 (by positivity)
+/--
+@isnad1 id=eq.0h1v.s6.917f2c0dad90 from=translated src=- shape=49ec259e vocab=6a803939
+-/
 theorem sq_sqrt_one_add_sq (t : ℝ) : (Real.sqrt (1 + t ^ 2)) ^ 2 = 1 + t ^ 2 := Real.sq_sqrt (by positivity)
 
+/--
+@isnad1 id=eq.0h1v.s6.6510fddae720 from=translated src=- shape=44a51029 vocab=33851af9
+-/
 theorem det_kIw (t : ℝ) : ((kIw t : GL (Fin 2) ℝ) : Matrix (Fin 2) (Fin 2) ℝ).det = 1 := by
   rw [kIw_coe, Matrix.det_fin_two_of]
   have hpos : (0 : ℝ) < 1 + t ^ 2 := by positivity
@@ -62,6 +86,9 @@ theorem det_kIw (t : ℝ) : ((kIw t : GL (Fin 2) ℝ) : Matrix (Fin 2) (Fin 2) �
       = (1 + t ^ 2) * ((Real.sqrt (1 + t ^ 2))⁻¹ * (Real.sqrt (1 + t ^ 2))⁻¹) := by ring
   rw [this, inv_sqrt_mul_inv_sqrt, mul_inv_cancel₀ hpos.ne']
 
+/--
+@isnad1 id=mem.0h1v.s8.0e86d7dda3d4 from=translated src=- shape=348377b1 vocab=2b005620
+-/
 theorem kIw_mem (t : ℝ) : kIw t ∈ rowIsometrySubgroup₀ ℝ := by
   rw [mem_rowIsometrySubgroup₀_iff]
   refine ⟨det_kIw t, ?_, ?_⟩
@@ -76,6 +103,9 @@ theorem kIw_mem (t : ℝ) : kIw t ∈ rowIsometrySubgroup₀ ℝ := by
         (x ^ 2 + y ^ 2) * ((1 + t ^ 2) * ((Real.sqrt (1 + t ^ 2))⁻¹ * (Real.sqrt (1 + t ^ 2))⁻¹)) := by ring
     rw [key, inv_sqrt_mul_inv_sqrt, mul_inv_cancel₀ hpos.ne', mul_one]
 
+/--
+@isnad1 id=eq.0h2v.s12.98d7a88c0167 from=translated src=- shape=f99c184c vocab=24ca2a33
+-/
 theorem archWeightCharℝ_kIw (n : ℤ) (t : ℝ) :
     ((archWeightCharℝ n ⟨kIw t, kIw_mem t⟩ : ℂˣ) : ℂ) =
       ((⟨(Real.sqrt (1 + t ^ 2))⁻¹, -t * (Real.sqrt (1 + t ^ 2))⁻¹⟩ : ℂ)) ^ n := by
@@ -83,6 +113,9 @@ theorem archWeightCharℝ_kIw (n : ℤ) (t : ℝ) :
   simp only [MonoidHom.coe_comp, Function.comp_apply, zpowGroupHom_apply, Units.val_zpow_eq_zpow_val]
   congr 1
 
+/--
+@isnad1 id=eq.0h1v.s8.123dd70e577f from=translated src=- shape=c85b665d vocab=db21152d
+-/
 theorem lowerUnipotentGL2_iwasawa (t : ℝ) :
     lowerUnipotentGL2 t = unipotentGL2 (t / (1 + t ^ 2)) * splitTorusGL2 (-(Real.log (1 + t ^ 2)) / 2) * kIw t := by
   have hpos : 0 < 1 + t ^ 2 := by positivity
@@ -114,6 +147,9 @@ end AutomorphicForm.IwasawaAux
 
 open _root_.AutomorphicForm open _root_.P2MW.S_AutomorphicForm_gl2Real_whittaker_ode_of_casimir_of_unipotent_covariant_of_weight.AutomorphicForm open _root_.P2MW.S_AutomorphicForm_gl2Real_whittaker_ode_of_casimir_of_unipotent_covariant_of_weight.AutomorphicForm.IwasawaAux
 
+/--
+@isnad1 id=other.8h8v.s12.8b9e9406bad1 from=translated src=- shape=386d8e66 vocab=ed54e593
+-/
 theorem solution
     (F : GL (Fin 2) ℝ → ℂ) (ε : ℝ) (hε : ε = 1 ∨ ε = -1) (n : ℤ) (lam ν : ℂ) (hν : ν ^ 2 = 1 / 4 - lam)
     (DF : ArchDir → GL (Fin 2) ℝ → ℂ) (DHH DEF : GL (Fin 2) ℝ → ℂ)

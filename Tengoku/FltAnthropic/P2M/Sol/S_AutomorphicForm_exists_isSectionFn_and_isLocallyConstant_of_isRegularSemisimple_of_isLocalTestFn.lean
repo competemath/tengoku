@@ -436,6 +436,9 @@ end Local
 
 end OrbitalCutoffAux.Orbit
 
+/--
+@isnad1 id=ex.2h5v.s12.90b712965760 from=translated src=- shape=03c68533 vocab=c192ce14
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K))
     (γ : GL (Fin 2) (v.adicCompletion K)) (hγ : AutomorphicForm.IsRegularSemisimple γ)

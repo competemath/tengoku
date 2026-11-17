@@ -25,8 +25,14 @@ def pairB (φ : CartierDual R H) : B ⊗[R] H →ₗ[B] B :=
 
 variable {R H B}
 
+/--
+@isnad1 id=eq.0h6v.s9.4fb691df73bc from=translated src=- shape=1ad68c4c vocab=6fa4e995
+-/
 @[scoped simp] theorem pairB_tmul (φ : CartierDual R H) (s : B) (h : H) : pairB R H B φ (s ⊗ₜ[R] h) = φ h • s := rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.86776a486a2b from=translated src=- shape=3d95cce0 vocab=2595d682
+-/
 theorem pairB_eq_rid_lTensor (φ : CartierDual R H) (x : B ⊗[R] H) :
     pairB R H B φ x = TensorProduct.rid R B (LinearMap.lTensor B (CartierDual.toDual R H φ) x) := by
   induction x using TensorProduct.induction_on with
@@ -34,6 +40,9 @@ theorem pairB_eq_rid_lTensor (φ : CartierDual R H) (x : B ⊗[R] H) :
   | tmul s h => rfl
   | add x y hx hy => simp only [map_add, hx, hy]
 
+/--
+@isnad1 id=eq.0h6v.s10.cf524eec8740 from=translated src=- shape=17d52432 vocab=749190ab
+-/
 theorem pairB_add (φ χ : CartierDual R H) (x : B ⊗[R] H) :
     pairB R H B (φ + χ) x = pairB R H B φ x + pairB R H B χ x := by
   induction x using TensorProduct.induction_on with
@@ -44,6 +53,9 @@ theorem pairB_add (φ χ : CartierDual R H) (x : B ⊗[R] H) :
     rw [add_smul]
   | add x y hx hy => rw [map_add, map_add, map_add, hx, hy]; abel
 
+/--
+@isnad1 id=eq.0h6v.s10.46e497156850 from=translated src=- shape=b9b91bbe vocab=4c9e3b55
+-/
 theorem pairB_smul (r : R) (φ : CartierDual R H) (x : B ⊗[R] H) :
     pairB R H B (r • φ) x = r • pairB R H B φ x := by
   induction x using TensorProduct.induction_on with
@@ -61,6 +73,9 @@ def psiOf (x : B ⊗[R] H) : CartierDual R H →ₗ[R] B where
   map_add' φ χ := pairB_add φ χ x
   map_smul' r φ := pairB_smul r φ x
 
+/--
+@isnad1 id=eq.0h5v.s9.52cff66d15d5 from=translated src=- shape=fb82b3d8 vocab=aec0c1f5
+-/
 @[scoped simp] theorem psiOf_apply (x : B ⊗[R] H) (φ : CartierDual R H) : psiOf R H B x φ = pairB R H B φ x := rfl
 
 abbrev ι : Type v := Module.Free.ChooseBasisIndex R H
@@ -70,12 +85,21 @@ scoped instance : Fintype (ι R H) := Module.Free.ChooseBasisIndex.fintype R H
 
 def δ (i : ι R H) : CartierDual R H := CartierDual.ofDual R H ((bH R H).coord i)
 
+/--
+@isnad1 id=eq.0h4v.s9.6e0765461965 from=translated src=- shape=624473ea vocab=8187cce6
+-/
 @[scoped simp] theorem δ_apply (i : ι R H) (h : H) : δ R H i h = (bH R H).repr h i := rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.54b6e230f613 from=translated src=- shape=1c12098e vocab=5e54ce1c
+-/
 @[scoped simp] theorem toDual_δ (i : ι R H) : CartierDual.toDual R H (δ R H i) = (bH R H).coord i := rfl
 
 def elemOf (L : CartierDual R H →ₗ[R] B) : B ⊗[R] H := ∑ i, L (δ R H i) ⊗ₜ[R] bH R H i
 
+/--
+@isnad1 id=eq.0h5v.s9.d1863ea33ef9 from=translated src=- shape=e8f0f6bd vocab=afb72b6f
+-/
 theorem pairB_elemOf (L : CartierDual R H →ₗ[R] B) (φ : CartierDual R H) :
     pairB R H B φ (elemOf R H B L) = L φ := by
   simp only [elemOf, map_sum, pairB_tmul]
@@ -88,6 +112,9 @@ theorem pairB_elemOf (L : CartierDual R H →ₗ[R] B) (φ : CartierDual R H) :
         rw [map_sum]; simp only [map_smul]
     _ = L φ := by rw [key]
 
+/--
+@isnad1 id=eq.0h5v.s11.8fde82deb073 from=translated src=- shape=18d03d93 vocab=9d82cf40
+-/
 theorem basis_repr_eq_pairB (x : B ⊗[R] H) (i : ι R H) :
     (Algebra.TensorProduct.basis B (bH R H)).repr x i = pairB R H B (δ R H i) x := by
   induction x using TensorProduct.induction_on with
@@ -97,9 +124,15 @@ theorem basis_repr_eq_pairB (x : B ⊗[R] H) (i : ι R H) :
       Finsupp.mapRange_apply, smul_eq_mul, Algebra.smul_def, mul_comm]
   | add x y hx hy => rw [map_add, map_add, Finsupp.add_apply, hx, hy]
 
+/--
+@isnad1 id=eq.1h5v.s10.d00c3eb22bb0 from=translated src=- shape=1a79674b vocab=019376f5
+-/
 theorem ext_of_pairB {x y : B ⊗[R] H} (h : ∀ φ : CartierDual R H, pairB R H B φ x = pairB R H B φ y) : x = y :=
   (Algebra.TensorProduct.basis B (bH R H)).ext_elem fun i => by rw [basis_repr_eq_pairB, basis_repr_eq_pairB, h]
 
+/--
+@isnad1 id=eq.0h4v.s7.59a8624b1a35 from=translated src=- shape=a4fbbc96 vocab=fbcb8457
+-/
 theorem elemOf_psiOf (x : B ⊗[R] H) : elemOf R H B (psiOf R H B x) = x :=
   ext_of_pairB R H B fun φ => by rw [pairB_elemOf, psiOf_apply]
 
@@ -120,15 +153,24 @@ def pair₂ (φ χ : CartierDual R H) : (B ⊗[R] H) ⊗[B] (B ⊗[R] H) →ₗ[
 
 variable {R H B}
 
+/--
+@isnad1 id=eq.0h7v.s12.a382603b7b6e from=translated src=- shape=36ecfdbf vocab=e761de08
+-/
 @[scoped simp] theorem pair₂_tmul (φ χ : CartierDual R H) (u v : B ⊗[R] H) :
     pair₂ R H B φ χ (u ⊗ₜ[B] v) = pairB R H B φ u * pairB R H B χ v := rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.511b3cf656a1 from=translated src=- shape=771e5fc7 vocab=59821c02
+-/
 theorem counit_eq_pairB_one (x : B ⊗[R] H) : Coalgebra.counit (R := B) x = pairB R H B 1 x := by
   induction x using TensorProduct.induction_on with
   | zero => simp only [map_zero]
   | tmul s h => rfl
   | add x y hx hy => simp only [map_add, hx, hy]
 
+/--
+@isnad1 id=eq.0h6v.s12.79c4202d1eba from=translated src=- shape=0bab3206 vocab=60586130
+-/
 theorem pair₂_comul (φ χ : CartierDual R H) (x : B ⊗[R] H) :
     pair₂ R H B φ χ (Coalgebra.comul (R := B) x) = pairB R H B (φ * χ) x := by
   induction x using TensorProduct.induction_on with
@@ -146,6 +188,9 @@ theorem pair₂_comul (φ χ : CartierDual R H) (x : B ⊗[R] H) :
     | add w₁ w₂ h₁ h₂ => rw [TensorProduct.tmul_add, map_add, map_add, h₁, h₂, map_add, add_smul]
   | add x y hx hy => simp only [map_add, hx, hy]
 
+/--
+@isnad1 id=eq.0h6v.s13.b4caaac8fc6f from=translated src=- shape=32e59a4a vocab=e6815a04
+-/
 theorem basis₂_repr_eq_pair₂ (z : (B ⊗[R] H) ⊗[B] (B ⊗[R] H)) (i j : ι R H) :
     ((Algebra.TensorProduct.basis B (bH R H)).tensorProduct (Algebra.TensorProduct.basis B (bH R H))).repr z (i, j) =
       pair₂ R H B (δ R H i) (δ R H j) z := by
@@ -156,6 +201,9 @@ theorem basis₂_repr_eq_pair₂ (z : (B ⊗[R] H) ⊗[B] (B ⊗[R] H)) (i j : �
       smul_eq_mul, mul_comm]
   | add x y hx hy => rw [map_add, map_add, Finsupp.add_apply, hx, hy]
 
+/--
+@isnad1 id=eq.1h5v.s12.e0c2b20aa292 from=translated src=- shape=5189ed9f vocab=db3ecd0f
+-/
 theorem ext_of_pair₂ {z₁ z₂ : (B ⊗[R] H) ⊗[B] (B ⊗[R] H)}
     (h : ∀ φ χ : CartierDual R H, pair₂ R H B φ χ z₁ = pair₂ R H B φ χ z₂) : z₁ = z₂ :=
   ((Algebra.TensorProduct.basis B (bH R H)).tensorProduct (Algebra.TensorProduct.basis B (bH R H))).ext_elem
@@ -174,6 +222,9 @@ def toGroupLike (ψ : CartierDual R H →ₐ[R] B) : GroupLike B (B ⊗[R] H) wh
         rw [pair₂_comul, pair₂_tmul, pairB_elemOf, pairB_elemOf, pairB_elemOf]
         exact map_mul ψ φ χ }
 
+/--
+@isnad1 id=eq.0h4v.s9.5f3d06c50224 from=translated src=- shape=d1090d90 vocab=75c11b42
+-/
 @[scoped simp] theorem toGroupLike_val (ψ : CartierDual R H →ₐ[R] B) :
     (toGroupLike R H B ψ).val = elemOf R H B ψ.toLinearMap := rfl
 
@@ -187,6 +238,9 @@ def ofGroupLike (g : GroupLike B (B ⊗[R] H)) : CartierDual R H →ₐ[R] B :=
       show pairB R H B (φ * χ) g.val = pairB R H B φ g.val * pairB R H B χ g.val
       rw [← pair₂_comul, g.isGroupLikeElem_val.comul_eq_tmul_self, pair₂_tmul])
 
+/--
+@isnad1 id=eq.0h5v.s10.8642e4fca71f from=translated src=- shape=f11e1b05 vocab=ef8a5c77
+-/
 @[scoped simp] theorem ofGroupLike_apply (g : GroupLike B (B ⊗[R] H)) (φ : CartierDual R H) :
     ofGroupLike R H B g φ = pairB R H B φ g.val := rfl
 
@@ -201,9 +255,15 @@ def algHomEquivGroupLike : (CartierDual R H →ₐ[R] B) ≃ GroupLike B (B ⊗[
     rw [toGroupLike_val]
     exact elemOf_psiOf R H B g.val)
 
+/--
+@isnad1 id=eq.0h4v.s11.8b4bc6b18f65 from=translated src=- shape=5f6095ce vocab=ff1c8f19
+-/
 theorem algHomEquivGroupLike_val (ψ : CartierDual R H →ₐ[R] B) :
     (algHomEquivGroupLike R H B ψ).val = elemOf R H B ψ.toLinearMap := rfl
 
+/--
+@isnad1 id=eq.0h5v.s12.5a6d8e848b74 from=translated src=- shape=c2bf3d2c vocab=145c9cda
+-/
 theorem pin (ψ : CartierDual R H →ₐ[R] B) (φ : CartierDual R H) :
     TensorProduct.rid R B (LinearMap.lTensor B (CartierDual.toDual R H φ) (algHomEquivGroupLike R H B ψ).val) = ψ φ := by
   rw [← pairB_eq_rid_lTensor, algHomEquivGroupLike_val, pairB_elemOf]
@@ -224,18 +284,30 @@ noncomputable section
 
 variable {R H B}
 
+/--
+@isnad1 id=eq.1h4v.s9.4e9517546d83 from=translated src=- shape=2d53696e vocab=8c81c3f9
+-/
 theorem elemOf_eq_one (ψ₀ : CartierDual R H →ₐ[R] B) (h0 : ∀ φ, ψ₀ φ = algebraMap R B (φ 1)) :
     elemOf R H B ψ₀.toLinearMap = 1 := by
   apply ext_of_pairB; intro φ
   rw [pairB_elemOf, Algebra.TensorProduct.one_def, pairB_tmul, ← Algebra.algebraMap_eq_smul_one]
   exact h0 φ
 
+/--
+@isnad1 id=eq.0h5v.s9.8c962bd3ff83 from=translated src=- shape=416a0c3d vocab=89308357
+-/
 theorem psiOf_add (x y : B ⊗[R] H) : psiOf R H B (x + y) = psiOf R H B x + psiOf R H B y := by
   apply LinearMap.ext; intro φ; simp only [psiOf_apply, map_add, LinearMap.add_apply]
 
+/--
+@isnad1 id=eq.0h3v.s9.8e971059d7b5 from=translated src=- shape=5bc6abcd vocab=934dfc15
+-/
 theorem psiOf_zero : psiOf R H B 0 = 0 := by
   apply LinearMap.ext; intro φ; simp only [psiOf_apply, map_zero, LinearMap.zero_apply]
 
+/--
+@isnad1 id=eq.0h8v.s13.85e6bd6b6308 from=translated src=- shape=50c6d34c vocab=8c73d152
+-/
 theorem mul'_map_psiOf_tmul_tmul (s s' : B) (h h' : H) (w : CartierDual R H ⊗[R] CartierDual R H) :
     LinearMap.mul' R B (TensorProduct.map (psiOf R H B (s ⊗ₜ[R] h)) (psiOf R H B (s' ⊗ₜ[R] h')) w) =
       (TensorProduct.dualDistrib R H H
@@ -249,6 +321,9 @@ theorem mul'_map_psiOf_tmul_tmul (s s' : B) (h h' : H) (w : CartierDual R H ⊗[
     rfl
   | add x y hx hy => simp only [map_add, LinearMap.add_apply, hx, hy, add_smul]
 
+/--
+@isnad1 id=eq.0h6v.s11.f12d155f9c77 from=translated src=- shape=390e6063 vocab=10330671
+-/
 theorem pairB_mul (φ : CartierDual R H) (x₁ x₂ : B ⊗[R] H) :
     pairB R H B φ (x₁ * x₂) =
       LinearMap.mul' R B (TensorProduct.map (psiOf R H B x₁) (psiOf R H B x₂) (Coalgebra.comul (R := R) φ)) := by
@@ -265,6 +340,9 @@ theorem pairB_mul (φ : CartierDual R H) (x₁ x₂ : B ⊗[R] H) :
   | add x y hx hy =>
     rw [add_mul, map_add, hx, hy, psiOf_add, TensorProduct.map_add_left, LinearMap.add_apply, map_add]
 
+/--
+@isnad1 id=eq.1h6v.s10.040c9e0d2e1b from=translated src=- shape=3f29845f vocab=1c0f4aa3
+-/
 theorem elemOf_convMul (ψ₁ ψ₂ ψ₃ : CartierDual R H →ₐ[R] B)
     (hconv : WithConv.toConv ψ₃.toLinearMap = WithConv.toConv ψ₁.toLinearMap * WithConv.toConv ψ₂.toLinearMap) :
     elemOf R H B ψ₃.toLinearMap = elemOf R H B ψ₁.toLinearMap * elemOf R H B ψ₂.toLinearMap := by
@@ -280,6 +358,9 @@ theorem elemOf_convMul (ψ₁ ψ₂ ψ₃ : CartierDual R H →ₐ[R] B)
   rw [pairB_elemOf, pairB_mul, e1, e2]
   exact h3
 
+/--
+@isnad1 id=eq.0h7v.s11.abac02b95c91 from=translated src=- shape=da40dc34 vocab=fa1cdadd
+-/
 theorem pairB_map {B' : Type w} [CommRing B'] [Algebra R B'] (τ : B →ₐ[R] B') (φ : CartierDual R H) (x : B ⊗[R] H) :
     pairB R H B' φ (Algebra.TensorProduct.map τ (AlgHom.id R H) x) = τ (pairB R H B φ x) := by
   induction x using TensorProduct.induction_on with
@@ -288,6 +369,9 @@ theorem pairB_map {B' : Type w} [CommRing B'] [Algebra R B'] (τ : B →ₐ[R] B
     rw [Algebra.TensorProduct.map_tmul, AlgHom.id_apply, pairB_tmul, pairB_tmul, map_smul]
   | add x y hx hy => simp only [map_add, hx, hy]
 
+/--
+@isnad1 id=eq.0h6v.s10.d6bc81f6b358 from=translated src=- shape=83b4aa44 vocab=224c45d4
+-/
 theorem elemOf_comp {B' : Type w} [CommRing B'] [Algebra R B'] (τ : B →ₐ[R] B') (ψ : CartierDual R H →ₐ[R] B) :
     elemOf R H B' (τ.comp ψ).toLinearMap = Algebra.TensorProduct.map τ (AlgHom.id R H) (elemOf R H B ψ.toLinearMap) := by
   apply ext_of_pairB; intro φ
@@ -301,6 +385,9 @@ end P2mS17G
 open scoped _root_.P2MW.S_CartierDual_exists_algHomEquiv_groupLike.P2mS17G
 
 open P2mS17G in
+/--
+@isnad1 id=ex.0h2v.s14.70cca2c26680 from=translated src=- shape=664877c1 vocab=d6586807
+-/
 theorem solution
     (R : Type u) [CommRing R] (H : Type v) [CommRing H] [Bialgebra R H] [Module.Finite R H] [Module.Free R H] :
     ∃ e : (∀ (B : Type w) [CommRing B] [Algebra R B], (CartierDual R H →ₐ[R] B) ≃ GroupLike B (TensorProduct R B H)),

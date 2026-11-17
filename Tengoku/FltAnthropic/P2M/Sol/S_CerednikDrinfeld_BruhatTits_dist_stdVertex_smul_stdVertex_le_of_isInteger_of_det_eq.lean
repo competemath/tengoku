@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 open LT.LatticeTree
 
+/--
+@isnad1 id=le.3h6v.s9.02e14a459303 from=translated src=- shape=45b7fbc7 vocab=2d6ddd49
+-/
 theorem solution
     (R K : Type) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [Field K] [Algebra R K]
     [IsFractionRing R K] (ϖ : R) (hϖ : Irreducible ϖ)

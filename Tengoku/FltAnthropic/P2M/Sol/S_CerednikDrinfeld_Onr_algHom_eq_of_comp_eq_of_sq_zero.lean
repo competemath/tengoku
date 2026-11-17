@@ -11,12 +11,18 @@ namespace OnrRigid
 
 open Polynomial
 
+/--
+@isnad1 id=eq.1h3v.s5.303ade70e8c7 from=translated src=- shape=5b838b0c vocab=56c94123
+-/
 theorem pow_eq_self_of_card_eq {r : ℕ} [Fact r.Prime] (k : Type) [CommRing k] [Fintype k]
     (hk : Fintype.card k = r) (c : k) : c ^ r = c := by
   let e : ZMod r ≃+* k := ZMod.ringEquivOfPrime k Fact.out hk
   obtain ⟨z, rfl⟩ := e.surjective c
   rw [← map_pow, ZMod.pow_card]
 
+/--
+@isnad1 id=ex.4h4v.s7.02a1e1257a73 from=translated src=- shape=58457e5f vocab=f61d525f
+-/
 theorem exists_iterate_eq_self_of_root {R : Type} [CommRing R] [IsDomain R] (F : R →+* R) (hF : Function.Injective F)
     (P : R[X]) (hP : P ≠ 0) (hPF : P.map F = P) (y : R) (hy : P.eval y = 0) :
     ∃ d : ℕ, 0 < d ∧ F^[d] y = y := by
@@ -52,12 +58,18 @@ theorem exists_iterate_eq_self_of_root {R : Type} [CommRing R] [IsDomain R] (F :
     rw [hi, Function.iterate_add_apply] at hval
     exact Function.Injective.iterate hF j hval
 
+/--
+@isnad1 id=eq.1h5v.s6.91d348f116b4 from=translated src=- shape=6454eb0a vocab=165192fd
+-/
 theorem pow_pow_mul_eq_self {R : Type} [Monoid R] {y : R} {r d : ℕ} (h : y ^ (r ^ d) = y) (k : ℕ) :
     y ^ (r ^ (d * k)) = y := by
   induction k with
   | zero => simp
   | succ k ih => rw [Nat.mul_succ, pow_add, pow_mul, ih, h]
 
+/--
+@isnad1 id=eq.1h6v.s9.9a804c9805ed from=translated src=- shape=860204e4 vocab=cd685dc2
+-/
 theorem sub_map_pow_succ {A C : Type} [CommRing A] [CommRing C] (ψ ψ' : A →+* C)
     (hsq : ∀ y z : A, (ψ y - ψ' y) * (ψ z - ψ' z) = 0) (y : A) (k : ℕ) :
     ψ (y ^ (k + 1)) - ψ' (y ^ (k + 1)) = (k + 1 : C) * ψ' y ^ k * (ψ y - ψ' y) := by
@@ -75,6 +87,9 @@ theorem sub_map_pow_succ {A C : Type} [CommRing A] [CommRing C] (ψ ψ' : A →+
 end OnrRigid
 
 open OnrRigid Polynomial in
+/--
+@isnad1 id=eq.7h9v.s9.4f4aae675277 from=translated src=- shape=e2472a3e vocab=628cc3aa
+-/
 theorem solution
     {r : ℕ} [Fact r.Prime]
     (𝒪 : Type) [CommRing 𝒪] (π : 𝒪)

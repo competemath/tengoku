@@ -12,6 +12,9 @@ set_option autoImplicit false
 open scoped MatrixGroups
 open CerednikDrinfeld.Omega
 
+/--
+@isnad1 id=eq.3h12v.s11.3b86217c76e1 from=translated src=- shape=6524d926 vocab=87a858db
+-/
 theorem solution
     {K₀ : Type*} [Field K₀] {K : Type*} [Field K] [Algebra K₀ K] [DecidableEq K] [TopologicalSpace K]
     {G₁ G₂ : Type*} [Group G₁] [Group G₂] (ρ₁ : G₁ →* PGL(2, K₀)) (ρ₂ : G₂ →* PGL(2, K₀))

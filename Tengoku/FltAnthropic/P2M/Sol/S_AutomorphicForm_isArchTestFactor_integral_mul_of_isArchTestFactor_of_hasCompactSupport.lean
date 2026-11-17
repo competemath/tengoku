@@ -28,17 +28,26 @@ def D1 {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E] (Λ : X × P → E)
   fun p => (fderiv ℝ Λ p).comp (ContinuousLinearMap.inl ℝ X P)
 
 omit [FiniteDimensional ℝ X] in
+/--
+@isnad1 id=contdiff.1h4v.s7.3199fde85c01 from=translated src=- shape=fe8c1c79 vocab=85001a53
+-/
 theorem contDiff_D1 {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E] {Λ : X × P → E} (hΛ : ContDiff ℝ ∞ Λ) :
     ContDiff ℝ ∞ (D1 Λ) :=
   (hΛ.fderiv_right le_rfl).clm_comp contDiff_const
 
 omit [FiniteDimensional ℝ X] in
+/--
+@isnad1 id=hasfderi.1h6v.s7.33a134f83b81 from=translated src=- shape=5a5195b5 vocab=db83ca0c
+-/
 theorem hasFDerivAt_D1 {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E] {Λ : X × P → E} (hΛ : ContDiff ℝ ∞ Λ)
     (M : X) (p : P) : HasFDerivAt (fun M => Λ (M, p)) (D1 Λ (M, p)) M :=
   (hΛ.differentiable (by simp)).differentiableAt.hasFDerivAt.comp M (hasFDerivAt_prodMk_left M p)
 
 omit [FiniteDimensional ℝ X] in
 
+/--
+@isnad1 id=eq.3h9v.s8.60f15e090dd1 from=translated src=- shape=7185e104 vocab=1a3f154b
+-/
 theorem D1_vanish {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E] {Λ : X × P → E} (hΛ : ContDiff ℝ ∞ Λ)
     (hvan : ∀ a, a ∉ K → ∀ M, Λ (M, η a) = 0) : ∀ a, a ∉ K → ∀ M, D1 Λ (M, η a) = 0 := by
   intro a ha M
@@ -49,6 +58,9 @@ theorem D1_vanish {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E] {Λ : X 
 
 include hη hK in
 
+/--
+@isnad1 id=hasfderi.4h9v.s8.9bfcaf6885e7 from=translated src=- shape=a787ce10 vocab=7df4e07a
+-/
 theorem hasFDerivAt_integral {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
     {Λ : X × P → E} (hΛ : ContDiff ℝ ∞ Λ) (hvan : ∀ a, a ∉ K → ∀ M, Λ (M, η a) = 0) (M₀ : X) :
     HasFDerivAt (fun M => ∫ a, Λ (M, η a) ∂μ) (∫ a, D1 Λ (M₀, η a) ∂μ) M₀ := by
@@ -79,6 +91,9 @@ theorem hasFDerivAt_integral {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ 
 
 include hη hK in
 
+/--
+@isnad1 id=contdiff.4h9v.s7.63b101bbe7b5 from=translated src=- shape=2e9c78e7 vocab=4f97e983
+-/
 theorem contDiff_integral (n : ℕ) :
     ∀ {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
       {Λ : X × P → E} (_ : ContDiff ℝ ∞ Λ) (_ : ∀ a, a ∉ K → ∀ M, Λ (M, η a) = 0),
@@ -99,6 +114,9 @@ theorem contDiff_integral (n : ℕ) :
     exact ih (contDiff_D1 hΛ) (D1_vanish η hΛ hvan)
 
 include hη hK in
+/--
+@isnad1 id=contdiff.4h7v.s7.a15558cdafd6 from=translated src=- shape=81d0ac24 vocab=645dc5bf
+-/
 theorem contDiff_integral_infty {Λ : X × P → ℂ} (hΛ : ContDiff ℝ ∞ Λ) (hvan : ∀ a, a ∉ K → ∀ M, Λ (M, η a) = 0) :
     ContDiff ℝ ∞ (fun M => ∫ a, Λ (M, η a) ∂μ) :=
   contDiff_infty.2 fun n => contDiff_integral μ η hη hK n hΛ hvan
@@ -121,15 +139,24 @@ scoped instance : NormedSpace ℝ (PP F) := Prod.normedSpace
 def mulM (A B : Fin 2 → Fin 2 → mixedEmbedding.mixedSpace F) : Fin 2 → Fin 2 → mixedEmbedding.mixedSpace F :=
   fun i j => ∑ l, A i l * B l j
 
+/--
+@isnad1 id=eq.0h3v.s8.44514c6c51ec from=translated src=- shape=d8eb531c vocab=828cfb3d
+-/
 theorem archEntries_mul (x a : GL (Fin 2) (InfiniteAdeleRing F)) :
     archEntries F (x * a) = mulM F (archEntries F x) (archEntries F a) := by
   funext i j
   simp only [mulM, archEntries_apply, Units.val_mul, Matrix.mul_apply, map_sum, map_mul]
 
+/--
+@isnad1 id=continuo.0h1v.s8.77d9d586221b from=translated src=- shape=71e3ac1f vocab=d2d45843
+-/
 theorem continuous_archEntries' : Continuous (archEntries F) := by
   refine continuous_pi fun i => continuous_pi fun j => ?_
   exact (NumberField.AdelicBox.continuous_ringEquiv_mixedSpace F).comp (Units.continuous_val.matrix_elem i j)
 
+/--
+@isnad1 id=contdiff.1h2v.s11.27fa8b64a99c from=translated src=- shape=02ec25df vocab=58f08d6c
+-/
 theorem contDiff_weighted {Φ : Xm F → ℂ} (hΦ : ContDiff ℝ ∞ Φ) :
     ContDiff ℝ ∞ (fun p : Xm F × PP F => p.2.2 • Φ (mulM F p.1 p.2.1)) := by
   have hmul : ContDiff ℝ ∞ (fun p : Xm F × PP F => mulM F p.1 p.2.1) := by
@@ -144,6 +171,9 @@ end ARCHCONV
 open scoped _root_.P2MW.S_AutomorphicForm_isArchTestFactor_integral_mul_of_isArchTestFactor_of_hasCompactSupport.ARCHCONV
 
 open ARCHCONV in
+/--
+@isnad1 id=isarchte.3h4v.s10.5fbe3e10a0f4 from=translated src=- shape=d2ec60d5 vocab=0bc4bc54
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F]
     [MeasurableSpace (GL (Fin 2) (InfiniteAdeleRing F))] [BorelSpace (GL (Fin 2) (InfiniteAdeleRing F))]

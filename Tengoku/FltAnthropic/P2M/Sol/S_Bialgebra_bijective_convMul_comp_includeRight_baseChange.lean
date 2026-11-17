@@ -14,6 +14,9 @@ open Algebra.TensorProduct WithConv Coalgebra
 namespace AlgHom export _root_.AlgHom (ext convOne_apply restrictScalars liftEquiv comp coe_restrictScalars' coe_comp comp_apply convMul_apply) end AlgHom
 open scoped _root_.AlgHom in
 
+/--
+@isnad1 id=eq.0h8v.s9.fcb229af50da from=translated src=- shape=76e429b6 vocab=6ad8e736
+-/
 theorem AlgHom.convMul_apply_of_repr {R : Type*} [CommRing R] {C : Type*} [Ring C] [Bialgebra R C]
     {S : Type*} [CommRing S] [Algebra R S] {a : C} {ι𝓡 : Type*} (𝓡 : Coalgebra.Repr R a ι𝓡)
     (f g : WithConv (C →ₐ[R] S)) :
@@ -21,6 +24,9 @@ theorem AlgHom.convMul_apply_of_repr {R : Type*} [CommRing R] {C : Type*} [Ring 
   rw [AlgHom.convMul_apply, ← 𝓡.eq, map_sum]
   simp [Algebra.TensorProduct.lift_tmul]
 
+/--
+@isnad1 id=and.0h4v.s12.9b8356fe3551 from=translated src=- shape=6aa76dab vocab=52fd4d49
+-/
 theorem solution
     (A : Type*) [CommRing A] (B : Type*) [CommRing B] [Algebra A B]
     (H : Type*) [Ring H] [Bialgebra A H]

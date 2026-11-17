@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open MeasureTheory
 
+/--
+@isnad1 id=eq.9h7v.s9.25afcbdf74f1 from=translated src=- shape=d954a54c vocab=fd8ed375
+-/
 theorem AutomorphicForm.integral_mul_eq_integral_mul_of_forall_integral_subgroup_mul_eq_one
     {G : Type} [Group G] [MeasurableSpace G] [MeasurableMul₂ G]
     (μ : Measure G) [SFinite μ] [μ.IsMulLeftInvariant]

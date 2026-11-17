@@ -9,6 +9,9 @@ open scoped TensorProduct
 
 universe u v w
 
+/--
+@isnad1 id=existsun.2h5v.s10.2816cea6fa09 from=translated src=- shape=cfe1239f vocab=6eac63e1
+-/
 theorem Algebra.FormallyEtale.existsUnique_algHom_baseChange_eq_of_module_finite_free_zmodp
     {𝓞 : Type u} [CommRing 𝓞] (p : ℕ) [Fact p.Prime] (hp : (p : 𝓞) ∈ nonZeroDivisors 𝓞)
     [Algebra 𝓞 (ZMod p)] (hker : RingHom.ker (algebraMap 𝓞 (ZMod p)) = Ideal.span {(p : 𝓞)})

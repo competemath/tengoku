@@ -16,6 +16,9 @@ variable {k : Type*} [Field k] {A C : Type*} [CommRing A] [CommRing C] [Bialgebr
 noncomputable def prodBialgHom (ρ₀ ρ₁ : A →ₐc[k] C) : A ⊗[k] A →ₐc[k] C :=
   (Bialgebra.mulBialgHom k C).comp (Bialgebra.TensorProduct.map ρ₀ ρ₁)
 
+/--
+@isnad1 id=eq.0h6v.s11.516a7fb6cf2d from=translated src=- shape=74705f6d vocab=abeb4e73
+-/
 theorem prodBialgHom_apply (ρ₀ ρ₁ : A →ₐc[k] C) (x : A ⊗[k] A) :
     prodBialgHom ρ₀ ρ₁ x = Algebra.TensorProduct.productMap (ρ₀ : A →ₐ[k] C) (ρ₁ : A →ₐ[k] C) x := by
   induction x using TensorProduct.induction_on with
@@ -31,6 +34,9 @@ end SplitAlgAux
 
 open SplitAlgAux
 
+/--
+@isnad1 id=ex.2h5v.s13.c9a9b940f43d from=translated src=- shape=17309afe vocab=fc4e0bf4
+-/
 theorem solution
     (k : Type*) [Field k] (A C : Type*) [CommRing A] [CommRing C] [Bialgebra k A] [Bialgebra k C]
     [FiniteDimensional k A] [FiniteDimensional k C]

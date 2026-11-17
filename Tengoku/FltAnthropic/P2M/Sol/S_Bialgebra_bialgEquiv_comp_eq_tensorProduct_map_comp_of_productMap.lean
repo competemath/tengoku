@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=eq.4h13v.s13.fe4dfb85c73f from=translated src=- shape=2677c8b3 vocab=65044ade
+-/
 theorem solution
     (k : Type*) [Field k] {A C A' C' : Type*} [CommRing A] [CommRing C] [CommRing A'] [CommRing C']
     [Bialgebra k A] [Bialgebra k C] [Bialgebra k A'] [Bialgebra k C']

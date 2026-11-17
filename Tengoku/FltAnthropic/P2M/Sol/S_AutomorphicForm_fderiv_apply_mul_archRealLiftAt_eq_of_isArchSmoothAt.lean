@@ -19,10 +19,16 @@ def scalarExpGL2 (s : ℝ) : GL (Fin 2) ℝ :=
   Units.map (Matrix.scalar (Fin 2) : ℝ →+* Matrix (Fin 2) (Fin 2) ℝ).toMonoidHom
     (Units.mk0 (Real.exp s) (Real.exp_ne_zero s))
 
+/--
+@isnad1 id=eq.0h1v.s7.f55635109da3 from=translated src=- shape=da9a842c vocab=e2fa376f
+-/
 theorem scalarExpGL2_coe (s : ℝ) :
     (scalarExpGL2 s : Matrix (Fin 2) (Fin 2) ℝ) = Real.exp s • (1 : Matrix (Fin 2) (Fin 2) ℝ) := by
   simp [scalarExpGL2, Matrix.smul_one_eq_diagonal]
 
+/--
+@isnad1 id=hasderiv.0h2v.s7.cc56f5f45f87 from=translated src=- shape=55ef4268 vocab=59c112d8
+-/
 theorem hasDerivAt_scalarExpGL2_apply (i j : Fin 2) :
     HasDerivAt (fun s : ℝ => (scalarExpGL2 s : Matrix (Fin 2) (Fin 2) ℝ) i j)
       ((1 : Matrix (Fin 2) (Fin 2) ℝ) i j) 0 := by
@@ -30,6 +36,9 @@ theorem hasDerivAt_scalarExpGL2_apply (i j : Fin 2) :
   have h := (Real.hasDerivAt_exp 0).mul_const ((1 : Matrix (Fin 2) (Fin 2) ℝ) i j)
   simpa using h
 
+/--
+@isnad1 id=hasderiv.0h1v.s10.e09f29c92fb1 from=translated src=- shape=c948edc2 vocab=0d23f84e
+-/
 theorem hasDerivAt_of_symm_mul_scalarExpGL2 (e : Fin 2 → Fin 2 → ℝ) :
     HasDerivAt
       (fun s : ℝ => (Matrix.of.symm (Matrix.of e * (scalarExpGL2 s : Matrix (Fin 2) (Fin 2) ℝ)) :
@@ -42,6 +51,9 @@ theorem hasDerivAt_of_symm_mul_scalarExpGL2 (e : Fin 2 → Fin 2 → ℝ) :
   simp only [Matrix.of_symm_apply, Matrix.mul_apply, Matrix.of_apply]
   exact HasDerivAt.fun_sum fun k _ => (hasDerivAt_scalarExpGL2_apply k j).const_mul (e i k)
 
+/--
+@isnad1 id=eq.0h1v.s10.a0bdb77c374f from=translated src=- shape=00f866a1 vocab=cf3b9c2a
+-/
 theorem decompose (A : Matrix (Fin 2) (Fin 2) ℝ) :
     (Matrix.of.symm A : Fin 2 → Fin 2 → ℝ) =
       ((A 0 0 - A 1 1) / 2) • (Matrix.of.symm (archDirMatrix ArchDir.H) : Fin 2 → Fin 2 → ℝ) +
@@ -54,6 +66,9 @@ theorem decompose (A : Matrix (Fin 2) (Fin 2) ℝ) :
 
 variable (hw : w.IsReal)
 
+/--
+@isnad1 id=eq.2h5v.s10.c2d6cd6fc213 from=translated src=- shape=821dc491 vocab=9d4eda76
+-/
 theorem archDerivAt_eq_fderiv (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArchSmoothAt hw φ)
     (h : AdelicGL2 (𝓞 F) F) (d : ArchDir) :
     archDerivAt hw d φ h =
@@ -80,6 +95,9 @@ theorem archDerivAt_eq_fderiv (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArchS
   have := (hdiff.comp_hasDerivAt (0 : ℝ) (hasDerivAt_of_symm_mul_archFlowMatrix _ d)).deriv
   simpa only [Function.comp_def, Equiv.apply_symm_apply, one_mul] using this
 
+/--
+@isnad1 id=eq.2h4v.s11.16ab694226d0 from=translated src=- shape=c1ad945a vocab=3967e2a4
+-/
 theorem deriv_scalar_eq_fderiv (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArchSmoothAt hw φ)
     (h : AdelicGL2 (𝓞 F) F) :
     deriv (fun s : ℝ => φ (h * archRealGLAt hw (scalarExpGL2 s))) 0 =
@@ -109,6 +127,9 @@ theorem deriv_scalar_eq_fderiv (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArch
   have := (hdiff.comp_hasDerivAt (0 : ℝ) (hasDerivAt_of_symm_mul_scalarExpGL2 _)).deriv
   simpa only [Function.comp_def, Equiv.apply_symm_apply, one_mul, mul_one] using this
 
+/--
+@isnad1 id=eq.3h6v.s11.491d7767cf80 from=translated src=- shape=ef56c355 vocab=2fcf370e
+-/
 theorem fderiv_baseChange (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArchSmoothAt hw φ)
     (g : AdelicGL2 (𝓞 F) F) (e : Fin 2 → Fin 2 → ℝ) (he : (Matrix.of e).det ≠ 0) (Y : Fin 2 → Fin 2 → ℝ) :
     fderiv ℝ (fun e' : Fin 2 → Fin 2 → ℝ => φ (g * archRealLiftAt hw e')) e Y =
@@ -169,6 +190,9 @@ theorem fderiv_baseChange (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArchSmoot
     exact hfeq e' he'
   rw [(hcomp.congr_of_eventuallyEq hcongr).fderiv, ContinuousLinearMap.comp_apply, hLe, hL]
 
+/--
+@isnad1 id=eq.3h6v.s12.af9385dd5ea5 from=translated src=- shape=72dc9d14 vocab=e062a482
+-/
 theorem main (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArchSmoothAt hw φ)
     (g : AdelicGL2 (𝓞 F) F) (e : Fin 2 → Fin 2 → ℝ) (he : (Matrix.of e).det ≠ 0) (Y : Fin 2 → Fin 2 → ℝ) :
     fderiv ℝ (fun e' : Fin 2 → Fin 2 → ℝ => φ (g * archRealLiftAt hw e')) e Y =
@@ -197,6 +221,9 @@ end ArchChartTransport
 end
 
 open ArchChartTransport in
+/--
+@isnad1 id=eq.3h6v.s12.af9385dd5ea5 from=translated src=- shape=72dc9d14 vocab=e062a482
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F] {w : InfinitePlace F} (hw : w.IsReal)
     (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArchSmoothAt hw φ)

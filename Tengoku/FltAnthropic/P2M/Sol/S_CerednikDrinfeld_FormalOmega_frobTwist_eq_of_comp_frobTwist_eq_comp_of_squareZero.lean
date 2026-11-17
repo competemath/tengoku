@@ -13,6 +13,9 @@ namespace FrobCancel
 
 open Polynomial
 
+/--
+@isnad1 id=eq.1h7v.s11.f2570eb4fc41 from=translated src=- shape=26ba3dba vocab=f9dc41f9
+-/
 theorem mk_pow_apply {𝒪 : Type} [CommRing 𝒪] (π : 𝒪) (r : ℕ)
     (Onr : Type) [CommRing Onr] [Algebra 𝒪 Onr] (Fr : Onr ≃ₐ[𝒪] Onr)
     (hFr : ∀ x : Onr, Fr x - x ^ r ∈ Ideal.span {algebraMap 𝒪 Onr π}) (m : ℕ) (x : Onr) :
@@ -26,6 +29,9 @@ theorem mk_pow_apply {𝒪 : Type} [CommRing 𝒪] (π : 𝒪) (r : ℕ)
     have := hFr ((Fr ^ m) x)
     rwa [← Ideal.neg_mem_iff, neg_sub] at this
 
+/--
+@isnad1 id=eq.5h10v.s9.ff816ee8a5e5 from=translated src=- shape=819fdd3f vocab=40b8fb63
+-/
 theorem main
     {𝒪 : Type} [CommRing 𝒪] (π : 𝒪) (r : ℕ) [Fact r.Prime]
     (Onr : Type) [CommRing Onr] [Algebra 𝒪 Onr] (Fr : Onr ≃ₐ[𝒪] Onr)
@@ -106,6 +112,9 @@ theorem main
 
 end FrobCancel
 
+/--
+@isnad1 id=eq.5h10v.s9.ff816ee8a5e5 from=translated src=- shape=819fdd3f vocab=40b8fb63
+-/
 theorem solution
     {𝒪 : Type} [CommRing 𝒪] (π : 𝒪) (r : ℕ) [Fact r.Prime]
     (Onr : Type) [CommRing Onr] [Algebra 𝒪 Onr] (Fr : Onr ≃ₐ[𝒪] Onr)

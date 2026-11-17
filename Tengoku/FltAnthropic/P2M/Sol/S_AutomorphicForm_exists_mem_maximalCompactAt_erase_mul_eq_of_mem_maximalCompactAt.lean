@@ -17,6 +17,9 @@ open AdelicDock
 
 variable {F : Type} [Field F] [NumberField F]
 
+/--
+@isnad1 id=eq.1h5v.s12.959e9f1d24e0 from=translated src=- shape=3b7e8fa4 vocab=f0be1f76
+-/
 theorem finEntry_eq {g h : AdelicGL2 (𝓞 F) F}
     (h₂ : ∀ w : HeightOneSpectrum (𝓞 F),
       finComponent (𝓞 F) F w (glFin (𝓞 F) F g) = finComponent (𝓞 F) F w (glFin (𝓞 F) F h))
@@ -30,6 +33,9 @@ theorem finEntry_eq {g h : AdelicGL2 (𝓞 F) F}
   simp [finComponent_apply, glFin_apply] at this
   exact this
 
+/--
+@isnad1 id=eq.2h3v.s13.987b8f65420a from=translated src=- shape=334525f9 vocab=5a96d369
+-/
 theorem adelicGL2_ext {g h : AdelicGL2 (𝓞 F) F}
     (h₁ : glArch (𝓞 F) F g = glArch (𝓞 F) F h)
     (h₂ : ∀ w : HeightOneSpectrum (𝓞 F),
@@ -47,18 +53,30 @@ noncomputable def atPlace (v : HeightOneSpectrum (𝓞 F)) (g : GL (Fin 2) (v.ad
     AdelicGL2 (𝓞 F) F :=
   finEmbed (𝓞 F) F (localEmbed (𝓞 F) F v g)
 
+/--
+@isnad1 id=eq.0h3v.s10.b371341eb7c6 from=translated src=- shape=023a0dda vocab=8f2504b8
+-/
 theorem glArch_atPlace (v : HeightOneSpectrum (𝓞 F)) (g : GL (Fin 2) (v.adicCompletion F)) :
     glArch (𝓞 F) F (atPlace v g) = 1 := glArch_finEmbed _ _ _
 
+/--
+@isnad1 id=eq.0h3v.s11.0a9f23ba38bd from=translated src=- shape=a8076974 vocab=426cbe72
+-/
 theorem finComponent_atPlace_self (v : HeightOneSpectrum (𝓞 F)) (g : GL (Fin 2) (v.adicCompletion F)) :
     finComponent (𝓞 F) F v (glFin (𝓞 F) F (atPlace v g)) = g := by
   rw [atPlace, glFin_finEmbed, finComponent_localEmbed_self]
 
+/--
+@isnad1 id=eq.1h4v.s11.fc2accf52883 from=translated src=- shape=acbf775d vocab=426cbe72
+-/
 theorem finComponent_atPlace_of_ne (v : HeightOneSpectrum (𝓞 F)) (g : GL (Fin 2) (v.adicCompletion F))
     {w : HeightOneSpectrum (𝓞 F)} (hw : w ≠ v) :
     finComponent (𝓞 F) F w (glFin (𝓞 F) F (atPlace v g)) = 1 := by
   rw [atPlace, glFin_finEmbed, finComponent_localEmbed_of_ne _ _ _ _ hw]
 
+/--
+@isnad1 id=mem.1h5v.s11.61e7cb57af38 from=translated src=- shape=0bcb305e vocab=931f6a02
+-/
 theorem localEmbed_entries_integral (v : HeightOneSpectrum (𝓞 F)) (g : GL (Fin 2) (v.adicCompletion F))
     (hg : ∀ i j, (g : Matrix (Fin 2) (Fin 2) (v.adicCompletion F)) i j ∈ v.adicCompletionIntegers F)
     (i j : Fin 2) :
@@ -75,6 +93,9 @@ theorem localEmbed_entries_integral (v : HeightOneSpectrum (𝓞 F)) (g : GL (Fi
     · exact one_mem _
     · exact zero_mem _
 
+/--
+@isnad1 id=mem.1h3v.s11.eacf0c1fe856 from=translated src=- shape=c0b797e8 vocab=1bb922d1
+-/
 theorem atPlace_mem (v : HeightOneSpectrum (𝓞 F)) {k : AdelicGL2 (𝓞 F) F} (hk : k ∈ adelicMaximalCompact F) :
     atPlace v (finComponent (𝓞 F) F v (glFin (𝓞 F) F k)) ∈ adelicMaximalCompact F := by
   set g := finComponent (𝓞 F) F v (glFin (𝓞 F) F k) with hgdef
@@ -97,6 +118,9 @@ theorem atPlace_mem (v : HeightOneSpectrum (𝓞 F)) {k : AdelicGL2 (𝓞 F) F} 
   · rw [glArch_atPlace, map_one]
     exact isRowIsometry_one
 
+/--
+@isnad1 id=eq.0h3v.s12.28078087a40f from=translated src=- shape=69118bf8 vocab=45d06576
+-/
 theorem mul_atPlace_comm (v : HeightOneSpectrum (𝓞 F)) (k : AdelicGL2 (𝓞 F) F) :
     k * atPlace v (finComponent (𝓞 F) F v (glFin (𝓞 F) F k))
       = atPlace v (finComponent (𝓞 F) F v (glFin (𝓞 F) F k)) * k := by
@@ -114,6 +138,9 @@ end PeelKit
 open PeelKit
 
 open scoped Classical in
+/--
+@isnad1 id=ex.2h4v.s11.14aff9a2f148 from=translated src=- shape=8ca181c2 vocab=3e85e8dd
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F] (S : Finset (HeightOneSpectrum (𝓞 F)))
     (v : HeightOneSpectrum (𝓞 F)) (_hv : v ∈ S)

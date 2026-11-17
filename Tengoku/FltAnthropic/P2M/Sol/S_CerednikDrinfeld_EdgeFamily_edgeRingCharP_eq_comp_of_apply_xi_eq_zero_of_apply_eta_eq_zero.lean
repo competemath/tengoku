@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open CerednikDrinfeld CerednikDrinfeld.FormalOmega
 
+/--
+@isnad1 id=eq.5h5v.s12.7ec8679e85f2 from=translated src=- shape=e8fa9554 vocab=0536f5ac
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] (k : Type) [CommRing k] {Ω : Type} [CommRing Ω]
     (f₀ : EdgeFamily.edgeRingCharP p k →+* k)

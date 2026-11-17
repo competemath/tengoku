@@ -12,6 +12,9 @@ open NumberField IsDedekindDomain AutomorphicForm
 namespace Ws31
 namespace KU
 
+/--
+@isnad1 id=righttra.1h4v.s10.2f07011003ab from=translated src=- shape=ce2bfca6 vocab=3e1de416
+-/
 theorem rightTranslatesSpanFinite_of_forall_mem {G : Type*} [Group G] (H : Subgroup G) (U : G → ℂ)
     (W : Submodule ℂ (↥H → ℂ)) [FiniteDimensional ℂ W]
     (hW : ∀ g : G, (fun k : ↥H => U (g * (k : G))) ∈ W) :
@@ -39,6 +42,9 @@ theorem rightTranslatesSpanFinite_of_forall_mem {G : Type*} [Group G] (H : Subgr
 
 end Ws31.KU
 
+/--
+@isnad1 id=isarchkf.1h2v.s14.b8fd2869f0ef from=translated src=- shape=59c26dbe vocab=1cd24d6e
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F] (φ : AdelicGL2 (𝓞 F) F → ℂ)
     (_hKu : ∀ w : InfinitePlace F, ∃ W : Submodule ℂ (↥(archRowIsometrySubgroup F w) → ℂ),

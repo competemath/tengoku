@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=and.0h3v.s16.980fad7d0b95 from=translated src=- shape=35832d9b vocab=2970d3f4
+-/
 theorem Tengoku.FltAnthropic.CartierDual.dualBaseChangeLin_bijective_integral.{u, v, w}
     (O : Type u) [CommRing O] (O' : Type v) [CommRing O'] [Algebra O O']
     (A : Type w) [CommRing A] [HopfAlgebra O A] [Module.Finite O A] [Module.Free O A] :

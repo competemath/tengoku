@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Real_exists_forall_norm_pow_mul_norm_itera
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.2h2v.s9.b2328283d4d4 from=translated src=- shape=91ede20f vocab=bbb2a9ee
+-/
 theorem Real.exists_forall_norm_pow_mul_norm_iteratedFDeriv_mul_log_quadratic_le
     (α β : ℝ) (hα : 0 < α) (hβ : 0 < β) :
     ∃ C : ℝ, 0 ≤ C ∧

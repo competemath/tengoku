@@ -25,6 +25,9 @@ variable {K : Type*} [NormedField K]
 def entryNormSq (M : Matrix (Fin 2) (Fin 2) K) : ℝ :=
   ‖M 0 0‖ ^ 2 + ‖M 0 1‖ ^ 2 + ‖M 1 0‖ ^ 2 + ‖M 1 1‖ ^ 2
 
+/--
+@isnad1 id=le.0h3v.s7.9879289749d2 from=translated src=- shape=1d9661d7 vocab=bf2dabd3
+-/
 theorem rowNormSq_mul_le (M N : Matrix (Fin 2) (Fin 2) K) :
     rowNormSq (M * N) ≤ rowNormSq M * entryNormSq N := by
   have h : ∀ j : Fin 2, ‖(M * N) 1 j‖ ^ 2
@@ -57,6 +60,9 @@ private theorem aux_ineq {dg dk Rg Rgk E : ℝ} (hdk : 0 < dk) (hRg : 0 < Rg) (h
     _ ≤ dg * dk * (Rg * E) := h
     _ = E * (dg * dk) * Rg := by ring
 
+/--
+@isnad1 id=le.0h3v.s8.96df739b8f6b from=translated src=- shape=e859d899 vocab=9a400d6e
+-/
 theorem localHeight_le_transFactor_mul (g k : GL (Fin 2) K) :
     localHeight g ≤ transFactor k * localHeight (g * k) := by
   have hRg := rowNormSq_pos g
@@ -70,6 +76,9 @@ theorem localHeight_le_transFactor_mul (g k : GL (Fin 2) K) :
 
 variable [IsTopologicalRing K]
 
+/--
+@isnad1 id=continuo.0h1v.s7.d4d3aea2981e from=translated src=- shape=81fbb06f vocab=9e7c13b0
+-/
 theorem continuous_transFactor : Continuous (transFactor : GL (Fin 2) K → ℝ) := by
   have hc : ∀ i j : Fin 2, Continuous fun k : GL (Fin 2) K => ‖(k : Matrix (Fin 2) (Fin 2) K) i j‖ :=
     fun i j => (Units.continuous_val.matrix_elem i j).norm
@@ -86,6 +95,9 @@ section Ultrametric
 
 variable {K : Type*} [NormedField K] [IsUltrametricDist K]
 
+/--
+@isnad1 id=le.1h3v.s7.2da5154b0d2f from=translated src=- shape=944067d2 vocab=1b1cab7c
+-/
 theorem rowMaxNorm_mul_le (M N : Matrix (Fin 2) (Fin 2) K) (hN : ∀ i j, ‖N i j‖ ≤ 1) :
     rowMaxNorm (M * N) ≤ rowMaxNorm M := by
   have h : ∀ j : Fin 2, ‖(M * N) 1 j‖ ≤ max ‖M 1 0‖ ‖M 1 1‖ := by
@@ -98,6 +110,9 @@ theorem rowMaxNorm_mul_le (M N : Matrix (Fin 2) (Fin 2) K) (hN : ∀ i j, ‖N i
       exact mul_le_of_le_one_right (norm_nonneg _) (hN 1 j)
   exact max_le (h 0) (h 1)
 
+/--
+@isnad1 id=eq.2h3v.s9.38407645de1a from=translated src=- shape=cb6a5714 vocab=2806211b
+-/
 theorem finLocalHeight_mul_eq (g k : GL (Fin 2) K)
     (hk : ∀ i j, ‖(k : Matrix (Fin 2) (Fin 2) K) i j‖ ≤ 1)
     (hk' : ∀ i j, ‖((k⁻¹ : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) i j‖ ≤ 1) :
@@ -138,6 +153,9 @@ section Finite
 
 variable (F : Type) [Field F] [NumberField F]
 
+/--
+@isnad1 id=eq.1h3v.s10.7d106710923e from=translated src=- shape=ca01d2ba vocab=a631130a
+-/
 theorem finHeight_mul_of_mem (g : GL (Fin 2) (FiniteAdeleRing (𝓞 F) F))
     {k : GL (Fin 2) (FiniteAdeleRing (𝓞 F) F)} (hk : k ∈ finiteIntegralGL2 (𝓞 F) F) :
     finHeight F (g * k) = finHeight F g := by
@@ -151,6 +169,9 @@ theorem finHeight_mul_of_mem (g : GL (Fin 2) (FiniteAdeleRing (𝓞 F) F))
   · rw [← map_inv, finComponent_apply]
     exact norm_le_one_of_mem_adicCompletionIntegers (hk.2 i j v)
 
+/--
+@isnad1 id=continuo.0h1v.s8.94ad827308ae from=translated src=- shape=96b16265 vocab=c9ed7cfe
+-/
 theorem continuous_finHeight : Continuous (finHeight F) := by
   refine continuous_iff_continuousAt.mpr fun g₀ => ?_
   have hopen : IsOpen ((fun g : GL (Fin 2) (FiniteAdeleRing (𝓞 F) F) => g₀⁻¹ * g) ⁻¹'
@@ -167,6 +188,9 @@ theorem continuous_finHeight : Continuous (finHeight F) := by
   calc finHeight F g₀ = finHeight F (g₀ * (g₀⁻¹ * g)) := (finHeight_mul_of_mem F g₀ hg').symm
     _ = finHeight F g := by rw [mul_inv_cancel_left]
 
+/--
+@isnad1 id=ex.1h2v.s11.0f6cfaa93f50 from=translated src=- shape=d520f7e4 vocab=eeeacb7c
+-/
 theorem exists_one_le_mul_finHeight {C : Set (AdelicGL2 (𝓞 F) F)} (hC : IsCompact C) :
     ∃ B : ℝ, 1 ≤ B ∧ ∀ x ∈ finiteIntegralGL2 (𝓞 F) F, ∀ k ∈ C,
       1 ≤ B * finHeight F (x * glFin (𝓞 F) F k) := by
@@ -193,6 +217,9 @@ variable (F : Type) [Field F] [NumberField F]
 def archTransFactor (k : GL (Fin 2) (InfiniteAdeleRing F)) : ℝ :=
   ∏ v : InfinitePlace F, transFactor (archComponent F v k) ^ v.mult
 
+/--
+@isnad1 id=le.0h3v.s8.90d835d18efd from=translated src=- shape=9d824ead vocab=7e96a889
+-/
 theorem archHeight_le_archTransFactor_mul (g k : GL (Fin 2) (InfiniteAdeleRing F)) :
     archHeight F g ≤ archTransFactor F k * archHeight F (g * k) := by
   unfold archHeight archTransFactor
@@ -201,11 +228,17 @@ theorem archHeight_le_archTransFactor_mul (g k : GL (Fin 2) (InfiniteAdeleRing F
   rw [← mul_pow, map_mul]
   exact pow_le_pow_left₀ (localHeight_pos _).le (localHeight_le_transFactor_mul _ _) _
 
+/--
+@isnad1 id=continuo.0h1v.s7.ac6ff6df48cf from=translated src=- shape=0e61688e vocab=7520fa65
+-/
 theorem continuous_archTransFactor : Continuous (archTransFactor F) := by
   unfold archTransFactor
   exact continuous_finsetProd _ fun v _ =>
     (continuous_transFactor.comp (continuous_archComponent F v)).pow _
 
+/--
+@isnad1 id=ex.1h2v.s10.0fbf3d6bf3c0 from=translated src=- shape=6b189e1e vocab=63dcb9d1
+-/
 theorem exists_archTransFactor_le {C : Set (AdelicGL2 (𝓞 F) F)} (hC : IsCompact C) :
     ∃ B : ℝ, 1 ≤ B ∧ ∀ k ∈ C, archTransFactor F (glArch (𝓞 F) F k) ≤ B := by
   obtain ⟨B, hB⟩ :=
@@ -222,6 +255,9 @@ open scoped NumberField
 
 open _root_.AutomorphicForm _root_.P2MW.S_AutomorphicForm_WindowedSiegel_exists_forall_apply_one_zero_eq_zero_of_inv_mul_globalPoints_mul_mem.AutomorphicForm _root_.AutomorphicForm.WindowedSiegel _root_.P2MW.S_AutomorphicForm_WindowedSiegel_exists_forall_apply_one_zero_eq_zero_of_inv_mul_globalPoints_mul_mem.AutomorphicForm.WindowedSiegel AutomorphicForm.WindowedSiegel.ArthurSupport NumberField.AdelicLevel NumberField.AdelicHeight in
 
+/--
+@isnad1 id=ex.1h2v.s12.822cd887cbab from=translated src=- shape=0083b9cc vocab=c10343eb
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F]
     {C : Set (AutomorphicForm.AdelicGL2 (𝓞 F) F)} (hC : IsCompact C) :

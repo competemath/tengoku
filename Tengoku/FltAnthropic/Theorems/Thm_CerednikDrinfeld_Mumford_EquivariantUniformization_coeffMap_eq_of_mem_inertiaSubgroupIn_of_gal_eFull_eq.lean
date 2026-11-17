@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 open ModularCurve CerednikDrinfeld CerednikDrinfeld.Mumford
 
+/--
+@isnad1 id=eq.6h15v.s17.e6217151d873 from=translated src=- shape=cc6917da vocab=cf8d7ec4
+-/
 theorem CerednikDrinfeld.Mumford.EquivariantUniformization.coeffMap_eq_of_mem_inertiaSubgroupIn_of_gal_eFull_eq
     {E V : Type} [Fintype E] [DecidableEq V]
     {r : ℕ} [Fact r.Prime] {D : DegeneracyData E V}

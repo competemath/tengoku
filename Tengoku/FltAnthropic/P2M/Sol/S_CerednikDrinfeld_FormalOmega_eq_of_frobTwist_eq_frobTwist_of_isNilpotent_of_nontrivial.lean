@@ -13,18 +13,27 @@ namespace F530
 
 variable {𝒪 : Type} [CommRing 𝒪] {Onr : Type} [CommRing Onr] [Algebra 𝒪 Onr] (Fr : Onr ≃ₐ[𝒪] Onr)
 
+/--
+@isnad1 id=eq.0h7v.s7.8a72090858cc from=translated src=- shape=ef633f79 vocab=bebe0877
+-/
 theorem frobTwist_frobTwist {B : Type} [CommRing B] [Algebra 𝒪 B] (a b : ℤ) (ψ : Onr →ₐ[𝒪] B) :
     frobTwist Onr Fr a (frobTwist Onr Fr b ψ) = frobTwist Onr Fr (b + a) ψ := by
   apply AlgHom.ext
   intro x
   simp [frobTwist, AlgHom.comp_apply, zpow_add, AlgEquiv.mul_apply]
 
+/--
+@isnad1 id=eq.0h5v.s6.fbc14924af54 from=translated src=- shape=6ae67e00 vocab=12571d38
+-/
 theorem frobTwist_zero {B : Type} [CommRing B] [Algebra 𝒪 B] (ψ : Onr →ₐ[𝒪] B) :
     frobTwist Onr Fr 0 ψ = ψ := by
   apply AlgHom.ext
   intro x
   simp [frobTwist]
 
+/--
+@isnad1 id=eq.2h9v.s9.ce7c51e93d4d from=translated src=- shape=c06cdd3e vocab=db2b9ea7
+-/
 theorem apply_pow_aux {r : ℕ} (π' : Onr) {F : Type} [CommRing F] (φ : Onr →+* F)
     (hφ : ∀ x ∈ Ideal.span ({π'} : Set Onr), φ x = 0)
     (hFr : ∀ x : Onr, Fr x - x ^ r ∈ Ideal.span ({π'} : Set Onr)) :
@@ -118,6 +127,9 @@ theorem eq_of_frobTwist_eq_frobTwist {r : ℕ} [Fact r.Prime] (π : 𝒪) [Nontr
 
 end F530
 
+/--
+@isnad1 id=eq.4h9v.s9.b205bc575af7 from=translated src=- shape=4e0c23f4 vocab=119d344a
+-/
 theorem solution
     {𝒪 : Type} [CommRing 𝒪] (π : 𝒪) {r : ℕ} [Fact r.Prime]
     (Onr : Type) [CommRing Onr] [Nontrivial Onr] [Algebra 𝒪 Onr] (Fr : Onr ≃ₐ[𝒪] Onr)

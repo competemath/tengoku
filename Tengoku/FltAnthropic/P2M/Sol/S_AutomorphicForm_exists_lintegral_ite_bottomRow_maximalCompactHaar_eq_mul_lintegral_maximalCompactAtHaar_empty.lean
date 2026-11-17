@@ -23,12 +23,18 @@ open AutomorphicForm.WindowedSiegel
 
 variable (K : Type) [Field K] [NumberField K]
 
+/--
+@isnad1 id=continuo.0h1v.s7.c55af11054e0 from=translated src=- shape=26294a6e vocab=bf09550f
+-/
 theorem continuous_finMat : Continuous (AdelicDock.finMat (𝓞 K) K) := by
   refine continuous_pi fun i => continuous_pi fun j => ?_
   show Continuous fun g : Matrix (Fin 2) (Fin 2) (FiniteAdeleRing (𝓞 K) K) =>
     ((((1 : Matrix (Fin 2) (Fin 2) (InfiniteAdeleRing K)) i j, g i j) : (AdeleRing (𝓞 K) K)))
   exact continuous_const.prodMk ((continuous_apply j).comp (continuous_apply i))
 
+/--
+@isnad1 id=continuo.0h1v.s10.02675998be77 from=translated src=- shape=200809e8 vocab=73ea05a4
+-/
 theorem continuous_finEmbed : Continuous (AdelicDock.finEmbed (𝓞 K) K) := by
   refine Units.continuous_iff.mpr ⟨?_, ?_⟩
   · show Continuous fun g : GL (Fin 2) (FiniteAdeleRing (𝓞 K) K) =>
@@ -38,6 +44,9 @@ theorem continuous_finEmbed : Continuous (AdelicDock.finEmbed (𝓞 K) K) := by
       AdelicDock.finMat (𝓞 K) K ((g⁻¹ : GL (Fin 2) (FiniteAdeleRing (𝓞 K) K)) : Matrix (Fin 2) (Fin 2) (FiniteAdeleRing (𝓞 K) K))
     exact (continuous_finMat K).comp Units.continuous_coe_inv
 
+/--
+@isnad1 id=eq.1h2v.s11.1642aea42a86 from=translated src=- shape=f17bb7ec vocab=8b583740
+-/
 theorem glFin_eq_one_of_mem_maximalCompactAt_empty {g : AdelicGL2 (𝓞 K) K} (hg : g ∈ maximalCompactAt K ∅) :
     glFin (𝓞 K) K g = 1 := by
   have h := (mem_maximalCompactAt_iff.1 hg).2
@@ -52,6 +61,9 @@ theorem glFin_eq_one_of_mem_maximalCompactAt_empty {g : AdelicGL2 (𝓞 K) K} (h
     rw [Matrix.one_apply_eq, Matrix.one_apply_eq]; rfl
   · rw [Matrix.one_apply_ne hij, Matrix.one_apply_ne hij]; rfl
 
+/--
+@isnad1 id=mem.1h2v.s11.d2946d3f844d from=translated src=- shape=f120a0a9 vocab=de524816
+-/
 theorem finEmbed_glFin_mem {k : AdelicGL2 (𝓞 K) K} (hk : k ∈ adelicMaximalCompact K) :
     AdelicDock.finEmbed (𝓞 K) K (glFin (𝓞 K) K k) ∈ adelicMaximalCompact K := by
   refine ⟨?_, fun w => ?_⟩
@@ -64,19 +76,31 @@ def archPart (k : adelicMaximalCompact K) : maximalCompactAt K ∅ :=
       ((adelicMaximalCompact K).inv_mem (finEmbed_glFin_mem K k.2)), fun v _ => by
         rw [map_mul, map_inv, AdelicDock.glFin_finEmbed, mul_inv_cancel, map_one]⟩⟩
 
+/--
+@isnad1 id=eq.0h2v.s12.2ce5e5ca60cc from=translated src=- shape=c1c8cd79 vocab=10330799
+-/
 theorem archPart_coe (k : adelicMaximalCompact K) :
     ((archPart K k : maximalCompactAt K ∅) : AdelicGL2 (𝓞 K) K) =
       (k : AdelicGL2 (𝓞 K) K) * (AdelicDock.finEmbed (𝓞 K) K (glFin (𝓞 K) K k))⁻¹ := rfl
 
+/--
+@isnad1 id=continuo.0h1v.s11.938c5c525ac4 from=translated src=- shape=675237ec vocab=857ba221
+-/
 theorem continuous_archPart : Continuous (archPart K) := by
   refine Continuous.subtype_mk ?_ _
   exact continuous_subtype_val.mul
     (((continuous_finEmbed K).comp ((continuous_glFin (𝓞 K) K).comp continuous_subtype_val)).inv)
 
+/--
+@isnad1 id=measurab.0h1v.s11.d919fd5edc19 from=translated src=- shape=675237ec vocab=2f862ee7
+-/
 theorem measurable_archPart : Measurable (archPart K) := (continuous_archPart K).measurable
 
 def incl (g₀ : maximalCompactAt K ∅) : adelicMaximalCompact K := ⟨g₀.1, maximalCompactAt_le K ∅ g₀.2⟩
 
+/--
+@isnad1 id=eq.0h3v.s12.567b60b344ec from=translated src=- shape=6b9e16b4 vocab=7e5e914c
+-/
 theorem archPart_incl_mul (g₀ : maximalCompactAt K ∅) (k : adelicMaximalCompact K) :
     archPart K (incl K g₀ * k) = g₀ * archPart K k := by
   apply Subtype.ext
@@ -94,6 +118,9 @@ def Cond (g : AdelicGL2 (𝓞 K) K) : Prop :=
 
 variable {K S n}
 
+/--
+@isnad1 id=iff.1h5v.s11.8c7544911a93 from=translated src=- shape=85614497 vocab=7c8a64e9
+-/
 theorem cond_iff_of_glFin_eq {g g' : AdelicGL2 (𝓞 K) K} (h : glFin (𝓞 K) K g = glFin (𝓞 K) K g') :
     Cond K S n g ↔ Cond K S n g' := by
   have he : ∀ i j : Fin 2, (((g : Matrix (Fin 2) (Fin 2) (AdeleRing (𝓞 K) K)) i j)).2 = (((g' : Matrix (Fin 2) (Fin 2) (AdeleRing (𝓞 K) K)) i j)).2 := by
@@ -104,6 +131,9 @@ theorem cond_iff_of_glFin_eq {g g' : AdelicGL2 (𝓞 K) K} (h : glFin (𝓞 K) K
 
 variable (K) in
 
+/--
+@isnad1 id=ex.0h3v.s8.0d87053132f8 from=translated src=- shape=a212b9a4 vocab=9be19da7
+-/
 theorem exists_v_eq (v : HeightOneSpectrum (𝓞 K)) (e : ℤ) : ∃ δ : v.adicCompletion K,
     Valued.v δ = ((Multiplicative.ofAdd e : Multiplicative ℤ) : WithZero (Multiplicative ℤ)) := by
   obtain ⟨π, hπ⟩ := v.valuation_exists_uniformizer K
@@ -114,6 +144,9 @@ theorem exists_v_eq (v : HeightOneSpectrum (𝓞 K)) (e : ℤ) : ∃ δ : v.adic
   congr 2
   rw [smul_eq_mul]; ring
 
+/--
+@isnad1 id=continuo.0h4v.s8.9ae9585b8540 from=translated src=- shape=fb5ee049 vocab=ab7c4b56
+-/
 theorem continuous_entry_snd (i j : Fin 2) (v : HeightOneSpectrum (𝓞 K)) :
     Continuous fun g : AdelicGL2 (𝓞 K) K => (((g : Matrix (Fin 2) (Fin 2) (AdeleRing (𝓞 K) K)) i j)).2 v := by
   have hval : Continuous fun g : AdelicGL2 (𝓞 K) K => (g : Matrix (Fin 2) (Fin 2) (AdeleRing (𝓞 K) K)) :=
@@ -121,6 +154,9 @@ theorem continuous_entry_snd (i j : Fin 2) (v : HeightOneSpectrum (𝓞 K)) :
   exact ((continuous_finAdeleEval (𝓞 K) K v).comp (continuous_adeleFin (𝓞 K) K)).comp
     ((continuous_apply j).comp ((continuous_apply i).comp hval))
 
+/--
+@isnad1 id=and.0h3v.s9.a6e6b4756f43 from=translated src=- shape=bbed8ab3 vocab=40a7db80
+-/
 theorem isClosed_cond_and_nhds :
     IsClosed {g : AdelicGL2 (𝓞 K) K | Cond K S n g} ∧
       ∃ U : Set (AdelicGL2 (𝓞 K) K), IsOpen U ∧ (1 : AdelicGL2 (𝓞 K) K) ∈ U ∧ U ⊆ {g | Cond K S n g} := by
@@ -161,6 +197,9 @@ theorem isClosed_cond_and_nhds :
 
 end Cond
 
+/--
+@isnad1 id=ex.0h3v.s14.492b778f36f8 from=translated src=- shape=c9e988e4 vocab=f673ceba
+-/
 theorem main
     (K : Type) [Field K] [NumberField K] (S : Finset (HeightOneSpectrum (𝓞 K))) (n : ℕ) :
     ∃ κ : ℝ, 0 < κ ∧
@@ -269,6 +308,9 @@ end KSuppAvg43
 
 end
 
+/--
+@isnad1 id=ex.0h3v.s14.492b778f36f8 from=translated src=- shape=c9e988e4 vocab=f673ceba
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K] (S : Finset (HeightOneSpectrum (𝓞 K))) (n : ℕ) :
     ∃ κ : ℝ, 0 < κ ∧

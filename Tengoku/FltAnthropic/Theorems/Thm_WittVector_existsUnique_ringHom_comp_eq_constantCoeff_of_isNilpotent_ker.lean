@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=existsun.2h4v.s8.65d9618ff924 from=translated src=- shape=61f37b93 vocab=efeae04b
+-/
 theorem WittVector.existsUnique_ringHom_comp_eq_constantCoeff_of_isNilpotent_ker
     (p : ℕ) [Fact p.Prime] (k : Type u) [Field k] [CharP k p] [PerfectRing k p]
     (B : Type u) [CommRing B] (ρ : B →+* k) (hρ : Function.Surjective ρ) (hnil : IsNilpotent (RingHom.ker ρ)) :

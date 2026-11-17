@@ -25,6 +25,9 @@ noncomputable def classTerm (G : (Fin d → ℤ) → ℂ) (i : ℕ) (γ : 𝒟.s
     (𝒟.Ψ i (𝒟.x₀ i + (γ : (Fin r → ℝ) × (Fin d → ℤ)).1) *
       ∏ j, fourier (𝒟.m i j) (𝒟.θ₀ i j + 𝒟.χ ⟨(γ : (Fin r → ℝ) × (Fin d → ℤ)), 𝒟.hsub i γ.2⟩ j))
 
+/--
+@isnad1 id=eq.1h8v.s8.9fc273cf44e6 from=translated src=- shape=2b1ffab4 vocab=ca4d861e
+-/
 theorem sum_mul_fibreTerm (B : Finset (Fin d → ℤ)) (G : (Fin d → ℤ) → ℂ) (hG : ∀ n ∉ B, G n = 0)
     (i : ℕ) (γ : 𝒟.sub i) :
     ∑ n ∈ B, G n * 𝒟.fibreTerm i n γ = classTerm 𝒟 G i γ := by
@@ -36,6 +39,9 @@ theorem sum_mul_fibreTerm (B : Finset (Fin d → ℤ)) (G : (Fin d → ℤ) → 
   · rfl
   · rw [hG _ h, zero_mul]
 
+/--
+@isnad1 id=le.1h8v.s8.14019abc6648 from=translated src=- shape=6b2d20ff vocab=ed83653c
+-/
 theorem norm_classTerm_le (B : Finset (Fin d → ℤ)) (G : (Fin d → ℤ) → ℂ) (hG : ∀ n ∉ B, G n = 0)
     (i : ℕ) (γ : 𝒟.sub i) :
     ‖classTerm 𝒟 G i γ‖ ≤ ∑ n ∈ B, ‖G n‖ * ‖𝒟.fibreTerm i n γ‖ := by
@@ -43,6 +49,9 @@ theorem norm_classTerm_le (B : Finset (Fin d → ℤ)) (G : (Fin d → ℤ) → 
   refine (norm_sum_le _ _).trans ?_
   exact Finset.sum_le_sum fun n _ => (norm_mul_le _ _)
 
+/--
+@isnad1 id=and.1h6v.s10.4a9a07987b13 from=translated src=- shape=a7bfab66 vocab=afce6acf
+-/
 theorem main (B : Finset (Fin d → ℤ)) (G : (Fin d → ℤ) → ℂ) (hG : ∀ n ∉ B, G n = 0) :
     (∀ i : ℕ, Summable fun γ : 𝒟.sub i => ‖classTerm 𝒟 G i γ‖) ∧
     (Summable fun i : ℕ => ‖𝒟.lam i * ∑' γ : 𝒟.sub i, classTerm 𝒟 G i γ‖) ∧
@@ -95,6 +104,9 @@ theorem main (B : Finset (Fin d → ℤ)) (G : (Fin d → ℤ) → ℂ) (hG : �
 
 end AutomorphicForm.WindingDatum.PairingUnfold
 
+/--
+@isnad1 id=and.1h6v.s13.90f2b8fbaa26 from=translated src=- shape=aceded27 vocab=f49b43c8
+-/
 theorem solution
     {r d c : ℕ} (𝒟 : AutomorphicForm.WindingDatum r d c) (B : Finset (Fin d → ℤ)) (G : (Fin d → ℤ) → ℂ)
     (hG : ∀ n ∉ B, G n = 0) :

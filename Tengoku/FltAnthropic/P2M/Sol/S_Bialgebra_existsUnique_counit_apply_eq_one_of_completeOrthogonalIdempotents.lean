@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u v
 
+/--
+@isnad1 id=or.1h2v.s5.a9059856b496 from=translated src=- shape=839dc8c0 vocab=97f19c26
+-/
 theorem hensSplit_isIdempotentElem_eq_zero_or_one {R : Type u} [CommRing R] [IsLocalRing R] {a : R}
     (ha : IsIdempotentElem a) : a = 0 ∨ a = 1 := by
   rcases IsLocalRing.isUnit_or_isUnit_one_sub_self a with h | h
@@ -18,6 +21,9 @@ theorem hensSplit_isIdempotentElem_eq_zero_or_one {R : Type u} [CommRing R] [IsL
     have : (1 - a) * a = (1 - a) * 0 := by rw [mul_zero, sub_mul, one_mul, ha.eq, sub_self]
     exact h.mul_left_cancel this
 
+/--
+@isnad1 id=existsun.1h4v.s8.81e0d1929147 from=translated src=- shape=5cf70b83 vocab=084c1561
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsLocalRing R]
     {H : Type v} [CommRing H] [Bialgebra R H]

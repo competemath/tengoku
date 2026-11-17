@@ -17,13 +17,22 @@ noncomputable def L (p : ℝ × ℝ) : ℝ := sq α β p * Real.log (sq α β p)
 
 variable {α β}
 
+/--
+@isnad1 id=contdiff.0h2v.s6.784f5d50031d from=translated src=- shape=fcb5b0fa vocab=83f4f8b8
+-/
 lemma contDiff_sq : ContDiff ℝ (⊤ : ℕ∞) (sq α β) := by
   unfold sq; fun_prop
 
+/--
+@isnad1 id=eq.0h4v.s6.0a55590b8c4d from=translated src=- shape=deee196e vocab=456307e0
+-/
 lemma sq_smul (t : ℝ) (p : ℝ × ℝ) : sq α β (t • p) = t ^ 2 * sq α β p := by
   simp only [sq, Prod.smul_fst, Prod.smul_snd, smul_eq_mul]
   ring
 
+/--
+@isnad1 id=lt.3h3v.s5.aa7458f21132 from=translated src=- shape=76dabbbf vocab=c97f1493
+-/
 lemma sq_pos (hα : 0 < α) (hβ : 0 < β) (p : ℝ × ℝ) (hp : p ≠ 0) : 0 < sq α β p := by
   unfold sq
   have h1 : 0 ≤ α * p.1 ^ 2 := by positivity
@@ -46,8 +55,14 @@ lemma sq_pos (hα : 0 < α) (hβ : 0 < β) (p : ℝ × ℝ) (hp : p ≠ 0) : 0 <
         · exact pow_eq_zero_iff (n := 2) (by norm_num) |>.1 h
       exact Prod.ext hx hy
 
+/--
+@isnad1 id=isopen.0h0v.s5.46c5e9b46b24 from=translated src=- shape=d7bf9b1a vocab=f4c156ea
+-/
 lemma isOpen_ne' : IsOpen {p : ℝ × ℝ | p ≠ 0} := isOpen_ne
 
+/--
+@isnad1 id=contdiff.2h2v.s6.480edc335fda from=translated src=- shape=419ef177 vocab=5be1c901
+-/
 lemma contDiffOn_L (hα : 0 < α) (hβ : 0 < β) :
     ContDiffOn ℝ (⊤ : ℕ∞) (L α β) {p : ℝ × ℝ | p ≠ 0} := by
   unfold L
@@ -56,10 +71,16 @@ lemma contDiffOn_L (hα : 0 < α) (hβ : 0 < β) :
   intro p hp
   exact (sq_pos hα hβ p hp).ne'
 
+/--
+@isnad1 id=contdiff.3h4v.s6.33294de970e2 from=translated src=- shape=ca45a61f vocab=5694679a
+-/
 lemma contDiffAt_L (hα : 0 < α) (hβ : 0 < β) {n : ℕ} (p : ℝ × ℝ) (hp : p ≠ 0) :
     ContDiffAt ℝ n (L α β) p :=
   ((contDiffOn_L hα hβ).of_le (by exact_mod_cast le_top)).contDiffAt (isOpen_ne'.mem_nhds hp)
 
+/--
+@isnad1 id=eq.3h4v.s7.a1a59b7f90bc from=translated src=- shape=59e895ba vocab=144f46a3
+-/
 lemma L_smul (hα : 0 < α) (hβ : 0 < β) (t : ℝ) (ht : 0 < t) (p : ℝ × ℝ) :
     L α β (t • p) = t ^ 2 * L α β p + (t ^ 2 * Real.log (t ^ 2)) * sq α β p := by
   unfold L
@@ -82,8 +103,14 @@ noncomputable def scale (t : ℝ) (ht : t ≠ 0) : (ℝ × ℝ) ≃L[ℝ] (ℝ �
       simp only [FunLike.coe_smul, ContinuousLinearMap.coe_id', Pi.smul_apply, id_eq,
         smul_smul, mul_inv_cancel₀ ht, one_smul])
 
+/--
+@isnad1 id=eq.1h2v.s8.1f25c8b9861a from=translated src=- shape=5c9270fe vocab=91a21745
+-/
 @[scoped simp] lemma scale_apply (t : ℝ) (ht : t ≠ 0) (p : ℝ × ℝ) : scale t ht p = t • p := rfl
 
+/--
+@isnad1 id=eq.1h3v.s9.decf09573df3 from=translated src=- shape=79ed9af7 vocab=fdba93e5
+-/
 lemma compContinuousLinearMap_scale {n : ℕ} (M : ContinuousMultilinearMap ℝ (fun _ : Fin n => ℝ × ℝ) ℝ)
     (t : ℝ) (ht : t ≠ 0) :
     M.compContinuousLinearMap (fun _ => ((scale t ht : (ℝ × ℝ) ≃L[ℝ] (ℝ × ℝ)) : (ℝ × ℝ) →L[ℝ] (ℝ × ℝ)))
@@ -94,6 +121,9 @@ lemma compContinuousLinearMap_scale {n : ℕ} (M : ContinuousMultilinearMap ℝ 
   rw [ContinuousMultilinearMap.map_smul_univ]
   simp
 
+/--
+@isnad1 id=eq.4h5v.s11.5d28a015789a from=translated src=- shape=4010e66d vocab=20033878
+-/
 lemma iteratedFDeriv_L_smul (hα : 0 < α) (hβ : 0 < β) (n : ℕ) (t : ℝ) (ht : 0 < t) (ω : ℝ × ℝ)
     (hω : ω ≠ 0) :
     (t ^ n) • iteratedFDeriv ℝ n (L α β) (t • ω) =
@@ -125,6 +155,9 @@ lemma iteratedFDeriv_L_smul (hα : 0 < α) (hβ : 0 < β) (n : ℕ) (t : ℝ) (h
   rw [hadd, scale_apply] at hcomp
   exact hcomp.symm
 
+/--
+@isnad1 id=ex.1h2v.s6.e95ded828ddc from=translated src=- shape=69f47fc7 vocab=ff530574
+-/
 lemma exists_bound_sphere {F : Type*} [NormedAddCommGroup F] (f : ℝ × ℝ → F)
     (hf : ContinuousOn f {p : ℝ × ℝ | p ≠ 0}) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ ω : ℝ × ℝ, ‖ω‖ = 1 → ‖f ω‖ ≤ C := by
@@ -140,6 +173,9 @@ lemma exists_bound_sphere {F : Type*} [NormedAddCommGroup F] (f : ℝ × ℝ →
   have : ω ∈ Metric.sphere (0 : ℝ × ℝ) 1 := by simp [hω]
   exact (hC ω this).trans (le_max_left _ _)
 
+/--
+@isnad1 id=continuo.2h3v.s8.b9e57c3bf7fd from=translated src=- shape=c767e90d vocab=757dc0a1
+-/
 lemma continuousOn_iteratedFDeriv_L (hα : 0 < α) (hβ : 0 < β) (n : ℕ) :
     ContinuousOn (iteratedFDeriv ℝ n (L α β)) {p : ℝ × ℝ | p ≠ 0} := by
   have h := (contDiffOn_L hα hβ).continuousOn_iteratedFDerivWithin (m := n)
@@ -148,10 +184,16 @@ lemma continuousOn_iteratedFDeriv_L (hα : 0 < α) (hβ : 0 < β) (n : ℕ) :
   intro p hp
   exact (iteratedFDerivWithin_of_isOpen n isOpen_ne' hp).symm
 
+/--
+@isnad1 id=continuo.0h3v.s8.9650708518e4 from=translated src=- shape=de23bd65 vocab=e6c5ca39
+-/
 lemma continuousOn_iteratedFDeriv_sq (n : ℕ) :
     ContinuousOn (iteratedFDeriv ℝ n (sq α β)) {p : ℝ × ℝ | p ≠ 0} :=
   (contDiff_sq.continuous_iteratedFDeriv (m := n) (by exact_mod_cast le_top)).continuousOn
 
+/--
+@isnad1 id=ex.2h2v.s8.6a46be94d62f from=translated src=- shape=1e33496f vocab=b455f44f
+-/
 theorem main (hα : 0 < α) (hβ : 0 < β) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ n : ℕ, n ≤ 4 → ∀ p : ℝ × ℝ, p ≠ 0 →
       ‖p‖ ^ n * ‖iteratedFDeriv ℝ n (L α β) p‖ ≤ C * ‖p‖ ^ 2 * (1 + |Real.log ‖p‖|) := by
@@ -221,6 +263,9 @@ end K2LogGerm
 open scoped _root_.P2MW.S_Real_exists_forall_norm_pow_mul_norm_iteratedFDeriv_mul_log_quadratic_le.K2LogGerm
 
 open K2LogGerm in
+/--
+@isnad1 id=ex.2h2v.s9.b2328283d4d4 from=translated src=- shape=91ede20f vocab=bbb2a9ee
+-/
 theorem solution
     (α β : ℝ) (hα : 0 < α) (hβ : 0 < β) :
     ∃ C : ℝ, 0 ≤ C ∧

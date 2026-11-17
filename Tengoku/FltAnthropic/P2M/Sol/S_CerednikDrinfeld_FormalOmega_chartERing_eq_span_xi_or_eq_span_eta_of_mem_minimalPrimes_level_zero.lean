@@ -28,6 +28,9 @@ noncomputable def ψ : MvPolynomial (Fin 2) (𝒪 ⧸ Ideal.span ({π} : Set �
       (Ideal.span_le.mpr (Set.singleton_subset_iff.mpr (Ideal.subset_span rfl))))
     (fun i => Ideal.Quotient.mk _ (edgeQuot.mk 𝒪 π (MvPolynomial.X i)))
 
+/--
+@isnad1 id=eq.0h2v.s9.aff86eca79ea from=translated src=- shape=9d89d3f8 vocab=5c2b02bf
+-/
 theorem ψ_comp_map :
     (ψ 𝒪 π).comp (MvPolynomial.map (Ideal.Quotient.mk (Ideal.span ({π} : Set 𝒪)))) =
       (Ideal.Quotient.mk (Ideal.span {πQ 𝒪 π})).comp (edgeQuot.mk 𝒪 π).toRingHom := by
@@ -42,16 +45,25 @@ theorem ψ_comp_map :
       Ideal.Quotient.mk (Ideal.span {πQ 𝒪 π}) (edgeQuot.mk 𝒪 π (MvPolynomial.X i))
     rw [MvPolynomial.map_X, ψ, MvPolynomial.eval₂Hom_X']
 
+/--
+@isnad1 id=surjecti.0h2v.s9.8a1935637b61 from=translated src=- shape=03b5d7b5 vocab=a8772a0b
+-/
 theorem ψ_surjective : Function.Surjective (ψ 𝒪 π) := by
   have h : Function.Surjective ((ψ 𝒪 π).comp (MvPolynomial.map (Ideal.Quotient.mk (Ideal.span ({π} : Set 𝒪))))) := by
     rw [ψ_comp_map]
     exact Ideal.Quotient.mk_surjective.comp (Ideal.Quotient.mkₐ_surjective 𝒪 _)
   exact Function.Surjective.of_comp h
 
+/--
+@isnad1 id=eq.0h3v.s10.feb956519677 from=translated src=- shape=4b2cd174 vocab=4cc4503d
+-/
 theorem ψ_X (i : Fin 2) :
     ψ 𝒪 π (MvPolynomial.X i) = Ideal.Quotient.mk (Ideal.span {πQ 𝒪 π}) (edgeQuot.mk 𝒪 π (MvPolynomial.X i)) := by
   rw [ψ, MvPolynomial.eval₂Hom_X']
 
+/--
+@isnad1 id=eq.0h2v.s9.c28f9577de2c from=translated src=- shape=c4248740 vocab=1f3626c3
+-/
 theorem ψ_X_mul_X : ψ 𝒪 π (MvPolynomial.X 0 * MvPolynomial.X 1) = 0 := by
   have hrel : (MvPolynomial.X 0 * MvPolynomial.X 1 : MvPolynomial (Fin 2) 𝒪) = edgeRel 𝒪 π + MvPolynomial.C π :=
     (sub_add_cancel _ _).symm
@@ -68,11 +80,17 @@ abbrev T : Type :=
 noncomputable def χ₀ : MvPolynomial (Fin 2) 𝒪 →+* T 𝒪 π :=
   (Ideal.Quotient.mk _).comp (MvPolynomial.map (Ideal.Quotient.mk (Ideal.span ({π} : Set 𝒪))))
 
+/--
+@isnad1 id=eq.0h2v.s11.815a961a37da from=translated src=- shape=ecc40642 vocab=55c2d2fb
+-/
 theorem χ₀_C_π : χ₀ 𝒪 π (MvPolynomial.C π) = 0 := by
   simp only [χ₀, RingHom.coe_comp, Function.comp_apply, MvPolynomial.map_C,
     Ideal.Quotient.eq_zero_iff_mem.mpr (Ideal.subset_span rfl : π ∈ Ideal.span ({π} : Set 𝒪)),
     MvPolynomial.C_0, map_zero]
 
+/--
+@isnad1 id=eq.0h2v.s11.6660c676977c from=translated src=- shape=220d794d vocab=af133afc
+-/
 theorem χ₀_edgeRel : χ₀ 𝒪 π (edgeRel 𝒪 π) = 0 := by
   rw [edgeRel, map_sub, χ₀_C_π, sub_zero]
   simp only [χ₀, RingHom.coe_comp, Function.comp_apply, map_mul, MvPolynomial.map_X]
@@ -85,6 +103,9 @@ noncomputable def χQ : edgeQuot 𝒪 π →+* T 𝒪 π :=
       obtain ⟨b, rfl⟩ := Ideal.mem_span_singleton'.mp ha
       rw [map_mul, χ₀_edgeRel, mul_zero])
 
+/--
+@isnad1 id=eq.0h3v.s11.4d70893cb92f from=translated src=- shape=07219d31 vocab=0036e636
+-/
 theorem χQ_mk (f : MvPolynomial (Fin 2) 𝒪) : χQ 𝒪 π (edgeQuot.mk 𝒪 π f) = χ₀ 𝒪 π f :=
   Ideal.Quotient.lift_mk _ _ _
 
@@ -94,6 +115,9 @@ noncomputable def χ : Q₁ 𝒪 π →+* T 𝒪 π :=
     rw [map_mul, πQ, ← AlgHom.commutes (edgeQuot.mk 𝒪 π), MvPolynomial.algebraMap_eq, χQ_mk, χ₀_C_π,
       mul_zero])
 
+/--
+@isnad1 id=eq.0h2v.s11.b6e31d70402c from=translated src=- shape=b2bbedd3 vocab=eea6dbb7
+-/
 theorem χ_comp_ψ : (χ 𝒪 π).comp (ψ 𝒪 π) = Ideal.Quotient.mk _ := by
   apply MvPolynomial.ringHom_ext
   · intro a
@@ -107,6 +131,9 @@ theorem χ_comp_ψ : (χ 𝒪 π).comp (ψ 𝒪 π) = Ideal.Quotient.mk _ := by
     rw [ψ_X, χ, Ideal.Quotient.lift_mk, χQ_mk]
     simp only [χ₀, RingHom.coe_comp, Function.comp_apply, MvPolynomial.map_X]
 
+/--
+@isnad1 id=le.0h2v.s11.6d957818d6f2 from=translated src=- shape=68042dee vocab=1795f1c3
+-/
 theorem ker_ψ_le : RingHom.ker (ψ 𝒪 π) ≤
     Ideal.span {(MvPolynomial.X 0 * MvPolynomial.X 1 : MvPolynomial (Fin 2) (𝒪 ⧸ Ideal.span ({π} : Set 𝒪)))} := by
   intro f hf
@@ -115,6 +142,9 @@ theorem ker_ψ_le : RingHom.ker (ψ 𝒪 π) ≤
     rw [← χ_comp_ψ]; simp only [RingHom.coe_comp, Function.comp_apply, hf, map_zero]
   exact Ideal.Quotient.eq_zero_iff_mem.mp this
 
+/--
+@isnad1 id=eq.0h2v.s10.76e213ea706d from=translated src=- shape=68042dee vocab=206896f7
+-/
 theorem ker_ψ : RingHom.ker (ψ 𝒪 π) =
       Ideal.span {(MvPolynomial.X 0 * MvPolynomial.X 1 : MvPolynomial (Fin 2) (𝒪 ⧸ Ideal.span ({π} : Set 𝒪)))} :=
   le_antisymm (ker_ψ_le 𝒪 π) ((Ideal.span_singleton_le_iff_mem _).mpr (ψ_X_mul_X 𝒪 π))
@@ -125,6 +155,9 @@ end DimOne29
 
 open DimOne29
 
+/--
+@isnad1 id=or.2h4v.s15.e9ccd466fa2b from=translated src=- shape=e4a85ee3 vocab=bc3b0ae3
+-/
 theorem solution
     (𝒪 : Type) [CommRing 𝒪] (π : 𝒪) (r : ℕ) (hπ : (Ideal.span ({π} : Set 𝒪)).IsMaximal)
     (P : Ideal ((chartERing 𝒪 π r) ⧸ (Ideal.span {(algebraMap 𝒪 (chartERing 𝒪 π r) π) ^ (0 + 1)})))

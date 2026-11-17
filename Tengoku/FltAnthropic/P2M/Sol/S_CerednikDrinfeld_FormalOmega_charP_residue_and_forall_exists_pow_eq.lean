@@ -7,6 +7,9 @@ namespace P2MW.S_CerednikDrinfeld_FormalOmega_charP_residue_and_forall_exists_po
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=and.9h4v.s10.d0750184cf0c from=translated src=- shape=0f1a8ba9 vocab=d4ea8b68
+-/
 theorem solution
     {r : ℕ} [Fact r.Prime]
     (𝒪 : Type) [CommRing 𝒪] [IsDomain 𝒪] [CharZero 𝒪] (hdvr : IsDiscreteValuationRing 𝒪)

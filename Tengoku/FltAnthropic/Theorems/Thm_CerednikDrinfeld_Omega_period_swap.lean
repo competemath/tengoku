@@ -11,6 +11,9 @@ set_option autoImplicit false
 open scoped MatrixGroups
 open CerednikDrinfeld.Omega
 
+/--
+@isnad1 id=eq.2h8v.s8.7a993da5c885 from=translated src=- shape=88e83dfa vocab=afac9d6e
+-/
 theorem CerednikDrinfeld.Omega.period_swap
     {K₀ : Type*} [Field K₀] {K : Type*} [Field K] [Algebra K₀ K] [DecidableEq K] [TopologicalSpace K]
     {G : Type*} [Group G] (ρ : G →* PGL(2, K₀)) {a z₀ : K}

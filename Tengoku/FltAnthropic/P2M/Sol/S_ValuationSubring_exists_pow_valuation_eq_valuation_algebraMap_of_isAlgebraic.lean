@@ -7,6 +7,9 @@ namespace P2MW.S_ValuationSubring_exists_pow_valuation_eq_valuation_algebraMap_o
 
 namespace TorSol
 
+/--
+@isnad1 id=ex.3h6v.s7.ec43eaab932e from=translated src=- shape=a4ae813c vocab=afe2060e
+-/
 lemma exists_ne_map_eq_of_sum_eq_zero {R : Type*} [CommRing R]
     {Γ₀ : Type*} [LinearOrderedCommGroupWithZero Γ₀] (v : Valuation R Γ₀)
     {ι : Type*} (s : Finset ι) (t : ι → R) (hs : s.Nonempty) (ht : ∀ i ∈ s, v (t i) ≠ 0)
@@ -25,6 +28,9 @@ lemma exists_ne_map_eq_of_sum_eq_zero {R : Type*} [CommRing R]
   rw [hsum, map_zero] at h
   exact ht i₀ hi₀ h.symm
 
+/--
+@isnad1 id=ex.3h5v.s9.ec05f1f12540 from=translated src=- shape=6a7e00be vocab=4d9fd238
+-/
 lemma exists_lt_valuation_eq {E F : Type*} [Field E] [Field F] [Algebra E F]
     (O : ValuationSubring F) {g : F} (hg : g ≠ 0) {p : Polynomial E} (hp : p ≠ 0)
     (hpg : Polynomial.aeval g p = 0) :
@@ -61,6 +67,9 @@ lemma exists_lt_valuation_eq {E F : Type*} [Field E] [Field F] [Algebra E F]
 end TorSol
 
 open TorSol in
+/--
+@isnad1 id=ex.1h4v.s8.5f0a509779a1 from=translated src=- shape=6ac4a464 vocab=dd506ef4
+-/
 theorem solution
     {E F : Type*} [Field E] [Field F] [Algebra E F] [Algebra.IsAlgebraic E F]
     (O : ValuationSubring F) {g : F} (hg : g ≠ 0) :

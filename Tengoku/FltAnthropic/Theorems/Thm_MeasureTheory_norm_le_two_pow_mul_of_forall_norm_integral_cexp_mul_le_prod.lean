@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open MeasureTheory
 
+/--
+@isnad1 id=le.3h4v.s8.6e15a41ddb3b from=translated src=- shape=5a8dc65f vocab=0455795a
+-/
 theorem MeasureTheory.norm_le_two_pow_mul_of_forall_norm_integral_cexp_mul_le_prod
     {r : ℕ} (f : (Fin r → ℝ) → ℂ) (hf : Continuous f) (hfi : Integrable f) (C : ℝ)
     (hC : ∀ ξ : Fin r → ℝ,

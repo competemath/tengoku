@@ -11,6 +11,9 @@ set_option autoImplicit false
 open scoped MatrixGroups
 open CerednikDrinfeld.Omega
 
+/--
+@isnad1 id=eq.2h4v.s5.d64c20649d37 from=translated src=- shape=d57e1a27 vocab=bcb5cbdb
+-/
 theorem CerednikDrinfeld.Omega.crossRatio_self
     {K : Type*} [Field K] (z x y : K) (hzx : z ≠ x) (hzy : z ≠ y) :
     crossRatio z z x y = 1 := by exact @_root_.P2MW.S_CerednikDrinfeld_Omega_crossRatio_self.solution K _ z x y hzx hzy

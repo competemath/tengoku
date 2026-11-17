@@ -19,6 +19,9 @@ open _root_.NumberField open _root_.NumberField.InfinitePlace.NumberField open _
 
 variable {F : Type} [Field F] [NumberField F] {w : InfinitePlace F} (hw : w.IsReal)
 
+/--
+@isnad1 id=eq.3h5v.s8.b6686f359e43 from=translated src=- shape=fde0201f vocab=67153d5e
+-/
 theorem archDerivAt_sub {φ ψ : AdelicGL2 (𝓞 F) F → ℂ} (hφ : IsArchSmoothAt hw φ) (hψ : IsArchSmoothAt hw ψ)
     (d : ArchDir) : archDerivAt hw d (φ - ψ) = archDerivAt hw d φ - archDerivAt hw d ψ := by
   rw [sub_eq_add_neg, archDerivAt_add hφ hψ.neg, ← neg_one_smul ℂ ψ, archDerivAt_smul]
@@ -26,6 +29,9 @@ theorem archDerivAt_sub {φ ψ : AdelicGL2 (𝓞 F) F → ℂ} (hφ : IsArchSmoo
   simp only [Pi.add_apply, Pi.sub_apply, Pi.smul_apply, smul_eq_mul]
   ring
 
+/--
+@isnad1 id=eq.2h5v.s8.58507018f02a from=translated src=- shape=6e17d845 vocab=e007d747
+-/
 theorem archDerivAt_lowerComb_apply {φ : AdelicGL2 (𝓞 F) F → ℂ} (hφ : IsArchSmoothAt hw φ) (d : ArchDir)
     (g : AdelicGL2 (𝓞 F) F) :
     archDerivAt hw d (archDerivAt hw .H φ - Complex.I • (archDerivAt hw .E φ + archDerivAt hw .Fm φ)) g =
@@ -37,6 +43,9 @@ theorem archDerivAt_lowerComb_apply {φ : AdelicGL2 (𝓞 F) F → ℂ} (hφ : I
   rw [archDerivAt_sub hw hH ((hE.add hF).smul _), archDerivAt_smul, archDerivAt_add hE hF]
   simp only [Pi.add_apply, Pi.sub_apply, Pi.smul_apply, smul_eq_mul]
 
+/--
+@isnad1 id=eq.2h5v.s7.ef859c5a1cb7 from=translated src=- shape=7b6c94bb vocab=a1f454d2
+-/
 theorem archDerivAt_rotComb_apply {φ : AdelicGL2 (𝓞 F) F → ℂ} (hφ : IsArchSmoothAt hw φ) (d : ArchDir)
     (g : AdelicGL2 (𝓞 F) F) :
     archDerivAt hw d (archDerivAt hw .E φ - archDerivAt hw .Fm φ) g =
@@ -44,6 +53,9 @@ theorem archDerivAt_rotComb_apply {φ : AdelicGL2 (𝓞 F) F → ℂ} (hφ : IsA
   rw [archDerivAt_sub hw (hφ.archDerivAt .E) (hφ.archDerivAt .Fm)]
   simp only [Pi.sub_apply]
 
+/--
+@isnad1 id=eq.2h3v.s11.a3a1b928f9ea from=translated src=- shape=65504912 vocab=92659e58
+-/
 theorem main
         (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArchSmoothAt hw φ) :
     archCasimirAt hw φ =
@@ -70,6 +82,9 @@ end Ws23.M2
 
 end
 
+/--
+@isnad1 id=eq.2h3v.s11.a3a1b928f9ea from=translated src=- shape=65504912 vocab=92659e58
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F] {w : InfinitePlace F} (hw : w.IsReal)
     (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArchSmoothAt hw φ) :

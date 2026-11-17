@@ -14,11 +14,17 @@ namespace CTU
 
 variable {R : Type*} [CommRing R]
 
+/--
+@isnad1 id=eq.0h2v.s7.d24fd74a1f32 from=translated src=- shape=4fb0e637 vocab=420e4e4a
+-/
 theorem unipotentGL2_inv (x : R) : (unipotentGL2 x)⁻¹ = unipotentGL2 (-x) :=
   inv_eq_of_mul_eq_one_right (by rw [← unipotentGL2_add, add_neg_cancel, unipotentGL2_zero])
 
 end M4aP3B.CTU
 
+/--
+@isnad1 id=continuo.0h1v.s7.a9a7b0a1ab84 from=translated src=- shape=a8f35fde vocab=49462922
+-/
 theorem solution {R : Type*} [CommRing R] [TopologicalSpace R]
     [ContinuousNeg R] : Continuous fun x : R => AutomorphicForm.unipotentGL2 x := by
   have hval : Continuous fun x : R =>

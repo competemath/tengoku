@@ -19,12 +19,18 @@ section Algebra
 
 variable {G₁ G₂ : Type} [Group G₁] [Group G₂]
 
+/--
+@isnad1 id=iff.0h5v.s7.0bb914264cb8 from=translated src=- shape=16aacad1 vocab=6d4f9d83
+-/
 theorem mem_centralizer_prod_iff (γ₁ : G₁) (γ₂ : G₂) (t : G₁ × G₂) :
     t ∈ Subgroup.centralizer ({(γ₁, γ₂)} : Set (G₁ × G₂)) ↔
       t.1 ∈ Subgroup.centralizer ({γ₁} : Set G₁) ∧ t.2 ∈ Subgroup.centralizer ({γ₂} : Set G₂) := by
   obtain ⟨t₁, t₂⟩ := t
   simp only [Subgroup.mem_centralizer_singleton_iff, Prod.mk_mul_mk, Prod.mk.injEq]
 
+/--
+@isnad1 id=iff.0h7v.s7.43a40a22ba3e from=translated src=- shape=1fe6ea94 vocab=a5590bdc
+-/
 theorem mem_sigmaCentralizer_prodMap_iff (θ₁ : G₁ →* G₁) (θ₂ : G₂ →* G₂) (δ₁ : G₁) (δ₂ : G₂) (t : G₁ × G₂) :
     t ∈ sigmaCentralizer (θ₁.prodMap θ₂) (δ₁, δ₂) ↔
       t.1 ∈ sigmaCentralizer θ₁ δ₁ ∧ t.2 ∈ sigmaCentralizer θ₂ δ₂ := by
@@ -78,6 +84,9 @@ def prodTorusEquiv (θ₁ : G₁ →* G₁) (θ₂ : G₂ →* G₂) (δ₁ : G�
       ((continuous_fst.comp continuous_subtype_val).subtype_mk _).prodMk
         ((continuous_snd.comp continuous_subtype_val).subtype_mk _) }
 
+/--
+@isnad1 id=isclosed.1h3v.s6.7738b5ab7a0c from=translated src=- shape=c2e5f1b5 vocab=35ea62ca
+-/
 theorem isClosed_sigmaCentralizer {G : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [T2Space G]
     {θ : G →* G} (hθ : Continuous θ) (δ : G) :
     IsClosed (sigmaCentralizer θ δ : Set G) := by
@@ -87,6 +96,9 @@ theorem isClosed_sigmaCentralizer {G : Type} [Group G] [TopologicalSpace G] [IsT
   rw [h]
   exact IsClosed.preimage ((continuous_id.mul continuous_const).mul hθ.inv) isClosed_singleton
 
+/--
+@isnad1 id=isclosed.0h2v.s5.279cafafc73a from=translated src=- shape=3ed10fde vocab=fa16dd0c
+-/
 theorem isClosed_centralizer {G : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [T2Space G]
     (γ : G) : IsClosed (Subgroup.centralizer ({γ} : Set G) : Set G) := by
   have h : (Subgroup.centralizer ({γ} : Set G) : Set G) = {x | x * γ = γ * x} := by
@@ -103,6 +115,9 @@ variable {S S' X : Type} [TopologicalSpace S] [MeasurableSpace S] [TopologicalSp
 
 omit [TopologicalSpace S'] in
 
+/--
+@isnad1 id=le.5h7v.s6.8d3e2f2322a6 from=translated src=- shape=fc6e6d1a vocab=88d36da0
+-/
 theorem range_subset_of_map_eq (j : S → X) (ψ : S' → X) (hj : Continuous j) (hjm : Measurable j)
     (hψm : Measurable ψ) (hψr : IsClosed (Set.range ψ))
     (τ : Measure S) [τ.IsOpenPosMeasure] (τ' : Measure S')
@@ -145,10 +160,16 @@ def corrHom (φ : G →* H) (C : Subgroup G) (T : Subgroup H) (y : H)
     group)
 
 omit [TopologicalSpace G] [TopologicalSpace H] [IsTopologicalGroup H] in
+/--
+@isnad1 id=eq.1h7v.s9.441940f58070 from=translated src=- shape=f1f8500d vocab=cdbdd8e6
+-/
 theorem corrHom_apply_coe (φ : G →* H) (C : Subgroup G) (T : Subgroup H) (y : H)
     (hCT : ∀ s ∈ C, y * φ s * y⁻¹ ∈ T) (s : C) : ((corrHom φ C T y hCT s : T) : H) = y * φ s * y⁻¹ := rfl
 
 omit [TopologicalSpace G] [TopologicalSpace H] [IsTopologicalGroup H] in
+/--
+@isnad1 id=bijectiv.3h6v.s9.0c8109f771dd from=translated src=- shape=4c34800a vocab=fd631db6
+-/
 theorem corrHom_bijective (φ : G →* H) (hφ : Function.Injective φ) (C : Subgroup G) (T : Subgroup H) (y : H)
     (hCT : ∀ s ∈ C, y * φ s * y⁻¹ ∈ T) (hTC : ∀ t ∈ T, ∃ s ∈ C, φ s = y⁻¹ * t * y) :
     Function.Bijective (corrHom φ C T y hCT) := by
@@ -194,6 +215,9 @@ variable {C₁ C₂ C : Type} [Group C₁] [TopologicalSpace C₁] [IsTopologica
   [Group C] [TopologicalSpace C] [IsTopologicalGroup C] [LocallyCompactSpace C]
   [SecondCountableTopology C] [MeasurableSpace C] [BorelSpace C]
 
+/--
+@isnad1 id=ex.0h5v.s8.bd6bc69f0ada from=translated src=- shape=a829190c vocab=0c373fcc
+-/
 theorem exists_isHaarMeasure_prod_eq (e : C₁ × C₂ ≃ₜ* C) (τ : Measure C) [τ.IsHaarMeasure] :
     ∃ (τ₁ : Measure C₁) (τ₂ : Measure C₂), τ₁.IsHaarMeasure ∧ τ₂.IsHaarMeasure ∧
       τ = Measure.map e (τ₁.prod τ₂) := by
@@ -219,6 +243,9 @@ end S30CoupledSplit
 
 open S30CoupledSplit AutomorphicForm Topology in
 
+/--
+@isnad1 id=ex.9h18v.s12.00facc4de6bc from=translated src=- shape=361dd7ad vocab=6cb23e00
+-/
 theorem solution
     {G₁ G₂ H₁ H₂ : Type}
     [Group G₁] [TopologicalSpace G₁] [IsTopologicalGroup G₁] [LocallyCompactSpace G₁]

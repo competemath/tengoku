@@ -16,6 +16,9 @@ universe u v w
 
 namespace BialgLiftE96
 
+/--
+@isnad1 id=mem.3h4v.s9.57e23ed47258 from=translated src=- shape=07ff28cb vocab=accc2a31
+-/
 theorem mem_span_of_one_tmul_eq_zero {𝓞 : Type*} [CommRing 𝓞] (p : ℕ) [Algebra 𝓞 (ZMod p)]
     (hk : Function.Surjective (algebraMap 𝓞 (ZMod p)))
     (hker : RingHom.ker (algebraMap 𝓞 (ZMod p)) = Ideal.span {(p : 𝓞)})
@@ -48,6 +51,9 @@ noncomputable def Θ : (ZMod p ⊗[𝓞] L) ⊗[ZMod p] (ZMod p ⊗[𝓞] L) →
     (Algebra.TensorProduct.map (AlgHom.id (ZMod p) (ZMod p)) (Algebra.TensorProduct.includeLeft (S := 𝓞) : L →ₐ[𝓞] L ⊗[𝓞] L))
     (Algebra.TensorProduct.map (AlgHom.id (ZMod p) (ZMod p)) (Algebra.TensorProduct.includeRight : L →ₐ[𝓞] L ⊗[𝓞] L))
 
+/--
+@isnad1 id=eq.0h7v.s12.95ef64066e1c from=translated src=- shape=4b3c1f83 vocab=abce7815
+-/
 theorem Θ_tmul (s s' : ZMod p) (l l' : L) :
     Θ p L ((s ⊗ₜ[𝓞] l) ⊗ₜ[ZMod p] (s' ⊗ₜ[𝓞] l')) = (s * s') ⊗ₜ[𝓞] (l ⊗ₜ[𝓞] l') := by
   simp [Θ, Algebra.TensorProduct.productMap_apply_tmul, Algebra.TensorProduct.tmul_mul_tmul]
@@ -56,6 +62,9 @@ end tensor
 
 end BialgLiftE96
 
+/--
+@isnad1 id=existsun.2h5v.s11.9de0ee577b0b from=translated src=- shape=e077440d vocab=0ca7579a
+-/
 theorem solution
     {𝓞 : Type u} [CommRing 𝓞] (p : ℕ) [Fact p.Prime] (hp : (p : 𝓞) ∈ nonZeroDivisors 𝓞)
     [Algebra 𝓞 (ZMod p)] (hker : RingHom.ker (algebraMap 𝓞 (ZMod p)) = Ideal.span {(p : 𝓞)})

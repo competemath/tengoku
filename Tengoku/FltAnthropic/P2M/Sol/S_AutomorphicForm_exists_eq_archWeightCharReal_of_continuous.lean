@@ -16,21 +16,39 @@ namespace CircleCharChi
 
 def rotM (θ : ℝ) : Matrix (Fin 2) (Fin 2) ℝ := !![Real.cos θ, Real.sin θ; -Real.sin θ, Real.cos θ]
 
+/--
+@isnad1 id=eq.0h2v.s6.5a12d1db5ac2 from=translated src=- shape=3b625e93 vocab=f6e2f4f4
+-/
 theorem rotM_mul (θ η : ℝ) : rotM θ * rotM η = rotM (θ + η) := by
   ext i j
   fin_cases i <;> fin_cases j <;>
     simp [rotM, Matrix.mul_apply, Fin.sum_univ_two, Real.cos_add, Real.sin_add] <;> ring
 
+/--
+@isnad1 id=eq.0h0v.s6.c1a0cbed369f from=translated src=- shape=4a8cf6c6 vocab=ebac6d51
+-/
 theorem rotM_zero : rotM 0 = 1 := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [rotM]
 
+/--
+@isnad1 id=eq.0h1v.s7.a62c46df07bc from=translated src=- shape=63d35e59 vocab=0ce63ee5
+-/
 theorem rotM_neg_mul (θ : ℝ) : rotM (-θ) * rotM θ = 1 := by rw [rotM_mul, neg_add_cancel, rotM_zero]
+/--
+@isnad1 id=eq.0h1v.s7.9f3ab3addb28 from=translated src=- shape=b59b86e9 vocab=0ce63ee5
+-/
 theorem rotM_mul_neg (θ : ℝ) : rotM θ * rotM (-θ) = 1 := by rw [rotM_mul, add_neg_cancel, rotM_zero]
 
 def rotGL (θ : ℝ) : GL (Fin 2) ℝ := ⟨rotM θ, rotM (-θ), rotM_mul_neg θ, rotM_neg_mul θ⟩
 
+/--
+@isnad1 id=eq.0h1v.s6.20263b6533d9 from=translated src=- shape=cfe8a7d9 vocab=af5dcd36
+-/
 @[scoped simp] theorem rotGL_coe (θ : ℝ) : ((rotGL θ : GL (Fin 2) ℝ) : Matrix (Fin 2) (Fin 2) ℝ) = rotM θ := rfl
 
+/--
+@isnad1 id=mem.0h1v.s8.ff9d2e397eb6 from=translated src=- shape=348377b1 vocab=dadc19e0
+-/
 theorem rotGL_mem (θ : ℝ) : rotGL θ ∈ rowIsometrySubgroup₀ ℝ := by
   refine (mem_rowIsometrySubgroup₀_iff ℝ).mpr ⟨?_, ?_, ?_⟩
   · rw [rotGL_coe, rotM, Matrix.det_fin_two_of]
@@ -46,22 +64,34 @@ theorem rotGL_mem (θ : ℝ) : rotGL θ ∈ rowIsometrySubgroup₀ ℝ := by
 
 def rot (θ : ℝ) : rowIsometrySubgroup₀ ℝ := ⟨rotGL θ, rotGL_mem θ⟩
 
+/--
+@isnad1 id=eq.0h2v.s11.d7ec4bccae3a from=translated src=- shape=0eb29773 vocab=fcf409a6
+-/
 theorem rot_add (θ η : ℝ) : rot (θ + η) = rot θ * rot η := by
   apply Subtype.ext
   apply Units.ext
   show rotM (θ + η) = rotM θ * rotM η
   rw [rotM_mul]
 
+/--
+@isnad1 id=eq.0h0v.s10.1413894a9c8b from=translated src=- shape=ac11af2a vocab=91efac8d
+-/
 theorem rot_zero : rot 0 = 1 := by
   apply Subtype.ext; apply Units.ext
   show rotM 0 = 1
   exact rotM_zero
 
+/--
+@isnad1 id=continuo.0h0v.s5.2153750064b9 from=translated src=- shape=8a8db92f vocab=d7e2ba89
+-/
 theorem continuous_rotM : Continuous rotM := by
   unfold rotM
   refine continuous_matrix fun i j => ?_
   fin_cases i <;> fin_cases j <;> simp <;> fun_prop
 
+/--
+@isnad1 id=continuo.0h0v.s6.62629ce87480 from=translated src=- shape=8c4e1e81 vocab=ab65f0e7
+-/
 theorem continuous_rotGL : Continuous rotGL := by
   rw [Units.continuous_iff]
   constructor
@@ -69,9 +99,15 @@ theorem continuous_rotGL : Continuous rotGL := by
   · show Continuous fun θ => rotM (-θ)
     exact continuous_rotM.comp continuous_neg
 
+/--
+@isnad1 id=continuo.0h0v.s9.94d55ada5861 from=translated src=- shape=9d909ccb vocab=1803b040
+-/
 theorem continuous_rot : Continuous rot :=
   continuous_rotGL.subtype_mk _
 
+/--
+@isnad1 id=eq.0h1v.s12.4658a4864ced from=translated src=- shape=fb1de579 vocab=ef01e514
+-/
 theorem archWeightOne_rot (θ : ℝ) : ((archWeightOneℝ (rot θ) : ℂˣ) : ℂ) = Complex.exp (θ * Complex.I) := by
   rw [Complex.exp_mul_I]
   show firstRowℂ (rotGL θ) = _
@@ -79,6 +115,9 @@ theorem archWeightOne_rot (θ : ℝ) : ((archWeightOneℝ (rot θ) : ℂˣ) : �
   · simp [firstRowℂ, rotGL_coe, rotM, Complex.cos_ofReal_re]
   · simp [firstRowℂ, rotGL_coe, rotM, Complex.sin_ofReal_re]
 
+/--
+@isnad1 id=ex.0h1v.s9.4c78695314c1 from=translated src=- shape=e62f6e3c vocab=91efac8d
+-/
 theorem exists_rot_eq (k : rowIsometrySubgroup₀ ℝ) : ∃ θ : ℝ, rot θ = k := by
   obtain ⟨h10, h11, hab⟩ := entries_of_mem_rowIsometrySubgroup₀ k.2
   set a := ((k : GL (Fin 2) ℝ) : Matrix (Fin 2) (Fin 2) ℝ) 0 0 with ha
@@ -110,6 +149,9 @@ theorem exists_rot_eq (k : rowIsometrySubgroup₀ ℝ) : ∃ θ : ℝ, rot θ = 
   · simp [rotM, hs, h10]
   · simp [rotM, hc, h11]
 
+/--
+@isnad1 id=ex.3h1v.s6.105cba935a5a from=translated src=- shape=39e734e5 vocab=effaf7ac
+-/
 theorem exists_exp_of_continuous_mul (f : ℝ → ℂ) (hf : Continuous f) (h0 : f 0 = 1)
     (hmul : ∀ s t : ℝ, f (s + t) = f s * f t) : ∃ a : ℂ, ∀ s : ℝ, f s = Complex.exp (a * s) := by
 
@@ -194,6 +236,9 @@ theorem exists_exp_of_continuous_mul (f : ℝ → ℂ) (hf : Continuous f) (h0 :
         rw [mul_assoc, ← Complex.exp_add, neg_add_cancel, Complex.exp_zero, mul_one]
     _ = Complex.exp (a * s) := by rw [h1, one_mul]
 
+/--
+@isnad1 id=ex.1h1v.s13.efe36a7c792a from=translated src=- shape=5782d3ee vocab=fd17e447
+-/
 theorem main (χ : rowIsometrySubgroup₀ ℝ →* ℂˣ)
     (hχ : Continuous fun k : rowIsometrySubgroup₀ ℝ => ((χ k : ℂˣ) : ℂ)) :
     ∃ m : ℤ, χ = archWeightCharℝ m := by
@@ -232,6 +277,9 @@ open scoped _root_.P2MW.S_AutomorphicForm_exists_eq_archWeightCharReal_of_contin
 end
 open scoped _root_.P2MW.S_AutomorphicForm_exists_eq_archWeightCharReal_of_continuous.CircleCharChi
 
+/--
+@isnad1 id=ex.1h1v.s13.efe36a7c792a from=translated src=- shape=5782d3ee vocab=fd17e447
+-/
 theorem solution
     (χ : rowIsometrySubgroup₀ ℝ →* ℂˣ)
     (hχ : Continuous fun k : rowIsometrySubgroup₀ ℝ => ((χ k : ℂˣ) : ℂ)) :

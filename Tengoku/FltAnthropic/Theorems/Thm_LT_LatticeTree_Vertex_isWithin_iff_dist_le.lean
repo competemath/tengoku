@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open LT.LatticeTree
 
+/--
+@isnad1 id=iff.1h6v.s6.d3d74a687c3f from=translated src=- shape=d9f0982c vocab=c8ba4ec3
+-/
 theorem LT.LatticeTree.Vertex.isWithin_iff_dist_le
     (R K : Type) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [Field K] [Algebra R K]
     [IsFractionRing R K] (ϖ : R) (hϖ : Irreducible ϖ) (n : ℕ) (v w : LT.LatticeTree.Vertex R K) :

@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open NumberField IsDedekindDomain AutomorphicForm
 
+/--
+@isnad1 id=ex.2h3v.s12.d8f3f3bd5353 from=translated src=- shape=b92af76b vocab=e2ac87a7
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F] (v : HeightOneSpectrum (𝓞 F))
     (g : GL (Fin 2) (v.adicCompletion F))

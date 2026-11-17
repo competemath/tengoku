@@ -13,6 +13,9 @@ namespace ValLevel
 
 variable {K : Type} [Field K] {Γ₀ : Type} [LinearOrderedCommGroupWithZero Γ₀] [Valued K Γ₀]
 
+/--
+@isnad1 id=eq.1h5v.s8.ec04959f4286 from=translated src=- shape=f2138533 vocab=6c00ca22
+-/
 theorem v_sub_eq_max (α₀ u a : K) (hcell : Valued.v (α₀ - a) ≤ Valued.v (u - a)) :
     Valued.v (u - a) = max (Valued.v (u - α₀)) (Valued.v (α₀ - a)) := by
   apply le_antisymm
@@ -23,6 +26,9 @@ theorem v_sub_eq_max (α₀ u a : K) (hcell : Valued.v (α₀ - a) ≤ Valued.v 
     rw [e]
     exact (Valuation.map_sub _ _ _).trans (max_le le_rfl hcell)
 
+/--
+@isnad1 id=ex.1h4v.s7.cecc1328f229 from=translated src=- shape=1be56e0d vocab=fd914be2
+-/
 theorem exists_nearest (A : Finset K) (hA : A.Nonempty) (u : K) :
     ∃ α₀ ∈ A, ∀ a ∈ A, Valued.v (α₀ - a) ≤ Valued.v (u - a) := by
   obtain ⟨α₀, hα₀, hmin⟩ := Finset.exists_min_image A (fun a => Valued.v (u - a)) hA
@@ -31,6 +37,9 @@ theorem exists_nearest (A : Finset K) (hA : A.Nonempty) (u : K) :
   rw [e]
   exact (Valuation.map_sub _ _ _).trans (max_le le_rfl (hmin a ha))
 
+/--
+@isnad1 id=eq.4h7v.s9.f3583cf2388e from=translated src=- shape=184a6154 vocab=be5fab71
+-/
 theorem v_eval_eq_of_cell [IsAlgClosed K] (p : Polynomial K) (α₀ u : K) (σ : K → Prop) [DecidablePred σ] (ρ : Γ₀)
     (hρ : Valued.v (u - α₀) = ρ)
     (hcell : ∀ a ∈ p.roots, Valued.v (α₀ - a) ≤ Valued.v (u - a))
@@ -67,6 +76,9 @@ theorem v_eval_eq_of_cell [IsAlgClosed K] (p : Polynomial K) (α₀ u : K) (σ :
   · rw [Multiset.map_congr rfl (fun a ha => ite_eq_left (Multiset.mem_filter.mp ha).2), Multiset.map_const', Multiset.prod_replicate]
   · exact congrArg Multiset.prod (Multiset.map_congr rfl (fun a ha => ite_eq_right (Multiset.mem_filter.mp ha).2))
 
+/--
+@isnad1 id=eq.9h9v.s8.e4da5c7d2e00 from=translated src=- shape=f8c55e9c vocab=754cc8d7
+-/
 theorem rho_eq_of_ne {cp cq Dp Dq ρ ρ₀ : Γ₀} {kp kq : ℕ} (hkne : kp ≠ kq) (hcp : cp ≠ 0) (hcq : cq ≠ 0)
     (hDp : Dp ≠ 0) (hDq : Dq ≠ 0) (hρ : ρ ≠ 0) (hρ₀ : ρ₀ ≠ 0)
     (hE : cp * ρ ^ kp * Dp = cq * ρ ^ kq * Dq) (hE₀ : cp * ρ₀ ^ kp * Dp = cq * ρ₀ ^ kq * Dq) : ρ = ρ₀ := by
@@ -120,6 +132,9 @@ theorem eq_of_eq_or_eq {cp cq Dp Dq ρ ρ₀ : Γ₀} {kp kq : ℕ} (hρ₀ : ρ
 end CerednikDrinfeld.Omega.ValLevel
 
 open CerednikDrinfeld.Omega.ValLevel in
+/--
+@isnad1 id=ex.0h4v.s9.99cddfc135bc from=translated src=- shape=21e9850b vocab=167a28f7
+-/
 theorem solution
     (K : Type) [Field K] [DecidableEq K] {Γ₀ : Type} [LinearOrderedCommGroupWithZero Γ₀] [Valued K Γ₀] [IsAlgClosed K]
     (p q : Polynomial K) :

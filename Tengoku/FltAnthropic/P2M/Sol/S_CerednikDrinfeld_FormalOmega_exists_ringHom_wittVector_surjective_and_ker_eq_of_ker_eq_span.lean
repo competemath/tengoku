@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 namespace P8W2
 
+/--
+@isnad1 id=surjecti.3h5v.s8.087f96a67578 from=translated src=- shape=103dbaa9 vocab=2839d84f
+-/
 theorem surjective_of_forall_sub_mem_span {A B : Type*} [CommRing A] [CommRing B] (f : A →+* B) (ϖ : B)
     (hϖ : ϖ ∈ Set.range f) (N : ℕ) (hN : ϖ ^ N = 0)
     (h : ∀ b : B, ∃ a : A, b - f a ∈ Ideal.span {ϖ}) : Function.Surjective f := by
@@ -35,6 +38,9 @@ theorem surjective_of_forall_sub_mem_span {A B : Type*} [CommRing A] [CommRing B
   rw [hN, Ideal.span_singleton_zero, Ideal.mem_bot, sub_eq_zero] at ha
   exact ⟨a, ha.symm⟩
 
+/--
+@isnad1 id=surjecti.5h8v.s8.ee763e009473 from=translated src=- shape=51a35f7a vocab=0db56d39
+-/
 theorem surjective_of_comp_eq_of_ker_le {W B K : Type*} [CommRing W] [CommRing B] [CommRing K]
     (f : W →+* B) (ρ : B →+* K) (c : W →+* K) (hc : Function.Surjective c) (hcomp : ρ.comp f = c)
     (ϖ : B) (hker : RingHom.ker ρ ≤ Ideal.span {ϖ}) (hϖ : ϖ ∈ Set.range f) (N : ℕ) (hN : ϖ ^ N = 0) :
@@ -58,6 +64,9 @@ variable {k : Type} [Field k] [CharP k r] [PerfectRing k r] {ρ₁ : Onr →+* k
 abbrev I (π : 𝒪) (Onr : Type) [CommRing Onr] [Algebra 𝒪 Onr] (N : ℕ) : Ideal Onr :=
   Ideal.span {algebraMap 𝒪 Onr π ^ N}
 
+/--
+@isnad1 id=le.0h4v.s7.a629b5396e12 from=translated src=- shape=24669bea vocab=28528c99
+-/
 theorem I_le (N : ℕ) : I π Onr (N + 1) ≤ I π Onr N := by
   refine Ideal.span_le.2 ?_
   rintro _ rfl
@@ -65,9 +74,15 @@ theorem I_le (N : ℕ) : I π Onr (N + 1) ≤ I π Onr N := by
 
 section residue
 
+/--
+@isnad1 id=mem.1h5v.s8.ae8b0e6c259b from=translated src=- shape=0dce39b5 vocab=270eb5df
+-/
 theorem pi_mem_ker (hker : RingHom.ker ρ₁ = Ideal.span {algebraMap 𝒪 Onr π}) : algebraMap 𝒪 Onr π ∈ RingHom.ker ρ₁ := by
   rw [hker]; exact Ideal.mem_span_singleton_self _
 
+/--
+@isnad1 id=le.1h6v.s8.3def1434e90f from=translated src=- shape=151da98f vocab=175036e9
+-/
 theorem I_le_ker (hker : RingHom.ker ρ₁ = Ideal.span {algebraMap 𝒪 Onr π}) (N : ℕ) : I π Onr (N + 1) ≤ RingHom.ker ρ₁ := by
   refine Ideal.span_le.2 ?_
   rintro _ rfl
@@ -77,14 +92,23 @@ theorem I_le_ker (hker : RingHom.ker ρ₁ = Ideal.span {algebraMap 𝒪 Onr π}
 def rhoBar (hker : RingHom.ker ρ₁ = Ideal.span {algebraMap 𝒪 Onr π}) (N : ℕ) : Onr ⧸ I π Onr (N + 1) →+* k :=
   Ideal.Quotient.lift (I π Onr (N + 1)) ρ₁ (fun a ha => I_le_ker hker N ha)
 
+/--
+@isnad1 id=eq.1h7v.s9.b7aa0d7e273b from=translated src=- shape=b28ecc73 vocab=b3c06484
+-/
 @[scoped simp] theorem rhoBar_mk (hker : RingHom.ker ρ₁ = Ideal.span {algebraMap 𝒪 Onr π}) (N : ℕ) (x : Onr) : rhoBar hker N (Ideal.Quotient.mk _ x) = ρ₁ x :=
   Ideal.Quotient.lift_mk _ _ _
 
+/--
+@isnad1 id=surjecti.2h6v.s9.5ea5f396134f from=translated src=- shape=15302860 vocab=2eeb75fa
+-/
 theorem rhoBar_surjective (hker : RingHom.ker ρ₁ = Ideal.span {algebraMap 𝒪 Onr π}) (hρ₁ : Function.Surjective ρ₁) (N : ℕ) : Function.Surjective (rhoBar hker N) := by
   intro a
   obtain ⟨x, rfl⟩ := hρ₁ a
   exact ⟨Ideal.Quotient.mk _ x, rhoBar_mk hker N x⟩
 
+/--
+@isnad1 id=eq.1h6v.s10.a996ae74bca8 from=translated src=- shape=e539fc09 vocab=b3c06484
+-/
 theorem ker_rhoBar (hker : RingHom.ker ρ₁ = Ideal.span {algebraMap 𝒪 Onr π}) (N : ℕ) :
     RingHom.ker (rhoBar hker N) = Ideal.span {Ideal.Quotient.mk (I π Onr (N + 1)) (algebraMap 𝒪 Onr π)} := by
   apply le_antisymm
@@ -97,6 +121,9 @@ theorem ker_rhoBar (hker : RingHom.ker ρ₁ = Ideal.span {algebraMap 𝒪 Onr �
   · rw [Ideal.span_le, Set.singleton_subset_iff, SetLike.mem_coe, RingHom.mem_ker, rhoBar_mk]
     exact pi_mem_ker hker
 
+/--
+@isnad1 id=isnilpot.1h6v.s9.5576e03cbed4 from=translated src=- shape=0634b50c vocab=bdacd56f
+-/
 theorem isNilpotent_ker_rhoBar (hker : RingHom.ker ρ₁ = Ideal.span {algebraMap 𝒪 Onr π}) (N : ℕ) : IsNilpotent (RingHom.ker (rhoBar hker N)) := by
   refine ⟨N + 1, ?_⟩
   rw [ker_rhoBar, Ideal.span_singleton_pow, ← map_pow, Ideal.zero_eq_bot, Ideal.span_singleton_eq_bot]
@@ -106,16 +133,25 @@ noncomputable def fN (hker : RingHom.ker ρ₁ = Ideal.span {algebraMap 𝒪 Onr
   (WittVector.existsUnique_ringHom_comp_eq_constantCoeff_of_isNilpotent_ker r k (Onr ⧸ I π Onr (N + 1))
     (rhoBar hker N) (rhoBar_surjective hker hρ₁ N) (isNilpotent_ker_rhoBar hker N)).exists.choose
 
+/--
+@isnad1 id=eq.2h7v.s8.59294c0f77be from=translated src=- shape=bc58f90d vocab=7ca7f258
+-/
 theorem rhoBar_comp_fN (hker : RingHom.ker ρ₁ = Ideal.span {algebraMap 𝒪 Onr π}) (hρ₁ : Function.Surjective ρ₁) (N : ℕ) :
     (rhoBar hker N).comp (fN hker hρ₁ N) = WittVector.constantCoeff :=
   (WittVector.existsUnique_ringHom_comp_eq_constantCoeff_of_isNilpotent_ker r k (Onr ⧸ I π Onr (N + 1))
     (rhoBar hker N) (rhoBar_surjective hker hρ₁ N) (isNilpotent_ker_rhoBar hker N)).exists.choose_spec
 
+/--
+@isnad1 id=eq.3h8v.s9.6e054814885b from=translated src=- shape=6827ac18 vocab=7ca7f258
+-/
 theorem fN_unique (hker : RingHom.ker ρ₁ = Ideal.span {algebraMap 𝒪 Onr π}) (hρ₁ : Function.Surjective ρ₁) (N : ℕ) (g : WittVector r k →+* Onr ⧸ I π Onr (N + 1))
     (hg : (rhoBar hker N).comp g = WittVector.constantCoeff) : g = fN hker hρ₁ N :=
   (WittVector.existsUnique_ringHom_comp_eq_constantCoeff_of_isNilpotent_ker r k (Onr ⧸ I π Onr (N + 1))
     (rhoBar hker N) (rhoBar_surjective hker hρ₁ N) (isNilpotent_ker_rhoBar hker N)).unique hg (rhoBar_comp_fN hker hρ₁ N)
 
+/--
+@isnad1 id=eq.2h7v.s9.6210c6b2749f from=translated src=- shape=a3139e33 vocab=513a2fc5
+-/
 theorem factor_comp_fN (hker : RingHom.ker ρ₁ = Ideal.span {algebraMap 𝒪 Onr π}) (hρ₁ : Function.Surjective ρ₁) (N : ℕ) :
     (Ideal.Quotient.factor (I_le (π := π) (Onr := Onr) (N + 1))).comp (fN hker hρ₁ (N + 1)) = fN hker hρ₁ N := by
   apply fN_unique
@@ -126,6 +162,9 @@ theorem factor_comp_fN (hker : RingHom.ker ρ₁ = Ideal.span {algebraMap 𝒪 O
     simp only [RingHom.comp_apply, Ideal.Quotient.factor_mk, rhoBar_mk]
   rw [h, rhoBar_comp_fN]
 
+/--
+@isnad1 id=eq.3h9v.s10.6517b0717cb9 from=translated src=- shape=fe94c3f1 vocab=21fae602
+-/
 theorem rho_eq_constantCoeff (hker : RingHom.ker ρ₁ = Ideal.span {algebraMap 𝒪 Onr π}) (hρ₁ : Function.Surjective ρ₁) (N : ℕ) (x : Onr) (w : WittVector r k)
     (h : Ideal.Quotient.mk (I π Onr (N + 1)) x = fN hker hρ₁ N w) : ρ₁ x = WittVector.constantCoeff w := by
   rw [← rhoBar_mk hker N x, h, ← RingHom.comp_apply, rhoBar_comp_fN]
@@ -134,16 +173,25 @@ end residue
 
 section kernel
 
+/--
+@isnad1 id=ex.1h3v.s6.28a628ca4941 from=translated src=- shape=dab8fb11 vocab=554e9f8c
+-/
 theorem exists_r_eq_mul (hunr : Ideal.span {((r : ℕ) : 𝒪)} = Ideal.span {π}) : ∃ u : 𝒪, ((r : ℕ) : 𝒪) = u * π := by
   have : ((r : ℕ) : 𝒪) ∈ Ideal.span {π} := by rw [← hunr]; exact Ideal.mem_span_singleton_self _
   obtain ⟨u, hu⟩ := Ideal.mem_span_singleton'.1 this
   exact ⟨u, hu.symm⟩
 
+/--
+@isnad1 id=ex.1h3v.s6.9f31e55d7f34 from=translated src=- shape=ea11575d vocab=554e9f8c
+-/
 theorem exists_pi_eq_mul (hunr : Ideal.span {((r : ℕ) : 𝒪)} = Ideal.span {π}) : ∃ v : 𝒪, π = v * ((r : ℕ) : 𝒪) := by
   have : π ∈ Ideal.span {((r : ℕ) : 𝒪)} := by rw [hunr]; exact Ideal.mem_span_singleton_self _
   obtain ⟨v, hv⟩ := Ideal.mem_span_singleton'.1 this
   exact ⟨v, hv.symm⟩
 
+/--
+@isnad1 id=ne.1h4v.s7.a49a850f80bd from=translated src=- shape=4e5b21b6 vocab=120edf14
+-/
 theorem algebraMap_pi_ne_zero (hunr : Ideal.span {((r : ℕ) : 𝒪)} = Ideal.span {π}) : algebraMap 𝒪 Onr π ≠ 0 := by
   intro h0
   obtain ⟨u, hu⟩ := exists_r_eq_mul hunr
@@ -151,6 +199,9 @@ theorem algebraMap_pi_ne_zero (hunr : Ideal.span {((r : ℕ) : 𝒪)} = Ideal.sp
     rw [← map_natCast (algebraMap 𝒪 Onr) r, hu, map_mul, h0, mul_zero]
   exact (Nat.cast_ne_zero.2 (Fact.out : r.Prime).ne_zero) this
 
+/--
+@isnad1 id=surjecti.3h7v.s9.0051489a71ed from=translated src=- shape=ae42c863 vocab=43ca9e77
+-/
 theorem fN_surjective (hunr : Ideal.span {((r : ℕ) : 𝒪)} = Ideal.span {π})
     (hker : RingHom.ker ρ₁ = Ideal.span {algebraMap 𝒪 Onr π}) (hρ₁ : Function.Surjective ρ₁) (N : ℕ) : Function.Surjective (fN hker hρ₁ N) := by
   obtain ⟨u, hu⟩ := exists_r_eq_mul hunr
@@ -169,6 +220,9 @@ theorem fN_surjective (hunr : Ideal.span {((r : ℕ) : 𝒪)} = Ideal.span {π})
     rw [show I π Onr (N + 1) = Ideal.span {algebraMap 𝒪 Onr π} ^ (N + 1) from (Ideal.span_singleton_pow _ _).symm]
     exact Ideal.pow_mem_pow hrπ (N + 1)
 
+/--
+@isnad1 id=eq.4h8v.s9.6517501fa83f from=translated src=- shape=4fe8c2aa vocab=ec6605f8
+-/
 theorem fN_apply_eq_zero_of_mem (hunr : Ideal.span {((r : ℕ) : 𝒪)} = Ideal.span {π})
     (hker : RingHom.ker ρ₁ = Ideal.span {algebraMap 𝒪 Onr π}) (hρ₁ : Function.Surjective ρ₁) (N : ℕ) (w : WittVector r k)
     (hw : w ∈ Ideal.span {((r : ℕ) : WittVector r k) ^ (N + 1)}) : fN hker hρ₁ N w = 0 := by
@@ -181,6 +235,9 @@ theorem fN_apply_eq_zero_of_mem (hunr : Ideal.span {((r : ℕ) : 𝒪)} = Ideal.
     exact Ideal.mul_mem_left _ _ (Ideal.mem_span_singleton_self _)
   rw [hr, mul_zero]
 
+/--
+@isnad1 id=mem.4h8v.s9.59e9a0fef2dd from=translated src=- shape=c5a64692 vocab=ec6605f8
+-/
 theorem mem_of_fN_apply_eq_zero (hunr : Ideal.span {((r : ℕ) : 𝒪)} = Ideal.span {π})
     (hker : RingHom.ker ρ₁ = Ideal.span {algebraMap 𝒪 Onr π}) (hρ₁ : Function.Surjective ρ₁) : ∀ (N : ℕ) (w : WittVector r k), fN hker hρ₁ N w = 0 →
     w ∈ Ideal.span {((r : ℕ) : WittVector r k) ^ (N + 1)} := by
@@ -243,6 +300,9 @@ theorem mem_of_fN_apply_eq_zero (hunr : Ideal.span {((r : ℕ) : 𝒪)} = Ideal.
     refine Ideal.mem_span_singleton'.2 ⟨d, ?_⟩
     rw [← hd]; ring
 
+/--
+@isnad1 id=iff.3h8v.s9.a8837ebb8265 from=translated src=- shape=64fe8386 vocab=ec6605f8
+-/
 theorem fN_apply_eq_zero_iff (hunr : Ideal.span {((r : ℕ) : 𝒪)} = Ideal.span {π})
     (hker : RingHom.ker ρ₁ = Ideal.span {algebraMap 𝒪 Onr π}) (hρ₁ : Function.Surjective ρ₁) (N : ℕ) (w : WittVector r k) :
     fN hker hρ₁ N w = 0 ↔ w ∈ Ideal.span {((r : ℕ) : WittVector r k) ^ (N + 1)} :=
@@ -253,6 +313,9 @@ end kernel
 end OnrWitt
 open scoped _root_.P2MW.S_CerednikDrinfeld_FormalOmega_exists_ringHom_wittVector_surjective_and_ker_eq_of_ker_eq_span.OnrWitt
 
+/--
+@isnad1 id=ex.11h7v.s12.5e150003c65a from=translated src=- shape=8e6e31b0 vocab=1f67e969
+-/
 theorem solution
     {r : ℕ} [Fact r.Prime]
     (𝒪 : Type) [CommRing 𝒪] [IsDomain 𝒪] [CharZero 𝒪] (hdvr : IsDiscreteValuationRing 𝒪)

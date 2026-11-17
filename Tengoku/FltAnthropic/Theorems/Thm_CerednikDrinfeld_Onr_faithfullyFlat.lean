@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_CerednikDrinfeld_Onr_faithfullyFlat
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=faithful.4h3v.s7.38d4095872f7 from=translated src=- shape=0df86f0c vocab=9b115864
+-/
 theorem CerednikDrinfeld.Onr.faithfullyFlat
     (𝒪 : Type) [CommRing 𝒪] [IsDomain 𝒪] (hdvr : IsDiscreteValuationRing 𝒪) (π : 𝒪) (hπ : Irreducible π)
     (Onr : Type) [CommRing Onr] [IsDomain Onr] [Algebra 𝒪 Onr]

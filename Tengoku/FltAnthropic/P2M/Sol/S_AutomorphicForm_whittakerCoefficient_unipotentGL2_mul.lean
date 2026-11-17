@@ -20,9 +20,15 @@ namespace RS9P
 
 variable (F : Type) [Field F] [NumberField F]
 
+/--
+@isnad1 id=countabl.0h1v.s3.e0a6e0d4939d from=translated src=- shape=17207180 vocab=37122745
+-/
 theorem countable_numberField : Countable F :=
   Countable.of_equiv _ (Module.finBasis ℚ F).equivFun.toEquiv.symm
 
+/--
+@isnad1 id=countabl.0h1v.s8.fa58d571fff2 from=translated src=- shape=cae77a92 vocab=b4f98e5c
+-/
 scoped instance countable_principalSubgroup : Countable ↥(AdeleRing.principalSubgroup (𝓞 F) F) := by
   haveI : Countable F := countable_numberField F
   refine Function.Surjective.countable (f := fun k : F =>
@@ -30,6 +36,9 @@ scoped instance countable_principalSubgroup : Countable ↥(AdeleRing.principalS
   rintro ⟨_, k, rfl⟩
   exact ⟨k, rfl⟩
 
+/--
+@isnad1 id=eq.1h3v.s9.485fd037d249 from=translated src=- shape=78d572ff vocab=e7608999
+-/
 theorem setIntegral_adelicBox_comp_add_right (G : AdeleRing (𝓞 F) F → ℂ)
     (hG : ∀ (β : F) (u : AdeleRing (𝓞 F) F), G (algebraMap F (AdeleRing (𝓞 F) F) β + u) = G u)
     (x : AdeleRing (𝓞 F) F) :
@@ -59,6 +68,9 @@ theorem setIntegral_adelicBox_comp_add_right (G : AdeleRing (𝓞 F) F → ℂ)
   rw [h1]
   exact hFD'.setIntegral_eq hFD hinv
 
+/--
+@isnad1 id=eq.1h3v.s9.c240bb6c5183 from=translated src=- shape=78d572ff vocab=ac889746
+-/
 theorem integral_cond_adelicBox_comp_add_right (G : AdeleRing (𝓞 F) F → ℂ)
     (hG : ∀ (β : F) (u : AdeleRing (𝓞 F) F), G (algebraMap F (AdeleRing (𝓞 F) F) β + u) = G u)
     (x : AdeleRing (𝓞 F) F) :
@@ -66,6 +78,9 @@ theorem integral_cond_adelicBox_comp_add_right (G : AdeleRing (𝓞 F) F → ℂ
       ∫ u, G u ∂(ProbabilityTheory.cond (adelicAddHaar (𝓞 F) F) (adelicBox F)) := by
   simp only [ProbabilityTheory.cond, integral_smul_measure, setIntegral_adelicBox_comp_add_right F G hG x]
 
+/--
+@isnad1 id=eq.2h9v.s11.fd5ded4739df from=translated src=- shape=0d71c010 vocab=cf17418d
+-/
 theorem whittakerCoefficient_unipotentGL2_mul (D : Set (AdelicGL2 (𝓞 F) F))
     (U : Ideal (𝓞 F) → Subgroup (AdelicGL2 (𝓞 F) F))
     (gen : HeightOneSpectrum (𝓞 F) → AdelicGL2 (𝓞 F) F)
@@ -102,6 +117,9 @@ theorem whittakerCoefficient_unipotentGL2_mul (D : Set (AdelicGL2 (𝓞 F) F))
 end RS9P
 open scoped _root_.P2MW.S_AutomorphicForm_whittakerCoefficient_unipotentGL2_mul.RS9P
 
+/--
+@isnad1 id=eq.2h9v.s11.fd5ded4739df from=translated src=- shape=0d71c010 vocab=cf17418d
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F]
     (D : Set (AdelicGL2 (𝓞 F) F)) (U : Ideal (𝓞 F) → Subgroup (AdelicGL2 (𝓞 F) F))

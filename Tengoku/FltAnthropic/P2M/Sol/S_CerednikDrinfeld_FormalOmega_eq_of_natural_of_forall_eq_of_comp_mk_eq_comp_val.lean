@@ -13,6 +13,9 @@ set_option autoImplicit false
 open scoped TensorProduct
 open CategoryTheory AlgebraicGeometry CerednikDrinfeld CerednikDrinfeld.FormalOmega
 
+/--
+@isnad1 id=eq.14h13v.s16.98f72e47dce2 from=translated src=- shape=2eedc4f9 vocab=3de9bdf3
+-/
 theorem solution
     {r : ℕ} [Fact r.Prime]
     (𝒪 : Type) [CommRing 𝒪] [IsDomain 𝒪] [CharZero 𝒪] (hdvr : IsDiscreteValuationRing 𝒪)

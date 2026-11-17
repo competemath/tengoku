@@ -19,6 +19,9 @@ variable {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] {Y : 
 
 omit [Zero Y] in
 
+/--
+@isnad1 id=ex.1h4v.s7.9e508121facd from=translated src=- shape=c76d2c19 vocab=afa2583a
+-/
 theorem exists_nhds_fourfold {f : G → Y} (hf : IsLocallyConstant f) (g : G) :
     ∃ V ∈ 𝓝 (1 : G), ∀ u ∈ V, ∀ v ∈ V, ∀ v' ∈ V, ∀ u' ∈ V, f (u * v * g * v' * u') = f g := by
   have hc : Continuous fun p : G × G × G × G => p.1 * p.2.1 * g * p.2.2.1 * p.2.2.2 := by fun_prop
@@ -38,6 +41,9 @@ theorem exists_nhds_fourfold {f : G → Y} (hf : IsLocallyConstant f) (g : G) :
     hAB ⟨hu.1.1.1, hAB₂ ⟨hv.1.1.2, hAB₃ ⟨hv'.1.2, hu'.2⟩⟩⟩
   simpa using this
 
+/--
+@isnad1 id=ex.2h3v.s7.3a199ecb1c8f from=translated src=- shape=5a0c71e5 vocab=cfcd9d41
+-/
 theorem exists_nhds_one_forall_apply_mul_mul_eq_of_hasCompactSupport_impl
     {f : G → Y} (hf : IsLocallyConstant f) (hsupp : HasCompactSupport f) :
     ∃ V ∈ nhds (1 : G), ∀ u ∈ V, ∀ u' ∈ V, ∀ g : G, f (u * g * u') = f g := by
@@ -84,11 +90,17 @@ theorem exists_nhds_one_forall_apply_mul_mul_eq_of_hasCompactSupport_impl
 
 omit [IsTopologicalGroup G] in
 
+/--
+@isnad1 id=ex.0h2v.s7.656053bb0948 from=translated src=- shape=06a3ca93 vocab=f4619d7e
+-/
 theorem gate_zero : ∃ V ∈ nhds (1 : G), ∀ u ∈ V, ∀ u' ∈ V, ∀ g : G, (0 : G → Y) (u * g * u') = (0 : G → Y) g :=
   ⟨univ, univ_mem, fun _ _ _ _ _ => rfl⟩
 
 end M4aP3B.Rows.UniformLocConst
 
+/--
+@isnad1 id=ex.2h3v.s7.3a199ecb1c8f from=translated src=- shape=5a0c71e5 vocab=cfcd9d41
+-/
 theorem solution
     {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] {Y : Type*} [Zero Y]
     {f : G → Y} (hf : IsLocallyConstant f) (hsupp : HasCompactSupport f) :

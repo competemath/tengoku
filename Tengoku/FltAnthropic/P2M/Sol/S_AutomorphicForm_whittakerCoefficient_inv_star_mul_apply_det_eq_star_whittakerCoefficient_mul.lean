@@ -10,6 +10,9 @@ set_option autoImplicit false
 open IsDedekindDomain NumberField AutomorphicForm
 open MeasureTheory
 
+/--
+@isnad1 id=eq.1h7v.s11.f8d4e1a88bc4 from=translated src=- shape=dc2c2c95 vocab=bff248ae
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K] (pins : CarrierPins K)
     (ψ : AddChar (AdeleRing (𝓞 K) K) ℂ) (hψ : ∀ x : AdeleRing (𝓞 K) K, ‖ψ x‖ = 1)

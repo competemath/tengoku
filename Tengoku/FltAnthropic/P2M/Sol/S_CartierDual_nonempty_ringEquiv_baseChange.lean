@@ -24,6 +24,9 @@ def E : S ⊗[R] CartierDual R A ≃ₗ[S] CartierDual S (S ⊗[R] A) :=
   (LinearEquiv.baseChange R S _ _ (CartierDual.toDual R A)) ≪≫ₗ
     (TensorProduct.isBaseChange R A S).toDualBaseChange ≪≫ₗ (CartierDual.ofDual S (S ⊗[R] A))
 
+/--
+@isnad1 id=eq.0h7v.s12.120bad6ee195 from=translated src=- shape=80d52ab5 vocab=daef1a51
+-/
 lemma E_tmul_apply (s r : S) (f : CartierDual R A) (a : A) :
     E R S A (s ⊗ₜ[R] f) (r ⊗ₜ[R] a) = r * (s * algebraMap R S (f a)) := by
   have hra : (r ⊗ₜ[R] a : S ⊗[R] A) = r • (TensorProduct.mk R S A 1 a) := by
@@ -37,6 +40,9 @@ lemma E_tmul_apply (s r : S) (f : CartierDual R A) (a : A) :
 
 omit [Module.Finite R A] [Module.Free R A] in
 
+/--
+@isnad1 id=eq.0h7v.s16.1d852fa564b7 from=translated src=- shape=4603c916 vocab=dd7f6bc5
+-/
 lemma mul_apply_tmul (φ ψ : CartierDual S (S ⊗[R] A)) (r : S) (a : A) :
     (φ * ψ) (r ⊗ₜ[R] a) = TensorProduct.dualDistrib S (S ⊗[R] A) (S ⊗[R] A)
       (CartierDual.toDual S (S ⊗[R] A) φ ⊗ₜ[S] CartierDual.toDual S (S ⊗[R] A) ψ)
@@ -45,6 +51,9 @@ lemma mul_apply_tmul (φ ψ : CartierDual S (S ⊗[R] A)) (r : S) (a : A) :
   rw [CartierDual.mul_apply]
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s14.e98e89a68a14 from=translated src=- shape=e1727e8c vocab=d5383af3
+-/
 lemma E_map_mul (x y : S ⊗[R] CartierDual R A) : E R S A (x * y) = E R S A x * E R S A y := by
 
   induction x using TensorProduct.induction_on with
@@ -96,6 +105,9 @@ end
 
 open scoped TensorProduct in
 
+/--
+@isnad1 id=nonempty.0h3v.s11.692224c69325 from=translated src=- shape=34b70d11 vocab=7091fe73
+-/
 theorem solution
     (R : Type) [CommRing R] (S : Type) [CommRing S] [Algebra R S]
     (A : Type) [CommRing A] [HopfAlgebra R A] [Module.Finite R A] [Module.Free R A]

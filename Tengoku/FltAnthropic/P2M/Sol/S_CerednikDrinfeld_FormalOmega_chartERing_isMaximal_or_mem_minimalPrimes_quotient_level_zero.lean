@@ -14,6 +14,9 @@ namespace DimOne29
 
 open MvPolynomial
 
+/--
+@isnad1 id=le.0h3v.s6.d098b73d1303 from=translated src=- shape=ba1464a0 vocab=41475a79
+-/
 theorem ringKrullDim_le_of_isLocalization {R S : Type*} [CommRing R] [CommRing S] [Algebra R S]
     (M : Submonoid R) [IsLocalization M S] : ringKrullDim S ≤ ringKrullDim R :=
   Order.krullDim_le_of_strictMono (PrimeSpectrum.comap (algebraMap R S))
@@ -34,6 +37,9 @@ noncomputable def ψ : MvPolynomial (Fin 2) (𝒪 ⧸ Ideal.span ({π} : Set �
       (Ideal.span_le.mpr (Set.singleton_subset_iff.mpr (Ideal.subset_span rfl))))
     (fun i => Ideal.Quotient.mk _ (edgeQuot.mk 𝒪 π (MvPolynomial.X i)))
 
+/--
+@isnad1 id=eq.0h2v.s9.01e8a51f3302 from=translated src=- shape=9d89d3f8 vocab=7d66bcd4
+-/
 theorem ψ_comp_map :
     (ψ 𝒪 π).comp (MvPolynomial.map (Ideal.Quotient.mk (Ideal.span ({π} : Set 𝒪)))) =
       (Ideal.Quotient.mk (Ideal.span {πQ 𝒪 π})).comp (edgeQuot.mk 𝒪 π).toRingHom := by
@@ -48,16 +54,25 @@ theorem ψ_comp_map :
       Ideal.Quotient.mk (Ideal.span {πQ 𝒪 π}) (edgeQuot.mk 𝒪 π (MvPolynomial.X i))
     rw [MvPolynomial.map_X, ψ, MvPolynomial.eval₂Hom_X']
 
+/--
+@isnad1 id=surjecti.0h2v.s9.18b6d0403959 from=translated src=- shape=03b5d7b5 vocab=36300b4e
+-/
 theorem ψ_surjective : Function.Surjective (ψ 𝒪 π) := by
   have h : Function.Surjective ((ψ 𝒪 π).comp (MvPolynomial.map (Ideal.Quotient.mk (Ideal.span ({π} : Set 𝒪))))) := by
     rw [ψ_comp_map]
     exact Ideal.Quotient.mk_surjective.comp (Ideal.Quotient.mkₐ_surjective 𝒪 _)
   exact Function.Surjective.of_comp h
 
+/--
+@isnad1 id=eq.0h3v.s10.8a2202d6337b from=translated src=- shape=4b2cd174 vocab=6bbe9662
+-/
 theorem ψ_X (i : Fin 2) :
     ψ 𝒪 π (MvPolynomial.X i) = Ideal.Quotient.mk (Ideal.span {πQ 𝒪 π}) (edgeQuot.mk 𝒪 π (MvPolynomial.X i)) := by
   rw [ψ, MvPolynomial.eval₂Hom_X']
 
+/--
+@isnad1 id=eq.0h2v.s9.433b77ee7096 from=translated src=- shape=c4248740 vocab=e36bdbdd
+-/
 theorem ψ_X_mul_X : ψ 𝒪 π (MvPolynomial.X 0 * MvPolynomial.X 1) = 0 := by
   have hrel : (MvPolynomial.X 0 * MvPolynomial.X 1 : MvPolynomial (Fin 2) 𝒪) = edgeRel 𝒪 π + MvPolynomial.C π :=
     (sub_add_cancel _ _).symm
@@ -67,6 +82,9 @@ theorem ψ_X_mul_X : ψ 𝒪 π (MvPolynomial.X 0 * MvPolynomial.X 1) = 0 := by
   rw [h1, hrel, map_add, edgeQuot.mk_edgeRel, zero_add, ← MvPolynomial.algebraMap_eq, AlgHom.commutes]
   exact Ideal.Quotient.eq_zero_iff_mem.mpr (Ideal.subset_span rfl)
 
+/--
+@isnad1 id=le.1h2v.s6.08d4ab49e75c from=translated src=- shape=0394496f vocab=2fe77184
+-/
 theorem ringKrullDim_Q₁_le (hπ : (Ideal.span ({π} : Set 𝒪)).IsMaximal) : ringKrullDim (Q₁ 𝒪 π) ≤ 1 := by
   letI : Field (𝒪 ⧸ Ideal.span ({π} : Set 𝒪)) := Ideal.Quotient.field _
   have hnzd : (MvPolynomial.X 0 * MvPolynomial.X 1 : MvPolynomial (Fin 2) (𝒪 ⧸ Ideal.span ({π} : Set 𝒪))) ∈
@@ -85,6 +103,9 @@ end DimOne29
 
 open DimOne29
 
+/--
+@isnad1 id=or.2h4v.s13.0297587930cd from=translated src=- shape=66cd7056 vocab=55a9b1af
+-/
 theorem solution
     (𝒪 : Type) [CommRing 𝒪] (π : 𝒪) (r : ℕ) (hπ : (Ideal.span ({π} : Set 𝒪)).IsMaximal)
     (p : Ideal ((chartERing 𝒪 π r) ⧸ (Ideal.span {(algebraMap 𝒪 (chartERing 𝒪 π r) π) ^ (0 + 1)}))) (hp : p.IsPrime) :

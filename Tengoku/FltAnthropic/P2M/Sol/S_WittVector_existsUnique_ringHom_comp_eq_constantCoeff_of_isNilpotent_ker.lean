@@ -17,6 +17,9 @@ open WittVector
 
 variable {p : ℕ} [hp : Fact p.Prime]
 
+/--
+@isnad1 id=isadicco.1h3v.s6.c84e0f103d52 from=translated src=- shape=1a17b962 vocab=fe1f426e
+-/
 theorem isAdicComplete_span_of_pow_eq_zero {B : Type u} [CommRing B] (x : B) {N : ℕ} (hN : x ^ N = 0) :
     IsAdicComplete (Ideal.span {x}) B := by
   have hbot : ∀ n, N ≤ n → (Ideal.span {x} ^ n • ⊤ : Submodule B B) = ⊥ := by
@@ -39,6 +42,9 @@ theorem isAdicComplete_span_of_pow_eq_zero {B : Type u} [CommRing B] (x : B) {N 
 end WittLift
 
 open WittVector in
+/--
+@isnad1 id=existsun.2h4v.s8.65d9618ff924 from=translated src=- shape=61f37b93 vocab=efeae04b
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] (k : Type u) [Field k] [CharP k p] [PerfectRing k p]
     (B : Type u) [CommRing B] (ρ : B →+* k) (hρ : Function.Surjective ρ) (hnil : IsNilpotent (RingHom.ker ρ)) :

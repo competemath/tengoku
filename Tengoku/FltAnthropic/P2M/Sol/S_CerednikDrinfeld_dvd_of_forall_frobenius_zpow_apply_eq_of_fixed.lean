@@ -11,21 +11,36 @@ open Polynomial
 
 namespace FrobOrder
 
+/--
+@isnad1 id=eq.1h4v.s5.308fc5c39448 from=translated src=- shape=8d7fe3b5 vocab=75235043
+-/
 theorem pow_pow_pow_eq_self {K : Type} [Monoid K] (x : K) (q : ℕ) (hx : x ^ q = x) (n : ℕ) : x ^ q ^ n = x := by
   induction n with
   | zero => simp
   | succ n ih => rw [pow_succ, pow_mul, ih, hx]
 
+/--
+@isnad1 id=eq.1h2v.s7.77405b124cd1 from=translated src=- shape=8e0eb7eb vocab=c818789a
+-/
 theorem natDegree_X_pow_sub_X (K : Type) [Field K] (q : ℕ) (hq : 1 < q) : (X ^ q - X : K[X]).natDegree = q := by
   rw [natDegree_sub_eq_left_of_natDegree_lt] <;> simp [hq]
 
+/--
+@isnad1 id=ne.1h2v.s7.714927c36292 from=translated src=- shape=e82ab740 vocab=d15d5de4
+-/
 theorem X_pow_sub_X_ne_zero (K : Type) [Field K] (q : ℕ) (hq : 1 < q) : (X ^ q - X : K[X]) ≠ 0 := by
   intro h; have := natDegree_X_pow_sub_X K q hq; rw [h, natDegree_zero] at this; omega
 
+/--
+@isnad1 id=iff.1h3v.s7.2b4b36adf5f5 from=translated src=- shape=afaf5e92 vocab=e5518184
+-/
 theorem mem_roots_toFinset_iff (K : Type) [Field K] [DecidableEq K] (q : ℕ) (hq : 1 < q) (x : K) :
     x ∈ (X ^ q - X : K[X]).roots.toFinset ↔ x ^ q = x := by
   rw [Multiset.mem_toFinset, mem_roots (X_pow_sub_X_ne_zero K q hq), IsRoot, eval_sub, eval_pow, eval_X, sub_eq_zero]
 
+/--
+@isnad1 id=eq.1h3v.s7.48ae38be30a5 from=translated src=- shape=fea05e70 vocab=902b7ca3
+-/
 theorem card_roots_toFinset (K : Type) [Field K] [DecidableEq K] [IsAlgClosed K] (r : ℕ) [Fact r.Prime] [CharP K r]
     (d : ℕ) (hd : 0 < d) : ((X ^ r ^ d - X : K[X]).roots.toFinset).card = r ^ d := by
   have hr : r.Prime := Fact.out
@@ -36,12 +51,18 @@ theorem card_roots_toFinset (K : Type) [Field K] [DecidableEq K] [IsAlgClosed K]
   rw [natDegree_X_pow_sub_X K _ h1] at this
   exact this.symm
 
+/--
+@isnad1 id=le.1h2v.s7.a48fc9b0f36f from=translated src=- shape=607c862a vocab=fe7a6247
+-/
 theorem card_roots_toFinset_le (K : Type) [Field K] [DecidableEq K] (q : ℕ) (hq : 1 < q) :
     ((X ^ q - X : K[X]).roots.toFinset).card ≤ q := by
   calc ((X ^ q - X : K[X]).roots.toFinset).card ≤ (X ^ q - X : K[X]).roots.card := Multiset.toFinset_card_le _
     _ ≤ (X ^ q - X : K[X]).natDegree := card_roots' _
     _ = q := natDegree_X_pow_sub_X K q hq
 
+/--
+@isnad1 id=dvd.1h4v.s6.0cba02b88f3a from=translated src=- shape=19ea6749 vocab=9f88555f
+-/
 theorem dvd_of_forall_pow_eq (K : Type) [Field K] [IsAlgClosed K] (r : ℕ) [Fact r.Prime] [CharP K r] (d m : ℕ)
     (h : ∀ x : K, x ^ r ^ d = x → x ^ r ^ m = x) : d ∣ m := by
   classical
@@ -88,6 +109,9 @@ namespace FrobOrderAbs
 
 variable {𝒪 : Type} [CommRing 𝒪] {Onr : Type} [CommRing Onr] [IsDomain Onr] [Algebra 𝒪 Onr]
 
+/--
+@isnad1 id=mem.1h7v.s9.8df3b391c2e2 from=translated src=- shape=e8a81b8f vocab=5b243e0e
+-/
 theorem zpow_natCast_apply_sub_pow_mem (Fr : Onr ≃ₐ[𝒪] Onr) (π : 𝒪) (r : ℕ)
     (hFr : ∀ x : Onr, Fr x - x ^ r ∈ Ideal.span {algebraMap 𝒪 Onr π}) (n : ℕ) (x : Onr) :
     (Fr ^ (n : ℤ)) x - x ^ r ^ n ∈ Ideal.span {algebraMap 𝒪 Onr π} := by
@@ -105,6 +129,9 @@ theorem zpow_natCast_apply_sub_pow_mem (Fr : Onr ≃ₐ[𝒪] Onr) (π : 𝒪) (
     rw [sub_add_sub_cancel, ← pow_mul, ← pow_succ'] at this
     exact this
 
+/--
+@isnad1 id=eq.1h5v.s7.139ba4315228 from=translated src=- shape=af5d478f vocab=036f7de4
+-/
 theorem zpow_apply_eq_self' {R A : Type} [CommSemiring R] [Semiring A] [Algebra R A] (σ : A ≃ₐ[R] A) (y : A)
     (h : σ y = y) (n : ℤ) : (σ ^ n) y = y := by
   have hinv : σ⁻¹ y = y := by
@@ -117,6 +144,9 @@ theorem zpow_apply_eq_self' {R A : Type} [CommSemiring R] [Semiring A] [Algebra 
 
 end FrobOrderAbs
 
+/--
+@isnad1 id=dvd.9h9v.s10.69274a89687d from=translated src=- shape=892f04b5 vocab=a5788cb7
+-/
 theorem solution
     {r : ℕ} [Fact r.Prime]
     (𝒪 : Type) [CommRing 𝒪] [IsDomain 𝒪] [CharZero 𝒪] (π : 𝒪) (hπ : Irreducible π)

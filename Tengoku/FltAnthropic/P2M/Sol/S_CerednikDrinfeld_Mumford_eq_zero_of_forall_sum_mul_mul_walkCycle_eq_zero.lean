@@ -15,6 +15,9 @@ open CerednikDrinfeld CerednikDrinfeld.Mumford MulAction
 
 namespace Law3UQ
 
+/--
+@isnad1 id=eq.2h10v.s6.dcefd8f5e1e1 from=translated src=- shape=789f901e vocab=144b591d
+-/
 theorem walkCycle_copy {G : Type} [Group G] {W : Type} [MulAction G W] (𝒯 : SimpleGraph W) [GraphAction G 𝒯]
     [DecidableEq (QuotEdge G 𝒯)] {E : Type} (orb : E → QuotEdge G 𝒯) {u v u' v' : W} (p : 𝒯.Walk u v)
     (hu : u = u') (hv : v = v') : walkCycle 𝒯 orb (p.copy hu hv) = walkCycle 𝒯 orb p := by
@@ -22,6 +25,9 @@ theorem walkCycle_copy {G : Type} [Group G] {W : Type} [MulAction G W] (𝒯 : S
 
 end Law3UQ
 
+/--
+@isnad1 id=eq.4h8v.s11.5b9384e643d6 from=translated src=- shape=37b2e9f2 vocab=6cd3681d
+-/
 theorem solution
     (R K₀ : Type) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [Field K₀] [Algebra R K₀] [IsFractionRing R K₀]
     {G : Type} [Group G] [MulAction G (LT.LatticeTree.Vertex R K₀)]

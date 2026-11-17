@@ -20,6 +20,9 @@ variable {F : Type*} [NormedField F]
 
 open AutomorphicForm.WindowedSiegel
 
+/--
+@isnad1 id=eq.1h3v.s10.e2bc51d0ead4 from=translated src=- shape=1b753d15 vocab=2eafd040
+-/
 theorem val_weyl_mul (x w' : GL (Fin 2) F) (hw : (w' : Matrix (Fin 2) (Fin 2) F) = !![0, 1; 1, 0]) :
     ((w' * x : GL (Fin 2) F) : Matrix (Fin 2) (Fin 2) F) =
       !![(x : Matrix (Fin 2) (Fin 2) F) 1 0, (x : Matrix (Fin 2) (Fin 2) F) 1 1;
@@ -28,6 +31,9 @@ theorem val_weyl_mul (x w' : GL (Fin 2) F) (hw : (w' : Matrix (Fin 2) (Fin 2) F)
   ext i j
   fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.1h3v.s9.8097415689d2 from=translated src=- shape=b829f99c vocab=9446f01b
+-/
 theorem localHeight_mul_localHeight_weyl_mul (x w' : GL (Fin 2) F)
     (hw : (w' : Matrix (Fin 2) (Fin 2) F) = !![0, 1; 1, 0]) :
     localHeight x * localHeight (w' * x) =
@@ -58,6 +64,9 @@ variable (K : Type) [Field K] [NumberField K]
 
 abbrev wK : GL (Fin 2) (InfiniteAdeleRing K) := AdelicLevel.glArch (𝓞 K) K (AutomorphicForm.adelicWeyl (𝓞 K) K)
 
+/--
+@isnad1 id=eq.0h1v.s10.0f270d675ded from=translated src=- shape=70431e44 vocab=8dfc064e
+-/
 theorem val_wK : ((AdelicLevel.glArch (𝓞 K) K (AutomorphicForm.adelicWeyl (𝓞 K) K) : GL (Fin 2) (InfiniteAdeleRing K)) :
     Matrix (Fin 2) (Fin 2) (InfiniteAdeleRing K)) = !![0, 1; 1, 0] := by
   ext i j
@@ -66,6 +75,9 @@ theorem val_wK : ((AdelicLevel.glArch (𝓞 K) K (AutomorphicForm.adelicWeyl (�
       (((AutomorphicForm.gl2Weyl : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) i j)).1 = _
   fin_cases i <;> fin_cases j <;> simp [AutomorphicForm.gl2Weyl] <;> rfl
 
+/--
+@isnad1 id=eq.0h2v.s11.cdf4af1600ed from=translated src=- shape=9e8a3a46 vocab=3bf07189
+-/
 theorem val_archComponent_wK (v : InfinitePlace K) :
     ((archComponent K v (AdelicLevel.glArch (𝓞 K) K (AutomorphicForm.adelicWeyl (𝓞 K) K)) : GL (Fin 2) v.Completion) :
       Matrix (Fin 2) (Fin 2) v.Completion) = !![0, 1; 1, 0] := by
@@ -78,6 +90,9 @@ def archWeight (x : GL (Fin 2) (InfiniteAdeleRing K)) : ℝ :=
     - Real.log (AutomorphicForm.WindowedSiegel.archHeight K
         (AdelicLevel.glArch (𝓞 K) K (AutomorphicForm.adelicWeyl (𝓞 K) K) * x))
 
+/--
+@isnad1 id=eq.0h1v.s11.50667c68957c from=translated src=- shape=b61b6795 vocab=7391e96a
+-/
 theorem weight_top_eq_archWeight :
     (fun x : GL (Fin 2) (InfiniteAdeleRing K) =>
             (∑ w : NumberField.InfinitePlace K, (w.mult : ℝ) *
@@ -112,6 +127,9 @@ end WeightBridge
 
 end
 
+/--
+@isnad1 id=eq.0h1v.s11.50667c68957c from=translated src=- shape=b61b6795 vocab=7391e96a
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K] :
     (fun x : GL (Fin 2) (InfiniteAdeleRing K) =>

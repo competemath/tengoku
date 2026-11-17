@@ -18,6 +18,9 @@ namespace CompactDenominator
 
 variable (R K : Type*) [CommRing R] [IsDedekindDomain R] [Field K] [Algebra R K] [IsFractionRing R K]
 
+/--
+@isnad1 id=ex.1h3v.s8.1df70a807e10 from=translated src=- shape=04e45f59 vocab=ae2729c2
+-/
 theorem exists_ne_zero_forall_mul_apply_mem_adicCompletionIntegers_of_isCompact_impl
     {C : Set (FiniteAdeleRing R K)} (hC : IsCompact C) :
     ∃ s : R, s ≠ 0 ∧ ∀ y ∈ C, ∀ v : HeightOneSpectrum R,
@@ -38,12 +41,18 @@ theorem exists_ne_zero_forall_mul_apply_mem_adicCompletionIntegers_of_isCompact_
     NumberField.AdelicBox.algebraMap_mul_apply]
   exact mul_mem (NumberField.AdelicBox.algebraMap_mem_adicCompletionIntegers R K v _) (hys v)
 
+/--
+@isnad1 id=ex.0h2v.s8.8a990db389ae from=translated src=- shape=7313400e vocab=453e40c8
+-/
 theorem gate_empty : ∃ s : R, s ≠ 0 ∧ ∀ y ∈ (∅ : Set (FiniteAdeleRing R K)), ∀ v : HeightOneSpectrum R,
       (algebraMap R (FiniteAdeleRing R K) s * y) v ∈ v.adicCompletionIntegers K :=
   ⟨1, one_ne_zero, fun _ h => h.elim⟩
 
 end M4aP3B.Rows.CompactDenominator
 
+/--
+@isnad1 id=ex.1h3v.s8.1df70a807e10 from=translated src=- shape=04e45f59 vocab=ae2729c2
+-/
 theorem solution
     (R K : Type*) [CommRing R] [IsDedekindDomain R] [Field K] [Algebra R K] [IsFractionRing R K]
     {C : Set (IsDedekindDomain.FiniteAdeleRing R K)} (hC : IsCompact C) :

@@ -9,6 +9,9 @@ set_option autoImplicit false
 open scoped TensorProduct
 universe u v
 
+/--
+@isnad1 id=nonempty.4h5v.s10.5dbd6b0a418a from=translated src=- shape=6d6779af vocab=f4299aac
+-/
 theorem solution
     {R : Type u} [CommRing R] {H : Type v} [CommRing H] [Bialgebra R H]
     (n : ℕ) [NeZero n] (x : H)

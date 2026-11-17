@@ -16,11 +16,17 @@ open IsDedekindDomain NumberField QuaternionAlgebra CerednikDrinfeld
 
 namespace PenRt1NormAwayUnit
 
+/--
+@isnad1 id=eq.0h4v.s6.2529f53d60ea from=translated src=- shape=56c269aa vocab=60985843
+-/
 theorem nrd_mul {a b : ℚ} (x y : ℍ[ℚ, a, b]) : nrd (x * y) = nrd x * nrd y := by
   simp only [nrd, QuaternionAlgebra.re_mul, QuaternionAlgebra.imI_mul, QuaternionAlgebra.imJ_mul,
     QuaternionAlgebra.imK_mul]
   ring
 
+/--
+@isnad1 id=ne.0h3v.s6.184a8e6bc89e from=translated src=- shape=ed902472 vocab=7370eac2
+-/
 theorem nrd_ne_zero_of_unit {a b : ℚ} (γ : (ℍ[ℚ, a, b])ˣ) : nrd ((γ : (ℍ[ℚ, a, b])ˣ) : ℍ[ℚ, a, b]) ≠ 0 := by
   intro h
   have h1 : nrd (((γ : (ℍ[ℚ, a, b])ˣ) : ℍ[ℚ, a, b]) * ((γ⁻¹ : (ℍ[ℚ, a, b])ˣ) : ℍ[ℚ, a, b])) = 1 := by
@@ -28,6 +34,9 @@ theorem nrd_ne_zero_of_unit {a b : ℚ} (γ : (ℍ[ℚ, a, b])ˣ) : nrd ((γ : (
   rw [nrd_mul, h, zero_mul] at h1
   exact zero_ne_one h1
 
+/--
+@isnad1 id=ex.2h2v.s6.9f9ad398ec59 from=translated src=- shape=31988701 vocab=8ee31b56
+-/
 theorem exists_mul_pow_eq_of_forall_padicValRat_eq_zero (r : ℕ) [hr : Fact r.Prime] (q : ℚ) (hq : q ≠ 0)
     (h : ∀ p : ℕ, p.Prime → p ≠ r → padicValRat p q = 0) :
     ∃ i j : ℕ, q * (r : ℚ) ^ i = (r : ℚ) ^ j ∨ q * (r : ℚ) ^ i = -((r : ℚ) ^ j) := by
@@ -74,6 +83,9 @@ theorem exists_mul_pow_eq_of_forall_padicValRat_eq_zero (r : ℕ) [hr : Fact r.P
 end PenRt1NormAwayUnit
 
 open PenRt1NormAwayUnit in
+/--
+@isnad1 id=ex.3h6v.s9.bfd42005ed3c from=translated src=- shape=29cc9538 vocab=7da91943
+-/
 theorem solution
     {a b : ℚ} (R : Submodule ℤ ℍ[ℚ, a, b]) (hR : IsOrder R)
     (r : ℕ) [Fact r.Prime] (v : HeightOneSpectrum (𝓞 ℚ)) (hv : ((r : ℕ) : 𝓞 ℚ) ∈ v.asIdeal)

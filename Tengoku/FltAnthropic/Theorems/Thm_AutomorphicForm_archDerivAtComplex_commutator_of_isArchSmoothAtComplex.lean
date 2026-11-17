@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open NumberField AutomorphicForm NumberField.InfinitePlace NumberField.InfinitePlace.Completion
 
+/--
+@isnad1 id=and.2h3v.s11.092dc9e4a40a from=translated src=- shape=a74f675f vocab=04869e59
+-/
 theorem AutomorphicForm.archDerivAtComplex_commutator_of_isArchSmoothAtComplex
     (F : Type) [Field F] [NumberField F] {w : InfinitePlace F} (hw : w.IsComplex)
     (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArchSmoothAtComplex hw φ) :

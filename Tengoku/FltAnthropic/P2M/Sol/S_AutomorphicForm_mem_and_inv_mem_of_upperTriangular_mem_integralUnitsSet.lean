@@ -7,6 +7,9 @@ namespace P2MW.S_AutomorphicForm_mem_and_inv_mem_of_upperTriangular_mem_integral
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=and.5h5v.s9.aed546762e2f from=translated src=- shape=fd833dc2 vocab=5eb62cb2
+-/
 theorem solution
     {A : Type*} [CommRing A] (R : Set A) (hR : ∀ a ∈ R, ∀ b ∈ R, a * b ∈ R)
     (M : GL (Fin 2) A) (ζ a : Aˣ)

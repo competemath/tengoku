@@ -18,6 +18,9 @@ noncomputable def wittMapEquiv (p : ℕ) [Fact p.Prime] {R S : Type} [CommRing R
 
 end Blk400F2
 
+/--
+@isnad1 id=ex.5h4v.s9.17d5de48d622 from=translated src=- shape=f408301f vocab=783e966b
+-/
 theorem solution
     (r : ℕ) [Fact r.Prime]
     (𝒪 : Type) [CommRing 𝒪] [IsDomain 𝒪] [CharZero 𝒪] (hdvr : IsDiscreteValuationRing 𝒪)

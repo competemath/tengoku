@@ -17,13 +17,22 @@ variable (R : Type) [CommRing R] (k : Type) [CommRing k] [Algebra R k]
 noncomputable def beta0 : WithConv (H →ₐ[R] DualNumber k) ≃ (k ⊗[R] H →ₐ[k] DualNumber k) :=
   (WithConv.equiv (H →ₐ[R] DualNumber k)).trans (AlgHom.liftEquiv R k H (DualNumber k))
 
+/--
+@isnad1 id=eq.0h6v.s11.972ebaeb1458 from=translated src=- shape=36eeb6cc vocab=ca999b27
+-/
 theorem beta0_tmul (D : WithConv (H →ₐ[R] DualNumber k)) (s : k) (h : H) :
     beta0 R k H D (s ⊗ₜ[R] h) = s • D.ofConv h := rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.a2e31da59f34 from=translated src=- shape=3064d402 vocab=3627fd98
+-/
 theorem beta0_one_tmul (D : WithConv (H →ₐ[R] DualNumber k)) (h : H) :
     beta0 R k H D ((1 : k) ⊗ₜ[R] h) = D.ofConv h := by
   rw [beta0_tmul, one_smul]
 
+/--
+@isnad1 id=iff.0h4v.s11.babd5593ca63 from=translated src=- shape=9c42d980 vocab=581e5e54
+-/
 theorem over_counit_iff (D : WithConv (H →ₐ[R] DualNumber k)) :
     (∀ h : H, TrivSqZeroExt.fst (D.ofConv h) = algebraMap R k (Bialgebra.counitAlgHom R H h)) ↔
     ∀ b : k ⊗[R] H, TrivSqZeroExt.fst (beta0 R k H D b) = Bialgebra.counitAlgHom k (k ⊗[R] H) b := by
@@ -52,6 +61,9 @@ noncomputable def beta :
 end A4TensorHom
 
 open A4TensorHom in
+/--
+@isnad1 id=ex.0h3v.s14.35590e49e94b from=translated src=- shape=07c05479 vocab=5ba64db2
+-/
 theorem solution
     (R : Type) [CommRing R] (k : Type) [CommRing k] [Algebra R k]
     (H : Type) [CommRing H] [Bialgebra R H] :

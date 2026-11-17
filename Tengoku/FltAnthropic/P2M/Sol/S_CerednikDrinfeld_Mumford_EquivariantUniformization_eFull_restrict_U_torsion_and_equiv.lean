@@ -42,6 +42,9 @@ private theorem _root_.CerednikDrinfeld.Mumford.EquivariantUniformization.mem_U_
 export _root_.CerednikDrinfeld.Mumford.EquivariantUniformization (mem_U_iff')
 end CerednikDrinfeld.Mumford.EquivariantUniformization
 
+/--
+@isnad1 id=and.1h11v.s22.de0ef918eac5 from=translated src=- shape=9035210e vocab=675c08cd
+-/
 theorem solution
     {E V : Type} [Fintype E] [DecidableEq V] {r : ℕ} [Fact r.Prime] {D : DegeneracyData E V}
     {A : ValuationSubring (AlgebraicClosure ℚ)} {hA : A.LiesOverPrime r}

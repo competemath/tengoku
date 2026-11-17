@@ -15,6 +15,9 @@ noncomputable section
 
 namespace CircleCharacterClassification
 
+/--
+@isnad1 id=ex.3h1v.s6.105cba935a5a from=translated src=- shape=39e734e5 vocab=effaf7ac
+-/
 theorem exists_eq_exp_of_continuous_mul (f : ℝ → ℂ) (hf : Continuous f) (h0 : f 0 = 1)
     (hmul : ∀ s t : ℝ, f (s + t) = f s * f t) :
     ∃ α : ℂ, ∀ t : ℝ, f t = Complex.exp (α * t) := by
@@ -88,15 +91,33 @@ theorem exists_eq_exp_of_continuous_mul (f : ℝ → ℂ) (hf : Continuous f) (h
 def rotMat (θ : ℝ) : Matrix (Fin 2) (Fin 2) ℝ :=
   !![Real.cos θ, Real.sin θ; -Real.sin θ, Real.cos θ]
 
+/--
+@isnad1 id=eq.0h1v.s5.4f144bf15c56 from=translated src=- shape=b464c013 vocab=a4cf8922
+-/
 @[scoped simp] theorem rotMat_apply_00 (θ : ℝ) : rotMat θ 0 0 = Real.cos θ := rfl
+/--
+@isnad1 id=eq.0h1v.s5.65fe00f2e8ac from=translated src=- shape=b464c013 vocab=0e6b6191
+-/
 @[scoped simp] theorem rotMat_apply_01 (θ : ℝ) : rotMat θ 0 1 = Real.sin θ := rfl
+/--
+@isnad1 id=eq.0h1v.s5.d50f0b6bad42 from=translated src=- shape=84fb2a41 vocab=eb387028
+-/
 @[scoped simp] theorem rotMat_apply_10 (θ : ℝ) : rotMat θ 1 0 = -Real.sin θ := rfl
+/--
+@isnad1 id=eq.0h1v.s5.375a1ca1eb8b from=translated src=- shape=b464c013 vocab=a4cf8922
+-/
 @[scoped simp] theorem rotMat_apply_11 (θ : ℝ) : rotMat θ 1 1 = Real.cos θ := rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.df6414151f9a from=translated src=- shape=548109e9 vocab=2a1c1eb8
+-/
 theorem det_rotMat (θ : ℝ) : (rotMat θ).det = 1 := by
   rw [Matrix.det_fin_two, rotMat_apply_00, rotMat_apply_01, rotMat_apply_10, rotMat_apply_11]
   nlinarith [Real.cos_sq_add_sin_sq θ]
 
+/--
+@isnad1 id=continuo.0h2v.s5.d9aeda574281 from=translated src=- shape=568c8f10 vocab=484e4c35
+-/
 theorem continuous_rotMat_apply (i j : Fin 2) : Continuous fun θ : ℝ => rotMat θ i j := by
   fin_cases i <;> fin_cases j
   · simpa using Real.continuous_cos
@@ -108,8 +129,14 @@ theorem continuous_rotMat_apply (i j : Fin 2) : Continuous fun θ : ℝ => rotMa
 def rotGL (θ : ℝ) : GL (Fin 2) ℝ :=
   Matrix.GeneralLinearGroup.mkOfDetNeZero (rotMat θ) (by rw [det_rotMat]; exact one_ne_zero)
 
+/--
+@isnad1 id=eq.0h1v.s6.851938d55625 from=translated src=- shape=cfe8a7d9 vocab=38b5b950
+-/
 theorem rotGL_coe (θ : ℝ) : ((rotGL θ : GL (Fin 2) ℝ) : Matrix (Fin 2) (Fin 2) ℝ) = rotMat θ := rfl
 
+/--
+@isnad1 id=mem.0h1v.s8.3f8d9e19cb3b from=translated src=- shape=348377b1 vocab=f8d9a0f8
+-/
 theorem rotGL_mem (θ : ℝ) : rotGL θ ∈ rowIsometrySubgroup₀ ℝ := by
   rw [mem_rowIsometrySubgroup₀_iff]
   refine ⟨det_rotMat θ, ?_, ?_⟩
@@ -122,6 +149,9 @@ theorem rotGL_mem (θ : ℝ) : rotGL θ ∈ rowIsometrySubgroup₀ ℝ := by
 
 def rotSO (θ : ℝ) : rowIsometrySubgroup₀ ℝ := ⟨rotGL θ, rotGL_mem θ⟩
 
+/--
+@isnad1 id=eq.0h2v.s11.c7cca831f70e from=translated src=- shape=0eb29773 vocab=0b87de60
+-/
 theorem rotSO_add (a b : ℝ) : rotSO (a + b) = rotSO a * rotSO b := by
   apply Subtype.ext
   apply Units.ext
@@ -130,6 +160,9 @@ theorem rotSO_add (a b : ℝ) : rotSO (a + b) = rotSO a * rotSO b := by
   fin_cases i <;> fin_cases j <;>
     simp [Matrix.mul_apply, Fin.sum_univ_two, Real.cos_add, Real.sin_add] <;> ring
 
+/--
+@isnad1 id=eq.0h0v.s10.aec202668eeb from=translated src=- shape=ac11af2a vocab=50c95cb3
+-/
 theorem rotSO_zero : rotSO 0 = 1 := by
   apply Subtype.ext
   apply Units.ext
@@ -137,6 +170,9 @@ theorem rotSO_zero : rotSO 0 = 1 := by
   ext i j
   fin_cases i <;> fin_cases j <;> simp
 
+/--
+@isnad1 id=eq.0h0v.s10.519d8657bf69 from=translated src=- shape=2f633666 vocab=cd764086
+-/
 theorem rotSO_two_pi : rotSO (2 * Real.pi) = 1 := by
   apply Subtype.ext
   apply Units.ext
@@ -144,9 +180,15 @@ theorem rotSO_two_pi : rotSO (2 * Real.pi) = 1 := by
   ext i j
   fin_cases i <;> fin_cases j <;> simp
 
+/--
+@isnad1 id=eq.0h1v.s12.ef4a5ce78102 from=translated src=- shape=d7a28846 vocab=2b82d713
+-/
 theorem archWeightOneℝ_rotSO (θ : ℝ) :
     ((archWeightOneℝ (rotSO θ) : ℂˣ) : ℂ) = ⟨Real.cos θ, Real.sin θ⟩ := rfl
 
+/--
+@isnad1 id=eq.0h1v.s12.049ef3f0e4d7 from=translated src=- shape=fb1de579 vocab=7bf63165
+-/
 theorem archWeightOneℝ_rotSO_eq_exp (θ : ℝ) :
     ((archWeightOneℝ (rotSO θ) : ℂˣ) : ℂ) = Complex.exp (θ * Complex.I) := by
   rw [archWeightOneℝ_rotSO, Complex.exp_mul_I]
@@ -154,6 +196,9 @@ theorem archWeightOneℝ_rotSO_eq_exp (θ : ℝ) :
     simp [Complex.cos_ofReal_re, Complex.sin_ofReal_re, Complex.cos_ofReal_im,
       Complex.sin_ofReal_im]
 
+/--
+@isnad1 id=surjecti.0h0v.s8.ebde482b518f from=translated src=- shape=9d909ccb vocab=7bc7bbaf
+-/
 theorem rotSO_surjective : Function.Surjective rotSO := by
   intro k
   obtain ⟨h10, h11, hab⟩ := entries_of_mem_rowIsometrySubgroup₀ k.2
@@ -190,6 +235,9 @@ def rotAt {w : InfinitePlace F} (hw : w.IsReal)
   rowIsometrySubgroup₀Map (ringEquivRealOfIsReal hw).symm he (rotSO θ)
 
 omit [NumberField F] in
+/--
+@isnad1 id=eq.1h3v.s8.aed828e65b05 from=translated src=- shape=2fab8b68 vocab=a9805e69
+-/
 theorem norm_symm_ringEquivRealOfIsReal {w : InfinitePlace F} (hw : w.IsReal) (x : ℝ) :
     ‖(ringEquivRealOfIsReal hw).symm x‖ = ‖x‖ := by
   have := norm_ringEquivRealOfIsReal hw ((ringEquivRealOfIsReal hw).symm x)
@@ -199,6 +247,9 @@ theorem norm_symm_ringEquivRealOfIsReal {w : InfinitePlace F} (hw : w.IsReal) (x
 variable {F}
 
 omit [NumberField F] in
+/--
+@isnad1 id=eq.2h5v.s10.0ea95c7e41ed from=translated src=- shape=9c0c90ff vocab=e201affa
+-/
 theorem rotAt_coe_apply {w : InfinitePlace F} (hw : w.IsReal)
     (he : ∀ x : ℝ, ‖(ringEquivRealOfIsReal hw).symm x‖ = ‖x‖) (θ : ℝ) (i j : Fin 2) :
     (((rotAt F hw he θ : rowIsometrySubgroup₀ w.Completion) : GL (Fin 2) w.Completion) :
@@ -207,6 +258,9 @@ theorem rotAt_coe_apply {w : InfinitePlace F} (hw : w.IsReal)
 
 omit [NumberField F] in
 
+/--
+@isnad1 id=eq.2h3v.s13.376cb78b64a9 from=translated src=- shape=353487b2 vocab=7f4cc997
+-/
 theorem rowIsometrySubgroup₀Map_rotAt {w : InfinitePlace F} (hw : w.IsReal)
     (he : ∀ x : ℝ, ‖(ringEquivRealOfIsReal hw).symm x‖ = ‖x‖) (θ : ℝ) :
     rowIsometrySubgroup₀Map (ringEquivRealOfIsReal hw) (norm_ringEquivRealOfIsReal hw)
@@ -218,6 +272,9 @@ theorem rowIsometrySubgroup₀Map_rotAt {w : InfinitePlace F} (hw : w.IsReal)
   exact RingEquiv.apply_symm_apply _ _
 
 omit [NumberField F] in
+/--
+@isnad1 id=eq.2h4v.s11.d6c6a44d51f7 from=translated src=- shape=36c26865 vocab=e005ef13
+-/
 theorem rotAt_add {w : InfinitePlace F} (hw : w.IsReal)
     (he : ∀ x : ℝ, ‖(ringEquivRealOfIsReal hw).symm x‖ = ‖x‖) (a b : ℝ) :
     rotAt F hw he (a + b) = rotAt F hw he a * rotAt F hw he b := by
@@ -225,6 +282,9 @@ theorem rotAt_add {w : InfinitePlace F} (hw : w.IsReal)
   rfl
 
 omit [NumberField F] in
+/--
+@isnad1 id=eq.2h2v.s11.0a74b144e71e from=translated src=- shape=c060fdde vocab=e8357a5c
+-/
 theorem rotAt_zero {w : InfinitePlace F} (hw : w.IsReal)
     (he : ∀ x : ℝ, ‖(ringEquivRealOfIsReal hw).symm x‖ = ‖x‖) : rotAt F hw he 0 = 1 := by
   rw [rotAt, rotSO_zero, map_one]
@@ -234,21 +294,33 @@ def adelicRot {w : InfinitePlace F} (hw : w.IsReal)
   adelicArchGLInclAt F w
     ((rotAt F hw he θ : rowIsometrySubgroup₀ w.Completion) : GL (Fin 2) w.Completion)
 
+/--
+@isnad1 id=eq.2h4v.s9.9e65c3e8f9ad from=translated src=- shape=3f14c49f vocab=b8528d93
+-/
 theorem adelicRot_add {w : InfinitePlace F} (hw : w.IsReal)
     (he : ∀ x : ℝ, ‖(ringEquivRealOfIsReal hw).symm x‖ = ‖x‖) (a b : ℝ) :
     adelicRot hw he (a + b) = adelicRot hw he a * adelicRot hw he b := by
   rw [adelicRot, rotAt_add, Subgroup.coe_mul, map_mul]
   rfl
 
+/--
+@isnad1 id=eq.2h2v.s9.37b7b950571f from=translated src=- shape=cd909514 vocab=4f623837
+-/
 theorem adelicRot_zero {w : InfinitePlace F} (hw : w.IsReal)
     (he : ∀ x : ℝ, ‖(ringEquivRealOfIsReal hw).symm x‖ = ‖x‖) : adelicRot hw he 0 = 1 := by
   rw [adelicRot, rotAt_zero, OneMemClass.coe_one, map_one]
 
+/--
+@isnad1 id=eq.2h3v.s9.42ba632e622b from=translated src=- shape=4e3d107d vocab=9cccbfed
+-/
 theorem adelicRot_neg {w : InfinitePlace F} (hw : w.IsReal)
     (he : ∀ x : ℝ, ‖(ringEquivRealOfIsReal hw).symm x‖ = ‖x‖) (a : ℝ) :
     adelicRot hw he (-a) = (adelicRot hw he a)⁻¹ := by
   rw [eq_inv_iff_mul_eq_one, ← adelicRot_add, neg_add_cancel, adelicRot_zero]
 
+/--
+@isnad1 id=eq.2h5v.s10.84766d9bfe8b from=translated src=- shape=c8e78916 vocab=d35995b7
+-/
 theorem adelicRot_coe_apply {w : InfinitePlace F} (hw : w.IsReal)
     (he : ∀ x : ℝ, ‖(ringEquivRealOfIsReal hw).symm x‖ = ‖x‖) (θ : ℝ) (i j : Fin 2) :
     ((adelicRot hw he θ : AdelicGL2 (𝓞 F) F) : Matrix (Fin 2) (Fin 2) (AdeleRing (𝓞 F) F)) i j =
@@ -259,6 +331,9 @@ theorem adelicRot_coe_apply {w : InfinitePlace F} (hw : w.IsReal)
         (1 : Matrix (Fin 2) (Fin 2) (FiniteAdeleRing (𝓞 F) F)) i j) :=
   rfl
 
+/--
+@isnad1 id=continuo.2h2v.s9.0d93cf1da8ec from=translated src=- shape=190c8bb7 vocab=79917de4
+-/
 theorem continuous_adelicRot {w : InfinitePlace F} (hw : w.IsReal)
     (he : ∀ x : ℝ, ‖(ringEquivRealOfIsReal hw).symm x‖ = ‖x‖) :
     Continuous fun θ : ℝ => adelicRot hw he θ := by
@@ -291,6 +366,9 @@ theorem continuous_adelicRot {w : InfinitePlace F} (hw : w.IsReal)
 
 end Adelic
 
+/--
+@isnad1 id=ex.4h4v.s13.00a46c101117 from=translated src=- shape=2e579eed vocab=16e3afb0
+-/
 theorem main (F : Type) [Field F] [NumberField F] (w : InfinitePlace F) (hw : w.IsReal)
     (χ : rowIsometrySubgroup₀ ℝ →* ℂˣ) (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : Continuous φ)
     (hφ0 : ∃ g : AdelicGL2 (𝓞 F) F, φ g ≠ 0)
@@ -347,6 +425,9 @@ open scoped _root_.P2MW.S_AutomorphicForm_exists_eq_archWeightCharReal_of_hasArc
 end
 open scoped _root_.P2MW.S_AutomorphicForm_exists_eq_archWeightCharReal_of_hasArchCharacterAt_of_continuous.CircleCharacterClassification
 
+/--
+@isnad1 id=ex.4h4v.s13.00a46c101117 from=translated src=- shape=2e579eed vocab=16e3afb0
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F] (w : InfinitePlace F) (hw : w.IsReal)
     (χ : rowIsometrySubgroup₀ ℝ →* ℂˣ) (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : Continuous φ)

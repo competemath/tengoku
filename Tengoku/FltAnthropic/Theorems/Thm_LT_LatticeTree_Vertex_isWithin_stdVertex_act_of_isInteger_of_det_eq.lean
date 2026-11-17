@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open LT.LatticeTree
 
+/--
+@isnad1 id=iswithin.3h6v.s8.7e09f39141e6 from=translated src=- shape=90c1f5d9 vocab=78d0de2e
+-/
 theorem LT.LatticeTree.Vertex.isWithin_stdVertex_act_of_isInteger_of_det_eq
     (R K : Type) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [Field K] [Algebra R K]
     [IsFractionRing R K] (ϖ : R) (hϖ : Irreducible ϖ)

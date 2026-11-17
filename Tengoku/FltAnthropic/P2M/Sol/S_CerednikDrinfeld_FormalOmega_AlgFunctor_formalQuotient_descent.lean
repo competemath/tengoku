@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open CategoryTheory AlgebraicGeometry CerednikDrinfeld.FormalOmega
 
+/--
+@isnad1 id=other.11h16v.s12.9a2e6b931331 from=translated src=- shape=b233f06d vocab=379b6e97
+-/
 theorem solution
     (𝒪 : Type) [CommRing 𝒪] (π : 𝒪) (F : AlgFunctor 𝒪)
 

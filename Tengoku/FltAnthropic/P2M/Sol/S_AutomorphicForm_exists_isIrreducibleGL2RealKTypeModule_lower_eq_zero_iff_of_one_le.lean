@@ -21,12 +21,21 @@ abbrev J := ℕ ⊕ ℕ
 
 noncomputable def b (i : J) : J →₀ ℂ := Finsupp.single i 1
 
+/--
+@isnad1 id=eq.0h2v.s6.f08259d7df84 from=translated src=- shape=b9da20e4 vocab=304ee062
+-/
 theorem single_eq_smul_b (i : J) (c : ℂ) : Finsupp.single i c = c • b i := by
   rw [b, Finsupp.smul_single', mul_one]
 
+/--
+@isnad1 id=ne.0h1v.s4.42f5cd730f10 from=translated src=- shape=4f1d8603 vocab=e8bd7719
+-/
 theorem b_ne_zero (i : J) : b i ≠ 0 :=
   Finsupp.single_ne_zero.mpr one_ne_zero
 
+/--
+@isnad1 id=eq.0h2v.s5.ec446afc58f4 from=translated src=- shape=24fcae48 vocab=f24eb1d1
+-/
 theorem b_apply (i i' : J) : b i i' = if i = i' then 1 else 0 := by
   rw [b, Finsupp.single_apply]
 
@@ -53,12 +62,21 @@ noncomputable def L : (J →₀ ℂ) →ₗ[ℂ] (J →₀ ℂ) :=
 noncomputable def ε : (J →₀ ℂ) →ₗ[ℂ] (J →₀ ℂ) :=
   Finsupp.lsum ℂ fun i : J => LinearMap.toSpanSingleton ℂ _ (εfun i)
 
+/--
+@isnad1 id=eq.0h2v.s6.03afc8278de7 from=translated src=- shape=b7f4fec4 vocab=1ae10411
+-/
 theorem E_b (i : J) : E k (b i) = Efun k i := by
   rw [E, b, Finsupp.lsum_single, LinearMap.toSpanSingleton_apply, one_smul]
 
+/--
+@isnad1 id=eq.0h2v.s6.cefb1a8f6d7b from=translated src=- shape=b7f4fec4 vocab=6b45db25
+-/
 theorem L_b (i : J) : L k (b i) = Lfun k i := by
   rw [L, b, Finsupp.lsum_single, LinearMap.toSpanSingleton_apply, one_smul]
 
+/--
+@isnad1 id=eq.0h1v.s6.89db6fdd8cc7 from=translated src=- shape=2588ca47 vocab=ef4ab820
+-/
 theorem ε_b (i : J) : ε (b i) = εfun i := by
   rw [ε, b, Finsupp.lsum_single, LinearMap.toSpanSingleton_apply, one_smul]
 
@@ -73,12 +91,18 @@ noncomputable def wt (n : ℤ) : Submodule ℂ (J →₀ ℂ) :=
 
 variable {k}
 
+/--
+@isnad1 id=eq.0h2v.s6.4aee7d308c59 from=translated src=- shape=b03f4d11 vocab=d062e133
+-/
 theorem wt_inl (j : ℕ) : wt k (k + 2 * j) = ℂ ∙ b (Sum.inl j) := by
   have h : 0 ≤ k + 2 * (j : ℤ) - k ∧ Even (k + 2 * (j : ℤ) - k) := ⟨by omega, ⟨j, by ring⟩⟩
   simp only [wt, ite_eq_left h]
   have : (k + 2 * (j : ℤ) - k) / 2 = j := by omega
   rw [this, Int.toNat_natCast]
 
+/--
+@isnad1 id=or.0h2v.s7.c8a7d28d0159 from=translated src=- shape=5c7a7ef4 vocab=c9d2315e
+-/
 theorem weight_cases (n : ℤ) :
     (∃ j : ℕ, n = k + 2 * j) ∨ (∃ j : ℕ, n = -(k + 2 * j)) ∨ wt k n = ⊥ := by
   by_cases h1 : 0 ≤ n - k ∧ Even (n - k)
@@ -99,6 +123,9 @@ theorem weight_cases (n : ℤ) :
 variable (hk : 1 ≤ k)
 include hk
 
+/--
+@isnad1 id=eq.1h2v.s6.e34c0becb2a5 from=translated src=- shape=df11413a vocab=8e3124bf
+-/
 theorem wt_inr (j : ℕ) : wt k (-(k + 2 * j)) = ℂ ∙ b (Sum.inr j) := by
   have h1 : ¬ (0 ≤ -(k + 2 * (j : ℤ)) - k ∧ Even (-(k + 2 * (j : ℤ)) - k)) := by
     rintro ⟨h, -⟩; omega
@@ -108,14 +135,23 @@ theorem wt_inr (j : ℕ) : wt k (-(k + 2 * j)) = ℂ ∙ b (Sum.inr j) := by
   have : (-(-(k + 2 * (j : ℤ))) - k) / 2 = j := by omega
   rw [this, Int.toNat_natCast]
 
+/--
+@isnad1 id=eq.1h2v.s6.0c64e78582f5 from=translated src=- shape=7d0b8df2 vocab=17d465be
+-/
 theorem wt_weightOf (i : J) : wt k (weightOf k i) = ℂ ∙ b i := by
   cases i with
   | inl j => exact wt_inl j
   | inr j => exact wt_inr hk j
 
+/--
+@isnad1 id=mem.1h2v.s6.e706d2fa117a from=translated src=- shape=893be0e1 vocab=812ea073
+-/
 theorem b_mem_wt (i : J) : b i ∈ wt k (weightOf k i) := by
   rw [wt_weightOf hk]; exact Submodule.mem_span_singleton_self _
 
+/--
+@isnad1 id=or.2h3v.s7.f8afb76d7962 from=translated src=- shape=e4475f05 vocab=f8fd1f20
+-/
 theorem mem_wt_iff {n : ℤ} {v : J →₀ ℂ} (hv : v ∈ wt k n) :
     (∃ i : J, weightOf k i = n ∧ ∃ a : ℂ, a • b i = v) ∨ v = 0 := by
   rcases weight_cases (k := k) n with ⟨j, rfl⟩ | ⟨j, rfl⟩ | h
@@ -126,6 +162,9 @@ theorem mem_wt_iff {n : ℤ} {v : J →₀ ℂ} (hv : v ∈ wt k n) :
   · rw [h, Submodule.mem_bot] at hv
     exact Or.inr hv
 
+/--
+@isnad1 id=mem.1h2v.s7.3bb667839d28 from=translated src=- shape=6700d0ba vocab=a208da80
+-/
 theorem E_b_mem (i : J) : E k (b i) ∈ wt k (weightOf k i + 2) := by
   rw [E_b]
   cases i with
@@ -145,6 +184,9 @@ theorem E_b_mem (i : J) : E k (b i) ∈ wt k (weightOf k i + 2) := by
       rw [this]
       exact Submodule.smul_mem _ _ (b_mem_wt hk _)
 
+/--
+@isnad1 id=mem.1h2v.s7.500124d23288 from=translated src=- shape=6700d0ba vocab=a1fa6469
+-/
 theorem L_b_mem (i : J) : L k (b i) ∈ wt k (weightOf k i - 2) := by
   rw [L_b]
   cases i with
@@ -164,6 +206,9 @@ theorem L_b_mem (i : J) : L k (b i) ∈ wt k (weightOf k i - 2) := by
     rw [this]
     exact Submodule.smul_mem _ _ (b_mem_wt hk _)
 
+/--
+@isnad1 id=mem.1h2v.s7.d4ee35094ec2 from=translated src=- shape=95b0d7b3 vocab=63126097
+-/
 theorem ε_b_mem (i : J) : ε (b i) ∈ wt k (-weightOf k i) := by
   rw [ε_b]
   cases i with
@@ -176,6 +221,9 @@ theorem ε_b_mem (i : J) : ε (b i) ∈ wt k (-weightOf k i) := by
     have : k + 2 * (j : ℤ) = weightOf k (Sum.inl j) := rfl
     rw [this]; exact b_mem_wt hk _
 
+/--
+@isnad1 id=le.2h4v.s8.b735e3fce6fa from=translated src=- shape=72b781d4 vocab=e54838a7
+-/
 theorem map_le_of_b {T : (J →₀ ℂ) →ₗ[ℂ] (J →₀ ℂ)} {f : ℤ → ℤ}
     (hT : ∀ i : J, T (b i) ∈ wt k (f (weightOf k i))) (n : ℤ) :
     (wt k n).map T ≤ wt k (f n) := by
@@ -188,17 +236,29 @@ theorem map_le_of_b {T : (J →₀ ℂ) →ₗ[ℂ] (J →₀ ℂ)} {f : ℤ →
     exact hT (Sum.inr j)
   · rw [h, Submodule.map_bot]; exact bot_le
 
+/--
+@isnad1 id=le.1h2v.s7.2eb569efdb1e from=translated src=- shape=1a43354b vocab=79d0c093
+-/
 theorem map_raise_le (n : ℤ) : (wt k n).map (E k) ≤ wt k (n + 2) :=
   map_le_of_b hk (f := fun n => n + 2) (E_b_mem hk) n
 
+/--
+@isnad1 id=le.1h2v.s7.90ac8e1c4548 from=translated src=- shape=1a43354b vocab=8ffcb1cb
+-/
 theorem map_lower_le (n : ℤ) : (wt k n).map (L k) ≤ wt k (n - 2) :=
   map_le_of_b hk (f := fun n => n - 2) (L_b_mem hk) n
 
+/--
+@isnad1 id=le.1h2v.s7.1cd615914334 from=translated src=- shape=56a34557 vocab=65eb86b3
+-/
 theorem map_refl_le (n : ℤ) : (wt k n).map ε ≤ wt k (-n) :=
   map_le_of_b hk (f := fun n => -n) (ε_b_mem hk) n
 
 omit hk in
 
+/--
+@isnad1 id=eq.0h2v.s9.354b044cc340 from=translated src=- shape=bd573cca vocab=3c115d37
+-/
 theorem raise_lower_sub_b (i : J) :
     E k (L k (b i)) - L k (E k (b i)) = (weightOf k i : ℂ) • b i := by
   cases i with
@@ -229,6 +289,9 @@ theorem raise_lower_sub_b (i : J) :
       congr 1
       push_cast; ring
 
+/--
+@isnad1 id=eq.2h3v.s9.0f3f558be23a from=translated src=- shape=54a22ed2 vocab=ad5118cb
+-/
 theorem raise_lower_sub (n : ℤ) (v : J →₀ ℂ) (hv : v ∈ wt k n) :
     E k (L k v) - L k (E k v) = (n : ℂ) • v := by
   rcases mem_wt_iff hk hv with ⟨i, rfl, a, rfl⟩ | rfl
@@ -236,6 +299,9 @@ theorem raise_lower_sub (n : ℤ) (v : J →₀ ℂ) (hv : v ∈ wt k n) :
   · simp
 
 omit hk in
+/--
+@isnad1 id=eq.0h0v.s7.1d6ff740908c from=translated src=- shape=f30035b4 vocab=d298edb9
+-/
 theorem refl_comp_refl : (ε : (J →₀ ℂ) →ₗ[ℂ] _) ∘ₗ ε = LinearMap.id := by
   apply Finsupp.lhom_ext
   intro i c
@@ -244,6 +310,9 @@ theorem refl_comp_refl : (ε : (J →₀ ℂ) →ₗ[ℂ] _) ∘ₗ ε = LinearM
   rcases i with j | j <;> simp only [εfun, ε_b]
 
 omit hk in
+/--
+@isnad1 id=eq.0h1v.s7.d41e4d2a7907 from=translated src=- shape=1b3fc43e vocab=78f05e4b
+-/
 theorem refl_comp_raise : (ε : (J →₀ ℂ) →ₗ[ℂ] _) ∘ₗ E k = L k ∘ₗ ε := by
   apply Finsupp.lhom_ext
   intro i c
@@ -251,6 +320,9 @@ theorem refl_comp_raise : (ε : (J →₀ ℂ) →ₗ[ℂ] _) ∘ₗ E k = L k �
   congr 1
   rcases i with j | _ | j <;> simp only [Efun, εfun, map_smul, map_zero, ε_b, L_b, Lfun]
 
+/--
+@isnad1 id=le.2h3v.s7.febadde38166 from=translated src=- shape=2b8b9d90 vocab=88d30cc4
+-/
 theorem wt_le_ker_lapply {m : ℤ} {i : J} (hm : m ≠ weightOf k i) :
     wt k m ≤ LinearMap.ker (Finsupp.lapply (M := ℂ) (R := ℂ) i) := by
   rcases weight_cases (k := k) m with ⟨j, rfl⟩ | ⟨j, rfl⟩ | h
@@ -262,6 +334,9 @@ theorem wt_le_ker_lapply {m : ℤ} {i : J} (hm : m ≠ weightOf k i) :
     rintro rfl; exact hm rfl
   · rw [h]; exact bot_le
 
+/--
+@isnad1 id=isupinde.1h1v.s5.4459933363ec from=translated src=- shape=f58e0756 vocab=4f010f12
+-/
 theorem iSupIndep_wt : iSupIndep (wt k) := by
   rw [iSupIndep_def]
   intro n
@@ -282,6 +357,9 @@ theorem iSupIndep_wt : iSupIndep (wt k) := by
     simp [b_apply]
   · rw [h]; exact disjoint_bot_left
 
+/--
+@isnad1 id=eq.1h1v.s7.bb87f5591244 from=translated src=- shape=e83b994e vocab=a09179c5
+-/
 theorem iSup_wt : (⨆ n : ℤ, wt k n) = ⊤ := by
   rw [Submodule.eq_top_iff']
   intro v
@@ -292,6 +370,9 @@ theorem iSup_wt : (⨆ n : ℤ, wt k n) = ⊤ := by
     rw [single_eq_smul_b]
     exact Submodule.smul_mem _ _ (Submodule.mem_iSup_of_mem (weightOf k i) (b_mem_wt hk i))
 
+/--
+@isnad1 id=isgl2rea.1h1v.s5.8307f7244c22 from=translated src=- shape=3804618e vocab=089f5bc9
+-/
 theorem isGL2RealKTypeModule : IsGL2RealKTypeModule (wt k) (E k) (L k) ε where
   isInternal := DirectSum.isInternal_submodule_of_iSupIndep_of_iSup_eq_top
     (iSupIndep_wt hk) (iSup_wt hk)
@@ -302,12 +383,18 @@ theorem isGL2RealKTypeModule : IsGL2RealKTypeModule (wt k) (E k) (L k) ε where
   refl_comp_refl := refl_comp_refl
   refl_comp_raise := refl_comp_raise
 
+/--
+@isnad1 id=finitedi.1h2v.s7.b4f00e1e7837 from=translated src=- shape=93da0078 vocab=3b242710
+-/
 theorem finiteDimensional_wt (n : ℤ) : FiniteDimensional ℂ (wt k n) := by
   rcases weight_cases (k := k) n with ⟨j, rfl⟩ | ⟨j, rfl⟩ | h
   · rw [wt_inl]; infer_instance
   · rw [wt_inr hk]; infer_instance
   · rw [h]; infer_instance
 
+/--
+@isnad1 id=iff.1h2v.s6.ae8e7bceaaaf from=translated src=- shape=51ee94a4 vocab=3dba56c2
+-/
 theorem wt_ne_bot_iff (n : ℤ) : wt k n ≠ ⊥ ↔ (k ≤ |n| ∧ Even (n - k)) := by
   rcases weight_cases (k := k) n with ⟨j, rfl⟩ | ⟨j, rfl⟩ | h
   · rw [wt_inl]
@@ -338,6 +425,9 @@ theorem wt_ne_bot_iff (n : ℤ) : wt k n ≠ ⊥ ↔ (k ≤ |n| ∧ Even (n - k)
       exact b_ne_zero _ (Submodule.span_singleton_eq_bot.mp h)
 
 omit hk in
+/--
+@isnad1 id=infinite.0h1v.s6.6618aebeeea9 from=translated src=- shape=8161d38a vocab=796c045f
+-/
 theorem infinite_support : {n : ℤ | wt k n ≠ ⊥}.Infinite := by
   have hinj : Function.Injective fun j : ℕ => k + 2 * (j : ℤ) := by
     intro a b hab; simp only at hab; omega
@@ -346,6 +436,9 @@ theorem infinite_support : {n : ℤ | wt k n ≠ ⊥}.Infinite := by
   rw [wt_inl]
   simp [b_ne_zero]
 
+/--
+@isnad1 id=iff.1h2v.s7.673fed43e6a6 from=translated src=- shape=8ed88244 vocab=32c60888
+-/
 theorem lowestWeight_iff (k' : ℤ) : (∃ v ∈ wt k k', v ≠ 0 ∧ L k v = 0) ↔ k' = k := by
   constructor
   · rintro ⟨v, hv, hv0, hL⟩
@@ -384,6 +477,9 @@ theorem lowestWeight_iff (k' : ℤ) : (∃ v ∈ wt k k', v ≠ 0 ∧ L k v = 0)
       simpa [weightOf] using this
     · rw [L_b]; rfl
 
+/--
+@isnad1 id=ex.3h2v.s8.b1c48d8e2382 from=translated src=- shape=5ab99347 vocab=2f161584
+-/
 theorem exists_b_mem {W : Submodule ℂ (J →₀ ℂ)} (hW : W ≤ ⨆ n : ℤ, W ⊓ wt k n) (hW0 : W ≠ ⊥) :
     ∃ i : J, b i ∈ W := by
   by_contra hcon
@@ -405,6 +501,9 @@ theorem exists_b_mem {W : Submodule ℂ (J →₀ ℂ)} (hW : W ≤ ⨆ n : ℤ,
   simp [hall]
 
 omit hk in
+/--
+@isnad1 id=mem.3h3v.s8.50f05b7f3217 from=translated src=- shape=5185578c vocab=e7dfae09
+-/
 theorem b_inl_zero_mem {W : Submodule ℂ (J →₀ ℂ)} (hL : W.map (L k) ≤ W) (hε : W.map ε ≤ W)
     {i : J} (hi : b i ∈ W) : b (Sum.inl 0) ∈ W := by
 
@@ -428,6 +527,9 @@ theorem b_inl_zero_mem {W : Submodule ℂ (J →₀ ℂ)} (hL : W.map (L k) ≤ 
     have := Submodule.smul_mem W (-((j + 1 : ℕ) : ℂ))⁻¹ h1
     rwa [smul_smul, inv_mul_cancel₀ hne, one_smul] at this
 
+/--
+@isnad1 id=mem.4h3v.s8.795cc00eef35 from=translated src=- shape=71ae3598 vocab=854243e9
+-/
 theorem b_mem_all {W : Submodule ℂ (J →₀ ℂ)} (hE : W.map (E k) ≤ W) (hε : W.map ε ≤ W)
     (h0 : b (Sum.inl 0) ∈ W) (i : J) : b i ∈ W := by
   have hpos : ∀ j : ℕ, b (Sum.inl j) ∈ W := by
@@ -451,6 +553,9 @@ theorem b_mem_all {W : Submodule ℂ (J →₀ ℂ)} (hE : W.map (E k) ≤ W) (h
     have := hε (Submodule.mem_map_of_mem (hpos j))
     rwa [ε_b] at this
 
+/--
+@isnad1 id=isirredu.1h1v.s5.de7ca94ee969 from=translated src=- shape=3804618e vocab=f7a1503f
+-/
 theorem isIrreducible : IsIrreducibleGL2RealKTypeModule (wt k) (E k) (L k) ε := by
   refine ⟨⟨b (Sum.inl 0), b_ne_zero _⟩, fun W hW => ?_⟩
   obtain ⟨hgr, hE, hL, hε⟩ := hW
@@ -471,6 +576,9 @@ theorem isIrreducible : IsIrreducibleGL2RealKTypeModule (wt k) (E k) (L k) ε :=
 end AutomorphicForm.GL2RealDiscreteSeriesModel
 
 open AutomorphicForm.GL2RealDiscreteSeriesModel in
+/--
+@isnad1 id=ex.1h1v.s8.4fabba59dcea from=translated src=- shape=aa4612dd vocab=fdf35af5
+-/
 theorem solution (k : ℤ) (hk : 1 ≤ k) :
     ∃ (M : Type) (_ : AddCommGroup M) (_ : Module ℂ M) (wt : ℤ → Submodule ℂ M)
       (E L ε : M →ₗ[ℂ] M),

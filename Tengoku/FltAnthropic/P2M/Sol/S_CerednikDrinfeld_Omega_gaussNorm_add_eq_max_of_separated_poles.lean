@@ -21,28 +21,49 @@ local notation "v" => (Valued.v (R := K) (Γ₀ := Γ₀))
 
 def gauss (P : K[X]) : Γ₀ := P.support.sup fun i => Valued.v (P.coeff i)
 
+/--
+@isnad1 id=le.0h4v.s6.b1fe9359c3a8 from=translated src=- shape=11cefddc vocab=ad3bf64d
+-/
 theorem v_coeff_le_gauss (P : K[X]) (i : ℕ) : v (P.coeff i) ≤ gauss P := by
   by_cases h : i ∈ P.support
   · exact Finset.le_sup (f := fun i => v (P.coeff i)) h
   · rw [Polynomial.notMem_support_iff.1 h, map_zero]; exact zero_le
 
+/--
+@isnad1 id=le.1h4v.s7.5a74a6acde4e from=translated src=- shape=3f2da2aa vocab=ad3bf64d
+-/
 theorem gauss_le {P : K[X]} {γ : Γ₀} (h : ∀ i, v (P.coeff i) ≤ γ) : gauss P ≤ γ :=
   Finset.sup_le fun i _ => h i
 
+/--
+@isnad1 id=eq.0h2v.s6.7311624c91a6 from=translated src=- shape=9c79a9c7 vocab=d5413d74
+-/
 theorem gauss_zero : gauss (0 : K[X]) = 0 := by simp [gauss, bot_eq_zero]
 
+/--
+@isnad1 id=ex.1h3v.s7.7cac75c25b88 from=translated src=- shape=b0e46f6c vocab=67727bc0
+-/
 theorem exists_eq_gauss {P : K[X]} (hP : P ≠ 0) : ∃ i ∈ P.support, v (P.coeff i) = gauss P := by
   obtain ⟨i, hi, h⟩ := Finset.exists_mem_eq_sup P.support (Polynomial.support_nonempty.2 hP)
     (fun i => v (P.coeff i))
   exact ⟨i, hi, h.symm⟩
 
+/--
+@isnad1 id=lt.1h3v.s6.1e0330d78fd3 from=translated src=- shape=79beeff0 vocab=0e18ae2f
+-/
 theorem gauss_pos {P : K[X]} (hP : P ≠ 0) : 0 < gauss P := by
   obtain ⟨i, hi, h⟩ := exists_eq_gauss hP
   rw [← h, Valuation.pos_iff]
   exact Polynomial.mem_support_iff.1 hi
 
+/--
+@isnad1 id=ne.1h3v.s6.7dea5a375291 from=translated src=- shape=efa27e57 vocab=d5413d74
+-/
 theorem gauss_ne_zero {P : K[X]} (hP : P ≠ 0) : gauss P ≠ 0 := (gauss_pos hP).ne'
 
+/--
+@isnad1 id=eq.0h3v.s7.a78a27168186 from=translated src=- shape=11c4bf8f vocab=4679dcc1
+-/
 theorem gauss_C (a : K) : gauss (C a : K[X]) = v a := by
   apply le_antisymm
   · exact gauss_le fun i => by
@@ -51,11 +72,17 @@ theorem gauss_C (a : K) : gauss (C a : K[X]) = v a := by
       · rw [map_zero]; exact zero_le
   · simpa using v_coeff_le_gauss (C a) 0
 
+/--
+@isnad1 id=le.0h4v.s7.f0cbe260a6a3 from=translated src=- shape=5e2fe8b4 vocab=6995ba4d
+-/
 theorem gauss_add_le (P Q : K[X]) : gauss (P + Q) ≤ max (gauss P) (gauss Q) :=
   gauss_le fun i => by
     rw [coeff_add]
     exact (Valuation.map_add _ _ _).trans (max_le_max (v_coeff_le_gauss P i) (v_coeff_le_gauss Q i))
 
+/--
+@isnad1 id=eq.1h4v.s7.2bb23a503897 from=translated src=- shape=a1322cb0 vocab=f35dc6df
+-/
 theorem gauss_add_eq_of_lt {P Q : K[X]} (h : gauss Q < gauss P) : gauss (P + Q) = gauss P := by
   apply le_antisymm ((gauss_add_le P Q).trans (max_le le_rfl h.le))
   have hP : P ≠ 0 := by rintro rfl; rw [gauss_zero] at h; exact not_lt_of_ge zero_le h
@@ -64,6 +91,9 @@ theorem gauss_add_eq_of_lt {P Q : K[X]} (h : gauss Q < gauss P) : gauss (P + Q) 
   calc gauss P = v ((P + Q).coeff i) := by rw [coeff_add, Valuation.map_add_eq_of_lt_left _ hlt, hi]
     _ ≤ gauss (P + Q) := v_coeff_le_gauss _ _
 
+/--
+@isnad1 id=eq.0h4v.s8.296f1ca2cc4e from=translated src=- shape=fb17973c vocab=d0c306cc
+-/
 theorem gauss_mul_X_sub_C (P : K[X]) (α : K) : gauss (P * (X - C α)) = gauss P * max 1 (v α) := by
   by_cases hP : P = 0
   · rw [hP, zero_mul, gauss_zero, zero_mul]
@@ -123,6 +153,9 @@ theorem gauss_mul_X_sub_C (P : K[X]) (α : K) : gauss (P * (X - C α)) = gauss P
       calc gauss P * v α = v ((P * (X - C α)).coeff (I.min' hI)) := (key _ rfl).symm
         _ ≤ gauss (P * (X - C α)) := v_coeff_le_gauss _ _
 
+/--
+@isnad1 id=eq.0h4v.s8.1aed09aa6b9e from=translated src=- shape=9c3b23c7 vocab=9f829896
+-/
 theorem gauss_mul_prod_X_sub_C (P : K[X]) (s : Multiset K) :
     gauss (P * (s.map fun α => X - C α).prod) = gauss P * (s.map fun α => max 1 (v α)).prod := by
   induction s using Multiset.induction_on generalizing P with
@@ -139,11 +172,17 @@ theorem eq_C_mul_prod (P : K[X]) : P = C P.leadingCoeff * (P.roots.map fun α =>
   (C_leadingCoeff_mul_prod_multiset_X_sub_C
     ((splits_iff_card_roots.1 (IsAlgClosed.splits P)).symm ▸ rfl)).symm
 
+/--
+@isnad1 id=eq.0h3v.s7.3c1dbaba2813 from=translated src=- shape=4765628c vocab=721021fa
+-/
 theorem gauss_eq_prod_roots (P : K[X]) :
     gauss P = v P.leadingCoeff * (P.roots.map fun α => max 1 (v α)).prod := by
   conv_lhs => rw [eq_C_mul_prod P]
   rw [gauss_mul_prod_X_sub_C, gauss_C]
 
+/--
+@isnad1 id=eq.0h4v.s7.f6387074d26a from=translated src=- shape=c89bee37 vocab=57f67271
+-/
 theorem gauss_mul (P Q : K[X]) : gauss (P * Q) = gauss P * gauss Q := by
   by_cases hP : P = 0
   · rw [hP, zero_mul, gauss_zero, zero_mul]
@@ -153,6 +192,9 @@ theorem gauss_mul (P Q : K[X]) : gauss (P * Q) = gauss P * gauss Q := by
     roots_mul (mul_ne_zero hP hQ), Multiset.map_add, Multiset.prod_add]
   exact mul_mul_mul_comm _ _ _ _
 
+/--
+@isnad1 id=eq.1h3v.s7.895823133bd0 from=translated src=- shape=a2e99d3b vocab=520e2043
+-/
 theorem gauss_eq_coeff_zero_of_roots (Q : K[X]) (h : ∀ α ∈ Q.roots, 1 ≤ v α) : gauss Q = v (Q.coeff 0) := by
   rw [(IsAlgClosed.splits Q).coeff_zero_eq_leadingCoeff_mul_prod_roots, map_mul, map_mul, map_pow,
     Valuation.map_neg, map_one, one_pow, one_mul, gauss_eq_prod_roots, map_multiset_prod]
@@ -169,6 +211,9 @@ variable {K : Type} [Field K] {Γ₀ : Type} [LinearOrderedCommGroupWithZero Γ�
 
 local notation "v" => (Valued.v (R := K) (Γ₀ := Γ₀))
 
+/--
+@isnad1 id=and.1h3v.s9.e5a251d5d3c3 from=translated src=- shape=ded02603 vocab=4c07b204
+-/
 theorem prod_X_sub_C_coeff_of_lt_one (s : Multiset K) (hs : ∀ α ∈ s, v α < 1) :
     (∀ i, v (((s.map fun α => X - C α).prod).coeff i) ≤ 1) ∧
       ∀ i < Multiset.card s, v (((s.map fun α => X - C α).prod).coeff i) < 1 := by
@@ -202,6 +247,9 @@ theorem prod_X_sub_C_coeff_of_lt_one (s : Multiset K) (hs : ∀ α ∈ s, v α <
       · rw [hcs]
         exact (Valuation.map_sub _ _ _).trans_lt (max_lt (ih2 a (by omega)) (hbound _))
 
+/--
+@isnad1 id=and.1h3v.s9.67d2381851a2 from=translated src=- shape=0a7bcc6a vocab=7afbb8f3
+-/
 theorem prod_X_sub_C_coeff_of_one_lt (s : Multiset K) (hs : ∀ α ∈ s, 1 < v α) :
     ((s.map fun α => X - C α).prod).coeff 0 ≠ 0 ∧
       ∀ i, 0 < i → v (((s.map fun α => X - C α).prod).coeff i) < v (((s.map fun α => X - C α).prod).coeff 0) := by
@@ -243,15 +291,24 @@ section AlgClosed
 
 variable [IsAlgClosed K]
 
+/--
+@isnad1 id=eq.0h2v.s5.c2bbf2fe65b8 from=translated src=- shape=9e3fbd46 vocab=e1331d93
+-/
 theorem natDegree_eq_card_roots' (Q : K[X]) : Q.natDegree = Multiset.card Q.roots :=
   (IsAlgClosed.splits Q).natDegree_eq_card_roots
 
+/--
+@isnad1 id=eq.1h3v.s7.93b73e425c1f from=translated src=- shape=02998036 vocab=157976c3
+-/
 theorem gauss_eq_lc_of_roots (Q : K[X]) (h : ∀ α ∈ Q.roots, v α ≤ 1) : gauss Q = v Q.leadingCoeff := by
   rw [gauss_eq_prod_roots]
   have : (Q.roots.map fun α => max 1 (v α)) = Q.roots.map fun _ => (1 : Γ₀) :=
     Multiset.map_congr rfl fun α hα => max_eq_left (h α hα)
   rw [this, Multiset.map_const', Multiset.prod_replicate, one_pow, mul_one]
 
+/--
+@isnad1 id=lt.2h4v.s8.3692ce6a7fe1 from=translated src=- shape=815800d4 vocab=70712c57
+-/
 theorem coeff_lt_lc_of_roots (Q : K[X]) (h : ∀ α ∈ Q.roots, v α < 1) :
     ∀ j < Q.natDegree, v (Q.coeff j) < v Q.leadingCoeff := fun j hj => by
   have hQ : Q ≠ 0 := by rintro rfl; simp at hj
@@ -262,6 +319,9 @@ theorem coeff_lt_lc_of_roots (Q : K[X]) (h : ∀ α ∈ Q.roots, v α < 1) :
         mul_lt_mul_of_pos_left h2 ((Valuation.pos_iff _).2 (leadingCoeff_ne_zero.2 hQ))
     _ = _ := mul_one _
 
+/--
+@isnad1 id=lt.3h4v.s8.c54804ff3f99 from=translated src=- shape=fc52e15a vocab=09cc2768
+-/
 theorem coeff_lt_coeff_zero_of_roots (Q : K[X]) (hQ : Q ≠ 0) (h : ∀ α ∈ Q.roots, 1 < v α) :
     ∀ j, 0 < j → v (Q.coeff j) < v (Q.coeff 0) := fun j hj => by
   obtain ⟨_, h2⟩ := prod_X_sub_C_coeff_of_one_lt Q.roots h
@@ -270,6 +330,9 @@ theorem coeff_lt_coeff_zero_of_roots (Q : K[X]) (hQ : Q ≠ 0) (h : ∀ α ∈ Q
   rw [map_mul, map_mul]
   exact mul_lt_mul_of_pos_left (h2 j hj) ((Valuation.pos_iff _).2 (leadingCoeff_ne_zero.2 hQ))
 
+/--
+@isnad1 id=eq.4h6v.s9.a156dd5e0332 from=translated src=- shape=1d55d95f vocab=f2076478
+-/
 theorem orth_outer (PA QA PB QB : K[X]) (hQB : QB ≠ 0) (hdeg : PA.degree < QA.degree)
     (hA : ∀ α ∈ QA.roots, v α < 1) (hB : ∀ β ∈ QB.roots, 1 ≤ v β) :
     gauss (PA * QB + PB * QA) = max (gauss (PA * QB)) (gauss (PB * QA)) := by
@@ -341,6 +404,9 @@ theorem orth_outer (PA QA PB QB : K[X]) (hQB : QB ≠ 0) (hdeg : PA.degree < QA.
         rw [coeff_add, Valuation.map_add_eq_of_lt_left _ hlt, hFa0, ← hgF, h]
     _ ≤ gauss (PA * QB + PB * QA) := v_coeff_le_gauss _ _
 
+/--
+@isnad1 id=eq.5h6v.s9.a0029922368c from=translated src=- shape=9c541db6 vocab=f2076478
+-/
 theorem orth_inner (PA QA PB QB : K[X]) (hQA : QA ≠ 0) (hQB : QB ≠ 0) (hdeg : PA.degree < QA.degree)
     (hA : ∀ α ∈ QA.roots, v α ≤ 1) (hB : ∀ β ∈ QB.roots, 1 < v β) :
     gauss (PA * QB + PB * QA) = max (gauss (PA * QB)) (gauss (PB * QA)) := by
@@ -428,6 +494,9 @@ end IdOrth
 
 end
 
+/--
+@isnad1 id=eq.4h6v.s10.6cb2db891cea from=translated src=- shape=9fe9fc00 vocab=4b315266
+-/
 theorem solution
     (K : Type) [Field K] {Γ₀ : Type} [LinearOrderedCommGroupWithZero Γ₀] [Valued K Γ₀] [IsAlgClosed K]
     (PA QA PB QB : Polynomial K) (hQA : QA ≠ 0) (hQB : QB ≠ 0) (hdeg : PA.degree < QA.degree)

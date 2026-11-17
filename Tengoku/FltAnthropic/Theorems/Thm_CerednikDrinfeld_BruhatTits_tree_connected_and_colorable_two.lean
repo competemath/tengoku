@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open CerednikDrinfeld.BruhatTits LT.LatticeTree
 
+/--
+@isnad1 id=and.0h2v.s6.ded60d552629 from=translated src=- shape=be1858a4 vocab=fb075cab
+-/
 theorem CerednikDrinfeld.BruhatTits.tree_connected_and_colorable_two
     (R : Type) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     (K : Type) [Field K] [Algebra R K] [IsFractionRing R K] :

@@ -11,6 +11,9 @@ set_option autoImplicit false
 open scoped MatrixGroups
 open _root_.CerednikDrinfeld.Omega hiding theta_pmoebius_basePoint_mul_inv
 
+/--
+@isnad1 id=eq.6h9v.s10.3d43dbaefdc1 from=translated src=- shape=b496fe53 vocab=47a70192
+-/
 theorem CerednikDrinfeld.Omega.period_eq_period_of_mem_upperHalfPlane
     {K₀ : Type*} [Field K₀] {K : Type*} [Field K] [Algebra K₀ K] [DecidableEq K]
     [TopologicalSpace K] [IsTopologicalRing K] [T2Space K]

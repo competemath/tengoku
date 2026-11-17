@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_CerednikDrinfeld_exists_ringEquiv_padicInt
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.5h4v.s9.17d5de48d622 from=translated src=- shape=f408301f vocab=783e966b
+-/
 theorem CerednikDrinfeld.exists_ringEquiv_padicInt_algebraMap_apply_eq_of_isAdicComplete_of_natCard_quotient_eq
     (r : ℕ) [Fact r.Prime]
     (𝒪 : Type) [CommRing 𝒪] [IsDomain 𝒪] [CharZero 𝒪] (hdvr : IsDiscreteValuationRing 𝒪)

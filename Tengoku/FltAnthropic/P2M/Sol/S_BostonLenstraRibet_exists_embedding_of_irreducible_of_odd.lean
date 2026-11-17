@@ -15,6 +15,9 @@ variable {k : Type*} [Field k] {G : Type*} [Group G]
   {V : Type*} [AddCommGroup V] [Module k V]
   {ρV : Representation k G V} {ρ : G → Matrix (Fin 2) (Fin 2) k}
 
+/--
+@isnad1 id=eq.1h6v.s11.f6e1c8d041b3 from=translated src=- shape=4f64da25 vocab=fb7aac75
+-/
 theorem sq_eq
     (hCH : ∀ σ : G, ρV σ * ρV σ - (ρ σ).trace • ρV σ
       + (ρ σ).det • (1 : Module.End k V) = 0) (σ : G) :
@@ -24,6 +27,9 @@ theorem sq_eq
   rw [eq_sub_iff_add_eq]
   exact h
 
+/--
+@isnad1 id=eq.1h6v.s11.f55e36e045f8 from=translated src=- shape=b27b257a vocab=2963d823
+-/
 theorem det_smul_inv
     (hCH : ∀ σ : G, ρV σ * ρV σ - (ρ σ).trace • ρV σ
       + (ρ σ).det • (1 : Module.End k V) = 0) (σ : G) :
@@ -41,6 +47,9 @@ theorem det_smul_inv
   rw [add_comm]
   exact h
 
+/--
+@isnad1 id=eq.2h7v.s12.8abec4f4ee24 from=translated src=- shape=9f46e76c vocab=fb7aac75
+-/
 theorem mul_sq_eq (hρ : ∀ σ τ : G, ρ (σ * τ) = ρ σ * ρ τ)
     (hCH : ∀ σ : G, ρV σ * ρV σ - (ρ σ).trace • ρV σ
       + (ρ σ).det • (1 : Module.End k V) = 0) (σ τ : G) :
@@ -50,6 +59,9 @@ theorem mul_sq_eq (hρ : ∀ σ τ : G, ρ (σ * τ) = ρ σ * ρ τ)
   rw [map_mul, hρ, Matrix.det_mul] at h
   exact h
 
+/--
+@isnad1 id=eq.2h7v.s12.d4f5e318784b from=translated src=- shape=b91ee025 vocab=fb7aac75
+-/
 theorem polarized (hρ : ∀ σ τ : G, ρ (σ * τ) = ρ σ * ρ τ)
     (hCH : ∀ σ : G, ρV σ * ρV σ - (ρ σ).trace • ρV σ
       + (ρ σ).det • (1 : Module.End k V) = 0) (σ τ : G) :
@@ -100,23 +112,38 @@ theorem polarized (hρ : ∀ σ τ : G, ρ (σ * τ) = ρ σ * ρ τ)
   abel
 
 omit [Group G] in
+/--
+@isnad1 id=eq.0h4v.s7.ba3b0804a093 from=translated src=- shape=55671c4d vocab=52c34708
+-/
 theorem trace_eq_entries (τ : G) : (ρ τ).trace = ρ τ 0 0 + ρ τ 1 1 :=
   Matrix.trace_fin_two _
 
 omit [Group G] in
+/--
+@isnad1 id=eq.1h7v.s9.f86c389ff33f from=translated src=- shape=d8add069 vocab=9a9b322e
+-/
 theorem trace_mul_diag {σ₀ : G} {α β : k} (hσ₀ : ρ σ₀ = !![α, 0; 0, β]) (τ : G) :
     (ρ σ₀ * ρ τ).trace = α * ρ τ 0 0 + β * ρ τ 1 1 := by
   rw [hσ₀, Matrix.trace_fin_two]
   simp [Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.1h5v.s8.fcd0856228e7 from=translated src=- shape=2bb01522 vocab=25939da9
+-/
 theorem entry_mul_00 (hρ : ∀ σ τ : G, ρ (σ * τ) = ρ σ * ρ τ) (τ υ : G) :
     ρ (τ * υ) 0 0 = ρ τ 0 0 * ρ υ 0 0 + ρ τ 0 1 * ρ υ 1 0 := by
   rw [hρ, Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.1h5v.s8.800b287c0815 from=translated src=- shape=2bb01522 vocab=25939da9
+-/
 theorem entry_mul_11 (hρ : ∀ σ τ : G, ρ (σ * τ) = ρ σ * ρ τ) (τ υ : G) :
     ρ (τ * υ) 1 1 = ρ τ 1 0 * ρ υ 0 1 + ρ τ 1 1 * ρ υ 1 1 := by
   rw [hρ, Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=ex.7h10v.s11.4e841057451f from=translated src=- shape=e9c2c2bd vocab=26e890e9
+-/
 theorem exists_embedding
     (hρ : ∀ σ τ : G, ρ (σ * τ) = ρ σ * ρ τ)
     (hCH : ∀ σ : G, ρV σ * ρV σ - (ρ σ).trace • ρV σ
@@ -477,15 +504,24 @@ section Conjugation
 
 variable {P Q : Matrix (Fin 2) (Fin 2) k}
 
+/--
+@isnad1 id=eq.1h4v.s8.7d57d1a3d8e0 from=translated src=- shape=41697e99 vocab=035caf25
+-/
 theorem trace_conj (hPQ : P * Q = 1) (A : Matrix (Fin 2) (Fin 2) k) :
     (Q * A * P).trace = A.trace := by
   rw [Matrix.trace_mul_cycle, hPQ, one_mul]
 
+/--
+@isnad1 id=eq.1h4v.s8.7347cc4c0bb5 from=translated src=- shape=41697e99 vocab=6dc2445f
+-/
 theorem det_conj (hPQ : P * Q = 1) (A : Matrix (Fin 2) (Fin 2) k) :
     (Q * A * P).det = A.det := by
   rw [Matrix.det_mul, Matrix.det_mul, mul_comm, ← mul_assoc, ← Matrix.det_mul, hPQ,
     Matrix.det_one, one_mul]
 
+/--
+@isnad1 id=eq.2h7v.s10.3f0bb7e0cb85 from=translated src=- shape=24193888 vocab=8c8c6e45
+-/
 theorem conj_mul {ρ : G → Matrix (Fin 2) (Fin 2) k}
     (hρ : ∀ σ τ : G, ρ (σ * τ) = ρ σ * ρ τ) (hPQ : P * Q = 1) (σ τ : G) :
     Q * ρ (σ * τ) * P = (Q * ρ σ * P) * (Q * ρ τ * P) := by
@@ -499,6 +535,9 @@ section Involution
 
 variable {A : Matrix (Fin 2) (Fin 2) k}
 
+/--
+@isnad1 id=ex.3h2v.s10.c43459ab3b3f from=translated src=- shape=306b7dd9 vocab=1cf7feff
+-/
 theorem exists_conj_diag_of_invol (hA2 : A * A = 1) (hdet : A.det = -1) (h2 : (2 : k) ≠ 0) :
     ∃ P Q : Matrix (Fin 2) (Fin 2) k,
       Q * P = 1 ∧ P * Q = 1 ∧ Q * A * P = !![(1 : k), 0; 0, -1] := by
@@ -632,6 +671,9 @@ variable {ρ : G → Matrix (Fin 2) (Fin 2) k}
 
 omit [Group G] in
 
+/--
+@isnad1 id=ex.1h3v.s10.3cc68851fffb from=translated src=- shape=9be13498 vocab=4594c368
+-/
 theorem exists_entry_one_zero_ne_zero
     (hirr : ∀ W : Submodule k (Fin 2 → k),
       (∀ g, ∀ v ∈ W, (ρ g).mulVec v ∈ W) → W = ⊥ ∨ W = ⊤) :
@@ -662,6 +704,9 @@ theorem exists_entry_one_zero_ne_zero
 
 omit [Group G] in
 
+/--
+@isnad1 id=ex.1h3v.s10.5eb0cd397847 from=translated src=- shape=9be13498 vocab=4594c368
+-/
 theorem exists_entry_zero_one_ne_zero
     (hirr : ∀ W : Submodule k (Fin 2 → k),
       (∀ g, ∀ v ∈ W, (ρ g).mulVec v ∈ W) → W = ⊥ ∨ W = ⊤) :
@@ -696,6 +741,9 @@ variable {ρ : G → Matrix (Fin 2) (Fin 2) k} {P Q : Matrix (Fin 2) (Fin 2) k}
 
 omit [Group G] in
 
+/--
+@isnad1 id=or.4h6v.s11.1fc0b14f840f from=translated src=- shape=3f088435 vocab=b475fbdd
+-/
 theorem irreducible_conj
     (hirr : ∀ W : Submodule k (Fin 2 → k),
       (∀ g, ∀ v ∈ W, (ρ g).mulVec v ∈ W) → W = ⊥ ∨ W = ⊤)
@@ -742,6 +790,9 @@ section Application
 variable {V : Type*} [AddCommGroup V] [Module k V]
   {ρV : Representation k G V} {ρ : G → Matrix (Fin 2) (Fin 2) k}
 
+/--
+@isnad1 id=ex.7h6v.s12.261a74077a8a from=translated src=- shape=edc4b7e7 vocab=11041bca
+-/
 theorem exists_embedding_of_irreducible_of_odd_aux
     (hρ : ∀ σ τ : G, ρ (σ * τ) = ρ σ * ρ τ)
     (hCH : ∀ σ : G, ρV σ * ρV σ - (ρ σ).trace • ρV σ
@@ -797,6 +848,9 @@ end Application
 
 end BostonLenstraRibet
 
+/--
+@isnad1 id=ex.7h6v.s12.261a74077a8a from=translated src=- shape=edc4b7e7 vocab=11041bca
+-/
 theorem solution {k : Type*} [Field k] {G : Type*} [Group G]
     {V : Type*} [AddCommGroup V] [Module k V]
     {ρV : Representation k G V} {ρ : G → Matrix (Fin 2) (Fin 2) k}

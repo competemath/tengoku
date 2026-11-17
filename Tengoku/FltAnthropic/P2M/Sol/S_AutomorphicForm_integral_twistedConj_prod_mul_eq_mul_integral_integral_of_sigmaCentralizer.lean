@@ -26,6 +26,9 @@ section Closed
 
 variable {G : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [T2Space G]
 
+/--
+@isnad1 id=isclosed.1h3v.s6.7738b5ab7a0c from=translated src=- shape=c2e5f1b5 vocab=35ea62ca
+-/
 theorem isClosed_sigmaCentralizer {θ : G →* G} (hθ : Continuous θ) (δ : G) :
     IsClosed (AutomorphicForm.sigmaCentralizer θ δ : Set G) := by
   have h : (AutomorphicForm.sigmaCentralizer θ δ : Set G) = (fun t => t * δ * (θ t)⁻¹) ⁻¹' {δ} := by
@@ -40,6 +43,9 @@ section Algebra
 
 variable {G₁ G₂ : Type} [Group G₁] [Group G₂]
 
+/--
+@isnad1 id=iff.0h7v.s7.43a40a22ba3e from=translated src=- shape=1fe6ea94 vocab=a5590bdc
+-/
 theorem mem_sigmaCentralizer_prodMap_iff (θ₁ : G₁ →* G₁) (θ₂ : G₂ →* G₂) (δ₁ : G₁) (δ₂ : G₂) (t : G₁ × G₂) :
     t ∈ AutomorphicForm.sigmaCentralizer (θ₁.prodMap θ₂) (δ₁, δ₂) ↔
       t.1 ∈ AutomorphicForm.sigmaCentralizer θ₁ δ₁ ∧ t.2 ∈ AutomorphicForm.sigmaCentralizer θ₂ δ₂ := by
@@ -85,6 +91,9 @@ variable [SecondCountableTopology G₁] [SecondCountableTopology G₂]
 
 omit [SecondCountableTopology G₁] in
 
+/--
+@isnad1 id=eq.0h9v.s11.0f9b748c8061 from=translated src=- shape=a5c554cf vocab=77589ba5
+-/
 theorem integral_prodTorusMeasure (θ₁ : G₁ →* G₁) (θ₂ : G₂ →* G₂) (δ₁ : G₁) (δ₂ : G₂)
     (τ₁ : @Measure (AutomorphicForm.sigmaCentralizer θ₁ δ₁) (borel _))
     (τ₂ : @Measure (AutomorphicForm.sigmaCentralizer θ₂ δ₂) (borel _))
@@ -107,6 +116,9 @@ theorem integral_prodTorusMeasure (θ₁ : G₁ →* G₁) (θ₂ : G₂ →* G�
 
 omit [SecondCountableTopology G₁] in
 
+/--
+@isnad1 id=eq.0h11v.s10.9fb11dd66ee8 from=translated src=- shape=e960d4e0 vocab=e3f2f156
+-/
 theorem integral_prodTorusMeasure_mul (θ₁ : G₁ →* G₁) (θ₂ : G₂ →* G₂) (δ₁ : G₁) (δ₂ : G₂)
     (τ₁ : @Measure (AutomorphicForm.sigmaCentralizer θ₁ δ₁) (borel _))
     (τ₂ : @Measure (AutomorphicForm.sigmaCentralizer θ₂ δ₂) (borel _))
@@ -137,6 +149,9 @@ variable {G₁ G₂ : Type} [Group G₁] [TopologicalSpace G₁] [IsTopologicalG
 
 omit [SecondCountableTopology G₁] in
 
+/--
+@isnad1 id=ishaarme.4h8v.s10.8dd3ed335d7e from=translated src=- shape=3fc4792a vocab=7aef2df9
+-/
 theorem isHaarMeasure_prodTorusMeasure (θ₁ : G₁ →* G₁) (θ₂ : G₂ →* G₂) (δ₁ : G₁) (δ₂ : G₂)
     (τ₁ : @Measure (AutomorphicForm.sigmaCentralizer θ₁ δ₁) (borel _))
     (τ₂ : @Measure (AutomorphicForm.sigmaCentralizer θ₂ δ₂) (borel _))
@@ -173,6 +188,9 @@ variable {G₁ G₂ : Type} [Group G₁] [TopologicalSpace G₁] [IsTopologicalG
 
 omit [T2Space G₁] [T2Space G₂] in
 
+/--
+@isnad1 id=ex.3h5v.s8.8e348d330f19 from=translated src=- shape=cae08ff0 vocab=a0dc06ae
+-/
 theorem exists_integral_eq_mul_integral_integral (μ : @Measure (G₁ × G₂) (borel _))
     (hμ : @Measure.IsHaarMeasure (G₁ × G₂) _ _ (borel _) μ)
     (μ₁ : @Measure G₁ (borel _)) (h₁ : @Measure.IsHaarMeasure G₁ _ _ (borel _) μ₁)
@@ -202,6 +220,9 @@ theorem exists_integral_eq_mul_integral_integral (μ : @Measure (G₁ × G₂) (
 
 omit [T2Space G₁] [T2Space G₂] in
 
+/--
+@isnad1 id=eq.4h5v.s7.3e454e5024d5 from=translated src=- shape=a74110e7 vocab=f24dc875
+-/
 theorem integral_integral_swap_of_hasCompactSupport (μ₁ : @Measure G₁ (borel _))
     (h₁ : @Measure.IsHaarMeasure G₁ _ _ (borel _) μ₁) (μ₂ : @Measure G₂ (borel _))
     (h₂ : @Measure.IsHaarMeasure G₂ _ _ (borel _) μ₂) (h : G₁ × G₂ → ℂ) (hc : Continuous h)
@@ -232,6 +253,9 @@ variable {G₁ G₂ : Type} [Group G₁] [TopologicalSpace G₁] [IsTopologicalG
 omit [Group G₁] [Group G₂] [LocallyCompactSpace G₁] [LocallyCompactSpace G₂] [IsTopologicalGroup G₁]
   [IsTopologicalGroup G₂] [SecondCountableTopology G₁] [SecondCountableTopology G₂] in
 
+/--
+@isnad1 id=hascompa.2h4v.s6.328d5b0be4b2 from=translated src=- shape=241fb1a5 vocab=ddadd7ab
+-/
 theorem hasCompactSupport_prodWeights {W₁ : G₁ → ℝ} {W₂ : G₂ → ℝ} (hW₁s : HasCompactSupport W₁)
     (hW₂s : HasCompactSupport W₂) : HasCompactSupport fun x : G₁ × G₂ => W₁ x.1 * W₂ x.2 := by
   refine HasCompactSupport.intro (hW₁s.isCompact.prod hW₂s.isCompact) fun x hx => ?_
@@ -242,6 +266,9 @@ theorem hasCompactSupport_prodWeights {W₁ : G₁ → ℝ} {W₂ : G₂ → ℝ
 
 omit [LocallyCompactSpace G₁] [T2Space G₁] [LocallyCompactSpace G₂] [T2Space G₂] [SecondCountableTopology G₁] in
 
+/--
+@isnad1 id=isinvinv.4h8v.s9.e25aa8da7d25 from=translated src=- shape=7dff889a vocab=aae1e309
+-/
 theorem isInvInvariant_prodTorusMeasure (θ₁ : G₁ →* G₁) (θ₂ : G₂ →* G₂) (δ₁ : G₁) (δ₂ : G₂)
     (τ₁ : @Measure (sigmaCentralizer θ₁ δ₁) (borel _)) (τ₂ : @Measure (sigmaCentralizer θ₂ δ₂) (borel _))
     (s₁ : @SFinite _ (borel _) τ₁) (s₂ : @SFinite _ (borel _) τ₂)
@@ -284,6 +311,9 @@ end S30TwistedFubini
 
 open S30TwistedFubini in
 
+/--
+@isnad1 id=ex.10h12v.s12.07f911be4d5d from=translated src=- shape=13c8e0bc vocab=d9049774
+-/
 theorem solution
     {G₁ G₂ : Type} [Group G₁] [TopologicalSpace G₁] [IsTopologicalGroup G₁] [LocallyCompactSpace G₁]
     [SecondCountableTopology G₁] [T2Space G₁]

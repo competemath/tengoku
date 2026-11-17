@@ -10,6 +10,9 @@ universe u
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=existsun.3h8v.s12.d7dd2357913a from=translated src=- shape=e723dbe8 vocab=dd444719
+-/
 theorem LinearMap.existsUnique_baseChange_eq_of_isFractionRing_of_forall_rTensor_apply_eq
     (O : Type u) [CommRing O] [IsDomain O] (K : Type u) [Field K] [Algebra O K] [IsFractionRing O K]
     (Oh : Type u) [CommRing Oh] [Algebra O Oh]

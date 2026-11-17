@@ -26,20 +26,32 @@ def algToUnder {A B : Type u} [CommRing A] [Algebra R A] [CommRing B] [Algebra R
     Under.mk (CommRingCat.ofHom (algebraMap R A)) ⟶ Under.mk (CommRingCat.ofHom (algebraMap R B)) :=
   Under.homMk (CommRingCat.ofHom f.toRingHom) (by ext r; exact f.commutes r)
 
+/--
+@isnad1 id=eq.0h4v.s7.921efbe65839 from=translated src=- shape=7ce38b9d vocab=cee54cef
+-/
 theorem algToUnder_underToAlg {A B : Type u} [CommRing A] [Algebra R A] [CommRing B] [Algebra R B]
     (k : Under.mk (CommRingCat.ofHom (algebraMap R A)) ⟶ Under.mk (CommRingCat.ofHom (algebraMap R B))) :
     algToUnder (underToAlg k) = k :=
   Under.UnderMorphism.ext (CommRingCat.hom_ext (RingHom.ext fun _ => rfl))
 
+/--
+@isnad1 id=eq.0h4v.s6.10dcb16a78be from=translated src=- shape=144d968b vocab=2bbe361a
+-/
 theorem underToAlg_algToUnder {A B : Type u} [CommRing A] [Algebra R A] [CommRing B] [Algebra R B] (f : A →ₐ[R] B) :
     underToAlg (algToUnder f) = f :=
   AlgHom.ext fun _ => rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.aecedb05dc6b from=translated src=- shape=430651f2 vocab=967a250b
+-/
 theorem algToUnder_comp {A B D : Type u} [CommRing A] [Algebra R A] [CommRing B] [Algebra R B] [CommRing D] [Algebra R D]
     (f : A →ₐ[R] B) (g : B →ₐ[R] D) :
     algToUnder (g.comp f) = algToUnder f ≫ algToUnder g :=
   Under.UnderMorphism.ext (CommRingCat.hom_ext (RingHom.ext fun _ => rfl))
 
+/--
+@isnad1 id=eq.0h6v.s8.f22013e00062 from=translated src=- shape=7c10040d vocab=a2317f6e
+-/
 theorem underToAlg_comp {A B D : Type u} [CommRing A] [Algebra R A] [CommRing B] [Algebra R B] [CommRing D] [Algebra R D]
     (k : Under.mk (CommRingCat.ofHom (algebraMap R A)) ⟶ Under.mk (CommRingCat.ofHom (algebraMap R B)))
     (g : Under.mk (CommRingCat.ofHom (algebraMap R B)) ⟶ Under.mk (CommRingCat.ofHom (algebraMap R D))) :
@@ -63,17 +75,26 @@ abbrev Cst : Subalgebra R C₁ :=
   AlgHom.equalizer (φ.toAlgHom.comp (Algebra.TensorProduct.includeLeft : C₁ →ₐ[R] C₁ ⊗[R] S₁))
     (Algebra.TensorProduct.includeRight : C₁ →ₐ[R] S₁ ⊗[R] C₁)
 
+/--
+@isnad1 id=iff.0h5v.s9.81e12d974312 from=translated src=- shape=c3dafb7e vocab=9948b5c2
+-/
 theorem mem_Cst (a : C₁) : a ∈ Cst S₁ C₁ φ ↔ φ (a ⊗ₜ[R] 1) = (1 : S₁) ⊗ₜ[R] a := by
   rw [Cst, AlgHom.mem_equalizer]; rfl
 
 def ι₀ : S₁ ⊗[R] ↥(Cst S₁ C₁ φ) →ₐ[R] C₁ :=
   Algebra.TensorProduct.lift (IsScalarTower.toAlgHom R S₁ C₁) (Cst S₁ C₁ φ).val (fun s a => Commute.all _ _)
 
+/--
+@isnad1 id=eq.0h6v.s10.b6452ce57ef7 from=translated src=- shape=915d31dd vocab=e91dc906
+-/
 theorem ι₀_tmul (s : S₁) (a : ↥(Cst S₁ C₁ φ)) : ι₀ S₁ C₁ φ (s ⊗ₜ[R] a) = algebraMap S₁ C₁ s * (a : C₁) :=
   Algebra.TensorProduct.lift_tmul _ _ _ s a
 
 variable {S₁ C₁ φ}
 
+/--
+@isnad1 id=eq.3h7v.s11.699e1705b835 from=translated src=- shape=ffb54a69 vocab=2fbe8766
+-/
 theorem algHom_ext_of_surjective (hsurj : Function.Surjective (ι₀ S₁ C₁ φ))
     {D : Type u} [Semiring D] [Algebra R D] {g₁ g₂ : C₁ →ₐ[R] D}
     (h₁ : ∀ s : S₁, g₁ (algebraMap S₁ C₁ s) = g₂ (algebraMap S₁ C₁ s))
@@ -88,6 +109,9 @@ theorem algHom_ext_of_surjective (hsurj : Function.Surjective (ι₀ S₁ C₁ �
 
 variable (B : Type u) [CommRing B] [Algebra R B]
 
+/--
+@isnad1 id=injectiv.0h3v.s8.c52c01ad128d from=translated src=- shape=ded59f81 vocab=c7774c8a
+-/
 theorem includeLeft_injective [Module.FaithfullyFlat R S₁] :
     Function.Injective (Algebra.TensorProduct.includeLeft : B →ₐ[R] B ⊗[R] S₁) := by
   intro x y hxy
@@ -103,6 +127,9 @@ noncomputable def gOf (hbij : Function.Bijective (ι₀ S₁ C₁ φ)) (f : ↥(
       ((Algebra.TensorProduct.includeLeft : B →ₐ[R] B ⊗[R] S₁).comp f) (fun _ _ => Commute.all _ _)).comp
     ((AlgEquiv.ofBijective (ι₀ S₁ C₁ φ) hbij).symm.toAlgHom)
 
+/--
+@isnad1 id=eq.1h7v.s12.a29a6413b475 from=translated src=- shape=93c6f930 vocab=b648434a
+-/
 theorem gOf_ι₀ (hbij : Function.Bijective (ι₀ S₁ C₁ φ)) (f : ↥(Cst S₁ C₁ φ) →ₐ[R] B) (z : S₁ ⊗[R] ↥(Cst S₁ C₁ φ)) :
     gOf hbij f (ι₀ S₁ C₁ φ z) =
       Algebra.TensorProduct.lift (Algebra.TensorProduct.includeRight : S₁ →ₐ[R] B ⊗[R] S₁)
@@ -112,24 +139,36 @@ theorem gOf_ι₀ (hbij : Function.Bijective (ι₀ S₁ C₁ φ)) (f : ↥(Cst 
   congr 1
   exact (AlgEquiv.ofBijective (ι₀ S₁ C₁ φ) hbij).symm_apply_apply z
 
+/--
+@isnad1 id=eq.1h7v.s11.05fcb296f13f from=translated src=- shape=20f017e1 vocab=5ba9fe28
+-/
 theorem gOf_algebraMap (hbij : Function.Bijective (ι₀ S₁ C₁ φ)) (f : ↥(Cst S₁ C₁ φ) →ₐ[R] B) (s : S₁) :
     gOf hbij f (algebraMap S₁ C₁ s) = (1 : B) ⊗ₜ[R] s := by
   have : algebraMap S₁ C₁ s = ι₀ S₁ C₁ φ (s ⊗ₜ[R] 1) := by rw [ι₀_tmul]; simp
   rw [this, gOf_ι₀, Algebra.TensorProduct.lift_tmul]
   simp [Algebra.TensorProduct.includeRight_apply]
 
+/--
+@isnad1 id=eq.1h7v.s11.2d01c4cbbd5b from=translated src=- shape=14080c8b vocab=0395c9e0
+-/
 theorem gOf_coe (hbij : Function.Bijective (ι₀ S₁ C₁ φ)) (f : ↥(Cst S₁ C₁ φ) →ₐ[R] B) (a : ↥(Cst S₁ C₁ φ)) :
     gOf hbij f (a : C₁) = f a ⊗ₜ[R] (1 : S₁) := by
   have : (a : C₁) = ι₀ S₁ C₁ φ (1 ⊗ₜ[R] a) := by rw [ι₀_tmul]; simp
   rw [this, gOf_ι₀, Algebra.TensorProduct.lift_tmul]
   simp [Algebra.TensorProduct.includeLeft_apply]
 
+/--
+@isnad1 id=eq.1h6v.s10.9529af34703e from=translated src=- shape=89f1f8e0 vocab=85ca5dc4
+-/
 theorem gOf_comp_toAlgHom (hbij : Function.Bijective (ι₀ S₁ C₁ φ)) (f : ↥(Cst S₁ C₁ φ) →ₐ[R] B) :
     (gOf hbij f).comp (IsScalarTower.toAlgHom R S₁ C₁) = Algebra.TensorProduct.includeRight := by
   apply AlgHom.ext; intro s
   rw [AlgHom.comp_apply, IsScalarTower.coe_toAlgHom', gOf_algebraMap]
   rfl
 
+/--
+@isnad1 id=eq.3h7v.s11.575921232aba from=translated src=- shape=72da6d57 vocab=f9611536
+-/
 theorem gOf_unique (hbij : Function.Bijective (ι₀ S₁ C₁ φ)) (f : ↥(Cst S₁ C₁ φ) →ₐ[R] B)
     (g : C₁ →ₐ[R] B ⊗[R] S₁) (hg₁ : g.comp (IsScalarTower.toAlgHom R S₁ C₁) = Algebra.TensorProduct.includeRight)
     (hg₂ : ∀ a : ↥(Cst S₁ C₁ φ), g (a : C₁) = f a ⊗ₜ[R] (1 : S₁)) : g = gOf hbij f := by
@@ -148,6 +187,9 @@ noncomputable def fOf [Module.FaithfullyFlat R S₁] (g : C₁ →ₐ[R] B ⊗[R
     ((g.comp (Cst S₁ C₁ φ).val).codRestrict (Algebra.TensorProduct.includeLeft : B →ₐ[R] B ⊗[R] S₁).range
       (fun a => by obtain ⟨b, hb⟩ := hg a; exact ⟨b, hb⟩))
 
+/--
+@isnad1 id=eq.1h7v.s10.469ee3df624a from=translated src=- shape=090c2c97 vocab=0dfaff35
+-/
 theorem includeLeft_fOf [Module.FaithfullyFlat R S₁] (g : C₁ →ₐ[R] B ⊗[R] S₁)
     (hg : ∀ a : ↥(Cst S₁ C₁ φ), g (a : C₁) ∈ Set.range (Algebra.TensorProduct.includeLeft : B →ₐ[R] B ⊗[R] S₁))
     (a : ↥(Cst S₁ C₁ φ)) :
@@ -162,6 +204,9 @@ theorem includeLeft_fOf [Module.FaithfullyFlat R S₁] (g : C₁ →ₐ[R] B ⊗
   rw [AlgEquiv.apply_symm_apply] at this
   exact this.symm
 
+/--
+@isnad1 id=eq.2h6v.s11.02df61715dab from=translated src=- shape=46d49115 vocab=a3010e90
+-/
 theorem fOf_gOf [Module.FaithfullyFlat R S₁] (hbij : Function.Bijective (ι₀ S₁ C₁ φ)) (f : ↥(Cst S₁ C₁ φ) →ₐ[R] B)
     (hg : ∀ a : ↥(Cst S₁ C₁ φ), gOf hbij f (a : C₁) ∈ Set.range (Algebra.TensorProduct.includeLeft : B →ₐ[R] B ⊗[R] S₁)) :
     fOf (gOf hbij f) hg = f := by
@@ -187,6 +232,9 @@ abbrev U (B : Type u) [CommRing B] [Algebra R B] : Under (CommRingCat.of R) := U
 noncomputable abbrev ιU (B : Type u) [CommRing B] [Algebra R B] : U (R := R) B ⟶ U (R := R) (B ⊗[R] S₁) :=
   algToUnder (Algebra.TensorProduct.includeLeft : B →ₐ[R] B ⊗[R] S₁)
 
+/--
+@isnad1 id=eq.1h9v.s11.85c31ede78e0 from=translated src=- shape=eda4de82 vocab=173feb35
+-/
 theorem e_congr {D : Type u} [CommRing D] [Algebra R D] {j₁ j₂ : S₁ →ₐ[R] D} (h : j₁ = j₂)
     (x : F.obj (U (R := R) D)) : ((e D j₁ x).1 : C₁ →ₐ[R] D) = (e D j₂ x).1 := by
   subst h; rfl
@@ -196,10 +244,16 @@ variable {F S₁ C₁}
 noncomputable def gPt {B : Type u} [CommRing B] [Algebra R B] (y : F.obj (U (R := R) (B ⊗[R] S₁))) : C₁ →ₐ[R] B ⊗[R] S₁ :=
   ((e (B ⊗[R] S₁) (Algebra.TensorProduct.includeRight : S₁ →ₐ[R] B ⊗[R] S₁)) y).1
 
+/--
+@isnad1 id=eq.0h7v.s9.f18a6dde9441 from=translated src=- shape=f51d6c58 vocab=913a9be9
+-/
 theorem gPt_comp {B : Type u} [CommRing B] [Algebra R B] (y : F.obj (U (R := R) (B ⊗[R] S₁))) :
     (gPt e y).comp (IsScalarTower.toAlgHom R S₁ C₁) = Algebra.TensorProduct.includeRight :=
   ((e (B ⊗[R] S₁) (Algebra.TensorProduct.includeRight : S₁ →ₐ[R] B ⊗[R] S₁)) y).2
 
+/--
+@isnad1 id=iff.3h8v.s13.9f899e290fc7 from=translated src=- shape=06ba5b45 vocab=f33f9ee9
+-/
 theorem descends_iff
     (he : ∀ (B B' : Type u) [CommRing B] [Algebra R B] [CommRing B'] [Algebra R B']
       (j : S₁ →ₐ[R] B) (ψ : B →ₐ[R] B') (x : F.obj (Under.mk (CommRingCat.ofHom (algebraMap R B)))),
@@ -340,6 +394,9 @@ theorem descends_iff
       rw [AlgHom.comp_apply, hGa, ← hb₀]
       exact hcond b₀
 
+/--
+@isnad1 id=and.1h4v.s12.2da15c8392f8 from=translated src=- shape=79458a1d vocab=84926293
+-/
 theorem hsheaf_at
     (hsheaf : ∀ (B B' : Under (CommRingCat.of R)) (φ : B ⟶ B'),
       φ.right.hom.Flat → Function.Surjective (PrimeSpectrum.comap φ.right.hom) →
@@ -356,6 +413,9 @@ theorem hsheaf_at
   · show Function.Surjective (PrimeSpectrum.comap (algebraMap B (B ⊗[R] S₁)))
     exact PrimeSpectrum.comap_surjective_of_faithfullyFlat
 
+/--
+@isnad1 id=eq.0h5v.s12.08a3ad1adc9b from=translated src=- shape=421379ad vocab=4f69d597
+-/
 theorem descends_map {B : Type u} [CommRing B] [Algebra R B] (x : F.obj (U (R := R) B)) :
     F.map (pushout.inl (ιU (R := R) S₁ B) (ιU (R := R) S₁ B)) (F.map (ιU (R := R) S₁ B) x) =
       F.map (pushout.inr (ιU (R := R) S₁ B) (ιU (R := R) S₁ B)) (F.map (ιU (R := R) S₁ B) x) := by
@@ -365,11 +425,17 @@ noncomputable def yOf (hbij : Function.Bijective (ι₀ S₁ C₁ φ)) {B : Type
     (f : ↥(Cst S₁ C₁ φ) →ₐ[R] B) : F.obj (U (R := R) (B ⊗[R] S₁)) :=
   (e (B ⊗[R] S₁) (Algebra.TensorProduct.includeRight : S₁ →ₐ[R] B ⊗[R] S₁)).symm ⟨gOf hbij f, gOf_comp_toAlgHom hbij f⟩
 
+/--
+@isnad1 id=eq.1h8v.s11.c9157016c4f8 from=translated src=- shape=39309c21 vocab=c3bb45ac
+-/
 theorem gPt_yOf (hbij : Function.Bijective (ι₀ S₁ C₁ φ)) {B : Type u} [CommRing B] [Algebra R B]
     (f : ↥(Cst S₁ C₁ φ) →ₐ[R] B) : gPt e (yOf e φ hbij f) = gOf hbij f := by
   unfold gPt yOf
   rw [Equiv.apply_symm_apply]
 
+/--
+@isnad1 id=eq.3h7v.s11.b466c981be0f from=translated src=- shape=8d662726 vocab=52e7b37f
+-/
 theorem fOf_congr {B : Type u} [CommRing B] [Algebra R B] {g₁ g₂ : C₁ →ₐ[R] B ⊗[R] S₁} (h : g₁ = g₂)
     (h₁ : ∀ a : ↥(Cst S₁ C₁ φ), g₁ (a : C₁) ∈ Set.range (Algebra.TensorProduct.includeLeft : B →ₐ[R] B ⊗[R] S₁))
     (h₂ : ∀ a : ↥(Cst S₁ C₁ φ), g₂ (a : C₁) ∈ Set.range (Algebra.TensorProduct.includeLeft : B →ₐ[R] B ⊗[R] S₁)) :
@@ -396,6 +462,9 @@ noncomputable def theta
     (hbij : Function.Bijective (ι₀ S₁ C₁ φ)) {B : Type u} [CommRing B] [Algebra R B] (x : F.obj (U (R := R) B)) : ↥(Cst S₁ C₁ φ) →ₐ[R] B :=
   fOf (gPt e (F.map (ιU (R := R) S₁ B) x)) ((descends_iff e φ he hφ hbij.2 _).mp (descends_map x))
 
+/--
+@isnad1 id=eq.3h9v.s13.89c5e179f0ad from=translated src=- shape=f05b38a2 vocab=20371a7a
+-/
 theorem includeLeft_theta
     (he : ∀ (B B' : Type u) [CommRing B] [Algebra R B] [CommRing B'] [Algebra R B']
       (j : S₁ →ₐ[R] B) (ψ : B →ₐ[R] B') (x : F.obj (Under.mk (CommRingCat.ofHom (algebraMap R B)))),
@@ -415,6 +484,9 @@ theorem includeLeft_theta
     (theta e φ he hφ hbij x a) ⊗ₜ[R] (1 : S₁) = gPt e (F.map (ιU (R := R) S₁ B) x) (a : C₁) :=
   includeLeft_fOf _ _ a
 
+/--
+@isnad1 id=eq.3h8v.s13.0b66e67b2ef3 from=translated src=- shape=23ca041d vocab=799cd87e
+-/
 theorem yOf_descends
     (he : ∀ (B B' : Type u) [CommRing B] [Algebra R B] [CommRing B'] [Algebra R B']
       (j : S₁ →ₐ[R] B) (ψ : B →ₐ[R] B') (x : F.obj (Under.mk (CommRingCat.ofHom (algebraMap R B)))),
@@ -460,6 +532,9 @@ noncomputable def psi
     (hbij : Function.Bijective (ι₀ S₁ C₁ φ)) {B : Type u} [CommRing B] [Algebra R B] (f : ↥(Cst S₁ C₁ φ) →ₐ[R] B) : F.obj (U (R := R) B) :=
   ((hsheaf_at (S₁ := S₁) hsheaf B).2 (yOf e φ hbij f) (yOf_descends e φ he hφ hbij f)).choose
 
+/--
+@isnad1 id=eq.4h8v.s13.40c2289a7fdf from=translated src=- shape=fb06976d vocab=127e1321
+-/
 theorem map_psi
     (hsheaf : ∀ (B B' : Under (CommRingCat.of R)) (φ : B ⟶ B'),
       φ.right.hom.Flat → Function.Surjective (PrimeSpectrum.comap φ.right.hom) →
@@ -483,6 +558,9 @@ theorem map_psi
     F.map (ιU (R := R) S₁ B) (psi e φ hsheaf he hφ hbij f) = yOf e φ hbij f :=
   ((hsheaf_at (S₁ := S₁) hsheaf B).2 (yOf e φ hbij f) (yOf_descends e φ he hφ hbij f)).choose_spec
 
+/--
+@isnad1 id=eq.4h8v.s13.6824fe5f27b9 from=translated src=- shape=da377ab1 vocab=863254c7
+-/
 theorem theta_psi
     (hsheaf : ∀ (B B' : Under (CommRingCat.of R)) (φ : B ⟶ B'),
       φ.right.hom.Flat → Function.Surjective (PrimeSpectrum.comap φ.right.hom) →
@@ -510,6 +588,9 @@ theorem theta_psi
   rw [fOf_congr φ h _ (fun a => by rw [gOf_coe]; exact ⟨f a, rfl⟩)]
   exact fOf_gOf hbij f _
 
+/--
+@isnad1 id=eq.3h8v.s13.948cb51b3078 from=translated src=- shape=553eaaa7 vocab=d33fdc54
+-/
 theorem gPt_map_eq_gOf_theta
     (he : ∀ (B B' : Type u) [CommRing B] [Algebra R B] [CommRing B'] [Algebra R B']
       (j : S₁ →ₐ[R] B) (ψ : B →ₐ[R] B') (x : F.obj (Under.mk (CommRingCat.ofHom (algebraMap R B)))),
@@ -529,6 +610,9 @@ theorem gPt_map_eq_gOf_theta
     gPt e (F.map (ιU (R := R) S₁ B) x) = gOf hbij (theta e φ he hφ hbij x) :=
   gOf_unique hbij _ _ (gPt_comp e _) (fun a => (includeLeft_theta e φ he hφ hbij x a).symm)
 
+/--
+@isnad1 id=eq.4h8v.s13.582865da1782 from=translated src=- shape=7de0b335 vocab=94a12118
+-/
 theorem psi_theta
     (hsheaf : ∀ (B B' : Under (CommRingCat.of R)) (φ : B ⟶ B'),
       φ.right.hom.Flat → Function.Surjective (PrimeSpectrum.comap φ.right.hom) →
@@ -583,6 +667,9 @@ noncomputable def equivB
   left_inv := theta_psi e φ hsheaf he hφ hbij
   right_inv := psi_theta e φ hsheaf he hφ hbij
 
+/--
+@isnad1 id=eq.4h10v.s13.af97da2bd72c from=translated src=- shape=ec2cb142 vocab=c77522d6
+-/
 theorem psi_natural
     (hsheaf : ∀ (B B' : Under (CommRingCat.of R)) (φ : B ⟶ B'),
       φ.right.hom.Flat → Function.Surjective (PrimeSpectrum.comap φ.right.hom) →
@@ -645,6 +732,9 @@ end AffD
 open scoped _root_.P2MW.S_CategoryTheory_Functor_exists_corepresentableBy_of_descentDatum_of_bijective_univ.AffD
 
 open AffD in
+/--
+@isnad1 id=ex.4h6v.s15.000129717b93 from=translated src=- shape=5af65c36 vocab=cf7560d3
+-/
 theorem solution
     {R : Type u} [CommRing R] (F : Under (CommRingCat.of R) ⥤ Type v)
     (hsheaf : ∀ (B B' : Under (CommRingCat.of R)) (φ : B ⟶ B'),

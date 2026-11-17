@@ -22,6 +22,9 @@ abbrev Tan : Type _ :=
 
 variable {k B}
 
+/--
+@isnad1 id=iff.0h3v.s7.750649988365 from=translated src=- shape=66b98cd3 vocab=436c14d8
+-/
 lemma mem_augIdeal {b : B} : b ∈ augIdeal k B ↔ Bialgebra.counitAlgHom k B b = 0 := RingHom.mem_ker
 
 def dLin (D : B →ₐ[k] DualNumber k) : B →ₗ[k] k :=
@@ -30,9 +33,15 @@ def dLin (D : B →ₐ[k] DualNumber k) : B →ₗ[k] k :=
 def dI (D : B →ₐ[k] DualNumber k) : ↥(augIdeal k B) →ₗ[k] k :=
   (dLin D).comp ((augIdeal k B).subtype.restrictScalars k)
 
+/--
+@isnad1 id=eq.0h4v.s9.de1f858bdfa5 from=translated src=- shape=0fdb3a2e vocab=152aa2b1
+-/
 @[scoped simp] lemma dI_apply (D : B →ₐ[k] DualNumber k) (x : ↥(augIdeal k B)) :
     dI D x = TrivSqZeroExt.snd (D (x : B)) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s10.99c5334c450a from=translated src=- shape=b3a411e1 vocab=84bc684d
+-/
 lemma dI_mul (D : Tan k B) (x y : ↥(augIdeal k B)) : dI D.1 (x * y) = 0 := by
   have hx : Bialgebra.counitAlgHom k B (x : B) = 0 := mem_augIdeal.mp x.2
   have hy : Bialgebra.counitAlgHom k B (y : B) = 0 := mem_augIdeal.mp y.2
@@ -43,6 +52,9 @@ lemma dI_mul (D : Tan k B) (x y : ↥(augIdeal k B)) : dI D.1 (x * y) = 0 := by
 def gamma (D : Tan k B) : (augIdeal k B).Cotangent →ₗ[k] k :=
   Ideal.Cotangent.lift (dI D.1) (dI_mul D)
 
+/--
+@isnad1 id=eq.0h4v.s10.8e8a93620588 from=translated src=- shape=b3bbf899 vocab=6558a6b1
+-/
 @[scoped simp] lemma gamma_toCotangent (D : Tan k B) (x : ↥(augIdeal k B)) :
     gamma D ((augIdeal k B).toCotangent x) = TrivSqZeroExt.snd (D.1 (x : B)) := by
   simp [gamma]
@@ -60,17 +72,29 @@ def proj : B →ₗ[k] ↥(augIdeal k B) where
       AlgHom.commutes, Algebra.algebraMap_self_apply]
     ring
 
+/--
+@isnad1 id=eq.0h3v.s9.c33099c66298 from=translated src=- shape=90187dcb vocab=248831f0
+-/
 @[scoped simp] lemma coe_proj (b : B) :
     (proj (k := k) b : B) = b - algebraMap k B (Bialgebra.counitAlgHom k B b) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.55f56d1c5638 from=translated src=- shape=bebf0499 vocab=5934bbfa
+-/
 lemma proj_of_mem (x : ↥(augIdeal k B)) : proj (k := k) (x : B) = x := by
   ext
   rw [coe_proj, mem_augIdeal.mp x.2, map_zero, sub_zero]
 
+/--
+@isnad1 id=eq.0h2v.s9.20bf97a78a80 from=translated src=- shape=a69d9178 vocab=9af7cb40
+-/
 lemma proj_one : proj (k := k) (B := B) 1 = 0 := by
   ext
   simp
 
+/--
+@isnad1 id=eq.0h4v.s11.ca17933ecfbc from=translated src=- shape=945f0664 vocab=311c66ab
+-/
 lemma toCotangent_proj_mul (a b : B) :
     (augIdeal k B).toCotangent (proj (a * b)) =
       Bialgebra.counitAlgHom k B a • (augIdeal k B).toCotangent (proj b) +
@@ -87,6 +111,9 @@ lemma toCotangent_proj_mul (a b : B) :
 def delta (ℓ : (augIdeal k B).Cotangent →ₗ[k] k) : B →ₗ[k] k :=
   ℓ ∘ₗ ((augIdeal k B).toCotangent.restrictScalars k) ∘ₗ proj
 
+/--
+@isnad1 id=eq.0h4v.s10.67b9ed0f7388 from=translated src=- shape=7b01f32f vocab=5994f919
+-/
 @[scoped simp] lemma delta_apply (ℓ : (augIdeal k B).Cotangent →ₗ[k] k) (b : B) :
     delta ℓ b = ℓ ((augIdeal k B).toCotangent (proj b)) := rfl
 
@@ -94,10 +121,16 @@ def DLin (ℓ : (augIdeal k B).Cotangent →ₗ[k] k) : B →ₗ[k] DualNumber k
   (Algebra.linearMap k (DualNumber k)) ∘ₗ (Bialgebra.counitAlgHom k B).toLinearMap +
     (TrivSqZeroExt.inrHom k k) ∘ₗ delta ℓ
 
+/--
+@isnad1 id=eq.0h4v.s8.058af5b6821b from=translated src=- shape=340f8c9d vocab=25a38367
+-/
 @[scoped simp] lemma fst_DLin (ℓ : (augIdeal k B).Cotangent →ₗ[k] k) (b : B) :
     TrivSqZeroExt.fst (DLin ℓ b) = Bialgebra.counitAlgHom k B b := by
   simp [DLin, Algebra.linearMap_apply, TrivSqZeroExt.algebraMap_eq_inl]
 
+/--
+@isnad1 id=eq.0h4v.s8.bb5dd64e2049 from=translated src=- shape=820b0a5f vocab=6d82c585
+-/
 @[scoped simp] lemma snd_DLin (ℓ : (augIdeal k B).Cotangent →ₗ[k] k) (b : B) :
     TrivSqZeroExt.snd (DLin ℓ b) = delta ℓ b := by
   simp [DLin, Algebra.linearMap_apply, TrivSqZeroExt.algebraMap_eq_inl]
@@ -117,6 +150,9 @@ def DAlg (ℓ : (augIdeal k B).Cotangent →ₗ[k] k) : B →ₐ[k] DualNumber k
           delta_apply, smul_eq_mul, smul_eq_mul]
         ring)
 
+/--
+@isnad1 id=eq.0h4v.s9.61dd967b8964 from=translated src=- shape=f75db280 vocab=cf24d5b7
+-/
 @[scoped simp] lemma DAlg_apply (ℓ : (augIdeal k B).Cotangent →ₗ[k] k) (b : B) : DAlg ℓ b = DLin ℓ b := rfl
 
 def DTan (ℓ : (augIdeal k B).Cotangent →ₗ[k] k) : Tan k B := ⟨DAlg ℓ, fun b => by simp⟩
@@ -141,6 +177,9 @@ def gammaEquiv : Tan k B ≃ ((augIdeal k B).Cotangent →ₗ[k] k) where
     rw [gamma_toCotangent]
     simp only [DTan, DAlg_apply, snd_DLin, delta_apply, proj_of_mem]
 
+/--
+@isnad1 id=eq.0h3v.s9.11cf953dbac8 from=translated src=- shape=3d593050 vocab=05cdc0ef
+-/
 lemma gammaEquiv_apply (D : Tan k B) : gammaEquiv D = gamma D := rfl
 
 end
@@ -149,6 +188,9 @@ end B2TangentDictionary
 open scoped _root_.P2MW.S_Bialgebra_exists_equiv_algHom_dualNumber_over_counit_linearMap_cotangent_ker_counitAlgHom.B2TangentDictionary
 
 open B2TangentDictionary in
+/--
+@isnad1 id=ex.0h2v.s14.d2ef66f34ff4 from=translated src=- shape=3ca8437d vocab=5943cb54
+-/
 theorem solution
     (k : Type*) [CommRing k] (B : Type*) [CommRing B] [Bialgebra k B] :
     ∃ γ : {D : B →ₐ[k] DualNumber k //

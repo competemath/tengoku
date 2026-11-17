@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open NumberField AutomorphicForm NumberField.InfinitePlace NumberField.InfinitePlace.Completion
 
+/--
+@isnad1 id=eq.2h3v.s10.02387523919b from=translated src=- shape=780731d9 vocab=3942398d
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F] {w : InfinitePlace F} (hw : w.IsComplex)
     (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArchSmoothAtComplex hw φ) :

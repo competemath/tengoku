@@ -47,6 +47,9 @@ private theorem isClosed_adelicUnipotent :
 
 end AdelicUnipotentClosed
 
+/--
+@isnad1 id=isclosed.0h1v.s9.a5fdd89ea530 from=translated src=- shape=45a4b3b6 vocab=a8e7b668
+-/
 theorem solution (K : Type) [Field K] [NumberField K] :
     IsClosed ((adelicUnipotent K : Subgroup (AdelicGL2 (𝓞 K) K)) : Set (AdelicGL2 (𝓞 K) K)) :=
   AdelicUnipotentClosed.isClosed_adelicUnipotent K

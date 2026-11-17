@@ -11,6 +11,9 @@ open TensorProduct
 
 universe u
 
+/--
+@isnad1 id=ex.4h5v.s11.6e82a411680e from=translated src=- shape=1b331b18 vocab=c8b1937c
+-/
 theorem solution
     {R : Type u} [CommRing R] {K : Type u} [CommRing K] [Algebra R K] (hinj : Function.Injective (algebraMap R K))
     {H : Type u} [CommRing H] [Bialgebra R H] {H' : Type u} [CommRing H'] [Bialgebra R H']

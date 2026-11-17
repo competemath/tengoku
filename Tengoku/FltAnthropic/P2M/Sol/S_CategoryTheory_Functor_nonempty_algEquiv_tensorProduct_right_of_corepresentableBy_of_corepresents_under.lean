@@ -35,6 +35,9 @@ abbrev algOf {D : Type u} [CommRing D] [Algebra R D] (q : C₁ ⟶ objOf (R := R
 abbrev homOfC {D : Type u} [CommRing D] [Algebra R D] (g : (C₁.right : Type u) →ₐ[R] D) : C₁ ⟶ objOf (R := R) D :=
   Under.homMk (CommRingCat.ofHom g.toRingHom) (by ext r; exact g.commutes r)
 
+/--
+@isnad1 id=eq.0h4v.s6.4d79d5f08ae9 from=translated src=- shape=c4c997d8 vocab=be62d43a
+-/
 lemma homOfC_algOf {D : Type u} [CommRing D] [Algebra R D] (q : C₁ ⟶ objOf (R := R) D) :
     homOfC C₁ (algOf C₁ q) = q := by
   apply Under.UnderMorphism.ext; ext a; rfl
@@ -60,6 +63,9 @@ end AffD
 open scoped _root_.P2MW.S_CategoryTheory_Functor_nonempty_algEquiv_tensorProduct_right_of_corepresentableBy_of_corepresents_under.AffDescBridge _root_.P2MW.S_CategoryTheory_Functor_nonempty_algEquiv_tensorProduct_right_of_corepresentableBy_of_corepresents_under.AffD
 
 open AffDescBridge AffD in
+/--
+@isnad1 id=nonempty.1h7v.s12.e85291553a21 from=translated src=- shape=0088ffba vocab=937b0854
+-/
 theorem solution
     {R : Type u} [CommRing R] (F : Under (CommRingCat.of R) ⥤ Type v)
     (C : Under (CommRingCat.of R)) (hC : F.CorepresentableBy C)

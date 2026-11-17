@@ -16,6 +16,9 @@ open MulAction
 
 variable {G : Type} [Group G] {W : Type} [MulAction G W]
 
+/--
+@isnad1 id=ex.0h3v.s6.11c41019e789 from=translated src=- shape=3b910634 vocab=37d75b3c
+-/
 theorem exists_smul_out_eq (w : W) :
     ∃ g : G, g • (Quotient.mk (orbitRel G W) w : orbitRel.Quotient G W).out = w := by
   have h : (Quotient.mk (orbitRel G W) ((Quotient.mk (orbitRel G W) w : orbitRel.Quotient G W).out)
@@ -24,6 +27,9 @@ theorem exists_smul_out_eq (w : W) :
   obtain ⟨g, hg⟩ := this
   exact ⟨g⁻¹, by rw [← hg, inv_smul_smul]⟩
 
+/--
+@isnad1 id=eq.1h5v.s6.df1a1d122bcb from=translated src=- shape=3e7f6866 vocab=74568262
+-/
 theorem out_eq_out_of_smul_eq (q q' : orbitRel.Quotient G W) (g : G) (h : g • q.out = q'.out) : q = q' := by
   rw [← Quotient.out_eq q, ← Quotient.out_eq q']
   apply Quotient.sound
@@ -32,6 +38,9 @@ theorem out_eq_out_of_smul_eq (q q' : orbitRel.Quotient G W) (g : G) (h : g • 
 end TreeLatticeFG13
 
 open TreeLatticeFG13 MulAction in
+/--
+@isnad1 id=fg.4h3v.s6.444f202335d9 from=translated src=- shape=8b4ad550 vocab=ab5831df
+-/
 theorem solution
     {G : Type} [Group G] {W : Type} [MulAction G W] (𝒯 : SimpleGraph W) [GraphAction G 𝒯]
     (hconn : 𝒯.Connected)

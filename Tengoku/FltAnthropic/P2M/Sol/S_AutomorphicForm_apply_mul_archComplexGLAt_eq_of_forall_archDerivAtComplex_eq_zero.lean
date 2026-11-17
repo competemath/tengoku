@@ -19,6 +19,9 @@ open _root_.NumberField open _root_.NumberField.InfinitePlace.NumberField open _
 
 variable {F : Type} [Field F] [NumberField F] {w : InfinitePlace F} (hw : w.IsComplex)
 
+/--
+@isnad1 id=eq.3h6v.s8.ceea577ecd32 from=translated src=- shape=f16580d1 vocab=0a75dac8
+-/
 theorem apply_mul_archFlowAtComplex_eq (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArchSmoothAtComplex hw φ) (d : ArchDirComplex)
     (hd : archDerivAtComplex hw d φ = 0) (g : AdelicGL2 (𝓞 F) F) (t : ℝ) :
     φ (g * archFlowAtComplex hw d t) = φ g := by
@@ -44,6 +47,9 @@ theorem apply_mul_archFlowAtComplex_eq (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ 
   have h0 : f 0 = φ g := by simp only [hf, archFlowAtComplex_zero, mul_one]
   rw [← h0, ← hconst]
 
+/--
+@isnad1 id=eq.4h5v.s10.28ec9ebd20c5 from=translated src=- shape=e2be5904 vocab=971b6b37
+-/
 theorem apply_mul_upper (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArchSmoothAtComplex hw φ)
     (hE : archDerivAtComplex hw .E φ = 0) (hiE : archDerivAtComplex hw .iE φ = 0) (g : AdelicGL2 (𝓞 F) F) (z : ℂ) :
     φ (g * archComplexGLAt hw (unipotentGL2 z)) = φ g := by
@@ -54,6 +60,9 @@ theorem apply_mul_upper (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArchSmoothA
   have h2 : archComplexGLAt hw (unipotentGL2 (((z.im : ℝ) : ℂ) * Complex.I)) = archFlowAtComplex hw .iE z.im := rfl
   rw [h1, h2, apply_mul_archFlowAtComplex_eq hw φ hφ .iE hiE, apply_mul_archFlowAtComplex_eq hw φ hφ .E hE]
 
+/--
+@isnad1 id=eq.4h5v.s10.8eb120e2a754 from=translated src=- shape=e2be5904 vocab=5543cdfa
+-/
 theorem apply_mul_lower (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArchSmoothAtComplex hw φ)
     (hFm : archDerivAtComplex hw .Fm φ = 0) (hiFm : archDerivAtComplex hw .iFm φ = 0) (g : AdelicGL2 (𝓞 F) F) (z : ℂ) :
     φ (g * archComplexGLAt hw (lowerUnipotentGL2 z)) = φ g := by
@@ -64,6 +73,9 @@ theorem apply_mul_lower (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArchSmoothA
   have h2 : archComplexGLAt hw (lowerUnipotentGL2 (((z.im : ℝ) : ℂ) * Complex.I)) = archFlowAtComplex hw .iFm z.im := rfl
   rw [h1, h2, apply_mul_archFlowAtComplex_eq hw φ hφ .iFm hiFm, apply_mul_archFlowAtComplex_eq hw φ hφ .Fm hFm]
 
+/--
+@isnad1 id=ex.1h1v.s9.759331c1ae55 from=translated src=- shape=2b56683b vocab=81219330
+-/
 theorem exists_eq_lower_upper_lower_upper (h : GL (Fin 2) ℂ) (hh : Matrix.GeneralLinearGroup.det h = 1) :
     ∃ s x c y : ℂ, h = lowerUnipotentGL2 s * unipotentGL2 x * lowerUnipotentGL2 c * unipotentGL2 y := by
   have hdet : (h : Matrix (Fin 2) (Fin 2) ℂ) 0 0 * (h : Matrix (Fin 2) (Fin 2) ℂ) 1 1
@@ -96,6 +108,9 @@ theorem exists_eq_lower_upper_lower_upper (h : GL (Fin 2) ℂ) (hh : Matrix.Gene
     fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two] <;> field_simp <;>
       first | (linear_combination hdet) | (linear_combination -hdet) | (linear_combination a * hdet) | (linear_combination (-a) * hdet) | (linear_combination c * hdet) | (linear_combination (-c) * hdet) | ring1
 
+/--
+@isnad1 id=eq.4h5v.s10.f669cd57e895 from=translated src=- shape=6a901f69 vocab=0b2b448c
+-/
 theorem main (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArchSmoothAtComplex hw φ)
     (hD : ∀ d : ArchDirComplex, archDerivAtComplex hw d φ = 0)
     (g : AdelicGL2 (𝓞 F) F) (h : GL (Fin 2) ℂ) (hh : Matrix.GeneralLinearGroup.det h = 1) :
@@ -111,6 +126,9 @@ end
 
 open _root_.NumberField open _root_.NumberField.InfinitePlace.NumberField open _root_.AutomorphicForm open _root_.IsDedekindDomain
 
+/--
+@isnad1 id=eq.4h5v.s10.f669cd57e895 from=translated src=- shape=6a901f69 vocab=0b2b448c
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F] (w : InfinitePlace F) (hw : w.IsComplex)
     (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArchSmoothAtComplex hw φ)

@@ -17,6 +17,9 @@ section Galois
 variable {F L : Type*} [Field F] [Field L] [Algebra F L] [FiniteDimensional F L] [IsGalois F L]
   {σ : L ≃ₐ[F] L}
 
+/--
+@isnad1 id=eq.1h4v.s9.48cbeafa1a61 from=translated src=- shape=3a5ad46b vocab=a300b1d7
+-/
 theorem prod_range_iterate_eq_algebraMap_norm (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)
     (a : L) :
     ∏ i ∈ Finset.range (Module.finrank F L), (⇑σ)^[i] a = algebraMap F L (Algebra.norm F a) := by
@@ -26,6 +29,9 @@ theorem prod_range_iterate_eq_algebraMap_norm (hgen : ∀ τ : L ≃ₐ[F] L, τ
 
 omit [FiniteDimensional F L] [IsGalois F L] in
 
+/--
+@isnad1 id=eq.1h6v.s8.689685b4d661 from=translated src=- shape=974c28bb vocab=442b6216
+-/
 theorem iterate_apply_eq_prod_mul {r x : L} (h : σ x = r * x) (k : ℕ) :
     (⇑σ)^[k] x = (∏ i ∈ Finset.range k, (⇑σ)^[i] r) * x := by
   induction k with
@@ -62,6 +68,9 @@ variable {F L : Type*} [Field F] [Field L] [Algebra F L] [FiniteDimensional F L]
   {σ : L ≃ₐ[F] L}
 
 omit [FiniteDimensional F L] [IsGalois F L] in
+/--
+@isnad1 id=and.1h2v.s8.8e9228e76407 from=translated src=- shape=5c6bcf1e vocab=bd4057df
+-/
 theorem entries_ne_zero_of_upper (δ : GL (Fin 2) L) (hδ : (δ : Matrix (Fin 2) (Fin 2) L) 1 0 = 0) :
     (δ : Matrix (Fin 2) (Fin 2) L) 0 0 ≠ 0 ∧ (δ : Matrix (Fin 2) (Fin 2) L) 1 1 ≠ 0 := by
   have hdet := Matrix.isUnits_det_units δ
@@ -71,6 +80,9 @@ theorem entries_ne_zero_of_upper (δ : GL (Fin 2) L) (hδ : (δ : Matrix (Fin 2)
 
 omit [FiniteDimensional F L] [IsGalois F L] in
 
+/--
+@isnad1 id=iff.2h5v.s10.69458ad8a694 from=translated src=- shape=8045b2d2 vocab=f4aea02a
+-/
 theorem mem_sigmaCentralizer_diag_iff (δ t : GL (Fin 2) L)
     (h10 : (δ : Matrix (Fin 2) (Fin 2) L) 1 0 = 0) (h01 : (δ : Matrix (Fin 2) (Fin 2) L) 0 1 = 0) :
     t ∈ AutomorphicForm.sigmaCentralizer (Matrix.GeneralLinearGroup.map (σ : L →+* L)) δ ↔
@@ -113,6 +125,9 @@ theorem mem_sigmaCentralizer_diag_iff (δ t : GL (Fin 2) L)
     rw [hL, hR]
     exact h i j
 
+/--
+@isnad1 id=iff.4h5v.s10.8b8c914a3d46 from=translated src=- shape=ff54c1b8 vocab=82423ba3
+-/
 theorem thmC (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)
     (δ : GL (Fin 2) L)
     (h10 : (δ : Matrix (Fin 2) (Fin 2) L) 1 0 = 0) (h01 : (δ : Matrix (Fin 2) (Fin 2) L) 0 1 = 0)
@@ -164,6 +179,9 @@ end Ccent
 
 end R4HypC
 
+/--
+@isnad1 id=iff.4h5v.s10.8b8c914a3d46 from=translated src=- shape=ff54c1b8 vocab=82423ba3
+-/
 theorem solution
     {F L : Type*} [Field F] [Field L] [Algebra F L] [FiniteDimensional F L] [IsGalois F L]
     {σ : L ≃ₐ[F] L} (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)

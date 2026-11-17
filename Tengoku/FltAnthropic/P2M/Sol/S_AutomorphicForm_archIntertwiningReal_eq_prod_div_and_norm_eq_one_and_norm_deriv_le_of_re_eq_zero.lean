@@ -13,9 +13,15 @@ namespace AxisR
 open Complex Finset
 open scoped ComplexConjugate
 
+/--
+@isnad1 id=le.0h2v.s5.755b2e1a8382 from=translated src=- shape=2bae8b7f vocab=c0715d49
+-/
 theorem a_re_pos (ε i : ℕ) : (1 : ℝ) ≤ (((1 + ε + 2 * i : ℕ)) : ℝ) := by
   push_cast; linarith [(Nat.cast_nonneg i : (0:ℝ) ≤ i), (Nat.cast_nonneg ε : (0:ℝ) ≤ ε)]
 
+/--
+@isnad1 id=eq.1h2v.s7.181bd5cc5033 from=translated src=- shape=bb789b5e vocab=0be444cd
+-/
 theorem GammaR_mul_inv_GammaR_add (z : ℂ) (hz : 0 < z.re) (j : ℕ) :
     Complex.Gammaℝ z * (Complex.Gammaℝ (z + 2 * (j : ℂ)))⁻¹ =
       (2 * (Real.pi : ℂ)) ^ j / ∏ i ∈ Finset.range j, (z + 2 * (i : ℂ)) := by
@@ -44,6 +50,9 @@ theorem GammaR_mul_inv_GammaR_add (z : ℂ) (hz : 0 < z.re) (j : ℕ) :
         field_simp, ih]
     field_simp
 
+/--
+@isnad1 id=eq.0h3v.s7.fc0aec747db8 from=translated src=- shape=bc52376c vocab=66870119
+-/
 theorem prod_halfStep (w : ℂ) (ε j : ℕ) :
     ∏ i ∈ Finset.range j, ((w + 1 - (ε : ℂ)) / 2 - 1 - (i : ℂ)) =
       (∏ i ∈ Finset.range j, (w - ((1 + ε + 2 * i : ℕ) : ℂ))) / 2 ^ j := by
@@ -56,6 +65,9 @@ theorem prod_halfStep (w : ℂ) (ε j : ℕ) :
     push_cast
     ring
 
+/--
+@isnad1 id=eq.1h4v.s8.9414760e514d from=translated src=- shape=b8d207e7 vocab=cab41dda
+-/
 theorem rational_form (k : ℤ) (ε j : ℕ) (w : ℂ) (hw : -1 < w.re) :
     (-Complex.I) ^ k *
         ((∏ i ∈ Finset.range j, ((w + 1 - (ε : ℂ)) / 2 - 1 - (i : ℂ))) / (Real.pi : ℂ) ^ j) *
@@ -77,6 +89,9 @@ theorem rational_form (k : ℤ) (ε j : ℕ) (w : ℂ) (hw : -1 < w.re) :
     have : (0:ℝ) ≤ i := Nat.cast_nonneg i; have : (0:ℝ) ≤ ε := Nat.cast_nonneg ε; linarith
   field_simp
 
+/--
+@isnad1 id=eq.2h2v.s6.db4a6c118627 from=translated src=- shape=2e1b2658 vocab=4e9d771c
+-/
 theorem norm_blaschke_eq_one (w : ℂ) (hw : w.re = 0) (a : ℕ) (ha : (1 : ℝ) ≤ a) :
     ‖(w - (a : ℂ)) / (w + (a : ℂ))‖ = 1 := by
   have hconj : w + (a : ℂ) = -(conj (w - (a : ℂ))) := by
@@ -89,6 +104,9 @@ theorem norm_blaschke_eq_one (w : ℂ) (hw : w.re = 0) (a : ℕ) (ha : (1 : ℝ)
   apply hne
   rw [hconj, h0, map_zero, neg_zero]
 
+/--
+@isnad1 id=and.2h2v.s7.efbf6dd0405e from=translated src=- shape=e55aa7e8 vocab=7ab20f13
+-/
 theorem hasDerivAt_blaschke (w : ℂ) (hw : w.re = 0) (a : ℕ) (ha : (1 : ℝ) ≤ a) :
     HasDerivAt (fun z : ℂ => (z - (a : ℂ)) / (z + (a : ℂ))) (2 * (a : ℂ) / (w + (a : ℂ)) ^ 2) w ∧
       ‖2 * (a : ℂ) / (w + (a : ℂ)) ^ 2‖ ≤ 2 := by
@@ -105,6 +123,9 @@ theorem hasDerivAt_blaschke (w : ℂ) (hw : w.re = 0) (a : ℕ) (ha : (1 : ℝ) 
     rw [norm_div, norm_pow, norm_mul, Complex.norm_two, Complex.norm_natCast, div_le_iff₀ (by positivity)]
     nlinarith [hwa, ha]
 
+/--
+@isnad1 id=other.0h3v.s9.74a9228e7379 from=translated src=- shape=3664b5d3 vocab=52442a21
+-/
 theorem main (k : ℤ) (ε j : ℕ) :
     let N : ℂ → ℂ := fun w => (-Complex.I) ^ k *
         ((∏ i ∈ Finset.range j, ((w + 1 - (ε : ℂ)) / 2 - 1 - (i : ℂ))) / (Real.pi : ℂ) ^ j) *
@@ -158,6 +179,9 @@ theorem main (k : ℤ) (ε j : ℕ) :
 
 end Ws31.AxisR
 
+/--
+@isnad1 id=other.0h3v.s9.74a9228e7379 from=translated src=- shape=3664b5d3 vocab=52442a21
+-/
 theorem solution (k : ℤ) (ε j : ℕ) :
     let N : ℂ → ℂ := fun w => (-Complex.I) ^ k *
         ((∏ i ∈ Finset.range j, ((w + 1 - (ε : ℂ)) / 2 - 1 - (i : ℂ))) / (Real.pi : ℂ) ^ j) *

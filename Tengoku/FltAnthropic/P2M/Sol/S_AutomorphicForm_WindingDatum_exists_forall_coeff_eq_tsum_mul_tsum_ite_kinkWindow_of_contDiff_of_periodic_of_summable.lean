@@ -33,6 +33,9 @@ def GD {r c q : ℕ} (kC : Fin c → Fin r) (kR : Fin q → Fin r)
           Real.log ‖(1 : ℂ) - Complex.exp ((p.1 (kC j) / 2 : ℝ) + 2 * Real.pi * Complex.I * (p.2 j : ℝ))‖ : ℝ) : ℂ) *
         E' j p
 
+/--
+@isnad1 id=eq.0h3v.s4.d3ac6be1d367 from=translated src=- shape=36da4e2e vocab=0d656d07
+-/
 theorem norm_E {c : ℕ} (m : Fin c → ℤ) (θ : Fin c → ℝ) : ‖E m θ‖ = 1 := by
   unfold E
   have h : (2 * (Real.pi : ℂ) * Complex.I * ((∑ j, (m j : ℝ) * θ j : ℝ) : ℂ)) =
@@ -40,6 +43,9 @@ theorem norm_E {c : ℕ} (m : Fin c → ℤ) (θ : Fin c → ℝ) : ‖E m θ‖
     push_cast; ring
   rw [h, Complex.norm_exp_ofReal_mul_I]
 
+/--
+@isnad1 id=eq.0h3v.s7.4a509b7fa2c7 from=translated src=- shape=f4f35008 vocab=e4393667
+-/
 theorem prod_fourier_coe {c : ℕ} (m : Fin c → ℤ) (t : Fin c → ℝ) :
     ∏ j, fourier (m j) ((t j : ℝ) : AddCircle (1 : ℝ)) = E m t := by
   unfold E
@@ -51,11 +57,17 @@ theorem prod_fourier_coe {c : ℕ} (m : Fin c → ℤ) (t : Fin c → ℝ) :
   refine Finset.sum_congr rfl fun j _ => ?_
   ring
 
+/--
+@isnad1 id=le.0h2v.s6.f4dd1d97ea65 from=translated src=- shape=5cff9898 vocab=27c66cbe
+-/
 theorem prod_inv_one_add_abs_sq_le_one {r : ℕ} (x : Fin r → ℝ) :
     ∏ k, (1 + |x k|)⁻¹ ^ 2 ≤ (1 : ℝ) :=
   Finset.prod_le_one (fun k _ => by positivity) fun k _ =>
     pow_le_one₀ (by positivity) (inv_le_one_of_one_le₀ (by linarith [abs_nonneg (x k)]))
 
+/--
+@isnad1 id=finite.3h8v.s10.75586f6bfdbe from=translated src=- shape=3027b2fd vocab=1fa457bb
+-/
 theorem finite_fibre {r d : ℕ} (Λ : AddSubgroup ((Fin r → ℝ) × (Fin d → ℤ))) (hΛ : DiscreteTopology Λ)
     (Sg : AddSubgroup ((Fin r → ℝ) × (Fin d → ℤ))) (hSg : Sg ≤ Λ)
     (k₀ n : Fin d → ℤ) (x₀ : Fin r → ℝ) (S : Set (Fin r → ℝ)) (hS : IsCompact S) :
@@ -85,6 +97,9 @@ section Inner
 
 variable {r d c : ℕ}
 
+/--
+@isnad1 id=and.7h11v.s12.0c92aafa7116 from=translated src=- shape=d52a84b3 vocab=f82d1440
+-/
 theorem inner
     (Sg : AddSubgroup ((Fin r → ℝ) × (Fin d → ℤ)))
     (W : (Fin r → ℝ) × (Fin c → ℝ) → ℂ) (S : Set (Fin r → ℝ))
@@ -155,6 +170,9 @@ theorem inner
 
 end Inner
 
+/--
+@isnad1 id=summable.3h5v.s7.6a3f9ff1b152 from=translated src=- shape=8c336317 vocab=760ec945
+-/
 theorem summable_weights {A c : ℕ} (Cm : Fin A → (Fin c → ℤ) → ℝ) (hCm0 : ∀ a m, 0 ≤ Cm a m)
     (hCms : ∀ a, Summable (Cm a)) (lam : ℕ → ℂ) (hlam : Summable fun i => ‖lam i‖) (shape : ℕ → Fin A) :
     Summable fun b : ℕ × (Fin c → ℤ) => ‖lam b.1‖ * Cm (shape b.1) b.2 := by
@@ -178,6 +196,9 @@ end ANRD
 
 end
 
+/--
+@isnad1 id=ex.12h22v.s13.6159c2460aca from=translated src=- shape=ec5926d5 vocab=77d97417
+-/
 theorem solution
     {r d c A q : ℕ}
     (Λ : AddSubgroup ((Fin r → ℝ) × (Fin d → ℤ))) (hΛ : DiscreteTopology Λ)

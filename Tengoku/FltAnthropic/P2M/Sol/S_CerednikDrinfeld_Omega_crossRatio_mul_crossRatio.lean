@@ -11,6 +11,9 @@ set_option autoImplicit false
 open scoped MatrixGroups
 open CerednikDrinfeld.Omega
 
+/--
+@isnad1 id=eq.2h6v.s6.a05f1c269ca4 from=translated src=- shape=e97d45a0 vocab=7b54a793
+-/
 theorem solution
     {K : Type*} [Field K] (z w z₀ x y : K) (hwx : w ≠ x) (hwy : w ≠ y) :
     crossRatio z w x y * crossRatio w z₀ x y = crossRatio z z₀ x y := by

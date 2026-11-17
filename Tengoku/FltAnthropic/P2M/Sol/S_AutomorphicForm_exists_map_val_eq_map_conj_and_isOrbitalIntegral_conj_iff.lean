@@ -20,6 +20,9 @@ variable (K : Type) [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K))
 local notation "F" => v.adicCompletion K
 local notation "G₂" => GL (Fin 2) (v.adicCompletion K)
 
+/--
+@isnad1 id=iff.0h5v.s12.62f5a500690a from=translated src=- shape=8a637558 vocab=d2167110
+-/
 theorem mem_localCentralizer_conj_iff (x γ g : G₂) :
     x * g * x⁻¹ ∈ localCentralizer K v (x * γ * x⁻¹) ↔ g ∈ localCentralizer K v γ := by
   rw [Subgroup.mem_centralizer_singleton_iff, Subgroup.mem_centralizer_singleton_iff]
@@ -48,22 +51,37 @@ noncomputable def conjEquiv (x γ : G₂) : localCentralizer K v γ ≃ₜ* loca
     apply Continuous.subtype_mk
     exact (continuous_const.mul continuous_subtype_val).mul continuous_const
 
+/--
+@isnad1 id=eq.0h5v.s15.ea400c1e00a1 from=translated src=- shape=6bcef77a vocab=28e331df
+-/
 @[scoped simp] theorem coe_conjEquiv (x γ : G₂) (t : localCentralizer K v γ) :
     ((conjEquiv K v x γ t : localCentralizer K v (x * γ * x⁻¹)) : G₂) = x * t * x⁻¹ := rfl
 
+/--
+@isnad1 id=eq.0h5v.s15.98313a7c2423 from=translated src=- shape=6e03baa3 vocab=34e6abff
+-/
 @[scoped simp] theorem coe_conjEquiv_symm (x γ : G₂) (t' : localCentralizer K v (x * γ * x⁻¹)) :
     (((conjEquiv K v x γ).symm t' : localCentralizer K v γ) : G₂) = x⁻¹ * t' * x := rfl
 
+/--
+@isnad1 id=eq.0h4v.s15.9aa8f1a6e9ab from=translated src=- shape=f4c89f75 vocab=1e6bca45
+-/
 theorem val_comp_conjEquiv (x γ : G₂) :
     (Subtype.val : localCentralizer K v (x * γ * x⁻¹) → G₂) ∘ (conjEquiv K v x γ) =
       (fun g : G₂ => x * g * x⁻¹) ∘ (Subtype.val : localCentralizer K v γ → G₂) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s16.1c24ca0d6699 from=translated src=- shape=ac2e6506 vocab=d2c691bd
+-/
 theorem conjEquiv_symm_comp (x γ : G₂) :
     ((conjEquiv K v x γ).symm : localCentralizer K v (x * γ * x⁻¹) → localCentralizer K v γ) ∘
         (conjEquiv K v x γ) = id := by
   funext t
   exact (conjEquiv K v x γ).symm_apply_apply t
 
+/--
+@isnad1 id=isorbita.1h7v.s15.6063f788b6f7 from=translated src=- shape=c4b312e9 vocab=8e5e03e8
+-/
 theorem isOrbitalIntegral_of_conj (f : G₂ → ℂ) (x t : G₂)
     (τ' : @Measure (localCentralizer K v (x * t * x⁻¹)) (localCentralizerBorel K v (x * t * x⁻¹)))
     (I : ℂ) (h : IsOrbitalIntegral K v (x * t * x⁻¹) τ' f I) :
@@ -104,6 +122,9 @@ theorem isOrbitalIntegral_of_conj (f : G₂ → ℂ) (x t : G₂)
     have h1 : (x⁻¹ * z)⁻¹ * t * (x⁻¹ * z) = z⁻¹ * (x * t * x⁻¹) * z := by group
     rw [h1, mul_inv_cancel_left]
 
+/--
+@isnad1 id=isorbita.1h7v.s15.4ea91c0ac40d from=translated src=- shape=a474b803 vocab=f83a8df4
+-/
 theorem isOrbitalIntegral_conj (f : G₂ → ℂ) (x t : G₂)
     (τ : @Measure (localCentralizer K v t) (localCentralizerBorel K v t))
     (I : ℂ) (h : IsOrbitalIntegral K v t τ f I) :
@@ -145,6 +166,9 @@ theorem isOrbitalIntegral_conj (f : G₂ → ℂ) (x t : G₂)
     have h1 : (x * z)⁻¹ * (x * t * x⁻¹) * (x * z) = z⁻¹ * t * z := by group
     rw [h1, inv_mul_cancel_left]
 
+/--
+@isnad1 id=eq.0h5v.s15.a65ff4c6b152 from=translated src=- shape=0947b648 vocab=a4ed67eb
+-/
 theorem map_val_map_conjEquiv (x γ : G₂) (τ : @Measure (localCentralizer K v γ) (localCentralizerBorel K v γ)) :
     @Measure.map _ _ (localCentralizerBorel K v (x * γ * x⁻¹)) (localGLBorel K v) Subtype.val
         (@Measure.map _ _ (localCentralizerBorel K v γ) (localCentralizerBorel K v (x * γ * x⁻¹))
@@ -166,6 +190,9 @@ theorem map_val_map_conjEquiv (x γ : G₂) (τ : @Measure (localCentralizer K v
     (map_continuous (conjEquiv K v x γ)).measurable
   rw [Measure.map_map hvalγ' he, val_comp_conjEquiv, ← Measure.map_map hcx hvalγ]
 
+/--
+@isnad1 id=ishaarme.1h5v.s15.4fe4beb0a409 from=translated src=- shape=1124bc85 vocab=03fa475b
+-/
 theorem isHaarMeasure_map_conjEquiv (x γ : G₂) (τ : @Measure (localCentralizer K v γ) (localCentralizerBorel K v γ))
     (hτ : @Measure.IsHaarMeasure _ _ _ (localCentralizerBorel K v γ) τ) :
     @Measure.IsHaarMeasure _ _ _ (localCentralizerBorel K v (x * γ * x⁻¹))
@@ -180,6 +207,9 @@ theorem isHaarMeasure_map_conjEquiv (x γ : G₂) (τ : @Measure (localCentraliz
   haveI := hτ
   exact (conjEquiv K v x γ).isHaarMeasure_map τ
 
+/--
+@isnad1 id=ex.0h5v.s14.e5503eddb937 from=translated src=- shape=ca84ac9d vocab=6760022b
+-/
 theorem main (γ x : G₂) (τ : @Measure (localCentralizer K v γ) (localCentralizerBorel K v γ)) :
     ∃ τ' : @Measure (localCentralizer K v (x * γ * x⁻¹)) (localCentralizerBorel K v (x * γ * x⁻¹)),
       @Measure.map _ _ (localCentralizerBorel K v (x * γ * x⁻¹)) (localGLBorel K v) Subtype.val τ' =
@@ -205,6 +235,9 @@ theorem main (γ x : G₂) (τ : @Measure (localCentralizer K v γ) (localCentra
 end KcOrbitalConjTransport
 open scoped _root_.P2MW.S_AutomorphicForm_exists_map_val_eq_map_conj_and_isOrbitalIntegral_conj_iff.KcOrbitalConjTransport
 
+/--
+@isnad1 id=ex.0h5v.s14.e5503eddb937 from=translated src=- shape=ca84ac9d vocab=6760022b
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K))
     (γ x : GL (Fin 2) (v.adicCompletion K))

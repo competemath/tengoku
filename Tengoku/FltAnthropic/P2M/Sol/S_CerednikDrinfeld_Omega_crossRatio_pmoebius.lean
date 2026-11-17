@@ -13,6 +13,9 @@ open CerednikDrinfeld.Omega
 
 namespace CrossRatioInv
 
+/--
+@isnad1 id=eq.2h5v.s11.0ba492e8cb9c from=translated src=- shape=9eae3ca9 vocab=417ae9b9
+-/
 theorem moebius_sub {K₀ : Type*} [Field K₀] {K : Type*} [Field K] [Algebra K₀ K] (g : GL (Fin 2) K₀) (w w' : K)
     (hw : algebraMap K₀ K (g 1 0) * w + algebraMap K₀ K (g 1 1) ≠ 0)
     (hw' : algebraMap K₀ K (g 1 0) * w' + algebraMap K₀ K (g 1 1) ≠ 0) :
@@ -25,6 +28,9 @@ theorem moebius_sub {K₀ : Type*} [Field K₀] {K : Type*} [Field K] [Algebra K
 
 end CrossRatioInv
 
+/--
+@isnad1 id=eq.4h7v.s7.7f4bce79d472 from=translated src=- shape=834ee63e vocab=44b02d98
+-/
 theorem solution
     {K₀ : Type*} [Field K₀] {K : Type*} [Field K] [Algebra K₀ K] [DecidableEq K]
     (g : PGL(2, K₀)) {z z₀ x y : K}

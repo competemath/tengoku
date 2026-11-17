@@ -15,28 +15,43 @@ open MeasureTheory
 
 namespace PKAux44
 
+/--
+@isnad1 id=continuo.0h2v.s6.517e7933582c from=translated src=- shape=40b73f86 vocab=d6c3084a
+-/
 theorem continuous_modeChar {c : ℕ} (m : Fin c → ℤ) :
     Continuous fun θ : Fin c → ℝ => Complex.exp (-(2 * Real.pi * Complex.I * ((∑ j, (m j : ℝ) * θ j : ℝ) : ℂ))) := by
   have h1 : Continuous fun θ : Fin c → ℝ => (∑ j, (m j : ℝ) * θ j : ℝ) :=
     continuous_finsetSum _ fun j _ => continuous_const.mul (continuous_apply j)
   exact Complex.continuous_exp.comp (continuous_const.mul (Complex.continuous_ofReal.comp h1)).neg
 
+/--
+@isnad1 id=continuo.0h2v.s6.638577968ee2 from=translated src=- shape=2f68f18e vocab=81a513a2
+-/
 theorem continuous_xChar {r : ℕ} (ξ : Fin r → ℝ) :
     Continuous fun x : Fin r → ℝ => Complex.exp (-(2 * Real.pi * Complex.I * ((∑ k, ξ k * x k : ℝ) : ℂ))) := by
   have h1 : Continuous fun x : Fin r → ℝ => (∑ k, ξ k * x k : ℝ) :=
     continuous_finsetSum _ fun k _ => continuous_const.mul (continuous_apply k)
   exact Complex.continuous_exp.comp (continuous_const.mul (Complex.continuous_ofReal.comp h1)).neg
 
+/--
+@isnad1 id=eq.0h3v.s6.e7ea7a1e42f0 from=translated src=- shape=02249233 vocab=70d17265
+-/
 theorem norm_xChar {r : ℕ} (ξ x : Fin r → ℝ) :
     ‖Complex.exp (-(2 * Real.pi * Complex.I * ((∑ k, ξ k * x k : ℝ) : ℂ)))‖ = 1 := by
   rw [show -(2 * Real.pi * Complex.I * ((∑ k, ξ k * x k : ℝ) : ℂ)) =
       ((-(2 * Real.pi * (∑ k, ξ k * x k)) : ℝ) : ℂ) * Complex.I by push_cast; ring]
   exact Complex.norm_exp_ofReal_mul_I _
 
+/--
+@isnad1 id=integrab.1h3v.s7.80c6822e0bed from=translated src=- shape=86986b70 vocab=5949057a
+-/
 theorem integrable_xChar_mul {r : ℕ} (ξ : Fin r → ℝ) {f : (Fin r → ℝ) → ℂ} (hf : Integrable f) :
     Integrable fun x : Fin r → ℝ => Complex.exp (-(2 * Real.pi * Complex.I * ((∑ k, ξ k * x k : ℝ) : ℂ))) * f x :=
   hf.bdd_mul (continuous_xChar ξ).aestronglyMeasurable (Filter.Eventually.of_forall fun x => (norm_xChar ξ x).le)
 
+/--
+@isnad1 id=continuo.0h0v.s7.8f32e66b28a2 from=translated src=- shape=4ac07329 vocab=7b527e80
+-/
 theorem continuous_germ :
     Continuous fun q : ℝ × ℝ => ((‖(1 : ℂ) - Complex.exp ((q.1 / 2 : ℝ) + 2 * Real.pi * Complex.I * (q.2 : ℝ))‖ ^ 2 * Real.log ‖(1 : ℂ) - Complex.exp ((q.1 / 2 : ℝ) + 2 * Real.pi * Complex.I * (q.2 : ℝ))‖ : ℝ) : ℂ) := by
   have hρ : Continuous fun q : ℝ × ℝ =>
@@ -51,22 +66,34 @@ theorem continuous_germ :
     ring
   exact Complex.continuous_ofReal.comp (h2.comp hρ)
 
+/--
+@isnad1 id=continuo.0h5v.s7.6fa03bc13589 from=translated src=- shape=4f647df6 vocab=dc1ba700
+-/
 theorem continuous_germ_apply {r c : ℕ} (x : Fin r → ℝ) (k : Fin r) (j : Fin c) :
     Continuous fun θ : Fin c → ℝ => ((‖(1 : ℂ) - Complex.exp ((x k / 2 : ℝ) + 2 * Real.pi * Complex.I * (θ j : ℝ))‖ ^ 2 * Real.log ‖(1 : ℂ) - Complex.exp ((x k / 2 : ℝ) + 2 * Real.pi * Complex.I * (θ j : ℝ))‖ : ℝ) : ℂ) :=
   continuous_germ.comp (f := fun θ : Fin c → ℝ => (x k, θ j)) (continuous_const.prodMk (continuous_apply j))
 
+/--
+@isnad1 id=eq.0h2v.s7.35cd1a1139a5 from=translated src=- shape=b74df97a vocab=9e520c2e
+-/
 theorem cexp_arg_add_one (s t : ℝ) :
     Complex.exp (((s / 2 : ℝ) : ℂ) + 2 * Real.pi * Complex.I * ((t + 1 : ℝ) : ℂ)) =
       Complex.exp (((s / 2 : ℝ) : ℂ) + 2 * Real.pi * Complex.I * ((t : ℝ) : ℂ)) := by
   rw [Complex.ofReal_add, Complex.ofReal_one, mul_add, mul_one, ← add_assoc, Complex.exp_add,
     Complex.exp_two_pi_mul_I, mul_one]
 
+/--
+@isnad1 id=integrab.1h2v.s7.0a1b796aa6ef from=translated src=- shape=951bfec6 vocab=f539a0d8
+-/
 theorem integrableOn_cube {c : ℕ} {f : (Fin c → ℝ) → ℂ} (hf : Continuous f) :
     IntegrableOn f (Set.pi Set.univ (fun _ : Fin c => Set.Ico (0 : ℝ) 1)) volume :=
   (ContinuousOn.integrableOn_compact
       (isCompact_univ_pi fun _ : Fin c => (isCompact_Icc : IsCompact (Set.Icc (0 : ℝ) 1))) hf.continuousOn).mono_set
     (Set.pi_mono fun _ _ => Set.Ico_subset_Icc_self)
 
+/--
+@isnad1 id=hascompa.1h3v.s6.399ba69fa2c1 from=translated src=- shape=70cef9f6 vocab=a27b5f21
+-/
 theorem hasCompactSupport_of_box {r : ℕ} {f : (Fin r → ℝ) → ℂ} (R : ℝ)
     (h : ∀ x : Fin r → ℝ, (∃ k, R < |x k|) → f x = 0) : HasCompactSupport f := by
   refine HasCompactSupport.intro (isCompact_univ_pi fun _ : Fin r => (isCompact_Icc : IsCompact (Set.Icc (-R) R))) ?_
@@ -76,6 +103,9 @@ theorem hasCompactSupport_of_box {r : ℕ} {f : (Fin r → ℝ) → ℂ} (R : �
   push_neg at hcon
   exact hx (Set.mem_univ_pi.mpr fun k => Set.mem_Icc.mpr (abs_le.mp (hcon k)))
 
+/--
+@isnad1 id=le.0h2v.s6.f4dd1d97ea65 from=translated src=- shape=5cff9898 vocab=27c66cbe
+-/
 theorem prod_inv_sq_le_one {r : ℕ} (x : Fin r → ℝ) : ∏ k, (1 + |x k|)⁻¹ ^ 2 ≤ 1 :=
   Finset.prod_le_one (fun k _ => by positivity)
     (fun k _ => pow_le_one₀ (by positivity) (inv_le_one_of_one_le₀ (by linarith [abs_nonneg (x k)])))
@@ -83,6 +113,9 @@ theorem prod_inv_sq_le_one {r : ℕ} (x : Fin r → ℝ) : ∏ k, (1 + |x k|)⁻
 end PKAux44
 
 open PKAux44 in
+/--
+@isnad1 id=other.6h9v.s11.23ab5e34e92c from=translated src=- shape=797e4630 vocab=17d12376
+-/
 theorem solution
     {r c : ℕ} (kC : Fin c → Fin r) {ιR : Type} [Fintype ιR] (kR : ιR → Fin r)
     (B : (Fin r → ℝ) × (Fin c → ℝ) → ℂ) (C : ιR → (Fin r → ℝ) × (Fin c → ℝ) → ℂ)

@@ -26,6 +26,9 @@ variable {𝕜 : Type*} [NontriviallyNormedField 𝕜] {𝔸 : Type*} [NormedRin
 
 open scoped RightActions in
 
+/--
+@isnad1 id=ex.1h3v.s8.28e10defa93f from=translated src=- shape=80acd8a5 vocab=56abff88
+-/
 theorem exists_localInverse_pow (n : ℕ) (hn : (n : 𝕜) ≠ 0) :
     ∃ G : 𝔸 → 𝔸, G 1 = 1 ∧ ContinuousAt G 1 ∧ (∀ᶠ y in 𝓝 (1 : 𝔸), G y ^ n = y) ∧
       ∃ S : Set 𝔸, (1 : 𝔸) ∈ S ∧ IsOpen S ∧ Set.InjOn (fun x : 𝔸 => x ^ n) S := by
@@ -56,6 +59,9 @@ theorem exists_localInverse_pow (n : ℕ) (hn : (n : 𝕜) ≠ 0) :
   · have h := (HasStrictFDerivAt.toOpenPartialHomeomorph _ hp).injOn
     rwa [HasStrictFDerivAt.toOpenPartialHomeomorph_coe] at h
 
+/--
+@isnad1 id=ex.2h5v.s9.68dbab92316e from=translated src=- shape=5a59917a vocab=9923c612
+-/
 theorem exists_nhds_forall_commute_exists_pow_eq (n : ℕ) (hn : (n : 𝕜) ≠ 0) (g : 𝔸ˣ) :
     ∀ V' ∈ 𝓝 (1 : 𝔸ˣ), ∃ W ∈ 𝓝 (1 : 𝔸ˣ), ∀ a ∈ W, Commute (a : 𝔸) g →
       ∃ β : 𝔸ˣ, β ∈ V' ∧ Commute (β : 𝔸) g ∧ β ^ n = a := by
@@ -136,6 +142,9 @@ section Commutant
 
 variable {R : Type*} [CommRing R]
 
+/--
+@isnad1 id=ex.2h3v.s9.67a1e2ab128b from=translated src=- shape=c20b1572 vocab=dd34b38e
+-/
 theorem exists_eq_smul_one_add_smul_of_commute (g m : Matrix (Fin 2) (Fin 2) R)
     (hg : IsUnit (g.trace ^ 2 - 4 * g.det)) (hm : m * g = g * m) :
     ∃ x y : R, m = x • (1 : Matrix (Fin 2) (Fin 2) R) + y • g := by
@@ -164,6 +173,9 @@ section Local
 
 variable (K : Type) [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K))
 
+/--
+@isnad1 id=ex.0h2v.s7.b8a3de0b5e97 from=translated src=- shape=bd6808cf vocab=846d6456
+-/
 theorem exists_norm_ne_one : ∃ x : v.adicCompletion K, x ≠ 0 ∧ ‖x‖ ≠ 1 := by
   obtain ⟨π, hπ⟩ := HeightOneSpectrum.valuation_exists_uniformizer K v
   obtain ⟨d, hvd⟩ : ∃ d : v.adicCompletion K, Valued.v d = WithZero.exp (-1 : ℤ) :=
@@ -174,6 +186,9 @@ theorem exists_norm_ne_one : ∃ x : v.adicCompletion K, x ≠ 0 ∧ ‖x‖ ≠
   · rw [Valued.toNormedField.norm_lt_one_iff, hvd, ← WithZero.exp_zero, WithZero.exp_lt_exp]
     norm_num
 
+/--
+@isnad1 id=eq.0h4v.s12.9941a5898967 from=translated src=- shape=dbac80b5 vocab=c8950fb1
+-/
 theorem scalar_mul_comm (c : (v.adicCompletion K)ˣ) (g : GL (Fin 2) (v.adicCompletion K)) :
     Matrix.GeneralLinearGroup.scalar (Fin 2) c * g = g * Matrix.GeneralLinearGroup.scalar (Fin 2) c := by
   refine Units.ext ?_
@@ -193,6 +208,9 @@ open _root_.AutomorphicForm open _root_.P2MW.S_AutomorphicForm_exists_nhds_foral
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
+/--
+@isnad1 id=ex.3h6v.s13.f4f8bca9f999 from=translated src=- shape=5f397978 vocab=f601838d
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K))
     (γ₀ : GL (Fin 2) (v.adicCompletion K)) (hγ₀ : AutomorphicForm.IsRegularSemisimple γ₀)

@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=and.10h6v.s12.6731c498d08c from=translated src=- shape=b028d68e vocab=0dc3d540
+-/
 theorem CerednikDrinfeld.UnramQuad.free_finrank_two_equalizer_frobenius_sq
 
     {r : ℕ} [Fact r.Prime]

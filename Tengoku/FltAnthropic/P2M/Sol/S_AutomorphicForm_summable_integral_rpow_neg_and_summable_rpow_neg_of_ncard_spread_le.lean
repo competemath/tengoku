@@ -13,6 +13,9 @@ noncomputable section
 
 namespace CountSum
 
+/--
+@isnad1 id=summable.3h6v.s7.2154ce989089 from=translated src=- shape=e386ba9b vocab=c261ff6e
+-/
 theorem summable_indicator_rpow_neg_of_ncard_le {ι : Type} (P : ι → Prop) [DecidablePred P] (s : ι → ℝ)
     (hs : ∀ e, 0 ≤ s e) (C : ℝ) (d : ℕ)
     (hcount : ∀ R : ℝ, 0 ≤ R → {e : ι | P e ∧ s e ≤ R}.Finite ∧ (({e : ι | P e ∧ s e ≤ R}.ncard : ℕ) : ℝ) ≤ C * (1 + R) ^ d)
@@ -94,6 +97,9 @@ theorem summable_indicator_rpow_neg_of_ncard_le {ι : Type} (P : ι → Prop) [D
           _ = a n := rfl
     _ ≤ ∑' n, a n := hasum.sum_le_tsum _ (fun n _ => ha0 n)
 
+/--
+@isnad1 id=eq.1h3v.s7.04b17f798ca1 from=translated src=- shape=74e9aff3 vocab=48dfe372
+-/
 theorem integral_profile (a : ℝ) (ha : 0 < a) (c : ℝ) (B : ℝ) :
     ∫ t : ℝ, (a + |t + c| / 2) ^ (-B) = 2 * a ^ (1 - B) * ∫ x : ℝ, (1 + |x|) ^ (-B) := by
   have h1 : (fun t : ℝ => (a + |t + c| / 2) ^ (-B)) = fun t => (fun u : ℝ => (a + |u| / 2) ^ (-B)) (t + c) := rfl
@@ -110,6 +116,9 @@ theorem integral_profile (a : ℝ) (ha : 0 < a) (c : ℝ) (B : ℝ) :
     rw [sub_eq_add_neg, Real.rpow_add ha, Real.rpow_one]; ring
   rw [← mul_assoc, this]
 
+/--
+@isnad1 id=integrab.2h3v.s6.357ea5897755 from=translated src=- shape=3fa514d5 vocab=b97adcd9
+-/
 theorem integrable_profile (a : ℝ) (ha : 0 < a) (c : ℝ) (B : ℝ) (hB : 1 < B) :
     Integrable (fun t : ℝ => (a + |t + c| / 2) ^ (-B)) := by
   have hI : Integrable (fun x : ℝ => (1 + |x|) ^ (-B)) := by
@@ -127,6 +136,9 @@ theorem integrable_profile (a : ℝ) (ha : 0 < a) (c : ℝ) (B : ℝ) (hB : 1 < 
   have h3 := (hI.comp_mul_left' (inv_ne_zero (by positivity : (2 * a : ℝ) ≠ 0))).comp_add_right c
   exact h3
 
+/--
+@isnad1 id=le.0h3v.s6.d7ff73f2f634 from=translated src=- shape=0d428ac4 vocab=2df3be8f
+-/
 theorem spread_le_sum {V : Type} [Fintype V] (τ : V → ℝ) (t : ℝ) :
     ∑ v : V, ∑ v' : V, |τ v - τ v'| ≤ 2 * (Fintype.card V : ℝ) * ∑ v : V, |t + τ v| := by
   calc ∑ v : V, ∑ v' : V, |τ v - τ v'| ≤ ∑ v : V, ∑ v' : V, (|t + τ v| + |t + τ v'|) := by
@@ -141,6 +153,9 @@ theorem spread_le_sum {V : Type} [Fintype V] (τ : V → ℝ) (t : ℝ) :
 end CountSum
 
 open CountSum in
+/--
+@isnad1 id=and.2h8v.s8.25ef7e08a557 from=translated src=- shape=a62cee86 vocab=c8c3779c
+-/
 theorem solution
     (V : Type) [Fintype V] [Nonempty V] (ιE : Type) (nE : ιE → ℕ)
     (τ τ' : ιE → V → ℝ) (C : ℝ) (d : ℕ)

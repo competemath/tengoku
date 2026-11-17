@@ -24,6 +24,9 @@ variable {R K : Type} [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [Fie
 
 local notation "cϖ" => unitOfNeZero (K := K) (Irreducible.ne_zero hϖ)
 
+/--
+@isnad1 id=iff.1h5v.s9.5e6d94d54996 from=translated src=- shape=92710f4d vocab=b45c34e4
+-/
 theorem mem_scaled_iff (L : Submodule R (Fin 2 → K)) (v : Fin 2 → K) :
     v ∈ latticeMap (scalarGL cϖ) L ↔ ∃ w ∈ L, ϖ • w = v := by
   rw [mem_latticeMap_scalarGL]
@@ -31,11 +34,17 @@ theorem mem_scaled_iff (L : Submodule R (Fin 2 → K)) (v : Fin 2 → K) :
 
 include hϖ in
 
+/--
+@isnad1 id=le.1h4v.s8.2948d57d3839 from=translated src=- shape=1edf1015 vocab=96a9bcf8
+-/
 theorem scaled_le (L : Submodule R (Fin 2 → K)) : latticeMap (scalarGL cϖ) L ≤ L := by
   intro v hv
   obtain ⟨w, hw, rfl⟩ := (mem_scaled_iff hϖ L v).mp hv
   exact L.smul_mem ϖ hw
 
+/--
+@isnad1 id=le.1h4v.s9.36adeb95fcb3 from=translated src=- shape=5d74d700 vocab=f6175027
+-/
 theorem scaled_le_maximalIdeal_smul (L : Submodule R (Fin 2 → K)) :
     latticeMap (scalarGL cϖ) L ≤ (IsLocalRing.maximalIdeal R) • L := by
   intro v hv
@@ -50,6 +59,9 @@ theorem eq_of_sup_scaled_eq {L M : Submodule R (Fin 2 → K)} (hL : L.FG) (hML :
   calc L = M ⊔ latticeMap (scalarGL cϖ) L := h.symm
     _ ≤ M ⊔ IsLocalRing.maximalIdeal R • L := sup_le_sup_left (scaled_le_maximalIdeal_smul hϖ L) M
 
+/--
+@isnad1 id=eq.2h5v.s8.d06667ad528d from=translated src=- shape=5f80ded9 vocab=dcb73627
+-/
 theorem scaled_eq_of_irreducible {ϖ' : R} (hϖ' : Irreducible ϖ') (L : Submodule R (Fin 2 → K)) :
     latticeMap (scalarGL (unitOfNeZero (K := K) hϖ'.ne_zero)) L = latticeMap (scalarGL cϖ) L := by
   obtain ⟨u, hu⟩ := IsDiscreteValuationRing.associated_of_irreducible R hϖ' hϖ
@@ -63,19 +75,31 @@ theorem scaled_eq_of_irreducible {ϖ' : R} (hϖ' : Irreducible ϖ') (L : Submodu
     refine ⟨(u : R) • w, L.smul_mem _ hw, ?_⟩
     rw [smul_smul, hu]
 
+/--
+@isnad1 id=eq.0h5v.s8.595e560f6e6a from=translated src=- shape=ad1e16c2 vocab=9d9b29d0
+-/
 theorem scalar_comm (a b : Kˣ) (X : Submodule R (Fin 2 → K)) :
     latticeMap (scalarGL a) (latticeMap (scalarGL b) X) = latticeMap (scalarGL b) (latticeMap (scalarGL a) X) := by
   rw [← latticeMap_mul, ← scalarGL_mul, mul_comm, scalarGL_mul, latticeMap_mul]
 
+/--
+@isnad1 id=eq.0h5v.s9.d4fb62703797 from=translated src=- shape=af9aeade vocab=35f0e0c2
+-/
 theorem latticeMap_sup (g : Matrix.GeneralLinearGroup (Fin 2) K) (A B : Submodule R (Fin 2 → K)) :
     latticeMap g (A ⊔ B) = latticeMap g A ⊔ latticeMap g B := by
   unfold latticeMap
   rw [Submodule.map_sup]
 
+/--
+@isnad1 id=eq.1h5v.s8.c2e73d154f97 from=translated src=- shape=0538a8ed vocab=411c22cf
+-/
 theorem pow_succ_scaled (n : ℕ) (L : Submodule R (Fin 2 → K)) :
     latticeMap (scalarGL (cϖ ^ (n + 1))) L = latticeMap (scalarGL (cϖ ^ n)) (latticeMap (scalarGL cϖ) L) := by
   rw [pow_succ, scalarGL_mul, latticeMap_mul]
 
+/--
+@isnad1 id=iswithin.3h8v.s7.093b5726bad7 from=translated src=- shape=6cbc4ce2 vocab=2e5e63c2
+-/
 theorem isWithin_triangle {m n : ℕ} {x y z : Vertex R K} (hxy : Vertex.IsWithin cϖ m x y)
     (hyz : Vertex.IsWithin cϖ n y z) : Vertex.IsWithin cϖ (m + n) x z := by
   obtain ⟨L, M, hL, hM, rfl, rfl, hlow, hup⟩ := hxy
@@ -95,18 +119,27 @@ theorem isWithin_triangle {m n : ℕ} {x y z : Vertex R K} (hxy : Vertex.IsWithi
       _ = M := hd
       _ ≤ L := hup
 
+/--
+@isnad1 id=iswithin.2h5v.s6.906152d652bd from=translated src=- shape=eb0a63bb vocab=f9dbd252
+-/
 theorem isWithin_one_of_vertRel {x y : Vertex R K} (h : VertRel R K x y) : Vertex.IsWithin cϖ 1 x y := by
   obtain ⟨L, L', hL, hL', rfl, rfl, ϖ', hϖ', hlt, hlt'⟩ := h
   refine ⟨L, L', hL, hL', rfl, rfl, ?_, hlt'.le⟩
   rw [pow_one, ← scaled_eq_of_irreducible hϖ hϖ' L]
   exact hlt.le
 
+/--
+@isnad1 id=iswithin.2h5v.s6.d67467c06199 from=translated src=- shape=a98f0a4a vocab=d88ae541
+-/
 theorem isWithin_one_of_adj {x y : Vertex R K} (h : (tree R K).Adj x y) : Vertex.IsWithin cϖ 1 x y := by
   rw [tree_adj_iff] at h
   rcases h.2 with h' | h'
   · exact isWithin_one_of_vertRel hϖ h'
   · exact (isWithin_one_of_vertRel hϖ h').symm
 
+/--
+@isnad1 id=iswithin.1h6v.s7.1af924759d5c from=translated src=- shape=7c810982 vocab=18b8786e
+-/
 theorem isWithin_length_of_walk {x y : Vertex R K} (p : (tree R K).Walk x y) : Vertex.IsWithin cϖ p.length x y := by
   induction p with
   | nil => exact (Vertex.isWithin_zero_iff cϖ _ _).mpr rfl
@@ -114,6 +147,9 @@ theorem isWithin_length_of_walk {x y : Vertex R K} (p : (tree R K).Walk x y) : V
     rw [SimpleGraph.Walk.length_cons, Nat.add_comm]
     exact isWithin_triangle hϖ (isWithin_one_of_adj hϖ h) ih
 
+/--
+@isnad1 id=le.4h6v.s8.df87dd382803 from=translated src=- shape=172b06b2 vocab=1dfa417a
+-/
 theorem dist_le_of_latticeWithin (n : ℕ) :
     ∀ (L M : Submodule R (Fin 2 → K)) (hL : IsFullLattice L) (hM : IsFullLattice M),
       LatticeWithin cϖ n L M → (tree R K).dist (Vertex.mk R K L hL) (Vertex.mk R K M hM) ≤ n := by
@@ -173,6 +209,9 @@ theorem dist_le_of_latticeWithin (n : ℕ) :
           _ ≤ 1 + n := Nat.add_le_add h1 (ih M' M hM'full hM h2)
           _ = n + 1 := Nat.add_comm 1 n
 
+/--
+@isnad1 id=iff.1h6v.s6.d3d74a687c3f from=translated src=- shape=d9f0982c vocab=c8ba4ec3
+-/
 theorem main (n : ℕ) (v w : Vertex R K) :
     Vertex.IsWithin cϖ n v w ↔ (tree R K).dist v w ≤ n := by
   have hconn : (tree R K).Connected := (CerednikDrinfeld.BruhatTits.tree_connected_and_colorable_two R K).1
@@ -187,6 +226,9 @@ theorem main (n : ℕ) (v w : Vertex R K) :
 
 end LT.LatticeTree.BridgeDist
 
+/--
+@isnad1 id=iff.1h6v.s6.d3d74a687c3f from=translated src=- shape=d9f0982c vocab=c8ba4ec3
+-/
 theorem solution
     (R K : Type) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [Field K] [Algebra R K]
     [IsFractionRing R K] (ϖ : R) (hϖ : Irreducible ϖ) (n : ℕ) (v w : LT.LatticeTree.Vertex R K) :

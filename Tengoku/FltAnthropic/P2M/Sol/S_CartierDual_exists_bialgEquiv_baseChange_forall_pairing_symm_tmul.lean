@@ -27,22 +27,37 @@ namespace P2MQ2CDBC
 section ReadOff
 variable {R : Type*} [CommRing R] {X : Type*} [CommRing X] [Bialgebra R X]
 
+/--
+@isnad1 id=eq.0h5v.s7.01060f410501 from=translated src=- shape=9be34059 vocab=9a98515f
+-/
 theorem cd_add_apply (φ ψ : CartierDual R X) (x : X) : (φ + ψ) x = φ x + ψ x := by
   rw [← CartierDual.toDual_apply (φ + ψ), map_add, LinearMap.add_apply, CartierDual.toDual_apply,
     CartierDual.toDual_apply]
 
+/--
+@isnad1 id=eq.0h3v.s6.314aa7b87043 from=translated src=- shape=70d24d67 vocab=8edd7a44
+-/
 theorem cd_zero_apply (x : X) : (0 : CartierDual R X) x = 0 := by
   rw [← CartierDual.toDual_apply (0 : CartierDual R X), map_zero, LinearMap.zero_apply]
 
+/--
+@isnad1 id=eq.0h3v.s8.5db96ea83e11 from=translated src=- shape=3cc4efdb vocab=1088f2e4
+-/
 theorem cd_one_apply (x : X) : (1 : CartierDual R X) x = counit (R := R) x := by
   rw [CartierDual.one_def, CartierDual.ofDual_apply]
 
+/--
+@isnad1 id=eq.0h7v.s9.68fab2923124 from=translated src=- shape=45dc9354 vocab=67a32b56
+-/
 theorem cd_mul_apply_repr [Module.Finite R X] [Module.Free R X] (φ ψ : CartierDual R X) {x : X} {ιrr : Type*} (rr : Coalgebra.Repr R x ιrr) :
     (φ * ψ) x = ∑ i ∈ rr.index, φ (rr.left i) * ψ (rr.right i) := by
   rw [CartierDual.mul_apply, ← rr.eq, map_sum]
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [TensorProduct.dualDistrib_apply, CartierDual.toDual_apply, CartierDual.toDual_apply]
 
+/--
+@isnad1 id=eq.0h7v.s9.85be7014a60d from=translated src=- shape=a37a7758 vocab=67a32b56
+-/
 theorem cd_comul_repr_pairing [Module.Finite R X] [Module.Free R X] (φ : CartierDual R X)
     {ιrr : Type*} (rr : Coalgebra.Repr R φ ιrr) (a b : X) :
     ∑ i ∈ rr.index, rr.left i a * rr.right i b = φ (a * b) := by
@@ -59,12 +74,18 @@ variable (A : Type w) [CommRing A] [Bialgebra O A] [Module.Finite O A] [Module.F
 
 noncomputable scoped instance instBialgebraTensorCD : Bialgebra F (F ⊗[O] CartierDual O A) :=
   TensorProduct.instBialgebra O F F (CartierDual O A)
+/--
+@isnad1 id=finite.0h3v.s8.bb4dee473a7b from=translated src=- shape=9c398d97 vocab=9a598ed4
+-/
 noncomputable scoped instance instModuleFiniteTensorCD : Module.Finite F (F ⊗[O] CartierDual O A) :=
   Module.Finite.base_change O F (CartierDual O A)
 
 variable {O F A}
 
 omit [Module.Finite O A] [Module.Free O A] in
+/--
+@isnad1 id=eq.0h3v.s11.795340de3523 from=translated src=- shape=88e6ca4e vocab=075a758c
+-/
 theorem bcLin_one : CartierDual.dualBaseChangeLin O F A 1 = 1 := by
   refine CartierDual.ext fun x => ?_
   rw [Algebra.TensorProduct.one_def, cd_one_apply]
@@ -75,6 +96,9 @@ theorem bcLin_one : CartierDual.dualBaseChangeLin O F A 1 = 1 := by
       mul_comm]
   | add x y hx hy => rw [map_add, map_add, hx, hy]
 
+/--
+@isnad1 id=eq.0h7v.s12.e87819ad5694 from=translated src=- shape=99986884 vocab=85e02219
+-/
 theorem bcLin_mul_tmul (c d : F) (φ ψ : CartierDual O A) :
     CartierDual.dualBaseChangeLin O F A ((c ⊗ₜ[O] φ) * (d ⊗ₜ[O] ψ)) = CartierDual.dualBaseChangeLin O F A (c ⊗ₜ[O] φ) * CartierDual.dualBaseChangeLin O F A (d ⊗ₜ[O] ψ) := by
   refine CartierDual.ext fun x => ?_
@@ -98,6 +122,9 @@ theorem bcLin_mul_tmul (c d : F) (φ ψ : CartierDual O A) :
     ring
   | add x y hx hy => rw [map_add, map_add, hx, hy]
 
+/--
+@isnad1 id=eq.0h5v.s12.39f1ca44e0d2 from=translated src=- shape=3d8b79a2 vocab=8c48ccdc
+-/
 theorem bcLin_mul (x y : F ⊗[O] CartierDual O A) : CartierDual.dualBaseChangeLin O F A (x * y) = CartierDual.dualBaseChangeLin O F A x * CartierDual.dualBaseChangeLin O F A y := by
 
   induction x using TensorProduct.induction_on with
@@ -124,6 +151,9 @@ variable (O F A) in
 noncomputable def bcAlgHom : F ⊗[O] CartierDual O A →ₐ[F] CartierDual F (F ⊗[O] A) :=
   AlgHom.ofLinearMap (CartierDual.dualBaseChangeLin O F A) bcLin_one bcLin_mul
 
+/--
+@isnad1 id=bijectiv.0h3v.s11.f6dd67167699 from=translated src=- shape=b140f076 vocab=b6a56067
+-/
 theorem bcLin_bijective : Function.Bijective (CartierDual.dualBaseChangeLin O F A) := by
   classical
   let b := Module.Free.chooseBasis O A
@@ -163,12 +193,21 @@ variable (O F A) in
 noncomputable def bc : F ⊗[O] CartierDual O A ≃ₐ[F] CartierDual F (F ⊗[O] A) :=
   AlgEquiv.ofBijective (bcAlgHom O F A) bcLin_bijective
 
+/--
+@isnad1 id=eq.0h4v.s11.92fc71ca59c6 from=translated src=- shape=0eb8464f vocab=71bc0b82
+-/
 theorem bc_apply (x : F ⊗[O] CartierDual O A) : bc O F A x = CartierDual.dualBaseChangeLin O F A x := rfl
 
+/--
+@isnad1 id=eq.0h7v.s11.22dd4b0555dd from=translated src=- shape=dbe29035 vocab=a7a18efc
+-/
 theorem bc_tmul_tmul (c : F) (φ : CartierDual O A) (c' : F) (a : A) :
     bc O F A (c ⊗ₜ[O] φ) (c' ⊗ₜ[O] a) = c * c' * algebraMap O F (φ a) :=
   CartierDual.dualBaseChangeLin_tmul_tmul c φ c' a
 
+/--
+@isnad1 id=eq.0h4v.s12.4e86a4998fb6 from=translated src=- shape=7145187c vocab=ab92dec4
+-/
 theorem counit_bc (w : F ⊗[O] CartierDual O A) : counit (R := F) (bc O F A w) = counit (R := F) w := by
   rw [bc_apply, CartierDual.counit_apply]
   induction w using TensorProduct.induction_on with
@@ -180,6 +219,9 @@ theorem counit_bc (w : F ⊗[O] CartierDual O A) : counit (R := F) (bc O F A w) 
 
 set_option maxHeartbeats 3200000 in
 
+/--
+@isnad1 id=eq.0h8v.s17.cd401d652c62 from=translated src=- shape=c52fee43 vocab=f0cf5326
+-/
 theorem pairingAux_sum {ι : Type*} (s : Finset ι)
     (t : ι → (F ⊗[O] CartierDual O A) ⊗[F] (F ⊗[O] CartierDual O A)) (x y : F ⊗[O] A) :
     TensorProduct.dualDistrib F (F ⊗[O] A) (F ⊗[O] A)
@@ -200,6 +242,9 @@ theorem pairingAux_sum {ι : Type*} (s : Finset ι)
 
 set_option maxHeartbeats 6400000 in
 
+/--
+@isnad1 id=eq.0h6v.s16.26aa87b16d3c from=translated src=- shape=3d99b11b vocab=183eaa7d
+-/
 theorem map_bc_comul_pairing (w : F ⊗[O] CartierDual O A) (x y : F ⊗[O] A) :
     TensorProduct.dualDistrib F (F ⊗[O] A) (F ⊗[O] A)
       (TensorProduct.map (CartierDual.toDual F (F ⊗[O] A)).toLinearMap (CartierDual.toDual F (F ⊗[O] A)).toLinearMap
@@ -255,6 +300,9 @@ theorem map_bc_comul_pairing (w : F ⊗[O] CartierDual O A) (x y : F ⊗[O] A) :
     erw [LinearMap.map_add, LinearMap.map_add, LinearMap.map_add, LinearMap.map_add, LinearMap.add_apply, map_add,
       cd_add_apply, h₁, h₂]
 
+/--
+@isnad1 id=eq.0h4v.s15.ed037d42e003 from=translated src=- shape=806321d2 vocab=49e8c3d6
+-/
 theorem map_bc_comul (w : F ⊗[O] CartierDual O A) :
     TensorProduct.map (bc O F A).toLinearMap (bc O F A).toLinearMap (comul (R := F) w) = comul (R := F) (bc O F A w) :=
   CartierDual.tmul_eq_of_pairing_eq fun x y => by rw [map_bc_comul_pairing, CartierDual.comul_pairing]
@@ -271,6 +319,9 @@ set_option maxHeartbeats 6400000 in
 set_option synthInstance.maxHeartbeats 1600000 in
 open scoped TensorProduct in
 
+/--
+@isnad1 id=ex.0h3v.s14.b95610ddc39b from=translated src=- shape=3a64fb07 vocab=afa97e28
+-/
 theorem solution
     (R : Type u) (S : Type v) [CommRing R] [CommRing S] [Algebra R S]
     (A : Type w) [CommRing A] [Bialgebra R A] [Module.Finite R A] [Module.Free R A] :

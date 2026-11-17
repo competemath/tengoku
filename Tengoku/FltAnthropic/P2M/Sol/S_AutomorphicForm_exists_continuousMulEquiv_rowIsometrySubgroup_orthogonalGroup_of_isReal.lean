@@ -23,11 +23,17 @@ section RCLikeCore
 
 variable {𝕜 : Type*} [RCLike 𝕜]
 
+/--
+@isnad1 id=eq.0h3v.s8.a4e6f0e6535d from=translated src=- shape=cf58c286 vocab=d657cee4
+-/
 theorem norm_add_sq_rclike (u v : 𝕜) :
     ‖u + v‖ ^ 2 = ‖u‖ ^ 2 + 2 * RCLike.re (conj u * v) + ‖v‖ ^ 2 := by
   have h := @norm_add_sq 𝕜 𝕜 _ _ _ u v
   rwa [RCLike.inner_apply'] at h
 
+/--
+@isnad1 id=and.1h2v.s10.69d44316c21a from=translated src=- shape=2b5c0e26 vocab=24da3bfa
+-/
 theorem rows_orthonormal_of_isRowIsometry {k : GL (Fin 2) 𝕜} (hk : IsRowIsometry k) :
     ‖(k : Matrix (Fin 2) (Fin 2) 𝕜) 0 0‖ ^ 2 + ‖(k : Matrix (Fin 2) (Fin 2) 𝕜) 0 1‖ ^ 2 = 1 ∧
     ‖(k : Matrix (Fin 2) (Fin 2) 𝕜) 1 0‖ ^ 2 + ‖(k : Matrix (Fin 2) (Fin 2) 𝕜) 1 1‖ ^ 2 = 1 ∧
@@ -75,6 +81,9 @@ theorem rows_orthonormal_of_isRowIsometry {k : GL (Fin 2) 𝕜} (hk : IsRowIsome
     · rw [him, map_zero]
   exact ⟨E1, E2, hQ0⟩
 
+/--
+@isnad1 id=mem.1h2v.s8.8d49dc0aca21 from=translated src=- shape=157283c0 vocab=28c1afb1
+-/
 theorem mem_unitaryGroup_of_isRowIsometry {k : GL (Fin 2) 𝕜} (hk : IsRowIsometry k) :
     (k : Matrix (Fin 2) (Fin 2) 𝕜) ∈ Matrix.unitaryGroup (Fin 2) 𝕜 := by
   obtain ⟨E1, E2, hQ⟩ := rows_orthonormal_of_isRowIsometry hk
@@ -96,6 +105,9 @@ theorem mem_unitaryGroup_of_isRowIsometry {k : GL (Fin 2) 𝕜} (hk : IsRowIsome
   fin_cases i <;> fin_cases j <;>
     simp [Matrix.mul_apply, Fin.sum_univ_two, Matrix.star_apply, E1', E2', hQ', hQ'']
 
+/--
+@isnad1 id=isrowiso.1h2v.s8.5c72f149b49f from=translated src=- shape=a9b759a4 vocab=28c1afb1
+-/
 theorem isRowIsometry_of_mem_unitaryGroup {k : GL (Fin 2) 𝕜}
     (hk : (k : Matrix (Fin 2) (Fin 2) 𝕜) ∈ Matrix.unitaryGroup (Fin 2) 𝕜) : IsRowIsometry k := by
   set A := (k : Matrix (Fin 2) (Fin 2) 𝕜) with hA
@@ -140,6 +152,9 @@ theorem isRowIsometry_of_mem_unitaryGroup {k : GL (Fin 2) 𝕜}
     simp only [norm_mul, mul_pow]
     nlinarith [hcross, E1, E2, sq_nonneg ‖x‖, sq_nonneg ‖y‖]
 
+/--
+@isnad1 id=isrowiso.0h2v.s12.2f3f9b4124ed from=translated src=- shape=1fb2afa4 vocab=182c84a8
+-/
 theorem isRowIsometry_toUnits (A : ↥(Matrix.unitaryGroup (Fin 2) 𝕜)) :
     IsRowIsometry (Unitary.toUnits A : GL (Fin 2) 𝕜) :=
   isRowIsometry_of_mem_unitaryGroup (k := (Unitary.toUnits A : GL (Fin 2) 𝕜)) A.2
@@ -158,10 +173,16 @@ def unitaryMulEquiv : ↥(rowIsometrySubgroup 𝕜) ≃* ↥(Matrix.unitaryGroup
     apply Subtype.ext
     rfl
 
+/--
+@isnad1 id=continuo.0h1v.s12.e718864b5afc from=translated src=- shape=da6ef20d vocab=e76d43e4
+-/
 theorem continuous_unitaryMulEquiv : Continuous (unitaryMulEquiv (𝕜 := 𝕜)) := by
   apply Continuous.subtype_mk
   exact Units.continuous_val.comp continuous_subtype_val
 
+/--
+@isnad1 id=continuo.0h1v.s12.00ee97e67494 from=translated src=- shape=5b425968 vocab=fc084941
+-/
 theorem continuous_unitaryMulEquiv_symm : Continuous (unitaryMulEquiv (𝕜 := 𝕜)).symm := by
   apply Continuous.subtype_mk
   rw [Units.continuous_iff]
@@ -181,6 +202,9 @@ section Transport
 
 variable {K L : Type*} [NormedField K] [NormedField L]
 
+/--
+@isnad1 id=isrowiso.2h4v.s9.6b34f030e771 from=translated src=- shape=df690db1 vocab=cbf9ad22
+-/
 theorem isRowIsometry_glEquivOfRingEquiv (e : K ≃+* L) (he : ∀ x : K, ‖e x‖ = ‖x‖) {k : GL (Fin 2) K}
     (hk : IsRowIsometry k) : IsRowIsometry (glEquivOfRingEquiv e k) := by
   obtain ⟨hd, hiso⟩ := hk
@@ -202,21 +226,33 @@ theorem isRowIsometry_glEquivOfRingEquiv (e : K ≃+* L) (he : ∀ x : K, ‖e x
       _ = ‖e.symm x‖ ^ 2 + ‖e.symm y‖ ^ 2 := hiso (e.symm x) (e.symm y)
       _ = ‖x‖ ^ 2 + ‖y‖ ^ 2 := by rw [hes, hes]
 
+/--
+@isnad1 id=eq.1h4v.s8.bd76c9e7c460 from=translated src=- shape=47fd157e vocab=6b99f48f
+-/
 theorem norm_symm_of_norm (e : K ≃+* L) (he : ∀ x : K, ‖e x‖ = ‖x‖) (z : L) : ‖e.symm z‖ = ‖z‖ := by
   rw [← he (e.symm z), e.apply_symm_apply]
 
+/--
+@isnad1 id=eq.0h4v.s10.41bd9934dd19 from=translated src=- shape=bfb293d1 vocab=936d02f0
+-/
 theorem glEquivOfRingEquiv_symm_apply (e : K ≃+* L) (k : GL (Fin 2) K) :
     glEquivOfRingEquiv e.symm (glEquivOfRingEquiv e k) = k := by
   apply Units.ext
   ext i j
   rw [glEquivOfRingEquiv_apply_entry, glEquivOfRingEquiv_apply_entry, e.symm_apply_apply]
 
+/--
+@isnad1 id=eq.0h4v.s10.ff55f501ff8b from=translated src=- shape=871b287b vocab=936d02f0
+-/
 theorem glEquivOfRingEquiv_apply_symm (e : K ≃+* L) (k : GL (Fin 2) L) :
     glEquivOfRingEquiv e (glEquivOfRingEquiv e.symm k) = k := by
   apply Units.ext
   ext i j
   rw [glEquivOfRingEquiv_apply_entry, glEquivOfRingEquiv_apply_entry, e.apply_symm_apply]
 
+/--
+@isnad1 id=continuo.1h3v.s10.d282b2ef8719 from=translated src=- shape=b3872bd0 vocab=6d380ffd
+-/
 theorem continuous_glEquivOfRingEquiv (e : K ≃+* L) (hc : Continuous e) :
     Continuous (glEquivOfRingEquiv e) := by
   have h : Continuous ((RingEquiv.mapMatrix (m := Fin 2) e).toMulEquiv.toMonoidHom) := by
@@ -248,10 +284,16 @@ section Places
 
 variable {F : Type} [Field F]
 
+/--
+@isnad1 id=continuo.1h2v.s8.75b25c9ebc03 from=translated src=- shape=cecae459 vocab=ac352bd3
+-/
 theorem continuous_ringEquivRealOfIsReal {w : InfinitePlace F} (hw : w.IsReal) :
     Continuous (ringEquivRealOfIsReal hw) :=
   (isometryEquivRealOfIsReal hw).continuous
 
+/--
+@isnad1 id=continuo.1h2v.s8.3f6550071560 from=translated src=- shape=b20f161a vocab=5b4c065a
+-/
 theorem continuous_ringEquivRealOfIsReal_symm {w : InfinitePlace F} (hw : w.IsReal) :
     Continuous (ringEquivRealOfIsReal hw).symm :=
   (isometryEquivRealOfIsReal hw).symm.continuous
@@ -262,6 +304,9 @@ def realEquiv {w : InfinitePlace F} (hw : w.IsReal) :
       (continuous_ringEquivRealOfIsReal hw) (continuous_ringEquivRealOfIsReal_symm hw)).trans
     (unitaryEquiv (𝕜 := ℝ))
 
+/--
+@isnad1 id=eq.1h5v.s13.c705de9e12bc from=translated src=- shape=f519768c vocab=dbbe2c2e
+-/
 theorem realEquiv_apply_entry {w : InfinitePlace F} (hw : w.IsReal)
     (k : ↥(rowIsometrySubgroup w.Completion)) (i j : Fin 2) :
     ((realEquiv hw k : ↥(Matrix.orthogonalGroup (Fin 2) ℝ)) : Matrix (Fin 2) (Fin 2) ℝ) i j
@@ -277,6 +322,9 @@ end
 open NumberField NumberField.InfinitePlace NumberField.InfinitePlace.Completion
 open AutomorphicForm AutomorphicForm.WindowedSiegel
 
+/--
+@isnad1 id=ex.1h2v.s13.bfbf79e72c32 from=translated src=- shape=24ce2543 vocab=ba73f451
+-/
 theorem solution
     (F : Type) [Field F] (w : InfinitePlace F) (hw : w.IsReal) :
     ∃ e : ↥(rowIsometrySubgroup w.Completion) ≃ₜ* ↥(Matrix.orthogonalGroup (Fin 2) ℝ),

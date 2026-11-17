@@ -23,6 +23,9 @@ noncomputable def ofFun (f : Γ → R) : CartierDual R (MonoidAlgebra R Γ) :=
   CartierDual.ofDual R _ ((Finsupp.lsum R fun x => LinearMap.id.smulRight (f x) : (Γ →₀ R) →ₗ[R] R) ∘ₗ
     (MonoidAlgebra.coeffLinearEquiv R).toLinearMap)
 
+/--
+@isnad1 id=eq.0h5v.s7.32929966265a from=translated src=- shape=2dca940a vocab=4f3a6284
+-/
 theorem ofFun_single (f : Γ → R) (x : Γ) (r : R) : ofFun R Γ f (MonoidAlgebra.single x r) = r * f x := by
   show ((Finsupp.lsum R fun x => LinearMap.id.smulRight (f x) : (Γ →₀ R) →ₗ[R] R) ∘ₗ
       (MonoidAlgebra.coeffLinearEquiv R).toLinearMap) (MonoidAlgebra.single x r) = r * f x
@@ -53,15 +56,24 @@ noncomputable def evalEquiv : CartierDual R (MonoidAlgebra R Γ) ≃ₗ[R] (Γ �
     show ofFun R Γ f (MonoidAlgebra.single x 1) = f x
     rw [ofFun_single, one_mul]
 
+/--
+@isnad1 id=eq.0h4v.s10.9284f3317882 from=translated src=- shape=24183fd0 vocab=ef0b3a62
+-/
 theorem evalEquiv_apply (φ : CartierDual R (MonoidAlgebra R Γ)) (x : Γ) :
     evalEquiv R Γ φ x = φ (MonoidAlgebra.single x 1) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.f47d3fc2e98a from=translated src=- shape=a46955dc vocab=99c9a569
+-/
 theorem comul_single_one (x : Γ) :
     Coalgebra.comul (R := R) (MonoidAlgebra.single x (1 : R)) =
       MonoidAlgebra.single x 1 ⊗ₜ[R] MonoidAlgebra.single x 1 := by
   rw [MonoidAlgebra.comul_single, CommSemiring.comul_apply, TensorProduct.map_tmul]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s12.b1dece0b11ae from=translated src=- shape=b40671a5 vocab=862248a7
+-/
 theorem evalEquiv_mul (φ ψ : CartierDual R (MonoidAlgebra R Γ)) :
     evalEquiv R Γ (φ * ψ) = evalEquiv R Γ φ * evalEquiv R Γ ψ := by
   ext x
@@ -69,6 +81,9 @@ theorem evalEquiv_mul (φ ψ : CartierDual R (MonoidAlgebra R Γ)) :
     comul_single_one, TensorProduct.dualDistrib_apply]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s10.9591d637f12e from=translated src=- shape=06ac5f2e vocab=c3fd2e9d
+-/
 theorem evalEquiv_one : evalEquiv R Γ 1 = 1 := by
   ext x
   rw [evalEquiv_apply, CartierDual.one_apply, MonoidAlgebra.counit_single, CommSemiring.counit_apply, Pi.one_apply]
@@ -79,6 +94,9 @@ noncomputable def evalAlgEquiv : CartierDual R (MonoidAlgebra R Γ) ≃ₐ[R] (�
 end P2mS17E
 
 open P2mS17E in
+/--
+@isnad1 id=ex.0h2v.s15.fece65c346f9 from=translated src=- shape=35e858c8 vocab=64236952
+-/
 theorem solution
     (R : Type*) [CommRing R] (Γ : Type*) [CommGroup Γ] [Fintype Γ] :
     ∃ e : CartierDual R (MonoidAlgebra R Γ) ≃ₐ[R] (Γ → R),

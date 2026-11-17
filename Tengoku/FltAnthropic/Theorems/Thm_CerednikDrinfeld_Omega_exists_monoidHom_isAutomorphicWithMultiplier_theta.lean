@@ -11,6 +11,9 @@ set_option autoImplicit false
 open scoped MatrixGroups
 open CerednikDrinfeld.Omega
 
+/--
+@isnad1 id=ex.6h7v.s10.28fea5b839b6 from=translated src=- shape=17da48c0 vocab=dc542551
+-/
 theorem CerednikDrinfeld.Omega.exists_monoidHom_isAutomorphicWithMultiplier_theta
     {K₀ : Type*} [Field K₀] {K : Type*} [Field K] [Algebra K₀ K] [DecidableEq K]
     [TopologicalSpace K] [IsTopologicalRing K] [T2Space K]

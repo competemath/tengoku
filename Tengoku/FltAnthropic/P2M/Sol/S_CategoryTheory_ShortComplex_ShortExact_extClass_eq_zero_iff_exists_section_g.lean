@@ -10,6 +10,9 @@ set_option autoImplicit false
 universe w v u
 open _root_.CategoryTheory open _root_.CategoryTheory.Abelian open _root_.CategoryTheory.Limits
 
+/--
+@isnad1 id=iff.1h2v.s8.6c599580e3e3 from=translated src=- shape=ce1a189d vocab=602f28ad
+-/
 theorem solution
     {C : Type u} [CategoryTheory.Category.{v} C] [CategoryTheory.Abelian C]
     [CategoryTheory.HasExt.{w} C] {S : CategoryTheory.ShortComplex C} (hS : S.ShortExact) :

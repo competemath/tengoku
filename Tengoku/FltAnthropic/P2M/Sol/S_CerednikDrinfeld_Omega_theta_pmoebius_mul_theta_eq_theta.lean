@@ -19,6 +19,9 @@ open _root_.CerednikDrinfeld.Omega open _root_.CerednikDrinfeld
 
 variable {K₀ : Type*} [Field K₀] {K : Type*} [Field K] [Algebra K₀ K]
 
+/--
+@isnad1 id=eq.2h5v.s10.640b570d8244 from=translated src=- shape=1ba18169 vocab=417ae9b9
+-/
 theorem moebius_sub_moebius (g : GL (Fin 2) K₀) {u v : K}
     (hu : algebraMap K₀ K (g 1 0) * u + algebraMap K₀ K (g 1 1) ≠ 0)
     (hv : algebraMap K₀ K (g 1 0) * v + algebraMap K₀ K (g 1 1) ≠ 0) :
@@ -31,6 +34,9 @@ theorem moebius_sub_moebius (g : GL (Fin 2) K₀) {u v : K}
   congr 1
   ring
 
+/--
+@isnad1 id=ne.0h3v.s9.face27759a0f from=translated src=- shape=81a302f2 vocab=ff1a1900
+-/
 theorem algebraMap_det_ne_zero (g : GL (Fin 2) K₀) :
     algebraMap K₀ K (g 0 0 * g 1 1 - g 0 1 * g 1 0) ≠ 0 := by
   intro h
@@ -38,6 +44,9 @@ theorem algebraMap_det_ne_zero (g : GL (Fin 2) K₀) :
   rw [Matrix.det_fin_two]
   exact (algebraMap K₀ K).injective (by rw [map_zero]; exact h)
 
+/--
+@isnad1 id=eq.4h7v.s7.5ef7e224a47b from=translated src=- shape=9cf5def6 vocab=ad8e5dab
+-/
 theorem crossRatio_moebius (g : GL (Fin 2) K₀) {z w x y : K}
     (hz : z ∈ upperHalfPlane K₀ K) (hw : w ∈ upperHalfPlane K₀ K)
     (hx : x ∈ upperHalfPlane K₀ K) (hy : y ∈ upperHalfPlane K₀ K) :
@@ -76,6 +85,9 @@ theorem crossRatio_moebius (g : GL (Fin 2) K₀) {z w x y : K}
 
 variable [DecidableEq K]
 
+/--
+@isnad1 id=eq.4h7v.s7.7f4bce79d472 from=translated src=- shape=834ee63e vocab=44b02d98
+-/
 theorem crossRatio_pmoebius (g : PGL(2, K₀)) {z w x y : K}
     (hz : z ∈ upperHalfPlane K₀ K) (hw : w ∈ upperHalfPlane K₀ K)
     (hx : x ∈ upperHalfPlane K₀ K) (hy : y ∈ upperHalfPlane K₀ K) :
@@ -89,6 +101,9 @@ theorem crossRatio_pmoebius (g : PGL(2, K₀)) {z w x y : K}
       pmoebius_mk K₀ g y (moebius_denom_ne_zero_of_mem K₀ hy g)]
     exact crossRatio_moebius g hz hw hx hy
 
+/--
+@isnad1 id=eq.6h6v.s6.64131177548e from=translated src=- shape=d6089d33 vocab=201126fa
+-/
 theorem crossRatio_mul_crossRatio {p q a b w : K}
     (hpa : p ≠ a) (hpb : p ≠ b) (hqa : q ≠ a) (hqb : q ≠ b) (hwp : w ≠ p) (hwq : w ≠ q) :
     crossRatio p q a b * crossRatio a w q p = crossRatio b w q p := by
@@ -108,6 +123,9 @@ theorem crossRatio_mul_crossRatio {p q a b w : K}
 
 variable {G : Type*} [Group G]
 
+/--
+@isnad1 id=eq.6h10v.s11.276575434f4d from=translated src=- shape=ac109454 vocab=931d6687
+-/
 theorem thetaFactor_mul (ρ : G →* PGL(2, K₀)) {a b z₀ w : K}
     (ha : a ∈ upperHalfPlane K₀ K) (hb : b ∈ upperHalfPlane K₀ K) (hz₀ : z₀ ∈ upperHalfPlane K₀ K)
     (hz₀a : ∀ γ : G, pmoebius K₀ (ρ γ) a ≠ z₀) (hz₀b : ∀ γ : G, pmoebius K₀ (ρ γ) b ≠ z₀)
@@ -146,6 +164,9 @@ theorem thetaFactor_mul (ρ : G →* PGL(2, K₀)) {a b z₀ w : K}
   have hwq : w ≠ q := fun h => hwz₀ _ h.symm
   exact crossRatio_mul_crossRatio hpa hpb hqa hqb hwp hwq
 
+/--
+@isnad1 id=eq.9h9v.s11.487bfa4bb312 from=translated src=- shape=60789ae7 vocab=cbbb549b
+-/
 theorem theta_mul [TopologicalSpace K] [IsTopologicalRing K] [T2Space K]
     (ρ : G →* PGL(2, K₀)) {a b z₀ w : K}
     (ha : a ∈ upperHalfPlane K₀ K) (hb : b ∈ upperHalfPlane K₀ K) (hz₀ : z₀ ∈ upperHalfPlane K₀ K)
@@ -185,6 +206,9 @@ theorem theta_mul [TopologicalSpace K] [IsTopologicalRing K] [T2Space K]
 
 end CerednikDrinfeld.Omega.ThetaDictProof
 
+/--
+@isnad1 id=eq.9h9v.s11.ade192f7ed3d from=translated src=- shape=253f997b vocab=cbbb549b
+-/
 theorem solution
     {K₀ : Type*} [Field K₀] {K : Type*} [Field K] [Algebra K₀ K] [DecidableEq K]
     [TopologicalSpace K] [IsTopologicalRing K] [T2Space K]

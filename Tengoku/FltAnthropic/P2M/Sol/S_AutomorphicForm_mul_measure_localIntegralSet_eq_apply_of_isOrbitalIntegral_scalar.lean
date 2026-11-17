@@ -21,16 +21,25 @@ namespace CentValue
 
 variable (K : Type) [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K))
 
+/--
+@isnad1 id=eq.0h4v.s12.9941a5898967 from=translated src=- shape=dbac80b5 vocab=c8950fb1
+-/
 theorem scalar_mul_comm (c : (v.adicCompletion K)ˣ) (g : GL (Fin 2) (v.adicCompletion K)) :
     Matrix.GeneralLinearGroup.scalar (Fin 2) c * g = g * Matrix.GeneralLinearGroup.scalar (Fin 2) c := by
   refine Units.ext ?_
   rw [Units.val_mul, Units.val_mul]
   exact (Matrix.scalar_commute (c : v.adicCompletion K) (fun r => Commute.all _ r) _).eq
 
+/--
+@isnad1 id=eq.0h4v.s12.2a8220b793da from=translated src=- shape=0ab018e2 vocab=f711e221
+-/
 theorem conj_scalar (c : (v.adicCompletion K)ˣ) (x : GL (Fin 2) (v.adicCompletion K)) :
     x⁻¹ * Matrix.GeneralLinearGroup.scalar (Fin 2) c * x = Matrix.GeneralLinearGroup.scalar (Fin 2) c := by
   rw [mul_assoc, scalar_mul_comm, ← mul_assoc, inv_mul_cancel, one_mul]
 
+/--
+@isnad1 id=mem.0h4v.s11.ecd6fa2c2863 from=translated src=- shape=7ba7a844 vocab=afa78432
+-/
 theorem mem_localCentralizer_scalar (c : (v.adicCompletion K)ˣ) (g : GL (Fin 2) (v.adicCompletion K)) :
     g ∈ localCentralizer K v (Matrix.GeneralLinearGroup.scalar (Fin 2) c) := by
   rw [Subgroup.mem_centralizer_iff]
@@ -39,6 +48,9 @@ theorem mem_localCentralizer_scalar (c : (v.adicCompletion K)ˣ) (g : GL (Fin 2)
   subst hh
   exact scalar_mul_comm K v c g
 
+/--
+@isnad1 id=secondco.0h2v.s8.28d8c3eb92a3 from=translated src=- shape=98b1da0d vocab=fb83635a
+-/
 theorem secondCountableTopology_localGL : SecondCountableTopology (GL (Fin 2) (v.adicCompletion K)) := by
   haveI : SecondCountableTopology (Matrix (Fin 2) (Fin 2) (v.adicCompletion K)) :=
     inferInstanceAs (SecondCountableTopology (Fin 2 → Fin 2 → v.adicCompletion K))
@@ -68,6 +80,9 @@ end
 
 open _root_.AutomorphicForm open _root_.P2MW.S_AutomorphicForm_mul_measure_localIntegralSet_eq_apply_of_isOrbitalIntegral_scalar.AutomorphicForm
 
+/--
+@isnad1 id=eq.3h6v.s13.b22e90604638 from=translated src=- shape=09bd600e vocab=a7f025b1
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K))
     (γ : GL (Fin 2) (v.adicCompletion K))

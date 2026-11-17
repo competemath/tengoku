@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open MeasureTheory
 
+/--
+@isnad1 id=other.6h9v.s11.23ab5e34e92c from=translated src=- shape=797e4630 vocab=17d12376
+-/
 theorem MeasureTheory.exists_summable_forall_fourierMode_kinkWindow_productPoisson
     {r c : ℕ} (kC : Fin c → Fin r) {ιR : Type} [Fintype ιR] (kR : ιR → Fin r)
     (B : (Fin r → ℝ) × (Fin c → ℝ) → ℂ) (C : ιR → (Fin r → ℝ) × (Fin c → ℝ) → ℂ)

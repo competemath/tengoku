@@ -58,6 +58,9 @@ end LatticeTransitivity
 
 open LT LT.LatticeTree in
 
+/--
+@isnad1 id=ex.0h3v.s7.c880406a3b91 from=translated src=- shape=62899c3f vocab=81adecf1
+-/
 theorem solution
     (R K : Type) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [Field K] [Algebra R K]
     [IsFractionRing R K] (v : LT.LatticeTree.Vertex R K) :

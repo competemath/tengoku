@@ -18,6 +18,9 @@ open AutomorphicForm NumberField.AdelicBox NumberField.AdelicHaar NumberField.Ad
 attribute [local instance] NumberField.AdelicHaar.adeleBorel NumberField.AdelicHaar.borelSpace_adeleBorel
   NumberField.AdelicHaar.isAddHaarMeasure_adelicAddHaar
 
+/--
+@isnad1 id=eq.4h11v.s13.0fb085abdc29 from=translated src=- shape=a02eb3a6 vocab=ad820d1e
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F]
     (D : Set (AdelicGL2 (𝓞 F) F)) (U : Ideal (𝓞 F) → Subgroup (AdelicGL2 (𝓞 F) F))

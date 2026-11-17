@@ -19,9 +19,15 @@ noncomputable def amitsurDelta (A : Type u) (B : Type v) [CommRing A] [CommRing 
     [Algebra A B] : B →ₗ[A] B ⊗[A] B :=
   (TensorProduct.mk A B B).flip 1 - TensorProduct.mk A B B 1
 
+/--
+@isnad1 id=eq.0h3v.s9.1d7c01ad0f27 from=translated src=- shape=895ddfee vocab=f8e24ec8
+-/
 @[scoped simp] theorem amitsurDelta_apply (b : B) :
     amitsurDelta A B b = b ⊗ₜ[A] (1 : B) - (1 : B) ⊗ₜ[A] b := rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.77f71aafdd0f from=translated src=- shape=80099438 vocab=ca307290
+-/
 theorem amitsurDelta_comp_linearMap : amitsurDelta A B ∘ₗ Algebra.linearMap A B = 0 := by
   ext
   simp [Algebra.algebraMap_eq_smul_one]
@@ -30,6 +36,9 @@ noncomputable def amitsurContraction (A : Type u) (B : Type v) [CommRing A] [Com
     [Algebra A B] : B ⊗[A] (B ⊗[A] B) →ₗ[A] B ⊗[A] B :=
   (LinearMap.mul' A B).rTensor B ∘ₗ (TensorProduct.assoc A B B B).symm.toLinearMap
 
+/--
+@isnad1 id=eq.0h3v.s12.d45d2f6797d9 from=translated src=- shape=b4453c66 vocab=d708c94a
+-/
 theorem amitsurContraction_lTensor_amitsurDelta (x : B ⊗[A] B) :
     amitsurContraction A B ((amitsurDelta A B).lTensor B x) =
       (LinearMap.mul' A B x) ⊗ₜ[A] (1 : B) - x := by
@@ -42,6 +51,9 @@ theorem amitsurContraction_lTensor_amitsurDelta (x : B ⊗[A] B) :
       simp only [map_add, hx, hy, TensorProduct.add_tmul]
       abel
 
+/--
+@isnad1 id=exact.0h2v.s11.0794ca16adac from=translated src=- shape=569af0b9 vocab=2642690b
+-/
 theorem exact_lTensor_linearMap_lTensor_amitsurDelta :
     Function.Exact ((Algebra.linearMap A B).lTensor B) ((amitsurDelta A B).lTensor B) := by
   intro x
@@ -55,6 +67,9 @@ theorem exact_lTensor_linearMap_lTensor_amitsurDelta :
     rw [← LinearMap.comp_apply, ← LinearMap.lTensor_comp, amitsurDelta_comp_linearMap,
       LinearMap.lTensor_zero, LinearMap.zero_apply]
 
+/--
+@isnad1 id=exact.0h2v.s9.a234e1c3b54a from=translated src=- shape=272d0bd1 vocab=7bc78109
+-/
 theorem exact_linearMap_amitsurDelta [Module.FaithfullyFlat A B] :
     Function.Exact (Algebra.linearMap A B) (amitsurDelta A B) :=
   (Module.FaithfullyFlat.lTensor_exact_iff_exact A B _ _).mp
@@ -63,6 +78,9 @@ theorem exact_linearMap_amitsurDelta [Module.FaithfullyFlat A B] :
 end AmitsurDegreeZero
 open scoped _root_.P2MW.S_Module_FaithfullyFlat_exists_algebraMap_eq_of_tmul_one_eq_one_tmul.AmitsurDegreeZero
 
+/--
+@isnad1 id=ex.1h3v.s8.9cb9d2b8d2af from=translated src=- shape=de0ccc05 vocab=4f5e8bb4
+-/
 theorem solution
     {A : Type u} {B : Type v} [CommRing A] [CommRing B] [Algebra A B]
     [Module.FaithfullyFlat A B] {b : B} (hb : b ⊗ₜ[A] (1 : B) = (1 : B) ⊗ₜ[A] b) :

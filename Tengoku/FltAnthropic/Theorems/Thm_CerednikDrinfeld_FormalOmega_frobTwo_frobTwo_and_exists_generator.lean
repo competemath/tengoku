@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_CerednikDrinfeld_FormalOmega_frobTwo_frobT
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=and.11h7v.s19.17c87f0b510b from=translated src=- shape=f9d6e299 vocab=0d426bc0
+-/
 theorem CerednikDrinfeld.FormalOmega.frobTwo_frobTwo_and_exists_generator
 
     {r : ℕ} [Fact r.Prime]

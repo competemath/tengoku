@@ -18,6 +18,9 @@ open NumberField AutomorphicForm IsDedekindDomain
 
 variable {F : Type} [Field F] [NumberField F] {w : InfinitePlace F} (hw : w.IsReal)
 
+/--
+@isnad1 id=eq.3h6v.s8.37ccfd6e42d0 from=translated src=- shape=f16580d1 vocab=9cfcadf2
+-/
 theorem apply_mul_archFlowAt_eq (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArchSmoothAt hw φ) (d : ArchDir)
     (hd : archDerivAt hw d φ = 0) (g : AdelicGL2 (𝓞 F) F) (t : ℝ) :
     φ (g * archFlowAt hw d t) = φ g := by
@@ -46,16 +49,25 @@ theorem apply_mul_archFlowAt_eq (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArc
   have h0 : f 0 = φ g := by simp only [hf, archFlowAt_zero, mul_one]
   rw [← h0, ← hconst]
 
+/--
+@isnad1 id=eq.3h5v.s9.c51c750521c4 from=translated src=- shape=91ce369c vocab=30e727ca
+-/
 theorem apply_mul_upper (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArchSmoothAt hw φ)
     (hE : archDerivAt hw .E φ = 0) (g : AdelicGL2 (𝓞 F) F) (t : ℝ) :
     φ (g * archRealGLAt hw (unipotentGL2 t)) = φ g :=
   apply_mul_archFlowAt_eq hw φ hφ .E hE g t
 
+/--
+@isnad1 id=eq.3h5v.s9.495263d6632d from=translated src=- shape=91ce369c vocab=7f5dfc05
+-/
 theorem apply_mul_lower (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArchSmoothAt hw φ)
     (hF : archDerivAt hw .Fm φ = 0) (g : AdelicGL2 (𝓞 F) F) (t : ℝ) :
     φ (g * archRealGLAt hw (lowerUnipotentGL2 t)) = φ g :=
   apply_mul_archFlowAt_eq hw φ hφ .Fm hF g t
 
+/--
+@isnad1 id=ex.1h1v.s9.397a84884774 from=translated src=- shape=2b56683b vocab=26532a3f
+-/
 theorem exists_eq_lower_upper_lower_upper (h : GL (Fin 2) ℝ) (hh : Matrix.GeneralLinearGroup.det h = 1) :
     ∃ s x c y : ℝ, h = lowerUnipotentGL2 s * unipotentGL2 x * lowerUnipotentGL2 c * unipotentGL2 y := by
   have hdet : (h : Matrix (Fin 2) (Fin 2) ℝ) 0 0 * (h : Matrix (Fin 2) (Fin 2) ℝ) 1 1
@@ -87,6 +99,9 @@ theorem exists_eq_lower_upper_lower_upper (h : GL (Fin 2) ℝ) (hh : Matrix.Gene
     ext i j
     fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two] <;> field_simp <;> linarith [hdet]
 
+/--
+@isnad1 id=eq.5h5v.s10.31e05f3e26af from=translated src=- shape=c72f8583 vocab=2ef4ad67
+-/
 theorem main (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArchSmoothAt hw φ)
     (hE : archDerivAt hw .E φ = 0) (hF : archDerivAt hw .Fm φ = 0)
     (g : AdelicGL2 (𝓞 F) F) (h : GL (Fin 2) ℝ) (hh : Matrix.GeneralLinearGroup.det h = 1) :
@@ -101,6 +116,9 @@ end
 
 open NumberField AutomorphicForm IsDedekindDomain
 
+/--
+@isnad1 id=eq.5h5v.s10.31e05f3e26af from=translated src=- shape=c72f8583 vocab=2ef4ad67
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F] (w : InfinitePlace F) (hw : w.IsReal)
     (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArchSmoothAt hw φ)

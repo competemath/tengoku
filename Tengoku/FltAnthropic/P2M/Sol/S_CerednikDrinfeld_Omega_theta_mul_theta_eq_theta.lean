@@ -12,6 +12,9 @@ open scoped MatrixGroups
 open CerednikDrinfeld.Omega
 
 namespace Law3CocAB
+/--
+@isnad1 id=eq.2h6v.s6.b5402cff3ba2 from=translated src=- shape=9b79d209 vocab=7b54a793
+-/
 theorem cr_mul_cr_right {K : Type*} [Field K] (z z₀ x y w : K) (hyz : y ≠ z) (hyz₀ : y ≠ z₀) :
     crossRatio z z₀ x y * crossRatio z z₀ y w = crossRatio z z₀ x w := by
   simp only [crossRatio]
@@ -23,6 +26,9 @@ theorem cr_mul_cr_right {K : Type*} [Field K] (z z₀ x y w : K) (hyz : y ≠ z)
   rw [mul_div_mul_right _ _ (mul_ne_zero h1 h2)]
 end Law3CocAB
 
+/--
+@isnad1 id=eq.4h9v.s9.103abde990b9 from=translated src=- shape=1da6b546 vocab=b4991957
+-/
 theorem solution
     {K₀ : Type*} [Field K₀] {K : Type*} [Field K] [Algebra K₀ K] [DecidableEq K]
     [TopologicalSpace K] [IsTopologicalRing K] [T2Space K]

@@ -7,6 +7,9 @@ namespace P2MW.S_CerednikDrinfeld_Onr_isDiscreteValuationRing_equalizer_and_irre
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=and.3h4v.s10.d2a66891f60f from=translated src=- shape=1dcf4e3e vocab=0ed0c3f4
+-/
 theorem solution
     (𝒪 : Type) [CommRing 𝒪] (π : 𝒪)
     (Onr : Type) [CommRing Onr] [IsDomain Onr] [Algebra 𝒪 Onr]

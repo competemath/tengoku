@@ -14,6 +14,9 @@ open scoped Topology Pointwise
 scoped instance (F : Type) [Field F] [NumberField F] : T2Space (Matrix (Fin 2) (Fin 2) (FiniteAdeleRing (𝓞 F) F)) :=
   inferInstanceAs (T2Space (Fin 2 → Fin 2 → FiniteAdeleRing (𝓞 F) F))
 
+/--
+@isnad1 id=isfintes.2h4v.s10.89929e0b88f1 from=translated src=- shape=335f3eb9 vocab=8dad954a
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F]
     [MeasurableSpace (GL (Fin 2) (FiniteAdeleRing (𝓞 F) F))]

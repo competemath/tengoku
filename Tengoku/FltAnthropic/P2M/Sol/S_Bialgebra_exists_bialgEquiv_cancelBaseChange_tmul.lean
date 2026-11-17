@@ -11,6 +11,9 @@ open scoped TensorProduct
 
 open Bialgebra in
 
+/--
+@isnad1 id=ex.0h4v.s12.ba22542fb299 from=translated src=- shape=2f54e38e vocab=6ff0fff0
+-/
 theorem solution
     (R R' S : Type*) [CommRing R] [CommRing R'] [CommRing S] [Algebra R R'] [Algebra R' S] [Algebra R S]
     [IsScalarTower R R' S] (C : Type*) [CommRing C] [Bialgebra R C] :

@@ -13,6 +13,9 @@ set_option autoImplicit false
 
 open ModularCurve CerednikDrinfeld CerednikDrinfeld.Mumford
 
+/--
+@isnad1 id=ex.4h13v.s17.7cd5d1804f66 from=translated src=- shape=5e873f16 vocab=cf8d7ec4
+-/
 theorem solution
     {E V : Type} [Fintype E] [DecidableEq V]
     {r : ℕ} [Fact r.Prime] {D : DegeneracyData E V}

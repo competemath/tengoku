@@ -23,29 +23,50 @@ def dirMatrix : ArchDirComplex → Matrix (Fin 2) (Fin 2) ℂ
   | .iE => !![0, I; 0, 0]
   | .iFm => !![0, 0; I, 0]
 
+/--
+@isnad1 id=hasderiv.0h0v.s6.168de8dd2a39 from=translated src=- shape=b383cf9b vocab=1a38dff6
+-/
 theorem hasDerivAt_ofReal_zero : HasDerivAt (fun t : ℝ => (t : ℂ)) 1 0 := by
   simpa using (hasDerivAt_id (0 : ℝ)).ofReal_comp
 
+/--
+@isnad1 id=hasderiv.0h0v.s6.2900e55ceeee from=translated src=- shape=b0cdb464 vocab=e8dace04
+-/
 theorem hasDerivAt_ofReal_mul_I_zero : HasDerivAt (fun t : ℝ => (t : ℂ) * I) I 0 := by
   simpa using hasDerivAt_ofReal_zero.mul_const I
 
+/--
+@isnad1 id=hasderiv.0h0v.s6.82aff00741a9 from=translated src=- shape=fcc7d7b6 vocab=280ba92c
+-/
 theorem hasDerivAt_exp_ofReal_zero : HasDerivAt (fun t : ℝ => Complex.exp (t : ℂ)) 1 0 := by
   have h := (Complex.hasDerivAt_exp ((0 : ℝ) : ℂ)).comp (0 : ℝ) hasDerivAt_ofReal_zero
   simpa [Function.comp_def] using h
 
+/--
+@isnad1 id=hasderiv.0h0v.s6.b1a7ab3662dc from=translated src=- shape=9c4d8104 vocab=36824775
+-/
 theorem hasDerivAt_exp_neg_ofReal_zero : HasDerivAt (fun t : ℝ => Complex.exp (-(t : ℂ))) (-1) 0 := by
   have h := (Complex.hasDerivAt_exp (-((0 : ℝ) : ℂ))).comp (0 : ℝ) hasDerivAt_ofReal_zero.neg
   simpa [Function.comp_def] using h
 
+/--
+@isnad1 id=hasderiv.0h0v.s6.81a4c2064ea7 from=translated src=- shape=f754eb76 vocab=8c18d749
+-/
 theorem hasDerivAt_exp_ofReal_mul_I_zero : HasDerivAt (fun t : ℝ => Complex.exp ((t : ℂ) * I)) I 0 := by
   have h := (Complex.hasDerivAt_exp (((0 : ℝ) : ℂ) * I)).comp (0 : ℝ) hasDerivAt_ofReal_mul_I_zero
   simpa [Function.comp_def] using h
 
+/--
+@isnad1 id=hasderiv.0h0v.s6.d0c332fe8868 from=translated src=- shape=e55246d9 vocab=714b4a35
+-/
 theorem hasDerivAt_exp_neg_ofReal_mul_I_zero :
     HasDerivAt (fun t : ℝ => Complex.exp (-((t : ℂ) * I))) (-I) 0 := by
   have h := (Complex.hasDerivAt_exp (-(((0 : ℝ) : ℂ) * I))).comp (0 : ℝ) hasDerivAt_ofReal_mul_I_zero.neg
   simpa [Function.comp_def] using h
 
+/--
+@isnad1 id=hasderiv.0h3v.s7.aac4d0709c13 from=translated src=- shape=14a2dc4c vocab=9d129c56
+-/
 theorem hasDerivAt_archFlowMatrixComplex_apply (d : ArchDirComplex) (i j : Fin 2) :
     HasDerivAt (fun t : ℝ => (archFlowMatrixComplex d t : Matrix (Fin 2) (Fin 2) ℂ) i j) (dirMatrix d i j) 0 := by
   cases d <;> fin_cases i <;> fin_cases j <;>
@@ -61,6 +82,9 @@ theorem hasDerivAt_archFlowMatrixComplex_apply (d : ArchDirComplex) (i j : Fin 2
       | exact hasDerivAt_exp_ofReal_mul_I_zero
       | exact hasDerivAt_exp_neg_ofReal_mul_I_zero
 
+/--
+@isnad1 id=hasderiv.0h2v.s10.24cc27b5adbc from=translated src=- shape=a41c3521 vocab=7550bff0
+-/
 theorem hasDerivAt_of_symm_mul_archFlowMatrixComplex (e : Fin 2 → Fin 2 → ℂ) (d : ArchDirComplex) :
     HasDerivAt
       (fun t : ℝ => (Matrix.of.symm (Matrix.of e * (archFlowMatrixComplex d t : Matrix (Fin 2) (Fin 2) ℂ)) :
@@ -77,6 +101,9 @@ def scalarExpGL2C (b : Bool) (s : ℝ) : GL (Fin 2) ℂ :=
   Units.map (Matrix.scalar (Fin 2) : ℂ →+* Matrix (Fin 2) (Fin 2) ℂ).toMonoidHom
     (Units.mk0 (Complex.exp (if b then (s : ℂ) * I else (s : ℂ))) (Complex.exp_ne_zero _))
 
+/--
+@isnad1 id=eq.0h2v.s7.ffb090012e6d from=translated src=- shape=3c8b10f9 vocab=a39f292a
+-/
 theorem scalarExpGL2C_coe (b : Bool) (s : ℝ) :
     (scalarExpGL2C b s : Matrix (Fin 2) (Fin 2) ℂ) =
       Complex.exp (if b then (s : ℂ) * I else (s : ℂ)) • (1 : Matrix (Fin 2) (Fin 2) ℂ) := by
@@ -86,6 +113,9 @@ def centralDir : Bool → Matrix (Fin 2) (Fin 2) ℂ
   | false => !![1, 0; 0, 1]
   | true => !![I, 0; 0, I]
 
+/--
+@isnad1 id=hasderiv.0h3v.s7.cf836f6d30fa from=translated src=- shape=14a2dc4c vocab=be41353c
+-/
 theorem hasDerivAt_scalarExpGL2C_apply (b : Bool) (i j : Fin 2) :
     HasDerivAt (fun s : ℝ => (scalarExpGL2C b s : Matrix (Fin 2) (Fin 2) ℂ) i j) (centralDir b i j) 0 := by
   cases b <;> fin_cases i <;> fin_cases j <;>
@@ -99,6 +129,9 @@ theorem hasDerivAt_scalarExpGL2C_apply (b : Bool) (i j : Fin 2) :
       | exact hasDerivAt_exp_ofReal_zero
       | exact hasDerivAt_exp_ofReal_mul_I_zero
 
+/--
+@isnad1 id=hasderiv.0h2v.s10.d46876ca2b70 from=translated src=- shape=a41c3521 vocab=8548fdb8
+-/
 theorem hasDerivAt_of_symm_mul_scalarExpGL2C (e : Fin 2 → Fin 2 → ℂ) (b : Bool) :
     HasDerivAt
       (fun s : ℝ => (Matrix.of.symm (Matrix.of e * (scalarExpGL2C b s : Matrix (Fin 2) (Fin 2) ℂ)) :
@@ -111,6 +144,9 @@ theorem hasDerivAt_of_symm_mul_scalarExpGL2C (e : Fin 2 → Fin 2 → ℂ) (b : 
   simp only [Matrix.of_symm_apply, Matrix.mul_apply, Matrix.of_apply]
   exact HasDerivAt.fun_sum fun k _ => (hasDerivAt_scalarExpGL2C_apply b k j).const_mul (e i k)
 
+/--
+@isnad1 id=eq.2h4v.s10.4b55a7356f9c from=translated src=- shape=10ade2f5 vocab=9a420100
+-/
 theorem archComplexLiftAt_mul_archComplexGLAt (hw : w.IsComplex) {e : Fin 2 → Fin 2 → ℂ}
     (h : (Matrix.of e).det ≠ 0) (m : GL (Fin 2) ℂ) :
     archComplexLiftAt hw e * archComplexGLAt hw m =
@@ -125,10 +161,16 @@ theorem archComplexLiftAt_mul_archComplexGLAt (hw : w.IsComplex) {e : Fin 2 → 
   ext i j
   simp [GeneralLinearGroup.mkOfDetNeZero]
 
+/--
+@isnad1 id=ne.0h0v.s8.801916da79de from=translated src=- shape=3c75338a vocab=1f4a8da9
+-/
 theorem det_of_symm_one : (Matrix.of (Matrix.of.symm (1 : Matrix (Fin 2) (Fin 2) ℂ))).det ≠ 0 := by
   rw [Equiv.apply_symm_apply, Matrix.det_one]
   exact one_ne_zero
 
+/--
+@isnad1 id=eq.1h2v.s8.e20660d450bf from=translated src=- shape=0f7a0381 vocab=966fb49d
+-/
 theorem archComplexLiftAt_of_symm_one (hw : w.IsComplex) :
     archComplexLiftAt hw (Matrix.of.symm (1 : Matrix (Fin 2) (Fin 2) ℂ)) = 1 := by
   rw [archComplexLiftAt_of_det_ne_zero hw det_of_symm_one, ← map_one (archComplexGLAt hw)]
@@ -136,6 +178,9 @@ theorem archComplexLiftAt_of_symm_one (hw : w.IsComplex) :
   ext i j
   simp [GeneralLinearGroup.mkOfDetNeZero]
 
+/--
+@isnad1 id=eq.0h1v.s12.c338b13e93d2 from=translated src=- shape=0e1f530f vocab=d53bd757
+-/
 theorem decompose (A : Matrix (Fin 2) (Fin 2) ℂ) :
     (Matrix.of.symm A : Fin 2 → Fin 2 → ℂ) =
       ((A 0 0 - A 1 1) / 2).re • (Matrix.of.symm (dirMatrix ArchDirComplex.H) : Fin 2 → Fin 2 → ℂ) +
@@ -152,6 +197,9 @@ theorem decompose (A : Matrix (Fin 2) (Fin 2) ℂ) :
 
 variable (hw : w.IsComplex)
 
+/--
+@isnad1 id=eq.2h5v.s10.cd5620123858 from=translated src=- shape=1987e8a2 vocab=f1116c39
+-/
 theorem archDerivAtComplex_eq_fderiv (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArchSmoothAtComplex hw φ)
     (h : AdelicGL2 (𝓞 F) F) (d : ArchDirComplex) :
     archDerivAtComplex hw d φ h =
@@ -180,6 +228,9 @@ theorem archDerivAtComplex_eq_fderiv (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : 
   have := (hdiff.comp_hasDerivAt (0 : ℝ) (hasDerivAt_of_symm_mul_archFlowMatrixComplex _ d)).deriv
   simpa only [Function.comp_def, Equiv.apply_symm_apply, one_mul] using this
 
+/--
+@isnad1 id=eq.2h5v.s11.8e2f413900d7 from=translated src=- shape=c66d40d3 vocab=485a17ab
+-/
 theorem deriv_scalar_eq_fderiv (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArchSmoothAtComplex hw φ)
     (h : AdelicGL2 (𝓞 F) F) (b : Bool) :
     deriv (fun s : ℝ => φ (h * archComplexGLAt hw (scalarExpGL2C b s))) 0 =
@@ -207,6 +258,9 @@ theorem deriv_scalar_eq_fderiv (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArch
   have := (hdiff.comp_hasDerivAt (0 : ℝ) (hasDerivAt_of_symm_mul_scalarExpGL2C _ b)).deriv
   simpa only [Function.comp_def, Equiv.apply_symm_apply, one_mul] using this
 
+/--
+@isnad1 id=eq.3h6v.s11.adbc43a9718a from=translated src=- shape=ef2e9bc9 vocab=353011bd
+-/
 theorem fderiv_baseChange (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArchSmoothAtComplex hw φ)
     (g : AdelicGL2 (𝓞 F) F) (e : Fin 2 → Fin 2 → ℂ) (he : (Matrix.of e).det ≠ 0) (Y : Fin 2 → Fin 2 → ℂ) :
     fderiv ℝ (fun e' : Fin 2 → Fin 2 → ℂ => φ (g * archComplexLiftAt hw e')) e Y =
@@ -258,6 +312,9 @@ theorem fderiv_baseChange (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArchSmoot
     exact hfeq e' he'
   rw [(hcomp.congr_of_eventuallyEq hcongr).fderiv, ContinuousLinearMap.comp_apply, hLe, hL]
 
+/--
+@isnad1 id=eq.3h6v.s13.57b4673b03d7 from=translated src=- shape=dcd47383 vocab=3dba348b
+-/
 theorem main (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArchSmoothAtComplex hw φ)
     (g : AdelicGL2 (𝓞 F) F) (e : Fin 2 → Fin 2 → ℂ) (he : (Matrix.of e).det ≠ 0) (Y : Fin 2 → Fin 2 → ℂ) :
     fderiv ℝ (fun e' : Fin 2 → Fin 2 → ℂ => φ (g * archComplexLiftAt hw e')) e Y =
@@ -302,6 +359,9 @@ end ArchChartTransportComplex
 end
 
 open ArchChartTransportComplex in
+/--
+@isnad1 id=eq.3h6v.s13.57b4673b03d7 from=translated src=- shape=dcd47383 vocab=3dba348b
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F] {w : InfinitePlace F} (hw : w.IsComplex)
     (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArchSmoothAtComplex hw φ)

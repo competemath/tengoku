@@ -35,9 +35,15 @@ noncomputable def ev : CartierDual R (AddMonoidAlgebra R M) →ₐ[R] (M → R) 
     ext x
     simp [CartierDual.algebraMap_apply]
 
+/--
+@isnad1 id=eq.0h4v.s10.d5467304dd58 from=translated src=- shape=a5f58bf1 vocab=f104137f
+-/
 theorem ev_apply (φ : CartierDual R (AddMonoidAlgebra R M)) (x : M) :
     ev R M φ x = φ (AddMonoidAlgebra.single x 1) := rfl
 
+/--
+@isnad1 id=bijectiv.0h2v.s9.340524f59c07 from=translated src=- shape=a504c69c vocab=e5c63fff
+-/
 theorem ev_bijective : Function.Bijective (ev R M) := by
   constructor
   · intro φ ψ h
@@ -60,6 +66,9 @@ theorem ev_bijective : Function.Bijective (ev R M) := by
 
 end MultEtale
 
+/--
+@isnad1 id=etale.0h2v.s7.96c32d931308 from=translated src=- shape=a920673e vocab=b12ac5eb
+-/
 theorem solution (R : Type u) [CommRing R] (M : Type v) [AddCommGroup M] [Finite M] :
     Algebra.Etale R (CartierDual R (AddMonoidAlgebra R M)) :=
   Algebra.Etale.of_equiv (AlgEquiv.ofBijective (MultEtale.ev R M) (MultEtale.ev_bijective R M)).symm

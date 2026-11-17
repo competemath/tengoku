@@ -16,6 +16,9 @@ open AutomorphicForm NumberField.AdelicBox NumberField.AdelicHaar
 attribute [local instance] NumberField.AdelicHaar.adeleBorel NumberField.AdelicHaar.borelSpace_adeleBorel
   NumberField.AdelicHaar.isAddHaarMeasure_adelicAddHaar
 
+/--
+@isnad1 id=eq.2h9v.s11.fd5ded4739df from=translated src=- shape=0d71c010 vocab=cf17418d
+-/
 theorem AutomorphicForm.whittakerCoefficient_unipotentGL2_mul
     (F : Type) [Field F] [NumberField F]
     (D : Set (AdelicGL2 (𝓞 F) F)) (U : Ideal (𝓞 F) → Subgroup (AdelicGL2 (𝓞 F) F))

@@ -12,6 +12,9 @@ namespace AxisC
 
 open Complex Finset
 
+/--
+@isnad1 id=eq.1h2v.s6.50d16723dcda from=translated src=- shape=d35d0ada vocab=d12dc641
+-/
 theorem Gamma_mul_inv_Gamma_add (z : ℂ) (hz : 0 < z.re) (n : ℕ) :
     Complex.Gamma z * (Complex.Gamma (z + (n : ℂ)))⁻¹ = ∏ i ∈ Finset.range n, (z + (i : ℂ))⁻¹ := by
   have hzne : ∀ i : ℕ, z + (i : ℂ) ≠ 0 := by
@@ -28,6 +31,9 @@ theorem Gamma_mul_inv_Gamma_add (z : ℂ) (hz : 0 < z.re) (n : ℕ) :
     have := hGne n
     field_simp
 
+/--
+@isnad1 id=and.2h2v.s7.ddf93da965cd from=translated src=- shape=5859be40 vocab=e8c347cf
+-/
 theorem inv_linear_axis (W : ℂ) (hW : W.re = 0) (b : ℝ) (hb : (1 / 2 : ℝ) ≤ b) :
     W + (b : ℂ) ≠ 0 ∧ (b : ℝ) ≤ ‖W + (b : ℂ)‖ ∧ ‖(W + (b : ℂ))⁻¹‖ ≤ 2 ∧
       HasDerivAt (fun z : ℂ => (z + (b : ℂ))⁻¹) (-((W + (b : ℂ)) ^ 2)⁻¹) W ∧ ‖-((W + (b : ℂ)) ^ 2)⁻¹‖ ≤ 4 := by
@@ -53,6 +59,9 @@ theorem inv_linear_axis (W : ℂ) (hW : W.re = 0) (b : ℝ) (hb : (1 / 2 : ℝ) 
     calc (‖W + (b : ℂ)‖ ^ 2)⁻¹ ≤ ((1 / 2 : ℝ) ^ 2)⁻¹ := inv_anti₀ (by norm_num) this
       _ = 4 := by norm_num
 
+/--
+@isnad1 id=and.2h3v.s8.4995b9a90668 from=translated src=- shape=1387da1b vocab=2821d91f
+-/
 theorem prod_inv_linear_axis (W : ℂ) (hW : W.re = 0) (n : ℕ) (b : ℕ → ℝ) (hb : ∀ i, (1 / 2 : ℝ) ≤ b i) :
     ‖∏ i ∈ Finset.range n, (W + (b i : ℂ))⁻¹‖ ≤ 2 ^ n ∧
     HasDerivAt (fun z : ℂ => ∏ i ∈ Finset.range n, (z + (b i : ℂ))⁻¹)
@@ -88,6 +97,9 @@ theorem prod_inv_linear_axis (W : ℂ) (hW : W.re = 0) (n : ℕ) (b : ℕ → �
         ≤ ∑ i ∈ Finset.range n, (4 * 2 ^ n : ℝ) := Finset.sum_le_sum hterm
       _ = n * (4 * 2 ^ n) := by rw [Finset.sum_const, Finset.card_range]; simp
 
+/--
+@isnad1 id=and.2h3v.s8.4a72d22e7536 from=translated src=- shape=4c70b348 vocab=ffa59bf5
+-/
 theorem ratio_axis (W : ℂ) (hW : W.re = 0) (M : ℕ) (b : ℝ) (hb : (1 / 2 : ℝ) ≤ b) :
     ‖(W + (M : ℂ) / 2) * (W + (b : ℂ))⁻¹‖ ≤ 2 + M ∧
     HasDerivAt (fun z : ℂ => (z + (M : ℂ) / 2) * (z + (b : ℂ))⁻¹)
@@ -131,6 +143,9 @@ theorem ratio_axis (W : ℂ) (hW : W.re = 0) (M : ℕ) (b : ℝ) (hb : (1 / 2 : 
     have := mul_le_mul h1 hinv (norm_nonneg _) (by positivity)
     linarith
 
+/--
+@isnad1 id=other.2h3v.s8.cf270a4db5fb from=translated src=- shape=1c366853 vocab=aa9c6d15
+-/
 theorem main (a m M : ℕ) (hm : 2 * a ≤ m) (hM : m = 2 * a → M = 0) :
     let N : ℂ → ℂ := fun W => ((a.factorial : ℕ) : ℂ) / 2 *
       (if m = 2 * a ∧ M = 0 then
@@ -236,6 +251,9 @@ theorem main (a m M : ℕ) (hm : 2 * a ≤ m) (hM : m = 2 * a → M = 0) :
 
 end Ws31.AxisC
 
+/--
+@isnad1 id=other.2h3v.s8.cf270a4db5fb from=translated src=- shape=1c366853 vocab=aa9c6d15
+-/
 theorem solution (a m M : ℕ) (hm : 2 * a ≤ m) (hM : m = 2 * a → M = 0) :
     let N : ℂ → ℂ := fun W => ((a.factorial : ℕ) : ℂ) / 2 *
       (if m = 2 * a ∧ M = 0 then

@@ -7,6 +7,9 @@ namespace P2MW.S_Bialgebra_fst_mul_withConv_algHom_dualNumber_eq_counit
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.2h5v.s10.36e59c926167 from=translated src=- shape=39cb2f2d vocab=632498dd
+-/
 theorem solution
     (k : Type) [CommRing k] (B : Type) [CommRing B] [Bialgebra k B]
     (D₁ D₂ : B →ₐ[k] DualNumber k)

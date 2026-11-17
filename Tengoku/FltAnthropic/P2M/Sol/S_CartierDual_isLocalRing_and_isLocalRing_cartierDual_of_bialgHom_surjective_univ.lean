@@ -12,6 +12,9 @@ open scoped TensorProduct
 
 universe u v w
 
+/--
+@isnad1 id=and.3h4v.s9.9dc2873470e4 from=translated src=- shape=958b5c07 vocab=b6244c4b
+-/
 theorem solution
     (k : Type u) [Field k] (B : Type v) (B₁ : Type w) [CommRing B] [Bialgebra k B] [CommRing B₁] [Bialgebra k B₁]
     [Module.Finite k B] [Module.Finite k B₁] [Coalgebra.IsCocomm k B] [Coalgebra.IsCocomm k B₁]

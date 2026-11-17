@@ -18,6 +18,9 @@ open CerednikDrinfeld.Omega
 
 namespace Law2Helpers
 
+/--
+@isnad1 id=iff.4h9v.s9.a887906ae936 from=translated src=- shape=d2d293b9 vocab=dd34496f
+-/
 theorem thetaMultipliable_pmoebius_pmoebius_iff
     {K₀ : Type*} [Field K₀] {K : Type*} [Field K] [Algebra K₀ K] [DecidableEq K] [TopologicalSpace K]
     {G : Type*} [Group G] (ρ : G →* PGL(2, K₀)) {a b w z : K}
@@ -33,6 +36,9 @@ theorem thetaMultipliable_pmoebius_pmoebius_iff
 
 end Law2Helpers
 
+/--
+@isnad1 id=ex.6h7v.s10.28fea5b839b6 from=translated src=- shape=17da48c0 vocab=dc542551
+-/
 theorem solution
     {K₀ : Type*} [Field K₀] {K : Type*} [Field K] [Algebra K₀ K] [DecidableEq K]
     [TopologicalSpace K] [IsTopologicalRing K] [T2Space K]

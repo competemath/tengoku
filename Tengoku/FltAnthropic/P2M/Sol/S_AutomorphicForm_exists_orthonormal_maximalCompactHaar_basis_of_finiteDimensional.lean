@@ -26,6 +26,9 @@ def kPair (a b : AdelicGL2 (𝓞 K) K → ℂ) : ℂ :=
 
 variable {K}
 
+/--
+@isnad1 id=integrab.2h3v.s11.de5f845061f3 from=translated src=- shape=edd04b23 vocab=ab9e94a2
+-/
 theorem integrable_mul_conj {a b : AdelicGL2 (𝓞 K) K → ℂ} (ha : Continuous a) (hb : Continuous b) :
     Integrable (fun k : adelicMaximalCompact K =>
       a (k : AdelicGL2 (𝓞 K) K) * conj (b (k : AdelicGL2 (𝓞 K) K))) (maximalCompactHaar K) := by
@@ -34,22 +37,34 @@ theorem integrable_mul_conj {a b : AdelicGL2 (𝓞 K) K → ℂ} (ha : Continuou
     (ha.comp continuous_subtype_val).mul (Complex.continuous_conj.comp (hb.comp continuous_subtype_val))
   exact hc.integrable_of_hasCompactSupport (HasCompactSupport.of_compactSpace _)
 
+/--
+@isnad1 id=eq.3h4v.s9.9e9fb2ea3ce6 from=translated src=- shape=0ee7627b vocab=9a1b6c0a
+-/
 theorem kPair_add_left {a a' b : AdelicGL2 (𝓞 K) K → ℂ} (ha : Continuous a) (ha' : Continuous a') (hb : Continuous b) :
     kPair K (a + a') b = kPair K a b + kPair K a' b := by
   simp only [kPair, Pi.add_apply, add_mul]
   exact integral_add (integrable_mul_conj ha hb) (integrable_mul_conj ha' hb)
 
+/--
+@isnad1 id=eq.0h4v.s7.6533c3c11b9f from=translated src=- shape=5583dcec vocab=7200ebe5
+-/
 theorem kPair_smul_left (c : ℂ) (a b : AdelicGL2 (𝓞 K) K → ℂ) :
     kPair K (c • a) b = c * kPair K a b := by
   simp only [kPair, Pi.smul_apply, smul_eq_mul, mul_assoc]
   exact integral_const_mul c _
 
+/--
+@isnad1 id=eq.0h3v.s6.d8c0f92b17c1 from=translated src=- shape=f45760e0 vocab=fa1b6393
+-/
 theorem conj_kPair (a b : AdelicGL2 (𝓞 K) K → ℂ) : conj (kPair K a b) = kPair K b a := by
   simp only [kPair]
   rw [← integral_conj]
   refine integral_congr_ae (Filter.Eventually.of_forall fun k => ?_)
   simp [mul_comm]
 
+/--
+@isnad1 id=le.0h2v.s5.d4db92249fbd from=translated src=- shape=fe63af74 vocab=1f86d314
+-/
 theorem kPair_self_re_nonneg (a : AdelicGL2 (𝓞 K) K → ℂ) : 0 ≤ (kPair K a a).re := by
   simp only [kPair]
   have h : ∀ k : adelicMaximalCompact K,
@@ -60,6 +75,9 @@ theorem kPair_self_re_nonneg (a : AdelicGL2 (𝓞 K) K → ℂ) : 0 ≤ (kPair K
   rw [integral_complex_ofReal, Complex.ofReal_re]
   exact integral_nonneg fun k => by positivity
 
+/--
+@isnad1 id=ex.2h2v.s12.e9f677170f6f from=translated src=- shape=75c74138 vocab=b847db55
+-/
 theorem exists_orthonormal_basis_maximalCompact_pairing
     (V : Submodule ℂ (AdelicGL2 (𝓞 K) K → ℂ)) [FiniteDimensional ℂ V]
     (hcont : ∀ φ ∈ V, Continuous φ)
@@ -109,6 +127,9 @@ theorem exists_orthonormal_basis_maximalCompact_pairing
 
 end AutomorphicForm.KOrth
 
+/--
+@isnad1 id=ex.2h2v.s12.e9f677170f6f from=translated src=- shape=75c74138 vocab=b847db55
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K]
     (V : Submodule ℂ (AutomorphicForm.AdelicGL2 (𝓞 K) K → ℂ)) [FiniteDimensional ℂ V]

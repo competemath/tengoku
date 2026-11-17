@@ -15,18 +15,27 @@ open MeasureTheory
 
 namespace T2Aux44
 
+/--
+@isnad1 id=continuo.0h2v.s6.638577968ee2 from=translated src=- shape=2f68f18e vocab=81a513a2
+-/
 theorem continuous_xChar {r : ℕ} (ξ : Fin r → ℝ) :
     Continuous fun x : Fin r → ℝ => Complex.exp (-(2 * Real.pi * Complex.I * ((∑ i, ξ i * x i : ℝ) : ℂ))) := by
   have h1 : Continuous fun x : Fin r → ℝ => (∑ i, ξ i * x i : ℝ) :=
     continuous_finsetSum _ fun i _ => continuous_const.mul (continuous_apply i)
   exact Complex.continuous_exp.comp (continuous_const.mul (Complex.continuous_ofReal.comp h1)).neg
 
+/--
+@isnad1 id=continuo.0h2v.s6.517e7933582c from=translated src=- shape=40b73f86 vocab=d6c3084a
+-/
 theorem continuous_modeChar {c : ℕ} (m : Fin c → ℤ) :
     Continuous fun θ : Fin c → ℝ => Complex.exp (-(2 * Real.pi * Complex.I * ((∑ j', (m j' : ℝ) * θ j' : ℝ) : ℂ))) := by
   have h1 : Continuous fun θ : Fin c → ℝ => (∑ j', (m j' : ℝ) * θ j' : ℝ) :=
     continuous_finsetSum _ fun i _ => continuous_const.mul (continuous_apply i)
   exact Complex.continuous_exp.comp (continuous_const.mul (Complex.continuous_ofReal.comp h1)).neg
 
+/--
+@isnad1 id=continuo.0h0v.s7.8f32e66b28a2 from=translated src=- shape=4ac07329 vocab=7b527e80
+-/
 theorem continuous_germ :
     Continuous fun q : ℝ × ℝ => ((‖(1 : ℂ) - Complex.exp ((q.1 / 2 : ℝ) + 2 * Real.pi * Complex.I * (q.2 : ℝ))‖ ^ 2 * Real.log ‖(1 : ℂ) - Complex.exp ((q.1 / 2 : ℝ) + 2 * Real.pi * Complex.I * (q.2 : ℝ))‖ : ℝ) : ℂ) := by
   have hρ : Continuous fun q : ℝ × ℝ =>
@@ -40,10 +49,16 @@ theorem continuous_germ :
     ring
   exact Complex.continuous_ofReal.comp (h2.comp hρ)
 
+/--
+@isnad1 id=continuo.2h3v.s7.9d3f55e6f489 from=translated src=- shape=f133c4ba vocab=a3fa0781
+-/
 theorem continuous_germ_comp {X : Type} [TopologicalSpace X] {a b : X → ℝ} (ha : Continuous a)
     (hb : Continuous b) : Continuous fun x : X => ((‖(1 : ℂ) - Complex.exp ((a x / 2 : ℝ) + 2 * Real.pi * Complex.I * (b x : ℝ))‖ ^ 2 * Real.log ‖(1 : ℂ) - Complex.exp ((a x / 2 : ℝ) + 2 * Real.pi * Complex.I * (b x : ℝ))‖ : ℝ) : ℂ) :=
   continuous_germ.comp (f := fun x : X => (a x, b x)) (ha.prodMk hb)
 
+/--
+@isnad1 id=hascompa.1h3v.s6.399ba69fa2c1 from=translated src=- shape=70cef9f6 vocab=a27b5f21
+-/
 theorem hasCompactSupport_of_box {r : ℕ} {f : (Fin r → ℝ) → ℂ} (R : ℝ)
     (h : ∀ x : Fin r → ℝ, (∃ k, R < |x k|) → f x = 0) : HasCompactSupport f := by
   refine HasCompactSupport.intro (isCompact_univ_pi fun _ : Fin r => (isCompact_Icc : IsCompact (Set.Icc (-R) R))) ?_
@@ -53,6 +68,9 @@ theorem hasCompactSupport_of_box {r : ℕ} {f : (Fin r → ℝ) → ℂ} (R : �
   push_neg at hcon
   exact hx (Set.mem_univ_pi.mpr fun k => Set.mem_Icc.mpr (abs_le.mp (hcon k)))
 
+/--
+@isnad1 id=eq.0h5v.s8.65cf4ee1678a from=translated src=- shape=c999cba2 vocab=2975c9ba
+-/
 theorem xChar_insertNth {n : ℕ} (k : Fin (n + 1)) (ξ : Fin (n + 1) → ℝ) (s : ℝ) (y : Fin n → ℝ) :
     Complex.exp (-(2 * Real.pi * Complex.I * ((∑ i, ξ i * (Fin.insertNth k s y : Fin (n + 1) → ℝ) i : ℝ) : ℂ))) = Complex.exp (-(2 * Real.pi * Complex.I * ((ξ k * s : ℝ) : ℂ))) * Complex.exp (-(2 * Real.pi * Complex.I * ((∑ i, ξ (k.succAbove i) * y i : ℝ) : ℂ))) := by
   rw [Fin.sum_univ_succAbove _ k]
@@ -62,6 +80,9 @@ theorem xChar_insertNth {n : ℕ} (k : Fin (n + 1)) (ξ : Fin (n + 1) → ℝ) (
   push_cast
   ring
 
+/--
+@isnad1 id=eq.0h5v.s8.4db31dd87228 from=translated src=- shape=3c0b6ae1 vocab=be838437
+-/
 theorem modeChar_insertNth {d : ℕ} (j : Fin (d + 1)) (m : Fin (d + 1) → ℤ) (t : ℝ) (θ' : Fin d → ℝ) :
     Complex.exp (-(2 * Real.pi * Complex.I * ((∑ j', (m j' : ℝ) * (Fin.insertNth j t θ' : Fin (d + 1) → ℝ) j' : ℝ) : ℂ))) = Complex.exp (-(2 * Real.pi * Complex.I * (((m j : ℝ) * t : ℝ) : ℂ))) * Complex.exp (-(2 * Real.pi * Complex.I * ((∑ i, (m (j.succAbove i) : ℝ) * θ' i : ℝ) : ℂ))) := by
   rw [Fin.sum_univ_succAbove _ j]
@@ -71,6 +92,9 @@ theorem modeChar_insertNth {d : ℕ} (j : Fin (d + 1)) (m : Fin (d + 1) → ℤ)
   push_cast
   ring
 
+/--
+@isnad1 id=eq.0h8v.s7.39c491f62ad8 from=translated src=- shape=beab18d7 vocab=36a19acf
+-/
 theorem char_combine {n d : ℕ} (k : Fin (n + 1)) (j : Fin (d + 1)) (ξ : Fin (n + 1) → ℝ) (m : Fin (d + 1) → ℤ)
     (s t : ℝ) : Complex.exp (-(2 * Real.pi * Complex.I * ((ξ k * s : ℝ) : ℂ))) * Complex.exp (-(2 * Real.pi * Complex.I * (((m j : ℝ) * t : ℝ) : ℂ))) = Complex.exp (-(2 * Real.pi * Complex.I * ((ξ k * s + (m j : ℝ) * t : ℝ) : ℂ))) := by
   rw [← Complex.exp_add]
@@ -78,16 +102,25 @@ theorem char_combine {n d : ℕ} (k : Fin (n + 1)) (j : Fin (d + 1)) (ξ : Fin (
   push_cast
   ring
 
+/--
+@isnad1 id=eventual.0h1v.s7.9819914bcf3e from=translated src=- shape=bc4d00af vocab=1dfe6b95
+-/
 theorem cube_ae_eq (c : ℕ) : (Set.pi Set.univ (fun _ : Fin c => Set.Ico (0 : ℝ) 1)) =ᵐ[volume] (Set.pi Set.univ (fun _ : Fin c => Set.Icc (0 : ℝ) 1)) := by
   rw [volume_pi]
   exact Measure.pi_Ico_ae_eq_pi_Icc
 
+/--
+@isnad1 id=integrab.1h2v.s7.0a1b796aa6ef from=translated src=- shape=951bfec6 vocab=f539a0d8
+-/
 theorem integrableOn_cube {c : ℕ} {f : (Fin c → ℝ) → ℂ} (hf : Continuous f) :
     IntegrableOn f (Set.pi Set.univ (fun _ : Fin c => Set.Ico (0 : ℝ) 1)) volume :=
   (ContinuousOn.integrableOn_compact
       (isCompact_univ_pi fun _ : Fin c => (isCompact_Icc : IsCompact (Set.Icc (0 : ℝ) 1))) hf.continuousOn).mono_set
     (Set.pi_mono fun _ _ => Set.Ico_subset_Icc_self)
 
+/--
+@isnad1 id=continuo.1h3v.s7.fa4bee561b65 from=translated src=- shape=f0ab4d49 vocab=0beabc0b
+-/
 theorem continuous_cubeIntegral {c : ℕ} {X : Type} [TopologicalSpace X] [FirstCountableTopology X]
     [LocallyCompactSpace X] (F : X → (Fin c → ℝ) → ℂ) (hF : Continuous (Function.uncurry F)) :
     Continuous fun x => ∫ θ in Set.pi Set.univ (fun _ : Fin c => Set.Ico (0 : ℝ) 1), F x θ := by
@@ -97,6 +130,9 @@ theorem continuous_cubeIntegral {c : ℕ} {X : Type} [TopologicalSpace X] [First
   exact continuous_parametric_integral_of_continuous hF
     (isCompact_univ_pi fun _ : Fin c => (isCompact_Icc : IsCompact (Set.Icc (0 : ℝ) 1)))
 
+/--
+@isnad1 id=eq.1h3v.s9.198e18084ea2 from=translated src=- shape=2653e34c vocab=ec82a4ad
+-/
 theorem setIntegral_cube_succ {d : ℕ} (j : Fin (d + 1)) (G : (Fin (d + 1) → ℝ) → ℂ)
     (hG : IntegrableOn G (Set.pi Set.univ (fun _ : Fin (d + 1) => Set.Ico (0 : ℝ) 1)) volume) :
     ∫ θ in Set.pi Set.univ (fun _ : Fin (d + 1) => Set.Ico (0 : ℝ) 1), G θ =
@@ -122,6 +158,9 @@ theorem setIntegral_cube_succ {d : ℕ} (j : Fin (d + 1)) (G : (Fin (d + 1) → 
     _ = ∫ t in Set.Ico (0 : ℝ) 1, ∫ θ' in Set.pi Set.univ (fun _ : Fin d => Set.Ico (0 : ℝ) 1), G (Fin.insertNth j t θ' : Fin (d + 1) → ℝ) := by
         rw [Measure.volume_eq_prod, setIntegral_prod _ hint]
 
+/--
+@isnad1 id=le.2h3v.s7.97a3dda3615a from=translated src=- shape=0b364b75 vocab=9eb3d950
+-/
 theorem one_le_pow_mul_prod {r : ℕ} (R : ℝ) (hR : 0 ≤ R) (x : Fin r → ℝ) (hx : ∀ i, |x i| ≤ R) :
     (1 : ℝ) ≤ (1 + R) ^ (2 * r) * ∏ i, (1 + |x i|)⁻¹ ^ 2 := by
   have h1 : ∀ i, (1 + R)⁻¹ ^ 2 ≤ (1 + |x i|)⁻¹ ^ 2 := fun i =>
@@ -134,6 +173,9 @@ theorem one_le_pow_mul_prod {r : ℕ} (R : ℝ) (hR : 0 ≤ R) (x : Fin r → �
   calc (1 : ℝ) = (1 + R) ^ (2 * r) * ∏ i : Fin r, (1 + R)⁻¹ ^ 2 := h3.symm
     _ ≤ (1 + R) ^ (2 * r) * ∏ i, (1 + |x i|)⁻¹ ^ 2 := mul_le_mul_of_nonneg_left h2 (by positivity)
 
+/--
+@isnad1 id=summable.1h2v.s8.0ab0834d108a from=translated src=- shape=c9c9b0c4 vocab=96dd22f6
+-/
 theorem summable_mdec {d : ℕ} (j : Fin (d + 1))
     (hS : Summable fun b : Fin d → ℤ => ∏ i, (1 + |(b i : ℝ)|)⁻¹ ^ 2) :
     Summable fun m : Fin (d + 1) → ℤ =>
@@ -161,6 +203,9 @@ theorem summable_mdec {d : ℕ} (j : Fin (d + 1))
 end T2Aux44
 
 open T2Aux44 in
+/--
+@isnad1 id=other.4h6v.s10.241c9455bf5a from=translated src=- shape=257f6412 vocab=22ffe753
+-/
 theorem solution
     {r c : ℕ} (W : (Fin r → ℝ) × (Fin c → ℝ) → ℂ) (hW : ContDiff ℝ (⊤ : ℕ∞) W)
     (R : ℝ) (hR : 0 ≤ R) (hsupp : ∀ p : (Fin r → ℝ) × (Fin c → ℝ), (∃ k, R < |p.1 k|) → W p = 0)

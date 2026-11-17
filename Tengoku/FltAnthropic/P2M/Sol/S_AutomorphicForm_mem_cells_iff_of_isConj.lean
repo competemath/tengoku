@@ -11,6 +11,9 @@ namespace AutomorphicForm
 export _root_.AutomorphicForm (IsCentralType IsUnipotentType IsHyperbolicType IsEllipticType centralCell unipotentCell hyperbolicCell ellipticCell mem_unipotentCell_iff mem_hyperbolicCell_iff mem_ellipticCell_iff)
 open _root_.AutomorphicForm
 
+/--
+@isnad1 id=and.1h3v.s9.be04f13574b7 from=translated src=- shape=4477348f vocab=c828545c
+-/
 theorem _root_.P2MW.S_AutomorphicForm_mem_cells_iff_of_isConj.solution (K : Type) [Field K] (γ δ : GL (Fin 2) K) (h : IsConj γ δ) :
     (γ ∈ centralCell K ↔ δ ∈ centralCell K) ∧ (γ ∈ unipotentCell K ↔ δ ∈ unipotentCell K) ∧
       (γ ∈ hyperbolicCell K ↔ δ ∈ hyperbolicCell K) ∧ (γ ∈ ellipticCell K ↔ δ ∈ ellipticCell K) := by

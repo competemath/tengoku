@@ -18,6 +18,9 @@ namespace Law3Z0
 
 variable {K₀ : Type*} [Field K₀] {K : Type*} [Field K] [Algebra K₀ K] [DecidableEq K]
 
+/--
+@isnad1 id=eq.4h9v.s9.9299e5432d1f from=translated src=- shape=64ce00b4 vocab=b4991957
+-/
 theorem cocZ [TopologicalSpace K] [IsTopologicalRing K] [T2Space K]
     {G : Type*} [Group G] (ρ : G →* PGL(2, K₀)) {a b z₀ z w : K}
     (hza : ∀ γ : G, pmoebius K₀ (ρ γ) a ≠ z) (hzb : ∀ γ : G, pmoebius K₀ (ρ γ) b ≠ z)
@@ -31,6 +34,9 @@ theorem cocZ [TopologicalSpace K] [IsTopologicalRing K] [T2Space K]
   rw [mul_comm]
   exact crossRatio_mul_crossRatio w z z₀ _ _ (Ne.symm (hza γ)) (Ne.symm (hzb γ))
 
+/--
+@isnad1 id=ne.3h8v.s10.4c238d5960b1 from=translated src=- shape=7f15fbbd vocab=ba979507
+-/
 theorem guard_pmoebius {G : Type*} [Group G] (ρ : G →* PGL(2, K₀)) {a z₀ : K}
     (ha : a ∈ upperHalfPlane K₀ K) (hz₀ : z₀ ∈ upperHalfPlane K₀ K)
     (hz₀a : ∀ γ : G, pmoebius K₀ (ρ γ) a ≠ z₀) (β γ : G) :
@@ -46,6 +52,9 @@ theorem guard_pmoebius {G : Type*} [Group G] (ρ : G →* PGL(2, K₀)) {a z₀ 
 
 end Law3Z0
 
+/--
+@isnad1 id=eq.9h9v.s11.eea52e15f4a3 from=translated src=- shape=212fa119 vocab=62b3a1aa
+-/
 theorem solution
     {K₀ : Type*} [Field K₀] {K : Type*} [Field K] [Algebra K₀ K] [DecidableEq K]
     [TopologicalSpace K] [IsTopologicalRing K] [T2Space K]

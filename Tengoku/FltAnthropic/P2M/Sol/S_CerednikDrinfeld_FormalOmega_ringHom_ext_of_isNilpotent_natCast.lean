@@ -7,6 +7,9 @@ namespace P2MW.S_CerednikDrinfeld_FormalOmega_ringHom_ext_of_isNilpotent_natCast
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.6h6v.s7.a74fbcab52c2 from=translated src=- shape=d9764c13 vocab=df50c1c1
+-/
 theorem solution
     {r : ℕ} [Fact r.Prime]
     (𝒪 : Type) [CommRing 𝒪] [IsDomain 𝒪] [CharZero 𝒪] (hdvr : IsDiscreteValuationRing 𝒪)

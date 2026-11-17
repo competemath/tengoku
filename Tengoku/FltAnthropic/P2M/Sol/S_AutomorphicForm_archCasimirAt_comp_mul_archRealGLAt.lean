@@ -339,6 +339,9 @@ private theorem archCasimirAt_eq_casSym {w : InfinitePlace K} {hw : w.IsReal}
 
 end
 
+/--
+@isnad1 id=eq.2h4v.s10.d2973b9abcc5 from=translated src=- shape=c7f9db24 vocab=295ad41d
+-/
 theorem solution
     {K : Type} [Field K] [NumberField K] {w : InfinitePlace K} (hw : w.IsReal) (φ : AdelicGL2 (𝓞 K) K → ℂ)
     (hφ : IsArchSmoothAt hw φ) (k : GL (Fin 2) ℝ) :

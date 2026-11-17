@@ -7,6 +7,9 @@ namespace P2MW.S_CerednikDrinfeld_SpecialModule_exists_forall_apply_eq_mul_dotPr
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.3h3v.s12.9163a5671215 from=translated src=- shape=aedff3e1 vocab=c92406b5
+-/
 theorem solution
     (k : Type) [Field k] (μ : Matrix (Fin 2) (Fin 2) k) (htr : μ.trace = 0) (hdet : μ.det ≠ 0)
     (b : (Fin 2 → k) →ₗ[k] (Fin 2 → k) →ₗ[k] k)

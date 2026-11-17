@@ -24,10 +24,16 @@ abbrev hm {B B' : Type u} [CommRing B] [Algebra R B] [CommRing B'] [Algebra R B'
     ob (R := R) B ⟶ ob B' :=
   Under.homMk (CommRingCat.ofHom ψ.toRingHom) (by ext r; exact ψ.commutes r)
 
+/--
+@isnad1 id=eq.0h6v.s7.44197a9890f0 from=translated src=- shape=331a3566 vocab=8a3ad47f
+-/
 theorem hm_comp {B B' B'' : Type u} [CommRing B] [Algebra R B] [CommRing B'] [Algebra R B'] [CommRing B''] [Algebra R B'']
     (ψ : B →ₐ[R] B') (ψ' : B' →ₐ[R] B'') : hm (R := R) (ψ'.comp ψ) = hm ψ ≫ hm ψ' := by
   ext; rfl
 
+/--
+@isnad1 id=eq.0h8v.s9.9cdb52f11300 from=translated src=- shape=318f961b vocab=c766969c
+-/
 theorem map_comp_apply {B B' B'' : Type u} [CommRing B] [Algebra R B] [CommRing B'] [Algebra R B'] [CommRing B'']
     [Algebra R B''] (ψ : B →ₐ[R] B') (ψ' : B' →ₐ[R] B'') (x : F.obj (ob B)) :
     F.map (hm (ψ'.comp ψ)) x = F.map (hm ψ') (F.map (hm ψ) x) := by
@@ -49,6 +55,9 @@ local notation "ι" => IsScalarTower.toAlgHom R S₁ C₁
 
 include he in
 
+/--
+@isnad1 id=eq.2h11v.s11.f4a28dcca812 from=translated src=- shape=4806f093 vocab=eda9181e
+-/
 theorem nat {B B' : Type u} [CommRing B] [Algebra R B] [CommRing B'] [Algebra R B']
     (j : S₁ →ₐ[R] B) (ψ : B →ₐ[R] B') (x : F.obj (ob B)) (j' : S₁ →ₐ[R] B') (hj' : ψ.comp j = j') :
     ((e B' j') (F.map (hm ψ) x)).1 = ψ.comp ((e B j) x).1 := by
@@ -56,6 +65,9 @@ theorem nat {B B' : Type u} [CommRing B] [Algebra R B] [CommRing B'] [Algebra R 
 
 noncomputable def xu : F.obj (ob (R := R) C₁) := (e C₁ ι).symm ⟨AlgHom.id R C₁, AlgHom.id_comp _⟩
 
+/--
+@isnad1 id=eq.0h5v.s10.44d21bf56281 from=translated src=- shape=5dad28f2 vocab=d5583d17
+-/
 theorem e_xu : ((e C₁ ι) (xu F S₁ C₁ e)).1 = AlgHom.id R C₁ := by
   simp [xu]
 
@@ -73,10 +85,16 @@ noncomputable def x₀ : F.obj (ob (R := R) (S₁ ⊗[R] C₁)) :=
 noncomputable def g₀ : C₁ →ₐ[R] S₁ ⊗[R] C₁ :=
   ((e (S₁ ⊗[R] C₁) (includeLeft : S₁ →ₐ[R] S₁ ⊗[R] C₁)) (x₀ F S₁ C₁ e)).1
 
+/--
+@isnad1 id=eq.0h5v.s9.45444161c0c0 from=translated src=- shape=ce8b3f1d vocab=d5a5c041
+-/
 theorem g₀_comp_ι : (g₀ F S₁ C₁ e).comp ι = includeLeft :=
   ((e (S₁ ⊗[R] C₁) (includeLeft : S₁ →ₐ[R] S₁ ⊗[R] C₁)) (x₀ F S₁ C₁ e)).2
 
 include he in
+/--
+@isnad1 id=eq.1h5v.s12.67ea09924ffc from=translated src=- shape=7f8288a8 vocab=58443807
+-/
 theorem e_x₀_right : ((e (S₁ ⊗[R] C₁) ((includeRight : C₁ →ₐ[R] S₁ ⊗[R] C₁).comp ι)) (x₀ F S₁ C₁ e)).1 =
     includeRight := by
   have := nat F S₁ C₁ e he ι (includeRight : C₁ →ₐ[R] S₁ ⊗[R] C₁) (xu F S₁ C₁ e)
@@ -86,6 +104,9 @@ theorem e_x₀_right : ((e (S₁ ⊗[R] C₁) ((includeRight : C₁ →ₐ[R] S�
 
 include he in
 
+/--
+@isnad1 id=eq.1h9v.s11.2600a7a9815d from=translated src=- shape=c56925de vocab=f96e24dd
+-/
 theorem core {D : Type u} [CommRing D] [Algebra R D] (j₁ j₂ : S₁ →ₐ[R] D) (x : F.obj (ob D)) :
     ((e D j₁) x).1 = (Algebra.TensorProduct.lift j₁ ((e D j₂) x).1 (fun _ _ => Commute.all _ _)).comp (g₀ F S₁ C₁ e) := by
   have hθR : (Algebra.TensorProduct.lift j₁ ((e D j₂) x).1 (fun _ _ => Commute.all _ _)).comp includeRight = ((e D j₂) x).1 :=
@@ -104,15 +125,24 @@ theorem core {D : Type u} [CommRing D] [Algebra R D] (j₁ j₂ : S₁ →ₐ[R]
 noncomputable def φ₀ : C₁ ⊗[R] S₁ →ₐ[R] S₁ ⊗[R] C₁ :=
   Algebra.TensorProduct.lift (g₀ F S₁ C₁ e) ((includeRight : C₁ →ₐ[R] S₁ ⊗[R] C₁).comp ι) (fun _ _ => Commute.all _ _)
 
+/--
+@isnad1 id=eq.0h7v.s10.51b1cbe1efe4 from=translated src=- shape=fd3790e3 vocab=b2904b4c
+-/
 theorem φ₀_tmul (c : C₁) (s : S₁) : φ₀ F S₁ C₁ e (c ⊗ₜ[R] s) = g₀ F S₁ C₁ e c * ((1 : S₁) ⊗ₜ[R] (ι s)) := by
   simp [φ₀, Algebra.TensorProduct.lift_tmul]
 
+/--
+@isnad1 id=eq.0h6v.s9.7de3273c24c3 from=translated src=- shape=b3417911 vocab=c418d4be
+-/
 theorem g₀_ι (s : S₁) : g₀ F S₁ C₁ e (ι s) = s ⊗ₜ[R] (1 : C₁) := by
   have := AlgHom.congr_fun (g₀_comp_ι F S₁ C₁ e) s
   simpa using this
 
 include he in
 
+/--
+@isnad1 id=eq.1h9v.s11.6b21d730e8c6 from=translated src=- shape=d3c83850 vocab=4177e5ff
+-/
 theorem intertwine {D : Type u} [CommRing D] [Algebra R D] (j₁ j₂ : S₁ →ₐ[R] D) (x : F.obj (ob D)) :
     Algebra.TensorProduct.lift ((e D j₁) x).1 j₂ (fun _ _ => Commute.all _ _) =
       (Algebra.TensorProduct.lift j₁ ((e D j₂) x).1 (fun _ _ => Commute.all _ _)).comp (φ₀ F S₁ C₁ e) := by
@@ -126,6 +156,9 @@ theorem intertwine {D : Type u} [CommRing D] [Algebra R D] (j₁ j₂ : S₁ →
   · exact AlgHom.congr_fun hc c
   · exact (AlgHom.congr_fun hg₂ι s).symm
 
+/--
+@isnad1 id=eq.0h5v.s9.5327bbdd36c3 from=translated src=- shape=f4618758 vocab=78b3951a
+-/
 theorem φ₀_linear :
     (φ₀ F S₁ C₁ e).comp (Algebra.TensorProduct.map ι (AlgHom.id R S₁)) =
       Algebra.TensorProduct.map (AlgHom.id R S₁) ι := by
@@ -141,6 +174,9 @@ noncomputable def h₀ : C₁ →ₐ[R] C₁ ⊗[R] S₁ :=
   ((e (C₁ ⊗[R] S₁) (includeRight : S₁ →ₐ[R] C₁ ⊗[R] S₁)) (x₁ F S₁ C₁ e)).1
 
 include he in
+/--
+@isnad1 id=eq.1h5v.s13.a690eed99e38 from=translated src=- shape=94d6a344 vocab=d0bd6fab
+-/
 theorem e_x₁_left : ((e (C₁ ⊗[R] S₁) ((includeLeft : C₁ →ₐ[R] C₁ ⊗[R] S₁).comp ι)) (x₁ F S₁ C₁ e)).1 =
     includeLeft := by
   have := nat F S₁ C₁ e he ι (includeLeft : C₁ →ₐ[R] C₁ ⊗[R] S₁) (xu F S₁ C₁ e)
@@ -150,6 +186,9 @@ theorem e_x₁_left : ((e (C₁ ⊗[R] S₁) ((includeLeft : C₁ →ₐ[R] C₁
 
 include he in
 
+/--
+@isnad1 id=eq.1h9v.s11.c2f9bbcfd352 from=translated src=- shape=c4142384 vocab=2b2c7a72
+-/
 theorem core' {D : Type u} [CommRing D] [Algebra R D] (j₁ j₂ : S₁ →ₐ[R] D) (x : F.obj (ob D)) :
     ((e D j₂) x).1 = (Algebra.TensorProduct.lift ((e D j₁) x).1 j₂ (fun _ _ => Commute.all _ _)).comp (h₀ F S₁ C₁ e) := by
   have hθL : (Algebra.TensorProduct.lift ((e D j₁) x).1 j₂ (fun _ _ => Commute.all _ _)).comp includeLeft = ((e D j₁) x).1 :=
@@ -167,11 +206,17 @@ theorem core' {D : Type u} [CommRing D] [Algebra R D] (j₁ j₂ : S₁ →ₐ[R
 noncomputable def ψ₀ : S₁ ⊗[R] C₁ →ₐ[R] C₁ ⊗[R] S₁ :=
   Algebra.TensorProduct.lift ((includeLeft : C₁ →ₐ[R] C₁ ⊗[R] S₁).comp ι) (h₀ F S₁ C₁ e) (fun _ _ => Commute.all _ _)
 
+/--
+@isnad1 id=eq.0h7v.s10.ba17f910ccd4 from=translated src=- shape=be343e85 vocab=a9e04d5f
+-/
 theorem ψ₀_tmul (s : S₁) (c : C₁) : ψ₀ F S₁ C₁ e (s ⊗ₜ[R] c) = ((ι s) ⊗ₜ[R] (1 : S₁)) * h₀ F S₁ C₁ e c := by
   simp [ψ₀, Algebra.TensorProduct.lift_tmul]
 
 include he in
 
+/--
+@isnad1 id=eq.1h9v.s11.a9adfffdd5e3 from=translated src=- shape=23563fe1 vocab=aeb0de98
+-/
 theorem intertwine' {D : Type u} [CommRing D] [Algebra R D] (j₁ j₂ : S₁ →ₐ[R] D) (x : F.obj (ob D)) :
     Algebra.TensorProduct.lift j₁ ((e D j₂) x).1 (fun _ _ => Commute.all _ _) =
       (Algebra.TensorProduct.lift ((e D j₁) x).1 j₂ (fun _ _ => Commute.all _ _)).comp (ψ₀ F S₁ C₁ e) := by
@@ -186,6 +231,9 @@ theorem intertwine' {D : Type u} [CommRing D] [Algebra R D] (j₁ j₂ : S₁ �
   · exact AlgHom.congr_fun hc c
 
 include he in
+/--
+@isnad1 id=eq.1h5v.s9.2bb3766b50d3 from=translated src=- shape=706a0d2c vocab=10243c6e
+-/
 theorem ψ₀_comp_φ₀ : (ψ₀ F S₁ C₁ e).comp (φ₀ F S₁ C₁ e) = AlgHom.id R (C₁ ⊗[R] S₁) := by
   have h := intertwine F S₁ C₁ e he ((includeLeft : C₁ →ₐ[R] C₁ ⊗[R] S₁).comp ι) includeRight (x₁ F S₁ C₁ e)
   have h1 : ((e (C₁ ⊗[R] S₁) ((includeLeft : C₁ →ₐ[R] C₁ ⊗[R] S₁).comp ι)) (x₁ F S₁ C₁ e)).1 = includeLeft :=
@@ -195,6 +243,9 @@ theorem ψ₀_comp_φ₀ : (ψ₀ F S₁ C₁ e).comp (φ₀ F S₁ C₁ e) = Al
   exact h.symm
 
 include he in
+/--
+@isnad1 id=eq.1h5v.s9.46e258869c3c from=translated src=- shape=a1a277f8 vocab=10243c6e
+-/
 theorem φ₀_comp_ψ₀ : (φ₀ F S₁ C₁ e).comp (ψ₀ F S₁ C₁ e) = AlgHom.id R (S₁ ⊗[R] C₁) := by
   have h := intertwine' F S₁ C₁ e he includeLeft ((includeRight : C₁ →ₐ[R] S₁ ⊗[R] C₁).comp ι) (x₀ F S₁ C₁ e)
   have h2 : ((e (S₁ ⊗[R] C₁) ((includeRight : C₁ →ₐ[R] S₁ ⊗[R] C₁).comp ι)) (x₀ F S₁ C₁ e)).1 = includeRight :=
@@ -206,6 +257,9 @@ theorem φ₀_comp_ψ₀ : (φ₀ F S₁ C₁ e).comp (ψ₀ F S₁ C₁ e) = Al
 noncomputable def φ (he : Natural F S₁ C₁ e) : C₁ ⊗[R] S₁ ≃ₐ[R] S₁ ⊗[R] C₁ :=
   AlgEquiv.ofAlgHom (φ₀ F S₁ C₁ e) (ψ₀ F S₁ C₁ e) (φ₀_comp_ψ₀ F S₁ C₁ e he) (ψ₀_comp_φ₀ F S₁ C₁ e he)
 
+/--
+@isnad1 id=eq.0h5v.s9.d48d221a80a7 from=translated src=- shape=1eee3dd8 vocab=632dc2a1
+-/
 theorem lift_includeLeft_includeRight_comp {Y : Type u} [CommRing Y] [Algebra R Y] (f : C₁ →ₐ[R] Y) :
     Algebra.TensorProduct.lift (includeLeft : S₁ →ₐ[R] S₁ ⊗[R] Y) ((includeRight : Y →ₐ[R] S₁ ⊗[R] Y).comp f)
       (fun _ _ => Commute.all _ _) = Algebra.TensorProduct.map (AlgHom.id R S₁) f := by
@@ -215,6 +269,9 @@ theorem lift_includeLeft_includeRight_comp {Y : Type u} [CommRing Y] [Algebra R 
 
 include he in
 
+/--
+@isnad1 id=eq.1h6v.s11.161d2e56313f from=translated src=- shape=68e18c4e vocab=010dc1b1
+-/
 theorem coact (c : C₁) :
     Algebra.TensorProduct.map (AlgHom.id R S₁) (g₀ F S₁ C₁ e) (g₀ F S₁ C₁ e c) =
       Algebra.TensorProduct.map (AlgHom.id R S₁) (includeRight : C₁ →ₐ[R] S₁ ⊗[R] C₁) (g₀ F S₁ C₁ e c) := by
@@ -238,6 +295,9 @@ theorem coact (c : C₁) :
   have := AlgHom.congr_fun (c1.symm.trans c2) c
   simpa only [AlgHom.comp_apply] using this
 
+/--
+@isnad1 id=eq.0h6v.s12.4797c4ebf1e7 from=translated src=- shape=59f612ea vocab=5cdc007b
+-/
 theorem assoc_left (y : S₁ ⊗[R] C₁) :
     Algebra.TensorProduct.map (AlgHom.id R S₁) (φ₀ F S₁ C₁ e)
         ((Algebra.TensorProduct.assoc R R R S₁ C₁ S₁) (y ⊗ₜ[R] (1 : S₁))) =
@@ -249,6 +309,9 @@ theorem assoc_left (y : S₁ ⊗[R] C₁) :
       map_one, AlgHom.id_apply, show ((1 : S₁) ⊗ₜ[R] (1 : C₁)) = (1 : S₁ ⊗[R] C₁) from rfl, mul_one]
   | add y₁ y₂ h₁ h₂ => simp only [add_tmul, map_add, h₁, h₂]
 
+/--
+@isnad1 id=eq.0h4v.s12.9ec4ed0ea277 from=translated src=- shape=c092ba9e vocab=dc3dd088
+-/
 theorem assoc_right (y : S₁ ⊗[R] C₁) :
     Algebra.TensorProduct.map (AlgHom.id R S₁) (Algebra.TensorProduct.comm R C₁ S₁).toAlgHom
         ((Algebra.TensorProduct.assoc R R R S₁ C₁ S₁) (y ⊗ₜ[R] (1 : S₁))) =
@@ -262,6 +325,9 @@ theorem assoc_right (y : S₁ ⊗[R] C₁) :
 
 include he in
 
+/--
+@isnad1 id=eq.1h5v.s13.3ebc2e85869c from=translated src=- shape=dc9f01c5 vocab=968b3099
+-/
 theorem cocycle :
     (Algebra.TensorProduct.map (AlgHom.id R S₁) (φ₀ F S₁ C₁ e)).comp
         ((Algebra.TensorProduct.assoc R R R S₁ C₁ S₁).toAlgHom.comp
@@ -310,6 +376,9 @@ theorem cocycle :
 
 end DatumFromFunctor
 
+/--
+@isnad1 id=ex.1h5v.s14.54f3a7e28c94 from=translated src=- shape=a7553bcd vocab=fda23adf
+-/
 theorem solution
     {R : Type u} [CommRing R] (F : Under (CommRingCat.of R) ⥤ Type v)
     (S₁ : Type u) [CommRing S₁] [Algebra R S₁]

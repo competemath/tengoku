@@ -33,12 +33,21 @@ structure IsPtSubgroup (S : Set (A →ₐ[F] L)) : Prop where
   mul_mem : ∀ ν ν', ν ∈ S → ν' ∈ S → convPt ν ν' ∈ S
   inv_mem : ∀ ν, ν ∈ S → ∃ ν' ∈ S, ν'.toLinearMap = ν.toLinearMap ∘ₗ HopfAlgebraStruct.antipode (R := F)
 
+/--
+@isnad1 id=eq.0h4v.s9.c86aedf46940 from=translated src=- shape=aedd2fc9 vocab=5c446eef
+-/
 theorem onePt_apply (a : A) : (onePt : A →ₐ[F] L) a = algebraMap F L (Coalgebra.counit (R := F) a) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s11.ec9f3cbea6d5 from=translated src=- shape=86c8d0ed vocab=a5a3931c
+-/
 theorem convPt_apply (ν ν' : A →ₐ[F] L) (a : A) :
     convPt ν ν' a = Algebra.TensorProduct.lmul' F (S := L)
       (Algebra.TensorProduct.map ν ν' (Coalgebra.comul (R := F) a)) := rfl
 
+/--
+@isnad1 id=eq.2h5v.s9.3ba340c622fe from=translated src=- shape=460dff29 vocab=74edf273
+-/
 theorem counit_eq_zero_of_mem_vanishingIdeal {S : Set (A →ₐ[F] L)} (hS : onePt ∈ S)
     [FaithfulSMul F L] {a : A} (ha : a ∈ vanishingIdeal S) : Coalgebra.counit (R := F) a = 0 := by
   have h := ha onePt hS
@@ -54,6 +63,9 @@ private noncomputable abbrev _root_.P2MMultE.evalPair (S : Set (A →ₐ[F] L)) 
   HopfAlgebra.evalPair S ν ν' hν hν'
 
 export _root_.P2MMultE (evalPair)
+/--
+@isnad1 id=eq.2h7v.s13.9bfb6f79af23 from=translated src=- shape=46528bb1 vocab=e5ef2c80
+-/
 theorem evalPair_map_mk (S : Set (A →ₐ[F] L)) (ν ν' : A →ₐ[F] L) (hν : ν ∈ S) (hν' : ν' ∈ S)
     (x : A ⊗[F] A) :
     evalPair S ν ν' hν hν' (Algebra.TensorProduct.map (Ideal.Quotient.mkₐ F (vanishingIdeal S))
@@ -67,6 +79,9 @@ theorem evalPair_map_mk (S : Set (A →ₐ[F] L)) (ν ν' : A →ₐ[F] L) (hν 
     rfl
   | add x y hx hy => simp only [map_add, hx, hy]
 
+/--
+@isnad1 id=eq.4h7v.s13.cb13150704e4 from=translated src=- shape=1eefa5bb vocab=851e7518
+-/
 theorem evalPair_map_comul_eq_zero {S : Set (A →ₐ[F] L)}
     (hS : ∀ ν ν', ν ∈ S → ν' ∈ S → convPt ν ν' ∈ S)
     {a : A} (ha : a ∈ vanishingIdeal S) (ν ν' : A →ₐ[F] L) (hν : ν ∈ S) (hν' : ν' ∈ S) :
@@ -75,6 +90,9 @@ theorem evalPair_map_comul_eq_zero {S : Set (A →ₐ[F] L)}
   rw [evalPair_map_mk, ← convPt_apply]
   exact ha _ (hS ν ν' hν hν')
 
+/--
+@isnad1 id=eq.3h5v.s13.2c0bee309480 from=translated src=- shape=a0a80bdb vocab=851e7518
+-/
 theorem map_mk_comul_eq_zero {S : Set (A →ₐ[F] L)}
     (hS : ∀ ν ν', ν ∈ S → ν' ∈ S → convPt ν ν' ∈ S)
     (hsep : ∀ x : (A ⧸ vanishingIdeal S) ⊗[F] (A ⧸ vanishingIdeal S),
@@ -84,6 +102,9 @@ theorem map_mk_comul_eq_zero {S : Set (A →ₐ[F] L)}
       (Ideal.Quotient.mkₐ F (vanishingIdeal S)) (Coalgebra.comul (R := F) a) = 0 :=
   hsep _ fun ν ν' hν hν' => evalPair_map_comul_eq_zero hS ha ν ν' hν hν'
 
+/--
+@isnad1 id=mem.2h5v.s10.493820c1ded0 from=translated src=- shape=ec85e43a vocab=ac94b52e
+-/
 theorem antipode_mem_vanishingIdeal {S : Set (A →ₐ[F] L)}
     (hS : ∀ ν, ν ∈ S → ∃ ν' ∈ S, ν'.toLinearMap = ν.toLinearMap ∘ₗ HopfAlgebraStruct.antipode (R := F))
     {a : A} (ha : a ∈ vanishingIdeal S) : HopfAlgebraStruct.antipode (R := F) a ∈ vanishingIdeal S := by
@@ -109,6 +130,9 @@ noncomputable def liftFun (I : Ideal A) (θ : Module.Dual F A) (hθ : ∀ a ∈ 
     Module.Dual F (A ⧸ I) :=
   (I.restrictScalars F).liftQ θ (fun a ha => (LinearMap.mem_ker).2 (hθ a ha))
 
+/--
+@isnad1 id=eq.2h6v.s15.a8c957747345 from=translated src=- shape=56a08807 vocab=801e52f6
+-/
 theorem dualDistrib_tmul_eq_comp_map (I : Ideal A) (θ θ' : Module.Dual F A)
     (hθ : ∀ a ∈ I, θ a = 0) (hθ' : ∀ a ∈ I, θ' a = 0) (x : A ⊗[F] A) :
     TensorProduct.dualDistrib F A A (θ ⊗ₜ[F] θ') x
@@ -145,6 +169,9 @@ noncomputable def charSub (S : Set (A →ₐ[F] L)) (hS1 : onePt ∈ S)
     intro a ha
     rw [CartierDual.algebraMap_apply, counit_eq_zero_of_mem_vanishingIdeal hS1 ha, zero_mul]
 
+/--
+@isnad1 id=eq.6h6v.s12.bef57a2429f9 from=translated src=- shape=7715ad97 vocab=6fbaa41b
+-/
 theorem comp_antipode_mem_charSub {S : Set (A →ₐ[F] L)} {hS1 hSmul hsep}
     (hSinv : ∀ ν, ν ∈ S → ∃ ν' ∈ S, ν'.toLinearMap = ν.toLinearMap ∘ₗ HopfAlgebraStruct.antipode (R := F))
     {θ : CartierDual F A} (hθ : θ ∈ charSub S hS1 hSmul hsep) (a : A) (ha : a ∈ vanishingIdeal S) :
@@ -167,6 +194,9 @@ variable {L : Type*} [Field L] [Algebra F L]
 private abbrev _root_.P2MMultE.ptSet (S : Submonoid (WithConv (A →ₐ[F] L))) : Set (A →ₐ[F] L) := HopfAlgebra.ptSet S
 
 export _root_.P2MMultE (ptSet)
+/--
+@isnad1 id=mem.0h5v.s11.f2032e0d3185 from=translated src=- shape=65b5c145 vocab=7185a2a6
+-/
 theorem mem_ptSet {S : Submonoid (WithConv (A →ₐ[F] L))} (ν : ↥S) : WithConv.ofConv ν.1 ∈ ptSet S := by
   show WithConv.toConv (WithConv.ofConv ν.1) ∈ S
   simpa using ν.2
@@ -195,9 +225,15 @@ structure PtHyp (S : Submonoid (WithConv (A →ₐ[F] L))) : Prop where
   sep : ∀ x : QS S ⊗[F] QS S,
     (∀ ν ν' (hν : ν ∈ ptSet S) (hν' : ν' ∈ ptSet S), evalPair (ptSet S) ν ν' hν hν' x = 0) → x = 0
 
+/--
+@isnad1 id=eq.0h5v.s9.693808e6f20f from=translated src=- shape=8fe50ef5 vocab=2ea4416a
+-/
 theorem ofConv_mul (x y : WithConv (A →ₐ[F] L)) :
     WithConv.ofConv (x * y) = convPt (WithConv.ofConv x) (WithConv.ofConv y) := rfl
 
+/--
+@isnad1 id=pthyp.1h4v.s12.e93a4620817f from=translated src=- shape=b7497cef vocab=c3d0f32d
+-/
 theorem PtHyp.of_isPtSubgroup {S : Submonoid (WithConv (A →ₐ[F] L))}
     (hsep : ∀ x : QS S ⊗[F] QS S,
       (∀ ν ν' (hν : ν ∈ ptSet S) (hν' : ν' ∈ ptSet S), evalPair (ptSet S) ν ν' hν hν' x = 0) → x = 0) :
@@ -224,6 +260,9 @@ noncomputable def comulQ (h : PtHyp S) : QS S →ₗ[F] QS S ⊗[F] QS S :=
       rw [LinearMap.mem_ker, LinearMap.coe_comp, Function.comp_apply, AlgHom.toLinearMap_apply]
       exact map_mk_comul_eq_zero h.mul_mem h.sep ha)
 
+/--
+@isnad1 id=eq.1h5v.s13.09ac1e936d35 from=translated src=- shape=d26bd533 vocab=0ca808a9
+-/
 theorem comulQ_mk (h : PtHyp S) (a : A) :
     comulQ h (Ideal.Quotient.mk _ a)
       = Algebra.TensorProduct.map (Ideal.Quotient.mkₐ F (vanishingIdeal (ptSet S)))
@@ -231,8 +270,14 @@ theorem comulQ_mk (h : PtHyp S) (a : A) :
 
 noncomputable def ptQ (ν : ↥S) : QS S →ₐ[F] L := liftPt (ptSet S) (WithConv.ofConv ν.1) (mem_ptSet ν)
 
+/--
+@isnad1 id=eq.0h6v.s11.f1557a6a4b43 from=translated src=- shape=22a4b47f vocab=6ce8d104
+-/
 theorem ptQ_mk (ν : ↥S) (a : A) : ptQ ν (Ideal.Quotient.mk _ a) = (WithConv.ofConv ν.1) a := rfl
 
+/--
+@isnad1 id=eq.1h7v.s14.4869fc6ad52c from=translated src=- shape=efb2daaa vocab=54fde469
+-/
 theorem ptQ_mul (h : PtHyp S) (ν ν' : ↥S) (q : QS S) :
     ptQ (ν * ν') q = LinearMap.mul' F L (TensorProduct.map (ptQ ν).toLinearMap (ptQ ν').toLinearMap (comulQ h q)) := by
   obtain ⟨a, rfl⟩ := Ideal.Quotient.mk_surjective q
@@ -249,8 +294,14 @@ noncomputable def counitQ (h : PtHyp S) : QS S →ₗ[F] F :=
   ((vanishingIdeal (ptSet S)).restrictScalars F).liftQ (Coalgebra.counit (R := F) (A := A))
     (by intro a ha; rw [LinearMap.mem_ker]; exact counit_eq_zero_of_mem_vanishingIdeal h.one_mem ha)
 
+/--
+@isnad1 id=eq.1h5v.s11.80224fe91f04 from=translated src=- shape=8d2f2ac1 vocab=372b7ac1
+-/
 theorem counitQ_mk (h : PtHyp S) (a : A) : counitQ h (Ideal.Quotient.mk _ a) = Coalgebra.counit (R := F) a := rfl
 
+/--
+@isnad1 id=eq.1h5v.s11.4f0519922529 from=translated src=- shape=b6dab0fb vocab=b69382a3
+-/
 theorem ptQ_one (h : PtHyp S) (q : QS S) : ptQ (1 : ↥S) q = algebraMap F L (counitQ h q) := by
   obtain ⟨a, rfl⟩ := Ideal.Quotient.mk_surjective q
   rw [ptQ_mk, counitQ_mk]
@@ -273,6 +324,9 @@ variable {S : Submonoid (WithConv (A →ₐ[F] L))}
 noncomputable def ptQL (ν : ↥S) : L ⊗[F] QS S →ₐ[L] L :=
   Algebra.TensorProduct.lift (Algebra.ofId L L) (ptQ ν) (fun _ _ => Commute.all _ _)
 
+/--
+@isnad1 id=eq.0h7v.s12.1ef23ee58557 from=translated src=- shape=86f7919c vocab=c45475d6
+-/
 theorem ptQL_tmul (ν : ↥S) (c : L) (q : QS S) : ptQL ν (c ⊗ₜ[F] q) = c * ptQ ν q := by
   simp only [ptQL, Algebra.TensorProduct.lift_tmul, Algebra.ofId_apply, Algebra.algebraMap_self, RingHom.id_apply]
 
@@ -281,11 +335,17 @@ noncomputable def comulQL (h : PtHyp S) :
   (TensorProduct.AlgebraTensorModule.distribBaseChange F L (QS S) (QS S)).toLinearMap
     ∘ₗ (comulQ h).baseChange L
 
+/--
+@isnad1 id=eq.1h6v.s16.7b1e4db89a3f from=translated src=- shape=b7fa3af5 vocab=ac811914
+-/
 theorem comulQL_tmul (h : PtHyp S) (c : L) (q : QS S) :
     comulQL h (c ⊗ₜ[F] q)
       = TensorProduct.AlgebraTensorModule.distribBaseChange F L (QS S) (QS S) (c ⊗ₜ[F] comulQ h q) := by
   simp only [comulQL, LinearMap.coe_comp, Function.comp_apply, LinearEquiv.coe_coe, LinearMap.baseChange_tmul]
 
+/--
+@isnad1 id=eq.0h8v.s16.c5a54a3f842a from=translated src=- shape=430ed19a vocab=bc9525c3
+-/
 theorem mul'_map_ptQL_distribBaseChange (ν ν' : ↥S) (c : L) (t : QS S ⊗[F] QS S) :
     LinearMap.mul' L L (TensorProduct.map (ptQL ν).toLinearMap (ptQL ν').toLinearMap
       (TensorProduct.AlgebraTensorModule.distribBaseChange F L (QS S) (QS S) (c ⊗ₜ[F] t)))
@@ -299,6 +359,9 @@ theorem mul'_map_ptQL_distribBaseChange (ν ν' : ↥S) (c : L) (t : QS S ⊗[F]
     ring
   | add x y hx hy => simp only [TensorProduct.tmul_add, map_add, mul_add, hx, hy]
 
+/--
+@isnad1 id=eq.1h7v.s16.ceff7f3f838b from=translated src=- shape=cdb4c528 vocab=0ec4f319
+-/
 theorem ptQL_mul (h : PtHyp S) (ν ν' : ↥S) (x : L ⊗[F] QS S) :
     ptQL (ν * ν') x
       = LinearMap.mul' L L (TensorProduct.map (ptQL ν).toLinearMap (ptQL ν').toLinearMap (comulQL h x)) := by
@@ -307,6 +370,9 @@ theorem ptQL_mul (h : PtHyp S) (ν ν' : ↥S) (x : L ⊗[F] QS S) :
   | tmul c q => rw [ptQL_tmul, ptQ_mul h, comulQL_tmul, mul'_map_ptQL_distribBaseChange]
   | add x y hx hy => simp only [map_add, hx, hy]
 
+/--
+@isnad1 id=eq.1h6v.s12.d0d7b5d9626c from=translated src=- shape=0c44c297 vocab=e0763263
+-/
 theorem ptQL_one (h : PtHyp S) (c : L) (q : QS S) :
     ptQL (1 : ↥S) (c ⊗ₜ[F] q) = c * algebraMap F L (counitQ h q) := by
   rw [ptQL_tmul, ptQ_one h]
@@ -339,9 +405,15 @@ noncomputable def toDualQ (h : PtHyp S) : ↥(CSub h) →ₗ[F] Module.Dual F (Q
     obtain ⟨a, rfl⟩ := Ideal.Quotient.mk_surjective q
     rfl
 
+/--
+@isnad1 id=eq.1h6v.s13.3c3d8f2102c5 from=translated src=- shape=b33c5ec3 vocab=3a062ba9
+-/
 theorem toDualQ_mk (h : PtHyp S) (θ : ↥(CSub h)) (a : A) :
     toDualQ h θ (Ideal.Quotient.mk _ a) = θ.1 a := rfl
 
+/--
+@isnad1 id=injectiv.1h4v.s12.5fc20410e123 from=translated src=- shape=18621f6f vocab=cdbcb51b
+-/
 theorem toDualQ_injective (h : PtHyp S) : Function.Injective (toDualQ h) := by
   intro θ θ' hθ
   apply Subtype.ext
@@ -350,6 +422,9 @@ theorem toDualQ_injective (h : PtHyp S) : Function.Injective (toDualQ h) := by
   have := LinearMap.congr_fun hθ (Ideal.Quotient.mk _ a)
   exact this
 
+/--
+@isnad1 id=surjecti.1h4v.s12.abc7e9c1f576 from=translated src=- shape=18621f6f vocab=8a4508e9
+-/
 theorem toDualQ_surjective (h : PtHyp S) : Function.Surjective (toDualQ h) := by
   intro φ
   refine ⟨⟨CartierDual.ofDual F A (φ ∘ₗ ((vanishingIdeal (ptSet S)).restrictScalars F).mkQ), ?_⟩, ?_⟩
@@ -363,6 +438,9 @@ theorem toDualQ_surjective (h : PtHyp S) : Function.Surjective (toDualQ h) := by
     obtain ⟨a, rfl⟩ := Ideal.Quotient.mk_surjective q
     rfl
 
+/--
+@isnad1 id=eq.1h7v.s16.8d6ca3adbdfa from=translated src=- shape=6d592463 vocab=13c78dff
+-/
 theorem toDualQ_mul (h : PtHyp S) (θ θ' : ↥(CSub h)) (q : QS S) :
     toDualQ h (θ * θ') q
       = TensorProduct.dualDistrib F (QS S) (QS S) (toDualQ h θ ⊗ₜ[F] toDualQ h θ') (comulQ h q) := by
@@ -372,6 +450,9 @@ theorem toDualQ_mul (h : PtHyp S) (θ θ' : ↥(CSub h)) (q : QS S) :
       (CartierDual.toDual F A θ'.1) θ.2 θ'.2]
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s13.474581040e98 from=translated src=- shape=5fa15251 vocab=6c6ca36c
+-/
 theorem toDualQ_one (h : PtHyp S) (q : QS S) : toDualQ h 1 q = counitQ h q := by
   obtain ⟨a, rfl⟩ := Ideal.Quotient.mk_surjective q
   rw [toDualQ_mk, Subalgebra.coe_one, CartierDual.one_apply, counitQ_mk]
@@ -381,6 +462,9 @@ noncomputable def dualBC : L ⊗[F] Module.Dual F (QS S) →ₗ[L] Module.Dual L
     ((LinearMap.ringLmapEquivSelf L L (Module.Dual F (QS S) →ₗ[F] Module.Dual L (L ⊗[F] QS S))).symm
       (Module.Dual.baseChange L))
 
+/--
+@isnad1 id=eq.0h8v.s14.a0bb97761e0b from=translated src=- shape=7adea17e vocab=45c0df2b
+-/
 theorem dualBC_tmul_tmul (c : L) (φ : Module.Dual F (QS S)) (c' : L) (q : QS S) :
     dualBC (S := S) (c ⊗ₜ[F] φ) (c' ⊗ₜ[F] q) = c * (c' * algebraMap F L (φ q)) := by
   have h1 : dualBC (S := S) (c ⊗ₜ[F] φ) = c • Module.Dual.baseChange L φ := by
@@ -406,6 +490,9 @@ variable {S : Submonoid (WithConv (A →ₐ[F] L))}
 noncomputable def Θ (h : PtHyp S) : L ⊗[F] ↥(CSub h) →ₗ[L] Module.Dual L (L ⊗[F] QS S) :=
   dualBC ∘ₗ (toDualQ h).baseChange L
 
+/--
+@isnad1 id=eq.1h8v.s15.5dda47a677cd from=translated src=- shape=4cc8586f vocab=2b2825ad
+-/
 theorem Θ_tmul_tmul (h : PtHyp S) (c : L) (θ : ↥(CSub h)) (c' : L) (q : QS S) :
     Θ h (c ⊗ₜ[F] θ) (c' ⊗ₜ[F] q) = c * (c' * algebraMap F L (toDualQ h θ q)) := by
   simp only [Θ, LinearMap.coe_comp, Function.comp_apply, LinearMap.baseChange_tmul, dualBC_tmul_tmul]
@@ -418,9 +505,15 @@ noncomputable def pairQ (f g : Module.Dual L (L ⊗[F] QS S)) : QS S ⊗[F] QS S
       (fun q q₂ q₂' => by simp only [TensorProduct.tmul_add, map_add, mul_add])
       (fun c q q₂ => by simp only [TensorProduct.tmul_smul, LinearMap.map_smul_of_tower, mul_smul_comm]))
 
+/--
+@isnad1 id=eq.0h8v.s13.739fcc09a60b from=translated src=- shape=14624b0a vocab=008f5eb5
+-/
 theorem pairQ_tmul (f g : Module.Dual L (L ⊗[F] QS S)) (q₁ q₂ : QS S) :
     pairQ f g (q₁ ⊗ₜ[F] q₂) = f ((1 : L) ⊗ₜ[F] q₁) * g ((1 : L) ⊗ₜ[F] q₂) := rfl
 
+/--
+@isnad1 id=eq.0h8v.s16.d6cabe2b673e from=translated src=- shape=ac0a8021 vocab=b5169690
+-/
 theorem mul'_map_distribBaseChange (f g : Module.Dual L (L ⊗[F] QS S)) (c : L) (t : QS S ⊗[F] QS S) :
     LinearMap.mul' L L (TensorProduct.map f g
       (TensorProduct.AlgebraTensorModule.distribBaseChange F L (QS S) (QS S) (c ⊗ₜ[F] t)))
@@ -435,6 +528,9 @@ theorem mul'_map_distribBaseChange (f g : Module.Dual L (L ⊗[F] QS S)) (c : L)
     rw [this, mul_assoc]
   | add x y hx hy => simp only [TensorProduct.tmul_add, map_add, mul_add, hx, hy]
 
+/--
+@isnad1 id=eq.1h9v.s16.cc4685703556 from=translated src=- shape=3090fa81 vocab=bae8c252
+-/
 theorem pairQ_Θ_tmul (h : PtHyp S) (c c' : L) (θ θ' : ↥(CSub h)) (t : QS S ⊗[F] QS S) :
     pairQ (Θ h (c ⊗ₜ[F] θ)) (Θ h (c' ⊗ₜ[F] θ')) t
       = c * c' * algebraMap F L (TensorProduct.dualDistrib F (QS S) (QS S) (toDualQ h θ ⊗ₜ[F] toDualQ h θ') t) := by
@@ -445,6 +541,9 @@ theorem pairQ_Θ_tmul (h : PtHyp S) (c c' : L) (θ θ' : ↥(CSub h)) (t : QS S 
     ring
   | add x y hx hy => simp only [map_add, mul_add, hx, hy]
 
+/--
+@isnad1 id=eq.1h7v.s16.2bacb058b88e from=translated src=- shape=5295f6c1 vocab=03ebbe1e
+-/
 theorem Θ_mul (h : PtHyp S) (w w' : L ⊗[F] ↥(CSub h)) (x : L ⊗[F] QS S) :
     Θ h (w * w') x = LinearMap.mul' L L (TensorProduct.map (Θ h w) (Θ h w') (comulQL h x)) := by
   induction w using TensorProduct.induction_on generalizing x with
@@ -478,6 +577,9 @@ variable {F : Type*} [Field F] {A : Type*} [CommRing A] [HopfAlgebra F A] [Modul
 variable {L : Type*} [Field L] [Algebra F L]
 variable {S : Submonoid (WithConv (A →ₐ[F] L))}
 
+/--
+@isnad1 id=bijectiv.0h4v.s14.2980ce8158ae from=translated src=- shape=6096bc7b vocab=8fde991b
+-/
 theorem dualBC_bijective : Function.Bijective (dualBC (S := S) (F := F) (L := L)) := by
   classical
   let bQ := Module.finBasis F (QS S)
@@ -496,6 +598,9 @@ theorem dualBC_bijective : Function.Bijective (dualBC (S := S) (F := F) (L := L)
 noncomputable def toDualQEquiv (h : PtHyp S) : ↥(CSub h) ≃ₗ[F] Module.Dual F (QS S) :=
   LinearEquiv.ofBijective (toDualQ h) ⟨toDualQ_injective h, toDualQ_surjective h⟩
 
+/--
+@isnad1 id=bijectiv.1h4v.s14.cdbbb083714f from=translated src=- shape=ec6814fd vocab=cd3f3cab
+-/
 theorem Θ_bijective (h : PtHyp S) : Function.Bijective (Θ h) := by
   have h1 : Function.Bijective ((toDualQ h).baseChange L) := by
     have : (toDualQ h).baseChange L = ((toDualQEquiv h).baseChange F L _ _).toLinearMap := by
@@ -508,8 +613,14 @@ theorem Θ_bijective (h : PtHyp S) : Function.Bijective (Θ h) := by
 noncomputable def ΘEquiv (h : PtHyp S) : L ⊗[F] ↥(CSub h) ≃ₗ[L] Module.Dual L (L ⊗[F] QS S) :=
   LinearEquiv.ofBijective (Θ h) (Θ_bijective h)
 
+/--
+@isnad1 id=eq.1h5v.s15.7ad5b053ece3 from=translated src=- shape=17618a1f vocab=3c787625
+-/
 theorem ΘEquiv_apply (h : PtHyp S) (w : L ⊗[F] ↥(CSub h)) : ΘEquiv h w = Θ h w := rfl
 
+/--
+@isnad1 id=eq.1h4v.s14.c248dedf72d3 from=translated src=- shape=98f5cd70 vocab=a4e88e38
+-/
 theorem Θ_one (h : PtHyp S) : Θ h 1 = (ptQL (1 : ↥S)).toLinearMap := by
   apply TensorProduct.AlgebraTensorModule.ext
   intro c q
@@ -517,6 +628,9 @@ theorem Θ_one (h : PtHyp S) : Θ h 1 = (ptQL (1 : ↥S)).toLinearMap := by
 
 noncomputable def dElt (h : PtHyp S) (ν : ↥S) : L ⊗[F] ↥(CSub h) := (ΘEquiv h).symm (ptQL ν).toLinearMap
 
+/--
+@isnad1 id=eq.1h5v.s14.d0ad2f7e99d4 from=translated src=- shape=0cbc65df vocab=c61fb09a
+-/
 theorem Θ_dElt (h : PtHyp S) (ν : ↥S) : Θ h (dElt h ν) = (ptQL ν).toLinearMap := by
   rw [dElt, ← ΘEquiv_apply, LinearEquiv.apply_symm_apply]
 
@@ -551,6 +665,9 @@ variable {S : Submonoid (WithConv (A →ₐ[F] L))}
 noncomputable def extL (h : PtHyp S) (Φ : ↥(CSub h) →ₐ[F] L) : L ⊗[F] ↥(CSub h) →ₐ[L] L :=
   Algebra.TensorProduct.lift (Algebra.ofId L L) Φ (fun _ _ => Commute.all _ _)
 
+/--
+@isnad1 id=eq.1h7v.s13.db1fe4599d05 from=translated src=- shape=619cc634 vocab=12d69c34
+-/
 theorem extL_tmul (h : PtHyp S) (Φ : ↥(CSub h) →ₐ[F] L) (c : L) (θ : ↥(CSub h)) :
     extL h Φ (c ⊗ₜ[F] θ) = c * Φ θ := by
   simp only [extL, Algebra.TensorProduct.lift_tmul, Algebra.ofId_apply, Algebra.algebraMap_self, RingHom.id_apply]
@@ -558,6 +675,9 @@ theorem extL_tmul (h : PtHyp S) (Φ : ↥(CSub h) →ₐ[F] L) (c : L) (θ : ↥
 noncomputable def resF (h : PtHyp S) (Φ' : L ⊗[F] ↥(CSub h) →ₐ[L] L) : ↥(CSub h) →ₐ[F] L :=
   (Φ'.restrictScalars F).comp Algebra.TensorProduct.includeRight
 
+/--
+@isnad1 id=eq.1h6v.s14.7089d2f17ed1 from=translated src=- shape=fec5eca7 vocab=2344608e
+-/
 theorem resF_apply (h : PtHyp S) (Φ' : L ⊗[F] ↥(CSub h) →ₐ[L] L) (θ : ↥(CSub h)) :
     resF h Φ' θ = Φ' ((1 : L) ⊗ₜ[F] θ) := rfl
 
@@ -591,9 +711,15 @@ variable {S : Submonoid (WithConv (A →ₐ[F] L))}
 noncomputable def ofDualQ (h : PtHyp S) : Module.Dual F (QS S) →ₗ[F] CartierDual F A :=
   (CSub h).val.toLinearMap ∘ₗ (toDualQEquiv h).symm.toLinearMap
 
+/--
+@isnad1 id=mem.1h5v.s12.e1feb4aef63e from=translated src=- shape=65e43714 vocab=e70ff963
+-/
 theorem ofDualQ_mem (h : PtHyp S) (φ : Module.Dual F (QS S)) : ofDualQ h φ ∈ CSub h :=
   ((toDualQEquiv h).symm φ).2
 
+/--
+@isnad1 id=eq.1h6v.s12.3db067a55850 from=translated src=- shape=099e5c89 vocab=536b3961
+-/
 theorem ofDualQ_apply (h : PtHyp S) (φ : Module.Dual F (QS S)) (a : A) :
     ofDualQ h φ a = φ (Ideal.Quotient.mk _ a) := by
   have : toDualQ h ((toDualQEquiv h).symm φ) = φ := (toDualQEquiv h).apply_symm_apply φ
@@ -604,6 +730,9 @@ theorem ofDualQ_apply (h : PtHyp S) (φ : Module.Dual F (QS S)) (a : A) :
 noncomputable def mulDualQ (h : PtHyp S) (θ : ↥(CSub h)) : Module.Dual F (QS S ⊗[F] QS S) :=
   toDualQ h θ ∘ₗ LinearMap.mul' F (QS S)
 
+/--
+@isnad1 id=mem.1h5v.s13.384219a79a03 from=translated src=- shape=a128867b vocab=0f626418
+-/
 theorem comul_mem_span_charSub (h : PtHyp S) (θ : ↥(CSub h)) :
     Coalgebra.comul (R := F) (θ.1 : CartierDual F A)
       ∈ Submodule.span F (Set.image2 (· ⊗ₜ[F] ·) ((CSub h : Set (CartierDual F A))) ((CSub h : Set (CartierDual F A)))) := by
@@ -651,6 +780,9 @@ end P2MMultE
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=ex.2h4v.s14.abe064abd086 from=translated src=- shape=0e47d551 vocab=a45d150d
+-/
 theorem solution
     (F : Type) [Field F] (A : Type) [CommRing A] [HopfAlgebra F A] [Module.Finite F A]
     (L : Type) [Field L] [Algebra F L]

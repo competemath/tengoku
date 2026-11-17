@@ -7,6 +7,9 @@ namespace P2MW.S_CerednikDrinfeld_apply_apply_sub_apply_add_smul_eq_zero_of_redu
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.8h10v.s9.0a88dcb6c9c7 from=translated src=- shape=b3b51ddb vocab=e7f45fa4
+-/
 theorem solution
     {J P : Type*} [AddCommGroup J] [AddCommGroup P]
     (D : AddSubgroup J) (g T : J → J) (hg : ∀ t ∈ D, g t ∈ D) (hT : ∀ t ∈ D, T t ∈ D)

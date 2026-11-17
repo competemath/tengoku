@@ -11,6 +11,9 @@ open NumberField NumberField.AdelicHaar AutomorphicForm MeasureTheory
 
 attribute [local instance] NumberField.AdelicHaar.adeleBorel NumberField.AdelicHaar.glBorel
 
+/--
+@isnad1 id=le.3h4v.s11.17103a74704d from=translated src=- shape=fb2d418b vocab=e7e2c551
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K]
     (φ f : GL (Fin 2) (AdeleRing (𝓞 K) K) → ℂ) (hφ : Continuous φ) (hf : Continuous f)

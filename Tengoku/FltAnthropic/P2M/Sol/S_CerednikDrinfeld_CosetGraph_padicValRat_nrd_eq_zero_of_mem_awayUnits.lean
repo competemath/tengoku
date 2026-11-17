@@ -21,12 +21,18 @@ section General
 
 variable {S : Type*} [CommRing S] {c₁ c₃ : S}
 
+/--
+@isnad1 id=eq.0h5v.s7.8d55e3ed23a4 from=translated src=- shape=6f03d6b0 vocab=73df06f5
+-/
 theorem nrd_mul_gen (x y : ℍ[S, c₁, c₃]) : nrd (x * y) = nrd x * nrd y := by
   obtain ⟨x₀, x₁, x₂, x₃⟩ := x
   obtain ⟨y₀, y₁, y₂, y₃⟩ := y
   simp only [QuaternionAlgebra.mk_mul_mk, nrd_mk]
   ring
 
+/--
+@isnad1 id=eq.0h6v.s9.04e1e5a924c6 from=translated src=- shape=6c3c4c0f vocab=55801897
+-/
 theorem aeval_star {O : Type*} [CommRing O] [Algebra O S] (m : ℍ[S, c₁, c₃]) (p : Polynomial O) :
     Polynomial.aeval (star m) p = star (Polynomial.aeval m p) := by
   induction p using Polynomial.induction_on' with
@@ -37,6 +43,9 @@ theorem aeval_star {O : Type*} [CommRing O] [Algebra O S] (m : ℍ[S, c₁, c₃
       QuaternionAlgebra.star_coe]
     exact QuaternionAlgebra.coe_commutes _ _
 
+/--
+@isnad1 id=isintegr.1h5v.s7.1db05144bda8 from=translated src=- shape=98d7cafd vocab=79ed3d11
+-/
 theorem isIntegral_star {O : Type*} [CommRing O] [Algebra O S] {m : ℍ[S, c₁, c₃]} (hm : IsIntegral O m) :
     IsIntegral O (star m) := by
   obtain ⟨p, hp, hpm⟩ := hm
@@ -45,6 +54,9 @@ theorem isIntegral_star {O : Type*} [CommRing O] [Algebra O S] {m : ℍ[S, c₁,
 
 open scoped IsMulCommutative in
 
+/--
+@isnad1 id=isintegr.1h5v.s6.5ef7e3556be2 from=translated src=- shape=ee47ffad vocab=581bc9fc
+-/
 theorem isIntegral_nrd_of_isIntegral {O : Type*} [CommRing O] [Algebra O S] {m : ℍ[S, c₁, c₃]}
     (hm : IsIntegral O m) : IsIntegral O (nrd m) := by
   let T : Subalgebra O ℍ[S, c₁, c₃] := Algebra.adjoin O {m, star m}
@@ -77,6 +89,9 @@ end General
 
 section Places
 
+/--
+@isnad1 id=eq.2h2v.s7.120a630996d7 from=translated src=- shape=c0356226 vocab=271b35db
+-/
 theorem natGenerator_eq_of_natCast_mem {p : ℕ} (hp : p.Prime) {w : HeightOneSpectrum (𝓞 ℚ)}
     (hw : ((p : ℕ) : 𝓞 ℚ) ∈ w.asIdeal) : Rat.HeightOneSpectrum.natGenerator w = p := by
   have h1 : Rat.HeightOneSpectrum.natGenerator w ∣ p := by
@@ -85,6 +100,9 @@ theorem natGenerator_eq_of_natCast_mem {p : ℕ} (hp : p.Prime) {w : HeightOneSp
     exact hw
   exact (Nat.prime_dvd_prime_iff_eq (Rat.HeightOneSpectrum.prime_natGenerator w) hp).mp h1
 
+/--
+@isnad1 id=mem.0h1v.s7.3e394f277603 from=translated src=- shape=00fb8fe1 vocab=d23d46f8
+-/
 theorem natCast_natGenerator_mem (w : HeightOneSpectrum (𝓞 ℚ)) :
     ((Rat.HeightOneSpectrum.natGenerator w : ℕ) : 𝓞 ℚ) ∈ w.asIdeal := by
   have h := (Rat.HeightOneSpectrum.natGenerator_dvd_iff w (n := Rat.HeightOneSpectrum.natGenerator w)).mp dvd_rfl
@@ -98,9 +116,15 @@ theorem eq_of_natCast_mem_asIdeal {r : ℕ} (hr : r.Prime) {u v : HeightOneSpect
 def placeOf (p : ℕ) (hp : p.Prime) : HeightOneSpectrum (𝓞 ℚ) :=
   (Rat.HeightOneSpectrum.primesEquiv (R := 𝓞 ℚ)).symm ⟨p, hp⟩
 
+/--
+@isnad1 id=eq.1h1v.s4.f9124a2c2ba7 from=translated src=- shape=68d5d04a vocab=fab17c59
+-/
 theorem natGenerator_placeOf (p : ℕ) (hp : p.Prime) : Rat.HeightOneSpectrum.natGenerator (placeOf p hp) = p :=
   congrArg Subtype.val ((Rat.HeightOneSpectrum.primesEquiv (R := 𝓞 ℚ)).apply_symm_apply ⟨p, hp⟩)
 
+/--
+@isnad1 id=iff.1h2v.s9.67e510b59411 from=translated src=- shape=e56d5fd6 vocab=1a05ddb0
+-/
 theorem v_algebraMap_eq_one_iff (w : HeightOneSpectrum (𝓞 ℚ)) {x : ℚ} (hx : x ≠ 0) :
     Valued.v (algebraMap ℚ (w.adicCompletion ℚ) x) = 1 ↔
       padicValRat (Rat.HeightOneSpectrum.natGenerator w) x = 0 := by
@@ -143,6 +167,9 @@ def bc (w : HeightOneSpectrum (𝓞 ℚ)) {a' b' : w.adicCompletion ℚ}
     · exact map_zero _
     · exact map_zero _
 
+/--
+@isnad1 id=eq.2h6v.s11.2a6b0946ba1b from=translated src=- shape=7c2c06ba vocab=945eaee2
+-/
 theorem nrd_bc (w : HeightOneSpectrum (𝓞 ℚ)) {a' b' : w.adicCompletion ℚ}
     (ha : algebraMap ℚ (w.adicCompletion ℚ) a = a') (hb : algebraMap ℚ (w.adicCompletion ℚ) b = b')
     (x : ℍ[ℚ, a, b]) :
@@ -158,6 +185,9 @@ def locLift (w : HeightOneSpectrum (𝓞 ℚ)) {a' b' : w.adicCompletion ℚ}
     (IsScalarTower.toAlgHom ℚ (w.adicCompletion ℚ) ℍ[w.adicCompletion ℚ, a', b'])
     (fun x y => (Algebra.commutes y (bc w ha hb x)).symm)
 
+/--
+@isnad1 id=eq.2h7v.s12.624df1b9e5aa from=translated src=- shape=33e01234 vocab=4ab59e7c
+-/
 theorem locLift_tmul (w : HeightOneSpectrum (𝓞 ℚ)) {a' b' : w.adicCompletion ℚ}
     (ha : algebraMap ℚ (w.adicCompletion ℚ) a = a') (hb : algebraMap ℚ (w.adicCompletion ℚ) b = b')
     (x : ℍ[ℚ, a, b]) (c : w.adicCompletion ℚ) :
@@ -178,17 +208,26 @@ def locNorm (w : HeightOneSpectrum (𝓞 ℚ)) {a' b' : w.adicCompletion ℚ}
     (x : CosetGraph.Loc a b w) : w.adicCompletion ℚ :=
   nrd (locLift w ha hb x)
 
+/--
+@isnad1 id=eq.2h7v.s10.2ba08717d9b4 from=translated src=- shape=76d840fa vocab=2ca19fe6
+-/
 theorem locNorm_mul (w : HeightOneSpectrum (𝓞 ℚ)) {a' b' : w.adicCompletion ℚ}
     (ha : algebraMap ℚ (w.adicCompletion ℚ) a = a') (hb : algebraMap ℚ (w.adicCompletion ℚ) b = b')
     (x y : CosetGraph.Loc a b w) :
     locNorm w ha hb (x * y) = locNorm w ha hb x * locNorm w ha hb y := by
   simp only [locNorm, map_mul, nrd_mul_gen]
 
+/--
+@isnad1 id=eq.2h5v.s10.4ddccfc7a1c9 from=translated src=- shape=84492846 vocab=794a3255
+-/
 theorem locNorm_one (w : HeightOneSpectrum (𝓞 ℚ)) {a' b' : w.adicCompletion ℚ}
     (ha : algebraMap ℚ (w.adicCompletion ℚ) a = a') (hb : algebraMap ℚ (w.adicCompletion ℚ) b = b') :
     locNorm w ha hb (1 : CosetGraph.Loc a b w) = 1 := by
   simp only [locNorm, map_one, nrd_one]
 
+/--
+@isnad1 id=eq.2h6v.s11.b764d3931b4c from=translated src=- shape=69b8d4d6 vocab=63acdc35
+-/
 theorem locNorm_toLoc (w : HeightOneSpectrum (𝓞 ℚ)) {a' b' : w.adicCompletion ℚ}
     (ha : algebraMap ℚ (w.adicCompletion ℚ) a = a') (hb : algebraMap ℚ (w.adicCompletion ℚ) b = b')
     (γ : (ℍ[ℚ, a, b])ˣ) :
@@ -198,6 +237,9 @@ theorem locNorm_toLoc (w : HeightOneSpectrum (𝓞 ℚ)) {a' b' : w.adicCompleti
       (γ : ℍ[ℚ, a, b]) ⊗ₜ[ℚ] (1 : w.adicCompletion ℚ) := rfl
   rw [h, locNorm, locLift_tmul, QuaternionAlgebra.coe_one, mul_one, nrd_bc]
 
+/--
+@isnad1 id=eq.2h6v.s10.6a72d84e1091 from=translated src=- shape=7104bd5b vocab=7113ea7c
+-/
 theorem locNorm_units_mul_inv (w : HeightOneSpectrum (𝓞 ℚ)) {a' b' : w.adicCompletion ℚ}
     (ha : algebraMap ℚ (w.adicCompletion ℚ) a = a') (hb : algebraMap ℚ (w.adicCompletion ℚ) b = b')
     (u : (CosetGraph.Loc a b w)ˣ) :
@@ -223,6 +265,9 @@ def normOneUnits (w : HeightOneSpectrum (𝓞 ℚ)) {a' b' : w.adicCompletion �
     rw [map_mul, map_one, hx, one_mul] at h
     exact h
 
+/--
+@isnad1 id=iff.2h6v.s11.be3ec4acbdda from=translated src=- shape=0870d957 vocab=89276d22
+-/
 theorem mem_normOneUnits_iff (w : HeightOneSpectrum (𝓞 ℚ)) {a' b' : w.adicCompletion ℚ}
     (ha : algebraMap ℚ (w.adicCompletion ℚ) a = a') (hb : algebraMap ℚ (w.adicCompletion ℚ) b = b')
     (u : (CosetGraph.Loc a b w)ˣ) :
@@ -249,6 +294,9 @@ def boxAlg (R : Submodule ℤ ℍ[ℚ, a, b]) (hR : QuaternionAlgebra.IsOrder R)
     rw [Algebra.algebraMap_eq_smul_one]
     exact Submodule.smul_mem _ _ (Submodule.subset_span ⟨1, hR.one_mem, map_one _⟩)
 
+/--
+@isnad1 id=eq.3h6v.s15.bd2868b13393 from=translated src=- shape=408c3719 vocab=84799944
+-/
 theorem boxAlg_toSubmodule (R : Submodule ℤ ℍ[ℚ, a, b]) (hR : QuaternionAlgebra.IsOrder R)
     (w : HeightOneSpectrum (𝓞 ℚ)) {a' b' : w.adicCompletion ℚ}
     (ha : algebraMap ℚ (w.adicCompletion ℚ) a = a') (hb : algebraMap ℚ (w.adicCompletion ℚ) b = b') :
@@ -256,6 +304,9 @@ theorem boxAlg_toSubmodule (R : Submodule ℤ ℍ[ℚ, a, b]) (hR : QuaternionAl
       Submodule.span (w.adicCompletionIntegers ℚ) (bc w ha hb '' (R : Set ℍ[ℚ, a, b])) :=
   rfl
 
+/--
+@isnad1 id=fg.3h6v.s15.0b89fc173670 from=translated src=- shape=8c747d75 vocab=242fc6f6
+-/
 theorem boxAlg_fg (R : Submodule ℤ ℍ[ℚ, a, b]) (hR : QuaternionAlgebra.IsOrder R)
     (w : HeightOneSpectrum (𝓞 ℚ)) {a' b' : w.adicCompletion ℚ}
     (ha : algebraMap ℚ (w.adicCompletion ℚ) a = a') (hb : algebraMap ℚ (w.adicCompletion ℚ) b = b') :
@@ -281,6 +332,9 @@ theorem boxAlg_fg (R : Submodule ℤ ℍ[ℚ, a, b]) (hR : QuaternionAlgebra.IsO
 
 set_option synthInstance.maxHeartbeats 800000 in
 
+/--
+@isnad1 id=mem.4h7v.s13.7d5fc66b1d11 from=translated src=- shape=a3f013d2 vocab=b0d6a3e1
+-/
 theorem locLift_mem_boxAlg (R : Submodule ℤ ℍ[ℚ, a, b]) (hR : QuaternionAlgebra.IsOrder R)
     (w : HeightOneSpectrum (𝓞 ℚ)) {a' b' : w.adicCompletion ℚ}
     (ha : algebraMap ℚ (w.adicCompletion ℚ) a = a') (hb : algebraMap ℚ (w.adicCompletion ℚ) b = b')
@@ -300,10 +354,16 @@ theorem locLift_mem_boxAlg (R : Submodule ℤ ℍ[ℚ, a, b]) (hR : QuaternionAl
   | add u u' _ _ hu hu' => rw [map_add]; exact Subalgebra.add_mem _ hu hu'
   | neg u _ hu => rw [map_neg]; exact Subalgebra.neg_mem _ hu
 
+/--
+@isnad1 id=le.1h2v.s9.8279f12f1ad8 from=translated src=- shape=28113296 vocab=682d587f
+-/
 theorem v_le_one_of_isIntegral (w : HeightOneSpectrum (𝓞 ℚ)) {x : w.adicCompletion ℚ}
     (hx : IsIntegral (w.adicCompletionIntegers ℚ) x) : Valued.v x ≤ 1 :=
   Valuation.Integers.mem_of_integral (Valuation.integer.integers _) hx
 
+/--
+@isnad1 id=le.4h7v.s11.f69a55097864 from=translated src=- shape=06dc2f2d vocab=d2d993e7
+-/
 theorem v_locNorm_le_one (R : Submodule ℤ ℍ[ℚ, a, b]) (hR : QuaternionAlgebra.IsOrder R)
     (w : HeightOneSpectrum (𝓞 ℚ)) {a' b' : w.adicCompletion ℚ}
     (ha : algebraMap ℚ (w.adicCompletion ℚ) a = a') (hb : algebraMap ℚ (w.adicCompletion ℚ) b = b')
@@ -312,6 +372,9 @@ theorem v_locNorm_le_one (R : Submodule ℤ ℍ[ℚ, a, b]) (hR : QuaternionAlge
     IsIntegral.of_mem_of_fg (boxAlg R hR w ha hb) (boxAlg_fg R hR w ha hb) _ (locLift_mem_boxAlg R hR w ha hb hx)
   exact v_le_one_of_isIntegral w (isIntegral_nrd_of_isIntegral hint)
 
+/--
+@isnad1 id=le.3h6v.s11.cf2b5c6d5e28 from=translated src=- shape=3c4bee87 vocab=dfb7f0cd
+-/
 theorem localBoxUnits_subset_normOneUnits (R : Submodule ℤ ℍ[ℚ, a, b]) (hR : QuaternionAlgebra.IsOrder R)
     (w : HeightOneSpectrum (𝓞 ℚ)) {a' b' : w.adicCompletion ℚ}
     (ha : algebraMap ℚ (w.adicCompletion ℚ) a = a') (hb : algebraMap ℚ (w.adicCompletion ℚ) b = b') :
@@ -331,6 +394,9 @@ theorem localBoxUnits_subset_normOneUnits (R : Submodule ℤ ℍ[ℚ, a, b]) (hR
   rw [h3] at this
   exact lt_irrefl _ this
 
+/--
+@isnad1 id=le.3h6v.s12.e9fddefbc779 from=translated src=- shape=7d5323b6 vocab=f5397367
+-/
 theorem closure_localBoxUnits_le (R : Submodule ℤ ℍ[ℚ, a, b]) (hR : QuaternionAlgebra.IsOrder R)
     (w : HeightOneSpectrum (𝓞 ℚ)) {a' b' : w.adicCompletion ℚ}
     (ha : algebraMap ℚ (w.adicCompletion ℚ) a = a') (hb : algebraMap ℚ (w.adicCompletion ℚ) b = b') :
@@ -343,6 +409,9 @@ section Main
 
 variable {a b : ℚ}
 
+/--
+@isnad1 id=ne.0h3v.s6.184a8e6bc89e from=translated src=- shape=ed902472 vocab=7370eac2
+-/
 theorem nrd_units_ne_zero (x : (ℍ[ℚ, a, b])ˣ) : nrd (x : ℍ[ℚ, a, b]) ≠ 0 := by
   intro h
   have h1 : nrd ((x : ℍ[ℚ, a, b]) * ((x⁻¹ : (ℍ[ℚ, a, b])ˣ) : ℍ[ℚ, a, b])) = 1 := by
@@ -350,6 +419,9 @@ theorem nrd_units_ne_zero (x : (ℍ[ℚ, a, b])ˣ) : nrd (x : ℍ[ℚ, a, b]) �
   rw [nrd_mul_gen, h, zero_mul] at h1
   exact zero_ne_one h1
 
+/--
+@isnad1 id=eq.5h7v.s9.42b416aba268 from=translated src=- shape=87797512 vocab=618cbfc1
+-/
 theorem padicValRat_nrd_eq_zero (R : Submodule ℤ ℍ[ℚ, a, b]) (hR : QuaternionAlgebra.IsOrder R)
     (r : ℕ) [Fact r.Prime] (v : HeightOneSpectrum (𝓞 ℚ)) (hv : ((r : ℕ) : 𝓞 ℚ) ∈ v.asIdeal)
     {γ : (ℍ[ℚ, a, b])ˣ} (hγ : γ ∈ CosetGraph.awayUnits R v) {p : ℕ} (hp : p.Prime) (hpr : p ≠ r) :
@@ -368,12 +440,18 @@ theorem padicValRat_nrd_eq_zero (R : Submodule ℤ ℍ[ℚ, a, b]) (hR : Quatern
   rw [locNorm_toLoc, v_algebraMap_eq_one_iff (placeOf p hp) (nrd_units_ne_zero γ), hgen] at h2
   exact h2
 
+/--
+@isnad1 id=eq.0h4v.s10.48f8ce7ae64b from=translated src=- shape=b38f5d33 vocab=00c763b8
+-/
 theorem algebraMap_tmul_one (w : HeightOneSpectrum (𝓞 ℚ)) (x : ℚ) :
     (algebraMap ℚ ℍ[ℚ, a, b] x) ⊗ₜ[ℚ] (1 : w.adicCompletion ℚ) =
       (1 : ℍ[ℚ, a, b]) ⊗ₜ[ℚ] (algebraMap ℚ (w.adicCompletion ℚ) x) := by
   exact (Algebra.TensorProduct.algebraMap_apply (S := ℚ) (A := ℍ[ℚ, a, b]) (B := w.adicCompletion ℚ) x).symm.trans
     (Algebra.TensorProduct.algebraMap_apply' x)
 
+/--
+@isnad1 id=mem.3h6v.s9.88847a535f65 from=translated src=- shape=f24a8f70 vocab=e9140190
+-/
 theorem scalar_mem_awayUnits (R : Submodule ℤ ℍ[ℚ, a, b]) (hR : QuaternionAlgebra.IsOrder R)
     (r : ℕ) [Fact r.Prime] (v : HeightOneSpectrum (𝓞 ℚ)) (hv : ((r : ℕ) : 𝓞 ℚ) ∈ v.asIdeal)
     (c : ℚˣ) (hc : ∀ p : ℕ, p.Prime → p ≠ r → padicValRat p (c : ℚ) = 0) :
@@ -418,6 +496,9 @@ end
 open scoped TensorProduct Quaternion NumberField
 open IsDedekindDomain QuaternionAlgebra CerednikDrinfeld
 
+/--
+@isnad1 id=and.2h5v.s10.e96c0e5b1bef from=translated src=- shape=8b9129c8 vocab=b3652a2b
+-/
 theorem solution
     {a b : ℚ} (R : Submodule ℤ ℍ[ℚ, a, b]) (hR : QuaternionAlgebra.IsOrder R)
     (r : ℕ) [Fact r.Prime] (v : HeightOneSpectrum (𝓞 ℚ)) (hv : ((r : ℕ) : 𝓞 ℚ) ∈ v.asIdeal) :

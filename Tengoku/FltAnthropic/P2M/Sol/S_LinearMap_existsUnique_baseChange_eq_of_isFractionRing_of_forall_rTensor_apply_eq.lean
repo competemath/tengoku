@@ -16,6 +16,9 @@ namespace ModuleDescent
 variable {O : Type u} [CommRing O] {S T : Type u} [CommRing S] [CommRing T] [Algebra O S] [Algebra O T]
   {N : Type u} [AddCommGroup N] [Module O N] {ι : Type*}
 
+/--
+@isnad1 id=eq.0h9v.s11.4a0f671f0d02 from=translated src=- shape=1d63fd21 vocab=4d65b7de
+-/
 theorem repr_rTensor (φ : S →ₐ[O] T) (b : Module.Basis ι O N) (x : S ⊗[O] N) (j : ι) :
     (Algebra.TensorProduct.basis T b).repr (φ.toLinearMap.rTensor N x) j =
       φ ((Algebra.TensorProduct.basis S b).repr x j) := by
@@ -30,6 +33,9 @@ theorem repr_rTensor (φ : S →ₐ[O] T) (b : Module.Basis ι O N) (x : S ⊗[O
 
 end ModuleDescent
 
+/--
+@isnad1 id=existsun.3h8v.s12.d7dd2357913a from=translated src=- shape=e723dbe8 vocab=dd444719
+-/
 theorem solution
     (O : Type u) [CommRing O] [IsDomain O] (K : Type u) [Field K] [Algebra O K] [IsFractionRing O K]
     (Oh : Type u) [CommRing Oh] [Algebra O Oh]

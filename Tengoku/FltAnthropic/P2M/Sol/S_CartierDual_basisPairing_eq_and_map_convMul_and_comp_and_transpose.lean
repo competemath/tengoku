@@ -22,6 +22,9 @@ section Canonical
 variable [Bialgebra R A] [Module.Finite R A] [Module.Free R A]
 variable {L : Type*} [CommRing L] [Algebra R L]
 
+/--
+@isnad1 id=eq.0h4v.s11.70e31d3b7e48 from=translated src=- shape=45afc6d7 vocab=f53a8249
+-/
 theorem dualTensorHom_sum_coord_tmul {ι : Type*} [Fintype ι] (b : Module.Basis ι R A) :
     dualTensorHom R A A (∑ i, b.coord i ⊗ₜ[R] b i) = LinearMap.id := by
   classical
@@ -31,6 +34,9 @@ theorem dualTensorHom_sum_coord_tmul {ι : Type*} [Fintype ι] (b : Module.Basis
   simp_rw [dualTensorHom_apply, Module.Basis.coord_apply]
   rw [b.sum_repr m]
 
+/--
+@isnad1 id=eq.0h6v.s11.d6c57cc3eb8f from=translated src=- shape=ad186c25 vocab=b601c9fc
+-/
 theorem sum_coord_tmul_eq {ι : Type*} [Fintype ι] (b : Module.Basis ι R A)
     {ι' : Type*} [Fintype ι'] (b' : Module.Basis ι' R A) :
     (∑ i, b.coord i ⊗ₜ[R] b i) = ∑ j, b'.coord j ⊗ₜ[R] b' j := by
@@ -39,6 +45,9 @@ theorem sum_coord_tmul_eq {ι : Type*} [Fintype ι] (b : Module.Basis ι R A)
   rw [dualTensorHomEquivOfBasis_apply, dualTensorHomEquivOfBasis_apply, dualTensorHom_sum_coord_tmul,
     dualTensorHom_sum_coord_tmul]
 
+/--
+@isnad1 id=eq.0h7v.s12.e4dcc596f081 from=translated src=- shape=ce616f12 vocab=f2ef5786
+-/
 theorem sum_eq_mul'_map {ι : Type*} [Fintype ι] (b : Module.Basis ι R A)
     (f : A →ₗ[R] L) (Ψ : Module.Dual R A →ₗ[R] L) :
     ∑ i, f (b i) * Ψ (b.coord i) =
@@ -47,12 +56,18 @@ theorem sum_eq_mul'_map {ι : Type*} [Fintype ι] (b : Module.Basis ι R A)
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [TensorProduct.map_tmul, LinearMap.mul'_apply, mul_comm]
 
+/--
+@isnad1 id=eq.0h9v.s11.a62e2793f91b from=translated src=- shape=6ef70ebd vocab=5c0b016b
+-/
 theorem indep {ι : Type*} [Fintype ι] (b : Module.Basis ι R A)
     {ι' : Type*} [Fintype ι'] (b' : Module.Basis ι' R A)
     (f : A →ₗ[R] L) (Ψ : Module.Dual R A →ₗ[R] L) :
     ∑ i, f (b i) * Ψ (b.coord i) = ∑ j, f (b' j) * Ψ (b'.coord j) := by
   rw [sum_eq_mul'_map b f Ψ, sum_eq_mul'_map b' f Ψ, sum_coord_tmul_eq b b']
 
+/--
+@isnad1 id=eq.0h9v.s11.61b4bb119df7 from=translated src=- shape=65059169 vocab=615fa4c7
+-/
 theorem natural {ι : Type*} [Fintype ι] (b : Module.Basis ι R A)
     {L' : Type*} [CommRing L'] [Algebra R L'] (φ : L →ₐ[R] L')
     (f : A →ₗ[R] L) (Ψ : Module.Dual R A →ₗ[R] L) :
@@ -61,6 +76,9 @@ theorem natural {ι : Type*} [Fintype ι] (b : Module.Basis ι R A)
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [map_mul]
 
+/--
+@isnad1 id=eq.3h14v.s12.9ce0af63e6e0 from=translated src=- shape=c7eefe5c vocab=c7a84694
+-/
 theorem transpose {ι : Type*} [Fintype ι] (b : Module.Basis ι R A)
     {A' : Type*} [AddCommGroup A'] [Module R A'] {ι' : Type*} [Fintype ι'] (b' : Module.Basis ι' R A')
     (t : A' →ₗ[R] A) (ht : Function.Surjective t) (N : A' →ₗ[R] A')
@@ -109,6 +127,9 @@ variable {ι : Type*} [Fintype ι] (b : Module.Basis ι R A)
 
 noncomputable def cst (i : ι) (x : ι × ι) : R := (b.tensorProduct b).repr (Coalgebra.comul (R := R) (b i)) x
 
+/--
+@isnad1 id=eq.0h5v.s10.0f97471a4ce7 from=translated src=- shape=7228b3b3 vocab=ac4b1513
+-/
 theorem comul_basis_eq (i : ι) :
     Coalgebra.comul (R := R) (b i) = ∑ x : ι × ι, cst b i x • (b x.1 ⊗ₜ[R] b x.2) := by
   conv_lhs => rw [← (b.tensorProduct b).sum_repr (Coalgebra.comul (R := R) (b i))]
@@ -116,15 +137,24 @@ theorem comul_basis_eq (i : ι) :
   rw [Module.Basis.tensorProduct_apply']
   rfl
 
+/--
+@isnad1 id=eq.0h8v.s9.2888e59581a9 from=translated src=- shape=a1b635ee vocab=4e08c1f4
+-/
 theorem convMul_basis (f g : WithConv (A →ₐ[R] L)) (i : ι) :
     (f * g) (b i) = ∑ x : ι × ι, cst b i x • (f (b x.1) * g (b x.2)) := by
   rw [AlgHom.convMul_apply, comul_basis_eq b i, map_sum]
   refine Finset.sum_congr rfl fun x _ => ?_
   rw [map_smul, Algebra.TensorProduct.lift_tmul]
 
+/--
+@isnad1 id=eq.0h6v.s8.d089551d2192 from=translated src=- shape=fef36a87 vocab=a7f759ca
+-/
 theorem coord_basis [DecidableEq ι] (i j : ι) : b.coord i (b j) = if j = i then 1 else 0 := by
   rw [Module.Basis.coord_apply, b.repr_self, Finsupp.single_apply]
 
+/--
+@isnad1 id=eq.0h7v.s11.579a31a29ae3 from=translated src=- shape=1460ad47 vocab=e2a813fd
+-/
 theorem coord_mul_coord_basis [DecidableEq ι] (j k i : ι) :
     (CartierDual.ofDual R A (b.coord j) * CartierDual.ofDual R A (b.coord k)) (b i) = cst b i (j, k) := by
   rw [CartierDual.mul_apply, CartierDual.toDual_ofDual, CartierDual.toDual_ofDual, comul_basis_eq b i,
@@ -142,6 +172,9 @@ theorem coord_mul_coord_basis [DecidableEq ι] (j k i : ι) :
   · intro h
     exact absurd (Finset.mem_univ _) h
 
+/--
+@isnad1 id=eq.0h6v.s11.97a13c59e05a from=translated src=- shape=73805966 vocab=d6092721
+-/
 theorem coord_mul_coord [DecidableEq ι] (j k : ι) :
     CartierDual.ofDual R A (b.coord j) * CartierDual.ofDual R A (b.coord k) =
       ∑ i, cst b i (j, k) • CartierDual.ofDual R A (b.coord i) := by
@@ -154,6 +187,9 @@ theorem coord_mul_coord [DecidableEq ι] (j k : ι) :
   rw [Finset.sum_ite_eq Finset.univ i']
   simp
 
+/--
+@isnad1 id=eq.0h8v.s12.5ee328ccc786 from=translated src=- shape=eee098b6 vocab=ad142ec5
+-/
 theorem mul_left [DecidableEq ι] (f g : WithConv (A →ₐ[R] L)) (ψ : CartierDual R A →ₐ[R] L) :
     ∑ i, (f * g) (b i) * ψ (CartierDual.ofDual R A (b.coord i)) =
       (∑ i, f (b i) * ψ (CartierDual.ofDual R A (b.coord i))) *
@@ -198,6 +234,9 @@ variable [Bialgebra R A] [Module.Finite R A] [Module.Free R A]
 variable {L : Type*} [CommRing L] [Algebra R L]
 variable {ι : Type*} [Fintype ι] (b : Module.Basis ι R A)
 
+/--
+@isnad1 id=eq.0h7v.s11.e8b4f1480510 from=translated src=- shape=4bee4009 vocab=61a5c7f5
+-/
 theorem repr_mul_eq (a a' : A) (i : ι) :
     b.repr (a * a') i = ∑ x : ι × ι, b.repr (b x.1 * b x.2) i * (b.repr a x.1 * b.repr a' x.2) := by
   have hmul : a * a' = ∑ x : ι × ι, (b.repr a x.1 * b.repr a' x.2) • (b x.1 * b x.2) := by
@@ -212,6 +251,9 @@ theorem repr_mul_eq (a a' : A) (i : ι) :
   refine Finset.sum_congr rfl fun x _ => ?_
   ring
 
+/--
+@isnad1 id=eq.0h5v.s12.77dfecf26ae2 from=translated src=- shape=e96e4c03 vocab=5d2ee383
+-/
 theorem comul_coordDual (i : ι) :
     Coalgebra.comul (R := R) (CartierDual.ofDual R A (b.coord i)) =
       ∑ x : ι × ι, (b.repr (b x.1 * b x.2) i • CartierDual.ofDual R A (b.coord x.1)) ⊗ₜ[R]
@@ -225,6 +267,9 @@ theorem comul_coordDual (i : ι) :
     CartierDual.toDual_ofDual, CartierDual.toDual_ofDual, TensorProduct.dualDistrib_apply, LinearMap.smul_apply,
     Module.Basis.coord_apply, Module.Basis.coord_apply, smul_eq_mul, mul_assoc]
 
+/--
+@isnad1 id=eq.0h8v.s12.f4ff360a08ac from=translated src=- shape=316ea34b vocab=8796a011
+-/
 theorem convMul_coordDual (ψ ψ' : WithConv (CartierDual R A →ₐ[R] L)) (i : ι) :
     (ψ * ψ') (CartierDual.ofDual R A (b.coord i)) =
       ∑ x : ι × ι, b.repr (b x.1 * b x.2) i •
@@ -237,6 +282,9 @@ theorem convMul_coordDual (ψ ψ' : WithConv (CartierDual R A →ₐ[R] L)) (i :
   erw [Algebra.TensorProduct.lift_tmul]
   rw [map_smul, smul_mul_assoc]
 
+/--
+@isnad1 id=eq.0h8v.s12.457efd30d562 from=translated src=- shape=5b230bad vocab=edc23637
+-/
 theorem mul_right (f : A →ₐ[R] L) (ψ ψ' : WithConv (CartierDual R A →ₐ[R] L)) :
     ∑ i, f (b i) * (ψ * ψ') (CartierDual.ofDual R A (b.coord i)) =
       (∑ i, f (b i) * ψ (CartierDual.ofDual R A (b.coord i))) *
@@ -280,6 +328,9 @@ variable [Bialgebra R A] [Module.Finite R A] [Module.Free R A]
 variable {L : Type*} [CommRing L] [Algebra R L]
 variable {ι : Type*} [Fintype ι] (b : Module.Basis ι R A)
 
+/--
+@isnad1 id=eq.0h6v.s10.06a5d2535b7e from=translated src=- shape=1e3c8382 vocab=edc23637
+-/
 theorem unit_left (ψ : CartierDual R A →ₐ[R] L) :
     ∑ i, (1 : WithConv (A →ₐ[R] L)) (b i) * ψ (CartierDual.ofDual R A (b.coord i)) = 1 := by
   have hterm : ∀ i, (1 : WithConv (A →ₐ[R] L)) (b i) * ψ (CartierDual.ofDual R A (b.coord i)) =
@@ -296,6 +347,9 @@ theorem unit_left (ψ : CartierDual R A →ₐ[R] L) :
     rw [map_smul]
   rw [hsum, ← CartierDual.one_def, map_one]
 
+/--
+@isnad1 id=eq.0h6v.s10.e72828d36c76 from=translated src=- shape=ff3040f3 vocab=edc23637
+-/
 theorem unit_right (f : A →ₐ[R] L) :
     ∑ i, f (b i) * (1 : WithConv (CartierDual R A →ₐ[R] L)) (CartierDual.ofDual R A (b.coord i)) = 1 := by
   have hterm : ∀ i, f (b i) * (1 : WithConv (CartierDual R A →ₐ[R] L)) (CartierDual.ofDual R A (b.coord i)) =
@@ -307,6 +361,9 @@ theorem unit_right (f : A →ₐ[R] L) :
   simp_rw [hterm]
   rw [← map_sum, b.sum_repr, map_one]
 
+/--
+@isnad1 id=eq.0h8v.s11.2d02d8c02747 from=translated src=- shape=90859b6c vocab=a2f386c1
+-/
 theorem torsion [DecidableEq ι] (f : WithConv (A →ₐ[R] L)) (ψ : CartierDual R A →ₐ[R] L) (n : ℕ) :
     ∑ i, (f ^ n) (b i) * ψ (CartierDual.ofDual R A (b.coord i)) =
       (∑ i, f (b i) * ψ (CartierDual.ofDual R A (b.coord i))) ^ n := by
@@ -321,6 +378,9 @@ end Units
 
 end CartierPairingLaws
 
+/--
+@isnad1 id=and.0h5v.s15.311daeb8dbb8 from=translated src=- shape=ce25aed0 vocab=1eba0391
+-/
 theorem solution
     {R : Type*} [CommRing R] {A : Type*} [CommRing A] [HopfAlgebra R A]
     [Module.Finite R A] [Module.Free R A]

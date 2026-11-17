@@ -634,6 +634,9 @@ section Solution
 
 open AutomorphicForm
 
+/--
+@isnad1 id=isarchte.3h5v.s11.ce5fe0289ee5 from=translated src=- shape=ca6fa736 vocab=63411fe9
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K]
     [MeasurableSpace (GL (Fin 2) (InfiniteAdeleRing K))]

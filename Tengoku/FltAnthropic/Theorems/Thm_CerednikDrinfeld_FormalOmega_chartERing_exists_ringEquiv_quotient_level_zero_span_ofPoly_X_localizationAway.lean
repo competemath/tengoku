@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open CerednikDrinfeld CerednikDrinfeld.FormalOmega
 
+/--
+@isnad1 id=ex.2h4v.s20.9d479ca77ec7 from=translated src=- shape=240cc7fb vocab=5e786e33
+-/
 theorem CerednikDrinfeld.FormalOmega.chartERing.exists_ringEquiv_quotient_level_zero_span_ofPoly_X_localizationAway
     (𝒪 : Type) [CommRing 𝒪] (π : 𝒪) (r : ℕ) (hπ : (Ideal.span ({π} : Set 𝒪)).IsMaximal) (hr : 1 < r) (i : Fin 2) :
     ∃ e : (((chartERing 𝒪 π r) ⧸ (Ideal.span {(algebraMap 𝒪 (chartERing 𝒪 π r) π) ^ (0 + 1)})) ⧸ Ideal.span {Ideal.Quotient.mk (Ideal.span {(algebraMap 𝒪 (chartERing 𝒪 π r) π) ^ (0 + 1)}) (chartERing.ofPoly 𝒪 π r (MvPolynomial.X i))}) ≃+*

@@ -15,17 +15,29 @@ namespace PotW
 
 variable {G : Type} [Group G] {W : Type} [MulAction G W] {𝒯 : SimpleGraph W} [GraphAction G 𝒯]
 
+/--
+@isnad1 id=or.0h1v.s7.bc72bed5d0ad from=translated src=- shape=a99d14a3 vocab=c87b9854
+-/
 theorem zmod2_cases (a : ZMod 2) : a = 0 ∨ a = 1 := by
   revert a; decide
 
+/--
+@isnad1 id=iff.0h5v.s7.cb192b6687bc from=translated src=- shape=a874f509 vocab=17e2a6b4
+-/
 theorem quotEdge_eq_iff (d d' : 𝒯.Dart) :
     (Quotient.mk (orbitRel G 𝒯.Dart) d : QuotEdge G 𝒯) = Quotient.mk _ d' ↔ ∃ g : G, g • d' = d := by
   rw [Quotient.eq]; exact MulAction.orbitRel_apply.trans MulAction.mem_orbit_iff
 
+/--
+@isnad1 id=iff.0h4v.s6.30cd3c4ec85b from=translated src=- shape=c4686ecc vocab=6dc2fbab
+-/
 theorem quotVert_eq_iff (a b : W) :
     (Quotient.mk (orbitRel G W) a : QuotVert G W) = Quotient.mk _ b ↔ ∃ g : G, g • b = a := by
   rw [Quotient.eq]; exact MulAction.orbitRel_apply.trans MulAction.mem_orbit_iff
 
+/--
+@isnad1 id=ex.0h4v.s6.780d6dc85a35 from=translated src=- shape=8f1fcb2b vocab=5f18849d
+-/
 theorem exists_smul_eq_out (d : 𝒯.Dart) :
     ∃ g : G, g • d = (Quotient.mk (orbitRel G 𝒯.Dart) d : QuotEdge G 𝒯).out := by
   have h := Quotient.out_eq (Quotient.mk (orbitRel G 𝒯.Dart) d : QuotEdge G 𝒯)
@@ -36,11 +48,17 @@ section Colour
 variable (τ : W → ZMod 2) (hτ : ∀ (g : G) (w : W), τ (g • w) = τ w) (hadj : ∀ u v : W, 𝒯.Adj u v → τ u ≠ τ v)
 include hτ hadj
 
+/--
+@isnad1 id=eq.3h5v.s7.f3043858ca9f from=translated src=- shape=7b108216 vocab=ac4cb5a1
+-/
 theorem colour_snd_of_fst_eq_zero (d : 𝒯.Dart) (h : τ d.fst = 0) : τ d.snd = 1 := by
   rcases zmod2_cases (τ d.snd) with h1 | h1
   · exact absurd (h.trans h1.symm) (hadj _ _ d.adj)
   · exact h1
 
+/--
+@isnad1 id=and.3h5v.s8.4ba66edda2b0 from=translated src=- shape=5ffafbf7 vocab=ac4cb5a1
+-/
 theorem colour_fst_of_ne_zero (d : 𝒯.Dart) (h : τ d.fst ≠ 0) : τ d.fst = 1 ∧ τ d.snd = 0 := by
   rcases zmod2_cases (τ d.fst) with h0 | h1
   · exact absurd h0 h
@@ -48,6 +66,9 @@ theorem colour_fst_of_ne_zero (d : 𝒯.Dart) (h : τ d.fst ≠ 0) : τ d.fst = 
     · exact ⟨h1, h2⟩
     · exact absurd (h1.trans h2.symm) (hadj _ _ d.adj)
 
+/--
+@isnad1 id=eq.2h5v.s7.9233d0a3635c from=translated src=- shape=8404ba92 vocab=03127f0a
+-/
 theorem colour_out_fst (d : 𝒯.Dart) :
     τ (Quotient.mk (orbitRel G 𝒯.Dart) d : QuotEdge G 𝒯).out.fst = τ d.fst := by
   obtain ⟨g, hg⟩ := exists_smul_eq_out (G := G) d
@@ -63,10 +84,16 @@ variable {E : Type} [Fintype E] (eE : E ≃ {e : QuotEdge G 𝒯 // τ e.out.fst
 variable (φ : W → ℤ) (hφ : ∀ g : G, ∃ n : ℤ, ∀ w : W, φ (g • w) = φ w + n)
 
 include hφ in
+/--
+@isnad1 id=eq.1h6v.s7.90b6e284ea4a from=translated src=- shape=ef21d469 vocab=245b317a
+-/
 theorem incr_smul (g : G) (a b : W) : φ (g • a) - φ (g • b) = φ a - φ b := by
   obtain ⟨n, hn⟩ := hφ g
   rw [hn, hn]; ring
 
+/--
+@isnad1 id=eq.0h8v.s11.b5fc4c5d05f3 from=translated src=- shape=34efb28b vocab=2a9b6211
+-/
 theorem sum_ite_eq_select (c : QuotEdge G 𝒯) (F : E → ℤ) :
     (∑ e : E, F e * (if Quotient.mk (orbitRel G 𝒯.Dart) c.out = (eE e).1 then (1 : ℤ) else 0)) =
       if h : τ c.out.fst = 0 then F (eE.symm ⟨c, h⟩) else 0 := by
@@ -93,6 +120,9 @@ theorem sum_ite_eq_select (c : QuotEdge G 𝒯) (F : E → ℤ) :
 
 include hτ hadj hφ in
 
+/--
+@isnad1 id=eq.3h8v.s11.1f6e2b8a9de5 from=translated src=- shape=7b8937cd vocab=5273fe86
+-/
 theorem sum_mul_dartIndex (d : 𝒯.Dart) :
     (∑ e : E, (φ (eE e).1.out.snd - φ (eE e).1.out.fst) * dartIndex 𝒯 (eE e).1 d) = φ d.snd - φ d.fst := by
 
@@ -135,6 +165,9 @@ theorem sum_mul_dartIndex (d : 𝒯.Dart) :
 
 include hτ hadj hφ in
 
+/--
+@isnad1 id=eq.3h10v.s11.eb2684a6dc8f from=translated src=- shape=e393eb68 vocab=a29bdb09
+-/
 theorem sub_eq_sum_mul_walkCycle {u u' : W} (p : 𝒯.Walk u u') :
     φ u' - φ u = ∑ e : E, (φ (eE e).1.out.snd - φ (eE e).1.out.fst) * walkCycle 𝒯 (fun e => (eE e).1) p e := by
   induction p with
@@ -145,6 +178,9 @@ theorem sub_eq_sum_mul_walkCycle {u u' : W} (p : 𝒯.Walk u u') :
     show φ c - φ a = φ b - φ a + (φ c - φ b)
     ring
 
+/--
+@isnad1 id=eq.0h5v.s7.d84874a2bda4 from=translated src=- shape=8ed4a1b9 vocab=d8308d7c
+-/
 theorem pushforward_apply {V : Type} [DecidableEq V] (f : E → V) (x : E → ℤ) (v : V) :
     pushforward f x v = ∑ e ∈ Finset.univ.filter (fun e => f e = v), x e := by
   simp only [pushforward, Matrix.mulVecLin_apply, Matrix.mulVec, dotProduct, degeneracyMatrix, Matrix.of_apply]
@@ -163,6 +199,9 @@ variable (hc : ∀ e : E, φ (eE e).1.out.snd - φ (eE e).1.out.fst = ((stabWidt
 omit hφ in
 include hfin in
 
+/--
+@isnad1 id=finite.1h4v.s6.3a59600cb457 from=translated src=- shape=7711fd10 vocab=d64f4ea3
+-/
 theorem finite_stabilizer_dart (d : 𝒯.Dart) : Finite (MulAction.stabilizer G d) := by
   haveI := hfin d.fst
   have hle : ∀ s : G, s ∈ MulAction.stabilizer G d → s ∈ MulAction.stabilizer G d.fst := by
@@ -175,6 +214,9 @@ theorem finite_stabilizer_dart (d : 𝒯.Dart) : Finite (MulAction.stabilizer G 
 omit hφ in
 include hfin in
 
+/--
+@isnad1 id=eq.2h5v.s7.804393096381 from=translated src=- shape=712582c1 vocab=685331df
+-/
 theorem stabWidth_coe_eq (d : 𝒯.Dart) (q : QuotEdge G 𝒯) (hq : Quotient.mk (orbitRel G 𝒯.Dart) d = q) :
     ((stabWidth G 𝒯 q : ℕ) : ℤ) = (Nat.card (MulAction.stabilizer G d) : ℤ) := by
   haveI := finite_stabilizer_dart hfin d
@@ -184,6 +226,9 @@ theorem stabWidth_coe_eq (d : 𝒯.Dart) (q : QuotEdge G 𝒯) (hq : Quotient.mk
     rw [Nat.toPNat'_coe, ite_eq_left Nat.card_pos]
   rw [h1, h2]
 
+/--
+@isnad1 id=eq.0h5v.s9.68e95470c1de from=translated src=- shape=fa1a25c8 vocab=4ce21d22
+-/
 theorem card_filter_smul_eq {H : Subgroup G} [Fintype H] {X : Type} [MulAction G X] [DecidableEq X]
     (x : X) (h₀ : H) :
     (Finset.univ.filter fun h : H => (h : G) • x = (h₀ : G) • x).card = Fintype.card {s : H // (s : G) • x = x} := by
@@ -202,6 +247,9 @@ theorem card_filter_smul_eq {H : Subgroup G} [Fintype H] {X : Type} [MulAction G
 
 include hτ hadj hφ ha hharm hfin hc in
 
+/--
+@isnad1 id=eq.7h12v.s11.158a55599736 from=translated src=- shape=5f3fa145 vocab=2e0e7335
+-/
 theorem sum_filter_a_eq_zero_w (v : V) :
     (∑ e ∈ Finset.univ.filter (fun e => D.a e = v), c e) = 0 := by
   classical
@@ -357,6 +405,9 @@ theorem sum_filter_a_eq_zero_w (v : V) :
 
 include hτ hadj hφ hb hharm hfin hc in
 
+/--
+@isnad1 id=eq.7h12v.s11.4b015f6fb65b from=translated src=- shape=aca80a34 vocab=f74295df
+-/
 theorem sum_filter_b_eq_zero_w (v : V) :
     (∑ e ∈ Finset.univ.filter (fun e => D.b e = v), c e) = 0 := by
   classical
@@ -521,6 +572,9 @@ end Main
 end PotW
 
 open PotW in
+/--
+@isnad1 id=ex.8h10v.s12.b2a840445234 from=translated src=- shape=db7ea866 vocab=52be88c9
+-/
 theorem solution
     {G : Type} [Group G] {W : Type} [MulAction G W] (𝒯 : SimpleGraph W) [GraphAction G 𝒯]
     (hfin : ∀ w : W, Finite (MulAction.stabilizer G w))

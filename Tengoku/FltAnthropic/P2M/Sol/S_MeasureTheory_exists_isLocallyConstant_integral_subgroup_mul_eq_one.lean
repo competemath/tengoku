@@ -85,6 +85,9 @@ end
 
 end B2Draft
 
+/--
+@isnad1 id=ex.5h5v.s8.7dd19a973cf6 from=translated src=- shape=9cafbf9b vocab=b752fa4b
+-/
 theorem solution
     {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
     (K₀ : Subgroup G) (hK₀ : IsCompact (K₀ : Set G)) (hK₀' : IsOpen (K₀ : Set G))

@@ -17,6 +17,9 @@ open _root_.AutomorphicForm
 
 noncomputable def s : ℂ := 1 / 3
 
+/--
+@isnad1 id=ne.0h1v.s5.2eec93b787df from=translated src=- shape=875e5845 vocab=767f8e3e
+-/
 theorem s_add_half_int_ne_zero (m : ℤ) : s + (m : ℂ) / 2 ≠ 0 := by
   intro h
   have h6 : (2 : ℂ) + 3 * (m : ℂ) = 0 := by
@@ -27,6 +30,9 @@ theorem s_add_half_int_ne_zero (m : ℤ) : s + (m : ℂ) / 2 ≠ 0 := by
   have : (2 + 3 * m : ℤ) = 0 := by exact_mod_cast hz
   omega
 
+/--
+@isnad1 id=ne.0h1v.s5.14fa072a20e1 from=translated src=- shape=875e5845 vocab=5d8e654a
+-/
 theorem s_sub_half_int_ne_zero (m : ℤ) : s - (m : ℂ) / 2 ≠ 0 := by
   have := s_add_half_int_ne_zero (-m)
   push_cast at this
@@ -40,8 +46,14 @@ noncomputable def cE (j : ℤ) : ℂ := s + ((e + 2 * j : ℤ) : ℂ) / 2
 
 noncomputable def cL (j : ℤ) : ℂ := s - ((e + 2 * j : ℤ) : ℂ) / 2
 
+/--
+@isnad1 id=ne.0h2v.s3.c703ef4f2ebc from=translated src=- shape=628a94f6 vocab=a56f9b3c
+-/
 theorem cE_ne_zero (j : ℤ) : cE e j ≠ 0 := s_add_half_int_ne_zero _
 
+/--
+@isnad1 id=ne.0h2v.s3.60cd6da0d579 from=translated src=- shape=628a94f6 vocab=ef697608
+-/
 theorem cL_ne_zero (j : ℤ) : cL e j ≠ 0 := s_sub_half_int_ne_zero _
 
 noncomputable def E : (ℤ →₀ ℂ) →ₗ[ℂ] (ℤ →₀ ℂ) :=
@@ -56,39 +68,72 @@ noncomputable def ε : (ℤ →₀ ℂ) →ₗ[ℂ] (ℤ →₀ ℂ) :=
 noncomputable def wt (n : ℤ) : Submodule ℂ (ℤ →₀ ℂ) :=
   if Even (n - e) then ℂ ∙ b ((n - e) / 2) else ⊥
 
+/--
+@isnad1 id=eq.0h2v.s6.603cdf19f9d5 from=translated src=- shape=b9da20e4 vocab=7baa3f85
+-/
 theorem single_eq_smul_b (j : ℤ) (c : ℂ) : Finsupp.single j c = c • b j := by
   rw [b, Finsupp.smul_single', mul_one]
 
+/--
+@isnad1 id=eq.0h2v.s7.817c815ad0b3 from=translated src=- shape=7192e2e6 vocab=9960c46d
+-/
 theorem E_b (j : ℤ) : E e (b j) = cE e j • b (j + 1) := by
   rw [E, b, Finsupp.lsum_single, LinearMap.smul_apply, Finsupp.lsingle_apply]; rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.c3e2f578f00f from=translated src=- shape=7192e2e6 vocab=7eca672e
+-/
 theorem L_b (j : ℤ) : L e (b j) = cL e j • b (j - 1) := by
   rw [L, b, Finsupp.lsum_single, LinearMap.smul_apply, Finsupp.lsingle_apply]; rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.3c0d3e7c0307 from=translated src=- shape=d6b981d4 vocab=ebe5cf66
+-/
 theorem ε_b (j : ℤ) : ε e (b j) = b (-e - j) := by
   rw [ε, b, Finsupp.lsum_single, Finsupp.lsingle_apply]; rfl
 
+/--
+@isnad1 id=ne.0h1v.s4.1aeae3ae5d70 from=translated src=- shape=4f1d8603 vocab=924082cc
+-/
 theorem b_ne_zero (j : ℤ) : b j ≠ 0 :=
   Finsupp.single_ne_zero.mpr one_ne_zero
 
+/--
+@isnad1 id=eq.0h2v.s5.e33a626830cf from=translated src=- shape=24fcae48 vocab=4dbf4b3b
+-/
 theorem b_apply (j i : ℤ) : b j i = if j = i then 1 else 0 := by
   rw [b, Finsupp.single_apply]
 
+/--
+@isnad1 id=eq.1h2v.s6.96d94c4111b9 from=translated src=- shape=e6c18f39 vocab=618870c2
+-/
 theorem wt_of_even {n : ℤ} (h : Even (n - e)) : wt e n = ℂ ∙ b ((n - e) / 2) := by
   simp [wt, h]
 
+/--
+@isnad1 id=eq.1h2v.s6.493f0397e00e from=translated src=- shape=b7d8941a vocab=61f1907c
+-/
 theorem wt_of_not_even {n : ℤ} (h : ¬ Even (n - e)) : wt e n = ⊥ := by
   simp [wt, h]
 
+/--
+@isnad1 id=eq.0h2v.s6.ec8b8326c63c from=translated src=- shape=22303697 vocab=62ad8b65
+-/
 theorem wt_weight (j : ℤ) : wt e (e + 2 * j) = ℂ ∙ b j := by
   have h : Even (e + 2 * j - e) := ⟨j, by ring⟩
   rw [wt_of_even e h]
   have : (e + 2 * j - e) / 2 = j := by omega
   rw [this]
 
+/--
+@isnad1 id=mem.0h2v.s6.2ba9c322e8cb from=translated src=- shape=b377c2a7 vocab=58271d69
+-/
 theorem b_mem_wt (j : ℤ) : b j ∈ wt e (e + 2 * j) := by
   rw [wt_weight]; exact Submodule.mem_span_singleton_self _
 
+/--
+@isnad1 id=iff.0h3v.s7.4ebf4f707501 from=translated src=- shape=49ce3128 vocab=4e7964f8
+-/
 theorem mem_wt_iff {n : ℤ} {v : ℤ →₀ ℂ} :
     v ∈ wt e n ↔ (Even (n - e) ∧ ∃ a : ℂ, a • b ((n - e) / 2) = v) ∨ (¬ Even (n - e) ∧ v = 0) := by
   by_cases h : Even (n - e)
@@ -99,6 +144,9 @@ theorem eq_of_even {n : ℤ} (h : Even (n - e)) : n = e + 2 * ((n - e) / 2) := b
   have := Int.two_mul_ediv_two_of_even h
   omega
 
+/--
+@isnad1 id=le.0h2v.s7.a0444e3fe03a from=translated src=- shape=5f3ece26 vocab=f4ea9d1c
+-/
 theorem map_raise_le (n : ℤ) : (wt e n).map (E e) ≤ wt e (n + 2) := by
   by_cases h : Even (n - e)
   · rw [wt_of_even e h, Submodule.map_span, Set.image_singleton, Submodule.span_le,
@@ -110,6 +158,9 @@ theorem map_raise_le (n : ℤ) : (wt e n).map (E e) ≤ wt e (n + 2) := by
     exact Submodule.smul_mem _ _ (b_mem_wt e (j + 1))
   · rw [wt_of_not_even e h, Submodule.map_bot]; exact bot_le
 
+/--
+@isnad1 id=le.0h2v.s7.c8cdd6dd68d9 from=translated src=- shape=5f3ece26 vocab=e5853461
+-/
 theorem map_lower_le (n : ℤ) : (wt e n).map (L e) ≤ wt e (n - 2) := by
   by_cases h : Even (n - e)
   · rw [wt_of_even e h, Submodule.map_span, Set.image_singleton, Submodule.span_le,
@@ -121,6 +172,9 @@ theorem map_lower_le (n : ℤ) : (wt e n).map (L e) ≤ wt e (n - 2) := by
     exact Submodule.smul_mem _ _ (b_mem_wt e (j - 1))
   · rw [wt_of_not_even e h, Submodule.map_bot]; exact bot_le
 
+/--
+@isnad1 id=le.0h2v.s7.6e277875921c from=translated src=- shape=eb7a8531 vocab=489c8485
+-/
 theorem map_refl_le (n : ℤ) : (wt e n).map (ε e) ≤ wt e (-n) := by
   by_cases h : Even (n - e)
   · rw [wt_of_even e h, Submodule.map_span, Set.image_singleton, Submodule.span_le,
@@ -132,6 +186,9 @@ theorem map_refl_le (n : ℤ) : (wt e n).map (ε e) ≤ wt e (-n) := by
     exact b_mem_wt e (-e - j)
   · rw [wt_of_not_even e h, Submodule.map_bot]; exact bot_le
 
+/--
+@isnad1 id=eq.1h3v.s9.1a8cd3c96e45 from=translated src=- shape=94cfd3b7 vocab=ab44c9cb
+-/
 theorem raise_lower_sub (n : ℤ) (v : ℤ →₀ ℂ) (hv : v ∈ wt e n) :
     E e (L e v) - L e (E e v) = (n : ℂ) • v := by
   rcases (mem_wt_iff e).mp hv with ⟨h, a, rfl⟩ | ⟨-, rfl⟩
@@ -148,6 +205,9 @@ theorem raise_lower_sub (n : ℤ) (v : ℤ →₀ ℂ) (hv : v ∈ wt e n) :
     ring
   · simp
 
+/--
+@isnad1 id=eq.0h1v.s7.b845a3dcf668 from=translated src=- shape=2390dbd5 vocab=c456c34b
+-/
 theorem refl_comp_refl : ε e ∘ₗ ε e = LinearMap.id := by
   apply Finsupp.lhom_ext
   intro j c
@@ -155,6 +215,9 @@ theorem refl_comp_refl : ε e ∘ₗ ε e = LinearMap.id := by
   congr 2
   ring
 
+/--
+@isnad1 id=eq.0h1v.s7.834843976584 from=translated src=- shape=f2368bd8 vocab=34cc9589
+-/
 theorem refl_comp_raise : ε e ∘ₗ E e = L e ∘ₗ ε e := by
   apply Finsupp.lhom_ext
   intro j c
@@ -167,6 +230,9 @@ theorem refl_comp_raise : ε e ∘ₗ E e = L e ∘ₗ ε e := by
   push_cast
   ring
 
+/--
+@isnad1 id=le.1h3v.s7.df198a165e8d from=translated src=- shape=deae6bfe vocab=95aac155
+-/
 theorem wt_le_ker_lapply {m j : ℤ} (hm : m ≠ e + 2 * j) :
     wt e m ≤ LinearMap.ker (Finsupp.lapply (M := ℂ) (R := ℂ) j) := by
   by_cases h : Even (m - e)
@@ -177,6 +243,9 @@ theorem wt_le_ker_lapply {m j : ℤ} (hm : m ≠ e + 2 * j) :
     simp [b_apply, hne]
   · rw [wt_of_not_even e h]; exact bot_le
 
+/--
+@isnad1 id=isupinde.0h1v.s5.4c06a1705ed7 from=translated src=- shape=13d1c036 vocab=0b5d922a
+-/
 theorem iSupIndep_wt : iSupIndep (wt e) := by
   rw [iSupIndep_def]
   intro n
@@ -193,6 +262,9 @@ theorem iSupIndep_wt : iSupIndep (wt e) := by
     simp [b_apply]
   · rw [wt_of_not_even e h]; exact disjoint_bot_left
 
+/--
+@isnad1 id=eq.0h1v.s7.68e4c2d50590 from=translated src=- shape=6cfd8014 vocab=91879b9b
+-/
 theorem iSup_wt : (⨆ n : ℤ, wt e n) = ⊤ := by
   rw [Submodule.eq_top_iff']
   intro v
@@ -203,6 +275,9 @@ theorem iSup_wt : (⨆ n : ℤ, wt e n) = ⊤ := by
     rw [single_eq_smul_b]
     exact Submodule.smul_mem _ _ (Submodule.mem_iSup_of_mem (e + 2 * j) (b_mem_wt e j))
 
+/--
+@isnad1 id=isgl2rea.0h1v.s4.affca50ed737 from=translated src=- shape=d76df806 vocab=84ccf4cb
+-/
 theorem isGL2RealKTypeModule : IsGL2RealKTypeModule (wt e) (E e) (L e) (ε e) where
   isInternal := DirectSum.isInternal_submodule_of_iSupIndep_of_iSup_eq_top
     (iSupIndep_wt e) (iSup_wt e)
@@ -213,17 +288,26 @@ theorem isGL2RealKTypeModule : IsGL2RealKTypeModule (wt e) (E e) (L e) (ε e) wh
   refl_comp_refl := refl_comp_refl e
   refl_comp_raise := refl_comp_raise e
 
+/--
+@isnad1 id=finitedi.0h2v.s7.3825a52c411b from=translated src=- shape=a35d85ed vocab=9478210a
+-/
 theorem finiteDimensional_wt (n : ℤ) : FiniteDimensional ℂ (wt e n) := by
   by_cases h : Even (n - e)
   · rw [wt_of_even e h]; infer_instance
   · rw [wt_of_not_even e h]; infer_instance
 
+/--
+@isnad1 id=iff.0h2v.s6.9d11d36816db from=translated src=- shape=e4841557 vocab=61f1907c
+-/
 theorem wt_ne_bot_iff (n : ℤ) : wt e n ≠ ⊥ ↔ Even (n - e) := by
   by_cases h : Even (n - e)
   · rw [wt_of_even e h]
     simp [h, b_ne_zero]
   · rw [wt_of_not_even e h]; simp [h]
 
+/--
+@isnad1 id=infinite.0h1v.s6.ff5ec4036d1c from=translated src=- shape=0c060158 vocab=1f930e8f
+-/
 theorem infinite_support : {n : ℤ | wt e n ≠ ⊥}.Infinite := by
   have hinj : Function.Injective fun j : ℕ => e + 2 * (j : ℤ) := by
     intro a b hab; simp only at hab; omega
@@ -244,6 +328,9 @@ theorem eq_zero_of_lower_eq_zero (k : ℤ) (v : ℤ →₀ ℂ) (hv : v ∈ wt e
     · exact absurd hc (cL_ne_zero e j)
   · rfl
 
+/--
+@isnad1 id=ex.2h2v.s8.dc97c683e8a9 from=translated src=- shape=ec1161c7 vocab=e4232151
+-/
 theorem exists_b_mem {W : Submodule ℂ (ℤ →₀ ℂ)} (hW : W ≤ ⨆ n : ℤ, W ⊓ wt e n) (hW0 : W ≠ ⊥) :
     ∃ j : ℤ, b j ∈ W := by
   by_contra hcon
@@ -264,6 +351,9 @@ theorem exists_b_mem {W : Submodule ℂ (ℤ →₀ ℂ)} (hW : W ≤ ⨆ n : �
   refine hW.trans ?_
   simp [hall]
 
+/--
+@isnad1 id=mem.3h4v.s8.b191d7cc9827 from=translated src=- shape=d07f0711 vocab=9c6b8390
+-/
 theorem b_mem_all {W : Submodule ℂ (ℤ →₀ ℂ)} (hE : W.map (E e) ≤ W) (hL : W.map (L e) ≤ W)
     {j : ℤ} (hj : b j ∈ W) (i : ℤ) : b i ∈ W := by
   induction i using Int.inductionOn' with
@@ -280,6 +370,9 @@ theorem b_mem_all {W : Submodule ℂ (ℤ →₀ ℂ)} (hE : W.map (E e) ≤ W) 
     have := Submodule.smul_mem W (cL e i)⁻¹ h1
     rwa [smul_smul, inv_mul_cancel₀ (cL_ne_zero e i), one_smul] at this
 
+/--
+@isnad1 id=isirredu.0h1v.s4.2cf31daf3167 from=translated src=- shape=d76df806 vocab=faf4fb79
+-/
 theorem isIrreducible : IsIrreducibleGL2RealKTypeModule (wt e) (E e) (L e) (ε e) := by
   refine ⟨⟨b 0, b_ne_zero 0⟩, fun W hW => ?_⟩
   obtain ⟨hgr, hE, hL, -⟩ := hW
@@ -299,6 +392,9 @@ theorem isIrreducible : IsIrreducibleGL2RealKTypeModule (wt e) (E e) (L e) (ε e
 end AutomorphicForm.GL2RealPrincipalSeriesModel
 
 open AutomorphicForm.GL2RealPrincipalSeriesModel in
+/--
+@isnad1 id=ex.0h1v.s8.b4b73517088d from=translated src=- shape=39846964 vocab=e680510d
+-/
 theorem solution (e : ℤ) :
     ∃ (M : Type) (_ : AddCommGroup M) (_ : Module ℂ M) (wt : ℤ → Submodule ℂ M)
       (E L ε : M →ₗ[ℂ] M),

@@ -49,6 +49,9 @@ private theorem apply_mul_of_comul_eq (δ : CartierDual k B)
 
 end CartierDual.FrobPrimC12
 
+/--
+@isnad1 id=eq.1h6v.s10.bf437638c27c from=translated src=- shape=232bb5b8 vocab=ef23f4d0
+-/
 theorem solution
     (k : Type u) [CommRing k] (p : ℕ) [Fact p.Prime] [CharP k p]
     (B : Type v) [CommRing B] [Bialgebra k B] [Module.Free k B] [Module.Finite k B]

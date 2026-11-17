@@ -18,19 +18,31 @@ open _root_.AutomorphicForm
 
 def rotM (α β : ℝ) : Matrix (Fin 2) (Fin 2) ℝ := !![α, -β; β, α]
 
+/--
+@isnad1 id=eq.0h2v.s6.3c383daf67d1 from=translated src=- shape=1cdd2958 vocab=d3e1e001
+-/
 theorem det_rotM (α β : ℝ) : (rotM α β).det = α ^ 2 + β ^ 2 := by
   rw [rotM, Matrix.det_fin_two_of]; ring
 
+/--
+@isnad1 id=ne.1h2v.s6.ddd431dfcd89 from=translated src=- shape=475bb500 vocab=d3e1e001
+-/
 theorem det_rotM_ne_zero {α β : ℝ} (h : α ^ 2 + β ^ 2 = 1) : (rotM α β).det ≠ 0 := by
   rw [det_rotM, h]; exact one_ne_zero
 
 def rotGL (α β : ℝ) (h : α ^ 2 + β ^ 2 = 1) : GL (Fin 2) ℝ :=
   Matrix.GeneralLinearGroup.mkOfDetNeZero (rotM α β) (det_rotM_ne_zero h)
 
+/--
+@isnad1 id=eq.1h2v.s7.d0d3977d1f53 from=translated src=- shape=32eef147 vocab=3a60e43b
+-/
 @[scoped simp] theorem coe_rotGL (α β : ℝ) (h : α ^ 2 + β ^ 2 = 1) :
     ((rotGL α β h : GL (Fin 2) ℝ) : Matrix (Fin 2) (Fin 2) ℝ) = rotM α β := by
   simp [rotGL]
 
+/--
+@isnad1 id=mem.1h2v.s8.9f37bc60f1e3 from=translated src=- shape=69be4c80 vocab=50993765
+-/
 theorem rotGL_mem (α β : ℝ) (h : α ^ 2 + β ^ 2 = 1) : rotGL α β h ∈ rowIsometrySubgroup₀ ℝ := by
   rw [mem_rowIsometrySubgroup₀_iff]
   refine ⟨?_, ?_, ?_⟩
@@ -41,6 +53,9 @@ theorem rotGL_mem (α β : ℝ) (h : α ^ 2 + β ^ 2 = 1) : rotGL α β h ∈ ro
       Matrix.cons_val_one, Matrix.cons_val_fin_one, Real.norm_eq_abs, sq_abs]
     linear_combination (x ^ 2 + y ^ 2) * h
 
+/--
+@isnad1 id=eq.6h6v.s11.8868af07b6c9 from=translated src=- shape=4039279a vocab=9f0c11e0
+-/
 theorem main
     (B : Matrix (Fin 2) (Fin 2) ℝ → ℂ) (u z : ℝ → ℂ) (χ : rowIsometrySubgroup₀ ℝ → ℂ)
     (hU : ∀ (t : ℝ) (x : Matrix (Fin 2) (Fin 2) ℝ), x.det ≠ 0 → B (!![1, t; 0, 1] * x) = u t * B x)
@@ -161,6 +176,9 @@ end
 open scoped _root_.P2MW.S_AutomorphicForm_eq_zero_of_forall_torusRay_eq_zero_of_mul_det_pos.AutomorphicForm _root_.P2MW.S_AutomorphicForm_eq_zero_of_forall_torusRay_eq_zero_of_mul_det_pos.AutomorphicForm.TorusRayEngine
 
 open _root_.AutomorphicForm _root_.P2MW.S_AutomorphicForm_eq_zero_of_forall_torusRay_eq_zero_of_mul_det_pos.AutomorphicForm in
+/--
+@isnad1 id=eq.6h6v.s11.8868af07b6c9 from=translated src=- shape=4039279a vocab=9f0c11e0
+-/
 theorem solution
     (B : Matrix (Fin 2) (Fin 2) ℝ → ℂ) (u z : ℝ → ℂ) (χ : rowIsometrySubgroup₀ ℝ → ℂ)
     (hU : ∀ (t : ℝ) (x : Matrix (Fin 2) (Fin 2) ℝ), x.det ≠ 0 → B (!![1, t; 0, 1] * x) = u t * B x)

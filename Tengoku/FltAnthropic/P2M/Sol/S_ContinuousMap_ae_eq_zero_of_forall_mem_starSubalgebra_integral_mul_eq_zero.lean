@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 open MeasureTheory
 
+/--
+@isnad1 id=eventual.2h4v.s9.0af629a3166e from=translated src=- shape=e9abd8fe vocab=ae804588
+-/
 theorem solution
     {X : Type*} [TopologicalSpace X] [CompactSpace X] [T2Space X]
     [MeasurableSpace X] [BorelSpace X]

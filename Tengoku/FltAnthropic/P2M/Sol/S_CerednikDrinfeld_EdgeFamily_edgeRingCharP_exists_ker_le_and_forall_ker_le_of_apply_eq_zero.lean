@@ -18,6 +18,9 @@ variable (p : ℕ) [hp : Fact p.Prime] (k : Type) [Field k]
 
 noncomputable abbrev d : k[X] := X ^ (p - 1) - 1
 
+/--
+@isnad1 id=ne.0h2v.s5.e6debe7e9ec6 from=translated src=- shape=3b3d5b3f vocab=10a9285a
+-/
 theorem d_ne_zero : d p k ≠ 0 := by
   intro h
   have hp1 : p - 1 ≠ 0 := by have := hp.out.two_le; omega
@@ -32,10 +35,16 @@ abbrev A : Type := Localization.Away (d p k)
 scoped instance : IsDomain (A p k) :=
   IsLocalization.isDomain_localization (powers_le_nonZeroDivisors_of_noZeroDivisors (d_ne_zero p k))
 
+/--
+@isnad1 id=isunit.0h2v.s10.d17f640043c9 from=translated src=- shape=8c4c127e vocab=191c99aa
+-/
 theorem isUnit_d : IsUnit (algebraMap k[X] (A p k) X ^ (p - 1) - 1) := by
   have : IsUnit (algebraMap k[X] (A p k) (X ^ (p - 1) - 1)) := IsLocalization.Away.algebraMap_isUnit (S := A p k) (d p k)
   rwa [map_sub, map_pow, map_one] at this
 
+/--
+@isnad1 id=isunit.0h2v.s9.24bcb51bae6f from=translated src=- shape=b88b9923 vocab=2b1f148a
+-/
 theorem isUnit_zero_pow_sub_one : IsUnit ((0 : A p k) ^ (p - 1) - 1) := by
   have hp1 : p - 1 ≠ 0 := by have := hp.out.two_le; omega
   rw [zero_pow hp1, zero_sub]; exact isUnit_one.neg
@@ -49,6 +58,9 @@ noncomputable def ptη : (FormalOmega.chartE k (0 : k) p).obj (A p k) :=
 noncomputable def gξ : EdgeFamily.edgeRingCharP p k →ₐ[k] A p k := FormalOmega.chartERing.lift (ptξ p k)
 noncomputable def gη : EdgeFamily.edgeRingCharP p k →ₐ[k] A p k := FormalOmega.chartERing.lift (ptη p k)
 
+/--
+@isnad1 id=le.1h4v.s13.3496643d5aae from=translated src=- shape=462bfba5 vocab=aaf338ff
+-/
 theorem ker_gξ_le {κ' : Type} [Field κ'] (f' : EdgeFamily.edgeRingCharP p k →+* κ')
     (hη : f' (EdgeFamily.edgeRingCharP.η p k) = 0) :
     RingHom.ker (gξ p k : EdgeFamily.edgeRingCharP p k →+* A p k) ≤ RingHom.ker f' := by
@@ -90,6 +102,9 @@ theorem ker_gξ_le {κ' : Type} [Field κ'] (f' : EdgeFamily.edgeRingCharP p k �
     rw [hcomp]
   rw [this, show (gξ p k) e = (gξ p k : EdgeFamily.edgeRingCharP p k →+* A p k) e from rfl, he, map_zero]
 
+/--
+@isnad1 id=le.1h4v.s13.f9a4633aa338 from=translated src=- shape=462bfba5 vocab=2854bf7f
+-/
 theorem ker_gη_le {κ' : Type} [Field κ'] (f' : EdgeFamily.edgeRingCharP p k →+* κ')
     (hξ : f' (EdgeFamily.edgeRingCharP.ξ p k) = 0) :
     RingHom.ker (gη p k : EdgeFamily.edgeRingCharP p k →+* A p k) ≤ RingHom.ker f' := by
@@ -132,6 +147,9 @@ end Ws28H7
 open scoped _root_.P2MW.S_CerednikDrinfeld_EdgeFamily_edgeRingCharP_exists_ker_le_and_forall_ker_le_of_apply_eq_zero.Ws28H7
 
 open Ws28H7 in
+/--
+@isnad1 id=ex.0h4v.s13.a0d88ff51eb0 from=translated src=- shape=dff8a742 vocab=758df517
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] (k : Type) [Field k]
     (κ : Type) [Field κ] (f : EdgeFamily.edgeRingCharP p k →+* κ) :

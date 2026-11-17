@@ -732,6 +732,9 @@ end P2M.ReflectedLowering
 
 open P2M.ReflectedLowering in
 
+/--
+@isnad1 id=and.3h4v.s10.4b623fb00426 from=translated src=- shape=9b53cb7a vocab=832d2ddf
+-/
 theorem solution (F : Type) [Field F] [NumberField F] (w : InfinitePlace F) (hw : w.IsReal)
     (T : (AdelicGL2 (𝓞 F) F → ℂ) → AdelicGL2 (𝓞 F) F → ℂ)
     (hT : T = fun (θ : AdelicGL2 (𝓞 F) F → ℂ) (g : AdelicGL2 (𝓞 F) F) =>

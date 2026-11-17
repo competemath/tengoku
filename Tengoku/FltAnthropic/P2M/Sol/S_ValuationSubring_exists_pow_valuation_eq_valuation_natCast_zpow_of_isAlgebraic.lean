@@ -14,6 +14,9 @@ section ValueGroup
 
 variable {K : Type*} [Field K] (A : ValuationSubring K)
 
+/--
+@isnad1 id=eq.3h4v.s8.0a1956849517 from=translated src=- shape=906e9147 vocab=c462ff38
+-/
 theorem valuation_intCast_eq_one_of_not_dvd {p : ℕ} (hp : p.Prime)
     (hAp : A.valuation (p : K) < 1) {a : ℤ} (ha : ¬ (p : ℤ) ∣ a) :
     A.valuation (a : K) = 1 := by
@@ -52,6 +55,9 @@ theorem valuation_intCast_eq_one_of_not_dvd {p : ℕ} (hp : p.Prime)
   rw [h1, map_one] at this
   exact lt_irrefl _ this
 
+/--
+@isnad1 id=ex.3h4v.s8.ede362fbdbc5 from=translated src=- shape=7b10f2e0 vocab=a5600411
+-/
 theorem exists_valuation_natCast_eq_pow {p : ℕ} (hp : p.Prime)
     (hAp : A.valuation (p : K) < 1) {n : ℕ} (hn : n ≠ 0) :
     ∃ e : ℕ, A.valuation (n : K) = A.valuation (p : K) ^ e := by
@@ -64,6 +70,9 @@ theorem exists_valuation_natCast_eq_pow {p : ℕ} (hp : p.Prime)
   rw [Int.cast_natCast] at h1
   rw [h1, mul_one]
 
+/--
+@isnad1 id=ex.3h4v.s8.09ce4a66c752 from=translated src=- shape=9acf30ce vocab=6d71e17a
+-/
 theorem exists_valuation_ratCast_eq_zpow [CharZero K] {p : ℕ} (hp : p.Prime)
     (hAp : A.valuation (p : K) < 1) {c : ℚ} (hc : c ≠ 0) :
     ∃ k : ℤ, A.valuation (c : K) = A.valuation (p : K) ^ k := by
@@ -84,6 +93,9 @@ theorem exists_valuation_ratCast_eq_zpow [CharZero K] {p : ℕ} (hp : p.Prime)
 
 variable [Algebra ℚ K] [Algebra.IsAlgebraic ℚ K]
 
+/--
+@isnad1 id=ex.3h4v.s8.9974a3ccf142 from=translated src=- shape=527af619 vocab=85647ecb
+-/
 theorem exists_pow_valuation_eq_valuation_prime_zpow {p : ℕ} (hp : p.Prime)
     (hAp : A.valuation (p : K) < 1) {x : K} (hx : x ≠ 0) :
     ∃ n : ℕ, 0 < n ∧ ∃ k : ℤ, A.valuation x ^ n = A.valuation (p : K) ^ k := by
@@ -98,6 +110,9 @@ end ValueGroup
 
 end P2mR1W0zpow
 
+/--
+@isnad1 id=ex.3h4v.s8.dfd48e0cfdd7 from=translated src=- shape=47e798e8 vocab=85647ecb
+-/
 theorem solution
     {K : Type*} [Field K] [Algebra ℚ K] [Algebra.IsAlgebraic ℚ K]
     (A : ValuationSubring K) {p : ℕ} (hp : p.Prime) (hAp : A.valuation (p : K) < 1)

@@ -12,6 +12,9 @@ open Polynomial
 
 namespace UQA
 
+/--
+@isnad1 id=ex.2h7v.s8.4cc9fcf57ad8 from=translated src=- shape=921d6359 vocab=1da41d00
+-/
 theorem approx {𝒪 : Type} [CommRing 𝒪] {S : Type} [CommRing S] [Algebra 𝒪 S] (π : 𝒪)
     [IsPrecomplete (Ideal.span {π}) 𝒪] [IsHausdorff (Ideal.span {algebraMap 𝒪 S π}) S]
     (V : Set S) {n : ℕ} (e : Fin n → S)
@@ -86,6 +89,9 @@ theorem approx {𝒪 : Type} [CommRing 𝒪] {S : Type} [CommRing S] [Algebra �
 
 end UQA
 
+/--
+@isnad1 id=ex.10h5v.s10.551493cb6baf from=translated src=- shape=8d4615e0 vocab=85ebe6b6
+-/
 theorem F3a_core
 
     {r : ℕ} [Fact r.Prime]
@@ -445,6 +451,9 @@ theorem F3a_core
     exact isUnit_of_mul_isUnit_left h2
   exact ⟨ζ, hζO2, hspan, hunit, hfix⟩
 
+/--
+@isnad1 id=and.11h7v.s19.17c87f0b510b from=translated src=- shape=f9d6e299 vocab=0d426bc0
+-/
 theorem solution
 
     {r : ℕ} [Fact r.Prime]

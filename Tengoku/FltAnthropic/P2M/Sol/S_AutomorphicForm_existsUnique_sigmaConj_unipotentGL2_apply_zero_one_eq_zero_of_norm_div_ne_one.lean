@@ -14,11 +14,17 @@ open Matrix
 
 variable {F L : Type*} [Field F] [Field L] [Algebra F L]
 
+/--
+@isnad1 id=eq.0h3v.s9.2347fd6cecd9 from=translated src=- shape=16df5c7c vocab=bf976b3a
+-/
 theorem coe_map (σ : L →+* L) (g : GL (Fin 2) L) :
     ((Matrix.GeneralLinearGroup.map σ g : GL (Fin 2) L) : Matrix (Fin 2) (Fin 2) L)
       = (g : Matrix (Fin 2) (Fin 2) L).map σ := by
   ext i j; rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.c8ddca59174a from=translated src=- shape=4fe31e05 vocab=f78d563b
+-/
 theorem map_unipotentGL2 (σ : L →+* L) (s : L) :
     Matrix.GeneralLinearGroup.map σ (AutomorphicForm.unipotentGL2 s)
       = AutomorphicForm.unipotentGL2 (σ s) := by
@@ -27,11 +33,17 @@ theorem map_unipotentGL2 (σ : L →+* L) (s : L) :
   ext i j
   fin_cases i <;> fin_cases j <;> simp
 
+/--
+@isnad1 id=eq.0h2v.s7.bd794a53024d from=translated src=- shape=4fb0e637 vocab=b564676b
+-/
 theorem unipotentGL2_inv (s : L) :
     (AutomorphicForm.unipotentGL2 s)⁻¹ = AutomorphicForm.unipotentGL2 (-s) := by
   rw [inv_eq_iff_mul_eq_one, ← AutomorphicForm.unipotentGL2_add, add_neg_cancel,
     AutomorphicForm.unipotentGL2_zero]
 
+/--
+@isnad1 id=eq.1h4v.s9.bea7bc2f8140 from=translated src=- shape=3883142a vocab=d54b6b62
+-/
 theorem sigmaConj_unipotent_apply_zero_one (σ : L →+* L) (s : L) (γ : GL (Fin 2) L)
     (h10 : (γ : Matrix (Fin 2) (Fin 2) L) 1 0 = 0) :
     ((AutomorphicForm.sigmaConj σ (AutomorphicForm.unipotentGL2 s) γ : GL (Fin 2) L) :
@@ -47,6 +59,9 @@ theorem sigmaConj_unipotent_apply_zero_one (σ : L →+* L) (s : L) (γ : GL (Fi
 end R4HypH3
 
 open R4HypH3 in
+/--
+@isnad1 id=existsun.2h4v.s9.c72a88d1044a from=translated src=- shape=64070507 vocab=0b35f245
+-/
 theorem solution
     {F L : Type*} [Field F] [Field L] [Algebra F L] [FiniteDimensional F L]
     (σ : L ≃ₐ[F] L) (γ : Matrix.GeneralLinearGroup (Fin 2) L)

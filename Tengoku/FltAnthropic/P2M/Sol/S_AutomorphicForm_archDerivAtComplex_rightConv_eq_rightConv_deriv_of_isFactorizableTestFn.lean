@@ -1086,6 +1086,9 @@ section Head
 
 open NumberField NumberField.AdelicLevel AutomorphicForm
 
+/--
+@isnad1 id=and.1h3v.s13.1ede79007f2e from=translated src=- shape=24e3e577 vocab=39fe060d
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K] {w : InfinitePlace K} (hw : w.IsComplex) (d : ArchDirComplex) :
     (∀ φ α : AdelicGL2 (𝓞 K) K → ℂ, Continuous φ → IsFactorizableTestFn K α →

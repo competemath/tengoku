@@ -19,9 +19,15 @@ open _root_.AutomorphicForm
 
 open Complex Matrix
 
+/--
+@isnad1 id=eq.0h1v.s8.a94ffeb4d01f from=translated src=- shape=0190e490 vocab=a8b4cb04
+-/
 theorem splitTorusGL2Complex_coe' (z : ℂ) :
     ((splitTorusGL2Complex z : GL (Fin 2) ℂ) : Matrix (Fin 2) (Fin 2) ℂ) = !![exp z, 0; 0, exp (-z)] := rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.01ef603b4046 from=translated src=- shape=07c2549f vocab=4f1ac730
+-/
 theorem splitTorus_mul_unipotent (z x : ℂ) :
     splitTorusGL2Complex z * unipotentGL2 x = unipotentGL2 (exp (2 * z) * x) * splitTorusGL2Complex z := by
   ext i j
@@ -30,6 +36,9 @@ theorem splitTorus_mul_unipotent (z x : ℂ) :
   rw [show (2 : ℂ) * z = z + z by ring, Complex.exp_add, Complex.exp_neg]
   field_simp
 
+/--
+@isnad1 id=eq.0h2v.s7.2b9072a5b9fc from=translated src=- shape=89b4e485 vocab=a4569f7f
+-/
 theorem splitTorus_mul_splitTorus (z z' : ℂ) :
     splitTorusGL2Complex z * splitTorusGL2Complex z' = splitTorusGL2Complex (z + z') :=
   (splitTorusGL2Complex_add z z').symm
@@ -56,16 +65,28 @@ def rotS (s : ℝ) : GL (Fin 2) ℂ :=
           _ = 1 := by rw [this]; simp
       rw [h]; exact one_ne_zero)
 
+/--
+@isnad1 id=eq.0h1v.s8.3b6521e27c6c from=translated src=- shape=9eb66bc7 vocab=4d2ad29f
+-/
 theorem rotR_coe (s : ℝ) : ((rotR s : GL (Fin 2) ℂ) : Matrix (Fin 2) (Fin 2) ℂ) =
     !![Complex.cos s, -Complex.sin s; Complex.sin s, Complex.cos s] := by
   simp [rotR, Matrix.GeneralLinearGroup.mkOfDetNeZero, Complex.ofReal_cos, Complex.ofReal_sin]
 
+/--
+@isnad1 id=eq.0h1v.s8.d0bacb033c5c from=translated src=- shape=679ec56b vocab=eb17e1e8
+-/
 theorem rotS_coe (s : ℝ) : ((rotS s : GL (Fin 2) ℂ) : Matrix (Fin 2) (Fin 2) ℂ) =
     !![Complex.cos s, I * Complex.sin s; I * Complex.sin s, Complex.cos s] := by
   simp [rotS, Matrix.GeneralLinearGroup.mkOfDetNeZero, Complex.ofReal_cos, Complex.ofReal_sin]
 
+/--
+@isnad1 id=lt.0h1v.s5.2b99a925531c from=translated src=- shape=2f69cd06 vocab=08bd26e6
+-/
 theorem sqrt_one_add_sq_pos (t : ℝ) : 0 < Real.sqrt (1 + t ^ 2) := Real.sqrt_pos.2 (by positivity)
 
+/--
+@isnad1 id=eq.0h1v.s6.257d38d92272 from=translated src=- shape=f2a6d0c4 vocab=e783e4bc
+-/
 theorem cexp_neg_log_half (t : ℝ) : exp (((-(Real.log (1 + t ^ 2)) / 2 : ℝ) : ℂ)) = (((Real.sqrt (1 + t ^ 2))⁻¹ : ℝ) : ℂ) := by
   have hpos : (0:ℝ) < 1 + t ^ 2 := by positivity
   rw [← Complex.ofReal_exp]
@@ -73,6 +94,9 @@ theorem cexp_neg_log_half (t : ℝ) : exp (((-(Real.log (1 + t ^ 2)) / 2 : ℝ) 
   rw [show -(Real.log (1 + t ^ 2)) / 2 = -(Real.log (Real.sqrt (1 + t ^ 2))) by rw [Real.log_sqrt hpos.le]; ring,
     Real.exp_neg, Real.exp_log (sqrt_one_add_sq_pos t)]
 
+/--
+@isnad1 id=eq.0h1v.s6.ff9f96f4c720 from=translated src=- shape=21d9264d vocab=83170334
+-/
 theorem cexp_neg_neg_log_half (t : ℝ) : exp (-(((-(Real.log (1 + t ^ 2)) / 2 : ℝ) : ℂ))) = ((Real.sqrt (1 + t ^ 2) : ℝ) : ℂ) := by
   have hpos : (0:ℝ) < 1 + t ^ 2 := by positivity
   rw [← Complex.ofReal_neg, ← Complex.ofReal_exp]
@@ -80,12 +104,21 @@ theorem cexp_neg_neg_log_half (t : ℝ) : exp (-(((-(Real.log (1 + t ^ 2)) / 2 :
   rw [show -(-(Real.log (1 + t ^ 2)) / 2) = Real.log (Real.sqrt (1 + t ^ 2)) by rw [Real.log_sqrt hpos.le]; ring,
     Real.exp_log (sqrt_one_add_sq_pos t)]
 
+/--
+@isnad1 id=eq.0h1v.s5.62ab541d9655 from=translated src=- shape=b5a00709 vocab=54ded3b2
+-/
 theorem cos_arctan' (t : ℝ) : Complex.cos (Real.arctan t) = (((Real.sqrt (1 + t ^ 2))⁻¹ : ℝ) : ℂ) := by
   rw [← Complex.ofReal_cos, Real.cos_arctan, one_div]
 
+/--
+@isnad1 id=eq.0h1v.s5.79efcfc9ec4a from=translated src=- shape=9d4c80c1 vocab=c7ca684b
+-/
 theorem sin_arctan' (t : ℝ) : Complex.sin (Real.arctan t) = ((t * (Real.sqrt (1 + t ^ 2))⁻¹ : ℝ) : ℂ) := by
   rw [← Complex.ofReal_sin, Real.sin_arctan, div_eq_mul_inv]
 
+/--
+@isnad1 id=eq.0h1v.s8.4daff8cb6a38 from=translated src=- shape=9d15f626 vocab=844ba66f
+-/
 theorem lowerUnipotent_real_iwasawa (t : ℝ) :
     lowerUnipotentGL2 ((t : ℝ) : ℂ) =
       unipotentGL2 (((t / (1 + t ^ 2) : ℝ)) : ℂ) * splitTorusGL2Complex ((-(Real.log (1 + t ^ 2)) / 2 : ℝ) : ℂ) *
@@ -104,6 +137,9 @@ theorem lowerUnipotent_real_iwasawa (t : ℝ) :
   fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two] <;> push_cast <;> field_simp
   all_goals (first | ring1 | linear_combination hs2C)
 
+/--
+@isnad1 id=eq.0h1v.s8.d76bf7a5e86c from=translated src=- shape=f493bb39 vocab=3ae20bbc
+-/
 theorem lowerUnipotent_imag_iwasawa (t : ℝ) :
     lowerUnipotentGL2 (((t : ℝ) : ℂ) * I) =
       unipotentGL2 (-(I * (((t / (1 + t ^ 2) : ℝ)) : ℂ))) * splitTorusGL2Complex ((-(Real.log (1 + t ^ 2)) / 2 : ℝ) : ℂ) *
@@ -127,22 +163,49 @@ section Generic
 
 def aT (y : ℝ) : GL (Fin 2) ℂ := splitTorusGL2Complex (((Real.log y / 2 : ℝ)) : ℂ)
 
+/--
+@isnad1 id=eq.0h1v.s4.f8fd25498697 from=translated src=- shape=f1e08ad7 vocab=2c3723fe
+-/
 theorem flowH (t : ℝ) : archFlowMatrixComplex .H t = splitTorusGL2Complex (t : ℂ) := rfl
+/--
+@isnad1 id=eq.0h1v.s5.f7606b92ccb7 from=translated src=- shape=49f2798f vocab=0d65dfa8
+-/
 theorem flowiH (t : ℝ) : archFlowMatrixComplex .iH t = splitTorusGL2Complex ((t : ℂ) * I) := rfl
+/--
+@isnad1 id=eq.0h1v.s5.e9c8993facd7 from=translated src=- shape=bbda4f95 vocab=2a16c845
+-/
 theorem flowE (t : ℝ) : archFlowMatrixComplex .E t = unipotentGL2 (t : ℂ) := rfl
+/--
+@isnad1 id=eq.0h1v.s5.efad1436dbcf from=translated src=- shape=a17b584f vocab=eff86186
+-/
 theorem flowiE (t : ℝ) : archFlowMatrixComplex .iE t = unipotentGL2 ((t : ℂ) * I) := rfl
+/--
+@isnad1 id=eq.0h1v.s5.4a65b0557474 from=translated src=- shape=bbda4f95 vocab=e384c368
+-/
 theorem flowFm (t : ℝ) : archFlowMatrixComplex .Fm t = lowerUnipotentGL2 (t : ℂ) := rfl
+/--
+@isnad1 id=eq.0h1v.s5.d0f2c4841a6a from=translated src=- shape=a17b584f vocab=de8f80e8
+-/
 theorem flowiFm (t : ℝ) : archFlowMatrixComplex .iFm t = lowerUnipotentGL2 ((t : ℂ) * I) := rfl
 
+/--
+@isnad1 id=eq.2h2v.s7.5830f784d85f from=translated src=- shape=0f1e032e vocab=16e5b4ec
+-/
 theorem aT_mul_flowH (y s : ℝ) (hy : 0 < y) (hs : 0 < s) :
     aT y * archFlowMatrixComplex .H (Real.log s / 2 - Real.log y / 2) = aT s := by
   rw [flowH, aT, aT, splitTorus_mul_splitTorus]; congr 1; push_cast; ring
 
+/--
+@isnad1 id=hasderiv.1h1v.s6.e60942ca3756 from=translated src=- shape=beac6449 vocab=54d7123c
+-/
 theorem hasDerivAt_log_half (y : ℝ) (hy : 0 < y) :
     HasDerivAt (fun s : ℝ => Real.log s / 2 - Real.log y / 2) (1 / (2 * y)) y := by
   have h := ((Real.hasDerivAt_log hy.ne').div_const 2).sub_const (Real.log y / 2)
   convert h using 1 <;> first | rfl | field_simp
 
+/--
+@isnad1 id=hasderiv.2h3v.s8.a6511de3f2ab from=translated src=- shape=c77962ef vocab=83b79784
+-/
 theorem hasDerivAt_torus (G DG : GL (Fin 2) ℂ → ℂ)
     (hG : ∀ h, HasDerivAt (fun t : ℝ => G (h * archFlowMatrixComplex .H t)) (DG h) 0) (y : ℝ) (hy : 0 < y) :
     HasDerivAt (fun s : ℝ => G (aT s)) ((1 / (2 * y) : ℝ) • DG (aT y)) y := by
@@ -156,6 +219,9 @@ theorem hasDerivAt_torus (G DG : GL (Fin 2) ℂ → ℂ)
 
 def psiK (κ x : ℂ) : ℂ := Complex.exp (2 * Real.pi * Complex.I * ((2 * (κ * x).re : ℝ) : ℂ))
 
+/--
+@isnad1 id=eq.2h6v.s9.5265d0dfc50f from=translated src=- shape=7b23558f vocab=e5092bc4
+-/
 theorem covariant_deriv (κ : ℂ) (G DG : GL (Fin 2) ℂ → ℂ) (d : ArchDirComplex)
     (hG : ∀ h, HasDerivAt (fun t : ℝ => G (h * archFlowMatrixComplex d t)) (DG h) 0)
     (hN : ∀ (x : ℂ) (h : GL (Fin 2) ℂ), G (unipotentGL2 x * h) = psiK κ x * G h) :
@@ -169,12 +235,18 @@ theorem covariant_deriv (κ : ℂ) (G DG : GL (Fin 2) ℂ → ℂ) (d : ArchDirC
     rw [mul_assoc, hN]
   exact h1.unique h2
 
+/--
+@isnad1 id=eq.1h2v.s8.24d4dade68b8 from=translated src=- shape=9a63b90f vocab=f839e16f
+-/
 theorem aT_mul_unipotent (y : ℝ) (hy : 0 < y) (x : ℂ) : aT y * unipotentGL2 x = unipotentGL2 ((y : ℂ) * x) * aT y := by
   rw [aT, splitTorus_mul_unipotent]
   congr 2
   rw [show (2 : ℂ) * (((Real.log y / 2 : ℝ)) : ℂ) = ((Real.log y : ℝ) : ℂ) by push_cast; ring, ← Complex.ofReal_exp,
     Real.exp_log hy]
 
+/--
+@isnad1 id=hasderiv.0h2v.s7.efcfe04661b3 from=translated src=- shape=589e3145 vocab=95811e9e
+-/
 theorem hasDerivAt_psiK_real (κ : ℂ) (y : ℝ) :
     HasDerivAt (fun t : ℝ => psiK κ ((y : ℂ) * (t : ℂ))) (2 * Real.pi * Complex.I * ((2 * y * κ.re : ℝ) : ℂ)) 0 := by
   unfold psiK
@@ -192,6 +264,9 @@ theorem hasDerivAt_psiK_real (κ : ℂ) (y : ℝ) :
   all_goals first | rfl | skip
   simp [hre]
 
+/--
+@isnad1 id=hasderiv.0h2v.s7.2a6a854b8721 from=translated src=- shape=59ce73ef vocab=558e2ae3
+-/
 theorem hasDerivAt_psiK_imag (κ : ℂ) (y : ℝ) :
     HasDerivAt (fun t : ℝ => psiK κ ((y : ℂ) * ((t : ℂ) * I))) (2 * Real.pi * Complex.I * ((-(2 * y * κ.im) : ℝ) : ℂ)) 0 := by
   unfold psiK
@@ -209,6 +284,9 @@ theorem hasDerivAt_psiK_imag (κ : ℂ) (y : ℝ) :
   all_goals first | rfl | skip
   simp [hre]
 
+/--
+@isnad1 id=eq.3h4v.s9.47fa1ac9a6a9 from=translated src=- shape=1eec9225 vocab=59e1759e
+-/
 theorem derivE_torus (κ : ℂ) (G : GL (Fin 2) ℂ → ℂ) (V : ℂ) (y : ℝ) (hy : 0 < y)
     (hN : ∀ (x : ℂ) (h : GL (Fin 2) ℂ), G (unipotentGL2 x * h) = psiK κ x * G h)
     (hV : HasDerivAt (fun t : ℝ => G (aT y * archFlowMatrixComplex .E t)) V 0) :
@@ -219,6 +297,9 @@ theorem derivE_torus (κ : ℂ) (G : GL (Fin 2) ℂ → ℂ) (V : ℂ) (y : ℝ)
   have h2 := (hasDerivAt_psiK_real κ y).mul_const (G (aT y))
   exact hV.unique h2
 
+/--
+@isnad1 id=eq.3h4v.s9.5d6ee4d6e3ad from=translated src=- shape=5ca9777a vocab=acce4669
+-/
 theorem deriviE_torus (κ : ℂ) (G : GL (Fin 2) ℂ → ℂ) (V : ℂ) (y : ℝ) (hy : 0 < y)
     (hN : ∀ (x : ℂ) (h : GL (Fin 2) ℂ), G (unipotentGL2 x * h) = psiK κ x * G h)
     (hV : HasDerivAt (fun t : ℝ => G (aT y * archFlowMatrixComplex .iE t)) V 0) :
@@ -231,17 +312,32 @@ theorem deriviE_torus (κ : ℂ) (G : GL (Fin 2) ℂ → ℂ) (V : ℂ) (y : ℝ
 
 def zeta (t : ℝ) : ℂˣ := Units.mk0 (Complex.exp ((t : ℂ) * I)) (Complex.exp_ne_zero _)
 
+/--
+@isnad1 id=eq.0h1v.s4.10895c863054 from=translated src=- shape=e1fa52f9 vocab=58800bd6
+-/
 theorem zeta_coe (t : ℝ) : ((zeta t : ℂˣ) : ℂ) = Complex.exp ((t : ℂ) * I) := rfl
+/--
+@isnad1 id=eq.0h1v.s5.497fe849ec34 from=translated src=- shape=91f03f96 vocab=a7924d2e
+-/
 theorem zeta_inv_coe (t : ℝ) : (((zeta t)⁻¹ : ℂˣ) : ℂ) = Complex.exp (-((t : ℂ) * I)) := by
   rw [Units.val_inv_eq_inv_val, zeta_coe, Complex.exp_neg]
+/--
+@isnad1 id=eq.0h1v.s4.085944d79584 from=translated src=- shape=a46e0e36 vocab=26e82f56
+-/
 theorem norm_zeta (t : ℝ) : ‖((zeta t : ℂˣ) : ℂ)‖ = 1 := by rw [zeta_coe, Complex.norm_exp_ofReal_mul_I]
 
+/--
+@isnad1 id=eq.0h1v.s4.ec446f0590ed from=translated src=- shape=f1e08ad7 vocab=bcc8b221
+-/
 theorem flowiH_eq_circle (t : ℝ) : archFlowMatrixComplex .iH t = circleGL2 (zeta t) := by
   rw [flowiH]
   ext i j
   simp only [splitTorusGL2Complex_coe', show ((circleGL2 (zeta t) : GL (Fin 2) ℂ) : Matrix (Fin 2) (Fin 2) ℂ) =
     !![((zeta t : ℂˣ) : ℂ), 0; 0, (((zeta t)⁻¹ : ℂˣ) : ℂ)] from rfl, zeta_coe, zeta_inv_coe]
 
+/--
+@isnad1 id=hasderiv.0h1v.s6.ffaba4e072dd from=translated src=- shape=a0228159 vocab=7078167e
+-/
 theorem hasDerivAt_zeta_zpow (q : ℤ) :
     HasDerivAt (fun t : ℝ => (((zeta t : ℂˣ) : ℂ)) ^ q) (Complex.I * q) 0 := by
   have hfun : (fun t : ℝ => (((zeta t : ℂˣ) : ℂ)) ^ q) = fun t : ℝ => Complex.exp ((t : ℂ) * (Complex.I * q)) := by
@@ -252,6 +348,9 @@ theorem hasDerivAt_zeta_zpow (q : ℤ) :
   simp at h
   exact h
 
+/--
+@isnad1 id=eq.2h4v.s8.10b55eb71bef from=translated src=- shape=6de59b46 vocab=079e10c7
+-/
 theorem deriviH_of_weight (G : GL (Fin 2) ℂ → ℂ) (q : ℤ) (h : GL (Fin 2) ℂ) (V : ℂ)
     (hM : ∀ (ζ : ℂˣ), ‖(ζ : ℂ)‖ = 1 → ∀ h : GL (Fin 2) ℂ, G (h * circleGL2 ζ) = (ζ : ℂ) ^ q * G h)
     (hV : HasDerivAt (fun t : ℝ => G (h * archFlowMatrixComplex .iH t)) V 0) :
@@ -261,12 +360,18 @@ theorem deriviH_of_weight (G : GL (Fin 2) ℂ → ℂ) (q : ℤ) (h : GL (Fin 2)
   rw [hfun] at hV
   exact hV.unique ((hasDerivAt_zeta_zpow q).mul_const (G h))
 
+/--
+@isnad1 id=eq.0h2v.s8.16f800cb6407 from=translated src=- shape=d65aac9a vocab=4b000423
+-/
 theorem circle_mul_splitTorus (ζ : ℂˣ) (z : ℂ) : circleGL2 ζ * splitTorusGL2Complex z = splitTorusGL2Complex z * circleGL2 ζ := by
   ext i j
   simp only [Units.val_mul, splitTorusGL2Complex_coe', show ((circleGL2 ζ : GL (Fin 2) ℂ) : Matrix (Fin 2) (Fin 2) ℂ) =
     !![(ζ : ℂ), 0; 0, ((ζ⁻¹ : ℂˣ) : ℂ)] from rfl]
   fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two, mul_comm]
 
+/--
+@isnad1 id=eq.3h5v.s9.026ceba07fe6 from=translated src=- shape=04ae702c vocab=5689f8cb
+-/
 theorem weight_derivH (G DG : GL (Fin 2) ℂ → ℂ) (q : ℤ)
     (hG : ∀ h, HasDerivAt (fun t : ℝ => G (h * archFlowMatrixComplex .H t)) (DG h) 0)
     (hM : ∀ (ζ : ℂˣ), ‖(ζ : ℂ)‖ = 1 → ∀ h : GL (Fin 2) ℂ, G (h * circleGL2 ζ) = (ζ : ℂ) ^ q * G h) :
@@ -280,6 +385,9 @@ theorem weight_derivH (G DG : GL (Fin 2) ℂ → ℂ) (q : ℤ)
     rw [mul_assoc, flowH, circle_mul_splitTorus, ← mul_assoc, ← flowH, hM ζ hζ]
   exact h1.unique h2
 
+/--
+@isnad1 id=eq.3h5v.s9.fa75f771dc4a from=translated src=- shape=04ae702c vocab=26e20b6d
+-/
 theorem weight_deriviH (G DG : GL (Fin 2) ℂ → ℂ) (q : ℤ)
     (hG : ∀ h, HasDerivAt (fun t : ℝ => G (h * archFlowMatrixComplex .iH t)) (DG h) 0)
     (hM : ∀ (ζ : ℂˣ), ‖(ζ : ℂ)‖ = 1 → ∀ h : GL (Fin 2) ℂ, G (h * circleGL2 ζ) = (ζ : ℂ) ^ q * G h) :
@@ -297,24 +405,36 @@ end Generic
 
 section Iwasawa
 
+/--
+@isnad1 id=eq.1h2v.s8.f25bccff0fea from=translated src=- shape=aa2ed90f vocab=c240f301
+-/
 theorem aT_mul_aIw (y : ℝ) (hy : 0 < y) (t : ℝ) :
     aT y * splitTorusGL2Complex ((-(Real.log (1 + t ^ 2)) / 2 : ℝ) : ℂ) = aT (y / (1 + t ^ 2)) := by
   have hpos : (0:ℝ) < 1 + t ^ 2 := by positivity
   rw [aT, aT, splitTorus_mul_splitTorus]; congr 1
   rw [Real.log_div hy.ne' hpos.ne']; push_cast; ring
 
+/--
+@isnad1 id=hasderiv.0h0v.s6.dea048591507 from=translated src=- shape=4db9e745 vocab=3597efe8
+-/
 theorem hasDerivAt_xIw : HasDerivAt (fun t : ℝ => t / (1 + t ^ 2)) 1 0 := by
   have hden : HasDerivAt (fun t : ℝ => 1 + t ^ 2) (0 : ℝ) 0 := by
     simpa using ((hasDerivAt_pow 2 (0 : ℝ)).const_add 1)
   have := (hasDerivAt_id (0 : ℝ)).div hden (by norm_num)
   convert this using 1 <;> first | rfl | simp
 
+/--
+@isnad1 id=hasderiv.0h1v.s6.1fee8a6e2c03 from=translated src=- shape=4d37e9bc vocab=3597efe8
+-/
 theorem hasDerivAt_uIw (y : ℝ) : HasDerivAt (fun t : ℝ => y / (1 + t ^ 2)) 0 0 := by
   have hden : HasDerivAt (fun t : ℝ => 1 + t ^ 2) (0 : ℝ) 0 := by
     simpa using ((hasDerivAt_pow 2 (0 : ℝ)).const_add 1)
   have := (hasDerivAt_const (0 : ℝ) y).div hden (by norm_num)
   convert this using 1 <;> first | rfl | simp
 
+/--
+@isnad1 id=hasderiv.0h2v.s7.181f7663ac90 from=translated src=- shape=5a923f58 vocab=b3b2c3cc
+-/
 theorem hasDerivAt_psiK_xIw (κ : ℂ) (y : ℝ) :
     HasDerivAt (fun t : ℝ => psiK κ ((y : ℂ) * (((t / (1 + t ^ 2) : ℝ)) : ℂ)))
       (2 * Real.pi * Complex.I * ((2 * y * κ.re : ℝ) : ℂ)) 0 := by
@@ -325,6 +445,9 @@ theorem hasDerivAt_psiK_xIw (κ : ℂ) (y : ℝ) :
   rw [one_smul] at h3
   exact h3
 
+/--
+@isnad1 id=hasderiv.0h2v.s7.9d620bb8d61c from=translated src=- shape=7dfab348 vocab=558e2ae3
+-/
 theorem hasDerivAt_psiK_negI (κ : ℂ) (y : ℝ) :
     HasDerivAt (fun t : ℝ => psiK κ ((y : ℂ) * (-(I * (t : ℂ))))) (2 * Real.pi * Complex.I * ((2 * y * κ.im : ℝ) : ℂ)) 0 := by
   unfold psiK
@@ -342,6 +465,9 @@ theorem hasDerivAt_psiK_negI (κ : ℂ) (y : ℝ) :
   all_goals first | rfl | skip
   simp [hre]
 
+/--
+@isnad1 id=hasderiv.0h2v.s7.7c42ee8cea4c from=translated src=- shape=7ce283de vocab=bdbfb332
+-/
 theorem hasDerivAt_psiK_negI_xIw (κ : ℂ) (y : ℝ) :
     HasDerivAt (fun t : ℝ => psiK κ ((y : ℂ) * (-(I * (((t / (1 + t ^ 2) : ℝ)) : ℂ)))))
       (2 * Real.pi * Complex.I * ((2 * y * κ.im : ℝ) : ℂ)) 0 := by
@@ -360,6 +486,9 @@ variable {n : ℕ} (F : Fin (n + 1) → GL (Fin 2) ℂ → ℂ) (κ : ℂ)
 
 include hE0 hE' fD hf in
 
+/--
+@isnad1 id=hasderiv.6h9v.s9.777a85cfb98a from=translated src=- shape=f186c46b vocab=415938d8
+-/
 theorem deriv_iwasawa_sum (p : Fin (n + 1)) (y : ℝ) (hy : 0 < y) (Ψ : ℝ → ℂ) (c : ℂ)
     (hΨ : HasDerivAt Ψ c 0) (hΨ0 : Ψ 0 = 1) :
     HasDerivAt (fun t : ℝ => ∑ p' : Fin (n + 1), Ei (Real.arctan t) p' p * (Ψ t * F p' (aT (y / (1 + t ^ 2)))))
@@ -400,6 +529,9 @@ variable {n : ℕ} (F : Fin (n + 1) → GL (Fin 2) ℂ → ℂ) (κ : ℂ)
 
 include hN hE0 hE' fD hf in
 
+/--
+@isnad1 id=eq.7h9v.s10.ce8ac22394ef from=translated src=- shape=34b86b63 vocab=6f1d1abb
+-/
 theorem derivFm_torus
     (hK : ∀ (p : Fin (n + 1)) (s : ℝ) (h k : GL (Fin 2) ℂ),
       (k : Matrix (Fin 2) (Fin 2) ℂ) = !![Complex.cos s, -Complex.sin s; Complex.sin s, Complex.cos s] →
@@ -422,6 +554,9 @@ theorem derivFm_torus
 
 include hN hE0 hE' fD hf in
 
+/--
+@isnad1 id=eq.7h9v.s10.603f466a6e2f from=translated src=- shape=8bc3108d vocab=a606656d
+-/
 theorem deriviFm_torus
     (hK : ∀ (p : Fin (n + 1)) (s : ℝ) (h k : GL (Fin 2) ℂ),
       (k : Matrix (Fin 2) (Fin 2) ℂ) = !![Complex.cos s, Complex.I * Complex.sin s; Complex.I * Complex.sin s, Complex.cos s] →
@@ -450,6 +585,9 @@ variable {n : ℕ}
 
 def extN (g : Fin (n + 1) → ℂ) (m : ℕ) : ℂ := if h : m < n + 1 then g ⟨m, h⟩ else 0
 
+/--
+@isnad1 id=eq.0h3v.s7.76bf7291830e from=translated src=- shape=4baeb015 vocab=6bd3ff32
+-/
 theorem sum_ite_val_eq (g : Fin (n + 1) → ℂ) (m : ℕ) :
     (∑ p' : Fin (n + 1), if (p' : ℕ) = m then g p' else 0) = extN g m := by
   unfold extN
@@ -468,6 +606,9 @@ theorem sum_ite_val_eq (g : Fin (n + 1) → ℂ) (m : ℕ) :
     intro h
     exact hm (h ▸ p'.isLt)
 
+/--
+@isnad1 id=eq.0h4v.s8.1b702b920839 from=translated src=- shape=8c7a948c vocab=c0c08877
+-/
 theorem mul_sum_ite_pred (g : Fin (n + 1) → ℂ) (p : Fin (n + 1)) (X : ℂ) :
     ((p : ℕ) : ℂ) * X * (∑ p' : Fin (n + 1), if (p : ℕ) = (p' : ℕ) + 1 then g p' else 0) =
       ((p : ℕ) : ℂ) * X * extN g ((p : ℕ) - 1) := by
@@ -480,6 +621,9 @@ theorem mul_sum_ite_pred (g : Fin (n + 1) → ℂ) (p : Fin (n + 1)) (X : ℂ) :
     apply propext
     omega
 
+/--
+@isnad1 id=eq.0h3v.s8.27560dae47cd from=translated src=- shape=93c98106 vocab=1832e0b6
+-/
 theorem sum_M1 (g : Fin (n + 1) → ℂ) (p : Fin (n + 1)) :
     (∑ p' : Fin (n + 1), (if (p' : ℕ) = (p : ℕ) + 1 then (1 : ℂ) else
         if (p : ℕ) = (p' : ℕ) + 1 then -(((p : ℕ) : ℂ) * ((n : ℂ) + 1 - (p : ℕ))) else 0) * g p') =
@@ -502,6 +646,9 @@ theorem sum_M1 (g : Fin (n + 1) → ℂ) (p : Fin (n + 1)) :
     this]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s9.dbc799a38f01 from=translated src=- shape=d00c6c75 vocab=ad08796a
+-/
 theorem sum_M2 (g : Fin (n + 1) → ℂ) (p : Fin (n + 1)) :
     (∑ p' : Fin (n + 1), (if (p' : ℕ) = (p : ℕ) + 1 then Complex.I else
         if (p : ℕ) = (p' : ℕ) + 1 then Complex.I * (((p : ℕ) : ℂ) * ((n : ℂ) + 1 - (p : ℕ))) else 0) * g p') =
@@ -533,6 +680,9 @@ end
 
 open _root_.AutomorphicForm open _root_.P2MW.S_AutomorphicForm_gl2Complex_whittaker_system_of_casimir_pair_of_unipotent_covariant_of_circleWeight_of_ktype.AutomorphicForm open _root_.P2MW.S_AutomorphicForm_gl2Complex_whittaker_system_of_casimir_pair_of_unipotent_covariant_of_circleWeight_of_ktype.AutomorphicForm.IwasawaC41 open _root_.Complex
 
+/--
+@isnad1 id=other.12h9v.s12.161a0a5f33b5 from=translated src=- shape=f214301b vocab=c44cc363
+-/
 theorem solution
     (n : ℕ) (F : Fin (n + 1) → GL (Fin 2) ℂ → ℂ) (κ lam lam' : ℂ)
     (DF : Fin (n + 1) → ArchDirComplex → GL (Fin 2) ℂ → ℂ)

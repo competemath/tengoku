@@ -10,6 +10,9 @@ namespace P2MW.S_CerednikDrinfeld_JPrimeTorsionDatum_natCard_toric_inf_W_mul_nat
 set_option autoImplicit false
 open ModularCurve CerednikDrinfeld
 
+/--
+@isnad1 id=le.5h8v.s12.9caaead7fca7 from=translated src=- shape=a912b786 vocab=308072a1
+-/
 theorem solution
     {p : ℕ} {E V : Type} [Fintype E] [Fintype V] [DecidableEq V]
     {A : ValuationSubring (AlgebraicClosure ℚ)}

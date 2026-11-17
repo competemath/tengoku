@@ -22,13 +22,22 @@ namespace DiscreteAdele
 
 variable (F : Type) [Field F] [NumberField F]
 
+/--
+@isnad1 id=eq.0h2v.s8.70332e47d30f from=translated src=- shape=d188da38 vocab=87444120
+-/
 theorem fst_algebraMap (ξ : F) :
     (algebraMap F (AdeleRing (𝓞 F) F) ξ).1 = algebraMap F (InfiniteAdeleRing F) ξ := rfl
 
+/--
+@isnad1 id=mem.0h1v.s7.139e47b6fa83 from=translated src=- shape=62dc9b7e vocab=9b03104f
+-/
 theorem zero_mem_integralFiniteAdeles' :
     (0 : FiniteAdeleRing (𝓞 F) F) ∈ integralFiniteAdeles (𝓞 F) F :=
   fun _ => zero_mem _
 
+/--
+@isnad1 id=finite.1h2v.s8.8a14a556e5fb from=translated src=- shape=12dc3ea7 vocab=15ace594
+-/
 theorem finite_setOf_algebraMap_mem {C : Set (AdeleRing (𝓞 F) F)} (hC : IsCompact C) :
     {ξ : F | algebraMap F (AdeleRing (𝓞 F) F) ξ ∈ C}.Finite := by
   classical
@@ -99,11 +108,17 @@ theorem finite_setOf_algebraMap_mem {C : Set (AdeleRing (𝓞 F) F)} (hC : IsCom
   obtain ⟨y, hy, hyO⟩ := Set.mem_iUnion₂.1 (hcover h2)
   exact Set.mem_iUnion₂.2 ⟨y, hy, hξ, hyO⟩
 
+/--
+@isnad1 id=finite.1h2v.s8.8a14a556e5fb from=translated src=- shape=12dc3ea7 vocab=15ace594
+-/
 theorem finite_setOf_algebraMap_mem_of_isCompact_impl (F : Type) [Field F] [NumberField F]
     {C : Set (NumberField.AdeleRing (NumberField.RingOfIntegers F) F)} (hC : IsCompact C) :
     {ξ : F | algebraMap F (NumberField.AdeleRing (NumberField.RingOfIntegers F) F) ξ ∈ C}.Finite :=
   finite_setOf_algebraMap_mem F hC
 
+/--
+@isnad1 id=infinite.0h1v.s8.b64ab8cf2b77 from=translated src=- shape=f1c87979 vocab=f76d63e0
+-/
 theorem gate_univ_infinite (F : Type) [Field F] [NumberField F] :
     {ξ : F | algebraMap F (AdeleRing (𝓞 F) F) ξ ∈ (Set.univ : Set (AdeleRing (𝓞 F) F))}.Infinite := by
   simp only [Set.mem_univ, Set.ofPred_true]
@@ -113,6 +128,9 @@ end M4aP3B.Rows.DiscreteAdele
 
 end
 
+/--
+@isnad1 id=finite.1h2v.s8.8a14a556e5fb from=translated src=- shape=12dc3ea7 vocab=15ace594
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F]
     {C : Set (NumberField.AdeleRing (NumberField.RingOfIntegers F) F)} (hC : IsCompact C) :

@@ -10,12 +10,18 @@ set_option autoImplicit false
 open scoped TensorProduct Quaternion
 open IsDedekindDomain NumberField QuaternionAlgebra CerednikDrinfeld
 
+/--
+@isnad1 id=le.1h4v.s10.14f124418e64 from=translated src=- shape=c67b678c vocab=4e1c78b4
+-/
 theorem localBox_mono' {D : Type*} [Ring D] [Algebra ℚ D] {Λ Λ' : Submodule ℤ D} (h : Λ' ≤ Λ)
     (w : HeightOneSpectrum (𝓞 ℚ)) : Submodule.localBox Λ' w ≤ Submodule.localBox Λ w := by
   apply AddSubgroup.closure_mono
   rintro x ⟨z, hz, c, hc, rfl⟩
   exact ⟨z, h hz, c, hc, rfl⟩
 
+/--
+@isnad1 id=le.1h5v.s9.4976d5ccc60f from=translated src=- shape=553b5e3f vocab=601e5bab
+-/
 theorem solution
     {a b : ℚ} {R R' : Submodule ℤ ℍ[ℚ, a, b]} (h : R' ≤ R) (v : HeightOneSpectrum (𝓞 ℚ)) :
     CosetGraph.awayUnits R' v ≤ CosetGraph.awayUnits R v := by

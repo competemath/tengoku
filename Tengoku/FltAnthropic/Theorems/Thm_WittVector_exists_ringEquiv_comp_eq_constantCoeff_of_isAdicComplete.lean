@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_WittVector_exists_ringEquiv_comp_eq_consta
 
 universe u v
 
+/--
+@isnad1 id=ex.3h3v.s9.318dac11c129 from=translated src=- shape=67551871 vocab=2324d2ce
+-/
 theorem WittVector.exists_ringEquiv_comp_eq_constantCoeff_of_isAdicComplete
     {𝓞 : Type u} [CommRing 𝓞] (p : ℕ) [Fact p.Prime] (hp : (p : 𝓞) ∈ nonZeroDivisors 𝓞)
     {k : Type v} [CommRing k] [CharP k p] [PerfectRing k p] [Algebra 𝓞 k]

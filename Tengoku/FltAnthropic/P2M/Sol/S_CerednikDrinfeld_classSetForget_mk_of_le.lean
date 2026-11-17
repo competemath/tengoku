@@ -13,6 +13,9 @@ set_option autoImplicit false
 open scoped TensorProduct Quaternion
 open IsDedekindDomain NumberField QuaternionAlgebra CerednikDrinfeld
 
+/--
+@isnad1 id=eq.1h5v.s12.1ecbd35cb648 from=translated src=- shape=ff17f317 vocab=a17234b0
+-/
 theorem solution
     {a b : ℚ} {U U' : Subgroup (ℍ[ℚ, a, b] ⊗[ℚ] FiniteAdeleRing (𝓞 ℚ) ℚ)ˣ} (h : U ≤ U') (x : (ℍ[ℚ, a, b] ⊗[ℚ] FiniteAdeleRing (𝓞 ℚ) ℚ)ˣ) :
     CerednikDrinfeld.classSetForget U U' (QuaternionAlgebra.ClassSet.mk U x) = QuaternionAlgebra.ClassSet.mk U' x := by

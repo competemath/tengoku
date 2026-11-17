@@ -16,6 +16,9 @@ open _root_.CerednikDrinfeld open _root_.CerednikDrinfeld.FormalOmega open _root
 namespace CerednikDrinfeld export _root_.CerednikDrinfeld (FormalOmega.chartERing FormalOmega.chartERing.eq_span_xi_or_eq_span_eta_of_mem_minimalPrimes_level_zero FormalOmega.chartERing.exists_ringEquiv_quotient_level_zero_span_ofPoly_X_localizationAway) namespace FormalOmega export _root_.CerednikDrinfeld.FormalOmega (edgeQuot edgeDiscr edgeQuot.discr chartERing chartERing.eq_span_xi_or_eq_span_eta_of_mem_minimalPrimes_level_zero chartERing.exists_ringEquiv_quotient_level_zero_span_ofPoly_X_localizationAway) namespace chartERing export _root_.CerednikDrinfeld.FormalOmega.chartERing (ξ η eq_span_xi_or_eq_span_eta_of_mem_minimalPrimes_level_zero exists_ringEquiv_quotient_level_zero_span_ofPoly_X_localizationAway) end CerednikDrinfeld.FormalOmega.chartERing
 open scoped _root_.CerednikDrinfeld _root_.CerednikDrinfeld.FormalOmega _root_.CerednikDrinfeld.FormalOmega.chartERing in
 
+/--
+@isnad1 id=isstanda.1h5v.s18.ebbb813f8bea from=translated src=- shape=397aa751 vocab=ad0119f3
+-/
 theorem CerednikDrinfeld.FormalOmega.chartERing.branchSmooth_aux29
     (𝒪 : Type) [CommRing 𝒪] (π : 𝒪) (r : ℕ) (J : Ideal ((chartERing 𝒪 π r) ⧸ (Ideal.span {(algebraMap 𝒪 (chartERing 𝒪 π r) π) ^ (0 + 1)})))
     (e : (((chartERing 𝒪 π r) ⧸ (Ideal.span {(algebraMap 𝒪 (chartERing 𝒪 π r) π) ^ (0 + 1)})) ⧸ J) ≃+* Localization.Away ((MvPolynomial.X () : MvPolynomial Unit (𝒪 ⧸ Ideal.span {π ^ (0 + 1)})) ^ (r - 1) - 1))
@@ -50,6 +53,9 @@ theorem CerednikDrinfeld.FormalOmega.chartERing.branchSmooth_aux29
   unfold RingHom.IsStandardSmoothOfRelativeDimension
   exact hA
 
+/--
+@isnad1 id=smoothof.2h4v.s15.99d9c95720e9 from=translated src=- shape=dbe5a7f5 vocab=93453282
+-/
 theorem solution
     (𝒪 : Type) [CommRing 𝒪] (π : 𝒪) (r : ℕ) (hπ : (Ideal.span ({π} : Set 𝒪)).IsMaximal)
     (P : Ideal ((chartERing 𝒪 π r) ⧸ (Ideal.span {(algebraMap 𝒪 (chartERing 𝒪 π r) π) ^ (0 + 1)})))

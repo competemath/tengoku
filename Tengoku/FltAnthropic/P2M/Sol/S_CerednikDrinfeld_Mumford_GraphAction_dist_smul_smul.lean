@@ -21,6 +21,9 @@ def smulHom (g : G) : 𝒯 →g 𝒯 where
   toFun := fun w => g • w
   map_rel' := fun h => GraphAction.smul_adj g h
 
+/--
+@isnad1 id=le.0h6v.s6.b8487a001e66 from=translated src=- shape=22af7d4c vocab=5f4548cb
+-/
 theorem dist_smul_le (g : G) (x y : W) : 𝒯.dist (g • x) (g • y) ≤ 𝒯.dist x y := by
   by_cases h : 𝒯.Reachable x y
   · obtain ⟨p, hp⟩ := h.exists_walk_length_eq_dist
@@ -37,6 +40,9 @@ theorem dist_smul_le (g : G) (x y : W) : 𝒯.dist (g • x) (g • y) ≤ 𝒯.
       exact ⟨q⟩
     rw [SimpleGraph.dist_eq_zero_of_not_reachable h, SimpleGraph.dist_eq_zero_of_not_reachable h']
 
+/--
+@isnad1 id=eq.0h6v.s6.0871c1b42c6d from=translated src=- shape=22af7d4c vocab=495b09f7
+-/
 theorem main (g : G) (x y : W) : 𝒯.dist (g • x) (g • y) = 𝒯.dist x y := by
   refine le_antisymm (dist_smul_le 𝒯 g x y) ?_
   have := dist_smul_le 𝒯 g⁻¹ (g • x) (g • y)
@@ -44,6 +50,9 @@ theorem main (g : G) (x y : W) : 𝒯.dist (g • x) (g • y) = 𝒯.dist x y :
 
 end CerednikDrinfeld.Mumford.Isom
 
+/--
+@isnad1 id=eq.0h6v.s6.0871c1b42c6d from=translated src=- shape=22af7d4c vocab=495b09f7
+-/
 theorem solution
     {G : Type} [Group G] {W : Type} [MulAction G W] (𝒯 : SimpleGraph W)
     [CerednikDrinfeld.Mumford.GraphAction G 𝒯] (g : G) (x y : W) :

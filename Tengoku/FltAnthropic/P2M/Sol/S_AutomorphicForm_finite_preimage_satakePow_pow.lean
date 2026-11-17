@@ -14,6 +14,9 @@ namespace SatakeFib
 
 open Polynomial
 
+/--
+@isnad1 id=eq.0h6v.s7.1911c123192e from=translated src=- shape=db625ea9 vocab=f34d8d01
+-/
 theorem map_satakePow {R S : Type*} [CommRing R] [CommRing S] (φ : R →+* S) (n : ℕ) (s e : R) :
     φ (satakePow n s e) = satakePow n (φ s) (φ e) := by
   suffices h : ∀ n, φ (satakePow n s e) = satakePow n (φ s) (φ e) ∧
@@ -29,12 +32,18 @@ theorem map_satakePow {R S : Type*} [CommRing R] [CommRing S] (φ : R →+* S) (
 noncomputable def satakePoly {R : Type*} [CommRing R] (n : ℕ) (b : R) : R[X] :=
   satakePow n X (C b)
 
+/--
+@isnad1 id=eq.0h4v.s5.b60828bcf53a from=translated src=- shape=7ff645d6 vocab=640782c9
+-/
 theorem eval_satakePoly {R : Type*} [CommRing R] (n : ℕ) (a b : R) :
     (satakePoly n b).eval a = satakePow n a b := by
   have h := map_satakePow (evalRingHom a) n (X : R[X]) (C b)
   rw [coe_evalRingHom, eval_X, eval_C] at h
   exact h
 
+/--
+@isnad1 id=and.0h3v.s6.02f79459bc1b from=translated src=- shape=f7ba6bb8 vocab=22c3a6f5
+-/
 theorem monic_satakePoly {R : Type*} [CommRing R] [Nontrivial R] (b : R) :
     ∀ n, (satakePoly n b).natDegree ≤ n ∧ (satakePoly (n + 1) b).Monic ∧
       (satakePoly (n + 1) b).natDegree = n + 1 := by
@@ -62,6 +71,9 @@ theorem monic_satakePoly {R : Type*} [CommRing R] [Nontrivial R] (b : R) :
     · rw [e]; exact hmul.sub_of_left (degree_lt_degree hlt)
     · rw [e, natDegree_sub_eq_left_of_natDegree_lt hlt, hdeg]
 
+/--
+@isnad1 id=finite.1h4v.s5.ef6bf0980ed2 from=translated src=- shape=347e2bea vocab=582ab5ad
+-/
 theorem finite_setOf_satakePow_eq {R : Type*} [CommRing R] [IsDomain R] (f : ℕ) (hf : f ≠ 0) (b c : R) :
     {a : R | satakePow f a b = c}.Finite := by
   obtain ⟨n, rfl⟩ : ∃ n, f = n + 1 := ⟨f - 1, by omega⟩
@@ -78,6 +90,9 @@ theorem finite_setOf_satakePow_eq {R : Type*} [CommRing R] [IsDomain R] (f : ℕ
   rw [IsRoot, eval_sub, eval_C, eval_satakePoly, sub_eq_zero]
   exact ha
 
+/--
+@isnad1 id=finite.1h3v.s5.71dc78d2c6c9 from=translated src=- shape=9d57c45e vocab=808f6036
+-/
 theorem finite_setOf_pow_eq {R : Type*} [CommRing R] [IsDomain R] (f : ℕ) (hf : f ≠ 0) (c : R) :
     {b : R | b ^ f = c}.Finite := by
   have hlt : (C c).degree < ((X : R[X]) ^ f).degree := by
@@ -91,6 +106,9 @@ theorem finite_setOf_pow_eq {R : Type*} [CommRing R] [IsDomain R] (f : ℕ) (hf 
 
 end SatakeFib
 
+/--
+@isnad1 id=finite.1h3v.s6.d6adcbffe288 from=translated src=- shape=1b778e0d vocab=b7a3cb34
+-/
 theorem solution {R : Type*} [CommRing R] [IsDomain R]
     (f : ℕ) (hf : f ≠ 0) (c : R × R) :
     ((fun p : R × R => (satakePow f p.1 p.2, p.2 ^ f)) ⁻¹' {c}).Finite := by

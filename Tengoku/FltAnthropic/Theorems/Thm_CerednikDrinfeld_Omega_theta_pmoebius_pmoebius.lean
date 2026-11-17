@@ -11,6 +11,9 @@ set_option autoImplicit false
 open scoped MatrixGroups
 open CerednikDrinfeld.Omega
 
+/--
+@isnad1 id=eq.4h9v.s9.c7e773085f96 from=translated src=- shape=d57216f8 vocab=0b44b36a
+-/
 theorem CerednikDrinfeld.Omega.theta_pmoebius_pmoebius
     {K₀ : Type*} [Field K₀] {K : Type*} [Field K] [Algebra K₀ K] [DecidableEq K] [TopologicalSpace K]
     {G : Type*} [Group G] (ρ : G →* PGL(2, K₀)) {a b w z : K}

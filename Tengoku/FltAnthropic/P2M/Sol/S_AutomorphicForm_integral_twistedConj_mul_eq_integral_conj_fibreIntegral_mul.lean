@@ -546,6 +546,9 @@ end Assembly
 
 end TwistedShift
 
+/--
+@isnad1 id=eq.20h15v.s13.2972929b1c28 from=translated src=- shape=071833fa vocab=ecc93572
+-/
 theorem solution
     {G : Type} [Group G] [MeasurableSpace G] [MeasurableMul₂ G] [MeasurableInv G]
     (μ : Measure G) [SigmaFinite μ] [μ.IsMulLeftInvariant] {n : ℕ} (δ : Fin (n + 1) → G)

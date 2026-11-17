@@ -13,6 +13,9 @@ open scoped ProbabilityTheory
 
 namespace Ws37ContW
 
+/--
+@isnad1 id=continuo.0h1v.s6.2129898dbc3e from=translated src=- shape=a8f35fde vocab=712b4903
+-/
 theorem continuous_unipotentGL2 (A : Type*) [CommRing A] [TopologicalSpace A] [IsTopologicalRing A] :
     Continuous (fun x : A => (unipotentGL2 x : GL (Fin 2) A)) := by
   have hmat : ∀ s : A → A, Continuous s → Continuous (fun x : A => (!![1, s x; 0, 1] : Matrix (Fin 2) (Fin 2) A)) := by
@@ -34,6 +37,9 @@ end Ws37ContW
 
 open Ws37ContW
 
+/--
+@isnad1 id=continuo.2h7v.s10.f590d6b826be from=translated src=- shape=bc28d3a9 vocab=e278f6b9
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F]
     (D : Set (AdelicGL2 (𝓞 F) F))

@@ -25,16 +25,25 @@ variable {G : Type} [Group G] {W : Type} [MulAction G W] (𝒯 : SimpleGraph W) 
 def orbitColour : QuotEdge G 𝒯 → ZMod 2 :=
   Quotient.lift (fun d : 𝒯.Dart => τ d.fst) (by rintro _ d ⟨g, rfl⟩; exact hτ g d.fst)
 
+/--
+@isnad1 id=eq.1h5v.s7.13cd35e1fd15 from=translated src=- shape=2ff1d12b vocab=9424c8ec
+-/
 theorem orbitColour_eq_out (o : QuotEdge G 𝒯) : orbitColour 𝒯 τ hτ o = τ o.out.fst := by
   conv_lhs => rw [← Quotient.out_eq o]
   rfl
 
 omit [GraphAction G 𝒯] in
+/--
+@isnad1 id=eq.1h4v.s7.25b929296451 from=translated src=- shape=beb4bc8b vocab=6d64020f
+-/
 theorem colour_symm_fst (hadj : ∀ u v : W, 𝒯.Adj u v → τ u ≠ τ v) (d : 𝒯.Dart) : τ d.symm.fst = τ d.fst + 1 := by
   have key : ∀ x y : ZMod 2, x ≠ y → y = x + 1 := by decide
   exact key _ _ (hadj _ _ d.adj)
 
 omit [GraphAction G 𝒯] in
+/--
+@isnad1 id=iff.0h5v.s7.fa697725c626 from=translated src=- shape=7cd2530f vocab=c3ea4f43
+-/
 theorem mk_symm_eq_mk_symm_iff [GraphAction G 𝒯] (x y : 𝒯.Dart) :
     Quotient.mk (orbitRel G 𝒯.Dart) x.symm = Quotient.mk (orbitRel G 𝒯.Dart) y.symm ↔
       Quotient.mk (orbitRel G 𝒯.Dart) x = Quotient.mk (orbitRel G 𝒯.Dart) y := by
@@ -47,6 +56,9 @@ theorem mk_symm_eq_mk_symm_iff [GraphAction G 𝒯] (x y : 𝒯.Dart) :
   · rintro ⟨g, hg⟩
     exact ⟨g, by rw [← smul_dart_symm, hg]⟩
 
+/--
+@isnad1 id=iff.0h5v.s7.9be24100d458 from=translated src=- shape=50abb4ca vocab=c3ea4f43
+-/
 theorem mk_symm_eq_mk_iff (x y : 𝒯.Dart) :
     Quotient.mk (orbitRel G 𝒯.Dart) x.symm = Quotient.mk (orbitRel G 𝒯.Dart) y ↔
       Quotient.mk (orbitRel G 𝒯.Dart) x = Quotient.mk (orbitRel G 𝒯.Dart) y.symm := by
@@ -55,6 +67,9 @@ theorem mk_symm_eq_mk_iff (x y : 𝒯.Dart) :
 
 variable [DecidableEq (QuotEdge G 𝒯)] {E : Type} [Fintype E] (eE : E ≃ {e : QuotEdge G 𝒯 // τ e.out.fst = 0})
 
+/--
+@isnad1 id=eq.1h8v.s10.486f5e3af023 from=translated src=- shape=528ec5ed vocab=b34768e3
+-/
 theorem sum_ite_eq_orbit (o : QuotEdge G 𝒯) (f : ℤ) :
     (∑ e : E, if o = (eE e).1 then f else 0) = if orbitColour 𝒯 τ hτ o = 0 then f else 0 := by
   classical
@@ -76,6 +91,9 @@ theorem sum_ite_eq_orbit (o : QuotEdge G 𝒯) (f : ℤ) :
     rw [heq, orbitColour_eq_out]; exact (eE e).2
 
 include hτ in
+/--
+@isnad1 id=eq.2h8v.s10.30d14434556d from=translated src=- shape=d1b618d2 vocab=e047158f
+-/
 theorem sum_dartIndex_mul_dartIndex (hadj : ∀ u v : W, 𝒯.Adj u v → τ u ≠ τ v) (d d' : 𝒯.Dart) :
     (∑ e : E, dartIndex 𝒯 (eE e).1 d * dartIndex 𝒯 (eE e).1 d') =
       (if Quotient.mk (orbitRel G 𝒯.Dart) d = Quotient.mk (orbitRel G 𝒯.Dart) d' then 1 else 0) -
@@ -135,6 +153,9 @@ variable (G)
 
 noncomputable def wt (d : 𝒯.Dart) : ℤ := (Nat.card (stabilizer G d) : ℤ)
 
+/--
+@isnad1 id=eq.0h4v.s6.47fa23bc0613 from=translated src=- shape=21f9a82c vocab=02e6b876
+-/
 theorem stabilizer_symm (d : 𝒯.Dart) : stabilizer G d.symm = stabilizer G d := by
   ext γ
   simp only [mem_stabilizer_iff]
@@ -145,17 +166,29 @@ theorem stabilizer_symm (d : 𝒯.Dart) : stabilizer G d.symm = stabilizer G d :
   · intro h
     rw [← smul_dart_symm, h]
 
+/--
+@isnad1 id=eq.0h4v.s5.faf327141fbc from=translated src=- shape=38d1aace vocab=d8a1c03f
+-/
 theorem wt_symm (d : 𝒯.Dart) : wt G 𝒯 d.symm = wt G 𝒯 d := by
   rw [wt, wt, stabilizer_symm G 𝒯]
 
+/--
+@isnad1 id=eq.0h5v.s6.bcc778e67ca8 from=translated src=- shape=1ecdcf4c vocab=89591de8
+-/
 theorem wt_smul (g : G) (d : 𝒯.Dart) : wt G 𝒯 (g • d) = wt G 𝒯 d := by
   rw [wt, wt, card_stabilizer_smul]
 
+/--
+@isnad1 id=eq.1h5v.s6.7a025d1e034e from=translated src=- shape=41c441c5 vocab=25cac2cb
+-/
 theorem wt_eq_of_mk_eq {d d' : 𝒯.Dart}
     (h : Quotient.mk (orbitRel G 𝒯.Dart) d = Quotient.mk (orbitRel G 𝒯.Dart) d') : wt G 𝒯 d = wt G 𝒯 d' := by
   obtain ⟨g, rfl⟩ := mem_orbit_iff.mp (orbitRel_apply.mp (Quotient.exact h))
   exact wt_smul G 𝒯 g d'
 
+/--
+@isnad1 id=eq.1h4v.s6.bc0e8c2cd681 from=translated src=- shape=0364f654 vocab=bd986d77
+-/
 theorem stabWidth_mk_eq_wt (hfin : ∀ d : 𝒯.Dart, Finite (stabilizer G d)) (d : 𝒯.Dart) :
     ((stabWidth G 𝒯 (Quotient.mk (orbitRel G 𝒯.Dart) d) : ℕ) : ℤ) = wt G 𝒯 d := by
   have h := stabWidth_mk 𝒯 (G := G) d
@@ -165,6 +198,9 @@ theorem stabWidth_mk_eq_wt (hfin : ∀ d : 𝒯.Dart, Finite (stabilizer G d)) (
   rw [show (Quotient.mk'' d : QuotEdge G 𝒯) = Quotient.mk (orbitRel G 𝒯.Dart) d from rfl] at h
   rw [h, Nat.toPNat'_coe, ite_eq_left hpos, wt]
 
+/--
+@isnad1 id=eq.1h8v.s11.ece9a34a4cc5 from=translated src=- shape=1576e121 vocab=239255ed
+-/
 theorem stabWidth_mul_dartIndex (hfin : ∀ d : 𝒯.Dart, Finite (stabilizer G d)) (e : E) (d : 𝒯.Dart) :
     ((stabWidth G 𝒯 (eE e).1 : ℕ) : ℤ) * dartIndex 𝒯 (eE e).1 d = wt G 𝒯 d * dartIndex 𝒯 (eE e).1 d := by
   by_cases h1 : Quotient.mk (orbitRel G 𝒯.Dart) d = (eE e).1
@@ -182,6 +218,9 @@ section FiniteStab
 variable [DecidableEq W] (hfin : ∀ d : 𝒯.Dart, Finite (stabilizer G d))
 
 include hfin in
+/--
+@isnad1 id=finite.1h5v.s7.cf1325d5bc8c from=translated src=- shape=647f952f vocab=5eac1f20
+-/
 theorem finite_setOf_smul_eq (d d' : 𝒯.Dart) : ({γ : G | γ • d' = d} : Set G).Finite := by
   by_cases h : ∃ γ₀ : G, γ₀ • d' = d
   · obtain ⟨γ₀, hγ₀⟩ := h
@@ -200,6 +239,9 @@ theorem finite_setOf_smul_eq (d d' : 𝒯.Dart) : ({γ : G | γ • d' = d} : Se
     rw [this]; exact Set.finite_empty
 
 include hfin in
+/--
+@isnad1 id=finite.1h5v.s7.897a4ab70a67 from=translated src=- shape=b4f0f142 vocab=bbf31a0b
+-/
 theorem finite_support_indicator (d d' : 𝒯.Dart) :
     (Function.support fun γ : G => (if γ • d' = d then (1 : ℤ) else 0)).Finite := by
   apply (finite_setOf_smul_eq 𝒯 hfin d d').subset
@@ -210,6 +252,9 @@ theorem finite_support_indicator (d d' : 𝒯.Dart) :
 
 include hfin in
 
+/--
+@isnad1 id=eq.1h5v.s8.4a7b891fd396 from=translated src=- shape=060da147 vocab=f807320c
+-/
 theorem finsum_indicator_smul_eq (d d' : 𝒯.Dart) :
     ∑ᶠ γ : G, (if γ • d' = d then (1 : ℤ) else 0) =
       if Quotient.mk (orbitRel G 𝒯.Dart) d = Quotient.mk (orbitRel G 𝒯.Dart) d' then wt G 𝒯 d else 0 := by
@@ -260,8 +305,14 @@ variable (hfin : ∀ d : 𝒯.Dart, Finite (stabilizer G d))
 def atom (d : 𝒯.Dart) (L : List 𝒯.Dart) (γ : G) : ℤ :=
   ((L.map fun x => γ • x).count d : ℤ) - ((L.map fun x => γ • x).count d.symm : ℤ)
 
+/--
+@isnad1 id=eq.0h5v.s6.60417c7445c4 from=translated src=- shape=ca685c3f vocab=b8c1edcf
+-/
 theorem atom_nil (d : 𝒯.Dart) (γ : G) : atom 𝒯 d [] γ = 0 := by simp [atom]
 
+/--
+@isnad1 id=eq.0h7v.s8.e17f14a5aa16 from=translated src=- shape=f22b0118 vocab=38e881c5
+-/
 theorem atom_cons (d d' : 𝒯.Dart) (L : List 𝒯.Dart) (γ : G) :
     atom 𝒯 d (d' :: L) γ =
       ((if γ • d' = d then (1 : ℤ) else 0) - (if γ • d' = d.symm then (1 : ℤ) else 0)) + atom 𝒯 d L γ := by
@@ -270,6 +321,9 @@ theorem atom_cons (d d' : 𝒯.Dart) (L : List 𝒯.Dart) (γ : G) :
   ring
 
 include hfin in
+/--
+@isnad1 id=finite.1h5v.s8.1a92e7642793 from=translated src=- shape=4f9805af vocab=aa9d9929
+-/
 theorem finite_support_pair (d d' : 𝒯.Dart) :
     (Function.support fun γ : G => (if γ • d' = d then (1 : ℤ) else 0) - (if γ • d' = d.symm then (1 : ℤ) else 0)).Finite := by
   refine ((finite_support_indicator 𝒯 hfin d d').union (finite_support_indicator 𝒯 hfin d.symm d')).subset ?_
@@ -280,6 +334,9 @@ theorem finite_support_pair (d d' : 𝒯.Dart) :
   exact hγ (by rw [hnot.1, hnot.2, sub_zero])
 
 include hfin in
+/--
+@isnad1 id=finite.1h5v.s6.3fd903d9c9e4 from=translated src=- shape=69fe98b1 vocab=39817aef
+-/
 theorem finite_support_atom (d : 𝒯.Dart) (L : List 𝒯.Dart) : (Function.support (atom 𝒯 d L : G → ℤ)).Finite := by
   induction L with
   | nil =>
@@ -296,6 +353,9 @@ theorem finite_support_atom (d : 𝒯.Dart) (L : List 𝒯.Dart) : (Function.sup
 
 include hfin hτ in
 
+/--
+@isnad1 id=eq.3h8v.s11.3f545ee5e287 from=translated src=- shape=0e70e321 vocab=d460ae84
+-/
 theorem finsum_atom (hadj : ∀ u v : W, 𝒯.Adj u v → τ u ≠ τ v) (d : 𝒯.Dart) (L : List 𝒯.Dart) :
     ∑ᶠ γ : G, atom 𝒯 d L γ =
       ∑ e : E, ((stabWidth G 𝒯 (eE e).1 : ℕ) : ℤ) * (dartIndex 𝒯 (eE e).1 d * (L.map (dartIndex 𝒯 (eE e).1)).sum) := by
@@ -326,6 +386,9 @@ theorem finsum_atom (hadj : ∀ u v : W, 𝒯.Adj u v → τ u ≠ τ v) (d : �
     ring
 
 include hfin in
+/--
+@isnad1 id=finite.1h5v.s6.966707a1c192 from=translated src=- shape=9101350f vocab=56a41001
+-/
 theorem finite_support_listSum (LP L : List 𝒯.Dart) :
     (Function.support fun γ : G => (LP.map fun d => atom 𝒯 d L γ).sum).Finite := by
   induction LP with
@@ -341,6 +404,9 @@ theorem finite_support_listSum (LP L : List 𝒯.Dart) :
     exact hγ (by rw [hnot.1, hnot.2, add_zero])
 
 include hfin hτ in
+/--
+@isnad1 id=eq.3h8v.s11.a82389b957df from=translated src=- shape=785279a1 vocab=d460ae84
+-/
 theorem finsum_listSum (hadj : ∀ u v : W, 𝒯.Adj u v → τ u ≠ τ v) (LP L : List 𝒯.Dart) :
     ∑ᶠ γ : G, (LP.map fun d => atom 𝒯 d L γ).sum =
       ∑ e : E, ((stabWidth G 𝒯 (eE e).1 : ℕ) : ℤ) *
@@ -358,6 +424,9 @@ theorem finsum_listSum (hadj : ∀ u v : W, 𝒯.Adj u v → τ u ≠ τ v) (LP 
 
 end Lists
 
+/--
+@isnad1 id=eq.3h12v.s11.439a39ff0114 from=translated src=- shape=38467929 vocab=f35dc29a
+-/
 theorem main {G : Type} [Group G] {W : Type} [DecidableEq W] [MulAction G W] (𝒯 : SimpleGraph W) [GraphAction G 𝒯]
     (hfin : ∀ w : W, Finite (stabilizer G w))
     (τ : W → ZMod 2) (hτ : ∀ (g : G) (w : W), τ (g • w) = τ w) (hadj : ∀ u v : W, 𝒯.Adj u v → τ u ≠ τ v)
@@ -381,6 +450,9 @@ end CerednikDrinfeld.Mumford.TreeSumW
 
 open _root_.CerednikDrinfeld.Mumford open _root_.P2MW.S_CerednikDrinfeld_Mumford_finsum_walkOverlap_map_smulHom_eq_sum_stabWidth_mul_walkCycle_mul_walkCycle.CerednikDrinfeld.Mumford open _root_.MulAction
 
+/--
+@isnad1 id=eq.3h12v.s11.439a39ff0114 from=translated src=- shape=38467929 vocab=f35dc29a
+-/
 theorem solution
     {G : Type} [Group G] {W : Type} [DecidableEq W] [MulAction G W] (𝒯 : SimpleGraph W) [GraphAction G 𝒯]
     (hfin : ∀ w : W, Finite (stabilizer G w))

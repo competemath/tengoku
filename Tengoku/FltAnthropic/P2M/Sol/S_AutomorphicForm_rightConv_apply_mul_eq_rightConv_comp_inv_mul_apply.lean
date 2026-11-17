@@ -8,6 +8,9 @@ namespace P2MW.S_AutomorphicForm_rightConv_apply_mul_eq_rightConv_comp_inv_mul_a
 open NumberField
 open MeasureTheory AutomorphicForm
 
+/--
+@isnad1 id=eq.0h5v.s10.cfcfbd149802 from=translated src=- shape=acda62d4 vocab=5f07505e
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K]
     (φ f : GL (Fin 2) (AdeleRing (𝓞 K) K) → ℂ)

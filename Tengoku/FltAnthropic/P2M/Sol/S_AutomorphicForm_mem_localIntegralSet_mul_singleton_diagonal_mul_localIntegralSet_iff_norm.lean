@@ -23,17 +23,29 @@ variable (K : Type) [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K))
 local notation "Kv" => v.adicCompletion K
 local notation "M2" => Matrix (Fin 2) (Fin 2) (v.adicCompletion K)
 
+/--
+@isnad1 id=iff.0h3v.s7.6a46a4956177 from=translated src=- shape=18d832ef vocab=cbcca64e
+-/
 theorem mem_integers_iff_norm (y : Kv) : y ∈ v.adicCompletionIntegers K ↔ ‖y‖ ≤ 1 := by
   rw [HeightOneSpectrum.mem_adicCompletionIntegers, Valued.toNormedField.norm_le_one_iff]
 
+/--
+@isnad1 id=le.1h5v.s9.3dc7b28ba8c0 from=translated src=- shape=d9bdfa13 vocab=06be8dea
+-/
 theorem norm_entry_le_one_of_mem {g : GL (Fin 2) Kv} (hg : g ∈ localIntegralSet K v) (i j : Fin 2) :
     ‖(g : M2) i j‖ ≤ 1 :=
   (mem_integers_iff_norm K v _).1 (((mem_localIntegralSet K v).1 hg).1 i j)
 
+/--
+@isnad1 id=le.1h5v.s9.6bce3e5e0e00 from=translated src=- shape=774b8d4f vocab=9e33674d
+-/
 theorem norm_inv_entry_le_one_of_mem {g : GL (Fin 2) Kv} (hg : g ∈ localIntegralSet K v) (i j : Fin 2) :
     ‖((g⁻¹ : GL (Fin 2) Kv) : M2) i j‖ ≤ 1 :=
   (mem_integers_iff_norm K v _).1 (((mem_localIntegralSet K v).1 hg).2 i j)
 
+/--
+@isnad1 id=le.1h4v.s7.83639c4b1778 from=translated src=- shape=e0833c50 vocab=c5f973de
+-/
 theorem norm_det_le_mul {M : M2} {C : ℝ} (hM : ∀ i j, ‖M i j‖ ≤ C) : ‖M.det‖ ≤ C * C := by
   have hC : 0 ≤ C := (norm_nonneg _).trans (hM 0 0)
   rw [Matrix.det_fin_two, sub_eq_add_neg]
@@ -41,9 +53,15 @@ theorem norm_det_le_mul {M : M2} {C : ℝ} (hM : ∀ i j, ‖M i j‖ ≤ C) : �
   · rw [norm_mul]; exact mul_le_mul (hM 0 0) (hM 1 1) (norm_nonneg _) hC
   · rw [norm_neg, norm_mul]; exact mul_le_mul (hM 0 1) (hM 1 0) (norm_nonneg _) hC
 
+/--
+@isnad1 id=le.1h3v.s7.587b7c9812b9 from=translated src=- shape=b4a5b53d vocab=74768a66
+-/
 theorem norm_det_le_one {M : M2} (hM : ∀ i j, ‖M i j‖ ≤ 1) : ‖M.det‖ ≤ 1 := by
   simpa using norm_det_le_mul K v hM
 
+/--
+@isnad1 id=eq.1h3v.s9.251e557b4d18 from=translated src=- shape=fdf3d65d vocab=848b85e4
+-/
 theorem norm_det_eq_one_of_mem {g : GL (Fin 2) Kv} (hg : g ∈ localIntegralSet K v) : ‖(g : M2).det‖ = 1 := by
   have h1 : ‖(g : M2).det‖ ≤ 1 := norm_det_le_one K v (norm_entry_le_one_of_mem K v hg)
   have h2 : ‖((g⁻¹ : GL (Fin 2) Kv) : M2).det‖ ≤ 1 := norm_det_le_one K v (norm_inv_entry_le_one_of_mem K v hg)
@@ -54,6 +72,9 @@ theorem norm_det_eq_one_of_mem {g : GL (Fin 2) Kv} (hg : g ∈ localIntegralSet 
   have hlt : ‖(g : M2).det‖ < 1 := lt_of_le_of_ne h1 hne
   exact (mul_lt_one_of_nonneg_of_lt_one_left (norm_nonneg _) hlt h2).ne hn
 
+/--
+@isnad1 id=mem.2h3v.s9.9372155d7432 from=translated src=- shape=e7cf2bc8 vocab=85085c80
+-/
 theorem mem_localIntegralSet_of_norm {g : GL (Fin 2) Kv} (h1 : ∀ i j, ‖(g : M2) i j‖ ≤ 1)
     (h2 : ‖(g : M2).det‖ = 1) : g ∈ localIntegralSet K v := by
   refine (mem_localIntegralSet K v).2 ⟨fun i j => (mem_integers_iff_norm K v _).2 (h1 i j), fun i j => ?_⟩
@@ -65,11 +86,17 @@ theorem mem_localIntegralSet_of_norm {g : GL (Fin 2) Kv} (h1 : ∀ i j, ‖(g : 
   · simpa using h1 1 0
   · exact h1 0 0
 
+/--
+@isnad1 id=iff.0h3v.s9.9bb4daf5c580 from=translated src=- shape=f8b2bc9d vocab=85085c80
+-/
 theorem mem_localIntegralSet_iff_norm (g : GL (Fin 2) Kv) :
     g ∈ localIntegralSet K v ↔ (∀ i j, ‖(g : M2) i j‖ ≤ 1) ∧ ‖(g : M2).det‖ = 1 :=
   ⟨fun hg => ⟨norm_entry_le_one_of_mem K v hg, norm_det_eq_one_of_mem K v hg⟩,
     fun h => mem_localIntegralSet_of_norm K v h.1 h.2⟩
 
+/--
+@isnad1 id=le.2h7v.s9.4ccfb60116c3 from=translated src=- shape=1aa3e7d7 vocab=1ce8f41e
+-/
 theorem norm_mul_entry_le_of_left {M N : M2} {C : ℝ} (hM : ∀ i j, ‖M i j‖ ≤ 1) (hN : ∀ i j, ‖N i j‖ ≤ C)
     (i j : Fin 2) : ‖(M * N) i j‖ ≤ C := by
   have hC : 0 ≤ C := (norm_nonneg _).trans (hN 0 0)
@@ -82,6 +109,9 @@ theorem norm_mul_entry_le_of_left {M N : M2} {C : ℝ} (hM : ∀ i j, ‖M i j�
     calc ‖M i 1‖ * ‖N 1 j‖ ≤ 1 * C := mul_le_mul (hM i 1) (hN 1 j) (norm_nonneg _) zero_le_one
       _ = C := one_mul C
 
+/--
+@isnad1 id=le.2h7v.s9.744a44f99e7a from=translated src=- shape=c52eee45 vocab=1ce8f41e
+-/
 theorem norm_mul_entry_le_of_right {M N : M2} {C : ℝ} (hM : ∀ i j, ‖M i j‖ ≤ C) (hN : ∀ i j, ‖N i j‖ ≤ 1)
     (i j : Fin 2) : ‖(M * N) i j‖ ≤ C := by
   have hC : 0 ≤ C := (norm_nonneg _).trans (hM 0 0)
@@ -94,6 +124,9 @@ theorem norm_mul_entry_le_of_right {M N : M2} {C : ℝ} (hM : ∀ i j, ‖M i j�
     calc ‖M i 1‖ * ‖N 1 j‖ ≤ C * 1 := mul_le_mul (hM i 1) (hN 1 j) (norm_nonneg _) hC
       _ = C := mul_one C
 
+/--
+@isnad1 id=mem.2h4v.s10.6845802fc898 from=translated src=- shape=12f9ec1b vocab=b562a48c
+-/
 theorem mul_mem_localIntegralSet {g h : GL (Fin 2) Kv} (hg : g ∈ localIntegralSet K v)
     (hh : h ∈ localIntegralSet K v) : g * h ∈ localIntegralSet K v := by
   rw [mem_localIntegralSet_iff_norm] at hg hh ⊢
@@ -101,12 +134,18 @@ theorem mul_mem_localIntegralSet {g h : GL (Fin 2) Kv} (hg : g ∈ localIntegral
   · rw [Units.val_mul]; exact norm_mul_entry_le_of_left K v hg.1 hh.1 i j
   · rw [Units.val_mul, Matrix.det_mul, norm_mul, hg.2, hh.2, one_mul]
 
+/--
+@isnad1 id=mem.1h3v.s9.1aa18f9e23de from=translated src=- shape=501373d8 vocab=63411a15
+-/
 theorem inv_mem_localIntegralSet {g : GL (Fin 2) Kv} (hg : g ∈ localIntegralSet K v) :
     g⁻¹ ∈ localIntegralSet K v := by
   rw [mem_localIntegralSet] at hg ⊢
   rw [inv_inv]
   exact ⟨hg.2, hg.1⟩
 
+/--
+@isnad1 id=iff.0h4v.s12.4d9dac7b08c6 from=translated src=- shape=4b97de50 vocab=589799b7
+-/
 theorem mem_doubleCoset_iff (d g : GL (Fin 2) Kv) :
     g ∈ localIntegralSet K v * ({d} : Set (GL (Fin 2) Kv)) * localIntegralSet K v ↔
       ∃ a ∈ localIntegralSet K v, ∃ b ∈ localIntegralSet K v, a * d * b = g := by
@@ -120,6 +159,9 @@ theorem mem_doubleCoset_iff (d g : GL (Fin 2) Kv) :
   · rintro ⟨a, ha, b, hb, rfl⟩
     exact Set.mem_mul.2 ⟨a * d, Set.mem_mul.2 ⟨a, ha, d, Set.mem_singleton d, rfl⟩, b, hb, rfl⟩
 
+/--
+@isnad1 id=and.5h7v.s12.c6dd962f66f6 from=translated src=- shape=d0d69811 vocab=924e0171
+-/
 theorem invariants_of_mem {π : Kv} (hπ0 : π ≠ 0) (hπ1 : ‖π‖ ≤ 1) {m₁ m₂ : ℤ} (hm : m₂ ≤ m₁)
     {dl : GL (Fin 2) Kv} (hdl : (dl : M2) = !![π ^ m₁, 0; 0, π ^ m₂])
     {g : GL (Fin 2) Kv}
@@ -176,6 +218,9 @@ theorem invariants_of_mem {π : Kv} (hπ0 : π ≠ 0) (hπ1 : ‖π‖ ≤ 1) {m
       norm_zpow] at h11
     exact absurd (h11.trans_lt (hlt p.1 p.2)) (lt_irrefl _)
 
+/--
+@isnad1 id=mem.5h6v.s12.f1f0112ed2cf from=translated src=- shape=e22dc350 vocab=2e4ca956
+-/
 theorem mem_doubleCoset_of_norm_apply_zero_zero {π : Kv} (hπ0 : π ≠ 0) {n : ℤ}
     {d : GL (Fin 2) Kv} (hd : (d : M2) = !![π ^ n, 0; 0, 1])
     {h : GL (Fin 2) Kv} (h1 : ∀ i j, ‖(h : M2) i j‖ ≤ 1) (h00 : ‖(h : M2) 0 0‖ = 1)
@@ -254,14 +299,23 @@ theorem mem_doubleCoset_of_norm_apply_zero_zero {π : Kv} (hπ0 : π ≠ 0) {n :
 def swapGL : GL (Fin 2) Kv :=
   Matrix.GeneralLinearGroup.mkOfDetNeZero (!![0, 1; 1, 0] : M2) (by rw [Matrix.det_fin_two_of]; norm_num)
 
+/--
+@isnad1 id=eq.0h2v.s10.8db26d2baafa from=translated src=- shape=d8a06b47 vocab=fe3cb1ef
+-/
 theorem swapGL_coe : ((swapGL K v : GL (Fin 2) Kv) : M2) = !![0, 1; 1, 0] :=
   Matrix.GeneralLinearGroup.val_mkOfDetNeZero _ _
 
+/--
+@isnad1 id=mem.0h2v.s8.8ecdf7162535 from=translated src=- shape=c19160e1 vocab=e27e58da
+-/
 theorem swapGL_mem : swapGL K v ∈ localIntegralSet K v := by
   refine mem_localIntegralSet_of_norm K v (fun i j => ?_) ?_
   · rw [swapGL_coe]; fin_cases i <;> fin_cases j <;> simp
   · rw [swapGL_coe, Matrix.det_fin_two_of]; norm_num
 
+/--
+@isnad1 id=mem.2h5v.s12.c82d394cce06 from=translated src=- shape=c4a8052a vocab=589799b7
+-/
 theorem mul_mem_doubleCoset {d g k : GL (Fin 2) Kv}
     (hg : g ∈ localIntegralSet K v * ({d} : Set (GL (Fin 2) Kv)) * localIntegralSet K v)
     (hk : k ∈ localIntegralSet K v) :
@@ -269,6 +323,9 @@ theorem mul_mem_doubleCoset {d g k : GL (Fin 2) Kv}
   obtain ⟨a, ha, b, hb, rfl⟩ := (mem_doubleCoset_iff K v d g).1 hg
   exact (mem_doubleCoset_iff K v d _).2 ⟨a, ha, b * k, mul_mem_localIntegralSet K v hb hk, by group⟩
 
+/--
+@isnad1 id=mem.2h5v.s12.555f0d3659d1 from=translated src=- shape=b1b0db0e vocab=589799b7
+-/
 theorem mem_doubleCoset_mul {d g k : GL (Fin 2) Kv}
     (hg : g ∈ localIntegralSet K v * ({d} : Set (GL (Fin 2) Kv)) * localIntegralSet K v)
     (hk : k ∈ localIntegralSet K v) :
@@ -276,6 +333,9 @@ theorem mem_doubleCoset_mul {d g k : GL (Fin 2) Kv}
   obtain ⟨a, ha, b, hb, rfl⟩ := (mem_doubleCoset_iff K v d g).1 hg
   exact (mem_doubleCoset_iff K v d _).2 ⟨k * a, mul_mem_localIntegralSet K v hk ha, b, hb, by group⟩
 
+/--
+@isnad1 id=mem.5h6v.s12.a3f11ac09f1e from=translated src=- shape=f25a8695 vocab=2e4ca956
+-/
 theorem mem_doubleCoset_of_exists_norm_apply_eq_one {π : Kv} (hπ0 : π ≠ 0) {n : ℤ}
     {d : GL (Fin 2) Kv} (hd : (d : M2) = !![π ^ n, 0; 0, 1])
     {h : GL (Fin 2) Kv} (h1 : ∀ i j, ‖(h : M2) i j‖ ≤ 1) (hex : ∃ i j, ‖(h : M2) i j‖ = 1)
@@ -323,6 +383,9 @@ theorem mem_doubleCoset_of_exists_norm_apply_eq_one {π : Kv} (hπ0 : π ≠ 0) 
     have heq : (swapGL K v)⁻¹ * (swapGL K v * h * swapGL K v * (swapGL K v)⁻¹) = h := by group
     rwa [heq] at h'
 
+/--
+@isnad1 id=iff.4h7v.s12.d2c5ba3bcb86 from=translated src=- shape=ffbf4e85 vocab=924e0171
+-/
 theorem mem_doubleCoset_iff_norm {π : Kv} (hπ0 : π ≠ 0) (hπ1 : ‖π‖ ≤ 1) {m₁ m₂ : ℤ} (hm : m₂ ≤ m₁)
     {dl : GL (Fin 2) Kv} (hdl : (dl : M2) = !![π ^ m₁, 0; 0, π ^ m₂]) (g : GL (Fin 2) Kv) :
     g ∈ localIntegralSet K v * ({dl} : Set (GL (Fin 2) Kv)) * localIntegralSet K v ↔
@@ -399,6 +462,9 @@ end
 open NumberField IsDedekindDomain
 open scoped Pointwise
 
+/--
+@isnad1 id=iff.4h7v.s11.cbb5a09b5856 from=translated src=- shape=327f0960 vocab=81de5b84
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K))
     (π : v.adicCompletion K) (hπ0 : π ≠ 0) (hπ1 : ‖π‖ ≤ 1) (m₁ m₂ : ℤ) (hm : m₂ ≤ m₁)

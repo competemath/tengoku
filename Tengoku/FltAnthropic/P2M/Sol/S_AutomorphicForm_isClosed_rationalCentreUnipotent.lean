@@ -18,6 +18,9 @@ open _root_.AutomorphicForm
 
 variable (K : Type) [Field K] [NumberField K]
 
+/--
+@isnad1 id=isclosed.0h1v.s8.696a3973e047 from=translated src=- shape=132eef22 vocab=0e517031
+-/
 theorem isClosed_range_algebraMap_adeleRing : IsClosed (Set.range (algebraMap K (AdeleRing (𝓞 K) K))) := by
   set R := Set.range (algebraMap K (AdeleRing (𝓞 K) K)) with hR
   refine isClosed_of_closure_subset fun x hx => ?_
@@ -42,6 +45,9 @@ def scalarUnipotentSet : Set (AdelicGL2 (𝓞 K) K) :=
     (g : Matrix (Fin 2) (Fin 2) (AdeleRing (𝓞 K) K)) 0 0 = (g : Matrix (Fin 2) (Fin 2) (AdeleRing (𝓞 K) K)) 1 1 ∧
     (g : Matrix (Fin 2) (Fin 2) (AdeleRing (𝓞 K) K)) 0 0 ∈ Set.range (algebraMap K (AdeleRing (𝓞 K) K))}
 
+/--
+@isnad1 id=isclosed.0h1v.s7.eba0476a4ba0 from=translated src=- shape=35fdece5 vocab=8a137fdf
+-/
 theorem isClosed_scalarUnipotentSet : IsClosed (scalarUnipotentSet K) := by
   have hent : ∀ i j : Fin 2, Continuous fun g : AdelicGL2 (𝓞 K) K => (g : Matrix (Fin 2) (Fin 2) (AdeleRing (𝓞 K) K)) i j :=
     fun i j => (Units.continuous_val (M := Matrix (Fin 2) (Fin 2) (AdeleRing (𝓞 K) K))).matrix_elem i j
@@ -49,6 +55,9 @@ theorem isClosed_scalarUnipotentSet : IsClosed (scalarUnipotentSet K) := by
   refine (isClosed_eq (hent 1 0) continuous_const).inter ((isClosed_eq (hent 0 0) (hent 1 1)).inter ?_)
   exact (isClosed_range_algebraMap_adeleRing K).preimage (hent 0 0)
 
+/--
+@isnad1 id=mem.2h3v.s8.13260242549a from=translated src=- shape=f51829b5 vocab=fb630a8f
+-/
 theorem mul_mem_scalarUnipotentSet {g h : AdelicGL2 (𝓞 K) K} (hg : g ∈ scalarUnipotentSet K) (hh : h ∈ scalarUnipotentSet K) :
     g * h ∈ scalarUnipotentSet K := by
   obtain ⟨hg1, hg2, ξ, hξ⟩ := hg
@@ -62,6 +71,9 @@ theorem mul_mem_scalarUnipotentSet {g h : AdelicGL2 (𝓞 K) K} (hg : g ∈ scal
   · rw [e, e, hh1, hg1, mul_zero, add_zero, zero_mul, zero_add, hg2, hh2]
   · rw [e, hh1, mul_zero, add_zero, map_mul, hξ, hη]
 
+/--
+@isnad1 id=mem.0h2v.s10.e8fd8484517d from=translated src=- shape=b9cc349b vocab=9b47c0a1
+-/
 theorem globalPoints_scalar_mem_scalarUnipotentSet (a : Kˣ) :
     globalPoints (𝓞 K) K (Units.map (Matrix.scalar (Fin 2) : K →+* Matrix (Fin 2) (Fin 2) K).toMonoidHom a) ∈
       scalarUnipotentSet K := by
@@ -69,10 +81,16 @@ theorem globalPoints_scalar_mem_scalarUnipotentSet (a : Kˣ) :
     change _ = _ <;>
     simp [globalPoints, Matrix.GeneralLinearGroup.map, RingHom.mapMatrix_apply, Matrix.map_apply, Matrix.scalar_apply]
 
+/--
+@isnad1 id=mem.0h2v.s7.df47060072ac from=translated src=- shape=5b6672d2 vocab=5c39a2ae
+-/
 theorem unipotentGL2_mem_scalarUnipotentSet (x : AdeleRing (𝓞 K) K) :
     (unipotentGL2 x : AdelicGL2 (𝓞 K) K) ∈ scalarUnipotentSet K := by
   refine ⟨?_, ?_, 1, ?_⟩ <;> simp [unipotentGL2_coe]
 
+/--
+@isnad1 id=eq.0h1v.s8.87d37caf993f from=translated src=- shape=4e5b5693 vocab=20bf04b8
+-/
 theorem coe_rationalCentreUnipotent_eq : (rationalCentreUnipotent K : Set (AdelicGL2 (𝓞 K) K)) = scalarUnipotentSet K := by
   apply Set.Subset.antisymm
   ·
@@ -125,6 +143,9 @@ theorem coe_rationalCentreUnipotent_eq : (rationalCentreUnipotent K : Set (Adeli
     rw [hg]
     exact Subgroup.mul_mem_sup ⟨a, rfl⟩ ⟨Multiplicative.ofAdd x, rfl⟩
 
+/--
+@isnad1 id=isclosed.0h1v.s9.0bc43f71c17d from=translated src=- shape=45a4b3b6 vocab=8d9d57cc
+-/
 theorem isClosed_rationalCentreUnipotent' : IsClosed (rationalCentreUnipotent K : Set (AdelicGL2 (𝓞 K) K)) := by
   rw [coe_rationalCentreUnipotent_eq]; exact isClosed_scalarUnipotentSet K
 
@@ -132,6 +153,9 @@ end AutomorphicForm
 
 end
 
+/--
+@isnad1 id=isclosed.0h1v.s9.0bc43f71c17d from=translated src=- shape=45a4b3b6 vocab=8d9d57cc
+-/
 theorem solution (K : Type) [Field K] [NumberField K] :
     IsClosed (rationalCentreUnipotent K : Set (AdelicGL2 (𝓞 K) K)) :=
   AutomorphicForm.isClosed_rationalCentreUnipotent' K

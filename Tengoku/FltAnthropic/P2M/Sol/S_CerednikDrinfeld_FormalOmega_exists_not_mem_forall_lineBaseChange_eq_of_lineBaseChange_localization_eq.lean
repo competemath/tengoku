@@ -12,6 +12,9 @@ open LT.LatticeTree CerednikDrinfeld CerednikDrinfeld.FormalOmega
 
 namespace SpreadGC9
 
+/--
+@isnad1 id=fg.0h3v.s6.f0185496a0a2 from=translated src=- shape=00e7f32a vocab=d3e17994
+-/
 theorem fg_of_projective_quotient {R V : Type*} [CommRing R] [AddCommGroup V] [Module R V] [Module.Finite R V]
     (N : Submodule R V) [Module.Projective R (V ⧸ N)] : N.FG := by
   obtain ⟨s, hs⟩ := Module.projective_lifting_property N.mkQ (LinearMap.id : (V ⧸ N) →ₗ[R] (V ⧸ N)) N.mkQ_surjective
@@ -27,6 +30,9 @@ theorem fg_of_projective_quotient {R V : Type*} [CommRing R] [AddCommGroup V] [M
     rw [Submodule.mkQ_apply, (Submodule.Quotient.mk_eq_zero N).mpr hx, map_zero, sub_zero]
   exact Module.Finite.iff_fg.mp (Module.Finite.of_surjective _ hsurj)
 
+/--
+@isnad1 id=ex.2h8v.s9.1f0d2f13c7a4 from=translated src=- shape=2e8befce vocab=74ba0852
+-/
 theorem exists_smul_mem_of_localized'_le {R : Type*} [CommRing R] (S : Submonoid R) (A : Type*) [CommRing A]
     [Algebra R A] [IsLocalization S A] {V W : Type*} [AddCommGroup V] [Module R V] [AddCommGroup W] [Module R W]
     [Module A W] [IsScalarTower R A W] (g : V →ₗ[R] W) [IsLocalizedModule S g] {N₁ N₂ : Submodule R V}
@@ -64,8 +70,14 @@ section CD
 variable {𝒪 : Type} [CommRing 𝒪] {K₀ : Type} [Field K₀] [Algebra 𝒪 K₀]
   {B : Type} [CommRing B] [Algebra 𝒪 B] (M : FullLattice 𝒪 K₀)
 
+/--
+@isnad1 id=finite.0h3v.s9.a6e3f947b525 from=translated src=- shape=c4c888cf vocab=b8ddaa79
+-/
 scoped instance finite_lattice : Module.Finite 𝒪 (↥M.1) := Module.Finite.iff_fg.mpr M.2.1
 
+/--
+@isnad1 id=eq.0h8v.s15.f95bba099b39 from=translated src=- shape=524ece06 vocab=9975b6fe
+-/
 theorem rTensor_smul_left' {C : Type} [CommRing C] [Algebra 𝒪 C] (φ : B →ₐ[𝒪] C) (b : B)
     (x : latticeBaseChange 𝒪 K₀ B M) :
     LinearMap.rTensor (↥M.1) φ.toLinearMap (b • x) = φ b • LinearMap.rTensor (↥M.1) φ.toLinearMap x := by
@@ -76,6 +88,9 @@ theorem rTensor_smul_left' {C : Type} [CommRing C] [Algebra 𝒪 C] (φ : B →�
     rw [TensorProduct.smul_tmul', LinearMap.rTensor_tmul, LinearMap.rTensor_tmul, TensorProduct.smul_tmul',
       AlgHom.toLinearMap_apply, AlgHom.toLinearMap_apply, smul_eq_mul, smul_eq_mul, map_mul]
 
+/--
+@isnad1 id=le.2h9v.s14.3569252a3a44 from=translated src=- shape=62c93650 vocab=f6a931fb
+-/
 theorem lineBaseChange_le_of_smul_mem {C : Type} [CommRing C] [Algebra 𝒪 C] (φ : B →ₐ[𝒪] C)
     {N₁ N₂ : Submodule B (latticeBaseChange 𝒪 K₀ B M)} (u : B) (hu : IsUnit (φ u))
     (h : ∀ x ∈ N₁, u • x ∈ N₂) : lineBaseChange φ M N₁ ≤ lineBaseChange φ M N₂ := by
@@ -93,6 +108,9 @@ noncomputable abbrev bc (C : Type) [CommRing C] [Algebra 𝒪 C] [Algebra B C] [
     latticeBaseChange 𝒪 K₀ B M →ₗ[B] latticeBaseChange 𝒪 K₀ C M :=
   TensorProduct.AlgebraTensorModule.rTensor 𝒪 (↥M.1) (Algebra.linearMap B C)
 
+/--
+@isnad1 id=eq.0h6v.s14.42000476d282 from=translated src=- shape=f935448e vocab=8f14a2e3
+-/
 theorem bc_apply (C : Type) [CommRing C] [Algebra 𝒪 C] [Algebra B C] [IsScalarTower 𝒪 B C]
     (x : latticeBaseChange 𝒪 K₀ B M) :
     bc M C x = LinearMap.rTensor (↥M.1) (IsScalarTower.toAlgHom 𝒪 B C).toLinearMap x := by
@@ -103,6 +121,9 @@ theorem bc_apply (C : Type) [CommRing C] [Algebra 𝒪 C] [Algebra B C] [IsScala
     simp only [bc, LinearMap.rTensor_tmul, AlgHom.toLinearMap_apply, IsScalarTower.coe_toAlgHom',
       TensorProduct.AlgebraTensorModule.rTensor_tmul, Algebra.linearMap_apply]
 
+/--
+@isnad1 id=eq.0h7v.s13.c30071cde508 from=translated src=- shape=f812c68c vocab=fe5bd82d
+-/
 theorem lineBaseChange_eq_localized' (S : Submonoid B) (C : Type) [CommRing C] [Algebra 𝒪 C] [Algebra B C]
     [IsScalarTower 𝒪 B C] [IsLocalization S C] (N : Submodule B (latticeBaseChange 𝒪 K₀ B M)) :
     lineBaseChange (IsScalarTower.toAlgHom 𝒪 B C) M N = N.localized' C S (bc M C) := by
@@ -115,6 +136,9 @@ end SpreadGC9
 open scoped _root_.P2MW.S_CerednikDrinfeld_FormalOmega_exists_not_mem_forall_lineBaseChange_eq_of_lineBaseChange_localization_eq.SpreadGC9
 
 open SpreadGC9 in
+/--
+@isnad1 id=ex.3h7v.s14.13d2da98dde2 from=translated src=- shape=a3202c57 vocab=867e8d44
+-/
 theorem solution
     {𝒪 : Type} [CommRing 𝒪] {K₀ : Type} [Field K₀] [Algebra 𝒪 K₀]
     {B : Type} [CommRing B] [Algebra 𝒪 B] (M : FullLattice 𝒪 K₀)

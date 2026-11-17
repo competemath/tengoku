@@ -28,17 +28,26 @@ local notation "𝓸" => HeightOneSpectrum.adicCompletionIntegers K v
 
 def unif : 𝕂 := ((HeightOneSpectrum.valuation_exists_uniformizer K v).choose : K)
 
+/--
+@isnad1 id=eq.0h2v.s8.82fce0c419f6 from=translated src=- shape=30bceae9 vocab=a912ea7d
+-/
 theorem v_unif : Valued.v (unif K v) = WithZero.exp (-1 : ℤ) := by
   unfold unif
   rw [HeightOneSpectrum.valuedAdicCompletion_eq_valuation']
   exact (HeightOneSpectrum.valuation_exists_uniformizer K v).choose_spec
 
+/--
+@isnad1 id=ne.0h2v.s7.c38247348586 from=translated src=- shape=274a6a45 vocab=dfd714d5
+-/
 theorem unif_ne_zero : unif K v ≠ 0 := by
   intro h
   have := v_unif K v
   rw [h, map_zero] at this
   exact WithZero.zero_ne_coe this
 
+/--
+@isnad1 id=eq.0h3v.s8.b92f6f469495 from=translated src=- shape=90ad69be vocab=77adaf33
+-/
 theorem v_unif_pow (n : ℕ) : Valued.v (unif K v ^ n) = WithZero.exp (-(n : ℤ)) := by
   induction n with
   | zero => simp
@@ -48,15 +57,27 @@ theorem v_unif_pow (n : ℕ) : Valued.v (unif K v ^ n) = WithZero.exp (-(n : ℤ
     push_cast
     ring
 
+/--
+@isnad1 id=ne.0h3v.s8.4d7335205ce0 from=translated src=- shape=8234dcbe vocab=539a0d92
+-/
 theorem unif_pow_ne_zero (n : ℕ) : unif K v ^ n ≠ 0 := pow_ne_zero _ (unif_ne_zero K v)
 
+/--
+@isnad1 id=mem.0h2v.s7.f5701dd4923e from=translated src=- shape=26f45e46 vocab=bd9fd86b
+-/
 theorem unif_mem : unif K v ∈ 𝓸 := by
   rw [HeightOneSpectrum.mem_adicCompletionIntegers, v_unif, ← WithZero.exp_zero,
     WithZero.exp_le_exp]
   norm_num
 
+/--
+@isnad1 id=mem.0h3v.s8.3eab210d407d from=translated src=- shape=bec80600 vocab=7b7dc7b8
+-/
 theorem unif_pow_mem (n : ℕ) : unif K v ^ n ∈ 𝓸 := pow_mem (unif_mem K v) n
 
+/--
+@isnad1 id=ex.2h3v.s9.69b334b1bfa9 from=translated src=- shape=03884a4e vocab=6beb02ae
+-/
 theorem exists_v_eq_exp_neg {x : 𝕂} (hx : x ∈ 𝓸) (hx0 : x ≠ 0) :
     ∃ n : ℕ, Valued.v x = WithZero.exp (-(n : ℤ)) := by
   have hv0 : Valued.v x ≠ 0 := (Valuation.ne_zero_iff _).mpr hx0
@@ -68,18 +89,30 @@ theorem exists_v_eq_exp_neg {x : 𝕂} (hx : x ∈ 𝓸) (hx0 : x ≠ 0) :
   rw [Int.toNat_of_nonneg (by linarith)]
   ring
 
+/--
+@isnad1 id=mem.2h4v.s9.3cb072f19e02 from=translated src=- shape=0dd1839c vocab=78226099
+-/
 theorem div_mem_of_v_le {x y : 𝕂} (hxy : Valued.v y ≤ Valued.v x) (hx0 : x ≠ 0) :
     y / x ∈ 𝓸 := by
   rw [HeightOneSpectrum.mem_adicCompletionIntegers, map_div₀]
   have hv0 : Valued.v x ≠ 0 := (Valuation.ne_zero_iff _).mpr hx0
   exact div_le_one_of_le₀ hxy zero_le
 
+/--
+@isnad1 id=mem.1h3v.s8.2a54fbe9e99f from=translated src=- shape=b0e78f95 vocab=5c37a49f
+-/
 theorem mem_of_v_eq_one {u : 𝕂} (hu : Valued.v u = 1) : u ∈ 𝓸 := by
   rw [HeightOneSpectrum.mem_adicCompletionIntegers, hu]
 
+/--
+@isnad1 id=mem.1h3v.s9.8304f9d9a762 from=translated src=- shape=e8ec7eb9 vocab=c00ae86b
+-/
 theorem inv_mem_of_v_eq_one {u : 𝕂} (hu : Valued.v u = 1) : u⁻¹ ∈ 𝓸 := by
   rw [HeightOneSpectrum.mem_adicCompletionIntegers, map_inv₀, hu, inv_one]
 
+/--
+@isnad1 id=mem.1h3v.s9.ab6b68f59138 from=translated src=- shape=009c4513 vocab=339ee80a
+-/
 theorem div_unif_mem_of_v_lt_one {m : 𝕂} (hm : Valued.v m < 1) : m / unif K v ∈ 𝓸 := by
   rw [HeightOneSpectrum.mem_adicCompletionIntegers, map_div₀, v_unif]
   by_cases hm0 : m = 0
@@ -90,6 +123,9 @@ theorem div_unif_mem_of_v_lt_one {m : 𝕂} (hm : Valued.v m < 1) : m / unif K v
   rw [← WithZero.exp_sub, ← WithZero.exp_zero, WithZero.exp_le_exp]
   omega
 
+/--
+@isnad1 id=eq.1h4v.s9.ab7f9db5bec3 from=translated src=- shape=897f4f4b vocab=8ab9df44
+-/
 theorem v_unif_pow_div {x : 𝕂} {n : ℕ} (hx : Valued.v x = WithZero.exp (-(n : ℤ))) :
     Valued.v (unif K v ^ n / x) = 1 := by
   have hx0 : x ≠ 0 := by
@@ -99,17 +135,26 @@ theorem v_unif_pow_div {x : 𝕂} {n : ℕ} (hx : Valued.v x = WithZero.exp (-(n
 
 def MInt (M : Matrix (Fin 2) (Fin 2) 𝕂) : Prop := ∀ i j, M i j ∈ 𝓸
 
+/--
+@isnad1 id=mint.2h4v.s8.f01becd88b31 from=translated src=- shape=a945a5ba vocab=937b342e
+-/
 theorem mInt_mul {M N : Matrix (Fin 2) (Fin 2) 𝕂} (hM : MInt K v M) (hN : MInt K v N) :
     MInt K v (M * N) := by
   intro i j
   rw [Matrix.mul_apply]
   exact Subring.sum_mem _ fun l _ => mul_mem (hM i l) (hN l j)
 
+/--
+@isnad1 id=mint.4h6v.s10.d6d50ecbe6f3 from=translated src=- shape=128665e0 vocab=40a6fa34
+-/
 theorem mInt_of {a b c d : 𝕂} (ha : a ∈ 𝓸) (hb : b ∈ 𝓸) (hc : c ∈ 𝓸) (hd : d ∈ 𝓸) :
     MInt K v !![a, b; c, d] := by
   intro i j
   fin_cases i <;> fin_cases j <;> simpa
 
+/--
+@isnad1 id=mem.1h3v.s8.0d5cce548718 from=translated src=- shape=00409842 vocab=66b4e78b
+-/
 theorem det_mem_of_mInt {M : Matrix (Fin 2) (Fin 2) 𝕂} (hM : MInt K v M) : M.det ∈ 𝓸 := by
   rw [Matrix.det_fin_two]
   exact sub_mem (mul_mem (hM 0 0) (hM 1 1)) (mul_mem (hM 0 1) (hM 1 0))
@@ -129,12 +174,21 @@ def unitGrp : Subgroup (GL (Fin 2) 𝕂) where
 def vdet (g : GL (Fin 2) 𝕂) : WithZero (Multiplicative ℤ) :=
   Valued.v ((Matrix.GeneralLinearGroup.det g : (𝕂)ˣ) : 𝕂)
 
+/--
+@isnad1 id=eq.0h3v.s9.49174422473b from=translated src=- shape=28ccb51b vocab=9613fc31
+-/
 theorem vdet_eq (g : GL (Fin 2) 𝕂) : vdet K v g = Valued.v (g : Matrix (Fin 2) (Fin 2) 𝕂).det := by
   rw [vdet, Matrix.GeneralLinearGroup.val_det_apply]
 
+/--
+@isnad1 id=eq.0h4v.s9.c931e5bc12b9 from=translated src=- shape=569ad4d1 vocab=2d7e08d6
+-/
 theorem vdet_mul (g h : GL (Fin 2) 𝕂) : vdet K v (g * h) = vdet K v g * vdet K v h := by
   simp only [vdet, map_mul, Units.val_mul]
 
+/--
+@isnad1 id=iff.0h3v.s10.2c66dbefb20d from=translated src=- shape=6f121ee8 vocab=9eecfbd0
+-/
 theorem mem_unitGrp_iff (g : GL (Fin 2) 𝕂) :
     g ∈ unitGrp K v ↔ MInt K v (g : Matrix (Fin 2) (Fin 2) 𝕂) ∧ vdet K v g = 1 := by
   constructor
@@ -169,6 +223,9 @@ def shell (k : ℕ) : Set (GL (Fin 2) 𝕂) :=
   {g | (∀ i j, (g : Matrix (Fin 2) (Fin 2) 𝕂) i j ∈ 𝓸) ∧
     Valued.v ((Matrix.GeneralLinearGroup.det g : (𝕂)ˣ) : 𝕂) = WithZero.exp (-(k : ℤ))}
 
+/--
+@isnad1 id=iff.0h4v.s9.3187169a8a1a from=translated src=- shape=823ad6ab vocab=c08bbacf
+-/
 theorem mem_shell_iff {k : ℕ} {g : GL (Fin 2) 𝕂} :
     g ∈ shell K v k ↔ MInt K v (g : Matrix (Fin 2) (Fin 2) 𝕂) ∧ vdet K v g = WithZero.exp (-(k : ℤ)) :=
   Iff.rfl
@@ -176,9 +233,15 @@ theorem mem_shell_iff {k : ℕ} {g : GL (Fin 2) 𝕂} :
 def gl (a b c d : 𝕂) (h : a * d - b * c ≠ 0) : GL (Fin 2) 𝕂 :=
   Matrix.GeneralLinearGroup.mkOfDetNeZero !![a, b; c, d] (by rwa [Matrix.det_fin_two_of])
 
+/--
+@isnad1 id=eq.1h6v.s10.8ee94ca1dfa3 from=translated src=- shape=780c597d vocab=65b66dac
+-/
 @[scoped simp] theorem coe_gl (a b c d : 𝕂) (h : a * d - b * c ≠ 0) :
     (gl K v a b c d h : Matrix (Fin 2) (Fin 2) 𝕂) = !![a, b; c, d] := rfl
 
+/--
+@isnad1 id=eq.1h6v.s10.de1562e0246f from=translated src=- shape=c8886bf7 vocab=82b3674d
+-/
 theorem vdet_gl (a b c d : 𝕂) (h : a * d - b * c ≠ 0) :
     vdet K v (gl K v a b c d h) = Valued.v (a * d - b * c) := by
   rw [vdet_eq, coe_gl, Matrix.det_fin_two_of]
@@ -187,14 +250,23 @@ def lowRep (a : ℕ) (c : 𝕂) (d : ℕ) : GL (Fin 2) 𝕂 :=
   gl K v (unif K v ^ a) 0 c (unif K v ^ d) (by
     rw [zero_mul, sub_zero]; exact mul_ne_zero (unif_pow_ne_zero K v a) (unif_pow_ne_zero K v d))
 
+/--
+@isnad1 id=eq.0h5v.s10.502af0d90f9e from=translated src=- shape=997bf6be vocab=a6eaf938
+-/
 theorem coe_lowRep (a : ℕ) (c : 𝕂) (d : ℕ) :
     (lowRep K v a c d : Matrix (Fin 2) (Fin 2) 𝕂) = !![unif K v ^ a, 0; c, unif K v ^ d] := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.3df1530b0b17 from=translated src=- shape=90c8039d vocab=8e60d612
+-/
 theorem vdet_lowRep (a : ℕ) (c : 𝕂) (d : ℕ) :
     vdet K v (lowRep K v a c d) = WithZero.exp (-((a + d : ℕ) : ℤ)) := by
   rw [lowRep, vdet_gl, zero_mul, sub_zero, map_mul, v_unif_pow, v_unif_pow, ← WithZero.exp_add]
   congr 1; push_cast; ring
 
+/--
+@isnad1 id=mint.1h5v.s8.53d06bd7f21d from=translated src=- shape=299e5dd9 vocab=7da61ee7
+-/
 theorem mInt_lowRep (a : ℕ) {c : 𝕂} (hc : c ∈ 𝓸) (d : ℕ) :
     MInt K v (lowRep K v a c d : Matrix (Fin 2) (Fin 2) 𝕂) := by
   rw [coe_lowRep]
@@ -202,12 +274,18 @@ theorem mInt_lowRep (a : ℕ) {c : 𝕂} (hc : c ∈ 𝓸) (d : ℕ) :
 
 def lowUni (r : 𝕂) : GL (Fin 2) 𝕂 := gl K v 1 0 r 1 (by norm_num)
 
+/--
+@isnad1 id=mem.1h3v.s10.28e518ac7ced from=translated src=- shape=0a4d4871 vocab=2b9a9a57
+-/
 theorem lowUni_mem {r : 𝕂} (hr : r ∈ 𝓸) : lowUni K v r ∈ unitGrp K v := by
   rw [mem_unitGrp_iff]
   refine ⟨?_, ?_⟩
   · rw [lowUni, coe_gl]; exact mInt_of K v (one_mem _) (zero_mem _) hr (one_mem _)
   · rw [lowUni, vdet_gl]; norm_num
 
+/--
+@isnad1 id=eq.0h6v.s10.d2b2d7fd4ffc from=translated src=- shape=ffc1ff38 vocab=2fabaa0d
+-/
 theorem lowRep_mul_lowUni (a : ℕ) (c : 𝕂) (d : ℕ) (r : 𝕂) :
     lowRep K v a c d * lowUni K v r = lowRep K v a (c + unif K v ^ d * r) d := by
   refine Units.ext ?_
@@ -215,12 +293,18 @@ theorem lowRep_mul_lowUni (a : ℕ) (c : 𝕂) (d : ℕ) (r : 𝕂) :
   ext i j : 1
   fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.0h3v.s10.461f01104a93 from=translated src=- shape=322452a5 vocab=294341ee
+-/
 theorem coe_eta (g : GL (Fin 2) 𝕂) :
     (g : Matrix (Fin 2) (Fin 2) 𝕂) =
       !![(g : Matrix (Fin 2) (Fin 2) 𝕂) 0 0, (g : Matrix (Fin 2) (Fin 2) 𝕂) 0 1;
         (g : Matrix (Fin 2) (Fin 2) 𝕂) 1 0, (g : Matrix (Fin 2) (Fin 2) 𝕂) 1 1] :=
   Matrix.eta_fin_two _
 
+/--
+@isnad1 id=ex.2h4v.s11.67dc413e5598 from=translated src=- shape=691a1057 vocab=75f3afed
+-/
 theorem exists_lowRep_of_le {k : ℕ} {g : GL (Fin 2) 𝕂} (hg : g ∈ shell K v k)
     (hle : Valued.v ((g : Matrix (Fin 2) (Fin 2) 𝕂) 0 1) ≤ Valued.v ((g : Matrix (Fin 2) (Fin 2) 𝕂) 0 0)) :
     ∃ (a d : ℕ) (c : 𝕂) (u : GL (Fin 2) 𝕂), a + d = k ∧ c ∈ 𝓸 ∧ u ∈ unitGrp K v ∧
@@ -299,12 +383,18 @@ theorem exists_lowRep_of_le {k : ℕ} {g : GL (Fin 2) 𝕂} (hg : g ∈ shell K 
 
 def swapCol : GL (Fin 2) 𝕂 := gl K v 0 1 1 0 (by norm_num)
 
+/--
+@isnad1 id=mem.0h2v.s9.0e1e90187b96 from=translated src=- shape=c19160e1 vocab=ee71d7ad
+-/
 theorem swapCol_mem : swapCol K v ∈ unitGrp K v := by
   rw [mem_unitGrp_iff]
   refine ⟨?_, ?_⟩
   · rw [swapCol, coe_gl]; exact mInt_of K v (zero_mem _) (one_mem _) (one_mem _) (zero_mem _)
   · rw [swapCol, vdet_gl]; norm_num
 
+/--
+@isnad1 id=ex.1h4v.s11.2551cb81d4bc from=translated src=- shape=04773ea2 vocab=e099d55d
+-/
 theorem exists_lowRep {k : ℕ} {g : GL (Fin 2) 𝕂} (hg : g ∈ shell K v k) :
     ∃ (a d : ℕ) (c : 𝕂) (u : GL (Fin 2) 𝕂), a + d = k ∧ c ∈ 𝓸 ∧ u ∈ unitGrp K v ∧
       g * u = lowRep K v a c d := by
@@ -338,6 +428,9 @@ attribute [local instance] instFintypeκ
 
 def sec (t : κ K v) : 𝓸 := Function.surjInv (IsLocalRing.residue_surjective) t
 
+/--
+@isnad1 id=eq.0h3v.s12.081b2f7d9fd9 from=translated src=- shape=ec5ad0a6 vocab=229376ab
+-/
 theorem residue_sec (t : κ K v) : IsLocalRing.residue 𝓸 (sec K v t) = t :=
   Function.surjInv_eq _ _
 
@@ -345,11 +438,20 @@ def digits : (d : ℕ) → (Fin d → κ K v) → 𝕂
   | 0, _ => 0
   | d + 1, t => (sec K v (t 0) : 𝕂) + unif K v * digits d (Fin.tail t)
 
+/--
+@isnad1 id=eq.0h3v.s7.1f2052812ae5 from=translated src=- shape=1428eb63 vocab=9df85ce8
+-/
 theorem digits_zero (t : Fin 0 → κ K v) : digits K v 0 t = 0 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.f3f5e0c5885c from=translated src=- shape=2e3f45b7 vocab=9b2efdd6
+-/
 theorem digits_succ (d : ℕ) (t : Fin (d + 1) → κ K v) :
     digits K v (d + 1) t = (sec K v (t 0) : 𝕂) + unif K v * digits K v d (Fin.tail t) := rfl
 
+/--
+@isnad1 id=mem.0h4v.s7.7fcac36d3fb2 from=translated src=- shape=bf2cfdbe vocab=4486096c
+-/
 theorem digits_mem (d : ℕ) (t : Fin d → κ K v) : digits K v d t ∈ 𝓸 := by
   induction d with
   | zero => exact zero_mem _
@@ -357,6 +459,9 @@ theorem digits_mem (d : ℕ) (t : Fin d → κ K v) : digits K v d t ∈ 𝓸 :=
     rw [digits_succ]
     exact add_mem (sec K v (t 0)).2 (mul_mem (unif_mem K v) (ih _))
 
+/--
+@isnad1 id=mem.1h4v.s13.4e148d156cba from=translated src=- shape=c7c736df vocab=8b3bce9e
+-/
 theorem sub_div_unif_mem_of_residue_eq {c c' : 𝓸}
     (h : IsLocalRing.residue 𝓸 c = IsLocalRing.residue 𝓸 c') :
     ((c : 𝕂) - c') / unif K v ∈ 𝓸 := by
@@ -366,6 +471,9 @@ theorem sub_div_unif_mem_of_residue_eq {c c' : 𝓸}
   have := (NumberField.AdelicHaar.mem_maximalIdeal_iff_valued_lt_one (𝓞 K) K v (c - c')).mp hmem
   simpa using this
 
+/--
+@isnad1 id=eq.2h5v.s13.19f9d0072b17 from=translated src=- shape=24c6016a vocab=a180fa4e
+-/
 theorem residue_eq_of_sub_eq_unif_mul {c c' : 𝓸} {m : 𝕂} (hm : m ∈ 𝓸)
     (h : (c : 𝕂) - c' = unif K v * m) :
     IsLocalRing.residue 𝓸 c = IsLocalRing.residue 𝓸 c' := by
@@ -377,6 +485,9 @@ theorem residue_eq_of_sub_eq_unif_mul {c c' : 𝓸} {m : 𝕂} (hm : m ∈ 𝓸)
   calc WithZero.exp (-1 : ℤ) * Valued.v m ≤ WithZero.exp (-1 : ℤ) * 1 := mul_le_mul_right hm1 _
     _ < 1 := by rw [mul_one, ← WithZero.exp_zero, WithZero.exp_lt_exp]; norm_num
 
+/--
+@isnad1 id=ex.1h4v.s9.0327901c397c from=translated src=- shape=68f197b6 vocab=36462915
+-/
 theorem exists_digits (d : ℕ) {c : 𝕂} (hc : c ∈ 𝓸) :
     ∃ (t : Fin d → κ K v) (r : 𝕂), r ∈ 𝓸 ∧ c = digits K v d t + unif K v ^ d * r := by
   induction d generalizing c with
@@ -396,6 +507,9 @@ theorem exists_digits (d : ℕ) {c : 𝕂} (hc : c ∈ 𝓸) :
       field_simp
     linear_combination hcs
 
+/--
+@isnad1 id=eq.3h7v.s10.e5250ef5c088 from=translated src=- shape=cea035cb vocab=36462915
+-/
 theorem digits_injective (d : ℕ) {t t' : Fin d → κ K v} {r r' : 𝕂} (hr : r ∈ 𝓸) (hr' : r' ∈ 𝓸)
     (h : digits K v d t + unif K v ^ d * r = digits K v d t' + unif K v ^ d * r') : t = t' := by
   induction d generalizing r r' with
@@ -431,6 +545,9 @@ abbrev Idx (k : ℕ) : Type := Σ d : Fin (k + 1), (Fin d → κ K v)
 def rep (k : ℕ) (i : Idx K v k) : GL (Fin 2) 𝕂 :=
   lowRep K v (k - i.1) (digits K v i.1 i.2) i.1
 
+/--
+@isnad1 id=mem.0h4v.s8.0ce221e96086 from=translated src=- shape=05f4353b vocab=6dfe5255
+-/
 theorem rep_mem_shell (k : ℕ) (i : Idx K v k) : rep K v k i ∈ shell K v k := by
   rw [mem_shell_iff, rep]
   refine ⟨mInt_lowRep K v _ (digits_mem K v _ _) _, ?_⟩
@@ -440,6 +557,9 @@ theorem rep_mem_shell (k : ℕ) (i : Idx K v k) : rep K v k i ∈ shell K v k :=
   push_cast
   omega
 
+/--
+@isnad1 id=mem.2h5v.s11.ddfa0614aebd from=translated src=- shape=16188d3f vocab=f04c8c18
+-/
 theorem mul_mem_shell {k : ℕ} {g u : GL (Fin 2) 𝕂} (hg : g ∈ shell K v k) (hu : u ∈ unitGrp K v) :
     g * u ∈ shell K v k := by
   rw [mem_shell_iff] at hg ⊢
@@ -448,12 +568,18 @@ theorem mul_mem_shell {k : ℕ} {g u : GL (Fin 2) 𝕂} (hg : g ∈ shell K v k)
   · rw [Units.val_mul]; exact mInt_mul K v hg.1 hu.1
   · rw [vdet_mul, hg.2, hu.2, mul_one]
 
+/--
+@isnad1 id=le.0h4v.s10.28953eef7a51 from=translated src=- shape=c9bece80 vocab=35d91ebd
+-/
 theorem smul_subset_shell (k : ℕ) (i : Idx K v k) :
     rep K v k i • (unitGrp K v : Set (GL (Fin 2) 𝕂)) ⊆ shell K v k := by
   intro x hx
   obtain ⟨u, hu, rfl⟩ := Set.mem_smul_set.mp hx
   exact mul_mem_shell K v (rep_mem_shell K v k i) hu
 
+/--
+@isnad1 id=ex.1h4v.s11.579dae9be8dd from=translated src=- shape=57837881 vocab=acf3efbc
+-/
 theorem exists_mem_smul (k : ℕ) {g : GL (Fin 2) 𝕂} (hg : g ∈ shell K v k) :
     ∃ i : Idx K v k, g ∈ rep K v k i • (unitGrp K v : Set (GL (Fin 2) 𝕂)) := by
   obtain ⟨a, d, c, u, had, hc, hu, hgu⟩ := exists_lowRep K v hg
@@ -531,6 +657,9 @@ theorem eq_of_rep_mul_eq (k : ℕ) (i j : Idx K v k) (M : GL (Fin 2) 𝕂)
   subst htt
   rfl
 
+/--
+@isnad1 id=pairwise.0h3v.s11.ad1840a8b1a3 from=translated src=- shape=dfb8de24 vocab=7db300c9
+-/
 theorem pairwiseDisjoint_smul (k : ℕ) :
     (Set.univ : Set (Idx K v k)).PairwiseDisjoint
       fun i => rep K v k i • (unitGrp K v : Set (GL (Fin 2) 𝕂)) := by
@@ -544,6 +673,9 @@ theorem pairwiseDisjoint_smul (k : ℕ) :
   have hmem : u * u'⁻¹ ∈ unitGrp K v := mul_mem hu (inv_mem hu')
   exact eq_of_rep_mul_eq K v k i j _ ((mem_unitGrp_iff K v _).mp hmem).1 hM
 
+/--
+@isnad1 id=eq.0h3v.s11.db465a8067cb from=translated src=- shape=dc6b7fd8 vocab=249fc318
+-/
 theorem shell_eq_iUnion (k : ℕ) :
     shell K v k = ⋃ i ∈ (Finset.univ : Finset (Idx K v k)),
       rep K v k i • (unitGrp K v : Set (GL (Fin 2) 𝕂)) := by
@@ -551,6 +683,9 @@ theorem shell_eq_iUnion (k : ℕ) :
   simp only [Finset.mem_univ, Set.iUnion_true, Set.mem_iUnion]
   exact ⟨fun hg => exists_mem_smul K v k hg, fun ⟨i, hi⟩ => smul_subset_shell K v k i hi⟩
 
+/--
+@isnad1 id=eq.0h2v.s7.390aa81c93c4 from=translated src=- shape=e2f4a79f vocab=092bcd85
+-/
 theorem card_κ : Nat.card (κ K v) = Ideal.absNorm v.asIdeal := by
 
   let f : 𝓞 K ⧸ v.asIdeal →+* κ K v :=
@@ -575,9 +710,15 @@ theorem card_κ : Nat.card (κ K v) = Ideal.absNorm v.asIdeal := by
   rw [← Nat.card_congr (Equiv.ofBijective f ⟨hinj, hsurj⟩), Ideal.absNorm_apply,
     Submodule.cardQuot_apply]
 
+/--
+@isnad1 id=eq.0h2v.s7.7935c868f554 from=translated src=- shape=e2f4a79f vocab=efc1f838
+-/
 theorem fintype_card_κ : Fintype.card (κ K v) = Ideal.absNorm v.asIdeal := by
   rw [← Nat.card_eq_fintype_card, card_κ]
 
+/--
+@isnad1 id=eq.0h3v.s8.635724d490aa from=translated src=- shape=d761da4f vocab=f0060ec0
+-/
 theorem card_Idx (k : ℕ) :
     Fintype.card (Idx K v k) = ∑ i ∈ Finset.range (k + 1), Ideal.absNorm v.asIdeal ^ i := by
   classical
@@ -585,6 +726,9 @@ theorem card_Idx (k : ℕ) :
   simp only [Fintype.card_fun, Fintype.card_fin, fintype_card_κ]
   exact Fin.sum_univ_eq_sum_range (fun i => Ideal.absNorm v.asIdeal ^ i) (k + 1)
 
+/--
+@isnad1 id=eq.1h4v.s10.23ce72eb7aa1 from=translated src=- shape=0aa7039f vocab=e837739d
+-/
 theorem measure_shell
     (μ : @Measure (GL (Fin 2) 𝕂) (AutomorphicForm.localGLBorel K v))
     (hμ : @Measure.IsMulLeftInvariant (GL (Fin 2) 𝕂) (AutomorphicForm.localGLBorel K v) _ μ)
@@ -615,6 +759,9 @@ open scoped _root_.P2MW.S_AutomorphicForm_measure_setOf_integral_valuation_det_e
 
 open MeasureTheory NumberField IsDedekindDomain in
 
+/--
+@isnad1 id=eq.1h4v.s11.54edcd04a36b from=translated src=- shape=e61256c7 vocab=b6cd0e54
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K))
     (μ : @Measure (GL (Fin 2) (v.adicCompletion K)) (AutomorphicForm.localGLBorel K v))

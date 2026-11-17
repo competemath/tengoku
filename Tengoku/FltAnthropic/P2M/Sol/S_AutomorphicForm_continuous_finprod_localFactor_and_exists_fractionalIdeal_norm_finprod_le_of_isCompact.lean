@@ -631,6 +631,9 @@ private theorem HF_exists_pos_le_abs_norm_of_mem (F : Type) [Field F] [NumberFie
   exact_mod_cast h1
 
 open scoped Classical in
+/--
+@isnad1 id=and.6h5v.s12.99d7ee5ae0da from=translated src=- shape=5359a68a vocab=599e9919
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F]
     (S : Finset (HeightOneSpectrum (𝓞 F))) (n : ℕ) (thr : HeightOneSpectrum (𝓞 F) → ℤ)

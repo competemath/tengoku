@@ -15,6 +15,9 @@ universe u v w
 open IsLocalRing
 open scoped TensorProduct
 
+/--
+@isnad1 id=ex.0h2v.s14.cba9b51f24cc from=translated src=- shape=63378d9c vocab=49921ffa
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsLocalRing R]
     {B : Type v} [CommRing B] [HopfAlgebra R B] [Module.Finite R B] [Module.Free R B] :

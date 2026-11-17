@@ -16,9 +16,15 @@ variable {𝒪 : Type} [CommRing 𝒪] {Onr : Type} [CommRing Onr] [Algebra 𝒪
 abbrev O2 : Subalgebra 𝒪 Onr :=
   AlgHom.equalizer ((Fr.trans Fr : Onr ≃ₐ[𝒪] Onr) : Onr →ₐ[𝒪] Onr) (AlgHom.id 𝒪 Onr)
 
+/--
+@isnad1 id=iff.0h4v.s7.49abbc484b34 from=translated src=- shape=b9a65876 vocab=e1b8bcb0
+-/
 theorem mem_O2_iff (y : Onr) : y ∈ O2 Fr ↔ Fr (Fr y) = y := by
   simp [AlgHom.mem_equalizer]
 
+/--
+@isnad1 id=mem.1h4v.s7.754d2d54db01 from=translated src=- shape=93d3a5c9 vocab=e1b8bcb0
+-/
 theorem fr_mem_O2 {y : Onr} (hy : y ∈ O2 Fr) : Fr y ∈ O2 Fr := by
   rw [mem_O2_iff] at hy ⊢
   rw [hy]
@@ -36,13 +42,22 @@ noncomputable def Fr₂ : ↥(O2 Fr) ≃ₐ[𝒪] ↥(O2 Fr) :=
       simp only [AlgHom.coe_comp, Function.comp_apply, AlgHom.coe_codRestrict, AlgHom.coe_id, id_eq]
       exact (mem_O2_iff Fr (y : Onr)).1 y.2)
 
+/--
+@isnad1 id=eq.0h4v.s9.a350a1dcf0e7 from=translated src=- shape=b0c7be41 vocab=febd1d1a
+-/
 @[scoped simp] theorem coe_Fr₂ (y : ↥(O2 Fr)) : ((Fr₂ Fr y : ↥(O2 Fr)) : Onr) = Fr (y : Onr) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.3d73ca343648 from=translated src=- shape=4ce23e73 vocab=306e1ba0
+-/
 theorem Fr₂_Fr₂ (y : ↥(O2 Fr)) : Fr₂ Fr (Fr₂ Fr y) = y := by
   ext
   simp only [coe_Fr₂]
   exact (mem_O2_iff Fr (y : Onr)).1 y.2
 
+/--
+@isnad1 id=eq.0h4v.s10.a5fc8e35f2ea from=translated src=- shape=f67f9537 vocab=823b7ad6
+-/
 theorem Fr₂_algebraMap (x : 𝒪) : Fr₂ Fr (algebraMap 𝒪 (↥(O2 Fr)) x) = algebraMap 𝒪 (↥(O2 Fr)) x :=
   AlgEquiv.commutes _ x
 
@@ -50,6 +65,9 @@ variable (π : 𝒪)
 
 abbrev lvl (n : ℕ) : Ideal ↥(O2 Fr) := Ideal.span {(algebraMap 𝒪 (↥(O2 Fr)) π) ^ (n + 1)}
 
+/--
+@isnad1 id=eq.0h5v.s10.5e6c66bb5b5c from=translated src=- shape=c7b31da8 vocab=fb8a8d6a
+-/
 theorem lvl_map_Fr₂ (n : ℕ) : lvl Fr π n = (lvl Fr π n).map (Fr₂ Fr : ↥(O2 Fr) →+* ↥(O2 Fr)) := by
   rw [Ideal.map_span, Set.image_singleton]
   have h : (Fr₂ Fr : ↥(O2 Fr) →+* ↥(O2 Fr)) ((algebraMap 𝒪 (↥(O2 Fr)) π) ^ (n + 1)) = (algebraMap 𝒪 (↥(O2 Fr)) π) ^ (n + 1) := by
@@ -60,10 +78,16 @@ theorem lvl_map_Fr₂ (n : ℕ) : lvl Fr π n = (lvl Fr π n).map (Fr₂ Fr : �
 noncomputable def Fr₂lvl (n : ℕ) : (↥(O2 Fr) ⧸ lvl Fr π n) ≃ₐ[𝒪] (↥(O2 Fr) ⧸ lvl Fr π n) :=
   Ideal.quotientEquivAlg (lvl Fr π n) (lvl Fr π n) (Fr₂ Fr) (lvl_map_Fr₂ Fr π n)
 
+/--
+@isnad1 id=eq.0h6v.s12.af52126f9bf5 from=translated src=- shape=5636452b vocab=7f234985
+-/
 theorem Fr₂lvl_mk (n : ℕ) (y : ↥(O2 Fr)) :
     Fr₂lvl Fr π n (Ideal.Quotient.mk _ y) = Ideal.Quotient.mk _ (Fr₂ Fr y) := by
   simp [Fr₂lvl]
 
+/--
+@isnad1 id=eq.1h7v.s12.8514976e1614 from=translated src=- shape=6f238fdd vocab=df29b720
+-/
 theorem Fr₂lvl_link (n : ℕ) (y y' : ↥(O2 Fr)) (h : (y' : Onr) = Fr (y : Onr)) :
     Fr₂lvl Fr π n (Ideal.Quotient.mk _ y) = Ideal.Quotient.mk _ y' := by
   rw [Fr₂lvl_mk]
@@ -71,6 +95,9 @@ theorem Fr₂lvl_link (n : ℕ) (y y' : ↥(O2 Fr)) (h : (y' : Onr) = Fr (y : On
   ext
   rw [coe_Fr₂, h]
 
+/--
+@isnad1 id=eq.0h6v.s12.7b388762e2b1 from=translated src=- shape=b692c0f4 vocab=5c47c92c
+-/
 theorem Fr₂lvl_Fr₂lvl (n : ℕ) (z : ↥(O2 Fr) ⧸ lvl Fr π n) : Fr₂lvl Fr π n (Fr₂lvl Fr π n z) = z := by
   obtain ⟨y, rfl⟩ := Ideal.Quotient.mk_surjective z
   rw [Fr₂lvl_mk, Fr₂lvl_mk, Fr₂_Fr₂]
@@ -88,17 +115,26 @@ section LevelBase
 
 variable {𝒪 : Type} [CommRing 𝒪] {Onr : Type} [CommRing Onr] [Algebra 𝒪 Onr] (Fr : Onr ≃ₐ[𝒪] Onr) (π : 𝒪)
 
+/--
+@isnad1 id=le.0h5v.s9.ae335625d19c from=translated src=- shape=a13c0ecd vocab=11be70ce
+-/
 theorem base_le_comap (n : ℕ) :
     Ideal.span {π ^ (n + 1)} ≤ (lvl Fr π n).comap (algebraMap 𝒪 ↥(O2 Fr)) := by
   rw [Ideal.span_le, Set.singleton_subset_iff, SetLike.mem_coe, Ideal.mem_comap, map_pow]
   exact Ideal.subset_span rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.3554b85597d6 from=translated src=- shape=aef52a34 vocab=c20a27f9
+-/
 theorem lvl_eq_map (n : ℕ) : lvl Fr π n = (Ideal.span {π ^ (n + 1)}).map (algebraMap 𝒪 ↥(O2 Fr)) := by
   rw [Ideal.map_span, Set.image_singleton, map_pow]
 
 abbrev baseMap (n : ℕ) : (𝒪 ⧸ Ideal.span {π ^ (n + 1)}) →+* (↥(O2 Fr) ⧸ lvl Fr π n) :=
   Ideal.quotientMap (lvl Fr π n) (algebraMap 𝒪 ↥(O2 Fr)) (base_le_comap Fr π n)
 
+/--
+@isnad1 id=flat.0h5v.s9.43be9ea8bf91 from=translated src=- shape=b4c90a86 vocab=ec77a2f5
+-/
 theorem baseMap_flat (n : ℕ) [Module.Flat 𝒪 ↥(O2 Fr)] : (baseMap Fr π n).Flat := by
   set J : Ideal 𝒪 := Ideal.span {π ^ (n + 1)}
 
@@ -126,6 +162,9 @@ end F6preAux
 open scoped _root_.P2MW.S_CerednikDrinfeld_UnramQuad_exists_frobenius_quotient_and_finite_flat_quotientMap.F6preAux
 
 open F6preAux in
+/--
+@isnad1 id=ex.2h4v.s17.b079c1a6da72 from=translated src=- shape=656b0ac8 vocab=459a5f7b
+-/
 theorem solution
     (𝒪 : Type) [CommRing 𝒪] (π : 𝒪) (Onr : Type) [CommRing Onr] [Algebra 𝒪 Onr] (Fr : Onr ≃ₐ[𝒪] Onr)
     (hfree : Module.Free 𝒪 ↥(AlgHom.equalizer ((Fr.trans Fr : Onr ≃ₐ[𝒪] Onr) : Onr →ₐ[𝒪] Onr) (AlgHom.id 𝒪 Onr)))

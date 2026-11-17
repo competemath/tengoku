@@ -14,6 +14,9 @@ noncomputable section
 
 namespace G5Body
 
+/--
+@isnad1 id=le.0h5v.s7.10b359b7fba7 from=translated src=- shape=ec791838 vocab=0fc4bbdb
+-/
 theorem span_pow_le_comap {A B : Type} [CommRing A] [CommRing B] (f : A →+* B) (a : A) (k : ℕ) :
     Ideal.span {a ^ k} ≤ (Ideal.span {(f a) ^ k}).comap f := by
   rw [Ideal.span_le, Set.singleton_subset_iff, SetLike.mem_coe, Ideal.mem_comap, map_pow]
@@ -32,11 +35,17 @@ def toSPoint (R : Type) [CommRing R] (π : R) (q : ℕ) (S : Type) [CommRing S] 
     refine ⟨?_, h₂, h₃⟩
     rw [h₁, IsScalarTower.algebraMap_apply R S T]⟩
 
+/--
+@isnad1 id=eq.2h6v.s11.58f39e53afe0 from=translated src=- shape=db47ec44 vocab=091e5d73
+-/
 theorem algHom_ext (R : Type) [CommRing R] (π : R) (q : ℕ) {B : Type} [CommRing B] [Algebra R B]
     (f g : chartERing R π q →ₐ[R] B) (hξ : f (chartERing.ξ R π q) = g (chartERing.ξ R π q))
     (hη : f (chartERing.η R π q) = g (chartERing.η R π q)) : f = g :=
   (chartERing.corepEquiv R π q B).injective (Subtype.ext (Prod.ext hξ hη))
 
+/--
+@isnad1 id=eq.4h7v.s14.a0c5c65bf2f7 from=translated src=- shape=e0c8bca6 vocab=171d71ad
+-/
 theorem ringHom_quot_ext (R : Type) [CommRing R] (π : R) (q : ℕ) (I : Ideal (chartERing R π q))
     {B : Type} [CommRing B] [Algebra R B] (f g : chartERing R π q ⧸ I →+* B)
     (hf : ∀ r : R, f (Ideal.Quotient.mk I (algebraMap R (chartERing R π q) r)) = algebraMap R B r)
@@ -52,6 +61,9 @@ theorem ringHom_quot_ext (R : Type) [CommRing R] (π : R) (q : ℕ) (I : Ideal (
 end G5Body
 
 open G5Body in
+/--
+@isnad1 id=ex.0h5v.s19.35acf11a96ca from=translated src=- shape=61a56f27 vocab=4981685c
+-/
 theorem solution
     (R : Type) [CommRing R] (π : R) (q n : ℕ) (S : Type) [CommRing S] [Algebra R S] :
     ∃ φ : (chartERing R π q ⧸ Ideal.span {(algebraMap R (chartERing R π q) π) ^ (n + 1)}) →+*

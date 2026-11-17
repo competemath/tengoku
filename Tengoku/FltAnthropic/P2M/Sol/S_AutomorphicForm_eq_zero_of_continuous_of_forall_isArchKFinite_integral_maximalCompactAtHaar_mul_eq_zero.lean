@@ -23,6 +23,9 @@ section Generic
 
 variable {G : Type*} [Group G]
 
+/--
+@isnad1 id=righttra.2h4v.s5.f1400d6d4c22 from=translated src=- shape=3456a8d4 vocab=442d45a4
+-/
 theorem rtsf_add (K : Subgroup G) {f g : G → ℂ} (hf : RightTranslatesSpanFinite K f)
     (hg : RightTranslatesSpanFinite K g) : RightTranslatesSpanFinite K (f + g) := by
   classical
@@ -34,6 +37,9 @@ theorem rtsf_add (K : Subgroup G) {f g : G → ℂ} (hf : RightTranslatesSpanFin
   exact Submodule.add_mem _ (Submodule.span_mono Set.subset_union_left (hs k hk))
     (Submodule.span_mono Set.subset_union_right (ht k hk))
 
+/--
+@isnad1 id=righttra.2h4v.s5.1cbe32255214 from=translated src=- shape=3456a8d4 vocab=043b1b7d
+-/
 theorem rtsf_mul (K : Subgroup G) {f g : G → ℂ} (hf : RightTranslatesSpanFinite K f)
     (hg : RightTranslatesSpanFinite K g) : RightTranslatesSpanFinite K (f * g) := by
   classical
@@ -44,6 +50,9 @@ theorem rtsf_mul (K : Subgroup G) {f g : G → ℂ} (hf : RightTranslatesSpanFin
   rw [heq, Finset.coe_mul, ← Submodule.span_mul_span]
   exact Submodule.mul_mem_mul (hs k hk) (ht k hk)
 
+/--
+@isnad1 id=righttra.1h3v.s5.8c30f623af16 from=translated src=- shape=71b8075f vocab=42ad4e55
+-/
 theorem rtsf_star (K : Subgroup G) {f : G → ℂ} (hf : RightTranslatesSpanFinite K f) :
     RightTranslatesSpanFinite K (star f) := by
   classical
@@ -63,6 +72,9 @@ theorem rtsf_star (K : Subgroup G) {f : G → ℂ} (hf : RightTranslatesSpanFini
       exact Submodule.smul_mem _ _ hx
   exact key _ (hs k hk)
 
+/--
+@isnad1 id=righttra.0h2v.s4.1abef88a600f from=translated src=- shape=8fc652b9 vocab=59cc842f
+-/
 theorem rtsf_one (K : Subgroup G) : RightTranslatesSpanFinite K (1 : G → ℂ) :=
   rightTranslatesSpanFinite_const K 1
 
@@ -70,15 +82,27 @@ end Generic
 
 variable {F : Type} [Field F] [NumberField F]
 
+/--
+@isnad1 id=isarchkf.2h3v.s7.1ccaf8e4be46 from=translated src=- shape=81ecba1a vocab=1d0df6c3
+-/
 theorem isArchKFinite_add {f g : AdelicGL2 (𝓞 F) F → ℂ} (hf : IsArchKFinite F f) (hg : IsArchKFinite F g) :
     IsArchKFinite F (f + g) := fun w => rtsf_add _ (hf w) (hg w)
 
+/--
+@isnad1 id=isarchkf.2h3v.s7.f6dc3321731e from=translated src=- shape=81ecba1a vocab=e28a3632
+-/
 theorem isArchKFinite_mul {f g : AdelicGL2 (𝓞 F) F → ℂ} (hf : IsArchKFinite F f) (hg : IsArchKFinite F g) :
     IsArchKFinite F (f * g) := fun w => rtsf_mul _ (hf w) (hg w)
 
+/--
+@isnad1 id=isarchkf.1h2v.s6.c0c35676025c from=translated src=- shape=eb111cbb vocab=d23b7ef2
+-/
 theorem isArchKFinite_star {f : AdelicGL2 (𝓞 F) F → ℂ} (hf : IsArchKFinite F f) :
     IsArchKFinite F (star f) := fun w => rtsf_star _ (hf w)
 
+/--
+@isnad1 id=isarchkf.0h1v.s6.89832823ba8f from=translated src=- shape=2ca63f13 vocab=af9eaa1d
+-/
 theorem isArchKFinite_one : IsArchKFinite F (1 : AdelicGL2 (𝓞 F) F → ℂ) := fun w => rtsf_one _
 
 noncomputable def entry (w : InfinitePlace F) (i j : Fin 2) (g : AdelicGL2 (𝓞 F) F) : w.Completion :=
@@ -87,18 +111,30 @@ noncomputable def entry (w : InfinitePlace F) (i j : Fin 2) (g : AdelicGL2 (𝓞
 noncomputable def cfun (w : InfinitePlace F) (i j : Fin 2) : AdelicGL2 (𝓞 F) F → ℂ :=
   fun g => InfinitePlace.Completion.extensionEmbedding w (entry w i j g)
 
+/--
+@isnad1 id=continuo.0h4v.s8.ccaedc50aae2 from=translated src=- shape=0f8e9ed8 vocab=1aa4783a
+-/
 theorem continuous_entry (w : InfinitePlace F) (i j : Fin 2) : Continuous (entry (F := F) w i j) := by
   unfold entry
   exact (Units.continuous_val.comp ((continuous_archComponent F w).comp (continuous_glArch (𝓞 F) F))).matrix_elem i j
 
+/--
+@isnad1 id=continuo.0h4v.s7.f6ab6dfb5f32 from=translated src=- shape=f6164535 vocab=3765d47e
+-/
 theorem continuous_cfun (w : InfinitePlace F) (i j : Fin 2) : Continuous (cfun (F := F) w i j) :=
   (InfinitePlace.Completion.isometry_extensionEmbedding w).continuous.comp (continuous_entry w i j)
 
+/--
+@isnad1 id=eq.0h6v.s8.3ee3467652e3 from=translated src=- shape=50c86506 vocab=1d1be6bb
+-/
 theorem entry_mul (w : InfinitePlace F) (i j : Fin 2) (g h : AdelicGL2 (𝓞 F) F) :
     entry w i j (g * h) = ∑ l : Fin 2, entry w i l g * entry w l j h := by
   unfold entry
   rw [map_mul, map_mul, Units.val_mul, Matrix.mul_apply]
 
+/--
+@isnad1 id=eq.0h7v.s11.c7956d024db6 from=translated src=- shape=ebb5bad1 vocab=40140b24
+-/
 theorem entry_mul_inclAt (w w' : InfinitePlace F) (i j : Fin 2) (g : AdelicGL2 (𝓞 F) F)
     (k : GL (Fin 2) w'.Completion) :
     entry w i j (g * adelicArchGLInclAt F w' k) =
@@ -108,6 +144,9 @@ theorem entry_mul_inclAt (w w' : InfinitePlace F) (i j : Fin 2) (g : AdelicGL2 (
   refine Finset.sum_congr rfl fun l _ => ?_
   congr 1
 
+/--
+@isnad1 id=isarchkf.0h4v.s5.43afd3862d72 from=translated src=- shape=2094ad9d vocab=6e53771f
+-/
 theorem isArchKFinite_cfun (w : InfinitePlace F) (i j : Fin 2) : IsArchKFinite F (cfun (F := F) w i j) := by
   classical
   intro w'
@@ -147,11 +186,17 @@ noncomputable def kfinAlg : StarSubalgebra ℂ C(X F, ℂ) where
       change star (a k) = star (f k)
       rw [hfa]⟩
 
+/--
+@isnad1 id=mem.0h4v.s13.3313378c1c60 from=translated src=- shape=91755be8 vocab=50761b46
+-/
 theorem cfun_mem (w : InfinitePlace F) (i j : Fin 2) :
     (⟨fun k : X F => cfun w i j (k : AdelicGL2 (𝓞 F) F), (continuous_cfun w i j).comp continuous_subtype_val⟩ : C(X F, ℂ))
       ∈ kfinAlg F :=
   ⟨cfun w i j, continuous_cfun w i j, isArchKFinite_cfun w i j, fun _ => rfl⟩
 
+/--
+@isnad1 id=eq.1h3v.s10.15c7cf7a430a from=translated src=- shape=0bb79f36 vocab=e32e9034
+-/
 theorem ext_of_entry {x y : X F} (h : ∀ w i j, entry w i j (x : AdelicGL2 (𝓞 F) F) = entry w i j (y : AdelicGL2 (𝓞 F) F)) :
     x = y := by
   apply Subtype.ext
@@ -176,6 +221,9 @@ theorem ext_of_entry {x y : X F} (h : ∀ w i j, entry w i j (x : AdelicGL2 (�
     simp at h__af ⊢
     exact h__af
 
+/--
+@isnad1 id=separate.0h1v.s11.74b4e569f5a8 from=translated src=- shape=2aa41c44 vocab=11e2e16a
+-/
 theorem separatesPoints : (kfinAlg F).SeparatesPoints := by
   intro x y hxy
 
@@ -192,6 +240,9 @@ theorem separatesPoints : (kfinAlg F).SeparatesPoints := by
 end KfinSepKit
 
 open KfinSepKit in
+/--
+@isnad1 id=eq.2h2v.s12.360bd3cd9d72 from=translated src=- shape=23f642e1 vocab=77beb2d3
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K]
     (β : ↥(maximalCompactAt K ∅) → ℂ) (_hβ : Continuous β)

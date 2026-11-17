@@ -7,6 +7,9 @@ namespace P2MW.S_Bialgebra_counit_comp_algEquiv_of_comul_compat
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=eq.1h5v.s11.5d19b0c2c13f from=translated src=- shape=f5e64c62 vocab=4a5f8b3e
+-/
 theorem solution
     (K : Type*) [CommRing K]
     (B₁ : Type*) [CommRing B₁] [Bialgebra K B₁]

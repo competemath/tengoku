@@ -20,6 +20,9 @@ section Inj
 variable (O : Type u) [CommRing O] (K : Type u) [Field K] [Algebra O K] [FaithfulSMul O K]
   (X : Type u) [AddCommGroup X] [Module O X] [Module.Flat O X]
 
+/--
+@isnad1 id=injectiv.0h3v.s10.9b8967703897 from=translated src=- shape=13b29d4c vocab=90d50a4c
+-/
 theorem mk_one_injective : Function.Injective (TensorProduct.mk O K X 1) := by
   have h1 : Function.Injective ((Algebra.linearMap O K).rTensor X) :=
     Module.Flat.rTensor_preserves_injective_linearMap _ (FaithfulSMul.algebraMap_injective O K)
@@ -41,6 +44,9 @@ noncomputable def Ψ : (K ⊗[O] A) ⊗[K] (K ⊗[O] A) →ₗ[O] K ⊗[O] (A �
   (TensorProduct.lid K K).toLinearMap.restrictScalars O |>.rTensor (A ⊗[O] A) |>.comp
     ((TensorProduct.AlgebraTensorModule.tensorTensorTensorComm O K O K K K A A).symm.toLinearMap.restrictScalars O)
 
+/--
+@isnad1 id=eq.0h7v.s12.1ad77bda82b4 from=translated src=- shape=59c168fc vocab=079969e8
+-/
 theorem Ψ_tmul (k k' : K) (a a' : A) :
     Ψ ((k ⊗ₜ[O] a) ⊗ₜ[K] (k' ⊗ₜ[O] a')) = (k * k') ⊗ₜ[O] (a ⊗ₜ[O] a') := by
   show (((TensorProduct.lid K K).toLinearMap.restrictScalars O).rTensor (A ⊗[O] A))
@@ -50,6 +56,9 @@ theorem Ψ_tmul (k k' : K) (a a' : A) :
   show (TensorProduct.lid K K (k ⊗ₜ[K] k')) ⊗ₜ[O] (a ⊗ₜ[O] a') = _
   rw [TensorProduct.lid_tmul, smul_eq_mul]
 
+/--
+@isnad1 id=eq.0h4v.s13.06c10aa6175d from=translated src=- shape=3d2036d4 vocab=653f97ca
+-/
 theorem Ψ_comul_one_tmul (a : A) :
     Ψ (Coalgebra.comul (R := K) ((1 : K) ⊗ₜ[O] a)) = (1 : K) ⊗ₜ[O] Coalgebra.comul (R := O) a := by
   rw [TensorProduct.comul_tmul, CommSemiring.comul_apply]
@@ -59,6 +68,9 @@ theorem Ψ_comul_one_tmul (a : A) :
     rw [TensorProduct.AlgebraTensorModule.tensorTensorTensorComm_tmul, Ψ_tmul, one_mul]
   | add x y hx hy => rw [TensorProduct.tmul_add, map_add, map_add, hx, hy, TensorProduct.tmul_add]
 
+/--
+@isnad1 id=eq.1h7v.s14.4cc36e1e3ffa from=translated src=- shape=232b1228 vocab=c694cbc2
+-/
 theorem Ψ_map_gK (gK : K ⊗[O] B →ₗ[K] K ⊗[O] A) (f : B →ₗ[O] A) (hgf : ∀ b, gK ((1 : K) ⊗ₜ b) = (1 : K) ⊗ₜ f b)
     (t : B ⊗[O] B) :
     Ψ (TensorProduct.map gK gK
@@ -74,6 +86,9 @@ theorem Ψ_map_gK (gK : K ⊗[O] B →ₗ[K] K ⊗[O] A) (f : B →ₗ[O] A) (hg
 
 variable [FaithfulSMul O K] [Module.Flat O A]
 
+/--
+@isnad1 id=and.1h6v.s12.48fa417ae1ed from=translated src=- shape=7464cc04 vocab=eb0016f0
+-/
 theorem isBialgHom_of_baseChange (gK : K ⊗[O] B →ₐc[K] K ⊗[O] A) (f : B →ₗ[O] A)
     (hgf : ∀ b, gK ((1 : K) ⊗ₜ b) = (1 : K) ⊗ₜ f b) :
     (∀ b b', f (b * b') = f b * f b') ∧ f 1 = 1 ∧
@@ -114,6 +129,9 @@ end Axioms
 
 end BialgDescent
 
+/--
+@isnad1 id=existsun.3h8v.s13.b139d423f306 from=translated src=- shape=f96bac42 vocab=d3df71a9
+-/
 theorem solution
     (O : Type u) [CommRing O] [IsDomain O] (K : Type u) [Field K] [Algebra O K] [IsFractionRing O K]
     (Oh : Type u) [CommRing Oh] [Algebra O Oh]

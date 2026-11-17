@@ -146,6 +146,9 @@ private theorem integral_real_mul_eq (g : G → ℝ) (hg : Measurable g)
 
 end WeightedCosetIntegral
 
+/--
+@isnad1 id=eq.9h7v.s9.25afcbdf74f1 from=translated src=- shape=d954a54c vocab=fd8ed375
+-/
 theorem solution
     {G : Type} [Group G] [MeasurableSpace G] [MeasurableMul₂ G]
     (μ : Measure G) [SFinite μ] [μ.IsMulLeftInvariant]

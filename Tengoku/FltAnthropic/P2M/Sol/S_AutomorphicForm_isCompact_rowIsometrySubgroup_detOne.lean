@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open NumberField AutomorphicForm AutomorphicForm.WindowedSiegel
 
+/--
+@isnad1 id=iscompac.0h2v.s9.538e5f9136d1 from=translated src=- shape=8f3939a0 vocab=62d9ba4d
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F] (w : InfinitePlace F) :
     IsCompact (rowIsometrySubgroup₀ w.Completion : Set (GL (Fin 2) w.Completion)) := by

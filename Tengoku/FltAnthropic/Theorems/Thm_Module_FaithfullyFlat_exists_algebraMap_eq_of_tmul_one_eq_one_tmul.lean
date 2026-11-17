@@ -11,6 +11,9 @@ universe u v
 
 open TensorProduct
 
+/--
+@isnad1 id=ex.1h3v.s8.9cb9d2b8d2af from=translated src=- shape=de0ccc05 vocab=4f5e8bb4
+-/
 theorem Module.FaithfullyFlat.exists_algebraMap_eq_of_tmul_one_eq_one_tmul
     {A : Type u} {B : Type v} [CommRing A] [CommRing B] [Algebra A B]
     [Module.FaithfullyFlat A B] {b : B} (hb : b ⊗ₜ[A] (1 : B) = (1 : B) ⊗ₜ[A] b) :

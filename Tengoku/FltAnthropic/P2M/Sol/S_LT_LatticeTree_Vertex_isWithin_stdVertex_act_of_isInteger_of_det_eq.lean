@@ -20,6 +20,9 @@ open _root_.LT.LatticeTree open _root_.LT
 
 variable {R K : Type} [CommRing R] [Field K] [Algebra R K]
 
+/--
+@isnad1 id=eq.0h2v.s9.59904b15f2e5 from=translated src=- shape=cdf49509 vocab=8095c81f
+-/
 theorem coe_scalarGL_det_mul_inv (g : Matrix.GeneralLinearGroup (Fin 2) K) :
     ((scalarGL (Matrix.GeneralLinearGroup.det g) * g⁻¹ : Matrix.GeneralLinearGroup (Fin 2) K) :
         Matrix (Fin 2) (Fin 2) K) = (g : Matrix (Fin 2) (Fin 2) K).adjugate := by
@@ -30,6 +33,9 @@ theorem coe_scalarGL_det_mul_inv (g : Matrix.GeneralLinearGroup (Fin 2) K) :
   rw [Units.val_mul, scalarGL_coe, Matrix.smul_mul, Matrix.one_mul, Matrix.coe_units_inv, Matrix.inv_def,
     smul_smul, hdet, Ring.mul_inverse_cancel _ hunit, one_smul]
 
+/--
+@isnad1 id=isintege.1h5v.s7.536025551d4c from=translated src=- shape=fcf26f30 vocab=d3a4722f
+-/
 theorem isInteger_adjugate {g : Matrix.GeneralLinearGroup (Fin 2) K}
     (hint : ∀ i j, IsLocalization.IsInteger R ((g : Matrix (Fin 2) (Fin 2) K) i j)) (i j : Fin 2) :
     IsLocalization.IsInteger R ((g : Matrix (Fin 2) (Fin 2) K).adjugate i j) := by
@@ -40,6 +46,9 @@ theorem isInteger_adjugate {g : Matrix.GeneralLinearGroup (Fin 2) K}
   · exact isInteger_neg (hint 1 0)
   · exact hint 0 0
 
+/--
+@isnad1 id=le.1h3v.s9.4936432f3c2b from=translated src=- shape=9f6fb301 vocab=0fa66914
+-/
 theorem latticeMap_scalarGL_det_le (g : Matrix.GeneralLinearGroup (Fin 2) K)
     (hint : ∀ i j, IsLocalization.IsInteger R ((g : Matrix (Fin 2) (Fin 2) K) i j)) :
     latticeMap (scalarGL (Matrix.GeneralLinearGroup.det g)) (stdLattice R K) ≤ latticeMap g (stdLattice R K) := by
@@ -53,6 +62,9 @@ theorem latticeMap_scalarGL_det_le (g : Matrix.GeneralLinearGroup (Fin 2) K)
 
 variable [IsFractionRing R K]
 
+/--
+@isnad1 id=iswithin.3h6v.s8.6fdf31dd3bdc from=translated src=- shape=665dbf18 vocab=23c4a6e6
+-/
 theorem isWithin_stdVertex_act {ϖ : R} (hϖ0 : ϖ ≠ 0) (g : Matrix.GeneralLinearGroup (Fin 2) K)
     (hint : ∀ i j, IsLocalization.IsInteger R ((g : Matrix (Fin 2) (Fin 2) K) i j))
     (k : ℕ) (u : Rˣ) (hdet : Matrix.det (g : Matrix (Fin 2) (Fin 2) K) = algebraMap R K u * algebraMap R K ϖ ^ k) :
@@ -75,6 +87,9 @@ end LT.LatticeTree.CartanEasy
 
 open _root_.LT.LatticeTree open _root_.P2MW.S_LT_LatticeTree_Vertex_isWithin_stdVertex_act_of_isInteger_of_det_eq.LT.LatticeTree
 
+/--
+@isnad1 id=iswithin.3h6v.s8.7e09f39141e6 from=translated src=- shape=90c1f5d9 vocab=78d0de2e
+-/
 theorem solution
     (R K : Type) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [Field K] [Algebra R K]
     [IsFractionRing R K] (ϖ : R) (hϖ : Irreducible ϖ)

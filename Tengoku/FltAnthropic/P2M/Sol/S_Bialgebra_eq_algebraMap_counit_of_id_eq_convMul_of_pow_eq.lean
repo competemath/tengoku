@@ -21,9 +21,18 @@ def cpow (V : D →ₗc[R] D) : ℕ → (D →ₗc[R] D)
   | 0 => CoalgHom.id R D
   | k + 1 => V.comp (cpow V k)
 
+/--
+@isnad1 id=eq.0h3v.s7.ef899c868ddf from=translated src=- shape=84c104f8 vocab=fa942cdb
+-/
 @[scoped simp] theorem cpow_zero (V : D →ₗc[R] D) : cpow V 0 = CoalgHom.id R D := rfl
+/--
+@isnad1 id=eq.0h4v.s8.c0a37e363ac5 from=translated src=- shape=69fdbf93 vocab=28583721
+-/
 theorem cpow_succ (V : D →ₗc[R] D) (k : ℕ) : cpow V (k + 1) = V.comp (cpow V k) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.b090373716e7 from=translated src=- shape=2f0ee4c2 vocab=bb0429ce
+-/
 theorem toLinearMap_cpow (V : D →ₗc[R] D) (k : ℕ) :
     (cpow V k).toLinearMap = V.toLinearMap ^ k := by
   induction k with
@@ -32,6 +41,9 @@ theorem toLinearMap_cpow (V : D →ₗc[R] D) (k : ℕ) :
       rw [cpow_succ, show (V.comp (cpow V k)).toLinearMap = V.toLinearMap ∘ₗ (cpow V k).toLinearMap from rfl,
         ih, pow_succ', Module.End.mul_eq_comp]
 
+/--
+@isnad1 id=surjecti.3h7v.s10.5e12fcc09b09 from=translated src=- shape=edd7b095 vocab=7c2065c5
+-/
 theorem surjective_of_id_eq_convMul_of_cpow_eq_unit
     (F Y : D →ₐ[R] D) (X : D →ₗ[R] D) (V : D →ₗc[R] D)
     (hFY : F.toLinearMap ∘ₗ Y.toLinearMap = Y.toLinearMap ∘ₗ F.toLinearMap)
@@ -85,6 +97,9 @@ theorem surjective_of_id_eq_convMul_of_cpow_eq_unit
 end Ws50S5
 open scoped _root_.P2MW.S_Bialgebra_eq_algebraMap_counit_of_id_eq_convMul_of_pow_eq.Ws50S5
 
+/--
+@isnad1 id=eq.5h8v.s12.fd361cc14a1d from=translated src=- shape=bca2dec8 vocab=ef1f28cc
+-/
 theorem solution
     {k : Type u} [CommRing k] {X : Type v} [CommRing X] [Bialgebra k X]
     (F : X →ₐ[k] X) (V : X →ₗc[k] X) (a b : X →ₐc[k] X) (m : ℕ)

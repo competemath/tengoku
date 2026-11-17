@@ -18,6 +18,9 @@ section UniformInvariance
 variable {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
 variable {M : Type*} [Zero M]
 
+/--
+@isnad1 id=ex.2h3v.s7.96600b1e5693 from=translated src=- shape=c28d63ec vocab=d4f5f247
+-/
 theorem exists_isOpen_symm_forall_mul_left_eq {f : G → M}
     (hlc : IsLocallyConstant f) (hsupp : HasCompactSupport f) :
     ∃ V : Set G, IsOpen V ∧ (1 : G) ∈ V ∧ (∀ v ∈ V, v⁻¹ ∈ V) ∧
@@ -76,6 +79,9 @@ theorem exists_isOpen_symm_forall_mul_left_eq {f : G → M}
       rw [h1, h2]
     · rw [image_eq_zero_of_notMem_tsupport hg, image_eq_zero_of_notMem_tsupport hvg]
 
+/--
+@isnad1 id=hascompa.1h3v.s5.b0b740945188 from=translated src=- shape=a8696936 vocab=bea4ae81
+-/
 theorem hasCompactSupport_comp_inv {f : G → M} (hsupp : HasCompactSupport f) :
     HasCompactSupport fun x : G => f x⁻¹ := by
   refine HasCompactSupport.intro (hsupp.isCompact.image continuous_inv) fun x hx => ?_
@@ -85,10 +91,16 @@ theorem hasCompactSupport_comp_inv {f : G → M} (hsupp : HasCompactSupport f) :
 
 omit [Zero M] in
 
+/--
+@isnad1 id=islocall.1h3v.s5.e944d5d32ebe from=translated src=- shape=75344fe4 vocab=323e83d6
+-/
 theorem isLocallyConstant_comp_inv {f : G → M} (hlc : IsLocallyConstant f) :
     IsLocallyConstant fun x : G => f x⁻¹ :=
   hlc.comp_continuous continuous_inv
 
+/--
+@isnad1 id=ex.2h3v.s7.189644129230 from=translated src=- shape=85c2fb26 vocab=d4f5f247
+-/
 theorem exists_isOpen_symm_forall_mul_left_right_eq {f : G → M}
     (hlc : IsLocallyConstant f) (hsupp : HasCompactSupport f) :
     ∃ V : Set G, IsOpen V ∧ (1 : G) ∈ V ∧ (∀ v ∈ V, v⁻¹ ∈ V) ∧
@@ -109,6 +121,9 @@ section SmallSubgroups
 
 variable {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
 
+/--
+@isnad1 id=ex.4h3v.s7.6c558da2e2ca from=translated src=- shape=c588dad3 vocab=c75c33cc
+-/
 theorem exists_subgroup_isOpen_subset [T2Space G] [TotallyDisconnectedSpace G]
     (K₀ : Subgroup G) (hK₀c : IsCompact (K₀ : Set G)) (hK₀o : IsOpen (K₀ : Set G))
     {V : Set G} (hV : IsOpen V) (h1 : (1 : G) ∈ V) :
@@ -132,6 +147,9 @@ theorem exists_subgroup_isOpen_subset [T2Space G] [TotallyDisconnectedSpace G]
     obtain ⟨y, hy, rfl⟩ := Subgroup.mem_map.1 hx
     exact hWV (hH hy)
 
+/--
+@isnad1 id=totallyd.0h1v.s4.d0c10f6042d4 from=translated src=- shape=7f51ae2a vocab=14c9dbfe
+-/
 theorem totallyDisconnectedSpace_units {M : Type*} [Monoid M] [TopologicalSpace M]
     [TotallyDisconnectedSpace M] : TotallyDisconnectedSpace Mˣ := by
   haveI : TotallyDisconnectedSpace Mᵐᵒᵖ := MulOpposite.opHomeomorph.totallyDisconnectedSpace
@@ -144,6 +162,9 @@ section IntegralSubgroup
 
 variable {A : Type*} [CommRing A] {S : Type*} [SetLike S A] [SubringClass S A]
 
+/--
+@isnad1 id=mem.2h5v.s8.cd759909b337 from=translated src=- shape=fb2ea424 vocab=047626ab
+-/
 theorem mul_mem_integralMatrixSet (R : S) {m n : Matrix (Fin 2) (Fin 2) A}
     (hm : m ∈ AutomorphicForm.integralMatrixSet (R : Set A))
     (hn : n ∈ AutomorphicForm.integralMatrixSet (R : Set A)) :
@@ -172,17 +193,26 @@ variable (K : Type) [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K))
 noncomputable def localIntegralSubgroup : Subgroup (GL (Fin 2) (v.adicCompletion K)) :=
   integralUnitsSubgroup (v.adicCompletionIntegers K)
 
+/--
+@isnad1 id=eq.0h2v.s9.40846b88b4ba from=translated src=- shape=e481f9eb vocab=980b5ec1
+-/
 theorem coe_localIntegralSubgroup :
     (localIntegralSubgroup K v : Set (GL (Fin 2) (v.adicCompletion K))) =
       AutomorphicForm.localIntegralSet K v :=
   rfl
 
+/--
+@isnad1 id=totallyd.0h2v.s8.edd18a92530d from=translated src=- shape=98b1da0d vocab=05f707d4
+-/
 theorem totallyDisconnectedSpace_localGL :
     TotallyDisconnectedSpace (GL (Fin 2) (v.adicCompletion K)) := by
   haveI : TotallyDisconnectedSpace (Matrix (Fin 2) (Fin 2) (v.adicCompletion K)) :=
     inferInstanceAs (TotallyDisconnectedSpace (Fin 2 → Fin 2 → v.adicCompletion K))
   exact totallyDisconnectedSpace_units
 
+/--
+@isnad1 id=ex.2h3v.s12.d15da0513b09 from=translated src=- shape=fb1e817d vocab=1533f43b
+-/
 theorem exists_subgroup_isOpen_subset_localIntegralSet {V : Set (GL (Fin 2) (v.adicCompletion K))}
     (hV : IsOpen V) (h1 : (1 : GL (Fin 2) (v.adicCompletion K)) ∈ V) :
     ∃ U : Subgroup (GL (Fin 2) (v.adicCompletion K)), IsOpen (U : Set (GL (Fin 2) (v.adicCompletion K))) ∧
@@ -204,6 +234,9 @@ end P2mLocalTestFnBiInvariant
 
 open P2mLocalTestFnBiInvariant in
 
+/--
+@isnad1 id=ex.1h3v.s12.4b29f1f9c16c from=translated src=- shape=533eefec vocab=f7be366e
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K))
     (fv : GL (Fin 2) (v.adicCompletion K) → ℂ) (hfv : AutomorphicForm.IsLocalTestFn K v fv) :

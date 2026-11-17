@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=ispushou.1h4v.s8.207e67c64894 from=translated src=- shape=9cd7ea5d vocab=bcea7817
+-/
 theorem Algebra.isPushout_of_forall_existsUnique_algHom_comp_eq
     {R S R' S' : Type u} [CommRing R] [CommRing S] [CommRing R'] [CommRing S']
     [Algebra R S] [Algebra R R'] [Algebra S S'] [Algebra R' S'] [Algebra R S']

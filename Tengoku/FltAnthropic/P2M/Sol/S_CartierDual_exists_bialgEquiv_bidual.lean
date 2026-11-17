@@ -31,11 +31,20 @@ noncomputable def ev : A →ₗ[R] CartierDual R (CartierDual R A) where
     show φ (r • a) = r • φ a
     exact map_smul φ r a
 
+/--
+@isnad1 id=eq.0h4v.s9.3812f54f654d from=translated src=- shape=fb797a46 vocab=bd9dd5c7
+-/
 theorem ev_apply (a : A) (φ : CartierDual R A) : ev R A a φ = φ a := rfl
 
+/--
+@isnad1 id=bijectiv.0h2v.s9.f45e0d8769c2 from=translated src=- shape=5454286f vocab=811a5c21
+-/
 theorem ev_bijective : Function.Bijective (ev R A) :=
   (Module.evalEquiv R A).bijective
 
+/--
+@isnad1 id=eq.0h5v.s14.4e8de3ddc931 from=translated src=- shape=174b0e9f vocab=0cb1089c
+-/
 theorem flip₁ (a b : A) (w : CartierDual R A ⊗[R] CartierDual R A) :
     TensorProduct.dualDistrib R (CartierDual R A) (CartierDual R A)
         (CartierDual.toDual R _ (ev R A a) ⊗ₜ[R] CartierDual.toDual R _ (ev R A b)) w =
@@ -48,6 +57,9 @@ theorem flip₁ (a b : A) (w : CartierDual R A ⊗[R] CartierDual R A) :
     rfl
   | add x y hx hy => rw [map_add, map_add, map_add, LinearMap.add_apply, hx, hy]
 
+/--
+@isnad1 id=eq.0h5v.s14.cada9fa29112 from=translated src=- shape=6076da11 vocab=0cb1089c
+-/
 theorem flip₂ (φ ψ : CartierDual R A) (z : A ⊗[R] A) :
     TensorProduct.dualDistrib R (CartierDual R A) (CartierDual R A)
         (TensorProduct.map (CartierDual.toDual R (CartierDual R A)).toLinearMap
@@ -58,11 +70,17 @@ theorem flip₂ (φ ψ : CartierDual R A) (z : A ⊗[R] A) :
   | tmul a b => rfl
   | add x y hx hy => simp only [map_add, LinearMap.add_apply, hx, hy]
 
+/--
+@isnad1 id=eq.0h4v.s10.2469afb99292 from=translated src=- shape=ff71896b vocab=5ada734c
+-/
 theorem ev_mul (a b : A) : ev R A (a * b) = ev R A a * ev R A b := by
   apply CartierDual.ext; intro φ
   rw [CartierDual.mul_apply, flip₁, CartierDual.comul_pairing]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.6550d754de84 from=translated src=- shape=eb25311f vocab=bd9dd5c7
+-/
 theorem ev_one : ev R A 1 = 1 := by
   apply CartierDual.ext; intro φ
   rw [CartierDual.one_apply, CartierDual.counit_apply]
@@ -71,8 +89,14 @@ theorem ev_one : ev R A 1 = 1 := by
 noncomputable def evAlgEquiv : A ≃ₐ[R] CartierDual R (CartierDual R A) :=
   AlgEquiv.ofBijective (AlgHom.ofLinearMap (ev R A) (ev_one R A) (ev_mul R A)) (ev_bijective R A)
 
+/--
+@isnad1 id=eq.0h3v.s9.0c342e63e2b7 from=translated src=- shape=43934c42 vocab=7011c5c6
+-/
 theorem evAlgEquiv_apply (a : A) : evAlgEquiv R A a = ev R A a := rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.b38ad20135c1 from=translated src=- shape=50c24ce5 vocab=76b97f4e
+-/
 theorem counit_comp :
     (Bialgebra.counitAlgHom R (CartierDual R (CartierDual R A))).comp (evAlgEquiv R A : A →ₐ[R] _) =
       Bialgebra.counitAlgHom R A := by
@@ -81,6 +105,9 @@ theorem counit_comp :
     evAlgEquiv_apply]
   exact (CartierDual.counit_apply (R := R) (A := CartierDual R A) (ev R A a)).trans (CartierDual.one_apply a)
 
+/--
+@isnad1 id=eq.0h2v.s12.baecf10d072b from=translated src=- shape=f89e9412 vocab=8d230e19
+-/
 theorem map_comp_comul :
     (Algebra.TensorProduct.map (evAlgEquiv R A : A →ₐ[R] CartierDual R (CartierDual R A))
         (evAlgEquiv R A : A →ₐ[R] CartierDual R (CartierDual R A))).comp (Bialgebra.comulAlgHom R A) =
@@ -107,6 +134,9 @@ theorem map_comp_comul :
 end P2mS17B
 
 open P2mS17B in
+/--
+@isnad1 id=ex.0h2v.s11.76847449545e from=translated src=- shape=1ebbe970 vocab=49a863f3
+-/
 theorem solution
     (R : Type*) [CommRing R] (A : Type*) [CommRing A] [Bialgebra R A]
     [Module.Finite R A] [Module.Free R A] [Coalgebra.IsCocomm R A] :

@@ -5,5 +5,8 @@ import Tengoku.FltAnthropic.P2M.Sol.S_AutomorphicForm_continuous_unipotentGL2
 
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `Theorems/Thm_AutomorphicForm_continuous_unipotentGL2.lean`: wrote out 1 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_exact_reverting`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 
+/--
+@isnad1 id=continuo.0h1v.s7.a9a7b0a1ab84 from=translated src=- shape=a8f35fde vocab=49462922
+-/
 theorem AutomorphicForm.continuous_unipotentGL2 {R : Type*} [CommRing R] [TopologicalSpace R]
     [ContinuousNeg R] : Continuous fun x : R => AutomorphicForm.unipotentGL2 x := by exact @_root_.P2MW.S_AutomorphicForm_continuous_unipotentGL2.solution R _ _ _

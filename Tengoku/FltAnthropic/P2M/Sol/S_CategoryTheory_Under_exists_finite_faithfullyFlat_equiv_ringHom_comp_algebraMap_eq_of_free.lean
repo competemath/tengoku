@@ -23,6 +23,9 @@ noncomputable abbrev coc (B' : Under (CommRingCat.of R₀)) (b : Under.mk (CommR
 end S4Sol
 
 open S4Sol in
+/--
+@isnad1 id=ex.0h3v.s13.2a1dade4a6b4 from=translated src=- shape=82e531f3 vocab=eb45fc73
+-/
 theorem solution
     (R₀ : Type) [CommRing R₀] (H : Type) [CommRing H] [Algebra R₀ H] [Module.Finite R₀ H] [Module.Free R₀ H] [Nontrivial H]
     (W : Type) [CommRing W] [Algebra R₀ W] :

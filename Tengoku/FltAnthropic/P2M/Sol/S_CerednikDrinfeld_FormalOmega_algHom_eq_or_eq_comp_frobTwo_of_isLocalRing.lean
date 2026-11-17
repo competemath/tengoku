@@ -38,6 +38,9 @@ theorem eq_or_eq_of_mul_eq_zero {B : Type} [CommRing B] [IsLocalRing B] {a a' b 
 
 end O2Rigid
 
+/--
+@isnad1 id=or.11h10v.s17.7501e649f80c from=translated src=- shape=005cb05d vocab=9d31de4c
+-/
 theorem solution
 
     {r : ℕ} [Fact r.Prime]

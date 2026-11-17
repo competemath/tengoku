@@ -11,6 +11,9 @@ universe v u
 
 open _root_.CategoryTheory open _root_.CategoryTheory.MonoidalCategory
 
+/--
+@isnad1 id=nonempty.2h6v.s6.99b852ae868f from=translated src=- shape=60255d06 vocab=1907f69c
+-/
 theorem solution {C : Type u} [Category.{v} C] [MonoidalCategory C] [BraidedCategory C]
     {M N M' N' : C} (e : M ≅ M') (h : Nonempty (M ⊗ N ≅ 𝟙_ C)) (h' : Nonempty (M' ⊗ N' ≅ 𝟙_ C)) :
     Nonempty (N ≅ N') := by

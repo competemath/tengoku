@@ -19,6 +19,9 @@ open _root_.CerednikDrinfeld.Mumford open _root_.CerednikDrinfeld
 
 open _root_.CerednikDrinfeld open _root_.P2MW.S_CerednikDrinfeld_Mumford_exists_periodDatum_apply_eq_of_surjective_of_forall_ker.CerednikDrinfeld
 
+/--
+@isnad1 id=surjecti.0h1v.s6.41836b16c5e8 from=translated src=- shape=39a5cc36 vocab=9c519755
+-/
 theorem of_surjective {G : Type} [Group G] :
     Function.Surjective (Abelianization.of : G → Abelianization G) :=
   QuotientGroup.mk_surjective
@@ -27,10 +30,16 @@ noncomputable def liftPairing {G : Type} [Group G] {A : Type} [CommGroup A] (Qh 
     Abelianization G →* Abelianization G →* A :=
   Abelianization.lift ((Abelianization.lift Qh.flip).flip)
 
+/--
+@isnad1 id=eq.0h5v.s10.49b3863c5223 from=translated src=- shape=60487fa4 vocab=b5e4cb93
+-/
 @[scoped simp] theorem liftPairing_of_of {G : Type} [Group G] {A : Type} [CommGroup A] (Qh : G →* G →* A)
     (α β : G) : liftPairing Qh (Abelianization.of α) (Abelianization.of β) = Qh α β := by
   simp [liftPairing, MonoidHom.flip_apply]
 
+/--
+@isnad1 id=eq.1h5v.s11.865ad07a1c0b from=translated src=- shape=b6a08aa5 vocab=1f4bd7ef
+-/
 theorem liftPairing_symm {G : Type} [Group G] {A : Type} [CommGroup A] (Qh : G →* G →* A)
     (hsymm : ∀ α β : G, Qh α β = Qh β α) (a b : Abelianization G) :
     liftPairing Qh a b = liftPairing Qh b a := by
@@ -47,11 +56,17 @@ variable {E V : Type} [Fintype E] [DecidableEq V] (D : DegeneracyData E V)
 
 noncomputable def sec (x : ↥(ribbonKernel D)) : Abelianization G := Additive.toMul (Function.surjInv hΦ x)
 
+/--
+@isnad1 id=eq.1h6v.s11.7738fee84d0d from=translated src=- shape=2b0c7994 vocab=bb38e172
+-/
 theorem Φ_sec (x : ↥(ribbonKernel D)) : Φ (Additive.ofMul (sec D Φ hΦ x)) = x := by
   rw [sec, ofMul_toMul]; exact Function.surjInv_eq hΦ x
 
 include hker in
 
+/--
+@isnad1 id=eq.2h9v.s12.e6ccac140777 from=translated src=- shape=6a447bf6 vocab=52f8d526
+-/
 theorem liftPairing_eq_one_of_ker (a : Abelianization G) (ha : Φ (Additive.ofMul a) = 0) (b : Abelianization G) :
     liftPairing Qh a b = 1 := by
   obtain ⟨α, rfl⟩ := of_surjective a
@@ -61,6 +76,9 @@ theorem liftPairing_eq_one_of_ker (a : Abelianization G) (ha : Φ (Additive.ofMu
 
 include hker in
 
+/--
+@isnad1 id=eq.2h10v.s12.6ceca661c699 from=translated src=- shape=c4369507 vocab=52f8d526
+-/
 theorem liftPairing_congr_left (a a' b : Abelianization G) (h : Φ (Additive.ofMul a) = Φ (Additive.ofMul a')) :
     liftPairing Qh a b = liftPairing Qh a' b := by
   have hk : Φ (Additive.ofMul (a * a'⁻¹)) = 0 := by
@@ -71,6 +89,9 @@ theorem liftPairing_congr_left (a a' b : Abelianization G) (h : Φ (Additive.ofM
 
 include hker hsymm in
 
+/--
+@isnad1 id=eq.3h10v.s13.ec575fe9249c from=translated src=- shape=e3a55788 vocab=52f8d526
+-/
 theorem liftPairing_congr_right (a b b' : Abelianization G) (h : Φ (Additive.ofMul b) = Φ (Additive.ofMul b')) :
     liftPairing Qh a b = liftPairing Qh a b' := by
   rw [liftPairing_symm Qh hsymm a b, liftPairing_symm Qh hsymm a b', liftPairing_congr_left D Φ Qh hker b b' a h]
@@ -79,6 +100,9 @@ noncomputable def pairFun (x y : ↥(ribbonKernel D)) : Additive A :=
   Additive.ofMul (liftPairing Qh (sec D Φ hΦ x) (sec D Φ hΦ y))
 
 include hker in
+/--
+@isnad1 id=eq.2h9v.s12.116f268a85a0 from=translated src=- shape=44d4a269 vocab=cb343775
+-/
 theorem pairFun_apply_of_left (α : G) (y : ↥(ribbonKernel D)) :
     pairFun D Φ hΦ Qh (Φ (Additive.ofMul (Abelianization.of α))) y =
       Additive.ofMul (liftPairing Qh (Abelianization.of α) (sec D Φ hΦ y)) := by
@@ -87,6 +111,9 @@ theorem pairFun_apply_of_left (α : G) (y : ↥(ribbonKernel D)) :
   exact liftPairing_congr_left D Φ Qh hker _ _ _ (Φ_sec D Φ hΦ _)
 
 include hker hsymm in
+/--
+@isnad1 id=eq.3h9v.s13.52a08655deac from=translated src=- shape=33f58027 vocab=facc1c35
+-/
 theorem pairFun_apply_of_of (α β : G) :
     pairFun D Φ hΦ Qh (Φ (Additive.ofMul (Abelianization.of α))) (Φ (Additive.ofMul (Abelianization.of β))) =
       Additive.ofMul (Qh α β) := by
@@ -95,6 +122,9 @@ theorem pairFun_apply_of_of (α β : G) :
 
 include hΦ in
 
+/--
+@isnad1 id=ex.1h6v.s11.850997fce5dc from=translated src=- shape=439fae7b vocab=a206f9ad
+-/
 theorem exists_eq_apply_of (x : ↥(ribbonKernel D)) : ∃ α : G, x = Φ (Additive.ofMul (Abelianization.of α)) := by
   obtain ⟨a, ha⟩ := hΦ x
   obtain ⟨α, hα⟩ := of_surjective (Additive.toMul a)
@@ -102,6 +132,9 @@ theorem exists_eq_apply_of (x : ↥(ribbonKernel D)) : ∃ α : G, x = Φ (Addit
   rw [hα, ofMul_toMul, ha]
 
 include hker hsymm in
+/--
+@isnad1 id=eq.3h10v.s12.ade614f07c10 from=translated src=- shape=6a86a574 vocab=6b7723f4
+-/
 theorem pairFun_add_left (x x' y : ↥(ribbonKernel D)) :
     pairFun D Φ hΦ Qh (x + x') y = pairFun D Φ hΦ Qh x y + pairFun D Φ hΦ Qh x' y := by
   obtain ⟨α, rfl⟩ := exists_eq_apply_of D Φ hΦ x
@@ -114,10 +147,16 @@ theorem pairFun_add_left (x x' y : ↥(ribbonKernel D)) :
     pairFun_apply_of_of D Φ hΦ Qh hsymm hker, map_mul, MonoidHom.mul_apply, ofMul_mul]
 
 include hker hsymm in
+/--
+@isnad1 id=eq.3h9v.s12.49214ad59996 from=translated src=- shape=c1a86ad8 vocab=facc1c35
+-/
 theorem pairFun_symm (x y : ↥(ribbonKernel D)) : pairFun D Φ hΦ Qh x y = pairFun D Φ hΦ Qh y x := by
   rw [pairFun, pairFun, liftPairing_symm Qh hsymm]
 
 include hker hsymm in
+/--
+@isnad1 id=eq.3h10v.s12.c69c0eb22e52 from=translated src=- shape=d474f8e8 vocab=6b7723f4
+-/
 theorem pairFun_add_right (x y y' : ↥(ribbonKernel D)) :
     pairFun D Φ hΦ Qh x (y + y') = pairFun D Φ hΦ Qh x y + pairFun D Φ hΦ Qh x y' := by
   rw [pairFun_symm D Φ hΦ Qh hsymm hker, pairFun_add_left D Φ hΦ Qh hsymm hker,
@@ -134,11 +173,17 @@ noncomputable def pairing : ↥(ribbonKernel D) →ₗ[ℤ] ↥(ribbonKernel D) 
       simpa using map_zsmul (AddMonoidHom.mk' (fun n => pairFun D Φ hΦ Qh m n)
         (fun a b => pairFun_add_right D Φ hΦ Qh hsymm hker m a b)) c n)
 
+/--
+@isnad1 id=eq.3h9v.s13.68dd210000d0 from=translated src=- shape=546e1396 vocab=daec2eef
+-/
 theorem pairing_apply (x y : ↥(ribbonKernel D)) :
     pairing D Φ hΦ Qh hsymm hker x y = pairFun D Φ hΦ Qh x y := rfl
 
 end Descend
 
+/--
+@isnad1 id=ex.4h9v.s14.6208741045e6 from=translated src=- shape=77ff68a1 vocab=fe339385
+-/
 theorem main
     {E V : Type} [Fintype E] [DecidableEq V] (D : CerednikDrinfeld.DegeneracyData E V)
     {G : Type} [Group G] (Φ : Additive (Abelianization G) →+ ↥(CerednikDrinfeld.ribbonKernel D))
@@ -165,6 +210,9 @@ open scoped _root_.P2MW.S_CerednikDrinfeld_Mumford_exists_periodDatum_apply_eq_o
 open scoped _root_.P2MW.S_CerednikDrinfeld_Mumford_exists_periodDatum_apply_eq_of_surjective_of_forall_ker.CerednikDrinfeld
 
 open _root_.CerednikDrinfeld _root_.P2MW.S_CerednikDrinfeld_Mumford_exists_periodDatum_apply_eq_of_surjective_of_forall_ker.CerednikDrinfeld _root_.CerednikDrinfeld.Mumford _root_.P2MW.S_CerednikDrinfeld_Mumford_exists_periodDatum_apply_eq_of_surjective_of_forall_ker.CerednikDrinfeld.Mumford in
+/--
+@isnad1 id=ex.4h9v.s14.6208741045e6 from=translated src=- shape=77ff68a1 vocab=fe339385
+-/
 theorem solution
     {E V : Type} [Fintype E] [DecidableEq V] (D : CerednikDrinfeld.DegeneracyData E V)
     {G : Type} [Group G] (Φ : Additive (Abelianization G) →+ ↥(CerednikDrinfeld.ribbonKernel D))

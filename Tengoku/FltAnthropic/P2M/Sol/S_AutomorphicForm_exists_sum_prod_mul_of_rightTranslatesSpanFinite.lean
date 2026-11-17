@@ -23,16 +23,28 @@ def rt (h : G) : (G → ℂ) →ₗ[ℂ] (G → ℂ) where
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.99314fc0315e from=translated src=- shape=9c1274da vocab=c526a155
+-/
 @[scoped simp] theorem rt_apply (h : G) (v : G → ℂ) (x : G) : rt h v x = v (x * h) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.8c03f1f19107 from=translated src=- shape=ddf9ece4 vocab=c526a155
+-/
 theorem rt_mul (h k : G) (v : G → ℂ) : rt (h * k) v = rt h (rt k v) := by
   funext x
   simp [mul_assoc]
 
+/--
+@isnad1 id=eq.0h2v.s7.9300811b7cb6 from=translated src=- shape=d344b116 vocab=fff867c7
+-/
 theorem rt_one (v : G → ℂ) : rt (1 : G) v = v := by
   funext x
   simp
 
+/--
+@isnad1 id=eq.1h4v.s8.ffc2a69eb267 from=translated src=- shape=0fd5e28d vocab=f904c12d
+-/
 theorem rt_comm {h k : G} (hc : Commute h k) (v : G → ℂ) : rt h (rt k v) = rt k (rt h v) := by
   rw [← rt_mul, ← rt_mul, hc.eq]
 
@@ -47,16 +59,25 @@ def RFin (K : Subgroup G) (f : G → ℂ) : Prop :=
 def prodSet {n : ℕ} (K : Fin n → Subgroup G) : Set G :=
   {x | ∃ k : Fin n → G, (∀ i, k i ∈ K i) ∧ x = (List.ofFn k).prod}
 
+/--
+@isnad1 id=mem.1h4v.s6.e1178306e9ce from=translated src=- shape=07a3f70f vocab=90270d1d
+-/
 theorem prod_mem_prodSet {n : ℕ} (K : Fin n → Subgroup G) {k : Fin n → G} (hk : ∀ i, k i ∈ K i) :
     (List.ofFn k).prod ∈ prodSet K :=
   ⟨k, hk, rfl⟩
 
+/--
+@isnad1 id=mem.0h3v.s5.771e3052e9c3 from=translated src=- shape=dd0bbdcd vocab=a64d186d
+-/
 theorem one_mem_prodSet {n : ℕ} (K : Fin n → Subgroup G) : (1 : G) ∈ prodSet K := by
   refine ⟨fun _ => 1, fun i => (K i).one_mem, ?_⟩
   induction n with
   | zero => simp
   | succ n ih => simp [List.ofFn_succ]
 
+/--
+@isnad1 id=mem.1h5v.s5.282a3fb74b5f from=translated src=- shape=32f651c2 vocab=a64d186d
+-/
 theorem single_mem_prodSet :
     ∀ {n : ℕ} (K : Fin n → Subgroup G) (i : Fin n) {κ : G}, κ ∈ K i → κ ∈ prodSet K := by
   intro n
@@ -89,6 +110,9 @@ theorem single_mem_prodSet :
         simp only [Fin.cons_zero, Fin.cons_succ, one_mul]
         exact hprod
 
+/--
+@isnad1 id=le.0h3v.s5.70d1500b6642 from=translated src=- shape=f7ae73a1 vocab=c9ff7207
+-/
 theorem prodSet_subset_iSup {n : ℕ} (K : Fin n → Subgroup G) :
     prodSet K ⊆ ((⨆ i, K i : Subgroup G) : Set G) := by
   rintro x ⟨k, hk, rfl⟩
@@ -98,6 +122,9 @@ theorem prodSet_subset_iSup {n : ℕ} (K : Fin n → Subgroup G) :
   obtain ⟨i, rfl⟩ := hy
   exact Subgroup.mem_iSup_of_mem i (hk i)
 
+/--
+@isnad1 id=commute.3h5v.s7.c48503531cbc from=translated src=- shape=84d668c7 vocab=9fda67f1
+-/
 theorem commute_head_tail {n : ℕ} (K : Fin (n + 1) → Subgroup G)
     (hcomm : ∀ i j, i ≠ j → ∀ x ∈ K i, ∀ y ∈ K j, Commute x y)
     {κ : G} (hκ : κ ∈ K 0) {k : Fin n → G} (hk : ∀ i, k i ∈ K i.succ) :
@@ -108,6 +135,9 @@ theorem commute_head_tail {n : ℕ} (K : Fin (n + 1) → Subgroup G)
   obtain ⟨i, rfl⟩ := hy
   exact hcomm 0 i.succ (Fin.succ_ne_zero i).symm κ hκ (k i) (hk i)
 
+/--
+@isnad1 id=ex.2h4v.s8.f5a2d0297a9f from=translated src=- shape=bb6de6f6 vocab=820b9157
+-/
 theorem exists_finset_span_prod :
     ∀ (n : ℕ) (K : Fin n → Subgroup G)
       (_hcomm : ∀ i j, i ≠ j → ∀ x ∈ K i, ∀ y ∈ K j, Commute x y)
@@ -218,10 +248,16 @@ variable {n : ℕ} (K : Fin n → Subgroup G)
 
 def W : Submodule ℂ (G → ℂ) := Submodule.span ℂ {v | ∃ h ∈ prodSet K, v = rt h f}
 
+/--
+@isnad1 id=mem.0h4v.s6.b3e525fd3160 from=translated src=- shape=dff376e4 vocab=592720c5
+-/
 theorem f_mem_W : f ∈ W K f :=
   Submodule.subset_span ⟨1, one_mem_prodSet K, by rw [rt_one]⟩
 
 include hcomm hf in
+/--
+@isnad1 id=finitedi.2h4v.s7.65ab38f6fc69 from=translated src=- shape=1a2f8d01 vocab=5584ef29
+-/
 theorem finiteDimensional_W : FiniteDimensional ℂ (W K f) := by
   obtain ⟨S, hS⟩ := exists_finset_span_prod n K hcomm f hf
   have hle : W K f ≤ Submodule.span ℂ (S : Set (G → ℂ)) := by
@@ -236,6 +272,9 @@ end Coeff
 
 omit [Group G] in
 
+/--
+@isnad1 id=ex.0h3v.s9.06c9e09ff5db from=translated src=- shape=6a7febe6 vocab=e71144ac
+-/
 theorem exists_eval_combination (W : Submodule ℂ (G → ℂ)) [FiniteDimensional ℂ W]
     (φ : Module.Dual ℂ W) :
     ∃ (m : ℕ) (e : Fin m → ℂ) (x : Fin m → G), ∀ w : W, φ w = ∑ l, e l * (w : G → ℂ) (x l) := by
@@ -272,6 +311,9 @@ def iterMulVec {d : ℕ} : (n : ℕ) → (Fin n → Matrix (Fin d) (Fin d) ℂ) 
   | 0, _, c => c
   | n + 1, M, c => Matrix.mulVec (M 0) (iterMulVec n (fun i => M i.succ) c)
 
+/--
+@isnad1 id=eq.0h5v.s7.a5719f6176cb from=translated src=- shape=5c92777b vocab=86711009
+-/
 theorem iterMulVec_eq_sum_paths {d : ℕ} :
     ∀ (n : ℕ) (M : Fin n → Matrix (Fin d) (Fin d) ℂ) (c : Fin d → ℂ) (p : Fin d),
       iterMulVec n M c p
@@ -315,6 +357,9 @@ theorem iterMulVec_eq_sum_paths {d : ℕ} :
       rw [e2]
       ring
 
+/--
+@isnad1 id=ex.2h4v.s9.c6da3719fd63 from=translated src=- shape=db1c6ecc vocab=44ccf53b
+-/
 theorem tensor_split {n : ℕ} (K : Fin n → Subgroup G)
     (hcomm : ∀ i j, i ≠ j → ∀ x ∈ K i, ∀ y ∈ K j, Commute x y)
     (f : G → ℂ)
@@ -554,6 +599,9 @@ open scoped _root_.P2MW.S_AutomorphicForm_exists_sum_prod_mul_of_rightTranslates
 end
 open scoped _root_.P2MW.S_AutomorphicForm_exists_sum_prod_mul_of_rightTranslatesSpanFinite.RightFiniteTensorSplit
 
+/--
+@isnad1 id=ex.2h4v.s9.c6da3719fd63 from=translated src=- shape=db1c6ecc vocab=44ccf53b
+-/
 theorem solution
     {G : Type*} [Group G] {n : ℕ} (K : Fin n → Subgroup G)
     (hcomm : ∀ i j, i ≠ j → ∀ x ∈ K i, ∀ y ∈ K j, Commute x y)

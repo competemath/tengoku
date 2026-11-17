@@ -18,6 +18,9 @@ open _root_.NumberField open _root_.NumberField.InfinitePlace.NumberField open _
 
 variable {F : Type} [Field F] [NumberField F] {w : InfinitePlace F} (hw : w.IsReal)
 
+/--
+@isnad1 id=eq.1h3v.s9.ccf10c7445da from=translated src=- shape=00faa551 vocab=38743f20
+-/
 theorem archRealGLAt_eq_archRealLiftAt (M : GL (Fin 2) ℝ) :
     archRealGLAt hw M = archRealLiftAt hw (Matrix.of.symm (M : Matrix (Fin 2) (Fin 2) ℝ)) := by
   have hdet : (Matrix.of (Matrix.of.symm (M : Matrix (Fin 2) (Fin 2) ℝ))).det ≠ 0 := by
@@ -33,6 +36,9 @@ def chart (φ : AdelicGL2 (𝓞 F) F → ℂ) (g : AdelicGL2 (𝓞 F) F) : (Fin 
 
 abbrev U : Set (Fin 2 → Fin 2 → ℝ) := {e | (Matrix.of e).det ≠ 0}
 
+/--
+@isnad1 id=mem.0h0v.s8.694d33c0b626 from=translated src=- shape=bc349a67 vocab=a5257d8a
+-/
 theorem one_mem_U : (Matrix.of.symm (1 : Matrix (Fin 2) (Fin 2) ℝ)) ∈ U := by
   show (Matrix.of (Matrix.of.symm (1 : Matrix (Fin 2) (Fin 2) ℝ))).det ≠ 0
   rw [Equiv.apply_symm_apply, Matrix.det_one]
@@ -41,15 +47,24 @@ theorem one_mem_U : (Matrix.of.symm (1 : Matrix (Fin 2) (Fin 2) ℝ)) ∈ U := b
 def D1 (φ : AdelicGL2 (𝓞 F) F → ℂ) (g : AdelicGL2 (𝓞 F) F) (Y : Matrix (Fin 2) (Fin 2) ℝ) : ℂ :=
   fderiv ℝ (chart hw φ g) (Matrix.of.symm 1) (Matrix.of.symm Y)
 
+/--
+@isnad1 id=contdiff.3h5v.s9.1bd98969f674 from=translated src=- shape=5ab4f67c vocab=db11ec9a
+-/
 theorem contDiffAt_chart {φ : AdelicGL2 (𝓞 F) F → ℂ} (hφ : IsArchSmoothAt hw φ) (g : AdelicGL2 (𝓞 F) F)
     {e : Fin 2 → Fin 2 → ℝ} (he : (Matrix.of e).det ≠ 0) : ContDiffAt ℝ (⊤ : ℕ∞) (chart hw φ g) e :=
   (hφ g).contDiffAt (isOpen_setOf_det_ne_zero.mem_nhds he)
 
+/--
+@isnad1 id=hasfderi.3h5v.s9.02426a27ade0 from=translated src=- shape=83cfe320 vocab=d7984567
+-/
 theorem hasFDerivAt_chart {φ : AdelicGL2 (𝓞 F) F → ℂ} (hφ : IsArchSmoothAt hw φ) (g : AdelicGL2 (𝓞 F) F)
     {e : Fin 2 → Fin 2 → ℝ} (he : (Matrix.of e).det ≠ 0) :
     HasFDerivAt (chart hw φ g) (fderiv ℝ (chart hw φ g) e) e :=
   ((contDiffAt_chart hw hφ g he).differentiableAt (by simp)).hasFDerivAt
 
+/--
+@isnad1 id=eq.3h6v.s10.b9922d39e720 from=translated src=- shape=953f12a5 vocab=eca8fc89
+-/
 theorem archDerivAt_apply_mul_archRealLiftAt {φ : AdelicGL2 (𝓞 F) F → ℂ} (hφ : IsArchSmoothAt hw φ) (d : ArchDir)
     (g : AdelicGL2 (𝓞 F) F) {e : Fin 2 → Fin 2 → ℝ} (he : (Matrix.of e).det ≠ 0) :
     archDerivAt hw d φ (g * archRealLiftAt hw e) =
@@ -68,6 +83,9 @@ theorem archDerivAt_apply_mul_archRealLiftAt {φ : AdelicGL2 (𝓞 F) F → ℂ}
   simpa only [Function.comp_def] using
     (hdiff.comp_hasDerivAt (0 : ℝ) (hasDerivAt_of_symm_mul_archFlowMatrix e d)).deriv
 
+/--
+@isnad1 id=eq.2h5v.s6.176abdc34f98 from=translated src=- shape=aa916f96 vocab=f8a5dcb8
+-/
 theorem archDerivAt_eq_D1 {φ : AdelicGL2 (𝓞 F) F → ℂ} (hφ : IsArchSmoothAt hw φ) (d : ArchDir)
     (g : AdelicGL2 (𝓞 F) F) : archDerivAt hw d φ g = D1 hw φ g (archDirMatrix d) := by
   have h := archDerivAt_apply_mul_archRealLiftAt hw hφ d g (e := Matrix.of.symm 1) one_mem_U
@@ -78,6 +96,9 @@ def D2 (φ : AdelicGL2 (𝓞 F) F → ℂ) (g : AdelicGL2 (𝓞 F) F) (Y Z : Mat
   fderiv ℝ (fderiv ℝ (chart hw φ g)) (Matrix.of.symm 1) (Matrix.of.symm Y) (Matrix.of.symm Z)
 
 omit hw in
+/--
+@isnad1 id=hasderiv.0h1v.s9.854d9149a602 from=translated src=- shape=ef5453f5 vocab=d8d0e157
+-/
 theorem hasDerivAt_flow_entries (d : ArchDir) :
     HasDerivAt (fun t : ℝ => Matrix.of.symm ((archFlowMatrix d t : Matrix (Fin 2) (Fin 2) ℝ)))
       (Matrix.of.symm (archDirMatrix d)) 0 := by
@@ -86,6 +107,9 @@ theorem hasDerivAt_flow_entries (d : ArchDir) :
   exact h
 
 omit hw in
+/--
+@isnad1 id=hasderiv.0h2v.s9.49c1c52842f4 from=translated src=- shape=c7ba0836 vocab=f5a9200e
+-/
 theorem hasDerivAt_flow_mul_const (d : ArchDir) (X : Matrix (Fin 2) (Fin 2) ℝ) :
     HasDerivAt (fun t : ℝ => Matrix.of.symm ((archFlowMatrix d t : Matrix (Fin 2) (Fin 2) ℝ) * X))
       (Matrix.of.symm (archDirMatrix d * X)) 0 := by
@@ -96,6 +120,9 @@ theorem hasDerivAt_flow_mul_const (d : ArchDir) (X : Matrix (Fin 2) (Fin 2) ℝ)
   simp only [Matrix.of_symm_apply, Matrix.mul_apply]
   exact HasDerivAt.fun_sum fun k _ => (hasDerivAt_archFlowMatrix_apply d i k).mul_const (X k j)
 
+/--
+@isnad1 id=eq.2h6v.s7.a9ee6eff5478 from=translated src=- shape=04c7080e vocab=939d47ad
+-/
 theorem archDerivAt_archDerivAt_eq {φ : AdelicGL2 (𝓞 F) F → ℂ} (hφ : IsArchSmoothAt hw φ) (i j : ArchDir)
     (g : AdelicGL2 (𝓞 F) F) :
     archDerivAt hw i (archDerivAt hw j φ) g =
@@ -123,22 +150,34 @@ theorem archDerivAt_archDerivAt_eq {φ : AdelicGL2 (𝓞 F) F → ℂ} (hφ : Is
   rw [hfun, h.deriv]
   simp only [archFlowMatrix_zero, Units.val_one, Matrix.one_mul, D2, D1]
 
+/--
+@isnad1 id=eq.2h6v.s6.790d0889a2c8 from=translated src=- shape=81e6e2c0 vocab=4ac84dc0
+-/
 theorem D2_symm {φ : AdelicGL2 (𝓞 F) F → ℂ} (hφ : IsArchSmoothAt hw φ) (g : AdelicGL2 (𝓞 F) F)
     (Y Z : Matrix (Fin 2) (Fin 2) ℝ) : D2 hw φ g Y Z = D2 hw φ g Z Y :=
   ((contDiffAt_chart hw hφ g one_mem_U).isSymmSndFDerivAt (by simp)).eq _ _
 
+/--
+@isnad1 id=eq.1h6v.s7.0160fc3dd692 from=translated src=- shape=291369db vocab=345fcc1b
+-/
 theorem D1_sub (φ : AdelicGL2 (𝓞 F) F → ℂ) (g : AdelicGL2 (𝓞 F) F) (Y Z : Matrix (Fin 2) (Fin 2) ℝ) :
     D1 hw φ g (Y - Z) = D1 hw φ g Y - D1 hw φ g Z := by
   show fderiv ℝ (chart hw φ g) (Matrix.of.symm 1) (Matrix.of.symm Y - Matrix.of.symm Z) = _
   rw [map_sub]
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s7.7c35006d4a01 from=translated src=- shape=58b623f4 vocab=bc483e15
+-/
 theorem D1_smul (φ : AdelicGL2 (𝓞 F) F → ℂ) (g : AdelicGL2 (𝓞 F) F) (c : ℝ) (Y : Matrix (Fin 2) (Fin 2) ℝ) :
     D1 hw φ g (c • Y) = (c : ℂ) * D1 hw φ g Y := by
   show fderiv ℝ (chart hw φ g) (Matrix.of.symm 1) (c • Matrix.of.symm Y) = _
   rw [map_smul, Complex.real_smul]
   rfl
 
+/--
+@isnad1 id=eq.2h6v.s8.65f01f7431ac from=translated src=- shape=8783e531 vocab=1d74fa6f
+-/
 theorem archDerivAt_comm {φ : AdelicGL2 (𝓞 F) F → ℂ} (hφ : IsArchSmoothAt hw φ) (i j : ArchDir)
     (g : AdelicGL2 (𝓞 F) F) :
     archDerivAt hw i (archDerivAt hw j φ) g - archDerivAt hw j (archDerivAt hw i φ) g =
@@ -147,17 +186,29 @@ theorem archDerivAt_comm {φ : AdelicGL2 (𝓞 F) F → ℂ} (hφ : IsArchSmooth
   ring
 
 omit hw in
+/--
+@isnad1 id=eq.0h0v.s8.0ae355dd9f26 from=translated src=- shape=e0933e4f vocab=04cd1b48
+-/
 theorem bracket_H_E : archDirMatrix .H * archDirMatrix .E - archDirMatrix .E * archDirMatrix .H = (2 : ℝ) • archDirMatrix .E := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [archDirMatrix, Matrix.mul_apply, Fin.sum_univ_two] <;> norm_num
 
 omit hw in
+/--
+@isnad1 id=eq.0h0v.s8.ae64ab8adfe0 from=translated src=- shape=bf6d7017 vocab=f26e01e9
+-/
 theorem bracket_H_Fm : archDirMatrix .H * archDirMatrix .Fm - archDirMatrix .Fm * archDirMatrix .H = (-2 : ℝ) • archDirMatrix .Fm := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [archDirMatrix, Matrix.mul_apply, Fin.sum_univ_two] <;> norm_num
 
 omit hw in
+/--
+@isnad1 id=eq.0h0v.s8.cf6265a131c6 from=translated src=- shape=b4186f4c vocab=187afe8f
+-/
 theorem bracket_E_Fm : archDirMatrix .E * archDirMatrix .Fm - archDirMatrix .Fm * archDirMatrix .E = (1 : ℝ) • archDirMatrix .H := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [archDirMatrix, Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.2h4v.s6.8411fa92994d from=translated src=- shape=deead61e vocab=b3861180
+-/
 theorem rel_E_H {φ : AdelicGL2 (𝓞 F) F → ℂ} (hφ : IsArchSmoothAt hw φ) (g : AdelicGL2 (𝓞 F) F) :
     archDerivAt hw .E (archDerivAt hw .H φ) g = archDerivAt hw .H (archDerivAt hw .E φ) g - 2 * archDerivAt hw .E φ g := by
   have h := archDerivAt_comm hw hφ .H .E g
@@ -165,6 +216,9 @@ theorem rel_E_H {φ : AdelicGL2 (𝓞 F) F → ℂ} (hφ : IsArchSmoothAt hw φ)
   push_cast at h
   linear_combination -h
 
+/--
+@isnad1 id=eq.2h4v.s6.0d12f0d755e2 from=translated src=- shape=deead61e vocab=c045239a
+-/
 theorem rel_Fm_H {φ : AdelicGL2 (𝓞 F) F → ℂ} (hφ : IsArchSmoothAt hw φ) (g : AdelicGL2 (𝓞 F) F) :
     archDerivAt hw .Fm (archDerivAt hw .H φ) g = archDerivAt hw .H (archDerivAt hw .Fm φ) g + 2 * archDerivAt hw .Fm φ g := by
   have h := archDerivAt_comm hw hφ .H .Fm g
@@ -172,6 +226,9 @@ theorem rel_Fm_H {φ : AdelicGL2 (𝓞 F) F → ℂ} (hφ : IsArchSmoothAt hw φ
   push_cast at h
   linear_combination -h
 
+/--
+@isnad1 id=eq.2h4v.s6.1f31988430a9 from=translated src=- shape=ea97b827 vocab=194ec63e
+-/
 theorem rel_Fm_E {φ : AdelicGL2 (𝓞 F) F → ℂ} (hφ : IsArchSmoothAt hw φ) (g : AdelicGL2 (𝓞 F) F) :
     archDerivAt hw .Fm (archDerivAt hw .E φ) g = archDerivAt hw .E (archDerivAt hw .Fm φ) g - archDerivAt hw .H φ g := by
   have h := archDerivAt_comm hw hφ .E .Fm g
@@ -179,6 +236,9 @@ theorem rel_Fm_E {φ : AdelicGL2 (𝓞 F) F → ℂ} (hφ : IsArchSmoothAt hw φ
   push_cast at h
   linear_combination -h
 
+/--
+@isnad1 id=and.2h3v.s9.fda819e1ad4e from=translated src=- shape=5bb557cf vocab=e43aba58
+-/
 theorem main
         (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArchSmoothAt hw φ) :
     archDerivAt hw .H (archDerivAt hw .E φ) - archDerivAt hw .E (archDerivAt hw .H φ) = (2 : ℂ) • archDerivAt hw .E φ ∧
@@ -196,6 +256,9 @@ end Ws23.M0a
 
 end
 
+/--
+@isnad1 id=and.2h3v.s9.fda819e1ad4e from=translated src=- shape=5bb557cf vocab=e43aba58
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F] {w : InfinitePlace F} (hw : w.IsReal)
     (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArchSmoothAt hw φ) :
