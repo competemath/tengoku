@@ -1,0 +1,1 @@
+-- LeanEvalPlatonicClassification: a factory bundle (data/intake/lean-eval-platonic-classification). This file only marks the library for Tengoku/All.lean.
