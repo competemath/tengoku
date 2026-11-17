@@ -1,0 +1,13 @@
+{
+ "bundle_sha256": "774069683e422065841b9ec16da52ef1cda85a10ab108b5eda727c8392874f67",
+ "factory_changes": {
+  "inert lines removed": 80,
+  "modules changed": 25
+ },
+ "gate2_unjudged": [],
+ "library": "fourier-jacobi-core-evaluation",
+ "lint_mode": "proposed",
+ "modules": 56,
+ "part": 1,
+ "theorems": 909
+}
