@@ -6,7 +6,9 @@ import Lean.Elab.Tactic.Omega
 
 namespace Erdos700.FourPrime.PairADigits
 
-/-- Exact Euclidean quotient and remainder for an already bounded remainder.-/
+/-- Exact Euclidean quotient and remainder for an already bounded remainder.
+@isnad1 id=and.4h4v.s6.5027dd070cef from=translated src=- shape=6f5a33cf vocab=9425a0f3
+-/
 theorem quotient_remainder (n q t r : ℤ) (hq : 0 < q)
     (hr0 : 0 ≤ r) (hrq : r < q) (hn : n = t * q + r) :
     n % q = r ∧ n / q = t := by
@@ -17,7 +19,9 @@ theorem quotient_remainder (n q t r : ℤ) (hq : 0 < q)
   · rw [Int.mul_add_ediv_right _ _ hq.ne', Int.ediv_eq_zero_of_lt hr0 hrq]
     simp
 
-/-- A negative constant coefficient between -q and 0 has remainder q+K.-/
+/-- A negative constant coefficient between -q and 0 has remainder q+K.
+@isnad1 id=eq.4h5v.s6.b117b8371d37 from=translated src=- shape=61381da1 vocab=5ec1acb4
+-/
 theorem negative_low_remainder (n q u M K : ℤ) (hq : 0 < q)
     (hKlo : -q < K) (hKneg : K < 0)
     (hn : n = u * q ^ 2 + M * q + K) : n % q = q + K := by
@@ -28,7 +32,9 @@ theorem negative_low_remainder (n q u M K : ℤ) (hq : 0 < q)
 
 /-- The actual three digits when the constant is nonnegative and the
 middle coefficient is negative. The second high quotient is repeated
-Euclidean division, which equals division by q^2 for positive q.-/
+Euclidean division, which equals division by q^2 for positive q.
+@isnad1 id=and.8h5v.s7.7458fea3ca79 from=translated src=- shape=08af7a00 vocab=d8797b96
+-/
 theorem borrow_middle_digits (n q u M K : ℤ) (hq : 0 < q)
     (hK0 : 0 ≤ K) (hKq : K < q)
     (hMlo : -q < M) (hMneg : M < 0)
@@ -49,7 +55,9 @@ The three target hypotheses are actual Euclidean remainders of `k/q`, not
 presupposed normalized coefficients. The four explicit size hypotheses
 are weaker than the global `P >= 12*c^3` condition in the paper. The
 source divisibility `q | k/(P+a)` is the input obtained from the two
-prime divisibilities and coprimality; no primality is used in this lemma.-/
+prime divisibilities and coprimality; no primality is used in this lemma.
+@isnad1 id=false.19h8v.s10.ff156e9912c3 from=translated src=- shape=e9d32251 vocab=82d94ad8
+-/
 theorem pairAB_actual_digits
     (a b c q u v w k : ℤ)
     (ha : 0 < a) (hab : a < b) (hbc : b < c)
@@ -225,7 +233,9 @@ theorem pairAB_actual_digits
 
 /-- Full integer exclusion for the pair `(P+a,P+c)`, with `q=P+c`.
 Only the actual low and middle target digits are needed. As in the AB
-lemma, all carry choices and Euclidean normalizations are proved here.-/
+lemma, all carry choices and Euclidean normalizations are proved here.
+@isnad1 id=false.20h8v.s10.72e8ac5eb601 from=translated src=- shape=953fa8ab vocab=82d94ad8
+-/
 theorem pairAC_actual_digits
     (a b c q u v w k : ℤ)
     (ha : 0 < a) (hab : a < b) (hbc : b < c)
@@ -359,7 +369,9 @@ theorem pairAC_actual_digits
   linarith only [hmiddle, hM_lower, hsize_middle]
 
 /-- All source-A local size requirements follow from the original global
-hypotheses, uniformly for every gap `d` between 0 and c.-/
+hypotheses, uniformly for every gap `d` between 0 and c.
+@isnad1 id=and.6h5v.s9.dc5393b08bfd from=translated src=- shape=1bb144a6 vocab=e94596d0
+-/
 theorem source_a_size_bounds
     (a b c d q : ℤ)
     (ha : 1 ≤ a) (hb : 3 * a ≤ b) (hc : 3 * b - a + 1 ≤ c)
@@ -440,7 +452,9 @@ theorem source_a_size_bounds
 
 /-- AB pair exclusion under the original four-prime parameter bounds.
 This theorem still uses integer source/target digits, but no longer has
-any auxiliary size hypotheses.-/
+any auxiliary size hypotheses.
+@isnad1 id=false.16h8v.s9.3a16ee546875 from=translated src=- shape=871c3cf2 vocab=da85dd66
+-/
 theorem pairAB_global_digits
     (a b c q u v w k : ℤ)
     (ha : 1 ≤ a) (hb : 3 * a ≤ b) (hc : 3 * b - a + 1 ≤ c)
@@ -467,7 +481,9 @@ theorem pairAB_global_digits
     hu0 hu hv0 hv hw0 hw hs.1 hs.2.1 hs.2.2.1 hs.2.2.2.1
     hdiv hk hk_ne hlow hmiddle hhigh
 
-/-- AC pair exclusion under the original four-prime parameter bounds.-/
+/-- AC pair exclusion under the original four-prime parameter bounds.
+@isnad1 id=false.15h8v.s9.0159f80b6034 from=translated src=- shape=af7915f2 vocab=da85dd66
+-/
 theorem pairAC_global_digits
     (a b c q u v w k : ℤ)
     (ha : 1 ≤ a) (hb : 3 * a ≤ b) (hc : 3 * b - a + 1 ≤ c)

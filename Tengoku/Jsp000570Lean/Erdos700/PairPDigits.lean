@@ -6,6 +6,9 @@ import Tengoku.Jsp000570Lean.Erdos700.PairADigits
 namespace Erdos700.FourPrime.PairPDigits
 open PairADigits
 
+/--
+@isnad1 id=eq.10h8v.s7.c07d44b37324 from=translated src=- shape=542c419d vocab=239ca0fb
+-/
 theorem carry_zero (q d S T Z u v w : ℤ)
     (hd : 0 ≤ d) (hu0 : 0 ≤ u) (hu : u ≤ S)
     (hv0 : 0 ≤ v) (hv : v ≤ T) (hw0 : 0 ≤ w) (hw : w ≤ Z)
@@ -27,6 +30,9 @@ theorem carry_zero (q d S T Z u v w : ℤ)
     have hz := Int.eq_zero_of_dvd_of_nonneg_of_lt hneg (by omega) (dvd_neg.mpr hdiv')
     omega
 
+/--
+@isnad1 id=eq.3h6v.s8.beebcf5d1d53 from=translated src=- shape=8fa30315 vocab=2a83cad7
+-/
 theorem quotient_after_zero_carry (q d u v w k : ℤ) (hq : 0 < q)
     (hc : u*d^2-v*d+w = 0)
     (hk : k = (q-d)*(u*(q-d)^2+v*(q-d)+w)) :
@@ -36,7 +42,9 @@ theorem quotient_after_zero_carry (q d u v w k : ℤ) (hq : 0 < q)
   rw [hk, hw]
   ring
 
-/-- Full actual-digit exclusion for the pair `(P,P+b)`.-/
+/-- Full actual-digit exclusion for the pair `(P,P+b)`.
+@isnad1 id=false.19h8v.s9.96ac7b64e1ae from=translated src=- shape=9c2a7868 vocab=82d94ad8
+-/
 theorem pairPB_actual_digits (a b c q u v w k : ℤ)
     (ha : 0 < a) (hab : a < b) (hbc : b < c)
     (hu0 : 0 ≤ u) (hu : u ≤ a+b+c)
@@ -117,7 +125,9 @@ theorem pairPB_actual_digits (a b c q u v w k : ℤ)
   · dsimp [M] at hmiddle
     linarith
 
-/-- Full actual-digit exclusion for the pair `(P,P+c)`.-/
+/-- Full actual-digit exclusion for the pair `(P,P+c)`.
+@isnad1 id=false.19h8v.s9.a78f309d6754 from=translated src=- shape=8284af80 vocab=82d94ad8
+-/
 theorem pairPC_actual_digits (a b c q u v w k : ℤ)
     (ha : 0 < a) (hb : 0 < b) (hsep : a+b < c)
     (hu0 : 0 ≤ u) (hu : u ≤ a+b+c)

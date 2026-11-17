@@ -17,7 +17,9 @@ quotient divisible by `P+c`, and the target low and middle digit bounds for
 
 This is an integer arithmetic theorem.  Primality is not needed once the
 source representation, divisibility, and target digit inequalities have been
-obtained.  No auxiliary normalized-digit or size hypothesis is required.-/
+obtained.  No auxiliary normalized-digit or size hypothesis is required.
+@isnad1 id=false.15h8v.s9.5ef748806651 from=translated src=- shape=dcdcb01b vocab=82d94ad8
+-/
 theorem pairBC_actual_digits (a b c p u v w k : ℤ)
     (ha : 1 ≤ a) (hb : 3 * a ≤ b) (hc : 3 * b - a + 1 ≤ c)
     (hp : 12 * c ^ 3 ≤ p)

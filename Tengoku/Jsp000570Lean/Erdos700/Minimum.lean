@@ -46,13 +46,18 @@ def NoTwoMissing (p q r s m : ℕ) : Prop :=
   ¬ (¬ q ∣ m ∧ ¬ s ∣ m) ∧
   ¬ (¬ r ∣ m ∧ ¬ s ∣ m)
 
+/--
+@isnad1 id=threeoff.1h5v.s4.8a36a9c67c12 from=translated src=- shape=900be632 vocab=47e0e70b
+-/
 theorem threeOfFour_of_noTwoMissing (p q r s m : ℕ)
     (h : NoTwoMissing p q r s m) : ThreeOfFour p q r s m := by
   unfold NoTwoMissing at h
   unfold ThreeOfFour
   tauto
 
-/-- Pairwise distinct primes dividing an integer have their product dividing it.-/
+/-- Pairwise distinct primes dividing an integer have their product dividing it.
+@isnad1 id=dvd.9h4v.s6.98bf25afe960 from=translated src=- shape=a1be7efc vocab=a7d03a3f
+-/
 theorem three_primes_mul_dvd (p q r m : ℕ)
     (hp : p.Prime) (hq : q.Prime) (hr : r.Prime)
     (hpq : p ≠ q) (hpr : p ≠ r) (hqr : q ≠ r)
@@ -63,7 +68,9 @@ theorem three_primes_mul_dvd (p q r m : ℕ)
   exact (cpr.mul_left cqr).mul_dvd_of_dvd_of_dvd
     (cpq.mul_dvd_of_dvd_of_dvd hpm hqm) hrm
 
-/-- A prime dividing the row divides its binomial at any other prime index.-/
+/-- A prime dividing the row divides its binomial at any other prime index.
+@isnad1 id=dvd.4h3v.s4.61b01f428097 from=translated src=- shape=eccb0f66 vocab=124a4f8f
+-/
 theorem dvd_choose_other_prime (p s n : ℕ) (hp : p.Prime) (hs : s.Prime)
     (hpn : p ∣ n) (hne : p ≠ s) : p ∣ n.choose s := by
   by_contra h
@@ -71,7 +78,9 @@ theorem dvd_choose_other_prime (p s n : ℕ) (hp : p.Prime) (hs : s.Prime)
     (dvd_of_not_dvd_choose p n s hp hpn h))
 
 /-- The smallest possible product of three of four ordered prime divisors
-is a lower bound for the gcd whenever at least three are present.-/
+is a lower bound for the gcd whenever at least three are present.
+@isnad1 id=le.8h5v.s6.7ff30909cf77 from=translated src=- shape=ad9e4df8 vocab=89544916
+-/
 theorem gcd_four_primes_ge_of_threeOfFour (p q r s m : ℕ)
     (hp : p.Prime) (hq : q.Prime) (hr : r.Prime) (hs : s.Prime)
     (hpq : p < q) (hqr : q < r) (hrs : r < s)
@@ -105,7 +114,9 @@ theorem gcd_four_primes_ge_of_threeOfFour (p q r s m : ℕ)
       (Nat.le_of_dvd hgpos hd)
 
 /-- The upper bound is attained at the largest prime index, independently of
-the six pair exclusions.-/
+the six pair exclusions.
+@isnad1 id=eq.7h4v.s6.c39141af8ff7 from=translated src=- shape=4ccf848e vocab=8707fc5d
+-/
 theorem gcd_four_primes_at_largest (p q r s : ℕ)
     (hp : p.Prime) (hq : q.Prime) (hr : r.Prime) (hs : s.Prime)
     (hpq : p < q) (hqr : q < r) (hrs : r < s) :
@@ -141,7 +152,9 @@ theorem gcd_four_primes_at_largest (p q r s : ℕ)
     _ = p * q * r := Nat.gcd_mul_of_coprime_of_dvd
       (hs.coprime_iff_not_dvd.mpr hsC) hpqrC
 
-/-- The prime index used above belongs to the minimization range.-/
+/-- The prime index used above belongs to the minimization range.
+@isnad1 id=and.4h4v.s6.309675997829 from=translated src=- shape=9f2e48d9 vocab=7aa445f0
+-/
 theorem largest_prime_in_range (p q r s : ℕ)
     (hp : p.Prime) (hq : q.Prime) (hr : r.Prime) (hs : s.Prime) :
     1 < s ∧ s ≤ (p * q * r * s) / 2 := by
@@ -154,7 +167,9 @@ theorem largest_prime_in_range (p q r s : ℕ)
     _ ≤ p * q * r * s := Nat.mul_le_mul_right s hpqr
 
 /-- Abstract minimum theorem: only the three-of-four divisibility assertion
-remains to be supplied by a concrete prime configuration.-/
+remains to be supplied by a concrete prime configuration.
+@isnad1 id=eq.8h4v.s7.28fb24003d10 from=translated src=- shape=f57bd458 vocab=8c8b85b8
+-/
 theorem f_four_primes_of_threeOfFour (p q r s : ℕ)
     (hp : p.Prime) (hq : q.Prime) (hr : r.Prime) (hs : s.Prime)
     (hpq : p < q) (hqr : q < r) (hrs : r < s)
@@ -175,7 +190,9 @@ theorem f_four_primes_of_threeOfFour (p q r s : ℕ)
     exact gcd_four_primes_ge_of_threeOfFour p q r s _ hp hq hr hs hpq hqr hrs
       (hSupport k hk1 hk2)
 
-/-- Final framework with the six exclusions as its sole binomial hypothesis.-/
+/-- Final framework with the six exclusions as its sole binomial hypothesis.
+@isnad1 id=eq.8h4v.s7.cab2b7f7e188 from=translated src=- shape=f57bd458 vocab=2da9e971
+-/
 theorem f_four_primes_of_noTwoMissing (p q r s : ℕ)
     (hp : p.Prime) (hq : q.Prime) (hr : r.Prime) (hs : s.Prime)
     (hpq : p < q) (hqr : q < r) (hrs : r < s)
@@ -186,7 +203,9 @@ theorem f_four_primes_of_noTwoMissing (p q r s : ℕ)
   intro k hk1 hk2
   exact threeOfFour_of_noTwoMissing p q r s _ (hPairs k hk1 hk2)
 
-/-- A version with an explicitly named product `N`.-/
+/-- A version with an explicitly named product `N`.
+@isnad1 id=eq.9h5v.s7.ae837fdd4013 from=translated src=- shape=7d5e376d vocab=2da9e971
+-/
 theorem f_eq_three_prime_product (N p q r s : ℕ)
     (hN : N = p * q * r * s)
     (hp : p.Prime) (hq : q.Prime) (hr : r.Prime) (hs : s.Prime)

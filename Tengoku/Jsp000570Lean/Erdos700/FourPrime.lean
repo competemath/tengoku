@@ -14,7 +14,9 @@ namespace Erdos700.FourPrime
 
 /-- A four-prime equality criterion for the binomial-gcd minimum.
 The offset-dependent separation and cubic base-size conditions suffice.
-This local theorem does not assume Maynard's theorem.-/
+This local theorem does not assume Maynard's theorem.
+@isnad1 id=eq.8h4v.s7.f3c396c13a46 from=translated src=- shape=c62750a0 vocab=ce43385f
+-/
 theorem four_prime_exact_cubic (P A B C : ℕ)
     (hA : 1 ≤ A) (hB : 3*A ≤ B) (hC : 3*B-A+1 ≤ C) (hPsize : 12*C^3 ≤ P)
     (hP : P.Prime) (hPA : (P+A).Prime) (hPB : (P+B).Prime) (hPC : (P+C).Prime) :
@@ -191,7 +193,9 @@ theorem four_prime_exact_cubic (P A B C : ℕ)
       ha hb hc hp hu0 hv0 hw0 hu hv hw hkpos hs hdiv hlow hmiddle
 
 /-- The version-4 boundary criterion retains its published statement and
-declaration name; its quintic size bound implies the new cubic bound.-/
+declaration name; its quintic size bound implies the new cubic bound.
+@isnad1 id=eq.8h4v.s7.82b5ee5fa0b6 from=translated src=- shape=c62750a0 vocab=ce43385f
+-/
 theorem four_prime_exact_boundary (P A B C : ℕ)
     (hA : 1 ≤ A) (hB : 3*A ≤ B) (hC : 3*B-A+1 ≤ C) (hPsize : 100*C^5 ≤ P)
     (hP : P.Prime) (hPA : (P+A).Prime) (hPB : (P+B).Prime) (hPC : (P+C).Prime) :
@@ -206,7 +210,9 @@ theorem four_prime_exact_boundary (P A B C : ℕ)
   exact four_prime_exact_cubic P A B C hA hB hC hPcubic hP hPA hPB hPC
 
 /-- The version-3 linear separation criterion retains its published statement
-and declaration name as a corollary of the offset-dependent criterion.-/
+and declaration name as a corollary of the offset-dependent criterion.
+@isnad1 id=eq.8h4v.s7.47b495bad7fb from=translated src=- shape=2b9d6987 vocab=d856c695
+-/
 theorem four_prime_exact_linear (P A B C : ℕ)
     (hA : 1 ≤ A) (hB : 3*A ≤ B) (hC : 3*B+1 ≤ C) (hPsize : 100*C^5 ≤ P)
     (hP : P.Prime) (hPA : (P+A).Prime) (hPB : (P+B).Prime) (hPC : (P+C).Prime) :
@@ -215,7 +221,9 @@ theorem four_prime_exact_linear (P A B C : ℕ)
   exact four_prime_exact_boundary P A B C hA hB hCboundary hPsize hP hPA hPB hPC
 
 /-- The version-2 quadratic separation criterion follows from the new linear
-criterion; its published statement and declaration name are preserved.-/
+criterion; its published statement and declaration name are preserved.
+@isnad1 id=eq.8h4v.s7.a72053c82058 from=translated src=- shape=f486b9bb vocab=ce43385f
+-/
 theorem four_prime_exact_relaxed (P A B C : ℕ)
     (hA : 1 ≤ A) (hB : 3*A ≤ B) (hC : B*(B-A)+B+1 ≤ C) (hPsize : 100*C^5 ≤ P)
     (hP : P.Prime) (hPA : (P+A).Prime) (hPB : (P+B).Prime) (hPC : (P+C).Prime) :
@@ -227,7 +235,9 @@ theorem four_prime_exact_relaxed (P A B C : ℕ)
   exact four_prime_exact_linear P A B C hA hB hClinear hPsize hP hPA hPB hPC
 
 /-- The original separation criterion is retained as a corollary of the
-relaxed theorem. This preserves the declaration submitted in the v1 packet.-/
+relaxed theorem. This preserves the declaration submitted in the v1 packet.
+@isnad1 id=eq.8h4v.s7.083160860d1d from=translated src=- shape=0d313e7d vocab=d856c695
+-/
 theorem four_prime_exact (P A B C : ℕ)
     (hA : 1 ≤ A) (hB : 3*A ≤ B) (hC : 10*B^2 ≤ C) (hPsize : 100*C^5 ≤ P)
     (hP : P.Prime) (hPA : (P+A).Prime) (hPB : (P+B).Prime) (hPC : (P+C).Prime) :

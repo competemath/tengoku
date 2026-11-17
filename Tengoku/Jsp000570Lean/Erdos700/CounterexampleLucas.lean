@@ -17,7 +17,9 @@ are below the corresponding power of the prime base.
 
 namespace Erdos700.CounterexampleLucas
 
-/-- Every positive factor in this factorial is below the prime.-/
+/-- Every positive factor in this factorial is below the prime.
+@isnad1 id=not.2h2v.s4.84a8786e7801 from=translated src=- shape=b9aa8cbb vocab=61b61fd7
+-/
 theorem not_dvd_factorial_of_lt (p n : ℕ) (hp : p.Prime) (hn : n < p) :
     ¬ p ∣ n.factorial := by
   induction n with
@@ -30,7 +32,9 @@ theorem not_dvd_factorial_of_lt (p n : ℕ) (hp : p.Prime) (hn : n < p) :
       · exact ih (Nat.lt_of_succ_lt hn)
 
 /-- A binomial formed from two legal digits, in their natural order, is
-nonzero modulo the prime base.-/
+nonzero modulo the prime base.
+@isnad1 id=not.3h3v.s4.3e1390d2e6ea from=translated src=- shape=199f8a58 vocab=2152adc9
+-/
 theorem not_dvd_choose_small (p n k : ℕ) (hp : p.Prime)
     (hn : n < p) (hk : k ≤ n) : ¬ p ∣ n.choose k := by
   intro hd
@@ -40,7 +44,9 @@ theorem not_dvd_choose_small (p n k : ℕ) (hp : p.Prime)
   exact not_dvd_factorial_of_lt p n hp hn hfact
 
 /-- Reattach one legal lowest digit to a quotient whose binomial is already
-known to be nonzero modulo the base.-/
+known to be nonzero modulo the base.
+@isnad1 id=not.3h3v.s6.412d2daafe11 from=translated src=- shape=4eeeace4 vocab=be0d6016
+-/
 theorem not_dvd_choose_of_mod_le_of_div (p n k : ℕ) (hp : p.Prime)
     (hd : k % p ≤ n % p)
     (hdiv : ¬ p ∣ (n / p).choose (k / p)) : ¬ p ∣ n.choose k := by
@@ -53,7 +59,9 @@ theorem not_dvd_choose_of_mod_le_of_div (p n k : ℕ) (hp : p.Prime)
   exact (hp.not_dvd_mul hlow hdiv) ((hmod.dvd_iff (dvd_refl p)).mp h)
 
 /-- Finite converse Lucas criterion. Only the first `d` digit comparisons
-are needed; the strict power bounds prove that all higher digits vanish.-/
+are needed; the strict power bounds prove that all higher digits vanish.
+@isnad1 id=not.4h4v.s7.11fa58c05743 from=translated src=- shape=83792a9d vocab=746df756
+-/
 theorem not_dvd_choose_of_digits_lt (p n k d : ℕ) (hp : p.Prime)
     (hn : n < p ^ d) (hk : k < p ^ d)
     (hd : ∀ i : ℕ, i < d → k / p ^ i % p ≤ n / p ^ i % p) :

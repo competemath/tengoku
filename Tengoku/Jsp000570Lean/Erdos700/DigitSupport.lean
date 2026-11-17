@@ -17,7 +17,9 @@ The coefficient above the first three digits may be arbitrary.
 namespace Erdos700
 
 /-- Euclidean division twice gives the three-term expansion; the leading
-coefficient need not itself be a digit unless `x < p^3`.-/
+coefficient need not itself be a digit unless `x < p^3`.
+@isnad1 id=eq.0h2v.s6.803f5d839bd1 from=translated src=- shape=0472cf62 vocab=a5cfd73a
+-/
 theorem nat_three_digit_expansion (p x : ℕ) :
     x = (x / p ^ 2) * p ^ 2 + (x / p % p) * p + x % p := by
   have hdiv : (x / p) / p = x / p ^ 2 := by
@@ -31,7 +33,9 @@ theorem nat_three_digit_expansion (p x : ℕ) :
       ring
 
 /-- Identify the lowest three digits from an explicit expansion. No upper
-bound on the fourth coefficient is needed.-/
+bound on the fourth coefficient is needed.
+@isnad1 id=and.5h6v.s7.05ba20ce7a5e from=translated src=- shape=2cd9ee0e vocab=2308e4bc
+-/
 theorem first_three_digits_of_expansion (p x A3 A2 A1 A0 : ℕ)
     (hp : 0 < p) (h0 : A0 < p) (h1 : A1 < p) (h2 : A2 < p)
     (hx : x = A3 * p ^ 3 + A2 * p ^ 2 + A1 * p + A0) :
@@ -51,7 +55,9 @@ theorem first_three_digits_of_expansion (p x A3 A2 A1 A0 : ℕ)
   · rw [hdiv2, Nat.add_mul_mod_self_left, Nat.mod_eq_of_lt h2]
 
 /-- Convert the Lucas inequalities into the three integer digits used in
-the arithmetic pair exclusions.-/
+the arithmetic pair exclusions.
+@isnad1 id=ex.8h7v.s8.da146f5ded58 from=translated src=- shape=3f3f0b83 vocab=df684134
+-/
 theorem exists_three_digits_of_not_dvd_choose
     (p n k A3 A2 A1 A0 : ℕ) (hp : p.Prime) (hpn : p ∣ n)
     (hmiss : ¬ p ∣ n.choose k) (hk : k / p < p ^ 3)

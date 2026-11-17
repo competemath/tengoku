@@ -17,7 +17,9 @@ There is no sign or size requirement on the fourth coefficient.
 
 namespace Erdos700
 
-/-- Identify the lowest three integer Euclidean digits from an expansion.-/
+/-- Identify the lowest three integer Euclidean digits from an expansion.
+@isnad1 id=and.8h6v.s7.90f4c3103c9b from=translated src=- shape=e0f1bb4a vocab=460170a1
+-/
 theorem int_first_three_digits_of_expansion (p x d3 d2 d1 d0 : ℤ)
     (hp : 0 < p)
     (h0 : 0 ≤ d0) (h0p : d0 < p)
@@ -41,7 +43,9 @@ theorem int_first_three_digits_of_expansion (p x d3 d2 d1 d0 : ℤ)
   · rw [hdiv2, Int.add_mul_emod_self_left, Int.emod_eq_of_lt h2 h2p]
 
 /-- Lucas support, expressed directly with integer Euclidean divisions.
-This theorem does not require a bound on the number of digits of `k/p`.-/
+This theorem does not require a bound on the number of digits of `k/p`.
+@isnad1 id=and.9h7v.s8.a25db06b9a29 from=translated src=- shape=96a7208e vocab=ecc0b3ef
+-/
 theorem int_lucas_three_digit_bounds (p N k : ℕ) (d3 d2 d1 d0 : ℤ)
     (hp : p.Prime) (hmiss : ¬ p ∣ N.choose k)
     (h0 : 0 ≤ d0) (h0p : d0 < (p : ℤ))
@@ -70,7 +74,9 @@ theorem int_lucas_three_digit_bounds (p N k : ℕ) (d3 d2 d1 d0 : ℤ)
   · rw [← hD2]
     exact_mod_cast hd2
 
-/-- The bounded integer digit variables required by all six pair exclusions.-/
+/-- The bounded integer digit variables required by all six pair exclusions.
+@isnad1 id=ex.11h7v.s8.7ef9634ffddf from=translated src=- shape=e4954406 vocab=6655a915
+-/
 theorem exists_int_three_digits_of_not_dvd_choose
     (p N k : ℕ) (d3 d2 d1 d0 : ℤ)
     (hp : p.Prime) (hpN : p ∣ N) (hmiss : ¬ p ∣ N.choose k)
@@ -110,7 +116,9 @@ theorem exists_int_three_digits_of_not_dvd_choose
   exact_mod_cast hrep
 
 /-- If two distinct prime divisors are absent, the second divides the
-quotient by the first. This is the divisibility input to the carry lemmas.-/
+quotient by the first. This is the divisibility input to the carry lemmas.
+@isnad1 id=dvd.7h4v.s6.ac8b5cec40d5 from=translated src=- shape=37ce16aa vocab=c85c4750
+-/
 theorem int_prime_dvd_quotient_of_two_misses (p q N k : ℕ)
     (hp : p.Prime) (hq : q.Prime) (hne : p ≠ q)
     (hpN : p ∣ N) (hqN : q ∣ N)

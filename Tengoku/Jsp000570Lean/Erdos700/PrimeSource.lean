@@ -5,7 +5,9 @@ import Tengoku.Seed.Data.Nat.Prime.Int
 
 namespace Erdos700
 
-/-- A distinct prime divisor of `k` divides the integer source quotient.-/
+/-- A distinct prime divisor of `k` divides the integer source quotient.
+@isnad1 id=dvd.5h4v.s5.1e4a5a2bdee2 from=translated src=- shape=d8e73b12 vocab=36814fc3
+-/
 theorem prime_dvd_int_source (p q k : ℕ) (z : ℤ)
     (hp : p.Prime) (hq : q.Prime) (hneq : p ≠ q)
     (hqk : q ∣ k) (hk : (k : ℤ) = (p : ℤ)*z) : (q : ℤ) ∣ z := by
@@ -17,6 +19,9 @@ theorem prime_dvd_int_source (p q k : ℕ) (z : ℤ)
     exact False.elim (hneq heq.symm)
   · exact hz
 
+/--
+@isnad1 id=dvd.6h5v.s5.6aa35c6eb6fa from=translated src=- shape=292b7d43 vocab=b1b02ce4
+-/
 theorem missing_prime_dvd_int_source (p q N k : ℕ) (z : ℤ)
     (hp : p.Prime) (hq : q.Prime) (hneq : p ≠ q)
     (hqN : q ∣ N) (hmiss : ¬ q ∣ N.choose k)

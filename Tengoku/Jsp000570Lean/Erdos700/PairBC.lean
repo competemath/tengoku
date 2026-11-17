@@ -23,17 +23,29 @@ def lowCarry (K : ℤ) : ℤ := if K < 0 then -1 else 0
 /-- One-borrow normalization, valid as a base-`q` digit on `[-q,q)`.-/
 def normalizeDigit (q K : ℤ) : ℤ := if K < 0 then q + K else K
 
+/--
+@isnad1 id=and.0h1v.s4.12a528301a45 from=translated src=- shape=24e024fb vocab=59ac2780
+-/
 theorem lowCarry_bounds (K : ℤ) : -1 ≤ lowCarry K ∧ lowCarry K ≤ 0 := by
   by_cases h : K < 0 <;> simp [lowCarry, h]
 
+/--
+@isnad1 id=eq.0h2v.s4.ca2df6d26837 from=translated src=- shape=016beec6 vocab=c034a6a1
+-/
 theorem lowCarry_balance (q K : ℤ) :
     q * lowCarry K + normalizeDigit q K = K := by
   by_cases h : K < 0 <;> simp [lowCarry, normalizeDigit, h]
 
+/--
+@isnad1 id=and.2h2v.s5.60ace9330348 from=translated src=- shape=a38dcfe0 vocab=fca7dadc
+-/
 theorem normalizeDigit_bounds {q K : ℤ} (hlo : -q ≤ K) (hhi : K < q) :
     0 ≤ normalizeDigit q K ∧ normalizeDigit q K < q := by
   by_cases h : K < 0 <;> simp [normalizeDigit, h] <;> omega
 
+/--
+@isnad1 id=eq.2h2v.s5.14b3f5e12069 from=translated src=- shape=a672b996 vocab=48009dff
+-/
 theorem normalizeDigit_eq_emod {q K : ℤ} (hlo : -q ≤ K) (hhi : K < q) :
     normalizeDigit q K = K % q := by
   by_cases h : K < 0
@@ -42,6 +54,9 @@ theorem normalizeDigit_eq_emod {q K : ℤ} (hlo : -q ≤ K) (hhi : K < q) :
     simpa [normalizeDigit, h, Int.add_emod] using heq.symm
   · simpa [normalizeDigit, h] using (Int.emod_eq_of_lt (by omega) hhi).symm
 
+/--
+@isnad1 id=eq.2h2v.s5.2124d2eca2a6 from=translated src=- shape=adae8649 vocab=22926d4f
+-/
 theorem lowCarry_eq_ediv {q K : ℤ} (hlo : -q ≤ K) (hhi : K < q) :
     lowCarry K = K / q := by
   by_cases h : K < 0
@@ -50,11 +65,17 @@ theorem lowCarry_eq_ediv {q K : ℤ} (hlo : -q ≤ K) (hhi : K < q) :
   · simpa [lowCarry, h] using
       (Int.ediv_eq_zero_of_lt (by omega) hhi).symm
 
+/--
+@isnad1 id=eq.0h4v.s6.fd9d723ad83c from=translated src=- shape=fee16ff5 vocab=ea1fa796
+-/
 theorem polynomial_low_digit (q u M K : ℤ) :
     (u * q ^ 2 + M * q + K) % q = K % q := by
   have heq : u * q ^ 2 + M * q + K = (u * q + M) * q + K := by ring
   rw [heq, Int.mul_add_emod_self_right]
 
+/--
+@isnad1 id=eq.1h4v.s6.1609f8e141f7 from=translated src=- shape=5b38927d vocab=3f9b72de
+-/
 theorem polynomial_middle_digit {q : ℤ} (hq : q ≠ 0) (u M K : ℤ) :
     ((u * q ^ 2 + M * q + K) / q) % q = (M + K / q) % q := by
   have heq : u * q ^ 2 + M * q + K = (u * q + M) * q + K := by ring
@@ -63,7 +84,9 @@ theorem polynomial_middle_digit {q : ℤ} (hq : q ≠ 0) (u M K : ℤ) :
   rw [hsecond, Int.mul_add_emod_self_right]
 
 /-- Both canonical digits of an integer quadratic agree with the one-borrow
-normalizations, assuming the two raw coefficients lie in the stated ranges.-/
+normalizations, assuming the two raw coefficients lie in the stated ranges.
+@isnad1 id=and.5h4v.s7.34f480d39491 from=translated src=- shape=b2903503 vocab=5adefe7a
+-/
 theorem two_digits_normalize {q u M K : ℤ} (hq : 0 < q)
     (hKlo : -q ≤ K) (hKhi : K < q)
     (hMlo : -q ≤ M + lowCarry K) (hMhi : M + lowCarry K < q) :
@@ -75,13 +98,18 @@ theorem two_digits_normalize {q u M K : ℤ} (hq : 0 < q)
   · rw [polynomial_middle_digit (ne_of_gt hq),
       ← lowCarry_eq_ediv hKlo hKhi, normalizeDigit_eq_emod hMlo hMhi]
 
+/--
+@isnad1 id=eq.0h4v.s6.42e8c3757238 from=translated src=- shape=af91e4ea vocab=f047744f
+-/
 theorem normalizeLow_radix_identity (q u M K : ℤ) :
     u * q ^ 2 + M * q + K =
       u * q ^ 2 + (M + lowCarry K) * q + normalizeDigit q K := by
   have h := lowCarry_balance q K
   nlinarith only [h]
 
-/-- The correction term subtracted from `J` is nonnegative and small.-/
+/-- The correction term subtracted from `J` is nonnegative and small.
+@isnad1 id=and.5h5v.s8.7ccb0d340499 from=translated src=- shape=216fefee vocab=e67f7605
+-/
 theorem correction_bounds {d u H c epsilon : ℤ}
     (hd : 0 ≤ d) (hu : 0 ≤ u) (hH : 0 ≤ H)
     (hepsilon : -1 ≤ epsilon ∧ epsilon ≤ 0)
@@ -91,7 +119,9 @@ theorem correction_bounds {d u H c epsilon : ℤ}
   have hud := mul_nonneg hu hd
   constructor <;> nlinarith
 
-/-- Bounds for the middle coefficient when `H` is positive.-/
+/-- Bounds for the middle coefficient when `H` is positive.
+@isnad1 id=and.10h10v.s8.29f401aaf734 from=translated src=- shape=05472663 vocab=e94596d0
+-/
 theorem positive_H_middle_bounds {q d c L u H J w epsilon E : ℤ}
     (hq : 0 ≤ q) (hd : 0 < d) (hH : 1 ≤ H) (hHd : H < d)
     (hw : 0 ≤ w) (hwL : w ≤ d * L) (hL : L ≤ c ^ 2)
@@ -112,7 +142,9 @@ theorem positive_H_middle_bounds {q d c L u H J w epsilon E : ℤ}
   have hEscaled := congrArg (fun z : ℤ => d * z) hE
   constructor <;> nlinarith
 
-/-- A uniform large-base threshold excludes the whole positive-`H` interval.-/
+/-- A uniform large-base threshold excludes the whole positive-`H` interval.
+@isnad1 id=and.5h5v.s7.3048c969d860 from=translated src=- shape=0e7f009d vocab=e94596d0
+-/
 theorem positive_H_middle_interval {q d c U E : ℤ}
     (hd : 0 < d) (hgap : 7 * c ^ 2 * d < q) (hU : U ≤ 3 * c ^ 2)
     (hlo : q - 4 * c ^ 2 * d ≤ d * E)
@@ -132,7 +164,9 @@ theorem positive_H_middle_interval {q d c U E : ℤ}
     nlinarith
 
 /-- The middle coefficient always lies in the one-borrow normalization range.
-The positive-`H` case is actually strictly between `U-1` and `q`.-/
+The positive-`H` case is actually strictly between `U-1` and `q`.
+@isnad1 id=and.13h10v.s8.11685639de26 from=translated src=- shape=ff1adf00 vocab=d76f0ad2
+-/
 theorem middle_normalization_range {q d c L U u H J w K : ℤ}
     (hq : 0 ≤ q) (hd : 0 < d) (hLsize : L ≤ c ^ 2)
     (hu : 0 ≤ u) (hH : 0 ≤ H) (hHd : H < d)
@@ -161,7 +195,9 @@ theorem middle_normalization_range {q d c L U u H J w K : ℤ}
     obtain ⟨hlarge, hsmall⟩ := positive_H_middle_interval hd hgap hUhi hlo hhi
     exact ⟨by omega, hsmall⟩
 /-- The `H=0, u>0` branch after the negative-low-coefficient case has been
-excluded. The middle coefficient requires a borrow and exceeds its bound.-/
+excluded. The middle coefficient requires a borrow and exceeds its bound.
+@isnad1 id=and.5h5v.s7.585f81991ba3 from=translated src=- shape=de862055 vocab=5bc1c1ee
+-/
 theorem zero_H_positive_u {q d u t U : ℤ}
     (hd : 0 < d) (hu : 1 ≤ u)
     (ht : 0 ≤ t) (htud : t ≤ u * d)
@@ -176,7 +212,9 @@ theorem zero_H_positive_u {q d u t U : ℤ}
   simp only [normalizeDigit, ite_eq_left hneg]
   omega
 
-/-- The `H=0, u=0, t>0` branch violates the low digit bound.-/
+/-- The `H=0, u=0, t>0` branch violates the low digit bound.
+@isnad1 id=lt.4h5v.s6.c57b6019b2c9 from=translated src=- shape=dd99d3e1 vocab=85290977
+-/
 theorem zero_H_zero_u_positive_t {q d L t F : ℤ}
     (hd : 0 < d) (ht : 0 < t) (htL : t ≤ L) (hF : d * L < F) :
     q - F < normalizeDigit q (-d * t) := by
@@ -193,7 +231,9 @@ contribution into the middle coefficient.  Thus the middle correction is
 
 The conclusion uses only integer arithmetic and exposed size hypotheses.
 No binomial coefficient, primality assertion, or existence theorem is assumed
-implicitly.  In applications, `hnonzero` follows from the original `k > 0`.-/
+implicitly.  In applications, `hnonzero` follows from the original `k > 0`.
+@isnad1 id=false.19h11v.s9.2d160d4a17ed from=translated src=- shape=500d2f19 vocab=cee294e3
+-/
 theorem normalized_pair_exclusion {q d c L U F u H J w K : ℤ}
     (hq : 0 ≤ q) (hd : 0 < d)
     (hLsize : L ≤ c ^ 2)
@@ -246,7 +286,9 @@ theorem normalized_pair_exclusion {q d c L U F u H J w K : ℤ}
     omega
 
 /-- A version with actual Euclidean digits of the integer represented in base
-`q`, rather than assumed bounds on a normalization function.-/
+`q`, rather than assumed bounds on a normalization function.
+@isnad1 id=false.22h12v.s9.f3d1732ff3e1 from=translated src=- shape=196810ec vocab=d8797b96
+-/
 theorem radix_pair_exclusion {q d c L U F u H J w K y : ℤ}
     (hq : 0 < q) (hd : 0 < d)
     (hLsize : L ≤ c ^ 2)
@@ -280,7 +322,9 @@ middle base-`q` digits of `k/q`.  All carries and congruence quotients are
 constructed inside the proof.
 
 The remaining size assumptions are explicit polynomial inequalities; they do
-not include primality, Lucas, or any claim about the desired conclusion.-/
+not include primality, Lucas, or any claim about the desired conclusion.
+@isnad1 id=false.21h10v.s9.018424df9727 from=translated src=- shape=974a259a vocab=82d94ad8
+-/
 theorem source_pair_exclusion {q d c L U F u v w k : ℤ}
     (hq : 0 < q) (hd : 0 < d)
     (hLsize : L ≤ c ^ 2)
@@ -355,7 +399,9 @@ theorem source_pair_exclusion {q d c L U F u v w k : ℤ}
     hbudgetH hgap hUlo hUhi hmargin hF hnonzero hquotient hlow hmiddle
 
 /-- Convenient coarse estimates: a cubic base threshold suffices for every
-explicit size condition in `source_pair_exclusion`.-/
+explicit size condition in `source_pair_exclusion`.
+@isnad1 id=and.7h6v.s8.f1228aae31f5 from=translated src=- shape=46560a92 vocab=e94596d0
+-/
 theorem large_base_estimates {q d c L U u : ℤ}
     (hd : 0 < d) (hdc : d < c) (hu : 0 ≤ u) (huc : u < c)
     (hLsize : L ≤ c ^ 2) (hUhi : U ≤ 3 * c ^ 2) (hlarge : 10 * c ^ 3 < q) :
@@ -387,7 +433,9 @@ theorem large_base_estimates {q d c L U u : ℤ}
       hud2, hc2d, hUhi, le_of_lt hc2pos]
 
 /-- Caller-facing last-pair exclusion with only coarse source-size estimates.
-The digits supplied here are actual Euclidean digits, not normalized proxies.-/
+The digits supplied here are actual Euclidean digits, not normalized proxies.
+@isnad1 id=false.18h10v.s8.7544faceea31 from=translated src=- shape=a755f31a vocab=82d94ad8
+-/
 theorem source_pair_exclusion_of_large_base {q d c L U F u v w k : ℤ}
     (hd : 0 < d) (hdc : d < c) (hLsize : L ≤ c ^ 2)
     (hu : 0 ≤ u) (huc : u < c) (hv : 0 ≤ v) (hvq : v < q)

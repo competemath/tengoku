@@ -31,7 +31,9 @@ private theorem prime_507497 : Nat.Prime 507497 := by norm_num
 private theorem prime_538789 : Nat.Prime 538789 := by norm_num
 private theorem prime_3843199 : Nat.Prime 3843199 := by norm_num
 
-/-- The smallest prime in the counterexample.-/
+/-- The smallest prime in the counterexample.
+@isnad1 id=prime.0h0v.s2.5b979a325889 from=translated src=- shape=e590c3e1 vocab=1464e337
+-/
 theorem prime_P : Nat.Prime 25480409371 := by
   apply lucas_primality 25480409371 (7 : ZMod 25480409371)
   · reduce_mod_char
@@ -46,7 +48,9 @@ theorem prime_P : Nat.Prime 25480409371 := by
       Nat.prime_dvd_prime_iff_eq hq prime_3843199] at hd
     rcases hd with rfl | rfl | rfl | rfl | rfl | rfl <;> reduce_mod_char <;> decide
 
-/-- The prime at offset six.-/
+/-- The prime at offset six.
+@isnad1 id=prime.0h0v.s2.4763ab013547 from=translated src=- shape=e590c3e1 vocab=1464e337
+-/
 theorem prime_PA : Nat.Prime 25480409377 := by
   apply lucas_primality 25480409377 (13 : ZMod 25480409377)
   · reduce_mod_char
@@ -59,7 +63,9 @@ theorem prime_PA : Nat.Prime 25480409377 := by
       Nat.prime_dvd_prime_iff_eq hq prime_507497] at hd
     rcases hd with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl <;> reduce_mod_char <;> decide
 
-/-- The prime at offset eighteen.-/
+/-- The prime at offset eighteen.
+@isnad1 id=prime.0h0v.s2.8db058c60649 from=translated src=- shape=e590c3e1 vocab=1464e337
+-/
 theorem prime_PB : Nat.Prime 25480409389 := by
   apply lucas_primality 25480409389 (2 : ZMod 25480409389)
   · reduce_mod_char
@@ -73,7 +79,9 @@ theorem prime_PB : Nat.Prime 25480409389 := by
       Nat.prime_dvd_prime_iff_eq hq prime_538789] at hd
     rcases hd with rfl | rfl | rfl | rfl | rfl | rfl <;> reduce_mod_char <;> decide
 
-/-- The largest prime, at offset forty-eight.-/
+/-- The largest prime, at offset forty-eight.
+@isnad1 id=prime.0h0v.s2.3468ca9dd912 from=translated src=- shape=e590c3e1 vocab=1464e337
+-/
 theorem prime_PC : Nat.Prime 25480409419 := by
   apply lucas_primality 25480409419 (2 : ZMod 25480409419)
   · reduce_mod_char

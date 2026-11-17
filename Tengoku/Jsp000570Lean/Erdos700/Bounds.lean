@@ -12,6 +12,9 @@ namespace Erdos700.FourPrime.Bounds
 set_option maxRecDepth 4096
 set_option maxHeartbeats 2000000
 
+/--
+@isnad1 id=lt.3h3v.s6.551c4b718794 from=translated src=- shape=0d8ffe28 vocab=3b732f86
+-/
 theorem c_at_least_9 (a b c : ℤ)
     (ha : 1 ≤ a) (hb : 3*a ≤ b) (hc : 3*b-a+1 ≤ c) :
     0 < c - 8 := by
@@ -27,6 +30,9 @@ theorem c_at_least_9 (a b c : ℤ)
   rw [hid]
   positivity
 
+/--
+@isnad1 id=lt.3h3v.s7.44ef27f2f53b from=translated src=- shape=250d428f vocab=e94596d0
+-/
 theorem T1_positive (a b c : ℤ)
     (ha : 1 ≤ a) (hb : 3*a ≤ b) (hc : 3*b-a+1 ≤ c) :
     0 < 3 * a ^ 2 - 2 * a * (b + c) + b * c := by
@@ -42,6 +48,9 @@ theorem T1_positive (a b c : ℤ)
   rw [hid]
   positivity
 
+/--
+@isnad1 id=lt.3h3v.s7.008133c81e3f from=translated src=- shape=510e9bcb vocab=197ab3fc
+-/
 theorem T1_less_than_bc (a b c : ℤ)
     (ha : 1 ≤ a) (hb : 3*a ≤ b) (hc : 3*b-a+1 ≤ c) :
     0 < -3 * a ^ 2 + 2 * a * (b + c) := by
@@ -57,6 +66,9 @@ theorem T1_less_than_bc (a b c : ℤ)
   rw [hid]
   positivity
 
+/--
+@isnad1 id=lt.3h3v.s6.e5bcb8346aaf from=translated src=- shape=5864999a vocab=64f7d5e9
+-/
 theorem S1_positive (a b c : ℤ)
     (ha : 1 ≤ a) (hb : 3*a ≤ b) (hc : 3*b-a+1 ≤ c) :
     0 < -3 * a + b + c := by
@@ -72,6 +84,9 @@ theorem S1_positive (a b c : ℤ)
   rw [hid]
   positivity
 
+/--
+@isnad1 id=le.3h3v.s6.9c93b5df38e9 from=translated src=- shape=975bf3f9 vocab=80f27b39
+-/
 theorem R_at_least_one (a b c : ℤ)
     (ha : 1 ≤ a) (hb : 3*a ≤ b) (hc : 3*b-a+1 ≤ c) :
     0 ≤ a - 3 * b + c - 1 := by
@@ -87,6 +102,9 @@ theorem R_at_least_one (a b c : ℤ)
   rw [hid]
   positivity
 
+/--
+@isnad1 id=lt.3h3v.s6.98bdd0495fb1 from=translated src=- shape=2c136112 vocab=64f7d5e9
+-/
 theorem R_less_than_c (a b c : ℤ)
     (ha : 1 ≤ a) (hb : 3*a ≤ b) (hc : 3*b-a+1 ≤ c) :
     0 < -a + 3 * b := by
@@ -102,6 +120,9 @@ theorem R_less_than_c (a b c : ℤ)
   rw [hid]
   positivity
 
+/--
+@isnad1 id=lt.3h3v.s7.51db46b90816 from=translated src=- shape=641943ff vocab=197ab3fc
+-/
 theorem B_positive (a b c : ℤ)
     (ha : 1 ≤ a) (hb : 3*a ≤ b) (hc : 3*b-a+1 ≤ c) :
     0 < 2 * a * b - 3 * b ^ 2 + c * (-a + 2 * b) := by
@@ -117,6 +138,9 @@ theorem B_positive (a b c : ℤ)
   rw [hid]
   positivity
 
+/--
+@isnad1 id=lt.3h3v.s7.03907d50b74a from=translated src=- shape=cbf3e663 vocab=197ab3fc
+-/
 theorem B_less_than_2bc (a b c : ℤ)
     (ha : 1 ≤ a) (hb : 3*a ≤ b) (hc : 3*b-a+1 ≤ c) :
     0 < -2 * a * b + 3 * b ^ 2 + 2 * b * c - c * (-a + 2 * b) := by
@@ -132,6 +156,9 @@ theorem B_less_than_2bc (a b c : ℤ)
   rw [hid]
   positivity
 
+/--
+@isnad1 id=lt.3h3v.s7.8d7b4ca156cf from=translated src=- shape=05bb8440 vocab=e94596d0
+-/
 theorem U_positive (a b c : ℤ)
     (ha : 1 ≤ a) (hb : 3*a ≤ b) (hc : 3*b-a+1 ≤ c) :
     0 < a * b + 3 * c ^ 2 - 2 * c * (a + b) := by
@@ -147,6 +174,9 @@ theorem U_positive (a b c : ℤ)
   rw [hid]
   positivity
 
+/--
+@isnad1 id=lt.3h3v.s7.ee010427e2dc from=translated src=- shape=2456ca81 vocab=64f7d5e9
+-/
 theorem U_less_than_3c_squared (a b c : ℤ)
     (ha : 1 ≤ a) (hb : 3*a ≤ b) (hc : 3*b-a+1 ≤ c) :
     0 < -a * b + 2 * c * (a + b) := by
@@ -162,6 +192,9 @@ theorem U_less_than_3c_squared (a b c : ℤ)
   rw [hid]
   positivity
 
+/--
+@isnad1 id=lt.3h3v.s6.864249b0e979 from=translated src=- shape=99cc027a vocab=64f7d5e9
+-/
 theorem c_greater_than_a_plus_b (a b c : ℤ)
     (ha : 1 ≤ a) (hb : 3*a ≤ b) (hc : 3*b-a+1 ≤ c) :
     0 < -a - b + c := by
@@ -177,6 +210,9 @@ theorem c_greater_than_a_plus_b (a b c : ℤ)
   rw [hid]
   positivity
 
+/--
+@isnad1 id=lt.3h3v.s6.c74c67359a56 from=translated src=- shape=877fabc3 vocab=e94596d0
+-/
 theorem L_less_c_squared (a b c : ℤ)
     (ha : 1 ≤ a) (hb : 3*a ≤ b) (hc : 3*b-a+1 ≤ c) :
     0 < c ^ 2 - b * (b - a) := by
@@ -192,6 +228,9 @@ theorem L_less_c_squared (a b c : ℤ)
   rw [hid]
   positivity
 
+/--
+@isnad1 id=lt.3h3v.s8.a96ae06e7945 from=translated src=- shape=ff3ef685 vocab=197ab3fc
+-/
 theorem p1_to_p2_h0_gap (a b c : ℤ)
     (ha : 1 ≤ a) (hb : 3*a ≤ b) (hc : 3*b-a+1 ≤ c) :
     0 < 2 * a * b - 3 * b ^ 2 + c * (-a + 2 * b) - (-2 * a + 2 * b) * (a - 3 * b + c) := by
@@ -207,6 +246,9 @@ theorem p1_to_p2_h0_gap (a b c : ℤ)
   rw [hid]
   positivity
 
+/--
+@isnad1 id=lt.3h3v.s7.6e5187b53c94 from=translated src=- shape=231d3f4d vocab=64f7d5e9
+-/
 theorem p1_to_p3_low_gap (a b c : ℤ)
     (ha : 1 ≤ a) (hb : 3*a ≤ b) (hc : 3*b-a+1 ≤ c) :
     0 < (-a + c) * (3 * a - 2 * b + c) := by
@@ -222,6 +264,9 @@ theorem p1_to_p3_low_gap (a b c : ℤ)
   rw [hid]
   positivity
 
+/--
+@isnad1 id=lt.3h3v.s7.94cc74785909 from=translated src=- shape=73123250 vocab=64f7d5e9
+-/
 theorem p0_to_p3_low_gap (a b c : ℤ)
     (ha : 1 ≤ a) (hb : 3*a ≤ b) (hc : 3*b-a+1 ≤ c) :
     0 < -a * b * c + c * (-a + c) * (-b + c) := by
@@ -237,6 +282,9 @@ theorem p0_to_p3_low_gap (a b c : ℤ)
   rw [hid]
   positivity
 
+/--
+@isnad1 id=lt.3h3v.s7.2fb692c29e69 from=translated src=- shape=703a6cb0 vocab=64f7d5e9
+-/
 theorem p2_to_p3_low_gap (a b c : ℤ)
     (ha : 1 ≤ a) (hb : 3*a ≤ b) (hc : 3*b-a+1 ≤ c) :
     0 < -b * (-a + b) + c * (-a + c) := by
@@ -252,6 +300,9 @@ theorem p2_to_p3_low_gap (a b c : ℤ)
   rw [hid]
   positivity
 
+/--
+@isnad1 id=lt.3h3v.s6.71e9721b216c from=translated src=- shape=01d09498 vocab=64f7d5e9
+-/
 theorem a_less_b (a b c : ℤ)
     (ha : 1 ≤ a) (hb : 3*a ≤ b) (hc : 3*b-a+1 ≤ c) :
     0 < -a + b := by
@@ -267,6 +318,9 @@ theorem a_less_b (a b c : ℤ)
   rw [hid]
   positivity
 
+/--
+@isnad1 id=lt.3h3v.s6.234a6960f92e from=translated src=- shape=4802c21d vocab=64f7d5e9
+-/
 theorem b_less_c (a b c : ℤ)
     (ha : 1 ≤ a) (hb : 3*a ≤ b) (hc : 3*b-a+1 ≤ c) :
     0 < -b + c := by
@@ -282,6 +336,9 @@ theorem b_less_c (a b c : ℤ)
   rw [hid]
   positivity
 
+/--
+@isnad1 id=lt.3h3v.s6.57925570ce4e from=translated src=- shape=3e5579b1 vocab=3b732f86
+-/
 theorem S_positive (a b c : ℤ)
     (ha : 1 ≤ a) (hb : 3*a ≤ b) (hc : 3*b-a+1 ≤ c) :
     0 < a + b + c := by
@@ -297,6 +354,9 @@ theorem S_positive (a b c : ℤ)
   rw [hid]
   positivity
 
+/--
+@isnad1 id=lt.3h3v.s6.da247290198e from=translated src=- shape=75dcc110 vocab=64f7d5e9
+-/
 theorem S_less_3c (a b c : ℤ)
     (ha : 1 ≤ a) (hb : 3*a ≤ b) (hc : 3*b-a+1 ≤ c) :
     0 < -a - b + 2 * c := by
@@ -312,6 +372,9 @@ theorem S_less_3c (a b c : ℤ)
   rw [hid]
   positivity
 
+/--
+@isnad1 id=lt.3h3v.s6.d25795cb49e3 from=translated src=- shape=6b891ca5 vocab=3b732f86
+-/
 theorem T_positive (a b c : ℤ)
     (ha : 1 ≤ a) (hb : 3*a ≤ b) (hc : 3*b-a+1 ≤ c) :
     0 < a * b + a * c + b * c := by
@@ -327,6 +390,9 @@ theorem T_positive (a b c : ℤ)
   rw [hid]
   positivity
 
+/--
+@isnad1 id=lt.3h3v.s7.b75c55d1cd47 from=translated src=- shape=729fab22 vocab=197ab3fc
+-/
 theorem T_less_3c_squared (a b c : ℤ)
     (ha : 1 ≤ a) (hb : 3*a ≤ b) (hc : 3*b-a+1 ≤ c) :
     0 < -a * b - a * c - b * c + 3 * c ^ 2 := by
@@ -342,6 +408,9 @@ theorem T_less_3c_squared (a b c : ℤ)
   rw [hid]
   positivity
 
+/--
+@isnad1 id=lt.3h3v.s6.750c27a5e4c3 from=translated src=- shape=1e4ebead vocab=3b732f86
+-/
 theorem Z_positive (a b c : ℤ)
     (ha : 1 ≤ a) (hb : 3*a ≤ b) (hc : 3*b-a+1 ≤ c) :
     0 < a * b * c := by
@@ -357,6 +426,9 @@ theorem Z_positive (a b c : ℤ)
   rw [hid]
   positivity
 
+/--
+@isnad1 id=lt.3h3v.s6.c1f59a03feb0 from=translated src=- shape=bce4558e vocab=197ab3fc
+-/
 theorem Z_less_c_cubed (a b c : ℤ)
     (ha : 1 ≤ a) (hb : 3*a ≤ b) (hc : 3*b-a+1 ≤ c) :
     0 < -a * b * c + c ^ 3 := by
@@ -372,6 +444,9 @@ theorem Z_less_c_cubed (a b c : ℤ)
   rw [hid]
   positivity
 
+/--
+@isnad1 id=lt.3h3v.s6.0130d27c09f2 from=translated src=- shape=dee72ed3 vocab=3b732f86
+-/
 theorem S1_less_2c (a b c : ℤ)
     (ha : 1 ≤ a) (hb : 3*a ≤ b) (hc : 3*b-a+1 ≤ c) :
     0 < 3 * a - b + c := by
@@ -387,6 +462,9 @@ theorem S1_less_2c (a b c : ℤ)
   rw [hid]
   positivity
 
+/--
+@isnad1 id=lt.3h3v.s6.efedcf92ab0a from=translated src=- shape=75dcc110 vocab=64f7d5e9
+-/
 theorem D_positive (a b c : ℤ)
     (ha : 1 ≤ a) (hb : 3*a ≤ b) (hc : 3*b-a+1 ≤ c) :
     0 < -a - b + 3 * c := by
@@ -402,6 +480,9 @@ theorem D_positive (a b c : ℤ)
   rw [hid]
   positivity
 
+/--
+@isnad1 id=lt.3h3v.s6.4719e8d77121 from=translated src=- shape=38e77c6f vocab=3b732f86
+-/
 theorem D_less_3c (a b c : ℤ)
     (ha : 1 ≤ a) (hb : 3*a ≤ b) (hc : 3*b-a+1 ≤ c) :
     0 < a + b := by
@@ -417,6 +498,9 @@ theorem D_less_3c (a b c : ℤ)
   rw [hid]
   positivity
 
+/--
+@isnad1 id=lt.3h3v.s6.5925fc43a2a1 from=translated src=- shape=cb5d5245 vocab=64f7d5e9
+-/
 theorem A_positive (a b c : ℤ)
     (ha : 1 ≤ a) (hb : 3*a ≤ b) (hc : 3*b-a+1 ≤ c) :
     0 < a * (-a + b) * (-a + c) := by
@@ -432,6 +516,9 @@ theorem A_positive (a b c : ℤ)
   rw [hid]
   positivity
 
+/--
+@isnad1 id=lt.3h3v.s7.103deccb240a from=translated src=- shape=bf9bbbab vocab=197ab3fc
+-/
 theorem A_less_c_cubed (a b c : ℤ)
     (ha : 1 ≤ a) (hb : 3*a ≤ b) (hc : 3*b-a+1 ≤ c) :
     0 < -a * (-a + b) * (-a + c) + c ^ 3 := by
@@ -447,6 +534,9 @@ theorem A_less_c_cubed (a b c : ℤ)
   rw [hid]
   positivity
 
+/--
+@isnad1 id=lt.3h3v.s6.9c3d8c2b2c7a from=translated src=- shape=e24c607c vocab=64f7d5e9
+-/
 theorem C_positive (a b c : ℤ)
     (ha : 1 ≤ a) (hb : 3*a ≤ b) (hc : 3*b-a+1 ≤ c) :
     0 < b * (-a + b) * (-b + c) := by
@@ -462,6 +552,9 @@ theorem C_positive (a b c : ℤ)
   rw [hid]
   positivity
 
+/--
+@isnad1 id=lt.3h3v.s7.5fcf20456408 from=translated src=- shape=703a717b vocab=197ab3fc
+-/
 theorem C_less_c_cubed (a b c : ℤ)
     (ha : 1 ≤ a) (hb : 3*a ≤ b) (hc : 3*b-a+1 ≤ c) :
     0 < -b * (-a + b) * (-b + c) + c ^ 3 := by
@@ -477,6 +570,9 @@ theorem C_less_c_cubed (a b c : ℤ)
   rw [hid]
   positivity
 
+/--
+@isnad1 id=lt.3h3v.s6.f08b5d969c29 from=translated src=- shape=36c67094 vocab=64f7d5e9
+-/
 theorem F_positive (a b c : ℤ)
     (ha : 1 ≤ a) (hb : 3*a ≤ b) (hc : 3*b-a+1 ≤ c) :
     0 < c * (-a + c) * (-b + c) := by
@@ -492,6 +588,9 @@ theorem F_positive (a b c : ℤ)
   rw [hid]
   positivity
 
+/--
+@isnad1 id=lt.3h3v.s7.ab37ebe7eafd from=translated src=- shape=1eb363f6 vocab=197ab3fc
+-/
 theorem F_less_c_cubed (a b c : ℤ)
     (ha : 1 ≤ a) (hb : 3*a ≤ b) (hc : 3*b-a+1 ≤ c) :
     0 < c ^ 3 - c * (-a + c) * (-b + c) := by
@@ -507,6 +606,9 @@ theorem F_less_c_cubed (a b c : ℤ)
   rw [hid]
   positivity
 
+/--
+@isnad1 id=and.2h2v.s7.c4e066c303e6 from=translated src=- shape=3833ede0 vocab=0dd99490
+-/
 theorem large_base_thresholds (c p : ℤ) (hc : 2 ≤ c) (hp : 12*c^3 ≤ p) :
     11*c^3 < p ∧ 13*c^2 < p ∧ 7*c^3 < p := by
   have hpos : 0 < c^3 := pow_pos (by linarith : 0 < c) 3

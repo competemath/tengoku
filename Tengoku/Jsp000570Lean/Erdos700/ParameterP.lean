@@ -6,7 +6,9 @@ import Tengoku.Jsp000570Lean.Erdos700.PairPDigits
 namespace Erdos700.FourPrime.ParameterP
 
 /-- The explicit size requirements of both pairs starting from P follow
-from the original parameter assumptions, uniformly for every 0<=d<=c.-/
+from the original parameter assumptions, uniformly for every 0<=d<=c.
+@isnad1 id=and.6h5v.s9.db1a7a78d98e from=translated src=- shape=6b326696 vocab=e94596d0
+-/
 theorem source_p_size_bounds
     (a b c d q : ℤ)
     (ha : 1 ≤ a) (hb : 3 * a ≤ b) (hc : 3 * b - a + 1 ≤ c)
@@ -86,7 +88,9 @@ theorem source_p_size_bounds
   · nlinarith only [hds, hUupper, hbase.2.1, hc2]
 
 /-- The pair `(P,P+b)` exclusion under just the original global
-parameters and actual source/target digit hypotheses.-/
+parameters and actual source/target digit hypotheses.
+@isnad1 id=false.16h8v.s9.95e5988e09a1 from=translated src=- shape=1d46fe1a vocab=da85dd66
+-/
 theorem pairPB_global_digits (a b c q u v w k : ℤ)
     (ha : 1 ≤ a) (hb : 3 * a ≤ b) (hc : 3 * b - a + 1 ≤ c)
     (hq : 12 * c ^ 3 ≤ q)
@@ -109,7 +113,9 @@ theorem pairPB_global_digits (a b c q u v w k : ℤ)
     hu0 hu hv0 hv hw0 hw hs.2.1 hs.2.2.1 hs.2.2.2.2.1 hs.1
     hdiv hk hk_ne hlow hmiddle hhigh
 
-/-- The pair `(P,P+c)` exclusion under the original global parameters.-/
+/-- The pair `(P,P+c)` exclusion under the original global parameters.
+@isnad1 id=false.15h8v.s9.cdd575fafbd6 from=translated src=- shape=ecf91138 vocab=da85dd66
+-/
 theorem pairPC_global_digits (a b c q u v w k : ℤ)
     (ha : 1 ≤ a) (hb : 3 * a ≤ b) (hc : 3 * b - a + 1 ≤ c)
     (hq : 12 * c ^ 3 ≤ q)

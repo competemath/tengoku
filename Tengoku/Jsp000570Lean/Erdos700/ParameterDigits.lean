@@ -12,7 +12,9 @@ may be zero; only nonnegativity is required.
 
 namespace Erdos700.FourPrime.ParameterDigits
 
-/-- Basic order and size consequences used by all four digit tables.-/
+/-- Basic order and size consequences used by all four digit tables.
+@isnad1 id=and.4h4v.s7.58d9d52fe90b from=translated src=- shape=3e89301d vocab=e94596d0
+-/
 theorem parameter_sizes (a b c p : ℤ)
     (ha : 1 ≤ a) (hb : 3 * a ≤ b) (hc : 3 * b - a + 1 ≤ c)
     (hp : 12 * c ^ 3 ≤ p) :
@@ -34,7 +36,9 @@ theorem parameter_sizes (a b c p : ℤ)
   refine ⟨ha0, hb0, hc9, ?_, ?_, ?_, ?_, ?_, ?_⟩ <;>
     nlinarith only [h3, h2, hc3, sq_nonneg c, hcc2, hab, hbc]
 
-/-- Low, middle, and high digits of `N/p`.-/
+/-- Low, middle, and high digits of `N/p`.
+@isnad1 id=and.4h4v.s8.85c9fb3d13ab from=translated src=- shape=70e32c83 vocab=e94596d0
+-/
 theorem digit_bounds_p (a b c p : ℤ)
     (ha : 1 ≤ a) (hb : 3 * a ≤ b) (hc : 3 * b - a + 1 ≤ c)
     (hp : 12 * c ^ 3 ≤ p) :
@@ -51,7 +55,9 @@ theorem digit_bounds_p (a b c p : ℤ)
   refine ⟨?_, ?_, ?_, ?_, ?_, ?_⟩ <;>
     nlinarith only [hc3, hc2, hcsmall, hZ0, hZ3, hT0, hT2, hS0, hS1]
 
-/-- Low, middle, and high digits of `N/(p+a)`.-/
+/-- Low, middle, and high digits of `N/(p+a)`.
+@isnad1 id=and.4h4v.s9.98945de843dc from=translated src=- shape=2c09cfa1 vocab=e94596d0
+-/
 theorem digit_bounds_a (a b c p : ℤ)
     (ha : 1 ≤ a) (hb : 3 * a ≤ b) (hc : 3 * b - a + 1 ≤ c)
     (hp : 12 * c ^ 3 ≤ p) :
@@ -78,7 +84,9 @@ theorem digit_bounds_a (a b c p : ℤ)
     nlinarith only [ha0, hc9, hc3, hc2, hcsmall, hA0, hA3, hT0,
       hTbc, hS0, hS2, hbc2, sq_nonneg c]
 
-/-- Low, middle, and high digits of `N/(p+b)`.-/
+/-- Low, middle, and high digits of `N/(p+b)`.
+@isnad1 id=and.4h4v.s9.d4041d7821f8 from=translated src=- shape=9a9f7100 vocab=e94596d0
+-/
 theorem digit_bounds_b (a b c p : ℤ)
     (ha : 1 ≤ a) (hb : 3 * a ≤ b) (hc : 3 * b - a + 1 ≤ c)
     (hp : 12 * c ^ 3 ≤ p) :
@@ -100,7 +108,9 @@ theorem digit_bounds_b (a b c p : ℤ)
     nlinarith only [hb0, hc9, hc3, hc2, hcsmall, hC0, hC3, hB0,
       hBbc, hR0, hRc, hbc2, sq_nonneg c]
 
-/-- Low, middle, and high digits of `N/(p+c)`.-/
+/-- Low, middle, and high digits of `N/(p+c)`.
+@isnad1 id=and.4h4v.s9.f27166a733a5 from=translated src=- shape=bf8d7d03 vocab=e94596d0
+-/
 theorem digit_bounds_c (a b c p : ℤ)
     (ha : 1 ≤ a) (hb : 3 * a ≤ b) (hc : 3 * b - a + 1 ≤ c)
     (hp : 12 * c ^ 3 ≤ p) :
@@ -124,7 +134,9 @@ theorem digit_bounds_c (a b c p : ℤ)
   refine ⟨?_, ?_, hUnonneg, ?_, ?_, ?_⟩ <;>
     nlinarith only [hc9, hc3, hc2, hcsmall, hF0, hF3, hU0, hU2, hD0, hD3]
 
-/-- A deliberately weaker threshold suffices for the fourth-power estimate.-/
+/-- A deliberately weaker threshold suffices for the fourth-power estimate.
+@isnad1 id=lt.2h2v.s6.cf747c41081c from=translated src=- shape=cf83a6b4 vocab=971588f8
+-/
 theorem fourth_power_nearby (c p : ℤ) (hc : 0 < c) (hp : 10 * c ≤ p) :
     (p + c) ^ 4 < 2 * p ^ 4 := by
   let t := p - 10 * c
@@ -139,7 +151,9 @@ theorem fourth_power_nearby (c p : ℤ) (hc : 0 < c) (hp : 10 * c ≤ p) :
     positivity
   linarith only [hpos]
 
-/-- The product of the four bases is below `2*p^4`.-/
+/-- The product of the four bases is below `2*p^4`.
+@isnad1 id=lt.4h4v.s7.c38e415d6074 from=translated src=- shape=53dc2fd8 vocab=e94596d0
+-/
 theorem product_lt_two_mul_p_four (a b c p : ℤ)
     (ha : 1 ≤ a) (hb : 3 * a ≤ b) (hc : 3 * b - a + 1 ≤ c)
     (hp : 12 * c ^ 3 ≤ p) :
@@ -161,7 +175,9 @@ theorem product_lt_two_mul_p_four (a b c p : ℤ)
   exact lt_of_le_of_lt hprod (fourth_power_nearby c p hc0 hp10)
 
 /-- A general integer quotient estimate from the product and half-range bounds.
-Positivity of `k` is unnecessary for this upper bound.-/
+Positivity of `k` is unnecessary for this upper bound.
+@isnad1 id=lt.4h4v.s6.5ff743e9aab8 from=translated src=- shape=3a87a2a5 vocab=c3002787
+-/
 theorem quotient_lt_cube (N p k x : ℤ) (hp : 0 < p)
     (hN : N < 2 * p ^ 4) (hhalf : 2 * k ≤ N) (hpx : p ≤ x) :
     k / x < x ^ 3 := by
@@ -170,7 +186,9 @@ theorem quotient_lt_cube (N p k x : ℤ) (hp : 0 < p)
   apply Int.ediv_lt_of_lt_mul hx
   nlinarith only [hN, hhalf, hpow]
 
-/-- The quotient bound for any of the four bases, directly from the parameters.-/
+/-- The quotient bound for any of the four bases, directly from the parameters.
+@isnad1 id=lt.6h6v.s7.4adb144a1ae7 from=translated src=- shape=3cd217fb vocab=cb5d5132
+-/
 theorem parameter_quotient_lt_cube (a b c p k x : ℤ)
     (ha : 1 ≤ a) (hb : 3 * a ≤ b) (hc : 3 * b - a + 1 ≤ c)
     (hp : 12 * c ^ 3 ≤ p)
