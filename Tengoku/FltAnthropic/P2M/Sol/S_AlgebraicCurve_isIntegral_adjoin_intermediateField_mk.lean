@@ -1,0 +1,50 @@
+import Tengoku.Seed.RingTheory.IntegralClosure.IsIntegral.Basic
+import Tengoku.Seed.Algebra.Algebra.Subalgebra.Lattice
+import Tengoku.Seed.FieldTheory.IntermediateField.Basic
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_AlgebraicCurve_isIntegral_adjoin_intermediateField_mk.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_AlgebraicCurve_isIntegral_adjoin_intermediateField_mk
+
+set_option autoImplicit false
+
+/--
+@isnad1 id=isintegr.3h5v.s10.b021a42a7e7e from=translated src=- shape=2d39fb05 vocab=f663f0bd
+-/
+theorem solution {L F : Type*} [Field L] [Field F] [Algebra L F] (E : IntermediateField L F) {j x : F} (hj : j ∈ E) (hx : x ∈ E) (h : IsIntegral (Algebra.adjoin L {j}) x) : IsIntegral (Algebra.adjoin L {(⟨j, hj⟩ : E)}) (⟨x, hx⟩ : E) := by
+  have hmapeq : (Algebra.adjoin L {(⟨j, hj⟩ : E)}).map E.val
+      = Algebra.adjoin L {j} := by
+    rw [← Algebra.adjoin_image, Set.image_singleton]
+    rfl
+  let ψfwd : ↥(Algebra.adjoin L {(⟨j, hj⟩ : E)}) →ₐ[L] ↥(Algebra.adjoin L {j}) :=
+    (Subalgebra.equivOfEq _ _ hmapeq).toAlgHom.comp
+      (E.val.subalgebraMap (Algebra.adjoin L {(⟨j, hj⟩ : E)}))
+  have hcoeF : ∀ b : ↥(Algebra.adjoin L {(⟨j, hj⟩ : E)}),
+      ((ψfwd b : ↥(Algebra.adjoin L {j})) : F) = ((b : E) : F) := fun b => rfl
+  have hinjE : Function.Injective ((↑) : E → F) := Subtype.coe_injective
+  have hbij : Function.Bijective ψfwd := by
+    constructor
+    · intro a b hab
+      exact Subtype.ext (hinjE (by
+        have := congrArg (Subtype.val : ↥(Algebra.adjoin L {j}) → F) hab
+        rwa [hcoeF a, hcoeF b] at this))
+    · exact (Subalgebra.equivOfEq _ _ hmapeq).surjective.comp
+        (E.val.subalgebraMap_surjective _)
+  let e := RingEquiv.ofBijective ψfwd hbij
+  have hcoe : ∀ a : ↥(Algebra.adjoin L {j}),
+      (((e.symm a : ↥(Algebra.adjoin L {(⟨j, hj⟩ : E)})) : E) : F) = (a : F) := by
+    intro a
+    have h2 : ψfwd (e.symm a) = a := e.apply_symm_apply a
+    calc (((e.symm a : ↥(Algebra.adjoin L {(⟨j, hj⟩ : E)})) : E) : F)
+        = ((ψfwd (e.symm a) : ↥(Algebra.adjoin L {j})) : F) := (hcoeF _).symm
+      _ = (a : F) := by rw [h2]
+  letI : Algebra ↥(Algebra.adjoin L {(⟨j, hj⟩ : E)}) F :=
+    ((algebraMap E F).comp (algebraMap ↥(Algebra.adjoin L {(⟨j, hj⟩ : E)}) E)).toAlgebra
+  have hxT : IsIntegral ↥(Algebra.adjoin L {(⟨j, hj⟩ : E)}) x :=
+    IsIntegral.map_of_comp_eq e.symm.toRingHom (RingHom.id F)
+      (by ext a; exact hcoe a) h
+  let f : E →ₐ[↥(Algebra.adjoin L {(⟨j, hj⟩ : E)})] F :=
+    { toRingHom := (E.val : E →+* F), commutes' := fun t => rfl }
+  have hinjf : Function.Injective f := hinjE
+  exact (isIntegral_algHom_iff f hinjf).mp hxT

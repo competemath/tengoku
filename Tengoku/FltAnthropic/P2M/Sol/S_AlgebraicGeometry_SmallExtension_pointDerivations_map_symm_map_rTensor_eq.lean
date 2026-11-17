@@ -1,0 +1,33 @@
+import Tengoku
+import Tengoku.FltAnthropic.Definitions.Def_Algebra_PointDerivations
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_AlgebraicGeometry_SmallExtension_pointDerivations_map_symm_map_rTensor_eq.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_AlgebraicGeometry_SmallExtension_pointDerivations_map_symm_map_rTensor_eq
+
+set_option autoImplicit false
+
+open TensorProduct
+
+universe u
+
+/--
+@isnad1 id=eq.1h10v.s15.933c735acff8 from=translated src=- shape=fe0ef9f0 vocab=87e4f2f0
+-/
+theorem solution
+    {k : Type u} [Field k] {A : Type u} [CommRing A] [Algebra k A] (ev : A →+* k)
+    (W : Type u) [AddCommGroup W] [Module k W]
+    (Φ : ∀ (M : Type u) [AddCommGroup M] [Module k M], ↥(Algebra.PointDerivations k A ev M) ≃ₗ[k] (W ⊗[k] M))
+    (hΦnat : ∀ (M M' : Type u) [AddCommGroup M] [Module k M] [AddCommGroup M'] [Module k M'] (g : M →ₗ[k] M')
+        (δ : ↥(Algebra.PointDerivations k A ev M)),
+      Φ M' (Algebra.PointDerivations.map ev g δ) = TensorProduct.map (LinearMap.id : W →ₗ[k] W) g (Φ M δ))
+    (θ : W →ₗ[k] W)
+    (M M' : Type u) [AddCommGroup M] [Module k M] [AddCommGroup M'] [Module k M'] (g : M →ₗ[k] M')
+    (δ : ↥(Algebra.PointDerivations k A ev M)) :
+    Algebra.PointDerivations.map ev g ((Φ M).symm (TensorProduct.map θ (LinearMap.id : M →ₗ[k] M) (Φ M δ))) =
+      (Φ M').symm (TensorProduct.map θ (LinearMap.id : M' →ₗ[k] M') (Φ M' (Algebra.PointDerivations.map ev g δ))) := by
+  apply (Φ M').injective
+  rw [hΦnat, LinearEquiv.apply_symm_apply, LinearEquiv.apply_symm_apply, hΦnat, ← LinearMap.comp_apply, ← LinearMap.comp_apply,
+    ← TensorProduct.map_comp, ← TensorProduct.map_comp, LinearMap.id_comp, LinearMap.comp_id, LinearMap.id_comp,
+    LinearMap.comp_id]

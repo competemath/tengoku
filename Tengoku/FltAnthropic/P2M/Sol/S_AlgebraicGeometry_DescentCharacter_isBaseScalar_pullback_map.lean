@@ -1,0 +1,120 @@
+import Tengoku
+import Tengoku.FltAnthropic.Definitions.Def_AlgebraicGeometry_DescentCharacter
+import Tengoku.FltAnthropic.Definitions.Def_AlgebraicGeometry_ModulesPullbackLocalSection
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_AlgebraicGeometry_DescentCharacter_isBaseScalar_pullback_map.lean`: wrote out 1 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_reactivate`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_AlgebraicGeometry_DescentCharacter_isBaseScalar_pullback_map
+
+set_option autoImplicit false
+
+universe u
+
+open CategoryTheory CategoryTheory.Limits TopologicalSpace Opposite AlgebraicGeometry AlgebraicGeometry.DescentCharacter
+
+namespace KcDescCharConst
+
+variable {X Y : Scheme.{u}} {R : Type u} [CommRing R]
+
+noncomputable abbrev resTop (r : Γ(X, ⊤)) (U : X.Opens) : Γ(X, U) :=
+  X.presheaf.map (homOfLE (le_top (a := U))).op r
+
+noncomputable def smulLin (r : Γ(X, ⊤)) (P : X.Modules) (U : X.Opens) : Γ(P, U) →ₗ[Γ(X, U)] Γ(P, U) :=
+  DistribSMul.toLinearMap Γ(X, U) Γ(P, U) (resTop r U)
+
+/--
+@isnad1 id=eq.0h5v.s15.b97811085307 from=translated src=- shape=4f65f926 vocab=264764a0
+-/
+theorem smul_eq (P : X.Modules) (U : (Opens X)ᵒᵖ) (a : X.ringCatSheaf.obj.obj U) (x : P.val.obj U) :
+    (show Γ(P, U.unop) from (a • x : P.val.obj U)) =
+      (show Γ(X, U.unop) from a) • (show Γ(P, U.unop) from x) := rfl
+
+noncomputable def scalarEnd (r : Γ(X, ⊤)) (P : X.Modules) : P ⟶ P :=
+  ⟨PresheafOfModules.homMk
+    { app := fun U => AddCommGrpCat.ofHom (smulLin r P U.unop).toAddMonoidHom
+      naturality := by
+        intro U V i
+        ext s
+        change (resTop r V.unop • (show Γ(P, V.unop) from P.presheaf.map i (show Γ(P, U.unop) from s)) :
+            Γ(P, V.unop)) =
+          (show Γ(P, V.unop) from P.presheaf.map i (resTop r U.unop • (show Γ(P, U.unop) from s)))
+        have hi : i = (i.unop).op := rfl
+        rw [hi, Scheme.Modules.map_smul, ← CategoryTheory.comp_apply, ← X.presheaf.map_comp]
+        rfl }
+    (fun U a x => by
+      change resTop r U.unop • (show Γ(P, U.unop) from (a • x : P.val.obj U)) =
+        (show Γ(P, U.unop) from (a • (show P.val.obj U from resTop r U.unop • (show Γ(P, U.unop) from x)) :
+          P.val.obj U))
+      rw [smul_eq, smul_eq, smul_smul, smul_smul, mul_comm])⟩
+
+/--
+@isnad1 id=eq.0h5v.s12.4492214fd04e from=translated src=- shape=78161ad1 vocab=bfa9020b
+-/
+theorem scalarEnd_app (r : Γ(X, ⊤)) (P : X.Modules) (U : X.Opens) (s : Γ(P, U)) :
+    (scalarEnd r P).app U s = resTop r U • s := rfl
+
+/--
+@isnad1 id=isbasesc.0h5v.s12.31ced85c0b38 from=translated src=- shape=79454a61 vocab=685b0aa2
+-/
+theorem isBaseScalar_scalarEnd {R : Type u} [CommRing R] (f : X ⟶ Spec (CommRingCat.of R)) (c : R) (P : X.Modules) :
+    IsBaseScalar f (scalarEnd (f.appTop ((Scheme.ΓSpecIso (CommRingCat.of R)).inv c)) P) c :=
+  fun _ _ => rfl
+
+/--
+@isnad1 id=eq.1h10v.s11.6abacf55c103 from=translated src=- shape=b30c714b vocab=58da911c
+-/
+theorem app_baseSection {X' : Scheme.{u}} (g : X' ⟶ X) {R R' : Type u} [CommRing R] [CommRing R']
+    (f : X ⟶ Spec (CommRingCat.of R)) (f' : X' ⟶ Spec (CommRingCat.of R')) (φ : R →+* R')
+    (hg : g ≫ f = f' ≫ Spec.map (CommRingCat.ofHom φ)) (c : R) (U : X.Opens) :
+    g.app U (baseSection f c U) = baseSection f' (φ c) (g ⁻¹ᵁ U) := by
+  unfold baseSection
+  have h1 : g.app U (X.presheaf.map (homOfLE (le_top (a := U))).op
+      (f.appTop ((Scheme.ΓSpecIso (CommRingCat.of R)).inv c))) =
+      X'.presheaf.map ((Opens.map g.base).map (homOfLE (le_top (a := U)))).op
+        (g.appTop (f.appTop ((Scheme.ΓSpecIso (CommRingCat.of R)).inv c))) := by
+    rw [← CategoryTheory.comp_apply, g.naturality]
+    rfl
+  rw [h1]
+  have h2 : g.appTop (f.appTop ((Scheme.ΓSpecIso (CommRingCat.of R)).inv c)) =
+      f'.appTop ((Scheme.ΓSpecIso (CommRingCat.of R')).inv (φ c)) := by
+    rw [← CategoryTheory.comp_apply, ← Scheme.Hom.comp_appTop, hg, Scheme.Hom.comp_appTop, CategoryTheory.comp_apply]
+    congr 1
+    have h3 := congrArg (fun k => (ConcreteCategory.hom k) c)
+      (Scheme.ΓSpecIso_inv_naturality (CommRingCat.ofHom φ))
+    simp only [CommRingCat.hom_comp, RingHom.coe_comp, Function.comp_apply, CommRingCat.hom_ofHom] at h3
+    exact h3.symm
+  rw [h2]
+  rfl
+
+/--
+@isnad1 id=isbasesc.2h11v.s7.2ef41440884d from=translated src=- shape=f30c4eb0 vocab=0e7e4d27
+-/
+theorem isBaseScalar_pullback_map {X' : Scheme.{u}} (g : X' ⟶ X) {R R' : Type u} [CommRing R] [CommRing R']
+    (f : X ⟶ Spec (CommRingCat.of R)) (f' : X' ⟶ Spec (CommRingCat.of R')) (φ : R →+* R')
+    (hg : g ≫ f = f' ≫ Spec.map (CommRingCat.ofHom φ))
+    {M : X.Modules} {σ : M ⟶ M} {c : R} (hσ : IsBaseScalar f σ c) :
+    IsBaseScalar f' ((Scheme.Modules.pullback g).map σ) (φ c) := by
+  have key : (Scheme.Modules.pullback g).map σ =
+      scalarEnd (f'.appTop ((Scheme.ΓSpecIso (CommRingCat.of R')).inv (φ c))) ((Scheme.Modules.pullback g).obj M) := by
+    apply Scheme.Modules.pullback_hom_ext g
+    intro U s
+    rw [← Scheme.Modules.pullbackLocalSection_app, hσ U s, Scheme.Modules.pullbackLocalSection_smul,
+      scalarEnd_app, app_baseSection g f f' φ hg]
+    rfl
+  rw [key]
+  exact isBaseScalar_scalarEnd f' (φ c) _
+
+end KcDescCharConst
+open scoped _root_.P2MW.S_AlgebraicGeometry_DescentCharacter_isBaseScalar_pullback_map.KcDescCharConst
+
+/--
+@isnad1 id=isbasesc.2h11v.s7.2ef41440884d from=translated src=- shape=f30c4eb0 vocab=0e7e4d27
+-/
+theorem solution
+    {X X' : Scheme.{u}} (g : X' ⟶ X) {R R' : Type u} [CommRing R] [CommRing R']
+    (f : X ⟶ Spec (CommRingCat.of R)) (f' : X' ⟶ Spec (CommRingCat.of R')) (φ : R →+* R')
+    (hg : g ≫ f = f' ≫ Spec.map (CommRingCat.ofHom φ))
+    {M : X.Modules} {σ : M ⟶ M} {c : R} (hσ : IsBaseScalar f σ c) :
+    IsBaseScalar f' ((Scheme.Modules.pullback g).map σ) (φ c) :=
+  KcDescCharConst.isBaseScalar_pullback_map g f f' φ hg hσ

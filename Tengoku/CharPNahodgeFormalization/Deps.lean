@@ -1,0 +1,1 @@
+-- CharPNahodgeFormalization: a factory bundle (data/intake/char-p-nahodge-formalization). This file only marks the library for Tengoku/All.lean.

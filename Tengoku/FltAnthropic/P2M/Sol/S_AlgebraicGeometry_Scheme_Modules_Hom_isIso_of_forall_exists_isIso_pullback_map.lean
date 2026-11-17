@@ -1,0 +1,61 @@
+import Tengoku
+import Tengoku.FltAnthropic.Theorems.Thm_AlgebraicGeometry_Scheme_Modules_Hom_isIso_of_isIso_app_of_iSup_eq_top
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku repair: removed `#print axioms solution` (it only prints; the queue checks the axioms of every declaration). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_AlgebraicGeometry_Scheme_Modules_Hom_isIso_of_forall_exists_isIso_pullback_map.lean`: wrote out 5 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 3 `p2m_export`, 2 `p2m_open`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_AlgebraicGeometry_Scheme_Modules_Hom_isIso_of_forall_exists_isIso_pullback_map
+
+set_option autoImplicit false
+
+universe u
+
+open _root_.CategoryTheory open _root_.CategoryTheory.Limits open _root_.AlgebraicGeometry open _root_.Opposite open _root_.TopologicalSpace
+
+namespace AlgebraicGeometry
+export _root_.AlgebraicGeometry (Scheme.Modules.pullback Scheme.Hom Scheme.Hom.image_preimage_eq_opensRange_inf Scheme Scheme.Modules Scheme.Opens Scheme.Opens.opensRange_ι)
+namespace Scheme
+export _root_.AlgebraicGeometry.Scheme (Modules.pullback Hom Hom.image_preimage_eq_opensRange_inf restrictFunctor Modules Opens Opens.opensRange_ι)
+namespace Modules
+export _root_.AlgebraicGeometry.Scheme.Modules (pullback Hom restrictFunctor restrictFunctorIsoPullback Hom.isIso_iff_isIso_app Hom.isIso_of_isIso_app_of_iSup_eq_top)
+open _root_.AlgebraicGeometry.Scheme.Modules open _root_.AlgebraicGeometry.Scheme open _root_.AlgebraicGeometry
+
+variable {X : Scheme.{u}}
+
+/--
+@isnad1 id=eq.0h6v.s9.af29a2ffb79f from=translated src=- shape=45a5e74f vocab=2439cf95
+-/
+lemma restrictFunctor_map_app' {M N : X.Modules} (φ : M ⟶ N) (U : X.Opens)
+    (W : (U : Scheme.{u}).Opens) :
+    ((restrictFunctor U.ι).map φ).app W = φ.app (U.ι ''ᵁ W) := rfl
+
+/--
+@isnad1 id=isiso.2h6v.s8.8f80d234b857 from=translated src=- shape=a3895cf7 vocab=5d68dd9d
+-/
+lemma isIso_app_of_isIso_pullback_ι_map {M N : X.Modules} (φ : M ⟶ N) (U : X.Opens)
+    (hU : IsIso ((Scheme.Modules.pullback U.ι).map φ)) (W : X.Opens) (hWU : W ≤ U) :
+    IsIso (φ.app W) := by
+  have h1 : IsIso ((restrictFunctor U.ι).map φ) :=
+    (NatIso.isIso_map_iff (restrictFunctorIsoPullback U.ι) φ).2 hU
+  have h2 := Hom.isIso_iff_isIso_app.1 h1 (U.ι ⁻¹ᵁ W)
+  rw [restrictFunctor_map_app'] at h2
+  have e : U.ι ''ᵁ (U.ι ⁻¹ᵁ W) = W := by
+    rw [Scheme.Hom.image_preimage_eq_opensRange_inf, Scheme.Opens.opensRange_ι,
+      inf_eq_right.2 hWU]
+  rw [← e]
+  exact h2
+
+/--
+@isnad1 id=isiso.1h4v.s7.df610f08da66 from=translated src=- shape=90744337 vocab=db50bf5f
+-/
+theorem _root_.P2MW.S_AlgebraicGeometry_Scheme_Modules_Hom_isIso_of_forall_exists_isIso_pullback_map.solution {M N : X.Modules} (φ : M ⟶ N)
+    (h : ∀ x : X, ∃ U : X.Opens, x ∈ U ∧ IsIso ((Scheme.Modules.pullback U.ι).map φ)) :
+    IsIso φ := by
+  choose U hxU hU using h
+  refine Hom.isIso_of_isIso_app_of_iSup_eq_top φ U ?_ (fun x V hV => ?_)
+  · exact top_le_iff.mp fun x _ => Opens.mem_iSup.2 ⟨x, hxU x⟩
+  · exact isIso_app_of_isIso_pullback_ι_map φ (U x) (hU x) V hV
+
+end AlgebraicGeometry.Scheme.Modules

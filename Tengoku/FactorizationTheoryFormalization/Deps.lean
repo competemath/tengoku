@@ -1,0 +1,1 @@
+-- FactorizationTheoryFormalization: a factory bundle (data/intake/factorization-theory-formalization). This file only marks the library for Tengoku/All.lean.

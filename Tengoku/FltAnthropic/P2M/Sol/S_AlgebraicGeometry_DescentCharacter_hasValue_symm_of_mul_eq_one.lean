@@ -1,0 +1,82 @@
+import Tengoku
+import Tengoku.FltAnthropic.Definitions.Def_AlgebraicGeometry_DescentCharacter
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_AlgebraicGeometry_DescentCharacter_hasValue_symm_of_mul_eq_one.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_AlgebraicGeometry_DescentCharacter_hasValue_symm_of_mul_eq_one
+
+set_option autoImplicit false
+
+universe u
+
+open CategoryTheory CategoryTheory.Limits TopologicalSpace Opposite AlgebraicGeometry AlgebraicGeometry.DescentCharacter
+
+namespace KcDescCharInv
+
+variable {X Y : Scheme.{u}} {R : Type u} [CommRing R]
+
+/--
+@isnad1 id=eq.1h7v.s7.2ef8ae4b644d from=translated src=- shape=f933ca24 vocab=4fe2bfdd
+-/
+theorem translateIso_eq {T : X ⟶ X} {q : X ⟶ Y} (h : T ≫ q = q) {N M : Y.Modules}
+    (β : (Scheme.Modules.pullback q).obj N ≅ (Scheme.Modules.pullback q).obj M) :
+    translateIso h β = β ≪≫ discrepancy h β := by
+  ext : 1
+  simp [discrepancy]
+
+/--
+@isnad1 id=isbasesc.1h8v.s6.a4723f8a281a from=translated src=- shape=d1e044ca vocab=72bbf91d
+-/
+theorem isBaseScalar_conj (f : X ⟶ Spec (CommRingCat.of R)) {M M' : X.Modules} (e : M ≅ M') {σ : M ⟶ M} {c : R}
+    (hσ : IsBaseScalar f σ c) : IsBaseScalar f (e.inv ≫ σ ≫ e.hom) c := by
+  intro U s
+  rw [Scheme.Modules.Hom.comp_app, Scheme.Modules.Hom.comp_app, CategoryTheory.comp_apply,
+    CategoryTheory.comp_apply, hσ U, Scheme.Modules.Hom.app_smul, ← CategoryTheory.comp_apply,
+    ← Scheme.Modules.Hom.comp_app, e.inv_hom_id, Scheme.Modules.Hom.id_app, CategoryTheory.id_apply]
+
+/--
+@isnad1 id=hasvalue.3h11v.s7.e9b199f10af9 from=translated src=- shape=1eb4b2bd vocab=ac664444
+-/
+theorem hasValue_symm (f : X ⟶ Spec (CommRingCat.of R))
+    {T : X ⟶ X} {q : X ⟶ Y} (h : T ≫ q = q) {N M : Y.Modules}
+    (β : (Scheme.Modules.pullback q).obj N ≅ (Scheme.Modules.pullback q).obj M)
+    (c c' : R) (hβ : HasValue f h β c) (hc : c' * c = 1) :
+    HasValue f h β.symm c' := by
+
+  have hdisc : (discrepancy h β.symm).hom = β.hom ≫ (discrepancy h β).inv ≫ β.inv := by
+    have e1 : (translateIso h β.symm) = (translateIso h β).symm := by
+      ext : 1; simp [translateIso]
+    have e2 : (discrepancy h β.symm).hom = β.hom ≫ (translateIso h β).inv := by
+      simp [discrepancy, e1]
+    rw [e2, translateIso_eq h β]
+    simp
+  have hinv : IsBaseScalar f (discrepancy h β).inv c' := by
+    intro U s
+
+    have hinj : Function.Injective ((discrepancy h β).hom.app U) := by
+      intro x y hxy
+      have := congrArg ((discrepancy h β).inv.app U) hxy
+      rwa [← CategoryTheory.comp_apply, ← CategoryTheory.comp_apply, ← Scheme.Modules.Hom.comp_app,
+        Iso.hom_inv_id, Scheme.Modules.Hom.id_app, CategoryTheory.id_apply, CategoryTheory.id_apply] at this
+    apply hinj
+    rw [← CategoryTheory.comp_apply, ← Scheme.Modules.Hom.comp_app, Iso.inv_hom_id, Scheme.Modules.Hom.id_app,
+      CategoryTheory.id_apply, Scheme.Modules.Hom.app_smul, hβ U s, smul_smul, ← baseSection_mul, hc,
+      baseSection_one, one_smul]
+  unfold HasValue
+  rw [hdisc]
+  have := isBaseScalar_conj f β.symm hinv
+  simpa using this
+
+end KcDescCharInv
+
+/--
+@isnad1 id=hasvalue.3h11v.s7.e9b199f10af9 from=translated src=- shape=1eb4b2bd vocab=ac664444
+-/
+theorem solution
+    {X Y : Scheme.{u}} {R : Type u} [CommRing R] (f : X ⟶ Spec (CommRingCat.of R))
+    {T : X ⟶ X} {q : X ⟶ Y} (h : T ≫ q = q) {N M : Y.Modules}
+    (β : (Scheme.Modules.pullback q).obj N ≅ (Scheme.Modules.pullback q).obj M)
+    (c c' : R) (hβ : HasValue f h β c) (hc : c' * c = 1) :
+    HasValue f h β.symm c' :=
+  KcDescCharInv.hasValue_symm f h β c c' hβ hc

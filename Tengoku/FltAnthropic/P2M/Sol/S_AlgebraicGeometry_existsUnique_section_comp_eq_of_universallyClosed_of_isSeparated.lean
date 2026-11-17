@@ -1,0 +1,35 @@
+import Tengoku
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_AlgebraicGeometry_existsUnique_section_comp_eq_of_universallyClosed_of_isSeparated.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_AlgebraicGeometry_existsUnique_section_comp_eq_of_universallyClosed_of_isSeparated
+
+set_option autoImplicit false
+
+universe u
+
+open CategoryTheory AlgebraicGeometry
+
+/--
+@isnad1 id=existsun.1h5v.s8.4c11a1fe2e2b from=translated src=- shape=1eec74b7 vocab=2296dc8b
+-/
+theorem solution
+    {R : Type u} [CommRing R] [IsDomain R] [ValuationRing R]
+    {K : Type u} [Field K] [Algebra R K] [IsFractionRing R K]
+    {X : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of R)) [UniversallyClosed f] [IsSeparated f]
+    (x : Spec (CommRingCat.of K) ⟶ X)
+    (hx : x ≫ f = Spec.map (CommRingCat.ofHom (algebraMap R K))) :
+    ∃! σ : Spec (CommRingCat.of R) ⟶ X,
+      σ ≫ f = 𝟙 _ ∧ Spec.map (CommRingCat.ofHom (algebraMap R K)) ≫ σ = x := by
+  let S : ValuativeCommSq f := ValuativeCommSq.mk R K x (𝟙 _) ⟨by rw [Category.comp_id]; exact hx⟩
+  have hE : S.commSq.HasLift := by
+    have h := UniversallyClosed.eq_valuativeCriterion
+    have : (ValuativeCriterion.Existence ⊓ @QuasiCompact) f := h ▸ (inferInstance : UniversallyClosed f)
+    exact this.1 S
+  have hU : Subsingleton S.commSq.LiftStruct := IsSeparated.valuativeCriterion f S
+  refine ⟨S.commSq.lift, ⟨S.commSq.fac_right, S.commSq.fac_left⟩, ?_⟩
+  rintro σ ⟨h1, h2⟩
+  let l₁ : S.commSq.LiftStruct := ⟨σ, h2, h1⟩
+  let l₂ : S.commSq.LiftStruct := ⟨S.commSq.lift, S.commSq.fac_left, S.commSq.fac_right⟩
+  exact congrArg CommSq.LiftStruct.l (Subsingleton.elim l₁ l₂)

@@ -1,0 +1,38 @@
+import Tengoku
+import Tengoku.FltAnthropic.Definitions.Def_AlgebraicCurve_CechSectionsOfDivisor
+import Tengoku.FltAnthropic.Definitions.Def_AlgebraicCurve_PlacesOf
+import Tengoku.FltAnthropic.Theorems.Thm_AlgebraicCurve_Place_mem_iff_adicValuation_le_one
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_AlgebraicCurve_germToFunctionField_mem_lSpaceOn_placesOf.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_AlgebraicCurve_germToFunctionField_mem_lSpaceOn_placesOf
+attribute [-instance] AlgebraicCurve.Place.instIsRankOneDiscreteWithZeroMultiplicativeIntAdicValuation AlgebraicCurve.Place.instIsTrivialOnWithZeroMultiplicativeIntAdicValuation
+attribute [-simp] AlgebraicCurve.Place.congrEquiv_symm_apply AlgebraicCurve.RationalFunctionField.heightOneSpectrumOfIrreducible_asIdeal AlgebraicCurve.Place.congrRingEquiv_toValuationSubring AlgebraicCurve.Place.congrEquiv_apply AlgebraicCurve.Place.coe_comapSymmRingEquiv_apply AlgebraicCurve.RationalFunctionField.deg_placeOfPoint
+
+set_option autoImplicit false
+
+open CategoryTheory AlgebraicGeometry AlgebraicCurve
+
+universe u
+
+/--
+@isnad1 id=mem.0h5v.s11.ede9f37fe1fd from=translated src=- shape=4dcd6bde vocab=5e469794
+-/
+theorem solution
+    {K : Type u} [Field K] {C : Scheme.{u}} (c : C ⟶ Spec (CommRingCat.of K))
+    [IsIntegral C]
+    (U : C.Opens) [Nonempty (U : C.Opens)] (s : Γ(C, U)) :
+    letI := (AlgebraicCurve.baseToFunctionField c).toAlgebra
+    (C.germToFunctionField U).hom s ∈
+      AlgebraicCurve.lSpaceOn (AlgebraicCurve.placesOf c U) (0 : AlgebraicCurve.Divisor K C.functionField) := by
+  letI := (AlgebraicCurve.baseToFunctionField c).toAlgebra
+  rintro v ⟨x, hxU, -, hvx⟩
+  simp only [Finsupp.coe_zero, Pi.zero_apply, WithZero.exp_zero]
+  rw [← Place.mem_iff_adicValuation_le_one]
+  change (C.germToFunctionField U).hom s ∈ v.toValuationSubring.toSubring
+  rw [← hvx]
+  letI := C.presheaf.algebra_section_stalk (⟨x, hxU⟩ : U)
+  haveI := AlgebraicGeometry.functionField_isScalarTower (X := C) U ⟨x, hxU⟩
+  exact RingHom.mem_range.mpr ⟨algebraMap Γ(C, U) (C.presheaf.stalk x) s,
+    (IsScalarTower.algebraMap_apply Γ(C, U) (C.presheaf.stalk x) C.functionField s).symm⟩

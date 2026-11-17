@@ -1,0 +1,75 @@
+import Tengoku
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_AlgebraicGeometry_Scheme_Modules_transition_comp_pushforward_map_eq_pushforward_map_comp_transition_of_comp_eq.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_AlgebraicGeometry_Scheme_Modules_transition_comp_pushforward_map_eq_pushforward_map_comp_transition_of_comp_eq
+
+set_option autoImplicit false
+
+open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
+
+universe u
+
+namespace NatKey
+
+universe v₁ v₂ v₃ u₁ u₂ u₃
+
+/--
+@isnad1 id=eq.0h22v.s9.88f31eafbed3 from=translated src=- shape=753682d4 vocab=989397aa
+-/
+theorem key {CZ : Type u₁} {CZ' : Type u₂} {CX : Type u₃} [Category.{v₁} CZ] [Category.{v₂} CZ'] [Category.{v₃} CX]
+    (Pbt : CZ' ⥤ CZ) (Pt : CZ ⥤ CZ') (Pι' : CZ' ⥤ CX) (P : CZ ⥤ CX) (Pι : CZ ⥤ CX)
+    (η : 𝟭 CZ' ⟶ Pbt ⋙ Pt) (σ : Pt ⋙ Pι' ⟶ P) (κ : P ⟶ Pι)
+    {M₁ M₁' : CZ'} (φ' : M₁ ⟶ M₁') {K K' M₂ M₂' : CZ}
+    (α : Pbt.obj M₁ ≅ K) (β : K ≅ M₂) (α' : Pbt.obj M₁' ≅ K') (β' : K' ≅ M₂') :
+    (Pι'.map (η.app M₁) ≫ σ.app (Pbt.obj M₁) ≫ P.map α.hom ≫ P.map β.hom ≫ κ.app M₂) ≫
+        Pι.map ((α ≪≫ β).inv ≫ Pbt.map φ' ≫ (α' ≪≫ β').hom) =
+      Pι'.map φ' ≫ (Pι'.map (η.app M₁') ≫ σ.app (Pbt.obj M₁') ≫ P.map α'.hom ≫ P.map β'.hom ≫ κ.app M₂') := by
+  simp only [Iso.trans_hom, Iso.trans_inv, Category.assoc]
+  rw [← κ.naturality, ← P.map_comp_assoc, ← P.map_comp_assoc]
+  simp only [Category.assoc, Iso.hom_inv_id_assoc, Functor.map_comp]
+  erw [← σ.naturality_assoc]
+  simp only [Functor.comp_map]
+  erw [← Pι'.map_comp_assoc, ← show φ' ≫ η.app M₁' = η.app M₁ ≫ Pt.map (Pbt.map φ') from by
+    have e := η.naturality φ'
+    simp only [Functor.id_obj, Functor.id_map, Functor.comp_obj, Functor.comp_map] at e
+    exact e]
+  erw [Pι'.map_comp_assoc]
+
+end NatKey
+
+/--
+@isnad1 id=eq.2h10v.s11.cff39b5469cb from=translated src=- shape=66fe66ef vocab=36ca2a47
+-/
+theorem solution
+    {Z Z' X : Scheme.{u}} (t : Z ⟶ Z') (ι' : Z' ⟶ X) (ι : Z ⟶ X) (h : t ≫ ι' = ι) (N N' : X.Modules)
+    (φ' : (Scheme.Modules.pullback ι').obj N ⟶ (Scheme.Modules.pullback ι').obj N')
+    (φ : (Scheme.Modules.pullback ι).obj N ⟶ (Scheme.Modules.pullback ι).obj N')
+    (hφ : φ =
+      ((Scheme.Modules.pullbackComp t ι').app N ≪≫ (Scheme.Modules.pullbackCongr h).app N).inv
+        ≫ (Scheme.Modules.pullback t).map φ'
+        ≫ ((Scheme.Modules.pullbackComp t ι').app N' ≪≫ (Scheme.Modules.pullbackCongr h).app N').hom) :
+    ((Scheme.Modules.pushforward ι').map
+          ((Scheme.Modules.pullbackPushforwardAdjunction t).unit.app ((Scheme.Modules.pullback ι').obj N))
+        ≫ (Scheme.Modules.pushforwardComp t ι').hom.app
+            ((Scheme.Modules.pullback t).obj ((Scheme.Modules.pullback ι').obj N))
+        ≫ (Scheme.Modules.pushforward (t ≫ ι')).map ((Scheme.Modules.pullbackComp t ι').hom.app N)
+        ≫ (Scheme.Modules.pushforward (t ≫ ι')).map ((Scheme.Modules.pullbackCongr h).hom.app N)
+        ≫ (Scheme.Modules.pushforwardCongr h).hom.app ((Scheme.Modules.pullback ι).obj N))
+      ≫ (Scheme.Modules.pushforward ι).map φ =
+    (Scheme.Modules.pushforward ι').map φ'
+      ≫ ((Scheme.Modules.pushforward ι').map
+          ((Scheme.Modules.pullbackPushforwardAdjunction t).unit.app ((Scheme.Modules.pullback ι').obj N'))
+        ≫ (Scheme.Modules.pushforwardComp t ι').hom.app
+            ((Scheme.Modules.pullback t).obj ((Scheme.Modules.pullback ι').obj N'))
+        ≫ (Scheme.Modules.pushforward (t ≫ ι')).map ((Scheme.Modules.pullbackComp t ι').hom.app N')
+        ≫ (Scheme.Modules.pushforward (t ≫ ι')).map ((Scheme.Modules.pullbackCongr h).hom.app N')
+        ≫ (Scheme.Modules.pushforwardCongr h).hom.app ((Scheme.Modules.pullback ι).obj N')) := by
+  subst hφ
+  exact NatKey.key (Scheme.Modules.pullback t) (Scheme.Modules.pushforward t) (Scheme.Modules.pushforward ι')
+    (Scheme.Modules.pushforward (t ≫ ι')) (Scheme.Modules.pushforward ι)
+    (Scheme.Modules.pullbackPushforwardAdjunction t).unit (Scheme.Modules.pushforwardComp t ι').hom
+    (Scheme.Modules.pushforwardCongr h).hom φ'
+    ((Scheme.Modules.pullbackComp t ι').app N) ((Scheme.Modules.pullbackCongr h).app N)
+    ((Scheme.Modules.pullbackComp t ι').app N') ((Scheme.Modules.pullbackCongr h).app N')

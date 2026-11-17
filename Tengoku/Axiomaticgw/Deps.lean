@@ -1,0 +1,1 @@
+-- Axiomaticgw: a factory bundle (data/intake/axiomaticgw). This file only marks the library for Tengoku/All.lean.

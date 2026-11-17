@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "e042c06de406ddcbc9018be466d95457c2e57a8c82a53cc44060c3dee8378139",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "alternating-analytic-characteristic-p",
+ "lint_mode": "proposed",
+ "modules": 123,
+ "part": 1,
+ "theorems": 594
+}

@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "f4277f403e03c80ebb59be8b70d0d1114cc0d7a6d0e647a29182c23a2f883e23",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "lemmalib",
+ "lint_mode": "proposed",
+ "modules": 35,
+ "part": 1,
+ "theorems": 539
+}

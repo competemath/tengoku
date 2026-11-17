@@ -1,0 +1,1 @@
+-- Lemmalib: a factory bundle (data/intake/lemmalib). This file only marks the library for Tengoku/All.lean.

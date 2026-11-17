@@ -1,0 +1,145 @@
+import Tengoku
+import Tengoku.FltAnthropic.Definitions.Def_AlgebraicGeometry_TwoAffineOpenCover
+import Tengoku.FltAnthropic.Definitions.Def_AlgebraicCurve_CurveModel
+import Tengoku.FltAnthropic.Definitions.Def_AlgebraicCurve_RatFuncPlaces
+import Tengoku.FltAnthropic.Definitions.Def_AlgebraicCurve_RatFuncPlaceInfty
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_AlgebraicGeometry_TwoGluedProjectiveLines_exists_twoAffineOpenCover_presentation_comp_iso.lean`: wrote out 5 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_export`, 2 `p2m_open`, 2 `p2m_reactivate`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_AlgebraicGeometry_TwoGluedProjectiveLines_exists_twoAffineOpenCover_presentation_comp_iso
+
+set_option autoImplicit false
+
+universe u
+
+open _root_.CategoryTheory open _root_.CategoryTheory.Limits open _root_.AlgebraicGeometry open _root_.AlgebraicCurve
+
+namespace AlgebraicGeometry
+export _root_.AlgebraicGeometry (Surjective Scheme.Hom Scheme.Hom.preimage_inf Scheme.inv_hom_apply Spec Scheme Scheme.hom_inv_apply Scheme.Hom.preimage_top IsOpenImmersion Scheme.Hom.comp_base IsClosedImmersion IsReduced Scheme.Hom.preimage_sup Scheme.Hom.comp_preimage isReduced_of_isOpenImmersion Scheme.Hom.comp_apply)
+namespace TransportPres
+open _root_.AlgebraicGeometry
+
+variable {X X' : Scheme.{u}}
+
+noncomputable def coverOfIso (𝒲 : X.TwoAffineOpenCover) (φ : X ≅ X') : X'.TwoAffineOpenCover where
+  U0 := φ.inv ⁻¹ᵁ 𝒲.U0
+  U1 := φ.inv ⁻¹ᵁ 𝒲.U1
+  isAffineOpen_U0 := 𝒲.isAffineOpen_U0.preimage_of_isIso φ.inv
+  isAffineOpen_U1 := 𝒲.isAffineOpen_U1.preimage_of_isIso φ.inv
+  sup_eq_top := by rw [← Scheme.Hom.preimage_sup, 𝒲.sup_eq_top, Scheme.Hom.preimage_top]
+  isAffineOpen_inf := by rw [← Scheme.Hom.preimage_inf]; exact 𝒲.isAffineOpen_inf.preimage_of_isIso φ.inv
+
+/--
+@isnad1 id=eq.0h4v.s7.735b54ebdec2 from=translated src=- shape=eb9c84f5 vocab=b52cfcfa
+-/
+@[scoped simp] theorem coverOfIso_U0 (𝒲 : X.TwoAffineOpenCover) (φ : X ≅ X') : (coverOfIso 𝒲 φ).U0 = φ.inv ⁻¹ᵁ 𝒲.U0 := rfl
+/--
+@isnad1 id=eq.0h4v.s7.5c1bd07b7928 from=translated src=- shape=eb9c84f5 vocab=e27097c5
+-/
+@[scoped simp] theorem coverOfIso_U1 (𝒲 : X.TwoAffineOpenCover) (φ : X ≅ X') : (coverOfIso 𝒲 φ).U1 = φ.inv ⁻¹ᵁ 𝒲.U1 := rfl
+
+/--
+@isnad1 id=eq.0h6v.s8.d040b708598c from=translated src=- shape=3a537ebc vocab=6c794085
+-/
+theorem comp_preimage_inv_preimage {A : Scheme.{u}} (i : A ⟶ X) (φ : X ≅ X') (U : X.Opens) :
+    (i ≫ φ.hom) ⁻¹ᵁ (φ.inv ⁻¹ᵁ U) = i ⁻¹ᵁ U := by
+  rw [← Scheme.Hom.comp_preimage, Category.assoc, Iso.hom_inv_id, Category.comp_id]
+
+/--
+@isnad1 id=isreduce.0h7v.s6.0ba3c4b60765 from=translated src=- shape=204bd6fe vocab=f49a2beb
+-/
+theorem isReduced_pullback_comp_iso {A B : Scheme.{u}} (i₁ : A ⟶ X) (i₂ : B ⟶ X) (φ : X ≅ X')
+    [IsReduced (pullback i₁ i₂)] : IsReduced (pullback (i₁ ≫ φ.hom) (i₂ ≫ φ.hom)) := by
+  let m : pullback (i₁ ≫ φ.hom) (i₂ ≫ φ.hom) ⟶ pullback i₁ i₂ :=
+    pullback.map _ _ _ _ (𝟙 A) (𝟙 B) φ.inv (by simp) (by simp)
+  haveI : IsIso m := by
+    unfold m; infer_instance
+  exact isReduced_of_isOpenImmersion m
+
+/--
+@isnad1 id=eq.0h5v.s9.ec1465c500ae from=translated src=- shape=3dbd2e59 vocab=4db2b3c5
+-/
+theorem range_comp_iso {A : Scheme.{u}} (i : A ⟶ X) (φ : X ≅ X') :
+    Set.range (i ≫ φ.hom).base = φ.hom.base '' Set.range i.base := by
+  rw [Scheme.Hom.comp_base, TopCat.coe_comp, Set.range_comp]
+
+/--
+@isnad1 id=eq.0h4v.s8.61376954ee3b from=translated src=- shape=458c7509 vocab=fcfd419b
+-/
+theorem coe_inv_preimage (φ : X ≅ X') (W : X.Opens) :
+    ((φ.inv ⁻¹ᵁ W : X'.Opens) : Set X') = φ.hom.base '' (W : Set X) := by
+  ext y
+  constructor
+  · intro hy
+    exact ⟨φ.inv.base y, hy, Scheme.inv_hom_apply φ y⟩
+  · rintro ⟨z, hz, rfl⟩
+    show φ.inv.base (φ.hom.base z) ∈ W
+    rwa [Scheme.hom_inv_apply]
+
+end AlgebraicGeometry.TransportPres
+open scoped _root_.P2MW.S_AlgebraicGeometry_TwoGluedProjectiveLines_exists_twoAffineOpenCover_presentation_comp_iso.AlgebraicGeometry _root_.P2MW.S_AlgebraicGeometry_TwoGluedProjectiveLines_exists_twoAffineOpenCover_presentation_comp_iso.AlgebraicGeometry.TransportPres
+open scoped _root_.P2MW.S_AlgebraicGeometry_TwoGluedProjectiveLines_exists_twoAffineOpenCover_presentation_comp_iso.AlgebraicGeometry
+
+open AlgebraicGeometry.TransportPres in
+/--
+@isnad1 id=ex.11h15v.s15.a27e2d1525e7 from=translated src=- shape=9b180ef8 vocab=119b0340
+-/
+theorem solution
+    {k : Type u} [Field k] [DecidableEq (RatFunc k)] {X X' : Scheme.{u}} (x : X ⟶ Spec (CommRingCat.of k)) (x' : X' ⟶ Spec (CommRingCat.of k))
+    (φ : X ≅ X') (hφ : φ.hom ≫ x' = x)
+    (M₁ M₂ : CurveModel k (RatFunc k)) (i₁ : M₁.C ⟶ X) (i₂ : M₂.C ⟶ X)
+    [IsClosedImmersion i₁] [IsClosedImmersion i₂]
+    (hi₁ : i₁ ≫ x = M₁.toBase) (hi₂ : i₂ ≫ x = M₂.toBase)
+    (hcover : Set.range i₁.base ∪ Set.range i₂.base = Set.univ)
+    {n : ℕ} (a b : Fin n → kˣ)
+    (hnode : ∀ i, i₁.base (M₁.placeEquiv.symm (RationalFunctionField.placeOfPoint k (a i : k))).1 =
+      i₂.base (M₂.placeEquiv.symm (RationalFunctionField.placeOfPoint k (b i : k))).1)
+    (hinter : ∀ (p : M₁.C) (q : M₂.C), i₁.base p = i₂.base q →
+      ∃ i, p = (M₁.placeEquiv.symm (RationalFunctionField.placeOfPoint k (a i : k))).1 ∧
+        q = (M₂.placeEquiv.symm (RationalFunctionField.placeOfPoint k (b i : k))).1)
+    (htrans : IsReduced (pullback i₁ i₂))
+    (𝒲₀ : X.TwoAffineOpenCover)
+    (hU0₁ : ((i₁ ⁻¹ᵁ 𝒲₀.U0 : M₁.C.Opens) : Set M₁.C) = {(M₁.placeEquiv.symm (RationalFunctionField.placeInfty k)).1}ᶜ)
+    (hU0₂ : ((i₂ ⁻¹ᵁ 𝒲₀.U0 : M₂.C.Opens) : Set M₂.C) = {(M₂.placeEquiv.symm (RationalFunctionField.placeInfty k)).1}ᶜ)
+    (hU1₁ : ((i₁ ⁻¹ᵁ 𝒲₀.U1 : M₁.C.Opens) : Set M₁.C) = {(M₁.placeEquiv.symm (RationalFunctionField.placeOfPoint k 0)).1}ᶜ)
+    (hU1₂ : ((i₂ ⁻¹ᵁ 𝒲₀.U1 : M₂.C.Opens) : Set M₂.C) = {(M₂.placeEquiv.symm (RationalFunctionField.placeOfPoint k 0)).1}ᶜ)
+    (W₁ : X.Opens) [IsOpenImmersion ((i₁ ⁻¹ᵁ W₁).ι ≫ i₁)] :
+    ∃ 𝒲₀' : X'.TwoAffineOpenCover,
+      𝒲₀'.U0 = φ.inv ⁻¹ᵁ 𝒲₀.U0 ∧ 𝒲₀'.U1 = φ.inv ⁻¹ᵁ 𝒲₀.U1 ∧
+      (i₁ ≫ φ.hom) ≫ x' = M₁.toBase ∧ (i₂ ≫ φ.hom) ≫ x' = M₂.toBase ∧
+      Set.range (i₁ ≫ φ.hom).base ∪ Set.range (i₂ ≫ φ.hom).base = Set.univ ∧
+      (∀ i, (i₁ ≫ φ.hom).base (M₁.placeEquiv.symm (RationalFunctionField.placeOfPoint k (a i : k))).1 =
+        (i₂ ≫ φ.hom).base (M₂.placeEquiv.symm (RationalFunctionField.placeOfPoint k (b i : k))).1) ∧
+      (∀ (p : M₁.C) (q : M₂.C), (i₁ ≫ φ.hom).base p = (i₂ ≫ φ.hom).base q →
+        ∃ i, p = (M₁.placeEquiv.symm (RationalFunctionField.placeOfPoint k (a i : k))).1 ∧
+          q = (M₂.placeEquiv.symm (RationalFunctionField.placeOfPoint k (b i : k))).1) ∧
+      IsReduced (pullback (i₁ ≫ φ.hom) (i₂ ≫ φ.hom)) ∧
+      (((i₁ ≫ φ.hom) ⁻¹ᵁ 𝒲₀'.U0 : M₁.C.Opens) : Set M₁.C) = {(M₁.placeEquiv.symm (RationalFunctionField.placeInfty k)).1}ᶜ ∧
+      (((i₂ ≫ φ.hom) ⁻¹ᵁ 𝒲₀'.U0 : M₂.C.Opens) : Set M₂.C) = {(M₂.placeEquiv.symm (RationalFunctionField.placeInfty k)).1}ᶜ ∧
+      (((i₁ ≫ φ.hom) ⁻¹ᵁ 𝒲₀'.U1 : M₁.C.Opens) : Set M₁.C) = {(M₁.placeEquiv.symm (RationalFunctionField.placeOfPoint k 0)).1}ᶜ ∧
+      (((i₂ ≫ φ.hom) ⁻¹ᵁ 𝒲₀'.U1 : M₂.C.Opens) : Set M₂.C) = {(M₂.placeEquiv.symm (RationalFunctionField.placeOfPoint k 0)).1}ᶜ ∧
+      IsOpenImmersion (((i₁ ≫ φ.hom) ⁻¹ᵁ (φ.inv ⁻¹ᵁ W₁)).ι ≫ (i₁ ≫ φ.hom)) ∧
+      ((φ.inv ⁻¹ᵁ W₁ : X'.Opens) : Set X') = φ.hom.base '' (W₁ : Set X) ∧
+      Set.range (i₁ ≫ φ.hom).base = φ.hom.base '' Set.range i₁.base ∧
+      Set.range (i₂ ≫ φ.hom).base = φ.hom.base '' Set.range i₂.base := by
+  have hinj : Function.Injective φ.hom.base := (ConcreteCategory.bijective_of_isIso φ.hom.base).1
+  have hsurj : Function.Surjective φ.hom.base := (ConcreteCategory.bijective_of_isIso φ.hom.base).2
+  refine ⟨coverOfIso 𝒲₀ φ, rfl, rfl, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, coe_inv_preimage φ W₁,
+    range_comp_iso i₁ φ, range_comp_iso i₂ φ⟩
+  · rw [Category.assoc, hφ, hi₁]
+  · rw [Category.assoc, hφ, hi₂]
+  · rw [range_comp_iso, range_comp_iso, ← Set.image_union, hcover, Set.image_univ, hsurj.range_eq]
+  · intro i
+    simp only [Scheme.Hom.comp_apply, hnode i]
+  · intro p q h
+    simp only [Scheme.Hom.comp_apply] at h
+    exact hinter p q (hinj h)
+  · haveI := htrans
+    exact isReduced_pullback_comp_iso i₁ i₂ φ
+  · rw [coverOfIso_U0, comp_preimage_inv_preimage, hU0₁]
+  · rw [coverOfIso_U0, comp_preimage_inv_preimage, hU0₂]
+  · rw [coverOfIso_U1, comp_preimage_inv_preimage, hU1₁]
+  · rw [coverOfIso_U1, comp_preimage_inv_preimage, hU1₂]
+  · rw [comp_preimage_inv_preimage, ← Category.assoc]
+    infer_instance

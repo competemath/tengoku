@@ -1,0 +1,52 @@
+import Tengoku.Seed.MeasureTheory.Integral.DominatedConvergence
+import Tengoku.Seed.MeasureTheory.Constructions.BorelSpace.Basic
+import Tengoku.Seed.Analysis.SpecificLimits.Normed
+import Tengoku.Seed.Analysis.Complex.Basic
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Removing a bounded height damping factor
+
+This is the general dominated-convergence step required at the special endpoint.
+Its integrability hypothesis must be proved for the original period integrand.
+It is not an assertion that the separately unfolded endpoint integrals converge.
+-/
+
+namespace FourierJacobi
+namespace Analysis
+
+open MeasureTheory Filter
+open scoped Topology
+
+/--
+@isnad1 id=summable.2h2v.s6.9f0675244807 from=translated src=- shape=58d37ff9 vocab=f82de1eb
+-/
+theorem polynomial_geometric_summable (k : ℕ) {r : ℝ} (hr₀ : 0 ≤ r) (hr₁ : r < 1) :
+    Summable (fun n : ℕ => (n : ℝ) ^ k * r ^ n) := by
+  exact summable_pow_mul_geometric_of_norm_lt_one k
+    (by simpa [Real.norm_eq_abs, abs_of_nonneg hr₀] using hr₁)
+
+/--
+@isnad1 id=tendsto.5h5v.s7.1337614faeab from=translated src=- shape=fe865194 vocab=6c4d7d42
+-/
+theorem height_damping_tendsto_integral
+    {X : Type*} [MeasurableSpace X] {μ : Measure X}
+    {f : X → ℂ} (hf : Integrable f μ)
+    {height : X → ℕ} (hh : Measurable height)
+    {T : ℕ → ℝ} (hT₀ : ∀ n, 0 ≤ T n) (hT₁ : ∀ n, T n ≤ 1)
+    (hTlim : Tendsto T atTop (𝓝 1)) :
+    Tendsto (fun n => ∫ x, (T n ^ height x) • f x ∂μ) atTop (𝓝 (∫ x, f x ∂μ)) := by
+  apply tendsto_integral_of_dominated_convergence (fun x => ‖f x‖)
+  · intro n
+    exact (hh.const_pow (T n)).aestronglyMeasurable.smul hf.aestronglyMeasurable
+  · exact hf.norm
+  · intro n
+    filter_upwards [] with x
+    rw [norm_smul, Real.norm_eq_abs, abs_of_nonneg (pow_nonneg (hT₀ n) _)]
+    exact mul_le_of_le_one_left (norm_nonneg _) (pow_le_one₀ (hT₀ n) (hT₁ n))
+  · filter_upwards [] with x
+    simpa using (hTlim.pow (height x)).smul_const (f x)
+
+end Analysis
+end FourierJacobi

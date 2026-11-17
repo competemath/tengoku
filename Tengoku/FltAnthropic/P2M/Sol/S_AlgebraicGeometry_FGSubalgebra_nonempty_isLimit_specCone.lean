@@ -1,0 +1,21 @@
+import Tengoku.FltAnthropic.Definitions.Def_AlgebraicGeometry_FGSubalgebra
+import Tengoku.FltAnthropic.Theorems.Thm_AlgebraicGeometry_FGSubalgebra_nonempty_isColimit_cocone
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_AlgebraicGeometry_FGSubalgebra_nonempty_isLimit_specCone.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_AlgebraicGeometry_FGSubalgebra_nonempty_isLimit_specCone
+
+set_option autoImplicit false
+
+open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
+
+universe u
+
+/--
+@isnad1 id=nonempty.0h2v.s6.9f724ac7fa43 from=translated src=- shape=8ead7a68 vocab=d649f449
+-/
+theorem solution
+    (R : Type u) [CommRing R] (A : Type u) [CommRing A] [Algebra R A] :
+    Nonempty (IsLimit (FGSubalgebra.specCone R A)) :=
+  ⟨isLimitOfPreserves Scheme.Spec (FGSubalgebra.nonempty_isColimit_cocone R A).some.op⟩
