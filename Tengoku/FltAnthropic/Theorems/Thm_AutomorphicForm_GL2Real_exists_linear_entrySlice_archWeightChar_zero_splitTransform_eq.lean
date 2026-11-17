@@ -1,0 +1,36 @@
+import Tengoku.FltAnthropic.Definitions.Def_AutomorphicForm_GL2RealOrbitalTransforms
+import Tengoku.FltAnthropic.P2M.Sol.S_AutomorphicForm_GL2Real_exists_linear_entrySlice_archWeightChar_zero_splitTransform_eq
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `Theorems/Thm_AutomorphicForm_GL2Real_exists_linear_entrySlice_archWeightChar_zero_splitTransform_eq.lean`: wrote out 1 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_exact_reverting`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+
+set_option autoImplicit false
+
+open AutomorphicForm AutomorphicForm.GL2Real
+
+/--
+@isnad1 id=ex.0h1v.s13.2a588cd5a4ce from=translated src=- shape=012b436d vocab=aa87c832
+-/
+theorem AutomorphicForm.GL2Real.exists_linear_entrySlice_archWeightChar_zero_splitTransform_eq
+    (P : Type) [NormedAddCommGroup P] [NormedSpace ℝ P] :
+    ∃ I : (ℝ × ℝ → ℂ) → ((Fin 2 → Fin 2 → ℝ) → ℂ),
+      (∀ f g : ℝ × ℝ → ℂ, ContDiff ℝ (⊤ : ℕ∞) f → HasCompactSupport f → ContDiff ℝ (⊤ : ℕ∞) g →
+        HasCompactSupport g → ∀ a b : ℂ, I (fun x => a * f x + b * g x) = fun M => a * I f M + b * I g M) ∧
+      ∀ H : ℝ × ℝ × P → ℂ, ContDiff ℝ (⊤ : ℕ∞) H → HasCompactSupport H → tsupport H ⊆ {q | q.1 * q.2.1 ≠ 0} →
+        (∀ (a₁ a₂ : ℝ) (p : P), H (a₂, a₁, p) = H (a₁, a₂, p)) →
+        (∀ (a₁ a₂ : ℝ) (p : P), H (-a₁, -a₂, p) = H (a₁, a₂, p)) →
+        ContDiff ℝ (⊤ : ℕ∞) (fun q : (Fin 2 → Fin 2 → ℝ) × P => I (fun a : ℝ × ℝ => H (a.1, a.2, q.2)) q.1) ∧
+        HasCompactSupport (fun q : (Fin 2 → Fin 2 → ℝ) × P => I (fun a : ℝ × ℝ => H (a.1, a.2, q.2)) q.1) ∧
+        tsupport (fun q : (Fin 2 → Fin 2 → ℝ) × P => I (fun a : ℝ × ℝ => H (a.1, a.2, q.2)) q.1) ⊆
+          {q | IsUnit (Matrix.det (Matrix.of q.1))} ∧
+        (∀ (p : P) (k₁ k₂ : rowIsometrySubgroup₀ ℝ) (g : GL (Fin 2) ℝ),
+          entrySlice (fun q : (Fin 2 → Fin 2 → ℝ) × P => I (fun a : ℝ × ℝ => H (a.1, a.2, q.2)) q.1) p
+              ((k₁ : GL (Fin 2) ℝ) * g * (k₂ : GL (Fin 2) ℝ)) =
+            ((archWeightCharℝ 0 k₁ : ℂˣ) : ℂ) * ((archWeightCharℝ 0 k₂ : ℂˣ) : ℂ) *
+              entrySlice (fun q : (Fin 2 → Fin 2 → ℝ) × P => I (fun a : ℝ × ℝ => H (a.1, a.2, q.2)) q.1) p g) ∧
+        ∀ (p : P) (a₁ a₂ : ℝ), a₁ * a₂ ≠ 0 →
+          splitTransform
+              (entrySlice (fun q : (Fin 2 → Fin 2 → ℝ) × P => I (fun a : ℝ × ℝ => H (a.1, a.2, q.2)) q.1) p)
+              a₁ a₂ =
+            H (a₁, a₂, p) := by exact @_root_.P2MW.S_AutomorphicForm_GL2Real_exists_linear_entrySlice_archWeightChar_zero_splitTransform_eq.solution P _ _

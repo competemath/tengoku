@@ -1,0 +1,292 @@
+import Tengoku
+import Tengoku.FltAnthropic.Definitions.Def_AlgebraicGeometry_ModulesTildePullback
+import Tengoku.FltAnthropic.Theorems.Thm_AlgebraicGeometry_tilde_pullbackSpecIso_unit
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_AlgebraicGeometry_tilde_pullback_map_pullbackSpecIso_hom_comp_pullbackSpecIso_hom.lean`: wrote out 6 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 2 `p2m_export`, 4 `p2m_open`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_AlgebraicGeometry_tilde_pullback_map_pullbackSpecIso_hom_comp_pullbackSpecIso_hom
+
+set_option maxHeartbeats 1600000
+
+set_option autoImplicit false
+
+universe u
+
+open _root_.CategoryTheory open _root_.AlgebraicGeometry
+
+namespace AlgebraicGeometry
+export _root_.AlgebraicGeometry (Spec.map_comp Scheme.Modules.pushforwardCongr Scheme.Modules.pullback tilde.adjunction moduleSpecΓFunctor Spec Spec.map Scheme pullbackSpecIso Scheme.Modules.pullbackCongr tilde.functor Scheme.Modules tilde Scheme.Modules.pushforwardCongr_hom_app_app Scheme.Modules.pullbackComp tilde.pullbackSpecIso tilde.pullbackSpecIso_unit)
+namespace TildePullbackCompAux
+open _root_.AlgebraicGeometry
+
+open CategoryTheory
+
+universe v₁ v₂ v₃ v₄ v₅ v₆ u₁ u₂ u₃ u₄ u₅ u₆
+
+variable {A : Type u₁} {B : Type u₂} {C : Type u₃} {X : Type u₄} {Y : Type u₅} {Z : Type u₆}
+  [Category.{v₁} A] [Category.{v₂} B] [Category.{v₃} C]
+  [Category.{v₄} X] [Category.{v₅} Y] [Category.{v₆} Z]
+  {FR : A ⥤ X} {GR : X ⥤ A} {FS : B ⥤ Y} {GS : Y ⥤ B} {FT : C ⥤ Z} {GT : Z ⥤ C}
+  (tR : FR ⊣ GR) (tS : FS ⊣ GS) (tT : FT ⊣ GT)
+  {Eφ : A ⥤ B} {Rφ : B ⥤ A} {Eψ : B ⥤ C} {Rψ : C ⥤ B} {Eφψ : A ⥤ C} {Rφψ : C ⥤ A}
+  (eφ : Eφ ⊣ Rφ) (eψ : Eψ ⊣ Rψ) (eφψ : Eφψ ⊣ Rφψ)
+  {Pφ : X ⥤ Y} {Qφ : Y ⥤ X} {Pψ : Y ⥤ Z} {Qψ : Z ⥤ Y} {Pφψ : X ⥤ Z} {Qφψ : Z ⥤ X}
+  (pφ : Pφ ⊣ Qφ) (pψ : Pψ ⊣ Qψ) (pφψ : Pφψ ⊣ Qφψ)
+  (dφ : Qφ ⋙ GR ≅ GS ⋙ Rφ) (dψ : Qψ ⋙ GS ≅ GT ⋙ Rψ) (dφψ : Qφψ ⋙ GR ≅ GT ⋙ Rφψ)
+  (q : Qφψ ⟶ Qψ ⋙ Qφ) (r : Rφψ ⟶ Rψ ⋙ Rφ)
+  (M : A)
+  (βφ : Pφ.obj (FR.obj M) ⟶ FS.obj (Eφ.obj M))
+  (βψ : Pψ.obj (FS.obj (Eφ.obj M)) ⟶ FT.obj (Eψ.obj (Eφ.obj M)))
+  (βφψ : Pφψ.obj (FR.obj M) ⟶ FT.obj (Eφψ.obj M))
+  (κ : (Pφ ⋙ Pψ).obj (FR.obj M) ⟶ Pφψ.obj (FR.obj M))
+  (ε : Eφψ.obj M ⟶ (Eφ ⋙ Eψ).obj M)
+
+/--
+@isnad1 id=eq.6h44v.s11.5009a55af699 from=translated src=- shape=4752d2b6 vocab=5e0b85e8
+-/
+theorem main
+    (hφ : (tR.comp pφ).unit.app M ≫ (Qφ ⋙ GR).map βφ ≫ dφ.hom.app _ =
+      eφ.unit.app M ≫ Rφ.map (tS.unit.app _))
+    (hψ : (tS.comp pψ).unit.app (Eφ.obj M) ≫ (Qψ ⋙ GS).map βψ ≫ dψ.hom.app _ =
+      eψ.unit.app _ ≫ Rψ.map (tT.unit.app _))
+    (hφψ : (tR.comp pφψ).unit.app M ≫ (Qφψ ⋙ GR).map βφψ ≫ dφψ.hom.app _ =
+      eφψ.unit.app M ≫ Rφψ.map (tT.unit.app _))
+    (hκ : (pφ.comp pψ).unit.app (FR.obj M) ≫ (Qψ ⋙ Qφ).map κ = pφψ.unit.app _ ≫ q.app _)
+    (hε : eφψ.unit.app M ≫ Rφψ.map ε ≫ r.app _ = eφ.unit.app M ≫ Rφ.map (eψ.unit.app _))
+    (hcoh : ∀ N : Z, GR.map (q.app N) ≫ dφ.hom.app (Qψ.obj N) ≫ Rφ.map (dψ.hom.app N) =
+      dφψ.hom.app N ≫ r.app (GT.obj N)) :
+    Pψ.map βφ ≫ βψ = κ ≫ βφψ ≫ FT.map ε := by
+
+  simp only [Functor.comp_obj, Functor.id_obj, Functor.comp_map, Adjunction.comp_unit_app,
+    Functor.map_comp, Category.assoc] at hφ hψ hφψ hκ hε hcoh
+
+  have inj : Function.Injective (fun f : Pψ.obj (Pφ.obj (FR.obj M)) ⟶ FT.obj (Eψ.obj (Eφ.obj M)) =>
+      tR.unit.app M ≫ GR.map (pφ.unit.app (FR.obj M)) ≫
+        GR.map (Qφ.map (pψ.unit.app (Pφ.obj (FR.obj M)))) ≫ GR.map (Qφ.map (Qψ.map f)) ≫
+        dφ.hom.app (Qψ.obj (FT.obj (Eψ.obj (Eφ.obj M)))) ≫
+        Rφ.map (dψ.hom.app (FT.obj (Eψ.obj (Eφ.obj M))))) := by
+    intro f g h
+    dsimp only at h
+    let N := FT.obj (Eψ.obj (Eφ.obj M))
+    have h2 : (tR.unit.app M ≫ GR.map (pφ.unit.app (FR.obj M)) ≫
+          GR.map (Qφ.map (pψ.unit.app (Pφ.obj (FR.obj M)))) ≫ GR.map (Qφ.map (Qψ.map f))) ≫
+          (dφ.app (Qψ.obj N) ≪≫ Rφ.mapIso (dψ.app N)).hom =
+        (tR.unit.app M ≫ GR.map (pφ.unit.app (FR.obj M)) ≫
+          GR.map (Qφ.map (pψ.unit.app (Pφ.obj (FR.obj M)))) ≫ GR.map (Qφ.map (Qψ.map g))) ≫
+          (dφ.app (Qψ.obj N) ≪≫ Rφ.mapIso (dψ.app N)).hom := by
+      simpa only [Iso.trans_hom, Iso.app_hom, Functor.mapIso_hom, Category.assoc] using h
+    rw [Iso.cancel_iso_hom_right] at h2
+    apply (((tR.comp pφ).comp pψ).homEquiv _ _).injective
+    rw [Adjunction.homEquiv_unit, Adjunction.homEquiv_unit]
+    simp only [Adjunction.comp_unit_app, Functor.comp_map, Functor.map_comp,
+      Functor.comp_obj, Functor.id_obj, Category.assoc]
+    exact h2
+  apply inj
+  dsimp only
+
+  have lhs : tR.unit.app M ≫ GR.map (pφ.unit.app (FR.obj M)) ≫
+        GR.map (Qφ.map (pψ.unit.app (Pφ.obj (FR.obj M)))) ≫ GR.map (Qφ.map (Qψ.map (Pψ.map βφ ≫ βψ))) ≫
+        dφ.hom.app (Qψ.obj (FT.obj (Eψ.obj (Eφ.obj M)))) ≫
+        Rφ.map (dψ.hom.app (FT.obj (Eψ.obj (Eφ.obj M)))) =
+      eφ.unit.app M ≫ Rφ.map (eψ.unit.app (Eφ.obj M)) ≫
+        Rφ.map (Rψ.map (tT.unit.app (Eψ.obj (Eφ.obj M)))) := by
+    have n1 := congr_arg (fun t => GR.map (Qφ.map t)) (pψ.unit_naturality βφ)
+    simp only [Functor.comp_obj, Functor.id_obj, Functor.map_comp] at n1
+    simp only [Functor.comp_obj, Functor.id_obj, Functor.map_comp, Category.assoc]
+    rw [reassoc_of% n1]
+    have n2 := dφ.hom.naturality (pψ.unit.app (FS.obj (Eφ.obj M)) ≫ Qψ.map βψ)
+    simp only [Functor.comp_obj, Functor.id_obj, Functor.comp_map, Functor.map_comp,
+      Category.assoc] at n2
+    rw [reassoc_of% n2, reassoc_of% hφ]
+    simp only [← Functor.map_comp, Category.assoc, hψ]
+  have rhs : tR.unit.app M ≫ GR.map (pφ.unit.app (FR.obj M)) ≫
+        GR.map (Qφ.map (pψ.unit.app (Pφ.obj (FR.obj M)))) ≫
+        GR.map (Qφ.map (Qψ.map (κ ≫ βφψ ≫ FT.map ε))) ≫
+        dφ.hom.app (Qψ.obj (FT.obj (Eψ.obj (Eφ.obj M)))) ≫
+        Rφ.map (dψ.hom.app (FT.obj (Eψ.obj (Eφ.obj M)))) =
+      eφ.unit.app M ≫ Rφ.map (eψ.unit.app (Eφ.obj M)) ≫
+        Rφ.map (Rψ.map (tT.unit.app (Eψ.obj (Eφ.obj M)))) := by
+    have k1 := congr_arg (fun t => GR.map t) hκ
+    simp only [Functor.comp_obj, Functor.id_obj, Functor.map_comp] at k1
+    simp only [Functor.comp_obj, Functor.id_obj, Functor.map_comp, Category.assoc]
+    rw [reassoc_of% k1]
+    have k2 := congr_arg (fun t => GR.map t) (q.naturality (βφψ ≫ FT.map ε)).symm
+    simp only [Functor.comp_obj, Functor.id_obj, Functor.comp_map, Functor.map_comp, Category.assoc] at k2
+    rw [reassoc_of% k2, hcoh]
+    have k3 := dφψ.hom.naturality (FT.map ε)
+    simp only [Functor.comp_obj, Functor.id_obj, Functor.comp_map] at k3
+    rw [reassoc_of% k3, reassoc_of% hφψ]
+    have k4 := congr_arg (fun t => Rφψ.map t) (tT.unit_naturality ε)
+    simp only [Functor.comp_obj, Functor.id_obj, Functor.map_comp] at k4
+    rw [reassoc_of% k4]
+    have k5 := r.naturality (tT.unit.app (Eψ.obj (Eφ.obj M)))
+    simp only [Functor.comp_obj, Functor.id_obj, Functor.comp_map] at k5
+    rw [k5, reassoc_of% hε]
+  exact lhs.trans rhs.symm
+
+end AlgebraicGeometry.TildePullbackCompAux
+
+namespace AlgebraicGeometry
+export _root_.AlgebraicGeometry (Spec.map_comp Scheme.Modules.pushforwardCongr Scheme.Modules.pullback tilde.adjunction moduleSpecΓFunctor Spec Spec.map Scheme pullbackSpecIso Scheme.Modules.pullbackCongr tilde.functor Scheme.Modules tilde Scheme.Modules.pushforwardCongr_hom_app_app Scheme.Modules.pullbackComp tilde.pullbackSpecIso tilde.pullbackSpecIso_unit)
+namespace TildePullbackCompAux
+open _root_.AlgebraicGeometry
+
+open _root_.CategoryTheory open _root_.AlgebraicGeometry open _root_.P2MW.S_AlgebraicGeometry_tilde_pullback_map_pullbackSpecIso_hom_comp_pullbackSpecIso_hom.AlgebraicGeometry open _root_.Opposite open _root_.AlgebraicGeometry.Scheme.Modules
+
+section Generic
+
+variable {X Y Z : Scheme.{u}}
+
+/--
+@isnad1 id=eq.0h3v.s6.5225fc5fda10 from=translated src=- shape=dcc980e2 vocab=b9d05be0
+-/
+theorem pushforwardCongr_rfl (f : X ⟶ Y) :
+    Scheme.Modules.pushforwardCongr (rfl : f = f) = Iso.refl _ := by
+  ext N U x
+  simp [Scheme.Modules.pushforwardCongr_hom_app_app]
+
+/--
+@isnad1 id=eq.0h6v.s9.3b36768b32c7 from=translated src=- shape=6c1eea1c vocab=4085d7ba
+-/
+theorem comp_unit_app_comp_map_pullbackComp (f : X ⟶ Y) (g : Y ⟶ Z) (A : Z.Modules) :
+    ((pullbackPushforwardAdjunction g).comp (pullbackPushforwardAdjunction f)).unit.app A ≫
+        (pushforward f ⋙ pushforward g).map ((pullbackComp f g).hom.app A) =
+      (pullbackPushforwardAdjunction (f ≫ g)).unit.app A ≫ (pushforwardComp f g).inv.app _ := by
+  have h := unit_conjugateEquiv ((pullbackPushforwardAdjunction g).comp
+    (pullbackPushforwardAdjunction f)) (pullbackPushforwardAdjunction (f ≫ g)) (pullbackComp f g).inv A
+  rw [conjugateEquiv_pullbackComp_inv] at h
+  refine (Iso.eq_comp_inv ((pushforwardComp f g).app _)).mpr ?_
+  rw [Iso.app_hom, Category.assoc]
+  erw [(pushforwardComp f g).hom.naturality ((pullbackComp f g).hom.app A)]
+  erw [reassoc_of% h]
+  erw [← (pushforward (f ≫ g)).map_comp, Iso.inv_hom_id_app]
+  simp
+
+/--
+@isnad1 id=eq.1h7v.s10.7177c0662231 from=translated src=- shape=84b8168f vocab=456aeba4
+-/
+theorem comp_unit_app_comp_map_pullbackComp_pullbackCongr (f : X ⟶ Y) (g : Y ⟶ Z) {k : X ⟶ Z}
+    (h : f ≫ g = k) (A : Z.Modules) :
+    ((pullbackPushforwardAdjunction g).comp (pullbackPushforwardAdjunction f)).unit.app A ≫
+        (pushforward f ⋙ pushforward g).map ((pullbackComp f g).hom.app A ≫ (pullbackCongr h).hom.app A) =
+      (pullbackPushforwardAdjunction k).unit.app A ≫
+        ((pushforwardCongr h).inv ≫ (pushforwardComp f g).inv).app ((pullback k).obj A) := by
+  subst h
+  simp only [Functor.map_comp, NatTrans.comp_app, pushforwardCongr_rfl, Iso.refl_inv, NatTrans.id_app,
+    Category.id_comp]
+  rw [← comp_unit_app_comp_map_pullbackComp]
+  simp [Scheme.Modules.pullbackCongr]
+
+variable {R : CommRingCat.{u}}
+
+/--
+@isnad1 id=eq.1h6v.s10.a952a9f62fdc from=translated src=- shape=19e5bc82 vocab=1a776719
+-/
+theorem moduleSpecΓFunctor_map_pushforwardCongr_inv_apply {f g : X ⟶ Spec R} (hf : f = g)
+    (N : X.Modules) (y : (moduleSpecΓFunctor (R := R)).obj ((pushforward g).obj N)) :
+    ((moduleSpecΓFunctor (R := R)).map ((pushforwardCongr hf).inv.app N)).hom y = y := by
+  subst hf
+  simp [pushforwardCongr_rfl]
+
+end Generic
+
+section Concrete
+
+variable {R S T : CommRingCat.{u}} (φ : R ⟶ S) (ψ : S ⟶ T)
+
+/--
+@isnad1 id=eq.0h6v.s11.292636e6bb85 from=translated src=- shape=89aaada5 vocab=23a0aec7
+-/
+theorem hε (M : ModuleCat.{u} R) :
+    (ModuleCat.extendRestrictScalarsAdj (φ ≫ ψ).hom).unit.app M ≫
+        (ModuleCat.restrictScalars (φ ≫ ψ).hom).map ((ModuleCat.extendScalarsComp φ.hom ψ.hom).hom.app M) ≫
+        (ModuleCat.restrictScalarsComp φ.hom ψ.hom).hom.app
+          ((ModuleCat.extendScalars ψ.hom).obj ((ModuleCat.extendScalars φ.hom).obj M)) =
+      (ModuleCat.extendRestrictScalarsAdj φ.hom).unit.app M ≫
+        (ModuleCat.restrictScalars φ.hom).map ((ModuleCat.extendRestrictScalarsAdj ψ.hom).unit.app
+          ((ModuleCat.extendScalars φ.hom).obj M)) := by
+  have h := ModuleCat.homEquiv_extendScalarsComp φ.hom ψ.hom M
+  rw [Adjunction.homEquiv_unit] at h
+  exact (Iso.eq_comp_inv ((ModuleCat.restrictScalarsComp φ.hom ψ.hom).app _)
+    (f := (ModuleCat.extendRestrictScalarsAdj φ.hom).unit.app M ≫
+      (ModuleCat.restrictScalars φ.hom).map ((ModuleCat.extendRestrictScalarsAdj ψ.hom).unit.app
+        ((ModuleCat.extendScalars φ.hom).obj M)))
+    (g := (ModuleCat.extendRestrictScalarsAdj (φ ≫ ψ).hom).unit.app M ≫
+      (ModuleCat.restrictScalars (φ ≫ ψ).hom).map
+        ((ModuleCat.extendScalarsComp φ.hom ψ.hom).hom.app M))).mp h
+
+/--
+@isnad1 id=eq.0h7v.s13.e131aae7e591 from=translated src=- shape=563c7928 vocab=c9372027
+-/
+theorem tail3_apply (N : (Spec T).Modules)
+    (z : (moduleSpecΓFunctor (R := R)).obj ((pushforward (Spec.map ψ ≫ Spec.map φ)).obj N)) :
+    ((ModuleCat.restrictScalars φ.hom).map ((pushforwardSpecCompΓIso ψ).hom.app N)).hom
+      (((pushforwardSpecCompΓIso φ).hom.app ((pushforward (Spec.map ψ)).obj N)).hom
+        (((moduleSpecΓFunctor (R := R)).map ((pushforwardComp (Spec.map ψ) (Spec.map φ)).inv.app N)).hom z)) =
+      z := rfl
+
+/--
+@isnad1 id=eq.0h7v.s11.353d22e4cd7c from=translated src=- shape=51fc5ae4 vocab=dfc8a0d7
+-/
+theorem rhs_apply (N : (Spec T).Modules)
+    (y : (moduleSpecΓFunctor (R := R)).obj ((pushforward (Spec.map (φ ≫ ψ))).obj N)) :
+    ((pushforwardSpecCompΓIso (φ ≫ ψ)).hom.app N ≫
+      (ModuleCat.restrictScalarsComp φ.hom ψ.hom).hom.app ((moduleSpecΓFunctor (R := T)).obj N)).hom y = y := rfl
+
+/--
+@isnad1 id=eq.0h6v.s11.cd17be782a2d from=translated src=- shape=d8c1c552 vocab=8a76d319
+-/
+theorem hcoh (N : (Spec T).Modules) :
+    (moduleSpecΓFunctor (R := R)).map
+        (((pushforwardCongr (Spec.map_comp φ ψ).symm).inv ≫
+            (pushforwardComp (Spec.map ψ) (Spec.map φ)).inv).app N) ≫
+      (pushforwardSpecCompΓIso φ).hom.app ((pushforward (Spec.map ψ)).obj N) ≫
+      (ModuleCat.restrictScalars φ.hom).map ((pushforwardSpecCompΓIso ψ).hom.app N) =
+    (pushforwardSpecCompΓIso (φ ≫ ψ)).hom.app N ≫
+      (ModuleCat.restrictScalarsComp φ.hom ψ.hom).hom.app ((moduleSpecΓFunctor (R := T)).obj N) := by
+  ext y
+  refine Eq.trans ?_ (rhs_apply φ ψ N y).symm
+  simp only [NatTrans.comp_app, Functor.map_comp, ModuleCat.hom_comp, LinearMap.coe_comp,
+    Function.comp_apply]
+  refine (tail3_apply φ ψ N _).trans ?_
+  exact moduleSpecΓFunctor_map_pushforwardCongr_inv_apply _ N y
+
+end Concrete
+
+end AlgebraicGeometry.TildePullbackCompAux
+
+open AlgebraicGeometry.TildePullbackCompAux _root_.AlgebraicGeometry.Scheme.Modules in
+/--
+@isnad1 id=eq.0h6v.s11.a09c88da6767 from=translated src=- shape=bdfd9036 vocab=581c2a07
+-/
+theorem solution
+    {R S T : CommRingCat.{u}} (φ : R ⟶ S) (ψ : S ⟶ T) (M : ModuleCat.{u} R) :
+    (Scheme.Modules.pullback (Spec.map ψ)).map (tilde.pullbackSpecIso φ M).hom ≫
+        (tilde.pullbackSpecIso ψ ((ModuleCat.extendScalars φ.hom).obj M)).hom =
+      (Scheme.Modules.pullbackComp (Spec.map ψ) (Spec.map φ)).hom.app (tilde M) ≫
+        (Scheme.Modules.pullbackCongr (Spec.map_comp φ ψ).symm).hom.app (tilde M) ≫
+        (tilde.pullbackSpecIso (φ ≫ ψ) M).hom ≫
+        (tilde.functor T).map ((ModuleCat.extendScalarsComp φ.hom ψ.hom).hom.app M) := by
+  have := main (@id (@Adjunction (ModuleCat R) _ (Spec R).Modules (Scheme.Modules.instCategory : Category (Spec R).Modules)
+      (tilde.functor R) moduleSpecΓFunctor) (tilde.adjunction (R := R)))
+    (@id (@Adjunction (ModuleCat S) _ (Spec S).Modules (Scheme.Modules.instCategory : Category (Spec S).Modules)
+      (tilde.functor S) moduleSpecΓFunctor) (tilde.adjunction (R := S)))
+    (@id (@Adjunction (ModuleCat T) _ (Spec T).Modules (Scheme.Modules.instCategory : Category (Spec T).Modules)
+      (tilde.functor T) moduleSpecΓFunctor) (tilde.adjunction (R := T)))
+    (ModuleCat.extendRestrictScalarsAdj φ.hom) (ModuleCat.extendRestrictScalarsAdj ψ.hom)
+    (ModuleCat.extendRestrictScalarsAdj (φ ≫ ψ).hom)
+    (pullbackPushforwardAdjunction (Spec.map φ)) (pullbackPushforwardAdjunction (Spec.map ψ))
+    (pullbackPushforwardAdjunction (Spec.map (φ ≫ ψ)))
+    (pushforwardSpecCompΓIso φ) (pushforwardSpecCompΓIso ψ) (pushforwardSpecCompΓIso (φ ≫ ψ))
+    ((pushforwardCongr (Spec.map_comp φ ψ).symm).inv ≫ (pushforwardComp (Spec.map ψ) (Spec.map φ)).inv)
+    (ModuleCat.restrictScalarsComp φ.hom ψ.hom).hom
+    M (tilde.pullbackSpecIso φ M).hom (tilde.pullbackSpecIso ψ ((ModuleCat.extendScalars φ.hom).obj M)).hom
+    (tilde.pullbackSpecIso (φ ≫ ψ) M).hom
+    _ ((ModuleCat.extendScalarsComp φ.hom ψ.hom).hom.app M)
+    (tilde.pullbackSpecIso_unit φ M) (tilde.pullbackSpecIso_unit ψ _) (tilde.pullbackSpecIso_unit (φ ≫ ψ) M)
+    (comp_unit_app_comp_map_pullbackComp_pullbackCongr (Spec.map ψ) (Spec.map φ) (Spec.map_comp φ ψ).symm (tilde M))
+    (hε φ ψ M) (hcoh φ ψ)
+  exact this.trans (@Category.assoc _ _
+    ((Scheme.Modules.pullback (Spec.map φ) ⋙ Scheme.Modules.pullback (Spec.map ψ)).obj (tilde M)) _
+    ((Scheme.Modules.pullback (Spec.map (φ ≫ ψ))).obj (tilde M)) _ _ _ _)

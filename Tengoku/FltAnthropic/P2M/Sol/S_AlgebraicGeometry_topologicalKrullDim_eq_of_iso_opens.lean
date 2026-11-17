@@ -1,0 +1,40 @@
+import Tengoku
+import Tengoku.FltAnthropic.Theorems.Thm_AlgebraicGeometry_topologicalKrullDim_eq_ringKrullDim_of_isAffineOpen_of_isIntegral
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_AlgebraicGeometry_topologicalKrullDim_eq_of_iso_opens.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_AlgebraicGeometry_topologicalKrullDim_eq_of_iso_opens
+
+set_option autoImplicit false
+
+open CategoryTheory CategoryTheory.Limits AlgebraicGeometry TopologicalSpace
+
+universe u
+
+/--
+@isnad1 id=eq.1h8v.s7.2b21354f5c45 from=translated src=- shape=e67500cb vocab=04d5b256
+-/
+theorem solution
+    {k : Type u} [Field k] {X Y : Scheme.{u}} (fX : X ⟶ Spec (.of k)) (fY : Y ⟶ Spec (.of k))
+    [LocallyOfFiniteType fX] [LocallyOfFiniteType fY] [IsIntegral X] [IsIntegral Y]
+    (U : X.Opens) (U' : Y.Opens) (hU : (U : Set X).Nonempty) (e : (U : Scheme.{u}) ≅ (U' : Scheme.{u})) :
+    topologicalKrullDim ↥X = topologicalKrullDim ↥Y := by
+
+  obtain ⟨x, hx⟩ := hU
+  obtain ⟨_, ⟨V, hV, rfl⟩, hxV, -⟩ :=
+    (U : Scheme.{u}).isBasis_affineOpens.exists_subset_of_mem_open (Set.mem_univ (⟨x, hx⟩ : ↥U))
+      isOpen_univ
+
+  have hVX : IsAffineOpen (U.ι ''ᵁ V) := hV.image_of_isOpenImmersion U.ι
+  have hVU' : IsAffineOpen (e.hom ''ᵁ V) := hV.image_of_isOpenImmersion e.hom
+  have hVY : IsAffineOpen (U'.ι ''ᵁ (e.hom ''ᵁ V)) := hVU'.image_of_isOpenImmersion U'.ι
+  have hneX : ((U.ι ''ᵁ V : X.Opens) : Set X).Nonempty := ⟨_, ⟨_, hxV, rfl⟩⟩
+  have hneY : ((U'.ι ''ᵁ (e.hom ''ᵁ V) : Y.Opens) : Set Y).Nonempty :=
+    ⟨_, ⟨e.hom ⟨x, hx⟩, ⟨_, hxV, rfl⟩, rfl⟩⟩
+
+  let ε : Γ(X, U.ι ''ᵁ V) ≅ Γ(Y, U'.ι ''ᵁ (e.hom ''ᵁ V)) :=
+    U.ι.appIso V ≪≫ (e.hom.appIso V).symm ≪≫ (U'.ι.appIso _).symm
+  rw [AlgebraicGeometry.topologicalKrullDim_eq_ringKrullDim_of_isAffineOpen_of_isIntegral fX hVX hneX,
+    AlgebraicGeometry.topologicalKrullDim_eq_ringKrullDim_of_isAffineOpen_of_isIntegral fY hVY hneY]
+  exact ringKrullDim_eq_of_ringEquiv ε.commRingCatIsoToRingEquiv
