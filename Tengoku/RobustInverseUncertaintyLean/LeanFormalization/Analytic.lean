@@ -40,6 +40,9 @@ def realWalshTransform {n : ℕ} (f : BooleanSpace n → ℝ) :
     BooleanSpace n → ℝ :=
   fun y ↦ ∑ x, realPhase x y * f x
 
+/--
+@isnad1 id=eq.0h2v.s6.1bff68b51d35 from=translated src=- shape=eef659d2 vocab=49786a98
+-/
 theorem realWalshTransform_parseval {n : ℕ}
     (f : BooleanSpace n → ℝ) :
     realEnergy (realWalshTransform f) =
@@ -81,6 +84,9 @@ theorem realWalshTransform_parseval {n : ℕ}
       intro x hx
       ring
 
+/--
+@isnad1 id=eq.0h3v.s4.34ad62eabb39 from=translated src=- shape=5fbafa75 vocab=bd53ef9b
+-/
 theorem walshFourier_re {n : ℕ} (f : BooleanSpace n → ℂ)
     (y : BooleanSpace n) :
     (walshFourier f y).re =
@@ -100,6 +106,9 @@ theorem walshFourier_re {n : ℕ} (f : BooleanSpace n → ℂ)
       simp only [hp, Complex.mul_re, Complex.ofReal_re, Complex.ofReal_im,
         zero_mul, sub_zero]
 
+/--
+@isnad1 id=eq.0h3v.s4.21e1fefc8634 from=translated src=- shape=5fbafa75 vocab=ffb83748
+-/
 theorem walshFourier_im {n : ℕ} (f : BooleanSpace n → ℂ)
     (y : BooleanSpace n) :
     (walshFourier f y).im =
@@ -119,7 +128,9 @@ theorem walshFourier_im {n : ℕ} (f : BooleanSpace n → ℂ)
       simp only [hp, Complex.mul_im, Complex.ofReal_re, Complex.ofReal_im,
         zero_mul, add_zero]
 
-/-- Parseval for the unnormalized complex Walsh transform.-/
+/-- Parseval for the unnormalized complex Walsh transform.
+@isnad1 id=eq.0h2v.s6.3677c6ba2d63 from=translated src=- shape=63687469 vocab=ea7644b1
+-/
 theorem walshFourier_parseval {n : ℕ}
     (f : BooleanSpace n → ℂ) :
     complexEnergy (walshFourier f) =
@@ -134,11 +145,17 @@ theorem walshFourier_parseval {n : ℕ}
   simp only [realEnergy, pow_two] at hre him
   rw [hre, him, Finset.sum_add_distrib, mul_add]
 
+/--
+@isnad1 id=le.0h3v.s4.c55651760aa1 from=translated src=- shape=e84199cd vocab=102a8d9c
+-/
 theorem energyOn_nonneg {α : Type*} [Fintype α] [DecidableEq α]
     (S : Finset α) (f : α → ℂ) :
     0 ≤ energyOn S f := by
   exact Finset.sum_nonneg fun x hx ↦ Complex.normSq_nonneg _
 
+/--
+@isnad1 id=le.0h3v.s4.deb0cd72ccf5 from=translated src=- shape=4694227d vocab=b7d4c44a
+-/
 theorem energyOn_le_complexEnergy {α : Type*}
     [Fintype α] [DecidableEq α]
     (S : Finset α) (f : α → ℂ) :
@@ -153,6 +170,9 @@ def restrictTo {α : Type*} [DecidableEq α]
     (S : Finset α) (f : α → ℂ) : α → ℂ :=
   fun x ↦ if x ∈ S then f x else 0
 
+/--
+@isnad1 id=eq.0h3v.s4.dfff7cba7953 from=translated src=- shape=c34ecef2 vocab=103908ad
+-/
 theorem complexEnergy_restrictTo {α : Type*}
     [Fintype α] [DecidableEq α]
     (S : Finset α) (f : α → ℂ) :
@@ -167,6 +187,9 @@ theorem complexEnergy_restrictTo {α : Type*}
     _ = ∑ x ∈ S, Complex.normSq (f x) := by
       simp [Finset.sum_ite_mem]
 
+/--
+@isnad1 id=eq.0h3v.s5.1b157779cbf2 from=translated src=- shape=feab127a vocab=aece053e
+-/
 theorem complexEnergy_sub_restrictTo {α : Type*}
     [Fintype α] [DecidableEq α]
     (S : Finset α) (f : α → ℂ) :
@@ -209,6 +232,9 @@ def rankOneResidual {n : ℕ}
       restrictedWalshApply S v t * v s) ^ 2
 
 set_option maxHeartbeats 1000000 in
+/--
+@isnad1 id=eq.1h4v.s8.9c1d0dbf1d62 from=translated src=- shape=81ddb428 vocab=ec83ad3b
+-/
 theorem rankOneResidual_eq {n : ℕ}
     (S T : Finset (BooleanSpace n)) (v : S → ℝ)
     (hv : ∑ s : S, v s ^ 2 = 1) :
@@ -254,11 +280,17 @@ theorem rankOneResidual_eq {n : ℕ}
 def realSign (x : ℝ) : ℝ :=
   if x < 0 then -1 else 1
 
+/--
+@isnad1 id=eq.0h1v.s4.564f1ef54853 from=translated src=- shape=98bba06a vocab=19fd3c21
+-/
 @[simp]
 theorem realSign_sq (x : ℝ) : realSign x ^ 2 = 1 := by
   simp only [realSign]
   split_ifs <;> norm_num
 
+/--
+@isnad1 id=le.2h3v.s6.6b8c750d710f from=translated src=- shape=71c2ed4a vocab=f69e0e93
+-/
 theorem one_le_sq_sub_of_sign_mismatch
     {m a b : ℝ} (hm : m = 1 ∨ m = -1)
     (hbad : m ≠ realSign a * realSign b) :
@@ -294,6 +326,9 @@ def mismatchEntries {n : ℕ}
       realSign (restrictedWalshApply S v p.1) * realSign (v p.2)
 
 set_option maxHeartbeats 1000000 in
+/--
+@isnad1 id=le.0h4v.s6.bd3681474859 from=translated src=- shape=6cf9fe0e vocab=12c00b2d
+-/
 theorem mismatchEntries_card_le_residual {n : ℕ}
     (S T : Finset (BooleanSpace n)) (v : S → ℝ) :
     ((mismatchEntries S T v).card : ℝ) ≤ rankOneResidual S T v := by
@@ -331,6 +366,9 @@ theorem mismatchEntries_card_le_residual {n : ℕ}
     _ = rankOneResidual S T v := by
       rw [rankOneResidual, Fintype.sum_prod_type]
 
+/--
+@isnad1 id=eq.0h5v.s7.d1649fd2ac1b from=translated src=- shape=60e578db vocab=38307e50
+-/
 theorem real_four_point_identity {n : ℕ}
     (t t₀ s s₀ : BooleanSpace n) :
     realPhase s t * realPhase s₀ t *
@@ -347,7 +385,9 @@ def entryMismatch {n : ℕ}
 
 /--
 If the translated pair `(s+s₀,t+t₀)` is nonorthogonal, at least one corner
-of its Walsh rectangle disagrees with the rounded rank-one sign pattern.-/
+of its Walsh rectangle disagrees with the rounded rank-one sign pattern.
+@isnad1 id=or.1h8v.s9.7b37ee26bede from=translated src=- shape=d56ecb7f vocab=1d710543
+-/
 theorem rectangle_bad_implies_entryMismatch {n : ℕ}
     (S T : Finset (BooleanSpace n)) (v : S → ℝ)
     (s s₀ : S) (t t₀ : T)
@@ -407,6 +447,9 @@ def rectangleBadCount {n : ℕ}
     dot ((p.1 : BooleanSpace n) + (s₀ : BooleanSpace n))
       ((p.2 : BooleanSpace n) + (t₀ : BooleanSpace n)) = 1).card
 
+/--
+@isnad1 id=eq.0h4v.s8.a5b6ecbd8b8f from=translated src=- shape=fef619c5 vocab=480a28cc
+-/
 theorem mismatchEntries_card_eq_sum {n : ℕ}
     (S T : Finset (BooleanSpace n)) (v : S → ℝ) :
     (mismatchEntries S T v).card =
@@ -430,6 +473,9 @@ theorem mismatchEntries_card_eq_sum {n : ℕ}
         propIndicator (entryMismatch S v t s) := by
       rw [Fintype.sum_prod_type]
 
+/--
+@isnad1 id=eq.0h5v.s9.79ba53ff3402 from=translated src=- shape=0a3fa806 vocab=6a306709
+-/
 theorem rectangleBadCount_eq_sum {n : ℕ}
     (S T : Finset (BooleanSpace n)) (s₀ : S) (t₀ : T) :
     rectangleBadCount S T s₀ t₀ =
@@ -455,6 +501,9 @@ theorem rectangleBadCount_eq_sum {n : ℕ}
             ((t : BooleanSpace n) + (t₀ : BooleanSpace n)) = 1) := by
       rw [Fintype.sum_prod_type]
 
+/--
+@isnad1 id=le.0h8v.s9.96bc0de3d045 from=translated src=- shape=f661d9e0 vocab=ddb10f46
+-/
 theorem rectangle_indicator_le_mismatch_indicators {n : ℕ}
     (S T : Finset (BooleanSpace n)) (v : S → ℝ)
     (s s₀ : S) (t t₀ : T) :
@@ -475,6 +524,9 @@ theorem rectangle_indicator_le_mismatch_indicators {n : ℕ}
   · simp [propIndicator, hbad]
 
 set_option maxHeartbeats 1000000 in
+/--
+@isnad1 id=le.0h4v.s8.b5a3952bef90 from=translated src=- shape=3d7e53a4 vocab=3ef5bccf
+-/
 theorem sum_rectangleBadCount_le {n : ℕ}
     (S T : Finset (BooleanSpace n)) (v : S → ℝ) :
     (∑ s₀ : S, ∑ t₀ : T, rectangleBadCount S T s₀ t₀) ≤
@@ -553,6 +605,9 @@ theorem sum_rectangleBadCount_le {n : ℕ}
       rw [h₁, h₂, h₃, h₄, hM]
       ring
 
+/--
+@isnad1 id=ex.2h4v.s7.0bf108daec91 from=translated src=- shape=9f1605c8 vocab=ca77943f
+-/
 theorem exists_anchors_rectangleBadCount_le {n : ℕ}
     (S T : Finset (BooleanSpace n)) (v : S → ℝ)
     (hS : S.Nonempty) (hT : T.Nonempty) :
@@ -592,18 +647,27 @@ def translateFinset {n : ℕ}
     Finset (BooleanSpace n) :=
   S.image fun x ↦ x + a
 
+/--
+@isnad1 id=eq.0h3v.s4.03db73db7015 from=translated src=- shape=715860ab vocab=87dc4b53
+-/
 @[simp]
 theorem card_translateFinset {n : ℕ}
     (S : Finset (BooleanSpace n)) (a : BooleanSpace n) :
     (translateFinset S a).card = S.card := by
   exact Finset.card_image_of_injective S (add_left_injective a)
 
+/--
+@isnad1 id=mem.1h3v.s6.7ec58c42a062 from=translated src=- shape=05f7cd40 vocab=a889d259
+-/
 theorem zero_mem_translateFinset {n : ℕ}
     {S : Finset (BooleanSpace n)} {a : BooleanSpace n}
     (ha : a ∈ S) :
     0 ∈ translateFinset S a := by
   exact Finset.mem_image.mpr ⟨a, ha, add_self_eq_zero a⟩
 
+/--
+@isnad1 id=eq.0h5v.s6.97da44819a2a from=translated src=- shape=963851cc vocab=b731234f
+-/
 theorem badPairCount_translate_eq_rectangleBadCount {n : ℕ}
     (S T : Finset (BooleanSpace n)) (s₀ : S) (t₀ : T) :
     badPairCount
@@ -663,7 +727,9 @@ theorem badPairCount_translate_eq_rectangleBadCount {n : ℕ}
 
 /--
 Support inverse theorem from a real unit vector that nearly saturates the
-restricted Walsh matrix.-/
+restricted Walsh matrix.
+@isnad1 id=ex.7h5v.s10.95ef0654f544 from=translated src=- shape=b9c0dabc vocab=e7995c65
+-/
 theorem support_inverse_of_real_witness {n : ℕ}
     (S T : Finset (BooleanSpace n)) (v : S → ℝ) {q : ℝ}
     (hq0 : 0 < q) (hq : q ≤ 1 / 100)

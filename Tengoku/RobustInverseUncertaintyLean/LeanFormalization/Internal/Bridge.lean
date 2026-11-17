@@ -71,6 +71,9 @@ private theorem normalizedCosetState_eq {n : ℕ}
     dot, dotProduct]
   split_ifs <;> ring
 
+/--
+@isnad1 id=ex.1h7v.s8.79e72148f6da from=translated src=- shape=bec58277 vocab=2fc90038
+-/
 theorem robust_inverse_uncertainty_phase_from_implementation
     {n : ℕ} {ε δ q : ℝ}
     {S T : Finset (Cube n)} {f : Cube n → ℂ}

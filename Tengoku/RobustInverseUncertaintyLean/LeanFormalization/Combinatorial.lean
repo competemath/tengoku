@@ -29,16 +29,25 @@ attribute [local instance] Classical.propDecidable
 def realPhase {n : ℕ} (x y : BooleanSpace n) : ℝ :=
   if dot x y = 0 then 1 else -1
 
+/--
+@isnad1 id=eq.0h2v.s6.fdd2dfa92a76 from=translated src=- shape=38f5e75a vocab=edb26409
+-/
 @[simp]
 theorem realPhase_zero_left {n : ℕ} (y : BooleanSpace n) :
     realPhase 0 y = 1 := by
   simp [realPhase]
 
+/--
+@isnad1 id=eq.0h2v.s6.400b80fbd2a5 from=translated src=- shape=60a0e6ad vocab=edb26409
+-/
 @[simp]
 theorem realPhase_zero_right {n : ℕ} (x : BooleanSpace n) :
     realPhase x 0 = 1 := by
   simp [realPhase]
 
+/--
+@isnad1 id=iff.0h3v.s6.fe3fb72708a8 from=translated src=- shape=991ed5e0 vocab=f9259149
+-/
 @[simp]
 theorem realPhase_eq_one_iff {n : ℕ} {x y : BooleanSpace n} :
     realPhase x y = 1 ↔ dot x y = 0 := by
@@ -47,6 +56,9 @@ theorem realPhase_eq_one_iff {n : ℕ} {x y : BooleanSpace n} :
   · simp [h]
   · norm_num [h]
 
+/--
+@isnad1 id=iff.0h3v.s6.d4d66e0d48bc from=translated src=- shape=53105387 vocab=a3db3d46
+-/
 @[simp]
 theorem realPhase_eq_neg_one_iff {n : ℕ} {x y : BooleanSpace n} :
     realPhase x y = -1 ↔ dot x y = 1 := by
@@ -54,18 +66,27 @@ theorem realPhase_eq_neg_one_iff {n : ℕ} {x y : BooleanSpace n} :
   · simp [realPhase, h, show (1 : ℝ) ≠ -1 by norm_num]
   · simp [realPhase, h]
 
+/--
+@isnad1 id=eq.0h3v.s5.df73a3f26a03 from=translated src=- shape=f8527af6 vocab=4f39510d
+-/
 @[simp]
 theorem realPhase_sq {n : ℕ} (x y : BooleanSpace n) :
     realPhase x y ^ 2 = 1 := by
   simp only [realPhase]
   split_ifs <;> norm_num
 
+/--
+@isnad1 id=eq.0h3v.s4.d281c8c12896 from=translated src=- shape=0008002d vocab=794ff6cf
+-/
 @[simp]
 theorem ofReal_realPhase {n : ℕ} (x y : BooleanSpace n) :
     (realPhase x y : ℂ) = phase x y := by
   simp only [realPhase, phase, bitPhase]
   split_ifs <;> norm_num
 
+/--
+@isnad1 id=eq.0h4v.s6.5cef91c6c6fa from=translated src=- shape=6a42c977 vocab=38307e50
+-/
 @[simp]
 theorem realPhase_add_left {n : ℕ} (x y z : BooleanSpace n) :
     realPhase (x + y) z = realPhase x z * realPhase y z := by
@@ -77,6 +98,9 @@ theorem realPhase_add_left {n : ℕ} (x y z : BooleanSpace n) :
     _ = (realPhase x z * realPhase y z : ℝ) := by
       rw [Complex.ofReal_mul, ofReal_realPhase, ofReal_realPhase]
 
+/--
+@isnad1 id=eq.0h4v.s6.20ed00f5c7f8 from=translated src=- shape=dbcefff3 vocab=38307e50
+-/
 @[simp]
 theorem realPhase_add_right {n : ℕ} (x y z : BooleanSpace n) :
     realPhase x (y + z) = realPhase x y * realPhase x z := by
@@ -88,6 +112,9 @@ theorem realPhase_add_right {n : ℕ} (x y z : BooleanSpace n) :
     _ = (realPhase x y * realPhase x z : ℝ) := by
       rw [Complex.ofReal_mul, ofReal_realPhase, ofReal_realPhase]
 
+/--
+@isnad1 id=eq.0h3v.s4.039a4449dcab from=translated src=- shape=7a5478ec vocab=5422cfa5
+-/
 theorem realPhase_comm {n : ℕ} (x y : BooleanSpace n) :
     realPhase x y = realPhase y x := by
   simp [realPhase, dot_comm]
@@ -99,10 +126,16 @@ def realPhaseChar {n : ℕ} (y : BooleanSpace n) :
   map_zero_eq_one' := realPhase_zero_left y
   map_add_eq_mul' := fun x z ↦ realPhase_add_left x z y
 
+/--
+@isnad1 id=eq.0h3v.s7.b3b5a85ff604 from=translated src=- shape=13981332 vocab=aa2ed4bc
+-/
 @[simp]
 theorem realPhaseChar_apply {n : ℕ} (x y : BooleanSpace n) :
     realPhaseChar y x = realPhase x y := rfl
 
+/--
+@isnad1 id=iff.0h2v.s8.cff06b0422cf from=translated src=- shape=36d4868c vocab=5cf0a5df
+-/
 @[simp]
 theorem realPhaseChar_eq_zero_iff {n : ℕ} (y : BooleanSpace n) :
     realPhaseChar y = 0 ↔ y = 0 := by
@@ -116,7 +149,9 @@ theorem realPhaseChar_eq_zero_iff {n : ℕ} (y : BooleanSpace n) :
     ext x
     simp [realPhaseChar]
 
-/-- Orthogonality of the real Walsh characters on the Boolean cube.-/
+/-- Orthogonality of the real Walsh characters on the Boolean cube.
+@isnad1 id=eq.0h2v.s7.d2087eed9cef from=translated src=- shape=cc7c232c vocab=4e26b2e9
+-/
 theorem sum_realPhase_eq_ite {n : ℕ} (y : BooleanSpace n) :
     ∑ x : BooleanSpace n, realPhase x y =
       if y = 0 then (Fintype.card (BooleanSpace n) : ℝ) else 0 := by
@@ -127,6 +162,9 @@ def realWalshSum {n : ℕ} (A : Finset (BooleanSpace n))
     (y : BooleanSpace n) : ℝ :=
   ∑ x ∈ A, realPhase x y
 
+/--
+@isnad1 id=eq.0h3v.s7.d83f96217ee3 from=translated src=- shape=c8f06c9c vocab=57c2f9c8
+-/
 theorem realWalshSum_eq_card_sub_two_bad {n : ℕ}
     (A : Finset (BooleanSpace n)) (y : BooleanSpace n) :
     realWalshSum A y =
@@ -150,6 +188,9 @@ theorem realWalshSum_eq_card_sub_two_bad {n : ℕ}
       rw [← Finset.mul_sum]
       simp
 
+/--
+@isnad1 id=eq.0h3v.s7.0c236200a7cf from=translated src=- shape=f1c8f5b0 vocab=dd403120
+-/
 theorem sum_realPhase_mul_realPhase {n : ℕ}
     (x z : BooleanSpace n) :
     ∑ y : BooleanSpace n, realPhase x y * realPhase z y =
@@ -170,7 +211,9 @@ theorem sum_realPhase_mul_realPhase {n : ℕ}
       · simp [h]
       · simp [h, add_eq_zero_iff_eq_neg, neg_eq_self]
 
-/-- Parseval for an indicator, in unnormalized real Walsh coordinates.-/
+/-- Parseval for an indicator, in unnormalized real Walsh coordinates.
+@isnad1 id=eq.0h2v.s6.d3e3d2541dbd from=translated src=- shape=36c1515b vocab=4d70afaa
+-/
 theorem realWalshSum_parseval {n : ℕ}
     (A : Finset (BooleanSpace n)) :
     ∑ y : BooleanSpace n, realWalshSum A y ^ 2 =
@@ -203,16 +246,25 @@ def badCount {n : ℕ} (A : Finset (BooleanSpace n))
 def badPairCount {n : ℕ} (A B : Finset (BooleanSpace n)) : ℕ :=
   ∑ y ∈ B, badCount A y
 
+/--
+@isnad1 id=eq.0h2v.s6.6b12a9275900 from=translated src=- shape=56f57d2f vocab=71beb6ef
+-/
 @[simp]
 theorem badCount_zero {n : ℕ} (A : Finset (BooleanSpace n)) :
     badCount A 0 = 0 := by
   simp [badCount]
 
+/--
+@isnad1 id=le.0h3v.s4.60821b995dc7 from=translated src=- shape=9f3a6a53 vocab=cdb33ed7
+-/
 theorem badCount_le_card {n : ℕ} (A : Finset (BooleanSpace n))
     (y : BooleanSpace n) :
     badCount A y ≤ A.card := by
   exact Finset.card_filter_le _ _
 
+/--
+@isnad1 id=le.0h4v.s6.1b8b0bf0f103 from=translated src=- shape=345ce289 vocab=8b8177d6
+-/
 theorem badCount_add_le {n : ℕ} (A : Finset (BooleanSpace n))
     (y z : BooleanSpace n) :
     badCount A (y + z) ≤ badCount A y + badCount A z := by
@@ -242,11 +294,17 @@ def lowBiasSet {n : ℕ} (A B : Finset (BooleanSpace n)) (q : ℝ) :
     Finset (BooleanSpace n) :=
   B.filter fun y ↦ (badCount A y : ℝ) ≤ q * A.card
 
+/--
+@isnad1 id=le.0h4v.s5.e4267384486f from=translated src=- shape=77100776 vocab=b9b04091
+-/
 theorem lowBiasSet_subset_right {n : ℕ}
     (A B : Finset (BooleanSpace n)) (q : ℝ) :
     lowBiasSet A B q ⊆ B :=
   Finset.filter_subset _ _
 
+/--
+@isnad1 id=mem.2h4v.s7.f66896a7ba27 from=translated src=- shape=019d7127 vocab=63b938cc
+-/
 theorem zero_mem_lowBiasSet {n : ℕ}
     (A B : Finset (BooleanSpace n)) {q : ℝ}
     (hzero : 0 ∈ B) (hq : 0 ≤ q) :
@@ -254,6 +312,9 @@ theorem zero_mem_lowBiasSet {n : ℕ}
   simp [lowBiasSet, hzero]
   positivity
 
+/--
+@isnad1 id=eq.0h3v.s5.7769950ee390 from=translated src=- shape=fd016b84 vocab=8ee77b90
+-/
 theorem badPairCount_eq_sum {n : ℕ}
     (A B : Finset (BooleanSpace n)) :
     (badPairCount A B : ℝ) =
@@ -262,7 +323,9 @@ theorem badPairCount_eq_sum {n : ℕ}
 
 /--
 Finite Markov inequality for bad counts.  The denominator-free hypothesis is
-`badPairCount A B ≤ q² |A| |B|`.-/
+`badPairCount A B ≤ q² |A| |B|`.
+@isnad1 id=le.2h4v.s7.d32d55c3e2f9 from=translated src=- shape=db02de98 vocab=29fd12e3
+-/
 theorem card_sdiff_lowBiasSet_le {n : ℕ}
     (A B : Finset (BooleanSpace n)) {q : ℝ}
     (hq : 0 ≤ q)
@@ -290,6 +353,9 @@ theorem card_sdiff_lowBiasSet_le {n : ℕ}
     _ = (badPairCount A B : ℝ) := (badPairCount_eq_sum A B).symm
     _ ≤ q ^ 2 * A.card * B.card := hbad
 
+/--
+@isnad1 id=le.3h4v.s6.a57ff27bba96 from=translated src=- shape=fc06400a vocab=72b28957
+-/
 theorem card_lowBiasSet_lower {n : ℕ}
     (A B : Finset (BooleanSpace n)) {q : ℝ}
     (hq : 0 < q) (hA : A.Nonempty)
@@ -316,6 +382,9 @@ def highBiasSet {n : ℕ} (A : Finset (BooleanSpace n)) (q : ℝ) :
   Finset.univ.filter fun y ↦
     (badCount A y : ℝ) ≤ 2 * q * A.card
 
+/--
+@isnad1 id=le.0h4v.s7.fc19591ed418 from=translated src=- shape=a3458a10 vocab=97023014
+-/
 theorem lowBiasSet_add_self_subset_highBiasSet {n : ℕ}
     (A B : Finset (BooleanSpace n)) {q : ℝ} :
     lowBiasSet A B q + lowBiasSet A B q ⊆ highBiasSet A q := by
@@ -331,7 +400,9 @@ theorem lowBiasSet_add_self_subset_highBiasSet {n : ℕ}
     exact_mod_cast hadd
   nlinarith
 
-/-- Parseval bounds the number of frequencies with very high Walsh bias.-/
+/-- Parseval bounds the number of frequencies with very high Walsh bias.
+@isnad1 id=le.2h3v.s7.1e2bd80b6c99 from=translated src=- shape=31d6328b vocab=4cfe20c5
+-/
 theorem highBiasSet_card_bound {n : ℕ}
     (A : Finset (BooleanSpace n)) {q : ℝ}
     (hq0 : 0 ≤ q) (hq4 : 4 * q ≤ 1) :
@@ -370,6 +441,9 @@ theorem highBiasSet_card_bound {n : ℕ}
     _ = Fintype.card (BooleanSpace n) * A.card :=
       realWalshSum_parseval A
 
+/--
+@isnad1 id=le.2h4v.s8.e66526a11b7a from=translated src=- shape=0c04a98a vocab=0e166e98
+-/
 theorem lowBiasSet_sum_card_bound {n : ℕ}
     (A B : Finset (BooleanSpace n)) {q : ℝ}
     (hq0 : 0 ≤ q) (hq4 : 4 * q ≤ 1) :
@@ -389,7 +463,9 @@ theorem lowBiasSet_sum_card_bound {n : ℕ}
     _ ≤ (Fintype.card (BooleanSpace n) : ℝ) * (A.card : ℝ) :=
       highBiasSet_card_bound A hq0 hq4
 
-/-- The elementary numerical estimate behind the `< 3/2` threshold.-/
+/-- The elementary numerical estimate behind the `< 3/2` threshold.
+@isnad1 id=lt.7h6v.s7.dc7bf38fd6c1 from=translated src=- shape=2260fee3 vocab=e7bc5859
+-/
 theorem numerical_doubling_bound
     {q a b N x y : ℝ}
     (hq0 : 0 ≤ q) (hq : q ≤ 1 / 100)
@@ -450,7 +526,9 @@ theorem numerical_doubling_bound
 
 /--
 For saturated almost-orthogonal sets, the low-bias subset has doubling
-strictly below `3/2`.-/
+strictly below `3/2`.
+@isnad1 id=lt.6h4v.s8.c5912a92a06a from=translated src=- shape=c6247892 vocab=978c6fca
+-/
 theorem lowBiasSet_doubling_lt_three_halves {n : ℕ}
     (A B : Finset (BooleanSpace n)) {q : ℝ}
     (hq0 : 0 < q) (hq : q ≤ 1 / 100)
@@ -497,7 +575,9 @@ theorem lowBiasSet_doubling_lt_three_halves {n : ℕ}
 
 /--
 The additive form of the sharp small-doubling theorem, specialized to the
-Boolean vector space and returned as a `ZMod 2` submodule.-/
+Boolean vector space and returned as a `ZMod 2` submodule.
+@isnad1 id=ex.1h2v.s10.23e283cc6a13 from=translated src=- shape=c1500e13 vocab=a20205bb
+-/
 theorem small_sumset_is_submodule {n : ℕ}
     (X : Finset (BooleanSpace n))
     (hX : ((X + X).card : ℚ) < (3 / 2 : ℚ) * X.card) :
@@ -555,6 +635,9 @@ def submodulePoints {n : ℕ}
     Finset (BooleanSpace n) :=
   Finset.univ.filter fun x ↦ x ∈ L
 
+/--
+@isnad1 id=iff.0h3v.s9.a68f9cf34204 from=translated src=- shape=3269eace vocab=131fa41f
+-/
 @[simp]
 theorem mem_submodulePoints {n : ℕ}
     {L : Submodule (ZMod 2) (BooleanSpace n)}
@@ -562,6 +645,9 @@ theorem mem_submodulePoints {n : ℕ}
     x ∈ submodulePoints L ↔ x ∈ L := by
   simp [submodulePoints]
 
+/--
+@isnad1 id=eq.0h2v.s11.a0242ca64540 from=translated src=- shape=78d2a682 vocab=ead9a421
+-/
 @[simp]
 theorem card_submodulePoints {n : ℕ}
     (L : Submodule (ZMod 2) (BooleanSpace n)) :
@@ -569,6 +655,9 @@ theorem card_submodulePoints {n : ℕ}
   rw [Fintype.card_subtype]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.af2fc9743a31 from=translated src=- shape=fb73a3d9 vocab=6db46670
+-/
 theorem submodulePoints_perp_card_mul {n : ℕ}
     (L : Submodule (ZMod 2) (BooleanSpace n)) :
     (submodulePoints L).card * (submodulePoints (perp L)).card = 2 ^ n := by
@@ -587,12 +676,18 @@ def restrictedRealPhaseChar {n : ℕ}
     (y : BooleanSpace n) : AddChar L ℝ :=
   (realPhaseChar y).compAddMonoidHom L.subtype.toAddMonoidHom
 
+/--
+@isnad1 id=eq.0h4v.s12.44a9f7a93abf from=translated src=- shape=b3095540 vocab=a8c7dde1
+-/
 @[simp]
 theorem restrictedRealPhaseChar_apply {n : ℕ}
     (L : Submodule (ZMod 2) (BooleanSpace n))
     (y : BooleanSpace n) (x : L) :
     restrictedRealPhaseChar L y x = realPhase x y := rfl
 
+/--
+@isnad1 id=iff.0h3v.s13.cb474151f1ce from=translated src=- shape=8e6f5944 vocab=af1f136f
+-/
 @[simp]
 theorem restrictedRealPhaseChar_eq_zero_iff {n : ℕ}
     (L : Submodule (ZMod 2) (BooleanSpace n))
@@ -610,6 +705,9 @@ theorem restrictedRealPhaseChar_eq_zero_iff {n : ℕ}
     ext x
     simp [restrictedRealPhaseChar, realPhase, hy x x.property]
 
+/--
+@isnad1 id=eq.0h3v.s12.2bdc692f4e98 from=translated src=- shape=8e9288ca vocab=5cc933ff
+-/
 theorem sum_realPhase_submodule_eq_ite {n : ℕ}
     (L : Submodule (ZMod 2) (BooleanSpace n))
     (y : BooleanSpace n) :
@@ -617,6 +715,9 @@ theorem sum_realPhase_submodule_eq_ite {n : ℕ}
       if y ∈ perp L then (Fintype.card L : ℝ) else 0 := by
   simpa using AddChar.sum_eq_ite (restrictedRealPhaseChar L y)
 
+/--
+@isnad1 id=eq.0h3v.s11.90862da6554f from=translated src=- shape=fd2f6d33 vocab=ecfba68a
+-/
 theorem realWalshSum_submodulePoints {n : ℕ}
     (L : Submodule (ZMod 2) (BooleanSpace n))
     (y : BooleanSpace n) :
@@ -627,7 +728,9 @@ theorem realWalshSum_submodulePoints {n : ℕ}
   exact Finset.sum_subtype (p := fun x ↦ x ∈ L)
     (submodulePoints L) (by simp) (fun x ↦ realPhase x y)
 
-/-- Outside `Lᗮ`, exactly half of `L` pairs nontrivially with `y`.-/
+/-- Outside `Lᗮ`, exactly half of `L` pairs nontrivially with `y`.
+@isnad1 id=eq.1h3v.s9.7b1a105b0978 from=translated src=- shape=70e4ceb2 vocab=ca403943
+-/
 theorem two_mul_badCount_submodulePoints {n : ℕ}
     (L : Submodule (ZMod 2) (BooleanSpace n))
     (y : BooleanSpace n) (hy : y ∉ perp L) :
@@ -642,6 +745,9 @@ theorem two_mul_badCount_submodulePoints {n : ℕ}
     ((submodulePoints L).filter fun x ↦ dot x y = 1).card =
       (submodulePoints L).card)
 
+/--
+@isnad1 id=eq.0h3v.s4.dd5adf5d0414 from=translated src=- shape=8e8057c5 vocab=3a2536b0
+-/
 theorem badPairCount_comm {n : ℕ}
     (A B : Finset (BooleanSpace n)) :
     badPairCount A B = badPairCount B A := by
@@ -655,7 +761,9 @@ theorem badPairCount_comm {n : ℕ}
   intro b hb
   rw [dot_comm]
 
-/-- Removing points can reduce a bad count by at most the number removed.-/
+/-- Removing points can reduce a bad count by at most the number removed.
+@isnad1 id=le.1h4v.s6.ed84f80fe0f9 from=translated src=- shape=8bd3ac4d vocab=0a455457
+-/
 theorem badCount_le_badCount_add_sdiff {n : ℕ}
     {X L : Finset (BooleanSpace n)} (hXL : X ⊆ L)
     (y : BooleanSpace n) :
@@ -677,7 +785,9 @@ theorem badCount_le_badCount_add_sdiff {n : ℕ}
       Finset.card_union_le _ _
     _ = badCount X y + (L \ X).card := rfl
 
-/-- A coarse upper bound for the high-bias sumset.-/
+/-- A coarse upper bound for the high-bias sumset.
+@isnad1 id=le.6h5v.s7.ccd7f43e1d89 from=translated src=- shape=b5c617e9 vocab=762a6581
+-/
 theorem numerical_sumset_upper
     {q a b N y : ℝ}
     (hq0 : 0 ≤ q) (hq : q ≤ 1 / 100)
@@ -730,7 +840,9 @@ theorem numerical_sumset_upper
     _ ≤ (1 + 10 * q) * b :=
       mul_le_mul_of_nonneg_left htoB (by linarith)
 
-/-- Saturation and a large subgroup force its orthogonal complement to be small.-/
+/-- Saturation and a large subgroup force its orthogonal complement to be small.
+@isnad1 id=le.8h7v.s7.3b2ae8ebabd7 from=translated src=- shape=242fecb4 vocab=8b7124b8
+-/
 theorem numerical_perp_upper
     {q a b N x l c : ℝ}
     (hq0 : 0 ≤ q) (hq : q ≤ 1 / 100)
@@ -771,12 +883,18 @@ theorem numerical_perp_upper
     _ ≤ (1 + 3 * q) * a :=
       mul_le_mul_of_nonneg_left hbase (by linarith)
 
+/--
+@isnad1 id=le.0h3v.s5.a3dc2b71d1ba from=translated src=- shape=58c4775a vocab=385a9b8c
+-/
 theorem card_symmDiff_le_sdiff_add_sdiff {α : Type*}
     [DecidableEq α] (S T : Finset α) :
     (S ∆ T).card ≤ (S \ T).card + (T \ S).card := by
   rw [Finset.symmDiff_def]
   exact Finset.card_union_le _ _
 
+/--
+@isnad1 id=le.2h4v.s6.b1829179789d from=translated src=- shape=759485a2 vocab=385a9b8c
+-/
 theorem card_symmDiff_le_of_common_subset {α : Type*}
     [DecidableEq α] {X S T : Finset α}
     (hXS : X ⊆ S) (hXT : X ⊆ T) :
@@ -799,7 +917,9 @@ theorem card_symmDiff_le_of_common_subset {α : Type*}
 Quantitative saturated almost-orthogonality on the Boolean cube.
 
 The hypotheses use counts rather than probabilities, so no nonzero
-denominators are hidden.  The constants are deliberately coarse.-/
+denominators are hidden.  The constants are deliberately coarse.
+@isnad1 id=ex.6h4v.s9.7e5cffb9e223 from=translated src=- shape=060eecdb vocab=fabd756a
+-/
 theorem saturated_almost_orthogonality {n : ℕ}
     (A B : Finset (BooleanSpace n)) {q : ℝ}
     (hq0 : 0 < q) (hq : q ≤ 1 / 100)

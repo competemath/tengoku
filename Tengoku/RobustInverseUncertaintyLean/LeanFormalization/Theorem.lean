@@ -74,7 +74,9 @@ $$
 $$
 
 Thus every near-minimizer of Boolean support uncertainty is quantitatively
-close, up to global phase, to a normalized hidden-coset state.-/
+close, up to global phase, to a normalized hidden-coset state.
+@isnad1 id=ex.1h7v.s8.79e72148f6da from=translated src=- shape=bec58277 vocab=2fc90038
+-/
 theorem robust_inverse_uncertainty_phase {n : ℕ} {ε δ q : ℝ}
     {S T : Finset (Cube n)} {f : Cube n → ℂ}
     (h : NearExtremizer ε δ q S T f) :

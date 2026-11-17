@@ -28,6 +28,9 @@ noncomputable local instance robustSubmoduleFintype {n : ℕ}
     {H : Submodule (ZMod 2) (BooleanSpace n)} : Fintype H :=
   Fintype.ofFinite H
 
+/--
+@isnad1 id=eq.0h3v.s4.18e345864b79 from=translated src=- shape=3e810e78 vocab=5790e008
+-/
 theorem fintype_card_irrel (α : Type*) (i₁ i₂ : Fintype α) :
     @Fintype.card α i₁ = @Fintype.card α i₂ :=
   @Fintype.card_congr α α i₁ i₂ (Equiv.refl α)
@@ -42,6 +45,9 @@ def restrictedImagPart {n : ℕ} (S : Finset (BooleanSpace n))
     (f : BooleanSpace n → ℂ) : S → ℝ :=
   fun s ↦ (f s).im
 
+/--
+@isnad1 id=eq.0h3v.s8.3c707215277a from=translated src=- shape=6f6ddc84 vocab=104cdb8c
+-/
 theorem restricted_parts_energy {n : ℕ}
     (S : Finset (BooleanSpace n)) (f : BooleanSpace n → ℂ) :
     (∑ s : S, restrictedRealPart S f s ^ 2) +
@@ -62,6 +68,9 @@ theorem restricted_parts_energy {n : ℕ}
       rw [Finset.sum_subtype]
       simp
 
+/--
+@isnad1 id=eq.0h4v.s6.324b903b2d72 from=translated src=- shape=6130ce84 vocab=e5034a4d
+-/
 theorem walsh_restrictTo_re {n : ℕ}
     (S : Finset (BooleanSpace n)) (f : BooleanSpace n → ℂ)
     (t : BooleanSpace n) :
@@ -85,6 +94,9 @@ theorem walsh_restrictTo_re {n : ℕ}
       · rfl
       · simp
 
+/--
+@isnad1 id=eq.0h4v.s6.7ef6b17fb60d from=translated src=- shape=6130ce84 vocab=7ba550a6
+-/
 theorem walsh_restrictTo_im {n : ℕ}
     (S : Finset (BooleanSpace n)) (f : BooleanSpace n → ℂ)
     (t : BooleanSpace n) :
@@ -108,6 +120,9 @@ theorem walsh_restrictTo_im {n : ℕ}
       · rfl
       · simp
 
+/--
+@isnad1 id=eq.0h4v.s8.943bbfe85eeb from=translated src=- shape=9d09b690 vocab=7ef4e0c0
+-/
 theorem restricted_walsh_parts_energy {n : ℕ}
     (S T : Finset (BooleanSpace n)) (f : BooleanSpace n → ℂ) :
     (∑ t : T,
@@ -133,6 +148,9 @@ theorem restricted_walsh_parts_energy {n : ℕ}
       rw [Finset.sum_subtype]
       simp
 
+/--
+@isnad1 id=eq.1h2v.s6.73e1bb3b83c3 from=translated src=- shape=c5ce02b2 vocab=332ba12d
+-/
 theorem real_vector_eq_zero_of_energy_eq_zero {α : Type*} [Fintype α]
     (u : α → ℝ) (hu : ∑ x, u x ^ 2 = 0) :
     u = 0 := by
@@ -142,6 +160,9 @@ theorem real_vector_eq_zero_of_energy_eq_zero {α : Type*} [Fintype α]
       (fun i _ ↦ sq_nonneg (u i))).mp hu x (Finset.mem_univ x)
   exact (sq_eq_zero_iff).mp hx
 
+/--
+@isnad1 id=eq.1h4v.s7.4c7a848491c0 from=translated src=- shape=2c704eb9 vocab=caf7af4a
+-/
 theorem restrictedWalshApply_eq_zero_of_energy_eq_zero {n : ℕ}
     (S : Finset (BooleanSpace n)) (u : S → ℝ)
     (hu : ∑ s : S, u s ^ 2 = 0) :
@@ -150,7 +171,9 @@ theorem restrictedWalshApply_eq_zero_of_energy_eq_zero {n : ℕ}
   intro t
   simp [hzero, restrictedWalshApply]
 
-/-- Normalize a nonzero real vector without changing its Walsh-energy ratio.-/
+/-- Normalize a nonzero real vector without changing its Walsh-energy ratio.
+@isnad1 id=ex.1h3v.s8.44d55f358133 from=translated src=- shape=97555af5 vocab=3aa3ec1f
+-/
 theorem normalize_real_witness {n : ℕ}
     (S : Finset (BooleanSpace n)) (u : S → ℝ)
     (hu : 0 < ∑ s : S, u s ^ 2) :
@@ -194,7 +217,9 @@ theorem normalize_real_witness {n : ℕ}
 
 /--
 If two real components together have Walsh-energy ratio at least `c`, one
-nonzero normalized component has ratio at least `c`.-/
+nonzero normalized component has ratio at least `c`.
+@isnad1 id=ex.2h6v.s10.863b0febee38 from=translated src=- shape=bf63ab91 vocab=7dc3d832
+-/
 theorem exists_normalized_real_component {n : ℕ}
     (S T : Finset (BooleanSpace n)) (u₁ u₂ : S → ℝ) (c : ℝ)
     (hpositive : 0 < (∑ s : S, u₁ s ^ 2) + ∑ s : S, u₂ s ^ 2)
@@ -285,7 +310,9 @@ theorem exists_normalized_real_component {n : ℕ}
     change c ≤ A₂ / e₂
     exact (le_div_iff₀ he).2 hratio_component
 
-/-- Complex near-extremizers yield real normalized near-extremizers.-/
+/-- Complex near-extremizers yield real normalized near-extremizers.
+@isnad1 id=ex.2h5v.s9.a93942c2f6ca from=translated src=- shape=db4d0b9a vocab=9cef1e41
+-/
 theorem exists_real_witness_of_complex_restriction {n : ℕ}
     (S T : Finset (BooleanSpace n)) (f : BooleanSpace n → ℂ) (c : ℝ)
     (hSenergy : 0 < energyOn S f)
@@ -300,7 +327,9 @@ theorem exists_real_witness_of_complex_restriction {n : ℕ}
   · rwa [restricted_parts_energy]
   · rwa [restricted_parts_energy, restricted_walsh_parts_energy]
 
-/-- The support inverse theorem with a genuinely complex input vector.-/
+/-- The support inverse theorem with a genuinely complex input vector.
+@isnad1 id=ex.7h5v.s10.72fab4ea730d from=translated src=- shape=b8a4d1ef vocab=5a58ca08
+-/
 theorem support_inverse_of_complex_restriction {n : ℕ}
     (S T : Finset (BooleanSpace n)) (f : BooleanSpace n → ℂ) {q : ℝ}
     (hq0 : 0 < q) (hq : q ≤ 1 / 100)
@@ -326,11 +355,17 @@ theorem support_inverse_of_complex_restriction {n : ℕ}
   exact support_inverse_of_real_witness S T v hq0 hq hS hT hv
     hvEnergy hproduct
 
+/--
+@isnad1 id=eq.0h3v.s4.2c59576443d5 from=translated src=- shape=4ffe586d vocab=6600e819
+-/
 theorem abs_realPhase {n : ℕ} (x y : BooleanSpace n) :
     |realPhase x y| = 1 := by
   simp only [realPhase]
   split_ifs <;> norm_num
 
+/--
+@isnad1 id=eq.0h1v.s4.779f03c19f1c from=translated src=- shape=9a232c61 vocab=e7136875
+-/
 theorem realSign_mul_self_eq_abs (x : ℝ) :
     realSign x * x = |x| := by
   by_cases hx : x < 0
@@ -338,7 +373,9 @@ theorem realSign_mul_self_eq_abs (x : ℝ) :
   · have hx0 : 0 ≤ x := le_of_not_gt hx
     simp [realSign, hx, abs_of_nonneg hx0]
 
-/-- Every Walsh coefficient is bounded by the input's `ℓ₁` norm.-/
+/-- Every Walsh coefficient is bounded by the input's `ℓ₁` norm.
+@isnad1 id=le.0h4v.s7.c5c1ab4a5529 from=translated src=- shape=8e2ccd77 vocab=b56f5f86
+-/
 theorem abs_restrictedWalshApply_le {n : ℕ}
     (S : Finset (BooleanSpace n)) (u : S → ℝ)
     (t : BooleanSpace n) :
@@ -354,6 +391,9 @@ theorem abs_restrictedWalshApply_le {n : ℕ}
       intro s hs
       rw [abs_mul, abs_realPhase, one_mul]
 
+/--
+@isnad1 id=le.0h4v.s7.ca0ddb32ae12 from=translated src=- shape=7b94a31f vocab=1543fdc6
+-/
 theorem restrictedWalshApply_sq_le_l1_sq {n : ℕ}
     (S : Finset (BooleanSpace n)) (u : S → ℝ)
     (t : BooleanSpace n) :
@@ -363,6 +403,9 @@ theorem restrictedWalshApply_sq_le_l1_sq {n : ℕ}
   simpa only [sq_abs] using
     (sq_le_sq₀ (abs_nonneg (restrictedWalshApply S u t)) hsum).2 h
 
+/--
+@isnad1 id=le.0h4v.s8.e2448d194411 from=translated src=- shape=a2d3fae0 vocab=161b391f
+-/
 theorem restrictedWalsh_energy_le_card_mul_l1_sq {n : ℕ}
     (S T : Finset (BooleanSpace n)) (u : S → ℝ) :
     (∑ t : T, restrictedWalshApply S u t ^ 2) ≤
@@ -375,6 +418,9 @@ theorem restrictedWalsh_energy_le_card_mul_l1_sq {n : ℕ}
       exact restrictedWalshApply_sq_le_l1_sq S u t
     _ = T.card * (∑ s : S, |u s|) ^ 2 := by simp
 
+/--
+@isnad1 id=le.0h2v.s6.d9c65ed1f814 from=translated src=- shape=b158bebd vocab=fff8e9e1
+-/
 theorem l1_sq_le_card_mul_energy {α : Type*} [Fintype α]
     (u : α → ℝ) :
     (∑ x, |u x|) ^ 2 ≤
@@ -389,12 +435,18 @@ def flatRealApprox {α : Type*} [Fintype α]
   fun x ↦ realSign (u x) *
     ((∑ y, |u y|) / Fintype.card α)
 
+/--
+@isnad1 id=eq.0h3v.s6.afc9238a67a0 from=translated src=- shape=9089222d vocab=84c955bf
+-/
 theorem flatRealApprox_sq {α : Type*} [Fintype α]
     (u : α → ℝ) (x : α) :
     flatRealApprox u x ^ 2 =
       ((∑ y, |u y|) / Fintype.card α) ^ 2 := by
   simp [flatRealApprox, mul_pow]
 
+/--
+@isnad1 id=eq.0h2v.s7.f3b1342f9648 from=translated src=- shape=2d043d89 vocab=210b1667
+-/
 theorem flatRealApprox_error_eq {α : Type*} [Fintype α]
     [Nonempty α] (u : α → ℝ) :
     (∑ x, (u x - flatRealApprox u x) ^ 2) =
@@ -455,7 +507,9 @@ theorem flatRealApprox_error_eq {α : Type*} [Fintype α]
 
 /--
 Near-maximal restricted Walsh energy forces a real vector to be close to a
-signed constant-magnitude vector.-/
+signed constant-magnitude vector.
+@isnad1 id=le.2h4v.s8.55b65259a07f from=translated src=- shape=943072a3 vocab=157cf48d
+-/
 theorem flatRealApprox_error_le_restricted_defect {n : ℕ}
     (S T : Finset (BooleanSpace n)) (u : S → ℝ)
     (hS : S.Nonempty) (hT : T.Nonempty) :
@@ -489,7 +543,9 @@ theorem flatRealApprox_error_le_restricted_defect {n : ℕ}
 
 /--
 Mass on an exceptional subset is bounded by the flatness error plus the
-relative size of that subset.-/
+relative size of that subset.
+@isnad1 id=le.0h3v.s7.9509ffed54ce from=translated src=- shape=70f65061 vocab=fa73cf24
+-/
 theorem real_mass_on_finset_le_flat_error {α : Type*} [Fintype α]
     [Nonempty α] (u : α → ℝ) (U : Finset α) :
     (∑ x ∈ U, u x ^ 2) ≤
@@ -547,7 +603,9 @@ theorem real_mass_on_finset_le_flat_error {α : Type*} [Fintype α]
       simp [e, m]
       ring
 
-/-- A direct quantitative flatness bound on any exceptional subset of `S`.-/
+/-- A direct quantitative flatness bound on any exceptional subset of `S`.
+@isnad1 id=le.2h5v.s9.3601d0d40d07 from=translated src=- shape=7325f1e6 vocab=e50e18ef
+-/
 theorem real_mass_on_finset_le_restricted_defect {n : ℕ}
     (S T : Finset (BooleanSpace n)) (u : S → ℝ) (U : Finset S)
     (hS : S.Nonempty) (hT : T.Nonempty) :
@@ -575,6 +633,9 @@ def affineSubspacePoints {n : ℕ}
     Finset (BooleanSpace n) :=
   translateFinset (submodulePoints H) a
 
+/--
+@isnad1 id=eq.0h3v.s9.c074734f213b from=translated src=- shape=51280efc vocab=4a85cdef
+-/
 @[simp]
 theorem card_affineSubspacePoints {n : ℕ}
     (H : Submodule (ZMod 2) (BooleanSpace n)) (a : BooleanSpace n) :
@@ -582,6 +643,9 @@ theorem card_affineSubspacePoints {n : ℕ}
   rw [affineSubspacePoints, card_translateFinset, card_submodulePoints]
   exact fintype_card_irrel H _ _
 
+/--
+@isnad1 id=iff.0h4v.s9.832e546a4b0a from=translated src=- shape=ad3f2113 vocab=5212ae87
+-/
 @[simp]
 theorem mem_affineSubspacePoints {n : ℕ}
     (H : Submodule (ZMod 2) (BooleanSpace n)) (a x : BooleanSpace n) :
@@ -601,6 +665,9 @@ theorem mem_affineSubspacePoints {n : ℕ}
     · rwa [mem_submodulePoints]
     · simp [add_assoc]
 
+/--
+@isnad1 id=eq.0h3v.s4.9ed61f9a7730 from=translated src=- shape=4b81dbe0 vocab=db15e9ac
+-/
 @[simp]
 theorem translateFinset_twice {n : ℕ}
     (A : Finset (BooleanSpace n)) (a : BooleanSpace n) :
@@ -614,6 +681,9 @@ theorem translateFinset_twice {n : ℕ}
     refine ⟨x + a, ?_, by simp [add_assoc]⟩
     exact ⟨x, hx, rfl⟩
 
+/--
+@isnad1 id=eq.0h4v.s8.64f7bf5141d9 from=translated src=- shape=c5514fce vocab=05b03fff
+-/
 theorem card_symmDiff_affine_eq_translated {n : ℕ}
     (S : Finset (BooleanSpace n))
     (H : Submodule (ZMod 2) (BooleanSpace n)) (a : BooleanSpace n) :
@@ -641,6 +711,9 @@ def missedSubtype {α : Type*} [DecidableEq α]
     (S C : Finset α) : Finset S :=
   Finset.univ.filter fun s ↦ (s : α) ∉ C
 
+/--
+@isnad1 id=eq.0h3v.s5.c37d4f2ae57f from=translated src=- shape=02598623 vocab=5d802a86
+-/
 @[simp]
 theorem card_missedSubtype {α : Type*} [DecidableEq α]
     (S C : Finset α) :
@@ -657,6 +730,9 @@ theorem card_missedSubtype {α : Type*} [DecidableEq α]
     have hx' := Finset.mem_sdiff.mp hx
     exact ⟨⟨x, hx'.1⟩, by simp [missedSubtype, hx'.2], rfl⟩
 
+/--
+@isnad1 id=eq.0h4v.s8.cc2b983e3a99 from=translated src=- shape=dad3b23b vocab=4a0c99b7
+-/
 theorem restricted_parts_energy_missed {n : ℕ}
     (S C : Finset (BooleanSpace n)) (f : BooleanSpace n → ℂ) :
     (∑ s ∈ missedSubtype S C, restrictedRealPart S f s ^ 2) +
@@ -678,7 +754,9 @@ theorem restricted_parts_energy_missed {n : ℕ}
     simp [restrictedRealPart, restrictedImagPart,
       Complex.normSq_apply, pow_two]
 
-/-- Flatness for a complex vector on an arbitrary exceptional subset of `S`.-/
+/-- Flatness for a complex vector on an arbitrary exceptional subset of `S`.
+@isnad1 id=le.2h5v.s8.6303b1be0046 from=translated src=- shape=58354a2b vocab=a10b63f0
+-/
 theorem complex_mass_on_sdiff_le_restricted_defect {n : ℕ}
     (S T C : Finset (BooleanSpace n)) (f : BooleanSpace n → ℂ)
     (hS : S.Nonempty) (hT : T.Nonempty) :
@@ -725,7 +803,9 @@ theorem complex_mass_on_sdiff_le_restricted_defect {n : ℕ}
 
 /--
 Fourier-side flatness.  The mass of the restricted Walsh output on `U` is
-controlled by its Frobenius defect and the relative size of `U`.-/
+controlled by its Frobenius defect and the relative size of `U`.
+@isnad1 id=le.2h5v.s9.72a17163b420 from=translated src=- shape=881ad512 vocab=e50e18ef
+-/
 theorem restrictedWalsh_mass_on_finset_le_defect {n : ℕ}
     (S T : Finset (BooleanSpace n)) (u : S → ℝ) (U : Finset T)
     (hS : S.Nonempty) (hT : T.Nonempty) :
@@ -836,7 +916,9 @@ theorem restrictedWalsh_mass_on_finset_le_defect {n : ℕ}
             ∑ t : T, restrictedWalshApply S u t ^ 2 := by
         rfl
 
-/-- Fourier-side flatness for a complex vector restricted to `S`.-/
+/-- Fourier-side flatness for a complex vector restricted to `S`.
+@isnad1 id=le.2h5v.s9.791c86290bee from=translated src=- shape=f17646df vocab=a10b63f0
+-/
 theorem complex_walsh_mass_on_sdiff_le_defect {n : ℕ}
     (S T D : Finset (BooleanSpace n)) (f : BooleanSpace n → ℂ)
     (hS : S.Nonempty) (hT : T.Nonempty) :
@@ -889,6 +971,9 @@ theorem complex_walsh_mass_on_sdiff_le_defect {n : ℕ}
       rw [← hparts, ← hwalsh, ← hcard]
       ring
 
+/--
+@isnad1 id=eq.0h3v.s7.7db055c52217 from=translated src=- shape=3788997d vocab=ca4b9bdd
+-/
 theorem sum_phase_mul_phase {n : ℕ}
     (x z : BooleanSpace n) :
     (∑ y : BooleanSpace n, phase y x * phase z y) =
@@ -913,7 +998,9 @@ theorem sum_phase_mul_phase {n : ℕ}
         (Fintype.card (BooleanSpace n) : ℂ) else 0 := by
       simp only [hxz]
 
-/-- Applying the unnormalized Walsh transform twice multiplies by `2^n`.-/
+/-- Applying the unnormalized Walsh transform twice multiplies by `2^n`.
+@isnad1 id=eq.0h3v.s5.c85b031cd4b9 from=translated src=- shape=d83eff52 vocab=aba3b6a3
+-/
 theorem walshFourier_involution {n : ℕ}
     (f : BooleanSpace n → ℂ) (x : BooleanSpace n) :
     walshFourier (walshFourier f) x =
@@ -944,6 +1031,9 @@ theorem walshFourier_involution {n : ℕ}
     _ = Fintype.card (BooleanSpace n) * f x := by
       simp
 
+/--
+@isnad1 id=eq.0h3v.s5.a8526eff7e0a from=translated src=- shape=c6b0c85d vocab=8ecace77
+-/
 theorem walshFourier_sub {n : ℕ}
     (f g : BooleanSpace n → ℂ) :
     walshFourier (fun x ↦ f x - g x) =
@@ -955,6 +1045,9 @@ theorem walshFourier_sub {n : ℕ}
   intro x hx
   ring
 
+/--
+@isnad1 id=eq.0h3v.s6.9fa5bdbe69ed from=translated src=- shape=a87c8a0c vocab=0dbca148
+-/
 theorem complexEnergy_const_mul {α : Type*} [Fintype α]
     (c : ℂ) (f : α → ℂ) :
     complexEnergy (fun x ↦ c * f x) =
@@ -973,6 +1066,9 @@ def fourierCoordinateProjector {n : ℕ}
   fun x ↦ (Fintype.card (BooleanSpace n) : ℂ)⁻¹ *
     walshFourier (restrictTo D (walshFourier f)) x
 
+/--
+@isnad1 id=eq.0h3v.s7.d6b7299611cb from=translated src=- shape=a0a78923 vocab=2a12736c
+-/
 theorem sub_fourierCoordinateProjector {n : ℕ}
     (D : Finset (BooleanSpace n)) (f : BooleanSpace n → ℂ) :
     (fun x ↦ f x - fourierCoordinateProjector D f x) =
@@ -994,7 +1090,9 @@ theorem sub_fourierCoordinateProjector {n : ℕ}
     exact_mod_cast Fintype.card_ne_zero
   field_simp
 
-/-- Exact rejection energy of a normalized Fourier coordinate projector.-/
+/-- Exact rejection energy of a normalized Fourier coordinate projector.
+@isnad1 id=eq.0h3v.s7.ef4db2e526c3 from=translated src=- shape=e439fc32 vocab=dee950f2
+-/
 theorem complexEnergy_sub_fourierCoordinateProjector {n : ℕ}
     (D : Finset (BooleanSpace n)) (f : BooleanSpace n → ℂ) :
     complexEnergy
@@ -1010,6 +1108,9 @@ theorem complexEnergy_sub_fourierCoordinateProjector {n : ℕ}
     exact_mod_cast Fintype.card_ne_zero
   field_simp
 
+/--
+@isnad1 id=eq.0h5v.s11.7082699709f4 from=translated src=- shape=57fd59b3 vocab=03996904
+-/
 theorem walshFourier_restrictTo_affine {n : ℕ}
     (H : Submodule (ZMod 2) (BooleanSpace n))
     (b x : BooleanSpace n) (f : BooleanSpace n → ℂ) :
@@ -1061,6 +1162,9 @@ theorem walshFourier_restrictTo_affine {n : ℕ}
       · intro h hh
         rw [phase_comm]
 
+/--
+@isnad1 id=eq.0h4v.s7.856d73b11e9f from=translated src=- shape=25cd5dfe vocab=052aac1a
+-/
 theorem fourierCoordinateProjector_affine_eq_dual {n : ℕ}
     (H : Submodule (ZMod 2) (BooleanSpace n))
     (b : BooleanSpace n) (f : BooleanSpace n → ℂ) :
@@ -1070,6 +1174,9 @@ theorem fourierCoordinateProjector_affine_eq_dual {n : ℕ}
   rw [fourierCoordinateProjector, dualCosetFourierProjector,
     walshFourier_restrictTo_affine]
 
+/--
+@isnad1 id=eq.0h4v.s7.f607a2efd5b5 from=translated src=- shape=25cd5dfe vocab=dbcc4967
+-/
 theorem fourierCoordinateProjector_affine_eq_kernel {n : ℕ}
     (H : Submodule (ZMod 2) (BooleanSpace n))
     (b : BooleanSpace n) (f : BooleanSpace n → ℂ) :
@@ -1078,6 +1185,9 @@ theorem fourierCoordinateProjector_affine_eq_kernel {n : ℕ}
   rw [fourierCoordinateProjector_affine_eq_dual,
     dualCosetFourierProjector_eq_kernel]
 
+/--
+@isnad1 id=eq.0h4v.s8.8ce02493c147 from=translated src=- shape=03671825 vocab=1c0e1ffd
+-/
 theorem coordinateProjector_eq_restrictTo_affine {n : ℕ}
     (H : Submodule (ZMod 2) (BooleanSpace n))
     (a : BooleanSpace n) (f : BooleanSpace n → ℂ) :
@@ -1086,6 +1196,9 @@ theorem coordinateProjector_eq_restrictTo_affine {n : ℕ}
   funext x
   simp only [coordinateProjector, restrictTo, mem_affineSubspacePoints]
 
+/--
+@isnad1 id=eq.0h4v.s8.438ebd9e7f3f from=translated src=- shape=a853a96d vocab=fbff3ea6
+-/
 theorem complexEnergy_sub_coordinateProjector {n : ℕ}
     (H : Submodule (ZMod 2) (BooleanSpace n))
     (a : BooleanSpace n) (f : BooleanSpace n → ℂ) :
@@ -1094,6 +1207,9 @@ theorem complexEnergy_sub_coordinateProjector {n : ℕ}
   rw [coordinateProjector_eq_restrictTo_affine,
     complexEnergy_sub_restrictTo]
 
+/--
+@isnad1 id=le.0h4v.s8.88de71464b96 from=translated src=- shape=ae70f19b vocab=4db24a93
+-/
 theorem complexEnergy_coordinateProjector_le {n : ℕ}
     (H : Submodule (ZMod 2) (BooleanSpace n))
     (a : BooleanSpace n) (f : BooleanSpace n → ℂ) :
@@ -1102,12 +1218,18 @@ theorem complexEnergy_coordinateProjector_le {n : ℕ}
     complexEnergy_restrictTo]
   exact energyOn_le_complexEnergy _ _
 
+/--
+@isnad1 id=le.0h2v.s6.73fe13ac445a from=translated src=- shape=802274ad vocab=e95aa4e3
+-/
 theorem normSq_add_le_two (z w : ℂ) :
     Complex.normSq (z + w) ≤
       2 * Complex.normSq z + 2 * Complex.normSq w := by
   simp only [Complex.normSq_apply, Complex.add_re, Complex.add_im]
   nlinarith [sq_nonneg (z.re - w.re), sq_nonneg (z.im - w.im)]
 
+/--
+@isnad1 id=le.0h3v.s6.78779cfb080d from=translated src=- shape=e0cbfc6b vocab=7f08d398
+-/
 theorem complexEnergy_add_le_two {α : Type*} [Fintype α]
     (f g : α → ℂ) :
     complexEnergy (fun x ↦ f x + g x) ≤
@@ -1118,6 +1240,9 @@ theorem complexEnergy_add_le_two {α : Type*} [Fintype α]
   intro x hx
   exact normSq_add_le_two (f x) (g x)
 
+/--
+@isnad1 id=eq.0h5v.s8.c4b0cf3d2e19 from=translated src=- shape=c07dfd58 vocab=96445ecf
+-/
 theorem sub_cosetRankOne_decomposition {n : ℕ}
     (H : Submodule (ZMod 2) (BooleanSpace n))
     (a b : BooleanSpace n) (f : BooleanSpace n → ℂ) :
@@ -1133,7 +1258,9 @@ theorem sub_cosetRankOne_decomposition {n : ℕ}
 
 /--
 Passing both commuting affine-coset projectors approximately forces proximity
-to their rank-one intersection.-/
+to their rank-one intersection.
+@isnad1 id=le.0h5v.s8.d6af6f201cb3 from=translated src=- shape=fe869b50 vocab=b091fe8f
+-/
 theorem complexEnergy_sub_cosetRankOne_le {n : ℕ}
     (H : Submodule (ZMod 2) (BooleanSpace n))
     (a b : BooleanSpace n) (f : BooleanSpace n → ℂ) :
@@ -1154,6 +1281,9 @@ theorem complexEnergy_sub_cosetRankOne_le {n : ℕ}
         (fun x ↦ f x - dualCosetKernelProjector H b f x))
       (by norm_num)
 
+/--
+@isnad1 id=le.0h4v.s5.506f6c854fa4 from=translated src=- shape=7ec865c0 vocab=eb04879c
+-/
 theorem energyOn_sdiff_add_ge {α : Type*} [Fintype α] [DecidableEq α]
     (S C : Finset α) (f : α → ℂ) :
     energyOn S f ≤ energyOn C f + energyOn (S \ C) f := by
@@ -1180,6 +1310,9 @@ theorem energyOn_sdiff_add_ge {α : Type*} [Fintype α] [DecidableEq α]
     exact Complex.normSq_nonneg _
   · rfl
 
+/--
+@isnad1 id=le.0h4v.s6.d56d942d1633 from=translated src=- shape=6895a337 vocab=b51120b8
+-/
 theorem complexEnergy_sub_energyOn_le {α : Type*}
     [Fintype α] [DecidableEq α]
     (S C : Finset α) (f : α → ℂ) :
@@ -1188,6 +1321,9 @@ theorem complexEnergy_sub_energyOn_le {α : Type*}
   have h := energyOn_sdiff_add_ge S C f
   linarith
 
+/--
+@isnad1 id=eq.0h3v.s5.627f3bc9b45a from=translated src=- shape=ef27b60c vocab=2b1edb5e
+-/
 theorem complexEnergy_sub_energyOn_eq_compl {α : Type*}
     [Fintype α] [DecidableEq α]
     (C : Finset α) (f : α → ℂ) :
@@ -1206,6 +1342,9 @@ theorem complexEnergy_sub_energyOn_eq_compl {α : Type*}
   rw [hsplit]
   ring
 
+/--
+@isnad1 id=le.0h4v.s6.81779fbd1f7f from=translated src=- shape=222b9d3f vocab=eb9a58d2
+-/
 theorem energyOn_add_le_two {α : Type*} [Fintype α] [DecidableEq α]
     (C : Finset α) (f g : α → ℂ) :
     energyOn C (fun x ↦ f x + g x) ≤
@@ -1216,12 +1355,18 @@ theorem energyOn_add_le_two {α : Type*} [Fintype α] [DecidableEq α]
   intro x hx
   exact normSq_add_le_two (f x) (g x)
 
+/--
+@isnad1 id=le.0h3v.s4.deb0cd72ccf5 from=translated src=- shape=4694227d vocab=b7d4c44a
+-/
 theorem energyOn_le_complexEnergy' {α : Type*}
     [Fintype α] [DecidableEq α]
     (C : Finset α) (f : α → ℂ) :
     energyOn C f ≤ complexEnergy f :=
   energyOn_le_complexEnergy C f
 
+/--
+@isnad1 id=eq.0h3v.s6.13104618da86 from=translated src=- shape=91efebbb vocab=29aa53ae
+-/
 theorem walshFourier_eq_restrict_add_error {n : ℕ}
     (S : Finset (BooleanSpace n)) (f : BooleanSpace n → ℂ) :
     walshFourier f =
@@ -1238,7 +1383,9 @@ set_option maxHeartbeats 1000000 in
 /--
 Robust inverse uncertainty under the direct restricted-Walsh near-extremizer
 hypothesis.  The final estimate is a squared `ℓ₂` distance to the rank-one
-coset-state line.-/
+coset-state line.
+@isnad1 id=ex.8h5v.s10.3a7afd81528a from=translated src=- shape=4a245f55 vocab=78516f92
+-/
 theorem robust_inverse_uncertainty_restricted {n : ℕ}
     (S T : Finset (BooleanSpace n)) (f : BooleanSpace n → ℂ) {q : ℝ}
     (hq0 : 0 < q) (hq : q ≤ 1 / 100)
@@ -1516,6 +1663,9 @@ theorem robust_inverse_uncertainty_restricted {n : ℕ}
   exact (complexEnergy_sub_cosetRankOne_le H a b f).trans
     (by nlinarith)
 
+/--
+@isnad1 id=le.1h3v.s7.38d6877aab4d from=translated src=- shape=ff17b061 vocab=842296f0
+-/
 theorem normSq_add_le_young (z w : ℂ) {r : ℝ} (hr : 0 < r) :
     Complex.normSq (z + w) ≤
       (1 + r) * Complex.normSq z +
@@ -1526,6 +1676,9 @@ theorem normSq_add_le_young (z w : ℂ) {r : ℝ} (hr : 0 < r) :
   nlinarith [sq_nonneg (r * z.re - w.re),
     sq_nonneg (r * z.im - w.im)]
 
+/--
+@isnad1 id=le.1h5v.s7.4465dd92fef6 from=translated src=- shape=09556424 vocab=c2cd216d
+-/
 theorem energyOn_add_le_young {α : Type*} [Fintype α] [DecidableEq α]
     (C : Finset α) (f g : α → ℂ) {r : ℝ} (hr : 0 < r) :
     energyOn C (fun x ↦ f x + g x) ≤
@@ -1541,7 +1694,9 @@ set_option maxHeartbeats 1000000 in
 /--
 The concentration form of robust inverse uncertainty.  The concentration
 loss is `q^4 / 1024`, while support saturation is measured at
-scale `q^2 / 16`.-/
+scale `q^2 / 16`.
+@isnad1 id=ex.8h5v.s10.ab0c40061b3d from=translated src=- shape=b02d272e vocab=6822f285
+-/
 theorem robust_inverse_uncertainty {n : ℕ}
     (S T : Finset (BooleanSpace n)) (f : BooleanSpace n → ℂ) {q : ℝ}
     (hq0 : 0 < q) (hq : q ≤ 1 / 100)
@@ -1677,6 +1832,9 @@ def realRankOne {α : Type*} [Fintype α]
     (v : α → ℝ) (f : α → ℂ) : α → ℂ :=
   fun x ↦ realRankOneCoefficient v f * (v x : ℂ)
 
+/--
+@isnad1 id=eq.0h2v.s5.c0a125c94be9 from=translated src=- shape=1784b6e9 vocab=2a0ea29b
+-/
 theorem complexEnergy_ofReal {α : Type*} [Fintype α]
     (v : α → ℝ) :
     complexEnergy (fun x ↦ (v x : ℂ)) = ∑ x, v x ^ 2 := by
@@ -1686,6 +1844,9 @@ theorem complexEnergy_ofReal {α : Type*} [Fintype α]
   rw [Complex.normSq_ofReal]
   ring
 
+/--
+@isnad1 id=eq.1h3v.s6.57515953aef1 from=translated src=- shape=dce03421 vocab=d717eccc
+-/
 theorem complexEnergy_realRankOne {α : Type*} [Fintype α]
     (v : α → ℝ) (f : α → ℂ)
     (hv : ∑ x, v x ^ 2 = 1) :
@@ -1698,7 +1859,9 @@ theorem complexEnergy_realRankOne {α : Type*} [Fintype α]
   rw [complexEnergy_const_mul,
     complexEnergy_ofReal, hv, mul_one]
 
-/-- Pythagoras for a rank-one projection generated by a real unit vector.-/
+/-- Pythagoras for a rank-one projection generated by a real unit vector.
+@isnad1 id=eq.1h3v.s6.fb99d6a56660 from=translated src=- shape=a6c6a941 vocab=ff6fbc08
+-/
 theorem complexEnergy_sub_realRankOne {α : Type*} [Fintype α]
     (v : α → ℝ) (f : α → ℂ)
     (hv : ∑ x, v x ^ 2 = 1) :
@@ -1746,6 +1909,9 @@ def normalizedRealCosetWave {n : ℕ}
     realPhase b x / Real.sqrt (Fintype.card H)
   else 0
 
+/--
+@isnad1 id=eq.0h4v.s8.df5d69416f9c from=translated src=- shape=27d58e56 vocab=72fd6469
+-/
 theorem normalizedRealCosetWave_energy {n : ℕ}
     (H : Submodule (ZMod 2) (BooleanSpace n))
     (a b : BooleanSpace n) :
@@ -1778,6 +1944,9 @@ theorem normalizedRealCosetWave_energy {n : ℕ}
       rw [card_affineSubspacePoints]
     _ = 1 := by field_simp
 
+/--
+@isnad1 id=eq.0h5v.s9.105310fb4ae8 from=translated src=- shape=d25e642c vocab=6674c4df
+-/
 theorem ofReal_normalizedRealCosetWave {n : ℕ}
     (H : Submodule (ZMod 2) (BooleanSpace n))
     (a b x : BooleanSpace n) :
@@ -1789,6 +1958,9 @@ theorem ofReal_normalizedRealCosetWave {n : ℕ}
       div_eq_mul_inv, ← ofReal_realPhase, mul_comm]
   · simp [normalizedRealCosetWave, cosetWave, hx]
 
+/--
+@isnad1 id=eq.0h5v.s8.ea3d90c90b33 from=translated src=- shape=f7f46226 vocab=e48d49b3
+-/
 theorem realRankOne_normalizedCosetWave_eq {n : ℕ}
     (H : Submodule (ZMod 2) (BooleanSpace n))
     (a b : BooleanSpace n) (f : BooleanSpace n → ℂ) :
@@ -1839,6 +2011,9 @@ def unitPhase (d : ℂ) : ℂ :=
   if d = 0 then 1
   else d * (Real.sqrt (Complex.normSq d) : ℂ)⁻¹
 
+/--
+@isnad1 id=eq.0h1v.s5.9c3603ed4e18 from=translated src=- shape=2e2d91e4 vocab=234c799f
+-/
 theorem normSq_unitPhase (d : ℂ) :
     Complex.normSq (unitPhase d) = 1 := by
   by_cases hd : d = 0
@@ -1855,6 +2030,9 @@ theorem normSq_unitPhase (d : ℂ) :
     rw [Real.mul_self_sqrt (le_of_lt hD),
       mul_inv_cancel₀ (ne_of_gt hD)]
 
+/--
+@isnad1 id=eq.1h4v.s7.7c59be41625d from=translated src=- shape=aa472602 vocab=314cb079
+-/
 theorem complexEnergy_sub_const_mul_real {α : Type*} [Fintype α]
     (v : α → ℝ) (f : α → ℂ) (c : ℂ)
     (hv : ∑ x, v x ^ 2 = 1) :
@@ -1895,7 +2073,9 @@ theorem complexEnergy_sub_const_mul_real {α : Type*} [Fintype α]
 set_option maxHeartbeats 1000000 in
 /--
 Normalizing the coefficient of a real rank-one projection costs at most a
-factor two in squared distance.-/
+factor two in squared distance.
+@isnad1 id=ex.2h3v.s7.4a24c904b38e from=translated src=- shape=cb790fc1 vocab=8fb73a1b
+-/
 theorem exists_unit_phase_close_to_real_rankOne
     {α : Type*} [Fintype α]
     (v : α → ℝ) (f : α → ℂ)
@@ -1981,7 +2161,9 @@ set_option maxHeartbeats 1000000 in
 Phase-adjusted form of robust inverse uncertainty.  In addition to identifying
 the primal and Fourier supports with affine subspaces, it approximates `f` by
 a unit-modulus scalar times the normalized modulated indicator of the primal
-coset.-/
+coset.
+@isnad1 id=ex.8h5v.s10.2cf71b85df74 from=translated src=- shape=59877251 vocab=e5b5a4c1
+-/
 theorem robust_inverse_uncertainty_phase_implementation {n : ℕ}
     (S T : Finset (BooleanSpace n)) (f : BooleanSpace n → ℂ) {q : ℝ}
     (hq0 : 0 < q) (hq : q ≤ 1 / 100)
