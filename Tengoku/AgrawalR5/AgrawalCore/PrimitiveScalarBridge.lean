@@ -30,12 +30,17 @@ private theorem five_ne_zero (hp5 : p ≠ 5) : (5 : ZMod p) ≠ 0 := by
     exact hp5 ((Nat.prime_dvd_prime_iff_eq Fact.out (by norm_num)).mp hp)
   exact_mod_cast hnat
 
+/--
+@isnad1 id=eq.1h2v.s8.357e7e305c55 from=translated src=- shape=cef13524 vocab=77397734
+-/
 theorem gamma_mul_conj (γ : ZMod p) (hγ : γ ^ 2 = 5 * γ - 5) :
     γ * (5 - γ) = 5 := by
   linear_combination -hγ
 
 /-- The intrinsic golden square coordinated with `γ` satisfies
-`X²-3X+1`.-/
+`X²-3X+1`.
+@isnad1 id=eq.2h2v.s8.ee75d74c42b2 from=translated src=- shape=12368fb6 vocab=8bac7bf9
+-/
 theorem goldenSquareFromGamma_sq_eq_three_mul_sub_one
     (hp5 : p ≠ 5) (γ : ZMod p) (hγ : γ ^ 2 = 5 * γ - 5) :
     (goldenSquareFromGamma γ) ^ 2 =
@@ -53,7 +58,9 @@ theorem goldenSquareFromGamma_sq_eq_three_mul_sub_one
 
 /-- The coordinated golden element is literally the square of `γ - 2`.
 This exposes the quadratic-residue input needed by the next dyadic
-single-support layer.-/
+single-support layer.
+@isnad1 id=eq.2h2v.s8.c4ca53410779 from=translated src=- shape=60d4e617 vocab=8bac7bf9
+-/
 theorem goldenSquareFromGamma_eq_sq_sub_two
     (hp5 : p ≠ 5) (γ : ZMod p) (hγ : γ ^ 2 = 5 * γ - 5) :
     goldenSquareFromGamma γ = (γ - 2) ^ 2 := by
@@ -67,7 +74,9 @@ theorem goldenSquareFromGamma_eq_sq_sub_two
   linear_combination (γ - 4) * hγ
 
 /-- A root of `X²-3X+1` cannot have order two away from
-characteristics two and five.-/
+characteristics two and five.
+@isnad1 id=ne.3h2v.s7.2f0bab771651 from=translated src=- shape=1f3b78f6 vocab=6ee00b7b
+-/
 theorem orderOf_golden_square_ne_two
     (hp2 : p ≠ 2) (hp5 : p ≠ 5)
     (x : ZMod p) (hx : x ^ 2 = 3 * x - 1) :
@@ -81,7 +90,9 @@ theorem orderOf_golden_square_ne_two
     linear_combination hx
   exact five_ne_zero hp5 hfive
 
-/-- Sotto il trasporto canonico, la potenza `k+1` è lo scalare `5`.-/
+/-- Sotto il trasporto canonico, la potenza `k+1` è lo scalare `5`.
+@isnad1 id=eq.2h3v.s8.1169ac7aeef9 from=translated src=- shape=0512161c vocab=d602af21
+-/
 theorem gamma_pow_succ_transport (γ : ZMod p)
     (hγ : γ ^ 2 = 5 * γ - 5) (htransport : γ ^ k = 5 - γ) :
     γ ^ (k + 1) = 5 := by
@@ -89,7 +100,9 @@ theorem gamma_pow_succ_transport (γ : ZMod p)
   simpa [mul_comm] using gamma_mul_conj γ hγ
 
 /-- La potenza `k-1` è l'inverso moltiplicativo dell'unità aurea
-quadrata coordinata con `γ`.-/
+quadrata coordinata con `γ`.
+@isnad1 id=eq.4h3v.s8.d51c4b97fa77 from=translated src=- shape=dcc08c88 vocab=69ec62ef
+-/
 theorem gamma_pow_pred_mul_goldenSquare (hp5 : p ≠ 5) (hk : 1 ≤ k)
     (γ : ZMod p) (hγ : γ ^ 2 = 5 * γ - 5)
     (htransport : γ ^ k = 5 - γ) :
@@ -104,7 +117,9 @@ theorem gamma_pow_pred_mul_goldenSquare (hp5 : p ≠ 5) (hk : 1 ≤ k)
   exact mul_inv_cancel₀ hconj
 
 /-- Un elemento e un inverso esplicito hanno lo stesso ordine anche
-nel monoide moltiplicativo con zero di `ZMod p`.-/
+nel monoide moltiplicativo con zero di `ZMod p`.
+@isnad1 id=eq.1h3v.s6.e2343d9e3260 from=translated src=- shape=45fee256 vocab=24ef347d
+-/
 theorem orderOf_eq_of_mul_eq_one {a b : ZMod p} (hab : a * b = 1) :
     orderOf a = orderOf b := by
   rw [orderOf_eq_orderOf_iff]
@@ -119,7 +134,9 @@ theorem orderOf_eq_of_mul_eq_one {a b : ZMod p} (hab : a * b = 1) :
 
 /-- **Ponte scalare completo nel verso del supporto primitivo.**
 Un buon divisore del gcd a quattro coefficienti ha gli ordini scalari
-esatti richiesti dal gcd ciclotomico originale.-/
+esatti richiesti dal gcd ciclotomico originale.
+@isnad1 id=and.8h5v.s8.c11098b0a235 from=translated src=- shape=e04c66ae vocab=e40f5c60
+-/
 theorem dvd_D_exact_scalar_profile
     (hp5 : p ≠ 5) (hr : 0 < r) (hs : 0 < s) (hkpos : 1 ≤ k)
     (hpm : ¬p ∣ 4 * r * s)

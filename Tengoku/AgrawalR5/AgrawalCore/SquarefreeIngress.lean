@@ -31,7 +31,9 @@ def AgrawalCongruenceFive (n : ℕ) : Prop :=
 allora la riga ciclotomica locale vale con esponente `m`.
 
 La scelta di `a ∈ {1,2,3,4}` con `a*p ≡ 1 (mod 5)` rende la discesa
-completamente esplicita e non richiede una decomposizione in campi.-/
+completamente esplicita e non richiede una decomposizione in campi.
+@isnad1 id=locals5.2h2v.s9.714d67924908 from=translated src=- shape=6865d151 vocab=81ec6427
+-/
 theorem localS5_of_prime_multiple {m : ℕ} (hp5 : p ≠ 5)
     (h : ∃ g : Polynomial (ZMod p),
       (X - 1) ^ (p * m) = X ^ (p * m) - 1 + (X ^ 5 - 1) * g) :
@@ -82,7 +84,9 @@ theorem localS5_of_prime_multiple {m : ℕ} (hp5 : p ≠ 5)
     rw [Nat.mul_mod, hp]
 
 /-- La riga locale con esponente `m` si solleva all'esponente `p*m`
-mediante Frobenius. Questa è la direzione inversa della discesa esplicita.-/
+mediante Frobenius. Questa è la direzione inversa della discesa esplicita.
+@isnad1 id=locals5.1h2v.s4.dc5c6f2bceeb from=translated src=- shape=86261e47 vocab=0e14f7a8
+-/
 theorem localS5_prime_multiple {m : ℕ} (h : LocalS5 p m) :
     LocalS5 p (p * m) := by
   calc
@@ -97,7 +101,9 @@ theorem localS5_prime_multiple {m : ℕ} (h : LocalS5 p m) :
 la riga locale con il quoziente esatto `n / p`. Questa è la direzione
 globale-verso-locale del lemma di riduzione squarefree; la squarefreeness
 serve successivamente per ricomporre tutti i fattori, non in questa singola
-discesa.-/
+discesa.
+@isnad1 id=locals5.3h2v.s5.dd060435e9ae from=translated src=- shape=84a27df8 vocab=6704fcda
+-/
 theorem localS5_of_global_factor {n : ℕ} (hp5 : p ≠ 5) (hpdvd : p ∣ n)
     (h : AgrawalCongruenceFive n) :
     LocalS5 p (n / p) := by
@@ -114,7 +120,9 @@ theorem localS5_of_global_factor {n : ℕ} (hp5 : p ≠ 5) (hpdvd : p ∣ n)
 
 Per `n` squarefree e non divisibile per `5`, la congruenza globale è
 equivalente alle righe locali con gli esponenti complementari `n / p`.
-Questa è l'interfaccia aritmetica usata dal teorema di struttura globale.-/
+Questa è l'interfaccia aritmetica usata dal teorema di struttura globale.
+@isnad1 id=iff.3h1v.s5.5b4f7ad0a335 from=translated src=- shape=c839ab90 vocab=646d82d3
+-/
 theorem squarefree_ingress_iff {n : ℕ} (hsq : Squarefree n) (hn : 0 < n)
     (h5 : ¬ 5 ∣ n) :
     AgrawalCongruenceFive n ↔

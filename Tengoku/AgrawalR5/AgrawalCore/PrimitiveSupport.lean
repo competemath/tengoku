@@ -28,7 +28,9 @@ def fourCoefficientGcd (c d a w : ℕ) : ℕ :=
   Nat.gcd (Nat.gcd c d) (Nat.gcd a w)
 
 /-- Un primo (o qualunque naturale) divide il gcd a quattro coefficienti
-se e solo se divide ciascun coefficiente.-/
+se e solo se divide ciascun coefficiente.
+@isnad1 id=iff.0h5v.s5.420cfdc81ad0 from=translated src=- shape=6a937743 vocab=bf0b4fcb
+-/
 theorem dvd_fourCoefficientGcd_iff {t c d a w : ℕ} :
     t ∣ fourCoefficientGcd c d a w ↔
       t ∣ c ∧ t ∣ d ∧ t ∣ a ∧ t ∣ w := by
@@ -38,7 +40,9 @@ theorem dvd_fourCoefficientGcd_iff {t c d a w : ℕ} :
 
 /-- Interfaccia kernel-pura del teorema del supporto: una volta provata
 la divisibilità simultanea dei quattro coefficienti, la formulazione
-mediante il singolo intero `D` è esattamente equivalente.-/
+mediante il singolo intero `D` è esattamente equivalente.
+@isnad1 id=iff.1h6v.s5.6dafa437420e from=translated src=- shape=9c23cc9b vocab=bf0b4fcb
+-/
 theorem primitiveSupport_iff_fourCoefficientGcd {p G c d a w : ℕ}
     (hcoeff :
       p ∣ G ↔ p ∣ c ∧ p ∣ d ∧ p ∣ a ∧ p ∣ w) :
@@ -46,7 +50,9 @@ theorem primitiveSupport_iff_fourCoefficientGcd {p G c d a w : ℕ}
   rw [hcoeff, dvd_fourCoefficientGcd_iff]
 
 /-- Se due semiordini coprimi dividono `4*q^e`, almeno uno dei due
-divide già `4`. È il nucleo della regione esclusa `p-1 = 8*q^e`.-/
+divide già `4`. È il nucleo della regione esclusa `p-1 = 8*q^e`.
+@isnad1 id=or.4h4v.s6.4d1c00bf64b4 from=translated src=- shape=37ebee70 vocab=a8fd8bd4
+-/
 theorem one_semiorder_dvd_four_of_single_odd_prime
     {q e r s : ℕ} (hq : q.Prime) (hrs : Nat.Coprime r s)
     (hr : r ∣ 4 * q ^ e) (hs : s ∣ 4 * q ^ e) :
@@ -67,7 +73,9 @@ theorem one_semiorder_dvd_four_of_single_odd_prime
     exact hcop.dvd_mul_right.mp hr
 
 /-- Forma sugli ordini completi: se `2r` e `2s` dividono `8*q^e` e
-`r,s` sono coprimi, almeno uno dei due ordini divide `8`.-/
+`r,s` sono coprimi, almeno uno dei due ordini divide `8`.
+@isnad1 id=or.4h4v.s7.cea7b0e22037 from=translated src=- shape=54e3e028 vocab=a8fd8bd4
+-/
 theorem one_order_dvd_eight_of_single_odd_prime
     {q e r s : ℕ} (hq : q.Prime) (hrs : Nat.Coprime r s)
     (hR : 2 * r ∣ 8 * q ^ e) (hE : 2 * s ∣ 8 * q ^ e) :
@@ -91,7 +99,9 @@ theorem one_order_dvd_eight_of_single_odd_prime
 
 /-- General dyadic form of `one_semiorder_dvd_four_of_single_odd_prime`:
 if two coprime semiorders divide a number supported on `2` and a single
-odd prime `q`, one of them is supported on `2` alone.-/
+odd prime `q`, one of them is supported on `2` alone.
+@isnad1 id=or.4h5v.s7.71b6969f1ea8 from=translated src=- shape=ae02ce8b vocab=a8fd8bd4
+-/
 theorem one_semiorder_dvd_two_power_of_single_odd_prime
     {q e b r s : ℕ} (hq : q.Prime) (hrs : Nat.Coprime r s)
     (hr : r ∣ 2 ^ b * q ^ e) (hs : s ∣ 2 ^ b * q ^ e) :
@@ -108,7 +118,9 @@ theorem one_semiorder_dvd_two_power_of_single_odd_prime
     exact (hq.coprime_pow_of_not_dvd hqr).dvd_mul_right.mp hr
 
 /-- Complete-order version at arbitrary dyadic depth.  If `2r` and `2s`
-divide `2^(b+1) q^e`, one complete order already divides `2^(b+1)`.-/
+divide `2^(b+1) q^e`, one complete order already divides `2^(b+1)`.
+@isnad1 id=or.4h5v.s7.71dded03e04a from=translated src=- shape=29b7add5 vocab=a999bc13
+-/
 theorem one_order_dvd_two_pow_succ_of_single_odd_prime
     {q e b r s : ℕ} (hq : q.Prime) (hrs : Nat.Coprime r s)
     (hR : 2 * r ∣ 2 ^ (b + 1) * q ^ e)

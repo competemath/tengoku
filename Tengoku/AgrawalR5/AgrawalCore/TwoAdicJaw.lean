@@ -29,7 +29,9 @@ namespace AgrawalCore
 open Polynomial
 
 /-- Un divisore di `2^(k+1) * v` che non divide `2^k * v` è
-2-adicamente saturo: `2^(k+1)` lo divide.-/
+2-adicamente saturo: `2^(k+1)` lo divide.
+@isnad1 id=dvd.3h3v.s6.4ca69bcf7933 from=translated src=- shape=06bebf9a vocab=0eadfadb
+-/
 lemma pow_two_dvd_of_not_dvd_half {d k v : ℕ} (hd0 : d ≠ 0)
     (hdvd : d ∣ 2 ^ (k + 1) * v) (hnot : ¬ d ∣ 2 ^ k * v) :
     2 ^ (k + 1) ∣ d := by
@@ -51,7 +53,9 @@ lemma pow_two_dvd_of_not_dvd_half {d k v : ℕ} (hd0 : d ≠ 0)
 
 /-- **La ganascia locale.** Se `5` non è un quadrato mod `p` e
 `5 ^ (n−1) = 1` in `ZMod p`, allora ogni potenza di due che divide
-`p − 1` divide anche `n − 1`, cioè `v₂(p−1) ≤ v₂(n−1)`.-/
+`p − 1` divide anche `n − 1`, cioè `v₂(p−1) ≤ v₂(n−1)`.
+@isnad1 id=dvd.4h3v.s7.99197f17d966 from=translated src=- shape=67fa81d6 vocab=374ff0a0
+-/
 theorem two_adic_jaw_local {p n k : ℕ} [Fact p.Prime] (hp2 : p ≠ 2)
     (h5 : ¬ IsSquare (5 : ZMod p)) (hn : (5 : ZMod p) ^ (n - 1) = 1)
     (hk : 2 ^ k ∣ p - 1) : 2 ^ k ∣ n - 1 := by
@@ -104,7 +108,9 @@ theorem two_adic_jaw_local {p n k : ℕ} [Fact p.Prime] (hp2 : p ≠ 2)
 `5 ∤ n` che soddisfa la congruenza di Agrawal a `r = 5`, e sia `p` un
 suo fattore primo dispari INERTE in `Q(√5)` (`p ≡ ±2 mod 5`). Allora
 `v₂(p−1) ≤ v₂(n−1)`: la profondità 2-adica di ogni fattore inerte è
-limitata da quella di `n − 1`.-/
+limitata da quella di `n − 1`.
+@isnad1 id=dvd.8h3v.s9.52ba74226a2b from=translated src=- shape=a0b14d33 vocab=353830b2
+-/
 theorem agrawal_two_adic_jaw {n : ℕ} (hsq : Squarefree n) (h5 : ¬ (5 ∣ n))
     (h : ∃ g : Polynomial (ZMod n),
       (X - 1) ^ n = X ^ n - 1 + (X ^ 5 - 1) * g)
@@ -124,7 +130,9 @@ theorem agrawal_two_adic_jaw {n : ℕ} (hsq : Squarefree n) (h5 : ¬ (5 ∣ n))
   exact two_adic_jaw_local hp2 (not_isSquare_five hp2 hinert) hloc hk
 
 /-- **Corollario mod 4.** Un controesempio squarefree `n ≡ 3 (mod 4)`
-può avere fattori primi inerti soltanto `≡ 3 (mod 4)`.-/
+può avere fattori primi inerti soltanto `≡ 3 (mod 4)`.
+@isnad1 id=eq.8h2v.s9.4c53cb4b7903 from=translated src=- shape=2d2978cb vocab=353830b2
+-/
 theorem agrawal_inert_mod_four {n : ℕ} (hsq : Squarefree n) (h5 : ¬ (5 ∣ n))
     (h : ∃ g : Polynomial (ZMod n),
       (X - 1) ^ n = X ^ n - 1 + (X ^ 5 - 1) * g)

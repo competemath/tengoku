@@ -14,7 +14,9 @@ namespace AgrawalCore
 
 /-- A natural number strictly between `1` and the modulus cannot be congruent
 to `1` modulo that modulus.  This is the `j = 0` branch of the final-row size
-obstruction.-/
+obstruction.
+@isnad1 id=not.2h2v.s4.cb7e766bff7d from=translated src=- shape=107e8e78 vocab=745abe38
+-/
 theorem not_modEq_one_of_one_lt_of_lt {P T : ℕ}
     (hP : 1 < P) (hPT : P < T) : ¬ P ≡ 1 [MOD T] := by
   intro h
@@ -23,7 +25,9 @@ theorem not_modEq_one_of_one_lt_of_lt {P T : ℕ}
   omega
 
 /-- If `0 < P < q² ≤ T`, then `P` cannot be congruent to `q²` modulo
-`T`.  The proof treats separately `q² < T` and the boundary `q² = T`.-/
+`T`.  The proof treats separately `q² < T` and the boundary `q² = T`.
+@isnad1 id=not.3h3v.s6.05ff6e736698 from=translated src=- shape=5ab16b8a vocab=137ffae1
+-/
 theorem not_modEq_sq_of_pos_of_lt_of_le {P q T : ℕ}
     (hP0 : 0 < P) (hPq : P < q ^ 2) (hqT : q ^ 2 ≤ T) :
     ¬ P ≡ q ^ 2 [MOD T] := by
@@ -41,7 +45,9 @@ theorem not_modEq_sq_of_pos_of_lt_of_le {P q T : ℕ}
 If the final local row has either residue `1` or `q²`, a product
 `1 < P < q²` cannot satisfy it modulo an order `T ≥ q²`.  In the Agrawal
 application, `P = p₁p₂`, `q` is the largest prime, and the two alternatives
-are exactly the exponents `j_q ∈ {0,2}`.-/
+are exactly the exponents `j_q ∈ {0,2}`.
+@isnad1 id=false.4h3v.s6.0ccd6060a2d2 from=translated src=- shape=18f32aef vocab=137ffae1
+-/
 theorem threeFactor_finalRow_size_exclusion {P q T : ℕ}
     (hP : 1 < P) (hPq : P < q ^ 2) (hqT : q ^ 2 ≤ T)
     (hrow : P ≡ 1 [MOD T] ∨ P ≡ q ^ 2 [MOD T]) : False := by
@@ -64,7 +70,9 @@ In the Agrawal application `P = n / p`.  Squarefreeness with another
 prime factor supplies `1 < P` and `P ≠ p²`; the local theory supplies the
 two alternatives.  The theorem itself deliberately isolates the purely
 arithmetic kernel and does not build those application hypotheses into
-its statement.-/
+its statement.
+@isnad1 id=le.3h3v.s6.d3a4899712ff from=translated src=- shape=73a67f75 vocab=1b49a7ea
+-/
 theorem localRow_order_le_max {P p T : ℕ}
     (hP : 1 < P) (hne : P ≠ p ^ 2)
     (hrow : P ≡ 1 [MOD T] ∨ P ≡ p ^ 2 [MOD T]) :
@@ -89,7 +97,9 @@ than `r²`.  Consequently, if a local row supplies the universal size bound
 
 For a three-prime candidate `p < r < q`, taking `P = p*q` says that a
 normal middle prime forces the large-gap alternative `r² < p*q`; otherwise
-the middle prime itself must have exceptional defect at least `11`.-/
+the middle prime itself must have exceptional defect at least `11`.
+@isnad1 id=lt.4h4v.s7.0e3e9837bbca from=translated src=- shape=a82afe04 vocab=11a964b9
+-/
 theorem normalDefect_forces_sq_lt_complement {r T I P : ℕ}
     (hr : 7 ≤ r) (hexact : T * I = 10 * (r ^ 2 - 1))
     (hI : I ≤ 9) (hsize : T ≤ max (r ^ 2) P) :
@@ -109,14 +119,18 @@ theorem normalDefect_forces_sq_lt_complement {r T I P : ℕ}
   rw [hmax] at hsize
   omega
 
-/-- The pure final row is exactly the divisibility `T ∣ P - 1`.-/
+/-- The pure final row is exactly the divisibility `T ∣ P - 1`.
+@isnad1 id=dvd.2h2v.s5.2b47105bfd61 from=translated src=- shape=a38a1144 vocab=b8829c5b
+-/
 theorem pureRow_dvd_product_sub_one {P T : ℕ}
     (hP : 1 ≤ P) (hrow : P ≡ 1 [MOD T]) :
     T ∣ P - 1 := by
   exact (Nat.modEq_iff_dvd' hP).mp hrow.symm
 
 /-- The twisted final row is exactly the divisibility `T ∣ q² - P`
-when the candidate product lies below `q²`.-/
+when the candidate product lies below `q²`.
+@isnad1 id=dvd.2h3v.s6.e5744699ed75 from=translated src=- shape=0e7e1cde vocab=0fe24a4f
+-/
 theorem twistedRow_dvd_sq_sub_product {P q T : ℕ}
     (hPq : P < q ^ 2) (hrow : P ≡ q ^ 2 [MOD T]) :
     T ∣ q ^ 2 - P := by
@@ -125,7 +139,9 @@ theorem twistedRow_dvd_sq_sub_product {P q T : ℕ}
 /-- **Twisted final-row clamp.** A proper candidate in the twisted row
 satisfies `P ≤ q² - T`.  This is an exact rewriting of the congruence,
 not an additional sieve on candidates already enumerated in that residue
-class.-/
+class.
+@isnad1 id=le.2h3v.s6.e0ca157e8d67 from=translated src=- shape=e7405afb vocab=515367b1
+-/
 theorem twistedRow_product_le_sq_sub_order {P q T : ℕ}
     (hPq : P < q ^ 2) (hrow : P ≡ q ^ 2 [MOD T]) :
     P ≤ q ^ 2 - T := by
@@ -143,7 +159,9 @@ the complementary product satisfies `T ≤ P - 1`.
 
 Unlike `localRow_order_le_max`, this retains the exact distance from the
 prescribed residue and can therefore exclude candidates that pass the
-coarser maximum bound.-/
+coarser maximum bound.
+@isnad1 id=le.2h2v.s5.7ddd0aa87cf6 from=translated src=- shape=a38a1144 vocab=acc293ee
+-/
 theorem pureRow_order_le_product_sub_one {P T : ℕ}
     (hP : 1 < P) (hrow : P ≡ 1 [MOD T]) :
     T ≤ P - 1 := by
@@ -160,7 +178,9 @@ positive distance from `p²` is at least one full order:
 
 The sum on the right is the natural-number absolute difference.  Thus no
 candidate can lie strictly inside the open interval of radius `T` around
-`p²`.-/
+`p²`.
+@isnad1 id=le.2h3v.s6.64ac624b6738 from=translated src=- shape=7d9392c4 vocab=7cf55240
+-/
 theorem twistedRow_order_le_absGap {P p T : ℕ}
     (hne : P ≠ p ^ 2) (hrow : P ≡ p ^ 2 [MOD T]) :
     T ≤ (P - p ^ 2) + (p ^ 2 - P) := by
@@ -177,7 +197,9 @@ theorem twistedRow_order_le_absGap {P p T : ℕ}
     omega
 
 /-- Cancellation of a common multiplier in a natural congruence when that
-multiplier is coprime to the modulus.-/
+multiplier is coprime to the modulus.
+@isnad1 id=modeq.3h4v.s5.28ac0dbb8739 from=translated src=- shape=d84baf35 vocab=355452f3
+-/
 theorem modEq_cancel_left_of_coprime {A B₁ B₂ T : ℕ}
     (hT : 0 < T) (hAT : Nat.Coprime A T)
     (h : A * B₁ ≡ A * B₂ [MOD T]) :
@@ -191,7 +213,9 @@ theorem modEq_cancel_left_of_coprime {A B₁ B₂ T : ℕ}
 If `T ≥ q²`, two candidate second products below `q²` that give the same
 final-row residue after multiplication by a unit `A` are equal.  This is the
 kernel-pure uniqueness statement behind the `k = 5` decision algorithm; it
-does not assert a complexity bound or the absence of a candidate.-/
+does not assert a complexity bound or the absence of a candidate.
+@isnad1 id=eq.7h6v.s6.7d0d497e0d56 from=translated src=- shape=c85780c4 vocab=28d41342
+-/
 theorem mitm_secondProduct_unique {A B₁ B₂ c q T : ℕ}
     (hq : 0 < q) (hqT : q ^ 2 ≤ T) (hAT : Nat.Coprime A T)
     (hB₁ : B₁ < q ^ 2) (hB₂ : B₂ < q ^ 2)

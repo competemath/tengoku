@@ -30,7 +30,9 @@ def InertModFive (a : ℕ) : Prop :=
   a % 5 = 2 ∨ a % 5 = 3
 
 /-- Ogni potenza `ζ^a` con `a` invertibile modulo `5` è ancora una radice
-di `Φ₅`.-/
+di `Φ₅`.
+@isnad1 id=eq.1h2v.s8.23eb69b09e32 from=translated src=- shape=39c67538 vocab=56f1ebd4
+-/
 lemma phi5_aeval_zeta_pow_of_unit {p a : ℕ} [Fact p.Prime]
     (ha : a % 5 = 1 ∨ a % 5 = 2 ∨ a % 5 = 3 ∨ a % 5 = 4) :
     Polynomial.aeval ((zeta5 : Phi5Ring p) ^ a) (phi5 p) = 0 := by
@@ -41,7 +43,9 @@ lemma phi5_aeval_zeta_pow_of_unit {p a : ℕ} [Fact p.Prime]
   · simpa [zeta5_pow_mod, ha] using phi5_aeval_zeta_pow_four (p := p)
 
 /-- Le righe locali si moltiplicano quando il primo esponente è invertibile
-modulo `5`: se `a,b ∈ S(p,5)`, allora `ab ∈ S(p,5)`.-/
+modulo `5`: se `a,b ∈ S(p,5)`, allora `ab ∈ S(p,5)`.
+@isnad1 id=locals5.3h3v.s6.3cf3d1abe922 from=translated src=- shape=40315690 vocab=e4866d1b
+-/
 theorem localS5_mul {p a b : ℕ} [Fact p.Prime]
     (ha5 : a % 5 = 1 ∨ a % 5 = 2 ∨ a % 5 = 3 ∨ a % 5 = 4)
     (ha : LocalS5 p a) (hb : LocalS5 p b) :
@@ -54,7 +58,9 @@ theorem localS5_mul {p a b : ℕ} [Fact p.Prime]
       localS5_row hb (phi5_aeval_zeta_pow_of_unit ha5)
 
 /-- La riga con esponente `2` è impossibile in caratteristica diversa da
-`2` e `5`.-/
+`2` e `5`.
+@isnad1 id=not.2h1v.s5.94ddcf310e62 from=translated src=- shape=db96c64d vocab=b403515c
+-/
 theorem not_localS5_two {p : ℕ} [Fact p.Prime] (hp2 : p ≠ 2) (hp5 : p ≠ 5) :
     ¬ LocalS5 p 2 := by
   intro h
@@ -77,7 +83,9 @@ residue modulo `5` is `2` or `3` is automatically odd.  Indeed, compare
 the row at `ζ` with the conjugate row at `ζ⁻¹ = ζ⁴`.  If the exponent
 were even, conjugation would force `ζ³ - 1 = -(ζ³ - 1)` in the residue-2
 case, or `ζ² - 1 = -(ζ² - 1)` in the residue-3 case.  Both elements are
-units away from `5`, while `2` is a unit away from characteristic `2`.-/
+units away from `5`, while `2` is a unit away from characteristic `2`.
+@isnad1 id=odd.4h2v.s6.e28efa16d555 from=translated src=- shape=5f059377 vocab=90f00183
+-/
 theorem localS5_orderFour_odd {p m : ℕ} [Fact p.Prime]
     (hp2 : p ≠ 2) (hp5 : p ≠ 5)
     (hrow : LocalS5 p m) (hm : m % 5 = 2 ∨ m % 5 = 3) :
@@ -176,7 +184,9 @@ theorem localS5_orderFour_odd {p m : ℕ} [Fact p.Prime]
 un testimone nella normalizzazione `2*n-1`, `n ≡ 4 (mod 5)`.
 
 Nel ramo `3 mod 5` si usa il cubo dell'esponente: `3³ ≡ 2 (mod 5)`;
-`localS5_mul` garantisce che il cubo resta una riga locale.-/
+`localS5_mul` garantisce che il cubo resta una riga locale.
+@isnad1 id=hasorder.3h2v.s5.b1247e0f183c from=translated src=- shape=3450719d vocab=178fd6bb
+-/
 theorem hasOrderFourTransport_of_odd_local {p m : ℕ} [Fact p.Prime]
     (hodd : Odd m) (hrow : LocalS5 p m)
     (hm : m % 5 = 2 ∨ m % 5 = 3) :
@@ -215,7 +225,9 @@ theorem hasOrderFourTransport_of_odd_local {p m : ℕ} [Fact p.Prime]
 
 /-- Any good local row of order four modulo `5` produces the normalized
 `HasOrderFourTransport` witness.  The parity input is no longer external:
-it follows from `localS5_orderFour_odd`.-/
+it follows from `localS5_orderFour_odd`.
+@isnad1 id=hasorder.4h2v.s6.d2a5c2775f9c from=translated src=- shape=ffc3599e vocab=b5a9f649
+-/
 theorem hasOrderFourTransport_of_local {p m : ℕ} [Fact p.Prime]
     (hp2 : p ≠ 2) (hp5 : p ≠ 5)
     (hrow : LocalS5 p m) (hm : m % 5 = 2 ∨ m % 5 = 3) :
@@ -224,7 +236,9 @@ theorem hasOrderFourTransport_of_local {p m : ℕ} [Fact p.Prime]
     (localS5_orderFour_odd hp2 hp5 hrow hm) hrow hm
 
 /-- Se il prodotto di due primi buoni non ha quadrato `1 mod 5`, allora
-uno e uno solo dei due fattori è split e l'altro è inerte.-/
+uno e uno solo dei due fattori è split e l'altro è inerte.
+@isnad1 id=or.5h2v.s6.a16785623919 from=translated src=- shape=273c5451 vocab=556d4c49
+-/
 theorem two_prime_residue_partition {p q : ℕ} (hp : p.Prime) (hq : q.Prime)
     (hp5 : p ≠ 5) (hq5 : q ≠ 5)
     (hbad : (p * q) ^ 2 % 5 ≠ 1) :
@@ -251,7 +265,9 @@ theorem two_prime_residue_partition {p q : ℕ} (hp : p.Prime) (hq : q.Prime)
 
 Se `p*q` soddisfa la congruenza globale e viola la conclusione quadratica
 modulo `5`, il fattore split porta la riga locale effettiva con esponente
-pari all'altro primo, che è inerte.-/
+pari all'altro primo, che è inerte.
+@isnad1 id=or.6h2v.s7.08f56c044dba from=translated src=- shape=a92c5361 vocab=2bd37481
+-/
 theorem two_prime_candidate_split_local_row {p q : ℕ}
     (hp : p.Prime) (hq : q.Prime)
     (hp5 : p ≠ 5) (hq5 : q ≠ 5)
@@ -293,7 +309,9 @@ theorem two_prime_candidate_split_local_row {p q : ℕ}
 Ogni candidato globale della forma `p*q` che viola `n² ≡ 1 (mod 5)`
 esibisce necessariamente un testimone split d'ordine quattro. Pertanto H4,
 se assunta soltanto sui due fattori del candidato, esclude già tutto il
-ramo bifattoriale.-/
+ramo bifattoriale.
+@isnad1 id=splitord.6h2v.s6.b2145364a53b from=translated src=- shape=d6fb977b vocab=aea7e4e6
+-/
 theorem two_prime_candidate_has_splitOrderFourWitness {p q : ℕ}
     (hp : p.Prime) (hq : q.Prime)
     (hp5 : p ≠ 5) (hq5 : q ≠ 5)
@@ -339,7 +357,9 @@ theorem two_prime_candidate_has_splitOrderFourWitness {p q : ℕ}
 
 Se H4 vale soltanto sui fattori di `p*q`, allora la congruenza globale e
 la violazione di `n² ≡ 1 (mod 5)` non possono coesistere. Nessuna forma
-universale di H4 è nascosta nell'enunciato.-/
+universale di H4 è nascosta nell'enunciato.
+@isnad1 id=not.5h2v.s6.7585acb6b30b from=translated src=- shape=9d6cb153 vocab=033baceb
+-/
 theorem no_two_prime_candidate_of_localH4 {p q : ℕ}
     (hp : p.Prime) (hq : q.Prime)
     (hp5 : p ≠ 5) (hq5 : q ≠ 5)

@@ -25,7 +25,9 @@ def quarticNormExponent (p : ℕ) : ℕ :=
 /-- **Literal norm identity.**
 
 For an inert residue, the four Frobenius conjugates of `zeta_5 - 1` are
-exactly the four nontrivial cyclotomic units, whose product is five.-/
+exactly the four nontrivial cyclotomic units, whose product is five.
+@isnad1 id=eq.2h1v.s8.e3eff022a8dc from=translated src=- shape=88fbecf7 vocab=52236a5b
+-/
 theorem localCyclotomicUnit_pow_normExponent_eq_five
     (hp : p % 5 = 2 ∨ p % 5 = 3) (hp5 : p ≠ 5) :
     (localCyclotomicUnit hp5 (1 : (ZMod 5)ˣ)) ^
@@ -73,7 +75,9 @@ theorem localCyclotomicUnit_pow_normExponent_eq_five
     linear_combination hprod
 
 /-- The order of the scalar-five unit in the quartic ring already divides
-the base-field order `p - 1`.-/
+the base-field order `p - 1`.
+@isnad1 id=dvd.1h1v.s6.d325f4a07ba8 from=translated src=- shape=cb908ba5 vocab=0caa8cbd
+-/
 theorem orderOf_localFiveUnit_dvd_sub_one (hp5 : p ≠ 5) :
     orderOf (localFiveUnit hp5) ∣ p - 1 := by
   apply orderOf_dvd_of_pow_eq_one
@@ -86,7 +90,9 @@ theorem orderOf_localFiveUnit_dvd_sub_one (hp5 : p ≠ 5) :
   simpa only [map_pow, map_ofNat, map_one] using hmap
 
 /-- The norm identity makes the scalar-five order a divisor of the
-cyclotomic order.-/
+cyclotomic order.
+@isnad1 id=dvd.2h1v.s8.eccc9ddd58d1 from=translated src=- shape=f73f82fc vocab=867ead00
+-/
 theorem orderOf_localFiveUnit_dvd_cyclotomic
     (hp : p % 5 = 2 ∨ p % 5 = 3) (hp5 : p ≠ 5) :
     orderOf (localFiveUnit hp5) ∣
@@ -116,14 +122,18 @@ noncomputable def quarticMinusJaw (p : ℕ) [Fact p.Prime]
     (hp5 : p ≠ 5) : ℕ :=
   ordCompl[2] (orderOf (localFiveUnit hp5))
 
-/-- The norm-visible jaw lies on the `p - 1` side.-/
+/-- The norm-visible jaw lies on the `p - 1` side.
+@isnad1 id=dvd.1h1v.s5.981ad6480a1a from=translated src=- shape=7c006d55 vocab=50bacc4e
+-/
 theorem quarticMinusJaw_dvd_sub_one (hp5 : p ≠ 5) :
     quarticMinusJaw p hp5 ∣ p - 1 := by
   exact (Nat.ordCompl_dvd _ 2).trans
     (orderOf_localFiveUnit_dvd_sub_one hp5)
 
 /-- An inert prime is never `1 mod 5`; hence five does not divide its
-base-field group order.-/
+base-field group order.
+@isnad1 id=not.1h1v.s6.bc0e61a6d8ed from=translated src=- shape=ecec3336 vocab=094df8da
+-/
 theorem five_not_dvd_sub_one_of_inert {p : ℕ}
     (hp : p % 5 = 2 ∨ p % 5 = 3) :
     ¬ 5 ∣ p - 1 := by
@@ -133,7 +143,9 @@ theorem five_not_dvd_sub_one_of_inert {p : ℕ}
   · omega
   · omega
 
-/-- The scalar-five order is nonzero.-/
+/-- The scalar-five order is nonzero.
+@isnad1 id=ne.1h1v.s6.273b0c2bbd81 from=translated src=- shape=577f0a4e vocab=ac0a10f8
+-/
 theorem orderOf_localFiveUnit_ne_zero (hp5 : p ≠ 5) :
     orderOf (localFiveUnit hp5) ≠ 0 := by
   intro hzero
@@ -143,7 +155,9 @@ theorem orderOf_localFiveUnit_ne_zero (hp5 : p ≠ 5) :
   exact (by omega : p - 1 ≠ 0) (Nat.eq_zero_of_zero_dvd hdvd)
 
 /-- The norm-visible jaw embeds canonically into the canonical odd tail
-of the quartic row.-/
+of the quartic row.
+@isnad1 id=dvd.2h1v.s6.5557804d379d from=translated src=- shape=8c603848 vocab=0b2267fc
+-/
 theorem quarticMinusJaw_dvd_oddTail
     (hp : p % 5 = 2 ∨ p % 5 = 3) (hp5 : p ≠ 5) :
     quarticMinusJaw p hp5 ∣ quarticOddTail p hp5 := by
@@ -181,7 +195,9 @@ to `2` is prime to
 `S = 1 + p + p² + p³ = (p + 1)(p² + 1)`.
 
 Therefore the norm exponent cannot kill any of its odd `p - 1`
-components.-/
+components.
+@isnad1 id=eq.2h1v.s6.bef90f425fa0 from=translated src=- shape=4fa484d3 vocab=e4f4d341
+-/
 theorem quarticMinusJaw_eq_gcd_oddTail_sub_one
     (hp : p % 5 = 2 ∨ p % 5 = 3) (hp5 : p ≠ 5) :
     quarticMinusJaw p hp5 =
@@ -273,10 +289,16 @@ noncomputable def quarticPlusShadow (p : ℕ) [Fact p.Prime]
     (hp5 : p ≠ 5) : ℕ :=
   Nat.gcd (quarticOddTail p hp5) (p + 1)
 
+/--
+@isnad1 id=dvd.1h1v.s4.c294fb36f4ec from=translated src=- shape=c2faa8c9 vocab=66a47f94
+-/
 theorem quarticPlusShadow_dvd_oddTail (hp5 : p ≠ 5) :
     quarticPlusShadow p hp5 ∣ quarticOddTail p hp5 :=
   Nat.gcd_dvd_left _ _
 
+/--
+@isnad1 id=dvd.1h1v.s5.53209bbb1309 from=translated src=- shape=7c006d55 vocab=fc6a2a2e
+-/
 theorem quarticPlusShadow_dvd_add_one (hp5 : p ≠ 5) :
     quarticPlusShadow p hp5 ∣ p + 1 :=
   Nat.gcd_dvd_right _ _
@@ -292,7 +314,9 @@ where `D_{p,-}` is the odd order of scalar five and divides `p - 1`,
 while `D_{p,+}` divides `p + 1`.
 
 The proof uses only `D_p ∣ (p - 1)(p + 1)` and the fact that `D_p` is
-odd, after the norm identity has identified the exact minus jaw.-/
+odd, after the norm identity has identified the exact minus jaw.
+@isnad1 id=eq.2h1v.s6.11def6319eae from=translated src=- shape=7a7f5d94 vocab=3205af9e
+-/
 theorem quarticOddTail_eq_mul_jaws
     (hp : p % 5 = 2 ∨ p % 5 = 3) (hp5 : p ≠ 5) :
     quarticOddTail p hp5 =
@@ -372,7 +396,9 @@ theorem quarticOddTail_eq_mul_jaws
   rw [hminusEq, hplusDef, hplusEq]
   exact (Nat.mul_div_cancel' hgD).symm
 
-/-- The two jaws of a single row are coprime.-/
+/-- The two jaws of a single row are coprime.
+@isnad1 id=coprime.2h1v.s6.4108134e8b47 from=translated src=- shape=1bdd4342 vocab=54e14372
+-/
 theorem quarticJaws_coprime
     (hp : p % 5 = 2 ∨ p % 5 = 3) (hp5 : p ≠ 5) :
     Nat.Coprime (quarticMinusJaw p hp5) (quarticPlusShadow p hp5) := by
@@ -405,7 +431,9 @@ relation forces it to divide `2`.  Hence no odd prime can occur on opposite
 sides.
 
 The statement is separated from the row hypotheses on purpose: `hgap` is
-the exact incidence consequence supplied by two compatible quartic rows.-/
+the exact incidence consequence supplied by two compatible quartic rows.
+@isnad1 id=dvd.7h3v.s7.a76f5d1769c5 from=translated src=- shape=ff510976 vocab=0003532c
+-/
 theorem quarticCrossJaw_dvd_two_of_incidence
     {p r ℓ : ℕ} [Fact p.Prime] [Fact r.Prime]
     (hp : p % 5 = 2 ∨ p % 5 = 3)
@@ -437,7 +465,9 @@ theorem quarticCrossJaw_dvd_two_of_incidence
 
 /-- The reverse orientation of the cross-sign law: a divisor in the
 `p + 1` jaw of the smaller row and the `r - 1` jaw of the larger row is
-also forced to divide `2`.-/
+also forced to divide `2`.
+@isnad1 id=dvd.7h3v.s7.0b7c61a95d26 from=translated src=- shape=9c612443 vocab=0003532c
+-/
 theorem quarticCrossJaw_reverse_dvd_two_of_incidence
     {p r ℓ : ℕ} [Fact p.Prime] [Fact r.Prime]
     (hr : r % 5 = 2 ∨ r % 5 = 3)
@@ -469,7 +499,9 @@ theorem quarticCrossJaw_reverse_dvd_two_of_incidence
   rwa [htwoEq] at hℓTwo
 
 /-- Both cross orientations, packaged as the canonical forced partition
-of two incident odd tails.-/
+of two incident odd tails.
+@isnad1 id=and.6h2v.s7.e0165c5e286d from=translated src=- shape=42680320 vocab=0003532c
+-/
 theorem quarticCrossJaws_partition_of_incidence
     {p r : ℕ} [Fact p.Prime] [Fact r.Prime]
     (hp : p % 5 = 2 ∨ p % 5 = 3)

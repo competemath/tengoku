@@ -34,12 +34,18 @@ open scoped ComplexConjugate
 
 namespace AgrawalCore
 
+/--
+@isnad1 id=eq.0h1v.s5.adc921206452 from=translated src=- shape=c5d9dbac vocab=bc194572
+-/
 theorem phi5_eq_cyclotomic {p : ℕ} [Fact p.Prime] :
     phi5 p = cyclotomic 5 (ZMod p) := by
   haveI : Fact (Nat.Prime 5) := ⟨by norm_num⟩
   rw [cyclotomic_prime]
   simp [phi5, Finset.sum_range_succ, add_assoc, add_comm]
 
+/--
+@isnad1 id=eq.1h1v.s6.a13859c9b0bf from=translated src=- shape=20d8c753 vocab=614313d6
+-/
 theorem inertModFive_orderOf_unitOfCoprime {p : ℕ} [Fact p.Prime]
     (hp : InertModFive p) :
     orderOf (ZMod.unitOfCoprime p (by
@@ -79,6 +85,9 @@ theorem inertModFive_orderOf_unitOfCoprime {p : ℕ} [Fact p.Prime]
       interval_cases m <;> norm_num at hpos hm
       all_goals revert hv; decide
 
+/--
+@isnad1 id=irreduci.1h1v.s5.ac76c628a5ca from=translated src=- shape=214fa67d vocab=6b959ba3
+-/
 theorem phi5_irreducible_of_inert {p : ℕ} [Fact p.Prime]
     (hp : InertModFive p) :
     Irreducible (phi5 p) := by
@@ -94,6 +103,9 @@ theorem phi5_irreducible_of_inert {p : ℕ} [Fact p.Prime]
   · rw [natDegree_cyclotomic]
     exact (inertModFive_orderOf_unitOfCoprime hp).symm
 
+/--
+@isnad1 id=eq.4h6v.s7.9c863771bd14 from=translated src=- shape=26939360 vocab=22365c28
+-/
 theorem map_resultant_eq_zero_of_common_root
     {R K : Type*} [CommRing R] [Field K]
     (φ : R →+* K) {f g : R[X]} (hf : f.Monic) (hg : g.Monic)
@@ -113,6 +125,9 @@ theorem map_resultant_eq_zero_of_common_root
     (Polynomial.resultant_map_map (f := f) (g := g)
       (m := f.natDegree) (n := g.natDegree) φ).symm
 
+/--
+@isnad1 id=dvd.4h5v.s8.ec2dbe91cdf5 from=translated src=- shape=e27e07d4 vocab=46cbd2e8
+-/
 theorem prime_dvd_resultant_of_common_root
     {q : ℕ} [Fact q.Prime] {K : Type*} [Field K]
     [Algebra (ZMod q) K]
@@ -142,7 +157,9 @@ The proof is coefficient-level.  Irreducibility identifies the reduction of
 reduction of `g`; equivalently, the integral remainder of `g` modulo `f` is
 coefficientwise divisible by `q`.  Resultant invariance under adding a
 multiple of `f`, followed by homogeneity in the second input, produces one
-factor of `q` for each degree of `f`.-/
+factor of `q` for each degree of `f`.
+@isnad1 id=dvd.4h5v.s8.53ddfdfb2d78 from=translated src=- shape=1c57465a vocab=57b66a2d
+-/
 theorem prime_pow_natDegree_dvd_resultant_of_common_root
     {q : ℕ} [Fact q.Prime] {K : Type*} [Field K]
     [Algebra (ZMod q) K]
@@ -211,6 +228,9 @@ noncomputable def pureFiberPolynomial (A : ℕ) : ℤ[X] :=
 noncomputable def twistedFiberPolynomial (A : ℕ) : ℤ[X] :=
   X * (X - 1) ^ A + 1
 
+/--
+@isnad1 id=monic.1h1v.s4.89737efbdc9e from=translated src=- shape=238e953f vocab=800dabc3
+-/
 lemma pureFiberPolynomial_monic {A : ℕ} (hA : 0 < A) :
     (pureFiberPolynomial A).Monic := by
   unfold pureFiberPolynomial
@@ -223,6 +243,9 @@ lemma pureFiberPolynomial_monic {A : ℕ} (hA : 0 < A) :
   rw [degree_one, degree_eq_natDegree hm.ne_zero, hdeg]
   exact_mod_cast hA
 
+/--
+@isnad1 id=monic.0h1v.s2.db2eeaf22364 from=translated src=- shape=1a6c1393 vocab=51289723
+-/
 lemma twistedFiberPolynomial_monic (A : ℕ) :
     (twistedFiberPolynomial A).Monic := by
   unfold twistedFiberPolynomial
@@ -240,9 +263,15 @@ lemma twistedFiberPolynomial_monic (A : ℕ) :
   rw [degree_one, degree_eq_natDegree hm.ne_zero, hdeg]
   exact_mod_cast (Nat.zero_lt_succ A)
 
+/--
+@isnad1 id=monic.0h0v.s3.bb74f83f8c93 from=translated src=- shape=c9597ce4 vocab=b9c3eb53
+-/
 lemma intPhi5_monic : (cyclotomic 5 ℤ).Monic :=
   cyclotomic.monic 5 ℤ
 
+/--
+@isnad1 id=eq.0h0v.s9.b1ade7659f0a from=translated src=- shape=c0e2c4fb vocab=9058eb42
+-/
 lemma intPhi5_map_zmod_five :
     (cyclotomic 5 ℤ).map (Int.castRingHom (ZMod 5)) =
       (X - 1) ^ 4 := by
@@ -263,6 +292,9 @@ lemma intPhi5_map_zmod_five :
     simp [coeff_add, coeff_sub, coeff_X_pow, coeff_X,
       coeff_one, hfour, hsix, hn0, hn2, hn3, Ne.symm hn1]
 
+/--
+@isnad1 id=irreduci.1h1v.s6.a9fc9f931a0a from=translated src=- shape=38cf88ae vocab=01bd0df1
+-/
 theorem intPhi5_map_irreducible_of_inert {q : ℕ} [Fact q.Prime]
     (hq : InertModFive q) :
     Irreducible
@@ -270,6 +302,9 @@ theorem intPhi5_map_irreducible_of_inert {q : ℕ} [Fact q.Prime]
   rw [map_cyclotomic_int, ← phi5_eq_cyclotomic]
   exact phi5_irreducible_of_inert hq
 
+/--
+@isnad1 id=eq.1h1v.s7.de7b496ff6ea from=translated src=- shape=72724414 vocab=ffa31772
+-/
 theorem pure_resultant_mod_five_eq_one {A : ℕ} (hA : 0 < A) :
     ((cyclotomic 5 ℤ).resultant (pureFiberPolynomial A) : ZMod 5) =
       1 := by
@@ -294,6 +329,9 @@ theorem pure_resultant_mod_five_eq_one {A : ℕ} (hA : 0 < A) :
   rw [intPhi5_map_zmod_five]
   simpa [gbar, pureFiberPolynomial, hdegPhi, hA.ne', C_1] using hres
 
+/--
+@isnad1 id=eq.0h1v.s7.cde046f15134 from=translated src=- shape=72e94966 vocab=9e3b7664
+-/
 theorem twisted_resultant_mod_five_eq_one (A : ℕ) :
     ((cyclotomic 5 ℤ).resultant (twistedFiberPolynomial A) : ZMod 5) =
       1 := by
@@ -322,7 +360,9 @@ theorem twisted_resultant_mod_five_eq_one (A : ℕ) :
   simpa [gbar, twistedFiberPolynomial, hdegPhi, C_1] using hres
 
 /-- The pure resultant is a nonzero integer for every positive fiber
-exponent.  In fact, its reduction modulo `5` is `1`.-/
+exponent.  In fact, its reduction modulo `5` is `1`.
+@isnad1 id=ne.1h1v.s5.5287a8caf5c2 from=translated src=- shape=e6144cbb vocab=379fae61
+-/
 theorem pure_resultant_ne_zero {A : ℕ} (hA : 0 < A) :
     (cyclotomic 5 ℤ).resultant (pureFiberPolynomial A) ≠ 0 := by
   intro hzero
@@ -330,7 +370,9 @@ theorem pure_resultant_ne_zero {A : ℕ} (hA : 0 < A) :
   rw [hzero] at hmod
   exact zero_ne_one hmod
 
-/-- The twisted resultant is a nonzero integer for every fiber exponent.-/
+/-- The twisted resultant is a nonzero integer for every fiber exponent.
+@isnad1 id=ne.0h1v.s5.1e0c2381d716 from=translated src=- shape=6120977d vocab=9047a522
+-/
 theorem twisted_resultant_ne_zero (A : ℕ) :
     (cyclotomic 5 ℤ).resultant (twistedFiberPolynomial A) ≠ 0 := by
   intro hzero
@@ -338,6 +380,9 @@ theorem twisted_resultant_ne_zero (A : ℕ) :
   rw [hzero] at hmod
   exact zero_ne_one hmod
 
+/--
+@isnad1 id=eq.1h1v.s8.2bdf8584234d from=translated src=- shape=825bd3aa vocab=1543e685
+-/
 theorem intPhi5_eval_zeta_of_inert {q : ℕ} [Fact q.Prime]
     (hq : InertModFive q) :
     letI : Fact (Irreducible (phi5 q)) :=
@@ -354,6 +399,9 @@ theorem intPhi5_eval_zeta_of_inert {q : ℕ} [Fact q.Prime]
   rw [AdjoinRoot.aeval_eq]
   exact AdjoinRoot.mk_self (f := phi5 q)
 
+/--
+@isnad1 id=eq.0h2v.s8.5b3fb602dd12 from=translated src=- shape=85200528 vocab=5c871cb6
+-/
 theorem pureFiberPolynomial_eval_zeta {q A : ℕ} [Fact q.Prime] :
     ((pureFiberPolynomial A).map
       ((algebraMap (ZMod q) (Phi5Ring q)).comp
@@ -361,6 +409,9 @@ theorem pureFiberPolynomial_eval_zeta {q A : ℕ} [Fact q.Prime] :
       = ((zeta5 : Phi5Ring q) - 1) ^ A - 1 := by
   simp [pureFiberPolynomial]
 
+/--
+@isnad1 id=eq.0h2v.s8.64c674ff26eb from=translated src=- shape=388130ac vocab=ef6561aa
+-/
 theorem twistedFiberPolynomial_eval_zeta {q A : ℕ} [Fact q.Prime] :
     ((twistedFiberPolynomial A).map
       ((algebraMap (ZMod q) (Phi5Ring q)).comp
@@ -368,11 +419,17 @@ theorem twistedFiberPolynomial_eval_zeta {q A : ℕ} [Fact q.Prime] :
       = (zeta5 : Phi5Ring q) * ((zeta5 : Phi5Ring q) - 1) ^ A + 1 := by
   simp [twistedFiberPolynomial]
 
+/--
+@isnad1 id=ne.1h1v.s3.9cbfd1653c02 from=translated src=- shape=4f29f389 vocab=f755a3df
+-/
 lemma ne_five_of_inertModFive {q : ℕ} (hq : InertModFive q) : q ≠ 5 := by
   intro h
   subst q
   norm_num [InertModFive] at hq
 
+/--
+@isnad1 id=eq.3h2v.s7.4d07e5b37dab from=translated src=- shape=df558869 vocab=75ec7779
+-/
 theorem pure_row_power {q A : ℕ} [Fact q.Prime]
     (hq : InertModFive q) (hres : (A + 1) % 5 = 1)
     (hrow : LocalS5 q (A + 1)) :
@@ -401,6 +458,9 @@ theorem pure_row_power {q A : ℕ} [Fact q.Prime]
   rw [hone] at hval
   simpa using hval
 
+/--
+@isnad1 id=eq.3h2v.s8.0706e0731f0a from=translated src=- shape=a8c198c3 vocab=d05d48f1
+-/
 theorem twisted_row_vanishing {q A : ℕ} [Fact q.Prime]
     (hq : InertModFive q) (hres : (A + 1) % 5 = 4)
     (hrow : LocalS5 q (A + 1)) :
@@ -444,6 +504,9 @@ theorem twisted_row_vanishing {q A : ℕ} [Fact q.Prime]
               simp
     _ = 0 := by rw [hmul, mul_zero]
 
+/--
+@isnad1 id=dvd.4h2v.s6.de9676f1f4f5 from=translated src=- shape=8596dfce vocab=fbf98b23
+-/
 theorem pure_row_dvd_resultant {q A : ℕ} [Fact q.Prime]
     (hq : InertModFive q) (hA : 0 < A)
     (hres : (A + 1) % 5 = 1) (hrow : LocalS5 q (A + 1)) :
@@ -457,6 +520,9 @@ theorem pure_row_dvd_resultant {q A : ℕ} [Fact q.Prime]
   · rw [pureFiberPolynomial_eval_zeta,
       pure_row_power hq hres hrow, sub_self]
 
+/--
+@isnad1 id=dvd.3h2v.s6.30281d01d423 from=translated src=- shape=3356d91d vocab=5a8a08a1
+-/
 theorem twisted_row_dvd_resultant {q A : ℕ} [Fact q.Prime]
     (hq : InertModFive q)
     (hres : (A + 1) % 5 = 4) (hrow : LocalS5 q (A + 1)) :
@@ -472,7 +538,9 @@ theorem twisted_row_dvd_resultant {q A : ℕ} [Fact q.Prime]
 
 /-- The full inert-degree contribution for the pure final row:
 the quartic cyclotomic factor forces `q^4`, not merely `q`, to divide the
-explicit integer resultant.-/
+explicit integer resultant.
+@isnad1 id=dvd.3h2v.s6.cdd6a68b03a7 from=translated src=- shape=42649bee vocab=791915c9
+-/
 theorem pure_row_pow_four_dvd_resultant {q A : ℕ} [Fact q.Prime]
     (hq : InertModFive q)
     (hres : (A + 1) % 5 = 1) (hrow : LocalS5 q (A + 1)) :
@@ -490,7 +558,9 @@ theorem pure_row_pow_four_dvd_resultant {q A : ℕ} [Fact q.Prime]
   have htot : Nat.totient 5 = 4 := by decide
   simpa [natDegree_cyclotomic, htot] using hpow
 
-/-- The full inert-degree contribution for the twisted final row.-/
+/-- The full inert-degree contribution for the twisted final row.
+@isnad1 id=dvd.3h2v.s6.c4b1a68e6f68 from=translated src=- shape=42649bee vocab=f1bf059f
+-/
 theorem twisted_row_pow_four_dvd_resultant {q A : ℕ} [Fact q.Prime]
     (hq : InertModFive q)
     (hres : (A + 1) % 5 = 4) (hrow : LocalS5 q (A + 1)) :
@@ -509,7 +579,9 @@ theorem twisted_row_pow_four_dvd_resultant {q A : ℕ} [Fact q.Prime]
   simpa [natDegree_cyclotomic, htot] using hpow
 
 /-- A pure final row at positive exponent gives a finite size trap:
-`q^4` is bounded by the absolute value of the fixed nonzero resultant.-/
+`q^4` is bounded by the absolute value of the fixed nonzero resultant.
+@isnad1 id=le.4h2v.s7.1957ea17b8e6 from=translated src=- shape=f14db1a5 vocab=3341591e
+-/
 theorem pure_row_pow_four_le_resultant_natAbs {q A : ℕ} [Fact q.Prime]
     (hq : InertModFive q) (hA : 0 < A)
     (hres : (A + 1) % 5 = 1) (hrow : LocalS5 q (A + 1)) :
@@ -522,7 +594,9 @@ theorem pure_row_pow_four_le_resultant_natAbs {q A : ℕ} [Fact q.Prime]
       (pure_resultant_ne_zero hA)
   simpa [Int.natAbs_pow] using hle
 
-/-- The corresponding finite size trap in the twisted branch.-/
+/-- The corresponding finite size trap in the twisted branch.
+@isnad1 id=le.3h2v.s6.1cd2dfd34805 from=translated src=- shape=e0e7abff vocab=2574ed99
+-/
 theorem twisted_row_pow_four_le_resultant_natAbs {q A : ℕ} [Fact q.Prime]
     (hq : InertModFive q)
     (hres : (A + 1) % 5 = 4) (hrow : LocalS5 q (A + 1)) :
@@ -551,7 +625,9 @@ over the four roots gives `2^4 * 5^A`.
 
 /-- Every primitive fifth root of unity is at complex distance at least one
 from `1`.  The proof uses only the fifth cyclotomic equation and the identity
-for the squared complex norm.-/
+for the squared complex norm.
+@isnad1 id=le.1h1v.s5.6dbb18a8070a from=translated src=- shape=f70991cb vocab=5e8cca42
+-/
 lemma norm_sub_one_one_le_of_isPrimitiveRoot_five
     {z : ℂ} (hz : IsPrimitiveRoot z 5) :
     1 ≤ ‖z - 1‖ := by
@@ -605,7 +681,9 @@ lemma norm_sub_one_one_le_of_isPrimitiveRoot_five
   nlinarith [norm_nonneg (z - 1)]
 
 /-- After embedding into `ℂ`, the integral resultant is the product of the
-values of the second polynomial over the four complex roots of `Φ₅`.-/
+values of the second polynomial over the four complex roots of `Φ₅`.
+@isnad1 id=eq.0h1v.s6.4b95a2e9f0f9 from=translated src=- shape=f7077398 vocab=ab24846e
+-/
 lemma complex_cast_resultant_eq_prod_eval (g : ℤ[X]) :
     (((cyclotomic 5 ℤ).resultant g : ℤ) : ℂ) =
       (((cyclotomic 5 ℂ).roots.map
@@ -625,6 +703,9 @@ lemma complex_cast_resultant_eq_prod_eval (g : ℤ[X]) :
   simpa [φ, natDegree_cyclotomic,
     natDegree_map_eq_of_injective hφinj] using hprod
 
+/--
+@isnad1 id=eq.0h0v.s7.11de99c5d071 from=translated src=- shape=2233fa16 vocab=922fbfaa
+-/
 lemma intPhi5_resultant_X_sub_one :
     (cyclotomic 5 ℤ).resultant (X - 1) = 5 := by
   have hdeg : (cyclotomic 5 ℤ).natDegree = 4 := by
@@ -646,7 +727,9 @@ lemma intPhi5_resultant_X_sub_one :
   all_goals norm_num [hdeg]
 
 /-- The product of the distances of the four primitive fifth roots from
-`1` is exactly `5`.-/
+`1` is exactly `5`.
+@isnad1 id=eq.0h0v.s5.108d0e1676f3 from=translated src=- shape=a2321d6e vocab=6f4e814a
+-/
 lemma prod_norm_sub_one_roots_cyclotomic_five :
     (((cyclotomic 5 ℂ).roots.map fun z => ‖z - 1‖).prod) = 5 := by
   have hprod :=
@@ -672,6 +755,9 @@ lemma prod_norm_sub_one_roots_cyclotomic_five :
   norm_num at hnorm
   exact hnorm.symm
 
+/--
+@isnad1 id=le.3h4v.s6.ab8e35ebb81d from=translated src=- shape=82925c7f vocab=57ae01e4
+-/
 lemma multiset_prod_map_le_prod_map
     {α : Type*} (s : Multiset α) (f g : α → ℝ)
     (hf : ∀ x ∈ s, 0 ≤ f x) (hg : ∀ x ∈ s, 0 ≤ g x)
@@ -692,6 +778,9 @@ lemma multiset_prod_map_le_prod_map
           exact hf x (by simp [hx])
       · exact hg a (by simp)
 
+/--
+@isnad1 id=isprimit.1h1v.s5.9a9321a6f3ee from=translated src=- shape=225dc37e vocab=c2b223c8
+-/
 lemma root_of_cyclotomic_five_isPrimitive
     {z : ℂ} (hz : z ∈ (cyclotomic 5 ℂ).roots) :
     IsPrimitiveRoot z 5 := by
@@ -699,6 +788,9 @@ lemma root_of_cyclotomic_five_isPrimitive
   rw [← mem_roots (cyclotomic_ne_zero 5 ℂ)]
   exact hz
 
+/--
+@isnad1 id=le.0h1v.s6.bb106f1e7a20 from=translated src=- shape=cee534b3 vocab=41881c2a
+-/
 lemma pure_root_product_norm_le (A : ℕ) :
     (((cyclotomic 5 ℂ).roots.map
       fun z => ‖(z - 1) ^ A - 1‖).prod) ≤
@@ -734,6 +826,9 @@ lemma pure_root_product_norm_le (A : ℕ) :
       rw [hcard, prod_norm_sub_one_roots_cyclotomic_five]
       norm_num
 
+/--
+@isnad1 id=le.0h1v.s6.553d469d49e3 from=translated src=- shape=74a92db2 vocab=851d264b
+-/
 lemma twisted_root_product_norm_le (A : ℕ) :
     (((cyclotomic 5 ℂ).roots.map
       fun z => ‖z * (z - 1) ^ A + 1‖).prod) ≤
@@ -771,11 +866,16 @@ lemma twisted_root_product_norm_le (A : ℕ) :
       rw [hcard, prod_norm_sub_one_roots_cyclotomic_five]
       norm_num
 
+/--
+@isnad1 id=eq.0h1v.s4.792ee2e8f6bd from=translated src=- shape=79d1bd2d vocab=fbd215c8
+-/
 lemma norm_intCast_complex_eq_natAbs (z : ℤ) :
     ‖(z : ℂ)‖ = (Int.natAbs z : ℝ) := by
   simp
 
-/-- Closed-form archimedean estimate for the pure resultant.-/
+/-- Closed-form archimedean estimate for the pure resultant.
+@isnad1 id=le.0h1v.s6.0df8833db810 from=translated src=- shape=184335f9 vocab=e7846aca
+-/
 theorem pure_resultant_natAbs_le (A : ℕ) :
     Int.natAbs
         ((cyclotomic 5 ℤ).resultant (pureFiberPolynomial A))
@@ -818,7 +918,9 @@ theorem pure_resultant_natAbs_le (A : ℕ) :
         exact (pure_root_product_norm_le A).trans_eq hcast
   exact_mod_cast hreal
 
-/-- Closed-form archimedean estimate for the twisted resultant.-/
+/-- Closed-form archimedean estimate for the twisted resultant.
+@isnad1 id=le.0h1v.s6.d0c0b4df9491 from=translated src=- shape=184335f9 vocab=b78a040a
+-/
 theorem twisted_resultant_natAbs_le (A : ℕ) :
     Int.natAbs
         ((cyclotomic 5 ℤ).resultant (twistedFiberPolynomial A))
@@ -862,7 +964,9 @@ theorem twisted_resultant_natAbs_le (A : ℕ) :
   exact_mod_cast hreal
 
 /-- A literal pure final row satisfies the fully explicit fourth-power
-bound used in the finite-fiber theorem.-/
+bound used in the finite-fiber theorem.
+@isnad1 id=le.4h2v.s6.882885d75258 from=translated src=- shape=cfe6df4e vocab=96b2faaa
+-/
 theorem pure_row_pow_four_le_sixteen_mul_five_pow
     {q A : ℕ} [Fact q.Prime]
     (hq : InertModFive q) (hA : 0 < A)
@@ -871,7 +975,9 @@ theorem pure_row_pow_four_le_sixteen_mul_five_pow
   (pure_row_pow_four_le_resultant_natAbs hq hA hres hrow).trans
     (pure_resultant_natAbs_le A)
 
-/-- The corresponding explicit fourth-power bound in the twisted branch.-/
+/-- The corresponding explicit fourth-power bound in the twisted branch.
+@isnad1 id=le.3h2v.s6.c052f935ef84 from=translated src=- shape=3cfffb42 vocab=25699b27
+-/
 theorem twisted_row_pow_four_le_sixteen_mul_five_pow
     {q A : ℕ} [Fact q.Prime]
     (hq : InertModFive q)

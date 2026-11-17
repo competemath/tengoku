@@ -43,22 +43,46 @@ def IsLucasCarmichael (n : ℕ) : Prop :=
 
 /-! ### Proiezioni banali -/
 
+/--
+@isnad1 id=not.1h1v.s3.87c6e1c44632 from=translated src=- shape=58f8d12c vocab=a309b45e
+-/
 theorem IsCarmichael.not_prime {n : ℕ} (h : IsCarmichael n) : ¬ n.Prime := h.1
 
+/--
+@isnad1 id=lt.1h1v.s3.63af7684f73d from=translated src=- shape=7d122e43 vocab=5ee64524
+-/
 theorem IsCarmichael.one_lt {n : ℕ} (h : IsCarmichael n) : 1 < n := h.2.1
 
+/--
+@isnad1 id=squarefr.1h1v.s3.670ecdb2c74b from=translated src=- shape=4596ad61 vocab=f3037fcc
+-/
 theorem IsCarmichael.squarefree {n : ℕ} (h : IsCarmichael n) : Squarefree n := h.2.2.1
 
+/--
+@isnad1 id=dvd.2h2v.s5.94da8dedccd1 from=translated src=- shape=291b83ce vocab=a3879abc
+-/
 theorem IsCarmichael.korselt {n : ℕ} (h : IsCarmichael n) :
     ∀ p ∈ n.primeFactors, (p - 1) ∣ (n - 1) := h.2.2.2
 
+/--
+@isnad1 id=not.1h1v.s3.0170ec5bcec7 from=translated src=- shape=58f8d12c vocab=c85a0526
+-/
 theorem IsLucasCarmichael.not_prime {n : ℕ} (h : IsLucasCarmichael n) : ¬ n.Prime := h.1
 
+/--
+@isnad1 id=lt.1h1v.s3.660d8f002465 from=translated src=- shape=7d122e43 vocab=b8b1d85f
+-/
 theorem IsLucasCarmichael.one_lt {n : ℕ} (h : IsLucasCarmichael n) : 1 < n := h.2.1
 
+/--
+@isnad1 id=squarefr.1h1v.s3.93e8c8c1bd45 from=translated src=- shape=4596ad61 vocab=8ca91483
+-/
 theorem IsLucasCarmichael.squarefree {n : ℕ} (h : IsLucasCarmichael n) : Squarefree n :=
   h.2.2.1
 
+/--
+@isnad1 id=dvd.2h2v.s5.1a8bd1004097 from=translated src=- shape=291b83ce vocab=c771d8b1
+-/
 theorem IsLucasCarmichael.korselt {n : ℕ} (h : IsLucasCarmichael n) :
     ∀ p ∈ n.primeFactors, (p + 1) ∣ (n + 1) := h.2.2.2
 
@@ -96,7 +120,9 @@ private lemma exists_odd_prime_factor {n : ℕ} (hnp : ¬ n.Prime) (hn1 : 1 < n)
 
 /-- **I numeri di Carmichael sono dispari.** Se `n` fosse pari,
 avrebbe un fattore primo dispari `q` con `q−1` pari che dovrebbe
-dividere `n−1` (dispari, perché `n` è pari): assurdo.-/
+dividere `n−1` (dispari, perché `n` è pari): assurdo.
+@isnad1 id=odd.1h1v.s3.3ad6e34a5e65 from=translated src=- shape=4596ad61 vocab=7a5ca191
+-/
 theorem IsCarmichael.odd {n : ℕ} (h : IsCarmichael n) : Odd n := by
   have hn1 : 1 < n := h.one_lt
   rcases Nat.even_or_odd n with hn | hn
@@ -118,7 +144,9 @@ theorem IsCarmichael.odd {n : ℕ} (h : IsCarmichael n) : Odd n := by
 
 /-- **I numeri di Lucas-Carmichael sono dispari.** Stessa dicotomia,
 con `q+1` (pari) che dividerebbe `n+1` (dispari se `n` è pari):
-assurdo.-/
+assurdo.
+@isnad1 id=odd.1h1v.s3.2ba8b74826c3 from=translated src=- shape=4596ad61 vocab=04da2ffd
+-/
 theorem IsLucasCarmichael.odd {n : ℕ} (h : IsLucasCarmichael n) : Odd n := by
   have hn1 : 1 < n := h.one_lt
   rcases Nat.even_or_odd n with hn | hn
@@ -143,7 +171,9 @@ theorem IsLucasCarmichael.odd {n : ℕ} (h : IsLucasCarmichael n) : Odd n := by
 /-- **Passo locale del criterio di Korselt**: se `p` è primo, `p ∣ n`,
 `n` e `b` sono coprimi (quindi anche `p` e `b`), e vale la condizione
 di Korselt `(p−1) ∣ (n−1)`, allora `b^(n−1) ≡ 1` in `ZMod p` — via il
-piccolo teorema di Fermat su `p`.-/
+piccolo teorema di Fermat su `p`.
+@isnad1 id=eq.4h3v.s7.c02d9be88648 from=translated src=- shape=4a585fc0 vocab=4b80e831
+-/
 theorem korselt_local {n p b : ℕ} (hp : p.Prime) (hpn : p ∣ n)
     (hb : Nat.Coprime n b) (hpk : (p - 1) ∣ (n - 1)) :
     (b : ZMod p) ^ (n - 1) = 1 := by
@@ -161,7 +191,9 @@ pseudoprimo di Fermat rispetto a OGNI base coprima con esso (non solo
 la base 5 dell'ombra di Fermat di `FermatShadow.lean`). La condizione
 `(p−1) ∣ (n−1)` dà Fermat locale su ogni fattore primo
 (`korselt_local`); `Squarefree n` incolla i fattori via
-`Nat.prod_primeFactors_of_squarefree` e `Finset.prod_primes_dvd`.-/
+`Nat.prod_primeFactors_of_squarefree` e `Finset.prod_primes_dvd`.
+@isnad1 id=fermatps.2h2v.s3.ad80e56d0367 from=translated src=- shape=a3ffc412 vocab=018eb23e
+-/
 theorem IsCarmichael.fermatPsp {n : ℕ} (h : IsCarmichael n) {b : ℕ}
     (hb : Nat.Coprime n b) : Nat.FermatPsp n b := by
   have hn1 : 1 < n := h.one_lt

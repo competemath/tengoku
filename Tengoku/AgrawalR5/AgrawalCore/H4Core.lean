@@ -33,9 +33,15 @@ def goldenA (n : ℕ) : ℕ := if Even n then lucas n else Nat.fib n
 /-- La successione gcd che codifica il profilo scalare H4.-/
 def goldenH (n : ℕ) : ℕ := Nat.gcd (goldenA n) (5 ^ (n - 1) + 1)
 
+/--
+@isnad1 id=eq.1h1v.s3.d6bac92681bc from=translated src=- shape=1b5fa6e9 vocab=12c588e5
+-/
 lemma goldenA_of_even {n : ℕ} (hn : Even n) : goldenA n = lucas n := by
   simp [goldenA, hn]
 
+/--
+@isnad1 id=eq.1h1v.s3.50bb594c5bc3 from=translated src=- shape=1b5fa6e9 vocab=84739fba
+-/
 lemma goldenA_of_odd {n : ℕ} (hn : Odd n) : goldenA n = Nat.fib n := by
   have hne : ¬ Even n := by
     rintro ⟨a, ha⟩
@@ -44,13 +50,17 @@ lemma goldenA_of_odd {n : ℕ} (hn : Odd n) : goldenA n = Nat.fib n := by
   simp [goldenA, hne]
 
 omit [Fact p.Prime] in
-/-- Dividere `Hₙ` equivale a dividere entrambi i suoi argomenti.-/
+/-- Dividere `Hₙ` equivale a dividere entrambi i suoi argomenti.
+@isnad1 id=iff.0h2v.s6.125ac05e5c59 from=translated src=- shape=3a830228 vocab=1dbc7325
+-/
 lemma dvd_goldenH_iff {n : ℕ} :
     p ∣ goldenH n ↔ p ∣ goldenA n ∧ p ∣ 5 ^ (n - 1) + 1 := by
   exact Nat.dvd_gcd_iff
 
 /-- La congruenza scalare negativa di `5` è esattamente la divisibilità
-del secondo argomento di `Hₙ`.-/
+del secondo argomento di `Hₙ`.
+@isnad1 id=iff.0h2v.s7.5dbf7f73a07a from=translated src=- shape=72dff5ab vocab=22e4c337
+-/
 lemma five_pow_eq_neg_one_iff_dvd {n : ℕ} :
     (5 : ZMod p) ^ (n - 1) = -1 ↔ p ∣ 5 ^ (n - 1) + 1 := by
   constructor
@@ -65,7 +75,9 @@ lemma five_pow_eq_neg_one_iff_dvd {n : ℕ} :
     push_cast at h0
     linear_combination h0
 
-/-- Se `n` è pari e `p ∣ Lₙ`, allora `ε^(2n) = -1`.-/
+/-- Se `n` è pari e `p ∣ Lₙ`, allora `ε^(2n) = -1`.
+@isnad1 id=eq.3h2v.s7.750669f0fd33 from=translated src=- shape=cf057252 vocab=b1651c5a
+-/
 lemma pow_eq_neg_one_of_dvd_lucas_even {n : ℕ} (hn : 1 ≤ n)
     (hev : Even n) (hdvd : p ∣ lucas n) :
     (eps : GoldenRing p) ^ (2 * n) = -1 := by
@@ -86,7 +98,9 @@ lemma pow_eq_neg_one_of_dvd_lucas_even {n : ℕ} (hn : 1 ≤ n)
       rw [hneg] at hprod
       linear_combination -hprod
 
-/-- Se `n` è dispari e `p ∣ Fₙ`, allora `ε^(2n) = -1`.-/
+/-- Se `n` è dispari e `p ∣ Fₙ`, allora `ε^(2n) = -1`.
+@isnad1 id=eq.3h2v.s7.f028ad477b09 from=translated src=- shape=cf057252 vocab=a3605bff
+-/
 lemma pow_eq_neg_one_of_dvd_fib_odd {n : ℕ} (hn : 1 ≤ n)
     (hodd : Odd n) (hdvd : p ∣ Nat.fib n) :
     (eps : GoldenRing p) ^ (2 * n) = -1 := by
@@ -110,7 +124,9 @@ lemma pow_eq_neg_one_of_dvd_fib_odd {n : ℕ} (hn : 1 ≤ n)
     _ = -1 := hodd.neg_one_pow
 
 /-- La prima coordinata del profilo H è equivalente al semiperiodo aureo
-negativo.-/
+negativo.
+@isnad1 id=iff.2h2v.s7.8f6316853045 from=translated src=- shape=8592101c vocab=abb83b71
+-/
 theorem golden_pow_eq_neg_one_iff_dvd_A {n : ℕ} (hn : 1 ≤ n)
     (hp5 : p ≠ 5) :
     (eps : GoldenRing p) ^ (2 * n) = -1 ↔ p ∣ goldenA n := by
@@ -130,7 +146,9 @@ theorem golden_pow_eq_neg_one_iff_dvd_A {n : ℕ} (hn : 1 ≤ n)
 
 /-- **Ponte aritmetico completo per H4.** Per `n ≥ 1` e `p ≠ 5`,
 `p ∣ Hₙ` se e solo se valgono simultaneamente le due congruenze scalari
-negative nel nucleo aureo.-/
+negative nel nucleo aureo.
+@isnad1 id=iff.2h2v.s8.3fa34a8b67ef from=translated src=- shape=4cf7724c vocab=0c6554e5
+-/
 theorem dvd_goldenH_iff_scalar_profile {n : ℕ} (hn : 1 ≤ n)
     (hp5 : p ≠ 5) :
     p ∣ goldenH n ↔
@@ -141,7 +159,9 @@ theorem dvd_goldenH_iff_scalar_profile {n : ℕ} (hn : 1 ≤ n)
 
 /-- Se una potenza di `5` è `-1`, l'ordine di `5` contiene esattamente
 un livello 2-adico in più dell'esponente. Questa è la metà elementare
-del bersaglio di saturazione H4.-/
+del bersaglio di saturazione H4.
+@isnad1 id=dvd.3h2v.s8.5fae40142728 from=translated src=- shape=817306b2 vocab=2ab4b74f
+-/
 theorem orderOf_five_two_adic_lower_bound_of_neg_one {n : ℕ}
     (hp2 : p ≠ 2) (hp5 : p ≠ 5)
     (hneg : (5 : ZMod p) ^ (n - 1) = -1) :
@@ -184,7 +204,9 @@ theorem orderOf_five_two_adic_lower_bound_of_neg_one {n : ℕ}
 
 /-- Forma esatta del lemma precedente: la valutazione 2-adica
 dell'ordine di `5` è precisamente una unità più profonda di quella
-dell'esponente che porta `5` a `-1`.-/
+dell'esponente che porta `5` a `-1`.
+@isnad1 id=eq.4h2v.s8.fed0ed0b5768 from=translated src=- shape=b9dc1c42 vocab=bd93ef69
+-/
 theorem orderOf_five_factorization_two_of_neg_one {n : ℕ}
     (hn : 2 ≤ n) (hp2 : p ≠ 2) (hp5 : p ≠ 5)
     (hneg : (5 : ZMod p) ^ (n - 1) = -1) :
@@ -220,7 +242,9 @@ theorem orderOf_five_factorization_two_of_neg_one {n : ℕ}
   omega
 
 /-- Per un primo inerte, l'ordine di `5` satura l'intera componente
-2-primaria di `p-1`.-/
+2-primaria di `p-1`.
+@isnad1 id=eq.3h1v.s7.d67844d59f34 from=translated src=- shape=48584f0d vocab=c3e34d3e
+-/
 theorem orderOf_five_factorization_two_eq_card_of_nonsquare
     (hp2 : p ≠ 2) (hp5 : p ≠ 5) (h5 : ¬ IsSquare (5 : ZMod p)) :
     (orderOf (5 : ZMod p)).factorization 2
@@ -273,7 +297,9 @@ theorem orderOf_five_factorization_two_eq_card_of_nonsquare
   omega
 
 /-- Ogni divisore primo di `Hₙ` soddisfa il lower bound 2-adico che
-precede la congettura di saturazione.-/
+precede la congettura di saturazione.
+@isnad1 id=dvd.4h2v.s7.3fa7129e1552 from=translated src=- shape=8bd2ff0b vocab=d3feb1bd
+-/
 theorem dvd_goldenH_two_adic_lower_bound {n : ℕ} (hn : 2 ≤ n)
     (hp2 : p ≠ 2) (hp5 : p ≠ 5) (hdvd : p ∣ goldenH n) :
     2 ^ ((n - 1).factorization 2 + 1) ∣ orderOf (5 : ZMod p) := by
@@ -282,7 +308,9 @@ theorem dvd_goldenH_two_adic_lower_bound {n : ℕ} (hn : 2 ≤ n)
   exact orderOf_five_two_adic_lower_bound_of_neg_one hp2 hp5 hscalar.2
 
 /-- La valutazione 2-adica dell'ordine di `5` è determinata esattamente
-da ogni divisore primo di `Hₙ`.-/
+da ogni divisore primo di `Hₙ`.
+@isnad1 id=eq.4h2v.s7.07236dc9538d from=translated src=- shape=7474579a vocab=307ff811
+-/
 theorem dvd_goldenH_order_factorization_two {n : ℕ} (hn : 2 ≤ n)
     (hp2 : p ≠ 2) (hp5 : p ≠ 5) (hdvd : p ∣ goldenH n) :
     (orderOf (5 : ZMod p)).factorization 2
@@ -294,7 +322,9 @@ theorem dvd_goldenH_order_factorization_two {n : ℕ} (hn : 2 ≤ n)
 /-- **Forma kernel-pura del muro H4.** Per ogni divisore primo di `Hₙ`,
 l'inerzia di `5` è equivalente all'uguaglianza fra la profondità 2-adica
 di `p-1` e quella, già determinata, dell'ordine di `5`. Il teorema non
-afferma che tale uguaglianza valga sempre.-/
+afferma che tale uguaglianza valga sempre.
+@isnad1 id=iff.4h2v.s7.a92387c975f1 from=translated src=- shape=69d1030d vocab=3e5ce34e
+-/
 theorem dvd_goldenH_nonsquare_iff_two_adic_saturation {n : ℕ}
     (hn : 2 ≤ n) (hp2 : p ≠ 2) (hp5 : p ≠ 5)
     (hdvd : p ∣ goldenH n) :

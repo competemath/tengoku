@@ -20,7 +20,9 @@ import Tengoku.AgrawalR5.AgrawalCore.TwoRowTransport
 namespace AgrawalCore
 
 /-- Exact 2-adic depths agree when two positive residues are congruent one
-level beyond the smaller depth.-/
+level beyond the smaller depth.
+@isnad1 id=eq.7h4v.s8.0b3049989023 from=translated src=- shape=8a67963d vocab=e1f1ab9f
+-/
 theorem exactTwoDepth_eq_of_modEq {a b α β : ℕ}
     (ha : 1 ≤ a) (hb : 1 ≤ b)
     (ha0 : 2 ^ α ∣ a ^ 2 - 1)
@@ -54,7 +56,9 @@ theorem exactTwoDepth_eq_of_modEq {a b α β : ℕ}
       (by nlinarith : 1 ≤ b ^ 2)).mp hbmod.symm)).elim
 
 /-- Cubing an odd residue does not change the exact two-primary depth of
-its square minus one.-/
+its square minus one.
+@isnad1 id=and.4h2v.s8.c1014410db50 from=translated src=- shape=30813fc5 vocab=d26dbc71
+-/
 theorem exactTwoDepth_cube {p b : ℕ} (hp : 1 ≤ p) (hpodd : Odd p)
     (h0 : 2 ^ b ∣ p ^ 2 - 1)
     (h1 : ¬ 2 ^ (b + 1) ∣ p ^ 2 - 1) :
@@ -81,7 +85,9 @@ theorem exactTwoDepth_cube {p b : ℕ} (hp : 1 ≤ p) (hpodd : Odd p)
     exact h1 (hcop.dvd_of_dvd_mul_right hd)
 
 /-- At its exact two-primary depth `b`, an odd square is the nontrivial
-lift of one from `2^b` to `2^(b+1)`.-/
+lift of one from `2^b` to `2^(b+1)`.
+@isnad1 id=other.1h1v.s7.7eba38544d89 from=translated src=- shape=2b8e0534 vocab=50304c94
+-/
 theorem square_modEq_one_add_exactTwoPower {p : ℕ} (hp : 2 ≤ p) :
     let b := (p ^ 2 - 1).factorization 2
     p ^ 2 ≡ 1 + 2 ^ b [MOD 2 ^ (b + 1)] := by
@@ -109,7 +115,9 @@ theorem square_modEq_one_add_exactTwoPower {p : ℕ} (hp : 2 ≤ p) :
   rw [hdecomp]
   exact Nat.ModEq.modulus_mul_add
 
-/-- Cubing shifts an odd base by exactly half the next binary modulus.-/
+/-- Cubing shifts an odd base by exactly half the next binary modulus.
+@isnad1 id=other.2h1v.s7.973a64df43ba from=translated src=- shape=4298a86c vocab=55429e4f
+-/
 theorem cube_modEq_base_add_exactTwoPower {p : ℕ}
     (hp : 2 ≤ p) (hpodd : Odd p) :
     let b := (p ^ 2 - 1).factorization 2
@@ -139,7 +147,9 @@ theorem cube_modEq_base_add_exactTwoPower {p : ℕ}
 def quarticTargetBit (e : ℕ) : ℕ := if e = 3 then 1 else 0
 
 /-- Exact normal form of either allowed quartic target at the first level
-above its square depth.-/
+above its square depth.
+@isnad1 id=other.3h2v.s7.1f09967a09e6 from=translated src=- shape=805909e7 vocab=41578e40
+-/
 theorem rowTarget_modEq_base_add_bit {p e : ℕ}
     (he : e = 1 ∨ e = 3) (hp : 2 ≤ p) (hpodd : Odd p) :
     let b := (p ^ 2 - 1).factorization 2
@@ -152,7 +162,9 @@ theorem rowTarget_modEq_base_add_bit {p e : ℕ}
       cube_modEq_base_add_exactTwoPower hp hpodd
 
 /-- The two possible row targets, `p` and `p^3`, have the same exact
-two-primary depth.-/
+two-primary depth.
+@isnad1 id=other.3h2v.s7.8e3f2dead83f from=translated src=- shape=3a535572 vocab=87c02e32
+-/
 theorem rowTarget_exactTwoDepth {p e : ℕ} (hp : 3 ≤ p)
     (hpodd : Odd p) (he : e = 1 ∨ e = 3) :
     let b := (p ^ 2 - 1).factorization 2
@@ -173,7 +185,9 @@ theorem rowTarget_exactTwoDepth {p e : ℕ} (hp : 3 ≤ p)
   · exact exactTwoDepth_cube (by omega) hpodd h0 h1
 
 /-- A dyadic power contained in both order moduli transfers a target
-congruence to the exact depth-comparison modulus.-/
+congruence to the exact depth-comparison modulus.
+@isnad1 id=eq.9h6v.s8.235a971c2239 from=translated src=- shape=658ab57f vocab=4db2ed51
+-/
 theorem rowTargets_force_equal_dyadicDepth
     {p q ep eq Tp Tq : ℕ} (hp : 3 ≤ p) (hq : 3 ≤ q)
     (hpodd : Odd p) (hqodd : Odd q)
@@ -200,7 +214,9 @@ theorem rowTargets_force_equal_dyadicDepth
     hpdepth.1 hpdepth.2 hqdepth.1 hqdepth.2 htarget
 
 /-- Once the exact binary depth is fixed, either allowed target `p` or
-`p^3` reduces to the same base residue modulo that depth.-/
+`p^3` reduces to the same base residue modulo that depth.
+@isnad1 id=modeq.3h3v.s6.d6a7b180eddb from=translated src=- shape=f8ac12b5 vocab=461caf9e
+-/
 theorem rowTarget_modEq_base {p e b : ℕ} (he : e = 1 ∨ e = 3)
     (hp : 1 ≤ p) (hdepth : 2 ^ b ∣ p ^ 2 - 1) :
     p ^ e ≡ p [MOD 2 ^ b] := by
@@ -215,7 +231,9 @@ theorem rowTarget_modEq_base {p e b : ℕ} (he : e = 1 ∨ e = 3)
 
 Pairwise target compatibility first forces equality of exact binary
 depths and then puts the two underlying prime residues in the same class
-modulo that common depth.-/
+modulo that common depth.
+@isnad1 id=other.9h6v.s8.0f5f60d38421 from=translated src=- shape=33a43ed2 vocab=4db2ed51
+-/
 theorem rowTargets_force_same_dyadicRay
     {p q ep eq Tp Tq : ℕ} (hp : 3 ≤ p) (hq : 3 ≤ q)
     (hpodd : Odd p) (hqodd : Odd q)
@@ -252,7 +270,9 @@ theorem rowTargets_force_same_dyadicRay
 
 The target label records the unique half-modulus translation at level
 `2^(b+1)`.  This is the complete binary information carried by a pairwise
-quartic target congruence.-/
+quartic target congruence.
+@isnad1 id=other.9h6v.s9.3ac73db595e3 from=translated src=- shape=0d1cfc08 vocab=293dd00e
+-/
 theorem rowTargets_force_exact_dyadicRay
     {p q ep eq Tp Tq : ℕ} (hp : 3 ≤ p) (hq : 3 ≤ q)
     (hpodd : Odd p) (hqodd : Odd q)
@@ -281,7 +301,9 @@ theorem rowTargets_force_exact_dyadicRay
   exact ⟨hbeq, hpnormal.symm.trans (htargets.trans (by
     simpa [b, hbeq] using hqnormal))⟩
 
-/-- Concrete pairwise form for the quartic row moduli.-/
+/-- Concrete pairwise form for the quartic row moduli.
+@isnad1 id=eq.9h4v.s8.3692b015866f from=translated src=- shape=b7109af3 vocab=d01fadbe
+-/
 theorem quarticRowTargets_force_equal_dyadicDepth
     {p q ep eq : ℕ} [Fact p.Prime] [Fact q.Prime]
     (hp : p % 5 = 2 ∨ p % 5 = 3)
@@ -310,7 +332,9 @@ theorem quarticRowTargets_force_equal_dyadicDepth
       twoPow_dvd_quarticOrderModulus hq hq2 hq5)
     hmod
 
-/-- Concrete single-ray form for the quartic row moduli.-/
+/-- Concrete single-ray form for the quartic row moduli.
+@isnad1 id=other.9h4v.s8.9a37c275cb9b from=translated src=- shape=b4e13161 vocab=d01fadbe
+-/
 theorem quarticRowTargets_force_same_dyadicRay
     {p q ep eq : ℕ} [Fact p.Prime] [Fact q.Prime]
     (hp : p % 5 = 2 ∨ p % 5 = 3)
@@ -341,7 +365,9 @@ theorem quarticRowTargets_force_same_dyadicRay
       twoPow_dvd_quarticOrderModulus hq hq2 hq5)
     hmod
 
-/-- Concrete exact labelled-ray form for the quartic row moduli.-/
+/-- Concrete exact labelled-ray form for the quartic row moduli.
+@isnad1 id=other.9h4v.s8.5b092ad09c62 from=translated src=- shape=9e5753dc vocab=101b41c0
+-/
 theorem quarticRowTargets_force_exact_dyadicRay
     {p q ep eq : ℕ} [Fact p.Prime] [Fact q.Prime]
     (hp : p % 5 = 2 ∨ p % 5 = 3)
@@ -377,7 +403,9 @@ theorem quarticRowTargets_force_exact_dyadicRay
 
 Two target compatibilities force all three prime factors to have the same
 value of `v_2(p^2 - 1)`.  All remaining freedom lies in odd components
-of the order moduli.-/
+of the order moduli.
+@isnad1 id=and.14h6v.s9.9deaeef8c9af from=translated src=- shape=f11646e3 vocab=d01fadbe
+-/
 theorem quarticTriangle_common_dyadicDepth
     {p q r ep eq er : ℕ}
     [Fact p.Prime] [Fact q.Prime] [Fact r.Prime]
@@ -408,7 +436,9 @@ theorem quarticTriangle_common_dyadicDepth
 
 Besides sharing one exact binary depth, all three prime bases are
 congruent modulo the corresponding power of two.  This classifies the
-entire binary component; it does not constrain the remaining odd tails.-/
+entire binary component; it does not constrain the remaining odd tails.
+@isnad1 id=other.14h6v.s9.00dc7f8d7f99 from=translated src=- shape=2e75cb18 vocab=d01fadbe
+-/
 theorem quarticTriangle_single_dyadicRay
     {p q r ep eq er : ℕ}
     [Fact p.Prime] [Fact q.Prime] [Fact r.Prime]
@@ -445,7 +475,9 @@ theorem quarticTriangle_single_dyadicRay
 
 At the common depth `b`, each row exponent contributes exactly its
 `quarticTargetBit`; the corresponding translated prime residues all agree
-modulo `2^(b+1)`.-/
+modulo `2^(b+1)`.
+@isnad1 id=other.14h6v.s9.aa7d5cc5b8d6 from=translated src=- shape=2454db19 vocab=101b41c0
+-/
 theorem quarticTriangle_exact_dyadicRays
     {p q r ep eq er : ℕ}
     [Fact p.Prime] [Fact q.Prime] [Fact r.Prime]
@@ -486,7 +518,9 @@ Here `P` is the product of the two smaller factors and `q` is the final
 factor.  The final row and each multiplied small row first give the two
 target transports; the preceding theorem then identifies all three
 two-primary depths.  This is the direct arithmetic interface used by the
-`k = 3` system.-/
+`k = 3` system.
+@isnad1 id=and.15h7v.s9.fe219b9c2570 from=translated src=- shape=429353dd vocab=bf2f668f
+-/
 theorem quarticThreeRows_common_dyadicDepth
     {p r q jp jr jq P : ℕ}
     [Fact p.Prime] [Fact r.Prime] [Fact q.Prime]
@@ -531,7 +565,9 @@ theorem quarticThreeRows_common_dyadicDepth
 /-- **Three literal arithmetic rows lie on one dyadic ray.**
 
 This is the direct `k = 3` arithmetic interface to the preceding
-classification theorem.-/
+classification theorem.
+@isnad1 id=other.15h7v.s9.022082bfc2d9 from=translated src=- shape=c3314829 vocab=bf2f668f
+-/
 theorem quarticThreeRows_single_dyadicRay
     {p r q jp jr jq P : ℕ}
     [Fact p.Prime] [Fact r.Prime] [Fact q.Prime]
@@ -580,7 +616,9 @@ theorem quarticThreeRows_single_dyadicRay
 
 This closes the binary component of the literal `k = 3` system in the
 kernel.  Any remaining obstruction must use an odd component of the order
-moduli.-/
+moduli.
+@isnad1 id=other.15h7v.s9.dde17f8d9f81 from=translated src=- shape=29ddeffe vocab=e31e7f72
+-/
 theorem quarticThreeRows_exact_dyadicRays
     {p r q jp jr jq P : ℕ}
     [Fact p.Prime] [Fact r.Prime] [Fact q.Prime]

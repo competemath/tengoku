@@ -22,7 +22,9 @@ namespace AgrawalCore
 
 variable {p : ℕ} [Fact p.Prime]
 
-/-- Each jaw is odd.-/
+/-- Each jaw is odd.
+@isnad1 id=coprime.2h1v.s6.da91395e8dc8 from=translated src=- shape=2bc8419c vocab=5cfecea6
+-/
 theorem quarticMinusJaw_coprime_two
     (hp : p % 5 = 2 ∨ p % 5 = 3) (hp5 : p ≠ 5) :
     Nat.Coprime (quarticMinusJaw p hp5) 2 := by
@@ -33,6 +35,9 @@ theorem quarticMinusJaw_coprime_two
   exact Nat.Coprime.of_dvd_left
     (quarticMinusJaw_dvd_oddTail hp hp5) htail
 
+/--
+@isnad1 id=coprime.2h1v.s6.41a5555979cb from=translated src=- shape=2bc8419c vocab=4d156e2c
+-/
 theorem quarticPlusShadow_coprime_two
     (hp : p % 5 = 2 ∨ p % 5 = 3) (hp5 : p ≠ 5) :
     Nat.Coprime (quarticPlusShadow p hp5) 2 := by
@@ -44,7 +49,9 @@ theorem quarticPlusShadow_coprime_two
     (quarticPlusShadow_dvd_oddTail hp5) htail
 
 /-- Opposite jaws of two incident rows are genuinely coprime, rather than
-merely having every common divisor divide `2`.-/
+merely having every common divisor divide `2`.
+@isnad1 id=and.6h2v.s7.5ea8488ccc0e from=translated src=- shape=39d872f7 vocab=a89d872d
+-/
 theorem quarticCrossJaws_coprime_of_incidence
     {p r : ℕ} [Fact p.Prime] [Fact r.Prime]
     (hp : p % 5 = 2 ∨ p % 5 = 3)
@@ -80,7 +87,9 @@ theorem quarticCrossJaws_coprime_of_incidence
 
 For incident inert rows, the gcd of the two complete odd tails is exactly
 the product of the two same-sign gcds.  Cross terms disappear because they
-are coprime, and the two jaws at either endpoint are already coprime.-/
+are coprime, and the two jaws at either endpoint are already coprime.
+@isnad1 id=eq.6h2v.s7.6d0aa2376ada from=translated src=- shape=bd83106c vocab=be7f6441
+-/
 theorem quarticSharedTail_gcd_eq_sameSignProduct_of_incidence
     {p r : ℕ} [Fact p.Prime] [Fact r.Prime]
     (hp : p % 5 = 2 ∨ p % 5 = 3)
@@ -114,7 +123,9 @@ theorem quarticSharedTail_gcd_eq_sameSignProduct_of_incidence
     exact hminusPlus.gcd_mul_left_cancel _
   rw [hleft, hright]
 
-/-- The product of the two same-sign overlaps divides the prime gap.-/
+/-- The product of the two same-sign overlaps divides the prime gap.
+@isnad1 id=dvd.6h2v.s7.351fe2052565 from=translated src=- shape=ab7c2d6e vocab=be7f6441
+-/
 theorem quarticSameSignIncidenceProduct_dvd_gap
     {p r : ℕ} [Fact p.Prime] [Fact r.Prime]
     (hp : p % 5 = 2 ∨ p % 5 = 3)
@@ -129,7 +140,9 @@ theorem quarticSameSignIncidenceProduct_dvd_gap
     hp hr hp5 hr5 hpr hgap]
   exact hgap
 
-/-- Literal two-row form of the signed incidence law.-/
+/-- Literal two-row form of the signed incidence law.
+@isnad1 id=dvd.8h3v.s8.c4ad627f9c8d from=translated src=- shape=319a8f0e vocab=743e9932
+-/
 theorem quarticRows_sameSignIncidenceProduct_dvd_gap
     {p r q : ℕ} [Fact p.Prime] [Fact r.Prime]
     (hp : p % 5 = 2 ∨ p % 5 = 3)
@@ -168,7 +181,9 @@ theorem quarticRows_sameSignIncidenceProduct_dvd_gap
 For three ordered inert factors carrying all three literal rows, each
 prime gap is divisible by the product of its minus-minus overlap and its
 plus-plus overlap.  Thus the unsigned triangle of `OddTailTriangle`
-decomposes canonically into two disjoint signed triangles.-/
+decomposes canonically into two disjoint signed triangles.
+@isnad1 id=and.11h3v.s8.a14d79e41678 from=translated src=- shape=e37f0431 vocab=dc9b1184
+-/
 theorem quarticSignedIncidenceTriangle
     {p r q : ℕ} [Fact p.Prime] [Fact r.Prime] [Fact q.Prime]
     (hp : p % 5 = 2 ∨ p % 5 = 3)

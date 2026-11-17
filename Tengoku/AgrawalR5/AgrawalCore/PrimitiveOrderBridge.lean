@@ -19,7 +19,9 @@ namespace AgrawalCore
 variable {p m k r s : ℕ} [Fact p.Prime]
 
 /-- La prima componente di `PrimitiveFourVanish` è precisamente
-l'affermazione che `x` è una radice di `Φₘ` sul campo residuo.-/
+l'affermazione che `x` è una radice di `Φₘ` sul campo residuo.
+@isnad1 id=isroot.1h4v.s5.766f293f4e6e from=translated src=- shape=9a8fd7a4 vocab=7638ce69
+-/
 theorem primitiveFourVanish_isRoot (x : ZMod p)
     (h : PrimitiveFourVanish p m k x) :
     IsRoot (cyclotomic m (ZMod p)) x := by
@@ -27,7 +29,9 @@ theorem primitiveFourVanish_isRoot (x : ZMod p)
   exact h.1
 
 /-- Fuori dalla caratteristica che divide il livello, l'annullamento
-ciclotomico forza ordine esattamente `m`.-/
+ciclotomico forza ordine esattamente `m`.
+@isnad1 id=eq.2h4v.s5.08d202e9f41f from=translated src=- shape=2a8d9dc0 vocab=c563b27e
+-/
 theorem primitiveFourVanish_order_eq (hpm : ¬p ∣ m) (x : ZMod p)
     (h : PrimitiveFourVanish p m k x) :
     orderOf x = m := by
@@ -44,7 +48,9 @@ private theorem canonicalSignature_one_impossible
 
 /-- **Profilo d'ordine esatto del risultante primitivo.**
 Se il livello è buono, la firma canonica converte i due trasporti nelle
-due componenti di ordine `2r` e `2s`.-/
+due componenti di ordine `2r` e `2s`.
+@isnad1 id=and.6h5v.s8.96b144b9b627 from=translated src=- shape=391332fa vocab=43e27cb8
+-/
 theorem primitiveFourVanish_exact_order_profile
     (hr : 0 < r) (hs : 0 < s) (hkpos : 1 ≤ k)
     (hpm : ¬p ∣ 4 * r * s)
@@ -76,7 +82,9 @@ theorem primitiveFourVanish_exact_order_profile
     exact hdiv
 
 /-- Forma aritmetica: la divisibilità del gcd canonico produce il
-profilo esatto, senza una norma o un certificato esterno.-/
+profilo esatto, senza una norma o un certificato esterno.
+@isnad1 id=and.8h5v.s8.e422ff893ee5 from=translated src=- shape=0adcbbee vocab=5d0544b1
+-/
 theorem dvd_primitiveFourCoefficientD_exact_order_profile
     (hp5 : p ≠ 5) (hr : 0 < r) (hs : 0 < s) (hkpos : 1 ≤ k)
     (hpm : ¬p ∣ 4 * r * s)

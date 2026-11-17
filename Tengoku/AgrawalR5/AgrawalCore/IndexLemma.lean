@@ -11,7 +11,9 @@ namespace AgrawalCore
 /-- **Lemma dell'indice.** Se `x` e `y` dividono `M`, allora
 `x * y ∣ gcd x y * M`. In particolare due divisori con prodotto
 maggiore di `gcd x y * M` non esistono: la forma quantitativa
-`gcd x y ≥ x * y / M` usata nella campagna.-/
+`gcd x y ≥ x * y / M` usata nella campagna.
+@isnad1 id=dvd.2h3v.s5.12a05b6fc881 from=translated src=- shape=cb33179b vocab=98b5f584
+-/
 theorem mul_dvd_gcd_mul {x y M : ℕ} (hx : x ∣ M) (hy : y ∣ M) :
     x * y ∣ Nat.gcd x y * M :=
   (Nat.gcd_mul_lcm x y) ▸ mul_dvd_mul_left _ (Nat.lcm_dvd hx hy)
@@ -19,7 +21,9 @@ theorem mul_dvd_gcd_mul {x y M : ℕ} (hx : x ∣ M) (hy : y ∣ M) :
 /-- Forma estremale: se `gcd x y = 1` il prodotto stesso divide `M`
 (già in mathlib come `Nat.Coprime.mul_dvd_of_dvd_of_dvd`; qui come
 corollario nominato per il paper). I tre profili J della campagna
-saturano questa divisibilità con uguaglianza.-/
+saturano questa divisibilità con uguaglianza.
+@isnad1 id=dvd.3h3v.s5.27351ab3a563 from=translated src=- shape=8efd20d1 vocab=77beb901
+-/
 theorem coprime_mul_dvd {x y M : ℕ} (h : Nat.Coprime x y)
     (hx : x ∣ M) (hy : y ∣ M) : x * y ∣ M :=
   h.mul_dvd_of_dvd_of_dvd hx hy

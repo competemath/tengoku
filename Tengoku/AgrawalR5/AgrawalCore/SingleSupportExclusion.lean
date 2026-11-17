@@ -14,31 +14,52 @@ import Tengoku.AgrawalR5.AgrawalCore.Reciprocity
 
 namespace AgrawalCore
 
+/--
+@isnad1 id=eq.0h0v.s6.1423edd9fe73 from=translated src=- shape=fb3a899a vocab=4ffbedeb
+-/
 theorem five_pow_eight_sub_one_factorization :
     5 ^ 8 - 1 = 2 ^ 5 * 3 * 13 * 313 := by
   norm_num
 
+/--
+@isnad1 id=eq.0h0v.s6.4701f49839f3 from=translated src=- shape=0dd3ede8 vocab=de4a4c74
+-/
 theorem golden_square_norm_eight_factorization :
     2205 = 3 ^ 2 * 5 * 7 ^ 2 := by
   norm_num
 
+/--
+@isnad1 id=eq.0h0v.s6.eed622a9cce5 from=translated src=- shape=5ebd626d vocab=4ffbedeb
+-/
 theorem five_pow_sixteen_sub_one_factorization :
     5 ^ 16 - 1 = 2 ^ 6 * 3 * 13 * 17 * 313 * 11489 := by
   norm_num
 
+/--
+@isnad1 id=eq.0h0v.s6.86ae489c7d6f from=translated src=- shape=ede41a53 vocab=de4a4c74
+-/
 theorem golden_square_norm_sixteen_factorization :
     4870845 = 3 ^ 2 * 5 * 7 ^ 2 * 47 ^ 2 := by
   norm_num
 
+/--
+@isnad1 id=eq.0h0v.s7.b03a0b191e54 from=translated src=- shape=bbac3466 vocab=4ffbedeb
+-/
 theorem five_pow_thirtytwo_sub_one_factorization :
     5 ^ 32 - 1 =
       2 ^ 7 * 3 * 13 * 17 * 313 * 2593 * 11489 * 29423041 := by
   norm_num
 
+/--
+@isnad1 id=eq.0h0v.s7.c8373e5ac41b from=translated src=- shape=dd90aef5 vocab=de4a4c74
+-/
 theorem golden_square_norm_thirtytwo_factorization :
     23725150497405 = 3 ^ 2 * 5 * 7 ^ 2 * 47 ^ 2 * 2207 ^ 2 := by
   norm_num
 
+/--
+@isnad1 id=or.2h1v.s6.548e469e3cd8 from=translated src=- shape=2a23f20c vocab=d5acfd5f
+-/
 theorem prime_dvd_five_pow_eight_sub_one_cases {p : ℕ} (hp : p.Prime)
     (h : p ∣ 5 ^ 8 - 1) :
     p = 2 ∨ p = 3 ∨ p = 13 ∨ p = 313 := by
@@ -57,6 +78,9 @@ theorem prime_dvd_five_pow_eight_sub_one_cases {p : ℕ} (hp : p.Prime)
   · right; right; right
     exact (Nat.prime_dvd_prime_iff_eq hp (by norm_num)).mp h313
 
+/--
+@isnad1 id=or.2h1v.s5.d798da612325 from=translated src=- shape=587e5538 vocab=806915f4
+-/
 theorem prime_dvd_2205_cases {p : ℕ} (hp : p.Prime) (h : p ∣ 2205) :
     p = 3 ∨ p = 5 ∨ p = 7 := by
   have h' : p ∣ 3 ^ 2 * 5 * 7 ^ 2 := by
@@ -72,6 +96,9 @@ theorem prime_dvd_2205_cases {p : ℕ} (hp : p.Prime) (h : p ∣ 2205) :
     exact (Nat.prime_dvd_prime_iff_eq hp (by norm_num)).mp
       (hp.dvd_of_dvd_pow h7pow)
 
+/--
+@isnad1 id=or.2h1v.s6.dbc07d369b00 from=translated src=- shape=38a6b82d vocab=d5acfd5f
+-/
 theorem prime_dvd_five_pow_sixteen_sub_one_cases {p : ℕ}
     (hp : p.Prime) (h : p ∣ 5 ^ 16 - 1) :
     p = 2 ∨ p = 3 ∨ p = 13 ∨ p = 17 ∨ p = 313 ∨ p = 11489 := by
@@ -96,6 +123,9 @@ theorem prime_dvd_five_pow_sixteen_sub_one_cases {p : ℕ}
   · right; right; right; right; right
     exact (Nat.prime_dvd_prime_iff_eq hp (by norm_num)).mp h11489
 
+/--
+@isnad1 id=or.2h1v.s5.d40a38963441 from=translated src=- shape=d15e27ad vocab=806915f4
+-/
 theorem prime_dvd_4870845_cases {p : ℕ} (hp : p.Prime)
     (h : p ∣ 4870845) :
     p = 3 ∨ p = 5 ∨ p = 7 ∨ p = 47 := by
@@ -116,6 +146,9 @@ theorem prime_dvd_4870845_cases {p : ℕ} (hp : p.Prime)
     exact (Nat.prime_dvd_prime_iff_eq hp (by norm_num)).mp
       (hp.dvd_of_dvd_pow h47pow)
 
+/--
+@isnad1 id=or.2h1v.s6.a6cfa380e75f from=translated src=- shape=2047b2c6 vocab=d5acfd5f
+-/
 theorem prime_dvd_five_pow_thirtytwo_sub_one_cases {p : ℕ}
     (hp : p.Prime) (h : p ∣ 5 ^ 32 - 1) :
     p = 2 ∨ p = 3 ∨ p = 13 ∨ p = 17 ∨ p = 313 ∨ p = 2593 ∨
@@ -148,6 +181,9 @@ theorem prime_dvd_five_pow_thirtytwo_sub_one_cases {p : ℕ}
   · right; right; right; right; right; right; right
     exact (Nat.prime_dvd_prime_iff_eq hp (by norm_num)).mp h29423041
 
+/--
+@isnad1 id=or.2h1v.s5.6f753c87ac0e from=translated src=- shape=8dbf7813 vocab=806915f4
+-/
 theorem prime_dvd_23725150497405_cases {p : ℕ} (hp : p.Prime)
     (h : p ∣ 23725150497405) :
     p = 3 ∨ p = 5 ∨ p = 7 ∨ p = 47 ∨ p = 2207 := by
@@ -174,7 +210,9 @@ theorem prime_dvd_23725150497405_cases {p : ℕ} (hp : p.Prime)
 
 variable {p : ℕ} [Fact p.Prime]
 
-/-- Se `5^8=1` modulo un buon primo, quel primo è inerte.-/
+/-- Se `5^8=1` modulo un buon primo, quel primo è inerte.
+@isnad1 id=or.3h1v.s7.dc5e49628999 from=translated src=- shape=c7ad1888 vocab=018cf423
+-/
 theorem inert_of_five_pow_eight_eq_one (hp2 : p ≠ 2) (hp5 : p ≠ 5)
     (hpow : (5 : ZMod p) ^ 8 = 1) :
     p % 5 = 2 ∨ p % 5 = 3 := by
@@ -191,7 +229,9 @@ theorem inert_of_five_pow_eight_eq_one (hp2 : p ≠ 2) (hp5 : p ≠ 5)
   · right; norm_num
   · right; norm_num
 
-/-- Riduzione di `x^8` per una radice di `X²-3X+1`.-/
+/-- Riduzione di `x^8` per una radice di `X²-3X+1`.
+@isnad1 id=eq.1h2v.s7.413e66ab4548 from=translated src=- shape=344b9e46 vocab=dc5e6440
+-/
 theorem golden_square_pow_eight {R : Type*} [CommRing R] (x : R)
     (hx : x ^ 2 = 3 * x - 1) :
     x ^ 8 = 987 * x - 377 := by
@@ -209,7 +249,9 @@ theorem golden_square_pow_eight {R : Type*} [CommRing R] (x : R)
     _ = 441 * (3 * x - 1) - 336 * x + 64 := by rw [hx]
     _ = 987 * x - 377 := by ring
 
-/-- Sixteenth-power reduction for a root of `X²-3X+1`.-/
+/-- Sixteenth-power reduction for a root of `X²-3X+1`.
+@isnad1 id=eq.1h2v.s7.88ea929ec72d from=translated src=- shape=344b9e46 vocab=dc5e6440
+-/
 theorem golden_square_pow_sixteen {R : Type*} [CommRing R] (x : R)
     (hx : x ^ 2 = 3 * x - 1) :
     x ^ 16 = 2178309 * x - 832040 := by
@@ -221,7 +263,9 @@ theorem golden_square_pow_sixteen {R : Type*} [CommRing R] (x : R)
     _ = 974169 * (3 * x - 1) - 744198 * x + 142129 := by rw [hx]
     _ = 2178309 * x - 832040 := by ring
 
-/-- Thirty-second-power reduction for a root of `X²-3X+1`.-/
+/-- Thirty-second-power reduction for a root of `X²-3X+1`.
+@isnad1 id=eq.1h2v.s7.145dc7fa416c from=translated src=- shape=344b9e46 vocab=dc5e6440
+-/
 theorem golden_square_pow_thirtytwo {R : Type*} [CommRing R] (x : R)
     (hx : x ^ 2 = 3 * x - 1) :
     x ^ 32 = 10610209857723 * x - 4052739537881 := by
@@ -236,7 +280,9 @@ theorem golden_square_pow_thirtytwo {R : Type*} [CommRing R] (x : R)
     _ = 10610209857723 * x - 4052739537881 := by ring
 
 /-- Se una radice aurea quadrata ha ottava potenza uno, la caratteristica
-divide il risultante `2205`.-/
+divide il risultante `2205`.
+@isnad1 id=dvd.2h2v.s7.c9935ef54d5c from=translated src=- shape=a303c917 vocab=1254c8d0
+-/
 theorem dvd_2205_of_golden_square_pow_eight (x : ZMod p)
     (hx : x ^ 2 = 3 * x - 1) (hpow : x ^ 8 = 1) :
     p ∣ 2205 := by
@@ -248,7 +294,9 @@ theorem dvd_2205_of_golden_square_pow_eight (x : ZMod p)
   exact (CharP.cast_eq_zero_iff (ZMod p) p 2205).mp hzero
 
 /-- If a golden-square root has sixteenth power one, the characteristic
-divides the exact resultant `4870845`.-/
+divides the exact resultant `4870845`.
+@isnad1 id=dvd.2h2v.s7.52be84d79500 from=translated src=- shape=a303c917 vocab=1254c8d0
+-/
 theorem dvd_4870845_of_golden_square_pow_sixteen (x : ZMod p)
     (hx : x ^ 2 = 3 * x - 1) (hpow : x ^ 16 = 1) :
     p ∣ 4870845 := by
@@ -261,7 +309,9 @@ theorem dvd_4870845_of_golden_square_pow_sixteen (x : ZMod p)
   exact (CharP.cast_eq_zero_iff (ZMod p) p 4870845).mp hzero
 
 /-- The complementary sign at depth sixteen has resultant
-`4870849 = 2207²`.-/
+`4870849 = 2207²`.
+@isnad1 id=dvd.2h2v.s8.8ed3e1caa0c7 from=translated src=- shape=6f436b1a vocab=e1aa3055
+-/
 theorem dvd_4870849_of_golden_square_pow_sixteen_eq_neg_one
     (x : ZMod p) (hx : x ^ 2 = 3 * x - 1) (hpow : x ^ 16 = -1) :
     p ∣ 4870849 := by
@@ -274,7 +324,9 @@ theorem dvd_4870849_of_golden_square_pow_sixteen_eq_neg_one
   exact (CharP.cast_eq_zero_iff (ZMod p) p 4870849).mp hzero
 
 /-- If a golden-square root has thirty-second power one, the
-characteristic divides its exact norm resultant.-/
+characteristic divides its exact norm resultant.
+@isnad1 id=dvd.2h2v.s7.d78aa3f4f485 from=translated src=- shape=a303c917 vocab=1254c8d0
+-/
 theorem dvd_23725150497405_of_golden_square_pow_thirtytwo
     (x : ZMod p)
     (hx : x ^ 2 = 3 * x - 1) (hpow : x ^ 32 = 1) :
@@ -291,7 +343,9 @@ theorem dvd_23725150497405_of_golden_square_pow_thirtytwo
     exact hdvd.trans (by norm_num)
 
 /-- The complementary sign at depth thirty-two has exact norm
-`23725150497409 = 1087²·4481²`.-/
+`23725150497409 = 1087²·4481²`.
+@isnad1 id=dvd.2h2v.s8.8b2c14cb0907 from=translated src=- shape=6f436b1a vocab=e1aa3055
+-/
 theorem dvd_23725150497409_of_golden_square_pow_thirtytwo_eq_neg_one
     (x : ZMod p)
     (hx : x ^ 2 = 3 * x - 1) (hpow : x ^ 32 = -1) :
@@ -312,7 +366,9 @@ theorem dvd_23725150497409_of_golden_square_pow_thirtytwo_eq_neg_one
 
 set_option maxRecDepth 100000 in
 /-- Exact semiperiod of either golden-square root modulo the sole
-split candidate `11489` arising at the next dyadic layer.-/
+split candidate `11489` arising at the next dyadic layer.
+@isnad1 id=eq.1h1v.s8.53df7f3e06e5 from=translated src=- shape=24530754 vocab=5cf67005
+-/
 theorem golden_square_pow_718_eq_neg_one_mod_11489
     (x : ZMod 11489) (hx : x ^ 2 = 3 * x - 1) :
     x ^ 718 = -1 := by
@@ -345,6 +401,9 @@ private theorem neg_one_ne_one_mod_11489 :
     (-1 : ZMod 11489) ≠ 1 := by
   decide
 
+/--
+@isnad1 id=ne.1h2v.s4.4a3c49cca45c from=translated src=- shape=db067907 vocab=7232c250
+-/
 theorem prime_power_ne_35 {q e : ℕ} (hq : q.Prime) :
     q ^ e ≠ 35 := by
   intro hqe
@@ -369,7 +428,9 @@ theorem prime_power_ne_35 {q e : ℕ} (hq : q.Prime) :
     have hone := hcop.eq_one_of_dvd h5div
     norm_num at hone
 
-/-- Anche il ramo aureo `x^8=1` forza un buon primo a essere inerte.-/
+/-- Anche il ramo aureo `x^8=1` forza un buon primo a essere inerte.
+@isnad1 id=or.4h2v.s8.ca01bdb55b3b from=translated src=- shape=fad62662 vocab=9de8b228
+-/
 theorem inert_of_golden_square_pow_eight (hp2 : p ≠ 2) (hp5 : p ≠ 5)
     (x : ZMod p) (hx : x ^ 2 = 3 * x - 1) (hpow : x ^ 8 = 1) :
     p % 5 = 2 ∨ p % 5 = 3 := by
@@ -383,7 +444,9 @@ theorem inert_of_golden_square_pow_eight (hp2 : p ≠ 2) (hp5 : p ≠ 5)
 
 Se `p-1=8*q^e`, i due semiordini sono coprimi e sono davvero gli ordini
 di `5` e di una radice di `X²-3X+1`, allora `p` non può essere split
-modulo `5`.-/
+modulo `5`.
+@isnad1 id=or.8h6v.s8.bba99e8237a4 from=translated src=- shape=f288a7e3 vocab=d5c6fcf5
+-/
 theorem no_split_single_odd_support {q e r s : ℕ} (hq : q.Prime)
     (hp2 : p ≠ 2) (hp5 : p ≠ 5)
     (hrs : Nat.Coprime r s)
@@ -418,7 +481,9 @@ theorem no_split_single_odd_support {q e r s : ℕ} (hq : q.Prime)
 No good split H-profile can have `p - 1 = 16*q^e` with `q` odd prime.
 The only split divisor introduced by the scalar-five resultant is
 `11489`; its predecessor has one additional factor of two, so it cannot
-occur in the stated layer.-/
+occur in the stated layer.
+@isnad1 id=false.10h6v.s8.13d1c48f28a0 from=translated src=- shape=169731b7 vocab=d5c6fcf5
+-/
 theorem no_split_single_odd_support_sixteen
     {q e r s : ℕ} (hq : q.Prime) (hq2 : q ≠ 2)
     (hp2 : p ≠ 2) (hp5 : p ≠ 5)
@@ -481,7 +546,9 @@ theorem no_split_single_odd_support_sixteen
     · norm_num at hpSplit
 
 /-- End-to-end four-coefficient form of the depth-four single-support
-exclusion.-/
+exclusion.
+@isnad1 id=false.14h7v.s8.f6216a4050b8 from=translated src=- shape=119e8656 vocab=334340c5
+-/
 theorem no_split_single_odd_support_sixteen_primitive
     {q e r s k : ℕ} (hq : q.Prime) (hq2 : q ≠ 2)
     (hp2 : p ≠ 2) (hp5 : p ≠ 5)
@@ -505,7 +572,9 @@ theorem no_split_single_odd_support_sixteen_primitive
 
 At this depth the scalar-five resultant has one arithmetically compatible
 split factor, `11489`.  Its exact golden semiperiod is `718`, which forces
-the two semiorders to share a factor and closes the exceptional case.-/
+the two semiorders to share a factor and closes the exceptional case.
+@isnad1 id=false.10h6v.s8.14fa0f78abf4 from=translated src=- shape=169731b7 vocab=d5c6fcf5
+-/
 theorem no_split_single_odd_support_thirtytwo
     {q e r s : ℕ} (hq : q.Prime) (hq2 : q ≠ 2)
     (hp2 : p ≠ 2) (hp5 : p ≠ 5)
@@ -636,7 +705,9 @@ theorem no_split_single_odd_support_thirtytwo
     · norm_num at hpSplit
     · norm_num at hpSplit
 
-/-- End-to-end four-coefficient form of the depth-five exclusion.-/
+/-- End-to-end four-coefficient form of the depth-five exclusion.
+@isnad1 id=false.14h7v.s8.0159fed45bb4 from=translated src=- shape=119e8656 vocab=334340c5
+-/
 theorem no_split_single_odd_support_thirtytwo_primitive
     {q e r s k : ℕ} (hq : q.Prime) (hq2 : q ≠ 2)
     (hp2 : p ≠ 2) (hp5 : p ≠ 5)

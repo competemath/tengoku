@@ -22,7 +22,9 @@ namespace AgrawalCore
 variable {p r s k h : ℕ} [Fact p.Prime]
 
 /-- A good primitive divisor factors `p-1` as the product of the two
-exact scalar orders and the residual multiplier.-/
+exact scalar orders and the residual multiplier.
+@isnad1 id=eq.9h6v.s8.9919b36bc36f from=translated src=- shape=e795100e vocab=e40f5c60
+-/
 theorem dvd_D_order_product_residual_factorization
     (hp5 : p ≠ 5) (hr : 0 < r) (hs : 0 < s) (hkpos : 1 ≤ k)
     (hpm : ¬p ∣ 4 * r * s)
@@ -47,7 +49,9 @@ Any good primitive divisor in this branch must satisfy
 `10 * ord_p(5) * ord_p(ε²) ∣ p - 1`.
 
 The golden square is written intrinsically as
-`goldenSquareFromGamma γ`.-/
+`goldenSquareFromGamma γ`.
+@isnad1 id=dvd.11h6v.s8.6103311b7a6e from=translated src=- shape=ff30fb05 vocab=4cdbbc2e
+-/
 theorem dvd_D_ten_mul_order_product_dvd_card_sub_one
     (hp5 : p ≠ 5) (hr : 0 < r) (hs : 0 < s) (hkpos : 1 ≤ k)
     (hpm : ¬p ∣ 4 * r * s) (h5level : ¬5 ∣ 4 * r * s)
@@ -72,7 +76,9 @@ theorem dvd_D_ten_mul_order_product_dvd_card_sub_one
   refine ⟨c, ?_⟩
   ring
 
-/-- Inequality form of the exact divisibility barrier.-/
+/-- Inequality form of the exact divisibility barrier.
+@isnad1 id=le.11h6v.s8.987a804781c7 from=translated src=- shape=5b33452f vocab=4cdbbc2e
+-/
 theorem dvd_D_ten_mul_order_product_le_card_sub_one
     (hp5 : p ≠ 5) (hr : 0 < r) (hs : 0 < s) (hkpos : 1 ≤ k)
     (hpm : ¬p ∣ 4 * r * s) (h5level : ¬5 ∣ 4 * r * s)

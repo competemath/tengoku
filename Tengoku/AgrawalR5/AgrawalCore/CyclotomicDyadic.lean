@@ -21,7 +21,9 @@ namespace AgrawalCore
 
 /-- If the `d`-th power of a group element has exact order ten, then the
 two-primary depth of the original order is exactly one larger than that of
-`d`.  No finiteness assumption on the ambient group is needed.-/
+`d`.  No finiteness assumption on the ambient group is needed.
+@isnad1 id=eq.2h3v.s6.35abbab51255 from=translated src=- shape=8d83f6e6 vocab=19d537e7
+-/
 theorem orderOf_factorization_two_of_orderOf_pow_eq_ten
     {G : Type*} [Group G] (u : G) {d : ℕ} (hd : d ≠ 0)
     (hord : orderOf (u ^ d) = 10) :
@@ -86,6 +88,9 @@ variable {p : ℕ} [Fact p.Prime]
 noncomputable def zetaFiveUnit : (Phi5Ring p)ˣ :=
   (zeta5_isUnit (p := p)).unit
 
+/--
+@isnad1 id=eq.0h1v.s5.e32df9873941 from=translated src=- shape=c1619118 vocab=28d6decb
+-/
 @[simp] lemma zetaFiveUnit_val :
     ((zetaFiveUnit (p := p) : (Phi5Ring p)ˣ) : Phi5Ring p) = zeta5 :=
   (zeta5_isUnit (p := p)).unit_spec
@@ -94,11 +99,17 @@ noncomputable def zetaFiveUnit : (Phi5Ring p)ˣ :=
 noncomputable def inertTwistUnit : (Phi5Ring p)ˣ :=
   -(zetaFiveUnit (p := p) ^ 4)
 
+/--
+@isnad1 id=eq.0h1v.s6.eb02fbf9505c from=translated src=- shape=7aee9484 vocab=2c4c3bdc
+-/
 @[simp] lemma inertTwistUnit_val :
     ((inertTwistUnit (p := p) : (Phi5Ring p)ˣ) : Phi5Ring p) =
       -(zeta5 ^ 4) := by
   simp [inertTwistUnit]
 
+/--
+@isnad1 id=eq.0h1v.s7.4fcb171b2cf3 from=translated src=- shape=2fc5a411 vocab=8711c99a
+-/
 lemma inertTwistUnit_pow_ten :
     (inertTwistUnit (p := p)) ^ 10 = 1 := by
   apply Units.ext
@@ -107,6 +118,9 @@ lemma inertTwistUnit_pow_ten :
     (-(zeta5 ^ 4 : Phi5Ring p)) ^ 10 = (zeta5 ^ 5) ^ 8 := by ring
     _ = 1 := by rw [zeta5_pow_five, one_pow]
 
+/--
+@isnad1 id=ne.1h1v.s7.3bc8c46c529f from=translated src=- shape=9397c474 vocab=8711c99a
+-/
 lemma inertTwistUnit_pow_five (hp2 : p ≠ 2) :
     (inertTwistUnit (p := p)) ^ 5 ≠ 1 := by
   intro h
@@ -126,6 +140,9 @@ lemma inertTwistUnit_pow_five (hp2 : p ≠ 2) :
     (CharP.cast_eq_zero_iff (Phi5Ring p) p 2).mp hchar
   exact hp2 ((Nat.prime_dvd_prime_iff_eq Fact.out Nat.prime_two).mp hcast)
 
+/--
+@isnad1 id=ne.1h1v.s7.e6ad44f7e5c8 from=translated src=- shape=9397c474 vocab=8711c99a
+-/
 lemma inertTwistUnit_pow_two (hp5 : p ≠ 5) :
     (inertTwistUnit (p := p)) ^ 2 ≠ 1 := by
   intro h
@@ -140,7 +157,9 @@ lemma inertTwistUnit_pow_two (hp5 : p ≠ 5) :
   rw [hsq] at hv
   exact (u3_isUnit (p := p) hp5).ne_zero (sub_eq_zero.mpr hv)
 
-/-- The Frobenius quotient has exact order ten for every odd good prime.-/
+/-- The Frobenius quotient has exact order ten for every odd good prime.
+@isnad1 id=eq.2h1v.s6.80f4e47ef63c from=translated src=- shape=010aa7b2 vocab=f54b861b
+-/
 lemma orderOf_inertTwistUnit (hp2 : p ≠ 2) (hp5 : p ≠ 5) :
     orderOf (inertTwistUnit (p := p)) = 10 := by
   apply orderOf_eq_of_pow_and_pow_div_prime
@@ -159,7 +178,9 @@ lemma orderOf_inertTwistUnit (hp2 : p ≠ 2) (hp5 : p ≠ 5) :
     norm_num
     exact inertTwistUnit_pow_two hp5
 
-/-- The cancelled Frobenius identity in the unit group.-/
+/-- The cancelled Frobenius identity in the unit group.
+@isnad1 id=eq.3h1v.s8.3d1f4a750477 from=translated src=- shape=0a044abc vocab=31d07fc7
+-/
 lemma localCyclotomicUnit_pow_sq_sub_one
     (hp : p % 5 = 2 ∨ p % 5 = 3) (hp5 : p ≠ 5) (hp1 : 1 ≤ p) :
     (localCyclotomicUnit hp5 (1 : (ZMod 5)ˣ)) ^ (p * p - 1) =
@@ -175,6 +196,9 @@ lemma localCyclotomicUnit_pow_sq_sub_one
     inertTwistUnit_val]
   exact order_bound_relation (p := p) hp
 
+/--
+@isnad1 id=eq.4h1v.s8.9d467d398acf from=translated src=- shape=3c09e7e9 vocab=a3c8a55e
+-/
 lemma orderOf_localCyclotomicUnit_pow_sq_sub_one
     (hp : p % 5 = 2 ∨ p % 5 = 3) (hp2 : p ≠ 2)
     (hp5 : p ≠ 5) (hp1 : 1 ≤ p) :
@@ -183,7 +207,9 @@ lemma orderOf_localCyclotomicUnit_pow_sq_sub_one
   rw [localCyclotomicUnit_pow_sq_sub_one hp hp5 hp1]
   exact orderOf_inertTwistUnit hp2 hp5
 
-/-- **Exact binary law for the cyclotomic order.**-/
+/-- **Exact binary law for the cyclotomic order.**
+@isnad1 id=eq.3h1v.s8.b3f7fa6ca88f from=translated src=- shape=ec283426 vocab=2d509a1c
+-/
 theorem localCyclotomicUnit_order_factorization_two
     (hp : p % 5 = 2 ∨ p % 5 = 3) (hp2 : p ≠ 2) (hp5 : p ≠ 5) :
     (orderOf (localCyclotomicUnit hp5 (1 : (ZMod 5)ˣ))).factorization 2 =
@@ -199,7 +225,9 @@ theorem localCyclotomicUnit_order_factorization_two
     (orderOf_localCyclotomicUnit_pow_sq_sub_one
       hp hp2 hp5 (by omega))
 
-/-- Adding the modulus `5` does not change the two-primary depth.-/
+/-- Adding the modulus `5` does not change the two-primary depth.
+@isnad1 id=eq.3h1v.s7.007b8893e4b4 from=translated src=- shape=3d5093ed vocab=ec66283f
+-/
 theorem quarticOrderModulus_factorization_two
     (hp : p % 5 = 2 ∨ p % 5 = 3) (hp2 : p ≠ 2) (hp5 : p ≠ 5) :
     (quarticOrderModulus p hp5).factorization 2 =
@@ -222,7 +250,9 @@ theorem quarticOrderModulus_factorization_two
   rw [h5fac, max_eq_left]
   omega
 
-/-- Divisibility form of the exact binary law.-/
+/-- Divisibility form of the exact binary law.
+@isnad1 id=dvd.3h1v.s7.622f5063ac64 from=translated src=- shape=9d8cb335 vocab=9f2b4ce1
+-/
 theorem twoPow_dvd_quarticOrderModulus
     (hp : p % 5 = 2 ∨ p % 5 = 3) (hp2 : p ≠ 2) (hp5 : p ≠ 5) :
     2 ^ ((p * p - 1).factorization 2 + 1) ∣

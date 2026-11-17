@@ -41,7 +41,9 @@ namespace AgrawalCore
 
 /-- **La forma unificata di Korselt.** Se `n = p·m` soddisfa
 `p−1 ∣ n−1` (Carmichael) e `p+1 ∣ n+1` (Lucas–Carmichael), allora entrambe le
-condizioni si leggono su `m−1`.-/
+condizioni si leggono su `m−1`.
+@isnad1 id=and.2h2v.s7.b2d30903062b from=translated src=- shape=4c4857b5 vocab=ec041f02
+-/
 theorem dvd_sub_of_korselt_pair {p m : ℤ}
     (hcar : (p - 1) ∣ (p * m - 1)) (hluc : (p + 1) ∣ (p * m + 1)) :
     (p - 1) ∣ (m - 1) ∧ (p + 1) ∣ (m - 1) := by
@@ -50,7 +52,9 @@ theorem dvd_sub_of_korselt_pair {p m : ℤ}
   refine ⟨⟨c - m, by linarith [hc]⟩, ⟨m - d, by linarith [hd]⟩⟩
 
 /-- Se un primo `q` divide `p²−1` e valgono le due condizioni di Korselt per
-`p`, allora `q ∣ m−1`, cioè `n ≡ p (mod q)`.-/
+`p`, allora `q ∣ m−1`, cioè `n ≡ p (mod q)`.
+@isnad1 id=dvd.4h3v.s7.e1de45107f12 from=translated src=- shape=f8e713da vocab=d1076782
+-/
 theorem dvd_of_dvd_sq_sub_one {p m q : ℤ} (hq : Prime q)
     (hcar : (p - 1) ∣ (p * m - 1)) (hluc : (p + 1) ∣ (p * m + 1))
     (hdvd : q ∣ (p - 1) * (p + 1)) :
@@ -63,7 +67,9 @@ theorem dvd_of_dvd_sq_sub_one {p m q : ℤ} (hq : Prime q)
 /-- **La forma esatta della partizione forzata.** Se `d` divide `p−1` per un
 fattore e `p'+1` per un altro, e se entrambi soddisfano le condizioni di
 Korselt rispetto allo stesso `n`, allora `d ∣ 2`. Non servono né primalità
-né disparità di `d`.-/
+né disparità di `d`.
+@isnad1 id=dvd.7h5v.s7.5e14c5769f8f from=translated src=- shape=a491aae2 vocab=ec041f02
+-/
 theorem common_divisor_forced {p p' m m' d : ℤ}
     (hcar : (p - 1) ∣ (p * m - 1)) (hluc : (p + 1) ∣ (p * m + 1))
     (hcar' : (p' - 1) ∣ (p' * m' - 1)) (hluc' : (p' + 1) ∣ (p' * m' + 1))
@@ -93,7 +99,9 @@ theorem common_divisor_forced {p p' m m' d : ℤ}
 
 /-- **La partizione forzata, forma prima.** Un primo `q` che divide
 trasversalmente `p−1` e `p'+1` deve dividere `2`; per `q` dispari le due
-famiglie non possono coesistere.-/
+famiglie non possono coesistere.
+@isnad1 id=dvd.8h5v.s7.eef70d3744f0 from=translated src=- shape=e0c5f1d1 vocab=d1076782
+-/
 theorem partition_forced {p p' m m' q : ℤ} (_hq : Prime q)
     (hcar : (p - 1) ∣ (p * m - 1)) (hluc : (p + 1) ∣ (p * m + 1))
     (hcar' : (p' - 1) ∣ (p' * m' - 1)) (hluc' : (p' + 1) ∣ (p' * m' + 1))
@@ -104,7 +112,9 @@ theorem partition_forced {p p' m m' q : ℤ} (_hq : Prime q)
 
 /-- Tre divide sempre `p²−1` per `p` non multiplo di 3: il vincolo della
 partizione per `q = 3` è dunque universale, e in un Carmichael ∩
-Lucas–Carmichael tutti i fattori primi sono congrui fra loro modulo 3.-/
+Lucas–Carmichael tutti i fattori primi sono congrui fra loro modulo 3.
+@isnad1 id=dvd.1h1v.s5.e2f9539cd444 from=translated src=- shape=3e31d414 vocab=ec041f02
+-/
 theorem three_dvd_sq_sub_one {p : ℤ} (hp : ¬ ((3 : ℤ) ∣ p)) :
     (3 : ℤ) ∣ (p - 1) * (p + 1) := by
   have h : p % 3 = 1 ∨ p % 3 = 2 := by omega
@@ -114,7 +124,9 @@ theorem three_dvd_sq_sub_one {p : ℤ} (hp : ¬ ((3 : ℤ) ∣ p)) :
 
 /-- **Corollario universale modulo 3.** Due fattori non divisibili per `3`
 che soddisfano entrambe le condizioni di Korselt rispetto allo stesso `n`
-sono congrui modulo `3`.-/
+sono congrui modulo `3`.
+@isnad1 id=dvd.7h4v.s7.67b120a8d1cb from=translated src=- shape=02a173ca vocab=ec041f02
+-/
 theorem three_congruence_forced {p p' m m' : ℤ}
     (hp3 : ¬ ((3 : ℤ) ∣ p)) (hp3' : ¬ ((3 : ℤ) ∣ p'))
     (hcar : (p - 1) ∣ (p * m - 1)) (hluc : (p + 1) ∣ (p * m + 1))
@@ -139,7 +151,9 @@ theorem three_congruence_forced {p p' m m' : ℤ}
 
 /-- **Dalla riga forte alla firma cubica.** La divisibilità sul complemento
 `10(p²−1) ∣ m−1` è esattamente la parametrizzazione
-`p*m = p + 10*u*(p³−p)` usata nel ramo Lenstra a cinque fattori.-/
+`p*m = p + 10*u*(p³−p)` usata nel ramo Lenstra a cinque fattori.
+@isnad1 id=ex.1h2v.s6.54a99be2ca0f from=translated src=- shape=abe2fda9 vocab=ec041f02
+-/
 theorem cubic_signature_of_strong_row {p m : ℤ}
     (hrow : 10 * (p * p - 1) ∣ (m - 1)) :
     ∃ u : ℤ, p * m = p + 10 * u * (p * p * p - p) := by
@@ -151,7 +165,9 @@ theorem cubic_signature_of_strong_row {p m : ℤ}
 
 /-- **La firma cubica restituisce la riga forte.** Per `p ≠ 0`, la
 parametrizzazione cubica non contiene informazione ulteriore rispetto alla
-divisibilità sul complemento.-/
+divisibilità sul complemento.
+@isnad1 id=dvd.2h3v.s7.e15b5f95df98 from=translated src=- shape=0e0bb828 vocab=ec041f02
+-/
 theorem strong_row_of_cubic_signature {p m u : ℤ} (hp : p ≠ 0)
     (hsig : p * m = p + 10 * u * (p * p * p - p)) :
     10 * (p * p - 1) ∣ (m - 1) := by

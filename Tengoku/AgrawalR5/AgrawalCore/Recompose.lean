@@ -21,21 +21,27 @@ namespace AgrawalCore
 
 /-- **(A) Componente banale.** La valutazione in `X = 1` manda
 `(X−1)^n` in `0`, per ogni `n ≥ 1`: la congruenza di Agrawal è
-automatica sul fattore lineare `X − 1`, qualunque sia l'anello.-/
+automatica sul fattore lineare `X − 1`, qualunque sia l'anello.
+@isnad1 id=eq.1h2v.s7.87071d277666 from=translated src=- shape=3487c139 vocab=841c63e5
+-/
 lemma eval_one_sub_pow {R : Type*} [CommRing R] {n : ℕ} (hn : 0 < n) :
     Polynomial.eval 1 ((Polynomial.X - 1) ^ n : Polynomial R) = 0 := by
   rw [Polynomial.eval_pow, Polynomial.eval_sub, Polynomial.eval_X, Polynomial.eval_one, sub_self,
     zero_pow hn.ne']
 
 /-- **(A) Componente banale, bis.** La valutazione in `X = 1` manda
-`X^n − 1` in `0`, per ogni `n` (anche `n = 0`).-/
+`X^n − 1` in `0`, per ogni `n` (anche `n = 0`).
+@isnad1 id=eq.0h2v.s7.cdbba1e99cc3 from=translated src=- shape=0f883b8d vocab=94ca9fc3
+-/
 lemma eval_one_pow_sub {R : Type*} [CommRing R] (n : ℕ) :
     Polynomial.eval 1 ((Polynomial.X ^ n - 1) : Polynomial R) = 0 := by
   simp
 
 /-- **(C) La fattorizzazione ciclotomica esplicita.** `X^5 − 1 =
 (X − 1) · Φ₅` in `(Z/p)[X]`: srotolando la definizione di `phi5`
-è un'identità polinomiale, chiusa da `ring`.-/
+è un'identità polinomiale, chiusa da `ring`.
+@isnad1 id=eq.0h1v.s8.069b567461a1 from=translated src=- shape=6a8519e5 vocab=60ad29e3
+-/
 lemma X_pow_five_sub_one_eq (p : ℕ) :
     (Polynomial.X - 1) * phi5 p = Polynomial.X ^ 5 - 1 := by
   unfold phi5
@@ -46,7 +52,9 @@ lemma X_pow_five_sub_one_eq (p : ℕ) :
 `X − 1` sia dal quinto ciclotomico `Φ₅`, allora è divisibile dal loro
 prodotto `X^5 − 1`. La chiave è la coprimalità dei due fattori:
 `X − 1` è irriducibile (grado 1) e non divide `Φ₅`, perché
-`Φ₅(1) = 5 ≠ 0` quando `p ≠ 5`; da qui `IsCoprime.mul_dvd` dà la tesi.-/
+`Φ₅(1) = 5 ≠ 0` quando `p ≠ 5`; da qui `IsCoprime.mul_dvd` dà la tesi.
+@isnad1 id=dvd.3h2v.s9.f95f0fd16bd9 from=translated src=- shape=9544114b vocab=834b93c6
+-/
 theorem dvd_of_dvd_both {p : ℕ} [Fact p.Prime] (hp5 : p ≠ 5)
     (f : Polynomial (ZMod p))
     (h1 : (Polynomial.X - 1) ∣ f) (h2 : phi5 p ∣ f) :

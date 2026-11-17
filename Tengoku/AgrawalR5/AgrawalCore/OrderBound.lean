@@ -31,23 +31,31 @@ namespace AgrawalCore
 
 variable {p : ℕ} [Fact p.Prime]
 
-/-- L'anello ciclotomico ha la caratteristica del campo di base.-/
+/-- L'anello ciclotomico ha la caratteristica del campo di base.
+@isnad1 id=charp.0h1v.s4.604bb39b6970 from=translated src=- shape=445441c8 vocab=8b57f57a
+-/
 instance phi5_charP : CharP (Phi5Ring p) p :=
   charP_of_injective_algebraMap (phi5_of_injective) p
 
-/-- `ζ^m` dipende solo da `m` modulo 5.-/
+/-- `ζ^m` dipende solo da `m` modulo 5.
+@isnad1 id=eq.0h2v.s6.03bca5afd081 from=translated src=- shape=073531f2 vocab=8bc11ff9
+-/
 lemma zeta5_pow_mod (m : ℕ) :
     (zeta5 : Phi5Ring p) ^ m = zeta5 ^ (m % 5) := by
   conv_lhs => rw [← Nat.div_add_mod m 5]
   rw [pow_add, pow_mul, zeta5_pow_five, one_pow, one_mul]
 
-/-- Il Frobenius manda `ζ − 1` in `ζ^(p mod 5) − 1`.-/
+/-- Il Frobenius manda `ζ − 1` in `ζ^(p mod 5) − 1`.
+@isnad1 id=eq.0h1v.s7.43eb4204efd1 from=translated src=- shape=568c2186 vocab=ef219c05
+-/
 lemma zeta_sub_one_pow_p :
     ((zeta5 : Phi5Ring p) - 1) ^ p = zeta5 ^ (p % 5) - 1 := by
   rw [sub_pow_char, one_pow, ← zeta5_pow_mod]
 
 /-- Per `p ≡ ±2 (mod 5)` (le due classi inerti) il quadrato del Frobenius
-manda `ζ − 1` in `ζ⁴ − 1`, perché `2² ≡ 3² ≡ 4 (mod 5)`.-/
+manda `ζ − 1` in `ζ⁴ − 1`, perché `2² ≡ 3² ≡ 4 (mod 5)`.
+@isnad1 id=eq.1h1v.s7.36c35102740e from=translated src=- shape=84d2fcb8 vocab=892706f8
+-/
 lemma zeta_sub_one_pow_sq (hp : p % 5 = 2 ∨ p % 5 = 3) :
     ((zeta5 : Phi5Ring p) - 1) ^ (p * p) = zeta5 ^ 4 - 1 := by
   rw [pow_mul, zeta_sub_one_pow_p, sub_pow_char, one_pow, ← pow_mul,
@@ -55,7 +63,9 @@ lemma zeta_sub_one_pow_sq (hp : p % 5 = 2 ∨ p % 5 = 3) :
   rcases hp with h | h <;> simp [h, Nat.mul_mod]
 
 /-- La relazione chiave: `(ζ−1)^(p²) = −ζ⁴·(ζ−1)`.
-Viene da `ζ⁴ = ζ⁻¹`, quindi `ζ⁴ − 1 = (1−ζ)·ζ⁴ = −(ζ−1)·ζ⁴`.-/
+Viene da `ζ⁴ = ζ⁻¹`, quindi `ζ⁴ − 1 = (1−ζ)·ζ⁴ = −(ζ−1)·ζ⁴`.
+@isnad1 id=eq.1h1v.s8.b0433a46c153 from=translated src=- shape=7929363d vocab=3cac74b3
+-/
 theorem order_bound_relation (hp : p % 5 = 2 ∨ p % 5 = 3) :
     ((zeta5 : Phi5Ring p) - 1) ^ (p * p) = -(zeta5 ^ 4) * (zeta5 - 1) := by
   rw [zeta_sub_one_pow_sq hp]
@@ -68,7 +78,9 @@ theorem order_bound_relation (hp : p % 5 = 2 ∨ p % 5 = 3) :
 `ζ − 1` divide `10(p²−1)`: il fattore `−ζ⁴` accumulato dal Frobenius si
 annulla alla decima potenza, perché `(−1)^10 = 1` e `ζ^40 = (ζ^5)^8 = 1`.
 Enunciato senza divisioni, quindi senza bisogno dell'invertibilità.
-Verificato numericamente 341 volte su 341 il 23 luglio; qui è dimostrato.-/
+Verificato numericamente 341 volte su 341 il 23 luglio; qui è dimostrato.
+@isnad1 id=eq.1h1v.s8.2e6edb70f096 from=translated src=- shape=150c68f7 vocab=892706f8
+-/
 theorem order_bounded (hp : p % 5 = 2 ∨ p % 5 = 3) :
     ((zeta5 : Phi5Ring p) - 1) ^ (10 * (p * p)) = (zeta5 - 1) ^ 10 := by
   have hz40 : ((zeta5 : Phi5Ring p) ^ 4) ^ 10 = 1 := by

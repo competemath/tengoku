@@ -19,13 +19,17 @@ open Polynomial
 namespace AgrawalCore
 
 /-- L'identità del prodotto: dalle radici di `Φ₅`,
-`(ζ−1)(ζ²−1)(ζ³−1)(ζ⁴−1) = 5`. Cofattore esplicito PARI-verificato.-/
+`(ζ−1)(ζ²−1)(ζ³−1)(ζ⁴−1) = 5`. Cofattore esplicito PARI-verificato.
+@isnad1 id=eq.1h2v.s8.16bb6119cffb from=translated src=- shape=b9197467 vocab=9c1cdc1d
+-/
 theorem prod_pow_sub_one {R : Type*} [CommRing R] {ζ : R}
     (hζ : ζ ^ 4 + ζ ^ 3 + ζ ^ 2 + ζ + 1 = 0) :
     (ζ - 1) * (ζ ^ 2 - 1) * (ζ ^ 3 - 1) * (ζ ^ 4 - 1) = 5 := by
   linear_combination (ζ ^ 6 - 2 * ζ ^ 5 + ζ ^ 3 + 3 * ζ - 4) * hζ
 
-/-- Potenze modulo 5 dell'esponente, quando `x^5 = 1`.-/
+/-- Potenze modulo 5 dell'esponente, quando `x^5 = 1`.
+@isnad1 id=eq.1h3v.s6.ff0eac1be5df from=translated src=- shape=422c7d31 vocab=87c448d2
+-/
 lemma pow_mod_five {R : Type*} [Monoid R] {x : R} (hx : x ^ 5 = 1)
     (m : ℕ) : x ^ m = x ^ (m % 5) := by
   conv_lhs => rw [← Nat.div_add_mod m 5]
@@ -42,12 +46,18 @@ variable {p : ℕ} [Fact p.Prime]
 
 noncomputable def zeta5 : Phi5Ring p := AdjoinRoot.root (phi5 p)
 
+/--
+@isnad1 id=eq.0h1v.s5.66556675e461 from=translated src=- shape=ce52dc10 vocab=2ed01fa2
+-/
 lemma phi5_degree : (phi5 p).degree = 4 := by
   unfold phi5; compute_degree!
 
 instance : Nontrivial (Phi5Ring p) :=
   AdjoinRoot.nontrivial _ (by rw [phi5_degree]; norm_num)
 
+/--
+@isnad1 id=eq.0h1v.s8.f13c98651e46 from=translated src=- shape=fc80f675 vocab=5b0520c1
+-/
 lemma zeta5_rel :
     (zeta5 : Phi5Ring p) ^ 4 + zeta5 ^ 3 + zeta5 ^ 2 + zeta5 + 1 = 0 := by
   have h : (Polynomial.aeval (zeta5 : Phi5Ring p)) (phi5 p) = 0 := by
@@ -56,16 +66,24 @@ lemma zeta5_rel :
     exact AdjoinRoot.mk_self
   simpa [phi5, map_add, map_pow, map_one, Polynomial.aeval_X] using h
 
+/--
+@isnad1 id=eq.0h1v.s6.30d5b8fc512b from=translated src=- shape=3101749e vocab=a44e590f
+-/
 lemma zeta5_pow_five : (zeta5 : Phi5Ring p) ^ 5 = 1 :=
   zeta_pow_five zeta5_rel
 
+/--
+@isnad1 id=injectiv.0h1v.s7.7ef023e51c64 from=translated src=- shape=bd91a0e8 vocab=cf8fc126
+-/
 lemma phi5_of_injective :
     Function.Injective (AdjoinRoot.of (phi5 p)) :=
   (AdjoinRoot.of (phi5 p)).injective
 
 /-- **Il passo locale del ponte.** Se la congruenza di Agrawal vale in
 `(Z/p)[X]` modulo `X^5 − 1`, `p ≠ 5`, `5 ∤ n`, `n ≥ 1`, allora
-`5^(n−1) = 1` in `Z/p`.-/
+`5^(n−1) = 1` in `Z/p`.
+@isnad1 id=eq.4h2v.s10.57284e09206d from=translated src=- shape=295bb30a vocab=f496f101
+-/
 theorem agrawal_local (hp5 : p ≠ 5) {n : ℕ} (hn : 1 ≤ n)
     (h5n : n % 5 ≠ 0)
     (h : ∃ g : Polynomial (ZMod p),
@@ -151,7 +169,9 @@ theorem agrawal_local (hp5 : p ≠ 5) {n : ℕ} (hn : 1 ≤ n)
 `5 ∤ n`, e vale la congruenza di Agrawal a `r = 5`
 (`(X−1)^n ≡ X^n − 1` modulo `(n, X^5−1)`), allora `n` è uno
 pseudoprimo di Fermat in base `5`: `n ∣ 5^(n−1) − 1`. I controesempi
-squarefree alla congettura possono nascondersi solo lì.-/
+squarefree alla congettura possono nascondersi solo lì.
+@isnad1 id=dvd.3h1v.s9.1c96fce48ead from=translated src=- shape=e0c37648 vocab=fc2d30d4
+-/
 theorem agrawal_fermat_shadow {n : ℕ} (hsq : Squarefree n)
     (h5 : ¬ (5 ∣ n))
     (h : ∃ g : Polynomial (ZMod n),

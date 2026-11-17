@@ -23,6 +23,9 @@ def cyclotomicGoldenUnit (ζ : R) : R :=
 def quadraticMomentUnit (ζ : R) : R :=
   (ζ - 1) * (ζ ^ 2 - 1) ^ 4 * (ζ ^ 3 - 1) ^ 4 * (ζ ^ 4 - 1)
 
+/--
+@isnad1 id=eq.1h2v.s7.5766eee0c5f0 from=translated src=- shape=bcea0f78 vocab=19a4edd2
+-/
 theorem golden_moment_factorization {ζ : R}
     (hζ : ζ ^ 4 + ζ ^ 3 + ζ ^ 2 + ζ + 1 = 0) :
     quadraticMomentUnit ζ =

@@ -34,7 +34,9 @@ def SquarefreeCounterexampleCandidate (n : ℕ) : Prop :=
     ∧ (n ^ 2 % 5 ≠ 1)
 
 /-- If a number is prime to `5` but its square is not `1 mod 5`, then its
-residue is one of the two inert classes `2,3 mod 5`.-/
+residue is one of the two inert classes `2,3 mod 5`.
+@isnad1 id=inertmod.2h1v.s5.38f6b72ce127 from=translated src=- shape=b18111af vocab=92fc0d1e
+-/
 theorem inertModFive_of_square_ne_one {n : ℕ}
     (h5 : ¬ 5 ∣ n) (hbad : n ^ 2 % 5 ≠ 1) :
     InertModFive n := by
@@ -46,7 +48,9 @@ theorem inertModFive_of_square_ne_one {n : ℕ}
 
 /-- Dividing an inert residue by a split residue preserves inertness.
 The statement is written for exact natural-number division because this
-is the form used by complementary local exponents.-/
+is the form used by complementary local exponents.
+@isnad1 id=inertmod.3h2v.s4.b3528c06bbf5 from=translated src=- shape=e0ec7e90 vocab=a6422ae2
+-/
 theorem inertModFive_div_of_splitModFive {n p : ℕ}
     (hpdvd : p ∣ n) (hp : SplitModFive p) (hn : InertModFive n) :
     InertModFive (n / p) := by
@@ -95,7 +99,9 @@ private lemma finset_inert_product_sq_mod_five {s : Finset ℕ}
 
 /-- In the quartic skeleton, a candidate violating `n² = 1 mod 5` has an
 odd number of prime factors.  This is the cardinality part of the
-mod-`5` structure theorem.-/
+mod-`5` structure theorem.
+@isnad1 id=odd.2h1v.s3.ecc880cd5e33 from=translated src=- shape=3b5f89bc vocab=ed4f51ab
+-/
 theorem quarticSkeleton_card_odd {n : ℕ}
     (hn : SquarefreeCounterexampleCandidate n) (hskeleton : QuarticSkeleton n) :
     Odd n.primeFactors.card := by
@@ -123,7 +129,9 @@ theorem quarticSkeleton_card_odd {n : ℕ}
   exact hbad hnSq
 
 /-- A composite squarefree candidate in the odd-cardinality quartic
-skeleton has at least three distinct prime factors.-/
+skeleton has at least three distinct prime factors.
+@isnad1 id=le.2h1v.s4.bb30ed9a8494 from=translated src=- shape=7014409c vocab=6526bd7e
+-/
 theorem quarticSkeleton_card_ge_three {n : ℕ}
     (hn : SquarefreeCounterexampleCandidate n) (hskeleton : QuarticSkeleton n) :
     3 ≤ n.primeFactors.card := by
@@ -147,7 +155,9 @@ theorem quarticSkeleton_card_ge_three {n : ℕ}
 
 For a squarefree candidate, local H4 forces every prime factor into an
 inert residue class.  The global polynomial congruence simultaneously
-supplies the exact complementary local row at every factor.-/
+supplies the exact complementary local row at every factor.
+@isnad1 id=quartics.2h1v.s3.50a025fa3525 from=translated src=- shape=cbe5c5ba vocab=6d6e7269
+-/
 theorem quarticSkeleton_of_candidate_localH4 {n : ℕ}
     (hn : SquarefreeCounterexampleCandidate n) (hlocal : LocalH4For n) :
     QuarticSkeleton n := by
@@ -190,7 +200,9 @@ theorem quarticSkeleton_of_candidate_localH4 {n : ℕ}
 
 No arithmetic reduction is assumed here: every squarefree counterexample
 candidate either already exhibits a split order-four witness, or its full
-family of complementary local rows forms the inert quartic skeleton.-/
+family of complementary local rows forms the inert quartic skeleton.
+@isnad1 id=or.1h1v.s4.ab7863954537 from=translated src=- shape=fd5e14e2 vocab=8ef2e6d4
+-/
 theorem squarefree_counterexample_concrete_dichotomy
     {n : ℕ} (hn : SquarefreeCounterexampleCandidate n) :
     SplitOrderFourWitness n ∨
@@ -214,7 +226,9 @@ def SkeletonToFiber (FiberWitness : ℕ → Prop) : Prop :=
 /-- **DICOTOMIA LOGICA, forma kernel-pura.** Dalla premessa esplicita che
 la riduzione aritmetica sia valida *dopo lo scheletro quartico concreto*
 segue che ogni candidato globale esibisce o un fattore split con trasporto
-di ordine quattro, oppure un testimone nella fibra globale.-/
+di ordine quattro, oppure un testimone nella fibra globale.
+@isnad1 id=or.2h2v.s4.55d684fc9551 from=translated src=- shape=36e00831 vocab=9caf3f67
+-/
 theorem squarefree_counterexample_witness_dichotomy
     {FiberWitness : ℕ → Prop}
     (hreduce : SkeletonToFiber FiberWitness)
@@ -226,7 +240,9 @@ theorem squarefree_counterexample_witness_dichotomy
   · exact Or.inr (hreduce n hn hskeleton)
 
 /-- Se entrambi i tipi di certificato vengono esclusi, non resta alcun
-candidato globale. È la forma di chiusura richiesta al futuro montaggio.-/
+candidato globale. È la forma di chiusura richiesta al futuro montaggio.
+@isnad1 id=not.3h2v.s4.19485460e6d2 from=translated src=- shape=5b2bb787 vocab=9caf3f67
+-/
 theorem no_squarefree_counterexample_of_no_witnesses
     {FiberWitness : ℕ → Prop}
     (hreduce : SkeletonToFiber FiberWitness)

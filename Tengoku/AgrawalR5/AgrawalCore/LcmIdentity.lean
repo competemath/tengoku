@@ -37,7 +37,9 @@ namespace AgrawalCore
 si scrive `p = 80t+3`, si isola `m = 800t²+60t+1` (con `p²−1 = 8m`), si
 usa `gcd(p−1,p+1) = 2` (due multipli di 2 consecutivi) per ottenere
 `lcm(p−1,p+1) = 4m`, e `m ≡ 1 (mod 20)` (sempre, perché 800 e 60 sono
-multipli di 20) per ottenere `lcm(4m, 80) = 80m = 10(p²−1)`.-/
+multipli di 20) per ottenere `lcm(4m, 80) = 80m = 10(p²−1)`.
+@isnad1 id=eq.2h1v.s6.20c27a78e893 from=translated src=- shape=f3a86c92 vocab=9132f5e7
+-/
 theorem lcm_three_eq {p : ℕ} (hp : p % 80 = 3) (_hp3 : 3 ≤ p) :
     Nat.lcm (Nat.lcm (p - 1) (p + 1)) 80 = 10 * (p * p - 1) := by
   obtain ⟨t, hpt⟩ : ∃ t, p = 80 * t + 3 := ⟨p / 80, by omega⟩
@@ -84,7 +86,9 @@ allora `10·(p²−1)` divide lo scarto `n − p`. Ciascuno dei tre moduli
 `p−1`, `p+1`, `80` divide separatamente `n−p` (perché divide sia il
 "più uno" che il "meno uno" corrispondente, o perché `n` e `p` cadono
 nella stessa classe mod 80); il loro lcm — che è `10(p²−1)` per
-`lcm_three_eq` — divide dunque anch'esso `n−p`.-/
+`lcm_three_eq` — divide dunque anch'esso `n−p`.
+@isnad1 id=dvd.6h2v.s7.c742df361f1f from=translated src=- shape=2934682d vocab=971a9c0f
+-/
 theorem sub_dvd_of_korselt {p n : ℕ} (hp : p % 80 = 3) (hp3 : 3 ≤ p) (hpn : p ≤ n)
     (h1 : (p - 1) ∣ (n - 1)) (h2 : (p + 1) ∣ (n + 1)) (h80 : n % 80 = 3) :
     (10 * (p * p - 1)) ∣ (n - p) := by

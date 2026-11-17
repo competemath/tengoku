@@ -25,7 +25,9 @@ reduction forces
 `cq ≡ a (mod gcd Tp Tq)`.
 
 Unlike either input row alone, this necessary condition couples the two order
-moduli and no longer contains the final-row multiplier.-/
+moduli and no longer contains the final-row multiplier.
+@isnad1 id=modeq.2h6v.s5.320a6857ce91 from=translated src=- shape=75e0723d vocab=6a148691
+-/
 theorem finalSmallRow_transport {P c q a Tp Tq : ℕ}
     (hfinal : P ≡ c [MOD Tq]) (hsmall : P * q ≡ a [MOD Tp]) :
     c * q ≡ a [MOD Nat.gcd Tp Tq] := by
@@ -36,14 +38,18 @@ theorem finalSmallRow_transport {P c q a Tp Tq : ℕ}
   exact hqfinal.symm.trans hqsmall
 
 /-- Pure-branch transport: `P ≡ 1 (mod Tq)` forces
-`q ≡ a (mod gcd Tp Tq)`.-/
+`q ≡ a (mod gcd Tp Tq)`.
+@isnad1 id=modeq.2h5v.s5.45a538476c7a from=translated src=- shape=08459867 vocab=6a148691
+-/
 theorem pureSmallRow_transport {P q a Tp Tq : ℕ}
     (hfinal : P ≡ 1 [MOD Tq]) (hsmall : P * q ≡ a [MOD Tp]) :
     q ≡ a [MOD Nat.gcd Tp Tq] := by
   simpa using finalSmallRow_transport hfinal hsmall
 
 /-- Twisted-branch transport: `P ≡ q² (mod Tq)` forces
-`q³ ≡ a (mod gcd Tp Tq)`.-/
+`q³ ≡ a (mod gcd Tp Tq)`.
+@isnad1 id=modeq.2h5v.s6.825a861d6c39 from=translated src=- shape=df218589 vocab=ca8eebdf
+-/
 theorem twistedSmallRow_transport {P q a Tp Tq : ℕ}
     (hfinal : P ≡ q ^ 2 [MOD Tq]) (hsmall : P * q ≡ a [MOD Tp]) :
     q ^ 3 ≡ a [MOD Nat.gcd Tp Tq] := by
@@ -59,7 +65,9 @@ reduction to the common divisor of their order moduli:
 `a ≡ b (mod gcd Tp Tr)`.
 
 Together with the two transports from the final row, this is the complete
-pairwise compatibility condition for the three residue classes.-/
+pairwise compatibility condition for the three residue classes.
+@isnad1 id=modeq.2h6v.s5.f262f128fb31 from=translated src=- shape=02ab665c vocab=6a148691
+-/
 theorem smallRows_triangle {P q a b Tp Tr : ℕ}
     (hp : P * q ≡ a [MOD Tp]) (hr : P * q ≡ b [MOD Tr]) :
     a ≡ b [MOD Nat.gcd Tp Tr] := by
@@ -77,7 +85,9 @@ condition `P ≡ 1 (mod D)`.
 
 In the inert Agrawal branch, `D` is the odd part of the order away from `5`;
 the structural bound `D ∣ p² - 1` supplies `hp`.  The theorem deliberately
-keeps that field-theoretic input separate from its arithmetic kernel.-/
+keeps that field-theoretic input separate from its arithmetic kernel.
+@isnad1 id=modeq.3h4v.s6.715ed08693f8 from=translated src=- shape=9e6b1aa4 vocab=a3f3ab3b
+-/
 theorem localRow_oddShadow {P p T D : ℕ}
     (hDT : D ∣ T) (hp : p ^ 2 ≡ 1 [MOD D])
     (hrow : P ≡ 1 [MOD T] ∨ P ≡ p ^ 2 [MOD T]) :
@@ -87,7 +97,9 @@ theorem localRow_oddShadow {P p T D : ℕ}
   · exact (hrow.of_dvd hDT).trans hp
 
 /-- A unit congruence `a*b ≡ 1 (mod D)`, written as a divisibility in
-natural numbers, forces `b` to be coprime to `D`.-/
+natural numbers, forces `b` to be coprime to `D`.
+@isnad1 id=coprime.2h3v.s5.9b24b9865449 from=translated src=- shape=9050d561 vocab=60875059
+-/
 theorem coprime_right_of_dvd_mul_sub_one {a b D : ℕ}
     (hab : 1 ≤ a * b) (h : D ∣ a * b - 1) :
     Nat.Coprime b D := by
@@ -109,7 +121,9 @@ shared by two local order moduli must also occur in the corresponding gap
 between the two prime factors.
 
 This is the incidence form of the third CRT side after the exponents have
-collapsed on the odd order support.-/
+collapsed on the odd order support.
+@isnad1 id=dvd.5h5v.s6.92cffc7430da from=translated src=- shape=d53b8d3e vocab=2b3e5264
+-/
 theorem sharedOddSupport_dvd_gap {p r q Dp Dr : ℕ}
     (hpr : p ≤ r) (hpos : 1 ≤ r * q) (hpqpos : 1 ≤ p * q)
     (hp : Dp ∣ r * q - 1) (hr : Dr ∣ p * q - 1) :
@@ -131,7 +145,9 @@ theorem sharedOddSupport_dvd_gap {p r q Dp Dr : ℕ}
     coprime_right_of_dvd_mul_sub_one hpos hdp
   exact hcop.symm.dvd_of_dvd_mul_right hdiff
 
-/-- Exact multiplier normal form in the pure branch `P = 1 + hTq`.-/
+/-- Exact multiplier normal form in the pure branch `P = 1 + hTq`.
+@isnad1 id=iff.0h5v.s6.7808fddacb86 from=translated src=- shape=8cfe58fc vocab=5c8a169d
+-/
 theorem pureSmallRow_lift_iff {h q Tq a Tp : ℕ} :
     (1 + h * Tq) * q ≡ a [MOD Tp] ↔
       q + (q * Tq) * h ≡ a [MOD Tp] := by
@@ -140,7 +156,9 @@ theorem pureSmallRow_lift_iff {h q Tq a Tp : ℕ} :
 
 /-- Exact multiplier normal form in the twisted branch
 `P + hTq = q²`.  It uses addition only, so no truncated natural-number
-subtraction enters the certified statement.-/
+subtraction enters the certified statement.
+@isnad1 id=iff.1h6v.s6.2058675fdfe3 from=translated src=- shape=6994b957 vocab=91cc838f
+-/
 theorem twistedSmallRow_lift_iff {P h q Tq a Tp : ℕ}
     (hP : P + h * Tq = q ^ 2) :
     P * q ≡ a [MOD Tp] ↔
@@ -166,7 +184,9 @@ theorem twistedSmallRow_lift_iff {P h q Tq a Tp : ℕ}
 Two distinct representatives below the modulus cannot be congruent.  In the
 fibre audit, `h ≤ H < M` is the exact multiplier interval, while `h₀` is the
 canonical solution of the reduced linear congruence.  Thus `H < h₀ < M`
-certifies that the row has no admissible lift.-/
+certifies that the row has no admissible lift.
+@isnad1 id=not.4h4v.s5.d4e5dc04b5e4 from=translated src=- shape=f015624f vocab=b6e0e5a7
+-/
 theorem boundedLift_exclusion {h H h₀ M : ℕ}
     (hh : h ≤ H) (hH₀ : H < h₀) (h₀M : h₀ < M) (hHM : H < M) :
     ¬ h ≡ h₀ [MOD M] := by

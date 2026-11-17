@@ -38,29 +38,44 @@ The weights are the quadratic residues `1, 4, 4, 1` modulo five.-/
 def quadraticMomentUnit (ζ : R) : R :=
   (ζ - 1) * (ζ ^ 2 - 1) ^ 4 * (ζ ^ 3 - 1) ^ 4 * (ζ ^ 4 - 1)
 
+/--
+@isnad1 id=eq.1h2v.s7.da9bcd884951 from=translated src=- shape=11064a9a vocab=a5cb49f0
+-/
 lemma cyclotomic_sqrtFive_sq {ζ : R}
     (hζ : ζ ^ 4 + ζ ^ 3 + ζ ^ 2 + ζ + 1 = 0) :
     cyclotomicSqrtFive ζ ^ 2 = 5 := by
   unfold cyclotomicSqrtFive
   linear_combination (4 * ζ ^ 4 - 4 * ζ ^ 3 + 8 * ζ - 4) * hζ
 
+/--
+@isnad1 id=eq.1h2v.s8.483e85a55e6d from=translated src=- shape=e9dde8b5 vocab=a800f5dd
+-/
 lemma cyclotomic_pair_left {ζ : R}
     (hζ : ζ ^ 4 + ζ ^ 3 + ζ ^ 2 + ζ + 1 = 0) :
     2 * ((ζ - 1) * (ζ ^ 4 - 1)) = 5 - cyclotomicSqrtFive ζ := by
   unfold cyclotomicSqrtFive
   linear_combination (2 * ζ - 2) * hζ
 
+/--
+@isnad1 id=eq.1h2v.s8.92e81db872aa from=translated src=- shape=efb5d70f vocab=a800f5dd
+-/
 lemma cyclotomic_pair_right {ζ : R}
     (hζ : ζ ^ 4 + ζ ^ 3 + ζ ^ 2 + ζ + 1 = 0) :
     2 * ((ζ ^ 2 - 1) * (ζ ^ 3 - 1)) = 5 + cyclotomicSqrtFive ζ := by
   unfold cyclotomicSqrtFive
   linear_combination (2 * ζ - 4) * hζ
 
+/--
+@isnad1 id=eq.1h2v.s8.58f4a26758ce from=translated src=- shape=b77857b2 vocab=9c1cdc1d
+-/
 lemma cyclotomic_pair_product {ζ : R}
     (hζ : ζ ^ 4 + ζ ^ 3 + ζ ^ 2 + ζ + 1 = 0) :
     ((ζ - 1) * (ζ ^ 4 - 1)) * ((ζ ^ 2 - 1) * (ζ ^ 3 - 1)) = 5 := by
   linear_combination (ζ ^ 6 - 2 * ζ ^ 5 + ζ ^ 3 + 3 * ζ - 4) * hζ
 
+/--
+@isnad1 id=eq.1h2v.s8.34455133343d from=translated src=- shape=bbb1b862 vocab=3c8db0de
+-/
 lemma cyclotomic_pair_right_eq_sqrt_mul_golden {ζ : R}
     (hζ : ζ ^ 4 + ζ ^ 3 + ζ ^ 2 + ζ + 1 = 0) :
     (ζ ^ 2 - 1) * (ζ ^ 3 - 1) =
@@ -71,7 +86,9 @@ lemma cyclotomic_pair_right_eq_sqrt_mul_golden {ζ : R}
 /-- **Golden factorization of the quadratic moment unit.**
 
 `U₂ = (√5)⁵ ε³`.  Thus every quintic index kills the first factor and
-reads `U₂` as three times the index of the golden unit.-/
+reads `U₂` as three times the index of the golden unit.
+@isnad1 id=eq.1h2v.s7.edfc59745902 from=translated src=- shape=bcea0f78 vocab=fc368d3d
+-/
 theorem golden_moment_factorization {ζ : R}
     (hζ : ζ ^ 4 + ζ ^ 3 + ζ ^ 2 + ζ + 1 = 0) :
     quadraticMomentUnit ζ =
@@ -91,7 +108,9 @@ theorem golden_moment_factorization {ζ : R}
   ring
 
 /-- Any quintic index sends a fifth power times a cube to three times
-the index of the cubed element.-/
+the index of the cubed element.
+@isnad1 id=eq.1h5v.s9.843a2ddfe6fb from=translated src=- shape=25ce25c0 vocab=5146ebf1
+-/
 theorem quintic_index_of_fifth_mul_cube {G : Type*} [CommGroup G]
     (χ : G →* Multiplicative (ZMod 5)) (s ε U : G)
     (hU : U = s ^ 5 * ε ^ 3) :
@@ -109,7 +128,9 @@ theorem quintic_index_of_fifth_mul_cube {G : Type*} [CommGroup G]
 
 If units `U`, `s`, and `ε` represent respectively the quadratic moment
 unit, the coordinated square root of five, and the golden unit, then
-every quintic index satisfies `ind(U) = 3 · ind(ε)`.-/
+every quintic index satisfies `ind(U) = 3 · ind(ε)`.
+@isnad1 id=eq.4h6v.s10.5e9d00e72b4e from=translated src=- shape=ba057934 vocab=c7e2e3c2
+-/
 theorem golden_moment_index {ζ : R} (hζ : ζ ^ 4 + ζ ^ 3 + ζ ^ 2 + ζ + 1 = 0)
     (χ : Rˣ →* Multiplicative (ZMod 5)) (U s ε : Rˣ)
     (hU : (U : R) = quadraticMomentUnit ζ)
@@ -139,7 +160,9 @@ noncomputable def quinticIndex {p : ℕ} [Fact p.Prime] (h5 : 5 ∣ p - 1) :
 /-- **The golden theorem over a prime field.**
 
 For a prime `p ≡ 1 (mod 5)`, the discrete quintic index of the quadratic
-moment unit is three times the index of the golden unit.-/
+moment unit is three times the index of the golden unit.
+@isnad1 id=eq.5h5v.s10.b6dd781afec0 from=translated src=- shape=5c4f5a3e vocab=68cb08d0
+-/
 theorem zmod_golden_moment_index {p : ℕ} [Fact p.Prime] (h5 : 5 ∣ p - 1)
     {ζ : ZMod p} (hζ : ζ ^ 4 + ζ ^ 3 + ζ ^ 2 + ζ + 1 = 0)
     (U s ε : (ZMod p)ˣ)

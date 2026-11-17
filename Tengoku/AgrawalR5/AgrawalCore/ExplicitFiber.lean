@@ -26,7 +26,9 @@ open Polynomial
 namespace AgrawalCore
 
 /-- Every complementary quotient in a squarefree quartic skeleton with at
-least three prime factors is nontrivial.-/
+least three prime factors is nontrivial.
+@isnad1 id=lt.3h2v.s5.d7c4a6f787ae from=translated src=- shape=917d6441 vocab=6e937422
+-/
 theorem quotient_gt_one_of_quarticSkeleton
     {n q : ℕ} (hn : SquarefreeCounterexampleCandidate n)
     (hskeleton : QuarticSkeleton n) (hq : q ∈ n.primeFactors) :
@@ -87,7 +89,9 @@ def ExplicitResultantRows (n : ℕ) : Prop :=
 
 Every factor of the quartic skeleton lands in exactly one of the pure and
 twisted finite-resultant branches, with both divisibility and size bound
-proved in the kernel.-/
+proved in the kernel.
+@isnad1 id=skeleton.0h0v.s1.62b3f5dbc0b9 from=translated src=- shape=49959d42 vocab=7c9a55ad
+-/
 theorem explicitResultantRows_of_skeleton :
     SkeletonToFiber ExplicitResultantRows := by
   intro n hn hskeleton q hq
@@ -133,7 +137,9 @@ theorem explicitResultantRows_of_skeleton :
     · exact twisted_resultant_natAbs_le A
 
 /-- The global witness dichotomy with the formerly abstract fiber witness
-instantiated by the literal pure/twisted resultant rows.-/
+instantiated by the literal pure/twisted resultant rows.
+@isnad1 id=or.1h1v.s3.276f2ce32dd8 from=translated src=- shape=2b510e99 vocab=697f39f8
+-/
 theorem squarefree_counterexample_explicit_resultant_dichotomy
     {n : ℕ} (hn : SquarefreeCounterexampleCandidate n) :
     SplitOrderFourWitness n ∨ ExplicitResultantRows n :=
@@ -145,7 +151,9 @@ theorem squarefree_counterexample_explicit_resultant_dichotomy
 If split order-four witnesses are universally excluded and no number carries
 the explicit family of terminal resultant rows, then there is no squarefree
 counterexample candidate.  The two premises are intentionally visible: this
-theorem packages the completed reduction and proves neither open wall.-/
+theorem packages the completed reduction and proves neither open wall.
+@isnad1 id=not.2h1v.s4.07187500361f from=translated src=- shape=5598dfbd vocab=697f39f8
+-/
 theorem no_squarefree_counterexample_of_no_split_and_no_explicit_rows
     (hsplit : ∀ n, SquarefreeCounterexampleCandidate n →
       ¬ SplitOrderFourWitness n)

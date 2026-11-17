@@ -11,13 +11,17 @@ namespace AgrawalCore
 
 variable {p : ℕ} [Fact p.Prime]
 
-/-- Inerzia di `J_n`, `n` pari, ipotesi aritmetica pura.-/
+/-- Inerzia di `J_n`, `n` pari, ipotesi aritmetica pura.
+@isnad1 id=false.6h2v.s7.8c14a18affd8 from=translated src=- shape=064f1471 vocab=44b074ba
+-/
 theorem inertia_J_fib_mod5 (hp : p % 5 = 2 ∨ p % 5 = 3) (hp2 : p ≠ 2)
     {n : ℕ} (hn : 1 ≤ n) (hev : Even n) (hdvd : p ∣ Nat.fib n)
     (h1 : (5 : ZMod p) ^ (n - 1) = 1) : False :=
   inertia_J_fib (not_isSquare_five hp2 hp) hp2 hn hev hdvd h1
 
-/-- Inerzia di `J_n`, `n` dispari (Lucas), ipotesi aritmetica pura.-/
+/-- Inerzia di `J_n`, `n` dispari (Lucas), ipotesi aritmetica pura.
+@isnad1 id=false.6h2v.s7.dbebb955638b from=translated src=- shape=064f1471 vocab=19107514
+-/
 theorem inertia_J_lucas_mod5 (hp : p % 5 = 2 ∨ p % 5 = 3) (hp2 : p ≠ 2)
     {n : ℕ} (hn : 1 ≤ n) (hodd : Odd n) (hdvd : p ∣ lucas n)
     (h1 : (5 : ZMod p) ^ (n - 1) = 1) : False :=

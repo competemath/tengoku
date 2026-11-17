@@ -28,7 +28,9 @@ def SplitOrderFourWitness (n : ℕ) : Prop :=
       ∧ @HasOrderFourTransport p ⟨hp⟩
 
 /-- L'assenza della H4 locale è esattamente l'esistenza di un testimone
-split d'ordine quattro.-/
+split d'ordine quattro.
+@isnad1 id=iff.0h1v.s3.bbc9d120408f from=translated src=- shape=1aa159a0 vocab=984f32d7
+-/
 theorem not_localH4For_iff_splitOrderFourWitness (n : ℕ) :
     ¬ LocalH4For n ↔ SplitOrderFourWitness n := by
   classical

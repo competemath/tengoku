@@ -14,7 +14,9 @@ namespace AgrawalCore
 variable {p : ℕ} [Fact p.Prime]
 
 /-- Fuori dal primo ramificato `5`, una radice di `X²-5X+5` è distinta
-dalla sua coniugata.-/
+dalla sua coniugata.
+@isnad1 id=ne.2h2v.s8.bd49644cdf9c from=translated src=- shape=5981b958 vocab=77397734
+-/
 theorem gamma_split_difference_ne_zero (hp5 : p ≠ 5) (x : ZMod p)
     (hx : x ^ 2 = 5 * x - 5) :
     2 * x - 5 ≠ 0 := by
@@ -26,7 +28,9 @@ theorem gamma_split_difference_ne_zero (hp5 : p ≠ 5) (x : ZMod p)
   exact hp5 ((Nat.prime_dvd_prime_iff_eq Fact.out (by norm_num)).mp hpdiv)
 
 /-- Se una forma lineare si annulla in entrambe le componenti split,
-entrambi i coefficienti sono nulli.-/
+entrambi i coefficienti sono nulli.
+@isnad1 id=and.3h4v.s8.66e7b94fd2aa from=translated src=- shape=ad160e77 vocab=068a6270
+-/
 theorem coeffs_zero_of_both_gamma_evals {K : Type*} [Field K]
     (x c d : K) (hsep : 2 * x - 5 ≠ 0)
     (hx : c + d * x = 0) (hxc : c + d * (5 - x) = 0) :
@@ -39,7 +43,9 @@ theorem coeffs_zero_of_both_gamma_evals {K : Type*} [Field K]
   · exact hd
 
 /-- Versione aritmetica: l'annullamento nelle due componenti equivale
-alla divisibilità dei valori assoluti dei coefficienti per `p`.-/
+alla divisibilità dei valori assoluti dei coefficienti per `p`.
+@isnad1 id=iff.2h4v.s8.8e2b19cf5e2c from=translated src=- shape=f0ff908d vocab=bbc3c232
+-/
 theorem both_gamma_evals_zero_iff_dvd_coeffs (hp5 : p ≠ 5)
     (x : ZMod p) (hxpoly : x ^ 2 = 5 * x - 5) (c d : ℤ) :
     (((c : ZMod p) + (d : ZMod p) * x = 0) ∧
@@ -71,7 +77,9 @@ theorem both_gamma_evals_zero_iff_dvd_coeffs (hp5 : p ≠ 5)
     simp [hc0, hd0]
 
 /-- Ponte split completo per le due forme lineari che producono i quattro
-coefficienti della riduzione primitiva.-/
+coefficienti della riduzione primitiva.
+@isnad1 id=iff.2h6v.s9.e7628fea688b from=translated src=- shape=824b8f47 vocab=601d2ce6
+-/
 theorem split_pair_zero_iff_four_coefficient_gcd (hp5 : p ≠ 5)
     (x : ZMod p) (hxpoly : x ^ 2 = 5 * x - 5)
     (c d a w : ℤ) :

@@ -11,12 +11,17 @@ import Tengoku.Seed.Tactic.NormNum.Prime
 
 namespace AgrawalCore
 
+/--
+@isnad1 id=fact.0h0v.s2.4bcaaa0995da from=translated src=- shape=8d7dbbf6 vocab=c1c9ca6d
+-/
 instance fact_prime_five : Fact (Nat.Prime 5) := ⟨by norm_num⟩
 
 variable {p : ℕ} [Fact p.Prime]
 
 /-- Per `p ≠ 2` primo con `p ≡ 2` o `3 (mod 5)`, il `5` non è un
-quadrato mod `p` (reciprocità quadratica, ramo `5 ≡ 1 (mod 4)`).-/
+quadrato mod `p` (reciprocità quadratica, ramo `5 ≡ 1 (mod 4)`).
+@isnad1 id=not.2h1v.s6.c2ba5756a72c from=translated src=- shape=ff3a6ed7 vocab=2926f0b2
+-/
 theorem not_isSquare_five (hp2 : p ≠ 2) (hp : p % 5 = 2 ∨ p % 5 = 3) :
     ¬ IsSquare (5 : ZMod p) := by
   have hp5 : p ≠ 5 := by rcases hp with h | h <;> omega
@@ -46,7 +51,9 @@ theorem not_isSquare_five (hp2 : p ≠ 2) (hp : p % 5 = 2 ∨ p % 5 = 3) :
 
 /-- Per `p ≠ 2,5` primo con `p ≡ 1` o `4 (mod 5)`, il `5` è un
 quadrato modulo `p`. È la direzione split, complementare a
-`not_isSquare_five`.-/
+`not_isSquare_five`.
+@isnad1 id=issquare.2h1v.s6.7d3617590dd9 from=translated src=- shape=30f42ee2 vocab=2926f0b2
+-/
 theorem isSquare_five_of_split (hp2 : p ≠ 2)
     (hp : p % 5 = 1 ∨ p % 5 = 4) :
     IsSquare (5 : ZMod p) := by

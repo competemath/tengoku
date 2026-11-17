@@ -33,7 +33,9 @@ namespace AgrawalCore
 
 /-- **L'identità della leva.** In ogni anello commutativo, il doppio dello
 scarto fra il prodotto sulle coppie `(xy − 1)` e il prodotto dei `(x² − 1)` è
-la somma dei quadrati delle differenze, pesati dai `(x² − 1)`.-/
+la somma dei quadrati delle differenze, pesati dai `(x² − 1)`.
+@isnad1 id=eq.0h4v.s9.8867d9f1f0ec from=translated src=- shape=9e5e2bd1 vocab=9c1cdc1d
+-/
 theorem prod_pairs_sub_prod_squares {R : Type*} [CommRing R] (p q r : R) :
     2 * ((p * q - 1) * (p * r - 1) * (q * r - 1)
           - (p ^ 2 - 1) * (q ^ 2 - 1) * (r ^ 2 - 1))
@@ -44,7 +46,9 @@ theorem prod_pairs_sub_prod_squares {R : Type*} [CommRing R] (p q r : R) :
 
 /-- **La forma ordinata.** Per interi con `1 ≤ p, q, r`, il prodotto sulle
 coppie domina il prodotto dei quadrati: il difetto è, per l'identità
-precedente, una somma di termini non negativi.-/
+precedente, una somma di termini non negativi.
+@isnad1 id=le.3h3v.s7.09c3957e7d5e from=translated src=- shape=313b3ef9 vocab=01fb1e56
+-/
 theorem prod_pairs_ge_prod_squares {p q r : ℤ}
     (hp : 1 ≤ p) (hq : 1 ≤ q) (hr : 1 ≤ r) :
     (p ^ 2 - 1) * (q ^ 2 - 1) * (r ^ 2 - 1)
@@ -60,7 +64,9 @@ theorem prod_pairs_ge_prod_squares {p q r : ℤ}
 /-- **Il passo di taglia.** Se `r ^ 2 ≤ 2 * I * (p * q)` con `q < r` e
 `0 < 2 * I * p`, allora `r < 2 * I * p`. Applicato a una tripla di `L`, con
 `I` l'indice di `5` modulo il fattore massimo, dà `r < 2 * I_r * p`: il
-rapporto fra il fattore massimo e il minimo è limitato dall'indice.-/
+rapporto fra il fattore massimo e il minimo è limitato dall'indice.
+@isnad1 id=lt.3h4v.s6.d92953d7bbda from=translated src=- shape=92fca576 vocab=2a3f5b88
+-/
 theorem lt_two_mul_of_sq_le {p q r I : ℕ} (hIp : 0 < 2 * I * p)
     (hqr : q < r) (h : r ^ 2 ≤ 2 * I * (p * q)) : r < 2 * I * p := by
   have h1 : r * r ≤ 2 * I * p * q := by

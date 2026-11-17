@@ -51,7 +51,9 @@ private theorem dvd_five_mul_iff (hp5 : p ≠ 5) (n : ℕ) :
     · exact hn
   · exact fun h => dvd_mul_of_dvd_right h 5
 
-/-- **Ponte dei quattro coefficienti, senza ipotesi esterna.**-/
+/-- **Ponte dei quattro coefficienti, senza ipotesi esterna.**
+@isnad1 id=iff.3h4v.s7.f4ed493ab653 from=translated src=- shape=4257d2cb vocab=a575bd73
+-/
 theorem primitiveFourVanish_iff_dvd_D (hp5 : p ≠ 5)
     (m k : ℕ) (hk : 1 ≤ k) (x : ZMod p)
     (hxpoly : x ^ 2 = 5 * x - 5) :

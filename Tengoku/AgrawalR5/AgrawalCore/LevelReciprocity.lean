@@ -74,7 +74,9 @@ For either root `γ` of `X² - 5X + 5` over `ZMod p`, assuming `p ≠ 2,5`,
 The forward implication reconstructs a nontrivial fifth root of unity
 from a square root of `-γ`.  The reverse implication uses an element of
 order five and the two Gaussian periods
-`-(z-z⁴)²`, `-(z²-z³)²`, whose sum and product are both `5`.-/
+`-(z-z⁴)²`, `-(z²-z³)²`, whose sum and product are both `5`.
+@isnad1 id=iff.3h2v.s7.fc33d84bcfce from=translated src=- shape=b490b37c vocab=a406124c
+-/
 theorem neg_gamma_isSquare_iff_mod_five_one
     (hp2 : p ≠ 2) (hp5 : p ≠ 5)
     (γ : ZMod p) (hγ : γ ^ 2 = 5 * γ - 5) :
@@ -176,7 +178,9 @@ theorem neg_gamma_isSquare_iff_mod_five_one
       simp [hgy, y₂, pow_two]
 
 /-- A root of the golden quadratic exposes an explicit square root of
-`5`, namely `2γ-5`.-/
+`5`, namely `2γ-5`.
+@isnad1 id=issquare.1h2v.s7.9a46c61373c8 from=translated src=- shape=ad115cca vocab=1bd888d5
+-/
 theorem five_isSquare_of_golden_root
     (γ : ZMod p) (hγ : γ ^ 2 = 5 * γ - 5) :
     IsSquare (5 : ZMod p) := by
@@ -185,7 +189,9 @@ theorem five_isSquare_of_golden_root
 
 /-- Outside characteristics `2` and `5`, a root of
 `X²-5X+5` can exist over the prime field only in one of the two split
-residue classes modulo `5`.-/
+residue classes modulo `5`.
+@isnad1 id=or.3h2v.s7.5a0fb62fc821 from=translated src=- shape=6d39038c vocab=9de8b228
+-/
 theorem golden_root_mod_five_split
     (hp2 : p ≠ 2) (hp5 : p ≠ 5)
     (γ : ZMod p) (hγ : γ ^ 2 = 5 * γ - 5) :
@@ -228,7 +234,9 @@ private theorem pow_half_order_eq_neg_one
 
 /-- If a split primitive element has exact order `m`, where `4 ∣ m`,
 and `p-1 = m*h`, then `-x` is a square precisely when the residual
-multiplier `h` is even.-/
+multiplier `h` is even.
+@isnad1 id=iff.5h4v.s7.6f4377634dea from=translated src=- shape=ae194966 vocab=01ff9cbd
+-/
 theorem neg_isSquare_iff_residual_multiplier_even
     (hp2 : p ≠ 2) {x : ZMod p} {m h : ℕ}
     (hx0 : x ≠ 0) (hm4 : 4 ∣ m)
@@ -283,7 +291,9 @@ theorem neg_isSquare_iff_residual_multiplier_even
 
 For a split root of `X²-5X+5` having exact order `m`, with `4 ∣ m`,
 the residual multiplier in `p-1=m*h` is even exactly in the branch
-`p ≡ 1 (mod 5)`.-/
+`p ≡ 1 (mod 5)`.
+@isnad1 id=iff.6h4v.s8.7e32f57e956f from=translated src=- shape=285499ae vocab=3d6cf1a3
+-/
 theorem residual_multiplier_even_iff_mod_five_one
     (hp2 : p ≠ 2) (hp5 : p ≠ 5)
     (γ : ZMod p) (hγ : γ ^ 2 = 5 * γ - 5)
@@ -302,7 +312,9 @@ theorem residual_multiplier_even_iff_mod_five_one
 omit [Fact p.Prime] in
 /-- The congruence branch is also exactly the divisibility of the
 residual multiplier by `5`, provided the primitive level itself is
-prime to `5`.-/
+prime to `5`.
+@isnad1 id=iff.3h3v.s6.be55c8c6155e from=translated src=- shape=a857043d vocab=bd114726
+-/
 theorem mod_five_one_iff_five_dvd_residual_multiplier
     {m h : ℕ} (hp0 : 0 < p) (h5m : ¬5 ∣ m)
     (hfactor : p - 1 = m * h) :
@@ -318,7 +330,9 @@ theorem mod_five_one_iff_five_dvd_residual_multiplier
 A good split divisor of the canonical four-coefficient integer has
 `p-1 = 4rs*h`.  The residual multiplier is even exactly for
 `p ≡ 1 (mod 5)`.  This is the kernel form of the factor-two restriction
-on hypothetical split H4 primes.-/
+on hypothetical split H4 primes.
+@isnad1 id=iff.9h6v.s8.d0a575d9960a from=translated src=- shape=5c9d508b vocab=eef49e7c
+-/
 theorem dvd_D_residual_multiplier_even_iff_mod_five_one
     (hp5 : p ≠ 5) (hr : 0 < r) (hs : 0 < s) (hkpos : 1 ≤ k)
     (hpm : ¬p ∣ 4 * r * s)
@@ -344,7 +358,9 @@ theorem dvd_D_residual_multiplier_even_iff_mod_five_one
 If the primitive level `4rs` is also prime to `5`, then the two
 apparently different restrictions on the residual multiplier coincide:
 its parity and its divisibility by `5` both detect the split
-cyclotomic branch `p ≡ 1 (mod 5)`.-/
+cyclotomic branch `p ≡ 1 (mod 5)`.
+@isnad1 id=iff.10h6v.s8.681afb1adc5d from=translated src=- shape=15e1ab0a vocab=184f67a4
+-/
 theorem dvd_D_residual_multiplier_even_iff_five_dvd
     (hp5 : p ≠ 5) (hr : 0 < r) (hs : 0 < s) (hkpos : 1 ≤ k)
     (hpm : ¬p ∣ 4 * r * s) (h5level : ¬5 ∣ 4 * r * s)
@@ -362,7 +378,9 @@ theorem dvd_D_residual_multiplier_even_iff_five_dvd
 /-- In the good H4 range the branch `p ≡ 1 (mod 5)` is equivalently
 the divisibility `10 ∣ h`; otherwise `h` is odd and prime to `5`.
 Thus five of the ten residue classes of the residual multiplier are
-excluded before any search.-/
+excluded before any search.
+@isnad1 id=iff.10h6v.s8.467f80d93d41 from=translated src=- shape=fc992ebe vocab=670af792
+-/
 theorem dvd_D_ten_dvd_residual_multiplier_iff_mod_five_one
     (hp5 : p ≠ 5) (hr : 0 < r) (hs : 0 < s) (hkpos : 1 ≤ k)
     (hpm : ¬p ∣ 4 * r * s) (h5level : ¬5 ∣ 4 * r * s)
@@ -396,7 +414,9 @@ theorem dvd_D_ten_dvd_residual_multiplier_iff_mod_five_one
 For a fixed primitive level, the residual multiplier does not occupy
 five arbitrary classes modulo `10`.  It is either divisible by `10`,
 or it is odd and satisfies the single congruence forced by the
-`p ≡ 4 (mod 5)` branch.-/
+`p ≡ 4 (mod 5)` branch.
+@isnad1 id=or.10h6v.s8.e0b840e63423 from=translated src=- shape=f36ab94e vocab=a324139f
+-/
 theorem dvd_D_residual_multiplier_branch_dichotomy
     (hp5 : p ≠ 5) (hr : 0 < r) (hs : 0 < s) (hkpos : 1 ≤ k)
     (hpm : ¬p ∣ 4 * r * s) (h5level : ¬5 ∣ 4 * r * s)
@@ -431,7 +451,9 @@ theorem dvd_D_residual_multiplier_branch_dichotomy
 
 In the `p ≡ 4 (mod 5)` branch, `rs mod 5` determines the unique
 remaining class of the residual multiplier modulo `10`.  The four
-classes are respectively `7,1,9,3`.-/
+classes are respectively `7,1,9,3`.
+@isnad1 id=and.10h6v.s9.cfcabf13f691 from=translated src=- shape=7ac7647c vocab=670af792
+-/
 theorem dvd_D_residual_multiplier_mod_ten_table
     (hp5 : p ≠ 5) (hr : 0 < r) (hs : 0 < s) (hkpos : 1 ≤ k)
     (hpm : ¬p ∣ 4 * r * s)
@@ -540,7 +562,9 @@ theorem dvd_D_residual_multiplier_mod_ten_table
 
 /-- The class-specific residue table gives four explicit lower bounds
 for a hypothetical split primitive divisor in the `p ≡ 4 (mod 5)`
-branch.-/
+branch.
+@isnad1 id=and.10h6v.s9.65bbf8bc643d from=translated src=- shape=722358e7 vocab=dd1948f2
+-/
 theorem dvd_D_class_specific_lower_bounds
     (hp5 : p ≠ 5) (hr : 0 < r) (hs : 0 < s) (hkpos : 1 ≤ k)
     (hpm : ¬p ∣ 4 * r * s)

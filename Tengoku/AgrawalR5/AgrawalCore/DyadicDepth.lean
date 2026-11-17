@@ -21,7 +21,9 @@ namespace AgrawalCore
 
 /-- In a finite cyclic commutative group, when `d` divides the group
 order, an element is a `d`-th power exactly when its
-`(cardinality / d)`-th power is one.-/
+`(cardinality / d)`-th power is one.
+@isnad1 id=iff.1h3v.s6.41e9d44dc88b from=translated src=- shape=4f977ff2 vocab=b529ac00
+-/
 theorem mem_powMonoidHom_range_iff_pow_card_div_eq_one
     {G : Type*} [CommGroup G] [Finite G] [IsCyclic G]
     {d : ℕ} (hd : d ∣ Nat.card G) (x : G) :
@@ -93,7 +95,9 @@ cardinality `m*h`.  For every positive `d ∣ m`, the shifted generator
 `d ∣ h`.
 
 Over a prime field the shifted generator is `-x`, because
-`x^(m/2) = -1`.-/
+`x^(m/2) = -1`.
+@isnad1 id=iff.5h5v.s7.e86cd673e837 from=translated src=- shape=6fd6317b vocab=11acf1e2
+-/
 theorem shifted_generator_isPower_iff
     {G : Type*} [CommGroup G] [Finite G] [IsCyclic G]
     {x : G} {d m h : ℕ}
@@ -117,7 +121,9 @@ theorem shifted_generator_isPower_iff
   rw [← orderOf_dvd_iff_pow_eq_one, hzord, hcard]
   exact primitive_level_div_iff hdpos hmpos hdm
 
-/-- Quartic specialization of `shifted_generator_isPower_iff`.-/
+/-- Quartic specialization of `shifted_generator_isPower_iff`.
+@isnad1 id=iff.3h4v.s7.3cdd9cdd9e62 from=translated src=- shape=79f069ce vocab=6599d86d
+-/
 theorem shifted_generator_isFourthPower_iff
     {G : Type*} [CommGroup G] [Finite G] [IsCyclic G]
     {x : G} {m h : ℕ}
@@ -167,7 +173,9 @@ private theorem pow_half_exact_order_eq_neg_one
 
 If `x` has exact order `m`, `4 ∣ m`, and `p-1=m*h`, then for every
 positive divisor `d` of `m`, `-x` is a `d`-th power in `F_pˣ`
-exactly when `d ∣ h`.-/
+exactly when `d ∣ h`.
+@isnad1 id=iff.6h5v.s7.ffd252a86421 from=translated src=- shape=2f76ba51 vocab=e67bee1c
+-/
 theorem neg_isPower_iff_residual_multiplier_dvd
     {x : ZMod p} {d m h : ℕ}
     (hx0 : x ≠ 0) (hdpos : 0 < d) (hdm : d ∣ m) (hm4 : 4 ∣ m)
@@ -204,7 +212,9 @@ theorem neg_isPower_iff_residual_multiplier_dvd
     refine ⟨(yu : ZMod p), ?_⟩
     simpa [xu] using congrArg Units.val hyu
 
-/-- Quartic specialization of the residual power-depth theorem.-/
+/-- Quartic specialization of the residual power-depth theorem.
+@isnad1 id=iff.4h4v.s7.b08bd95dd933 from=translated src=- shape=2a9e06fa vocab=e82dad81
+-/
 theorem neg_isFourthPower_iff_residual_multiplier_four_dvd
     {x : ZMod p} {m h : ℕ}
     (hx0 : x ≠ 0) (hm4 : 4 ∣ m)
@@ -217,7 +227,9 @@ theorem neg_isFourthPower_iff_residual_multiplier_four_dvd
 
 For a good split divisor of the canonical primitive integer and every
 positive `d ∣ 4rs`, `-γ` is a `d`-th power exactly when the residual
-multiplier is divisible by `d`.-/
+multiplier is divisible by `d`.
+@isnad1 id=iff.11h7v.s8.f55a80a533ff from=translated src=- shape=43560ec8 vocab=abe55a3f
+-/
 theorem dvd_D_neg_gamma_isPower_iff_dvd
     (hp5 : p ≠ 5) (hr : 0 < r) (hs : 0 < s) (hkpos : 1 ≤ k)
     (hpm : ¬p ∣ 4 * r * s)
@@ -239,7 +251,9 @@ theorem dvd_D_neg_gamma_isPower_iff_dvd
   exact neg_isPower_iff_residual_multiplier_dvd
     hγ0 hdpos hdlevel (by simp [mul_assoc]) hord hfactor
 
-/-- Quartic specialization of the direct four-coefficient theorem.-/
+/-- Quartic specialization of the direct four-coefficient theorem.
+@isnad1 id=iff.9h6v.s8.0c1cfd87a152 from=translated src=- shape=a9522d77 vocab=abe55a3f
+-/
 theorem dvd_D_neg_gamma_isFourthPower_iff_four_dvd
     (hp5 : p ≠ 5) (hr : 0 < r) (hs : 0 < s) (hkpos : 1 ≤ k)
     (hpm : ¬p ∣ 4 * r * s)
@@ -253,7 +267,9 @@ theorem dvd_D_neg_gamma_isFourthPower_iff_four_dvd
       (by norm_num) (by simp [mul_assoc]) hfactor
 
 /-- In the good H4 range, every even power depth also carries the
-quintic divisibility forced by level reciprocity.-/
+quintic divisibility forced by level reciprocity.
+@isnad1 id=iff.13h7v.s8.5491cd6aa309 from=translated src=- shape=67940524 vocab=da1afbea
+-/
 theorem dvd_D_neg_gamma_isPower_iff_lcm_five_dvd
     (hp5 : p ≠ 5) (hr : 0 < r) (hs : 0 < s) (hkpos : 1 ≤ k)
     (hpm : ¬p ∣ 4 * r * s) (h5level : ¬5 ∣ 4 * r * s)
@@ -285,7 +301,9 @@ theorem dvd_D_neg_gamma_isPower_iff_lcm_five_dvd
 
 /-- In the good H4 range, the fourth-power condition absorbs both the
 quartic and quintic divisibility of the residual multiplier:
-`-γ` is a fourth power exactly when `20 ∣ h`.-/
+`-γ` is a fourth power exactly when `20 ∣ h`.
+@isnad1 id=iff.10h6v.s8.5ba10c0063bc from=translated src=- shape=e615d8ea vocab=abe55a3f
+-/
 theorem dvd_D_neg_gamma_isFourthPower_iff_twenty_dvd
     (hp5 : p ≠ 5) (hr : 0 < r) (hs : 0 < s) (hkpos : 1 ≤ k)
     (hpm : ¬p ∣ 4 * r * s) (h5level : ¬5 ∣ 4 * r * s)

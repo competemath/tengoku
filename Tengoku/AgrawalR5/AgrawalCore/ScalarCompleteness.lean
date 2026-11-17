@@ -28,7 +28,9 @@ variable {p : ℕ} [Fact p.Prime]
 
 set_option maxHeartbeats 3000000
 
-/-- `Φ₅` è monico nella normalizzazione usata dal progetto.-/
+/-- `Φ₅` è monico nella normalizzazione usata dal progetto.
+@isnad1 id=monic.0h1v.s4.6ac92614e3a5 from=translated src=- shape=7e6de1f7 vocab=42ba18c9
+-/
 lemma phi5_monic : (phi5 p).Monic := by
   unfold phi5
   have hdeg :
@@ -46,11 +48,17 @@ noncomputable def sigmaTwo : Phi5Ring p →+* Phi5Ring p :=
     simpa [Polynomial.aeval_def, AdjoinRoot.algebraMap_eq'] using
       phi5_aeval_zeta_pow_two (p := p))
 
+/--
+@isnad1 id=eq.0h1v.s7.5bd279f88429 from=translated src=- shape=c015bb5a vocab=40277ed6
+-/
 @[simp]
 lemma sigmaTwo_zeta :
     sigmaTwo (p := p) zeta5 = zeta5 ^ 2 := by
   exact AdjoinRoot.lift_root _
 
+/--
+@isnad1 id=eq.0h2v.s8.103e9fd47aee from=translated src=- shape=45de5b67 vocab=19e73346
+-/
 @[simp]
 lemma sigmaTwo_base (x : ZMod p) :
     sigmaTwo (p := p) (AdjoinRoot.of (phi5 p) x)
@@ -62,11 +70,17 @@ noncomputable def cycloTraceFour (x : Phi5Ring p) : Phi5Ring p :=
   x + sigmaTwo x + sigmaTwo (sigmaTwo x)
     + sigmaTwo (sigmaTwo (sigmaTwo x))
 
+/--
+@isnad1 id=eq.0h3v.s6.d529e6b71f02 from=translated src=- shape=6f078507 vocab=d1af7921
+-/
 lemma cycloTraceFour_add (x y : Phi5Ring p) :
     cycloTraceFour (x + y) = cycloTraceFour x + cycloTraceFour y := by
   simp only [cycloTraceFour, map_add]
   ring
 
+/--
+@isnad1 id=ex.0h2v.s8.ea8b8984169f from=translated src=- shape=88392df1 vocab=bbf8dba5
+-/
 lemma zeta5_orbit_sum (n : ℕ) :
     ∃ c : ZMod p,
       (zeta5 : Phi5Ring p) ^ n + zeta5 ^ (2 * n)
@@ -126,6 +140,9 @@ lemma zeta5_orbit_sum (n : ℕ) :
     linear_combination hz
 
 omit [Fact p.Prime] in
+/--
+@isnad1 id=eq.0h3v.s9.7c43dca0aec9 from=translated src=- shape=c27fe960 vocab=0410be57
+-/
 lemma mk_monomial (n : ℕ) (a : ZMod p) :
     AdjoinRoot.mk (phi5 p) (monomial n a)
       = AdjoinRoot.of (phi5 p) a * (zeta5 : Phi5Ring p) ^ n := by
@@ -134,7 +151,9 @@ lemma mk_monomial (n : ℕ) (a : ZMod p) :
 
 /-- La traccia dell'orbita ciclotomica appartiene sempre all'anello di
 base. Questa è la forma elementare del teorema degli invarianti che
-serve quando `Φ₅` è spezzato.-/
+serve quando `Φ₅` è spezzato.
+@isnad1 id=ex.0h2v.s7.1c0a90089bf0 from=translated src=- shape=1c6c3877 vocab=fb9e96d0
+-/
 lemma cycloTraceFour_isBase (x : Phi5Ring p) :
     ∃ c : ZMod p, cycloTraceFour x = AdjoinRoot.of (phi5 p) c := by
   induction x using AdjoinRoot.induction_on with
@@ -184,7 +203,9 @@ lemma cycloTraceFour_isBase (x : Phi5Ring p) :
             exact map_mul (AdjoinRoot.of (phi5 p)) a c
 
 /-- Un elemento fissato da `ζ ↦ ζ²` e di quadrato uno non può avere
-segni diversi sulle componenti spezzate: è globalmente `1` oppure `-1`.-/
+segni diversi sulle componenti spezzate: è globalmente `1` oppure `-1`.
+@isnad1 id=or.3h2v.s8.31287c44bdce from=translated src=- shape=1a504645 vocab=e94f1775
+-/
 lemma fixedBySigmaTwo_sq_one (hp2 : p ≠ 2) {x : Phi5Ring p}
     (hfix : sigmaTwo x = x) (hsq : x ^ 2 = 1) :
     x = 1 ∨ x = -1 := by
@@ -226,11 +247,17 @@ noncomputable def goldenToCyclo : GoldenRing p →+* Phi5Ring p :=
     simp only [goldenPoly, eval₂_sub, eval₂_pow, eval₂_X, eval₂_one]
     linear_combination cycloEps_sq (p := p))
 
+/--
+@isnad1 id=eq.0h1v.s6.51c1f96b6be5 from=translated src=- shape=77de8a13 vocab=567155fb
+-/
 @[simp]
 lemma goldenToCyclo_eps :
     goldenToCyclo (p := p) eps = cycloEps p := by
   exact AdjoinRoot.lift_root _
 
+/--
+@isnad1 id=eq.0h2v.s8.948d3ea26a78 from=translated src=- shape=d3e150a5 vocab=42d21f57
+-/
 @[simp]
 lemma goldenToCyclo_base (x : ZMod p) :
     goldenToCyclo (p := p) (AdjoinRoot.of (goldenPoly p) x)
@@ -238,7 +265,9 @@ lemma goldenToCyclo_base (x : ZMod p) :
   exact AdjoinRoot.lift_of _
 
 /-- Il profilo aritmetico `p ∣ Hₙ` si trasporta nel vero anello
-ciclotomico.-/
+ciclotomico.
+@isnad1 id=and.3h2v.s8.da429f5eb2ce from=translated src=- shape=c2275778 vocab=846335a6
+-/
 lemma dvd_goldenH_imp_cyclo_scalar {n : ℕ} (hn : 1 ≤ n)
     (hp5 : p ≠ 5) (hH : p ∣ goldenH n) :
     (cycloEps p) ^ (2 * n) = -1
@@ -256,7 +285,9 @@ lemma dvd_goldenH_imp_cyclo_scalar {n : ℕ} (hn : 1 ≤ n)
       _ = AdjoinRoot.of (phi5 p) (-1 : ZMod p) := hm
       _ = -1 := by rw [map_neg, map_one]
 
-/-- Le altre due relazioni di rapporto fra i generatori ciclotomici.-/
+/-- Le altre due relazioni di rapporto fra i generatori ciclotomici.
+@isnad1 id=eq.0h1v.s7.0f658b0d5f5e from=translated src=- shape=c0b65ecc vocab=296d956b
+-/
 lemma u3_eq_cyclo_factor :
     (zeta5 : Phi5Ring p) ^ 3 - 1
       = (zeta5 * cycloEps p) * (zeta5 - 1) := by
@@ -275,6 +306,9 @@ lemma u3_eq_cyclo_factor :
             unfold cycloEps
             ring
 
+/--
+@isnad1 id=eq.0h1v.s8.9cc8fd2fa5b8 from=translated src=- shape=34b29f32 vocab=542550dc
+-/
 lemma u4_eq_cyclo_factor :
     (zeta5 : Phi5Ring p) ^ 4 - 1
       = (-(zeta5 ^ 4)) * (zeta5 - 1) := by
@@ -284,19 +318,27 @@ lemma u4_eq_cyclo_factor :
         = -(zeta5 ^ 5) + zeta5 ^ 4 := by rw [hz5]; ring
     _ = (-(zeta5 ^ 4)) * (zeta5 - 1) := by ring
 
+/--
+@isnad1 id=isunit.1h1v.s7.776d87843d69 from=translated src=- shape=ec651eeb vocab=e41fe94c
+-/
 lemma u3_isUnit (hp5 : p ≠ 5) :
     IsUnit ((zeta5 : Phi5Ring p) ^ 3 - 1) := by
   rw [u3_eq_cyclo_factor]
   exact (zeta5_isUnit.mul cycloEps_isUnit).mul
     (zeta_sub_one_isUnit hp5)
 
+/--
+@isnad1 id=isunit.1h1v.s7.376e417405eb from=translated src=- shape=ec651eeb vocab=e41fe94c
+-/
 lemma u4_isUnit (hp5 : p ≠ 5) :
     IsUnit ((zeta5 : Phi5Ring p) ^ 4 - 1) := by
   rw [u4_eq_cyclo_factor]
   exact (zeta5_isUnit.pow 4).neg.mul (zeta_sub_one_isUnit hp5)
 
 /-- Le congruenze scalari rendono uguali, per moltiplicazione incrociata,
-i quattro difetti del trasporto.-/
+i quattro difetti del trasporto.
+@isnad1 id=other.3h2v.s9.c39fc2e43893 from=translated src=- shape=fa507c46 vocab=43e185a4
+-/
 lemma scalar_common_defect_cross {n : ℕ} (hn : 1 ≤ n)
     (hn5 : n % 5 = 4)
     (he : (cycloEps p) ^ (2 * n) = -1) :
@@ -409,6 +451,9 @@ noncomputable def commonDefect (hp5 : p ≠ 5) (m : ℕ) : Phi5Ring p :=
   ((zeta5 : Phi5Ring p) - 1) ^ m
     * ↑((u2_isUnit (p := p) hp5).unit⁻¹)
 
+/--
+@isnad1 id=eq.1h2v.s7.95df99670af1 from=translated src=- shape=c92cb29f vocab=009c0a3e
+-/
 lemma commonDefect_mul_u2 (hp5 : p ≠ 5) (m : ℕ) :
     commonDefect (p := p) hp5 m * (zeta5 ^ 2 - 1)
       = (zeta5 - 1) ^ m := by
@@ -434,15 +479,24 @@ lemma commonDefect_mul_u2 (hp5 : p ≠ 5) (m : ℕ) :
       ((u2_isUnit (p := p) hp5).unit.inv_mul_cancel_right
         (((zeta5 : Phi5Ring p) - 1) ^ m))
 
+/--
+@isnad1 id=eq.0h1v.s7.934885b5a329 from=translated src=- shape=a0aebd6e vocab=9b872672
+-/
 lemma sigmaTwo_u1 :
     sigmaTwo (p := p) (zeta5 - 1) = zeta5 ^ 2 - 1 := by
   simp
 
+/--
+@isnad1 id=eq.0h1v.s8.10a674fa4234 from=translated src=- shape=ed4a388d vocab=9b872672
+-/
 lemma sigmaTwo_u2 :
     sigmaTwo (p := p) (zeta5 ^ 2 - 1) = zeta5 ^ 4 - 1 := by
   simp only [map_sub, map_pow, map_one, sigmaTwo_zeta]
   rw [← pow_mul]
 
+/--
+@isnad1 id=eq.4h2v.s8.131127c2f18c from=translated src=- shape=f4dabce4 vocab=574dbd3f
+-/
 lemma commonDefect_fixed {n : ℕ} (hn : 1 ≤ n) (hn5 : n % 5 = 4)
     (hp5 : p ≠ 5) (he : (cycloEps p) ^ (2 * n) = -1) :
     sigmaTwo (commonDefect (p := p) hp5 (2 * n - 1))
@@ -471,6 +525,9 @@ lemma commonDefect_fixed {n : ℕ} (hn : 1 ≤ n) (hn5 : n % 5 = 4)
   apply (u4_isUnit (p := p) hp5).mul_right_cancel
   rw [hsig, hwu4]
 
+/--
+@isnad1 id=eq.0h1v.s7.c37e1c9c5b73 from=translated src=- shape=be51641f vocab=e2298617
+-/
 lemma cyclo_factor_sq :
     (-(zeta5 ^ 3) * cycloEps p : Phi5Ring p) ^ 2
       = zeta5 * (cycloEps p) ^ 2 := by
@@ -485,6 +542,9 @@ lemma cyclo_factor_sq :
         = zeta5 ^ 6 * (cycloEps p) ^ 2 := by ring
     _ = zeta5 * (cycloEps p) ^ 2 := by rw [hz6]
 
+/--
+@isnad1 id=eq.4h2v.s8.0b4ed2a97885 from=translated src=- shape=b9e50d67 vocab=23056afe
+-/
 lemma commonDefect_sq_one {n : ℕ} (hn : 1 ≤ n) (hn5 : n % 5 = 4)
     (hp5 : p ≠ 5)
     (hs : (cycloEps p) ^ (2 * n) = -1
@@ -562,7 +622,9 @@ lemma commonDefect_sq_one {n : ℕ} (hn : 1 ≤ n) (hn5 : n % 5 = 4)
     _ = 1 * u2 ^ 2 := by rw [one_mul]
 
 /-- Il profilo scalare divide il problema ciclotomico in esattamente
-due rami globali: difetto `+1` oppure difetto `-1`.-/
+due rami globali: difetto `+1` oppure difetto `-1`.
+@isnad1 id=or.5h2v.s7.3ad7b6429a19 from=translated src=- shape=2bf362c2 vocab=64f867b2
+-/
 theorem commonDefect_eq_one_or_neg_one {n : ℕ}
     (hn : 1 ≤ n) (hn5 : n % 5 = 4)
     (hp2 : p ≠ 2) (hp5 : p ≠ 5) (hH : p ∣ goldenH n) :
@@ -574,7 +636,9 @@ theorem commonDefect_eq_one_or_neg_one {n : ℕ}
     (commonDefect_sq_one (p := p) hn hn5 hp5 hs)
 
 /-- Nel ramo di difetto positivo l'indice scalare originale è già un
-testimone letterale di `S(p,5)`.-/
+testimone letterale di `S(p,5)`.
+@isnad1 id=locals5.4h2v.s7.ca2c307b34a4 from=translated src=- shape=e0c704a7 vocab=679d64c1
+-/
 lemma localS5_of_commonDefect_eq_one {n : ℕ}
     (hn : 1 ≤ n) (hn5 : n % 5 = 4) (hp5 : p ≠ 5)
     (hw : commonDefect (p := p) hp5 (2 * n - 1) = 1) :
@@ -593,7 +657,9 @@ lemma localS5_of_commonDefect_eq_one {n : ℕ}
 
 /-- Nel ramo negativo il difetto si ripara costruttivamente. Se
 `m = 2n-1`, si pone `d = ⌊m²/2⌋ = (m²-1)/2` e si usa l'indice
-`n' = n + 5d`; il nuovo esponente è `m' = m + 10d`.-/
+`n' = n + 5d`; il nuovo esponente è `m' = m + 10d`.
+@isnad1 id=other.5h2v.s8.7b4e4f67b1c4 from=translated src=- shape=3ea6db02 vocab=74ebf4d3
+-/
 lemma localS5_sign_repair {n : ℕ}
     (hn : 1 ≤ n) (hn5 : n % 5 = 4) (hp5 : p ≠ 5)
     (he : (cycloEps p) ^ (2 * n) = -1)
@@ -686,7 +752,9 @@ lemma localS5_sign_repair {n : ℕ}
 Ogni divisore primo di un termine critico `Hₙ` produce un vero
 trasporto locale di ordine quattro. L'indice resta `n` nel ramo
 positivo; nel ramo negativo viene sostituito dall'indice costruttivo
-`n + 5⌊(2n-1)²/2⌋`.-/
+`n + 5⌊(2n-1)²/2⌋`.
+@isnad1 id=hasorder.5h2v.s6.8723949bc375 from=translated src=- shape=ba2337f1 vocab=967bda8a
+-/
 theorem dvd_goldenH_imp_hasOrderFourTransport {n : ℕ}
     (hn : 1 ≤ n) (hn5 : n % 5 = 4)
     (hp2 : p ≠ 2) (hp5 : p ≠ 5) (hH : p ∣ goldenH n) :
@@ -707,7 +775,9 @@ theorem dvd_goldenH_imp_hasOrderFourTransport {n : ℕ}
 /-- **Ponte locale H4, equivalenza completa verificata dal kernel.**
 Per `p ≠ 2,5`, l'esistenza di un trasporto locale nella classe
 d'ordine quattro equivale esattamente alla presenza di `p` nel
-supporto della successione aurea `Hₙ`, su un indice `n ≡ 4 (mod 5)`.-/
+supporto della successione aurea `Hₙ`, su un indice `n ≡ 4 (mod 5)`.
+@isnad1 id=iff.2h1v.s6.29d3ba873813 from=translated src=- shape=3568912d vocab=967bda8a
+-/
 theorem hasOrderFourTransport_iff_goldenH_support
     (hp2 : p ≠ 2) (hp5 : p ≠ 5) :
     HasOrderFourTransport p ↔

@@ -84,6 +84,9 @@ private theorem goldenSquareFromGamma_eq {p : ℕ} [Fact p.Prime]
 
 variable {p r s k : ℕ} [Fact p.Prime]
 
+/--
+@isnad1 id=and.8h5v.s8.34ab6dcc7cbf from=translated src=- shape=886df3ba vocab=deaf6f31
+-/
 theorem four_coefficient_bridge
     (hp5 : p ≠ 5) (hr : 0 < r) (hs : 0 < s) (hkpos : 1 ≤ k)
     (hpm : ¬p ∣ 4 * r * s)
@@ -101,6 +104,9 @@ theorem four_coefficient_bridge
   exact AgrawalCore.dvd_primitiveFourCoefficientD_exact_order_profile
     hp5 hr hs hkpos hpm hsig' x hxpoly hD'
 
+/--
+@isnad1 id=and.8h5v.s8.276525495538 from=translated src=- shape=e04c66ae vocab=2816a865
+-/
 theorem scalar_profile
     (hp5 : p ≠ 5) (hr : 0 < r) (hs : 0 < s) (hkpos : 1 ≤ k)
     (hpm : ¬p ∣ 4 * r * s)
@@ -118,6 +124,9 @@ theorem scalar_profile
   exact AgrawalCore.dvd_D_exact_scalar_profile
     hp5 hr hs hkpos hpm hsig' x hxpoly hD'
 
+/--
+@isnad1 id=or.8h6v.s8.ac2bde42629a from=translated src=- shape=e66fa011 vocab=d5c6fcf5
+-/
 theorem single_support_exclusion {q e : ℕ} (hq : q.Prime)
     (hp2 : p ≠ 2) (hp5 : p ≠ 5)
     (hrs : Nat.Coprime r s)

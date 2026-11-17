@@ -29,11 +29,15 @@ noncomputable def quarticOrderModulus (p : ℕ) [Fact p.Prime]
     (hp5 : p ≠ 5) : ℕ :=
   Nat.lcm (orderOf (localCyclotomicUnit hp5 (1 : (ZMod 5)ˣ))) 5
 
-/-- The exponent `1` is always a literal local row.-/
+/-- The exponent `1` is always a literal local row.
+@isnad1 id=locals5.0h1v.s3.dae04b068e5a from=translated src=- shape=2e48dd97 vocab=b403515c
+-/
 lemma localS5_one : LocalS5 p 1 := by
   simp [LocalS5]
 
-/-- Every Frobenius power `p^j` is a literal local row.-/
+/-- Every Frobenius power `p^j` is a literal local row.
+@isnad1 id=locals5.0h2v.s4.5b73a2c175f5 from=translated src=- shape=99f5f1e7 vocab=0f65e7c9
+-/
 theorem localS5_frobenius_power (j : ℕ) :
     LocalS5 p (p ^ j) := by
   induction j with
@@ -47,7 +51,9 @@ theorem localS5_frobenius_power (j : ℕ) :
 If `m` and `p^j` induce the same permutation of the fifth roots, then a
 literal local row forces equality of the corresponding powers of the
 canonical unit `ζ₅ - 1`; hence the exponents are congruent modulo its
-multiplicative order.-/
+multiplicative order.
+@isnad1 id=modeq.3h3v.s7.19782418c0b9 from=translated src=- shape=3ddd7203 vocab=457e7e4d
+-/
 theorem localS5_modEq_frobenius_power {m j : ℕ}
     (hp5 : p ≠ 5) (hrow : LocalS5 p m)
     (hm : m % 5 = (p ^ j) % 5) :
@@ -68,7 +74,9 @@ theorem localS5_modEq_frobenius_power {m j : ℕ}
     _ = ((zeta5 : Phi5Ring p) - 1) ^ (p ^ j) := hfrob.symm
 
 /-- The same comparison, with the residue modulo `5` incorporated into the
-CRT modulus used by the paper.-/
+CRT modulus used by the paper.
+@isnad1 id=modeq.3h3v.s6.a713ad29ca26 from=translated src=- shape=35af505d vocab=8cc1807f
+-/
 theorem localS5_modEq_frobenius_power_lcm {m j : ℕ}
     (hp5 : p ≠ 5) (hrow : LocalS5 p m)
     (hm : m % 5 = (p ^ j) % 5) :
@@ -77,7 +85,9 @@ theorem localS5_modEq_frobenius_power_lcm {m j : ℕ}
     (localS5_modEq_frobenius_power hp5 hrow hm) hm
 
 /-- Dividing an inert residue by another inert residue gives a split
-residue (`1` or `4`) modulo `5`.-/
+residue (`1` or `4`) modulo `5`.
+@isnad1 id=splitmod.3h2v.s4.07e5e264287b from=translated src=- shape=c8d2a134 vocab=a6422ae2
+-/
 theorem splitModFive_div_of_inertModFive {n p : ℕ}
     (hpdvd : p ∣ n) (hp : InertModFive p) (hn : InertModFive n) :
     SplitModFive (n / p) := by
@@ -98,7 +108,9 @@ theorem splitModFive_div_of_inertModFive {n p : ℕ}
 
 /-- The complementary residue is determined, not merely known to be split:
 it is `1` when the prime and the product have the same inert residue, and
-`4` otherwise.-/
+`4` otherwise.
+@isnad1 id=or.3h2v.s7.a6101159494e from=translated src=- shape=405e15ef vocab=9fd327e0
+-/
 theorem inertQuotient_residue_determined {n p : ℕ}
     (hpdvd : p ∣ n) (hp : InertModFive p) (hn : InertModFive n) :
     (p % 5 = n % 5 ∧ (n / p) % 5 = 1)
@@ -125,7 +137,9 @@ def QuarticOrderRow (p m : ℕ) [Fact p.Prime] : Prop :=
       ∨ m ≡ p ^ 2 [MOD quarticOrderModulus p hp5]
 
 /-- A literal local row in the quartic branch produces one of the two exact
-order congruences.-/
+order congruences.
+@isnad1 id=quartico.4h2v.s5.6224ff6b18fd from=translated src=- shape=7bd055c0 vocab=f14ef72c
+-/
 theorem quarticOrderRow_of_local {m : ℕ}
     (hp5 : p ≠ 5) (hp : InertModFive p)
     (hm : SplitModFive m) (hrow : LocalS5 p m) :
@@ -153,7 +167,9 @@ def DeterminedQuarticOrderRow (n p m : ℕ) [Fact p.Prime] : Prop :=
       ∨ (p % 5 ≠ n % 5
         ∧ m ≡ p ^ 2 [MOD quarticOrderModulus p hp5])
 
-/-- A literal row has the branch prescribed by the quotient residue.-/
+/-- A literal row has the branch prescribed by the quotient residue.
+@isnad1 id=determin.6h3v.s5.7fb1a3ed5358 from=translated src=- shape=19a4b08c vocab=93b7c8f9
+-/
 theorem determinedQuarticOrderRow_of_local {n m : ℕ}
     (hpdvd : p ∣ n) (hp5 : p ≠ 5)
     (hp : InertModFive p) (hn : InertModFive n)
@@ -188,7 +204,9 @@ def DeterminedQuarticOrderRows (n : ℕ) : Prop :=
     @DeterminedQuarticOrderRow n p (n / p)
       ⟨Nat.prime_of_mem_primeFactors hp⟩
 
-/-- The concrete quartic skeleton supplies all exact order rows.-/
+/-- The concrete quartic skeleton supplies all exact order rows.
+@isnad1 id=quartico.2h1v.s3.33c8de942ca7 from=translated src=- shape=cbe5c5ba vocab=cf5a28a5
+-/
 theorem quarticOrderRows_of_skeleton {n : ℕ}
     (hn : SquarefreeCounterexampleCandidate n)
     (hskeleton : QuarticSkeleton n) :
@@ -209,7 +227,9 @@ theorem quarticOrderRows_of_skeleton {n : ℕ}
   exact quarticOrderRow_of_local hp5 hpInert hmSplit
     (hskeleton p hpmem).2
 
-/-- The skeleton determines the exponent branch at every factor.-/
+/-- The skeleton determines the exponent branch at every factor.
+@isnad1 id=determin.2h1v.s3.206297d5cda3 from=translated src=- shape=cbe5c5ba vocab=8b593db4
+-/
 theorem determinedQuarticOrderRows_of_skeleton {n : ℕ}
     (hn : SquarefreeCounterexampleCandidate n)
     (hskeleton : QuarticSkeleton n) :
@@ -228,7 +248,9 @@ theorem determinedQuarticOrderRows_of_skeleton {n : ℕ}
     (hskeleton p hpmem).1 hnInert rfl (hskeleton p hpmem).2
 
 /-- Every nontrivial skeleton row bounds its concrete cyclotomic modulus by
-the larger of the Frobenius representative and the complementary product.-/
+the larger of the Frobenius representative and the complementary product.
+@isnad1 id=ex.5h2v.s7.181c6f7f7b66 from=translated src=- shape=9f43d565 vocab=85e11903
+-/
 theorem quarticSkeleton_orderModulus_le_max {n p : ℕ}
     (hn : SquarefreeCounterexampleCandidate n)
     (hskeleton : QuarticSkeleton n) (hpmem : p ∈ n.primeFactors)
@@ -241,7 +263,9 @@ theorem quarticSkeleton_orderModulus_le_max {n p : ℕ}
     ⟨hp5, hrow⟩
   exact ⟨hp5, localRow_order_le_max hquot hne hrow⟩
 
-/-- The sharp branch-sensitive gap bound used by the explicit CRT system.-/
+/-- The sharp branch-sensitive gap bound used by the explicit CRT system.
+@isnad1 id=ex.5h2v.s7.b600e2cba573 from=translated src=- shape=f2f84b49 vocab=52b08327
+-/
 theorem quarticSkeleton_orderModulus_le_gap {n p : ℕ}
     (hn : SquarefreeCounterexampleCandidate n)
     (hskeleton : QuarticSkeleton n) (hpmem : p ∈ n.primeFactors)
@@ -260,7 +284,9 @@ theorem quarticSkeleton_orderModulus_le_gap {n p : ℕ}
 /-- **Concrete final-row size exclusion.**
 
 If the complementary product lies strictly below `p²`, while the concrete
-quartic order modulus is at least `p²`, the skeleton row is impossible.-/
+quartic order modulus is at least `p²`, the skeleton row is impossible.
+@isnad1 id=false.6h2v.s6.296f0d1a282b from=translated src=- shape=d97acf34 vocab=0c4e43b2
+-/
 theorem quarticSkeleton_factor_size_exclusion {n p : ℕ}
     (hn : SquarefreeCounterexampleCandidate n)
     (hskeleton : QuarticSkeleton n) (hpmem : p ∈ n.primeFactors)
@@ -278,7 +304,9 @@ theorem quarticSkeleton_factor_size_exclusion {n p : ℕ}
 
 Every squarefree candidate either has a split order-four witness, or has
 the odd inert quartic skeleton (at least three factors) together with all
-of its exact order congruences.-/
+of its exact order congruences.
+@isnad1 id=or.1h1v.s5.79f95929c139 from=translated src=- shape=bc1e0aaf vocab=147864dd
+-/
 theorem squarefree_counterexample_order_dichotomy
     {n : ℕ} (hn : SquarefreeCounterexampleCandidate n) :
     SplitOrderFourWitness n ∨

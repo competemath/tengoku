@@ -46,34 +46,61 @@ def zmodFiveUnitFour : (ZMod 5)ˣ where
   val_inv := by decide
   inv_val := by decide
 
+/--
+@isnad1 id=eq.0h0v.s10.2b258065328c from=translated src=- shape=b3b0fac4 vocab=bd452530
+-/
 lemma zmodFive_units_univ :
     (Finset.univ : Finset (ZMod 5)ˣ) =
       {1, zmodFiveUnitTwo, zmodFiveUnitThree, zmodFiveUnitFour} := by
   decide
 
+/--
+@isnad1 id=eq.0h0v.s7.10cf7831bd0d from=translated src=- shape=8a5ecf25 vocab=6d3ef9b2
+-/
 @[simp] lemma zmodFiveUnitOne_val :
     (((1 : (ZMod 5)ˣ) : ZMod 5).val) = 1 := by decide
 
+/--
+@isnad1 id=eq.0h0v.s5.87de45b48767 from=translated src=- shape=21646f88 vocab=ba5ad323
+-/
 @[simp] lemma zmodFiveUnitTwo_val :
     (((zmodFiveUnitTwo : (ZMod 5)ˣ) : ZMod 5).val) = 2 := rfl
 
+/--
+@isnad1 id=eq.0h0v.s5.01cdd30ea659 from=translated src=- shape=21646f88 vocab=8a8ce62d
+-/
 @[simp] lemma zmodFiveUnitThree_val :
     (((zmodFiveUnitThree : (ZMod 5)ˣ) : ZMod 5).val) = 3 := rfl
 
+/--
+@isnad1 id=eq.0h0v.s5.1f3b00a84f11 from=translated src=- shape=21646f88 vocab=b1c78b03
+-/
 @[simp] lemma zmodFiveUnitFour_val :
     (((zmodFiveUnitFour : (ZMod 5)ˣ) : ZMod 5).val) = 4 := rfl
 
+/--
+@isnad1 id=eq.0h0v.s8.c9302fbeab83 from=translated src=- shape=293c7185 vocab=16396eb0
+-/
 @[simp] lemma zmodFiveUnitOne_sq_val :
     ((((1 : (ZMod 5)ˣ) : ZMod 5) ^ 2).val) = 1 := by decide
 
+/--
+@isnad1 id=eq.0h0v.s7.439d8d7d136a from=translated src=- shape=78b21d5d vocab=b3c18e2d
+-/
 @[simp] lemma zmodFiveUnitTwo_sq_val :
     ((((zmodFiveUnitTwo : (ZMod 5)ˣ) : ZMod 5) ^ 2).val) = 4 := by
   decide
 
+/--
+@isnad1 id=eq.0h0v.s7.b7d057b4b4d0 from=translated src=- shape=78b21d5d vocab=a2e49f3f
+-/
 @[simp] lemma zmodFiveUnitThree_sq_val :
     ((((zmodFiveUnitThree : (ZMod 5)ˣ) : ZMod 5) ^ 2).val) = 4 := by
   decide
 
+/--
+@isnad1 id=eq.0h0v.s7.782194ae843f from=translated src=- shape=78b21d5d vocab=744c76fa
+-/
 @[simp] lemma zmodFiveUnitFour_sq_val :
     ((((zmodFiveUnitFour : (ZMod 5)ˣ) : ZMod 5) ^ 2).val) = 1 := by
   decide
@@ -92,7 +119,9 @@ def indexedMomentUnit {G : Type*} [CommGroup G]
 exactly the additive moment of the indexed family.
 
 This is the missing product-to-sum interface: it identifies the `M_j`
-of `MomentObstruction.lean` with the index of `indexedMomentUnit u j`.-/
+of `MomentObstruction.lean` with the index of `indexedMomentUnit u j`.
+@isnad1 id=eq.0h4v.s9.457cefd62855 from=translated src=- shape=906768d1 vocab=fef2bfcb
+-/
 theorem quintic_index_indexedMomentUnit_eq_moment
     {G : Type*} [CommGroup G]
     (χ : G →* Multiplicative (ZMod 5))
@@ -115,7 +144,9 @@ cyclotomic quadratic-moment unit, once the four entries are
 `u_a = ζ^a - 1`.
 
 Unlike a numerical table replay, this is a symbolic identity over every
-commutative ring.-/
+commutative ring.
+@isnad1 id=eq.1h3v.s7.957faca939e5 from=translated src=- shape=0f990898 vocab=81b1e2c9
+-/
 theorem indexedMomentUnit_two_eq_quadraticMomentUnit
     {R : Type*} [CommRing R]
     {ζ : R}
@@ -156,7 +187,9 @@ times the quintic index of the coordinated golden unit.
 
 The hypothesis `hU` is deliberately visible: the theorem certifies the
 exact moment/product interface, while a caller must still identify its
-particular local Agrawal logarithm family with the four cyclotomic units.-/
+particular local Agrawal logarithm family with the four cyclotomic units.
+@isnad1 id=eq.4h6v.s10.ea378318d867 from=translated src=- shape=24a0fcc9 vocab=a09a6cce
+-/
 theorem agrawal_quadratic_moment_eq_three_golden_index
     {R : Type*} [CommRing R]
     {ζ : R}
@@ -177,7 +210,9 @@ theorem agrawal_quadratic_moment_eq_three_golden_index
 
 Here the product-identification premise of
 `agrawal_quadratic_moment_eq_three_golden_index` has been discharged:
-the family is explicitly the four units `ζ^a - 1`.-/
+the family is explicitly the four units `ζ^a - 1`.
+@isnad1 id=eq.4h6v.s10.41be7e958c55 from=translated src=- shape=0af45589 vocab=0d161507
+-/
 theorem cyclotomic_quadratic_moment_eq_three_golden_index
     {R : Type*} [CommRing R]
     {ζ : R}

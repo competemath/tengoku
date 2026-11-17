@@ -25,7 +25,9 @@ private theorem five_unit_ne_zero (hp5 : p ≠ 5) :
     (CharP.cast_eq_zero_iff (ZMod p) p 5).mp hzero
   exact hp5 ((Nat.prime_dvd_prime_iff_eq Fact.out (by norm_num)).mp hpdiv)
 
-/-- Scalar five cannot have order two in the split branch `p ≡ 1 mod 5`.-/
+/-- Scalar five cannot have order two in the split branch `p ≡ 1 mod 5`.
+@isnad1 id=ne.2h1v.s6.54c31db314f9 from=translated src=- shape=928ffa1a vocab=05c363cb
+-/
 theorem orderOf_five_ne_two_of_mod_five_one
     (hp2 : p ≠ 2) (hpmod : p % 5 = 1) :
     orderOf (5 : ZMod p) ≠ 2 := by
@@ -46,7 +48,9 @@ theorem orderOf_five_ne_two_of_mod_five_one
     norm_num at hpmod
 
 /-- If `r` and `s` have opposite parity and both divide a power of two,
-then one of them is one.-/
+then one of them is one.
+@isnad1 id=or.3h3v.s6.2433d2f0a028 from=translated src=- shape=2eb00cd4 vocab=8ddac598
+-/
 theorem one_eq_one_of_opposite_parity_dvd_two_power
     {r s b : ℕ} (hpar : Odd (r + s))
     (hr : r ∣ 2 ^ b) (hs : s ∣ 2 ^ b) :
@@ -69,7 +73,9 @@ theorem one_eq_one_of_opposite_parity_dvd_two_power
 
 There is no good split H-profile whose ambient group order has the form
 `2^b * 5^f`.  This is an infinite excluded family and is independent of
-any finite census.-/
+any finite census.
+@isnad1 id=false.9h6v.s8.eccab603da81 from=translated src=- shape=d735c5e9 vocab=835c3481
+-/
 theorem no_split_five_smooth_support
     {b f r s : ℕ}
     (hp2 : p ≠ 2) (hp5 : p ≠ 5) (hpmod : p % 5 = 1)
@@ -123,7 +129,9 @@ theorem no_split_five_smooth_support
   · apply orderOf_golden_square_ne_two hp2 hp5 x hx
     simpa [hsOne] using hordx
 
-/-- End-to-end four-coefficient form of the 5-smooth exclusion.-/
+/-- End-to-end four-coefficient form of the 5-smooth exclusion.
+@isnad1 id=false.13h7v.s8.c47ba2b5a58d from=translated src=- shape=516fd6ff vocab=a72ce470
+-/
 theorem no_split_five_smooth_primitive_support
     {b f r s k : ℕ}
     (hp2 : p ≠ 2) (hp5 : p ≠ 5) (hpmod : p % 5 = 1)

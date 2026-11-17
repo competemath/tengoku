@@ -18,7 +18,9 @@ import Tengoku.Seed.Tactic.NormNum.Prime
 namespace AgrawalCore
 
 /-- Passo locale dell'ombra: per `p ∣ n` primo, `p ≠ 5`, dal vincolo
-di norma `5^(n/p − 1) = 1` segue `5^(n−1) = 1` in `ZMod p`.-/
+di norma `5^(n/p − 1) = 1` segue `5^(n−1) = 1` in `ZMod p`.
+@isnad1 id=eq.4h2v.s7.dcd0b46bdec3 from=translated src=- shape=15ae2bb4 vocab=ad0fd531
+-/
 lemma fermat_shadow_local {n p : ℕ} (hp : p.Prime) (hdvd : p ∣ n)
     (hp5 : p ≠ 5) (H : (5 : ZMod p) ^ (n / p - 1) = 1) :
     (5 : ZMod p) ^ (n - 1) = 1 := by
@@ -55,7 +57,9 @@ lemma fermat_shadow_local {n p : ℕ} (hp : p.Prime) (hdvd : p ∣ n)
 
 /-- **L'ombra di Fermat** (colla aritmetica, certificata): `n`
 squarefree con `5 ∤ n` e il vincolo di norma su ogni fattore primo è
-uno pseudoprimo di Fermat in base `5`: `n ∣ 5^(n−1) − 1`.-/
+uno pseudoprimo di Fermat in base `5`: `n ∣ 5^(n−1) − 1`.
+@isnad1 id=dvd.3h1v.s7.53497cc8a056 from=translated src=- shape=9535f079 vocab=7d575c49
+-/
 theorem fermat_shadow {n : ℕ} (hsq : Squarefree n) (h5 : ¬ (5 ∣ n))
     (H : ∀ p : ℕ, p.Prime → p ∣ n → (5 : ZMod p) ^ (n / p - 1) = 1) :
     n ∣ 5 ^ (n - 1) - 1 := by

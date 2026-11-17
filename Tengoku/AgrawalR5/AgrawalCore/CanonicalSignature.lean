@@ -16,6 +16,9 @@ namespace AgrawalCore
 def CanonicalSignature (m r s k : ℕ) : Prop :=
   Nat.gcd m (k - 1) = 2 * r ∧ Nat.gcd m (k + 1) = 2 * s
 
+/--
+@isnad1 id=and.1h4v.s6.f296bd482ec4 from=translated src=- shape=36d08db0 vocab=6af37575
+-/
 theorem canonicalSignature_dvd_sub_add {m r s k : ℕ}
     (h : CanonicalSignature m r s k) :
     2 * r ∣ k - 1 ∧ 2 * s ∣ k + 1 := by
@@ -25,7 +28,9 @@ theorem canonicalSignature_dvd_sub_add {m r s k : ℕ}
   · rw [← h.2]
     exact Nat.gcd_dvd_right m (k + 1)
 
-/-- La firma forza `k² ≡ 1` modulo `4rs`.-/
+/-- La firma forza `k² ≡ 1` modulo `4rs`.
+@isnad1 id=modeq.2h3v.s6.53cd32e2eac8 from=translated src=- shape=b80e84ca vocab=856e6ac9
+-/
 theorem canonicalSignature_involution {r s k : ℕ} (hk : 1 ≤ k)
     (h : CanonicalSignature (4 * r * s) r s k) :
     k ^ 2 ≡ 1 [MOD 4 * r * s] := by
@@ -41,7 +46,9 @@ theorem canonicalSignature_involution {r s k : ℕ} (hk : 1 ≤ k)
   exact ((Nat.modEq_iff_dvd' (by nlinarith : 1 ≤ k ^ 2)).mpr hd).symm
 
 /-- Un rappresentante con la firma canonica è automaticamente invertibile
-modulo `4rs`.-/
+modulo `4rs`.
+@isnad1 id=coprime.2h3v.s6.e3ce740d57b8 from=translated src=- shape=9abde84f vocab=afbba1e7
+-/
 theorem canonicalSignature_coprime {r s k : ℕ} (hk : 1 ≤ k)
     (h : CanonicalSignature (4 * r * s) r s k) :
     Nat.Coprime k (4 * r * s) := by
@@ -59,7 +66,9 @@ theorem canonicalSignature_coprime {r s k : ℕ} (hk : 1 ≤ k)
   simpa [Nat.sub_sub_self (by nlinarith : 1 ≤ k ^ 2)] using hone
 
 /-- Due rappresentanti con la stessa firma sono congruenti almeno modulo
-`2rs`; è la parte CRT della unicità canonica.-/
+`2rs`; è la parte CRT della unicità canonica.
+@isnad1 id=modeq.5h4v.s6.d61062626274 from=translated src=- shape=825026eb vocab=d8d9694a
+-/
 theorem canonicalSignature_modEq_two_mul {r s k j : ℕ}
     (_hr : 0 < r) (hs : 0 < s) (hrs : Nat.Coprime r s)
     (hk : CanonicalSignature (4 * r * s) r s k)
@@ -131,7 +140,9 @@ private theorem canonicalSignature_minus_quotient_coprime {r s k : ℕ}
   simpa [h.1, hdiv] using hc.symm
 
 /-- **Unicità canonica nel range fondamentale.** L'opposizione di parità
-seleziona uno solo dei due lift CRT modulo `4rs`.-/
+seleziona uno solo dei due lift CRT modulo `4rs`.
+@isnad1 id=eq.8h4v.s7.85d853bdd75c from=translated src=- shape=94a1dc88 vocab=c6d8648b
+-/
 theorem canonicalSignature_unique {r s k j : ℕ}
     (hr : 0 < r) (hs : 0 < s) (hrs : Nat.Coprime r s)
     (hpar : Odd (r + s))

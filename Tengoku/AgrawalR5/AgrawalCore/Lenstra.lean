@@ -47,7 +47,9 @@ composto, è un controesempio alla congettura di Agrawal.
 
 La classe `n ≡ 3 (mod 80)` non è un'ipotesi indipendente: segue da
 `prod_class_mod_eighty` quando i fattori sono `≡ 3 (mod 80)` e il loro numero
-è `≡ 1 (mod 4)`.-/
+è `≡ 1 (mod 4)`.
+@isnad1 id=and.6h1v.s9.2cf47714c387 from=translated src=- shape=3bf34430 vocab=14762092
+-/
 theorem lenstra_proposition {n : ℕ} (hsq : Squarefree n) (hn0 : 0 < n)
     (hn80 : n % 80 = 3)
     (hfact : ∀ p ∈ n.primeFactors, p % 80 = 3)
@@ -67,7 +69,9 @@ theorem lenstra_proposition {n : ℕ} (hsq : Squarefree n) (hn0 : 0 < n)
 
 /-- Forma con le ipotesi nella veste originale: `k ≡ 1 (mod 4)` fattori primi
 tutti `≡ 3 (mod 80)`, più le due condizioni di Korselt. La classe di `n` viene
-dedotta invece che assunta.-/
+dedotta invece che assunta.
+@isnad1 id=and.6h1v.s9.cf4fa60eb3ce from=translated src=- shape=54e21a23 vocab=e6e9c796
+-/
 theorem lenstra_proposition_of_card {n : ℕ} (hsq : Squarefree n) (hn0 : 0 < n)
     (hn80 : n % 80 = 3)
     (hcarm : IsCarmichael n) (hlucas : IsLucasCarmichael n)

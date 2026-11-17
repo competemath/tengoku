@@ -40,17 +40,23 @@ variable {p : ℕ} [Fact p.Prime]
 noncomputable def wElt (p : ℕ) [Fact p.Prime] : Phi5Ring p :=
   1 + zeta5 + zeta5 ^ 2
 
-/-- Somma geometrica: `(ζ−1)(1+ζ+ζ²) = ζ³−1`.-/
+/-- Somma geometrica: `(ζ−1)(1+ζ+ζ²) = ζ³−1`.
+@isnad1 id=eq.0h1v.s7.991e4bb021b3 from=translated src=- shape=7b25d8e9 vocab=a4c40496
+-/
 lemma u_mul_w : ((zeta5 : Phi5Ring p) - 1) * wElt p = zeta5 ^ 3 - 1 := by
   unfold wElt; ring
 
-/-- Per `p ≡ 3 (mod 5)` il Frobenius manda `ζ−1` in `(ζ−1)·w`.-/
+/-- Per `p ≡ 3 (mod 5)` il Frobenius manda `ζ−1` in `(ζ−1)·w`.
+@isnad1 id=eq.1h1v.s7.206b116ae627 from=translated src=- shape=a2674f9d vocab=850afdb7
+-/
 lemma u_pow_p (hp : p % 5 = 3) :
     ((zeta5 : Phi5Ring p) - 1) ^ p = (zeta5 - 1) * wElt p := by
   rw [zeta_sub_one_pow_p, hp, u_mul_w]
 
 /-- Per `p ≡ 3 (mod 5)`, `w^p = 1 + ζ + ζ³`: il Frobenius permuta gli
-esponenti moltiplicandoli per 3 modulo 5, e `{0,1,2} ↦ {0,3,6=1}`.-/
+esponenti moltiplicandoli per 3 modulo 5, e `{0,1,2} ↦ {0,3,6=1}`.
+@isnad1 id=eq.1h1v.s7.5b7a7aeee08d from=translated src=- shape=0d7bfb71 vocab=190d0b52
+-/
 lemma w_pow_p (hp : p % 5 = 3) :
     (wElt p) ^ p = 1 + zeta5 ^ 3 + zeta5 := by
   unfold wElt
@@ -64,7 +70,9 @@ lemma w_pow_p (hp : p % 5 = 3) :
 
 /-- **La seconda costante.** `w^(p+1) = −ζ⁴`, lo stesso fattore che compare
 in `order_bound_relation`. Si ottiene moltiplicando `w` per `w^p` e riducendo
-con `1+ζ+ζ²+ζ³+ζ⁴ = 0` e `ζ^5 = 1`.-/
+con `1+ζ+ζ²+ζ³+ζ⁴ = 0` e `ζ^5 = 1`.
+@isnad1 id=eq.1h1v.s7.a0b602ee5141 from=translated src=- shape=8d08f959 vocab=2c50a918
+-/
 theorem w_pow_p_succ (hp : p % 5 = 3) :
     (wElt p) ^ (p + 1) = -(zeta5 ^ 4 : Phi5Ring p) := by
   have hz : (zeta5 : Phi5Ring p) ^ 4 + zeta5 ^ 3 + zeta5 ^ 2 + zeta5 + 1 = 0 :=
@@ -85,7 +93,9 @@ dà `n ≡ −1 (mod p+1)`. Le due si parlano: poiché `p − 1 ≡ −2 (mod p+
 `w^(p+1) = −ζ⁴`, controlla l'esponente `a` da cui dipende tutto il calcolo. -/
 
 /-- Se `n − 1 = a(p−1)` e `p + 1` divide `n + 1`, allora `p + 1` divide
-`2(a − 1)`. Enunciato su `ℤ` per evitare la sottrazione troncata.-/
+`2(a − 1)`. Enunciato su `ℤ` per evitare la sottrazione troncata.
+@isnad1 id=dvd.2h3v.s6.f9bd63e280b4 from=translated src=- shape=55d48e86 vocab=ec041f02
+-/
 theorem korselt_bridge {p n a : ℤ} (hcar : n - 1 = a * (p - 1))
     (hluc : (p + 1) ∣ (n + 1)) : (p + 1) ∣ 2 * (a - 1) := by
   obtain ⟨b, hb⟩ := hluc
@@ -103,7 +113,9 @@ dell'ordine limitato. La congruenza di Agrawal segue allora dal Frobenius,
 perché `(ζ−1)^n = (ζ−1)^p = ζ^3-1` e `ζ^n = ζ^p = ζ^3`. -/
 
 /-- `ζ − 1` è invertibile: il prodotto dei quattro coniugati vale `5`, che è
-un'unità appena `p ≠ 5`.-/
+un'unità appena `p ≠ 5`.
+@isnad1 id=isunit.1h1v.s6.2d5044c91b91 from=translated src=- shape=94767eba vocab=2d580105
+-/
 lemma zeta_sub_one_isUnit (hp5 : p ≠ 5) :
     IsUnit ((zeta5 : Phi5Ring p) - 1) := by
   have hprod : ((zeta5 : Phi5Ring p) - 1) *
@@ -116,7 +128,9 @@ lemma zeta_sub_one_isUnit (hp5 : p ≠ 5) :
     rwa [map_ofNat] at hmap
   exact isUnit_of_mul_isUnit_left (hprod ▸ h5)
 
-/-- Dal lemma dell'ordine limitato, in forma cancellata: `(ζ−1)^(10(p²−1)) = 1`.-/
+/-- Dal lemma dell'ordine limitato, in forma cancellata: `(ζ−1)^(10(p²−1)) = 1`.
+@isnad1 id=eq.3h1v.s7.e5b65d378c77 from=translated src=- shape=c80fe0bc vocab=0c4a1c51
+-/
 theorem order_bounded_one (hp : p % 5 = 2 ∨ p % 5 = 3) (hp5 : p ≠ 5)
     (hp1 : 1 ≤ p) :
     ((zeta5 : Phi5Ring p) - 1) ^ (10 * (p * p - 1)) = 1 := by
@@ -131,7 +145,9 @@ theorem order_bounded_one (hp : p % 5 = 2 ∨ p % 5 = 3) (hp5 : p ≠ 5)
   exact (hu.pow 10).mul_left_cancel (by simpa [mul_comm] using key)
 
 /-- **IL CUORE.** Se `n ≡ p` modulo `10(p²−1)` e `p ≡ 3 (mod 80)`, allora la
-congruenza di Agrawal vale nella componente ciclotomica.-/
+congruenza di Agrawal vale nella componente ciclotomica.
+@isnad1 id=eq.3h3v.s8.9318b0179c8b from=translated src=- shape=3edcab3e vocab=aef39601
+-/
 theorem lenstra_local {n k : ℕ} (hp80 : p % 80 = 3) (hp5 : p ≠ 5)
     (hn : n = p + k * (10 * (p * p - 1))) :
     ((zeta5 : Phi5Ring p) - 1) ^ n = zeta5 ^ n - 1 := by

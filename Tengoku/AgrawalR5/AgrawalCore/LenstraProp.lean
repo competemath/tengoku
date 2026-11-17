@@ -35,7 +35,9 @@ variable {p : ℕ} [Fact p.Prime]
 /-- **La parte locale della proposizione di Lenstra.**
 Sia `p ≡ 3 (mod 80)` un primo e sia `n ≥ p` con `n ≡ 3 (mod 80)` che soddisfa
 le due condizioni di Korselt rispetto a `p`. Allora la congruenza di Agrawal a
-`r = 5` vale modulo `p`.-/
+`r = 5` vale modulo `p`.
+@isnad1 id=ex.7h2v.s10.2ed57f350daf from=translated src=- shape=ca69080e vocab=6344d69c
+-/
 theorem lenstra_congruence_mod_p {n : ℕ} (hp80 : p % 80 = 3) (hp3 : 3 ≤ p)
     (hpn : p ≤ n) (hn0 : 0 < n)
     (hcar : (p - 1) ∣ (n - 1)) (hluc : (p + 1) ∣ (n + 1)) (hn80 : n % 80 = 3) :

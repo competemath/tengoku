@@ -9,6 +9,9 @@ open Polynomial
 
 namespace FermatShadowChallenge
 
+/--
+@isnad1 id=dvd.3h1v.s9.1c96fce48ead from=translated src=- shape=e0c37648 vocab=fc2d30d4
+-/
 theorem agrawal_fermat_shadow {n : ℕ} (hsq : Squarefree n)
     (h5 : ¬ 5 ∣ n)
     (h : ∃ g : Polynomial (ZMod n),

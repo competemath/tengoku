@@ -37,7 +37,9 @@ namespace AgrawalCore
 per ogni fattore primo di `n` (squarefree), allora `r` è divisibile per
 `n`. Stessa aritmetica di `agrawal_fermat_shadow`/`fermat_shadow`
 (`Nat.prod_primeFactors_of_squarefree` + `Finset.prod_primes_dvd`),
-applicata a un coefficiente intero invece che a `5^(n-1)-1`.-/
+applicata a un coefficiente intero invece che a `5^(n-1)-1`.
+@isnad1 id=dvd.2h2v.s5.5828f32ee882 from=translated src=- shape=dc608cfe vocab=8c11e810
+-/
 theorem dvd_of_forall_primeFactors_dvd {n : ℕ} (hsq : Squarefree n) {r : ℤ}
     (H : ∀ p ∈ n.primeFactors, (p : ℤ) ∣ r) : (n : ℤ) ∣ r := by
   have key : ∀ p ∈ n.primeFactors, p ∣ r.natAbs := by
@@ -58,7 +60,9 @@ theorem dvd_of_forall_primeFactors_dvd {n : ℕ} (hsq : Squarefree n) {r : ℤ}
 primo), allora ogni coefficiente di `R` è divisibile per `p`: il resto
 della divisione di `F.map φ_p` per `D.map φ_p` è, per unicità della
 divisione euclidea, sia `0` (dalla congruenza locale) sia `R.map φ_p`
-(dalla divisione sollevata da `ℤ`).-/
+(dalla divisione sollevata da `ℤ`).
+@isnad1 id=dvd.5h6v.s10.41545c53640c from=translated src=- shape=da7cae49 vocab=00096ac1
+-/
 theorem coeff_dvd_of_local {n : ℕ} {Q R : Polynomial ℤ}
     (hdecomp : ((X - 1) ^ n - (X ^ n - 1) : Polynomial ℤ) = (X ^ 5 - 1) * Q + R)
     (_hDmonic : (X ^ 5 - 1 : Polynomial ℤ).Monic)
@@ -119,7 +123,9 @@ theorem coeff_dvd_of_local {n : ℕ} {Q R : Polynomial ℤ}
 fattore primo `p` di `n` la congruenza di Agrawal a `r = 5` vale in
 `(Z/p)[X]`, allora vale in `(Z/n)[X]`. È il passaggio inverso rispetto
 alla riduzione `agrawal_fermat_shadow`/`agrawal_local`: qui si incollano
-i pezzi locali invece di scomporre il pezzo globale.-/
+i pezzi locali invece di scomporre il pezzo globale.
+@isnad1 id=ex.3h1v.s10.170ea73eeac0 from=translated src=- shape=4d337578 vocab=2bd296d5
+-/
 theorem congruence_of_local {n : ℕ} (hn : Squarefree n) (_hn1 : 0 < n)
     (h : ∀ p ∈ n.primeFactors, ∃ g : Polynomial (ZMod p),
       (X - 1) ^ n = X ^ n - 1 + (X ^ 5 - 1) * g) :

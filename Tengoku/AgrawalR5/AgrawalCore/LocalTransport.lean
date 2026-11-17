@@ -36,7 +36,9 @@ set_option maxHeartbeats 2000000
 noncomputable def cycloEps (p : ℕ) [Fact p.Prime] : Phi5Ring p :=
   1 + zeta5 + zeta5 ^ 4
 
-/-- La relazione aurea nella coordinata ciclotomica.-/
+/-- La relazione aurea nella coordinata ciclotomica.
+@isnad1 id=eq.0h1v.s6.800789272f9a from=translated src=- shape=e9ab50b8 vocab=3414b54e
+-/
 lemma cycloEps_sq :
     (cycloEps p) ^ 2 = cycloEps p + 1 := by
   have hz := zeta5_rel (p := p)
@@ -48,18 +50,27 @@ lemma cycloEps_sq :
 noncomputable def cycloEps' (p : ℕ) [Fact p.Prime] : Phi5Ring p :=
   1 - cycloEps p
 
+/--
+@isnad1 id=eq.0h1v.s6.bd13ca85ea13 from=translated src=- shape=e9ab50b8 vocab=321ffc7c
+-/
 lemma cycloEps'_sq :
     (cycloEps' p) ^ 2 = cycloEps' p + 1 := by
   have h := cycloEps_sq (p := p)
   unfold cycloEps'
   linear_combination h
 
+/--
+@isnad1 id=eq.0h1v.s6.b3723556cb00 from=translated src=- shape=4dba446d vocab=e7eaf565
+-/
 lemma cycloEps_mul_conj :
     cycloEps p * cycloEps' p = -1 := by
   have h := cycloEps_sq (p := p)
   unfold cycloEps'
   linear_combination -h
 
+/--
+@isnad1 id=isunit.0h1v.s4.d254c53c2c50 from=translated src=- shape=7e6de1f7 vocab=a1610594
+-/
 lemma cycloEps_isUnit : IsUnit (cycloEps p) :=
   IsUnit.of_mul_eq_one (cycloEps p - 1) (by
     have h := cycloEps_sq (p := p)
@@ -69,6 +80,9 @@ lemma cycloEps_isUnit : IsUnit (cycloEps p) :=
 noncomputable def cycloSqrt5 (p : ℕ) [Fact p.Prime] : Phi5Ring p :=
   2 * cycloEps p - 1
 
+/--
+@isnad1 id=eq.0h1v.s6.4e7b91e9cdec from=translated src=- shape=3101749e vocab=b74fde1a
+-/
 lemma cycloSqrt5_sq :
     (cycloSqrt5 p) ^ 2 = 5 := by
   have h := cycloEps_sq (p := p)
@@ -89,13 +103,17 @@ def OrderFourTransportWitness (p n : ℕ) [Fact p.Prime] : Prop :=
 def HasOrderFourTransport (p : ℕ) [Fact p.Prime] : Prop :=
   ∃ n, OrderFourTransportWitness p n
 
-/-- `ζ` è radice di `Φ₅`.-/
+/-- `ζ` è radice di `Φ₅`.
+@isnad1 id=eq.0h1v.s8.023061ba0fa6 from=translated src=- shape=e6e35077 vocab=b2018d22
+-/
 lemma phi5_aeval_zeta :
     Polynomial.aeval (zeta5 : Phi5Ring p) (phi5 p) = 0 := by
   simpa [phi5, map_add, map_pow, map_one, Polynomial.aeval_X]
     using zeta5_rel (p := p)
 
-/-- `ζ²` è radice di `Φ₅`.-/
+/-- `ζ²` è radice di `Φ₅`.
+@isnad1 id=eq.0h1v.s8.c3da0c4b5d74 from=translated src=- shape=2aae0fcb vocab=d5377041
+-/
 lemma phi5_aeval_zeta_pow_two :
     Polynomial.aeval ((zeta5 : Phi5Ring p) ^ 2) (phi5 p) = 0 := by
   simp only [phi5, map_add, map_pow, map_one, Polynomial.aeval_X]
@@ -103,7 +121,9 @@ lemma phi5_aeval_zeta_pow_two :
   linear_combination
     (zeta5 ^ 4 - zeta5 ^ 3 + zeta5 ^ 2 - zeta5 + 1) * hz
 
-/-- `ζ³` è radice di `Φ₅`.-/
+/-- `ζ³` è radice di `Φ₅`.
+@isnad1 id=eq.0h1v.s8.a3d0df658c96 from=translated src=- shape=2aae0fcb vocab=d5377041
+-/
 lemma phi5_aeval_zeta_pow_three :
     Polynomial.aeval ((zeta5 : Phi5Ring p) ^ 3) (phi5 p) = 0 := by
   simp only [phi5, map_add, map_pow, map_one, Polynomial.aeval_X]
@@ -112,7 +132,9 @@ lemma phi5_aeval_zeta_pow_three :
     (zeta5 ^ 8 - zeta5 ^ 7 + zeta5 ^ 5 - zeta5 ^ 4
       + zeta5 ^ 3 - zeta5 + 1) * hz
 
-/-- `ζ⁴` è radice di `Φ₅`.-/
+/-- `ζ⁴` è radice di `Φ₅`.
+@isnad1 id=eq.0h1v.s8.df7bf893ae5d from=translated src=- shape=2aae0fcb vocab=d5377041
+-/
 lemma phi5_aeval_zeta_pow_four :
     Polynomial.aeval ((zeta5 : Phi5Ring p) ^ 4) (phi5 p) = 0 := by
   simp only [phi5, map_add, map_pow, map_one, Polynomial.aeval_X]
@@ -122,7 +144,9 @@ lemma phi5_aeval_zeta_pow_four :
       + zeta5 ^ 4 - zeta5 + 1) * hz
 
 /-- T5 in forma etichettata: una riga locale nella radice universale
-si trasporta a ciascuna radice `ζ^a`.-/
+si trasporta a ciascuna radice `ζ^a`.
+@isnad1 id=eq.2h3v.s9.c4e93c73fb5b from=translated src=- shape=078b3975 vocab=0a9efc65
+-/
 lemma localS5_row {m a : ℕ} (h : LocalS5 p m)
     (ha : Polynomial.aeval ((zeta5 : Phi5Ring p) ^ a) (phi5 p) = 0) :
     ((zeta5 : Phi5Ring p) ^ a - 1) ^ m = zeta5 ^ (a * m) - 1 := by
@@ -137,7 +161,9 @@ lemma localS5_row {m a : ℕ} (h : LocalS5 p m)
   rw [pow_mul]
   linear_combination heval
 
-/-- Le quattro righe del ciclo etichettato di ordine quattro.-/
+/-- Le quattro righe del ciclo etichettato di ordine quattro.
+@isnad1 id=other.1h2v.s9.876e0f6f320f from=translated src=- shape=1bb0fc9e vocab=2ad32ab5
+-/
 lemma orderFourTransport_rows {n : ℕ}
     (h : OrderFourTransportWitness p n) :
     let z : Phi5Ring p := zeta5
@@ -195,7 +221,9 @@ lemma orderFourTransport_rows {n : ℕ}
       _ = zeta5 - 1 := by rw [hp3]
   exact ⟨h1', h2', h4', h3'⟩
 
-/-- La prima relazione etichettata fra i generatori ciclotomici.-/
+/-- La prima relazione etichettata fra i generatori ciclotomici.
+@isnad1 id=eq.0h1v.s8.45c3b56a58f2 from=translated src=- shape=c1796205 vocab=96fe8dd5
+-/
 lemma u2_eq_cyclo_factor :
     (zeta5 : Phi5Ring p) ^ 2 - 1
       = (-(zeta5 ^ 3) * cycloEps p) * (zeta5 - 1) := by
@@ -204,7 +232,9 @@ lemma u2_eq_cyclo_factor :
   linear_combination
     (zeta5 ^ 4 - 2 * zeta5 ^ 3 + zeta5 ^ 2 + zeta5 - 1) * hz
 
-/-- La seconda relazione di rapporto, scritta senza divisioni.-/
+/-- La seconda relazione di rapporto, scritta senza divisioni.
+@isnad1 id=eq.0h1v.s8.d2067998f5f1 from=translated src=- shape=879e298c vocab=296d956b
+-/
 lemma u4_mul_cycloEps :
     ((zeta5 : Phi5Ring p) ^ 4 - 1) * cycloEps p
       = zeta5 * (zeta5 ^ 2 - 1) := by
@@ -213,12 +243,18 @@ lemma u4_mul_cycloEps :
   linear_combination
     (zeta5 ^ 4 - zeta5 ^ 3 + zeta5 - 1) * hz
 
+/--
+@isnad1 id=isunit.0h1v.s4.f3584cf8b9a0 from=translated src=- shape=7e6de1f7 vocab=256722d8
+-/
 lemma zeta5_isUnit : IsUnit (zeta5 : Phi5Ring p) :=
   IsUnit.of_mul_eq_one (zeta5 ^ 4) (by
     calc
       (zeta5 : Phi5Ring p) * zeta5 ^ 4 = zeta5 ^ 5 := by ring
       _ = 1 := zeta5_pow_five)
 
+/--
+@isnad1 id=isunit.1h1v.s7.b448d2568cdb from=translated src=- shape=ec651eeb vocab=e41fe94c
+-/
 lemma u2_isUnit (hp5 : p ≠ 5) :
     IsUnit ((zeta5 : Phi5Ring p) ^ 2 - 1) := by
   rw [u2_eq_cyclo_factor]
@@ -227,7 +263,9 @@ lemma u2_isUnit (hp5 : p ≠ 5) :
 
 /-- **Compressione aurea direttamente dalla riga locale.**
 Il trasporto etichettato completo forza le due congruenze scalari
-negative nello stesso anello ciclotomico.-/
+negative nello stesso anello ciclotomico.
+@isnad1 id=and.2h2v.s8.e58b8115b4b0 from=translated src=- shape=a6fad91e vocab=33645138
+-/
 theorem orderFourTransport_cyclo_scalar {n : ℕ} (hp5 : p ≠ 5)
     (h : OrderFourTransportWitness p n) :
     (cycloEps p) ^ (2 * n) = -1
@@ -363,7 +401,9 @@ theorem orderFourTransport_cyclo_scalar {n : ℕ} (hp5 : p ≠ 5)
 
 omit [Fact p.Prime] in
 /-- Potenze di una radice dell'equazione aurea, ora nel quoziente
-ciclotomico.-/
+ciclotomico.
+@isnad1 id=eq.1h3v.s8.da487ed3f38e from=translated src=- shape=1d44e0ad vocab=d813c127
+-/
 lemma cyclo_golden_pow_of_sq {x : Phi5Ring p} (hx : x ^ 2 = x + 1) :
     ∀ n : ℕ, x ^ (n + 1)
       = (Nat.fib (n + 1) : Phi5Ring p) * x
@@ -376,6 +416,9 @@ lemma cyclo_golden_pow_of_sq {x : Phi5Ring p} (hx : x ^ 2 = x + 1) :
     linear_combination (Nat.fib (n + 1) : Phi5Ring p) * hx
 
 omit [Fact p.Prime] in
+/--
+@isnad1 id=eq.2h3v.s8.8bd1d2418471 from=translated src=- shape=330956e9 vocab=ac9e372e
+-/
 lemma cyclo_golden_pow_pred {x : Phi5Ring p} (hx : x ^ 2 = x + 1)
     {n : ℕ} (hn : 1 ≤ n) :
     x ^ n = (Nat.fib n : Phi5Ring p) * x
@@ -383,7 +426,9 @@ lemma cyclo_golden_pow_pred {x : Phi5Ring p} (hx : x ^ 2 = x + 1)
   obtain ⟨m, rfl⟩ : ∃ m, n = m + 1 := ⟨n - 1, by omega⟩
   simpa using cyclo_golden_pow_of_sq hx m
 
-/-- Formula di Lucas nella coordinata ciclotomica.-/
+/-- Formula di Lucas nella coordinata ciclotomica.
+@isnad1 id=eq.1h2v.s7.99b66b35e7ae from=translated src=- shape=76a3acb3 vocab=2a5132fd
+-/
 lemma cycloEps_pow_add_conj_pow {n : ℕ} (hn : 1 ≤ n) :
     (cycloEps p) ^ n + (cycloEps' p) ^ n
       = (lucas n : Phi5Ring p) := by
@@ -394,7 +439,9 @@ lemma cycloEps_pow_add_conj_pow {n : ℕ} (hn : 1 ≤ n) :
   push_cast [Nat.fib_add_two]
   ring
 
-/-- Cast a zero verso il basso dal quoziente ciclotomico.-/
+/-- Cast a zero verso il basso dal quoziente ciclotomico.
+@isnad1 id=dvd.1h2v.s6.3c1e06e97af3 from=translated src=- shape=78acb0bb vocab=201c02b3
+-/
 lemma dvd_of_phi5_natCast_eq_zero {a : ℕ}
     (h : ((a : ℕ) : Phi5Ring p) = 0) : p ∣ a := by
   have h1 : AdjoinRoot.of (phi5 p) ((a : ℕ) : ZMod p)
@@ -403,6 +450,9 @@ lemma dvd_of_phi5_natCast_eq_zero {a : ℕ}
     exact h
   exact (CharP.cast_eq_zero_iff (ZMod p) p _).mp (phi5_of_injective h1)
 
+/--
+@isnad1 id=isunit.1h1v.s5.ec78d3ac3013 from=translated src=- shape=4e7691ea vocab=96ad97f6
+-/
 lemma cycloSqrt5_isUnit (hp5 : p ≠ 5) :
     IsUnit (cycloSqrt5 p) := by
   refine IsUnit.of_mul_eq_one
@@ -418,7 +468,9 @@ lemma cycloSqrt5_isUnit (hp5 : p ≠ 5) :
       mul_inv_cancel₀ (five_ne_zero hp5), map_one]
 
 /-- La congruenza aurea negativa nel quoziente ciclotomico forza
-la divisibilità del termine misto `Aₙ`.-/
+la divisibilità del termine misto `Aₙ`.
+@isnad1 id=dvd.3h2v.s7.e192144a5744 from=translated src=- shape=1be635b2 vocab=02b17491
+-/
 lemma dvd_goldenA_of_cyclo_pow_eq_neg_one {n : ℕ} (hn : 1 ≤ n)
     (hp5 : p ≠ 5) (h : (cycloEps p) ^ (2 * n) = -1) :
     p ∣ goldenA n := by
@@ -472,7 +524,9 @@ lemma dvd_goldenA_of_cyclo_pow_eq_neg_one {n : ℕ} (hn : 1 ≤ n)
 
 /-- **Ponte locale H4, direzione formalizzata.**
 Un vero trasporto locale di residuo `2 mod 5`, espresso nella definizione
-di `S(p,5)`, produce un divisore primo di `Hₙ`.-/
+di `S(p,5)`, produce un divisore primo di `Hₙ`.
+@isnad1 id=dvd.2h2v.s4.5a75328a2ebf from=translated src=- shape=8cd89471 vocab=1a4f58ee
+-/
 theorem orderFourTransport_dvd_goldenH {n : ℕ} (hp5 : p ≠ 5)
     (h : OrderFourTransportWitness p n) :
     p ∣ goldenH n := by
@@ -485,7 +539,9 @@ theorem orderFourTransport_dvd_goldenH {n : ℕ} (hp5 : p ≠ 5)
   ring
 
 /-- Forma esistenziale del ponte locale: ogni trasporto di residuo `2`
-produce un indice critico e un divisore primo di `Hₙ`.-/
+produce un indice critico e un divisore primo di `Hₙ`.
+@isnad1 id=ex.2h1v.s5.904630e1955e from=translated src=- shape=8877ddcd vocab=967bda8a
+-/
 theorem hasOrderFourTransport_imp_goldenH_support (hp5 : p ≠ 5)
     (h : HasOrderFourTransport p) :
     ∃ n, 1 ≤ n ∧ n % 5 = 4 ∧ p ∣ goldenH n := by

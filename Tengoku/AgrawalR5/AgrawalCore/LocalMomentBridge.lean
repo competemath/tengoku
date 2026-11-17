@@ -24,7 +24,9 @@ namespace AgrawalCore
 the additive covariance relation directly.
 
 The hypothesis `hm` coordinates the natural exponent `m` with its residue
-`t` modulo five.  There is no independent choice of logarithm generator.-/
+`t` modulo five.  There is no independent choice of logarithm generator.
+@isnad1 id=eq.2h6v.s10.78f494d75198 from=translated src=- shape=34a0b1fd vocab=7dd8bb8e
+-/
 theorem quintic_covariance_of_local_row
     {G : Type*} [CommGroup G]
     (χ : G →* Multiplicative (ZMod 5))
@@ -37,7 +39,9 @@ theorem quintic_covariance_of_local_row
   rw [← hm, ← nsmul_eq_mul, ← toAdd_pow, ← map_pow, hrow]
 
 /-- A local row therefore supplies exactly the covariance premise of the
-finite Fourier moment theorem.-/
+finite Fourier moment theorem.
+@isnad1 id=eq.2h6v.s10.72add98184a1 from=translated src=- shape=f0754242 vocab=9dcefd04
+-/
 theorem moment_covariance_of_local_row
     {G : Type*} [CommGroup G]
     (χ : G →* Multiplicative (ZMod 5))
@@ -52,7 +56,9 @@ theorem moment_covariance_of_local_row
   moment_covariance _ t j
     (quintic_covariance_of_local_row χ u m t hm hrow)
 
-/-- End-to-end abstract obstruction from a multiplicative local row.-/
+/-- End-to-end abstract obstruction from a multiplicative local row.
+@isnad1 id=eq.2h6v.s10.6de0dc4f4b9b from=translated src=- shape=af8776c5 vocab=1ddc4056
+-/
 theorem moment_obstruction_of_local_row
     {G : Type*} [CommGroup G]
     (χ : G →* Multiplicative (ZMod 5))
@@ -69,7 +75,9 @@ variable {p : ℕ} [Fact p.Prime]
 
 /-- Every unit-valued power of the universal fifth root is again a root
 of `Phi_5`.  The unit hypothesis excludes the root `1`; cancellation in
-the geometric-sum identity then gives the result without a case split.-/
+the geometric-sum identity then gives the result without a case split.
+@isnad1 id=eq.1h2v.s9.1f2e1717791d from=translated src=- shape=b5e210b6 vocab=9edcb3c7
+-/
 lemma phi5_aeval_zeta_power_of_isUnit (a : ℕ)
     (ha : IsUnit ((zeta5 : Phi5Ring p) ^ a - 1)) :
     Polynomial.aeval ((zeta5 : Phi5Ring p) ^ a) (phi5 p) = 0 := by
@@ -91,7 +99,9 @@ lemma phi5_aeval_zeta_power_of_isUnit (a : ℕ)
 `zeta^a - 1`, `a ∈ (ZMod 5)ˣ`, is a unit.
 
 The proof uses the exact product of the four entries, which is `5`, and
-therefore does not appeal to a field decomposition of the quotient ring.-/
+therefore does not appeal to a field decomposition of the quotient ring.
+@isnad1 id=isunit.1h2v.s7.088759406fc9 from=translated src=- shape=e35b5e59 vocab=2090bed4
+-/
 lemma zeta5_unit_power_sub_one_isUnit (hp5 : p ≠ 5)
     (a : (ZMod 5)ˣ) :
     IsUnit ((zeta5 : Phi5Ring p) ^ ((a : ZMod 5).val) - 1) := by
@@ -152,13 +162,18 @@ noncomputable def localCyclotomicUnit (hp5 : p ≠ 5)
     (a : (ZMod 5)ˣ) : (Phi5Ring p)ˣ :=
   (zeta5_unit_power_sub_one_isUnit hp5 a).unit
 
+/--
+@isnad1 id=eq.1h2v.s7.45379f5a6767 from=translated src=- shape=d68d5d80 vocab=3b3fab38
+-/
 @[simp] lemma localCyclotomicUnit_val (hp5 : p ≠ 5)
     (a : (ZMod 5)ˣ) :
     (localCyclotomicUnit hp5 a : Phi5Ring p) =
       zeta5 ^ ((a : ZMod 5).val) - 1 :=
   (zeta5_unit_power_sub_one_isUnit hp5 a).unit_spec
 
-/-- The coordinated cyclotomic square root of five is a unit for `p ≠ 5`.-/
+/-- The coordinated cyclotomic square root of five is a unit for `p ≠ 5`.
+@isnad1 id=isunit.1h1v.s5.25b2b56b4c00 from=translated src=- shape=cd2bc50c vocab=0b8e97e6
+-/
 lemma cyclotomicSqrtFive_isUnit (hp5 : p ≠ 5) :
     IsUnit (cyclotomicSqrtFive (zeta5 : Phi5Ring p)) := by
   have hsq := cyclotomic_sqrtFive_sq (R := Phi5Ring p)
@@ -174,7 +189,9 @@ lemma cyclotomicSqrtFive_isUnit (hp5 : p ≠ 5) :
     exact h5
   exact isUnit_of_mul_isUnit_left hmul
 
-/-- The scalar five is a unit in the local cyclotomic ring for `p ≠ 5`.-/
+/-- The scalar five is a unit in the local cyclotomic ring for `p ≠ 5`.
+@isnad1 id=isunit.1h1v.s5.ae689e4174a3 from=translated src=- shape=c59b7855 vocab=c362a49b
+-/
 lemma localFive_isUnit (hp5 : p ≠ 5) :
     IsUnit (5 : Phi5Ring p) := by
   have hz : IsUnit (5 : ZMod p) := (five_ne_zero hp5).isUnit
@@ -185,6 +202,9 @@ lemma localFive_isUnit (hp5 : p ≠ 5) :
 noncomputable def localFiveUnit (hp5 : p ≠ 5) : (Phi5Ring p)ˣ :=
   (localFive_isUnit hp5).unit
 
+/--
+@isnad1 id=eq.1h1v.s6.3cbc295e833e from=translated src=- shape=a7ccacd1 vocab=2b052891
+-/
 @[simp] lemma localFiveUnit_val (hp5 : p ≠ 5) :
     (localFiveUnit hp5 : Phi5Ring p) = 5 :=
   (localFive_isUnit hp5).unit_spec
@@ -193,6 +213,9 @@ noncomputable def localFiveUnit (hp5 : p ≠ 5) : (Phi5Ring p)ˣ :=
 noncomputable def localSqrtFiveUnit (hp5 : p ≠ 5) : (Phi5Ring p)ˣ :=
   (cyclotomicSqrtFive_isUnit hp5).unit
 
+/--
+@isnad1 id=eq.1h1v.s5.f4473075f540 from=translated src=- shape=a75d6b97 vocab=96d305b1
+-/
 @[simp] lemma localSqrtFiveUnit_val (hp5 : p ≠ 5) :
     (localSqrtFiveUnit hp5 : Phi5Ring p) =
       cyclotomicSqrtFive zeta5 :=
@@ -202,6 +225,9 @@ noncomputable def localSqrtFiveUnit (hp5 : p ≠ 5) : (Phi5Ring p)ˣ :=
 noncomputable def localGoldenUnit : (Phi5Ring p)ˣ :=
   (cycloEps_isUnit (p := p)).unit
 
+/--
+@isnad1 id=eq.0h1v.s5.d7e0ad0d10d3 from=translated src=- shape=f99968bd vocab=e95bc906
+-/
 @[simp] lemma localGoldenUnit_val :
     (localGoldenUnit (p := p) : Phi5Ring p) =
       cyclotomicGoldenUnit zeta5 := by
@@ -211,7 +237,9 @@ noncomputable def localGoldenUnit : (Phi5Ring p)ˣ :=
   rfl
 
 /-- At weight zero, the product of the four canonical local cyclotomic
-units is exactly the canonical lift of five.-/
+units is exactly the canonical lift of five.
+@isnad1 id=eq.1h1v.s6.dbd9056a62fb from=translated src=- shape=1b50eaa4 vocab=2754eb30
+-/
 lemma indexedMomentUnit_zero_eq_localFiveUnit (hp5 : p ≠ 5) :
     indexedMomentUnit (localCyclotomicUnit hp5) 0 =
       localFiveUnit hp5 := by
@@ -240,7 +268,9 @@ lemma indexedMomentUnit_zero_eq_localFiveUnit (hp5 : p ≠ 5) :
 multiplicative rows on any chosen unit lifts of `zeta^a - 1`.
 
 This is the formal bridge from the quotient-ring row to the row family
-used by the character and moment theorems.-/
+used by the character and moment theorems.
+@isnad1 id=eq.3h5v.s9.3e225490d4ad from=translated src=- shape=d23e13cf vocab=0e381ea5
+-/
 theorem localS5_unit_rows {m : ℕ} (hlocal : LocalS5 p m)
     (t : (ZMod 5)ˣ) (hm : (m : ZMod 5) = (t : ZMod 5))
     (u : (ZMod 5)ˣ → (Phi5Ring p)ˣ)
@@ -283,7 +313,9 @@ theorem localS5_unit_rows {m : ℕ} (hlocal : LocalS5 p m)
       rw [hmod, Nat.mod_eq_of_lt (ZMod.val_lt _)]
 
 /-- The concrete local congruence supplies quintic covariance, with the
-same character on both sides.-/
+same character on both sides.
+@isnad1 id=eq.3h6v.s10.6b58a523d8d9 from=translated src=- shape=67500215 vocab=37c0d413
+-/
 theorem localS5_quintic_covariance {m : ℕ} (hlocal : LocalS5 p m)
     (t : (ZMod 5)ˣ) (hm : (m : ZMod 5) = (t : ZMod 5))
     (χ : (Phi5Ring p)ˣ →* Multiplicative (ZMod 5))
@@ -305,7 +337,9 @@ Starting from `LocalS5 p m`, this theorem:
 4. identifies it with three times the golden-unit index.
 
 Thus the displayed conclusion has no hidden generator-normalization
-interface.-/
+interface.
+@isnad1 id=eq.5h7v.s10.11d78517a8ed from=translated src=- shape=bff55cd0 vocab=c4bcea5e
+-/
 theorem localS5_golden_moment_obstruction {m : ℕ}
     (hlocal : LocalS5 p m)
     (t : (ZMod 5)ˣ) (hm : (m : ZMod 5) = (t : ZMod 5))
@@ -326,7 +360,9 @@ theorem localS5_golden_moment_obstruction {m : ℕ}
   exact hobs
 
 /-- If the golden quintic index is nonzero, the concrete local row forces
-the order-three residue constraint `t^3 = 1`.-/
+the order-three residue constraint `t^3 = 1`.
+@isnad1 id=eq.6h7v.s10.df38b8f7ed9c from=translated src=- shape=b742a420 vocab=9264b090
+-/
 theorem localS5_golden_order_constraint {m : ℕ}
     (hlocal : LocalS5 p m)
     (t : (ZMod 5)ˣ) (hm : (m : ZMod 5) = (t : ZMod 5))
@@ -350,7 +386,9 @@ theorem localS5_golden_order_constraint {m : ℕ}
 Unlike `localS5_golden_moment_obstruction`, this corollary constructs all
 cyclotomic and golden units internally. Its only mathematical inputs are the
 literal local row, `p ≠ 5`, the residue coordinate, and one quintic
-character.-/
+character.
+@isnad1 id=eq.3h4v.s10.bfd0b6e90f6b from=translated src=- shape=d68bc76d vocab=fedac77c
+-/
 theorem localS5_canonical_golden_moment_obstruction {m : ℕ}
     (hp5 : p ≠ 5) (hlocal : LocalS5 p m)
     (t : (ZMod 5)ˣ) (hm : (m : ZMod 5) = (t : ZMod 5))
@@ -364,7 +402,9 @@ theorem localS5_canonical_golden_moment_obstruction {m : ℕ}
     (localSqrtFiveUnit_val hp5)
     (localGoldenUnit_val (p := p))
 
-/-- Canonical residue-order constraint, with no user-supplied unit lifts.-/
+/-- Canonical residue-order constraint, with no user-supplied unit lifts.
+@isnad1 id=eq.4h4v.s9.a581f580aa78 from=translated src=- shape=33556ffb vocab=f9f77691
+-/
 theorem localS5_canonical_golden_order_constraint {m : ℕ}
     (hp5 : p ≠ 5) (hlocal : LocalS5 p m)
     (t : (ZMod 5)ˣ) (hm : (m : ZMod 5) = (t : ZMod 5))
@@ -378,7 +418,9 @@ theorem localS5_canonical_golden_order_constraint {m : ℕ}
     (localSqrtFiveUnit_val hp5)
     (localGoldenUnit_val (p := p)) hχ
 
-/-- The only unit of `ZMod 5` whose cube is one is one itself.-/
+/-- The only unit of `ZMod 5` whose cube is one is one itself.
+@isnad1 id=eq.1h1v.s8.b81db27423ee from=translated src=- shape=f914d108 vocab=13cfd96a
+-/
 lemma zmodFiveUnit_eq_one_of_cube_eq_one (t : (ZMod 5)ˣ)
     (ht : (t : ZMod 5) ^ 3 = 1) :
     t = 1 := by
@@ -398,7 +440,9 @@ lemma zmodFiveUnit_eq_one_of_cube_eq_one (t : (ZMod 5)ˣ)
       ((zmodFiveUnitFour : ZMod 5) ^ 3 ≠ 1)) ht)
 
 /-- Direct form of the golden lock: a nontrivial residue coordinate forces
-the golden quintic index to vanish.-/
+the golden quintic index to vanish.
+@isnad1 id=eq.4h4v.s9.363d78ae50f0 from=translated src=- shape=aedd1e00 vocab=1557dddc
+-/
 theorem localS5_canonical_golden_index_zero_of_ne_one {m : ℕ}
     (hp5 : p ≠ 5) (hlocal : LocalS5 p m)
     (t : (ZMod 5)ˣ) (hm : (m : ZMod 5) = (t : ZMod 5))
@@ -409,7 +453,9 @@ theorem localS5_canonical_golden_index_zero_of_ne_one {m : ℕ}
   exact ht (zmodFiveUnit_eq_one_of_cube_eq_one t
     (localS5_canonical_golden_order_constraint hp5 hlocal t hm χ hχ))
 
-/-- The zeroth local moment is the quintic index of the scalar five.-/
+/-- The zeroth local moment is the quintic index of the scalar five.
+@isnad1 id=eq.3h4v.s9.750fc8d7f4e9 from=translated src=- shape=403407cc vocab=d7126e9e
+-/
 theorem localS5_canonical_five_moment_obstruction {m : ℕ}
     (hp5 : p ≠ 5) (hlocal : LocalS5 p m)
     (t : (ZMod 5)ˣ) (hm : (m : ZMod 5) = (t : ZMod 5))
@@ -423,7 +469,9 @@ theorem localS5_canonical_five_moment_obstruction {m : ℕ}
   rw [indexedMomentUnit_zero_eq_localFiveUnit hp5] at hobs
   simpa using hobs
 
-/-- Direct form of the scalar-five lock.-/
+/-- Direct form of the scalar-five lock.
+@isnad1 id=eq.4h4v.s9.736c57c0c2a3 from=translated src=- shape=0578feb1 vocab=3a7ae70a
+-/
 theorem localS5_canonical_five_index_zero_of_ne_one {m : ℕ}
     (hp5 : p ≠ 5) (hlocal : LocalS5 p m)
     (t : (ZMod 5)ˣ) (hm : (m : ZMod 5) = (t : ZMod 5))
@@ -441,7 +489,9 @@ theorem localS5_canonical_five_index_zero_of_ne_one {m : ℕ}
 /-- **Canonical two-lock consequence of a nontrivial local class.**
 
 With one and the same quintic character, the literal `LocalS5` row forces
-both the scalar-five and golden-unit indices to vanish.-/
+both the scalar-five and golden-unit indices to vanish.
+@isnad1 id=and.4h4v.s10.2be48c44555b from=translated src=- shape=5daa43ac vocab=f82a5e84
+-/
 theorem localS5_canonical_quintic_locks_of_ne_one {m : ℕ}
     (hp5 : p ≠ 5) (hlocal : LocalS5 p m)
     (t : (ZMod 5)ˣ) (hm : (m : ZMod 5) = (t : ZMod 5))
