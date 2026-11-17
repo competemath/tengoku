@@ -1,0 +1,23 @@
+import Tengoku.Seed.Data.Real.Basic
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# MobiusCPT.Basic
+
+Scaffold module. `placeholder_add_zero` exists only so that the live axiom audit
+(`scripts/print_axioms.lean` → `scripts/check-axioms.sh`) is exercised end to end
+from the first commit. It stays permanently as the audit's smoke test; its line in
+`scripts/print_axioms.lean` is not removed.
+-/
+
+namespace MobiusCPT
+
+/-- Placeholder pinned in `scripts/print_axioms.lean`. Stating it over `ℝ` makes its
+axiom closure the kernel trio (`propext`, `Classical.choice`, `Quot.sound`), so the
+audit's allowlist path is tested rather than only the "no axioms" path.
+@isnad1 id=eq.0h1v.s4.3143db2e93e2 from=translated src=- shape=eeffd242 vocab=277965e0
+-/
+theorem placeholder_add_zero (x : ℝ) : x + 0 = x := add_zero x
+
+end MobiusCPT
