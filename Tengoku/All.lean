@@ -53,6 +53,7 @@ import Tengoku.Leancamcombi
 import Tengoku.EvmAsm
 import Tengoku.Lemmalib
 import Tengoku.KuroshProblemAtGkDimensionTwo
+import Tengoku.AlternatingAnalyticCharacteristicP
 import Tengoku.PrimeGaps186
 import Tengoku.Flt
 import Tengoku.HasseMinkowski
