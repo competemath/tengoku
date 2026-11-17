@@ -11,6 +11,9 @@ This file sums the pointwise parking estimate and obtains the exact
 
 namespace TunnellMap
 
+/--
+@isnad1 id=eq.0h1v.s5.695f0b9b8c32 from=translated src=- shape=4e8db965 vocab=d17cb838
+-/
 theorem sum_range_add_one_mul_two (m : ℕ) :
     (Finset.sum (Finset.range m) fun i => i + 1) * 2 = m * (m + 1) := by
   induction m with
@@ -24,7 +27,9 @@ namespace GloballyRanked
 variable {K S T : Type*} [LinearOrder K] [Fintype S] [Fintype T]
   [DecidableEq S] [DecidableEq T]
 
-/-- The proposal-count sum in Theorem 7.1.-/
+/-- The proposal-count sum in Theorem 7.1.
+@isnad1 id=le.2h6v.s6.38909bf4cf42 from=translated src=- shape=074ea804 vocab=378f95bf
+-/
 theorem proposalCount_total_le (I : GloballyRanked K S T)
     (M : S ≃ T) (hM : I.Stable M)
     (order : Fin (Fintype.card S) ≃ S) (horder : I.MatchedKeyOrder M order) :

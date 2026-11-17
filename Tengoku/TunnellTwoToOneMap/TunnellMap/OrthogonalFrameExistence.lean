@@ -22,6 +22,9 @@ def tripleBezout (p : Triple) : Triple :=
   let c := g.gcdA p.z
   ⟨p.x.gcdA p.y * c, p.x.gcdB p.y * c, g.gcdB p.z⟩
 
+/--
+@isnad1 id=eq.1h1v.s4.5248982a0f3d from=translated src=- shape=869c2ef0 vocab=2572e0f3
+-/
 theorem dot_tripleBezout_of_gcd_eq_one {p : Triple} (hp : tripleGCD p = 1) :
     dot p (tripleBezout p) = 1 := by
   have hxy := Int.gcd_eq_gcd_ab p.x p.y
@@ -38,7 +41,9 @@ theorem dot_tripleBezout_of_gcd_eq_one {p : Triple} (hp : tripleGCD p = 1) :
     _ = (tripleGCD p : ℤ) := hall.symm
     _ = 1 := by exact_mod_cast hp
 
-/-- A squarefree squared norm forces the coordinate gcd to be one.-/
+/-- A squarefree squared norm forces the coordinate gcd to be one.
+@isnad1 id=eq.2h2v.s4.36a782af4a7f from=translated src=- shape=d81781d7 vocab=5dc06cba
+-/
 theorem tripleGCD_eq_one_of_squarefree_norm {p : Triple} {n : ℤ}
     (hn : Squarefree n) (hnorm : dot p p = n) : tripleGCD p = 1 := by
   let g : ℤ := tripleGCD p
@@ -63,7 +68,9 @@ theorem tripleGCD_eq_one_of_squarefree_norm {p : Triple} {n : ℤ}
   · omega
 
 /-- Any integral Bezout vector can be completed explicitly to an oriented
-orthogonal frame.-/
+orthogonal frame.
+@isnad1 id=nonempty.1h2v.s4.063a2c56f210 from=translated src=- shape=31ec2e81 vocab=6a9ac81f
+-/
 theorem orthogonalFrame_exists_of_bezout {p z : Triple} (hz : dot p z = 1) :
     Nonempty (OrthogonalFrame p) := by
   by_cases hg0 : Int.gcd p.x p.y = 0
@@ -115,7 +122,9 @@ theorem orthogonalFrame_exists_of_bezout {p z : Triple} (hz : dot p z = 1) :
         _ = p.z := by rw [hAB]; ring
 
 /-- Lemma 5.1: a squarefree norm admits an oriented kernel basis and Bezout
-vector.-/
+vector.
+@isnad1 id=nonempty.2h2v.s4.af82037cc62c from=translated src=- shape=7b312c96 vocab=d8838952
+-/
 theorem orthogonalFrame_exists_of_squarefree_norm {p : Triple} {n : ℤ}
     (hn : Squarefree n) (hnorm : dot p p = n) :
     Nonempty (OrthogonalFrame p) := by

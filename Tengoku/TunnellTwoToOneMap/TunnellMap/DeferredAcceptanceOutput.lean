@@ -21,6 +21,9 @@ namespace DAState
 
 variable (I : GloballyRanked K S T)
 
+/--
+@isnad1 id=ex.2h6v.s6.f1d2c0a39e9d from=translated src=- shape=74d9265a vocab=e053c881
+-/
 theorem exists_assigned_of_queue_nil (st : I.DAState) (hv : st.Valid I)
     (hqueue : st.queue = []) (s : S) : ∃ t, st.assigned s = some t := by
   cases hassigned : st.assigned s with
@@ -34,11 +37,17 @@ noncomputable def assignedTarget (st : I.DAState) (hv : st.Valid I)
     (hqueue : st.queue = []) (s : S) : T :=
   Classical.choose (exists_assigned_of_queue_nil I st hv hqueue s)
 
+/--
+@isnad1 id=eq.2h6v.s6.1b16d335272e from=translated src=- shape=2e8afa6b vocab=9e1f8868
+-/
 theorem assignedTarget_spec (st : I.DAState) (hv : st.Valid I)
     (hqueue : st.queue = []) (s : S) :
     st.assigned s = some (assignedTarget I st hv hqueue s) :=
   Classical.choose_spec (exists_assigned_of_queue_nil I st hv hqueue s)
 
+/--
+@isnad1 id=injectiv.2h5v.s6.60a74a6a98a8 from=translated src=- shape=888141ce vocab=73600b8d
+-/
 theorem assignedTarget_injective (st : I.DAState) (hv : st.Valid I)
     (hqueue : st.queue = []) :
     Function.Injective (assignedTarget I st hv hqueue) := by
@@ -61,18 +70,27 @@ noncomputable def matchingOfTerminal
       (assignedTarget I st hv hqueue)).2
         ⟨assignedTarget_injective I st hv hqueue, hcard⟩)
 
+/--
+@isnad1 id=eq.3h6v.s6.ed010ab5c457 from=translated src=- shape=456f7fa4 vocab=176f4cfd
+-/
 @[simp] theorem matchingOfTerminal_apply
     (hcard : Fintype.card S = Fintype.card T)
     (st : I.DAState) (hv : st.Valid I) (hqueue : st.queue = []) (s : S) :
     matchingOfTerminal I hcard st hv hqueue s =
       assignedTarget I st hv hqueue s := rfl
 
+/--
+@isnad1 id=eq.3h6v.s6.c4704a7644b6 from=translated src=- shape=1b79da7e vocab=7386f28d
+-/
 theorem assigned_matchingOfTerminal
     (hcard : Fintype.card S = Fintype.card T)
     (st : I.DAState) (hv : st.Valid I) (hqueue : st.queue = []) (s : S) :
     st.assigned s = some (matchingOfTerminal I hcard st hv hqueue s) := by
   simpa using assignedTarget_spec I st hv hqueue s
 
+/--
+@isnad1 id=iff.3h7v.s6.521ffae78953 from=translated src=- shape=0f70c674 vocab=d98b5909
+-/
 theorem held_iff_matchingOfTerminal
     (hcard : Fintype.card S = Fintype.card T)
     (st : I.DAState) (hv : st.Valid I) (hqueue : st.queue = [])
@@ -88,6 +106,9 @@ theorem held_iff_matchingOfTerminal
     rw [← hmatch]
     exact assigned_matchingOfTerminal I hcard st hv hqueue s
 
+/--
+@isnad1 id=eq.4h7v.s6.c5481af1b510 from=translated src=- shape=48788ca6 vocab=3e9956cf
+-/
 theorem matchingOfTerminal_symm_eq
     (hcard : Fintype.card S = Fintype.card T)
     (st : I.DAState) (hv : st.Valid I) (hqueue : st.queue = [])

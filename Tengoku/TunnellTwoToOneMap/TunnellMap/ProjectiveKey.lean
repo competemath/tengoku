@@ -19,16 +19,28 @@ def qBilinear (p q : Triple) : ℤ :=
 def vsub (p q : Triple) : Triple :=
   ⟨p.x - q.x, p.y - q.y, p.z - q.z⟩
 
+/--
+@isnad1 id=eq.0h2v.s3.de4e3d04f9ef from=translated src=- shape=1013c0ce vocab=906c72cf
+-/
 theorem vadd_comm (p q : Triple) : vadd p q = vadd q p := by
   ext <;> simp [vadd] <;> ring
 
+/--
+@isnad1 id=eq.0h2v.s3.fc0bf13253b0 from=translated src=- shape=df575a8f vocab=a447ea41
+-/
 theorem vsub_swap (p q : Triple) : vsub p q = negTriple (vsub q p) := by
   ext <;> simp [vsub, negTriple]
 
+/--
+@isnad1 id=eq.0h1v.s3.3b3b89ab4c58 from=translated src=- shape=1a018cbb vocab=780a4a35
+-/
 @[simp] theorem qBilinear_self (p : Triple) : qBilinear p p = qForm p := by
   simp [qBilinear, qForm]
   ring
 
+/--
+@isnad1 id=lt.1h1v.s5.f43c8cd7d767 from=translated src=- shape=d2b60d00 vocab=971c4662
+-/
 theorem qForm_pos_of_ne_zero {p : Triple} (hp : p ≠ ⟨0, 0, 0⟩) : 0 < qForm p := by
   by_cases hx : p.x = 0
   · by_cases hy : p.y = 0
@@ -49,6 +61,9 @@ theorem qForm_pos_of_ne_zero {p : Triple} (hp : p ≠ ⟨0, 0, 0⟩) : 0 < qForm
     simp [qForm]
     nlinarith
 
+/--
+@isnad1 id=eq.0h3v.s5.921dbc88c351 from=translated src=- shape=7e20eb4a vocab=3a61665b
+-/
 theorem qBilinear_vsmul_vsmul (a b : ℤ) (p : Triple) :
     qBilinear (vsmul a p) (vsmul b p) = a * b * qForm p := by
   simp [qBilinear, qForm, vsmul]
@@ -78,6 +93,9 @@ namespace DirectionKey
 def toLexKey (k : DirectionKey) : ℤ ×ₗ (ℤ ×ₗ (ℤ ×ₗ ℤ)) :=
   toLex (k.form, toLex (k.x, toLex (k.y, k.z)))
 
+/--
+@isnad1 id=injectiv.0h0v.s3.5fc72a462df8 from=translated src=- shape=c23be227 vocab=f3493861
+-/
 theorem toLexKey_injective : Function.Injective toLexKey := by
   rintro ⟨a, b, c, d⟩ ⟨a', b', c', d'⟩ h
   simp only [toLexKey, toLex_inj, Prod.mk.injEq] at h
@@ -92,11 +110,17 @@ def blt (a b : DirectionKey) : Bool :=
 /-- Executable comparison of keys.-/
 def ble (a b : DirectionKey) : Bool := !blt b a
 
+/--
+@isnad1 id=iff.0h2v.s5.f19771a43bcc from=translated src=- shape=d630c08f vocab=e6334c63
+-/
 theorem blt_iff_lex (a b : DirectionKey) :
     blt a b = true ↔ toLexKey a < toLexKey b := by
   simp only [blt, toLexKey, Bool.or_eq_true, Bool.and_eq_true, decide_eq_true_eq,
     beq_iff_eq, Prod.Lex.toLex_lt_toLex]
 
+/--
+@isnad1 id=iff.0h2v.s5.38d14bdb7eb4 from=translated src=- shape=d630c08f vocab=73ee8f41
+-/
 theorem ble_iff_lex (a b : DirectionKey) :
     ble a b = true ↔ toLexKey a ≤ toLexKey b := by
   rw [ble, Bool.not_eq_true', ← Bool.not_eq_true, blt_iff_lex, not_lt]
@@ -116,20 +140,30 @@ instance instLinearOrder : LinearOrder DirectionKey where
   toDecidableLT a b := decidable_of_iff (blt a b = true) (blt_iff_lex a b)
   toDecidableEq := instDecidableEqDirectionKey
 
+/--
+@isnad1 id=iff.0h2v.s4.0dfc7d820699 from=translated src=- shape=3e008c5a vocab=8f5088dd
+-/
 theorem lt_iff_blt (a b : DirectionKey) : a < b ↔ blt a b = true :=
   (blt_iff_lex a b).symm
 
+/--
+@isnad1 id=iff.0h2v.s4.6f5b36aaa586 from=translated src=- shape=3e008c5a vocab=c8dfe766
+-/
 theorem le_iff_ble (a b : DirectionKey) : a ≤ b ↔ ble a b = true :=
   (ble_iff_lex a b).symm
 
-/-- The order on keys is the lexicographic order of the four components.-/
+/-- The order on keys is the lexicographic order of the four components.
+@isnad1 id=iff.0h2v.s6.1e08f48bc1c2 from=translated src=- shape=3c4e2ee7 vocab=7ce48499
+-/
 theorem lt_iff (a b : DirectionKey) :
     a < b ↔ a.form < b.form ∨ (a.form = b.form ∧ (a.x < b.x ∨ (a.x = b.x ∧
       (a.y < b.y ∨ (a.y = b.y ∧ a.z < b.z))))) := by
   rw [lt_iff_blt]
   simp only [blt, Bool.or_eq_true, Bool.and_eq_true, decide_eq_true_eq, beq_iff_eq]
 
-/-- The first component of a key is monotone.-/
+/-- The first component of a key is monotone.
+@isnad1 id=le.1h2v.s4.b03402709fec from=translated src=- shape=d7721dd6 vocab=2a39564b
+-/
 theorem form_le_of_le {a b : DirectionKey} (h : a ≤ b) : a.form ≤ b.form := by
   rcases lt_or_ge b a with hba | hab
   · exact absurd (lt_of_lt_of_le hba h) (lt_irrefl _)
@@ -145,6 +179,9 @@ noncomputable def directionKey (v : Triple) : DirectionKey :=
   ⟨qForm (primitiveDirection v), (primitiveDirection v).x,
     (primitiveDirection v).y, (primitiveDirection v).z⟩
 
+/--
+@isnad1 id=iff.0h2v.s4.d7569b2c5673 from=translated src=- shape=ff28044b vocab=bfae2aed
+-/
 theorem directionKey_eq_iff {v w : Triple} :
     directionKey v = directionKey w ↔ primitiveDirection v = primitiveDirection w := by
   constructor
@@ -156,6 +193,9 @@ theorem directionKey_eq_iff {v w : Triple} :
   · intro h
     simp [directionKey, h]
 
+/--
+@isnad1 id=eq.1h1v.s4.92f76f3a93d6 from=translated src=- shape=a295f240 vocab=f0c7e40c
+-/
 @[simp] theorem directionKey_negTriple {v : Triple} (hv : v ≠ ⟨0, 0, 0⟩) :
     directionKey (negTriple v) = directionKey v := by
   simp [directionKey, primitiveDirection_negTriple hv]
@@ -170,6 +210,9 @@ def plusVector {n : ℤ} (s : BResidual n) (t : AResidual n) : Triple :=
 def minusVector {n : ℤ} (s : BResidual n) (t : AResidual n) : Triple :=
   vsub (residualSourceLift s) (residualTargetLift t)
 
+/--
+@isnad1 id=ne.0h3v.s4.702bc6e0a955 from=translated src=- shape=2f489a85 vocab=9f40ad62
+-/
 theorem plusVector_ne_zero {n : ℤ} (s : BResidual n) (t : AResidual n) :
     plusVector s t ≠ ⟨0, 0, 0⟩ := by
   intro h
@@ -178,6 +221,9 @@ theorem plusVector_ne_zero {n : ℤ} (s : BResidual n) (t : AResidual n) :
   dsimp [plusVector, residualSourceLift, residualTargetLift, vadd, bLift, aLift] at hz
   omega
 
+/--
+@isnad1 id=ne.0h3v.s4.b6d80a17b67f from=translated src=- shape=2f489a85 vocab=a744bcd9
+-/
 theorem minusVector_ne_zero {n : ℤ} (s : BResidual n) (t : AResidual n) :
     minusVector s t ≠ ⟨0, 0, 0⟩ := by
   intro h
@@ -186,6 +232,9 @@ theorem minusVector_ne_zero {n : ℤ} (s : BResidual n) (t : AResidual n) :
   dsimp [minusVector, residualSourceLift, residualTargetLift, vsub, bLift, aLift] at hz
   omega
 
+/--
+@isnad1 id=eq.0h3v.s4.d61412f6802d from=translated src=- shape=cafc7ea5 vocab=9b44c73c
+-/
 theorem plus_minus_orthogonal {n : ℤ} (s : BResidual n) (t : AResidual n) :
     qBilinear (plusVector s t) (minusVector s t) = 0 := by
   have hs := qForm_bLift s.1
@@ -194,7 +243,9 @@ theorem plus_minus_orthogonal {n : ℤ} (s : BResidual n) (t : AResidual n) :
     qBilinear, vadd, vsub, qForm] at hs ht ⊢
   nlinarith
 
-/-- The two signed midpoint lines have distinct primitive directions.-/
+/-- The two signed midpoint lines have distinct primitive directions.
+@isnad1 id=ne.0h3v.s4.539b25420b5b from=translated src=- shape=4be2047f vocab=536c3aaa
+-/
 theorem plus_minus_directions_ne {n : ℤ} (s : BResidual n) (t : AResidual n) :
     primitiveDirection (plusVector s t) ≠ primitiveDirection (minusVector s t) := by
   intro hdir
@@ -214,6 +265,9 @@ theorem plus_minus_directions_ne {n : ℤ} (s : BResidual n) (t : AResidual n) :
   · exact (mul_ne_zero ha hb) hab
   · exact hq hq0
 
+/--
+@isnad1 id=ne.0h3v.s4.4817a62bf00b from=translated src=- shape=4be2047f vocab=13836586
+-/
 theorem plus_minus_keys_ne {n : ℤ} (s : BResidual n) (t : AResidual n) :
     directionKey (plusVector s t) ≠ directionKey (minusVector s t) := by
   intro h
@@ -229,12 +283,18 @@ noncomputable def preferredVector {n : ℤ} (s : BResidual n) (t : AResidual n) 
   else
     minusVector s t
 
+/--
+@isnad1 id=or.0h3v.s4.4d2f414472ac from=translated src=- shape=9d66673e vocab=17c42778
+-/
 theorem preferredVector_eq_plus_or_minus {n : ℤ} (s : BResidual n) (t : AResidual n) :
     preferredVector s t = plusVector s t ∨ preferredVector s t = minusVector s t := by
   by_cases h : directionKey (plusVector s t) < directionKey (minusVector s t)
   · exact Or.inl (by simp [preferredVector, h])
   · exact Or.inr (by simp [preferredVector, h])
 
+/--
+@isnad1 id=ne.0h3v.s4.a8b2031529f9 from=translated src=- shape=2f489a85 vocab=e88c247c
+-/
 theorem preferredVector_ne_zero {n : ℤ} (s : BResidual n) (t : AResidual n) :
     preferredVector s t ≠ ⟨0, 0, 0⟩ := by
   rcases preferredVector_eq_plus_or_minus s t with h | h
@@ -243,12 +303,18 @@ theorem preferredVector_ne_zero {n : ℤ} (s : BResidual n) (t : AResidual n) :
   · rw [h]
     exact minusVector_ne_zero s t
 
+/--
+@isnad1 id=eq.1h1v.s4.a7884d118650 from=translated src=- shape=a295f240 vocab=f97ccded
+-/
 @[simp] theorem directionKey_primitiveDirection {v : Triple}
     (hv : v ≠ ⟨0, 0, 0⟩) :
     directionKey (primitiveDirection v) = directionKey v := by
   rw [directionKey_eq_iff]
   exact primitiveDirection_idem hv
 
+/--
+@isnad1 id=eq.0h3v.s4.ffc73d32cdb8 from=translated src=- shape=6bd14a94 vocab=4335cbc7
+-/
 theorem representativeEdgeKey_eq_preferred {n : ℤ} (s : BResidual n) (t : AResidual n) :
     representativeEdgeKey s t = directionKey (preferredVector s t) := by
   by_cases h : directionKey (plusVector s t) < directionKey (minusVector s t)
@@ -257,26 +323,41 @@ theorem representativeEdgeKey_eq_preferred {n : ℤ} (s : BResidual n) (t : ARes
       lt_of_le_of_ne (le_of_not_gt h) (Ne.symm (plus_minus_keys_ne s t))
     simp [representativeEdgeKey, preferredVector, h, min_eq_right hle.le]
 
+/--
+@isnad1 id=eq.0h3v.s4.889e3dc62078 from=translated src=- shape=56924023 vocab=22baf2c9
+-/
 @[simp] theorem plusVector_neg_source {n : ℤ} (s : BResidual n) (t : AResidual n) :
     plusVector (negBResidual s) t = negTriple (minusVector s t) := by
   ext <;> simp [plusVector, minusVector, residualSourceLift, residualTargetLift,
     vadd, vsub, bLift, aLift, negBResidual, negBOdd, negTriple] <;> ring
 
+/--
+@isnad1 id=eq.0h3v.s4.1dd3abe7bb29 from=translated src=- shape=56924023 vocab=22baf2c9
+-/
 @[simp] theorem minusVector_neg_source {n : ℤ} (s : BResidual n) (t : AResidual n) :
     minusVector (negBResidual s) t = negTriple (plusVector s t) := by
   ext <;> simp [plusVector, minusVector, residualSourceLift, residualTargetLift,
     vadd, vsub, bLift, aLift, negBResidual, negBOdd, negTriple] <;> ring
 
+/--
+@isnad1 id=eq.0h3v.s4.604f30761d60 from=translated src=- shape=80d2b824 vocab=3c37000c
+-/
 @[simp] theorem plusVector_neg_target {n : ℤ} (s : BResidual n) (t : AResidual n) :
     plusVector s (negAResidual t) = minusVector s t := by
   ext <;> simp [plusVector, minusVector, residualSourceLift, residualTargetLift,
     vadd, vsub, bLift, aLift, negAResidual, negA, negTriple] <;> ring
 
+/--
+@isnad1 id=eq.0h3v.s4.9c0e33ece819 from=translated src=- shape=80d2b824 vocab=3c37000c
+-/
 @[simp] theorem minusVector_neg_target {n : ℤ} (s : BResidual n) (t : AResidual n) :
     minusVector s (negAResidual t) = plusVector s t := by
   ext <;> simp [plusVector, minusVector, residualSourceLift, residualTargetLift,
     vadd, vsub, bLift, aLift, negAResidual, negA, negTriple]
 
+/--
+@isnad1 id=eq.0h3v.s4.7a83d2f71421 from=translated src=- shape=81ca4e64 vocab=2d192315
+-/
 @[simp] theorem representativeEdgeKey_neg_source {n : ℤ}
     (s : BResidual n) (t : AResidual n) :
     representativeEdgeKey (negBResidual s) t = representativeEdgeKey s t := by
@@ -284,11 +365,17 @@ theorem representativeEdgeKey_eq_preferred {n : ℤ} (s : BResidual n) (t : ARes
     directionKey_negTriple (minusVector_ne_zero s t),
     directionKey_negTriple (plusVector_ne_zero s t), representativeEdgeKey, min_comm]
 
+/--
+@isnad1 id=eq.0h3v.s4.77381787ed01 from=translated src=- shape=cd60d55a vocab=ea77cd36
+-/
 @[simp] theorem representativeEdgeKey_neg_target {n : ℤ}
     (s : BResidual n) (t : AResidual n) :
     representativeEdgeKey s (negAResidual t) = representativeEdgeKey s t := by
   simp [representativeEdgeKey, min_comm]
 
+/--
+@isnad1 id=eq.3h4v.s6.420bfa055deb from=translated src=- shape=c1ad682c vocab=12072137
+-/
 theorem endpoint_scale_equation {E F d : Triple} {a : ℤ}
     (hnorm : qForm F = qForm E) (ha : a ≠ 0)
     (hline : vadd E F = vsmul a d ∨ vsub E F = vsmul a d) :
@@ -325,7 +412,9 @@ theorem endpoint_scale_equation {E F d : Triple} {a : ℤ}
   linarith
 
 /-- At a fixed endpoint and on a fixed nonzero direction, equal-norm opposite
-endpoints are unique up to sign.-/
+endpoints are unique up to sign.
+@isnad1 id=or.7h6v.s6.83f4a66cd044 from=translated src=- shape=ec4dda3f vocab=43c7e7d6
+-/
 theorem fixed_endpoint_line_unique {E F₁ F₂ d : Triple} {a b : ℤ}
     (hnorm₁ : qForm F₁ = qForm E) (hnorm₂ : qForm F₂ = qForm E)
     (hd : d ≠ ⟨0, 0, 0⟩) (ha : a ≠ 0) (hb : b ≠ 0)
@@ -398,6 +487,9 @@ theorem fixed_endpoint_line_unique {E F₁ F₂ d : Triple} {a b : ℤ}
       simp [vsub, vsmul] at h₁ h₂
       linarith
 
+/--
+@isnad1 id=injectiv.0h1v.s3.e053abc1406f from=translated src=- shape=64d36d98 vocab=8bcc6048
+-/
 theorem residualTargetLift_injective {n : ℤ} :
     Function.Injective (residualTargetLift : AResidual n → Triple) := by
   intro t₁ t₂ h
@@ -412,10 +504,16 @@ theorem residualTargetLift_injective {n : ℤ} :
     simp [residualTargetLift, aLift] at hz
     linarith
 
+/--
+@isnad1 id=eq.0h2v.s4.83743a68e262 from=translated src=- shape=46892f85 vocab=7c954349
+-/
 @[simp] theorem residualTargetLift_neg {n : ℤ} (t : AResidual n) :
     residualTargetLift (negAResidual t) = negTriple (residualTargetLift t) := by
   ext <;> simp [residualTargetLift, aLift, negAResidual, negA, negTriple]
 
+/--
+@isnad1 id=injectiv.0h1v.s3.6f3f5299ccb7 from=translated src=- shape=64d36d98 vocab=d555094c
+-/
 theorem residualSourceLift_injective {n : ℤ} :
     Function.Injective (residualSourceLift : BResidual n → Triple) := by
   intro s₁ s₂ h
@@ -430,12 +528,17 @@ theorem residualSourceLift_injective {n : ℤ} :
     simp [residualSourceLift, bLift] at hz
     linarith
 
+/--
+@isnad1 id=eq.0h2v.s4.b51605430706 from=translated src=- shape=46892f85 vocab=1145bfe4
+-/
 @[simp] theorem residualSourceLift_neg {n : ℤ} (s : BResidual n) :
     residualSourceLift (negBResidual s) = negTriple (residualSourceLift s) := by
   ext <;> simp [residualSourceLift, bLift, negBResidual, negBOdd, negTriple]
 
 /-- At a fixed residual source, equal preferred keys determine the target
-orbit.  This is the source half of Proposition 4.2.-/
+orbit.  This is the source half of Proposition 4.2.
+@isnad1 id=eq.2h4v.s5.aeb898d159d8 from=translated src=- shape=69bfcea4 vocab=21a63d4d
+-/
 theorem representativeEdgeKey_source_orbit_injective {n : ℤ}
     (hnpos : 0 < n) (s : BResidual n) {t₁ t₂ : AResidual n}
     (hkey : representativeEdgeKey s t₁ = representativeEdgeKey s t₂) :
@@ -488,6 +591,9 @@ theorem representativeEdgeKey_source_orbit_injective {n : ℤ}
     rw [this]
     exact (AI.orbit_neg t₁).symm
 
+/--
+@isnad1 id=ex.0h3v.s5.c29789de662c from=translated src=- shape=8bafb9d8 vocab=ec318b0e
+-/
 theorem preferred_fixed_target_line {n : ℤ} (s : BResidual n) (t : AResidual n) :
     ∃ c : ℤ, c ≠ 0 ∧
       (vadd (residualTargetLift t) (residualSourceLift s) =
@@ -517,7 +623,9 @@ theorem preferred_fixed_target_line {n : ℤ} (s : BResidual n) (t : AResidual n
         ext <;> simp [negTriple, vsmul]
 
 /-- At a fixed residual target, equal preferred keys determine the source
-orbit.  Together with the source statement this proves Proposition 4.2.-/
+orbit.  Together with the source statement this proves Proposition 4.2.
+@isnad1 id=eq.1h4v.s5.84e48f3cb639 from=translated src=- shape=4e7b93da vocab=aa379051
+-/
 theorem representativeEdgeKey_target_orbit_injective {n : ℤ}
     (t : AResidual n) {s₁ s₂ : BResidual n}
     (hkey : representativeEdgeKey s₁ t = representativeEdgeKey s₂ t) :

@@ -48,6 +48,9 @@ noncomputable def nextTarget (st : I.DAState) (s : S)
 def advancedCursor (st : I.DAState) (s : S) : S → ℕ :=
   Function.update st.cursor s (st.cursor s + 1)
 
+/--
+@isnad1 id=le.1h7v.s6.616b19dc85df from=translated src=- shape=d478a70f vocab=533d09a2
+-/
 theorem advancedCursor_le (st : I.DAState) (s : S)
     (h : st.cursor s < Fintype.card T) :
     ∀ x, st.advancedCursor I s x ≤ Fintype.card T := by
@@ -110,6 +113,9 @@ noncomputable def step (st : I.DAState) : Option I.DAState :=
       else
         none
 
+/--
+@isnad1 id=eq.1h7v.s6.dec9c649ef3e from=translated src=- shape=0caf955e vocab=7d4ef4c0
+-/
 @[simp] theorem advance_cursor_self (st : I.DAState) (s : S)
     (rest : List S) (h : st.cursor s < Fintype.card T) :
     (st.advance I s rest h).cursor s = st.cursor s + 1 := by
@@ -118,6 +124,9 @@ noncomputable def step (st : I.DAState) : Option I.DAState :=
   · simp [acceptEmpty, advancedCursor]
   · split <;> simp [replaceHeld, rejectProposal, advancedCursor]
 
+/--
+@isnad1 id=eq.2h8v.s6.75c65df76385 from=translated src=- shape=80a8cfb5 vocab=adb286eb
+-/
 @[simp] theorem advance_cursor_of_ne (st : I.DAState) (s x : S)
     (rest : List S) (h : st.cursor s < Fintype.card T) (hx : x ≠ s) :
     (st.advance I s rest h).cursor x = st.cursor x := by
@@ -130,6 +139,9 @@ noncomputable def step (st : I.DAState) : Option I.DAState :=
 def remaining (st : I.DAState) : ℕ :=
   (Finset.univ : Finset S).sum fun s => Fintype.card T - st.cursor s
 
+/--
+@isnad1 id=eq.1h7v.s6.52fcc37bb747 from=translated src=- shape=92201048 vocab=eb4464f1
+-/
 theorem remaining_advance_add_one (st : I.DAState) (s : S)
     (rest : List S) (h : st.cursor s < Fintype.card T) :
     (st.advance I s rest h).remaining I + 1 = st.remaining I := by
@@ -158,12 +170,18 @@ theorem remaining_advance_add_one (st : I.DAState) (s : S)
           ∑ x ∈ (Finset.univ : Finset S).erase s, f x := by omega
     _ = ∑ x : S, f x := hsplit
 
+/--
+@isnad1 id=lt.1h7v.s6.25515e323adb from=translated src=- shape=4f76aa8c vocab=1cf260cd
+-/
 theorem remaining_advance_lt (st : I.DAState) (s : S)
     (rest : List S) (h : st.cursor s < Fintype.card T) :
     (st.advance I s rest h).remaining I < st.remaining I := by
   have := remaining_advance_add_one I st s rest h
   omega
 
+/--
+@isnad1 id=lt.1h6v.s6.5410422a8fb5 from=translated src=- shape=bf89861e vocab=036dab5b
+-/
 theorem remaining_step_lt (st st' : I.DAState)
     (hstep : st.step I = some st') :
     st'.remaining I < st.remaining I := by
@@ -185,6 +203,9 @@ noncomputable def run (st : I.DAState) : I.DAState :=
 termination_by st.remaining I
 decreasing_by exact remaining_step_lt I st st' hstep
 
+/--
+@isnad1 id=eq.0h5v.s6.acf8bb27d505 from=translated src=- shape=d9123a46 vocab=235306ca
+-/
 theorem step_run_eq_none (st : I.DAState) : (st.run I).step I = none := by
   induction st using run.induct I with
   | case1 st hstep =>

@@ -33,18 +33,30 @@ namespace TunnellMap
 /-- The integral combination `a u + b v` of two lattice vectors.-/
 def span2 (a b : ℤ) (u v : Triple) : Triple := vadd (vsmul a u) (vsmul b v)
 
+/--
+@isnad1 id=eq.0h4v.s6.bad2ec5b5dd9 from=translated src=- shape=715a7b46 vocab=526a858b
+-/
 @[simp] theorem span2_apply (a b : ℤ) (u v : Triple) :
     span2 a b u v = ⟨a * u.x + b * v.x, a * u.y + b * v.y, a * u.z + b * v.z⟩ :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s4.b2843e4b156a from=translated src=- shape=0b2fcec7 vocab=1075affd
+-/
 theorem linComb3_zero (a b : ℤ) (u v z : Triple) :
     linComb3 a b 0 u v z = span2 a b u v := by
   apply Triple.ext <;> simp [linComb3, span2, vadd, vsmul]
 
+/--
+@isnad1 id=eq.0h6v.s5.5906cace5b02 from=translated src=- shape=e1f13d23 vocab=b3c94644
+-/
 theorem cross_span2 (a b c d : ℤ) (u v : Triple) :
     cross (span2 a b u v) (span2 c d u v) = vsmul (a * d - b * c) (cross u v) := by
   apply Triple.ext <;> simp [cross, span2, vadd, vsmul] <;> ring
 
+/--
+@isnad1 id=eq.2h5v.s5.bc8c4203af67 from=translated src=- shape=236f6a3e vocab=99a28d52
+-/
 theorem dot_span2_left (p : Triple) {u v : Triple} (hu : dot p u = 0)
     (hv : dot p v = 0) (a b : ℤ) : dot p (span2 a b u v) = 0 := by
   simp only [dot, span2_apply] at hu hv ⊢
@@ -66,6 +78,9 @@ def frameE₂ (p : Triple) : Triple :=
   else
     ⟨-(p.x.gcdA p.y) * p.z, -(p.x.gcdB p.y) * p.z, (Int.gcd p.x p.y : ℤ)⟩
 
+/--
+@isnad1 id=and.2h1v.s6.0dce0b318483 from=translated src=- shape=b9df22ba vocab=0293c8e5
+-/
 theorem gcd_xy_eq_zero_cases {p : Triple} (hp : tripleGCD p = 1)
     (h0 : (Int.gcd p.x p.y : ℤ) = 0) : p.x = 0 ∧ p.y = 0 ∧ (p.z = 1 ∨ p.z = -1) := by
   have h0' : Int.gcd p.x p.y = 0 := by exact_mod_cast h0
@@ -79,7 +94,9 @@ theorem gcd_xy_eq_zero_cases {p : Triple} (hp : tripleGCD p = 1)
   omega
 
 /-- **The computed pair is a basis of the orthogonal lattice**: its cross
-product is the source vector.-/
+product is the source vector.
+@isnad1 id=eq.1h1v.s4.899440a33ae0 from=translated src=- shape=e2196cba vocab=f2e9d08b
+-/
 theorem cross_frameE₁_frameE₂ {p : Triple} (hp : tripleGCD p = 1) :
     cross (frameE₁ p) (frameE₂ p) = p := by
   by_cases h0 : (Int.gcd p.x p.y : ℤ) = 0
@@ -129,18 +146,29 @@ def orthogonalFrameExec (p : Triple) (hp : tripleGCD p = 1) : OrthogonalFrame p 
   cross_eq := cross_frameE₁_frameE₂ hp
   bezout := dot_tripleBezout_of_gcd_eq_one hp
 
+/--
+@isnad1 id=eq.1h1v.s4.e86cf4308ba5 from=translated src=- shape=08e9f661 vocab=89914161
+-/
 @[simp] theorem orthogonalFrameExec_e₁ (p : Triple) (hp : tripleGCD p = 1) :
     (orthogonalFrameExec p hp).e₁ = frameE₁ p := rfl
 
+/--
+@isnad1 id=eq.1h1v.s4.238a41abbd3a from=translated src=- shape=08e9f661 vocab=1ca069ea
+-/
 @[simp] theorem orthogonalFrameExec_e₂ (p : Triple) (hp : tripleGCD p = 1) :
     (orthogonalFrameExec p hp).e₂ = frameE₂ p := rfl
 
+/--
+@isnad1 id=eq.1h1v.s4.9035c656e679 from=translated src=- shape=08e9f661 vocab=a3e38419
+-/
 @[simp] theorem orthogonalFrameExec_z (p : Triple) (hp : tripleGCD p = 1) :
     (orthogonalFrameExec p hp).z = tripleBezout p := rfl
 
 /-- **Determinism.**  The computed frame does not depend on the proof of
 primitivity, so repeated execution returns a definitionally identical
-answer.-/
+answer.
+@isnad1 id=eq.2h1v.s4.b75f06ac2f15 from=translated src=- shape=7af23ece vocab=fd54f566
+-/
 theorem orthogonalFrameExec_deterministic (p : Triple) (hp hp' : tripleGCD p = 1) :
     orthogonalFrameExec p hp = orthogonalFrameExec p hp' := rfl
 
@@ -150,11 +178,15 @@ section Frame
 
 variable {p : Triple} (F : OrthogonalFrame p)
 
-/-- Both computed basis vectors are orthogonal to the source vector.-/
+/-- Both computed basis vectors are orthogonal to the source vector.
+@isnad1 id=and.0h2v.s4.a24b998faed9 from=translated src=- shape=3c06122f vocab=ad42142d
+-/
 theorem frame_orthogonal : dot p F.e₁ = 0 ∧ dot p F.e₂ = 0 :=
   ⟨F.e₁_orthogonal, F.e₂_orthogonal⟩
 
-/-- The two computed basis vectors are linearly independent over `ℤ`.-/
+/-- The two computed basis vectors are linearly independent over `ℤ`.
+@isnad1 id=and.1h4v.s5.c366684948c0 from=translated src=- shape=b91231cc vocab=0cb19cf7
+-/
 theorem frame_linearIndependent {a b : ℤ}
     (h : span2 a b F.e₁ F.e₂ = ⟨0, 0, 0⟩) : a = 0 ∧ b = 0 := by
   have h0 : span2 (0 : ℤ) 0 F.e₁ F.e₂ = ⟨0, 0, 0⟩ := by
@@ -167,7 +199,9 @@ theorem frame_linearIndependent {a b : ℤ}
 
 /-- **The computed pair spans the whole orthogonal lattice**: an integral
 vector is an integral combination of the two basis vectors exactly when it is
-orthogonal to the source vector, and the coefficients are unique.-/
+orthogonal to the source vector, and the coefficients are unique.
+@isnad1 id=iff.0h3v.s5.641a37b0c593 from=translated src=- shape=6f98319d vocab=c5303e51
+-/
 theorem frame_span_iff (r : Triple) :
     (∃ a b : ℤ, r = span2 a b F.e₁ F.e₂) ↔ dot p r = 0 := by
   constructor
@@ -177,6 +211,9 @@ theorem frame_span_iff (r : Triple) :
     obtain ⟨⟨a, b⟩, hab, -⟩ := F.affine_coset 0 r hr
     exact ⟨a, b, by rw [hab, linComb3_zero]⟩
 
+/--
+@isnad1 id=existsun.1h3v.s5.18e4e23a719d from=translated src=- shape=e5655b2d vocab=2d408963
+-/
 theorem frame_span_unique {r : Triple} (hr : dot p r = 0) :
     ∃! ab : ℤ × ℤ, r = span2 ab.1 ab.2 F.e₁ F.e₂ := by
   obtain ⟨ab, hab, huniq⟩ := F.affine_coset 0 r hr
@@ -187,7 +224,9 @@ theorem frame_span_unique {r : Triple} (hr : dot p r = 0) :
   rw [linComb3_zero]; exact hcd
 
 /-- The Gram determinant of the computed basis is the norm of the source
-vector, as required by the manuscript.-/
+vector, as required by the manuscript.
+@isnad1 id=eq.0h2v.s5.da080f05d47f from=translated src=- shape=695b556c vocab=304d0ede
+-/
 theorem frame_gram_det :
     dot F.e₁ F.e₁ * dot F.e₂ F.e₂ - dot F.e₁ F.e₂ ^ 2 = dot p p := F.gram_det
 
@@ -199,30 +238,40 @@ section Exec
 
 variable {p : Triple}
 
-/-- Both computed basis vectors are integral and orthogonal to the source.-/
+/-- Both computed basis vectors are integral and orthogonal to the source.
+@isnad1 id=and.1h1v.s5.03f3669fe562 from=translated src=- shape=bdfd92d3 vocab=c1403346
+-/
 theorem orthogonalFrameExec_orthogonal (hp : tripleGCD p = 1) :
     dot p (frameE₁ p) = 0 ∧ dot p (frameE₂ p) = 0 :=
   frame_orthogonal (orthogonalFrameExec p hp)
 
-/-- The two computed basis vectors are linearly independent over `ℤ`.-/
+/-- The two computed basis vectors are linearly independent over `ℤ`.
+@isnad1 id=and.2h3v.s5.fd0ec07b8d38 from=translated src=- shape=07c24ef3 vocab=0341404e
+-/
 theorem orthogonalFrameExec_linearIndependent (hp : tripleGCD p = 1) {a b : ℤ}
     (h : span2 a b (frameE₁ p) (frameE₂ p) = ⟨0, 0, 0⟩) : a = 0 ∧ b = 0 :=
   frame_linearIndependent (orthogonalFrameExec p hp) h
 
 /-- **The computed pair spans every integral vector orthogonal to the
-source.**-/
+source.**
+@isnad1 id=iff.1h2v.s5.5ba620f5e097 from=translated src=- shape=f81fdee3 vocab=d1c9cc6f
+-/
 theorem orthogonalFrameExec_span_iff (hp : tripleGCD p = 1) (r : Triple) :
     (∃ a b : ℤ, r = span2 a b (frameE₁ p) (frameE₂ p)) ↔ dot p r = 0 :=
   frame_span_iff (orthogonalFrameExec p hp) r
 
-/-- The coefficients over the computed basis are unique.-/
+/-- The coefficients over the computed basis are unique.
+@isnad1 id=existsun.2h2v.s5.6da7ee37dc34 from=translated src=- shape=f520cd79 vocab=22a92fe8
+-/
 theorem orthogonalFrameExec_span_unique (hp : tripleGCD p = 1) {r : Triple}
     (hr : dot p r = 0) :
     ∃! ab : ℤ × ℤ, r = span2 ab.1 ab.2 (frameE₁ p) (frameE₂ p) :=
   frame_span_unique (orthogonalFrameExec p hp) hr
 
 /-- **The Gram determinant of the computed basis** is the norm of the source
-vector required by the manuscript.-/
+vector required by the manuscript.
+@isnad1 id=eq.1h1v.s5.bbaca3801ef4 from=translated src=- shape=a055306b vocab=6042c22d
+-/
 theorem orthogonalFrameExec_gram_det (hp : tripleGCD p = 1) :
     dot (frameE₁ p) (frameE₁ p) * dot (frameE₂ p) (frameE₂ p) -
       dot (frameE₁ p) (frameE₂ p) ^ 2 = dot p p :=
@@ -237,7 +286,9 @@ section Change
 variable {p : Triple} (F G : OrthogonalFrame p)
 
 /-- **The change of basis between any two frames of the same primitive source
-is unimodular of determinant one.**-/
+is unimodular of determinant one.**
+@isnad1 id=ex.1h3v.s6.b41d2dcc24a9 from=translated src=- shape=7b73162d vocab=8e9ccdd5
+-/
 theorem frame_change_unimodular (hp : p ≠ ⟨0, 0, 0⟩) :
     ∃ a b c d : ℤ, a * d - b * c = 1 ∧
       G.e₁ = span2 a b F.e₁ F.e₂ ∧ G.e₂ = span2 c d F.e₁ F.e₂ := by
@@ -265,7 +316,9 @@ theorem frame_change_unimodular (hp : p ≠ ⟨0, 0, 0⟩) :
   exact Triple.ext ((mul_eq_zero.mp hx).resolve_left hk)
     ((mul_eq_zero.mp hy).resolve_left hk) ((mul_eq_zero.mp hz).resolve_left hk)
 
-/-- **Two frames of the same source span the same lattice.**-/
+/-- **Two frames of the same source span the same lattice.**
+@isnad1 id=iff.0h4v.s5.ea5807497a97 from=translated src=- shape=c8ba8443 vocab=71e7ee61
+-/
 theorem frame_same_lattice (r : Triple) :
     (∃ a b : ℤ, r = span2 a b F.e₁ F.e₂) ↔ (∃ a b : ℤ, r = span2 a b G.e₁ G.e₂) := by
   rw [frame_span_iff F r, frame_span_iff G r]

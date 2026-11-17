@@ -44,6 +44,9 @@ def sqrtBSAux (n : ℕ) : ℕ → ℕ → ℕ → ℕ
 /-- A kernel-reducible integer square root on `ℕ`.-/
 def natSqrtK (n : ℕ) : ℕ := sqrtBSAux n (n + 1) 0 (n + 1)
 
+/--
+@isnad1 id=and.4h4v.s7.7ac2356ce954 from=translated src=- shape=9f721f5f vocab=4c9bbf4d
+-/
 theorem sqrtBSAux_spec (n : ℕ) :
     ∀ fuel lo hi, lo < hi → hi ≤ lo + 1 + fuel → lo * lo ≤ n → n < hi * hi →
       (sqrtBSAux n fuel lo hi) * (sqrtBSAux n fuel lo hi) ≤ n ∧
@@ -74,12 +77,17 @@ theorem sqrtBSAux_spec (n : ℕ) :
         · rw [ite_eq_right hm]
           exact ih lo mid hmid₁ (by omega) hlo (by omega)
 
+/--
+@isnad1 id=and.0h1v.s5.0c063d7c917b from=translated src=- shape=9e47c25e vocab=6d4d9165
+-/
 theorem natSqrtK_spec (n : ℕ) :
     natSqrtK n * natSqrtK n ≤ n ∧ n < (natSqrtK n + 1) * (natSqrtK n + 1) := by
   refine sqrtBSAux_spec n (n + 1) 0 (n + 1) (by omega) (by omega) (by omega) ?_
   nlinarith
 
-/-- The binary-search square root is `Nat.sqrt`.-/
+/-- The binary-search square root is `Nat.sqrt`.
+@isnad1 id=eq.0h1v.s3.63a3abcaa281 from=translated src=- shape=0fc427d2 vocab=c2c8aa53
+-/
 theorem natSqrtK_eq (n : ℕ) : natSqrtK n = Nat.sqrt n := by
   obtain ⟨h₁, h₂⟩ := natSqrtK_spec n
   have hle : natSqrtK n ≤ Nat.sqrt n := Nat.le_sqrt.mpr h₁
@@ -89,15 +97,24 @@ theorem natSqrtK_eq (n : ℕ) : natSqrtK n = Nat.sqrt n := by
 /-- A kernel-reducible integer square root on `ℤ`.-/
 def isqrtK (z : ℤ) : ℤ := (natSqrtK z.toNat : ℤ)
 
+/--
+@isnad1 id=eq.0h1v.s3.c1d1a32e544b from=translated src=- shape=0fc427d2 vocab=7c149d43
+-/
 @[simp] theorem isqrtK_eq (z : ℤ) : isqrtK z = Int.sqrt z := by
   rw [isqrtK, natSqrtK_eq, Int.sqrt]
 
 /-! ## Floor and ceiling of an integer quotient -/
 
+/--
+@isnad1 id=eq.1h2v.s5.96e8c7d67efe from=translated src=- shape=329fbc89 vocab=8da1367c
+-/
 theorem floor_intCast_div_intCast (a b : ℤ) (hb : 0 ≤ b) :
     ⌊((a : ℚ) / (b : ℚ))⌋ = a / b := by
   rw [Int.floor_div_cast_of_nonneg hb, Int.floor_intCast]
 
+/--
+@isnad1 id=eq.1h2v.s5.9e0b96bb69d3 from=translated src=- shape=00036e6e vocab=ebbe6e87
+-/
 theorem ceil_intCast_div_intCast (a b : ℤ) (hb : 0 ≤ b) :
     ⌈((a : ℚ) / (b : ℚ))⌉ = -((-a) / b) := by
   have h : ((a : ℚ) / (b : ℚ)) = -(((-a : ℤ) : ℚ) / (b : ℚ)) := by push_cast; ring
@@ -118,6 +135,9 @@ def isortB (le : α → α → Bool) : List α → List α
   | [] => []
   | a :: l => insertB le a (isortB le l)
 
+/--
+@isnad1 id=perm.0h4v.s4.c2fdbee8d42e from=translated src=- shape=2957a096 vocab=a3c60aa2
+-/
 theorem insertB_perm (le : α → α → Bool) (a : α) (l : List α) :
     (insertB le a l).Perm (a :: l) := by
   induction l with
@@ -128,11 +148,17 @@ theorem insertB_perm (le : α → α → Bool) (a : α) (l : List α) :
       · simp only [insertB, h, Bool.false_eq_true, ite_false]
         exact ((ih.cons b).trans (List.Perm.swap a b l))
 
+/--
+@isnad1 id=perm.0h3v.s4.4ee2cd28c88a from=translated src=- shape=56a1e743 vocab=e41af6ac
+-/
 theorem isortB_perm (le : α → α → Bool) (l : List α) : (isortB le l).Perm l := by
   induction l with
   | nil => simp [isortB]
   | cons a l ih => exact (insertB_perm le a (isortB le l)).trans (ih.cons a)
 
+/--
+@isnad1 id=pairwise.3h4v.s6.f7b91e40c7e0 from=translated src=- shape=5f2ef21f vocab=241274da
+-/
 theorem insertB_sorted (le : α → α → Bool)
     (htotal : ∀ a b, le a b = true ∨ le b a = true)
     (htrans : ∀ a b c, le a b = true → le b c = true → le a c = true)
@@ -157,6 +183,9 @@ theorem insertB_sorted (le : α → α → Bool)
         · exact hba
         · exact hl.1 y hy'
 
+/--
+@isnad1 id=pairwise.2h3v.s6.acf735305342 from=translated src=- shape=5bb598a5 vocab=8f494274
+-/
 theorem isortB_sorted (le : α → α → Bool)
     (htotal : ∀ a b, le a b = true ∨ le b a = true)
     (htrans : ∀ a b c, le a b = true → le b c = true → le a c = true)
@@ -166,7 +195,9 @@ theorem isortB_sorted (le : α → α → Bool)
   | cons a l ih => exact insertB_sorted le htotal htrans a ih
 
 /-- `List.mergeSort` and `isortB` agree on any list whose elements are
-pairwise antisymmetric for the comparison.-/
+pairwise antisymmetric for the comparison.
+@isnad1 id=eq.3h3v.s6.88505d9df347 from=translated src=- shape=99f841d8 vocab=da8dc14b
+-/
 theorem mergeSort_eq_isortB (le : α → α → Bool)
     (htotal : ∀ a b, le a b = true ∨ le b a = true)
     (htrans : ∀ a b c, le a b = true → le b c = true → le a c = true)
@@ -186,7 +217,9 @@ theorem mergeSort_eq_isortB (le : α → α → Bool)
 /-! ## Eliminating `Finset.sort` -/
 
 /-- A strictly increasing list whose members are exactly the members of a
-finite set *is* the sorted list of that set.-/
+finite set *is* the sorted list of that set.
+@isnad1 id=eq.2h3v.s6.9ea28c61c105 from=translated src=- shape=e6440115 vocab=cba801fd
+-/
 theorem Finset.sort_eq_of_sorted_lt {β : Type*} [LinearOrder β] (s : Finset β)
     (l : List β) (hs : l.Pairwise (· < ·)) (hmem : ∀ x, x ∈ l ↔ x ∈ s) :
     s.sort (· ≤ ·) = l := by

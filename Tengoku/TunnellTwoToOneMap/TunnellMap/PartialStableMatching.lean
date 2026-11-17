@@ -40,7 +40,9 @@ def partialEquivToEquiv (M : PartialEquiv S T)
   left_inv s := M.left_inv (by rw [hsource]; trivial)
   right_inv t := M.right_inv (by rw [htarget]; trivial)
 
-/-- A stable perfect matching is stable when regarded as a partial matching.-/
+/-- A stable perfect matching is stable when regarded as a partial matching.
+@isnad1 id=partials.1h5v.s5.0fbdbeadd27e from=translated src=- shape=1549d096 vocab=fd6ab1f1
+-/
 theorem stable_to_partialStable [LT K] (I : GloballyRanked K S T) (M : S ≃ T)
     (hM : I.Stable M) : I.PartialStable M.toPartialEquiv := by
   intro s t hblock
@@ -49,7 +51,9 @@ theorem stable_to_partialStable [LT K] (I : GloballyRanked K S T) (M : S ≃ T)
 
 /-- On finite sides of equal size, stability forces a partial matching to be
 perfect.  Completeness of the bipartite graph is encoded by the fact that
-`PartialBlocks` tests every pair `s, t`.-/
+`PartialBlocks` tests every pair `s, t`.
+@isnad1 id=and.2h5v.s5.03abbd2896de from=translated src=- shape=5f43017b vocab=6d814596
+-/
 theorem partialStable_isPerfect [LT K] [Fintype S] [Fintype T]
     (I : GloballyRanked K S T) (hcard : Fintype.card S = Fintype.card T)
     (M : PartialEquiv S T) (hM : I.PartialStable M) :
@@ -84,7 +88,9 @@ theorem partialStable_isPerfect [LT K] [Fintype S] [Fintype T]
   exact ⟨hsource, (set_fintype_card_eq_univ_iff M.target).1 htarget_card⟩
 
 /-- Once a stable partial matching is known to be perfect, it gives a stable
-ordinary equivalence.-/
+ordinary equivalence.
+@isnad1 id=stable.2h5v.s5.7efb6589c656 from=translated src=- shape=18db4fc4 vocab=3f0380f3
+-/
 theorem partialStable_to_stable [LT K] [Fintype S] [Fintype T]
     (I : GloballyRanked K S T) (hcard : Fintype.card S = Fintype.card T)
     (M : PartialEquiv S T) (hM : I.PartialStable M) :
@@ -97,7 +103,9 @@ theorem partialStable_to_stable [LT K] [Fintype S] [Fintype T]
   · simpa [partialEquivToEquiv] using hblock.1
   · simpa [partialEquivToEquiv] using hblock.2
 
-/-- Any two stable partial matchings on finite equal sides coincide.-/
+/-- Any two stable partial matchings on finite equal sides coincide.
+@isnad1 id=eq.3h6v.s6.1ef6d2266537 from=translated src=- shape=e19410fe vocab=f2dd7adb
+-/
 theorem partialStable_unique [LinearOrder K] [Fintype S] [Fintype T]
     (I : GloballyRanked K S T) (hcard : Fintype.card S = Fintype.card T)
     (M N : PartialEquiv S T) (hM : I.PartialStable M)
@@ -118,7 +126,9 @@ theorem partialStable_unique [LinearOrder K] [Fintype S] [Fintype T]
   · exact hMp.1.trans hNp.1.symm
 
 /-- Finite globally ranked complete bipartite instances with equal sides have
-a unique stable matching even when partial matchings are admitted.-/
+a unique stable matching even when partial matchings are admitted.
+@isnad1 id=existsun.1h4v.s5.6aa1c4c3eda0 from=translated src=- shape=eb5f1343 vocab=bb2cb8fa
+-/
 theorem existsUnique_partialStable [LinearOrder K] [Fintype S] [Fintype T]
     (I : GloballyRanked K S T) (hcard : Fintype.card S = Fintype.card T) :
     ∃! M : PartialEquiv S T, I.PartialStable M := by

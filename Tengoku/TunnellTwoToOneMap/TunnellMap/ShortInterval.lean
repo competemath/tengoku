@@ -16,7 +16,9 @@ namespace TunnellMap
 
 /-- An integral square lies below `X` exactly when its argument lies between
 the rational ceiling and floor obtained by dividing by a positive integer.
-This is the rounding statement used in equation (5.8) of the manuscript.-/
+This is the rounding statement used in equation (5.8) of the manuscript.
+@isnad1 id=iff.2h4v.s7.651a8f39c128 from=translated src=- shape=d0ab3371 vocab=c21de78c
+-/
 theorem square_le_iff_mem_floorCeilInterval {n c X b : ℤ}
     (hn : 0 < n) (hX : 0 ≤ X) :
     (n * b - c) ^ 2 ≤ X ↔
@@ -63,7 +65,9 @@ def halfDiscriminant (A q b : ℤ) : ℤ :=
   (β * b + t * δ) ^ 2 -
     α * (γ * b ^ 2 + 2 * t * ε * b + t ^ 2 * ζ - A)
 
-/-- Equation (5.7) in the manuscript: `n D_b = α M - (n b - t K)^2`.-/
+/-- Equation (5.7) in the manuscript: `n D_b = α M - (n b - t K)^2`.
+@isnad1 id=other.0h5v.s7.100790b762a9 from=translated src=- shape=1e90b922 vocab=37ce059f
+-/
 theorem short_interval_identity (A q b : ℤ) :
     let α := dot F.e₁ F.e₁
     let β := dot F.e₁ F.e₂
@@ -82,7 +86,9 @@ theorem short_interval_identity (A q b : ℤ) :
   linear_combination
     (-dot F.e₁ F.e₁ * q ^ 2 * A ^ 2) * hc
 
-/-- The exact floor/ceiling form of the finite `b`-interval in Lemma 5.3.-/
+/-- The exact floor/ceiling form of the finite `b`-interval in Lemma 5.3.
+@isnad1 id=other.3h6v.s8.ab9fadb26011 from=translated src=- shape=98c0fbd8 vocab=1223a5ea
+-/
 theorem halfDiscriminant_nonneg_iff_interval
     {n A q b : ℤ} (hn : 0 < n) (hpNorm : dot p p = n)
     (hAM :

@@ -30,11 +30,17 @@ def AssignedLast (st : I.DAState) : Prop :=
     0 < st.cursor s ∧
       (I.preferenceList s)[st.cursor s - 1]? = some t
 
+/--
+@isnad1 id=assigned.0h5v.s5.bd10dee82d48 from=translated src=- shape=4d28ce5b vocab=3dbc1129
+-/
 theorem initial_assignedLast (sourceOrder : List S) :
     (initial I sourceOrder).AssignedLast I := by
   intro s t h
   simp [initial] at h
 
+/--
+@isnad1 id=assigned.2h7v.s6.f832df8d2f72 from=translated src=- shape=91353e81 vocab=e9b71954
+-/
 theorem assignedLast_acceptEmpty (st : I.DAState)
     (hlast : st.AssignedLast I) (s : S) (rest : List S)
     (h : st.cursor s < Fintype.card T) :
@@ -54,6 +60,9 @@ theorem assignedLast_acceptEmpty (st : I.DAState)
     have hlastOld := hlast x t hold
     simpa [acceptEmpty, advancedCursor, hxs] using hlastOld
 
+/--
+@isnad1 id=assigned.4h7v.s6.fcd45544f20f from=translated src=- shape=fc00eade vocab=4928a49c
+-/
 theorem assignedLast_rejectProposal (st : I.DAState)
     (hv : st.Valid I) (hlast : st.AssignedLast I)
     (s : S) (rest : List S) (hqueue : st.queue = s :: rest)
@@ -69,6 +78,9 @@ theorem assignedLast_rejectProposal (st : I.DAState)
   · have hlastOld := hlast x t hassigned
     simpa [rejectProposal, advancedCursor, hxs] using hlastOld
 
+/--
+@isnad1 id=assigned.5h8v.s7.ab2ce9a72b51 from=translated src=- shape=ae5095cf vocab=f7296396
+-/
 theorem assignedLast_replaceHeld (st : I.DAState)
     (hv : st.Valid I) (hlast : st.AssignedLast I)
     (s : S) (rest : List S) (hqueue : st.queue = s :: rest)
@@ -106,6 +118,9 @@ theorem assignedLast_replaceHeld (st : I.DAState)
       have hlastOld := hlast x t hold
       simpa [replaceHeld, advancedCursor, hxs] using hlastOld
 
+/--
+@isnad1 id=assigned.4h7v.s6.6883aed8846e from=translated src=- shape=fc00eade vocab=4056ea6b
+-/
 theorem assignedLast_advance (st : I.DAState)
     (hv : st.Valid I) (hlast : st.AssignedLast I)
     (s : S) (rest : List S) (hqueue : st.queue = s :: rest)
@@ -119,6 +134,9 @@ theorem assignedLast_advance (st : I.DAState)
       assumption
     · exact assignedLast_rejectProposal I st hv hlast s rest hqueue h
 
+/--
+@isnad1 id=assigned.3h6v.s6.0d26352c7d5b from=translated src=- shape=6af57dc9 vocab=9a88b729
+-/
 theorem assignedLast_step (st st' : I.DAState)
     (hv : st.Valid I) (hlast : st.AssignedLast I)
     (hstep : st.step I = some st') :
@@ -132,6 +150,9 @@ theorem assignedLast_step (st st' : I.DAState)
         exact assignedLast_advance I st hv hlast s rest hqueue hcur
       · simp [step, hqueue, hcur] at hstep
 
+/--
+@isnad1 id=assigned.2h5v.s6.eefaaaff02f3 from=translated src=- shape=16d09d85 vocab=f2ff15ea
+-/
 theorem assignedLast_run (st : I.DAState)
     (hv : st.Valid I) (hlast : st.AssignedLast I) :
     (st.run I).AssignedLast I := by
@@ -145,7 +166,9 @@ theorem assignedLast_run (st : I.DAState)
         (assignedLast_step I st st' hv hlast hstep)
 
 /-- At a valid terminal state, every cursor is exactly the proposal count of
-the extracted perfect matching.-/
+the extracted perfect matching.
+@isnad1 id=eq.4h6v.s6.d912b32b5a37 from=translated src=- shape=fc2d0867 vocab=46bab336
+-/
 theorem terminal_cursor_eq_proposalCount
     (hcard : Fintype.card S = Fintype.card T)
     (st : I.DAState) (hv : st.Valid I) (hlast : st.AssignedLast I)
@@ -172,6 +195,9 @@ theorem terminal_cursor_eq_proposalCount
 def cursorTotal (st : I.DAState) : ℕ :=
   ∑ s : S, st.cursor s
 
+/--
+@isnad1 id=eq.0h5v.s6.31ca89f38380 from=translated src=- shape=19d2337b vocab=8842c25c
+-/
 theorem cursorTotal_add_remaining (st : I.DAState) :
     st.cursorTotal I + st.remaining I =
       Fintype.card S * Fintype.card T := by
@@ -186,6 +212,9 @@ theorem cursorTotal_add_remaining (st : I.DAState) :
           omega
     _ = Fintype.card S * Fintype.card T := by simp
 
+/--
+@isnad1 id=eq.1h6v.s6.e56577bc7632 from=translated src=- shape=2b7b455d vocab=9823ef0e
+-/
 theorem remaining_step_add_one (st st' : I.DAState)
     (hstep : st.step I = some st') :
     st'.remaining I + 1 = st.remaining I := by
@@ -202,6 +231,9 @@ theorem remaining_step_add_one (st st' : I.DAState)
 noncomputable def proposalSteps (st : I.DAState) : ℕ :=
   st.remaining I - (st.run I).remaining I
 
+/--
+@isnad1 id=eq.0h5v.s6.7fa7d85004de from=translated src=- shape=ff503256 vocab=ce3ad168
+-/
 theorem proposalSteps_initial_eq_terminalCursorTotal
     (sourceOrder : List S) :
     (initial I sourceOrder).proposalSteps I =
@@ -218,7 +250,9 @@ theorem proposalSteps_initial_eq_terminalCursorTotal
   omega
 
 /-- The actual terminal cursor sum equals the abstract proposal-count sum of
-the output matching.-/
+the output matching.
+@isnad1 id=eq.4h5v.s6.b0b5782d79c2 from=translated src=- shape=3849002c vocab=0b2b1043
+-/
 theorem terminal_cursorTotal_eq_proposalCount_sum
     (hcard : Fintype.card S = Fintype.card T)
     (st : I.DAState) (hv : st.Valid I) (hlast : st.AssignedLast I)
@@ -232,7 +266,9 @@ theorem terminal_cursorTotal_eq_proposalCount_sum
   exact terminal_cursor_eq_proposalCount I hcard st hv hlast hqueue s
 
 /-- Exact proposal accounting and the paper's triangular upper bound for a
-complete FIFO run.-/
+complete FIFO run.
+@isnad1 id=le.3h5v.s6.7b090c9af59b from=translated src=- shape=fc370faa vocab=daa5f04b
+-/
 theorem run_proposalSteps_le_triangular
     (hcard : Fintype.card S = Fintype.card T)
     (sourceOrder : List S) (hnodup : sourceOrder.Nodup)
@@ -263,7 +299,9 @@ def auxiliaryRecordSlots (st : I.DAState) : ℕ :=
   2 * Fintype.card S + Fintype.card T + st.queue.length
 
 /-- Under equal side cardinalities, a valid state uses at most `4m`
-auxiliary control records.-/
+auxiliary control records.
+@isnad1 id=le.2h5v.s6.f28ab17b76da from=translated src=- shape=61c42b20 vocab=17775936
+-/
 theorem auxiliaryRecordSlots_le_four_mul
     (hcard : Fintype.card S = Fintype.card T)
     (st : I.DAState) (hv : st.Valid I) :

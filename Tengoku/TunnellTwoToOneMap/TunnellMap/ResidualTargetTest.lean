@@ -16,6 +16,9 @@ namespace TunnellMap
 
 /-! ## Odd multiples as congruences -/
 
+/--
+@isnad1 id=iff.0h1v.s5.eff5875bbaa4 from=translated src=- shape=04eef597 vocab=03bf275b
+-/
 theorem exists_odd_four_mul_iff (a : ℤ) :
     (∃ q : ℤ, Odd q ∧ a = 4 * q) ↔ a % 8 = 4 := by
   constructor
@@ -26,6 +29,9 @@ theorem exists_odd_four_mul_iff (a : ℤ) :
     refine ⟨2 * (a / 8) + 1, ⟨a / 8, by ring⟩, ?_⟩
     omega
 
+/--
+@isnad1 id=iff.0h1v.s5.d18f26303073 from=translated src=- shape=04eef597 vocab=03bf275b
+-/
 theorem exists_odd_two_mul_iff (a : ℤ) :
     (∃ q : ℤ, Odd q ∧ a = 2 * q) ↔ a % 4 = 2 := by
   constructor
@@ -46,6 +52,9 @@ instance imageUsedTripleDecidable (w : Triple) : Decidable (ImageUsedTriple w) :
   unfold ImageUsedTriple
   infer_instance
 
+/--
+@isnad1 id=iff.0h2v.s4.27b798c9bbe9 from=translated src=- shape=f8c27a5a vocab=bdaabb70
+-/
 theorem directTargetUsed_iff {n : ℤ} (p : ARep n) :
     DirectTargetUsed p ↔ ImageUsedTriple p.1 := by
   unfold DirectTargetUsed ImageUsedTriple ImagePredicate1 ImagePredicate2
@@ -66,6 +75,9 @@ instance isResidualTargetLiftDecidable (n : ℤ) (v : Triple) :
   unfold IsResidualTargetLift
   infer_instance
 
+/--
+@isnad1 id=iff.0h2v.s4.417ed5a8a60e from=translated src=- shape=914e8706 vocab=1193b6a9
+-/
 theorem isResidualTargetLift_iff (n : ℤ) (v : Triple) :
     IsResidualTargetLift n v ↔ ∃ t : AResidual n, residualTargetLift t = v := by
   constructor
@@ -109,11 +121,17 @@ def canonicalTargetLift (v : Triple) : Triple :=
 def targetLiftSign (v : Triple) : ℤ :=
   if tripleLexLtExec v (negTriple v) then 1 else -1
 
+/--
+@isnad1 id=eq.0h1v.s3.dae172167116 from=translated src=- shape=fd592461 vocab=a6e88387
+-/
 theorem canonicalTargetLift_spec (v : Triple) :
     v = vsmul (targetLiftSign v) (canonicalTargetLift v) := by
   unfold canonicalTargetLift targetLiftSign
   split <;> (apply Triple.ext <;> simp [vsmul, negTriple])
 
+/--
+@isnad1 id=or.0h1v.s4.f0cf51bfa289 from=translated src=- shape=af53c325 vocab=7027ffaa
+-/
 theorem targetLiftSign_mem (v : Triple) :
     targetLiftSign v = 1 ∨ targetLiftSign v = -1 := by
   unfold targetLiftSign
@@ -121,23 +139,35 @@ theorem targetLiftSign_mem (v : Triple) :
   · exact Or.inl rfl
   · exact Or.inr rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.23c54ede2883 from=translated src=- shape=c7b6f488 vocab=7c954349
+-/
 theorem negTriple_residualTargetLift {n : ℤ} (t : AResidual n) :
     negTriple (residualTargetLift t) = residualTargetLift (negAResidual t) := by
   apply Triple.ext <;> simp [negTriple, residualTargetLift, aLift, negAResidual,
     negA, negTriple]
 
+/--
+@isnad1 id=iff.0h2v.s5.b8c44247b481 from=translated src=- shape=717d5cd2 vocab=0ba79390
+-/
 theorem tripleLexKey_lt_iff (u w : Triple) :
     tripleLexKey u < tripleLexKey w ↔
       u.x < w.x ∨ (u.x = w.x ∧ (u.y < w.y ∨ (u.y = w.y ∧ u.z < w.z))) := by
   unfold tripleLexKey
   simp [Prod.Lex.toLex_lt_toLex]
 
+/--
+@isnad1 id=iff.0h2v.s4.b6fae4770ef3 from=translated src=- shape=2e668731 vocab=f3466afc
+-/
 @[simp] theorem tripleLexLtExec_iff (u w : Triple) :
     tripleLexLtExec u w = true ↔ tripleLexKey u < tripleLexKey w := by
   rw [tripleLexKey_lt_iff]
   simp only [tripleLexLtExec, Bool.or_eq_true, Bool.and_eq_true, decide_eq_true_eq,
     beq_iff_eq]
 
+/--
+@isnad1 id=iff.0h3v.s5.5ef69090429a from=translated src=- shape=08f5660a vocab=ac65bed6
+-/
 theorem tripleLexKey_residualTargetLift_lt_iff {n : ℤ} (t₁ t₂ : AResidual n) :
     tripleLexKey (residualTargetLift t₁) < tripleLexKey (residualTargetLift t₂) ↔
       aResidualLexKey t₁ < aResidualLexKey t₂ := by
@@ -146,7 +176,9 @@ theorem tripleLexKey_residualTargetLift_lt_iff {n : ℤ} (t₁ t₂ : AResidual 
   omega
 
 /-- The coordinate-level canonical representative agrees with the quotient
-level one.-/
+level one.
+@isnad1 id=eq.1h2v.s5.524086e7844d from=translated src=- shape=be7c76f1 vocab=1070ca85
+-/
 theorem canonicalTargetLift_eq {n : ℤ} (hnpos : 0 < n) (t : AResidual n) :
     canonicalTargetLift (residualTargetLift t) =
       residualTargetLift (canonicalAResidualRepresentative hnpos

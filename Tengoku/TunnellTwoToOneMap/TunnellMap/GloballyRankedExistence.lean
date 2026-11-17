@@ -37,16 +37,25 @@ noncomputable def insertEquiv [DecidableEq S] [DecidableEq T]
         (M'.symm ⟨t, ht⟩).2
       simp [ht, hs]
 
+/--
+@isnad1 id=eq.0h5v.s5.928257655577 from=translated src=- shape=3f4d6c4b vocab=3e373771
+-/
 @[simp] theorem insertEquiv_at_left [DecidableEq S] [DecidableEq T]
     (s₀ : S) (t₀ : T) (M' : {s // s ≠ s₀} ≃ {t // t ≠ t₀}) :
     insertEquiv s₀ t₀ M' s₀ = t₀ := by
   simp [insertEquiv]
 
+/--
+@isnad1 id=eq.0h5v.s6.4a111067a17d from=translated src=- shape=a906ff5e vocab=6dc343bb
+-/
 @[simp] theorem insertEquiv_symm_at_right [DecidableEq S] [DecidableEq T]
     (s₀ : S) (t₀ : T) (M' : {s // s ≠ s₀} ≃ {t // t ≠ t₀}) :
     (insertEquiv s₀ t₀ M').symm t₀ = s₀ := by
   simp [insertEquiv]
 
+/--
+@isnad1 id=ex.2h5v.s6.f8c3292931de from=translated src=- shape=68befef8 vocab=1998fd98
+-/
 theorem stable_exists_bounded [LinearOrder K] [Fintype S] [Fintype T]
     (I : GloballyRanked K S T) (hcard : Fintype.card S = Fintype.card T)
     (m : ℕ) (hm : Fintype.card S ≤ m) : ∃ M : S ≃ T, I.Stable M := by
@@ -117,11 +126,17 @@ theorem stable_exists_bounded [LinearOrder K] [Fintype S] [Fintype T]
         intro s
         exact isEmptyElim s
 
+/--
+@isnad1 id=ex.1h4v.s5.d1809706ff0e from=translated src=- shape=eb5f1343 vocab=4f0df3b8
+-/
 theorem stable_exists [LinearOrder K] [Fintype S] [Fintype T]
     (I : GloballyRanked K S T) (hcard : Fintype.card S = Fintype.card T) :
     ∃ M : S ≃ T, I.Stable M :=
   stable_exists_bounded I hcard (Fintype.card S) le_rfl
 
+/--
+@isnad1 id=existsun.1h4v.s5.ad97fd128ef8 from=translated src=- shape=eb5f1343 vocab=2a2f5457
+-/
 theorem exists_unique_stable [LinearOrder K] [Fintype S] [Fintype T]
     (I : GloballyRanked K S T) (hcard : Fintype.card S = Fintype.card T) :
     ∃! M : S ≃ T, I.Stable M := by

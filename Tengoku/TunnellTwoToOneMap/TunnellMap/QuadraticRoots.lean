@@ -17,6 +17,9 @@ def quadraticEquation (α c d a : ℤ) : Prop :=
 
 def quadraticHalfDiscriminant (α c d : ℤ) : ℤ := c ^ 2 - α * d
 
+/--
+@isnad1 id=iff.1h4v.s6.921efbb8788c from=translated src=- shape=6845e12a vocab=db9be8ba
+-/
 theorem quadraticEquation_iff_root_certificate {α c d a : ℤ} (hα : α ≠ 0) :
     quadraticEquation α c d a ↔
       ∃ u : ℤ, u ^ 2 = quadraticHalfDiscriminant α c d ∧ α * a = -c + u := by
@@ -40,10 +43,16 @@ theorem quadraticEquation_iff_root_certificate {α c d a : ℤ} (hα : α ≠ 0)
       _ = 0 := by rw [hu]; ring
       _ = α * 0 := by ring
 
+/--
+@isnad1 id=or.1h2v.s5.f6be01a05a30 from=translated src=- shape=faadad1d vocab=20fe8677
+-/
 theorem integer_square_roots {u s : ℤ} (h : u ^ 2 = s ^ 2) :
     u = s ∨ u = -s := by
   exact sq_eq_sq_iff_eq_or_eq_neg.mp h
 
+/--
+@isnad1 id=iff.2h5v.s6.e84710f61da8 from=translated src=- shape=c0568237 vocab=8fd39054
+-/
 theorem quadraticEquation_roots_of_square {α c d s a : ℤ}
     (hα : α ≠ 0) (hs : s ^ 2 = quadraticHalfDiscriminant α c d) :
     quadraticEquation α c d a ↔
@@ -79,7 +88,9 @@ def affineQuadratic (A q a b : ℤ) : ℤ :=
     γ * b ^ 2 + 2 * t * ε * b + t ^ 2 * ζ - A
 
 /-- Equation (5.4): the affine vector has norm `A` exactly when its first
-coordinate satisfies the displayed quadratic.-/
+coordinate satisfies the displayed quadratic.
+@isnad1 id=iff.0h6v.s6.8a3c8a77c1da from=translated src=- shape=81cfb790 vocab=08e51bb9
+-/
 theorem affine_norm_eq_iff (A q a b : ℤ) :
     dot (linComb3 a b (q * A) F.e₁ F.e₂ F.z)
         (linComb3 a b (q * A) F.e₁ F.e₂ F.z) = A ↔
@@ -88,6 +99,9 @@ theorem affine_norm_eq_iff (A q a b : ℤ) :
   simp [affineQuadratic]
   constructor <;> intro h <;> linarith
 
+/--
+@isnad1 id=other.0h5v.s7.ad0d6a422951 from=translated src=- shape=80753fa8 vocab=e585af5a
+-/
 theorem affineQuadratic_discriminant (A q b : ℤ) :
     let α := dot F.e₁ F.e₁
     let β := dot F.e₁ F.e₂
@@ -101,7 +115,9 @@ theorem affineQuadratic_discriminant (A q b : ℤ) :
         F.halfDiscriminant A q b := by
   simp [quadraticHalfDiscriminant, halfDiscriminant]
 
-/-- The exact integral-root interface used by Algorithm 5.4.-/
+/-- The exact integral-root interface used by Algorithm 5.4.
+@isnad1 id=iff.0h6v.s7.1f9d4e1de4bf from=translated src=- shape=0b5f541e vocab=8ffabf8e
+-/
 theorem affine_norm_root_certificate (A q a b : ℤ) :
     dot (linComb3 a b (q * A) F.e₁ F.e₂ F.z)
         (linComb3 a b (q * A) F.e₁ F.e₂ F.z) = A ↔

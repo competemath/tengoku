@@ -23,11 +23,17 @@ noncomputable def preferenceIndex (I : GloballyRanked K S T)
     (s : S) (t : T) : Fin (I.preferenceList s).length :=
   Classical.choose (List.get_of_mem (I.mem_preferenceList s t))
 
+/--
+@isnad1 id=eq.0h6v.s5.3e8983efd125 from=translated src=- shape=0f6ea71e vocab=0fc10397
+-/
 @[simp] theorem get_preferenceIndex (I : GloballyRanked K S T)
     (s : S) (t : T) :
     (I.preferenceList s).get (I.preferenceIndex s t) = t :=
   Classical.choose_spec (List.get_of_mem (I.mem_preferenceList s t))
 
+/--
+@isnad1 id=injectiv.0h5v.s5.a010583b5c36 from=translated src=- shape=551574fd vocab=20426aad
+-/
 theorem preferenceIndex_injective (I : GloballyRanked K S T) (s : S) :
     Function.Injective (I.preferenceIndex s) := by
   intro t₁ t₂ h
@@ -38,7 +44,9 @@ theorem preferenceIndex_injective (I : GloballyRanked K S T) (s : S) :
     _ = (I.preferenceList s).get (I.preferenceIndex s t₂) := hget
     _ = t₂ := I.get_preferenceIndex s t₂
 
-/-- Strict key order is exactly strict position order in a preference list.-/
+/-- Strict key order is exactly strict position order in a preference list.
+@isnad1 id=iff.0h7v.s6.7104ddbde413 from=translated src=- shape=eb0c4e42 vocab=1da6e743
+-/
 theorem preferenceIndex_lt_iff_rank_lt (I : GloballyRanked K S T)
     (s : S) (t u : T) :
     I.preferenceIndex s t < I.preferenceIndex s u ↔
@@ -62,7 +70,9 @@ theorem preferenceIndex_lt_iff_rank_lt (I : GloballyRanked K S T)
       exact (not_lt_of_ge hrank.le) this
 
 /-- The number of preferred targets is the zero-based position of the final
-target.-/
+target.
+@isnad1 id=eq.0h6v.s6.452fe9d1d1b1 from=translated src=- shape=8046495e vocab=99a5cb2f
+-/
 theorem preferredTargets_card_eq_preferenceIndex
     (I : GloballyRanked K S T) (M : S ≃ T) (s : S) :
     (I.preferredTargets M s).card = (I.preferenceIndex s (M s)).1 := by
@@ -105,7 +115,9 @@ theorem preferredTargets_card_eq_preferenceIndex
   exact Nat.le_antisymm hle hge
 
 /-- The manuscript's equivalence between actual proposal count and one-based
-preference-list position.-/
+preference-list position.
+@isnad1 id=eq.0h6v.s6.1cf89d2d6724 from=translated src=- shape=cadba522 vocab=589f17b0
+-/
 theorem proposalCount_eq_preferenceIndex_add_one
     (I : GloballyRanked K S T) (M : S ≃ T) (s : S) :
     I.proposalCount M s = (I.preferenceIndex s (M s)).1 + 1 := by

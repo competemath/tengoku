@@ -29,6 +29,9 @@ structure ProposalValid (st : I.DAState) : Prop where
       ∃ holder, st.held t = some holder ∧
         I.rank holder t ≤ I.rank s t
 
+/--
+@isnad1 id=proposal.0h5v.s5.cc9454e16652 from=translated src=- shape=4d28ce5b vocab=819f731b
+-/
 theorem initial_proposalValid (sourceOrder : List S) :
     (initial I sourceOrder).ProposalValid I := by
   constructor
@@ -37,6 +40,9 @@ theorem initial_proposalValid (sourceOrder : List S) :
   · intro s t ht
     simp [initial] at ht
 
+/--
+@isnad1 id=mem.4h9v.s7.a79d94e23c48 from=translated src=- shape=cecb529d vocab=54cdd5c2
+-/
 theorem old_mem_take_after_cursor_advance
     (st st' : I.DAState) (s : S)
     (h : st.cursor s < Fintype.card T)
@@ -53,6 +59,9 @@ theorem old_mem_take_after_cursor_advance
   · rw [hother x hx]
     exact ht
 
+/--
+@isnad1 id=mem.2h7v.s6.8b5a41f3c8a5 from=translated src=- shape=9befaaad vocab=5b5d1580
+-/
 theorem new_mem_take_after_cursor_advance
     (st st' : I.DAState) (s : S)
     (h : st.cursor s < Fintype.card T)
@@ -62,6 +71,9 @@ theorem new_mem_take_after_cursor_advance
   rw [hself, List.take_add_one, nextTarget_getElem? I st s h]
   simp
 
+/--
+@isnad1 id=or.4h9v.s7.883002a5decf from=translated src=- shape=3d48f0af vocab=5b5d1580
+-/
 theorem mem_take_after_cursor_advance_cases
     (st st' : I.DAState) (s : S)
     (h : st.cursor s < Fintype.card T)
@@ -81,6 +93,9 @@ theorem mem_take_after_cursor_advance_cases
   · rw [hother x hx] at ht
     exact Or.inl ht
 
+/--
+@isnad1 id=proposal.3h7v.s6.5b87513fb93f from=translated src=- shape=8fc6c472 vocab=e4877c84
+-/
 theorem proposalValid_acceptEmpty
     (st : I.DAState) (hv : st.ProposalValid I)
     (s : S) (rest : List S) (h : st.cursor s < Fintype.card T)
@@ -119,6 +134,9 @@ theorem proposalValid_acceptEmpty
       subst t
       exact ⟨s, by simp [st', acceptEmpty], le_rfl⟩
 
+/--
+@isnad1 id=proposal.4h8v.s7.01ac9dbdd2fc from=translated src=- shape=e89db0d9 vocab=16e09064
+-/
 theorem proposalValid_rejectProposal
     (st : I.DAState) (hv : st.ProposalValid I)
     (s : S) (rest : List S) (h : st.cursor s < Fintype.card T)
@@ -149,6 +167,9 @@ theorem proposalValid_rejectProposal
       exact ⟨old, by simpa [st', rejectProposal] using hheld,
         le_of_not_gt hnotbetter⟩
 
+/--
+@isnad1 id=proposal.4h8v.s7.739f7d4af121 from=translated src=- shape=13865dd6 vocab=07b57126
+-/
 theorem proposalValid_replaceHeld
     (st : I.DAState) (hv : st.ProposalValid I)
     (s : S) (rest : List S) (h : st.cursor s < Fintype.card T)
@@ -198,6 +219,9 @@ theorem proposalValid_replaceHeld
       subst t
       exact ⟨s, by simp [st', replaceHeld], le_rfl⟩
 
+/--
+@isnad1 id=proposal.2h7v.s6.c0db6e474b37 from=translated src=- shape=91353e81 vocab=ed22afd0
+-/
 theorem proposalValid_advance
     (st : I.DAState) (hv : st.ProposalValid I)
     (s : S) (rest : List S) (h : st.cursor s < Fintype.card T) :
@@ -214,6 +238,9 @@ theorem proposalValid_advance
       · assumption
       · assumption
 
+/--
+@isnad1 id=proposal.2h6v.s6.bfc15ff5f526 from=translated src=- shape=b19c3538 vocab=95038207
+-/
 theorem proposalValid_step (st st' : I.DAState)
     (hv : st.ProposalValid I) (hstep : st.step I = some st') :
     st'.ProposalValid I := by
@@ -226,6 +253,9 @@ theorem proposalValid_step (st st' : I.DAState)
         exact proposalValid_advance I st hv s rest hcur
       · simp [step, hqueue, hcur] at hstep
 
+/--
+@isnad1 id=proposal.1h5v.s5.ba55337fb88e from=translated src=- shape=0cf27bab vocab=08aa3f4c
+-/
 theorem proposalValid_run (st : I.DAState) (hv : st.ProposalValid I) :
     (st.run I).ProposalValid I := by
   induction st using run.induct I with
@@ -237,7 +267,9 @@ theorem proposalValid_run (st : I.DAState) (hv : st.ProposalValid I) :
       exact ih (proposalValid_step I st st' hv hstep)
 
 /-- In a source's sorted preference list, every target with smaller key than
-an already tried target has also been tried.-/
+an already tried target has also been tried.
+@isnad1 id=mem.2h8v.s6.73ff8ac673d8 from=translated src=- shape=2f281c4e vocab=ae2016c2
+-/
 theorem mem_take_of_rank_lt_of_mem_take (s : S) {t u : T} {k : ℕ}
     (hrank : I.rank s t < I.rank s u)
     (hu : u ∈ (I.preferenceList s).take k) :
@@ -265,7 +297,9 @@ theorem mem_take_of_rank_lt_of_mem_take (s : S) {t u : T} {k : ℕ}
   exact lt_min (hij.trans (lt_of_lt_of_le hjMin (Nat.min_le_left _ _))) hiLen
 
 /-- The matching encoded by a valid terminal state has the transcript-free
-deferred-acceptance certificate.-/
+deferred-acceptance certificate.
+@isnad1 id=deferred.4h5v.s6.73b33d1c6cb5 from=translated src=- shape=658e0eda vocab=67f9c3e2
+-/
 theorem matchingOfTerminal_certificate
     (hcard : Fintype.card S = Fintype.card T)
     (st : I.DAState) (hv : st.Valid I) (hp : st.ProposalValid I)
@@ -291,6 +325,9 @@ theorem matchingOfTerminal_certificate
   rw [hmatched] at hsource
   exact (lt_irrefl _ hsource).elim
 
+/--
+@isnad1 id=stable.4h5v.s6.d349dff5d3c6 from=translated src=- shape=658e0eda vocab=f8841d75
+-/
 theorem matchingOfTerminal_stable
     (hcard : Fintype.card S = Fintype.card T)
     (st : I.DAState) (hv : st.Valid I) (hp : st.ProposalValid I)
@@ -299,6 +336,9 @@ theorem matchingOfTerminal_stable
   I.stable_of_deferredAcceptanceCertificate _
     (matchingOfTerminal_certificate I hcard st hv hp hqueue)
 
+/--
+@isnad1 id=stable.3h5v.s6.964c172ea498 from=translated src=- shape=693f8648 vocab=d33456fc
+-/
 theorem deferredAcceptanceMatching_stable
     (hcard : Fintype.card S = Fintype.card T)
     (sourceOrder : List S) (hnodup : sourceOrder.Nodup)
@@ -315,7 +355,9 @@ theorem deferredAcceptanceMatching_stable
   exact matchingOfTerminal_stable I hcard st hv hp hqueue
 
 /-- The executable FIFO algorithm returns the unique stable matching already
-characterized abstractly.-/
+characterized abstractly.
+@isnad1 id=eq.3h5v.s7.b1ae7543b4e1 from=translated src=- shape=c0f808ef vocab=65337c52
+-/
 theorem deferredAcceptanceMatching_eq_unique
     (hcard : Fintype.card S = Fintype.card T)
     (sourceOrder : List S) (hnodup : sourceOrder.Nodup)
@@ -327,7 +369,9 @@ theorem deferredAcceptanceMatching_eq_unique
     (deferredAcceptanceMatching_stable I hcard sourceOrder hnodup hcomplete)
 
 /-- Changing the deterministic initial queue order cannot change the output in
-a globally ranked instance, because the stable perfect matching is unique.-/
+a globally ranked instance, because the stable perfect matching is unique.
+@isnad1 id=eq.5h6v.s6.56cde6752abc from=translated src=- shape=26877e81 vocab=f27c4bb8
+-/
 theorem deferredAcceptanceMatching_order_independent
     (hcard : Fintype.card S = Fintype.card T)
     (order₁ order₂ : List S)

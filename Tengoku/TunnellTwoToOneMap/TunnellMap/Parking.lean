@@ -31,6 +31,9 @@ def proposalCount (I : GloballyRanked K S T) (M : S ≃ T) (s : S) : ℕ :=
   (I.preferredTargets M s).card + 1
 
 omit [Fintype S] [DecidableEq S] [DecidableEq T] in
+/--
+@isnad1 id=lt.2h7v.s7.f953eccfd8ee from=translated src=- shape=986fd379 vocab=839a3024
+-/
 theorem preferred_target_has_earlier_match (I : GloballyRanked K S T)
     (M : S ≃ T) (hM : I.Stable M) (s : S) (t : T)
     (ht : t ∈ I.preferredTargets M s) :
@@ -51,6 +54,9 @@ noncomputable def preferredToEarlier (I : GloballyRanked K S T)
     simpa using I.preferred_target_has_earlier_match M hM s t.1 t.2⟩
 
 omit [DecidableEq S] [DecidableEq T] in
+/--
+@isnad1 id=injectiv.1h6v.s6.bcf99910d393 from=translated src=- shape=c541c4a1 vocab=601cdd43
+-/
 theorem preferredToEarlier_injective (I : GloballyRanked K S T)
     (M : S ≃ T) (hM : I.Stable M) (s : S) :
     Function.Injective (I.preferredToEarlier M hM s) := by
@@ -59,7 +65,9 @@ theorem preferredToEarlier_injective (I : GloballyRanked K S T)
   exact M.symm.injective (congrArg Subtype.val h)
 
 omit [DecidableEq S] [DecidableEq T] in
-/-- The pointwise estimate used in the parking-function proof.-/
+/-- The pointwise estimate used in the parking-function proof.
+@isnad1 id=le.1h6v.s6.aaf771be038c from=translated src=- shape=a7f8a611 vocab=e6b83bae
+-/
 theorem proposalCount_le_earlier_add_one (I : GloballyRanked K S T)
     (M : S ≃ T) (hM : I.Stable M) (s : S) :
     I.proposalCount M s ≤ (I.earlierMatchedSources M s).card + 1 := by
@@ -78,6 +86,9 @@ def MatchedKeyOrder (I : GloballyRanked K S T) (M : S ≃ T)
     I.rank (order i) (M (order i)) < I.rank (order j) (M (order j)) → i < j
 
 omit [Fintype T] [DecidableEq S] [DecidableEq T] in
+/--
+@isnad1 id=le.1h7v.s6.dc9c57bc24ea from=translated src=- shape=65af1c59 vocab=407b6dce
+-/
 theorem earlierMatchedSources_card_le_position (I : GloballyRanked K S T)
     (M : S ≃ T) (order : Fin (Fintype.card S) ≃ S)
     (horder : I.MatchedKeyOrder M order) (i : Fin (Fintype.card S)) :
@@ -97,7 +108,9 @@ theorem earlierMatchedSources_card_le_position (I : GloballyRanked K S T)
     Fintype.card_le_of_injective f hf
 
 omit [DecidableEq S] [DecidableEq T] in
-/-- The indexed form of Theorem 7.1, with zero-based indices.-/
+/-- The indexed form of Theorem 7.1, with zero-based indices.
+@isnad1 id=le.2h7v.s7.c4fd09f79256 from=translated src=- shape=3b747648 vocab=9d0c76a4
+-/
 theorem proposalCount_le_position (I : GloballyRanked K S T)
     (M : S ≃ T) (hM : I.Stable M)
     (order : Fin (Fintype.card S) ≃ S) (horder : I.MatchedKeyOrder M order)

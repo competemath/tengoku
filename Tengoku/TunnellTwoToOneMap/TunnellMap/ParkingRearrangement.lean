@@ -25,7 +25,9 @@ def IsParkingFunction (a : List ℕ) : Prop :=
       (sortedCounts a).get i ≤ i.1 + 1
 
 /-- If some enumeration satisfies the parking inequalities, then the sorted
-rearrangement does as well.-/
+rearrangement does as well.
+@isnad1 id=isparkin.2h1v.s5.60edb2481460 from=translated src=- shape=ab8f5c18 vocab=23cacb00
+-/
 theorem isParkingFunction_of_indexed_bounds (a : List ℕ)
     (hpos : ∀ x ∈ a, 0 < x)
     (hbound : ∀ i : Fin a.length, a.get i ≤ i.1 + 1) :
@@ -105,12 +107,17 @@ noncomputable def matchedProposalCounts (I : GloballyRanked K S T)
   List.ofFn fun i : Fin (Fintype.card S) =>
     I.proposalCount M (I.matchedKeyOrderEquiv M i)
 
+/--
+@isnad1 id=eq.0h5v.s5.7a4578d73800 from=translated src=- shape=ff1e38ed vocab=916585fb
+-/
 @[simp] theorem length_matchedProposalCounts
     (I : GloballyRanked K S T) (M : S ≃ T) :
     (I.matchedProposalCounts M).length = Fintype.card S := by
   simp [matchedProposalCounts]
 
-/-- The literal sorted-rearrangement statement of Theorem 7.1.-/
+/-- The literal sorted-rearrangement statement of Theorem 7.1.
+@isnad1 id=isparkin.1h5v.s5.dea75634a35b from=translated src=- shape=6ba20b68 vocab=fff9bc4c
+-/
 theorem proposalCounts_isParkingFunction (I : GloballyRanked K S T)
     (M : S ≃ T) (hM : I.Stable M) :
     IsParkingFunction (I.matchedProposalCounts M) := by

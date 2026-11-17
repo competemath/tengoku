@@ -19,12 +19,18 @@ namespace GloballyRanked
 def sharpRank (m : ℕ) (s t : Fin m) : ℕ :=
   (m + 1) * s.1 + t.1
 
+/--
+@isnad1 id=injectiv.0h2v.s3.6b042b8a21d4 from=translated src=- shape=8cdbc4c3 vocab=26abb40e
+-/
 theorem sharpRank_source_injective (m : ℕ) (s : Fin m) :
     Function.Injective (sharpRank m s) := by
   intro t₁ t₂ h
   apply Fin.ext
   exact Nat.add_left_cancel h
 
+/--
+@isnad1 id=injectiv.0h2v.s4.3b4674e7c48c from=translated src=- shape=2a9f033d vocab=26abb40e
+-/
 theorem sharpRank_target_injective (m : ℕ) (t : Fin m) :
     Function.Injective (fun s => sharpRank m s t) := by
   intro s₁ s₂ h
@@ -38,7 +44,9 @@ def sharpRanking (m : ℕ) : GloballyRanked ℕ (Fin m) (Fin m) where
   source_injective := sharpRank_source_injective m
   target_injective := sharpRank_target_injective m
 
-/-- Every edge of the sharpness instance has a different global key.-/
+/-- Every edge of the sharpness instance has a different global key.
+@isnad1 id=injectiv.0h1v.s5.c9084488221c from=translated src=- shape=4d61f22d vocab=7737891c
+-/
 theorem sharpRank_pair_injective (m : ℕ) :
     Function.Injective (fun e : Fin m × Fin m =>
       (sharpRanking m).rank e.1 e.2) := by
@@ -60,6 +68,9 @@ theorem sharpRank_pair_injective (m : ℕ) :
 /-- The diagonal matching in the sharpness family.-/
 def sharpMatching (m : ℕ) : Fin m ≃ Fin m := Equiv.refl (Fin m)
 
+/--
+@isnad1 id=stable.0h1v.s3.4a52c6c7cba7 from=translated src=- shape=037236e4 vocab=7187ca35
+-/
 theorem sharpMatching_stable (m : ℕ) :
     (sharpRanking m).Stable (sharpMatching m) := by
   intro s t hblock
@@ -74,7 +85,9 @@ theorem sharpMatching_stable (m : ℕ) :
     (Nat.mul_lt_mul_left (by omega : 0 < m + 1)).mp hmul
   exact (Nat.not_lt_of_ge hts.le) hst
 
-/-- Source `i` has exactly `i + 1` proposals in zero-based notation.-/
+/-- Source `i` has exactly `i + 1` proposals in zero-based notation.
+@isnad1 id=eq.0h2v.s5.93bcad94cd7c from=translated src=- shape=12a0acc2 vocab=d9f92feb
+-/
 theorem sharpProposalCount (m : ℕ) (i : Fin m) :
     (sharpRanking m).proposalCount (sharpMatching m) i = i.1 + 1 := by
   unfold proposalCount preferredTargets
@@ -88,6 +101,9 @@ theorem sharpProposalCount (m : ℕ) (i : Fin m) :
   rw [hfilter, Fin.card_filter_val_lt,
     Nat.min_eq_right (Nat.le_of_lt i.2)]
 
+/--
+@isnad1 id=eq.0h1v.s6.89f00c79ad91 from=translated src=- shape=af2c90d6 vocab=ab06d01b
+-/
 theorem sharpProposalCount_total_mul_two (m : ℕ) :
     (∑ i : Fin m,
       (sharpRanking m).proposalCount (sharpMatching m) i) * 2 =
@@ -108,7 +124,9 @@ theorem sharpProposalCount_total_mul_two (m : ℕ) :
   rw [hfinrange]
   exact sum_range_add_one_mul_two m
 
-/-- Proposition 7.2: the triangular bound is attained for every size.-/
+/-- Proposition 7.2: the triangular bound is attained for every size.
+@isnad1 id=eq.0h1v.s6.2c6b2cd6dd7e from=translated src=- shape=572c35b1 vocab=d21fbb10
+-/
 theorem sharpProposalCount_total (m : ℕ) :
     (∑ i : Fin m,
       (sharpRanking m).proposalCount (sharpMatching m) i) =

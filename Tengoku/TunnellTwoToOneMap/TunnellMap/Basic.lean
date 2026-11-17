@@ -19,6 +19,9 @@ structure Triple where
   z : ℤ
 deriving DecidableEq
 
+/--
+@isnad1 id=eq.3h2v.s4.aa25db4c5347 from=translated src=- shape=966c8f3f vocab=c59e3632
+-/
 @[ext] theorem Triple.ext {p q : Triple} (hx : p.x = q.x) (hy : p.y = q.y)
     (hz : p.z = q.z) : p = q := by
   cases p
@@ -75,10 +78,16 @@ def evenEquiv (n : ℤ) : BEvenParam n ≃ ARep n where
     apply Subtype.ext
     rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.43e2faed1264 from=translated src=- shape=d6ff88c1 vocab=16b591e4
+-/
 @[simp] theorem evenEquiv_apply (n : ℤ) (p : BEvenParam n) :
     (evenEquiv n p).1 = ⟨p.x, p.y, p.w⟩ :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.c435d14f5dfd from=translated src=- shape=fb36cceb vocab=03aed563
+-/
 @[simp] theorem evenEquiv_symm_apply (n : ℤ) (p : ARep n) :
     (evenEquiv n).symm p = aToEven p :=
   rfl

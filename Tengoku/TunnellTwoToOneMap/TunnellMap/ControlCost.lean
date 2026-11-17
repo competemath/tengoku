@@ -57,6 +57,9 @@ noncomputable def oneStepCost (st : I.DAState) : ControlCost :=
       else
         ControlCost.zero
 
+/--
+@isnad1 id=and.1h6v.s7.fad62f8d154b from=translated src=- shape=40738c71 vocab=bf999005
+-/
 theorem oneStepCost_bounds (st st' : I.DAState)
     (hstep : st.step I = some st') :
     (st.oneStepCost I).generatorAdvances = 1 ∧
@@ -82,6 +85,9 @@ noncomputable def runCost (st : I.DAState) : ControlCost :=
 termination_by st.remaining I
 decreasing_by exact remaining_step_lt I st st' hstep
 
+/--
+@isnad1 id=and.0h5v.s7.9369dfb8998f from=translated src=- shape=41b5879b vocab=aa942832
+-/
 theorem runCost_component_bounds (st : I.DAState) :
     (st.runCost I).keyComparisons ≤ (st.runCost I).generatorAdvances ∧
       (st.runCost I).queueOperations ≤
@@ -99,6 +105,9 @@ theorem runCost_component_bounds (st : I.DAState) :
       simp only [ControlCost.add]
       omega
 
+/--
+@isnad1 id=eq.0h5v.s6.4293488a4ff7 from=translated src=- shape=8a4f438c vocab=100778ea
+-/
 theorem runCost_advances_add_remaining (st : I.DAState) :
     (st.runCost I).generatorAdvances + (st.run I).remaining I =
       st.remaining I := by
@@ -113,7 +122,9 @@ theorem runCost_advances_add_remaining (st : I.DAState) :
       simp only [ControlCost.add]
       omega
 
-/-- Generator advances are exactly the successful proposal-step count.-/
+/-- Generator advances are exactly the successful proposal-step count.
+@isnad1 id=eq.0h5v.s5.656a81d61530 from=translated src=- shape=3a80ee26 vocab=aff15bad
+-/
 theorem runCost_generatorAdvances_eq_proposalSteps (st : I.DAState) :
     (st.runCost I).generatorAdvances = st.proposalSteps I := by
   have haccount := runCost_advances_add_remaining I st
@@ -121,7 +132,9 @@ theorem runCost_generatorAdvances_eq_proposalSteps (st : I.DAState) :
   unfold proposalSteps
   omega
 
-/-- Exact constants implying the `O(N)` operation statement in Theorem 7.3.-/
+/-- Exact constants implying the `O(N)` operation statement in Theorem 7.3.
+@isnad1 id=and.0h5v.s7.696be1f4dae9 from=translated src=- shape=7bf0cc64 vocab=9e7724fb
+-/
 theorem runCost_linear_bounds (st : I.DAState) :
     (st.runCost I).generatorAdvances = st.proposalSteps I ∧
       (st.runCost I).keyComparisons ≤ st.proposalSteps I ∧

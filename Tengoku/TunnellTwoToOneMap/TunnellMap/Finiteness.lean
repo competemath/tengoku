@@ -12,6 +12,9 @@ cardinality hypotheses in the main theorem.
 
 namespace TunnellMap
 
+/--
+@isnad1 id=and.2h2v.s5.0a11482824d0 from=translated src=- shape=90c5be4a vocab=f5c56223
+-/
 theorem coordinate_bounds_of_sq_le {x n : ℤ} (hn : 0 ≤ n) (hxn : x ^ 2 ≤ n) :
     -n ≤ x ∧ x ≤ n := by
   constructor
@@ -59,6 +62,9 @@ private theorem bRepBounded_injective (n : ℤ) :
     change p.1.z = q.1.z at hz
     exact hz
 
+/--
+@isnad1 id=finite.0h1v.s2.015f84dc2567 from=translated src=- shape=76a08d12 vocab=190e8351
+-/
 instance bRepFinite (n : ℤ) : Finite (BRep n) :=
   Finite.of_injective (bRepBounded n) (bRepBounded_injective n)
 
@@ -96,6 +102,9 @@ private theorem aRepBounded_injective (n : ℤ) :
     change p.1.z = q.1.z at hz
     exact hz
 
+/--
+@isnad1 id=finite.0h1v.s2.4d4f54d4c102 from=translated src=- shape=76a08d12 vocab=1345c819
+-/
 instance aRepFinite (n : ℤ) : Finite (ARep n) :=
   Finite.of_injective (aRepBounded n) (aRepBounded_injective n)
 

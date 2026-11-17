@@ -41,6 +41,9 @@ noncomputable def matchingSymmDiff (M N : S ≃ T) : Finset (S × T) := by
   classical
   exact (Finset.univ.product Finset.univ).filter (InMatchingSymmDiff M N)
 
+/--
+@isnad1 id=eq.2h6v.s6.8e3dc8dfa8e9 from=translated src=- shape=557b8d2e vocab=688d0618
+-/
 theorem stable_unique (I : GloballyRanked K S T) (M N : S ≃ T)
     (hM : I.Stable M) (hN : I.Stable N) : M = N := by
   classical

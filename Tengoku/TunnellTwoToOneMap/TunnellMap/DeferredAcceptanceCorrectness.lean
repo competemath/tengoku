@@ -33,6 +33,9 @@ structure Valid (st : I.DAState) : Prop where
   tried_occupied : ∀ s t,
     t ∈ (I.preferenceList s).take (st.cursor s) → st.Occupied I t
 
+/--
+@isnad1 id=valid.2h5v.s5.12e553336f61 from=translated src=- shape=bf06f8f8 vocab=6c088ec1
+-/
 theorem initial_valid (sourceOrder : List S)
     (hnodup : sourceOrder.Nodup) (hcomplete : ∀ s, s ∈ sourceOrder) :
     (initial I sourceOrder).Valid I := by
@@ -45,7 +48,9 @@ theorem initial_valid (sourceOrder : List S)
     simp [initial] at ht
 
 /-- A valid queued source has a next untried target.  This is the finite
-pigeonhole argument in the first paragraph of Theorem 6.3.-/
+pigeonhole argument in the first paragraph of Theorem 6.3.
+@isnad1 id=lt.3h6v.s6.eef6dcad5fa5 from=translated src=- shape=733b6651 vocab=a230e1de
+-/
 theorem queued_cursor_lt (hcard : Fintype.card S = Fintype.card T)
     (st : I.DAState) (hv : st.Valid I) (s : S) (hs : s ∈ st.queue) :
     st.cursor s < Fintype.card T := by
@@ -87,6 +92,9 @@ theorem queued_cursor_lt (hcard : Fintype.card S = Fintype.card T)
   have hTpos : 0 < Fintype.card T := by omega
   omega
 
+/--
+@isnad1 id=iff.2h5v.s6.a82437f1de75 from=translated src=- shape=334f37d3 vocab=e3ddb5a3
+-/
 theorem step_eq_none_iff_queue_nil
     (hcard : Fintype.card S = Fintype.card T)
     (st : I.DAState) (hv : st.Valid I) :
@@ -102,6 +110,9 @@ theorem step_eq_none_iff_queue_nil
   · intro hqueue
     simp [step, hqueue]
 
+/--
+@isnad1 id=eq.1h6v.s6.0b807c03519d from=translated src=- shape=3db39a60 vocab=ba51a649
+-/
 theorem nextTarget_getElem? (st : I.DAState) (s : S)
     (h : st.cursor s < Fintype.card T) :
     (I.preferenceList s)[st.cursor s]? = some (st.nextTarget I s h) := by
@@ -110,7 +121,9 @@ theorem nextTarget_getElem? (st : I.DAState) (s : S)
   rfl
 
 /-- The cursor/occupancy part of the invariant is common to all three
-proposal outcomes.-/
+proposal outcomes.
+@isnad1 id=occupied.7h9v.s7.fce1ff388844 from=translated src=- shape=1e5e6e8f vocab=6277fa96
+-/
 theorem tried_occupied_after_cursor_advance
     (st st' : I.DAState) (hv : st.Valid I) (s : S)
     (h : st.cursor s < Fintype.card T)
@@ -131,6 +144,9 @@ theorem tried_occupied_after_cursor_advance
   · rw [hother x hx] at ht
     exact hmono t (hv.tried_occupied x t ht)
 
+/--
+@isnad1 id=valid.4h7v.s6.c2d8d1c8c5d0 from=translated src=- shape=43292450 vocab=8c2e5a7d
+-/
 theorem valid_acceptEmpty (st : I.DAState) (hv : st.Valid I)
     (s : S) (rest : List S) (hqueue : st.queue = s :: rest)
     (h : st.cursor s < Fintype.card T)
@@ -193,6 +209,9 @@ theorem valid_acceptEmpty (st : I.DAState) (hv : st.Valid I)
       · exact ⟨x, by simpa [acceptEmpty, hut] using hx⟩
     · exact ⟨s, by simp [acceptEmpty]⟩
 
+/--
+@isnad1 id=valid.4h8v.s6.c726a047420b from=translated src=- shape=041eac91 vocab=e0e37749
+-/
 theorem valid_rejectProposal (st : I.DAState) (hv : st.Valid I)
     (s : S) (rest : List S) (hqueue : st.queue = s :: rest)
     (h : st.cursor s < Fintype.card T)
@@ -224,6 +243,9 @@ theorem valid_rejectProposal (st : I.DAState) (hv : st.Valid I)
       simpa [Occupied, rejectProposal] using hu
     · exact ⟨old, by simpa [rejectProposal] using hheld⟩
 
+/--
+@isnad1 id=valid.4h8v.s6.2eff3650b971 from=translated src=- shape=67b3bd95 vocab=ef38cdbd
+-/
 theorem valid_replaceHeld (st : I.DAState) (hv : st.Valid I)
     (s : S) (rest : List S) (hqueue : st.queue = s :: rest)
     (h : st.cursor s < Fintype.card T) (old : S)
@@ -332,6 +354,9 @@ theorem valid_replaceHeld (st : I.DAState) (hv : st.Valid I)
       · exact ⟨x, by simpa [replaceHeld, hut] using hx⟩
     · exact ⟨s, by simp [replaceHeld]⟩
 
+/--
+@isnad1 id=valid.3h7v.s6.475a5d2cd1a6 from=translated src=- shape=c9ce4886 vocab=28186c5b
+-/
 theorem valid_advance (st : I.DAState) (hv : st.Valid I)
     (s : S) (rest : List S) (hqueue : st.queue = s :: rest)
     (h : st.cursor s < Fintype.card T) :
@@ -346,6 +371,9 @@ theorem valid_advance (st : I.DAState) (hv : st.Valid I)
     · apply valid_rejectProposal I st hv s rest hqueue h
       assumption
 
+/--
+@isnad1 id=valid.2h6v.s6.e5d905a2d9b0 from=translated src=- shape=b19c3538 vocab=2923e509
+-/
 theorem valid_step (st st' : I.DAState) (hv : st.Valid I)
     (hstep : st.step I = some st') : st'.Valid I := by
   cases hqueue : st.queue with
@@ -357,6 +385,9 @@ theorem valid_step (st st' : I.DAState) (hv : st.Valid I)
         exact valid_advance I st hv s rest hqueue hcur
       · simp [step, hqueue, hcur] at hstep
 
+/--
+@isnad1 id=valid.1h5v.s5.7e128a2a5446 from=translated src=- shape=0cf27bab vocab=8b1a0c14
+-/
 theorem valid_run (st : I.DAState) (hv : st.Valid I) :
     (st.run I).Valid I := by
   induction st using run.induct I with
@@ -368,7 +399,9 @@ theorem valid_run (st : I.DAState) (hv : st.Valid I) :
       exact ih (valid_step I st st' hv hstep)
 
 /-- From a valid state on equal finite sides, `run` terminates with no free
-source left in the FIFO queue.-/
+source left in the FIFO queue.
+@isnad1 id=eq.2h5v.s6.07ce601786f5 from=translated src=- shape=169f2d57 vocab=15a20dd3
+-/
 theorem run_queue_nil (hcard : Fintype.card S = Fintype.card T)
     (st : I.DAState) (hv : st.Valid I) :
     (st.run I).queue = [] := by

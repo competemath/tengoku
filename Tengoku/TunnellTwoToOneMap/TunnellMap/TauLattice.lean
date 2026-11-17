@@ -21,11 +21,17 @@ instance inTauLatticeDecidable (r : Triple) : Decidable (InTauLattice r) := by
 def tauInv (r : Triple) : Triple :=
   ⟨(r.x + r.z) / 2, r.y, (r.x - r.z) / 2⟩
 
+/--
+@isnad1 id=intaulat.0h1v.s2.56b67da88601 from=translated src=- shape=76a08d12 vocab=4165529e
+-/
 theorem tau_mem (d : Triple) : InTauLattice (tau d) := by
   refine ⟨d.z, ?_⟩
   simp [InTauLattice, tau]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s3.a44fad54f97a from=translated src=- shape=47dcad53 vocab=464bc62e
+-/
 @[simp] theorem tauInv_tau (d : Triple) : tauInv (tau d) = d := by
   apply Triple.ext
   · simp only [tauInv, tau]
@@ -36,6 +42,9 @@ theorem tau_mem (d : Triple) : InTauLattice (tau d) := by
     rw [show (d.x + d.z - (d.x - d.z)) = 2 * d.z by ring]
     exact Int.mul_ediv_cancel_left d.z (by norm_num)
 
+/--
+@isnad1 id=eq.1h1v.s3.5c36f00f8323 from=translated src=- shape=f9d42bb4 vocab=21a09c93
+-/
 theorem tau_tauInv {r : Triple} (hr : InTauLattice r) : tau (tauInv r) = r := by
   have hdiff : (2 : ℤ) ∣ r.x - r.z := hr
   have hsum : (2 : ℤ) ∣ r.x + r.z := by
@@ -64,6 +73,9 @@ def tauEquiv : Triple ≃ {r : Triple // InTauLattice r} where
     apply Subtype.ext
     exact tau_tauInv r.2
 
+/--
+@isnad1 id=injectiv.0h0v.s2.217b67d19d4a from=translated src=- shape=e3d48bcb vocab=48342373
+-/
 theorem tau_injective : Function.Injective tau := by
   intro d e h
   simpa using congrArg tauInv h

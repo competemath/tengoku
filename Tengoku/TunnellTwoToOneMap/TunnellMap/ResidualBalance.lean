@@ -209,6 +209,9 @@ noncomputable instance bResidualFintype {n : ℤ} [Fintype (BOddRep n)] :
 noncomputable instance aResidualFintype {n : ℤ} [Fintype (ARep n)] :
     Fintype (AResidual n) := Fintype.ofFinite _
 
+/--
+@isnad1 id=eq.2h1v.s5.02e38c1ff5a4 from=translated src=- shape=3aba9ecb vocab=76e70dd5
+-/
 theorem residual_card_eq {n : ℤ} (hn : Odd n)
     [Fintype (BOddRep n)] [Fintype (ARep n)]
     (hbalance : Fintype.card (BOddRep n) = Fintype.card (ARep n)) :
@@ -222,6 +225,9 @@ theorem residual_card_eq {n : ℤ} (hn : Odd n)
     Fintype.card {p : ARep n // ¬ DirectTargetUsed p}
   rw [Fintype.card_subtype_compl, Fintype.card_subtype_compl, hbalance, hdirect]
 
+/--
+@isnad1 id=eq.3h1v.s6.1d438dfcabb5 from=translated src=- shape=f5dafe1b vocab=c3587816
+-/
 theorem residual_orbit_card_eq {n : ℤ} (hn : Odd n) (hnpos : 0 < n)
     [Fintype (BOddRep n)] [Fintype (ARep n)]
     (hbalance : Fintype.card (BOddRep n) = Fintype.card (ARep n)) :

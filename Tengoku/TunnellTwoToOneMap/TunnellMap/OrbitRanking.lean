@@ -20,6 +20,9 @@ abbrev TripleLexKey := ℤ ×ₗ (ℤ ×ₗ ℤ)
 def tripleLexKey (v : Triple) : TripleLexKey :=
   toLex (v.x, toLex (v.y, v.z))
 
+/--
+@isnad1 id=injectiv.0h0v.s2.59dded89989d from=translated src=- shape=54c8eceb vocab=30a29f56
+-/
 theorem tripleLexKey_injective : Function.Injective tripleLexKey := by
   intro v w h
   apply Triple.ext
@@ -33,6 +36,9 @@ def bResidualLexKey {n : ℤ} (s : BResidual n) : TripleLexKey :=
 def aResidualLexKey {n : ℤ} (t : AResidual n) : TripleLexKey :=
   tripleLexKey t.1.1
 
+/--
+@isnad1 id=injectiv.0h1v.s3.1a12383f86e4 from=translated src=- shape=64d36d98 vocab=35a1edd2
+-/
 theorem bResidualLexKey_injective {n : ℤ} :
     Function.Injective (bResidualLexKey (n := n)) := by
   intro s t h
@@ -40,6 +46,9 @@ theorem bResidualLexKey_injective {n : ℤ} :
   apply Subtype.ext
   exact tripleLexKey_injective h
 
+/--
+@isnad1 id=injectiv.0h1v.s3.7a713390b68c from=translated src=- shape=64d36d98 vocab=762eb049
+-/
 theorem aResidualLexKey_injective {n : ℤ} :
     Function.Injective (aResidualLexKey (n := n)) := by
   intro s t h
@@ -70,7 +79,9 @@ noncomputable def orbitEdgeKey {n : ℤ} (hnpos : 0 < n)
     (canonicalAResidualRepresentative hnpos t)
 
 /-- Computing the orbit key from any signed representatives gives the same
-answer.  This is the representative-independence assertion in Lemma 4.1.-/
+answer.  This is the representative-independence assertion in Lemma 4.1.
+@isnad1 id=eq.1h3v.s5.b8961c1ffe9f from=translated src=- shape=d48989db vocab=db077c4f
+-/
 theorem representativeEdgeKey_eq_orbitEdgeKey {n : ℤ} (hnpos : 0 < n)
     (s : BResidual n) (t : AResidual n) :
     representativeEdgeKey s t =
@@ -148,6 +159,9 @@ noncomputable def residualOrbitMatching
   exact Classical.choose
     (GloballyRanked.exists_unique_stable (residualOrbitRanking hnpos) hcard)
 
+/--
+@isnad1 id=stable.2h1v.s6.2ffbe2b5bbb4 from=translated src=- shape=338043ed vocab=00d8f2bb
+-/
 theorem residualOrbitMatching_stable
     (hcard : Fintype.card (bResidualInvolution n).Orbit =
       Fintype.card (aResidualInvolution n hnpos).Orbit) :
@@ -157,6 +171,9 @@ theorem residualOrbitMatching_stable
   exact (Classical.choose_spec
     (GloballyRanked.exists_unique_stable (residualOrbitRanking hnpos) hcard)).1
 
+/--
+@isnad1 id=eq.3h2v.s6.99d8a083454e from=translated src=- shape=700be2f9 vocab=7c86a923
+-/
 theorem residualOrbitMatching_unique
     (hcard : Fintype.card (bResidualInvolution n).Orbit =
       Fintype.card (aResidualInvolution n hnpos).Orbit)

@@ -12,11 +12,17 @@ their doubled raw vectors, so it retains the factor appearing in the paper.
 
 namespace TunnellMap
 
+/--
+@isnad1 id=eq.0h2v.s5.da10c584edcc from=translated src=- shape=047e6df2 vocab=bf74d147
+-/
 @[simp] theorem qForm_vsmul (a : ℤ) (p : Triple) :
     qForm (vsmul a p) = a ^ 2 * qForm p := by
   simp [qForm, vsmul]
   ring
 
+/--
+@isnad1 id=eq.1h4v.s5.3293827ef337 from=translated src=- shape=c069b8a5 vocab=62b79f04
+-/
 theorem plusVector_eq_two_vsmul_of_halfSum {n : ℤ}
     (s : BResidual n) (t : AResidual n) (h : Triple)
     (hh : IsHalfSum h (bLift s.1) (aLift t.1)) :
@@ -26,6 +32,9 @@ theorem plusVector_eq_two_vsmul_of_halfSum {n : ℤ}
     simp [plusVector, residualSourceLift, residualTargetLift, vadd, vsmul] at hx hy hz ⊢ <;>
     omega
 
+/--
+@isnad1 id=eq.1h4v.s5.ff6068b82126 from=translated src=- shape=c069b8a5 vocab=6c31adc7
+-/
 theorem minusVector_eq_two_vsmul_of_halfDiff {n : ℤ}
     (s : BResidual n) (t : AResidual n) (h : Triple)
     (hh : IsHalfDiff h (bLift s.1) (aLift t.1)) :
@@ -35,6 +44,9 @@ theorem minusVector_eq_two_vsmul_of_halfDiff {n : ℤ}
     simp [minusVector, residualSourceLift, residualTargetLift, vsub, vsmul] at hx hy hz ⊢ <;>
     omega
 
+/--
+@isnad1 id=eq.2h5v.s6.24c16c7a2b13 from=translated src=- shape=088f2af5 vocab=4e10755e
+-/
 theorem qForm_halfSum_add_halfDiff {n : ℤ}
     (s : BResidual n) (t : AResidual n) (hPlus hMinus : Triple)
     (hPlusEq : IsHalfSum hPlus (bLift s.1) (aLift t.1))
@@ -56,7 +68,9 @@ theorem qForm_halfSum_add_halfDiff {n : ℤ}
 
 /-- Lemma 4.4 in an integral form: if `d` is the primitive direction of the
 preferred signed midpoint, then `2 Q(d) ≤ n - 1`.  For odd `n` this is
-equivalent to `Q(d) ≤ (n-1)/2`.-/
+equivalent to `Q(d) ≤ (n-1)/2`.
+@isnad1 id=le.1h3v.s5.38c3095a3c34 from=translated src=- shape=3effcfb5 vocab=33fedb8b
+-/
 theorem preferred_midpoint_generator_bound {n : ℤ} (hn : Odd n)
     (s : BResidual n) (t : AResidual n) :
     2 * qForm (primitiveDirection (preferredVector s t)) ≤ n - 1 := by
