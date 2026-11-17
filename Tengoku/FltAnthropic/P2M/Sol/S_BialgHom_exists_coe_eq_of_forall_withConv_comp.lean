@@ -1,0 +1,72 @@
+import Tengoku
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_BialgHom_exists_coe_eq_of_forall_withConv_comp.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_BialgHom_exists_coe_eq_of_forall_withConv_comp
+
+set_option autoImplicit false
+
+open TensorProduct
+
+universe u
+
+/--
+@isnad1 id=ex.4h5v.s11.6e82a411680e from=translated src=- shape=1b331b18 vocab=c8b1937c
+-/
+theorem solution
+    {R : Type u} [CommRing R] {K : Type u} [CommRing K] [Algebra R K] (hinj : Function.Injective (algebraMap R K))
+    {H : Type u} [CommRing H] [Bialgebra R H] {H' : Type u} [CommRing H'] [Bialgebra R H']
+    (φ : H →ₐ[R] H')
+    (hsep : ∀ x : H' ⊗[R] H', (∀ θ : H' ⊗[R] H' →ₐ[R] K, θ x = 0) → x = 0)
+    (hone : (1 : WithConv (H' →ₐ[R] K)).ofConv.comp φ = (1 : WithConv (H →ₐ[R] K)).ofConv)
+    (hmul : ∀ χ χ' : WithConv (H' →ₐ[R] K),
+      (χ * χ').ofConv.comp φ = (WithConv.toConv (χ.ofConv.comp φ) * WithConv.toConv (χ'.ofConv.comp φ)).ofConv) :
+    ∃ ψ : H →ₐc[R] H', (ψ : H →ₐ[R] H') = φ := by
+
+  have hcounit : (Bialgebra.counitAlgHom R H').comp φ = Bialgebra.counitAlgHom R H := by
+    ext h
+    apply hinj
+    have := congr($hone h)
+    simpa [AlgHom.convOne_def] using this
+
+  have hcomul : (Algebra.TensorProduct.map φ φ).comp (Bialgebra.comulAlgHom R H) = (Bialgebra.comulAlgHom R H').comp φ := by
+    ext h
+    rw [← sub_eq_zero]
+    apply hsep
+    intro θ
+    set χ : H' →ₐ[R] K := θ.comp Algebra.TensorProduct.includeLeft with hχ
+    set χ' : H' →ₐ[R] K := θ.comp Algebra.TensorProduct.includeRight with hχ'
+    have hθ : θ = Algebra.TensorProduct.lift χ χ' (fun _ _ => Commute.all _ _) := by
+      ext a <;> simp [hχ, hχ']
+    rw [hθ, map_sub, sub_eq_zero]
+    have h1 := congr($(hmul (.toConv χ) (.toConv χ')) h)
+    simp only [AlgHom.convMul_def, WithConv.ofConv_toConv, AlgHom.comp_apply] at h1
+
+    have e1 : ∀ (f g : H →ₐ[R] K) (z : H ⊗[R] H),
+        Algebra.TensorProduct.lift f g (fun _ _ => Commute.all _ _) z =
+          (Algebra.TensorProduct.lmul' R (S := K)) (Algebra.TensorProduct.map f g z) := by
+      intro f g z
+      induction z using TensorProduct.induction_on with
+      | zero => simp
+      | tmul a b => simp [Algebra.TensorProduct.lift_tmul, Algebra.TensorProduct.lmul'_apply_tmul]
+      | add a b ha hb => simp [map_add, ha, hb]
+    have e2 : ∀ (f g : H' →ₐ[R] K) (z : H' ⊗[R] H'),
+        Algebra.TensorProduct.lift f g (fun _ _ => Commute.all _ _) z =
+          (Algebra.TensorProduct.lmul' R (S := K)) (Algebra.TensorProduct.map f g z) := by
+      intro f g z
+      induction z using TensorProduct.induction_on with
+      | zero => simp
+      | tmul a b => simp [Algebra.TensorProduct.lift_tmul, Algebra.TensorProduct.lmul'_apply_tmul]
+      | add a b ha hb => simp [map_add, ha, hb]
+    have e3 : ∀ z : H ⊗[R] H, Algebra.TensorProduct.lift χ χ' (fun _ _ => Commute.all _ _) (Algebra.TensorProduct.map φ φ z) =
+        Algebra.TensorProduct.lift (χ.comp φ) (χ'.comp φ) (fun _ _ => Commute.all _ _) z := by
+      intro z
+      induction z using TensorProduct.induction_on with
+      | zero => simp
+      | tmul a b => simp [Algebra.TensorProduct.lift_tmul]
+      | add a b ha hb => simp [map_add, ha, hb]
+    simp only [AlgHom.comp_apply]
+    rw [e3, e1, e2]
+    exact h1.symm
+  exact ⟨BialgHom.ofAlgHom φ hcounit hcomul, rfl⟩

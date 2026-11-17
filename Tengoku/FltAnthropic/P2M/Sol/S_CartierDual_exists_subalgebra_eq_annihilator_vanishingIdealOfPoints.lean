@@ -1,0 +1,806 @@
+import Tengoku
+import Tengoku.FltAnthropic.Definitions.Def_HopfAlgebra_CartierDual
+import Tengoku.FltAnthropic.Definitions.Def_HopfAlgebra_CharacterClosure
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_CartierDual_exists_subalgebra_eq_annihilator_vanishingIdealOfPoints.lean`: wrote out 2 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 2 `p2m_export`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_CartierDual_exists_subalgebra_eq_annihilator_vanishingIdealOfPoints
+
+set_option autoImplicit false
+set_option maxHeartbeats 6400000
+set_option synthInstance.maxHeartbeats 1600000
+
+set_option autoImplicit false
+
+namespace P2MMultE
+
+open scoped TensorProduct
+
+variable {F : Type*} [Field F] {A : Type*} [CommRing A] [HopfAlgebra F A]
+variable {L : Type*} [CommRing L] [Algebra F L]
+
+abbrev vanishingIdeal (S : Set (A →ₐ[F] L)) : Ideal A := HopfAlgebra.vanishingIdealOfPoints S
+
+noncomputable def convPt (ν ν' : A →ₐ[F] L) : A →ₐ[F] L :=
+  (Algebra.TensorProduct.lmul' F (S := L)).comp
+    ((Algebra.TensorProduct.map ν ν').comp (Bialgebra.comulAlgHom F A))
+
+noncomputable def onePt : A →ₐ[F] L := (Algebra.ofId F L).comp (Bialgebra.counitAlgHom F A)
+
+structure IsPtSubgroup (S : Set (A →ₐ[F] L)) : Prop where
+  one_mem : onePt ∈ S
+  mul_mem : ∀ ν ν', ν ∈ S → ν' ∈ S → convPt ν ν' ∈ S
+  inv_mem : ∀ ν, ν ∈ S → ∃ ν' ∈ S, ν'.toLinearMap = ν.toLinearMap ∘ₗ HopfAlgebraStruct.antipode (R := F)
+
+/--
+@isnad1 id=eq.0h4v.s9.c86aedf46940 from=translated src=- shape=aedd2fc9 vocab=5c446eef
+-/
+theorem onePt_apply (a : A) : (onePt : A →ₐ[F] L) a = algebraMap F L (Coalgebra.counit (R := F) a) := rfl
+
+/--
+@isnad1 id=eq.0h6v.s11.ec9f3cbea6d5 from=translated src=- shape=86c8d0ed vocab=a5a3931c
+-/
+theorem convPt_apply (ν ν' : A →ₐ[F] L) (a : A) :
+    convPt ν ν' a = Algebra.TensorProduct.lmul' F (S := L)
+      (Algebra.TensorProduct.map ν ν' (Coalgebra.comul (R := F) a)) := rfl
+
+/--
+@isnad1 id=eq.2h5v.s9.3ba340c622fe from=translated src=- shape=460dff29 vocab=74edf273
+-/
+theorem counit_eq_zero_of_mem_vanishingIdeal {S : Set (A →ₐ[F] L)} (hS : onePt ∈ S)
+    [FaithfulSMul F L] {a : A} (ha : a ∈ vanishingIdeal S) : Coalgebra.counit (R := F) a = 0 := by
+  have h := ha onePt hS
+  rw [onePt_apply] at h
+  exact (FaithfulSMul.algebraMap_injective F L) (by rw [h, map_zero])
+
+noncomputable abbrev liftPt (S : Set (A →ₐ[F] L)) (ν : A →ₐ[F] L) (hν : ν ∈ S) :
+    (A ⧸ vanishingIdeal S) →ₐ[F] L :=
+  HopfAlgebra.liftPoint S ν hν
+
+private noncomputable abbrev _root_.P2MMultE.evalPair (S : Set (A →ₐ[F] L)) (ν ν' : A →ₐ[F] L) (hν : ν ∈ S) (hν' : ν' ∈ S) :
+    (A ⧸ vanishingIdeal S) ⊗[F] (A ⧸ vanishingIdeal S) →ₐ[F] L :=
+  HopfAlgebra.evalPair S ν ν' hν hν'
+
+export _root_.P2MMultE (evalPair)
+/--
+@isnad1 id=eq.2h7v.s13.9bfb6f79af23 from=translated src=- shape=46528bb1 vocab=e5ef2c80
+-/
+theorem evalPair_map_mk (S : Set (A →ₐ[F] L)) (ν ν' : A →ₐ[F] L) (hν : ν ∈ S) (hν' : ν' ∈ S)
+    (x : A ⊗[F] A) :
+    evalPair S ν ν' hν hν' (Algebra.TensorProduct.map (Ideal.Quotient.mkₐ F (vanishingIdeal S))
+      (Ideal.Quotient.mkₐ F (vanishingIdeal S)) x)
+      = Algebra.TensorProduct.lmul' F (S := L) (Algebra.TensorProduct.map ν ν' x) := by
+  induction x using TensorProduct.induction_on with
+  | zero => simp only [map_zero]
+  | tmul a b =>
+    simp only [evalPair, AlgHom.coe_comp, Function.comp_apply, Algebra.TensorProduct.map_tmul,
+      Ideal.Quotient.mkₐ_eq_mk]
+    rfl
+  | add x y hx hy => simp only [map_add, hx, hy]
+
+/--
+@isnad1 id=eq.4h7v.s13.cb13150704e4 from=translated src=- shape=1eefa5bb vocab=851e7518
+-/
+theorem evalPair_map_comul_eq_zero {S : Set (A →ₐ[F] L)}
+    (hS : ∀ ν ν', ν ∈ S → ν' ∈ S → convPt ν ν' ∈ S)
+    {a : A} (ha : a ∈ vanishingIdeal S) (ν ν' : A →ₐ[F] L) (hν : ν ∈ S) (hν' : ν' ∈ S) :
+    evalPair S ν ν' hν hν' (Algebra.TensorProduct.map (Ideal.Quotient.mkₐ F (vanishingIdeal S))
+      (Ideal.Quotient.mkₐ F (vanishingIdeal S)) (Coalgebra.comul (R := F) a)) = 0 := by
+  rw [evalPair_map_mk, ← convPt_apply]
+  exact ha _ (hS ν ν' hν hν')
+
+/--
+@isnad1 id=eq.3h5v.s13.2c0bee309480 from=translated src=- shape=a0a80bdb vocab=851e7518
+-/
+theorem map_mk_comul_eq_zero {S : Set (A →ₐ[F] L)}
+    (hS : ∀ ν ν', ν ∈ S → ν' ∈ S → convPt ν ν' ∈ S)
+    (hsep : ∀ x : (A ⧸ vanishingIdeal S) ⊗[F] (A ⧸ vanishingIdeal S),
+      (∀ ν ν' (hν : ν ∈ S) (hν' : ν' ∈ S), evalPair S ν ν' hν hν' x = 0) → x = 0)
+    {a : A} (ha : a ∈ vanishingIdeal S) :
+    Algebra.TensorProduct.map (Ideal.Quotient.mkₐ F (vanishingIdeal S))
+      (Ideal.Quotient.mkₐ F (vanishingIdeal S)) (Coalgebra.comul (R := F) a) = 0 :=
+  hsep _ fun ν ν' hν hν' => evalPair_map_comul_eq_zero hS ha ν ν' hν hν'
+
+/--
+@isnad1 id=mem.2h5v.s10.493820c1ded0 from=translated src=- shape=ec85e43a vocab=ac94b52e
+-/
+theorem antipode_mem_vanishingIdeal {S : Set (A →ₐ[F] L)}
+    (hS : ∀ ν, ν ∈ S → ∃ ν' ∈ S, ν'.toLinearMap = ν.toLinearMap ∘ₗ HopfAlgebraStruct.antipode (R := F))
+    {a : A} (ha : a ∈ vanishingIdeal S) : HopfAlgebraStruct.antipode (R := F) a ∈ vanishingIdeal S := by
+  intro ν hν
+  obtain ⟨ν', hν', h⟩ := hS ν hν
+  have := LinearMap.congr_fun h a
+  simp only [LinearMap.coe_comp, Function.comp_apply, AlgHom.toLinearMap_apply] at this
+  rw [← this]
+  exact ha ν' hν'
+
+end P2MMultE
+
+namespace P2MMultE
+
+open scoped TensorProduct
+
+section CharSub
+
+variable {F : Type*} [Field F] {A : Type*} [CommRing A] [HopfAlgebra F A] [Module.Finite F A]
+variable {L : Type*} [CommRing L] [Algebra F L]
+
+noncomputable def liftFun (I : Ideal A) (θ : Module.Dual F A) (hθ : ∀ a ∈ I, θ a = 0) :
+    Module.Dual F (A ⧸ I) :=
+  (I.restrictScalars F).liftQ θ (fun a ha => (LinearMap.mem_ker).2 (hθ a ha))
+
+/--
+@isnad1 id=eq.2h6v.s15.a8c957747345 from=translated src=- shape=56a08807 vocab=801e52f6
+-/
+theorem dualDistrib_tmul_eq_comp_map (I : Ideal A) (θ θ' : Module.Dual F A)
+    (hθ : ∀ a ∈ I, θ a = 0) (hθ' : ∀ a ∈ I, θ' a = 0) (x : A ⊗[F] A) :
+    TensorProduct.dualDistrib F A A (θ ⊗ₜ[F] θ') x
+      = TensorProduct.dualDistrib F (A ⧸ I) (A ⧸ I) (liftFun I θ hθ ⊗ₜ[F] liftFun I θ' hθ')
+          (Algebra.TensorProduct.map (Ideal.Quotient.mkₐ F I) (Ideal.Quotient.mkₐ F I) x) := by
+  induction x using TensorProduct.induction_on with
+  | zero => simp only [map_zero]
+  | tmul a b =>
+    simp only [TensorProduct.dualDistrib_apply, Algebra.TensorProduct.map_tmul, Ideal.Quotient.mkₐ_eq_mk]
+    rfl
+  | add x y hx hy => simp only [map_add, hx, hy]
+
+variable [FaithfulSMul F L]
+
+noncomputable def charSub (S : Set (A →ₐ[F] L)) (hS1 : onePt ∈ S)
+    (hSmul : ∀ ν ν', ν ∈ S → ν' ∈ S → convPt ν ν' ∈ S)
+    (hsep : ∀ x : (A ⧸ vanishingIdeal S) ⊗[F] (A ⧸ vanishingIdeal S),
+      (∀ ν ν' (hν : ν ∈ S) (hν' : ν' ∈ S), evalPair S ν ν' hν hν' x = 0) → x = 0) :
+    Subalgebra F (CartierDual F A) where
+  carrier := {θ | ∀ a ∈ vanishingIdeal S, θ a = 0}
+  mul_mem' {θ θ'} hθ hθ' := by
+    intro a ha
+    rw [CartierDual.mul_apply, dualDistrib_tmul_eq_comp_map (vanishingIdeal S) (CartierDual.toDual F A θ)
+      (CartierDual.toDual F A θ') hθ hθ', map_mk_comul_eq_zero hSmul hsep ha, map_zero]
+  one_mem' := by
+    intro a ha
+    rw [CartierDual.one_apply]
+    exact counit_eq_zero_of_mem_vanishingIdeal hS1 ha
+  add_mem' {θ θ'} hθ hθ' := fun a ha => by
+    show θ a + θ' a = 0
+    rw [hθ a ha, hθ' a ha, add_zero]
+  zero_mem' := fun a _ => rfl
+  algebraMap_mem' c := by
+    intro a ha
+    rw [CartierDual.algebraMap_apply, counit_eq_zero_of_mem_vanishingIdeal hS1 ha, zero_mul]
+
+/--
+@isnad1 id=eq.6h6v.s12.bef57a2429f9 from=translated src=- shape=7715ad97 vocab=6fbaa41b
+-/
+theorem comp_antipode_mem_charSub {S : Set (A →ₐ[F] L)} {hS1 hSmul hsep}
+    (hSinv : ∀ ν, ν ∈ S → ∃ ν' ∈ S, ν'.toLinearMap = ν.toLinearMap ∘ₗ HopfAlgebraStruct.antipode (R := F))
+    {θ : CartierDual F A} (hθ : θ ∈ charSub S hS1 hSmul hsep) (a : A) (ha : a ∈ vanishingIdeal S) :
+    θ (HopfAlgebraStruct.antipode (R := F) a) = 0 :=
+  hθ _ (antipode_mem_vanishingIdeal hSinv ha)
+
+end CharSub
+
+end P2MMultE
+
+namespace P2MMultE
+
+open scoped TensorProduct
+
+section AlgIso
+
+variable {F : Type*} [Field F] {A : Type*} [CommRing A] [HopfAlgebra F A] [Module.Finite F A]
+variable {L : Type*} [Field L] [Algebra F L]
+
+private abbrev _root_.P2MMultE.ptSet (S : Submonoid (WithConv (A →ₐ[F] L))) : Set (A →ₐ[F] L) := HopfAlgebra.ptSet S
+
+export _root_.P2MMultE (ptSet)
+/--
+@isnad1 id=mem.0h5v.s11.f2032e0d3185 from=translated src=- shape=65b5c145 vocab=7185a2a6
+-/
+theorem mem_ptSet {S : Submonoid (WithConv (A →ₐ[F] L))} (ν : ↥S) : WithConv.ofConv ν.1 ∈ ptSet S := by
+  show WithConv.toConv (WithConv.ofConv ν.1) ∈ S
+  simpa using ν.2
+
+abbrev QS (S : Submonoid (WithConv (A →ₐ[F] L))) : Type _ := HopfAlgebra.pointQuot S
+
+noncomputable def ptL (ν : A →ₐ[F] L) : L ⊗[F] A →ₐ[L] L :=
+  Algebra.TensorProduct.lift (Algebra.ofId L L) ν (fun _ _ => Commute.all _ _)
+
+end AlgIso
+
+end P2MMultE
+
+namespace P2MMultE
+
+open scoped TensorProduct
+
+section QuotCoalg
+
+variable {F : Type*} [Field F] {A : Type*} [CommRing A] [HopfAlgebra F A] [Module.Finite F A]
+variable {L : Type*} [Field L] [Algebra F L]
+
+structure PtHyp (S : Submonoid (WithConv (A →ₐ[F] L))) : Prop where
+  one_mem : onePt ∈ ptSet S
+  mul_mem : ∀ ν ν', ν ∈ ptSet S → ν' ∈ ptSet S → convPt ν ν' ∈ ptSet S
+  sep : ∀ x : QS S ⊗[F] QS S,
+    (∀ ν ν' (hν : ν ∈ ptSet S) (hν' : ν' ∈ ptSet S), evalPair (ptSet S) ν ν' hν hν' x = 0) → x = 0
+
+/--
+@isnad1 id=eq.0h5v.s9.693808e6f20f from=translated src=- shape=8fe50ef5 vocab=2ea4416a
+-/
+theorem ofConv_mul (x y : WithConv (A →ₐ[F] L)) :
+    WithConv.ofConv (x * y) = convPt (WithConv.ofConv x) (WithConv.ofConv y) := rfl
+
+/--
+@isnad1 id=pthyp.1h4v.s12.e93a4620817f from=translated src=- shape=b7497cef vocab=c3d0f32d
+-/
+theorem PtHyp.of_isPtSubgroup {S : Submonoid (WithConv (A →ₐ[F] L))}
+    (hsep : ∀ x : QS S ⊗[F] QS S,
+      (∀ ν ν' (hν : ν ∈ ptSet S) (hν' : ν' ∈ ptSet S), evalPair (ptSet S) ν ν' hν hν' x = 0) → x = 0) :
+    PtHyp S where
+  one_mem := by
+    show WithConv.toConv onePt ∈ S
+    have : (WithConv.toConv (onePt : A →ₐ[F] L)) = 1 := rfl
+    rw [this]; exact S.one_mem
+  mul_mem := by
+    intro ν ν' hν hν'
+    show WithConv.toConv (convPt ν ν') ∈ S
+    have : WithConv.toConv (convPt ν ν') = WithConv.toConv ν * WithConv.toConv ν' := rfl
+    rw [this]; exact S.mul_mem hν hν'
+  sep := hsep
+
+variable {S : Submonoid (WithConv (A →ₐ[F] L))}
+
+noncomputable def comulQ (h : PtHyp S) : QS S →ₗ[F] QS S ⊗[F] QS S :=
+  ((vanishingIdeal (ptSet S)).restrictScalars F).liftQ
+    ((Algebra.TensorProduct.map (Ideal.Quotient.mkₐ F (vanishingIdeal (ptSet S)))
+        (Ideal.Quotient.mkₐ F (vanishingIdeal (ptSet S)))).toLinearMap ∘ₗ Coalgebra.comul (R := F) (A := A))
+    (by
+      intro a ha
+      rw [LinearMap.mem_ker, LinearMap.coe_comp, Function.comp_apply, AlgHom.toLinearMap_apply]
+      exact map_mk_comul_eq_zero h.mul_mem h.sep ha)
+
+/--
+@isnad1 id=eq.1h5v.s13.09ac1e936d35 from=translated src=- shape=d26bd533 vocab=0ca808a9
+-/
+theorem comulQ_mk (h : PtHyp S) (a : A) :
+    comulQ h (Ideal.Quotient.mk _ a)
+      = Algebra.TensorProduct.map (Ideal.Quotient.mkₐ F (vanishingIdeal (ptSet S)))
+          (Ideal.Quotient.mkₐ F (vanishingIdeal (ptSet S))) (Coalgebra.comul (R := F) a) := rfl
+
+noncomputable def ptQ (ν : ↥S) : QS S →ₐ[F] L := liftPt (ptSet S) (WithConv.ofConv ν.1) (mem_ptSet ν)
+
+/--
+@isnad1 id=eq.0h6v.s11.f1557a6a4b43 from=translated src=- shape=22a4b47f vocab=6ce8d104
+-/
+theorem ptQ_mk (ν : ↥S) (a : A) : ptQ ν (Ideal.Quotient.mk _ a) = (WithConv.ofConv ν.1) a := rfl
+
+/--
+@isnad1 id=eq.1h7v.s14.4869fc6ad52c from=translated src=- shape=efb2daaa vocab=54fde469
+-/
+theorem ptQ_mul (h : PtHyp S) (ν ν' : ↥S) (q : QS S) :
+    ptQ (ν * ν') q = LinearMap.mul' F L (TensorProduct.map (ptQ ν).toLinearMap (ptQ ν').toLinearMap (comulQ h q)) := by
+  obtain ⟨a, rfl⟩ := Ideal.Quotient.mk_surjective q
+  rw [ptQ_mk, Submonoid.coe_mul, ofConv_mul, convPt_apply, comulQ_mk]
+  induction (Coalgebra.comul (R := F) a) using TensorProduct.induction_on with
+  | zero => simp only [map_zero]
+  | tmul a₁ a₂ =>
+    rw [Algebra.TensorProduct.map_tmul, Algebra.TensorProduct.lmul'_apply_tmul, Algebra.TensorProduct.map_tmul,
+      TensorProduct.map_tmul, LinearMap.mul'_apply]
+    rfl
+  | add x y hx hy => simp only [map_add, hx, hy]
+
+noncomputable def counitQ (h : PtHyp S) : QS S →ₗ[F] F :=
+  ((vanishingIdeal (ptSet S)).restrictScalars F).liftQ (Coalgebra.counit (R := F) (A := A))
+    (by intro a ha; rw [LinearMap.mem_ker]; exact counit_eq_zero_of_mem_vanishingIdeal h.one_mem ha)
+
+/--
+@isnad1 id=eq.1h5v.s11.80224fe91f04 from=translated src=- shape=8d2f2ac1 vocab=372b7ac1
+-/
+theorem counitQ_mk (h : PtHyp S) (a : A) : counitQ h (Ideal.Quotient.mk _ a) = Coalgebra.counit (R := F) a := rfl
+
+/--
+@isnad1 id=eq.1h5v.s11.4f0519922529 from=translated src=- shape=b6dab0fb vocab=b69382a3
+-/
+theorem ptQ_one (h : PtHyp S) (q : QS S) : ptQ (1 : ↥S) q = algebraMap F L (counitQ h q) := by
+  obtain ⟨a, rfl⟩ := Ideal.Quotient.mk_surjective q
+  rw [ptQ_mk, counitQ_mk]
+  rfl
+
+end QuotCoalg
+
+end P2MMultE
+
+namespace P2MMultE
+
+open scoped TensorProduct
+
+section LLevel
+
+variable {F : Type*} [Field F] {A : Type*} [CommRing A] [HopfAlgebra F A] [Module.Finite F A]
+variable {L : Type*} [Field L] [Algebra F L]
+variable {S : Submonoid (WithConv (A →ₐ[F] L))}
+
+noncomputable def ptQL (ν : ↥S) : L ⊗[F] QS S →ₐ[L] L :=
+  Algebra.TensorProduct.lift (Algebra.ofId L L) (ptQ ν) (fun _ _ => Commute.all _ _)
+
+/--
+@isnad1 id=eq.0h7v.s12.1ef23ee58557 from=translated src=- shape=86f7919c vocab=c45475d6
+-/
+theorem ptQL_tmul (ν : ↥S) (c : L) (q : QS S) : ptQL ν (c ⊗ₜ[F] q) = c * ptQ ν q := by
+  simp only [ptQL, Algebra.TensorProduct.lift_tmul, Algebra.ofId_apply, Algebra.algebraMap_self, RingHom.id_apply]
+
+noncomputable def comulQL (h : PtHyp S) :
+    L ⊗[F] QS S →ₗ[L] (L ⊗[F] QS S) ⊗[L] (L ⊗[F] QS S) :=
+  (TensorProduct.AlgebraTensorModule.distribBaseChange F L (QS S) (QS S)).toLinearMap
+    ∘ₗ (comulQ h).baseChange L
+
+/--
+@isnad1 id=eq.1h6v.s16.7b1e4db89a3f from=translated src=- shape=b7fa3af5 vocab=ac811914
+-/
+theorem comulQL_tmul (h : PtHyp S) (c : L) (q : QS S) :
+    comulQL h (c ⊗ₜ[F] q)
+      = TensorProduct.AlgebraTensorModule.distribBaseChange F L (QS S) (QS S) (c ⊗ₜ[F] comulQ h q) := by
+  simp only [comulQL, LinearMap.coe_comp, Function.comp_apply, LinearEquiv.coe_coe, LinearMap.baseChange_tmul]
+
+/--
+@isnad1 id=eq.0h8v.s16.c5a54a3f842a from=translated src=- shape=430ed19a vocab=bc9525c3
+-/
+theorem mul'_map_ptQL_distribBaseChange (ν ν' : ↥S) (c : L) (t : QS S ⊗[F] QS S) :
+    LinearMap.mul' L L (TensorProduct.map (ptQL ν).toLinearMap (ptQL ν').toLinearMap
+      (TensorProduct.AlgebraTensorModule.distribBaseChange F L (QS S) (QS S) (c ⊗ₜ[F] t)))
+      = c * LinearMap.mul' F L (TensorProduct.map (ptQ ν).toLinearMap (ptQ ν').toLinearMap t) := by
+  induction t using TensorProduct.induction_on with
+  | zero => simp only [TensorProduct.tmul_zero, map_zero, mul_zero]
+  | tmul q₁ q₂ =>
+    rw [TensorProduct.AlgebraTensorModule.distribBaseChange_tmul, TensorProduct.map_tmul, LinearMap.mul'_apply,
+      TensorProduct.map_tmul, LinearMap.mul'_apply]
+    simp only [AlgHom.toLinearMap_apply, ptQL_tmul, one_mul]
+    ring
+  | add x y hx hy => simp only [TensorProduct.tmul_add, map_add, mul_add, hx, hy]
+
+/--
+@isnad1 id=eq.1h7v.s16.ceff7f3f838b from=translated src=- shape=cdb4c528 vocab=0ec4f319
+-/
+theorem ptQL_mul (h : PtHyp S) (ν ν' : ↥S) (x : L ⊗[F] QS S) :
+    ptQL (ν * ν') x
+      = LinearMap.mul' L L (TensorProduct.map (ptQL ν).toLinearMap (ptQL ν').toLinearMap (comulQL h x)) := by
+  induction x using TensorProduct.induction_on with
+  | zero => simp only [map_zero]
+  | tmul c q => rw [ptQL_tmul, ptQ_mul h, comulQL_tmul, mul'_map_ptQL_distribBaseChange]
+  | add x y hx hy => simp only [map_add, hx, hy]
+
+/--
+@isnad1 id=eq.1h6v.s12.d0d7b5d9626c from=translated src=- shape=0c44c297 vocab=e0763263
+-/
+theorem ptQL_one (h : PtHyp S) (c : L) (q : QS S) :
+    ptQL (1 : ↥S) (c ⊗ₜ[F] q) = c * algebraMap F L (counitQ h q) := by
+  rw [ptQL_tmul, ptQ_one h]
+
+end LLevel
+
+end P2MMultE
+
+namespace P2MMultE
+
+open scoped TensorProduct
+
+section DualSide
+
+variable {F : Type*} [Field F] {A : Type*} [CommRing A] [HopfAlgebra F A] [Module.Finite F A]
+variable {L : Type*} [Field L] [Algebra F L]
+variable {S : Submonoid (WithConv (A →ₐ[F] L))}
+
+noncomputable abbrev CSub (h : PtHyp S) : Subalgebra F (CartierDual F A) :=
+  charSub (ptSet S) h.one_mem h.mul_mem h.sep
+
+noncomputable def toDualQ (h : PtHyp S) : ↥(CSub h) →ₗ[F] Module.Dual F (QS S) where
+  toFun θ := liftFun (vanishingIdeal (ptSet S)) (CartierDual.toDual F A θ.1) θ.2
+  map_add' θ θ' := by
+    apply LinearMap.ext; intro q
+    obtain ⟨a, rfl⟩ := Ideal.Quotient.mk_surjective q
+    rfl
+  map_smul' c θ := by
+    apply LinearMap.ext; intro q
+    obtain ⟨a, rfl⟩ := Ideal.Quotient.mk_surjective q
+    rfl
+
+/--
+@isnad1 id=eq.1h6v.s13.3c3d8f2102c5 from=translated src=- shape=b33c5ec3 vocab=3a062ba9
+-/
+theorem toDualQ_mk (h : PtHyp S) (θ : ↥(CSub h)) (a : A) :
+    toDualQ h θ (Ideal.Quotient.mk _ a) = θ.1 a := rfl
+
+/--
+@isnad1 id=injectiv.1h4v.s12.5fc20410e123 from=translated src=- shape=18621f6f vocab=cdbcb51b
+-/
+theorem toDualQ_injective (h : PtHyp S) : Function.Injective (toDualQ h) := by
+  intro θ θ' hθ
+  apply Subtype.ext
+  apply CartierDual.ext
+  intro a
+  have := LinearMap.congr_fun hθ (Ideal.Quotient.mk _ a)
+  exact this
+
+/--
+@isnad1 id=surjecti.1h4v.s12.abc7e9c1f576 from=translated src=- shape=18621f6f vocab=8a4508e9
+-/
+theorem toDualQ_surjective (h : PtHyp S) : Function.Surjective (toDualQ h) := by
+  intro φ
+  refine ⟨⟨CartierDual.ofDual F A (φ ∘ₗ ((vanishingIdeal (ptSet S)).restrictScalars F).mkQ), ?_⟩, ?_⟩
+  · intro a ha
+    have h0 : ((vanishingIdeal (ptSet S)).restrictScalars F).mkQ a = 0 := by
+      rw [Submodule.mkQ_apply, Submodule.Quotient.mk_eq_zero]; exact ha
+    show φ (((vanishingIdeal (ptSet S)).restrictScalars F).mkQ a) = 0
+    rw [h0]
+    exact map_zero φ
+  · apply LinearMap.ext; intro q
+    obtain ⟨a, rfl⟩ := Ideal.Quotient.mk_surjective q
+    rfl
+
+/--
+@isnad1 id=eq.1h7v.s16.8d6ca3adbdfa from=translated src=- shape=6d592463 vocab=13c78dff
+-/
+theorem toDualQ_mul (h : PtHyp S) (θ θ' : ↥(CSub h)) (q : QS S) :
+    toDualQ h (θ * θ') q
+      = TensorProduct.dualDistrib F (QS S) (QS S) (toDualQ h θ ⊗ₜ[F] toDualQ h θ') (comulQ h q) := by
+  obtain ⟨a, rfl⟩ := Ideal.Quotient.mk_surjective q
+  rw [toDualQ_mk, Subalgebra.coe_mul, CartierDual.mul_apply, comulQ_mk,
+    dualDistrib_tmul_eq_comp_map (vanishingIdeal (ptSet S)) (CartierDual.toDual F A θ.1)
+      (CartierDual.toDual F A θ'.1) θ.2 θ'.2]
+  rfl
+
+/--
+@isnad1 id=eq.1h5v.s13.474581040e98 from=translated src=- shape=5fa15251 vocab=6c6ca36c
+-/
+theorem toDualQ_one (h : PtHyp S) (q : QS S) : toDualQ h 1 q = counitQ h q := by
+  obtain ⟨a, rfl⟩ := Ideal.Quotient.mk_surjective q
+  rw [toDualQ_mk, Subalgebra.coe_one, CartierDual.one_apply, counitQ_mk]
+
+noncomputable def dualBC : L ⊗[F] Module.Dual F (QS S) →ₗ[L] Module.Dual L (L ⊗[F] QS S) :=
+  TensorProduct.AlgebraTensorModule.lift
+    ((LinearMap.ringLmapEquivSelf L L (Module.Dual F (QS S) →ₗ[F] Module.Dual L (L ⊗[F] QS S))).symm
+      (Module.Dual.baseChange L))
+
+/--
+@isnad1 id=eq.0h8v.s14.a0bb97761e0b from=translated src=- shape=7adea17e vocab=45c0df2b
+-/
+theorem dualBC_tmul_tmul (c : L) (φ : Module.Dual F (QS S)) (c' : L) (q : QS S) :
+    dualBC (S := S) (c ⊗ₜ[F] φ) (c' ⊗ₜ[F] q) = c * (c' * algebraMap F L (φ q)) := by
+  have h1 : dualBC (S := S) (c ⊗ₜ[F] φ) = c • Module.Dual.baseChange L φ := by
+    simp [dualBC, LinearMap.ringLmapEquivSelf_symm_apply]
+  rw [h1, LinearMap.smul_apply, smul_eq_mul]
+  congr 1
+  simp [Module.Dual.baseChange, Algebra.smul_def, mul_comm]
+
+end DualSide
+
+end P2MMultE
+
+namespace P2MMultE
+
+open scoped TensorProduct
+
+section Theta
+
+variable {F : Type*} [Field F] {A : Type*} [CommRing A] [HopfAlgebra F A] [Module.Finite F A]
+variable {L : Type*} [Field L] [Algebra F L]
+variable {S : Submonoid (WithConv (A →ₐ[F] L))}
+
+noncomputable def Θ (h : PtHyp S) : L ⊗[F] ↥(CSub h) →ₗ[L] Module.Dual L (L ⊗[F] QS S) :=
+  dualBC ∘ₗ (toDualQ h).baseChange L
+
+/--
+@isnad1 id=eq.1h8v.s15.5dda47a677cd from=translated src=- shape=4cc8586f vocab=2b2825ad
+-/
+theorem Θ_tmul_tmul (h : PtHyp S) (c : L) (θ : ↥(CSub h)) (c' : L) (q : QS S) :
+    Θ h (c ⊗ₜ[F] θ) (c' ⊗ₜ[F] q) = c * (c' * algebraMap F L (toDualQ h θ q)) := by
+  simp only [Θ, LinearMap.coe_comp, Function.comp_apply, LinearMap.baseChange_tmul, dualBC_tmul_tmul]
+
+noncomputable def pairQ (f g : Module.Dual L (L ⊗[F] QS S)) : QS S ⊗[F] QS S →ₗ[F] L :=
+  TensorProduct.lift
+    (LinearMap.mk₂ F (fun q₁ q₂ => f ((1 : L) ⊗ₜ[F] q₁) * g ((1 : L) ⊗ₜ[F] q₂))
+      (fun q q' q₂ => by simp only [TensorProduct.tmul_add, map_add, add_mul])
+      (fun c q q₂ => by simp only [TensorProduct.tmul_smul, LinearMap.map_smul_of_tower, smul_mul_assoc])
+      (fun q q₂ q₂' => by simp only [TensorProduct.tmul_add, map_add, mul_add])
+      (fun c q q₂ => by simp only [TensorProduct.tmul_smul, LinearMap.map_smul_of_tower, mul_smul_comm]))
+
+/--
+@isnad1 id=eq.0h8v.s13.739fcc09a60b from=translated src=- shape=14624b0a vocab=008f5eb5
+-/
+theorem pairQ_tmul (f g : Module.Dual L (L ⊗[F] QS S)) (q₁ q₂ : QS S) :
+    pairQ f g (q₁ ⊗ₜ[F] q₂) = f ((1 : L) ⊗ₜ[F] q₁) * g ((1 : L) ⊗ₜ[F] q₂) := rfl
+
+/--
+@isnad1 id=eq.0h8v.s16.d6cabe2b673e from=translated src=- shape=ac0a8021 vocab=b5169690
+-/
+theorem mul'_map_distribBaseChange (f g : Module.Dual L (L ⊗[F] QS S)) (c : L) (t : QS S ⊗[F] QS S) :
+    LinearMap.mul' L L (TensorProduct.map f g
+      (TensorProduct.AlgebraTensorModule.distribBaseChange F L (QS S) (QS S) (c ⊗ₜ[F] t)))
+      = c * pairQ f g t := by
+  induction t using TensorProduct.induction_on with
+  | zero => simp only [TensorProduct.tmul_zero, map_zero, mul_zero]
+  | tmul q₁ q₂ =>
+    rw [TensorProduct.AlgebraTensorModule.distribBaseChange_tmul, TensorProduct.map_tmul, LinearMap.mul'_apply,
+      pairQ_tmul]
+    have : f (c ⊗ₜ[F] q₁) = c * f ((1 : L) ⊗ₜ[F] q₁) := by
+      rw [← smul_eq_mul, ← LinearMap.map_smul, TensorProduct.smul_tmul', smul_eq_mul, mul_one]
+    rw [this, mul_assoc]
+  | add x y hx hy => simp only [TensorProduct.tmul_add, map_add, mul_add, hx, hy]
+
+/--
+@isnad1 id=eq.1h9v.s16.cc4685703556 from=translated src=- shape=3090fa81 vocab=bae8c252
+-/
+theorem pairQ_Θ_tmul (h : PtHyp S) (c c' : L) (θ θ' : ↥(CSub h)) (t : QS S ⊗[F] QS S) :
+    pairQ (Θ h (c ⊗ₜ[F] θ)) (Θ h (c' ⊗ₜ[F] θ')) t
+      = c * c' * algebraMap F L (TensorProduct.dualDistrib F (QS S) (QS S) (toDualQ h θ ⊗ₜ[F] toDualQ h θ') t) := by
+  induction t using TensorProduct.induction_on with
+  | zero => simp only [map_zero, mul_zero]
+  | tmul q₁ q₂ =>
+    rw [pairQ_tmul, Θ_tmul_tmul, Θ_tmul_tmul, TensorProduct.dualDistrib_apply, map_mul]
+    ring
+  | add x y hx hy => simp only [map_add, mul_add, hx, hy]
+
+/--
+@isnad1 id=eq.1h7v.s16.2bacb058b88e from=translated src=- shape=5295f6c1 vocab=03ebbe1e
+-/
+theorem Θ_mul (h : PtHyp S) (w w' : L ⊗[F] ↥(CSub h)) (x : L ⊗[F] QS S) :
+    Θ h (w * w') x = LinearMap.mul' L L (TensorProduct.map (Θ h w) (Θ h w') (comulQL h x)) := by
+  induction w using TensorProduct.induction_on generalizing x with
+  | zero => simp only [zero_mul, map_zero, LinearMap.zero_apply, TensorProduct.map_zero_left]
+  | tmul c θ =>
+    induction w' using TensorProduct.induction_on generalizing x with
+    | zero => simp only [mul_zero, map_zero, LinearMap.zero_apply, TensorProduct.map_zero_right]
+    | tmul c' θ' =>
+      induction x using TensorProduct.induction_on with
+      | zero => simp only [map_zero]
+      | tmul c'' q =>
+        rw [Algebra.TensorProduct.tmul_mul_tmul, Θ_tmul_tmul, toDualQ_mul, comulQL_tmul,
+          mul'_map_distribBaseChange, pairQ_Θ_tmul]
+        ring
+      | add x y hx hy => simp only [map_add, hx, hy]
+    | add u v hu hv => simp only [mul_add, map_add, LinearMap.add_apply, TensorProduct.map_add_right, hu, hv]
+  | add u v hu hv =>
+    simp only [add_mul, map_add, LinearMap.add_apply, TensorProduct.map_add_left, hu, hv]
+
+end Theta
+
+end P2MMultE
+
+namespace P2MMultE
+
+open scoped TensorProduct
+
+section Bij
+
+variable {F : Type*} [Field F] {A : Type*} [CommRing A] [HopfAlgebra F A] [Module.Finite F A]
+variable {L : Type*} [Field L] [Algebra F L]
+variable {S : Submonoid (WithConv (A →ₐ[F] L))}
+
+/--
+@isnad1 id=bijectiv.0h4v.s14.2980ce8158ae from=translated src=- shape=6096bc7b vocab=8fde991b
+-/
+theorem dualBC_bijective : Function.Bijective (dualBC (S := S) (F := F) (L := L)) := by
+  classical
+  let bQ := Module.finBasis F (QS S)
+  let b₁ := Algebra.TensorProduct.basis L bQ.dualBasis
+  let b₂ := (Algebra.TensorProduct.basis L bQ).dualBasis
+  have key : dualBC (S := S) = (b₁.equiv b₂ (Equiv.refl _)).toLinearMap := by
+    refine b₁.ext fun i => ?_
+    rw [LinearEquiv.coe_coe, Module.Basis.equiv_apply, Equiv.refl_apply]
+    refine (Algebra.TensorProduct.basis L bQ).ext fun j => ?_
+    rw [Module.Basis.dualBasis_apply_self, Algebra.TensorProduct.basis_apply, Algebra.TensorProduct.basis_apply,
+      dualBC_tmul_tmul, Module.Basis.dualBasis_apply_self]
+    split_ifs <;> simp
+  rw [key]
+  exact (b₁.equiv b₂ (Equiv.refl _)).bijective
+
+noncomputable def toDualQEquiv (h : PtHyp S) : ↥(CSub h) ≃ₗ[F] Module.Dual F (QS S) :=
+  LinearEquiv.ofBijective (toDualQ h) ⟨toDualQ_injective h, toDualQ_surjective h⟩
+
+/--
+@isnad1 id=bijectiv.1h4v.s14.cdbbb083714f from=translated src=- shape=ec6814fd vocab=cd3f3cab
+-/
+theorem Θ_bijective (h : PtHyp S) : Function.Bijective (Θ h) := by
+  have h1 : Function.Bijective ((toDualQ h).baseChange L) := by
+    have : (toDualQ h).baseChange L = ((toDualQEquiv h).baseChange F L _ _).toLinearMap := by
+      apply TensorProduct.AlgebraTensorModule.ext
+      intro c θ
+      rfl
+    rw [this]; exact LinearEquiv.bijective _
+  exact dualBC_bijective.comp h1
+
+noncomputable def ΘEquiv (h : PtHyp S) : L ⊗[F] ↥(CSub h) ≃ₗ[L] Module.Dual L (L ⊗[F] QS S) :=
+  LinearEquiv.ofBijective (Θ h) (Θ_bijective h)
+
+/--
+@isnad1 id=eq.1h5v.s15.7ad5b053ece3 from=translated src=- shape=17618a1f vocab=3c787625
+-/
+theorem ΘEquiv_apply (h : PtHyp S) (w : L ⊗[F] ↥(CSub h)) : ΘEquiv h w = Θ h w := rfl
+
+/--
+@isnad1 id=eq.1h4v.s14.c248dedf72d3 from=translated src=- shape=98f5cd70 vocab=a4e88e38
+-/
+theorem Θ_one (h : PtHyp S) : Θ h 1 = (ptQL (1 : ↥S)).toLinearMap := by
+  apply TensorProduct.AlgebraTensorModule.ext
+  intro c q
+  rw [Algebra.TensorProduct.one_def, Θ_tmul_tmul, one_mul, AlgHom.toLinearMap_apply, ptQL_one h, toDualQ_one]
+
+noncomputable def dElt (h : PtHyp S) (ν : ↥S) : L ⊗[F] ↥(CSub h) := (ΘEquiv h).symm (ptQL ν).toLinearMap
+
+/--
+@isnad1 id=eq.1h5v.s14.d0ad2f7e99d4 from=translated src=- shape=0cbc65df vocab=c61fb09a
+-/
+theorem Θ_dElt (h : PtHyp S) (ν : ↥S) : Θ h (dElt h ν) = (ptQL ν).toLinearMap := by
+  rw [dElt, ← ΘEquiv_apply, LinearEquiv.apply_symm_apply]
+
+noncomputable def dHom (h : PtHyp S) : ↥S →* L ⊗[F] ↥(CSub h) where
+  toFun := dElt h
+  map_one' := by
+    apply (ΘEquiv h).injective
+    rw [ΘEquiv_apply, ΘEquiv_apply, Θ_dElt, Θ_one]
+  map_mul' ν ν' := by
+    apply (ΘEquiv h).injective
+    rw [ΘEquiv_apply, ΘEquiv_apply, Θ_dElt]
+    apply LinearMap.ext; intro x
+    rw [Θ_mul, Θ_dElt, Θ_dElt, AlgHom.toLinearMap_apply, ptQL_mul h]
+
+noncomputable def ΨHom (h : PtHyp S) : MonoidAlgebra L ↥S →ₐ[L] L ⊗[F] ↥(CSub h) :=
+  MonoidAlgebra.lift L _ ↥S (dHom h)
+
+end Bij
+
+end P2MMultE
+
+namespace P2MMultE
+
+open scoped TensorProduct
+
+section Points
+
+variable {F : Type*} [Field F] {A : Type*} [CommRing A] [HopfAlgebra F A] [Module.Finite F A]
+variable {L : Type*} [Field L] [Algebra F L]
+variable {S : Submonoid (WithConv (A →ₐ[F] L))}
+
+noncomputable def extL (h : PtHyp S) (Φ : ↥(CSub h) →ₐ[F] L) : L ⊗[F] ↥(CSub h) →ₐ[L] L :=
+  Algebra.TensorProduct.lift (Algebra.ofId L L) Φ (fun _ _ => Commute.all _ _)
+
+/--
+@isnad1 id=eq.1h7v.s13.db1fe4599d05 from=translated src=- shape=619cc634 vocab=12d69c34
+-/
+theorem extL_tmul (h : PtHyp S) (Φ : ↥(CSub h) →ₐ[F] L) (c : L) (θ : ↥(CSub h)) :
+    extL h Φ (c ⊗ₜ[F] θ) = c * Φ θ := by
+  simp only [extL, Algebra.TensorProduct.lift_tmul, Algebra.ofId_apply, Algebra.algebraMap_self, RingHom.id_apply]
+
+noncomputable def resF (h : PtHyp S) (Φ' : L ⊗[F] ↥(CSub h) →ₐ[L] L) : ↥(CSub h) →ₐ[F] L :=
+  (Φ'.restrictScalars F).comp Algebra.TensorProduct.includeRight
+
+/--
+@isnad1 id=eq.1h6v.s14.7089d2f17ed1 from=translated src=- shape=fec5eca7 vocab=2344608e
+-/
+theorem resF_apply (h : PtHyp S) (Φ' : L ⊗[F] ↥(CSub h) →ₐ[L] L) (θ : ↥(CSub h)) :
+    resF h Φ' θ = Φ' ((1 : L) ⊗ₜ[F] θ) := rfl
+
+noncomputable def extEquiv (h : PtHyp S) : (↥(CSub h) →ₐ[F] L) ≃ (L ⊗[F] ↥(CSub h) →ₐ[L] L) where
+  toFun := extL h
+  invFun := resF h
+  left_inv Φ := by
+    apply AlgHom.ext; intro θ
+    rw [resF_apply, extL_tmul, one_mul]
+  right_inv Φ' := by
+    apply Algebra.TensorProduct.ext'
+    intro c θ
+    rw [extL_tmul, resF_apply]
+    have : c ⊗ₜ[F] θ = c • ((1 : L) ⊗ₜ[F] θ) := by rw [TensorProduct.smul_tmul', smul_eq_mul, mul_one]
+    rw [this, map_smul, smul_eq_mul]
+
+end Points
+
+end P2MMultE
+
+namespace P2MMultE
+
+open scoped TensorProduct
+
+section ComulStable
+
+variable {F : Type*} [Field F] {A : Type*} [CommRing A] [HopfAlgebra F A] [Module.Finite F A]
+variable {L : Type*} [Field L] [Algebra F L]
+variable {S : Submonoid (WithConv (A →ₐ[F] L))}
+
+noncomputable def ofDualQ (h : PtHyp S) : Module.Dual F (QS S) →ₗ[F] CartierDual F A :=
+  (CSub h).val.toLinearMap ∘ₗ (toDualQEquiv h).symm.toLinearMap
+
+/--
+@isnad1 id=mem.1h5v.s12.e1feb4aef63e from=translated src=- shape=65e43714 vocab=e70ff963
+-/
+theorem ofDualQ_mem (h : PtHyp S) (φ : Module.Dual F (QS S)) : ofDualQ h φ ∈ CSub h :=
+  ((toDualQEquiv h).symm φ).2
+
+/--
+@isnad1 id=eq.1h6v.s12.3db067a55850 from=translated src=- shape=099e5c89 vocab=536b3961
+-/
+theorem ofDualQ_apply (h : PtHyp S) (φ : Module.Dual F (QS S)) (a : A) :
+    ofDualQ h φ a = φ (Ideal.Quotient.mk _ a) := by
+  have : toDualQ h ((toDualQEquiv h).symm φ) = φ := (toDualQEquiv h).apply_symm_apply φ
+  have h2 := LinearMap.congr_fun this (Ideal.Quotient.mk _ a)
+  rw [toDualQ_mk] at h2
+  exact h2
+
+noncomputable def mulDualQ (h : PtHyp S) (θ : ↥(CSub h)) : Module.Dual F (QS S ⊗[F] QS S) :=
+  toDualQ h θ ∘ₗ LinearMap.mul' F (QS S)
+
+/--
+@isnad1 id=mem.1h5v.s13.384219a79a03 from=translated src=- shape=a128867b vocab=0f626418
+-/
+theorem comul_mem_span_charSub (h : PtHyp S) (θ : ↥(CSub h)) :
+    Coalgebra.comul (R := F) (θ.1 : CartierDual F A)
+      ∈ Submodule.span F (Set.image2 (· ⊗ₜ[F] ·) ((CSub h : Set (CartierDual F A))) ((CSub h : Set (CartierDual F A)))) := by
+  classical
+
+  let ξ : Module.Dual F (QS S) ⊗[F] Module.Dual F (QS S) :=
+    (TensorProduct.dualDistribEquiv F (QS S) (QS S)).symm (mulDualQ h θ)
+  have hξ : TensorProduct.dualDistrib F (QS S) (QS S) ξ = mulDualQ h θ :=
+    (TensorProduct.dualDistribEquiv F (QS S) (QS S)).apply_symm_apply _
+
+  have hmem : TensorProduct.map (ofDualQ h) (ofDualQ h) ξ
+      ∈ Submodule.span F (Set.image2 (· ⊗ₜ[F] ·) ((CSub h : Set (CartierDual F A))) ((CSub h : Set (CartierDual F A)))) := by
+    induction ξ using TensorProduct.induction_on with
+    | zero => rw [map_zero]; exact Submodule.zero_mem _
+    | tmul φ φ' =>
+      rw [TensorProduct.map_tmul]
+      exact Submodule.subset_span ⟨_, ofDualQ_mem h φ, _, ofDualQ_mem h φ', rfl⟩
+    | add x y hx hy => rw [map_add]; exact Submodule.add_mem _ hx hy
+
+  have heq : (Coalgebra.comul (R := F) (θ.1 : CartierDual F A)) = TensorProduct.map (ofDualQ h) (ofDualQ h) ξ := by
+    apply CartierDual.tmul_eq_of_pairing_eq
+    intro a b
+    rw [CartierDual.comul_pairing]
+
+    have key : ∀ z : Module.Dual F (QS S) ⊗[F] Module.Dual F (QS S),
+        TensorProduct.dualDistrib F A A (TensorProduct.map (CartierDual.toDual F A).toLinearMap
+          (CartierDual.toDual F A).toLinearMap (TensorProduct.map (ofDualQ h) (ofDualQ h) z)) (a ⊗ₜ[F] b)
+          = TensorProduct.dualDistrib F (QS S) (QS S) z (Ideal.Quotient.mk _ a ⊗ₜ[F] Ideal.Quotient.mk _ b) := by
+      intro z
+      induction z using TensorProduct.induction_on with
+      | zero => simp only [map_zero, LinearMap.zero_apply]
+      | tmul φ φ' =>
+        rw [TensorProduct.map_tmul, TensorProduct.map_tmul, TensorProduct.dualDistrib_apply,
+          TensorProduct.dualDistrib_apply]
+        show ofDualQ h φ a * ofDualQ h φ' b = _
+        rw [ofDualQ_apply, ofDualQ_apply]
+      | add x y hx hy => simp only [map_add, LinearMap.add_apply, hx, hy]
+    rw [key, hξ, mulDualQ, LinearMap.coe_comp, Function.comp_apply, LinearMap.mul'_apply, ← map_mul, toDualQ_mk]
+  rw [heq]
+  exact hmem
+
+end ComulStable
+
+end P2MMultE
+
+open scoped TensorProduct
+
+/--
+@isnad1 id=ex.2h4v.s14.abe064abd086 from=translated src=- shape=0e47d551 vocab=a45d150d
+-/
+theorem solution
+    (F : Type) [Field F] (A : Type) [CommRing A] [HopfAlgebra F A] [Module.Finite F A]
+    (L : Type) [Field L] [Algebra F L]
+    (S : Submonoid (WithConv (A →ₐ[F] L)))
+    (hsep : ∀ x : TensorProduct F (HopfAlgebra.pointQuot S) (HopfAlgebra.pointQuot S),
+      (∀ (ν ν' : A →ₐ[F] L) (hν : ν ∈ HopfAlgebra.ptSet S) (hν' : ν' ∈ HopfAlgebra.ptSet S),
+        HopfAlgebra.evalPair (HopfAlgebra.ptSet S) ν ν' hν hν' x = 0) → x = 0)
+    (hinv : ∀ ν ∈ HopfAlgebra.ptSet S, ∃ ν' ∈ HopfAlgebra.ptSet S,
+      ν'.toLinearMap = ν.toLinearMap ∘ₗ HopfAlgebraStruct.antipode (R := F)) :
+    ∃ B : Subalgebra F (CartierDual F A),
+      (B : Set (CartierDual F A))
+          = {θ | ∀ a ∈ HopfAlgebra.vanishingIdealOfPoints (HopfAlgebra.ptSet S), θ a = 0} ∧
+      (∀ θ ∈ B, Coalgebra.comul (R := F) θ
+          ∈ Submodule.span F (Set.image2 (fun φ ψ => φ ⊗ₜ[F] ψ) (B : Set (CartierDual F A)) (B : Set (CartierDual F A)))) ∧
+      (∀ θ ∈ B, HopfAlgebraStruct.antipode (R := F) (A := CartierDual F A) θ ∈ B) := by
+  have h : P2MMultE.PtHyp S := P2MMultE.PtHyp.of_isPtSubgroup hsep
+  refine ⟨P2MMultE.CSub h, rfl, fun θ hθ => P2MMultE.comul_mem_span_charSub h ⟨θ, hθ⟩, fun θ hθ => ?_⟩
+  intro a ha
+  rw [CartierDual.antipode_apply]
+  exact P2MMultE.comp_antipode_mem_charSub hinv hθ a ha
+-- Tengoku: root names of this library moved to Tengoku.FltAnthropic so they do not collide with other libraries (generated)

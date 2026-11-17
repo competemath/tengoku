@@ -1,0 +1,120 @@
+import Tengoku.FltAnthropic.Definitions.Def_CerednikDrinfeld_MumfordVertexType
+import Tengoku.FltAnthropic.Definitions.Def_CerednikDrinfeld_MumfordPeriod
+import Tengoku.Seed.Tactic.Ring
+import Tengoku.Seed.Tactic.LinearCombination
+import Tengoku.Seed.Tactic.FinCases
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_CerednikDrinfeld_Mumford_vertexType_add_one_of_adj_and_vertexType_smul_and_exists_typeCharacter.lean`: wrote out 3 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_export`, 2 `p2m_open`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_CerednikDrinfeld_Mumford_vertexType_add_one_of_adj_and_vertexType_smul_and_exists_typeCharacter
+
+set_option autoImplicit false
+
+open _root_.CerednikDrinfeld.Mumford
+
+namespace CerednikDrinfeld
+namespace Mumford
+export _root_.CerednikDrinfeld.Mumford (vertexType vertexType_apply vertexType_self typePreserving mem_typePreserving_iff GraphAction GraphAction.smul_adj)
+namespace VertexTypeLaws
+open _root_.CerednikDrinfeld.Mumford open _root_.CerednikDrinfeld
+
+variable {W : Type} {𝒯 : SimpleGraph W}
+
+/--
+@isnad1 id=eq.1h2v.s7.c428a905436d from=translated src=- shape=4d784db5 vocab=014cf724
+-/
+theorem zmod2_eq_add_one_of_ne : ∀ a b : ZMod 2, a ≠ b → b = a + 1 := by decide
+
+def col (C : 𝒯.Coloring (Fin 2)) (w : W) : ZMod 2 := C w
+
+/--
+@isnad1 id=eq.0h6v.s7.08ab027f9aac from=translated src=- shape=233cf9f6 vocab=639dd073
+-/
+theorem length_walk_eq_col_sub (C : 𝒯.Coloring (Fin 2)) {u w : W} (p : 𝒯.Walk u w) :
+    (p.length : ZMod 2) = col C w - col C u := by
+  induction p with
+  | nil => rw [SimpleGraph.Walk.length_nil, Nat.cast_zero, sub_self]
+  | @cons x y z h p ih =>
+      rw [SimpleGraph.Walk.length_cons, Nat.cast_succ, ih]
+      have hxy : col C y = col C x + 1 := zmod2_eq_add_one_of_ne _ _ (C.valid h)
+      rw [hxy]; ring
+
+/--
+@isnad1 id=eq.1h5v.s6.4bd7d1aefb4d from=translated src=- shape=e89d5185 vocab=83a3cede
+-/
+theorem vertexType_eq_col_sub (hc : 𝒯.Connected) (C : 𝒯.Coloring (Fin 2)) (w₀ w : W) :
+    vertexType 𝒯 w₀ w = col C w - col C w₀ := by
+  obtain ⟨p, hp⟩ := hc.exists_walk_length_eq_dist w₀ w
+  rw [vertexType_apply, ← hp]
+  exact length_walk_eq_col_sub C p
+
+def smulHom (G : Type) [Group G] [MulAction G W] [GraphAction G 𝒯] (g : G) : 𝒯 →g 𝒯 :=
+  ⟨fun w => g • w, fun h => GraphAction.smul_adj g h⟩
+
+/--
+@isnad1 id=eq.1h7v.s8.70cecb9fa820 from=translated src=- shape=b6550d05 vocab=126cde6f
+-/
+theorem col_smul_sub (G : Type) [Group G] [MulAction G W] [GraphAction G 𝒯] (hc : 𝒯.Connected)
+    (C : 𝒯.Coloring (Fin 2)) (g : G) (w₀ w : W) :
+    col C (g • w) - col C (g • w₀) = col C w - col C w₀ := by
+  obtain ⟨p, -⟩ := hc.exists_walk_length_eq_dist w₀ w
+  have h1 := length_walk_eq_col_sub C p
+  have h2 := length_walk_eq_col_sub C (p.map (smulHom G g))
+  rw [SimpleGraph.Walk.length_map] at h2
+  exact h2.symm.trans h1
+
+/--
+@isnad1 id=and.2h4v.s9.8f1255e66e29 from=translated src=- shape=80d3041f vocab=df541fb2
+-/
+theorem main (G : Type) [Group G] [MulAction G W] (𝒯 : SimpleGraph W) [GraphAction G 𝒯]
+    (hc : 𝒯.Connected) (hb : 𝒯.Colorable 2) (w₀ : W) :
+    (∀ x y : W, 𝒯.Adj x y → vertexType 𝒯 w₀ y = vertexType 𝒯 w₀ x + 1) ∧
+    (∀ (g : G) (w : W), vertexType 𝒯 w₀ (g • w) = vertexType 𝒯 w₀ (g • w₀) + vertexType 𝒯 w₀ w) ∧
+    (∃ ε : G →* Multiplicative (ZMod 2),
+      (∀ g : G, Multiplicative.toAdd (ε g) = vertexType 𝒯 w₀ (g • w₀)) ∧ ε.ker = typePreserving G 𝒯 w₀) := by
+  obtain ⟨C⟩ := hb
+  have hτ : ∀ w, vertexType 𝒯 w₀ w = col C w - col C w₀ := vertexType_eq_col_sub hc C w₀
+  have hb' : ∀ (g : G) (w : W), vertexType 𝒯 w₀ (g • w) = vertexType 𝒯 w₀ (g • w₀) + vertexType 𝒯 w₀ w := by
+    intro g w
+    rw [hτ, hτ, hτ, ← col_smul_sub G hc C g w₀ w]
+    ring
+  refine ⟨fun x y h => ?_, hb', ?_⟩
+  · have hxy : col C y = col C x + 1 := zmod2_eq_add_one_of_ne _ _ (C.valid h)
+    rw [hτ, hτ, hxy]; ring
+  ·
+    let ε : G →* Multiplicative (ZMod 2) :=
+      { toFun := fun g => Multiplicative.ofAdd (vertexType 𝒯 w₀ (g • w₀))
+        map_one' := by rw [one_smul, vertexType_self]; rfl
+        map_mul' := fun g h => by
+          rw [← ofAdd_add, mul_smul, hb' g (h • w₀)] }
+    refine ⟨ε, fun g => rfl, ?_⟩
+    ext g
+    rw [MonoidHom.mem_ker, mem_typePreserving_iff]
+    constructor
+    · intro hg w
+      have h0 : vertexType 𝒯 w₀ (g • w₀) = 0 := by
+        have := congrArg Multiplicative.toAdd hg
+        simp at this
+        exact this
+      rw [hb', h0, zero_add]
+    · intro hg
+      have := hg w₀
+      rw [vertexType_self] at this
+      show Multiplicative.ofAdd (vertexType 𝒯 w₀ (g • w₀)) = 1
+      rw [this]; rfl
+
+end CerednikDrinfeld.Mumford.VertexTypeLaws
+
+open CerednikDrinfeld.Mumford.VertexTypeLaws in
+/--
+@isnad1 id=and.2h4v.s9.c9476bd7da40 from=translated src=- shape=9e9d555d vocab=df541fb2
+-/
+theorem solution
+    (G : Type) [Group G] {W : Type} [MulAction G W] (𝒯 : SimpleGraph W) [GraphAction G 𝒯]
+    (hc : 𝒯.Connected) (hb : 𝒯.Colorable 2) (w₀ : W) :
+    (∀ x y : W, 𝒯.Adj x y → vertexType 𝒯 w₀ y = vertexType 𝒯 w₀ x + 1) ∧
+    (∀ (g : G) (w : W), vertexType 𝒯 w₀ (g • w) = vertexType 𝒯 w₀ (g • w₀) + vertexType 𝒯 w₀ w) ∧
+    (∃ ε : G →* Multiplicative (ZMod 2),
+      (∀ g : G, Multiplicative.toAdd (ε g) = vertexType 𝒯 w₀ (g • w₀)) ∧ ε.ker = typePreserving G 𝒯 w₀) :=
+  main G 𝒯 hc hb w₀
