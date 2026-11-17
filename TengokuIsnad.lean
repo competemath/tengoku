@@ -12,6 +12,7 @@ independent of Lean's `String.hash`. Records are sorted by (module, name): two r
   lake env .lake/build/bin/tengoku-isnad --module Tengoku.Seed.Logic.Basic
   lake env .lake/build/bin/tengoku-isnad --import Init.Data.Nat.Basic --module Init.Data.Nat.Basic --name Nat.add_comm
   lake env .lake/build/bin/tengoku-isnad --ranges --module Tengoku.Seed.Logic.Basic       # where each theorem is written (for the tagger)
+  lake env .lake/build/bin/tengoku-isnad --haves --module Tengoku.Seed.Logic.Basic         # `isnad1-have ...`: the statements of the `have`s of each proof (its waypoints)
   lake env .lake/build/bin/tengoku-isnad --deps --module Tengoku.Seed.Logic.Basic         # `isnad1-deps <name> <module> <dependency>...`: the theorems each proof uses directly
 
 The canonical form (version 1) is an S-expression and a pure function of the elaborated statement: bound variables are de Bruijn indices, universe
@@ -232,7 +233,7 @@ def records (env : Environment) (mods : List Name) (names : List Name) : Array S
 
 /-- The theorems a theorem's proof uses directly, by the names the records use: every theorem constant of the proof term that the records list, nothing else. A theorem the
 records leave out (generated and internal: `eq_*`, `proof_*`, a private one) is looked through, to the theorems its own proof uses, because it has no identity to name.
-Definitions are not followed (a definition is not a statement), and the theorem itself is never its own dependency. Sorted, no duplicates. -/
+A definition the author wrote is not followed (a definition is not a statement), but the auxiliary definitions the elaborator makes for this very proof, whose names extend the theorem's own, are looked through (`Nat.add_comm._f`, `Nat.add_comm.match_1`): without that a proof by structural recursion would have no dependencies. A private helper or another function's auxiliary is not followed. The theorem itself is never its own dependency. Sorted, no duplicates. -/
 def directDeps (env : Environment) (self : Name) (value : Expr) : Array String := Id.run do
   let mut found : NameSet := {}
   let mut seen : NameSet := {}
@@ -242,9 +243,16 @@ def directDeps (env : Environment) (self : Name) (value : Expr) : Array String :
     stack := stack.pop
     if seen.contains c || c == self then continue
     seen := seen.insert c
-    let some (.thmInfo t) := env.find? c | continue
-    if !c.isNum && okName c then found := found.insert c
-    else stack := stack ++ t.value.getUsedConstants
+    let named := !c.isNum && okName c
+    match env.find? c with
+    | some (.thmInfo t) =>
+      if named then found := found.insert c
+      else stack := stack ++ t.value.getUsedConstants
+    | some (.defnInfo d) =>
+      -- only the auxiliary definitions the elaborator made for THIS proof (`self._f` of a structural recursion, `self.match_1`, `self._unary`): their names extend the theorem's own. A private
+      -- helper the author wrote, or another function's auxiliary, is not followed (it is reached through its own statement or not at all)
+      if !named && self.isPrefixOf c then stack := stack ++ d.value.getUsedConstants
+    | _ => pure ()
   return (found.toList.map (fun c => toString (cleanName c))).toArray.qsort (· < ·)
 
 /-- `isnad1-deps <name> <module> <dependency>…` (tab separated), one line per theorem of `selected`, in the same order as `records`: the direct dependencies of its proof. -/
@@ -267,6 +275,107 @@ def rangeLines (mods : List Name) (names : List Name) : CoreM (Array String) := 
     out := out.push s!"isnad1-range\t{cleanName n}\t{m}\t{p dr.range}\t{p dr.selectionRange}"
   return out
 
+section Waypoints
+open Lean.Meta
+
+/-- The proof with every binder that nothing uses removed, again and again (a `have` whose variable is never used, then the `have` that only that one used, ...): the same reduction
+as tools/closure/closure.py of Tenro, so padding a proof with lemmas it does not apply changes nothing that is read from it. The three ways Lean writes a `have`: `letE`, a beta
+redex `(fun x => b) a`, and `letFun a (fun x => b)`. -/
+partial def reduceUnused (e : Expr) : Expr :=
+  match e with
+  | .letE n t v b nd =>
+    let b' := reduceUnused b
+    if b'.hasLooseBVar 0 then .letE n t (reduceUnused v) b' nd else b'.lowerLooseBVars 1 1
+  | .app f a =>
+    match f with
+    | .lam n t b bi =>
+      let b' := reduceUnused b
+      if b'.hasLooseBVar 0 then .app (.lam n t b' bi) (reduceUnused a) else b'.lowerLooseBVars 1 1
+    | _ =>
+      if e.isAppOfArity ``letFun 4 then
+        match e.appArg! with
+        | .lam n t b bi =>
+          let b' := reduceUnused b
+          if b'.hasLooseBVar 0 then mkApp4 e.getAppFn (e.getArg! 0) (e.getArg! 1) (reduceUnused (e.getArg! 2)) (.lam n t b' bi)
+          else b'.lowerLooseBVars 1 1
+        | _ => .app (reduceUnused f) (reduceUnused a)
+      else .app (reduceUnused f) (reduceUnused a)
+  | .lam n t b bi => .lam n t (reduceUnused b) bi
+  | .mdata d b => .mdata d (reduceUnused b)
+  | .proj s i b => .proj s i (reduceUnused b)
+  | _ => e
+
+/-- A `have` statement as a CLOSED proposition: the type of the `have` generalised over the local variables and hypotheses it depends on (and the ones those depend on), in context order, with
+`let` variables replaced by their values. Two `have`s that say the same thing in different contexts then get one id. Nothing for a type that is not a proposition. -/
+def haveStatement (t : Expr) : MetaM (Array Expr) := do
+  let t ← instantiateMVars t
+  unless (← isProp t) do return #[]
+  let lctx ← getLCtx
+  -- everything the statement depends on: the variables, their types, and for a `let` variable its value too
+  let mut need : Std.HashSet FVarId := {}
+  let mut frontier : Array Expr := #[t]
+  while !frontier.isEmpty do
+    let e := frontier.back!
+    frontier := frontier.pop
+    for id in (collectFVars {} e).fvarIds do
+      if need.contains id then continue
+      need := need.insert id
+      if let some d := lctx.find? id then
+        frontier := frontier.push d.type
+        if d.isLet then frontier := frontier.push d.value
+  let xs := lctx.getFVars.filter fun x => need.contains x.fvarId!
+  -- abstract with the `let` variables included (they become `let` binders), then zeta-reduce: no `let` variable is left free and every dependency is closed
+  return #[← zetaReduce (← instantiateMVars (← mkForallFVars xs t))]
+
+/-- The statements of the `have`s of a proof (after the reduction), each closed, in order of appearance. -/
+partial def collectHaves (e : Expr) : MetaM (Array Expr) := do
+  match e with
+  | .lam n t b bi => withLocalDecl n bi t fun x => collectHaves (b.instantiate1 x)
+  | .letE n t v b _ =>
+    let here ← haveStatement t
+    let vs ← collectHaves v
+    let bs ← withLetDecl n t v fun x => collectHaves (b.instantiate1 x)
+    return here ++ vs ++ bs
+  | .app f a =>
+    match f with
+    | .lam n t b bi =>
+      let here ← haveStatement t
+      let vs ← collectHaves a
+      let bs ← withLocalDecl n bi t fun x => collectHaves (b.instantiate1 x)
+      return here ++ vs ++ bs
+    | _ =>
+      if e.isAppOfArity ``letFun 4 then
+        match e.appArg! with
+        | .lam n t b bi =>
+          let here ← haveStatement t
+          let vs ← collectHaves (e.getArg! 2)
+          let bs ← withLocalDecl n bi t fun x => collectHaves (b.instantiate1 x)
+          return here ++ vs ++ bs
+        | _ => return (← collectHaves f) ++ (← collectHaves a)
+      else return (← collectHaves f) ++ (← collectHaves a)
+  | .mdata _ b => collectHaves b
+  | .proj _ _ b => collectHaves b
+  | _ => return #[]
+
+/-- `isnad1-have <theorem> <module> <kind> <hyps> <vars> <nodes> <canonical> <shape> <vocabulary>`: one line per distinct `have` statement of a theorem's proof, in the fields of a record
+(hash them with scripts/isnad.py: the id of the `have`, as if it were a theorem). The set of these ids is the proof's WAYPOINT set (Tenro's tawatur admission, docs/tawatur.md). -/
+def haveLines (mods : List Name) (names : List Name) : CoreM (Array String) := do
+  let env ← getEnv
+  let mut out : Array String := #[]
+  for (m, n, ci) in selected env mods names do
+    let .thmInfo t := ci | continue
+    let stmts ← (collectHaves (reduceUnused t.value)).run'
+    let mut seen : Std.HashSet String := {}
+    for st in stmts do
+      let line := "\t".intercalate ("isnad1-have" :: fields env n m st)
+      let key := (canonical env st).1
+      if seen.contains key then continue
+      seen := seen.insert key
+      out := out.push line
+  return out
+
+end Waypoints
+
 end Isnad
 
 unsafe def main (argv : List String) : IO UInt32 := do
@@ -280,7 +389,10 @@ unsafe def main (argv : List String) : IO UInt32 := do
     return 2
   initSearchPath (← findSysroot)
   let env ← importModules (imports.eraseDups.toArray.map fun m => { module := m }) {} (trustLevel := 0) (loadExts := true)
-  let rs ← if argv.contains "--ranges" then
+  let rs ← if argv.contains "--haves" then
+      let ctx : Core.Context := { fileName := "<tengoku-isnad>", fileMap := default, maxHeartbeats := 0 }
+      pure ((← (Isnad.haveLines mods names).toIO ctx { env }).1)
+    else if argv.contains "--ranges" then
       let ctx : Core.Context := { fileName := "<tengoku-isnad>", fileMap := default, maxHeartbeats := 0 }
       pure ((← (Isnad.rangeLines mods names).toIO ctx { env }).1)
     else if argv.contains "--deps" then pure (Isnad.depLines env mods names)

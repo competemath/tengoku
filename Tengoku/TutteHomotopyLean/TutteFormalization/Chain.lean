@@ -1,0 +1,28 @@
+import Tengoku.TutteHomotopyLean.TutteFormalization.IndecomposableStep
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! The rank-selection consequence of `cor:indecomposable-chain`, obtained by
+literally repeating the downward step. This is the chain interface needed below. -/
+namespace TutteFormalization
+variable {α : Type*} {M : Matroid α} [M.Finite] {S T : Set α}
+
+/--
+@isnad1 id=ex.5h5v.s6.992c898bb2e9 from=translated src=- shape=4687a314 vocab=595c2ee5
+-/
+theorem exists_indecomposable_of_rank (hS : Indecomposable M S) (hT : Indecomposable M T)
+    (hTS : T ⊆ S) (k : ℕ) (hTk : natRank M T ≤ k) (hkS : k ≤ natRank M S) :
+    ∃ U, Indecomposable M U ∧ T ⊆ U ∧ U ⊆ S ∧ natRank M U = k := by
+  generalize hn : natRank M S - k = n
+  induction n using Nat.strong_induction_on generalizing S with
+  | h n ih =>
+    by_cases heq : natRank M S = k
+    · exact ⟨S, hS, hTS, Set.Subset.rfl, heq⟩
+    have hstrict : T ⊂ S := Set.ssubset_iff_subset_ne.mpr ⟨hTS, by
+      intro heqTS; have hr := congrArg (natRank M) heqTS; omega⟩
+    obtain ⟨U, hU, hTU, hUS, hr⟩ := exists_indecomposable_step hS hT hstrict
+    have hkU : k ≤ natRank M U := by omega
+    have hdec : natRank M U - k < n := by omega
+    obtain ⟨V, hV, hTV, hVU, hVk⟩ := ih (natRank M U - k) hdec hU hTU hkU rfl
+    exact ⟨V, hV, hTV, hVU.trans hUS.subset, hVk⟩
+end TutteFormalization

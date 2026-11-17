@@ -1,0 +1,98 @@
+import Tengoku.FltAnthropic.Definitions.Def_AutomorphicForm_ArchDerivCasimir
+import Tengoku.FltAnthropic.Theorems.Thm_AutomorphicForm_archDerivAt_commutator_of_isArchSmoothAt
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_AutomorphicForm_archCasimirAt_eq_raising_lowering_of_isArchSmoothAt.lean`: wrote out 1 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_open`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_AutomorphicForm_archCasimirAt_eq_raising_lowering_of_isArchSmoothAt
+
+set_option autoImplicit false
+
+open NumberField AutomorphicForm NumberField.InfinitePlace NumberField.InfinitePlace.Completion
+
+noncomputable section
+
+namespace Ws23
+namespace M2
+
+open _root_.NumberField open _root_.NumberField.InfinitePlace.NumberField open _root_.AutomorphicForm open _root_.NumberField.InfinitePlace open _root_.NumberField.InfinitePlace.NumberField.InfinitePlace open _root_.NumberField.InfinitePlace.Completion
+
+variable {F : Type} [Field F] [NumberField F] {w : InfinitePlace F} (hw : w.IsReal)
+
+/--
+@isnad1 id=eq.3h5v.s8.b6686f359e43 from=translated src=- shape=fde0201f vocab=67153d5e
+-/
+theorem archDerivAt_sub {φ ψ : AdelicGL2 (𝓞 F) F → ℂ} (hφ : IsArchSmoothAt hw φ) (hψ : IsArchSmoothAt hw ψ)
+    (d : ArchDir) : archDerivAt hw d (φ - ψ) = archDerivAt hw d φ - archDerivAt hw d ψ := by
+  rw [sub_eq_add_neg, archDerivAt_add hφ hψ.neg, ← neg_one_smul ℂ ψ, archDerivAt_smul]
+  funext g
+  simp only [Pi.add_apply, Pi.sub_apply, Pi.smul_apply, smul_eq_mul]
+  ring
+
+/--
+@isnad1 id=eq.2h5v.s8.58507018f02a from=translated src=- shape=6e17d845 vocab=e007d747
+-/
+theorem archDerivAt_lowerComb_apply {φ : AdelicGL2 (𝓞 F) F → ℂ} (hφ : IsArchSmoothAt hw φ) (d : ArchDir)
+    (g : AdelicGL2 (𝓞 F) F) :
+    archDerivAt hw d (archDerivAt hw .H φ - Complex.I • (archDerivAt hw .E φ + archDerivAt hw .Fm φ)) g =
+      archDerivAt hw d (archDerivAt hw .H φ) g -
+        Complex.I * (archDerivAt hw d (archDerivAt hw .E φ) g + archDerivAt hw d (archDerivAt hw .Fm φ) g) := by
+  have hH := hφ.archDerivAt .H
+  have hE := hφ.archDerivAt .E
+  have hF := hφ.archDerivAt .Fm
+  rw [archDerivAt_sub hw hH ((hE.add hF).smul _), archDerivAt_smul, archDerivAt_add hE hF]
+  simp only [Pi.add_apply, Pi.sub_apply, Pi.smul_apply, smul_eq_mul]
+
+/--
+@isnad1 id=eq.2h5v.s7.ef859c5a1cb7 from=translated src=- shape=7b6c94bb vocab=a1f454d2
+-/
+theorem archDerivAt_rotComb_apply {φ : AdelicGL2 (𝓞 F) F → ℂ} (hφ : IsArchSmoothAt hw φ) (d : ArchDir)
+    (g : AdelicGL2 (𝓞 F) F) :
+    archDerivAt hw d (archDerivAt hw .E φ - archDerivAt hw .Fm φ) g =
+      archDerivAt hw d (archDerivAt hw .E φ) g - archDerivAt hw d (archDerivAt hw .Fm φ) g := by
+  rw [archDerivAt_sub hw (hφ.archDerivAt .E) (hφ.archDerivAt .Fm)]
+  simp only [Pi.sub_apply]
+
+/--
+@isnad1 id=eq.2h3v.s11.a3a1b928f9ea from=translated src=- shape=65504912 vocab=92659e58
+-/
+theorem main
+        (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArchSmoothAt hw φ) :
+    archCasimirAt hw φ =
+      -(1 / 4 : ℂ) • (archDerivAt hw .H (archDerivAt hw .H φ - Complex.I • (archDerivAt hw .E φ + archDerivAt hw .Fm φ))
+          + Complex.I • (archDerivAt hw .E (archDerivAt hw .H φ - Complex.I • (archDerivAt hw .E φ + archDerivAt hw .Fm φ))
+            + archDerivAt hw .Fm (archDerivAt hw .H φ - Complex.I • (archDerivAt hw .E φ + archDerivAt hw .Fm φ))))
+      - (Complex.I / 2) • (archDerivAt hw .E φ - archDerivAt hw .Fm φ)
+      + (1 / 4 : ℂ) • (archDerivAt hw .E (archDerivAt hw .E φ - archDerivAt hw .Fm φ)
+          - archDerivAt hw .Fm (archDerivAt hw .E φ - archDerivAt hw .Fm φ)) := by
+  obtain ⟨hHE, hHF, hEF⟩ := AutomorphicForm.archDerivAt_commutator_of_isArchSmoothAt F hw φ hφ
+  funext g
+  have h1 := congrFun hHE g
+  have h2 := congrFun hHF g
+  have h3 := congrFun hEF g
+  simp only [Pi.sub_apply, Pi.smul_apply, smul_eq_mul] at h1 h2 h3
+  simp only [archCasimirAt, Pi.neg_apply, Pi.add_apply, Pi.sub_apply, Pi.smul_apply, smul_eq_mul,
+    archDerivAt_lowerComb_apply hw hφ, archDerivAt_rotComb_apply hw hφ]
+  have hI2 : Complex.I ^ 2 = -1 := Complex.I_sq
+  linear_combination (-(Complex.I / 4)) * h1 + (-(Complex.I / 4)) * h2 + (-(1 / 2 : ℂ)) * h3 +
+    (-(1 / 4 : ℂ) * (archDerivAt hw .E (archDerivAt hw .E φ) g + archDerivAt hw .E (archDerivAt hw .Fm φ) g +
+      archDerivAt hw .Fm (archDerivAt hw .E φ) g + archDerivAt hw .Fm (archDerivAt hw .Fm φ) g)) * hI2
+
+end Ws23.M2
+
+end
+
+/--
+@isnad1 id=eq.2h3v.s11.a3a1b928f9ea from=translated src=- shape=65504912 vocab=92659e58
+-/
+theorem solution
+    (F : Type) [Field F] [NumberField F] {w : InfinitePlace F} (hw : w.IsReal)
+    (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArchSmoothAt hw φ) :
+    archCasimirAt hw φ =
+      -(1 / 4 : ℂ) • (archDerivAt hw .H (archDerivAt hw .H φ - Complex.I • (archDerivAt hw .E φ + archDerivAt hw .Fm φ))
+          + Complex.I • (archDerivAt hw .E (archDerivAt hw .H φ - Complex.I • (archDerivAt hw .E φ + archDerivAt hw .Fm φ))
+            + archDerivAt hw .Fm (archDerivAt hw .H φ - Complex.I • (archDerivAt hw .E φ + archDerivAt hw .Fm φ))))
+      - (Complex.I / 2) • (archDerivAt hw .E φ - archDerivAt hw .Fm φ)
+      + (1 / 4 : ℂ) • (archDerivAt hw .E (archDerivAt hw .E φ - archDerivAt hw .Fm φ)
+          - archDerivAt hw .Fm (archDerivAt hw .E φ - archDerivAt hw .Fm φ)) :=
+  Ws23.M2.main hw φ hφ

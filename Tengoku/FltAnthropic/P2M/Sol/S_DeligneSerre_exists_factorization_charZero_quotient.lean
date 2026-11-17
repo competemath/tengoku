@@ -1,0 +1,53 @@
+import Tengoku
+import Tengoku.FltAnthropic.Theorems.Thm_DeligneSerre_exists_minimalPrime_le
+import Tengoku.FltAnthropic.Theorems.Thm_DeligneSerre_charZero_quotient
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_DeligneSerre_exists_factorization_charZero_quotient.lean`: wrote out 2 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_export`, 1 `p2m_open`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_DeligneSerre_exists_factorization_charZero_quotient
+
+namespace DeligneSerre
+export _root_.DeligneSerre (exists_minimalPrime_le charZero_quotient)
+namespace S17
+open _root_.DeligneSerre
+
+variable {T : Type*} [CommRing T] (𝔭 : Ideal T)
+
+/--
+@isnad1 id=finite.0h2v.s6.6a71f44e4b24 from=translated src=- shape=8f22efcc vocab=e1fe5b07
+-/
+theorem module_finite_quotient [Module.Finite ℤ T] : Module.Finite ℤ (T ⧸ 𝔭) :=
+  Module.Finite.of_surjective (Ideal.Quotient.mk 𝔭).toIntAlgHom.toLinearMap Ideal.Quotient.mk_surjective
+
+/--
+@isnad1 id=isintegr.0h2v.s6.f9f411c38a2a from=translated src=- shape=4a9e890a vocab=4a02a222
+-/
+theorem isIntegral_quotient [Module.Finite ℤ T] : Algebra.IsIntegral ℤ (T ⧸ 𝔭) := by
+  haveI : Module.Finite ℤ (T ⧸ 𝔭) := module_finite_quotient 𝔭
+  exact Algebra.IsIntegral.of_finite ℤ (T ⧸ 𝔭)
+
+end DeligneSerre.S17
+
+/--
+@isnad1 id=ex.0h3v.s9.662009b089ac from=translated src=- shape=5fc22646 vocab=cf82e4d4
+-/
+theorem solution {T : Type*} [CommRing T] [Module.Finite ℤ T]
+    [Module.IsTorsionFree ℤ T] {k : Type*} [Field k] (χ : T →+* k) :
+    ∃ 𝔭 ∈ minimalPrimes T,
+      𝔭 ≤ RingHom.ker χ ∧
+        (∀ (n : ℤ), (algebraMap ℤ T) n ∈ 𝔭 → n = 0) ∧
+          CharZero (T ⧸ 𝔭) ∧
+            IsDomain (T ⧸ 𝔭) ∧
+              Module.Finite ℤ (T ⧸ 𝔭) ∧ Algebra.IsIntegral ℤ (T ⧸ 𝔭) ∧
+                ∃ red : T ⧸ 𝔭 →+* k, red.comp (Ideal.Quotient.mk 𝔭) = χ := by
+
+  obtain ⟨𝔭, h𝔭min, h𝔭le, h𝔭char⟩ :=
+    DeligneSerre.exists_minimalPrime_le (RingHom.ker χ) (RingHom.ker_isPrime χ)
+  haveI h𝔭prime : 𝔭.IsPrime := h𝔭min.1.1
+
+  refine ⟨𝔭, h𝔭min, h𝔭le, h𝔭char, DeligneSerre.charZero_quotient 𝔭 h𝔭char, inferInstance,
+    DeligneSerre.S17.module_finite_quotient 𝔭, DeligneSerre.S17.isIntegral_quotient 𝔭,
+    Ideal.Quotient.lift 𝔭 χ (fun a ha => ?_), rfl⟩
+  have hker : a ∈ RingHom.ker χ := h𝔭le ha
+  rwa [RingHom.mem_ker] at hker

@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "c30fa84f92530a64f9b704580cff71a7c78268164332707f23d58e30e69db901",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "tunnell-two-to-one-map",
+ "lint_mode": "proposed",
+ "modules": 38,
+ "part": 1,
+ "theorems": 358
+}

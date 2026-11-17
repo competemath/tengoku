@@ -1,0 +1,79 @@
+import Tengoku.FltAnthropic.Definitions.Def_AutomorphicForm_WeylSelectors
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_AutomorphicForm_WeylIntegrable_dilate_finPart_of_snd_eq.lean`: wrote out 2 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_export`, 1 `p2m_open`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_AutomorphicForm_WeylIntegrable_dilate_finPart_of_snd_eq
+
+open NumberField NumberField.AdelicBox IsDedekindDomain IsDedekindDomain.HeightOneSpectrum
+open scoped Classical Pointwise
+
+namespace AutomorphicForm
+namespace WeylIntegrable
+export _root_.AutomorphicForm.WeylIntegrable (yUnit BigFin one_lt_valued_of_bigFin selY selY_snd selRel dilate coe_dilate finPart)
+namespace DilateOfFinitePart
+open _root_.AutomorphicForm.WeylIntegrable open _root_.AutomorphicForm
+
+variable (F : Type) [Field F] [NumberField F]
+
+local notation "𝔸f" => FiniteAdeleRing (𝓞 F) F
+local notation "HOS" => HeightOneSpectrum (𝓞 F)
+
+private theorem fa_mul_apply (a b : 𝔸f) (v : HOS) : (a * b) v = a v * b v := rfl
+
+private theorem mem_integralFiniteAdeles_iff' (t : 𝔸f) :
+    t ∈ integralFiniteAdeles (𝓞 F) F ↔ ∀ v, Valued.v (t v) ≤ 1 := Iff.rfl
+
+private theorem valued_ne_zero_of_unit (y : (𝔸f)ˣ) (v : HOS) : Valued.v ((y : 𝔸f) v) ≠ 0 := by
+  intro h
+  have h1 : Valued.v (((y : 𝔸f) * ((y⁻¹ : (𝔸f)ˣ) : 𝔸f)) v) = 1 := by rw [Units.mul_inv]; exact map_one _
+  rw [fa_mul_apply, map_mul, h, zero_mul] at h1
+  exact zero_ne_one h1
+
+private theorem mem_dilate_iff (y : (𝔸f)ˣ) (t : 𝔸f) :
+    t ∈ dilate F y ↔ ∀ v, Valued.v (t v) ≤ Valued.v ((y : 𝔸f) v) := by
+  rw [← SetLike.mem_coe, coe_dilate, Set.mem_smul_set]
+  constructor
+  · rintro ⟨s, hs, rfl⟩ v
+    rw [smul_eq_mul, fa_mul_apply, map_mul]
+    exact mul_le_of_le_one_right' ((mem_integralFiniteAdeles_iff' F s).mp hs v)
+  · intro h
+    refine ⟨((y⁻¹ : (𝔸f)ˣ) : 𝔸f) * t, (mem_integralFiniteAdeles_iff' F _).mpr fun v => ?_, ?_⟩
+    · rw [fa_mul_apply, map_mul]
+      have hy := valued_ne_zero_of_unit F y v
+      have hyv : (y : 𝔸f) v * ((y⁻¹ : (𝔸f)ˣ) : 𝔸f) v = 1 := by rw [← fa_mul_apply, Units.mul_inv]; rfl
+      have hinv : Valued.v (((y⁻¹ : (𝔸f)ˣ) : 𝔸f) v) = (Valued.v ((y : 𝔸f) v))⁻¹ := by
+        rw [← inv_eq_of_mul_eq_one_right hyv, map_inv₀]
+      rw [hinv]
+      calc (Valued.v ((y : 𝔸f) v))⁻¹ * Valued.v (t v) ≤ (Valued.v ((y : 𝔸f) v))⁻¹ * Valued.v ((y : 𝔸f) v) :=
+            mul_le_mul' le_rfl (h v)
+        _ = 1 := inv_mul_cancel₀ hy
+    · show (y : 𝔸f) * (((y⁻¹ : (𝔸f)ˣ) : 𝔸f) * t) = t
+      rw [← mul_assoc, Units.mul_inv, one_mul]
+
+private theorem valued_selY_snd (a : InfiniteAdeleRing F) (b : 𝔸f) (v : HOS) :
+    Valued.v ((selY F a b).2 v) = max 1 (Valued.v (b v)) := by
+  rw [selY_snd]
+  by_cases h : BigFin F b v
+  · rw [ite_eq_left h, max_eq_right (one_lt_valued_of_bigFin F h).le]
+  · rw [ite_eq_right h, map_one, max_eq_left ((mem_adicCompletionIntegers _ _ _).mp (not_not.mp h))]
+
+end AutomorphicForm.WeylIntegrable.DilateOfFinitePart
+
+open _root_.AutomorphicForm.WeylIntegrable _root_.P2MW.S_AutomorphicForm_WeylIntegrable_dilate_finPart_of_snd_eq.AutomorphicForm.WeylIntegrable AutomorphicForm.WeylIntegrable.DilateOfFinitePart in
+
+/--
+@isnad1 id=eq.1h3v.s9.33192c0e167f from=translated src=- shape=10f4f90e vocab=9c702100
+-/
+theorem solution (F : Type) [Field F] [NumberField F]
+    (x y : NumberField.AdeleRing (NumberField.RingOfIntegers F) F) (hy2 : y.2 = x.2) :
+    dilate F (finPart F (yUnit (selRel F y.1 y.2))) = dilate F (finPart F (yUnit (selRel F x.1 x.2))) := by
+  ext r
+  rw [mem_dilate_iff, mem_dilate_iff]
+  have key : ∀ v : HeightOneSpectrum (𝓞 F),
+      Valued.v (((finPart F (yUnit (selRel F y.1 y.2)) : (FiniteAdeleRing (𝓞 F) F)ˣ) : FiniteAdeleRing (𝓞 F) F) v) =
+        Valued.v (((finPart F (yUnit (selRel F x.1 x.2)) : (FiniteAdeleRing (𝓞 F) F)ˣ) : FiniteAdeleRing (𝓞 F) F) v) :=
+    fun v => by
+      show Valued.v ((selY F y.1 y.2).2 v) = Valued.v ((selY F x.1 x.2).2 v)
+      rw [valued_selY_snd, valued_selY_snd, hy2]
+  simp only [key]

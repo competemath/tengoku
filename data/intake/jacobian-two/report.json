@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "4a49b712841e2947e6d02467fcf34e884dbcc307f332495c98ec2c8dfaf67799",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "jacobian-two",
+ "lint_mode": "proposed",
+ "modules": 25,
+ "part": 1,
+ "theorems": 269
+}

@@ -1,0 +1,20 @@
+import Tengoku.FltAnthropic.Definitions.Def_AutomorphicForm_ComplexIwasawa
+import Tengoku.Seed.Analysis.Calculus.ContDiff.Defs
+import Tengoku.Seed.Analysis.Complex.Basic
+import Tengoku.Seed.LinearAlgebra.Matrix.Determinant.Basic
+import Tengoku.FltAnthropic.P2M.Sol.S_AutomorphicForm_ComplexIwasawa_contDiff_and_exists_bound_iteratedFDeriv_kC_apply
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `Theorems/Thm_AutomorphicForm_ComplexIwasawa_contDiff_and_exists_bound_iteratedFDeriv_kC_apply.lean`: wrote out 1 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_exact_reverting`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+
+open scoped ContDiff
+
+/--
+@isnad1 id=and.1h1v.s8.866db192d3c4 from=translated src=- shape=510de950 vocab=0f76e9c3
+-/
+theorem AutomorphicForm.ComplexIwasawa.contDiff_and_exists_bound_iteratedFDeriv_kC_apply
+    {g : Matrix (Fin 2) (Fin 2) ℂ} (hg : g.det ≠ 0) :
+    (∀ i j : Fin 2, ContDiff ℝ ∞ (fun w => kC g w i j)) ∧
+      ∀ n : ℕ, ∃ C : ℝ, 0 < C ∧ ∀ (i j : Fin 2) (z : ℂ),
+        ‖iteratedFDeriv ℝ n (fun w => kC g w i j) z‖ ≤ C := by exact @_root_.P2MW.S_AutomorphicForm_ComplexIwasawa_contDiff_and_exists_bound_iteratedFDeriv_kC_apply.solution g hg

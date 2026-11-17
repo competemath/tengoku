@@ -1,0 +1,39 @@
+import Tengoku
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_AlgebraicGeometry_Scheme_Modules_nonempty_pushforward_hom_comp_iso.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_AlgebraicGeometry_Scheme_Modules_nonempty_pushforward_hom_comp_iso
+
+set_option autoImplicit false
+
+universe u
+
+open CategoryTheory AlgebraicGeometry
+
+namespace PushIso
+
+variable {X Y : Scheme.{u}} (φ : X ≅ Y)
+
+noncomputable def pushEquiv : X.Modules ≌ Y.Modules :=
+  CategoryTheory.Equivalence.mk (Scheme.Modules.pushforward φ.hom) (Scheme.Modules.pushforward φ.inv)
+    ((Scheme.Modules.pushforwardId X).symm ≪≫ Scheme.Modules.pushforwardCongr φ.hom_inv_id.symm ≪≫
+      (Scheme.Modules.pushforwardComp φ.hom φ.inv).symm)
+    (Scheme.Modules.pushforwardComp φ.inv φ.hom ≪≫ Scheme.Modules.pushforwardCongr φ.inv_hom_id ≪≫
+      Scheme.Modules.pushforwardId Y)
+
+noncomputable def pullbackIsoPushforwardInv :
+    Scheme.Modules.pullback φ.hom ≅ Scheme.Modules.pushforward φ.inv :=
+  (Scheme.Modules.pullbackPushforwardAdjunction φ.hom).leftAdjointUniq (pushEquiv φ).symm.toAdjunction
+
+end PushIso
+
+/--
+@isnad1 id=nonempty.0h6v.s6.c10128282ee1 from=translated src=- shape=684ee046 vocab=e615e523
+-/
+theorem solution
+    {X Y Z : Scheme.{u}} (e : X ≅ Y) (f : Y ⟶ Z) (F : X.Modules) :
+    Nonempty ((Scheme.Modules.pushforward (e.hom ≫ f)).obj F ≅
+      (Scheme.Modules.pushforward f).obj ((Scheme.Modules.pullback e.inv).obj F)) :=
+  ⟨(Scheme.Modules.pushforwardComp e.hom f).symm.app F ≪≫
+    (Scheme.Modules.pushforward f).mapIso ((PushIso.pullbackIsoPushforwardInv e.symm).app F).symm⟩

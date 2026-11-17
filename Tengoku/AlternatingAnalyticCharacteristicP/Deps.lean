@@ -1,0 +1,1 @@
+-- AlternatingAnalyticCharacteristicP: a factory bundle (data/intake/alternating-analytic-characteristic-p). This file only marks the library for Tengoku/All.lean.

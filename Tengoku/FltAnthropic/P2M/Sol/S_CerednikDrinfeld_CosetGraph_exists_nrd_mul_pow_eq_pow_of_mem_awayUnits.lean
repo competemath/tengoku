@@ -1,0 +1,96 @@
+import Tengoku
+import Tengoku.FltAnthropic.Definitions.Def_QuaternionAlgebra_Order
+import Tengoku.FltAnthropic.Definitions.Def_QuaternionAlgebra_ReducedNorm
+import Tengoku.FltAnthropic.Definitions.Def_CerednikDrinfeld_CosetGraphAtPrime
+import Tengoku.FltAnthropic.Theorems.Thm_CerednikDrinfeld_CosetGraph_padicValRat_nrd_eq_zero_of_mem_awayUnits
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_CerednikDrinfeld_CosetGraph_exists_nrd_mul_pow_eq_pow_of_mem_awayUnits.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_CerednikDrinfeld_CosetGraph_exists_nrd_mul_pow_eq_pow_of_mem_awayUnits
+
+set_option autoImplicit false
+
+open scoped TensorProduct Quaternion NumberField
+open IsDedekindDomain NumberField QuaternionAlgebra CerednikDrinfeld
+
+namespace PenRt1NormAwayUnit
+
+/--
+@isnad1 id=eq.0h4v.s6.2529f53d60ea from=translated src=- shape=56c269aa vocab=60985843
+-/
+theorem nrd_mul {a b : ℚ} (x y : ℍ[ℚ, a, b]) : nrd (x * y) = nrd x * nrd y := by
+  simp only [nrd, QuaternionAlgebra.re_mul, QuaternionAlgebra.imI_mul, QuaternionAlgebra.imJ_mul,
+    QuaternionAlgebra.imK_mul]
+  ring
+
+/--
+@isnad1 id=ne.0h3v.s6.184a8e6bc89e from=translated src=- shape=ed902472 vocab=7370eac2
+-/
+theorem nrd_ne_zero_of_unit {a b : ℚ} (γ : (ℍ[ℚ, a, b])ˣ) : nrd ((γ : (ℍ[ℚ, a, b])ˣ) : ℍ[ℚ, a, b]) ≠ 0 := by
+  intro h
+  have h1 : nrd (((γ : (ℍ[ℚ, a, b])ˣ) : ℍ[ℚ, a, b]) * ((γ⁻¹ : (ℍ[ℚ, a, b])ˣ) : ℍ[ℚ, a, b])) = 1 := by
+    rw [← Units.val_mul, mul_inv_cancel, Units.val_one, nrd_one]
+  rw [nrd_mul, h, zero_mul] at h1
+  exact zero_ne_one h1
+
+/--
+@isnad1 id=ex.2h2v.s6.9f9ad398ec59 from=translated src=- shape=31988701 vocab=8ee31b56
+-/
+theorem exists_mul_pow_eq_of_forall_padicValRat_eq_zero (r : ℕ) [hr : Fact r.Prime] (q : ℚ) (hq : q ≠ 0)
+    (h : ∀ p : ℕ, p.Prime → p ≠ r → padicValRat p q = 0) :
+    ∃ i j : ℕ, q * (r : ℚ) ^ i = (r : ℚ) ^ j ∨ q * (r : ℚ) ^ i = -((r : ℚ) ^ j) := by
+  set n : ℕ := q.num.natAbs with hn
+  set d : ℕ := q.den with hd
+  have hn0 : n ≠ 0 := by
+    simp only [hn, ne_eq, Int.natAbs_eq_zero]; exact Rat.num_ne_zero.mpr hq
+  have hd0 : d ≠ 0 := q.den_ne_zero
+  have hcop : n.Coprime d := q.reduced
+
+  have key : ∀ p : ℕ, p.Prime → p ≠ r → ¬ p ∣ n ∧ ¬ p ∣ d := by
+    intro p hp hpr
+    haveI : Fact p.Prime := ⟨hp⟩
+    have hv : ((padicValNat p n : ℕ) : ℤ) = ((padicValNat p d : ℕ) : ℤ) := by
+      have := h p hp hpr
+      simp only [padicValRat, padicValInt] at this
+      linarith
+    have hv' : padicValNat p n = padicValNat p d := by exact_mod_cast hv
+    have hp1 : p ≠ 1 := hp.ne_one
+    constructor
+    · intro hpn
+      have h1 : 1 ≤ padicValNat p n := one_le_padicValNat_of_dvd hn0 hpn
+      have hpd : p ∣ d := dvd_of_one_le_padicValNat (hv' ▸ h1)
+      exact hp1 (Nat.eq_one_of_dvd_one (hcop.gcd_eq_one ▸ Nat.dvd_gcd hpn hpd))
+    · intro hpd
+      have h1 : 1 ≤ padicValNat p d := one_le_padicValNat_of_dvd hd0 hpd
+      have hpn : p ∣ n := dvd_of_one_le_padicValNat (hv'.symm ▸ h1)
+      exact hp1 (Nat.eq_one_of_dvd_one (hcop.gcd_eq_one ▸ Nat.dvd_gcd hpn hpd))
+  obtain ⟨α, hα⟩ : ∃ α : ℕ, n = r ^ α :=
+    ⟨_, Nat.eq_prime_pow_of_unique_prime_dvd hn0 (fun {p} hp hpn => by
+      by_contra hpr; exact (key p hp hpr).1 hpn)⟩
+  obtain ⟨β, hβ⟩ : ∃ β : ℕ, d = r ^ β :=
+    ⟨_, Nat.eq_prime_pow_of_unique_prime_dvd hd0 (fun {p} hp hpd => by
+      by_contra hpr; exact (key p hp hpr).2 hpd)⟩
+  refine ⟨β, α, ?_⟩
+  have hqd : q * (r : ℚ) ^ β = (q.num : ℚ) := by
+    rw [← Rat.mul_den_eq_num, ← hd, hβ]; push_cast; rfl
+  rcases Int.natAbs_eq q.num with hpos | hneg
+  · left
+    rw [hqd, hpos, ← hn, hα]; push_cast; rfl
+  · right
+    rw [hqd, hneg, ← hn, hα]; push_cast; rfl
+
+end PenRt1NormAwayUnit
+
+open PenRt1NormAwayUnit in
+/--
+@isnad1 id=ex.3h6v.s9.bfd42005ed3c from=translated src=- shape=29cc9538 vocab=7da91943
+-/
+theorem solution
+    {a b : ℚ} (R : Submodule ℤ ℍ[ℚ, a, b]) (hR : IsOrder R)
+    (r : ℕ) [Fact r.Prime] (v : HeightOneSpectrum (𝓞 ℚ)) (hv : ((r : ℕ) : 𝓞 ℚ) ∈ v.asIdeal)
+    (γ : (ℍ[ℚ, a, b])ˣ) (hγ : γ ∈ CerednikDrinfeld.CosetGraph.awayUnits R v) :
+    ∃ i j : ℕ, nrd ((γ : (ℍ[ℚ, a, b])ˣ) : ℍ[ℚ, a, b]) * ((r : ℚ) ^ i) = (r : ℚ) ^ j ∨
+      nrd ((γ : (ℍ[ℚ, a, b])ˣ) : ℍ[ℚ, a, b]) * ((r : ℚ) ^ i) = -((r : ℚ) ^ j) := by
+  have hval := (CerednikDrinfeld.CosetGraph.padicValRat_nrd_eq_zero_of_mem_awayUnits R hR r v hv).1 γ hγ
+  exact exists_mul_pow_eq_of_forall_padicValRat_eq_zero r _ (nrd_ne_zero_of_unit γ) hval

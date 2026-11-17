@@ -1,0 +1,43 @@
+import Tengoku.FltAnthropic.Definitions.Def_AutomorphicForm_WhittakerCoefficient
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_AutomorphicForm_whittakerCoefficient_inv_star_mul_apply_det_eq_star_whittakerCoefficient_mul.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_AutomorphicForm_whittakerCoefficient_inv_star_mul_apply_det_eq_star_whittakerCoefficient_mul
+
+set_option autoImplicit false
+
+open IsDedekindDomain NumberField AutomorphicForm
+open MeasureTheory
+
+/--
+@isnad1 id=eq.1h7v.s11.f8d4e1a88bc4 from=translated src=- shape=dc2c2c95 vocab=bff248ae
+-/
+theorem solution
+    (K : Type) [Field K] [NumberField K] (pins : CarrierPins K)
+    (ψ : AddChar (AdeleRing (𝓞 K) K) ℂ) (hψ : ∀ x : AdeleRing (𝓞 K) K, ‖ψ x‖ = 1)
+    (φ : AdelicGL2 (𝓞 K) K → ℂ) (χ : (AdeleRing (𝓞 K) K)ˣ → ℂ) (a : K) (g : AdelicGL2 (𝓞 K) K) :
+    whittakerCoefficient K pins ψ⁻¹ (fun h : AdelicGL2 (𝓞 K) K => (starRingEnd ℂ) (φ h) * χ (Matrix.GeneralLinearGroup.det h)) a g =
+      (starRingEnd ℂ) (whittakerCoefficient K pins ψ φ a g) * χ (Matrix.GeneralLinearGroup.det g) := by
+  letI := pins.nS
+  have hdet : ∀ x : AdeleRing (𝓞 K) K,
+      Matrix.GeneralLinearGroup.det (unipotentGL2 x * g) = Matrix.GeneralLinearGroup.det g := by
+    intro x
+    rw [map_mul]
+    have : Matrix.GeneralLinearGroup.det (unipotentGL2 x : AdelicGL2 (𝓞 K) K) = 1 := by
+      apply Units.ext
+      rw [Matrix.GeneralLinearGroup.val_det_apply, unipotentGL2_coe, Matrix.det_fin_two_of, Units.val_one]
+      ring
+    rw [this, one_mul]
+  have hconj : ∀ y : AdeleRing (𝓞 K) K, (starRingEnd ℂ) (ψ (-y)) = ψ y := by
+    intro y
+    rw [← Complex.inv_eq_conj (hψ (-y)), AddChar.map_neg_eq_inv, inv_inv]
+  show (∫ x, (starRingEnd ℂ) (φ (unipotentGL2 x * g)) * χ (Matrix.GeneralLinearGroup.det (unipotentGL2 x * g)) *
+        ψ⁻¹ (-(algebraMap K (AdeleRing (𝓞 K) K) a * x)) ∂pins.ν) =
+      (starRingEnd ℂ) (∫ x, φ (unipotentGL2 x * g) * ψ (-(algebraMap K (AdeleRing (𝓞 K) K) a * x)) ∂pins.ν) *
+        χ (Matrix.GeneralLinearGroup.det g)
+  rw [← integral_conj, ← integral_mul_const]
+  congr 1
+  funext x
+  rw [hdet x, AddChar.inv_apply, neg_neg, map_mul (starRingEnd ℂ), hconj]
+  ring

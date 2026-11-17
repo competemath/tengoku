@@ -1,0 +1,160 @@
+import Tengoku
+import Tengoku.FltAnthropic.Theorems.Thm_CharacterModule_natCard_eq_of_finite
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_CharacterModule_natCard_quotient_ideal_smul_top_eq_natCard_torsionBySet.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_CharacterModule_natCard_quotient_ideal_smul_top_eq_natCard_torsionBySet
+
+set_option autoImplicit false
+
+namespace P2MPontryagin
+
+/--
+@isnad1 id=eq.0h1v.s4.2dbc67dd7724 from=translated src=- shape=210878d7 vocab=f37ffda3
+-/
+theorem natCard_characterModule (M : Type*) [AddCommGroup M] [Finite M] :
+    Nat.card (CharacterModule M) = Nat.card M :=
+  CharacterModule.natCard_eq_of_finite M
+
+end P2MPontryagin
+
+namespace P2MPontryagin
+
+open Submodule
+
+variable {A : Type*} [CommRing A] {G : Type*} [AddCommGroup G] [Module A G]
+
+noncomputable def descend {P : Type*} [AddCommGroup P] [Module A P] (f : G →ₗ[A] P)
+    (φ : CharacterModule G) (h : ∀ x ∈ LinearMap.ker f, φ x = 0) :
+    CharacterModule ↥(LinearMap.range f) where
+  toFun y := φ (Classical.choose y.2)
+  map_zero' := by
+    have hs := Classical.choose_spec (0 : LinearMap.range f).2
+    exact h _ (by rw [LinearMap.mem_ker, hs]; rfl)
+  map_add' y y' := by
+    have e1 := Classical.choose_spec y.2
+    have e2 := Classical.choose_spec y'.2
+    have e3 := Classical.choose_spec (y + y').2
+    have hk : Classical.choose (y + y').2 - Classical.choose y.2 - Classical.choose y'.2
+        ∈ LinearMap.ker f := by
+      rw [LinearMap.mem_ker, map_sub, map_sub, e1, e2, e3, Submodule.coe_add, add_sub_cancel_left, sub_self]
+    have := h _ hk
+    rw [map_sub, map_sub, sub_sub, sub_eq_zero] at this
+    exact this
+
+/--
+@isnad1 id=eq.1h6v.s9.cfa24cb916ca from=translated src=- shape=a714a858 vocab=e603170f
+-/
+theorem descend_apply {P : Type*} [AddCommGroup P] [Module A P] (f : G →ₗ[A] P)
+    (φ : CharacterModule G) (h : ∀ x ∈ LinearMap.ker f, φ x = 0) (x : G) :
+    descend f φ h ⟨f x, LinearMap.mem_range_self f x⟩ = φ x := by
+  show φ (Classical.choose _) = φ x
+  have e := Classical.choose_spec (⟨f x, LinearMap.mem_range_self f x⟩ : LinearMap.range f).2
+  have hk : Classical.choose (⟨f x, LinearMap.mem_range_self f x⟩ : LinearMap.range f).2 - x
+      ∈ LinearMap.ker f := by
+    rw [LinearMap.mem_ker, map_sub, e, sub_self]
+  have := h _ hk
+  rwa [map_sub, sub_eq_zero] at this
+
+def genMap {s : ℕ} (b : Fin s → A) : G →ₗ[A] (Fin s → G) := LinearMap.pi fun i => b i • LinearMap.id
+
+/--
+@isnad1 id=eq.0h4v.s6.a9a3f3fc421e from=translated src=- shape=63e3d852 vocab=f43b33af
+-/
+theorem ker_genMap {s : ℕ} (b : Fin s → A) :
+    LinearMap.ker (genMap (G := G) b) = torsionBySet A G (Set.range b) := by
+  ext x
+  rw [LinearMap.mem_ker, mem_torsionBySet_iff]
+  constructor
+  · rintro h ⟨_, i, rfl⟩; exact congr_fun h i
+  · intro h; funext i; exact h ⟨b i, i, rfl⟩
+
+omit [Module A G] in
+/--
+@isnad1 id=eq.0h5v.s6.9a1ea1617592 from=translated src=- shape=7c1a6bf2 vocab=34def508
+-/
+theorem charSum_apply {ι : Type*} (t : Finset ι) (c : ι → CharacterModule G) (x : G) :
+    (∑ i ∈ t, c i) x = ∑ i ∈ t, c i x := by
+  classical
+  refine Finset.induction_on t ?_ ?_
+  · rw [Finset.sum_empty, Finset.sum_empty]; rfl
+  · intro i t hi ih
+    rw [Finset.sum_insert hi, Finset.sum_insert hi, ← ih]; rfl
+
+/--
+@isnad1 id=eq.0h4v.s9.172d772897d5 from=translated src=- shape=2f70838a vocab=f6e16043
+-/
+theorem ker_dual_subtype_torsionBySet {s : ℕ} (b : Fin s → A) :
+    LinearMap.ker (CharacterModule.dual (torsionBySet A G (Set.range b)).subtype)
+      = Ideal.span (Set.range b) • (⊤ : Submodule A (CharacterModule G)) := by
+  classical
+  apply le_antisymm
+  · intro φ hφ
+    rw [LinearMap.mem_ker] at hφ
+    have hφ0 : ∀ x ∈ torsionBySet A G (Set.range b), φ x = 0 := fun x hx => by
+      have := DFunLike.congr_fun hφ ⟨x, hx⟩
+      exact this
+    have hker : ∀ x ∈ LinearMap.ker (genMap (G := G) b), φ x = 0 := by
+      rw [ker_genMap]; exact hφ0
+    obtain ⟨ψ, hψ⟩ := CharacterModule.dual_surjective_of_injective
+      (LinearMap.range (genMap (G := G) b)).subtype (Submodule.subtype_injective _)
+      (descend (genMap b) φ hker)
+    have hφeq : φ = ∑ i, b i • CharacterModule.dual (LinearMap.single A (fun _ : Fin s => G) i) ψ := by
+      ext x
+      rw [charSum_apply]
+      have step : ∀ i, (b i • CharacterModule.dual (LinearMap.single A (fun _ : Fin s => G) i) ψ) x
+          = ψ (Pi.single i (b i • x)) := fun i => rfl
+      simp only [step]
+      rw [← map_sum, Finset.univ_sum_single (fun i => b i • x)]
+      have h1 : (fun i => b i • x) = genMap b x := rfl
+      rw [h1, ← descend_apply (genMap b) φ hker x, ← hψ]
+      rfl
+    rw [hφeq]
+    exact Submodule.sum_mem _ fun i _ =>
+      Submodule.smul_mem_smul (Ideal.subset_span ⟨i, rfl⟩) Submodule.mem_top
+  · rw [Submodule.smul_le]
+    intro a ha φ _
+    rw [LinearMap.mem_ker]
+    ext ⟨x, hx⟩
+    rw [torsionBySet_eq_torsionBySet_span] at hx
+    have hax : a • x = 0 := (mem_torsionBySet_iff _ _).1 hx ⟨a, ha⟩
+    show φ (a • x) = 0
+    rw [hax, map_zero]
+
+/--
+@isnad1 id=eq.0h4v.s8.9f8323a793e2 from=translated src=- shape=05867c91 vocab=a7fc6016
+-/
+theorem natCard_quotient_span_smul_top {s : ℕ} (b : Fin s → A)
+    [Finite ↥(torsionBySet A G (Set.range b))] :
+    Nat.card (CharacterModule G ⧸ Ideal.span (Set.range b) • (⊤ : Submodule A (CharacterModule G)))
+      = Nat.card ↥(torsionBySet A G (Set.range b)) := by
+  have hs := CharacterModule.dual_surjective_of_injective
+    (torsionBySet A G (Set.range b)).subtype (Submodule.subtype_injective _)
+  rw [← ker_dual_subtype_torsionBySet b, Nat.card_congr (LinearMap.quotKerEquivOfSurjective _ hs).toEquiv,
+    natCard_characterModule]
+
+/--
+@isnad1 id=eq.2h3v.s8.2f3fe13a3a34 from=translated src=- shape=65bc25f7 vocab=5b6e7b3a
+-/
+theorem natCard_quotient_ideal_smul_top_eq_natCard_torsionBySet (s : Set A) (hs : s.Finite)
+    (hfin : Finite ↥(torsionBySet A G s)) :
+    Nat.card (CharacterModule G ⧸ (Ideal.span s • (⊤ : Submodule A (CharacterModule G))))
+      = Nat.card ↥(torsionBySet A G s) := by
+  obtain ⟨n, b, hb⟩ := hs.fin_embedding
+
+  subst hb
+  haveI := hfin
+  exact natCard_quotient_span_smul_top (fun i => (b i : A))
+
+end P2MPontryagin
+
+/--
+@isnad1 id=eq.2h3v.s8.2f3fe13a3a34 from=translated src=- shape=65bc25f7 vocab=5b6e7b3a
+-/
+theorem solution
+    (A : Type*) [CommRing A] (G : Type*) [AddCommGroup G] [Module A G]
+    (s : Set A) (hs : s.Finite) (hfin : Finite ↥(Submodule.torsionBySet A G s)) :
+    Nat.card (CharacterModule G ⧸ (Ideal.span s • (⊤ : Submodule A (CharacterModule G))))
+      = Nat.card ↥(Submodule.torsionBySet A G s) :=
+  P2MPontryagin.natCard_quotient_ideal_smul_top_eq_natCard_torsionBySet s hs hfin

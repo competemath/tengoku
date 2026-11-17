@@ -101,11 +101,22 @@ python3 scripts/isnad.py deps --module Tengoku.Seed.Logic.Basic [--ids-stdin < i
 
 For each theorem, the theorems its proof uses **directly**, and the hash of their statement ids: `sha256` of the sorted, distinct ids joined by commas, 12 hex digits (the
 output is `name`, hash, number of dependencies, dependencies without a known id). It is what a proof leans on by *statement*, so renaming a lemma changes nothing and swapping
-it for a lemma that states something else does. Rules: only theorem constants of the proof term count (a definition is not a statement); a theorem the records leave out
-(generated, internal, private) is looked through to the theorems its own proof uses; a theorem is never its own dependency. A dependency whose id is not in the table
+it for a lemma that states something else does. Rules: only theorem constants of the proof term count (a definition the author wrote is not a statement); a theorem the records leave out
+(generated, internal, private) is looked through to the theorems its own proof uses, and so are the auxiliary definitions the elaborator makes for **that very proof**, whose names extend the theorem's own (`foo._f` of a structural recursion, `foo.match_1`: without them a proof by structural recursion would have no dependencies); a private helper the author wrote, or another function's auxiliary, is not followed; a theorem is never its own dependency. A dependency whose id is not in the table
 (the theorems of the listed modules, plus a table on stdin with `--ids-stdin`, the output of `id` for the other modules) leaves the hash `-`: a hash of part of the set would claim agreement or
 difference the table cannot show. The hash is **not part of any id or tag** and changes no recipe version; the Lean side is `tengoku-isnad --deps`, and CI's `tagtest` checks it on the fixture
 (a theorem with a `where` lemma depends on exactly that lemma).
+
+### Waypoints
+
+```bash
+python3 scripts/isnad.py waypoints --module Tengoku.Seed.Logic.Basic      # name, number, ids
+```
+
+The **waypoints** of a proof are the ids of the statements of its `have`s: what the proof establishes on the way. Each `have` statement is made a closed proposition (generalised over the local
+variables and hypotheses it depends on, `let`s replaced by their values) and given an id as if it were a theorem, so two `have`s that say the same thing get one id wherever they stand. A `have` that
+nothing uses is removed first, again and again (the same reduction as Tenro's closure extractor), so padding a proof with lemmas it never applies, or reordering its `have`s, changes no waypoint.
+Like `deps`, it is read from the compiled proof and is **not part of any id or tag**: it is one axis of Tenro's tawatur divergence (the other is the dependency footprint). Lean side: `tengoku-isnad --haves`; `tagtest` checks it on `tools/isnad/tagger/Waypoints.lean`.
 
 ### The tagger
 

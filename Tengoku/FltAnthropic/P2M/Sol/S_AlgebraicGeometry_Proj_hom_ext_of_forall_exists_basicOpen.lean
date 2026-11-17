@@ -1,0 +1,43 @@
+import Tengoku
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_AlgebraicGeometry_Proj_hom_ext_of_forall_exists_basicOpen.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_AlgebraicGeometry_Proj_hom_ext_of_forall_exists_basicOpen
+
+universe u v
+
+open CategoryTheory AlgebraicGeometry HomogeneousLocalization
+
+/--
+@isnad1 id=eq.1h6v.s13.d7df1a61453d from=translated src=- shape=2b0ff5a5 vocab=7978c97d
+-/
+theorem solution
+    {A : Type u} {σ : Type v} [CommRing A] [SetLike σ A] [AddSubgroupClass σ A] (𝒜 : ℕ → σ) [GradedRing 𝒜]
+    {W : Scheme.{u}} (a b : W ⟶ Proj 𝒜)
+    (h : ∀ w : W, ∃ (n : ℕ) (r : A) (hn : 0 < n) (hr : r ∈ 𝒜 n)
+      (e : a ⁻¹ᵁ Proj.basicOpen 𝒜 r = b ⁻¹ᵁ Proj.basicOpen 𝒜 r),
+      w ∈ a ⁻¹ᵁ Proj.basicOpen 𝒜 r ∧
+        ∀ x : Away 𝒜 r,
+          a.appLE (Proj.basicOpen 𝒜 r) (a ⁻¹ᵁ Proj.basicOpen 𝒜 r) le_rfl (Proj.awayToSection 𝒜 r x) =
+            b.appLE (Proj.basicOpen 𝒜 r) (a ⁻¹ᵁ Proj.basicOpen 𝒜 r) e.le (Proj.awayToSection 𝒜 r x)) :
+    a = b := by
+  refine Scheme.hom_ext_of_forall a b fun w => ?_
+  obtain ⟨n, r, hn, hr, e, hw, happ⟩ := h w
+  refine ⟨a ⁻¹ᵁ Proj.basicOpen 𝒜 r, hw, ?_⟩
+  have hsurj : Function.Surjective (Proj.awayToSection 𝒜 r) := by
+    rw [← Proj.basicOpenIsoAway_hom 𝒜 r hr hn]
+    exact (ConcreteCategory.bijective_of_isIso _).2
+  have happLE : a.appLE (Proj.basicOpen 𝒜 r) (a ⁻¹ᵁ Proj.basicOpen 𝒜 r) le_rfl =
+      b.appLE (Proj.basicOpen 𝒜 r) (a ⁻¹ᵁ Proj.basicOpen 𝒜 r) e.le := by
+    ext x
+    obtain ⟨y, rfl⟩ := hsurj x
+    exact happ y
+  have key : a.resLE (Proj.basicOpen 𝒜 r) (a ⁻¹ᵁ Proj.basicOpen 𝒜 r) le_rfl =
+      b.resLE (Proj.basicOpen 𝒜 r) (a ⁻¹ᵁ Proj.basicOpen 𝒜 r) e.le := by
+    haveI : IsAffine (Proj.basicOpen 𝒜 r).toScheme := Proj.isAffineOpen_basicOpen 𝒜 r hr hn
+    apply ext_of_isAffine
+    simp only [Scheme.Hom.appTop, Scheme.Hom.resLE_app_top, happLE]
+  have e₁ := Scheme.Hom.resLE_comp_ι a (U := Proj.basicOpen 𝒜 r) (V := a ⁻¹ᵁ Proj.basicOpen 𝒜 r) le_rfl
+  have e₂ := Scheme.Hom.resLE_comp_ι b (U := Proj.basicOpen 𝒜 r) (V := a ⁻¹ᵁ Proj.basicOpen 𝒜 r) e.le
+  rw [← e₁, ← e₂, key]

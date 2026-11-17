@@ -116,7 +116,20 @@ jobs:
         id: seed
         env: { GH_TOKEN: "${{ github.token }}" }
         run: |
-          scripts/cache.sh get 2>&1 | tail -3
+          # The download has no cap of its own and gets three tries (17 Nov 2026, queue run 43985705576: "read tcp ...: connection reset by peer" after 3 minutes ejected a group
+          # that said "removed from the merge queue, not because of your change"; a hung download would hold the runner for the job's whole 300 minutes). A published cache
+          # downloads in about 5 minutes, so each try gets 12; the worst case is 36 minutes and two short pauses, inside the job's timeout.
+          # Each try stages the download in a temp directory of its own (cache.sh puts it under RUNNER_TEMP and deletes it only when the try succeeds), which a failed try's
+          # step removes: the partial files of a reset or killed download are several GB and the disk is the tight resource here.
+          seeded=0
+          for try in 1 2 3; do
+            try_tmp="${RUNNER_TEMP:-/tmp}/seed-try-$try"; mkdir -p "$try_tmp"
+            if RUNNER_TEMP="$try_tmp" timeout -k 30 12m scripts/cache.sh get > seed.log 2>&1; then seeded=1; rm -rf "$try_tmp"; tail -3 seed.log; break; fi
+            rm -rf "$try_tmp"
+            echo "::warning::the cache download failed or hit its 12 minutes (try $try of 3): $(tail -2 seed.log | tr '\n' ' ')"
+            [ "$try" = 3 ] || sleep "$(( try * ${SEED_RETRY_PAUSE:-20} ))"
+          done
+          if [ "$seeded" != 1 ]; then tail -3 seed.log; echo "::error::the published cache could not be downloaded in 3 tries"; exit 1; fi
           { df -h / | tail -1; du -sh .lake/build; } 2>&1 | sed 's/^/after seeding: /'
           # A restore that hits its cap or fails (a slow release download, a day of sequential deltas) must not eject the group: a missing delta only
           # costs a rebuild. The group then merges marked needs-nightly (the marker below), and Lake compiles what it must.

@@ -1,0 +1,107 @@
+import Tengoku.Seed.Topology.Compactification.OnePoint.ProjectiveLine
+import Tengoku.Seed.Analysis.Normed.Field.Lemmas
+import Tengoku.Seed.Topology.Algebra.GroupWithZero
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Inversion on the compact projective line
+
+Inversion exchanges zero and infinity. Unlike field inversion with a totalized
+zero value, this map is continuous on the one-point compactification. The
+construction works over both the real and complex fields.
+-/
+
+noncomputable section
+open Filter Set OnePoint
+open scoped Topology Classical
+
+namespace Singularity
+
+variable {K : Type*} [NontriviallyNormedField K]
+
+/-- Projective inversion, including its values at zero and infinity.-/
+def projectiveInv (p : OnePoint K) : OnePoint K :=
+  p.elim (0 : K) (fun x => if x = 0 then ∞ else ((x⁻¹ : K) : OnePoint K))
+
+/--
+@isnad1 id=eq.0h1v.s5.aa95a5ad0518 from=translated src=- shape=e7958aaf vocab=0e82663d
+-/
+theorem projectiveInv_infty : projectiveInv (∞ : OnePoint K) = (0 : K) := rfl
+
+/--
+@isnad1 id=eq.0h2v.s6.d6126d606e3f from=translated src=- shape=46e1e8e3 vocab=a525c065
+-/
+theorem projectiveInv_coe (x : K) :
+    projectiveInv (x : OnePoint K) = if x = 0 then ∞ else ((x⁻¹ : K) : OnePoint K) := rfl
+
+/--
+@isnad1 id=eq.0h1v.s5.9e66cf2aea8e from=translated src=- shape=1c56491a vocab=0e82663d
+-/
+theorem projectiveInv_zero : projectiveInv ((0 : K) : OnePoint K) = ∞ := by
+  simp [projectiveInv_coe]
+
+/-- The extension is an involution at every projective point.
+@isnad1 id=involuti.0h1v.s3.ddd68afb461c from=translated src=- shape=aa7e0af4 vocab=65441933
+-/
+theorem projectiveInv_involutive : Function.Involutive (projectiveInv (K := K)) := by
+  intro p
+  cases p with
+  | infty => simp [projectiveInv_infty, projectiveInv_zero]
+  | coe x =>
+    by_cases hx : x = 0
+    · subst x; simp [projectiveInv_zero, projectiveInv_infty]
+    · simp [projectiveInv_coe, hx, inv_ne_zero hx]
+
+variable [ProperSpace K]
+
+/-- Near zero, punctured field inversion tends to the projective point at infinity.
+@isnad1 id=tendsto.0h1v.s6.3fbb2091d2d9 from=translated src=- shape=fa3de7e6 vocab=53ec113f
+-/
+theorem projectiveInv_tendsto_zero :
+    Tendsto (fun x : K => projectiveInv (x : OnePoint K)) (nhdsWithin 0 {0}ᶜ)
+      (nhds (∞ : OnePoint K)) := by
+  have h := (OnePoint.tendsto_coe_infty (X := K)).comp
+    (show Tendsto (Inv.inv : K → K) (nhdsWithin 0 {0}ᶜ) (coclosedCompact K) by
+      simpa only [coclosedCompact_eq_cocompact, ← Metric.cobounded_eq_cocompact]
+        using (tendsto_inv₀_nhdsNE_zero (α := K)))
+  apply h.congr'
+  filter_upwards [self_mem_nhdsWithin] with x hx
+  simp only [mem_compl_iff, mem_singleton_iff] at hx
+  simp [projectiveInv_coe, hx]
+
+/-- Projective inversion is continuous on the whole compactification.
+@isnad1 id=continuo.0h1v.s5.e9010f84f932 from=translated src=- shape=66b9f7f3 vocab=e8162083
+-/
+theorem continuous_projectiveInv : Continuous (projectiveInv (K := K)) := by
+  rw [OnePoint.continuous_iff]
+  constructor
+  · have h := OnePoint.continuous_coe.continuousAt.tendsto.comp
+      (show Tendsto (Inv.inv : K → K) (coclosedCompact K) (nhds 0) by
+        simpa only [coclosedCompact_eq_cocompact, ← Metric.cobounded_eq_cocompact]
+          using (tendsto_inv₀_cobounded (α := K)))
+    change Tendsto _ _ (nhds ((0 : K) : OnePoint K))
+    apply h.congr'
+    have hz : ∀ᶠ x : K in coclosedCompact K, x ≠ 0 :=
+      (hasBasis_coclosedCompact.mem_iff.mpr ⟨{0}, ⟨isClosed_singleton, isCompact_singleton⟩,
+        fun x hx => hx⟩)
+    filter_upwards [hz] with x hx
+    simp [projectiveInv_coe, hx]
+  · rw [continuous_iff_continuousAt]
+    intro x
+    by_cases hx : x = 0
+    · subst x
+      rw [continuousAt_iff_punctured_nhds, projectiveInv_zero]
+      exact projectiveInv_tendsto_zero
+    · have h := OnePoint.continuous_coe.continuousAt.comp (continuousAt_inv₀ hx)
+      apply h.congr_of_eventuallyEq
+      filter_upwards [eventually_ne_nhds hx] with y hy
+      simp [projectiveInv_coe, hy]
+
+/-- Inversion is a homeomorphism of the compact projective line.-/
+def projectiveInvHomeomorph : OnePoint K ≃ₜ OnePoint K where
+  toEquiv := Function.Involutive.toPerm projectiveInv projectiveInv_involutive
+  continuous_toFun := continuous_projectiveInv
+  continuous_invFun := continuous_projectiveInv
+
+end Singularity

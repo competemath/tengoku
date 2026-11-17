@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "56761ddaf6e86c54d756564051214b4309db331a6c8ae3b4acffed755f985ede",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "tutte-homotopy-lean",
+ "lint_mode": "proposed",
+ "modules": 24,
+ "part": 1,
+ "theorems": 99
+}

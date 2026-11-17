@@ -1,0 +1,209 @@
+/-
+Copyright (c) 2026 Alex Ellis. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Alex Ellis
+-/
+import Tengoku.LieLean.LieLean.Algebra.Lie.KacMoody.CharacterRing
+import Tengoku.LieLean.LieLean.LinearAlgebra.Matrix.Cartan.WeylGroup
+import Tengoku.LieLean.LieLean.RepresentationTheory.Crystal.Character
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Crystals over the integral weights of a realization
+
+Let `(𝔥, Π, Π^∨)` be a realization of a generalized Cartan matrix `A` over a field `K` of
+characteristic zero. The integral weights `{λ ∈ 𝔥* | ⟨λ, αᵢ^∨⟩ ∈ ℤ for all i}` form a weight
+lattice with simple roots `αᵢ` and coroots `λ ↦ ⟨λ, αᵢ^∨⟩`; this is the Cartan datum over which
+the crystals of integrable `𝔤(A)`-modules live. For finite crystals over it, we define the
+character in the algebra `ℰ` of formal characters (`Matrix.Realization.CharacterRing`).
+
+## Main definitions
+
+* `Matrix.Realization.integralWeights`: the lattice of integral weights, as a subgroup of `𝔥*`.
+* `Matrix.Realization.cartanDatum`: the corresponding Cartan datum.
+* `Crystal.formalCharacter`: the character `∑_b e^{wt b} ∈ ℰ` of a finite crystal.
+* `Crystal.formalCharacterOfCones`: the character `∑_μ #{b | wt b = μ} e^μ ∈ ℰ` of a crystal whose
+  weights lie in a finite union of cones `Λ - Q₊`.
+
+## Main results
+
+* `Matrix.Realization.cartanMatrix_cartanDatum`: the Cartan matrix of the datum is `A`.
+* `Matrix.Realization.coe_reflection_cartanDatum`: the simple reflections of the datum are the
+  fundamental reflections of `𝔥*`.
+* `Crystal.formalCharacter_tensor`: `ch (B₁ ⊗ B₂) = ch B₁ · ch B₂` in `ℰ`.
+* `Crystal.coeffAt_formalCharacter`: the coefficient of `e^μ` is the number of elements of
+  weight `μ`.
+* `Crystal.IsSeminormal.coeffAt_formalCharacterOfCones_reflection`: the character of a
+  seminormal crystal is invariant under the fundamental reflections.
+
+## References
+
+* [Kac] V. G. Kac, *Infinite dimensional Lie algebras*, 3rd ed., CUP 1990, §10.1.
+* [HK] J. Hong, S.-J. Kang, *Introduction to quantum groups and crystal bases*, GSM 42, §2.1,
+  Ch. 4.
+* [Kas] M. Kashiwara, *On crystal bases*, CMS Conf. Proc. 16 (1995).
+-/
+namespace Tengoku.LieLean end Tengoku.LieLean open Tengoku.LieLean
+open Module
+
+namespace Matrix.Realization
+
+variable {ι K H : Type*} [Fintype ι] [Field K] [AddCommGroup H] [Module K H]
+  {A : Matrix ι ι ℤ} (P : Realization A K H)
+
+/-- The lattice of integral weights `{λ ∈ 𝔥* | ⟨λ, αᵢ^∨⟩ ∈ ℤ for all i}` ([Kac] §10.1).-/
+def integralWeights : AddSubgroup (Dual K H) where
+  carrier := {μ | ∀ i, ∃ n : ℤ, μ (P.coroot i) = n}
+  add_mem' {μ ν} hμ hν i := by
+    obtain ⟨m, hm⟩ := hμ i
+    obtain ⟨n, hn⟩ := hν i
+    exact ⟨m + n, by simp [hm, hn]⟩
+  zero_mem' _ := ⟨0, by simp⟩
+  neg_mem' {μ} hμ i := by
+    obtain ⟨m, hm⟩ := hμ i
+    exact ⟨-m, by simp [hm]⟩
+
+/--
+@isnad1 id=iff.0h6v.s8.627592070fc8 from=translated src=- shape=bd9227d1 vocab=b53362b6
+-/
+lemma mem_integralWeights {μ : Dual K H} :
+    μ ∈ P.integralWeights ↔ ∀ i, ∃ n : ℤ, μ (P.coroot i) = n := Iff.rfl
+
+/--
+@isnad1 id=mem.0h6v.s8.4d362917b60d from=translated src=- shape=9bee05b2 vocab=bf12427e
+-/
+lemma root_mem_integralWeights (j : ι) : P.root j ∈ P.integralWeights :=
+  fun i ↦ ⟨A i j, P.root_coroot i j⟩
+
+variable [CharZero K]
+
+/-- The pairing `λ ↦ ⟨λ, αᵢ^∨⟩ ∈ ℤ` on integral weights.-/
+noncomputable def corootInt (i : ι) : Dual ℤ P.integralWeights where
+  toFun μ := Classical.choose (μ.2 i)
+  map_add' μ ν := by
+    apply Int.cast_injective (α := K)
+    rw [Int.cast_add, ← Classical.choose_spec (μ.2 i), ← Classical.choose_spec (ν.2 i),
+      ← Classical.choose_spec ((μ + ν).2 i)]
+    simp
+  map_smul' m μ := by
+    apply Int.cast_injective (α := K)
+    rw [RingHom.id_apply, smul_eq_mul, Int.cast_mul, ← Classical.choose_spec (μ.2 i),
+      ← Classical.choose_spec ((m • μ).2 i)]
+    simp
+
+/--
+@isnad1 id=eq.0h7v.s11.969accdd6834 from=translated src=- shape=e22915bf vocab=2b0564bd
+-/
+@[simp] lemma corootInt_spec (i : ι) (μ : P.integralWeights) :
+    ((P.corootInt i μ : ℤ) : K) = (μ : Dual K H) (P.coroot i) :=
+  (Classical.choose_spec (μ.2 i)).symm
+
+/-- The Cartan datum of a realization of a generalized Cartan matrix: the weight lattice is the
+lattice of integral weights, with simple roots `αᵢ` and coroots `λ ↦ ⟨λ, αᵢ^∨⟩`.-/
+noncomputable def cartanDatum (hA : A.IsGeneralizedCartan) :
+    CartanDatum ι P.integralWeights where
+  root j := ⟨P.root j, P.root_mem_integralWeights j⟩
+  coroot := P.corootInt
+  coroot_root_self i := Int.cast_injective (α := K) <| by
+    rw [corootInt_spec, P.root_coroot, hA.diag]
+
+variable (hA : A.IsGeneralizedCartan)
+
+/--
+@isnad1 id=eq.1h6v.s9.bfc40e5234e3 from=translated src=- shape=cf225b3c vocab=ff64ef67
+-/
+@[simp] lemma coe_root_cartanDatum (j : ι) :
+    ((P.cartanDatum hA).root j : Dual K H) = P.root j := rfl
+
+/--
+@isnad1 id=eq.1h7v.s11.897e029cec39 from=translated src=- shape=f09176bb vocab=28c16db0
+-/
+@[simp] lemma coroot_cartanDatum_cast (i : ι) (μ : P.integralWeights) :
+    (((P.cartanDatum hA).coroot i μ : ℤ) : K) = (μ : Dual K H) (P.coroot i) :=
+  P.corootInt_spec i μ
+
+/-- The Cartan matrix of the Cartan datum of a realization of `A` is `A`.
+@isnad1 id=eq.1h5v.s8.c9cc44830bbe from=translated src=- shape=d4e3b5da vocab=d99f6db9
+-/
+theorem cartanMatrix_cartanDatum : (P.cartanDatum hA).cartanMatrix = A := by
+  ext i j
+  apply Int.cast_injective (α := K)
+  rw [CartanDatum.cartanMatrix_apply, coroot_cartanDatum_cast, coe_root_cartanDatum,
+    P.root_coroot]
+
+/-- The simple reflections of the Cartan datum are the fundamental reflections `rᵢ` of `𝔥*`.
+@isnad1 id=eq.1h7v.s13.0581cb982901 from=translated src=- shape=0fbd628a vocab=abcaea11
+-/
+theorem coe_reflection_cartanDatum (i : ι) (μ : P.integralWeights) :
+    ((P.cartanDatum hA).reflection i μ : Dual K H) = P.reflection hA i μ := by
+  rw [CartanDatum.reflection_apply, P.reflection_apply, AddSubgroup.coe_sub,
+    AddSubgroup.coe_zsmul, coe_root_cartanDatum, ← Int.cast_smul_eq_zsmul K,
+    coroot_cartanDatum_cast]
+
+end Matrix.Realization
+
+namespace Tengoku.LieLean.Crystal
+
+open Matrix.Realization
+
+variable {ι K H : Type*} [Fintype ι] [Field K] [CharZero K] [AddCommGroup H] [Module K H]
+  {A : Matrix ι ι ℤ} {P : Matrix.Realization A K H} {hA : A.IsGeneralizedCartan}
+  {B B₁ B₂ : Type*}
+
+/-- The character `ch B = ∑_{b ∈ B} e^{wt b}` of a finite crystal over the integral weights of a
+realization, as an element of the algebra `ℰ` of formal characters.-/
+noncomputable def formalCharacter [Fintype B] (C : Crystal (P.cartanDatum hA) B) :
+    P.CharacterRing ℤ :=
+  ∑ b, CharacterRing.exp P ℤ (C.wt b : Dual K H)
+
+/-- The coefficient of `e^μ` in `ch B` is the number of elements of weight `μ`.
+@isnad1 id=eq.1h8v.s10.46d0b055a5ad from=translated src=- shape=3277a08f vocab=ce462993
+-/
+theorem coeffAt_formalCharacter [Fintype B] (C : Crystal (P.cartanDatum hA) B) (μ : Dual K H) :
+    (formalCharacter C).coeffAt μ = Nat.card {b // (C.wt b : Dual K H) = μ} := by
+  classical
+  have h : ∀ b, (CharacterRing.exp P ℤ (C.wt b : Dual K H)).coeffAt μ =
+      if (C.wt b : Dual K H) = μ then 1 else 0 := fun b ↦ by
+    rw [CharacterRing.coeff_exp]; simp only [eq_comm]
+  rw [formalCharacter, CharacterRing.coeffAt, HahnSeries.coeff_sum]
+  refine (Finset.sum_congr rfl fun b _ ↦ h b).trans ?_
+  rw [Finset.sum_boole, Nat.card_eq_fintype_card, Fintype.card_subtype]
+
+/-- The character `ch B = ∑_μ #{b | wt b = μ} e^μ ∈ ℰ` of a crystal (possibly infinite) whose
+weights lie in a finite union of cones `Λ - Q₊`. The multiplicity of `μ` is
+`Nat.card {b | wt b = μ}`, which is only meaningful when this set is finite (`Nat.card` is `0` on
+infinite types). For finite crystals it agrees with `Crystal.formalCharacter`
+(`Crystal.formalCharacterOfCones_eq`).-/
+noncomputable def formalCharacterOfCones (C : Crystal (P.cartanDatum hA) B)
+    (hC : ∃ t : Finset (Dual K H), ∀ b, ∃ Λ ∈ t, ∃ k : ι → ℤ, 0 ≤ k ∧
+      (C.wt b : Dual K H) = Λ - P.rootOf k) : P.CharacterRing ℤ :=
+  CharacterRing.ofFun P (fun μ ↦ Nat.card {b // (C.wt b : Dual K H) = μ}) <| by
+    obtain ⟨t, ht⟩ := hC
+    refine ⟨t, fun μ hμ ↦ ?_⟩
+    obtain ⟨⟨b, rfl⟩⟩ : Nonempty {b // (C.wt b : Dual K H) = μ} := by
+      by_contra h
+      have := not_nonempty_iff.mp h
+      exact hμ (by simp [Nat.card_of_isEmpty])
+    exact ht b
+
+/--
+@isnad1 id=eq.2h8v.s11.e18aed39646d from=translated src=- shape=a0bcbc6a vocab=74c03750
+-/
+@[simp] lemma coeffAt_formalCharacterOfCones (C : Crystal (P.cartanDatum hA) B) (hC)
+    (μ : Dual K H) :
+    (formalCharacterOfCones C hC).coeffAt μ = Nat.card {b // (C.wt b : Dual K H) = μ} := rfl
+
+/--
+@isnad1 id=eq.2h7v.s10.9aaab4618b29 from=translated src=- shape=710ea3c3 vocab=db62629d
+-/
+lemma formalCharacterOfCones_eq [Fintype B] (C : Crystal (P.cartanDatum hA) B) (hC) :
+    formalCharacterOfCones C hC = formalCharacter C :=
+  CharacterRing.ext fun μ ↦ by rw [coeffAt_formalCharacterOfCones, coeffAt_formalCharacter]
+
+private def fiberEquiv (C : Crystal (P.cartanDatum hA) B) (ν : P.integralWeights) :
+    {b // (C.wt b : Dual K H) = ν} ≃ {b // C.wt b = ν} :=
+  _root_.Equiv.subtypeEquivRight fun _ ↦ Subtype.coe_inj
+
+end Tengoku.LieLean.Crystal
+-- Tengoku: root names of this library moved to Tengoku.LieLean so they do not collide with other libraries (generated)

@@ -1,0 +1,51 @@
+import Tengoku
+import Tengoku.LeanEvalPlatonicClassification.ChallengeDeps
+import Tengoku.LeanEvalPlatonicClassification.Submission.Dim2Scheletro
+import Tengoku.LeanEvalPlatonicClassification.Submission.PoligonoRegolare
+import Tengoku.LeanEvalPlatonicClassification.Submission.PoligonoDiedrale
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# NEL PIANO I POLITOPI REGOLARI SONO INFINITI
+
+    platonicCount 2 = ⊤
+
+il primo congiunto dell'enunciato del benchmark. A differenza della
+dimensione 3 non serve un maggiorante: basta una famiglia infinita di
+classi distinte, e il numero di vertici le separa.
+
+La famiglia è `n ↦ poligono (n+3)`: poligoni regolari con 3, 4, 5, …
+vertici, ciascuno regolare per `poligono_isRegular` e con cardinalità
+`n+3` per `poligono_card`.
+-/
+
+noncomputable section
+
+namespace LeanEval.Geometry.PlatonicClassification
+
+open ConvexPolytope
+
+/-- La famiglia dei poligoni regolari, indicizzata da `ℕ` a partire dal
+triangolo.-/
+def famigliaPoligoni (n : ℕ) : regularPolytopes 2 :=
+  ⟨poligono (n + 3), poligono_isRegular (n + 3) (by omega)⟩
+
+/--
+@isnad1 id=eq.0h1v.s6.f309a0ecacde from=translated src=- shape=72751817 vocab=85d2a6e0
+-/
+@[simp] theorem famigliaPoligoni_card (n : ℕ) :
+    (famigliaPoligoni n : ConvexPolytope 2).vertices.card = n + 3 :=
+  poligono_card (n + 3) (by omega)
+
+/-- **NEL PIANO I POLITOPI REGOLARI SONO INFINITI.**
+@isnad1 id=eq.0h0v.s3.6881ff124bc8 from=translated src=- shape=9ff2389b vocab=ca231b3e
+-/
+theorem platonicCount_two : platonicCount 2 = ⊤ := by
+  refine platonicCount_eq_top 2 famigliaPoligoni ?_
+  intro m n hmn
+  have h : m + 3 = n + 3 := by
+    simpa [famigliaPoligoni_card] using hmn
+  omega
+
+end LeanEval.Geometry.PlatonicClassification
