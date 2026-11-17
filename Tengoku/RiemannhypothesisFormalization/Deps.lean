@@ -1,0 +1,1 @@
+-- RiemannhypothesisFormalization: a factory bundle (data/intake/riemannhypothesis-formalization). This file only marks the library for Tengoku/All.lean.
