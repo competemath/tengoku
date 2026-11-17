@@ -47,7 +47,9 @@ variable (k : ℕ)
   [e₁.IsLinear K] [e₁'.IsLinear K] [e₂.IsLinear K] [e₂'.IsLinear K]
 
 /-- The alternating transition is the model action of the reverse source transition and
-the forward target transition.-/
+the forward target transition.
+@isnad1 id=eq.0h12v.s10.c1a479caea5b from=translated src=- shape=9d634f0a vocab=f9e161ce
+-/
 theorem continuousAlternatingMapCoordChange_eq_alternatingMapAction (b : M) :
     Pretrivialization.continuousAlternatingMapCoordChange K (Fin k) e₁ e₁' e₂ e₂' b =
       alternatingMapAction k
@@ -60,7 +62,9 @@ theorem continuousAlternatingMapCoordChange_eq_alternatingMapAction (b : M) :
 variable [∀ x, TopologicalSpace (E₁ x)] [∀ x, TopologicalSpace (E₂ x)]
   [FiberBundle F₁ E₁] [FiberBundle F₂ E₂]
 
-/-- On the common domain, the model action computes the change of pretrivialization.-/
+/-- On the common domain, the model action computes the change of pretrivialization.
+@isnad1 id=eq.1h13v.s11.25998d26ab5b from=translated src=- shape=401de70a vocab=89cf7dba
+-/
 theorem alternatingMapAction_coordChange_apply (b : M)
     (hb : b ∈ e₁.baseSet ∩ e₂.baseSet ∩ (e₁'.baseSet ∩ e₂'.baseSet))
     (L : F₁ [⋀^Fin k]→L[K] F₂) :
@@ -93,7 +97,9 @@ variable {P H : Type*} [NormedAddCommGroup P] [NormedSpace K P]
 include hfamily
 
 /-- If the model action preserves `C^n` families, the alternating transitions are `C^n`
-on the four-way overlap.-/
+on the four-way overlap.
+@isnad1 id=contmdif.1h15v.s15.efc9abc0bcb3 from=translated src=- shape=d84b6c99 vocab=33de44ec
+-/
 theorem contMDiffOn_continuousAlternatingMapCoordChange_of_family
     (e₁ e₁' : Trivialization F₁ (π F₁ E₁))
     (e₂ e₂' : Trivialization F₂ (π F₂ E₂))
@@ -116,7 +122,9 @@ theorem contMDiffOn_continuousAlternatingMapCoordChange_of_family
 
 variable [∀ x, IsTopologicalAddGroup (E₂ x)] [∀ x, ContinuousSMul K (E₂ x)]
 
-/-- If the model action preserves `C^n` families, the alternating prebundle is `C^n`.-/
+/-- If the model action preserves `C^n` families, the alternating prebundle is `C^n`.
+@isnad1 id=iscontmd.1h11v.s14.dd5c97edcb25 from=translated src=- shape=2a68ce4b vocab=b2333e93
+-/
 theorem alternatingVectorPrebundle_isContMDiff_of_family :
     (Bundle.ContinuousAlternatingMap.vectorPrebundle K (Fin k) F₁ E₁ F₂ E₂).IsContMDiff
       I n where
@@ -126,7 +134,9 @@ theorem alternatingVectorPrebundle_isContMDiff_of_family :
       contMDiffOn_continuousAlternatingMapCoordChange_of_family k hfamily e₁ e₁' e₂ e₂',
       Pretrivialization.continuousAlternatingMapCoordChange_apply⟩
 
-/-- If the model action preserves `C^n` families, the alternating bundle is `C^n`.-/
+/-- If the model action preserves `C^n` families, the alternating bundle is `C^n`.
+@isnad1 id=contmdif.1h11v.s14.13730cb2d8e8 from=translated src=- shape=abafa4ad vocab=706f1a22
+-/
 theorem contMDiffVectorBundle_alternating_of_family :
     ContMDiffVectorBundle n (F₁ [⋀^Fin k]→L[K] F₂)
       (fun x ↦ E₁ x [⋀^Fin k]→L[K] E₂ x) I := by
@@ -141,7 +151,9 @@ section BundleTransitions
 variable [∀ x, IsTopologicalAddGroup (E₂ x)] [∀ x, ContinuousSMul K (E₂ x)]
 
 /-- On a common trivializing domain, the coordinate change of the alternating bundle is
-the model action of the reverse source and forward target transitions.-/
+the model action of the reverse source and forward target transitions.
+@isnad1 id=eq.1h12v.s11.ac4f4210e5ec from=translated src=- shape=d2a35c5b vocab=50a05ca2
+-/
 theorem coordChangeL_continuousAlternatingMap_eq_alternatingMapAction (k : ℕ)
     (e₁ e₁' : Trivialization F₁ (π F₁ E₁))
     (e₂ e₂' : Trivialization F₂ (π F₂ E₂))

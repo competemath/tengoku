@@ -25,12 +25,18 @@ noncomputable def wedgeEval (χ : (Fin (k + 1) → κ) →ₗ[κ] κ)
     (α : (Fin (k + 1) → κ) [⋀^Fin k]→ₗ[κ] κ) : κ :=
   AlternatingMap.alternatizeUncurryFin (χ.smulRight α) (fun i => Pi.single i 1)
 
+/--
+@isnad1 id=eq.0h5v.s10.09baaef753bc from=translated src=- shape=d35019ae vocab=4e774fd1
+-/
 theorem wedgeEval_add_left (χ χ' : (Fin (k + 1) → κ) →ₗ[κ] κ)
     (α : (Fin (k + 1) → κ) [⋀^Fin k]→ₗ[κ] κ) :
     wedgeEval (χ + χ') α = wedgeEval χ α + wedgeEval χ' α := by
   simp only [wedgeEval, AlternatingMap.alternatizeUncurryFin_apply, LinearMap.smulRight_apply,
     LinearMap.add_apply, add_smul, AlternatingMap.add_apply, smul_add, Finset.sum_add_distrib]
 
+/--
+@isnad1 id=eq.0h5v.s10.2aa5ac427784 from=translated src=- shape=09bd7b0a vocab=4e774fd1
+-/
 theorem wedgeEval_add_right (χ : (Fin (k + 1) → κ) →ₗ[κ] κ)
     (α β : (Fin (k + 1) → κ) [⋀^Fin k]→ₗ[κ] κ) :
     wedgeEval χ (α + β) = wedgeEval χ α + wedgeEval χ β := by
@@ -38,7 +44,9 @@ theorem wedgeEval_add_right (χ : (Fin (k + 1) → κ) →ₗ[κ] κ)
     smul_add, AlternatingMap.add_apply, Finset.sum_add_distrib]
 
 /-- If `α` vanishes on `(ker ν)^k` and all but one vector of `x` lie in `ker ν`, then the
-alternating form `alternatizeUncurryFin (ν.smulRight α)` vanishes at `x`.-/
+alternating form `alternatizeUncurryFin (ν.smulRight α)` vanishes at `x`.
+@isnad1 id=eq.2h6v.s11.b1b90c072ba2 from=translated src=- shape=e2b5b325 vocab=c4d239b8
+-/
 theorem alternatizeUncurryFin_smulRight_eq_zero {ν : (Fin (k + 1) → κ) →ₗ[κ] κ}
     {α : (Fin (k + 1) → κ) [⋀^Fin k]→ₗ[κ] κ}
     (hα : ∀ ξ : Fin k → (Fin (k + 1) → κ), (∀ r, ξ r ∈ LinearMap.ker ν) → α ξ = 0)
@@ -54,7 +62,9 @@ theorem alternatizeUncurryFin_smulRight_eq_zero {ν : (Fin (k + 1) → κ) →�
       smul_zero]
   · rw [hx i hi, zero_smul, smul_zero]
 
-/-- (F.3) for `ν = εᵃ`: if `α` vanishes on `(ker εᵃ)^k`, then `εᵃ(w_α) = 0`.-/
+/-- (F.3) for `ν = εᵃ`: if `α` vanishes on `(ker εᵃ)^k`, then `εᵃ(w_α) = 0`.
+@isnad1 id=eq.1h4v.s10.af795443d28d from=translated src=- shape=0bbb5769 vocab=9c4f4401
+-/
 theorem wedgeEval_proj_eq_zero (a : Fin (k + 1)) {α : (Fin (k + 1) → κ) [⋀^Fin k]→ₗ[κ] κ}
     (hα : ∀ ξ : Fin k → (Fin (k + 1) → κ),
       (∀ r, ξ r ∈ LinearMap.ker (LinearMap.proj (R := κ) (φ := fun _ => κ) a)) → α ξ = 0) :
@@ -62,7 +72,9 @@ theorem wedgeEval_proj_eq_zero (a : Fin (k + 1)) {α : (Fin (k + 1) → κ) [⋀
   alternatizeUncurryFin_smulRight_eq_zero hα _ a fun j hj => by
     simp [Ne.symm hj]
 
-/-- (F.3) for `ν = εᵃ + εᵇ` with `a ≠ b`: if `α` vanishes on `(ker ν)^k`, then `ν(w_α) = 0`.-/
+/-- (F.3) for `ν = εᵃ + εᵇ` with `a ≠ b`: if `α` vanishes on `(ker ν)^k`, then `ν(w_α) = 0`.
+@isnad1 id=eq.2h5v.s11.085244440220 from=translated src=- shape=d60d3aa9 vocab=15e65053
+-/
 theorem wedgeEval_proj_add_eq_zero {a b : Fin (k + 1)} (hab : a ≠ b)
     {α : (Fin (k + 1) → κ) [⋀^Fin k]→ₗ[κ] κ}
     (hα : ∀ ξ : Fin k → (Fin (k + 1) → κ),
@@ -86,7 +98,9 @@ theorem wedgeEval_proj_add_eq_zero {a b : Fin (k + 1)} (hab : a ≠ b)
     simp [he, hab, Ne.symm hab]
   · simp [he, update_of_ne hjb, Ne.symm hj, Ne.symm hjb]
 
-/-- At the last coordinate form (index `Fin.last k`), `ε^{k+1}(w_α) = (-1)^k α(e₀, …, e_{k-1})`.-/
+/-- At the last coordinate form (index `Fin.last k`), `ε^{k+1}(w_α) = (-1)^k α(e₀, …, e_{k-1})`.
+@isnad1 id=eq.0h3v.s9.0983ae4882c4 from=translated src=- shape=944446d3 vocab=9f4c798e
+-/
 theorem wedgeEval_proj_last (α : (Fin (k + 1) → κ) [⋀^Fin k]→ₗ[κ] κ) :
     wedgeEval (LinearMap.proj (R := κ) (φ := fun _ => κ) (Fin.last k)) α =
       (-1) ^ k * α (fun i => Pi.single (Fin.castSucc i) 1) := by

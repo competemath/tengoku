@@ -45,15 +45,30 @@ variable {K E}
 instance : CoeFun (DependentCZero K E) (fun _ => ∀ i, E i) :=
   ⟨fun x => (x.val : ∀ i, E i)⟩
 
+/--
+@isnad1 id=eq.1h5v.s10.3b10adcbd85e from=translated src=- shape=a2e3677f vocab=bd6a78e0
+-/
 @[ext]
 theorem ext {x y : DependentCZero K E} (h : ∀ i, x i = y i) : x = y :=
   Subtype.ext (lp.ext (funext h))
 
+/--
+@isnad1 id=eq.0h4v.s10.7026122a97de from=translated src=- shape=de67fcac vocab=bd6a78e0
+-/
 @[simp] theorem zero_apply (i : I) : (0 : DependentCZero K E) i = 0 := rfl
+/--
+@isnad1 id=eq.0h6v.s11.aa9231274754 from=translated src=- shape=014464ae vocab=7dbfa14f
+-/
 @[simp] theorem add_apply (x y : DependentCZero K E) (i : I) :
     (x + y) i = x i + y i := rfl
+/--
+@isnad1 id=eq.0h6v.s11.91ff1d020cd2 from=translated src=- shape=014464ae vocab=607fbabb
+-/
 @[simp] theorem sub_apply (x y : DependentCZero K E) (i : I) :
     (x - y) i = x i - y i := rfl
+/--
+@isnad1 id=eq.0h6v.s11.25ba32a5fc75 from=translated src=- shape=3b692477 vocab=7f9c47c6
+-/
 @[simp] theorem smul_apply (a : K) (x : DependentCZero K E) (i : I) :
     (a • x) i = a • x i := rfl
 
@@ -61,15 +76,26 @@ theorem ext {x y : DependentCZero K E} (h : ∀ i, x i = y i) : x = y :=
 def toLp : DependentCZero K E →ₗᵢ[K] lp E ∞ :=
   (dependentCZeroSubmodule K E).subtypeₗᵢ
 
+/--
+@isnad1 id=eq.0h4v.s11.e207cbd35427 from=translated src=- shape=c56efbd2 vocab=312e66fd
+-/
 @[simp] theorem toLp_apply (x : DependentCZero K E) : toLp x = x.val := rfl
 
-/-- The norm is the supremum of the coordinate norms (zero for an empty index type).-/
+/-- The norm is the supremum of the coordinate norms (zero for an empty index type).
+@isnad1 id=eq.0h4v.s10.97597bbfa2a4 from=translated src=- shape=be252170 vocab=84f51cdf
+-/
 theorem norm_eq (x : DependentCZero K E) : ‖x‖ = ⨆ i, ‖x i‖ :=
   lp.norm_eq_ciSup x.val
 
+/--
+@isnad1 id=le.0h5v.s10.54c3e9026e81 from=translated src=- shape=2259a611 vocab=f6de4b4e
+-/
 theorem norm_apply_le_norm (x : DependentCZero K E) (i : I) : ‖x i‖ ≤ ‖x‖ :=
   lp.norm_apply_le_norm ENNReal.top_ne_zero x.val i
 
+/--
+@isnad1 id=mem.0h5v.s9.6a93f1ac78b0 from=translated src=- shape=995a83ba vocab=c416f8ee
+-/
 theorem single_mem (i : I) (v : E i) :
     letI := Classical.decEq I
     lp.single ∞ i v ∈ dependentCZeroSubmodule K E := by
@@ -83,20 +109,32 @@ def single (i : I) : E i →L[K] DependentCZero K E := by
   exact (lp.singleContinuousLinearMap K E ∞ i).codRestrict
     (dependentCZeroSubmodule K E) (single_mem i)
 
+/--
+@isnad1 id=eq.0h6v.s12.d585d076771d from=translated src=- shape=743c3d99 vocab=24f5b04a
+-/
 @[simp] theorem single_apply (i : I) (v : E i) (j : I) :
     letI := Classical.decEq I
     single (K := K) (E := E) i v j = Pi.single i v j := rfl
 
+/--
+@isnad1 id=eq.0h5v.s12.cde67651cf91 from=translated src=- shape=e0c93c16 vocab=a7bbb066
+-/
 @[simp] theorem single_apply_self (i : I) (v : E i) :
     single (K := K) (E := E) i v i = v := by
   classical
   exact lp.single_apply_self ∞ i v
 
+/--
+@isnad1 id=eq.1h6v.s12.6903a9b6b170 from=translated src=- shape=86829f49 vocab=a7bbb066
+-/
 theorem single_apply_ne (i : I) (v : E i) {j : I} (h : j ≠ i) :
     single (K := K) (E := E) i v j = 0 := by
   classical
   exact lp.single_apply_ne ∞ i v h
 
+/--
+@isnad1 id=eq.0h5v.s11.5e224da01975 from=translated src=- shape=cdd55f7f vocab=a88cf6c2
+-/
 @[simp] theorem norm_single (i : I) (v : E i) :
     ‖single (K := K) (E := E) i v‖ = ‖v‖ := by
   classical
@@ -106,8 +144,14 @@ theorem single_apply_ne (i : I) (v : E i) {j : I} (h : j ≠ i) :
 def eval (i : I) : DependentCZero K E →L[K] E i :=
   (lp.evalCLM K E ∞ i).comp (dependentCZeroSubmodule K E).subtypeL
 
+/--
+@isnad1 id=eq.0h5v.s12.7e70d6887195 from=translated src=- shape=3ab55ef1 vocab=d715f9f6
+-/
 @[simp] theorem eval_apply (i : I) (x : DependentCZero K E) : eval i x = x i := rfl
 
+/--
+@isnad1 id=eq.0h4v.s11.3d53b0f28f5c from=translated src=- shape=1202ecbc vocab=38fb63d5
+-/
 @[simp] theorem eval_comp_single (i : I) :
     (eval (K := K) (E := E) i).comp (single i) = ContinuousLinearMap.id K (E i) := by
   ext v
@@ -117,6 +161,9 @@ def eval (i : I) : DependentCZero K E →L[K] E i :=
 def finiteVector (s : Finset I) (v : ∀ i, E i) : DependentCZero K E :=
   ∑ i ∈ s, single i (v i)
 
+/--
+@isnad1 id=eq.0h6v.s10.a2dd094d51e1 from=translated src=- shape=a40b10a6 vocab=dd74306f
+-/
 @[simp] theorem finiteVector_apply (s : Finset I) (v : ∀ i, E i) (i : I) :
     letI := Classical.decEq I
     finiteVector (K := K) s v i = if i ∈ s then v i else 0 := by
@@ -128,17 +175,25 @@ def finiteVector (s : Finset I) (v : ∀ i, E i) : DependentCZero K E :=
 def truncate (s : Finset I) : DependentCZero K E →L[K] DependentCZero K E :=
   ∑ i ∈ s, (single i).comp (eval i)
 
+/--
+@isnad1 id=eq.0h5v.s12.4527c11b00c6 from=translated src=- shape=b8285e01 vocab=19b4e8e5
+-/
 theorem truncate_eq_finiteVector (s : Finset I) (x : DependentCZero K E) :
     truncate s x = finiteVector s x := by
   simp [truncate, finiteVector]
 
+/--
+@isnad1 id=eq.0h6v.s13.cbc338878db9 from=translated src=- shape=d6b115ab vocab=b64cd66c
+-/
 @[simp] theorem truncate_apply (s : Finset I) (x : DependentCZero K E) (i : I) :
     letI := Classical.decEq I
     truncate s x i = if i ∈ s then x i else 0 := by
   classical
   rw [truncate_eq_finiteVector, finiteVector_apply]
 
-/-- Every vector in the algebraic coordinate span has finite support.-/
+/-- Every vector in the algebraic coordinate span has finite support.
+@isnad1 id=ex.1h4v.s9.cf9100f3ee1d from=translated src=- shape=887ebce3 vocab=6eca7600
+-/
 theorem finite_support_of_mem_span (x : lp E ∞) (hx : x ∈ dependentCZeroSpan K E) :
     ∃ s : Finset I, ∀ i ∉ s, x i = 0 := by
   classical
@@ -159,13 +214,17 @@ theorem finite_support_of_mem_span (x : lp E ∞) (hx : x ∈ dependentCZeroSpan
     obtain ⟨s, hs⟩ := hx'
     exact ⟨s, fun i hi => by simp [lp.coeFn_smul, hs i hi]⟩
 
-/-- Coordinate formula for ambient finite truncations.-/
+/-- Coordinate formula for ambient finite truncations.
+@isnad1 id=eq.0h5v.s8.7b3fddf2ac96 from=translated src=- shape=ec298959 vocab=fbcdc763
+-/
 theorem ambient_sum_single_apply [DecidableEq I] (s : Finset I) (v : ∀ i, E i) (i : I) :
     (∑ j ∈ s, lp.single ∞ j (v j)) i = if i ∈ s then v i else 0 := by
   classical
   simp only [lp.coeFn_sum, Finset.sum_apply, lp.single_apply, Finset.sum_pi_single]
 
-/-- The closed coordinate span consists of the families with `‖x i‖ → 0` along `cofinite`.-/
+/-- The closed coordinate span consists of the families with `‖x i‖ → 0` along `cofinite`.
+@isnad1 id=iff.0h4v.s9.5b020d3b557c from=translated src=- shape=9a957dfd vocab=598063b4
+-/
 theorem mem_iff (x : lp E ∞) :
     x ∈ dependentCZeroSubmodule K E ↔
       Tendsto (fun i => ‖x i‖) cofinite (𝓝 0) := by
@@ -206,7 +265,9 @@ theorem mem_iff (x : lp E ∞) :
       · simpa using (le_of_lt (half_pos hε))
       · simpa using le_of_lt (hs i hi)
 
-/-- Every c₀ vector has coordinate norms tending to zero along `cofinite`.-/
+/-- Every c₀ vector has coordinate norms tending to zero along `cofinite`.
+@isnad1 id=tendsto.0h4v.s10.839ed62bcfdc from=translated src=- shape=4397b8a3 vocab=fd9b2df5
+-/
 theorem tendsto_norm (x : DependentCZero K E) :
     Tendsto (fun i => ‖x i‖) cofinite (𝓝 0) :=
   (mem_iff x.val).mp x.property
@@ -228,6 +289,9 @@ variable (D : ∀ i, Submodule K (E i))
 def coordinateSubmodule : Submodule K (DependentCZero K E) :=
   ⨅ i, (D i).comap (eval (K := K) (E := E) i).toLinearMap
 
+/--
+@isnad1 id=iff.0h5v.s11.8c8f312e7cc1 from=translated src=- shape=eaf8c9cf vocab=acb5cd47
+-/
 @[simp]
 theorem mem_coordinateSubmodule (x : DependentCZero K E) :
     x ∈ coordinateSubmodule D ↔ ∀ i, x i ∈ D i := by
@@ -254,6 +318,9 @@ def coordinateInclusion : DependentCZero K (fun i ↦ D i) →ₗᵢ[K] Dependen
     rw [norm_eq, norm_eq]
     rfl
 
+/--
+@isnad1 id=eq.0h6v.s16.7b9153db7a11 from=translated src=- shape=c0cb7337 vocab=14e97c6f
+-/
 @[simp]
 theorem coordinateInclusion_apply (x : DependentCZero K (fun i ↦ D i)) (i : I) :
     coordinateInclusion D x i = (x i : E i) := rfl
@@ -266,6 +333,9 @@ def coordinateRestriction (x : coordinateSubmodule D) : DependentCZero K (fun i 
         exact norm_apply_le_norm (x : DependentCZero K E) i⟩⟩,
     (mem_iff _).2 (by simpa using tendsto_norm (x : DependentCZero K E))⟩
 
+/--
+@isnad1 id=eq.0h6v.s15.cf7df46a03e4 from=translated src=- shape=53bd03dd vocab=e4087a12
+-/
 @[simp]
 theorem coordinateRestriction_apply (x : coordinateSubmodule D) (i : I) :
     (coordinateRestriction D x i : E i) = (x : DependentCZero K E) i := rfl
@@ -295,10 +365,16 @@ def coordinateEquiv :
     rfl
   norm_map' x := (coordinateInclusion D).norm_map x
 
+/--
+@isnad1 id=eq.0h5v.s16.6b8858b69c92 from=translated src=- shape=f4071d6d vocab=8393d376
+-/
 @[simp]
 theorem coordinateEquiv_apply (x : DependentCZero K (fun i ↦ D i)) :
     (coordinateEquiv D x : DependentCZero K E) = coordinateInclusion D x := rfl
 
+/--
+@isnad1 id=eq.0h5v.s16.c45ebd8e0f85 from=translated src=- shape=2531238d vocab=6d1c5361
+-/
 @[simp]
 theorem coordinateEquiv_symm_apply (x : coordinateSubmodule D) :
     (coordinateEquiv D).symm x = coordinateRestriction D x := rfl
@@ -314,6 +390,9 @@ def coordinateEval (i : I) : coordinateSubmodule D →L[K] D i :=
   ((eval (K := K) (E := E) i).comp (coordinateSubmodule D).subtypeL).codRestrict
     (D i) (fun x ↦ (mem_coordinateSubmodule D _).1 x.property i)
 
+/--
+@isnad1 id=eq.0h6v.s14.36d9cc8c426f from=translated src=- shape=551c7c98 vocab=f010fcf4
+-/
 @[simp]
 theorem coordinateEval_apply (i : I) (x : coordinateSubmodule D) :
     (coordinateEval D i x : E i) = (x : DependentCZero K E) i := rfl
@@ -346,7 +425,9 @@ private lemma geometric_memℓp (v : ∀ n, E n) {C r : ℝ} (hC : 0 ≤ C)
   rintro _ ⟨n, rfl⟩
   exact (hv n).trans (geometric_bound_le hC hr₀ hr₁ n)
 
-/-- The bound for the coordinate convention starting in degree one tends to zero.-/
+/-- The bound for the coordinate convention starting in degree one tends to zero.
+@isnad1 id=tendsto.2h2v.s6.bba22ced1b85 from=translated src=- shape=219e4214 vocab=6fa6d961
+-/
 theorem tendsto_geometric_bound {C r : ℝ} (hr₀ : 0 ≤ r) (hr₁ : r < 1) :
     Tendsto (fun n : ℕ => C * r ^ (n + 1)) atTop (𝓝 0) := by
   simpa only [mul_zero, Function.comp_def] using
@@ -366,6 +447,9 @@ def ofGeometric (v : ∀ n, E n) {C r : ℝ} (hC : 0 ≤ C)
   ⟨⟨v, geometric_memℓp v hC hr₀ hr₁ hv⟩,
     (mem_iff _).2 (geometric_tendsto v hr₀ hr₁ hv)⟩
 
+/--
+@isnad1 id=eq.4h6v.s10.31d10fa9eb55 from=translated src=- shape=960a7aa1 vocab=aa4cc509
+-/
 @[simp] theorem ofGeometric_apply (v : ∀ n, E n) {C r : ℝ} (hC : 0 ≤ C)
     (hr₀ : 0 ≤ r) (hr₁ : r < 1) (hv : ∀ n, ‖v n‖ ≤ C * r ^ (n + 1))
     (n : ℕ) : ofGeometric (K := K) v hC hr₀ hr₁ hv n = v n := rfl
@@ -378,6 +462,9 @@ noncomputable def ofGeometricOn {X : Type*} (v : X → ∀ n, E n) (A : Set X)
   classical
   exact fun x => if hx : x ∈ A then ofGeometric (v x) hC hr₀ hr₁ (hv x hx) else 0
 
+/--
+@isnad1 id=eq.5h9v.s10.2512cbd72ad5 from=translated src=- shape=9f400df4 vocab=fab500d9
+-/
 @[simp] theorem ofGeometricOn_apply {X : Type*} (v : X → ∀ n, E n) (A : Set X)
     {C r : ℝ} (hC : 0 ≤ C) (hr₀ : 0 ≤ r) (hr₁ : r < 1)
     (hv : ∀ x ∈ A, ∀ n, ‖v x n‖ ≤ C * r ^ (n + 1)) (x : X) (hx : x ∈ A)

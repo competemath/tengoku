@@ -35,11 +35,17 @@ def denseScalarMultilinearFamilyExtension (hKL : DenseRange (algebraMap K L))
     map_smul_of_dense_algebraMap hKL (f.toContinuousLinearMap m i) c x
   cont := f.cont
 
+/--
+@isnad1 id=eq.1h7v.s10.113cd4cb953d from=translated src=- shape=2dfe1a40 vocab=2cde73cf
+-/
 @[simp]
 theorem denseScalarMultilinearFamilyExtension_apply
     (hKL : DenseRange (algebraMap K L)) (f : ContinuousMultilinearMap K H Z)
     (x : ∀ i, H i) : denseScalarMultilinearFamilyExtension hKL f x = f x := rfl
 
+/--
+@isnad1 id=eq.1h6v.s10.d1a2ecc5e24f from=translated src=- shape=86e21146 vocab=60c323ab
+-/
 @[simp]
 theorem restrict_denseScalarMultilinearFamilyExtension
     (hKL : DenseRange (algebraMap K L)) (f : ContinuousMultilinearMap K H Z) :
@@ -49,6 +55,9 @@ theorem restrict_denseScalarMultilinearFamilyExtension
 
 variable [Fintype I]
 
+/--
+@isnad1 id=eq.1h6v.s10.fb14de20c6f2 from=translated src=- shape=0592333f vocab=b6776c7d
+-/
 @[simp]
 theorem norm_denseScalarMultilinearFamilyExtension
     (hKL : DenseRange (algebraMap K L)) (f : ContinuousMultilinearMap K H Z) :
@@ -68,6 +77,9 @@ def denseScalarFamilyExtension (hKL : DenseRange (algebraMap K L))
     (P : ContinuousMultilinearMap K E Z) : ContinuousMultilinearMap L H Z :=
   denseScalarMultilinearFamilyExtension hKL (denseMultilinearFamilyExtension j hj P)
 
+/--
+@isnad1 id=eq.2h9v.s10.a0d972ec6095 from=translated src=- shape=ebd5ae43 vocab=02b2e449
+-/
 @[simp]
 theorem denseScalarFamilyExtension_apply (hKL : DenseRange (algebraMap K L))
     (j : ∀ i, E i →ₗᵢ[K] H i) (hj : ∀ i, DenseRange (j i))
@@ -75,6 +87,9 @@ theorem denseScalarFamilyExtension_apply (hKL : DenseRange (algebraMap K L))
     denseScalarFamilyExtension hKL j hj P (fun i => j i (x i)) = P x :=
   denseMultilinearFamilyExtension_apply j hj P x
 
+/--
+@isnad1 id=eq.2h8v.s11.940dff561ac4 from=translated src=- shape=56b736f0 vocab=0a69b1e7
+-/
 @[simp]
 theorem restrict_denseScalarFamilyExtension (hKL : DenseRange (algebraMap K L))
     (j : ∀ i, E i →ₗᵢ[K] H i) (hj : ∀ i, DenseRange (j i))
@@ -83,6 +98,9 @@ theorem restrict_denseScalarFamilyExtension (hKL : DenseRange (algebraMap K L))
       denseMultilinearFamilyExtension j hj P :=
   restrict_denseScalarMultilinearFamilyExtension hKL _
 
+/--
+@isnad1 id=eq.2h8v.s10.8d4e953ca738 from=translated src=- shape=27848fc4 vocab=4d2ce072
+-/
 @[simp]
 theorem norm_denseScalarFamilyExtension (hKL : DenseRange (algebraMap K L))
     (j : ∀ i, E i →ₗᵢ[K] H i) (hj : ∀ i, DenseRange (j i))
@@ -91,7 +109,9 @@ theorem norm_denseScalarFamilyExtension (hKL : DenseRange (algebraMap K L))
   rw [denseScalarFamilyExtension, norm_denseScalarMultilinearFamilyExtension,
     norm_denseMultilinearFamilyExtension]
 
-/-- Agreement on the original inputs determines the extension among `L`-multilinear maps.-/
+/-- Agreement on the original inputs determines the extension among `L`-multilinear maps.
+@isnad1 id=eq.3h9v.s11.e3cdbf51af63 from=translated src=- shape=dfc5b343 vocab=02b2e449
+-/
 theorem denseScalarFamilyExtension_unique (hKL : DenseRange (algebraMap K L))
     (j : ∀ i, E i →ₗᵢ[K] H i) (hj : ∀ i, DenseRange (j i))
     (P : ContinuousMultilinearMap K E Z) (R : ContinuousMultilinearMap L H Z)
@@ -101,7 +121,9 @@ theorem denseScalarFamilyExtension_unique (hKL : DenseRange (algebraMap K L))
   ext x
   exact congrArg (fun f : ContinuousMultilinearMap K H Z => f x) h
 
-/-- The completion principle: existence and uniqueness of the extension, with the same norm.-/
+/-- The completion principle: existence and uniqueness of the extension, with the same norm.
+@isnad1 id=existsun.2h8v.s12.b4f0dd027392 from=translated src=- shape=974533d5 vocab=b33ee181
+-/
 theorem existsUnique_denseScalarFamilyExtension (hKL : DenseRange (algebraMap K L))
     (j : ∀ i, E i →ₗᵢ[K] H i) (hj : ∀ i, DenseRange (j i))
     (P : ContinuousMultilinearMap K E Z) :
@@ -116,7 +138,9 @@ theorem existsUnique_denseScalarFamilyExtension (hKL : DenseRange (algebraMap K 
     exact denseScalarFamilyExtension_unique hKL j hj P R hR.1
 
 /-- The completion principle for a multilinear map with a bound `C`; the extension
-keeps the bound.-/
+keeps the bound.
+@isnad1 id=existsun.4h9v.s12.7ea8f6328adc from=translated src=- shape=fdfa2b8d vocab=ec3757eb
+-/
 theorem existsUnique_denseScalarFamilyExtension_of_bound
     (hKL : DenseRange (algebraMap K L))
     (j : ∀ i, E i →ₗᵢ[K] H i) (hj : ∀ i, DenseRange (j i))
@@ -139,7 +163,9 @@ theorem existsUnique_denseScalarFamilyExtension_of_bound
   · intro R hR
     exact denseScalarFamilyExtension_unique hKL j hj P₀ R hR.1
 
-/-- Agreement on the original inputs determines the extension.-/
+/-- Agreement on the original inputs determines the extension.
+@isnad1 id=eq.4h10v.s11.f2c1c13d61b4 from=translated src=- shape=549e713f vocab=3308be44
+-/
 theorem denseScalarFamilyExtension_mkContinuous_unique
     (hKL : DenseRange (algebraMap K L))
     (j : ∀ i, E i →ₗᵢ[K] H i) (hj : ∀ i, DenseRange (j i))
@@ -153,7 +179,9 @@ theorem denseScalarFamilyExtension_mkContinuous_unique
 variable {W : Type*} [NormedAddCommGroup W] [NormedSpace K W]
 
 /-- For a map into a smaller space `W` included in `Z`, the extension takes values in
-`W` on the original inputs.-/
+`W` on the original inputs.
+@isnad1 id=mem.2h11v.s11.87178b3d023a from=translated src=- shape=a9a5eccf vocab=982abb1f
+-/
 theorem denseScalarFamilyExtension_comp_apply_mem_range
     (hKL : DenseRange (algebraMap K L))
     (j : ∀ i, E i →ₗᵢ[K] H i) (hj : ∀ i, DenseRange (j i))
@@ -163,7 +191,9 @@ theorem denseScalarFamilyExtension_comp_apply_mem_range
   rw [denseScalarFamilyExtension_apply]
   exact ⟨P x, rfl⟩
 
-/-- Composing with an isometric inclusion of the codomain does not change the norm.-/
+/-- Composing with an isometric inclusion of the codomain does not change the norm.
+@isnad1 id=eq.2h10v.s10.32f021edf571 from=translated src=- shape=88412bad vocab=72e5f167
+-/
 @[simp]
 theorem norm_denseScalarFamilyExtension_comp
     (hKL : DenseRange (algebraMap K L))
@@ -179,7 +209,9 @@ section Submodules
 
 variable [CompleteSpace Z]
 
-/-- The completion principle for dense `K`-submodules of the `L`-spaces `H i`.-/
+/-- The completion principle for dense `K`-submodules of the `L`-spaces `H i`.
+@isnad1 id=existsun.2h7v.s12.c734484070f8 from=translated src=- shape=f1f871f9 vocab=ecab5587
+-/
 theorem existsUnique_denseScalarSubmoduleFamilyExtension
     (hKL : DenseRange (algebraMap K L))
     (S : ∀ i, Submodule K (H i)) (hS : ∀ i, Dense (S i : Set (H i)))
@@ -196,7 +228,9 @@ theorem existsUnique_denseScalarSubmoduleFamilyExtension
     exact denseScalarFamilyExtension_unique hKL j hj P R hR.1
 
 /-- The completion principle of Appendix H, for bounded maps on dense subspaces of
-Banach spaces. The completeness of `L` and `H i` matches the paper and is not used.-/
+Banach spaces. The completeness of `L` and `H i` matches the paper and is not used.
+@isnad1 id=existsun.4h8v.s14.e7fbfb8c6951 from=translated src=- shape=91e4e3ee vocab=0119e6db
+-/
 theorem existsUnique_denseScalarSubmoduleFamilyExtension_of_bound
     [CompleteSpace L] [∀ i, CompleteSpace (H i)]
     (hKL : DenseRange (algebraMap K L))

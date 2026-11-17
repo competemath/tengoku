@@ -19,7 +19,9 @@ namespace AlternatingAnalytic
 open scoped BigOperators
 open Module
 
-/-- The exterior-basis expansion of an alternating map, over any commutative ring.-/
+/-- The exterior-basis expansion of an alternating map, over any commutative ring.
+@isnad1 id=eq.0h8v.s10.0d37f89555a2 from=translated src=- shape=500f2175 vocab=c12bb723
+-/
 theorem finiteCoordinate_expansion_algebraic
     {K H G : Type*} [CommRing K] [AddCommGroup H] [Module K H]
     [AddCommGroup G] [Module K G] {d : ℕ}
@@ -49,7 +51,9 @@ theorem finiteCoordinate_expansion_algebraic
     _ = m y := exteriorPower.alternatingMapLinearEquiv_apply_ιMulti m y
 
 /-- The exterior-basis expansion of a continuous alternating map. The coordinates
-need not be continuous.-/
+need not be continuous.
+@isnad1 id=eq.0h8v.s10.968156a2db7c from=translated src=- shape=500f2175 vocab=6b7c0947
+-/
 theorem finiteCoordinate_expansion
     {K H F : Type*} [NontriviallyNormedField K]
     [NormedAddCommGroup H] [NormedSpace K H]

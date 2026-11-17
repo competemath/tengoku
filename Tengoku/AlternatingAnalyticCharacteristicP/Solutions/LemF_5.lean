@@ -60,7 +60,9 @@ def FibreCondition1
   τ (fun _ => firstCoords K k) = (detV' K k).compLinearMap (firstCoords K k)
 
 /-- Lemma F.5: if `k! = 0` in `K`, there are finite sets of tests `T j`, `j ∈ F`, such that every
-`τ` satisfying condition (1) of Lemma F.4 has a test value of absolute value at least `1`.-/
+`τ` satisfying condition (1) of Lemma F.4 has a test value of absolute value at least `1`.
+@isnad1 id=ex.1h2v.s13.3bbdf8409674 from=translated src=- shape=14e45ffb vocab=dd968c59
+-/
 theorem exists_finite_test_certificate (hk : (k.factorial : K) = 0) :
     ∃ T : Submodule K (Fin (k + 1) → K) × Submodule K (Fin k → K) →
         Finset ((Fin k → ((Fin (k + 1) → K) →ₗ[K] (Fin k → K))) × (Fin k → (Fin (k + 1) → K))),

@@ -21,7 +21,9 @@ def HasLinearUnitSumGrowth (F : Type*) [NormedAddCommGroup F] : Prop :=
 
 variable {E F : Type*} [NormedAddCommGroup E] [NormedAddCommGroup F]
 
-/-- Linear unit-sum growth passes along additive isometries.-/
+/-- Linear unit-sum growth passes along additive isometries.
+@isnad1 id=haslinea.2h3v.s7.4a445b0f2503 from=translated src=- shape=3bddbf10 vocab=4eafd774
+-/
 theorem HasLinearUnitSumGrowth.map (h : HasLinearUnitSumGrowth E)
     (i : E →+ F) (hi : Isometry i) : HasLinearUnitSumGrowth F := by
   obtain ⟨v, M, hM, hv, hgrowth⟩ := h
@@ -31,7 +33,9 @@ theorem HasLinearUnitSumGrowth.map (h : HasLinearUnitSumGrowth E)
   · simpa only [Function.comp_apply, ← map_sum, hn] using hgrowth N
 
 /-- A space with linear unit-sum growth has no equivalent ultrametric norm, over any
-scalar field.-/
+scalar field.
+@isnad1 id=not.1h2v.s4.2d9cf4d422d3 from=translated src=- shape=e8ccce66 vocab=f52c879f
+-/
 theorem HasLinearUnitSumGrowth.not_hasEquivalentUltrametricNorm
     (h : HasLinearUnitSumGrowth F) (K : Type*) [NormedField K] [NormedSpace K F] :
     ¬ HasEquivalentUltrametricNorm K F := by

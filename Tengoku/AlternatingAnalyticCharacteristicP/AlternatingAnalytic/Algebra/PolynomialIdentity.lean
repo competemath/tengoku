@@ -24,11 +24,16 @@ noncomputable def scalarPolynomial (φ : Y →ₗ[K] K) (c : (σ →₀ ℕ) →
     MvPolynomial σ K :=
   AddMonoidAlgebra.ofCoeff (Finsupp.mapRange φ φ.map_zero c)
 
+/--
+@isnad1 id=eq.0h6v.s8.a2fe10072528 from=translated src=- shape=d9b63d36 vocab=1ff30313
+-/
 @[simp]
 theorem scalarPolynomial_coeff (φ : Y →ₗ[K] K) (c : (σ →₀ ℕ) →₀ Y)
     (α : σ →₀ ℕ) : (scalarPolynomial φ c).coeff α = φ (c α) := rfl
 
-/-- Scalar evaluation commutes with applying a linear functional to the coefficients.-/
+/-- Scalar evaluation commutes with applying a linear functional to the coefficients.
+@isnad1 id=eq.0h6v.s8.722895882c0a from=translated src=- shape=8e73ccc0 vocab=2ac565df
+-/
 theorem eval_scalarPolynomial (φ : Y →ₗ[K] K) (c : (σ →₀ ℕ) →₀ Y)
     (x : σ → K) : MvPolynomial.eval x (scalarPolynomial φ c) = φ (eval c x) := by
   classical
@@ -39,7 +44,9 @@ theorem eval_scalarPolynomial (φ : Y →ₗ[K] K) (c : (σ →₀ ℕ) →₀ Y
   simp only [Finsupp.sum, map_sum, map_smul, smul_eq_mul]
   exact Finset.sum_congr rfl fun _ _ => mul_comm _ _
 
-/-- For finitely many variables, evaluation is the usual monomial sum.-/
+/-- For finitely many variables, evaluation is the usual monomial sum.
+@isnad1 id=eq.0h5v.s8.0082b6431867 from=translated src=- shape=b1618444 vocab=762e185a
+-/
 theorem eval_eq_sum [Fintype σ] (c : (σ →₀ ℕ) →₀ Y) (x : σ → K) :
     eval c x = ∑ α ∈ c.support, (∏ i, x i ^ α i) • c α := by
   simp only [eval, Finsupp.sum, Finsupp.prod_pow]

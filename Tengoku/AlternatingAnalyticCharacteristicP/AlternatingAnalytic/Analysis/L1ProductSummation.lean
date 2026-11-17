@@ -17,13 +17,17 @@ namespace L1Coordinates
 
 variable {K J : Type*} [NontriviallyNormedField K]
 
-/-- The coordinate norms of an element of `ℓ¹` sum to its norm.-/
+/-- The coordinate norms of an element of `ℓ¹` sum to its norm.
+@isnad1 id=hassum.0h3v.s9.c4009d98adce from=translated src=- shape=613b5f18 vocab=31aa2cc6
+-/
 theorem hasSum_norm (x : lp (fun _ : J => K) 1) :
     HasSum (fun j => ‖x j‖) ‖x‖ := by
   simpa using lp.hasSum_norm (p := 1) (by simp) x
 
 /-- The products of coordinate norms over all words `a : Fin d → J` sum to the product of
-the norms.-/
+the norms.
+@isnad1 id=hassum.0h4v.s9.e34408304fd3 from=translated src=- shape=e0ea5b5e vocab=f1625683
+-/
 theorem hasSum_prod_norm (d : ℕ) (x : Fin d → lp (fun _ : J => K) 1) :
     HasSum (fun a : Fin d → J => ∏ r, ‖x r (a r)‖) (∏ r, ‖x r‖) := by
   induction d with

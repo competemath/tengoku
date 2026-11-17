@@ -31,7 +31,9 @@ variable {K P M : Type*} [NontriviallyNormedField K] [NormedAddCommGroup P] [Nor
   [TopologicalSpace (TotalSpace F₃ E₃)] [FiberBundle F₃ E₃] [VectorBundle K F₃ E₃]
 
 /-- Changing the base point of the trivializations conjugates the local expression of an
-operator by the transition operators.-/
+operator by the transition operators.
+@isnad1 id=eq.2h9v.s10.6ac06f9edd39 from=translated src=- shape=afbbf6b2 vocab=fe018481
+-/
 theorem coordChangeL_comp_inCoordinates_comp {x₀ x : M}
     (h₁ : x ∈ (trivializationAt F₁ E₁ x₀).baseSet) (h₂ : x ∈ (trivializationAt F₂ E₂ x₀).baseSet)
     (φ : E₁ x →L[K] E₂ x) :
@@ -54,7 +56,9 @@ theorem coordChangeL_comp_inCoordinates_comp {x₀ x : M}
     Trivialization.continuousLinearMapAt_apply_of_mem (R := K) (hb := h₂),
     Trivialization.symmL_apply _ h₁]
 
-/-- The local expression of the identity at its own base point is the identity.-/
+/-- The local expression of the identity at its own base point is the identity.
+@isnad1 id=eq.0h5v.s8.5c1e2ee16c5b from=translated src=- shape=b744cf7f vocab=3f9a7f76
+-/
 theorem inCoordinates_self_id (x : M) :
     ContinuousLinearMap.inCoordinates F₁ E₁ F₁ E₁ x x x x (ContinuousLinearMap.id K (E₁ x)) =
       ContinuousLinearMap.id K F₁ := by
@@ -64,7 +68,9 @@ theorem inCoordinates_self_id (x : M) :
     ContinuousLinearMap.id_apply]
   exact (trivializationAt F₁ E₁ x).continuousLinearMapAt_symmL hx v
 
-/-- Local expressions at a common base point preserve composition.-/
+/-- Local expressions at a common base point preserve composition.
+@isnad1 id=eq.0h11v.s10.d6b5e63bfaec from=translated src=- shape=ec55edcc vocab=c20ba369
+-/
 theorem inCoordinates_self_comp (x : M) (f : E₁ x →L[K] E₂ x) (g : E₂ x →L[K] E₃ x) :
     ContinuousLinearMap.inCoordinates F₁ E₁ F₃ E₃ x x x x (g.comp f) =
       (ContinuousLinearMap.inCoordinates F₂ E₂ F₃ E₃ x x x x g).comp
@@ -79,7 +85,9 @@ variable [∀ x, IsTopologicalAddGroup (E₂ x)] [∀ x, ContinuousSMul K (E₂ 
   [ContMDiffVectorBundle n F₂ E₂ 𝓘(K, P)]
 
 /-- The local expressions of a `Cⁿ` Hom section in the trivializations at a fixed point are
-`Cⁿ` on open subsets of the common base set.-/
+`Cⁿ` on open subsets of the common base set.
+@isnad1 id=contmdif.2h11v.s11.3eef39314a5d from=translated src=- shape=bfa1a1c3 vocab=fd3ee413
+-/
 theorem contMDiffOn_inCoordinates_of_section
     (s : ContMDiffSection 𝓘(K, P) (F₁ →L[K] F₂) n (fun x ↦ E₁ x →L[K] E₂ x)) (x₀ : M)
     {U : Set M} (hU : IsOpen U)

@@ -79,6 +79,9 @@ def FiniteTestCertificate : Prop :=
         FibreCondition1 K k τ →
           ∃ j ∈ pairFamily K k, ∃ t ∈ T j, 1 ≤ ‖τ t.1 t.2‖
 
+/--
+@isnad1 id=finite.0h2v.s7.060a0e84f869 from=translated src=- shape=71b36e72 vocab=1722710b
+-/
 theorem coordForms_finite : (coordForms K k).Finite := by
   refine (Set.finite_range _).union ((Set.finite_range
     (fun ab : Fin (k + 1) × Fin (k + 1) => LinearMap.proj (R := K) (φ := fun _ => K) ab.1 +
@@ -86,7 +89,9 @@ theorem coordForms_finite : (coordForms K k).Finite := by
   rintro ν ⟨a, b, -, rfl⟩
   exact ⟨(a, b), rfl⟩
 
-/-- The family `F` is finite.-/
+/-- The family `F` is finite.
+@isnad1 id=finite.0h2v.s7.f871f625c8ae from=translated src=- shape=bf37249c vocab=52fdb704
+-/
 theorem pairFamily_finite : (pairFamily K k).Finite := by
   refine Set.Finite.union ((Set.finite_range
     (fun cd : Fin k × Fin k => ((⊤ : Submodule K (Fin (k + 1) → K)), colEq K k cd.1 cd.2))).subset
@@ -97,16 +102,24 @@ theorem pairFamily_finite : (pairFamily K k).Finite := by
   · rintro P ⟨ν, hν, s, rfl⟩
     exact ⟨(ν, s), ⟨hν, Set.mem_univ _⟩, rfl⟩
 
+/--
+@isnad1 id=mem.1h4v.s10.764653799c2a from=translated src=- shape=0c25ccc6 vocab=a8c23749
+-/
 theorem pairFamily_top_colEq {c d : Fin k} (hcd : c < d) :
     ((⊤ : Submodule K (Fin (k + 1) → K)), colEq K k c d) ∈ pairFamily K k :=
   Or.inl ⟨c, d, hcd, rfl⟩
 
+/--
+@isnad1 id=eq.0h3v.s8.a996588405da from=translated src=- shape=c58a6420 vocab=ecf51071
+-/
 theorem detV'_apply (z : Fin k → Fin k → K) :
     detV' K k z = Matrix.det (Matrix.of fun a r => z r a) := by
   rw [detV', Module.Basis.det_apply]
   congr 1
 
-/-- `δ'` vanishes on `(Σ')^k` for every pair `(Σ, Σ')` of the family.-/
+/-- `δ'` vanishes on `(Σ')^k` for every pair `(Σ, Σ')` of the family.
+@isnad1 id=eq.2h4v.s10.27b385268a10 from=translated src=- shape=ee3204aa vocab=8b068dfc
+-/
 theorem detV'_eq_zero_of_mem {P : Submodule K (Fin (k + 1) → K) × Submodule K (Fin k → K)}
     (hP : P ∈ pairFamily K k) (z : Fin k → Fin k → K) (hz : ∀ r, z r ∈ P.2) :
     detV' K k z = 0 := by
@@ -121,14 +134,18 @@ theorem detV'_eq_zero_of_mem {P : Submodule K (Fin (k + 1) → K) × Submodule K
     have := hz r
     simpa only [colZero, LinearMap.mem_ker, LinearMap.proj_apply, Matrix.of_apply] using this
 
-/-- Every subspace is the kernel of an idempotent linear map.-/
+/-- Every subspace is the kernel of an idempotent linear map.
+@isnad1 id=ex.0h3v.s9.0669dc5ac1e4 from=translated src=- shape=eae482d4 vocab=16d3390d
+-/
 theorem exists_idempotent_ker {V : Type*} [AddCommGroup V] [Module K V] (W : Submodule K V) :
     ∃ ρ : V →ₗ[K] V, (∀ v, ρ (ρ v) = ρ v) ∧ ∀ v, ρ v = 0 ↔ v ∈ W := by
   obtain ⟨C, hC⟩ := W.exists_isCompl
   refine ⟨C.projection W hC.symm, fun v => ?_, fun v => Submodule.projection_apply_eq_zero_iff _⟩
   exact congrArg (fun f : V →ₗ[K] V => f v) (Submodule.isIdempotentElem_projection hC.symm).eq
 
-/-- `k! = 0` forces `k ≥ 2`.-/
+/-- `k! = 0` forces `k ≥ 2`.
+@isnad1 id=le.1h2v.s5.e5d86c9f9ea7 from=translated src=- shape=22a64610 vocab=632b8de2
+-/
 theorem two_le_of_factorial_eq_zero {k : ℕ} (hk : (k.factorial : K) = 0) : 2 ≤ k := by
   by_contra h
   interval_cases k <;> simp at hk

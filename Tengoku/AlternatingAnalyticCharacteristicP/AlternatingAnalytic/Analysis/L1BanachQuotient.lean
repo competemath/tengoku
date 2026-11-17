@@ -35,7 +35,9 @@ def unitBallL1Quotient : lp (fun _ : L1UnitBallIndex H => K) 1 →L[K] H :=
 
 variable {K H}
 
-/-- The quotient map is the unconditional sum `∑_v a_v v`.-/
+/-- The quotient map is the unconditional sum `∑_v a_v v`.
+@isnad1 id=hassum.0h3v.s12.7eaa5e825c52 from=translated src=- shape=a3b20bfe vocab=2eaf4107
+-/
 theorem unitBallL1Quotient_hasSum (a : lp (fun _ : L1UnitBallIndex H => K) 1) :
     HasSum (fun v : L1UnitBallIndex H => a v • (v : H)) (unitBallL1Quotient K H a) := by
   have hs := L1Coordinates.continuousMultilinearOfBounded_hasSum
@@ -44,11 +46,16 @@ theorem unitBallL1Quotient_hasSum (a : lp (fun _ : L1UnitBallIndex H => K) 1) :
   apply (Equiv.funUnique (Fin 1) (L1UnitBallIndex H)).hasSum_iff.mp
   simpa [unitBallL1Quotient, continuousMultilinearCurryFin1_apply, Function.comp_def] using hs
 
+/--
+@isnad1 id=eq.0h3v.s12.58a5a409ca0b from=translated src=- shape=609c9b66 vocab=c77e2d89
+-/
 theorem unitBallL1Quotient_apply (a : lp (fun _ : L1UnitBallIndex H => K) 1) :
     unitBallL1Quotient K H a = ∑' v : L1UnitBallIndex H, a v • (v : H) :=
   (unitBallL1Quotient_hasSum a).tsum_eq.symm
 
-/-- The quotient map sends `a e_v` to `a v`.-/
+/-- The quotient map sends `a e_v` to `a v`.
+@isnad1 id=eq.0h4v.s12.25ed002e0c42 from=translated src=- shape=b534198b vocab=e7534af6
+-/
 @[simp]
 theorem unitBallL1Quotient_single (v : L1UnitBallIndex H) (a : K) :
     unitBallL1Quotient K H (lp.single 1 v a) = a • (v : H) := by

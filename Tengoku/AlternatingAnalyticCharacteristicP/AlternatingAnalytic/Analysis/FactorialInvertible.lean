@@ -41,7 +41,9 @@ namespace ContinuousMultilinearMap
 variable {𝕜 ι E F : Type*} [NontriviallyNormedField 𝕜] [Fintype ι] [DecidableEq ι]
   [NormedAddCommGroup E] [NormedSpace 𝕜 E] [NormedAddCommGroup F] [NormedSpace 𝕜 F]
 
-/-- Alternatization increases the norm by at most `(Fintype.card ι)!`.-/
+/-- Alternatization increases the norm by at most `(Fintype.card ι)!`.
+@isnad1 id=le.0h5v.s10.37905fce32c6 from=translated src=- shape=9046fa9e vocab=4cfa8984
+-/
 theorem norm_alternatization_le (f : ContinuousMultilinearMap 𝕜 (fun _ : ι ↦ E) F) :
     ‖alternatization f‖ ≤ ((Fintype.card ι)! : ℝ) * ‖f‖ := by
   rw [← ContinuousAlternatingMap.norm_toContinuousMultilinearMap,
@@ -70,14 +72,22 @@ noncomputable def alternatizationCLM :
         exact Finset.sum_congr rfl fun σ _ ↦ smul_comm _ _ _ }
     ((Fintype.card ι)! : ℝ) (fun f ↦ norm_alternatization_le f)
 
+/--
+@isnad1 id=eq.0h5v.s11.4a96a7a9ed15 from=translated src=- shape=fcf07bf5 vocab=a9dcb488
+-/
 @[simp] theorem alternatizationCLM_apply (f : ContinuousMultilinearMap 𝕜 (fun _ : ι ↦ E) F) :
     alternatizationCLM 𝕜 E F f = alternatization f := rfl
 
+/--
+@isnad1 id=le.0h4v.s9.bd1d2734a3ea from=translated src=- shape=51048f19 vocab=388d8dda
+-/
 theorem norm_alternatizationCLM_le :
     ‖alternatizationCLM (ι := ι) 𝕜 E F‖ ≤ ((Fintype.card ι)! : ℝ) :=
   LinearMap.mkContinuous_norm_le _ (by positivity) _
 
-/-- Alternatizing an already alternating map multiplies it by `(Fintype.card ι)!`.-/
+/-- Alternatizing an already alternating map multiplies it by `(Fintype.card ι)!`.
+@isnad1 id=eq.0h5v.s11.5606128fd86a from=translated src=- shape=7809fb82 vocab=4ee33f96
+-/
 theorem alternatization_toContinuousMultilinearMap (a : E [⋀^ι]→L[𝕜] F) :
     alternatization a.toContinuousMultilinearMap = (Fintype.card ι)! • a := by
   ext v
@@ -86,7 +96,9 @@ theorem alternatization_toContinuousMultilinearMap (a : E [⋀^ι]→L[𝕜] F) 
     rw [AlternatingMap.coe_alternatization a.toAlternatingMap]
   simpa only [MultilinearMap.alternatization_apply, alternatization_apply_apply] using! h
 
-/-- Scalar form of `ContinuousMultilinearMap.alternatization_toContinuousMultilinearMap`.-/
+/-- Scalar form of `ContinuousMultilinearMap.alternatization_toContinuousMultilinearMap`.
+@isnad1 id=eq.0h5v.s10.2fd73ab33449 from=translated src=- shape=501afce9 vocab=757df2c3
+-/
 theorem alternatizationCLM_toContinuousMultilinearMap (a : E [⋀^ι]→L[𝕜] F) :
     alternatizationCLM 𝕜 E F a.toContinuousMultilinearMap = (((Fintype.card ι)! : 𝕜)) • a := by
   rw [alternatizationCLM_apply, alternatization_toContinuousMultilinearMap,
@@ -109,7 +121,9 @@ noncomputable def altProj :
     ContinuousMultilinearMap 𝕜 (fun _ : ι ↦ E) F →L[𝕜] (E [⋀^ι]→L[𝕜] F) :=
   ((Fintype.card ι)! : 𝕜)⁻¹ • alternatizationCLM 𝕜 E F
 
-/-- `ContinuousAlternatingMap.altProj` is a retraction of the inclusion.-/
+/-- `ContinuousAlternatingMap.altProj` is a retraction of the inclusion.
+@isnad1 id=eq.1h5v.s10.179776734b43 from=translated src=- shape=67e458e2 vocab=105bfd97
+-/
 theorem altProj_toContinuousMultilinearMap (h : ((Fintype.card ι)! : 𝕜) ≠ 0)
     (a : E [⋀^ι]→L[𝕜] F) : altProj 𝕜 E F a.toContinuousMultilinearMap = a := by
   rw [altProj, _root_.smul_apply, alternatizationCLM_toContinuousMultilinearMap,
@@ -127,6 +141,9 @@ noncomputable def compAlternatizationCLM :
       (ContinuousMultilinearMap 𝕜 (fun _ : ι ↦ E') F)
       (ContinuousMultilinearMap 𝕜 (fun _ : ι ↦ E) F)).flip (toContinuousMultilinearMapCLM 𝕜))
 
+/--
+@isnad1 id=eq.0h7v.s14.01942d094acd from=translated src=- shape=5e9fb322 vocab=943c82bc
+-/
 theorem compAlternatizationCLM_apply
     (u : ContinuousMultilinearMap 𝕜 (fun _ : ι ↦ E') F →L[𝕜]
       ContinuousMultilinearMap 𝕜 (fun _ : ι ↦ E) F) (m : E' [⋀^ι]→L[𝕜] F) :

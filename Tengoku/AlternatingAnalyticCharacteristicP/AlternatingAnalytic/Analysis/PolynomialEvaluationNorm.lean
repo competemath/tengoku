@@ -18,7 +18,9 @@ namespace AlternatingAnalytic
 
 open IsUltrametricDist
 
-/-- In an ultrametric group a uniquely largest summand determines the norm.-/
+/-- In an ultrametric group a uniquely largest summand determines the norm.
+@isnad1 id=eq.3h5v.s6.890a6e143400 from=translated src=- shape=2cb7f04d vocab=255a5900
+-/
 theorem norm_sum_eq_of_strictly_largest {V ι : Type*} [NormedAddCommGroup V]
     [IsUltrametricDist V] (s : Finset ι) (f : ι → V) (i : ι) (hi : i ∈ s)
     (hpos : 0 < ‖f i‖) (hmax : ∀ j ∈ s, j ≠ i → ‖f j‖ < ‖f i‖) :
@@ -34,7 +36,9 @@ theorem norm_sum_eq_of_strictly_largest {V ι : Type*} [NormedAddCommGroup V]
 
 variable {κ K : Type*} [Field κ] [Finite κ] [NormedField K] [IsUltrametricDist K]
 
-/-- `‖p(t)‖ = ‖t‖ ^ natTrailingDegree p` for nonzero `p`.-/
+/-- `‖p(t)‖ = ‖t‖ ^ natTrailingDegree p` for nonzero `p`.
+@isnad1 id=eq.3h5v.s7.9edc60bf0132 from=translated src=- shape=42b1f6bd vocab=f6c06460
+-/
 theorem norm_polynomial_eval₂ (f : κ →+* K) (t : K) (ht0 : t ≠ 0) (ht1 : ‖t‖ < 1)
     (p : Polynomial κ) (hp : p ≠ 0) :
     ‖p.eval₂ f t‖ = ‖t‖ ^ p.natTrailingDegree := by
@@ -55,7 +59,9 @@ theorem norm_polynomial_eval₂ (f : κ →+* K) (t : K) (ht0 : t ≠ 0) (ht1 : 
     exact (pow_lt_pow_iff_right_of_lt_one₀ (norm_pos_iff.mpr ht0) ht1).2
       (lt_of_le_of_ne (p.natTrailingDegree_le_of_mem_supp n hn) hne.symm)
 
-/-- Evaluation at `t` is injective on `κ[X]`.-/
+/-- Evaluation at `t` is injective on `κ[X]`.
+@isnad1 id=injectiv.2h4v.s7.f3b0464c0bf0 from=translated src=- shape=e2f2a77b vocab=5e0bcaa5
+-/
 theorem polynomial_eval₂_injective (f : κ →+* K) (t : K)
     (ht0 : t ≠ 0) (ht1 : ‖t‖ < 1) :
     Function.Injective (Polynomial.eval₂RingHom f t) := by

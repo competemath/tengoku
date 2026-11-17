@@ -22,6 +22,9 @@ def scalarActionIsometry : K →ₗᵢ[K] (E →L[K] E) where
   toLinearMap := (ContinuousLinearMap.lsmul K K).toLinearMap
   norm_map' s := ContinuousLinearMap.opNorm_lsmul_apply K K (a := s)
 
+/--
+@isnad1 id=eq.0h3v.s10.66be8f2261ff from=translated src=- shape=98439404 vocab=ece4c897
+-/
 @[simp]
 theorem scalarActionIsometry_apply (s : K) :
     scalarActionIsometry (E := E) s = s • ContinuousLinearMap.id K E := by
@@ -37,29 +40,44 @@ def endScalarEquivOfRigidity : (E →L[K] E) ≃ₗᵢ[K] K :=
       obtain ⟨s, hs⟩ := hr T
       exact ⟨s, ContinuousLinearMap.ext (fun x => (hs x).symm)⟩)).symm
 
+/--
+@isnad1 id=eq.1h3v.s11.ea210406c820 from=translated src=- shape=c708e253 vocab=47bbd48b
+-/
 @[simp]
 theorem endScalarEquivOfRigidity_symm_apply (s : K) :
     (endScalarEquivOfRigidity hr).symm s = s • ContinuousLinearMap.id K E := by
   change scalarActionIsometry s = _
   exact scalarActionIsometry_apply s
 
+/--
+@isnad1 id=eq.1h4v.s10.0aea44287ef3 from=translated src=- shape=2704799a vocab=d1dc8f11
+-/
 theorem endScalarEquivOfRigidity_apply (T : E →L[K] E) (x : E) :
     T x = endScalarEquivOfRigidity hr T • x := by
   have h := (endScalarEquivOfRigidity hr).symm_apply_apply T
   rw [endScalarEquivOfRigidity_symm_apply] at h
   exact (congrArg (fun U : E →L[K] E => U x) h).symm
 
+/--
+@isnad1 id=eq.1h3v.s10.b3e81c88d61e from=translated src=- shape=859dcf6f vocab=521ff7f3
+-/
 @[simp]
 theorem norm_endScalarEquivOfRigidity (T : E →L[K] E) :
     ‖endScalarEquivOfRigidity hr T‖ = ‖T‖ :=
   (endScalarEquivOfRigidity hr).norm_map T
 
+/--
+@isnad1 id=eq.1h2v.s10.2d6dea26cf34 from=translated src=- shape=c3dfb71e vocab=1c6f385c
+-/
 @[simp]
 theorem endScalarEquivOfRigidity_id :
     endScalarEquivOfRigidity hr (ContinuousLinearMap.id K E) = 1 := by
   apply (endScalarEquivOfRigidity hr).symm.injective
   simp
 
+/--
+@isnad1 id=eq.1h4v.s12.69729d054d72 from=translated src=- shape=890abe54 vocab=6aa8a252
+-/
 @[simp]
 theorem endScalarEquivOfRigidity_comp (T U : E →L[K] E) :
     endScalarEquivOfRigidity hr (T.comp U) =

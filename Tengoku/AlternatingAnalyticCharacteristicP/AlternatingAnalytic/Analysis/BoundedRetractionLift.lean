@@ -27,7 +27,9 @@ noncomputable local instance boundedRetractionLiftNorm (n : ℕ) :
     (𝕜 := K) (E := fun _ : Fin n => E →L[K] E')
     (G := (E' [⋀^Fin n]→L[K] F) →L[K] (E [⋀^Fin n]→L[K] F))
 
-/-- The lift has norm at most the norm of the retraction.-/
+/-- The lift has norm at most the norm of the retraction.
+@isnad1 id=le.0h6v.s12.6ed0047ad6aa from=translated src=- shape=097b373d vocab=220be6a8
+-/
 theorem norm_contractingRetractionLift_le_norm (n : ℕ)
     (r : (E [×n]→L[K] F) →L[K] (E [⋀^Fin n]→L[K] F)) :
     ‖contractingRetractionLift (E' := E') n r‖ ≤ ‖r‖ := by
@@ -48,7 +50,9 @@ theorem norm_contractingRetractionLift_le_norm (n : ℕ)
       rw [ContinuousAlternatingMap.norm_toContinuousMultilinearMap]
       ring
 
-/-- Pointwise bound for the lift.-/
+/-- Pointwise bound for the lift.
+@isnad1 id=le.0h9v.s13.0a12ef4e3933 from=translated src=- shape=3a7cc8c2 vocab=ed190f83
+-/
 theorem norm_contractingRetractionLift_apply_le (n : ℕ)
     (r : (E [×n]→L[K] F) →L[K] (E [⋀^Fin n]→L[K] F))
     (f : Fin n → E →L[K] E') (m : E' [⋀^Fin n]→L[K] F) (x : Fin n → E) :

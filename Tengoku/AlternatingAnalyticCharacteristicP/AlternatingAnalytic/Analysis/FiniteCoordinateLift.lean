@@ -26,11 +26,17 @@ def coordinateMonomial (r : Fin n → Fin d) (z : Z) :
   (ContinuousMultilinearMap.mkPiRing K (Fin n) z).compContinuousLinearMap
     (fun i => ContinuousLinearMap.proj (r i))
 
+/--
+@isnad1 id=eq.0h7v.s8.88cdb4648ca4 from=translated src=- shape=27932e01 vocab=e1861904
+-/
 @[simp]
 theorem coordinateMonomial_apply (r : Fin n → Fin d) (z : Z)
     (m : Fin n → Fin d → K) :
     coordinateMonomial r z m = (∏ i, m i (r i)) • z := rfl
 
+/--
+@isnad1 id=le.0h6v.s8.81c7786efa78 from=translated src=- shape=111281f9 vocab=3445eee9
+-/
 theorem norm_coordinateMonomial_le (r : Fin n → Fin d) (z : Z) :
     ‖coordinateMonomial (K := K) r z‖ ≤ ‖z‖ := by
   apply ContinuousMultilinearMap.opNorm_le_bound (norm_nonneg _)
@@ -41,7 +47,9 @@ theorem norm_coordinateMonomial_le (r : Fin n → Fin d) (z : Z) :
   gcongr with i
   exact norm_le_pi_norm (m i) (r i)
 
-/-- The lift with bound `d ^ n`, assuming the grouped coefficients lie in `W`.-/
+/-- The lift with bound `d ^ n`, assuming the grouped coefficients lie in `W`.
+@isnad1 id=ex.1h6v.s11.4ec4a4062c58 from=translated src=- shape=52cb5c05 vocab=830946a8
+-/
 theorem exists_lift_of_sumOfType_mem (W : Submodule K Z)
     (p : ContinuousMultilinearMap K (fun _ : Fin n => Fin d → K) Z)
     (hc : ∀ α : Fin d → ℕ,

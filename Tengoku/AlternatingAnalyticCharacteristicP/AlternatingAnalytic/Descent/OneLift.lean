@@ -23,7 +23,9 @@ variable {K : Type*} [NontriviallyNormedField K]
   [NormedAddCommGroup W] [NormedSpace K W] [NormedAddCommGroup Z] [NormedSpace K Z]
 
 /-- The diagonal of a bounded `n`-linear map has a finite power series of infinite radius
-at `0`.-/
+at `0`.
+@isnad1 id=hasfinit.0h5v.s9.7b28b5396c16 from=translated src=- shape=e6684110 vocab=bf8c5b1e
+-/
 theorem hasFiniteFPowerSeriesOnBall_diag_zero {n : ℕ}
     (P : ContinuousMultilinearMap K (fun _ : Fin n => H) W) :
     HasFiniteFPowerSeriesOnBall (fun x => P (fun _ => x))
@@ -42,7 +44,9 @@ theorem hasFiniteFPowerSeriesOnBall_diag_zero {n : ℕ}
     rfl
 
 /-- The diagonal of a bounded `n`-linear map has a finite power series of infinite radius
-at every point.-/
+at every point.
+@isnad1 id=ex.1h7v.s8.dee424dc950e from=translated src=- shape=ad1132d5 vocab=54cf78a3
+-/
 theorem exists_hasFiniteFPowerSeriesOnBall_of_diag {n : ℕ}
     (P : ContinuousMultilinearMap K (fun _ : Fin n => H) W) (a : H → W)
     (hP : ∀ h, P (fun _ => h) = a h) (h₀ : H) :
@@ -62,7 +66,9 @@ theorem eq_sum_of_hasFiniteFPowerSeriesOnBall_zero {g : H → W}
   rwa [zero_add] at h
 
 /-- If `j ∘ a` is the diagonal of a bounded `k`-linear map and `a` has a power series at some
-point, then the `k`-th coefficient of that series is a bounded `k`-linear lift of `a`.-/
+point, then the `k`-th coefficient of that series is a bounded `k`-linear lift of `a`.
+@isnad1 id=eq.3h11v.s10.6bf249c4ab16 from=translated src=- shape=617b245e vocab=a905d00e
+-/
 theorem coeff_eq_of_hasFPowerSeriesAt (j : W →L[K] Z) (hj : Function.Injective j) (k : ℕ)
     (B : ContinuousMultilinearMap K (fun _ : Fin k => H) Z)
     (a : H → W) (ha : ∀ h, j (a h) = B (fun _ => h))
@@ -76,7 +82,9 @@ theorem coeff_eq_of_hasFPowerSeriesAt (j : W →L[K] Z) (hj : Function.Injective
     rw [Fintype.card_fin] at this
     rw [this, ha]
 
-/-- Proposition 3.3, (1) ⇒ (2).-/
+/-- Proposition 3.3, (1) ⇒ (2).
+@isnad1 id=ex.3h9v.s10.c19d7cdb9ebb from=translated src=- shape=d55b02eb vocab=c9871918
+-/
 theorem exists_lift_of_analyticAt (j : W →L[K] Z) (hj : Function.Injective j) (k : ℕ)
     (B : ContinuousMultilinearMap K (fun _ : Fin k => H) Z)
     (a : H → W) (ha : ∀ h, j (a h) = B (fun _ => h)) {h₀ : H} (hfa : AnalyticAt K a h₀) :
@@ -86,7 +94,9 @@ theorem exists_lift_of_analyticAt (j : W →L[K] Z) (hj : Function.Injective j) 
 
 /-- Proposition 3.3: for `a : H → W` with `j ∘ a` the diagonal of a bounded `k`-linear map,
 analytic somewhere ⟺ bounded `k`-linear lift ⟺ finite power series of infinite radius
-everywhere.-/
+everywhere.
+@isnad1 id=tfae.2h8v.s10.fa8060155545 from=translated src=- shape=1ac6730e vocab=64d83e45
+-/
 theorem tfae (j : W →L[K] Z) (hj : Function.Injective j) (k : ℕ)
     (B : ContinuousMultilinearMap K (fun _ : Fin k => H) Z)
     (a : H → W) (ha : ∀ h, j (a h) = B (fun _ => h)) :

@@ -21,7 +21,9 @@ universe u v
 
 variable {σ : Type v} {R : Type u} [Fintype σ] [Field R]
 
-/-- A homogeneous polynomial at a coordinate unit vector reads its pure-power coefficient.-/
+/-- A homogeneous polynomial at a coordinate unit vector reads its pure-power coefficient.
+@isnad1 id=eq.1h5v.s7.f0aa296da394 from=translated src=- shape=966febcd vocab=65993b8f
+-/
 theorem homogeneous_eval_coordinate (p : MvPolynomial σ R) {e : ℕ}
     (hp : p.IsHomogeneous e) (i : σ) :
     MvPolynomial.eval (Pi.single i 1) p = p.coeff (Finsupp.single i e) := by
@@ -56,7 +58,9 @@ theorem homogeneous_eval_coordinate (p : MvPolynomial σ R) {e : ℕ}
   · intro h
     simp [MvPolynomial.notMem_support_iff.mp h]
 
-/-- A multi-index whose degree equals one of its entries is a pure power.-/
+/-- A multi-index whose degree equals one of its entries is a pure power.
+@isnad1 id=eq.1h3v.s7.449358acd896 from=translated src=- shape=cd554bf8 vocab=29cdfaf7
+-/
 theorem finsupp_eq_single_of_degree_eq {d : σ →₀ ℕ} {i : σ} (h : d.degree = d i) :
     d = Finsupp.single i (d i) := by
   classical
@@ -73,7 +77,9 @@ theorem finsupp_eq_single_of_degree_eq {d : σ →₀ ℕ} {i : σ} (h : d.degre
     simp [hji, hj]
 
 /-- A homogeneous form of degree `e ≤ q` vanishing on all points is zero. The case `e = q`
-is allowed; it fails for inhomogeneous polynomials.-/
+is allowed; it fails for inhomogeneous polynomials.
+@isnad1 id=eq.3h4v.s7.33649b87ed0a from=translated src=- shape=c3ee62aa vocab=64b9330c
+-/
 theorem finiteField_homogeneous_eq_zero_sameUniverse {σ : Type u} [Fintype σ] [Fintype R]
     (p : MvPolynomial σ R) {e : ℕ} (hp : p.IsHomogeneous e)
     (he : e ≤ Fintype.card R) (hvanish : ∀ x : σ → R, MvPolynomial.eval x p = 0) :
@@ -97,7 +103,9 @@ theorem finiteField_homogeneous_eq_zero_sameUniverse {σ : Type u} [Fintype σ] 
   rw [hdform]
   exact hpure
 
-/-- The homogeneous identity principle, with variables and coefficients in any universes.-/
+/-- The homogeneous identity principle, with variables and coefficients in any universes.
+@isnad1 id=eq.3h4v.s7.051022e58ce8 from=translated src=- shape=a08c7045 vocab=64b9330c
+-/
 theorem finiteField_homogeneous_eq_zero [Fintype R]
     (p : MvPolynomial σ R) {e : ℕ} (hp : p.IsHomogeneous e)
     (he : e ≤ Fintype.card R) (hvanish : ∀ x : σ → R, MvPolynomial.eval x p = 0) :
@@ -132,7 +140,9 @@ namespace MultilinearMap
 variable {K A Y J : Type*} [Field K] [AddCommGroup A] [Module K A]
   [AddCommGroup Y] [Module K Y] [Fintype J] {k : ℕ}
 
-/-- Every nonzero diagonal coefficient of a `k`-linear map has degree `k`.-/
+/-- Every nonzero diagonal coefficient of a `k`-linear map has degree `k`.
+@isnad1 id=eq.1h8v.s8.5103acfcc9be from=translated src=- shape=7a6ac462 vocab=64605f0a
+-/
 theorem diagonalCoefficients_degree
     (M : MultilinearMap K (fun _ : Fin k => A) Y) (b : J → A)
     (α : J →₀ ℕ) (hα : M.diagonalCoefficients b α ≠ 0) : α.degree = k := by

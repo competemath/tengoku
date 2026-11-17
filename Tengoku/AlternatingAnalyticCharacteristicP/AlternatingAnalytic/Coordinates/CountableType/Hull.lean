@@ -27,7 +27,9 @@ section Ultrametric
 variable {K E F : Type*} [NontriviallyNormedField K] [SeminormedAddCommGroup E] [NormedSpace K E]
   [SeminormedAddCommGroup F] [NormedSpace K F] [IsUltrametricDist F]
 
-/-- Operators into an ultrametric space are ultrametric for the operator norm.-/
+/-- Operators into an ultrametric space are ultrametric for the operator norm.
+@isnad1 id=isultram.0h3v.s7.668f81f29c69 from=translated src=- shape=bcb27e21 vocab=d7f66239
+-/
 theorem isUltrametricDist_continuousLinearMap : IsUltrametricDist (E →L[K] F) :=
   IsUltrametricDist.isUltrametricDist_of_forall_norm_add_le_max_norm fun f g => by
     refine (f + g).opNorm_le_bound (le_max_of_le_left (norm_nonneg f)) fun x => ?_
@@ -46,12 +48,17 @@ variable (K V) in
 /-- Evaluation of a normed space in its bidual.-/
 abbrev bidualEval : V →L[K] ((V →L[K] K) →L[K] K) := ContinuousLinearMap.apply K K
 
+/--
+@isnad1 id=le.0h3v.s12.7cc553a3acaf from=translated src=- shape=b80c9e11 vocab=d1b7b72f
+-/
 theorem norm_bidualEval_le (x : V) : ‖bidualEval K V x‖ ≤ ‖x‖ :=
   ContinuousLinearMap.opNorm_le_bound _ (norm_nonneg x) fun φ => by
     rw [ContinuousLinearMap.apply_apply, mul_comm]
     exact φ.le_opNorm x
 
-/-- Scalar multilinear forms are bounded by the bidual seminorms of their arguments.-/
+/-- Scalar multilinear forms are bounded by the bidual seminorms of their arguments.
+@isnad1 id=le.0h5v.s12.28931dc35901 from=translated src=- shape=0a225536 vocab=f611a517
+-/
 theorem norm_le_mul_prod_bidualEval (k : ℕ)
     (g : ContinuousMultilinearMap K (fun _ : Fin k => V) K) (v : Fin k → V) :
     ‖g v‖ ≤ ‖g‖ * ∏ a, ‖bidualEval K V (v a)‖ := by
@@ -94,7 +101,9 @@ theorem norm_le_mul_prod_bidualEval (k : ℕ)
           simp only [Fin.tail]; ring
 
 /-- A multilinear form that vanishes as soon as one argument lies in `ker p` only depends on
-the images of its arguments under `p`.-/
+the images of its arguments under `p`.
+@isnad1 id=eq.2h8v.s10.db170c8f718c from=translated src=- shape=14ea468e vocab=3d667735
+-/
 theorem map_eq_of_forall_map_eq {ι : Type*} [Fintype ι] [DecidableEq ι] (p : V →ₗ[K] M)
     (g : MultilinearMap K (fun _ : ι => V) K) (hg : ∀ v : ι → V, ∀ a, p (v a) = 0 → g v = 0)
     {v w : ι → V} (h : ∀ a, p (v a) = p (w a)) : g v = g w := by
@@ -116,6 +125,9 @@ variable (p : V →L[K] M) (hp : Function.Surjective p) {k : ℕ}
     ‖g v‖ ≤ ‖g‖ * ∏ a, ‖p (v a)‖)
 
 include hbound in
+/--
+@isnad1 id=eq.2h8v.s10.ac33da1cbe4c from=translated src=- shape=d46f0970 vocab=910ad547
+-/
 theorem map_eq_of_forall_apply_eq (g : ContinuousMultilinearMap K (fun _ : Fin k => V) K)
     {v w : Fin k → V} (h : ∀ a, p (v a) = p (w a)) : g v = g w := by
   classical
@@ -153,6 +165,9 @@ def descendMultilinear (g : ContinuousMultilinearMap K (fun _ : Fin k => V) K) :
       simp [Function.surjInv_eq hp]
     · simp [Function.update_of_ne hc]
 
+/--
+@isnad1 id=le.2h7v.s10.0aadae1e13cb from=translated src=- shape=2ebb643e vocab=96fb1ff7
+-/
 theorem norm_descendMultilinear_le (g : ContinuousMultilinearMap K (fun _ : Fin k => V) K)
     (y : Fin k → M) : ‖descendMultilinear p hp hbound g y‖ ≤ ‖g‖ * ∏ a, ‖y a‖ := by
   have h := hbound g fun a => Function.surjInv hp (y a)
@@ -172,9 +187,15 @@ def descend : ContinuousMultilinearMap K (fun _ : Fin k => V) K →L[K]
       exact MultilinearMap.mkContinuous_norm_le (descendMultilinear p hp hbound g) (norm_nonneg g)
         (norm_descendMultilinear_le p hp hbound g))
 
+/--
+@isnad1 id=eq.2h7v.s11.17322bd026a4 from=translated src=- shape=9398f568 vocab=4ad68a88
+-/
 theorem descend_apply (g : ContinuousMultilinearMap K (fun _ : Fin k => V) K) (y : Fin k → M) :
     descend p hp hbound g y = g fun a => Function.surjInv hp (y a) := rfl
 
+/--
+@isnad1 id=eq.2h7v.s11.13df25fa972a from=translated src=- shape=6a5b03ff vocab=51d6a03a
+-/
 theorem descend_apply_comp (g : ContinuousMultilinearMap K (fun _ : Fin k => V) K)
     (v : Fin k → V) : descend p hp hbound g (fun a => p (v a)) = g v := by
   rw [descend_apply]
@@ -186,10 +207,16 @@ def descendAlt (g : V [⋀^Fin k]→L[K] K) : M [⋀^Fin k]→L[K] K where
   map_eq_zero_of_eq' y _ _ hy hne :=
     g.map_eq_zero_of_eq (fun c => Function.surjInv hp (y c)) (congrArg _ hy) hne
 
+/--
+@isnad1 id=eq.2h6v.s11.a98cb3774cf1 from=translated src=- shape=e042afe0 vocab=cd5fc80a
+-/
 theorem descendAlt_toContinuousMultilinearMap (g : V [⋀^Fin k]→L[K] K) :
     (descendAlt p hp hbound g).toContinuousMultilinearMap =
       descend p hp hbound g.toContinuousMultilinearMap := rfl
 
+/--
+@isnad1 id=eq.2h7v.s10.4865183202df from=translated src=- shape=70294efb vocab=2456470f
+-/
 theorem descendAlt_apply_comp (g : V [⋀^Fin k]→L[K] K) (v : Fin k → V) :
     descendAlt p hp hbound g (fun a => p (v a)) = g v :=
   descend_apply_comp p hp hbound g.toContinuousMultilinearMap v

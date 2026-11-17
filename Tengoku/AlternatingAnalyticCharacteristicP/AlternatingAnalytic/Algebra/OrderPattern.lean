@@ -23,10 +23,15 @@ def sameOrderPattern {N : ℕ} (z z' : Fin N → ℕ) : Prop :=
 /-- The distinct coordinate values of a tuple.-/
 def tupleValues {N : ℕ} (z : Fin N → ℕ) : Finset ℕ := Finset.univ.image z
 
+/--
+@isnad1 id=mem.0h3v.s4.733000696a98 from=translated src=- shape=d8126424 vocab=29403fc7
+-/
 theorem mem_tupleValues {N : ℕ} (z : Fin N → ℕ) (i : Fin N) :
     z i ∈ tupleValues z := Finset.mem_image.mpr ⟨i, Finset.mem_univ i, rfl⟩
 
-/-- The inverse increasing enumeration counts the elements strictly below its argument.-/
+/-- The inverse increasing enumeration counts the elements strictly below its argument.
+@isnad1 id=eq.2h3v.s8.726e36d2a759 from=translated src=- shape=aa9eaf6e vocab=3bfaf114
+-/
 theorem orderIsoOfFin_symm_val {s : Finset ℕ} {N : ℕ} (hs : s.card = N)
     (x : ℕ) (hx : x ∈ s) :
     ((s.orderIsoOfFin hs).symm ⟨x, hx⟩).val = (s.filter (· < x)).card := by
@@ -54,7 +59,9 @@ theorem orderIsoOfFin_symm_val {s : Finset ℕ} {N : ℕ} (hs : s.card = N)
       simp [l']
   simpa only [Finset.card_range] using hcard.symm
 
-/-- Equal order patterns give equal numbers of distinct values below each coordinate.-/
+/-- Equal order patterns give equal numbers of distinct values below each coordinate.
+@isnad1 id=eq.1h4v.s6.5c79ea9fc823 from=translated src=- shape=b42d05de vocab=f5ddf8ae
+-/
 theorem card_values_below_eq {N : ℕ} {z z' : Fin N → ℕ}
     (h : sameOrderPattern z z') (i : Fin N) :
     ((tupleValues z).filter (· < z i)).card =
@@ -85,7 +92,9 @@ theorem card_values_below_eq {N : ℕ} {z z' : Fin N → ℕ}
     exact ((h _ j).2.mp (hpick (z j) (Finset.mem_filter.mp hx).1)).trans hj
 
 /-- Pad the distinct values of a tuple to an `N`-element subset of `H` using points above all
-of them.-/
+of them.
+@isnad1 id=ex.2h3v.s6.bc1920f5e95a from=translated src=- shape=66a95fba vocab=4ce572ad
+-/
 theorem exists_padded_finset {N : ℕ} (H : Set ℕ) (hH : H.Infinite)
     (z : Fin N → ℕ) (hz : ∀ i, z i ∈ H) :
     ∃ s : Finset ℕ, (↑s : Set ℕ) ⊆ H ∧ s.card = N ∧
@@ -135,7 +144,9 @@ theorem exists_padded_finset {N : ℕ} (H : Set ℕ) (hH : H.Infinite)
     · rintro ⟨hx, hxi⟩
       exact ⟨Or.inl hx, hxi⟩
 
-/-- A finite coloring of tuples is constant on each order pattern on some infinite set.-/
+/-- A finite coloring of tuples is constant on each order pattern on some infinite set.
+@isnad1 id=ex.0h3v.s6.1f32e21941a1 from=translated src=- shape=00158405 vocab=e8924515
+-/
 theorem exists_infinite_order_homogeneous {C : Type*} [Finite C] (N : ℕ)
     (T : (Fin N → ℕ) → C) :
     ∃ H : Set ℕ, H.Infinite ∧

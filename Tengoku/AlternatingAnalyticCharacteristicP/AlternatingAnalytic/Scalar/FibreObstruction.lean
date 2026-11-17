@@ -21,7 +21,9 @@ open Function
 
 variable {κ : Type u} [Field κ] {k : ℕ}
 
-/-- `g₀ = ∑_c ε^c ⊗ e'_c`.-/
+/-- `g₀ = ∑_c ε^c ⊗ e'_c`.
+@isnad1 id=eq.0h2v.s10.1615292e5f55 from=translated src=- shape=5123def5 vocab=e9f898f4
+-/
 theorem firstCoords_eq_sum :
     firstCoords κ k = ∑ c : Fin k,
       (LinearMap.proj (R := κ) (φ := fun _ => κ) (Fin.castSucc c)).smulRight
@@ -29,7 +31,9 @@ theorem firstCoords_eq_sum :
   refine LinearMap.ext fun x => funext fun j => ?_
   simp [firstCoords, LinearMap.funLeft_apply, Pi.single_apply]
 
-/-- The left side of condition (1) at `(e₀, …, e_{k-1})`: `δ'(e'₀, …, e'_{k-1}) = 1`.-/
+/-- The left side of condition (1) at `(e₀, …, e_{k-1})`: `δ'(e'₀, …, e'_{k-1}) = 1`.
+@isnad1 id=eq.0h2v.s11.33664350e2fa from=translated src=- shape=5fb97fdb vocab=33363e1b
+-/
 theorem evalFirst_detV'_compLinearMap :
     evalFirst ((detV' κ k).compLinearMap (firstCoords κ k)) = 1 := by
   rw [evalFirst_apply, AlternatingMap.compLinearMap_apply]
@@ -40,7 +44,9 @@ theorem evalFirst_detV'_compLinearMap :
   rw [h, detV', Module.Basis.det_self]
 
 /-- Lemma F.4: if `k! = 0` in `κ`, no `k`-linear map
-`τ : Hom_κ(κ^{k+1}, κ^k)^k → Alt^k_κ(κ^{k+1}; κ)` satisfies both conditions (1) and (2).-/
+`τ : Hom_κ(κ^{k+1}, κ^k)^k → Alt^k_κ(κ^{k+1}; κ)` satisfies both conditions (1) and (2).
+@isnad1 id=not.1h2v.s11.5279a21fa6c9 from=translated src=- shape=3ee0d039 vocab=9cd40d4d
+-/
 theorem not_exists_fibre_map (hk : (k.factorial : κ) = 0) :
     ¬ ∃ τ : MultilinearMap κ (fun _ : Fin k => (Fin (k + 1) → κ) →ₗ[κ] (Fin k → κ))
         ((Fin (k + 1) → κ) [⋀^Fin k]→ₗ[κ] κ),

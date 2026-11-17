@@ -40,6 +40,9 @@ def alternatingMapActionInclusion (k : ℕ) :
   (ContinuousAlternatingMap.toContinuousMultilinearMapLI
     (𝕜 := K) (ι := Fin k) (E := E') (F := F')).postcomp
 
+/--
+@isnad1 id=eq.0h9v.s13.ff8a154690bd from=translated src=- shape=d3555078 vocab=a2acb06e
+-/
 @[simp]
 theorem alternatingMapActionInclusion_apply (k : ℕ)
     (T : (E [⋀^Fin k]→L[K] F) →L[K] (E' [⋀^Fin k]→L[K] F'))
@@ -71,6 +74,9 @@ def ambientAlternatingMapAction (k : ℕ) :
       ContinuousMultilinearMap K (fun _ : Fin k => E') F')
     (Ei := fun _ : Fin (k + 1) => (E' →L[K] E) × (F →L[K] F')) curried
 
+/--
+@isnad1 id=eq.0h9v.s13.95e177fe37d3 from=translated src=- shape=ad9b82d9 vocab=de8d5fdf
+-/
 @[simp]
 theorem ambientAlternatingMapAction_apply (k : ℕ)
     (h : Fin (k + 1) → (E' →L[K] E) × (F →L[K] F'))
@@ -78,7 +84,9 @@ theorem ambientAlternatingMapAction_apply (k : ℕ)
     ambientAlternatingMapAction (K := K) (E := E) (E' := E') (F := F) (F' := F') k h m x =
       (h (Fin.last k)).2 (m fun i => (h i.castSucc).1 (x i)) := rfl
 
-/-- The pointwise estimate for `ambientAlternatingMapAction`.-/
+/-- The pointwise estimate for `ambientAlternatingMapAction`.
+@isnad1 id=le.0h9v.s13.60cd6e32502d from=translated src=- shape=6463b010 vocab=4636c4ea
+-/
 theorem ambientAlternatingMapAction_bound (k : ℕ)
     (h : Fin (k + 1) → (E' →L[K] E) × (F →L[K] F'))
     (m : E [⋀^Fin k]→L[K] F) (x : Fin k → E') :
@@ -110,7 +118,9 @@ local instance ambientAlternatingMapActionNorm (k : ℕ) :
     (G := (E [⋀^Fin k]→L[K] F) →L[K]
       ContinuousMultilinearMap K (fun _ : Fin k => E') F')
 
-/-- The ambient representative has operator norm at most one.-/
+/-- The ambient representative has operator norm at most one.
+@isnad1 id=le.0h6v.s12.9c05ef323d5c from=translated src=- shape=b609de0b vocab=14ec0ee5
+-/
 theorem norm_ambientAlternatingMapAction_le (k : ℕ) :
     ‖ambientAlternatingMapAction (K := K) (E := E) (E' := E') (F := F) (F' := F') k‖ ≤ 1 := by
   apply ContinuousMultilinearMap.opNorm_le_bound zero_le_one
@@ -122,7 +132,9 @@ theorem norm_ambientAlternatingMapAction_le (k : ℕ) :
   intro x
   exact ambientAlternatingMapAction_bound k h m x
 
-/-- The diagonal of `ambientAlternatingMapAction` is continuously polynomial.-/
+/-- The diagonal of `ambientAlternatingMapAction` is continuously polynomial.
+@isnad1 id=cpolynom.0h7v.s13.608d536c3b6b from=translated src=- shape=46d97992 vocab=906ffc26
+-/
 theorem cpolynomialAt_ambientAlternatingMapAction_diagonal (k : ℕ)
     (h : (E' →L[K] E) × (F →L[K] F')) :
     CPolynomialAt K
@@ -140,7 +152,9 @@ theorem cpolynomialAt_ambientAlternatingMapAction_diagonal (k : ℕ)
       (K := K) (E := E) (E' := E') (F := F) (F' := F') k)).comp
       (diagonal.cpolynomialAt h)
 
-/-- The diagonal of `ambientAlternatingMapAction` is analytic.-/
+/-- The diagonal of `ambientAlternatingMapAction` is analytic.
+@isnad1 id=analytic.0h7v.s13.8f2ca2199ee0 from=translated src=- shape=46d97992 vocab=abe9cb22
+-/
 theorem analyticAt_ambientAlternatingMapAction_diagonal (k : ℕ)
     (h : (E' →L[K] E) × (F →L[K] F')) :
     AnalyticAt K
@@ -150,7 +164,9 @@ theorem analyticAt_ambientAlternatingMapAction_diagonal (k : ℕ)
   exact (cpolynomialAt_ambientAlternatingMapAction_diagonal k h).analyticAt
 
 /-- The diagonal of `ambientAlternatingMapAction` is the joint action followed by
-the inclusion that forgets alternation.-/
+the inclusion that forgets alternation.
+@isnad1 id=eq.0h7v.s14.37e7e6722827 from=translated src=- shape=fc4d6a47 vocab=8ef36263
+-/
 theorem ambientAlternatingMapAction_diag (k : ℕ)
     (h : (E' →L[K] E) × (F →L[K] F')) :
     ambientAlternatingMapAction (K := K) (E := E) (E' := E') (F := F) (F' := F') k
@@ -160,7 +176,9 @@ theorem ambientAlternatingMapAction_diag (k : ℕ)
   ext m x
   rfl
 
-/-- The joint action is continuously polynomial after forgetting alternation.-/
+/-- The joint action is continuously polynomial after forgetting alternation.
+@isnad1 id=cpolynom.0h7v.s13.f693ef6db405 from=translated src=- shape=34601752 vocab=512b3b57
+-/
 theorem cpolynomialAt_ambient_alternatingMapAction (k : ℕ)
     (h : (E' →L[K] E) × (F →L[K] F')) :
     CPolynomialAt K
@@ -169,7 +187,9 @@ theorem cpolynomialAt_ambient_alternatingMapAction (k : ℕ)
   simpa only [Function.comp_def, ambientAlternatingMapAction_diag] using
     cpolynomialAt_ambientAlternatingMapAction_diagonal k h
 
-/-- The joint action is analytic after forgetting alternation.-/
+/-- The joint action is analytic after forgetting alternation.
+@isnad1 id=analytic.0h7v.s13.0eb4c5717f33 from=translated src=- shape=4e34eff3 vocab=42fc0506
+-/
 theorem analyticAt_ambient_alternatingMapAction (k : ℕ)
     (h : (E' →L[K] E) × (F →L[K] F')) :
     AnalyticAt K (fun h : (E' →L[K] E) × (F →L[K] F') =>

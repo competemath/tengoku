@@ -26,7 +26,9 @@ def HasEquivalentUltrametricNorm : Prop :=
 
 variable {K F}
 
-/-- An equivalent ultrametric norm uniformly bounds finite sums in the unit ball.-/
+/-- An equivalent ultrametric norm uniformly bounds finite sums in the unit ball.
+@isnad1 id=ex.1h2v.s6.728eb5dcce9d from=translated src=- shape=eceabc9e vocab=be92c141
+-/
 theorem HasEquivalentUltrametricNorm.bounded_unit_sums
     (h : HasEquivalentUltrametricNorm K F) :
     ∃ C : ℝ, 0 < C ∧ ∀ {ι : Type*} (s : Finset ι) (v : ι → F),
@@ -46,7 +48,9 @@ theorem HasEquivalentUltrametricNorm.bounded_unit_sums
         (hv i (Finset.mem_insert_self i s)) hB.le).trans_eq (mul_one B))
   exact (hlower _).trans (mul_le_mul_of_nonneg_left hsum hA.le)
 
-/-- Unbounded partial sums of unit vectors exclude every equivalent ultrametric norm.-/
+/-- Unbounded partial sums of unit vectors exclude every equivalent ultrametric norm.
+@isnad1 id=not.2h3v.s6.be44effa224f from=translated src=- shape=697e91a6 vocab=de9444df
+-/
 theorem not_hasEquivalentUltrametricNorm_of_unbounded_partial_sums
     (v : ℕ → F) (hv : ∀ n, ‖v n‖ ≤ 1)
     (hgrowth : ∀ B : ℝ, ∃ N : ℕ, B < ‖∑ i ∈ Finset.range N, v i‖) :
@@ -57,7 +61,9 @@ theorem not_hasEquivalentUltrametricNorm_of_unbounded_partial_sums
   exact (not_lt_of_ge (hC (Finset.range N) v (fun i _ => hv i))) hN
 
 /-- Partial sums of unit vectors growing at least linearly exclude an equivalent
-ultrametric norm.-/
+ultrametric norm.
+@isnad1 id=not.3h4v.s6.65621e68850f from=translated src=- shape=6fd0decf vocab=02c11da8
+-/
 theorem not_hasEquivalentUltrametricNorm_of_linear_growth
     (v : ℕ → F) (hv : ∀ n, ‖v n‖ ≤ 1) {M : ℝ} (hM : 0 < M)
     (hgrowth : ∀ N : ℕ, (N : ℝ) / M ≤ ‖∑ i ∈ Finset.range N, v i‖) :

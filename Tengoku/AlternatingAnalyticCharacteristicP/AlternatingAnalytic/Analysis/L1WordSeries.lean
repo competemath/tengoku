@@ -18,17 +18,26 @@ namespace L1Coordinates
 
 variable {K I : Type*} [NontriviallyNormedField K]
 
+/--
+@isnad1 id=lt.1h4v.s7.65851cdd421f from=translated src=- shape=a0dcf123 vocab=a5950e8e
+-/
 theorem word_ratio_lt_one {s : K} {x : L1 K I} (hx : ‖x‖ < ‖s‖) :
     ‖s⁻¹‖ * ‖x‖ < 1 := by
   rw [norm_inv, inv_mul_eq_div]
   exact (div_lt_one (lt_of_le_of_lt (norm_nonneg x) hx)).2 hx
 
+/--
+@isnad1 id=hassum.0h5v.s8.4bb4cd4822cf from=translated src=- shape=07e89ccf vocab=e9253d5f
+-/
 theorem hasSum_norm_word_coordinates (s : K) (x : L1 K I) (n : ℕ) :
     HasSum (fun a : Fin n → I => ‖(s⁻¹)^n * ∏ i, x (a i)‖)
       ((‖s⁻¹‖ * ‖x‖)^n) := by
   have h := (hasSum_prod_norm n (fun _ => x)).mul_left (‖s⁻¹‖ ^ n)
   simpa [norm_mul, norm_pow, norm_prod, mul_pow] using h
 
+/--
+@isnad1 id=memp.1h4v.s8.285d9e4e5f21 from=translated src=- shape=7f9e5796 vocab=ef09dcc8
+-/
 theorem memℓp_word_coordinates {s : K} {x : L1 K I} (hx : ‖x‖ < ‖s‖) :
     Memℓp (fun a : Words I => (s⁻¹)^a.1 * ∏ i, x (a.2 i)) 1 := by
   apply memℓp_gen
@@ -47,16 +56,25 @@ noncomputable def geometricWordVector (s : K) (x : L1 K I) : L1 K (Words I) :=
     ⟨fun a => (s⁻¹)^a.1 * ∏ i, x (a.2 i), memℓp_word_coordinates hx⟩
   else 0
 
+/--
+@isnad1 id=eq.1h6v.s9.97e4cba32245 from=translated src=- shape=24f7807e vocab=fd12f807
+-/
 theorem geometricWordVector_apply {s : K} {x : L1 K I} (hx : ‖x‖ < ‖s‖)
     (n : ℕ) (a : Fin n → I) :
     geometricWordVector s x ⟨n, a⟩ = (s⁻¹)^n * ∏ i, x (a i) := by
   simp [geometricWordVector, hx]
 
+/--
+@isnad1 id=eq.1h4v.s7.77a6a38dff68 from=translated src=- shape=d7e3c261 vocab=74bb8b15
+-/
 @[simp]
 theorem geometricWordVector_of_not_lt {s : K} {x : L1 K I} (hx : ¬‖x‖ < ‖s‖) :
     geometricWordVector s x = 0 := by
   simp [geometricWordVector, hx]
 
+/--
+@isnad1 id=eq.1h5v.s9.1dc2e0ac15f4 from=translated src=- shape=dcc259b5 vocab=2b289a3c
+-/
 theorem geometricWordVector_apply_zero {s : K} {x : L1 K I} (hx : ‖x‖ < ‖s‖)
     (a : Fin 0 → I) : geometricWordVector s x ⟨0, a⟩ = 1 := by
   simp [geometricWordVector_apply hx]

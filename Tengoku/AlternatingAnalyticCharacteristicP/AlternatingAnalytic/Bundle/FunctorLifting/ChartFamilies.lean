@@ -21,12 +21,16 @@ variable {K P M G H : Type*} [NontriviallyNormedField K] [NormedAddCommGroup P] 
   [TopologicalSpace M] [ChartedSpace P M] {n : ℕ∞ω}
   [NormedAddCommGroup G] [NormedSpace K G] [NormedAddCommGroup H] [NormedSpace K H]
 
-/-- The chart domains cut out by an open set are open in the model space.-/
+/-- The chart domains cut out by an open set are open in the model space.
+@isnad1 id=isopen.1h5v.s7.baa9ab98b358 from=translated src=- shape=de8227dc vocab=ded7ce18
+-/
 theorem isOpen_extChartAt_target_inter_preimage {U : Set M} (hU : IsOpen U) (x : M) :
     IsOpen ((extChartAt 𝓘(K, P) x).target ∩ (extChartAt 𝓘(K, P) x).symm ⁻¹' U) :=
   (continuousOn_extChartAt_symm x).isOpen_inter_preimage (isOpen_extChartAt_target x) hU
 
-/-- The open-chart criterion for `Cⁿ` maps into a normed space, at every order.-/
+/-- The open-chart criterion for `Cⁿ` maps into a normed space, at every order.
+@isnad1 id=iff.1h7v.s8.73ceec90d24c from=translated src=- shape=3d2dc41a vocab=f27d5f2d
+-/
 theorem contMDiffOn_iff_contDiffOn_extChartAt [IsManifold 𝓘(K, P) n M] {U : Set M}
     (hU : IsOpen U) {γ : M → G} :
     ContMDiffOn 𝓘(K, P) 𝓘(K, G) n γ U ↔
@@ -48,7 +52,9 @@ theorem contMDiffOn_iff_contDiffOn_extChartAt [IsManifold 𝓘(K, P) n M] {U : S
       |>.contMDiffWithinAt
 
 /-- A map preserving `Cⁿ` families on open subsets of the model space `P` preserves `Cⁿ`
-families on open subsets of the manifold.-/
+families on open subsets of the manifold.
+@isnad1 id=contmdif.3h9v.s8.bf672658d80b from=translated src=- shape=fbea93d0 vocab=233a5999
+-/
 theorem contMDiffOn_comp_of_preservesFamilies [IsManifold 𝓘(K, P) n M] {Φ : H → G}
     (hΦ : ∀ U : Set P, IsOpen U → ∀ γ : P → H, ContDiffOn K n γ U →
       ContDiffOn K n (fun t ↦ Φ (γ t)) U)

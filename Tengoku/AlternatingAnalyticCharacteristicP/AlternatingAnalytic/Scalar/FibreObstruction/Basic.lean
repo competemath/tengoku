@@ -92,14 +92,23 @@ noncomputable def evalFirst : ((Fin (k + 1) → κ) [⋀^Fin k]→ₗ[κ] κ) �
   map_zero' := rfl
   map_add' _ _ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s11.e8dec3551d2b from=translated src=- shape=949c67c1 vocab=b68310fe
+-/
 theorem evalFirst_apply (α : (Fin (k + 1) → κ) [⋀^Fin k]→ₗ[κ] κ) :
     evalFirst α = α (fun i => Pi.single (Fin.castSucc i) 1) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.4444586d6f18 from=translated src=- shape=c4928f72 vocab=a0b271ec
+-/
 theorem smulRight_add_right (φ : (Fin (k + 1) → κ) →ₗ[κ] κ) (v w : Fin k → κ) :
     φ.smulRight (v + w) = φ.smulRight v + φ.smulRight w := by
   refine LinearMap.ext fun x => ?_
   simp [smul_add]
 
+/--
+@isnad1 id=eq.0h7v.s10.40dc25f80ea6 from=translated src=- shape=04b70c76 vocab=8deb80ec
+-/
 theorem update_smulRight_single (ψ : Fin k → ((Fin (k + 1) → κ) →ₗ[κ] κ)) (a : Fin k → Fin k)
     (i : Fin k) (φ : (Fin (k + 1) → κ) →ₗ[κ] κ) (c : Fin k) :
     update (fun r => (ψ r).smulRight (Pi.single (a r) (1 : κ) : Fin k → κ)) i
@@ -111,7 +120,9 @@ theorem update_smulRight_single (ψ : Fin k → ((Fin (k + 1) → κ) →ₗ[κ]
     simp
   · simp [update_of_ne h]
 
-/-- Expansion of a multilinear map in two distinct slots.-/
+/-- Expansion of a multilinear map in two distinct slots.
+@isnad1 id=eq.1h12v.s9.958ab8dc2842 from=translated src=- shape=2c57ab07 vocab=337f05a0
+-/
 theorem map_update_update_add {ι M N : Type*} [DecidableEq ι] [AddCommGroup M] [Module κ M]
     [AddCommGroup N] [Module κ N] (f : MultilinearMap κ (fun _ : ι => M) N) (m : ι → M)
     {i j : ι} (hij : i ≠ j) (x x' y y' : M) :
@@ -126,7 +137,9 @@ theorem map_update_update_add {ι M N : Type*} [DecidableEq ι] [AddCommGroup M]
 variable {τ}
 
 /-- A missing target coordinate: if `a` omits `s`, then `B_a(ψ)(e₀, …, e_{k-1}) = 0`
-(condition (2) for the pair `(ker ε^k, C'_s)`).-/
+(condition (2) for the pair `(ker ε^k, C'_s)`).
+@isnad1 id=eq.2h6v.s11.1ba5200084a4 from=translated src=- shape=8df928e4 vocab=0bcc19f3
+-/
 theorem evalFirst_targetForm_eq_zero (h2 : FibreCondition2 κ k τ) {a : Fin k → Fin k} {s : Fin k}
     (hs : ∀ r, a r ≠ s) (ψ : Fin k → ((Fin (k + 1) → κ) →ₗ[κ] κ)) :
     evalFirst (targetForm τ a ψ) = 0 := by
@@ -138,7 +151,9 @@ theorem evalFirst_targetForm_eq_zero (h2 : FibreCondition2 κ k τ) {a : Fin k �
   · simp [Fin.castSucc_ne_last]
 
 /-- Condition (2) for the pairs `(V, H'_{cd})`: if every `g r` takes values in `{z_c = z_d}`,
-then `τ g = 0`.-/
+then `τ g = 0`.
+@isnad1 id=eq.3h7v.s12.c57d3ba7c7f3 from=translated src=- shape=06594f43 vocab=5c3d6489
+-/
 theorem apply_eq_zero_of_colEq (h2 : FibreCondition2 κ k τ) {c d : Fin k} (hcd : c ≠ d)
     (g : Fin k → ((Fin (k + 1) → κ) →ₗ[κ] (Fin k → κ))) (hg : ∀ r x, g r x c = g r x d)
     (ξ : Fin k → (Fin (k + 1) → κ)) : τ g ξ = 0 := by
@@ -153,7 +168,9 @@ theorem apply_eq_zero_of_colEq (h2 : FibreCondition2 κ k τ) {c d : Fin k} (hcd
     simp [colEq, hg r x]
 
 /-- Swapping two target coordinates of an injective `a` changes the sign of
-`B_a(ψ)(e₀, …, e_{k-1})`.-/
+`B_a(ψ)(e₀, …, e_{k-1})`.
+@isnad1 id=eq.3h7v.s12.09b537130a70 from=translated src=- shape=c2d5f3d1 vocab=efd03cbe
+-/
 theorem evalFirst_targetForm_comp_swap (h2 : FibreCondition2 κ k τ) {a : Fin k → Fin k}
     (ha : Injective a) {i j : Fin k} (hij : i ≠ j) (ψ : Fin k → ((Fin (k + 1) → κ) →ₗ[κ] κ)) :
     evalFirst (targetForm τ (a ∘ Equiv.swap i j) ψ) = -evalFirst (targetForm τ a ψ) := by
@@ -211,7 +228,9 @@ theorem evalFirst_targetForm_comp_swap (h2 : FibreCondition2 κ k τ) {a : Fin k
   rw [h1, h2', h3, h4] at hzero
   linear_combination hzero
 
-/-- (F.4) at `(e₀, …, e_{k-1})`: `B_σ = sign(σ) B_id` for permutations `σ`.-/
+/-- (F.4) at `(e₀, …, e_{k-1})`: `B_σ = sign(σ) B_id` for permutations `σ`.
+@isnad1 id=eq.1h5v.s12.1c1603401fd6 from=translated src=- shape=bd114842 vocab=b2e532ba
+-/
 theorem evalFirst_targetForm_perm (h2 : FibreCondition2 κ k τ) (σ : Equiv.Perm (Fin k))
     (ψ : Fin k → ((Fin (k + 1) → κ) →ₗ[κ] κ)) :
     evalFirst (targetForm τ σ ψ) =

@@ -45,6 +45,9 @@ def continuousLinearMapCongrIsometry (eA : A ≃ₗᵢ[L] A') (eB : B ≃ₗᵢ[
       change ‖eB (f (eA.symm (eA x)))‖ ≤ ‖T‖ * ‖eA x‖ at h
       simpa using h
 
+/--
+@isnad1 id=eq.0h9v.s11.9940fd4947bf from=translated src=- shape=cccf77c2 vocab=87a64e38
+-/
 @[simp]
 theorem continuousLinearMapCongrIsometry_apply
     (eA : A ≃ₗᵢ[L] A') (eB : B ≃ₗᵢ[L] B') (f : A →L[L] B) (x : A') :
@@ -62,7 +65,9 @@ variable {K L A A' B B' : Type*} [NontriviallyNormedField K] [NontriviallyNormed
   [NormedAddCommGroup B'] [NormedSpace L B']
 
 /-- Scalar extension and isometric changes of domain and codomain preserve the norm
-of a continuous multilinear map.-/
+of a continuous multilinear map.
+@isnad1 id=eq.1h10v.s10.bce5cb32db0a from=translated src=- shape=e63a59d7 vocab=9ad08acb
+-/
 theorem norm_denseScalarMultilinear_congr (hd : DenseRange (algebraMap K L)) {n : ℕ}
     (eA : A ≃ₗᵢ[L] A') (eB : B ≃ₗᵢ[L] B') (P : A [×n]→L[K] B) :
     ‖eB.toLinearIsometry.toContinuousLinearMap.compContinuousMultilinearMap
@@ -101,13 +106,18 @@ def denseScalarQTargetEquiv (hd : DenseRange (algebraMap K L)) (k : ℕ) :
     (continuousLinearMapCongrIsometry (denseScalarAlternatingEquiv hd)
       (denseScalarAlternatingEquiv hd))
 
+/--
+@isnad1 id=eq.1h9v.s14.4287413d251d from=translated src=- shape=cd0bdcf4 vocab=e59e6ffe
+-/
 @[simp]
 theorem denseScalarQTargetEquiv_apply (hd : DenseRange (algebraMap K L)) (k : ℕ)
     (T : (E' [⋀^Fin k]→L[K] F) →L[K] (E [⋀^Fin k]→L[K] F))
     (m : E' [⋀^Fin k]→L[L] F) (x : Fin k → E) :
     denseScalarQTargetEquiv (E := E) (E' := E') (F := F) hd k T m x = T (m.restrictScalars K) x := rfl
 
-/-- The identification carries `Q` over `K` to `Q` over `L`.-/
+/-- The identification carries `Q` over `K` to `Q` over `L`.
+@isnad1 id=eq.1h7v.s13.8236f161ff8f from=translated src=- shape=5ed996ed vocab=afeebac9
+-/
 theorem denseScalarQTargetEquiv_Q (hd : DenseRange (algebraMap K L)) (k : ℕ)
     (f : E →L[K] E') :
     denseScalarQTargetEquiv (E := E) (E' := E') (F := F) hd k (Q K (Fin k) E E' F f) =
@@ -127,6 +137,9 @@ def denseScalarLiftTransport (hd : DenseRange (algebraMap K L)) {k n : ℕ}
       (F := (E' [⋀^Fin k]→L[K] F) →L[K] (E [⋀^Fin k]→L[K] F)) hd P).compContinuousLinearMap
       (fun _ => (denseScalarLinearEquiv (E := E) (F := E') hd).symm.toLinearIsometry.toContinuousLinearMap))
 
+/--
+@isnad1 id=eq.1h11v.s14.78b08c279781 from=translated src=- shape=52b5a277 vocab=cb2ae82d
+-/
 @[simp]
 theorem denseScalarLiftTransport_apply (hd : DenseRange (algebraMap K L)) {k n : ℕ}
     (P : ContinuousMultilinearMap K (fun _ : Fin n => E →L[K] E')
@@ -136,7 +149,9 @@ theorem denseScalarLiftTransport_apply (hd : DenseRange (algebraMap K L)) {k n :
       P (fun j => (f j).restrictScalars K) (m.restrictScalars K) x := rfl
 
 set_option maxHeartbeats 800000 in
-/-- Transport preserves the operator norm.-/
+/-- Transport preserves the operator norm.
+@isnad1 id=eq.1h8v.s13.705855befff6 from=translated src=- shape=c6f7b940 vocab=90a95da7
+-/
 theorem norm_denseScalarLiftTransport (hd : DenseRange (algebraMap K L)) {k n : ℕ}
     (P : ContinuousMultilinearMap K (fun _ : Fin n => E →L[K] E')
       ((E' [⋀^Fin k]→L[K] F) →L[K] (E [⋀^Fin k]→L[K] F))) :
@@ -166,7 +181,9 @@ theorem norm_denseScalarLiftTransport (hd : DenseRange (algebraMap K L)) {k n : 
     rw [B.norm_map]
     simpa only [ContinuousLinearMap.norm_restrictScalars] using hh
 
-/-- The transport of a lift of `Q` over `K` is a lift of `Q` over `L`.-/
+/-- The transport of a lift of `Q` over `K` is a lift of `Q` over `L`.
+@isnad1 id=eq.2h9v.s14.a0793504bb6a from=translated src=- shape=05e66c09 vocab=0e526f0a
+-/
 theorem denseScalarLiftTransport_diagonal (hd : DenseRange (algebraMap K L)) {k n : ℕ}
     (P : ContinuousMultilinearMap K (fun _ : Fin n => E →L[K] E')
       ((E' [⋀^Fin k]→L[K] F) →L[K] (E [⋀^Fin k]→L[K] F)))
@@ -176,7 +193,9 @@ theorem denseScalarLiftTransport_diagonal (hd : DenseRange (algebraMap K L)) {k 
   rw [denseScalarLiftTransport_apply, hP]
   rfl
 
-/-- A bounded lift over `K` gives one over `L`, on the same spaces and in the same degree.-/
+/-- A bounded lift over `K` gives one over `L`, on the same spaces and in the same degree.
+@isnad1 id=hasbound.2h6v.s9.e4eccd8a6156 from=translated src=- shape=7f8f2561 vocab=a666fa5f
+-/
 theorem hasBoundedLift_fin_of_denseScalars (hd : DenseRange (algebraMap K L)) (k : ℕ)
     (h : HasBoundedLift K (Fin k) E E' F) : HasBoundedLift L (Fin k) E E' F := by
   obtain ⟨P, hP⟩ := h
@@ -204,12 +223,18 @@ def completionScalarLiftTransport {k n : ℕ}
         (E [⋀^Fin k]→L[UniformSpace.Completion K] F)) :=
   denseScalarLiftTransport (denseRange_algebraMap_completion K) P
 
+/--
+@isnad1 id=eq.0h7v.s13.e8d74f7d15df from=translated src=- shape=0e453426 vocab=4b3af485
+-/
 theorem norm_completionScalarLiftTransport {k n : ℕ}
     (P : ContinuousMultilinearMap K (fun _ : Fin n => E →L[K] E')
       ((E' [⋀^Fin k]→L[K] F) →L[K] (E [⋀^Fin k]→L[K] F))) :
     ‖completionScalarLiftTransport P‖ = ‖P‖ :=
   norm_denseScalarLiftTransport (denseRange_algebraMap_completion K) P
 
+/--
+@isnad1 id=eq.1h8v.s15.0945fe6a9dd7 from=translated src=- shape=3d5be99d vocab=134c4fd1
+-/
 theorem completionScalarLiftTransport_diagonal {k n : ℕ}
     (P : ContinuousMultilinearMap K (fun _ : Fin n => E →L[K] E')
       ((E' [⋀^Fin k]→L[K] F) →L[K] (E [⋀^Fin k]→L[K] F)))

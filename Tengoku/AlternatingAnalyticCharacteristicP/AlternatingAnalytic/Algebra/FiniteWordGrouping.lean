@@ -30,15 +30,24 @@ def wordOrbit (a : Fin d → J) : Finset (Fin d → J) := by
   classical
   exact Finset.univ.image (fun σ : Equiv.Perm (Fin d) => a ∘ σ)
 
+/--
+@isnad1 id=iff.0h4v.s6.cf5ffdd4b8f3 from=translated src=- shape=23eee32f vocab=04201253
+-/
 theorem mem_wordOrbit_iff {a u : Fin d → J} :
     u ∈ wordOrbit a ↔ ∃ σ : Equiv.Perm (Fin d), a ∘ σ = u := by
   classical
   simp [wordOrbit]
 
+/--
+@isnad1 id=mem.0h3v.s5.f8252d9b7b78 from=translated src=- shape=88453919 vocab=004148c4
+-/
 @[simp]
 theorem mem_wordOrbit_self (a : Fin d → J) : a ∈ wordOrbit a := by
   exact mem_wordOrbit_iff.mpr ⟨Equiv.refl _, rfl⟩
 
+/--
+@isnad1 id=mem.1h4v.s6.618fe02664ac from=translated src=- shape=33b46327 vocab=004148c4
+-/
 theorem mem_wordOrbit_symm {a u : Fin d → J} (h : u ∈ wordOrbit a) :
     a ∈ wordOrbit u := by
   obtain ⟨σ, rfl⟩ := mem_wordOrbit_iff.mp h
@@ -47,17 +56,26 @@ theorem mem_wordOrbit_symm {a u : Fin d → J} (h : u ∈ wordOrbit a) :
   funext i
   simp
 
+/--
+@isnad1 id=mem.2h5v.s6.e6855a7c9d9a from=translated src=- shape=49c486e8 vocab=004148c4
+-/
 theorem mem_wordOrbit_trans {a u v : Fin d → J}
     (hu : u ∈ wordOrbit a) (hv : v ∈ wordOrbit u) : v ∈ wordOrbit a := by
   obtain ⟨σ, rfl⟩ := mem_wordOrbit_iff.mp hu
   obtain ⟨τ, rfl⟩ := mem_wordOrbit_iff.mp hv
   exact mem_wordOrbit_iff.mpr ⟨τ.trans σ, rfl⟩
 
+/--
+@isnad1 id=eq.1h4v.s5.4f04a8e9639f from=translated src=- shape=fa0ef6a6 vocab=004148c4
+-/
 theorem wordOrbit_eq_of_mem {a u : Fin d → J} (h : u ∈ wordOrbit a) :
     wordOrbit u = wordOrbit a := by
   ext v
   exact ⟨mem_wordOrbit_trans h, mem_wordOrbit_trans (mem_wordOrbit_symm h)⟩
 
+/--
+@isnad1 id=nonempty.0h3v.s4.2053f58b6539 from=translated src=- shape=d4400b87 vocab=77bdee12
+-/
 theorem wordOrbit_nonempty (a : Fin d → J) : (wordOrbit a).Nonempty :=
   ⟨a, mem_wordOrbit_self a⟩
 
@@ -65,26 +83,41 @@ theorem wordOrbit_nonempty (a : Fin d → J) : (wordOrbit a).Nonempty :=
 def wordRepresentative (a : Fin d → J) : Fin d → J :=
   (wordOrbit_nonempty a).choose
 
+/--
+@isnad1 id=mem.0h3v.s5.62823a4845f3 from=translated src=- shape=e4f5c77b vocab=ac93ddaa
+-/
 theorem wordRepresentative_mem (a : Fin d → J) :
     wordRepresentative a ∈ wordOrbit a :=
   (wordOrbit_nonempty a).choose_spec
 
+/--
+@isnad1 id=eq.1h4v.s5.8ba686e65dd2 from=translated src=- shape=9da1815b vocab=ac93ddaa
+-/
 theorem wordRepresentative_eq_of_mem {a u : Fin d → J} (h : u ∈ wordOrbit a) :
     wordRepresentative u = wordRepresentative a := by
   unfold wordRepresentative
   congr 1
   rw [wordOrbit_eq_of_mem h]
 
+/--
+@isnad1 id=eq.0h3v.s4.f2f9d3e1f1ad from=translated src=- shape=b71fd9f8 vocab=4b8af13b
+-/
 @[simp]
 theorem wordRepresentative_idempotent (a : Fin d → J) :
     wordRepresentative (wordRepresentative a) = wordRepresentative a :=
   wordRepresentative_eq_of_mem (wordRepresentative_mem a)
 
+/--
+@isnad1 id=eq.0h3v.s4.af1108991eab from=translated src=- shape=7602bd37 vocab=2e6232ad
+-/
 @[simp]
 theorem wordOrbit_representative (a : Fin d → J) :
     wordOrbit (wordRepresentative a) = wordOrbit a :=
   wordOrbit_eq_of_mem (wordRepresentative_mem a)
 
+/--
+@isnad1 id=le.0h3v.s4.51c6d7832bba from=translated src=- shape=41a37044 vocab=88e8e750
+-/
 theorem card_wordOrbit_le (a : Fin d → J) : (wordOrbit a).card ≤ d.factorial := by
   classical
   calc
@@ -92,27 +125,42 @@ theorem card_wordOrbit_le (a : Fin d → J) : (wordOrbit a).card ≤ d.factorial
       Finset.card_image_le
     _ = d.factorial := by simp [Fintype.card_perm]
 
+/--
+@isnad1 id=eq.1h6v.s6.fc5436220922 from=translated src=- shape=05420cec vocab=1620f491
+-/
 theorem prod_eq_of_mem_wordOrbit {R : Type*} [CommMonoid R]
     (x : J → R) {a u : Fin d → J} (h : u ∈ wordOrbit a) :
     (∏ i, x (u i)) = ∏ i, x (a i) := by
   obtain ⟨σ, rfl⟩ := mem_wordOrbit_iff.mp h
   exact Equiv.prod_comp σ (fun i => x (a i))
 
+/--
+@isnad1 id=mem.2h6v.s6.ca3b729673a6 from=translated src=- shape=0fcbf60f vocab=004148c4
+-/
 theorem forall_mem_of_mem_wordOrbit {s : Finset J} {a u : Fin d → J}
     (ha : ∀ i, a i ∈ s) (h : u ∈ wordOrbit a) : ∀ i, u i ∈ s := by
   obtain ⟨σ, rfl⟩ := mem_wordOrbit_iff.mp h
   exact fun i => ha (σ i)
 
+/--
+@isnad1 id=eq.0h4v.s5.39b28ffee53f from=translated src=- shape=93d24873 vocab=c7a66175
+-/
 @[simp]
 theorem wordOrbit_comp_perm (a : Fin d → J) (σ : Equiv.Perm (Fin d)) :
     wordOrbit (a ∘ σ) = wordOrbit a :=
   wordOrbit_eq_of_mem (mem_wordOrbit_iff.mpr ⟨σ, rfl⟩)
 
+/--
+@isnad1 id=eq.0h4v.s5.c807fdc0b84d from=translated src=- shape=1ec6af31 vocab=fc4c7cf9
+-/
 @[simp]
 theorem wordRepresentative_comp_perm (a : Fin d → J) (σ : Equiv.Perm (Fin d)) :
     wordRepresentative (a ∘ σ) = wordRepresentative a :=
   wordRepresentative_eq_of_mem (mem_wordOrbit_iff.mpr ⟨σ, rfl⟩)
 
+/--
+@isnad1 id=iff.0h4v.s5.26c9758ffdda from=translated src=- shape=f6886421 vocab=ac93ddaa
+-/
 theorem wordRepresentative_eq_iff_mem_wordOrbit {a u : Fin d → J} :
     wordRepresentative u = wordRepresentative a ↔ u ∈ wordOrbit a := by
   constructor
@@ -134,6 +182,9 @@ def wordMultiplicity (a : Fin d → J) (j : J) : ℕ := by
   classical
   exact (Finset.univ.filter (fun i => a i = j)).card
 
+/--
+@isnad1 id=eq.0h4v.s5.a0695c508968 from=translated src=- shape=4c88b207 vocab=618b5b2b
+-/
 @[simp]
 theorem wordMultiplicity_comp_perm (a : Fin d → J) (σ : Equiv.Perm (Fin d)) :
     wordMultiplicity (a ∘ σ) = wordMultiplicity a := by
@@ -141,6 +192,9 @@ theorem wordMultiplicity_comp_perm (a : Fin d → J) (σ : Equiv.Perm (Fin d)) :
   funext j
   exact Finset.card_equiv σ (by simp)
 
+/--
+@isnad1 id=iff.0h4v.s6.38c84f70f540 from=translated src=- shape=6c0c318b vocab=618b5b2b
+-/
 theorem wordMultiplicity_eq_iff_exists_perm (u a : Fin d → J) :
     wordMultiplicity u = wordMultiplicity a ↔ ∃ σ : Equiv.Perm (Fin d), a ∘ σ = u := by
   classical
@@ -152,21 +206,30 @@ theorem wordMultiplicity_eq_iff_exists_perm (u a : Fin d → J) :
   · rintro ⟨σ, rfl⟩
     exact wordMultiplicity_comp_perm a σ
 
+/--
+@isnad1 id=eq.0h3v.s4.e4f29f03cdef from=translated src=- shape=9dc2fa94 vocab=f41469fb
+-/
 @[simp]
 theorem selectionType_eq_wordMultiplicity [Fintype J] (a : Fin d → J) :
     Polarization.selectionType a = wordMultiplicity a := rfl
 
-/-- Two words have the same multiplicities iff they lie in the same orbit.-/
+/-- Two words have the same multiplicities iff they lie in the same orbit.
+@isnad1 id=iff.0h4v.s5.1e241af22817 from=translated src=- shape=f8332414 vocab=13f26444
+-/
 theorem wordMultiplicity_eq_iff_mem_wordOrbit (u a : Fin d → J) :
     wordMultiplicity u = wordMultiplicity a ↔ u ∈ wordOrbit a := by
   rw [wordMultiplicity_eq_iff_exists_perm, mem_wordOrbit_iff]
 
-/-- For finite `J`, `selectionType` fibers are word orbits.-/
+/-- For finite `J`, `selectionType` fibers are word orbits.
+@isnad1 id=iff.0h4v.s5.776cd26f47dd from=translated src=- shape=5fea9053 vocab=2c99a66f
+-/
 theorem selectionType_eq_iff_mem_wordOrbit [Fintype J] (u a : Fin d → J) :
     Polarization.selectionType u = Polarization.selectionType a ↔ u ∈ wordOrbit a :=
   wordMultiplicity_eq_iff_mem_wordOrbit u a
 
-/-- The orbit of `a` is the set of words with the same `selectionType`.-/
+/-- The orbit of `a` is the set of words with the same `selectionType`.
+@isnad1 id=eq.0h3v.s6.9d7528263f14 from=translated src=- shape=fb51cdb7 vocab=e54251ce
+-/
 theorem wordOrbit_eq_selectionType_fiber [Fintype J] (a : Fin d → J) :
     wordOrbit a = Finset.univ.filter
       (fun u => Polarization.selectionType u = Polarization.selectionType a) := by
@@ -181,7 +244,9 @@ section
 
 variable {J J' : Type*} {d : ℕ}
 
-/-- Relabeling commutes with taking orbits.-/
+/-- Relabeling commutes with taking orbits.
+@isnad1 id=eq.0h5v.s6.73170f714220 from=translated src=- shape=cd3d9a2c vocab=489d155a
+-/
 theorem wordOrbit_map (f : J → J') (a : Fin d → J) :
     (wordOrbit a).image (fun u => f ∘ u) = wordOrbit (f ∘ a) := by
   classical
@@ -193,7 +258,9 @@ section Algebra
 variable {K E Z : Type*} [Field K]
   [AddCommGroup E] [Module K E] [AddCommGroup Z] [Module K Z]
 
-/-- The orbit sum is the grouped sum `sumOfType` at the multiplicities of `a`.-/
+/-- The orbit sum is the grouped sum `sumOfType` at the multiplicities of `a`.
+@isnad1 id=eq.0h8v.s7.6ca425f5d3d5 from=translated src=- shape=36b0a24e vocab=1b2401e9
+-/
 theorem sum_wordOrbit_eq_sumOfType [Fintype J]
     (M : MultilinearMap K (fun _ : Fin d => E) Z) (b : J → E) (a : Fin d → J) :
     (∑ u ∈ wordOrbit a, M (fun i => b (u i))) =
@@ -218,6 +285,9 @@ def groupedCoefficient (M : MultilinearMap K (fun _ : Fin d => E) Z)
   exact if wordRepresentative a = a then
     ∑ u ∈ wordOrbit a, M (fun i => b (u i)) else 0
 
+/--
+@isnad1 id=eq.1h8v.s7.9909b1cf5de8 from=translated src=- shape=5c89db4f vocab=ec01ec47
+-/
 @[simp]
 theorem groupedCoefficient_of_representative
     (M : MultilinearMap K (fun _ : Fin d => E) Z) (b : J → E)
@@ -226,6 +296,9 @@ theorem groupedCoefficient_of_representative
   classical
   simp [groupedCoefficient, ha]
 
+/--
+@isnad1 id=eq.1h8v.s7.27e5dd19f7d5 from=translated src=- shape=2cbdabed vocab=f7a74bdb
+-/
 @[simp]
 theorem groupedCoefficient_of_not_representative
     (M : MultilinearMap K (fun _ : Fin d => E) Z) (b : J → E)
@@ -234,7 +307,9 @@ theorem groupedCoefficient_of_not_representative
   classical
   simp [groupedCoefficient, ha]
 
-/-- At the representative, the grouped coefficient is the orbit sum.-/
+/-- At the representative, the grouped coefficient is the orbit sum.
+@isnad1 id=eq.0h8v.s7.57f782475553 from=translated src=- shape=165ad227 vocab=ec01ec47
+-/
 @[simp]
 theorem groupedCoefficient_representative
     (M : MultilinearMap K (fun _ : Fin d => E) Z) (b : J → E) (a : Fin d → J) :
@@ -307,7 +382,9 @@ private theorem sum_piFinset_eq_sum_subtype
   · intro a ha
     rfl
 
-/-- Expansion of the diagonal at a finite combination in terms of grouped coefficients.-/
+/-- Expansion of the diagonal at a finite combination in terms of grouped coefficients.
+@isnad1 id=eq.0h9v.s8.acc235f2f3cc from=translated src=- shape=ac15d814 vocab=9ebb68f4
+-/
 theorem finite_diagonal_grouping
     (M : MultilinearMap K (fun _ : Fin d => E) Z) (b : J → E)
     (s : Finset J) (x : J → K) :

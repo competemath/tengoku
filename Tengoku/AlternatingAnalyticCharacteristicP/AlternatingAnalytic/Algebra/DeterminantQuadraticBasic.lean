@@ -40,6 +40,9 @@ def C0poly : Submodule K (Poly K p) :=
   G0poly K p ⊓ ⨅ i : Fin p,
     (G0poly K p).comap (LinearMap.mulLeft K (MvPolynomial.X i))
 
+/--
+@isnad1 id=iff.0h3v.s9.f0d7da7e1dd3 from=translated src=- shape=fc1ff67d vocab=8e7d3222
+-/
 @[simp] theorem mem_C0poly {P : Poly K p} :
     P ∈ C0poly K p ↔ P ∈ G0poly K p ∧
       ∀ i : Fin p, MvPolynomial.X i * P ∈ G0poly K p := by

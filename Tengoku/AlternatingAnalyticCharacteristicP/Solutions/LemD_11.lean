@@ -26,7 +26,9 @@ noncomputable local instance liftOpNorm {R A B C : Type*} [NontriviallyNormedFie
     (G := (B [⋀^Fin k]→L[R] C) →L[R] (A [⋀^Fin k]→L[R] C))
 
 /-- Lemma D.11, map spaces: `L_K(E, E')`, `Alt^k_K(E; F)` and `Alt^k_K(E'; F)` equal their
-`K̂` versions (same maps, same norms), and under these identifications `A^{k,K} = A^{k,K̂}`.-/
+`K̂` versions (same maps, same norms), and under these identifications `A^{k,K} = A^{k,K̂}`.
+@isnad1 id=ex.1h6v.s14.4a005066a21c from=translated src=- shape=586963aa vocab=763ed746
+-/
 theorem map_spaces_eq
     (K Kh : Type*) [NontriviallyNormedField K] [NontriviallyNormedField Kh]
     [NormedAlgebra K Kh] [CompleteSpace Kh] (hd : DenseRange (algebraMap K Kh))
@@ -51,7 +53,9 @@ theorem map_spaces_eq
     fun _ _ => rfl, fun _ _ => rfl⟩
 
 /-- Lemma D.11, lifts: every bounded `k`-linear lift of `A^{k,K}` over `K` is, as the same map, a
-bounded `k`-linear lift of `A^{k,K̂}` over `K̂` with the same norm.-/
+bounded `k`-linear lift of `A^{k,K̂}` over `K̂` with the same norm.
+@isnad1 id=ex.2h7v.s15.cdd77ce8fcc5 from=translated src=- shape=2a37f463 vocab=2cbe7b29
+-/
 theorem lift_is_lift_over_completion
     (K Kh : Type*) [NontriviallyNormedField K] [NontriviallyNormedField Kh]
     [NormedAlgebra K Kh] [CompleteSpace Kh] (hd : DenseRange (algebraMap K Kh))

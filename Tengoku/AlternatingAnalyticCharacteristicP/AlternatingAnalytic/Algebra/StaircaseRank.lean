@@ -20,7 +20,9 @@ variable {L : Type*} [Field L]
 def staircaseMatrix (a b : L) (n : ℕ) : Matrix (Fin n) (Fin n) L :=
   fun i j => if i ≤ j then a else b
 
-/-- Rank is subadditive under matrix subtraction.-/
+/-- Rank is subadditive under matrix subtraction.
+@isnad1 id=le.0h5v.s6.070a08acf379 from=translated src=- shape=2706fd55 vocab=155b4978
+-/
 theorem matrix_rank_sub_le {m n : Type*} [Fintype m] [Fintype n]
     (A B : Matrix m n L) : (A - B).rank ≤ A.rank + B.rank := by
   classical
@@ -36,7 +38,9 @@ theorem matrix_rank_sub_le {m n : Type*} [Fintype m] [Fintype n]
     _ ≤ A.rank + B.rank := Submodule.finrank_add_le_finrank_add_finrank _ _
 
 /-- Subtracting the constant matrix `b` leaves an upper triangular matrix of determinant
-`(a - b) ^ n`.-/
+`(a - b) ^ n`.
+@isnad1 id=eq.0h4v.s7.3a36c1b78040 from=translated src=- shape=571e0f71 vocab=fd8f9f3e
+-/
 theorem det_staircaseMatrix_sub_constant (a b : L) (n : ℕ) :
     (staircaseMatrix a b n - (Matrix.of fun _ _ : Fin n => b)).det = (a - b) ^ n := by
   rw [Matrix.det_of_isUpperTriangular]
@@ -46,7 +50,9 @@ theorem det_staircaseMatrix_sub_constant (a b : L) (n : ℕ) :
     change (if i ≤ j then a else b) - b = 0
     rw [ite_eq_right (not_le.mpr hij), sub_self]
 
-/-- A staircase with `a ≠ b` has rank at least its size minus one.-/
+/-- A staircase with `a ≠ b` has rank at least its size minus one.
+@isnad1 id=le.1h4v.s5.a4b63d5f4c07 from=translated src=- shape=af96de1e vocab=3e87038f
+-/
 theorem staircaseMatrix_size_le_rank_add_one (a b : L) (hab : a ≠ b) (n : ℕ) :
     n ≤ (staircaseMatrix a b n).rank + 1 := by
   let C : Matrix (Fin n) (Fin n) L := Matrix.of fun _ _ => b
@@ -66,7 +72,9 @@ theorem staircaseMatrix_size_le_rank_add_one (a b : L) (hab : a ≠ b) (n : ℕ)
     _ ≤ (staircaseMatrix a b n).rank + C.rank := matrix_rank_sub_le _ _
     _ ≤ (staircaseMatrix a b n).rank + 1 := Nat.add_le_add_left hC _
 
-/-- A staircase of size `d + 2` and rank at most `d` has `a = b`.-/
+/-- A staircase of size `d + 2` and rank at most `d` has `a = b`.
+@isnad1 id=eq.1h4v.s6.c7e19399b27d from=translated src=- shape=3baf9af1 vocab=3e87038f
+-/
 theorem staircaseMatrix_letters_eq_of_rank_le (a b : L) (d : ℕ)
     (h : (staircaseMatrix a b (d + 2)).rank ≤ d) : a = b := by
   by_contra hab

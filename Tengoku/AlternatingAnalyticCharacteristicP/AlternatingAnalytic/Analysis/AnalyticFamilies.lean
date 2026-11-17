@@ -37,6 +37,9 @@ def alternatingMapAction (k : ℕ) (h : (E' →L[K] E) × (F →L[K] F')) :
   (ContinuousLinearMap.compContinuousAlternatingMapCLM K E' F F' (Fin k) h.2).comp
     (ContinuousAlternatingMap.compContinuousLinearMapCLM h.1)
 
+/--
+@isnad1 id=eq.0h9v.s11.babe51cf3da1 from=translated src=- shape=fe26cbdb vocab=c249fefd
+-/
 @[simp]
 theorem alternatingMapAction_apply (k : ℕ) (h : (E' →L[K] E) × (F →L[K] F'))
     (m : E [⋀^Fin k]→L[K] F) (x : Fin k → E') :
@@ -47,6 +50,9 @@ def alternatingMorphismComp (g : (E'' →L[K] E') × (F' →L[K] F''))
     (h : (E' →L[K] E) × (F →L[K] F')) :
     (E'' →L[K] E) × (F →L[K] F'') := (h.1.comp g.1, g.2.comp h.2)
 
+/--
+@isnad1 id=eq.0h10v.s10.098e6a485108 from=translated src=- shape=030f6f76 vocab=08f15a33
+-/
 @[simp]
 theorem alternatingMapAction_comp (k : ℕ)
     (g : (E'' →L[K] E') × (F' →L[K] F''))
@@ -56,6 +62,9 @@ theorem alternatingMapAction_comp (k : ℕ)
   ext m x
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.95a250579363 from=translated src=- shape=fde740c7 vocab=9460dd3f
+-/
 @[simp]
 theorem alternatingMapAction_id (k : ℕ) :
     alternatingMapAction k (ContinuousLinearMap.id K E, ContinuousLinearMap.id K F) =
@@ -81,28 +90,38 @@ namespace IsAdmissibleOn
 variable {k : ℕ} {s : Set P} {t : Set Q}
   {γ δ : P → (E' →L[K] E) × (F →L[K] F')}
 
-/-- Every individual morphism defines a constant admissible family.-/
+/-- Every individual morphism defines a constant admissible family.
+@isnad1 id=isadmiss.0h9v.s8.6c7dd2824b7f from=translated src=- shape=99fa4c1a vocab=3ec1daa4
+-/
 theorem const (h : (E' →L[K] E) × (F →L[K] F')) :
     IsAdmissibleOn k (fun _ : P => h) s :=
   ⟨analyticOnNhd_const, analyticOnNhd_const⟩
 
-/-- Restriction preserves admissibility.-/
+/-- Restriction preserves admissibility.
+@isnad1 id=isadmiss.2h10v.s8.a4c5bb48a705 from=translated src=- shape=377241f3 vocab=34f8a7ea
+-/
 theorem mono (hγ : IsAdmissibleOn k γ s) {u : Set P} (hu : u ⊆ s) :
     IsAdmissibleOn k γ u :=
   ⟨hγ.1.mono hu, hγ.2.mono hu⟩
 
-/-- On an open domain, admissibility depends only on the values on that domain.-/
+/-- On an open domain, admissibility depends only on the values on that domain.
+@isnad1 id=isadmiss.3h10v.s9.041341a62720 from=translated src=- shape=0a804750 vocab=66b24b03
+-/
 theorem congr (hγ : IsAdmissibleOn k γ s) (hs : IsOpen s) (h : s.EqOn γ δ) :
     IsAdmissibleOn k δ s :=
   ⟨hγ.1.congr hs h, hγ.2.congr hs (fun _ hx => congrArg (alternatingMapAction k) (h hx))⟩
 
-/-- Admissibility is preserved by analytic reparameterization.-/
+/-- Admissibility is preserved by analytic reparameterization.
+@isnad1 id=isadmiss.3h12v.s9.9b17be2db214 from=translated src=- shape=0700c244 vocab=06736fca
+-/
 theorem reparam (hγ : IsAdmissibleOn k γ s) {f : Q → P}
     (hf : AnalyticOnNhd K f t) (hfs : Set.MapsTo f t s) :
     IsAdmissibleOn k (γ ∘ f) t :=
   ⟨hγ.1.comp hf hfs, hγ.2.comp hf hfs⟩
 
-/-- A family that agrees locally with admissible families is admissible.-/
+/-- A family that agrees locally with admissible families is admissible.
+@isnad1 id=isadmiss.1h9v.s9.f8ae22fbd1f6 from=translated src=- shape=eab0e649 vocab=23decf32
+-/
 theorem of_locally
     (h : ∀ x ∈ s, ∃ u : Set P, IsOpen u ∧ x ∈ u ∧
       ∃ δ : P → (E' →L[K] E) × (F →L[K] F'),
@@ -114,7 +133,9 @@ theorem of_locally
     exact ⟨(hδ.congr hu heq).1 x hxu, (hδ.congr hu heq).2 x hxu⟩
   exact ⟨fun x hxs => (hx x hxs).1, fun x hxs => (hx x hxs).2⟩
 
-/-- Categorical composition of admissible families with a common parameter.-/
+/-- Categorical composition of admissible families with a common parameter.
+@isnad1 id=isadmiss.2h12v.s9.277c0628ac15 from=translated src=- shape=1b90cf0c vocab=076fe468
+-/
 theorem comp {η : P → (E'' →L[K] E') × (F' →L[K] F'')}
     (hη : IsAdmissibleOn k η s) (hγ : IsAdmissibleOn k γ s) :
     IsAdmissibleOn k (fun x => alternatingMorphismComp (η x) (γ x)) s := by
@@ -128,7 +149,9 @@ theorem comp {η : P → (E'' →L[K] E') × (F' →L[K] F'')}
   · simpa only [Function.comp_def, alternatingMapAction_comp] using
       analyticOnNhd_clm_comp hη.2 hγ.2
 
-/-- Composition of admissible families with independent parameters.-/
+/-- Composition of admissible families with independent parameters.
+@isnad1 id=isadmiss.2h14v.s9.4090f46574a1 from=translated src=- shape=bca79b0b vocab=3958f410
+-/
 theorem comp_prod {η : Q → (E'' →L[K] E') × (F' →L[K] F'')}
     (hη : IsAdmissibleOn k η t) (hγ : IsAdmissibleOn k γ s) :
     IsAdmissibleOn k
@@ -138,7 +161,9 @@ theorem comp_prod {η : Q → (E'' →L[K] E') × (F' →L[K] F'')}
 
 end IsAdmissibleOn
 
-/-- A family is admissible iff its lift `x ↦ (γ x, action (γ x))` is analytic.-/
+/-- A family is admissible iff its lift `x ↦ (γ x, action (γ x))` is analytic.
+@isnad1 id=iff.0h9v.s12.1625ef1a398a from=translated src=- shape=41b2954d vocab=9e78b5ba
+-/
 theorem isAdmissibleOn_iff_graph (k : ℕ)
     (γ : P → (E' →L[K] E) × (F →L[K] F')) (s : Set P) :
     IsAdmissibleOn k γ s ↔
@@ -151,7 +176,9 @@ theorem isAdmissibleOn_iff_graph (k : ℕ)
       fun x hx => analyticAt_snd.comp (h x hx)⟩
 
 /-- Admissible families form the largest collection of analytic families with
-analytic action.-/
+analytic action.
+@isnad1 id=le.2h9v.s12.8e8608c7e51f from=translated src=- shape=16f631e3 vocab=9e6b7854
+-/
 theorem isAdmissibleOn_largest (k : ℕ) (s : Set P)
     (C : Set (P → (E' →L[K] E) × (F →L[K] F')))
     (hC : ∀ γ ∈ C, AnalyticOnNhd K γ s)
@@ -159,7 +186,9 @@ theorem isAdmissibleOn_largest (k : ℕ) (s : Set P)
     C ⊆ {γ | IsAdmissibleOn k γ s} :=
   fun γ hγ => ⟨hC γ hγ, hA γ hγ⟩
 
-/-- Functoriality of the action and the closure properties of admissible families.-/
+/-- Functoriality of the action and the closure properties of admissible families.
+@isnad1 id=and.0h12v.s14.86f41f0c9c22 from=translated src=- shape=3beeb14e vocab=0152edca
+-/
 theorem admissible_family_structure (k : ℕ) (s : Set P) (t : Set Q) :
     (∀ (g : (E'' →L[K] E') × (F' →L[K] F''))
         (h : (E' →L[K] E) × (F →L[K] F')),

@@ -27,7 +27,9 @@ variable {R : Type*} [CommRing R] {k : ℕ}
 def coeffOf (q : MultilinearMap R (fun _ : Fin k => Fin k → R) R) (σ : Fin k → Fin k) : R :=
   q fun s => Pi.single (σ s) 1
 
-/-- Monomial expansion of a map multilinear in `k` groups of `k` variables.-/
+/-- Monomial expansion of a map multilinear in `k` groups of `k` variables.
+@isnad1 id=eq.0h4v.s8.056897585a8b from=translated src=- shape=b1c4fb52 vocab=efdaa97f
+-/
 theorem expand (q : MultilinearMap R (fun _ : Fin k => Fin k → R) R) (A : Fin k → Fin k → R) :
     q A = ∑ σ : Fin k → Fin k, (∏ s, A s (σ s)) * coeffOf q σ := by
   classical
@@ -39,6 +41,9 @@ theorem expand (q : MultilinearMap R (fun _ : Fin k => Fin k → R) R) (A : Fin 
   refine Finset.sum_congr rfl fun σ _ => ?_
   rw [MultilinearMap.map_smul_univ, smul_eq_mul, coeffOf]
 
+/--
+@isnad1 id=eq.0h4v.s7.e7af0f2b79f1 from=translated src=- shape=daa132ce vocab=7908ffc5
+-/
 theorem single_comp_perm (π : Equiv.Perm (Fin k)) (a : Fin k) :
     (Pi.single a (1 : R) : Fin k → R) ∘ π = Pi.single (π.symm a) 1 := by
   classical
@@ -48,7 +53,9 @@ theorem single_comp_perm (π : Equiv.Perm (Fin k)) (a : Fin k) :
   exact propext ⟨fun h => by rw [← h]; simp, fun h => by rw [h]; simp⟩
 
 /-- Invariance of `q` under coordinate permutations makes the coefficient constant on
-permutations.-/
+permutations.
+@isnad1 id=eq.1h4v.s9.ad48869e842f from=translated src=- shape=597f7352 vocab=88ba5058
+-/
 theorem coeffOf_perm (q : MultilinearMap R (fun _ : Fin k => Fin k → R) R)
     (hsymm : ∀ (π : Equiv.Perm (Fin k)) (A : Fin k → Fin k → R), q (fun s => A s ∘ π) = q A)
     (τ : Equiv.Perm (Fin k)) : coeffOf q τ = coeffOf q id := by
@@ -58,7 +65,9 @@ theorem coeffOf_perm (q : MultilinearMap R (fun _ : Fin k => Fin k → R) R)
   rfl
 
 /-- Möbius inversion on the Boolean lattice: `∑_{T ⊇ S} (-1)^|Tᶜ|` is `1` if `S` is everything
-and `0` otherwise.-/
+and `0` otherwise.
+@isnad1 id=eq.0h3v.s7.38d957c970b0 from=translated src=- shape=9b0b1196 vocab=415fe3de
+-/
 theorem sum_superset_neg_one_pow (S : Finset (Fin k)) :
     (∑ T : Finset (Fin k), if S ⊆ T then ((-1 : R) ^ Tᶜ.card) else 0)
       = if S = univ then 1 else 0 := by
@@ -80,7 +89,9 @@ theorem sum_superset_neg_one_pow (S : Finset (Fin k)) :
   · have : Sᶜ ≠ ∅ := by rwa [Ne, Finset.compl_eq_empty_iff]
     simp [hS, this]
 
-/-- The factorial identity `k! * q (e_1, …, e_k) = 1`.-/
+/-- The factorial identity `k! * q (e_1, …, e_k) = 1`.
+@isnad1 id=eq.2h3v.s9.d1854c0ca6e3 from=translated src=- shape=1bb4f151 vocab=37584484
+-/
 theorem factorial_mul_coeff_eq_one (q : MultilinearMap R (fun _ : Fin k => Fin k → R) R)
     (hdiag : ∀ a : Fin k → R, q (fun _ => a) = ∏ t, a t)
     (hsymm : ∀ (π : Equiv.Perm (Fin k)) (A : Fin k → Fin k → R), q (fun s => A s ∘ π) = q A) :
@@ -153,7 +164,9 @@ theorem factorial_mul_coeff_eq_one (q : MultilinearMap R (fun _ : Fin k => Fin k
   exact hsum
 
 /-- If `(k! : R) = 0`, no multilinear `q` has diagonal `∏ a` and is invariant under coordinate
-permutations.-/
+permutations.
+@isnad1 id=false.3h3v.s9.a268f1a2583f from=translated src=- shape=0f01c5f3 vocab=b8ba0bde
+-/
 theorem no_symmetric_diagonal_lift [Nontrivial R] (hk : (k.factorial : R) = 0)
     (q : MultilinearMap R (fun _ : Fin k => Fin k → R) R)
     (hdiag : ∀ a : Fin k → R, q (fun _ => a) = ∏ t, a t)
@@ -164,7 +177,9 @@ theorem no_symmetric_diagonal_lift [Nontrivial R] (hk : (k.factorial : R) = 0)
   exact zero_ne_one h
 
 /-- Invariance under the adjacent transpositions `(i, i+1)` gives invariance under all
-permutations of `Fin (n+1)`.-/
+permutations of `Fin (n+1)`.
+@isnad1 id=eq.1h5v.s11.c389327aeee6 from=translated src=- shape=edace147 vocab=b0fcb729
+-/
 theorem perm_invariant_of_adjacent {n : ℕ}
     (q : MultilinearMap R (fun _ : Fin (n + 1) => Fin (n + 1) → R) R)
     (hswap : ∀ (i : Fin n) (A : Fin (n + 1) → Fin (n + 1) → R),
@@ -183,7 +198,9 @@ theorem perm_invariant_of_adjacent {n : ℕ}
       funext s; rfl
     rw [this, hy, hx]
 
-/-- The factorial contradiction from adjacent-swap invariance, the form given by Lemma B.12.-/
+/-- The factorial contradiction from adjacent-swap invariance, the form given by Lemma B.12.
+@isnad1 id=false.3h3v.s10.f3d045d216e9 from=translated src=- shape=5731dc0e vocab=27bcaacf
+-/
 theorem no_adjacent_symmetric_diagonal_lift [Nontrivial R] {n : ℕ}
     (hk : ((n + 1).factorial : R) = 0)
     (q : MultilinearMap R (fun _ : Fin (n + 1) => Fin (n + 1) → R) R)

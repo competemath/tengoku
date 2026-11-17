@@ -38,9 +38,15 @@ noncomputable def weightedCompFun (c : ℕ → 𝕜) (σ : ℕ → ℕ) (M : ℝ
     exact mul_le_mul (hM i) (y.norm_coe_le_norm _) (norm_nonneg _)
       ((norm_nonneg (c 0)).trans (hM 0)))
 
+/--
+@isnad1 id=eq.1h6v.s6.125938c75cb9 from=translated src=- shape=0c5872ac vocab=9e08dcf3
+-/
 lemma weightedCompFun_apply (c : ℕ → 𝕜) (σ : ℕ → ℕ) (M : ℝ) (hM : ∀ i, ‖c i‖ ≤ M)
     (y : Linf 𝕜) (i : ℕ) : weightedCompFun c σ M hM y i = c i * y (σ i) := rfl
 
+/--
+@isnad1 id=le.1h5v.s6.7e8c2a020966 from=translated src=- shape=70b62ef0 vocab=98e61f12
+-/
 lemma norm_weightedCompFun_le (c : ℕ → 𝕜) (σ : ℕ → ℕ) (M : ℝ) (hM : ∀ i, ‖c i‖ ≤ M)
     (y : Linf 𝕜) : ‖weightedCompFun c σ M hM y‖ ≤ M * ‖y‖ := by
   have hM0 : 0 ≤ M := (norm_nonneg (c 0)).trans (hM 0)
@@ -66,6 +72,9 @@ noncomputable def weightedComp (c : ℕ → 𝕜) (σ : ℕ → ℕ) (M : ℝ) (
         ring }
     M (norm_weightedCompFun_le c σ M hM)
 
+/--
+@isnad1 id=eq.1h6v.s9.5a4cc187af75 from=translated src=- shape=6c938369 vocab=4571263b
+-/
 lemma weightedComp_apply (c : ℕ → 𝕜) (σ : ℕ → ℕ) (M : ℝ) (hM : ∀ i, ‖c i‖ ≤ M)
     (y : Linf 𝕜) (i : ℕ) : weightedComp c σ M hM y i = c i * y (σ i) := rfl
 
@@ -74,11 +83,17 @@ noncomputable def tailCLM (N : ℕ) : Linf 𝕜 →L[𝕜] Linf 𝕜 :=
   weightedComp (fun i => if i < N then (0 : 𝕜) else 1) (fun i => i) 1
     (fun i => by split_ifs <;> simp)
 
+/--
+@isnad1 id=eq.0h4v.s9.68805fb80f9f from=translated src=- shape=29317425 vocab=f47f9ff9
+-/
 lemma tailCLM_apply (N : ℕ) (x : Linf 𝕜) (i : ℕ) :
     tailCLM N x i = if i < N then 0 else x i := by
   simp only [tailCLM, weightedComp_apply]
   split_ifs <;> simp
 
+/--
+@isnad1 id=le.0h3v.s9.0bc251e71e1e from=translated src=- shape=e13eb256 vocab=0bfb1958
+-/
 lemma norm_tailCLM_le (N : ℕ) (x : Linf 𝕜) : ‖tailCLM N x‖ ≤ ‖x‖ := by
   rw [BoundedContinuousFunction.norm_le (norm_nonneg x)]
   intro i
@@ -89,7 +104,9 @@ lemma norm_tailCLM_le (N : ℕ) (x : Linf 𝕜) : ‖tailCLM N x‖ ≤ ‖x‖ 
 
 variable [IsUltrametricDist 𝕜]
 
-/-- In an ultrametric space a sequence whose consecutive differences tend to `0` is Cauchy.-/
+/-- In an ultrametric space a sequence whose consecutive differences tend to `0` is Cauchy.
+@isnad1 id=cauchyse.1h2v.s7.ac32bd3f03c8 from=translated src=- shape=bc1a4817 vocab=eef378d2
+-/
 theorem cauchySeq_of_tendsto_sub_succ {a : ℕ → 𝕜}
     (h : Tendsto (fun n => a (n + 1) - a n) atTop (𝓝 0)) : CauchySeq a := by
   rw [Metric.cauchySeq_iff']
@@ -132,18 +149,33 @@ def NSC : Prop := ∀ φ : Linf 𝕜 →L[𝕜] 𝕜, (∀ i, φ (basisVec 𝕜 
 
 variable {𝕜}
 
+/--
+@isnad1 id=eq.0h3v.s6.4a674bc8b3ad from=translated src=- shape=7a59b9e1 vocab=a76c5160
+-/
 lemma basisVec_apply (i j : ℕ) : basisVec 𝕜 i j = if j = i then 1 else 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.86a194762a90 from=translated src=- shape=1d644bde vocab=b5ffb7d6
+-/
 lemma basisVec_apply_self (i : ℕ) : basisVec 𝕜 i i = (1 : 𝕜) := by
   simp [basisVec_apply]
 
+/--
+@isnad1 id=eq.1h3v.s6.8c9c6213d968 from=translated src=- shape=34310851 vocab=b5ffb7d6
+-/
 lemma basisVec_apply_ne {i j : ℕ} (hij : j ≠ i) : basisVec 𝕜 i j = 0 := by
   simp [basisVec_apply, hij]
 
+/--
+@isnad1 id=le.0h2v.s5.78c8d2cd5db3 from=translated src=- shape=cb79d5f4 vocab=5776563c
+-/
 lemma norm_basisVec_le (i : ℕ) : ‖basisVec 𝕜 i‖ ≤ 1 :=
   (BoundedContinuousFunction.norm_le zero_le_one).2 fun j => by
     rw [basisVec_apply]; split_ifs <;> simp
 
+/--
+@isnad1 id=eq.1h3v.s9.c52769829a1c from=translated src=- shape=9b9b2aec vocab=953f8c8c
+-/
 lemma tailCLM_basisVec {N i : ℕ} (hi : i < N) : tailCLM N (basisVec 𝕜 i) = 0 := by
   refine BoundedContinuousFunction.ext fun j => ?_
   rw [tailCLM_apply]
@@ -154,7 +186,9 @@ lemma tailCLM_basisVec {N i : ℕ} (hi : i < N) : tailCLM N (basisVec 𝕜 i) = 
 variable [IsUltrametricDist 𝕜] [CompleteSpace 𝕜]
 
 omit [CompleteSpace 𝕜] in
-/-- Shift trick: under `NSC`, the values of a functional on the unit vectors tend to `0`.-/
+/-- Shift trick: under `NSC`, the values of a functional on the unit vectors tend to `0`.
+@isnad1 id=tendsto.1h2v.s9.79bb7c484e5a from=translated src=- shape=c3ae02fe vocab=c6b22dfa
+-/
 theorem tendsto_apply_basisVec (h : NSC 𝕜) (φ : Linf 𝕜 →L[𝕜] 𝕜) :
     Tendsto (fun i => φ (basisVec 𝕜 i)) atTop (𝓝 0) := by
   classical
@@ -242,7 +276,9 @@ theorem tendsto_apply_basisVec (h : NSC 𝕜) (φ : Linf 𝕜 →L[𝕜] 𝕜) :
   rw [h2, heS, hψ 0] at h1
   exact one_ne_zero h1
 
-/-- For each fixed `x`, the values of `φ` on the tails of `x` tend to `0`.-/
+/-- For each fixed `x`, the values of `φ` on the tails of `x` tend to `0`.
+@isnad1 id=tendsto.1h3v.s10.17721f4c629b from=translated src=- shape=6a0b399f vocab=0e0da3c8
+-/
 theorem tendsto_apply_tail (h : NSC 𝕜) (φ : Linf 𝕜 →L[𝕜] 𝕜) (x : Linf 𝕜) :
     Tendsto (fun N => φ (tailCLM N x)) atTop (𝓝 0) := by
   classical
@@ -313,7 +349,9 @@ theorem tendsto_apply_tail (h : NSC 𝕜) (φ : Linf 𝕜 →L[𝕜] 𝕜) (x : 
   have := hL x
   rwa [‹L x = 0›] at this
 
-/-- The tail property of a functional: `‖φ x‖ ≤ ε` for `x` in the unit ball vanishing below `N`.-/
+/-- The tail property of a functional: `‖φ x‖ ≤ ε` for `x` in the unit ball vanishing below `N`.
+@isnad1 id=ex.2h3v.s9.ee51a6ddf002 from=translated src=- shape=d3bdefce vocab=bbb845e7
+-/
 theorem tail_functional (h : NSC 𝕜) (φ : Linf 𝕜 →L[𝕜] 𝕜) (ε : ℝ) (hε : 0 < ε) :
     ∃ N : ℕ, ∀ x : Linf 𝕜, ‖x‖ ≤ 1 → (∀ i < N, x i = 0) → ‖φ x‖ ≤ ε := by
   classical

@@ -26,7 +26,9 @@ variable {I K W : Type*} [TopologicalSpace I] [DiscreteTopology I]
   [NontriviallyNormedField K] [NormedAddCommGroup W] [NormedSpace K W] {n : ℕ}
 
 omit [DiscreteTopology I] in
-/-- On inputs supported in finite coordinate sets, the array sum is a finite sum.-/
+/-- On inputs supported in finite coordinate sets, the array sum is a finite sum.
+@isnad1 id=eq.1h7v.s9.b6679e7fa34e from=translated src=- shape=d153be5e vocab=e5644e99
+-/
 theorem array_tsum_eq_sum (c : (Fin n → I) → W) (x : Fin n → C₀(I, K))
     (s : Fin n → Finset I) (hx : ∀ r i, i ∉ s r → x r i = 0) :
     (∑' a : Fin n → I, (∏ r, x r (a r)) • c a) =
@@ -55,6 +57,9 @@ def boundedArrayMultilinear (c : (Fin n → I) → W) (C : ℝ) (hC : 0 ≤ C)
     simp only [MultilinearMap.map_update_smul]
     exact (summable_arraySummand c C hC hc (Function.update x r y)).tsum_const_smul b
 
+/--
+@isnad1 id=eq.2h7v.s9.86b72085d9e6 from=translated src=- shape=06d5ba60 vocab=fcdeea7e
+-/
 @[simp]
 theorem boundedArrayMultilinear_apply (c : (Fin n → I) → W) (C : ℝ) (hC : 0 ≤ C)
     (hc : ∀ a, ‖c a‖ ≤ C) (x : Fin n → C₀(I, K)) :

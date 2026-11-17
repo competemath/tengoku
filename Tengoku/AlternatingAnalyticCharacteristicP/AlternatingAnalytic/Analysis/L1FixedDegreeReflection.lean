@@ -37,6 +37,9 @@ def completionMultilinear (d : ℕ)
     (UniformSpace.Completion.toComplₗᵢ : H →ₗᵢ[K] UniformSpace.Completion H)
     UniformSpace.Completion.denseRange_coe d B
 
+/--
+@isnad1 id=eq.0h6v.s9.7108dd73b0c3 from=translated src=- shape=6183a745 vocab=c1ba0652
+-/
 @[simp]
 theorem completionMultilinear_apply (d : ℕ)
     (B : ContinuousMultilinearMap K (fun _ : Fin d => H) Z) (v : Fin d → H) :
@@ -45,6 +48,9 @@ theorem completionMultilinear_apply (d : ℕ)
     (UniformSpace.Completion.toComplₗᵢ : H →ₗᵢ[K] UniformSpace.Completion H)
     UniformSpace.Completion.denseRange_coe d B v
 
+/--
+@isnad1 id=le.0h5v.s8.69f883fbef86 from=translated src=- shape=ae0d9d4b vocab=a0f4acc1
+-/
 theorem norm_completionMultilinear_le (d : ℕ)
     (B : ContinuousMultilinearMap K (fun _ : Fin d => H) Z) :
     ‖completionMultilinear d B‖ ≤ ‖B‖ :=
@@ -52,7 +58,9 @@ theorem norm_completionMultilinear_le (d : ℕ)
     (UniformSpace.Completion.toComplₗᵢ : H →ₗᵢ[K] UniformSpace.Completion H)
     UniformSpace.Completion.denseRange_coe d B
 
-/-- The completed diagonal stays in the closed submodule `W`.-/
+/-- The completed diagonal stays in the closed submodule `W`.
+@isnad1 id=mem.2h8v.s10.ed43dd93f8ac from=translated src=- shape=0bed2551 vocab=44e33c86
+-/
 theorem completionMultilinear_diagonal_mem
     (W : Submodule K Z) (hW : IsClosed (W : Set Z)) (d : ℕ)
     (B : ContinuousMultilinearMap K (fun _ : Fin d => H) Z)
@@ -74,6 +82,9 @@ def completionDiagonal
   fun z => ⟨completionMultilinear d B (fun _ => z),
     completionMultilinear_diagonal_mem W hW d B P hP z⟩
 
+/--
+@isnad1 id=eq.2h8v.s10.f4e88316e21b from=translated src=- shape=54576f0a vocab=6783be45
+-/
 @[simp]
 theorem coe_completionDiagonal
     (W : Submodule K Z) (hW : IsClosed (W : Set Z)) (d : ℕ)
@@ -83,6 +94,9 @@ theorem coe_completionDiagonal
     (completionDiagonal W hW d B P hP z : Z) =
       completionMultilinear d B (fun _ => z) := rfl
 
+/--
+@isnad1 id=eq.2h8v.s9.485faec83ec8 from=translated src=- shape=5712c779 vocab=a11413b4
+-/
 @[simp]
 theorem completionDiagonal_coe
     (W : Submodule K Z) (hW : IsClosed (W : Set Z)) (d : ℕ)

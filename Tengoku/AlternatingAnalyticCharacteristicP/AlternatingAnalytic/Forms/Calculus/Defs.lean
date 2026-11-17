@@ -35,7 +35,9 @@ noncomputable def wedgeAlg {k l : ℕ} (μ : P [⋀^Fin k]→L[K] K) (ν : P [�
   ((LinearMap.mul' K K).compAlternatingMap
     (μ.toAlternatingMap.domCoprod ν.toAlternatingMap)).domDomCongr finSumFinEquiv
 
-/-- The shuffle product of continuous alternating maps is continuous.-/
+/-- The shuffle product of continuous alternating maps is continuous.
+@isnad1 id=continuo.0h6v.s8.ea69af8c6346 from=translated src=- shape=83bc9f41 vocab=e09f5116
+-/
 theorem continuous_wedgeAlg {k l : ℕ} (μ : P [⋀^Fin k]→L[K] K) (ν : P [⋀^Fin l]→L[K] K) :
     Continuous (wedgeAlg μ ν) := by
   have h : ⇑(wedgeAlg μ ν) = fun v => ∑ σ : Equiv.Perm.ModSumCongr (Fin k) (Fin l),

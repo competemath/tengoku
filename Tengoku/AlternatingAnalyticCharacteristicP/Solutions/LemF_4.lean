@@ -67,7 +67,9 @@ def FibreCondition2
       ∀ ξ : Fin k → (Fin (k + 1) → κ), (∀ r, ξ r ∈ P.1) → τ g ξ = 0
 
 /-- Lemma F.4: if `k! = 0` in `κ`, no `k`-linear map
-`τ : Hom_κ(κ^{k+1}, κ^k)^k → Alt^k_κ(κ^{k+1}; κ)` satisfies both conditions (1) and (2).-/
+`τ : Hom_κ(κ^{k+1}, κ^k)^k → Alt^k_κ(κ^{k+1}; κ)` satisfies both conditions (1) and (2).
+@isnad1 id=not.1h2v.s11.d6ee34f366e5 from=translated src=- shape=3ee0d039 vocab=29458cd5
+-/
 theorem not_exists_fibre_map (hk : (k.factorial : κ) = 0) :
     ¬ ∃ τ : MultilinearMap κ (fun _ : Fin k => (Fin (k + 1) → κ) →ₗ[κ] (Fin k → κ))
         ((Fin (k + 1) → κ) [⋀^Fin k]→ₗ[κ] κ),

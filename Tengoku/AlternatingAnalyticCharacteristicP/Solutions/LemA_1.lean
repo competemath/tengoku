@@ -15,7 +15,9 @@ open Filter Topology
 namespace AlternatingAnalyticChallenge.LemA_1
 
 /-- If `‖z n‖ ρ ^ n ≤ M` for all `n` and the partial sums of `∑ tⁿ z n` tend to `0` whenever
-`‖t‖ < ρ`, then every `z n` is zero.-/
+`‖t‖ < ρ`, then every `z n` is zero.
+@isnad1 id=eq.4h6v.s8.6bd6c6d2daf7 from=translated src=- shape=8a3b2d45 vocab=1f94bf9d
+-/
 theorem one_variable_uniqueness
     (K : Type*) [NontriviallyNormedField K]
     (Z : Type*) [NormedAddCommGroup Z] [NormedSpace K Z]

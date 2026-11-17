@@ -20,7 +20,9 @@ namespace AlternatingAnalytic.Forms
 
 variable {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
 
-/-- Every scalar alternating map on `Fin N → R` is an alternatization.-/
+/-- Every scalar alternating map on `Fin N → R` is an alternatization.
+@isnad1 id=ex.0h4v.s11.eeb1089321a7 from=translated src=- shape=2651e99c vocab=b55ea181
+-/
 theorem exists_alternatization_eq {N k : ℕ} (μ : (Fin N → R) [⋀^Fin k]→ₗ[R] R) :
     ∃ a : MultilinearMap R (fun _ : Fin k => Fin N → R) R,
       MultilinearMap.alternatization a = μ := by
@@ -67,20 +69,26 @@ theorem exists_alternatization_eq {N k : ℕ} (μ : (Fin N → R) [⋀^Fin k]→
 noncomputable def tupleMap {N : ℕ} (v : Fin N → M) : (Fin N → R) →ₗ[R] M :=
   Fintype.linearCombination R v
 
-/-- `tupleMap v` sends the `i`-th basis vector to `v i`.-/
+/-- `tupleMap v` sends the `i`-th basis vector to `v i`.
+@isnad1 id=eq.0h5v.s7.a7eb86d893b6 from=translated src=- shape=acbc7fc0 vocab=6bf4962d
+-/
 theorem tupleMap_single {N : ℕ} (v : Fin N → M) (i : Fin N) :
     tupleMap (R := R) v (Pi.single i 1) = v i := by
   classical
   simp [tupleMap, Fintype.linearCombination_apply_single]
 
-/-- Evaluating an alternating map at a reindexed tuple, through `tupleMap`.-/
+/-- Evaluating an alternating map at a reindexed tuple, through `tupleMap`.
+@isnad1 id=eq.0h8v.s8.d4f05d6c979d from=translated src=- shape=8fd0c40b vocab=f43e56bf
+-/
 theorem compLinearMap_tupleMap_apply {N' : Type*} [AddCommGroup N'] [Module R N'] {ι : Type*}
     {N : ℕ} (F : M [⋀^ι]→ₗ[R] N') (v : Fin N → M) (τ : ι → Fin N) :
     F.compLinearMap (tupleMap v) (fun i => Pi.single (τ i) (1 : R)) = F (v ∘ τ) := by
   simp only [AlternatingMap.compLinearMap_apply, tupleMap_single]
   rfl
 
-/-- Evaluating an alternating map at a tuple, through `tupleMap`.-/
+/-- Evaluating an alternating map at a tuple, through `tupleMap`.
+@isnad1 id=eq.0h6v.s8.89a0b66272c2 from=translated src=- shape=da463d0f vocab=d7e475fd
+-/
 theorem compLinearMap_tupleMap_apply_self {N' : Type*} [AddCommGroup N'] [Module R N'] {N : ℕ}
     (F : M [⋀^Fin N]→ₗ[R] N') (v : Fin N → M) :
     F.compLinearMap (tupleMap v) (fun i => Pi.single i (1 : R)) = F v :=

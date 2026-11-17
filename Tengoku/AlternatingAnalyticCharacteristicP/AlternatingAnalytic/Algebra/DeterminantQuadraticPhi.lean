@@ -22,6 +22,9 @@ def phi : Poly K p →ₗ[K] Polynomial K :=
   (LinearMap.id - Polynomial.modByMonicHom (Polynomial.X ^ (p - 1))).comp
     (MvPolynomial.aeval (fun i : Fin p => (Polynomial.X : Polynomial K) ^ i.val)).toLinearMap
 
+/--
+@isnad1 id=eq.0h4v.s9.23a18b8b6b11 from=translated src=- shape=1157460c vocab=ddba2369
+-/
 theorem phi_X_mul_X (i j : Fin p) :
     phi K p (MvPolynomial.X i * MvPolynomial.X j) =
       if p - 1 ≤ i.val + j.val then (Polynomial.X : Polynomial K) ^ (i.val + j.val)
@@ -36,6 +39,9 @@ theorem phi_X_mul_X (i j : Fin p) :
   · rw [(Polynomial.modByMonic_eq_self_iff (Polynomial.monic_X_pow _)).2
       (by simp only [Polynomial.degree_X_pow]; exact_mod_cast (Nat.lt_of_not_ge h)), sub_self]
 
+/--
+@isnad1 id=eq.0h6v.s8.e37503af05c0 from=translated src=- shape=a9361bb1 vocab=9aebc8f7
+-/
 theorem phi_minor (r s i j : Fin p) : phi K p (minor K p r s i j) = 0 := by
   have hr := r.isLt
   have hs := s.isLt
@@ -48,6 +54,9 @@ theorem phi_minor (r s i j : Fin p) : phi K p (minor K p r s i j) = 0 := by
 
 variable [CharP K p] [Fact p.Prime]
 
+/--
+@isnad1 id=eq.0h3v.s8.0799e50f2d35 from=translated src=- shape=67c5f4ab vocab=18f3011a
+-/
 theorem phi_squareCoordinate (r : Fin p) : phi K p (squareCoordinate K p r) = 0 := by
   have hp : 0 < p := (Fact.out : p.Prime).pos
   have hr := r.isLt
@@ -81,6 +90,9 @@ theorem phi_squareCoordinate (r : Fin p) : phi K p (squareCoordinate K p r) = 0 
     · rw [phi_X_mul_X, ite_eq_right (by omega)]
     · exact map_zero _
 
+/--
+@isnad1 id=eq.1h3v.s9.a03bf882979e from=translated src=- shape=6257a0ca vocab=7ba2efa9
+-/
 theorem phi_eq_zero_of_mem_quadraticSpan {P : Poly K p}
     (hP : P ∈ quadraticSpan K p) : phi K p P = 0 := by
   apply Submodule.span_induction (p := fun P _ => phi K p P = 0) ?_ ?_ ?_ ?_ hP

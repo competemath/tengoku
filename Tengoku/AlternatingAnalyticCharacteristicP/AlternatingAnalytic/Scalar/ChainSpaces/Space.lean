@@ -36,30 +36,41 @@ variable {L : Type*}
 def IsChainSeq (j : L) (s : ℕ → List L) : Prop :=
   ∀ r, s r ++ [j] <+: s (r + 1)
 
+/--
+@isnad1 id=lt.1h4v.s5.02dc8ff55786 from=translated src=- shape=086ff84e vocab=0729bb91
+-/
 theorem IsChainSeq.length_lt {j : L} {s : ℕ → List L} (hs : IsChainSeq j s) (r : ℕ) :
     (s r).length < (s (r + 1)).length := by
   have := (hs r).length_le
   simp only [List.length_append, List.length_singleton] at this
   omega
 
-/-- A chain sequence is injective (word lengths strictly increase).-/
+/-- A chain sequence is injective (word lengths strictly increase).
+@isnad1 id=injectiv.1h3v.s4.c911c9140190 from=translated src=- shape=e9aecc91 vocab=60965c89
+-/
 theorem IsChainSeq.injective {j : L} {s : ℕ → List L} (hs : IsChainSeq j s) :
     Function.Injective s :=
   Function.Injective.of_comp (f := List.length) (strictMono_nat_of_lt_succ hs.length_lt).injective
 
-/-- The words of a chain sequence form a chain in the sense of the chain gap lemma.-/
+/-- The words of a chain sequence form a chain in the sense of the chain gap lemma.
+@isnad1 id=islabelc.1h3v.s4.6dc3c9464acc from=translated src=- shape=e78b160a vocab=4fdca7d9
+-/
 theorem IsChainSeq.isLabelChain {j : L} {s : ℕ → List L} (hs : IsChainSeq j s) :
     ChainGap.IsLabelChain j (Set.range s) :=
   ⟨s, hs, rfl⟩
 
-/-- The words `j^n` form a `j`-chain sequence.-/
+/-- The words `j^n` form a `j`-chain sequence.
+@isnad1 id=ischains.0h2v.s3.708b78eb56db from=translated src=- shape=d17e78f1 vocab=29e8fd0c
+-/
 theorem isChainSeq_replicate (j : L) : IsChainSeq j (fun n => List.replicate n j) := by
   intro r
   show List.replicate r j ++ [j] <+: List.replicate (r + 1) j
   rw [List.replicate_succ']
 
 /-- A chain with a different label meets a `j`-chain in at most one word, so its words
-eventually avoid the `j`-chain.-/
+eventually avoid the `j`-chain.
+@isnad1 id=eventual.3h5v.s5.fe453b3dc6d6 from=translated src=- shape=e44a7232 vocab=b76a25d2
+-/
 theorem IsChainSeq.eventually_notMem_range {j h : L} (hjh : j ≠ h) {s s' : ℕ → List L}
     (hs : IsChainSeq j s) (hs' : IsChainSeq h s') :
     ∀ᶠ n in atTop, s' n ∉ Set.range s := by
@@ -90,7 +101,9 @@ def chainSpace (ρ : L → V →L[K] V) : Submodule K (lp (fun _ : List L => V) 
     simpa only [lp.coeFn_smul, Pi.smul_apply, map_smul, smul_zero] using
       (hx j s hs).const_smul c
 
-/-- The condition along one sequence of words is closed in the sup norm.-/
+/-- The condition along one sequence of words is closed in the sup norm.
+@isnad1 id=isclosed.0h5v.s10.8f6bab971b29 from=translated src=- shape=cd815a07 vocab=6ae2bde4
+-/
 theorem isClosed_setOf_tendsto_comp (A : V →L[K] V) (s : ℕ → List L) :
     IsClosed {x : lp (fun _ : List L => V) ∞ | Tendsto (fun n => A (x (s n))) atTop (𝓝 0)} := by
   refine isClosed_of_closure_subset fun x hx => ?_
@@ -118,7 +131,9 @@ theorem isClosed_setOf_tendsto_comp (A : V →L[K] V) (s : ℕ → List L) :
   have h4 := norm_sub_norm_le (A (x (s n))) (A (y (s n)))
   linarith
 
-/-- The chain-limit space contains `c₀`.-/
+/-- The chain-limit space contains `c₀`.
+@isnad1 id=mem.1h5v.s11.4db27763d250 from=translated src=- shape=0454f8c9 vocab=a550e9a0
+-/
 theorem mem_chainSpace_of_tendsto (ρ : L → V →L[K] V) {x : lp (fun _ : List L => V) ∞}
     (hx : Tendsto (fun w => x w) cofinite (𝓝 0)) : x ∈ chainSpace ρ := by
   intro j s hs
@@ -128,7 +143,9 @@ theorem mem_chainSpace_of_tendsto (ρ : L → V →L[K] V) {x : lp (fun _ : List
   simpa only [map_zero, Function.comp_def] using ((ρ j).continuous.tendsto 0).comp h1
 
 /-- A bounded family with values in `ker (ρ j)`, supported on the words of
-a `j`-chain sequence, lies in the chain-limit space.-/
+a `j`-chain sequence, lies in the chain-limit space.
+@isnad1 id=mem.3h7v.s11.5c1eb8ade0af from=translated src=- shape=768f647b vocab=55694a8e
+-/
 theorem mem_chainSpace_of_supported (ρ : L → V →L[K] V) {j : L} {s : ℕ → List L}
     (hs : IsChainSeq j s) {y : lp (fun _ : List L => V) ∞} (hker : ∀ w, ρ j (y w) = 0)
     (hsupp : ∀ w, w ∉ Set.range s → y w = 0) : y ∈ chainSpace ρ := by
@@ -140,7 +157,9 @@ theorem mem_chainSpace_of_supported (ρ : L → V →L[K] V) {j : L} {s : ℕ �
     filter_upwards [hs.eventually_notMem_range hjh hs'] with n hn
     rw [hsupp _ hn, map_zero]
 
-/-- `ℓ^∞` of an ultrametric normed group is ultrametric.-/
+/-- `ℓ^∞` of an ultrametric normed group is ultrametric.
+@isnad1 id=isultram.0h2v.s9.bf005b913e44 from=translated src=- shape=e0146bc1 vocab=b6feeade
+-/
 theorem isUltrametricDist_lp_infty {ι : Type*} [IsUltrametricDist V] :
     IsUltrametricDist (lp (fun _ : ι => V) ∞) :=
   IsUltrametricDist.isUltrametricDist_of_forall_norm_add_le_max_norm fun x y =>
@@ -157,11 +176,17 @@ noncomputable def replicateIndicator (j : L) (v : V) (S : Set ℕ) : lp (fun _ :
       rintro _ ⟨w, rfl⟩
       exact norm_indicator_le_norm_self _ _⟩⟩
 
+/--
+@isnad1 id=eq.0h6v.s7.78a8823afc28 from=translated src=- shape=b2aaf9da vocab=a0085e3f
+-/
 theorem replicateIndicator_apply (j : L) (v : V) (S : Set ℕ) (w : List L) :
     replicateIndicator j v S w =
       Set.indicator ((fun n => List.replicate n j) '' S) (fun _ => v) w :=
   rfl
 
+/--
+@isnad1 id=le.1h6v.s9.0374c6dc6c9b from=translated src=- shape=687bd9d8 vocab=dbbc181b
+-/
 theorem norm_le_norm_replicateIndicator_sub (j : L) (v : V) {S S' : Set ℕ} (hSS' : S ≠ S') :
     ‖v‖ ≤ ‖replicateIndicator j v S - replicateIndicator j v S'‖ := by
   obtain ⟨n, hn⟩ : ∃ n, ¬ (n ∈ S ↔ n ∈ S') := by

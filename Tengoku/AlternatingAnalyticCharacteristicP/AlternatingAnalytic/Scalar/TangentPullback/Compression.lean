@@ -40,7 +40,9 @@ def formCompression (P : X →L[K] D) (I : E →L[K] X) :
       (X [⋀^ι]→L[K] F) (X [⋀^ι]→L[K] F)).flip
         (ContinuousAlternatingMap.compContinuousLinearMapCLM P))
 
-/-- Compression of the pullback by `g` is the pullback by `P ∘ g ∘ I`.-/
+/-- Compression of the pullback by `g` is the pullback by `P ∘ g ∘ I`.
+@isnad1 id=eq.0h9v.s13.7e0465aebaea from=translated src=- shape=a2558258 vocab=ebbf0296
+-/
 theorem formCompression_pullback (P : X →L[K] D) (I : E →L[K] X) (g : X →L[K] X) :
     formCompression (F := F) (ι := ι) P I
       (ContinuousAlternatingMap.compContinuousLinearMapCLM g) =
@@ -49,7 +51,9 @@ theorem formCompression_pullback (P : X →L[K] D) (I : E →L[K] X) (g : X →L
   simp [formCompression, Function.comp_def]
 
 /-- If `P ∘ g(σ u) ∘ I = u` along an analytic slice `σ`, then nonanalyticity of the operator
-obstruction at `u₀` gives nonanalyticity of `y ↦ g(y)^*` at `σ u₀`.-/
+obstruction at `u₀` gives nonanalyticity of `y ↦ g(y)^*` at `σ u₀`.
+@isnad1 id=not.3h11v.s11.63bbb9d36426 from=translated src=- shape=c430d054 vocab=6bb30dfb
+-/
 theorem not_analyticAt_pullback_of_slice (P : X →L[K] D) (I : E →L[K] X)
     (g : X → X →L[K] X) (σ : (E →L[K] D) → X) (u₀ : E →L[K] D)
     (hσ : AnalyticAt K σ u₀) (hg : ∀ u, P.comp ((g (σ u)).comp I) = u)
@@ -70,7 +74,9 @@ theorem not_analyticAt_pullback_of_slice (P : X →L[K] D) (I : E →L[K] X)
   simpa only [Function.comp_def, formCompression_pullback, hg] using hc
 
 omit [NormedAddCommGroup F] [NormedSpace K F] in
-/-- A pair of polynomial maps is polynomial.-/
+/-- A pair of polynomial maps is polynomial.
+@isnad1 id=cpolynom.2h7v.s6.e7585d720872 from=translated src=- shape=f727b306 vocab=944c9604
+-/
 theorem cpolynomialAt_pair {P A B : Type*} [NormedAddCommGroup P] [NormedSpace K P]
     [NormedAddCommGroup A] [NormedSpace K A] [NormedAddCommGroup B] [NormedSpace K B]
     {f : P → A} {g : P → B} {x : P}
@@ -82,7 +88,9 @@ theorem cpolynomialAt_pair {P A B : Type*} [NormedAddCommGroup P] [NormedSpace K
   simpa only [Prod.mk_add_mk, add_zero, zero_add] using h
 
 omit [NormedAddCommGroup F] [NormedSpace K F] in
-/-- A bounded bilinear map is polynomial.-/
+/-- A bounded bilinear map is polynomial.
+@isnad1 id=cpolynom.0h6v.s10.3773fce8ed85 from=translated src=- shape=c0134971 vocab=f1c7c14c
+-/
 theorem cpolynomialAt_bilinear {A B C : Type*} [NormedAddCommGroup A] [NormedSpace K A]
     [NormedAddCommGroup B] [NormedSpace K B] [NormedAddCommGroup C] [NormedSpace K C]
     (b : A →L[K] B →L[K] C) (x : A × B) :

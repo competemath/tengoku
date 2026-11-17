@@ -23,7 +23,9 @@ variable {I K Z : Type*} [TopologicalSpace I] [DiscreteTopology I]
   [NontriviallyNormedField K] [NormedAddCommGroup Z] [NormedSpace K Z]
   [IsUltrametricDist Z] {n : ℕ}
 
-/-- Grouping distinct coordinate words preserves the operator-norm bound.-/
+/-- Grouping distinct coordinate words preserves the operator-norm bound.
+@isnad1 id=le.0h6v.s10.97f1cb6c85ee from=translated src=- shape=411103b3 vocab=52472625
+-/
 theorem norm_groupedCoefficient_le
     (p : ContinuousMultilinearMap K (fun _ : Fin n => C₀(I, K)) Z)
     (a : Fin n → I) :

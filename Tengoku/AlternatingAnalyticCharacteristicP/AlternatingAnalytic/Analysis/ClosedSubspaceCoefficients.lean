@@ -24,7 +24,9 @@ variable {K E Z : Type*} [NontriviallyNormedField K]
   [NormedAddCommGroup Z] [NormedSpace K Z]
 
 /-- If `f` locally takes values in a closed subspace `W`, the diagonals of its power
-series lie in `W`.-/
+series lie in `W`.
+@isnad1 id=mem.3h9v.s9.cfa740b6a2f7 from=translated src=- shape=2b7311d3 vocab=83958d67
+-/
 theorem HasFPowerSeriesAt.diagonal_mem_closedSubspace
     (W : Submodule K Z) (hW : IsClosed (W : Set Z))
     {p : FormalMultilinearSeries K E Z} {f : E → Z} {x : E}

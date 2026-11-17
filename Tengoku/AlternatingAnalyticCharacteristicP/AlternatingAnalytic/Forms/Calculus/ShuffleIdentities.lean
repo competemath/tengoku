@@ -19,7 +19,9 @@ namespace AlternatingAnalytic.Forms
 
 variable {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M] {k l m : ℕ}
 
-/-- The pullback of the constant `0`-form `1` is `1`.-/
+/-- The pullback of the constant `0`-form `1` is `1`.
+@isnad1 id=eq.0h4v.s7.cb117c470c22 from=translated src=- shape=8e336b86 vocab=12587a40
+-/
 theorem constOfIsEmpty_compLinearMap {M' : Type*} [AddCommGroup M'] [Module R M']
     (g : M' →ₗ[R] M) :
     (AlternatingMap.constOfIsEmpty R M (Fin 0) (1 : R)).compLinearMap g =
@@ -27,7 +29,9 @@ theorem constOfIsEmpty_compLinearMap {M' : Type*} [AddCommGroup M'] [Module R M'
   ext v
   simp
 
-/-- The pullback of a `1`-form is the `1`-form of the composite.-/
+/-- The pullback of a `1`-form is the `1`-form of the composite.
+@isnad1 id=eq.0h5v.s10.b4144408ff44 from=translated src=- shape=c95062e2 vocab=9101529f
+-/
 theorem ofSubsingleton_compLinearMap {M' : Type*} [AddCommGroup M'] [Module R M']
     (φ : M →ₗ[R] R) (g : M' →ₗ[R] M) :
     (AlternatingMap.ofSubsingleton R M R (0 : Fin 1) φ).compLinearMap g =
@@ -35,14 +39,18 @@ theorem ofSubsingleton_compLinearMap {M' : Type*} [AddCommGroup M'] [Module R M'
   ext v
   simp
 
-/-- A `1`-ary multilinear map is its own alternatization.-/
+/-- A `1`-ary multilinear map is its own alternatization.
+@isnad1 id=eq.0h3v.s11.78847d5b3e9d from=translated src=- shape=3ed7fe05 vocab=0a8a1c4d
+-/
 theorem alternatization_ofSubsingleton (φ : M →ₗ[R] R) :
     MultilinearMap.alternatization (MultilinearMap.ofSubsingleton R M R (0 : Fin 1) φ) =
       AlternatingMap.ofSubsingleton R M R (0 : Fin 1) φ := by
   ext v
   simp [MultilinearMap.alternatization_apply]
 
-/-- The `m`-th power of `finRotate n` adds `m` modulo `n`.-/
+/-- The `m`-th power of `finRotate n` adds `m` modulo `n`.
+@isnad1 id=eq.0h3v.s6.5fb75d89dc83 from=translated src=- shape=b23dcfef vocab=9927c02a
+-/
 theorem val_finRotate_pow (n m : ℕ) (i : Fin n) : (((finRotate n) ^ m) i : ℕ) = (i + m) % n := by
   induction m with
   | zero => simp [Nat.mod_eq_of_lt i.isLt]
@@ -53,7 +61,9 @@ theorem val_finRotate_pow (n m : ℕ) (i : Fin n) : (((finRotate n) ^ m) i : ℕ
       rw [pow_succ', Perm.mul_apply, finRotate_apply, Fin.val_add, ih, Fin.val_one',
         ← Nat.add_mod, Nat.add_assoc]
 
-/-- The block swap `Fin (k + l) → Fin (l + k) = Fin (k + l)` has sign `(-1)^(k l)`.-/
+/-- The block swap `Fin (k + l) → Fin (l + k) = Fin (k + l)` has sign `(-1)^(k l)`.
+@isnad1 id=eq.0h2v.s8.f1c44dc33351 from=translated src=- shape=ae6e48bb vocab=e4360fe9
+-/
 theorem sign_finAddFlip_trans_finCongr (k l : ℕ) :
     Perm.sign (finAddFlip.trans (finCongr (Nat.add_comm l k)) : Perm (Fin (k + l))) =
       (-1) ^ (k * l) := by

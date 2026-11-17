@@ -23,7 +23,9 @@ variable {K : Type*} [NontriviallyNormedField K]
   {P W Z : Type*} [NormedAddCommGroup P] [NormedSpace K P]
   [NormedAddCommGroup W] [NormedSpace K W] [NormedAddCommGroup Z] [NormedSpace K Z]
 
-/-- A geometric bound `sup ‖p n‖ Rⁿ < ∞` gives radius at least `R`.-/
+/-- A geometric bound `sup ‖p n‖ Rⁿ < ∞` gives radius at least `R`.
+@isnad1 id=le.2h5v.s8.6b15f3ceb4db from=translated src=- shape=83279589 vocab=2dab9f77
+-/
 theorem le_radius_of_bddAbove {E F : Type*} [NormedAddCommGroup E] [NormedSpace K E]
     [NormedAddCommGroup F] [NormedSpace K F] (p : FormalMultilinearSeries K E F) {R : ℝ}
     (hR : 0 ≤ R) (hbound : BddAbove (Set.range fun n => ‖p n‖ * R ^ n)) :
@@ -32,7 +34,9 @@ theorem le_radius_of_bddAbove {E F : Type*} [NormedAddCommGroup E] [NormedSpace 
   exact p.le_radius_of_bound C (r := R.toNNReal) fun n => by
     rw [Real.coe_toNNReal _ hR]; exact hC ⟨n, rfl⟩
 
-/-- An ambient expansion on the ball of radius `R` is a power series expansion of `j ∘ f`.-/
+/-- An ambient expansion on the ball of radius `R` is a power series expansion of `j ∘ f`.
+@isnad1 id=hasfpowe.3h9v.s9.58749d3096aa from=translated src=- shape=f1695c2c vocab=fac3309f
+-/
 theorem hasFPowerSeriesOnBall_comp (j : W →ₗᵢ[K] Z) (f : P → W) (x₀ : P)
     (b : FormalMultilinearSeries K P Z) {R : ℝ} (hR : 0 < R)
     (hbound : BddAbove (Set.range fun n => ‖b n‖ * R ^ n))
@@ -45,7 +49,9 @@ theorem hasFPowerSeriesOnBall_comp (j : W →ₗᵢ[K] Z) (f : P → W) (x₀ : 
     rwa [Metric.mem_eball, edist_zero_right, ← ofReal_norm,
       ENNReal.ofReal_lt_ofReal_iff hR] at hy
 
-/-- Theorem 3.1(1): every diagonal of an ambient expansion lies in `j(W)`.-/
+/-- Theorem 3.1(1): every diagonal of an ambient expansion lies in `j(W)`.
+@isnad1 id=mem.4h11v.s10.75ba5c748afe from=translated src=- shape=6de13acf vocab=22b2393c
+-/
 theorem diagonal_mem_range (j : W →ₗᵢ[K] Z) (hj : IsClosed (Set.range j))
     (f : P → W) (x₀ : P) (b : FormalMultilinearSeries K P Z) (R : ℝ) (hR : 0 < R)
     (hbound : BddAbove (Set.range fun n => ‖b n‖ * R ^ n))
@@ -59,7 +65,9 @@ theorem diagonal_mem_range (j : W →ₗᵢ[K] Z) (hj : IsClosed (Set.range j))
     (Filter.Eventually.of_forall fun y => ⟨f y, rfl⟩) n h
   simpa using this
 
-/-- Two expansions of `j ∘ f` at `x₀` have the same diagonals.-/
+/-- Two expansions of `j ∘ f` at `x₀` have the same diagonals.
+@isnad1 id=eq.2h11v.s9.4983f2c6d9ef from=translated src=- shape=172191e5 vocab=4a9dfdad
+-/
 theorem diagonal_eq_of_hasFPowerSeriesAt (j : W →ₗᵢ[K] Z) {f : P → W} {x₀ : P}
     {b : FormalMultilinearSeries K P Z} {p : FormalMultilinearSeries K P W}
     (hb : HasFPowerSeriesAt (j ∘ f) b x₀) (hp : HasFPowerSeriesAt f p x₀) (n : ℕ) (h : P) :
@@ -74,7 +82,9 @@ theorem diagonal_eq_of_hasFPowerSeriesAt (j : W →ₗᵢ[K] Z) {f : P → W} {x
   exact h0.symm
 
 /-- Theorem 3.1(2): `f` is analytic at `x₀` if and only if the ambient diagonals have
-`W`-valued bounded multilinear representatives with a positive common radius.-/
+`W`-valued bounded multilinear representatives with a positive common radius.
+@isnad1 id=iff.3h9v.s10.e02260e769a9 from=translated src=- shape=fa0ed978 vocab=468a87d4
+-/
 theorem analyticAt_iff (j : W →ₗᵢ[K] Z)
     (f : P → W) (x₀ : P) (b : FormalMultilinearSeries K P Z) (R : ℝ) (hR : 0 < R)
     (hbound : BddAbove (Set.range fun n => ‖b n‖ * R ^ n))

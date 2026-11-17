@@ -41,11 +41,16 @@ theorem eq_zero_of_eq_zero (hΦ : IsBddML Φ C) (u : Fin d → Linf 𝕜) (j : F
     hΦ.smul u j 0 (u j)
   rwa [zero_smul, ← hj, Function.update_eq_self, zero_mul] at h0
 
-/-- Updating a slot by zero gives zero.-/
+/-- Updating a slot by zero gives zero.
+@isnad1 id=eq.1h6v.s6.c7a9791509a8 from=translated src=- shape=e07d989f vocab=76137055
+-/
 theorem update_zero (hΦ : IsBddML Φ C) (u : Fin d → Linf 𝕜) (j : Fin d) :
     Φ (Function.update u j 0) = 0 :=
   hΦ.eq_zero_of_eq_zero _ j (Function.update_self _ _ _)
 
+/--
+@isnad1 id=eq.1h8v.s7.49bd92831a97 from=translated src=- shape=709b004d vocab=e65c727f
+-/
 theorem update_sub (hΦ : IsBddML Φ C) (u : Fin d → Linf 𝕜) (j : Fin d) (v w : Linf 𝕜) :
     Φ (Function.update u j (v - w)) = Φ (Function.update u j v) - Φ (Function.update u j w) := by
   have := hΦ.add u j (v - w) w
@@ -53,6 +58,9 @@ theorem update_sub (hΦ : IsBddML Φ C) (u : Fin d → Linf 𝕜) (j : Fin d) (v
   rw [this]
   ring
 
+/--
+@isnad1 id=eq.1h9v.s7.67a551414427 from=translated src=- shape=c1bd9d04 vocab=2eb21010
+-/
 theorem update_sum (hΦ : IsBddML Φ C) (u : Fin d → Linf 𝕜) (j : Fin d) {ι : Type*}
     (s : Finset ι) (f : ι → Linf 𝕜) :
     Φ (Function.update u j (∑ i ∈ s, f i)) = ∑ i ∈ s, Φ (Function.update u j (f i)) := by
@@ -66,8 +74,14 @@ end IsBddML
 
 /-! ### Truncations in `ℓ^∞` -/
 
+/--
+@isnad1 id=eq.0h4v.s7.c8803bf51759 from=translated src=- shape=2b6e3d21 vocab=24d07775
+-/
 theorem Linf.add_apply (f g : Linf 𝕜) (k : ℕ) : (f + g) k = f k + g k := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.c6ba9ce15238 from=translated src=- shape=5a885f43 vocab=65378d83
+-/
 theorem Linf.sum_apply {ι : Type*} (s : Finset ι) (f : ι → Linf 𝕜) (k : ℕ) :
     (∑ i ∈ s, f i) k = ∑ i ∈ s, f i k := by
   classical
@@ -84,23 +98,38 @@ noncomputable def headOf (M : ℕ) (x : Linf 𝕜) : Linf 𝕜 :=
       · exact x.norm_coe_le_norm i
       · simp)
 
+/--
+@isnad1 id=eq.0h4v.s6.67b345ffaa36 from=translated src=- shape=ec6839c2 vocab=fc90dd3a
+-/
 @[simp] theorem headOf_apply (M : ℕ) (x : Linf 𝕜) (i : ℕ) :
     headOf M x i = if i < M then x i else 0 := rfl
 
 /-- `tailOf M x` kills the coordinates `< M` of `x` and keeps the others.-/
 noncomputable def tailOf (M : ℕ) (x : Linf 𝕜) : Linf 𝕜 := x - headOf M x
 
+/--
+@isnad1 id=eq.0h4v.s6.d74215ac66b0 from=translated src=- shape=489c3104 vocab=ce50157a
+-/
 theorem tailOf_apply (M : ℕ) (x : Linf 𝕜) (i : ℕ) :
     tailOf M x i = if i < M then 0 else x i := by
   show x i - (if i < M then x i else 0) = _
   split_ifs <;> simp
 
+/--
+@isnad1 id=eq.1h4v.s6.a407115f5b61 from=translated src=- shape=75803838 vocab=38074652
+-/
 theorem tailOf_apply_of_lt {M : ℕ} (x : Linf 𝕜) {i : ℕ} (hi : i < M) : tailOf M x i = 0 := by
   simp [tailOf_apply, hi]
 
+/--
+@isnad1 id=eq.0h3v.s6.5d505f378da3 from=translated src=- shape=a01a72aa vocab=fdb1b529
+-/
 theorem headOf_add_tailOf (M : ℕ) (x : Linf 𝕜) : headOf M x + tailOf M x = x := by
   simp [tailOf]
 
+/--
+@isnad1 id=le.0h3v.s5.ee0e2ac5c19d from=translated src=- shape=ddc28be3 vocab=8f0fe1fb
+-/
 theorem norm_headOf_le (M : ℕ) (x : Linf 𝕜) : ‖headOf M x‖ ≤ ‖x‖ := by
   rw [BoundedContinuousFunction.norm_le (norm_nonneg x)]
   intro i
@@ -109,6 +138,9 @@ theorem norm_headOf_le (M : ℕ) (x : Linf 𝕜) : ‖headOf M x‖ ≤ ‖x‖ 
   · exact x.norm_coe_le_norm i
   · simp
 
+/--
+@isnad1 id=le.0h3v.s5.5d16683886e9 from=translated src=- shape=ddc28be3 vocab=9ea8a197
+-/
 theorem norm_tailOf_le (M : ℕ) (x : Linf 𝕜) : ‖tailOf M x‖ ≤ ‖x‖ := by
   rw [BoundedContinuousFunction.norm_le (norm_nonneg x)]
   intro i
@@ -117,7 +149,9 @@ theorem norm_tailOf_le (M : ℕ) (x : Linf 𝕜) : ‖tailOf M x‖ ≤ ‖x‖ 
   · simp
   · exact x.norm_coe_le_norm i
 
-/-- If `x` already vanishes below `M`, truncating changes nothing.-/
+/-- If `x` already vanishes below `M`, truncating changes nothing.
+@isnad1 id=eq.1h3v.s6.baf2adaef4b9 from=translated src=- shape=199c085d vocab=38074652
+-/
 theorem tailOf_eq_self {M : ℕ} {x : Linf 𝕜} (h : ∀ i < M, x i = 0) : tailOf M x = x := by
   ext i
   rw [tailOf_apply]
@@ -127,6 +161,9 @@ theorem tailOf_eq_self {M : ℕ} {x : Linf 𝕜} (h : ∀ i < M, x i = 0) : tail
 
 /-! ### Unit vectors -/
 
+/--
+@isnad1 id=eq.0h3v.s7.1f455993dafb from=translated src=- shape=f24414d8 vocab=1ea1ba65
+-/
 theorem headOf_eq_sum (M : ℕ) (x : Linf 𝕜) :
     headOf M x = ∑ i ∈ Finset.range M, x i • basisVec 𝕜 i := by
   ext k
@@ -149,6 +186,9 @@ theorem headOf_eq_sum (M : ℕ) (x : Linf 𝕜) :
 def freezeSlot {d : ℕ} (Φ : (Fin (d + 1) → Linf 𝕜) → 𝕜) (j : Fin (d + 1)) (v : Linf 𝕜) :
     (Fin d → Linf 𝕜) → 𝕜 := fun u => Φ (j.insertNth v u)
 
+/--
+@isnad1 id=isbddml.1h6v.s6.94fcbff5014c from=translated src=- shape=d2002d3a vocab=1a69b3bc
+-/
 theorem IsBddML.freezeSlot {d : ℕ} {Φ : (Fin (d + 1) → Linf 𝕜) → 𝕜} {C : ℝ} (hΦ : IsBddML Φ C)
     (j : Fin (d + 1)) (v : Linf 𝕜) : IsBddML (Tails.freezeSlot Φ j v) (C * ‖v‖) where
   add := by
@@ -175,6 +215,9 @@ noncomputable def slotMap (hΦ : IsBddML Φ C) (u : Fin d → Linf 𝕜) (j : Fi
   map_add' := hΦ.add u j
   map_smul' := by intro c v; simpa using hΦ.smul u j c v
 
+/--
+@isnad1 id=le.1h7v.s8.97a58eb05797 from=translated src=- shape=38679a39 vocab=415ae91c
+-/
 theorem slotMap_bound (hΦ : IsBddML Φ C) (u : Fin d → Linf 𝕜) (j : Fin d) (v : Linf 𝕜) :
     ‖slotMap hΦ u j v‖ ≤ (C * ∏ i ∈ Finset.univ \ {j}, ‖u i‖) * ‖v‖ := by
   classical
@@ -195,10 +238,15 @@ noncomputable def slotCLM (hΦ : IsBddML Φ C) (u : Fin d → Linf 𝕜) (j : Fi
     Linf 𝕜 →L[𝕜] 𝕜 :=
   (slotMap hΦ u j).mkContinuous (C * ∏ i ∈ Finset.univ \ {j}, ‖u i‖) (slotMap_bound hΦ u j)
 
+/--
+@isnad1 id=eq.1h7v.s8.61f1d8c85a29 from=translated src=- shape=89a4d3ed vocab=821ac8b0
+-/
 @[simp] theorem slotCLM_apply (hΦ : IsBddML Φ C) (u : Fin d → Linf 𝕜) (j : Fin d) (v : Linf 𝕜) :
     slotCLM hΦ u j v = Φ (Function.update u j v) := rfl
 
-/-- Updating a slot is the same as inserting into the tuple with that slot removed.-/
+/-- Updating a slot is the same as inserting into the tuple with that slot removed.
+@isnad1 id=eq.0h5v.s7.b85b156a4f12 from=translated src=- shape=1df43fe0 vocab=30cfbbcd
+-/
 theorem update_eq_insertNth {D : ℕ} (u : Fin (D + 1) → Linf 𝕜) (j : Fin (D + 1)) (v : Linf 𝕜) :
     Function.update u j v = j.insertNth v (fun l => u (j.succAbove l)) := by
   funext m
@@ -214,6 +262,9 @@ def TailAt (d : ℕ) : Prop :=
     ∃ N : ℕ, ∀ u : Fin d → Linf 𝕜, (∀ j, ‖u j‖ ≤ 1) →
       (∃ j, ∀ i < N, u j i = 0) → ‖Φ u‖ ≤ ε
 
+/--
+@isnad1 id=tailat.0h1v.s3.817ff956041f from=translated src=- shape=89d4eb60 vocab=45d04000
+-/
 theorem tailAt_zero : TailAt 𝕜 0 := by
   intro Φ C hΦ ε hε
   refine ⟨0, ?_⟩

@@ -20,7 +20,9 @@ namespace FiniteCoordinateReflection
 variable {K Z : Type*} [NontriviallyNormedField K]
   [NormedAddCommGroup Z] [NormedSpace K Z] {d n : ℕ}
 
-/-- A grouped coefficient has norm at most `‖p‖` times its number of terms.-/
+/-- A grouped coefficient has norm at most `‖p‖` times its number of terms.
+@isnad1 id=le.0h6v.s9.ffdccdaf9651 from=translated src=- shape=22798427 vocab=c7cae8c7
+-/
 theorem norm_sumOfType_le
     (p : (Fin d → K) [×n]→L[K] Z) (α : Fin d → ℕ) :
     ‖p.toMultilinearMap.sumOfType (fun j => Pi.single j 1) α‖ ≤

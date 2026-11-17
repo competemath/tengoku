@@ -22,11 +22,15 @@ namespace CZero
 variable {I K W : Type*} [TopologicalSpace I] [DiscreteTopology I]
   [NontriviallyNormedField K]
 
-/-- A discrete c₀ vector tends to zero on the cofinite filter.-/
+/-- A discrete c₀ vector tends to zero on the cofinite filter.
+@isnad1 id=tendsto.0h3v.s7.dc4e67aca5c7 from=translated src=- shape=0cddc236 vocab=1d1f8a36
+-/
 theorem tendsto_cofinite_of_zeroAtInfty (x : C₀(I, K)) : Tendsto x cofinite (𝓝 0) := by
   simpa only [Filter.cocompact_eq_cofinite] using zero_at_infty x
 
-/-- The products `∏ r, x r (a r)` tend to zero along the cofinite filter on tuples `a`.-/
+/-- The products `∏ r, x r (a r)` tend to zero along the cofinite filter on tuples `a`.
+@isnad1 id=tendsto.0h4v.s7.eb9cb30d4033 from=translated src=- shape=c7d510ee vocab=684a6e5c
+-/
 theorem tendsto_coordinate_prod (n : ℕ) (x : Fin n → C₀(I, K)) :
     Tendsto (fun a : Fin n → I => ∏ r, x r (a r)) cofinite (𝓝 0) := by
   induction n with
@@ -45,7 +49,9 @@ theorem tendsto_coordinate_prod (n : ℕ) (x : Fin n → C₀(I, K)) :
 
 variable [NormedAddCommGroup W] [NormedSpace K W]
 
-/-- For a bounded array `c`, the terms `(∏ r, x r (a r)) • c a` tend to zero cofinitely.-/
+/-- For a bounded array `c`, the terms `(∏ r, x r (a r)) • c a` tend to zero cofinitely.
+@isnad1 id=tendsto.2h7v.s8.f1c81091c9e9 from=translated src=- shape=e384fc85 vocab=5f89f035
+-/
 theorem tendsto_arraySummand_cofinite_zero {n : ℕ}
     (c : (Fin n → I) → W) (C : ℝ) (_hC : 0 ≤ C) (hc : ∀ a, ‖c a‖ ≤ C)
     (x : Fin n → C₀(I, K)) :
@@ -58,7 +64,9 @@ theorem tendsto_arraySummand_cofinite_zero {n : ℕ}
   simpa only [norm_smul, mul_comm] using h
 
 /-- For a bounded array with values in a complete ultrametric space, the family
-`(∏ r, x r (a r)) • c a` is summable.-/
+`(∏ r, x r (a r)) • c a` is summable.
+@isnad1 id=summable.2h7v.s8.9938862f6d2b from=translated src=- shape=9c74114d vocab=cda76817
+-/
 theorem summable_arraySummand [IsUltrametricDist W] [CompleteSpace W]
     {n : ℕ} (c : (Fin n → I) → W) (C : ℝ) (hC : 0 ≤ C)
     (hc : ∀ a, ‖c a‖ ≤ C) (x : Fin n → C₀(I, K)) :

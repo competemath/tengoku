@@ -21,7 +21,9 @@ open scoped BigOperators
 variable {K Z : Type*} [NontriviallyNormedField K]
   [NormedAddCommGroup Z] [NormedSpace K Z] [IsUltrametricDist Z] {d n : ℕ}
 
-/-- In an ultrametric target, each grouped coordinate coefficient has norm at most `‖p‖`.-/
+/-- In an ultrametric target, each grouped coordinate coefficient has norm at most `‖p‖`.
+@isnad1 id=le.0h6v.s9.89490a282cc3 from=translated src=- shape=fdc88a72 vocab=834cb1a0
+-/
 theorem norm_sumOfType_le_of_isUltrametricDist
     (p : (Fin d → K) [×n]→L[K] Z) (α : Fin d → ℕ) :
     ‖p.toMultilinearMap.sumOfType (fun j => Pi.single j 1) α‖ ≤ ‖p‖ := by
@@ -36,7 +38,9 @@ theorem norm_sumOfType_le_of_isUltrametricDist
   intro j
   by_cases h : j = f i <;> simp [h]
 
-/-- If the grouped coefficients lie in `W`, they lift with no increase in norm.-/
+/-- If the grouped coefficients lie in `W`, they lift with no increase in norm.
+@isnad1 id=ex.1h6v.s11.8a20b042f5db from=translated src=- shape=34c4d48f vocab=2b341db3
+-/
 theorem exists_lift_of_sumOfType_mem_of_isUltrametricDist (W : Submodule K Z)
     (p : ContinuousMultilinearMap K (fun _ : Fin n => Fin d → K) Z)
     (hc : ∀ α : Fin d → ℕ,
@@ -126,7 +130,9 @@ variable {K Z W E : Type*} [NontriviallyNormedField K]
   [NormedAddCommGroup E] [NormedSpace K E]
 
 /-- A subspace-valued series with the same diagonals and no larger coefficients
-represents `f` on the same ball.-/
+represents `f` on the same ball.
+@isnad1 id=hasfpowe.3h9v.s11.1046ed7bd487 from=translated src=- shape=f213d4b6 vocab=05691b37
+-/
 theorem hasFPowerSeriesOnBall_subtype_of_diagonal_of_norm_le
     (S : Submodule K Z) {f : E → S} {x : E} {r : ℝ≥0∞}
     {p : FormalMultilinearSeries K E Z}

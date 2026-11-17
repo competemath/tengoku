@@ -29,6 +29,9 @@ def finiteCoordinateCodomainFunctional (b : Basis (Fin d) K E')
     (hb : ∀ i, Continuous (b.coord i)) (i : Fin d) : E' →L[K] K :=
   ⟨b.coord i, hb i⟩
 
+/--
+@isnad1 id=eq.1h6v.s9.ca79c0062379 from=translated src=- shape=23d20cb3 vocab=688bc1ea
+-/
 @[simp] theorem finiteCoordinateCodomainFunctional_apply (b : Basis (Fin d) K E')
     (hb : ∀ i, Continuous (b.coord i)) (i : Fin d) (x : E') :
     finiteCoordinateCodomainFunctional b hb i x = b.coord i x := rfl
@@ -41,13 +44,18 @@ def finiteCoordinateCodomainBound (b : Basis (Fin d) K E')
       (‖finiteCoordinateCodomainFunctional b hb (Set.powersetCard.ofFinEmbEquiv.symm s a)‖ *
         ‖b (Set.powersetCard.ofFinEmbEquiv.symm s a)‖)
 
+/--
+@isnad1 id=le.1h5v.s8.50e46b5f51d4 from=translated src=- shape=834d44f3 vocab=7c69b9f2
+-/
 theorem finiteCoordinateCodomainBound_nonneg (b : Basis (Fin d) K E')
     (hb : ∀ i, Continuous (b.coord i)) (k : ℕ) :
     0 ≤ finiteCoordinateCodomainBound b hb k := by
   unfold finiteCoordinateCodomainBound
   positivity
 
-/-- There are no `k`-element subsets of `Fin d` when `d < k`.-/
+/-- There are no `k`-element subsets of `Fin d` when `d < k`.
+@isnad1 id=isempty.1h2v.s4.b364e5ff50b7 from=translated src=- shape=2c1d317d vocab=59aebf05
+-/
 theorem finiteCoordinateCodomainIndices_isEmpty {d k : ℕ} (h : d < k) :
     IsEmpty (Set.powersetCard (Fin d) k) := by
   refine ⟨fun s => ?_⟩
@@ -56,12 +64,18 @@ theorem finiteCoordinateCodomainIndices_isEmpty {d k : ℕ} (h : d < k) :
     simpa only [Set.powersetCard.card_eq, Fintype.card_fin] using hc
   omega
 
+/--
+@isnad1 id=eq.2h5v.s8.8a30e84f72a8 from=translated src=- shape=fd7883c4 vocab=cb9b6f1d
+-/
 theorem finiteCoordinateCodomainBound_eq_zero_of_lt (b : Basis (Fin d) K E')
     (hb : ∀ i, Continuous (b.coord i)) {k : ℕ} (h : d < k) :
     finiteCoordinateCodomainBound b hb k = 0 := by
   let := finiteCoordinateCodomainIndices_isEmpty h
   simp [finiteCoordinateCodomainBound]
 
+/--
+@isnad1 id=eq.1h4v.s8.325bcbd78857 from=translated src=- shape=749043a9 vocab=4f395f6d
+-/
 theorem finiteCoordinateCodomainBound_zero (b : Basis (Fin d) K E')
     (hb : ∀ i, Continuous (b.coord i)) : finiteCoordinateCodomainBound b hb 0 = 1 := by
   let : Unique (Set.powersetCard (Fin d) 0) :=

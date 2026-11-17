@@ -45,6 +45,9 @@ def finiteCoordinateCodomainScalar (b : Basis (Fin d) K E')
       map_add' := by intros; ext a; simp
       map_smul' := by intros; ext a; simp }
 
+/--
+@isnad1 id=eq.0h9v.s9.497e9837bb15 from=translated src=- shape=c329c0c3 vocab=011a738f
+-/
 theorem finiteCoordinateCodomainScalar_apply (b : Basis (Fin d) K E')
     (t : Fin k → Fin d) (f : Fin k → E →L[K] E') (x : Fin k → E) :
     finiteCoordinateCodomainScalar b t f x =
@@ -61,6 +64,9 @@ def finiteCoordinateCodomainRows (b : Basis (Fin d) K E')
       map_add' := by intros; ext j; simp
       map_smul' := by intros; ext j; simp }
 
+/--
+@isnad1 id=eq.0h9v.s10.885e888c7920 from=translated src=- shape=fb18bd20 vocab=8b8026de
+-/
 theorem finiteCoordinateCodomainRows_apply (b : Basis (Fin d) K E')
     (t : Fin k → Fin d) (x : Fin k → E) (f : Fin k → E →L[K] E') :
     finiteCoordinateCodomainRows b t x f =
@@ -86,6 +92,9 @@ def finiteCoordinateCodomainFamily (b : Basis (Fin d) K E') (k : ℕ)
     intro s _
     exact smul_comm _ _ _
 
+/--
+@isnad1 id=eq.0h10v.s11.202df2ee1324 from=translated src=- shape=9ca3dd9e vocab=61514101
+-/
 theorem finiteCoordinateCodomainFamily_apply (b : Basis (Fin d) K E') (k : ℕ)
     (f : Fin k → E →L[K] E') (m : E' [⋀^Fin k]→L[K] F) (x : Fin k → E) :
     finiteCoordinateCodomainFamily b k f m x =
@@ -115,6 +124,9 @@ def finiteCoordinateCodomainAlgebra (b : Basis (Fin d) K E') (k : ℕ) :
     simp only [← finiteCoordinateCodomainRows_apply,
       MultilinearMap.map_update_smul, smul_smul, Finset.smul_sum, smul_eq_mul]
 
+/--
+@isnad1 id=eq.0h10v.s12.901cd3ca40bf from=translated src=- shape=ab2c0e63 vocab=3f004012
+-/
 theorem finiteCoordinateCodomainAlgebra_apply (b : Basis (Fin d) K E') (k : ℕ)
     (f : Fin k → E →L[K] E') (m : E' [⋀^Fin k]→L[K] F) (x : Fin k → E) :
     finiteCoordinateCodomainAlgebra b k f m x =
@@ -123,7 +135,9 @@ theorem finiteCoordinateCodomainAlgebra_apply (b : Basis (Fin d) K E') (k : ℕ)
           (f a (x j))) • m (fun a => b (Set.powersetCard.ofFinEmbEquiv.symm s a)) :=
   finiteCoordinateCodomainFamily_apply b k f m x
 
-/-- The lifted map vanishes when two inputs are equal.-/
+/-- The lifted map vanishes when two inputs are equal.
+@isnad1 id=eq.2h12v.s12.10bc14070b51 from=translated src=- shape=384bc5f5 vocab=597396e9
+-/
 theorem finiteCoordinateCodomainAlgebra_map_eq_zero_of_eq
     (b : Basis (Fin d) K E') (k : ℕ) (f : Fin k → E →L[K] E')
     (m : E' [⋀^Fin k]→L[K] F) (x : Fin k → E) {i j : Fin k}

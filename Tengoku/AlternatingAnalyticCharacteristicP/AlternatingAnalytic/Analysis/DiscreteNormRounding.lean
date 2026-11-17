@@ -24,15 +24,24 @@ namespace AlternatingAnalytic
 noncomputable def discreteRound (e x : ℝ) : ℝ :=
   if x = 0 then 0 else e ^ ⌈Real.logb e x⌉
 
+/--
+@isnad1 id=eq.0h1v.s4.fa5f121d5cac from=translated src=- shape=1d838610 vocab=5c7872ad
+-/
 @[simp]
 theorem discreteRound_zero (e : ℝ) : discreteRound e 0 = 0 := by
   simp [discreteRound]
 
+/--
+@isnad1 id=lt.2h2v.s5.10e324e03ec0 from=translated src=- shape=6c67d60b vocab=0e47e7c6
+-/
 theorem discreteRound_pos {e x : ℝ} (he : 1 < e) (hx : 0 < x) :
     0 < discreteRound e x := by
   simp only [discreteRound, ite_eq_right hx.ne']
   exact zpow_pos (zero_lt_one.trans he) _
 
+/--
+@isnad1 id=le.1h2v.s4.f5e7fdae15b9 from=translated src=- shape=1852429d vocab=13a6624a
+-/
 theorem discreteRound_nonneg {e : ℝ} (he : 1 < e) (x : ℝ) :
     0 ≤ discreteRound e x := by
   unfold discreteRound
@@ -40,6 +49,9 @@ theorem discreteRound_nonneg {e : ℝ} (he : 1 < e) (x : ℝ) :
   · exact le_rfl
   · exact (zpow_pos (zero_lt_one.trans he) _).le
 
+/--
+@isnad1 id=le.2h2v.s5.a7614b6af300 from=translated src=- shape=20f62a73 vocab=13a6624a
+-/
 theorem le_discreteRound {e x : ℝ} (he : 1 < e) (hx : 0 ≤ x) :
     x ≤ discreteRound e x := by
   rcases hx.eq_or_lt with rfl | hx
@@ -47,6 +59,9 @@ theorem le_discreteRound {e x : ℝ} (he : 1 < e) (hx : 0 ≤ x) :
   rw [discreteRound, ite_eq_right hx.ne', ← Real.rpow_intCast]
   exact (Real.logb_le_iff_le_rpow he hx).mp (Int.le_ceil _)
 
+/--
+@isnad1 id=le.2h2v.s5.fa8e600aa63c from=translated src=- shape=e54d2011 vocab=22e08311
+-/
 theorem discreteRound_le_mul {e x : ℝ} (he : 1 < e) (hx : 0 ≤ x) :
     discreteRound e x ≤ e * x := by
   rcases hx.eq_or_lt with rfl | hx
@@ -59,6 +74,9 @@ theorem discreteRound_le_mul {e x : ℝ} (he : 1 < e) (hx : 0 ≤ x) :
       rw [Real.rpow_add (zero_lt_one.trans he), Real.rpow_one,
         Real.rpow_logb (zero_lt_one.trans he) he.ne' hx, mul_comm]
 
+/--
+@isnad1 id=le.3h3v.s5.2234a5f18df2 from=translated src=- shape=02be2863 vocab=13a6624a
+-/
 theorem discreteRound_mono {e x y : ℝ} (he : 1 < e) (hx : 0 ≤ x) (hxy : x ≤ y) :
     discreteRound e x ≤ discreteRound e y := by
   by_cases hx0 : x = 0
@@ -68,12 +86,18 @@ theorem discreteRound_mono {e x y : ℝ} (he : 1 < e) (hx : 0 ≤ x) (hxy : x �
   simp only [discreteRound, ite_eq_right hx0, ite_eq_right hypos.ne']
   exact zpow_le_zpow_right₀ he.le (Int.ceil_mono (Real.logb_le_logb_of_le he hxpos hxy))
 
+/--
+@isnad1 id=eq.3h3v.s5.63455653a6c2 from=translated src=- shape=9c4a2dd2 vocab=9b47b05d
+-/
 theorem discreteRound_max {e x y : ℝ} (he : 1 < e) (hx : 0 ≤ x) (hy : 0 ≤ y) :
     discreteRound e (max x y) = max (discreteRound e x) (discreteRound e y) := by
   rcases le_total x y with h | h
   · rw [max_eq_right h, max_eq_right (discreteRound_mono he hx h)]
   · rw [max_eq_left h, max_eq_left (discreteRound_mono he hy h)]
 
+/--
+@isnad1 id=eq.1h3v.s6.7ce246d4fc9f from=translated src=- shape=a6d9457f vocab=713212b3
+-/
 theorem discreteRound_zpow_mul {e : ℝ} (he : 1 < e) (m : ℤ) (x : ℝ) :
     discreteRound e (e ^ m * x) = e ^ m * discreteRound e x := by
   by_cases hx : x = 0
@@ -86,6 +110,9 @@ theorem discreteRound_zpow_mul {e : ℝ} (he : 1 < e) (m : ℤ) (x : ℝ) :
   rw [Real.logb_mul (zpow_ne_zero _ he0.ne') hx, hlog, Int.ceil_intCast_add,
     zpow_add₀ he0.ne']
 
+/--
+@isnad1 id=ex.1h2v.s5.4720c01c7268 from=translated src=- shape=b7639e79 vocab=07c2ac05
+-/
 theorem discreteRound_mem_zpowers {e x : ℝ} (hx : x ≠ 0) :
     ∃ n : ℤ, discreteRound e x = e ^ n := by
   exact ⟨⌈Real.logb e x⌉, by simp only [discreteRound, ite_eq_right hx]⟩
@@ -112,12 +139,18 @@ noncomputable def roundedSeminorm (p : Seminorm K F)
       rw [hn]
       exact discreteRound_zpow_mul he n (p x))
 
+/--
+@isnad1 id=eq.3h5v.s10.0c77ecd4bab1 from=translated src=- shape=de5732cc vocab=25ba6f5b
+-/
 @[simp]
 theorem roundedSeminorm_apply (p : Seminorm K F)
     (hp : ∀ x y, p (x + y) ≤ max (p x) (p y)) {e : ℝ} (he : 1 < e)
     (hval : ∀ c : K, c ≠ 0 → ∃ n : ℤ, ‖c‖ = e ^ n) (x : F) :
     roundedSeminorm p hp he hval x = discreteRound e (p x) := rfl
 
+/--
+@isnad1 id=le.3h6v.s10.f11a8a100137 from=translated src=- shape=849e5e1e vocab=52063588
+-/
 theorem roundedSeminorm_ultrametric (p : Seminorm K F)
     (hp : ∀ x y, p (x + y) ≤ max (p x) (p y)) {e : ℝ} (he : 1 < e)
     (hval : ∀ c : K, c ≠ 0 → ∃ n : ℤ, ‖c‖ = e ^ n) (x y : F) :
@@ -127,12 +160,18 @@ theorem roundedSeminorm_ultrametric (p : Seminorm K F)
   rw [← discreteRound_max he (apply_nonneg p x) (apply_nonneg p y)]
   exact discreteRound_mono he (apply_nonneg p _) (hp x y)
 
+/--
+@isnad1 id=le.3h5v.s10.587682e08332 from=translated src=- shape=16e65bee vocab=52063588
+-/
 theorem le_roundedSeminorm (p : Seminorm K F)
     (hp : ∀ x y, p (x + y) ≤ max (p x) (p y)) {e : ℝ} (he : 1 < e)
     (hval : ∀ c : K, c ≠ 0 → ∃ n : ℤ, ‖c‖ = e ^ n) (x : F) :
     p x ≤ roundedSeminorm p hp he hval x :=
   le_discreteRound he (apply_nonneg p x)
 
+/--
+@isnad1 id=le.3h5v.s10.ef33dde81985 from=translated src=- shape=1f792512 vocab=3a0cd896
+-/
 theorem roundedSeminorm_le_mul (p : Seminorm K F)
     (hp : ∀ x y, p (x + y) ≤ max (p x) (p y)) {e : ℝ} (he : 1 < e)
     (hval : ∀ c : K, c ≠ 0 → ∃ n : ℤ, ‖c‖ = e ^ n) (x : F) :
@@ -142,7 +181,9 @@ theorem roundedSeminorm_le_mul (p : Seminorm K F)
 end Seminorm
 
 /-- If nonzero scalar norms lie in `e ^ ℤ`, an equivalent ultrametric norm can be chosen
-with nonzero values in `e ^ ℤ`.-/
+with nonzero values in `e ^ ℤ`.
+@isnad1 id=ex.3h3v.s10.5a9310bbb15d from=translated src=- shape=9c27f35b vocab=cb71c6a0
+-/
 theorem HasEquivalentUltrametricNorm.exists_discrete
     {K F : Type*} [NormedField K] [NormedAddCommGroup F] [NormedSpace K F]
     (h : HasEquivalentUltrametricNorm K F) {e : ℝ} (he : 1 < e)

@@ -46,6 +46,9 @@ def contMDiffHomId : ContMDiffSection I (A →L[K] A) n (fun b ↦ E b →L[K] E
     simp only [ContinuousLinearMap.comp_apply, ContinuousLinearMap.id_apply,
       ContinuousLinearEquiv.coe_coe, ContinuousLinearEquiv.apply_symm_apply]
 
+/--
+@isnad1 id=eq.0h9v.s10.516b56e36329 from=translated src=- shape=e97b4daf vocab=a4245494
+-/
 @[simp]
 theorem contMDiffHomId_apply (b : M) :
     contMDiffHomId (I := I) (n := n) A E b = ContinuousLinearMap.id K (E b) := rfl
@@ -96,6 +99,9 @@ def contMDiffHomComp
     simp only [ContinuousLinearMap.comp_apply, ContinuousLinearEquiv.coe_coe,
       ContinuousLinearEquiv.symm_apply_apply]
 
+/--
+@isnad1 id=eq.0h15v.s12.28aae205ea3a from=translated src=- shape=daf81554 vocab=adb0cf58
+-/
 @[simp]
 theorem contMDiffHomComp_apply
     (f : ContMDiffSection I (A →L[K] B) n (fun b ↦ E b →L[K] F b))

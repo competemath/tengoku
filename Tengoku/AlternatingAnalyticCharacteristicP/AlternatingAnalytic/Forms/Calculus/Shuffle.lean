@@ -25,7 +25,9 @@ variable {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
 
 variable {k l m : ℕ}
 
-/-- Alternatization commutes with reindexing.-/
+/-- Alternatization commutes with reindexing.
+@isnad1 id=eq.0h7v.s10.2398f2fe0d2f from=translated src=- shape=8af29512 vocab=8a392489
+-/
 theorem alternatization_domDomCongr {N : Type*} [AddCommGroup N] [Module R N]
     {ι ι' : Type*} [Fintype ι] [DecidableEq ι] [Fintype ι'] [DecidableEq ι'] (e : ι ≃ ι')
     (a : MultilinearMap R (fun _ : ι => M) N) :
@@ -37,7 +39,9 @@ theorem alternatization_domDomCongr {N : Type*} [AddCommGroup N] [Module R N]
   refine Fintype.sum_equiv (e.symm.permCongr) _ _ fun σ => ?_
   simp [Perm.sign_permCongr]
 
-/-- The alternatization of the constant `0`-ary map `1` is `1`.-/
+/-- The alternatization of the constant `0`-ary map `1` is `1`.
+@isnad1 id=eq.0h2v.s10.c3e100c8bc2f from=translated src=- shape=ff95a9da vocab=45011f77
+-/
 theorem alternatization_constOfIsEmpty :
     MultilinearMap.alternatization (MultilinearMap.constOfIsEmpty R (fun _ : Fin 0 => M) (1 : R)) =
       AlternatingMap.constOfIsEmpty R M (Fin 0) (1 : R) := by
@@ -52,7 +56,9 @@ section Naturality
 
 variable {M' : Type*} [AddCommGroup M'] [Module R M']
 
-/-- `AlternatingMap.domCoprod` commutes with pullback along linear maps.-/
+/-- `AlternatingMap.domCoprod` commutes with pullback along linear maps.
+@isnad1 id=eq.0h8v.s9.74648f093514 from=translated src=- shape=d162ef82 vocab=c91f075a
+-/
 theorem domCoprod_compLinearMap {ιa ιb : Type*} [Fintype ιa] [Fintype ιb] [DecidableEq ιa]
     [DecidableEq ιb] (μ : M [⋀^ιa]→ₗ[R] R) (ν : M [⋀^ιb]→ₗ[R] R) (g : M' →ₗ[R] M) :
     (μ.compLinearMap g).domCoprod (ν.compLinearMap g) = (μ.domCoprod ν).compLinearMap g := by

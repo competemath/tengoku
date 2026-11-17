@@ -29,11 +29,17 @@ noncomputable def sourceForm (ψ : Fin k → ((Fin (k + 1) → κ) →ₗ[κ] κ
     (χ : (Fin (k + 1) → κ) →ₗ[κ] κ) : κ :=
   wedgeEval χ (targetForm τ id ψ)
 
+/--
+@isnad1 id=eq.0h5v.s11.68c7b607b86e from=translated src=- shape=cf37443d vocab=a0b271ec
+-/
 theorem smulRight_add_left (φ φ' : (Fin (k + 1) → κ) →ₗ[κ] κ) (v : Fin k → κ) :
     (φ + φ').smulRight v = φ.smulRight v + φ'.smulRight v := by
   refine LinearMap.ext fun x => ?_
   simp [add_smul]
 
+/--
+@isnad1 id=eq.0h6v.s12.d56467b194c1 from=translated src=- shape=9313acfc vocab=5e02c9d9
+-/
 theorem targetForm_id_update (ψ : Fin k → ((Fin (k + 1) → κ) →ₗ[κ] κ)) (s : Fin k)
     (ν : (Fin (k + 1) → κ) →ₗ[κ] κ) :
     targetForm τ id (update ψ s ν) =
@@ -43,6 +49,9 @@ theorem targetForm_id_update (ψ : Fin k → ((Fin (k + 1) → κ) →ₗ[κ] κ
   simp only [update_eq_self]
   rfl
 
+/--
+@isnad1 id=eq.0h8v.s11.ad25e9caece4 from=translated src=- shape=763b5f7f vocab=6c7275c5
+-/
 theorem sourceForm_update_add (ψ : Fin k → ((Fin (k + 1) → κ) →ₗ[κ] κ)) (s : Fin k)
     (μ ρ χ : (Fin (k + 1) → κ) →ₗ[κ] κ) :
     sourceForm τ (update ψ s (μ + ρ)) χ =
@@ -50,12 +59,17 @@ theorem sourceForm_update_add (ψ : Fin k → ((Fin (k + 1) → κ) →ₗ[κ] �
   simp only [sourceForm, targetForm_id_update, smulRight_add_left, τ.map_update_add,
     wedgeEval_add_right]
 
+/--
+@isnad1 id=eq.0h6v.s11.945c4ffac95b from=translated src=- shape=14376a87 vocab=28d0577c
+-/
 theorem sourceForm_add_right (ψ : Fin k → ((Fin (k + 1) → κ) →ₗ[κ] κ))
     (χ χ' : (Fin (k + 1) → κ) →ₗ[κ] κ) :
     sourceForm τ ψ (χ + χ') = sourceForm τ ψ χ + sourceForm τ ψ χ' :=
   wedgeEval_add_left _ _ _
 
-/-- Condition (2) for `(ker ν, C'_s)`: `B(ψ)` with `ν` in slot `s` vanishes on `(ker ν)^k`.-/
+/-- Condition (2) for `(ker ν, C'_s)`: `B(ψ)` with `ν` in slot `s` vanishes on `(ker ν)^k`.
+@isnad1 id=eq.3h7v.s11.d9d08b8d0241 from=translated src=- shape=425de1f4 vocab=2c54b942
+-/
 theorem targetForm_update_apply_eq_zero (h2 : FibreCondition2 κ k τ)
     (ψ : Fin k → ((Fin (k + 1) → κ) →ₗ[κ] κ)) (s : Fin k) {ν : (Fin (k + 1) → κ) →ₗ[κ] κ}
     (hν : ν ∈ coordForms κ k) (ξ : Fin k → (Fin (k + 1) → κ))
@@ -68,12 +82,18 @@ theorem targetForm_update_apply_eq_zero (h2 : FibreCondition2 κ k τ)
     simp [colZero, LinearMap.mem_ker.1 hx]
   · simp [colZero, hrs]
 
+/--
+@isnad1 id=eq.1h6v.s10.cec77f1163f7 from=translated src=- shape=b0413a5f vocab=03e2e8b9
+-/
 theorem sourceForm_update_self_proj (h2 : FibreCondition2 κ k τ)
     (ψ : Fin k → ((Fin (k + 1) → κ) →ₗ[κ] κ)) (s : Fin k) (a : Fin (k + 1)) :
     sourceForm τ (update ψ s (LinearMap.proj (R := κ) (φ := fun _ => κ) a))
       (LinearMap.proj (R := κ) (φ := fun _ => κ) a) = 0 :=
   wedgeEval_proj_eq_zero a (targetForm_update_apply_eq_zero h2 ψ s (Or.inl ⟨a, rfl⟩))
 
+/--
+@isnad1 id=eq.2h7v.s11.f621ae670683 from=translated src=- shape=4b5d2df5 vocab=03e2e8b9
+-/
 theorem sourceForm_update_self_proj_add (h2 : FibreCondition2 κ k τ)
     (ψ : Fin k → ((Fin (k + 1) → κ) →ₗ[κ] κ)) (s : Fin k) {a b : Fin (k + 1)} (hab : a ≠ b) :
     sourceForm τ (update ψ s (LinearMap.proj (R := κ) (φ := fun _ => κ) a +
@@ -87,7 +107,9 @@ theorem sourceForm_update_self_proj_add (h2 : FibreCondition2 κ k τ)
     · exact Or.inr ⟨b, a, h, add_comm _ _⟩
   exact wedgeEval_proj_add_eq_zero hab (targetForm_update_apply_eq_zero h2 ψ s hν)
 
-/-- Exchanging the coordinate forms in slot `s` and in the last slot changes the sign of `β`.-/
+/-- Exchanging the coordinate forms in slot `s` and in the last slot changes the sign of `β`.
+@isnad1 id=eq.1h7v.s10.02b552254874 from=translated src=- shape=b400f473 vocab=56546b10
+-/
 theorem sourceForm_update_swap (h2 : FibreCondition2 κ k τ)
     (ψ : Fin k → ((Fin (k + 1) → κ) →ₗ[κ] κ)) (s : Fin k) (a b : Fin (k + 1)) :
     sourceForm τ (update ψ s (LinearMap.proj (R := κ) (φ := fun _ => κ) a))
@@ -102,7 +124,9 @@ theorem sourceForm_update_swap (h2 : FibreCondition2 κ k τ)
       sourceForm_update_self_proj h2, sourceForm_update_self_proj h2] at h
     linear_combination h
 
-/-- Exchanging the coordinate forms in two of the first `k` slots changes the sign of `β`.-/
+/-- Exchanging the coordinate forms in two of the first `k` slots changes the sign of `β`.
+@isnad1 id=eq.2h9v.s11.8abd4cfc30f2 from=translated src=- shape=bfdf3e1a vocab=56546b10
+-/
 theorem sourceForm_update_update_swap (h2 : FibreCondition2 κ k τ)
     (ψ : Fin k → ((Fin (k + 1) → κ) →ₗ[κ] κ)) {i j : Fin k} (hij : i ≠ j) (a b c : Fin (k + 1)) :
     sourceForm τ (update (update ψ i (LinearMap.proj (R := κ) (φ := fun _ => κ) a)) j
@@ -121,6 +145,9 @@ noncomputable def lastSlotValue (f : Fin k → Fin (k + 1)) : κ :=
   sourceForm τ (fun r => LinearMap.proj (R := κ) (φ := fun _ => κ) (f r))
     (LinearMap.proj (R := κ) (φ := fun _ => κ) (Fin.last k))
 
+/--
+@isnad1 id=eq.2h6v.s10.e4c08c092e00 from=translated src=- shape=6bf6d2bf vocab=ee7789a7
+-/
 theorem lastSlotValue_comp_swap (h2 : FibreCondition2 κ k τ) (f : Fin k → Fin (k + 1))
     {i j : Fin k} (hij : i ≠ j) :
     lastSlotValue τ (f ∘ Equiv.swap i j) = -lastSlotValue τ f := by
@@ -143,7 +170,9 @@ theorem lastSlotValue_comp_swap (h2 : FibreCondition2 κ k τ) (f : Fin k → Fi
     simp only [update_eq_self]
   rw [lastSlotValue, lastSlotValue, e1, sourceForm_update_update_swap h2 _ hij, e2]
 
-/-- The source sign rule: `t(f ∘ σ) = sign(σ) t(f)` for `σ ∈ S_k`.-/
+/-- The source sign rule: `t(f ∘ σ) = sign(σ) t(f)` for `σ ∈ S_k`.
+@isnad1 id=eq.1h5v.s10.42530c2e82ba from=translated src=- shape=b1df39d8 vocab=e72031f3
+-/
 theorem lastSlotValue_comp_perm (h2 : FibreCondition2 κ k τ) (f : Fin k → Fin (k + 1))
     (σ : Equiv.Perm (Fin k)) :
     lastSlotValue τ (f ∘ σ) = ((Equiv.Perm.sign σ : ℤ) : κ) * lastSlotValue τ f := by

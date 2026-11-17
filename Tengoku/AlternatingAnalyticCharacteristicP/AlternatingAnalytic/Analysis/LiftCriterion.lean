@@ -44,16 +44,25 @@ noncomputable def polySeries (𝕜 : Type*) [NontriviallyNormedField 𝕜]
     FormalMultilinearSeries 𝕜 𝕜 Z :=
   fun n => ContinuousMultilinearMap.mkPiRing 𝕜 (Fin n) (if n ≤ k then b n else 0)
 
+/--
+@isnad1 id=eq.0h6v.s8.28f692201bd9 from=translated src=- shape=485f77f8 vocab=9b7e0c68
+-/
 lemma polySeries_apply (k : ℕ) (b : ℕ → Z) (n : ℕ) (m : Fin n → 𝕜) :
     polySeries 𝕜 k b n m = (∏ i, m i) • (if n ≤ k then b n else 0) :=
   ContinuousMultilinearMap.mkPiRing_apply _ _
 
+/--
+@isnad1 id=eq.1h5v.s8.129daa66e42f from=translated src=- shape=2a3acbf5 vocab=9efc35bc
+-/
 lemma polySeries_eq_zero_of_gt (k : ℕ) (b : ℕ → Z) {n : ℕ} (hn : k < n) :
     polySeries 𝕜 k b n = 0 := by
   have hb : (if n ≤ k then b n else 0) = 0 := by simp [Nat.not_le.mpr hn]
   rw [polySeries, hb]
   exact ContinuousMultilinearMap.mkPiRing_zero
 
+/--
+@isnad1 id=hasfpowe.0h4v.s7.888b7543437e from=translated src=- shape=2c6e2e16 vocab=4b23c973
+-/
 lemma hasFPowerSeriesAt_polySeries (k : ℕ) (b : ℕ → Z) :
     HasFPowerSeriesAt (fun t : 𝕜 => ∑ r ∈ Finset.range (k + 1), t ^ r • b r)
       (polySeries 𝕜 k b) 0 := by
@@ -73,7 +82,9 @@ lemma hasFPowerSeriesAt_polySeries (k : ℕ) (b : ℕ → Z) :
       simp
   exact H.hasFiniteFPowerSeriesAt.hasFPowerSeriesAt
 
-/-- Shift a power series statement from base point `x₀` to base point `0`, keeping the series.-/
+/-- Shift a power series statement from base point `x₀` to base point `0`, keeping the series.
+@isnad1 id=hasfpowe.1h6v.s7.949dbdc1b9e6 from=translated src=- shape=89fd7104 vocab=23b3b9a9
+-/
 lemma hasFPowerSeriesAt_shift {Q : X → Z} {x₀ : X} {p : FormalMultilinearSeries 𝕜 X Z}
     (hp : HasFPowerSeriesAt Q p x₀) : HasFPowerSeriesAt (fun z => Q (x₀ + z)) p 0 := by
   obtain ⟨r, hr⟩ := hp
@@ -81,7 +92,9 @@ lemma hasFPowerSeriesAt_shift {Q : X → Z} {x₀ : X} {p : FormalMultilinearSer
               hasSum := fun {y} hy => by simpa using hr.hasSum hy }⟩
 
 /-- If `Q` has power series `p` at `x₀` and `Q (x₀ + t • x) = ∑_{r ≤ k} t ^ r • B r x`, then the
-`k`-th term of `p` has diagonal `B k`.-/
+`k`-th term of `p` has diagonal `B k`.
+@isnad1 id=eq.2h9v.s9.e33421a1e2da from=translated src=- shape=75c14c90 vocab=975d69ed
+-/
 theorem coeff_eq_of_hasFPowerSeriesAt (Q : X → Z) (x₀ : X) (k : ℕ) (B : ℕ → X → Z)
     (hB : ∀ (t : 𝕜) (x : X), Q (x₀ + t • x) = ∑ r ∈ Finset.range (k + 1), t ^ r • B r x)
     (p : FormalMultilinearSeries 𝕜 X Z) (hp : HasFPowerSeriesAt Q p x₀) :
@@ -107,7 +120,9 @@ theorem coeff_eq_of_hasFPowerSeriesAt (Q : X → Z) (x₀ : X) (k : ℕ) (B : �
   simpa using key
 
 /-- Version of `coeff_eq_of_hasFPowerSeriesAt` where the line expansion holds only after an
-injective map `j : Z →L W`, with top coefficient `j ∘ Qtop`.-/
+injective map `j : Z →L W`, with top coefficient `j ∘ Qtop`.
+@isnad1 id=eq.4h12v.s10.f93c6f6d1bc5 from=translated src=- shape=3dccf68e vocab=c36a8420
+-/
 theorem coeff_eq_of_ambient (Q : X → Z) (x₀ : X) (k : ℕ) (B : ℕ → X → W) (j : Z →L[𝕜] W)
     (hj : Function.Injective j) (Qtop : X → Z)
     (hB : ∀ (t : 𝕜) (x : X), j (Q (x₀ + t • x)) = ∑ r ∈ Finset.range (k + 1), t ^ r • B r x)
@@ -143,7 +158,9 @@ noncomputable def lineCoeff (A : ContinuousMultilinearMap 𝕜 (fun _ : ι => X)
   ∑ s ∈ (Finset.univ : Finset (Finset ι)).filter (fun s => s.card = r),
     A (s.piecewise (fun _ => h) (fun _ => x₀))
 
-/-- Expansion of `t ↦ A (x₀ + t • h, …, x₀ + t • h)` in powers of `t`.-/
+/-- Expansion of `t ↦ A (x₀ + t • h, …, x₀ + t • h)` in powers of `t`.
+@isnad1 id=eq.0h8v.s9.e836f4641629 from=translated src=- shape=a99b7ab6 vocab=d8c7e253
+-/
 theorem map_diag_add_smul (A : ContinuousMultilinearMap 𝕜 (fun _ : ι => X) W) (x₀ h : X)
     (t : 𝕜) :
     A (fun _ => x₀ + t • h) =
@@ -171,7 +188,9 @@ theorem map_diag_add_smul (A : ContinuousMultilinearMap 𝕜 (fun _ : ι => X) W
   · intro s _
     exact Finset.mem_range.mpr (Nat.lt_succ_of_le (Finset.card_le_univ s))
 
-/-- The top line coefficient is `A` on the diagonal, independently of the base point.-/
+/-- The top line coefficient is `A` on the diagonal, independently of the base point.
+@isnad1 id=eq.0h7v.s8.4515273cd906 from=translated src=- shape=96fd1989 vocab=65e5753e
+-/
 theorem lineCoeff_card (A : ContinuousMultilinearMap 𝕜 (fun _ : ι => X) W) (x₀ h : X) :
     lineCoeff A x₀ (Fintype.card ι) h = A (fun _ => h) := by
   unfold lineCoeff
@@ -206,9 +225,15 @@ noncomputable def jAmb : ((E' [⋀^ι]→L[𝕜] F) →L[𝕜] (E [⋀^ι]→L[�
   ContinuousLinearMap.compL 𝕜 (E' [⋀^ι]→L[𝕜] F) (E [⋀^ι]→L[𝕜] F)
     (ContinuousMultilinearMap 𝕜 (fun _ : ι => E) F) (toContinuousMultilinearMapCLM 𝕜)
 
+/--
+@isnad1 id=eq.0h7v.s13.15c4c36ed060 from=translated src=- shape=6af07299 vocab=55c4041e
+-/
 lemma jAmb_apply_apply (T : (E' [⋀^ι]→L[𝕜] F) →L[𝕜] (E [⋀^ι]→L[𝕜] F)) (m : E' [⋀^ι]→L[𝕜] F) :
     jAmb 𝕜 ι E E' F T m = (T m).toContinuousMultilinearMap := rfl
 
+/--
+@isnad1 id=injectiv.0h5v.s13.a143f8c7c0f5 from=translated src=- shape=2c2c13a3 vocab=42df3dc0
+-/
 lemma jAmb_injective : Function.Injective (jAmb 𝕜 ι E E' F) := by
   intro T₁ T₂ h
   refine ContinuousLinearMap.ext fun m => toContinuousMultilinearMap_injective ?_
@@ -226,6 +251,9 @@ noncomputable def ambLift : ContinuousMultilinearMap 𝕜 (fun _ : ι => E →L[
     (ContinuousMultilinearMap.compContinuousLinearMapContinuousMultilinear 𝕜
       (fun _ : ι => E) (fun _ => E') F)
 
+/--
+@isnad1 id=eq.0h6v.s14.19c00bed445d from=translated src=- shape=bb01bc39 vocab=f0fa7ed7
+-/
 lemma ambLift_diag (f : E →L[𝕜] E') :
     ambLift 𝕜 ι E E' F (fun _ => f) = jAmb 𝕜 ι E E' F (Q 𝕜 ι E E' F f) := by
   ext m x
@@ -238,7 +266,9 @@ def HasBoundedLift : Prop :=
       ((E' [⋀^ι]→L[𝕜] F) →L[𝕜] (E [⋀^ι]→L[𝕜] F)),
     ∀ f, P (fun _ => f) = Q 𝕜 ι E E' F f
 
-/-- A bounded lift of any arity makes `Q` a continuous polynomial at every point.-/
+/-- A bounded lift of any arity makes `Q` a continuous polynomial at every point.
+@isnad1 id=cpolynom.1h8v.s13.ca1a88e7157c from=translated src=- shape=3911f66e vocab=5b88a9bc
+-/
 theorem cpolynomialAt_of_lift {n : ℕ} (P : ContinuousMultilinearMap 𝕜 (fun _ : Fin n => E →L[𝕜] E')
       ((E' [⋀^ι]→L[𝕜] F) →L[𝕜] (E [⋀^ι]→L[𝕜] F)))
     (hP : ∀ f, P (fun _ => f) = Q 𝕜 ι E E' F f) (f₀ : E →L[𝕜] E') :
@@ -250,7 +280,9 @@ theorem cpolynomialAt_of_lift {n : ℕ} (P : ContinuousMultilinearMap 𝕜 (fun 
     (ContinuousLinearMap.cpolynomialAt
       (ContinuousLinearMap.pi fun _ : Fin n => ContinuousLinearMap.id 𝕜 (E →L[𝕜] E')) f₀)
 
-/-- The lift may equally be indexed by `ι` itself.-/
+/-- The lift may equally be indexed by `ι` itself.
+@isnad1 id=iff.0h5v.s13.d058e7760d6a from=translated src=- shape=b792b85c vocab=df39a29d
+-/
 theorem hasBoundedLift_iff_exists_ι :
     HasBoundedLift 𝕜 ι E E' F ↔
       ∃ P : ContinuousMultilinearMap 𝕜 (fun _ : ι => E →L[𝕜] E')
@@ -284,6 +316,9 @@ noncomputable def Smap : (E' [⋀^Fin n]→L[𝕜] F) →L[𝕜] ((E' × 𝕜) [
         (ContinuousLinearMap.snd 𝕜 E' 𝕜)).comp
       (compContinuousLinearMapCLM (ContinuousLinearMap.fst 𝕜 E' 𝕜)))
 
+/--
+@isnad1 id=eq.0h6v.s11.71c9ae329628 from=translated src=- shape=edc2c217 vocab=2578e030
+-/
 lemma Smap_apply (m : E' [⋀^Fin n]→L[𝕜] F) (v : Fin (n + 1) → E' × 𝕜) :
     Smap 𝕜 E' F n m v =
       ∑ i : Fin (n + 1), (-1) ^ (i : ℕ) • ((v i).2 • m (fun j => (i.removeNth v j).1)) := by
@@ -297,10 +332,15 @@ noncomputable def Rmap : ((E × 𝕜) [⋀^Fin (n + 1)]→L[𝕜] F) →L[𝕜] 
     ((ContinuousLinearMap.apply 𝕜 ((E × 𝕜) [⋀^Fin n]→L[𝕜] F) ((0 : E), (1 : 𝕜))).comp
       (curryLeftLI (𝕜 := 𝕜) (E := E × 𝕜) (F := F) (n := n)).toContinuousLinearMap)
 
+/--
+@isnad1 id=eq.0h6v.s11.59a52aa25aa4 from=translated src=- shape=57a935a6 vocab=9b9d0221
+-/
 lemma Rmap_apply (M : (E × 𝕜) [⋀^Fin (n + 1)]→L[𝕜] F) (x : Fin n → E) :
     Rmap 𝕜 E F n M x = M (Matrix.vecCons ((0 : E), (1 : 𝕜)) (fun j => (x j, (0 : 𝕜)))) := rfl
 
-/-- `R ∘ S = id`.-/
+/-- `R ∘ S = id`.
+@isnad1 id=eq.0h5v.s12.4ef8f2b29155 from=translated src=- shape=30b5dadd vocab=f743df22
+-/
 theorem Rmap_Smap (m : E' [⋀^Fin n]→L[𝕜] F) : Rmap 𝕜 E' F n (Smap 𝕜 E' F n m) = m := by
   ext x
   rw [Rmap_apply, Smap_apply, Fin.sum_univ_succ]
@@ -315,6 +355,9 @@ noncomputable def Γ : (((E' × 𝕜) [⋀^Fin (n + 1)]→L[𝕜] F) →L[𝕜] 
     ((ContinuousLinearMap.compL 𝕜 (E' [⋀^Fin n]→L[𝕜] F) ((E' × 𝕜) [⋀^Fin (n + 1)]→L[𝕜] F)
       ((E × 𝕜) [⋀^Fin (n + 1)]→L[𝕜] F)).flip (Smap 𝕜 E' F n))
 
+/--
+@isnad1 id=eq.0h7v.s14.1b29b93934c3 from=translated src=- shape=b7f1f422 vocab=09b28209
+-/
 lemma Γ_apply (T : ((E' × 𝕜) [⋀^Fin (n + 1)]→L[𝕜] F) →L[𝕜] ((E × 𝕜) [⋀^Fin (n + 1)]→L[𝕜] F))
     (m : E' [⋀^Fin n]→L[𝕜] F) : Γ 𝕜 E E' F n T m = Rmap 𝕜 E F n (T (Smap 𝕜 E' F n m)) := rfl
 
@@ -324,6 +367,9 @@ noncomputable def φ : (E →L[𝕜] E') →L[𝕜] (E × 𝕜 →L[𝕜] E' × 
   (ContinuousLinearMap.compL 𝕜 (E × 𝕜) E' (E' × 𝕜) (ContinuousLinearMap.inl 𝕜 E' 𝕜)).comp
     ((ContinuousLinearMap.compL 𝕜 (E × 𝕜) E E').flip (ContinuousLinearMap.fst 𝕜 E 𝕜))
 
+/--
+@isnad1 id=eq.0h5v.s12.cb09ad4608e9 from=translated src=- shape=76d00bfa vocab=d647c810
+-/
 lemma φ_apply (f : E →L[𝕜] E') (x : E × 𝕜) : φ 𝕜 E E' f x = (f x.1, 0) := rfl
 
 variable (𝕜 E E') in
@@ -331,9 +377,14 @@ variable (𝕜 E E') in
 noncomputable def jj : E × 𝕜 →L[𝕜] E' × 𝕜 :=
   (ContinuousLinearMap.inr 𝕜 E' 𝕜).comp (ContinuousLinearMap.snd 𝕜 E 𝕜)
 
+/--
+@isnad1 id=eq.0h4v.s9.c2971aee8fef from=translated src=- shape=b6d41246 vocab=2aa84a47
+-/
 lemma jj_apply (x : E × 𝕜) : jj 𝕜 E E' x = (0, x.2) := rfl
 
-/-- `R ∘ Q_{n+1}(f ⊕ id) ∘ S = Q_n(f)`.-/
+/-- `R ∘ Q_{n+1}(f ⊕ id) ∘ S = Q_n(f)`.
+@isnad1 id=eq.0h6v.s14.ce9e4f33ced2 from=translated src=- shape=b7b2d3ef vocab=6696d4d3
+-/
 theorem Γ_Q_succ (f : E →L[𝕜] E') :
     Γ 𝕜 E E' F n (Q 𝕜 (Fin (n + 1)) (E × 𝕜) (E' × 𝕜) F (φ 𝕜 E E' f + jj 𝕜 E E')) =
       Q 𝕜 (Fin n) E E' F f := by
@@ -408,6 +459,9 @@ def reindexAlt (σ : ι ≃ ι₁) (m : E [⋀^ι]→L[𝕜] F) : E [⋀^ι₁]�
       (by simpa using hv) (by simpa using hij)
 
 omit [Fintype ι] [Fintype ι₁] in
+/--
+@isnad1 id=eq.0h8v.s8.1504dd36f36b from=translated src=- shape=a88ce7cd vocab=04335022
+-/
 lemma reindexAlt_apply (σ : ι ≃ ι₁) (m : E [⋀^ι]→L[𝕜] F) (v : ι₁ → E) :
     reindexAlt σ m v = m (fun k => v (σ k)) := rfl
 
@@ -423,6 +477,9 @@ noncomputable def reindexCLM (σ : ι ≃ ι₁) : (E [⋀^ι]→L[𝕜] F) →L
       change ‖(m.toContinuousMultilinearMap.domDomCongr σ)‖ ≤ ‖m.toContinuousMultilinearMap‖
       exact (ContinuousMultilinearMap.norm_domDomCongr 𝕜 E F σ _).le)
 
+/--
+@isnad1 id=eq.0h8v.s10.7102ce39e63a from=translated src=- shape=a6a35455 vocab=8159ca3f
+-/
 lemma reindexCLM_apply (σ : ι ≃ ι₁) (m : E [⋀^ι]→L[𝕜] F) (v : ι₁ → E) :
     reindexCLM 𝕜 E F σ m v = m (fun k => v (σ k)) := rfl
 

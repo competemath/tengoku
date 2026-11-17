@@ -15,7 +15,9 @@ namespace AlternatingAnalyticChallenge.LemB_10
 universe u
 
 /-- For every `T : ℕ^N → L` there is an infinite `H ⊆ ℕ` on which `T` depends only on the
-pattern of its argument.-/
+pattern of its argument.
+@isnad1 id=ex.1h3v.s6.ad9c93e9cb91 from=translated src=- shape=3631ca47 vocab=7441c41d
+-/
 theorem exists_infinite_pattern_homogeneous
     {L : Type u} [Field L] [Finite L] (N : ℕ) (hN : 1 ≤ N) (T : (Fin N → ℕ) → L) :
     ∃ H : Set ℕ, H.Infinite ∧

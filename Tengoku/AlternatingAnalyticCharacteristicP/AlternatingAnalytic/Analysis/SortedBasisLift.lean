@@ -36,12 +36,18 @@ def contractingRetractionLift (n : ℕ)
   (r.postcomp (E' [⋀^Fin n]→L[K] F)).compContinuousMultilinearMap
     (LiftCriterion.ambLift K (Fin n) E E' F)
 
+/--
+@isnad1 id=eq.0h8v.s13.fa3d93d837fc from=translated src=- shape=c2d726e0 vocab=dbb4609b
+-/
 theorem contractingRetractionLift_apply (n : ℕ)
     (r : (E [×n]→L[K] F) →L[K] (E [⋀^Fin n]→L[K] F))
     (f : Fin n → E →L[K] E') (m : E' [⋀^Fin n]→L[K] F) :
     contractingRetractionLift n r f m =
       r (m.toContinuousMultilinearMap.compContinuousLinearMap f) := rfl
 
+/--
+@isnad1 id=eq.1h7v.s13.933e5b413f1e from=translated src=- shape=900a4375 vocab=dc97aa5b
+-/
 theorem contractingRetractionLift_diag (n : ℕ)
     (r : (E [×n]→L[K] F) →L[K] (E [⋀^Fin n]→L[K] F))
     (hr : ∀ m : E [⋀^Fin n]→L[K] F, r m.toContinuousMultilinearMap = m)
@@ -50,6 +56,9 @@ theorem contractingRetractionLift_diag (n : ℕ)
   ext m v
   exact congrArg (fun a : E [⋀^Fin n]→L[K] F => a v) (hr (m.compContinuousLinearMap f))
 
+/--
+@isnad1 id=le.1h6v.s12.8f2a72f79cdb from=translated src=- shape=7908b494 vocab=a8f4d5e9
+-/
 theorem norm_contractingRetractionLift_le (n : ℕ)
     (r : (E [×n]→L[K] F) →L[K] (E [⋀^Fin n]→L[K] F)) (hr : ‖r‖ ≤ 1) :
     ‖contractingRetractionLift (E' := E') n r‖ ≤ 1 := by

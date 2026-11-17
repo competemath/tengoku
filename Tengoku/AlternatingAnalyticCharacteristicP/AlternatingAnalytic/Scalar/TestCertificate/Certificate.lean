@@ -25,6 +25,9 @@ section Subfield
 
 variable (F K : Type*) [Field F] [Finite F] [NormedField K] [Algebra F K] (k : ℕ)
 
+/--
+@isnad1 id=finite.0h2v.s7.e87b2c3c6d85 from=translated src=- shape=decf7fc1 vocab=5b441de3
+-/
 instance finite_linearMap_coord : Finite ((Fin (k + 1) → F) →ₗ[F] (Fin k → F)) :=
   Module.finite_of_finite F
 
@@ -44,7 +47,9 @@ noncomputable def testSets (j : Submodule K (Fin (k + 1) → K) × Submodule K (
 variable [IsUltrametricDist K]
 
 /-- If Lemma F.4 holds over a finite field `F ⊆ K`, the `F`-rational tests certify threshold `1`
-for every `τ` satisfying condition (1).-/
+for every `τ` satisfying condition (1).
+@isnad1 id=ex.1h3v.s13.52fab20dbb0f from=translated src=- shape=6e005f36 vocab=b7af246e
+-/
 theorem exists_test_certificate_of_subfield
     (hF4 : ¬ ∃ τ : MultilinearMap F (fun _ : Fin k => (Fin (k + 1) → F) →ₗ[F] (Fin k → F))
         ((Fin (k + 1) → F) [⋀^Fin k]→ₗ[F] F),
@@ -98,7 +103,9 @@ theorem exists_test_certificate_of_subfield
 end Subfield
 
 /-- Lemma F.5, assuming Lemma F.4 over the prime fields: if `k! = 0` in `K`, finite test sets
-certify threshold `1` for every `K`-multilinear `τ` satisfying condition (1) of Lemma F.4.-/
+certify threshold `1` for every `K`-multilinear `τ` satisfying condition (1) of Lemma F.4.
+@isnad1 id=ex.2h2v.s13.fb9c08a0fdc1 from=translated src=- shape=eae782cb vocab=98b52bb0
+-/
 theorem exists_finite_test_certificate_of_fibre (K : Type*) [NormedField K] (k : ℕ)
     (hk : (k.factorial : K) = 0)
     (hF4 : ∀ (p : ℕ) [Fact p.Prime], (k.factorial : ZMod p) = 0 →

@@ -32,6 +32,9 @@ def denseMultilinearExtensionFinite (j : D →ₗᵢ[K] E) (hd : DenseRange j) :
     ((denseMultilinearExtension j hd (Fintype.card I)).comp
       rD.toLinearIsometry.toContinuousLinearMap)
 
+/--
+@isnad1 id=eq.1h8v.s11.de4ac5897dc4 from=translated src=- shape=fcac887a vocab=e4435250
+-/
 @[simp]
 theorem denseMultilinearExtensionFinite_apply (j : D →ₗᵢ[K] E) (hd : DenseRange j)
     (P : ContinuousMultilinearMap K (fun _ : I => D) F) (x : I → D) :
@@ -42,6 +45,9 @@ theorem denseMultilinearExtensionFinite_apply (j : D →ₗᵢ[K] E) (hd : Dense
   rw [denseMultilinearExtension_apply]
   simp
 
+/--
+@isnad1 id=le.1h7v.s11.d7da5dafa76e from=translated src=- shape=51a1fcc4 vocab=df4ea032
+-/
 theorem norm_denseMultilinearExtensionFinite_le (j : D →ₗᵢ[K] E) (hd : DenseRange j)
     (P : ContinuousMultilinearMap K (fun _ : I => D) F) :
     ‖denseMultilinearExtensionFinite j hd P‖ ≤ ‖P‖ := by
@@ -65,10 +71,16 @@ def denseFamilyProductIsometry (j : ∀ i, D₁ i →ₗᵢ[K] E₁ i) :
     change ‖fun i => j i (x i)‖ = ‖x‖
     simp only [Pi.norm_def, LinearIsometry.nnnorm_map]
 
+/--
+@isnad1 id=eq.0h7v.s9.1565ac32c16b from=translated src=- shape=c863dfda vocab=924f0406
+-/
 @[simp]
 theorem denseFamilyProductIsometry_apply (j : ∀ i, D₁ i →ₗᵢ[K] E₁ i)
     (x : ∀ i, D₁ i) (i : I) : denseFamilyProductIsometry j x i = j i (x i) := rfl
 
+/--
+@isnad1 id=denseran.1h5v.s9.3daf9fe295e7 from=translated src=- shape=3d70fb0e vocab=acd73b6f
+-/
 theorem denseRange_denseFamilyProductIsometry (j : ∀ i, D₁ i →ₗᵢ[K] E₁ i)
     (hd : ∀ i, DenseRange (j i)) : DenseRange (denseFamilyProductIsometry j) :=
   DenseRange.piMap hd
@@ -80,11 +92,17 @@ def multilinearFamilyToProduct :
   ContinuousMultilinearMap.compContinuousLinearMapL fun i => ContinuousLinearMap.proj i
 
 omit [Fintype I] [CompleteSpace F] in
+/--
+@isnad1 id=eq.0h6v.s11.cb8caece0292 from=translated src=- shape=a75b33bf vocab=6d4e7e73
+-/
 @[simp]
 theorem multilinearFamilyToProduct_apply (P : ContinuousMultilinearMap K D₁ F)
     (x : I → ∀ i, D₁ i) : multilinearFamilyToProduct P x = P (fun i => x i i) := rfl
 
 omit [CompleteSpace F] in
+/--
+@isnad1 id=le.0h5v.s11.e9674be51e52 from=translated src=- shape=28a82039 vocab=1591e0e6
+-/
 theorem norm_multilinearFamilyToProduct_le (P : ContinuousMultilinearMap K D₁ F) :
     ‖multilinearFamilyToProduct P‖ ≤ ‖P‖ := by
   apply ContinuousMultilinearMap.opNorm_le_bound (norm_nonneg _)
@@ -103,6 +121,9 @@ def multilinearProductToFamily :
     fun i => (LinearIsometry.single K E₁ i).toContinuousLinearMap
 
 omit [CompleteSpace F] in
+/--
+@isnad1 id=eq.0h6v.s11.b39801a777f2 from=translated src=- shape=7f1b3b3e vocab=fcf8edc2
+-/
 @[simp]
 theorem multilinearProductToFamily_apply [DecidableEq I] (P :
     ContinuousMultilinearMap K (fun _ : I => ∀ i, E₁ i) F) (x : ∀ i, E₁ i) :
@@ -117,6 +138,9 @@ theorem multilinearProductToFamily_apply [DecidableEq I] (P :
   · simp [LinearIsometry.single, LinearMap.toLinearIsometry, LinearMap.single_apply, ht]
 
 omit [CompleteSpace F] in
+/--
+@isnad1 id=le.0h5v.s11.30ae526771c6 from=translated src=- shape=866802f6 vocab=4ee40d2b
+-/
 theorem norm_multilinearProductToFamily_le (P :
     ContinuousMultilinearMap K (fun _ : I => ∀ i, E₁ i) F) :
     ‖multilinearProductToFamily P‖ ≤ ‖P‖ := by
@@ -131,6 +155,9 @@ def denseMultilinearFamilyExtension (j : ∀ i, D₁ i →ₗᵢ[K] E₁ i)
     ((denseMultilinearExtensionFinite (denseFamilyProductIsometry j)
       (denseRange_denseFamilyProductIsometry j hd)).comp multilinearFamilyToProduct)
 
+/--
+@isnad1 id=eq.1h8v.s11.38860b7691fd from=translated src=- shape=a776ab82 vocab=a8a80766
+-/
 @[simp]
 theorem denseMultilinearFamilyExtension_apply (j : ∀ i, D₁ i →ₗᵢ[K] E₁ i)
     (hd : ∀ i, DenseRange (j i)) (P : ContinuousMultilinearMap K D₁ F)
@@ -150,6 +177,9 @@ theorem denseMultilinearFamilyExtension_apply (j : ∀ i, D₁ i →ₗᵢ[K] E�
   rw [hsingle, denseMultilinearExtensionFinite_apply, multilinearFamilyToProduct_apply]
   simp
 
+/--
+@isnad1 id=le.1h7v.s11.e34d5d6c1d18 from=translated src=- shape=91bbb9fc vocab=677dd02b
+-/
 theorem norm_denseMultilinearFamilyExtension_le (j : ∀ i, D₁ i →ₗᵢ[K] E₁ i)
     (hd : ∀ i, DenseRange (j i)) (P : ContinuousMultilinearMap K D₁ F) :
     ‖denseMultilinearFamilyExtension j hd P‖ ≤ ‖P‖ :=
@@ -158,7 +188,9 @@ theorem norm_denseMultilinearFamilyExtension_le (j : ∀ i, D₁ i →ₗᵢ[K] 
       (norm_multilinearFamilyToProduct_le P))
 
 omit [Fintype I] [CompleteSpace F] in
-/-- Continuous multilinear maps that agree on the product of dense images are equal.-/
+/-- Continuous multilinear maps that agree on the product of dense images are equal.
+@isnad1 id=eq.2h8v.s10.191c4cd3929f from=translated src=- shape=37cb92f0 vocab=5c1a8bf5
+-/
 theorem continuousMultilinearMap_eq_of_dense_family
     (j : ∀ i, D₁ i →ₗᵢ[K] E₁ i) (hd : ∀ i, DenseRange (j i))
     (P Q : ContinuousMultilinearMap K E₁ F)
@@ -168,7 +200,9 @@ theorem continuousMultilinearMap_eq_of_dense_family
   exact congrFun ((DenseRange.piMap hd).equalizer P.cont Q.cont (funext h))
 
 /-- The extension is the only continuous multilinear map agreeing with `P` on the
-dense subspaces.-/
+dense subspaces.
+@isnad1 id=eq.2h8v.s11.e71adb8b0c55 from=translated src=- shape=f0da5862 vocab=a8a80766
+-/
 theorem denseMultilinearFamilyExtension_unique
     (j : ∀ i, D₁ i →ₗᵢ[K] E₁ i) (hd : ∀ i, DenseRange (j i))
     (P : ContinuousMultilinearMap K D₁ F) (Q : ContinuousMultilinearMap K E₁ F)
@@ -178,7 +212,9 @@ theorem denseMultilinearFamilyExtension_unique
   intro x
   rw [hQ, denseMultilinearFamilyExtension_apply]
 
-/-- Dense extension preserves the operator norm.-/
+/-- Dense extension preserves the operator norm.
+@isnad1 id=eq.1h7v.s11.3d9934675e1d from=translated src=- shape=91bbb9fc vocab=ddc78784
+-/
 @[simp]
 theorem norm_denseMultilinearFamilyExtension
     (j : ∀ i, D₁ i →ₗᵢ[K] E₁ i) (hd : ∀ i, DenseRange (j i))
@@ -202,7 +238,9 @@ def denseMultilinearFamilyExtensionIsometry
   norm_map' := norm_denseMultilinearFamilyExtension j hd
 
 /-- A multilinear map bounded by `C` on the dense subspaces extends uniquely, with
-norm at most `C`.-/
+norm at most `C`.
+@isnad1 id=ex.3h8v.s11.dd8e3c87da7e from=translated src=- shape=c8b23f3d vocab=b96b88bf
+-/
 theorem exists_denseMultilinearFamilyExtension_of_bound
     (j : ∀ i, D₁ i →ₗᵢ[K] E₁ i) (hd : ∀ i, DenseRange (j i))
     (P : MultilinearMap K D₁ F) {C : ℝ} (hC : 0 ≤ C)

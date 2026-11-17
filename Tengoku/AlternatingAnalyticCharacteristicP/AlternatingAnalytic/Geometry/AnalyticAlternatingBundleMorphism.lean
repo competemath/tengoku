@@ -66,7 +66,9 @@ variable {P H : Type*} [NormedAddCommGroup P] [NormedSpace K P]
 include hfamily
 
 /-- In atlas trivializations, the coordinates of the induced operators are `C^n` on any
-open subset of the common domain.-/
+open subset of the common domain.
+@isnad1 id=contmdif.3h22v.s15.1446706cee23 from=translated src=- shape=7737148a vocab=d0d94530
+-/
 theorem contMDiffOn_alternatingBundleMap_coordinates_of_family
     (eA : Trivialization A (π A E)) (eA' : Trivialization A' (π A' E'))
     (eB : Trivialization B (π B F)) (eB' : Trivialization B' (π B' F'))
@@ -117,19 +119,26 @@ def alternatingBundleHom_of_family :
       (RingHom.id K) (eA'.continuousAlternatingMap K (Fin k) eB')).contMDiffAt_section_iff
       hb |>.mpr (hcoords.contMDiffAt (hU.mem_nhds hb))
 
+/--
+@isnad1 id=eq.1h18v.s15.f2a82285e87a from=translated src=- shape=c99a3f40 vocab=0791255d
+-/
 @[simp]
 theorem alternatingBundleHom_of_family_apply (b : M) :
     alternatingBundleHom_of_family k hfamily u v b = alternatingBundleMap k (u b) (v b) :=
   rfl
 
-/-- The section acts on each fiber by pullback in every input and postcomposition.-/
+/-- The section acts on each fiber by pullback in every input and postcomposition.
+@isnad1 id=eq.1h19v.s15.48fbb09ef64b from=translated src=- shape=adc5c441 vocab=ea171ac4
+-/
 theorem alternatingBundleHom_of_family_apply_apply (b : M)
     (m : E b [⋀^Fin k]→L[K] F b) :
     alternatingBundleHom_of_family k hfamily u v b m =
       (v b).compContinuousAlternatingMap (m.compContinuousLinearMap (u b)) :=
   rfl
 
-/-- In atlas trivializations, the section is the model action of the trivialized pair.-/
+/-- In atlas trivializations, the section is the model action of the trivialized pair.
+@isnad1 id=eq.2h22v.s15.69f943f19ec4 from=translated src=- shape=72daab40 vocab=c96432d3
+-/
 theorem alternatingBundleHom_of_family_coordinates
     (eA : Trivialization A (π A E)) (eA' : Trivialization A' (π A' E'))
     (eB : Trivialization B (π B F)) (eB' : Trivialization B' (π B' F'))

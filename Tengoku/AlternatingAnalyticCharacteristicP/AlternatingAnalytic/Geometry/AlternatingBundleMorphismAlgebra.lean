@@ -38,12 +38,17 @@ def alternatingBundleMap (k : ℕ) (u : E' →L[K] E) (v : F →L[K] F') :
     (ContinuousAlternatingMap.compContinuousLinearMapCLM u)
 
 omit [ContinuousSMul K E'] in
+/--
+@isnad1 id=eq.0h10v.s10.552d58d1c5c8 from=translated src=- shape=ac66ba6f vocab=0b5552c9
+-/
 @[simp]
 theorem alternatingBundleMap_apply (k : ℕ) (u : E' →L[K] E) (v : F →L[K] F')
     (m : E [⋀^Fin k]→L[K] F) (x : Fin k → E') :
     alternatingBundleMap k u v m x = v (m fun i ↦ u (x i)) := rfl
 
-/-- The identity pair acts as the identity operator.-/
+/-- The identity pair acts as the identity operator.
+@isnad1 id=eq.0h4v.s9.a8c2e1d56748 from=translated src=- shape=9a8514e4 vocab=6e1eac17
+-/
 @[simp]
 theorem alternatingBundleMap_id [ContinuousSMul K E] (k : ℕ) :
     alternatingBundleMap k (ContinuousLinearMap.id K E) (ContinuousLinearMap.id K F) =
@@ -52,7 +57,9 @@ theorem alternatingBundleMap_id [ContinuousSMul K E] (k : ℕ) :
   rfl
 
 omit [ContinuousSMul K E'] [ContinuousSMul K E''] in
-/-- The action is contravariant in the inputs and covariant in the output.-/
+/-- The action is contravariant in the inputs and covariant in the output.
+@isnad1 id=eq.0h12v.s10.d4fc90c14589 from=translated src=- shape=afc852ac vocab=c667159d
+-/
 @[simp]
 theorem alternatingBundleMap_comp (k : ℕ)
     (u : E' →L[K] E) (u' : E'' →L[K] E')
@@ -89,7 +96,9 @@ variable {K M A A' B B' : Type*} [NontriviallyNormedField K] [TopologicalSpace M
 
 omit [∀ x, IsTopologicalAddGroup (E' x)] [∀ x, ContinuousSMul K (E' x)] in
 /-- In four atlas trivializations, on their common domain, the induced operator is
-the model action of the trivialized pair `(u, v)`.-/
+the model action of the trivialized pair `(u, v)`.
+@isnad1 id=eq.1h18v.s13.ac843954f1c6 from=translated src=- shape=6b2a819d vocab=fcc3356d
+-/
 theorem alternatingBundleMap_coordinates (k : ℕ)
     (eA : Trivialization A (π A E)) (eA' : Trivialization A' (π A' E'))
     (eB : Trivialization B (π B F)) (eB' : Trivialization B' (π B' F'))

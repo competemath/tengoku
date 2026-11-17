@@ -15,13 +15,17 @@ the least index with `a_{i₀} ≠ 0`. Negative exponents are allowed.
 namespace Tengoku.AlternatingAnalyticCharacteristicP end Tengoku.AlternatingAnalyticCharacteristicP open Tengoku.AlternatingAnalyticCharacteristicP
 namespace AlternatingAnalytic
 
-/-- Lemma D.2(1): in characteristic `p` the norm is ultrametric and `‖c‖ = 1` for `c ∈ 𝔽_p^×`.-/
+/-- Lemma D.2(1): in characteristic `p` the norm is ultrametric and `‖c‖ = 1` for `c ∈ 𝔽_p^×`.
+@isnad1 id=and.0h2v.s7.bb710f2edb20 from=translated src=- shape=c86e2734 vocab=f07e4082
+-/
 theorem charP_isUltrametricDist_and_norm_zmod (K : Type*) [NormedField K] (p : ℕ)
     [Fact p.Prime] [CharP K p] :
     IsUltrametricDist K ∧ ∀ c : ZMod p, c ≠ 0 → ‖ZMod.castHom (dvd_refl p) K c‖ = 1 :=
   ⟨charP_isUltrametricDist p, fun c hc => norm_finiteField_map _ c hc⟩
 
-/-- Lemma D.2(2): a finite `𝔽_p`-combination of integer powers of `t` has the norm of its lowest term.-/
+/-- Lemma D.2(2): a finite `𝔽_p`-combination of integer powers of `t` has the norm of its lowest term.
+@isnad1 id=eq.5h6v.s8.e38efc71e5f1 from=translated src=- shape=cfbc5a2c vocab=b68f3b62
+-/
 theorem norm_sum_zmod_zpow_eq {K : Type*} [NormedField K] (p : ℕ) [Fact p.Prime] [CharP K p]
     (t : K) (ht0 : 0 < ‖t‖) (ht1 : ‖t‖ < 1) (s : Finset ℤ) (a : ℤ → ZMod p) (i₀ : ℤ)
     (hi₀ : i₀ ∈ s) (ha : a i₀ ≠ 0) (hmin : ∀ i ∈ s, a i ≠ 0 → i₀ ≤ i) :

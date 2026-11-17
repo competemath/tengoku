@@ -24,6 +24,9 @@ variable {m n : Type*}
 /-- The coordinatewise inclusion `F^n → K^n`.-/
 def incl : (n → F) →ₗ[F] (n → K) := (Algebra.linearMap F K).compLeft n
 
+/--
+@isnad1 id=eq.0h5v.s8.98f3d4cff89a from=translated src=- shape=4f3eace8 vocab=8af7b1ea
+-/
 @[simp] theorem incl_apply (y : n → F) (i : n) : (incl y : n → K) i = algebraMap F K (y i) := rfl
 
 variable [Fintype n] [DecidableEq n]
@@ -37,29 +40,50 @@ noncomputable def bcMap (g : (n → F) →ₗ[F] (m → F)) : (n → K) →ₗ[K
 noncomputable def bcForm (ℓ : (n → F) →ₗ[F] F) (x : n → K) : K :=
   ∑ j, algebraMap F K (ℓ (Pi.single j 1)) * x j
 
+/--
+@isnad1 id=eq.0h7v.s9.2610ecc2abe1 from=translated src=- shape=bc32dc60 vocab=3188f29d
+-/
 theorem bcMap_apply (g : (n → F) →ₗ[F] (m → F)) (x : n → K) (i : m) :
     bcMap g x i = bcForm ((LinearMap.proj i).comp g) x := by
   simp [bcMap, bcForm, Matrix.mulVec, dotProduct, LinearMap.toMatrix'_apply]
 
+/--
+@isnad1 id=eq.0h6v.s9.45258ab877bc from=translated src=- shape=9a229eec vocab=5a56254a
+-/
 theorem bcForm_smul (c : F) (ℓ : (n → F) →ₗ[F] F) (x : n → K) :
     bcForm (c • ℓ) x = algebraMap F K c * bcForm ℓ x := by
   simp [bcForm, Finset.mul_sum, mul_assoc]
 
+/--
+@isnad1 id=eq.0h4v.s8.c8c7374d6e8e from=translated src=- shape=cbdaa2dc vocab=37bd85d5
+-/
 theorem bcForm_zero (x : n → K) : bcForm (0 : (n → F) →ₗ[F] F) x = 0 := by
   simp [bcForm]
 
+/--
+@isnad1 id=eq.0h6v.s9.b81ae61280cf from=translated src=- shape=de74a50a vocab=6389bf2d
+-/
 theorem bcForm_add (ℓ ℓ' : (n → F) →ₗ[F] F) (x : n → K) :
     bcForm (ℓ + ℓ') x = bcForm ℓ x + bcForm ℓ' x := by
   simp [bcForm, add_mul, Finset.sum_add_distrib]
 
+/--
+@isnad1 id=eq.0h6v.s9.379cada7f188 from=translated src=- shape=de74a50a vocab=2236dbf4
+-/
 theorem bcForm_sub (ℓ ℓ' : (n → F) →ₗ[F] F) (x : n → K) :
     bcForm (ℓ - ℓ') x = bcForm ℓ x - bcForm ℓ' x := by
   simp [bcForm, sub_mul, Finset.sum_sub_distrib]
 
+/--
+@isnad1 id=eq.0h5v.s6.27fd3c768e03 from=translated src=- shape=2eb5899c vocab=41651977
+-/
 theorem bcForm_proj (a : n) (x : n → K) :
     bcForm (LinearMap.proj (R := F) (φ := fun _ => F) a) x = x a := by
   simp [bcForm, Pi.single_apply]
 
+/--
+@isnad1 id=eq.0h5v.s9.e78c0e3a204c from=translated src=- shape=1247ca33 vocab=65e1347b
+-/
 theorem bcForm_incl (ℓ : (n → F) →ₗ[F] F) (y : n → F) :
     bcForm ℓ (incl y) = algebraMap F K (ℓ y) := by
   conv_rhs => rw [pi_eq_sum_univ y, map_sum, map_sum]
@@ -69,6 +93,9 @@ theorem bcForm_incl (ℓ : (n → F) →ₗ[F] F) (y : n → F) :
   ext i
   simp [Pi.single_apply, eq_comm]
 
+/--
+@isnad1 id=eq.0h6v.s10.cc1b4a264028 from=translated src=- shape=1374caed vocab=de27cce7
+-/
 theorem bcMap_incl [Fintype m] (g : (n → F) →ₗ[F] (m → F)) (y : n → F) :
     bcMap g (incl y) = (incl (g y) : m → K) := by
   ext i
@@ -87,11 +114,16 @@ noncomputable def bcMapₗ : ((n → F) →ₗ[F] (m → F)) →ₗ[F] ((n → K
     simp only [LinearMap.smul_apply, Pi.smul_apply, bcMap_apply, RingHom.id_apply]
     rw [LinearMap.comp_smul, bcForm_smul, Algebra.smul_def]
 
+/--
+@isnad1 id=eq.0h5v.s11.29dca6903b9f from=translated src=- shape=7280801d vocab=a9931c47
+-/
 @[simp] theorem bcMapₗ_apply (g : (n → F) →ₗ[F] (m → F)) :
     (bcMapₗ g : (n → K) →ₗ[K] (m → K)) = bcMap g := rfl
 
 /-- If an `F`-linear form `ℓ` vanishes on the kernel of `ν`, then its base change vanishes on the
-zero set of the base change of `ν`.-/
+zero set of the base change of `ν`.
+@isnad1 id=eq.2h6v.s9.97986ff0faf6 from=translated src=- shape=536427b7 vocab=f02bed3f
+-/
 theorem bcForm_eq_zero_of_ker_le {ν ℓ : (n → F) →ₗ[F] F} (h : LinearMap.ker ν ≤ LinearMap.ker ℓ)
     {x : n → K} (hx : bcForm ν x = 0) : bcForm ℓ x = 0 := by
   have h' : ⨅ _ : Unit, LinearMap.ker ν ≤ LinearMap.ker ℓ := by simpa using h

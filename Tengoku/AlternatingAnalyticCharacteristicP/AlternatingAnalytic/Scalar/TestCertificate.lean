@@ -15,7 +15,9 @@ The paper leaves the hypothesis `k! = 0` implicit in Lemma F.5.
 
 namespace AlternatingAnalytic.TestCertificate
 
-/-- Lemma F.5: finite test sets certify threshold `1` for every `τ` satisfying condition (1).-/
+/-- Lemma F.5: finite test sets certify threshold `1` for every `τ` satisfying condition (1).
+@isnad1 id=ex.1h2v.s13.e0acec748827 from=translated src=- shape=14e45ffb vocab=4db12a8e
+-/
 theorem exists_finite_test_certificate (K : Type*) [NormedField K] (k : ℕ)
     (hk : (k.factorial : K) = 0) :
     ∃ T : Submodule K (Fin (k + 1) → K) × Submodule K (Fin k → K) →

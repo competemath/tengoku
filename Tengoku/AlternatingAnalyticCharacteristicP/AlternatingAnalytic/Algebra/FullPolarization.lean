@@ -28,23 +28,33 @@ def selectionType (f : Fin k → J) (j : J) : ℕ := by
 def selectionMultiIndex (f : Fin k → J) : J →₀ ℕ :=
   Finsupp.equivFunOnFinite.symm (selectionType f)
 
+/--
+@isnad1 id=eq.0h4v.s5.eb1afa82a5a2 from=translated src=- shape=c1ee2384 vocab=e39cb9f2
+-/
 @[simp]
 theorem selectionMultiIndex_apply (f : Fin k → J) (j : J) :
     selectionMultiIndex f j = selectionType f j := by
   simp [selectionMultiIndex]
 
+/--
+@isnad1 id=iff.0h4v.s6.922ee8e7f44b from=translated src=- shape=cc61e1b6 vocab=14db2242
+-/
 @[simp]
 theorem selectionMultiIndex_eq_iff (f : Fin k → J) (α : J → ℕ) :
     selectionMultiIndex f = Finsupp.equivFunOnFinite.symm α ↔ selectionType f = α := by
   exact Finsupp.equivFunOnFinite.symm.injective.eq_iff
 
-/-- The multiplicities of a selection map sum to `k`.-/
+/-- The multiplicities of a selection map sum to `k`.
+@isnad1 id=eq.0h3v.s4.227468c3174c from=translated src=- shape=df05cbc6 vocab=f71ba327
+-/
 theorem sum_selectionType (f : Fin k → J) : ∑ j, selectionType f j = k := by
   classical
   simpa [selectionType] using
     (Finset.sum_fiberwise' (Finset.univ : Finset (Fin k)) f (fun _ => (1 : ℕ)))
 
-/-- The monomial indexed by a selection type is the product of its selected scalars.-/
+/-- The monomial indexed by a selection type is the product of its selected scalars.
+@isnad1 id=eq.0h5v.s6.b54892394adf from=translated src=- shape=346723e3 vocab=be841d03
+-/
 theorem monomial_selectionMultiIndex {K : Type*} [CommMonoid K]
     (f : Fin k → J) (t : J → K) :
     (selectionMultiIndex f).prod (fun j n => t j ^ n) = ∏ i, t (f i) := by
@@ -78,7 +88,9 @@ def diagonalCoefficients (M : MultilinearMap K (fun _ : Fin k => A) Y)
   exact ∑ f : Fin k → J,
     Finsupp.single (Polarization.selectionMultiIndex f) (M (fun i => b (f i)))
 
-/-- The coefficient at `α` is `sumOfType M b α`.-/
+/-- The coefficient at `α` is `sumOfType M b α`.
+@isnad1 id=eq.0h8v.s7.c223ba2eb535 from=translated src=- shape=c494e372 vocab=12a827cd
+-/
 theorem diagonalCoefficients_apply (M : MultilinearMap K (fun _ : Fin k => A) Y)
     (b : J → A) (α : J → ℕ) :
     M.diagonalCoefficients b (Finsupp.equivFunOnFinite.symm α) = M.sumOfType b α := by
@@ -86,7 +98,9 @@ theorem diagonalCoefficients_apply (M : MultilinearMap K (fun _ : Fin k => A) Y)
   simp only [diagonalCoefficients, Finsupp.finsetSum_apply, Finsupp.single_apply,
     Polarization.selectionMultiIndex_eq_iff, sumOfType, Finset.sum_filter]
 
-/-- Evaluating the coefficient family at `t` gives the diagonal at `∑ j, t j • b j`.-/
+/-- Evaluating the coefficient family at `t` gives the diagonal at `∑ j, t j • b j`.
+@isnad1 id=eq.0h8v.s8.3dbc1ccf03ff from=translated src=- shape=9b68dae1 vocab=4beab856
+-/
 theorem eval_diagonalCoefficients (M : MultilinearMap K (fun _ : Fin k => A) Y)
     (b : J → A) (t : J → K) :
     VectorPolynomial.eval (M.diagonalCoefficients b) t = M (fun _ => ∑ j, t j • b j) := by
@@ -98,7 +112,9 @@ theorem eval_diagonalCoefficients (M : MultilinearMap K (fun _ : Fin k => A) Y)
   rw [M.map_sum]
   exact Finset.sum_congr rfl fun f _ => (M.map_smul_univ _ _).symm
 
-/-- Grouped sums vanish unless the multiplicities sum to `k`.-/
+/-- Grouped sums vanish unless the multiplicities sum to `k`.
+@isnad1 id=eq.1h8v.s7.919a6e60b338 from=translated src=- shape=b3d4d969 vocab=df8b43c7
+-/
 theorem sumOfType_eq_zero_of_sum_ne (M : MultilinearMap K (fun _ : Fin k => A) Y)
     (b : J → A) (α : J → ℕ) (hα : ∑ j, α j ≠ k) : M.sumOfType b α = 0 := by
   classical
@@ -107,7 +123,9 @@ theorem sumOfType_eq_zero_of_sum_ne (M : MultilinearMap K (fun _ : Fin k => A) Y
   have h := (Finset.mem_filter.mp hf).2
   exact False.elim (hα (h ▸ Polarization.sum_selectionType f))
 
-/-- A one-label grouped coefficient is the original diagonal value.-/
+/-- A one-label grouped coefficient is the original diagonal value.
+@isnad1 id=eq.0h6v.s7.a42919003d89 from=translated src=- shape=a558d39e vocab=4c10827e
+-/
 @[simp]
 theorem sumOfType_unit (M : MultilinearMap K (fun _ : Fin k => A) Y) (a : A) :
     M.sumOfType (fun _ : Unit => a) (fun _ => k) = M (fun _ => a) := by
@@ -117,7 +135,9 @@ theorem sumOfType_unit (M : MultilinearMap K (fun _ : Fin k => A) Y) (a : A) :
     simp [Polarization.selectionType]
   simp [sumOfType, htype]
 
-/-- Over any field, equal one-label grouped sums give equal diagonals.-/
+/-- Over any field, equal one-label grouped sums give equal diagonals.
+@isnad1 id=eq.1h7v.s8.067dff581bc5 from=translated src=- shape=35b44c22 vocab=4c10827e
+-/
 theorem diagonal_eq_of_sumOfType_eq
     (M N : MultilinearMap K (fun _ : Fin k => A) Y)
     (h : ∀ (b : Unit → A) (α : Unit → ℕ), M.sumOfType b α = N.sumOfType b α)

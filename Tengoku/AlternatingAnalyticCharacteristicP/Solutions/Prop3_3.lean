@@ -22,7 +22,9 @@ def IsContinuousPolynomial (K : Type*) [NontriviallyNormedField K]
   ∃ (p : FormalMultilinearSeries K X Y) (N : ℕ),
     ∀ x, g x = ∑ n ∈ Finset.range N, p n (fun _ => x)
 
-/-- Conditions (1), (2) and (3) are equivalent.-/
+/-- Conditions (1), (2) and (3) are equivalent.
+@isnad1 id=tfae.3h8v.s10.5abdad3e090b from=translated src=- shape=f0d7e376 vocab=71d32836
+-/
 theorem tfae
     {K : Type*} [NontriviallyNormedField K]
     {H W Z : Type*} [NormedAddCommGroup H] [NormedSpace K H]

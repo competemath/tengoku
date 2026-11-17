@@ -16,7 +16,9 @@ namespace AlternatingAnalytic
 
 variable {A B C : Type*} [NormedRing A] [NormedRing B] [NormedRing C] [CompleteSpace C]
 
-/-- Extend an isometric ring map across a dense isometric inclusion.-/
+/-- Extend an isometric ring map across a dense isometric inclusion.
+@isnad1 id=ex.3h5v.s8.38b35d8128a4 from=translated src=- shape=9d1bbb50 vocab=2cd67728
+-/
 theorem exists_isometric_ringHom_extension (i : A →+* B) (f : A →+* C)
     (hi : Isometry i) (hd : DenseRange i) (hf : Isometry f) :
     ∃ g : B →+* C, Isometry g ∧ ∀ a : A, g (i a) = f a := by
@@ -35,7 +37,9 @@ theorem exists_isometric_ringHom_extension (i : A →+* B) (f : A →+* C)
 
 omit [CompleteSpace C] in
 /-- The image of a complete ring under an isometry is the closure of the image of any
-dense subring.-/
+dense subring.
+@isnad1 id=eq.2h5v.s8.8a86279693dd from=translated src=- shape=762597b7 vocab=06c1b3ce
+-/
 theorem closure_range_comp_eq_range [CompleteSpace B] (i : A →+* B) (g : B →+* C)
     (hd : DenseRange i) (hg : Isometry g) :
     closure (Set.range (g.comp i)) = Set.range g := by

@@ -18,7 +18,9 @@ namespace AlternatingAnalyticChallenge.LemD_5
 universe uK uV uY
 
 /-- A linear map `T₀ : V₀ → Y` on a dense subspace with `‖T₀ x‖ ≤ C ‖x‖` extends uniquely to
-a continuous map `V → Y`, which is linear and satisfies the same bound.-/
+a continuous map `V → Y`, which is linear and satisfies the same bound.
+@isnad1 id=ex.3h6v.s11.9bc59b293ead from=translated src=- shape=cd5086ed vocab=334baea9
+-/
 theorem part1
     (K : Type uK) [NontriviallyNormedField K]
     {V : Type uV} [NormedAddCommGroup V] [NormedSpace K V]
@@ -41,7 +43,9 @@ theorem part1
   · exact hd.equalizer hT' T.continuous (funext fun x => (hT'x x).trans (hTx x).symm)
 
 /-- A multilinear map on dense subspaces with `‖M d‖ ≤ C ∏ ‖dᵢ‖` extends uniquely to a
-continuous multilinear map of norm at most `C`.-/
+continuous multilinear map of norm at most `C`.
+@isnad1 id=ex.3h7v.s12.7c3d9deb0a28 from=translated src=- shape=f04b37cb vocab=c8d87c41
+-/
 theorem part2
     (K : Type uK) [NontriviallyNormedField K] (k : ℕ)
     {V : Fin k → Type uV} [∀ i, NormedAddCommGroup (V i)] [∀ i, NormedSpace K (V i)]

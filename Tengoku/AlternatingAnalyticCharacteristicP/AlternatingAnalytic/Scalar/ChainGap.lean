@@ -28,14 +28,18 @@ variable {L : Type u}
 def IsLabelChain (j : L) (T : Set (List L)) : Prop :=
   ∃ s : ℕ → List L, (∀ r, s r ++ [j] <+: s (r + 1)) ∧ T = Set.range s
 
-/-- Along a `j`-chain sequence, later words extend earlier ones past the label `j`.-/
+/-- Along a `j`-chain sequence, later words extend earlier ones past the label `j`.
+@isnad1 id=isprefix.2h5v.s6.2618783952f9 from=translated src=- shape=40af1ad1 vocab=781615b0
+-/
 theorem append_prefix_of_lt {j : L} {s : ℕ → List L} (hs : ∀ r, s r ++ [j] <+: s (r + 1))
     {r m : ℕ} (hrm : r < m) : s r ++ [j] <+: s m := by
   induction hrm with
   | refl => exact hs r
   | step _ ih => exact ih.trans ((List.prefix_append _ _).trans (hs _))
 
-/-- Two distinct words of a `j`-chain are comparable, the shorter one extended by `j`.-/
+/-- Two distinct words of a `j`-chain are comparable, the shorter one extended by `j`.
+@isnad1 id=or.4h5v.s7.85bc1b893f54 from=translated src=- shape=6d0a303d vocab=2d12a9f6
+-/
 theorem append_prefix_of_mem_range {j : L} {s : ℕ → List L}
     (hs : ∀ r, s r ++ [j] <+: s (r + 1)) {w₁ w₂ : List L} (h₁ : w₁ ∈ Set.range s)
     (h₂ : w₂ ∈ Set.range s) (hne : w₁ ≠ w₂) : w₁ ++ [j] <+: w₂ ∨ w₂ ++ [j] <+: w₁ := by
@@ -46,7 +50,9 @@ theorem append_prefix_of_mem_range {j : L} {s : ℕ → List L}
   · exact absurd rfl hne
   · exact Or.inr (append_prefix_of_lt hs hab)
 
-/-- A word cannot extend both `x ++ [j]` and `x ++ [h]` for different labels `j ≠ h`.-/
+/-- A word cannot extend both `x ++ [j]` and `x ++ [h]` for different labels `j ≠ h`.
+@isnad1 id=false.3h5v.s5.d5ca6612f8f4 from=translated src=- shape=f1826a97 vocab=11a84a2b
+-/
 theorem not_append_prefix_and {j h : L} (hjh : j ≠ h) {x y : List L} (hx : x ++ [j] <+: y)
     (hy : x ++ [h] <+: y) : False := by
   have hpre := List.prefix_of_prefix_length_le hx hy (by simp)
@@ -54,7 +60,9 @@ theorem not_append_prefix_and {j h : L} (hjh : j ≠ h) {x y : List L} (hx : x +
   simp at this
   exact hjh this
 
-/-- Chains with different labels have at most one common word (Lemma F.3, part 1).-/
+/-- Chains with different labels have at most one common word (Lemma F.3, part 1).
+@isnad1 id=subsingl.3h5v.s5.f4be20d85f7d from=translated src=- shape=43a24daf vocab=5fb66ec0
+-/
 theorem labelChain_inter_subsingleton {j h : L} (hjh : j ≠ h) {T T' : Set (List L)}
     (hT : IsLabelChain j T) (hT' : IsLabelChain h T') : (T ∩ T').Subsingleton := by
   obtain ⟨s, hs, rfl⟩ := hT
@@ -71,7 +79,9 @@ theorem labelChain_inter_subsingleton {j h : L} (hjh : j ≠ h) {T T' : Set (Lis
   · exact not_append_prefix_and hjh h₁ h₂
 
 /-- If `a` contains all but finitely many words of every `j`-chain, then every word `t` has an
-extension `s` such that every extension of `s ++ [j]` lies in `a`.-/
+extension `s` such that every extension of `s ++ [j]` lies in `a`.
+@isnad1 id=ex.1h4v.s6.43b1b5b8881c from=translated src=- shape=3fc6fa97 vocab=ac03c234
+-/
 theorem exists_extension_forall_mem {j : L} {a : Set (List L)}
     (ha : ∀ T : Set (List L), IsLabelChain j T → (T \ a).Finite) (t : List L) :
     ∃ s, t <+: s ∧ ∀ u, s ++ [j] <+: u → u ∈ a := by
@@ -96,7 +106,9 @@ theorem exists_extension_forall_mem {j : L} {a : Set (List L)}
   exact ⟨⟨r + 1, rfl⟩, hout r⟩
 
 /-- Chain gap (Lemma F.3, part 2): if, for each label `j`, the set `a j` contains all but
-finitely many words of every `j`-chain, then the sets `a j` have a common word.-/
+finitely many words of every `j`-chain, then the sets `a j` have a common word.
+@isnad1 id=nonempty.1h2v.s5.6ec1bc165fc6 from=translated src=- shape=c127600a vocab=a438ef31
+-/
 theorem iInter_nonempty_of_cofinite_on_chains [Fintype L] (a : L → Set (List L))
     (ha : ∀ j : L, ∀ T : Set (List L), IsLabelChain j T → (T \ a j).Finite) :
     (⋂ j, a j).Nonempty := by

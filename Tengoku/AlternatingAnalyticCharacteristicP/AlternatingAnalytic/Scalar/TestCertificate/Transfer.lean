@@ -15,7 +15,9 @@ namespace AlternatingAnalytic.TestCertificate
 
 variable {F K : Type*} [Field F] [Field K] [Algebra F K] {k : ℕ}
 
-/-- Each form of `N` over `F` has a counterpart in `N` over `K` computing its base change.-/
+/-- Each form of `N` over `F` has a counterpart in `N` over `K` computing its base change.
+@isnad1 id=ex.1h4v.s10.7af36ea27522 from=translated src=- shape=de0bdffc vocab=88b706c7
+-/
 theorem exists_coordForms_bcForm {ν : (Fin (k + 1) → F) →ₗ[F] F} (hν : ν ∈ coordForms F k) :
     ∃ ν' ∈ coordForms K k, ∀ x, ν' x = bcForm ν x := by
   rcases hν with ⟨a, rfl⟩ | ⟨a, b, hab, rfl⟩
@@ -25,7 +27,9 @@ theorem exists_coordForms_bcForm {ν : (Fin (k + 1) → F) →ₗ[F] F} (hν : �
     rfl
 
 /-- An admissible test over `F` for a pair of (F.2) base changes to an admissible test over `K`
-for the corresponding pair.-/
+for the corresponding pair.
+@isnad1 id=ex.3h6v.s12.9f6be28fbaff from=translated src=- shape=0a55ddab vocab=336fe8dc
+-/
 theorem exists_pairFamily_transfer {P : Submodule F (Fin (k + 1) → F) × Submodule F (Fin k → F)}
     (hP : P ∈ pairFamily F k) {g : Fin k → ((Fin (k + 1) → F) →ₗ[F] (Fin k → F))}
     (hg : ∀ r, P.1.map (g r) ≤ P.2) {ξ : Fin k → (Fin (k + 1) → F)} (hξ : ∀ r, ξ r ∈ P.1) :

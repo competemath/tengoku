@@ -36,17 +36,25 @@ def ofBound (f : List L → V) (C : ℝ) (hf : ∀ w, ‖f w‖ ≤ C) : lp (fun
     rintro _ ⟨w, rfl⟩
     exact hf w⟩⟩
 
+/--
+@isnad1 id=eq.1h4v.s7.5bee28417682 from=translated src=- shape=fb420b55 vocab=891cfe49
+-/
 @[simp]
 theorem coe_ofBound (f : List L → V) (C : ℝ) (hf : ∀ w, ‖f w‖ ≤ C) :
     ⇑(ofBound f C hf) = f :=
   rfl
 
+/--
+@isnad1 id=le.2h4v.s7.e10a6ada2676 from=translated src=- shape=326972ff vocab=7db13778
+-/
 theorem norm_ofBound_le {f : List L → V} {C : ℝ} (hC : 0 ≤ C) (hf : ∀ w, ‖f w‖ ≤ C) :
     ‖ofBound f C hf‖ ≤ C :=
   lp.norm_le_of_forall_le hC hf
 
 /-- A family supported on the words of a sequence, tending to zero along it, tends to zero along
-the cofinite filter.-/
+the cofinite filter.
+@isnad1 id=tendsto.2h4v.s7.cf12d0c8d095 from=translated src=- shape=a980b5e7 vocab=e6c97000
+-/
 theorem tendsto_cofinite_of_supported {f : List L → V} {s : ℕ → List L}
     (hsupp : ∀ w, w ∉ Set.range s → f w = 0)
     (hf : Tendsto (fun n => f (s n)) atTop (𝓝 0)) : Tendsto f cofinite (𝓝 0) := by
@@ -61,7 +69,9 @@ theorem tendsto_cofinite_of_supported {f : List L → V} {s : ℕ → List L}
   · exact absurd (show f w ∈ U by rw [hsupp w hw']; exact mem_of_mem_nhds hU) hw
 
 /-- If `ρ j` is idempotent, a bounded family supported on the words of a
-`j`-chain sequence `s` whose `j`-residual tends to zero along `s` lies in the chain-limit space.-/
+`j`-chain sequence `s` whose `j`-residual tends to zero along `s` lies in the chain-limit space.
+@isnad1 id=mem.4h7v.s11.106506637256 from=translated src=- shape=7c8e01db vocab=9ec21f48
+-/
 theorem mem_chainSpace_of_supported_tendsto (ρ : L → V →L[K] V) {j : L} {s : ℕ → List L}
     (hs : IsChainSeq j s) (hidem : ∀ v, ρ j (ρ j v) = ρ j v) {y : lp (fun _ : List L => V) ∞}
     (hsupp : ∀ w, w ∉ Set.range s → y w = 0)
@@ -95,6 +105,9 @@ variable (ρ : L → V →L[K] V) (ρ' : L → V' →L[K] V')
 noncomputable def evalAt (i : List L) : chainSpace ρ →L[K] V :=
   (lp.evalCLM K (fun _ : List L => V) ∞ i).comp (chainSpace ρ).subtypeL
 
+/--
+@isnad1 id=eq.0h6v.s14.4edb60490a7f from=translated src=- shape=9dab17a6 vocab=5db4add6
+-/
 @[simp]
 theorem evalAt_apply (i : List L) (x : chainSpace ρ) :
     evalAt ρ i x = (x : lp (fun _ : List L => V) ∞) i :=
@@ -111,6 +124,9 @@ section Single
 
 variable [DecidableEq L] (ρ : L → V →L[K] V) (ρ' : L → V' →L[K] V')
 
+/--
+@isnad1 id=mem.0h6v.s10.884c838f099e from=translated src=- shape=e8fea097 vocab=130fb6ae
+-/
 theorem single_mem_chainSpace (i : List L) (v : V) : lp.single ∞ i v ∈ chainSpace ρ := by
   refine mem_chainSpace_of_tendsto ρ (tendsto_const_nhds.congr' ?_)
   filter_upwards [eventually_cofinite_ne i] with w hw
@@ -121,6 +137,9 @@ noncomputable def singleVec (i : List L) : V →L[K] chainSpace ρ :=
   (lp.singleContinuousLinearMap K (fun _ : List L => V) ∞ i).codRestrict (chainSpace ρ)
     (single_mem_chainSpace ρ i)
 
+/--
+@isnad1 id=eq.0h6v.s13.5a75bd62210c from=translated src=- shape=08ad2225 vocab=9ea74b96
+-/
 @[simp]
 theorem coe_singleVec_apply (i : List L) (v : V) :
     (singleVec ρ i v : lp (fun _ : List L => V) ∞) = lp.single ∞ i v :=
@@ -132,6 +151,9 @@ section ChainMaps
 
 variable (ρ : L → V →L[K] V) (ρ' : L → V' →L[K] V')
 
+/--
+@isnad1 id=le.0h7v.s10.eab2bd171456 from=translated src=- shape=d37560a6 vocab=28841136
+-/
 theorem norm_indicator_smul_le (s : ℕ → List L) (t : lp (fun _ : List L => K) ∞) (v : V)
     (w : List L) : ‖(Set.range s).indicator (fun w => t w • v) w‖ ≤ ‖t‖ * ‖v‖ :=
   (norm_indicator_le_norm_self _ _).trans <| by
@@ -139,12 +161,18 @@ theorem norm_indicator_smul_le (s : ℕ → List L) (t : lp (fun _ : List L => K
     exact mul_le_mul_of_nonneg_right (lp.norm_apply_le_norm ENNReal.top_ne_zero t w)
       (norm_nonneg _)
 
+/--
+@isnad1 id=eq.0h8v.s8.5fd43e387019 from=translated src=- shape=0d469e74 vocab=3a9e669f
+-/
 theorem indicator_smul_add (s : ℕ → List L) (t t' : List L → K) (f : List L → V) (w : List L) :
     (Set.range s).indicator (fun w => (t w + t' w) • f w) w =
       (Set.range s).indicator (fun w => t w • f w) w +
         (Set.range s).indicator (fun w => t' w • f w) w := by
   by_cases hw : w ∈ Set.range s <;> simp [hw, add_smul]
 
+/--
+@isnad1 id=eq.0h8v.s8.e699e292bc6c from=translated src=- shape=b71732a4 vocab=3a9e669f
+-/
 theorem indicator_smul_add_right (s : ℕ → List L) (t : List L → K) (f f' : List L → V)
     (w : List L) :
     (Set.range s).indicator (fun w => t w • (f w + f' w)) w =
@@ -158,6 +186,9 @@ noncomputable def chainVecLp (s : ℕ → List L) (v : V) (t : lp (fun _ : List 
   ofBound ((Set.range s).indicator (fun w => t w • v)) (‖t‖ * ‖v‖)
     (norm_indicator_smul_le s t v)
 
+/--
+@isnad1 id=mem.2h8v.s11.61e9bb5bce0c from=translated src=- shape=fe82b6d0 vocab=434847ba
+-/
 theorem chainVecLp_mem {j : L} {s : ℕ → List L} (hs : IsChainSeq j s) {v : V} (hv : ρ j v = 0)
     (t : lp (fun _ : List L => K) ∞) : chainVecLp s v t ∈ chainSpace ρ := by
   refine mem_chainSpace_of_supported ρ hs (fun w => ?_) (fun w hw => ?_)
@@ -192,6 +223,9 @@ noncomputable def chainOpLp (s : ℕ → List L) (g : V →L[K] V') (t : lp (fun
           (lp.norm_apply_le_norm ENNReal.top_ne_zero x w) (norm_nonneg _)))
         (norm_nonneg _) (norm_nonneg _)
 
+/--
+@isnad1 id=mem.4h11v.s12.11aa8cc5adfe from=translated src=- shape=a6c3d660 vocab=aa8f6970
+-/
 theorem chainOpLp_mem {j : L} {s : ℕ → List L} (hs : IsChainSeq j s)
     (hidem : ∀ v, ρ j (ρ j v) = ρ j v) (hidem' : ∀ v, ρ' j (ρ' j v) = ρ' j v)
     {g : V →L[K] V'} (hg : ∀ v, ρ j v = 0 → ρ' j (g v) = 0)

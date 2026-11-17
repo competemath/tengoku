@@ -21,7 +21,9 @@ variable {κ E B V W : Type*} [Field κ]
   [AddCommGroup V] [Module κ V] [AddCommGroup W] [Module κ W]
 
 /-- If `L` is constant on balls of radius one and `Ω ∘ η = L ∘ i` on the dense
-subspace, then `η` extends to `ηB` with `Ω ∘ ηB = L` and the same bound on `cost`.-/
+subspace, then `η` extends to `ηB` with `Ω ∘ ηB = L` and the same bound on `cost`.
+@isnad1 id=ex.7h11v.s10.0caef9a7f6be from=translated src=- shape=c197cd97 vocab=051d9be9
+-/
 theorem exists_denseCoefficientExtension
     (i : E →ₗ[κ] B) (hi : Isometry i) (hd : DenseRange i)
     (Ω : V →ₗ[κ] W) (hΩ : Function.Injective Ω)

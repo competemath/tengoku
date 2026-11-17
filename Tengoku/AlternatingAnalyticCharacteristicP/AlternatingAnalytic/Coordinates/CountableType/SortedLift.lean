@@ -32,11 +32,16 @@ def coordMonomial (b : Module.Basis ι K M) (k : ℕ) (e : Fin k ↪o ι) :
     MultilinearMap K (fun _ : Fin k => M) K :=
   (MultilinearMap.mkPiAlgebra K (Fin k) K).compLinearMap fun a => b.coord (e a)
 
+/--
+@isnad1 id=eq.0h7v.s9.f6a3ca861dc8 from=translated src=- shape=ea59762e vocab=7d7f54a1
+-/
 theorem coordMonomial_apply (b : Module.Basis ι K M) (k : ℕ) (e : Fin k ↪o ι)
     (y : Fin k → M) : coordMonomial b k e y = ∏ a, b.coord (e a) (y a) := by
   simp [coordMonomial, MultilinearMap.compLinearMap_apply, MultilinearMap.mkPiAlgebra_apply]
 
-/-- Only finitely many coordinate monomials are nonzero at a given tuple.-/
+/-- Only finitely many coordinate monomials are nonzero at a given tuple.
+@isnad1 id=hasfinit.0h7v.s8.0109338063db from=translated src=- shape=33bfdb36 vocab=469ecdb9
+-/
 theorem coordMonomial_hasFiniteSupport (b : Module.Basis ι K M) (k : ℕ)
     (c : (Fin k ↪o ι) → K) (y : Fin k → M) :
     Function.HasFiniteSupport fun e : Fin k ↪o ι => c e * coordMonomial b k e y := by
@@ -53,6 +58,9 @@ theorem coordMonomial_hasFiniteSupport (b : Module.Basis ι K M) (k : ℕ)
   simp only [coordMonomial_apply, Module.Basis.coord_apply]
   rw [Finset.prod_eq_zero (Finset.mem_univ a) ha, mul_zero]
 
+/--
+@isnad1 id=summable.0h7v.s8.f4e962aae1e3 from=translated src=- shape=81c58cdd vocab=2da1a6dd
+-/
 theorem coordMonomial_summable (b : Module.Basis ι K M) (k : ℕ)
     (c : (Fin k ↪o ι) → K) (y : Fin k → M) :
     Summable fun e : Fin k ↪o ι => c e * coordMonomial b k e y :=
@@ -71,6 +79,9 @@ def sortedLiftMultilinear (b : Module.Basis ι K M) (k : ℕ)
     rw [← tsum_mul_left]
     exact tsum_congr fun e => by ring
 
+/--
+@isnad1 id=eq.0h7v.s9.0e0ebe892531 from=translated src=- shape=78be0076 vocab=51b44887
+-/
 theorem sortedLiftMultilinear_apply (b : Module.Basis ι K M) (k : ℕ)
     (g : ContinuousMultilinearMap K (fun _ : Fin k => M) K) (y : Fin k → M) :
     sortedLiftMultilinear b k g y =

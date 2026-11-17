@@ -32,7 +32,9 @@ noncomputable def multilinearAction (k : ℕ) (v : (E →L[K] E') × (F →L[K] 
     (ContinuousMultilinearMap.compContinuousLinearMapL (fun _ : Fin k => v.1))
 
 /-- The joint action on multilinear maps is the diagonal of a
-bounded `(k + 1)`-linear map.-/
+bounded `(k + 1)`-linear map.
+@isnad1 id=ex.0h6v.s14.a352a4c2447d from=translated src=- shape=de169bfc vocab=dd8ba0d0
+-/
 theorem part1 (k : ℕ) :
     ∃ H : ContinuousMultilinearMap K (fun _ : Fin (k + 1) => (E →L[K] E') × (F →L[K] F'))
         (ContinuousMultilinearMap K (fun _ : Fin k => E') F →L[K]
@@ -40,13 +42,17 @@ theorem part1 (k : ℕ) :
       ∀ v, H (fun _ => v) = multilinearAction k v := by
   exact AlternatingAnalytic.exists_ambientMultilinearAction_rep k
 
-/-- The joint action on multilinear maps is `C^ω`.-/
+/-- The joint action on multilinear maps is `C^ω`.
+@isnad1 id=contdiff.0h6v.s11.6747142ff60c from=translated src=- shape=4c41c803 vocab=aa8b7a44
+-/
 theorem part2 (k : ℕ) :
     ContDiff K ω (multilinearAction (K := K) (E := E) (E' := E') (F := F) (F' := F') k) := by
   exact AlternatingAnalytic.contDiff_ambientMultilinearAction k
 
 /-- The restriction of the joint action to alternating inputs is
-analytic as a map into `L(Alt^k(E'; F), Mult^k(E; F'))`.-/
+analytic as a map into `L(Alt^k(E'; F), Mult^k(E; F'))`.
+@isnad1 id=analytic.0h6v.s11.da02b29fe1c1 from=translated src=- shape=c4677b3e vocab=548166d9
+-/
 theorem part3 (k : ℕ) :
     AnalyticOnNhd K
       (fun v : (E →L[K] E') × (F →L[K] F') =>
@@ -58,7 +64,9 @@ theorem part3 (k : ℕ) :
 
 /-- Every value of the restricted action takes values in
 `Alt^k(E; F')`, and the operators taking values in `Alt^k(E; F')` form a closed subset of
-`L(Alt^k(E'; F), Mult^k(E; F'))`.-/
+`L(Alt^k(E'; F), Mult^k(E; F'))`.
+@isnad1 id=and.0h6v.s12.7329b64b9a31 from=translated src=- shape=7aed6baf vocab=214f2d34
+-/
 theorem part4 (k : ℕ) :
     (∀ (v : (E →L[K] E') × (F →L[K] F')) (m : E' [⋀^Fin k]→L[K] F),
       ∃ m' : E [⋀^Fin k]→L[K] F',

@@ -9,7 +9,9 @@ import Tengoku.Seed.FieldTheory.Finite.Basic
 Lemma A.2: a normed field of prime characteristic `p` is ultrametric.
 -/
 namespace Tengoku.AlternatingAnalyticCharacteristicP end Tengoku.AlternatingAnalyticCharacteristicP open Tengoku.AlternatingAnalyticCharacteristicP
-/-- A normed field of prime characteristic is ultrametric.-/
+/-- A normed field of prime characteristic is ultrametric.
+@isnad1 id=isultram.0h2v.s5.cb3fc692ac59 from=translated src=- shape=50a7ed92 vocab=4b3b1cb5
+-/
 theorem _root_.Tengoku.AlternatingAnalyticCharacteristicP.charP_isUltrametricDist {K : Type*} [NormedField K] (p : ℕ) [hp : Fact p.Prime]
     [CharP K p] : IsUltrametricDist K := by
   refine IsUltrametricDist.isUltrametricDist_of_forall_norm_natCast_le_one (fun n => ?_)

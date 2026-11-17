@@ -22,6 +22,9 @@ noncomputable def operatorTensorEval :
       MultilinearMap L (fun _ : Fin k ↦ V) (⋀[L]^k V) :=
   PiTensorProduct.lift (MultilinearMap.piLinearMap (exteriorPower.ιMulti L k).toMultilinearMap)
 
+/--
+@isnad1 id=eq.0h5v.s14.998fb1c49c23 from=translated src=- shape=cba7834a vocab=054234eb
+-/
 @[simp]
 theorem operatorTensorEval_tprod (A : Fin k → Module.End L V) (x : Fin k → V) :
     operatorTensorEval L V k (PiTensorProduct.tprod L A) x =

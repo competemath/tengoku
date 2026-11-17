@@ -22,7 +22,9 @@ namespace AlgebraicPolynomialCZero
 
 variable {K E Z : Type*} [Field K] [AddCommGroup E] [Module K E] [AddCommGroup Z] [Module K Z]
 
-/-- The inverse Vandermonde matrix of distinct nodes inverts evaluation of monomials.-/
+/-- The inverse Vandermonde matrix of distinct nodes inverts evaluation of monomials.
+@isnad1 id=eq.1h5v.s8.bc63490e7d41 from=translated src=- shape=8d8bec58 vocab=17d4a301
+-/
 theorem inv_vandermonde_mul_pow {n : ℕ} (ν : Fin (n + 1) → K) (hν : Function.Injective ν)
     (i c : Fin (n + 1)) :
     ∑ k, (Matrix.vandermonde ν)⁻¹ i k * ν k ^ (c : ℕ) = if i = c then 1 else 0 := by
@@ -36,10 +38,15 @@ theorem inv_vandermonde_mul_pow {n : ℕ} (ν : Fin (n + 1) → K) (hν : Functi
 def wordCount {ι : Type*} [DecidableEq ι] {n : ℕ} (f : Fin n → ι) (j : ι) : Fin (n + 1) :=
   ⟨#{r | f r = j}, Nat.lt_succ_of_le ((card_filter_le _ _).trans (by simp))⟩
 
+/--
+@isnad1 id=eq.0h4v.s6.ed50cb5fe1a5 from=translated src=- shape=0edb4ed9 vocab=b4942afa
+-/
 theorem wordCount_val {ι : Type*} [DecidableEq ι] {n : ℕ} (f : Fin n → ι) (j : ι) :
     (wordCount f j : ℕ) = #{r | f r = j} := rfl
 
-/-- The product of node values along a word is a product of powers over the letters.-/
+/-- The product of node values along a word is a product of powers over the letters.
+@isnad1 id=eq.0h5v.s6.197941b8fde9 from=translated src=- shape=3626e639 vocab=03ad86ad
+-/
 theorem prod_word_eq_prod_pow {ι : Type*} [Fintype ι] [DecidableEq ι] {n : ℕ}
     (w : ι → K) (f : Fin n → ι) :
     ∏ r, w (f r) = ∏ j, w j ^ (wordCount f j : ℕ) := by
@@ -49,7 +56,9 @@ theorem prod_word_eq_prod_pow {ι : Type*} [Fintype ι] [DecidableEq ι] {n : �
     Finset.prod_const, wordCount_val]
 
 /-- Inverse-Vandermonde weights on the grid isolate the words with a
-prescribed multiplicity function `m`.-/
+prescribed multiplicity function `m`.
+@isnad1 id=eq.1h9v.s9.aff0d1fcc31b from=translated src=- shape=b768dc11 vocab=50724d21
+-/
 theorem sum_interpolation {ι : Type*} [Fintype ι] [DecidableEq ι] {n : ℕ}
     (ν : Fin (n + 1) → K) (hν : Function.Injective ν)
     (b : MultilinearMap K (fun _ : Fin n => E) Z) (v : ι → E) (m : ι → Fin (n + 1)) :

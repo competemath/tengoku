@@ -28,6 +28,9 @@ noncomputable def arraySummand (c : (Fin n → I) → W) (a : Fin n → I) :
   ((MultilinearMap.mkPiAlgebra K (Fin n) K).compLinearMap
     (fun r => coordinateLinearMap (a r))).smulRight (c a)
 
+/--
+@isnad1 id=eq.0h7v.s9.1dcffb6b9ccd from=translated src=- shape=347dc5d7 vocab=93435411
+-/
 @[simp]
 theorem arraySummand_apply (c : (Fin n → I) → W) (a : Fin n → I)
     (x : Fin n → C₀(I, K)) :

@@ -23,7 +23,9 @@ variable {K E F G : Type*} [NontriviallyNormedField K]
   [NormedAddCommGroup F] [NormedSpace K F]
   [NormedAddCommGroup G] [NormedSpace K G]
 
-/-- Exponentially increasing the coefficient norms preserves a positive radius.-/
+/-- Exponentially increasing the coefficient norms preserves a positive radius.
+@isnad1 id=lt.3h7v.s8.d51872712cb1 from=translated src=- shape=f3d0f08f vocab=4021cd79
+-/
 theorem radius_pos_of_exponential_bound
     {p : FormalMultilinearSeries K E F} {q : FormalMultilinearSeries K E G}
     (hp : 0 < p.radius) {a : ℝ} (ha : 0 ≤ a)
@@ -51,7 +53,9 @@ theorem radius_pos_of_exponential_bound
       rw [mul_assoc, ← mul_pow, mul_inv_cancel₀ hb.ne', one_pow, mul_one]
 
 /-- A subspace-valued series with the same diagonals and coefficients bounded by
-`a ^ n ‖p n‖` makes `f` analytic.-/
+`a ^ n ‖p n‖` makes `f` analytic.
+@isnad1 id=analytic.4h9v.s11.460c4f3f23b9 from=translated src=- shape=9480093b vocab=b4e29c7f
+-/
 theorem analyticAt_of_subspace_series
     (W : Submodule K F) {f : E → W} {x : E}
     {p : FormalMultilinearSeries K E F}

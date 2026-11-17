@@ -12,7 +12,9 @@ Uses `charP_isUltrametricDist` (AlternatingAnalytic/Analysis/PositiveCharacteris
 namespace Tengoku.AlternatingAnalyticCharacteristicP end Tengoku.AlternatingAnalyticCharacteristicP open Tengoku.AlternatingAnalyticCharacteristicP
 namespace AlternatingAnalyticChallenge.LemA_2
 
-/-- A normed field of positive characteristic is nonarchimedean.-/
+/-- A normed field of positive characteristic is nonarchimedean.
+@isnad1 id=isultram.1h2v.s5.82a0e4af636f from=translated src=- shape=7fc8755f vocab=8930ff87
+-/
 theorem nonarchimedean_of_charP_pos
     (K : Type*) [NormedField K] (p : ℕ) [CharP K p] (hp : 0 < p) :
     IsUltrametricDist K := by

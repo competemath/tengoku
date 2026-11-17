@@ -22,6 +22,9 @@ variable {K D E F : Type*} [NontriviallyNormedField K]
   (j : D →ₗᵢ[K] E) (hd : DenseRange j)
 
 include hd in
+/--
+@isnad1 id=eq.1h7v.s10.5efce8d2fab0 from=translated src=- shape=00a2f15a vocab=5ead567f
+-/
 theorem denseLinearExtension_raw_apply (f : D →L[K] F) (x : D) :
     f.extend j.toContinuousLinearMap (j x) = f x :=
   ContinuousLinearMap.extend_eq f (e := j.toContinuousLinearMap) hd
@@ -56,11 +59,17 @@ def denseLinearExtension : (D →L[K] F) →L[K] (E →L[K] F) :=
       simpa only [one_mul, NNReal.coe_one] using
         f.opNorm_extend_le (N := 1) hd (fun x => by simp [j.norm_map]))
 
+/--
+@isnad1 id=eq.1h7v.s11.3e43eb4b2108 from=translated src=- shape=aae651e6 vocab=b2ad5284
+-/
 @[simp]
 theorem denseLinearExtension_apply (f : D →L[K] F) (x : D) :
     denseLinearExtension j hd f (j x) = f x :=
   ContinuousLinearMap.extend_eq _ (e := j.toContinuousLinearMap) hd j.isometry.isUniformInducing x
 
+/--
+@isnad1 id=le.1h6v.s11.6685dfbbcbff from=translated src=- shape=edb4c481 vocab=e40e40af
+-/
 theorem norm_denseLinearExtension_le (f : D →L[K] F) :
     ‖denseLinearExtension j hd f‖ ≤ ‖f‖ := by
   change ‖f.extend j.toContinuousLinearMap‖ ≤ ‖f‖
@@ -68,7 +77,9 @@ theorem norm_denseLinearExtension_le (f : D →L[K] F) :
     f.opNorm_extend_le (N := 1) hd (fun x => by simp [j.norm_map])
 
 include hd in
-/-- There is a linear map of norm at most one extending every `n`-linear map along `j`.-/
+/-- There is a linear map of norm at most one extending every `n`-linear map along `j`.
+@isnad1 id=ex.1h6v.s12.fb08268d2d5f from=translated src=- shape=86c2d041 vocab=fb33e8c7
+-/
 theorem exists_denseMultilinearExtension (n : ℕ) :
     ∃ T : ContinuousMultilinearMap K (fun _ : Fin n => D) F →L[K]
       ContinuousMultilinearMap K (fun _ : Fin n => E) F,
@@ -118,18 +129,26 @@ def denseMultilinearExtension (n : ℕ) :
       ContinuousMultilinearMap K (fun _ : Fin n => E) F :=
   (exists_denseMultilinearExtension j hd n).choose
 
+/--
+@isnad1 id=eq.1h8v.s11.01e01db4973a from=translated src=- shape=1baf6548 vocab=50bbf98b
+-/
 @[simp]
 theorem denseMultilinearExtension_apply (n : ℕ)
     (P : ContinuousMultilinearMap K (fun _ : Fin n => D) F) (x : Fin n → D) :
     denseMultilinearExtension j hd n P (fun i => j (x i)) = P x :=
   (exists_denseMultilinearExtension j hd n).choose_spec.1 P x
 
+/--
+@isnad1 id=le.1h7v.s11.886d93c124c0 from=translated src=- shape=5f61210f vocab=427a03f9
+-/
 theorem norm_denseMultilinearExtension_le (n : ℕ)
     (P : ContinuousMultilinearMap K (fun _ : Fin n => D) F) :
     ‖denseMultilinearExtension j hd n P‖ ≤ ‖P‖ :=
   (exists_denseMultilinearExtension j hd n).choose_spec.2 P
 
-/-- The extension of an alternating map vanishes when two arguments are equal.-/
+/-- The extension of an alternating map vanishes when two arguments are equal.
+@isnad1 id=eq.3h10v.s11.b20274dfa56a from=translated src=- shape=edbbe35e vocab=83def510
+-/
 theorem denseMultilinearExtension_alternating (n : ℕ) (P : D [⋀^Fin n]→L[K] F)
     (x : Fin n → E) {a b : Fin n} (hab : a ≠ b) (hx : x a = x b) :
     denseMultilinearExtension j hd n P.toContinuousMultilinearMap x = 0 := by
@@ -168,11 +187,17 @@ def denseAlternatingExtension (n : ℕ) :
       simpa only [one_mul, ContinuousAlternatingMap.norm_toContinuousMultilinearMap] using
         norm_denseMultilinearExtension_le j hd n P.toContinuousMultilinearMap)
 
+/--
+@isnad1 id=eq.1h8v.s11.88fc6933e87b from=translated src=- shape=7a221cae vocab=8ee8daa6
+-/
 @[simp]
 theorem denseAlternatingExtension_apply (n : ℕ) (P : D [⋀^Fin n]→L[K] F) (x : Fin n → D) :
     denseAlternatingExtension j hd n P (fun i => j (x i)) = P x :=
   denseMultilinearExtension_apply j hd n P.toContinuousMultilinearMap x
 
+/--
+@isnad1 id=le.1h7v.s10.8fd2cba0d65f from=translated src=- shape=0f300937 vocab=637f4d80
+-/
 theorem norm_denseAlternatingExtension_le (n : ℕ) (P : D [⋀^Fin n]→L[K] F) :
     ‖denseAlternatingExtension j hd n P‖ ≤ ‖P‖ :=
   norm_denseMultilinearExtension_le j hd n P.toContinuousMultilinearMap

@@ -20,19 +20,25 @@ namespace AlgebraicPolynomialCZero
 variable {K E Z : Type*} [NontriviallyNormedField K] [NormedAddCommGroup E] [NormedSpace K E]
   [NormedAddCommGroup Z] [NormedSpace K Z] {n : ℕ}
 
-/-- The diagonal of a multilinear map is homogeneous of degree `n`.-/
+/-- The diagonal of a multilinear map is homogeneous of degree `n`.
+@isnad1 id=eq.0h7v.s9.20181cd45d09 from=translated src=- shape=4d3dcc8e vocab=76802e19
+-/
 theorem diag_smul (b : MultilinearMap K (fun _ : Fin n => E) Z) (c : K) (x : E) :
     b (fun _ => c • x) = c ^ n • b (fun _ => x) := by
   rw [MultilinearMap.map_smul_univ b (fun _ => c) (fun _ => x), Finset.prod_const,
     Finset.card_univ, Fintype.card_fin]
 
-/-- The diagonal of a multilinear map of positive degree vanishes at zero.-/
+/-- The diagonal of a multilinear map of positive degree vanishes at zero.
+@isnad1 id=eq.1h5v.s8.ee6da058926c from=translated src=- shape=f238a178 vocab=33783269
+-/
 theorem diag_zero (b : MultilinearMap K (fun _ : Fin n => E) Z) (hn : 1 ≤ n) :
     b (fun _ => (0 : E)) = 0 :=
   b.map_coord_zero (⟨0, hn⟩ : Fin n) rfl
 
 /-- A homogeneous map of degree `n` that is continuous at zero and vanishes there is bounded by a
-multiple of `‖x‖ ^ n`.-/
+multiple of `‖x‖ ^ n`.
+@isnad1 id=ex.3h5v.s8.aff5397860c3 from=translated src=- shape=4d1dbbd1 vocab=bb3da5c7
+-/
 theorem exists_diag_bound {p : E → Z} (hp : ContinuousAt p 0) (h0 : p 0 = 0)
     (hhom : ∀ (c : K) x, p (c • x) = c ^ n • p x) :
     ∃ D : ℝ, 0 ≤ D ∧ ∀ x, ‖p x‖ ≤ D * ‖x‖ ^ n := by
@@ -55,12 +61,16 @@ theorem exists_diag_bound {p : E → Z} (hp : ContinuousAt p 0) (h0 : p 0 = 0)
     _ ≤ (δ⁻¹ * ‖c‖ * ‖x‖) ^ n := pow_le_pow_left₀ (by positivity) hd' n
     _ = (δ⁻¹ * ‖c‖) ^ n * ‖x‖ ^ n := by rw [mul_pow]
 
-/-- The diagonal norm is nonnegative.-/
+/-- The diagonal norm is nonnegative.
+@isnad1 id=le.0h4v.s6.b5c684162860 from=translated src=- shape=8f21d30f vocab=28f23c68
+-/
 theorem diagNorm_nonneg (p : E → Z) :
     0 ≤ sInf {D : ℝ | 0 ≤ D ∧ ∀ x, ‖p x‖ ≤ D * ‖x‖ ^ n} :=
   Real.sInf_nonneg fun _ hD => hD.1
 
-/-- When some admissible constant exists, the diagonal norm is itself admissible.-/
+/-- When some admissible constant exists, the diagonal norm is itself admissible.
+@isnad1 id=le.2h5v.s7.52dda8966e27 from=translated src=- shape=f248a5e7 vocab=28f23c68
+-/
 theorem norm_le_diagNorm_mul {p : E → Z} (h0 : p 0 = 0)
     (hne : ∃ D : ℝ, 0 ≤ D ∧ ∀ x, ‖p x‖ ≤ D * ‖x‖ ^ n) (x : E) :
     ‖p x‖ ≤ sInf {D : ℝ | 0 ≤ D ∧ ∀ x, ‖p x‖ ≤ D * ‖x‖ ^ n} * ‖x‖ ^ n := by

@@ -32,7 +32,9 @@ variable {K P M G : Type*} [NontriviallyNormedField K]
   [TopologicalSpace M] [ChartedSpace P M] [IsManifold 𝓘(K, P) ω M]
 
 /-- A map into a normed space is analytic on an open set iff it is analytic in every
-chart.-/
+chart.
+@isnad1 id=iff.1h6v.s8.342992714e00 from=translated src=- shape=7f7bebc7 vocab=d05fda0a
+-/
 theorem contMDiffOn_iff_analyticOnNhd_extChartAt {U : Set M} (hU : IsOpen U)
     {γ : M → G} :
     ContMDiffOn 𝓘(K, P) 𝓘(K, G) ω γ U ↔
@@ -76,7 +78,9 @@ variable {F₁ F₂ : Type*} {E₁ E₂ : M → Type*}
   [ContMDiffVectorBundle ω F₂ E₂ 𝓘(K, P)]
 
 /-- On an open subset of a common trivialization domain, a Hom section is analytic iff
-its operator coordinates are analytic in every chart.-/
+its operator coordinates are analytic in every chart.
+@isnad1 id=iff.2h11v.s12.848bb146d822 from=translated src=- shape=a13d102f vocab=80ae78a5
+-/
 theorem contMDiffOn_hom_section_iff_analyticOnNhd
     (e₁ : Trivialization F₁ (π F₁ E₁)) (e₂ : Trivialization F₂ (π F₂ E₂))
     [MemTrivializationAtlas e₁] [MemTrivializationAtlas e₂]
@@ -92,7 +96,9 @@ theorem contMDiffOn_hom_section_iff_analyticOnNhd
   exact contMDiffOn_iff_analyticOnNhd_extChartAt hU
 
 /-- A fiberwise operator family is an analytic Hom section iff its coordinates in the
-chosen trivializations are analytic in every chart.-/
+chosen trivializations are analytic in every chart.
+@isnad1 id=iff.0h8v.s12.4b77904e7a99 from=translated src=- shape=f1054e53 vocab=56411352
+-/
 theorem contMDiff_hom_section_iff_analyticOnNhd
     (f : ∀ b, E₁ b →L[K] E₂ b) :
     ContMDiff 𝓘(K, P) (𝓘(K, P).prod 𝓘(K, F₁ →L[K] F₂)) ω
@@ -168,7 +174,9 @@ abbrev Hom (X Y : AnalyticBundleCat I M) : Type u :=
 
 variable {X Y Z : AnalyticBundleCat I M}
 
-/-- In a single trivialization, the identity has coordinates the identity.-/
+/-- In a single trivialization, the identity has coordinates the identity.
+@isnad1 id=eq.1h8v.s10.e881e461be5c from=translated src=- shape=4409f299 vocab=7722b31b
+-/
 theorem inCoordinates_id (X : AnalyticBundleCat I M) {a b : M}
     (hb : b ∈ (trivializationAt X.Model X.Fiber a).baseSet) :
     ContinuousLinearMap.inCoordinates X.Model X.Fiber X.Model X.Fiber a b a b
@@ -178,7 +186,9 @@ theorem inCoordinates_id (X : AnalyticBundleCat I M) {a b : M}
   simp only [ContinuousLinearMap.comp_apply, ContinuousLinearMap.id_apply,
     ContinuousLinearEquiv.coe_coe, ContinuousLinearEquiv.apply_symm_apply]
 
-/-- On the common domain of three trivializations, coordinates respect composition.-/
+/-- On the common domain of three trivializations, coordinates respect composition.
+@isnad1 id=eq.3h12v.s11.a93bf5db0a72 from=translated src=- shape=a4decc44 vocab=73e8f255
+-/
 theorem inCoordinates_comp {a b : M}
     (hX : b ∈ (trivializationAt X.Model X.Fiber a).baseSet)
     (hY : b ∈ (trivializationAt Y.Model Y.Fiber a).baseSet)
@@ -237,15 +247,23 @@ instance category : Category.{u} (AnalyticBundleCat I M) where
 instance homDFunLike : DFunLike (X ⟶ Y) M (fun b ↦ X.Fiber b →L[K] Y.Fiber b) :=
   inferInstanceAs (DFunLike (Hom X Y) M (fun b ↦ X.Fiber b →L[K] Y.Fiber b))
 
-/-- Morphisms are equal when their fiber operators are equal.-/
+/-- Morphisms are equal when their fiber operators are equal.
+@isnad1 id=eq.1h9v.s9.2ca7db0f84d6 from=translated src=- shape=663e13ff vocab=36d057e2
+-/
 @[ext]
 theorem hom_ext {f g : X ⟶ Y} (h : ∀ b, f b = g b) : f = g :=
   ContMDiffSection.ext h
 
+/--
+@isnad1 id=eq.0h7v.s9.0435bc50810d from=translated src=- shape=7210b7a4 vocab=f3755038
+-/
 @[simp]
 theorem id_apply (X : AnalyticBundleCat I M) (b : M) :
     (𝟙 X : X ⟶ X) b = ContinuousLinearMap.id K (X.Fiber b) := rfl
 
+/--
+@isnad1 id=eq.0h11v.s10.0488690f9d07 from=translated src=- shape=6f3f92b9 vocab=9cdc6c16
+-/
 @[simp]
 theorem comp_apply (f : X ⟶ Y) (g : Y ⟶ Z) (b : M) :
     (f ≫ g) b = (g b).comp (f b) := rfl
@@ -257,6 +275,9 @@ def homOfCoordinates (f : ∀ b, X.Fiber b →L[K] Y.Fiber b)
         a b a b (f b)) a) : X ⟶ Y :=
   ⟨f, fun a ↦ (contMDiffAt_hom_bundle _).mpr ⟨contMDiffAt_id, hf a⟩⟩
 
+/--
+@isnad1 id=eq.1h9v.s12.b86a08dfe8be from=translated src=- shape=0a2023fd vocab=a857033c
+-/
 @[simp]
 theorem homOfCoordinates_apply (f : ∀ b, X.Fiber b →L[K] Y.Fiber b)
     (hf : ∀ a, ContMDiffAt I 𝓘(K, X.Model →L[K] Y.Model) ω
@@ -284,12 +305,18 @@ def isoOfFiberwiseContinuousLinearEquiv (e : ∀ b, X.Fiber b ≃L[K] Y.Fiber b)
     ext v
     exact (e b).apply_symm_apply v
 
+/--
+@isnad1 id=eq.2h9v.s14.876af3390258 from=translated src=- shape=4b1b83d7 vocab=5b62f8c2
+-/
 @[simp]
 theorem isoOfFiberwiseContinuousLinearEquiv_hom_apply
     (e : ∀ b, X.Fiber b ≃L[K] Y.Fiber b) (he he_symm) (b : M) :
     (isoOfFiberwiseContinuousLinearEquiv e he he_symm).hom b =
       (e b).toContinuousLinearMap := rfl
 
+/--
+@isnad1 id=eq.2h9v.s14.b23baf34fe2a from=translated src=- shape=08377263 vocab=738d2648
+-/
 @[simp]
 theorem isoOfFiberwiseContinuousLinearEquiv_inv_apply
     (e : ∀ b, X.Fiber b ≃L[K] Y.Fiber b) (he he_symm) (b : M) :
@@ -316,14 +343,18 @@ def OperatorAnalytic (f : ∀ b, X.Fiber b →L[K] Y.Fiber b) : Prop :=
       ((trivializationAt X.Model X.Fiber z).baseSet ∩
         (trivializationAt Y.Model Y.Fiber z).baseSet))
 
-/-- A fiberwise family is operator analytic iff it is an analytic Hom section.-/
+/-- A fiberwise family is operator analytic iff it is an analytic Hom section.
+@isnad1 id=iff.0h6v.s14.c6943f4ccb74 from=translated src=- shape=5c3829db vocab=8446c6e2
+-/
 theorem operatorAnalytic_iff_contMDiff (f : ∀ b, X.Fiber b →L[K] Y.Fiber b) :
     OperatorAnalytic (X := X) (Y := Y) f ↔
       ContMDiff 𝓘(K, P) (𝓘(K, P).prod 𝓘(K, X.Model →L[K] Y.Model)) ω
         (fun b ↦ TotalSpace.mk' (X.Model →L[K] Y.Model) b (f b)) :=
   (contMDiff_hom_section_iff_analyticOnNhd f).symm
 
-/-- Every morphism is operator analytic.-/
+/-- Every morphism is operator analytic.
+@isnad1 id=operator.0h6v.s9.7275662dd0de from=translated src=- shape=69de030e vocab=56c767ec
+-/
 theorem hom_operatorAnalytic (f : X ⟶ Y) :
     OperatorAnalytic (X := X) (Y := Y) (fun b ↦ f b) :=
   (operatorAnalytic_iff_contMDiff _).mpr (ContMDiffSection.contMDiff f)
@@ -333,12 +364,17 @@ def homOfOperatorAnalytic (f : ∀ b, X.Fiber b →L[K] Y.Fiber b)
     (hf : OperatorAnalytic (X := X) (Y := Y) f) : X ⟶ Y :=
   ⟨f, (operatorAnalytic_iff_contMDiff f).mp hf⟩
 
+/--
+@isnad1 id=eq.1h7v.s10.30fc42fc6b87 from=translated src=- shape=a8fd49e1 vocab=cf4af2da
+-/
 @[simp]
 theorem homOfOperatorAnalytic_apply (f : ∀ b, X.Fiber b →L[K] Y.Fiber b)
     (hf : OperatorAnalytic (X := X) (Y := Y) f) (b : M) :
     homOfOperatorAnalytic f hf b = f b := rfl
 
-/-- The morphisms are the operator-analytic families.-/
+/-- The morphisms are the operator-analytic families.
+@isnad1 id=iff.0h6v.s10.c9f95687be00 from=translated src=- shape=672a3872 vocab=56c767ec
+-/
 theorem exists_hom_iff_operatorAnalytic (f : ∀ b, X.Fiber b →L[K] Y.Fiber b) :
     (∃ g : X ⟶ Y, (fun b ↦ g b) = f) ↔ OperatorAnalytic (X := X) (Y := Y) f := by
   constructor
@@ -358,11 +394,17 @@ def isoOfOperatorAnalytic (e : ∀ b, X.Fiber b ≃L[K] Y.Fiber b)
     ((operatorAnalytic_iff_contMDiff _).mp he)
     ((operatorAnalytic_iff_contMDiff _).mp he_symm)
 
+/--
+@isnad1 id=eq.2h7v.s11.467b467674b7 from=translated src=- shape=12fb4cee vocab=a79021ae
+-/
 @[simp]
 theorem isoOfOperatorAnalytic_hom_apply (e : ∀ b, X.Fiber b ≃L[K] Y.Fiber b)
     (he he_symm) (b : M) :
     (isoOfOperatorAnalytic e he he_symm).hom b = (e b).toContinuousLinearMap := rfl
 
+/--
+@isnad1 id=eq.2h7v.s11.9d5c9bb857dc from=translated src=- shape=ab6ecfe8 vocab=ddfedfb8
+-/
 @[simp]
 theorem isoOfOperatorAnalytic_inv_apply (e : ∀ b, X.Fiber b ≃L[K] Y.Fiber b)
     (he he_symm) (b : M) :

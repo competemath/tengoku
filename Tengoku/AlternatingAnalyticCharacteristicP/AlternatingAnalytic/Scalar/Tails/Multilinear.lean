@@ -22,6 +22,9 @@ variable {𝕜 : Type*} [NontriviallyNormedField 𝕜]
 
 variable [IsUltrametricDist 𝕜] [CompleteSpace 𝕜]
 
+/--
+@isnad1 id=tailat.1h1v.s5.de2de383d06e from=translated src=- shape=4b421f38 vocab=cbd3f23b
+-/
 theorem tailAt_one (h : NSC 𝕜) : TailAt 𝕜 1 := by
   intro Φ C hΦ ε hε
   obtain ⟨N, hN⟩ := tail_functional h (slotCLM hΦ (fun _ => 0) 0) ε hε
@@ -43,7 +46,9 @@ variable {D : ℕ} {Φ : (Fin (D + 1) → Linf 𝕜) → 𝕜} {C ε : ℝ}
 
 omit [CompleteSpace 𝕜] in
 /-- If the tail property fails with margin `ε`, then it fails with all slots supported
-arbitrarily far out.-/
+arbitrarily far out.
+@isnad1 id=ex.4h6v.s8.a11390cdf311 from=translated src=- shape=2d6b2d94 vocab=1a10ab9a
+-/
 theorem claim_all_slots (hΦ : IsBddML Φ C) (hε : 0 < ε) (ih : TailAt 𝕜 D)
     (hF : ∀ N : ℕ, ∃ u : Fin (D + 1) → Linf 𝕜, (∀ j, ‖u j‖ ≤ 1) ∧
       (∃ j, ∀ i < N, u j i = 0) ∧ ε < ‖Φ u‖) (M : ℕ) :
@@ -161,7 +166,9 @@ theorem claim_all_slots (hΦ : IsBddML Φ C) (hε : 0 < ε) (ih : TailAt 𝕜 D)
   obtain ⟨u, hu1, hu2, -, hu4⟩ := R (D + 1) M M
   exact ⟨u, hu1, fun j i hi => hu2 j j.isLt i hi, hu4⟩
 
-/-- The witnesses of `claim_all_slots` can moreover be supported in a finite window `[M, M')`.-/
+/-- The witnesses of `claim_all_slots` can moreover be supported in a finite window `[M, M')`.
+@isnad1 id=ex.4h6v.s9.f15e76dd1fe3 from=translated src=- shape=6cf1d65e vocab=d4970ac3
+-/
 theorem claim_window (h : NSC 𝕜) (hΦ : IsBddML Φ C) (hε : 0 < ε)
     (hc1 : ∀ M : ℕ, ∃ u : Fin (D + 1) → Linf 𝕜, (∀ j, ‖u j‖ ≤ 1) ∧ (∀ j, ∀ i < M, u j i = 0) ∧
       ε < ‖Φ u‖) (M : ℕ) :
@@ -234,6 +241,9 @@ theorem claim_window (h : NSC 𝕜) (hΦ : IsBddML Φ C) (hε : 0 < ε)
 
 end Claims
 
+/--
+@isnad1 id=tailat.3h2v.s6.0d684bd209e6 from=translated src=- shape=23b07826 vocab=b0752b35
+-/
 theorem tailAt_succ (h : NSC 𝕜) {D : ℕ} (hD : 0 < D) (ih : TailAt 𝕜 D) : TailAt 𝕜 (D + 1) := by
   classical
   intro Φ C hΦ ε hε
@@ -384,7 +394,9 @@ theorem tailAt_succ (h : NSC 𝕜) {D : ℕ} (hD : 0 < D) (ih : TailAt 𝕜 D) :
   rw [hxfr] at hbg
   linarith
 
-/-- Tails of bounded multilinear forms of any arity.-/
+/-- Tails of bounded multilinear forms of any arity.
+@isnad1 id=ex.3h5v.s7.b64831a429cc from=translated src=- shape=874976fb vocab=09d254c7
+-/
 theorem tail_multilinear (h : NSC 𝕜) : ∀ (d : ℕ) (Φ : (Fin d → Linf 𝕜) → 𝕜) (C : ℝ), IsBddML Φ C →
     ∀ ε : ℝ, 0 < ε → ∃ N : ℕ, ∀ u : Fin d → Linf 𝕜, (∀ j, ‖u j‖ ≤ 1) →
       (∃ j, ∀ i < N, u j i = 0) → ‖Φ u‖ ≤ ε := by

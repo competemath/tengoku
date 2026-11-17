@@ -15,7 +15,9 @@ open Finset
 
 namespace Polarization
 
-/-- Summing over self-maps of `Fin k` with full range is summing over permutations.-/
+/-- Summing over self-maps of `Fin k` with full range is summing over permutations.
+@isnad1 id=eq.0h3v.s7.02efddac8d91 from=translated src=- shape=37a3ce7b vocab=d8ecd081
+-/
 theorem sum_full_range_eq_sum_perm {k : ℕ} {M : Type*} [AddCommMonoid M]
     (g : (Fin k → Fin k) → M) :
     (∑ σ : Fin k → Fin k, if univ.image σ = univ then g σ else 0) =
@@ -53,7 +55,9 @@ namespace MultilinearMap
 variable {R A M : Type*} [CommRing R]
   [AddCommMonoid A] [Module R A] [AddCommMonoid M] [Module R M] {k : ℕ}
 
-/-- Expand the diagonal at a subset sum `∑_{i ∈ S} b i` over the self-maps with range in `S`.-/
+/-- Expand the diagonal at a subset sum `∑_{i ∈ S} b i` over the self-maps with range in `S`.
+@isnad1 id=eq.0h7v.s8.e4796a4d89e7 from=translated src=- shape=88003df7 vocab=6e721a12
+-/
 theorem map_diagonal_sum (P : MultilinearMap R (fun _ : Fin k => A) M)
     (b : Fin k → A) (S : Finset (Fin k)) :
     P (fun _ => ∑ i ∈ S, b i) =
@@ -70,7 +74,9 @@ theorem map_diagonal_sum (P : MultilinearMap R (fun _ : Fin k => A) M)
     simp [Finset.image_subset_iff]
   simp only [Fintype.prod_boole, hrange, ite_smul, one_smul, zero_smul]
 
-/-- The squarefree polarization formula. No division by `k!` is involved.-/
+/-- The squarefree polarization formula. No division by `k!` is involved.
+@isnad1 id=eq.0h6v.s8.dd233ae51fa4 from=translated src=- shape=8e26341e vocab=304d081f
+-/
 theorem squarefree_polarization (P : MultilinearMap R (fun _ : Fin k => A) M)
     (b : Fin k → A) :
     (∑ S : Finset (Fin k), (-1 : R) ^ Sᶜ.card • P (fun _ => ∑ i ∈ S, b i)) =
@@ -100,7 +106,9 @@ theorem squarefree_polarization (P : MultilinearMap R (fun _ : Fin k => A) M)
     _ = _ := Polarization.sum_full_range_eq_sum_perm _
 
 /-- Multilinear maps with the same diagonal have the same permutation sums, over every
-commutative ring.-/
+commutative ring.
+@isnad1 id=eq.1h7v.s8.e06ab7ab4e1e from=translated src=- shape=bcb8f0b5 vocab=83c235a7
+-/
 theorem sum_perm_eq_of_diagonal_eq
     (P Q : MultilinearMap R (fun _ : Fin k => A) M)
     (h : ∀ a : A, P (fun _ => a) = Q (fun _ => a)) (b : Fin k → A) :
@@ -110,7 +118,9 @@ theorem sum_perm_eq_of_diagonal_eq
   exact Finset.sum_congr rfl fun S _ => congrArg (((-1 : R) ^ Sᶜ.card) • ·) (h _)
 
 /-- (Pw) implies (Pol1) (Proposition B.8(1)). Here `P` is a lift with the vector arguments `x`
-fixed, and taking `W` to be the wedge gives the paper's statement.-/
+fixed, and taking `W` to be the wedge gives the paper's statement.
+@isnad1 id=eq.1h10v.s10.9b79e2bbc4f9 from=translated src=- shape=b4b2a132 vocab=2ec1e68f
+-/
 theorem sum_perm_eq_of_multiplier_diagonal
     {V : Type*} [AddCommMonoid V] [Module R V]
     (P : MultilinearMap R (fun _ : Fin k => A) M)

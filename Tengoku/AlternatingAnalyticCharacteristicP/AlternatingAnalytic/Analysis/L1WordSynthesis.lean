@@ -34,6 +34,9 @@ def linearOfBounded (c : J → W) (M : ℝ) (hc : ∀ j, ‖c j‖ ≤ M) :
   continuousMultilinearCurryFin1 K (lp (fun _ : J => K) 1) W
     (continuousMultilinearOfBounded (fun a : Fin 1 → J => c (a 0)) M (fun a => hc (a 0)))
 
+/--
+@isnad1 id=eq.1h6v.s12.762b2dba29b6 from=translated src=- shape=4c32ca8f vocab=7082af68
+-/
 @[simp]
 theorem linearOfBounded_single (c : J → W) (M : ℝ) (hc : ∀ j, ‖c j‖ ≤ M) (j : J) :
     linearOfBounded (K := K) c M hc (lp.single 1 j (1 : K)) = c j := by
@@ -59,6 +62,9 @@ def wordCoefficient (p : FormalMultilinearSeries K (lp (fun _ : I => K) 1) H)
   s ^ j.1 • ((p j.1 (fun i => lp.single 1 (j.2 i) (1 : K)) : H) :
     UniformSpace.Completion H)
 
+/--
+@isnad1 id=le.1h7v.s12.b58eb5c57724 from=translated src=- shape=1f9e65dd vocab=2a338912
+-/
 theorem norm_wordCoefficient_le
     (p : FormalMultilinearSeries K (lp (fun _ : I => K) 1) H) (s : K) (M : ℝ)
     (hp : ∀ n, ‖p n‖ * ‖s‖ ^ n ≤ M) (j : Σ n : ℕ, Fin n → I) :
@@ -77,6 +83,9 @@ def wordSynthesis (p : FormalMultilinearSeries K (lp (fun _ : I => K) 1) H)
     lp (fun _ : (Σ n : ℕ, Fin n → I) => K) 1 →L[K] UniformSpace.Completion H :=
   linearOfBounded (wordCoefficient p s) M (norm_wordCoefficient_le p s M hp)
 
+/--
+@isnad1 id=eq.1h8v.s14.c61ec56ed72a from=translated src=- shape=fb1a2c6a vocab=8874a398
+-/
 @[simp]
 theorem wordSynthesis_single
     (p : FormalMultilinearSeries K (lp (fun _ : I => K) 1) H)

@@ -16,7 +16,9 @@ in Lemma B.10.
 
 namespace InfiniteRamsey
 
-/-- Infinite Ramsey's theorem inside any prescribed infinite subset of `ℕ`.-/
+/-- Infinite Ramsey's theorem inside any prescribed infinite subset of `ℕ`.
+@isnad1 id=ex.1h4v.s6.bfaae1e2594c from=translated src=- shape=976b84a0 vocab=00410216
+-/
 theorem exists_infinite_homogeneous_subset {C : Type*} [Finite C] (n : ℕ)
     (f : Finset ℕ → C) (A : Set ℕ) (hA : A.Infinite) :
     ∃ H : Set ℕ, H ⊆ A ∧ H.Infinite ∧
@@ -85,7 +87,9 @@ theorem exists_infinite_homogeneous_subset {C : Type*} [Finite C] (n : ℕ)
         rw [hui, Finset.insert_erase hb] at h
         exact h.trans hi
 
-/-- Every finite coloring of fixed-size subsets of `ℕ` has an infinite homogeneous set.-/
+/-- Every finite coloring of fixed-size subsets of `ℕ` has an infinite homogeneous set.
+@isnad1 id=ex.0h3v.s5.102eed3c5227 from=translated src=- shape=947d9654 vocab=00410216
+-/
 theorem exists_infinite_homogeneous {C : Type*} [Finite C] (n : ℕ)
     (f : Finset ℕ → C) :
     ∃ H : Set ℕ, H.Infinite ∧

@@ -17,7 +17,9 @@ variable {K : Type*} [NontriviallyNormedField K]
   {P W Z : Type*} [NormedAddCommGroup P] [NormedSpace K P]
   [NormedAddCommGroup W] [NormedSpace K W] [NormedAddCommGroup Z] [NormedSpace K Z]
 
-/-- Every diagonal of an ambient expansion lies in `j(W)`.-/
+/-- Every diagonal of an ambient expansion lies in `j(W)`.
+@isnad1 id=mem.4h11v.s10.75ba5c748afe from=translated src=- shape=6de13acf vocab=22b2393c
+-/
 theorem part1 (j : W →ₗᵢ[K] Z) (hj : IsClosed (Set.range j))
     (f : P → W) (x₀ : P) (b : FormalMultilinearSeries K P Z) (R : ℝ) (hR : 0 < R)
     (hbound : BddAbove (Set.range fun n => ‖b n‖ * R ^ n))
@@ -26,7 +28,9 @@ theorem part1 (j : W →ₗᵢ[K] Z) (hj : IsClosed (Set.range j))
   AlternatingAnalytic.CoefficientCriterion.diagonal_mem_range j hj f x₀ b R hR hbound hexp
 
 /-- `f` is analytic at `x₀` if and only if the ambient diagonals have
-`W`-valued bounded multilinear representatives with a positive common radius.-/
+`W`-valued bounded multilinear representatives with a positive common radius.
+@isnad1 id=iff.4h9v.s10.bd2d3ccaa785 from=translated src=- shape=7315a419 vocab=7b236df8
+-/
 theorem part2 (j : W →ₗᵢ[K] Z) (hj : IsClosed (Set.range j))
     (f : P → W) (x₀ : P) (b : FormalMultilinearSeries K P Z) (R : ℝ) (hR : 0 < R)
     (hbound : BddAbove (Set.range fun n => ‖b n‖ * R ^ n))

@@ -18,7 +18,9 @@ namespace AlternatingAnalytic
 variable {S Y : Type*} [TopologicalSpace S] [NormedAddCommGroup Y]
 
 /-- A nonzero bounded function with nonzero norms in `e ^ ℤ`, `e > 1`, attains its
-norm, with no compactness of the index space.-/
+norm, with no compactness of the index space.
+@isnad1 id=ex.3h4v.s7.62fd1ee803b9 from=translated src=- shape=461513bc vocab=0af0ef88
+-/
 theorem exists_norm_eq_of_discrete (e : ℝ) (he : 1 < e)
     (hdiscrete : ∀ y : Y, y ≠ 0 → ∃ n : ℤ, ‖y‖ = e ^ n)
     (f : S →ᵇ Y) (hf : f ≠ 0) : ∃ s : S, f s ≠ 0 ∧ ‖f‖ = ‖f s‖ := by

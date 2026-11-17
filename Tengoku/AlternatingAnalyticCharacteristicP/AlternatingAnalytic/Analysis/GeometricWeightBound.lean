@@ -15,7 +15,9 @@ open Filter Topology
 
 namespace AlternatingAnalytic
 
-/-- For `0 ≤ r < 1`, the sequence `(l + 1) r ^ l` attains a maximum, which is at least one.-/
+/-- For `0 ≤ r < 1`, the sequence `(l + 1) r ^ l` attains a maximum, which is at least one.
+@isnad1 id=ex.2h1v.s7.afdf12b51a96 from=translated src=- shape=4f491e3a vocab=5092686c
+-/
 theorem exists_geometricWeight_max {r : ℝ} (hr0 : 0 ≤ r) (hr1 : r < 1) :
     ∃ n : ℕ, 1 ≤ ((n : ℝ) + 1) * r ^ n ∧
       ∀ m : ℕ, ((m : ℝ) + 1) * r ^ m ≤ ((n : ℝ) + 1) * r ^ n := by
@@ -33,7 +35,9 @@ theorem exists_geometricWeight_max {r : ℝ} (hr0 : 0 ≤ r) (hr1 : r < 1) :
   · exact hmax m (Finset.mem_range.mpr hm)
   · exact (hN m (by omega)).le.trans hpos
 
-/-- If `r ≤ 1/2`, then `(n + 1) r ^ n ≤ 1`.-/
+/-- If `r ≤ 1/2`, then `(n + 1) r ^ n ≤ 1`.
+@isnad1 id=le.2h2v.s6.18cdcd86d162 from=translated src=- shape=1c607197 vocab=ad3e4bb6
+-/
 theorem geometricWeight_le_one {r : ℝ} (hr0 : 0 ≤ r) (hrhalf : r ≤ 1 / 2)
     (n : ℕ) : ((n : ℝ) + 1) * r ^ n ≤ 1 := by
   induction n with

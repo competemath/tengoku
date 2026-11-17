@@ -36,7 +36,9 @@ private lemma hasFPowerSeriesAt_monomialSeries (k : ℕ) (v : Y) :
   exact h.hasFiniteFPowerSeriesAt.hasFPowerSeriesAt
 
 /-- A map analytic at `0` and homogeneous of degree `k` is the diagonal of a continuous
-`k`-linear map.-/
+`k`-linear map.
+@isnad1 id=ex.2h5v.s9.f87e989d5ba9 from=translated src=- shape=5bec3c6f vocab=91141521
+-/
 theorem AnalyticAt.exists_multilinearMap_eq_of_homogeneous
     (k : ℕ) (f : X → Y) (hf : AnalyticAt K f 0)
     (hhom : ∀ (c : K) (x : X), f (c • x) = c ^ k • f x) :
