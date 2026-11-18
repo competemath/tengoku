@@ -8,6 +8,7 @@ import Tengoku.AndersonConjecture
 import Tengoku.Prismriver
 import Tengoku.MobiusCpt
 import Tengoku.Jsp000570Lean
+import Tengoku.WasowAsymptoticsLean
 import Tengoku.AlbertFrameTripleInvariants
 import Tengoku.InfinityCosmos
 import Tengoku.ArchonFirstproofResults

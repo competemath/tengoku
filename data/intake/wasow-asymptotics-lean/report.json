@@ -1,0 +1,13 @@
+{
+ "bundle_sha256": "ecdc0c167057e851edc040753a2e7a23471641e8dd28b53216d166ec0c70ca6d",
+ "factory_changes": {
+  "modules changed": 102,
+  "print lines removed": 697
+ },
+ "gate2_unjudged": [],
+ "library": "wasow-asymptotics-lean",
+ "lint_mode": "proposed",
+ "modules": 104,
+ "part": 1,
+ "theorems": 694
+}
