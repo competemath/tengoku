@@ -26,23 +26,38 @@ theorem eq_of_eqOn_halfplane (f g : ℂ → ℂ) (hf : Differentiable ℂ f) (hg
     isPreconnected_univ (Set.mem_univ _) hfg
   exact fun s => this (Set.mem_univ s)
 
+/--
+@isnad1 id=differen.1h2v.s6.d53f76f3dcb0 from=translated src=- shape=70f7bcea vocab=c5bddbd4
+-/
 theorem differentiable_cpow_mul (N : ℕ) (hN : 1 < N) (c : ℂ) : Differentiable ℂ fun s : ℂ => (N : ℂ) ^ (c * s) :=
   (differentiable_id.const_mul c).const_cpow (Or.inl (by exact_mod_cast (by omega : N ≠ 0)))
 
+/--
+@isnad1 id=differen.1h1v.s6.007af2f60fb0 from=translated src=- shape=39d9fdea vocab=1977c94e
+-/
 theorem differentiable_cpow_neg (N : ℕ) (hN : 1 < N) : Differentiable ℂ fun s : ℂ => (N : ℂ) ^ (-s) := by
   have : (fun s : ℂ => (N : ℂ) ^ (-s)) = fun s : ℂ => (N : ℂ) ^ ((-1 : ℂ) * s) := by
     funext s; rw [neg_one_mul]
   rw [this]; exact differentiable_cpow_mul N hN (-1)
 
+/--
+@isnad1 id=differen.1h1v.s6.eb2f4a519b3d from=translated src=- shape=cacb5cac vocab=bc12f745
+-/
 theorem differentiable_cpow_self (N : ℕ) (hN : 1 < N) : Differentiable ℂ fun s : ℂ => (N : ℂ) ^ s := by
   have : (fun s : ℂ => (N : ℂ) ^ s) = fun s : ℂ => (N : ℂ) ^ ((1 : ℂ) * s) := by
     funext s; rw [one_mul]
   rw [this]; exact differentiable_cpow_mul N hN 1
 
+/--
+@isnad1 id=differen.1h2v.s7.8139d1147aac from=translated src=- shape=5fcbc19c vocab=246402f2
+-/
 theorem differentiable_eval_comp (p : Polynomial ℂ) {g : ℂ → ℂ} (hg : Differentiable ℂ g) :
     Differentiable ℂ fun s => p.eval (g s) :=
   (Polynomial.differentiable p).comp hg
 
+/--
+@isnad1 id=ex.1h1v.s5.97c6f5658723 from=translated src=- shape=29eb9271 vocab=099f034c
+-/
 theorem exists_forall_eval_ne_zero_of_lt_norm (D : Polynomial ℂ) (hD : D ≠ 0) :
     ∃ R : ℝ, ∀ z : ℂ, R < ‖z‖ → D.eval z ≠ 0 := by
   classical
@@ -53,6 +68,9 @@ theorem exists_forall_eval_ne_zero_of_lt_norm (D : Polynomial ℂ) (hD : D ≠ 0
     Finset.single_le_sum (f := fun w : ℂ => ‖w‖) (fun _ _ => norm_nonneg _) hmem
   linarith
 
+/--
+@isnad1 id=ex.1h1v.s6.c54ed548f50a from=translated src=- shape=e969a02e vocab=099f034c
+-/
 theorem exists_forall_eval_ne_zero_of_norm_lt (D : Polynomial ℂ) (hD : D ≠ 0) :
     ∃ ε : ℝ, 0 < ε ∧ ∀ z : ℂ, z ≠ 0 → ‖z‖ < ε → D.eval z ≠ 0 := by
   classical
@@ -67,6 +85,9 @@ theorem exists_forall_eval_ne_zero_of_norm_lt (D : Polynomial ℂ) (hD : D ≠ 0
   · refine ⟨1, one_pos, fun z hz0 _ hz' => hS ⟨z, ?_⟩⟩
     rw [Finset.mem_erase, Multiset.mem_toFinset, Polynomial.mem_roots hD]; exact ⟨hz0, hz'⟩
 
+/--
+@isnad1 id=ex.2h2v.s5.e03b52ebbd8a from=translated src=- shape=974febd8 vocab=47b535c4
+-/
 theorem norm_cpow_neg_lt (N : ℕ) (hN : 1 < N) (ε : ℝ) (hε : 0 < ε) :
     ∃ σ : ℝ, ∀ s : ℂ, σ < s.re → ‖(N : ℂ) ^ (-s)‖ < ε := by
   have hN1 : (1 : ℝ) < N := by exact_mod_cast hN
@@ -75,6 +96,9 @@ theorem norm_cpow_neg_lt (N : ℕ) (hN : 1 < N) (ε : ℝ) (hε : 0 < ε) :
   calc (N : ℝ) ^ (-s.re) < (N : ℝ) ^ (Real.logb N ε) := Real.rpow_lt_rpow_of_exponent_lt hN1 (by linarith)
     _ = ε := Real.rpow_logb (by linarith) hN1.ne' hε
 
+/--
+@isnad1 id=ex.1h2v.s5.7b1cfa880721 from=translated src=- shape=e42d526d vocab=becbdec8
+-/
 theorem lt_norm_cpow (N : ℕ) (hN : 1 < N) (R : ℝ) :
     ∃ σ : ℝ, ∀ s : ℂ, σ < s.re → R < ‖(N : ℂ) ^ s‖ := by
   have hN1 : (1 : ℝ) < N := by exact_mod_cast hN
@@ -87,6 +111,9 @@ theorem lt_norm_cpow (N : ℕ) (hN : 1 < N) (R : ℝ) :
     rw [Complex.norm_natCast_cpow_of_pos (by omega)]
     exact Real.rpow_pos_of_pos (by exact_mod_cast (by omega : 0 < N)) _
 
+/--
+@isnad1 id=differen.1h2v.s7.3b1b21b708bd from=translated src=- shape=e0b60ece vocab=2be1a16b
+-/
 theorem differentiable_sum' {ι : Type} [Fintype ι] (F : ι → ℂ → ℂ) (h : ∀ j, Differentiable ℂ (F j)) :
     Differentiable ℂ fun s => ∑ j, F j s := by
   classical
@@ -107,6 +134,9 @@ namespace LINASM
 
 open Polynomial
 
+/--
+@isnad1 id=eq.6h16v.s10.b509d89f5209 from=translated src=- shape=1654bffc vocab=bb16e918
+-/
 theorem main
     (N : ℕ) (hN : 1 < N) (C : ℂ) (r : ℤ)
     {ι : Type} [Fintype ι] (κ : ι → ℂ) (A B : ι → ℂ → ℂ)
@@ -267,6 +297,9 @@ theorem main
 
 end Ws46.LINASM
 
+/--
+@isnad1 id=eq.6h16v.s10.b509d89f5209 from=translated src=- shape=1654bffc vocab=bb16e918
+-/
 theorem solution
     (N : ℕ) (hN : 1 < N) (C : ℂ) (r : ℤ)
     {ι : Type} [Fintype ι] (κ : ι → ℂ) (A B : ι → ℂ → ℂ)

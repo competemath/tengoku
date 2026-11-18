@@ -8,6 +8,9 @@ namespace P2MW.S_LanglandsTunnell_Artin_eq_one_or_eq_commutator_of_det_eq_one
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=or.1h1v.s10.3cc71cfe25cd from=translated src=- shape=6e0fccf3 vocab=dc526783
+-/
 theorem solution :
     ∀ g : GL (Fin 2) (ZMod 3), (g : Matrix (Fin 2) (Fin 2) (ZMod 3)).det = 1 →
       (g : Matrix (Fin 2) (Fin 2) (ZMod 3)) = 1 ∨

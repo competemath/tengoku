@@ -15,6 +15,9 @@ open MeasureTheory Set
 
 namespace K8A2
 
+/--
+@isnad1 id=eq.2h2v.s7.b2bd92027caf from=translated src=- shape=1754007f vocab=64ba4f1a
+-/
 theorem integral_rpow_mul_exp (r c : ℝ) (hr : -1 < r) (hc : 0 < c) :
     ∫ a in Ioi (0 : ℝ), a ^ r * Real.exp (-c * a ^ 2)
       = c ^ (-(r + 1) / 2) * (1 / 2) * Real.Gamma ((r + 1) / 2) := by
@@ -22,10 +25,16 @@ theorem integral_rpow_mul_exp (r c : ℝ) (hr : -1 < r) (hc : 0 < c) :
   simp only [Real.rpow_two] at h
   simpa using h
 
+/--
+@isnad1 id=integrab.2h2v.s6.9e8394d115da from=translated src=- shape=aaea6032 vocab=14bb0c8b
+-/
 theorem integrableOn_rpow_mul_exp (r c : ℝ) (hr : -1 < r) (hc : 0 < c) :
     IntegrableOn (fun a : ℝ => a ^ r * Real.exp (-c * a ^ 2)) (Ioi 0) :=
   integrableOn_rpow_mul_exp_neg_mul_sq hc hr
 
+/--
+@isnad1 id=eq.1h2v.s7.d574f8422dd3 from=translated src=- shape=9b2ea666 vocab=9284c4d0
+-/
 theorem scale_pow (r u : ℝ) (hu : u ≠ 0) :
     (Real.pi * (u ^ 2)⁻¹) ^ (-(r + 1) / 2) = Real.pi ^ (-(r + 1) / 2) * |u| ^ (r + 1) := by
   have hu2 : 0 < u ^ 2 := by positivity
@@ -35,6 +44,9 @@ theorem scale_pow (r u : ℝ) (hu : u ≠ 0) :
 
 end K8A2
 
+/--
+@isnad1 id=integrab.3h2v.s9.c3ab8b7f70d5 from=translated src=- shape=d4285a80 vocab=c69723a9
+-/
 theorem solution
     (w : ℂ) (hw : -1 < w.re) (K : ℝ → ℝ → ℝ → ℂ)
     (hK : Measurable fun p : ℝ × ℝ × ℝ => K p.1 p.2.1 p.2.2)

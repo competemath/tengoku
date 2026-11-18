@@ -39,6 +39,9 @@ noncomputable def qseq : ℕ → ℝ[X]
   | 0 => 1
   | n + 1 => nextq (qseq n)
 
+/--
+@isnad1 id=hasderiv.0h2v.s5.8cf6ba528842 from=translated src=- shape=6eda3e83 vocab=9df5915a
+-/
 lemma hasDerivAt_QG (q : ℝ[X]) (s : ℝ) :
     HasDerivAt (QG q) (QG (nextq q) s) s := by
   have h1 : HasDerivAt (fun x : ℝ => q.eval x) (q.derivative.eval s) s := q.hasDerivAt s
@@ -55,10 +58,16 @@ lemma hasDerivAt_QG (q : ℝ[X]) (s : ℝ) :
   push_cast
   ring
 
+/--
+@isnad1 id=hasderiv.0h2v.s6.71172037b5de from=translated src=- shape=adfe0fef vocab=5badd4f8
+-/
 lemma hasDerivAt_QG_complex (q : ℝ[X]) (s : ℝ) :
     HasDerivAt (fun x : ℝ => (QG q x : ℂ)) ((QG (nextq q) s : ℝ) : ℂ) s :=
   (hasDerivAt_QG q s).ofReal_comp
 
+/--
+@isnad1 id=eq.0h1v.s4.80a1ac3670ff from=translated src=- shape=bd37c669 vocab=01ee0de0
+-/
 lemma iteratedDeriv_G (n : ℕ) : iteratedDeriv n G = fun s : ℝ => ((QG (qseq n) s : ℝ) : ℂ) := by
   induction n with
   | zero =>
@@ -69,13 +78,22 @@ lemma iteratedDeriv_G (n : ℕ) : iteratedDeriv n G = fun s : ℝ => ((QG (qseq 
     funext s
     exact (hasDerivAt_QG_complex (qseq n) s).deriv
 
+/--
+@isnad1 id=continuo.0h1v.s4.5bb35b1d3c99 from=translated src=- shape=0d7ff717 vocab=e899f078
+-/
 lemma continuous_QG (q : ℝ[X]) : Continuous (QG q) :=
   q.continuous.mul (by fun_prop)
 
+/--
+@isnad1 id=lt.2h3v.s5.edb1344406f5 from=translated src=- shape=65dd821e vocab=2d787729
+-/
 lemma base_pos {w v σ : ℝ} (hw : 0 < w) (hσ : v / w < σ) : 0 < σ * w - v := by
   have := (div_lt_iff₀ hw).mp hσ
   linarith
 
+/--
+@isnad1 id=continuo.1h4v.s6.1b8fe3bb10f2 from=translated src=- shape=52a08181 vocab=00db5d96
+-/
 lemma continuousOn_real (b : ℝ) (q : ℝ[X]) (w v : ℝ) (hw : 0 < w) :
     ContinuousOn (fun σ : ℝ => (σ * w - v) ^ b * |QG q σ|) (Ioi (v / w)) := by
   refine ContinuousOn.mul ?_ ?_
@@ -84,6 +102,9 @@ lemma continuousOn_real (b : ℝ) (q : ℝ[X]) (w v : ℝ) (hw : 0 < w) :
     exact Or.inl (base_pos hw hx).ne'
   · exact ((continuous_QG q).abs).continuousOn
 
+/--
+@isnad1 id=continuo.1h4v.s6.f3d2a60e7220 from=translated src=- shape=f3113d85 vocab=d8cd42fc
+-/
 lemma continuousOn_cpx (β : ℂ) (q : ℝ[X]) (w v : ℝ) (hw : 0 < w) :
     ContinuousOn (fun σ : ℝ => (((σ * w - v : ℝ) : ℂ) ^ β) * ((QG q σ : ℝ) : ℂ)) (Ioi (v / w)) := by
   intro σ hσ
@@ -94,6 +115,9 @@ lemma continuousOn_cpx (β : ℂ) (q : ℝ[X]) (w v : ℝ) (hw : 0 < w) :
     exact h1.comp (f := fun x : ℝ => x * w - v) (by fun_prop : Continuous (fun x : ℝ => x * w - v)).continuousAt
   · exact (Complex.continuous_ofReal.comp (continuous_QG q)).continuousAt
 
+/--
+@isnad1 id=tendsto.2h4v.s6.d7339d47da6a from=translated src=- shape=27863516 vocab=99b94d84
+-/
 lemma tendsto_tail (b : ℝ) (hb : -1 < b) (q : ℝ[X]) (w v : ℝ) (hw : 0 < w) :
     Tendsto (fun σ : ℝ => ((σ * w - v) ^ b * |QG q σ|) / Real.exp (-σ)) atTop (𝓝 0) := by
   obtain ⟨L, hL⟩ : ∃ L : ℝ, L = (b + 1) * w + 3 := ⟨_, rfl⟩
@@ -173,6 +197,9 @@ lemma tendsto_tail (b : ℝ) (hb : -1 < b) (q : ℝ[X]) (w v : ℝ) (hw : 0 < w)
     positivity
   exact squeeze_zero' hnn hbound hlim
 
+/--
+@isnad1 id=integrab.2h4v.s6.563dbab3bbcc from=translated src=- shape=6eace744 vocab=4975e1b8
+-/
 lemma integrableOn_real (b : ℝ) (hb : -1 < b) (q : ℝ[X]) (w v : ℝ) (hw : 0 < w) :
     IntegrableOn (fun σ : ℝ => (σ * w - v) ^ b * |QG q σ|) (Ioi (v / w)) := by
   have hsplit : Ioi (v / w) = Ioc (v / w) (v / w + 1) ∪ Ioi (v / w + 1) :=
@@ -213,6 +240,9 @@ lemma integrableOn_real (b : ℝ) (hb : -1 < b) (q : ℝ[X]) (w v : ℝ) (hw : 0
       intro σ
       rw [neg_mul, one_mul]
 
+/--
+@isnad1 id=integrab.2h4v.s6.1464ec29e1fc from=translated src=- shape=12d164d5 vocab=796fb270
+-/
 lemma integrableOn_cpx (β : ℂ) (hβ : -1 < β.re) (q : ℝ[X]) (w v : ℝ) (hw : 0 < w) :
     IntegrableOn (fun σ : ℝ => (((σ * w - v : ℝ) : ℂ) ^ β) * ((QG q σ : ℝ) : ℂ)) (Ioi (v / w)) := by
   refine Integrable.mono' (integrableOn_real β.re hβ q w v hw) ?_ ?_
@@ -222,6 +252,9 @@ lemma integrableOn_cpx (β : ℂ) (hβ : -1 < β.re) (q : ℝ[X]) (w v : ℝ) (h
     rw [norm_mul, Complex.norm_cpow_eq_rpow_re_of_pos (base_pos hw hσ), Complex.norm_real,
       Real.norm_eq_abs]
 
+/--
+@isnad1 id=eq.0h2v.s7.536e2590dd8c from=translated src=- shape=c84b6a54 vocab=accc7649
+-/
 lemma gauss_mul_moment (n : ℕ) (σ : ℝ) :
     (Real.exp (-(Real.pi * σ ^ 2)) : ℂ) *
         ∫ z : ℝ, ((σ : ℂ) - Complex.I * (z : ℂ)) ^ n * (Real.exp (-(Real.pi * z ^ 2)) : ℂ)
@@ -233,6 +266,9 @@ lemma gauss_mul_moment (n : ℕ) (σ : ℝ) :
   rw [iteratedDeriv_G] at hB
   exact hB
 
+/--
+@isnad1 id=ex.0h1v.s6.c24c929f1b1c from=translated src=- shape=45dfd753 vocab=0879ca90
+-/
 lemma QG_bound (q : ℝ[X]) :
     ∃ B : ℝ, 0 ≤ B ∧ ∀ σ : ℝ, |QG q σ| ≤ B * Real.exp (-(Real.pi * σ ^ 2 / 2)) := by
   obtain ⟨A, hA⟩ : ∃ A : ℝ, A = ∑ i ∈ Finset.range (q.natDegree + 1),
@@ -274,6 +310,9 @@ lemma QG_bound (q : ℝ[X]) :
     _ = A * Real.exp (1 / (2 * Real.pi)) * Real.exp (-(Real.pi * σ ^ 2 / 2)) := by
         rw [Real.exp_add]; ring
 
+/--
+@isnad1 id=ex.1h2v.s6.d2627cb3438c from=translated src=- shape=7c67e93b vocab=feb48b58
+-/
 lemma rpow_mul_exp_neg_div_sq_le (β c : ℝ) (hc : 0 < c) :
     ∃ C : ℝ, ∀ w : ℝ, 0 < w → w ≤ 1 → w ^ β * Real.exp (-(c / w ^ 2)) ≤ C := by
   obtain ⟨N, hN⟩ : ∃ N : ℕ, -β ≤ 2 * (N : ℝ) := ⟨Nat.ceil |β|, by
@@ -304,6 +343,9 @@ lemma rpow_mul_exp_neg_div_sq_le (β c : ℝ) (hc : 0 < c) :
         rw [div_pow, pow_mul]
         field_simp
 
+/--
+@isnad1 id=integrab.1h2v.s7.d7583e0282e5 from=translated src=- shape=52487204 vocab=ac8e7d44
+-/
 lemma integrableOn_core (β c : ℝ) (hc : 0 < c) :
     IntegrableOn (fun w : ℝ => w ^ β * Real.exp (-(Real.pi * w ^ 2)) * Real.exp (-(c / w ^ 2)))
       (Ioi 0) := by
@@ -370,6 +412,9 @@ lemma integrableOn_core (β c : ℝ) (hc : 0 < c) :
       rw [← e3]
       exact step1.trans step2
 
+/--
+@isnad1 id=and.3h4v.s8.0cb59c33a45d from=translated src=- shape=a7595aa1 vocab=8bede9ef
+-/
 lemma fibre_gamma (α : ℝ) (hα : -1 < α) (lam : ℝ) (hlam : 0 < lam) (v w : ℝ) (hw : 0 < w) :
     IntegrableOn (fun σ : ℝ => (σ * w - v) ^ α * Real.exp (-(lam * (σ * w - v)))) (Ioi (v / w)) ∧
       ∫ σ in Ioi (v / w), (σ * w - v) ^ α * Real.exp (-(lam * (σ * w - v)))
@@ -415,6 +460,9 @@ lemma fibre_gamma (α : ℝ) (hα : -1 < α) (lam : ℝ) (hlam : 0 < lam) (v w :
     intro σ _
     exact (hfun σ).symm
 
+/--
+@isnad1 id=le.5h5v.s8.5d2e8ae9da9e from=translated src=- shape=37331c36 vocab=16349418
+-/
 lemma inner_le (α : ℝ) (hα : -1 < α) (q : ℝ[X]) (B : ℝ) (hB0 : 0 ≤ B)
     (hB : ∀ σ : ℝ, |QG q σ| ≤ B * Real.exp (-(Real.pi * σ ^ 2 / 2)))
     (v : ℝ) (hv : 0 < v) (w : ℝ) (hw : 0 < w) :
@@ -451,11 +499,17 @@ lemma inner_le (α : ℝ) (hα : -1 < α) (q : ℝ[X]) (B : ℝ) (hB0 : 0 ≤ B)
 
 def R (v : ℝ) : Set (ℝ × ℝ) := {q : ℝ × ℝ | 0 < q.1 ∧ 0 < q.2 ∧ v < q.1 * q.2}
 
+/--
+@isnad1 id=measurab.0h1v.s3.e995deb5d4aa from=translated src=- shape=56d5f4a3 vocab=f8b22146
+-/
 lemma measurableSet_R (v : ℝ) : MeasurableSet (R v) :=
   (measurableSet_lt measurable_const measurable_fst).inter
     ((measurableSet_lt measurable_const measurable_snd).inter
       (measurableSet_lt measurable_const (measurable_fst.mul measurable_snd)))
 
+/--
+@isnad1 id=iff.2h3v.s6.92d025552706 from=translated src=- shape=b43e6a10 vocab=cfb9bf28
+-/
 lemma mem_R_iff {v w : ℝ} (hv : 0 < v) (hw : 0 < w) (σ : ℝ) :
     (σ, w) ∈ R v ↔ σ ∈ Ioi (v / w) := by
   simp only [R, mem_ofPred_eq, mem_Ioi]
@@ -470,6 +524,9 @@ lemma mem_R_iff {v w : ℝ} (hv : 0 < v) (hw : 0 < w) (σ : ℝ) :
     have hs' := not_lt.mp hs
     nlinarith
 
+/--
+@isnad1 id=eq.2h5v.s6.fbf43a417205 from=translated src=- shape=2b796438 vocab=a8d8ae58
+-/
 lemma indicator_section {E : Type*} [Zero E] {v w : ℝ} (hv : 0 < v) (hw : 0 < w)
     (g : ℝ × ℝ → E) (σ : ℝ) :
     (R v).indicator g (σ, w) = (Ioi (v / w)).indicator (fun s : ℝ => g (s, w)) σ := by
@@ -478,6 +535,9 @@ lemma indicator_section {E : Type*} [Zero E] {v w : ℝ} (hv : 0 < v) (hw : 0 < 
   · rw [indicator_of_notMem hmem,
       indicator_of_notMem (fun h => hmem ((mem_R_iff hv hw σ).mp h))]
 
+/--
+@isnad1 id=eq.1h5v.s5.d86d13922b7b from=translated src=- shape=56c6469f vocab=37303f10
+-/
 lemma indicator_section_zero {E : Type*} [Zero E] {v w : ℝ} (hw : ¬ 0 < w)
     (g : ℝ × ℝ → E) (σ : ℝ) : (R v).indicator g (σ, w) = 0 := by
   apply indicator_of_notMem
@@ -499,6 +559,9 @@ noncomputable def F (a : ℂ) (k : ℤ) (n : ℕ) (v : ℝ) : ℝ × ℝ → ℂ
 noncomputable def F' (a : ℂ) (k : ℤ) (n : ℕ) (v : ℝ) : ℝ × ℝ → ℂ := fun q : ℝ × ℝ =>
   cn n * W k q.2 * A a n v q.1 q.2
 
+/--
+@isnad1 id=eq.0h4v.s4.2d15ae8555b4 from=translated src=- shape=9f55e0f4 vocab=cb2b0bce
+-/
 lemma F_eq (a : ℂ) (k : ℤ) (n : ℕ) (v : ℝ) : F a k n v = F' a k n v := by
   funext q
   simp only [F, F', cn, W, A]
@@ -512,18 +575,27 @@ lemma F_eq (a : ℂ) (k : ℤ) (n : ℕ) (v : ℝ) : F a k n v = F' a k n v := b
   linear_combination (((q.1 * q.2 - v : ℝ) : ℂ) ^ a * (q.2 : ℂ) ^ k *
     (Real.exp (-(Real.pi * q.2 ^ 2)) : ℂ)) * hB
 
+/--
+@isnad1 id=eq.1h2v.s6.da887f607966 from=translated src=- shape=459cc871 vocab=24378282
+-/
 lemma norm_W {k : ℤ} {w : ℝ} (hw : 0 < w) :
     ‖W k w‖ = w ^ k * Real.exp (-(Real.pi * w ^ 2)) := by
   unfold W
   rw [norm_mul, norm_zpow, Complex.norm_real, Complex.norm_real, Real.norm_eq_abs,
     Real.norm_eq_abs, abs_of_pos hw, abs_of_pos (Real.exp_pos _)]
 
+/--
+@isnad1 id=eq.2h5v.s6.e6299a742e5b from=translated src=- shape=c3948387 vocab=8060183c
+-/
 lemma norm_A {a : ℂ} {n : ℕ} {v σ w : ℝ} (hw : 0 < w) (hσ : v / w < σ) :
     ‖A a n v σ w‖ = (σ * w - v) ^ a.re * |QG (qseq n) σ| := by
   unfold A
   rw [norm_mul, Complex.norm_cpow_eq_rpow_re_of_pos (base_pos hw hσ), Complex.norm_real,
     Real.norm_eq_abs]
 
+/--
+@isnad1 id=continuo.0h4v.s5.051c29f9355a from=translated src=- shape=c385739e vocab=e1733052
+-/
 lemma continuousOn_F' (a : ℂ) (k : ℤ) (n : ℕ) (v : ℝ) : ContinuousOn (F' a k n v) (R v) := by
   intro q hq
   obtain ⟨hσ, hw, hvq⟩ := hq
@@ -548,6 +620,9 @@ lemma continuousOn_F' (a : ℂ) (k : ℤ) (n : ℕ) (v : ℝ) : ContinuousOn (F'
     · exact ((Complex.continuous_ofReal.comp (continuous_QG (qseq n))).comp
         continuous_fst).continuousAt
 
+/--
+@isnad1 id=integrab.2h4v.s6.7e1d744bf7b4 from=translated src=- shape=e46e936c vocab=59368171
+-/
 theorem integrableOn_F' (a : ℂ) (ha : -1 < a.re) (k : ℤ) (n : ℕ) (v : ℝ) (hv : 0 < v) :
     IntegrableOn (F' a k n v) (R v) := by
   have hpi := Real.pi_pos
@@ -645,6 +720,9 @@ theorem integrableOn_F' (a : ℂ) (ha : -1 < a.re) (k : ℤ) (n : ℕ) (v : ℝ)
   rw [e, ← Measure.volume_eq_prod] at hT
   exact (integrable_indicator_iff hR).mp hT
 
+/--
+@isnad1 id=integrab.2h4v.s6.be42b80f6e5d from=translated src=- shape=e46e936c vocab=d56a1d25
+-/
 theorem main (a : ℂ) (ha : -1 < a.re) (k : ℤ) (n : ℕ) (v : ℝ) (hv : 0 < v) :
     IntegrableOn (F a k n v) (R v) := by
   rw [F_eq]
@@ -652,6 +730,9 @@ theorem main (a : ℂ) (ha : -1 < a.re) (k : ℤ) (n : ℕ) (v : ℝ) (hv : 0 < 
 
 end FbInt
 
+/--
+@isnad1 id=integrab.2h4v.s8.88af18a5258f from=translated src=- shape=d6342e3c vocab=3d74fcfd
+-/
 theorem solution
     (a : ℂ) (ha : -1 < a.re) (k : ℤ) (n : ℕ) (v : ℝ) (hv : 0 < v) :
     IntegrableOn (fun q : ℝ × ℝ =>

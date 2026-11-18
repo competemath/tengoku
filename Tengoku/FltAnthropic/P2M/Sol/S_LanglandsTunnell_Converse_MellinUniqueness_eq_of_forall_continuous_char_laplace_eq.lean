@@ -158,6 +158,9 @@ private theorem lvqData {C : Type*} [MeasurableSpace C] (μ : Measure C) [SFinit
   · rw [← H.2, integral_prod_symm _ H.1]
     simp only [e]
 
+/--
+@isnad1 id=eq.7h6v.s10.789e2e72ce2a from=translated src=- shape=6ef1237a vocab=eda9af74
+-/
 theorem solution
     (C : Type) [Group C] [TopologicalSpace C] [CompactSpace C]
     [MeasurableSpace C] [BorelSpace C] (μ : Measure C) [μ.IsHaarMeasure]

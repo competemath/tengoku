@@ -28,10 +28,16 @@ namespace K8ML
 
 variable {X : Type*} [MeasurableSpace X] {μ : Measure X}
 
+/--
+@isnad1 id=le.1h2v.s5.65f664d22bd4 from=translated src=- shape=73034923 vocab=1e4ede86
+-/
 lemma re_mul_le_norm (u z : ℂ) (hu : ‖u‖ = 1) : (u * z).re ≤ ‖z‖ := by
   calc (u * z).re ≤ ‖u * z‖ := Complex.re_le_norm _
     _ = ‖z‖ := by rw [norm_mul, hu, one_mul]
 
+/--
+@isnad1 id=le.6h7v.s8.d28d121be01a from=translated src=- shape=da684309 vocab=4b5f3c8d
+-/
 theorem norm_integral_ge_of_phase_coherent
     (F : X → ℂ) (hF : Integrable F μ) (S : Set X) (hS : MeasurableSet S)
     (u : ℂ) (hu : ‖u‖ = 1) (c η : ℝ) (hc : 0 ≤ c)
@@ -71,6 +77,9 @@ end K8ML
 
 namespace FbCoh
 
+/--
+@isnad1 id=le.1h2v.s6.5a183593b729 from=translated src=- shape=3122636f vocab=92a3840f
+-/
 theorem exp_neg_pi_div_sq_le (n : ℕ) (w : ℝ) (hw : 0 < w) :
     Real.exp (-(Real.pi * (w ^ 2)⁻¹)) ≤ ((n.factorial : ℝ) / Real.pi ^ n) * w ^ (2 * n) := by
   set x : ℝ := Real.pi * (w ^ 2)⁻¹ with hx
@@ -89,6 +98,9 @@ theorem exp_neg_pi_div_sq_le (n : ℕ) (w : ℝ) (hw : 0 < w) :
   rw [mul_pow, inv_pow, ← pow_mul]
   field_simp
 
+/--
+@isnad1 id=integrab.1h2v.s7.d72504684fb5 from=translated src=- shape=2451d543 vocab=de77835d
+-/
 theorem integrableOn_rpow_mul_exp_kernel (a : ℝ) (ha : a ≠ 0) (r : ℝ) :
     IntegrableOn (fun w : ℝ => w ^ r * Real.exp (-(Real.pi * ((w ^ 2)⁻¹ + a ^ 2 * w ^ 2)))) (Ioi 0) := by
   obtain ⟨n, hn⟩ := exists_nat_ge (-r / 2)
@@ -143,6 +155,9 @@ end FbCoh
 
 open FbCoh in
 set_option maxHeartbeats 4000000 in
+/--
+@isnad1 id=ex.2h5v.s9.4ccc9ac44aad from=translated src=- shape=5e1b1084 vocab=e09e96b4
+-/
 theorem solution
     (a : ℝ) (ha : a ≠ 0) (A B : ℂ) (τ : ℝ) (ε : ℝ) (hε : 0 < ε) :
     ∃ R : ℝ, ∀ y : ℝ, R ≤ y →

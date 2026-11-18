@@ -7,6 +7,9 @@ namespace P2MW.S_IsRegularLocalRing_of_maximalIdeal_eq_span_of_mem_sq_of_ringKru
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=isregula.3h4v.s7.fe74767b63f5 from=translated src=- shape=23d04054 vocab=48e2f658
+-/
 theorem solution
     {B : Type*} [CommRing B] [IsNoetherianRing B] [IsLocalRing B]
     (π u v : B) (hgen : IsLocalRing.maximalIdeal B = Ideal.span {π, u, v})

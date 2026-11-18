@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open scoped Real
 
+/--
+@isnad1 id=and.3h3v.s9.fe69ac6ea6ba from=translated src=- shape=af191303 vocab=d1a9e9b9
+-/
 theorem LanglandsTunnell.norm_le_mul_rpow_half_sub_abs_re_near_zero_of_whittaker_ode
     (ν : ℂ) (k : ℝ) (f : ℝ → ℂ)
     (hf : DifferentiableOn ℝ f (Set.Ioi 0)) (hf' : DifferentiableOn ℝ (deriv f) (Set.Ioi 0))

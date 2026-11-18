@@ -20,17 +20,29 @@ variable {A B : Type*} [CommRing A] [CommRing B] [Algebra A B] [Algebra.IsIntegr
 def contr (Q : PrimeSpectrum B) : PrimeSpectrum A :=
   ⟨Q.asIdeal.comap (algebraMap A B), inferInstance⟩
 
+/--
+@isnad1 id=eq.0h3v.s6.448eef7312ed from=translated src=- shape=353456b6 vocab=c6eacd19
+-/
 lemma contr_asIdeal (Q : PrimeSpectrum B) : (contr (A := A) Q).asIdeal = Q.asIdeal.comap (algebraMap A B) := rfl
 
+/--
+@isnad1 id=strictmo.0h2v.s6.7174c58ce1d5 from=translated src=- shape=9fb30920 vocab=d5781fbe
+-/
 lemma contr_strictMono : StrictMono (contr (A := A) (B := B)) := by
   intro P Q hPQ
   rw [← PrimeSpectrum.asIdeal_lt_asIdeal] at hPQ ⊢
   rw [contr_asIdeal, contr_asIdeal]
   exact Ideal.IsIntegral.comap_lt_comap hPQ
 
+/--
+@isnad1 id=le.0h2v.s5.87bbd3c6d390 from=translated src=- shape=35d53890 vocab=97bd58c3
+-/
 lemma ringKrullDim_le_of_isIntegral : ringKrullDim B ≤ ringKrullDim A :=
   Order.krullDim_le_of_strictMono _ contr_strictMono
 
+/--
+@isnad1 id=ex.2h4v.s9.1fbc2833f881 from=translated src=- shape=f82c7c53 vocab=5d945801
+-/
 lemma exists_ltSeries_contr (hinj : Function.Injective (algebraMap A B)) :
     ∀ (n : ℕ) (p : LTSeries (PrimeSpectrum A)), p.length = n →
       ∃ q : LTSeries (PrimeSpectrum B), q.length = n ∧ contr q.last = p.last := by
@@ -63,6 +75,9 @@ lemma exists_ltSeries_contr (hinj : Function.Injective (algebraMap A B)) :
       rw [RelSeries.last_snoc]
       exact PrimeSpectrum.ext hQc
 
+/--
+@isnad1 id=le.1h2v.s6.b44ee6c1ba20 from=translated src=- shape=e3a90ee3 vocab=1a19cc10
+-/
 lemma ringKrullDim_ge_of_isIntegral_of_injective (hinj : Function.Injective (algebraMap A B)) :
     ringKrullDim A ≤ ringKrullDim B := by
   unfold ringKrullDim Order.krullDim
@@ -71,6 +86,9 @@ lemma ringKrullDim_ge_of_isIntegral_of_injective (hinj : Function.Injective (alg
   rw [← hq]
   exact le_iSup (fun q : LTSeries (PrimeSpectrum B) => (q.length : WithBot ℕ∞)) q
 
+/--
+@isnad1 id=eq.1h2v.s6.9bdce609a125 from=translated src=- shape=0485ba98 vocab=414f0686
+-/
 lemma ringKrullDim_eq_of_isIntegral_of_injective (hinj : Function.Injective (algebraMap A B)) :
     ringKrullDim B = ringKrullDim A :=
   le_antisymm ringKrullDim_le_of_isIntegral (ringKrullDim_ge_of_isIntegral_of_injective hinj)
@@ -85,6 +103,9 @@ section AdjoinRootLemmas
 
 variable {S : Type*} [CommRing S]
 
+/--
+@isnad1 id=ex.0h3v.s8.e5605ddea0bf from=translated src=- shape=de6239d6 vocab=f5117b3b
+-/
 lemma exists_sub_algebraMap_mem_span_root (g : S[X]) (t : AdjoinRoot g) :
     ∃ c : S, t - algebraMap S (AdjoinRoot g) c ∈ Ideal.span {AdjoinRoot.root g} := by
   induction t using AdjoinRoot.induction_on with
@@ -97,6 +118,9 @@ lemma exists_sub_algebraMap_mem_span_root (g : S[X]) (t : AdjoinRoot g) :
     rw [this, add_sub_cancel_right]
     exact Ideal.mul_mem_right _ _ (Ideal.subset_span rfl)
 
+/--
+@isnad1 id=mem.0h2v.s8.2e29bbaace2e from=translated src=- shape=3faade3d vocab=b04f8eaa
+-/
 lemma algebraMap_coeff_zero_mem_span_root (g : S[X]) :
     algebraMap S (AdjoinRoot g) (g.coeff 0) ∈ Ideal.span {AdjoinRoot.root g} := by
   have h : AdjoinRoot.mk g g = 0 := AdjoinRoot.mk_self
@@ -110,6 +134,9 @@ lemma algebraMap_coeff_zero_mem_span_root (g : S[X]) :
   rw [this]
   exact Submodule.neg_mem _ (Ideal.mul_mem_right _ _ (Ideal.subset_span rfl))
 
+/--
+@isnad1 id=mem.2h3v.s8.b51669f1821a from=translated src=- shape=83f493dd vocab=5639b1f9
+-/
 lemma root_pow_natDegree_mem_map (g : S[X]) (hg : g.Monic) (I : Ideal S)
     (hcoeff : ∀ i < g.natDegree, g.coeff i ∈ I) :
     AdjoinRoot.root g ^ g.natDegree ∈ I.map (algebraMap S (AdjoinRoot g)) := by
@@ -126,6 +153,9 @@ lemma root_pow_natDegree_mem_map (g : S[X]) (hg : g.Monic) (I : Ideal S)
   rw [map_mul, map_pow, AdjoinRoot.mk_X, AdjoinRoot.mk_C, ← AdjoinRoot.algebraMap_eq]
   exact Ideal.mul_mem_right _ _ (Ideal.mem_map_of_mem _ (hcoeff i (Finset.mem_range.mp hi)))
 
+/--
+@isnad1 id=injectiv.2h2v.s7.086d26016a68 from=translated src=- shape=006bd2cb vocab=82511a49
+-/
 lemma algebraMap_injective_of_monic (g : S[X]) (hg : g.Monic) (hn : 1 ≤ g.natDegree) :
     Function.Injective (algebraMap S (AdjoinRoot g)) := by
   rw [injective_iff_map_eq_zero]
@@ -139,6 +169,9 @@ end AdjoinRootLemmas
 end EisRegAux
 
 open EisRegAux in
+/--
+@isnad1 id=and.4h2v.s8.224b1a69dbc1 from=translated src=- shape=6c4e4ff7 vocab=cd8a50e6
+-/
 theorem solution
     (S : Type*) [CommRing S] [IsRegularLocalRing S]
     (g : S[X]) (hg : g.Monic) (hn : 1 ≤ g.natDegree)

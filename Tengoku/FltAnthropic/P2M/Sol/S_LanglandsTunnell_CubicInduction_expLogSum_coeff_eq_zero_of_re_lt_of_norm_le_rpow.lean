@@ -13,6 +13,9 @@ namespace ExpLogSumSelection
 
 open Filter Topology Complex Finset
 
+/--
+@isnad1 id=ne.2h1v.s5.c3e04749e679 from=translated src=- shape=3f8d4fe2 vocab=9145da73
+-/
 theorem exp_ofReal_mul_I_ne_one {θ : ℝ} (h0 : θ ≠ 0) (hπ : |θ| < Real.pi) :
     Complex.exp (θ * I) ≠ 1 := by
   intro h
@@ -33,6 +36,9 @@ theorem exp_ofReal_mul_I_ne_one {θ : ℝ} (h0 : θ ≠ 0) (hπ : |θ| < Real.pi
   rw [him, hn0]
   simp
 
+/--
+@isnad1 id=eq.3h5v.s6.9a26e0f20aae from=translated src=- shape=081ac3bc vocab=7117feb9
+-/
 theorem trigSum_coeff_eq_zero_of_tendsto_zero {κ : Type*} (t : κ → ℝ) :
     ∀ (s : Finset κ) (a : κ → ℂ), Set.InjOn t s →
       Tendsto (fun u : ℝ => ∑ k ∈ s, a k * cexp (t k * u * I)) atTop (𝓝 0) →
@@ -115,9 +121,15 @@ theorem trigSum_coeff_eq_zero_of_tendsto_zero {κ : Type*} (t : κ → ℝ) :
       simpa using this
     · exact hzero k hk'
 
+/--
+@isnad1 id=eq.1h2v.s5.0d49c30ae46d from=translated src=- shape=85347d79 vocab=2fc8ad54
+-/
 theorem norm_neg_ofReal_pow {u : ℝ} (hu : 0 ≤ u) (n : ℕ) : ‖(-(u : ℂ)) ^ n‖ = u ^ n := by
   rw [norm_pow, norm_neg, Complex.norm_real, Real.norm_eq_abs, abs_of_nonneg hu]
 
+/--
+@isnad1 id=eq.3h7v.s7.3e1fb7ad944e from=translated src=- shape=fdf30c17 vocab=8f370140
+-/
 theorem expPolySum_coeff_eq_zero_of_re_lt {ι : Type*} [Fintype ι] (e : ι → ℂ) (j : ι → ℕ)
     (c : ι → ℂ)
     (hinj : Function.Injective fun i => (e i, j i)) (θ₀ M : ℝ)
@@ -273,6 +285,9 @@ theorem expPolySum_coeff_eq_zero_of_re_lt {ι : Type*} [Fintype ι] (e : ι → 
 
 end ExpLogSumSelection
 
+/--
+@isnad1 id=eq.5h8v.s8.939f3880b357 from=translated src=- shape=ce9c49c5 vocab=a23a55e7
+-/
 theorem solution
     {ι : Type*} [Fintype ι] (e : ι → ℂ) (j : ι → ℕ) (c : ι → ℂ)
     (hinj : Function.Injective fun i => (e i, j i))

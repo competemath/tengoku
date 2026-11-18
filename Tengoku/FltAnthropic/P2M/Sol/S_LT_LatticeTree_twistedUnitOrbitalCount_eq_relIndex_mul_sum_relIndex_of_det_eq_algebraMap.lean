@@ -1110,6 +1110,9 @@ private theorem relIndex_stabilizer_inf_stabilizer_ne_zero {R K : Type} [CommRin
   obtain ⟨g', rfl⟩ := htrans w
   exact relIndex_stabilizer_smul_stdVertex_ne_zero hϖ g g'
 
+/--
+@isnad1 id=eq.8h9v.s13.dba493aadc35 from=translated src=- shape=0d54e5ef vocab=b979bc41
+-/
 theorem solution
     (R K : Type) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [Field K] [Algebra R K]
     [IsFractionRing R K] (σ : LT.LatticeTree.IntegralAut R K)

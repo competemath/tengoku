@@ -129,6 +129,9 @@ private theorem main (lam : ℝ) (S : Set ℤ) (hS : S.Nonempty)
 
 end UnitClass17
 
+/--
+@isnad1 id=or.5h2v.s9.1aa25a35d57a from=translated src=- shape=2758e747 vocab=35fd5d9c
+-/
 theorem solution
     (lam : ℝ) (S : Set ℤ) (hS : S.Nonempty)
     (hminus : ∀ n ∈ S, 0 ≤ 4 * lam + n * (n - 2))

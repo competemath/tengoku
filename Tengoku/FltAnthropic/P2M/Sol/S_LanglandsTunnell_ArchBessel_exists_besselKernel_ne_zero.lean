@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open LanglandsTunnell.ArchBessel
 
+/--
+@isnad1 id=ex.0h1v.s4.ebcc777ce111 from=translated src=- shape=447ca309 vocab=e6433e7c
+-/
 theorem solution (ν : ℂ) :
     ∃ x : ℝ, 0 < x ∧ besselKernel ν x ≠ 0 := by
   by_contra h

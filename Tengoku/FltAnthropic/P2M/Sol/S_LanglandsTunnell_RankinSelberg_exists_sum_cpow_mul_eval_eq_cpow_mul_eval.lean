@@ -9,6 +9,9 @@ namespace P2MW.S_LanglandsTunnell_RankinSelberg_exists_sum_cpow_mul_eval_eq_cpow
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.1h4v.s7.9d036d8e4be8 from=translated src=- shape=83e4bb20 vocab=f74884a5
+-/
 theorem solution
     (N : ℕ) (hN : N ≠ 0) (ι : Type) [Fintype ι] (m : ι → ℤ) (P : ι → Polynomial ℂ) :
     ∃ (m₀ : ℤ) (P₀ : Polynomial ℂ), ∀ s : ℂ,

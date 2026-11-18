@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open _root_.LanglandsTunnell.ArchBessel hiding hasDerivAt_besselKernel mul_besselKernel_eq_mul_sub
 
+/--
+@isnad1 id=and.1h2v.s8.80b4cc75bf99 from=translated src=- shape=eb94c7c0 vocab=ce1ae00d
+-/
 theorem LanglandsTunnell.ArchBessel.hasDerivAt_besselKernel_and_hasDerivAt_deriv_besselKernel
     (ν : ℂ) (x : ℝ) (hx : 0 < x) :
     HasDerivAt (fun x : ℝ => besselKernel ν x) (-besselKernel (ν + 1) x + ν / (x : ℂ) * besselKernel ν x) x ∧

@@ -42,11 +42,17 @@ noncomputable def sameTwo (M : Matrix (Fin 3) (Fin 3) P3) : P3 :=
       (∑ i : Fin 3, MvPolynomial.pderiv i (MvPolynomial.pderiv i
         (∑ c : Fin 3, ∑ d : Fin 3, MvPolynomial.X c * MvPolynomial.pderiv d (M c d))))
 
+/--
+@isnad1 id=eq.0h1v.s11.9f1eeb69ea46 from=translated src=- shape=13ebe92e vocab=32bf6227
+-/
 theorem sameTwo_eq (M : Matrix (Fin 3) (Fin 3) P3) :
     sameTwo M = C 6 * qsum M - (X 0 ^ 2 + X 1 ^ 2 + X 2 ^ 2) *
       (pderiv 0 (pderiv 0 (qsum M)) + pderiv 1 (pderiv 1 (qsum M)) + pderiv 2 (pderiv 2 (qsum M))) := by
   simp only [sameTwo, qsum, Fin.sum_univ_three]
 
+/--
+@isnad1 id=eq.0h4v.s8.7f285222cca2 from=translated src=- shape=01ca82e0 vocab=2a808418
+-/
 theorem coeff_pderiv {σ : Type*} [DecidableEq σ] (i : σ) (m : σ →₀ ℕ) (f : MvPolynomial σ ℂ) :
     coeff m (pderiv i f) = (m i + 1) * coeff (m + Finsupp.single i 1) f := by
   induction f using MvPolynomial.induction_on' with
@@ -71,6 +77,9 @@ theorem coeff_pderiv {σ : Type*} [DecidableEq σ] (i : σ) (m : σ →₀ ℕ) 
       · simp
   | add f g hf hg => simp [hf, hg, mul_add]
 
+/--
+@isnad1 id=eq.0h4v.s9.d1aa950ea35f from=translated src=- shape=c5da84c4 vocab=5af0ac4f
+-/
 theorem pderiv_comm {σ : Type*} [DecidableEq σ] (i j : σ) (f : MvPolynomial σ ℂ) :
     pderiv i (pderiv j f) = pderiv j (pderiv i f) := by
   ext m
@@ -82,37 +91,94 @@ theorem pderiv_comm {σ : Type*} [DecidableEq σ] (i j : σ) (f : MvPolynomial �
       ite_eq_right (Ne.symm hij), add_zero]
     ring
 
+/--
+@isnad1 id=eq.0h0v.s6.78037072c731 from=translated src=- shape=a01f1bb0 vocab=26950770
+-/
 @[scoped simp] lemma max01 : max (0 : Fin 3) 1 = 1 := by decide
+/--
+@isnad1 id=eq.0h0v.s6.4a4d9b703c99 from=translated src=- shape=a01f1bb0 vocab=26950770
+-/
 @[scoped simp] lemma max02 : max (0 : Fin 3) 2 = 2 := by decide
+/--
+@isnad1 id=eq.0h0v.s6.2b41fa172ba6 from=translated src=- shape=a01f1bb0 vocab=26950770
+-/
 @[scoped simp] lemma max12 : max (1 : Fin 3) 2 = 2 := by decide
+/--
+@isnad1 id=eq.0h0v.s6.fc10e1a7e517 from=translated src=- shape=a01f1bb0 vocab=26950770
+-/
 @[scoped simp] lemma max10 : max (1 : Fin 3) 0 = 1 := by decide
+/--
+@isnad1 id=eq.0h0v.s6.3b2225acd672 from=translated src=- shape=a01f1bb0 vocab=26950770
+-/
 @[scoped simp] lemma max20 : max (2 : Fin 3) 0 = 2 := by decide
+/--
+@isnad1 id=eq.0h0v.s6.40e12d716413 from=translated src=- shape=a01f1bb0 vocab=26950770
+-/
 @[scoped simp] lemma max21 : max (2 : Fin 3) 1 = 2 := by decide
+/--
+@isnad1 id=eq.0h0v.s6.2e01f5120853 from=translated src=- shape=a01f1bb0 vocab=a1354ccf
+-/
 @[scoped simp] lemma min01 : min (0 : Fin 3) 1 = 0 := by decide
+/--
+@isnad1 id=eq.0h0v.s6.a85db61277a2 from=translated src=- shape=a01f1bb0 vocab=a1354ccf
+-/
 @[scoped simp] lemma min02 : min (0 : Fin 3) 2 = 0 := by decide
+/--
+@isnad1 id=eq.0h0v.s6.fce0d82f7bbe from=translated src=- shape=a01f1bb0 vocab=a1354ccf
+-/
 @[scoped simp] lemma min12 : min (1 : Fin 3) 2 = 1 := by decide
+/--
+@isnad1 id=eq.0h0v.s6.2b0cebdf4c2d from=translated src=- shape=a01f1bb0 vocab=a1354ccf
+-/
 @[scoped simp] lemma min10 : min (1 : Fin 3) 0 = 0 := by decide
+/--
+@isnad1 id=eq.0h0v.s6.b739267593be from=translated src=- shape=a01f1bb0 vocab=a1354ccf
+-/
 @[scoped simp] lemma min20 : min (2 : Fin 3) 0 = 0 := by decide
+/--
+@isnad1 id=eq.0h0v.s6.9496f45d583c from=translated src=- shape=a01f1bb0 vocab=a1354ccf
+-/
 @[scoped simp] lemma min21 : min (2 : Fin 3) 1 = 1 := by decide
 
+/--
+@isnad1 id=eq.0h2v.s9.499c837758a2 from=translated src=- shape=cb223b64 vocab=b7fde74a
+-/
 lemma pdX (i j : Fin 3) : pderiv i (X j : P3) = if j = i then 1 else 0 := by
   classical
   rw [pderiv_X]; simp [Pi.single_apply]
 
+/--
+@isnad1 id=eq.0h2v.s9.1a3abf3c4d0b from=translated src=- shape=e50c0bc7 vocab=ab18e224
+-/
 lemma pdXsq (i j : Fin 3) : pderiv i (X j ^ 2 : P3) = if j = i then C 2 * X j else 0 := by
   rw [sq, pderiv_mul, pdX]
   split_ifs
   · simp only [map_ofNat]; ring
   · ring
 
+/--
+@isnad1 id=eq.0h2v.s8.af3f1c0f95a3 from=translated src=- shape=a5ab08f3 vocab=23cd0ceb
+-/
 lemma pd_ofNat (i : Fin 3) (n : ℕ) [n.AtLeastTwo] :
     pderiv i (no_index (OfNat.ofNat n) : P3) = 0 := by
   rw [← map_ofNat (C : ℂ →+* P3) n]; exact pderiv_C
 
+/--
+@isnad1 id=eq.0h1v.s10.d8dbe6a4eb28 from=translated src=- shape=29c6ece3 vocab=efeb78a9
+-/
 lemma c10 (f : P3) : pderiv 1 (pderiv 0 f) = pderiv 0 (pderiv 1 f) := pderiv_comm _ _ _
+/--
+@isnad1 id=eq.0h1v.s10.b71783b6fde3 from=translated src=- shape=29c6ece3 vocab=efeb78a9
+-/
 lemma c20 (f : P3) : pderiv 2 (pderiv 0 f) = pderiv 0 (pderiv 2 f) := pderiv_comm _ _ _
+/--
+@isnad1 id=eq.0h1v.s10.347918354d14 from=translated src=- shape=29c6ece3 vocab=efeb78a9
+-/
 lemma c21 (f : P3) : pderiv 2 (pderiv 1 f) = pderiv 1 (pderiv 2 f) := pderiv_comm _ _ _
 
+/--
+@isnad1 id=eq.0h2v.s13.5a38936bf07d from=translated src=- shape=28bcea3c vocab=6d524274
+-/
 theorem lowerTwo_Xi (ν : Fin 3 → ℂ) (p : P3) :
     lowerTwo (Xi ν p) = C 2 * ((C (ν 0) - 1) * pderiv 0 (pderiv 0 p) + C (ν 1) * pderiv 1 (pderiv 1 p)
       + (C (ν 2) + 1) * pderiv 2 (pderiv 2 p)
@@ -127,6 +193,9 @@ theorem lowerTwo_Xi (ν : Fin 3 → ℂ) (p : P3) :
   simp only [map_add, map_mul, map_neg, map_one, map_ofNat]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s14.66dd39301331 from=translated src=- shape=2d6ea1cb vocab=c876a8c8
+-/
 theorem lowerOne_eq (M : Matrix (Fin 3) (Fin 3) P3) :
     lowerOne M =
       (X 1 * pderiv 0 (pderiv 2 (M 0 0)) + X 1 * pderiv 1 (pderiv 2 (M 0 1)) + X 1 * pderiv 2 (pderiv 2 (M 0 2)))
@@ -140,6 +209,9 @@ theorem lowerOne_eq (M : Matrix (Fin 3) (Fin 3) P3) :
   norm_num
   ring
 
+/--
+@isnad1 id=eq.0h2v.s13.c4e165740279 from=translated src=- shape=af00edbb vocab=b1f5950f
+-/
 theorem lowerOne_Xi (ν : Fin 3 → ℂ) (p : P3) :
     lowerOne (Xi ν p) = C 2 * (C (ν 1 - ν 0 + 1) * (X 2 * pderiv 0 (pderiv 1 p))
       + C (ν 0 - ν 2 - 1) * (X 1 * pderiv 0 (pderiv 2 p))
@@ -157,6 +229,9 @@ theorem lowerOne_Xi (ν : Fin 3 → ℂ) (p : P3) :
   simp only [map_add, map_mul, map_neg, map_one, map_ofNat]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s13.fa37349fd787 from=translated src=- shape=562672e1 vocab=f8c711a0
+-/
 theorem qsum_Xi (ν : Fin 3 → ℂ) (p : P3) :
     qsum (Xi ν p) = C 2 * (C (ν 0) * (X 0 * pderiv 0 p) + C (ν 1) * (X 1 * pderiv 1 p)
       + C (ν 2) * (X 2 * pderiv 2 p))
@@ -171,6 +246,9 @@ theorem qsum_Xi (ν : Fin 3 → ℂ) (p : P3) :
   simp only [map_add, map_mul, map_neg, map_one, map_ofNat]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s10.44b76141de4c from=translated src=- shape=1e32713a vocab=f65a0b44
+-/
 theorem lowerTwo_Xi_dq (ν : Fin 3 → ℂ) (α β : ℂ) :
     lowerTwo (Xi ν (C α * (X 0 ^ 2 - X 2 ^ 2) + C β * (X 1 ^ 2 - X 2 ^ 2))) =
       C (4 * (α * (ν 0 - ν 2 - 2) + β * (ν 1 - ν 2 - 1))) := by
@@ -181,6 +259,9 @@ theorem lowerTwo_Xi_dq (ν : Fin 3 → ℂ) (α β : ℂ) :
   simp only [map_add, map_sub, map_mul, map_neg, map_one, map_ofNat]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s11.d13eaaca942a from=translated src=- shape=90558ee5 vocab=cfecd39f
+-/
 theorem sameTwo_Xi_dq (ν : Fin 3 → ℂ) (α β : ℂ) :
     sameTwo (Xi ν (C α * (X 0 ^ 2 - X 2 ^ 2) + C β * (X 1 ^ 2 - X 2 ^ 2))) =
       C (16 * α * ν 0 + 8 * α * ν 2 + 4 * α - 8 * β * ν 1 + 8 * β * ν 2 + 8 * β) * (X 0 ^ 2 - X 2 ^ 2)
@@ -192,6 +273,9 @@ theorem sameTwo_Xi_dq (ν : Fin 3 → ℂ) (α β : ℂ) :
   simp only [map_add, map_sub, map_mul, map_neg, map_one, map_ofNat]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s9.d5ece2996529 from=translated src=- shape=b60efaff vocab=babbc349
+-/
 theorem lowerOne_Xi_X01 (ν : Fin 3 → ℂ) (z : ℂ) :
     lowerOne (Xi ν (C z * (X 0 * X 1))) = C (-2 * z * (ν 0 - ν 1 - 1)) * X 2 := by
   rw [lowerOne_Xi]
@@ -201,6 +285,9 @@ theorem lowerOne_Xi_X01 (ν : Fin 3 → ℂ) (z : ℂ) :
   simp only [map_add, map_sub, map_mul, map_neg, map_one, map_ofNat]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s9.f019d42a6c91 from=translated src=- shape=7e89b1e4 vocab=bf4ba64c
+-/
 theorem lowerOne_Xi_X02 (ν : Fin 3 → ℂ) (z : ℂ) :
     lowerOne (Xi ν (C z * (X 0 * X 2))) = C (2 * z * (ν 0 - ν 2 - 1)) * X 1 := by
   rw [lowerOne_Xi]
@@ -210,10 +297,16 @@ theorem lowerOne_Xi_X02 (ν : Fin 3 → ℂ) (z : ℂ) :
   simp only [map_add, map_sub, map_mul, map_neg, map_one, map_ofNat]
   ring
 
+/--
+@isnad1 id=mem.2h3v.s8.a97c8d26ab47 from=translated src=- shape=3567c6e2 vocab=012826e4
+-/
 lemma mem_of_C_mul_mem (S : Submodule ℂ P3) (v : P3) (L : ℂ) (hL : L ≠ 0) (h : C L * v ∈ S) : v ∈ S := by
   have := S.smul_mem L⁻¹ h
   rwa [smul_eq_C_mul, ← mul_assoc, ← map_mul, inv_mul_cancel₀ hL, map_one, one_mul] at this
 
+/--
+@isnad1 id=mem.7h3v.s11.e5a4b2cae80e from=translated src=- shape=316df7c5 vocab=5e30d39a
+-/
 theorem one_mem_of_stable (ν : Fin 3 → ℂ)
     (h01 : ν 0 - ν 1 - 1 ≠ 0) (h02 : ν 0 - ν 2 - 1 ≠ 0) (h12 : ν 1 - ν 2 - 1 ≠ 0)
     (S₀ S₂ : Submodule ℂ P3)
@@ -262,6 +355,9 @@ theorem one_mem_of_stable (ν : Fin 3 → ℂ)
       exact (mul_eq_zero.1 e).resolve_right hdet
     simp [hα, hβ]
 
+/--
+@isnad1 id=mem.5h3v.s10.2ad6ad822e10 from=translated src=- shape=94f9c338 vocab=99a85486
+-/
 theorem X_two_mem_of_stable (ν : Fin 3 → ℂ) (h01 : ν 0 - ν 1 - 1 ≠ 0)
     (S₁ S₂ : Submodule ℂ P3)
     (hS₁ : S₁ ≤ Submodule.span ℂ {(X 2 : P3)})
@@ -283,6 +379,9 @@ theorem X_two_mem_of_stable (ν : Fin 3 → ℂ) (h01 : ν 0 - ν 1 - 1 ≠ 0)
     refine mem_of_C_mul_mem S₁ _ _ ?_ h
     exact mul_ne_zero (mul_ne_zero (by norm_num) hz) h01
 
+/--
+@isnad1 id=mem.5h3v.s10.19ac00928109 from=translated src=- shape=94f9c338 vocab=99a85486
+-/
 theorem X_one_mem_of_stable (ν : Fin 3 → ℂ) (h02 : ν 0 - ν 2 - 1 ≠ 0)
     (S₁ S₂ : Submodule ℂ P3)
     (hS₁ : S₁ ≤ Submodule.span ℂ {(X 1 : P3)})
@@ -304,12 +403,18 @@ theorem X_one_mem_of_stable (ν : Fin 3 → ℂ) (h02 : ν 0 - ν 2 - 1 ≠ 0)
     refine mem_of_C_mul_mem S₁ _ _ ?_ h
     exact mul_ne_zero (mul_ne_zero (by norm_num) hz) h02
 
+/--
+@isnad1 id=ne.1h1v.s4.b2220dd7eff8 from=translated src=- shape=790175b1 vocab=d58150df
+-/
 lemma ne_zero_of_re_ne_zero {z : ℂ} (h : z.re ≠ 0) : z ≠ 0 := fun hz => h (by simp [hz])
 
 end CompactPictureBottom
 open scoped _root_.P2MW.S_LanglandsTunnell_CubicInduction_compactPicture_bottom_mem_of_transitionStable_degree_le_two.CompactPictureBottom
 
 open CompactPictureBottom in
+/--
+@isnad1 id=other.0h2v.s13.b4ddf4704998 from=translated src=- shape=70f7c38d vocab=e790db27
+-/
 theorem solution
     (τ τ₃ : ℝ) :
     let Ξ : (Fin 3 → ℂ) → MvPolynomial (Fin 3) ℂ → Matrix (Fin 3) (Fin 3) (MvPolynomial (Fin 3) ℂ) :=

@@ -77,6 +77,9 @@ end DiscreteRationalPoints
 
 open LanglandsTunnell.CubicInduction in
 
+/--
+@isnad1 id=discrete.0h0v.s10.f12152daee02 from=translated src=- shape=105f603b vocab=ee556adf
+-/
 theorem solution :
     DiscreteTopology (globalPointsGL 3 (𝓞 ℚ) ℚ).range :=
   DiscreteRationalPoints.discreteTopology_range_globalPointsGL

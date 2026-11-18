@@ -10,5 +10,8 @@ set_option autoImplicit false
 
 open _root_.LanglandsTunnell.ArchBessel hiding integrableOn_exp_neg_mul_add_inv_mul_cpow
 
+/--
+@isnad1 id=eq.1h2v.s6.17ffb2546b81 from=translated src=- shape=fc3248d0 vocab=94517819
+-/
 theorem LanglandsTunnell.ArchBessel.mul_besselKernel_eq_mul_sub (ν : ℂ) (x : ℝ) (hx : 0 < x) :
     ν * besselKernel ν x = (x : ℂ) / 2 * (besselKernel (ν + 1) x - besselKernel (ν - 1) x) := by exact @_root_.P2MW.S_LanglandsTunnell_ArchBessel_mul_besselKernel_eq_mul_sub.solution ν x hx

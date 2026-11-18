@@ -333,6 +333,9 @@ end
 
 open WhittakerWeightOneUniqueness WhittakerWeightOneMellin in
 
+/--
+@isnad1 id=ex.10h7v.s10.a8053e9a3d24 from=translated src=- shape=01a75a52 vocab=f12dc45b
+-/
 theorem solution (u₁ u₂ : ℂ)
     (a₁ a₂ : ZMod 2) (ha : a₁ ≠ a₂) (hu : u₁ ≠ u₂) (W : ℂ → ℂ) (f : ℝ → ℂ) (c : ℂ)
     (hc : c = u₁ - u₂ ∨ c = u₂ - u₁)

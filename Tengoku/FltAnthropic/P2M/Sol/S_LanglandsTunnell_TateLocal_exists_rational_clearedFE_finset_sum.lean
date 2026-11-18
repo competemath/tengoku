@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 namespace RatFELinComb
 
+/--
+@isnad1 id=eq.2h5v.s6.24d9db467c83 from=translated src=- shape=5a031ceb vocab=1feaa785
+-/
 theorem cpow_mul_pow_cpow_neg (q : ℂ) (hq : q ≠ 0) (s : ℂ) (mi m' : ℤ) (k : ℕ) (hk : mi + k = m') :
     q ^ ((m' : ℂ) * s) * (q ^ (-s)) ^ k = q ^ ((mi : ℂ) * s) := by
   subst hk
@@ -17,6 +20,9 @@ theorem cpow_mul_pow_cpow_neg (q : ℂ) (hq : q ≠ 0) (s : ℂ) (mi m' : ℤ) (
   push_cast
   ring
 
+/--
+@isnad1 id=eq.2h5v.s6.46c6d1a062c8 from=translated src=- shape=a147187d vocab=1feaa785
+-/
 theorem cpow_neg_mul_pow_cpow (q : ℂ) (hq : q ≠ 0) (s : ℂ) (mi m' : ℤ) (k : ℕ) (hk : mi + k = m') :
     q ^ ((m' : ℂ) * (-s)) * (q ^ s) ^ k = q ^ ((mi : ℂ) * (-s)) := by
   subst hk
@@ -25,16 +31,25 @@ theorem cpow_neg_mul_pow_cpow (q : ℂ) (hq : q ≠ 0) (s : ℂ) (mi m' : ℤ) (
   push_cast
   ring
 
+/--
+@isnad1 id=ex.0h3v.s5.8ab1e7e38d07 from=translated src=- shape=574388f3 vocab=20c9e5a2
+-/
 theorem exists_upper_int {ι : Type*} (S : Finset ι) (m : ι → ℤ) : ∃ m' : ℤ, ∀ i ∈ S, m i ≤ m' := by
   refine ⟨((S.sup fun i => (m i).toNat : ℕ) : ℤ), fun i hi => ?_⟩
   have h1 : (m i).toNat ≤ S.sup fun i => (m i).toNat := Finset.le_sup (f := fun i => (m i).toNat) hi
   have h2 : m i ≤ ((m i).toNat : ℤ) := Int.self_le_toNat _
   omega
 
+/--
+@isnad1 id=ex.0h3v.s5.85f748c97d99 from=translated src=- shape=574388f3 vocab=3ba6ec82
+-/
 theorem exists_upper_real {ι : Type*} (S : Finset ι) (σ : ι → ℝ) : ∃ σ' : ℝ, ∀ i ∈ S, σ i ≤ σ' :=
   ⟨∑ i ∈ S, |σ i|, fun i hi =>
     (le_abs_self _).trans (Finset.single_le_sum (f := fun j => |σ j|) (fun j _ => abs_nonneg _) hi)⟩
 
+/--
+@isnad1 id=ex.1h4v.s6.6af4e94160b3 from=translated src=- shape=068683e1 vocab=e8f60cd6
+-/
 theorem exists_shift {ι : Type*} (S : Finset ι) (m : ι → ℤ) (m' : ℤ) (hm' : ∀ i ∈ S, m i ≤ m') :
     ∃ k : ι → ℕ, ∀ i ∈ S, m i + (k i : ℕ) = m' :=
   ⟨fun i => (m' - m i).toNat, fun i hi => by
@@ -44,6 +59,9 @@ theorem exists_shift {ι : Type*} (S : Finset ι) (m : ι → ℤ) (m' : ℤ) (h
 end RatFELinComb
 
 open RatFELinComb in
+/--
+@isnad1 id=ex.6h17v.s10.036dd1a53505 from=translated src=- shape=ef422e76 vocab=fea3c4a0
+-/
 theorem solution
     (q : ℂ) (hq : q ≠ 0) (Γn Γd : Polynomial ℂ) (eΓ : ℤ)
     {ι : Type*} (S : Finset ι) (c : ι → ℂ) (Z Zd : ι → ℂ → ℂ)

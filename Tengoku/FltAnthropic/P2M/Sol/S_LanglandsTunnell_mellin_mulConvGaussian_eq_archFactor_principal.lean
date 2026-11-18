@@ -207,6 +207,9 @@ end MellinGaussianConvolution
 
 open MellinGaussianConvolution in
 
+/--
+@isnad1 id=eq.2h5v.s8.641c0a85bf39 from=translated src=- shape=8c4e97c6 vocab=889afce0
+-/
 theorem solution (u₁ : ℂ) (a₁ : ZMod 2)
     (u₂ : ℂ) (a₂ : ZMod 2) (s : ℂ) (h₁ : 0 < (s + (u₁ + signShift a₁)).re)
     (h₂ : 0 < (s + (u₂ + signShift a₂)).re) :

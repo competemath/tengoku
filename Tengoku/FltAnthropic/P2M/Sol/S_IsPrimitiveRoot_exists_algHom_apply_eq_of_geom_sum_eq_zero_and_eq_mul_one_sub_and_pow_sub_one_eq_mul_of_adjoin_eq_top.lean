@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open Polynomial IsLocalRing Finset
 
+/--
+@isnad1 id=and.6h5v.s9.bb148fac6787 from=translated src=- shape=b6b98f6f vocab=531652a7
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime] (hq : 3 ≤ q)
     (A₀ : Type) [CommRing A₀] [IsDomain A₀] [IsDiscreteValuationRing A₀]

@@ -14,6 +14,9 @@ open Real
 
 namespace OcGammaRatio
 
+/--
+@isnad1 id=le.3h2v.s6.97591cdf6748 from=translated src=- shape=b41daec0 vocab=b1465651
+-/
 theorem Gamma_add_frac_le {y f : ℝ} (hy : 0 < y) (hf0 : 0 ≤ f) (hf1 : f ≤ 1) :
     Real.Gamma (y + f) ≤ y ^ f * Real.Gamma y := by
   have hG := Real.Gamma_pos_of_pos hy
@@ -30,6 +33,9 @@ theorem Gamma_add_frac_le {y f : ℝ} (hy : 0 < y) (hf0 : 0 ≤ f) (hf1 : f ≤ 
     _ = y ^ f * (Real.Gamma y ^ (1 - f) * Real.Gamma y ^ f) := by ring
     _ = y ^ f * Real.Gamma y := by rw [← Real.rpow_add hG]; norm_num
 
+/--
+@isnad1 id=le.1h2v.s6.21685e98eec8 from=translated src=- shape=a3779764 vocab=cf65fdac
+-/
 theorem Gamma_add_nat_le {s : ℝ} (hs : 0 < s) (m : ℕ) :
     Real.Gamma (s + m) ≤ (s + m) ^ m * Real.Gamma s := by
   induction m with
@@ -44,6 +50,9 @@ theorem Gamma_add_nat_le {s : ℝ} (hs : 0 < s) (m : ℕ) :
       _ ≤ (s + m + 1) ^ (m + 1) * Real.Gamma s :=
           mul_le_mul_of_nonneg_right (pow_le_pow_left₀ hsm.le (by linarith) _) hG.le
 
+/--
+@isnad1 id=le.1h2v.s5.cf63882df72a from=translated src=- shape=3003664c vocab=f008d337
+-/
 theorem Gamma_sub_nat_mul_le {s : ℝ} (n : ℕ) (hs : (n : ℝ) < s) :
     Real.Gamma (s - n) * (s - n) ^ n ≤ Real.Gamma s := by
   induction n with
@@ -65,6 +74,9 @@ theorem Gamma_sub_nat_mul_le {s : ℝ} (n : ℕ) (hs : (n : ℝ) < s) :
           rw [hrec]; exact mul_nonneg h0.le hGpos.le
       _ ≤ Real.Gamma s := ih'
 
+/--
+@isnad1 id=ex.0h1v.s6.397268da3aee from=translated src=- shape=cc33e232 vocab=b1465651
+-/
 theorem exists_Gamma_add_le_mul_rpow (d : ℝ) :
     ∃ K R : ℝ, 0 < K ∧ 0 < R ∧ ∀ y : ℝ, R ≤ y → Real.Gamma (y + d) ≤ K * y ^ d * Real.Gamma y := by
   set m : ℤ := ⌊d⌋ with hm
@@ -115,6 +127,9 @@ theorem exists_Gamma_add_le_mul_rpow (d : ℝ) :
 
 end OcGammaRatio
 
+/--
+@isnad1 id=ex.0h3v.s6.7cb46ffa8a48 from=translated src=- shape=a427e372 vocab=f81d3912
+-/
 theorem solution
     (d τ τ' : ℝ) :
     ∃ K R : ℝ, 0 < K ∧ ∀ y : ℝ, R ≤ y →

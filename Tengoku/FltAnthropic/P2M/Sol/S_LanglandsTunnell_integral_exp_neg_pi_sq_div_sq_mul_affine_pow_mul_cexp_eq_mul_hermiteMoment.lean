@@ -23,11 +23,17 @@ def J (k : ℕ) (η t : ℝ) : ℂ :=
 def j (k : ℕ) (η t : ℝ) (u : ℝ) : ℂ :=
   (Real.exp (-(Real.pi * u ^ 2)) : ℂ) * cexp (2 * Real.pi * I * η * u) * ((t : ℂ) + I * u) ^ k
 
+/--
+@isnad1 id=eq.0h2v.s5.92abf61da7fb from=translated src=- shape=2990262f vocab=5c423e91
+-/
 lemma norm_cexp_phase (η u : ℝ) : ‖cexp (2 * Real.pi * I * η * u)‖ = 1 := by
   rw [norm_exp]
   have : (2 * (Real.pi : ℂ) * I * η * u).re = 0 := by simp [mul_re, mul_im]
   rw [this, Real.exp_zero]
 
+/--
+@isnad1 id=integrab.1h1v.s5.c5039c66c39e from=translated src=- shape=32188264 vocab=c5397d2b
+-/
 lemma integrable_exp_neg_mul_abs {a : ℝ} (ha : 0 < a) : Integrable (fun u : ℝ => Real.exp (-(a * |u|))) := by
   have h1 : IntegrableOn (fun t : ℝ => Real.exp (-(a * t))) (Ioi 0) := by
     have := integrableOn_rpow_mul_exp_neg_mul_rpow (s := 0) (p := 1) (by norm_num) (zero_lt_one' ℝ) ha
@@ -45,6 +51,9 @@ lemma integrable_exp_neg_mul_abs {a : ℝ} (ha : 0 < a) : Integrable (fun u : �
   have := h2.union h1'
   rwa [Iic_union_Ioi, integrableOn_univ] at this
 
+/--
+@isnad1 id=le.0h4v.s6.29bf8636854b from=translated src=- shape=a9383970 vocab=73e72aa5
+-/
 lemma norm_j_le (k : ℕ) (η t u : ℝ) :
     ‖j k η t u‖ ≤ (k.factorial : ℝ) * Real.exp (|t| + Real.pi / 4) * Real.exp (-((Real.pi - 1) * |u|)) := by
   unfold j
@@ -70,15 +79,24 @@ lemma norm_j_le (k : ℕ) (η t u : ℝ) :
     _ = (k.factorial : ℝ) * Real.exp (|t| + Real.pi / 4) * Real.exp (-((Real.pi - 1) * |u|)) := by
         rw [mul_comm, mul_assoc, mul_assoc, ← Real.exp_add, ← Real.exp_add]; congr 2; ring
 
+/--
+@isnad1 id=continuo.0h3v.s4.b0d0f54ff7c2 from=translated src=- shape=410ba7e5 vocab=fa6fd487
+-/
 lemma continuous_j (k : ℕ) (η t : ℝ) : Continuous (j k η t) := by
   unfold j; fun_prop
 
+/--
+@isnad1 id=integrab.0h3v.s5.aaf166a53781 from=translated src=- shape=47eb10bc vocab=6afb419b
+-/
 lemma integrable_j (k : ℕ) (η t : ℝ) : Integrable (j k η t) := by
   refine Integrable.mono' ((integrable_exp_neg_mul_abs (a := Real.pi - 1) (by linarith [Real.pi_gt_three])).const_mul
     ((k.factorial : ℝ) * Real.exp (|t| + Real.pi / 4))) (continuous_j k η t).aestronglyMeasurable
     (ae_of_all _ fun u => ?_)
   exact norm_j_le k η t u
 
+/--
+@isnad1 id=and.0h3v.s6.c8e8f9a8709c from=translated src=- shape=d1684a15 vocab=1e6dbb1d
+-/
 lemma tendsto_j_zero (k : ℕ) (η t : ℝ) :
     Tendsto (j k η t) atTop (𝓝 0) ∧ Tendsto (j k η t) atBot (𝓝 0) := by
   have hK : ∀ l : Filter ℝ, Tendsto (fun u : ℝ => |u|) l atTop →
@@ -92,6 +110,9 @@ lemma tendsto_j_zero (k : ℕ) (η t : ℝ) :
     simpa using h1.const_mul ((k.factorial : ℝ) * Real.exp (|t| + Real.pi / 4))
   exact ⟨hK atTop tendsto_abs_atTop_atTop, hK atBot tendsto_abs_atBot_atTop⟩
 
+/--
+@isnad1 id=hasderiv.0h4v.s8.751c35f2ff49 from=translated src=- shape=80438b70 vocab=3d90116a
+-/
 lemma hasDerivAt_j (k : ℕ) (η t u : ℝ) :
     HasDerivAt (j k η t)
       ((Real.exp (-(Real.pi * u ^ 2)) : ℂ) * cexp (2 * Real.pi * I * η * u) *
@@ -126,6 +147,9 @@ lemma hasDerivAt_j (k : ℕ) (η t u : ℝ) :
   push_cast
   ring
 
+/--
+@isnad1 id=eq.0h3v.s6.a0ca1f9e19bc from=translated src=- shape=d0f36800 vocab=87c4d3b9
+-/
 theorem J_rec (k : ℕ) (η t : ℝ) :
     J (k + 1) η t = ((t - η : ℝ) : ℂ) * J k η t - (((k : ℕ) : ℂ) / (2 * Real.pi)) * J (k - 1) η t := by
   set D' : ℝ → ℂ := fun u => 2 * Real.pi * I * j (k + 1) η t u - 2 * Real.pi * I * ((t - η : ℝ) : ℂ) * j k η t u
@@ -169,6 +193,9 @@ theorem J_rec (k : ℕ) (η t : ℝ) :
   field_simp
   linear_combination key
 
+/--
+@isnad1 id=eq.0h2v.s5.9de8ba36491c from=translated src=- shape=980ae6c5 vocab=be95a4eb
+-/
 theorem J_zero (η t : ℝ) : J 0 η t = cexp (-(Real.pi * η ^ 2)) := by
   have h := congrFun (fourier_gaussian_pi' (b := 1) (by simp) (I * η)) 0
   rw [Real.fourier_real_eq] at h
@@ -186,6 +213,9 @@ theorem J_zero (η t : ℝ) : J 0 η t = cexp (-(Real.pi * η ^ 2)) := by
   rw [show (I * (I * (η : ℂ))) = -η by rw [← mul_assoc, Complex.I_mul_I]; ring]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s6.e172756c41e5 from=translated src=- shape=81707f84 vocab=73472542
+-/
 theorem J_shift (k : ℕ) (η t : ℝ) : J k η t = cexp (-(Real.pi * η ^ 2)) * J k 0 (t - η) := by
   have two : ∀ n : ℕ, J n η t = cexp (-(Real.pi * η ^ 2)) * J n 0 (t - η) ∧
       J (n + 1) η t = cexp (-(Real.pi * η ^ 2)) * J (n + 1) 0 (t - η) := by
@@ -207,6 +237,9 @@ end HM9
 
 end
 
+/--
+@isnad1 id=eq.1h4v.s8.f0686bdf96b2 from=translated src=- shape=05a7093c vocab=0791582e
+-/
 theorem solution
     (α c : ℝ) {y₁ : ℝ} (hy₁ : y₁ ≠ 0) (m : ℕ) :
     ∫ x : ℝ, (Real.exp (-(Real.pi * (x ^ 2 / y₁ ^ 2))) : ℂ) *

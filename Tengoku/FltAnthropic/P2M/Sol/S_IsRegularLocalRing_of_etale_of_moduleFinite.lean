@@ -24,6 +24,9 @@ variable {A : Type u} {B : Type v} [CommRing A] [CommRing B] [Algebra A B] [Alge
 noncomputable def contract (q : PrimeSpectrum B) : PrimeSpectrum A :=
   ⟨q.asIdeal.comap (algebraMap A B), inferInstance⟩
 
+/--
+@isnad1 id=strictmo.0h2v.s6.5989212e0598 from=translated src=- shape=9fb30920 vocab=539b20fe
+-/
 theorem contract_strictMono : StrictMono (contract (A := A) (B := B)) := by
   intro p q hpq
   have hlt : p.asIdeal < q.asIdeal := (PrimeSpectrum.asIdeal_lt_asIdeal p q).mpr hpq
@@ -31,9 +34,15 @@ theorem contract_strictMono : StrictMono (contract (A := A) (B := B)) := by
   have := Ideal.IsIntegral.comap_lt_comap (R := A) hlt
   exact (PrimeSpectrum.asIdeal_lt_asIdeal _ _).mp this
 
+/--
+@isnad1 id=le.0h2v.s5.87bbd3c6d390 from=translated src=- shape=35d53890 vocab=97bd58c3
+-/
 theorem le_dim : ringKrullDim B ≤ ringKrullDim A :=
   krullDim_le_of_strictMono _ contract_strictMono
 
+/--
+@isnad1 id=ex.2h4v.s9.7be3d9bec2b5 from=translated src=- shape=6ab2d965 vocab=e25f3053
+-/
 theorem exists_lift (hinj : Function.Injective (algebraMap A B)) :
     ∀ (n : ℕ) (p : LTSeries (PrimeSpectrum A)), p.length = n →
       ∃ q : LTSeries (PrimeSpectrum B), q.length = n ∧
@@ -69,6 +78,9 @@ theorem exists_lift (hinj : Function.Injective (algebraMap A B)) :
     refine ⟨q'.snoc ⟨Q, hQp⟩ hlt, by simp [hq'len], ?_⟩
     simpa using hQ
 
+/--
+@isnad1 id=le.1h2v.s6.b44ee6c1ba20 from=translated src=- shape=e3a90ee3 vocab=1a19cc10
+-/
 theorem dim_le (hinj : Function.Injective (algebraMap A B)) : ringKrullDim A ≤ ringKrullDim B := by
   unfold ringKrullDim krullDim
   refine iSup_le fun p => ?_
@@ -81,6 +93,9 @@ namespace KFRD
 
 variable {R : Type*} [CommRing R] {X : Type*} [AddCommGroup X] [Module R X]
 
+/--
+@isnad1 id=eq.1h4v.s9.18ff8cb0520b from=translated src=- shape=9f7b98a0 vocab=b9001cec
+-/
 theorem length_quot_eq_add (S E : Submodule R X) (h : S ≤ E) :
     Module.length R (X ⧸ S) = Module.length R (↥E ⧸ S.comap E.subtype) + Module.length R (X ⧸ E) := by
   let φ : ↥E →ₗ[R] X ⧸ S := S.mkQ.comp E.subtype
@@ -94,6 +109,9 @@ theorem length_quot_eq_add (S E : Submodule R X) (h : S ≤ E) :
   rw [Module.length_eq_add_of_exact (E.map S.mkQ).subtype (E.map S.mkQ).mkQ (Submodule.subtype_injective _)
     (Submodule.mkQ_surjective _) (LinearMap.exact_subtype_mkQ _), e1.length_eq, e2.length_eq]
 
+/--
+@isnad1 id=eq.0h1v.s8.22b4c55b1c4f from=translated src=- shape=a54e6dce vocab=3f855240
+-/
 theorem length_quotient_maximalIdeal_sq (R : Type*) [CommRing R] [IsLocalRing R] [IsNoetherianRing R] :
     Module.length R (R ⧸ maximalIdeal R ^ 2) = 1 + ((maximalIdeal R).spanFinrank : ℕ∞) := by
   rw [length_quot_eq_add (X := R) (maximalIdeal R ^ 2) (maximalIdeal R) (Ideal.pow_le_self two_ne_zero), add_comm]
@@ -112,6 +130,9 @@ theorem length_quotient_maximalIdeal_sq (R : Type*) [CommRing R] [IsLocalRing R]
     rw [e.length_eq, Module.length_eq_of_surjective (S := R) (R := ResidueField R) (M := CotangentSpace R)
       IsLocalRing.residue_surjective, Module.length_eq_finrank, ← spanFinrank_maximalIdeal_eq_finrank_cotangentSpace]
 
+/--
+@isnad1 id=and.0h2v.s7.35b64be5780c from=translated src=- shape=689d4311 vocab=46b7ad9f
+-/
 theorem core (B : Type u) [CommRing B] [IsLocalRing B] [IsNoetherianRing B]
     (B' : Type v) [CommRing B'] [IsLocalRing B'] [IsNoetherianRing B'] [Algebra B B'] [Module.Finite B B'] [FaithfulSMul B B']
     [Algebra.Etale B B'] :
@@ -146,6 +167,9 @@ theorem core (B : Type u) [CommRing B] [IsLocalRing B] [IsNoetherianRing B]
 
 end KFRD
 
+/--
+@isnad1 id=isregula.0h2v.s6.ca096e63db7d from=translated src=- shape=5d36f627 vocab=f82743b4
+-/
 theorem solution
     (B : Type*) [CommRing B] [IsLocalRing B] [IsNoetherianRing B]
     (B' : Type*) [CommRing B'] [IsLocalRing B'] [Algebra B B'] [Module.Finite B B'] [FaithfulSMul B B']

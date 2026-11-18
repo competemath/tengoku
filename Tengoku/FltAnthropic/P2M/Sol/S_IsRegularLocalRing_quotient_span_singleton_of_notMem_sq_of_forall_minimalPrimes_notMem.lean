@@ -17,6 +17,9 @@ namespace No4PatchingCore
 section FromABFreeness
 variable {R : Type u} [CommRing R]
 
+/--
+@isnad1 id=ex.0h1v.s5.c841e13b9027 from=translated src=- shape=0788e695 vocab=53437fc2
+-/
 theorem exists_ringKrullDim_eq_natCast (R : Type u) [CommRing R] [IsNoetherianRing R]
     [IsLocalRing R] : ∃ d : ℕ, ringKrullDim R = (d : WithBot ℕ∞) := by
   have h1 : ringKrullDim R ≠ ⊤ := ringKrullDim_ne_top
@@ -33,6 +36,9 @@ end FromABFreeness
 section Exchange0
 variable (R : Type u) [CommRing R]
 
+/--
+@isnad1 id=ex.2h2v.s8.c083169637d5 from=translated src=- shape=cb5acc2e vocab=b88204f3
+-/
 theorem exists_finite_span_eq_maximalIdeal_mem [IsLocalRing R] [IsNoetherianRing R]
     {x : R} (hx : x ∈ maximalIdeal R) (hx2 : x ∉ maximalIdeal R ^ 2) :
     ∃ S : Set R, x ∈ S ∧ S.Finite ∧ S.ncard ≤ (maximalIdeal R).spanFinrank ∧
@@ -114,11 +120,17 @@ section DimensionDrop
 
 variable {R : Type u} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
 
+/--
+@isnad1 id=eq.0h1v.s6.668de94136fb from=translated src=- shape=ce5804ae vocab=6ff9f50b
+-/
 theorem annihilator_self_eq_bot (R : Type u) [CommRing R] : Module.annihilator R R = ⊥ := by
   rw [eq_bot_iff]
   intro r hr
   simpa using Module.mem_annihilator.mp hr 1
 
+/--
+@isnad1 id=eq.2h2v.s9.396364e93204 from=translated src=- shape=4867e970 vocab=1eb1da5a
+-/
 theorem ringKrullDim_quotSMulTop_succ_eq_of_forall_notMem_minimalPrimes
     {x : R} (hx : x ∈ maximalIdeal R) (hxmin : ∀ p ∈ minimalPrimes R, x ∉ p) :
     ringKrullDim (QuotSMulTop x R) + 1 = ringKrullDim R := by
@@ -129,6 +141,9 @@ theorem ringKrullDim_quotSMulTop_succ_eq_of_forall_notMem_minimalPrimes
   refine hxmin p ?_
   rwa [annihilator_self_eq_bot] at hp
 
+/--
+@isnad1 id=eq.2h2v.s7.cf6cfcd8d902 from=translated src=- shape=e213f437 vocab=7421f17c
+-/
 theorem ringKrullDim_quotient_span_singleton_succ_eq_of_forall_notMem_minimalPrimes
     {x : R} (hx : x ∈ maximalIdeal R) (hxmin : ∀ p ∈ minimalPrimes R, x ∉ p) :
     ringKrullDim (R ⧸ Ideal.span {x}) + 1 = ringKrullDim R := by
@@ -145,6 +160,9 @@ section QuotientRegularity
 
 variable (R : Type u) [CommRing R] [IsRegularLocalRing R]
 
+/--
+@isnad1 id=and.3h2v.s9.100e0fbedfea from=translated src=- shape=0a0fd3cf vocab=eb879bbb
+-/
 theorem isRegularLocalRing_quotient_span_singleton_of_forall_notMem_minimalPrimes
     {x : R} (hx : x ∈ maximalIdeal R) (hx2 : x ∉ maximalIdeal R ^ 2)
     (hxmin : ∀ p ∈ minimalPrimes R, x ∉ p) [IsLocalRing (R ⧸ Ideal.span {x})] :
@@ -238,6 +256,9 @@ end W2RLR
 
 open IsLocalRing
 
+/--
+@isnad1 id=and.3h2v.s9.100e0fbedfea from=translated src=- shape=0a0fd3cf vocab=eb879bbb
+-/
 theorem solution
     (R : Type*) [CommRing R] [IsRegularLocalRing R] {x : R}
     (hx : x ∈ maximalIdeal R) (hx2 : x ∉ maximalIdeal R ^ 2)

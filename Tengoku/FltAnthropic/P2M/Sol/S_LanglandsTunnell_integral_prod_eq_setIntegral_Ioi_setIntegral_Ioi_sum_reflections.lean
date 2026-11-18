@@ -13,6 +13,9 @@ open MeasureTheory Set
 
 namespace RA7X
 
+/--
+@isnad1 id=eq.1h1v.s6.4c0cc322fc73 from=translated src=- shape=251ed341 vocab=56097d57
+-/
 theorem fold₁ (f : ℝ → ℂ) (hf : Integrable f (volume : Measure ℝ)) :
     ∫ t : ℝ, f t = ∫ t in Set.Ioi (0 : ℝ), (f t + f (-t)) := by
   rw [integral_add hf.integrableOn hf.comp_neg.integrableOn, integral_comp_neg_Ioi, neg_zero,
@@ -20,6 +23,9 @@ theorem fold₁ (f : ℝ → ℂ) (hf : Integrable f (volume : Measure ℝ)) :
 
 end RA7X
 
+/--
+@isnad1 id=eq.1h1v.s7.72c76694aaf5 from=translated src=- shape=5e81a05d vocab=1d331086
+-/
 theorem solution
     (F : ℝ × ℝ → ℂ) (hF : Integrable F ((volume : Measure ℝ).prod (volume : Measure ℝ))) :
     ∫ p : ℝ × ℝ, F p ∂((volume : Measure ℝ).prod (volume : Measure ℝ)) =

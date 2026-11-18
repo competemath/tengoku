@@ -20,12 +20,18 @@ open Real Set MeasureTheory
 
 def J (k : ℕ) : ℝ := ∫ u : ℝ, u ^ k * rexp (-(Real.pi * u ^ 2))
 
+/--
+@isnad1 id=integrab.0h1v.s6.c4cab3e98c0a from=translated src=- shape=30ca6ffe vocab=dc82ca3d
+-/
 theorem integrable_pow_gauss (k : ℕ) : Integrable (fun u : ℝ => u ^ k * rexp (-(Real.pi * u ^ 2))) := by
   have h := integrable_rpow_mul_exp_neg_mul_sq Real.pi_pos
     (show (-1 : ℝ) < (k : ℝ) by have := Nat.cast_nonneg (α := ℝ) k; linarith)
   refine h.congr (Filter.Eventually.of_forall fun u => ?_)
   simp only [Real.rpow_natCast, neg_mul]
 
+/--
+@isnad1 id=eq.0h1v.s5.cf4e3981df0a from=translated src=- shape=2df47cae vocab=6460de41
+-/
 theorem J_odd (r : ℕ) : J (2 * r + 1) = 0 := by
   unfold J
   have h := Measure.integral_comp_mul_left (fun u : ℝ => u ^ (2 * r + 1) * rexp (-(Real.pi * u ^ 2))) (-1)
@@ -38,6 +44,9 @@ theorem J_odd (r : ℕ) : J (2 * r + 1) = 0 := by
   rw [h2, integral_neg] at h
   linarith
 
+/--
+@isnad1 id=eq.0h1v.s6.7bac77ae4dda from=translated src=- shape=f1539b31 vocab=072eacc0
+-/
 theorem factorial_two_mul (r : ℕ) :
     ((2 * r).factorial : ℝ) = 2 ^ r * (r.factorial : ℝ) * ((2 * r - 1).doubleFactorial : ℝ) := by
   rcases r with _ | k
@@ -49,6 +58,9 @@ theorem factorial_two_mul (r : ℕ) :
     push_cast
     ring
 
+/--
+@isnad1 id=eq.0h1v.s6.5fd499b91b0a from=translated src=- shape=fe0bd4ad vocab=103dda18
+-/
 theorem J_even (r : ℕ) : J (2 * r) = ((2 * r).factorial : ℝ) / ((r.factorial : ℝ) * (4 * Real.pi) ^ r) := by
   unfold J
   have h1 : (fun u : ℝ => u ^ (2 * r) * rexp (-(Real.pi * u ^ 2))) =
@@ -74,6 +86,9 @@ theorem J_even (r : ℕ) : J (2 * r) = ((2 * r).factorial : ℝ) / ((r.factorial
   rw [h4π]
   field_simp
 
+/--
+@isnad1 id=eq.0h2v.s7.389b7ec6dde3 from=translated src=- shape=565a64c0 vocab=bbca133c
+-/
 theorem integral_gauss_mul_I_pow (k : ℕ) (c : ℂ) :
     ∫ u : ℝ, (Real.exp (-(Real.pi * u ^ 2)) : ℂ) * ((Complex.I * (u : ℂ)) ^ k * c) =
       Complex.I ^ k * c * (J k : ℂ) := by
@@ -83,6 +98,9 @@ theorem integral_gauss_mul_I_pow (k : ℕ) (c : ℂ) :
   simp only [Complex.ofReal_mul, Complex.ofReal_pow, mul_pow]
   ring
 
+/--
+@isnad1 id=integrab.0h2v.s6.da3afbf58d6a from=translated src=- shape=e8894277 vocab=9785acd7
+-/
 theorem integrable_term (k : ℕ) (c : ℂ) :
     Integrable (fun u : ℝ => (Real.exp (-(Real.pi * u ^ 2)) : ℂ) * ((Complex.I * (u : ℂ)) ^ k * c)) := by
   have h0 : Integrable (fun u : ℝ => (((u ^ k * rexp (-(Real.pi * u ^ 2))) : ℝ) : ℂ)) :=
@@ -92,6 +110,9 @@ theorem integrable_term (k : ℕ) (c : ℂ) :
   simp only [Complex.ofReal_mul, Complex.ofReal_pow, mul_pow]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s6.dd0709e3b8d1 from=translated src=- shape=e3f1e679 vocab=27180c1b
+-/
 theorem filter_even_range (m : ℕ) :
     (Finset.range (m + 1)).filter (fun k => Even k) = (Finset.range (m / 2 + 1)).image (fun r => 2 * r) := by
   ext k
@@ -105,6 +126,9 @@ theorem filter_even_range (m : ℕ) :
 end HermiteC1
 
 open HermiteC1 in
+/--
+@isnad1 id=eq.0h2v.s8.0e5fef5bbf94 from=translated src=- shape=18fb24ac vocab=e12bf95d
+-/
 theorem solution (t : ℝ) (m : ℕ) :
     ∫ u : ℝ, (Real.exp (-(Real.pi * u ^ 2)) : ℂ) * (((t : ℝ) : ℂ) + Complex.I * (u : ℂ)) ^ m =
       ∑ r ∈ Finset.range (m / 2 + 1),

@@ -20,11 +20,17 @@ export _root_.LanglandsTunnell.ArchBessel (besselKernel)
 namespace MellinK
 open _root_.LanglandsTunnell.ArchBessel open _root_.LanglandsTunnell
 
+/--
+@isnad1 id=integrab.1h4v.s6.5af4d2b0ee09 from=translated src=- shape=17c7ea8c vocab=ec62ff08
+-/
 theorem integrable_of_integral_ne_zero {α : Type*} [MeasurableSpace α] {μ : Measure α} {E : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E] {f : α → E} (h : ∫ x, f x ∂μ ≠ 0) : Integrable f μ := by
   by_contra hf
   exact h (integral_undef hf)
 
+/--
+@isnad1 id=integrab.2h2v.s6.ec4f2ebceb17 from=translated src=- shape=e7035cd2 vocab=bf7f67f6
+-/
 theorem integrableOn_cpow_mul_exp_neg_mul {a : ℂ} {r : ℝ} (ha : 0 < a.re) (hr : 0 < r) :
     IntegrableOn (fun t : ℝ => (t : ℂ) ^ (a - 1) * Complex.exp (-((r : ℂ) * (t : ℂ)))) (Ioi 0) := by
   apply integrable_of_integral_ne_zero
@@ -32,12 +38,18 @@ theorem integrableOn_cpow_mul_exp_neg_mul {a : ℂ} {r : ℝ} (ha : 0 < a.re) (h
   exact mul_ne_zero (Complex.cpow_ne_zero_iff.mpr (Or.inl (by
     rw [one_div]; exact inv_ne_zero (Complex.ofReal_ne_zero.mpr hr.ne')))) (Complex.Gamma_ne_zero_of_re_pos ha)
 
+/--
+@isnad1 id=integrab.2h2v.s6.4386c7a82bd2 from=translated src=- shape=ae9ff38e vocab=00aaa6dd
+-/
 theorem integrableOn_rpow_mul_exp_neg_mul {a r : ℝ} (ha : 0 < a) (hr : 0 < r) :
     IntegrableOn (fun t : ℝ => t ^ (a - 1) * Real.exp (-(r * t))) (Ioi 0) := by
   apply integrable_of_integral_ne_zero
   rw [Real.integral_rpow_mul_exp_neg_mul_Ioi ha hr]
   exact mul_ne_zero (by positivity) (Real.Gamma_pos_of_pos ha).ne'
 
+/--
+@isnad1 id=eq.2h2v.s7.0abd112f2b57 from=translated src=- shape=f131a900 vocab=8e0078bd
+-/
 theorem integral_cpow_mul_exp_neg_mul_sq {a : ℂ} {y : ℝ} (ha : 0 < a.re) (hy : 0 < y) :
     ∫ t in Ioi (0 : ℝ), (t : ℂ) ^ (2 * a - 1) * Complex.exp (-((y : ℂ) * (t : ℂ) ^ 2)) =
       (1 / 2 : ℂ) * ((1 / (y : ℂ)) ^ a * Complex.Gamma a) := by
@@ -71,6 +83,9 @@ theorem integral_cpow_mul_exp_neg_mul_sq {a : ℂ} {y : ℝ} (ha : 0 < a.re) (hy
         field_simp
     _ = (1 / 2 : ℂ) * ((1 / (y : ℂ)) ^ a * Complex.Gamma a) := by rw [hsub]
 
+/--
+@isnad1 id=eq.2h2v.s7.d8b6f13b7b5a from=translated src=- shape=6dae5c4c vocab=5ba1516a
+-/
 theorem integral_rpow_mul_exp_neg_mul_sq {a y : ℝ} (ha : 0 < a) (hy : 0 < y) :
     ∫ t in Ioi (0 : ℝ), t ^ (2 * a - 1) * Real.exp (-(y * t ^ 2)) = (1 / 2) * ((1 / y) ^ a * Real.Gamma a) := by
   have hsub := integral_comp_rpow_Ioi
@@ -95,12 +110,18 @@ theorem integral_rpow_mul_exp_neg_mul_sq {a y : ℝ} (ha : 0 < a) (hy : 0 < y) :
   rw [hcongr, integral_const_mul] at hsub
   linarith
 
+/--
+@isnad1 id=integrab.2h2v.s7.e019e74779f3 from=translated src=- shape=21241466 vocab=701c7a50
+-/
 theorem integrableOn_rpow_mul_exp_neg_mul_sq {a y : ℝ} (ha : 0 < a) (hy : 0 < y) :
     IntegrableOn (fun t : ℝ => t ^ (2 * a - 1) * Real.exp (-(y * t ^ 2))) (Ioi 0) := by
   apply integrable_of_integral_ne_zero
   rw [integral_rpow_mul_exp_neg_mul_sq ha hy]
   exact mul_ne_zero (by norm_num) (mul_ne_zero (by positivity) (Real.Gamma_pos_of_pos ha).ne')
 
+/--
+@isnad1 id=integrab.3h2v.s7.684224ecad5a from=translated src=- shape=3fc875a7 vocab=e8fe2e94
+-/
 theorem integrableOn_rpow_mul_one_add_sq_rpow_neg {p σ : ℝ} (hp : -1 < p) (hσ : 0 < σ) (hpσ : p - 2 * σ < -1) :
     IntegrableOn (fun t : ℝ => t ^ p * (1 + t ^ 2) ^ (-σ)) (Ioi 0) := by
   have hmeas : Measurable (fun t : ℝ => t ^ p * (1 + t ^ 2) ^ (-σ)) :=
@@ -137,6 +158,9 @@ theorem integrableOn_rpow_mul_one_add_sq_rpow_neg {p σ : ℝ} (hp : -1 < p) (h�
 def F (ν s : ℂ) (p : ℝ × ℝ) : ℂ :=
   (p.1 : ℂ) ^ (s - 1) * (((Real.exp (-(p.1 * (p.2 + p.2⁻¹) / 2)) : ℝ) : ℂ) * ((p.2 : ℂ) ^ (ν - 1)))
 
+/--
+@isnad1 id=measurab.0h2v.s4.85d638db45c4 from=translated src=- shape=168abce8 vocab=824c0fd0
+-/
 theorem measurable_F (ν s : ℂ) : Measurable (F ν s) := by
   unfold F
   refine ((Complex.measurable_ofReal.comp measurable_fst).pow_const _).mul
@@ -144,6 +168,9 @@ theorem measurable_F (ν s : ℂ) : Measurable (F ν s) := by
       ((Complex.measurable_ofReal.comp measurable_snd).pow_const _))
   exact ((measurable_fst.mul (measurable_snd.add measurable_snd.inv)).div_const 2).neg
 
+/--
+@isnad1 id=eq.0h4v.s6.ee5cb5da2dd0 from=translated src=- shape=058204a8 vocab=04201639
+-/
 theorem F_eq (ν s : ℂ) (x t : ℝ) :
     F ν s (x, t) = (t : ℂ) ^ (ν - 1) *
       ((x : ℂ) ^ (s - 1) * Complex.exp (-((((t + t⁻¹) / 2 : ℝ) : ℂ) * (x : ℂ)))) := by
@@ -151,6 +178,9 @@ theorem F_eq (ν s : ℂ) (x t : ℝ) :
   push_cast
   ring_nf
 
+/--
+@isnad1 id=eq.2h4v.s7.3b4e5a04f220 from=translated src=- shape=39f92713 vocab=e4f36c1a
+-/
 theorem norm_F (ν s : ℂ) {x t : ℝ} (hx : 0 < x) (ht : 0 < t) :
     ‖F ν s (x, t)‖ = t ^ (ν.re - 1) * (x ^ (s.re - 1) * Real.exp (-((t + t⁻¹) / 2 * x))) := by
   rw [F_eq, norm_mul, norm_mul, Complex.norm_cpow_eq_rpow_re_of_pos ht, Complex.norm_cpow_eq_rpow_re_of_pos hx,
@@ -158,6 +188,9 @@ theorem norm_F (ν s : ℂ) {x t : ℝ} (hx : 0 < x) (ht : 0 < t) :
   congr 2
   simp only [Complex.neg_re, Complex.mul_re, Complex.ofReal_re, Complex.ofReal_im, mul_zero, sub_zero]
 
+/--
+@isnad1 id=integrab.1h2v.s6.9bc8599d51ca from=translated src=- shape=190fec9d vocab=f808d24c
+-/
 theorem integrable_F (ν s : ℂ) (hs : |ν.re| < s.re) :
     Integrable (F ν s) ((volume.restrict (Ioi (0 : ℝ))).prod (volume.restrict (Ioi (0 : ℝ)))) := by
   have hσ : 0 < s.re := lt_of_le_of_lt (abs_nonneg _) hs
@@ -183,6 +216,9 @@ theorem integrable_F (ν s : ℂ) (hs : |ν.re| < s.re) :
     rw [show ν.re + s.re - 1 = (ν.re - 1) + s.re by ring, Real.rpow_add ht]
     ring
 
+/--
+@isnad1 id=and.1h2v.s6.a98fc02125d0 from=translated src=- shape=145ae3f8 vocab=264a2a81
+-/
 theorem mellin_besselKernel_eq_integral (ν s : ℂ) (hs : |ν.re| < s.re) :
     MellinConvergent (fun x : ℝ => besselKernel ν x) s ∧
       mellin (fun x : ℝ => besselKernel ν x) s = ∫ t in Ioi (0 : ℝ), ∫ x in Ioi (0 : ℝ), F ν s (x, t) := by
@@ -204,6 +240,9 @@ theorem mellin_besselKernel_eq_integral (ν s : ℂ) (hs : |ν.re| < s.re) :
 def G (ν s : ℂ) (p : ℝ × ℝ) : ℂ :=
   (p.1 : ℂ) ^ (ν + s - 1) * ((p.2 : ℂ) ^ (s - 1) * Complex.exp (-((((1 + p.1 ^ 2 : ℝ)) : ℂ) * (p.2 : ℂ))))
 
+/--
+@isnad1 id=measurab.0h2v.s4.f88d7ef2317f from=translated src=- shape=168abce8 vocab=6fc40dcc
+-/
 theorem measurable_G (ν s : ℂ) : Measurable (G ν s) := by
   unfold G
   refine ((Complex.measurable_ofReal.comp measurable_fst).pow_const _).mul
@@ -211,6 +250,9 @@ theorem measurable_G (ν s : ℂ) : Measurable (G ν s) := by
   exact ((Complex.measurable_ofReal.comp (measurable_const.add (measurable_fst.pow_const 2))).mul
     (Complex.measurable_ofReal.comp measurable_snd)).neg
 
+/--
+@isnad1 id=eq.0h4v.s7.44e5a4f931f4 from=translated src=- shape=e6fb4c1e vocab=d5ff6b05
+-/
 theorem G_eq (ν s : ℂ) (t y : ℝ) :
     G ν s (t, y) = ((y : ℂ) ^ (s - 1) * Complex.exp (-(y : ℂ))) *
       ((t : ℂ) ^ (2 * ((ν + s) / 2) - 1) * Complex.exp (-((y : ℂ) * (t : ℂ) ^ 2))) := by
@@ -221,6 +263,9 @@ theorem G_eq (ν s : ℂ) (t y : ℝ) :
   rw [e, show 2 * ((ν + s) / 2) - 1 = ν + s - 1 by ring]
   ring
 
+/--
+@isnad1 id=eq.2h4v.s7.5afed08061fc from=translated src=- shape=62e98d72 vocab=afef50d8
+-/
 theorem norm_G (ν s : ℂ) {t y : ℝ} (ht : 0 < t) (hy : 0 < y) :
     ‖G ν s (t, y)‖ = (y ^ (s.re - 1) * Real.exp (-y)) *
       (t ^ (2 * ((ν.re + s.re) / 2) - 1) * Real.exp (-(y * t ^ 2))) := by
@@ -234,6 +279,9 @@ theorem norm_G (ν s : ℂ) {t y : ℝ} (ht : 0 < t) (hy : 0 < y) :
   · congr 1
     simp only [Complex.re_ofNat, Complex.im_ofNat, Complex.add_re, Complex.div_ofNat_im, zero_mul, sub_zero]
 
+/--
+@isnad1 id=integrab.1h2v.s6.ea0ce7866184 from=translated src=- shape=190fec9d vocab=3abfdcd4
+-/
 theorem integrable_G (ν s : ℂ) (hs : |ν.re| < s.re) :
     Integrable (G ν s) ((volume.restrict (Ioi (0 : ℝ))).prod (volume.restrict (Ioi (0 : ℝ)))) := by
   have hσ : 0 < s.re := lt_of_le_of_lt (abs_nonneg _) hs
@@ -259,6 +307,9 @@ theorem integrable_G (ν s : ℂ) (hs : |ν.re| < s.re) :
     rw [← e]
     ring
 
+/--
+@isnad1 id=eq.2h3v.s7.2b03630b5d5f from=translated src=- shape=3a3b3637 vocab=f2cc6129
+-/
 theorem integral_G_snd (ν s : ℂ) (hσ : 0 < s.re) {t : ℝ} (ht : 0 < t) :
     ∫ y in Ioi (0 : ℝ), G ν s (t, y) =
       (t : ℂ) ^ (ν + s - 1) * ((1 / (((1 + t ^ 2 : ℝ)) : ℂ)) ^ s * Complex.Gamma s) := by
@@ -266,6 +317,9 @@ theorem integral_G_snd (ν s : ℂ) (hσ : 0 < s.re) {t : ℝ} (ht : 0 < t) :
       ((y : ℂ) ^ (s - 1) * Complex.exp (-((((1 + t ^ 2 : ℝ)) : ℂ) * (y : ℂ)))) from rfl,
     integral_const_mul, Complex.integral_cpow_mul_exp_neg_mul_Ioi hσ (by positivity)]
 
+/--
+@isnad1 id=eq.2h3v.s7.38042df771cd from=translated src=- shape=f3e24fe7 vocab=86ea5d88
+-/
 theorem integral_G_fst (ν s : ℂ) (hs : |ν.re| < s.re) {y : ℝ} (hy : 0 < y) :
     ∫ t in Ioi (0 : ℝ), G ν s (t, y) =
       ((y : ℂ) ^ (s - 1) * Complex.exp (-(y : ℂ))) *
@@ -277,6 +331,9 @@ theorem integral_G_fst (ν s : ℂ) (hs : |ν.re| < s.re) {y : ℝ} (hy : 0 < y)
       ((t : ℂ) ^ (2 * ((ν + s) / 2) - 1) * Complex.exp (-((y : ℂ) * (t : ℂ) ^ 2))) from funext fun t => G_eq ν s t y,
     integral_const_mul, integral_cpow_mul_exp_neg_mul_sq ha hy]
 
+/--
+@isnad1 id=eq.1h2v.s7.15acdb5247aa from=translated src=- shape=d2d9fce4 vocab=22b3dd53
+-/
 theorem integral_G_swap (ν s : ℂ) (hs : |ν.re| < s.re) :
     ∫ t in Ioi (0 : ℝ), ∫ y in Ioi (0 : ℝ), G ν s (t, y) = ∫ y in Ioi (0 : ℝ), ∫ t in Ioi (0 : ℝ), G ν s (t, y) :=
   integral_integral_swap (f := fun t y => G ν s (t, y)) (integrable_G ν s hs)
@@ -286,6 +343,9 @@ end LanglandsTunnell.ArchBessel.MellinK
 end
 
 open LanglandsTunnell.ArchBessel.MellinK in
+/--
+@isnad1 id=and.1h2v.s7.b46765231090 from=translated src=- shape=5695cac3 vocab=a187a143
+-/
 theorem solution (ν s : ℂ) (hs : |ν.re| < s.re) :
     MellinConvergent (fun x : ℝ => besselKernel ν x) s ∧
       mellin (fun x : ℝ => besselKernel ν x) s =

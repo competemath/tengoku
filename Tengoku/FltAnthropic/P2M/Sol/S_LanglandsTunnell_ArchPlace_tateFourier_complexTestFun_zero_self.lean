@@ -29,6 +29,9 @@ private theorem psiComplex_mul_eq_exp_inner (z w : ℂ) :
   push_cast
   ring
 
+/--
+@isnad1 id=eq.0h0v.s6.f8655fe4a53a from=translated src=- shape=1800f33f vocab=f6ec46c3
+-/
 theorem tateFourier_psiComplex_complexTestFun_zero_impl :
     tateFourier psiComplex ((2 : ℝ≥0∞) • volume) (complexTestFun 0) = complexTestFun 0 := by
   funext w
@@ -69,5 +72,8 @@ end P7SolHE
 
 end
 
+/--
+@isnad1 id=eq.0h0v.s6.f8655fe4a53a from=translated src=- shape=1800f33f vocab=f6ec46c3
+-/
 theorem solution : tateFourier psiComplex ((2 : ℝ≥0∞) • volume) (complexTestFun 0) = complexTestFun 0 :=
   P7SolHE.tateFourier_psiComplex_complexTestFun_zero_impl

@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_LT_TwistedNorm_exists_mem_hyperbolicCell_a
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=iff.2h4v.s10.89c4eb2958f5 from=translated src=- shape=3448a28d vocab=3406f104
+-/
 theorem LT.TwistedNorm.exists_mem_hyperbolicCell_and_normClassMap_eq_iff_norm_div_ne_one
     {F L : Type*} [Field F] [Field L] [Algebra F L] [FiniteDimensional F L] [IsGalois F L]
     {σ : L ≃ₐ[F] L} (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)

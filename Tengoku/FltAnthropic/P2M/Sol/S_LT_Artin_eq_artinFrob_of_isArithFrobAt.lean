@@ -20,6 +20,9 @@ section Transport
 
 variable {R S : Type*} [CommRing R] [CommRing S] [Algebra R S] {G : Type*} [Group G] [MulSemiringAction G S] [SMulCommClass G R S]
 
+/--
+@isnad1 id=eq.1h4v.s8.a863f231131e from=translated src=- shape=61204daa vocab=9c03c8ed
+-/
 theorem inertia_smul_eq_bot (τ : G) (Q : Ideal S) (hI : Q.inertia G = ⊥) : (τ • Q).inertia G = ⊥ := by
   rw [eq_bot_iff]
   intro g hg
@@ -43,6 +46,9 @@ theorem eq_of_isArithFrobAt_of_inertia_eq_bot {σ σ' : G} {Q : Ideal S} (H : Is
 
 variable [Finite G] [Algebra.IsInvariant R S G]
 
+/--
+@isnad1 id=eq.1h5v.s9.7a43b560f077 from=translated src=- shape=012271a2 vocab=85590afa
+-/
 theorem arithFrobAt_smul (τ : G) (Q : Ideal S) [Q.IsPrime] [Finite (S ⧸ Q)] [Finite (S ⧸ τ • Q)] (hI : Q.inertia G = ⊥) :
     arithFrobAt R G (τ • Q) = τ * arithFrobAt R G Q * τ⁻¹ := by
   have h1 : IsArithFrobAt R (arithFrobAt R G (τ • Q)) (τ • Q) := IsArithFrobAt.arithFrobAt R G (τ • Q)
@@ -56,6 +62,9 @@ section Rows
 variable (K M : Type*) [Field K] [NumberField K] [Field M] [NumberField M] [Algebra K M] [IsGalois K M]
 variable (v : HeightOneSpectrum (𝓞 K))
 
+/--
+@isnad1 id=eq.2h4v.s9.eaa8c83a8fc2 from=translated src=- shape=4288115b vocab=d1f63e18
+-/
 theorem rowA [IsMulCommutative (M ≃ₐ[K] M)] (Q : Ideal (𝓞 M)) [Q.IsPrime] [Finite (𝓞 M ⧸ Q)]
     (hQ : Q.under (𝓞 K) = v.asIdeal) (hI : Q.inertia (M ≃ₐ[K] M) = ⊥) :
     arithFrobAt (𝓞 K) (M ≃ₐ[K] M) Q = artinFrob K M v := by
@@ -71,6 +80,9 @@ theorem rowA [IsMulCommutative (M ≃ₐ[K] M)] (Q : Ideal (𝓞 M)) [Q.IsPrime]
 
 end Rows
 
+/--
+@isnad1 id=eq.3h5v.s10.07ca4145cc81 from=translated src=- shape=57be97ed vocab=45f71d3c
+-/
 theorem rowB (K M : Type*) [Field K] [NumberField K] [Field M] [NumberField M] [Algebra K M]
     [IsGalois K M] (v : HeightOneSpectrum (𝓞 K)) [IsMulCommutative (M ≃ₐ[K] M)] {σ : M ≃ₐ[K] M}
     {Q : Ideal (𝓞 M)} [Q.IsPrime] (H : IsArithFrobAt (𝓞 K) σ Q)
@@ -95,6 +107,9 @@ theorem M4aP2R.ArtinRows.eq_artinFrob_of_isArithFrobAt_impl
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.3h5v.s10.07ca4145cc81 from=translated src=- shape=57be97ed vocab=45f71d3c
+-/
 theorem solution
     (K M : Type*) [Field K] [NumberField K] [Field M] [NumberField M] [Algebra K M] [IsGalois K M]
     (v : IsDedekindDomain.HeightOneSpectrum (NumberField.RingOfIntegers K))

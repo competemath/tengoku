@@ -192,6 +192,9 @@ end GaussianHermiteFourier
 
 open MeasureTheory LanglandsTunnell LanglandsTunnell.TateLocal LanglandsTunnell.ArchPlace
 
+/--
+@isnad1 id=eq.0h2v.s5.5bc77c218bea from=translated src=- shape=f78acf6a vocab=d2747fcc
+-/
 theorem solution (a : ZMod 2) (y : ℝ) :
     tateFourier psiReal volume (realTestFun a) y = (-Complex.I) ^ a.val * realTestFun a y := by
   exact GaussianHermiteFourier.tateFourier_psiReal_realTestFun a y

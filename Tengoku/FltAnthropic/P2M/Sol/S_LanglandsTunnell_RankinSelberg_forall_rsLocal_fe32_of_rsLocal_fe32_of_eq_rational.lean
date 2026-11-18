@@ -18,6 +18,9 @@ open Polynomial
 
 namespace RatClear
 
+/--
+@isnad1 id=eq.3h8v.s7.bd4f8c04e04c from=translated src=- shape=3a697700 vocab=0dc5d34c
+-/
 theorem cross_eq (N : ℕ) (hN : 1 < N) (Z : ℂ → ℂ) (p₀ q₀ p q : Polynomial ℂ) (σ₀ σ : ℝ)
     (h₀ : ∀ s : ℂ, σ₀ < s.re → Z s * q₀.eval ((N : ℂ) ^ (-s)) = p₀.eval ((N : ℂ) ^ (-s)))
     (h : ∀ s : ℂ, σ < s.re → Z s * q.eval ((N : ℂ) ^ (-s)) = p.eval ((N : ℂ) ^ (-s))) :
@@ -50,6 +53,9 @@ theorem cross_eq (N : ℕ) (hN : 1 < N) (Z : ℂ → ℂ) (p₀ q₀ p q : Polyn
   linear_combination q₀.eval ((N : ℂ) ^ (-(((c + n : ℝ)) : ℂ))) * e -
     q.eval ((N : ℂ) ^ (-(((c + n : ℝ)) : ℂ))) * e₀
 
+/--
+@isnad1 id=eq.3h8v.s8.c820cba6df9a from=translated src=- shape=37f67d62 vocab=52b12215
+-/
 theorem cross_eq_dual (N : ℕ) (hN : 1 < N) (D : ℂ → ℂ) (pd₀ qd₀ pd qd : Polynomial ℂ) (σd₀ σd : ℝ)
     (h₀ : ∀ s : ℂ, σd₀ < (1 - s).re → D s * qd₀.eval ((N : ℂ) ^ (-(1 - s))) = pd₀.eval ((N : ℂ) ^ (-(1 - s))))
     (h : ∀ s : ℂ, σd < (1 - s).re → D s * qd.eval ((N : ℂ) ^ (-(1 - s))) = pd.eval ((N : ℂ) ^ (-(1 - s)))) :
@@ -59,6 +65,9 @@ theorem cross_eq_dual (N : ℕ) (hN : 1 < N) (D : ℂ → ℂ) (pd₀ qd₀ pd q
   · have := h₀ (1 - s) (by simpa using hs); simpa using this
   · have := h (1 - s) (by simpa using hs); simpa using this
 
+/--
+@isnad1 id=countabl.3h3v.s6.da7816f143d1 from=translated src=- shape=c1a15344 vocab=5191542b
+-/
 theorem countable_eval_cpow_eq_zero (N : ℕ) (hN : 1 < N) (q : Polynomial ℂ) (hq : q ≠ 0)
     (ℓ : ℂ → ℂ) (hℓ : Function.Injective ℓ) :
     {s : ℂ | q.eval ((N : ℂ) ^ (ℓ s)) = 0}.Countable := by
@@ -85,6 +94,9 @@ theorem countable_eval_cpow_eq_zero (N : ℕ) (hN : 1 < N) (q : Polynomial ℂ) 
 end RatClear
 
 open RatClear in
+/--
+@isnad1 id=eq.10h21v.s10.e60b902a3cdd from=translated src=- shape=2372fe1c vocab=8dfa2979
+-/
 theorem solution
     (N : ℕ) (hN : 1 < N) (Z D : ℂ → ℂ) (E Ed : Polynomial ℂ) (ε a₁ a₂ : ℂ)
     (p₀ q₀ pd₀ qd₀ : Polynomial ℂ) (σ₀ σd₀ : ℝ) (hq₀ : q₀ ≠ 0) (hqd₀ : qd₀ ≠ 0)

@@ -16,6 +16,9 @@ section Poly
 
 variable {K : Type*} [Field K]
 
+/--
+@isnad1 id=ne.2h5v.s9.0e697511536b from=translated src=- shape=4ce1d88d vocab=fd6cdcaf
+-/
 theorem ne_of_X_sub_C_mul_eq {a b c d : K} (hab : a ≠ b)
     (h : (X - C a) * (X - C b) = (X - C c) * (X - C d)) : c ≠ d := by
   intro hcd
@@ -29,6 +32,9 @@ theorem ne_of_X_sub_C_mul_eq {a b c d : K} (hab : a ≠ b)
     rcases mul_eq_zero.mp hb.symm with h1 | h1 <;> exact h1
   exact hab (by rw [sub_eq_zero] at ha' hb'; rw [ha', hb'])
 
+/--
+@isnad1 id=eq.1h2v.s9.d243de818995 from=translated src=- shape=8f39729b vocab=3bcce2cb
+-/
 theorem charpoly_of_apply_one_zero_eq_zero (M : Matrix (Fin 2) (Fin 2) K) (h : M 1 0 = 0) :
     M.charpoly = (X - C (M 0 0)) * (X - C (M 1 1)) := by
   rw [Matrix.charpoly_fin_two, Matrix.trace_fin_two, Matrix.det_fin_two, h, mul_zero, sub_zero,
@@ -42,6 +48,9 @@ section NormRep
 variable {F L : Type*} [Field F] [Field L] [Algebra F L] [FiniteDimensional F L] [IsGalois F L]
   {σ : L ≃ₐ[F] L}
 
+/--
+@isnad1 id=eq.1h4v.s9.09e3ecc23046 from=translated src=- shape=e48c96d5 vocab=0a0f20af
+-/
 theorem charpoly_normRep_map (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ) (δ : GL (Fin 2) L) :
     ((normRep hgen δ : GL (Fin 2) F) : Matrix (Fin 2) (Fin 2) F).charpoly.map (algebraMap F L) =
       ((sigmaNormPow (Matrix.GeneralLinearGroup.map (σ : L →+* L)) (Module.finrank F L) δ :
@@ -49,6 +58,9 @@ theorem charpoly_normRep_map (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpo
   obtain ⟨P, hP⟩ := isNormRep_normRep hgen δ
   exact charpoly_map_eq_charpoly_of_conj_eq_map hP
 
+/--
+@isnad1 id=eq.2h5v.s9.edfb6fecd7ca from=translated src=- shape=8746f925 vocab=2341dd19
+-/
 theorem charpoly_normRep_eq_of_normClassMap_eq (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)
     {δ : GL (Fin 2) L} {γ : GL (Fin 2) F}
     (h : normClassMap hgen (SigmaConjClasses.mk σ δ) = ConjClasses.mk γ) :
@@ -66,10 +78,16 @@ section A
 variable {F L : Type*} [Field F] [Field L] [Algebra F L] [FiniteDimensional F L] [IsGalois F L]
   {σ : L ≃ₐ[F] L}
 
+/--
+@isnad1 id=ne.2h3v.s8.6928f76ea103 from=translated src=- shape=bc2a0118 vocab=21efa1c7
+-/
 theorem det_diag_ne_zero {p q : L} (hp : p ≠ 0) (hq : q ≠ 0) :
     Matrix.det !![p, 0; 0, q] ≠ 0 := by
   simp [Matrix.det_fin_two, hp, hq]
 
+/--
+@isnad1 id=ex.3h5v.s11.f959fcdad731 from=translated src=- shape=5726822c vocab=5bba3170
+-/
 theorem thmA (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)
     (γ : GL (Fin 2) F) (hγ : γ ∈ AutomorphicForm.hyperbolicCell F) (δ : GL (Fin 2) L)
     (h : normClassMap hgen (SigmaConjClasses.mk σ δ) = ConjClasses.mk γ) :
@@ -166,6 +184,9 @@ end A
 
 end R4HypA
 
+/--
+@isnad1 id=ex.3h5v.s11.f959fcdad731 from=translated src=- shape=5726822c vocab=5bba3170
+-/
 theorem solution
     {F L : Type*} [Field F] [Field L] [Algebra F L] [FiniteDimensional F L] [IsGalois F L]
     {σ : L ≃ₐ[F] L} (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)

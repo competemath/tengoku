@@ -19,6 +19,9 @@ open scoped Real
 
 namespace RoadBeta40
 
+/--
+@isnad1 id=and.6h7v.s10.607359bc88ca from=translated src=- shape=073b89e0 vocab=63a497f3
+-/
 theorem bessel_normal_form (a m : ℝ) (hma : a = -2 * m) (b νsq : ℂ) (hν : νsq = (((m + 1 / 2) ^ 2 : ℝ) : ℂ) - b)
     (c : ℝ) (hc : 0 < c) (f F : ℝ → ℂ)
     (hf : DifferentiableOn ℝ f (Set.Ioi 0)) (hf' : DifferentiableOn ℝ (deriv f) (Set.Ioi 0))
@@ -132,6 +135,9 @@ theorem bessel_normal_form (a m : ℝ) (hma : a = -2 * m) (b νsq : ℂ) (hν : 
       = (y : ℂ) ^ 2 * g2 y + (1 / 4 - νsq - 4 * (π : ℂ) ^ 2 * (c : ℂ) ^ 2 * (y : ℂ) ^ 2) * g y := hid
     _ = P y * F y := k
 
+/--
+@isnad1 id=lt.3h2v.s6.834d549adedb from=translated src=- shape=d6c48f62 vocab=110abd66
+-/
 theorem abs_re_lt_one_of_sq (ν lam : ℂ) (hν : ν ^ 2 = 1 - 4 * lam) (hreal : lam.im = 0) (hpos : 0 < lam.re) :
     |ν.re| < 1 := by
   have hre : ν.re * ν.re - ν.im * ν.im = 1 - 4 * lam.re := by
@@ -152,6 +158,9 @@ theorem abs_re_lt_one_of_sq (ν lam : ℂ) (hν : ν ^ 2 = 1 - 4 * lam) (hreal :
     rw [abs_lt]
     constructor <;> nlinarith [hre, hpos]
 
+/--
+@isnad1 id=ex.3h3v.s7.9eb67f040b01 from=translated src=- shape=d3cd9998 vocab=c9ee93b2
+-/
 theorem bound_on_Icc_rpow (f : ℝ → ℂ) (hf : DifferentiableOn ℝ f (Set.Ioi 0)) (c δ : ℝ) (hc : 0 < c) (hδ : 0 ≤ δ) :
     ∃ M : ℝ, 0 ≤ M ∧ ∀ y : ℝ, 1 / c ≤ y → y ≤ 1 → ‖f y‖ ≤ M * y ^ δ := by
   have hsub : Set.Icc (1 / c) 1 ⊆ Set.Ioi 0 := fun y hy => lt_of_lt_of_le (by positivity) hy.1
@@ -170,9 +179,15 @@ theorem bound_on_Icc_rpow (f : ℝ → ℂ) (hf : DifferentiableOn ℝ f (Set.Io
     _ ≤ max M 0 * (c ^ δ * y ^ δ) := mul_le_mul_of_nonneg_left hcy (le_max_right _ _)
     _ = max M 0 * c ^ δ * y ^ δ := by ring
 
+/--
+@isnad1 id=eq.1h2v.s5.a12edea4edac from=translated src=- shape=a142f1d2 vocab=277514d7
+-/
 theorem rpow_neg_mul_self {x : ℝ} (hx : 0 < x) (m : ℝ) : x ^ (-m) * x ^ m = 1 := by
   rw [← Real.rpow_add hx, neg_add_cancel, Real.rpow_zero]
 
+/--
+@isnad1 id=eq.1h2v.s6.6bfe60e02920 from=translated src=- shape=178f4b81 vocab=5b6eea88
+-/
 theorem rpow_coupling {x : ℝ} (hx : 0 < x) (m : ℝ) : x ^ (-m) * x = x ^ (2 : ℕ) * x ^ (-(m + 1)) := by
   have h1 : x ^ (-m) * x = x ^ (-m + 1) := by rw [Real.rpow_add hx, Real.rpow_one]
   have h2 : x ^ (2 : ℕ) * x ^ (-(m + 1)) = x ^ (-m + 1) := by
@@ -183,6 +198,9 @@ end RoadBeta40
 
 open RoadBeta40
 
+/--
+@isnad1 id=ex.6h5v.s10.54f67082d175 from=translated src=- shape=f58c473f vocab=9d3f8688
+-/
 theorem solution
     (n : ℕ) (κ lam lam' : ℂ) (hκ : κ ≠ 0) (hlam' : lam' = lam) (hreal : lam.im = 0) (hpos : 0 < lam.re) (f : ℕ → ℝ → ℂ)
     (hsys :

@@ -121,6 +121,9 @@ private theorem transform_pureTensor_mixedSpace_eq (K : Type) [Field K] [NumberF
 end MixedSpacePureTensorTransform
 
 open scoped Classical in
+/--
+@isnad1 id=eq.1h5v.s11.f40067afba8b from=translated src=- shape=3fce6b9e vocab=87a95e8b
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K]
     (a : {w : InfinitePlace K // w.IsReal} → ZMod 2) (k : {w : InfinitePlace K // w.IsComplex} → ℤ)

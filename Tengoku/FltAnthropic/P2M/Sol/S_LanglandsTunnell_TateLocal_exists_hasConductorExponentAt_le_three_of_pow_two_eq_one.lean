@@ -21,6 +21,9 @@ open _root_.LanglandsTunnell.TateLocal open _root_.LanglandsTunnell
 
 open Polynomial Rat.HeightOneSpectrum
 
+/--
+@isnad1 id=ex.1h2v.s10.a531851799d2 from=translated src=- shape=e1f23b1d vocab=166254d5
+-/
 theorem exists_sq_eq_of_mem_higherUnitsAt_three (v : HeightOneSpectrum (𝓞 ℚ)) (u : (v.adicCompletion ℚ)ˣ)
     (hu : u ∈ higherUnitsAt ℚ v 3) : ∃ w : (v.adicCompletion ℚ)ˣ, w ^ 2 = u := by
   classical
@@ -116,6 +119,9 @@ theorem exists_sq_eq_of_mem_higherUnitsAt_three (v : HeightOneSpectrum (𝓞 ℚ
 
 end LanglandsTunnell.TateLocal.QuadCond
 
+/--
+@isnad1 id=ex.1h2v.s10.ec5102768a2f from=translated src=- shape=af6a361e vocab=c1a8df19
+-/
 theorem solution
     (p : HeightOneSpectrum (𝓞 ℚ)) (χ : (p.adicCompletion ℚ)ˣ →* ℂˣ) (hχ : ∀ x : (p.adicCompletion ℚ)ˣ, χ x ^ 2 = 1) :
     ∃ e : ℕ, e ≤ 3 ∧ LanglandsTunnell.TateLocal.HasConductorExponentAt ℚ p χ e := by

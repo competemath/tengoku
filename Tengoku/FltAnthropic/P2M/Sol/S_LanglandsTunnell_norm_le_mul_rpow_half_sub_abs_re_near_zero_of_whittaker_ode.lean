@@ -404,6 +404,9 @@ end GluePNearZero41
 
 open GluePNearZero41 in
 
+/--
+@isnad1 id=and.3h3v.s9.fe69ac6ea6ba from=translated src=- shape=af191303 vocab=d1a9e9b9
+-/
 theorem solution
     (ν : ℂ) (k : ℝ) (f : ℝ → ℂ)
     (hf : DifferentiableOn ℝ f (Set.Ioi 0)) (hf' : DifferentiableOn ℝ (deriv f) (Set.Ioi 0))

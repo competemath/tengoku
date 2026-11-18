@@ -15,6 +15,9 @@ section Piece
 
 variable {W : Type*} [AddCommGroup W] [Module ℂ W]
 
+/--
+@isnad1 id=eq.2h4v.s8.468344a5bcc3 from=translated src=- shape=1a422c5b vocab=3ef83c02
+-/
 theorem form_zero_left (M₀ : Submodule ℂ W) (B : W → W → ℂ)
     (hlin : ∀ (z : ℂ), ∀ w₁ ∈ M₀, ∀ w₂ ∈ M₀, ∀ w' ∈ M₀, B (z • w₁ + w₂) w' = z * B w₁ w' + B w₂ w')
     {n : W} (hn : n ∈ M₀) : B 0 n = 0 := by
@@ -36,10 +39,16 @@ def orthoIn (M₀ N : Submodule ℂ W) (B : W → W → ℂ)
     rw [add_zero, ha.2 n hn, mul_zero, zero_add, form_zero_left M₀ B hlin (hNM hn)] at h
     exact h⟩
 
+/--
+@isnad1 id=iff.2h5v.s8.87c4d1ce0c05 from=translated src=- shape=73476d04 vocab=c241ae27
+-/
 theorem mem_orthoIn (M₀ N : Submodule ℂ W) (B : W → W → ℂ)
     (hlin : ∀ (z : ℂ), ∀ w₁ ∈ M₀, ∀ w₂ ∈ M₀, ∀ w' ∈ M₀, B (z • w₁ + w₂) w' = z * B w₁ w' + B w₂ w')
     (hNM : N ≤ M₀) (w : W) : w ∈ orthoIn M₀ N B hlin hNM ↔ w ∈ M₀ ∧ ∀ n ∈ N, B w n = 0 := Iff.rfl
 
+/--
+@isnad1 id=ex.4h4v.s9.223ca6889ef4 from=translated src=- shape=5e5a60df vocab=87449837
+-/
 theorem exists_ne_zero_mem_orthoIn (M₀ N : Submodule ℂ W) (B : W → W → ℂ)
     (hlin : ∀ (z : ℂ), ∀ w₁ ∈ M₀, ∀ w₂ ∈ M₀, ∀ w' ∈ M₀, B (z • w₁ + w₂) w' = z * B w₁ w' + B w₂ w')
     (hsymm : ∀ w ∈ M₀, ∀ w' ∈ M₀, B w' w = (starRingEnd ℂ) (B w w'))
@@ -110,6 +119,9 @@ theorem exists_ne_zero_mem_orthoIn (M₀ N : Submodule ℂ W) (B : W → W → �
   obtain ⟨x, hx, hx0⟩ := Submodule.exists_mem_ne_zero_of_ne_bot hnebot
   exact ⟨(x : W), hker x (LinearMap.mem_ker.1 hx), fun h => hx0 (Subtype.ext h)⟩
 
+/--
+@isnad1 id=eq.4h4v.s9.0b5af1756d68 from=translated src=- shape=470e34c8 vocab=eb594208
+-/
 theorem sup_orthoIn_eq (M₀ N : Submodule ℂ W) (B : W → W → ℂ)
     (hlin : ∀ (z : ℂ), ∀ w₁ ∈ M₀, ∀ w₂ ∈ M₀, ∀ w' ∈ M₀, B (z • w₁ + w₂) w' = z * B w₁ w' + B w₂ w')
     (hsymm : ∀ w ∈ M₀, ∀ w' ∈ M₀, B w' w = (starRingEnd ℂ) (B w w'))
@@ -130,6 +142,9 @@ theorem sup_orthoIn_eq (M₀ N : Submodule ℂ W) (B : W → W → ℂ)
   rw [hself, Complex.zero_re] at this
   exact lt_irrefl _ this
 
+/--
+@isnad1 id=mem.6h6v.s9.52b91fbd83de from=translated src=- shape=ca1b5db9 vocab=c241ae27
+-/
 theorem orthoIn_mapsTo_of_symm (M₀ N : Submodule ℂ W) (B : W → W → ℂ)
     (hlin : ∀ (z : ℂ), ∀ w₁ ∈ M₀, ∀ w₂ ∈ M₀, ∀ w' ∈ M₀, B (z • w₁ + w₂) w' = z * B w₁ w' + B w₂ w')
     (hNM : N ≤ M₀) (T : W → W) (hTM : ∀ w ∈ M₀, T w ∈ M₀) (hTN : ∀ n ∈ N, T n ∈ N)
@@ -141,6 +156,9 @@ theorem orthoIn_mapsTo_of_symm (M₀ N : Submodule ℂ W) (B : W → W → ℂ)
   rw [hsym w hwM n (hNM hn)]
   exact hperp (T n) (hTN n hn)
 
+/--
+@isnad1 id=ex.7h6v.s10.34bd377a613f from=translated src=- shape=76b939ab vocab=da64b97b
+-/
 theorem exists_eigen_decomposition :
     ∀ (n : ℕ) (M₀ : Submodule ℂ W) [FiniteDimensional ℂ M₀], Module.finrank ℂ M₀ = n →
       ∀ (B : W → W → ℂ),
@@ -243,6 +261,9 @@ section SO3
 
 variable {V : Type*} [AddCommGroup V] [Module ℂ V]
 
+/--
+@isnad1 id=eq.14h7v.s11.fdf528d1f1c4 from=translated src=- shape=d3103082 vocab=7f5a23f7
+-/
 theorem cube_eq_neg (F : Submodule ℂ V) [FiniteDimensional ℂ F] (J₁ J₂ J₃ : Module.End ℂ V)
     (hF₁ : ∀ f ∈ F, J₁ f ∈ F) (hF₂ : ∀ f ∈ F, J₂ f ∈ F) (hF₃ : ∀ f ∈ F, J₃ f ∈ F)
     (h12 : ∀ f ∈ F, J₁ (J₂ f) - J₂ (J₁ f) = J₃ f)
@@ -474,6 +495,9 @@ theorem cube_eq_neg (F : Submodule ℂ V) [FiniteDimensional ℂ F] (J₁ J₂ J
     linear_combination (-Complex.I) * hI
   rw [h1, hL3, hJ3L f, neg_smul, neg_neg]
 
+/--
+@isnad1 id=and.13h6v.s11.4ab7c07ccfd3 from=translated src=- shape=18109b27 vocab=7f5a23f7
+-/
 theorem triplet (F : Submodule ℂ V) [FiniteDimensional ℂ F] (J₁ J₂ J₃ : Module.End ℂ V)
     (hF₁ : ∀ f ∈ F, J₁ f ∈ F) (hF₂ : ∀ f ∈ F, J₂ f ∈ F) (hF₃ : ∀ f ∈ F, J₃ f ∈ F)
     (h12 : ∀ f ∈ F, J₁ (J₂ f) - J₂ (J₁ f) = J₃ f)
@@ -777,12 +801,18 @@ theorem triplet (F : Submodule ℂ V) [FiniteDimensional ℂ F] (J₁ J₂ J₃ 
 
 end SO3
 
+/--
+@isnad1 id=or.0h1v.s6.1ffbb6a56e45 from=translated src=- shape=c488c7a3 vocab=00dd0f92
+-/
 theorem fin3_cases' (i : Fin 3) : i = 0 ∨ i = 1 ∨ i = 2 := by fin_cases i <;> simp
 
 section TripletBasis
 
 open Module
 
+/--
+@isnad1 id=ex.9h3v.s11.23f283257507 from=translated src=- shape=f4e4789e vocab=d4664a09
+-/
 theorem exists_tripletBasis
     (W : Type*) [AddCommGroup W] [Module ℂ W] [FiniteDimensional ℂ W]
     (ρ : Fin 3 → Fin 3 → (W →ₗ[ℂ] W))
@@ -929,6 +959,9 @@ end
 
 end KSpec
 
+/--
+@isnad1 id=ex.9h3v.s11.23f283257507 from=translated src=- shape=f4e4789e vocab=d4664a09
+-/
 theorem solution
     (W : Type*) [AddCommGroup W] [Module ℂ W] [FiniteDimensional ℂ W]
     (ρ : Fin 3 → Fin 3 → (W →ₗ[ℂ] W))

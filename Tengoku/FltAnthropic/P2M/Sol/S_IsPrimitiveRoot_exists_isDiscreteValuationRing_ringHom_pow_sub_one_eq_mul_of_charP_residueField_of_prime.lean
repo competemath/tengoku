@@ -10,6 +10,9 @@ set_option maxHeartbeats 3200000
 
 open Polynomial
 
+/--
+@isnad1 id=ex.2h3v.s9.dcbf41c53687 from=translated src=- shape=4b2694b7 vocab=850c768f
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime]
     (R : Type) [CommRing R] [IsDomain R] [CharZero R] [IsLocalRing R]

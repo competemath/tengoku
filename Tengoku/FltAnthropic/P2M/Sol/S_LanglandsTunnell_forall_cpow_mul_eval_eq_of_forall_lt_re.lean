@@ -10,6 +10,9 @@ import Tengoku.Seed.Analysis.Calculus.Deriv.Polynomial
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_LanglandsTunnell_forall_cpow_mul_eval_eq_of_forall_lt_re.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 namespace P2MW.S_LanglandsTunnell_forall_cpow_mul_eval_eq_of_forall_lt_re
 
+/--
+@isnad1 id=eq.2h7v.s7.d90f2853b747 from=translated src=- shape=5982814e vocab=01337649
+-/
 theorem solution
     (N : ℕ) (hN : 1 < N) (P Q : Polynomial ℂ) (m n : ℤ) (c : ℝ)
     (h : ∀ u : ℂ, c < u.re →

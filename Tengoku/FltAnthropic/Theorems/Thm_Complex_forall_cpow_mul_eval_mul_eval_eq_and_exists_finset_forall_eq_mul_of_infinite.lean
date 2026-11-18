@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Complex_forall_cpow_mul_eval_mul_eval_eq_a
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=and.5h10v.s9.0f65d82c8b5d from=translated src=- shape=dc987bb0 vocab=72379b42
+-/
 theorem Complex.forall_cpow_mul_eval_mul_eval_eq_and_exists_finset_forall_eq_mul_of_infinite
     (q : ℕ) (hq : 1 < q) (P Q₁ Q₂ : Polynomial ℂ) (hQ₂ : Q₂ ≠ 0) (m k : ℤ) (γ Zd : ℂ → ℂ) (S S₁ : Set ℂ)
     (hS : {t : ℝ | (t : ℂ) ∈ S}.Infinite)

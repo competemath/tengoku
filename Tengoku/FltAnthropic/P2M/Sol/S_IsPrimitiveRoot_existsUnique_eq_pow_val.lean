@@ -8,6 +8,9 @@ namespace P2MW.S_IsPrimitiveRoot_existsUnique_eq_pow_val
 set_option autoImplicit false
 open scoped IntermediateField Pointwise
 
+/--
+@isnad1 id=existsun.2h5v.s8.fb6d050124b1 from=translated src=- shape=d826d130 vocab=e2909230
+-/
 theorem solution
     {R ι : Type*} [CommRing R] [IsDomain R] {ζ : Rˣ} {p : ℕ} [NeZero p] (hζ : IsPrimitiveRoot ζ p) (f : ι → Rˣ) (hf : ∀ i, f i ^ p = 1) :
     ∃! c : ι → ZMod p, ∀ i, f i = ζ ^ (c i).val := by

@@ -17,15 +17,24 @@ namespace OddElimAux
 
 open Filter Topology
 
+/--
+@isnad1 id=hasderiv.0h1v.s6.b7918fe4771e from=translated src=- shape=93588a94 vocab=1a38dff6
+-/
 theorem hid (y : ℝ) : HasDerivAt (fun y : ℝ => (y : ℂ)) 1 y := by
   simpa using (hasDerivAt_id y).ofReal_comp
 
+/--
+@isnad1 id=eq.3h4v.s7.bc7fb754e7e6 from=translated src=- shape=fe36f9f4 vocab=5a45b839
+-/
 theorem deriv_eq_of_eqOn {f g : ℝ → ℂ} {g' : ℂ} {y : ℝ} (hy : 0 < y)
     (hfg : ∀ y : ℝ, 0 < y → f y = g y) (hg : HasDerivAt g g' y) : deriv f y = g' := by
   have h : f =ᶠ[𝓝 y] g :=
     Filter.eventuallyEq_of_mem (Ioi_mem_nhds hy) fun y' hy' => hfg y' hy'
   rw [h.deriv_eq, hg.deriv]
 
+/--
+@isnad1 id=eq.6h10v.s10.ed41721adcc1 from=translated src=- shape=0c0b52e1 vocab=3cf21ede
+-/
 theorem sheet_poly (A B μ ν C₀ c₁ : ℂ) (K Kp R : ℝ → ℂ)
     (hK : ∀ y : ℝ, 0 < y → HasDerivAt K (Kp y) y)
     (hKp : ∀ y : ℝ, 0 < y → HasDerivAt Kp (A * K y + μ ^ 2 / (y : ℂ) ^ 2 * K y - Kp y / (y : ℂ)) y)
@@ -74,6 +83,9 @@ theorem sheet_poly (A B μ ν C₀ c₁ : ℂ) (K Kp R : ℝ → ℂ)
     ring
   rw [key, hode, mul_zero]
 
+/--
+@isnad1 id=ex.3h3v.s7.fc30cdbc0aba from=translated src=- shape=58f6f45a vocab=d4ab0339
+-/
 theorem exists_two_points {K Kp : ℝ → ℂ} (hK : ∀ y : ℝ, 0 < y → HasDerivAt K (Kp y) y)
     {y₀ : ℝ} (hy₀ : 0 < y₀) (hK₀ : K y₀ ≠ 0) :
     ∃ y₁ : ℝ, 0 < y₁ ∧ y₁ ≠ y₀ ∧ K y₁ ≠ 0 := by
@@ -84,6 +96,9 @@ theorem exists_two_points {K Kp : ℝ → ℂ} (hK : ∀ y : ℝ, 0 < y → HasD
   rw [Real.dist_eq, show y₀ + ε / 2 - y₀ = ε / 2 by ring, abs_of_pos (by linarith)]
   linarith
 
+/--
+@isnad1 id=eq.11h10v.s10.a8a9b8f4ac1c from=translated src=- shape=58fcb860 vocab=3cf21ede
+-/
 theorem odd_core (A B μ ν C₀ c₁ : ℂ) (K Kp P Q : ℝ → ℂ)
     (hK : ∀ y : ℝ, 0 < y → HasDerivAt K (Kp y) y)
     (hKp : ∀ y : ℝ, 0 < y → HasDerivAt Kp (A * K y + μ ^ 2 / (y : ℂ) ^ 2 * K y - Kp y / (y : ℂ)) y)
@@ -136,6 +151,9 @@ theorem odd_core (A B μ ν C₀ c₁ : ℂ) (K Kp P Q : ℝ → ℂ)
 end OddElimAux
 
 open LanglandsTunnell.ArchBessel OddElimAux Filter Topology in
+/--
+@isnad1 id=eq.10h7v.s10.1347b37b3cc4 from=translated src=- shape=3b2c6e32 vocab=40c7b42c
+-/
 theorem solution
     (ν μ c C₀ C₁ : ℂ) (P Q : ℝ → ℂ)
     (hP : DifferentiableOn ℝ P (Set.Ioi 0)) (hP' : DifferentiableOn ℝ (deriv P) (Set.Ioi 0))

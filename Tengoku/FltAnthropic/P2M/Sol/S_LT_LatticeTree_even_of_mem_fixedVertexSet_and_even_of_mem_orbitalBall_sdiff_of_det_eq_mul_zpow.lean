@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.Theorems.Thm_LT_LatticeTree_even_of_mem_twistedFixed
 namespace P2MW.S_LT_LatticeTree_even_of_mem_fixedVertexSet_and_even_of_mem_orbitalBall_sdiff_of_det_eq_mul_zpow
 set_option autoImplicit false
 
+/--
+@isnad1 id=and.2h6v.s8.d77c21f92a2e from=translated src=- shape=6401e8f0 vocab=ac933082
+-/
 theorem solution
     (R K : Type) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [Field K] [Algebra R K]
     [IsFractionRing R K] (ϖ : R) (hϖ : Irreducible ϖ)

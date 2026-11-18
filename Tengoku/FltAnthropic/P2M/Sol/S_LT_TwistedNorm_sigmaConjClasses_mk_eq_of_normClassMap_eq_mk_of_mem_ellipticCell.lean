@@ -15,6 +15,9 @@ open Matrix LT.TwistedNorm LT.TwistedNorm.GL2
 section H90
 open Finset
 
+/--
+@isnad1 id=ex.4h4v.s8.d313951ec8b5 from=translated src=- shape=6ac1a28a vocab=fce4636d
+-/
 theorem exists_ne_zero_mul_map_eq {R : Type*} [CommRing R] [IsDomain R]
     (τ : R →+* R) (m : ℕ) (hm : 0 < m) (hτm : ∀ x, τ^[m] x = x)
     (hdist : ∀ i j : ℕ, i < m → j < m → (∀ x, τ^[i] x = τ^[j] x) → i = j)
@@ -91,12 +94,18 @@ theorem eq_lin_of_comm (X : Matrix (Fin 2) (Fin 2) L)
   · linear_combination -h00
   · linear_combination -h10
 
+/--
+@isnad1 id=eq.0h5v.s9.a00e615aa35c from=translated src=- shape=4d9d20a1 vocab=435df279
+-/
 theorem lin_comm (p r : L) :
     traceDetCompanion t d * (p • (1 : Matrix (Fin 2) (Fin 2) L) + r • traceDetCompanion t d)
       = (p • (1 : Matrix (Fin 2) (Fin 2) L) + r • traceDetCompanion t d) * traceDetCompanion t d := by
   rw [Matrix.mul_add, Matrix.add_mul, Matrix.mul_smul, Matrix.smul_mul, Matrix.mul_one, Matrix.one_mul,
     Matrix.mul_smul, Matrix.smul_mul]
 
+/--
+@isnad1 id=eq.0h5v.s8.95c1a1f58b9e from=translated src=- shape=629892b8 vocab=21810f80
+-/
 theorem det_lin (p r : L) :
     (p • (1 : Matrix (Fin 2) (Fin 2) L) + r • traceDetCompanion t d).det = p ^ 2 + p * r * t + r ^ 2 * d := by
   simp [Matrix.det_fin_two, traceDetCompanion]; ring
@@ -104,6 +113,9 @@ theorem det_lin (p r : L) :
 def Z : Subalgebra L (Matrix (Fin 2) (Fin 2) L) :=
   Subalgebra.centralizer L {traceDetCompanion t d}
 
+/--
+@isnad1 id=iff.0h4v.s9.ae28cc8e9203 from=translated src=- shape=b78df95d vocab=053c9971
+-/
 theorem mem_Z_iff {X : Matrix (Fin 2) (Fin 2) L} :
     X ∈ Z t d ↔ traceDetCompanion t d * X = X * traceDetCompanion t d := by
   simp [Z, Subalgebra.mem_centralizer_iff]
@@ -112,13 +124,22 @@ theorem eq_lin_of_mem_Z {X : Matrix (Fin 2) (Fin 2) L} (hX : X ∈ Z t d) :
     X = X 0 0 • (1 : Matrix (Fin 2) (Fin 2) L) + X 1 0 • traceDetCompanion t d :=
   eq_lin_of_comm t d X ((mem_Z_iff t d).mp hX)
 
+/--
+@isnad1 id=mem.0h5v.s9.fecfa1a8619a from=translated src=- shape=6de66fad vocab=ffd06059
+-/
 theorem lin_mem_Z (p r : L) :
     p • (1 : Matrix (Fin 2) (Fin 2) L) + r • traceDetCompanion t d ∈ Z t d :=
   (mem_Z_iff t d).mpr (lin_comm t d p r)
 
+/--
+@isnad1 id=mem.0h3v.s8.353e195684ca from=translated src=- shape=2d963fcb vocab=c5938d60
+-/
 theorem companion_mem_Z : traceDetCompanion t d ∈ Z t d :=
   (mem_Z_iff t d).mpr rfl
 
+/--
+@isnad1 id=eq.2h5v.s9.1c371ddfa4db from=translated src=- shape=66c24d0c vocab=5383e32a
+-/
 theorem mul_comm_of_mem_Z {X Y : Matrix (Fin 2) (Fin 2) L} (hX : X ∈ Z t d) (hY : Y ∈ Z t d) :
     X * Y = Y * X := by
   rw [eq_lin_of_mem_Z t d hX, eq_lin_of_mem_Z t d hY]
@@ -131,6 +152,9 @@ scoped instance instCommRingZ : CommRing (Z t d) :=
   { (inferInstance : Ring (Z t d)) with
     mul_comm := fun x y => Subtype.ext (mul_comm_of_mem_Z t d x.2 y.2) }
 
+/--
+@isnad1 id=ne.3h4v.s9.381c6e84604a from=translated src=- shape=e734f997 vocab=0698bd1d
+-/
 theorem det_ne_zero_of_mem_Z_of_ne_zero (hirr : ∀ a : L, a ^ 2 - t * a + d ≠ 0)
     {X : Matrix (Fin 2) (Fin 2) L} (hX : X ∈ Z t d) (h0 : X ≠ 0) : X.det ≠ 0 := by
   rw [eq_lin_of_mem_Z t d hX] at h0 ⊢
@@ -148,6 +172,9 @@ theorem det_ne_zero_of_mem_Z_of_ne_zero (hirr : ∀ a : L, a ^ 2 - t * a + d ≠
     field_simp
     linear_combination h
 
+/--
+@isnad1 id=isdomain.1h3v.s9.9c4c09314143 from=translated src=- shape=6c85d6d0 vocab=7a5baa18
+-/
 theorem isDomain_Z (hirr : ∀ a : L, a ^ 2 - t * a + d ≠ 0) : IsDomain (Z t d) := by
   have hnzd : NoZeroDivisors (Z t d) := by
     refine ⟨fun {x y} hxy => ?_⟩
@@ -167,6 +194,9 @@ theorem isDomain_Z (hirr : ∀ a : L, a ^ 2 - t * a + d ≠ 0) : IsDomain (Z t d
   have hnt : Nontrivial (Z t d) := ⟨⟨0, 1, fun h => zero_ne_one (congrArg Subtype.val h)⟩⟩
   exact NoZeroDivisors.to_isDomain _
 
+/--
+@isnad1 id=isunit.2h4v.s11.ecfecdb46cc2 from=translated src=- shape=deeee2b3 vocab=3b668b60
+-/
 theorem isUnit_of_ne_zero_Z (hirr : ∀ a : L, a ^ 2 - t * a + d ≠ 0) {x : Z t d} (hx : x ≠ 0) :
     IsUnit x := by
   have hdet : (x : Matrix (Fin 2) (Fin 2) L).det ≠ 0 :=
@@ -187,6 +217,9 @@ theorem isUnit_of_ne_zero_Z (hirr : ∀ a : L, a ^ 2 - t * a + d ≠ 0) {x : Z t
   refine ⟨⟨x, ⟨_, hinv⟩, Subtype.ext (Matrix.mul_nonsing_inv _ hu), Subtype.ext (Matrix.nonsing_inv_mul _ hu)⟩,
     rfl⟩
 
+/--
+@isnad1 id=mem.2h4v.s9.d9fd46016274 from=translated src=- shape=8dc85f07 vocab=875aa330
+-/
 theorem inv_mem_Z {X : Matrix (Fin 2) (Fin 2) L} (hX : X ∈ Z t d) (hu : IsUnit X.det) : X⁻¹ ∈ Z t d := by
   rw [mem_Z_iff] at hX ⊢
   set C := traceDetCompanion t d
@@ -203,10 +236,16 @@ section Sigma
 variable {L : Type*} [Field L] (t d : L) (σ : L →+* L) (ht : σ t = t) (hd : σ d = d)
 
 include ht hd in
+/--
+@isnad1 id=eq.2h4v.s7.d519bacc69b3 from=translated src=- shape=4d54abe1 vocab=65135730
+-/
 theorem companion_map : (traceDetCompanion t d).map σ = traceDetCompanion t d := by
   rw [traceDetCompanion_map, ht, hd]
 
 include ht hd in
+/--
+@isnad1 id=mem.3h5v.s9.43e5db165ef4 from=translated src=- shape=c4625f2e vocab=b499279c
+-/
 theorem map_mem_Z {X : Matrix (Fin 2) (Fin 2) L} (hX : X ∈ Z t d) : X.map σ ∈ Z t d := by
   rw [mem_Z_iff] at hX ⊢
   have h := congrArg (fun M : Matrix (Fin 2) (Fin 2) L => M.map σ) hX
@@ -217,10 +256,16 @@ noncomputable def ZMap : Z t d →+* Z t d :=
   (σ.mapMatrix : Matrix (Fin 2) (Fin 2) L →+* Matrix (Fin 2) (Fin 2) L).restrict (Z t d) (Z t d)
     (fun X hX => by rw [RingHom.mapMatrix_apply]; exact map_mem_Z t d σ ht hd hX)
 
+/--
+@isnad1 id=eq.2h5v.s12.c54dfd9b99ae from=translated src=- shape=d834e5e6 vocab=714bb4ac
+-/
 @[scoped simp] theorem coe_ZMap (x : Z t d) :
     ((ZMap t d σ ht hd x : Z t d) : Matrix (Fin 2) (Fin 2) L) = (x : Matrix (Fin 2) (Fin 2) L).map σ :=
   rfl
 
+/--
+@isnad1 id=eq.2h6v.s12.8cc743276c24 from=translated src=- shape=30b6a5a8 vocab=932fe42e
+-/
 theorem coe_ZMap_iterate (i : ℕ) (x : Z t d) :
     (((ZMap t d σ ht hd)^[i] x : Z t d) : Matrix (Fin 2) (Fin 2) L)
       = (x : Matrix (Fin 2) (Fin 2) L).map (σ^[i]) := by
@@ -229,9 +274,15 @@ theorem coe_ZMap_iterate (i : ℕ) (x : Z t d) :
   | succ i ih =>
       rw [Function.iterate_succ_apply', coe_ZMap, ih, Matrix.map_map, ← Function.iterate_succ']
 
+/--
+@isnad1 id=mem.0h4v.s8.e59b7dfb6c72 from=translated src=- shape=ca025892 vocab=53748328
+-/
 theorem smul_one_mem_Z (p : L) : p • (1 : Matrix (Fin 2) (Fin 2) L) ∈ Z t d := by
   rw [mem_Z_iff, Matrix.mul_smul, Matrix.smul_mul, Matrix.mul_one, Matrix.one_mul]
 
+/--
+@isnad1 id=eq.2h6v.s12.f1ca236d6c6f from=translated src=- shape=791d839e vocab=4b1fe673
+-/
 theorem ZMap_iterate_smul_one (i : ℕ) (p : L) :
     (((ZMap t d σ ht hd)^[i] ⟨p • 1, smul_one_mem_Z t d p⟩ : Z t d) : Matrix (Fin 2) (Fin 2) L)
       = (σ^[i] p) • (1 : Matrix (Fin 2) (Fin 2) L) := by
@@ -242,6 +293,9 @@ theorem ZMap_iterate_smul_one (i : ℕ) (p : L) :
 noncomputable def j : (Z t d)ˣ →* GL (Fin 2) L :=
   Units.map ((Z t d).val.toRingHom : Z t d →* Matrix (Fin 2) (Fin 2) L)
 
+/--
+@isnad1 id=injectiv.0h3v.s12.7d73673fe6f5 from=translated src=- shape=af0ab011 vocab=cc431586
+-/
 theorem j_injective : Function.Injective (j t d) := by
   intro z z' h
   apply Units.ext; apply Subtype.ext
@@ -258,27 +312,42 @@ noncomputable def liftUnit (δ : GL (Fin 2) L) (h : (δ : Matrix (Fin 2) (Fin 2)
     show ((δ⁻¹ : GL (Fin 2) L) : Matrix (Fin 2) (Fin 2) L) * (δ : Matrix (Fin 2) (Fin 2) L) = 1
     rw [← Units.val_mul, inv_mul_cancel, Units.val_one])
 
+/--
+@isnad1 id=eq.1h4v.s12.4b9e8b29c655 from=translated src=- shape=c2f94ad9 vocab=6194e534
+-/
 @[scoped simp] theorem j_liftUnit (δ : GL (Fin 2) L) (h : (δ : Matrix (Fin 2) (Fin 2) L) ∈ Z t d) :
     j t d (liftUnit t d δ h) = δ :=
   Units.ext rfl
 
 noncomputable def SZ : (Z t d)ˣ →* (Z t d)ˣ := Units.map (ZMap t d σ ht hd).toMonoidHom
 
+/--
+@isnad1 id=eq.2h5v.s14.b39c4650fc1e from=translated src=- shape=aa105808 vocab=aea27a73
+-/
 theorem j_SZ (z : (Z t d)ˣ) :
     j t d (SZ t d σ ht hd z) = Matrix.GeneralLinearGroup.map σ (j t d z) := by
   apply Units.ext; ext a b; rfl
 
+/--
+@isnad1 id=eq.2h6v.s14.34ad1c20f331 from=translated src=- shape=f9af1f6a vocab=8c3447f3
+-/
 theorem coe_SZ_iterate (i : ℕ) (z : (Z t d)ˣ) :
     (((SZ t d σ ht hd)^[i] z : (Z t d)ˣ) : Z t d) = (ZMap t d σ ht hd)^[i] (z : Z t d) := by
   induction i generalizing z with
   | zero => rfl
   | succ i ih => rw [Function.iterate_succ_apply', Function.iterate_succ_apply', ← ih]; rfl
 
+/--
+@isnad1 id=eq.2h6v.s13.a3c50bdd90b4 from=translated src=- shape=203ae487 vocab=28e6b867
+-/
 theorem j_sigmaPartialNorm (z : (Z t d)ˣ) (r : ℕ) :
     j t d (sigmaPartialNorm (SZ t d σ ht hd) z r)
       = sigmaPartialNorm (Matrix.GeneralLinearGroup.map σ) (j t d z) r :=
   hom_sigmaPartialNorm _ _ (j t d) (fun x => j_SZ t d σ ht hd x) z r
 
+/--
+@isnad1 id=eq.2h7v.s13.490cec14c50a from=translated src=- shape=6eea0463 vocab=e83a56b0
+-/
 theorem sigmaPartialNorm_mul_Z (x y : (Z t d)ˣ) (r : ℕ) :
     sigmaPartialNorm (SZ t d σ ht hd) (x * y) r
       = sigmaPartialNorm (SZ t d σ ht hd) x r * sigmaPartialNorm (SZ t d σ ht hd) y r := by
@@ -287,6 +356,9 @@ theorem sigmaPartialNorm_mul_Z (x y : (Z t d)ˣ) (r : ℕ) :
   refine Finset.prod_congr rfl fun i _ => ?_
   exact iterate_map_mul _ i x y
 
+/--
+@isnad1 id=eq.2h6v.s12.e05c72e0de11 from=translated src=- shape=c3266b25 vocab=fe764706
+-/
 theorem sigmaPartialNorm_inv_Z (x : (Z t d)ˣ) (r : ℕ) :
     sigmaPartialNorm (SZ t d σ ht hd) x⁻¹ r = (sigmaPartialNorm (SZ t d σ ht hd) x r)⁻¹ := by
   rw [sigmaPartialNorm_eq_prod_range, sigmaPartialNorm_eq_prod_range, ← Finset.prod_inv_distrib]
@@ -299,6 +371,9 @@ section Coordinates
 
 variable {L : Type*} [Field L] (t d : L)
 
+/--
+@isnad1 id=and.1h4v.s9.df280b39d150 from=translated src=- shape=29888eb6 vocab=2793a300
+-/
 theorem entries_of_mem_Z {X : Matrix (Fin 2) (Fin 2) L} (hX : X ∈ Z t d) :
     X 0 1 = -(d * X 1 0) ∧ X 1 1 = X 0 0 + t * X 1 0 := by
   have h := (mem_Z_iff t d).mp hX
@@ -320,9 +395,15 @@ def piRoot (ρ : L) (hρ : ρ ^ 2 - t * ρ + d = 0) : Z t d →+* L where
     rw [hX01, hX11]
     linear_combination (-((X : Matrix (Fin 2) (Fin 2) L) 1 0 * (Y : Matrix (Fin 2) (Fin 2) L) 1 0)) * hρ
 
+/--
+@isnad1 id=eq.1h5v.s11.ec878e12bed5 from=translated src=- shape=1f6496f4 vocab=97bfcca9
+-/
 theorem piRoot_apply (ρ : L) (hρ : ρ ^ 2 - t * ρ + d = 0) (X : Z t d) :
     piRoot t d ρ hρ X = (X : Matrix (Fin 2) (Fin 2) L) 0 0 + (X : Matrix (Fin 2) (Fin 2) L) 1 0 * ρ := rfl
 
+/--
+@isnad1 id=eq.5h7v.s13.710e0717c219 from=translated src=- shape=2cd15853 vocab=6f38ac8a
+-/
 theorem ext_of_piRoot_eq {ρ ρ' : L} (hρ : ρ ^ 2 - t * ρ + d = 0) (hρ' : ρ' ^ 2 - t * ρ' + d = 0)
     (hne : ρ ≠ ρ') {X Y : Z t d}
     (h1 : piRoot t d ρ hρ X = piRoot t d ρ hρ Y) (h2 : piRoot t d ρ' hρ' X = piRoot t d ρ' hρ' Y) :
@@ -339,6 +420,9 @@ theorem ext_of_piRoot_eq {ρ ρ' : L} (hρ : ρ ^ 2 - t * ρ + d = 0) (hρ' : ρ
   apply Subtype.ext
   rw [eq_lin_of_mem_Z t d X.2, eq_lin_of_mem_Z t d Y.2, h00, h10]
 
+/--
+@isnad1 id=ex.3h7v.s12.5f28d84026d7 from=translated src=- shape=e98f186c vocab=6f38ac8a
+-/
 theorem exists_piRoot_eq {ρ ρ' : L} (hρ : ρ ^ 2 - t * ρ + d = 0) (hρ' : ρ' ^ 2 - t * ρ' + d = 0)
     (hne : ρ ≠ ρ') (x y : L) :
     ∃ W : Z t d, piRoot t d ρ hρ W = x ∧ piRoot t d ρ' hρ' W = y := by
@@ -352,6 +436,9 @@ theorem exists_piRoot_eq {ρ ρ' : L} (hρ : ρ ^ 2 - t * ρ + d = 0) (hρ' : ρ
 
 variable (σ : L →+* L) (ht : σ t = t) (hd : σ d = d)
 
+/--
+@isnad1 id=eq.5h7v.s13.0927532591c8 from=translated src=- shape=40237c71 vocab=7c5d1b14
+-/
 theorem piRoot_ZMap {ρ ρ' : L} (hρ : ρ ^ 2 - t * ρ + d = 0) (hρ' : ρ' ^ 2 - t * ρ' + d = 0)
     (hσ : σ ρ' = ρ) (X : Z t d) :
     piRoot t d ρ hρ (ZMap t d σ ht hd X) = σ (piRoot t d ρ' hρ' X) := by
@@ -361,6 +448,9 @@ end Coordinates
 
 section Core
 
+/--
+@isnad1 id=eq.0h5v.s6.80f3acc9185b from=translated src=- shape=feafcf87 vocab=b6c7e9d6
+-/
 theorem prod_range_two_mul_iterate {M F : Type*} [CommMonoid M] [FunLike F M M] [MulHomClass F M M]
     (f : F) (x : M) (m : ℕ) :
     ∏ i ∈ Finset.range (2 * m), (⇑f)^[i] x = ∏ k ∈ Finset.range m, ((⇑f)^[2])^[k] (x * f x) := by
@@ -374,6 +464,9 @@ theorem prod_range_two_mul_iterate {M F : Type*} [CommMonoid M] [FunLike F M M] 
 
 variable {L : Type*} [Field L] (t d : L) (σ : L →+* L) (ht : σ t = t) (hd : σ d = d)
 
+/--
+@isnad1 id=ex.7h6v.s14.fe8acac859a1 from=translated src=- shape=5282cd43 vocab=7ac73be0
+-/
 theorem exists_unit_mul_SZ_eq (n : ℕ) (hn : 0 < n) (hσn : ∀ x : L, σ^[n] x = x)
     (hdist : ∀ i j : ℕ, i < n → j < n → (∀ x : L, σ^[i] x = σ^[j] x) → i = j)
     (hfix : ∀ a : L, a ^ 2 - t * a + d = 0 → σ a ≠ a)
@@ -515,6 +608,9 @@ section Assembly
 
 variable {F L : Type*} [Field F] [Field L] [Algebra F L] [FiniteDimensional F L] [IsGalois F L]
 
+/--
+@isnad1 id=isnormre.2h5v.s9.e3485080e446 from=translated src=- shape=00d23ba7 vocab=791186c3
+-/
 theorem isNormRep_of_normClassMap_mk_eq {σ : L ≃ₐ[F] L}
     (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ) {δ : GL (Fin 2) L} {γ : GL (Fin 2) F}
     (h : normClassMap hgen (SigmaConjClasses.mk σ δ) = ConjClasses.mk γ) : IsNormRep σ γ δ := by
@@ -527,6 +623,9 @@ theorem isNormRep_of_normClassMap_mk_eq {σ : L ≃ₐ[F] L}
 
 omit [FiniteDimensional F L] [IsGalois F L] in
 
+/--
+@isnad1 id=isnormre.1h6v.s9.74a4c7918cbd from=translated src=- shape=b02f6bde vocab=fb496b25
+-/
 theorem isNormRep_conj {σ : L ≃ₐ[F] L} {δ : GL (Fin 2) L} {γ : GL (Fin 2) F} (h : IsNormRep σ γ δ)
     (Q : GL (Fin 2) F) : IsNormRep σ (Q⁻¹ * γ * Q) δ := by
   obtain ⟨P, hP⟩ := h
@@ -534,6 +633,9 @@ theorem isNormRep_conj {σ : L ≃ₐ[F] L} {δ : GL (Fin 2) L} {γ : GL (Fin 2)
   rw [map_mul, map_mul, map_inv, ← hP]
   group
 
+/--
+@isnad1 id=ex.2h5v.s10.4123a6ba14d7 from=translated src=- shape=eecb5c71 vocab=0dca7fa1
+-/
 theorem exists_mk_eq_and_sigmaNormPow_eq {σ : L ≃ₐ[F] L}
     (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ) {δ : GL (Fin 2) L} {γ : GL (Fin 2) F}
     (h : IsNormRep σ γ δ) :
@@ -547,6 +649,9 @@ theorem exists_mk_eq_and_sigmaNormPow_eq {σ : L ≃ₐ[F] L}
   · rw [sigmaNormPow_sigmaConj_generalLinearGroup (n := Fin 2) (σ := (σ : L →+* L))
       (fun a => iterate_finrank_apply_of_generator hgen a) P δ, hP]
 
+/--
+@isnad1 id=eq.4h6v.s9.32e341a1e60a from=translated src=- shape=a0d42b71 vocab=453e15bb
+-/
 theorem sigmaConjClasses_mk_eq_of_normClassMap_eq_mk_of_mem_ellipticCell
     {σ : L ≃ₐ[F] L} (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)
     (γ : GL (Fin 2) F) (hγ : γ ∈ AutomorphicForm.ellipticCell F)
@@ -666,6 +771,9 @@ end Assembly
 end R2NormInj
 open scoped _root_.P2MW.S_LT_TwistedNorm_sigmaConjClasses_mk_eq_of_normClassMap_eq_mk_of_mem_ellipticCell.R2NormInj
 
+/--
+@isnad1 id=eq.4h6v.s9.32e341a1e60a from=translated src=- shape=a0d42b71 vocab=453e15bb
+-/
 theorem solution
     {F L : Type*} [Field F] [Field L] [Algebra F L] [FiniteDimensional F L] [IsGalois F L]
     {σ : L ≃ₐ[F] L} (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)

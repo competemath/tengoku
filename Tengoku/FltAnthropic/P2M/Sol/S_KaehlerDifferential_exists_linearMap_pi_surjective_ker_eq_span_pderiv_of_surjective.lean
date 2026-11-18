@@ -27,29 +27,47 @@ noncomputable def bS : Module.Basis (Fin m) S (S ⊗[P] Ω[P⁄R]) := (mvPolynom
 noncomputable def coords : (Fin m → S) ≃ₗ[S] S ⊗[P] Ω[P⁄R] :=
   (Finsupp.linearEquivFunOnFinite S S (Fin m)).symm ≪≫ₗ (bS R m S).repr.symm
 
+/--
+@isnad1 id=eq.0h4v.s12.f97fd3cc4deb from=translated src=- shape=72540ed5 vocab=5513e341
+-/
 theorem coords_single (j : Fin m) : coords R m S (Pi.single j 1) = (1 : S) ⊗ₜ[P] D R P (MvPolynomial.X j) := by
   have h1 : (Finsupp.linearEquivFunOnFinite S S (Fin m)).symm (Pi.single j 1) = Finsupp.single j 1 := by
     ext i; simp [Finsupp.linearEquivFunOnFinite, Pi.single_apply, Finsupp.single_apply, eq_comm]
   rw [coords, LinearEquiv.trans_apply, h1, Module.Basis.repr_symm_single_one, bS, Module.Basis.baseChange_apply,
     mvPolynomialBasis_apply]
 
+/--
+@isnad1 id=eq.0h5v.s13.7491339c2467 from=translated src=- shape=5833f5d1 vocab=04df5e07
+-/
 theorem coords_symm_tmul (w : Ω[P⁄R]) (j : Fin m) :
     (coords R m S).symm ((1 : S) ⊗ₜ[P] w) j = algebraMap P S ((mvPolynomialBasis R (Fin m)).repr w j) := by
   rw [coords, LinearEquiv.trans_symm, LinearEquiv.trans_apply, LinearEquiv.symm_symm, LinearEquiv.symm_symm,
     Finsupp.linearEquivFunOnFinite_apply, bS, Module.Basis.baseChange_repr_tmul, Algebra.smul_def, mul_one]
 
+/--
+@isnad1 id=eq.0h5v.s12.a0c31fcb6678 from=translated src=- shape=ef7bc0f1 vocab=d989eb74
+-/
 theorem coords_symm_tmul_D (g : P) (j : Fin m) :
     (coords R m S).symm ((1 : S) ⊗ₜ[P] D R P g) j = algebraMap P S (MvPolynomial.pderiv j g) := by
   rw [coords_symm_tmul, mvPolynomialBasis_repr_apply]
 
 noncomputable def Φ : (Fin m → S) →ₗ[S] Ω[S⁄R] := (mapBaseChange R P S) ∘ₗ (coords R m S).toLinearMap
 
+/--
+@isnad1 id=eq.0h4v.s9.d15ca4dc469f from=translated src=- shape=261f6e9d vocab=6a645117
+-/
 theorem Φ_single (j : Fin m) : Φ R m S (Pi.single j 1) = D R S (algebraMap P S (MvPolynomial.X j)) := by
   rw [Φ, LinearMap.comp_apply, LinearEquiv.coe_toLinearMap, coords_single, mapBaseChange_tmul, one_smul, map_D]
 
+/--
+@isnad1 id=surjecti.1h3v.s9.9624d423d31a from=translated src=- shape=55a8d496 vocab=1ef3bf72
+-/
 theorem Φ_surjective (hφ : Function.Surjective (algebraMap P S)) : Function.Surjective (Φ R m S) :=
   (mapBaseChange_surjective R P S hφ).comp (coords R m S).surjective
 
+/--
+@isnad1 id=eq.2h5v.s12.4dcb37cd9420 from=translated src=- shape=c6dc8299 vocab=5d05cd9a
+-/
 theorem ker_mapBaseChange_eq {r : ℕ} (f : Fin r → P) (hφ : Function.Surjective (algebraMap P S))
     (hker : RingHom.ker (algebraMap P S) = Ideal.span (Set.range f)) :
     LinearMap.ker (mapBaseChange R P S) =
@@ -85,6 +103,9 @@ theorem ker_mapBaseChange_eq {r : ℕ} (f : Fin r → P) (hφ : Function.Surject
     have hfi : f i ∈ RingHom.ker (algebraMap P S) := hker ▸ Ideal.subset_span (Set.mem_range_self i)
     exact ⟨(RingHom.ker (algebraMap P S)).toCotangent ⟨f i, hfi⟩, kerCotangentToTensor_toCotangent R P S _⟩
 
+/--
+@isnad1 id=eq.2h5v.s10.8065d999d3b8 from=translated src=- shape=fe248a3f vocab=fc610291
+-/
 theorem ker_Φ {r : ℕ} (f : Fin r → P) (hφ : Function.Surjective (algebraMap P S))
     (hker : RingHom.ker (algebraMap P S) = Ideal.span (Set.range f)) :
     LinearMap.ker (Φ R m S) =
@@ -104,6 +125,9 @@ end Generic
 
 end ConormalPresentation
 
+/--
+@isnad1 id=ex.2h6v.s11.f1e7ada7b4d8 from=translated src=- shape=066f8150 vocab=90cc0816
+-/
 theorem solution
     (R : Type*) [CommRing R] (S : Type*) [CommRing S] [Algebra R S] {m r : ℕ}
     (f : Fin r → MvPolynomial (Fin m) R) (φ : MvPolynomial (Fin m) R →ₐ[R] S) (hφ : Function.Surjective φ)

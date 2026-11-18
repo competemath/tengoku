@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_LT_TwistedNorm_exists_sigmaConj_diagonal_o
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.3h5v.s11.f959fcdad731 from=translated src=- shape=5726822c vocab=5bba3170
+-/
 theorem LT.TwistedNorm.exists_sigmaConj_diagonal_of_mem_hyperbolicCell_of_normClassMap_eq
     {F L : Type*} [Field F] [Field L] [Algebra F L] [FiniteDimensional F L] [IsGalois F L]
     {σ : L ≃ₐ[F] L} (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)

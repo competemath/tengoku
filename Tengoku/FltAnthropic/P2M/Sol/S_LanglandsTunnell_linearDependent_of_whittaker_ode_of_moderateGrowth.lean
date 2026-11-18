@@ -428,6 +428,9 @@ end WhittakerUniquenessC1
 
 open WhittakerUniquenessC1 in
 
+/--
+@isnad1 id=ex.9h4v.s10.02fa9b079334 from=translated src=- shape=61c3466a vocab=8c7a721d
+-/
 theorem solution (ν : ℂ)
     (hν : (ν ^ 2).im = 0) (k : ℝ) (f g : ℝ → ℂ)
     (hf : DifferentiableOn ℝ f (Set.Ioi 0)) (hf' : DifferentiableOn ℝ (deriv f) (Set.Ioi 0))

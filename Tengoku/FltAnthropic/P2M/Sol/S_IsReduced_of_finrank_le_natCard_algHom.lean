@@ -7,6 +7,9 @@ namespace P2MW.S_IsReduced_of_finrank_le_natCard_algHom
 
 namespace B7
 
+/--
+@isnad1 id=eq.1h2v.s10.ac2b8d4a1573 from=translated src=- shape=1746ddfd vocab=155d1c03
+-/
 theorem algHom_toLinearMap_span_top_of_finrank_le (K B : Type*)
     [Field K] [Ring B] [Algebra K B] [Module.Finite K B]
     (h : Module.finrank K B ≤ Nat.card (B →ₐ[K] K)) :
@@ -34,6 +37,9 @@ theorem algHom_toLinearMap_span_top_of_finrank_le (K B : Type*)
     · rw [hrk, ← hcardeq]; exact h
   exact hli.span_eq_top_of_card_eq_finrank' hcard
 
+/--
+@isnad1 id=isreduce.1h2v.s7.a706ceb73eac from=translated src=- shape=c0034d50 vocab=d1e5140c
+-/
 theorem isReduced_of_finrank_le (K B : Type*)
     [Field K] [CommRing B] [Algebra K B] [Module.Finite K B]
     (h : Module.finrank K B ≤ Nat.card (B →ₐ[K] K)) : IsReduced B := by
@@ -60,5 +66,8 @@ theorem isReduced_of_finrank_le (K B : Type*)
   exact hinj this
 end B7
 
+/--
+@isnad1 id=isreduce.1h2v.s7.a706ceb73eac from=translated src=- shape=c0034d50 vocab=d1e5140c
+-/
 theorem solution (K B : Type*) [Field K] [CommRing B] [Algebra K B] [Module.Finite K B] (h : Module.finrank K B ≤ Nat.card (B →ₐ[K] K)) : IsReduced B :=
   B7.isReduced_of_finrank_le K B h

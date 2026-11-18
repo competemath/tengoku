@@ -15,6 +15,9 @@ set_option autoImplicit false
 
 open MeasureTheory Set
 
+/--
+@isnad1 id=ex.3h5v.s9.c5bcea98524e from=translated src=- shape=c1beaf73 vocab=2d8101ff
+-/
 theorem LanglandsTunnell.exists_logBox_mul_setIntegral_le_setIntegral_tiltKernel
     (a : ℝ) (ha : a ≠ 0) (α β : ℝ) (η δ : ℝ) (hη : 0 < η) (hδ : 0 < δ) :
     ∃ R : ℝ, ∀ y : ℝ, R ≤ y → ∃ ℓw ℓr : ℝ, y ^ ((1:ℝ) / 4) ≤ Real.exp (ℓw + ℓr) ∧

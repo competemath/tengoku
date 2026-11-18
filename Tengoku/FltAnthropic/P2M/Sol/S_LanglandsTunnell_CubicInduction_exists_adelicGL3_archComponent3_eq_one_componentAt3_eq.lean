@@ -18,6 +18,9 @@ open IsDedekindDomain NumberField AdelicDock
 variable (R K : Type*) [CommRing R] [IsDedekindDomain R] [Field K] [Algebra R K] [IsFractionRing R K]
   (v : HeightOneSpectrum R)
 
+/--
+@isnad1 id=eq.1h5v.s9.cb0408a43505 from=translated src=- shape=6cfb54f6 vocab=511dd26d
+-/
 theorem matrix_eq_of_forall {n : ℕ} {M N : Matrix (Fin n) (Fin n) (FiniteAdeleRing R K)}
     (h : ∀ w : HeightOneSpectrum R,
       (AdelicLevel.finAdeleEval R K w).mapMatrix M = (AdelicLevel.finAdeleEval R K w).mapMatrix N) :
@@ -29,11 +32,17 @@ theorem matrix_eq_of_forall {n : ℕ} {M N : Matrix (Fin n) (Fin n) (FiniteAdele
 noncomputable def localMat3 (g : Matrix (Fin 3) (Fin 3) (v.adicCompletion K)) : Matrix (Fin 3) (Fin 3) (FiniteAdeleRing R K) :=
   Matrix.of fun i j => splice R K v ((1 : Matrix (Fin 3) (Fin 3) (FiniteAdeleRing R K)) i j) (g i j)
 
+/--
+@isnad1 id=eq.0h4v.s9.9e79f13d6250 from=translated src=- shape=7bc66f6c vocab=e50009b3
+-/
 theorem mapMatrix_localMat3_self (g : Matrix (Fin 3) (Fin 3) (v.adicCompletion K)) :
     (AdelicLevel.finAdeleEval R K v).mapMatrix (localMat3 R K v g) = g := by
   ext i j
   simp [RingHom.mapMatrix_apply, Matrix.map_apply, AdelicLevel.finAdeleEval_apply, localMat3]
 
+/--
+@isnad1 id=eq.1h5v.s9.b2eb14055b56 from=translated src=- shape=d5a206f6 vocab=e50009b3
+-/
 theorem mapMatrix_localMat3_of_ne (g : Matrix (Fin 3) (Fin 3) (v.adicCompletion K))
     {w : HeightOneSpectrum R} (hw : w ≠ v) :
     (AdelicLevel.finAdeleEval R K w).mapMatrix (localMat3 R K v g) = 1 := by
@@ -43,12 +52,18 @@ theorem mapMatrix_localMat3_of_ne (g : Matrix (Fin 3) (Fin 3) (v.adicCompletion 
   rw [Matrix.one_apply, Matrix.one_apply]
   split_ifs <;> rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.bcb77f43d583 from=translated src=- shape=205ffb82 vocab=a029a1ad
+-/
 theorem localMat3_one : localMat3 R K v 1 = 1 := by
   refine matrix_eq_of_forall R K fun w => ?_
   by_cases hw : w = v
   · subst hw; rw [mapMatrix_localMat3_self, map_one]
   · rw [mapMatrix_localMat3_of_ne R K v _ hw, map_one]
 
+/--
+@isnad1 id=eq.0h5v.s9.903e954620b8 from=translated src=- shape=238ac770 vocab=bbe5250f
+-/
 theorem localMat3_mul (g h : Matrix (Fin 3) (Fin 3) (v.adicCompletion K)) :
     localMat3 R K v (g * h) = localMat3 R K v g * localMat3 R K v h := by
   refine matrix_eq_of_forall R K fun w => ?_
@@ -60,6 +75,9 @@ theorem localMat3_mul (g h : Matrix (Fin 3) (Fin 3) (v.adicCompletion K)) :
 noncomputable def adelicMat3 (g : Matrix (Fin 3) (Fin 3) (v.adicCompletion K)) : Matrix (Fin 3) (Fin 3) (AdeleRing R K) :=
   Matrix.of fun i j => ((1 : Matrix (Fin 3) (Fin 3) (InfiniteAdeleRing K)) i j, localMat3 R K v g i j)
 
+/--
+@isnad1 id=eq.0h4v.s9.d226e4a06d4e from=translated src=- shape=f55cc664 vocab=94741c4d
+-/
 theorem mapMatrix_adeleArch_adelicMat3 (g : Matrix (Fin 3) (Fin 3) (v.adicCompletion K)) :
     (AdelicLevel.adeleArch R K).mapMatrix (adelicMat3 R K v g) = 1 := by
   first
@@ -73,6 +91,9 @@ theorem mapMatrix_adeleArch_adelicMat3 (g : Matrix (Fin 3) (Fin 3) (v.adicComple
     | (all_goals decide; done)
     | (all_goals tauto; done)
 
+/--
+@isnad1 id=eq.0h4v.s9.741bc00701a5 from=translated src=- shape=ae01781a vocab=8f31a976
+-/
 theorem mapMatrix_adeleFin_adelicMat3 (g : Matrix (Fin 3) (Fin 3) (v.adicCompletion K)) :
     (AdelicLevel.adeleFin R K).mapMatrix (adelicMat3 R K v g) = localMat3 R K v g := by
   first
@@ -86,6 +107,9 @@ theorem mapMatrix_adeleFin_adelicMat3 (g : Matrix (Fin 3) (Fin 3) (v.adicComplet
     | (all_goals decide; done)
     | (all_goals tauto; done)
 
+/--
+@isnad1 id=eq.2h5v.s10.f4ac35fe66ff from=translated src=- shape=1ae10c19 vocab=10149c39
+-/
 theorem adelic_matrix_eq {n : ℕ} {M N : Matrix (Fin n) (Fin n) (AdeleRing R K)}
     (h₁ : (AdelicLevel.adeleArch R K).mapMatrix M = (AdelicLevel.adeleArch R K).mapMatrix N)
     (h₂ : (AdelicLevel.adeleFin R K).mapMatrix M = (AdelicLevel.adeleFin R K).mapMatrix N) : M = N := by
@@ -96,11 +120,17 @@ theorem adelic_matrix_eq {n : ℕ} {M N : Matrix (Fin n) (Fin n) (AdeleRing R K)
     AdelicLevel.adeleFin_apply] at hw₁ hw₂
   exact Prod.ext hw₁ hw₂
 
+/--
+@isnad1 id=eq.0h3v.s8.36b8c52cc4ad from=translated src=- shape=205ffb82 vocab=21ff5de7
+-/
 theorem adelicMat3_one : adelicMat3 R K v 1 = 1 := by
   refine adelic_matrix_eq R K ?_ ?_
   · rw [mapMatrix_adeleArch_adelicMat3, map_one]
   · rw [mapMatrix_adeleFin_adelicMat3, localMat3_one, map_one]
 
+/--
+@isnad1 id=eq.0h5v.s9.ba57d01ea7d0 from=translated src=- shape=238ac770 vocab=8e6e6c3d
+-/
 theorem adelicMat3_mul (g h : Matrix (Fin 3) (Fin 3) (v.adicCompletion K)) :
     adelicMat3 R K v (g * h) = adelicMat3 R K v g * adelicMat3 R K v h := by
   refine adelic_matrix_eq R K ?_ ?_
@@ -117,6 +147,9 @@ noncomputable def adelicGL3 (y : GL (Fin 3) (v.adicCompletion K)) : GL (Fin 3) (
 end Ws23Embed3
 
 open IsDedekindDomain NumberField LanglandsTunnell.CubicInduction in
+/--
+@isnad1 id=ex.0h3v.s11.9da16a3dc060 from=translated src=- shape=797ba855 vocab=aa87f862
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K)) (y : GL (Fin 3) (v.adicCompletion K)) :
     ∃ k : AdelicGL 3 (𝓞 K) K,

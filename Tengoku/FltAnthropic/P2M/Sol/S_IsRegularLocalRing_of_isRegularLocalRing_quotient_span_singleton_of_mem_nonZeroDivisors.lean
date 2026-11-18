@@ -13,6 +13,9 @@ namespace RegLift
 
 variable {S : Type*} [CommRing S] [IsLocalRing S]
 
+/--
+@isnad1 id=mem.2h3v.s9.70a471762ce1 from=translated src=- shape=a2afeae2 vocab=d7497b6e
+-/
 theorem mk_mem_maximalIdeal {I : Ideal S} (hI : I ≤ maximalIdeal S) [IsLocalRing (S ⧸ I)] {m : S}
     (hm : m ∈ maximalIdeal S) : Ideal.Quotient.mk I m ∈ maximalIdeal (S ⧸ I) := by
   rw [IsLocalRing.mem_maximalIdeal, mem_nonunits_iff]
@@ -26,11 +29,17 @@ theorem mk_mem_maximalIdeal {I : Ideal S} (hI : I ≤ maximalIdeal S) [IsLocalRi
   rw [Ideal.eq_top_iff_one, h2]
   exact Ideal.sub_mem _ h1 (hI hv)
 
+/--
+@isnad1 id=mem.1h3v.s8.6ae5d4185a5f from=translated src=- shape=1e5e97e7 vocab=43c1902e
+-/
 theorem mem_maximalIdeal_of_mk_mem {I : Ideal S} [IsLocalRing (S ⧸ I)] {x : S}
     (hx : Ideal.Quotient.mk I x ∈ maximalIdeal (S ⧸ I)) : x ∈ maximalIdeal S := by
   rw [IsLocalRing.mem_maximalIdeal, mem_nonunits_iff] at hx ⊢
   exact fun hu => hx (hu.map _)
 
+/--
+@isnad1 id=and.3h2v.s8.2a2c7379cb86 from=translated src=- shape=46bb4ade vocab=773be2a5
+-/
 theorem main [IsNoetherianRing S]
     (ϖ : S) (hϖ : ϖ ∈ maximalIdeal S) (hreg : ϖ ∈ nonZeroDivisors S)
     (hfib : IsRegularLocalRing (S ⧸ Ideal.span {ϖ})) :
@@ -108,6 +117,9 @@ theorem main [IsNoetherianRing S]
 
 end RegLift
 
+/--
+@isnad1 id=and.3h2v.s8.2a2c7379cb86 from=translated src=- shape=46bb4ade vocab=773be2a5
+-/
 theorem solution
     {S : Type*} [CommRing S] [IsLocalRing S] [IsNoetherianRing S]
     (ϖ : S) (hϖ : ϖ ∈ maximalIdeal S) (hreg : ϖ ∈ nonZeroDivisors S)

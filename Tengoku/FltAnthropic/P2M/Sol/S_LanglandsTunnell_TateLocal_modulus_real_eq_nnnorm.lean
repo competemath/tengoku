@@ -19,6 +19,9 @@ end Complex
 
 section Real
 
+/--
+@isnad1 id=eq.0h1v.s7.29f5263fcff6 from=translated src=- shape=c6ab00fd vocab=97e265b7
+-/
 theorem distribHaarChar_real_eq_nnnorm (x : ℝˣ) :
     distribHaarChar ℝ x = ‖(x : ℝ)‖₊ := by
   refine distribHaarChar_eq_of_measure_smul_eq_mul (μ := volume) (s := closedBall 0 1)
@@ -30,6 +33,9 @@ theorem distribHaarChar_real_eq_nnnorm (x : ℝˣ) :
     Module.finrank_self, pow_one]
   simp only [ofReal_norm, enorm_eq_nnnorm]
 
+/--
+@isnad1 id=eq.0h1v.s4.8a927025a1f5 from=translated src=- shape=8ffefcbf vocab=d9239a3c
+-/
 theorem modulus_real_eq_nnnorm (x : ℝ) : modulus x = ‖x‖₊ := by
   rcases eq_or_ne x 0 with rfl | hx
   · simp
@@ -40,5 +46,8 @@ end Real
 
 end P7Rows.ArchE1
 
+/--
+@isnad1 id=eq.0h1v.s4.8a927025a1f5 from=translated src=- shape=8ffefcbf vocab=d9239a3c
+-/
 theorem solution : ∀ (x : ℝ), modulus x = ‖x‖₊ :=
   P7Rows.ArchE1.modulus_real_eq_nnnorm

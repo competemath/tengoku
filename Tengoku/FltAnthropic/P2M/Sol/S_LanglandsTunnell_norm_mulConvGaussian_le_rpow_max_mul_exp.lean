@@ -98,6 +98,9 @@ end GaussianConvolutionGrowthInfty
 
 open GaussianConvolutionGrowthInfty in
 
+/--
+@isnad1 id=ex.0h4v.s8.57d152d75814 from=translated src=- shape=66ce5490 vocab=16a832a4
+-/
 theorem solution (u₁ : ℂ) (a₁ : ZMod 2) (u₂ : ℂ)
     (a₂ : ZMod 2) :
     ∃ C : ℝ, ∀ y : ℝ, 1 ≤ y →

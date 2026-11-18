@@ -32,6 +32,9 @@ end CongruenceBottomRow
 
 open CongruenceBottomRow
 
+/--
+@isnad1 id=mem.1h2v.s11.0e8fa0af7035 from=translated src=- shape=ed197b61 vocab=052c72db
+-/
 theorem solution
     (v : HeightOneSpectrum (𝓞 ℚ)) {g : GL (Fin 2) (v.adicCompletion ℚ)}
     (hg : g ∈ AdelicDock.localLevelOne (𝓞 ℚ) ℚ v ⊤) :

@@ -17,6 +17,9 @@ open LaurentPolynomial
 
 namespace F8Kit
 
+/--
+@isnad1 id=ne.1h2v.s5.aeec9f872850 from=translated src=- shape=d73a1082 vocab=cb498106
+-/
 theorem cpow_ne_zero' (N : ℕ) (hN : (N : ℂ) ≠ 0) (s : ℂ) : (N : ℂ) ^ s ≠ 0 :=
   Complex.cpow_ne_zero_iff.mpr (Or.inl hN)
 
@@ -26,27 +29,48 @@ noncomputable def ev (N : ℕ) (hN : (N : ℂ) ≠ 0) (s : ℂ) : ℂ[T;T⁻¹] 
 
 variable (N : ℕ) (hN : (N : ℂ) ≠ 0)
 
+/--
+@isnad1 id=eq.1h3v.s6.f591030d3290 from=translated src=- shape=4bc2e112 vocab=1a6e68ab
+-/
 theorem ev_T (s : ℂ) (n : ℤ) : ev N hN s (T n) = (N : ℂ) ^ ((n : ℂ) * s) := by
   rw [ev, eval₂_T, Units.val_zpow_eq_zpow_val, u, Units.val_mk0, Complex.cpow_int_mul]
 
+/--
+@isnad1 id=eq.1h3v.s6.68387f7fe4fe from=translated src=- shape=5841febd vocab=03e26c31
+-/
 theorem ev_C (s : ℂ) (a : ℂ) : ev N hN s (C a) = a := by
   rw [ev, eval₂_C]; rfl
 
+/--
+@isnad1 id=eq.1h3v.s7.fa9871ff1297 from=translated src=- shape=63f1f1c3 vocab=66f5217b
+-/
 theorem ev_pos (s : ℂ) (R : Polynomial ℂ) : ev N hN s (Polynomial.toLaurent R) = R.eval ((N : ℂ) ^ s) := by
   rw [ev, eval₂_toLaurent, u, Units.val_mk0]; rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.751d652ee985 from=translated src=- shape=e4746108 vocab=2cece793
+-/
 theorem eval₂_invert {R S : Type*} [CommSemiring R] [CommSemiring S] (f : R →+* S) (x : Sˣ) (g : R[T;T⁻¹]) :
     eval₂ f x (invert g) = eval₂ f x⁻¹ g := by
   induction g using LaurentPolynomial.induction_on' with
   | add p q hp hq => rw [map_add, map_add, map_add, hp, hq]
   | C_mul_T n a => rw [map_mul, invert_C, invert_T, eval₂_C_mul_T, eval₂_C_mul_T, zpow_neg, inv_zpow]
 
+/--
+@isnad1 id=eq.1h3v.s8.ce7abc490d09 from=translated src=- shape=10332f6e vocab=ea81fc0f
+-/
 theorem ev_neg (s : ℂ) (R : Polynomial ℂ) :
     ev N hN s (invert (Polynomial.toLaurent R)) = R.eval ((N : ℂ) ^ (-s)) := by
   rw [ev, eval₂_invert, eval₂_toLaurent, Units.val_inv_eq_inv_val, u, Units.val_mk0, ← Complex.cpow_neg]; rfl
 
+/--
+@isnad1 id=eq.0h1v.s8.341f17973d23 from=translated src=- shape=6f7ad8f3 vocab=c20bb065
+-/
 theorem invert_invert (g : ℂ[T;T⁻¹]) : invert (invert g) = g := involutive_invert g
 
+/--
+@isnad1 id=infinite.1h2v.s5.1065c511b7c8 from=translated src=- shape=92d03ae5 vocab=bcd06be6
+-/
 theorem infinite_image_cpow (hN1 : 1 < N) (σ : ℝ) :
     Set.Infinite ((fun t : ℝ => (N : ℂ) ^ ((t : ℝ) : ℂ)) '' Set.Ioi σ) := by
   have hN1r : (1 : ℝ) < N := by exact_mod_cast hN1
@@ -74,6 +98,9 @@ theorem eq_of_ev (hN1 : 1 < N) (g g' : ℂ[T;T⁻¹]) (σ : ℝ)
   refine sub_eq_zero.mp (eq_zero_of_ev N hN hN1 _ σ fun s hs => ?_)
   rw [map_sub, h s hs, sub_self]
 
+/--
+@isnad1 id=ne.1h1v.s8.4c172fbd2bdc from=translated src=- shape=b23aaf83 vocab=5a63514a
+-/
 theorem toLaurent_invert_ne_zero (R : Polynomial ℂ) (hR : R ≠ 0) : invert (Polynomial.toLaurent R) ≠ 0 := by
   intro h
   have : Polynomial.toLaurent R = 0 := by
@@ -85,10 +112,25 @@ noncomputable def pl (R : Polynomial ℂ) : ℂ[T;T⁻¹] := Polynomial.toLauren
 
 noncomputable def mi (R : Polynomial ℂ) : ℂ[T;T⁻¹] := invert (Polynomial.toLaurent R)
 
+/--
+@isnad1 id=eq.1h3v.s6.def847b9ae8c from=translated src=- shape=75d60168 vocab=bd0ced53
+-/
 theorem ev_pl (s : ℂ) (R : Polynomial ℂ) : ev N hN s (pl R) = R.eval ((N : ℂ) ^ s) := ev_pos N hN s R
+/--
+@isnad1 id=eq.1h3v.s6.726af94f6c37 from=translated src=- shape=6a02eb06 vocab=0ed75455
+-/
 theorem ev_mi (s : ℂ) (R : Polynomial ℂ) : ev N hN s (mi R) = R.eval ((N : ℂ) ^ (-s)) := ev_neg N hN s R
+/--
+@isnad1 id=eq.0h1v.s7.bea2a47c7c77 from=translated src=- shape=cc0ac488 vocab=b433a9d3
+-/
 theorem invert_mi (R : Polynomial ℂ) : invert (mi R) = pl R := invert_invert _
+/--
+@isnad1 id=ne.1h1v.s5.ff9a73e804e7 from=translated src=- shape=df2a17e8 vocab=57be587e
+-/
 theorem mi_ne_zero (R : Polynomial ℂ) (hR : R ≠ 0) : mi R ≠ 0 := toLaurent_invert_ne_zero R hR
+/--
+@isnad1 id=ne.1h1v.s7.2ff80311277e from=translated src=- shape=72e4bf20 vocab=c20bb065
+-/
 theorem invert_ne_zero (g : ℂ[T;T⁻¹]) (hg : g ≠ 0) : invert g ≠ 0 := by
   intro h
   apply hg
@@ -99,6 +141,9 @@ end F8Kit
 
 open F8Kit
 
+/--
+@isnad1 id=eq.11h27v.s10.18c67a901e63 from=translated src=- shape=e0e6381d vocab=cf2e6077
+-/
 theorem solution
     (N : ℕ) (hN : 1 < N)
     (ι κ : Type) [Fintype ι] [Fintype κ]

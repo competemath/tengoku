@@ -7,6 +7,9 @@ namespace P2MW.S_KummerTheory_isGalois_and_commute_and_pow_eq_one_of_isSplitting
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=and.1h4v.s10.fe5295ee4819 from=translated src=- shape=831fc8e1 vocab=f548fdcd
+-/
 theorem solution
     (K L : Type*) [Field K] [Field L] [Algebra K L] {n : ℕ} (hμ : (primitiveRoots n K).Nonempty)
     (S : Finset Kˣ) [Polynomial.IsSplittingField K L (∏ u ∈ S, (Polynomial.X ^ n - Polynomial.C ((u : Kˣ) : K)))] :

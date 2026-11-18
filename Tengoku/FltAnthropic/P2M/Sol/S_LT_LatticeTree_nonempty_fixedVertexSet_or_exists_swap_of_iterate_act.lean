@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.Theorems.Thm_LT_LatticeTree_nonempty_twistedFixedVer
 namespace P2MW.S_LT_LatticeTree_nonempty_fixedVertexSet_or_exists_swap_of_iterate_act
 set_option autoImplicit false
 
+/--
+@isnad1 id=or.3h5v.s8.2675333280bb from=translated src=- shape=ff34c27a vocab=a9b7ed13
+-/
 theorem solution
     (R K : Type) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [Field K] [Algebra R K]
     [IsFractionRing R K] (ϖ : R) (hϖ : Irreducible ϖ)

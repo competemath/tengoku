@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open IsDedekindDomain
 
+/--
+@isnad1 id=isopen.0h3v.s9.bd261fba8aef from=translated src=- shape=6f37c14c vocab=e6eea353
+-/
 theorem
 LanglandsTunnell.CubicInduction.isOpen_localMaximalCompact3
     (R K : Type*) [CommRing R] [IsDedekindDomain R] [Field K] [Algebra R K] [IsFractionRing R K]

@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_LanglandsTunnell_CubicInduction_inducedPic
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=other.0h4v.s11.255f3a929c0a from=translated src=- shape=a22013cb vocab=1e1b6967
+-/
 theorem LanglandsTunnell.CubicInduction.inducedPicture_act_det_mul
     (ν : Fin 3 → ℂ) (c d : Fin 3) (P : MvPolynomial (Fin 3 × Fin 3) ℂ) :
     let act : (Fin 3 → ℂ) → Fin 3 → Fin 3 →

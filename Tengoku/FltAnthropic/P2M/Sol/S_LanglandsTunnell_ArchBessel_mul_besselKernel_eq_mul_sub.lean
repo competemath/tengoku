@@ -21,13 +21,22 @@ noncomputable def g (x t : ℝ) : ℝ := Real.exp (-(x * (t + t⁻¹) / 2))
 
 noncomputable def E (x t : ℝ) : ℂ := ((g x t : ℝ) : ℂ)
 
+/--
+@isnad1 id=eq.0h2v.s6.9af8dd344e19 from=translated src=- shape=13379e1e vocab=5dc7f3c9
+-/
 theorem besselKernel_eq (ν : ℂ) (x : ℝ) :
     besselKernel ν x = ∫ t in Ioi (0 : ℝ), E x t * ((t : ℂ) ^ (ν - 1)) := rfl
 
+/--
+@isnad1 id=integrab.1h2v.s6.e19f2d4d7afb from=translated src=- shape=1f66612e vocab=c00a2b64
+-/
 theorem integrableOn_E_mul_cpow (μ : ℂ) (x : ℝ) (hx : 0 < x) :
     IntegrableOn (fun t : ℝ => E x t * ((t : ℂ) ^ (μ - 1))) (Ioi 0) :=
   integrableOn_exp_neg_mul_add_inv_mul_cpow μ x hx
 
+/--
+@isnad1 id=hasderiv.1h2v.s6.950016e69d03 from=translated src=- shape=94d1c741 vocab=c7ebda47
+-/
 theorem hasDerivAt_g (x t : ℝ) (ht : t ≠ 0) :
     HasDerivAt (fun s => g x s) (g x t * (-(x * (1 - (t ^ 2)⁻¹) / 2))) t := by
   unfold g
@@ -38,6 +47,9 @@ theorem hasDerivAt_g (x t : ℝ) (ht : t ≠ 0) :
   have h3 := h2.exp
   convert h3 using 1 <;> ring
 
+/--
+@isnad1 id=hasderiv.1h2v.s6.c0e1f3ae26cb from=translated src=- shape=5a93283e vocab=ed214651
+-/
 theorem hasDerivAt_ofReal_cpow (ν : ℂ) (t : ℝ) (ht : 0 < t) :
     HasDerivAt (fun s : ℝ => (s : ℂ) ^ ν) (ν * (t : ℂ) ^ (ν - 1)) t := by
   have h0 : (id (t : ℂ)) ∈ Complex.slitPlane := by
@@ -49,6 +61,9 @@ noncomputable def F' (ν : ℂ) (x t : ℝ) : ℂ :=
   ν * (E x t * (t : ℂ) ^ (ν - 1)) - (x : ℂ) / 2 * (E x t * (t : ℂ) ^ (ν + 1 - 1))
     + (x : ℂ) / 2 * (E x t * (t : ℂ) ^ (ν - 1 - 1))
 
+/--
+@isnad1 id=hasderiv.1h3v.s6.fbb708e49f1e from=translated src=- shape=9dbe50bb vocab=47e3390c
+-/
 theorem hasDerivAt_E_mul_cpow (ν : ℂ) (x t : ℝ) (ht : 0 < t) :
     HasDerivAt (fun s : ℝ => E x s * (s : ℂ) ^ ν) (F' ν x t) t := by
   have hE : HasDerivAt (fun s : ℝ => E x s) ((g x t * (-(x * (1 - (t ^ 2)⁻¹) / 2)) : ℝ) : ℂ) t :=
@@ -66,13 +81,22 @@ theorem hasDerivAt_E_mul_cpow (ν : ℂ) (x t : ℝ) (ht : 0 < t) :
   field_simp
   ring
 
+/--
+@isnad1 id=lt.0h2v.s4.4e7566a98100 from=translated src=- shape=a120b2a8 vocab=15e413ac
+-/
 theorem g_pos (x t : ℝ) : 0 < g x t := Real.exp_pos _
 
+/--
+@isnad1 id=eq.1h3v.s6.e7ffd82dc831 from=translated src=- shape=605301c9 vocab=2640e2f1
+-/
 theorem norm_E_mul_cpow (ν : ℂ) (x t : ℝ) (ht : 0 < t) :
     ‖E x t * (t : ℂ) ^ ν‖ = g x t * t ^ ν.re := by
   rw [norm_mul, Complex.norm_cpow_eq_rpow_re_of_pos ht, E, Complex.norm_real,
     Real.norm_of_nonneg (g_pos x t).le]
 
+/--
+@isnad1 id=le.2h2v.s5.00f229f14e80 from=translated src=- shape=892e9e4d vocab=2bc888c9
+-/
 theorem g_le_exp_neg_mul (x t : ℝ) (hx : 0 < x) (ht : 0 < t) :
     g x t ≤ Real.exp (-(x / 2) * t) := by
   unfold g
@@ -80,6 +104,9 @@ theorem g_le_exp_neg_mul (x t : ℝ) (hx : 0 < x) (ht : 0 < t) :
   have : 0 ≤ x * t⁻¹ := by positivity
   nlinarith
 
+/--
+@isnad1 id=le.2h2v.s6.37cdd4c63082 from=translated src=- shape=39066f97 vocab=595a57a0
+-/
 theorem g_le_exp_neg_mul_inv (x t : ℝ) (hx : 0 < x) (ht : 0 < t) :
     g x t ≤ Real.exp (-(x / 2) * t⁻¹) := by
   unfold g
@@ -87,6 +114,9 @@ theorem g_le_exp_neg_mul_inv (x t : ℝ) (hx : 0 < x) (ht : 0 < t) :
   have : 0 ≤ x * t := by positivity
   nlinarith
 
+/--
+@isnad1 id=tendsto.1h2v.s6.273834e915db from=translated src=- shape=8a1efa39 vocab=d6dccb91
+-/
 theorem tendsto_atTop (ν : ℂ) (x : ℝ) (hx : 0 < x) :
     Tendsto (fun t : ℝ => E x t * (t : ℂ) ^ ν) atTop (nhds 0) := by
   refine squeeze_zero_norm' ?_ (tendsto_rpow_mul_exp_neg_mul_atTop_nhds_zero ν.re (x / 2) (by positivity))
@@ -94,6 +124,9 @@ theorem tendsto_atTop (ν : ℂ) (x : ℝ) (hx : 0 < x) :
   rw [norm_E_mul_cpow ν x t ht, mul_comm]
   exact mul_le_mul_of_nonneg_left (g_le_exp_neg_mul x t hx ht) (Real.rpow_nonneg ht.le _)
 
+/--
+@isnad1 id=tendsto.1h2v.s6.27f066f90209 from=translated src=- shape=7e866cf4 vocab=2c1c3b84
+-/
 theorem tendsto_nhdsGT_zero (ν : ℂ) (x : ℝ) (hx : 0 < x) :
     Tendsto (fun t : ℝ => E x t * (t : ℂ) ^ ν) (nhdsWithin 0 (Ioi 0)) (nhds 0) := by
   have h1 := (tendsto_rpow_mul_exp_neg_mul_atTop_nhds_zero (-ν.re) (x / 2) (by positivity)).comp
@@ -108,6 +141,9 @@ theorem tendsto_nhdsGT_zero (ν : ℂ) (x : ℝ) (hx : 0 < x) :
   exact mul_le_mul_of_nonneg_left (g_le_exp_neg_mul_inv x t hx ht')
     (Real.rpow_nonneg (inv_nonneg.mpr ht'.le) _)
 
+/--
+@isnad1 id=eq.1h2v.s7.ea0fc8f2ad7f from=translated src=- shape=d66b6268 vocab=49870cbf
+-/
 theorem integral_F' (ν : ℂ) (x : ℝ) (hx : 0 < x) :
     ∫ t in Ioi (0 : ℝ), F' ν x t =
       ν * besselKernel ν x - (x : ℂ) / 2 * besselKernel (ν + 1) x
@@ -126,6 +162,9 @@ theorem integral_F' (ν : ℂ) (x : ℝ) (hx : 0 < x) :
   rw [integral_add h12 h3, integral_sub h1 h2, integral_const_mul, integral_const_mul,
     integral_const_mul, besselKernel_eq, besselKernel_eq, besselKernel_eq]
 
+/--
+@isnad1 id=eq.1h2v.s6.17ffb2546b81 from=translated src=- shape=fc3248d0 vocab=94517819
+-/
 theorem main (ν : ℂ) (x : ℝ) (hx : 0 < x) :
     ν * besselKernel ν x = (x : ℂ) / 2 * (besselKernel (ν + 1) x - besselKernel (ν - 1) x) := by
   classical
@@ -154,6 +193,9 @@ end LanglandsTunnell.ArchBessel.IndexRecAux
 
 open _root_.LanglandsTunnell.ArchBessel open _root_.P2MW.S_LanglandsTunnell_ArchBessel_mul_besselKernel_eq_mul_sub.LanglandsTunnell.ArchBessel
 
+/--
+@isnad1 id=eq.1h2v.s6.17ffb2546b81 from=translated src=- shape=fc3248d0 vocab=94517819
+-/
 theorem solution (ν : ℂ) (x : ℝ) (hx : 0 < x) :
     ν * besselKernel ν x = (x : ℂ) / 2 * (besselKernel (ν + 1) x - besselKernel (ν - 1) x) :=
   LanglandsTunnell.ArchBessel.IndexRecAux.main ν x hx

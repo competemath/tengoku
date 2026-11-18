@@ -646,6 +646,9 @@ end LatticeFlag
 
 end LT.LatticeTree
 
+/--
+@isnad1 id=or.3h6v.s8.175681d7a71f from=translated src=- shape=4b698ce0 vocab=5fdc1bd5
+-/
 theorem solution
     (R K : Type) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [Field K] [Algebra R K]
     [IsFractionRing R K] (ϖ : R) (hϖ : Irreducible ϖ)

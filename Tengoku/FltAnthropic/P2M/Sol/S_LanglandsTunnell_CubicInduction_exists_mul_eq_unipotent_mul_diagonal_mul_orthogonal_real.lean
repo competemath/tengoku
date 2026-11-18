@@ -648,6 +648,9 @@ end HermiteThree
 
 end
 
+/--
+@isnad1 id=ex.0h0v.s11.698c9028821c from=translated src=- shape=0d36b48d vocab=9129a948
+-/
 theorem solution :
     ∃ c C : ℝ, 0 < c ∧ ∀ M : GL (Fin 3) ℝ,
       ∃ (γ : GL (Fin 3) ℤ) (n t k : GL (Fin 3) ℝ),

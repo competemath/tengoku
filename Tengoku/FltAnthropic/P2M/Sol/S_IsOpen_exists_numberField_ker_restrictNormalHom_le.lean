@@ -10,6 +10,9 @@ set_option autoImplicit false
 noncomputable section
 namespace P2mWs11LV
 
+/--
+@isnad1 id=ex.0h2v.s11.5d93f2a5684a from=translated src=- shape=b898b8a3 vocab=3a445270
+-/
 theorem exists_numberField_ker_restrictNormalHom_le
     (L₁ L₂ : IntermediateField ℚ (AlgebraicClosure ℚ)) [FiniteDimensional ℚ L₁] [FiniteDimensional ℚ L₂] :
     ∃ (F : Type) (_ : Field F) (_ : NumberField F) (_ : IsGalois ℚ F)
@@ -47,6 +50,9 @@ theorem exists_numberField_ker_restrictNormalHom_le
     exact ⟨fun x hx => hfix x (hE ((le_sup_left : L₁ ≤ E) hx)),
       fun x hx => hfix x (hE ((le_sup_right : L₂ ≤ E) hx))⟩
 
+/--
+@isnad1 id=ex.1h1v.s10.ec305a04cd0e from=translated src=- shape=4d14795e vocab=41323843
+-/
 theorem exists_finiteDimensional_fixingSubgroup_le
     {H : Subgroup (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ)}
     (hH : IsOpen (H : Set (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ))) :
@@ -59,6 +65,9 @@ theorem exists_finiteDimensional_fixingSubgroup_le
 end P2mWs11LV
 end
 
+/--
+@isnad1 id=ex.1h1v.s10.30247daedb8b from=translated src=- shape=3bdb80ae vocab=ffd54e98
+-/
 theorem solution
     {H : Subgroup (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ)}
     (hH : IsOpen (H : Set (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ))) :

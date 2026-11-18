@@ -16,6 +16,9 @@ namespace KFG2
 
 open IsLocalRing
 
+/--
+@isnad1 id=le.0h4v.s7.c895600de548 from=translated src=- shape=35d2a085 vocab=f1db2ed0
+-/
 theorem sup_span_pow_le {R : Type*} [CommRing R] (A : Ideal R) (v : R) (n : ℕ) :
     (A ⊔ Ideal.span {v}) ^ n ≤ A ⊔ Ideal.span {v ^ n} := by
   induction n with
@@ -31,6 +34,9 @@ theorem sup_span_pow_le {R : Type*} [CommRing R] (A : Ideal R) (v : R) (n : ℕ)
         · exact le_sup_left.trans' Ideal.mul_le_left
         · exact le_sup_left.trans' Ideal.mul_le_right
 
+/--
+@isnad1 id=ex.2h2v.s6.a259603b0a91 from=translated src=- shape=a53be4fa vocab=7c29d8bd
+-/
 theorem dvr_of_maximalIdeal_eq_span {L : Type*} [CommRing L] [IsLocalRing L] [IsNoetherianRing L]
     (p : L) (hmLp : maximalIdeal L = Ideal.span {p}) (hpn : ∀ n : ℕ, p ^ n ≠ 0) :
     ∃ _ : IsDomain L, IsDiscreteValuationRing L := by
@@ -111,6 +117,9 @@ theorem dvr_of_maximalIdeal_eq_span {L : Type*} [CommRing L] [IsLocalRing L] [Is
         exact ⟨m, hu.unit, by rw [IsUnit.unit_spec]⟩⟩
   exact ⟨hLdom, hdvr⟩
 
+/--
+@isnad1 id=ex.0h1v.s11.803ea6779090 from=translated src=- shape=0ec661dd vocab=0981ecf6
+-/
 theorem completion_facts (O : Type*) [CommRing O] [IsLocalRing O] [IsNoetherianRing O] :
     ∃ (_ : IsLocalRing (AdicCompletion (maximalIdeal O) O)),
       maximalIdeal (AdicCompletion (maximalIdeal O) O) = (maximalIdeal O).map (algebraMap O _) ∧
@@ -153,6 +162,9 @@ theorem completion_facts (O : Type*) [CommRing O] [IsLocalRing O] [IsNoetherianR
 
 end KFG2
 
+/--
+@isnad1 id=and.3h6v.s10.d4144f721a85 from=translated src=- shape=dee43820 vocab=4159b565
+-/
 theorem solution
     {R' : Type*} [CommRing R'] [IsRegularLocalRing R']
     (ϖ' τ : R') (hmax : maximalIdeal R' = Ideal.span {ϖ', τ}) (hdim : ringKrullDim R' = 2)

@@ -15,12 +15,18 @@ open MeasureTheory Set
 
 namespace Ws23K3
 
+/--
+@isnad1 id=quasimea.1h1v.s5.65c0270ffaa1 from=translated src=- shape=ef915292 vocab=1f9430ff
+-/
 theorem qmp_mul_left {r : ℝ} (hr : r ≠ 0) :
     Measure.QuasiMeasurePreserving (fun t : ℝ => r * t) volume volume := by
   refine ⟨measurable_const_mul r, ?_⟩
   rw [Real.map_volume_mul_left hr]
   exact Measure.smul_absolutelyContinuous
 
+/--
+@isnad1 id=eventual.2h3v.s6.175cd8643168 from=translated src=- shape=07b576ae vocab=2e19c3a2
+-/
 theorem ae_restrict_comp_mul {g g' : ℝ → ℂ} (h : ∀ᵐ u ∂(volume.restrict (Ioi (0 : ℝ))), g u = g' u)
     {r : ℝ} (hr : 0 < r) :
     ∀ᵐ t ∂(volume.restrict (Ioi (0 : ℝ))), g (r * t) = g' (r * t) := by
@@ -29,6 +35,9 @@ theorem ae_restrict_comp_mul {g g' : ℝ → ℂ} (h : ∀ᵐ u ∂(volume.restr
   filter_upwards [h2] with t ht htpos
   exact ht (mul_pos hr htpos)
 
+/--
+@isnad1 id=and.4h3v.s8.7bdc7b9ea2a0 from=translated src=- shape=87e35af2 vocab=c33e87f2
+-/
 theorem core (φ g : ℝ → ℂ) (z : ℂ)
     (hφm : AEStronglyMeasurable φ (Measure.restrict volume (Set.Ioi (0 : ℝ))))
     (hgM : Measurable g)
@@ -110,6 +119,9 @@ theorem core (φ g : ℝ → ℂ) (z : ℂ)
 
 end Ws23K3
 
+/--
+@isnad1 id=and.4h3v.s8.9d8b3eb9dc46 from=translated src=- shape=81ff388a vocab=4db548f3
+-/
 theorem solution
     (φ g : ℝ → ℂ) (z : ℂ)
     (hφm : AEStronglyMeasurable φ (Measure.restrict volume (Set.Ioi (0 : ℝ))))

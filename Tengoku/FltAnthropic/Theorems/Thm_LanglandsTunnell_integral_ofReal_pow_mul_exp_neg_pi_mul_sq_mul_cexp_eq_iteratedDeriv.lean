@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open MeasureTheory Complex FourierTransform
 
+/--
+@isnad1 id=eq.0h2v.s7.6aaef47257b5 from=translated src=- shape=c1077453 vocab=2888ea6b
+-/
 theorem LanglandsTunnell.integral_ofReal_pow_mul_exp_neg_pi_mul_sq_mul_cexp_eq_iteratedDeriv (j : ℕ) (ξ : ℝ) :
     ∫ x : ℝ, ((x : ℝ) : ℂ) ^ j * (Real.exp (-(Real.pi * x ^ 2)) : ℂ) * Complex.exp (2 * Real.pi * Complex.I * (ξ : ℂ) * (x : ℂ)) =
       (2 * Real.pi * Complex.I)⁻¹ ^ j * iteratedDeriv j (fun η : ℝ => (Real.exp (-(Real.pi * η ^ 2)) : ℂ)) ξ := by exact @_root_.P2MW.S_LanglandsTunnell_integral_ofReal_pow_mul_exp_neg_pi_mul_sq_mul_cexp_eq_iteratedDeriv.solution j ξ

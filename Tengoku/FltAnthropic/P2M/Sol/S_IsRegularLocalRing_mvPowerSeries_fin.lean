@@ -20,6 +20,9 @@ section IndexBijection
 
 variable {α β : Type*}
 
+/--
+@isnad1 id=injectiv.0h2v.s5.a6de76fb697c from=translated src=- shape=78199d3b vocab=2fd46f85
+-/
 theorem Finsupp.sumElim_injective2 :
     Function.Injective2 (Finsupp.sumElim : (α →₀ ℕ) → (β →₀ ℕ) → (α ⊕ β →₀ ℕ)) := by
   intro a a' b b' h
@@ -44,11 +47,17 @@ def sumInvFun (g : MvPowerSeries α (MvPowerSeries β R)) : MvPowerSeries (α �
 
 variable {α β}
 
+/--
+@isnad1 id=eq.0h6v.s9.e8ace0c1600c from=translated src=- shape=9bd8c879 vocab=fbef9633
+-/
 @[scoped simp]
 theorem coeff_sumToFun (f : MvPowerSeries (α ⊕ β) R) (a : α →₀ ℕ) (b : β →₀ ℕ) :
     coeff b (coeff a (sumToFun α β f)) = coeff (a.sumElim b) f :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s9.fca66e605ed1 from=translated src=- shape=c0c6d0a7 vocab=e9a56f44
+-/
 theorem coeff_mul_sumElim [DecidableEq α] [DecidableEq β]
     (f g : MvPowerSeries (α ⊕ β) R) (a : α →₀ ℕ) (b : β →₀ ℕ) :
     coeff (a.sumElim b) (f * g) =
@@ -157,12 +166,18 @@ namespace PowerSeries
 
 variable {R : Type u} [CommRing R]
 
+/--
+@isnad1 id=issmulre.0h1v.s4.f4d80e24fdd2 from=translated src=- shape=708e5b78 vocab=e643c7b7
+-/
 lemma isSMulRegular_X : IsSMulRegular R⟦X⟧ (X : R⟦X⟧) := by
   intro f g h
   simp only [smul_eq_mul] at h
   ext n
   simpa only [coeff_succ_X_mul] using congrArg (coeff (n + 1)) h
 
+/--
+@isnad1 id=eq.0h1v.s6.bcdf19f53fbf from=translated src=- shape=3511d1b1 vocab=077c940f
+-/
 lemma ker_constantCoeff : RingHom.ker (constantCoeff (R := R)) = Ideal.span {(X : R⟦X⟧)} := by
   ext f
   rw [RingHom.mem_ker, Ideal.mem_span_singleton, X_dvd_iff]
@@ -175,15 +190,24 @@ section IsLocalRing
 
 variable [IsLocalRing R]
 
+/--
+@isnad1 id=iff.0h2v.s7.bf532e59fc94 from=translated src=- shape=132bb401 vocab=bb96ea18
+-/
 lemma mem_maximalIdeal_iff {f : R⟦X⟧} :
     f ∈ maximalIdeal R⟦X⟧ ↔ constantCoeff f ∈ maximalIdeal R := by
   rw [IsLocalRing.mem_maximalIdeal, IsLocalRing.mem_maximalIdeal, mem_nonunits_iff,
     mem_nonunits_iff, isUnit_iff_constantCoeff]
 
+/--
+@isnad1 id=mem.0h1v.s6.78d4adaf495b from=translated src=- shape=25ff2d6b vocab=84317846
+-/
 lemma X_mem_maximalIdeal : (X : R⟦X⟧) ∈ maximalIdeal R⟦X⟧ := by
   rw [mem_maximalIdeal_iff, constantCoeff_X]
   exact zero_mem _
 
+/--
+@isnad1 id=mem.1h2v.s7.48a2f1a81eb6 from=translated src=- shape=0c8c7beb vocab=da430d2a
+-/
 lemma C_mem_maximalIdeal {r : R} (hr : r ∈ maximalIdeal R) :
     (C r : R⟦X⟧) ∈ maximalIdeal R⟦X⟧ := by
   rwa [mem_maximalIdeal_iff, constantCoeff_C]
@@ -194,6 +218,9 @@ open scoped _root_.P2MW.S_IsRegularLocalRing_mvPowerSeries_fin.W2MV.MvPowerSerie
 section KrullDim
 variable (R) [IsNoetherianRing R] [IsLocalRing R]
 
+/--
+@isnad1 id=eq.0h1v.s5.f7fe7b901b04 from=translated src=- shape=326f50f7 vocab=d32c6aa0
+-/
 lemma ringKrullDim_powerSeries : ringKrullDim R⟦X⟧ = ringKrullDim R + 1 := by
   have h := ringKrullDim_quotient_span_singleton_succ_eq_ringKrullDim
     (R := R⟦X⟧) (x := X) isSMulRegular_X X_mem_maximalIdeal
@@ -206,6 +233,9 @@ open scoped _root_.P2MW.S_IsRegularLocalRing_mvPowerSeries_fin.W2MV.MvPowerSerie
 section MaximalIdealSpan
 variable [IsLocalRing R]
 
+/--
+@isnad1 id=eq.1h2v.s7.2ecd93d1c353 from=translated src=- shape=cfca589d vocab=5e9e4394
+-/
 theorem maximalIdeal_eq_span_image_union_X {S : Set R} (hS : maximalIdeal R = Ideal.span S) :
     maximalIdeal R⟦X⟧ = Ideal.span ((C : R →+* R⟦X⟧) '' S ∪ {(X : R⟦X⟧)}) := by
   apply le_antisymm
@@ -232,6 +262,9 @@ theorem maximalIdeal_eq_span_image_union_X {S : Set R} (hS : maximalIdeal R = Id
     · exact C_mem_maximalIdeal (by rw [hS]; exact Ideal.subset_span hr)
     · exact X_mem_maximalIdeal
 
+/--
+@isnad1 id=le.0h1v.s6.a9e592f7bd2b from=translated src=- shape=f212cf00 vocab=2b72bf75
+-/
 theorem spanFinrank_maximalIdeal_le_succ [IsNoetherianRing R] :
     (maximalIdeal R⟦X⟧).spanFinrank ≤ (maximalIdeal R).spanFinrank + 1 := by
 
@@ -252,6 +285,9 @@ theorem spanFinrank_maximalIdeal_le_succ [IsNoetherianRing R] :
 end MaximalIdealSpan
 open scoped _root_.P2MW.S_IsRegularLocalRing_mvPowerSeries_fin.W2MV.MvPowerSeries _root_.P2MW.S_IsRegularLocalRing_mvPowerSeries_fin.W2MV
 
+/--
+@isnad1 id=isregula.0h1v.s4.6e5a069e88bf from=translated src=- shape=d96e9922 vocab=5b59d041
+-/
 theorem isRegularLocalRing_powerSeries (R : Type u) [CommRing R] [IsRegularLocalRing R] :
     IsRegularLocalRing R⟦X⟧ := by
   apply IsRegularLocalRing.of_spanFinrank_maximalIdeal_le
@@ -265,6 +301,9 @@ open scoped _root_.P2MW.S_IsRegularLocalRing_mvPowerSeries_fin.W2MV.MvPowerSerie
 
 open IsLocalRing
 
+/--
+@isnad1 id=isregula.0h2v.s4.aff0b4e46de7 from=translated src=- shape=b87066e7 vocab=65d86fa1
+-/
 theorem solution (𝓞 : Type*) [CommRing 𝓞] [IsDomain 𝓞]
     [IsDiscreteValuationRing 𝓞] (n : ℕ) :
     IsRegularLocalRing (MvPowerSeries (Fin n) 𝓞) := by

@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open scoped Real
 
+/--
+@isnad1 id=and.6h7v.s10.74305e4fbbef from=translated src=- shape=9ea53110 vocab=4dc87e64
+-/
 theorem LanglandsTunnell.norm_le_mul_rpow_near_zero_of_bessel_ode_of_forcing_of_apriori
     (ν : ℂ) (hν : 0 ≤ ν.re) (σ A r B : ℝ) (f h : ℝ → ℂ)
     (hf : DifferentiableOn ℝ f (Set.Ioi 0)) (hf' : DifferentiableOn ℝ (deriv f) (Set.Ioi 0))

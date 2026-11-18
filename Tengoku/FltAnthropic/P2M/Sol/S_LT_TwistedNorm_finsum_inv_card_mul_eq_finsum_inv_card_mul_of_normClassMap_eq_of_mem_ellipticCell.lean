@@ -28,18 +28,27 @@ variable {K : Type*} [Field K]
 
 local notation "sc" => Matrix.GeneralLinearGroup.scalar (Fin 2)
 
+/--
+@isnad1 id=eq.0h3v.s10.28329a61dad7 from=translated src=- shape=f958e00c vocab=6e33c565
+-/
 theorem scalar_mul_comm (c : Kˣ) (g : GL (Fin 2) K) : sc c * g = g * sc c := by
   refine Units.ext ?_
   show Matrix.scalar (Fin 2) (c : K) * (g : Matrix (Fin 2) (Fin 2) K) =
     (g : Matrix (Fin 2) (Fin 2) K) * Matrix.scalar (Fin 2) (c : K)
   exact (Matrix.scalar_commute (c : K) (fun r => Commute.all _ r) _).eq
 
+/--
+@isnad1 id=eq.0h4v.s10.5fac751b0073 from=translated src=- shape=994c648b vocab=9df4d843
+-/
 theorem conj_scalar_mul (c : Kˣ) (g h : GL (Fin 2) K) :
     h⁻¹ * (sc c * g) * h = sc c * (h⁻¹ * g * h) := by
   rw [show h⁻¹ * (sc c * g) * h = (h⁻¹ * sc c) * (g * h) by simp only [mul_assoc],
     ← scalar_mul_comm c h⁻¹]
   simp only [mul_assoc]
 
+/--
+@isnad1 id=mem.1h3v.s9.e5c96d735479 from=translated src=- shape=b8472d1a vocab=82e92d41
+-/
 theorem scalar_mul_mem_ellipticCell (a : Kˣ) {γ : GL (Fin 2) K}
     (hγ : γ ∈ AutomorphicForm.ellipticCell K) :
     sc a * γ ∈ AutomorphicForm.ellipticCell K := by
@@ -83,9 +92,15 @@ def stab (γ₀ : GL (Fin 2) K) : Subgroup Kˣ where
       _ = sc a⁻¹ * (sc a * (h * γ₀ * h⁻¹)) := by rw [e2]
       _ = h * γ₀ * h⁻¹ := by rw [← mul_assoc, ← map_mul, inv_mul_cancel, map_one, one_mul]
 
+/--
+@isnad1 id=iff.0h3v.s10.a043eff318e1 from=translated src=- shape=5bf4f464 vocab=50431fa7
+-/
 theorem mem_stab_iff (γ₀ : GL (Fin 2) K) (a : Kˣ) :
     a ∈ stab γ₀ ↔ ∃ h : GL (Fin 2) K, sc a * γ₀ = h⁻¹ * γ₀ * h := Iff.rfl
 
+/--
+@isnad1 id=or.1h3v.s8.c16aeacf749f from=translated src=- shape=dd2f64d1 vocab=209c19ef
+-/
 theorem sq_eq_one_of_mem_stab {γ₀ : GL (Fin 2) K} {a : Kˣ} (ha : a ∈ stab γ₀) : a = 1 ∨ a = -1 := by
   obtain ⟨h, hh⟩ := ha
   have hdet : Matrix.GeneralLinearGroup.det (sc a * γ₀) = Matrix.GeneralLinearGroup.det (h⁻¹ * γ₀ * h) :=
@@ -103,12 +118,21 @@ theorem sq_eq_one_of_mem_stab {γ₀ : GL (Fin 2) K} {a : Kˣ} (ha : a ∈ stab 
   · left; exact Units.ext (by simpa using h)
   · right; exact Units.ext (by simpa using h)
 
+/--
+@isnad1 id=finite.0h2v.s6.8c297082b5ce from=translated src=- shape=844c20b0 vocab=88b27a5b
+-/
 theorem stab_finite (γ₀ : GL (Fin 2) K) : (stab γ₀ : Set Kˣ).Finite :=
   ((Set.finite_singleton (-1 : Kˣ)).insert 1).subset fun a ha => by
     rcases sq_eq_one_of_mem_stab ha with rfl | rfl <;> simp
 
+/--
+@isnad1 id=finite.0h2v.s7.ac202d1070ee from=translated src=- shape=3618d825 vocab=3576b5c2
+-/
 scoped instance stab_finite_inst (γ₀ : GL (Fin 2) K) : Finite (stab γ₀) := (stab_finite γ₀).to_subtype
 
+/--
+@isnad1 id=iff.0h4v.s10.e994be7d4681 from=translated src=- shape=72cd5d33 vocab=7090efaa
+-/
 theorem mk_scalar_mul_eq_iff (γ₀ : GL (Fin 2) K) (a b : Kˣ) :
     ConjClasses.mk (sc a * γ₀) = ConjClasses.mk (sc b * γ₀) ↔ a⁻¹ * b ∈ stab γ₀ := by
   rw [ConjClasses.mk_eq_mk_iff_isConj, isConj_iff, mem_stab_iff]
@@ -132,6 +156,9 @@ variable {F L : Type*} [Field F] [Field L] [Algebra F L] [FiniteDimensional F L]
 local notation "sc" => Matrix.GeneralLinearGroup.scalar (Fin 2)
 
 omit [FiniteDimensional F L] [IsGalois F L] in
+/--
+@isnad1 id=eq.0h4v.s10.6440b85d82a5 from=translated src=- shape=b3b8f153 vocab=4345235a
+-/
 theorem map_scalar (u : Lˣ) :
     Matrix.GeneralLinearGroup.map (σ : L →+* L) (sc u) = sc (Units.map ((σ : L →+* L) : L →* L) u) := by
   ext i j
@@ -143,6 +170,9 @@ theorem map_scalar (u : Lˣ) :
 
 omit [FiniteDimensional F L] [IsGalois F L] in
 
+/--
+@isnad1 id=eq.0h6v.s10.015e428071a2 from=translated src=- shape=0ad044d5 vocab=c572135c
+-/
 theorem sigmaPartialNorm_scalar_mul (u : Lˣ) (δ : GL (Fin 2) L) (r : ℕ) :
     sigmaPartialNorm (Matrix.GeneralLinearGroup.map (σ : L →+* L)) (sc u * δ) r =
       sc (sigmaPartialNorm (Units.map ((σ : L →+* L) : L →* L)) u r) *
@@ -155,6 +185,9 @@ theorem sigmaPartialNorm_scalar_mul (u : Lˣ) (δ : GL (Fin 2) L) (r : ℕ) :
 
       rw [← mul_assoc, mul_assoc (sc u) δ, ← scalar_mul_comm, ← mul_assoc, ← map_mul, mul_assoc]
 
+/--
+@isnad1 id=eq.1h4v.s11.6b48eb8c2eb9 from=translated src=- shape=61afd600 vocab=05eca0f9
+-/
 theorem map_algebraMap_scalar_norm (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ) (u : Lˣ) :
     Matrix.GeneralLinearGroup.map (algebraMap F L) (sc (Units.map (Algebra.norm F : L →* F) u)) =
       sc (sigmaNormPow (Units.map ((σ : L →+* L) : L →* L)) (Module.finrank F L) u) := by
@@ -167,6 +200,9 @@ theorem map_algebraMap_scalar_norm (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgro
     rw [coe_sigmaNormPow_units_eq_algebraMap_norm hgen u]
   · simp [hij, Matrix.scalar_apply]
 
+/--
+@isnad1 id=isnormre.2h6v.s10.b02f25a1a4d2 from=translated src=- shape=973ed3bb vocab=9df0a14d
+-/
 theorem isNormRep_scalar_mul (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)
     {γ : GL (Fin 2) F} {δ : GL (Fin 2) L} (h : IsNormRep σ γ δ) (u : Lˣ) :
     IsNormRep σ (sc (Units.map (Algebra.norm F : L →* F) u) * γ) (sc u * δ) := by
@@ -175,6 +211,9 @@ theorem isNormRep_scalar_mul (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpo
   rw [sigmaNormPow_def, sigmaPartialNorm_scalar_mul, ← sigmaNormPow_def, ← sigmaNormPow_def, map_mul,
     map_algebraMap_scalar_norm hgen, ← hP, ← conj_scalar_mul]
 
+/--
+@isnad1 id=isnormre.2h5v.s9.e3485080e446 from=translated src=- shape=00d23ba7 vocab=791186c3
+-/
 theorem isNormRep_of_normClassMap_eq (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)
     {δ : GL (Fin 2) L} {γ : GL (Fin 2) F}
     (h : normClassMap hgen (SigmaConjClasses.mk σ δ) = ConjClasses.mk γ) : IsNormRep σ γ δ := by
@@ -185,6 +224,9 @@ theorem isNormRep_of_normClassMap_eq (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subg
   rw [← hc, map_mul, map_mul, map_inv, ← hP]
   group
 
+/--
+@isnad1 id=eq.2h6v.s11.8f74dcc3f0d0 from=translated src=- shape=4c82df42 vocab=f7976196
+-/
 theorem normClassMap_scalar_mul (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)
     {δ : GL (Fin 2) L} {γ : GL (Fin 2) F}
     (h : normClassMap hgen (SigmaConjClasses.mk σ δ) = ConjClasses.mk γ) (u : Lˣ) :
@@ -192,6 +234,9 @@ theorem normClassMap_scalar_mul (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.
       ConjClasses.mk (sc (Units.map (Algebra.norm F : L →* F) u) * γ) :=
   normClassMap_mk_eq_of_isNormRep hgen (isNormRep_scalar_mul hgen (isNormRep_of_normClassMap_eq hgen h) u)
 
+/--
+@isnad1 id=eq.1h5v.s10.720d2d3acdb8 from=translated src=- shape=f0f84dd2 vocab=063414ed
+-/
 theorem normClassMap_mk_sigmaConj (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)
     (δ h : GL (Fin 2) L) :
     normClassMap hgen (SigmaConjClasses.mk σ (h⁻¹ * δ * Matrix.GeneralLinearGroup.map (σ : L →+* L) h)) =
@@ -230,12 +275,18 @@ variable (σ) in
 abbrev Rgrp : Subgroup Lˣ := (Units.map ((σ : L →+* L) : L →* L) / MonoidHom.id Lˣ).range
 
 omit [FiniteDimensional K L] [IsGalois K L] in
+/--
+@isnad1 id=eq.0h4v.s9.2491cf87c5a9 from=translated src=- shape=1451fea0 vocab=0d7336cd
+-/
 theorem coe_R_apply (w : Lˣ) :
     ((((Units.map ((σ : L →+* L) : L →* L) / MonoidHom.id Lˣ) w : Lˣ)) : L) = σ (w : L) / (w : L) := by
   rw [MonoidHom.div_apply, Units.val_div_eq_div_val, Units.coe_map, MonoidHom.id_apply]
   rfl
 
 omit [IsGalois K L] in
+/--
+@isnad1 id=eq.0h4v.s9.c1cf147f1846 from=translated src=- shape=b815fcba vocab=cc1808d3
+-/
 theorem nu_R (w : Lˣ) : nu K L ((Units.map ((σ : L →+* L) : L →* L) / MonoidHom.id Lˣ) w) = 1 := by
   refine Units.ext ?_
   rw [Units.coe_map]
@@ -250,10 +301,16 @@ theorem nu_R (w : Lˣ) : nu K L ((Units.map ((σ : L →+* L) : L →* L) / Mono
   · exact absurd h hw
 
 omit [IsGalois K L] in
+/--
+@isnad1 id=le.0h3v.s7.fb24dd5577ef from=translated src=- shape=78ea4f23 vocab=8ebb48d9
+-/
 theorem Rgrp_le_ker : Rgrp σ ≤ (nu K L).ker := by
   rintro x ⟨w, rfl⟩
   exact nu_R w
 
+/--
+@isnad1 id=eq.2h5v.s9.87031ac773df from=translated src=- shape=3c4f7e3b vocab=53cde6c5
+-/
 theorem mk_eq_mk_of_nu_eq (hgen : ∀ τ : L ≃ₐ[K] L, τ ∈ Subgroup.zpowers σ) {u u' : Lˣ}
     (h : nu K L u = nu K L u') : (QuotientGroup.mk u : Lˣ ⧸ Rgrp σ) = QuotientGroup.mk u' := by
   haveI : IsCyclic (L ≃ₐ[K] L) := ⟨⟨σ, hgen⟩⟩
@@ -268,6 +325,9 @@ theorem mk_eq_mk_of_nu_eq (hgen : ∀ τ : L ≃ₐ[K] L, τ ∈ Subgroup.zpower
   rw [Units.val_inv_eq_inv_val, map_inv₀]
   field_simp
 
+/--
+@isnad1 id=iff.3h7v.s11.e9e03bf46f38 from=translated src=- shape=da361373 vocab=1f322713
+-/
 theorem rel_iff_nu_mem_stab (hgen : ∀ τ : L ≃ₐ[K] L, τ ∈ Subgroup.zpowers σ)
     {γ₀ : GL (Fin 2) K} (hγ₀ : γ₀ ∈ AutomorphicForm.ellipticCell K)
     {δ₀ : GL (Fin 2) L} {a₀ : Kˣ}
@@ -292,6 +352,9 @@ theorem rel_iff_nu_mem_stab (hgen : ∀ τ : L ≃ₐ[K] L, τ ∈ Subgroup.zpow
       (sc a₀ * γ₀) (scalar_mul_mem_ellipticCell a₀ hγ₀) δ₀ (sc u * δ₀) hδ₀ h2
     exact SigmaConjClasses.mk_eq_mk_iff_exists_eq_inv_mul_mul_map.mp hmk
 
+/--
+@isnad1 id=eq.3h6v.s11.8c958fdff011 from=translated src=- shape=cb45ec03 vocab=a532dad7
+-/
 theorem card_weight_eq (hgen : ∀ τ : L ≃ₐ[K] L, τ ∈ Subgroup.zpowers σ)
     {γ₀ : GL (Fin 2) K} (hγ₀ : γ₀ ∈ AutomorphicForm.ellipticCell K)
     {δ₀ : GL (Fin 2) L} {a₀ : Kˣ}
@@ -338,6 +401,9 @@ section Fibre
 
 open Function
 
+/--
+@isnad1 id=eq.3h5v.s6.1cebc312cc28 from=translated src=- shape=835975f5 vocab=2c2a1968
+-/
 theorem finsum_comp_eq_card_smul_finsum {α β : Type*} (π : α → β) (hπ : Surjective π) (k : ℕ) (hk : k ≠ 0)
     (hfib : ∀ b : β, Nat.card (π ⁻¹' {b}) = k) (g : β → ℂ) :
     (∑ᶠ a, g (π a)) = (k : ℂ) * ∑ᶠ b, g b := by
@@ -397,11 +463,17 @@ local notation "sc" => Matrix.GeneralLinearGroup.scalar (Fin 2)
 local notation "σ'" => Matrix.GeneralLinearGroup.map (σ : L →+* L)
 
 omit [FiniteDimensional K L] [IsGalois K L] in
+/--
+@isnad1 id=eq.0h5v.s10.9dd336b81516 from=translated src=- shape=8d27df38 vocab=6e33c565
+-/
 theorem conj_scalar_mul' (c : Lˣ) (g h k : GL (Fin 2) L) :
     h * (sc c * g) * k = sc c * (h * g * k) := by
   rw [show h * (sc c * g) * k = (h * sc c) * (g * k) by simp only [mul_assoc], ← scalar_mul_comm c h]
   simp only [mul_assoc]
 
+/--
+@isnad1 id=eq.1h5v.s11.34361cbbf900 from=translated src=- shape=73506a22 vocab=8592534a
+-/
 theorem mk_eq_mk_scalar_of_mk_scalar_eq {F : Type*} [Field F] (a b : Fˣ) (g g' : GL (Fin 2) F)
     (h : ConjClasses.mk (Matrix.GeneralLinearGroup.scalar (Fin 2) a * g) =
       ConjClasses.mk (Matrix.GeneralLinearGroup.scalar (Fin 2) b * g')) :
@@ -416,6 +488,9 @@ theorem mk_eq_mk_scalar_of_mk_scalar_eq {F : Type*} [Field F] (a b : Fˣ) (g g' 
   rw [map_mul, mul_assoc (Matrix.GeneralLinearGroup.scalar (Fin 2) a⁻¹), ← hc, ← mul_assoc, ← map_mul,
     inv_mul_cancel, map_one, one_mul]
 
+/--
+@isnad1 id=eq.9h8v.s13.a7c5c810d6d1 from=translated src=- shape=749e7073 vocab=b6c5f3bb
+-/
 theorem main (hgen : ∀ τ : L ≃ₐ[K] L, τ ∈ Subgroup.zpowers σ)
     (γ₀ : GL (Fin 2) K) (hγ₀ : γ₀ ∈ AutomorphicForm.ellipticCell K)
     (RL : Set (GL (Fin 2) L))
@@ -649,6 +724,9 @@ open scoped _root_.P2MW.S_LT_TwistedNorm_finsum_inv_card_mul_eq_finsum_inv_card_
 open scoped _root_.P2MW.S_LT_TwistedNorm_finsum_inv_card_mul_eq_finsum_inv_card_mul_of_normClassMap_eq_of_mem_ellipticCell.LT _root_.P2MW.S_LT_TwistedNorm_finsum_inv_card_mul_eq_finsum_inv_card_mul_of_normClassMap_eq_of_mem_ellipticCell.LT.TwistedNorm _root_.P2MW.S_LT_TwistedNorm_finsum_inv_card_mul_eq_finsum_inv_card_mul_of_normClassMap_eq_of_mem_ellipticCell.LT.TwistedNorm.EllipticWeights
 open scoped _root_.P2MW.S_LT_TwistedNorm_finsum_inv_card_mul_eq_finsum_inv_card_mul_of_normClassMap_eq_of_mem_ellipticCell.LT _root_.P2MW.S_LT_TwistedNorm_finsum_inv_card_mul_eq_finsum_inv_card_mul_of_normClassMap_eq_of_mem_ellipticCell.LT.TwistedNorm _root_.P2MW.S_LT_TwistedNorm_finsum_inv_card_mul_eq_finsum_inv_card_mul_of_normClassMap_eq_of_mem_ellipticCell.LT.TwistedNorm.EllipticWeights
 
+/--
+@isnad1 id=eq.9h8v.s14.4c7e6b4aa687 from=translated src=- shape=21085147 vocab=be727767
+-/
 theorem solution
     (K L : Type) [Field K] [Field L] [Algebra K L] [FiniteDimensional K L] [IsGalois K L]
     (σ : L ≃ₐ[K] L) (hgen : ∀ τ : L ≃ₐ[K] L, τ ∈ Subgroup.zpowers σ)

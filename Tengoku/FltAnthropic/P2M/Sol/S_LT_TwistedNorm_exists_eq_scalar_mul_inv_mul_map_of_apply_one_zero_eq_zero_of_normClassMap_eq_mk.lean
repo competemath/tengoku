@@ -25,11 +25,17 @@ abbrev σG (σ : L ≃ₐ[F] L) : GL (Fin 2) L →* GL (Fin 2) L :=
 
 abbrev σU (σ : L ≃ₐ[F] L) : Lˣ →* Lˣ := Units.map ((σ : L →+* L) : L →* L)
 
+/--
+@isnad1 id=eq.0h3v.s10.e658fcd93371 from=translated src=- shape=344cda02 vocab=4f08e961
+-/
 theorem sc_comm (u : Lˣ) (g : GL (Fin 2) L) : sc u * g = g * sc u := by
   apply Units.ext
   simp only [Units.val_mul]
   exact (Matrix.scalar_commute (u : L) (fun r' => Commute.all _ _) (g : Matrix (Fin 2) (Fin 2) L)).eq
 
+/--
+@isnad1 id=eq.0h4v.s10.88144485e5d0 from=translated src=- shape=19097b67 vocab=b84971a9
+-/
 theorem σG_sc (σ : L ≃ₐ[F] L) (u : Lˣ) : σG σ (sc u) = sc (σU σ u) := by
   ext i j
   simp only [Matrix.GeneralLinearGroup.map_apply]
@@ -39,6 +45,9 @@ theorem σG_sc (σ : L ≃ₐ[F] L) (u : Lˣ) : σG σ (sc u) = sc (σU σ u) :=
   · subst hij; simp
   · simp [hij]
 
+/--
+@isnad1 id=eq.0h6v.s10.6725008e332c from=translated src=- shape=da7b8ed0 vocab=51e18c58
+-/
 theorem sigmaPartialNorm_sc_mul (σ : L ≃ₐ[F] L) (u : Lˣ) (δ : GL (Fin 2) L) (r : ℕ) :
     sigmaPartialNorm (σG σ) (sc u * δ) r =
       sc (sigmaPartialNorm (σU σ) u r) * sigmaPartialNorm (σG σ) δ r := by
@@ -50,6 +59,9 @@ theorem sigmaPartialNorm_sc_mul (σ : L ≃ₐ[F] L) (u : Lˣ) (δ : GL (Fin 2) 
       rw [mul_assoc (sc u), ← mul_assoc δ, ← sc_comm _ δ]
       simp only [mul_assoc]
 
+/--
+@isnad1 id=eq.1h4v.s10.b901cc2e3ba4 from=translated src=- shape=7f358e77 vocab=7ec31019
+-/
 theorem coe_sc_sigmaNormPow [FiniteDimensional F L] [IsGalois F L] {σ : L ≃ₐ[F] L}
     (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ) (u : Lˣ) :
     ((sc (sigmaNormPow (σU σ) (Module.finrank F L) u) : GL (Fin 2) L) : Matrix (Fin 2) (Fin 2) L) =
@@ -62,6 +74,9 @@ theorem coe_sc_sigmaNormPow [FiniteDimensional F L] [IsGalois F L] {σ : L ≃�
   · subst hij; simp
   · simp [hij]
 
+/--
+@isnad1 id=eq.0h7v.s10.791e4637e9bf from=translated src=- shape=115deca0 vocab=4a99b6f3
+-/
 theorem coe_mul_map_apply (σ : L ≃ₐ[F] L) (δ P : GL (Fin 2) L) (i j : Fin 2) :
     ((δ * σG σ P : GL (Fin 2) L) : Matrix (Fin 2) (Fin 2) L) i j =
       (δ : Matrix (Fin 2) (Fin 2) L) i 0 * σ ((P : Matrix (Fin 2) (Fin 2) L) 0 j) +
@@ -69,6 +84,9 @@ theorem coe_mul_map_apply (σ : L ≃ₐ[F] L) (δ P : GL (Fin 2) L) (i j : Fin 
   rw [Units.val_mul, Matrix.mul_apply, Fin.sum_univ_two]
   rfl
 
+/--
+@isnad1 id=and.3h7v.s10.8c33ec8a4635 from=translated src=- shape=5ed8ca7c vocab=fc980670
+-/
 theorem sigmaPartialNorm_triangular (σ : L ≃ₐ[F] L) (δ : GL (Fin 2) L)
     (hδ : (δ : Matrix (Fin 2) (Fin 2) L) 1 0 = 0) (a d : Lˣ)
     (ha : (δ : Matrix (Fin 2) (Fin 2) L) 0 0 = a) (hd : (δ : Matrix (Fin 2) (Fin 2) L) 1 1 = d) (r : ℕ) :
@@ -98,6 +116,9 @@ theorem sigmaPartialNorm_triangular (σ : L ≃ₐ[F] L) (δ : GL (Fin 2) L)
 
 variable [FiniteDimensional F L] [IsGalois F L]
 
+/--
+@isnad1 id=isnormre.2h5v.s9.e3485080e446 from=translated src=- shape=00d23ba7 vocab=791186c3
+-/
 theorem isNormRep_of_normClassMap_mk_eq {σ : L ≃ₐ[F] L} (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)
     {δ : GL (Fin 2) L} {γ : GL (Fin 2) F}
     (hN : normClassMap hgen (SigmaConjClasses.mk σ δ) = ConjClasses.mk γ) : IsNormRep σ γ δ := by
@@ -108,6 +129,9 @@ theorem isNormRep_of_normClassMap_mk_eq {σ : L ≃ₐ[F] L} (hgen : ∀ τ : L 
   rw [← hQ, map_mul, map_mul, map_inv, ← hP]
   group
 
+/--
+@isnad1 id=ex.4h5v.s11.f22a75781808 from=translated src=- shape=48bcadd6 vocab=f956a9db
+-/
 theorem main [Infinite F]
     {σ : L ≃ₐ[F] L} (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)
     (δ : GL (Fin 2) L) (hδ : (δ : Matrix (Fin 2) (Fin 2) L) 1 0 = 0)
@@ -192,6 +216,9 @@ end R3TriFam
 
 end
 
+/--
+@isnad1 id=ex.4h5v.s11.929bf45eb479 from=translated src=- shape=4c685977 vocab=0ef13fad
+-/
 theorem solution
     {F L : Type*} [Field F] [Field L] [Algebra F L] [FiniteDimensional F L] [IsGalois F L]
     [Infinite F]

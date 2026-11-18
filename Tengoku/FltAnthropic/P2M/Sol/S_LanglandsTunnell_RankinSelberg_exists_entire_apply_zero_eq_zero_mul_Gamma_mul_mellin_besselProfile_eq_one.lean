@@ -20,6 +20,9 @@ export _root_.LanglandsTunnell.ArchBessel (besselKernel mellin_besselKernel_mul_
 namespace RecipPS
 open _root_.LanglandsTunnell.ArchBessel open _root_.LanglandsTunnell
 
+/--
+@isnad1 id=eq.0h2v.s6.e5f374795c5f from=translated src=- shape=089adcc0 vocab=dfe84868
+-/
 theorem conj_besselKernel (ν : ℂ) (x : ℝ) :
     (starRingEnd ℂ) (besselKernel ν x) = besselKernel ((starRingEnd ℂ) ν) x := by
   unfold besselKernel
@@ -34,14 +37,23 @@ theorem conj_besselKernel (ν : ℂ) (x : ℝ) :
   rw [Complex.conj_ofReal] at h
   rw [← h, map_sub, map_one]
 
+/--
+@isnad1 id=eq.0h2v.s6.1ba12176978a from=translated src=- shape=8215bbe5 vocab=cf873bf0
+-/
 theorem normSq_besselKernel (ν : ℂ) (x : ℝ) :
     (((‖besselKernel ν x‖ ^ 2 : ℝ) : ℝ) : ℂ) = besselKernel ν x * besselKernel ((starRingEnd ℂ) ν) x := by
   rw [← conj_besselKernel, Complex.mul_conj, Complex.normSq_eq_norm_sq]
 
+/--
+@isnad1 id=eq.0h2v.s6.5a918a9bce1a from=translated src=- shape=67580c2e vocab=cf873bf0
+-/
 theorem ofReal_norm_besselKernel_sq (ν : ℂ) (x : ℝ) :
     ((‖besselKernel ν x‖ : ℝ) : ℂ) ^ 2 = besselKernel ν x * besselKernel ((starRingEnd ℂ) ν) x := by
   rw [← Complex.ofReal_pow, normSq_besselKernel]
 
+/--
+@isnad1 id=eq.1h2v.s5.b84e1371d599 from=translated src=- shape=11793672 vocab=a4e9a06f
+-/
 theorem prod_range_mul_Gamma (s : ℂ) (hs : 0 < s.re) (n : ℕ) :
     (∏ j ∈ Finset.range n, (s + j)) * Complex.Gamma s = Complex.Gamma (s + n) := by
   induction n with
@@ -57,6 +69,9 @@ theorem prod_range_mul_Gamma (s : ℂ) (hs : 0 < s.re) (n : ℕ) :
 end LanglandsTunnell.ArchBessel.RecipPS
 
 open LanglandsTunnell.ArchBessel.RecipPS in
+/--
+@isnad1 id=ex.3h3v.s8.367d1c272548 from=translated src=- shape=779c24d3 vocab=6d164a99
+-/
 theorem solution
     (C : ℝ) (hC : 0 < C) (a : ℕ) (ha : 1 ≤ a) (ν : ℂ) (hν : a = 1 → ν.re = 0 ∨ ν.im = 0) :
     ∃ H : ℂ → ℂ, Differentiable ℂ H ∧ H 0 = 0 ∧

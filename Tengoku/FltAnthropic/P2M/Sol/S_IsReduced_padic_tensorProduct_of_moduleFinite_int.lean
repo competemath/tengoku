@@ -11,6 +11,9 @@ open scoped TensorProduct
 
 namespace ReducedEngines
 
+/--
+@isnad1 id=isreduce.0h1v.s7.7a57dc07ee94 from=translated src=- shape=21eea9f1 vocab=667922d5
+-/
 theorem isReduced_rat_tensorProduct (S : Type*) [CommRing S] [IsReduced S] :
     IsReduced (ℚ ⊗[ℤ] S) := by
   letI : Algebra S (ℚ ⊗[ℤ] S) := Algebra.TensorProduct.rightAlgebra
@@ -21,6 +24,9 @@ theorem isReduced_rat_tensorProduct (S : Type*) [CommRing S] [IsReduced S] :
   exact isReduced_localizationPreserves (Algebra.algebraMapSubmonoid S (nonZeroDivisors ℤ)) (ℚ ⊗[ℤ] S)
     (inferInstance : IsReduced S)
 
+/--
+@isnad1 id=formally.0h2v.s6.72c3bf726b9a from=translated src=- shape=fa9ae7f2 vocab=bb4f2e20
+-/
 theorem formallyUnramified_of_finiteDimensional_of_isReduced (K A : Type*) [Field K] [PerfectField K] [CommRing A]
     [Algebra K A] [FiniteDimensional K A] [IsReduced A] : Algebra.FormallyUnramified K A := by
   haveI : IsArtinianRing A := IsArtinianRing.of_finite K A
@@ -35,6 +41,9 @@ theorem formallyUnramified_of_finiteDimensional_of_isReduced (K A : Type*) [Fiel
 
 end ReducedEngines
 
+/--
+@isnad1 id=isreduce.0h2v.s8.8f5eb541d7e4 from=translated src=- shape=292e1ea1 vocab=c6f55fbb
+-/
 theorem solution
     (S : Type*) [CommRing S] [Module.Finite ℤ S] [Module.Free ℤ S] [IsReduced S] (ℓ : ℕ) [Fact ℓ.Prime] :
     IsReduced (TensorProduct ℤ ℚ_[ℓ] S) := by

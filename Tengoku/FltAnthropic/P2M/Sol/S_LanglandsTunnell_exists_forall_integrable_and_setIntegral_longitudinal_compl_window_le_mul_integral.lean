@@ -12,6 +12,9 @@ open MeasureTheory Set Real
 
 namespace OcSigma
 
+/--
+@isnad1 id=le.0h1v.s6.d6e259bbc7b1 from=translated src=- shape=6cccbe43 vocab=ba59d8fc
+-/
 theorem two_mul_sq_le_cosh_two_mul_sub_one (σ : ℝ) : 2 * σ ^ 2 ≤ Real.cosh (2 * σ) - 1 := by
   have h1 : Real.cosh (2 * σ) = 1 + 2 * Real.sinh σ ^ 2 := by
     rw [Real.cosh_two_mul, Real.cosh_sq]; ring
@@ -25,6 +28,9 @@ theorem two_mul_sq_le_cosh_two_mul_sub_one (σ : ℝ) : 2 * σ ^ 2 ≤ Real.cosh
       nlinarith
   rw [h1]; linarith
 
+/--
+@isnad1 id=le.1h3v.s7.9fa435d524d7 from=translated src=- shape=26cf16bb vocab=75a1bf63
+-/
 theorem exp_bump_le {lam : ℝ} (hlam : 0 < lam) (c σ : ℝ) :
     Real.exp (c * σ - lam * (Real.cosh (2 * σ) - 1)) ≤ Real.exp (c ^ 2 / (4 * lam)) * Real.exp (-lam * σ ^ 2) := by
   rw [← Real.exp_add]
@@ -37,6 +43,9 @@ theorem exp_bump_le {lam : ℝ} (hlam : 0 < lam) (c σ : ℝ) :
     nlinarith
   nlinarith [mul_le_mul_of_nonneg_left h hlam.le]
 
+/--
+@isnad1 id=integrab.1h2v.s6.74d0b4b148ff from=translated src=- shape=0a1144e0 vocab=e5ec5c04
+-/
 theorem integrable_bump {lam : ℝ} (hlam : 0 < lam) (c : ℝ) :
     Integrable (fun σ : ℝ => Real.exp (c * σ - lam * (Real.cosh (2 * σ) - 1))) := by
   refine Integrable.mono' ((integrable_exp_neg_mul_sq hlam).const_mul (Real.exp (c ^ 2 / (4 * lam)))) ?_ ?_
@@ -45,10 +54,16 @@ theorem integrable_bump {lam : ℝ} (hlam : 0 < lam) (c : ℝ) :
     rw [Real.norm_of_nonneg (Real.exp_nonneg _)]
     exact exp_bump_le hlam c σ
 
+/--
+@isnad1 id=eq.0h3v.s6.f63191af01d1 from=translated src=- shape=48ad1618 vocab=1a67bb3d
+-/
 theorem exp_split (c lam σ : ℝ) :
     Real.exp (c * σ - lam * Real.cosh (2 * σ)) = Real.exp (-lam) * Real.exp (c * σ - lam * (Real.cosh (2 * σ) - 1)) := by
   rw [← Real.exp_add]; congr 1; ring
 
+/--
+@isnad1 id=integrab.1h2v.s6.dc1eb04146f0 from=translated src=- shape=967b71c0 vocab=e5ec5c04
+-/
 theorem integrable_exp_lin_sub_mul_cosh {lam : ℝ} (hlam : 0 < lam) (c : ℝ) :
     Integrable (fun σ : ℝ => Real.exp (c * σ - lam * Real.cosh (2 * σ))) := by
   have := (integrable_bump hlam c).const_mul (Real.exp (-lam))
@@ -56,6 +71,9 @@ theorem integrable_exp_lin_sub_mul_cosh {lam : ℝ} (hlam : 0 < lam) (c : ℝ) :
   simp only []
   rw [exp_split]
 
+/--
+@isnad1 id=le.2h3v.s7.2edf325d1f54 from=translated src=- shape=e84f024d vocab=15fc85ce
+-/
 theorem integral_le_exp_neg_mul {lam₀ lam : ℝ} (h₀ : 0 < lam₀) (hle : lam₀ ≤ lam) (c : ℝ) :
     ∫ σ, Real.exp (c * σ - lam * Real.cosh (2 * σ))
       ≤ Real.exp (-lam) * ∫ σ, Real.exp (c * σ - lam₀ * (Real.cosh (2 * σ) - 1)) := by
@@ -68,6 +86,9 @@ theorem integral_le_exp_neg_mul {lam₀ lam : ℝ} (h₀ : 0 < lam₀) (hle : la
   have : 0 ≤ Real.cosh (2 * σ) - 1 := by linarith [Real.one_le_cosh (2 * σ)]
   nlinarith
 
+/--
+@isnad1 id=le.2h3v.s7.b87401ce3a02 from=translated src=- shape=d2bdf78a vocab=46e9fe93
+-/
 theorem window_ge {lam : ℝ} (hlam : 0 ≤ lam) (c : ℝ) {ρ : ℝ} (hρ : 0 < ρ) :
     2 * ρ * Real.exp (-(|c| * ρ)) * Real.exp (-(lam * Real.cosh (2 * ρ)))
       ≤ ∫ σ in {σ : ℝ | |σ| ≤ ρ}, Real.exp (c * σ - lam * Real.cosh (2 * σ)) := by
@@ -92,6 +113,9 @@ theorem window_ge {lam : ℝ} (hlam : 0 ≤ lam) (c : ℝ) {ρ : ℝ} (hρ : 0 <
       linarith [show |σ| ≤ ρ from hσ]
     nlinarith
 
+/--
+@isnad1 id=and.3h4v.s9.91b1d5903eaa from=translated src=- shape=704f175d vocab=b1a6d401
+-/
 theorem offWindow_le {lam₀ lam : ℝ} (h₀ : 0 < lam₀) (hle : lam₀ ≤ lam) (c : ℝ) {δ : ℝ} (hδ : 0 < δ) :
     IntegrableOn (fun σ : ℝ => Real.exp (c * σ - lam * Real.cosh (2 * σ))) {σ | δ < |σ|} ∧
     ∫ σ in {σ : ℝ | δ < |σ|}, Real.exp (c * σ - lam * Real.cosh (2 * σ))
@@ -169,8 +193,14 @@ namespace OcLong
 
 noncomputable def phi (v : ℝ) : ℝ := -(Real.exp (-2 * v) + 2 * Real.exp v)
 
+/--
+@isnad1 id=eq.0h0v.s4.4a0062c277ff from=translated src=- shape=df7d22f1 vocab=dee297dd
+-/
 theorem phi_zero : phi 0 = -3 := by simp [phi]; norm_num
 
+/--
+@isnad1 id=eq.0h1v.s6.373231737aa7 from=translated src=- shape=04bef770 vocab=7ff52098
+-/
 theorem phi_zero_sub (v : ℝ) :
     phi 0 - phi v = (Real.exp v - 1) ^ 2 * (2 * Real.exp v + 1) / Real.exp v ^ 2 := by
   rw [phi_zero, phi]
@@ -179,11 +209,17 @@ theorem phi_zero_sub (v : ℝ) :
   field_simp
   ring
 
+/--
+@isnad1 id=le.0h1v.s3.d09207befc70 from=translated src=- shape=420edb52 vocab=9b0f7e7f
+-/
 theorem phi_le_phi_zero (v : ℝ) : phi v ≤ phi 0 := by
   have h := phi_zero_sub v
   have : 0 ≤ (Real.exp v - 1) ^ 2 * (2 * Real.exp v + 1) / Real.exp v ^ 2 := by positivity
   linarith
 
+/--
+@isnad1 id=le.2h2v.s4.4c096b773152 from=translated src=- shape=bc9b144e vocab=9b0f7e7f
+-/
 theorem phi_le_of_nonneg_le {v w : ℝ} (hv : 0 ≤ v) (hvw : v ≤ w) : phi w ≤ phi v := by
 
   simp only [phi]
@@ -206,6 +242,9 @@ theorem phi_le_of_nonneg_le {v w : ℝ} (hv : 0 ≤ v) (hvw : v ≤ w) : phi w �
     nlinarith
   linarith
 
+/--
+@isnad1 id=le.2h2v.s4.f2d1d8e2adcb from=translated src=- shape=4f01aa05 vocab=9b0f7e7f
+-/
 theorem phi_le_of_le_nonpos {v w : ℝ} (hw : w ≤ 0) (hvw : v ≤ w) : phi v ≤ phi w := by
   simp only [phi]
   set x := Real.exp v with hx
@@ -234,6 +273,9 @@ theorem phi_le_of_le_nonpos {v w : ℝ} (hw : w ≤ 0) (hvw : v ≤ w) : phi v �
     nlinarith
   linarith
 
+/--
+@isnad1 id=le.2h2v.s6.06b11523367b from=translated src=- shape=a3599c71 vocab=523c7833
+-/
 theorem phi_gap {δ : ℝ} (hδ : 0 < δ) {v : ℝ} (hv : δ < |v|) :
     phi v ≤ phi 0 - min (phi 0 - phi δ) (phi 0 - phi (-δ)) := by
   rcases le_or_gt 0 v with h | h
@@ -246,6 +288,9 @@ theorem phi_gap {δ : ℝ} (hδ : 0 < δ) {v : ℝ} (hv : δ < |v|) :
     have := min_le_right (phi 0 - phi δ) (phi 0 - phi (-δ))
     linarith
 
+/--
+@isnad1 id=lt.1h1v.s5.ee1bda78187a from=translated src=- shape=cf48d3e0 vocab=3fdbf185
+-/
 theorem gap_pos {δ : ℝ} (hδ : 0 < δ) : 0 < min (phi 0 - phi δ) (phi 0 - phi (-δ)) := by
   have h1 : 0 < phi 0 - phi δ := by
     rw [phi_zero_sub]
@@ -258,6 +303,9 @@ theorem gap_pos {δ : ℝ} (hδ : 0 < δ) : 0 < min (phi 0 - phi δ) (phi 0 - ph
     positivity
   exact lt_min h1 h2
 
+/--
+@isnad1 id=le.1h1v.s6.dfd05cf02d00 from=translated src=- shape=a72a7551 vocab=0f8f0f0c
+-/
 theorem phi_zero_sub_le {v : ℝ} (hv : |v| ≤ 1) :
     phi 0 - phi v ≤ 3 * Real.exp 2 * (Real.exp |v| - 1) ^ 2 := by
   rw [phi_zero_sub]
@@ -325,15 +373,24 @@ noncomputable def E (a α β y u : ℝ) : ℝ := -y * Real.log (1 + Real.exp (-2
 
 noncomputable def Ψ (a α β y u σ : ℝ) : ℝ := E a α β y u + (α - β) * σ - lam a u * Real.cosh (2 * σ)
 
+/--
+@isnad1 id=le.2h6v.s5.04787d617cc6 from=translated src=- shape=5490beda vocab=2fa997bd
+-/
 theorem T_nonneg (a α β y : ℝ) {w r : ℝ} (hw : 0 < w) (hr : 0 < r) : 0 ≤ T a α β y w r := by
   unfold T
   have : 0 < 1 + ((w * r) ^ 2)⁻¹ := by positivity
   exact mul_nonneg (mul_nonneg (mul_nonneg (Real.rpow_nonneg this.le _) (Real.rpow_nonneg hw.le _)) (Real.rpow_nonneg hr.le _)) (Real.exp_nonneg _)
 
+/--
+@isnad1 id=lt.1h2v.s4.bcbaa4fa56cc from=translated src=- shape=c55cdd19 vocab=e9ca7461
+-/
 theorem lam_pos (a : ℝ) (ha : a ≠ 0) (u : ℝ) : 0 < lam a u := by
   unfold lam; have : 0 < a ^ 2 := by positivity
   positivity
 
+/--
+@isnad1 id=le.1h2v.s5.3f4ae5441b10 from=translated src=- shape=ae7160ba vocab=50b393f0
+-/
 theorem two_pi_abs_le_lam (a : ℝ) (ha : a ≠ 0) (u : ℝ) : 2 * Real.pi * |a| ≤ lam a u := by
   unfold lam
   rw [Real.sqrt_mul' _ (by positivity), Real.sqrt_sq_eq_abs]
@@ -342,6 +399,9 @@ theorem two_pi_abs_le_lam (a : ℝ) (ha : a ≠ 0) (u : ℝ) : 2 * Real.pi * |a|
   have : 0 ≤ 2 * Real.pi * |a| := by positivity
   nlinarith
 
+/--
+@isnad1 id=le.1h2v.s5.9a9d79daa260 from=translated src=- shape=37fe1fa5 vocab=1c811b70
+-/
 theorem two_pi_abs_exp_le_lam (a : ℝ) (ha : a ≠ 0) (u : ℝ) : 2 * Real.pi * |a| * Real.exp u ≤ lam a u := by
   unfold lam
   rw [Real.sqrt_mul' _ (by positivity), Real.sqrt_sq_eq_abs]
@@ -352,6 +412,9 @@ theorem two_pi_abs_exp_le_lam (a : ℝ) (ha : a ≠ 0) (u : ℝ) : 2 * Real.pi *
   have : 0 ≤ 2 * Real.pi * |a| := by positivity
   nlinarith
 
+/--
+@isnad1 id=le.1h2v.s6.11aeb9b1ced7 from=translated src=- shape=e3e88e0a vocab=8dfd7f1f
+-/
 theorem lam_le (a : ℝ) (ha : a ≠ 0) (u : ℝ) : lam a u ≤ 2 * Real.pi * |a| * Real.exp u + Real.pi * |a| * Real.exp (-u) := by
   unfold lam
   rw [Real.sqrt_mul' _ (by positivity), Real.sqrt_sq_eq_abs]
@@ -367,6 +430,9 @@ noncomputable def Zfull (a α β u : ℝ) : ℝ := ∫ σ, Real.exp ((α - β) *
 noncomputable def Zin (a α β δ₁ u : ℝ) : ℝ := ∫ σ in {σ : ℝ | |σ| ≤ δ₁}, Real.exp ((α - β) * σ - lam a u * Real.cosh (2 * σ))
 noncomputable def Zout (a α β δ₁ u : ℝ) : ℝ := ∫ σ in {σ : ℝ | δ₁ < |σ|}, Real.exp ((α - β) * σ - lam a u * Real.cosh (2 * σ))
 
+/--
+@isnad1 id=eq.1h5v.s5.238b321d1923 from=translated src=- shape=8b8a2f8c vocab=0ed8057c
+-/
 theorem Zfull_eq_add (a : ℝ) (ha : a ≠ 0) (α β δ₁ u : ℝ) : Zfull a α β u = Zin a α β δ₁ u + Zout a α β δ₁ u := by
   unfold Zfull Zin Zout
   have hI := OcSigma.integrable_exp_lin_sub_mul_cosh (lam_pos a ha u) (α - β)
@@ -375,12 +441,21 @@ theorem Zfull_eq_add (a : ℝ) (ha : a ≠ 0) (α β δ₁ u : ℝ) : Zfull a α
   congr 1
   rw [show {σ : ℝ | |σ| ≤ δ₁}ᶜ = {σ : ℝ | δ₁ < |σ|} by ext σ; simp [not_le]]
 
+/--
+@isnad1 id=le.0h5v.s4.116359de2dc2 from=translated src=- shape=d72d0e19 vocab=c77d5f24
+-/
 theorem Zin_nonneg (a α β δ₁ u : ℝ) : 0 ≤ Zin a α β δ₁ u := by
   unfold Zin; exact integral_nonneg (fun σ => (Real.exp_nonneg _))
 
+/--
+@isnad1 id=le.0h5v.s4.f366ed62adc9 from=translated src=- shape=d72d0e19 vocab=6f64000b
+-/
 theorem Zout_nonneg (a α β δ₁ u : ℝ) : 0 ≤ Zout a α β δ₁ u := by
   unfold Zout; exact integral_nonneg (fun σ => (Real.exp_nonneg _))
 
+/--
+@isnad1 id=lt.1h4v.s5.c51785b9b8ed from=translated src=- shape=5a511597 vocab=be129cb8
+-/
 theorem Zfull_pos (a : ℝ) (ha : a ≠ 0) (α β u : ℝ) : 0 < Zfull a α β u := by
   have h := OcSigma.window_ge (lam_pos a ha u).le (α - β) (zero_lt_one)
   have h2 : Zin a α β 1 u ≤ Zfull a α β u := by
@@ -389,6 +464,9 @@ theorem Zfull_pos (a : ℝ) (ha : a ≠ 0) (α β u : ℝ) : 0 < Zfull a α β u
   have : 0 < 2 * (1:ℝ) * Real.exp (-(|α - β| * 1)) * Real.exp (-(lam a u * Real.cosh (2 * 1))) := by positivity
   linarith
 
+/--
+@isnad1 id=ex.3h5v.s6.193188b1f238 from=translated src=- shape=d3a18531 vocab=96746061
+-/
 theorem sigma_conc (a : ℝ) (ha : a ≠ 0) (α β : ℝ) {δ₁ : ℝ} (hδ₁ : 0 < δ₁) {ε : ℝ} (hε : 0 < ε) :
     ∃ M : ℝ, ∀ u : ℝ, M ≤ lam a u → Zfull a α β u ≤ (1 + ε) * Zin a α β δ₁ u := by
   set lam₀ : ℝ := 2 * Real.pi * |a| with hlam₀
@@ -421,6 +499,9 @@ theorem sigma_conc (a : ℝ) (ha : a ≠ 0) (α β : ℝ) {δ₁ : ℝ} (hδ₁ 
 
 noncomputable def ustar (a y : ℝ) : ℝ := (1 / 3) * Real.log (y / (Real.pi * |a|))
 
+/--
+@isnad1 id=eq.1h5v.s5.a2c95f8101c1 from=translated src=- shape=9289f522 vocab=dfe875d6
+-/
 theorem lintegral_sigma_univ (a : ℝ) (ha : a ≠ 0) (α β y u : ℝ) :
     ∫⁻ σ, ENNReal.ofReal (Real.exp (Ψ a α β y u σ)) = ENNReal.ofReal (Real.exp (E a α β y u) * Zfull a α β u) := by
   have hI := OcSigma.integrable_exp_lin_sub_mul_cosh (lam_pos a ha u) (α - β)
@@ -431,6 +512,9 @@ theorem lintegral_sigma_univ (a : ℝ) (ha : a ≠ 0) (α β y u : ℝ) :
   congr 1
   rw [Ψ, ← Real.exp_add]; congr 1; ring
 
+/--
+@isnad1 id=eq.1h6v.s6.c191341529bc from=translated src=- shape=e14c765e vocab=073d7130
+-/
 theorem lintegral_sigma_win (a : ℝ) (ha : a ≠ 0) (α β y δ₁ u : ℝ) :
     ∫⁻ σ in {σ : ℝ | |σ| ≤ δ₁}, ENNReal.ofReal (Real.exp (Ψ a α β y u σ))
       = ENNReal.ofReal (Real.exp (E a α β y u) * Zin a α β δ₁ u) := by
@@ -446,16 +530,25 @@ namespace LC
 
 noncomputable def Lam (a y : ℝ) : ℝ := Real.pi * |a| * Real.exp (ustar a y)
 
+/--
+@isnad1 id=lt.1h2v.s4.b714dacb1449 from=translated src=- shape=c55cdd19 vocab=b26af508
+-/
 theorem Lam_pos (a : ℝ) (ha : a ≠ 0) (y : ℝ) : 0 < Lam a y := by
   unfold Lam; have : 0 < |a| := abs_pos.2 ha
   positivity
 
+/--
+@isnad1 id=eq.2h2v.s6.0968b8192104 from=translated src=- shape=2e7349f1 vocab=428f399f
+-/
 theorem exp_three_ustar (a : ℝ) (ha : a ≠ 0) {y : ℝ} (hy : 0 < y) :
     Real.exp (3 * ustar a y) = y / (Real.pi * |a|) := by
   unfold ustar
   have : 0 < Real.pi * |a| := by have := abs_pos.2 ha; positivity
   rw [show 3 * (1 / 3 * Real.log (y / (Real.pi * |a|))) = Real.log (y / (Real.pi * |a|)) by ring, Real.exp_log (by positivity)]
 
+/--
+@isnad1 id=eq.2h2v.s5.320f658f0151 from=translated src=- shape=d3e55599 vocab=0a378ae4
+-/
 theorem y_mul_exp_neg_two_ustar (a : ℝ) (ha : a ≠ 0) {y : ℝ} (hy : 0 < y) :
     y * Real.exp (-2 * ustar a y) = Lam a y := by
   have h3 := exp_three_ustar a ha hy
@@ -466,6 +559,9 @@ theorem y_mul_exp_neg_two_ustar (a : ℝ) (ha : a ≠ 0) {y : ℝ} (hy : 0 < y) 
   calc y * Real.exp (-2 * ustar a y) = Real.pi * |a| * Real.exp (3 * ustar a y) * Real.exp (-2 * ustar a y) := by rw [← hy']
     _ = Real.pi * |a| * Real.exp (ustar a y) := by rw [mul_assoc, ← Real.exp_add]; congr 1; congr 1; ring
 
+/--
+@isnad1 id=eq.2h2v.s6.274696f8a971 from=translated src=- shape=a885844d vocab=b5885b6a
+-/
 theorem y_eq (a : ℝ) (ha : a ≠ 0) {y : ℝ} (hy : 0 < y) :
     y = Lam a y ^ 3 / (Real.pi * |a|) ^ 2 := by
   have h3 := exp_three_ustar a ha hy
@@ -473,6 +569,9 @@ theorem y_eq (a : ℝ) (ha : a ≠ 0) {y : ℝ} (hy : 0 < y) :
   unfold Lam
   rw [mul_pow, ← Real.exp_nat_mul]; push_cast; rw [h3]; field_simp
 
+/--
+@isnad1 id=le.4h3v.s6.0a0f452f0c33 from=translated src=- shape=f4b3d922 vocab=ea7aa05e
+-/
 theorem le_Lam (a : ℝ) (ha : a ≠ 0) {M y : ℝ} (hM : 0 ≤ M) (hy : 0 < y) (h : M ^ 3 / (Real.pi * |a|) ^ 2 ≤ y) :
     M ≤ Lam a y := by
   have hpa : 0 < Real.pi * |a| := by have := abs_pos.2 ha; positivity
@@ -484,6 +583,9 @@ theorem le_Lam (a : ℝ) (ha : a ≠ 0) {M y : ℝ} (hM : 0 ≤ M) (hy : 0 < y) 
     exact pow_lt_pow_left₀ hlt hL.le (by norm_num)
   linarith
 
+/--
+@isnad1 id=eq.1h5v.s7.a1ef9ec7fabb from=translated src=- shape=f76c0771 vocab=89834a28
+-/
 theorem E_eq (a : ℝ) (ha : a ≠ 0) (α β y u : ℝ) :
     E a α β y u = -y * Real.log (1 + Real.exp (-2 * u)) + (β + 1 + (α - β) / 2) * u
       + ((α - β) / 4) * Real.log (1 + Real.exp (-2 * u)) - ((α - β) / 2) * Real.log |a| := by
@@ -501,6 +603,9 @@ end LC
 
 namespace LC
 
+/--
+@isnad1 id=and.1h1v.s6.4caf351058ea from=translated src=- shape=6d152a48 vocab=5ac8d7fc
+-/
 theorem sub_log_one_add_bounds {t : ℝ} (ht : 0 ≤ t) : 0 ≤ t - Real.log (1 + t) ∧ t - Real.log (1 + t) ≤ t ^ 2 := by
   have h1t : 0 < 1 + t := by linarith
   constructor
@@ -512,6 +617,9 @@ theorem sub_log_one_add_bounds {t : ℝ} (ht : 0 ≤ t) : 0 ≤ t - Real.log (1 
     have : t ^ 2 / (1 + t) ≤ t ^ 2 := div_le_self (sq_nonneg t) (by linarith)
     linarith
 
+/--
+@isnad1 id=le.1h1v.s5.270330c58209 from=translated src=- shape=ff08a9dc vocab=ed7af1fc
+-/
 theorem cosh_sub_one_le_sq {t : ℝ} (ht : |t| ≤ 1) : Real.cosh t - 1 ≤ t ^ 2 := by
   have h1 := Real.cosh_le_exp_half_sq t
   have ht2 : t ^ 2 ≤ 1 := by
@@ -528,17 +636,26 @@ noncomputable def G (a α β y v : ℝ) : ℝ :=
   Real.exp (-y * Real.log (1 + Real.exp (-2 * (ustar a y + v))) + (β + 1 + (α - β) / 2) * v
       + ((α - β) / 4) * Real.log (1 + Real.exp (-2 * (ustar a y + v)))) * Zfull a α β (ustar a y + v)
 
+/--
+@isnad1 id=eq.1h5v.s7.fef048590f95 from=translated src=- shape=66dfdc5b vocab=dac7b339
+-/
 theorem F_eq_const_mul_G (a : ℝ) (ha : a ≠ 0) (α β y v : ℝ) :
     Real.exp (E a α β y (ustar a y + v)) * Zfull a α β (ustar a y + v)
       = Real.exp ((β + 1 + (α - β) / 2) * ustar a y - ((α - β) / 2) * Real.log |a|) * G a α β y v := by
   rw [G, E_eq a ha, ← mul_assoc, ← Real.exp_add]
   congr 2; ring
 
+/--
+@isnad1 id=le.1h5v.s5.32f649f720fb from=translated src=- shape=7737dd61 vocab=322551df
+-/
 theorem G_nonneg (a : ℝ) (ha : a ≠ 0) (α β y v : ℝ) : 0 ≤ G a α β y v :=
   mul_nonneg (Real.exp_nonneg _) (Zfull_pos a ha α β _).le
 
 noncomputable def CZ (a α β : ℝ) : ℝ := ∫ σ, Real.exp ((α - β) * σ - (2 * Real.pi * |a|) * (Real.cosh (2 * σ) - 1))
 
+/--
+@isnad1 id=lt.1h3v.s4.2b154932c418 from=translated src=- shape=bca7c3bd vocab=5209c39f
+-/
 theorem CZ_pos (a : ℝ) (ha : a ≠ 0) (α β : ℝ) : 0 < CZ a α β := by
   unfold CZ
   have h0 : 0 < 2 * Real.pi * |a| := by have := abs_pos.2 ha; positivity
@@ -548,11 +665,17 @@ theorem CZ_pos (a : ℝ) (ha : a ≠ 0) (α β : ℝ) : 0 < CZ a α β := by
     ext σ; simp [(Real.exp_pos _).ne']
   rw [this]; simp
 
+/--
+@isnad1 id=le.1h4v.s5.d65bcc2d0143 from=translated src=- shape=b73f1b99 vocab=4df4082c
+-/
 theorem Zfull_le (a : ℝ) (ha : a ≠ 0) (α β u : ℝ) : Zfull a α β u ≤ Real.exp (-lam a u) * CZ a α β := by
   unfold Zfull CZ
   have h0 : 0 < 2 * Real.pi * |a| := by have := abs_pos.2 ha; positivity
   exact OcSigma.integral_le_exp_neg_mul h0 (two_pi_abs_le_lam a ha u) (α - β)
 
+/--
+@isnad1 id=le.2h5v.s6.be03ebeb582b from=translated src=- shape=32aa05c0 vocab=2bc63215
+-/
 theorem Zfull_ge (a : ℝ) (ha : a ≠ 0) (α β u : ℝ) {ρ' : ℝ} (hρ' : 0 < ρ') :
     2 * ρ' * Real.exp (-(|α - β| * ρ')) * Real.exp (-(lam a u * Real.cosh (2 * ρ'))) ≤ Zfull a α β u := by
   have h := OcSigma.window_ge (lam_pos a ha u).le (α - β) hρ'
@@ -567,6 +690,9 @@ namespace LC
 
 noncomputable def LamA (a : ℝ) : ℝ := max 4 (max ((Real.pi * |a|) ^ 2 * Real.exp 8) (Real.pi * |a| * Real.exp 2))
 
+/--
+@isnad1 id=other.4h3v.s7.8910a26619e3 from=translated src=- shape=553fabfb vocab=f171374d
+-/
 theorem x_facts (a : ℝ) (ha : a ≠ 0) {y : ℝ} (hy : 0 < y) (hΛ : LamA a ≤ Lam a y) {v : ℝ} (hv : -2 ≤ v) :
     let x := Real.exp (-2 * (ustar a y + v))
     0 < x ∧ x ≤ 1 ∧ y * x = Lam a y * Real.exp (-2 * v) ∧ y * x ^ 2 ≤ 1 := by
@@ -610,6 +736,9 @@ theorem x_facts (a : ℝ) (ha : a ≠ 0) {y : ℝ} (hy : 0 < y) (hΛ : LamA a �
         ≤ (Real.pi * |a|) ^ 2 / Lam a y * Real.exp 8 := mul_le_mul_of_nonneg_left e8 (by positivity)
       _ ≤ 1 := by rw [div_mul_eq_mul_div, div_le_one hL]; exact h8
 
+/--
+@isnad1 id=le.1h3v.s5.5d0b1bc949e3 from=translated src=- shape=f1479e98 vocab=908d3beb
+-/
 theorem two_Lam_exp_le_lam (a : ℝ) (ha : a ≠ 0) (y v : ℝ) :
     2 * Lam a y * Real.exp v ≤ lam a (ustar a y + v) := by
   have := two_pi_abs_exp_le_lam a ha (ustar a y + v)
@@ -617,6 +746,9 @@ theorem two_Lam_exp_le_lam (a : ℝ) (ha : a ≠ 0) (y v : ℝ) :
   rw [Real.exp_add] at this
   linarith [this]
 
+/--
+@isnad1 id=le.4h5v.s7.19221b756e74 from=translated src=- shape=22f01172 vocab=97df62e9
+-/
 theorem G_mul_le (a : ℝ) (ha : a ≠ 0) (α β : ℝ) {y : ℝ} (hy : 0 < y) (hΛ : LamA a ≤ Lam a y)
     {v : ℝ} (hv : -2 ≤ v) :
     G a α β y v * Real.exp (-(Lam a y * OcLong.phi v))
@@ -661,11 +793,17 @@ end LC
 
 namespace LC
 
+/--
+@isnad1 id=le.1h3v.s6.c6142062be9d from=translated src=- shape=2c894083 vocab=923f4f74
+-/
 theorem lam_le_two_Lam (a : ℝ) (ha : a ≠ 0) (y v : ℝ) :
     lam a (ustar a y + v) ≤ 2 * Lam a y * Real.exp v + Real.pi * |a| * Real.exp (-(ustar a y + v)) := by
   have := lam_le a ha (ustar a y + v)
   unfold Lam; rw [Real.exp_add] at this; linarith
 
+/--
+@isnad1 id=le.4h3v.s7.cf0b9e88283c from=translated src=- shape=035691c7 vocab=248d08aa
+-/
 theorem ridge_cost_le (a : ℝ) (ha : a ≠ 0) (y v : ℝ) (hL4 : 4 ≤ Lam a y) (hv1 : v ≤ 1) (hu0 : 0 ≤ ustar a y + v) :
     lam a (ustar a y + v) * Real.cosh (2 * (1 / Real.sqrt (Lam a y))) - 2 * Lam a y * Real.exp v
       ≤ 8 * Real.exp 1 + 2 * Real.pi * |a| := by
@@ -705,6 +843,9 @@ theorem ridge_cost_le (a : ℝ) (ha : a ≠ 0) (y v : ℝ) (hL4 : 4 ≤ Lam a y)
     have := mul_le_mul_of_nonneg_left heu hpa.le; linarith
   linarith
 
+/--
+@isnad1 id=le.5h5v.s8.d00ef9197812 from=translated src=- shape=41469cc5 vocab=86cf237f
+-/
 theorem G_mul_ge (a : ℝ) (ha : a ≠ 0) (α β : ℝ) {y : ℝ} (hy : 0 < y) (hΛ : LamA a ≤ Lam a y)
     (hu : 2 ≤ ustar a y) {v : ℝ} (hvabs : |v| ≤ 1) :
     (2 / Real.sqrt (Lam a y)) * Real.exp (-(|β + 1 + (α - β) / 2| + |α - β| / 4 + |α - β| + 8 * Real.exp 1 + 2 * Real.pi * |a|))
@@ -782,29 +923,50 @@ namespace LC
 
 noncomputable def Gt (a α β y v : ℝ) : ℝ := Set.indicator (Set.Ici (-2 : ℝ)) (fun _ => (1:ℝ)) v * G a α β y v
 
+/--
+@isnad1 id=le.1h5v.s5.c4125cf355a2 from=translated src=- shape=7737dd61 vocab=bc01b127
+-/
 theorem Gt_nonneg (a : ℝ) (ha : a ≠ 0) (α β y v : ℝ) : 0 ≤ Gt a α β y v :=
   mul_nonneg (Set.indicator_nonneg (fun _ _ => zero_le_one) _) (G_nonneg a ha α β y v)
 
+/--
+@isnad1 id=eq.1h5v.s5.c345c0a49ba2 from=translated src=- shape=7545b56d vocab=f976cf13
+-/
 theorem Gt_of_ge (a α β y : ℝ) {v : ℝ} (hv : -2 ≤ v) : Gt a α β y v = G a α β y v := by
   unfold Gt; rw [Set.indicator_of_mem (by exact hv), one_mul]
 
+/--
+@isnad1 id=eq.1h5v.s5.0fc408cb6216 from=translated src=- shape=a38b87cd vocab=337b807f
+-/
 theorem Gt_of_lt (a α β y : ℝ) {v : ℝ} (hv : v < -2) : Gt a α β y v = 0 := by
   unfold Gt; rw [Set.indicator_of_notMem (by simp [hv]), zero_mul]
 
+/--
+@isnad1 id=measurab.0h3v.s3.adabae8bb9dd from=translated src=- shape=53906041 vocab=c9bc907f
+-/
 theorem measurable_Zfull (a α β : ℝ) : Measurable (Zfull a α β) := by
   unfold Zfull
   have : Continuous (Function.uncurry (fun u σ : ℝ => Real.exp ((α - β) * σ - lam a u * Real.cosh (2 * σ)))) := by
     unfold Function.uncurry lam; fun_prop
   exact (MeasureTheory.StronglyMeasurable.integral_prod_right this.stronglyMeasurable).measurable
 
+/--
+@isnad1 id=measurab.0h4v.s4.34e84a186e26 from=translated src=- shape=b43e9b92 vocab=87d2c6aa
+-/
 theorem measurable_G (a α β y : ℝ) : Measurable (G a α β y) := by
   unfold G
   refine Measurable.mul (Real.measurable_exp.comp (by fun_prop)) ((measurable_Zfull a α β).comp (by fun_prop))
 
+/--
+@isnad1 id=measurab.0h4v.s4.5797988c8bc0 from=translated src=- shape=b43e9b92 vocab=ca81c67d
+-/
 theorem measurable_Gt (a α β y : ℝ) : Measurable (Gt a α β y) := by
   unfold Gt
   exact ((measurable_const.indicator measurableSet_Ici).mul (measurable_G a α β y))
 
+/--
+@isnad1 id=le.1h2v.s7.e02dcebf0d9b from=translated src=- shape=508c90ba vocab=d557cfbe
+-/
 theorem trunc_exp_phi_le (κ v : ℝ) (hv : -2 ≤ v) :
     Real.exp (OcLong.phi v + |κ| * |v|) ≤ Real.exp (2 * |κ| + |κ| ^ 2 / 2) * Real.exp (-(1/2) * v ^ 2) := by
   rw [← Real.exp_add]
@@ -822,6 +984,9 @@ theorem trunc_exp_phi_le (κ v : ℝ) (hv : -2 ≤ v) :
     have : v ^ 2 ≤ 4 := by nlinarith
     nlinarith [abs_nonneg κ, sq_nonneg κ]
 
+/--
+@isnad1 id=ex.3h4v.s8.73a1df6abd39 from=translated src=- shape=df37d3ea vocab=c7c926e2
+-/
 theorem laplace_step (a : ℝ) (ha : a ≠ 0) (α β : ℝ) {δ' : ℝ} (hδ'0 : 0 < δ') (hδ'1 : δ' ≤ 1) :
     ∃ ρ Cst : ℝ, 0 < ρ ∧ ρ ≤ δ' ∧
       (∀ v : ℝ, |v| ≤ ρ → OcLong.phi 0 - (min (OcLong.phi 0 - OcLong.phi δ') (OcLong.phi 0 - OcLong.phi (-δ'))) / 2 ≤ OcLong.phi v) ∧
@@ -963,6 +1128,9 @@ end LC
 
 namespace LC
 
+/--
+@isnad1 id=le.5h5v.s8.840830e2cf7c from=translated src=- shape=4eb5bf51 vocab=dd852b4b
+-/
 theorem G_farleft_le (a : ℝ) (ha : a ≠ 0) (α β : ℝ) {y : ℝ} (hy : 0 < y) (hΛ : LamA a ≤ Lam a y)
     (hyk : |α - β| / 2 + 2 * (|β + 1 + (α - β) / 2| + 1) ≤ y) {v : ℝ} (hv : v < -2) :
     G a α β y v ≤ CZ a α β * Real.exp (-(Lam a y * Real.exp 4 / 4))
@@ -1045,6 +1213,9 @@ end LC
 
 namespace LC
 
+/--
+@isnad1 id=le.0h0v.s4.75d9d8ccbc00 from=translated src=- shape=cf0a9d99 vocab=2d1e9376
+-/
 theorem exp_four_ge : (52:ℝ) ≤ Real.exp 4 := by
   have h := Real.exp_one_gt_d9
   have : Real.exp 4 = Real.exp 1 ^ 4 := by rw [← Real.exp_nat_mul]; norm_num
@@ -1053,6 +1224,9 @@ theorem exp_four_ge : (52:ℝ) ≤ Real.exp 4 := by
   have h4 : (2.7:ℝ) ^ 4 ≤ Real.exp 1 ^ 4 := pow_le_pow_left₀ (by norm_num) h2 4
   nlinarith
 
+/--
+@isnad1 id=le.2h1v.s6.c7fda7c8cfe3 from=translated src=- shape=17d89985 vocab=aa078833
+-/
 theorem gap_le_four {δ' : ℝ} (hδ'0 : 0 < δ') (hδ'1 : δ' ≤ 1) :
     min (OcLong.phi 0 - OcLong.phi δ') (OcLong.phi 0 - OcLong.phi (-δ')) ≤ 4 := by
   refine (min_le_left _ _).trans ?_
@@ -1064,6 +1238,9 @@ theorem gap_le_four {δ' : ℝ} (hδ'0 : 0 < δ') (hδ'1 : δ' ≤ 1) :
     linarith
   rw [OcLong.phi_zero]; linarith
 
+/--
+@isnad1 id=ex.2h4v.s6.9e6ee394f5da from=translated src=- shape=d94d2e76 vocab=4c03defb
+-/
 theorem eventually_le_of_decay (C s b ε : ℝ) (hb : 0 < b) (hε : 0 < ε) :
     ∃ L : ℝ, ∀ Λ : ℝ, L ≤ Λ → C * Λ ^ s * Real.exp (-b * Λ) ≤ ε := by
   have ht := (tendsto_rpow_mul_exp_neg_mul_atTop_nhds_zero s b hb).const_mul C
@@ -1071,6 +1248,9 @@ theorem eventually_le_of_decay (C s b ε : ℝ) (hb : 0 < b) (hε : 0 < ε) :
   obtain ⟨L, hL⟩ := (ht.eventually (Iio_mem_nhds hε)).exists_forall_of_atTop
   exact ⟨L, fun Λ h => by have := hL Λ h; rw [mul_assoc]; exact this.le⟩
 
+/--
+@isnad1 id=eq.0h3v.s6.74157e9b7aff from=translated src=- shape=d00872e9 vocab=be986ce9
+-/
 theorem setIntegral_comp_ustar (f : ℝ → ℝ) (u₀ δ₁ : ℝ) :
     ∫ u in {u : ℝ | δ₁ < |u - u₀|}, f u = ∫ v in {v : ℝ | δ₁ < |v|}, f (u₀ + v) := by
   have hS : MeasurableSet {v : ℝ | δ₁ < |v|} := measurableSet_lt measurable_const continuous_abs.measurable
@@ -1084,6 +1264,9 @@ theorem setIntegral_comp_ustar (f : ℝ → ℝ) (u₀ δ₁ : ℝ) :
   · rw [ite_eq_left (this.2 h), ite_eq_left h]
   · rw [ite_eq_right (fun h' => h (this.1 h')), ite_eq_right h]
 
+/--
+@isnad1 id=eq.0h2v.s6.74267f8bf221 from=translated src=- shape=5eeb1a9f vocab=0cbb34e4
+-/
 theorem integral_comp_ustar (f : ℝ → ℝ) (u₀ : ℝ) : ∫ u, f u = ∫ v, f (u₀ + v) :=
   (integral_add_left_eq_self f u₀).symm
 
@@ -1091,6 +1274,9 @@ end LC
 
 namespace LC
 
+/--
+@isnad1 id=and.4h4v.s8.dc1ac0e10679 from=translated src=- shape=8aa93605 vocab=a03ed308
+-/
 theorem farleft_integral (a : ℝ) (ha : a ≠ 0) (α β : ℝ) {y : ℝ} (hy : 0 < y) (hΛ : LamA a ≤ Lam a y)
     (hyk : |α - β| / 2 + 2 * (|β + 1 + (α - β) / 2| + 1) ≤ y) :
     IntegrableOn (G a α β y) (Set.Iio (-2)) ∧
@@ -1127,6 +1313,9 @@ theorem farleft_integral (a : ℝ) (ha : a ≠ 0) (α β : ℝ) {y : ℝ} (hy : 
               setIntegral_mono_set (integrableOn_exp_Iic (-2)) (ae_of_all _ (fun v => (Real.exp_nonneg v))) (ae_of_all _ Set.Iio_subset_Iic_self)
     _ = Mfl * Real.exp (-2) := by rw [integral_exp_Iic]
 
+/--
+@isnad1 id=le.9h7v.s8.9b8f33b81486 from=translated src=- shape=e728273b vocab=09dda040
+-/
 theorem window_lb (a : ℝ) (ha : a ≠ 0) (α β : ℝ) {y : ℝ} (hy : 0 < y) (hΛ : LamA a ≤ Lam a y) (hu : 2 ≤ ustar a y)
     {ρ δ' g : ℝ} (hρ0 : 0 < ρ) (hρδ : ρ ≤ δ') (hδ'1 : δ' ≤ 1)
     (hρin : ∀ v : ℝ, |v| ≤ ρ → OcLong.phi 0 - g / 2 ≤ OcLong.phi v)
@@ -1161,6 +1350,9 @@ theorem window_lb (a : ℝ) (ha : a ≠ 0) (α β : ℝ) {y : ℝ} (hy : 0 < y) 
     _ ≤ ∫ v in {v : ℝ | |v| ≤ δ'}, G a α β y v :=
         setIntegral_mono_set hIwin (ae_of_all _ (fun v => G_nonneg a ha α β y v)) (ae_of_all _ hρsub)
 
+/--
+@isnad1 id=eq.3h7v.s8.5cb9844587ff from=translated src=- shape=ba43aaf0 vocab=4c9f3c55
+-/
 theorem farleft_identity (a : ℝ) (ha : a ≠ 0) (α β : ℝ) {y : ℝ} (hy : 0 < y) (k W g : ℝ) (hW : W ≠ 0) :
     CZ a α β * Real.exp (-(Lam a y * Real.exp 4 / 4)) * Real.exp (2 * k * ustar a y) * Real.exp (-2)
       = (CZ a α β * Real.exp (-2) * (Real.pi * |a|) ^ (-(2 * k)) / W * (Lam a y) ^ (2 * k + 1 / 2)
@@ -1185,6 +1377,9 @@ end LC
 
 namespace LC
 
+/--
+@isnad1 id=ex.3h5v.s7.be9b51c673d0 from=translated src=- shape=fbeb4759 vocab=929eb45e
+-/
 theorem long_conc_G (a : ℝ) (ha : a ≠ 0) (α β : ℝ) {δ₁ : ℝ} (hδ₁ : 0 < δ₁) {ε : ℝ} (hε : 0 < ε) :
     ∃ R : ℝ, ∀ y : ℝ, R ≤ y →
       Integrable (G a α β y) ∧
@@ -1306,6 +1501,9 @@ end LC
 
 namespace LC
 
+/--
+@isnad1 id=ex.3h5v.s7.816e7e09d388 from=translated src=- shape=ec49911d vocab=e33b64a3
+-/
 theorem long_conc_F (a : ℝ) (ha : a ≠ 0) (α β : ℝ) {δ₁ : ℝ} (hδ₁ : 0 < δ₁) {ε : ℝ} (hε : 0 < ε) :
     ∃ R : ℝ, ∀ y : ℝ, R ≤ y →
       Integrable (fun u => Real.exp (E a α β y u) * Zfull a α β u) ∧
@@ -1334,6 +1532,9 @@ end LC
 
 end OcConc
 
+/--
+@isnad1 id=ex.3h5v.s10.9e834f5b8156 from=translated src=- shape=688bde24 vocab=ac322cbb
+-/
 theorem solution
     (a : ℝ) (ha : a ≠ 0) (α β : ℝ) (η δ₁ : ℝ) (hη : 0 < η) (hδ₁ : 0 < δ₁) :
     ∃ R : ℝ, ∀ y : ℝ, R ≤ y →

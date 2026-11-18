@@ -28,6 +28,9 @@ private theorem isWithin_add {c : Kˣ} {m n : ℕ} {a b d : Vertex R K} (h₁ : 
 
 end LT.LatticeTree
 
+/--
+@isnad1 id=iswithin.3h8v.s7.92a3ca957f12 from=translated src=- shape=e42fbc22 vocab=94084d32
+-/
 theorem solution
     (R K : Type) [CommRing R] [Field K] [Algebra R K]
     [IsFractionRing R K] (ϖ : R) (hϖ : Irreducible ϖ)

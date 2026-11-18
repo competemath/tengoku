@@ -22,21 +22,33 @@ variable {K L : Type*} [Field K] [Field L] [Algebra K L]
 
 open Matrix
 
+/--
+@isnad1 id=eq.0h6v.s9.84d2c39d8331 from=translated src=- shape=e67dd1b7 vocab=acf132d0
+-/
 theorem coe_map_apply (σ : L ≃ₐ[K] L) (g : GL (Fin 2) L) (i j : Fin 2) :
     ((Matrix.GeneralLinearGroup.map (σ : L →+* L) g : GL (Fin 2) L) : Matrix (Fin 2) (Fin 2) L) i j =
       σ ((g : Matrix (Fin 2) (Fin 2) L) i j) :=
   Matrix.GeneralLinearGroup.map_apply _ _ _ _
 
+/--
+@isnad1 id=ne.0h2v.s8.d281cc3e395d from=translated src=- shape=4825fade vocab=11017d9b
+-/
 theorem det_ne (g : GL (Fin 2) L) :
     (g : Matrix (Fin 2) (Fin 2) L) 0 0 * (g : Matrix (Fin 2) (Fin 2) L) 1 1 -
       (g : Matrix (Fin 2) (Fin 2) L) 0 1 * (g : Matrix (Fin 2) (Fin 2) L) 1 0 ≠ 0 := by
   have h := (Matrix.GeneralLinearGroup.det g).ne_zero
   rwa [Matrix.GeneralLinearGroup.val_det_apply, Matrix.det_fin_two] at h
 
+/--
+@isnad1 id=eq.2h3v.s9.f911e7228e04 from=translated src=- shape=edfbd415 vocab=141f71be
+-/
 theorem upper_mul {a b : GL (Fin 2) L} (ha : (a : Matrix (Fin 2) (Fin 2) L) 1 0 = 0)
     (hb : (b : Matrix (Fin 2) (Fin 2) L) 1 0 = 0) : ((a * b : GL (Fin 2) L) : Matrix (Fin 2) (Fin 2) L) 1 0 = 0 := by
   simp [Matrix.mul_apply, Fin.sum_univ_two, ha, hb]
 
+/--
+@isnad1 id=eq.1h2v.s8.72b0104d993c from=translated src=- shape=13b91a81 vocab=cb9213b0
+-/
 theorem upper_inv {a : GL (Fin 2) L} (ha : (a : Matrix (Fin 2) (Fin 2) L) 1 0 = 0) :
     ((a⁻¹ : GL (Fin 2) L) : Matrix (Fin 2) (Fin 2) L) 1 0 = 0 := by
   have h00 : (a : Matrix (Fin 2) (Fin 2) L) 0 0 ≠ 0 := by
@@ -46,10 +58,16 @@ theorem upper_inv {a : GL (Fin 2) L} (ha : (a : Matrix (Fin 2) (Fin 2) L) 1 0 = 
     Matrix.one_apply_ne (by decide : (1 : Fin 2) ≠ 0)] at h
   exact (mul_eq_zero.mp h).resolve_right h00
 
+/--
+@isnad1 id=eq.1h4v.s9.de47732f2cee from=translated src=- shape=4cc571d5 vocab=acf132d0
+-/
 theorem upper_map (σ : L ≃ₐ[K] L) {a : GL (Fin 2) L} (ha : (a : Matrix (Fin 2) (Fin 2) L) 1 0 = 0) :
     ((Matrix.GeneralLinearGroup.map (σ : L →+* L) a : GL (Fin 2) L) : Matrix (Fin 2) (Fin 2) L) 1 0 = 0 := by
   rw [coe_map_apply, ha, map_zero]
 
+/--
+@isnad1 id=ex.1h2v.s9.47ce48da8896 from=translated src=- shape=7201fef7 vocab=d5e2bf40
+-/
 theorem exists_val_eq_smul_one_of_mem_center {z : GL (Fin 2) L} (hz : z ∈ Subgroup.center (GL (Fin 2) L)) :
     ∃ c : L, c ≠ 0 ∧ (z : Matrix (Fin 2) (Fin 2) L) = c • (1 : Matrix (Fin 2) (Fin 2) L) := by
   obtain ⟨c, hc⟩ := Matrix.GeneralLinearGroup.mem_center_iff_val_mem_range_scalar.mp hz
@@ -65,9 +83,15 @@ noncomputable def scalarGL (c : L) (hc : c ≠ 0) : GL (Fin 2) L :=
   Matrix.GeneralLinearGroup.mkOfDetNeZero (c • (1 : Matrix (Fin 2) (Fin 2) L))
     (by simp [Matrix.det_fin_two, Matrix.smul_apply, hc])
 
+/--
+@isnad1 id=eq.1h2v.s7.4d1fb556e88d from=translated src=- shape=c9a5cab3 vocab=56210149
+-/
 theorem scalarGL_val (c : L) (hc : c ≠ 0) :
     ((scalarGL c hc : GL (Fin 2) L) : Matrix (Fin 2) (Fin 2) L) = c • (1 : Matrix (Fin 2) (Fin 2) L) := rfl
 
+/--
+@isnad1 id=mem.1h2v.s8.8d2511a3f364 from=translated src=- shape=b4e40bb4 vocab=fc689af5
+-/
 theorem scalarGL_mem_center (c : L) (hc : c ≠ 0) : scalarGL c hc ∈ Subgroup.center (GL (Fin 2) L) := by
   refine Matrix.GeneralLinearGroup.mem_center_iff_val_mem_range_scalar.mpr ⟨c, ?_⟩
   change Matrix.scalar (Fin 2) c = c • (1 : Matrix (Fin 2) (Fin 2) L)
@@ -76,14 +100,23 @@ theorem scalarGL_mem_center (c : L) (hc : c ≠ 0) : scalarGL c hc ∈ Subgroup.
 noncomputable def weylGL : GL (Fin 2) L :=
   Matrix.GeneralLinearGroup.mkOfDetNeZero !![(0 : L), 1; 1, 0] (by simp [Matrix.det_fin_two])
 
+/--
+@isnad1 id=eq.0h1v.s8.366b6b93b8de from=translated src=- shape=9c464ae8 vocab=af070130
+-/
 theorem weylGL_val : ((weylGL : GL (Fin 2) L) : Matrix (Fin 2) (Fin 2) L) = !![(0 : L), 1; 1, 0] := rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.1a0a37740f88 from=translated src=- shape=929e9fc7 vocab=01311cfb
+-/
 theorem map_weylGL (σ : L ≃ₐ[K] L) :
     Matrix.GeneralLinearGroup.map (σ : L →+* L) (weylGL : GL (Fin 2) L) = weylGL := by
   ext i j
   rw [coe_map_apply, weylGL_val]
   fin_cases i <;> fin_cases j <;> simp
 
+/--
+@isnad1 id=iff.0h3v.s10.99062bb2bacd from=translated src=- shape=2984f9be vocab=d34fd249
+-/
 theorem inv_mul_mem_center_iff' (t X : GL (Fin 2) L) :
     t⁻¹ * X ∈ Subgroup.center (GL (Fin 2) L) ↔ ∃ z ∈ Subgroup.center (GL (Fin 2) L), X = t * z :=
   ⟨fun h => ⟨t⁻¹ * X, h, by rw [mul_inv_cancel_left]⟩, fun ⟨z, hz, hX⟩ => by rwa [hX, inv_mul_cancel_left]⟩
@@ -99,6 +132,9 @@ open _root_.LT.TwistedNorm open _root_.LT
 
 variable {K L : Type*} [Field K] [Field L] [Algebra K L]
 
+/--
+@isnad1 id=ex.4h8v.s12.ca8d0c26eccb from=translated src=- shape=e34d84e1 vocab=ed8341d3
+-/
 theorem memJ_mono (σ : L ≃ₐ[K] L) {t₁ t₂ A z₁ : GL (Fin 2) L}
     (hA : (A : Matrix (Fin 2) (Fin 2) L) 1 0 = 0) (hz₁ : z₁ ∈ Subgroup.center (GL (Fin 2) L))
     (h : t₂ = A⁻¹ * (t₁ * z₁) * Matrix.GeneralLinearGroup.map (σ : L →+* L) A) {γ : GL (Fin 2) L}
@@ -120,6 +156,9 @@ theorem memJ_mono (σ : L ≃ₐ[K] L) {t₁ t₂ A z₁ : GL (Fin 2) L}
           (Matrix.GeneralLinearGroup.map (σ : L →+* L) A)⁻¹ := by rw [h]; group
     _ = t₁ * (z₁ * z₂) := by rw [hc₂]; group
 
+/--
+@isnad1 id=ex.2h7v.s12.268f4668c351 from=translated src=- shape=404caf4a vocab=ed8341d3
+-/
 theorem memI_of_memJ (σ : L ≃ₐ[K] L) {t₁ t₂ W : GL (Fin 2) L}
     (h : t₂ = W⁻¹ * t₁ * Matrix.GeneralLinearGroup.map (σ : L →+* L) W) {γ : GL (Fin 2) L}
     (hγ : ∃ b : GL (Fin 2) L, (b : Matrix (Fin 2) (Fin 2) L) 1 0 = 0 ∧
@@ -140,6 +179,9 @@ theorem memI_of_memJ (σ : L ≃ₐ[K] L) {t₁ t₂ W : GL (Fin 2) L}
           (Matrix.GeneralLinearGroup.map (σ : L →+* L) W)⁻¹ := by rw [h]; group
     _ = t₁ * z₂ := by rw [hc₂]; group
 
+/--
+@isnad1 id=eq.2h5v.s11.8421ca20becc from=translated src=- shape=34396260 vocab=ed8341d3
+-/
 theorem upper_of_memJ (σ : L ≃ₐ[K] L) {t : GL (Fin 2) L} (ht : (t : Matrix (Fin 2) (Fin 2) L) 1 0 = 0)
     {γ : GL (Fin 2) L}
     (hγ : ∃ b : GL (Fin 2) L, (b : Matrix (Fin 2) (Fin 2) L) 1 0 = 0 ∧
@@ -165,6 +207,9 @@ theorem eq_weyl_conj (σ : L ≃ₐ[K] L) {t tw : GL (Fin 2) L}
   fin_cases i <;> fin_cases j <;>
     simp [Matrix.mul_apply, Fin.sum_univ_two, h10, h01, htw.1, htw.2, htw00, htw11]
 
+/--
+@isnad1 id=ex.2h4v.s10.d3c1e25f8a4b from=translated src=- shape=bffa5929 vocab=e91279cd
+-/
 theorem exists_upper_diag_conj [FiniteDimensional K L] (σ : L ≃ₐ[K] L) (γ : GL (Fin 2) L)
     (hγ10 : (γ : Matrix (Fin 2) (Fin 2) L) 1 0 = 0)
     (hN : Algebra.norm K ((γ : Matrix (Fin 2) (Fin 2) L) 0 0 / (γ : Matrix (Fin 2) (Fin 2) L) 1 1) ≠ 1) :
@@ -209,6 +254,9 @@ theorem exists_upper_diag_conj [FiniteDimensional K L] (σ : L ≃ₐ[K] L) (γ 
 end LT.TwistedNorm.CuspClassesProof
 
 open LT.TwistedNorm.CuspClassesProof in
+/--
+@isnad1 id=and.7h5v.s13.d23076b8adc4 from=translated src=- shape=5aab6616 vocab=ec478463
+-/
 theorem solution
     {K L : Type*} [Field K] [Field L] [Algebra K L] [FiniteDimensional K L] [IsGalois K L]
     {σ : L ≃ₐ[K] L} (hgen : ∀ τ : L ≃ₐ[K] L, τ ∈ Subgroup.zpowers σ) (t tw : GL (Fin 2) L)

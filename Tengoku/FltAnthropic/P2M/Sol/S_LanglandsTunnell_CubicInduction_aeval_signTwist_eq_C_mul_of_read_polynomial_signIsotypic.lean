@@ -23,6 +23,9 @@ def orth (o : Fin 3 → Fin 3 → ℝ) : Prop := ∀ i j : Fin 3, ∑ a : Fin 3,
 
 def cpt (x : Fin 3 → ℝ) : Fin 3 → ℂ := fun a => ((x a : ℝ) : ℂ)
 
+/--
+@isnad1 id=eq.1h4v.s8.d4d5dcb36b5c from=translated src=- shape=21337c5c vocab=db466b52
+-/
 theorem eval_smul_of_isHomogeneous {p : R3} {ℓ : ℕ} (hp : p.IsHomogeneous ℓ) (r : ℂ)
     (u : Fin 3 → ℂ) : eval (r • u) p = r ^ ℓ * eval u p := by
   rw [eval_eq', eval_eq', Finset.mul_sum]
@@ -36,6 +39,9 @@ theorem eval_smul_of_isHomogeneous {p : R3} {ℓ : ℕ} (hp : p.IsHomogeneous �
     Finset.prod_pow_eq_pow_sum, hdeg]
   ring
 
+/--
+@isnad1 id=eq.2h3v.s8.3925ad9270de from=translated src=- shape=e2253221 vocab=ad7bcde9
+-/
 theorem eval_real_eq_zero {p : R3} {ℓ : ℕ} (hp : p.IsHomogeneous ℓ)
     (h : ∀ u : Fin 3 → ℝ, ∑ a : Fin 3, u a ^ 2 = 1 → eval (cpt u) p = 0)
     (x : Fin 3 → ℝ) : eval (cpt x) p = 0 := by
@@ -96,6 +102,9 @@ theorem eq_zero_of_eval_sphere {p : R3} {ℓ : ℕ} (hp : p.IsHomogeneous ℓ)
     rw [hz']
     exact eval_real_eq_zero hp h _
 
+/--
+@isnad1 id=ex.1h1v.s7.80ee6fdd7253 from=translated src=- shape=4414fde3 vocab=c4676107
+-/
 theorem exists_orth_col (u : Fin 3 → ℝ) (hu : ∑ a : Fin 3, u a ^ 2 = 1) :
     ∃ o : Fin 3 → Fin 3 → ℝ, orth o ∧ ∀ a, o a 0 = u a := by
   classical
@@ -124,13 +133,22 @@ theorem exists_orth_col (u : Fin 3 → ℝ) (hu : ∑ a : Fin 3, u a ^ 2 = 1) :
     show (b 0) a = u a
     rw [this]
 
+/--
+@isnad1 id=eq.0h2v.s8.e312ae886a29 from=translated src=- shape=a43f25be vocab=b70107f9
+-/
 theorem aeval_eq_eval (x : Fin 3 × Fin 3 → ℂ) (q : MvPolynomial (Fin 3 × Fin 3) ℂ) :
     aeval x q = eval x q := by
   rw [aeval_eq_eval₂Hom]; rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.c773ca380854 from=translated src=- shape=e28b197c vocab=32e7df09
+-/
 theorem aeval_eq_eval3 (x : Fin 3 → ℂ) (q : R3) : aeval x q = eval x q := by
   rw [aeval_eq_eval₂Hom]; rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.94fad72e2d30 from=translated src=- shape=83c6b91d vocab=1a9e255a
+-/
 theorem eval_col (o : Fin 3 → Fin 3 → ℝ) (p : R3) :
     eval (fun ij : Fin 3 × Fin 3 => ((o ij.1 ij.2 : ℝ) : ℂ))
       (aeval (fun a : Fin 3 => (X (a, 0) : MvPolynomial (Fin 3 × Fin 3) ℂ)) p) =
@@ -141,6 +159,9 @@ theorem eval_col (o : Fin 3 → Fin 3 → ℝ) (p : R3) :
     funext a; rw [aeval_X]
   rw [hfun]
 
+/--
+@isnad1 id=eq.0h3v.s9.f0ea5aabf957 from=translated src=- shape=48c08181 vocab=ede2302b
+-/
 theorem eval_twist (s : Fin 3 → ℂ) (x : Fin 3 → ℂ) (p : R3) :
     eval x (aeval (fun a : Fin 3 => C (s a) * X a) p) = eval (fun a => s a * x a) p := by
   rw [← aeval_eq_eval3, comp_aeval_apply, aeval_eq_eval3]
@@ -148,6 +169,9 @@ theorem eval_twist (s : Fin 3 → ℂ) (x : Fin 3 → ℂ) (p : R3) :
     funext a; rw [map_mul, aeval_C, aeval_X, Algebra.algebraMap_self, RingHom.id_apply]
   rw [hfun]
 
+/--
+@isnad1 id=eq.1h1v.s8.7d3b5d275e72 from=translated src=- shape=84755c7d vocab=7a1458c5
+-/
 theorem det_sq_of_orth (o : Fin 3 → Fin 3 → ℝ) (ho : orth o) : (Matrix.of fun i j : Fin 3 => o i j).det ^ 2 = 1 := by
   have hR : (Matrix.of fun i j : Fin 3 => o i j)ᵀ * (Matrix.of fun i j : Fin 3 => o i j) = 1 := by
     ext i j
@@ -155,12 +179,18 @@ theorem det_sq_of_orth (o : Fin 3 → Fin 3 → ℝ) (ho : orth o) : (Matrix.of 
   have := congrArg Matrix.det hR
   rwa [Matrix.det_mul, Matrix.det_transpose, Matrix.det_one, ← sq] at this
 
+/--
+@isnad1 id=eq.0h1v.s8.38edc2f80e00 from=translated src=- shape=842285ef vocab=dc72de21
+-/
 theorem detC_eq (o : Fin 3 → Fin 3 → ℝ) :
     (Matrix.of fun i j : Fin 3 => ((o i j : ℝ) : ℂ)).det = (((Matrix.of fun i j : Fin 3 => o i j).det : ℝ) : ℂ) := by
   rw [show (Matrix.of fun i j : Fin 3 => ((o i j : ℝ) : ℂ)) =
       Complex.ofRealHom.mapMatrix (Matrix.of fun i j : Fin 3 => o i j) by ext i j; rfl, ← RingHom.map_det]
   rfl
 
+/--
+@isnad1 id=eq.3h5v.s11.eb3d1ba5e53c from=translated src=- shape=3cfb51f1 vocab=9168d1ea
+-/
 theorem mainP
     (ε : Fin 3 → Fin 2) (W : Submodule ℂ (MvPolynomial (Fin 3 × Fin 3) ℂ))
     (hiso : (∀ P ∈ W, ∀ τ : Fin 3 → Fin 2, ∀ o : Fin 3 → Fin 3 → ℝ, (∀ i j : Fin 3, ∑ a : Fin 3, o a i * o a j = if i = j then 1 else 0) →
@@ -267,6 +297,9 @@ end
 
 end PolySignAux
 
+/--
+@isnad1 id=eq.3h5v.s11.eb3d1ba5e53c from=translated src=- shape=3cfb51f1 vocab=9168d1ea
+-/
 theorem solution
     (ε : Fin 3 → Fin 2) (W : Submodule ℂ (MvPolynomial (Fin 3 × Fin 3) ℂ))
     (hiso : (∀ P ∈ W, ∀ τ : Fin 3 → Fin 2, ∀ o : Fin 3 → Fin 3 → ℝ, (∀ i j : Fin 3, ∑ a : Fin 3, o a i * o a j = if i = j then 1 else 0) →

@@ -11,12 +11,18 @@ open Polynomial IsLocalRing
 
 namespace XiFromZeta
 
+/--
+@isnad1 id=eq.3h4v.s6.58f5763d2d10 from=translated src=- shape=fb9177da vocab=99af5167
+-/
 theorem pow_eq_of_modEq_one {M : Type*} [Monoid M] {x : M} {k N : ℕ} (hk : 1 < k) (hx : x ^ k = 1)
     (hN : N ≡ 1 [MOD k]) : x ^ N = x := by
   have h1 : N % k = 1 := by unfold Nat.ModEq at hN; rwa [Nat.mod_eq_of_lt hk] at hN
   calc x ^ N = x ^ (N % k + k * (N / k)) := by rw [Nat.mod_add_div]
     _ = x := by rw [pow_add, pow_mul, hx, one_pow, mul_one, h1, pow_one]
 
+/--
+@isnad1 id=isunit.2h3v.s6.e60160d8039e from=translated src=- shape=4d2a8f9c vocab=bbe83a22
+-/
 theorem isUnit_natCast_of_ne {A : Type*} [CommRing A] [IsLocalRing A] (q ℓ : ℕ) [Fact q.Prime] [Fact ℓ.Prime]
     (hℓq : ℓ ≠ q) (hAq : (q : A) ∈ maximalIdeal A) : IsUnit (ℓ : A) := by
   by_contra hℓ
@@ -29,6 +35,9 @@ theorem isUnit_natCast_of_ne {A : Type*} [CommRing A] [IsLocalRing A] (q ℓ : �
     exact (maximalIdeal A).add_mem ((maximalIdeal A).mul_mem_left _ hℓm) ((maximalIdeal A).mul_mem_left _ hAq)
   exact (maximalIdeal.isMaximal A).ne_top ((Ideal.eq_top_iff_one _).mpr h1)
 
+/--
+@isnad1 id=ex.2h3v.s6.c1996bfd7e9c from=translated src=- shape=d431bdab vocab=59604e9c
+-/
 theorem exists_isPrimitiveRoot_of_henselian {A : Type*} [CommRing A] [IsDomain A] [HenselianLocalRing A]
     [IsAlgClosed (ResidueField A)] (q ℓ : ℕ) [Fact q.Prime] [Fact ℓ.Prime] (hℓq : ℓ ≠ q)
     (hAq : (q : A) ∈ maximalIdeal A) : ∃ a : A, IsPrimitiveRoot a ℓ := by
@@ -77,6 +86,9 @@ end XiFromZeta
 
 open XiFromZeta
 
+/--
+@isnad1 id=ex.5h5v.s9.5e90377d5288 from=translated src=- shape=94749d33 vocab=c210a0f7
+-/
 theorem solution
     (q ℓ : ℕ) [Fact q.Prime] [Fact ℓ.Prime] (hℓq : ℓ ≠ q)
     (L : Type) [Field L] [CharZero L]

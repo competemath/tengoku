@@ -15,6 +15,9 @@ namespace ArchBridge
 
 section ArchE1
 
+/--
+@isnad1 id=eq.0h1v.s7.837a47f93272 from=translated src=- shape=6a35519f vocab=70016a1b
+-/
 theorem distribHaarChar_complex_eq_nnnorm_sq (z : ℂˣ) :
     distribHaarChar ℂ z = ‖(z : ℂ)‖₊ ^ 2 := by
   refine distribHaarChar_eq_of_measure_smul_eq_mul (s := closedBall (0:ℂ) 1) (μ := volume)
@@ -26,6 +29,9 @@ theorem distribHaarChar_complex_eq_nnnorm_sq (z : ℂˣ) :
     Complex.finrank_real_complex]
   simp [ENNReal.ofReal_pow (norm_nonneg _), enorm_eq_nnnorm]
 
+/--
+@isnad1 id=eq.0h1v.s5.598a0775c5a3 from=translated src=- shape=2c770a6d vocab=6ed685d0
+-/
 theorem modulus_complex_eq_nnnorm_sq : ∀ (z : ℂ), modulus z = ‖z‖₊ ^ 2 := by
   intro z
   rcases eq_or_ne z 0 with rfl | hz
@@ -39,6 +45,9 @@ section BR
 variable {K : Type*} [Field K] [TopologicalSpace K] [IsTopologicalRing K] [LocallyCompactSpace K]
   [MeasurableSpace K] [MeasurableSingletonClass K]
 
+/--
+@isnad1 id=eq.1h3v.s7.c0b90310b755 from=translated src=- shape=ce7f8d1d vocab=df34f76e
+-/
 theorem integral_mulMeasure (μ : Measure K) (F : K → ℂ)
     (hm : AEMeasurable (fun x : K => (modulus x)⁻¹) (μ.restrict {0}ᶜ)) :
     ∫ x, F x ∂(mulMeasure μ) = ∫ x in ({0}ᶜ : Set K), ((modulus x)⁻¹ : ℝ≥0) • F x ∂μ := by
@@ -56,6 +65,9 @@ end BR
 
 section BridgeComplex
 
+/--
+@isnad1 id=eq.1h4v.s6.866f938b4a11 from=translated src=- shape=98e897eb vocab=dbae6511
+-/
 theorem complexZeta_eq_localZeta_impl (μ : Measure ℂ) (f : ℂ → ℂ) (χ : ℂˣ →* ℂˣ) (s : ℂ)
     (hm : AEMeasurable (fun z : ℂ => (modulus z)⁻¹) (μ.restrict {0}ᶜ)) :
     complexZeta μ f χ s = localZeta μ f χ s := by
@@ -96,6 +108,9 @@ end BridgeReal
 
 section HmDerived
 
+/--
+@isnad1 id=aemeasur.0h1v.s5.28057eacfed2 from=translated src=- shape=3c963df1 vocab=6b749699
+-/
 theorem hm_complex_any (μ : Measure ℂ) :
     AEMeasurable (fun z : ℂ => (modulus z)⁻¹) (μ.restrict {0}ᶜ) := by
   have heq : (fun z : ℂ => (modulus z)⁻¹) = fun z => (‖z‖₊ ^ 2)⁻¹ :=
@@ -103,6 +118,9 @@ theorem hm_complex_any (μ : Measure ℂ) :
   rw [heq]
   exact ((measurable_nnnorm.pow_const 2).inv).aemeasurable
 
+/--
+@isnad1 id=eq.0h4v.s6.1e87c8efbb02 from=translated src=- shape=37a8975e vocab=9a1087d3
+-/
 theorem complexZeta_eq_localZeta_unc (μ : Measure ℂ) (f : ℂ → ℂ) (χ : ℂˣ →* ℂˣ) (s : ℂ) :
     complexZeta μ f χ s = localZeta μ f χ s :=
   complexZeta_eq_localZeta_impl μ f χ s (hm_complex_any μ)
@@ -111,6 +129,9 @@ end HmDerived
 
 end P7Rows.ArchBridge
 
+/--
+@isnad1 id=eq.0h4v.s6.1e87c8efbb02 from=translated src=- shape=37a8975e vocab=9a1087d3
+-/
 theorem solution (μ : Measure ℂ) (f : ℂ → ℂ) (χ : ℂˣ →* ℂˣ) (s : ℂ) :
     complexZeta μ f χ s = localZeta μ f χ s :=
   P7Rows.ArchBridge.complexZeta_eq_localZeta_unc μ f χ s

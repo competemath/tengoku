@@ -16,6 +16,9 @@ section Poly
 
 variable {K : Type*} [Field K]
 
+/--
+@isnad1 id=ne.2h5v.s9.0e697511536b from=translated src=- shape=4ce1d88d vocab=fd6cdcaf
+-/
 theorem ne_of_X_sub_C_mul_eq {a b c d : K} (hab : a ≠ b)
     (h : (X - C a) * (X - C b) = (X - C c) * (X - C d)) : c ≠ d := by
   intro hcd
@@ -29,6 +32,9 @@ theorem ne_of_X_sub_C_mul_eq {a b c d : K} (hab : a ≠ b)
     rcases mul_eq_zero.mp hb.symm with h1 | h1 <;> exact h1
   exact hab (by rw [sub_eq_zero] at ha' hb'; rw [ha', hb'])
 
+/--
+@isnad1 id=eq.1h2v.s9.d243de818995 from=translated src=- shape=8f39729b vocab=3bcce2cb
+-/
 theorem charpoly_of_apply_one_zero_eq_zero (M : Matrix (Fin 2) (Fin 2) K) (h : M 1 0 = 0) :
     M.charpoly = (X - C (M 0 0)) * (X - C (M 1 1)) := by
   rw [Matrix.charpoly_fin_two, Matrix.trace_fin_two, Matrix.det_fin_two, h, mul_zero, sub_zero,
@@ -42,6 +48,9 @@ section Galois
 variable {F L : Type*} [Field F] [Field L] [Algebra F L] [FiniteDimensional F L] [IsGalois F L]
   {σ : L ≃ₐ[F] L}
 
+/--
+@isnad1 id=eq.1h4v.s9.48cbeafa1a61 from=translated src=- shape=3a5ad46b vocab=a300b1d7
+-/
 theorem prod_range_iterate_eq_algebraMap_norm (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)
     (a : L) :
     ∏ i ∈ Finset.range (Module.finrank F L), (⇑σ)^[i] a = algebraMap F L (Algebra.norm F a) := by
@@ -55,6 +64,9 @@ section TriangularNorm
 
 variable {L : Type*} [Field L] (τ : L →+* L)
 
+/--
+@isnad1 id=and.2h3v.s10.b0b4a201b127 from=translated src=- shape=bbb54b95 vocab=141f71be
+-/
 theorem mul_apply_of_upper (P Q : GL (Fin 2) L)
     (hP : (P : Matrix (Fin 2) (Fin 2) L) 1 0 = 0) (hQ : (Q : Matrix (Fin 2) (Fin 2) L) 1 0 = 0) :
     ((P * Q : GL (Fin 2) L) : Matrix (Fin 2) (Fin 2) L) 1 0 = 0 ∧
@@ -65,11 +77,17 @@ theorem mul_apply_of_upper (P Q : GL (Fin 2) L)
   refine ⟨?_, ?_, ?_⟩ <;>
     simp [Units.val_mul, Matrix.mul_apply, Fin.sum_univ_two, hP, hQ]
 
+/--
+@isnad1 id=eq.0h6v.s9.238a8a396990 from=translated src=- shape=372aed5d vocab=19b67f44
+-/
 theorem map_apply_entries (δ : GL (Fin 2) L) (i j : Fin 2) (k : ℕ) :
     (((Matrix.GeneralLinearGroup.map (n := Fin 2) τ)^[k] δ : GL (Fin 2) L) :
         Matrix (Fin 2) (Fin 2) L) i j = (⇑τ)^[k] ((δ : Matrix (Fin 2) (Fin 2) L) i j) :=
   iterate_generalLinearGroup_map_apply τ k δ i j
 
+/--
+@isnad1 id=and.1h4v.s10.fa5b90322daf from=translated src=- shape=e36b5dc2 vocab=a4c9f9d9
+-/
 theorem sigmaPartialNorm_upper (δ : GL (Fin 2) L) (hδ : (δ : Matrix (Fin 2) (Fin 2) L) 1 0 = 0)
     (r : ℕ) :
     ((sigmaPartialNorm (Matrix.GeneralLinearGroup.map τ) δ r : GL (Fin 2) L) :
@@ -102,6 +120,9 @@ section NormRep
 variable {F L : Type*} [Field F] [Field L] [Algebra F L] [FiniteDimensional F L] [IsGalois F L]
   {σ : L ≃ₐ[F] L}
 
+/--
+@isnad1 id=eq.1h4v.s9.09e3ecc23046 from=translated src=- shape=e48c96d5 vocab=0a0f20af
+-/
 theorem charpoly_normRep_map (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ) (δ : GL (Fin 2) L) :
     ((normRep hgen δ : GL (Fin 2) F) : Matrix (Fin 2) (Fin 2) F).charpoly.map (algebraMap F L) =
       ((sigmaNormPow (Matrix.GeneralLinearGroup.map (σ : L →+* L)) (Module.finrank F L) δ :
@@ -109,6 +130,9 @@ theorem charpoly_normRep_map (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpo
   obtain ⟨P, hP⟩ := isNormRep_normRep hgen δ
   exact charpoly_map_eq_charpoly_of_conj_eq_map hP
 
+/--
+@isnad1 id=eq.2h5v.s9.edfb6fecd7ca from=translated src=- shape=8746f925 vocab=2341dd19
+-/
 theorem charpoly_normRep_eq_of_normClassMap_eq (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)
     {δ : GL (Fin 2) L} {γ : GL (Fin 2) F}
     (h : normClassMap hgen (SigmaConjClasses.mk σ δ) = ConjClasses.mk γ) :
@@ -119,6 +143,9 @@ theorem charpoly_normRep_eq_of_normClassMap_eq (hgen : ∀ τ : L ≃ₐ[F] L, �
   rw [← hc, Units.val_mul, Units.val_mul, Matrix.coe_units_inv]
   exact (Matrix.charpoly_units_conj c _).symm
 
+/--
+@isnad1 id=eq.2h4v.s10.a3bcbd3e44fc from=translated src=- shape=ae22d800 vocab=d6c4bb91
+-/
 theorem charpoly_sigmaNormPow_of_upper (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)
     (δ : GL (Fin 2) L) (hδ : (δ : Matrix (Fin 2) (Fin 2) L) 1 0 = 0) :
     ((sigmaNormPow (Matrix.GeneralLinearGroup.map (σ : L →+* L)) (Module.finrank F L) δ :
@@ -139,6 +166,9 @@ section B
 variable {F L : Type*} [Field F] [Field L] [Algebra F L] [FiniteDimensional F L] [IsGalois F L]
   {σ : L ≃ₐ[F] L}
 
+/--
+@isnad1 id=and.1h2v.s8.8e9228e76407 from=translated src=- shape=5c6bcf1e vocab=bd4057df
+-/
 theorem entries_ne_zero_of_upper (δ : GL (Fin 2) L) (hδ : (δ : Matrix (Fin 2) (Fin 2) L) 1 0 = 0) :
     (δ : Matrix (Fin 2) (Fin 2) L) 0 0 ≠ 0 ∧ (δ : Matrix (Fin 2) (Fin 2) L) 1 1 ≠ 0 := by
   have hdet := Matrix.isUnits_det_units δ
@@ -146,6 +176,9 @@ theorem entries_ne_zero_of_upper (δ : GL (Fin 2) L) (hδ : (δ : Matrix (Fin 2)
   have hne := hdet.ne_zero
   exact ⟨left_ne_zero_of_mul hne, right_ne_zero_of_mul hne⟩
 
+/--
+@isnad1 id=iff.2h4v.s10.89c4eb2958f5 from=translated src=- shape=3448a28d vocab=3406f104
+-/
 theorem thmB (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)
     (δ : GL (Fin 2) L) (hδ : (δ : Matrix (Fin 2) (Fin 2) L) 1 0 = 0) :
     (∃ γ : GL (Fin 2) F, γ ∈ AutomorphicForm.hyperbolicCell F ∧
@@ -185,6 +218,9 @@ end B
 
 end R4HypB
 
+/--
+@isnad1 id=iff.2h4v.s10.89c4eb2958f5 from=translated src=- shape=3448a28d vocab=3406f104
+-/
 theorem solution
     {F L : Type*} [Field F] [Field L] [Algebra F L] [FiniteDimensional F L] [IsGalois F L]
     {σ : L ≃ₐ[F] L} (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)

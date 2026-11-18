@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open scoped Real
 
+/--
+@isnad1 id=ex.4h6v.s8.b0008e3cd897 from=translated src=- shape=05ec1071 vocab=cd1268b4
+-/
 theorem LanglandsTunnell.norm_le_mul_rpow_near_zero_of_first_order_euler_of_forcing
     (b : ℂ) (σ A : ℝ) (f h : ℝ → ℂ)
     (hf : DifferentiableOn ℝ f (Set.Ioi 0))

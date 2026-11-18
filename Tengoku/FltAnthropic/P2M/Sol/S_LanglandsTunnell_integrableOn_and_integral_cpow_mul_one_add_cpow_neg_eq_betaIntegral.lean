@@ -14,6 +14,9 @@ namespace BETA2
 
 noncomputable def φ (q : ℝ) : ℝ := q / (1 + q)
 
+/--
+@isnad1 id=hasderiv.1h1v.s6.8bfdaa95a2d6 from=translated src=- shape=46b0cd76 vocab=66c4a916
+-/
 theorem φ_deriv (q : ℝ) (hq : 0 < q) : HasDerivAt φ (1 / (1 + q) ^ 2) q := by
   have h1 : (1 + q) ≠ 0 := by positivity
   have h := (hasDerivAt_id q).div ((hasDerivAt_id q).const_add 1) h1
@@ -22,6 +25,9 @@ theorem φ_deriv (q : ℝ) (hq : 0 < q) : HasDerivAt φ (1 / (1 + q) ^ 2) q := b
   field_simp
   ring
 
+/--
+@isnad1 id=injon.0h0v.s3.7feafcb53564 from=translated src=- shape=f2a09be3 vocab=f20a3929
+-/
 theorem φ_injOn : InjOn φ (Ioi (0 : ℝ)) := by
   intro x hx y hy hxy
   have hx1 : (1 + x) ≠ 0 := by have : (0:ℝ) < x := hx; positivity
@@ -30,6 +36,9 @@ theorem φ_injOn : InjOn φ (Ioi (0 : ℝ)) := by
   rw [div_eq_div_iff hx1 hy1] at hxy
   linarith
 
+/--
+@isnad1 id=eq.0h0v.s4.835caaf7dab2 from=translated src=- shape=59281003 vocab=a0ab742d
+-/
 theorem φ_image : φ '' Ioi (0 : ℝ) = Ioo 0 1 := by
   ext x
   constructor
@@ -46,6 +55,9 @@ theorem φ_image : φ '' Ioi (0 : ℝ) = Ioo 0 1 := by
     field_simp
     ring
 
+/--
+@isnad1 id=eq.1h3v.s7.48e8b965ae30 from=translated src=- shape=899c2046 vocab=d107915e
+-/
 theorem key (a b : ℂ) (q : ℝ) (hq : 0 < q) :
     |1 / (1 + q) ^ 2| • (((φ q : ℝ) : ℂ) ^ (b - 1) * (1 - ((φ q : ℝ) : ℂ)) ^ (a - 1)) =
       (q : ℂ) ^ (b - 1) * ((1 + q : ℝ) : ℂ) ^ (-(a + b)) := by
@@ -76,6 +88,9 @@ theorem key (a b : ℂ) (q : ℝ) (hq : 0 < q) :
 end BETA2
 
 open BETA2 in
+/--
+@isnad1 id=and.2h2v.s7.aca7d41ef3c9 from=translated src=- shape=47a0b704 vocab=38f3040a
+-/
 theorem solution
     (a b : ℂ) (ha : 0 < a.re) (hb : 0 < b.re) :
     IntegrableOn (fun q : ℝ => (q : ℂ) ^ (b - 1) * ((1 + q : ℝ) : ℂ) ^ (-(a + b))) (Set.Ioi (0 : ℝ)) ∧

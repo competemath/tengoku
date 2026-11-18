@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_LT_TwistedNorm_apply_one_zero_eq_zero_of_s
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.5h6v.s11.9ace5af87050 from=translated src=- shape=822ead46 vocab=646bfd01
+-/
 theorem LT.TwistedNorm.apply_one_zero_eq_zero_of_sigmaConj_upper_of_normClassMap_eq_mk_of_mem_unipotentCell
     {F L : Type*} [Field F] [Field L] [Algebra F L] [FiniteDimensional F L] [IsGalois F L]
     {σ : L ≃ₐ[F] L} (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)

@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open MeasureTheory Set
 
+/--
+@isnad1 id=eq.0h2v.s7.93c6200a9639 from=translated src=- shape=4755cfdb vocab=88056501
+-/
 theorem LanglandsTunnell.exp_neg_pi_mul_sq_mul_integral_sub_I_mul_pow_mul_exp_eq_iteratedDeriv
     (n : ℕ) (σ : ℝ) :
     (Real.exp (-(Real.pi * σ ^ 2)) : ℂ) *

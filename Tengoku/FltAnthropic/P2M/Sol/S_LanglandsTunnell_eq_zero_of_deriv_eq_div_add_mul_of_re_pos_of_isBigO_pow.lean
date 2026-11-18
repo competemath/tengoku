@@ -98,6 +98,9 @@ end OsOde17
 
 end
 
+/--
+@isnad1 id=eq.5h6v.s8.b9ed9d2b79f2 from=translated src=- shape=f333b773 vocab=e320593e
+-/
 theorem solution
     (α β : ℂ) (hβ : 0 < β.re) (f : ℝ → ℂ)
     (hf : DifferentiableOn ℝ f (Set.Ioi 0))

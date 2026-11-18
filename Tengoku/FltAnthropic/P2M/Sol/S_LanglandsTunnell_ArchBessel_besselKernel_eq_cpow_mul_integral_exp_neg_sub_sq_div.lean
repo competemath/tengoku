@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 open MeasureTheory Set LanglandsTunnell.ArchBessel
 
+/--
+@isnad1 id=eq.1h2v.s7.76e97057985c from=translated src=- shape=69efa837 vocab=c802f1f7
+-/
 theorem solution
     (ν : ℂ) (x : ℝ) (hx : 0 < x) :
     besselKernel ν x =

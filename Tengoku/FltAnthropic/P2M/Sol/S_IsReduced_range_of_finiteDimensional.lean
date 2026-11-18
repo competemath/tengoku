@@ -5,6 +5,9 @@ import Tengoku
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_IsReduced_range_of_finiteDimensional.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 namespace P2MW.S_IsReduced_range_of_finiteDimensional
 set_option autoImplicit false
+/--
+@isnad1 id=isreduce.0h4v.s8.834f50789a38 from=translated src=- shape=ffaac5a7 vocab=a539f09a
+-/
 theorem solution
     {K A B : Type*} [Field K] [CommRing A] [Algebra K A] [FiniteDimensional K A] [IsReduced A] [Ring B] [Algebra K B]
     (f : A →ₐ[K] B) : IsReduced ↥f.range := by

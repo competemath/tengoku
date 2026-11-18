@@ -18,15 +18,24 @@ namespace WPdisc
 
 open Complex MeasureTheory Set Filter Real
 
+/--
+@isnad1 id=mellinco.1h2v.s5.419ba2c26244 from=translated src=- shape=1a8caabb vocab=5bd2f77c
+-/
 theorem mellinConvergent_of_mellin_ne_zero {f : ℝ → ℂ} {s : ℂ} (h : mellin f s ≠ 0) :
     MellinConvergent f s := by
   by_contra hc
   exact h (integral_undef hc)
 
+/--
+@isnad1 id=eq.1h4v.s6.71ba6aa676a0 from=translated src=- shape=c0dd5098 vocab=73c6c6ab
+-/
 theorem mellinInv_congr (σ : ℝ) {φ₁ φ₂ : ℂ → ℂ} (h : ∀ y : ℝ, φ₁ (σ + y * I) = φ₂ (σ + y * I)) (x : ℝ) :
     mellinInv σ φ₁ x = mellinInv σ φ₂ x := by
   simp only [mellinInv, h]
 
+/--
+@isnad1 id=integrab.1h1v.s5.ee4765f45657 from=translated src=- shape=702dd196 vocab=c5397d2b
+-/
 theorem integrable_exp_neg_mul_abs {c : ℝ} (hc : 0 < c) :
     Integrable fun y : ℝ => Real.exp (-c * |y|) := by
   have h1 : IntegrableOn (fun y : ℝ => Real.exp (-c * |y|)) (Iic 0) := by
@@ -40,6 +49,9 @@ theorem integrable_exp_neg_mul_abs {c : ℝ} (hc : 0 < c) :
   have h := h1.union h2
   rwa [Iic_union_Ioi, integrableOn_univ] at h
 
+/--
+@isnad1 id=ex.0h1v.s7.817560b7b070 from=translated src=- shape=6f3d83b7 vocab=03fd11bb
+-/
 theorem pow_mul_exp_le (N : ℕ) : ∃ C : ℝ, 0 ≤ C ∧ ∀ u : ℝ, 0 ≤ u →
     (1 + u) ^ N * Real.exp (-(π / 2) * u) ≤ C * Real.exp (-(π / 4) * u) := by
   set c : ℝ := π / 4 with hc_def
@@ -63,6 +75,9 @@ theorem pow_mul_exp_le (N : ℕ) : ∃ C : ℝ, 0 ≤ C ∧ ∀ u : ℝ, 0 ≤ u
     _ = c⁻¹ ^ N * N.factorial * (Real.exp (c * (1 + u)) * Real.exp (-(π / 2) * u)) := by ring
     _ = c⁻¹ ^ N * N.factorial * Real.exp c * Real.exp (-(π / 4) * u) := by rw [h3]; ring
 
+/--
+@isnad1 id=ex.1h1v.s6.6bbc27c89f0a from=translated src=- shape=d12390f1 vocab=0edf6626
+-/
 theorem norm_Gamma_vertical_le {x : ℝ} (hx : 0 < x) :
     ∃ K : ℝ, 0 ≤ K ∧ ∀ y : ℝ, ‖Complex.Gamma ((x : ℂ) + (y : ℂ) * I)‖ ≤ K * Real.exp (-(π / 4) * |y|) := by
   obtain ⟨A, N, hAN⟩ :=
@@ -111,6 +126,9 @@ theorem norm_Gamma_vertical_le {x : ℝ} (hx : 0 < x) :
       _ = (B * Real.exp (π / 4)) * Real.exp (-(π / 4) * |y|) := by ring
       _ ≤ _ := by gcongr; exact le_max_right _ _
 
+/--
+@isnad1 id=ex.1h1v.s6.5aa7f202caa7 from=translated src=- shape=10d4c5d6 vocab=eed668bc
+-/
 theorem norm_Gammaℂ_vertical_le {z : ℂ} (hz : 0 < z.re) :
     ∃ K : ℝ, 0 ≤ K ∧ ∀ y : ℝ, ‖Gammaℂ (z + (y : ℂ) * I)‖ ≤ K * Real.exp (-(π / 4) * |y|) := by
   obtain ⟨K, hK0, hK⟩ := norm_Gamma_vertical_le hz
@@ -136,6 +154,9 @@ theorem norm_Gammaℂ_vertical_le {z : ℂ} (hz : 0 < z.re) :
     _ ≤ 2 * (2 * π) ^ (-z.re) * (K * (Real.exp ((π / 4) * |z.im|) * Real.exp (-(π / 4) * |y|))) := by gcongr
     _ = _ := by ring
 
+/--
+@isnad1 id=continuo.1h1v.s5.62ab6419060b from=translated src=- shape=85785c18 vocab=2482ba2c
+-/
 theorem continuous_Gammaℂ_vertical {z : ℂ} (hz : 0 < z.re) :
     Continuous fun y : ℝ => Gammaℂ (z + (y : ℂ) * I) := by
   have hline : Continuous fun y : ℝ => z + (y : ℂ) * I := by fun_prop
@@ -157,6 +178,9 @@ theorem continuous_Gammaℂ_vertical {z : ℂ} (hz : 0 < z.re) :
     exact (continuousAt_const.mul h1).mul h2
   exact ContinuousAt.comp (g := Gammaℂ) (f := fun y : ℝ => z + (y : ℂ) * I) hG hline.continuousAt
 
+/--
+@isnad1 id=integrab.1h1v.s6.0060f7a6a72c from=translated src=- shape=ff4c8985 vocab=5a896864
+-/
 theorem integrable_Gammaℂ_vertical {z : ℂ} (hz : 0 < z.re) :
     Integrable fun y : ℝ => Gammaℂ (z + (y : ℂ) * I) := by
   obtain ⟨K, hK0, hK⟩ := norm_Gammaℂ_vertical_le hz
@@ -164,10 +188,16 @@ theorem integrable_Gammaℂ_vertical {z : ℂ} (hz : 0 < z.re) :
     (continuous_Gammaℂ_vertical hz).aestronglyMeasurable (ae_of_all _ fun y => ?_)
   exact hK y
 
+/--
+@isnad1 id=ne.1h1v.s4.12c3ee06b340 from=translated src=- shape=555d9df8 vocab=057a8307
+-/
 theorem Gammaℂ_ne_zero_of_re_pos {s : ℂ} (hs : 0 < s.re) : Gammaℂ s ≠ 0 := by
   rw [← Gammaℝ_mul_Gammaℝ_add_one]
   exact mul_ne_zero (Gammaℝ_ne_zero_of_re_pos hs) (Gammaℝ_ne_zero_of_re_pos (by simp; linarith))
 
+/--
+@isnad1 id=eq.1h3v.s5.72c658b709e5 from=translated src=- shape=9129efd0 vocab=87f4bd99
+-/
 theorem archFactor_discrete (u : ℂ) (n : ℕ) (hn : 1 ≤ n) (s : ℂ) :
     (RealArchParam.discrete u n hn).archFactor s = Gammaℂ (s + (u + (n : ℂ) / 2)) := by
   simp [RealArchParam.archFactor, RealArchParam.gammaR, RealArchParam.gammaC]
@@ -175,6 +205,9 @@ theorem archFactor_discrete (u : ℂ) (n : ℕ) (hn : 1 ≤ n) (s : ℂ) :
 noncomputable def F₂ (u : ℂ) (n : ℕ) (t : ℝ) : ℂ :=
   ((2 : ℂ) * (t : ℂ) ^ (u + (n : ℂ) / 2 + 1) * (Real.exp (-(2 * π * t)) : ℂ)) / (t : ℂ)
 
+/--
+@isnad1 id=eq.1h3v.s6.a33660520cc9 from=translated src=- shape=f920ef9d vocab=c7b51e7a
+-/
 theorem mellin_F₂ (u : ℂ) (n : ℕ) (s : ℂ) (h : 0 < (s + (u + (n : ℂ) / 2)).re) :
     mellin (F₂ u n) s = Gammaℂ (s + (u + (n : ℂ) / 2)) := by
   unfold mellin F₂
@@ -200,6 +233,9 @@ theorem mellin_F₂ (u : ℂ) (n : ℕ) (s : ℂ) (h : 0 < (s + (u + (n : ℂ) /
   push_cast
   ring
 
+/--
+@isnad1 id=continuo.1h3v.s5.e5c397f401ef from=translated src=- shape=94563502 vocab=bed11918
+-/
 theorem continuousAt_F₂ (u : ℂ) (n : ℕ) {t : ℝ} (ht : 0 < t) : ContinuousAt (F₂ u n) t := by
   unfold F₂
   have h1 : ContinuousAt (fun x : ℝ => (x : ℂ) ^ (u + (n : ℂ) / 2 + 1)) t :=
@@ -209,6 +245,9 @@ theorem continuousAt_F₂ (u : ℂ) (n : ℕ) {t : ℝ} (ht : 0 < t) : Continuou
   have h3 : ContinuousAt (fun x : ℝ => (x : ℂ)) t := Complex.continuous_ofReal.continuousAt
   exact ((continuousAt_const.mul h1).mul h2).div h3 (ofReal_ne_zero.mpr ht.ne')
 
+/--
+@isnad1 id=eq.4h4v.s7.a5215e412e02 from=translated src=- shape=fd0eec97 vocab=03e49000
+-/
 theorem main (u : ℂ) (n : ℕ) (hn : 1 ≤ n) (W : ℝ → ℂ)
     (hWc : ContinuousOn W {t : ℝ | t ≠ 0})
     (hMel : ∃ s₀ : ℝ, ∀ s : ℂ, s₀ < s.re →
@@ -265,6 +304,9 @@ theorem main (u : ℂ) (n : ℕ) (hn : 1 ≤ n) (W : ℝ → ℂ)
 
 end WPdisc
 
+/--
+@isnad1 id=eq.5h4v.s8.43dba05a675b from=translated src=- shape=9540cf39 vocab=66d0a5c6
+-/
 theorem solution
     (u : ℂ) (n : ℕ) (hn : 1 ≤ n) (W : ℝ → ℂ)
     (hWc : ContinuousOn W {t : ℝ | t ≠ 0})

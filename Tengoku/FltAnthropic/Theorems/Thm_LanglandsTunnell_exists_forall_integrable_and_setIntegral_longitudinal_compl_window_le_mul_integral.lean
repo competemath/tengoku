@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open _root_.MeasureTheory hiding setIntegral_exp_mul_le_exp_neg_mul_setIntegral_of_gap open _root_.Set
 
+/--
+@isnad1 id=ex.3h5v.s10.9e834f5b8156 from=translated src=- shape=688bde24 vocab=ac322cbb
+-/
 theorem LanglandsTunnell.exists_forall_integrable_and_setIntegral_longitudinal_compl_window_le_mul_integral
     (a : ℝ) (ha : a ≠ 0) (α β : ℝ) (η δ₁ : ℝ) (hη : 0 < η) (hδ₁ : 0 < δ₁) :
     ∃ R : ℝ, ∀ y : ℝ, R ≤ y →

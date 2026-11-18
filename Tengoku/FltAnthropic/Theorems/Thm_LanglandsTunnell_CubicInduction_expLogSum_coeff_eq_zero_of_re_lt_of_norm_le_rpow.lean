@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_LanglandsTunnell_CubicInduction_expLogSum_
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.5h8v.s8.939f3880b357 from=translated src=- shape=ce9c49c5 vocab=a23a55e7
+-/
 theorem
 LanglandsTunnell.CubicInduction.expLogSum_coeff_eq_zero_of_re_lt_of_norm_le_rpow
     {ι : Type*} [Fintype ι] (e : ι → ℂ) (j : ι → ℕ) (c : ι → ℂ)

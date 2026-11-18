@@ -222,6 +222,9 @@ open scoped _root_.P2MW.S_LanglandsTunnell_Artin_exists_badPrimes_finrank_sup_ad
 end
 open scoped _root_.P2MW.S_LanglandsTunnell_Artin_exists_badPrimes_finrank_sup_adjoin_eq_mul_totient.DisjRow
 
+/--
+@isnad1 id=ex.0h3v.s10.bfdad9892df0 from=translated src=- shape=c0a4674c vocab=573948da
+-/
 theorem solution
     {K : Type u} [Field K] [NumberField K] {Ω : Type v} [Field Ω] [Algebra K Ω]
     (F : IntermediateField K Ω) [FiniteDimensional K F] :

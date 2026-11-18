@@ -11,12 +11,18 @@ open MvPolynomial
 
 namespace O1C
 
+/--
+@isnad1 id=eq.0h1v.s8.13edbc762a2b from=translated src=- shape=768993fb vocab=57dd135f
+-/
 theorem degree_fin3 (d : Fin 3 →₀ ℕ) : Finsupp.degree d = d 0 + d 1 + d 2 := by
   have h : Finsupp.degree d = ∑ i : Fin 3, d i := by
     show ∑ i ∈ d.support, d i = _
     exact Finset.sum_subset (Finset.subset_univ _) (fun i _ hi => by simpa using hi)
   rw [h, Fin.sum_univ_three]
 
+/--
+@isnad1 id=eq.0h1v.s7.5a2d7bf95a0f from=translated src=- shape=064d280a vocab=e929581b
+-/
 theorem degree_single (a : Fin 3) : Finsupp.degree (Finsupp.single a 1 : Fin 3 →₀ ℕ) = 1 := by
   rw [degree_fin3]; fin_cases a <;> simp
 
@@ -29,6 +35,9 @@ theorem eq_single_of_degree_eq_one {d : Fin 3 →₀ ℕ} (h : Finsupp.degree d 
   · exact ⟨1, Finsupp.ext fun i => by fin_cases i <;> simp [h.1, h.2.1, h.2.2]⟩
   · exact ⟨2, Finsupp.ext fun i => by fin_cases i <;> simp [h.1, h.2.1, h.2.2]⟩
 
+/--
+@isnad1 id=eq.1h1v.s7.469a502297a8 from=translated src=- shape=a868c54a vocab=a96dbb1c
+-/
 theorem linear_form {p : MvPolynomial (Fin 3) ℂ} (hp : p.IsHomogeneous 1) :
     p = ∑ a : Fin 3, coeff (Finsupp.single a 1) p • (X a : MvPolynomial (Fin 3) ℂ) := by
   classical
@@ -44,6 +53,9 @@ theorem linear_form {p : MvPolynomial (Fin 3) ℂ} (hp : p.IsHomogeneous 1) :
     have hne : Finsupp.single a 1 ≠ d := fun h => hd (by rw [← h, degree_single])
     simp [hne]
 
+/--
+@isnad1 id=mem.2h2v.s10.1a32ae519c02 from=translated src=- shape=45af4100 vocab=02bc682e
+-/
 theorem mem_span_X_of_flip {p : MvPolynomial (Fin 3) ℂ} (hp : p.IsHomogeneous 1) (m : Fin 3)
     (h : aeval (fun a : Fin 3 => C (if a = m then (-1 : ℂ) else 1) * X a) p = C (-1 : ℂ) * p) :
     p ∈ Submodule.span ℂ {(X m : MvPolynomial (Fin 3) ℂ)} := by
@@ -69,6 +81,9 @@ theorem mem_span_X_of_flip {p : MvPolynomial (Fin 3) ℂ} (hp : p.IsHomogeneous 
 end O1C
 
 open O1C in
+/--
+@isnad1 id=ex.6h4v.s11.5420c0349585 from=translated src=- shape=50068a1c vocab=678427ed
+-/
 theorem solution
     (b₀ c₀ : Fin 3) (hb₀ : b₀ ≠ 0) (hc₀ : c₀ ≠ 0) (hbc : b₀ ≠ c₀)
     (ε : Fin 3 → Fin 2) (hodd : ε 0 ≠ ε b₀)

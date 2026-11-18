@@ -46,6 +46,9 @@ private theorem exists_ne_zero_intValuation_eq_exp_neg (K : Type) [Field K]
   rw [h0, map_zero] at h
   exact WithZero.exp_ne_zero h.symm
 
+/--
+@isnad1 id=ex.0h3v.s8.9d95e4bdd7f1 from=translated src=- shape=0055cc43 vocab=87736b8e
+-/
 theorem solution (K : Type) [Field K]
     [NumberField K] (S : Finset (HeightOneSpectrum (𝓞 K))) (n : ↥S → ℤ) :
     ∃ α : K, α ≠ 0 ∧ ∀ v : ↥S, v.1.valuation K α = WithZero.exp (-(n v)) := by

@@ -28,29 +28,50 @@ def coeff (n : ℕ) : ℂ := n.factorization.prod fun p k => loc N E p k
 
 variable {N E}
 
+/--
+@isnad1 id=eq.1h5v.s5.92c4c4cf1c15 from=translated src=- shape=ab18d957 vocab=b7bf99a4
+-/
 theorem loc_N (hinj : Function.Injective N) (i : ι) (k : ℕ) : loc N E (N i) k = E i k := by
   have h : ∃ j, N j = N i := ⟨i, rfl⟩
   rw [loc, dite_eq_left h, hinj h.choose_spec]
 
+/--
+@isnad1 id=eq.1h4v.s5.50439b6c52b1 from=translated src=- shape=80c0ce23 vocab=1cb0939b
+-/
 theorem loc_zero (hE0 : ∀ i, E i 0 = 1) (p : ℕ) : loc N E p 0 = 1 := by
   unfold loc
   by_cases h : ∃ i, N i = p
   · rw [dite_eq_left h]; exact hE0 _
   · rw [dite_eq_right h, ite_eq_left rfl]
 
+/--
+@isnad1 id=eq.2h5v.s5.4961c3632397 from=translated src=- shape=5a18c7ba vocab=1cb0939b
+-/
 theorem loc_of_not (p k : ℕ) (h : ¬ ∃ i, N i = p) (hk : k ≠ 0) : loc N E p k = 0 := by
   rw [loc, dite_eq_right h, ite_eq_right hk]
 
+/--
+@isnad1 id=eq.0h3v.s4.6bcbddda6eac from=translated src=- shape=331739fe vocab=e9a5b354
+-/
 theorem coeff_one : coeff N E 1 = 1 := by simp [coeff]
 
+/--
+@isnad1 id=eq.2h5v.s6.5d663183b2fd from=translated src=- shape=ebe998fb vocab=e5616387
+-/
 theorem coeff_prime_pow (hE0 : ∀ i, E i 0 = 1) {p : ℕ} (hp : p.Prime) (k : ℕ) :
     coeff N E (p ^ k) = loc N E p k := by
   rw [coeff, hp.factorization_pow, Finsupp.prod_single_index (loc_zero hE0 p)]
 
+/--
+@isnad1 id=eq.3h5v.s6.bb9074ba2716 from=translated src=- shape=e230633d vocab=6c285d02
+-/
 theorem coeff_N_pow (hN : ∀ i, (N i).Prime) (hinj : Function.Injective N) (hE0 : ∀ i, E i 0 = 1)
     (i : ι) (k : ℕ) : coeff N E (N i ^ k) = E i k := by
   rw [coeff_prime_pow hE0 (hN i), loc_N hinj]
 
+/--
+@isnad1 id=eq.1h5v.s5.62bf00ef74ea from=translated src=- shape=466bf0f9 vocab=3ea218c0
+-/
 theorem coeff_mul_of_coprime {m n : ℕ} (hmn : Nat.Coprime m n) :
     coeff N E (m * n) = coeff N E m * coeff N E n := by
   rcases eq_or_ne m 0 with rfl | hm
@@ -62,6 +83,9 @@ theorem coeff_mul_of_coprime {m n : ℕ} (hmn : Nat.Coprime m n) :
   · rw [Nat.support_factorization, Nat.support_factorization]
     exact hmn.disjoint_primeFactors
 
+/--
+@isnad1 id=le.5h6v.s7.26b9bca602e8 from=translated src=- shape=225c9dac vocab=f769dc4e
+-/
 theorem norm_loc_le (hN : ∀ i, (N i).Prime) (hinj : Function.Injective N) (hE0 : ∀ i, E i 0 = 1)
     (A : ℝ) (hEA : ∀ i k, ‖E i k‖ ≤ (((N i : ℝ) ^ k) ^ A)) {p : ℕ} (hp : p.Prime) (k : ℕ) :
     ‖loc N E p k‖ ≤ (((p : ℝ) ^ k) ^ A) := by
@@ -73,6 +97,9 @@ theorem norm_loc_le (hN : ∀ i, (N i).Prime) (hinj : Function.Injective N) (hE0
     · rw [loc_of_not p k h hk, norm_zero]
       exact Real.rpow_nonneg (pow_nonneg (Nat.cast_nonneg _) _) _
 
+/--
+@isnad1 id=le.5h5v.s6.b536992732a6 from=translated src=- shape=d7d58abc vocab=d758012d
+-/
 theorem norm_coeff_le (hN : ∀ i, (N i).Prime) (hinj : Function.Injective N) (hE0 : ∀ i, E i 0 = 1)
     (A : ℝ) (hEA : ∀ i k, ‖E i k‖ ≤ (((N i : ℝ) ^ k) ^ A)) :
     ∀ n : ℕ, n ≠ 0 → ‖coeff N E n‖ ≤ (n : ℝ) ^ A := by
@@ -93,6 +120,9 @@ theorem norm_coeff_le (hN : ∀ i, (N i).Prime) (hinj : Function.Injective N) (h
     exact mul_le_mul (iha (by omega)) (ihb (by omega)) (norm_nonneg _)
       (Real.rpow_nonneg (Nat.cast_nonneg _) _)
 
+/--
+@isnad1 id=le.1h5v.s5.b8e7c9036249 from=translated src=- shape=c8cf4693 vocab=f4dfb4c3
+-/
 theorem loc_nonneg (hpos : ∀ i k, 0 ≤ E i k) (p k : ℕ) : 0 ≤ loc N E p k := by
   unfold loc
   by_cases h : ∃ i, N i = p
@@ -102,15 +132,24 @@ theorem loc_nonneg (hpos : ∀ i k, 0 ≤ E i k) (p k : ℕ) : 0 ≤ loc N E p k
     · rw [ite_eq_left hk]; exact zero_le_one
     · rw [ite_eq_right hk]
 
+/--
+@isnad1 id=le.1h4v.s5.610a4fb03c36 from=translated src=- shape=f66b202c vocab=7747b9ec
+-/
 theorem coeff_nonneg (hpos : ∀ i k, 0 ≤ E i k) (n : ℕ) : 0 ≤ coeff N E n := by
   unfold coeff Finsupp.prod
   exact Finset.prod_nonneg fun p _ => loc_nonneg hpos p _
 
+/--
+@isnad1 id=eq.0h3v.s5.e8bf77b47813 from=translated src=- shape=ab709254 vocab=cb498106
+-/
 theorem natCast_pow_cpow (n k : ℕ) (s : ℂ) : (((n ^ k : ℕ)) : ℂ) ^ s = ((n : ℂ) ^ s) ^ k := by
   induction k with
   | zero => simp
   | succ k ih => rw [pow_succ, Nat.cast_mul, natCast_mul_natCast_cpow, ih, pow_succ]
 
+/--
+@isnad1 id=eq.1h6v.s5.7fa06c98b9f8 from=translated src=- shape=899cb627 vocab=b616f85b
+-/
 theorem term_mul_of_coprime (s : ℂ) {m n : ℕ} (hmn : Nat.Coprime m n) :
     LSeries.term (coeff N E) s (m * n) = LSeries.term (coeff N E) s m * LSeries.term (coeff N E) s n := by
   rcases eq_or_ne m 0 with rfl | hm
@@ -121,6 +160,9 @@ theorem term_mul_of_coprime (s : ℂ) {m n : ℕ} (hmn : Nat.Coprime m n) :
     coeff_mul_of_coprime hmn, Nat.cast_mul, natCast_mul_natCast_cpow]
   field_simp
 
+/--
+@isnad1 id=eq.3h5v.s7.9a4312463443 from=translated src=- shape=faf990e8 vocab=d5f8b58c
+-/
 theorem tsum_term_N_pow (hN : ∀ i, (N i).Prime) (hinj : Function.Injective N) (hE0 : ∀ i, E i 0 = 1)
     (s : ℂ) (i : ι) :
     ∑' k : ℕ, LSeries.term (coeff N E) s (N i ^ k) = ∑' k : ℕ, E i k * (((N i : ℕ) : ℂ) ^ (-s)) ^ k := by
@@ -129,6 +171,9 @@ theorem tsum_term_N_pow (hN : ∀ i, (N i).Prime) (hinj : Function.Injective N) 
   rw [LSeries.term_of_ne_zero hne, coeff_N_pow hN hinj hE0, natCast_pow_cpow, cpow_neg, inv_pow,
     div_eq_mul_inv]
 
+/--
+@isnad1 id=eq.3h5v.s6.19e3e50ab006 from=translated src=- shape=8eddceaf vocab=42c4575d
+-/
 theorem tsum_term_pow_of_not (hE0 : ∀ i, E i 0 = 1) (s : ℂ) {p : ℕ} (hp : p.Prime)
     (h : ¬ ∃ i, N i = p) : ∑' k : ℕ, LSeries.term (coeff N E) s (p ^ k) = 1 := by
   rw [tsum_eq_single 0]
@@ -141,6 +186,9 @@ end RS11G2
 
 open RS11G2 in
 
+/--
+@isnad1 id=ex.4h4v.s8.84dbc17ef4e1 from=translated src=- shape=2fedceba vocab=93186176
+-/
 theorem solution
     {ι : Type*} (N : ι → ℕ) (hN : ∀ i : ι, (N i).Prime) (hinj : Function.Injective N)
     (E : ι → ℕ → ℂ) (hE0 : ∀ i : ι, E i 0 = 1) (A : ℝ)

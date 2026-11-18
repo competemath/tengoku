@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open LanglandsTunnell.ArchBessel
 
+/--
+@isnad1 id=integrab.1h2v.s7.d60035b3c25e from=translated src=- shape=a981299f vocab=b92c9e50
+-/
 theorem solution (ν : ℂ) (x : ℝ) (hx : 0 < x) :
     MeasureTheory.IntegrableOn
       (fun t : ℝ => (Real.exp (-(x * (t + t⁻¹) / 2)) : ℂ) * ((t : ℂ) ^ (ν - 1))) (Set.Ioi 0) := by

@@ -9,6 +9,9 @@ namespace P2MW.S_LanglandsTunnell_eq_of_forall_finsum_cpow_neg_mul_eq
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.4h3v.s7.599a4784630e from=translated src=- shape=8fa7bb7a vocab=cf8d5ef9
+-/
 theorem solution
     (N : ℕ) (hN : 1 < N) (a b : ℤ → ℂ)
     (ha : (Function.support a).Finite) (hb : (Function.support b).Finite)

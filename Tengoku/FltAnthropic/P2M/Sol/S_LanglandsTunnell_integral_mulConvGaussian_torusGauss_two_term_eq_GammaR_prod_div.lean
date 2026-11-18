@@ -17,6 +17,9 @@ open Real Complex MeasureTheory Set
 
 namespace P2mKcK8TwoTerm
 
+/--
+@isnad1 id=eq.2h7v.s9.54c398dce05d from=translated src=- shape=10f7ee55 vocab=5dd7d55d
+-/
 theorem bookkeeping (π₁ π₂ q₁ q₂ α β γ : ℂ)
     (hbal : β - γ = 2 * α + 2 + π₁ + π₂) (hq₂ : 0 < ((q₂ - γ - 1) / 2).re) :
     (1 / 2 * Gammaℝ (α - β + π₂) * Gammaℝ (q₂ - γ - 1) * Gammaℝ (α + 1 + π₁ + q₁) / (Real.pi : ℂ)) *
@@ -53,6 +56,9 @@ theorem bookkeeping (π₁ π₂ q₁ q₂ α β γ : ℂ)
           rw [kπ, div_self hΓq]
     _ = _ := by ring
 
+/--
+@isnad1 id=eq.7h7v.s11.4d197536968c from=translated src=- shape=0f668f99 vocab=7948ba73
+-/
 theorem main (π₁ π₂ q₁ q₂ α β γ : ℂ)
     (hbal : β - γ = 2 * α + 2 + π₁ + π₂)
     (hp₁ : 0 < (α - β + π₁ + 1).re) (hp₂ : 0 < (α - β + π₂).re)
@@ -132,6 +138,9 @@ end P2mKcK8TwoTerm
 
 end
 
+/--
+@isnad1 id=eq.7h7v.s11.4d197536968c from=translated src=- shape=0f668f99 vocab=7948ba73
+-/
 theorem solution
     (π₁ π₂ q₁ q₂ α β γ : ℂ)
     (hbal : β - γ = 2 * α + 2 + π₁ + π₂)

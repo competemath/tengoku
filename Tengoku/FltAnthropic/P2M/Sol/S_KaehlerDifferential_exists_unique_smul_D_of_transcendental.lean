@@ -22,6 +22,9 @@ private theorem KaehlerDifferential.exists_unique_smul_D_of_transcendental (K : 
   · exact sub_eq_zero.mp h
   · exact absurd h (KaehlerDifferential.D_ne_zero_of_transcendental K x hx)
 
+/--
+@isnad1 id=existsun.1h4v.s8.d7fb4d9137e8 from=translated src=- shape=02035af1 vocab=18429e44
+-/
 theorem solution (K : Type*) [Field K] {F : Type*} [Field F] [Algebra K F] (x : F) (hx : Transcendental K x) [Algebra.IsSeparable (IntermediateField.adjoin K ({x} : Set F)) F] (ω : KaehlerDifferential K F) : ∃! c : F, ω = c • KaehlerDifferential.D K F x :=
   KaehlerDifferential.exists_unique_smul_D_of_transcendental K x hx ω
 

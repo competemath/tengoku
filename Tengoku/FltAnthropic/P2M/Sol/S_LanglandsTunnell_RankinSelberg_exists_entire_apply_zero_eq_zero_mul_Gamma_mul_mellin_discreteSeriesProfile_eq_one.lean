@@ -14,6 +14,9 @@ set_option autoImplicit false
 
 open MeasureTheory
 
+/--
+@isnad1 id=ex.2h2v.s8.571e5de4eec5 from=translated src=- shape=37c67d55 vocab=0d8e4558
+-/
 theorem solution
     (C k : ℝ) (hC : 0 < C) (hk : 0 < k) :
     ∃ H : ℂ → ℂ, Differentiable ℂ H ∧ H 0 = 0 ∧

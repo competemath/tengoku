@@ -35,19 +35,31 @@ def b₂Scaled (d : R) (hd : (12 : R) * d = 0) : KatzModularForm R 2 where
       show ((C.u⁻¹ ^ (2 : ℤ) : Aˣ) : A) = ((C.u⁻¹ : Aˣ) : A) ^ 2 by norm_cast]
     linear_combination ((C.u⁻¹ : Aˣ) : A) ^ 2 * C.r * h12
 
+/--
+@isnad1 id=eq.2h4v.s7.13ca8ad97792 from=translated src=- shape=110dc72d vocab=377d6810
+-/
 @[scoped simp] theorem b₂Scaled_toFun (d : R) (hd : (12 : R) * d = 0) {A : Type u} [CommRing A]
     [Algebra R A] (W : WeierstrassCurve A) (hW : IsUnit W.Δ) :
     (b₂Scaled R d hd).toFun W hW = algebraMap R A d * W.b₂ := rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.fbf5057aae8b from=translated src=- shape=436751ca vocab=99f4bd25
+-/
 theorem b₂_tateLaurent : (ModularCurve.tateLaurent R).b₂ = 1 := by
   rw [ModularCurve.tateLaurent, WeierstrassCurve.map_b₂]
   simp [WeierstrassCurve.b₂, ModularCurve.tatePowerSeries]
 
+/--
+@isnad1 id=eq.1h2v.s7.43ed2f32b8d4 from=translated src=- shape=2ec0a65d vocab=233a0a0a
+-/
 theorem qExpansion_b₂Scaled (d : R) (hd : (12 : R) * d = 0) :
     (b₂Scaled R d hd).qExpansion = HahnSeries.C d := by
   rw [qExpansion, b₂Scaled_toFun, b₂_tateLaurent, mul_one, RingHom.algebraMap_toAlgebra]
   simp
 
+/--
+@isnad1 id=ex.1h2v.s8.a81cd1bd0b98 from=translated src=- shape=f0a97526 vocab=512ee27a
+-/
 theorem exists_qExpansion_eq_C_of_dvd (m : ℕ) (c : ℤ) (hc : ((m / Nat.gcd m 12 : ℕ) : ℤ) ∣ c) :
     ∃ F : KatzModularForm (ZMod m) 2, F.qExpansion = HahnSeries.C (c : ZMod m) := by
   obtain ⟨e, rfl⟩ := hc
@@ -69,6 +81,9 @@ open scoped _root_.P2MW.S_KatzModularForm_exists_qExpansion_eq_C_of_dvd.KatzModu
 end
 open scoped _root_.P2MW.S_KatzModularForm_exists_qExpansion_eq_C_of_dvd.KatzModularForm
 
+/--
+@isnad1 id=ex.1h2v.s8.a81cd1bd0b98 from=translated src=- shape=f0a97526 vocab=512ee27a
+-/
 theorem solution (m : ℕ) (c : ℤ)
     (hc : ((m / Nat.gcd m 12 : ℕ) : ℤ) ∣ c) :
     ∃ F : KatzModularForm (ZMod m) 2, F.qExpansion = HahnSeries.C (c : ZMod m) :=

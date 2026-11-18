@@ -23,15 +23,24 @@ noncomputable def G (p q : ℂ) (t : ℝ) : ℂ :=
   (4 : ℂ) * ∫ r in Ioi (0 : ℝ),
     ((r : ℂ) ^ p * (Real.exp (-(π * r ^ 2)) : ℂ)) * (((t / r : ℝ) : ℂ) ^ q * (Real.exp (-(π * (t / r) ^ 2)) : ℂ)) / (r : ℂ)
 
+/--
+@isnad1 id=eq.0h5v.s6.84a8ec8c00a0 from=translated src=- shape=823ecde5 vocab=26d53bb7
+-/
 theorem archFactor_principal (u₁ u₂ : ℂ) (a₁ a₂ : ZMod 2) (s : ℂ) :
     (RealArchParam.principal u₁ a₁ u₂ a₂).archFactor s =
       Gammaℝ (s + (u₁ + signShift a₁)) * Gammaℝ (s + (u₂ + signShift a₂)) := by
   simp [RealArchParam.archFactor, RealArchParam.gammaR, RealArchParam.gammaC]
 
+/--
+@isnad1 id=eq.0h5v.s7.ffc4b97bdaa1 from=translated src=- shape=f50b9d2a vocab=f820f225
+-/
 theorem twist_zero_principal (u₁ u₂ : ℂ) (a₁ a₂ b : ZMod 2) :
     (RealArchParam.principal u₁ a₁ u₂ a₂).twist 0 b = RealArchParam.principal u₁ (a₁ + b) u₂ (a₂ + b) := by
   simp [RealArchParam.twist]
 
+/--
+@isnad1 id=eq.2h6v.s8.f5659a61f8fb from=translated src=- shape=6dfb7f26 vocab=d935e54b
+-/
 theorem mellin_G (u₁ u₂ : ℂ) (a₁ a₂ b : ZMod 2) (s : ℂ)
     (h₁ : 0 < (s + (u₁ + signShift (a₁ + b))).re) (h₂ : 0 < (s + (u₂ + signShift (a₂ + b))).re) :
     mellin (G (u₁ + signShift (a₁ + b)) (u₂ + signShift (a₂ + b))) s =
@@ -39,21 +48,33 @@ theorem mellin_G (u₁ u₂ : ℂ) (a₁ a₂ b : ZMod 2) (s : ℂ)
   rw [twist_zero_principal]
   exact LanglandsTunnell.mellin_mulConvGaussian_eq_archFactor_principal u₁ (a₁ + b) u₂ (a₂ + b) s h₁ h₂
 
+/--
+@isnad1 id=ne.2h6v.s7.087beb92eaa3 from=translated src=- shape=81a0fc31 vocab=489bb4ca
+-/
 theorem archFactor_ne_zero (u₁ u₂ : ℂ) (a₁ a₂ b : ZMod 2) (s : ℂ)
     (h₁ : 0 < (s + (u₁ + signShift (a₁ + b))).re) (h₂ : 0 < (s + (u₂ + signShift (a₂ + b))).re) :
     ((RealArchParam.principal u₁ a₁ u₂ a₂).twist 0 b).archFactor s ≠ 0 := by
   rw [twist_zero_principal, archFactor_principal]
   exact mul_ne_zero (Gammaℝ_ne_zero_of_re_pos h₁) (Gammaℝ_ne_zero_of_re_pos h₂)
 
+/--
+@isnad1 id=mellinco.1h2v.s5.419ba2c26244 from=translated src=- shape=1a8caabb vocab=5bd2f77c
+-/
 theorem mellinConvergent_of_mellin_ne_zero {f : ℝ → ℂ} {s : ℂ} (h : mellin f s ≠ 0) :
     MellinConvergent f s := by
   by_contra hc
   exact h (integral_undef hc)
 
+/--
+@isnad1 id=eq.1h4v.s6.71ba6aa676a0 from=translated src=- shape=c0dd5098 vocab=73c6c6ab
+-/
 theorem mellinInv_congr (σ : ℝ) {φ₁ φ₂ : ℂ → ℂ} (h : ∀ y : ℝ, φ₁ (σ + y * I) = φ₂ (σ + y * I)) (x : ℝ) :
     mellinInv σ φ₁ x = mellinInv σ φ₂ x := by
   simp only [mellinInv, h]
 
+/--
+@isnad1 id=integrab.1h1v.s5.ee4765f45657 from=translated src=- shape=702dd196 vocab=c5397d2b
+-/
 theorem integrable_exp_neg_mul_abs {c : ℝ} (hc : 0 < c) :
     Integrable fun y : ℝ => Real.exp (-c * |y|) := by
   have h1 : IntegrableOn (fun y : ℝ => Real.exp (-c * |y|)) (Iic 0) := by
@@ -67,6 +88,9 @@ theorem integrable_exp_neg_mul_abs {c : ℝ} (hc : 0 < c) :
   have h := h1.union h2
   rwa [Iic_union_Ioi, integrableOn_univ] at h
 
+/--
+@isnad1 id=ex.0h1v.s7.817560b7b070 from=translated src=- shape=6f3d83b7 vocab=03fd11bb
+-/
 theorem pow_mul_exp_le (N : ℕ) : ∃ C : ℝ, 0 ≤ C ∧ ∀ u : ℝ, 0 ≤ u →
     (1 + u) ^ N * Real.exp (-(π / 2) * u) ≤ C * Real.exp (-(π / 4) * u) := by
   set c : ℝ := π / 4 with hc_def
@@ -90,6 +114,9 @@ theorem pow_mul_exp_le (N : ℕ) : ∃ C : ℝ, 0 ≤ C ∧ ∀ u : ℝ, 0 ≤ u
     _ = c⁻¹ ^ N * N.factorial * (Real.exp (c * (1 + u)) * Real.exp (-(π / 2) * u)) := by ring
     _ = c⁻¹ ^ N * N.factorial * Real.exp c * Real.exp (-(π / 4) * u) := by rw [h3]; ring
 
+/--
+@isnad1 id=ex.1h1v.s6.6bbc27c89f0a from=translated src=- shape=d12390f1 vocab=0edf6626
+-/
 theorem norm_Gamma_vertical_le {x : ℝ} (hx : 0 < x) :
     ∃ K : ℝ, 0 ≤ K ∧ ∀ y : ℝ, ‖Complex.Gamma ((x : ℂ) + (y : ℂ) * I)‖ ≤ K * Real.exp (-(π / 4) * |y|) := by
   obtain ⟨A, N, hAN⟩ :=
@@ -138,6 +165,9 @@ theorem norm_Gamma_vertical_le {x : ℝ} (hx : 0 < x) :
       _ = (B * Real.exp (π / 4)) * Real.exp (-(π / 4) * |y|) := by ring
       _ ≤ _ := by gcongr; exact le_max_right _ _
 
+/--
+@isnad1 id=ex.1h1v.s6.d1bfb0ffa57c from=translated src=- shape=10d4c5d6 vocab=9de0f825
+-/
 theorem norm_Gammaℝ_vertical_le {z : ℂ} (hz : 0 < z.re) :
     ∃ K : ℝ, 0 ≤ K ∧ ∀ y : ℝ, ‖Gammaℝ (z + (y : ℂ) * I)‖ ≤ K * Real.exp (-(π / 8) * |y|) := by
   obtain ⟨K, hK0, hK⟩ := norm_Gamma_vertical_le (half_pos hz)
@@ -161,6 +191,9 @@ theorem norm_Gammaℝ_vertical_le {z : ℂ} (hz : 0 < z.re) :
     _ ≤ π ^ (-z.re / 2) * (K * (Real.exp ((π / 8) * |z.im|) * Real.exp (-(π / 8) * |y|))) := by gcongr
     _ = _ := by ring
 
+/--
+@isnad1 id=continuo.1h1v.s5.2264a60bd354 from=translated src=- shape=85785c18 vocab=e2f7083c
+-/
 theorem continuous_Gammaℝ_vertical {z : ℂ} (hz : 0 < z.re) :
     Continuous fun y : ℝ => Gammaℝ (z + (y : ℂ) * I) := by
   have hline : Continuous fun y : ℝ => z + (y : ℂ) * I := by fun_prop
@@ -183,6 +216,9 @@ theorem continuous_Gammaℝ_vertical {z : ℂ} (hz : 0 < z.re) :
     exact h1.mul h2
   exact ContinuousAt.comp (g := Gammaℝ) (f := fun y : ℝ => z + (y : ℂ) * I) hG hline.continuousAt
 
+/--
+@isnad1 id=integrab.2h6v.s8.e65a8e4d82fe from=translated src=- shape=b795f79f vocab=67aab522
+-/
 theorem verticalIntegrable_archFactor (u₁ u₂ : ℂ) (a₁ a₂ b : ZMod 2) (σ : ℝ)
     (h₁ : 0 < σ + (u₁ + signShift (a₁ + b)).re) (h₂ : 0 < σ + (u₂ + signShift (a₂ + b)).re) :
     Integrable fun y : ℝ => ((RealArchParam.principal u₁ a₁ u₂ a₂).twist 0 b).archFactor ((σ : ℂ) + (y : ℂ) * I) := by
@@ -213,14 +249,23 @@ theorem verticalIntegrable_archFactor (u₁ u₂ : ℂ) (a₁ a₂ b : ZMod 2) (
 noncomputable def Φ (p q : ℂ) (t r : ℝ) : ℂ :=
   ((r : ℂ) ^ p * (Real.exp (-(π * r ^ 2)) : ℂ)) * (((t / r : ℝ) : ℂ) ^ q * (Real.exp (-(π * (t / r) ^ 2)) : ℂ)) / (r : ℂ)
 
+/--
+@isnad1 id=eq.0h2v.s6.0000f9e731b8 from=translated src=- shape=f6ff3e7c vocab=02e2e175
+-/
 theorem G_eq_integral_Φ (p q : ℂ) : G p q = fun t => (4 : ℂ) * ∫ r in Ioi (0 : ℝ), Φ p q t r := rfl
 
+/--
+@isnad1 id=eq.2h4v.s7.0c2a6f0d22e7 from=translated src=- shape=6d1f3ce4 vocab=8e85ec34
+-/
 theorem norm_Φ (p q : ℂ) {t r : ℝ} (ht : 0 < t) (hr : 0 < r) :
     ‖Φ p q t r‖ = r ^ p.re * Real.exp (-(π * r ^ 2)) * ((t / r) ^ q.re * Real.exp (-(π * (t / r) ^ 2))) / r := by
   have htr : 0 < t / r := div_pos ht hr
   simp only [Φ, norm_div, norm_mul, norm_cpow_eq_rpow_re_of_pos hr, norm_cpow_eq_rpow_re_of_pos htr,
     Complex.norm_of_nonneg (Real.exp_pos _).le, Complex.norm_of_nonneg hr.le]
 
+/--
+@isnad1 id=le.3h5v.s8.d35011dd439b from=translated src=- shape=b711b273 vocab=c883c892
+-/
 theorem norm_Φ_le (p q : ℂ) {x t r : ℝ} (hx : 0 < x) (ht : t ∈ Icc (x / 2) (2 * x)) (hr : 0 < r) :
     ‖Φ p q t r‖ ≤ ((x / 2) ^ q.re + (2 * x) ^ q.re) *
       (r ^ (p.re - q.re - 1) * Real.exp (-(π * r ^ 2 + π * (x / 2) ^ 2 * (r ^ 2)⁻¹))) := by
@@ -253,6 +298,9 @@ theorem norm_Φ_le (p q : ℂ) {x t r : ℝ} (hx : 0 < x) (ht : t ∈ Icc (x / 2
         gcongr
     _ = _ := by ring
 
+/--
+@isnad1 id=integrab.1h2v.s7.ba4dc13c4f74 from=translated src=- shape=6ef0e8ce vocab=f9ab7a8d
+-/
 theorem integrableOn_majorant (α : ℝ) {c : ℝ} (hc : 0 < c) :
     IntegrableOn (fun r : ℝ => r ^ α * Real.exp (-(π * r ^ 2 + π * c ^ 2 * (r ^ 2)⁻¹))) (Ioi 0) := by
   set lam : ℝ := Real.sqrt c with hlam
@@ -272,6 +320,9 @@ theorem integrableOn_majorant (α : ℝ) {c : ℝ} (hc : 0 < c) :
   rw [hr2]
   field_simp
 
+/--
+@isnad1 id=continuo.1h3v.s5.b3ef4fad4b10 from=translated src=- shape=26afa290 vocab=12bfbbe6
+-/
 theorem continuousOn_Φ (p q : ℂ) {t : ℝ} (ht : 0 < t) : ContinuousOn (Φ p q t) (Ioi 0) := by
   intro r hr
   have hr : 0 < r := hr
@@ -290,6 +341,9 @@ theorem continuousOn_Φ (p q : ℂ) {t : ℝ} (ht : 0 < t) : ContinuousOn (Φ p 
   have h5 : ContinuousAt (fun r : ℝ => (r : ℂ)) r := continuous_ofReal.continuousAt
   exact ((h1.mul h2).mul (h3.mul h4)).div h5 (ofReal_ne_zero.mpr hr.ne')
 
+/--
+@isnad1 id=continuo.2h4v.s5.1d754fc1c255 from=translated src=- shape=65d108f8 vocab=179907b0
+-/
 theorem continuousAt_Φ_left (p q : ℂ) {x r : ℝ} (hx : 0 < x) (hr : 0 < r) :
     ContinuousAt (fun t : ℝ => Φ p q t r) x := by
   have hdiv : ContinuousAt (fun t : ℝ => t / r) x := continuousAt_id.div continuousAt_const hr.ne'
@@ -302,6 +356,9 @@ theorem continuousAt_Φ_left (p q : ℂ) {x r : ℝ} (hx : 0 < x) (hr : 0 < r) :
     exact ContinuousAt.comp (g := fun a : ℝ => ((Real.exp (-(π * a ^ 2)) : ℝ) : ℂ)) hc.continuousAt hdiv
   exact ((continuousAt_const.mul (h3.mul h4)).div continuousAt_const (ofReal_ne_zero.mpr hr.ne'))
 
+/--
+@isnad1 id=continuo.1h3v.s5.95bdc4b1f05f from=translated src=- shape=e38db7a8 vocab=08ba11b2
+-/
 theorem continuousAt_G (p q : ℂ) {x : ℝ} (hx : 0 < x) : ContinuousAt (G p q) x := by
   have hΦ : ContinuousAt (fun t => ∫ r in Ioi (0 : ℝ), Φ p q t r) x := by
     refine continuousAt_of_dominated
@@ -318,6 +375,9 @@ theorem continuousAt_G (p q : ℂ) {x : ℝ} (hx : 0 < x) : ContinuousAt (G p q)
   rw [G_eq_integral_Φ]
   exact continuousAt_const.mul hΦ
 
+/--
+@isnad1 id=eq.3h7v.s8.bc3ca8bb3800 from=translated src=- shape=021f7c1c vocab=33a42f5a
+-/
 theorem main (u₁ u₂ : ℂ) (a₁ a₂ : ZMod 2) (W : ℝ → ℂ)
     (hWc : ContinuousOn W {t : ℝ | t ≠ 0})
     (hMel : ∀ b : ZMod 2, ∃ s₀ : ℝ, ∀ s : ℂ, s₀ < s.re →
@@ -389,6 +449,9 @@ theorem main (u₁ u₂ : ℂ) (a₁ a₂ : ZMod 2) (W : ℝ → ℂ)
 
 end K9
 
+/--
+@isnad1 id=eq.3h7v.s9.b1cdbeef4e6b from=translated src=- shape=662d15ad vocab=f3a05e80
+-/
 theorem solution
     (u₁ u₂ : ℂ) (a₁ a₂ : ZMod 2) (W : ℝ → ℂ)
     (hWc : ContinuousOn W {t : ℝ | t ≠ 0})

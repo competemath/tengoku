@@ -29,6 +29,9 @@ def act (ν : Fin 3 → ℂ) (c d : Fin 3) (p : R9) : R9 :=
         else (0 : MvPolynomial (Fin 3 × Fin 3) ℂ)) * MvPolynomial.X (m, j)) *
       MvPolynomial.pderiv (i, j) p
 
+/--
+@isnad1 id=hasderiv.1h5v.s9.f8fc1ab3a93f from=translated src=- shape=cbab3092 vocab=aa1f1915
+-/
 theorem hasDerivAt_eval {σ : Type} [Fintype σ] [DecidableEq σ] (P : MvPolynomial σ ℂ)
     (x : ℝ → σ → ℂ) (x' : σ → ℂ) (t₀ : ℝ) (hx : ∀ k, HasDerivAt (fun t => x t k) (x' k) t₀) :
     HasDerivAt (fun t => eval (x t) P) (∑ k, eval (x t₀) (pderiv k P) * x' k) t₀ := by
@@ -62,6 +65,9 @@ def oR (i m : Fin 3) (o : Fin 3 → Fin 3 → ℝ) (t : ℝ) : Fin 3 → Fin 3 �
   fun a j => if a = i then Real.cos t * o i j + Real.sin t * o m j
     else if a = m then -Real.sin t * o i j + Real.cos t * o m j else o a j
 
+/--
+@isnad1 id=eq.0h3v.s5.a9a465abd2e3 from=translated src=- shape=b754e835 vocab=70a6dd30
+-/
 theorem oR_zero (i m : Fin 3) (o : Fin 3 → Fin 3 → ℝ) : oR i m o 0 = o := by
   funext a j
   simp only [oR, Real.cos_zero, Real.sin_zero, one_mul, zero_mul, add_zero, neg_zero, zero_add]
@@ -70,6 +76,9 @@ theorem oR_zero (i m : Fin 3) (o : Fin 3 → Fin 3 → ℝ) : oR i m o 0 = o := 
   · rw [h2]
   · rfl
 
+/--
+@isnad1 id=orth.2h4v.s5.1995b403905c from=translated src=- shape=0c261684 vocab=2e881ea0
+-/
 theorem oR_orth (i m : Fin 3) (him : i ≠ m) (o : Fin 3 → Fin 3 → ℝ) (ho : orth o) (t : ℝ) :
     orth (oR i m o t) := by
   intro p q
@@ -92,6 +101,9 @@ theorem oR_orth (i m : Fin 3) (him : i ≠ m) (o : Fin 3 → Fin 3 → ℝ) (ho 
   simp only [Finset.mem_univ, ite_true]
   linear_combination (o i p * o i q + o m p * o m q) * Real.cos_sq_add_sin_sq t
 
+/--
+@isnad1 id=hasderiv.0h5v.s7.6e6395f6a613 from=translated src=- shape=b0a09d0c vocab=05934597
+-/
 theorem hasDerivAt_oR (i m : Fin 3) (o : Fin 3 → Fin 3 → ℝ) (a j : Fin 3) :
     HasDerivAt (fun t => ((oR i m o t a j : ℝ) : ℂ))
       (((if a = i then o m j else if a = m then -o i j else 0 : ℝ) : ℂ)) 0 := by
@@ -104,6 +116,9 @@ theorem hasDerivAt_oR (i m : Fin 3) (o : Fin 3 → Fin 3 → ℝ) (a j : Fin 3) 
     simpa [neg_mul] using this
   · exact hasDerivAt_const 0 (o a j)
 
+/--
+@isnad1 id=eq.3h4v.s10.c24c3461920a from=translated src=- shape=d09ff634 vocab=f7d98052
+-/
 theorem tangential (P : R9)
     (hP : ∀ o : Fin 3 → Fin 3 → ℝ, orth o → eval (pt o) P = 0)
     (o : Fin 3 → Fin 3 → ℝ) (ho : orth o) (i m : Fin 3) (him : i ≠ m) :
@@ -142,13 +157,34 @@ theorem tangential (P : R9)
   rw [h0]
   refine Finset.sum_congr rfl (fun j _ => by ring)
 
+/--
+@isnad1 id=lt.0h0v.s5.31822dcb5960 from=translated src=- shape=f9dc6c31 vocab=1173123d
+-/
 theorem lt01 : (0 : Fin 3) < 1 := by decide
+/--
+@isnad1 id=lt.0h0v.s5.5d6e9948f0a1 from=translated src=- shape=f9dc6c31 vocab=1173123d
+-/
 theorem lt02 : (0 : Fin 3) < 2 := by decide
+/--
+@isnad1 id=lt.0h0v.s5.24c9908ab213 from=translated src=- shape=f9dc6c31 vocab=1173123d
+-/
 theorem lt12 : (1 : Fin 3) < 2 := by decide
+/--
+@isnad1 id=not.0h0v.s5.b94308133da4 from=translated src=- shape=6cf5eb34 vocab=1173123d
+-/
 theorem nlt10 : ¬ (1 : Fin 3) < 0 := by decide
+/--
+@isnad1 id=not.0h0v.s5.697d9ed09d66 from=translated src=- shape=6cf5eb34 vocab=1173123d
+-/
 theorem nlt20 : ¬ (2 : Fin 3) < 0 := by decide
+/--
+@isnad1 id=not.0h0v.s5.4ac6e09c5b82 from=translated src=- shape=6cf5eb34 vocab=1173123d
+-/
 theorem nlt21 : ¬ (2 : Fin 3) < 1 := by decide
 
+/--
+@isnad1 id=other.2h5v.s11.e0cd67c84a8b from=translated src=- shape=f71174bb vocab=5b9d768b
+-/
 theorem main
     (ν : Fin 3 → ℂ) (c d : Fin 3) (P : MvPolynomial (Fin 3 × Fin 3) ℂ)
     (hP : ∀ o : Fin 3 → Fin 3 → ℝ, (∀ i j : Fin 3, ∑ a : Fin 3, o a i * o a j = if i = j then 1 else 0) → MvPolynomial.eval (fun ij : Fin 3 × Fin 3 => ((o ij.1 ij.2 : ℝ) : ℂ)) P = 0)
@@ -183,6 +219,9 @@ end
 
 end WsC.O6
 
+/--
+@isnad1 id=other.2h5v.s11.e0cd67c84a8b from=translated src=- shape=f71174bb vocab=5b9d768b
+-/
 theorem solution
     (ν : Fin 3 → ℂ) (c d : Fin 3) (P : MvPolynomial (Fin 3 × Fin 3) ℂ)
     (hP : ∀ o : Fin 3 → Fin 3 → ℝ, (∀ i j : Fin 3, ∑ a : Fin 3, o a i * o a j = if i = j then 1 else 0) → MvPolynomial.eval (fun ij : Fin 3 × Fin 3 => ((o ij.1 ij.2 : ℝ) : ℂ)) P = 0)

@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open Polynomial
 
+/--
+@isnad1 id=and.0h3v.s10.59af4ac9e73c from=translated src=- shape=6fef7f4d vocab=bd395975
+-/
 theorem solution
     (lam₁ lam₂ lam₃ : ℂ) :
     (∃ ν : Fin 3 → ℂ,

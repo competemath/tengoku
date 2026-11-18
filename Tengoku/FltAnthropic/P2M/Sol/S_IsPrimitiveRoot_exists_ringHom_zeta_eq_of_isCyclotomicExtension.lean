@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open IsLocalRing Polynomial
 
+/--
+@isnad1 id=ex.1h4v.s7.a932720d82d7 from=translated src=- shape=2137b7ba vocab=9e643f6c
+-/
 theorem solution
     (n : ℕ) [NeZero n] (K : Type*) [Field K] [Algebra ℚ K] [IsCyclotomicExtension {n} ℚ K]
     (L : Type*) [Field L] [CharZero L] (ξ : L) (hξ : IsPrimitiveRoot ξ n) :

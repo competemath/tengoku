@@ -407,6 +407,9 @@ end Heads
 
 end TreeParity
 
+/--
+@isnad1 id=and.2h7v.s9.864917c32567 from=translated src=- shape=6c0024e7 vocab=e1acef0e
+-/
 theorem solution
     (R K : Type) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [Field K] [Algebra R K]
     [IsFractionRing R K] (ϖ : R) (hϖ : Irreducible ϖ)

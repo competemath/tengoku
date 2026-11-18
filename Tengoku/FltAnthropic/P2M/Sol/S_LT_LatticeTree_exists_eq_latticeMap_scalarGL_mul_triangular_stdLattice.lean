@@ -19,10 +19,16 @@ open _root_.LT.LatticeTree open _root_.LT
 variable {R K : Type} [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [Field K] [Algebra R K]
   [IsFractionRing R K]
 
+/--
+@isnad1 id=eq.0h5v.s8.602fcff73f64 from=translated src=- shape=d3c8eb17 vocab=dee6061b
+-/
 theorem mulVec_tri (a b d : K) (w : Fin 2 → K) :
     (!![a, b; 0, d] : Matrix (Fin 2) (Fin 2) K) *ᵥ w = ![a * w 0 + b * w 1, d * w 1] := by
   ext i; fin_cases i <;> simp [Matrix.mulVec, dotProduct, Fin.sum_univ_two]
 
+/--
+@isnad1 id=ex.1h3v.s9.ebf7e80b4d78 from=translated src=- shape=ba67e91f vocab=5843dd9f
+-/
 theorem exists_scalarGL_le_stdLattice (L : Submodule R (Fin 2 → K)) (hL : IsFullLattice L) :
     ∃ d : R, ∃ hd : d ≠ 0, latticeMap (scalarGL (unitOfNeZero (K := K) hd)) L ≤ stdLattice R K := by
   classical
@@ -42,6 +48,9 @@ theorem exists_scalarGL_le_stdLattice (L : Submodule R (Fin 2 → K)) (hL : IsFu
   rw [mulVecLinR_apply, scalarGL_mulVec, Pi.smul_apply, smul_eq_mul, unitOfNeZero_coe]
   exact this
 
+/--
+@isnad1 id=ex.3h4v.s10.19b7d96ed023 from=translated src=- shape=93562d1f vocab=cd6cd55e
+-/
 theorem exists_eq_latticeMap_of_le_stdLattice (ϖ : R) (hϖ : Irreducible ϖ)
     (L : Submodule R (Fin 2 → K)) (hL : IsFullLattice L) (hle : L ≤ stdLattice R K) :
     ∃ (a b : ℕ) (β' : K) (g' : Matrix.GeneralLinearGroup (Fin 2) K),
@@ -172,6 +181,9 @@ theorem exists_eq_latticeMap_of_le_stdLattice (ϖ : R) (hϖ : Irreducible ϖ)
 end LT.LatticeTree.ApartmentNF
 
 open LT.LatticeTree.ApartmentNF in
+/--
+@isnad1 id=ex.2h4v.s9.d3654cb37f99 from=translated src=- shape=e20b7552 vocab=8a538088
+-/
 theorem solution
     (R K : Type) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [Field K] [Algebra R K]
     [IsFractionRing R K] (ϖ : R) (hϖ : Irreducible ϖ)

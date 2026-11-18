@@ -9,6 +9,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Complex_mellinConvergent_cpow_mul_exp_neg_
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=and.2h3v.s7.b1bb353db337 from=translated src=- shape=2a7bf3d7 vocab=a39531eb
+-/
 theorem Complex.mellinConvergent_cpow_mul_exp_neg_mul_and_mellin_eq
     (k r : ℝ) (hr : 0 < r) (s : ℂ) (hs : -k < s.re) :
     MellinConvergent (fun t : ℝ => ((t : ℂ) ^ (k : ℂ)) * Complex.exp (-((r : ℂ) * (t : ℂ)))) s ∧

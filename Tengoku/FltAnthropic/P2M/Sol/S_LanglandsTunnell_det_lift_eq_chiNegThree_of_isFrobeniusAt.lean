@@ -20,6 +20,9 @@ local notation "Γℚ" => (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ
 namespace LanglandsTunnell
 namespace DetLiftEngine
 
+/--
+@isnad1 id=or.0h1v.s7.2789ef27d62a from=translated src=- shape=99142880 vocab=5aeb07a0
+-/
 theorem units_coe_eq_one_or (u : (ℤ√(-2))ˣ) :
     (u : ℤ√(-2)) = 1 ∨ (u : ℤ√(-2)) = -1 := by
   have hn : (u : ℤ√(-2)).norm = 1 :=
@@ -34,13 +37,25 @@ theorem units_coe_eq_one_or (u : (ℤ√(-2))ˣ) :
   · right
     exact Zsqrtd.ext ha hb
 
+/--
+@isnad1 id=eq.0h0v.s7.4391ba0cf1e4 from=translated src=- shape=3b2741e5 vocab=6c8b4505
+-/
 theorem red_one : red (1 : ℤ√(-2)) = 1 := map_one red
 
+/--
+@isnad1 id=eq.0h0v.s8.66a4db61bc45 from=translated src=- shape=3e469442 vocab=6c8b4505
+-/
 theorem red_neg_one : red (-1 : ℤ√(-2)) = -1 := by
   rw [map_neg, map_one]
 
+/--
+@isnad1 id=ne.0h0v.s7.3310f68601ff from=translated src=- shape=868742d0 vocab=4f12cd84
+-/
 theorem neg_one_ne_one_zmod_three : (-1 : ZMod 3) ≠ 1 := by decide
 
+/--
+@isnad1 id=eq.1h2v.s12.23bb7c8a20e0 from=translated src=- shape=5217c8c2 vocab=a7e72d20
+-/
 theorem red_det_apply
     (Ψ : GL (Fin 2) (ZMod 3) →* GL (Fin 2) (ℤ√(-2)))
     (hΨ : ∀ g, Matrix.GeneralLinearGroup.map red (Ψ g) = g) (g : GL (Fin 2) (ZMod 3)) :
@@ -51,6 +66,9 @@ theorem red_det_apply
   have h' := congrArg (fun u : (ZMod 3)ˣ => (u : ZMod 3)) h
   simpa only [Units.coe_map, MonoidHom.coe_coe] using h'.symm
 
+/--
+@isnad1 id=eq.2h2v.s12.0cb9440a98c7 from=translated src=- shape=36eed5cd vocab=c2dfddde
+-/
 theorem det_apply_eq_of_det_eq_one
     (Ψ : GL (Fin 2) (ZMod 3) →* GL (Fin 2) (ℤ√(-2)))
     (hΨ : ∀ g, Matrix.GeneralLinearGroup.map red (Ψ g) = g) (g : GL (Fin 2) (ZMod 3))
@@ -63,6 +81,9 @@ theorem det_apply_eq_of_det_eq_one
     rw [h, red_neg_one, hg] at hr
     exact neg_one_ne_one_zmod_three hr
 
+/--
+@isnad1 id=eq.2h2v.s12.10b9c296bdde from=translated src=- shape=46c004c4 vocab=c2dfddde
+-/
 theorem det_apply_eq_of_det_eq_neg_one
     (Ψ : GL (Fin 2) (ZMod 3) →* GL (Fin 2) (ℤ√(-2)))
     (hΨ : ∀ g, Matrix.GeneralLinearGroup.map red (Ψ g) = g) (g : GL (Fin 2) (ZMod 3))
@@ -75,6 +96,9 @@ theorem det_apply_eq_of_det_eq_neg_one
     exact neg_one_ne_one_zmod_three hr.symm
   · exact h
 
+/--
+@isnad1 id=eq.3h3v.s10.67ee77e92b17 from=translated src=- shape=618ffb14 vocab=d5f8ee70
+-/
 theorem modThreeCyclotomicChar_eq_natCast (p : ℕ) (hp : Nat.Coprime 3 p)
     (A : ValuationSubring (AlgebraicClosure ℚ)) (hA : A.LiesOverPrime p)
     (σ : Γℚ) (hσ : A.IsFrobeniusAt σ p) :
@@ -93,12 +117,21 @@ theorem modThreeCyclotomicChar_eq_natCast (p : ℕ) (hp : Nat.Coprime 3 p)
   conv_lhs => rw [← Nat.div_add_mod p 3]
   rw [pow_add, pow_mul, h3, one_pow, one_mul]
 
+/--
+@isnad1 id=eq.1h1v.s5.103c8e82e124 from=translated src=- shape=dc3440d1 vocab=c9252d50
+-/
 theorem chiNegThree_of_mod_eq_one {p : ℕ} (h : p % 3 = 1) : chiNegThree p = 1 := by
   simp [chiNegThree, h]
 
+/--
+@isnad1 id=eq.1h1v.s5.a5ee70a3811a from=translated src=- shape=ad015130 vocab=25ffb268
+-/
 theorem chiNegThree_of_mod_eq_two {p : ℕ} (h : p % 3 = 2) : chiNegThree p = -1 := by
   simp [chiNegThree, h]
 
+/--
+@isnad1 id=eq.6h5v.s13.b68ed604ba26 from=translated src=- shape=beea1b69 vocab=a1e6a537
+-/
 theorem det_lift_coe_eq_chiNegThree
     (ρ : Γℚ →* GL (Fin 2) (ZMod 3))
     (hdet : ∀ σ : Γℚ, Matrix.GeneralLinearGroup.det (ρ σ) = modThreeCyclotomicChar σ)
@@ -143,6 +176,9 @@ theorem det_lift_coe_eq_chiNegThree
 
 end LanglandsTunnell.DetLiftEngine
 
+/--
+@isnad1 id=eq.6h5v.s13.aa204c02b753 from=translated src=- shape=b41406b3 vocab=68968952
+-/
 theorem solution
     (ρ : Γℚ →* GL (Fin 2) (ZMod 3))
     (hdet : ∀ σ : Γℚ, Matrix.GeneralLinearGroup.det (ρ σ) = modThreeCyclotomicChar σ)

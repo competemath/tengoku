@@ -18,15 +18,24 @@ namespace EvenElimAux
 
 open Filter Topology
 
+/--
+@isnad1 id=hasderiv.0h1v.s6.b7918fe4771e from=translated src=- shape=93588a94 vocab=1a38dff6
+-/
 theorem hid (y : ℝ) : HasDerivAt (fun y : ℝ => (y : ℂ)) 1 y := by
   simpa using (hasDerivAt_id y).ofReal_comp
 
+/--
+@isnad1 id=eq.3h4v.s7.bc7fb754e7e6 from=translated src=- shape=fe36f9f4 vocab=5a45b839
+-/
 theorem deriv_eq_of_eqOn {f g : ℝ → ℂ} {g' : ℂ} {y : ℝ} (hy : 0 < y)
     (hfg : ∀ y : ℝ, 0 < y → f y = g y) (hg : HasDerivAt g g' y) : deriv f y = g' := by
   have h : f =ᶠ[𝓝 y] g :=
     Filter.eventuallyEq_of_mem (Ioi_mem_nhds hy) fun y' hy' => hfg y' hy'
   rw [h.deriv_eq, hg.deriv]
 
+/--
+@isnad1 id=ex.3h3v.s7.aa1e44074e37 from=translated src=- shape=5b22a332 vocab=d4ab0339
+-/
 theorem exists_three_points {K Kp : ℝ → ℂ} (hK : ∀ y : ℝ, 0 < y → HasDerivAt K (Kp y) y)
     {y₀ : ℝ} (hy₀ : 0 < y₀) (hK₀ : K y₀ ≠ 0) :
     ∃ y₁ y₂ : ℝ, 0 < y₁ ∧ 0 < y₂ ∧ y₀ < y₁ ∧ y₁ < y₂ ∧ K y₁ ≠ 0 ∧ K y₂ ≠ 0 := by
@@ -37,6 +46,9 @@ theorem exists_three_points {K Kp : ℝ → ℂ} (hK : ∀ y : ℝ, 0 < y → Ha
   · rw [Real.dist_eq, show y₀ + ε / 4 - y₀ = ε / 4 by ring, abs_of_pos (by linarith)]; linarith
   · rw [Real.dist_eq, show y₀ + ε / 2 - y₀ = ε / 2 by ring, abs_of_pos (by linarith)]; linarith
 
+/--
+@isnad1 id=and.6h6v.s7.1123c184de4e from=translated src=- shape=325cfafc vocab=7ce7ddaa
+-/
 theorem coeffs_eq_zero (c₄ c₂ c₀ : ℂ) (t₀ t₁ t₂ : ℂ) (h01 : t₀ ≠ t₁) (h02 : t₀ ≠ t₂) (h12 : t₁ ≠ t₂)
     (e0 : c₄ * t₀ ^ 2 + c₂ * t₀ + c₀ = 0) (e1 : c₄ * t₁ ^ 2 + c₂ * t₁ + c₀ = 0)
     (e2 : c₄ * t₂ ^ 2 + c₂ * t₂ + c₀ = 0) : c₄ = 0 ∧ c₂ = 0 ∧ c₀ = 0 := by
@@ -51,6 +63,9 @@ theorem coeffs_eq_zero (c₄ c₂ c₀ : ℂ) (t₀ t₁ t₂ : ℂ) (h01 : t₀
   refine ⟨hc4, hc2, ?_⟩
   linear_combination e0 - t₀ ^ 2 * hc4 - t₀ * hc2
 
+/--
+@isnad1 id=and.5h7v.s8.62e6be9d0f84 from=translated src=- shape=2107f214 vocab=ebc294e9
+-/
 theorem riccati (A μ p₂ p₀ q₁ : ℂ) (K Kp : ℝ → ℂ) (hA : A ≠ 0)
     (hK : ∀ y : ℝ, 0 < y → HasDerivAt K (Kp y) y)
     (hKp : ∀ y : ℝ, 0 < y → HasDerivAt Kp (A * K y + μ ^ 2 / (y : ℂ) ^ 2 * K y - Kp y / (y : ℂ)) y)
@@ -102,6 +117,9 @@ theorem riccati (A μ p₂ p₀ q₁ : ℂ) (K Kp : ℝ → ℂ) (hA : A ≠ 0)
 end EvenElimAux
 
 open LanglandsTunnell.ArchBessel EvenElimAux Filter Topology in
+/--
+@isnad1 id=eq.9h8v.s10.20e9391f8aee from=translated src=- shape=f285ce92 vocab=40c7b42c
+-/
 theorem solution
     (ν μ c ε C a : ℂ) (P Q : ℝ → ℂ)
     (hP : DifferentiableOn ℝ P (Set.Ioi 0)) (hP' : DifferentiableOn ℝ (deriv P) (Set.Ioi 0))

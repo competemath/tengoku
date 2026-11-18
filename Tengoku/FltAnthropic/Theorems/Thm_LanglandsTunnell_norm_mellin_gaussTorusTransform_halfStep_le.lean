@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open MeasureTheory Set
 
+/--
+@isnad1 id=ex.7h12v.s10.75480ca0bcf6 from=translated src=- shape=43077dcd vocab=bdeab61c
+-/
 theorem LanglandsTunnell.norm_mellin_gaussTorusTransform_halfStep_le
     (a : ℝ) (ha : a ≠ 0) (p q κ C : ℂ) (hC : C ≠ 0) (p' q' C' : ℂ) (hpq' : (p' + q').re ≤ (p + q).re)
     (H H' H'' : ℝ → ℂ)

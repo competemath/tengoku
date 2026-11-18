@@ -656,6 +656,9 @@ end GaussianHermiteFourier
 open MeasureTheory LanglandsTunnell LanglandsTunnell.TateLocal LanglandsTunnell.ArchPlace
 open scoped ENNReal
 
+/--
+@isnad1 id=eq.0h2v.s7.4b5052cbc870 from=translated src=- shape=86f0c6cf vocab=3ab6d1d9
+-/
 theorem solution (k : ℤ) (w : ℂ) :
     tateFourier psiComplex ((2 : ℝ≥0∞) • volume) (complexTestFun k) w
       = (-Complex.I) ^ k.natAbs * complexTestFun (-k) w := by

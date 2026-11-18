@@ -7,6 +7,9 @@ namespace P2MW.S_IsNoetherianRing_exists_unit_mul_zpow_eq_of_span_singleton_isPr
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.5h4v.s9.da6fed334f66 from=translated src=- shape=c82d4d45 vocab=585a79e7
+-/
 theorem solution
     {A : Type*} [CommRing A] [IsDomain A] [IsNoetherianRing A]
     {K : Type*} [Field K] [Algebra A K] [IsFractionRing A K]

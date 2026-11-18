@@ -18,6 +18,9 @@ namespace KKO9
 
 local notation "μ0" => Measure.restrict (volume : Measure ℝ) (Ioi (0:ℝ))
 
+/--
+@isnad1 id=eq.1h1v.s7.97cc966836f1 from=translated src=- shape=b28039c1 vocab=7ca29a07
+-/
 theorem integral_cpow_mul_exp_neg_pi_mul_sq {z : ℂ} (hz : 0 < z.re) :
     ∫ t in Ioi (0:ℝ), (t : ℂ) ^ (z - 1) * (rexp (-(π * t ^ 2)) : ℂ) = (1 / 2 : ℂ) * Complex.Gammaℝ z := by
   have hG : ∫ v in Ioi (0:ℝ), (1 / 2 : ℂ) * ((v : ℂ) ^ (z / 2 - 1) * (rexp (-(π * v)) : ℂ)) =
@@ -56,10 +59,16 @@ theorem integral_cpow_mul_exp_neg_pi_mul_sq {z : ℂ} (hz : 0 < z.re) :
   push_cast
   ring
 
+/--
+@isnad1 id=eq.2h3v.s6.5c4ffe78dfe3 from=translated src=- shape=8f24f55f vocab=3b8dd6ab
+-/
 theorem cpow_ofReal_mul {x y : ℝ} (hx : 0 ≤ x) (hy : 0 ≤ y) (c : ℂ) :
     (((x * y : ℝ)) : ℂ) ^ c = (x : ℂ) ^ c * (y : ℂ) ^ c := by
   push_cast; exact Complex.mul_cpow_ofReal_nonneg hx hy c
 
+/--
+@isnad1 id=eq.2h2v.s7.7090e2f7ced1 from=translated src=- shape=aa097555 vocab=69730ee3
+-/
 theorem integral_cpow_mul_exp_neg_pi_mul_sq_mul_sq {w : ℂ} (hw : -1 < w.re) {q : ℝ} (hq : q ≠ 0) :
     ∫ a in Ioi (0:ℝ), (a : ℂ) ^ w * (rexp (-(π * a ^ 2 * q ^ 2)) : ℂ) =
       (1 / 2 : ℂ) * ((|q| : ℝ) : ℂ) ^ (-w - 1) * Complex.Gammaℝ (w + 1) := by
@@ -88,6 +97,9 @@ theorem integral_cpow_mul_exp_neg_pi_mul_sq_mul_sq {w : ℂ} (hw : -1 < w.re) {q
     Complex.cpow_neg_one, Complex.ofReal_inv]
   ring
 
+/--
+@isnad1 id=eq.1h1v.s8.6b44a9017792 from=translated src=- shape=bd62cc10 vocab=1d9fdc7d
+-/
 theorem integral_prod3 (f : ℝ × ℝ × ℝ → ℂ)
     (hf : Integrable f ((volume : Measure ℝ).prod ((volume : Measure ℝ).prod μ0))) :
     ∫ z, f z ∂((volume : Measure ℝ).prod ((volume : Measure ℝ).prod μ0)) =
@@ -97,6 +109,9 @@ theorem integral_prod3 (f : ℝ × ℝ × ℝ → ℂ)
   filter_upwards [hf.prod_right_ae] with t ht
   exact integral_prod _ ht
 
+/--
+@isnad1 id=eventual.0h0v.s7.b507bf3f4e67 from=translated src=- shape=bb8010b6 vocab=0648c214
+-/
 theorem ae_q_ne_zero_p_pos :
     ∀ᵐ z : ℝ × ℝ × ℝ ∂((volume : Measure ℝ).prod ((volume : Measure ℝ).prod μ0)), z.2.1 ≠ 0 ∧ 0 < z.2.2 := by
   have h0 : ∀ᵐ y ∂(volume : Measure ℝ), y ≠ 0 := by rw [ae_iff]; simp
@@ -112,6 +127,9 @@ end KKO9
 
 end
 
+/--
+@isnad1 id=eq.4h5v.s9.3ed7850e20f5 from=translated src=- shape=c30901b5 vocab=34c2d747
+-/
 theorem solution
     (w : ℂ) (hw : -1 < w.re) (C : ℂ) (T T' : ℝ → ℝ → ℝ → ℂ)
     (hF : Integrable (fun r : ℝ × ℝ × ℝ × ℝ =>

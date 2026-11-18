@@ -32,15 +32,27 @@ def coord : P ≃ₗ[ℝ] (Fin 4 → ℝ) where
   left_inv p := rfl
   right_inv v := by ext i; fin_cases i <;> rfl
 
+/--
+@isnad1 id=eq.0h1v.s9.e83a7bde5b59 from=translated src=- shape=ae951176 vocab=718a5067
+-/
 theorem coord_apply (p : P) : coord p = ![p.1, p.2.1, p.2.2.1, p.2.2.2] := rfl
+/--
+@isnad1 id=eq.0h1v.s9.b448f3689b7a from=translated src=- shape=2a9349bc vocab=da8b3c05
+-/
 theorem coord_symm_apply (v : Fin 4 → ℝ) : coord.symm v = (v 0, v 1, v 2, v 3) := rfl
 
 def mat4 (f : P →ₗ[ℝ] P) : Matrix (Fin 4) (Fin 4) ℝ := Matrix.of fun i j => coord (f (coord.symm (Pi.single j 1))) i
 
+/--
+@isnad1 id=eq.0h1v.s11.acf7ec1ea37e from=translated src=- shape=0511348c vocab=7fa0583f
+-/
 theorem det_eq_det_mat4 (f : P →ₗ[ℝ] P) : LinearMap.det f = (mat4 f).det := by
   rw [← LinearMap.det_conj f coord, ← LinearMap.det_toMatrix']
   congr 1
 
+/--
+@isnad1 id=eq.0h1v.s11.d82e21c0ec15 from=translated src=- shape=c8572f66 vocab=983d571c
+-/
 theorem det_fin_four (A : Matrix (Fin 4) (Fin 4) ℝ) :
     A.det =
       A 0 0 * (A 1 1 * A 2 2 * A 3 3 - A 1 1 * A 2 3 * A 3 2 - A 1 2 * A 2 1 * A 3 3 + A 1 2 * A 2 3 * A 3 1 + A 1 3 * A 2 1 * A 3 2 - A 1 3 * A 2 2 * A 3 1)
@@ -58,15 +70,39 @@ def π₃ : P →L[ℝ] ℝ :=
 def π₄ : P →L[ℝ] ℝ :=
   (ContinuousLinearMap.snd ℝ ℝ ℝ).comp ((ContinuousLinearMap.snd ℝ ℝ (ℝ × ℝ)).comp (ContinuousLinearMap.snd ℝ ℝ (ℝ × ℝ × ℝ)))
 
+/--
+@isnad1 id=eq.0h1v.s8.cf53a565c7cc from=translated src=- shape=d7cc5c92 vocab=d6fbeefc
+-/
 @[scoped simp] theorem π₁_apply (p : P) : π₁ p = p.1 := rfl
+/--
+@isnad1 id=eq.0h1v.s8.4840f7fe0644 from=translated src=- shape=b49b684a vocab=cb97ab5b
+-/
 @[scoped simp] theorem π₂_apply (p : P) : π₂ p = p.2.1 := rfl
+/--
+@isnad1 id=eq.0h1v.s8.a713408e99c2 from=translated src=- shape=d2400239 vocab=b8b9444f
+-/
 @[scoped simp] theorem π₃_apply (p : P) : π₃ p = p.2.2.1 := rfl
+/--
+@isnad1 id=eq.0h1v.s8.2e8064915bdb from=translated src=- shape=78424010 vocab=c59bc36f
+-/
 @[scoped simp] theorem π₄_apply (p : P) : π₄ p = p.2.2.2 := rfl
 
+/--
+@isnad1 id=hasfderi.0h1v.s7.69cae39680cd from=translated src=- shape=04ce6cb2 vocab=e6995ec4
+-/
 theorem hasFDerivAt_π₁ (p : P) : HasFDerivAt (fun q : P => q.1) π₁ p := hasFDerivAt_fst
+/--
+@isnad1 id=hasfderi.0h1v.s7.837b2898a2ac from=translated src=- shape=a49d88bb vocab=68de773e
+-/
 theorem hasFDerivAt_π₂ (p : P) : HasFDerivAt (fun q : P => q.2.1) π₂ p := hasFDerivAt_fst.comp p hasFDerivAt_snd
+/--
+@isnad1 id=hasfderi.0h1v.s7.fa71035f80ca from=translated src=- shape=f54a70e4 vocab=437752a6
+-/
 theorem hasFDerivAt_π₃ (p : P) : HasFDerivAt (fun q : P => q.2.2.1) π₃ p :=
   hasFDerivAt_fst.comp p (hasFDerivAt_snd.comp p hasFDerivAt_snd)
+/--
+@isnad1 id=hasfderi.0h1v.s7.4cef58bbab88 from=translated src=- shape=a20c4977 vocab=2f90ae56
+-/
 theorem hasFDerivAt_π₄ (p : P) : HasFDerivAt (fun q : P => q.2.2.2) π₄ p :=
   hasFDerivAt_snd.comp p (hasFDerivAt_snd.comp p hasFDerivAt_snd)
 
@@ -82,6 +118,9 @@ noncomputable def Φ' (p : P) : P →L[ℝ] P :=
       (((s / y₁ ^ 2) • π₂ + (-(c / y₁)) • π₄).prod
         ((s / y₁) • π₁ + (-(x * s / y₁ ^ 2)) • π₂ + (-(c / y₂ ^ 2)) • π₃ + (x * c / y₁ - s / y₂) • π₄)))
 
+/--
+@isnad1 id=hasfderi.2h1v.s8.0cc74962bcf5 from=translated src=- shape=1dbe035a vocab=54194815
+-/
 theorem hasFDerivAt_Φ {p : P} (h₁ : p.2.1 ≠ 0) (h₂ : p.2.2.1 ≠ 0) : HasFDerivAt Φ (Φ' p) p := by
   have hx := hasFDerivAt_π₁ p
   have hy₁ := hasFDerivAt_π₂ p
@@ -103,6 +142,9 @@ theorem hasFDerivAt_Φ {p : P} (h₁ : p.2.1 ≠ 0) (h₂ : p.2.2.1 ≠ 0) : Has
     Pi.mul_apply, Pi.neg_apply, Function.comp_apply]
   refine ⟨?_, ?_, ?_, ?_⟩ <;> field_simp <;> ring
 
+/--
+@isnad1 id=eq.0h2v.s10.80763446b2e9 from=translated src=- shape=1ece5f52 vocab=70a06234
+-/
 theorem Φ'_apply (p : P) (v : P) : Φ' p v =
     (-(Real.cos p.2.2.2 / p.2.1 ^ 2) * v.2.1 + -(Real.sin p.2.2.2 / p.2.1) * v.2.2.2,
       (-(Real.cos p.2.2.2 / p.2.1) * v.1 + p.1 * Real.cos p.2.2.2 / p.2.1 ^ 2 * v.2.1 + -(Real.sin p.2.2.2 / p.2.2.1 ^ 2) * v.2.2.1 +
@@ -113,6 +155,9 @@ theorem Φ'_apply (p : P) (v : P) : Φ' p v =
   simp only [Φ', ContinuousLinearMap.prod_apply, add_apply, smul_apply,
     π₁_apply, π₂_apply, π₃_apply, π₄_apply, smul_eq_mul]
 
+/--
+@isnad1 id=eq.0h1v.s10.2412eb95a923 from=translated src=- shape=8a1de355 vocab=21b39a7f
+-/
 theorem mat4_Φ' (p : P) : mat4 (Φ' p : P →ₗ[ℝ] P) =
     !![0, -(Real.cos p.2.2.2 / p.2.1 ^ 2), 0, -(Real.sin p.2.2.2 / p.2.1);
        -(Real.cos p.2.2.2 / p.2.1), p.1 * Real.cos p.2.2.2 / p.2.1 ^ 2, -(Real.sin p.2.2.2 / p.2.2.1 ^ 2), p.1 * Real.sin p.2.2.2 / p.2.1 + Real.cos p.2.2.2 / p.2.2.1;
@@ -122,6 +167,9 @@ theorem mat4_Φ' (p : P) : mat4 (Φ' p : P →ₗ[ℝ] P) =
   simp only [mat4, Matrix.of_apply, ContinuousLinearMap.coe_coe, Φ'_apply, coord_symm_apply, coord_apply]
   fin_cases i <;> fin_cases j <;> simp
 
+/--
+@isnad1 id=eq.2h1v.s7.ffecf732f548 from=translated src=- shape=b70bc24e vocab=685feeeb
+-/
 theorem det_Φ' {p : P} (h₁ : p.2.1 ≠ 0) (h₂ : p.2.2.1 ≠ 0) :
     (Φ' p).det = (p.2.1 ^ 4 * p.2.2.1 ^ 2)⁻¹ := by
   have hsc := Real.sin_sq_add_cos_sq p.2.2.2
@@ -136,13 +184,22 @@ theorem det_Φ' {p : P} (h₁ : p.2.1 ≠ 0) (h₂ : p.2.2.1 ≠ 0) :
 
 def dom : Set P := {p | p.2.1 ≠ 0 ∧ 0 < p.2.2.1 ∧ p.2.2.2 ∈ Set.Ioo 0 (2 * Real.pi)}
 
+/--
+@isnad1 id=isopen.0h0v.s5.56cf1bc27675 from=translated src=- shape=25b03439 vocab=f110180e
+-/
 theorem isOpen_dom : IsOpen dom := by
   refine (isOpen_ne_fun (continuous_fst.comp continuous_snd) continuous_const).inter
     ((isOpen_lt continuous_const (continuous_fst.comp (continuous_snd.comp continuous_snd))).inter ?_)
   exact isOpen_Ioo.preimage (continuous_snd.comp (continuous_snd.comp continuous_snd))
 
+/--
+@isnad1 id=measurab.0h0v.s4.8720aa4ce5af from=translated src=- shape=25b03439 vocab=47fe2798
+-/
 theorem measurableSet_dom : MeasurableSet dom := isOpen_dom.measurableSet
 
+/--
+@isnad1 id=eq.4h2v.s6.c64a4c678cb3 from=translated src=- shape=5fb52355 vocab=4b9ca071
+-/
 theorem angle_eq_of_cos_eq_of_sin_eq {a b : ℝ} (ha : a ∈ Set.Ioo 0 (2 * Real.pi)) (hb : b ∈ Set.Ioo 0 (2 * Real.pi))
     (hc : Real.cos a = Real.cos b) (hs : Real.sin a = Real.sin b) : a = b := by
   have h : Complex.exp (a * Complex.I) = Complex.exp (b * Complex.I) := by
@@ -163,6 +220,9 @@ theorem angle_eq_of_cos_eq_of_sin_eq {a b : ℝ} (ha : a ∈ Set.Ioo 0 (2 * Real
     omega
   rw [hr, hn0]; simp
 
+/--
+@isnad1 id=eq.2h1v.s7.d599c33f9337 from=translated src=- shape=4fa64cad vocab=e8d9fada
+-/
 theorem Φ_det (p : P) (h₁ : p.2.1 ≠ 0) (h₂ : p.2.2.1 ≠ 0) :
     (Φ p).1 * (Φ p).2.2.2 - (Φ p).2.1 * (Φ p).2.2.1 = (p.2.1 * p.2.2.1)⁻¹ := by
   have hsc := Real.sin_sq_add_cos_sq p.2.2.2
@@ -170,6 +230,9 @@ theorem Φ_det (p : P) (h₁ : p.2.1 ≠ 0) (h₂ : p.2.2.1 ≠ 0) :
   field_simp
   linear_combination p.2.1 * hsc
 
+/--
+@isnad1 id=eq.1h1v.s6.7550a735efd4 from=translated src=- shape=12f15f83 vocab=a909c490
+-/
 theorem Φ_colnorm (p : P) (h₁ : p.2.1 ≠ 0) :
     (Φ p).1 ^ 2 + (Φ p).2.2.1 ^ 2 = (p.2.1 ^ 2)⁻¹ := by
   have hsc := Real.sin_sq_add_cos_sq p.2.2.2
@@ -177,6 +240,9 @@ theorem Φ_colnorm (p : P) (h₁ : p.2.1 ≠ 0) :
   field_simp
   linear_combination hsc
 
+/--
+@isnad1 id=injon.0h0v.s2.69cd02f7d63f from=translated src=- shape=4ce37f0a vocab=cd083a81
+-/
 theorem injOn_Φ : Set.InjOn Φ dom := by
   rintro ⟨x, y₁, y₂, θ⟩ ⟨hy₁, hy₂, hθ⟩ ⟨x', y₁', y₂', θ'⟩ ⟨hy₁', hy₂', hθ'⟩ heq
   simp only at hy₁ hy₂ hθ hy₁' hy₂' hθ'
@@ -229,6 +295,9 @@ theorem injOn_Φ : Set.InjOn Φ dom := by
 
 def good : Set P := {q | q.2.2.1 ≠ 0 ∧ q.2.2.2 ≠ 0 ∧ q.1 * q.2.2.2 - q.2.1 * q.2.2.1 ≠ 0}
 
+/--
+@isnad1 id=le.0h0v.s3.ef2507dbaa46 from=translated src=- shape=4e3ae1ec vocab=788d8cdd
+-/
 theorem good_subset_image : good ⊆ Φ '' dom := by
   rintro ⟨a, b, c, d⟩ ⟨hc, hd, hdet⟩
   simp only at hc hd hdet
@@ -297,14 +366,29 @@ theorem good_subset_image : good ⊆ Φ '' dom := by
       field_simp
       linear_combination (d * (a ^ 2 + c ^ 2)) * hσ2 - d * hr2
 
+/--
+@isnad1 id=isaddhaa.0h0v.s5.2f6e4b90b304 from=translated src=- shape=39d0cd5b vocab=ec556fe8
+-/
 scoped instance instHaar2 : (volume : Measure (ℝ × ℝ)).IsAddHaarMeasure := Measure.prod.instIsAddHaarMeasure _ _
+/--
+@isnad1 id=isaddhaa.0h0v.s6.33d7605aced4 from=translated src=- shape=f058b331 vocab=ec556fe8
+-/
 scoped instance instHaar3 : (volume : Measure (ℝ × ℝ × ℝ)).IsAddHaarMeasure := Measure.prod.instIsAddHaarMeasure _ _
+/--
+@isnad1 id=isaddhaa.0h0v.s6.af7e6511ae59 from=translated src=- shape=3905abf2 vocab=dd823d61
+-/
 scoped instance instHaar4 : (volume : Measure P).IsAddHaarMeasure := Measure.prod.instIsAddHaarMeasure _ _
 
+/--
+@isnad1 id=eq.1h2v.s6.7fcbc05ba2e0 from=translated src=- shape=afb8c296 vocab=e3b4d621
+-/
 theorem volume_univ_prod_null {α : Type*} [MeasureSpace α] [SFinite (volume : Measure α)] {s : Set α} (hs : volume s = 0) :
     volume ((Set.univ : Set ℝ) ×ˢ s) = 0 := by
   rw [Measure.volume_eq_prod, Measure.prod_prod, hs, mul_zero]
 
+/--
+@isnad1 id=eq.0h0v.s6.8e1b4742237a from=translated src=- shape=d304f2be vocab=e9da8d86
+-/
 theorem volume_null_y₁ : volume {q : P | q.2.1 = 0} = 0 := by
   have : {q : P | q.2.1 = 0} = (Set.univ : Set ℝ) ×ˢ (({0} : Set ℝ) ×ˢ (Set.univ : Set (ℝ × ℝ))) := by
     ext q; simp
@@ -312,6 +396,9 @@ theorem volume_null_y₁ : volume {q : P | q.2.1 = 0} = 0 := by
   refine volume_univ_prod_null ?_
   rw [Measure.volume_eq_prod, Measure.prod_prod, Real.volume_singleton, zero_mul]
 
+/--
+@isnad1 id=eq.0h0v.s6.94d220779310 from=translated src=- shape=23d0da43 vocab=e9da8d86
+-/
 theorem volume_null_e₁₀ : volume {q : P | q.2.2.1 = 0} = 0 := by
   have : {q : P | q.2.2.1 = 0} = (Set.univ : Set ℝ) ×ˢ ((Set.univ : Set ℝ) ×ˢ (({0} : Set ℝ) ×ˢ (Set.univ : Set ℝ))) := by
     ext q; simp
@@ -319,6 +406,9 @@ theorem volume_null_e₁₀ : volume {q : P | q.2.2.1 = 0} = 0 := by
   refine volume_univ_prod_null (volume_univ_prod_null ?_)
   rw [Measure.volume_eq_prod, Measure.prod_prod, Real.volume_singleton, zero_mul]
 
+/--
+@isnad1 id=eq.0h1v.s6.6a49c33a1860 from=translated src=- shape=52c8a803 vocab=bd54b631
+-/
 theorem volume_null_last (a : ℝ) : volume {q : P | q.2.2.2 = a} = 0 := by
   have : {q : P | q.2.2.2 = a} = (Set.univ : Set ℝ) ×ˢ ((Set.univ : Set ℝ) ×ˢ ((Set.univ : Set ℝ) ×ˢ ({a} : Set ℝ))) := by
     ext q; simp
@@ -326,6 +416,9 @@ theorem volume_null_last (a : ℝ) : volume {q : P | q.2.2.2 = a} = 0 := by
   refine volume_univ_prod_null (volume_univ_prod_null ?_)
   rw [Measure.volume_eq_prod, Measure.prod_prod, Real.volume_singleton, mul_zero]
 
+/--
+@isnad1 id=eq.0h0v.s7.1cd212b4b2df from=translated src=- shape=ea32061d vocab=6e4ea492
+-/
 theorem volume_null_graph : volume {q : P | q.2.2.2 ≠ 0 ∧ q.1 = q.2.1 * q.2.2.1 / q.2.2.2} = 0 := by
   have hmeas : MeasurableSet {q : P | q.2.2.2 ≠ 0 ∧ q.1 = q.2.1 * q.2.2.1 / q.2.2.2} := by
     refine (measurableSet_eq_fun (measurable_snd.comp (measurable_snd.comp measurable_snd)) measurable_const).compl.inter ?_
@@ -338,6 +431,9 @@ theorem volume_null_graph : volume {q : P | q.2.2.2 ≠ 0 ∧ q.1 = q.2.1 * q.2.
   refine measure_mono_null (t := {w.1 * w.2.1 / w.2.2}) (fun a ha => ?_) Real.volume_singleton
   exact ha.2
 
+/--
+@isnad1 id=eq.0h0v.s6.d746de1ed407 from=translated src=- shape=1f2d3474 vocab=04156088
+-/
 theorem compl_good_null : volume goodᶜ = 0 := by
   refine measure_mono_null (t := {q : P | q.2.2.1 = 0} ∪ {q : P | q.2.2.2 = 0} ∪
     {q : P | q.2.2.2 ≠ 0 ∧ q.1 = q.2.1 * q.2.2.1 / q.2.2.2}) ?_ ?_
@@ -353,12 +449,18 @@ theorem compl_good_null : volume goodᶜ = 0 := by
   · rw [measure_union_null_iff, measure_union_null_iff]
     exact ⟨⟨volume_null_e₁₀, volume_null_last 0⟩, volume_null_graph⟩
 
+/--
+@isnad1 id=eventual.0h0v.s6.1dfd9ce91c63 from=translated src=- shape=e05ec6a2 vocab=877b08fe
+-/
 theorem image_ae_eq_univ : Φ '' dom =ᵐ[volume] (Set.univ : Set P) := by
   rw [ae_eq_univ]
   exact measure_mono_null (Set.compl_subset_compl.2 good_subset_image) compl_good_null
 
 def region : Set P := Set.univ ×ˢ (Set.univ ×ˢ (Set.Ioi (0 : ℝ) ×ˢ Set.Ioc (0 : ℝ) (2 * Real.pi)))
 
+/--
+@isnad1 id=eventual.0h0v.s6.c8ebb2eb4db5 from=translated src=- shape=75c93b62 vocab=d6abb80b
+-/
 theorem dom_ae_eq_region : dom =ᵐ[volume] region := by
   have hsub : dom ⊆ region := fun q hq => ⟨trivial, trivial, hq.2.1, hq.2.2.1, hq.2.2.2.le⟩
   have hdiff : region \ dom ⊆ {q : P | q.2.1 = 0} ∪ {q : P | q.2.2.2 = 2 * Real.pi} := by
@@ -376,13 +478,22 @@ def T : M ≃ᵐ P :=
   (MeasurableEquiv.finTwoArrow.trans (MeasurableEquiv.prodCongr MeasurableEquiv.finTwoArrow MeasurableEquiv.finTwoArrow)).trans
     MeasurableEquiv.prodAssoc
 
+/--
+@isnad1 id=eq.0h1v.s8.3c0df84692b4 from=translated src=- shape=d822ece9 vocab=81fd9048
+-/
 theorem T_apply (e : M) : T e = (e 0 0, e 0 1, e 1 0, e 1 1) := rfl
 
+/--
+@isnad1 id=eq.0h1v.s9.328a7d5f22d3 from=translated src=- shape=b325e504 vocab=fc1bdec3
+-/
 theorem T_symm_apply (q : P) : T.symm q = fun i j => (!![q.1, q.2.1; q.2.2.1, q.2.2.2] : Matrix (Fin 2) (Fin 2) ℝ) i j := by
   apply T.injective
   rw [MeasurableEquiv.apply_symm_apply, T_apply]
   simp
 
+/--
+@isnad1 id=measurep.0h0v.s8.b939e9b49fb8 from=translated src=- shape=a8003b72 vocab=59562ae8
+-/
 theorem measurePreserving_T : MeasurePreserving T volume volume := by
   have h1 := volume_preserving_finTwoArrow (Fin 2 → ℝ)
   have h2 : MeasurePreserving (MeasurableEquiv.prodCongr (MeasurableEquiv.finTwoArrow (α := ℝ)) (MeasurableEquiv.finTwoArrow (α := ℝ)))
@@ -397,9 +508,15 @@ noncomputable def H (F : M → ℂ) (p : P) : ℂ :=
                   -(Real.sin p.2.2.2) / p.2.1, p.1 * Real.sin p.2.2.2 / p.2.1 + Real.cos p.2.2.2 / p.2.2.1] : Matrix (Fin 2) (Fin 2) ℝ) i j) *
     ((p.2.2.1 ^ 2 * (|p.2.1 * p.2.2.1| ^ 4)⁻¹ : ℝ) : ℂ)
 
+/--
+@isnad1 id=hasfderi.1h1v.s7.0d4c42e2076e from=translated src=- shape=492182cd vocab=ad1e6bd5
+-/
 theorem hderiv : ∀ p ∈ dom, HasFDerivWithinAt Φ (Φ' p) dom p :=
   fun _ hp => (hasFDerivAt_Φ hp.1 hp.2.1.ne').hasFDerivWithinAt
 
+/--
+@isnad1 id=eq.1h2v.s8.d982898a5c02 from=translated src=- shape=370da7f4 vocab=15245c2b
+-/
 theorem jacobian_smul_eq (F : M → ℂ) {p : P} (hp : p ∈ dom) :
     |(Φ' p).det| • F (T.symm (Φ p)) = H F p := by
   have h₁ : p.2.1 ≠ 0 := hp.1
@@ -413,6 +530,9 @@ theorem jacobian_smul_eq (F : M → ℂ) {p : P} (hp : p ∈ dom) :
   rw [habs]
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.d2202d7341a0 from=translated src=- shape=9a703a62 vocab=9c37f3b5
+-/
 theorem integral_eq (F : M → ℂ) : (∫ e, F e) = ∫ p in region, H F p := by
   have hT := measurePreserving_T.symm T
   rw [← hT.integral_comp T.symm.measurableEmbedding, ← setIntegral_univ, ← setIntegral_congr_set image_ae_eq_univ,
@@ -420,6 +540,9 @@ theorem integral_eq (F : M → ℂ) : (∫ e, F e) = ∫ p in region, H F p := b
     ← setIntegral_congr_set dom_ae_eq_region]
   exact setIntegral_congr_fun measurableSet_dom fun p hp => jacobian_smul_eq F hp
 
+/--
+@isnad1 id=iff.0h1v.s7.5585079d38f6 from=translated src=- shape=43c2a0f9 vocab=8a864779
+-/
 theorem integrable_iff (F : M → ℂ) : Integrable F ↔ IntegrableOn (H F) region := by
   have hT := measurePreserving_T.symm T
   rw [← hT.integrable_comp_emb T.symm.measurableEmbedding, ← integrableOn_univ]
@@ -434,6 +557,9 @@ end Ws23K1A
 open scoped _root_.P2MW.S_LanglandsTunnell_RankinSelberg_integral_matrixTwo_eq_setIntegral_iwasawaInv_unconditional.Ws23K1A
 
 open Ws23K1A in
+/--
+@isnad1 id=and.0h1v.s11.925514395db0 from=translated src=- shape=0fd84f79 vocab=5e81ecc4
+-/
 theorem solution
     (F : (Fin 2 → Fin 2 → ℝ) → ℂ) :
     (Integrable F ↔ IntegrableOn

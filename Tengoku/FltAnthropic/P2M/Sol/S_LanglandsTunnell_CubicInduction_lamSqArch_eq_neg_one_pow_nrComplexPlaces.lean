@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open NumberField
 
+/--
+@isnad1 id=eq.0h1v.s5.6a223c1ec485 from=translated src=- shape=66259890 vocab=1bb84841
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K] :
     LanglandsTunnell.CubicInduction.lamSqArch K = (-1 : ℂ) ^ NumberField.InfinitePlace.nrComplexPlaces K := by

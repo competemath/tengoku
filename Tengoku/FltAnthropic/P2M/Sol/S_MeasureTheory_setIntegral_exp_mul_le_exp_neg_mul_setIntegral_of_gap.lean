@@ -13,10 +13,16 @@ set_option autoImplicit false
 open MeasureTheory Set
 
 namespace OcLaplaceGap
+/--
+@isnad1 id=eq.1h1v.s6.8fa09ecc90fc from=translated src=- shape=5a27f777 vocab=814b7030
+-/
 theorem volume_abs_le (ρ : ℝ) (hρ : 0 ≤ ρ) : volume {v : ℝ | |v| ≤ ρ} = ENNReal.ofReal (2 * ρ) := by
   rw [show {v : ℝ | |v| ≤ ρ} = Icc (-ρ) ρ by ext v; simp [abs_le], Real.volume_Icc]
   congr 1; ring
 
+/--
+@isnad1 id=and.15h9v.s9.29c12cbf1679 from=translated src=- shape=5b606460 vocab=4b8ddd36
+-/
 theorem setIntegral_exp_mul_compl_le
     (φ : ℝ → ℝ) (hφm : Measurable φ) (hφmax : ∀ v, φ v ≤ φ 0)
     (γ δ ρ : ℝ) (hγ : 0 < γ) (hρ : 0 < ρ) (hρδ : ρ ≤ δ)
@@ -104,6 +110,9 @@ theorem setIntegral_exp_mul_compl_le
 
 end OcLaplaceGap
 
+/--
+@isnad1 id=and.15h9v.s9.29c12cbf1679 from=translated src=- shape=5b606460 vocab=4b8ddd36
+-/
 theorem solution
     (φ : ℝ → ℝ) (hφm : Measurable φ) (hφmax : ∀ v, φ v ≤ φ 0)
     (γ δ ρ : ℝ) (hγ : 0 < γ) (hρ : 0 < ρ) (hρδ : ρ ≤ δ)

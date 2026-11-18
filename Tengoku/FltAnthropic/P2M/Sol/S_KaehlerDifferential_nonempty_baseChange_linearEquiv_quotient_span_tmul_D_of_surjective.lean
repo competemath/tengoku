@@ -27,10 +27,16 @@ noncomputable def N : Submodule R' (R' ⊗[C] Ω[C⁄R]) :=
   Submodule.span R' (Set.range fun f : RingHom.ker (algebraMap C A) => (1 : R') ⊗ₜ[C] D R C (f : C))
 
 omit [Algebra R A] [IsScalarTower R C A] in
+/--
+@isnad1 id=eq.0h6v.s12.b2b283fa8679 from=translated src=- shape=6ce72c26 vocab=efd268b4
+-/
 theorem cancelBaseChange_symm_tmul (r : R') (ω : Ω[C⁄R]) :
     (TensorProduct.AlgebraTensorModule.cancelBaseChange C A R' R' Ω[C⁄R]).symm (r ⊗ₜ[C] ω) =
       r ⊗ₜ[A] ((1 : A) ⊗ₜ[C] ω) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.66423ef5ab0d from=translated src=- shape=679d131b vocab=ae6d5e55
+-/
 theorem ψ_tmul (r : R') (ω : Ω[C⁄R]) :
     ψ R C A R' (r ⊗ₜ[C] ω) = r ⊗ₜ[A] KaehlerDifferential.map R R C A ω := by
   simp only [ψ, LinearMap.comp_apply, LinearEquiv.coe_coe, cancelBaseChange_symm_tmul,
@@ -38,6 +44,9 @@ theorem ψ_tmul (r : R') (ω : Ω[C⁄R]) :
 
 variable {R C A R'}
 
+/--
+@isnad1 id=surjecti.1h4v.s10.00ff3c82980b from=translated src=- shape=b12ec6fe vocab=0d8c4a3f
+-/
 theorem ψ_surjective (hsurj : Function.Surjective (algebraMap C A)) :
     Function.Surjective (ψ R C A R') := by
   have h1 : Function.Surjective ((KaehlerDifferential.mapBaseChange R C A).baseChange R') := by
@@ -46,12 +55,18 @@ theorem ψ_surjective (hsurj : Function.Surjective (algebraMap C A)) :
   exact h1.comp (TensorProduct.AlgebraTensorModule.cancelBaseChange C A R' R' Ω[C⁄R]).symm.surjective
 
 variable (R C A R') in
+/--
+@isnad1 id=le.0h4v.s10.834501edc1d7 from=translated src=- shape=00b91a78 vocab=0af469e8
+-/
 theorem N_le_ker : N R C A R' ≤ LinearMap.ker (ψ R C A R') := by
   rw [N, Submodule.span_le]
   rintro _ ⟨f, rfl⟩
   rw [SetLike.mem_coe, LinearMap.mem_ker, ψ_tmul, map_D, RingHom.mem_ker.mp f.2, map_zero,
     TensorProduct.tmul_zero]
 
+/--
+@isnad1 id=le.1h4v.s10.48792dd1aaac from=translated src=- shape=f13a8639 vocab=ba3f9392
+-/
 theorem ker_le_N (hsurj : Function.Surjective (algebraMap C A)) :
     LinearMap.ker (ψ R C A R') ≤ N R C A R' := by
   intro x hx
@@ -90,6 +105,9 @@ theorem ker_le_N (hsurj : Function.Surjective (algebraMap C A)) :
     exact Submodule.smul_mem _ r (Submodule.subset_span ⟨f, rfl⟩)
   | add a b ha hb => rw [map_add, map_add]; exact Submodule.add_mem _ ha hb
 
+/--
+@isnad1 id=eq.1h4v.s9.11f5a441a3d6 from=translated src=- shape=f13a8639 vocab=13df53ad
+-/
 theorem ker_eq_N (hsurj : Function.Surjective (algebraMap C A)) :
     LinearMap.ker (ψ R C A R') = N R C A R' :=
   le_antisymm (ker_le_N hsurj) (N_le_ker R C A R')
@@ -100,6 +118,9 @@ end Conormal29
 
 open Conormal29
 
+/--
+@isnad1 id=nonempty.1h4v.s11.133775fcee00 from=translated src=- shape=63ce7fcc vocab=faf78627
+-/
 theorem solution
     {R C A R' : Type u} [CommRing R] [CommRing C] [CommRing A] [CommRing R']
     [Algebra R C] [Algebra R A] [Algebra C A] [IsScalarTower R C A]

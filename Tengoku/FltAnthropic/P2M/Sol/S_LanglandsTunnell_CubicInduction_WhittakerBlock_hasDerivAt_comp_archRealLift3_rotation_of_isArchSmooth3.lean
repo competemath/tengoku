@@ -16,14 +16,23 @@ def I₃ : Fin 3 → Fin 3 → ℝ := fun a b => if a = b then 1 else 0
 
 def E (i j : Fin 3) : Fin 3 → Fin 3 → ℝ := fun a b => if a = i ∧ b = j then 1 else 0
 
+/--
+@isnad1 id=ne.0h0v.s7.45da91f94ea5 from=translated src=- shape=4b328c30 vocab=6fdb7fd9
+-/
 theorem det_I₃_ne : (Matrix.of I₃).det ≠ 0 := by
   have : (Matrix.of I₃ : Matrix (Fin 3) (Fin 3) ℝ) = 1 := by
     ext i j; simp [I₃, Matrix.one_apply]
   rw [this, Matrix.det_one]; exact one_ne_zero
 
+/--
+@isnad1 id=isopen.0h0v.s8.d3ef7169be9b from=translated src=- shape=4a3c72f1 vocab=b3e47a7a
+-/
 theorem isOpen_det_ne : IsOpen {e : Fin 3 → Fin 3 → ℝ | (Matrix.of e).det ≠ 0} :=
   isOpen_ne_fun (continuous_id.matrix_det) continuous_const
 
+/--
+@isnad1 id=eq.0h5v.s10.401344dfd77f from=translated src=- shape=ad5f1a9d vocab=af8a0d5b
+-/
 theorem rot_entry_eq (c₁ c₂ : Fin 3) (s : ℝ) (i j : Fin 3) :
     (if i = c₁ ∧ j = c₁ then Real.cos s else if i = c₂ ∧ j = c₂ then Real.cos s else
         if i = c₁ ∧ j = c₂ then - Real.sin s else if i = c₂ ∧ j = c₁ then Real.sin s else
@@ -32,6 +41,9 @@ theorem rot_entry_eq (c₁ c₂ : Fin 3) (s : ℝ) (i j : Fin 3) :
   simp only [Pi.add_apply, Pi.sub_apply, Pi.smul_apply, Pi.mul_apply, smul_eq_mul, I₃, E]
   fin_cases c₁ <;> fin_cases c₂ <;> fin_cases i <;> fin_cases j <;> simp
 
+/--
+@isnad1 id=ex.1h2v.s11.a13e3785a6a7 from=translated src=- shape=61f450c4 vocab=4e38c484
+-/
 theorem exists_fderiv_of_isArchSmooth3 (φ : AdelicGL 3 (𝓞 ℚ) ℚ → ℂ) (hφ : WhittakerBlock.IsArchSmooth3 φ)
     (g : AdelicGL 3 (𝓞 ℚ) ℚ) :
     ∃ L : (Fin 3 → Fin 3 → ℝ) →L[ℝ] ℂ,
@@ -66,6 +78,9 @@ theorem exists_fderiv_of_isArchSmooth3 (φ : AdelicGL 3 (𝓞 ℚ) ℚ → ℂ) 
 end RotAux
 
 open RotAux in
+/--
+@isnad1 id=hasderiv.1h4v.s9.a46c7e2fd7b0 from=translated src=- shape=a10620f1 vocab=a6f5525c
+-/
 theorem solution
     (φ : AdelicGL 3 (𝓞 ℚ) ℚ → ℂ) (hφ : WhittakerBlock.IsArchSmooth3 φ) (c₁ c₂ : Fin 3)
     (g : AdelicGL 3 (𝓞 ℚ) ℚ) :

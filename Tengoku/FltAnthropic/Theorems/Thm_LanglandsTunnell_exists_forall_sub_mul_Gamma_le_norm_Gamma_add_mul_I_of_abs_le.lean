@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open Complex
 
+/--
+@isnad1 id=ex.2h2v.s7.d02a87d231d7 from=translated src=- shape=6c9d43ed vocab=00e952ad
+-/
 theorem LanglandsTunnell.exists_forall_sub_mul_Gamma_le_norm_Gamma_add_mul_I_of_abs_le
     (K ε : ℝ) (hK : 0 ≤ K) (hε : 0 < ε) :
     ∃ R : ℝ, ∀ σ τ : ℝ, R ≤ σ → |τ| ≤ K →

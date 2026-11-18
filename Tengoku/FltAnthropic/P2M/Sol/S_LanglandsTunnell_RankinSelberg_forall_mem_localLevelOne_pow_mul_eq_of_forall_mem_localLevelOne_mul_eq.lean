@@ -15,6 +15,9 @@ section Generic
 
 variable {R K : Type*} [CommRing R] [IsDedekindDomain R] [Field K] [Algebra R K] [IsFractionRing R K]
 
+/--
+@isnad1 id=iff.1h6v.s6.e70cdac249b6 from=translated src=- shape=68d2a621 vocab=ad97c4b2
+-/
 theorem isLocalLevelOne_iff_of_idealBound_eq (v : HeightOneSpectrum R) {N N' : Ideal R}
     (h : AdelicLevel.idealBound R N v = AdelicLevel.idealBound R N' v)
     (m : Matrix (Fin 2) (Fin 2) (v.adicCompletion K)) :
@@ -25,6 +28,9 @@ theorem isLocalLevelOne_iff_of_idealBound_eq (v : HeightOneSpectrum R) {N N' : I
   · rintro ⟨h1, h2, h3⟩
     exact ⟨h1, h.symm ▸ h2, h.symm ▸ h3⟩
 
+/--
+@isnad1 id=eq.1h5v.s8.6316b14642e5 from=translated src=- shape=bbc5e826 vocab=036716c5
+-/
 theorem localLevelOne_eq_of_idealBound_eq (v : HeightOneSpectrum R) {N N' : Ideal R}
     (h : AdelicLevel.idealBound R N v = AdelicLevel.idealBound R N' v) :
     AdelicDock.localLevelOne R K v N = AdelicDock.localLevelOne R K v N' := by
@@ -32,6 +38,9 @@ theorem localLevelOne_eq_of_idealBound_eq (v : HeightOneSpectrum R) {N N' : Idea
   rw [AdelicDock.mem_localLevelOne_iff, AdelicDock.mem_localLevelOne_iff,
     isLocalLevelOne_iff_of_idealBound_eq v h, isLocalLevelOne_iff_of_idealBound_eq v h]
 
+/--
+@isnad1 id=eq.3h4v.s9.c3390fe42652 from=translated src=- shape=29586b12 vocab=31a5168a
+-/
 theorem count_eq_of_pow_dvd_not_pow_succ_dvd (v : HeightOneSpectrum R) {N : Ideal R} (hN : N ≠ ⊥)
     {b : ℕ} (hb : v.asIdeal ^ b ∣ N) (hb' : ¬ v.asIdeal ^ (b + 1) ∣ N) :
     ∀ [DecidableEq (Associates (Ideal R))] [∀ q : Associates (Ideal R), Decidable (Irreducible q)],
@@ -47,6 +56,9 @@ theorem count_eq_of_pow_dvd_not_pow_succ_dvd (v : HeightOneSpectrum R) {N : Idea
   · rw [← Associates.prime_pow_dvd_iff_le hN0 hirr, ← Associates.mk_pow, Associates.mk_le_mk_iff_dvd]
     exact hb
 
+/--
+@isnad1 id=eq.0h3v.s6.d7d03d9dc5ea from=translated src=- shape=a23bbb74 vocab=b15a2a0c
+-/
 theorem idealBound_pow (v : HeightOneSpectrum R) (b : ℕ) :
     AdelicLevel.idealBound R (v.asIdeal ^ b) v = WithZero.exp (-(b : ℤ)) := by
   classical
@@ -54,6 +66,9 @@ theorem idealBound_pow (v : HeightOneSpectrum R) (b : ℕ) :
     Associates.count_pow (Associates.mk_ne_zero.mpr v.ne_bot) (Associates.irreducible_mk.mpr v.irreducible),
     Associates.count_self (Associates.irreducible_mk.mpr v.irreducible), mul_one]
 
+/--
+@isnad1 id=eq.1h4v.s8.13dddd4f3a71 from=translated src=- shape=4bb975f2 vocab=f216a3c5
+-/
 theorem idealBound_eq_idealBound_pow (v : HeightOneSpectrum R) {N : Ideal R} {b : ℕ}
     (hNb : v.asIdeal ^ b ∣ N ∧ ¬ v.asIdeal ^ (b + 1) ∣ N) :
     AdelicLevel.idealBound R N v = AdelicLevel.idealBound R (v.asIdeal ^ b) v := by
@@ -63,6 +78,9 @@ theorem idealBound_eq_idealBound_pow (v : HeightOneSpectrum R) {N : Ideal R} {b 
     exact hNb.2 (dvd_zero _)
   rw [idealBound_pow, AdelicLevel.idealBound_of_ne_bot hN, count_eq_of_pow_dvd_not_pow_succ_dvd v hN hNb.1 hNb.2]
 
+/--
+@isnad1 id=eq.1h5v.s9.ed55f31d8c4e from=translated src=- shape=159cc11b vocab=58aae931
+-/
 theorem localLevelOne_eq_localLevelOne_pow (v : HeightOneSpectrum R) {N : Ideal R} {b : ℕ}
     (hNb : v.asIdeal ^ b ∣ N ∧ ¬ v.asIdeal ^ (b + 1) ∣ N) :
     AdelicDock.localLevelOne R K v N = AdelicDock.localLevelOne R K v (v.asIdeal ^ b) :=
@@ -72,6 +90,9 @@ end Generic
 
 end LocalLevelOnePowSol
 
+/--
+@isnad1 id=eq.3h6v.s12.a50b8d3534e4 from=translated src=- shape=cdf73ed8 vocab=d9f6f768
+-/
 theorem solution
     (p : HeightOneSpectrum (𝓞 ℚ))
     (N : Ideal (𝓞 ℚ))

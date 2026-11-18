@@ -9,6 +9,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_LT_TwistedNorm_exists_mem_unipotentCell_an
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=iff.1h4v.s10.73e5b23d62f7 from=translated src=- shape=62c3fb22 vocab=60490d05
+-/
 theorem LT.TwistedNorm.exists_mem_unipotentCell_and_normClassMap_eq_iff_exists_mk_eq_mk_scalar_mul_unipotentGL2
     {F L : Type*} [Field F] [Field L] [Algebra F L] [FiniteDimensional F L] [IsGalois F L]
     {σ : L ≃ₐ[F] L} (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)

@@ -13,6 +13,9 @@ open NumberField NumberField.mixedEmbedding
 namespace Ws1
 namespace K5b2
 
+/--
+@isnad1 id=eq.0h3v.s8.9d666fa8fed5 from=translated src=- shape=db681f76 vocab=f80b11d0
+-/
 theorem trace_pi_self (k : Type*) [Field k] (ι : Type*) [Fintype ι] [DecidableEq ι] (z : ι → k) :
     Algebra.trace k (ι → k) z = ∑ i, z i := by
   rw [Algebra.trace_eq_matrix_trace (Pi.basisFun k ι), Matrix.trace]
@@ -24,6 +27,9 @@ end Ws1.K5b2
 
 open scoped Classical in
 
+/--
+@isnad1 id=eq.0h2v.s10.a48e9bcc5ee9 from=translated src=- shape=32bf3953 vocab=2f0b12f1
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K] (z : mixedSpace K) :
     Algebra.trace ℝ (mixedSpace K) z =

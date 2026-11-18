@@ -14,6 +14,9 @@ namespace SchlomilchGauss
 
 noncomputable def phi (ρ w : ℝ) : ℝ := w - ρ * w⁻¹
 
+/--
+@isnad1 id=hasderiv.1h2v.s6.44de7e13ad86 from=translated src=- shape=19474197 vocab=4662ad3a
+-/
 theorem hasDerivAt_phi (ρ : ℝ) {w : ℝ} (hw : w ≠ 0) :
     HasDerivAt (phi ρ) (1 + ρ * (w ^ 2)⁻¹) w := by
   have h := (hasDerivAt_id w).sub ((hasDerivAt_inv hw).const_mul ρ)
@@ -23,9 +26,15 @@ theorem hasDerivAt_phi (ρ : ℝ) {w : ℝ} (hw : w ≠ 0) :
   · rfl
   ring
 
+/--
+@isnad1 id=eq.1h2v.s7.363c5f8bb518 from=translated src=- shape=5c420439 vocab=e168480d
+-/
 theorem phi_sq (ρ : ℝ) {w : ℝ} (hw : w ≠ 0) : (phi ρ w) ^ 2 = w ^ 2 + ρ ^ 2 / w ^ 2 - 2 * ρ := by
   unfold phi; field_simp; ring
 
+/--
+@isnad1 id=injon.1h1v.s4.de90520e001b from=translated src=- shape=e4f1f832 vocab=1a6b59cd
+-/
 theorem injOn_phi {ρ : ℝ} (hρ : 0 < ρ) : InjOn (phi ρ) (Ioi 0) := by
   intro x hx y hy hxy
   have hx : 0 < x := hx
@@ -38,6 +47,9 @@ theorem injOn_phi {ρ : ℝ} (hρ : 0 < ρ) : InjOn (phi ρ) (Ioi 0) := by
   · linarith
   · nlinarith [mul_pos hx hy]
 
+/--
+@isnad1 id=eq.1h1v.s5.9b476f6f8364 from=translated src=- shape=3fe21853 vocab=54342d07
+-/
 theorem image_phi {ρ : ℝ} (hρ : 0 < ρ) : phi ρ '' Ioi 0 = univ := by
   refine eq_univ_of_forall fun t => ?_
   set r : ℝ := Real.sqrt (t ^ 2 + 4 * ρ) with hr
@@ -55,6 +67,9 @@ theorem image_phi {ρ : ℝ} (hρ : 0 < ρ) : phi ρ '' Ioi 0 = univ := by
   field_simp
   nlinarith [hw2, hw0]
 
+/--
+@isnad1 id=eq.1h1v.s5.8592e54232c1 from=translated src=- shape=70860b5d vocab=9504c147
+-/
 theorem image_inv {ρ : ℝ} (hρ : 0 < ρ) : (fun u : ℝ => ρ * u⁻¹) '' Ioi 0 = Ioi 0 := by
   ext x
   constructor
@@ -64,6 +79,9 @@ theorem image_inv {ρ : ℝ} (hρ : 0 < ρ) : (fun u : ℝ => ρ * u⁻¹) '' Io
     have : x ≠ 0 := ne_of_gt hx
     field_simp
 
+/--
+@isnad1 id=injon.1h1v.s5.99c2a0948779 from=translated src=- shape=18dddd97 vocab=bf3060b7
+-/
 theorem injOn_inv {ρ : ℝ} (hρ : 0 < ρ) : InjOn (fun u : ℝ => ρ * u⁻¹) (Ioi 0) := by
   intro x hx y hy hxy
   have hx' : x ≠ 0 := ne_of_gt hx
@@ -73,13 +91,22 @@ theorem injOn_inv {ρ : ℝ} (hρ : 0 < ρ) : InjOn (fun u : ℝ => ρ * u⁻¹)
   field_simp at this
   linarith [this]
 
+/--
+@isnad1 id=eq.2h2v.s5.ca3e0e853424 from=translated src=- shape=9dd67643 vocab=48176043
+-/
 theorem phi_inv (ρ : ℝ) {u : ℝ} (hu : u ≠ 0) (hρ : ρ ≠ 0) : phi ρ (ρ * u⁻¹) = -phi ρ u := by
   unfold phi; field_simp; ring
 
 noncomputable def G (ρ w : ℝ) : ℝ := Real.exp (-(Real.pi * (phi ρ w) ^ 2))
 
+/--
+@isnad1 id=lt.0h2v.s4.c9b6ccf9e007 from=translated src=- shape=a120b2a8 vocab=3ec1b6a4
+-/
 theorem G_pos (ρ w : ℝ) : 0 < G ρ w := Real.exp_pos _
 
+/--
+@isnad1 id=continuo.0h1v.s4.633cabbf5a2f from=translated src=- shape=140225b6 vocab=b47fbc1c
+-/
 theorem continuousOn_G (ρ : ℝ) : ContinuousOn (G ρ) (Ioi 0) := by
   intro w hw
   have hw : (w : ℝ) ≠ 0 := ne_of_gt hw
@@ -87,14 +114,23 @@ theorem continuousOn_G (ρ : ℝ) : ContinuousOn (G ρ) (Ioi 0) := by
   unfold G phi
   fun_prop (disch := exact hw)
 
+/--
+@isnad1 id=eq.0h0v.s5.d07d29741687 from=translated src=- shape=d399efb6 vocab=c08a8a47
+-/
 theorem gaussian_one : ∫ t : ℝ, Real.exp (-(Real.pi * t ^ 2)) = 1 := by
   have h := integral_gaussian Real.pi
   rw [div_self Real.pi_ne_zero, Real.sqrt_one] at h
   simpa only [neg_mul] using h
 
+/--
+@isnad1 id=integrab.0h0v.s5.e94af43f9f26 from=translated src=- shape=62874e93 vocab=dc82ca3d
+-/
 theorem integrable_gaussian' : Integrable (fun t : ℝ => Real.exp (-(Real.pi * t ^ 2))) := by
   simpa only [neg_mul] using integrable_exp_neg_mul_sq Real.pi_pos
 
+/--
+@isnad1 id=and.1h1v.s6.7bb566912f9f from=translated src=- shape=af8cd16a vocab=94f85079
+-/
 theorem integrableOn_G_and_integral {ρ : ℝ} (hρ : 0 < ρ) :
     IntegrableOn (G ρ) (Ioi 0) ∧ ∫ w in Ioi (0 : ℝ), G ρ w = 1 / 2 := by
   have hderiv : ∀ w ∈ Ioi (0 : ℝ), HasDerivWithinAt (phi ρ) (1 + ρ * (w ^ 2)⁻¹) (Ioi 0) w :=
@@ -157,6 +193,9 @@ theorem integrableOn_G_and_integral {ρ : ℝ} (hρ : 0 < ρ) :
 end SchlomilchGauss
 
 open SchlomilchGauss in
+/--
+@isnad1 id=and.1h1v.s8.57f7f394332d from=translated src=- shape=7a916a01 vocab=69a3f58f
+-/
 theorem solution (ρ : ℝ) (hρ : 0 < ρ) :
     IntegrableOn (fun w : ℝ => Real.exp (-(Real.pi * (w ^ 2 + ρ ^ 2 / w ^ 2)))) (Ioi 0) ∧
       ∫ w in Ioi (0 : ℝ), Real.exp (-(Real.pi * (w ^ 2 + ρ ^ 2 / w ^ 2))) =

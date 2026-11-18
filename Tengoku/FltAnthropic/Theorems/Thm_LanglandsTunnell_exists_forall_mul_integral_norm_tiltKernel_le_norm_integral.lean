@@ -15,6 +15,9 @@ set_option autoImplicit false
 
 open MeasureTheory Set
 
+/--
+@isnad1 id=ex.2h5v.s9.4ccc9ac44aad from=translated src=- shape=5e1b1084 vocab=e09e96b4
+-/
 theorem LanglandsTunnell.exists_forall_mul_integral_norm_tiltKernel_le_norm_integral
     (a : ℝ) (ha : a ≠ 0) (A B : ℂ) (τ : ℝ) (ε : ℝ) (hε : 0 < ε) :
     ∃ R : ℝ, ∀ y : ℝ, R ≤ y →

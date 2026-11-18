@@ -15,6 +15,9 @@ set_option autoImplicit false
 
 open MeasureTheory Set
 
+/--
+@isnad1 id=ex.3h5v.s10.af301c90659d from=translated src=- shape=b0b00ade vocab=2db62337
+-/
 theorem LanglandsTunnell.exists_forall_mul_setIntegral_le_setIntegral_logBox_tiltKernel
     (a : ℝ) (ha : a ≠ 0) (α β : ℝ) (η δ : ℝ) (hη : 0 < η) (hδ : 0 < δ) :
     ∃ R : ℝ, ∀ y : ℝ, R ≤ y →

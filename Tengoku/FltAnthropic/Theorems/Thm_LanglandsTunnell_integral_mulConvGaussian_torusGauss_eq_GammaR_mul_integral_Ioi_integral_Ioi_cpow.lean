@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open MeasureTheory
 
+/--
+@isnad1 id=eq.8h7v.s10.47c139f9a668 from=translated src=- shape=42e4efc3 vocab=7948ba73
+-/
 theorem LanglandsTunnell.integral_mulConvGaussian_torusGauss_eq_GammaR_mul_integral_Ioi_integral_Ioi_cpow
     (p₁ p₂ q₁ q₂ α β γ : ℂ)
     (hp₁ : 0 < (α - β + p₁).re) (hp₂ : 0 < (α - β + p₂).re)

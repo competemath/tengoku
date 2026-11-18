@@ -24,11 +24,17 @@ export _root_.LanglandsTunnell.ArchBessel (besselKernel besselKernel_eq_cpow_mul
 namespace MellinKK
 open _root_.LanglandsTunnell.ArchBessel open _root_.LanglandsTunnell
 
+/--
+@isnad1 id=integrab.1h4v.s6.5af4d2b0ee09 from=translated src=- shape=17c7ea8c vocab=ec62ff08
+-/
 theorem integrable_of_integral_ne_zero {α : Type*} [MeasurableSpace α] {μ : Measure α} {E : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E] {f : α → E} (h : ∫ x, f x ∂μ ≠ 0) : Integrable f μ := by
   by_contra hf
   exact h (integral_undef hf)
 
+/--
+@isnad1 id=eq.2h2v.s7.0abd112f2b57 from=translated src=- shape=f131a900 vocab=8e0078bd
+-/
 theorem integral_cpow_mul_exp_neg_mul_sq {a : ℂ} {y : ℝ} (ha : 0 < a.re) (hy : 0 < y) :
     ∫ t in Ioi (0 : ℝ), (t : ℂ) ^ (2 * a - 1) * Complex.exp (-((y : ℂ) * (t : ℂ) ^ 2)) =
       (1 / 2 : ℂ) * ((1 / (y : ℂ)) ^ a * Complex.Gamma a) := by
@@ -62,6 +68,9 @@ theorem integral_cpow_mul_exp_neg_mul_sq {a : ℂ} {y : ℝ} (ha : 0 < a.re) (hy
         field_simp
     _ = (1 / 2 : ℂ) * ((1 / (y : ℂ)) ^ a * Complex.Gamma a) := by rw [hsub]
 
+/--
+@isnad1 id=eq.2h2v.s7.d8b6f13b7b5a from=translated src=- shape=6dae5c4c vocab=5ba1516a
+-/
 theorem integral_rpow_mul_exp_neg_mul_sq {a y : ℝ} (ha : 0 < a) (hy : 0 < y) :
     ∫ t in Ioi (0 : ℝ), t ^ (2 * a - 1) * Real.exp (-(y * t ^ 2)) = (1 / 2) * ((1 / y) ^ a * Real.Gamma a) := by
   have hsub := integral_comp_rpow_Ioi
@@ -86,6 +95,9 @@ theorem integral_rpow_mul_exp_neg_mul_sq {a y : ℝ} (ha : 0 < a) (hy : 0 < y) :
   rw [hcongr, integral_const_mul] at hsub
   linarith
 
+/--
+@isnad1 id=integrab.2h2v.s7.e019e74779f3 from=translated src=- shape=21241466 vocab=701c7a50
+-/
 theorem integrableOn_rpow_mul_exp_neg_mul_sq {a y : ℝ} (ha : 0 < a) (hy : 0 < y) :
     IntegrableOn (fun t : ℝ => t ^ (2 * a - 1) * Real.exp (-(y * t ^ 2))) (Ioi 0) := by
   apply integrable_of_integral_ne_zero
@@ -94,6 +106,9 @@ theorem integrableOn_rpow_mul_exp_neg_mul_sq {a y : ℝ} (ha : 0 < a) (hy : 0 < 
 
 def crate (p : ℝ × ℝ) : ℝ := (p.1 + p.2) / (4 * (p.1 * p.2))
 
+/--
+@isnad1 id=lt.2h1v.s5.942385d98f8f from=translated src=- shape=6d1660dd vocab=db15aaee
+-/
 theorem crate_pos {p : ℝ × ℝ} (h1 : 0 < p.1) (h2 : 0 < p.2) : 0 < crate p := by
   unfold crate; positivity
 
@@ -103,16 +118,25 @@ def amp (μ ν : ℂ) (p : ℝ × ℝ) : ℂ :=
 def H (μ ν s : ℂ) (q : ℝ × (ℝ × ℝ)) : ℂ :=
   amp μ ν q.2 * ((q.1 : ℂ) ^ (2 * ((s - μ - ν) / 2) - 1) * Complex.exp (-(((crate q.2 : ℝ) : ℂ) * (q.1 : ℂ) ^ 2)))
 
+/--
+@isnad1 id=measurab.0h2v.s4.2bc53e73884d from=translated src=- shape=168abce8 vocab=17131a0e
+-/
 theorem measurable_amp (μ ν : ℂ) : Measurable (amp μ ν) := by
   unfold amp
   exact measurable_const.mul ((((Complex.measurable_ofReal.comp (measurable_fst.add measurable_snd)).neg.cexp).mul
     ((Complex.measurable_ofReal.comp measurable_fst).pow_const _)).mul
     ((Complex.measurable_ofReal.comp measurable_snd).pow_const _))
 
+/--
+@isnad1 id=measurab.0h0v.s3.5ef995cb51f6 from=translated src=- shape=8e22ceaf vocab=ff63c721
+-/
 theorem measurable_crate : Measurable crate := by
   unfold crate
   exact (measurable_fst.add measurable_snd).div (measurable_const.mul (measurable_fst.mul measurable_snd))
 
+/--
+@isnad1 id=measurab.0h3v.s4.d5a9fd5eb18c from=translated src=- shape=df10aae6 vocab=bae63dac
+-/
 theorem measurable_H (μ ν s : ℂ) : Measurable (H μ ν s) := by
   unfold H
   exact ((measurable_amp μ ν).comp measurable_snd).mul
@@ -120,6 +144,9 @@ theorem measurable_H (μ ν s : ℂ) : Measurable (H μ ν s) := by
       (((Complex.measurable_ofReal.comp (measurable_crate.comp measurable_snd)).mul
         ((Complex.measurable_ofReal.comp measurable_fst).pow_const _)).neg.cexp))
 
+/--
+@isnad1 id=eq.3h6v.s8.7db30933a5ad from=translated src=- shape=f267297b vocab=c6b665fe
+-/
 theorem H_eq (μ ν s : ℂ) {x τ σ : ℝ} (hx : 0 < x) (hτ : 0 < τ) (hσ : 0 < σ) :
     (x : ℂ) ^ (s - 1) * ((((2 / x : ℝ)) : ℂ) ^ μ * (((2 / x : ℝ)) : ℂ) ^ ν) *
       (((Real.exp (-(τ + x ^ 2 / (4 * τ))) : ℂ) * (τ : ℂ) ^ (μ - 1)) *
@@ -157,6 +184,9 @@ theorem H_eq (μ ν s : ℂ) {x τ σ : ℝ} (hx : 0 < x) (hτ : 0 < τ) (hσ : 
         rw [ex, eexp]
     _ = _ := by rw [← Complex.cpow_add _ _ two_ne_zero]; ring
 
+/--
+@isnad1 id=eq.2h4v.s7.84d456f0c1b7 from=translated src=- shape=874dce13 vocab=9614fa5a
+-/
 theorem norm_amp (μ ν : ℂ) {τ σ : ℝ} (hτ : 0 < τ) (hσ : 0 < σ) :
     ‖amp μ ν (τ, σ)‖ = (2 : ℝ) ^ (μ + ν).re * (Real.exp (-(τ + σ)) * τ ^ (μ.re - 1) * σ ^ (ν.re - 1)) := by
   simp only [amp, norm_mul, Complex.norm_cpow_eq_rpow_re_of_pos hτ, Complex.norm_cpow_eq_rpow_re_of_pos hσ,
@@ -164,6 +194,9 @@ theorem norm_amp (μ ν : ℂ) {τ σ : ℝ} (hτ : 0 < τ) (hσ : 0 < σ) :
   congr 1
   rw [show (2 : ℂ) = ((2 : ℝ) : ℂ) by norm_num, Complex.norm_cpow_eq_rpow_re_of_pos two_pos]
 
+/--
+@isnad1 id=eq.3h6v.s7.6d4a263d1b89 from=translated src=- shape=bb2f7354 vocab=fb0f0404
+-/
 theorem norm_H (μ ν s : ℂ) {x τ σ : ℝ} (hx : 0 < x) (hτ : 0 < τ) (hσ : 0 < σ) :
     ‖H μ ν s (x, (τ, σ))‖ = ‖amp μ ν (τ, σ)‖ *
       (x ^ (2 * ((s.re - μ.re - ν.re) / 2) - 1) * Real.exp (-(crate (τ, σ) * x ^ 2))) := by
@@ -175,6 +208,9 @@ theorem norm_H (μ ν s : ℂ) {x τ σ : ℝ} (hx : 0 < x) (hτ : 0 < τ) (hσ 
   · congr 1
     rw [← Complex.ofReal_pow, ← Complex.ofReal_mul, ← Complex.ofReal_neg, Complex.ofReal_re]
 
+/--
+@isnad1 id=integrab.1h3v.s7.826c34b5da85 from=translated src=- shape=e2be74a8 vocab=de38196b
+-/
 theorem integrable_H (μ ν s : ℂ) (hs : |μ.re| + |ν.re| < s.re) :
     Integrable (H μ ν s) ((volume.restrict (Ioi (0:ℝ))).prod
       ((volume.restrict (Ioi (0:ℝ))).prod (volume.restrict (Ioi (0:ℝ))))) := by
@@ -239,6 +275,9 @@ end LanglandsTunnell.ArchBessel.MellinKK
 end
 
 open LanglandsTunnell.ArchBessel.MellinKK in
+/--
+@isnad1 id=and.1h3v.s8.70ea281a8e06 from=translated src=- shape=0cbf8077 vocab=a187a143
+-/
 theorem solution (μ ν s : ℂ) (hs : |μ.re| + |ν.re| < s.re) :
     MellinConvergent (fun x : ℝ => besselKernel μ x * besselKernel ν x) s ∧
       mellin (fun x : ℝ => besselKernel μ x * besselKernel ν x) s =

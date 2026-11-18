@@ -16,14 +16,23 @@ variable {F L : Type*} [Field F] [Field L] [Algebra F L]
 
 section Upper
 
+/--
+@isnad1 id=eq.0h3v.s9.2347fd6cecd9 from=translated src=- shape=16df5c7c vocab=bf976b3a
+-/
 theorem coe_map (f : L →+* L) (P : GL (Fin 2) L) :
     ((Matrix.GeneralLinearGroup.map f P : GL (Fin 2) L) : Matrix (Fin 2) (Fin 2) L) =
       (P : Matrix (Fin 2) (Fin 2) L).map f := rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.2d954943cb99 from=translated src=- shape=dd7cc532 vocab=74e631a0
+-/
 theorem coe_scalar (ζ : Lˣ) :
     ((Matrix.GeneralLinearGroup.scalar (Fin 2) ζ : GL (Fin 2) L) : Matrix (Fin 2) (Fin 2) L) =
       Matrix.scalar (Fin 2) (ζ : L) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.ea28b6428d19 from=translated src=- shape=f6fb4c8e vocab=66ba6faf
+-/
 theorem coe_scalar_mul_unipotentGL2 (ζ : Lˣ) (b : L) :
     ((Matrix.GeneralLinearGroup.scalar (Fin 2) ζ * AutomorphicForm.unipotentGL2 b : GL (Fin 2) L) :
         Matrix (Fin 2) (Fin 2) L) = !![(ζ : L), (ζ : L) * b; 0, (ζ : L)] := by
@@ -31,11 +40,17 @@ theorem coe_scalar_mul_unipotentGL2 (ζ : Lˣ) (b : L) :
   ext i j
   fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=and.2h3v.s9.ccd4dd84ecad from=translated src=- shape=12b108a6 vocab=a9ddad33
+-/
 theorem mul_apply_of_upper (P Q : Matrix (Fin 2) (Fin 2) L) (hP : P 1 0 = 0) (hQ : Q 1 0 = 0) :
     (P * Q) 0 0 = P 0 0 * Q 0 0 ∧ (P * Q) 0 1 = P 0 0 * Q 0 1 + P 0 1 * Q 1 1 ∧
       (P * Q) 1 0 = 0 ∧ (P * Q) 1 1 = P 1 1 * Q 1 1 := by
   refine ⟨?_, ?_, ?_, ?_⟩ <;> simp [Matrix.mul_apply, Fin.sum_univ_two, hP, hQ]
 
+/--
+@isnad1 id=and.1h2v.s9.d8595931108f from=translated src=- shape=614fce2b vocab=e5dd7cce
+-/
 theorem inv_entries_of_upper (P : GL (Fin 2) L) (hP : (P : Matrix (Fin 2) (Fin 2) L) 1 0 = 0) :
     ((P⁻¹ : GL (Fin 2) L) : Matrix (Fin 2) (Fin 2) L) 1 0 = 0 ∧
       ((P⁻¹ : GL (Fin 2) L) : Matrix (Fin 2) (Fin 2) L) 0 0 * (P : Matrix (Fin 2) (Fin 2) L) 0 0 = 1 ∧
@@ -68,6 +83,9 @@ variable [FiniteDimensional F L] [IsGalois F L] {σ : L ≃ₐ[F] L}
 
 omit [FiniteDimensional F L] [IsGalois F L] in
 
+/--
+@isnad1 id=and.2h7v.s11.4b6e76c418aa from=translated src=- shape=2b0a9654 vocab=0aff070c
+-/
 theorem entries_of_conj_eq (δ η : GL (Fin 2) L) (ζ : Lˣ) (b : L)
     (hη : (η : Matrix (Fin 2) (Fin 2) L) 1 0 = 0)
     (h : Matrix.GeneralLinearGroup.scalar (Fin 2) ζ * AutomorphicForm.unipotentGL2 b =
@@ -155,6 +173,9 @@ theorem entries_of_conj_eq (δ η : GL (Fin 2) L) (ζ : Lˣ) (b : L)
     field_simp
     ring
 
+/--
+@isnad1 id=ex.3h4v.s10.28d2634a1508 from=translated src=- shape=fc583d99 vocab=65415038
+-/
 theorem forward (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ) (δ : GL (Fin 2) L)
     (hδ : (δ : Matrix (Fin 2) (Fin 2) L) 1 0 = 0)
     (h : ∃ γ : GL (Fin 2) F, γ ∈ AutomorphicForm.unipotentCell F ∧
@@ -180,6 +201,9 @@ theorem forward (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ) (δ 
   rw [this]
   simpa using hb
 
+/--
+@isnad1 id=ex.3h4v.s10.f5b661596453 from=translated src=- shape=0c3238c6 vocab=65415038
+-/
 theorem backward (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ) (δ : GL (Fin 2) L)
     (hδ : (δ : Matrix (Fin 2) (Fin 2) L) 1 0 = 0)
     (h : ∃ r : L, r ≠ 0 ∧ (δ : Matrix (Fin 2) (Fin 2) L) 0 0 * r = (δ : Matrix (Fin 2) (Fin 2) L) 1 1 * σ r ∧
@@ -237,6 +261,9 @@ theorem backward (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ) (δ
   · simp [Matrix.mul_apply, Fin.sum_univ_two, hδ]
   · simp [Matrix.mul_apply, Fin.sum_univ_two, hd11c, hδ]
 
+/--
+@isnad1 id=iff.2h4v.s10.9d466286759c from=translated src=- shape=3f5d6736 vocab=65415038
+-/
 theorem main (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ) (δ : GL (Fin 2) L)
     (hδ : (δ : Matrix (Fin 2) (Fin 2) L) 1 0 = 0) :
     (∃ γ : GL (Fin 2) F, γ ∈ AutomorphicForm.unipotentCell F ∧
@@ -249,6 +276,9 @@ end Main
 
 end R4W1Fibre
 
+/--
+@isnad1 id=iff.2h4v.s10.9d466286759c from=translated src=- shape=3f5d6736 vocab=65415038
+-/
 theorem solution
     {F L : Type*} [Field F] [Field L] [Algebra F L] [FiniteDimensional F L] [IsGalois F L]
     {σ : L ≃ₐ[F] L} (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)

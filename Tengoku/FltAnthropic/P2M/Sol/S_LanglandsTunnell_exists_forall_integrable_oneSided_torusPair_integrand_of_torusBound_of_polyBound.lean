@@ -16,6 +16,9 @@ open MeasureTheory Set
 
 namespace FbInt4
 
+/--
+@isnad1 id=le.0h2v.s7.7ba3e6a506da from=translated src=- shape=fbd49d18 vocab=02d2a650
+-/
 lemma one_add_pow_mul_gauss_le (N : ℕ) (z : ℝ) :
     (1 + |z|) ^ N * Real.exp (-(Real.pi * z ^ 2))
       ≤ Real.exp ((N : ℝ) ^ 2 / (2 * Real.pi)) * Real.exp (-(Real.pi / 2) * z ^ 2) := by
@@ -43,6 +46,9 @@ lemma one_add_pow_mul_gauss_le (N : ℕ) (z : ℝ) :
     _ = Real.exp ((N : ℝ) ^ 2 / (2 * Real.pi)) * Real.exp (-(Real.pi / 2) * z ^ 2) := by
         rw [Real.exp_add]
 
+/--
+@isnad1 id=integrab.0h1v.s6.90f50879a0a5 from=translated src=- shape=af4ccc29 vocab=2e380a85
+-/
 lemma integrable_z (N : ℕ) :
     Integrable (fun z : ℝ => (1 + |z|) ^ N * Real.exp (-(Real.pi * z ^ 2))) := by
   have hpi := Real.pi_pos
@@ -55,6 +61,9 @@ lemma integrable_z (N : ℕ) :
   rw [Real.norm_eq_abs, abs_of_nonneg h0]
   exact one_add_pow_mul_gauss_le N z
 
+/--
+@isnad1 id=integrab.1h2v.s7.7dac7495ed16 from=translated src=- shape=f61befa7 vocab=27322354
+-/
 lemma gauss_poly_integrableOn (p : ℝ) (hp : -1 < p) (N : ℕ) :
     IntegrableOn (fun u : ℝ => u ^ p * (1 + u) ^ N * Real.exp (-(Real.pi * u ^ 2))) (Ioi 0) := by
   have hpi := Real.pi_pos
@@ -78,6 +87,9 @@ lemma gauss_poly_integrableOn (p : ℝ) (hp : -1 < p) (N : ℕ) :
         mul_le_mul_of_nonneg_left h (Real.rpow_nonneg hu0.le p)
     _ = _ := by ring
 
+/--
+@isnad1 id=ex.1h2v.s6.d2627cb3438c from=translated src=- shape=7c67e93b vocab=feb48b58
+-/
 lemma rpow_mul_exp_neg_div_sq_le (β c : ℝ) (hc : 0 < c) :
     ∃ C : ℝ, ∀ w : ℝ, 0 < w → w ≤ 1 → w ^ β * Real.exp (-(c / w ^ 2)) ≤ C := by
   obtain ⟨N, hN⟩ : ∃ N : ℕ, -β ≤ 2 * (N : ℝ) := ⟨Nat.ceil |β|, by
@@ -108,6 +120,9 @@ lemma rpow_mul_exp_neg_div_sq_le (β c : ℝ) (hc : 0 < c) :
         rw [div_pow, pow_mul]
         field_simp
 
+/--
+@isnad1 id=ex.0h2v.s7.1331dcdb6504 from=translated src=- shape=4dc74017 vocab=3775b0a6
+-/
 lemma k_bound (b : ℝ) (N : ℕ) :
     ∃ C₀ : ℝ, 0 ≤ C₀ ∧ ∀ s : ℝ, 0 < s →
       s ^ b * (1 + s⁻¹) ^ N * Real.exp (-(Real.pi * (s ^ 2)⁻¹)) ≤ C₀ * (1 + s ^ (max b 0)) := by
@@ -157,6 +172,9 @@ lemma k_bound (b : ℝ) (N : ℕ) :
           have h7 : 0 ≤ (2:ℝ) ^ N * C * s ^ (max b 0) := by positivity
           linarith
 
+/--
+@isnad1 id=integrab.1h2v.s7.d7cd3b683ad8 from=translated src=- shape=186da2d2 vocab=f9ab7a8d
+-/
 lemma integrableOn_y2 (c : ℝ) (hc : c < -1) (N : ℕ) :
     IntegrableOn (fun y : ℝ => y ^ c * (1 + y⁻¹) ^ N * Real.exp (-(Real.pi * (y ^ 2)⁻¹))) (Ioi 0) := by
   obtain ⟨C₀, hC0, hk⟩ := k_bound c N
@@ -202,6 +220,9 @@ lemma integrableOn_y2 (c : ℝ) (hc : c < -1) (N : ℕ) :
             gcongr
         _ = 2 ^ N * y ^ c := by ring
 
+/--
+@isnad1 id=integrab.1h3v.s8.3705d0de7639 from=translated src=- shape=4c76cacc vocab=310140df
+-/
 lemma integrable_ts (a b : ℝ) (N : ℕ) (ha : max b 0 < a) :
     Integrable (fun p : ℝ × ℝ =>
         p.1 ^ a * Real.exp (-(2 * Real.pi * p.1)) *
@@ -342,6 +363,9 @@ lemma integrable_ts (a b : ℝ) (N : ℕ) (ha : max b 0 < a) :
     rw [Real.norm_of_nonneg hnn]
     exact hJ t ht
 
+/--
+@isnad1 id=integrab.1h3v.s8.7f13998b1237 from=translated src=- shape=8c7acfb4 vocab=5afad8c9
+-/
 lemma integrable_ty (a b : ℝ) (N : ℕ) (ha : max b 0 < a) :
     Integrable (fun p : ℝ × ℝ =>
         p.1 ^ a * Real.exp (-(2 * Real.pi * p.1)) *
@@ -380,6 +404,9 @@ lemma integrable_ty (a b : ℝ) (N : ℕ) (ha : max b 0 < a) :
 
 end FbInt4
 
+/--
+@isnad1 id=ex.5h7v.s10.740f71f4719f from=translated src=- shape=b9efc5d7 vocab=31f154cc
+-/
 theorem solution
     (β : ℂ) (g : ℝ → ℂ) (hg : Measurable g) (Cg σg : ℝ) (hσg : 0 ≤ σg)
     (hgb : ∀ τ : ℝ, τ ≠ 0 → ‖g τ‖ ≤ Cg * (1 + |τ| ^ (-σg)))

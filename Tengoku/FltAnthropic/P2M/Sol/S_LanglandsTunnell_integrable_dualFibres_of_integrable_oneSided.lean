@@ -15,6 +15,9 @@ noncomputable section
 
 namespace K9F2
 
+/--
+@isnad1 id=iff.4h7v.s8.bdd360b2b152 from=translated src=- shape=5fb1433d vocab=50a5db91
+-/
 theorem integrable_prod_iff_of_fiber {Z E : Type*} [MeasurableSpace Z] {ν : Measure Z} [SFinite ν]
     [NormedAddCommGroup E] (ρ₁ ρ₂ : Measure ℝ) [SFinite ρ₁] [SFinite ρ₂] (F G : Z × ℝ → E)
     (hF : AEStronglyMeasurable F (ν.prod ρ₁)) (hG : AEStronglyMeasurable G (ν.prod ρ₂))
@@ -27,6 +30,9 @@ theorem integrable_prod_iff_of_fiber {Z E : Type*} [MeasurableSpace Z] {ν : Mea
 section OneDim
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
+/--
+@isnad1 id=and.1h3v.s8.53b298628c87 from=translated src=- shape=305e402b vocab=55ecc8cf
+-/
 theorem subst_negInv (c : ℝ) (hc : 0 < c) (g : ℝ → E) :
     (IntegrableOn g (Iio 0) ↔ IntegrableOn (fun y : ℝ => (c * y ^ 2)⁻¹ • g (-(c * y)⁻¹)) (Ioi 0)) ∧
     ((∫ x in Iio 0, g x) = ∫ y in Ioi 0, (c * y ^ 2)⁻¹ • g (-(c * y)⁻¹)) := by
@@ -69,6 +75,9 @@ theorem subst_negInv (c : ℝ) (hc : 0 < c) (g : ℝ → E) :
 
 end OneDim
 
+/--
+@isnad1 id=iff.3h4v.s8.b7025f518954 from=translated src=- shape=1fbb9b14 vocab=7ba175e6
+-/
 theorem integrable_iff_pullback_negInv {Z : Type*} [MeasurableSpace Z] (ν : Measure Z) [SFinite ν]
     (c : Z → ℝ) (hcm : Measurable c) (hc : ∀ᵐ z ∂ν, 0 < c z)
     (F : Z × ℝ → ℂ) (hF : Measurable F) :
@@ -98,6 +107,9 @@ namespace K9F2
 section OneDim'
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
+/--
+@isnad1 id=and.1h3v.s8.ff1f57a3b3ff from=translated src=- shape=305e402b vocab=55ecc8cf
+-/
 theorem subst_negInv' (c : ℝ) (hc : 0 < c) (g : ℝ → E) :
     (IntegrableOn g (Ioi 0) ↔ IntegrableOn (fun y : ℝ => (c * y ^ 2)⁻¹ • g (-(c * y)⁻¹)) (Iio 0)) ∧
     ((∫ x in Ioi 0, g x) = ∫ y in Iio 0, (c * y ^ 2)⁻¹ • g (-(c * y)⁻¹)) := by
@@ -141,6 +153,9 @@ theorem subst_negInv' (c : ℝ) (hc : 0 < c) (g : ℝ → E) :
 
 end OneDim'
 
+/--
+@isnad1 id=iff.3h4v.s8.4468a266dfd2 from=translated src=- shape=1fbb9b14 vocab=7ba175e6
+-/
 theorem integrable_iff_pullback_negInv' {Z : Type*} [MeasurableSpace Z] (ν : Measure Z) [SFinite ν]
     (c : Z → ℝ) (hcm : Measurable c) (hc : ∀ᵐ z ∂ν, 0 < c z)
     (F : Z × ℝ → ℂ) (hF : Measurable F) :
@@ -166,6 +181,9 @@ def sig : (α × β) × γ ≃ᵐ (α × γ) × β :=
   (MeasurableEquiv.prodAssoc.trans ((MeasurableEquiv.refl α).prodCongr MeasurableEquiv.prodComm)).trans
     MeasurableEquiv.prodAssoc.symm
 
+/--
+@isnad1 id=measurep.0h6v.s7.baed902c0df6 from=translated src=- shape=caba2e36 vocab=74991daf
+-/
 theorem measurePreserving_sig (μ : Measure α) (ν : Measure β) (ρ : Measure γ)
     [SFinite μ] [SFinite ν] [SFinite ρ] :
     MeasurePreserving (sig : (α × β) × γ ≃ᵐ (α × γ) × β) ((μ.prod ν).prod ρ) ((μ.prod ρ).prod ν) := by
@@ -182,6 +200,9 @@ def tau : α × β × γ ≃ᵐ (α × γ) × β :=
   ((MeasurableEquiv.refl α).prodCongr (MeasurableEquiv.prodComm : β × γ ≃ᵐ γ × β)).trans
     MeasurableEquiv.prodAssoc.symm
 
+/--
+@isnad1 id=measurep.0h6v.s7.fda077ef71b9 from=translated src=- shape=4d6b9265 vocab=d12a8f12
+-/
 theorem measurePreserving_tau (μ : Measure α) (ν : Measure β) (ρ : Measure γ)
     [SFinite μ] [SFinite ν] [SFinite ρ] :
     MeasurePreserving (tau : α × β × γ ≃ᵐ (α × γ) × β) (μ.prod (ν.prod ρ)) ((μ.prod ρ).prod ν) := by
@@ -192,6 +213,9 @@ theorem measurePreserving_tau (μ : Measure α) (ν : Measure β) (ρ : Measure 
       (μ.prod (ρ.prod ν)) ((μ.prod ρ).prod ν) := (measurePreserving_prodAssoc μ ρ ν).symm _
   exact h3.comp h2
 
+/--
+@isnad1 id=measurep.0h0v.s5.d3bf1fb5f7c8 from=translated src=- shape=d7174c6d vocab=1fe7cdd3
+-/
 theorem measurePreserving_neg_Iio_Ioi :
     MeasurePreserving (fun t : ℝ => -t) (volume.restrict (Iio (0:ℝ))) (volume.restrict (Ioi (0:ℝ))) := by
   have h := (Measure.measurePreserving_neg (volume : Measure ℝ)).restrict_preimage
@@ -201,6 +225,9 @@ theorem measurePreserving_neg_Iio_Ioi :
   rw [e] at h
   exact h
 
+/--
+@isnad1 id=measurep.0h0v.s5.76133f06f7dd from=translated src=- shape=d7174c6d vocab=1fe7cdd3
+-/
 theorem measurePreserving_neg_Ioi_Iio :
     MeasurePreserving (fun t : ℝ => -t) (volume.restrict (Ioi (0:ℝ))) (volume.restrict (Iio (0:ℝ))) := by
   have h := (Measure.measurePreserving_neg (volume : Measure ℝ)).restrict_preimage
@@ -213,6 +240,9 @@ theorem measurePreserving_neg_Ioi_Iio :
 local notation "μ₊" => Measure.restrict (volume : Measure ℝ) (Ioi (0:ℝ))
 local notation "μ₋" => Measure.restrict (volume : Measure ℝ) (Iio (0:ℝ))
 
+/--
+@isnad1 id=integrab.2h1v.s9.fa89e42cbd41 from=translated src=- shape=bd8bb5c8 vocab=6d1839a9
+-/
 theorem transport (H : ℝ × ℝ × ℝ → ℂ) (hH : Measurable H) (hI : Integrable H ((μ₊).prod ((μ₋).prod (μ₊)))) :
     Integrable (fun q : ℝ × ℝ × ℝ =>
         ((-q.1) * q.2.1 ^ 2)⁻¹ • ((1 * q.2.2 ^ 2)⁻¹ • H (-q.1, -((-q.1) * q.2.1)⁻¹, -(1 * q.2.2)⁻¹)))
@@ -269,6 +299,9 @@ def assoc4 : X × Y × Z × T ≃ᵐ (X × Y × Z) × T :=
   ((MeasurableEquiv.refl X).prodCongr (MeasurableEquiv.prodAssoc.symm : Y × Z × T ≃ᵐ (Y × Z) × T)).trans
     (MeasurableEquiv.prodAssoc.symm : X × (Y × Z) × T ≃ᵐ (X × Y × Z) × T)
 
+/--
+@isnad1 id=measurep.0h8v.s8.b57302f106a5 from=translated src=- shape=f3c3c816 vocab=6a66e62d
+-/
 theorem measurePreserving_assoc4 (μ : Measure X) (ν : Measure Y) (ρ : Measure Z) (τ : Measure T)
     [SFinite μ] [SFinite ν] [SFinite ρ] [SFinite τ] :
     MeasurePreserving (assoc4 : X × Y × Z × T ≃ᵐ (X × Y × Z) × T)
@@ -282,6 +315,9 @@ theorem measurePreserving_assoc4 (μ : Measure X) (ν : Measure Y) (ρ : Measure
     (MeasureTheory.measurePreserving_prodAssoc μ (ν.prod ρ) τ).symm _
   exact h2.comp h1
 
+/--
+@isnad1 id=integrab.1h10v.s8.9c76d0bb6faf from=translated src=- shape=c54b681c vocab=f6abf830
+-/
 theorem integrable_integral_inner4 (μ : Measure X) (ν : Measure Y) (ρ : Measure Z) (τ : Measure T)
     [SFinite μ] [SFinite ν] [SFinite ρ] [SFinite τ]
     (F : X × Y × Z × T → E) (hF : Integrable F (μ.prod (ν.prod (ρ.prod τ)))) :
@@ -302,6 +338,9 @@ local notation "μ₋" => Measure.restrict (volume : Measure ℝ) (Iio (0:ℝ))
 
 def Zi (m : ℕ) (c : ℝ) : ℂ := ∫ z : ℝ, (((c : ℝ) : ℂ) + Complex.I * (z : ℂ)) ^ m * (Real.exp (-(Real.pi * z ^ 2)) : ℂ)
 
+/--
+@isnad1 id=eq.0h2v.s5.1bef31764118 from=translated src=- shape=fbc03840 vocab=5401cdb4
+-/
 theorem Zi_neg (m : ℕ) (c : ℝ) : Zi m (-c) = (-1 : ℂ) ^ m * Zi m c := by
   unfold Zi
   rw [← integral_const_mul, ← integral_neg_eq_self]
@@ -310,6 +349,9 @@ theorem Zi_neg (m : ℕ) (c : ℝ) : Zi m (-c) = (-1 : ℂ) ^ m * Zi m c := by
   rw [neg_sq, show (-(c : ℂ) + Complex.I * -(z : ℂ)) = -(((c : ℂ)) + Complex.I * (z : ℂ)) by ring, neg_pow]
   ring
 
+/--
+@isnad1 id=measurab.0h1v.s3.691e2d8760c2 from=translated src=- shape=7000f90d vocab=a23a090e
+-/
 theorem measurable_Zi (m : ℕ) : Measurable (Zi m) := by
   have hc : Continuous (fun p : ℝ × ℝ => (((p.1 : ℝ) : ℂ) + Complex.I * (p.2 : ℂ)) ^ m * (Real.exp (-(Real.pi * p.2 ^ 2)) : ℂ)) := by
     fun_prop
@@ -332,9 +374,18 @@ def H3 (α' β' γ' : ℂ) (m : ℕ) (G : ℝ → ℂ) (br : ℝ × ℝ × ℝ �
 def brM (p : ℝ × ℝ × ℝ) : ℝ := p.2.1⁻¹ - p.2.2⁻¹ + p.1 * p.2.1
 def brP (p : ℝ × ℝ × ℝ) : ℝ := -p.2.1⁻¹ - p.2.2⁻¹ - p.1 * p.2.1
 
+/--
+@isnad1 id=measurab.0h0v.s4.30e9017ab148 from=translated src=- shape=a322c13f vocab=387d6156
+-/
 theorem measurable_brM : Measurable brM := by unfold brM; fun_prop
+/--
+@isnad1 id=measurab.0h0v.s4.d24eaa52fa22 from=translated src=- shape=a322c13f vocab=1537ba20
+-/
 theorem measurable_brP : Measurable brP := by unfold brP; fun_prop
 
+/--
+@isnad1 id=measurab.2h6v.s6.dfd7d06e249b from=translated src=- shape=691c5789 vocab=8f8e32c7
+-/
 theorem measurable_H3 (α' β' γ' : ℂ) (m : ℕ) (G : ℝ → ℂ) (hG : Measurable G) (br : ℝ × ℝ × ℝ → ℝ)
     (hbr : Measurable br) : Measurable (H3 α' β' γ' m G br) := by
   unfold H3
@@ -358,12 +409,21 @@ noncomputable section
 namespace K9F2
 open Real
 
+/--
+@isnad1 id=eq.1h2v.s5.11e49e1289fb from=translated src=- shape=53e068d8 vocab=7bdb064f
+-/
 theorem cpow_pos' (x : ℝ) (hx : 0 < x) (s : ℂ) : ((x : ℝ) : ℂ) ^ s = Complex.exp ((Real.log x : ℂ) * s) := by
   rw [Complex.cpow_def_of_ne_zero (Complex.ofReal_ne_zero.2 hx.ne'), Complex.ofReal_log hx.le]
 
+/--
+@isnad1 id=eq.1h1v.s4.609499df27b1 from=translated src=- shape=c546a62f vocab=95fa06e8
+-/
 theorem ofReal_pos' (x : ℝ) (hx : 0 < x) : ((x : ℝ) : ℂ) = Complex.exp (Real.log x : ℂ) := by
   rw [← Complex.ofReal_exp, Real.exp_log hx]
 
+/--
+@isnad1 id=eq.3h8v.s8.3a409937348a from=translated src=- shape=86e0ba86 vocab=98dd3ad9
+-/
 theorem powid_minus (τ Y v : ℝ) (hτ : 0 < τ) (hY : 0 < Y) (hv : 0 < v) (A₁ β γ w : ℂ) (n : ℕ) :
     ((v : ℝ) : ℂ) ^ (w + 1) * ((τ : ℝ) : ℂ) ^ A₁ * ((((-v)⁻¹ : ℝ)) : ℂ) ^ n * ((v : ℝ) : ℂ) ^ β * ((Y : ℝ) : ℂ) ^ γ =
       (-1 : ℂ) ^ n * (((τ * Y ^ 2)⁻¹ : ℝ) : ℂ) * ((((1 * (-v) ^ 2)⁻¹ : ℝ)) : ℂ) *
@@ -407,6 +467,9 @@ noncomputable section
 namespace K9F2
 open Real
 
+/--
+@isnad1 id=eq.3h8v.s8.e173b7132058 from=translated src=- shape=a0f11acb vocab=98dd3ad9
+-/
 theorem powid_plus (τ Y u : ℝ) (hτ : 0 < τ) (hY : 0 < Y) (hu : 0 < u) (A₁ β γ w : ℂ) (n : ℕ) :
     ((u : ℝ) : ℂ) ^ (w + 1) * ((τ : ℝ) : ℂ) ^ A₁ * (((u⁻¹ : ℝ)) : ℂ) ^ n * ((u : ℝ) : ℂ) ^ β * ((Y : ℝ) : ℂ) ^ γ =
       (((τ * Y ^ 2)⁻¹ : ℝ) : ℂ) * ((((1 * (-u) ^ 2)⁻¹ : ℝ)) : ℂ) *
@@ -434,6 +497,9 @@ theorem powid_plus (τ Y u : ℝ) (hτ : 0 < τ) (hY : 0 < Y) (hu : 0 < u) (A₁
   push_cast
   ring
 
+/--
+@isnad1 id=eq.3h8v.s8.bda290229075 from=translated src=- shape=d8206a1c vocab=e41f1084
+-/
 theorem powid_minus' (t Y u : ℝ) (ht : t < 0) (hY : 0 < Y) (hu : u < 0) (A₁ β γ w : ℂ) (n : ℕ) :
     ((|u| : ℝ) : ℂ) ^ (w + 1) * ((|t| : ℝ) : ℂ) ^ A₁ * (((u⁻¹ : ℝ)) : ℂ) ^ n * ((|u| : ℝ) : ℂ) ^ β * ((Y : ℝ) : ℂ) ^ γ =
       (-1 : ℂ) ^ n * ((((-t) * Y ^ 2)⁻¹ : ℝ) : ℂ) * ((((1 * u ^ 2)⁻¹ : ℝ)) : ℂ) *
@@ -450,6 +516,9 @@ theorem powid_minus' (t Y u : ℝ) (ht : t < 0) (hY : 0 < Y) (hu : u < 0) (A₁ 
   rw [e1, e2, e3, e4, e5, e6]
   exact powid_minus (-t) Y (-u) hτ hY hv A₁ β γ w n
 
+/--
+@isnad1 id=eq.3h8v.s8.313be1f93d35 from=translated src=- shape=5347d572 vocab=e41f1084
+-/
 theorem powid_plus' (t Y v : ℝ) (ht : t < 0) (hY : 0 < Y) (hv : v < 0) (A₁ β γ w : ℂ) (n : ℕ) :
     ((|-v| : ℝ) : ℂ) ^ (w + 1) * ((|t| : ℝ) : ℂ) ^ A₁ * ((((-v)⁻¹ : ℝ)) : ℂ) ^ n * ((|-v| : ℝ) : ℂ) ^ β * ((Y : ℝ) : ℂ) ^ γ =
       ((((-t) * Y ^ 2)⁻¹ : ℝ) : ℂ) * ((((1 * v ^ 2)⁻¹ : ℝ)) : ℂ) *
@@ -472,18 +541,27 @@ noncomputable section
 namespace K9F2
 open Real
 
+/--
+@isnad1 id=eq.2h2v.s6.38a5ce134dff from=translated src=- shape=8bc93c35 vocab=a8e1d347
+-/
 theorem S_of_neg (S : ℝ → ℂ) (hS : ∀ c : ℝ, 0 < c → ∀ y : ℝ, S (y / c) = S y) {u : ℝ} (hu : u < 0) :
     S u = S (-1) := by
   have h := hS (-u) (by linarith) u
   rw [div_neg, div_self hu.ne] at h
   exact h.symm
 
+/--
+@isnad1 id=eq.2h2v.s6.03f5a4cb1516 from=translated src=- shape=2834da7a vocab=0dad58ce
+-/
 theorem S_of_pos (S : ℝ → ℂ) (hS : ∀ c : ℝ, 0 < c → ∀ y : ℝ, S (y / c) = S y) {u : ℝ} (hu : 0 < u) :
     S u = S 1 := by
   have h := hS u hu u
   rw [div_self hu.ne'] at h
   exact h.symm
 
+/--
+@isnad1 id=eq.4h11v.s8.2a5a8f9fe570 from=translated src=- shape=ec541430 vocab=e161d794
+-/
 theorem pointwise_minus (A₁ β γ w : ℂ) (m n : ℕ) (S g : ℝ → ℂ)
     (hS : ∀ c : ℝ, 0 < c → ∀ y : ℝ, S (y / c) = S y)
     (t Y u : ℝ) (ht : t < 0) (hY : 0 < Y) (hu : u < 0) :
@@ -516,6 +594,9 @@ theorem pointwise_minus (A₁ β γ w : ℂ) (m n : ℕ) (S g : ℝ → ℂ)
   linear_combination ((Real.exp (-(2 * Real.pi * -t)) : ℂ) * S (-1) *
     (Real.exp (-(Real.pi * ((Y ^ 2)⁻¹ + t ^ 2 * Y ^ 2 + u ^ 2))) : ℂ) * g (u / Y) * Zi m (t * Y - Y⁻¹ + u)) * hb
 
+/--
+@isnad1 id=eq.4h11v.s8.db3ddc4c5ff1 from=translated src=- shape=d82e0fa7 vocab=437cc0c4
+-/
 theorem pointwise_plus (A₁ β γ w : ℂ) (m n : ℕ) (S g : ℝ → ℂ)
     (hS : ∀ c : ℝ, 0 < c → ∀ y : ℝ, S (y / c) = S y)
     (t Y v : ℝ) (ht : t < 0) (hY : 0 < Y) (hv : v < 0) :
@@ -564,6 +645,9 @@ open Real
 local notation "μ₊" => Measure.restrict (volume : Measure ℝ) (Ioi (0:ℝ))
 local notation "μ₋" => Measure.restrict (volume : Measure ℝ) (Iio (0:ℝ))
 
+/--
+@isnad1 id=eventual.0h0v.s7.1f2c8ecb70f7 from=translated src=- shape=deffa5c2 vocab=6ed56df4
+-/
 theorem ae3_neg : ∀ᵐ q : ℝ × ℝ × ℝ ∂((μ₋).prod ((μ₊).prod (μ₋))), q.1 < 0 ∧ 0 < q.2.1 ∧ q.2.2 < 0 := by
   have h1 : ∀ᵐ t : ℝ ∂(μ₋), t < 0 := ae_restrict_mem measurableSet_Iio
   have h2 : ∀ᵐ y : ℝ ∂(μ₊), 0 < y := ae_restrict_mem measurableSet_Ioi
@@ -571,6 +655,9 @@ theorem ae3_neg : ∀ᵐ q : ℝ × ℝ × ℝ ∂((μ₋).prod ((μ₊).prod (�
     ((Measure.quasiMeasurePreserving_fst).ae h2).and ((Measure.quasiMeasurePreserving_snd).ae h1)
   exact ((Measure.quasiMeasurePreserving_fst).ae h1).and ((Measure.quasiMeasurePreserving_snd).ae hB)
 
+/--
+@isnad1 id=eq.0h0v.s6.d2487a6a9ddd from=translated src=- shape=08ac6324 vocab=c7f17854
+-/
 theorem vol_eq_add : (volume : Measure ℝ) = (μ₋) + (μ₊) := by
   have hd : Disjoint (Iio (0:ℝ)) (Ioi 0) := Set.disjoint_left.2 fun x (h1 : x < 0) (h2 : 0 < x) => lt_irrefl x (h1.trans h2)
   rw [← Measure.restrict_union hd measurableSet_Ioi]
@@ -585,6 +672,9 @@ end K9F2
 end
 
 open K9F2 in
+/--
+@isnad1 id=and.5h8v.s11.59c8a75bc5b6 from=translated src=- shape=b1d6226d vocab=67513fc0
+-/
 theorem solution
     (A₁ β γ w : ℂ) (m n : ℕ) (S : ℝ → ℂ) (hS : ∀ c : ℝ, 0 < c → ∀ y : ℝ, S (y / c) = S y)
     (hSm : Measurable S) (g : ℝ → ℂ) (hg : Measurable g)

@@ -12,6 +12,9 @@ open Polynomial
 
 namespace GammaUniq
 
+/--
+@isnad1 id=injectiv.1h1v.s5.8aa10be15e5f from=translated src=- shape=0be63846 vocab=15d710c3
+-/
 theorem injective_rpow_neg (N : ℕ) (hN : 1 < N) : Function.Injective fun t : ℝ => (N : ℂ) ^ (-(t : ℂ)) := by
   have hN1 : (1 : ℝ) < (N : ℝ) := by exact_mod_cast hN
   intro t₁ t₂ ht
@@ -26,6 +29,9 @@ theorem injective_rpow_neg (N : ℕ) (hN : 1 < N) : Function.Injective fun t : �
   have := hmono.injective ht2
   linarith
 
+/--
+@isnad1 id=eq.4h9v.s8.f9ae6d880fa7 from=translated src=- shape=f8ea6739 vocab=e4d42fdc
+-/
 theorem poly_form_eq (N : ℕ) (hN : 1 < N) (S : Set ℝ) (hS : S.Infinite) (f : ℝ → ℂ)
     (P Q P' Q' : ℂ[X]) (m m' : ℤ)
     (h : ∀ t : ℝ, t ∈ S → f t * Q.eval ((N : ℂ) ^ (-(t : ℂ))) = (N : ℂ) ^ ((m : ℂ) * (t : ℂ)) * P.eval ((N : ℂ) ^ (-(t : ℂ))))
@@ -78,6 +84,9 @@ theorem poly_form_eq (N : ℕ) (hN : 1 < N) (S : Set ℝ) (hS : S.Infinite) (f :
   · rintro x ⟨t, ht, rfl⟩; exact hA t ht
   · exact hS.image (injective_rpow_neg N hN).injOn
 
+/--
+@isnad1 id=eq.3h8v.s8.231fbe3affd7 from=translated src=- shape=4478daa3 vocab=49e84773
+-/
 theorem eval_identity (N : ℕ) (hN : 1 < N) (A B : ℂ[X]) (i j : ℕ) (a b : ℤ) (hij : (i : ℤ) + a = (j : ℤ) + b)
     (h : Polynomial.X ^ i * A = Polynomial.X ^ j * B) (s : ℂ) :
     A.eval ((N : ℂ) ^ (-s)) * (N : ℂ) ^ ((a : ℂ) * s) = B.eval ((N : ℂ) ^ (-s)) * (N : ℂ) ^ ((b : ℂ) * s) := by
@@ -96,9 +105,15 @@ theorem eval_identity (N : ℕ) (hN : 1 < N) (A B : ℂ[X]) (i j : ℕ) (a b : �
     _ = B.eval ((N : ℂ) ^ (-s)) * (((N : ℂ) ^ (-s)) ^ j * (N : ℂ) ^ (((j : ℤ) + b : ℂ) * s)) := by ring
     _ = B.eval ((N : ℂ) ^ (-s)) * (N : ℂ) ^ ((b : ℂ) * s) := by rw [hj]
 
+/--
+@isnad1 id=eq.0h2v.s5.be9bc3805016 from=translated src=- shape=0a7075f1 vocab=be4f224e
+-/
 theorem toNat_sub_toNat (k l : ℤ) : (((k - l).toNat : ℤ)) - (((l - k).toNat : ℤ)) = k - l := by
   rw [show l - k = -(k - l) by ring]; exact Int.toNat_sub_toNat_neg (k - l)
 
+/--
+@isnad1 id=eq.10h23v.s9.24e7f4323fd3 from=translated src=- shape=82688a44 vocab=01337649
+-/
 theorem gamma_unique (N : ℕ) (hN : 1 < N) (Z Zd : ℂ → ℂ) (E : ℂ) (e : ℤ)
     (P Pd : ℂ[X]) (m md : ℤ) (σ₀ σ₁ : ℝ)
     (hZ : ∀ s : ℂ, σ₀ < s.re → Z s = (N : ℂ) ^ ((m : ℂ) * s) * P.eval ((N : ℂ) ^ (-s)))
@@ -178,6 +193,9 @@ theorem gamma_unique (N : ℕ) (hN : 1 < N) (Z Zd : ℂ → ℂ) (E : ℂ) (e : 
 
 end GammaUniq
 
+/--
+@isnad1 id=eq.10h23v.s9.24e7f4323fd3 from=translated src=- shape=82688a44 vocab=01337649
+-/
 theorem solution
     (N : ℕ) (hN : 1 < N) (Z Zd : ℂ → ℂ) (E : ℂ) (e : ℤ)
     (P Pd : Polynomial ℂ) (m md : ℤ) (σ₀ σ₁ : ℝ)

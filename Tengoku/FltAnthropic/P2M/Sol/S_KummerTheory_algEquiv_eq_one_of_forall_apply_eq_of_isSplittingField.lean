@@ -7,6 +7,9 @@ namespace P2MW.S_KummerTheory_algEquiv_eq_one_of_forall_apply_eq_of_isSplittingF
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.1h5v.s9.4f370aacf631 from=translated src=- shape=27430ab9 vocab=d654b7cd
+-/
 theorem solution (K L : Type*) [Field K] [Field L]
     [Algebra K L] {n : ℕ} (S : Finset Kˣ)
     [Polynomial.IsSplittingField K L (∏ u ∈ S, (Polynomial.X ^ n - Polynomial.C ((u : Kˣ) : K)))]

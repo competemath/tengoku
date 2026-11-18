@@ -13,6 +13,9 @@ open Complex
 set_option maxHeartbeats 4000000
 namespace HFR
 
+/--
+@isnad1 id=eq.0h4v.s7.070ce112da9c from=translated src=- shape=f70df386 vocab=73b285c9
+-/
 theorem add_add_pow (x y z : ℂ) (n : ℕ) :
     (x + y + z) ^ n = ∑ i ∈ Finset.range (n + 1), ∑ j ∈ Finset.range (n - i + 1),
       ((n.factorial : ℂ) / ((i.factorial : ℂ) * (j.factorial : ℂ) * ((n - i - j).factorial : ℂ))) *
@@ -40,6 +43,9 @@ theorem add_add_pow (x y z : ℂ) (n : ℕ) :
     rw [← h1c, ← h2c]; ring
   rw [← hcoef]; ring
 
+/--
+@isnad1 id=eq.1h5v.s7.1bd88d768a7e from=translated src=- shape=941f1619 vocab=967d326e
+-/
 theorem add_add_pow_cube (x y z : ℂ) (n N : ℕ) (hN : n < N) :
     (x + y + z) ^ n = ∑ i ∈ Finset.range N, ∑ j ∈ Finset.range N, ∑ l ∈ Finset.range N,
       if i + j + l = n then ((n.factorial : ℂ) / ((i.factorial : ℂ) * (j.factorial : ℂ) * (l.factorial : ℂ))) *
@@ -94,6 +100,9 @@ theorem add_add_pow_cube (x y z : ℂ) (n N : ℕ) (hN : n < N) :
   have hj' : j ≤ n - i := Nat.lt_succ_iff.mp (Finset.mem_range.mp hj)
   rw [ite_eq_left (by omega)]
 
+/--
+@isnad1 id=eq.0h7v.s9.f5cbd0b0f5c0 from=translated src=- shape=b87205e2 vocab=aa7e850d
+-/
 theorem bracket2_eq (i j l : ℕ) (a₃ ē : ZMod 2) (Fp Fm : ℂ) :
     (Fp * (-1 : ℂ) ^ (j + l) + (-1 : ℂ) ^ a₃.val * Fm * (-1 : ℂ) ^ (i + j) +
       (-1 : ℂ) ^ ē.val * Fm * (-1 : ℂ) ^ j + (-1 : ℂ) ^ ē.val * (-1 : ℂ) ^ a₃.val * Fp * (-1 : ℂ) ^ (i + j + l)) =
@@ -115,6 +124,9 @@ theorem bracket2_eq (i j l : ℕ) (a₃ ē : ZMod 2) (Fp Fm : ℂ) :
 
 end HFR
 
+/--
+@isnad1 id=eq.0h8v.s11.a9fa383a91c2 from=translated src=- shape=dca30c05 vocab=38c21e5d
+-/
 theorem solution
     (m : ℕ) (a₃ ē : ZMod 2) (Fp Fm u v w : ℂ) :
     (Fp * ∑ r ∈ Finset.range (m / 2 + 1),

@@ -19,23 +19,41 @@ open _root_.LanglandsTunnell.CubicInduction open _root_.LanglandsTunnell
 noncomputable def ofRealHom : ℝ →+* InfiniteAdeleRing ℚ :=
   RingHom.pi fun v => (InfinitePlace.Completion.ringEquivRealOfIsReal (IsTotallyReal.isReal v)).symm.toRingHom
 
+/--
+@isnad1 id=eq.0h1v.s5.7eca1c436e45 from=translated src=- shape=ef803f15 vocab=a20e0d70
+-/
 theorem ofRealHom_apply (r : ℝ) : ofRealHom r = StandardKernel.ofReal r := rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.b9546aad6ae6 from=translated src=- shape=df6fcc37 vocab=ead5f65d
+-/
 theorem realCoord_ofRealHom (r : ℝ) : StandardKernel.realCoord (ofRealHom r) = r := by
   rw [StandardKernel.realCoord_apply]
   show InfinitePlace.Completion.extensionEmbeddingOfIsReal Rat.isReal_infinitePlace
       ((InfinitePlace.Completion.ringEquivRealOfIsReal (IsTotallyReal.isReal Rat.infinitePlace)).symm r) = r
   exact (InfinitePlace.Completion.ringEquivRealOfIsReal Rat.isReal_infinitePlace).apply_symm_apply r
 
+/--
+@isnad1 id=eq.0h1v.s6.9e7595047f50 from=translated src=- shape=bbaba395 vocab=ead5f65d
+-/
 theorem ofRealHom_realCoord (x : InfiniteAdeleRing ℚ) : ofRealHom (StandardKernel.realCoord x) = x := by
   rw [ofRealHom_apply]; exact StandardKernel.ofReal_realCoord x
 
+/--
+@isnad1 id=injectiv.0h0v.s5.4e86c2c09a11 from=translated src=- shape=185df354 vocab=37e982a1
+-/
 theorem realCoord_injective : Function.Injective (StandardKernel.realCoord : InfiniteAdeleRing ℚ → ℝ) :=
   fun x y h => by rw [← ofRealHom_realCoord x, ← ofRealHom_realCoord y, h]
 
+/--
+@isnad1 id=eq.0h1v.s8.2f9bbb4a6e5b from=translated src=- shape=cfc5d8d3 vocab=4798b02e
+-/
 theorem archRealMat3_eq (e : Fin 3 → Fin 3 → ℝ) :
     WhittakerBlock.archRealMat3 e = archMatrixInclN (Fin 3) ℚ ((Matrix.of e).map ofRealHom) := rfl
 
+/--
+@isnad1 id=isunit.1h1v.s8.19b9b81fa0a0 from=translated src=- shape=a77a2d64 vocab=f47d08f6
+-/
 theorem isUnit_archRealMat3 {e : Fin 3 → Fin 3 → ℝ} (he : (Matrix.of e).det ≠ 0) :
     IsUnit (WhittakerBlock.archRealMat3 e) := by
   have hdet : IsUnit ((Matrix.of e).map ofRealHom) := by
@@ -44,16 +62,25 @@ theorem isUnit_archRealMat3 {e : Fin 3 → Fin 3 → ℝ} (he : (Matrix.of e).de
   rw [archRealMat3_eq]
   exact hdet.map (archMatrixInclHomN (Fin 3) ℚ)
 
+/--
+@isnad1 id=eq.1h1v.s8.d19d82c9834d from=translated src=- shape=5b5769f3 vocab=87b8d846
+-/
 theorem coe_archRealLift3 {e : Fin 3 → Fin 3 → ℝ} (he : (Matrix.of e).det ≠ 0) :
     (WhittakerBlock.archRealLift3 e : Matrix (Fin 3) (Fin 3) (AdeleRing (𝓞 ℚ) ℚ)) = WhittakerBlock.archRealMat3 e := by
   unfold WhittakerBlock.archRealLift3
   rw [dite_eq_left (isUnit_archRealMat3 he)]
   exact (isUnit_archRealMat3 he).unit_spec
 
+/--
+@isnad1 id=eq.0h3v.s6.cb0d34142fe5 from=translated src=- shape=b25d263e vocab=58d1ae61
+-/
 theorem fst_archRealMat3 (e : Fin 3 → Fin 3 → ℝ) (i j : Fin 3) :
     (WhittakerBlock.archRealMat3 e i j).1 = ofRealHom (e i j) := by
   rw [archRealMat3_eq, ← AdelicLevel.adeleArch_apply, adeleArch_archMatrixInclN]; rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.a05347389bd5 from=translated src=- shape=efc644b0 vocab=eca9b404
+-/
 theorem snd_archRealMat3 (e : Fin 3 → Fin 3 → ℝ) (i j : Fin 3) :
     (WhittakerBlock.archRealMat3 e i j).2 = (1 : Matrix (Fin 3) (Fin 3) (FiniteAdeleRing (𝓞 ℚ) ℚ)) i j := by
   rw [archRealMat3_eq, ← AdelicLevel.adeleFin_apply, adeleFin_archMatrixInclN]
@@ -62,6 +89,9 @@ end LanglandsTunnell.CubicInduction.ConjAsm
 
 open LanglandsTunnell.CubicInduction.ConjAsm in
 
+/--
+@isnad1 id=and.1h2v.s11.6fa94c21313c from=translated src=- shape=4900aa70 vocab=f4e62cb2
+-/
 theorem solution
     (g : AdelicGL 3 (𝓞 ℚ) ℚ) (m : Fin 3 → Fin 3 → ℝ) (hm : (Matrix.of m).det ≠ 0) :
     (AutomorphicForm.StandardKernel.realMat (archComponent3 (𝓞 ℚ) ℚ g)).det ≠ 0 ∧

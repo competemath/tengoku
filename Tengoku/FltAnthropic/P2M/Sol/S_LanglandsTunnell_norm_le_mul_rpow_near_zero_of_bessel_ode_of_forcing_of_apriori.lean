@@ -16,6 +16,9 @@ namespace Gap41
 
 open Real Set Filter Topology
 
+/--
+@isnad1 id=ex.4h6v.s8.b96fb1423828 from=translated src=- shape=05ec1071 vocab=cd1268b4
+-/
 theorem odeC (b : ℂ) (σ A : ℝ) (f h : ℝ → ℂ)
     (hf : DifferentiableOn ℝ f (Set.Ioi 0))
     (hh : ∀ y : ℝ, 0 < y → y ≤ 1 → ‖h y‖ ≤ A * y ^ σ)
@@ -126,6 +129,9 @@ theorem odeC (b : ℂ) (σ A : ℝ) (f h : ℝ → ℂ)
     _ = (‖f 1‖ + A' / ε) * (Real.exp (-(β * S)) * Real.exp ((c + ε) * S)) := by ring
     _ = (‖f 1‖ + A' / ε) * y ^ (min β σ - ε) := by rw [hpow]
 
+/--
+@isnad1 id=ex.5h7v.s8.9a870a6b3c6f from=translated src=- shape=2be45daa vocab=5ef47f24
+-/
 theorem gapC (b : ℂ) (m K r B : ℝ) (hr : b.re < r) (f u : ℝ → ℂ)
     (hf : DifferentiableOn ℝ f (Set.Ioi 0))
     (hu : ∀ y : ℝ, 0 < y → y ≤ 1 → ‖u y‖ ≤ K * y ^ m)
@@ -254,6 +260,9 @@ theorem gapC (b : ℂ) (m K r B : ℝ) (hr : b.re < r) (f u : ℝ → ℂ)
       _ ≤ Real.exp (-(β * s)) * (K' / (m - β) * Real.exp ((β - m) * s)) := by gcongr; exact hGs s hs0
       _ = K' / (m - β) * y ^ m := by rw [← hpow]; ring
 
+/--
+@isnad1 id=ex.6h8v.s9.656900e03915 from=translated src=- shape=8dda36f8 vocab=4dc87e64
+-/
 theorem twoTermAp (ν : ℂ) (σ A ρ B : ℝ) (f h : ℝ → ℂ)
     (hf : DifferentiableOn ℝ f (Set.Ioi 0)) (hf' : DifferentiableOn ℝ (deriv f) (Set.Ioi 0))
     (hh : ∀ y : ℝ, 0 < y → y ≤ 1 → ‖h y‖ ≤ A * y ^ σ)
@@ -317,6 +326,9 @@ theorem twoTermAp (ν : ℂ) (σ A ρ B : ℝ) (f h : ℝ → ℂ)
   rw [hre, hσ₂, ← min_assoc] at this
   exact this
 
+/--
+@isnad1 id=ex.8h10v.s9.52e00ec5dc38 from=translated src=- shape=210ab036 vocab=4dc87e64
+-/
 theorem round (ν : ℂ) (σ A r B ρ Bρ : ℝ) (hr : 1 / 2 - ν.re < r) (f h : ℝ → ℂ)
     (hf : DifferentiableOn ℝ f (Set.Ioi 0)) (hf' : DifferentiableOn ℝ (deriv f) (Set.Ioi 0))
     (hh : ∀ y : ℝ, 0 < y → y ≤ 1 → ‖h y‖ ≤ A * y ^ σ)
@@ -337,6 +349,9 @@ end Gap41
 
 open Gap41
 
+/--
+@isnad1 id=and.6h7v.s10.74305e4fbbef from=translated src=- shape=9ea53110 vocab=4dc87e64
+-/
 theorem solution
     (ν : ℂ) (hν : 0 ≤ ν.re) (σ A r B : ℝ) (f h : ℝ → ℂ)
     (hf : DifferentiableOn ℝ f (Set.Ioi 0)) (hf' : DifferentiableOn ℝ (deriv f) (Set.Ioi 0))

@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open MeasureTheory Set
 
+/--
+@isnad1 id=and.1h2v.s7.b955035788d6 from=translated src=- shape=19143957 vocab=708c9899
+-/
 theorem LanglandsTunnell.mellinConvergent_and_mellin_ofReal_pos_rpow_mul_exp_neg_mul_sq_add_inv_sq (b : ℝ) (hb : 0 < b) (N : ℝ) :
     (∀ s : ℂ, MellinConvergent (fun w : ℝ => ((w ^ N * Real.exp (-(b * (w ^ 2 + (w ^ 2)⁻¹))) : ℝ) : ℂ)) s) ∧
     ∀ x : ℝ, ∃ r : ℝ, 0 < r ∧

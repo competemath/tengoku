@@ -19,16 +19,25 @@ section General
 
 variable {R K : Type} [CommRing R] [Field K] [Algebra R K]
 
+/--
+@isnad1 id=eq.0h2v.s8.e6a9830d6600 from=translated src=- shape=e5eb1e34 vocab=4a0ae6d5
+-/
 theorem mul_self_eq (M : Matrix (Fin 2) (Fin 2) K) :
     M * M = M.trace • M - M.det • (1 : Matrix (Fin 2) (Fin 2) K) := by
   ext i j; fin_cases i <;> fin_cases j <;>
     simp [Matrix.mul_apply, Fin.sum_univ_two, Matrix.trace_fin_two, Matrix.det_fin_two] <;> ring
 
+/--
+@isnad1 id=eq.0h3v.s8.8e13566f1e3c from=translated src=- shape=5208c22a vocab=7f0b2bb5
+-/
 theorem mulVec_mulVec_self (M : Matrix (Fin 2) (Fin 2) K) (x : Fin 2 → K) :
     M *ᵥ (M *ᵥ x) = M.trace • (M *ᵥ x) - M.det • x := by
   rw [Matrix.mulVec_mulVec, mul_self_eq, Matrix.sub_mulVec, Matrix.smul_mulVec, Matrix.smul_mulVec,
     Matrix.one_mulVec]
 
+/--
+@isnad1 id=mem.1h5v.s9.3fd9e61f2679 from=translated src=- shape=74e015a7 vocab=b0671ce8
+-/
 theorem algebraMap_smul_mem (L : Submodule R (Fin 2 → K)) {x : Fin 2 → K} (hx : x ∈ L) (r : R) :
     algebraMap R K r • x ∈ L := by
   rw [algebraMap_smul]; exact L.smul_mem r hx
@@ -36,22 +45,34 @@ theorem algebraMap_smul_mem (L : Submodule R (Fin 2 → K)) {x : Fin 2 → K} (h
 def T (ϖ : R) (Y : Matrix (Fin 2) (Fin 2) R) (i : ℕ) : Matrix (Fin 2) (Fin 2) K :=
   algebraMap R K ϖ ^ i • Y.map (algebraMap R K)
 
+/--
+@isnad1 id=eq.0h5v.s7.41e53b030f5f from=translated src=- shape=ee093cf9 vocab=94e08b5f
+-/
 theorem trace_T (ϖ : R) (Y : Matrix (Fin 2) (Fin 2) R) (i : ℕ) :
     (T (K := K) ϖ Y i).trace = algebraMap R K (ϖ ^ i * Y.trace) := by
   simp only [T, Matrix.trace_fin_two, Matrix.smul_apply, Matrix.map_apply, map_add, map_mul, map_pow, smul_eq_mul]
   ring
 
+/--
+@isnad1 id=eq.0h5v.s7.29694e21a2b0 from=translated src=- shape=9ae582ef vocab=33a77572
+-/
 theorem det_T (ϖ : R) (Y : Matrix (Fin 2) (Fin 2) R) (i : ℕ) :
     (T (K := K) ϖ Y i).det = algebraMap R K (ϖ ^ (2 * i) * Y.det) := by
   simp only [T, Matrix.det_fin_two, Matrix.smul_apply, Matrix.map_apply, map_sub, map_mul, map_pow, smul_eq_mul]
   ring
 
+/--
+@isnad1 id=eq.0h5v.s7.2cb1304e3ab6 from=translated src=- shape=07e05143 vocab=5971e3a8
+-/
 theorem T_succ (ϖ : R) (Y : Matrix (Fin 2) (Fin 2) R) (i : ℕ) :
     T (K := K) ϖ Y (i + 1) = algebraMap R K ϖ • T ϖ Y i := by
   simp only [T, pow_succ, smul_smul, mul_comm]
 
 def dOne (ϖ : R) (Y : Matrix (Fin 2) (Fin 2) R) (i : ℕ) : R := 1 + ϖ ^ i * Y.trace + ϖ ^ (2 * i) * Y.det
 
+/--
+@isnad1 id=eq.0h5v.s8.176aee6ff34c from=translated src=- shape=07b5be32 vocab=62d84881
+-/
 theorem det_one_add_T (ϖ : R) (Y : Matrix (Fin 2) (Fin 2) R) (i : ℕ) :
     (1 + T (K := K) ϖ Y i).det = algebraMap R K (dOne ϖ Y i) := by
   simp only [T, dOne, Matrix.det_fin_two, Matrix.add_apply, Matrix.smul_apply, Matrix.map_apply,
@@ -59,6 +80,9 @@ theorem det_one_add_T (ϖ : R) (Y : Matrix (Fin 2) (Fin 2) R) (i : ℕ) :
     Matrix.trace_fin_two, map_add, map_mul, map_pow, map_sub, map_one, smul_eq_mul]
   ring
 
+/--
+@isnad1 id=mem.2h7v.s10.643404cbd169 from=translated src=- shape=68014273 vocab=38b67197
+-/
 theorem T_mulVec_T_mulVec_mem (ϖ : R) (Y : Matrix (Fin 2) (Fin 2) R) (i : ℕ) (L : Submodule R (Fin 2 → K))
     {x : Fin 2 → K} (hx : x ∈ L) (hTx : T ϖ Y i *ᵥ x ∈ L) : T ϖ Y i *ᵥ (T (K := K) ϖ Y i *ᵥ x) ∈ L := by
   rw [mulVec_mulVec_self, trace_T, det_T]
@@ -70,6 +94,9 @@ section DVR
 
 variable {R K : Type} [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [Field K] [Algebra R K] [IsFractionRing R K]
 
+/--
+@isnad1 id=isunit.2h4v.s6.fbf3588a1de6 from=translated src=- shape=0d669bc2 vocab=fe90f3ce
+-/
 theorem isUnit_dOne {ϖ : R} (hϖ : Irreducible ϖ) (Y : Matrix (Fin 2) (Fin 2) R) {i : ℕ} (hi : 1 ≤ i) :
     IsUnit (dOne ϖ Y i) := by
   have hmem : ϖ ∈ IsLocalRing.maximalIdeal R := by
@@ -84,6 +111,9 @@ theorem isUnit_dOne {ϖ : R} (hϖ : Irreducible ϖ) (Y : Matrix (Fin 2) (Fin 2) 
 
 omit [IsFractionRing R K] in
 
+/--
+@isnad1 id=eq.4h7v.s10.4931ffae7f3b from=translated src=- shape=2dcffc81 vocab=5e6ffbb9
+-/
 theorem latticeMap_eq_of_stable {ϖ : R} (hϖ : Irreducible ϖ) (Y : Matrix (Fin 2) (Fin 2) R) {i : ℕ} (hi : 1 ≤ i)
     (h : Matrix.GeneralLinearGroup (Fin 2) K) (hh : (h : Matrix (Fin 2) (Fin 2) K) = 1 + T ϖ Y i)
     (L : Submodule R (Fin 2 → K)) (hT : ∀ x ∈ L, T (K := K) ϖ Y i *ᵥ x ∈ L) : latticeMap h L = L := by
@@ -105,6 +135,9 @@ theorem latticeMap_eq_of_stable {ϖ : R} (hϖ : Irreducible ϖ) (Y : Matrix (Fin
     refine mem_latticeMap.mpr ⟨algebraMap R K ((u⁻¹ : Rˣ) : R) • y₀, algebraMap_smul_mem L hy₀L _, ?_⟩
     rw [Matrix.mulVec_smul, hHy₀, smul_smul, ← map_mul, ← hu, Units.inv_mul, map_one, one_smul]
 
+/--
+@isnad1 id=eq.4h5v.s8.2921458b0d44 from=translated src=- shape=7f1209f5 vocab=6a75c887
+-/
 theorem latticeMap_eq_of_homothetic {h : Matrix.GeneralLinearGroup (Fin 2) K} {d : R} (hd : IsUnit d)
     (hdet : (h : Matrix (Fin 2) (Fin 2) K).det = algebraMap R K d)
     {L : Submodule R (Fin 2 → K)} (hL : IsFullLattice L) (hhom : Homothetic (latticeMap h L) L) :
@@ -161,6 +194,9 @@ section Main
 
 variable {R K : Type} [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [Field K] [Algebra R K] [IsFractionRing R K]
 
+/--
+@isnad1 id=mem.6h8v.s10.e5311fa8086f from=translated src=- shape=2746567d vocab=f1e0c9fc
+-/
 theorem stable_of_isFixedVertex {ϖ : R} (hϖ : Irreducible ϖ) (Y : Matrix (Fin 2) (Fin 2) R) {i : ℕ} (hi : 1 ≤ i)
     (h : Matrix.GeneralLinearGroup (Fin 2) K) (hh : (h : Matrix (Fin 2) (Fin 2) K) = 1 + T ϖ Y i)
     {L : Submodule R (Fin 2 → K)} (hL : IsFullLattice L) (hfix : IsFixedVertex h (Vertex.mk R K L hL)) :
@@ -178,6 +214,9 @@ end Main
 end VAN3
 
 open VAN3 in
+/--
+@isnad1 id=eq.4h7v.s10.f5c73269b761 from=translated src=- shape=74a589f3 vocab=1fbb04b6
+-/
 theorem solution
     (R K : Type) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [Field K] [Algebra R K]
     [IsFractionRing R K] (ϖ : R) (hϖ : Irreducible ϖ)

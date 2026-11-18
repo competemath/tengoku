@@ -18,6 +18,9 @@ abbrev R3 := MvPolynomial (Fin 3) ℂ
 
 def cpt (x : Fin 3 → ℝ) : Fin 3 → ℂ := fun a => ((x a : ℝ) : ℂ)
 
+/--
+@isnad1 id=eq.1h4v.s8.6f0463232a0c from=translated src=- shape=21337c5c vocab=418601e9
+-/
 theorem eval_smul_of_isHomogeneous {p : R3} {ℓ : ℕ} (hp : p.IsHomogeneous ℓ) (r : ℂ)
     (u : Fin 3 → ℂ) : eval (r • u) p = r ^ ℓ * eval u p := by
   rw [eval_eq', eval_eq', Finset.mul_sum]
@@ -31,6 +34,9 @@ theorem eval_smul_of_isHomogeneous {p : R3} {ℓ : ℕ} (hp : p.IsHomogeneous �
     Finset.prod_pow_eq_pow_sum, hdeg]
   ring
 
+/--
+@isnad1 id=eq.2h3v.s8.ba456569db15 from=translated src=- shape=e2253221 vocab=12813515
+-/
 theorem eval_real_eq_zero {p : R3} {ℓ : ℕ} (hp : p.IsHomogeneous ℓ)
     (h : ∀ u : Fin 3 → ℝ, ∑ a : Fin 3, u a ^ 2 = 1 → eval (cpt u) p = 0)
     (x : Fin 3 → ℝ) : eval (cpt x) p = 0 := by
@@ -95,6 +101,9 @@ theorem eq_zero_of_eval_sphere {p : R3} {ℓ : ℕ} (hp : p.IsHomogeneous ℓ)
 
 abbrev V (ℓ : ℕ) : Submodule ℂ R3 := homogeneousSubmodule (Fin 3) ℂ ℓ
 
+/--
+@isnad1 id=finitedi.0h1v.s7.8c31a33aa4ec from=translated src=- shape=06267c3b vocab=01c4957a
+-/
 scoped instance V_fd (ℓ : ℕ) : FiniteDimensional ℂ (V ℓ) :=
   Submodule.finiteDimensional_of_le (S₂ := restrictTotalDegree (Fin 3) ℂ ℓ)
     (fun p hp => (mem_restrictTotalDegree _ _ _).mpr (IsHomogeneous.totalDegree_le hp))
@@ -106,10 +115,16 @@ def evL (pt : Fin 3 → ℂ) : R3 →ₗ[ℂ] ℂ where
 
 def F (ℓ : ℕ) (u : Fin 3 → ℝ) : Module.Dual ℂ (V ℓ) := (evL (cpt u)).comp (V ℓ).subtype
 
+/--
+@isnad1 id=eq.0h3v.s9.086a05a50bc5 from=translated src=- shape=cbd9fe79 vocab=48f07739
+-/
 theorem F_apply (ℓ : ℕ) (u : Fin 3 → ℝ) (v : V ℓ) : F ℓ u v = eval (cpt u) (v : R3) := rfl
 
 def sphere : Set (Fin 3 → ℝ) := {u | ∑ a : Fin 3, u a ^ 2 = 1}
 
+/--
+@isnad1 id=eq.0h1v.s11.4eafee341c44 from=translated src=- shape=a32c8ee3 vocab=77641253
+-/
 theorem span_F_eq_top (ℓ : ℕ) : Submodule.span ℂ (F ℓ '' sphere) = ⊤ := by
   set W : Submodule ℂ (Module.Dual ℂ (V ℓ)) := Submodule.span ℂ (F ℓ '' sphere) with hW
   have hco : W.dualCoannihilator = ⊥ := by
@@ -125,6 +140,9 @@ theorem span_F_eq_top (ℓ : ℕ) : Submodule.span ℂ (F ℓ '' sphere) = ⊤ :
   rw [hco, Submodule.dualAnnihilator_bot] at this
   exact this
 
+/--
+@isnad1 id=ex.0h2v.s8.abf0bbb02f81 from=translated src=- shape=0b91a823 vocab=29ba9c6f
+-/
 theorem main (ℓ : ℕ) (Λ : MvPolynomial (Fin 3) ℂ →ₗ[ℂ] ℂ) :
     ∃ (N : ℕ) (u : Fin N → Fin 3 → ℝ) (c : Fin N → ℂ),
       (∀ n : Fin N, ∑ a : Fin 3, u n a ^ 2 = 1) ∧
@@ -150,6 +168,9 @@ end WsC.ZS
 open scoped _root_.P2MW.S_LanglandsTunnell_CubicInduction_exists_sum_mul_eval_sphere_eq_of_isHomogeneous.WsC _root_.P2MW.S_LanglandsTunnell_CubicInduction_exists_sum_mul_eval_sphere_eq_of_isHomogeneous.WsC.ZS
 open scoped _root_.P2MW.S_LanglandsTunnell_CubicInduction_exists_sum_mul_eval_sphere_eq_of_isHomogeneous.WsC
 
+/--
+@isnad1 id=ex.0h2v.s8.abf0bbb02f81 from=translated src=- shape=0b91a823 vocab=29ba9c6f
+-/
 theorem solution
     (ℓ : ℕ) (Λ : MvPolynomial (Fin 3) ℂ →ₗ[ℂ] ℂ) :
     ∃ (N : ℕ) (u : Fin N → Fin 3 → ℝ) (c : Fin N → ℂ),

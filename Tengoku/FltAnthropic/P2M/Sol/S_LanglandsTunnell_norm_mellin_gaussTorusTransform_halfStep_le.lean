@@ -24,6 +24,9 @@ open Filter Topology
 
 namespace OcBoxRatio
 
+/--
+@isnad1 id=le.2h2v.s5.c1ead37a64b9 from=translated src=- shape=d0f4bb4d vocab=9ee72bad
+-/
 theorem rpow_le_two_rpow_abs {x s : ℝ} (h1 : 1 ≤ x) (h2 : x ≤ 2) : x ^ s ≤ (2:ℝ) ^ |s| := by
   rcases le_or_gt 0 s with hs | hs
   · rw [abs_of_nonneg hs]; exact Real.rpow_le_rpow (by linarith) h2 hs
@@ -31,6 +34,9 @@ theorem rpow_le_two_rpow_abs {x s : ℝ} (h1 : 1 ≤ x) (h2 : x ≤ 2) : x ^ s �
     calc x ^ s ≤ 1 := Real.rpow_le_one_of_one_le_of_nonpos h1 hs.le
       _ ≤ (2:ℝ) ^ (-s) := Real.one_le_rpow (by norm_num) (by linarith)
 
+/--
+@isnad1 id=le.3h4v.s6.fc070ba293e9 from=translated src=- shape=f24d5890 vocab=ed828d78
+-/
 theorem rpow_le_exp_mul_rpow {w ℓ : ℝ} (hw0 : 0 < w) (hlo : ℓ - 1 ≤ Real.log w) (hhi : Real.log w ≤ ℓ + 1) (α α' : ℝ) :
     w ^ α' ≤ Real.exp ((α' - α) * ℓ + |α' - α|) * w ^ α := by
   rw [show α' = α + (α' - α) by ring, Real.rpow_add hw0, mul_comm, show α + (α' - α) - α = α' - α by ring]
@@ -47,6 +53,9 @@ end OcBoxRatio
 
 namespace LanglandsTunnell export _root_.LanglandsTunnell (mellinConvergent_and_mellin_gaussTorusTransform_eq_Gamma_mul_Jintegral exists_forall_mul_integral_norm_tiltKernel_le_norm_integral exists_forall_mul_setIntegral_le_setIntegral_logBox_tiltKernel exists_forall_norm_Gamma_add_mul_I_le_mul_rpow_mul_norm_Gamma) end LanglandsTunnell
 open scoped _root_.LanglandsTunnell in
+/--
+@isnad1 id=le.6h9v.s10.945cb6949d9c from=translated src=- shape=f6f149f5 vocab=f6631703
+-/
 theorem LanglandsTunnell.tiltKernel_le_mul_tiltKernel_of_mem_logBox
     (a : ℝ) (ha : a ≠ 0) (y y' α β α' β' : ℝ) (hy : 0 ≤ y) (hy' : 0 ≤ y')
     (hθ : Real.exp (4 - 2 * ((1/3 : ℝ) * Real.log (y' / (Real.pi * |a|)))) ≤ 1)
@@ -111,6 +120,9 @@ theorem LanglandsTunnell.tiltKernel_le_mul_tiltKernel_of_mem_logBox
         rw [hXY]; ring
 
 open scoped _root_.LanglandsTunnell in
+/--
+@isnad1 id=le.11h11v.s9.8e5c8abe716c from=translated src=- shape=ccc03197 vocab=8ca39b30
+-/
 theorem LanglandsTunnell.halfStep_logBook
     (d Δα Δβ la lpa M₀ δ y y' u' lw' : ℝ)
     (hM₀ : 0 < M₀) (hδ : 0 < δ) (hy : 1 ≤ y) (hy' : 0 < y') (hlo : y / 2 ≤ y') (hhi : y' ≤ 2 * y)
@@ -187,6 +199,9 @@ theorem LanglandsTunnell.halfStep_logBook
     _ = δ := Real.exp_log hδ
 
 set_option maxHeartbeats 16000000 in
+/--
+@isnad1 id=ex.7h12v.s10.75480ca0bcf6 from=translated src=- shape=43077dcd vocab=bdeab61c
+-/
 theorem solution
     (a : ℝ) (ha : a ≠ 0) (p q κ C : ℂ) (hC : C ≠ 0) (p' q' C' : ℂ) (hpq' : (p' + q').re ≤ (p + q).re)
     (H H' H'' : ℝ → ℂ)

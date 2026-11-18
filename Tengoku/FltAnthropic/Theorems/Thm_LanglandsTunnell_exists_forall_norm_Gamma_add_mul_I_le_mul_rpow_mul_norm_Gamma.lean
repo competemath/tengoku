@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_LanglandsTunnell_exists_forall_norm_Gamma_
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.0h3v.s6.7cb46ffa8a48 from=translated src=- shape=a427e372 vocab=f81d3912
+-/
 theorem LanglandsTunnell.exists_forall_norm_Gamma_add_mul_I_le_mul_rpow_mul_norm_Gamma
     (d τ τ' : ℝ) :
     ∃ K R : ℝ, 0 < K ∧ ∀ y : ℝ, R ≤ y →

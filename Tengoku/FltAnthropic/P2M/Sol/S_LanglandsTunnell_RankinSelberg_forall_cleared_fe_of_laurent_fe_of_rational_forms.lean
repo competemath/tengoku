@@ -8,6 +8,9 @@ namespace P2MW.S_LanglandsTunnell_RankinSelberg_forall_cleared_fe_of_laurent_fe_
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.8h19v.s9.701eb431d238 from=translated src=- shape=398e16ed vocab=01337649
+-/
 theorem solution
     (q : ℕ) (hq : 1 < q) (Z Zd γ : ℂ → ℂ)
 

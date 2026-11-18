@@ -315,6 +315,9 @@ end LocalUnitCharacter
 
 open LanglandsTunnell.TateLocal in
 
+/--
+@isnad1 id=ex.2h5v.s12.37704432b7fc from=translated src=- shape=92c36e12 vocab=58564f6a
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K))
     (u₀ : (v.adicCompletion K)ˣ) (hu : Valued.v (u₀ : v.adicCompletion K) = 1) (hu₀ : u₀ ≠ 1)

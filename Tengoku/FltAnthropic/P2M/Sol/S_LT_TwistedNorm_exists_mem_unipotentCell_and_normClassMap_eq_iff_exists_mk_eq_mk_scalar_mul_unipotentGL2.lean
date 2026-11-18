@@ -17,12 +17,18 @@ section Poly
 
 variable {K : Type*} [Field K]
 
+/--
+@isnad1 id=eq.1h2v.s9.d243de818995 from=translated src=- shape=8f39729b vocab=3bcce2cb
+-/
 theorem charpoly_of_upper (M : Matrix (Fin 2) (Fin 2) K) (h : M 1 0 = 0) :
     M.charpoly = (X - C (M 0 0)) * (X - C (M 1 1)) := by
   rw [Matrix.charpoly_fin_two, Matrix.trace_fin_two, Matrix.det_fin_two, h, mul_zero, sub_zero,
     map_add, map_mul]
   ring
 
+/--
+@isnad1 id=and.1h3v.s8.e2d1fc3f7d04 from=translated src=- shape=989854ee vocab=684480e7
+-/
 theorem trace_det_of_charpoly_eq_sq (M : Matrix (Fin 2) (Fin 2) K) (a : K)
     (h : M.charpoly = (X - C a) ^ 2) : M.trace = a + a ∧ M.det = a * a := by
   rw [Matrix.charpoly_fin_two] at h
@@ -35,6 +41,9 @@ theorem trace_det_of_charpoly_eq_sq (M : Matrix (Fin 2) (Fin 2) K) (a : K)
   norm_num at h0 h1
   exact ⟨by linear_combination -h1, h0⟩
 
+/--
+@isnad1 id=isunipot.3h2v.s7.505ff46b2596 from=translated src=- shape=7dfb44a7 vocab=f966c33a
+-/
 theorem isUnipotentType_of_upper {M : Matrix (Fin 2) (Fin 2) K} (h10 : M 1 0 = 0)
     (hdiag : M 0 0 = M 1 1) (h01 : M 0 1 ≠ 0) : AutomorphicForm.IsUnipotentType M := by
   refine ⟨?_, M 0 0, ?_⟩
@@ -44,9 +53,15 @@ theorem isUnipotentType_of_upper {M : Matrix (Fin 2) (Fin 2) K} (h10 : M 1 0 = 0
     simp
   · rw [charpoly_of_upper M h10, ← hdiag, sq]
 
+/--
+@isnad1 id=eq.0h2v.s8.4944035660cf from=translated src=- shape=b89927ba vocab=caabfe88
+-/
 theorem det_std (a : K) : Matrix.det !![a, a; 0, a] = a * a := by
   simp [Matrix.det_fin_two]
 
+/--
+@isnad1 id=ex.1h2v.s9.26a3d4675b8f from=translated src=- shape=bef1e550 vocab=935116e4
+-/
 theorem exists_conj_eq_std_of_isUnipotentType (γ : GL (Fin 2) K)
     (hγ : AutomorphicForm.IsUnipotentType ((γ : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K)) :
     ∃ (a : K) (ha : a * a ≠ 0) (Q : GL (Fin 2) K),
@@ -79,6 +94,9 @@ section Galois
 variable {F L : Type*} [Field F] [Field L] [Algebra F L] [FiniteDimensional F L] [IsGalois F L]
   {σ : L ≃ₐ[F] L}
 
+/--
+@isnad1 id=eq.1h4v.s9.48cbeafa1a61 from=translated src=- shape=3a5ad46b vocab=a300b1d7
+-/
 theorem prod_range_iterate_eq_algebraMap_norm (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)
     (a : L) :
     ∏ i ∈ Finset.range (Module.finrank F L), (⇑σ)^[i] a = algebraMap F L (Algebra.norm F a) := by
@@ -86,6 +104,9 @@ theorem prod_range_iterate_eq_algebraMap_norm (hgen : ∀ τ : L ≃ₐ[F] L, τ
   refine Finset.prod_congr rfl fun i _ => ?_
   rw [AlgEquiv.coe_pow]
 
+/--
+@isnad1 id=eq.1h4v.s9.278b81df7e59 from=translated src=- shape=5c6316a4 vocab=0ede965e
+-/
 theorem sum_range_iterate_eq_algebraMap_trace (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)
     (b : L) :
     ∑ i ∈ Finset.range (Module.finrank F L), (⇑σ)^[i] b = algebraMap F L (Algebra.trace F L b) := by
@@ -99,6 +120,9 @@ theorem sum_range_iterate_eq_algebraMap_trace (hgen : ∀ τ : L ≃ₐ[F] L, τ
 
 omit [FiniteDimensional F L] [IsGalois F L] in
 
+/--
+@isnad1 id=eq.0h4v.s10.ce7263a96184 from=translated src=- shape=e675d080 vocab=38bcb141
+-/
 theorem map_map_algebraMap (γ : GL (Fin 2) F) :
     Matrix.GeneralLinearGroup.map (σ : L →+* L) (Matrix.GeneralLinearGroup.map (algebraMap F L) γ) =
       Matrix.GeneralLinearGroup.map (algebraMap F L) γ := by
@@ -112,6 +136,9 @@ section NormOfStandard
 
 variable {L : Type*} [Field L] (τ : L →+* L)
 
+/--
+@isnad1 id=eq.0h3v.s9.ea28b6428d19 from=translated src=- shape=f6fb4c8e vocab=66ba6faf
+-/
 theorem coe_scalar_mul_unipotentGL2 (ζ : Lˣ) (b : L) :
     ((Matrix.GeneralLinearGroup.scalar (Fin 2) ζ * AutomorphicForm.unipotentGL2 b : GL (Fin 2) L) :
         Matrix (Fin 2) (Fin 2) L) = !![(ζ : L), (ζ : L) * b; 0, (ζ : L)] := by
@@ -119,6 +146,9 @@ theorem coe_scalar_mul_unipotentGL2 (ζ : Lˣ) (b : L) :
   ext i j
   fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.0h5v.s10.bf684e028975 from=translated src=- shape=79afcab0 vocab=cec969bd
+-/
 theorem coe_iterate_map_scalar_mul_unipotentGL2 (ζ : Lˣ) (b : L) (k : ℕ) :
     (((Matrix.GeneralLinearGroup.map (n := Fin 2) τ)^[k]
         (Matrix.GeneralLinearGroup.scalar (Fin 2) ζ * AutomorphicForm.unipotentGL2 b) : GL (Fin 2) L) :
@@ -136,6 +166,9 @@ theorem coe_iterate_map_scalar_mul_unipotentGL2 (ζ : Lˣ) (b : L) (k : ℕ) :
     rw [← RingHom.coe_pow, map_zero]
   · rfl
 
+/--
+@isnad1 id=eq.0h5v.s10.7e3754678eff from=translated src=- shape=0fbc8b75 vocab=f13f7665
+-/
 theorem coe_sigmaPartialNorm_scalar_mul_unipotentGL2 (ζ : Lˣ) (b : L) (r : ℕ) :
     ((sigmaPartialNorm (Matrix.GeneralLinearGroup.map τ)
         (Matrix.GeneralLinearGroup.scalar (Fin 2) ζ * AutomorphicForm.unipotentGL2 b) r : GL (Fin 2) L) :
@@ -162,6 +195,9 @@ section Main
 variable {F L : Type*} [Field F] [Field L] [Algebra F L] [FiniteDimensional F L] [IsGalois F L]
   {σ : L ≃ₐ[F] L}
 
+/--
+@isnad1 id=eq.1h5v.s11.2ccd31639c97 from=translated src=- shape=cd8940bc vocab=34a40651
+-/
 theorem coe_sigmaNormPow_scalar_mul_unipotentGL2 (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)
     (ζ : Lˣ) (b : L) :
     ((sigmaNormPow (Matrix.GeneralLinearGroup.map (σ : L →+* L)) (Module.finrank F L)
@@ -177,6 +213,9 @@ theorem coe_sigmaNormPow_scalar_mul_unipotentGL2 (hgen : ∀ τ : L ≃ₐ[F] L,
       algebraMap F L (Algebra.trace F L b) := sum_range_iterate_eq_algebraMap_trace hgen _
   rw [e1, e2]
 
+/--
+@isnad1 id=isnormre.2h5v.s9.e3485080e446 from=translated src=- shape=00d23ba7 vocab=791186c3
+-/
 theorem isNormRep_of_normClassMap_eq (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)
     {δ : GL (Fin 2) L} {γ : GL (Fin 2) F}
     (h : normClassMap hgen (SigmaConjClasses.mk σ δ) = ConjClasses.mk γ) : IsNormRep σ γ δ := by
@@ -189,6 +228,9 @@ theorem isNormRep_of_normClassMap_eq (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subg
 
 omit [FiniteDimensional F L] [IsGalois F L] in
 
+/--
+@isnad1 id=isnormre.1h6v.s9.74a4c7918cbd from=translated src=- shape=b02f6bde vocab=fb496b25
+-/
 theorem isNormRep_conj {δ : GL (Fin 2) L} {γ : GL (Fin 2) F} (h : IsNormRep σ γ δ)
     (Q : GL (Fin 2) F) : IsNormRep σ (Q⁻¹ * γ * Q) δ := by
   obtain ⟨P, hP⟩ := h
@@ -196,6 +238,9 @@ theorem isNormRep_conj {δ : GL (Fin 2) L} {γ : GL (Fin 2) F} (h : IsNormRep σ
   rw [map_mul, map_mul, map_inv, ← hP]
   group
 
+/--
+@isnad1 id=eq.2h6v.s12.26db1b0edfd2 from=translated src=- shape=e419276d vocab=9179946a
+-/
 theorem commute_of_isNormRep (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)
     {δ : GL (Fin 2) L} {γ : GL (Fin 2) F} {P : GL (Fin 2) L}
     (hP : P⁻¹ * sigmaNormPow (Matrix.GeneralLinearGroup.map (σ : L →+* L)) (Module.finrank F L) δ * P
@@ -217,6 +262,9 @@ theorem commute_of_isNormRep (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpo
       = δ' * (δ'⁻¹ * Matrix.GeneralLinearGroup.map (algebraMap F L) γ * δ') := by rw [← hmap]
     _ = Matrix.GeneralLinearGroup.map (algebraMap F L) γ * δ' := by group
 
+/--
+@isnad1 id=ex.2h3v.s10.31bf83503ae7 from=translated src=- shape=90b97d65 vocab=66ba6faf
+-/
 theorem exists_eq_scalar_mul_unipotentGL2_of_commute {a : L} (ha : a ≠ 0) (g : GL (Fin 2) L)
     (h : ((g : GL (Fin 2) L) : Matrix (Fin 2) (Fin 2) L) * !![a, a; 0, a] =
       !![a, a; 0, a] * ((g : GL (Fin 2) L) : Matrix (Fin 2) (Fin 2) L)) :
@@ -249,9 +297,15 @@ theorem exists_eq_scalar_mul_unipotentGL2_of_commute {a : L} (ha : a ≠ 0) (g :
   · simp [h10]
   · simp [hdiag]
 
+/--
+@isnad1 id=eq.0h3v.s8.cf27b37a24af from=translated src=- shape=c7c3a526 vocab=caabfe88
+-/
 theorem det_ratStd (n t : F) : Matrix.det !![n, n * t; 0, n] = n * n := by
   simp [Matrix.det_fin_two]
 
+/--
+@isnad1 id=ex.3h5v.s10.98f0f06e0943 from=translated src=- shape=1d027d9f vocab=60490d05
+-/
 theorem forward (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ) (δ : GL (Fin 2) L)
     (γ : GL (Fin 2) F) (hγ : γ ∈ AutomorphicForm.unipotentCell F)
     (hclass : normClassMap hgen (SigmaConjClasses.mk σ δ) = ConjClasses.mk γ) :
@@ -310,6 +364,9 @@ theorem forward (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ) (δ 
   rw [SigmaConjClasses.mk_eq_mk_iff_exists_eq_inv_mul_mul_map, ← hζb]
   exact ⟨P, rfl⟩
 
+/--
+@isnad1 id=ex.3h6v.s10.1e2142593ad9 from=translated src=- shape=b0fa78cc vocab=60490d05
+-/
 theorem backward (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ) (δ : GL (Fin 2) L)
     (ζ : Lˣ) (b : L) (hb : Algebra.trace F L b ≠ 0)
     (hclass : SigmaConjClasses.mk σ δ =
@@ -339,6 +396,9 @@ theorem backward (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ) (δ
     rw [Matrix.GeneralLinearGroup.map_apply]
     fin_cases i <;> fin_cases j <;> simp [hγ₀, Matrix.GeneralLinearGroup.mkOfDetNeZero, hn, ht]
 
+/--
+@isnad1 id=iff.1h4v.s10.73e5b23d62f7 from=translated src=- shape=62c3fb22 vocab=60490d05
+-/
 theorem main (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ) (δ : GL (Fin 2) L) :
     (∃ γ : GL (Fin 2) F, γ ∈ AutomorphicForm.unipotentCell F ∧
         normClassMap hgen (SigmaConjClasses.mk σ δ) = ConjClasses.mk γ) ↔
@@ -357,6 +417,9 @@ end Main
 
 end R4UniCls
 
+/--
+@isnad1 id=iff.1h4v.s10.73e5b23d62f7 from=translated src=- shape=62c3fb22 vocab=60490d05
+-/
 theorem solution
     {F L : Type*} [Field F] [Field L] [Algebra F L] [FiniteDimensional F L] [IsGalois F L]
     {σ : L ≃ₐ[F] L} (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)

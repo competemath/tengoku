@@ -20,11 +20,17 @@ variable {K L : Type*} [Field K] [Field L] [Algebra K L]
 
 open Matrix
 
+/--
+@isnad1 id=eq.0h6v.s9.84d2c39d8331 from=translated src=- shape=e67dd1b7 vocab=acf132d0
+-/
 theorem coe_map_apply (σ : L ≃ₐ[K] L) (g : GL (Fin 2) L) (i j : Fin 2) :
     ((Matrix.GeneralLinearGroup.map (σ : L →+* L) g : GL (Fin 2) L) : Matrix (Fin 2) (Fin 2) L) i j =
       σ ((g : Matrix (Fin 2) (Fin 2) L) i j) :=
   Matrix.GeneralLinearGroup.map_apply _ _ _ _
 
+/--
+@isnad1 id=iff.0h3v.s9.8b09fd19ac65 from=translated src=- shape=eb83c161 vocab=3f06cb94
+-/
 theorem inv_mul_mem_center_iff (t X : GL (Fin 2) L) :
     t⁻¹ * X ∈ Subgroup.center (GL (Fin 2) L) ↔
       ∃ c : L, (X : Matrix (Fin 2) (Fin 2) L) = c • (t : Matrix (Fin 2) (Fin 2) L) := by
@@ -45,6 +51,9 @@ theorem inv_mul_mem_center_iff (t X : GL (Fin 2) L) :
     change Matrix.scalar (Fin 2) c = ((t⁻¹ : GL (Fin 2) L) : Matrix (Fin 2) (Fin 2) L) * (X : Matrix (Fin 2) (Fin 2) L)
     rw [hc, Matrix.mul_smul, Units.inv_mul, hs]
 
+/--
+@isnad1 id=iff.0h6v.s11.31a1dbfabdbf from=translated src=- shape=9cc32cfe vocab=1873e721
+-/
 theorem coe_mul_mul_inv_eq_smul_iff (σ : L ≃ₐ[K] L) (γ t : GL (Fin 2) L) (c : L) :
     ((γ * t * (Matrix.GeneralLinearGroup.map (σ : L →+* L) γ)⁻¹ : GL (Fin 2) L) : Matrix (Fin 2) (Fin 2) L) =
         c • (t : Matrix (Fin 2) (Fin 2) L) ↔
@@ -62,6 +71,9 @@ theorem coe_mul_mul_inv_eq_smul_iff (σ : L ≃ₐ[K] L) (γ t : GL (Fin 2) L) (
   · intro h
     rw [Units.val_mul, Units.val_mul, h, Matrix.smul_mul, mul_assoc, Units.mul_inv, mul_one]
 
+/--
+@isnad1 id=iff.2h6v.s11.e4e31e86dfd5 from=translated src=- shape=8e118f68 vocab=ece5d30c
+-/
 theorem mul_eq_smul_mul_iff (σ : L ≃ₐ[K] L) (γ t : GL (Fin 2) L) (c : L)
     (h10 : (t : Matrix (Fin 2) (Fin 2) L) 1 0 = 0) (h01 : (t : Matrix (Fin 2) (Fin 2) L) 0 1 = 0) :
     (γ : Matrix (Fin 2) (Fin 2) L) * (t : Matrix (Fin 2) (Fin 2) L) =
@@ -80,6 +92,9 @@ theorem mul_eq_smul_mul_iff (σ : L ≃ₐ[K] L) (γ t : GL (Fin 2) L) (c : L)
     coe_map_apply, h10, h01, mul_zero, zero_mul, add_zero, zero_add]
   tauto
 
+/--
+@isnad1 id=eq.1h4v.s8.fa5e23cdd978 from=translated src=- shape=412efb7b vocab=10a88575
+-/
 theorem norm_div [FiniteDimensional K L] (x y : L) (hy : y ≠ 0) :
     Algebra.norm K (x / y) = Algebra.norm K x / Algebra.norm K y := by
   have hNy : Algebra.norm K y ≠ 0 := Algebra.norm_ne_zero_iff.mpr hy
@@ -88,6 +103,9 @@ theorem norm_div [FiniteDimensional K L] (x y : L) (hy : y ≠ 0) :
 end LT.TwistedNorm.SatStabProof
 
 open LT.TwistedNorm.SatStabProof in
+/--
+@isnad1 id=and.4h4v.s12.f9a1a8de1037 from=translated src=- shape=b9206755 vocab=d52e5fdc
+-/
 theorem solution
     {K L : Type*} [Field K] [Field L] [Algebra K L] [FiniteDimensional K L] [IsGalois K L]
     {σ : L ≃ₐ[K] L} (hgen : ∀ τ : L ≃ₐ[K] L, τ ∈ Subgroup.zpowers σ) (t : GL (Fin 2) L)

@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open scoped Real
 
+/--
+@isnad1 id=eq.3h5v.s10.a65fcf154253 from=translated src=- shape=61a33a09 vocab=3899394c
+-/
 theorem LanglandsTunnell.lowering_principal_profile_sum_eq (u₁ u₂ : ℂ) (c : ℂ) (hc : c = (u₁ + u₂) / 2)
     (f : ℝ → ℂ)
     (hf : ∀ y : ℝ, f y =

@@ -22,15 +22,24 @@ def re : 𝔸 →+* ℝ :=
     (Pi.evalRingHom (fun v : InfinitePlace ℚ => v.Completion) Rat.infinitePlace)).comp
     (RingHom.fst (InfiniteAdeleRing ℚ) 𝔸f)
 
+/--
+@isnad1 id=eq.0h1v.s8.f54f6aed8b76 from=translated src=- shape=34e4f87b vocab=a62e78ed
+-/
 theorem re_apply (x : 𝔸) :
     re x = InfinitePlace.Completion.extensionEmbeddingOfIsReal Rat.isReal_infinitePlace (x.1 Rat.infinitePlace) :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.24d1a2f95d3f from=translated src=- shape=1ec8cecd vocab=bd741dc9
+-/
 theorem abs_re (x : 𝔸) : |re x| = ‖x.1 Rat.infinitePlace‖ := by
   rw [re_apply, ← Real.norm_eq_abs]
   exact Isometry.norm_map_of_map_zero
     (InfinitePlace.Completion.isometry_extensionEmbeddingOfIsReal Rat.isReal_infinitePlace) (map_zero _) _
 
+/--
+@isnad1 id=eq.0h1v.s8.bea29444b2ab from=translated src=- shape=a7d60eca vocab=35794f4f
+-/
 theorem re_algebraMap (q : ℚ) : re (algebraMap ℚ 𝔸 q) = q :=
   eq_ratCast (re.comp (algebraMap ℚ 𝔸)) q
 
@@ -38,21 +47,33 @@ section Finite
 
 variable (v : HeightOneSpectrum (𝓞 ℚ))
 
+/--
+@isnad1 id=iff.0h2v.s7.c2469e46f5be from=translated src=- shape=a32090aa vocab=1fdc115f
+-/
 theorem norm_le_one_iff_mem (x : v.adicCompletion ℚ) : ‖x‖ ≤ 1 ↔ x ∈ v.adicCompletionIntegers ℚ := by
   rw [HeightOneSpectrum.mem_adicCompletionIntegers, FinitePlace.norm_def, ← NNReal.coe_one, NNReal.coe_le_coe,
     WithZeroMulInt.toNNReal_le_one_iff (HeightOneSpectrum.one_lt_absNorm_nnreal v)]
 
+/--
+@isnad1 id=eq.1h2v.s8.81569b04ad72 from=translated src=- shape=e98915c8 vocab=49a516fb
+-/
 theorem norm_eq_one_of_valued_eq_one {x : v.adicCompletion ℚ} (hx : Valued.v x = 1) : ‖x‖ = 1 := by
   rw [FinitePlace.norm_def, hx, map_one, NNReal.coe_one]
 
 variable {v}
 
+/--
+@isnad1 id=le.0h4v.s9.9400695ed1f8 from=translated src=- shape=2448f918 vocab=e831f326
+-/
 theorem nnnorm_inv_apply_le_matrixSupSize (k : GL (Fin 3) (v.adicCompletion ℚ)) (i j : Fin 3) :
     ‖((k⁻¹ : GL (Fin 3) (v.adicCompletion ℚ)) : Matrix (Fin 3) (Fin 3) (v.adicCompletion ℚ)) i j‖₊ ≤
       matrixSupSize k := by
   unfold matrixSupSize
   exact Finset.le_sup_of_le (Finset.mem_univ (i, j)) (le_max_right _ _)
 
+/--
+@isnad1 id=eq.2h2v.s10.487d7bf8ce88 from=translated src=- shape=047656a8 vocab=ab948b5f
+-/
 theorem matrixSupSize_eq_one_of_integral (k : GL (Fin 3) (v.adicCompletion ℚ))
     (hk : ∀ i j, (k : Matrix (Fin 3) (Fin 3) (v.adicCompletion ℚ)) i j ∈ v.adicCompletionIntegers ℚ)
     (hk' : ∀ i j, ((k⁻¹ : GL (Fin 3) (v.adicCompletion ℚ)) : Matrix (Fin 3) (Fin 3) (v.adicCompletion ℚ)) i j ∈
@@ -106,11 +127,17 @@ section Global
 
 variable (g : AdelicGL 3 (𝓞 ℚ) ℚ)
 
+/--
+@isnad1 id=eq.0h4v.s10.7097324ff487 from=translated src=- shape=8b57d322 vocab=c746fb6e
+-/
 theorem componentAt3_coe_apply (w : HeightOneSpectrum (𝓞 ℚ)) (i j : Fin 3) :
     ((componentAt3 (𝓞 ℚ) ℚ w g : GL (Fin 3) (w.adicCompletion ℚ)) :
         Matrix (Fin 3) (Fin 3) (w.adicCompletion ℚ)) i j =
       ((g : Matrix (Fin 3) (Fin 3) 𝔸) i j).2 w := rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.0947b2968ceb from=translated src=- shape=7be60ade vocab=0cbacd3f
+-/
 theorem componentAt3_inv_coe_apply (w : HeightOneSpectrum (𝓞 ℚ)) (i j : Fin 3) :
     (((componentAt3 (𝓞 ℚ) ℚ w g)⁻¹ : GL (Fin 3) (w.adicCompletion ℚ)) :
         Matrix (Fin 3) (Fin 3) (w.adicCompletion ℚ)) i j =
@@ -118,14 +145,23 @@ theorem componentAt3_inv_coe_apply (w : HeightOneSpectrum (𝓞 ℚ)) (i j : Fin
   rw [← map_inv]
   rfl
 
+/--
+@isnad1 id=finite.0h1v.s7.8289b63bf26a from=translated src=- shape=27e4ec11 vocab=ed1e1b9c
+-/
 theorem finite_setOf_not_mem_integers (x : 𝔸f) :
     {w : HeightOneSpectrum (𝓞 ℚ) | x w ∉ w.adicCompletionIntegers ℚ}.Finite :=
   Filter.eventually_cofinite.1 x.2
 
 def localSize (w : HeightOneSpectrum (𝓞 ℚ)) : ℝ := ((matrixSupSize (componentAt3 (𝓞 ℚ) ℚ w g) : ℝ≥0) : ℝ)
 
+/--
+@isnad1 id=eq.0h1v.s5.62ffe0d9ebe4 from=translated src=- shape=6c684eb5 vocab=80b287ef
+-/
 theorem finGauge3_eq : finGauge3 ℚ g = ∏ᶠ w, localSize g w := rfl
 
+/--
+@isnad1 id=hasfinit.0h1v.s5.d4b0546d62e9 from=translated src=- shape=90afa7a9 vocab=6ae1321f
+-/
 theorem hasFiniteMulSupport_localSize : (localSize g).HasFiniteMulSupport := by
   refine Set.Finite.subset (Set.finite_iUnion fun i : Fin 3 => Set.finite_iUnion fun j : Fin 3 =>
     (finite_setOf_not_mem_integers ((g : Matrix (Fin 3) (Fin 3) 𝔸) i j).2).union
@@ -141,8 +177,14 @@ theorem hasFiniteMulSupport_localSize : (localSize g).HasFiniteMulSupport := by
   · rw [componentAt3_inv_coe_apply]
     exact (hmem i j).2
 
+/--
+@isnad1 id=le.0h2v.s5.b82787493f9b from=translated src=- shape=3b2ba010 vocab=c410023a
+-/
 theorem localSize_nonneg (w : HeightOneSpectrum (𝓞 ℚ)) : 0 ≤ localSize g w := NNReal.coe_nonneg _
 
+/--
+@isnad1 id=le.0h1v.s5.8e4b20628858 from=translated src=- shape=47be7570 vocab=45c8601f
+-/
 theorem finGauge3_nonneg : 0 ≤ finGauge3 ℚ g := finprod_nonneg fun w => localSize_nonneg g w
 
 end Global
@@ -155,15 +197,24 @@ def diag : Fin 3 → 𝔸 := fun i => algebraMap ℚ 𝔸 (ξ i)
 
 def eta : Fin 3 → 𝔸 := Matrix.vecMul (diag ξ) (g : Matrix (Fin 3) (Fin 3) 𝔸)
 
+/--
+@isnad1 id=eq.0h2v.s8.00cb6a1cea0a from=translated src=- shape=2c0f0219 vocab=28b99ea9
+-/
 theorem diag_eq_vecMul_eta : diag ξ = Matrix.vecMul (eta g ξ) ((g⁻¹ : AdelicGL 3 (𝓞 ℚ) ℚ) : Matrix (Fin 3) (Fin 3) 𝔸) := by
   unfold eta
   rw [Matrix.vecMul_vecMul, ← Units.val_mul, mul_inv_cancel, Units.val_one, Matrix.vecMul_one]
 
+/--
+@isnad1 id=eq.0h3v.s9.c3ddd2dafdd9 from=translated src=- shape=1aeafa72 vocab=bd1f1837
+-/
 theorem diag_apply_eq_sum (i : Fin 3) :
     diag ξ i = ∑ j, eta g ξ j * (((g⁻¹ : AdelicGL 3 (𝓞 ℚ) ℚ) : Matrix (Fin 3) (Fin 3) 𝔸) j i) := by
   conv_lhs => rw [diag_eq_vecMul_eta g ξ]
   rfl
 
+/--
+@isnad1 id=le.2h4v.s8.faca5a5d752b from=translated src=- shape=774b213a vocab=ed92cda5
+-/
 theorem abs_le_mul_archGauge3 (i : Fin 3) {m : ℝ} (hm0 : 0 ≤ m) (hm : ∀ j, |re (eta g ξ j)| ≤ m) :
     |(ξ i : ℝ)| ≤ m * archGauge3 ℚ g := by
   have hre : (ξ i : ℝ) = ∑ j, re (eta g ξ j) * re (((g⁻¹ : AdelicGL 3 (𝓞 ℚ) ℚ) : Matrix (Fin 3) (Fin 3) 𝔸) j i) := by
@@ -211,14 +262,23 @@ theorem abs_le_mul_archGauge3 (i : Fin 3) {m : ℝ} (hm0 : 0 ≤ m) (hm : ∀ j,
 def evalAt (w : HeightOneSpectrum (𝓞 ℚ)) : 𝔸 →+* w.adicCompletion ℚ :=
   (AdelicLevel.finAdeleEval (𝓞 ℚ) ℚ w).comp (AdelicLevel.adeleFin (𝓞 ℚ) ℚ)
 
+/--
+@isnad1 id=eq.0h2v.s8.60b2b451859e from=translated src=- shape=ee62b329 vocab=3aafeb10
+-/
 theorem evalAt_apply (w : HeightOneSpectrum (𝓞 ℚ)) (x : 𝔸) : evalAt w x = x.2 w := rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.ff7dae571023 from=translated src=- shape=f597017e vocab=a4660e20
+-/
 theorem natCast_mul_apply (N : ℕ) (y : 𝔸f) (w : HeightOneSpectrum (𝓞 ℚ)) :
     ((N : 𝔸f) * y) w = (N : w.adicCompletion ℚ) * y w := by
   have h := map_mul (AdelicLevel.finAdeleEval (𝓞 ℚ) ℚ w) (N : 𝔸f) y
   rw [map_natCast] at h
   exact h
 
+/--
+@isnad1 id=le.1h5v.s9.0223bbb873bd from=translated src=- shape=dd90c1d6 vocab=a91c3492
+-/
 theorem norm_algebraMap_le_localSize (N : ℕ) (i : Fin 3) (w : HeightOneSpectrum (𝓞 ℚ))
     (hint : ∀ j, ((N : 𝔸f) * (eta g ξ j).2) w ∈ w.adicCompletionIntegers ℚ) :
     ‖(algebraMap ℚ 𝔸f ((N : ℚ) * ξ i)) w‖ ≤ localSize g w := by
@@ -247,6 +307,9 @@ theorem norm_algebraMap_le_localSize (N : ℕ) (i : Fin 3) (w : HeightOneSpectru
   calc _ ≤ 1 * localSize g w := mul_le_mul ha hb (norm_nonneg _) zero_le_one
     _ = localSize g w := one_mul _
 
+/--
+@isnad1 id=le.3h4v.s9.82f2fe131622 from=translated src=- shape=c6246be4 vocab=e7a8f33c
+-/
 theorem one_le_mul_abs_mul_finGauge3 (N : ℕ) (i : Fin 3) (hξi : ξ i ≠ 0) (hN : 0 < N)
     (hint : ∀ j w, ((N : 𝔸f) * (eta g ξ j).2) w ∈ w.adicCompletionIntegers ℚ) :
     1 ≤ (N : ℝ) * |(ξ i : ℝ)| * finGauge3 ℚ g := by
@@ -287,6 +350,9 @@ theorem one_le_mul_abs_mul_finGauge3 (N : ℕ) (i : Fin 3) (hξi : ξ i ≠ 0) (
     _ = (N : ℝ) * |(ξ i : ℝ)| * finGauge3 ℚ g := by
         rw [hx, Rat.cast_mul, Rat.cast_natCast, abs_mul, Nat.abs_cast]
 
+/--
+@isnad1 id=ex.3h3v.s9.fcc69485c8ff from=translated src=- shape=a7b162b2 vocab=033c981a
+-/
 theorem exists_le_norm (N : ℕ) (hN : 0 < N) (hξ : ξ ≠ 0)
     (hint : ∀ j w, ((N : 𝔸f) * (eta g ξ j).2) w ∈ w.adicCompletionIntegers ℚ) :
     ∃ j, ((N : ℝ) * gauge3 ℚ g)⁻¹ ≤ ‖(eta g ξ j).1 Rat.infinitePlace‖ := by
@@ -319,6 +385,9 @@ end Bound
 end KcFirstMin
 
 open LanglandsTunnell.CubicInduction in
+/--
+@isnad1 id=ex.3h3v.s10.56f6ad6d0a26 from=translated src=- shape=a5d0e810 vocab=9840bf82
+-/
 theorem solution
     (g : AdelicGL 3 (𝓞 ℚ) ℚ) (N : ℕ) (hN : 0 < N) (ξ : Fin 3 → ℚ) (hξ : ξ ≠ 0)
     (hint : ∀ (j : Fin 3) (w : HeightOneSpectrum (𝓞 ℚ)),

@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open scoped Real
 
+/--
+@isnad1 id=ex.1h6v.s8.3267437a3ec9 from=translated src=- shape=e4970298 vocab=3db9e743
+-/
 theorem LanglandsTunnell.principal_profile_exists_ne_zero (u₁ : ℂ) (a₁ : ZMod 2) (u₂ : ℂ) (a₂ : ZMod 2)
     (c : ℂ) (f : ℝ → ℂ)
     (hf : ∀ y : ℝ, f y = (y : ℂ) ^ (1 / 2 - c) *

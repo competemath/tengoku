@@ -20,6 +20,9 @@ variable (K : Type) [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K))
 
 local notation "F" => (IsDedekindDomain.HeightOneSpectrum.adicCompletion K v)
 
+/--
+@isnad1 id=ne.0h3v.s8.c5f5a536a425 from=translated src=- shape=d460c066 vocab=491523cf
+-/
 theorem val_units_ne_zero (u : (v.adicCompletion K)ˣ) :
     Valued.v (u : v.adicCompletion K) ≠ 0 :=
   (Valuation.ne_zero_iff _).mpr u.ne_zero
@@ -70,15 +73,24 @@ def higherUnitsSubgroup (b : ℕ) : Subgroup (v.adicCompletion K)ˣ where
       rw [hsplit, Valuation.map_neg, map_mul, hinv, one_mul]
       exact hx2'
 
+/--
+@isnad1 id=iff.0h4v.s10.ee6273006afb from=translated src=- shape=aff1a0a8 vocab=9d18ac56
+-/
 theorem mem_higherUnitsSubgroup_iff (b : ℕ) (u : (v.adicCompletion K)ˣ) :
     u ∈ higherUnitsSubgroup K v b ↔ u ∈ higherUnitsAt K v b := Iff.rfl
 
+/--
+@isnad1 id=mem.2h4v.s10.3284f54e0878 from=translated src=- shape=0038edc8 vocab=cc59728e
+-/
 theorem mem_higherUnitsAt_of_le (b : ℕ) (u : (v.adicCompletion K)ˣ)
     (h1 : Valued.v (u : v.adicCompletion K) = 1)
     (h2 : Valued.v ((u : v.adicCompletion K) - 1) ≤ WithZero.exp (-(b : ℤ))) :
     u ∈ higherUnitsAt K v b :=
   ⟨h1, Or.inr h2⟩
 
+/--
+@isnad1 id=ex.0h2v.s8.7cbf3163ff8b from=translated src=- shape=b7e3e0a4 vocab=1fd751c4
+-/
 theorem exists_uniformizer :
     ∃ ϖ : v.adicCompletion K, Valued.v ϖ = WithZero.exp (-1 : ℤ) := by
   obtain ⟨π, hπ⟩ := v.valuation_exists_uniformizer K
@@ -100,10 +112,16 @@ def retract : (v.adicCompletion K)ˣ →* (v.adicCompletion K)ˣ where
     rw [Units.val_mul, map_mul, WithZero.log_mul hx hy, zpow_add]
     simp only [mul_mul_mul_comm]
 
+/--
+@isnad1 id=eq.0h4v.s11.b6deae86737c from=translated src=- shape=d11fa688 vocab=be23f338
+-/
 theorem retract_apply (x : (v.adicCompletion K)ˣ) :
     retract ϖu x = x * ϖu ^ (WithZero.log (Valued.v (x : v.adicCompletion K))) := rfl
 
 include hϖ in
+/--
+@isnad1 id=eq.1h4v.s11.b11f0d9eda6a from=translated src=- shape=6fed34f0 vocab=8f19cd9e
+-/
 theorem val_retract (x : (v.adicCompletion K)ˣ) :
     Valued.v ((retract ϖu x : (v.adicCompletion K)ˣ) : v.adicCompletion K) = 1 := by
   have hx := val_units_ne_zero K v x
@@ -114,11 +132,17 @@ theorem val_retract (x : (v.adicCompletion K)ˣ) :
   rw [Units.val_mul, map_mul, Units.val_zpow_eq_zpow_val, map_zpow₀, hϖ, ← WithZero.exp_zsmul,
     smul_neg, zsmul_eq_mul, mul_one, Int.cast_id, hvx, ← WithZero.exp_add, add_neg_cancel, WithZero.exp_zero]
 
+/--
+@isnad1 id=eq.1h4v.s11.a662ea24c574 from=translated src=- shape=f21aa711 vocab=f723fcbc
+-/
 theorem retract_of_val_eq_one (u : (v.adicCompletion K)ˣ) (hu : Valued.v (u : v.adicCompletion K) = 1) :
     retract ϖu u = u := by
   rw [retract_apply, hu, WithZero.log_one, zpow_zero, mul_one]
 
 include hϖ in
+/--
+@isnad1 id=eq.1h3v.s11.f60d229d5883 from=translated src=- shape=31ad1c80 vocab=8f19cd9e
+-/
 theorem retract_uniformizer : retract ϖu ϖu = 1 := by
   rw [retract_apply, hϖ, WithZero.log_exp]
   simp
@@ -126,13 +150,22 @@ theorem retract_uniformizer : retract ϖu ϖu = 1 := by
 def bigSubgroup (b : ℕ) : Subgroup (v.adicCompletion K)ˣ :=
   higherUnitsSubgroup K v b ⊔ Subgroup.zpowers ϖu
 
+/--
+@isnad1 id=mem.1h5v.s10.8a5c021114ce from=translated src=- shape=bf407245 vocab=ae7fea20
+-/
 theorem mem_bigSubgroup_of_mem_higherUnitsAt (b : ℕ) {h : (v.adicCompletion K)ˣ}
     (hh : h ∈ higherUnitsAt K v b) : h ∈ bigSubgroup ϖu b :=
   Subgroup.mem_sup_left ((mem_higherUnitsSubgroup_iff K v b h).mpr hh)
 
+/--
+@isnad1 id=mem.0h4v.s9.576aa0dd663f from=translated src=- shape=1d60e0c5 vocab=36a534a5
+-/
 theorem uniformizer_mem_bigSubgroup (b : ℕ) : ϖu ∈ bigSubgroup ϖu b :=
   Subgroup.mem_sup_right (Subgroup.mem_zpowers ϖu)
 
+/--
+@isnad1 id=iff.0h3v.s8.30f1a22e0ed4 from=translated src=- shape=53317f01 vocab=e150e977
+-/
 theorem val_eq_one_iff_norm_eq_one (x : v.adicCompletion K) :
     Valued.v x = 1 ↔ ‖x‖ = 1 := by
   constructor
@@ -146,6 +179,9 @@ theorem val_eq_one_iff_norm_eq_one (x : v.adicCompletion K) :
     · exact Valued.toNormedField.one_le_norm_iff.mp h.ge
 
 include hϖ in
+/--
+@isnad1 id=finite.1h4v.s9.95643c50dfe4 from=translated src=- shape=ab2b2ee2 vocab=06949f2b
+-/
 theorem finite_quotient_bigSubgroup (b : ℕ) :
     Finite ((v.adicCompletion K)ˣ ⧸ bigSubgroup ϖu b) := by
 
@@ -205,6 +241,9 @@ theorem finite_quotient_bigSubgroup (b : ℕ) :
       rw [map_pow, hϖ, ← WithZero.exp_nsmul, nsmul_eq_mul, mul_neg, mul_one] at hlt'
       exact hlt'.le
 
+/--
+@isnad1 id=ex.1h4v.s10.243d3e0ea688 from=translated src=- shape=2cc2d18a vocab=bd059683
+-/
 theorem exists_hasConductorExponentAt_le (b : ℕ) (η : (v.adicCompletion K)ˣ →* ℂˣ)
     (hη : ∀ h ∈ higherUnitsAt K v b, η h = 1) :
     ∃ m ≤ b, HasConductorExponentAt K v η m := by
@@ -230,10 +269,16 @@ def charHom {Q : Type*} [CommGroup Q] (θ : AddChar (Additive Q) ℂ) : Q →* �
 def pullChar (P : Subgroup G) (θ : AddChar (Additive (G ⧸ P)) ℂ) : G →* ℂˣ :=
   (charHom θ).toHomUnits.comp (QuotientGroup.mk' P)
 
+/--
+@isnad1 id=eq.0h4v.s8.dda32571e6f7 from=translated src=- shape=11578e1d vocab=015bbb75
+-/
 theorem pullChar_apply (P : Subgroup G) (θ : AddChar (Additive (G ⧸ P)) ℂ) (x : G) :
     ((pullChar P θ x : ℂˣ) : ℂ) = θ (Additive.ofMul (QuotientGroup.mk x : G ⧸ P)) :=
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s7.3e86e503a39b from=translated src=- shape=4ca0b96a vocab=adf6b45d
+-/
 theorem pullChar_eq_one_of_mem (P : Subgroup G) (θ : AddChar (Additive (G ⧸ P)) ℂ)
     {h : G} (hh : h ∈ P) : pullChar P θ h = 1 := by
   apply Units.ext
@@ -241,11 +286,17 @@ theorem pullChar_eq_one_of_mem (P : Subgroup G) (θ : AddChar (Additive (G ⧸ P
   have : (QuotientGroup.mk h : G ⧸ P) = 1 := (QuotientGroup.eq_one_iff h).mpr hh
   rw [this, ofMul_one, AddChar.map_zero_eq_one]
 
+/--
+@isnad1 id=eq.0h4v.s7.5e858faa84de from=translated src=- shape=d673581b vocab=a19a4334
+-/
 theorem norm_pullChar (P : Subgroup G) [Finite (G ⧸ P)] (θ : AddChar (Additive (G ⧸ P)) ℂ) (x : G) :
     ‖((pullChar P θ x : ℂˣ) : ℂ)‖ = 1 := by
   rw [pullChar_apply]
   exact AddChar.norm_apply θ _
 
+/--
+@isnad1 id=injectiv.0h2v.s6.0537f7e398f2 from=translated src=- shape=50692f4a vocab=22d22278
+-/
 theorem pullChar_injective (P : Subgroup G) : Function.Injective (pullChar P) := by
   intro θ₁ θ₂ h12
   apply AddChar.ext
@@ -256,6 +307,9 @@ theorem pullChar_injective (P : Subgroup G) : Function.Injective (pullChar P) :=
   simp only [pullChar_apply, hx, ofMul_toMul] at this
   exact this
 
+/--
+@isnad1 id=ex.2h3v.s9.a5d38b7929e8 from=translated src=- shape=46d669c3 vocab=dc27cab1
+-/
 theorem abstract_expansion (P : Subgroup G) (hP : Finite (G ⧸ P)) (f : G → ℂ)
     (hf : ∀ x p : G, p ∈ P → f (x * p) = f x) :
     ∃ (S : Finset (G →* ℂˣ)) (c : (G →* ℂˣ) → ℂ),
@@ -305,6 +359,9 @@ variable {K v}
 variable (ϖu : (v.adicCompletion K)ˣ) (hϖ : Valued.v (ϖu : v.adicCompletion K) = WithZero.exp (-1 : ℤ))
 
 include hϖ in
+/--
+@isnad1 id=ex.2h5v.s13.6149cbbf98d3 from=translated src=- shape=8c96ba5a vocab=fa48297d
+-/
 theorem expansion (b : ℕ) (g : (v.adicCompletion K)ˣ → ℂ)
     (hg : ∀ u : (v.adicCompletion K)ˣ, Valued.v (u : v.adicCompletion K) = 1 →
       ∀ h ∈ higherUnitsAt K v b, g (u * h) = g u) :
@@ -342,6 +399,9 @@ end
 end R1V30MonoFourier
 
 open LanglandsTunnell.TateLocal in
+/--
+@isnad1 id=ex.1h4v.s13.6d08bc4dffc0 from=translated src=- shape=7319862f vocab=dd4c6f3a
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K)) (b : ℕ)
     (g : (v.adicCompletion K)ˣ → ℂ)

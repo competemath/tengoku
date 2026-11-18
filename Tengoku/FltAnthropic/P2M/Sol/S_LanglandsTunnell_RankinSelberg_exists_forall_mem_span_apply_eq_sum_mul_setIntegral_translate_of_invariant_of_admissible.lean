@@ -17,6 +17,9 @@ open scoped Classical
 
 namespace GJA
 
+/--
+@isnad1 id=ex.0h3v.s8.bb7b3cd0e66d from=translated src=- shape=10a3b1b6 vocab=16d73416
+-/
 theorem exists_finset_apply_eq_sum_eval {G : Type*} (W : Submodule ℂ (G → ℂ)) [FiniteDimensional ℂ W]
     (ℓ : (G → ℂ) →ₗ[ℂ] ℂ) :
     ∃ (T : Finset G) (a : G → ℂ), ∀ v ∈ W, ℓ v = ∑ x ∈ T, a x * v x := by
@@ -39,6 +42,9 @@ theorem exists_finset_apply_eq_sum_eval {G : Type*} (W : Submodule ℂ (G → �
     LinearMap.comp_apply, Submodule.subtype_apply, LinearMap.proj_apply, smul_eq_mul] at this
   exact this.symm
 
+/--
+@isnad1 id=mem.1h4v.s8.e7b436417ed2 from=translated src=- shape=216e7b70 vocab=2537f327
+-/
 theorem translate_mem_span {G : Type*} [Group G] (w : G → ℂ)
     (v : G → ℂ) (hv : v ∈ Submodule.span ℂ (Set.range fun h : G => fun g : G => w (g * h))) (k : G) :
     (fun x => v (x * k)) ∈ Submodule.span ℂ (Set.range fun h : G => fun g : G => w (g * h)) := by
@@ -58,6 +64,9 @@ theorem translate_mem_span {G : Type*} [Group G] (w : G → ℂ)
     have h1 : (fun g => (a • x) (g * k)) = a • (fun g => x (g * k)) := by funext; simp
     rw [h1]; exact Submodule.smul_mem _ a hx
 
+/--
+@isnad1 id=ex.3h4v.s8.9e8654ca934c from=translated src=- shape=b8e4a247 vocab=44729ad9
+-/
 theorem exists_open_stabilizer_of_mem_span {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
     (K : Subgroup G) (hK : IsOpen (K : Set G)) (w : G → ℂ) (hw : ∀ k ∈ K, ∀ g : G, w (g * k) = w g)
     (v : G → ℂ) (hv : v ∈ Submodule.span ℂ (Set.range fun h : G => fun g : G => w (g * h))) :
@@ -94,6 +103,9 @@ section Haar
 
 variable {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [MeasurableSpace G] [BorelSpace G]
 
+/--
+@isnad1 id=ex.4h3v.s8.50dbd4efc83c from=translated src=- shape=009b59e5 vocab=982ce98d
+-/
 theorem exists_finset_coset_decomposition (Ω Ω' : Subgroup G) (hle : Ω' ≤ Ω)
     (hΩo : IsOpen (Ω : Set G)) (hΩc : IsCompact (Ω : Set G)) (hΩ'o : IsOpen (Ω' : Set G)) :
     ∃ T : Finset G, (↑T ⊆ (Ω : Set G)) ∧
@@ -149,6 +161,9 @@ theorem exists_finset_coset_decomposition (Ω Ω' : Subgroup G) (hle : Ω' ≤ �
     · rintro ⟨t, ⟨q, rfl⟩, u, hu, rfl⟩
       exact Ω.mul_mem (hrepΩ q) (hle hu)
 
+/--
+@isnad1 id=ex.4h4v.s8.041941035ec9 from=translated src=- shape=077aec9d vocab=ddf5f3ce
+-/
 theorem setIntegral_translate_eq_card_mul_sum (μ : Measure G) [μ.IsHaarMeasure]
     (Ω Ω' : Subgroup G) (hle : Ω' ≤ Ω)
     (hΩo : IsOpen (Ω : Set G)) (hΩc : IsCompact (Ω : Set G)) (hΩ'o : IsOpen (Ω' : Set G)) :
@@ -189,6 +204,9 @@ theorem setIntegral_translate_eq_card_mul_sum (μ : Measure G) [μ.IsHaarMeasure
           rw [setIntegral_const, measureReal_def, hμC, Complex.real_smul]
       _ = (μ (Ω' : Set G)).toReal * ∑ t ∈ T, v (g * t) := by rw [Finset.mul_sum]
 
+/--
+@isnad1 id=eq.2h5v.s7.156aa37362d0 from=translated src=- shape=a6800607 vocab=8a9660bc
+-/
 theorem setIntegral_subgroup_mul_left (μ : Measure G) [μ.IsHaarMeasure] (Ω : Subgroup G)
     (hΩm : MeasurableSet (Ω : Set G)) (f : G → ℂ) (k₀ : G) (hk₀ : k₀ ∈ Ω) :
     ∫ k in (Ω : Set G), f (k₀ * k) ∂μ = ∫ k in (Ω : Set G), f k ∂μ := by
@@ -208,6 +226,9 @@ end Haar
 end GJA
 
 open GJA in
+/--
+@isnad1 id=ex.6h6v.s14.1be9ead874c9 from=translated src=- shape=9c8b8352 vocab=9f4fa8b3
+-/
 theorem solution
     (p : HeightOneSpectrum (𝓞 ℚ))
     (N : Ideal (𝓞 ℚ)) (hN : N ≠ ⊥)

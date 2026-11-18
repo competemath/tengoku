@@ -17,6 +17,9 @@ set_option autoImplicit false
 
 open MeasureTheory Set
 
+/--
+@isnad1 id=ex.2h6v.s9.d8527ffa0557 from=translated src=- shape=1d66ebcc vocab=ab285444
+-/
 theorem solution
     (S A B : ℂ) (δ ℓw ℓr : ℝ) (hδ : 0 ≤ δ)
     (hΔ : ((abs A.im) + (abs B.im)) * δ + (abs S.im) * Real.exp (4 * δ) * Real.exp (-(2 * (ℓw + ℓr))) ≤ Real.pi) :

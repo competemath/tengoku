@@ -14,6 +14,9 @@ open MeasureTheory Set
 
 namespace FbSwap
 
+/--
+@isnad1 id=eq.1h3v.s7.f415395011e3 from=translated src=- shape=adb1b99e vocab=0f4f0a00
+-/
 lemma section_fst (v : ℝ) (hv : 0 < v) (f : ℝ × ℝ → ℂ) (σ : ℝ) :
     (∫ w : ℝ, {q : ℝ × ℝ | 0 < q.1 ∧ 0 < q.2 ∧ v < q.1 * q.2}.indicator f (σ, w))
       = (Ioi (0 : ℝ)).indicator (fun σ : ℝ => ∫ w in Ioi (v / σ), f (σ, w)) σ := by
@@ -44,6 +47,9 @@ lemma section_fst (v : ℝ) (hv : 0 < v) (f : ℝ × ℝ → ℂ) (σ : ℝ) :
       exact hσ h.1
     simp [hzero]
 
+/--
+@isnad1 id=eq.1h3v.s7.2f762cca8feb from=translated src=- shape=c23370b8 vocab=0f4f0a00
+-/
 lemma section_snd (v : ℝ) (hv : 0 < v) (f : ℝ × ℝ → ℂ) (w : ℝ) :
     (∫ σ : ℝ, {q : ℝ × ℝ | 0 < q.1 ∧ 0 < q.2 ∧ v < q.1 * q.2}.indicator f (σ, w))
       = (Ioi (0 : ℝ)).indicator (fun w : ℝ => ∫ σ in Ioi (v / w), f (σ, w)) w := by
@@ -74,12 +80,18 @@ lemma section_snd (v : ℝ) (hv : 0 < v) (f : ℝ × ℝ → ℂ) (w : ℝ) :
       exact hw h.2.1
     simp [hzero]
 
+/--
+@isnad1 id=measurab.0h1v.s6.b98717e09c43 from=translated src=- shape=c61e2810 vocab=50e50625
+-/
 lemma measurableSet_region (v : ℝ) :
     MeasurableSet {q : ℝ × ℝ | 0 < q.1 ∧ 0 < q.2 ∧ v < q.1 * q.2} :=
   (measurableSet_lt measurable_const measurable_fst).inter
     ((measurableSet_lt measurable_const measurable_snd).inter
       (measurableSet_lt measurable_const (measurable_fst.mul measurable_snd)))
 
+/--
+@isnad1 id=and.2h2v.s8.5e485a1247d8 from=translated src=- shape=777c932c vocab=53c94b5e
+-/
 theorem main (v : ℝ) (hv : 0 < v) (f : ℝ × ℝ → ℂ)
     (hf : IntegrableOn f {q : ℝ × ℝ | 0 < q.1 ∧ 0 < q.2 ∧ v < q.1 * q.2}) :
     (∫ σ in Ioi (0 : ℝ), ∫ w in Ioi (v / σ), f (σ, w)) = ∫ q in {q : ℝ × ℝ | 0 < q.1 ∧ 0 < q.2 ∧ v < q.1 * q.2}, f q ∧
@@ -105,6 +117,9 @@ theorem main (v : ℝ) (hv : 0 < v) (f : ℝ × ℝ → ℂ)
 
 end FbSwap
 
+/--
+@isnad1 id=and.2h2v.s8.5e485a1247d8 from=translated src=- shape=777c932c vocab=53c94b5e
+-/
 theorem solution
     (v : ℝ) (hv : 0 < v) (f : ℝ × ℝ → ℂ)
     (hf : IntegrableOn f {q : ℝ × ℝ | 0 < q.1 ∧ 0 < q.2 ∧ v < q.1 * q.2}) :

@@ -8,6 +8,9 @@ namespace P2MW.S_LanglandsTunnell_CubicInduction_expLogSum_coeff_eq_zero_of_re_l
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.5h9v.s8.721e3b89fdc4 from=translated src=- shape=7ee018d0 vocab=a23a55e7
+-/
 theorem solution
     {ι : Type*} [Fintype ι] {P : Type*} (e : ι → ℂ) (j : ι → ℕ) (c : ι → P → ℂ)
     (hinj : Function.Injective fun i => (e i, j i))

@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open _root_.LanglandsTunnell.ArchBessel hiding integrableOn_exp_neg_mul_add_inv_mul_cpow
 
+/--
+@isnad1 id=hasderiv.1h2v.s7.f43ed0e55637 from=translated src=- shape=062aa695 vocab=427f5f1f
+-/
 theorem LanglandsTunnell.ArchBessel.hasDerivAt_besselKernel (ν : ℂ) (x : ℝ) (hx : 0 < x) :
     HasDerivAt (fun x : ℝ => besselKernel ν x)
       (-(besselKernel (ν - 1) x + besselKernel (ν + 1) x) / 2) x := by exact @_root_.P2MW.S_LanglandsTunnell_ArchBessel_hasDerivAt_besselKernel.solution ν x hx

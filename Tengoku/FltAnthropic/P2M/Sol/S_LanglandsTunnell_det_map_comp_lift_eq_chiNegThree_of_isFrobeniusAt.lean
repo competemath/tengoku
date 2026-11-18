@@ -31,6 +31,9 @@ theorem eq_one_or_eq_neg_one_of_isUnit (u : ℤ√(-2)) (hu : IsUnit u) : u = 1 
   · left; ext <;> simp [mul_self_eq_zero.mp him0, h]
   · right; ext <;> simp [mul_self_eq_zero.mp him0, h]
 
+/--
+@isnad1 id=eq.1h2v.s11.802b5a049195 from=translated src=- shape=8edf9b4b vocab=1c2cc1ce
+-/
 theorem red_mapMatrix (Ψ : GL (Fin 2) (ZMod 3) →* GL (Fin 2) (ℤ√(-2)))
     (hΨ : ∀ g, Matrix.GeneralLinearGroup.map red (Ψ g) = g) (g : GL (Fin 2) (ZMod 3)) :
     red.mapMatrix ((Ψ g : GL (Fin 2) (ℤ√(-2))) : Matrix (Fin 2) (Fin 2) (ℤ√(-2))) =
@@ -42,6 +45,9 @@ section Val
 
 variable {L : Type*} [Field L] (A : ValuationSubring L)
 
+/--
+@isnad1 id=mem.1h3v.s6.8e4c3ea38ede from=translated src=- shape=e13bc6d4 vocab=1e96c8e9
+-/
 theorem mem_of_pow_three {μ : L} (h : μ ^ 3 = 1) : μ ∈ A := by
   rcases A.mem_or_inv_mem μ with hμ | hμ
   · exact hμ
@@ -72,6 +78,9 @@ theorem eq_of_pow_three {μ ν : L} (hμ : μ ^ 3 = 1) (hν : ν ^ 3 = 1) (hcong
     _ = A.valuation (μ - ν) := by rw [one_mul, mul_one]
     _ < 1 := hcong
 
+/--
+@isnad1 id=not.3h3v.s8.773a3789eb71 from=translated src=- shape=6ddc1937 vocab=bce9d801
+-/
 theorem not_valuation_three_lt_one {p : ℕ} (hp : p.Prime) (hp3 : p ≠ 3)
     (hpA : A.valuation (p : L) < 1) : ¬ A.valuation 3 < 1 := by
   intro h3
@@ -91,6 +100,9 @@ theorem not_valuation_three_lt_one {p : ℕ} (hp : p.Prime) (hp3 : p ≠ 3)
 
 end Val
 
+/--
+@isnad1 id=eq.5h4v.s8.758a4b1e3ed4 from=translated src=- shape=d6a499b2 vocab=992eb244
+-/
 theorem frob_apply_eq_pow {A : ValuationSubring (AlgebraicClosure ℚ)} {σ : Γℚ} {p : ℕ} (hp : p.Prime) (hp3 : p ≠ 3)
     (hA : A.LiesOverPrime p) (hσ : A.IsFrobeniusAt σ p) {ζ : AlgebraicClosure ℚ} (hζ : ζ ^ 3 = 1) :
     σ ζ = ζ ^ p := by
@@ -109,6 +121,9 @@ theorem frob_apply_eq_pow {A : ValuationSubring (AlgebraicClosure ℚ)} {σ : Γ
 
 end B4Proof
 
+/--
+@isnad1 id=eq.6h6v.s13.276eadf1f442 from=translated src=- shape=a7f8dc3c vocab=00fc7c6d
+-/
 theorem solution
     (ρ : Γℚ →* GL (Fin 2) (ZMod 3))
     (hdet : ∀ σ : Γℚ, Matrix.GeneralLinearGroup.det (ρ σ) = modThreeCyclotomicChar σ)

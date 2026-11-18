@@ -57,6 +57,9 @@ private theorem exists_basis : ∃ b : Module.Basis Unit F Ω[F⁄K], b () = D K
 
 end KaehlerDifferential.FF2
 
+/--
+@isnad1 id=eq.1h3v.s9.8c664b7b1614 from=translated src=- shape=11cf077a vocab=93024f26
+-/
 theorem solution (K : Type*) [Field K] {F : Type*} [Field F] [Algebra K F] (x : F) (hx : Transcendental K x)
     [Algebra.IsSeparable (IntermediateField.adjoin K ({x} : Set F)) F] :
     Submodule.span F ({KaehlerDifferential.D K F x} : Set (KaehlerDifferential K F)) = ⊤ := by

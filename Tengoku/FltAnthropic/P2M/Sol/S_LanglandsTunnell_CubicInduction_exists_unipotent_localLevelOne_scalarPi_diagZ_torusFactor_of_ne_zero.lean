@@ -331,6 +331,9 @@ end
 
 open WhittakerEntryFormula in
 
+/--
+@isnad1 id=ex.4h7v.s13.d2bfd145b836 from=translated src=- shape=6c0c425c vocab=432279d4
+-/
 theorem solution
     (v : HeightOneSpectrum (𝓞 ℚ)) (χ : AddChar (v.adicCompletion ℚ) ℂ)
     (hχ : ∀ x : v.adicCompletion ℚ, Valued.v x ≤ 1 → χ x = 1)

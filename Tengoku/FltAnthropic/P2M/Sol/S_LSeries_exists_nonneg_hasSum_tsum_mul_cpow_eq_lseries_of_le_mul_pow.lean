@@ -19,6 +19,9 @@ variable {ι : Type*} (N : ι → ℕ) (hN : ∀ i : ι, (N i).Prime) (hinj : Fu
 
 include hN hinj in
 
+/--
+@isnad1 id=eq.5h4v.s6.774cfc8de881 from=translated src=- shape=87a3c646 vocab=e1aa691a
+-/
 theorem key_inj {q q' : ι × ℕ} (hq : 0 < q.2) (_hq' : 0 < q'.2) (h : N q.1 ^ q.2 = N q'.1 ^ q'.2) :
     q = q' := by
   have hp := hN q.1
@@ -33,6 +36,9 @@ theorem key_inj {q q' : ι × ℕ} (hq : 0 < q.2) (_hq' : 0 < q'.2) (h : N q.1 ^
   exact Prod.ext (hinj h1) hm
 
 include hN hinj in
+/--
+@isnad1 id=ex.5h4v.s9.8c540314ecbb from=translated src=- shape=bc9ad924 vocab=9ad9017b
+-/
 theorem main
     (c : ι → ℕ → ℝ) (hc0 : ∀ i : ι, c i 0 = 0) (hc : ∀ (i : ι) (m : ℕ), 0 ≤ c i m)
     (B : ℝ) (hcB : ∀ (i : ι) (m : ℕ), c i m ≤ B * (N i : ℝ) ^ m) :
@@ -181,6 +187,9 @@ theorem main
 
 end PPSeries43
 
+/--
+@isnad1 id=ex.5h4v.s9.8c540314ecbb from=translated src=- shape=bc9ad924 vocab=9ad9017b
+-/
 theorem solution
     {ι : Type*} (N : ι → ℕ) (hN : ∀ i : ι, (N i).Prime) (hinj : Function.Injective N)
     (c : ι → ℕ → ℝ) (hc0 : ∀ i : ι, c i 0 = 0) (hc : ∀ (i : ι) (m : ℕ), 0 ≤ c i m)

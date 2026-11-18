@@ -12,6 +12,9 @@ open scoped Real
 open MeasureTheory Set
 open LanglandsTunnell
 
+/--
+@isnad1 id=ex.1h6v.s8.3267437a3ec9 from=translated src=- shape=e4970298 vocab=3db9e743
+-/
 theorem solution (u₁ : ℂ) (a₁ : ZMod 2) (u₂ : ℂ) (a₂ : ZMod 2)
     (c : ℂ) (f : ℝ → ℂ)
     (hf : ∀ y : ℝ, f y = (y : ℂ) ^ (1 / 2 - c) *

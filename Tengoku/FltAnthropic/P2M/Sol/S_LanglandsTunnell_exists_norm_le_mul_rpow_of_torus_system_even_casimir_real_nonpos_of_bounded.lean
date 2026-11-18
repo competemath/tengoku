@@ -24,6 +24,9 @@ namespace GammaP41
 
 open Real Set
 
+/--
+@isnad1 id=ex.2h3v.s7.af56ddd7e9d0 from=translated src=- shape=3956dfb7 vocab=ec40bee2
+-/
 theorem bdd_Icc (f : ℝ → ℂ) (hf : DifferentiableOn ℝ f (Set.Ioi 0)) (a b : ℝ) (ha : 0 < a) :
     ∃ M : ℝ, 0 ≤ M ∧ ∀ y ∈ Set.Icc a b, ‖f y‖ ≤ M := by
   have hsub : Set.Icc a b ⊆ Set.Ioi 0 := fun y hy => lt_of_lt_of_le ha hy.1
@@ -31,6 +34,9 @@ theorem bdd_Icc (f : ℝ → ℂ) (hf : DifferentiableOn ℝ f (Set.Ioi 0)) (a b
   obtain ⟨M, hM⟩ := (isCompact_Icc.image_of_continuousOn hcont).isBounded.exists_norm_le
   exact ⟨max M 0, le_max_right _ _, fun y hy => (hM _ ⟨y, hy, rfl⟩).trans (le_max_left _ _)⟩
 
+/--
+@isnad1 id=ex.3h4v.s7.37b7e299ddf4 from=translated src=- shape=08841e5c vocab=c8e87dbf
+-/
 theorem extend_bound (f : ℝ → ℂ) (hf : DifferentiableOn ℝ f (Set.Ioi 0)) (L e C : ℝ) (he : 0 ≤ e)
     (hC : ∀ y : ℝ, 0 < y → y ≤ 1 → ‖f y‖ ≤ C * y ^ e) :
     ∃ C' : ℝ, 0 ≤ C' ∧ ∀ y : ℝ, 0 < y → y ≤ L → ‖f y‖ ≤ C' * y ^ e := by
@@ -46,6 +52,9 @@ theorem extend_bound (f : ℝ → ℂ) (hf : DifferentiableOn ℝ f (Set.Ioi 0))
       _ ≤ M * y ^ e := le_mul_of_one_le_right hM0 h1e
       _ ≤ (max C 0 + M) * y ^ e := by nlinarith [le_max_right C 0]
 
+/--
+@isnad1 id=le.4h5v.s7.d13afcb994c3 from=translated src=- shape=fed4c903 vocab=39b21544
+-/
 theorem rpow_bound_mono {f : ℝ → ℂ} {C e e' : ℝ} (hee : e' ≤ e)
     (hC : ∀ y : ℝ, 0 < y → y ≤ 1 → ‖f y‖ ≤ C * y ^ e) :
     ∀ y : ℝ, 0 < y → y ≤ 1 → ‖f y‖ ≤ max C 0 * y ^ e' := by
@@ -54,6 +63,9 @@ theorem rpow_bound_mono {f : ℝ → ℂ} {C e e' : ℝ} (hee : e' ≤ e)
     _ ≤ max C 0 * y ^ e := by gcongr; exact le_max_left _ _
     _ ≤ max C 0 * y ^ e' := mul_le_mul_of_nonneg_left (Real.rpow_le_rpow_of_exponent_ge hy hy1 hee) (le_max_right _ _)
 
+/--
+@isnad1 id=ex.6h9v.s8.18fb01187bd1 from=translated src=- shape=1da3e43d vocab=e8bd59db
+-/
 theorem stepA (q : ℂ) (hq : q ≠ 0) (κ c : ℂ) (f fup fdn : ℝ → ℂ) (hf : DifferentiableOn ℝ f (Set.Ioi 0))
     (Bup Bdn : ℝ) (hup : ∀ y : ℝ, 0 < y → y ≤ 1 → ‖fup y‖ ≤ Bup) (hdn : ∀ y : ℝ, 0 < y → y ≤ 1 → ‖fdn y‖ ≤ Bdn)
     (hrel : ∀ y : ℝ, 0 < y → 2 * q * ((y : ℂ) * deriv f y - f y) +
@@ -89,12 +101,18 @@ theorem stepA (q : ℂ) (hq : q ≠ 0) (κ c : ℂ) (f fup fdn : ℝ → ℂ) (h
   have := hC y hy hy1
   simpa using this
 
+/--
+@isnad1 id=hasderiv.1h1v.s7.473980f1a1c7 from=translated src=- shape=15556bae vocab=7b8ff274
+-/
 theorem rpow_m32_hasDerivAt {y : ℝ} (hy : 0 < y) :
     HasDerivAt (fun x : ℝ => x ^ (-(3 / 2 : ℝ))) (-(3 / 2 : ℝ) * (y ^ (-(3 / 2 : ℝ)) * y⁻¹)) y := by
   have h := Real.hasDerivAt_rpow_const (p := -(3 / 2 : ℝ)) (Or.inl hy.ne')
   rw [Real.rpow_sub_one hy.ne', div_eq_mul_inv] at h
   exact h
 
+/--
+@isnad1 id=other.5h5v.s10.8316bbc18190 from=translated src=- shape=e5f90795 vocab=3497e26b
+-/
 theorem rescale (κ lam : ℂ) (hκ : κ ≠ 0) (νC : ℂ) (hν : νC ^ 2 = 1 - 4 * lam) (F R : ℝ → ℂ)
     (hF : DifferentiableOn ℝ F (Set.Ioi 0)) (hF' : DifferentiableOn ℝ (deriv F) (Set.Ioi 0))
     (heq : ∀ y : ℝ, 0 < y → (y : ℂ) ^ 2 * deriv (deriv F) y - 3 * (y : ℂ) * deriv F y +
@@ -210,6 +228,9 @@ theorem rescale (κ lam : ℂ) (hκ : κ ≠ 0) (νC : ℂ) (hν : νC ^ 2 = 1 -
     field_simp
     ring
 
+/--
+@isnad1 id=ex.9h7v.s10.6ab6e3cd6b59 from=translated src=- shape=82547734 vocab=183cab09
+-/
 theorem stepB (κ lam : ℂ) (hκ : κ ≠ 0) (ν : ℝ) (hν1 : 1 ≤ ν) (hνC : ((ν : ℝ) : ℂ) ^ 2 = 1 - 4 * lam)
     (F F₂ : ℝ → ℂ) (c₁ : ℂ)
     (hFd : DifferentiableOn ℝ F (Set.Ioi 0)) (hFd' : DifferentiableOn ℝ (deriv F) (Set.Ioi 0))
@@ -332,6 +353,9 @@ end
 
 open GammaP41
 
+/--
+@isnad1 id=ex.9h5v.s10.1344d40d0953 from=translated src=- shape=15363ae1 vocab=702cee39
+-/
 theorem solution
     (n : ℕ) (hn : Even n) (hn2 : 2 ≤ n) (κ lam lam' : ℂ) (hκ : κ ≠ 0)
     (hU : lam' = lam) (hre : lam.im = 0) (hneg : lam.re ≤ 0)

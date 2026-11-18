@@ -15,12 +15,18 @@ noncomputable section
 
 namespace Z0RC
 
+/--
+@isnad1 id=eq.2h2v.s7.c30a6f67fd34 from=translated src=- shape=6cbc37d0 vocab=64ba4f1a
+-/
 theorem integral_rpow_mul_exp_neg_mul_sq {B q : ℝ} (hB : 0 < B) (hq : -1 < q) :
     ∫ x in Ioi (0:ℝ), x ^ q * rexp (-B * x ^ 2) = B ^ (-(q + 1) / 2) * (1 / 2) * Real.Gamma ((q + 1) / 2) := by
   have h := integral_rpow_mul_exp_neg_mul_rpow (p := 2) (q := q) (b := B) two_pos hq hB
   simp_rw [Real.rpow_two] at h
   exact h
 
+/--
+@isnad1 id=integrab.2h2v.s6.675e724dbea7 from=translated src=- shape=87855cee vocab=b61770dd
+-/
 theorem integrableOn_rpow_mul_exp_neg_div_sq {c r : ℝ} (hc : 0 < c) (hr : r < -1) :
     IntegrableOn (fun y : ℝ => y ^ r * rexp (-(c * (y ^ 2)⁻¹))) (Ioi 0) := by
   have hf : IntegrableOn (fun u : ℝ => u ^ (-r - 2) * rexp (-c * u ^ 2)) (Ioi 0) :=
@@ -37,6 +43,9 @@ theorem integrableOn_rpow_mul_exp_neg_div_sq {c r : ℝ} (hc : 0 < c) (hr : r < 
   · norm_num
   · congr 1; ring
 
+/--
+@isnad1 id=le.2h3v.s6.07046b7c1f1a from=translated src=- shape=3fa64a32 vocab=ef355314
+-/
 theorem rpow_le_rpow_add_rpow_neg {w r M : ℝ} (hw : 0 < w) (hM : |r| ≤ M) : w ^ r ≤ w ^ M + w ^ (-M) := by
   have hr1 : r ≤ M := (le_abs_self r).trans hM
   have hr2 : -M ≤ r := by have := neg_abs_le r; linarith
@@ -46,6 +55,9 @@ theorem rpow_le_rpow_add_rpow_neg {w r M : ℝ} (hw : 0 < w) (hM : |r| ≤ M) : 
   · have : w ^ r ≤ w ^ (-M) := Real.rpow_le_rpow_of_exponent_ge hw h1.le hr2
     linarith [Real.rpow_nonneg hw.le M]
 
+/--
+@isnad1 id=integrab.1h2v.s7.442fd0bc7c18 from=translated src=- shape=feac89a7 vocab=f9ab7a8d
+-/
 theorem integrableOn_rpow_mul_torusGauss {b : ℝ} (hb : 0 < b) (r : ℝ) :
     IntegrableOn (fun w : ℝ => w ^ r * rexp (-(π * ((w ^ 2)⁻¹ + b * w ^ 2)))) (Ioi 0) := by
   set M : ℝ := max |r| 2 with hM
@@ -78,6 +90,9 @@ theorem integrableOn_rpow_mul_torusGauss {b : ℝ} (hb : 0 < b) (r : ℝ) :
           add_le_add (mul_le_mul_of_nonneg_left hE1 (Real.rpow_nonneg hw.le _))
             (mul_le_mul_of_nonneg_left hE2 (Real.rpow_nonneg hw.le _))
 
+/--
+@isnad1 id=eq.1h1v.s7.97cc966836f1 from=translated src=- shape=b28039c1 vocab=7ca29a07
+-/
 theorem integral_cpow_mul_exp_neg_pi_mul_sq {z : ℂ} (hz : 0 < z.re) :
     ∫ t in Ioi (0:ℝ), (t : ℂ) ^ (z - 1) * (rexp (-(π * t ^ 2)) : ℂ) = (1 / 2 : ℂ) * Complex.Gammaℝ z := by
   have hG : ∫ v in Ioi (0:ℝ), (1 / 2 : ℂ) * ((v : ℂ) ^ (z / 2 - 1) * (rexp (-(π * v)) : ℂ)) =
@@ -116,6 +131,9 @@ theorem integral_cpow_mul_exp_neg_pi_mul_sq {z : ℂ} (hz : 0 < z.re) :
   push_cast
   ring
 
+/--
+@isnad1 id=eq.1h1v.s7.1bc6663a7406 from=translated src=- shape=b4356fd1 vocab=9e70d382
+-/
 theorem integral_cpow_mul_exp_neg_pi_div_sq {z : ℂ} (hz : 0 < z.re) :
     ∫ y in Ioi (0:ℝ), (y : ℂ) ^ (-z - 1) * (rexp (-(π * (y ^ 2)⁻¹)) : ℂ) = (1 / 2 : ℂ) * Complex.Gammaℝ z := by
   rw [← integral_cpow_mul_exp_neg_pi_mul_sq hz]
@@ -140,20 +158,32 @@ def F3 (b : ℝ) (p : ℂ) (g K : ℝ → ℂ) (s : ℂ) (q : ℝ × ℝ × ℝ)
   ((q.1 : ℝ) : ℂ) ^ (s - 2) * (((q.2.1 : ℝ) : ℂ) ^ p * K q.2.2 *
     (rexp (-(π * ((q.2.1 ^ 2)⁻¹ + b * q.1 ^ 2 * q.2.1 ^ 2))) : ℂ) * g (q.1 * q.2.1 / q.2.2))
 
+/--
+@isnad1 id=eq.2h3v.s6.5c4ffe78dfe3 from=translated src=- shape=8f24f55f vocab=3b8dd6ab
+-/
 theorem cpow_ofReal_mul {x y : ℝ} (hx : 0 ≤ x) (hy : 0 ≤ y) (c : ℂ) :
     (((x * y : ℝ)) : ℂ) ^ c = (x : ℂ) ^ c * (y : ℂ) ^ c := by
   push_cast; exact Complex.mul_cpow_ofReal_nonneg hx hy c
 
+/--
+@isnad1 id=eq.1h2v.s5.094412e2774a from=translated src=- shape=a392af6f vocab=a04265b8
+-/
 theorem cpow_ofReal_inv {x : ℝ} (hx : 0 < x) (c : ℂ) : (((x⁻¹ : ℝ)) : ℂ) ^ c = (x : ℂ) ^ (-c) := by
   rw [Complex.ofReal_inv, Complex.inv_cpow _ _ ?_, Complex.cpow_neg]
   rw [Complex.arg_ofReal_of_nonneg hx.le]; exact Real.pi_ne_zero.symm
 
+/--
+@isnad1 id=eq.2h3v.s6.53654ec592ae from=translated src=- shape=0f5f63b2 vocab=b84fa9bd
+-/
 theorem cpow_ofReal_div {x y : ℝ} (hx : 0 ≤ x) (hy : 0 < y) (c : ℂ) :
     (((x / y : ℝ)) : ℂ) ^ c = (x : ℂ) ^ c * (y : ℂ) ^ (-c) := by
   rw [div_eq_mul_inv, cpow_ofReal_mul hx (inv_pos.2 hy).le, cpow_ofReal_inv hy]
 
 variable {b : ℝ} {p : ℂ} {g K : ℝ → ℂ}
 
+/--
+@isnad1 id=eq.4h8v.s8.470fd9cfbbff from=translated src=- shape=75b209d4 vocab=2bc151e3
+-/
 theorem F3_rescale (hb : 0 < b) (s : ℂ) {y₁ y₂ τ : ℝ} (hy₁ : 0 < y₁) (hy₂ : 0 < y₂) (hτ : 0 < τ) :
     F3 b p g K s (y₂ / y₁ * τ, y₁, y₂) =
       ((y₂ : ℂ) ^ (s - 2) * (y₁ : ℂ) ^ (2 - s) * (y₁ : ℂ) ^ p * K y₂ * (rexp (-(π * (y₁ ^ 2)⁻¹)) : ℂ)) *
@@ -172,6 +202,9 @@ theorem F3_rescale (hb : 0 < b) (s : ℂ) {y₁ y₂ τ : ℝ} (hy₁ : 0 < y₁
   push_cast
   ring
 
+/--
+@isnad1 id=eq.3h7v.s8.ffa632974e80 from=translated src=- shape=ef28f21e vocab=7e1589e5
+-/
 theorem inner_y_eq (hb : 0 < b) (s : ℂ) {y₁ y₂ : ℝ} (hy₁ : 0 < y₁) (hy₂ : 0 < y₂) :
     ∫ y in Ioi (0:ℝ), F3 b p g K s (y, y₁, y₂) =
       ((y₁ : ℂ) ^ (p - s + 1) * (rexp (-(π * (y₁ ^ 2)⁻¹)) : ℂ)) *
@@ -197,6 +230,9 @@ theorem inner_y_eq (hb : 0 < b) (s : ℂ) {y₁ y₂ : ℝ} (hy₁ : 0 < y₁) (
   push_cast
   ring
 
+/--
+@isnad1 id=eq.2h5v.s8.e3136a32e598 from=translated src=- shape=398fd9cb vocab=b85312ef
+-/
 theorem inner_tau_eq (hb : 0 < b) (s : ℂ) {y₂ : ℝ} (hy₂ : 0 < y₂) :
     (y₂ : ℂ) ^ (s - 1) * K y₂ * ∫ τ in Ioi (0:ℝ), (τ : ℂ) ^ (s - 2) * (rexp (-(π * b * y₂ ^ 2 * τ ^ 2)) : ℂ) * g τ =
       K y₂ * ∫ σ' in Ioi (0:ℝ), (σ' : ℂ) ^ (s - 2) * (rexp (-(π * b * σ' ^ 2)) : ℂ) * g (σ' / y₂) := by
@@ -238,6 +274,9 @@ variable {b : ℝ} {p : ℂ} {g K : ℝ → ℂ} {C σ CK N : ℝ}
 
 local notation "μ0" => Measure.restrict (volume : Measure ℝ) (Ioi (0:ℝ))
 
+/--
+@isnad1 id=measurab.2h5v.s5.bc7738f6dbe4 from=translated src=- shape=aae8d782 vocab=743157c7
+-/
 theorem measurable_F3 (hgm : Measurable g) (hKm : Measurable K) (s : ℂ) : Measurable (F3 b p g K s) := by
   unfold F3
   have h1 : Measurable fun q : ℝ × ℝ × ℝ => ((q.1 : ℝ) : ℂ) ^ (s - 2) :=
@@ -254,11 +293,17 @@ theorem measurable_F3 (hgm : Measurable g) (hKm : Measurable K) (s : ℂ) : Meas
     hgm.comp ((measurable_fst.mul (measurable_fst.comp measurable_snd)).div (measurable_snd.comp measurable_snd))
   exact h1.mul (((h2.mul h3).mul h4).mul h5)
 
+/--
+@isnad1 id=le.1h3v.s6.0c59d15cfe0a from=translated src=- shape=7b4476ce vocab=a06fea74
+-/
 theorem C_nonneg (hg : ∀ t : ℝ, 0 < t → ‖g t‖ ≤ C * (1 + t ^ (-σ))) : 0 ≤ C := by
   have h := hg 1 one_pos
   rw [Real.one_rpow] at h
   nlinarith [norm_nonneg (g 1)]
 
+/--
+@isnad1 id=le.3h6v.s7.9f980d2e5763 from=translated src=- shape=080f9b58 vocab=c4f79f03
+-/
 theorem norm_g_mul_le (hg : ∀ t : ℝ, 0 < t → ‖g t‖ ≤ C * (1 + t ^ (-σ))) {α : ℝ} {t E : ℝ} (ht : 0 < t) (hE : 0 ≤ E) :
     t ^ α * E * ‖g t‖ ≤ C * (t ^ α * E + t ^ (α - σ) * E) := by
   have h := hg t ht
@@ -267,6 +312,9 @@ theorem norm_g_mul_le (hg : ∀ t : ℝ, 0 < t → ‖g t‖ ≤ C * (1 + t ^ (-
     _ = C * (t ^ α * E + t ^ (α - σ) * E) := by
         rw [sub_eq_add_neg, Real.rpow_add ht]; ring
 
+/--
+@isnad1 id=integrab.3h5v.s7.47daf0ab74ef from=translated src=- shape=c39d45e4 vocab=da5b65cb
+-/
 theorem integrable_normK_mul_rpow (hb : 0 < b) (hKm : Measurable K)
     (hK : ∀ w : ℝ, 0 < w → ‖K w‖ ≤ CK * (w ^ N + w ^ (-N)) * rexp (-(π * ((w ^ 2)⁻¹ + b * w ^ 2)))) (r : ℝ) :
     Integrable (fun w : ℝ => ‖K w‖ * w ^ r) μ0 := by
@@ -284,11 +332,17 @@ theorem integrable_normK_mul_rpow (hb : 0 < b) (hKm : Measurable K)
         w ^ (-N + r) * rexp (-(π * ((w ^ 2)⁻¹ + b * w ^ 2)))) := by
         rw [Real.rpow_add hw, Real.rpow_add hw]; ring
 
+/--
+@isnad1 id=eventual.0h0v.s6.84eec101e13d from=translated src=- shape=7a132763 vocab=0648c214
+-/
 theorem ae_pos_prod : ∀ᵐ q : ℝ × ℝ ∂((μ0).prod (μ0)), 0 < q.1 ∧ 0 < q.2 := by
   rw [Measure.prod_restrict]
   filter_upwards [ae_restrict_mem (measurableSet_Ioi.prod measurableSet_Ioi)] with q hq
   exact ⟨hq.1, hq.2⟩
 
+/--
+@isnad1 id=integrab.7h9v.s7.2f4038b0c430 from=translated src=- shape=74f2b312 vocab=d98c2eee
+-/
 theorem integrableOn_F3_y (hb : 0 < b) (hgm : Measurable g)
     (hg : ∀ t : ℝ, 0 < t → ‖g t‖ ≤ C * (1 + t ^ (-σ)))
     (s : ℂ) (hs : -1 < s.re - 2 - σ) (hσ : 0 ≤ σ) {y₁ y₂ : ℝ} (hy₁ : 0 < y₁) (hy₂ : 0 < y₂) :
@@ -322,10 +376,16 @@ theorem integrableOn_F3_y (hb : 0 < b) (hgm : Measurable g)
 def Tn (b : ℝ) (g : ℝ → ℂ) (α : ℝ) (y₂ : ℝ) : ℝ :=
   ∫ τ in Ioi (0:ℝ), τ ^ α * rexp (-(π * b * y₂ ^ 2 * τ ^ 2)) * ‖g τ‖
 
+/--
+@isnad1 id=le.0h4v.s4.eb2e5678cc63 from=translated src=- shape=1fd284d7 vocab=fafaf804
+-/
 theorem Tn_nonneg (α y₂ : ℝ) : 0 ≤ Tn b g α y₂ :=
   setIntegral_nonneg measurableSet_Ioi fun τ (hτ : 0 < τ) =>
     mul_nonneg (mul_nonneg (Real.rpow_nonneg hτ.le _) (Real.exp_nonneg _)) (norm_nonneg _)
 
+/--
+@isnad1 id=eq.3h3v.s8.be5883300f70 from=translated src=- shape=8eac80ee vocab=848316d6
+-/
 theorem integral_moment (hb : 0 < b) {q y₂ : ℝ} (hq : -1 < q) (hy₂ : 0 < y₂) :
     ∫ τ in Ioi (0:ℝ), τ ^ q * rexp (-(π * b * y₂ ^ 2) * τ ^ 2) =
       (π * b) ^ (-(q + 1) / 2) * y₂ ^ (-(q + 1)) * ((1 / 2) * Real.Gamma ((q + 1) / 2)) := by
@@ -334,6 +394,9 @@ theorem integral_moment (hb : 0 < b) {q y₂ : ℝ} (hq : -1 < q) (hy₂ : 0 < y
     show (2 : ℝ) * (-(q + 1) / 2) = -(q + 1) by ring]
   ring
 
+/--
+@isnad1 id=le.6h6v.s8.0673a61d9ad7 from=translated src=- shape=c0904fce vocab=3c8cb576
+-/
 theorem rpow_mul_Tn_le (hb : 0 < b) (hgm : Measurable g)
     (hg : ∀ t : ℝ, 0 < t → ‖g t‖ ≤ C * (1 + t ^ (-σ))) {α : ℝ} (hα : -1 < α - σ) (hσ : 0 ≤ σ)
     {y₂ : ℝ} (hy₂ : 0 < y₂) :
@@ -372,6 +435,9 @@ theorem rpow_mul_Tn_le (hb : 0 < b) (hgm : Measurable g)
           (y₂ ^ (α + 1) * y₂ ^ (-(α - σ + 1))) := by ring
     _ = _ := by rw [e1, e2, mul_one]
 
+/--
+@isnad1 id=measurab.1h3v.s4.736a10ccb56d from=translated src=- shape=4a33a4a6 vocab=c311fad6
+-/
 theorem measurable_Tn (hgm : Measurable g) (α : ℝ) : Measurable (Tn b g α) := by
   unfold Tn
   have h : StronglyMeasurable (Function.uncurry fun (y₂ τ : ℝ) => τ ^ α * rexp (-(π * b * y₂ ^ 2 * τ ^ 2)) * ‖g τ‖) := by
@@ -379,6 +445,9 @@ theorem measurable_Tn (hgm : Measurable g) (α : ℝ) : Measurable (Tn b g α) :
     exact ((measurable_snd.pow_const α).mul (Real.measurable_exp.comp (by fun_prop))).mul (hgm.comp measurable_snd).norm
   exact (h.integral_prod_right (ν := μ0)).measurable
 
+/--
+@isnad1 id=eq.3h7v.s8.586215156a65 from=translated src=- shape=80a7624e vocab=34cc41bb
+-/
 theorem integral_norm_F3_y (hb : 0 < b) (s : ℂ) {y₁ y₂ : ℝ} (hy₁ : 0 < y₁) (hy₂ : 0 < y₂) :
     ∫ y in Ioi (0:ℝ), ‖F3 b p g K s (y, y₁, y₂)‖ =
       (y₁ ^ (p.re - (s.re - 2) - 1) * rexp (-(π * (y₁ ^ 2)⁻¹))) *
@@ -414,6 +483,9 @@ theorem integral_norm_F3_y (hb : 0 < b) (s : ℂ) {y₁ y₂ : ℝ} (hy₁ : 0 <
         ∫ τ in Ioi (0:ℝ), τ ^ (s.re - 2) * rexp (-(π * b * y₂ ^ 2 * τ ^ 2)) * ‖g τ‖ := by ring
     _ = _ := by rw [e1]; ring
 
+/--
+@isnad1 id=integrab.8h9v.s8.923b2cb08c55 from=translated src=- shape=e8062f36 vocab=9ccf4210
+-/
 theorem integrable_F3 (hb : 0 < b) (hgm : Measurable g) (hσ : 0 ≤ σ)
     (hg : ∀ t : ℝ, 0 < t → ‖g t‖ ≤ C * (1 + t ^ (-σ)))
     (hKm : Measurable K)
@@ -451,6 +523,9 @@ theorem integrable_F3 (hb : 0 < b) (hgm : Measurable g) (hσ : 0 ≤ σ)
 def Lk (b : ℝ) (g K : ℝ → ℂ) (s : ℂ) (q : ℝ × ℝ) : ℂ :=
   K q.1 * (((q.2 : ℝ) : ℂ) ^ (s - 2) * (rexp (-(π * b * q.2 ^ 2)) : ℂ) * g (q.2 / q.1))
 
+/--
+@isnad1 id=integrab.7h8v.s8.6865fb69d6b7 from=translated src=- shape=70c12d2c vocab=bf705dcc
+-/
 theorem integrable_Lk (hb : 0 < b) (hgm : Measurable g) (hσ : 0 ≤ σ)
     (hg : ∀ t : ℝ, 0 < t → ‖g t‖ ≤ C * (1 + t ^ (-σ)))
     (hKm : Measurable K)
@@ -489,6 +564,9 @@ theorem integrable_Lk (hb : 0 < b) (hgm : Measurable g) (hσ : 0 ≤ σ)
           C * (‖K w‖ * w ^ σ) * (σ' ^ (s.re - 2) * σ' ^ (-σ) * rexp (-(π * b) * σ' ^ 2)) := by ring_nf
       _ = _ := by rw [← Real.rpow_add hσ', ← sub_eq_add_neg, mul_one]
 
+/--
+@isnad1 id=eq.1h6v.s7.5477b49527b9 from=translated src=- shape=45fa975b vocab=35690f25
+-/
 theorem integral_Lk_w (s : ℂ) (H : ℝ → ℂ)
     (hH : H = fun σ' => (rexp (-(π * b * σ' ^ 2)) : ℂ) * ∫ w in Ioi (0 : ℝ), g (σ' / w) * K w) (σ' : ℝ) :
     ∫ w in Ioi (0:ℝ), Lk b g K s (w, σ') = ((σ' : ℝ) : ℂ) ^ (s - 1 - 1) • H σ' := by
@@ -498,6 +576,9 @@ theorem integral_Lk_w (s : ℂ) (H : ℝ → ℂ)
   refine integral_congr_ae (ae_of_all _ fun w => ?_)
   ring
 
+/--
+@isnad1 id=and.9h10v.s9.e64cb902bb78 from=translated src=- shape=92549bb0 vocab=39a40c59
+-/
 theorem main (hb : 0 < b) (hgm : Measurable g) (hσ : 0 ≤ σ)
     (hg : ∀ t : ℝ, 0 < t → ‖g t‖ ≤ C * (1 + t ^ (-σ)))
     (hKm : Measurable K)
@@ -573,6 +654,9 @@ end Z0RC
 end
 
 open Z0RC in
+/--
+@isnad1 id=ex.7h9v.s10.8c0535dd7276 from=translated src=- shape=fbf22642 vocab=7e201941
+-/
 theorem solution
     (b : ℝ) (hb : 0 < b) (p : ℂ)
     (g : ℝ → ℂ) (hgm : Measurable g) (C σ : ℝ) (hσ : 0 ≤ σ)

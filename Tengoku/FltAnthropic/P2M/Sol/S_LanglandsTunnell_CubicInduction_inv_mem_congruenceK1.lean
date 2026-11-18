@@ -37,6 +37,9 @@ end CongruenceBottomEntries
 
 open CongruenceBottomEntries
 
+/--
+@isnad1 id=mem.1h5v.s9.67126127ab48 from=translated src=- shape=3754de8d vocab=08421307
+-/
 theorem solution
     (R K : Type*) [CommRing R] [IsDedekindDomain R] [Field K] [Algebra R K] [IsFractionRing R K]
     (v : HeightOneSpectrum R) {c : ℕ}

@@ -10,5 +10,8 @@ set_option autoImplicit false
 
 open _root_.LanglandsTunnell.ArchBessel hiding mellin_besselKernel_eq_mul_Gamma_mul_Gamma
 
+/--
+@isnad1 id=ex.0h1v.s4.ebcc777ce111 from=translated src=- shape=447ca309 vocab=e6433e7c
+-/
 theorem LanglandsTunnell.ArchBessel.exists_besselKernel_ne_zero (ν : ℂ) :
     ∃ x : ℝ, 0 < x ∧ besselKernel ν x ≠ 0 := by exact @_root_.P2MW.S_LanglandsTunnell_ArchBessel_exists_besselKernel_ne_zero.solution ν

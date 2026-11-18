@@ -21,6 +21,9 @@ open _root_.LanglandsTunnell.TateLocal open _root_.LanglandsTunnell
 
 open Polynomial Rat.HeightOneSpectrum
 
+/--
+@isnad1 id=ex.4h4v.s9.80a413f2d49f from=translated src=- shape=a7fe0f59 vocab=6155b456
+-/
 theorem exists_pow_eq_of_norm_sub_one_le (q : ℕ) [hq : Fact q.Prime] (k : ℕ) (y : ℤ_[q]) (r : ℕ) (hr : 3 ≤ r)
     (hy : ‖y - 1‖ ≤ ((q : ℝ)⁻¹) ^ r) (hk : (q : ℝ)⁻¹ ≤ ‖(k : ℤ_[q])‖)
     (hΦ : ∀ z : ℤ_[q], ‖z - 1‖ < ‖(k : ℤ_[q])‖ → ‖(Finset.range k).sum (fun i => z ^ i)‖ = ‖(k : ℤ_[q])‖) :
@@ -65,6 +68,9 @@ theorem exists_pow_eq_of_norm_sub_one_le (q : ℕ) [hq : Fact q.Prime] (k : ℕ)
         omega
     _ ≤ ((q : ℝ)⁻¹) ^ (r - 1) * ‖(k : ℤ_[q])‖ := by gcongr
 
+/--
+@isnad1 id=eq.1h2v.s7.425c735e917f from=translated src=- shape=33b8e593 vocab=fcdda9c1
+-/
 theorem norm_geom_two (q : ℕ) [Fact q.Prime] (z : ℤ_[q]) (hz : ‖z - 1‖ < ‖(2 : ℤ_[q])‖) :
     ‖(Finset.range 2).sum (fun i => z ^ i)‖ = ‖((2 : ℕ) : ℤ_[q])‖ := by
   have hsum : (Finset.range 2).sum (fun i => z ^ i) = 2 + (z - 1) := by
@@ -74,6 +80,9 @@ theorem norm_geom_two (q : ℕ) [Fact q.Prime] (z : ℤ_[q]) (hz : ‖z - 1‖ <
   have hne : ‖(2 : ℤ_[q])‖ ≠ ‖z - 1‖ := (ne_of_lt hz).symm
   rw [IsUltrametricDist.norm_add_eq_max_of_norm_ne_norm hne, max_eq_left hz.le]
 
+/--
+@isnad1 id=eq.1h2v.s7.1bb818e0476e from=translated src=- shape=33b8e593 vocab=fcdda9c1
+-/
 theorem norm_geom_three (q : ℕ) [Fact q.Prime] (z : ℤ_[q]) (hz : ‖z - 1‖ < ‖(3 : ℤ_[q])‖) :
     ‖(Finset.range 3).sum (fun i => z ^ i)‖ = ‖((3 : ℕ) : ℤ_[q])‖ := by
   have hsum : (Finset.range 3).sum (fun i => z ^ i) = 3 + (z - 1) * ((z - 1) + 3) := by
@@ -89,6 +98,9 @@ theorem norm_geom_three (q : ℕ) [Fact q.Prime] (z : ℤ_[q]) (hz : ‖z - 1‖
   have hne : ‖(3 : ℤ_[q])‖ ≠ ‖(z - 1) * ((z - 1) + 3)‖ := (ne_of_lt hsmall).symm
   rw [IsUltrametricDist.norm_add_eq_max_of_norm_ne_norm hne, max_eq_left hsmall.le]
 
+/--
+@isnad1 id=le.1h2v.s5.48275aff45a4 from=translated src=- shape=e0f949aa vocab=0a4d4f96
+-/
 theorem inv_le_norm_natCast_of_prime (q : ℕ) [hq : Fact q.Prime] (k : ℕ) (hk : k.Prime) :
     (q : ℝ)⁻¹ ≤ ‖(k : ℤ_[q])‖ := by
   by_cases hqk : q = k
@@ -98,6 +110,9 @@ theorem inv_le_norm_natCast_of_prime (q : ℕ) [hq : Fact q.Prime] (k : ℕ) (hk
     rw [PadicInt.norm_natCast_eq_one_iff.mpr hcop]
     exact inv_le_one_of_one_le₀ (by exact_mod_cast hq.out.one_lt.le)
 
+/--
+@isnad1 id=ex.3h4v.s10.1b56b5ca0c90 from=translated src=- shape=819abe96 vocab=cd4c54a5
+-/
 theorem exists_pow_eq_and_mem_higherUnitsAt (v : HeightOneSpectrum (𝓞 ℚ)) (k : ℕ) (hk23 : k = 2 ∨ k = 3)
     (r : ℕ) (hr : 3 ≤ r) (t : (v.adicCompletion ℚ)ˣ) (ht : t ∈ higherUnitsAt ℚ v r) :
     ∃ z : (v.adicCompletion ℚ)ˣ, z ^ k = t ∧ z ∈ higherUnitsAt ℚ v (r - 1) := by
@@ -194,6 +209,9 @@ theorem exists_pow_eq_and_mem_higherUnitsAt (v : HeightOneSpectrum (𝓞 ℚ)) (
 
 end LanglandsTunnell.TateLocal.PowerLev
 
+/--
+@isnad1 id=and.2h4v.s11.7e68eb42b4bf from=translated src=- shape=0f2d3d94 vocab=5c0d6072
+-/
 theorem solution
     (p : HeightOneSpectrum (𝓞 ℚ)) (χ : (p.adicCompletion ℚ)ˣ →* ℂˣ) (kp : ℕ)
     (hkp : LanglandsTunnell.TateLocal.HasConductorExponentAt ℚ p χ kp)

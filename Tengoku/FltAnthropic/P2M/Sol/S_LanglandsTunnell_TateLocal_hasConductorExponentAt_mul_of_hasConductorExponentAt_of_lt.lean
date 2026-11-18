@@ -10,6 +10,9 @@ set_option autoImplicit false
 open NumberField NumberField.AdelicLevel IsDedekindDomain IsDedekindDomain.HeightOneSpectrum
 
 open LanglandsTunnell.TateLocal in
+/--
+@isnad1 id=hascondu.3h6v.s11.4f03014e61cd from=translated src=- shape=b7895fb4 vocab=ef4d506f
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K))
     (lam nu : (v.adicCompletion K)ˣ →* ℂˣ) (a b : ℕ)

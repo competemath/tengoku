@@ -348,6 +348,9 @@ end Centrality
 
 open LanglandsTunnell.CubicInduction.WhittakerBlock in
 
+/--
+@isnad1 id=and.1h1v.s7.ce8589510c1c from=translated src=- shape=9cfde734 vocab=ab59cf5a
+-/
 theorem solution
     (H : AdelicGL 3 (𝓞 ℚ) ℚ → ℂ) (hH : WhittakerBlock.IsArchSmooth3 H) :
     (∀ i j : Fin 3,

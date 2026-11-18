@@ -14,6 +14,9 @@ open Real Complex Filter Topology MeasureTheory Set Asymptotics
 namespace LanglandsTunnell
 namespace PoleClash
 
+/--
+@isnad1 id=le.2h2v.s6.e98a57a069ea from=translated src=- shape=9dc93380 vocab=56348124
+-/
 theorem abs_log_le_rpow_add (t v : ℝ) (ht : 0 < t) (hv : 0 < v) :
     |Real.log t| ≤ (t ^ v + t ^ (-v)) / v := by
   have h1 : Real.log t ≤ t ^ v / v := Real.log_le_rpow_div ht.le hv
@@ -26,6 +29,9 @@ theorem abs_log_le_rpow_add (t v : ℝ) (ht : 0 < t) (hv : 0 < v) :
   rw [abs_le, add_div]
   constructor <;> linarith
 
+/--
+@isnad1 id=le.2h4v.s6.324e24448003 from=translated src=- shape=5a00e61e vocab=0362db2c
+-/
 theorem rpow_le_rpow_add_rpow (t x e v : ℝ) (ht : 0 < t) (he : |e - x| ≤ v) :
     t ^ e ≤ t ^ (x + v) + t ^ (x - v) := by
   rw [abs_le] at he
@@ -33,6 +39,9 @@ theorem rpow_le_rpow_add_rpow (t x e v : ℝ) (ht : 0 < t) (he : |e - x| ≤ v) 
   · exact le_add_of_le_of_nonneg (Real.rpow_le_rpow_of_exponent_le h (by linarith)) (by positivity)
   · exact le_add_of_nonneg_of_le (by positivity) (Real.rpow_le_rpow_of_exponent_ge ht h.le (by linarith))
 
+/--
+@isnad1 id=differen.6h5v.s8.1282ca585734 from=translated src=- shape=52e33e79 vocab=2fd77d38
+-/
 theorem differentiableAt_setIntegral_cpow_smul (S : Set ℝ) (hS : MeasurableSet S) (hS0 : S ⊆ Ioi 0)
     (g : ℝ → ℂ) (hg : AEStronglyMeasurable g (volume.restrict S)) (p q : ℝ)
     (hint : ∀ σ : ℝ, p < σ → σ < q → IntegrableOn (fun t : ℝ => t ^ (σ - 1) * ‖g t‖) S)
@@ -122,6 +131,9 @@ theorem differentiableAt_setIntegral_cpow_smul (S : Set ℝ) (hS : MeasurableSet
   have main := hasDerivAt_integral_of_dominated_loc_of_deriv_le (Metric.ball_mem_nhds _ hv0) h1 h2 h3 h4 h5 h6
   exact main.2.differentiableAt
 
+/--
+@isnad1 id=integrab.2h3v.s7.95599198c101 from=translated src=- shape=158f0831 vocab=627b7091
+-/
 theorem integrableOn_tail (f : ℝ → ℂ) (hf : ContinuousOn f (Ioi 0)) (σ₀ : ℝ)
     (hmel : ∀ s : ℂ, σ₀ < s.re → MellinConvergent f s) (σ : ℝ) :
     IntegrableOn (fun t : ℝ => t ^ (σ - 1) * ‖f t‖) (Ioi 1) := by
@@ -144,6 +156,9 @@ theorem integrableOn_tail (f : ℝ → ℂ) (hf : ContinuousOn f (Ioi 0)) (σ₀
   simp only [sub_re, ofReal_re, one_re]
   exact mul_le_mul_of_nonneg_right (Real.rpow_le_rpow_of_exponent_le ht.le (by linarith)) (norm_nonneg _)
 
+/--
+@isnad1 id=differen.2h2v.s7.06ffc03dc8a9 from=translated src=- shape=eebd5bc5 vocab=a820796e
+-/
 theorem differentiable_tail (f : ℝ → ℂ) (hf : ContinuousOn f (Ioi 0)) (σ₀ : ℝ)
     (hmel : ∀ s : ℂ, σ₀ < s.re → MellinConvergent f s) :
     Differentiable ℂ (fun w : ℂ => ∫ t in Ioi (1 : ℝ), (t : ℂ) ^ (w - 1) • f t) := fun z =>
@@ -151,6 +166,9 @@ theorem differentiable_tail (f : ℝ → ℂ) (hf : ContinuousOn f (Ioi 0)) (σ�
     ((hf.mono (Ioi_subset_Ioi zero_le_one)).aestronglyMeasurable measurableSet_Ioi) (z.re - 1) (z.re + 1)
     (fun σ _ _ => integrableOn_tail f hf σ₀ hmel σ) z (by linarith) (by linarith)
 
+/--
+@isnad1 id=differen.3h4v.s7.785b87c2d007 from=translated src=- shape=774cbf4d vocab=1a31672b
+-/
 theorem differentiableAt_head (r : ℝ → ℂ) (hr : ContinuousOn r (Ioc 0 1)) (e C : ℝ)
     (hbound : ∀ t : ℝ, 0 < t → t ≤ 1 → ‖r t‖ ≤ C * t ^ e) (z : ℂ) (hz : -e < z.re) :
     DifferentiableAt ℂ (fun w : ℂ => ∫ t in Ioc (0 : ℝ) 1, (t : ℂ) ^ (w - 1) • r t) z := by
@@ -175,17 +193,29 @@ theorem differentiableAt_head (r : ℝ → ℂ) (hr : ContinuousOn r (Ioc 0 1)) 
         mul_le_mul_of_nonneg_left (hbound t ht.1 ht.2) (by have := ht.1; positivity)
     _ = C * (t ^ (σ - 1) * t ^ e) := by ring
 
+/--
+@isnad1 id=eq.0h0v.s5.3b637d09eede from=translated src=- shape=f2507e3d vocab=ced9c912
+-/
 theorem Ioc_union_Ioi : Ioc (0 : ℝ) 1 ∪ Ioi 1 = Ioi 0 := Ioc_union_Ioi_eq_Ioi zero_le_one
 
+/--
+@isnad1 id=disjoint.0h0v.s5.bc24ad4b7e11 from=translated src=- shape=9852e544 vocab=0cf38a83
+-/
 theorem disjoint_Ioc_Ioi : Disjoint (Ioc (0 : ℝ) 1) (Ioi 1) :=
   disjoint_left.mpr fun t ht ht' => (not_lt.mpr ht.2) ht'
 
+/--
+@isnad1 id=eq.1h2v.s7.510680658a74 from=translated src=- shape=e50039f4 vocab=b78fbe89
+-/
 theorem mellin_eq_head_add_tail (f : ℝ → ℂ) (w : ℂ) (h : MellinConvergent f w) :
     mellin f w = (∫ t in Ioc (0 : ℝ) 1, (t : ℂ) ^ (w - 1) • f t) + ∫ t in Ioi (1 : ℝ), (t : ℂ) ^ (w - 1) • f t := by
   rw [mellin, ← Ioc_union_Ioi]
   exact setIntegral_union disjoint_Ioc_Ioi measurableSet_Ioi (h.mono_set Ioc_subset_Ioi_self)
     (h.mono_set (Ioi_subset_Ioi zero_le_one))
 
+/--
+@isnad1 id=and.1h2v.s7.b5e60f5ea3fa from=translated src=- shape=c1c786b4 vocab=413d0303
+-/
 theorem integrableOn_cpow_Ioc_and_integral_eq (a w : ℂ) (h : 0 < w.re + a.re) :
     IntegrableOn (fun t : ℝ => (t : ℂ) ^ (w - 1) • ((t : ℂ) ^ a)) (Ioc 0 1) ∧
       ∫ t in Ioc (0 : ℝ) 1, (t : ℂ) ^ (w - 1) • ((t : ℂ) ^ a) = 1 / (w + a) := by
@@ -203,6 +233,9 @@ theorem integrableOn_cpow_Ioc_and_integral_eq (a w : ℂ) (h : 0 < w.re + a.re) 
   rw [setIntegral_indicator measurableSet_Ioc, inter_eq_right.mpr Ioc_subset_Ioi_self] at hval
   exact ⟨hconv, hval⟩
 
+/--
+@isnad1 id=differen.1h1v.s6.c7b5bac39176 from=translated src=- shape=f4fff64d vocab=b3882058
+-/
 theorem differentiableAt_Gammaℂ (s : ℂ) (hs : 0 < s.re) : DifferentiableAt ℂ Complex.Gammaℂ s := by
   have h1 : DifferentiableAt ℂ (fun s : ℂ => (2 : ℂ) * (2 * (π : ℂ)) ^ (-s)) s := by
     refine (DifferentiableAt.const_cpow differentiableAt_id.neg ?_).const_mul _
@@ -215,6 +248,9 @@ theorem differentiableAt_Gammaℂ (s : ℂ) (hs : 0 < s.re) : DifferentiableAt �
   rw [this]
   exact h1.mul h2
 
+/--
+@isnad1 id=eq.6h7v.s8.721b7e3a6ff0 from=translated src=- shape=5a208a7f vocab=ff2989b9
+-/
 theorem pos_case (ν : ℝ) (hν : 0 < ν) (f : ℝ → ℂ) (hf : ContinuousOn f (Ioi 0))
     (c : ℂ) (δ : ℝ) (hδ : 0 < δ) (C : ℝ)
     (hnear : ∀ y : ℝ, 0 < y → y ≤ 1 → ‖f y - c * (y : ℂ) ^ ((1 / 2 - ν : ℝ) : ℂ)‖ ≤ C * y ^ (1 / 2 - ν + δ))
@@ -313,6 +349,9 @@ theorem pos_case (ν : ℝ) (hν : 0 < ν) (f : ℝ → ℂ) (hf : ContinuousOn 
   simp only [hL, hR, hwa0, zero_mul, zero_add] at hstar
   exact hstar
 
+/--
+@isnad1 id=and.1h1v.s8.b40493ccba02 from=translated src=- shape=eed2d0a2 vocab=8c6cb8c3
+-/
 theorem integrableOn_log_cpow_Ioc_and_integral_eq (w : ℂ) (hw : -(1 / 2 : ℝ) < w.re) :
     IntegrableOn (fun t : ℝ => (t : ℂ) ^ (w - 1) • ((Real.log t : ℂ) * (t : ℂ) ^ (1 / 2 : ℂ))) (Ioc 0 1) ∧
       ∫ t in Ioc (0 : ℝ) 1, (t : ℂ) ^ (w - 1) • ((Real.log t : ℂ) * (t : ℂ) ^ (1 / 2 : ℂ)) =
@@ -371,6 +410,9 @@ theorem integrableOn_log_cpow_Ioc_and_integral_eq (w : ℂ) (hw : -(1 / 2 : ℝ)
   rw [setIntegral_indicator measurableSet_Ioc, inter_eq_right.mpr Ioc_subset_Ioi_self] at hval
   exact ⟨hconv, hval⟩
 
+/--
+@isnad1 id=eq.5h7v.s8.aaf434af2d8f from=translated src=- shape=44c00d3c vocab=83659541
+-/
 theorem zero_case (f : ℝ → ℂ) (hf : ContinuousOn f (Ioi 0))
     (a b : ℂ) (δ : ℝ) (hδ : 0 < δ) (C : ℝ)
     (hnear : ∀ y : ℝ, 0 < y → y ≤ 1 →
@@ -507,6 +549,9 @@ theorem zero_case (f : ℝ → ℂ) (hf : ContinuousOn f (Ioi 0))
 end LanglandsTunnell.PoleClash
 
 open LanglandsTunnell.PoleClash in
+/--
+@isnad1 id=and.6h9v.s9.0b0db653c519 from=translated src=- shape=6eaecd2f vocab=83659541
+-/
 theorem solution
     (ν : ℝ) (hν : 0 ≤ ν) (f : ℝ → ℂ) (hf : ContinuousOn f (Set.Ioi 0))
     (c a b : ℂ) (δ : ℝ) (hδ : 0 < δ) (C : ℝ)

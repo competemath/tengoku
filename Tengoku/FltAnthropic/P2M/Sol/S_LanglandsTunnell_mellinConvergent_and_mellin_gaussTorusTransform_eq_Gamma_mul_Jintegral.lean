@@ -26,12 +26,21 @@ noncomputable def Φ (a p q κ : ℝ) (w r : ℝ) : ℝ :=
 
 noncomputable def ψ (w r : ℝ) : ℝ := (1 + ((w * r) ^ 2)⁻¹)⁻¹
 
+/--
+@isnad1 id=lt.2h2v.s5.37c1cc5ae4b1 from=translated src=- shape=6c67d60b vocab=9e8e5f19
+-/
 theorem ψ_pos {w r : ℝ} (hw : 0 < w) (hr : 0 < r) : 0 < ψ w r := by
   unfold ψ; positivity
 
+/--
+@isnad1 id=lt.2h6v.s5.da426abbfd39 from=translated src=- shape=a979576a vocab=e33b0d6e
+-/
 theorem Φ_pos (a p q κ : ℝ) {w r : ℝ} (hw : 0 < w) (hr : 0 < r) : 0 < Φ a p q κ w r := by
   unfold Φ; positivity
 
+/--
+@isnad1 id=eq.4h8v.s8.0d019a8c637c from=translated src=- shape=7394cb77 vocab=df272f09
+-/
 theorem F_eq (a p q κ x : ℝ) (ha : a ≠ 0) {σ w r : ℝ} (hσ : 0 < σ) (hw : 0 < w) (hr : 0 < r) :
     F a p q κ x σ w r =
       (σ ^ (x + q) * rexp (-(π * a ^ 2 * (1 + ((w * r) ^ 2)⁻¹)) * σ ^ 2)) * (4 * |a| ^ (1 + q) * Φ a p q κ w r) := by
@@ -72,6 +81,9 @@ theorem F_eq (a p q κ x : ℝ) (ha : a ≠ 0) {σ w r : ℝ} (hσ : 0 < σ) (hw
         rw [hσp, hwp, hrp, hexp, Real.rpow_add ha' 1 q, Real.rpow_one]
         ring
 
+/--
+@isnad1 id=eq.2h2v.s7.b2bd92027caf from=translated src=- shape=1754007f vocab=64ba4f1a
+-/
 theorem integral_sigma (A B : ℝ) (hA : -1 < A) (hB : 0 < B) :
     ∫ σ in Ioi (0:ℝ), σ ^ A * rexp (-B * σ ^ 2) = B ^ (-(A + 1) / 2) * (1 / 2) * Real.Gamma ((A + 1) / 2) := by
   have h := integral_rpow_mul_exp_neg_mul_rpow (p := 2) (q := A) (b := B) two_pos hA hB
@@ -80,6 +92,9 @@ theorem integral_sigma (A B : ℝ) (hA : -1 < A) (hB : 0 < B) :
 
 local notation "μ0" => Measure.restrict (volume : Measure ℝ) (Ioi (0:ℝ))
 
+/--
+@isnad1 id=measurab.0h4v.s4.a4a319841a22 from=translated src=- shape=7069e2a9 vocab=fbb34c59
+-/
 theorem measurable_Φ (a p q κ : ℝ) : Measurable (Function.uncurry (Φ a p q κ)) := by
   unfold Φ
   have h1 : Measurable fun z : ℝ × ℝ => z.1 ^ (κ - 1 - q) := measurable_fst.pow_const _
@@ -87,14 +102,23 @@ theorem measurable_Φ (a p q κ : ℝ) : Measurable (Function.uncurry (Φ a p q 
   have h3 : Measurable fun z : ℝ × ℝ => rexp (-(π * (z.2 ^ 2 + (z.1 ^ 2)⁻¹ + a ^ 2 * z.1 ^ 2))) := by fun_prop
   exact (h1.mul h2).mul h3
 
+/--
+@isnad1 id=measurab.0h0v.s4.2b75a3aafcb4 from=translated src=- shape=57a5edaf vocab=adc5c35a
+-/
 theorem measurable_ψ : Measurable (Function.uncurry ψ) := by
   unfold ψ
   exact ((measurable_const.add ((measurable_fst.mul measurable_snd).pow_const 2).inv).inv)
 
+/--
+@isnad1 id=measurab.0h5v.s5.d18e7b447f05 from=translated src=- shape=1a5030b7 vocab=fe5955cc
+-/
 theorem measurable_ψpowΦ (a p q κ Z : ℝ) :
     Measurable (fun z : ℝ × ℝ => ψ z.1 z.2 ^ Z * Φ a p q κ z.1 z.2) :=
   (measurable_ψ.pow_const Z).mul (measurable_Φ a p q κ)
 
+/--
+@isnad1 id=integrab.1h2v.s7.d72504684fb5 from=translated src=- shape=2451d543 vocab=de77835d
+-/
 theorem integrableOn_w (a : ℝ) (ha : a ≠ 0) (s : ℝ) :
     IntegrableOn (fun w : ℝ => w ^ s * rexp (-(π * ((w ^ 2)⁻¹ + a ^ 2 * w ^ 2)))) (Ioi 0) := by
 
@@ -139,11 +163,17 @@ theorem integrableOn_w (a : ℝ) (ha : a ≠ 0) (s : ℝ) :
 noncomputable def J (a p q κ Z : ℝ) : ℝ :=
   ∫ v, ψ v.1 v.2 ^ Z * Φ a p q κ v.1 v.2 ∂((μ0).prod (μ0))
 
+/--
+@isnad1 id=eventual.0h0v.s6.84eec101e13d from=translated src=- shape=7a132763 vocab=0648c214
+-/
 theorem ae_pos_prod : ∀ᵐ v : ℝ × ℝ ∂((μ0).prod (μ0)), 0 < v.1 ∧ 0 < v.2 := by
   rw [Measure.prod_restrict]
   filter_upwards [ae_restrict_mem (measurableSet_Ioi.prod measurableSet_Ioi)] with v hv
   exact ⟨hv.1, hv.2⟩
 
+/--
+@isnad1 id=le.2h2v.s5.2f2c803c2548 from=translated src=- shape=f1b78ff2 vocab=26185395
+-/
 theorem ψ_le_sq {w r : ℝ} (hw : 0 < w) (hr : 0 < r) : ψ w r ≤ (w * r) ^ 2 := by
   unfold ψ
   rw [inv_le_iff_one_le_mul₀ (by positivity)]
@@ -151,6 +181,9 @@ theorem ψ_le_sq {w r : ℝ} (hw : 0 < w) (hr : 0 < r) : ψ w r ≤ (w * r) ^ 2 
   field_simp
   nlinarith
 
+/--
+@isnad1 id=integrab.3h5v.s7.30a7b927036e from=translated src=- shape=a824a463 vocab=88ad4103
+-/
 theorem integrable_ψΦ (a p q κ Z : ℝ) (ha : a ≠ 0) (hZ : 0 ≤ Z) (hpqZ : -1 < p - q - 1 + 2 * Z) :
     Integrable (fun v : ℝ × ℝ => ψ v.1 v.2 ^ Z * Φ a p q κ v.1 v.2) ((μ0).prod (μ0)) := by
   have hw := integrableOn_w a ha (κ - 1 - q + 2 * Z)
@@ -181,12 +214,18 @@ theorem integrable_ψΦ (a p q κ Z : ℝ) (ha : a ≠ 0) (hZ : 0 ≤ Z) (hpqZ :
 
 noncomputable def Kc (a q Z : ℝ) : ℝ := 2 * |a| ^ (1 + q) * Real.Gamma Z * (π * a ^ 2) ^ (-Z)
 
+/--
+@isnad1 id=lt.2h3v.s5.12713042d422 from=translated src=- shape=5581d946 vocab=16fa2841
+-/
 theorem Kc_pos (a q Z : ℝ) (ha : a ≠ 0) (hZ : 0 < Z) : 0 < Kc a q Z := by
   unfold Kc
   have := Real.Gamma_pos_of_pos hZ
   have : 0 < |a| := abs_pos.2 ha
   positivity
 
+/--
+@isnad1 id=and.4h7v.s8.af82656e0141 from=translated src=- shape=9ac4e2aa vocab=740a7080
+-/
 theorem sigma_section (a p q κ x : ℝ) (ha : a ≠ 0) (hxq : -1 < x + q) {w r : ℝ} (hw : 0 < w) (hr : 0 < r) :
     IntegrableOn (fun σ => F a p q κ x σ w r) (Ioi 0) ∧
     ∫ σ in Ioi (0:ℝ), F a p q κ x σ w r =
@@ -209,6 +248,9 @@ theorem sigma_section (a p q κ x : ℝ) (ha : a ≠ 0) (hxq : -1 < x + q) {w r 
     Real.rpow_neg (le_of_lt (by positivity : (0:ℝ) < 1 + ((w * r) ^ 2)⁻¹))]
   ring
 
+/--
+@isnad1 id=measurab.0h5v.s6.3283c05e1334 from=translated src=- shape=624f82de vocab=3fe565f1
+-/
 theorem measurable_F (a p q κ x : ℝ) : Measurable (fun z : ℝ × ℝ × ℝ => F a p q κ x z.1 z.2.1 z.2.2) := by
   have m1 : Measurable fun z : ℝ × ℝ × ℝ => z.1 := measurable_fst
   have m2 : Measurable fun z : ℝ × ℝ × ℝ => z.2.1 := measurable_fst.comp measurable_snd
@@ -228,10 +270,16 @@ theorem measurable_F (a p q κ x : ℝ) : Measurable (fun z : ℝ × ℝ × ℝ 
       |>.const_mul _)).mul (m2.pow_const _)).mul e4)
   exact h
 
+/--
+@isnad1 id=eventual.0h0v.s7.94c09b2cf0ae from=translated src=- shape=f93ac907 vocab=0648c214
+-/
 theorem ae_pos_triple : ∀ᵐ z : ℝ × ℝ × ℝ ∂((μ0).prod ((μ0).prod (μ0))), 0 < z.1 ∧ (0 < z.2.1 ∧ 0 < z.2.2) := by
   have h1 : ∀ᵐ s : ℝ ∂(μ0), 0 < s := ae_restrict_mem measurableSet_Ioi
   exact ((Measure.quasiMeasurePreserving_fst).ae h1).and ((Measure.quasiMeasurePreserving_snd).ae ae_pos_prod)
 
+/--
+@isnad1 id=eq.3h5v.s8.307d44f627e3 from=translated src=- shape=4976a151 vocab=864ecc48
+-/
 theorem lintegral_F (a p q κ x : ℝ) (ha : a ≠ 0) (hxq : -1 < x + q) (hxp : -1 < x + p) :
     ∫⁻ z, ENNReal.ofReal (F a p q κ x z.1 z.2.1 z.2.2) ∂((μ0).prod ((μ0).prod (μ0))) =
       ENNReal.ofReal (Kc a q ((x + q + 1) / 2) * J a p q κ ((x + q + 1) / 2)) := by
@@ -260,6 +308,9 @@ theorem lintegral_F (a p q κ x : ℝ) (ha : a ≠ 0) (hxq : -1 < x + q) (hxp : 
     have hK : 0 < Kc a q Z := Kc_pos a q Z ha (by rw [hZ]; linarith)
     exact mul_nonneg hK.le (mul_nonneg (Real.rpow_nonneg (ψ_pos hv.1 hv.2).le Z) (Φ_pos a p q κ hv.1 hv.2).le)
 
+/--
+@isnad1 id=integrab.3h5v.s7.2658e7001d48 from=translated src=- shape=7c67875e vocab=e000fea4
+-/
 theorem integrable_F (a p q κ x : ℝ) (ha : a ≠ 0) (hxq : -1 < x + q) (hxp : -1 < x + p) :
     Integrable (fun z : ℝ × ℝ × ℝ => F a p q κ x z.1 z.2.1 z.2.2) ((μ0).prod ((μ0).prod (μ0))) := by
   have hnn : 0 ≤ᵐ[(μ0).prod ((μ0).prod (μ0))] fun z : ℝ × ℝ × ℝ => F a p q κ x z.1 z.2.1 z.2.2 := by
@@ -306,15 +357,24 @@ noncomputable def Jc (a : ℝ) (p q κ z : ℂ) (v : ℝ × ℝ) : ℂ :=
   (((1 + ((v.1 * v.2) ^ 2)⁻¹ : ℝ)) : ℂ) ^ (-((z + q + 1) / 2)) * ((v.1 : ℝ) : ℂ) ^ (κ - 1 - q) * ((v.2 : ℝ) : ℂ) ^ (p - q - 1) *
     (Real.exp (-(Real.pi * (v.2 ^ 2 + (v.1 ^ 2)⁻¹ + a ^ 2 * v.1 ^ 2))) : ℂ)
 
+/--
+@isnad1 id=eq.0h6v.s5.02be78dc4cc4 from=translated src=- shape=4b5784b7 vocab=651c910b
+-/
 theorem Jc_eq (a : ℝ) (p q κ z : ℂ) (v : ℝ × ℝ) : Jc a p q κ z v = Jc' a p q κ z v.1 v.2 := rfl
 
 noncomputable def Φc (a : ℝ) (p q κ : ℂ) (w r : ℝ) : ℂ :=
   ((w : ℝ) : ℂ) ^ (κ - 1 - q) * ((r : ℝ) : ℂ) ^ (p - q - 1) * (Real.exp (-(Real.pi * (r ^ 2 + (w ^ 2)⁻¹ + a ^ 2 * w ^ 2))) : ℂ)
 
+/--
+@isnad1 id=eq.0h7v.s7.f6eaff980269 from=translated src=- shape=fb5ab091 vocab=1e6f5da0
+-/
 theorem Jc'_eq_mul_Φc (a : ℝ) (p q κ z : ℂ) (w r : ℝ) :
     Jc' a p q κ z w r = (((1 + ((w * r) ^ 2)⁻¹ : ℝ)) : ℂ) ^ (-((z + q + 1) / 2)) * Φc a p q κ w r := by
   unfold Jc' Φc; ring
 
+/--
+@isnad1 id=eq.0h7v.s7.6ddc2ca8bfeb from=translated src=- shape=0e7b304c vocab=20ebf875
+-/
 theorem mellin_integrand_eq_iter (a : ℝ) (C p q κ z : ℂ) (σ' : ℝ) :
     ((σ' : ℝ) : ℂ) ^ (z - 1) • Hc a C p q κ σ' = ∫ w in Ioi (0:ℝ), ∫ r in Ioi (0:ℝ), Fc a C p q κ z σ' w r := by
   simp only [Hc, Fc, Rc, smul_eq_mul]
@@ -328,11 +388,20 @@ open MGReal
 
 local notation "μ0" => Measure.restrict (volume : Measure ℝ) (Ioi (0:ℝ))
 
+/--
+@isnad1 id=eq.1h1v.s4.62aa428a24ca from=translated src=- shape=7e4b93a7 vocab=5faeaf8e
+-/
 theorem norm_ofReal_of_nonneg {x : ℝ} (hx : 0 ≤ x) : ‖(x : ℂ)‖ = x := by
   rw [Complex.norm_real, Real.norm_eq_abs, abs_of_nonneg hx]
 
+/--
+@isnad1 id=eq.0h1v.s3.fe03096b8355 from=translated src=- shape=463fac85 vocab=8ee7c199
+-/
 theorem norm_ofReal_exp (x : ℝ) : ‖((rexp x : ℝ) : ℂ)‖ = rexp x := norm_ofReal_of_nonneg (Real.exp_pos x).le
 
+/--
+@isnad1 id=eq.4h6v.s7.113f77166d96 from=translated src=- shape=0251b040 vocab=6845e9cc
+-/
 theorem norm_Rc (a : ℝ) (ha : a ≠ 0) (p q : ℂ) {σ' w r : ℝ} (hσ : 0 < σ') (hw : 0 < w) (hr : 0 < r) :
     ‖Rc a p q σ' w r‖ =
       r ^ p.re * rexp (-(π * r ^ 2)) * ((|a| * σ' / w / r) ^ q.re * rexp (-(π * (|a| * σ' / w / r) ^ 2))) / r := by
@@ -342,6 +411,9 @@ theorem norm_Rc (a : ℝ) (ha : a ≠ 0) (p q : ℂ) {σ' w r : ℝ} (hσ : 0 < 
   simp only [norm_div, norm_mul, Complex.norm_cpow_eq_rpow_re_of_pos hr, Complex.norm_cpow_eq_rpow_re_of_pos hτr,
     norm_ofReal_exp, norm_ofReal_of_nonneg hr.le]
 
+/--
+@isnad1 id=eq.4h9v.s6.5e97f345fc59 from=translated src=- shape=5cf79d98 vocab=e3522750
+-/
 theorem norm_Fc (a : ℝ) (ha : a ≠ 0) (C p q κ z : ℂ) {σ' w r : ℝ} (hσ : 0 < σ') (hw : 0 < w) (hr : 0 < r) :
     ‖Fc a C p q κ z σ' w r‖ = ‖C‖ * F a p.re q.re κ.re z.re σ' w r := by
   have h4 : ‖(4 : ℂ)‖ = 4 := by simp
@@ -351,6 +423,9 @@ theorem norm_Fc (a : ℝ) (ha : a ≠ 0) (C p q κ z : ℂ) {σ' w r : ℝ} (hσ
     norm_ofReal_exp, norm_ofReal_of_nonneg hτ, h4, norm_Rc a ha p q hσ hw hr, Complex.sub_re, Complex.one_re]
   ring
 
+/--
+@isnad1 id=eq.2h7v.s6.9484ac4cf18d from=translated src=- shape=4456f86c vocab=79467c29
+-/
 theorem norm_Jc (a : ℝ) (p q κ z : ℂ) {w r : ℝ} (hw : 0 < w) (hr : 0 < r) :
     ‖Jc a p q κ z (w, r)‖ = ψ w r ^ ((z + q + 1) / 2).re * Φ a p.re q.re κ.re w r := by
   have hb : 0 < 1 + ((w * r) ^ 2)⁻¹ := by positivity
@@ -361,13 +436,22 @@ theorem norm_Jc (a : ℝ) (p q κ z : ℂ) {w r : ℝ} (hw : 0 < w) (hr : 0 < r)
     Complex.sub_re, Complex.sub_re, Complex.sub_re, Complex.one_re, Real.rpow_neg hb.le, ← Real.inv_rpow hb.le]
   ring
 
+/--
+@isnad1 id=measurab.0h6v.s6.8eedf63e6d2f from=translated src=- shape=551d6e87 vocab=8222fcae
+-/
 theorem measurable_Fc (a : ℝ) (C p q κ z : ℂ) :
     Measurable (fun t : ℝ × ℝ × ℝ => Fc a C p q κ z t.1 t.2.1 t.2.2) := by
   unfold Fc Rc; fun_prop
 
+/--
+@isnad1 id=measurab.0h5v.s4.78bb62a08599 from=translated src=- shape=648e7eb5 vocab=55256dab
+-/
 theorem measurable_Jc (a : ℝ) (p q κ z : ℂ) : Measurable (Jc a p q κ z) := by
   unfold Jc; fun_prop
 
+/--
+@isnad1 id=integrab.3h6v.s7.c234a78c6b32 from=translated src=- shape=edad43ec vocab=d41f16e2
+-/
 theorem integrable_Fc (a : ℝ) (ha : a ≠ 0) (C p q κ z : ℂ) (hzq : -1 < (z + q).re) (hzp : -1 < (z + p).re) :
     Integrable (fun t : ℝ × (ℝ × ℝ) => Fc a C p q κ z t.1 t.2.1 t.2.2) ((μ0).prod ((μ0).prod (μ0))) := by
   have hxq : -1 < z.re + q.re := by simpa [Complex.add_re] using hzq
@@ -377,6 +461,9 @@ theorem integrable_Fc (a : ℝ) (ha : a ≠ 0) (C p q κ z : ℂ) (hzq : -1 < (z
   filter_upwards [ae_pos_triple] with t ht
   exact (norm_Fc a ha C p q κ z ht.1 ht.2.1 ht.2.2).le
 
+/--
+@isnad1 id=integrab.3h5v.s7.305865b7b052 from=translated src=- shape=147ace50 vocab=1b55cdb5
+-/
 theorem integrable_Jc (a : ℝ) (ha : a ≠ 0) (p q κ z : ℂ) (hzq : -1 < (z + q).re) (hzp : -1 < (z + p).re) :
     Integrable (Jc a p q κ z) ((μ0).prod (μ0)) := by
   have hxq : -1 < z.re + q.re := by simpa [Complex.add_re] using hzq
@@ -394,6 +481,9 @@ theorem integrable_Jc (a : ℝ) (ha : a ≠ 0) (p q κ z : ℂ) (hzq : -1 < (z +
   obtain ⟨w, r⟩ := v
   exact (norm_Jc a p q κ z hv.1 hv.2).le
 
+/--
+@isnad1 id=mellinco.3h6v.s6.71cb9eeffa11 from=translated src=- shape=bf9bfc3f vocab=958d21e0
+-/
 theorem mellinConvergent_Hc (a : ℝ) (ha : a ≠ 0) (C p q κ z : ℂ) (hzq : -1 < (z + q).re) (hzp : -1 < (z + p).re) :
     MellinConvergent (Hc a C p q κ) z := by
   have hF := integrable_Fc a ha C p q κ z hzq hzp
@@ -410,6 +500,9 @@ end JForm
 
 namespace JForm
 
+/--
+@isnad1 id=eq.2h2v.s7.f6ee123ffdba from=translated src=- shape=84a44ab9 vocab=7db630e5
+-/
 theorem integral_cpow_mul_exp_neg_mul_sq (B : ℝ) (hB : 0 < B) (s : ℂ) (hs : -1 < s.re) :
     ∫ σ in Ioi (0:ℝ), (σ : ℂ) ^ s * (Real.exp (-(B * σ ^ 2)) : ℂ) =
       (1 / 2 : ℂ) * ((B : ℝ) : ℂ) ^ (-((s + 1) / 2)) * Complex.Gamma ((s + 1) / 2) := by
@@ -447,18 +540,30 @@ theorem integral_cpow_mul_exp_neg_mul_sq (B : ℝ) (hB : 0 < B) (s : ℂ) (hs : 
   rw [one_div ((B:ℝ):ℂ), Complex.inv_cpow _ _ hBarg, ← Complex.cpow_neg]
   ring
 
+/--
+@isnad1 id=eq.2h3v.s6.5c4ffe78dfe3 from=translated src=- shape=8f24f55f vocab=3b8dd6ab
+-/
 theorem cpow_ofReal_mul' {x y : ℝ} (hx : 0 ≤ x) (hy : 0 ≤ y) (c : ℂ) :
     ((x * y : ℝ) : ℂ) ^ c = (x : ℂ) ^ c * (y : ℂ) ^ c := by
   rw [Complex.ofReal_mul]; exact Complex.mul_cpow_ofReal_nonneg hx hy c
 
+/--
+@isnad1 id=eq.1h2v.s5.b9eaef7d39c7 from=translated src=- shape=eb102b8c vocab=91dcda72
+-/
 theorem cpow_ofReal_inv' {x : ℝ} (hx : 0 < x) (c : ℂ) : ((x⁻¹ : ℝ) : ℂ) ^ c = ((x : ℂ) ^ c)⁻¹ := by
   rw [Complex.ofReal_inv, Complex.inv_cpow _ _ (by
     rw [Complex.arg_ofReal_of_nonneg hx.le]; exact Real.pi_ne_zero.symm)]
 
+/--
+@isnad1 id=eq.2h3v.s6.ee14ff004e05 from=translated src=- shape=ad27f860 vocab=252cb4ab
+-/
 theorem cpow_ofReal_div' {x y : ℝ} (hx : 0 ≤ x) (hy : 0 < y) (c : ℂ) :
     ((x / y : ℝ) : ℂ) ^ c = (x : ℂ) ^ c * ((y : ℂ) ^ c)⁻¹ := by
   rw [div_eq_mul_inv, cpow_ofReal_mul' hx (inv_nonneg.2 hy.le), cpow_ofReal_inv' hy]
 
+/--
+@isnad1 id=eq.4h9v.s8.67582e6e9a4b from=translated src=- shape=a5583233 vocab=8f6fbcad
+-/
 theorem Fc_eq (a : ℝ) (ha : a ≠ 0) (C p q κ z : ℂ) {σ w r : ℝ} (hσ : 0 < σ) (hw : 0 < w) (hr : 0 < r) :
     Fc a C p q κ z σ w r =
       ((σ : ℂ) ^ (z + q) * (Real.exp (-(Real.pi * a ^ 2 * (1 + ((w * r) ^ 2)⁻¹) * σ ^ 2)) : ℂ)) *
@@ -505,6 +610,9 @@ namespace JForm
 
 local notation "μ0" => Measure.restrict (volume : Measure ℝ) (Ioi (0:ℝ))
 
+/--
+@isnad1 id=eq.4h8v.s8.bd7e34745843 from=translated src=- shape=41eb8852 vocab=f4579bb4
+-/
 theorem integral_Fc_sigma (a : ℝ) (ha : a ≠ 0) (C p q κ z : ℂ) (hzq : -1 < (z + q).re)
     {w r : ℝ} (hw : 0 < w) (hr : 0 < r) :
     ∫ σ in Ioi (0:ℝ), Fc a C p q κ z σ w r =
@@ -518,6 +626,9 @@ theorem integral_Fc_sigma (a : ℝ) (ha : a ≠ 0) (C p q κ z : ℂ) (hzq : -1 
     cpow_ofReal_mul' (by positivity) (by positivity)]
   ring
 
+/--
+@isnad1 id=eventual.2h6v.s8.ab5b373b56a2 from=translated src=- shape=f647c6e6 vocab=846a3104
+-/
 theorem integral_Fc_sigma_ae (a : ℝ) (ha : a ≠ 0) (C p q κ z : ℂ) (hzq : -1 < (z + q).re) :
     ∀ᵐ v : ℝ × ℝ ∂((μ0).prod (μ0)),
       ∫ σ in Ioi (0:ℝ), Fc a C p q κ z σ v.1 v.2 =
@@ -527,6 +638,9 @@ theorem integral_Fc_sigma_ae (a : ℝ) (ha : a ≠ 0) (C p q κ z : ℂ) (hzq : 
   rw [Jc_eq]
   exact integral_Fc_sigma a ha C p q κ z hzq hv.1 hv.2
 
+/--
+@isnad1 id=eq.3h6v.s8.170bfeaaa451 from=translated src=- shape=eb6c99d3 vocab=1c1714c0
+-/
 theorem mellin_Hc_eq (a : ℝ) (ha : a ≠ 0) (C p q κ z : ℂ) (hzq : -1 < (z + q).re)
     (hzp : -1 < (z + p).re) :
     mellin (Hc a C p q κ) z =
@@ -556,6 +670,9 @@ theorem mellin_Hc_eq (a : ℝ) (ha : a ≠ 0) (C p q κ z : ℂ) (hzq : -1 < (z 
     integral_prod _ (integrable_Jc a ha p q κ z hzq hzp)
   rw [e1, e2, e3, e4]
 
+/--
+@isnad1 id=and.4h7v.s10.18da73df6eb4 from=translated src=- shape=ed3a1871 vocab=66a4e684
+-/
 theorem jform (a : ℝ) (ha : a ≠ 0) (p q κ C : ℂ)
     (H : ℝ → ℂ)
     (hH : H = fun σ' => (Real.exp (-(Real.pi * a ^ 2 * σ' ^ 2)) : ℂ) *
@@ -583,6 +700,9 @@ theorem jform (a : ℝ) (ha : a ≠ 0) (p q κ C : ℂ)
 
 end JForm
 
+/--
+@isnad1 id=and.4h7v.s10.18da73df6eb4 from=translated src=- shape=ed3a1871 vocab=66a4e684
+-/
 theorem solution
     (a : ℝ) (ha : a ≠ 0) (p q κ C : ℂ)
     (H : ℝ → ℂ)

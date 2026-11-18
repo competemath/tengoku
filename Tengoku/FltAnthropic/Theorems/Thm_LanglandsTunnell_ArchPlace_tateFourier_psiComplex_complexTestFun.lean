@@ -12,6 +12,9 @@ set_option autoImplicit false
 open MeasureTheory LanglandsTunnell LanglandsTunnell.TateLocal LanglandsTunnell.ArchPlace
 open scoped ENNReal
 
+/--
+@isnad1 id=eq.0h2v.s7.4b5052cbc870 from=translated src=- shape=86f0c6cf vocab=3ab6d1d9
+-/
 theorem LanglandsTunnell.ArchPlace.tateFourier_psiComplex_complexTestFun (k : ℤ) (w : ℂ) :
     tateFourier psiComplex ((2 : ℝ≥0∞) • volume) (complexTestFun k) w
       = (-Complex.I) ^ k.natAbs * complexTestFun (-k) w := by exact @_root_.P2MW.S_LanglandsTunnell_ArchPlace_tateFourier_psiComplex_complexTestFun.solution k w

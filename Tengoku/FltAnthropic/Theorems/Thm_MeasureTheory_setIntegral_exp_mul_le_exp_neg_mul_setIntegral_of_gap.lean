@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 open MeasureTheory Set
 
+/--
+@isnad1 id=and.15h9v.s9.29c12cbf1679 from=translated src=- shape=5b606460 vocab=4b8ddd36
+-/
 theorem MeasureTheory.setIntegral_exp_mul_le_exp_neg_mul_setIntegral_of_gap
     (φ : ℝ → ℝ) (hφm : Measurable φ) (hφmax : ∀ v, φ v ≤ φ 0)
     (γ δ ρ : ℝ) (hγ : 0 < γ) (hρ : 0 < ρ) (hρδ : ρ ≤ δ)

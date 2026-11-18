@@ -13,6 +13,9 @@ open MeasureTheory Set Filter Topology
 
 namespace K7GV
 
+/--
+@isnad1 id=le.1h1v.s6.6855e4334305 from=translated src=- shape=9d280e4e vocab=e14fba8a
+-/
 theorem abs_log_le {t : ℝ} (ht : 0 < t) : |Real.log t| ≤ |t - 1| + |t⁻¹ - 1| := by
   have h1 : Real.log t ≤ t - 1 := Real.log_le_sub_one_of_pos ht
   have h2 : -Real.log t ≤ t⁻¹ - 1 := by
@@ -21,6 +24,9 @@ theorem abs_log_le {t : ℝ} (ht : 0 < t) : |Real.log t| ≤ |t - 1| + |t⁻¹ -
   · have := le_abs_self (t⁻¹ - 1); have := abs_nonneg (t - 1); linarith
   · have := le_abs_self (t - 1); have := abs_nonneg (t⁻¹ - 1); linarith
 
+/--
+@isnad1 id=le.0h1v.s5.881f28fa4355 from=translated src=- shape=b41aaf89 vocab=95df0439
+-/
 theorem norm_cexp_I_mul_sub_one_le (x : ℝ) : ‖Complex.exp (Complex.I * x) - 1‖ ≤ |x| := by
   have e : Complex.exp (Complex.I * x) - 1 = ((Real.cos x - 1 : ℝ) : ℂ) + (Real.sin x : ℝ) * Complex.I := by
     rw [mul_comm, Complex.exp_mul_I, ← Complex.ofReal_cos, ← Complex.ofReal_sin]; push_cast; ring
@@ -31,6 +37,9 @@ theorem norm_cexp_I_mul_sub_one_le (x : ℝ) : ‖Complex.exp (Complex.I * x) - 
   calc Real.sqrt ((Real.cos x - 1) ^ 2 + Real.sin x ^ 2) ≤ Real.sqrt (x ^ 2) := Real.sqrt_le_sqrt h2
     _ = |x| := Real.sqrt_sq_eq_abs x
 
+/--
+@isnad1 id=le.0h2v.s5.52fa916d0aed from=translated src=- shape=e8ad8558 vocab=95df0439
+-/
 theorem norm_cexp_I_mul_sub_le (a c : ℝ) :
     ‖Complex.exp (Complex.I * a) - Complex.exp (Complex.I * c)‖ ≤ |a - c| := by
   have : Complex.exp (Complex.I * a) - Complex.exp (Complex.I * c) =
@@ -39,6 +48,9 @@ theorem norm_cexp_I_mul_sub_le (a c : ℝ) :
   rw [this, norm_mul, Complex.norm_exp_I_mul_ofReal, one_mul]
   exact norm_cexp_I_mul_sub_one_le (a - c)
 
+/--
+@isnad1 id=le.1h2v.s6.2adba2fafd49 from=translated src=- shape=3846d851 vocab=b09e3a18
+-/
 theorem abs_le_amgm (u l : ℝ) (hl : 0 < l) : |u| ≤ l / 2 + u ^ 2 / (2 * l) := by
   have : 0 ≤ (|u| - l) ^ 2 / (2 * l) := by positivity
   have e : (|u| - l) ^ 2 / (2 * l) = u ^ 2 / (2 * l) - |u| + l / 2 := by rw [sub_sq, sq_abs]; field_simp
@@ -46,18 +58,36 @@ theorem abs_le_amgm (u l : ℝ) (hl : 0 < l) : |u| ≤ l / 2 + u ^ 2 / (2 * l) :
 
 noncomputable def ψ (σ t : ℝ) : ℝ := Real.exp (-t) * t ^ (σ - 1)
 
+/--
+@isnad1 id=lt.1h2v.s4.66d4071e82b6 from=translated src=- shape=61bdc3e7 vocab=8a67907c
+-/
 theorem ψ_pos (σ : ℝ) {t : ℝ} (ht : 0 < t) : 0 < ψ σ t := mul_pos (Real.exp_pos _) (Real.rpow_pos_of_pos ht _)
 
+/--
+@isnad1 id=integrab.1h1v.s5.34a73e029652 from=translated src=- shape=30a2fe48 vocab=0ff156e9
+-/
 theorem integrableOn_ψ {σ : ℝ} (hσ : 0 < σ) : IntegrableOn (ψ σ) (Ioi 0) := Real.GammaIntegral_convergent hσ
 
+/--
+@isnad1 id=eq.1h1v.s5.ae771c8dd7e9 from=translated src=- shape=9d671abd vocab=e0cc55b5
+-/
 theorem integral_ψ {σ : ℝ} (hσ : 0 < σ) : ∫ t in Ioi (0 : ℝ), ψ σ t = Real.Gamma σ := (Real.Gamma_eq_integral hσ).symm
 
+/--
+@isnad1 id=eq.1h3v.s5.e7413026664d from=translated src=- shape=7ff9447d vocab=b5f95175
+-/
 theorem ψ_mul_pow (σ : ℝ) (k : ℕ) {t : ℝ} (ht : 0 < t) : ψ σ t * t ^ k = ψ (σ + k) t := by
   rw [ψ, ψ, show σ + k - 1 = (σ - 1) + (k : ℕ) by push_cast; ring, Real.rpow_add ht, Real.rpow_natCast]; ring
 
+/--
+@isnad1 id=eq.1h3v.s5.8d08fd6b8888 from=translated src=- shape=cd812f69 vocab=f6eec186
+-/
 theorem ψ_mul_inv_pow (σ : ℝ) (k : ℕ) {t : ℝ} (ht : 0 < t) : ψ σ t * (t ^ k)⁻¹ = ψ (σ - k) t := by
   rw [ψ, ψ, show σ - k - 1 = (σ - 1) + (-(k : ℝ)) by ring, Real.rpow_add ht, Real.rpow_neg ht.le, Real.rpow_natCast]; ring
 
+/--
+@isnad1 id=and.2h2v.s8.d16c65450145 from=translated src=- shape=7f4885ea vocab=44613a4f
+-/
 theorem quad_up {σ : ℝ} (hσ : 0 < σ) (c : ℝ) (hc : c ≠ 0) :
     IntegrableOn (fun t : ℝ => ψ σ t * (t / c - 1) ^ 2) (Ioi 0) ∧
     ∫ t in Ioi (0 : ℝ), ψ σ t * (t / c - 1) ^ 2 =
@@ -78,6 +108,9 @@ theorem quad_up {σ : ℝ} (hσ : 0 < σ) (c : ℝ) (hc : c ≠ 0) :
   rw [integral_add j21 i0, integral_sub j2 j1, integral_const_mul, integral_const_mul, hk 2, hk 1, integral_ψ hσ]
   push_cast; field_simp
 
+/--
+@isnad1 id=and.1h2v.s8.4a5b14519f64 from=translated src=- shape=f733e014 vocab=44613a4f
+-/
 theorem quad_down {σ : ℝ} (hσ : 2 < σ) (c : ℝ) :
     IntegrableOn (fun t : ℝ => ψ σ t * (c / t - 1) ^ 2) (Ioi 0) ∧
     ∫ t in Ioi (0 : ℝ), ψ σ t * (c / t - 1) ^ 2 =
@@ -100,6 +133,9 @@ theorem quad_down {σ : ℝ} (hσ : 2 < σ) (c : ℝ) :
     hk 2 (by norm_num; linarith), hk 1 (by norm_num; linarith), integral_ψ (by linarith)]
   push_cast; ring
 
+/--
+@isnad1 id=eq.1h3v.s6.618e8f9b634f from=translated src=- shape=c1a8f6c2 vocab=8aa70929
+-/
 theorem cpow_polar (σ τ : ℝ) {t : ℝ} (ht : 0 < t) :
     ((Real.exp (-t) : ℝ) : ℂ) * ((t : ℝ) : ℂ) ^ (((σ : ℂ) + (τ : ℂ) * Complex.I) - 1) =
       ((ψ σ t : ℝ) : ℂ) * Complex.exp (Complex.I * ((τ * Real.log t : ℝ) : ℂ)) := by
@@ -109,6 +145,9 @@ theorem cpow_polar (σ τ : ℝ) {t : ℝ} (ht : 0 < t) :
     Complex.exp_add, ← Complex.ofReal_exp, ψ, Real.rpow_def_of_pos ht, mul_comm (Real.log t)]
   push_cast; ring
 
+/--
+@isnad1 id=le.3h4v.s8.4682c5479289 from=translated src=- shape=4fbe7353 vocab=322b2479
+-/
 theorem coherence (σ τ w₀ l : ℝ) (hσ : 2 < σ) (hw₀ : 0 < w₀) (hl : 0 < l) :
     Real.Gamma σ - |τ| * (l * Real.Gamma σ +
       ((Real.Gamma (σ + 2) / w₀ ^ 2 - 2 * Real.Gamma (σ + 1) / w₀ + Real.Gamma σ) +
@@ -175,6 +214,9 @@ theorem coherence (σ τ w₀ l : ℝ) (hσ : 2 < σ) (hw₀ : 0 < w₀) (hl : 0
   rw [hK, norm_sub_rev] at this
   linarith
 
+/--
+@isnad1 id=le.1h2v.s5.9a7885044351 from=translated src=- shape=8b942df9 vocab=9d06ccdf
+-/
 theorem norm_Gamma_le (σ τ : ℝ) (hσ : 0 < σ) : ‖Complex.Gamma ((σ : ℂ) + (τ : ℂ) * Complex.I)‖ ≤ Real.Gamma σ := by
   set s : ℂ := (σ : ℂ) + (τ : ℂ) * Complex.I with hs
   have hsre : 0 < s.re := by rw [hs]; simp; exact hσ
@@ -186,6 +228,9 @@ theorem norm_Gamma_le (σ τ : ℝ) (hσ : 0 < σ) : ‖Complex.Gamma ((σ : ℂ
 
 end K7GV
 
+/--
+@isnad1 id=ex.2h2v.s7.d02a87d231d7 from=translated src=- shape=6c9d43ed vocab=00e952ad
+-/
 theorem solution
     (K ε : ℝ) (hK : 0 ≤ K) (hε : 0 < ε) :
     ∃ R : ℝ, ∀ σ τ : ℝ, R ≤ σ → |τ| ≤ K →

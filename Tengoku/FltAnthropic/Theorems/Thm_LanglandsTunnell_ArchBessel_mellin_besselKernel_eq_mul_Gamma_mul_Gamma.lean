@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 open Complex MeasureTheory Set LanglandsTunnell.ArchBessel
 
+/--
+@isnad1 id=and.1h2v.s7.b46765231090 from=translated src=- shape=5695cac3 vocab=a187a143
+-/
 theorem LanglandsTunnell.ArchBessel.mellin_besselKernel_eq_mul_Gamma_mul_Gamma (ν s : ℂ) (hs : |ν.re| < s.re) :
     MellinConvergent (fun x : ℝ => besselKernel ν x) s ∧
       mellin (fun x : ℝ => besselKernel ν x) s =

@@ -22,17 +22,26 @@ export _root_.LanglandsTunnell.ArchBessel (besselKernel mellin_besselKernel_eq_m
 namespace MellinK
 open _root_.LanglandsTunnell.ArchBessel open _root_.LanglandsTunnell
 
+/--
+@isnad1 id=integrab.1h4v.s6.5af4d2b0ee09 from=translated src=- shape=17c7ea8c vocab=ec62ff08
+-/
 theorem integrable_of_integral_ne_zero {α : Type*} [MeasurableSpace α] {μ : Measure α} {E : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E] {f : α → E} (h : ∫ x, f x ∂μ ≠ 0) : Integrable f μ := by
   by_contra hf
   exact h (integral_undef hf)
 
+/--
+@isnad1 id=integrab.2h2v.s6.4386c7a82bd2 from=translated src=- shape=ae9ff38e vocab=00aaa6dd
+-/
 theorem integrableOn_rpow_mul_exp_neg_mul {a r : ℝ} (ha : 0 < a) (hr : 0 < r) :
     IntegrableOn (fun t : ℝ => t ^ (a - 1) * Real.exp (-(r * t))) (Ioi 0) := by
   apply integrable_of_integral_ne_zero
   rw [Real.integral_rpow_mul_exp_neg_mul_Ioi ha hr]
   exact mul_ne_zero (by positivity) (Real.Gamma_pos_of_pos ha).ne'
 
+/--
+@isnad1 id=eq.2h2v.s7.d8b6f13b7b5a from=translated src=- shape=6dae5c4c vocab=5ba1516a
+-/
 theorem integral_rpow_mul_exp_neg_mul_sq {a y : ℝ} (ha : 0 < a) (hy : 0 < y) :
     ∫ t in Ioi (0 : ℝ), t ^ (2 * a - 1) * Real.exp (-(y * t ^ 2)) = (1 / 2) * ((1 / y) ^ a * Real.Gamma a) := by
   have hsub := integral_comp_rpow_Ioi
@@ -57,12 +66,18 @@ theorem integral_rpow_mul_exp_neg_mul_sq {a y : ℝ} (ha : 0 < a) (hy : 0 < y) :
   rw [hcongr, integral_const_mul] at hsub
   linarith
 
+/--
+@isnad1 id=integrab.2h2v.s7.e019e74779f3 from=translated src=- shape=21241466 vocab=701c7a50
+-/
 theorem integrableOn_rpow_mul_exp_neg_mul_sq {a y : ℝ} (ha : 0 < a) (hy : 0 < y) :
     IntegrableOn (fun t : ℝ => t ^ (2 * a - 1) * Real.exp (-(y * t ^ 2))) (Ioi 0) := by
   apply integrable_of_integral_ne_zero
   rw [integral_rpow_mul_exp_neg_mul_sq ha hy]
   exact mul_ne_zero (by norm_num) (mul_ne_zero (by positivity) (Real.Gamma_pos_of_pos ha).ne')
 
+/--
+@isnad1 id=integrab.1h2v.s6.0540089ad80d from=translated src=- shape=3d5f9999 vocab=04c3dd7c
+-/
 theorem integrableOn_rpow_mul_exp_neg_mul_add_inv {c : ℝ} (hc : 0 < c) (n : ℝ) :
     IntegrableOn (fun t : ℝ => t ^ (n - 1) * Real.exp (-(c * (t + t⁻¹)))) (Ioi 0) := by
   obtain ⟨k, hk⟩ := exists_nat_gt (-n)
@@ -94,6 +109,9 @@ theorem integrableOn_rpow_mul_exp_neg_mul_add_inv {c : ℝ} (hc : 0 < c) (n : �
     _ = (k.factorial : ℝ) / c ^ k * (t ^ (n + k - 1) * Real.exp (-(c * t))) := by
         rw [show n + (k : ℝ) - 1 = (n - 1) + k by ring, Real.rpow_add ht]; ring
 
+/--
+@isnad1 id=eq.1h3v.s7.e5c57f3bcdc7 from=translated src=- shape=256851a7 vocab=4f872ae0
+-/
 theorem norm_besselIntegrand (ν : ℂ) (x t : ℝ) (ht : 0 < t) :
     ‖(Real.exp (-(x * (t + t⁻¹) / 2)) : ℂ) * ((t : ℂ) ^ (ν - 1))‖ =
       t ^ (ν.re - 1) * Real.exp (-(x / 2 * (t + t⁻¹))) := by
@@ -101,6 +119,9 @@ theorem norm_besselIntegrand (ν : ℂ) (x t : ℝ) (ht : 0 < t) :
     Complex.norm_cpow_eq_rpow_re_of_pos ht, Complex.sub_re, Complex.one_re, mul_comm]
   congr 1; ring_nf
 
+/--
+@isnad1 id=continuo.1h2v.s5.6bb240b7e260 from=translated src=- shape=1899bc63 vocab=23448f76
+-/
 theorem continuousAt_besselKernel (ν : ℂ) {x₀ : ℝ} (hx₀ : 0 < x₀) :
     ContinuousAt (fun x : ℝ => besselKernel ν x) x₀ := by
   unfold besselKernel
@@ -130,6 +151,9 @@ end LanglandsTunnell.ArchBessel.MellinK
 end
 
 open LanglandsTunnell.ArchBessel.MellinK in
+/--
+@isnad1 id=eq.3h6v.s7.e0d5770bd13f from=translated src=- shape=2875dc6a vocab=73885392
+-/
 theorem solution
     (f : ℝ → ℂ) (A p q : ℂ) (σ₀ : ℝ)
     (hcont : ContinuousOn f (Set.Ioi 0))

@@ -12,6 +12,9 @@ namespace W2RLR
 
 universe u v
 
+/--
+@isnad1 id=ne.1h1v.s6.fa8c521f3369 from=translated src=- shape=ff4e19b8 vocab=6bb23999
+-/
 theorem maximalIdeal_ne_bot_of_ringKrullDim_pos (R : Type u) [CommRing R] [IsLocalRing R] (hdim : 0 < ringKrullDim R) :
     maximalIdeal R ≠ ⊥ := by
   intro hbot
@@ -24,6 +27,9 @@ namespace No4PatchingCore
 section FromABFreeness
 variable {R : Type u} [CommRing R]
 
+/--
+@isnad1 id=islocalr.1h2v.s6.189727253f14 from=translated src=- shape=f424abcd vocab=147a719b
+-/
 theorem isLocalRing_quotient_span_singleton [IsLocalRing R] {x : R}
     (hx : x ∈ maximalIdeal R) : IsLocalRing (R ⧸ Ideal.span {x}) := by
   have hne : Ideal.span {x} ≠ ⊤ := by
@@ -33,6 +39,9 @@ theorem isLocalRing_quotient_span_singleton [IsLocalRing R] {x : R}
   haveI : Nontrivial (R ⧸ Ideal.span {x}) := Ideal.Quotient.nontrivial_iff.mpr hne
   exact IsLocalRing.of_surjective' (Ideal.Quotient.mk _) Ideal.Quotient.mk_surjective
 
+/--
+@isnad1 id=ex.0h1v.s5.c841e13b9027 from=translated src=- shape=0788e695 vocab=53437fc2
+-/
 theorem exists_ringKrullDim_eq_natCast (R : Type u) [CommRing R] [IsNoetherianRing R]
     [IsLocalRing R] : ∃ d : ℕ, ringKrullDim R = (d : WithBot ℕ∞) := by
   have h1 : ringKrullDim R ≠ ⊤ := ringKrullDim_ne_top
@@ -49,6 +58,9 @@ end FromABFreeness
 section Exchange0
 variable (R : Type u) [CommRing R]
 
+/--
+@isnad1 id=ex.2h2v.s8.c083169637d5 from=translated src=- shape=cb5acc2e vocab=b88204f3
+-/
 theorem exists_finite_span_eq_maximalIdeal_mem [IsLocalRing R] [IsNoetherianRing R]
     {x : R} (hx : x ∈ maximalIdeal R) (hx2 : x ∉ maximalIdeal R ^ 2) :
     ∃ S : Set R, x ∈ S ∧ S.Finite ∧ S.ncard ≤ (maximalIdeal R).spanFinrank ∧
@@ -124,6 +136,9 @@ end Exchange0
 
 section PrimeAvoidance
 
+/--
+@isnad1 id=not.1h1v.s6.15db0760469e from=translated src=- shape=5f391251 vocab=ef030caf
+-/
 theorem maximalIdeal_notMem_minimalPrimes_of_ringKrullDim_pos
     (R : Type u) [CommRing R] [IsLocalRing R] (hdim : 0 < ringKrullDim R) :
     maximalIdeal R ∉ minimalPrimes R := by
@@ -142,6 +157,9 @@ theorem maximalIdeal_notMem_minimalPrimes_of_ringKrullDim_pos
   rw [heq] at hdim
   exact hdim.false
 
+/--
+@isnad1 id=ex.1h1v.s8.331277e0cc45 from=translated src=- shape=45e1dd62 vocab=5880acdb
+-/
 theorem exists_parameter_notMem_minimalPrimes
     (R : Type u) [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
     (hdim : 0 < ringKrullDim R) :
@@ -196,11 +214,17 @@ section DimensionDrop
 
 variable {R : Type u} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
 
+/--
+@isnad1 id=eq.0h1v.s6.668de94136fb from=translated src=- shape=ce5804ae vocab=6ff9f50b
+-/
 theorem annihilator_self_eq_bot (R : Type u) [CommRing R] : Module.annihilator R R = ⊥ := by
   rw [eq_bot_iff]
   intro r hr
   simpa using Module.mem_annihilator.mp hr 1
 
+/--
+@isnad1 id=eq.2h2v.s9.396364e93204 from=translated src=- shape=4867e970 vocab=1eb1da5a
+-/
 theorem ringKrullDim_quotSMulTop_succ_eq_of_forall_notMem_minimalPrimes
     {x : R} (hx : x ∈ maximalIdeal R) (hxmin : ∀ p ∈ minimalPrimes R, x ∉ p) :
     ringKrullDim (QuotSMulTop x R) + 1 = ringKrullDim R := by
@@ -211,6 +235,9 @@ theorem ringKrullDim_quotSMulTop_succ_eq_of_forall_notMem_minimalPrimes
   refine hxmin p ?_
   rwa [annihilator_self_eq_bot] at hp
 
+/--
+@isnad1 id=eq.2h2v.s7.cf6cfcd8d902 from=translated src=- shape=e213f437 vocab=7421f17c
+-/
 theorem ringKrullDim_quotient_span_singleton_succ_eq_of_forall_notMem_minimalPrimes
     {x : R} (hx : x ∈ maximalIdeal R) (hxmin : ∀ p ∈ minimalPrimes R, x ∉ p) :
     ringKrullDim (R ⧸ Ideal.span {x}) + 1 = ringKrullDim R := by
@@ -227,6 +254,9 @@ section QuotientRegularity
 
 variable (R : Type u) [CommRing R] [IsRegularLocalRing R]
 
+/--
+@isnad1 id=and.3h2v.s9.100e0fbedfea from=translated src=- shape=0a0fd3cf vocab=eb879bbb
+-/
 theorem isRegularLocalRing_quotient_span_singleton_of_forall_notMem_minimalPrimes
     {x : R} (hx : x ∈ maximalIdeal R) (hx2 : x ∉ maximalIdeal R ^ 2)
     (hxmin : ∀ p ∈ minimalPrimes R, x ∉ p) [IsLocalRing (R ⧸ Ideal.span {x})] :
@@ -312,6 +342,9 @@ end QuotientRegularity
 
 section MatsumuraDomain
 
+/--
+@isnad1 id=isdomain.1h2v.s5.55b0fc49e9ba from=translated src=- shape=a1aaedea vocab=2b721392
+-/
 theorem isDomain_of_isRegularLocalRing_aux :
     ∀ (n : ℕ) (R : Type u) [CommRing R] [IsRegularLocalRing R],
       (maximalIdeal R).spanFinrank = n → IsDomain R := by
@@ -375,6 +408,9 @@ theorem isDomain_of_isRegularLocalRing_aux :
     haveI : (⊥ : Ideal R).IsPrime := hp_bot ▸ hp_prime
     exact IsDomain.of_bot_isPrime R
 
+/--
+@isnad1 id=isdomain.0h1v.s4.fd890a1a5574 from=translated src=- shape=c612a321 vocab=fbdff070
+-/
 theorem isDomain_of_isRegularLocalRing (R : Type u) [CommRing R] [IsRegularLocalRing R] :
     IsDomain R :=
   isDomain_of_isRegularLocalRing_aux ((maximalIdeal R).spanFinrank) R rfl
@@ -387,6 +423,9 @@ end W2RLR
 
 open IsLocalRing
 
+/--
+@isnad1 id=isdomain.0h1v.s4.fd890a1a5574 from=translated src=- shape=c612a321 vocab=fbdff070
+-/
 theorem solution (R : Type*) [CommRing R] [IsRegularLocalRing R] :
     IsDomain R :=
   W2RLR.No4PatchingCore.isDomain_of_isRegularLocalRing R

@@ -7,6 +7,9 @@ namespace P2MW.S_KaehlerDifferential_exists_eq_smul_D_of_retraction_of_ker_le_sp
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.2h5v.s9.e324ed71cd23 from=translated src=- shape=5ee69009 vocab=d0288a44
+-/
 theorem solution
     {R S : Type*} [CommRing R] [CommRing S] [Algebra R S] [IsLocalRing S] [Module.Finite S Ω[S⁄R]]
     (π : S →ₐ[R] R) (t : S) (ht : π t = 0)

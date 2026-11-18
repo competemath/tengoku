@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open IsLocalRing TensorProduct
 
+/--
+@isnad1 id=mem.1h3v.s8.eec57060bc88 from=translated src=- shape=fcb20359 vocab=28a829c5
+-/
 theorem Ws33.RFF.mem_map_of_one_tmul_eq_zero {A : Type} [CommRing A] [IsLocalRing A]
     {B : Type} [CommRing B] [Algebra A B] (b : B)
     (hb : ((1 : ResidueField A) ⊗ₜ[A] b : ResidueField A ⊗[A] B) = 0) :
@@ -22,6 +25,9 @@ theorem Ws33.RFF.mem_map_of_one_tmul_eq_zero {A : Type} [CommRing A] [IsLocalRin
     exact hb
   exact Ideal.Quotient.eq_zero_iff_mem.mp h2
 
+/--
+@isnad1 id=isreduce.1h2v.s10.84059ce7ede4 from=translated src=- shape=c7259488 vocab=340749d2
+-/
 theorem solution
     {A : Type} [CommRing A] [IsLocalRing A]
     {C : Type} [CommRing C] [Algebra A C] [IsNoetherianRing C]

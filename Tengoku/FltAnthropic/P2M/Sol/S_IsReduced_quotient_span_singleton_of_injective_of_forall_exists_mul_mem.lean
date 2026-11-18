@@ -5,6 +5,9 @@ import Tengoku
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_IsReduced_quotient_span_singleton_of_injective_of_forall_exists_mul_mem.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 namespace P2MW.S_IsReduced_quotient_span_singleton_of_injective_of_forall_exists_mul_mem
 
+/--
+@isnad1 id=isreduce.3h4v.s9.0470d0f2156e from=translated src=- shape=45d4013c vocab=cf097535
+-/
 theorem solution
     {A B : Type*} [CommRing A] [CommRing B] [Algebra A B]
     (hinj : Function.Injective (algebraMap A B)) (p : A)

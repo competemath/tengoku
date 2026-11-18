@@ -78,6 +78,9 @@ private theorem real_leg (x q t : ℝ) (hq : 1 < q) (ht0 : 0 ≤ t) (htq : t < q
 end SatakeGenericAux
 
 open SatakeGenericAux in
+/--
+@isnad1 id=ne.5h5v.s7.6445018f90b0 from=translated src=- shape=49a9e3b6 vocab=01a8d72b
+-/
 theorem solution
     (a b : ℂ) (p : ℕ) (hp : 1 < p)
     (t : ℝ) (ht0 : 0 ≤ t) (hat : a ^ 2 = (t : ℂ) * b)

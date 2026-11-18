@@ -22,14 +22,23 @@ include hb
 
 noncomputable def kb (b N : ℝ) (w : ℝ) : ℝ := w ^ N * Real.exp (-(b * (w ^ 2 + (w ^ 2)⁻¹)))
 
+/--
+@isnad1 id=lt.2h3v.s5.42a53f2ef0ba from=translated src=- shape=ee1bc31c vocab=2505e80e
+-/
 theorem kb_pos (N : ℝ) {w : ℝ} (hw : 0 < w) : 0 < kb b N w :=
   mul_pos (Real.rpow_pos_of_pos hw N) (Real.exp_pos _)
 
+/--
+@isnad1 id=measurab.1h2v.s4.db9ab288a647 from=translated src=- shape=8f3f48ce vocab=1dd1d06b
+-/
 theorem measurable_kb (N : ℝ) : Measurable (kb b N) := by
   unfold kb
   exact (measurable_id.pow_const N).mul (Real.measurable_exp.comp
     (((measurable_id.pow_const 2).add ((measurable_id.pow_const 2).inv)).const_mul b).neg)
 
+/--
+@isnad1 id=continuo.1h2v.s5.79a23ba16bbe from=translated src=- shape=a61ea391 vocab=c30344dc
+-/
 theorem continuousOn_kb (N : ℝ) : ContinuousOn (kb b N) (Ioi 0) := by
   intro w hw
   have hw' : w ≠ 0 := ne_of_gt hw
@@ -39,6 +48,9 @@ theorem continuousOn_kb (N : ℝ) : ContinuousOn (kb b N) (Ioi 0) := by
   refine (Real.continuous_exp.continuousAt).comp ?_
   exact (((continuousAt_id.pow 2).add ((continuousAt_id.pow 2).inv₀ (pow_ne_zero 2 hw'))).const_mul _).neg
 
+/--
+@isnad1 id=le.2h3v.s6.b892db6a8929 from=translated src=- shape=9b623371 vocab=ceea864a
+-/
 theorem exp_neg_inv_sq_le (n : ℕ) {w : ℝ} (hw : 0 < w) :
     Real.exp (-(b * (w ^ 2)⁻¹)) ≤ (n.factorial : ℝ) * b⁻¹ ^ n * w ^ (2 * n) := by
   have hu : 0 ≤ b * (w ^ 2)⁻¹ := by positivity
@@ -52,6 +64,9 @@ theorem exp_neg_inv_sq_le (n : ℕ) {w : ℝ} (hw : 0 < w) :
         field_simp
         rw [one_div, inv_pow, mul_inv_cancel₀ (pow_ne_zero n hb.ne')]
 
+/--
+@isnad1 id=integrab.1h3v.s6.78aad489b3b4 from=translated src=- shape=cb7e3589 vocab=bb20690f
+-/
 theorem integrableOn_rpow_mul_kb (N σ : ℝ) : IntegrableOn (fun t : ℝ => t ^ (σ - 1) * kb b N t) (Ioi 0) := by
   have hcont : ContinuousOn (fun t : ℝ => t ^ (σ - 1) * kb b N t) (Ioi 0) := fun t ht =>
     ((Real.continuousAt_rpow_const t (σ - 1) (Or.inl (ne_of_gt ht))).continuousWithinAt).mul (continuousOn_kb hb N t ht)
@@ -107,6 +122,9 @@ theorem integrableOn_rpow_mul_kb (N σ : ℝ) : IntegrableOn (fun t : ℝ => t ^
           mul_le_mul h3 (mul_le_mul_of_nonneg_left h2 (Real.exp_pos _).le) (by positivity) (by positivity)
       _ = t ^ p' * Real.exp (-b * t ^ 2) := by ring_nf
 
+/--
+@isnad1 id=mellinco.1h3v.s5.bf126231b603 from=translated src=- shape=f8738c9f vocab=0c2c0d40
+-/
 theorem mellinConvergent_kb (N : ℝ) (s : ℂ) : MellinConvergent (fun w : ℝ => (kb b N w : ℂ)) s := by
   have hmeas : AEStronglyMeasurable (fun w : ℝ => (kb b N w : ℂ)) (volume.restrict (Ioi 0)) :=
     (Complex.continuous_ofReal.continuousOn.comp (continuousOn_kb hb N) (mapsTo_univ _ _)).aestronglyMeasurable measurableSet_Ioi
@@ -114,6 +132,9 @@ theorem mellinConvergent_kb (N : ℝ) (s : ℂ) : MellinConvergent (fun w : ℝ 
   refine (integrableOn_rpow_mul_kb hb N s.re).congr_fun (fun t ht => ?_) measurableSet_Ioi
   rw [Complex.norm_real, Real.norm_eq_abs, abs_of_pos (kb_pos hb N ht)]
 
+/--
+@isnad1 id=eq.1h3v.s6.a58dd3279648 from=translated src=- shape=93685186 vocab=6d60da22
+-/
 theorem mellin_kb_ofReal (N x : ℝ) :
     mellin (fun w : ℝ => (kb b N w : ℂ)) (x : ℂ) = ((∫ t in Ioi (0 : ℝ), t ^ (x - 1) * kb b N t : ℝ) : ℂ) := by
   rw [mellin]
@@ -123,6 +144,9 @@ theorem mellin_kb_ofReal (N x : ℝ) :
   push_cast
   rfl
 
+/--
+@isnad1 id=lt.1h3v.s6.48e62807c57b from=translated src=- shape=c0c9b06d vocab=de549c34
+-/
 theorem mellin_kb_re_pos (N x : ℝ) : 0 < ∫ t in Ioi (0 : ℝ), t ^ (x - 1) * kb b N t := by
   rw [setIntegral_pos_iff_support_of_nonneg_ae ?_ (integrableOn_rpow_mul_kb hb N x)]
   · have : Function.support (fun t : ℝ => t ^ (x - 1) * kb b N t) ∩ Ioi 0 = Ioi 0 := by
@@ -136,6 +160,9 @@ end Ws23KBb
 
 open Ws23KBb in
 
+/--
+@isnad1 id=and.1h2v.s7.b955035788d6 from=translated src=- shape=19143957 vocab=708c9899
+-/
 theorem solution (b : ℝ) (hb : 0 < b) (N : ℝ) :
     (∀ s : ℂ, MellinConvergent (fun w : ℝ => ((w ^ N * Real.exp (-(b * (w ^ 2 + (w ^ 2)⁻¹))) : ℝ) : ℂ)) s) ∧
     ∀ x : ℝ, ∃ r : ℝ, 0 < r ∧

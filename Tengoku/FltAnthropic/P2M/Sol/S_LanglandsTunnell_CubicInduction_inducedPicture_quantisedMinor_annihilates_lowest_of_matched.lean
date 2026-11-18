@@ -2687,6 +2687,9 @@ private theorem block_nu13_x12
 
 end RowOrthonormalityIdeal
 
+/--
+@isnad1 id=other.0h2v.s12.b9873fcc4ccb from=translated src=- shape=9f2df94a vocab=1260df83
+-/
 theorem solution
     (τ τ₃ : ℝ) :
     let act : (Fin 3 → ℂ) → Fin 3 → Fin 3 →

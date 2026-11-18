@@ -15,6 +15,9 @@ namespace E83Aux
 
 open Function TensorProduct
 
+/--
+@isnad1 id=injectiv.3h8v.s10.bedbdb3cac72 from=translated src=- shape=1fae2dc7 vocab=6c276700
+-/
 theorem lTensor_injective_of_flat_quotient {A : Type*} [CommRing A] (I : Ideal A)
     {N₁ N₂ N₃ : Type*} [AddCommGroup N₁] [AddCommGroup N₂] [AddCommGroup N₃]
     [Module A N₁] [Module A N₂] [Module A N₃]
@@ -49,6 +52,9 @@ theorem lTensor_injective_of_flat_quotient {A : Type*} [CommRing A] (I : Ideal A
   rw [LinearMap.coe_comp] at hinj
   exact hinj.of_comp
 
+/--
+@isnad1 id=eq.0h5v.s12.c8631a8fd696 from=translated src=- shape=bf601a56 vocab=99d19c2d
+-/
 theorem smul_tensor_quotSMulTop_eq_zero {A : Type*} [CommRing A] (t : A)
     {M N : Type*} [AddCommGroup M] [Module A M] [AddCommGroup N] [Module A N]
     (x : M ⊗[A] QuotSMulTop t N) : t • x = 0 := by
@@ -59,6 +65,9 @@ theorem smul_tensor_quotSMulTop_eq_zero {A : Type*} [CommRing A] (t : A)
     rw [smul_tmul', smul_tmul, hn, tmul_zero]
   | add x y hx hy => rw [smul_add, hx, hy, add_zero]
 
+/--
+@isnad1 id=ex.0h5v.s13.05752f8e01f5 from=translated src=- shape=2fb056c5 vocab=0705494a
+-/
 theorem exists_eq_smul_of_tensor_smul_top {A : Type*} [CommRing A] (t : A)
     {M N : Type*} [AddCommGroup M] [Module A M] [AddCommGroup N] [Module A N]
     (x : M ⊗[A] ↥(t • (⊤ : Submodule A N))) :
@@ -80,6 +89,9 @@ namespace E83Aux
 
 open Function TensorProduct
 
+/--
+@isnad1 id=issmulre.5h8v.s9.3a07418a4e4c from=translated src=- shape=7bbc7796 vocab=e72138e4
+-/
 theorem isSMulRegular_tensor_of_presentation
     {A : Type*} [CommRing A] (t : A) {B : Type*} [AddCommGroup B] [Module A B]
     {M : Type*} [AddCommGroup M] [Module A M]
@@ -135,6 +147,9 @@ theorem isSMulRegular_tensor_of_presentation
 end E83Aux
 
 open Function in
+/--
+@isnad1 id=issmulre.3h4v.s9.3d6967f654a5 from=translated src=- shape=b81315f8 vocab=1cdadbb9
+-/
 theorem solution
     {A : Type u} [CommRing A] (t : A) {B : Type v} [AddCommGroup B] [Module A B]
     {M : Type w} [AddCommGroup M] [Module A M]

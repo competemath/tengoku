@@ -10,6 +10,9 @@ set_option autoImplicit false
 open IsDedekindDomain NumberField AutomorphicForm
 open LanglandsTunnell.CubicInduction
 
+/--
+@isnad1 id=and.1h2v.s10.be62299e27dd from=translated src=- shape=10e221b4 vocab=fb172978
+-/
 theorem solution
     (ν : Fin 3 → ℂ) (F : AdelicGL 3 (𝓞 ℚ) ℚ → ℂ)
     (hB : ∀ e : Fin 3 → Fin 3 → ℝ, (∀ i j : Fin 3, j < i → e i j = 0) → (∀ i : Fin 3, 0 < e i i) →

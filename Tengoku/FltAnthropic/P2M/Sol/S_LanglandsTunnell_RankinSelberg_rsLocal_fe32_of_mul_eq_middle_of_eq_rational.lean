@@ -11,11 +11,17 @@ namespace MatchAlg
 
 open Polynomial
 
+/--
+@isnad1 id=differen.2h2v.s7.58455910e252 from=translated src=- shape=71e1ce11 vocab=bc12f745
+-/
 theorem differentiable_const_cpow (N : ℕ) (hN : 1 < N) {g : ℂ → ℂ} (hg : Differentiable ℂ g) :
     Differentiable ℂ fun s : ℂ => (N : ℂ) ^ (g s) := by
   have hN0 : (N : ℂ) ≠ 0 := by exact_mod_cast (show N ≠ 0 by omega)
   exact fun s => (hg s).const_cpow (Or.inl hN0)
 
+/--
+@isnad1 id=differen.1h2v.s7.8139d1147aac from=translated src=- shape=5fcbc19c vocab=246402f2
+-/
 theorem differentiable_eval_comp (P : Polynomial ℂ) {g : ℂ → ℂ} (hg : Differentiable ℂ g) :
     Differentiable ℂ fun s : ℂ => P.eval (g s) :=
   (Polynomial.differentiable P).comp hg
@@ -40,6 +46,9 @@ theorem eq_zero_of_forall_lt_re_one_sub (F : ℂ → ℂ) (hF : Differentiable �
   intro s
   simpa using this (1 - s)
 
+/--
+@isnad1 id=countabl.3h3v.s6.da7816f143d1 from=translated src=- shape=c1a15344 vocab=5191542b
+-/
 theorem countable_eval_cpow_eq_zero (N : ℕ) (hN : 1 < N) (q : Polynomial ℂ) (hq : q ≠ 0)
     (ℓ : ℂ → ℂ) (hℓ : Function.Injective ℓ) :
     {s : ℂ | q.eval ((N : ℂ) ^ (ℓ s)) = 0}.Countable := by
@@ -65,6 +74,9 @@ theorem countable_eval_cpow_eq_zero (N : ℕ) (hN : 1 < N) (q : Polynomial ℂ) 
 end MatchAlg
 
 open MatchAlg Polynomial in
+/--
+@isnad1 id=eq.8h20v.s10.ad1a61263636 from=translated src=- shape=8a7aad8d vocab=623de3d1
+-/
 theorem solution
     (N : ℕ) (hN : 1 < N) (Z D : ℂ → ℂ) (E Ed : Polynomial ℂ) (ε a₁ a₂ : ℂ)
     (p q pd qd : Polynomial ℂ) (σ₂ σ₃ : ℝ) (hq : q ≠ 0) (hqd : qd ≠ 0)

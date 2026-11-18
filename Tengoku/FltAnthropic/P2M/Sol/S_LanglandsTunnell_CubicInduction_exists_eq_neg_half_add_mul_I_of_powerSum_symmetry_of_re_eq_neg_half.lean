@@ -11,12 +11,21 @@ open Complex
 
 namespace ShapeBody
 
+/--
+@isnad1 id=eq.1h1v.s5.63f56334ba2e from=translated src=- shape=ec210fe3 vocab=47da4d9d
+-/
 theorem conj_eq_neg_of_re_eq_zero {z : ℂ} (h : z.re = 0) : (starRingEnd ℂ) z = -z := by
   apply Complex.ext <;> simp [h]
 
+/--
+@isnad1 id=eq.1h1v.s5.0c170c46db30 from=translated src=- shape=78415b9a vocab=9af8f9c8
+-/
 theorem conj_eq_self_of_im_eq_zero {z : ℂ} (h : z.im = 0) : (starRingEnd ℂ) z = z := by
   apply Complex.ext <;> simp [h]
 
+/--
+@isnad1 id=ex.4h1v.s8.7f31d499e0f5 from=translated src=- shape=bbfda951 vocab=ddde78ec
+-/
 theorem core (ν : Fin 3 → ℂ)
     (h1 : (∑ a, ν a).re = 0) (h2 : (∑ a, ν a ^ 2).im = 0) (h3 : (∑ a, ν a ^ 3).re = 0)
     (h0 : (ν 0).re = -1 / 2) :
@@ -106,6 +115,9 @@ theorem core (ν : Fin 3 → ℂ)
 end ShapeBody
 
 open ShapeBody in
+/--
+@isnad1 id=ex.4h2v.s8.721062b9ed52 from=translated src=- shape=db396997 vocab=ddde78ec
+-/
 theorem solution
     (ν : Fin 3 → ℂ)
     (h1 : (∑ a, ν a).re = 0) (h2 : (∑ a, ν a ^ 2).im = 0) (h3 : (∑ a, ν a ^ 3).re = 0)

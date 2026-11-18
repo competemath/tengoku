@@ -16,6 +16,9 @@ section Poly
 
 variable {K : Type*} [Field K]
 
+/--
+@isnad1 id=eq.1h2v.s9.d243de818995 from=translated src=- shape=8f39729b vocab=3bcce2cb
+-/
 theorem charpoly_of_upper (M : Matrix (Fin 2) (Fin 2) K) (h : M 1 0 = 0) :
     M.charpoly = (X - C (M 0 0)) * (X - C (M 1 1)) := by
   rw [Matrix.charpoly_fin_two, Matrix.trace_fin_two, Matrix.det_fin_two, h, mul_zero, sub_zero,
@@ -36,6 +39,9 @@ section TriangularNorm
 
 variable {L : Type*} [Field L] (τ : L →+* L)
 
+/--
+@isnad1 id=and.2h3v.s10.b0b4a201b127 from=translated src=- shape=bbb54b95 vocab=141f71be
+-/
 theorem mul_apply_of_upper (P Q : GL (Fin 2) L)
     (hP : (P : Matrix (Fin 2) (Fin 2) L) 1 0 = 0) (hQ : (Q : Matrix (Fin 2) (Fin 2) L) 1 0 = 0) :
     ((P * Q : GL (Fin 2) L) : Matrix (Fin 2) (Fin 2) L) 1 0 = 0 ∧
@@ -46,6 +52,9 @@ theorem mul_apply_of_upper (P Q : GL (Fin 2) L)
   refine ⟨?_, ?_, ?_⟩ <;>
     simp [Units.val_mul, Matrix.mul_apply, Fin.sum_univ_two, hP, hQ]
 
+/--
+@isnad1 id=and.1h4v.s10.fa5b90322daf from=translated src=- shape=e36b5dc2 vocab=a4c9f9d9
+-/
 theorem sigmaPartialNorm_upper (δ : GL (Fin 2) L) (hδ : (δ : Matrix (Fin 2) (Fin 2) L) 1 0 = 0)
     (r : ℕ) :
     ((sigmaPartialNorm (Matrix.GeneralLinearGroup.map τ) δ r : GL (Fin 2) L) :
@@ -78,6 +87,9 @@ section Main
 variable {F L : Type*} [Field F] [Field L] [Algebra F L] [FiniteDimensional F L] [IsGalois F L]
   {σ : L ≃ₐ[F] L}
 
+/--
+@isnad1 id=isnormre.2h5v.s9.e3485080e446 from=translated src=- shape=00d23ba7 vocab=791186c3
+-/
 theorem isNormRep_of_normClassMap_eq (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)
     {δ : GL (Fin 2) L} {γ : GL (Fin 2) F}
     (h : normClassMap hgen (SigmaConjClasses.mk σ δ) = ConjClasses.mk γ) : IsNormRep σ γ δ := by
@@ -88,6 +100,9 @@ theorem isNormRep_of_normClassMap_eq (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subg
   rw [← hc, map_mul, map_mul, map_inv, ← hP]
   group
 
+/--
+@isnad1 id=and.4h5v.s11.e3d928fc3e70 from=translated src=- shape=c2f52ac4 vocab=152024bf
+-/
 theorem sigmaNormPow_entries_of_upper_of_unipotent (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)
     (β : GL (Fin 2) L) (hβ : (β : Matrix (Fin 2) (Fin 2) L) 1 0 = 0)
     {γ : GL (Fin 2) F} (hγ : γ ∈ AutomorphicForm.unipotentCell F)
@@ -130,6 +145,9 @@ theorem sigmaNormPow_entries_of_upper_of_unipotent (hgen : ∀ τ : L ≃ₐ[F] 
   rw [← hij]
   fin_cases i <;> fin_cases j <;> simp
 
+/--
+@isnad1 id=eq.4h5v.s11.2d1d03d93bdf from=translated src=- shape=b09b611f vocab=646bfd01
+-/
 theorem main (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)
     (β : GL (Fin 2) L) (hβ : (β : Matrix (Fin 2) (Fin 2) L) 1 0 = 0)
     (hunip : ∃ γ : GL (Fin 2) F, γ ∈ AutomorphicForm.unipotentCell F ∧
@@ -189,6 +207,9 @@ end Main
 
 end R4UniCoset
 
+/--
+@isnad1 id=eq.5h6v.s11.9ace5af87050 from=translated src=- shape=822ead46 vocab=646bfd01
+-/
 theorem solution
     {F L : Type*} [Field F] [Field L] [Algebra F L] [FiniteDimensional F L] [IsGalois F L]
     {σ : L ≃ₐ[F] L} (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)

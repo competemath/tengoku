@@ -496,6 +496,9 @@ end ComplexWhittakerDependenceAux
 
 open ComplexWhittakerDependenceAux in
 
+/--
+@isnad1 id=ex.8h4v.s10.3ef7c59b723e from=translated src=- shape=f1337fcd vocab=98e9f21c
+-/
 theorem solution (ν : ℂ)
     (k : ℝ) (f g : ℝ → ℂ)
     (hf : DifferentiableOn ℝ f (Set.Ioi 0)) (hf' : DifferentiableOn ℝ (deriv f) (Set.Ioi 0))

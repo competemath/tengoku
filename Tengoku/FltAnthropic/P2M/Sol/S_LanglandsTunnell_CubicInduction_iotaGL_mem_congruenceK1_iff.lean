@@ -37,6 +37,9 @@ end CongruenceBottomEntries
 
 open CongruenceBottomEntries
 
+/--
+@isnad1 id=iff.0h5v.s11.41c019996e87 from=translated src=- shape=fadecdfd vocab=cc9acf2b
+-/
 theorem solution
     (R K : Type*) [CommRing R] [IsDedekindDomain R] [Field K] [Algebra R K] [IsFractionRing R K]
     (v : HeightOneSpectrum R) (c : ℕ) (g : GL (Fin 2) (v.adicCompletion K)) :

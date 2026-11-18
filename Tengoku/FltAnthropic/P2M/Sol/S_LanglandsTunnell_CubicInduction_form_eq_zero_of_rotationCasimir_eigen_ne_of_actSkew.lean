@@ -20,6 +20,9 @@ def orth (o : Fin 3 → Fin 3 → ℝ) : Prop := ∀ i j : Fin 3, ∑ a : Fin 3,
 
 def co (o : Fin 3 → Fin 3 → ℝ) : Fin 3 × Fin 3 → ℂ := fun ij => ((o ij.1 ij.2 : ℝ) : ℂ)
 
+/--
+@isnad1 id=eq.12h8v.s12.acd4938b8cae from=translated src=- shape=b37d9ff9 vocab=89109454
+-/
 theorem abstract (W : Submodule ℂ R9) (β : R9 → R9 → ℂ) (κ κ' : ℂ) (hκ : κ ≠ κ')
     (P Q : R9) (hP : P ∈ W) (hQ : Q ∈ W)
     (A : Fin 3 → Fin 3 → R9 → R9)
@@ -144,6 +147,9 @@ theorem abstract (W : Submodule ℂ R9) (β : R9 → R9 → ℂ) (κ κ' : ℂ) 
     have : (κ - κ') * β P Q = 0 := by rw [sub_mul, hmain, sub_self]
     exact (mul_eq_zero.mp this).resolve_left (sub_ne_zero.mpr hκ)
 
+/--
+@isnad1 id=other.3h7v.s13.0e7bf5e42172 from=translated src=- shape=fb0b451b vocab=b8d4d2e7
+-/
 theorem main
     (ν : Fin 3 → ℂ) (W : Submodule ℂ (MvPolynomial (Fin 3 × Fin 3) ℂ))
     (β : MvPolynomial (Fin 3 × Fin 3) ℂ → MvPolynomial (Fin 3 × Fin 3) ℂ → ℂ) (κ κ' : ℂ) (hκ : κ ≠ κ')
@@ -180,6 +186,9 @@ end
 
 end WsC.O3a
 
+/--
+@isnad1 id=other.3h7v.s13.0e7bf5e42172 from=translated src=- shape=fb0b451b vocab=b8d4d2e7
+-/
 theorem solution
     (ν : Fin 3 → ℂ) (W : Submodule ℂ (MvPolynomial (Fin 3 × Fin 3) ℂ))
     (β : MvPolynomial (Fin 3 × Fin 3) ℂ → MvPolynomial (Fin 3 × Fin 3) ℂ → ℂ) (κ κ' : ℂ) (hκ : κ ≠ κ')

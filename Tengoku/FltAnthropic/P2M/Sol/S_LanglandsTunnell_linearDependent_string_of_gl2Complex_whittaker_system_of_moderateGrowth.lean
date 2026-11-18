@@ -256,6 +256,9 @@ private theorem top_normal_form (n : ℕ) (κ lam' : ℂ) (hκ : κ ≠ 0) (F : 
 end UniqString
 
 open UniqString in
+/--
+@isnad1 id=ex.5h6v.s11.da9fbfb8e952 from=translated src=- shape=2118d692 vocab=e32b9d6f
+-/
 theorem solution
     (n : ℕ) (κ lam lam' : ℂ) (hκ : κ ≠ 0) (f g : ℕ → ℝ → ℂ)
     (hf : ∀ p : Fin (n + 1),

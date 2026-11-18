@@ -1797,6 +1797,9 @@ private theorem unitCount_twistedBall_eq (σ : IntegralAut R K)
 
 end RadiusCount
 
+/--
+@isnad1 id=eq.10h12v.s13.8510262975e4 from=translated src=- shape=0342aeb7 vocab=9d67e6bf
+-/
 theorem solution
     (R K : Type) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [Field K] [Algebra R K]
     [IsFractionRing R K] (σ : LT.LatticeTree.IntegralAut R K)

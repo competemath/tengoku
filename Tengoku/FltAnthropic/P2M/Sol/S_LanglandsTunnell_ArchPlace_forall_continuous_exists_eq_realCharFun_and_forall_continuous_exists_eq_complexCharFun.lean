@@ -280,6 +280,9 @@ end ComplexQuasiCharacter
 end ComplexQuasiCharacter
 
 open LanglandsTunnell LanglandsTunnell.ArchPlace in
+/--
+@isnad1 id=and.0h0v.s8.edf2dc30b85f from=translated src=- shape=76a3b6f5 vocab=099f253c
+-/
 theorem solution
  :
     (∀ χ : ℝˣ →* ℂˣ, Continuous χ → ∃ (u : ℂ) (a : ZMod 2), χ = realCharFun u a) ∧

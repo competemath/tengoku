@@ -113,6 +113,9 @@ end LanglandsTunnell.TateLocal.FourierBallF1
 end
 
 open _root_.LanglandsTunnell.TateLocal _root_.P2MW.S_LanglandsTunnell_TateLocal_tateFourier_indicator_setOf_valued_sub_le.LanglandsTunnell.TateLocal in
+/--
+@isnad1 id=eq.2h8v.s11.a851dfe222db from=translated src=- shape=0d00c4d4 vocab=9faf0cf9
+-/
 theorem solution (K : Type) [Field K]
     [NumberField K] (v : HeightOneSpectrum (𝓞 K)) [MeasurableSpace (v.adicCompletion K)]
     [BorelSpace (v.adicCompletion K)] (μ : Measure (v.adicCompletion K)) [μ.IsAddHaarMeasure]

@@ -7,6 +7,9 @@ namespace P2MW.S_IsPreconnected_exists_forall_eq_sum_zsmul_of_continuousOn_of_li
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.5h6v.s8.050c53a54c79 from=translated src=- shape=ad11b2f6 vocab=37e672d9
+-/
 theorem solution
     {X : Type*} [TopologicalSpace X] {V : Type*} [NormedAddCommGroup V] [NormedSpace ℝ V] [FiniteDimensional ℝ V]
     {k : ℕ} {S : Set X} (hS : IsPreconnected S)

@@ -64,6 +64,9 @@ end CongruenceBottomRow
 
 open CongruenceBottomRow
 
+/--
+@isnad1 id=isopen.0h4v.s8.3032e7e99eea from=translated src=- shape=044f865e vocab=e8b3ddd6
+-/
 theorem solution
     (R K : Type*) [CommRing R] [IsDedekindDomain R] [Field K] [Algebra R K] [IsFractionRing R K]
     (v : HeightOneSpectrum R) (c : ℕ) :

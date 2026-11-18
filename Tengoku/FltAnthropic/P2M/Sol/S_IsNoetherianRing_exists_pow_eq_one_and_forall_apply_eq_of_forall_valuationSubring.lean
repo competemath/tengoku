@@ -61,6 +61,9 @@ theorem eq_of_pow_eq_one_of_sub_mem_maximalIdeal {A : Type*} [CommRing A] [IsLoc
   have : u = w * (xu : A) := by rw [hw, mul_assoc, Units.inv_mul, mul_one]
   rw [this, hw1', one_mul]
 
+/--
+@isnad1 id=ex.2h3v.s7.1dc7f65d0ea1 from=translated src=- shape=bc9c6dda vocab=9a7bbd68
+-/
 theorem exists_pow_eq_one_of_isNilpotent {R : Type*} [CommRing R] {n : ℕ} (hn : IsUnit ((n : ℕ) : R))
     (ε₀ : R) (hδ : IsNilpotent (ε₀ ^ n - 1)) :
     ∃ ε : R, ε ^ n = 1 ∧ IsNilpotent (ε - ε₀) := by
@@ -126,6 +129,9 @@ section PowerSums
 
 variable {Ω : Type*} [Field Ω] [DecidableEq Ω]
 
+/--
+@isnad1 id=eq.1h4v.s7.5a3b7f2c2b0a from=translated src=- shape=5e6d0e74 vocab=8c5fa798
+-/
 theorem sum_range_pow_pow_eq {n : ℕ} {ζ : Ω} (hζ : IsPrimitiveRoot ζ n) (m : ℕ) :
     ∑ i ∈ Finset.range n, (ζ ^ i) ^ m = if ζ ^ m = 1 then (n : Ω) else 0 := by
   have hre : ∀ i, (ζ ^ i) ^ m = (ζ ^ m) ^ i := fun i => by rw [← pow_mul, ← pow_mul, mul_comm]
@@ -136,6 +142,9 @@ theorem sum_range_pow_pow_eq {n : ℕ} {ζ : Ω} (hζ : IsPrimitiveRoot ζ n) (m
       rw [geom_sum_mul, ← pow_mul, mul_comm, pow_mul, hζ.pow_eq_one, one_pow, sub_self]
     exact (mul_eq_zero.mp hmul).resolve_right (sub_ne_zero.mpr h)
 
+/--
+@isnad1 id=eq.3h4v.s7.d28e72b07a80 from=translated src=- shape=7066ce4f vocab=1e23a7dc
+-/
 theorem sum_range_mul_eval_eq {n : ℕ} {ζ : Ω} (hζ : IsPrimitiveRoot ζ n) (hn : 0 < n) (p : Polynomial Ω)
     (hp : p.natDegree < n) :
     ∑ i ∈ Finset.range n, ζ ^ i * p.eval (ζ ^ i) = (n : Ω) * p.coeff (n - 1) := by
@@ -174,6 +183,9 @@ def toValuationSubring {R : Type*} [CommRing R] {K : Type*} [Field K] (φ : R �
   map_zero' := Subtype.ext (by simp)
   map_add' x y := Subtype.ext (by simp)
 
+/--
+@isnad1 id=eq.1h4v.s8.7fc313edac93 from=translated src=- shape=d4085291 vocab=37925aa6
+-/
 theorem algebraMap_comp_toValuationSubring {R : Type*} [CommRing R] {K : Type*} [Field K] (φ : R →+* K)
     (A : ValuationSubring K) (h : ∀ x, φ x ∈ A) :
     (algebraMap A K).comp (toValuationSubring φ A h) = φ :=
@@ -181,6 +193,9 @@ theorem algebraMap_comp_toValuationSubring {R : Type*} [CommRing R] {K : Type*} 
 
 variable {R : Type u} [CommRing R]
 
+/--
+@isnad1 id=eq.1h6v.s10.fd3e32af1a92 from=translated src=- shape=65bb2c43 vocab=daa17c48
+-/
 theorem apply_comp_eq_of_hv
     (c : ∀ (Ω : Type u) [Field Ω] [IsAlgClosed Ω], (R →+* Ω) → Ω)
     (hv : ∀ (K : Type u) [Field K] [IsAlgClosed K] (𝒪 : ValuationSubring K)
@@ -199,6 +214,9 @@ theorem apply_comp_eq_of_hv
   rw [hu', hu]
   rfl
 
+/--
+@isnad1 id=iff.2h6v.s8.7cf21bd3769a from=translated src=- shape=72bbc076 vocab=4eb6d76d
+-/
 theorem iff_of_ker_eq {C : Type u} [CommRing C]
     (P : ∀ (Ω : Type u) [Field Ω] [IsAlgClosed Ω], (C →+* Ω) → Prop)
     (hP : ∀ (Ω Ω' : Type u) [Field Ω] [IsAlgClosed Ω] [Field Ω'] [IsAlgClosed Ω'] (χ : C →+* Ω)
@@ -239,6 +257,9 @@ theorem iff_of_ker_eq {C : Type u} [CommRing C]
 
 end Geometric
 
+/--
+@isnad1 id=isclosed.1h2v.s7.6c8aa6de261e from=translated src=- shape=93da3482 vocab=5cb85719
+-/
 theorem isClosed_of_forall_le_iff {C : Type u} [CommRing C] [IsNoetherianRing C] (S : Set (PrimeSpectrum C))
     (hS : ∀ x y : PrimeSpectrum C, x.asIdeal ≤ y.asIdeal → (x ∈ S ↔ y ∈ S)) : IsClosed S := by
   classical
@@ -261,6 +282,9 @@ theorem isClosed_of_forall_le_iff {C : Type u} [CommRing C] [IsNoetherianRing C]
   rw [hST]
   exact hT.isClosed_biUnion fun x _ => PrimeSpectrum.isClosed_zeroLocus _
 
+/--
+@isnad1 id=isclopen.1h2v.s7.99d4f19822a0 from=translated src=- shape=93da3482 vocab=aeda9c33
+-/
 theorem isClopen_of_forall_le_iff {C : Type u} [CommRing C] [IsNoetherianRing C] (S : Set (PrimeSpectrum C))
     (hS : ∀ x y : PrimeSpectrum C, x.asIdeal ≤ y.asIdeal → (x ∈ S ↔ y ∈ S)) : IsClopen S := by
   refine ⟨isClosed_of_forall_le_iff S hS, ?_⟩
@@ -271,6 +295,9 @@ section Cover
 
 variable {C : Type u} [CommRing C]
 
+/--
+@isnad1 id=eq.1h5v.s7.e790b04c306d from=translated src=- shape=e39c135e vocab=f1eb4189
+-/
 theorem ker_comp_of_injective' {A B D : Type*} [CommRing A] [CommRing B] [CommRing D] (f : A →+* B) (g : B →+* D)
     (hg : Function.Injective g) : RingHom.ker (g.comp f) = RingHom.ker f := by
   ext x
@@ -291,6 +318,9 @@ variable (r : C) (cC : ∀ (Ω : Type u) [Field Ω] [IsAlgClosed Ω], (C →+* �
       ∃ u : 𝒪, cC K ((algebraMap 𝒪 K).comp ρ) = algebraMap 𝒪 K u ∧ cC Ω (ψ.comp ρ) = ψ u)
 
 include hvC in
+/--
+@isnad1 id=iff.2h6v.s10.ef6185861e3c from=translated src=- shape=3f3f78cf vocab=3964de4c
+-/
 theorem mem_goodLocus_iff (𝔔 : PrimeSpectrum C) {Ω : Type u} [Field Ω] [IsAlgClosed Ω] (χ : C →+* Ω)
     (hχ : RingHom.ker χ = 𝔔.asIdeal) : 𝔔 ∈ goodLocus r cC ↔ cC Ω χ = χ r := by
   have hP : ∀ (Ω Ω' : Type u) [Field Ω] [IsAlgClosed Ω] [Field Ω'] [IsAlgClosed Ω'] (χ : C →+* Ω)
@@ -315,6 +345,9 @@ abbrev RD {K : Type u} [Field K] (A : ValuationSubring K) : Type u := AlgebraicC
 
 include hvC in
 
+/--
+@isnad1 id=iff.5h6v.s10.4bac615be628 from=translated src=- shape=41f50ec0 vocab=ed6035b1
+-/
 theorem mem_goodLocus_iff_of_le {n : ℕ} (hnC : IsUnit ((n : ℕ) : C)) (hr : r ^ n = 1)
     (hcC : ∀ (Ω : Type u) [Field Ω] [IsAlgClosed Ω] (χ : C →+* Ω), cC Ω χ ^ n = 1)
     (𝔔 𝔔' : PrimeSpectrum C) (hle : 𝔔.asIdeal ≤ 𝔔'.asIdeal) :
@@ -392,6 +425,9 @@ theorem mem_goodLocus_iff_of_le {n : ℕ} (hnC : IsUnit ((n : ℕ) : C)) (hr : r
 
 include hvC in
 
+/--
+@isnad1 id=ex.4h4v.s10.09629c5ba390 from=translated src=- shape=786ff4ad vocab=0be892e4
+-/
 theorem exists_idempotent_goodLocus [IsNoetherianRing C] {n : ℕ} (hnC : IsUnit ((n : ℕ) : C)) (hr : r ^ n = 1)
     (hcC : ∀ (Ω : Type u) [Field Ω] [IsAlgClosed Ω] (χ : C →+* Ω), cC Ω χ ^ n = 1) :
     ∃ e : C, IsIdempotentElem e ∧ ∀ (Ω : Type u) [Field Ω] [IsAlgClosed Ω] [DecidableEq Ω] (χ : C →+* Ω),
@@ -416,12 +452,21 @@ noncomputable def cycPoly (R : Type u) [CommRing R] (n : ℕ) : R[X] := X ^ n - 
 
 variable {R : Type u} [CommRing R]
 
+/--
+@isnad1 id=monic.1h2v.s4.7d9554082788 from=translated src=- shape=1038d09d vocab=fba2c370
+-/
 theorem cycPoly_monic [Nontrivial R] {n : ℕ} (hn : n ≠ 0) : (cycPoly R n).Monic := by
   simpa only [cycPoly, map_one] using Polynomial.monic_X_pow_sub_C (1 : R) hn
 
+/--
+@isnad1 id=eq.0h2v.s4.d41d0f6c276d from=translated src=- shape=b931af11 vocab=ce8b4400
+-/
 theorem cycPoly_natDegree [Nontrivial R] (n : ℕ) : (cycPoly R n).natDegree = n := by
   simpa only [cycPoly, map_one] using Polynomial.natDegree_X_pow_sub_C (n := n) (r := (1 : R))
 
+/--
+@isnad1 id=ex.4h3v.s10.fbc8370c8669 from=translated src=- shape=8b7e7666 vocab=6905424e
+-/
 theorem main (hR : IsNoetherianRing R) (n : ℕ) (hn : IsUnit ((n : ℕ) : R))
     (c : ∀ (Ω : Type u) [Field Ω] [IsAlgClosed Ω], (R →+* Ω) → Ω)
     (hc : ∀ (Ω : Type u) [Field Ω] [IsAlgClosed Ω] (φ : R →+* Ω), c Ω φ ^ n = 1)
@@ -545,6 +590,9 @@ end P2M.MuSpread
 open scoped _root_.P2MW.S_IsNoetherianRing_exists_pow_eq_one_and_forall_apply_eq_of_forall_valuationSubring.P2M _root_.P2MW.S_IsNoetherianRing_exists_pow_eq_one_and_forall_apply_eq_of_forall_valuationSubring.P2M.MuSpread
 open scoped _root_.P2MW.S_IsNoetherianRing_exists_pow_eq_one_and_forall_apply_eq_of_forall_valuationSubring.P2M
 
+/--
+@isnad1 id=ex.3h3v.s10.fbc8370c8669 from=translated src=- shape=8b7e7666 vocab=6905424e
+-/
 theorem solution
     (R : Type u) [CommRing R] [IsNoetherianRing R] (n : ℕ) (hn : IsUnit ((n : ℕ) : R))
     (c : ∀ (Ω : Type u) [Field Ω] [IsAlgClosed Ω], (R →+* Ω) → Ω)

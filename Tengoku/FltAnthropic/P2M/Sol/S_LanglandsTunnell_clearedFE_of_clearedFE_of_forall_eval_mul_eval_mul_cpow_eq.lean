@@ -12,6 +12,9 @@ namespace RatAux
 
 open Filter Topology
 
+/--
+@isnad1 id=or.3h2v.s7.bf46f088b6ce from=translated src=- shape=5073e361 vocab=0a70831e
+-/
 theorem forall_eq_zero_or_of_mul {f g : ℂ → ℂ} (hf : Differentiable ℂ f) (hg : Differentiable ℂ g)
     (h : ∀ s, f s * g s = 0) : (∀ s, f s = 0) ∨ (∀ s, g s = 0) := by
   by_contra hcon
@@ -27,21 +30,33 @@ theorem forall_eq_zero_or_of_mul {f g : ℂ → ℂ} (hf : Differentiable ℂ f)
   have := hfa.eqOn_zero_of_preconnected_of_frequently_eq_zero isPreconnected_univ (Set.mem_univ s₂) hev'.frequently
   exact hs₁ (this (Set.mem_univ s₁))
 
+/--
+@isnad1 id=differen.2h2v.s7.58455910e252 from=translated src=- shape=71e1ce11 vocab=bc12f745
+-/
 theorem differentiable_cpow (N : ℕ) (hN : 1 < N) {g : ℂ → ℂ} (hg : Differentiable ℂ g) :
     Differentiable ℂ (fun s => (N : ℂ) ^ g s) := by
   have hNz : (N : ℂ) ≠ 0 := by exact_mod_cast (show N ≠ 0 by omega)
   simp_rw [Complex.cpow_def_of_ne_zero hNz]
   exact (hg.const_mul _).cexp
 
+/--
+@isnad1 id=differen.2h3v.s7.fcc6d7bcfefc from=translated src=- shape=9ac5090a vocab=e43cf832
+-/
 theorem differentiable_eval_cpow (N : ℕ) (hN : 1 < N) (R : Polynomial ℂ) {g : ℂ → ℂ} (hg : Differentiable ℂ g) :
     Differentiable ℂ (fun s => R.eval ((N : ℂ) ^ g s)) :=
   (Polynomial.differentiable R).comp (differentiable_cpow N hN hg)
 
+/--
+@isnad1 id=injectiv.1h1v.s5.2931e12e42d7 from=translated src=- shape=634d7966 vocab=0f9c3836
+-/
 theorem injective_natCast_pow (N : ℕ) (hN : 1 < N) : Function.Injective (fun n : ℕ => ((N : ℂ) ^ n)) := by
   intro a b h
   have : ((N ^ a : ℕ) : ℂ) = ((N ^ b : ℕ) : ℂ) := by push_cast; exact h
   exact Nat.pow_right_injective (by omega : 2 ≤ N) (Nat.cast_injective this)
 
+/--
+@isnad1 id=not.2h2v.s5.447789035e5f from=translated src=- shape=90b225b4 vocab=9df9a9d5
+-/
 theorem not_forall_eval_cpow_eq_zero (N : ℕ) (hN : 1 < N) (R : Polynomial ℂ) (hR : R ≠ 0) :
     ¬ ∀ s : ℂ, R.eval ((N : ℂ) ^ s) = 0 := by
   intro h
@@ -56,6 +71,9 @@ theorem not_forall_eval_cpow_eq_zero (N : ℕ) (hN : 1 < N) (R : Polynomial ℂ)
 end LanglandsTunnell.RatAux
 
 open LanglandsTunnell.RatAux in
+/--
+@isnad1 id=eq.4h14v.s9.5011eb9b5bbd from=translated src=- shape=d1a5bdb1 vocab=feb30209
+-/
 theorem solution
     (N : ℕ) (hN : 1 < N)
     (RA₁ RA₂ RB₁ RB₂ : Polynomial ℂ) (rA rB : ℤ) (hRA₂ : RA₂ ≠ 0)

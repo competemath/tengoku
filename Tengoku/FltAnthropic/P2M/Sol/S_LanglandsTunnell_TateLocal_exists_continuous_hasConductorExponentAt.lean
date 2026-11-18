@@ -13,6 +13,9 @@ open NumberField NumberField.AdelicLevel IsDedekindDomain
 
 open LanglandsTunnell.TateLocal LanglandsTunnell in
 
+/--
+@isnad1 id=ex.1h3v.s11.fd3069c7fffb from=translated src=- shape=892ebd2d vocab=cdade096
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K)) (c : ℕ) (hc : 2 ≤ c) :
     ∃ χ : (v.adicCompletion K)ˣ →* ℂˣ,

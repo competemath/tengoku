@@ -65,6 +65,9 @@ private lemma profile_eq (n : ℕ) {y : ℝ} (hy : 0 < y) :
   rw [this, Real.rpow_add hy]
   ring
 
+/--
+@isnad1 id=and.3h4v.s9.e4ff1ec64ffe from=translated src=- shape=6a05c7a0 vocab=da82627c
+-/
 theorem solution (n : ℕ) (k : ℝ) (ν : ℂ) (hk : k = n + 1)
     (hν : ν = (n : ℂ) / 2) (f : ℝ → ℂ)
     (hf : ∀ y : ℝ, f y = ((y ^ (1 / 2 : ℝ) * (2 * y ^ ((n : ℝ) / 2) * Real.exp (-(2 * π * y))) : ℝ) : ℂ)) :

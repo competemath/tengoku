@@ -839,6 +839,9 @@ end LT.LatticeTree
 open scoped Matrix
 open NumberField IsDedekindDomain
 
+/--
+@isnad1 id=ex.2h4v.s17.ce62ae44300f from=translated src=- shape=e3c11ea4 vocab=7f218373
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K))
     (ϖ : v.adicCompletionIntegers K) (hϖ : Irreducible ϖ)

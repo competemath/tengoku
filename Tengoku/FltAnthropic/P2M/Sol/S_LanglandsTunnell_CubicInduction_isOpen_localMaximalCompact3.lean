@@ -40,6 +40,9 @@ end IntegralEntriesOpen
 
 open IntegralEntriesOpen
 
+/--
+@isnad1 id=isopen.0h3v.s9.bd261fba8aef from=translated src=- shape=6f37c14c vocab=e6eea353
+-/
 theorem solution
     (R K : Type*) [CommRing R] [IsDedekindDomain R] [Field K] [Algebra R K] [IsFractionRing R K]
     (v : HeightOneSpectrum R) :

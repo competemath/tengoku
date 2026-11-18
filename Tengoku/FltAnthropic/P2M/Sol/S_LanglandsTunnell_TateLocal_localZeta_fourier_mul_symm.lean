@@ -20,6 +20,9 @@ open _root_.LanglandsTunnell.TateLocal open _root_.LanglandsTunnell
 variable {K : Type*} [Field K] [TopologicalSpace K] [IsTopologicalRing K] [LocallyCompactSpace K]
   [MeasurableSpace K] [MeasurableSingletonClass K]
 
+/--
+@isnad1 id=eq.1h3v.s7.c0b90310b755 from=translated src=- shape=ce7f8d1d vocab=df34f76e
+-/
 theorem integral_mulMeasure (μ : Measure K) (F : K → ℂ)
     (hm : AEMeasurable (fun x : K => (modulus x)⁻¹) (μ.restrict {0}ᶜ)) :
     ∫ x, F x ∂(mulMeasure μ) = ∫ x in ({0}ᶜ : Set K), ((modulus x)⁻¹ : ℝ≥0) • F x ∂μ := by
@@ -33,6 +36,9 @@ theorem integral_mulMeasure (μ : Measure K) (F : K → ℂ)
   rw [mulMeasure, MeasureTheory.withDensity_congr_ae hae,
     integral_withDensity_eq_integral_smul₀ hm]
 
+/--
+@isnad1 id=eq.1h3v.s7.5b3c88c3b314 from=translated src=- shape=87fb9f1f vocab=54966a41
+-/
 theorem integral_modulus_smul_mulMeasure (μ : Measure K) (F : K → ℂ)
     (hm : AEMeasurable (fun x : K => (modulus x)⁻¹) (μ.restrict {0}ᶜ)) :
     ∫ x, (modulus x : ℝ) • F x ∂(mulMeasure μ) = ∫ x in ({0}ᶜ : Set K), F x ∂μ := by
@@ -55,11 +61,17 @@ namespace E3b
 open _root_.MeasureTheory open _root_.LanglandsTunnell.TateLocal open _root_.P2MW.S_LanglandsTunnell_TateLocal_localZeta_fourier_mul_symm.LanglandsTunnell.TateLocal
 open scoped NNReal ENNReal Pointwise
 
+/--
+@isnad1 id=eq.0h3v.s7.831e2604d691 from=translated src=- shape=2bce2130 vocab=f55de4b7
+-/
 theorem preimage_mul_left_eq_smul {K : Type*} [Field K] (u : Kˣ) (s : Set K) :
     (fun x => (u : K) * x) ⁻¹' s = u⁻¹ • s := by
   ext x
   rw [Set.mem_preimage, Set.mem_smul_set_iff_inv_smul_mem, inv_inv, Units.smul_def, smul_eq_mul]
 
+/--
+@isnad1 id=eq.1h3v.s6.093f5e9791ca from=translated src=- shape=05142ca3 vocab=28b108dc
+-/
 theorem mulMeasure_apply {K : Type*} [Field K] [TopologicalSpace K] [IsTopologicalRing K]
     [LocallyCompactSpace K] [MeasurableSpace K] (μ : Measure K) {s : Set K} (hs : MeasurableSet s) :
     mulMeasure μ s = ∫⁻ x in s ∩ {0}ᶜ, ((modulus x : ℝ≥0∞))⁻¹ ∂μ := by
@@ -70,6 +82,9 @@ variable {K : Type*} [Field K] [TopologicalSpace K] [IsTopologicalRing K] [Local
 
 variable (μ : Measure K) [μ.IsAddHaarMeasure] [μ.Regular]
 
+/--
+@isnad1 id=eq.0h3v.s7.574058c0da48 from=translated src=- shape=737c2bef vocab=48cab8f0
+-/
 theorem map_mul_left_eq_smul (u : Kˣ) :
     Measure.map (fun x => (u : K) * x) μ = ((modulus (u : K) : ℝ≥0∞)⁻¹) • μ := by
   ext s hs
@@ -77,6 +92,9 @@ theorem map_mul_left_eq_smul (u : Kˣ) :
     Measure.smul_apply, smul_eq_mul, ← distribHaarChar_mul μ u⁻¹ s, map_inv, modulus_coe_units,
     ENNReal.coe_inv distribHaarChar_pos.ne']
 
+/--
+@isnad1 id=eq.0h5v.s7.8b0adc4c20d5 from=translated src=- shape=04706da5 vocab=929acac5
+-/
 theorem setLIntegral_comp_mul_left (u : Kˣ) (F : K → ℝ≥0∞) (T : Set K) :
     ∫⁻ x in (fun x => (u : K) * x) ⁻¹' T, F ((u : K) * x) ∂μ =
       (modulus (u : K) : ℝ≥0∞)⁻¹ * ∫⁻ y in T, F y ∂μ := by
@@ -91,6 +109,9 @@ theorem setLIntegral_comp_mul_left (u : Kˣ) (F : K → ℝ≥0∞) (T : Set K) 
     _ = (modulus (u : K) : ℝ≥0∞)⁻¹ * ∫⁻ y in T, F y ∂μ := by
         rw [Measure.restrict_smul, lintegral_smul_measure, smul_eq_mul]
 
+/--
+@isnad1 id=eq.0h3v.s7.c104a420f884 from=translated src=- shape=79645ac5 vocab=26851bf1
+-/
 theorem mulMeasure_map_mul_left [MeasurableSingletonClass K] (u : Kˣ) :
     Measure.map (fun x => (u : K) * x) (mulMeasure μ) = mulMeasure μ := by
   ext s hs
@@ -117,6 +138,9 @@ theorem mulMeasure_map_mul_left [MeasurableSingletonClass K] (u : Kˣ) :
     setLIntegral_comp_mul_left μ u (fun y => ((modulus y : ℝ≥0∞))⁻¹) (s ∩ {0}ᶜ),
     ENNReal.mul_inv_cancel_left hu0 hutop]
 
+/--
+@isnad1 id=eq.0h4v.s7.6367179e74fa from=translated src=- shape=cb25ab43 vocab=1c7d41ee
+-/
 theorem integral_comp_mul_left_mulMeasure [MeasurableSingletonClass K] (u : Kˣ) (F : K → ℂ) :
     ∫ x, F ((u : K) * x) ∂(mulMeasure μ) = ∫ x, F x ∂(mulMeasure μ) := by
   have h := (measurableEmbedding_mulLeft₀ (u.ne_zero : (u : K) ≠ 0)).integral_map
@@ -137,6 +161,9 @@ variable {K : Type*} [Field K] [TopologicalSpace K] [IsTopologicalRing K] [Local
 
 omit [TopologicalSpace K] [IsTopologicalRing K] [LocallyCompactSpace K] [MeasurableSpace K] in
 
+/--
+@isnad1 id=eq.0h4v.s8.bd6945ab81f7 from=translated src=- shape=78cee668 vocab=c6dec4e8
+-/
 theorem charExt_unit_mul (χ : Kˣ →* ℂˣ) (u : Kˣ) (x : K) :
     charExt χ ((u : K) * x) = ((χ u : ℂˣ) : ℂ) * charExt χ x := by
   by_cases hx : x = 0
@@ -151,6 +178,9 @@ theorem charExt_unit_mul (χ : Kˣ →* ℂˣ) (u : Kˣ) (x : K) :
 
 omit [MeasurableSpace K] in
 
+/--
+@isnad1 id=eq.0h4v.s6.e687fca6f71f from=translated src=- shape=268ddd45 vocab=24d40fe8
+-/
 theorem modulus_mul_cpow (a b : K) (w : ℂ) :
     ((modulus (a * b) : ℝ) : ℂ) ^ w
       = ((modulus a : ℝ) : ℂ) ^ w * ((modulus b : ℝ) : ℂ) ^ w := by
@@ -158,6 +188,9 @@ theorem modulus_mul_cpow (a b : K) (w : ℂ) :
   push_cast
   exact Complex.mul_cpow_ofReal_nonneg (modulus a).coe_nonneg (modulus b).coe_nonneg w
 
+/--
+@isnad1 id=eventual.0h2v.s6.fb4242226cb2 from=translated src=- shape=6a8d211f vocab=5d4cc7b6
+-/
 theorem ae_ne_zero_mulMeasure [MeasurableSingletonClass K] (μ : Measure K) :
     ∀ᵐ x ∂(mulMeasure μ), x ≠ 0 := by
   rw [ae_iff]
@@ -168,6 +201,9 @@ theorem ae_ne_zero_mulMeasure [MeasurableSingletonClass K] (μ : Measure K) :
     Measure.restrict_restrict (MeasurableSet.singleton 0), Set.inter_compl_self,
     Measure.restrict_empty, lintegral_zero_measure]
 
+/--
+@isnad1 id=sfinite.0h2v.s5.b7c047af7e8e from=translated src=- shape=e3ac2196 vocab=b79521c8
+-/
 theorem sfinite_mulMeasure (μ : Measure K) [SFinite μ] : SFinite (mulMeasure μ) := by
   rw [mulMeasure]
   infer_instance
@@ -181,6 +217,9 @@ def symKer (ψ : AddChar K ℂ) (f g : K → ℂ) (x : K) : ℂ :=
 
 omit [TopologicalSpace K] [IsTopologicalRing K] [LocallyCompactSpace K] in
 
+/--
+@isnad1 id=eq.0h6v.s6.0123f416ab9b from=translated src=- shape=f56998f0 vocab=43ccdb46
+-/
 theorem symKer_comm (ψ : AddChar K ℂ) (f g : K → ℂ) (x : K) :
     symKer μ ψ f g x = symKer μ ψ g f x := by
   rw [symKer, symKer,
@@ -292,6 +331,9 @@ private theorem key (ψ : AddChar K ℂ) (f g : K → ℂ) (χ : Kˣ →* ℂˣ)
   dsimp only
   ring
 
+/--
+@isnad1 id=eq.4h7v.s10.64856e1840ca from=translated src=- shape=4196b35f vocab=b789acd2
+-/
 theorem localZeta_fourier_mul_symm (ψ : AddChar K ℂ) (f g : K → ℂ) (χ : Kˣ →* ℂˣ) (s : ℂ)
     (hm : AEMeasurable (fun x : K => (modulus x)⁻¹) (μ.restrict {0}ᶜ))
     (hswapL : Integrable (Function.uncurry fun y x : K =>
@@ -328,6 +370,9 @@ set_option autoImplicit false
 open _root_.MeasureTheory open _root_.LanglandsTunnell.TateLocal open _root_.P2MW.S_LanglandsTunnell_TateLocal_localZeta_fourier_mul_symm.LanglandsTunnell.TateLocal
 open scoped NNReal
 
+/--
+@isnad1 id=eq.4h7v.s10.64856e1840ca from=translated src=- shape=4196b35f vocab=b789acd2
+-/
 theorem solution {K : Type*} [Field K] [TopologicalSpace K]
     [IsTopologicalRing K] [LocallyCompactSpace K] [MeasurableSpace K] [BorelSpace K]
     [MeasurableSingletonClass K] (μ : Measure K) [μ.IsAddHaarMeasure] [μ.Regular] [SFinite μ]

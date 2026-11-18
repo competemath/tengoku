@@ -36,6 +36,9 @@ private theorem integral_smul_comp (μ : Measure A) [μ.IsAddHaarMeasure] [μ.Re
 end LanglandsTunnell.TateLocal.FourierDilation
 
 open _root_.LanglandsTunnell.TateLocal _root_.P2MW.S_LanglandsTunnell_TateLocal_tateFourier_comp_mul_left.LanglandsTunnell.TateLocal in
+/--
+@isnad1 id=eq.1h6v.s7.039b62a4cea5 from=translated src=- shape=e10d2bc7 vocab=fc66acf7
+-/
 theorem solution (K : Type*) [Field K]
     [TopologicalSpace K] [IsTopologicalRing K] [LocallyCompactSpace K] [MeasurableSpace K]
     [BorelSpace K] (ψ : AddChar K ℂ) (μ : Measure K) [μ.IsAddHaarMeasure] [μ.Regular] (f : K → ℂ) (a : K)

@@ -13,6 +13,9 @@ set_option autoImplicit false
 
 open LanglandsTunnell.ArchBessel
 
+/--
+@isnad1 id=and.1h2v.s8.80b4cc75bf99 from=translated src=- shape=eb94c7c0 vocab=ce1ae00d
+-/
 theorem solution
     (ν : ℂ) (x : ℝ) (hx : 0 < x) :
     HasDerivAt (fun x : ℝ => besselKernel ν x) (-besselKernel (ν + 1) x + ν / (x : ℂ) * besselKernel ν x) x ∧

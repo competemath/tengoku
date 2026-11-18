@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Complex_exists_forall_norm_Gamma_le_mul_ex
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.0h2v.s7.5a944d75657c from=translated src=- shape=d7ab9db5 vocab=d34b86e8
+-/
 theorem Complex.exists_forall_norm_Gamma_le_mul_exp_and_exp_le_mul_norm_Gamma_of_re_mem_Icc_of_one_le_abs_im
     (σ₁ σ₂ : ℝ) :
     ∃ (A : ℝ) (N : ℕ), ∀ w : ℂ, σ₁ ≤ w.re → w.re ≤ σ₂ → 1 ≤ |w.im| →

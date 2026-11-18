@@ -17,6 +17,9 @@ section Dedekind
 
 variable {F L : Type*} [Field F] [Field L] [Algebra F L] [FiniteDimensional F L] [IsGalois F L]
 
+/--
+@isnad1 id=eq.1h5v.s9.60065003a642 from=translated src=- shape=12cd0cae vocab=743422e2
+-/
 theorem sum_algEquiv_eq_sum_range_of_generator {M : Type*} [AddCommMonoid M] {σ : L ≃ₐ[F] L}
     (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ) (f : (L ≃ₐ[F] L) → M) :
     ∑ τ : L ≃ₐ[F] L, f τ = ∑ i ∈ Finset.range (Module.finrank F L), f (σ ^ i) := by
@@ -33,10 +36,16 @@ theorem sum_algEquiv_eq_sum_range_of_generator {M : Type*} [AddCommMonoid M] {σ
   rw [← Fintype.sum_bijective _ hbij (fun i => f (σ ^ (i : ℕ))) f (fun _ => rfl),
     ← horder, ← Fin.sum_univ_eq_sum_range]
 
+/--
+@isnad1 id=eq.1h3v.s8.1378e6d71d8e from=translated src=- shape=65a42b8e vocab=e6758f20
+-/
 theorem orderOf_eq_finrank_of_generator {σ : L ≃ₐ[F] L}
     (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ) : orderOf σ = Module.finrank F L := by
   rw [orderOf_eq_card_of_forall_mem_zpowers hgen, IsGalois.card_aut_eq_finrank]
 
+/--
+@isnad1 id=eq.4h6v.s10.411b5b485920 from=translated src=- shape=4cbe8a1d vocab=992ad4ae
+-/
 theorem coeff_eq_of_sum_smul_pow_eq_pow {σ : L ≃ₐ[F] L}
     (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)
     (a : ℕ → L) (k : ℕ) (hk : k < Module.finrank F L)
@@ -75,6 +84,9 @@ theorem coeff_eq_of_sum_smul_pow_eq_pow {σ : L ≃ₐ[F] L}
     (fun i => a i - if (i : ℕ) = k then 1 else 0) hrel ⟨l, hl⟩ (Finset.mem_univ _)
   exact sub_eq_zero.mp this
 
+/--
+@isnad1 id=eq.2h6v.s9.4210fb4d8075 from=translated src=- shape=84746555 vocab=e3b70ca8
+-/
 theorem sum_basis_mul_pow_dualBasis {σ : L ≃ₐ[F] L}
     (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)
     {ι : Type*} [Fintype ι] [DecidableEq ι] (b : Module.Basis ι F L)
@@ -134,16 +146,28 @@ noncomputable def σM : Matrix (Fin 2) (Fin 2) L →+* Matrix (Fin 2) (Fin 2) L 
 noncomputable def σG : GL (Fin 2) L →* GL (Fin 2) L :=
   Matrix.GeneralLinearGroup.map (σ : L →+* L)
 
+/--
+@isnad1 id=eq.0h6v.s8.4d5dab3cce08 from=translated src=- shape=a780717c vocab=af223035
+-/
 theorem σM_apply (M : Matrix (Fin 2) (Fin 2) L) (i j : Fin 2) : σM σ M i j = σ (M i j) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.20e4b4a7afa7 from=translated src=- shape=8abfd825 vocab=16cec1e3
+-/
 theorem σM_coe (P : GL (Fin 2) L) :
     σM σ (P : Matrix (Fin 2) (Fin 2) L) = ((σG σ P : GL (Fin 2) L) : Matrix (Fin 2) (Fin 2) L) := by
   rw [σG, coe_generalLinearGroup_map]; rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.e096924fa56f from=translated src=- shape=610ddebf vocab=335812ae
+-/
 theorem σM_smul (x : L) (M : Matrix (Fin 2) (Fin 2) L) : σM σ (x • M) = σ x • σM σ M := by
   ext i j
   simp [σM_apply, Matrix.smul_apply]
 
+/--
+@isnad1 id=eq.0h7v.s8.cb451622ef32 from=translated src=- shape=2869001b vocab=262afe2b
+-/
 theorem σM_iterate_apply (r : ℕ) (M : Matrix (Fin 2) (Fin 2) L) (i j : Fin 2) :
     ((σM σ)^[r] M) i j = (⇑σ)^[r] (M i j) := by
   induction r generalizing M with
@@ -155,14 +179,23 @@ noncomputable def Θ : Matrix (Fin 2) (Fin 2) L →+ Matrix (Fin 2) (Fin 2) L wh
   map_zero' := by simp
   map_add' M N := by rw [map_add, Matrix.mul_add, Matrix.add_mul]
 
+/--
+@isnad1 id=eq.0h6v.s9.c1a46b10798b from=translated src=- shape=1edb47ea vocab=6ef2f055
+-/
 theorem Θ_apply (M : Matrix (Fin 2) (Fin 2) L) :
     Θ σ δ₁ δ₂ M = (δ₁ : Matrix (Fin 2) (Fin 2) L) * σM σ M *
       ((δ₂⁻¹ : GL (Fin 2) L) : Matrix (Fin 2) (Fin 2) L) := rfl
 
+/--
+@isnad1 id=eq.0h7v.s9.80257a102b23 from=translated src=- shape=3c52b71e vocab=c07aab9b
+-/
 theorem Θ_smul (x : L) (M : Matrix (Fin 2) (Fin 2) L) :
     Θ σ δ₁ δ₂ (x • M) = σ x • Θ σ δ₁ δ₂ M := by
   rw [Θ_apply, Θ_apply, σM_smul, Matrix.mul_smul, Matrix.smul_mul]
 
+/--
+@isnad1 id=eq.0h8v.s9.76668ed33818 from=translated src=- shape=8f8c550f vocab=ff89f0ac
+-/
 theorem Θ_iterate_smul (r : ℕ) (x : L) (M : Matrix (Fin 2) (Fin 2) L) :
     (Θ σ δ₁ δ₂)^[r] (x • M) = (⇑σ)^[r] x • (Θ σ δ₁ δ₂)^[r] M := by
   induction r generalizing x M with
@@ -171,6 +204,9 @@ theorem Θ_iterate_smul (r : ℕ) (x : L) (M : Matrix (Fin 2) (Fin 2) L) :
       rw [Function.iterate_succ_apply, Function.iterate_succ_apply, Function.iterate_succ_apply,
         Θ_smul, ih]
 
+/--
+@isnad1 id=eq.0h7v.s10.ee66b12aa318 from=translated src=- shape=94882955 vocab=ec5c9f66
+-/
 theorem Θ_iterate (r : ℕ) (M : Matrix (Fin 2) (Fin 2) L) :
     (Θ σ δ₁ δ₂)^[r] M =
       ((sigmaPartialNorm (σG σ) δ₁ r : GL (Fin 2) L) : Matrix (Fin 2) (Fin 2) L) * (σM σ)^[r] M *
@@ -186,12 +222,18 @@ theorem Θ_iterate (r : ℕ) (M : Matrix (Fin 2) (Fin 2) L) :
 noncomputable def avg (n : ℕ) (x : L) : Matrix (Fin 2) (Fin 2) L :=
   ∑ r ∈ Finset.range n, (Θ σ δ₁ δ₂)^[r] (x • (1 : Matrix (Fin 2) (Fin 2) L))
 
+/--
+@isnad1 id=eq.0h7v.s9.9fa804b7ae40 from=translated src=- shape=295bacf0 vocab=9f08bdb2
+-/
 theorem avg_eq (n : ℕ) (x : L) :
     avg σ δ₁ δ₂ n x = ∑ r ∈ Finset.range n, (⇑σ)^[r] x • (Θ σ δ₁ δ₂)^[r] 1 := by
   unfold avg
   refine Finset.sum_congr rfl fun r _ => ?_
   rw [Θ_iterate_smul]
 
+/--
+@isnad1 id=eq.1h7v.s9.eda28722d7a5 from=translated src=- shape=c9d0cc32 vocab=aff821c6
+-/
 theorem Θ_avg (n : ℕ) (hΘn : ∀ M, (Θ σ δ₁ δ₂)^[n] M = M) (x : L) :
     Θ σ δ₁ δ₂ (avg σ δ₁ δ₂ n x) = avg σ δ₁ δ₂ n x := by
   unfold avg
@@ -206,6 +248,9 @@ theorem Θ_avg (n : ℕ) (hΘn : ∀ M, (Θ σ δ₁ δ₂)^[n] M = M) (x : L) :
   rw [Function.iterate_zero, id_eq, h2] at h1
   exact (add_right_cancel h1).symm
 
+/--
+@isnad1 id=eq.0h7v.s9.752f197dffaf from=translated src=- shape=8194548d vocab=681d258c
+-/
 theorem Θ_algebraMap_smul (a : F) (M : Matrix (Fin 2) (Fin 2) L) :
     Θ σ δ₁ δ₂ (algebraMap F L a • M) = algebraMap F L a • Θ σ δ₁ δ₂ M := by
   rw [Θ_smul, AlgEquiv.commutes]
@@ -214,6 +259,9 @@ section Infinite
 
 variable [Infinite F]
 
+/--
+@isnad1 id=ex.3h9v.s10.5b81856ef1e9 from=translated src=- shape=e285f4b3 vocab=2925b19a
+-/
 theorem exists_fixed_det_ne_zero (m : ℕ) :
     ∀ (M₀ : Matrix (Fin 2) (Fin 2) L), Θ σ δ₁ δ₂ M₀ = M₀ →
     ∀ (Ms : Fin m → Matrix (Fin 2) (Fin 2) L), (∀ j, Θ σ δ₁ δ₂ (Ms j) = Ms j) →
@@ -273,6 +321,9 @@ section Main
 
 variable {F L : Type*} [Field F] [Field L] [Algebra F L] [FiniteDimensional F L] [IsGalois F L]
 
+/--
+@isnad1 id=eq.3h7v.s10.a835deff55d1 from=translated src=- shape=a78101b7 vocab=75b68b73
+-/
 theorem Θ_iterate_finrank_eq_self {σ : L ≃ₐ[F] L}
     (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ) (δ₁ δ₂ : GL (Fin 2) L) (c : L)
     (h₁ : ((sigmaNormPow (σG σ) (Module.finrank F L) δ₁ : GL (Fin 2) L) : Matrix (Fin 2) (Fin 2) L)
@@ -302,6 +353,9 @@ theorem Θ_iterate_finrank_eq_self {σ : L ≃ₐ[F] L}
   rw [hCinv, Matrix.smul_mul, Matrix.one_mul, Matrix.mul_smul, Matrix.mul_one, smul_smul,
     inv_mul_cancel₀ hc0, one_smul]
 
+/--
+@isnad1 id=eq.1h7v.s9.bc8793849ac4 from=translated src=- shape=20895c13 vocab=4a7076dc
+-/
 theorem sum_basis_smul_avg_dualBasis {σ : L ≃ₐ[F] L}
     (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ) (δ₁ δ₂ : GL (Fin 2) L)
     {ι : Type*} [Fintype ι] [DecidableEq ι] (b : Module.Basis ι F L) :
@@ -326,6 +380,9 @@ theorem sum_basis_smul_avg_dualBasis {σ : L ≃ₐ[F] L}
   rw [ite_eq_left Module.finrank_pos]
   rfl
 
+/--
+@isnad1 id=ex.3h6v.s10.37fa35f4d153 from=translated src=- shape=293f0e09 vocab=5f5b3586
+-/
 theorem exists_fixed_isUnit [Infinite F] {σ : L ≃ₐ[F] L}
     (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ) (δ₁ δ₂ : GL (Fin 2) L) (c : L)
     (h₁ : ((sigmaNormPow (σG σ) (Module.finrank F L) δ₁ : GL (Fin 2) L) : Matrix (Fin 2) (Fin 2) L)
@@ -346,6 +403,9 @@ theorem exists_fixed_isUnit [Infinite F] {σ : L ≃ₐ[F] L}
   rw [zero_add, hone, Matrix.det_one]
   exact one_ne_zero
 
+/--
+@isnad1 id=isnormre.2h5v.s9.e3485080e446 from=translated src=- shape=00d23ba7 vocab=791186c3
+-/
 theorem isNormRep_of_normClassMap_mk_eq {σ : L ≃ₐ[F] L}
     (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ) {δ : GL (Fin 2) L} {γ : GL (Fin 2) F}
     (h : normClassMap hgen (SigmaConjClasses.mk σ δ) = ConjClasses.mk γ) : IsNormRep σ γ δ := by
@@ -356,6 +416,9 @@ theorem isNormRep_of_normClassMap_mk_eq {σ : L ≃ₐ[F] L}
   rw [← hQ, map_mul, map_mul, map_inv, ← hP]
   group
 
+/--
+@isnad1 id=ex.2h5v.s10.4123a6ba14d7 from=translated src=- shape=eecb5c71 vocab=0dca7fa1
+-/
 theorem exists_mk_eq_and_sigmaNormPow_eq {σ : L ≃ₐ[F] L}
     (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ) {δ : GL (Fin 2) L} {γ : GL (Fin 2) F}
     (h : IsNormRep σ γ δ) :
@@ -369,6 +432,9 @@ theorem exists_mk_eq_and_sigmaNormPow_eq {σ : L ≃ₐ[F] L}
   · rw [sigmaNormPow_sigmaConj_generalLinearGroup (n := Fin 2) (σ := (σ : L →+* L))
       (fun a => iterate_finrank_apply_of_generator hgen a) P δ, hP]
 
+/--
+@isnad1 id=eq.4h6v.s9.47b90398a66c from=translated src=- shape=04166c46 vocab=3e043b71
+-/
 theorem sigmaConjClasses_mk_eq_of_normClassMap_eq_mk_of_mem_centralCell [Infinite F]
     {σ : L ≃ₐ[F] L} (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)
     (γ : GL (Fin 2) F) (hγ : γ ∈ AutomorphicForm.centralCell F)
@@ -416,6 +482,9 @@ end Main
 
 end R2CentralInj
 
+/--
+@isnad1 id=eq.4h6v.s9.47b90398a66c from=translated src=- shape=04166c46 vocab=3e043b71
+-/
 theorem solution
     {F L : Type*} [Field F] [Field L] [Algebra F L] [FiniteDimensional F L] [IsGalois F L]
     [Infinite F]

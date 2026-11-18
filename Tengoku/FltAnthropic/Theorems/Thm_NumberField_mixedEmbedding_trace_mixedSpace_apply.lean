@@ -12,6 +12,9 @@ open NumberField NumberField.mixedEmbedding
 
 open scoped Classical in
 
+/--
+@isnad1 id=eq.0h2v.s10.a48e9bcc5ee9 from=translated src=- shape=32bf3953 vocab=2f0b12f1
+-/
 theorem NumberField.mixedEmbedding.trace_mixedSpace_apply
     (K : Type) [Field K] [NumberField K] (z : mixedSpace K) :
     Algebra.trace ℝ (mixedSpace K) z =

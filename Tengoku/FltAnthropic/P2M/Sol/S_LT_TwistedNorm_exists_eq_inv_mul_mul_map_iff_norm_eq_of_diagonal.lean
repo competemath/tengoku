@@ -19,6 +19,9 @@ variable {K L : Type*} [Field K] [Field L] [Algebra K L]
 
 open Matrix
 
+/--
+@isnad1 id=ex.2h4v.s9.a25f2b76c640 from=translated src=- shape=de5384e6 vocab=5fce583e
+-/
 theorem hilbert90_of_generator {K L : Type*} [Field K] [Field L] [Algebra K L] [FiniteDimensional K L]
     [IsGalois K L] {σ : L ≃ₐ[K] L} (hgen : ∀ τ : L ≃ₐ[K] L, τ ∈ Subgroup.zpowers σ) {x : L}
     (hx : Algebra.norm K x = 1) : ∃ y : L, y ≠ 0 ∧ x * σ y = y := by
@@ -75,6 +78,9 @@ theorem hilbert90_of_generator {K L : Type*} [Field K] [Field L] [Algebra K L] [
     rw [map_mul, ← mul_assoc, hasucc i, pow_succ', AlgEquiv.mul_apply]
   linear_combination hS1 - hS2
 
+/--
+@isnad1 id=eq.0h6v.s9.84d2c39d8331 from=translated src=- shape=e67dd1b7 vocab=acf132d0
+-/
 theorem coe_map_apply (σ : L ≃ₐ[K] L) (g : GL (Fin 2) L) (i j : Fin 2) :
     ((Matrix.GeneralLinearGroup.map (σ : L →+* L) g : GL (Fin 2) L) : Matrix (Fin 2) (Fin 2) L) i j =
       σ ((g : Matrix (Fin 2) (Fin 2) L) i j) :=
@@ -100,6 +106,9 @@ theorem eq_inv_mul_mul_map_iff (σ : L ≃ₐ[K] L) (g t t' : GL (Fin 2) L)
 end LT.TwistedNorm.DiagConjProof
 
 open LT.TwistedNorm.DiagConjProof in
+/--
+@isnad1 id=and.3h5v.s12.55feafb4ea68 from=translated src=- shape=e9186fea vocab=cd39d874
+-/
 theorem solution
     {K L : Type*} [Field K] [Field L] [Algebra K L] [FiniteDimensional K L] [IsGalois K L]
     {σ : L ≃ₐ[K] L} (hgen : ∀ τ : L ≃ₐ[K] L, τ ∈ Subgroup.zpowers σ) (t t' : GL (Fin 2) L)

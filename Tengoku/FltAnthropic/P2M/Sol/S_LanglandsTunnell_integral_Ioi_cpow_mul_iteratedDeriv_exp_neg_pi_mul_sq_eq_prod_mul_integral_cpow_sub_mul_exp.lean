@@ -17,14 +17,26 @@ noncomputable def P : ℕ → ℂ[X]
   | 0 => 1
   | k + 1 => derivative (P k) - C (2 * (Real.pi : ℂ)) * X * P k
 
+/--
+@isnad1 id=eq.0h1v.s5.e4f343c35c4a from=translated src=- shape=cb2bbcc3 vocab=7c470295
+-/
 lemma G_apply (s : ℝ) : G s = (Real.exp (-(Real.pi * s ^ 2)) : ℂ) := rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.2a6c51cb5e38 from=translated src=- shape=13bde707 vocab=0af9ecd7
+-/
 lemma norm_G (s : ℝ) : ‖G s‖ = Real.exp (-(Real.pi * s ^ 2)) := by
   rw [G_apply, Complex.norm_real, Real.norm_eq_abs, abs_of_pos (Real.exp_pos _)]
 
+/--
+@isnad1 id=continuo.0h0v.s4.6a3975a7e64d from=translated src=- shape=54c8eceb vocab=290df69d
+-/
 lemma continuous_G : Continuous G := by
   unfold G; fun_prop
 
+/--
+@isnad1 id=hasderiv.0h1v.s6.d2d27dfe105f from=translated src=- shape=0ed30b99 vocab=ab1b8ce0
+-/
 lemma hasDerivAt_G (s : ℝ) : HasDerivAt G (-(2 * (Real.pi : ℂ) * s) * G s) s := by
   have h1 : HasDerivAt (fun t : ℝ => -(Real.pi * t ^ 2)) (-(Real.pi * (2 * s))) s := by
     have := ((hasDerivAt_pow 2 s).const_mul Real.pi).neg
@@ -38,6 +50,9 @@ lemma hasDerivAt_G (s : ℝ) : HasDerivAt G (-(2 * (Real.pi : ℂ) * s) * G s) s
   simp only [G, Complex.ofReal_mul, Complex.ofReal_neg, Complex.ofReal_ofNat]
   ring
 
+/--
+@isnad1 id=hasderiv.0h2v.s6.5812263549a2 from=translated src=- shape=cd8b7229 vocab=33adac3f
+-/
 lemma hasDerivAt_Peval_mul_G (k : ℕ) (s : ℝ) :
     HasDerivAt (fun t : ℝ => (P k).eval (t : ℂ) * G t) ((P (k + 1)).eval (s : ℂ) * G s) s := by
   have hp : HasDerivAt (fun t : ℝ => (P k).eval (t : ℂ)) ((derivative (P k)).eval (s : ℂ)) s :=
@@ -49,6 +64,9 @@ lemma hasDerivAt_Peval_mul_G (k : ℕ) (s : ℝ) :
   simp only [P, eval_sub, eval_mul, eval_C, eval_X]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s5.fa6628d11328 from=translated src=- shape=4a0283ae vocab=0144a50c
+-/
 lemma iteratedDeriv_G (k : ℕ) : iteratedDeriv k G = fun s : ℝ => (P k).eval (s : ℂ) * G s := by
   induction k with
   | zero => funext s; simp [P, iteratedDeriv_zero]
@@ -57,15 +75,24 @@ lemma iteratedDeriv_G (k : ℕ) : iteratedDeriv k G = fun s : ℝ => (P k).eval 
     funext s
     exact (hasDerivAt_Peval_mul_G k s).deriv
 
+/--
+@isnad1 id=hasderiv.0h2v.s6.185b0df91349 from=translated src=- shape=e1876c70 vocab=a865251e
+-/
 lemma hasDerivAt_iteratedDeriv_G (k : ℕ) (s : ℝ) :
     HasDerivAt (iteratedDeriv k G) (iteratedDeriv (k + 1) G s) s := by
   rw [iteratedDeriv_G k, iteratedDeriv_G (k + 1)]
   exact hasDerivAt_Peval_mul_G k s
 
+/--
+@isnad1 id=continuo.0h1v.s5.33d75d83bbe7 from=translated src=- shape=9e39cfad vocab=169dfb1e
+-/
 lemma continuous_iteratedDeriv_G (k : ℕ) : Continuous (iteratedDeriv k G) := by
   rw [iteratedDeriv_G]
   exact ((P k).continuous.comp Complex.continuous_ofReal).mul continuous_G
 
+/--
+@isnad1 id=ex.0h1v.s6.ff0709d1e20b from=translated src=- shape=aacabf86 vocab=32ced5d5
+-/
 lemma norm_eval_le (p : ℂ[X]) :
     ∃ B : ℝ, 0 ≤ B ∧ ∀ σ : ℝ, 1 ≤ σ → ‖p.eval (σ : ℂ)‖ ≤ B * σ ^ p.natDegree := by
   refine ⟨∑ i ∈ Finset.range (p.natDegree + 1), ‖p.coeff i‖,
@@ -76,6 +103,9 @@ lemma norm_eval_le (p : ℂ[X]) :
   exact mul_le_mul_of_nonneg_left
     (pow_le_pow_right₀ hσ (Nat.lt_succ_iff.mp (Finset.mem_range.mp hi))) (norm_nonneg _)
 
+/--
+@isnad1 id=ex.0h1v.s6.ad4d2cbbc875 from=translated src=- shape=9e23ce2b vocab=6396105c
+-/
 lemma norm_iteratedDeriv_G_le (k : ℕ) :
     ∃ B : ℝ, 0 ≤ B ∧ ∀ σ : ℝ, 1 ≤ σ →
       ‖iteratedDeriv k G σ‖ ≤ B * (σ ^ ((P k).natDegree : ℝ) * Real.exp (-(Real.pi * σ ^ 2))) := by
@@ -86,16 +116,28 @@ lemma norm_iteratedDeriv_G_le (k : ℕ) :
 
 noncomputable def F (w v : ℝ) (b : ℂ) : ℝ → ℂ := fun σ => ((σ * w - v : ℝ) : ℂ) ^ b
 
+/--
+@isnad1 id=lt.2h3v.s5.3aa757aefaf8 from=translated src=- shape=7213ac8d vocab=2d787729
+-/
 lemma sub_pos_of_lt {w : ℝ} (hw : 0 < w) (v : ℝ) {σ : ℝ} (hσ : v / w < σ) : 0 < σ * w - v := by
   rw [div_lt_iff₀ hw] at hσ; linarith
 
+/--
+@isnad1 id=eq.1h3v.s5.0a7a3e91c6a6 from=translated src=- shape=79b37cac vocab=2d787729
+-/
 lemma sub_eq_mul {w : ℝ} (hw : 0 < w) (v σ : ℝ) : σ * w - v = w * (σ - v / w) := by
   field_simp
 
+/--
+@isnad1 id=eq.2h4v.s6.f45ee22dd148 from=translated src=- shape=b48a56e6 vocab=323d1bdd
+-/
 lemma norm_F {w : ℝ} (hw : 0 < w) (v : ℝ) (b : ℂ) {σ : ℝ} (hσ : v / w < σ) :
     ‖F w v b σ‖ = (σ * w - v) ^ b.re :=
   Complex.norm_cpow_eq_rpow_re_of_pos (sub_pos_of_lt hw v hσ) b
 
+/--
+@isnad1 id=hasderiv.2h4v.s6.9b335918dd81 from=translated src=- shape=251bcb23 vocab=586a5b60
+-/
 lemma hasDerivAt_F {w : ℝ} (hw : 0 < w) (v : ℝ) (b : ℂ) {σ : ℝ} (hσ : v / w < σ) :
     HasDerivAt (F w v b) (b * (w : ℂ) * F w v (b - 1) σ) σ := by
   have hlin : HasDerivAt (fun z : ℂ => z * w - v) (w : ℂ) (σ : ℂ) := by
@@ -112,9 +154,15 @@ lemma hasDerivAt_F {w : ℝ} (hw : 0 < w) (v : ℝ) (b : ℂ) {σ : ℝ} (hσ : 
   simp only [F, Complex.ofReal_sub, Complex.ofReal_mul]
   ring
 
+/--
+@isnad1 id=continuo.1h3v.s5.8a01772a8b05 from=translated src=- shape=387f39e4 vocab=cf952d79
+-/
 lemma continuousOn_F {w : ℝ} (hw : 0 < w) (v : ℝ) (b : ℂ) : ContinuousOn (F w v b) (Ioi (v / w)) :=
   fun _ hσ => (hasDerivAt_F hw v b hσ).continuousAt.continuousWithinAt
 
+/--
+@isnad1 id=tendsto.2h3v.s6.f25e99fdf60d from=translated src=- shape=8d2a56d8 vocab=64b97fe9
+-/
 lemma tendsto_F_zero {w : ℝ} (hw : 0 < w) (v : ℝ) {b : ℂ} (hb : 0 < b.re) :
     Tendsto (F w v b) (𝓝[>] (v / w)) (𝓝 0) := by
   rw [tendsto_zero_iff_norm_tendsto_zero]
@@ -128,6 +176,9 @@ lemma tendsto_F_zero {w : ℝ} (hw : 0 < w) (v : ℝ) {b : ℂ} (hb : 0 < b.re) 
   filter_upwards [self_mem_nhdsWithin] with σ hσ
   exact (norm_F hw v b hσ).symm
 
+/--
+@isnad1 id=interval.2h4v.s6.235d71927abc from=translated src=- shape=046323e6 vocab=33c68294
+-/
 lemma intervalIntegrable_F {w : ℝ} (hw : 0 < w) (v : ℝ) {b : ℂ} (hb : -1 < b.re) (D : ℝ) :
     IntervalIntegrable (F w v b) volume (v / w) D := by
 
@@ -140,6 +191,9 @@ lemma intervalIntegrable_F {w : ℝ} (hw : 0 < w) (v : ℝ) {b : ℂ} (hb : -1 <
   convert h2 using 1
   rfl
 
+/--
+@isnad1 id=ex.1h4v.s7.82db1707a877 from=translated src=- shape=df6d391c vocab=20f740a9
+-/
 lemma norm_F_mul_iteratedDeriv_le {w : ℝ} (hw : 0 < w) (v : ℝ) (b : ℂ) (k : ℕ) :
     ∃ C s : ℝ, 0 ≤ s ∧ ∀ σ : ℝ, 1 ≤ σ → v / w + 1 ≤ σ →
       ‖F w v b σ * iteratedDeriv k G σ‖ ≤ C * (σ ^ s * Real.exp (-Real.pi * σ ^ 2)) := by
@@ -182,6 +236,9 @@ lemma norm_F_mul_iteratedDeriv_le {w : ℝ} (hw : 0 < w) (v : ℝ) (b : ℂ) (k 
     _ = A * B * (σ ^ (r + (P k).natDegree) * Real.exp (-Real.pi * σ ^ 2)) := by
         rw [Real.rpow_add (by linarith), neg_mul]; ring
 
+/--
+@isnad1 id=integrab.2h4v.s6.e93fdc43cecc from=translated src=- shape=681cb24e vocab=6a535306
+-/
 lemma integrableOn_F_mul_iteratedDeriv {w : ℝ} (hw : 0 < w) (v : ℝ) {b : ℂ} (hb : -1 < b.re) (k : ℕ) :
     IntegrableOn (fun σ => F w v b σ * iteratedDeriv k G σ) (Ioi (v / w)) := by
   set D : ℝ := max 1 (v / w + 1) with hD
@@ -209,6 +266,9 @@ lemma integrableOn_F_mul_iteratedDeriv {w : ℝ} (hw : 0 < w) (v : ℝ) {b : ℂ
     have hσ' : D < σ := hσ
     exact hC σ (by linarith [le_max_left 1 (v / w + 1)]) (by linarith [le_max_right 1 (v / w + 1)])
 
+/--
+@isnad1 id=tendsto.1h4v.s6.21040e665aa9 from=translated src=- shape=c16fb9af vocab=2159f203
+-/
 lemma tendsto_F_mul_iteratedDeriv_atTop {w : ℝ} (hw : 0 < w) (v : ℝ) (b : ℂ) (k : ℕ) :
     Tendsto (fun σ => F w v b σ * iteratedDeriv k G σ) atTop (𝓝 0) := by
   obtain ⟨C, s, hs, hC⟩ := norm_F_mul_iteratedDeriv_le hw v b k
@@ -230,6 +290,9 @@ lemma tendsto_F_mul_iteratedDeriv_atTop {w : ℝ} (hw : 0 < w) (v : ℝ) (b : �
         apply mul_le_mul_of_nonneg_left _ (abs_nonneg C)
         exact mul_le_mul_of_nonneg_left hexp (by positivity)
 
+/--
+@isnad1 id=tendsto.2h4v.s6.1e694786990e from=translated src=- shape=00d8c7d1 vocab=99eab6f5
+-/
 lemma tendsto_F_mul_iteratedDeriv_nhdsWithin {w : ℝ} (hw : 0 < w) (v : ℝ) {b : ℂ} (hb : 0 < b.re) (k : ℕ) :
     Tendsto (fun σ => F w v b σ * iteratedDeriv k G σ) (𝓝[>] (v / w)) (𝓝 0) := by
   have h1 := tendsto_F_zero hw v hb
@@ -237,6 +300,9 @@ lemma tendsto_F_mul_iteratedDeriv_nhdsWithin {w : ℝ} (hw : 0 < w) (v : ℝ) {b
     ((continuous_iteratedDeriv_G k).tendsto _).mono_left nhdsWithin_le_nhds
   simpa using h1.mul h2
 
+/--
+@isnad1 id=eq.2h4v.s7.77a9e77fb8bf from=translated src=- shape=6c124dd7 vocab=1b0d1812
+-/
 lemma integral_step {w : ℝ} (hw : 0 < w) (v : ℝ) {a : ℂ} (n : ℕ) (ha : (n : ℝ) < a.re) :
     ∫ σ in Ioi (v / w), F w v a σ * iteratedDeriv (n + 1) G σ =
       -(a * w) * ∫ σ in Ioi (v / w), F w v (a - 1) σ * iteratedDeriv n G σ := by
@@ -259,6 +325,9 @@ lemma integral_step {w : ℝ} (hw : 0 < w) (v : ℝ) {a : ℂ} (n : ℕ) (ha : (
   rw [hibp, sub_zero, zero_sub, ← integral_neg, ← integral_const_mul]
   congr 1; funext σ; ring
 
+/--
+@isnad1 id=eq.2h4v.s7.f92521d49f09 from=translated src=- shape=76a96aec vocab=be3507d1
+-/
 theorem integral_eq {w : ℝ} (hw : 0 < w) (v : ℝ) (n : ℕ) :
     ∀ a : ℂ, (n : ℝ) - 1 < a.re →
       ∫ σ in Ioi (v / w), F w v a σ * iteratedDeriv n G σ =
@@ -282,6 +351,9 @@ end P2mIbpPower
 
 open P2mIbpPower in
 
+/--
+@isnad1 id=eq.2h4v.s8.18ceaa71c66e from=translated src=- shape=85d5bc31 vocab=db33d152
+-/
 theorem solution
     (n : ℕ) (a : ℂ) (ha : (n : ℝ) - 1 < a.re) (w : ℝ) (hw : 0 < w) (v : ℝ) :
     ∫ σ in Ioi (v / w), (((σ * w - v : ℝ) : ℂ) ^ a) *

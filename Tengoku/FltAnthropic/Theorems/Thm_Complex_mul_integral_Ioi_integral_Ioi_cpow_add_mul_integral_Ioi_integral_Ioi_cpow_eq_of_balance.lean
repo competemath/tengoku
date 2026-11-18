@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open MeasureTheory Set
 
+/--
+@isnad1 id=eq.6h4v.s9.2496d6e5ee77 from=translated src=- shape=b727984f vocab=6c137a83
+-/
 theorem Complex.mul_integral_Ioi_integral_Ioi_cpow_add_mul_integral_Ioi_integral_Ioi_cpow_eq_of_balance
     (A a b D : ℂ) (hA : 0 < A.re) (ha : 0 < a.re) (hD : 0 < D.re) (hba : 0 < (b - a).re)
     (hbA : 0 < (b - A + 1).re) (haD : 0 < (a + D - A + 1).re) :

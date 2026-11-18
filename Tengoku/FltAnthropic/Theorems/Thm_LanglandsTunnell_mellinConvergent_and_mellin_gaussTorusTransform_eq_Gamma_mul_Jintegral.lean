@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open MeasureTheory Set
 
+/--
+@isnad1 id=and.4h7v.s10.18da73df6eb4 from=translated src=- shape=ed3a1871 vocab=66a4e684
+-/
 theorem LanglandsTunnell.mellinConvergent_and_mellin_gaussTorusTransform_eq_Gamma_mul_Jintegral
     (a : ℝ) (ha : a ≠ 0) (p q κ C : ℂ)
     (H : ℝ → ℂ)

@@ -92,6 +92,9 @@ end PairValuesIndependence
 
 open PairValuesIndependence in
 
+/--
+@isnad1 id=eq.2h3v.s7.04cc102a532b from=translated src=- shape=846f11e5 vocab=5f0a8eb0
+-/
 theorem solution
     (d : ℕ) (c : ℕ → ℂ)
     (h : ∀ a₁ a₂ : ℂ, a₁ * a₂ ≠ 0 →

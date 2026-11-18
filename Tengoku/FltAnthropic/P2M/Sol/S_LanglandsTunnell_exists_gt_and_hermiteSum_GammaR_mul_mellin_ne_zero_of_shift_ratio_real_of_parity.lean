@@ -11,6 +11,9 @@ open Filter Topology
 
 namespace K6Dominance
 
+/--
+@isnad1 id=eventual.3h8v.s7.49748ab0b8b6 from=translated src=- shape=8d9c97c7 vocab=a083aecc
+-/
 theorem eventually_sum_mul_ne_zero {ι α : Type*} (S : Finset ι) (d : ι → ℂ) (G : ι → α → ℂ) (l : Filter α)
     (T₀ : ι) (hG₀ : ∀ᶠ x in l, G T₀ x ≠ 0) (κ : ι → ℂ)
     (hlim : ∀ T ∈ S, Tendsto (fun x => G T x / G T₀ x) l (𝓝 (κ T)))
@@ -27,6 +30,9 @@ theorem eventually_sum_mul_ne_zero {ι α : Type*} (S : Finset ι) (d : ι → �
   rw [this]
   exact mul_ne_zero h2 h1
 
+/--
+@isnad1 id=ne.4h4v.s6.c64774bd5dac from=translated src=- shape=2855f15b vocab=11787c01
+-/
 theorem sum_ne_zero_of_nonneg_re {ι : Type*} (S : Finset ι) (v : ι → ℂ) (T₀ : ι) (hT₀ : T₀ ∈ S)
     (hre : ∀ T ∈ S, 0 ≤ (v T).re) (him : ∀ T ∈ S, (v T).im = 0) (h0 : 0 < (v T₀).re) :
     ∑ T ∈ S, v T ≠ 0 := by
@@ -41,6 +47,9 @@ end K6Dominance
 
 open Complex Filter Topology
 
+/--
+@isnad1 id=ex.4h8v.s12.b781eef4064e from=translated src=- shape=e767adb2 vocab=c3b34c5a
+-/
 theorem solution
     (m : ℕ) (a : ℚ) (ha : a ≠ 0) (u₃ : ℂ) (a₃ c : ZMod 2) (e : ℤ)
     (hne : (((Finset.range (m + 1) ×ˢ Finset.range (m + 1)) ×ˢ (Finset.range (m + 1) ×ˢ Finset.range (m + 1))).filter

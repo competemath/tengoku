@@ -25,11 +25,17 @@ local notation "ℚbar" => AlgebraicClosure ℚ
 
 variable (ρ : Γℚ →* GL (Fin 2) (ZMod 3))
 
+/--
+@isnad1 id=isclosed.1h1v.s11.974cd8510a4b from=translated src=- shape=7d6a1043 vocab=4dc05900
+-/
 theorem isClosed_ker (hcont : Continuous ρ) : IsClosed (ρ.ker : Set Γℚ) := by
   have : (ρ.ker : Set Γℚ) = ρ ⁻¹' {1} := by ext σ; exact MonoidHom.mem_ker
   rw [this]
   exact (isClosed_discrete _).preimage hcont
 
+/--
+@isnad1 id=isopen.1h1v.s11.a079a4d9dc7d from=translated src=- shape=7d6a1043 vocab=3512fd00
+-/
 theorem isOpen_ker (hcont : Continuous ρ) : IsOpen (ρ.ker : Set Γℚ) := by
   have : (ρ.ker : Set Γℚ) = ρ ⁻¹' {1} := by ext σ; exact MonoidHom.mem_ker
   rw [this]
@@ -37,6 +43,9 @@ theorem isOpen_ker (hcont : Continuous ρ) : IsOpen (ρ.ker : Set Γℚ) := by
 
 def kerClosed (hcont : Continuous ρ) : ClosedSubgroup Γℚ := ⟨ρ.ker, isClosed_ker ρ hcont⟩
 
+/--
+@isnad1 id=normal.1h1v.s11.b914fb5346af from=translated src=- shape=53a91178 vocab=ebace567
+-/
 scoped instance kerClosed_normal (hcont : Continuous ρ) : (kerClosed ρ hcont).1.Normal :=
   inferInstanceAs ρ.ker.Normal
 
@@ -44,22 +53,37 @@ abbrev levelField (hcont : Continuous ρ) : IntermediateField ℚ ℚbar :=
   IntermediateField.fixedField (kerClosed ρ hcont).1
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h1v.s11.a3d5dbf600fe from=translated src=- shape=28cfd7c1 vocab=9859790b
+-/
 theorem fixingSubgroup_levelField (hcont : Continuous ρ) :
     (levelField ρ hcont).fixingSubgroup = ρ.ker :=
   InfiniteGalois.fixingSubgroup_fixedField (kerClosed ρ hcont)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=and.1h1v.s11.1a90884c5e33 from=translated src=- shape=6a32df31 vocab=c05b2e23
+-/
 theorem finiteDimensional_and_isGalois_levelField (hcont : Continuous ρ) :
     FiniteDimensional ℚ (levelField ρ hcont) ∧ IsGalois ℚ (levelField ρ hcont) := by
   rw [← InfiniteGalois.isOpen_and_normal_iff_finite_and_isGalois, fixingSubgroup_levelField]
   exact ⟨isOpen_ker ρ hcont, inferInstance⟩
 
+/--
+@isnad1 id=finitedi.1h1v.s11.68aef21ed856 from=translated src=- shape=e2f26a16 vocab=d99a1638
+-/
 scoped instance finiteDimensional_levelField (hcont : Continuous ρ) : FiniteDimensional ℚ (levelField ρ hcont) :=
   (finiteDimensional_and_isGalois_levelField ρ hcont).1
 
+/--
+@isnad1 id=isgalois.1h1v.s11.327ffd8b088a from=translated src=- shape=e2f26a16 vocab=1d929b72
+-/
 scoped instance isGalois_levelField (hcont : Continuous ρ) : IsGalois ℚ (levelField ρ hcont) :=
   (finiteDimensional_and_isGalois_levelField ρ hcont).2
 
+/--
+@isnad1 id=numberfi.1h1v.s11.f2dff0e22d52 from=translated src=- shape=c8c1a9c0 vocab=f9161712
+-/
 scoped instance numberField_levelField (hcont : Continuous ρ) : NumberField (levelField ρ hcont) :=
   haveI : CharZero (levelField ρ hcont) := charZero_of_injective_algebraMap (algebraMap ℚ _).injective
   NumberField.mk
@@ -73,6 +97,9 @@ def towerIso (hcont : Continuous ρ) (hsurj : Function.Surjective ρ) :
 
 set_option backward.isDefEq.respectTransparency false in
 
+/--
+@isnad1 id=eq.2h1v.s12.11ac9d822f21 from=translated src=- shape=dc8888a3 vocab=51f60f02
+-/
 theorem galRep_towerIso (hcont : Continuous ρ) (hsurj : Function.Surjective ρ) :
     LanglandsTunnell.galRep (towerIso ρ hcont hsurj) = ρ := by
   ext1 σ
@@ -85,6 +112,9 @@ theorem galRep_towerIso (hcont : Continuous ρ) (hsurj : Function.Surjective ρ)
 
 set_option backward.isDefEq.respectTransparency false in
 
+/--
+@isnad1 id=ex.2h1v.s14.7cc883d49db2 from=translated src=- shape=295a37c0 vocab=953319fa
+-/
 theorem exists_tower_of_continuous_surjective (hcont : Continuous ρ) (hsurj : Function.Surjective ρ) :
     ∃ (L : IntermediateField ℚ ℚbar) (_ : NumberField ↥L) (_ : IsGalois ℚ ↥L)
       (e : (↥L ≃ₐ[ℚ] ↥L) ≃* GL (Fin 2) (ZMod 3)), LanglandsTunnell.galRep e = ρ :=
@@ -102,6 +132,9 @@ set_option autoImplicit false
 
 open scoped MatrixGroups
 
+/--
+@isnad1 id=ex.2h1v.s14.7cc883d49db2 from=translated src=- shape=295a37c0 vocab=953319fa
+-/
 theorem solution
     (ρ : (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) →* GL (Fin 2) (ZMod 3))
     (hcont : Continuous ρ) (hsurj : Function.Surjective ρ) :

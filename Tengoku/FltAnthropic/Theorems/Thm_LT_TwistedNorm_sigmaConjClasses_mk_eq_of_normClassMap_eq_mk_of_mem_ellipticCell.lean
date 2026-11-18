@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_LT_TwistedNorm_sigmaConjClasses_mk_eq_of_n
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.4h6v.s9.32e341a1e60a from=translated src=- shape=a0d42b71 vocab=453e15bb
+-/
 theorem LT.TwistedNorm.sigmaConjClasses_mk_eq_of_normClassMap_eq_mk_of_mem_ellipticCell
     {F L : Type*} [Field F] [Field L] [Algebra F L] [FiniteDimensional F L] [IsGalois F L]
     {σ : L ≃ₐ[F] L} (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)

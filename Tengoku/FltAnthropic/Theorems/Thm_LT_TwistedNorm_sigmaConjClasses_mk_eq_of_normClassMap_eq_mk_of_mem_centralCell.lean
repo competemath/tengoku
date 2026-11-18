@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_LT_TwistedNorm_sigmaConjClasses_mk_eq_of_n
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.4h6v.s9.47b90398a66c from=translated src=- shape=04166c46 vocab=3e043b71
+-/
 theorem LT.TwistedNorm.sigmaConjClasses_mk_eq_of_normClassMap_eq_mk_of_mem_centralCell
     {F L : Type*} [Field F] [Field L] [Algebra F L] [FiniteDimensional F L] [IsGalois F L]
     [Infinite F]

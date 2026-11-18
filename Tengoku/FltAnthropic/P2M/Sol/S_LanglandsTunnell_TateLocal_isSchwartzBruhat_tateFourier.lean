@@ -175,6 +175,9 @@ private theorem tateFourier_eq_zero [MeasurableSpace (v.adicCompletion K)]
 end LanglandsTunnell.TateLocal.SchwartzBruhatFourier
 
 open _root_.LanglandsTunnell.TateLocal _root_.P2MW.S_LanglandsTunnell_TateLocal_isSchwartzBruhat_tateFourier.LanglandsTunnell.TateLocal in
+/--
+@isnad1 id=isschwar.3h6v.s10.fd4181caba26 from=translated src=- shape=d1204c9e vocab=0f3f5833
+-/
 theorem solution (K : Type) [Field K] [NumberField K]
     (v : HeightOneSpectrum (𝓞 K)) [MeasurableSpace (v.adicCompletion K)]
     [BorelSpace (v.adicCompletion K)] (μ : Measure (v.adicCompletion K)) [μ.IsAddHaarMeasure]

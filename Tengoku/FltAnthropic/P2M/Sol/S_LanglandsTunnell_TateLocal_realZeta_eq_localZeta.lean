@@ -15,6 +15,9 @@ namespace ArchBridge
 
 section ArchE1
 
+/--
+@isnad1 id=eq.0h1v.s7.29f5263fcff6 from=translated src=- shape=c6ab00fd vocab=97e265b7
+-/
 theorem distribHaarChar_real_eq_nnnorm (x : ℝˣ) :
     distribHaarChar ℝ x = ‖(x : ℝ)‖₊ := by
   refine distribHaarChar_eq_of_measure_smul_eq_mul (s := closedBall (0:ℝ) 1) (μ := volume)
@@ -26,6 +29,9 @@ theorem distribHaarChar_real_eq_nnnorm (x : ℝˣ) :
     Module.finrank_self, pow_one]
   simp only [ofReal_norm, enorm_eq_nnnorm]
 
+/--
+@isnad1 id=eq.0h1v.s4.8a927025a1f5 from=translated src=- shape=8ffefcbf vocab=d9239a3c
+-/
 theorem modulus_real_eq_nnnorm : ∀ (x : ℝ), modulus x = ‖x‖₊ := by
   intro x
   rcases eq_or_ne x 0 with rfl | hx
@@ -39,6 +45,9 @@ section BR
 variable {K : Type*} [Field K] [TopologicalSpace K] [IsTopologicalRing K] [LocallyCompactSpace K]
   [MeasurableSpace K] [MeasurableSingletonClass K]
 
+/--
+@isnad1 id=eq.1h3v.s7.c0b90310b755 from=translated src=- shape=ce7f8d1d vocab=df34f76e
+-/
 theorem integral_mulMeasure (μ : Measure K) (F : K → ℂ)
     (hm : AEMeasurable (fun x : K => (modulus x)⁻¹) (μ.restrict {0}ᶜ)) :
     ∫ x, F x ∂(mulMeasure μ) = ∫ x in ({0}ᶜ : Set K), ((modulus x)⁻¹ : ℝ≥0) • F x ∂μ := by
@@ -60,6 +69,9 @@ end BridgeComplex
 
 section BridgeReal
 
+/--
+@isnad1 id=eq.1h4v.s6.2264d63814d8 from=translated src=- shape=c8dff4ab vocab=ced7a26f
+-/
 theorem realZeta_eq_localZeta_impl (μ : Measure ℝ) (f : ℝ → ℂ) (χ : ℝˣ →* ℂˣ) (s : ℂ)
     (hm : AEMeasurable (fun x : ℝ => (modulus x)⁻¹) (μ.restrict {0}ᶜ)) :
     realZeta μ f χ s = localZeta μ f χ s := by
@@ -88,6 +100,9 @@ end BridgeReal
 
 section HmDerived
 
+/--
+@isnad1 id=aemeasur.0h1v.s5.2e4b3e2e11bd from=translated src=- shape=3c963df1 vocab=c7950d27
+-/
 theorem hm_real_any (μ : Measure ℝ) :
     AEMeasurable (fun x : ℝ => (modulus x)⁻¹) (μ.restrict {0}ᶜ) := by
   have heq : (fun x : ℝ => (modulus x)⁻¹) = fun x => (‖x‖₊)⁻¹ :=
@@ -95,6 +110,9 @@ theorem hm_real_any (μ : Measure ℝ) :
   rw [heq]
   exact (measurable_nnnorm.inv).aemeasurable
 
+/--
+@isnad1 id=eq.0h4v.s5.d71bc53f17fb from=translated src=- shape=672c4d91 vocab=fc60b9b5
+-/
 theorem realZeta_eq_localZeta_unc (μ : Measure ℝ) (f : ℝ → ℂ) (χ : ℝˣ →* ℂˣ) (s : ℂ) :
     realZeta μ f χ s = localZeta μ f χ s :=
   realZeta_eq_localZeta_impl μ f χ s (hm_real_any μ)
@@ -103,6 +121,9 @@ end HmDerived
 
 end P7Rows.ArchBridge
 
+/--
+@isnad1 id=eq.0h4v.s5.d71bc53f17fb from=translated src=- shape=672c4d91 vocab=fc60b9b5
+-/
 theorem solution (μ : Measure ℝ) (f : ℝ → ℂ) (χ : ℝˣ →* ℂˣ) (s : ℂ) :
     realZeta μ f χ s = localZeta μ f χ s :=
   P7Rows.ArchBridge.realZeta_eq_localZeta_unc μ f χ s

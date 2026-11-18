@@ -205,6 +205,9 @@ end FourierFormation
 
 open _root_.MeasureTheory open _root_.LanglandsTunnell open _root_.P2MW.S_LanglandsTunnell_ArchPlace_realZeta_realTestFun_realCharFun_eq_GammaReal.LanglandsTunnell open _root_.LanglandsTunnell.TateLocal open _root_.LanglandsTunnell.ArchPlace open _root_.P2MW.S_LanglandsTunnell_ArchPlace_realZeta_realTestFun_realCharFun_eq_GammaReal.LanglandsTunnell.ArchPlace
 
+/--
+@isnad1 id=eq.1h3v.s6.cb556412a75f from=translated src=- shape=43bcefac vocab=1a6fdd81
+-/
 theorem solution (u : ℂ) (a : ZMod 2) (s : ℂ)
     (hs : 0 < (s + (u + signShift a)).re) :
     realZeta volume (realTestFun a) (realCharFun u a) s = Complex.Gammaℝ (s + (u + signShift a)) := by

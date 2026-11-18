@@ -15,6 +15,9 @@ set_option autoImplicit false
 
 open Complex
 
+/--
+@isnad1 id=eq.3h5v.s7.36d8cff1df96 from=translated src=- shape=31cc300f vocab=16aecc3c
+-/
 theorem solution
     (Wr : ℝ → ℂ) (A ν : ℂ) (σ₀ : ℝ)
     (hcont : ContinuousOn Wr (Set.Ioi 0))

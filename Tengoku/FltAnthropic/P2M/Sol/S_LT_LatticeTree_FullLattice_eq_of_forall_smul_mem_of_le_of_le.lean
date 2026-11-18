@@ -16,11 +16,17 @@ export _root_.LT.LatticeTree (FullLattice)
 namespace FullLatticeSandwich
 open _root_.LT.LatticeTree open _root_.LT
 
+/--
+@isnad1 id=eq.0h8v.s10.eed0918cd58c from=translated src=- shape=4825168f vocab=0f173df5
+-/
 theorem repr_add_smul {𝒪 : Type*} [CommRing 𝒪] {M : Type*} [AddCommGroup M] [Module 𝒪 M]
     (b : Module.Basis (Fin 2) 𝒪 M) (a c : 𝒪) (v u : M) (i : Fin 2) :
     b.repr (a • v + c • u) i = a * b.repr v i + c * b.repr u i := by
   simp [map_add, map_smul]
 
+/--
+@isnad1 id=ex.6h8v.s9.238b541b8db3 from=translated src=- shape=fdc2fa30 vocab=5e509d67
+-/
 theorem exists_eq_smul_add_smul_of_mem {𝒪 : Type*} [CommRing 𝒪] {M : Type*} [AddCommGroup M] [Module 𝒪 M]
     (π : 𝒪) (hπ : ∀ x : 𝒪, ¬ IsUnit x → π ∣ x)
     (b : Module.Basis (Fin 2) 𝒪 M) (N : Submodule 𝒪 M) (hπN : ∀ m : M, π • m ∈ N)
@@ -94,6 +100,9 @@ theorem exists_eq_smul_add_smul_of_mem {𝒪 : Type*} [CommRing 𝒪] {M : Type*
 
 end LT.LatticeTree.FullLatticeSandwich
 
+/--
+@isnad1 id=eq.6h6v.s11.2c8d4f8cb819 from=translated src=- shape=4223ceb9 vocab=bbcf64a0
+-/
 theorem solution
     {𝒪 : Type} [CommRing 𝒪] [IsDomain 𝒪] [IsDiscreteValuationRing 𝒪] {K : Type} [Field K] [Algebra 𝒪 K] [IsFractionRing 𝒪 K]
     (π : 𝒪) (hπ : Irreducible π) (M : FullLattice 𝒪 K) (R₁ R₂ : Submodule 𝒪 (Fin 2 → K))

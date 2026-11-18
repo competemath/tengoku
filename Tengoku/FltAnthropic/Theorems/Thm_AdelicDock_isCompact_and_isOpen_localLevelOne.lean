@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open IsDedekindDomain NumberField
 
+/--
+@isnad1 id=and.1h3v.s10.36edc66622aa from=translated src=- shape=aabb984f vocab=d00e6e22
+-/
 theorem AdelicDock.isCompact_and_isOpen_localLevelOne (K : Type*) [Field K] [NumberField K]
     (v : HeightOneSpectrum (𝓞 K)) (N : Ideal (𝓞 K)) (hN : N ≠ ⊥) :
     IsCompact (AdelicDock.localLevelOne (𝓞 K) K v N : Set (GL (Fin 2) (v.adicCompletion K))) ∧

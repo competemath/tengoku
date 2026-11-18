@@ -11,9 +11,18 @@ open Complex Finset
 
 namespace BF9
 
+/--
+@isnad1 id=eq.0h0v.s6.9b5b95f1111e from=translated src=- shape=2d482900 vocab=8926be8b
+-/
 theorem v0 : (0 : ZMod 2).val = 0 := rfl
+/--
+@isnad1 id=eq.0h0v.s6.1dfbd5a96560 from=translated src=- shape=2d482900 vocab=8926be8b
+-/
 theorem v1 : (1 : ZMod 2).val = 1 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.f8ce184d82ab from=translated src=- shape=783451b6 vocab=73b285c9
+-/
 theorem trinom (x y z : ℂ) (n : ℕ) :
     (x + y + z) ^ n = ∑ i ∈ range (n + 1), ∑ j ∈ range (n - i + 1),
       ((n.factorial : ℂ) / ((i.factorial : ℂ) * (j.factorial : ℂ) * ((n - i - j).factorial : ℂ))) *
@@ -31,6 +40,9 @@ theorem trinom (x y z : ℂ) (n : ℕ) :
   have f4 : ((n - i).factorial : ℂ) ≠ 0 := by exact_mod_cast (Nat.factorial_pos _).ne'
   field_simp
 
+/--
+@isnad1 id=eq.1h5v.s8.f2cadf3fc4cb from=translated src=- shape=bdb8b3ec vocab=9c834901
+-/
 theorem trinom_box (x y z : ℂ) {n N : ℕ} (hn : n ≤ N) :
     (x + y + z) ^ n = ∑ i ∈ range (N + 1), ∑ j ∈ range (N + 1), ∑ l ∈ range (N + 1),
       if i + j + l = n then
@@ -73,6 +85,9 @@ theorem trinom_box (x y z : ℂ) {n N : ℕ} (hn : n ≤ N) :
     ext i; simp only [mem_filter, mem_range]; omega
   rw [this]
 
+/--
+@isnad1 id=eq.0h2v.s7.36ed03d3aab6 from=translated src=- shape=06085fc6 vocab=e4d70863
+-/
 theorem neg_one_pow_val_add (a b : ZMod 2) : (-1 : ℂ) ^ (a + b).val = (-1 : ℂ) ^ a.val * (-1 : ℂ) ^ b.val := by
   rcases (by decide : ∀ x : ZMod 2, x = 0 ∨ x = 1) a with rfl | rfl <;>
   rcases (by decide : ∀ x : ZMod 2, x = 0 ∨ x = 1) b with rfl | rfl
@@ -81,6 +96,9 @@ theorem neg_one_pow_val_add (a b : ZMod 2) : (-1 : ℂ) ^ (a + b).val = (-1 : �
   · rw [add_zero, v0, v1]; simp
   · rw [show (1 : ZMod 2) + 1 = 0 by decide, v0, v1]; norm_num
 
+/--
+@isnad1 id=eq.1h8v.s10.623c0da1c822 from=translated src=- shape=d39b88de vocab=aa7e850d
+-/
 theorem bracket (a₃ c ē : ZMod 2) (m i j l r : ℕ) (h : i + j + l + 2 * r = m) :
     ((-1 : ℂ) ^ j * (-1) ^ l + (-1 : ℂ) ^ a₃.val * (-1 : ℂ) ^ c.val * ((-1) ^ i * (-1) ^ j) +
       (-1 : ℂ) ^ ē.val * (-1 : ℂ) ^ c.val * (-1) ^ j +
@@ -113,6 +131,9 @@ end BF9
 
 open BF9 Finset in
 
+/--
+@isnad1 id=eq.0h7v.s11.2727338584f3 from=translated src=- shape=866505a7 vocab=38c21e5d
+-/
 theorem solution
     (m : ℕ) (a₃ c ē : ZMod 2) (u v w : ℂ) :
     (∑ r ∈ Finset.range (m / 2 + 1),

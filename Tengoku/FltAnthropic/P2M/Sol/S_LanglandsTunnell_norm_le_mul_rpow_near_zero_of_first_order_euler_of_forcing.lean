@@ -19,6 +19,9 @@ namespace OdeCAux
 
 open Real Set
 
+/--
+@isnad1 id=ex.4h6v.s8.b0008e3cd897 from=translated src=- shape=05ec1071 vocab=cd1268b4
+-/
 theorem main (b : ℂ) (σ A : ℝ) (f h : ℝ → ℂ)
     (hf : DifferentiableOn ℝ f (Set.Ioi 0))
     (hh : ∀ y : ℝ, 0 < y → y ≤ 1 → ‖h y‖ ≤ A * y ^ σ)
@@ -121,6 +124,9 @@ theorem main (b : ℂ) (σ A : ℝ) (f h : ℝ → ℂ)
 
 end LanglandsTunnell.OdeCAux
 
+/--
+@isnad1 id=ex.4h6v.s8.b0008e3cd897 from=translated src=- shape=05ec1071 vocab=cd1268b4
+-/
 theorem solution
     (b : ℂ) (σ A : ℝ) (f h : ℝ → ℂ)
     (hf : DifferentiableOn ℝ f (Set.Ioi 0))

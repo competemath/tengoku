@@ -15,6 +15,9 @@ namespace ArchE1
 
 section Complex
 
+/--
+@isnad1 id=eq.0h1v.s7.837a47f93272 from=translated src=- shape=6a35519f vocab=70016a1b
+-/
 theorem distribHaarChar_complex_eq_nnnorm_sq (z : ℂˣ) :
     distribHaarChar ℂ z = ‖(z : ℂ)‖₊ ^ 2 := by
   refine distribHaarChar_eq_of_measure_smul_eq_mul (μ := volume) (s := closedBall 0 1)
@@ -26,6 +29,9 @@ theorem distribHaarChar_complex_eq_nnnorm_sq (z : ℂˣ) :
     Complex.finrank_real_complex]
   simp [ENNReal.ofReal_pow (norm_nonneg _), enorm_eq_nnnorm]
 
+/--
+@isnad1 id=eq.0h1v.s5.598a0775c5a3 from=translated src=- shape=2c770a6d vocab=6ed685d0
+-/
 theorem modulus_complex_eq_nnnorm_sq (z : ℂ) : modulus z = ‖z‖₊ ^ 2 := by
   rcases eq_or_ne z 0 with rfl | hz
   · simp
@@ -40,5 +46,8 @@ end Real
 
 end P7Rows.ArchE1
 
+/--
+@isnad1 id=eq.0h1v.s5.598a0775c5a3 from=translated src=- shape=2c770a6d vocab=6ed685d0
+-/
 theorem solution : ∀ (z : ℂ), modulus z = ‖z‖₊ ^ 2 :=
   P7Rows.ArchE1.modulus_complex_eq_nnnorm_sq

@@ -13,6 +13,9 @@ set_option autoImplicit false
 open IsDedekindDomain NumberField AutomorphicForm
 open LanglandsTunnell.CubicInduction
 
+/--
+@isnad1 id=and.6h4v.s12.8d9129226c8c from=translated src=- shape=d23c5729 vocab=70c2756e
+-/
 theorem solution
     (M : Submodule ℂ (AdelicGL 3 (𝓞 ℚ) ℚ → ℂ))
     (h5 : ∀ w ∈ M, ∀ i j : Fin 3, WhittakerBlock.archDeriv i j w ∈ M)

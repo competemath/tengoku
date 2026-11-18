@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open scoped Real
 
+/--
+@isnad1 id=and.4h6v.s10.20c844d6c367 from=translated src=- shape=da25c53c vocab=368e74b5
+-/
 theorem LanglandsTunnell.principal_profile_sum_solves_whittaker_ode_weightOne (u₁ u₂ : ℂ) (c ν : ℂ)
     (hc : c = (u₁ + u₂) / 2) (hν : ν = (u₁ - u₂) / 2) (k : ℝ) (hk : k = 1) (f : ℝ → ℂ)
     (hf : ∀ y : ℝ, f y =

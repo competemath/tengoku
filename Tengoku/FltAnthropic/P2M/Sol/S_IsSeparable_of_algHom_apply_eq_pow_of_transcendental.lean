@@ -15,6 +15,9 @@ section Part1
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
+/--
+@isnad1 id=eq.3h7v.s10.03c72a8d66a7 from=translated src=- shape=bfa41c27 vocab=cdba7aa4
+-/
 theorem apply_coeff_minpoly_eq {L : IntermediateField K F} (σ₁ σ₂ : F →+* F)
     (hL : ∀ x ∈ L, ∃ y ∈ L, σ₁ x = σ₂ y)
     (g : F) (hgint : IsIntegral L g) (hg : σ₁ g = σ₂ g) (i : ℕ) :
@@ -71,6 +74,9 @@ theorem apply_coeff_minpoly_eq {L : IntermediateField K F} (σ₁ σ₂ : F →+
   rw [hPdeg] at hle
   exact absurd (hle.trans_lt hDdeg) (lt_irrefl _)
 
+/--
+@isnad1 id=ex.3h7v.s8.06836f4f338f from=translated src=- shape=aa09e49e vocab=b9a919e4
+-/
 theorem exists_mem_adjoin_apply_eq_iterateFrobenius {p : ℕ} [Fact p.Prime] [CharP F p] (r : ℕ)
     (φ : F →ₐ[K] F) (t : F) (hφt : φ t = t ^ p ^ r) (hK : ∀ a : K, ∃ b : K, b ^ p ^ r = a) :
     ∀ x ∈ IntermediateField.adjoin K ({t} : Set F), ∃ y ∈ IntermediateField.adjoin K ({t} : Set F),
@@ -100,6 +106,9 @@ section Part2
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
+/--
+@isnad1 id=eq.1h6v.s9.6bca26155942 from=translated src=- shape=90db283e vocab=e4c6f121
+-/
 theorem ringHom_aeval (σ : F →+* F) (τ : K →+* K)
     (hστ : ∀ a : K, σ (algebraMap K F a) = algebraMap K F (τ a)) (x : F) (a : K[X]) :
     σ (aeval x a) = aeval (σ x) (a.map τ) := by
@@ -107,6 +116,9 @@ theorem ringHom_aeval (σ : F →+* F) (τ : K →+* K)
   congr 1
   exact RingHom.ext hστ
 
+/--
+@isnad1 id=mem.2h5v.s8.da327d928728 from=translated src=- shape=83b48f76 vocab=e74dd540
+-/
 theorem aeval_mem_closure (t : F) (a : K[X]) (S : Subfield F) (ht : t ∈ S)
     (ha : ∀ i, algebraMap K F (a.coeff i) ∈ S) : aeval t a ∈ S := by
   rw [aeval_eq_sum_range]
@@ -114,6 +126,9 @@ theorem aeval_mem_closure (t : F) (a : K[X]) (S : Subfield F) (ht : t ∈ S)
   rw [Algebra.smul_def]
   exact Subfield.mul_mem _ (ha i) (Subfield.pow_mem _ ht i)
 
+/--
+@isnad1 id=mem.4h7v.s8.33b6b63aba86 from=translated src=- shape=1d535c7d vocab=0de7f4b6
+-/
 theorem mem_closure_of_apply_eq_pow {p : ℕ} [Fact p.Prime] [CharP F p] (r : ℕ)
     (φ : F →ₐ[K] F) (t : F) (ht : Transcendental K t) (hφt : φ t = t ^ p ^ r)
     {c : F} (hc : c ∈ IntermediateField.adjoin K ({t} : Set F)) (hφc : φ c = c ^ p ^ r) :
@@ -195,6 +210,9 @@ end HDescent
 
 open HDescent in
 
+/--
+@isnad1 id=issepara.5h7v.s9.13aaa92c81d5 from=translated src=- shape=52392bad vocab=2b64e24a
+-/
 theorem solution
     {K F : Type*} [Field K] [Field F] [Algebra K F] [IsAlgClosed K]
     (p r : ℕ) [Fact p.Prime] [CharP F p] (hr : 0 < r)

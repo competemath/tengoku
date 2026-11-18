@@ -22,8 +22,14 @@ noncomputable def Gc (s : ℝ) : ℂ := (Real.exp (-(Real.pi * s ^ 2)) : ℂ)
 
 noncomputable def H (n : ℕ) (σ : ℝ) : ℂ := ∫ z : ℝ, ((σ : ℂ) - I * (z : ℂ)) ^ n * (g z : ℂ)
 
+/--
+@isnad1 id=lt.0h1v.s3.3bd5171f7509 from=translated src=- shape=8a62b088 vocab=8a476f30
+-/
 theorem g_pos (z : ℝ) : 0 < g z := Real.exp_pos _
 
+/--
+@isnad1 id=le.1h2v.s6.7e7864876a27 from=translated src=- shape=ac5e67e5 vocab=365d0a4d
+-/
 theorem pow_le_exp_half (k : ℕ) {x : ℝ} (hx : 0 ≤ x) :
     x ^ k ≤ (k.factorial : ℝ) * Real.exp (1 / (2 * Real.pi)) * Real.exp (Real.pi / 2 * x ^ 2) := by
   have h1 : x ^ k / (k.factorial : ℝ) ≤ Real.exp x := Real.pow_div_factorial_le_exp x hx k
@@ -40,6 +46,9 @@ theorem pow_le_exp_half (k : ℕ) {x : ℝ} (hx : 0 ≤ x) :
         mul_le_mul_of_nonneg_left (Real.exp_le_exp.mpr h3) hk.le
     _ = _ := by rw [Real.exp_add]; ring
 
+/--
+@isnad1 id=integrab.0h1v.s5.bf4057245494 from=translated src=- shape=121683b3 vocab=7a51d89b
+-/
 theorem integrable_abs_pow_mul_g (k : ℕ) : Integrable (fun z : ℝ => |z| ^ k * g z) := by
   have hb : Integrable (fun z : ℝ => Real.exp (-(Real.pi / 2) * z ^ 2)) := integrable_exp_neg_mul_sq (by positivity)
   refine Integrable.mono' (hb.const_mul ((k.factorial : ℝ) * Real.exp (1 / (2 * Real.pi)))) ?_ ?_
@@ -57,10 +66,16 @@ theorem integrable_abs_pow_mul_g (k : ℕ) : Integrable (fun z : ℝ => |z| ^ k 
           mul_le_mul_of_nonneg_right h (Real.exp_pos _).le
       _ = (k.factorial : ℝ) * Real.exp (1 / (2 * Real.pi)) * Real.exp (-(Real.pi / 2) * z ^ 2) := by rw [← hE]; ring
 
+/--
+@isnad1 id=le.0h2v.s5.ef267470f252 from=translated src=- shape=c3ebfedb vocab=e66df903
+-/
 theorem norm_sub_I_mul (σ z : ℝ) : ‖(σ : ℂ) - I * (z : ℂ)‖ ≤ |σ| + |z| := by
   calc ‖(σ : ℂ) - I * (z : ℂ)‖ ≤ ‖(σ : ℂ)‖ + ‖I * (z : ℂ)‖ := norm_sub_le _ _
     _ = |σ| + |z| := by rw [norm_mul, Complex.norm_I, one_mul, Complex.norm_real, Complex.norm_real, Real.norm_eq_abs, Real.norm_eq_abs]
 
+/--
+@isnad1 id=le.2h3v.s6.5d984768c6e5 from=translated src=- shape=63ae7e9a vocab=cef4cf1d
+-/
 theorem add_pow_le (a b : ℝ) (ha : 0 ≤ a) (hb : 0 ≤ b) (n : ℕ) : (a + b) ^ n ≤ 2 ^ n * (a ^ n + b ^ n) := by
   have h : a + b ≤ 2 * max a b := by
     rcases le_total a b with hab | hab
@@ -74,6 +89,9 @@ theorem add_pow_le (a b : ℝ) (ha : 0 ≤ a) (hb : 0 ≤ b) (n : ℕ) : (a + b)
         · rw [max_eq_right hab]; linarith [pow_nonneg ha n]
         · rw [max_eq_left hab]; linarith [pow_nonneg hb n]
 
+/--
+@isnad1 id=integrab.1h3v.s7.0b5019a626c8 from=translated src=- shape=94912daa vocab=496bd8a6
+-/
 theorem integrable_bound (A : ℝ) (hA : 0 ≤ A) (n j : ℕ) :
     Integrable (fun z : ℝ => 2 ^ n * (A ^ n + |z| ^ n) * |z| ^ j * g z) := by
   have h1 := (integrable_abs_pow_mul_g j).const_mul (2 ^ n * A ^ n)
@@ -82,6 +100,9 @@ theorem integrable_bound (A : ℝ) (hA : 0 ≤ A) (n j : ℕ) :
   simp only [Pi.add_apply, pow_add]
   ring
 
+/--
+@isnad1 id=le.1h5v.s7.b833ea91e713 from=translated src=- shape=732ca958 vocab=209795ac
+-/
 theorem norm_integrand_le (A : ℝ) {x : ℝ} (hx : |x| ≤ A) (z : ℝ) (n j : ℕ) :
     ‖((x : ℂ) - I * (z : ℂ)) ^ n * (z : ℂ) ^ j * (g z : ℂ)‖ ≤ 2 ^ n * (A ^ n + |z| ^ n) * |z| ^ j * g z := by
   have hA : 0 ≤ A := (abs_nonneg x).trans hx
@@ -94,19 +115,31 @@ theorem norm_integrand_le (A : ℝ) {x : ℝ} (hx : |x| ≤ A) (z : ℝ) (n j : 
   have := g_pos z
   exact mul_le_mul_of_nonneg_right (mul_le_mul_of_nonneg_right h1 (by positivity)) this.le
 
+/--
+@isnad1 id=continuo.0h3v.s6.bd30f4e12115 from=translated src=- shape=cf961fd9 vocab=fa4565c6
+-/
 theorem continuous_integrand (x : ℝ) (n j : ℕ) :
     Continuous (fun z : ℝ => ((x : ℂ) - I * (z : ℂ)) ^ n * (z : ℂ) ^ j * (g z : ℂ)) := by
   unfold g; fun_prop
 
+/--
+@isnad1 id=integrab.0h3v.s6.b5daf147d452 from=translated src=- shape=ecdf156d vocab=0d73f1b2
+-/
 theorem integrable_integrand (x : ℝ) (n j : ℕ) :
     Integrable (fun z : ℝ => ((x : ℂ) - I * (z : ℂ)) ^ n * (z : ℂ) ^ j * (g z : ℂ)) :=
   Integrable.mono' (integrable_bound |x| (abs_nonneg x) n j) (continuous_integrand x n j).aestronglyMeasurable
     (ae_of_all _ fun z => norm_integrand_le |x| le_rfl z n j)
 
+/--
+@isnad1 id=integrab.0h2v.s6.246418bcb7b1 from=translated src=- shape=ff009214 vocab=0d73f1b2
+-/
 theorem integrable_integrand' (x : ℝ) (n : ℕ) :
     Integrable (fun z : ℝ => ((x : ℂ) - I * (z : ℂ)) ^ n * (g z : ℂ)) := by
   simpa using integrable_integrand x n 0
 
+/--
+@isnad1 id=eq.0h1v.s4.af4d52a5653e from=translated src=- shape=fcc0db09 vocab=cd6902d4
+-/
 theorem H_zero (σ : ℝ) : H 0 σ = 1 := by
   unfold H g
   simp only [pow_zero, one_mul]
@@ -116,6 +149,9 @@ theorem H_zero (σ : ℝ) : H 0 σ = 1 := by
   have : ∫ z : ℝ, Real.exp (-(Real.pi * z ^ 2)) = 1 := by simpa only [neg_mul] using h
   rw [this]; simp
 
+/--
+@isnad1 id=hasderiv.0h2v.s6.1b1f11368c99 from=translated src=- shape=928ad5b4 vocab=3b67757c
+-/
 theorem hasDerivAt_H (n : ℕ) (σ : ℝ) : HasDerivAt (H (n + 1)) ((n + 1 : ℕ) * H n σ) σ := by
   have hF_meas : ∀ᶠ (x : ℝ) in 𝓝 σ, AEStronglyMeasurable (fun z : ℝ => (((x : ℝ) : ℂ) - I * (z : ℂ)) ^ (n + 1) * (g z : ℂ)) volume :=
     Eventually.of_forall fun x => (integrable_integrand' x (n + 1)).aestronglyMeasurable
@@ -154,6 +190,9 @@ end GaussRodrigues
 
 namespace GaussRodrigues
 
+/--
+@isnad1 id=tendsto.0h1v.s5.a839e149d8cf from=translated src=- shape=f77e25bc vocab=e974d7ee
+-/
 theorem tendsto_abs_pow_mul_g (k : ℕ) : Tendsto (fun z : ℝ => |z| ^ k * g z) (cocompact ℝ) (𝓝 0) := by
   have h := tendsto_rpow_abs_mul_exp_neg_mul_sq_cocompact Real.pi_pos (k : ℝ)
   refine h.congr' (Eventually.of_forall fun z => ?_)
@@ -161,6 +200,9 @@ theorem tendsto_abs_pow_mul_g (k : ℕ) : Tendsto (fun z : ℝ => |z| ^ k * g z)
   unfold g
   rw [neg_mul]
 
+/--
+@isnad1 id=tendsto.1h3v.s7.1f4fffaa57f8 from=translated src=- shape=03ad8599 vocab=18dc5950
+-/
 theorem tendsto_uv (σ : ℝ) (n : ℕ) (l : Filter ℝ) (hl : l ≤ cocompact ℝ) :
     Tendsto (fun z : ℝ => ((σ : ℂ) - I * (z : ℂ)) ^ n * ((-(1 / (2 * Real.pi)) : ℂ) * (g z : ℂ))) l (𝓝 0) := by
   have h0 : Tendsto (fun z : ℝ => |z| ^ 0 * g z) l (𝓝 0) := (tendsto_abs_pow_mul_g 0).mono_left hl
@@ -183,11 +225,17 @@ theorem tendsto_uv (σ : ℝ) (n : ℕ) (l : Filter ℝ) (hl : l ≤ cocompact �
         mul_le_mul_of_nonneg_left hb (by positivity)
     _ = 1 / (2 * Real.pi) * (2 ^ n * (|σ| ^ n * (1 * g z) + |z| ^ n * g z)) := by ring
 
+/--
+@isnad1 id=hasderiv.0h1v.s6.d0f38a555c3f from=translated src=- shape=46dc9b41 vocab=40283e51
+-/
 theorem hasDerivAt_g (z : ℝ) : HasDerivAt g (-(2 * Real.pi * z) * g z) z := by
   have h := (((hasDerivAt_pow 2 z).const_mul Real.pi).neg).exp
   unfold g
   convert h using 1 <;> first | rfl | (simp only [Pi.neg_apply]; push_cast; ring1)
 
+/--
+@isnad1 id=eq.0h2v.s7.ae5da220ecd4 from=translated src=- shape=e0a2297c vocab=2ca3a359
+-/
 theorem ibp (n : ℕ) (σ : ℝ) :
     ∫ z : ℝ, ((σ : ℂ) - I * (z : ℂ)) ^ n * (z : ℂ) * (g z : ℂ) =
       -(I * n / (2 * Real.pi)) * ∫ z : ℝ, ((σ : ℂ) - I * (z : ℂ)) ^ (n - 1) * (g z : ℂ) := by
@@ -235,6 +283,9 @@ theorem ibp (n : ℕ) (σ : ℝ) :
   congr 1; funext z
   ring
 
+/--
+@isnad1 id=eq.0h2v.s6.f022169405d0 from=translated src=- shape=ca4fb7f8 vocab=5ab3b6dd
+-/
 theorem H_succ_succ (n : ℕ) (σ : ℝ) :
     H (n + 2) σ = (σ : ℂ) * H (n + 1) σ - ((n + 1 : ℕ) / (2 * Real.pi) : ℂ) * H n σ := by
   have h1 := integrable_integrand' σ (n + 1)
@@ -252,6 +303,9 @@ theorem H_succ_succ (n : ℕ) (σ : ℝ) :
   push_cast
   linear_combination (↑n + 1) / (2 * ↑Real.pi) * (∫ z : ℝ, ((σ : ℂ) - I * (z : ℂ)) ^ n * (g z : ℂ)) * hI
 
+/--
+@isnad1 id=eq.0h1v.s3.7ebf789f3134 from=translated src=- shape=f110163e vocab=afcf27fe
+-/
 theorem H_one (σ : ℝ) : H 1 σ = (σ : ℂ) := by
   have h1 : Integrable (fun z : ℝ => (g z : ℂ)) := by simpa using integrable_integrand' σ 0
   have h2 : Integrable (fun z : ℝ => (z : ℂ) * (g z : ℂ)) := by simpa using integrable_integrand σ 0 1
@@ -267,12 +321,21 @@ theorem H_one (σ : ℝ) : H 1 σ = (σ : ℂ) := by
   rw [hexp, hodd, h0]
   ring
 
+/--
+@isnad1 id=hasderiv.0h1v.s6.7bf55c071646 from=translated src=- shape=675e3571 vocab=d6646755
+-/
 theorem hasDerivAt_Gc (s : ℝ) : HasDerivAt Gc ((-(2 * Real.pi * s) * g s : ℝ) : ℂ) s := by
   have h := (hasDerivAt_g s).ofReal_comp
   exact h
 
+/--
+@isnad1 id=eq.0h1v.s3.088d897c99af from=translated src=- shape=69b989be vocab=2be8c951
+-/
 theorem Gc_eq (s : ℝ) : Gc s = (g s : ℂ) := rfl
 
+/--
+@isnad1 id=hasderiv.0h2v.s6.b592d62c689f from=translated src=- shape=03f6babd vocab=1a675f66
+-/
 theorem key (n : ℕ) (σ : ℝ) :
     HasDerivAt (fun s : ℝ => Gc s * H n s) (-(2 * (Real.pi : ℂ)) * (Gc σ * H (n + 1) σ)) σ := by
   rcases n with _ | k
@@ -285,12 +348,21 @@ theorem key (n : ℕ) (σ : ℝ) :
 
 noncomputable def c : ℂ := (-(2 * (Real.pi : ℂ)))⁻¹
 
+/--
+@isnad1 id=ne.0h0v.s3.be93b8c2bc07 from=translated src=- shape=ffdda526 vocab=94b29db7
+-/
 theorem c_ne_zero : c ≠ 0 := by
   unfold c; exact inv_ne_zero (neg_ne_zero.mpr (mul_ne_zero two_ne_zero (by exact_mod_cast Real.pi_ne_zero)))
 
+/--
+@isnad1 id=eq.0h0v.s5.3be102a2a5d5 from=translated src=- shape=727752b7 vocab=00b0a681
+-/
 theorem c_mul : c * (-(2 * (Real.pi : ℂ))) = 1 := by
   unfold c; exact inv_mul_cancel₀ (neg_ne_zero.mpr (mul_ne_zero two_ne_zero (by exact_mod_cast Real.pi_ne_zero)))
 
+/--
+@isnad1 id=eq.0h2v.s5.1ebe9292ff57 from=translated src=- shape=62463b5f vocab=b60e17ce
+-/
 theorem main_eq (n : ℕ) : ∀ s : ℝ, Gc s * H n s = c ^ n * iteratedDeriv n Gc s := by
   induction n with
   | zero => intro s; rw [H_zero, iteratedDeriv_zero, pow_zero, mul_one, one_mul]
@@ -309,6 +381,9 @@ theorem main_eq (n : ℕ) : ∀ s : ℝ, Gc s * H n s = c ^ n * iteratedDeriv n 
 end GaussRodrigues
 
 open GaussRodrigues in
+/--
+@isnad1 id=eq.0h2v.s7.93c6200a9639 from=translated src=- shape=4755cfdb vocab=88056501
+-/
 theorem solution (n : ℕ) (σ : ℝ) :
     (Real.exp (-(Real.pi * σ ^ 2)) : ℂ) *
         ∫ z : ℝ, ((σ : ℂ) - Complex.I * (z : ℂ)) ^ n * (Real.exp (-(Real.pi * z ^ 2)) : ℂ) =

@@ -13,6 +13,9 @@ open scoped TensorProduct
 
 open Polynomial
 
+/--
+@isnad1 id=and.2h6v.s16.5346f94d01e9 from=translated src=- shape=0f881242 vocab=8875173b
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime]
     (Z₀ : Type) [CommRing Z₀]

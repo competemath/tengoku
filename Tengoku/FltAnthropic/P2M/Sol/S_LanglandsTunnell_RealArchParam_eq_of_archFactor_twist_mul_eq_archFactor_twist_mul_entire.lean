@@ -12,6 +12,9 @@ open Complex LanglandsTunnell
 
 namespace Ws47POLE
 
+/--
+@isnad1 id=eq.3h6v.s8.5ebec499ba71 from=translated src=- shape=2fd58395 vocab=51144d58
+-/
 theorem coeff_eq_zero (u₁ u₂ : ℂ) (h2 : ∀ n : ℕ, u₁ - u₂ ≠ -(2 * (n : ℂ))) (p q : ℂ) (Φ : ℂ → ℂ)
     (hΦ : Differentiable ℂ Φ) (σ₀ : ℝ)
     (h : ∀ s : ℂ, σ₀ < s.re →
@@ -81,6 +84,9 @@ theorem coeff_eq_zero (u₁ u₂ : ℂ) (h2 : ∀ n : ℕ, u₁ - u₂ ≠ -(2 *
     · exact h3 (inv_eq_zero.mp hk)
     · exact h1 (inv_eq_zero.mp hk)
 
+/--
+@isnad1 id=eq.3h6v.s8.3fb5d004ec1a from=translated src=- shape=47f87adc vocab=51144d58
+-/
 theorem coeff_eq_zero' (u₁ u₂ : ℂ) (h2 : ∀ n : ℕ, u₂ - u₁ ≠ -(2 * (n : ℂ))) (p q : ℂ) (Φ : ℂ → ℂ)
     (hΦ : Differentiable ℂ Φ) (σ₀ : ℝ)
     (h : ∀ s : ℂ, σ₀ < s.re →
@@ -91,6 +97,9 @@ theorem coeff_eq_zero' (u₁ u₂ : ℂ) (h2 : ∀ n : ℕ, u₂ - u₁ ≠ -(2 
   have := h s hs
   linear_combination this
 
+/--
+@isnad1 id=ne.2h3v.s6.a7c1a0786cbd from=translated src=- shape=2d7c8937 vocab=64271161
+-/
 theorem not_even_of_abs_re_lt_one {u₁ u₂ : ℂ} (hu : u₁ ≠ u₂) (htype : |(u₁ - u₂).re| < 1) (n : ℕ) :
     u₁ - u₂ ≠ -(2 * (n : ℂ)) := by
   intro h
@@ -106,6 +115,9 @@ theorem not_even_of_abs_re_lt_one {u₁ u₂ : ℂ} (hu : u₁ ≠ u₂) (htype 
   have : u₁ - u₂ = 0 := by rw [h]; simp
   exact sub_eq_zero.mp this
 
+/--
+@isnad1 id=eq.0h6v.s7.7287bb1ba771 from=translated src=- shape=18c12700 vocab=932fa950
+-/
 theorem archFactor_principal_twist (u₁ u₂ : ℂ) (a₁ a₂ b : ZMod 2) (s : ℂ) :
     ((RealArchParam.principal u₁ a₁ u₂ a₂).twist 0 b).archFactor s =
       Gammaℝ (s + (u₁ + signShift (a₁ + b))) * Gammaℝ (s + (u₂ + signShift (a₂ + b))) := by
@@ -114,6 +126,9 @@ theorem archFactor_principal_twist (u₁ u₂ : ℂ) (a₁ a₂ b : ZMod 2) (s :
 end Ws47POLE
 
 open Ws47POLE in
+/--
+@isnad1 id=eq.7h8v.s8.935fb0cbc758 from=translated src=- shape=dff84990 vocab=9c2a5a60
+-/
 theorem solution
     (u₁ u₂ : ℂ) (a₁ a₂ : ZMod 2) (ha : a₁ ≠ a₂) (hu : u₁ ≠ u₂) (htype : |(u₁ - u₂).re| < 1)
     (P' : RealArchParam) (hP' : P' = .principal u₁ a₁ u₂ a₂ ∨ P' = .principal u₁ a₂ u₂ a₁)

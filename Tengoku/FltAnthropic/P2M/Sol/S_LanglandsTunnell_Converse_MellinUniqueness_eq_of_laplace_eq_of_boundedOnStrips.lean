@@ -283,6 +283,9 @@ private theorem luqShift (H : ℂ → ℂ) (hH : Differentiable ℂ H) (σ₁ σ
   rw [sub_zero, sub_eq_zero] at this
   exact mul_left_cancel₀ Complex.I_ne_zero this
 
+/--
+@isnad1 id=eq.6h4v.s8.9e92c99f30d9 from=translated src=- shape=631bdd77 vocab=f7181ff3
+-/
 theorem solution
     (g₁ g₂ : ℝ → ℂ) (hg₁ : Continuous g₁) (hg₂ : Continuous g₂)
     (c : ℝ) (Λ : ℂ → ℂ) (hΛ : Differentiable ℂ Λ) (hb : LDatum.BoundedOnStrips Λ)

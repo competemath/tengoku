@@ -20,22 +20,43 @@ scoped instance : DecidablePred Hex := fun k =>
 
 def inv2 (p : Mat) : Mat := det2 p • !![p 1 1, -(p 0 1); -(p 1 0), p 0 0]
 
+/--
+@isnad1 id=and.1h1v.s8.174337e15207 from=translated src=- shape=d74f5f39 vocab=12239c9f
+-/
 theorem K48_inv2 : ∀ k ∈ K48, k * inv2 k = 1 ∧ inv2 k * k = 1 := by decide
 
+/--
+@isnad1 id=eq.2h1v.s6.134f686fb694 from=translated src=- shape=384e3f6b vocab=4e533b6b
+-/
 theorem K48_hex_pw6 : ∀ k ∈ K48, Hex k → pw k 6 = 1 := by decide
 
+/--
+@isnad1 id=or.3h2v.s8.a79b7f3c6c89 from=translated src=- shape=77128330 vocab=138c9b24
+-/
 theorem K48_hex_powers : ∀ k ∈ K48, Hex k → ∀ j ∈ List.range 6,
     (Hex (pw k j) ∧ tr2 (pw k j) = -((-tr2 k) ^ j)) ∨
       (¬ Hex (pw k j) ∧ tr2 (pw k j) = 2 * (-tr2 k) ^ j) := by
   decide
 
+/--
+@isnad1 id=and.3h1v.s8.b031ecb8fd5f from=translated src=- shape=60677b98 vocab=a30ae137
+-/
 theorem K48_hex_sq : ∀ k ∈ K48, Hex k → tr2 k = 1 → Hex (k * k) ∧ tr2 (k * k) = -1 := by decide
 
+/--
+@isnad1 id=ex.3h1v.s8.3e08d725b09b from=translated src=- shape=bcbc843a vocab=5cf30701
+-/
 theorem K48_hex_witness : ∀ k ∈ K48, Hex k → tr2 k = -1 →
     ∃ p ∈ K48, pw (k * (p * k * inv2 p)) 2 = -1 := by decide
 
+/--
+@isnad1 id=and.0h0v.s7.7af8937b466b from=translated src=- shape=c226f899 vocab=c41b49b4
+-/
 theorem neg_one_facts : ¬ Hex (-1) ∧ tr2 (-1 : Mat) = -2 := by decide
 
+/--
+@isnad1 id=eq.1h1v.s7.6b458dd28e0e from=translated src=- shape=f9a21da6 vocab=0cc3e0e2
+-/
 theorem hex_neg_tr_pow_six (k : Mat) (hk : Hex k) : (-tr2 k) ^ 6 = 1 := by
   rcases hk.2 with h | h <;> rw [h] <;> decide
 
@@ -43,6 +64,9 @@ section MatrixLemmas
 
 variable {F : Type} [Field F] [CharZero F]
 
+/--
+@isnad1 id=eq.1h4v.s9.921f05719fea from=translated src=- shape=cdd9e1fd vocab=2eff0a1c
+-/
 theorem pow_scalar_add_nilpotent (x : F) (N : Matrix (Fin 2) (Fin 2) F) (hN : N * N = 0) (m : ℕ) :
     (x • (1 : Matrix (Fin 2) (Fin 2) F) + N) ^ (m + 1) =
       (x ^ (m + 1)) • (1 : Matrix (Fin 2) (Fin 2) F) + (((m : F) + 1) * x ^ m) • N := by
@@ -93,6 +117,9 @@ theorem eq_scalar_of_isOfFinOrder (A : Matrix (Fin 2) (Fin 2) F) (hA : IsOfFinOr
 
 omit [CharZero F] in
 
+/--
+@isnad1 id=and.2h6v.s9.fb7699703358 from=translated src=- shape=14fb6e7d vocab=f07e63fd
+-/
 theorem trace_det_pow_transport {R : Type} [CommRing R] (ι : R →+* F)
     (A : Matrix (Fin 2) (Fin 2) R) (B : Matrix (Fin 2) (Fin 2) F)
     (htr : B.trace = ι A.trace) (hdet : B.det = ι A.det) (n : ℕ) :
@@ -126,46 +153,82 @@ variable {G : Type} [Group G] {F : Type} [Field F] [CharZero F]
       r σ = r (g * φ ^ n * g⁻¹) ∧ M σ = M (g * φ ^ n * g⁻¹))
 
 include hM in
+/--
+@isnad1 id=mem.1h3v.s10.732b072ec2ad from=translated src=- shape=4b608e86 vocab=fe5deee8
+-/
 theorem M_mem_K48 (g : G) : M g ∈ K48 := (mem_closure_iff_mem_K48 _).1 (hM g)
 
 omit [CharZero F] in
+/--
+@isnad1 id=eq.0h4v.s9.f7c5fe3dec9a from=translated src=- shape=af28d4da vocab=281c08d7
+-/
 theorem r_mul_inv (g : G) : r g * r g⁻¹ = 1 := by rw [← map_mul, mul_inv_cancel, map_one]
 
 omit [CharZero F] in
+/--
+@isnad1 id=eq.0h4v.s9.49d85b146fd5 from=translated src=- shape=6dace1a9 vocab=281c08d7
+-/
 theorem r_inv_mul (g : G) : r g⁻¹ * r g = 1 := by rw [← map_mul, inv_mul_cancel, map_one]
 
+/--
+@isnad1 id=eq.0h3v.s9.9520947c6889 from=translated src=- shape=8fad5992 vocab=f21825bf
+-/
 theorem M_mul_inv (g : G) : M g * M g⁻¹ = 1 := by rw [← map_mul, mul_inv_cancel, map_one]
 
+/--
+@isnad1 id=eq.0h3v.s9.af3d692e834b from=translated src=- shape=d057b693 vocab=f21825bf
+-/
 theorem M_inv_mul (g : G) : M g⁻¹ * M g = 1 := by rw [← map_mul, inv_mul_cancel, map_one]
 
 omit [CharZero F] in
+/--
+@isnad1 id=eq.0h5v.s9.93b042c19d10 from=translated src=- shape=c007ad71 vocab=27d1fc1f
+-/
 theorem r_conj_trace (g : G) (X : Matrix (Fin 2) (Fin 2) F) :
     (r g * X * r g⁻¹).trace = X.trace := by
   rw [Matrix.trace_mul_cycle, r_inv_mul, one_mul]
 
 omit [CharZero F] in
+/--
+@isnad1 id=eq.0h5v.s9.6c92dac02438 from=translated src=- shape=c007ad71 vocab=a7cec13a
+-/
 theorem r_conj_det (g : G) (X : Matrix (Fin 2) (Fin 2) F) :
     (r g * X * r g⁻¹).det = X.det := by
   rw [Matrix.det_mul, Matrix.det_mul, mul_comm (r g).det, mul_assoc, ← Matrix.det_mul,
     r_mul_inv, Matrix.det_one, mul_one]
 
+/--
+@isnad1 id=eq.0h4v.s10.f0b943bb8bf7 from=translated src=- shape=01998743 vocab=da6885be
+-/
 theorem M_conj_trace (g : G) (X : Matrix (Fin 2) (Fin 2) (ℤ√(-2))) :
     (M g * X * M g⁻¹).trace = X.trace := by
   rw [Matrix.trace_mul_cycle, M_inv_mul, one_mul]
 
+/--
+@isnad1 id=eq.0h4v.s10.c987725f13dc from=translated src=- shape=01998743 vocab=b62cfa03
+-/
 theorem M_conj_det (g : G) (X : Matrix (Fin 2) (Fin 2) (ℤ√(-2))) :
     (M g * X * M g⁻¹).det = X.det := by
   rw [Matrix.det_mul, Matrix.det_mul, mul_comm (M g).det, mul_assoc, ← Matrix.det_mul,
     M_mul_inv, Matrix.det_one, mul_one]
 
+/--
+@isnad1 id=iff.0h1v.s8.6a3a69ab758c from=translated src=- shape=b42fad1c vocab=ab7f33b8
+-/
 theorem hex_iff (k : Mat) : Hex k ↔ k.det = 1 ∧ (k.trace = 1 ∨ k.trace = -1) := by
   rw [Hex, det2_eq_det, tr2_eq_trace]
 
+/--
+@isnad1 id=iff.0h4v.s9.58e96f23adff from=translated src=- shape=f36af73a vocab=5a6ca57b
+-/
 theorem hex_conj (g : G) (X : Mat) : Hex (M g * X * M g⁻¹) ↔ Hex X := by
   rw [hex_iff, hex_iff, M_conj_trace, M_conj_det]
 
 include hM in
 
+/--
+@isnad1 id=eq.1h3v.s10.156302566c21 from=translated src=- shape=c0b851f3 vocab=33a9eb14
+-/
 theorem M_inv_eq_inv2 (g : G) : M g⁻¹ = inv2 (M g) := by
   have h := (K48_inv2 (M g) (M_mem_K48 M hM g)).1
   calc M g⁻¹ = M g⁻¹ * (M g * inv2 (M g)) := by rw [h, mul_one]
@@ -179,6 +242,9 @@ def Bad (σ : G) : Prop :=
 
 include hM hfin hS hcover in
 
+/--
+@isnad1 id=or.4h7v.s12.eb5aaa8d1d55 from=translated src=- shape=bc4228ad vocab=8a9f012c
+-/
 theorem good_or_bad (σ : G) : Good ι M r σ ∨ Bad ι M r σ := by
   obtain ⟨φ, hφS, g, n, hrσ, hMσ⟩ := hcover σ
   obtain ⟨hdetφ, hφ⟩ := hS φ hφS
@@ -245,6 +311,9 @@ theorem good_or_bad (σ : G) : Good ι M r σ ∨ Bad ι M r σ := by
 
 include hM hMsurj hfin hS hcover in
 
+/--
+@isnad1 id=false.8h7v.s12.fa73c8edf630 from=translated src=- shape=469f3ee4 vocab=c721c3c5
+-/
 theorem not_bad_one (σ : G) (hr : r σ = 1) (hhex : Hex (M σ)) (htr : (M σ).trace = -1) : False := by
   set m : Mat := M σ with hm
   have hmK : m ∈ K48 := M_mem_K48 M hM σ
@@ -265,6 +334,9 @@ theorem not_bad_one (σ : G) (hr : r σ = 1) (hhex : Hex (M σ)) (htr : (M σ).t
     exact neg_one_facts.1 hhex'
 
 include hM hMsurj hfin hS hcover in
+/--
+@isnad1 id=not.5h7v.s12.e87d34311877 from=translated src=- shape=5b78438b vocab=1c776568
+-/
 theorem not_bad (σ : G) : ¬ Bad ι M r σ := by
   rintro ⟨c, hc, hr, hhex, htr⟩
   rcases hc with rfl | rfl
@@ -279,6 +351,9 @@ theorem not_bad (σ : G) : ¬ Bad ι M r σ := by
     · rw [map_pow, pow_two, ← tr2_eq_trace]; exact hsq.2
 
 include hM hMsurj hfin hS hcover in
+/--
+@isnad1 id=good.5h7v.s12.1c56283ae084 from=translated src=- shape=af1ea83d vocab=22939f8d
+-/
 theorem good (σ : G) : Good ι M r σ :=
   (good_or_bad ι M hM r hfin S hS hcover σ).resolve_right (not_bad ι M hM hMsurj r hfin S hS hcover σ)
 
@@ -287,6 +362,9 @@ end Compare
 end P2mOctCompare
 open scoped _root_.P2MW.S_LanglandsTunnell_ExplicitLift_trace_det_eq_of_agreeUpToPartner_of_conjPow.P2mOctCompare
 
+/--
+@isnad1 id=and.5h7v.s12.ba37258a09f1 from=translated src=- shape=aab75261 vocab=4827b1eb
+-/
 theorem solution
     {G : Type} [Group G] {F : Type} [Field F] [CharZero F]
     (ι : ℤ√(-2) →+* F)

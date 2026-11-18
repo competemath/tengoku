@@ -9,6 +9,9 @@ set_option autoImplicit false
 universe u
 
 open Finset in
+/--
+@isnad1 id=ex.5h5v.s8.159d2fc1f9fd from=translated src=- shape=b72a1fb1 vocab=2c7bf2ad
+-/
 theorem solution
     {R : Type u} [CommRing R] {ℓ : ℕ} (hℓ : 1 < ℓ) (ω : R) (hω : IsPrimitiveRoot ω ℓ)
     (hunit : IsUnit ((ℓ : ℕ) : R)) (hdiff : ∀ i j : ℕ, i < ℓ → j < ℓ → i ≠ j → IsUnit (ω ^ i - ω ^ j))

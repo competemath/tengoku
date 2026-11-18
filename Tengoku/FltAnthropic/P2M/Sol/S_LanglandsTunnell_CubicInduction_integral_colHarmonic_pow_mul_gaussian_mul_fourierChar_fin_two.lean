@@ -18,10 +18,16 @@ open Real Complex in
 
 noncomputable def Gc (x : ℝ) : ℂ := (Real.exp (-(Real.pi * x ^ 2)) : ℂ)
 
+/--
+@isnad1 id=eq.0h0v.s5.f687367172d8 from=translated src=- shape=29969e34 vocab=7677493d
+-/
 theorem Gc_def : Gc = fun η : ℝ => (Real.exp (-(Real.pi * η ^ 2)) : ℂ) := rfl
 
 noncomputable def D (k : ℕ) (x : ℝ) : ℂ := iteratedDeriv k Gc x
 
+/--
+@isnad1 id=contdiff.0h0v.s5.d32566e945e5 from=translated src=- shape=352d7a74 vocab=4e10488b
+-/
 theorem contDiff_Gc : ContDiff ℝ (⊤ : ℕ∞) Gc := by
   have h1 : ContDiff ℝ (⊤ : ℕ∞) (fun x : ℝ => (x : ℂ)) := Complex.ofRealCLM.contDiff
   have : Gc = fun x : ℝ => Complex.exp (-((Real.pi : ℂ) * (x : ℂ) ^ 2)) := by
@@ -29,6 +35,9 @@ theorem contDiff_Gc : ContDiff ℝ (⊤ : ℕ∞) Gc := by
   rw [this]
   exact Complex.contDiff_exp.comp ((contDiff_const.mul (h1.pow 2)).neg)
 
+/--
+@isnad1 id=hasderiv.0h1v.s6.0e9a38de460f from=translated src=- shape=0ed30b99 vocab=d9fa17b6
+-/
 theorem hasDerivAt_Gc (x : ℝ) : HasDerivAt Gc (-(2 * Real.pi * x) * Gc x) x := by
   have h1 : HasDerivAt (fun y : ℝ => -(Real.pi * y ^ 2)) (-(Real.pi * (2 * x))) x := by
     have := ((hasDerivAt_pow 2 x).const_mul Real.pi).neg
@@ -41,6 +50,9 @@ theorem hasDerivAt_Gc (x : ℝ) : HasDerivAt Gc (-(2 * Real.pi * x) * Gc x) x :=
   push_cast
   ring
 
+/--
+@isnad1 id=hasderiv.0h2v.s6.960d69835ee8 from=translated src=- shape=67e41ce8 vocab=c64755db
+-/
 theorem hasDerivAt_D (k : ℕ) (x : ℝ) : HasDerivAt (D k) (D (k + 1) x) x := by
   have hd : Differentiable ℝ (iteratedDeriv k Gc) :=
     contDiff_Gc.differentiable_iteratedDeriv k (by exact_mod_cast (WithTop.coe_lt_top (k : ℕ)))
@@ -48,8 +60,14 @@ theorem hasDerivAt_D (k : ℕ) (x : ℝ) : HasDerivAt (D k) (D (k + 1) x) x := b
   rw [D, iteratedDeriv_succ]
   exact this
 
+/--
+@isnad1 id=eq.0h1v.s3.9dc6a10ef257 from=translated src=- shape=f110163e vocab=6c8752bb
+-/
 theorem D_zero (x : ℝ) : D 0 x = Gc x := by simp [D]
 
+/--
+@isnad1 id=eq.1h4v.s7.b2f2e5c5160d from=translated src=- shape=ca8ffa59 vocab=42ea1e43
+-/
 theorem appell (a : ℂ) (ha : a ^ 2 = -1) (m : ℕ) (x y : ℝ) :
     ∑ i ∈ Finset.range (m + 1), (m.choose i : ℂ) * (a ^ (m - i) * D i x * D (m - i) y) =
       (-(2 * Real.pi) : ℂ) ^ m * ((x : ℂ) + a * (y : ℂ)) ^ m * Gc x * Gc y := by
@@ -116,17 +134,26 @@ theorem appell (a : ℂ) (ha : a ^ 2 = -1) (m : ℕ) (x y : ℝ) :
 
 noncomputable def ech (ξ x : ℝ) : ℂ := Complex.exp (-(2 * Real.pi * Complex.I * (ξ : ℂ) * (x : ℂ)))
 
+/--
+@isnad1 id=eq.0h2v.s4.8a97ee026a86 from=translated src=- shape=18e50d40 vocab=a51e2cb9
+-/
 theorem norm_ech (ξ x : ℝ) : ‖ech ξ x‖ = 1 := by
   rw [ech, Complex.norm_exp]
   have : (-(2 * Real.pi * Complex.I * (ξ : ℂ) * (x : ℂ))).re = 0 := by
     simp [Complex.mul_re, Complex.mul_im]
   rw [this, Real.exp_zero]
 
+/--
+@isnad1 id=continuo.0h1v.s4.01f60a98335c from=translated src=- shape=9bb0b988 vocab=fcb16aea
+-/
 theorem continuous_ech (ξ : ℝ) : Continuous (ech ξ) := by
   unfold ech; fun_prop
 
 noncomputable def term (k : ℕ) (ξ : ℝ) (x : ℝ) : ℂ := ((x : ℂ) ^ k * Gc x) * ech ξ x
 
+/--
+@isnad1 id=integrab.0h1v.s6.bed8e22025c7 from=translated src=- shape=71d51176 vocab=a0f0e4df
+-/
 theorem integrable_pow_mul_Gc (k : ℕ) : Integrable (fun x : ℝ => (x : ℂ) ^ k * Gc x) := by
   have h0 := (integrable_rpow_mul_exp_neg_mul_sq Real.pi_pos (s := k)
     (by have := k.cast_nonneg (α := ℝ); linarith)).ofReal (𝕜 := ℂ)
@@ -134,12 +161,18 @@ theorem integrable_pow_mul_Gc (k : ℕ) : Integrable (fun x : ℝ => (x : ℂ) ^
   refine h.congr (ae_of_all _ fun x => ?_)
   simp only [Gc, Real.rpow_natCast, Complex.ofReal_mul, Complex.ofReal_pow, neg_mul]
 
+/--
+@isnad1 id=integrab.0h2v.s5.af88918dcfb5 from=translated src=- shape=cc283c40 vocab=f713bb16
+-/
 theorem integrable_term (k : ℕ) (ξ : ℝ) : Integrable (term k ξ) := by
   unfold term
   exact (integrable_pow_mul_Gc k).mul_bdd (c := 1) (continuous_ech ξ).aestronglyMeasurable (ae_of_all _ fun x => (norm_ech ξ x).le)
 
 noncomputable def cst : ℂ := (-(2 * Real.pi * Complex.I))⁻¹
 
+/--
+@isnad1 id=eq.0h2v.s5.616925189738 from=translated src=- shape=b0b3bf07 vocab=52166927
+-/
 theorem integral_term (k : ℕ) (ξ : ℝ) : ∫ x, term k ξ x = cst ^ k * D k ξ := by
   have h := LanglandsTunnell.integral_ofReal_pow_mul_exp_neg_pi_mul_sq_mul_cexp_eq_iteratedDeriv k (-ξ)
   have hfun : (fun x : ℝ => ((x : ℝ) : ℂ) ^ k * (Real.exp (-(Real.pi * x ^ 2)) : ℂ) *
@@ -165,6 +198,9 @@ theorem integral_term (k : ℕ) (ξ : ℝ) : ∫ x, term k ξ x = cst ^ k * D k 
   rw [cst, show (-(2 * (Real.pi : ℂ) * Complex.I)) = -(2 * Real.pi * Complex.I) by ring, inv_neg]
   ring
 
+/--
+@isnad1 id=eq.0h0v.s5.2df8f1184fe8 from=translated src=- shape=bbf2d264 vocab=60cd8300
+-/
 theorem cst_mul : cst * (-(2 * Real.pi) : ℂ) = -Complex.I := by
   rw [cst]
   have hπ : (Real.pi : ℂ) ≠ 0 := by exact_mod_cast Real.pi_ne_zero
@@ -175,6 +211,9 @@ theorem cst_mul : cst * (-(2 * Real.pi) : ℂ) = -Complex.I := by
 end Ws23HB2D
 
 open Ws23HB2D in
+/--
+@isnad1 id=and.1h3v.s9.be2a5bfd5abf from=translated src=- shape=0e4be80c vocab=0da85fbb
+-/
 theorem solution
     (m : ℕ) (ε : ℝ) (hε : ε = 1 ∨ ε = -1) (ξ : Fin 2 → ℝ) :
     Integrable (fun u : Fin 2 → ℝ =>

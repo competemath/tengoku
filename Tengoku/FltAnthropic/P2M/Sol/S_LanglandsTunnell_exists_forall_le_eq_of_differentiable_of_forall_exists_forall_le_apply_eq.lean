@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 open Filter Topology Set in
 
+/--
+@isnad1 id=ex.2h1v.s7.3f103712d7d5 from=translated src=- shape=4ddb3d4a vocab=a0075485
+-/
 theorem solution
     (f : ℤ → ℂ → ℂ) (hf : ∀ c : ℤ, Differentiable ℂ (f c))
     (h : ∀ z : ℂ, ∃ c₀ : ℕ, ∀ c : ℤ, (c₀ : ℤ) ≤ c → f c z = f c₀ z) :

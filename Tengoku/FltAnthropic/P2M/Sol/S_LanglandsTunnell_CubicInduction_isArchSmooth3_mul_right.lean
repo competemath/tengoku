@@ -21,14 +21,26 @@ def ofRealHom : ℝ →+* InfiniteAdeleRing ℚ :=
   RingHom.pi fun v : InfinitePlace ℚ =>
     ((InfinitePlace.Completion.ringEquivRealOfIsReal (IsTotallyReal.isReal v)).symm : ℝ ≃+* v.Completion).toRingHom
 
+/--
+@isnad1 id=eq.0h1v.s5.39b22cc76688 from=translated src=- shape=ef803f15 vocab=52a38c35
+-/
 theorem ofRealHom_apply (r : ℝ) : ofRealHom r = ofReal r := rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.6de393a9f561 from=translated src=- shape=bbaba395 vocab=a31f2a10
+-/
 theorem ofReal_realCoord' (x : InfiniteAdeleRing ℚ) : ofRealHom (realCoord x) = x := by
   rw [ofRealHom_apply, ofReal_realCoord]
 
+/--
+@isnad1 id=eq.0h1v.s8.62f335a51d1a from=translated src=- shape=cfc5d8d3 vocab=3e15d52b
+-/
 theorem archRealMat3_eq (e : Fin 3 → Fin 3 → ℝ) :
     archRealMat3 e = archMatrixInclN (Fin 3) ℚ ((Matrix.of e).map ofRealHom) := rfl
 
+/--
+@isnad1 id=isunit.1h1v.s8.19b9b81fa0a0 from=translated src=- shape=a77a2d64 vocab=f47d08f6
+-/
 theorem isUnit_archRealMat3 {e : Fin 3 → Fin 3 → ℝ} (he : (Matrix.of e).det ≠ 0) :
     IsUnit (archRealMat3 e) := by
   have h1 : IsUnit ((Matrix.of e).map ofRealHom) := by
@@ -37,6 +49,9 @@ theorem isUnit_archRealMat3 {e : Fin 3 → Fin 3 → ℝ} (he : (Matrix.of e).de
   rw [archRealMat3_eq]
   exact h1.map (archMatrixInclHomN (Fin 3) ℚ)
 
+/--
+@isnad1 id=eq.1h1v.s8.d19d82c9834d from=translated src=- shape=5b5769f3 vocab=87b8d846
+-/
 theorem coe_archRealLift3 {e : Fin 3 → Fin 3 → ℝ} (he : (Matrix.of e).det ≠ 0) :
     ((archRealLift3 e : AdelicGL 3 (𝓞 ℚ) ℚ) : Matrix (Fin 3) (Fin 3) (AdeleRing (𝓞 ℚ) ℚ)) = archRealMat3 e := by
   unfold archRealLift3
@@ -49,17 +64,26 @@ def finPart (k : AdelicGL 3 (𝓞 ℚ) ℚ) : GL (Fin 3) (FiniteAdeleRing (𝓞 
 def realPart (k : AdelicGL 3 (𝓞 ℚ) ℚ) : Matrix (Fin 3) (Fin 3) ℝ :=
   realMat (archComponentN (Fin 3) (𝓞 ℚ) ℚ k)
 
+/--
+@isnad1 id=ne.0h1v.s5.da489819fe93 from=translated src=- shape=7e3207b9 vocab=ec81da0f
+-/
 theorem det_realPart_ne_zero (k : AdelicGL 3 (𝓞 ℚ) ℚ) : (realPart k).det ≠ 0 := by
   have h : IsUnit (realPart k) := (realGL (archComponentN (Fin 3) (𝓞 ℚ) ℚ k)).isUnit
   rw [Matrix.isUnit_iff_isUnit_det] at h
   exact h.ne_zero
 
+/--
+@isnad1 id=eq.0h1v.s10.0bb8f296d338 from=translated src=- shape=7ee185cd vocab=3d7475d5
+-/
 theorem coe_archComponentN_eq (k : AdelicGL 3 (𝓞 ℚ) ℚ) :
     ((archComponentN (Fin 3) (𝓞 ℚ) ℚ k : GL (Fin 3) (InfiniteAdeleRing ℚ)) :
         Matrix (Fin 3) (Fin 3) (InfiniteAdeleRing ℚ)) = (realPart k).map ofRealHom := by
   ext i j
   rw [realPart, realMat_eq, Matrix.map_apply, Matrix.map_apply, ofReal_realCoord']
 
+/--
+@isnad1 id=eq.0h1v.s10.3724ddb9a918 from=translated src=- shape=b41dc500 vocab=f1fe90fe
+-/
 theorem coe_eq_arch_mul_fin (k : AdelicGL 3 (𝓞 ℚ) ℚ) :
     ((k : AdelicGL 3 (𝓞 ℚ) ℚ) : Matrix (Fin 3) (Fin 3) (AdeleRing (𝓞 ℚ) ℚ)) =
       archMatrixInclN (Fin 3) ℚ
@@ -84,14 +108,23 @@ theorem coe_eq_arch_mul_fin (k : AdelicGL 3 (𝓞 ℚ) ℚ) :
 def subst (k : AdelicGL 3 (𝓞 ℚ) ℚ) (e : Fin 3 → Fin 3 → ℝ) : Fin 3 → Fin 3 → ℝ :=
   fun i j => (Matrix.of e * realPart k) i j
 
+/--
+@isnad1 id=eq.0h2v.s8.61495f4614e3 from=translated src=- shape=b83c3112 vocab=b757ad8d
+-/
 theorem of_subst (k : AdelicGL 3 (𝓞 ℚ) ℚ) (e : Fin 3 → Fin 3 → ℝ) :
     Matrix.of (subst k e) = Matrix.of e * realPart k := rfl
 
+/--
+@isnad1 id=contdiff.0h1v.s8.b8b95d004c13 from=translated src=- shape=e112b650 vocab=92f9e821
+-/
 theorem contDiff_subst (k : AdelicGL 3 (𝓞 ℚ) ℚ) : ContDiff ℝ (⊤ : ℕ∞) (subst k) := by
   refine contDiff_pi.2 fun i => contDiff_pi.2 fun j => ?_
   simp only [subst, Matrix.mul_apply, Matrix.of_apply]
   exact ContDiff.sum fun l _ => (contDiff_apply_apply (𝕜 := ℝ) (n := (⊤ : ℕ∞)) (E := ℝ) i l).mul contDiff_const
 
+/--
+@isnad1 id=mapsto.0h1v.s9.462bf29d51af from=translated src=- shape=bb73248e vocab=8a526b52
+-/
 theorem mapsTo_subst (k : AdelicGL 3 (𝓞 ℚ) ℚ) :
     Set.MapsTo (subst k) {e : Fin 3 → Fin 3 → ℝ | (Matrix.of e).det ≠ 0}
       {e : Fin 3 → Fin 3 → ℝ | (Matrix.of e).det ≠ 0} := by
@@ -100,6 +133,9 @@ theorem mapsTo_subst (k : AdelicGL 3 (𝓞 ℚ) ℚ) :
   rw [of_subst, Matrix.det_mul]
   exact mul_ne_zero he (det_realPart_ne_zero k)
 
+/--
+@isnad1 id=eq.1h2v.s11.438ff547b5a5 from=translated src=- shape=76c01f33 vocab=c6503338
+-/
 theorem archRealLift3_mul (k : AdelicGL 3 (𝓞 ℚ) ℚ) {e : Fin 3 → Fin 3 → ℝ} (he : (Matrix.of e).det ≠ 0) :
     archRealLift3 e * k = finInclN (Fin 3) ℚ (finPart k) * archRealLift3 (subst k e) := by
   have he' : (Matrix.of (subst k e)).det ≠ 0 := mapsTo_subst k he
@@ -115,6 +151,9 @@ end
 
 open LanglandsTunnell.CubicInduction in
 open R1ArchSmoothMulRight AutomorphicForm WhittakerBlock in
+/--
+@isnad1 id=isarchsm.1h2v.s8.531e8c637a0d from=translated src=- shape=f8f86371 vocab=2493b24a
+-/
 theorem solution (u : AdelicGL 3 (𝓞 ℚ) ℚ → ℂ)
     (hu : WhittakerBlock.IsArchSmooth3 u) (k : AdelicGL 3 (𝓞 ℚ) ℚ) :
     WhittakerBlock.IsArchSmooth3 (fun g => u (g * k)) := by
