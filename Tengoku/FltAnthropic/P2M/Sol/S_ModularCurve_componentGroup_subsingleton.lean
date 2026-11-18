@@ -20,6 +20,9 @@ private theorem aux_charLat_subsingleton {ι : Type*} [Fintype ι] (hι : Fintyp
   simp only [hsum] at hD hD'
   simp [hD, hD']
 
+/--
+@isnad1 id=subsingl.1h2v.s4.70dcbe925418 from=translated src=- shape=312c3acb vocab=389fefc2
+-/
 theorem solution {ι : Type*} [Fintype ι] (hι : Fintype.card ι ≤ 1) (e : ι → ℕ) :
     Subsingleton (componentGroup e) := by
   have h𝒳 := aux_charLat_subsingleton (ι := ι) hι

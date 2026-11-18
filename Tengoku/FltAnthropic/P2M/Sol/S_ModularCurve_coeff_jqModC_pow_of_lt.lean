@@ -16,12 +16,18 @@ namespace CharLRows
 
 variable (K : Type*) [CommRing K]
 
+/--
+@isnad1 id=eq.0h2v.s9.4d056bb05dde from=translated src=- shape=0f562fe2 vocab=a77d08de
+-/
 theorem jqModC_pow (n : ℕ) :
     (jqModC K) ^ n = HahnSeries.single (-(n : ℤ)) 1 *
       HahnSeries.ofPowerSeries ℤ K ((jNum.map (Int.castRingHom K)) ^ n) := by
   have h : n • (-1 : ℤ) = -(n : ℤ) := by simp
   rw [jqModC, mul_pow, HahnSeries.single_pow, one_pow, h, ← map_pow]
 
+/--
+@isnad1 id=eq.1h3v.s7.92fe4cf9b0a8 from=translated src=- shape=d2e98f52 vocab=44e1e1ad
+-/
 theorem coeff_jqModC_pow_of_lt {n : ℕ} {m : ℤ} (hm : m < -(n : ℤ)) : ((jqModC K) ^ n).coeff m = 0 := by
   rw [jqModC_pow, HahnSeries.coeff_single_mul, one_mul]
   exact ofPowerSeries_coeff_of_neg _ (by omega)
@@ -32,6 +38,9 @@ end ModularCurve
 end
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_coeff_jqModC_pow_of_lt.ModularCurve in
+/--
+@isnad1 id=eq.1h3v.s7.92fe4cf9b0a8 from=translated src=- shape=d2e98f52 vocab=44e1e1ad
+-/
 theorem solution (K : Type*) [CommRing K] {b : ℕ} {m : ℤ} (hm : m < -(b : ℤ)) :
     ((jqModC K) ^ b).coeff m = 0 :=
   CharLRows.coeff_jqModC_pow_of_lt K hm

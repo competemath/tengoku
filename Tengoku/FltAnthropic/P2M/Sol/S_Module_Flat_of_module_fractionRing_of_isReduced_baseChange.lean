@@ -8,6 +8,9 @@ set_option autoImplicit false
 universe u v w x
 open scoped TensorProduct
 
+/--
+@isnad1 id=flat.0h4v.s9.0760c25836f3 from=translated src=- shape=f9c4bddb vocab=78dfe2e6
+-/
 theorem solution
     (R : Type u) [CommRing R] [IsDomain R]
     (K : Type v) [Field K] [Algebra R K] [IsFractionRing R K]

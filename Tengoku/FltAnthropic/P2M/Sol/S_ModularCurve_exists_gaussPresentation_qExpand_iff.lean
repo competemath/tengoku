@@ -15,6 +15,9 @@ open PowerSeries HahnSeries ModularCurve
 
 variable {R : Type*} [CommRing R]
 
+/--
+@isnad1 id=eq.1h3v.s7.9b4d307ff527 from=translated src=- shape=8a4291ab vocab=6ca2f719
+-/
 theorem ofPowerSeries_coeff_neg (u : PowerSeries R) {k : ℤ} (hk : k < 0) :
     (ofPowerSeries ℤ R u).coeff k = 0 := by
   rw [ofPowerSeries_apply]
@@ -23,6 +26,9 @@ theorem ofPowerSeries_coeff_neg (u : PowerSeries R) {k : ℤ} (hk : k < 0) :
   change (m : ℤ) = k at hm
   omega
 
+/--
+@isnad1 id=eq.0h3v.s9.59c44386f30d from=translated src=- shape=d05b2b85 vocab=9f6a54b0
+-/
 theorem qExpand_ofPowerSeries (N : ℕ) [NeZero N] (u : PowerSeries R) :
     qExpand R N (ofPowerSeries ℤ R u) = ofPowerSeries ℤ R (expand N (NeZero.ne N) u) := by
   have hN0 : (0 : ℤ) < N := by exact_mod_cast Nat.pos_of_ne_zero (NeZero.ne N)
@@ -43,6 +49,9 @@ theorem qExpand_ofPowerSeries (N : ℕ) [NeZero N] (u : PowerSeries R) :
       intro h
       exact hNk (by exact_mod_cast h)
 
+/--
+@isnad1 id=injectiv.1h2v.s7.f70dc0f728cc from=translated src=- shape=3ff4978e vocab=a660e2cf
+-/
 theorem expand_injective (N : ℕ) (hN : N ≠ 0) : Function.Injective (expand N hN (R := R)) := by
   intro a b h
   ext m
@@ -50,13 +59,22 @@ theorem expand_injective (N : ℕ) (hN : N ≠ 0) : Function.Injective (expand N
 
 noncomputable def slice (N r : ℕ) (a : PowerSeries R) : PowerSeries R := PowerSeries.mk fun k => coeff (N * k + r) a
 
+/--
+@isnad1 id=eq.0h5v.s8.e0c216551bfe from=translated src=- shape=0056f810 vocab=062ea23a
+-/
 @[scoped simp] theorem coeff_slice (N r : ℕ) (a : PowerSeries R) (k : ℕ) : coeff k (slice N r a) = coeff (N * k + r) a := by
   rw [slice, coeff_mk]
 
+/--
+@isnad1 id=eq.0h6v.s7.53f961541061 from=translated src=- shape=fd1976fe vocab=04febb3f
+-/
 theorem map_slice {S : Type*} [CommRing S] (f : R →+* S) (N r : ℕ) (a : PowerSeries R) :
     map f (slice N r a) = slice N r (map f a) := by
   ext k; simp [coeff_map]
 
+/--
+@isnad1 id=eq.1h3v.s7.ded294786ec1 from=translated src=- shape=3225d5a8 vocab=6585ddcd
+-/
 theorem sum_X_pow_mul_expand_slice (N : ℕ) (hN : N ≠ 0) (a : PowerSeries R) :
     ∑ r ∈ Finset.range N, (X : PowerSeries R) ^ r * expand N hN (slice N r a) = a := by
   ext n
@@ -108,6 +126,9 @@ theorem eq_zero_of_sum_single_mul_qExpand (N : ℕ) [NeZero N] (h : ℕ → Laur
     have : (r' : ℤ) = r := by rw [← h1, ← h2]; exact hmod
     exact_mod_cast this
 
+/--
+@isnad1 id=eq.0h3v.s9.a2e88e9990d6 from=translated src=- shape=90ffec65 vocab=7a47c471
+-/
 theorem ofPowerSeries_eq_sum (N : ℕ) [NeZero N] (a : PowerSeries R) :
     ofPowerSeries ℤ R a = ∑ r ∈ Finset.range N, single (r : ℤ) (1 : R) * qExpand R N (ofPowerSeries ℤ R (slice N r a)) := by
   conv_lhs => rw [← sum_X_pow_mul_expand_slice N (NeZero.ne N) a]
@@ -120,6 +141,9 @@ end GaussQExpand
 open scoped _root_.P2MW.S_ModularCurve_exists_gaussPresentation_qExpand_iff.GaussQExpand
 
 open GaussQExpand PowerSeries HahnSeries ModularCurve in
+/--
+@isnad1 id=iff.0h4v.s10.042b0d39fc12 from=translated src=- shape=8557f62c vocab=124891d1
+-/
 theorem solution
     (A : Type) [CommRing A] [IsLocalRing A] (L : Type) [Field L] [Algebra A L]
     (N : ℕ) [NeZero N] (g : LaurentSeries L) :

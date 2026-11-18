@@ -11,6 +11,9 @@ set_option autoImplicit false
 open scoped MatrixGroups Topology Manifold
 open UpperHalfPlane
 
+/--
+@isnad1 id=ex.2h3v.s13.e68beb86628c from=translated src=- shape=44e54541 vocab=51ef07ce
+-/
 theorem ModularCurve.exists_modularForm_peak_sub_le_of_discreteTopology
     (Γ : Subgroup (GL (Fin 2) ℝ))
     (hdet : ∀ γ ∈ Γ, Matrix.GeneralLinearGroup.det γ = 1)

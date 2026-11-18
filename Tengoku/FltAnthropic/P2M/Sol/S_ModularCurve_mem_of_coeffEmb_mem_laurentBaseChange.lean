@@ -34,23 +34,38 @@ noncomputable def lam (φ : L →ₗ[ℚ] ℚ) : LaurentSeries L →+ LaurentSer
   map_zero' := by ext k; simp
   map_add' x y := by ext k; simp
 
+/--
+@isnad1 id=eq.0h4v.s8.65343e5445fc from=translated src=- shape=e8430e0b vocab=228c6dc3
+-/
 @[scoped simp] theorem lam_coeff (φ : L →ₗ[ℚ] ℚ) (y : LaurentSeries L) (k : ℤ) :
     (lam φ y).coeff k = φ (y.coeff k) := rfl
 
+/--
+@isnad1 id=le.0h3v.s8.a76365944a86 from=translated src=- shape=b50b3167 vocab=0bea10dc
+-/
 theorem support_lam_subset (φ : L →ₗ[ℚ] ℚ) (y : LaurentSeries L) :
     (lam φ y).support ⊆ y.support := by
   intro k hk
   simp only [HahnSeries.mem_support, lam_coeff, ne_eq] at hk ⊢
   intro h; exact hk (by rw [h, map_zero])
 
+/--
+@isnad1 id=eq.0h4v.s9.480227c8799c from=translated src=- shape=728c76fb vocab=3f9119f9
+-/
 theorem lam_smul (φ : L →ₗ[ℚ] ℚ) (c : L) (y : LaurentSeries L) :
     lam φ (c • y) = lam (φ ∘ₗ LinearMap.mulLeft ℚ c) y := by
   ext k; simp
 
+/--
+@isnad1 id=eq.0h4v.s9.2e0128dffa5a from=translated src=- shape=0ba941ec vocab=5f36b251
+-/
 theorem lam_single_zero_mul (φ : L →ₗ[ℚ] ℚ) (c : L) (y : LaurentSeries L) :
     lam φ (HahnSeries.single 0 c * y) = lam (φ ∘ₗ LinearMap.mulLeft ℚ c) y := by
   rw [HahnSeries.single_zero_mul_eq_smul, lam_smul]
 
+/--
+@isnad1 id=eq.0h3v.s9.0fbb99d11523 from=translated src=- shape=700c97e0 vocab=6ce379ab
+-/
 theorem lam_algebraMap (φ : L →ₗ[ℚ] ℚ) (c : L) :
     lam φ (algebraMap L (LaurentSeries L) c) = algebraMap ℚ (LaurentSeries ℚ) (φ c) := by
   rw [algebraMap_laurentSeries_eq_single, algebraMap_laurentSeries_eq_single]
@@ -59,11 +74,17 @@ theorem lam_algebraMap (φ : L →ₗ[ℚ] ℚ) (c : L) :
   · simp
   · simp [HahnSeries.coeff_single_of_ne hk]
 
+/--
+@isnad1 id=eq.0h2v.s7.cf2e7b90b541 from=translated src=- shape=7cfb65ad vocab=c1167cdf
+-/
 theorem support_coeffEmb (x : LaurentSeries ℚ) : (coeffEmb L x).support = x.support := by
   ext k
   rw [HahnSeries.mem_support, HahnSeries.mem_support, coeffEmb_coeff, ne_eq, ne_eq,
     map_eq_zero_iff _ (algebraMap ℚ L).injective]
 
+/--
+@isnad1 id=eq.0h4v.s9.06cac09cece2 from=translated src=- shape=7009cdc9 vocab=f1b7cb97
+-/
 theorem lam_coeffEmb_mul (φ : L →ₗ[ℚ] ℚ) (x : LaurentSeries ℚ) (y : LaurentSeries L) :
     lam φ (coeffEmb L x * y) = x * lam φ y := by
   ext a
@@ -74,12 +95,18 @@ theorem lam_coeffEmb_mul (φ : L →ₗ[ℚ] ℚ) (x : LaurentSeries ℚ) (y : L
   refine Finset.sum_congr rfl fun ij _ => ?_
   rw [coeffEmb_coeff, lam_coeff, ← Algebra.smul_def, LinearMap.map_smul, smul_eq_mul]
 
+/--
+@isnad1 id=eq.0h3v.s9.8a3fea4f3e73 from=translated src=- shape=0dbce46e vocab=62969cdd
+-/
 theorem lam_coeffEmb (φ : L →ₗ[ℚ] ℚ) (x : LaurentSeries ℚ) :
     lam φ (coeffEmb L x) = algebraMap ℚ (LaurentSeries ℚ) (φ 1) * x := by
   have h := lam_coeffEmb_mul φ x 1
   rw [mul_one] at h
   rw [h, ← map_one (algebraMap L (LaurentSeries L)), lam_algebraMap, mul_comm]
 
+/--
+@isnad1 id=ex.1h2v.s8.f0d08788994f from=translated src=- shape=8d30530f vocab=eb650d09
+-/
 theorem exists_lam_ne_zero {y : LaurentSeries L} (hy : y ≠ 0) :
     ∃ φ : L →ₗ[ℚ] ℚ, lam φ y ≠ 0 := by
   obtain ⟨k, hk⟩ : ∃ k, y.coeff k ≠ 0 := by
@@ -89,6 +116,9 @@ theorem exists_lam_ne_zero {y : LaurentSeries L} (hy : y ≠ 0) :
     exact hk ((Module.forall_dual_apply_eq_zero_iff ℚ (y.coeff k)).mp h)
   exact ⟨φ, fun h => hφ (by simpa using congrArg (fun z => HahnSeries.coeff z k) h)⟩
 
+/--
+@isnad1 id=mem.2h5v.s10.899e0972052b from=translated src=- shape=171bd9cc vocab=8bd140f3
+-/
 theorem lam_mem_of_mem_adjoin {S : Set (LaurentSeries ℚ)} (A : Subalgebra ℚ (LaurentSeries ℚ))
     (hS : ∀ y ∈ Submonoid.closure (⇑(coeffEmb L) '' S), ∃ f ∈ A, coeffEmb L f = y)
     {r : LaurentSeries L} (hr : r ∈ Algebra.adjoin L (⇑(coeffEmb L) '' S)) (φ : L →ₗ[ℚ] ℚ) :
@@ -117,6 +147,9 @@ export _root_.ModularCurve (algebraMap_laurentSeries_eq_single coeffEmb coeffEmb
 open _root_.ModularCurve
 open CoeffDescent
 
+/--
+@isnad1 id=mem.1h3v.s9.ee1bffdb7956 from=translated src=- shape=d0c8c6e1 vocab=9e28aab1
+-/
 theorem mem_of_coeffEmb_mem_laurentBaseChange' (L : Type*) [Field L] [Algebra ℚ L]
     (F₀ : IntermediateField ℚ (LaurentSeries ℚ)) (x : LaurentSeries ℚ)
     (hx : ModularCurve.coeffEmb L x ∈ ModularCurve.laurentBaseChange L F₀) : x ∈ F₀ := by
@@ -155,6 +188,9 @@ theorem mem_of_coeffEmb_mem_laurentBaseChange' (L : Type*) [Field L] [Algebra �
 end ModularCurve
 open scoped _root_.P2MW.S_ModularCurve_mem_of_coeffEmb_mem_laurentBaseChange.ModularCurve.CoeffDescent _root_.P2MW.S_ModularCurve_mem_of_coeffEmb_mem_laurentBaseChange.ModularCurve
 
+/--
+@isnad1 id=mem.1h3v.s9.ee1bffdb7956 from=translated src=- shape=d0c8c6e1 vocab=9e28aab1
+-/
 theorem solution (L : Type*) [Field L] [Algebra ℚ L]
     (F₀ : IntermediateField ℚ (LaurentSeries ℚ)) (x : LaurentSeries ℚ)
     (hx : ModularCurve.coeffEmb L x ∈ ModularCurve.laurentBaseChange L F₀) : x ∈ F₀ :=

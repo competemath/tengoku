@@ -13,12 +13,21 @@ open ModularCurve WeierstrassCurve
 namespace GaussPencil
 namespace SS
 
+/--
+@isnad1 id=eq.0h1v.s5.f0b797f9faac from=translated src=- shape=9306f47f vocab=e8bc6838
+-/
 theorem two_eq_zero (k : Type*) [Ring k] [CharP k 2] : (2 : k) = 0 := by
   simpa using CharP.cast_eq_zero k 2
 
+/--
+@isnad1 id=eq.0h1v.s5.8c5431ff9bf2 from=translated src=- shape=9306f47f vocab=e8bc6838
+-/
 theorem cast1728_eq_zero_of_two (k : Type*) [Ring k] [CharP k 2] : (1728 : k) = 0 := by
   rw [show (1728 : k) = 2 * 864 by norm_num, two_eq_zero k, zero_mul]
 
+/--
+@isnad1 id=ex.2h2v.s8.a01b99126318 from=translated src=- shape=e85d412b vocab=cee4edb6
+-/
 theorem exists_two_torsion_char_two {k : Type*} [Field k] [CharP k 2] [DecidableEq k]
     (a : k) (h0 : a ≠ 0) (ha4 : a ^ 4 = a) :
     ∃ P : (ofJNe0Or1728 a).toAffine.Point, P ≠ 0 ∧ 2 • P = 0 := by
@@ -49,6 +58,9 @@ theorem exists_two_torsion_char_two {k : Type*} [Field k] [CharP k 2] [Decidable
 
 end GaussPencil.SS
 
+/--
+@isnad1 id=eq.2h2v.s6.b9d452265c76 from=translated src=- shape=b163faee vocab=30713750
+-/
 theorem solution
     {k : Type*} [Field k] [CharP k 2] [DecidableEq k]
     (a : k) (ha : a ∈ ssJSet 2 k) (ha2 : a ^ (2 ^ 2) = a) : a = 0 := by

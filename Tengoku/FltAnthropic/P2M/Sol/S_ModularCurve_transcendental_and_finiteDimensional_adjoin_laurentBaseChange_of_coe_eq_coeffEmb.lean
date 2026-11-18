@@ -119,6 +119,9 @@ private theorem finiteDimensional_adjoin_emb [Algebra.IsAlgebraic ℚ L] (j : �
 
 end CC2B01K4
 
+/--
+@isnad1 id=and.2h4v.s15.7632220d58aa from=translated src=- shape=bce695c4 vocab=356db537
+-/
 theorem solution
     (L : Type) [Field L] [Algebra ℚ L] [Algebra.IsAlgebraic ℚ L]
     (F₀ : IntermediateField ℚ (LaurentSeries ℚ)) (j : ↥F₀) (hj : Transcendental ℚ j)

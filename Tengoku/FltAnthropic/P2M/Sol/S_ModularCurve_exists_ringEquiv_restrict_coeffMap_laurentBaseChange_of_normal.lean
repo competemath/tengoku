@@ -25,12 +25,18 @@ noncomputable def coeffEquiv {R : Type*} [CommRing R] (e : R ≃+* R) : LaurentS
       rw [show e.symm.toRingHom.comp e.toRingHom = RingHom.id R from RingHom.ext fun r => e.symm_apply_apply r,
         ModularCurve.coeffMap_id])
 
+/--
+@isnad1 id=eq.0h3v.s9.e5b479bb76fd from=translated src=- shape=53b5b36b vocab=1f3cd174
+-/
 theorem coeffEquiv_apply {R : Type*} [CommRing R] (e : R ≃+* R) (x : LaurentSeries R) :
     coeffEquiv e x = ModularCurve.coeffMap e.toRingHom x := rfl
 
 end K2Sol
 
 open K2Sol in
+/--
+@isnad1 id=ex.8h12v.s16.7cc7377270f2 from=translated src=- shape=aae4ffeb vocab=2bbd523b
+-/
 theorem solution
     (L₀ : Type) [Field L₀] [CharZero L₀] [Normal ℚ L₀]
     (L : Type) [Field L] [CharZero L] (i : L₀ →+* L)

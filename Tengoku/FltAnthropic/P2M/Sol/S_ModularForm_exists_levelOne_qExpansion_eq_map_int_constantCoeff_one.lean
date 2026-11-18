@@ -13,9 +13,15 @@ open scoped ArithmeticFunction.sigma
 
 namespace EMONO
 
+/--
+@isnad1 id=eq.0h0v.s4.73dad4d2ed36 from=translated src=- shape=1f14c584 vocab=b8af7fdb
+-/
 theorem bernoulli_four : bernoulli 4 = -1 / 30 := by
   rw [bernoulli_eq_bernoulli'_of_ne_one (by norm_num), bernoulli'_four]
 
+/--
+@isnad1 id=eq.0h0v.s4.dc687b70bc6b from=translated src=- shape=4683683d vocab=6da1d44e
+-/
 theorem bernoulli'_six : bernoulli' 6 = 1 / 42 := by
   rw [bernoulli'_def]
   have h5 : bernoulli' 5 = 0 := bernoulli'_eq_zero_of_odd (by decide) (by norm_num)
@@ -23,14 +29,23 @@ theorem bernoulli'_six : bernoulli' 6 = 1 / 42 := by
     bernoulli'_three, bernoulli'_four, h5]
   norm_num [Nat.choose]
 
+/--
+@isnad1 id=eq.0h0v.s4.3573b4497d48 from=translated src=- shape=4683683d vocab=511b8776
+-/
 theorem bernoulli_six : bernoulli 6 = 1 / 42 := by
   rw [bernoulli_eq_bernoulli'_of_ne_one (by norm_num), bernoulli'_six]
 
 noncomputable def P (c : ℤ) (k : ℕ) : PowerSeries ℤ := PowerSeries.mk fun m => if m = 0 then 1 else c * (ArithmeticFunction.sigma k m : ℤ)
 
+/--
+@isnad1 id=eq.0h2v.s5.9039019f41d6 from=translated src=- shape=f4860a93 vocab=e6e01e1c
+-/
 theorem constantCoeff_P (c : ℤ) (k : ℕ) : PowerSeries.constantCoeff (P c k) = 1 := by
   rw [← PowerSeries.coeff_zero_eq_constantCoeff_apply, P, PowerSeries.coeff_mk, ite_eq_left rfl]
 
+/--
+@isnad1 id=eq.3h2v.s8.9abb8b170a3e from=translated src=- shape=c6c066dd vocab=da06c273
+-/
 theorem map_P_eq {k : ℕ} (hk : 3 ≤ k) (hk2 : Even k) (c : ℤ) (hc : (c : ℂ) = -(2 * k / bernoulli k : ℂ)) :
     (P c (k - 1)).map (Int.castRingHom ℂ) = UpperHalfPlane.qExpansion 1 (⇑(E hk) : UpperHalfPlane → ℂ) := by
   ext m
@@ -40,10 +55,16 @@ theorem map_P_eq {k : ℕ} (hk : 3 ≤ k) (hk2 : Even k) (c : ℤ) (hc : (c : �
   · simp only [map_mul, eq_intCast, Int.cast_natCast]
     rw [hc]
 
+/--
+@isnad1 id=eq.0h0v.s8.07ab15429ecb from=translated src=- shape=7698e0fc vocab=6238316a
+-/
 theorem map_P4 : (P 240 3).map (Int.castRingHom ℂ) = UpperHalfPlane.qExpansion 1 (⇑E₄ : UpperHalfPlane → ℂ) := by
   refine map_P_eq (k := 4) (by norm_num) ⟨2, rfl⟩ 240 ?_
   rw [bernoulli_four]; push_cast; norm_num
 
+/--
+@isnad1 id=eq.0h0v.s8.91e2a7e779d7 from=translated src=- shape=ab275673 vocab=062552f3
+-/
 theorem map_P6 : (P (-504) 5).map (Int.castRingHom ℂ) = UpperHalfPlane.qExpansion 1 (⇑E₆ : UpperHalfPlane → ℂ) := by
   refine map_P_eq (k := 6) (by norm_num) ⟨3, rfl⟩ (-504) ?_
   rw [bernoulli_six]; push_cast; norm_num
@@ -51,6 +72,9 @@ theorem map_P6 : (P (-504) 5).map (Int.castRingHom ℂ) = UpperHalfPlane.qExpans
 end EMONO
 
 open EMONO in
+/--
+@isnad1 id=ex.1h3v.s9.3db980c68d24 from=translated src=- shape=a6f28448 vocab=bb488ec5
+-/
 theorem solution (a b : ℕ) (e : ℤ)
     (he : 4 * (a : ℤ) + 6 * (b : ℤ) = e) :
     ∃ (E : ModularForm 𝒮ℒ e) (P : PowerSeries ℤ),

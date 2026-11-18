@@ -19,6 +19,9 @@ open _root_.ModularCurve.CharPReduction
 section Eval
 variable (N : ℕ) [NeZero N] {L : Type*} [Field L] (A : Subring L) {k : Type*} [Field k] (red : A →+* k)
 
+/--
+@isnad1 id=mem.0h4v.s9.8e9f698d72e7 from=translated src=- shape=ba2b260e vocab=e29b4d9b
+-/
 theorem modularEval_mem_modularRing (p : MvPolynomial (Fin 2) A) :
     modularEval N A p ∈ modularRing N A := by
   induction p using MvPolynomial.induction_on with
@@ -37,15 +40,24 @@ theorem modularEval_mem_modularRing (p : MvPolynomial (Fin 2) A) :
 noncomputable def modularEvalRing : MvPolynomial (Fin 2) A →+* modularRing N A :=
   (modularEval N A).codRestrict _ (modularEval_mem_modularRing N A)
 
+/--
+@isnad1 id=eq.0h4v.s11.69502621c10f from=translated src=- shape=f021d56a vocab=4a06503b
+-/
 @[scoped simp] theorem coe_modularEvalRing (p : MvPolynomial (Fin 2) A) :
     (modularEvalRing N A p : LaurentSeries L) = modularEval N A p := rfl
 
 noncomputable def modularEvalRed : MvPolynomial (Fin 2) A →+* LaurentSeries k :=
   MvPolynomial.eval₂Hom ((algebraMap k (LaurentSeries k)).comp red) ![jqModC k, jqNModC k N]
 
+/--
+@isnad1 id=eq.2h6v.s10.7ef3db75a6b8 from=translated src=- shape=7118c6c9 vocab=311ceadd
+-/
 theorem red_mk_eq {x : L} (hx : x ∈ A) (y : A) (h : x = (y : L)) : red ⟨x, hx⟩ = red y := by
   subst h; rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.4ead57a475e8 from=translated src=- shape=bb81f64c vocab=87965206
+-/
 theorem coeffRed_constSeries (c : A) :
     coeffRed A red ⟨constSeries A c, constSeries_mem_integralCoeffs A c⟩ = algebraMap k (LaurentSeries k) (red c) := by
   have hc : ∀ n : ℤ, (constSeries A c).coeff n = if n = 0 then (c : L) else 0 := fun n => by
@@ -62,6 +74,9 @@ theorem coeffRed_constSeries (c : A) :
     rw [red_mk_eq A red _ 0 (by rw [show (↑(⟨constSeries A c, constSeries_mem_integralCoeffs A c⟩ : integralCoeffs A) : LaurentSeries L) = constSeries A c from rfl, hc, ite_eq_right h, ZeroMemClass.coe_zero])]
     exact map_zero red
 
+/--
+@isnad1 id=eq.0h4v.s10.3b818e7cc7e9 from=translated src=- shape=52f0202e vocab=266a10d8
+-/
 theorem coeffRed_jqModC :
     coeffRed A red ⟨jqModC L, jqModC_mem_integralCoeffs A⟩ = jqModC k := by
   ext n
@@ -72,6 +87,9 @@ theorem coeffRed_jqModC :
   rw [map_intCast, jqModC_eq_map_intCast (K := k), HahnSeries.map_coeff]
   simp
 
+/--
+@isnad1 id=eq.0h5v.s10.0ab161bfbce7 from=translated src=- shape=70c79e90 vocab=6f0ca92e
+-/
 theorem coeffRed_jqNModC :
     coeffRed A red ⟨jqNModC L N, jqNModC_mem_integralCoeffs N A⟩ = jqNModC k N := by
   ext n
@@ -88,6 +106,9 @@ theorem coeffRed_jqNModC :
         rw [jqNModC, qExpand_coeff_of_not_dvd _ _ h, ZeroMemClass.coe_zero])]
     rw [map_zero, jqNModC, qExpand_coeff_of_not_dvd _ _ h]
 
+/--
+@isnad1 id=eq.0h6v.s12.483ff18c227d from=translated src=- shape=cd1a6af7 vocab=87e0e62a
+-/
 theorem redRes_modularEvalRing (p : MvPolynomial (Fin 2) A) :
     redRes A red (modularRing N A) (modularRing_le_integralCoeffs N A) (modularEvalRing N A p)
       = modularEvalRed N A red p := by
@@ -111,6 +132,9 @@ open scoped _root_.P2MW.S_ModularCurve_redRes_modularEval.ModularCurve.RedEval
 end ModularCurve
 open scoped _root_.P2MW.S_ModularCurve_redRes_modularEval.ModularCurve.RedEval _root_.P2MW.S_ModularCurve_redRes_modularEval.ModularCurve
 
+/--
+@isnad1 id=eq.1h6v.s12.c3c66d200f39 from=translated src=- shape=e6e7430b vocab=3aafa292
+-/
 theorem solution (N : ℕ) [NeZero N] {L : Type*} [Field L] (A : Subring L)
     {k : Type*} [Field k] (red : A →+* k) (p : MvPolynomial (Fin 2) A)
     (hp : NodeLocalized.modularEval N A p ∈ CharPReduction.modularRing N A) :

@@ -21,16 +21,34 @@ def zeta : ℂ := cexp (2 * π * Complex.I / N)
 
 def AZ : Subalgebra ℤ ℂ := Algebra.adjoin ℤ {zeta N}
 
+/--
+@isnad1 id=mem.0h1v.s5.41830c129819 from=translated src=- shape=2f599d3e vocab=aa6e5b57
+-/
 theorem zeta_mem : zeta N ∈ AZ N := Algebra.subset_adjoin (Set.mem_singleton _)
 
+/--
+@isnad1 id=isprimit.0h1v.s4.1490cfa55f74 from=translated src=- shape=f6d0020d vocab=33b98d3b
+-/
 theorem isPrimitiveRoot_zeta : IsPrimitiveRoot (zeta N) N := Complex.isPrimitiveRoot_exp N (NeZero.ne N)
 
+/--
+@isnad1 id=eq.0h1v.s5.908dc8dc0adc from=translated src=- shape=19bf52af vocab=059a6b2d
+-/
 theorem zeta_pow_N : zeta N ^ N = 1 := (isPrimitiveRoot_zeta N).pow_eq_one
 
+/--
+@isnad1 id=ne.0h1v.s4.022e30872dab from=translated src=- shape=a558fa7c vocab=9fd46af7
+-/
 theorem zeta_ne_zero : zeta N ≠ 0 := by unfold zeta; exact exp_ne_zero _
 
+/--
+@isnad1 id=eq.0h1v.s4.ff9d40e04c3e from=translated src=- shape=099ef998 vocab=233307e0
+-/
 theorem norm_zeta : ‖zeta N‖ = 1 := (isPrimitiveRoot_zeta N).norm'_eq_one (NeZero.ne N)
 
+/--
+@isnad1 id=mem.0h1v.s5.60e36626a7bb from=translated src=- shape=a8c5dac6 vocab=d47b8761
+-/
 theorem zeta_inv_mem : (zeta N)⁻¹ ∈ AZ N := by
   have hN : 0 < N := NeZero.pos N
   have : (zeta N)⁻¹ = zeta N ^ (N - 1) := by
@@ -38,10 +56,19 @@ theorem zeta_inv_mem : (zeta N)⁻¹ ∈ AZ N := by
       Nat.sub_add_cancel hN, zeta_pow_N]
   rw [this]; exact pow_mem (zeta_mem N) _
 
+/--
+@isnad1 id=mem.0h2v.s5.a385e6cb1287 from=translated src=- shape=675eef1f vocab=c24e6fd7
+-/
 theorem intCast_mem (z : ℤ) : (z : ℂ) ∈ AZ N := by exact_mod_cast (AZ N).algebraMap_mem z
 
+/--
+@isnad1 id=mem.0h2v.s5.9fbd6a665c9a from=translated src=- shape=d0c74913 vocab=2aa6850d
+-/
 theorem natCast_mem (n : ℕ) : (n : ℂ) ∈ AZ N := by exact_mod_cast intCast_mem N n
 
+/--
+@isnad1 id=ex.2h2v.s6.f31d8f9e549c from=translated src=- shape=0ae7a888 vocab=3d87e0d5
+-/
 theorem exists_mul_one_sub_eq {a : ℕ} (ha : 0 < a) (haN : a < N) :
     ∃ y ∈ AZ N, y * (1 - zeta N ^ a) = N := by
   set x : ℂ := zeta N ^ a with hx
@@ -75,6 +102,9 @@ def coef (i : Idx) : ℂ :=
   ![((i.1.2 : ℕ) : ℂ) * zeta N ^ (a₂ * (i.1.2 : ℕ)), ((i.1.2 : ℕ) : ℂ) * (zeta N)⁻¹ ^ (a₂ * (i.1.2 : ℕ)),
     -2 * ((i.1.2 : ℕ) : ℂ)] i.2
 
+/--
+@isnad1 id=mem.0h3v.s5.76108e4e5d76 from=translated src=- shape=7ddcae9e vocab=7341842a
+-/
 theorem coef_mem (i : Idx) : coef N a₂ i ∈ AZ N := by
   rcases i with ⟨p, j⟩
   fin_cases j
@@ -83,6 +113,9 @@ theorem coef_mem (i : Idx) : coef N a₂ i ∈ AZ N := by
   · change -2 * ((p.2 : ℕ) : ℂ) ∈ AZ N
     exact mul_mem (by exact_mod_cast intCast_mem N (-2)) (natCast_mem N _)
 
+/--
+@isnad1 id=le.0h3v.s5.c8d686f6bb0d from=translated src=- shape=3eed089f vocab=28aa59e7
+-/
 theorem norm_coef_le (i : Idx) : ‖coef N a₂ i‖ ≤ 2 * (i.1.2 : ℕ) := by
   rcases i with ⟨p, j⟩
   have h1 : (0 : ℝ) ≤ (p.2 : ℕ) := Nat.cast_nonneg _
@@ -96,6 +129,9 @@ theorem norm_coef_le (i : Idx) : ‖coef N a₂ i‖ ≤ 2 * (i.1.2 : ℕ) := by
 
 variable {N a₁} in
 
+/--
+@isnad1 id=le.1h3v.s5.e4de216e4216 from=translated src=- shape=8899e68b vocab=b23404df
+-/
 theorem mul_le_expo (ha : a₁ < N) (i : Idx) : (i.1.1 : ℕ) * (i.1.2 : ℕ) ≤ expo N a₁ i := by
   rcases i with ⟨⟨c, k⟩, j⟩
   have hc : 1 ≤ (c : ℕ) := c.2
@@ -115,10 +151,16 @@ theorem mul_le_expo (ha : a₁ < N) (i : Idx) : (i.1.1 : ℕ) * (i.1.2 : ℕ) �
     exact Nat.mul_le_mul_right _ (Nat.le_mul_of_pos_right _ (NeZero.pos N))
 
 variable {N a₁} in
+/--
+@isnad1 id=le.1h3v.s5.cd0a27cb7d86 from=translated src=- shape=091001d4 vocab=21073041
+-/
 theorem fst_le_expo (ha : a₁ < N) (i : Idx) : (i.1.1 : ℕ) ≤ expo N a₁ i :=
   le_trans (Nat.le_mul_of_pos_right _ i.1.2.2) (mul_le_expo ha i)
 
 variable {N a₁} in
+/--
+@isnad1 id=le.1h3v.s5.a23812b821c1 from=translated src=- shape=7d2b4a1b vocab=31afc844
+-/
 theorem snd_le_expo (ha : a₁ < N) (i : Idx) : (i.1.2 : ℕ) ≤ expo N a₁ i :=
   le_trans (Nat.le_mul_of_pos_left _ i.1.1.2) (mul_le_expo ha i)
 
@@ -128,6 +170,9 @@ def fibreMap (n : ℕ) : {i : Idx // expo N a₁ i = n} → (Fin (n + 1) × Fin 
   ((⟨(i.1.1.1 : ℕ), Nat.lt_succ_of_le (le_trans (fst_le_expo (Fact.out : a₁ < N) i.1) i.2.le)⟩,
     ⟨(i.1.1.2 : ℕ), Nat.lt_succ_of_le (le_trans (snd_le_expo (Fact.out : a₁ < N) i.1) i.2.le)⟩), i.1.2)
 
+/--
+@isnad1 id=injectiv.0h3v.s6.78581f61c406 from=translated src=- shape=3476bb50 vocab=da715507
+-/
 theorem fibreMap_injective (n : ℕ) : Function.Injective (fibreMap N a₁ n) := by
   rintro ⟨⟨⟨c, k⟩, j⟩, hi⟩ ⟨⟨⟨c', k'⟩, j'⟩, hi'⟩ h
   simp only [fibreMap, Prod.mk.injEq, Fin.mk.injEq] at h
@@ -143,13 +188,22 @@ scoped instance fintypeFibre (n : ℕ) : Fintype {i : Idx // expo N a₁ i = n} 
 def cT (n : ℕ) : ℂ :=
   ∑ i : {i : Idx // expo N a₁ i = n}, coef N a₂ i.1
 
+/--
+@isnad1 id=mem.0h4v.s5.1de264262d22 from=translated src=- shape=3d95c3c9 vocab=7388b50d
+-/
 theorem cT_mem (n : ℕ) : cT N a₁ a₂ n ∈ AZ N :=
   sum_mem fun i _ => coef_mem N a₂ i.1
 
+/--
+@isnad1 id=le.0h3v.s6.832822decbaa from=translated src=- shape=ccfe45bc vocab=81dcf872
+-/
 theorem card_fibre_le (n : ℕ) : Fintype.card {i : Idx // expo N a₁ i = n} ≤ (n + 1) * (n + 1) * 3 := by
   have := Fintype.card_le_of_injective _ (fibreMap_injective N a₁ n)
   simpa [Fintype.card_prod, Fintype.card_fin] using this
 
+/--
+@isnad1 id=le.0h4v.s6.d92dd738db89 from=translated src=- shape=1e59edd0 vocab=f08d80c7
+-/
 theorem norm_cT_le (n : ℕ) : ‖cT N a₁ a₂ n‖ ≤ (n + 1) * (n + 1) * 3 * (2 * n) := by
   unfold cT
   calc ‖∑ i : {i : Idx // expo N a₁ i = n}, coef N a₂ i.1‖
@@ -170,6 +224,9 @@ theorem norm_cT_le (n : ℕ) : ‖cT N a₁ a₂ n‖ ≤ (n + 1) * (n + 1) * 3 
 def cA (n : ℕ) : ℂ :=
   if a₁ = 0 then 0 else if a₁ ∣ n then ((n / a₁ : ℕ) : ℂ) * zeta N ^ (a₂ * (n / a₁)) else 0
 
+/--
+@isnad1 id=mem.0h4v.s5.fc913ac27551 from=translated src=- shape=3d95c3c9 vocab=bbb11aa4
+-/
 theorem cA_mem (n : ℕ) : cA N a₁ a₂ n ∈ AZ N := by
   unfold cA
   split_ifs
@@ -177,6 +234,9 @@ theorem cA_mem (n : ℕ) : cA N a₁ a₂ n ∈ AZ N := by
   · exact mul_mem (natCast_mem N _) (pow_mem (zeta_mem N) _)
   · exact zero_mem _
 
+/--
+@isnad1 id=le.0h4v.s5.4274ff829220 from=translated src=- shape=909307fd vocab=e1ca0450
+-/
 theorem norm_cA_le (n : ℕ) : ‖cA N a₁ a₂ n‖ ≤ n := by
   unfold cA
   split_ifs with h1 h2
@@ -187,6 +247,9 @@ theorem norm_cA_le (n : ℕ) : ‖cA N a₁ a₂ n‖ ≤ n := by
 
 def c0 : ℂ := 1 / 12 + if a₁ = 0 then zeta N ^ a₂ / (1 - zeta N ^ a₂) ^ 2 else 0
 
+/--
+@isnad1 id=mem.2h3v.s6.56f8665a8396 from=translated src=- shape=b20d22f4 vocab=ec4b5785
+-/
 theorem c0_mem (ha₂ : a₂ < N) (h0 : a₁ ≠ 0 ∨ a₂ ≠ 0) : (12 * (N : ℂ) ^ 2) * c0 N a₁ a₂ ∈ AZ N := by
   unfold c0
   split_ifs with h1
@@ -210,6 +273,9 @@ theorem c0_mem (ha₂ : a₂ < N) (h0 : a₁ ≠ 0 ∨ a₂ ≠ 0) : (12 * (N : 
 def cW (n : ℕ) : ℂ :=
   cA N a₁ a₂ n + (if n = 0 then c0 N a₁ a₂ else 0) + cT N a₁ a₂ n
 
+/--
+@isnad1 id=mem.2h4v.s7.c25b7f6f9eb4 from=translated src=- shape=804adf66 vocab=2c8790c6
+-/
 theorem cW_mem (ha₂ : a₂ < N) (h0 : a₁ ≠ 0 ∨ a₂ ≠ 0) (n : ℕ) :
     (12 * (N : ℂ) ^ 2) * cW N a₁ a₂ n ∈ AZ N := by
   unfold cW
@@ -221,6 +287,9 @@ theorem cW_mem (ha₂ : a₂ < N) (h0 : a₁ ≠ 0 ∨ a₂ ≠ 0) (n : ℕ) :
     · rw [mul_zero]; exact zero_mem _
   · exact mul_mem (mul_mem (natCast_mem N 12) (pow_mem (natCast_mem N N) 2)) (cT_mem N a₁ a₂ n)
 
+/--
+@isnad1 id=le.0h4v.s6.dc53a8d593af from=translated src=- shape=197fe966 vocab=eb60c834
+-/
 theorem norm_cW_le (n : ℕ) : ‖cW N a₁ a₂ n‖ ≤ ‖c0 N a₁ a₂‖ + 8 * (n + 1) ^ 3 := by
   unfold cW
   have h1 := norm_cA_le N a₁ a₂ n
@@ -240,13 +309,22 @@ variable (a₁ a₂ : ℕ)
 
 def qq (τ : ℍ) : ℂ := cexp (2 * π * Complex.I * (τ : ℂ) / N)
 
+/--
+@isnad1 id=eq.0h2v.s4.b666c43b8502 from=translated src=- shape=bc84e5a0 vocab=f88a19a8
+-/
 theorem qq_eq (τ : ℍ) : qq N τ = Periodic.qParam N τ := by
   unfold qq Periodic.qParam
   norm_cast
 
+/--
+@isnad1 id=eq.0h2v.s5.f7a466fd4e97 from=translated src=- shape=72ca5d74 vocab=14717ccf
+-/
 theorem norm_qq (τ : ℍ) : ‖qq N τ‖ = Real.exp (-2 * π * τ.im / N) := by
   rw [qq_eq, Periodic.norm_qParam]; rfl
 
+/--
+@isnad1 id=lt.0h2v.s4.c67698c3e2ab from=translated src=- shape=124a5909 vocab=3a32eda5
+-/
 theorem norm_qq_lt_one (τ : ℍ) : ‖qq N τ‖ < 1 := by
   rw [norm_qq, Real.exp_lt_one_iff]
   have h1 : 0 < 2 * π * τ.im / N := by
@@ -258,13 +336,34 @@ def Gt (τ : ℍ) (i : Idx) : ℂ := coef N a₂ i * qq N τ ^ expo N a₁ i
 
 def Ft (τ : ℍ) (p : ℕ+ × ℕ+) : ℂ := ∑ j : Fin 3, Gt N a₁ a₂ τ (p, j)
 
+/--
+@isnad1 id=eq.0h3v.s6.143371f4a6f3 from=translated src=- shape=93067391 vocab=15c46ddd
+-/
 theorem coef_zero (p : ℕ+ × ℕ+) : coef N a₂ (p, 0) = ((p.2 : ℕ) : ℂ) * zeta N ^ (a₂ * (p.2 : ℕ)) := rfl
+/--
+@isnad1 id=eq.0h3v.s6.0bc642d1c544 from=translated src=- shape=956fc42b vocab=08379351
+-/
 theorem coef_one (p : ℕ+ × ℕ+) : coef N a₂ (p, 1) = ((p.2 : ℕ) : ℂ) * (zeta N)⁻¹ ^ (a₂ * (p.2 : ℕ)) := rfl
+/--
+@isnad1 id=eq.0h3v.s6.81ac54cbc375 from=translated src=- shape=91ea34e4 vocab=d3b4164e
+-/
 theorem coef_two (p : ℕ+ × ℕ+) : coef N a₂ (p, 2) = -2 * ((p.2 : ℕ) : ℂ) := rfl
+/--
+@isnad1 id=eq.0h3v.s6.02f209300adf from=translated src=- shape=b35eb7e1 vocab=295fa547
+-/
 theorem expo_zero (p : ℕ+ × ℕ+) : expo N a₁ (p, 0) = ((p.1 : ℕ) * N + a₁) * (p.2 : ℕ) := rfl
+/--
+@isnad1 id=eq.0h3v.s6.36106be83889 from=translated src=- shape=b35eb7e1 vocab=bdd72e7f
+-/
 theorem expo_one (p : ℕ+ × ℕ+) : expo N a₁ (p, 1) = ((p.1 : ℕ) * N - a₁) * (p.2 : ℕ) := rfl
+/--
+@isnad1 id=eq.0h3v.s6.50fe0503eb26 from=translated src=- shape=6fc0bb9b vocab=9ddb8470
+-/
 theorem expo_two (p : ℕ+ × ℕ+) : expo N a₁ (p, 2) = (p.1 : ℕ) * N * (p.2 : ℕ) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.ee91ede1859e from=translated src=- shape=ed2ac4a3 vocab=0cc386f9
+-/
 theorem Ft_eq (τ : ℍ) (p : ℕ+ × ℕ+) : Ft N a₁ a₂ τ p =
     ((p.2 : ℕ) : ℂ) * (zeta N ^ (a₂ * (p.2 : ℕ)) * qq N τ ^ (((p.1 : ℕ) * N + a₁) * (p.2 : ℕ)) +
       (zeta N)⁻¹ ^ (a₂ * (p.2 : ℕ)) * qq N τ ^ (((p.1 : ℕ) * N - a₁) * (p.2 : ℕ)) -
@@ -272,6 +371,9 @@ theorem Ft_eq (τ : ℍ) (p : ℕ+ × ℕ+) : Ft N a₁ a₂ τ p =
   rw [Ft, Fin.sum_univ_three, Gt, Gt, Gt, coef_zero, coef_one, coef_two, expo_zero, expo_one, expo_two]
   ring
 
+/--
+@isnad1 id=summable.2h1v.s6.ae713a9aaa80 from=translated src=- shape=840a89a4 vocab=df52ddc6
+-/
 theorem summable_majorant {r : ℝ} (hr0 : 0 ≤ r) (hr1 : r < 1) :
     Summable (fun p : ℕ+ × ℕ+ => r ^ ((p.1 : ℕ) - 1) * (((p.2 : ℕ) : ℝ) * r ^ (p.2 : ℕ))) := by
   have hnr : ‖r‖ < 1 := by rw [Real.norm_eq_abs, abs_of_nonneg hr0]; exact hr1
@@ -292,6 +394,9 @@ theorem summable_majorant {r : ℝ} (hr0 : 0 ≤ r) (hr1 : r < 1) :
   have key := summable_mul_of_summable_norm (R := ℝ) h2' h1'
   exact key
 
+/--
+@isnad1 id=le.1h5v.s7.e5f17dc2a312 from=translated src=- shape=1c143166 vocab=67edfff5
+-/
 theorem norm_Gt_le (ha : a₁ < N) (τ : ℍ) (i : Idx) :
     ‖Gt N a₁ a₂ τ i‖ ≤ 2 * (‖qq N τ‖ ^ ((i.1.1 : ℕ) - 1) * (((i.1.2 : ℕ) : ℝ) * ‖qq N τ‖ ^ (i.1.2 : ℕ))) := by
   set r : ℝ := ‖qq N τ‖ with hr
@@ -310,6 +415,9 @@ theorem norm_Gt_le (ha : a₁ < N) (τ : ℍ) (i : Idx) :
         mul_le_mul (norm_coef_le N a₂ i) hpow (pow_nonneg hr0 _) (by positivity)
     _ = 2 * (r ^ ((i.1.1 : ℕ) - 1) * (((i.1.2 : ℕ) : ℝ) * r ^ (i.1.2 : ℕ))) := by rw [pow_add]; ring
 
+/--
+@isnad1 id=summable.1h4v.s5.ec61db9fa749 from=translated src=- shape=a4086689 vocab=0451619c
+-/
 theorem summable_norm_Gt (ha : a₁ < N) (τ : ℍ) : Summable (fun i : Idx => ‖Gt N a₁ a₂ τ i‖) := by
   set r : ℝ := ‖qq N τ‖ with hr
   set M : ℕ+ × ℕ+ → ℝ := fun p => 2 * (r ^ ((p.1 : ℕ) - 1) * (((p.2 : ℕ) : ℝ) * r ^ (p.2 : ℕ))) with hM
@@ -324,13 +432,22 @@ theorem summable_norm_Gt (ha : a₁ < N) (τ : ℍ) : Summable (fun i : Idx => �
   refine Summable.of_nonneg_of_le (fun i => norm_nonneg _) (fun i => ?_) hMaj
   exact norm_Gt_le N a₁ a₂ ha τ i
 
+/--
+@isnad1 id=summable.1h4v.s5.10c9418e9222 from=translated src=- shape=7b769793 vocab=940ea4a9
+-/
 theorem summable_Gt (ha : a₁ < N) (τ : ℍ) : Summable (Gt N a₁ a₂ τ) := (summable_norm_Gt N a₁ a₂ ha τ).of_norm
 
+/--
+@isnad1 id=hassum.1h4v.s6.1a19592106a5 from=translated src=- shape=b60f93e6 vocab=7cc07413
+-/
 theorem hasSum_Ft (ha : a₁ < N) (τ : ℍ) : HasSum (Ft N a₁ a₂ τ) (∑' i, Gt N a₁ a₂ τ i) :=
   (summable_Gt N a₁ a₂ ha τ).hasSum.prod_fiberwise fun p => hasSum_fintype _
 
 variable [Fact (a₁ < N)]
 
+/--
+@isnad1 id=hassum.0h4v.s6.4c04136f8cf2 from=translated src=- shape=9c4118a2 vocab=6d7ba0a2
+-/
 theorem hasSum_cT (τ : ℍ) : HasSum (fun n => cT N a₁ a₂ n * qq N τ ^ n) (∑' i, Gt N a₁ a₂ τ i) := by
   have ha : a₁ < N := Fact.out
   have h1 : HasSum (Gt N a₁ a₂ τ ∘ Equiv.sigmaFiberEquiv (expo N a₁)) (∑' i, Gt N a₁ a₂ τ i) :=
@@ -347,6 +464,9 @@ theorem hasSum_cT (τ : ℍ) : HasSum (fun n => cT N a₁ a₂ n * qq N τ ^ n) 
   rw [h3]
   exact hasSum_fintype _
 
+/--
+@isnad1 id=hassum.1h4v.s7.49b146a2bdad from=translated src=- shape=e4bb6b65 vocab=8d400549
+-/
 theorem hasSum_cA (τ : ℍ) (ha0 : a₁ ≠ 0) :
     HasSum (fun n => cA N a₁ a₂ n * qq N τ ^ n)
       (zeta N ^ a₂ * qq N τ ^ a₁ / (1 - zeta N ^ a₂ * qq N τ ^ a₁) ^ 2) := by
@@ -367,6 +487,9 @@ theorem hasSum_cA (τ : ℍ) (ha0 : a₁ ≠ 0) :
   rw [mul_pow, ← pow_mul, ← pow_mul]
   ring
 
+/--
+@isnad1 id=hassum.1h5v.s8.c2b26473b4d6 from=translated src=- shape=6a3f4d98 vocab=69e62870
+-/
 theorem hasSum_cW (X : ℍ → ℂ) (τ : ℍ)
     (hX : X τ = zeta N ^ a₂ * qq N τ ^ a₁ / (1 - zeta N ^ a₂ * qq N τ ^ a₁) ^ 2 + 1 / 12 +
       ∑' p : ℕ+ × ℕ+, Ft N a₁ a₂ τ p) :
@@ -401,8 +524,14 @@ section QExp
 
 variable (a₁ a₂ : ℕ) [Fact (a₁ < N)]
 
+/--
+@isnad1 id=lt.0h1v.s4.427b4dbfa21b from=translated src=- shape=e7d1cfd6 vocab=ce8009d3
+-/
 theorem natCast_pos : (0 : ℝ) < (N : ℝ) := Nat.cast_pos.mpr (NeZero.pos N)
 
+/--
+@isnad1 id=eq.3h4v.s7.29aa88131806 from=translated src=- shape=be06aac5 vocab=b8727ba1
+-/
 theorem qExpansion_coeff_unique' {h : ℝ} (hh : 0 < h) {g : ℍ → ℂ} {c : ℕ → ℂ}
     (hg : AnalyticAt ℂ (cuspFunction h g) 0)
     (hc : ∀ τ : ℍ, HasSum (fun m => c m • Periodic.qParam h τ ^ m) (g τ)) (m : ℕ) :
@@ -414,6 +543,9 @@ theorem qExpansion_coeff_unique' {h : ℝ} (hh : 0 < h) {g : ℍ → ℂ} {c : �
   simpa [FormalMultilinearSeries.coeff_ofScalars] using
     congr_arg (FormalMultilinearSeries.coeff · m) (h1.eq_formalMultilinearSeries h2)
 
+/--
+@isnad1 id=summable.2h4v.s7.09433d140102 from=translated src=- shape=9fb72a39 vocab=bcd66994
+-/
 theorem summable_bound {r : ℝ} (hr0 : 0 ≤ r) (hr1 : r < 1) :
     Summable (fun n : ℕ => (‖c0 N a₁ a₂‖ + 8 * ((n : ℝ) + 1) ^ 3) * r ^ n) := by
   have hnr : ‖r‖ < 1 := by rw [Real.norm_eq_abs, abs_of_nonneg hr0]; exact hr1
@@ -434,6 +566,9 @@ theorem summable_bound {r : ℝ} (hr0 : 0 ≤ r) (hr1 : r < 1) :
   refine this.congr fun n => ?_
   ring
 
+/--
+@isnad1 id=and.2h4v.s8.d9ec6a9d0edf from=translated src=- shape=a3591ca0 vocab=488eade1
+-/
 theorem qExpansion_eq_of_hasSum (X : ℍ → ℂ) (hmd : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) X)
     (hsum : ∀ τ : ℍ, HasSum (fun n => cW N a₁ a₂ n * qq N τ ^ n) (X τ)) :
     Periodic (X ∘ ofComplex) N ∧ IsBoundedAtImInfty X ∧
@@ -497,10 +632,16 @@ section Main
 
 local notation "Δ" => ModularForm.discriminant
 
+/--
+@isnad1 id=periodic.1h2v.s6.d196307adc2e from=translated src=- shape=1171b891 vocab=17297b9f
+-/
 theorem periodic_ofComplex_natCast {g : ℍ → ℂ} (h : Periodic (g ∘ ofComplex) 1) (n : ℕ) :
     Periodic (g ∘ ofComplex) n := by
   simpa using h.nat_mul n
 
+/--
+@isnad1 id=eq.0h2v.s5.5dc001f74089 from=translated src=- shape=cbc9dbd4 vocab=50569137
+-/
 theorem qParam_one_eq_pow (τ : ℍ) : Periodic.qParam 1 τ = Periodic.qParam N τ ^ N := by
   simp only [Periodic.qParam]
   rw [← Complex.exp_nat_mul]
@@ -509,6 +650,9 @@ theorem qParam_one_eq_pow (τ : ℍ) : Periodic.qParam 1 τ = Periodic.qParam N 
   push_cast
   field_simp
 
+/--
+@isnad1 id=eq.3h3v.s8.e18b89638c49 from=translated src=- shape=f59f36ac vocab=f3bcdb3d
+-/
 theorem qExpansion_coeff_widthN {g : ℍ → ℂ} (hg : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) g)
     (hper : Periodic (g ∘ ofComplex) 1) (hbd : IsBoundedAtImInfty g) (n : ℕ) :
     (qExpansion N g).coeff n = if (N : ℕ) ∣ n then (qExpansion 1 g).coeff (n / N) else 0 := by
@@ -537,6 +681,9 @@ theorem qExpansion_coeff_widthN {g : ℍ → ℂ} (hg : MDifferentiable 𝓘(ℂ
 def spread (P : PowerSeries ℤ) : PowerSeries ℤ :=
   PowerSeries.mk fun n => if (N : ℕ) ∣ n then PowerSeries.coeff (n / N) P else 0
 
+/--
+@isnad1 id=eq.1h4v.s9.b88d1eef1cf2 from=translated src=- shape=77b01aa9 vocab=c283e4f3
+-/
 theorem qExpansion_widthN_of_int {k : ℤ} (f : ModularForm 𝒮ℒ k) (P : PowerSeries ℤ)
     (hP : P.map (Int.castRingHom ℂ) = qExpansion 1 (⇑f : ℍ → ℂ)) :
     (spread N P).map (Int.castRingHom ℂ) = qExpansion N (⇑f : ℍ → ℂ) := by
@@ -556,6 +703,9 @@ def P4 : PowerSeries ℤ :=
 def P6 : PowerSeries ℤ :=
   PowerSeries.mk fun m => if m = 0 then 1 else -504 * (ArithmeticFunction.sigma 5 m : ℤ)
 
+/--
+@isnad1 id=eq.0h0v.s8.37894b852933 from=translated src=- shape=5b1c94fa vocab=016ed876
+-/
 theorem map_P4 : P4.map (Int.castRingHom ℂ) = qExpansion 1 (E₄ : ℍ → ℂ) := by
   ext n
   rw [PowerSeries.coeff_map, ModularForm.E₄, EisensteinSeries.E_qExpansion_coeff (by norm_num) (by decide) n,
@@ -567,6 +717,9 @@ theorem map_P4 : P4.map (Int.castRingHom ℂ) = qExpansion 1 (E₄ : ℍ → ℂ
     push_cast
     ring
 
+/--
+@isnad1 id=eq.0h0v.s4.dc687b70bc6b from=translated src=- shape=4683683d vocab=6da1d44e
+-/
 theorem bernoulli'_six : bernoulli' 6 = 1 / 42 := by
   rw [bernoulli'_def]
   norm_num [Finset.sum_range_succ, bernoulli'_zero, bernoulli'_one, bernoulli'_two, bernoulli'_three,
@@ -575,6 +728,9 @@ theorem bernoulli'_six : bernoulli' 6 = 1 / 42 := by
   rw [h5]
   norm_num
 
+/--
+@isnad1 id=eq.0h0v.s8.a779d0a30281 from=translated src=- shape=5b1c94fa vocab=1dfcf0b5
+-/
 theorem map_P6 : P6.map (Int.castRingHom ℂ) = qExpansion 1 (E₆ : ℍ → ℂ) := by
   ext n
   rw [PowerSeries.coeff_map, ModularForm.E₆, EisensteinSeries.E_qExpansion_coeff (by norm_num) (by decide) n,
@@ -588,8 +744,14 @@ theorem map_P6 : P6.map (Int.castRingHom ℂ) = qExpansion 1 (E₆ : ℍ → ℂ
 
 def E46 : ModularForm 𝒮ℒ 10 := (E₄.mul E₆).mcast (by norm_num)
 
+/--
+@isnad1 id=eq.0h0v.s9.e2051c35ec88 from=translated src=- shape=35359a6c vocab=5e77fa99
+-/
 theorem coe_E46 : (⇑E46 : ℍ → ℂ) = (E₄ : ℍ → ℂ) * E₆ := by rw [E46, coe_mcast, coe_mul]
 
+/--
+@isnad1 id=eq.0h1v.s8.9f6eb33ad31e from=translated src=- shape=32297524 vocab=39c3e29b
+-/
 theorem map_E46 : (spread N (P4 * P6)).map (Int.castRingHom ℂ) = qExpansion N (⇑E46 : ℍ → ℂ) := by
   apply qExpansion_widthN_of_int
   rw [map_mul, map_P4, map_P6, E46, ModularForm.qExpansion_mcast, ModularForm.coe_mul,
@@ -607,6 +769,9 @@ structure FD where
 
 variable {N}
 
+/--
+@isnad1 id=ex.1h3v.s8.526701796757 from=translated src=- shape=252a53e2 vocab=cd28f169
+-/
 theorem main (X : FD N) (v : Fin 2 → ZMod N) (hv : v ≠ 0) :
     ∃ D : ℕ, D ≠ 0 ∧ ∀ n : ℕ,
       (D : ℂ) * (qExpansion N (X.fricke v * Δ)).coeff n ∈ AZ N := by
@@ -692,6 +857,9 @@ open scoped _root_.P2MW.S_ModularCurve_exists_ne_zero_forall_mul_qExpansion_coef
 end
 open scoped _root_.P2MW.S_ModularCurve_exists_ne_zero_forall_mul_qExpansion_coeff_fricke_mem_adjoin.FrickeIntegral
 
+/--
+@isnad1 id=ex.4h5v.s10.62ec029a35db from=translated src=- shape=113e338d vocab=8d061c1e
+-/
 theorem solution
     (N : ℕ) [NeZero N]
     (L : UpperHalfPlane → PeriodPair)

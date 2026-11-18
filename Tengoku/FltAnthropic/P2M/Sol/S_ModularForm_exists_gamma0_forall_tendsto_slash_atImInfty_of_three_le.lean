@@ -17,35 +17,65 @@ variable {N : ℕ} {k : ℤ}
 
 abbrev redN (N : ℕ) (γ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) (ZMod N) := ((γ : SL(2, ZMod N)) : Matrix (Fin 2) (Fin 2) (ZMod N))
 
+/--
+@isnad1 id=eq.0h4v.s7.b880234bf6b6 from=translated src=- shape=08c9a90c vocab=ef153b84
+-/
 theorem redN_apply (γ : SL(2, ℤ)) (i j : Fin 2) : redN N γ i j = ((γ i j : ℤ) : ZMod N) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.c2b9a2d6bc8e from=translated src=- shape=96f4848b vocab=42a25942
+-/
 theorem redN_mul (γ δ : SL(2, ℤ)) : redN N (γ * δ) = redN N γ * redN N δ := by
   simp [redN, Matrix.SpecialLinearGroup.coe_mul]
 
+/--
+@isnad1 id=eq.0h1v.s7.c34bc51fe475 from=translated src=- shape=4a4f560f vocab=b3cf59b1
+-/
 theorem redN_one : redN N 1 = 1 := by simp [redN]
 
+/--
+@isnad1 id=eq.0h4v.s8.a5e11e1dc819 from=translated src=- shape=9a054c12 vocab=4c4e648f
+-/
 theorem vecMul_redN_mul (b : Fin 2 → ZMod N) (γ δ : SL(2, ℤ)) :
     b ᵥ* redN N (γ * δ) = (b ᵥ* redN N γ) ᵥ* redN N δ := by
   rw [redN_mul, Matrix.vecMul_vecMul]
 
+/--
+@isnad1 id=eq.0h2v.s6.57a006797942 from=translated src=- shape=8c4bd4aa vocab=04d992f5
+-/
 theorem vecMul_redN_one (b : Fin 2 → ZMod N) : b ᵥ* redN N 1 = b := by rw [redN_one, Matrix.vecMul_one]
 
+/--
+@isnad1 id=eq.0h3v.s7.8f0f6273176a from=translated src=- shape=2ac81dd5 vocab=f63b7626
+-/
 theorem vecMul_redN_mul_inv (b : Fin 2 → ZMod N) (γ : SL(2, ℤ)) : (b ᵥ* redN N γ) ᵥ* redN N γ⁻¹ = b := by
   rw [← vecMul_redN_mul, mul_inv_cancel, vecMul_redN_one]
 
+/--
+@isnad1 id=eq.0h3v.s7.b7bba71dc2e3 from=translated src=- shape=aa4475a6 vocab=f63b7626
+-/
 theorem vecMul_redN_inv_mul (b : Fin 2 → ZMod N) (γ : SL(2, ℤ)) : (b ᵥ* redN N γ⁻¹) ᵥ* redN N γ = b := by
   rw [← vecMul_redN_mul, inv_mul_cancel, vecMul_redN_one]
 
+/--
+@isnad1 id=eq.0h2v.s9.81469129ad29 from=translated src=- shape=ba15255e vocab=e9053614
+-/
 theorem redN_T_zpow (m : ℤ) : redN N (ModularGroup.T ^ m) = !![1, (m : ZMod N); 0, 1] := by
   ext i j
   rw [redN_apply, show ((ModularGroup.T ^ m : SL(2, ℤ)) i j : ℤ) = (!![(1 : ℤ), m; 0, 1] : Matrix (Fin 2) (Fin 2) ℤ) i j from by
     rw [← ModularGroup.coe_T_zpow]]
   fin_cases i <;> fin_cases j <;> simp
 
+/--
+@isnad1 id=eq.0h3v.s7.68dbc0a91553 from=translated src=- shape=271ce12c vocab=fa71449e
+-/
 theorem vecMul_zero_s (s : ZMod N) (M : Matrix (Fin 2) (Fin 2) (ZMod N)) : ![0, s] ᵥ* M = ![s * M 1 0, s * M 1 1] := by
   funext j
   fin_cases j <;> simp [Matrix.vecMul, dotProduct, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.0h3v.s8.655261553aa0 from=translated src=- shape=62305e58 vocab=864be95f
+-/
 theorem vecMul_zero_s_T_zpow (s : ZMod N) (m : ℤ) : ![0, s] ᵥ* redN N (ModularGroup.T ^ m) = ![0, s] := by
   rw [redN_T_zpow, vecMul_zero_s]
   simp
@@ -55,6 +85,9 @@ noncomputable def cst (k : ℤ) (a : Fin 2 → ZMod N) : ℂ :=
 
 noncomputable def lim (k : ℤ) (v : Fin 2 → ℤ) : ℂ := if v 0 = 0 then ((v 1 : ℂ)) ^ (-k) else 0
 
+/--
+@isnad1 id=tendsto.1h2v.s5.e9a896fe4964 from=translated src=- shape=10f60c7e vocab=209f5ae0
+-/
 theorem tendsto_eisSummand (hk : 3 ≤ k) (v : Fin 2 → ℤ) :
     Tendsto (fun z : ℍ => eisSummand k v z) atImInfty (𝓝 (lim k v)) := by
   by_cases hv : v 0 = 0
@@ -83,8 +116,14 @@ theorem tendsto_eisSummand (hk : 3 ≤ k) (v : Fin 2 → ℤ) :
 
 def stripFilter (N : ℕ) : Filter ℍ := atImInfty ⊓ 𝓟 (verticalStrip N 1)
 
+/--
+@isnad1 id=le.0h1v.s4.3140fd7842da from=translated src=- shape=0d914058 vocab=52292916
+-/
 theorem stripFilter_le (N : ℕ) : stripFilter N ≤ atImInfty := inf_le_left
 
+/--
+@isnad1 id=tendsto.1h3v.s7.66e78f587756 from=translated src=- shape=88abd9f6 vocab=0c9cc98f
+-/
 theorem tendsto_eisensteinSeries_strip [NeZero N] (hk : 3 ≤ k) (a : Fin 2 → ZMod N) :
     Tendsto (eisensteinSeries a k) (stripFilter N) (𝓝 (∑' x : gammaSet N 1 a, lim k x)) := by
   have hk' : (2 : ℝ) < k := by norm_cast
@@ -102,6 +141,9 @@ theorem tendsto_eisensteinSeries_strip [NeZero N] (hk : 3 ≤ k) (a : Fin 2 → 
     rw [eisSummand, norm_zpow]
     exact_mod_cast summand_bound_of_mem_verticalStrip hkr (x : Fin 2 → ℤ) one_pos hz
 
+/--
+@isnad1 id=iff.1h3v.s7.d008a37cde03 from=translated src=- shape=066c80f1 vocab=446fa756
+-/
 theorem mem_gammaSet_iff_of_apply_zero {v : Fin 2 → ℤ} (hv : v 0 = 0) (a : Fin 2 → ZMod N) :
     v ∈ gammaSet N 1 a ↔ (v = ![0, 1] ∨ v = ![0, -1]) ∧ (↑) ∘ v = a := by
   constructor
@@ -117,6 +159,9 @@ theorem mem_gammaSet_iff_of_apply_zero {v : Fin 2 → ℤ} (hv : v 0 = 0) (a : F
     refine ⟨ha, ?_⟩
     rcases h with rfl | rfl <;> simp
 
+/--
+@isnad1 id=eq.0h3v.s7.b6fcae65f84c from=translated src=- shape=ffc84f48 vocab=2fbc6791
+-/
 theorem tsum_lim [NeZero N] (a : Fin 2 → ZMod N) : ∑' x : gammaSet N 1 a, lim k x = cst k a := by
   classical
   rw [tsum_subtype (gammaSet N 1 a) (lim k)]
@@ -160,6 +205,9 @@ theorem tsum_lim [NeZero N] (a : Fin 2 → ZMod N) : ∑' x : gammaSet N 1 a, li
         exact (mem_gammaSet_iff_of_apply_zero (by simp) a).mpr ⟨Or.inr rfl, by rw [ha]; funext i; fin_cases i <;> simp⟩
       rw [ite_eq_right ha]
 
+/--
+@isnad1 id=eq.0h5v.s8.e19e2a3fa597 from=translated src=- shape=d37f5e2d vocab=f0cb437e
+-/
 theorem eisensteinSeries_T_zpow_smul [NeZero N] (a : Fin 2 → ZMod N) (m : ℤ) (z : ℍ) :
     eisensteinSeries a k (ModularGroup.T ^ ((N : ℤ) * m) • z) = eisensteinSeries a k z := by
   have h1 := congrFun (eisensteinSeries_slash_apply a k (ModularGroup.T ^ ((N : ℤ) * m))) z
@@ -183,6 +231,9 @@ theorem eisensteinSeries_T_zpow_smul [NeZero N] (a : Fin 2 → ZMod N) (m : ℤ)
     rw [this, Matrix.vecMul_one]
   exact h1.trans (congrFun (congrArg (fun b => eisensteinSeries b k) ha) z)
 
+/--
+@isnad1 id=tendsto.1h3v.s5.b26e5bd23edd from=translated src=- shape=896b6f9c vocab=6cd55fea
+-/
 theorem tendsto_eisensteinSeries [NeZero N] (hk : 3 ≤ k) (a : Fin 2 → ZMod N) :
     Tendsto (eisensteinSeries a k) atImInfty (𝓝 (cst k a)) := by
   have hstrip := tendsto_eisensteinSeries_strip hk a
@@ -209,6 +260,9 @@ theorem tendsto_eisensteinSeries [NeZero N] (hk : 3 ≤ k) (a : Fin 2 → ZMod N
 
 section Sym
 
+/--
+@isnad1 id=eq.0h5v.s7.f8e0bfa6ad24 from=translated src=- shape=24c58bd1 vocab=2dc95a7b
+-/
 theorem finset_sum_slash {ι : Type*} (s : Finset ι) (F : ι → ℍ → ℂ) (γ : SL(2, ℤ)) :
     (∑ i ∈ s, F i) ∣[k] γ = ∑ i ∈ s, F i ∣[k] γ := by
   classical
@@ -216,6 +270,9 @@ theorem finset_sum_slash {ι : Type*} (s : Finset ι) (F : ι → ℍ → ℂ) (
   | empty => simp [SlashAction.zero_slash]
   | insert i s hi ih => rw [Finset.sum_insert hi, Finset.sum_insert hi, SlashAction.add_slash, ih]
 
+/--
+@isnad1 id=isbounde.1h3v.s5.d2aea86f79f8 from=translated src=- shape=ec4d3a62 vocab=6bc474db
+-/
 theorem isBoundedAtImInfty_finset_sum {ι : Type*} (s : Finset ι) (F : ι → ℍ → ℂ)
     (h : ∀ i ∈ s, IsBoundedAtImInfty (F i)) : IsBoundedAtImInfty (∑ i ∈ s, F i) := by
   classical
@@ -225,6 +282,9 @@ theorem isBoundedAtImInfty_finset_sum {ι : Type*} (s : Finset ι) (F : ι → �
     rw [Finset.sum_insert hi]
     exact (h i (Finset.mem_insert_self i s)).add (ih fun j hj => h j (Finset.mem_insert_of_mem hj))
 
+/--
+@isnad1 id=mdiffere.1h3v.s7.f75c581fe00d from=translated src=- shape=35efda7b vocab=15ada416
+-/
 theorem mdifferentiable_finset_sum {ι : Type*} (s : Finset ι) (F : ι → ℍ → ℂ)
     (h : ∀ i ∈ s, MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (F i)) : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (∑ i ∈ s, F i) := by
   classical
@@ -238,6 +298,9 @@ variable (O : Finset (Fin 2 → ZMod N))
 
 noncomputable def FO (k : ℤ) (O : Finset (Fin 2 → ZMod N)) : ℍ → ℂ := ∑ b ∈ O, eisensteinSeries b k
 
+/--
+@isnad1 id=eq.0h4v.s7.046fcd26bb20 from=translated src=- shape=52444a4f vocab=c5b5f349
+-/
 theorem FO_slash (γ : SL(2, ℤ)) : FO k O ∣[k] γ = ∑ b ∈ O, eisensteinSeries (b ᵥ* redN N γ) k := by
   rw [FO, finset_sum_slash]
   exact Finset.sum_congr rfl fun b _ => eisensteinSeries_slash_apply b k γ
@@ -246,15 +309,24 @@ def IsStable (O : Finset (Fin 2 → ZMod N)) : Prop := ∀ γ : SL(2, ℤ), γ �
 
 variable {O}
 
+/--
+@isnad1 id=eq.2h4v.s8.6810860cb870 from=translated src=- shape=1b5251aa vocab=ea7be355
+-/
 theorem FO_slash_of_mem (hO : IsStable O) {γ : SL(2, ℤ)} (hγ : γ ∈ Gamma0 N) : FO k O ∣[k] γ = FO k O := by
   rw [FO_slash, FO]
   exact Finset.sum_nbij' (fun b => b ᵥ* redN N γ) (fun b => b ᵥ* redN N γ⁻¹) (fun b hb => hO γ hγ b hb)
     (fun b hb => hO γ⁻¹ (Subgroup.inv_mem _ hγ) b hb) (fun b _ => vecMul_redN_mul_inv b γ)
     (fun b _ => vecMul_redN_inv_mul b γ) (fun b _ => rfl)
 
+/--
+@isnad1 id=mdiffere.1h3v.s7.5fe6eec51378 from=translated src=- shape=7224a4cc vocab=12f726b8
+-/
 theorem mdifferentiable_FO (hk : 3 ≤ k) : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (FO k O) :=
   mdifferentiable_finset_sum O _ fun b _ => eisensteinSeriesSIF_mdifferentiable hk b
 
+/--
+@isnad1 id=isbounde.1h4v.s6.a934aa8e57cc from=translated src=- shape=1e2bb10b vocab=b2eab8c4
+-/
 theorem isBoundedAtImInfty_FO_slash [NeZero N] (hk : 3 ≤ k) (γ : SL(2, ℤ)) : IsBoundedAtImInfty (FO k O ∣[k] γ) := by
   rw [FO_slash]
   refine isBoundedAtImInfty_finset_sum O _ fun b _ => ?_
@@ -276,8 +348,14 @@ noncomputable def eisO [NeZero N] (hk : 3 ≤ k) (hO : IsStable O) : ModularForm
     intro γ _
     exact isBoundedAtImInfty_FO_slash hk γ
 
+/--
+@isnad1 id=eq.2h3v.s8.826c51b5c1e2 from=translated src=- shape=dcb38a41 vocab=0744b291
+-/
 @[scoped simp] theorem coe_eisO [NeZero N] (hk : 3 ≤ k) (hO : IsStable O) : (⇑(eisO hk hO) : ℍ → ℂ) = FO k O := rfl
 
+/--
+@isnad1 id=tendsto.1h4v.s7.6dfa6e603d4d from=translated src=- shape=8cbaba41 vocab=e70daff1
+-/
 theorem tendsto_FO_slash [NeZero N] (hk : 3 ≤ k) (σ : SL(2, ℤ)) :
     Tendsto (fun z => (FO k O ∣[k] σ) z) atImInfty (𝓝 (∑ b ∈ O, cst k (b ᵥ* redN N σ))) := by
   rw [FO_slash]
@@ -297,10 +375,16 @@ def Rel (σ σ' : SL(2, ℤ)) : Prop := ∃ γ : SL(2, ℤ), γ ∈ Gamma0 N ∧
 
 variable {N}
 
+/--
+@isnad1 id=rel.1h3v.s5.48a47ebb06ba from=translated src=- shape=e8df1886 vocab=49c934cc
+-/
 theorem Rel.symm {σ σ' : SL(2, ℤ)} (h : Rel N σ σ') : Rel N σ' σ := by
   obtain ⟨γ, hγ, j, rfl⟩ := h
   exact ⟨γ⁻¹, Subgroup.inv_mem _ hγ, -j, by rw [zpow_neg]; group⟩
 
+/--
+@isnad1 id=rel.2h4v.s6.d36c91ce2728 from=translated src=- shape=d49ca935 vocab=49c934cc
+-/
 theorem Rel.trans {σ σ' σ'' : SL(2, ℤ)} (h : Rel N σ σ') (h' : Rel N σ' σ'') : Rel N σ σ'' := by
   obtain ⟨γ, hγ, j, rfl⟩ := h
   obtain ⟨γ', hγ', j', rfl⟩ := h'
@@ -315,12 +399,18 @@ noncomputable def orb [NeZero N] (σ₀ : SL(2, ℤ)) : Finset (Fin 2 → ZMod N
 
 variable {N} [NeZero N]
 
+/--
+@isnad1 id=iff.0h3v.s9.9314fb24b674 from=translated src=- shape=68f75673 vocab=0e500289
+-/
 theorem mem_orb {σ₀ : SL(2, ℤ)} {b : Fin 2 → ZMod N} :
     b ∈ orb N σ₀ ↔ ∃ γ : SL(2, ℤ), γ ∈ Gamma0 N ∧
       (b = ![0, 1] ᵥ* redN N (σ₀⁻¹ * γ) ∨ b = ![0, -1] ᵥ* redN N (σ₀⁻¹ * γ)) := by
   classical
   simp [orb]
 
+/--
+@isnad1 id=isstable.0h2v.s5.b21dedb797eb from=translated src=- shape=de2cf411 vocab=c7ea33c4
+-/
 theorem isStable_orb (σ₀ : SL(2, ℤ)) : IsStable (orb N σ₀) := by
   intro γ hγ b hb
   rw [mem_orb] at hb ⊢
@@ -333,17 +423,26 @@ theorem isStable_orb (σ₀ : SL(2, ℤ)) : IsStable (orb N σ₀) := by
 def cstN (a : Fin 2 → ZMod N) : ℕ := (if a = ![0, 1] then 1 else 0) + (if a = ![0, -1] then 1 else 0)
 
 omit [NeZero N] in
+/--
+@isnad1 id=eq.1h3v.s4.a11c96447fb5 from=translated src=- shape=cde4d686 vocab=d751188f
+-/
 theorem cst_eq_cstN (hke : Even k) (a : Fin 2 → ZMod N) : cst k a = (cstN a : ℂ) := by
   rw [cst, cstN, (even_neg.mpr hke).neg_one_zpow]
   push_cast
   rfl
 
 omit [NeZero N] in
+/--
+@isnad1 id=iff.0h2v.s7.9751d0abcb27 from=translated src=- shape=f75fd6c0 vocab=20b190b4
+-/
 theorem cstN_ne_zero_iff (a : Fin 2 → ZMod N) : cstN a ≠ 0 ↔ a = ![0, 1] ∨ a = ![0, -1] := by
   unfold cstN
   by_cases h1 : a = ![0, 1] <;> by_cases h2 : a = ![0, -1] <;> simp [h1, h2]
 
 omit [NeZero N] in
+/--
+@isnad1 id=eq.0h3v.s7.437d60ac28b7 from=translated src=- shape=63a18bcd vocab=54305cae
+-/
 theorem cstN_vecMul_T_zpow (a : Fin 2 → ZMod N) (j : ℤ) : cstN (a ᵥ* redN N (ModularGroup.T ^ j)) = cstN a := by
   have key : ∀ s : ZMod N, a ᵥ* redN N (ModularGroup.T ^ j) = ![0, s] ↔ a = ![0, s] := by
     intro s
@@ -358,11 +457,17 @@ theorem cstN_vecMul_T_zpow (a : Fin 2 → ZMod N) (j : ℤ) : cstN (a ᵥ* redN 
 
 noncomputable def mult (σ₀ σ : SL(2, ℤ)) : ℕ := ∑ b ∈ orb N σ₀, cstN (b ᵥ* redN N σ)
 
+/--
+@isnad1 id=eq.0h4v.s8.19cbe8a5ea08 from=translated src=- shape=898dc841 vocab=077885d7
+-/
 theorem mult_mul_T_zpow (σ₀ σ : SL(2, ℤ)) (j : ℤ) : mult (N := N) σ₀ (σ * ModularGroup.T ^ j) = mult (N := N) σ₀ σ := by
   unfold mult
   refine Finset.sum_congr rfl fun b _ => ?_
   rw [vecMul_redN_mul, cstN_vecMul_T_zpow]
 
+/--
+@isnad1 id=eq.1h4v.s8.ee7bc3075691 from=translated src=- shape=4387ed8e vocab=62867d3e
+-/
 theorem mult_mul_left (σ₀ σ : SL(2, ℤ)) {γ : SL(2, ℤ)} (hγ : γ ∈ Gamma0 N) :
     mult (N := N) σ₀ (γ * σ) = mult (N := N) σ₀ σ := by
   unfold mult
@@ -371,10 +476,16 @@ theorem mult_mul_left (σ₀ σ : SL(2, ℤ)) {γ : SL(2, ℤ)} (hγ : γ ∈ Ga
     (fun b _ => vecMul_redN_inv_mul b γ) (fun b _ => ?_)
   rw [vecMul_redN_mul]
 
+/--
+@isnad1 id=eq.1h4v.s6.c4bb0e44d8f7 from=translated src=- shape=ca8029fb vocab=d62e9f41
+-/
 theorem mult_eq_of_rel (σ₀ : SL(2, ℤ)) {σ σ' : SL(2, ℤ)} (h : Rel N σ σ') : mult (N := N) σ₀ σ' = mult (N := N) σ₀ σ := by
   obtain ⟨γ, hγ, j, rfl⟩ := h
   rw [mult_mul_T_zpow, mult_mul_left σ₀ σ hγ]
 
+/--
+@isnad1 id=ne.0h2v.s5.5183595a6bd7 from=translated src=- shape=bf55988d vocab=8ff9a8fc
+-/
 theorem mult_self_ne_zero (σ₀ : SL(2, ℤ)) : mult (N := N) σ₀ σ₀ ≠ 0 := by
   intro h
   rw [mult, Finset.sum_eq_zero_iff] at h
@@ -386,6 +497,9 @@ theorem mult_self_ne_zero (σ₀ : SL(2, ℤ)) : mult (N := N) σ₀ σ₀ ≠ 0
 
 omit [NeZero N] in
 
+/--
+@isnad1 id=ex.2h3v.s10.8cdab3d1e0eb from=translated src=- shape=f09e1921 vocab=aeb35ed9
+-/
 theorem exists_mem_Gamma_of_vecMul_eq (δ : SL(2, ℤ)) (s : ℤ) (hs : s = 1 ∨ s = -1)
     (h : ![0, 1] ᵥ* redN N δ = ![0, (s : ZMod N)]) :
     ∃ (ε : SL(2, ℤ)) (κ : SL(2, ℤ)) (j : ℤ), (ε = 1 ∨ ε = -1) ∧ κ ∈ Gamma N ∧ δ = ε * κ * ModularGroup.T ^ j := by
@@ -437,6 +551,9 @@ theorem exists_mem_Gamma_of_vecMul_eq (δ : SL(2, ℤ)) (s : ℤ) (hs : s = 1 �
     · rw [e11]; push_cast; rw [h10, h11]; ring
   · rw [hδ', zpow_neg]; group
 
+/--
+@isnad1 id=rel.1h3v.s6.5520313f8de7 from=translated src=- shape=6c7e0ae3 vocab=d62e9f41
+-/
 theorem rel_of_mult_ne_zero {σ₀ σ : SL(2, ℤ)} (h : mult (N := N) σ₀ σ ≠ 0) : Rel N σ₀ σ := by
   rw [mult] at h
   obtain ⟨b, hb, hbσ⟩ := Finset.exists_ne_zero_of_sum_ne_zero h
@@ -495,6 +612,9 @@ variable (N) [NeZero N]
 noncomputable def rep (q : SL(2, ℤ) ⧸ Gamma0 N) : SL(2, ℤ) := q.out⁻¹
 
 omit [NeZero N] in
+/--
+@isnad1 id=rel.0h2v.s6.0b6807be36d6 from=translated src=- shape=12617446 vocab=13e133b2
+-/
 theorem rel_rep_mk_inv (σ : SL(2, ℤ)) : Rel N (rep N (QuotientGroup.mk σ⁻¹ : SL(2, ℤ) ⧸ Gamma0 N)) σ := by
   obtain ⟨γ, hγ⟩ := QuotientGroup.mk_out_eq_mul (Gamma0 N) σ⁻¹
   refine ⟨(γ : SL(2, ℤ)), γ.2, 0, ?_⟩
@@ -502,6 +622,9 @@ theorem rel_rep_mk_inv (σ : SL(2, ℤ)) : Rel N (rep N (QuotientGroup.mk σ⁻�
 
 variable {N}
 
+/--
+@isnad1 id=ex.3h3v.s10.168ca0c0957d from=translated src=- shape=6cb7024b vocab=44a08edd
+-/
 theorem main (hk : 3 ≤ k) (hke : Even k) (v : SL(2, ℤ) → ℂ)
     (hv : ∀ (σ γ : SL(2, ℤ)), γ ∈ Gamma0 N → ∀ j : ℤ, v (γ * σ * ModularGroup.T ^ j) = v σ) :
     ∃ f : ModularForm (Gamma0 N) k, ∀ σ : SL(2, ℤ),
@@ -585,6 +708,9 @@ end Main
 end A2EIS
 open scoped _root_.P2MW.S_ModularForm_exists_gamma0_forall_tendsto_slash_atImInfty_of_three_le.A2EIS
 
+/--
+@isnad1 id=ex.3h3v.s10.a75a0f007739 from=translated src=- shape=c6a7dc61 vocab=44a08edd
+-/
 theorem solution (N : ℕ) [NeZero N] (k : ℤ)
     (hk : 3 ≤ k) (hke : Even k) (v : SL(2, ℤ) → ℂ)
     (hv : ∀ (σ γ : SL(2, ℤ)), γ ∈ CongruenceSubgroup.Gamma0 N → ∀ j : ℤ, v (γ * σ * ModularGroup.T ^ j) = v σ) :

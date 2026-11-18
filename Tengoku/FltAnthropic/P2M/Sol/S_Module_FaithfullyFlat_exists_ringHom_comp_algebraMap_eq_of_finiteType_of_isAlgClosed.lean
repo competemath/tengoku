@@ -12,6 +12,9 @@ universe u
 
 open TensorProduct
 
+/--
+@isnad1 id=ex.0h4v.s7.e5e31643711e from=translated src=- shape=9dc736d3 vocab=cfefc4e5
+-/
 theorem solution
     {S : Type u} [CommRing S] (S' : Type u) [CommRing S'] [Algebra S S']
     [Module.FaithfullyFlat S S'] [Algebra.FiniteType S S']

@@ -14,6 +14,9 @@ namespace LocCritSol
 
 variable {A : Type*} [CommRing A] (B : Type*) [CommRing B] [Algebra A B]
 
+/--
+@isnad1 id=le.0h4v.s11.1b30163a9c68 from=translated src=- shape=cf1b205d vocab=a0d57b43
+-/
 theorem range_rTensor_subtype_smul_top_le (I : Ideal A) (P : Type*) [AddCommGroup P] [Module A P] :
     LinearMap.range (LinearMap.rTensor B (I • (⊤ : Submodule A P)).subtype) ≤ I • (⊤ : Submodule A (P ⊗[A] B)) := by
   rintro _ ⟨t, rfl⟩
@@ -35,6 +38,9 @@ theorem range_rTensor_subtype_smul_top_le (I : Ideal A) (P : Type*) [AddCommGrou
 end LocCritSol
 
 open LocCritSol in
+/--
+@isnad1 id=flat.2h3v.s10.d54cdd109bf8 from=translated src=- shape=4d6808dd vocab=04a0b0ad
+-/
 theorem solution
     {A B : Type*} [CommRing A] [CommRing B] [Algebra A B] [IsNoetherianRing A] [IsNoetherianRing B]
     (I : Ideal A) (hI : I.map (algebraMap A B) ≤ (⊥ : Ideal B).jacobson)

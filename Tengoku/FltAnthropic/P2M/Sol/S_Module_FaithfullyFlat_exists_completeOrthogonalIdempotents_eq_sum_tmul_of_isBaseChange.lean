@@ -263,6 +263,9 @@ end Module.FaithfullyFlat
 
 open _root_.Module.FaithfullyFlat _root_.P2MW.S_Module_FaithfullyFlat_exists_completeOrthogonalIdempotents_eq_sum_tmul_of_isBaseChange.Module.FaithfullyFlat in
 
+/--
+@isnad1 id=ex.3h4v.s10.fdb5efe5fcbb from=translated src=- shape=fcd47fad vocab=655ca0ea
+-/
 theorem solution
     (A : Type u) [CommRing A] [Module.FaithfullyFlat ℤ A]
     {G : Type v} [AddCommGroup G] [Fintype G]

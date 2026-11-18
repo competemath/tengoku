@@ -11,6 +11,9 @@ namespace P2MW.S_Module_End_trace_eq_of_mul_self_sub_smul_add_smul_eq_zero
 
 open Matrix
 
+/--
+@isnad1 id=eq.3h6v.s10.704e90c893fd from=translated src=- shape=a6a896f6 vocab=a6a07b2e
+-/
 theorem solution {k : Type*} [Field k] {V : Type*} [AddCommGroup V] [Module k V]
     (b : Module.Basis (Fin 2) k V) {f : Module.End k V} {a c : k}
     (hrel : f * f - a • f + c • 1 = 0) (hdet : LinearMap.det f = c) (hc : c ≠ 0) :

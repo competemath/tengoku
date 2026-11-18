@@ -20,6 +20,9 @@ namespace CosetPoly
 
 open ModularForm
 
+/--
+@isnad1 id=eq.0h1v.s8.df8917939df4 from=translated src=- shape=3d4d5f77 vocab=ec2cc098
+-/
 theorem det_eq (g : SL(2, ℤ)) : g 0 0 * g 1 1 - g 0 1 * g 1 0 = 1 := by
   have h := g.det_coe
   rwa [Matrix.det_fin_two] at h

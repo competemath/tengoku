@@ -14,6 +14,9 @@ namespace ModularCurve
 export _root_.ModularCurve (jq coeff_jq_pow_self coeff_jq_pow_of_lt evalAtJ evalAtJ_X)
 open _root_.ModularCurve
 
+/--
+@isnad1 id=eq.1h2v.s6.ce90909892c2 from=translated src=- shape=4e79022c vocab=c486aad6
+-/
 theorem coeff_evalAtJ_neg_natDegree (P : Polynomial ℤ) (d : ℕ) (hd : P.natDegree ≤ d) :
     (evalAtJ P).coeff (-(d : ℤ)) = (P.coeff d : ℚ) := by
   have hsum : evalAtJ P = ∑ e ∈ Finset.range (d + 1), (P.coeff e : LaurentSeries ℚ) * jq ^ e := by
@@ -46,6 +49,9 @@ theorem eq_zero_of_natDegree_le_of_coeff_evalAtJ_eq_zero' (P : Polynomial ℤ) (
 
 end ModularCurve
 
+/--
+@isnad1 id=eq.2h2v.s7.c7f09f92b406 from=translated src=- shape=ada04ed1 vocab=6e484796
+-/
 theorem solution (P : Polynomial ℤ) (n : ℕ)
     (hP : P.natDegree ≤ n) (h : ∀ m : ℤ, -(n : ℤ) ≤ m → m ≤ 0 → (evalAtJ P).coeff m = 0) : P = 0 :=
   ModularCurve.eq_zero_of_natDegree_le_of_coeff_evalAtJ_eq_zero' P n hP h

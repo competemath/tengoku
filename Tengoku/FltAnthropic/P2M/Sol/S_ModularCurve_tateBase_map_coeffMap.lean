@@ -14,6 +14,9 @@ namespace TateBaseCoeffAux
 
 open ModularCurve
 
+/--
+@isnad1 id=eq.0h4v.s8.26d29d953e7c from=translated src=- shape=f1272d01 vocab=b31bae85
+-/
 theorem coeffMap_laurentOfInt {R S : Type*} [CommRing R] [CommRing S] (f : R →+* S) (p : PowerSeries ℤ) :
     coeffMap f (laurentOfInt R p) = laurentOfInt S p := by
   ext k
@@ -25,6 +28,9 @@ theorem coeffMap_laurentOfInt {R S : Type*} [CommRing R] [CommRing S] (f : R →
     simp
   · rw [ofPowerSeries_coeff_of_neg _ hk, ofPowerSeries_coeff_of_neg _ hk, map_zero]
 
+/--
+@isnad1 id=eq.0h5v.s9.58a3cfbe3ba5 from=translated src=- shape=0f099109 vocab=6d87040a
+-/
 theorem coeffMap_qExpand {R S : Type*} [CommRing R] [CommRing S] (f : R →+* S) (N : ℕ) [NeZero N]
     (x : LaurentSeries R) :
     coeffMap f (qExpand R N x) = qExpand S N (coeffMap f x) := by
@@ -38,6 +44,9 @@ end TateBaseCoeffAux
 
 open TateBaseCoeffAux
 
+/--
+@isnad1 id=eq.0h4v.s6.1234b70ecc19 from=translated src=- shape=b8ed767f vocab=7e10e7a3
+-/
 theorem solution {K K' : Type*} [CommRing K] [CommRing K'] (f : K →+* K') (N : ℕ) [NeZero N] :
     (ModularCurve.tateBase K N).map (ModularCurve.coeffMap f) = ModularCurve.tateBase K' N := by
   simp only [ModularCurve.tateBase, ModularCurve.tateLaurent, WeierstrassCurve.map_map]

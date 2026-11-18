@@ -13,6 +13,9 @@ namespace AlgLiftSol
 
 open TensorProduct
 
+/--
+@isnad1 id=mem.2h7v.s8.c79b0ea748b0 from=translated src=- shape=f89cf1da vocab=36efe1d2
+-/
 theorem mem_smul_top_of_sum_smul_eq_zero {R : Type*} [CommRing R] (𝔪 : Ideal R) {n : ℕ} (x : Fin n → R)
     (hx : ∀ r : Fin n → R, ∑ b, r b * x b = 0 → ∀ b, r b ∈ 𝔪)
     {M : Type*} [AddCommGroup M] [Module R M] [Module.Flat R M]
@@ -24,6 +27,9 @@ theorem mem_smul_top_of_sum_smul_eq_zero {R : Type*} [CommRing R] (𝔪 : Ideal 
   rw [← ha j]
   exact Finset.sum_congr rfl fun i _ => mul_comm _ _
 
+/--
+@isnad1 id=eq.1h4v.s8.0b4573e4ded9 from=translated src=- shape=2bd2a672 vocab=a1713a71
+-/
 theorem one_tmul_eq_zero_of_mem {R : Type*} [CommRing R] (k : Type*) [CommRing k] [Algebra R k]
     {M : Type*} [AddCommGroup M] [Module R M] (z : M)
     (hz : z ∈ RingHom.ker (algebraMap R k) • (⊤ : Submodule R M)) : (1 : k) ⊗ₜ[R] z = 0 := by
@@ -31,6 +37,9 @@ theorem one_tmul_eq_zero_of_mem {R : Type*} [CommRing R] (k : Type*) [CommRing k
   · rw [tmul_smul, smul_tmul', Algebra.smul_def, RingHom.mem_ker.mp hμ, zero_mul, zero_tmul]
   · rw [tmul_add, hu, hv, add_zero]
 
+/--
+@isnad1 id=eq.3h5v.s8.804264fad200 from=translated src=- shape=0629b95d vocab=bdba9f80
+-/
 theorem smul_eq_zero_of_one_tmul_eq_zero {R : Type*} [CommRing R] (k : Type*) [CommRing k] [Algebra R k]
     (hk : Function.Surjective (algebraMap R k)) (x : R) (hx : ∀ m ∈ RingHom.ker (algebraMap R k), m * x = 0)
     {M : Type*} [AddCommGroup M] [Module R M] (u : M) (hu : (1 : k) ⊗ₜ[R] u = 0) : x • u = 0 := by
@@ -54,6 +63,9 @@ theorem smul_eq_zero_of_one_tmul_eq_zero {R : Type*} [CommRing R] (k : Type*) [C
   rw [TensorProduct.lift.tmul, map_zero, h1] at h2
   exact h2
 
+/--
+@isnad1 id=ex.2h5v.s9.4fd5ceadbac1 from=translated src=- shape=0dce6e9f vocab=b396edb5
+-/
 theorem exists_indep_repr {R : Type*} [CommRing R] (𝔪 : Ideal R) [h𝔪 : 𝔪.IsMaximal] (I : Ideal R)
     (hI : I * 𝔪 = ⊥) {M : Type*} [AddCommGroup M] [Module R M] (c : M)
     (hc : c ∈ I • (⊤ : Submodule R M)) :
@@ -128,6 +140,9 @@ theorem exists_indep_repr {R : Type*} [CommRing R] (𝔪 : Ideal R) [h𝔪 : �
 end AlgLiftSol
 
 open AlgLiftSol in
+/--
+@isnad1 id=ex.5h9v.s10.7fedc42d1314 from=translated src=- shape=7ac4256d vocab=7145fe40
+-/
 theorem solution
     {R : Type u} [CommRing R] (k : Type u) [Field k] [Algebra R k] (hk : Function.Surjective (algebraMap R k))
     (I : Ideal R) (hI : I * RingHom.ker (algebraMap R k) = ⊥)

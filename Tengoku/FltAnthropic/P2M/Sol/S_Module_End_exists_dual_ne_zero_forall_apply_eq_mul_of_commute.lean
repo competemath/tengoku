@@ -15,6 +15,9 @@ open Module
 variable {K : Type*} [Field K] [IsAlgClosed K]
 variable {W : Type*} [AddCommGroup W] [Module K W] [FiniteDimensional K W]
 
+/--
+@isnad1 id=ex.1h4v.s8.e3af0c65e2bc from=translated src=- shape=41855a9e vocab=8713eccb
+-/
 theorem exists_forall_apply_eq_smul_of_commute [Nontrivial W]
     {ι : Type*} (T : ι → Module.End K W) (hT : ∀ i j, Commute (T i) (T j)) :
     ∃ v : W, v ≠ 0 ∧ ∃ c : ι → K, ∀ i, T i v = c i • v := by
@@ -67,6 +70,9 @@ theorem exists_forall_apply_eq_smul_of_commute [Nontrivial W]
   obtain ⟨v, hvU, hv0⟩ := (Submodule.ne_bot_iff U).mp hU0
   exact ⟨v, hv0, c, fun i => hc i v hvU⟩
 
+/--
+@isnad1 id=ex.1h4v.s9.9f8e98909d8b from=translated src=- shape=8ecd72c8 vocab=b514db17
+-/
 theorem exists_dual_ne_zero_forall_comp_eq_smul_of_commute [Nontrivial W]
     {ι : Type*} (T : ι → Module.End K W) (hT : ∀ i j, Commute (T i) (T j)) :
     ∃ (μ : W →ₗ[K] K) (c : ι → K), μ ≠ 0 ∧ ∀ (i : ι) (w : W), μ (T i w) = c i * μ w := by
@@ -86,6 +92,9 @@ theorem exists_dual_ne_zero_forall_comp_eq_smul_of_commute [Nontrivial W]
 
 end WsF.CommonEigen
 
+/--
+@isnad1 id=ex.1h4v.s9.9f8e98909d8b from=translated src=- shape=8ecd72c8 vocab=b514db17
+-/
 theorem solution
     {K : Type*} [Field K] [IsAlgClosed K]
     {W : Type*} [AddCommGroup W] [Module K W] [FiniteDimensional K W] [Nontrivial W]

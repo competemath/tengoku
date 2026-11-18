@@ -39,6 +39,9 @@ section Uniqueness
 
 variable {F : Type*} [FunLike F ℍ ℂ] {Γ : Subgroup (GL (Fin 2) ℝ)} {k : ℤ}
 
+/--
+@isnad1 id=hassum.1h5v.s7.2e6044798039 from=translated src=- shape=8910d5e3 vocab=c825276e
+-/
 theorem hasSum_qCoeff [ModularFormClass F Γ k] (f : F) (hΓ : (1 : ℝ) ∈ Γ.strictPeriods) (τ : ℍ) :
     HasSum (fun m ↦ qCoeff f m • Periodic.qParam 1 τ ^ m) (f τ) := by
   haveI : Fact (IsCusp OnePoint.infty Γ) := ⟨Γ.isCusp_of_mem_strictPeriods one_pos hΓ⟩
@@ -70,5 +73,8 @@ end M4cP1W2
 
 end
 
+/--
+@isnad1 id=eq.2h5v.s7.671a7a324aa3 from=translated src=- shape=59ddcdc7 vocab=3d1e697a
+-/
 theorem solution {F : Type*} [FunLike F UpperHalfPlane ℂ] {Γ : Subgroup (Matrix.GeneralLinearGroup (Fin 2) ℝ)} {k : ℤ} [ModularFormClass F Γ k] {f g : F} (hΓ : (1 : ℝ) ∈ Γ.strictPeriods) (h : ∀ n : ℕ, ModularFormClass.qCoeff f n = ModularFormClass.qCoeff g n) : f = g :=
   M4cP1W2.eq_of_forall_qCoeff_eq hΓ h

@@ -16,19 +16,31 @@ noncomputable def cay (c : ℂ) (u : ℂ) : ℂ := (c - conj c * u) / (1 - u)
 
 noncomputable def uOf (c p : ℂ) : ℂ := (p - c) / (p - conj c)
 
+/--
+@isnad1 id=eq.0h1v.s3.2244a845818c from=translated src=- shape=1fa26838 vocab=cba8c70c
+-/
 theorem cay_zero (c : ℂ) : cay c 0 = c := by simp [cay]
 
+/--
+@isnad1 id=ne.1h1v.s5.66695d3f34f3 from=translated src=- shape=e0aee735 vocab=0fcc4b44
+-/
 theorem one_sub_ne_zero {u : ℂ} (hu : ‖u‖ < 1) : (1 : ℂ) - u ≠ 0 := by
   intro h
   have : u = 1 := by linear_combination -h
   simp [this] at hu
 
+/--
+@isnad1 id=ne.2h2v.s6.75e15a81c7a9 from=translated src=- shape=bf42ef9d vocab=b953ecf7
+-/
 theorem sub_conj_ne_zero {c p : ℂ} (hc : 0 < c.im) (hp : 0 < p.im) : p - conj c ≠ 0 := by
   intro h
   have := congrArg Complex.im h
   simp at this
   linarith
 
+/--
+@isnad1 id=eq.1h2v.s6.fb7064ed7691 from=translated src=- shape=f4725752 vocab=4e3f2626
+-/
 theorem im_cay_mul (c u : ℂ) (hu : ‖u‖ < 1) :
     (cay c u).im * ‖1 - u‖ ^ 2 = c.im * (1 - ‖u‖ ^ 2) := by
   have h1 : (1 : ℂ) - u ≠ 0 := one_sub_ne_zero hu
@@ -43,6 +55,9 @@ theorem im_cay_mul (c u : ℂ) (hu : ‖u‖ < 1) :
   simp [Complex.mul_im, Complex.sub_re, Complex.sub_im, Complex.mul_re, Complex.conj_re, Complex.conj_im]
   ring
 
+/--
+@isnad1 id=lt.2h2v.s5.7382ebeb16f7 from=translated src=- shape=1e3b2d24 vocab=03bb15aa
+-/
 theorem im_cay_pos {c u : ℂ} (hc : 0 < c.im) (hu : ‖u‖ < 1) : 0 < (cay c u).im := by
   have h := im_cay_mul c u hu
   have h1 : 0 < ‖1 - u‖ ^ 2 := by
@@ -56,6 +71,9 @@ theorem im_cay_pos {c u : ℂ} (hc : 0 < c.im) (hu : ‖u‖ < 1) : 0 < (cay c u
   have : (cay c u).im * ‖1 - u‖ ^ 2 ≤ 0 := mul_nonpos_of_nonpos_of_nonneg hneg h1.le
   linarith
 
+/--
+@isnad1 id=le.3h3v.s6.93c0e56692dd from=translated src=- shape=db633277 vocab=74da7c94
+-/
 theorem im_cay_ge {c u : ℂ} (hc : 0 < c.im) {R : ℝ} (hR : R < 1) (hu : ‖u‖ ≤ R) :
     c.im * ((1 - R ^ 2) / 4) ≤ (cay c u).im := by
   have hu1 : ‖u‖ < 1 := lt_of_le_of_lt hu hR
@@ -76,6 +94,9 @@ theorem im_cay_ge {c u : ℂ} (hc : 0 < c.im) {R : ℝ} (hR : R < 1) (hu : ‖u�
       _ ≤ (cay c u).im * 4 := mul_le_mul_of_nonneg_left hden hpos.le
   linarith
 
+/--
+@isnad1 id=eq.2h2v.s5.8343d52d3e4f from=translated src=- shape=763cfb6e vocab=92801df6
+-/
 theorem cay_uOf {c p : ℂ} (hc : 0 < c.im) (hp : 0 < p.im) : cay c (uOf c p) = p := by
   have h1 := sub_conj_ne_zero hc hp
   have h2 : (1 : ℂ) - uOf c p ≠ 0 := by
@@ -88,6 +109,9 @@ theorem cay_uOf {c p : ℂ} (hc : 0 < c.im) (hp : 0 < p.im) : cay c (uOf c p) = 
   field_simp
   ring
 
+/--
+@isnad1 id=lt.2h2v.s5.0434959991fd from=translated src=- shape=5969a5a0 vocab=2785265e
+-/
 theorem norm_uOf_lt_one {c p : ℂ} (hc : 0 < c.im) (hp : 0 < p.im) : ‖uOf c p‖ < 1 := by
   unfold uOf
   have h1 := sub_conj_ne_zero hc hp
@@ -98,6 +122,9 @@ theorem norm_uOf_lt_one {c p : ℂ} (hc : 0 < c.im) (hp : 0 < p.im) : ‖uOf c p
     nlinarith
   exact lt_of_pow_lt_pow_left₀ 2 (norm_nonneg _) this
 
+/--
+@isnad1 id=hasderiv.1h2v.s7.df143cd8045f from=translated src=- shape=6d4e75fb vocab=e248c97f
+-/
 theorem hasDerivAt_cay (c : ℂ) {u : ℂ} (hu : (1 : ℂ) - u ≠ 0) :
     HasDerivAt (cay c) ((c - conj c) / (1 - u) ^ 2) u := by
   unfold cay
@@ -112,15 +139,24 @@ theorem hasDerivAt_cay (c : ℂ) {u : ℂ} (hu : (1 : ℂ) - u ≠ 0) :
   · rfl
   ring
 
+/--
+@isnad1 id=differen.1h2v.s6.c274a53d7c42 from=translated src=- shape=747b1508 vocab=023b6df4
+-/
 theorem differentiableAt_cay (c : ℂ) {u : ℂ} (hu : (1 : ℂ) - u ≠ 0) : DifferentiableAt ℂ (cay c) u :=
   (hasDerivAt_cay c hu).differentiableAt
 
+/--
+@isnad1 id=analytic.1h2v.s5.789306baba24 from=translated src=- shape=747b1508 vocab=f351e008
+-/
 theorem analyticAt_cay (c : ℂ) {u : ℂ} (hu : (1 : ℂ) - u ≠ 0) : AnalyticAt ℂ (cay c) u := by
   apply DifferentiableOn.analyticAt (s := {u : ℂ | (1 : ℂ) - u ≠ 0})
   · intro v hv; exact (differentiableAt_cay c hv).differentiableWithinAt
   · have hopen : IsOpen {u : ℂ | (1 : ℂ) - u ≠ 0} := isOpen_ne_fun (continuous_const.sub continuous_id) continuous_const
     exact hopen.mem_nhds hu
 
+/--
+@isnad1 id=ne.2h2v.s6.100c1fcca6a7 from=translated src=- shape=deb8d08c vocab=f0e94345
+-/
 theorem deriv_cay_ne_zero {c u : ℂ} (hc : 0 < c.im) (hu : (1 : ℂ) - u ≠ 0) : deriv (cay c) u ≠ 0 := by
   rw [(hasDerivAt_cay c hu).deriv]
   apply div_ne_zero _ (pow_ne_zero 2 hu)
@@ -134,6 +170,9 @@ end T2bA9
 namespace T2bA9
 
 open MeromorphicOn in
+/--
+@isnad1 id=le.8h5v.s7.96bdaa498fc4 from=translated src=- shape=40fdb455 vocab=b6cde91b
+-/
 theorem natOrder_le_of_bound {F : ℂ → ℂ} {r R B : ℝ} (hr : 0 < r) (hrR : r < R)
     (hF : AnalyticOnNhd ℂ F (closedBall 0 R)) (hF0 : F 0 ≠ 0) (hB : 1 ≤ B)
     (hbd : ∀ u ∈ sphere (0 : ℂ) R, ‖F u‖ ≤ B * ‖F 0‖) {u₁ : ℂ} (hu₁ : ‖u₁‖ ≤ r)
@@ -198,6 +237,9 @@ variable {Γ : Subgroup (GL (Fin 2) ℝ)} [Γ.HasDetOne] {k : ℤ}
 
 noncomputable def mgauge (f : ModularForm Γ k) (τ : ℍ) : ℝ := ‖f τ‖ ^ 2 * (τ.im) ^ k
 
+/--
+@isnad1 id=eq.1h5v.s9.1dea3988f234 from=translated src=- shape=ec2b4dd0 vocab=f73f3b84
+-/
 theorem mgauge_smul (f : ModularForm Γ k) {γ : GL (Fin 2) ℝ} (hγ : γ ∈ Γ) (τ : ℍ) :
     mgauge f (γ • τ) = mgauge f τ := by
   unfold mgauge
@@ -211,11 +253,17 @@ theorem mgauge_smul (f : ModularForm Γ k) {γ : GL (Fin 2) ℝ} (hγ : γ ∈ �
     rw [← zpow_natCast (‖denom γ τ‖ ^ k) 2, ← zpow_mul, ← zpow_natCast, ← zpow_mul, mul_comm]]
   field_simp
 
+/--
+@isnad1 id=continuo.0h3v.s6.5d76c34a3278 from=translated src=- shape=37140793 vocab=fd9f9dbd
+-/
 theorem continuous_mgauge (f : ModularForm Γ k) : Continuous (mgauge f) := by
   unfold mgauge
   refine ((continuous_norm.comp f.holo'.continuous).pow 2).mul ?_
   exact Continuous.zpow₀ UpperHalfPlane.continuous_im k fun τ => Or.inl τ.im_pos.ne'
 
+/--
+@isnad1 id=ex.2h4v.s9.5b117394acbf from=translated src=- shape=3feb139b vocab=c661240a
+-/
 theorem exists_max_mem (K : Set ℍ) (hK : IsCompact K) (hcov : ∀ τ : ℍ, ∃ γ ∈ Γ, γ • τ ∈ K)
     (f : ModularForm Γ k) : ∃ c ∈ K, ∀ τ : ℍ, mgauge f τ ≤ mgauge f c := by
   have hne : K.Nonempty := by
@@ -230,9 +278,15 @@ theorem exists_max_mem (K : Set ℍ) (hK : IsCompact K) (hcov : ∀ τ : ℍ, �
 def U : Set ℂ := {z : ℂ | 0 < z.im}
 
 omit [Γ.HasDetOne] in
+/--
+@isnad1 id=isopen.0h0v.s4.b570c4866640 from=translated src=- shape=25b03439 vocab=69d2d522
+-/
 theorem isOpen_U : IsOpen U := isOpen_lt continuous_const Complex.continuous_im
 
 omit [Γ.HasDetOne] in
+/--
+@isnad1 id=differen.0h3v.s7.f52bba05d5c8 from=translated src=- shape=24f8ebbf vocab=c0de0384
+-/
 theorem differentiableOn_comp_ofComplex (f : ModularForm Γ k) :
     DifferentiableOn ℂ (fun z : ℂ => f (ofComplex z)) U := by
   intro z hz
@@ -240,10 +294,16 @@ theorem differentiableOn_comp_ofComplex (f : ModularForm Γ k) :
   exact h.differentiableWithinAt
 
 omit [Γ.HasDetOne] in
+/--
+@isnad1 id=analytic.1h4v.s7.510f6790aa4b from=translated src=- shape=e630e3a4 vocab=2db23cf3
+-/
 theorem analyticAt_comp_ofComplex (f : ModularForm Γ k) {z : ℂ} (hz : 0 < z.im) :
     AnalyticAt ℂ (fun z : ℂ => f (ofComplex z)) z :=
   (differentiableOn_comp_ofComplex f).analyticAt (isOpen_U.mem_nhds hz)
 
+/--
+@isnad1 id=eq.1h5v.s9.d0ef44817d71 from=translated src=- shape=b5cb942f vocab=37d9bf96
+-/
 theorem analyticOrderAt_smul (f : ModularForm Γ k) {γ : GL (Fin 2) ℝ} (hγ : γ ∈ Γ) (τ : ℍ) :
     analyticOrderAt (fun z : ℂ => f (ofComplex z)) ((γ • τ : ℍ) : ℂ) =
       analyticOrderAt (fun z : ℂ => f (ofComplex z)) (τ : ℂ) := by
@@ -308,12 +368,18 @@ namespace T2bA9
 variable {Γ : Subgroup (GL (Fin 2) ℝ)} [Γ.HasDetOne] {k : ℤ}
 
 omit [Γ.HasDetOne] in
+/--
+@isnad1 id=analytic.1h5v.s7.07ed8bcd3614 from=translated src=- shape=89664823 vocab=973c3a99
+-/
 theorem analyticAt_fibre (f : ModularForm Γ k) (c : ℍ) {u : ℂ} (hu : ‖u‖ < 1) :
     AnalyticAt ℂ (fun u : ℂ => f (ofComplex (cay c u))) u := by
   have h1 : (1 : ℂ) - u ≠ 0 := one_sub_ne_zero hu
   have h2 : 0 < (cay c u).im := im_cay_pos c.im_pos hu
   exact (analyticAt_comp_ofComplex f h2).comp (analyticAt_cay c h1)
 
+/--
+@isnad1 id=ne.2h4v.s7.fb0b6747b339 from=translated src=- shape=c4ab5642 vocab=40db22f0
+-/
 theorem apply_ne_zero_of_max (f : ModularForm Γ k) (hf : (f : ℍ → ℂ) ≠ 0) {c : ℍ}
     (hmax : ∀ τ : ℍ, mgauge f τ ≤ mgauge f c) : f c ≠ 0 := by
   intro h0
@@ -332,6 +398,9 @@ theorem apply_ne_zero_of_max (f : ModularForm Γ k) (hf : (f : ℍ → ℂ) ≠ 
   have : ‖f τ‖ = 0 := by nlinarith [norm_nonneg (f τ)]
   simpa using this
 
+/--
+@isnad1 id=le.5h7v.s8.c711ea9185ff from=translated src=- shape=896daf1a vocab=36831b25
+-/
 theorem fibre_bound (f : ModularForm Γ k) (n : ℕ) (hk : k = n) {c : ℍ}
     (hmax : ∀ τ : ℍ, mgauge f τ ≤ mgauge f c) {R : ℝ} (hR0 : 0 ≤ R) (hR1 : R < 1)
     {u : ℂ} (hu : ‖u‖ ≤ R) :
@@ -382,6 +451,9 @@ namespace T2bA9
 
 variable {Γ : Subgroup (GL (Fin 2) ℝ)} [Γ.HasDetOne] {k : ℤ}
 
+/--
+@isnad1 id=ex.2h2v.s9.4248d1f0a5aa from=translated src=- shape=9dccc0ef vocab=d53612b7
+-/
 theorem exists_order_bound (K : Set ℍ) (hK : IsCompact K) (hcov : ∀ τ : ℍ, ∃ γ ∈ Γ, γ • τ ∈ K) :
     ∃ C : ℕ, ∀ (k : ℤ) (n : ℕ), k = n → ∀ f : ModularForm Γ k, (f : ℍ → ℂ) ≠ 0 → ∀ τ : ℍ,
       analyticOrderAt (fun z : ℂ => f (ofComplex z)) (τ : ℂ) ≤ (C * n : ℕ) := by
@@ -483,6 +555,9 @@ theorem exists_order_bound (K : Set ℍ) (hK : IsCompact K) (hcov : ∀ τ : ℍ
   rw [← hsm, ← hcayu, ← hcomp, ← Nat.cast_analyticOrderNatAt htop]
   exact_mod_cast hnat
 
+/--
+@isnad1 id=and.1h3v.s7.7abfa1d21d87 from=translated src=- shape=4d62171c vocab=de13be67
+-/
 theorem finite_and_finrank_le_of_orderBound (k : ℤ) (B : ℕ)
     (h : ∀ f : ModularForm Γ k, (f : ℍ → ℂ) ≠ 0 →
       analyticOrderAt (fun z : ℂ => f (ofComplex z)) (UpperHalfPlane.I : ℂ) ≤ B) :
@@ -531,6 +606,9 @@ theorem finite_and_finrank_le_of_orderBound (k : ℤ) (B : ℕ)
 end T2bA9
 
 open T2bA9 in
+/--
+@isnad1 id=ex.1h1v.s10.082ea04a4641 from=translated src=- shape=ec1c2f65 vocab=694966d3
+-/
 theorem solution
     (Γ : Subgroup (GL (Fin 2) ℝ)) [Γ.HasDetOne]
     [hdisc : DiscreteTopology ↥Γ]

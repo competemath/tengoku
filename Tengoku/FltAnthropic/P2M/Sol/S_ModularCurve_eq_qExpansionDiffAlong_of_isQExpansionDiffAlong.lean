@@ -98,6 +98,9 @@ private theorem ModularCurve.eq_qExpansionDiffAlong_of_isQExpansionDiffAlong {K 
 namespace AlgebraicCurve export _root_.AlgebraicCurve (IsTraceDiff traceDiff) end AlgebraicCurve
 open scoped _root_.AlgebraicCurve in
 
+/--
+@isnad1 id=eq.1h5v.s8.e5c88201ed3a from=translated src=- shape=371759a3 vocab=35e03c8c
+-/
 theorem solution {K F L : Type*} [Field K] [Field F] [Algebra K F] [Field L] [Algebra K L] (σ : F →ₐ[K] LaurentSeries L) {φ : Ω[F⁄K] →ₗ[K] LaurentSeries L} (hφ : IsQExpansionDiffAlong σ φ) : φ = qExpansionDiffAlong σ :=
   ModularCurve.eq_qExpansionDiffAlong_of_isQExpansionDiffAlong σ hφ
 

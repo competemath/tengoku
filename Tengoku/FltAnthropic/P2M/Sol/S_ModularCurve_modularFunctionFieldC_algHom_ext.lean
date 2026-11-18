@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open ModularCurve
 
+/--
+@isnad1 id=eq.2h5v.s14.bfe49efe9f37 from=translated src=- shape=d982e734 vocab=706d84be
+-/
 theorem solution (K : Type*) [Field K] (ℓ : ℕ) [NeZero ℓ] {A : Type*} [Semiring A] [Algebra K A]
     {f g : modularFunctionFieldC K ℓ →ₐ[K] A}
     (h1 : f ⟨jqModC K, jqModC_mem K ℓ⟩ = g ⟨jqModC K, jqModC_mem K ℓ⟩)

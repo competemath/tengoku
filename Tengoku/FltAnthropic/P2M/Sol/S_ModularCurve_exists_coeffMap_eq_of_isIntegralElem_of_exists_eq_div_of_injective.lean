@@ -13,6 +13,9 @@ namespace GaussQExp
 
 variable {R : Type*} [CommRing R] {S : Type*} [CommRing S]
 
+/--
+@isnad1 id=injectiv.1h3v.s7.b9b889a30d7b from=translated src=- shape=e9a217a9 vocab=4399a17a
+-/
 lemma coeffMap_injective (φ : R →+* S) (hφ : Function.Injective φ) :
     Function.Injective (coeffMap φ : LaurentSeries R →+* LaurentSeries S) := by
   intro x y h
@@ -21,6 +24,9 @@ lemma coeffMap_injective (φ : R →+* S) (hφ : Function.Injective φ) :
   simp only [coeffMap_coeff] at this
   exact hφ this
 
+/--
+@isnad1 id=isintegr.0h1v.s5.500d91d5d131 from=translated src=- shape=46b8a2f7 vocab=d8d5bb8e
+-/
 lemma isIntegrallyClosed_laurentSeries [IsDomain R] [IsPrincipalIdealRing R] :
     IsIntegrallyClosed (LaurentSeries R) := by
   haveI : Nonempty (GCDMonoid (PowerSeries R)) := ⟨UniqueFactorizationMonoid.toGCDMonoid _⟩
@@ -29,6 +35,9 @@ lemma isIntegrallyClosed_laurentSeries [IsDomain R] [IsPrincipalIdealRing R] :
     (Submonoid.powers (PowerSeries.X : PowerSeries R)) ?_
   exact powers_le_nonZeroDivisors_of_noZeroDivisors PowerSeries.X_ne_zero
 
+/--
+@isnad1 id=ex.3h4v.s9.b8d87babdb30 from=translated src=- shape=17a25465 vocab=82bb5478
+-/
 theorem main [IsDomain R] [IsPrincipalIdealRing R] {K : Type*} [Field K] (φ : R →+* K)
     (hφ : Function.Injective φ) (y : LaurentSeries K)
     (hy : ∃ a b : LaurentSeries R, b ≠ 0 ∧ y = coeffMap φ a / coeffMap φ b)
@@ -61,6 +70,9 @@ theorem main [IsDomain R] [IsPrincipalIdealRing R] {K : Type*} [Field K] (φ : R
 
 end GaussQExp
 
+/--
+@isnad1 id=ex.3h4v.s9.b8d87babdb30 from=translated src=- shape=17a25465 vocab=82bb5478
+-/
 theorem solution
     {R : Type*} [CommRing R] [IsDomain R] [IsPrincipalIdealRing R]
     {K : Type*} [Field K] (φ : R →+* K) (hφ : Function.Injective φ)

@@ -20,6 +20,9 @@ open scoped TensorProduct
 
 variable {B : Type u} [CommRing B]
 
+/--
+@isnad1 id=subsingl.1h2v.s8.ed3982bf010c from=translated src=- shape=45c41a08 vocab=2b8bd7a8
+-/
 theorem subsingleton_of_forall (Q : Type*) [AddCommGroup Q] [Module B Q]
     (h : ∀ (M : Ideal B), M.IsMaximal →
       ∃ (C : Type u) (_ : CommRing C) (_ : Algebra B C) (_ : Module.Flat B C),
@@ -62,6 +65,9 @@ theorem subsingleton_of_forall (Q : Type*) [AddCommGroup Q] [Module B Q]
     infer_instance
   exact hMC (top_le_iff.1 (htop ▸ Ideal.map_mono hIM))
 
+/--
+@isnad1 id=flat.1h2v.s8.002fc90a20fd from=translated src=- shape=00d537eb vocab=7fe9039f
+-/
 theorem flat_of_forall (H : Type*) [AddCommGroup H] [Module B H]
     (h : ∀ (M : Ideal B), M.IsMaximal →
       ∃ (C : Type u) (_ : CommRing C) (_ : Algebra B C) (_ : Module.Flat B C),
@@ -113,6 +119,9 @@ theorem flat_of_forall (H : Type*) [AddCommGroup H] [Module B H]
 set_option maxHeartbeats 3200000 in
 set_option synthInstance.maxHeartbeats 400000 in
 
+/--
+@isnad1 id=ne.2h4v.s8.f7a80a51a63b from=translated src=- shape=12750278 vocab=150b907d
+-/
 theorem smul_top_ne_top (H : Type*) [AddCommGroup H] [Module B H]
     (M : Ideal B) (C : Type u) [CommRing C] [Algebra B C]
     (hMC : M.map (algebraMap B C) ≠ ⊤) (hff : Module.FaithfullyFlat C (C ⊗[B] H)) :
@@ -136,6 +145,9 @@ theorem smul_top_ne_top (H : Type*) [AddCommGroup H] [Module B H]
 
 end Module.FaithfullyFlat.LocalAlg
 
+/--
+@isnad1 id=faithful.1h2v.s8.10b447e57e75 from=translated src=- shape=8205a1ba vocab=7ecfe2e5
+-/
 theorem solution
     (B : Type u) [CommRing B] (H : Type v) [AddCommGroup H] [Module B H]
     (h : ∀ (M : Ideal B), M.IsMaximal →

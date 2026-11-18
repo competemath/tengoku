@@ -8,6 +8,9 @@ namespace P2MW.S_ModularCurve_order_coeffMap
 open ModularCurve
 open scoped TensorProduct
 
+/--
+@isnad1 id=eq.1h4v.s8.f0b1ffdffb0d from=translated src=- shape=f7b6e29d vocab=95da3a03
+-/
 theorem solution {R S : Type*} [CommRing R] [CommRing S] {φ : R →+* S} (hφ : Function.Injective φ) (x : LaurentSeries R) :
     (coeffMap φ x).order = x.order := by
   by_cases hx : x = 0

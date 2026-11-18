@@ -16,6 +16,9 @@ variable {Γ : Subgroup SL(2, ℤ)} {k : ℤ}
 
 def PM (Γ : Subgroup SL(2, ℤ)) (g : SL(2, ℤ)) : Prop := g ∈ Γ ∨ -g ∈ Γ
 
+/--
+@isnad1 id=pm.2h3v.s7.ff69be720b2c from=translated src=- shape=0c8881bb vocab=c9394f1c
+-/
 theorem PM.mul {g h : SL(2, ℤ)} (hg : PM Γ g) (hh : PM Γ h) : PM Γ (g * h) := by
   rcases hg with hg | hg <;> rcases hh with hh | hh
   · exact Or.inl (Γ.mul_mem hg hh)
@@ -29,6 +32,9 @@ theorem PM.mul {g h : SL(2, ℤ)} (hg : PM Γ g) (hh : PM Γ h) : PM Γ (g * h) 
     rw [show g * h = (-g) * (-h) by rw [neg_mul_neg]]
     exact Γ.mul_mem hg hh
 
+/--
+@isnad1 id=pm.1h2v.s6.268ff9fa929d from=translated src=- shape=6f105a83 vocab=e9920678
+-/
 theorem PM.inv {g : SL(2, ℤ)} (hg : PM Γ g) : PM Γ g⁻¹ := by
   rcases hg with hg | hg
   · exact Or.inl (Γ.inv_mem hg)
@@ -36,6 +42,9 @@ theorem PM.inv {g : SL(2, ℤ)} (hg : PM Γ g) : PM Γ g⁻¹ := by
     rw [show -g⁻¹ = (-g)⁻¹ by rw [neg_inv]]
     exact Γ.inv_mem hg
 
+/--
+@isnad1 id=eq.1h3v.s7.18124870c010 from=translated src=- shape=01b6a212 vocab=754c0584
+-/
 theorem slash_neg (hk : Even k) (F : ℍ → ℂ) (y : SL(2, ℤ)) : F ∣[k] (-y) = F ∣[k] y := by
   ext τ
   rw [ModularForm.SL_slash_apply, ModularForm.SL_slash_apply, ModularGroup.SL_neg_smul]
@@ -47,6 +56,9 @@ theorem slash_neg (hk : Even k) (F : ℍ → ℂ) (y : SL(2, ℤ)) : F ∣[k] (-
 
 variable (f : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k)
 
+/--
+@isnad1 id=eq.2h5v.s10.e4d5f85c474e from=translated src=- shape=e0350b61 vocab=3df954b8
+-/
 theorem slash_pm_mul (hk : Even k) {γ : SL(2, ℤ)} (hγ : PM Γ γ) (y : SL(2, ℤ)) :
     (⇑f : ℍ → ℂ) ∣[k] (γ * y) = (⇑f : ℍ → ℂ) ∣[k] y := by
   rcases hγ with hγ | hγ
@@ -57,6 +69,9 @@ theorem slash_pm_mul (hk : Even k) {γ : SL(2, ℤ)} (hγ : PM Γ γ) (y : SL(2,
     exact congrArg (fun F : ℍ → ℂ => F ∣[k] y)
       (SlashInvariantFormClass.slash_action_eq f ((Matrix.SpecialLinearGroup.mapGL ℝ) (-γ)) (Subgroup.mem_map_of_mem _ hγ))
 
+/--
+@isnad1 id=mdiffere.1h3v.s7.f75c581fe00d from=translated src=- shape=35efda7b vocab=15ada416
+-/
 theorem mdifferentiable_sum {ι : Type*} (s : Finset ι) (g : ι → ℍ → ℂ)
     (h : ∀ i ∈ s, MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (g i)) : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (∑ i ∈ s, g i) := by
   classical
@@ -66,6 +81,9 @@ theorem mdifferentiable_sum {ι : Type*} (s : Finset ι) (g : ι → ℍ → ℂ
     rw [Finset.sum_insert ha]
     exact (h a (Finset.mem_insert_self _ _)).add (ih fun i hi => h i (Finset.mem_insert_of_mem hi))
 
+/--
+@isnad1 id=isbounde.1h3v.s5.d2aea86f79f8 from=translated src=- shape=ec4d3a62 vocab=6bc474db
+-/
 theorem isBoundedAtImInfty_sum {ι : Type*} (s : Finset ι) (g : ι → ℍ → ℂ)
     (h : ∀ i ∈ s, IsBoundedAtImInfty (g i)) : IsBoundedAtImInfty (∑ i ∈ s, g i) := by
   classical
@@ -79,6 +97,9 @@ end TraceToLevelOne
 
 open scoped MatrixGroups ModularForm Manifold in
 open UpperHalfPlane TraceToLevelOne in
+/--
+@isnad1 id=ex.3h4v.s11.f12eed625eae from=translated src=- shape=3e8aa41e vocab=4d61bf92
+-/
 theorem solution
     (Γ : Subgroup SL(2, ℤ)) {k : ℤ} (hk : Even k)
     (f : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (s : Finset SL(2, ℤ))

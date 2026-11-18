@@ -42,6 +42,9 @@ theorem eq_zero_of_pow_mul_eq_zero (l : S) (htf : ∀ x : S, l * x = 0 → x = 0
       calc l * (l ^ N * X) = l ^ (N + 1) * X := by ring
         _ = 0 := h
 
+/--
+@isnad1 id=ex.0h5v.s6.9af7fb516d24 from=translated src=- shape=ee13a9e8 vocab=a1216c81
+-/
 theorem exists_add_mul_pow (p u T : S) (N : ℕ) : ∃ T' : S, (p + u * T) ^ N = p ^ N + u * T' := by
   induction N with
   | zero => exact ⟨0, by simp⟩
@@ -49,6 +52,9 @@ theorem exists_add_mul_pow (p u T : S) (N : ℕ) : ∃ T' : S, (p + u * T) ^ N =
       obtain ⟨T', hT'⟩ := ih
       exact ⟨T' * p + p ^ N * T + u * T' * T, by rw [pow_succ, hT']; ring⟩
 
+/--
+@isnad1 id=ex.0h3v.s6.7c3345e1eece from=translated src=- shape=40bcf1ba vocab=320410fd
+-/
 theorem exists_geom_sum_one_add_eq (u : S) (r : ℕ) :
     ∃ t : S, ∑ i ∈ range r, (1 + u) ^ i = (r : S) + u * t := by
   induction r with
@@ -65,6 +71,9 @@ theorem exists_geom_sum_one_add_eq (u : S) (r : ℕ) :
       push_cast
       ring
 
+/--
+@isnad1 id=ex.0h3v.s7.445f0d73f4d8 from=translated src=- shape=43b83c51 vocab=90669e82
+-/
 theorem exists_one_add_pow_sub_one_eq (u : S) (r : ℕ) :
     ∃ t : S, (1 + u) ^ r - 1 = u * ((r : S) + u * t) := by
   obtain ⟨t, ht⟩ := exists_geom_sum_one_add_eq u r
@@ -73,6 +82,9 @@ theorem exists_one_add_pow_sub_one_eq (u : S) (r : ℕ) :
   rw [add_sub_cancel_left, ht] at this
   exact this.symm
 
+/--
+@isnad1 id=eq.3h6v.s8.0d96bd563289 from=translated src=- shape=1d6bffba vocab=bbcd1c36
+-/
 theorem pow_eq_zero_of_unit_step (l : S)
     (hsep : ∀ x : S, (∀ k : ℕ, ∃ z : S, l ^ k * z = x) → x = 0)
     (y : S) (b : ℕ) (r : ℕ) (hr : IsUnit (r : S)) (N : ℕ)
@@ -95,6 +107,9 @@ theorem pow_eq_zero_of_unit_step (l : S)
       _ = u ^ N * (l * (-(l ^ b * y * T' * w))) := by rw [hu]; ring
   exact eq_zero_of_eq_mul l hsep key
 
+/--
+@isnad1 id=ex.2h4v.s8.93246bfe5e7c from=translated src=- shape=ff517c74 vocab=fa32283c
+-/
 theorem exists_one_add_pow_prime_sub_one_eq (ℓ : ℕ) (hℓ : ℓ.Prime) (b : ℕ) (hb : 3 ≤ ℓ ^ (b + 1))
     (y : S) :
     ∃ v : S, (1 + (ℓ : S) ^ (b + 1) * y) ^ ℓ - 1 =
@@ -165,6 +180,9 @@ theorem exists_one_add_pow_prime_sub_one_eq (ℓ : ℕ) (hℓ : ℓ.Prime) (b : 
   rw [hbin, hv, hu]
   ring
 
+/--
+@isnad1 id=eq.5h5v.s8.246ec6e99bb7 from=translated src=- shape=6c97dd35 vocab=fa32283c
+-/
 theorem pow_eq_zero_of_prime_step (ℓ : ℕ) (hℓ : ℓ.Prime) (b : ℕ) (hb : 3 ≤ ℓ ^ (b + 1))
     (htf : ∀ x : S, (ℓ : S) * x = 0 → x = 0)
     (hsep : ∀ x : S, (∀ k : ℕ, ∃ z : S, (ℓ : S) ^ k * z = x) → x = 0)
@@ -188,6 +206,9 @@ theorem pow_eq_zero_of_prime_step (ℓ : ℕ) (hℓ : ℓ.Prime) (b : ℕ) (hb :
       _ = u ^ N * (l * (-T')) := by ring
   exact eq_zero_of_eq_mul l hsep key
 
+/--
+@isnad1 id=eq.7h6v.s8.8e9cc0c5e9ae from=translated src=- shape=ec45284b vocab=dc2feb81
+-/
 theorem pow_eq_zero_of_pow_pow_sub_one_eq_zero (ℓ : ℕ) (hℓ : ℓ.Prime) (b : ℕ) (hb : 3 ≤ ℓ ^ (b + 1))
     (htf : ∀ x : S, (ℓ : S) * x = 0 → x = 0)
     (hsep : ∀ x : S, (∀ k : ℕ, ∃ z : S, (ℓ : S) ^ k * z = x) → x = 0)
@@ -247,6 +268,9 @@ section Transfer
 
 variable {R : Type*} [CommRing R] {M : Type*} [AddCommGroup M] [Module R M]
 
+/--
+@isnad1 id=eq.2h4v.s8.a4a4c028df39 from=translated src=- shape=179326ee vocab=240dda02
+-/
 theorem end_eq_zero_of_natCast_mul (ℓ : ℕ) (htf : ∀ x : M, (ℓ : R) • x = 0 → x = 0)
     (X : Module.End R M) (h : (ℓ : Module.End R M) * X = 0) : X = 0 := by
   ext x
@@ -259,6 +283,9 @@ end Transfer
 end SerreMinkowskiRigidity
 
 open SerreMinkowskiRigidity in
+/--
+@isnad1 id=eq.8h8v.s10.4853244b0b50 from=translated src=- shape=bf4f6f01 vocab=59c20aa7
+-/
 theorem solution
     {R : Type*} [CommRing R] {M : Type*} [AddCommGroup M] [Module R M]
     {ℓ : ℕ} (hℓ : ℓ.Prime) {a : ℕ} (ha : 3 ≤ ℓ ^ a)

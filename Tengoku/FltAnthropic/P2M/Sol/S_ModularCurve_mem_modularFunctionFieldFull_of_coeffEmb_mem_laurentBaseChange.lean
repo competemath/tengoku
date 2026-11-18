@@ -8,6 +8,9 @@ import Tengoku.Seed.Data.Complex.Basic
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_ModularCurve_mem_modularFunctionFieldFull_of_coeffEmb_mem_laurentBaseChange.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 namespace P2MW.S_ModularCurve_mem_modularFunctionFieldFull_of_coeffEmb_mem_laurentBaseChange
 
+/--
+@isnad1 id=mem.1h2v.s9.957f9cc8b409 from=translated src=- shape=2ed41326 vocab=7e6de59a
+-/
 theorem solution (N : ℕ) [NeZero N]
     (x : LaurentSeries ℚ)
     (hx : ModularCurve.coeffEmb ℂ x ∈

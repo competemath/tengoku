@@ -12,6 +12,9 @@ open scoped MatrixGroups Topology Pointwise
 
 namespace StabE1
 
+/--
+@isnad1 id=and.1h2v.s7.abae58846c97 from=translated src=- shape=15fb8eaf vocab=aecd8be6
+-/
 theorem denom_eq_one_imp {g : GL (Fin 2) ℝ} {τ : ℍ} (h : denom g (τ : ℂ) = 1) :
     g 1 0 = 0 ∧ g 1 1 = 1 := by
   have him := congrArg Complex.im h
@@ -44,6 +47,9 @@ theorem eq_one_of_smul_eq_of_denom_eq_one {g : GL (Fin 2) ℝ} (hg : 0 < g.val.d
   ext i j
   fin_cases i <;> fin_cases j <;> simp [ha, hb, hc, hd]
 
+/--
+@isnad1 id=continuo.0h0v.s9.e799245c2107 from=translated src=- shape=50d1a983 vocab=30971d2c
+-/
 theorem continuous_toGL : Continuous (Matrix.SpecialLinearGroup.toGL : SL(2, ℝ) → GL (Fin 2) ℝ) := by
   refine Units.continuous_iff.mpr ⟨?_, ?_⟩
   · exact continuous_subtype_val
@@ -57,6 +63,9 @@ theorem continuous_toGL : Continuous (Matrix.SpecialLinearGroup.toGL : SL(2, ℝ
 end StabE1
 
 open StabE1 in
+/--
+@isnad1 id=and.1h2v.s12.25d2429f7819 from=translated src=- shape=be005941 vocab=e03ad7c0
+-/
 theorem solution (Γ : Subgroup (GL (Fin 2) ℝ))
     (hdet : ∀ γ ∈ Γ, Matrix.GeneralLinearGroup.det γ = 1)
     [hdisc : DiscreteTopology ↥Γ] (τ : ℍ) :

@@ -12,6 +12,9 @@ open UpperHalfPlane
 open scoped MatrixGroups Topology Manifold
 
 open UpperHalfPlane in
+/--
+@isnad1 id=eq.2h6v.s11.edc48fa77b6c from=translated src=- shape=ba11dd45 vocab=5168ecf9
+-/
 theorem solution (N : ℕ) {k : ℤ}
     (g h : ModularForm (CongruenceSubgroup.Gamma0 N) k) (x : LaurentSeries ℂ)
     (hx : x * ((qExpansion 1 (h : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) =

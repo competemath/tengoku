@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open scoped MatrixGroups ModularForm Topology Real Matrix
 
+/--
+@isnad1 id=ex.1h1v.s9.e7e89a5d8a5e from=translated src=- shape=c693d31a vocab=058ab1a0
+-/
 theorem ZMod.exists_sum_units_pi_sq_div_sin_sq_mul_eq (N : ℕ) [NeZero N] (hN : 2 ≤ N) :
     ∃ h : (ZMod N)ˣ → ℂ, ∀ s : (ZMod N)ˣ,
       ∑ t : (ZMod N)ˣ, (π : ℂ) ^ 2 / Complex.sin (π * (t : ZMod N).val / N) ^ 2 * h (t * s) =

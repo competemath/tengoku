@@ -31,6 +31,9 @@ section Tower
 variable {K E Ω : Type} [Field K] [Field E] [Field Ω] [Algebra K E] [Algebra K Ω] [Algebra E Ω]
   [IsScalarTower K E Ω] {W : Type} [AddCommGroup W] [Module K W]
 
+/--
+@isnad1 id=eq.0h6v.s13.d3ace3a338e4 from=translated src=- shape=79deaa3d vocab=d287647d
+-/
 theorem cancelBaseChange_baseChange_baseChange_apply (T : Module.End K W) (x : Ω ⊗[E] (E ⊗[K] W)) :
     AlgebraTensorModule.cancelBaseChange K E Ω Ω W (((T.baseChange E).baseChange Ω) x) =
       (T.baseChange Ω) (AlgebraTensorModule.cancelBaseChange K E Ω Ω W x) := by
@@ -45,6 +48,9 @@ theorem cancelBaseChange_baseChange_baseChange_apply (T : Module.End K W) (x : �
       simp only [tmul_add, map_add, ha, hb]
     | tmul e w => simp [LinearMap.baseChange_tmul, AlgebraTensorModule.cancelBaseChange_tmul]
 
+/--
+@isnad1 id=eq.0h8v.s14.da81cff0289a from=translated src=- shape=31b396e2 vocab=1eb16fff
+-/
 theorem finrank_iInf_ker_pow_baseChange_tower {Q : Type} [Fintype Q]
     (U : Q → Module.End K W) (μ : Q → E) (k : Q → ℕ) :
     Module.finrank Ω ↥(⨅ q, LinearMap.ker (((U q).baseChange Ω -
@@ -130,6 +136,9 @@ theorem finrank_iInf_ker_pow_baseChange_tower {Q : Type} [Fintype Q]
 
 variable [FiniteDimensional K W]
 
+/--
+@isnad1 id=eq.0h7v.s12.98a331e1e97c from=translated src=- shape=ce4b7a5b vocab=0cd2c989
+-/
 theorem finrank_iInf_maxGenEigenspace_baseChange_tower {Q : Type} [Fintype Q]
     (U : Q → Module.End K W) (μ : Q → E) :
     Module.finrank Ω ↥(⨅ q, Module.End.maxGenEigenspace ((U q).baseChange Ω) (algebraMap E Ω (μ q))) =
@@ -156,6 +165,9 @@ section Transcendental
 variable {K L : Type} [Field K] [Field L] [Algebra K L] {W : Type} [AddCommGroup W] [Module K W]
   [FiniteDimensional K W]
 
+/--
+@isnad1 id=eq.1h5v.s9.a9756dfc2389 from=translated src=- shape=56142d8a vocab=e23e2e44
+-/
 theorem maxGenEigenspace_baseChange_eq_bot_of_transcendental (T : Module.End K W) {ν : L}
     (hν : Transcendental K ν) : Module.End.maxGenEigenspace (T.baseChange L) ν = ⊥ := by
   by_contra h
@@ -167,6 +179,9 @@ theorem maxGenEigenspace_baseChange_eq_bot_of_transcendental (T : Module.End K W
   exact ⟨T.charpoly, (LinearMap.charpoly_monic T).ne_zero, by
     rwa [Polynomial.aeval_def, ← Polynomial.eval_map]⟩
 
+/--
+@isnad1 id=eq.1h4v.s6.c1dbf74add6d from=translated src=- shape=c978a763 vocab=56d5e788
+-/
 theorem rootMultiplicity_map_eq_zero_of_transcendental (p : K[X]) {ν : L} (hν : Transcendental K ν) :
     Polynomial.rootMultiplicity ν (p.map (algebraMap K L)) = 0 := by
   by_cases hp : p = 0
@@ -179,6 +194,9 @@ end Transcendental
 
 end CESCount
 
+/--
+@isnad1 id=eq.1h9v.s12.292fdb0a9e08 from=translated src=- shape=610f4cb0 vocab=11539055
+-/
 theorem solution
     {K : Type} [Field K] {W : Type} [AddCommGroup W] [Module K W] [FiniteDimensional K W]
     {Q : Type} [Fintype Q] (U : Q → Module.End K W) (P : Q → Polynomial K) (c : ℕ)

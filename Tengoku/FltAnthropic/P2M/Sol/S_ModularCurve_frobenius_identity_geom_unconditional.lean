@@ -17,11 +17,17 @@ namespace CharLRows
 
 variable (K : Type*) [CommRing K]
 
+/--
+@isnad1 id=eq.0h2v.s8.3de162a78d7f from=translated src=- shape=44ad32bf vocab=33b8cdbe
+-/
 theorem qExpand_jqModC_eq_pow (ℓ : ℕ) [Fact ℓ.Prime] [CharP K ℓ] :
     qExpand K ℓ (jqModC K) = (jqModC K) ^ ℓ := by
   rw [jqModC_eq_map_intCast K]
   exact (map_intCast_pow_char_eq_qExpand ℓ _).symm
 
+/--
+@isnad1 id=eq.0h2v.s7.34c3c0819b6b from=translated src=- shape=d4bd72e1 vocab=f77e9af9
+-/
 theorem frobenius_identity_geom (ℓ : ℕ) [Fact ℓ.Prime] [CharP K ℓ] : jqNModC K ℓ = (jqModC K) ^ ℓ := by
   rw [jqNModC]; exact qExpand_jqModC_eq_pow K ℓ
 
@@ -31,6 +37,9 @@ end ModularCurve
 end
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_frobenius_identity_geom_unconditional.ModularCurve in
+/--
+@isnad1 id=eq.0h2v.s7.34c3c0819b6b from=translated src=- shape=d4bd72e1 vocab=f77e9af9
+-/
 theorem solution (K : Type*) [CommRing K] {ℓ : ℕ} [Fact ℓ.Prime] [CharP K ℓ] :
     jqNModC K ℓ = (jqModC K) ^ ℓ :=
   CharLRows.frobenius_identity_geom K ℓ

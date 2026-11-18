@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open Matrix in
 
+/--
+@isnad1 id=ex.1h3v.s10.8dd1135165c9 from=translated src=- shape=fe80f4fc vocab=4a534330
+-/
 theorem solution
     (k : Type*) [Field k] (W : Type*) [AddCommGroup W] [Module k W] [Module.Finite k W]
     (hW : Module.finrank k W = 2) (ψ : Matrix (Fin 2) (Fin 2) k →ₐ[k] (W →ₗ[k] W)) :

@@ -165,6 +165,9 @@ private theorem eigen_part (D : ℕ) (hD : D ≠ 0)
 
 end DivisorStringWs41
 
+/--
+@isnad1 id=and.6h4v.s10.bc484f33a201 from=translated src=- shape=87527cac vocab=aed232f1
+-/
 theorem solution
     (D : ℕ) (hD : D ≠ 0)
     (V : Type*) [AddCommGroup V] [Module ℂ V] [FiniteDimensional ℂ V]

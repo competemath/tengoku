@@ -8,6 +8,9 @@ namespace P2MW.S_ModularCurve_natDegree_fibrePoly
 
 open Polynomial ModularCurve
 
+/--
+@isnad1 id=eq.1h3v.s5.74ec977da910 from=translated src=- shape=17f0ab74 vocab=025734fd
+-/
 theorem solution {K : Type*} [Field K] {Φ : Polynomial (Polynomial ℤ)}
     (hΦ : Φ.Monic) (a : K) : (fibrePoly Φ a).natDegree = Φ.natDegree := by
   exact hΦ.natDegree_map _

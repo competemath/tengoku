@@ -137,6 +137,9 @@ end CountableSchurAux
 
 open CountableSchurAux in
 
+/--
+@isnad1 id=le.3h2v.s8.f91c8ecd1823 from=translated src=- shape=e18e0bd6 vocab=ce9690d4
+-/
 theorem solution
     {V : Type*} [AddCommGroup V] [Module ℂ V]
     (hV : Module.rank ℂ V ≤ Cardinal.aleph0)

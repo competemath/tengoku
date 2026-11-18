@@ -14,6 +14,9 @@ namespace UnitaryAutomorphicUnitOf
 
 local notation "𝕢" => Function.Periodic.qParam
 
+/--
+@isnad1 id=hasderiv.0h2v.s9.c3774eefdf2c from=translated src=- shape=c1929f93 vocab=7e3a74bb
+-/
 theorem hasDerivAt_smul_ofComplex (γ : SL(2, ℤ)) (τ : ℍ) :
     HasDerivAt (fun z : ℂ => ((γ • ofComplex z : ℍ) : ℂ))
       (denom (Matrix.SpecialLinearGroup.mapGL ℝ γ) ↑τ ^ (-2 : ℤ)) ↑τ := by
@@ -34,6 +37,9 @@ theorem hasDerivAt_smul_ofComplex (γ : SL(2, ℤ)) (τ : ℍ) :
   rw [zpow_neg, one_div]
   norm_cast
 
+/--
+@isnad1 id=tendsto.0h1v.s4.f4ebbab504f0 from=translated src=- shape=32e042a5 vocab=496815c3
+-/
 theorem tendsto_vadd_atImInfty (x : ℝ) :
     Tendsto (fun z : ℍ => x +ᵥ z) atImInfty atImInfty := by
   simp only [atImInfty, tendsto_comap_iff, Function.comp_def]
@@ -41,6 +47,9 @@ theorem tendsto_vadd_atImInfty (x : ℝ) :
 
 noncomputable def wd (Γ : Subgroup SL(2, ℤ)) : ℕ := Γ.normalCore.index
 
+/--
+@isnad1 id=mem.0h2v.s9.55962bab85dd from=translated src=- shape=c4a87d63 vocab=da98a961
+-/
 theorem conj_T_zpow_mem (Γ : Subgroup SL(2, ℤ)) (δ : SL(2, ℤ)) :
     δ * ModularGroup.T ^ (wd Γ : ℤ) * δ⁻¹ ∈ Γ := by
   have hT : ModularGroup.T ^ (wd Γ : ℤ) ∈ Γ.normalCore := by
@@ -58,12 +67,18 @@ structure Hyp (F : ℍ → ℂ) (χ : Γ → ℂ) : Prop where
   unit : ∀ γ : Γ, ‖χ γ‖ = 1
   cusp : ∀ σ : SL(2, ℤ), ∃ L : ℂ, L ≠ 0 ∧ Tendsto (fun τ : ℍ => F (σ • τ)) atImInfty (𝓝 L)
 
+/--
+@isnad1 id=eq.2h5v.s9.59d070311f68 from=translated src=- shape=50b0fc73 vocab=71858243
+-/
 theorem norm_apply_smul (h : Hyp F χ) {γ : SL(2, ℤ)} (hγ : γ ∈ Γ) (z : ℍ) :
     ‖F (γ • z)‖ = ‖F z‖ := by
   have := h.mult ⟨γ, hγ⟩ z
   rw [show ((⟨γ, hγ⟩ : Γ) : SL(2, ℤ)) = γ from rfl] at this
   rw [this, norm_mul, h.unit, one_mul]
 
+/--
+@isnad1 id=eq.1h5v.s9.96cd6c2e7e46 from=translated src=- shape=25eba9ca vocab=0cbdcd7a
+-/
 theorem apply_smul_T_zpow_smul (h : Hyp F χ) (δ : SL(2, ℤ)) (w : ℍ) :
     F (δ • (ModularGroup.T ^ (wd Γ : ℤ) • w)) = F (δ • w) := by
   obtain ⟨L, hL0, hL⟩ := h.cusp δ
@@ -104,6 +119,9 @@ theorem apply_smul_T_zpow_smul (h : Hyp F χ) (δ : SL(2, ℤ)) (w : ℍ) :
 
 noncomputable def K (F : ℍ → ℂ) (ρ : SL(2, ℤ)) : ℍ → ℂ := fun w => F (ρ⁻¹ • w)
 
+/--
+@isnad1 id=periodic.1h4v.s8.ba629b2df54b from=translated src=- shape=4343a99a vocab=5b2bd50e
+-/
 theorem K_periodic (h : Hyp F χ) (ρ : SL(2, ℤ)) :
     Periodic (K F ρ ∘ ofComplex) (wd Γ : ℝ) := by
   intro z
@@ -120,6 +138,9 @@ theorem K_periodic (h : Hyp F χ) (ρ : SL(2, ℤ)) :
     have hz' : (z + (wd Γ : ℝ)).im ≤ 0 := by simpa using hz
     simp only [Function.comp_apply, ofComplex_apply_eq_of_im_nonpos hz' hz]
 
+/--
+@isnad1 id=mdiffere.1h4v.s8.23748b9a32ae from=translated src=- shape=f01f8730 vocab=3c60b508
+-/
 theorem K_mdifferentiable (h : Hyp F χ) (ρ : SL(2, ℤ)) : MDiff (K F ρ) := by
   intro τ
   rw [UpperHalfPlane.mdifferentiableAt_iff]
@@ -138,11 +159,17 @@ theorem K_mdifferentiable (h : Hyp F χ) (ρ : SL(2, ℤ)) : MDiff (K F ρ) := b
   rw [hfun]
   exact h4
 
+/--
+@isnad1 id=ex.1h4v.s8.0217b7197879 from=translated src=- shape=6b659250 vocab=ae6fab52
+-/
 theorem K_tendsto (h : Hyp F χ) (ρ : SL(2, ℤ)) :
     ∃ M : ℂ, Tendsto (K F ρ) atImInfty (𝓝 M) := by
   obtain ⟨L, -, hL⟩ := h.cusp ρ⁻¹
   exact ⟨L, hL⟩
 
+/--
+@isnad1 id=isbounde.1h4v.s8.8661e888f644 from=translated src=- shape=387469ec vocab=6972f235
+-/
 theorem K_bounded (h : Hyp F χ) (ρ : SL(2, ℤ)) :
     IsBoundedAtImInfty (K F ρ) := by
   obtain ⟨M, hM⟩ := K_tendsto h ρ
@@ -152,18 +179,30 @@ theorem K_bounded (h : Hyp F χ) (ρ : SL(2, ℤ)) :
 noncomputable def Φ (Γ : Subgroup SL(2, ℤ)) (F : ℍ → ℂ) (ρ : SL(2, ℤ)) : ℂ → ℂ :=
   UpperHalfPlane.cuspFunction (wd Γ : ℝ) (K F ρ)
 
+/--
+@isnad1 id=lt.0h1v.s6.83a596e65932 from=translated src=- shape=542f9a46 vocab=2aba5bc6
+-/
 theorem hNpos : (0 : ℝ) < (wd Γ : ℝ) := by
   exact_mod_cast Nat.pos_of_ne_zero (Subgroup.FiniteIndex.index_ne_zero : Γ.normalCore.index ≠ 0)
 
+/--
+@isnad1 id=differen.1h4v.s8.f618a5a01b72 from=translated src=- shape=3671cb6c vocab=0cf6e2f6
+-/
 theorem Φ_differentiableOn (h : Hyp F χ) (ρ : SL(2, ℤ)) :
     DifferentiableOn ℂ (Φ Γ F ρ) (ball 0 1) :=
   differentiableOn_cuspFunction_ball hNpos (K_periodic h ρ) (K_mdifferentiable h ρ)
     (K_bounded h ρ)
 
+/--
+@isnad1 id=eq.1h5v.s9.c128389769b1 from=translated src=- shape=798a6edd vocab=9186363f
+-/
 theorem Φ_qParam (h : Hyp F χ) (ρ : SL(2, ℤ)) (w : ℍ) :
     Φ Γ F ρ (𝕢 (wd Γ : ℝ) ↑w) = F (ρ⁻¹ • w) :=
   UpperHalfPlane.eq_cuspFunction w (hNpos (Γ := Γ)).ne' (K_periodic h ρ)
 
+/--
+@isnad1 id=or.0h2v.s7.28ff9d987612 from=translated src=- shape=ff10a185 vocab=eb8a05f2
+-/
 theorem qParam_mem_ball (w : ℍ) : 𝕢 (wd Γ : ℝ) ↑w ∈ ball (0 : ℂ) 1 ∨ (wd Γ : ℝ) ≤ 0 := by
   by_cases hN : (0 : ℝ) < (wd Γ : ℝ)
   · left
@@ -176,17 +215,26 @@ theorem qParam_mem_ball (w : ℍ) : 𝕢 (wd Γ : ℝ) ↑w ∈ ball (0 : ℂ) 1
       _ = 1 := Real.exp_zero
   · right; exact not_lt.mp hN
 
+/--
+@isnad1 id=mem.0h2v.s7.4ccf0781d70e from=translated src=- shape=33695f46 vocab=88556791
+-/
 theorem qParam_mem_ball' (w : ℍ) : 𝕢 (wd Γ : ℝ) ↑w ∈ ball (0 : ℂ) 1 := by
   rcases qParam_mem_ball (Γ := Γ) w with h | h
   · exact h
   · exact absurd hNpos (not_lt.mpr h)
 
+/--
+@isnad1 id=mem.1h2v.s7.50b00e4dd7c5 from=translated src=- shape=477ac2fa vocab=2aa92bb0
+-/
 theorem qParam_mem_closedBall {w : ℍ} (hw : 1 / 2 ≤ w.im) :
     𝕢 (wd Γ : ℝ) ↑w ∈ closedBall (0 : ℂ) (Real.exp (-π / (wd Γ))) := by
   rw [mem_closedBall_zero_iff, Function.Periodic.norm_qParam, Real.exp_le_exp, UpperHalfPlane.coe_im]
   rw [div_le_div_iff_of_pos_right hNpos]
   nlinarith [Real.pi_pos]
 
+/--
+@isnad1 id=ex.1h3v.s8.ebdada84947d from=translated src=- shape=35fcd273 vocab=8282a0d8
+-/
 theorem F_const (h : Hyp F χ) : ∃ c : ℂ, ∀ z : ℍ, F z = c := by
   classical
   haveI : Fintype (SL(2, ℤ) ⧸ Γ) := Subgroup.fintypeQuotientOfFiniteIndex
@@ -257,6 +305,9 @@ end ModularCurve.Ws49.UnitaryAutomorphicUnitOf
 
 open UpperHalfPlane in
 open scoped MatrixGroups Topology in
+/--
+@isnad1 id=ex.4h3v.s10.3998f3636f03 from=translated src=- shape=1fd78ad9 vocab=f3fbd939
+-/
 theorem solution
     (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex] (F : ℍ → ℂ) (χ : Γ → ℂ)
     (hF : DifferentiableOn ℂ (fun z : ℂ => F (ofComplex z)) {z : ℂ | 0 < z.im})

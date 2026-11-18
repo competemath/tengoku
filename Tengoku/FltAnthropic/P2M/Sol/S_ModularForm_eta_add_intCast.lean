@@ -18,6 +18,9 @@ open scoped ModularForm MatrixGroups Real
 
 namespace DedekindEtaLaw
 
+/--
+@isnad1 id=eq.0h2v.s6.d61e9f837929 from=translated src=- shape=e1c30f0b vocab=be265e25
+-/
 lemma eta_add_int (z : ℂ) (m : ℤ) : η (z + m) = cexp (π * I * m / 12) * η z := by
   unfold ModularForm.eta
   have hq : Function.Periodic.qParam 24 (z + m) = cexp (π * I * m / 12) * Function.Periodic.qParam 24 z := by
@@ -38,5 +41,8 @@ end DedekindEtaLaw
 
 end
 
+/--
+@isnad1 id=eq.0h2v.s6.d61e9f837929 from=translated src=- shape=e1c30f0b vocab=be265e25
+-/
 theorem solution (z : ℂ) (m : ℤ) : ModularForm.eta (z + m) = Complex.exp (Real.pi * Complex.I * m / 12) * ModularForm.eta z :=
   DedekindEtaLaw.eta_add_int z m

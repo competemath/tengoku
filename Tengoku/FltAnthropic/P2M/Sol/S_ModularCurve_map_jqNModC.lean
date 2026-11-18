@@ -13,6 +13,9 @@ set_option autoImplicit false
 namespace ModularCurve export _root_.ModularCurve (coeffMap coeffMap_coeff jqModC jqNModC map_jqModC qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd) end ModularCurve
 open scoped _root_.ModularCurve in
 
+/--
+@isnad1 id=eq.0h5v.s9.58a3cfbe3ba5 from=translated src=- shape=0f099109 vocab=6d87040a
+-/
 theorem ModularCurve.solution_aux_coeffMap_qExpand {R S : Type*} [CommRing R] [CommRing S]
     (f : R →+* S) (n : ℕ) [NeZero n] (x : LaurentSeries R) :
     coeffMap f (qExpand R n x) = qExpand S n (coeffMap f x) := by
@@ -22,6 +25,9 @@ theorem ModularCurve.solution_aux_coeffMap_qExpand {R S : Type*} [CommRing R] [C
     rw [coeffMap_coeff, qExpand_coeff_mul, qExpand_coeff_mul, coeffMap_coeff]
   · rw [coeffMap_coeff, qExpand_coeff_of_not_dvd _ _ h, qExpand_coeff_of_not_dvd _ _ h, map_zero]
 
+/--
+@isnad1 id=eq.0h4v.s7.e3f4924ffc8a from=translated src=- shape=4f6a501c vocab=c0346c1d
+-/
 theorem solution {R S : Type*} [CommRing R] [CommRing S] (φ : R →+* S)
     (N : ℕ) [NeZero N] : coeffMap φ (jqNModC R N) = jqNModC S N := by
   have hj : coeffMap φ (jqModC R) = jqModC S := map_jqModC φ

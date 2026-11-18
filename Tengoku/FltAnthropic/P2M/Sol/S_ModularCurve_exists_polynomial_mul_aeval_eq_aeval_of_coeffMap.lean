@@ -15,6 +15,9 @@ namespace QDescent
 
 variable {K₀ k : Type*} [Field K₀] [Field k] (ι : K₀ →+* k)
 
+/--
+@isnad1 id=linearin.1h5v.s8.5c156620956c from=translated src=- shape=6a77bfe7 vocab=6aa945d5
+-/
 theorem linearIndependent_coeffMap {I : Type*} [Fintype I] (v : I → LaurentSeries K₀) (hv : LinearIndependent K₀ v) :
     LinearIndependent k (fun i => coeffMap ι (v i)) := by
   classical
@@ -41,6 +44,9 @@ theorem linearIndependent_coeffMap {I : Type*} [Fintype I] (v : I → LaurentSer
     rw [this, map_smul, Finsupp.smul_apply, smul_eq_mul, mul_comm]
   exact (Fintype.linearIndependent_iff.mp hv) (fun i => B.repr (c i) l) hrel i₀
 
+/--
+@isnad1 id=ex.2h6v.s9.d6770579fd4d from=translated src=- shape=01c276da vocab=6f711668
+-/
 theorem exists_rel_of_rel_coeffMap {I : Type*} [Fintype I] (v : I → LaurentSeries K₀) (c : I → k)
     (hc : ∑ i, c i • coeffMap ι (v i) = 0) (hc0 : c ≠ 0) :
     ∃ d : I → K₀, d ≠ 0 ∧ ∑ i, d i • v i = 0 := by
@@ -57,6 +63,9 @@ theorem exists_rel_of_rel_coeffMap {I : Type*} [Fintype I] (v : I → LaurentSer
   have := (Fintype.linearIndependent_iff.mp (linearIndependent_coeffMap ι v hv)) c hc
   exact hc0 (funext this)
 
+/--
+@isnad1 id=eq.0h4v.s7.4c441d2b8b68 from=translated src=- shape=b85dfaec vocab=978b8cf8
+-/
 theorem coeff_sum_monomial {R : Type*} [Semiring R] (n : ℕ) (e : Fin (n + 1) → R) (j : Fin (n + 1)) :
     (∑ i : Fin (n + 1), monomial (i : ℕ) (e i)).coeff (j : ℕ) = e j := by
   rw [finsetSum_coeff, Finset.sum_eq_single j]
@@ -66,6 +75,9 @@ theorem coeff_sum_monomial {R : Type*} [Semiring R] (n : ℕ) (e : Fin (n + 1) �
   · intro h; exact absurd (Finset.mem_univ j) h
 
 variable {K : Type*} [Field K] in
+/--
+@isnad1 id=eq.1h4v.s9.1e3e399cf454 from=translated src=- shape=6e55af5f vocab=3dcbf972
+-/
 theorem aeval_eq_sum_single (x : LaurentSeries K) (P : Polynomial K) {n : ℕ} (hn : P.natDegree < n + 1) :
     aeval x P = ∑ i : Fin (n + 1), HahnSeries.C (P.coeff i) * x ^ (i : ℕ) := by
   rw [aeval_def, eval₂_eq_sum_range' _ hn, Finset.sum_range]
@@ -73,6 +85,9 @@ theorem aeval_eq_sum_single (x : LaurentSeries K) (P : Polynomial K) {n : ℕ} (
   rw [algebraMap_laurentSeries_eq_single, ← HahnSeries.C_apply]
 
 variable {K : Type*} [Field K] in
+/--
+@isnad1 id=eq.0h4v.s10.69b9b51dfa25 from=translated src=- shape=462654bc vocab=d4d7c7df
+-/
 theorem aeval_sum_monomial (n : ℕ) (e : Fin (n + 1) → K) (x : LaurentSeries K) :
     aeval x (∑ i : Fin (n + 1), monomial (i : ℕ) (e i)) = ∑ i : Fin (n + 1), HahnSeries.C (e i) * x ^ (i : ℕ) := by
   rw [map_sum]
@@ -80,9 +95,15 @@ theorem aeval_sum_monomial (n : ℕ) (e : Fin (n + 1) → K) (x : LaurentSeries 
   rw [aeval_monomial, algebraMap_laurentSeries_eq_single, ← HahnSeries.C_apply]
 
 variable {K : Type*} [Field K] in
+/--
+@isnad1 id=eq.0h3v.s8.a41404014d26 from=translated src=- shape=cd78b1f8 vocab=28c79441
+-/
 theorem smul_eq_single_mul (a : K) (x : LaurentSeries K) : a • x = HahnSeries.C a * x := by
   rw [← HahnSeries.C_mul_eq_smul]
 
+/--
+@isnad1 id=ex.2h5v.s11.30d3e8e7a73c from=translated src=- shape=816f81b6 vocab=d14c5e23
+-/
 theorem exists_polynomial_mul_aeval_eq_aeval (t r : LaurentSeries K₀) (ht : Transcendental K₀ t)
     (hr : ∃ P Q : Polynomial k, aeval (coeffMap ι t) Q ≠ 0 ∧
       coeffMap ι r * aeval (coeffMap ι t) Q = aeval (coeffMap ι t) P) :
@@ -155,6 +176,9 @@ theorem exists_polynomial_mul_aeval_eq_aeval (t r : LaurentSeries K₀) (ht : Tr
 
 end QDescent
 
+/--
+@isnad1 id=ex.2h5v.s11.30d3e8e7a73c from=translated src=- shape=816f81b6 vocab=d14c5e23
+-/
 theorem solution
     {K₀ k : Type*} [Field K₀] [Field k] (ι : K₀ →+* k)
     (t r : LaurentSeries K₀) (ht : Transcendental K₀ t)

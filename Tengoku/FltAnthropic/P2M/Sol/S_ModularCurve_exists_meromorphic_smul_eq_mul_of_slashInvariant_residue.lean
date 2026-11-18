@@ -18,14 +18,26 @@ open _root_.ModularCurve
 
 def mC (m : ℍ → ℤ) (z : ℂ) : ℤ := if h : 0 < z.im then m ⟨z, h⟩ else 0
 
+/--
+@isnad1 id=eq.1h2v.s4.a5eb09bcf76f from=translated src=- shape=aaea7e2b vocab=270d0c0e
+-/
 theorem mC_of_im_pos (m : ℍ → ℤ) {z : ℂ} (hz : 0 < z.im) : mC m z = m ⟨z, hz⟩ := dite_eq_left hz
 
+/--
+@isnad1 id=eq.0h2v.s3.89a5c2f990bd from=translated src=- shape=02ea90bc vocab=4aa270f5
+-/
 theorem mC_coe (m : ℍ → ℤ) (τ : ℍ) : mC m τ = m τ := by
   rw [mC_of_im_pos m τ.im_pos]
 
+/--
+@isnad1 id=eq.1h1v.s5.ffa4a92d5d40 from=translated src=- shape=fdd01fe8 vocab=fefad37b
+-/
 theorem coe_ofComplex_of_im_pos {z : ℂ} (hz : 0 < z.im) : ((ofComplex z : ℍ) : ℂ) = z := by
   rw [ofComplex_apply_of_im_pos hz]
 
+/--
+@isnad1 id=ex.2h3v.s8.ea95b9f5c720 from=translated src=- shape=7b15ce33 vocab=86754a63
+-/
 theorem res_lift {m : ℍ → ℤ} {ω : ℍ → ℂ}
     (hres : ∀ τ : ℍ, ∃ g : ℂ → ℂ, AnalyticAt ℂ g (τ : ℂ) ∧
       (∀ᶠ z in 𝓝[≠] (τ : ℂ), ω (ofComplex z) = (m τ : ℂ) / (z - τ) + g z) ∧
@@ -48,6 +60,9 @@ def GSpec (m : ℍ → ℤ) (ω : ℍ → ℂ) (G : ℂ → ℂ) : Prop :=
     (m τ ≠ 0 → G τ = 0) ∧
     (m τ = 0 → AnalyticAt ℂ G τ ∧ G τ ≠ 0 ∧ HasDerivAt G (ω τ * G τ) τ)
 
+/--
+@isnad1 id=ex.1h2v.s7.2b0f646f74a1 from=translated src=- shape=fc5ba1c7 vocab=6da8e2e3
+-/
 theorem exists_GSpec {m : ℍ → ℤ} {ω : ℍ → ℂ}
     (hres : ∀ τ : ℍ, ∃ g : ℂ → ℂ, AnalyticAt ℂ g (τ : ℂ) ∧
       (∀ᶠ z in 𝓝[≠] (τ : ℂ), ω (ofComplex z) = (m τ : ℂ) / (z - τ) + g z) ∧
@@ -72,29 +87,50 @@ theorem GSpec.eq_zero_iff (τ : ℍ) : G τ = 0 ↔ m τ ≠ 0 := by
     exact ((hG τ).2.2.2 hm).2.1 h
   · exact (hG τ).2.2.1
 
+/--
+@isnad1 id=iff.1h4v.s5.856c104ab6c4 from=translated src=- shape=e9690df6 vocab=fcadd44d
+-/
 theorem GSpec.ne_zero_iff (τ : ℍ) : G τ ≠ 0 ↔ m τ = 0 := by
   rw [Ne, hG.eq_zero_iff]; push Not; rfl
 
+/--
+@isnad1 id=eventual.1h4v.s6.dca753eff445 from=translated src=- shape=41a51c4f vocab=ded07774
+-/
 theorem GSpec.eventually_ne_zero (τ : ℍ) : ∀ᶠ z in 𝓝[≠] (τ : ℂ), G z ≠ 0 := by
   rw [← meromorphicOrderAt_ne_top_iff_eventually_ne_zero (hG τ).1, (hG τ).2.1]
   exact WithTop.coe_ne_top
 
+/--
+@isnad1 id=analytic.2h4v.s5.29d5c039fd13 from=translated src=- shape=c0f4b0b8 vocab=25bf6bff
+-/
 theorem GSpec.analyticAt {τ : ℍ} (hm : m τ = 0) : AnalyticAt ℂ G τ := ((hG τ).2.2.2 hm).1
 
+/--
+@isnad1 id=hasderiv.2h4v.s6.6d62b6d234e4 from=translated src=- shape=ca0daf5b vocab=f7e856a9
+-/
 theorem GSpec.hasDerivAt {τ : ℍ} (hm : m τ = 0) : HasDerivAt G (ω τ * G τ) τ :=
   ((hG τ).2.2.2 hm).2.2
 
 omit hG in
 
+/--
+@isnad1 id=eventual.0h2v.s5.4afac5865299 from=translated src=- shape=6bc4d87c vocab=8c3fd673
+-/
 theorem eventuallyEq_ofComplex (G : ℂ → ℂ) (τ : ℍ) :
     (fun z : ℂ => G (ofComplex z)) =ᶠ[𝓝 (τ : ℂ)] G := by
   filter_upwards [isOpen_upperHalfPlaneSet.mem_nhds τ.im_pos] with z hz
   rw [coe_ofComplex_of_im_pos hz]
 
+/--
+@isnad1 id=meromorp.1h4v.s5.44c054a82fb6 from=translated src=- shape=6ec0191b vocab=322a5e8e
+-/
 theorem GSpec.meromorphicAt_ofComplex (τ : ℍ) :
     MeromorphicAt (fun z : ℂ => G (ofComplex z)) (τ : ℂ) :=
   (hG τ).1.congr ((eventuallyEq_ofComplex G τ).filter_mono nhdsWithin_le_nhds).symm
 
+/--
+@isnad1 id=eq.1h4v.s6.72255fccd67f from=translated src=- shape=5b3ba926 vocab=d66bfcad
+-/
 theorem GSpec.meromorphicOrderAt_ofComplex (τ : ℍ) :
     meromorphicOrderAt (fun z : ℂ => G (ofComplex z)) (τ : ℂ) = (m τ : WithTop ℤ) := by
   rw [meromorphicOrderAt_congr ((eventuallyEq_ofComplex G τ).filter_mono nhdsWithin_le_nhds)]
@@ -104,15 +140,27 @@ end Spec
 
 def μ (g : SL(2, ℤ)) (z : ℂ) : ℂ := ((g • ofComplex z : ℍ) : ℂ)
 
+/--
+@isnad1 id=eq.0h2v.s7.c077224a06f8 from=translated src=- shape=e36174b8 vocab=02c219b3
+-/
 theorem μ_coe (g : SL(2, ℤ)) (τ : ℍ) : μ g τ = ((g • τ : ℍ) : ℂ) := by
   simp [μ, ofComplex_apply]
 
+/--
+@isnad1 id=lt.0h2v.s5.d4ec7b523264 from=translated src=- shape=03e779e7 vocab=ff149d13
+-/
 theorem μ_im_pos (g : SL(2, ℤ)) (z : ℂ) : 0 < (μ g z).im := (g • ofComplex z).im_pos
 
+/--
+@isnad1 id=eq.1h2v.s7.f441752c9337 from=translated src=- shape=52e27986 vocab=eeefb333
+-/
 theorem μ_of_im_pos (g : SL(2, ℤ)) {z : ℂ} (hz : 0 < z.im) :
     μ g z = ((g • (⟨z, hz⟩ : ℍ) : ℍ) : ℂ) := by
   rw [μ, ofComplex_apply_of_im_pos hz]
 
+/--
+@isnad1 id=hasderiv.0h2v.s9.45ba0977c4d4 from=translated src=- shape=f0e17a59 vocab=fdbb972b
+-/
 theorem hasDerivAt_μ (γ : SL(2, ℤ)) (τ : ℍ) :
     HasDerivAt (μ γ) (denom (Matrix.SpecialLinearGroup.mapGL ℝ γ) ↑τ ^ (-2 : ℤ)) ↑τ := by
   set G : GL (Fin 2) ℝ := Matrix.SpecialLinearGroup.mapGL ℝ γ with hG
@@ -132,18 +180,30 @@ theorem hasDerivAt_μ (γ : SL(2, ℤ)) (τ : ℍ) :
   rw [zpow_neg, one_div]
   norm_cast
 
+/--
+@isnad1 id=continuo.0h2v.s5.f08094103203 from=translated src=- shape=ea375387 vocab=693dd408
+-/
 theorem continuousAt_μ (γ : SL(2, ℤ)) (τ : ℍ) : ContinuousAt (μ γ) ↑τ :=
   (hasDerivAt_μ γ τ).continuousAt
 
+/--
+@isnad1 id=eq.0h3v.s9.4970d884a7d7 from=translated src=- shape=4bf7026d vocab=844c0439
+-/
 theorem slash_two_apply (f : ℍ → ℂ) (γ : SL(2, ℤ)) (τ : ℍ) :
     (f ∣[(2 : ℤ)] γ) τ =
       f (γ • τ) * denom (Matrix.SpecialLinearGroup.mapGL ℝ γ) ↑τ ^ (-2 : ℤ) :=
   ModularForm.SL_slash_apply f γ τ
 
+/--
+@isnad1 id=ne.0h2v.s9.ee0b88613bce from=translated src=- shape=9a4f4dbc vocab=e3c4c1a6
+-/
 theorem denom_mapGL_ne_zero (γ : SL(2, ℤ)) (τ : ℍ) :
     denom (Matrix.SpecialLinearGroup.mapGL ℝ γ) ↑τ ≠ 0 :=
   denom_ne_zero _ τ
 
+/--
+@isnad1 id=eventual.0h2v.s6.cca01442832c from=translated src=- shape=c9def405 vocab=403b4702
+-/
 theorem eventually_μ_ne (γ : SL(2, ℤ)) (τ : ℍ) :
     ∀ᶠ z in 𝓝[≠] (τ : ℂ), μ γ z ≠ μ γ τ := by
   have h1 : ∀ᶠ z in 𝓝[≠] (τ : ℂ), 0 < z.im :=
@@ -155,12 +215,18 @@ theorem eventually_μ_ne (γ : SL(2, ℤ)) (τ : ℍ) :
   have h'' := MulAction.injective γ h'
   exact hzτ (congrArg UpperHalfPlane.coe h'')
 
+/--
+@isnad1 id=tendsto.0h2v.s8.0e74099c1c15 from=translated src=- shape=9ea2d229 vocab=822f1eb3
+-/
 theorem tendsto_μ_nhdsNE (γ : SL(2, ℤ)) (τ : ℍ) :
     Tendsto (μ γ) (𝓝[≠] (τ : ℂ)) (𝓝[≠] ((γ • τ : ℍ) : ℂ)) := by
   rw [← μ_coe]
   refine tendsto_nhdsWithin_iff.mpr ⟨(continuousAt_μ γ τ).tendsto.mono_left nhdsWithin_le_nhds, ?_⟩
   exact eventually_μ_ne γ τ
 
+/--
+@isnad1 id=eq.0h2v.s6.fd3b61a30f9f from=translated src=- shape=0a7b3730 vocab=6ab33abe
+-/
 theorem μ_inv_μ (γ : SL(2, ℤ)) (τ : ℍ) : μ γ⁻¹ (μ γ τ) = τ := by
   rw [μ_coe, μ_coe, inv_smul_smul]
 
@@ -169,6 +235,9 @@ section Multiplier
 variable {m : ℍ → ℤ} {ω : ℍ → ℂ} {G : ℂ → ℂ} (hG : GSpec m ω G)
 include hG
 
+/--
+@isnad1 id=hasderiv.2h5v.s8.ca719ddc21b9 from=translated src=- shape=b567acb7 vocab=743762bd
+-/
 theorem GSpec.hasDerivAt_comp_μ (γ : SL(2, ℤ)) (τ : ℍ) (hm : m (γ • τ) = 0) :
     HasDerivAt (fun z => G (μ γ z)) ((ω ∣[(2 : ℤ)] γ) τ * G (μ γ τ)) ↑τ := by
   have hd : HasDerivAt G (ω (γ • τ) * G ↑(γ • τ)) (μ γ ↑τ) := by
@@ -182,8 +251,14 @@ theorem GSpec.hasDerivAt_comp_μ (γ : SL(2, ℤ)) (τ : ℍ) (hm : m (γ • τ
 def goodSet (G : ℂ → ℂ) (γ : SL(2, ℤ)) : Set ℂ := {z | 0 < z.im ∧ G z ≠ 0 ∧ G (μ γ z) ≠ 0}
 
 omit hG in
+/--
+@isnad1 id=le.0h2v.s5.aa4497307f36 from=translated src=- shape=345320ea vocab=dca0af03
+-/
 theorem goodSet_subset (γ : SL(2, ℤ)) : goodSet G γ ⊆ {z : ℂ | 0 < z.im} := fun _ hz => hz.1
 
+/--
+@isnad1 id=eventual.1h5v.s6.ee9dcf2b7c53 from=translated src=- shape=df4bc892 vocab=b40deb2a
+-/
 theorem GSpec.eventually_mem_goodSet (γ : SL(2, ℤ)) (τ : ℍ) :
     ∀ᶠ z in 𝓝[≠] (τ : ℂ), z ∈ goodSet G γ := by
   have h1 : ∀ᶠ z in 𝓝[≠] (τ : ℂ), 0 < z.im :=
@@ -194,6 +269,9 @@ theorem GSpec.eventually_mem_goodSet (γ : SL(2, ℤ)) (τ : ℍ) :
   filter_upwards [h1, h2, h3] with z hz1 hz2 hz3
   exact ⟨hz1, hz2, hz3⟩
 
+/--
+@isnad1 id=isopen.1h4v.s5.5aacb0d41868 from=translated src=- shape=254283dc vocab=e4521f3e
+-/
 theorem GSpec.isOpen_goodSet (γ : SL(2, ℤ)) : IsOpen (goodSet G γ) := by
   rw [isOpen_iff_mem_nhds]
   rintro z ⟨hz, hG1, hG2⟩
@@ -212,6 +290,9 @@ theorem GSpec.isOpen_goodSet (γ : SL(2, ℤ)) : IsOpen (goodSet G γ) := by
   filter_upwards [e1, e2, e3] with w h1 h2 h3
   exact ⟨h1, h2, h3⟩
 
+/--
+@isnad1 id=countabl.1h3v.s5.d32dcdd86b4d from=translated src=- shape=e28f51af vocab=47a61e11
+-/
 theorem GSpec.countable_zeroSet : {z : ℂ | 0 < z.im ∧ G z = 0}.Countable := by
   set Z : Set ℂ := {z : ℂ | 0 < z.im ∧ G z = 0}
 
@@ -252,6 +333,9 @@ theorem GSpec.countable_zeroSet : {z : ℂ | 0 < z.im ∧ G z = 0}.Countable := 
 
 omit hG in
 
+/--
+@isnad1 id=isprecon.3h2v.s6.1601270c47c0 from=translated src=- shape=3cb2f6e9 vocab=1d718349
+-/
 theorem isPreconnected_range_diff_of_countable {e : ℂ → ℂ} (he : Continuous e)
     (hinj : Function.Injective e) {S : Set ℂ} (hS : S.Countable) :
     IsPreconnected (range e \ S) := by
@@ -271,6 +355,9 @@ theorem isPreconnected_range_diff_of_countable {e : ℂ → ℂ} (he : Continuou
 
 omit hG in
 
+/--
+@isnad1 id=eq.0h0v.s5.2ed6a4c94b92 from=translated src=- shape=128d69cf vocab=6ae84020
+-/
 theorem upperHalfPlane_eq_range :
     {z : ℂ | 0 < z.im} = range (fun w : ℂ => (w.re : ℂ) + Real.exp w.im * Complex.I) := by
   ext z
@@ -285,6 +372,9 @@ theorem upperHalfPlane_eq_range :
     exact Real.exp_pos _
 
 omit hG in
+/--
+@isnad1 id=isprecon.1h1v.s5.631b2c6ef44f from=translated src=- shape=83ba28da vocab=8f814c67
+-/
 theorem isPreconnected_upperHalfPlane_diff {S : Set ℂ} (hS : S.Countable) :
     IsPreconnected ({z : ℂ | 0 < z.im} \ S) := by
   rw [upperHalfPlane_eq_range]
@@ -297,6 +387,9 @@ theorem isPreconnected_upperHalfPlane_diff {S : Set ℂ} (hS : S.Countable) :
     zero_add] at hre him
   exact Complex.ext hre (Real.exp_eq_exp.mp him)
 
+/--
+@isnad1 id=isprecon.1h4v.s5.8d30b4cafcf0 from=translated src=- shape=254283dc vocab=2a60e4f8
+-/
 theorem GSpec.isPreconnected_goodSet (γ : SL(2, ℤ)) : IsPreconnected (goodSet G γ) := by
   have hsub : {z : ℂ | 0 < z.im} \ goodSet G γ ⊆
       {z : ℂ | 0 < z.im ∧ G z = 0} ∪ (μ γ⁻¹) '' {z : ℂ | 0 < z.im ∧ G z = 0} := by
@@ -312,6 +405,9 @@ theorem GSpec.isPreconnected_goodSet (γ : SL(2, ℤ)) : IsPreconnected (goodSet
   have := isPreconnected_upperHalfPlane_diff hc
   rwa [sdiff_sdiff_cancel_left (goodSet_subset γ)] at this
 
+/--
+@isnad1 id=ex.2h4v.s8.6363e4a1ffd0 from=translated src=- shape=6979723d vocab=fb572ff6
+-/
 theorem GSpec.exists_multiplier (γ : SL(2, ℤ)) (hγ : ω ∣[(2 : ℤ)] γ = ω) :
     ∃ c : ℂ, c ≠ 0 ∧ (∀ τ : ℍ, m (γ • τ) = m τ) ∧ ∀ τ : ℍ, G ↑(γ • τ) = c * G ↑τ := by
   classical
@@ -390,6 +486,9 @@ variable {m : ℍ → ℤ} {ω : ℍ → ℂ}
     (m τ = 0 → ω τ = g τ))
 include hres
 
+/--
+@isnad1 id=analytic.2h3v.s7.af7cc023bc80 from=translated src=- shape=68d38b11 vocab=1c0bcda3
+-/
 theorem analyticAt_omega (τ : ℍ) (hm : m τ = 0) :
     AnalyticAt ℂ (fun z => ω (ofComplex z)) τ := by
   obtain ⟨g, hg, hexp, hval⟩ := hres τ
@@ -406,6 +505,9 @@ theorem analyticAt_omega (τ : ℍ) (hm : m τ = 0) :
     exact (hval hm).symm
   · exact hz hzτ
 
+/--
+@isnad1 id=tendsto.2h3v.s7.c18a38532c7f from=translated src=- shape=6e41adfd vocab=a586cb7b
+-/
 theorem tendsto_norm_omega_atTop (τ : ℍ) (hm : m τ ≠ 0) :
     Tendsto (fun z => ‖ω (ofComplex z)‖) (𝓝[≠] (τ : ℂ)) atTop := by
   obtain ⟨g, hg, hexp, -⟩ := hres τ
@@ -435,6 +537,9 @@ structure CuspBound (ω : ℍ → ℂ) (σ : SL(2, ℤ)) (C δ A₀ : ℝ) : Pro
   A₀_pos : 0 < A₀
   bound : ∀ τ : ℍ, A₀ ≤ τ.im → ‖(ω ∣[(2 : ℤ)] σ) τ‖ ≤ C * Real.exp (-δ * τ.im)
 
+/--
+@isnad1 id=ex.1h2v.s7.510a4f244dca from=translated src=- shape=63174086 vocab=8d6e7550
+-/
 theorem exists_cuspBound {ω : ℍ → ℂ} {σ : SL(2, ℤ)}
     (hcusp : ∃ δ : ℝ, 0 < δ ∧
       (ω ∣[(2 : ℤ)] σ) =O[atImInfty] fun τ : ℍ => Real.exp (-δ * τ.im)) :
@@ -447,15 +552,24 @@ theorem exists_cuspBound {ω : ℍ → ℂ} {σ : SL(2, ℤ)}
   rw [Real.norm_eq_abs, Real.abs_exp] at h
   exact h.trans (mul_le_mul_of_nonneg_right (le_max_left _ _) (Real.exp_pos _).le)
 
+/--
+@isnad1 id=continuo.0h1v.s5.4df7fbb860cf from=translated src=- shape=cd1263fd vocab=101b6c81
+-/
 theorem continuous_denom (g : GL (Fin 2) ℝ) : Continuous (fun z : ℂ => denom g z) := by
   simp only [denom]
   fun_prop
 
+/--
+@isnad1 id=differen.0h2v.s6.90dff9657d41 from=translated src=- shape=8784c6a9 vocab=28cd7cf5
+-/
 theorem differentiableAt_denom (g : GL (Fin 2) ℝ) (z : ℂ) :
     DifferentiableAt ℂ (fun w : ℂ => denom g w) z := by
   simp only [denom]
   fun_prop
 
+/--
+@isnad1 id=ex.1h2v.s7.adcb8d8bb41f from=translated src=- shape=9f79297e vocab=48dd2ee9
+-/
 theorem exists_primitive_halfPlane {f : ℂ → ℂ} {A : ℝ}
     (hf : DifferentiableOn ℂ f {z : ℂ | A < z.im}) :
     ∃ Ψ : ℂ → ℂ, ∀ z : ℂ, A < z.im → HasDerivAt Ψ (f z) z := by
@@ -532,6 +646,9 @@ theorem exists_primitive_halfPlane {f : ℂ → ℂ} {A : ℝ}
   · exact (hcons h w hw).symm
   · exact hcons h w hk
 
+/--
+@isnad1 id=le.6h8v.s7.b5e35a729d03 from=translated src=- shape=b0f68dad vocab=29c70707
+-/
 theorem norm_sub_le_of_exp_decay {Ψ f : ℂ → ℂ} {A C δ : ℝ} (hδ : 0 < δ)
     (hΨ : ∀ z : ℂ, A < z.im → HasDerivAt Ψ (f z) z)
     (hf : ∀ z : ℂ, A < z.im → ‖f z‖ ≤ C * Real.exp (-δ * z.im))
@@ -555,6 +672,9 @@ theorem norm_sub_le_of_exp_decay {Ψ f : ℂ → ℂ} {A C δ : ℝ} (hδ : 0 < 
   apply Real.exp_le_exp.mpr
   nlinarith [hseg x hx, hδ]
 
+/--
+@isnad1 id=ex.3h5v.s7.dfec28fae41b from=translated src=- shape=6d58132d vocab=29c70707
+-/
 theorem exists_uniform_limit_of_exp_decay {Ψ f : ℂ → ℂ} {A C δ : ℝ} (hδ : 0 < δ)
     (hΨ : ∀ z : ℂ, A < z.im → HasDerivAt Ψ (f z) z)
     (hf : ∀ z : ℂ, A < z.im → ‖f z‖ ≤ C * Real.exp (-δ * z.im)) :
@@ -633,6 +753,9 @@ include hG hres
 
 omit hG in
 
+/--
+@isnad1 id=eq.3h7v.s8.476c63cb0d53 from=translated src=- shape=31187e60 vocab=8f9f22b8
+-/
 theorem m_smul_eq_zero_of_lt_im {σ : SL(2, ℤ)} {C δ A₀ : ℝ} (hb : CuspBound ω σ C δ A₀)
     (τ : ℍ) (hτ : A₀ < τ.im) : m (σ • τ) = 0 := by
   by_contra hm
@@ -671,6 +794,9 @@ theorem m_smul_eq_zero_of_lt_im {σ : SL(2, ℤ)} {C δ A₀ : ℝ} (hb : CuspBo
   obtain ⟨z, hz1, hz2⟩ := ((h1.eventually_gt_atTop B).and h4).exists
   exact lt_asymm hz1 hz2
 
+/--
+@isnad1 id=ex.3h4v.s8.cc969e63a05c from=translated src=- shape=3f5ff3a1 vocab=beb3539f
+-/
 theorem GSpec.exists_limit_cusp (σ : SL(2, ℤ))
     (hcuspσ : ∃ δ : ℝ, 0 < δ ∧
       (ω ∣[(2 : ℤ)] σ) =O[atImInfty] fun τ : ℍ => Real.exp (-δ * τ.im)) :
@@ -792,6 +918,9 @@ end
 
 open ModularCurve.MultiplicativeIntegration in
 
+/--
+@isnad1 id=ex.3h3v.s10.b62dcd55bc18 from=translated src=- shape=ac5d6ce5 vocab=8a44283a
+-/
 theorem solution
     (Γ : Subgroup SL(2, ℤ)) (m : ℍ → ℤ) (ω : ℍ → ℂ)
     (hΓ : ∀ γ ∈ Γ, ω ∣[(2 : ℤ)] γ = ω)

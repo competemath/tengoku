@@ -11,6 +11,9 @@ set_option autoImplicit false
 open scoped MatrixGroups Topology Manifold
 open UpperHalfPlane
 
+/--
+@isnad1 id=and.2h2v.s11.0b36a3cbe04f from=translated src=- shape=25116786 vocab=26799296
+-/
 theorem solution
     (g : GL (Fin 2) ℝ) (hg : Matrix.GeneralLinearGroup.det g = 1) (τ₀ : ℍ) (hfix : g • τ₀ = τ₀) :
     ‖denom g τ₀‖ = 1 ∧

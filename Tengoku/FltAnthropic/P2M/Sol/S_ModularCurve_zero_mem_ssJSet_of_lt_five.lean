@@ -12,6 +12,9 @@ open ModularCurve
 
 namespace Ws14Port
 
+/--
+@isnad1 id=eq.1h4v.s9.aa6c6ade0cab from=translated src=- shape=796aff52 vocab=e0f83f22
+-/
 theorem doubling_identity {R : Type*} [CommRing R] (W : WeierstrassCurve R) {x y : R}
     (h : W.toAffine.Equation x y) :
     (3 * x ^ 2 + 2 * W.a₂ * x + W.a₄ - W.a₁ * y) ^ 2
@@ -86,6 +89,9 @@ theorem eq_zero_of_three_nsmul_eq_zero_of_char_three {K : Type*} [Field K] [Deci
 
 end Ws14Port
 
+/--
+@isnad1 id=mem.1h2v.s6.501939584f2c from=translated src=- shape=8ce730c3 vocab=f04c301a
+-/
 theorem solution
     {q : ℕ} [Fact q.Prime] (hq : q < 5) {K : Type*} [Field K] [DecidableEq K] [CharP K q] :
     (0 : K) ∈ ssJSet q K := by

@@ -17,18 +17,27 @@ export _root_.PeriodPair (analyticAt_weierstrassPExcept isClosed_lattice derivWe
 namespace LatticeFromInvariants
 open _root_.PeriodPair
 
+/--
+@isnad1 id=eq.0h2v.s5.ffcbc5200a81 from=translated src=- shape=e33bce9e vocab=529b5257
+-/
 lemma weierstrassP_eq_except (L : PeriodPair) (z : ℂ) :
     ℘[L] z = (L.weierstrassPExcept 0) z + 1 / z ^ 2 := by
   have h := L.weierstrassPExcept_add ⟨0, zero_mem _⟩ z
   simp only [sub_zero, ne_eq, OfNat.ofNat_ne_zero, not_false_eq_true, zero_pow, div_zero] at h
   exact h.symm
 
+/--
+@isnad1 id=eq.0h2v.s5.355d9dc234b3 from=translated src=- shape=e33bce9e vocab=b924042d
+-/
 lemma derivWeierstrassP_eq_except (L : PeriodPair) (z : ℂ) :
     ℘'[L] z = (L.derivWeierstrassPExcept 0) z - 2 / z ^ 3 := by
   have h := L.derivWeierstrassPExcept_sub ⟨0, zero_mem _⟩ z
   simp only [sub_zero] at h
   exact h.symm
 
+/--
+@isnad1 id=eq.1h2v.s8.9ea5cf06c599 from=translated src=- shape=22db07d2 vocab=5d758520
+-/
 lemma ode_except (L : PeriodPair) {z : ℂ} (hz : z ∉ L.lattice) :
     (z ^ 3 * (L.derivWeierstrassPExcept 0) z - 2) ^ 2 -
       (4 * (z ^ 2 * (L.weierstrassPExcept 0) z + 1) ^ 3
@@ -47,6 +56,9 @@ lemma ode_except (L : PeriodPair) {z : ℂ} (hz : z ∉ L.lattice) :
     field_simp
   rw [key, hODE, sub_self, mul_zero]
 
+/--
+@isnad1 id=eventual.2h2v.s6.92621c012b3d from=translated src=- shape=ba708472 vocab=34aebbc8
+-/
 lemma eventuallyEq_zero (L L' : PeriodPair) (h₂ : L.g₂ = L'.g₂) (h₃ : L.g₃ = L'.g₃) :
     ∀ᶠ z in 𝓝[≠] (0 : ℂ), ℘[L] z = ℘[L'] z := by
   have hP₁ : AnalyticAt ℂ (L.weierstrassPExcept 0) 0 := L.analyticAt_weierstrassPExcept 0
@@ -165,6 +177,9 @@ lemma eventuallyEq_zero (L L' : PeriodPair) (h₂ : L.g₂ = L'.g₂) (h₃ : L.
   have h : E 0 * (4 * (m : ℂ) + 12) = 0 := by linear_combination -hlim'
   exact (mul_eq_zero.mp h).resolve_right hm
 
+/--
+@isnad1 id=le.1h2v.s6.a72cbe5f0238 from=translated src=- shape=7684a1b9 vocab=adfc027b
+-/
 lemma lattice_le_of_eqOn (L L' : PeriodPair)
     (heq : Set.EqOn ℘[L] ℘[L'] ((L.lattice : Set ℂ) ∪ L'.lattice)ᶜ) :
     L.lattice ≤ L'.lattice := by
@@ -185,6 +200,9 @@ lemma lattice_le_of_eqOn (L L' : PeriodPair)
   rw [← meromorphicOrderAt_congr hfeq, h₁] at h₂
   exact absurd h₂ (by decide)
 
+/--
+@isnad1 id=isprecon.0h2v.s6.a6cd2e2321de from=translated src=- shape=0d5570a5 vocab=18588d2e
+-/
 lemma isPreconnected_compl_union (L L' : PeriodPair) :
     IsPreconnected ((L.lattice : Set ℂ) ∪ L'.lattice)ᶜ := by
   refine (Set.Countable.isConnected_compl_of_one_lt_rank (by simp) ?_).isPreconnected
@@ -192,6 +210,9 @@ lemma isPreconnected_compl_union (L L' : PeriodPair) :
   · exact Set.countable_coe_iff.mp (countable_of_Lindelof_of_discrete (X := L.lattice))
   · exact Set.countable_coe_iff.mp (countable_of_Lindelof_of_discrete (X := L'.lattice))
 
+/--
+@isnad1 id=eqon.1h2v.s6.d170feb58b27 from=translated src=- shape=bca5e857 vocab=e5ca5bae
+-/
 lemma eqOn_of_eventuallyEq_zero (L L' : PeriodPair)
     (h0 : ∀ᶠ z in 𝓝[≠] (0 : ℂ), ℘[L] z = ℘[L'] z) :
     Set.EqOn ℘[L] ℘[L'] ((L.lattice : Set ℂ) ∪ L'.lattice)ᶜ := by
@@ -229,6 +250,9 @@ end
 
 open PeriodPair.LatticeFromInvariants in
 
+/--
+@isnad1 id=eq.2h2v.s4.7fb2be3c097a from=translated src=- shape=dcc57ae5 vocab=fa7ca5f3
+-/
 theorem solution (L L' : PeriodPair)
     (h₂ : L.g₂ = L'.g₂) (h₃ : L.g₃ = L'.g₃) : L.lattice = L'.lattice := by
   have heq := eqOn_of_eventuallyEq_zero L L' (eventuallyEq_zero L L' h₂ h₃)

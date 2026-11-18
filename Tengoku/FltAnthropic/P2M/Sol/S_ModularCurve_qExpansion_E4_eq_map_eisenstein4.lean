@@ -22,6 +22,9 @@ open _root_.ModularCurve
 end ModularCurve
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_qExpansion_E4_eq_map_eisenstein4.ModularCurve in
+/--
+@isnad1 id=eq.0h0v.s8.73bb88346be2 from=translated src=- shape=f6c39c8f vocab=b86b4137
+-/
 theorem solution : UpperHalfPlane.qExpansion 1 ⇑ModularForm.E₄ = PowerSeries.map (Int.castRingHom ℂ) ModularCurve.eisenstein4 := by
   ext m
   rw [EisensteinSeries.E_qExpansion_coeff _ ⟨2, rfl⟩ m, PowerSeries.coeff_map, eisenstein4,

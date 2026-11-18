@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_LaurentSeries_exists_eq_C_of_isAlgebraic
 
 universe u
 
+/--
+@isnad1 id=ex.1h2v.s8.cf1a6f4522ec from=translated src=- shape=82a056dc vocab=431d7573
+-/
 theorem LaurentSeries.exists_eq_C_of_isAlgebraic
     {K : Type u} [Field K] (x : LaurentSeries K) (hx : IsAlgebraic K x) :
     ∃ c : K, x = HahnSeries.C c := by exact @_root_.P2MW.S_LaurentSeries_exists_eq_C_of_isAlgebraic.solution K _ x hx

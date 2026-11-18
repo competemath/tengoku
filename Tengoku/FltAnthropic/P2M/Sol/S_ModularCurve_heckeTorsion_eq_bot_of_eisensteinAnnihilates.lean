@@ -7,6 +7,9 @@ namespace P2MW.S_ModularCurve_heckeTorsion_eq_bot_of_eisensteinAnnihilates
 
 open ModularCurve
 
+/--
+@isnad1 id=eq.4h4v.s8.2a7821e22870 from=translated src=- shape=e7ea0dad vocab=18945c73
+-/
 theorem solution
     {S : Finset Nat.Primes} {Φ : Type*} [AddCommGroup Φ] [Module HeckeAlg Φ]
     (hΦ : EisensteinAnnihilates S Φ)

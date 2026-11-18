@@ -11,6 +11,9 @@ universe u
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=ex.0h4v.s8.4c6d1ef282b3 from=translated src=- shape=945fb18d vocab=6f21852e
+-/
 theorem solution
     {S : Type u} [CommRing S] (S' : Type u) [CommRing S'] [Algebra S S'] [Module.FaithfullyFlat S S']
     (k : Type u) [Field k] (sk : S →+* k) :

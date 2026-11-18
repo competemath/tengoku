@@ -7,6 +7,9 @@ namespace P2MW.S_ModularCurve_order_coeffEmb
 
 open ModularCurve
 
+/--
+@isnad1 id=eq.0h2v.s7.f8c748acd48f from=translated src=- shape=66e8115f vocab=f7044aad
+-/
 theorem solution (L : Type*) [Field L] [Algebra ℚ L] (x : LaurentSeries ℚ) : (coeffEmb L x).order = x.order := by
   rcases eq_or_ne x 0 with rfl | hx
   · rw [map_zero, HahnSeries.order_zero, HahnSeries.order_zero]

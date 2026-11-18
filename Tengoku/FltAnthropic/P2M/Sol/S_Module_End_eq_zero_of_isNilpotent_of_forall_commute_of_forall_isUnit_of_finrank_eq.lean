@@ -17,9 +17,15 @@ def orbit (ι : D →ₐ[F] Module.End F V) (v : V) : D →ₗ[F] V where
   map_add' d d' := by simp [map_add]
   map_smul' c d := by simp [map_smul]
 
+/--
+@isnad1 id=eq.0h6v.s8.c830b7318218 from=translated src=- shape=6309024b vocab=c058474a
+-/
 @[scoped simp] lemma orbit_apply (ι : D →ₐ[F] Module.End F V) (v : V) (d : D) :
     orbit ι v d = ι d v := rfl
 
+/--
+@isnad1 id=injectiv.2h5v.s8.568a69171e66 from=translated src=- shape=1b6fe901 vocab=861d6f96
+-/
 lemma orbit_injective (hD : ∀ x : D, x ≠ 0 → IsUnit x) (ι : D →ₐ[F] Module.End F V)
     {v : V} (hv : v ≠ 0) : Function.Injective (orbit ι v) := by
   rw [injective_iff_map_eq_zero]
@@ -34,6 +40,9 @@ lemma orbit_injective (hD : ∀ x : D, x ≠ 0 → IsUnit x) (ι : D →ₐ[F] M
           rw [← Module.End.mul_apply, Units.inv_mul, Module.End.one_apply]
     _ = 0 := by rw [h1, map_zero]
 
+/--
+@isnad1 id=surjecti.3h5v.s8.4b1b71c454b3 from=translated src=- shape=c8040ee0 vocab=7208f4c4
+-/
 lemma orbit_surjective [FiniteDimensional F V] (hD : ∀ x : D, x ≠ 0 → IsUnit x)
     (ι : D →ₐ[F] Module.End F V) (hdim : Module.finrank F D = Module.finrank F V)
     {v : V} (hv : v ≠ 0) : Function.Surjective (orbit ι v) := by
@@ -84,6 +93,9 @@ theorem eq_zero_of_isNilpotent [FiniteDimensional F V] (hD : ∀ x : D, x ≠ 0 
 end DivisionCentralizerNilpotent
 open scoped _root_.P2MW.S_Module_End_eq_zero_of_isNilpotent_of_forall_commute_of_forall_isUnit_of_finrank_eq.DivisionCentralizerNilpotent
 
+/--
+@isnad1 id=eq.4h5v.s9.ef4a4ec7e029 from=translated src=- shape=c673e67c vocab=6745ee00
+-/
 theorem solution
     {F : Type*} [Field F] {V : Type*} [AddCommGroup V] [Module F V] [FiniteDimensional F V]
     {D : Type*} [Ring D] [Algebra F D] (hD : ∀ x : D, x ≠ 0 → IsUnit x)

@@ -8,6 +8,9 @@ namespace P2MW.S_ModularCurve_mazurPrinciple_toric_exclusion_of_scalar
 
 open ModularCurve
 
+/--
+@isnad1 id=or.7h10v.s10.16c5c5c0e19a from=translated src=- shape=e866e5c0 vocab=c258796a
+-/
 theorem solution
     {G : Type*} [Group G]
     {k : Type*} [Field k] {V : Type*} [AddCommGroup V] [Module k V]

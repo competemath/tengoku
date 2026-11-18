@@ -25,11 +25,17 @@ noncomputable def Ψ (A : Type u) [CommRing A] [Algebra R A] [Algebra R₁ A] [I
     ((Algebra.TensorProduct.piRight R₁ R₁ A (fun _ : Fin r => R₁)).trans
       (AlgEquiv.piCongrRight fun _ => Algebra.TensorProduct.rid R₁ R₁ A))
 
+/--
+@isnad1 id=eq.0h9v.s10.3907c49b8286 from=translated src=- shape=e561df51 vocab=5d42547b
+-/
 lemma Ψ_tmul (A : Type u) [CommRing A] [Algebra R A] [Algebra R₁ A] [IsScalarTower R R₁ A]
     (a : A) (q : Q) (k : Fin r) :
     Ψ φ A (a ⊗ₜ q) k = φ (1 ⊗ₜ q) k • a := by
   simp [Ψ, Algebra.TensorProduct.cancelBaseChange_symm_tmul, Algebra.TensorProduct.piRight_tmul]
 
+/--
+@isnad1 id=eq.0h10v.s10.fca53fb6d2ab from=translated src=- shape=e2e15b35 vocab=ff71bd18
+-/
 lemma Ψ_natural (A B : Type u) [CommRing A] [Algebra R A] [Algebra R₁ A] [IsScalarTower R R₁ A]
     [CommRing B] [Algebra R B] [Algebra R₁ B] [IsScalarTower R R₁ B] (i : A →ₐ[R₁] B) (x : A ⊗[R] Q) (k : Fin r) :
     Ψ φ B (Algebra.TensorProduct.map (i.restrictScalars R) (AlgHom.id R Q) x) k = i (Ψ φ A x k) := by
@@ -45,6 +51,9 @@ end IdemFin
 
 open IdemFin in
 
+/--
+@isnad1 id=finite.2h5v.s11.1e5aed74a2a7 from=translated src=- shape=50ad4d76 vocab=fcb41311
+-/
 theorem solution
     (R : Type u) [CommRing R] (Q : Type u) [CommRing Q] [Algebra R Q] [Module.Finite R Q] [Algebra.Etale R Q]
     (r : ℕ) (hr : ∀ p : PrimeSpectrum R, Module.rankAtStalk (R := R) Q p = r)

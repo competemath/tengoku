@@ -24,6 +24,9 @@ def W (N : ℕ) (b : Fin 2 → ZMod N) (τ : ℍ) : ℂ :=
 abbrev redN (N : ℕ) (γ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) (ZMod N) :=
   ((γ : SL(2, ZMod N)) : Matrix (Fin 2) (Fin 2) (ZMod N))
 
+/--
+@isnad1 id=eq.0h4v.s7.061af3329c75 from=translated src=- shape=08c9a90c vocab=71139fa9
+-/
 lemma redN_apply (γ : SL(2, ℤ)) (i j : Fin 2) : redN N γ i j = ((γ i j : ℤ) : ZMod N) := rfl
 
 section Lattice
@@ -33,12 +36,18 @@ include hL
 
 omit hL in
 
+/--
+@isnad1 id=eq.1h2v.s4.abd29ec3a68c from=translated src=- shape=d702ac7f vocab=c3b33f93
+-/
 lemma weierstrassP_congr {L₁ L₂ : PeriodPair} (h : L₁.lattice = L₂.lattice) : L₁.weierstrassP = L₂.weierstrassP := by
   funext z
   simp only [PeriodPair.weierstrassP]
   rw [h]
 
 omit hL in
+/--
+@isnad1 id=linearin.1h2v.s9.21ef9a986496 from=translated src=- shape=a1a70dc1 vocab=ecd50fc9
+-/
 lemma indep_of_im_ne_zero {τ : ℂ} (hτ : τ.im ≠ 0) (γ : SL(2, ℤ)) :
     LinearIndependent ℝ ![((γ 0 0 : ℤ) : ℂ) * τ + (γ 0 1 : ℤ), ((γ 1 0 : ℤ) : ℂ) * τ + (γ 1 1 : ℤ)] := by
   rw [LinearIndependent.pair_iff]
@@ -80,9 +89,15 @@ omit hL in
 def pairγ (γ : SL(2, ℤ)) (τ : ℍ) : PeriodPair :=
   ⟨((γ 0 0 : ℤ) : ℂ) * τ + (γ 0 1 : ℤ), ((γ 1 0 : ℤ) : ℂ) * τ + (γ 1 1 : ℤ), indep_of_im_ne_zero τ.im_ne_zero γ⟩
 
+/--
+@isnad1 id=eq.1h2v.s6.c4fa92b6a9ae from=translated src=- shape=4b8e8b4f vocab=bbf3e7ff
+-/
 lemma lattice_L (τ : ℍ) : (L τ).lattice = Submodule.span ℤ {(τ : ℂ), 1} := by
   rw [PeriodPair.lattice, (hL τ).1, (hL τ).2]
 
+/--
+@isnad1 id=eq.1h3v.s6.7075153f1e3f from=translated src=- shape=652183a9 vocab=a94bddb9
+-/
 lemma lattice_pairγ (γ : SL(2, ℤ)) (τ : ℍ) : (pairγ γ τ).lattice = (L τ).lattice := by
   have hdet : (γ 0 0 : ℤ) * γ 1 1 - γ 0 1 * γ 1 0 = 1 := by
     have := Matrix.det_fin_two (γ : Matrix (Fin 2) (Fin 2) ℤ)
@@ -109,6 +124,9 @@ lemma lattice_pairγ (γ : SL(2, ℤ)) (τ : ℍ) : (pairγ γ τ).lattice = (L 
       have hd : ((γ 0 0 : ℤ) : ℂ) * (γ 1 1 : ℤ) - (γ 0 1 : ℤ) * (γ 1 0 : ℤ) = 1 := by exact_mod_cast hdet
       linear_combination hd
 
+/--
+@isnad1 id=eq.1h5v.s6.331e6b4ab966 from=translated src=- shape=b9a92c32 vocab=3e9a4d66
+-/
 lemma weierstrassP_add_int (τ : ℍ) (z : ℂ) (m n : ℤ) :
     (L τ).weierstrassP (z + ((m : ℂ) * τ + n)) = (L τ).weierstrassP z := by
   have hmem : ((m : ℂ) * τ + n) ∈ (L τ).lattice := by
@@ -123,6 +141,9 @@ section Slash
 variable {L} (hL : ∀ τ : ℍ, (L τ).ω₁ = (τ : ℂ) ∧ (L τ).ω₂ = 1) [NeZero N]
 include hL
 
+/--
+@isnad1 id=eq.1h5v.s10.604fb67f5b0c from=translated src=- shape=e8632032 vocab=25ac13c9
+-/
 lemma W_smul (a : Fin 2 → ZMod N) (γ : SL(2, ℤ)) (τ : ℍ) :
     W L N a (γ • τ) = (((γ 1 0 : ℤ) : ℂ) * τ + (γ 1 1 : ℤ)) ^ 2 *
       (L τ).weierstrassP
@@ -151,6 +172,9 @@ lemma W_smul (a : Fin 2 → ZMod N) (γ : SL(2, ℤ)) (τ : ℍ) :
     ring
   rw [W, harg, h4 (pairγ γ τ) (L (γ • τ)) de⁻¹ h1 h2 z, inv_inv, weierstrassP_congr (lattice_pairγ hL γ τ)]
 
+/--
+@isnad1 id=eq.1h4v.s7.73978c2601c9 from=translated src=- shape=a54c6da4 vocab=1878bd4a
+-/
 theorem W_slash (a : Fin 2 → ZMod N) (γ : SL(2, ℤ)) : W L N a ∣[(2 : ℤ)] γ = W L N (a ᵥ* redN N γ) := by
   funext τ
   rw [ModularForm.SL_slash_apply, W_smul hL a γ τ]
@@ -198,6 +222,9 @@ variable [NeZero N]
 
 def qN (N : ℕ) (τ : ℍ) : ℂ := cexp (2 * π * I * (τ : ℂ) / N)
 
+/--
+@isnad1 id=eq.0h2v.s5.8e2300f61932 from=translated src=- shape=b6389b17 vocab=2f57949a
+-/
 lemma norm_qN (τ : ℍ) : ‖qN N τ‖ = Real.exp (-(2 * π * τ.im / N)) := by
   rw [qN, Complex.norm_exp]
   congr 1
@@ -210,6 +237,9 @@ lemma norm_qN (τ : ℍ) : ‖qN N τ‖ = Real.exp (-(2 * π * τ.im / N)) := b
     ring
   rw [this, Complex.add_re, Complex.ofReal_re, Complex.re_ofReal_mul, Complex.I_re, mul_zero, add_zero]
 
+/--
+@isnad1 id=tendsto.0h1v.s5.db6be0614fb9 from=translated src=- shape=13e09130 vocab=fbfec6d4
+-/
 lemma tendsto_qN : Tendsto (qN N) atImInfty (𝓝 0) := by
   rw [tendsto_zero_iff_norm_tendsto_zero]
   simp_rw [norm_qN]
@@ -227,8 +257,14 @@ lemma tendsto_qN : Tendsto (qN N) atImInfty (𝓝 0) := by
 
 def ρ (N : ℕ) : ℝ := Real.exp (-(2 * π / N))
 
+/--
+@isnad1 id=lt.0h1v.s4.e6c7aa03c67b from=translated src=- shape=ca4b85b2 vocab=edc56ec3
+-/
 lemma ρ_pos : 0 < ρ N := Real.exp_pos _
 
+/--
+@isnad1 id=lt.0h1v.s4.5cdbfb9311c7 from=translated src=- shape=a558fa7c vocab=edc56ec3
+-/
 lemma ρ_lt_one : ρ N < 1 := by
   have := NeZero.pos N
   have h : -(2 * π / (N : ℝ)) < 0 := by
@@ -237,6 +273,9 @@ lemma ρ_lt_one : ρ N < 1 := by
   calc ρ N < Real.exp 0 := Real.exp_lt_exp.mpr h
     _ = 1 := Real.exp_zero
 
+/--
+@isnad1 id=le.1h2v.s5.edf2ae39aa55 from=translated src=- shape=96738c04 vocab=65ef600f
+-/
 lemma norm_qN_le {τ : ℍ} (hτ : 1 ≤ τ.im) : ‖qN N τ‖ ≤ ρ N := by
   rw [norm_qN, ρ, Real.exp_le_exp, neg_le_neg_iff]
   have := NeZero.pos N
@@ -247,12 +286,21 @@ lemma norm_qN_le {τ : ℍ} (hτ : 1 ≤ τ.im) : ‖qN N τ‖ ≤ ρ N := by
 
 def ζ (N : ℕ) : ℂ := cexp (2 * π * I / N)
 
+/--
+@isnad1 id=eq.0h1v.s4.1c5a32666b57 from=translated src=- shape=099ef998 vocab=6b1dc75f
+-/
 lemma norm_ζ : ‖ζ N‖ = 1 := by
   rw [ζ, show (2 * π * I / N : ℂ) = ((2 * π / N : ℝ) : ℂ) * I by push_cast; ring]
   exact Complex.norm_exp_ofReal_mul_I _
 
+/--
+@isnad1 id=eq.0h2v.s5.2c95757c7809 from=translated src=- shape=668d4732 vocab=68537b42
+-/
 lemma norm_ζ_pow (k : ℕ) : ‖ζ N ^ k‖ = 1 := by rw [norm_pow, norm_ζ, one_pow]
 
+/--
+@isnad1 id=eq.0h2v.s5.0d1af27321da from=translated src=- shape=57063447 vocab=094041a8
+-/
 lemma norm_ζ_inv_pow (k : ℕ) : ‖(ζ N)⁻¹ ^ k‖ = 1 := by rw [norm_pow, norm_inv, norm_ζ, inv_one, one_pow]
 
 def term (N a₁ a₂ : ℕ) (p : ℕ+ × ℕ+) (τ : ℍ) : ℂ :=
@@ -263,6 +311,9 @@ def term (N a₁ a₂ : ℕ) (p : ℕ+ × ℕ+) (τ : ℍ) : ℂ :=
 
 def bound (N : ℕ) (p : ℕ+ × ℕ+) : ℝ := (4 * ρ N ^ ((p.1 : ℕ) - 1)) * (((p.2 : ℕ) : ℝ) * ρ N ^ (p.2 : ℕ))
 
+/--
+@isnad1 id=summable.0h1v.s4.9fbd95408386 from=translated src=- shape=8ebf38b0 vocab=bda5620e
+-/
 lemma summable_bound : Summable (bound N) := by
   have hρ := ρ_lt_one (N := N)
   have hρ0 := (ρ_pos (N := N)).le
@@ -282,6 +333,9 @@ lemma summable_bound : Summable (bound N) := by
     exact this
   exact h1.mul_of_nonneg h2 (fun p => by positivity) (fun p => by positivity)
 
+/--
+@isnad1 id=and.1h3v.s7.10bb7603b902 from=translated src=- shape=77a65072 vocab=3bc37696
+-/
 lemma exp_le (a₁ : ℕ) (ha₁ : a₁ < N) (p : ℕ+ × ℕ+) :
     (p.1 : ℕ) - 1 + (p.2 : ℕ) ≤ ((p.1 : ℕ) * N - a₁) * (p.2 : ℕ) ∧
     (p.1 : ℕ) - 1 + (p.2 : ℕ) ≤ ((p.1 : ℕ) * N + a₁) * (p.2 : ℕ) ∧
@@ -309,6 +363,9 @@ lemma exp_le (a₁ : ℕ) (ha₁ : a₁ < N) (p : ℕ+ × ℕ+) :
   · have := NeZero.pos N; nlinarith
   · have := NeZero.pos N; nlinarith
 
+/--
+@isnad1 id=le.2h5v.s5.22ebe4d04831 from=translated src=- shape=91c49914 vocab=af1dd13d
+-/
 lemma norm_term_le (a₁ a₂ : ℕ) (ha₁ : a₁ < N) (p : ℕ+ × ℕ+) {τ : ℍ} (hτ : 1 ≤ τ.im) :
     ‖term N a₁ a₂ p τ‖ ≤ bound N p := by
   have hρ1 := (ρ_lt_one (N := N)).le
@@ -341,6 +398,9 @@ lemma norm_term_le (a₁ a₂ : ℕ) (ha₁ : a₁ < N) (p : ℕ+ × ℕ+) {τ :
   calc ((p.2 : ℕ) : ℝ) * _ ≤ ((p.2 : ℕ) : ℝ) * (4 * R) := mul_le_mul_of_nonneg_left hsum (by positivity)
     _ = bound N p := by rw [bound, hR, pow_add]; ring
 
+/--
+@isnad1 id=tendsto.1h4v.s5.b26bae91dbab from=translated src=- shape=40474487 vocab=144e424c
+-/
 lemma tendsto_term (a₁ a₂ : ℕ) (ha₁ : a₁ < N) (p : ℕ+ × ℕ+) :
     Tendsto (fun τ => term N a₁ a₂ p τ) atImInfty (𝓝 0) := by
   obtain ⟨e1, e2, e3⟩ := exp_le a₁ ha₁ p (N := N)
@@ -354,6 +414,9 @@ lemma tendsto_term (a₁ a₂ : ℕ) (ha₁ : a₁ < N) (p : ℕ+ × ℕ+) :
   simp only [mul_zero, add_zero, sub_zero] at h
   exact h
 
+/--
+@isnad1 id=tendsto.1h3v.s6.ad126087de84 from=translated src=- shape=573ef3cb vocab=bcb38b99
+-/
 lemma tendsto_tsum_term (a₁ a₂ : ℕ) (ha₁ : a₁ < N) :
     Tendsto (fun τ => ∑' p : ℕ+ × ℕ+, term N a₁ a₂ p τ) atImInfty (𝓝 0) := by
   have h := tendsto_tsum_of_dominated_convergence (𝓕 := atImInfty) (f := fun τ p => term N a₁ a₂ p τ)
@@ -363,6 +426,9 @@ lemma tendsto_tsum_term (a₁ a₂ : ℕ) (ha₁ : a₁ < N) :
     filter_upwards [hev] with τ hτ p
     exact norm_term_le a₁ a₂ ha₁ p hτ
 
+/--
+@isnad1 id=tendsto.0h3v.s8.49015bd8f700 from=translated src=- shape=334d6d5c vocab=c72d646b
+-/
 lemma tendsto_A (a₁ a₂ : ℕ) :
     Tendsto (fun τ => ζ N ^ a₂ * qN N τ ^ a₁ / (1 - ζ N ^ a₂ * qN N τ ^ a₁) ^ 2) atImInfty
       (𝓝 (if a₁ = 0 then ζ N ^ a₂ / (1 - ζ N ^ a₂) ^ 2 else 0)) := by
@@ -381,6 +447,9 @@ lemma tendsto_A (a₁ a₂ : ℕ) :
     simp at this
     exact this
 
+/--
+@isnad1 id=eq.1h1v.s7.abe36e7f433e from=translated src=- shape=7da032b4 vocab=ae7cb28b
+-/
 lemma csc_identity (θ : ℂ) (hs : Complex.sin θ ≠ 0) :
     (2 * π * I) ^ 2 * (cexp (2 * (θ * I)) / (1 - cexp (2 * (θ * I))) ^ 2) = (π : ℂ) ^ 2 / Complex.sin θ ^ 2 := by
   set u : ℂ := cexp (θ * I) with hu
@@ -410,6 +479,9 @@ lemma csc_identity (θ : ℂ) (hs : Complex.sin θ ≠ 0) :
   rw [h2, hI2, hsin2]
   field_simp
 
+/--
+@isnad1 id=ne.2h2v.s5.fbac0f9845ae from=translated src=- shape=173fbfcd vocab=e6cf152f
+-/
 lemma sin_ne_zero {t : ℕ} (ht0 : t ≠ 0) (htN : t < N) : Complex.sin (π * t / N) ≠ 0 := by
   intro h
   rw [Complex.sin_eq_zero_iff] at h
@@ -431,6 +503,9 @@ lemma sin_ne_zero {t : ℕ} (ht0 : t ≠ 0) (htN : t < N) : Complex.sin (π * t 
 variable {L} (hL : ∀ τ : ℍ, (L τ).ω₁ = (τ : ℂ) ∧ (L τ).ω₂ = 1)
 include hL
 
+/--
+@isnad1 id=tendsto.2h3v.s8.f81f34763d06 from=translated src=- shape=19e1dda8 vocab=2617504f
+-/
 theorem tendsto_W (a : Fin 2 → ZMod N) (ha : a ≠ 0) :
     Tendsto (W L N a) atImInfty
       (𝓝 (-((π : ℂ) ^ 2 / 3) + if a 0 = 0 then (π : ℂ) ^ 2 / Complex.sin (π * (a 1).val / N) ^ 2 else 0)) := by
@@ -487,10 +562,16 @@ section MF
 variable {L} (hL : ∀ τ : ℍ, (L τ).ω₁ = (τ : ℂ) ∧ (L τ).ω₂ = 1) [NeZero N]
 include hL
 
+/--
+@isnad1 id=eq.1h2v.s6.200345f35925 from=translated src=- shape=13b18560 vocab=39f4202c
+-/
 lemma W_zero : W L N 0 = 0 := by
   funext τ
   simp [W, PeriodPair.weierstrassP_zero]
 
+/--
+@isnad1 id=mdiffere.1h3v.s7.4fe9588155cf from=translated src=- shape=2d9e7f10 vocab=0a6667a4
+-/
 lemma mdifferentiable_W (a : Fin 2 → ZMod N) : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (W L N a) := by
   by_cases ha : a = 0
   · subst ha
@@ -507,6 +588,9 @@ lemma mdifferentiable_W (a : Fin 2 → ZMod N) : MDifferentiable 𝓘(ℂ) 𝓘(
       · exact (ZMod.val_eq_zero _).mp h.2
     exact (h23 L hL N (a 0).val (a 1).val (ZMod.val_lt _) (ZMod.val_lt _) hne).2
 
+/--
+@isnad1 id=isbounde.1h3v.s5.88926bad8168 from=translated src=- shape=49c5c4ab vocab=f3613b31
+-/
 lemma isBoundedAtImInfty_W (a : Fin 2 → ZMod N) : IsBoundedAtImInfty (W L N a) := by
   by_cases ha : a = 0
   · subst ha
@@ -536,6 +620,9 @@ def mf (a : Fin 2 → ZMod N) : ModularForm Γ(N) 2 where
     rw [W_slash hL]
     exact isBoundedAtImInfty_W hL _
 
+/--
+@isnad1 id=and.1h3v.s10.432d98ba71f6 from=translated src=- shape=f639a4f2 vocab=ace58fa5
+-/
 theorem main (a : Fin 2 → ZMod N) :
     (∃ F : ModularForm Γ(N) 2, ⇑F = W L N a) ∧
     (∀ γ : SL(2, ℤ), W L N a ∣[(2 : ℤ)] γ = W L N (a ᵥ* redN N γ)) ∧
@@ -549,6 +636,9 @@ end EIS2K1
 
 end
 
+/--
+@isnad1 id=other.1h3v.s10.926d0626c82c from=translated src=- shape=9ada8e5b vocab=841951a1
+-/
 theorem solution
     (L : UpperHalfPlane → PeriodPair) (hL : ∀ τ : UpperHalfPlane, (L τ).ω₁ = (τ : ℂ) ∧ (L τ).ω₂ = 1)
     (N : ℕ) [NeZero N] (a : Fin 2 → ZMod N) :

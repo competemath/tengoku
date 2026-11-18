@@ -26,20 +26,32 @@ def conv (L M : List R) : List R :=
   (List.range (min L.length M.length)).map
     fun k => ((List.range (k + 1)).map fun i => L.getD i 0 * M.getD (k - i) 0).sum
 
+/--
+@isnad1 id=eq.0h3v.s4.3db188f57ee4 from=translated src=- shape=a02d4823 vocab=55961621
+-/
 theorem length_conv (L M : List R) : (conv L M).length = min L.length M.length := by
   simp [conv]
 
+/--
+@isnad1 id=eq.0h3v.s5.f5fbf8c4d590 from=translated src=- shape=782819ee vocab=98dcbbb1
+-/
 theorem finset_sum_range_eq_list_sum {M : Type*} [AddCommMonoid M] (f : ℕ → M) (n : ℕ) :
     ∑ i ∈ Finset.range n, f i = ((List.range n).map f).sum := by
   induction n with
   | zero => simp
   | succ n ih => rw [Finset.sum_range_succ, ih, List.range_succ, List.map_append, List.sum_append]; simp
 
+/--
+@isnad1 id=eq.1h4v.s7.665f3a08f23d from=translated src=- shape=7c8c2526 vocab=07a51cb8
+-/
 theorem getD_conv (L M : List R) {k : ℕ} (hk : k < min L.length M.length) :
     (conv L M).getD k 0 = ∑ i ∈ Finset.range (k + 1), L.getD i 0 * M.getD (k - i) 0 := by
   rw [conv, List.getD_eq_getElem?_getD, List.getElem?_map, List.getElem?_range hk]
   simp [finset_sum_range_eq_list_sum]
 
+/--
+@isnad1 id=lowcoeff.2h5v.s5.c2318e3e4159 from=translated src=- shape=4507ac17 vocab=1d09b363
+-/
 theorem LowCoeffs.mul {f g : R⟦X⟧} {L M : List R} (hf : LowCoeffs f L) (hg : LowCoeffs g M) :
     LowCoeffs (f * g) (conv L M) := by
   intro k hk
@@ -49,9 +61,15 @@ theorem LowCoeffs.mul {f g : R⟦X⟧} {L M : List R} (hf : LowCoeffs f L) (hg :
   rw [Finset.mem_range] at hi
   rw [hf i (by omega), hg (k - i) (by omega)]
 
+/--
+@isnad1 id=lowcoeff.2h4v.s4.7aee6bb9bf83 from=translated src=- shape=c3d02c23 vocab=ec8451a5
+-/
 theorem LowCoeffs.congr {f : R⟦X⟧} {L M : List R} (hf : LowCoeffs f L) (h : L = M) : LowCoeffs f M :=
   h ▸ hf
 
+/--
+@isnad1 id=lowcoeff.0h2v.s5.6cd2eb153792 from=translated src=- shape=33626707 vocab=53ff0554
+-/
 theorem LowCoeffs.one (n : ℕ) : LowCoeffs (1 : R⟦X⟧) (1 :: List.replicate n 0) := by
   intro i hi
   rcases i with _ | i
@@ -60,6 +78,9 @@ theorem LowCoeffs.one (n : ℕ) : LowCoeffs (1 : R⟦X⟧) (1 :: List.replicate 
     rw [coeff_one, ite_eq_right (Nat.succ_ne_zero i), List.getD_eq_getElem?_getD]
     simp [show i < n by omega]
 
+/--
+@isnad1 id=lowcoeff.1h3v.s7.e2a32a1e37a8 from=translated src=- shape=0426690e vocab=fc9dc599
+-/
 theorem LowCoeffs.one_sub_X_pow (m n : ℕ) (hm : 0 < m) :
     LowCoeffs (1 - X ^ m : R⟦X⟧) ((List.range n).map fun i => if i = 0 then 1 else if i = m then -1 else 0) := by
   intro i hi
@@ -71,12 +92,18 @@ theorem LowCoeffs.one_sub_X_pow (m n : ℕ) (hm : 0 < m) :
   · simp [h0]
     split_ifs <;> simp
 
+/--
+@isnad1 id=dvd.2h4v.s6.661caa7ebcdf from=translated src=- shape=3f7c47b9 vocab=02c152e6
+-/
 theorem LowCoeffs.X_pow_dvd_sub {f g : R⟦X⟧} {L : List R} (hf : LowCoeffs f L) (hg : LowCoeffs g L) :
     (X : R⟦X⟧) ^ L.length ∣ f - g := by
   rw [X_pow_dvd_iff]
   intro m hm
   rw [map_sub, hf m hm, hg m hm, sub_self]
 
+/--
+@isnad1 id=lowcoeff.5h4v.s7.7eede437ac78 from=translated src=- shape=13a97ba9 vocab=0f934ef6
+-/
 theorem LowCoeffs.invOfUnit {u : R⟦X⟧} {L V : List R} (hu : LowCoeffs u L) (hV : V.length = L.length)
     (hc : constantCoeff u = 1) (hconv : conv L V = 1 :: List.replicate (L.length - 1) 0)
     (hpos : 0 < L.length) :
@@ -105,6 +132,9 @@ theorem LowCoeffs.invOfUnit {u : R⟦X⟧} {L V : List R} (hu : LowCoeffs u L) (
   rw [← this]
   exact hVpL i hi
 
+/--
+@isnad1 id=lowcoeff.2h5v.s6.4b6a2262c7fb from=translated src=- shape=3630ffa4 vocab=7fb3753f
+-/
 theorem LowCoeffs.pow_succ {f : R⟦X⟧} {L M : List R} {n : ℕ} (hn : LowCoeffs (f ^ n) M) (hf : LowCoeffs f L) :
     LowCoeffs (f ^ (n + 1)) (conv M L) := by
   rw [_root_.pow_succ]; exact hn.mul hf
@@ -115,6 +145,9 @@ open JCoeff
 
 section Eta
 
+/--
+@isnad1 id=eq.2h3v.s8.a541f1691740 from=translated src=- shape=8e14e22b vocab=acbe09ce
+-/
 theorem coeff_prod_one_sub_X_pow_of_le (T : Finset ℕ) (K : ℕ) (hT : ∀ b ∈ T, K ≤ b) (k : ℕ) (hk : k ≤ K) :
     coeff k (∏ b ∈ T, (1 - (X : ℤ⟦X⟧) ^ (b + 1))) = coeff k (1 : ℤ⟦X⟧) := by
   classical
@@ -128,6 +161,9 @@ theorem coeff_prod_one_sub_X_pow_of_le (T : Finset ℕ) (K : ℕ) (hT : ∀ b �
       rw [ite_eq_right this]
     rw [this, sub_zero]
 
+/--
+@isnad1 id=eq.1h2v.s8.5aa4df077a50 from=translated src=- shape=351cc475 vocab=67dd9af0
+-/
 theorem coeff_etaProd_eq_coeff_prod_range (K k : ℕ) (hk : k ≤ K) :
     coeff k etaProd = coeff k (∏ n ∈ Finset.range K, (1 - (X : ℤ⟦X⟧) ^ (n + 1))) := by
   classical
@@ -159,6 +195,9 @@ theorem coeff_etaProd_eq_coeff_prod_range (K k : ℕ) (hk : k ≤ K) :
     tendsto_const_nhds.congr' (Filter.EventuallyEq.symm hev)
   exact tendsto_nhds_unique hlim hlim2
 
+/--
+@isnad1 id=lowcoeff.0h0v.s5.c684aed351b3 from=translated src=- shape=f80f79de vocab=c98f946d
+-/
 theorem lowCoeffs_etaProd : LowCoeffs etaProd [1, -1, -1, 0, 0, 1, 0] := by
 
   have hP : LowCoeffs (∏ n ∈ Finset.range 7, (1 - (X : ℤ⟦X⟧) ^ (n + 1))) [1, -1, -1, 0, 0, 1, 0] := by
@@ -183,6 +222,9 @@ theorem lowCoeffs_etaProd : LowCoeffs etaProd [1, -1, -1, 0, 0, 1, 0] := by
   rw [coeff_etaProd_eq_coeff_prod_range 7 i (by omega)]
   exact hP i (by simpa using hi)
 
+/--
+@isnad1 id=lowcoeff.0h0v.s6.f0465c9c95a5 from=translated src=- shape=8781e66f vocab=7a5dac75
+-/
 theorem lowCoeffs_dedekindEtaUnit : LowCoeffs dedekindEtaUnit [1, -24, 252, -1472, 4830, -6048, -16744] := by
   have e1 := lowCoeffs_etaProd
   have e2 := (e1.mul e1).congr (M := [1, -2, -1, 2, 1, 2, -2]) (by decide)
@@ -202,15 +244,24 @@ theorem lowCoeffs_dedekindEtaUnit : LowCoeffs dedekindEtaUnit [1, -24, 252, -147
   rw [h24]
   exact e24
 
+/--
+@isnad1 id=lowcoeff.0h0v.s5.50e9bc806bff from=translated src=- shape=f34727e0 vocab=b36cfef5
+-/
 theorem lowCoeffs_dedekindEtaUnitInv : LowCoeffs dedekindEtaUnitInv [1, 24, 324, 3200, 25650, 176256, 1073720] := by
   refine lowCoeffs_dedekindEtaUnit.invOfUnit (by rfl) constantCoeff_dedekindEtaUnit (by decide) (by decide)
 
+/--
+@isnad1 id=lowcoeff.0h0v.s5.9152e5afa46b from=translated src=- shape=f34727e0 vocab=66ca6f0b
+-/
 theorem lowCoeffs_eisenstein4 : LowCoeffs eisenstein4 [1, 240, 2160, 6720, 17520, 30240, 60480] := by
   intro i hi
   simp only [List.length_cons, List.length_nil] at hi
   simp only [eisenstein4, coeff_mk]
   interval_cases i <;> decide
 
+/--
+@isnad1 id=lowcoeff.0h0v.s5.23a2ef8697f0 from=translated src=- shape=f34727e0 vocab=d6bbf85d
+-/
 theorem lowCoeffs_jNum : LowCoeffs jNum [1, 744, 196884, 21493760, 864299970, 20245856256, 333202640600] := by
   have h4 := lowCoeffs_eisenstein4
   have h42 := (h4.mul h4).congr (M := [1, 480, 61920, 1050240, 7926240, 37500480, 135480960]) (by decide)
@@ -220,6 +271,9 @@ theorem lowCoeffs_jNum : LowCoeffs jNum [1, 744, 196884, 21493760, 864299970, 20
   have : jNum = eisenstein4 * eisenstein4 * eisenstein4 * dedekindEtaUnitInv := by rw [jNum]; ring
   rw [this]; exact hj
 
+/--
+@isnad1 id=and.0h0v.s9.c43d0dea2bd7 from=translated src=- shape=2b2ec391 vocab=3e9021a8
+-/
 theorem coeff_jNum_le_six' :
     coeff 0 jNum = 1 ∧ coeff 1 jNum = 744 ∧ coeff 2 jNum = 196884 ∧ coeff 3 jNum = 21493760 ∧
       coeff 4 jNum = 864299970 ∧ coeff 5 jNum = 20245856256 ∧ coeff 6 jNum = 333202640600 := by
@@ -233,6 +287,9 @@ end ModularCurve
 
 open _root_.ModularCurve open _root_.P2MW.S_ModularCurve_coeff_jNum_le_six.ModularCurve open _root_.Polynomial
 
+/--
+@isnad1 id=and.0h0v.s9.c43d0dea2bd7 from=translated src=- shape=2b2ec391 vocab=3e9021a8
+-/
 theorem solution :
     PowerSeries.coeff 0 jNum = 1 ∧ PowerSeries.coeff 1 jNum = 744 ∧ PowerSeries.coeff 2 jNum = 196884 ∧
       PowerSeries.coeff 3 jNum = 21493760 ∧ PowerSeries.coeff 4 jNum = 864299970 ∧

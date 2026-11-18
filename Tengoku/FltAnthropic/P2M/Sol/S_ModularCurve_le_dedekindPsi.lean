@@ -9,6 +9,9 @@ namespace P2MW.S_ModularCurve_le_dedekindPsi
 
 open ModularCurve Finset
 
+/--
+@isnad1 id=le.1h1v.s4.63acddd7f334 from=translated src=- shape=9167ffae vocab=b1d7465b
+-/
 theorem solution (N : ℕ) (hN : N ≠ 0) : N ≤ dedekindPsi N := by
   rw [dedekindPsi]
   have h1 : (1 : ℕ) ∈ {d ∈ N.divisors | Squarefree d} :=

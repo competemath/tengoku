@@ -21,6 +21,9 @@ section ExtFull
 
 variable {N : ℕ}
 
+/--
+@isnad1 id=eq.1h4v.s13.770087307454 from=translated src=- shape=2afcfa05 vocab=3a46af12
+-/
 theorem algHom_ext_of_eq_on_divisorExpansions {A : Type*} [DivisionRing A] [Algebra ℚ A]
     {f g : modularFunctionFieldFull N →ₐ[ℚ] A}
     (h : ∀ (d : ℕ) (_ : NeZero d) (hd : d ∣ N), f ⟨qExpand ℚ d jq, jqd_mem_full N hd⟩ = g ⟨qExpand ℚ d jq, jqd_mem_full N hd⟩) :
@@ -56,6 +59,9 @@ end W2B
 
 end ModularCurve
 
+/--
+@isnad1 id=eq.1h4v.s13.770087307454 from=translated src=- shape=2afcfa05 vocab=3a46af12
+-/
 theorem solution {N : ℕ} {A : Type*} [DivisionRing A] [Algebra ℚ A] {f g : modularFunctionFieldFull N →ₐ[ℚ] A} (h : ∀ (d : ℕ) (_ : NeZero d) (hd : d ∣ N), f ⟨qExpand ℚ d jq, jqd_mem_full N hd⟩ = g ⟨qExpand ℚ d jq, jqd_mem_full N hd⟩) : f = g :=
   ModularCurve.W2B.algHom_ext_of_eq_on_divisorExpansions h
 

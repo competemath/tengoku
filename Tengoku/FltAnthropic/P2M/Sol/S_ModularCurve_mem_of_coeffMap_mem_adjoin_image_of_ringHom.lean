@@ -18,6 +18,9 @@ namespace CoeffDescent
 variable {K L : Type*} [Field K] [Field L] (ι : K →+* L)
 
 omit [Field K] [Field L] in
+/--
+@isnad1 id=injectiv.0h3v.s7.e7bd301e016c from=translated src=- shape=c3be4bff vocab=94c04488
+-/
 theorem coeffMap_injective' {K L : Type*} [Field K] [Field L] (ι : K →+* L) :
     Function.Injective (coeffMap ι) := by
   intro x y h
@@ -25,6 +28,9 @@ theorem coeffMap_injective' {K L : Type*} [Field K] [Field L] (ι : K →+* L) :
   have := congrArg (fun z => HahnSeries.coeff z n) h
   simpa [coeffMap_coeff] using ι.injective this
 
+/--
+@isnad1 id=eq.0h5v.s6.cb58b2963db8 from=translated src=- shape=6f63ef8d vocab=19f158d2
+-/
 theorem coeff_finset_sum {M : Type*} (s : Finset M) (f : M → LaurentSeries L) (n : ℤ) :
     (∑ i ∈ s, f i).coeff n = ∑ i ∈ s, (f i).coeff n := by
   classical
@@ -32,6 +38,9 @@ theorem coeff_finset_sum {M : Type*} (s : Finset M) (f : M → LaurentSeries L) 
   | empty => simp
   | insert a s ha ih => simp [Finset.sum_insert ha, ih]
 
+/--
+@isnad1 id=eq.0h5v.s6.cb58b2963db8 from=translated src=- shape=6f63ef8d vocab=19f158d2
+-/
 theorem coeff_finset_sumK {M : Type*} (s : Finset M) (f : M → LaurentSeries K) (n : ℤ) :
     (∑ i ∈ s, f i).coeff n = ∑ i ∈ s, (f i).coeff n := by
   classical
@@ -40,11 +49,17 @@ theorem coeff_finset_sumK {M : Type*} (s : Finset M) (f : M → LaurentSeries K)
   | insert a s ha ih => simp [Finset.sum_insert ha, ih]
 
 omit [Field K] in
+/--
+@isnad1 id=eq.0h2v.s8.913589369ecd from=translated src=- shape=051e0e80 vocab=90248186
+-/
 theorem C_eq_algebraMap'' {L : Type*} [Field L] (c : L) : HahnSeries.C c = algebraMap L (LaurentSeries L) c := by
   first
     | rfl
     | exact (HahnSeries.ofPowerSeries_C (Γ := ℤ) (R := L) c).symm
 
+/--
+@isnad1 id=mem.2h6v.s11.679411c565ac from=translated src=- shape=ac69f7b5 vocab=3eb84721
+-/
 theorem mul_mem_span (F : IntermediateField K (LaurentSeries K)) {a b : LaurentSeries L}
     (ha : a ∈ Submodule.span L (coeffMap ι '' (F : Set (LaurentSeries K))))
     (hb : b ∈ Submodule.span L (coeffMap ι '' (F : Set (LaurentSeries K)))) :
@@ -67,6 +82,9 @@ theorem mul_mem_span (F : IntermediateField K (LaurentSeries K)) {a b : LaurentS
     rw [← HahnSeries.C_mul_eq_smul, mul_assoc, HahnSeries.C_mul_eq_smul]
     exact Submodule.smul_mem _ c hu
 
+/--
+@isnad1 id=mem.1h5v.s10.720cd9415f2e from=translated src=- shape=e8b50802 vocab=0ed64ae9
+-/
 theorem adjoin_le_span (F : IntermediateField K (LaurentSeries K)) {z : LaurentSeries L}
     (hz : z ∈ Algebra.adjoin L (coeffMap ι '' (F : Set (LaurentSeries K)))) :
     z ∈ Submodule.span L (coeffMap ι '' (F : Set (LaurentSeries K))) := by
@@ -79,6 +97,9 @@ theorem adjoin_le_span (F : IntermediateField K (LaurentSeries K)) {z : LaurentS
   | add u w _ _ hu hw => exact add_mem hu hw
   | mul u w _ _ hu hw => exact mul_mem_span ι F hu hw
 
+/--
+@isnad1 id=mem.1h5v.s10.5ffb4baaac83 from=translated src=- shape=55626b26 vocab=6b28935a
+-/
 theorem main (F : IntermediateField K (LaurentSeries K)) (x : LaurentSeries K)
     (hx : coeffMap ι x ∈ IntermediateField.adjoin L (coeffMap ι '' (F : Set (LaurentSeries K)))) :
     x ∈ F := by
@@ -197,6 +218,9 @@ end ModularCurve
 
 end
 
+/--
+@isnad1 id=mem.1h5v.s10.5ffb4baaac83 from=translated src=- shape=55626b26 vocab=6b28935a
+-/
 theorem solution
     {K L : Type*} [Field K] [Field L] (ι : K →+* L) (F : IntermediateField K (LaurentSeries K))
     (x : LaurentSeries K)

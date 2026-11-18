@@ -12,6 +12,9 @@ namespace ModularCurve
 export _root_.ModularCurve (qTwist qTwist_coeff qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd)
 open _root_.ModularCurve
 
+/--
+@isnad1 id=eq.3h5v.s8.b1e9a320fc3a from=translated src=- shape=f23bc6b3 vocab=0c30385a
+-/
 theorem coeff_eq_zero_of_qTwist_eq {K : Type*} [Field K] (n : ℕ) [NeZero n] (ζ : Kˣ)
     (hζ : IsPrimitiveRoot (ζ : K) n) (f : LaurentSeries K) (h : qTwist ζ f = f) {k : ℤ}
     (hk : ¬ (n : ℤ) ∣ k) : f.coeff k = 0 := by
@@ -26,6 +29,9 @@ theorem coeff_eq_zero_of_qTwist_eq {K : Type*} [Field K] (n : ℕ) [NeZero n] (�
   · exact absurd (sub_eq_zero.mp h0) hne
   · exact h0
 
+/--
+@isnad1 id=mem.2h4v.s8.4e2f4438936c from=translated src=- shape=d7a1db84 vocab=9a2e2ad7
+-/
 theorem mem_range_qExpand_of_qTwist_eq' {K : Type*} [Field K] (n : ℕ) [NeZero n] (ζ : Kˣ)
     (hζ : IsPrimitiveRoot (ζ : K) n) (f : LaurentSeries K) (h : qTwist ζ f = f) :
     f ∈ Set.range (qExpand K n) := by
@@ -48,5 +54,8 @@ theorem mem_range_qExpand_of_qTwist_eq' {K : Type*} [Field K] (n : ℕ) [NeZero 
 
 end ModularCurve
 
+/--
+@isnad1 id=mem.2h4v.s8.4e2f4438936c from=translated src=- shape=d7a1db84 vocab=9a2e2ad7
+-/
 theorem solution {K : Type*} [Field K] (n : ℕ) [NeZero n] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) n) (f : LaurentSeries K) (h : ModularCurve.qTwist ζ f = f) : f ∈ Set.range (ModularCurve.qExpand K n) :=
   ModularCurve.mem_range_qExpand_of_qTwist_eq' n ζ hζ f h

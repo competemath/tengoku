@@ -7,6 +7,9 @@ namespace P2MW.S_ModularCurve_heckeAlg_smul_comm_of_forall_gen
 
 open ModularCurve
 
+/--
+@isnad1 id=eq.1h5v.s9.8e6735d18083 from=translated src=- shape=44aa133d vocab=a7712c52
+-/
 theorem solution {J J' : Type*} [AddCommGroup J] [AddCommGroup J']
     [Module ModularCurve.HeckeAlg J] [Module ModularCurve.HeckeAlg J'] (sp : J →+ J')
     (hgen : ∀ (q : Nat.Primes) (x : J), sp (ModularCurve.heckeGen q • x) = ModularCurve.heckeGen q • sp x)

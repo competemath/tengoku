@@ -13,6 +13,9 @@ namespace OneWitnessAux
 
 open PowerSeries
 
+/--
+@isnad1 id=eq.0h4v.s8.5454d128f03d from=translated src=- shape=db70f228 vocab=9ada4d1a
+-/
 theorem coeff_pow_char {R : Type*} [CommRing R] (p : ℕ) [hp : Fact p.Prime] [CharP R p]
     (f : PowerSeries R) (m : ℕ) :
     coeff m (f ^ p) = if p ∣ m then (coeff (m / p) f) ^ p else 0 := by
@@ -55,6 +58,9 @@ theorem coeff_pow_char {R : Type*} [CommRing R] (p : ℕ) [hp : Fact p.Prime] [C
         intro h
         exact absurd (Nat.le_of_dvd (Nat.pos_of_ne_zero hm0) h) (not_le.mpr hpm)
 
+/--
+@isnad1 id=eq.0h4v.s8.fc9c13a5db5c from=translated src=- shape=ced4b455 vocab=0da73fec
+-/
 theorem coeff_pow_char_sq {R : Type*} [CommRing R] (p : ℕ) [hp : Fact p.Prime] [CharP R p]
     (f : PowerSeries R) (m : ℕ) :
     coeff m (f ^ (p * p)) = if p * p ∣ m then (coeff (m / (p * p)) f) ^ (p * p) else 0 := by
@@ -76,14 +82,23 @@ theorem coeff_pow_char_sq {R : Type*} [CommRing R] (p : ℕ) [hp : Fact p.Prime]
 noncomputable def expandPS {R : Type*} [CommRing R] (N : ℕ) (f : PowerSeries R) : PowerSeries R :=
   mk fun n => if N ∣ n then coeff (n / N) f else 0
 
+/--
+@isnad1 id=eq.0h4v.s8.f8bc0ab6bc47 from=translated src=- shape=7917efc1 vocab=abc539d8
+-/
 theorem coeff_expandPS {R : Type*} [CommRing R] (N : ℕ) (f : PowerSeries R) (n : ℕ) :
     coeff n (expandPS N f) = if N ∣ n then coeff (n / N) f else 0 := by
   rw [expandPS, coeff_mk]
 
+/--
+@isnad1 id=eq.0h5v.s7.620fa40858c8 from=translated src=- shape=9564eac7 vocab=525f3e39
+-/
 theorem map_expandPS {R S : Type*} [CommRing R] [CommRing S] (g : R →+* S) (N : ℕ) (f : PowerSeries R) :
     (expandPS N f).map g = expandPS N (f.map g) := by
   ext n; simp only [coeff_map, coeff_expandPS]; split_ifs <;> simp
 
+/--
+@isnad1 id=eq.1h3v.s7.9b4d307ff527 from=translated src=- shape=8a4291ab vocab=6ca2f719
+-/
 theorem ofPowerSeries_coeff_neg {R : Type*} [CommRing R] (g : PowerSeries R) (k : ℤ) (hk : k < 0) :
     (HahnSeries.ofPowerSeries ℤ R g).coeff k = 0 := by
   rw [HahnSeries.ofPowerSeries_apply]
@@ -92,6 +107,9 @@ theorem ofPowerSeries_coeff_neg {R : Type*} [CommRing R] (g : PowerSeries R) (k 
   have : (n : ℤ) = k := hn
   omega
 
+/--
+@isnad1 id=eq.0h3v.s9.066de8cd6138 from=translated src=- shape=f5328874 vocab=a5350e6b
+-/
 theorem ofPowerSeries_expandPS {R : Type*} [CommRing R] (N : ℕ) [NeZero N] (f : PowerSeries R) :
     HahnSeries.ofPowerSeries ℤ R (expandPS N f) = ModularCurve.qExpand R N (HahnSeries.ofPowerSeries ℤ R f) := by
   ext k
@@ -117,6 +135,9 @@ end OneWitnessAux
 
 open OneWitnessAux PowerSeries in
 set_option maxHeartbeats 6400000 in
+/--
+@isnad1 id=ne.4h7v.s14.4b09ec0f52a5 from=translated src=- shape=b9b47f8a vocab=a0d03aad
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime]
     (L : Type) [Field L] [CharZero L]

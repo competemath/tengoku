@@ -48,12 +48,21 @@ def smulPeriodPair (a : ℂ) (ha : a ≠ 0) (L : PeriodPair) : PeriodPair where
       rw [mul_add, mul_smul_comm, mul_smul_comm]; exact hst
     exact (mul_eq_zero.mp h0).resolve_left ha
 
+/--
+@isnad1 id=eq.1h2v.s4.d523a7993d5e from=translated src=- shape=9912aee1 vocab=67add238
+-/
 @[scoped simp] lemma smulPeriodPair_ω₁ (a : ℂ) (ha : a ≠ 0) (L : PeriodPair) :
     (smulPeriodPair a ha L).ω₁ = a * L.ω₁ := rfl
 
+/--
+@isnad1 id=eq.1h2v.s4.1c3597285d90 from=translated src=- shape=9912aee1 vocab=262e9eb4
+-/
 @[scoped simp] lemma smulPeriodPair_ω₂ (a : ℂ) (ha : a ≠ 0) (L : PeriodPair) :
     (smulPeriodPair a ha L).ω₂ = a * L.ω₂ := rfl
 
+/--
+@isnad1 id=iff.1h3v.s6.864472937d51 from=translated src=- shape=b6ae4284 vocab=4a86afe8
+-/
 lemma mem_smulPeriodPair_lattice {a : ℂ} (ha : a ≠ 0) (L : PeriodPair) {x : ℂ} :
     x ∈ (smulPeriodPair a ha L).lattice ↔ ∃ y ∈ L.lattice, x = a * y := by
   simp only [mem_lattice, smulPeriodPair_ω₁, smulPeriodPair_ω₂]
@@ -72,9 +81,15 @@ def smulLatticeEquiv (a : ℂ) (ha : a ≠ 0) (L : PeriodPair) :
   left_inv l := Subtype.ext (inv_mul_cancel_left₀ ha _)
   right_inv l := Subtype.ext (mul_inv_cancel_left₀ ha _)
 
+/--
+@isnad1 id=eq.1h3v.s9.7dfdb77af2c1 from=translated src=- shape=5b6cd9a1 vocab=c265506c
+-/
 @[scoped simp] lemma smulLatticeEquiv_coe (a : ℂ) (ha : a ≠ 0) (L : PeriodPair) (l : L.lattice) :
     ((smulLatticeEquiv a ha L) l : ℂ) = a * l := rfl
 
+/--
+@isnad1 id=eq.1h3v.s6.48b4ef6e954a from=translated src=- shape=193f100e vocab=2cda8701
+-/
 theorem weierstrassP_smulPeriodPair (a : ℂ) (ha : a ≠ 0) (L : PeriodPair) (z : ℂ) :
     weierstrassP (smulPeriodPair a ha L) (a * z) = a⁻¹ ^ 2 * weierstrassP L z := by
   have key : ∀ u : ℂ, 1 / (a * u) ^ 2 = a⁻¹ ^ 2 * (1 / u ^ 2) := fun u => by
@@ -89,10 +104,16 @@ end B1_homogeneity
 
 section B2_lipschitz
 
+/--
+@isnad1 id=summable.0h1v.s6.745632f8a7e1 from=translated src=- shape=8ce29c47 vocab=b38d0ca1
+-/
 theorem summable_one_div_add_int_sq (w : ℂ) :
     Summable fun n : ℤ ↦ 1 / (w + n) ^ 2 := by
   simpa [one_div] using EisensteinSeries.linear_right_summable w 1 (k := 2) le_rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.945e3ab8be2a from=translated src=- shape=a1f4354d vocab=aa37051f
+-/
 theorem tsum_one_div_add_int_sq_neg (w : ℂ) :
     ∑' n : ℤ, 1 / (-w + n) ^ 2 = ∑' n : ℤ, 1 / (w + n) ^ 2 := by
   rw [← (Equiv.neg ℤ).tsum_eq]
@@ -100,12 +121,18 @@ theorem tsum_one_div_add_int_sq_neg (w : ℂ) :
   simp only [Equiv.neg_apply, Int.cast_neg]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s7.62d9e4201e54 from=translated src=- shape=35f7469b vocab=a9987e06
+-/
 theorem tsum_one_div_sub_int_sq (w : ℂ) :
     ∑' n : ℤ, 1 / (w - n) ^ 2 = ∑' n : ℤ, 1 / (w + n) ^ 2 := by
   rw [← (Equiv.neg ℤ).tsum_eq]
   refine tsum_congr fun n ↦ ?_
   simp [sub_eq_add_neg]
 
+/--
+@isnad1 id=eq.1h1v.s7.161c476e315b from=translated src=- shape=3e82d370 vocab=3cc312db
+-/
 theorem lipschitz_two_of_im_pos {w : ℂ} (hw : 0 < w.im) :
     ∑' n : ℤ, 1 / (w + n) ^ 2 =
       (2 * π * I) ^ 2 * ∑' m : ℕ, (m : ℂ) * cexp (2 * π * I * w) ^ m := by
@@ -114,16 +141,25 @@ theorem lipschitz_two_of_im_pos {w : ℂ} (hw : 0 < w.im) :
   rw [h]
   ring
 
+/--
+@isnad1 id=eq.1h1v.s7.430e3c152d07 from=translated src=- shape=0e1b2ca5 vocab=7690e555
+-/
 theorem lipschitz_two_of_im_neg {w : ℂ} (hw : w.im < 0) :
     ∑' n : ℤ, 1 / (w + n) ^ 2 =
       (2 * π * I) ^ 2 * ∑' m : ℕ, (m : ℂ) * cexp (-(2 * π * I * w)) ^ m := by
   rw [← tsum_one_div_add_int_sq_neg, lipschitz_two_of_im_pos (w := -w) (by simpa using hw)]
   simp [mul_neg]
 
+/--
+@isnad1 id=summable.1h1v.s6.aafd4a01b070 from=translated src=- shape=c8684bc4 vocab=1a7c1cd2
+-/
 theorem summable_nat_mul_cexp_pow {w : ℂ} (hw : 0 < w.im) :
     Summable fun m : ℕ ↦ (m : ℂ) * cexp (2 * π * I * w) ^ m := by
   simpa using summable_pow_mul_cexp 1 1 ⟨w, hw⟩
 
+/--
+@isnad1 id=ne.1h1v.s5.2a5ae3b7e8dd from=translated src=- shape=161835b9 vocab=245e2adc
+-/
 theorem cexp_two_pi_I_mul_ne_one {x : ℂ} (hx : x ∈ Complex.integerComplement) :
     cexp (2 * π * I * x) ≠ 1 := by
   intro h
@@ -134,12 +170,18 @@ theorem cexp_two_pi_I_mul_ne_one {x : ℂ} (hx : x ∈ Complex.integerComplement
     simpa [mul_div_assoc, div_self h2, mul_comm] using this
   exact hx ⟨n, this.symm⟩
 
+/--
+@isnad1 id=eq.1h1v.s7.52bb75ecdd50 from=translated src=- shape=2d73dec4 vocab=060ffb3a
+-/
 theorem lipschitz_two_closed_of_im_pos {x : ℂ} (hx : 0 < x.im) :
     ∑' n : ℤ, 1 / (x + n) ^ 2 =
       (2 * π * I) ^ 2 * (cexp (2 * π * I * x) / (1 - cexp (2 * π * I * x)) ^ 2) := by
   rw [lipschitz_two_of_im_pos hx, tsum_coe_mul_geometric_of_norm_lt_one]
   simpa using UpperHalfPlane.norm_exp_two_pi_I_lt_one ⟨x, hx⟩
 
+/--
+@isnad1 id=eq.1h1v.s7.4de27162f226 from=translated src=- shape=6f92a6f7 vocab=060ffb3a
+-/
 theorem lipschitz_two_closed_of_im_neg {x : ℂ} (hx : x.im < 0) :
     ∑' n : ℤ, 1 / (x + n) ^ 2 =
       (2 * π * I) ^ 2 * (cexp (2 * π * I * x) / (1 - cexp (2 * π * I * x)) ^ 2) := by
@@ -169,6 +211,9 @@ theorem lipschitz_two_closed_of_im_neg {x : ℂ} (hx : x.im < 0) :
 
 open Metric Set Filter Topology in
 
+/--
+@isnad1 id=eq.1h1v.s7.e06a9510e8e0 from=translated src=- shape=839eb915 vocab=7f7d6f3b
+-/
 theorem lipschitz_two_closed {x : ℂ} (hx : x ∈ Complex.integerComplement) :
     ∑' n : ℤ, 1 / (x + n) ^ 2 =
       (2 * π * I) ^ 2 * (cexp (2 * π * I * x) / (1 - cexp (2 * π * I * x)) ^ 2) := by
@@ -268,37 +313,61 @@ theorem lipschitz_two_closed {x : ℂ} (hx : x ∈ Complex.integerComplement) :
     (hG.analyticOnNhd isOpen_ball) (convex_ball x _).isPreconnected hz₀U hfg
     (mem_ball_self (half_pos hε))
 
+/--
+@isnad1 id=eq.0h0v.s6.9ff7c992443e from=translated src=- shape=6529cc83 vocab=0029de1d
+-/
 theorem tsum_int_one_div_sq : ∑' n : ℤ, 1 / ((n : ℂ)) ^ 2 = (π : ℂ) ^ 2 / 3 := by
   have h := two_mul_riemannZeta_eq_tsum_int_inv_pow_of_even (k := 2) le_rfl even_two
   simp only [Nat.cast_ofNat, riemannZeta_two] at h
   simp only [one_div, ← h]
   ring
 
+/--
+@isnad1 id=eq.0h0v.s6.3becd1552036 from=translated src=- shape=42d90be8 vocab=7a999b30
+-/
 theorem two_pi_I_sq : (2 * π * I : ℂ) ^ 2 = -(4 * π ^ 2) := by
   rw [mul_pow, I_sq]; ring
 
+/--
+@isnad1 id=eq.0h0v.s6.992d6c07a8c3 from=translated src=- shape=f0d2b028 vocab=d97fd6f8
+-/
 theorem neg_pi_sq_div_three_div : -((π : ℂ) ^ 2 / 3) = (2 * π * I) ^ 2 * (1 / 12) := by
   rw [two_pi_I_sq]; ring
 
+/--
+@isnad1 id=eq.1h1v.s7.090f87fa7e88 from=translated src=- shape=704fcebb vocab=7690e555
+-/
 theorem lipschitz_two_of_im_neg' {w : ℂ} (hw : w.im < 0) :
     ∑' n : ℤ, 1 / (w + n) ^ 2 =
       (2 * π * I) ^ 2 * ∑' m : ℕ, (m : ℂ) * cexp (2 * π * I * (-w)) ^ m := by
   rw [lipschitz_two_of_im_neg hw]
   simp [mul_neg]
 
+/--
+@isnad1 id=eq.0h2v.s6.295c2eefbfad from=translated src=- shape=bb2a2f71 vocab=d5191b54
+-/
 theorem cexp_two_pi_I_mul_add (a b : ℂ) :
     cexp (2 * π * I * (a + b)) = cexp (2 * π * I * a) * cexp (2 * π * I * b) := by
   rw [mul_add, Complex.exp_add]
 
+/--
+@isnad1 id=eq.0h2v.s6.c1c32f58c508 from=translated src=- shape=158b5dbe vocab=eec53745
+-/
 theorem cexp_two_pi_I_mul_nat_mul (c : ℕ) (τ : ℂ) :
     cexp (2 * π * I * (c * τ)) = cexp (2 * π * I * τ) ^ c := by
   rw [← Complex.exp_nat_mul]
   ring_nf
 
+/--
+@isnad1 id=eq.0h1v.s6.45c8e80edcd7 from=translated src=- shape=1df351c3 vocab=634ce603
+-/
 theorem cexp_two_pi_I_mul_neg (z : ℂ) :
     cexp (2 * π * I * (-z)) = (cexp (2 * π * I * z))⁻¹ := by
   rw [mul_neg, Complex.exp_neg]
 
+/--
+@isnad1 id=eq.4h3v.s9.666b72895d47 from=translated src=- shape=66a3e8da vocab=b278d7dd
+-/
 theorem lipschitz_row_pair {z τ : ℂ} (hτ : 0 < τ.im) (hz₁ : -τ.im < z.im) (hz₂ : z.im < τ.im)
     {c : ℕ} (hc : 0 < c) :
     ((∑' d : ℤ, 1 / ((z - c * τ) + d) ^ 2) - ∑' d : ℤ, 1 / (c * τ + d) ^ 2) +
@@ -337,12 +406,18 @@ theorem lipschitz_row_pair {z τ : ℂ} (hτ : 0 < τ.im) (hz₁ : -τ.im < z.im
     cexp_two_pi_I_mul_neg, cexp_two_pi_I_mul_nat_mul]
   ring
 
+/--
+@isnad1 id=eq.1h1v.s8.fa96516d4178 from=translated src=- shape=dce40ead vocab=7f7d6f3b
+-/
 theorem lipschitz_row_zero {z : ℂ} (hz : z ∈ Complex.integerComplement) :
     (∑' d : ℤ, 1 / (z + d) ^ 2) - ∑' d : ℤ, 1 / ((d : ℂ)) ^ 2 =
       (2 * π * I) ^ 2 * (cexp (2 * π * I * z) / (1 - cexp (2 * π * I * z)) ^ 2 + 1 / 12) := by
   rw [lipschitz_two_closed hz, tsum_int_one_div_sq, sub_eq_add_neg, neg_pi_sq_div_three_div]
   ring
 
+/--
+@isnad1 id=eq.5h2v.s9.5dbbfa168bb3 from=translated src=- shape=178e372d vocab=3b1449b9
+-/
 theorem lipschitz_rows_qExpansion {z τ : ℂ} (hτ : 0 < τ.im) (hz₁ : -τ.im < z.im)
     (hz₂ : z.im < τ.im) (hz : z ∈ Complex.integerComplement)
     (hS : Summable fun c : ℤ ↦
@@ -389,12 +464,21 @@ def periodPairOfTau (τ : ℍ) : PeriodPair where
     subst hs
     simpa using hst
 
+/--
+@isnad1 id=eq.0h1v.s3.9beec50e1adf from=translated src=- shape=7718e021 vocab=1e5b5dca
+-/
 @[scoped simp] lemma periodPairOfTau_ω₁ (τ : ℍ) : (periodPairOfTau τ).ω₁ = (τ : ℂ) := rfl
+/--
+@isnad1 id=eq.0h1v.s3.0c70151d46b3 from=translated src=- shape=f6b6ad72 vocab=eafa511c
+-/
 @[scoped simp] lemma periodPairOfTau_ω₂ (τ : ℍ) : (periodPairOfTau τ).ω₂ = 1 := rfl
 
 abbrev wpSummand (L : PeriodPair) (z : ℂ) (p : ℤ × ℤ) : ℂ :=
   1 / (z - (p.1 * L.ω₁ + p.2 * L.ω₂)) ^ 2 - 1 / (p.1 * L.ω₁ + p.2 * L.ω₂) ^ 2
 
+/--
+@isnad1 id=hassum.0h2v.s5.fdb7f3ed75d0 from=translated src=- shape=c3efdaa4 vocab=d956d7d3
+-/
 theorem hasSum_weierstrassP_prod (L : PeriodPair) (z : ℂ) :
     HasSum (wpSummand L z) (weierstrassP L z) := by
   have h := (L.latticeEquivProd.symm.toEquiv.hasSum_iff (f := fun l : L.lattice ↦
@@ -405,10 +489,16 @@ theorem hasSum_weierstrassP_prod (L : PeriodPair) (z : ℂ) :
     L.latticeEquiv_symm_apply p
   rw [hcoe]
 
+/--
+@isnad1 id=summable.0h2v.s4.9ea798f65f4f from=translated src=- shape=ef51582c vocab=ef3f53c2
+-/
 theorem summable_weierstrassP_prod (L : PeriodPair) (z : ℂ) :
     Summable (wpSummand L z) :=
   (hasSum_weierstrassP_prod L z).summable
 
+/--
+@isnad1 id=eq.0h2v.s7.c46f68efdba2 from=translated src=- shape=49cd43a7 vocab=d26603a3
+-/
 theorem weierstrassP_eq_tsum_tsum (L : PeriodPair) (z : ℂ) :
     weierstrassP L z =
       ∑' c : ℤ, ∑' d : ℤ,
@@ -416,11 +506,17 @@ theorem weierstrassP_eq_tsum_tsum (L : PeriodPair) (z : ℂ) :
   rw [← (hasSum_weierstrassP_prod L z).tsum_eq]
   exact (summable_weierstrassP_prod L z).tsum_prod
 
+/--
+@isnad1 id=summable.0h2v.s7.4eca7c291956 from=translated src=- shape=31f002d6 vocab=f35b715e
+-/
 theorem summable_weierstrassP_row (L : PeriodPair) (z : ℂ) :
     Summable fun c : ℤ ↦
       ∑' d : ℤ, (1 / (z - (c * L.ω₁ + d * L.ω₂)) ^ 2 - 1 / (c * L.ω₁ + d * L.ω₂) ^ 2) :=
   (summable_weierstrassP_prod L z).prod
 
+/--
+@isnad1 id=eq.0h3v.s7.113318419457 from=translated src=- shape=c0761d73 vocab=719e154d
+-/
 theorem wpRow_periodPairOfTau_split (τ : ℍ) (z : ℂ) (c : ℤ) :
     ∑' d : ℤ, wpSummand (periodPairOfTau τ) z (c, d) =
       (∑' d : ℤ, 1 / ((z - c * (τ : ℂ)) + d) ^ 2) - ∑' d : ℤ, 1 / (c * (τ : ℂ) + d) ^ 2 := by
@@ -438,6 +534,9 @@ theorem wpRow_periodPairOfTau_split (τ : ℍ) (z : ℂ) (c : ℤ) :
     ring
   rw [step, tsum_one_div_sub_int_sq]
 
+/--
+@isnad1 id=eq.0h2v.s7.960fee0f87de from=translated src=- shape=a80a7bc9 vocab=f184228e
+-/
 theorem weierstrassP_periodPairOfTau_eq_row_sum (τ : ℍ) (z : ℂ) :
     weierstrassP (periodPairOfTau τ) z =
       ∑' c : ℤ, ((∑' d : ℤ, 1 / ((z - c * (τ : ℂ)) + d) ^ 2)
@@ -453,6 +552,9 @@ section B2_assembly
 
 open scoped UpperHalfPlane in
 
+/--
+@isnad1 id=eq.3h2v.s8.6b6103600176 from=translated src=- shape=976303f7 vocab=6ef3259c
+-/
 theorem weierstrassP_periodPairOfTau_qExpansion (τ : ℍ) {z : ℂ}
     (hz₁ : -τ.im < z.im) (hz₂ : z.im < τ.im) (hz : z ∈ Complex.integerComplement) :
     PeriodPair.weierstrassP (periodPairOfTau τ) z =
@@ -474,14 +576,23 @@ def zetaN (N : ℕ) : ℂ := cexp (2 * π * I / N)
 
 def qN (N : ℕ) (τ : ℂ) : ℂ := cexp (2 * π * I * τ / N)
 
+/--
+@isnad1 id=ne.0h2v.s3.fb57b00628cc from=translated src=- shape=4f17ad3b vocab=2829b445
+-/
 lemma qN_ne_zero (N : ℕ) (τ : ℂ) : qN N τ ≠ 0 := Complex.exp_ne_zero _
 
+/--
+@isnad1 id=eq.1h2v.s6.c4b634bfb5c9 from=translated src=- shape=60d33695 vocab=eb1f9679
+-/
 lemma qN_pow_self {N : ℕ} (hN : N ≠ 0) (τ : ℂ) : qN N τ ^ N = cexp (2 * π * I * τ) := by
   have : (N : ℂ) ≠ 0 := by exact_mod_cast hN
   rw [qN, ← Complex.exp_nat_mul]
   congr 1
   field_simp
 
+/--
+@isnad1 id=eq.1h4v.s7.5e228d4a4682 from=translated src=- shape=2b047aad vocab=9d8090af
+-/
 lemma cexp_two_pi_I_mul_torsionPt {N : ℕ} (hN : N ≠ 0) (a₁ a₂ : ℕ) (τ : ℂ) :
     cexp (2 * π * I * ((a₁ * τ + a₂) / N)) = zetaN N ^ a₂ * qN N τ ^ a₁ := by
   have : (N : ℂ) ≠ 0 := by exact_mod_cast hN
@@ -490,6 +601,9 @@ lemma cexp_two_pi_I_mul_torsionPt {N : ℕ} (hN : N ≠ 0) (a₁ a₂ : ℕ) (τ
   field_simp
   ring
 
+/--
+@isnad1 id=eq.0h2v.s5.3ec779e13f18 from=translated src=- shape=4fb843f3 vocab=8e876f01
+-/
 lemma norm_qN (N : ℕ) (τ : ℂ) : ‖qN N τ‖ = Real.exp (-(2 * π * τ.im / N)) := by
   rw [qN, Complex.norm_exp]
   congr 1
@@ -510,6 +624,9 @@ private lemma torsion_term_aux (ζ q : ℂ) (hq : q ≠ 0) (a₁ a₂ k m : ℕ)
 
 open scoped UpperHalfPlane in
 
+/--
+@isnad1 id=and.3h4v.s7.a145dc3ef98f from=translated src=- shape=e39cae20 vocab=3d1da83d
+-/
 lemma torsionPt_hyps (τ : ℍ) {N a₁ a₂ : ℕ} (ha₁ : a₁ < N) (ha₂ : a₂ < N)
     (h0 : a₁ ≠ 0 ∨ a₂ ≠ 0) :
     -τ.im < (((a₁ : ℂ) * τ + a₂) / N).im ∧ (((a₁ : ℂ) * τ + a₂) / N).im < τ.im ∧
@@ -553,6 +670,9 @@ lemma torsionPt_hyps (τ : ℍ) {N a₁ a₂ : ℕ} (ha₁ : a₁ < N) (ha₂ : 
 
 open scoped UpperHalfPlane in
 
+/--
+@isnad1 id=eq.3h4v.s9.50f0d2da5164 from=translated src=- shape=2821e84d vocab=f09de675
+-/
 theorem weierstrassP_torsionPt_qExpansion (τ : ℍ) {N a₁ a₂ : ℕ} (ha₁ : a₁ < N) (ha₂ : a₂ < N)
     (h0 : a₁ ≠ 0 ∨ a₂ ≠ 0) :
     PeriodPair.weierstrassP (periodPairOfTau τ) (((a₁ : ℂ) * τ + a₂) / N) =
@@ -579,20 +699,32 @@ section B3_holo
 
 open scoped UpperHalfPlane Manifold
 
+/--
+@isnad1 id=eq.0h1v.s3.06fdbd467ab7 from=translated src=- shape=8e1bdd70 vocab=235d0a0b
+-/
 lemma norm_zetaN (N : ℕ) : ‖zetaN N‖ = 1 := by
   rw [zetaN, Complex.norm_exp, show 2 * (π : ℂ) * I / N = (2 * π * I) / (N : ℕ) from rfl,
     Complex.div_natCast_re]
   simp
 
+/--
+@isnad1 id=le.1h2v.s4.8ca5d621a7a0 from=translated src=- shape=ed1b8f24 vocab=f1724e05
+-/
 lemma norm_qN_le_one (N : ℕ) {τ : ℂ} (hτ : 0 ≤ τ.im) : ‖qN N τ‖ ≤ 1 := by
   rw [norm_qN, Real.exp_le_one_iff, neg_nonpos]
   positivity
 
+/--
+@isnad1 id=lt.2h2v.s5.892892c7654d from=translated src=- shape=ded12672 vocab=82b68058
+-/
 lemma norm_qN_lt_one {N : ℕ} (hN : 0 < N) {τ : ℂ} (hτ : 0 < τ.im) : ‖qN N τ‖ < 1 := by
   rw [norm_qN, Real.exp_lt_one_iff, neg_lt_zero]
   have : (0 : ℝ) < N := by exact_mod_cast hN
   positivity
 
+/--
+@isnad1 id=le.1h3v.s5.07f51b1336f3 from=translated src=- shape=54175cff vocab=2c8c30b4
+-/
 lemma norm_qN_le_of_le_im (N : ℕ) {B : ℝ} {τ : ℂ} (hτ : B ≤ τ.im) :
     ‖qN N τ‖ ≤ Real.exp (-(2 * π * B / N)) := by
   rw [norm_qN, Real.exp_le_exp, neg_le_neg_iff]
@@ -607,6 +739,9 @@ def wpTail (N a₁ a₂ : ℕ) (p : ℕ+ × ℕ+) (τ : ℂ) : ℂ :=
       (zetaN N)⁻¹ ^ (a₂ * (p.2 : ℕ)) * qN N τ ^ (((p.1 : ℕ) * N - a₁) * (p.2 : ℕ)) -
         2 * qN N τ ^ ((p.1 : ℕ) * N * (p.2 : ℕ)))
 
+/--
+@isnad1 id=le.2h5v.s6.dc17e638e8fb from=translated src=- shape=43bcb92e vocab=5ee3eae9
+-/
 lemma norm_wpTail_le {N a₁ : ℕ} (ha₁ : a₁ < N) (a₂ : ℕ) (p : ℕ+ × ℕ+) {τ : ℂ} (hτ : 0 ≤ τ.im) :
     ‖wpTail N a₁ a₂ p τ‖ ≤ 4 * ((p.2 : ℕ) * ‖qN N τ‖ ^ ((p.1 : ℕ) * (p.2 : ℕ))) := by
   obtain ⟨c, m⟩ := p
@@ -644,18 +779,27 @@ lemma norm_wpTail_le {N a₁ : ℕ} (ha₁ : a₁ < N) (a₂ : ℕ) (p : ℕ+ ×
   calc ((m : ℕ) : ℝ) * ‖A + B - 2 * C‖ ≤ (m : ℕ) * (4 * ρ ^ ((c : ℕ) * (m : ℕ))) := by gcongr
     _ = 4 * ((m : ℕ) * ρ ^ ((c : ℕ) * (m : ℕ))) := by ring
 
+/--
+@isnad1 id=summable.2h1v.s6.d54d36719428 from=translated src=- shape=69737614 vocab=242f75a3
+-/
 lemma summable_wpTail_majorant {r : ℝ} (hr0 : 0 ≤ r) (hr : r < 1) :
     Summable fun p : ℕ+ × ℕ+ ↦ 4 * ((p.2 : ℕ) * r ^ ((p.1 : ℕ) * (p.2 : ℕ))) := by
   have h := summable_prod_mul_pow 1 (r := r) (by rwa [Real.norm_eq_abs, abs_of_nonneg hr0])
   refine (h.mul_left 4).congr fun p ↦ ?_
   simp
 
+/--
+@isnad1 id=summable.2h4v.s5.012b20ff503d from=translated src=- shape=9c0978fd vocab=e60d013e
+-/
 lemma summable_wpTail {N a₁ : ℕ} (ha₁ : a₁ < N) (a₂ : ℕ) {τ : ℂ} (hτ : 0 < τ.im) :
     Summable fun p ↦ wpTail N a₁ a₂ p τ :=
   Summable.of_norm_bounded
     (summable_wpTail_majorant (norm_nonneg _) (norm_qN_lt_one (by omega) hτ))
     fun p ↦ norm_wpTail_le ha₁ a₂ p hτ.le
 
+/--
+@isnad1 id=eq.3h4v.s8.7fb1644947d0 from=translated src=- shape=69c8293a vocab=04569ef4
+-/
 theorem weierstrassP_torsionPt_eq_tsum_prod (τ : ℍ) {N a₁ a₂ : ℕ} (ha₁ : a₁ < N) (ha₂ : a₂ < N)
     (h0 : a₁ ≠ 0 ∨ a₂ ≠ 0) :
     PeriodPair.weierstrassP (periodPairOfTau τ) (((a₁ : ℂ) * τ + a₂) / N) =
@@ -683,11 +827,17 @@ def wpTorsionSeries (N a₁ a₂ : ℕ) (τ : ℂ) : ℂ :=
     (zetaN N ^ a₂ * qN N τ ^ a₁ / (1 - zetaN N ^ a₂ * qN N τ ^ a₁) ^ 2 + 1 / 12 +
       ∑' p : ℕ+ × ℕ+, wpTail N a₁ a₂ p τ)
 
+/--
+@isnad1 id=eq.3h4v.s5.d2642ccf8cf0 from=translated src=- shape=9db6a823 vocab=45c97dde
+-/
 lemma wpTorsion_eq_wpTorsionSeries {N a₁ a₂ : ℕ} (ha₁ : a₁ < N) (ha₂ : a₂ < N)
     (h0 : a₁ ≠ 0 ∨ a₂ ≠ 0) (τ : ℍ) :
     wpTorsion N a₁ a₂ τ = wpTorsionSeries N a₁ a₂ τ :=
   weierstrassP_torsionPt_eq_tsum_prod τ ha₁ ha₂ h0
 
+/--
+@isnad1 id=ne.4h4v.s6.1fb57aa123d6 from=translated src=- shape=1a90954c vocab=addfc334
+-/
 lemma one_sub_zetaN_pow_mul_qN_pow_ne_zero {N a₁ a₂ : ℕ} (ha₁ : a₁ < N) (ha₂ : a₂ < N)
     (h0 : a₁ ≠ 0 ∨ a₂ ≠ 0) {τ : ℂ} (hτ : 0 < τ.im) :
     1 - zetaN N ^ a₂ * qN N τ ^ a₁ ≠ 0 := by
@@ -695,9 +845,15 @@ lemma one_sub_zetaN_pow_mul_qN_pow_ne_zero {N a₁ a₂ : ℕ} (ha₁ : a₁ < N
   rw [← cexp_two_pi_I_mul_torsionPt (by omega), sub_ne_zero]
   exact (cexp_two_pi_I_mul_ne_one hz).symm
 
+/--
+@isnad1 id=differen.0h1v.s6.5fb9d6a88976 from=translated src=- shape=e86db131 vocab=014f7f55
+-/
 lemma differentiable_qN (N : ℕ) : Differentiable ℂ (qN N) := by
   unfold qN; fun_prop
 
+/--
+@isnad1 id=differen.0h4v.s6.e200fe2a2556 from=translated src=- shape=076a9d0c vocab=353afefc
+-/
 lemma differentiable_wpTail (N a₁ a₂ : ℕ) (p : ℕ+ × ℕ+) :
     Differentiable ℂ (wpTail N a₁ a₂ p) := by
   unfold wpTail
@@ -706,6 +862,9 @@ lemma differentiable_wpTail (N a₁ a₂ : ℕ) (p : ℕ+ × ℕ+) :
 
 open Complex in
 
+/--
+@isnad1 id=differen.3h3v.s6.e9cfd167ed78 from=translated src=- shape=fb2006aa vocab=e43a344e
+-/
 theorem differentiableOn_wpTorsionSeries {N a₁ a₂ : ℕ} (ha₁ : a₁ < N) (ha₂ : a₂ < N)
     (h0 : a₁ ≠ 0 ∨ a₂ ≠ 0) :
     DifferentiableOn ℂ (wpTorsionSeries N a₁ a₂) {τ : ℂ | 0 < τ.im} := by
@@ -743,6 +902,9 @@ theorem differentiableOn_wpTorsionSeries {N a₁ a₂ : ℕ} (ha₁ : a₁ < N) 
       ((hhead.add (differentiableOn_const _)).add htail)
   exact ((hall τ₀ hτ₀U).differentiableAt (hUopen.mem_nhds hτ₀U)).differentiableWithinAt
 
+/--
+@isnad1 id=mdiffere.3h3v.s7.ddb5d81488bd from=translated src=- shape=2aba4817 vocab=9d2f2a90
+-/
 theorem mdifferentiable_wpTorsion {N a₁ a₂ : ℕ} (ha₁ : a₁ < N) (ha₂ : a₂ < N)
     (h0 : a₁ ≠ 0 ∨ a₂ ≠ 0) :
     MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (wpTorsion N a₁ a₂) := by
@@ -757,6 +919,9 @@ section R1Bridge
 
 open scoped UpperHalfPlane Manifold
 
+/--
+@isnad1 id=eq.2h2v.s4.7aa43f973606 from=translated src=- shape=04c0b690 vocab=82879328
+-/
 lemma PeriodPair.ext_omega {L L' : PeriodPair} (h1 : L.ω₁ = L'.ω₁) (h2 : L.ω₂ = L'.ω₂) :
     L = L' := by
   cases L; cases L'; simp_all
@@ -772,6 +937,9 @@ open scoped _root_.P2MW.S_WLight_weierstrassP_qExpansion_package.WLight
 open Complex Real in
 open scoped UpperHalfPlane Manifold in
 open WLight in
+/--
+@isnad1 id=and.0h0v.s11.dad55f79aa7a from=translated src=- shape=ff423620 vocab=dfc2be99
+-/
 theorem solution :
 
     (∀ w : ℂ, 0 < w.im →

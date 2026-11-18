@@ -20,6 +20,9 @@ namespace Realized
 
 variable {h : ℝ} {F : ℍ → ℂ} {c : ℕ → ℂ}
 
+/--
+@isnad1 id=hassum.4h4v.s7.90b7e2ce5768 from=translated src=- shape=d171886d vocab=fa8ece86
+-/
 lemma hasSum_cuspFunction_punctured (hh : 0 < h)
     (hF : ∀ τ : ℍ, HasSum (fun m : ℕ => c m * 𝕢 h (τ : ℂ) ^ m) (F τ)) {q : ℂ} (hq : ‖q‖ < 1)
     (hq1 : q ≠ 0) : HasSum (fun m : ℕ => c m * q ^ m) (cuspFunction h F q) := by
@@ -32,6 +35,9 @@ lemma hasSum_cuspFunction_punctured (hh : 0 < h)
   rw [h3, ← h4]
   exact hF τ
 
+/--
+@isnad1 id=hasfpowe.2h3v.s7.6136bf69597d from=translated src=- shape=5ab8b080 vocab=5554f41f
+-/
 lemma hasFPowerSeriesOnBall_update (hh : 0 < h)
     (hF : ∀ τ : ℍ, HasSum (fun m : ℕ => c m * 𝕢 h (τ : ℂ) ^ m) (F τ)) :
     HasFPowerSeriesOnBall (update (cuspFunction h F) 0 (c 0)) (.ofScalars ℂ c) 0 1 := by
@@ -55,6 +61,9 @@ lemma hasFPowerSeriesOnBall_update (hh : 0 < h)
 
 def discFun (h : ℝ) (F : ℍ → ℂ) (c : ℕ → ℂ) : ℂ → ℂ := update (cuspFunction h F) 0 (c 0)
 
+/--
+@isnad1 id=eq.3h4v.s7.5ad8f3f83046 from=translated src=- shape=ef755aab vocab=a32911fb
+-/
 theorem coeff_unique {d : ℕ → ℂ} (hh : 0 < h)
     (hF : ∀ τ : ℍ, HasSum (fun m : ℕ => c m * 𝕢 h (τ : ℂ) ^ m) (F τ))
     (hF' : ∀ τ : ℍ, HasSum (fun m : ℕ => d m * 𝕢 h (τ : ℂ) ^ m) (F τ)) : c = d := by
@@ -80,6 +89,9 @@ end Realized
 
 end ModularCurve
 
+/--
+@isnad1 id=eq.3h4v.s7.1ac9df41babd from=translated src=- shape=208aec71 vocab=a32911fb
+-/
 theorem solution (h : ℝ) (hh : 0 < h) (F : UpperHalfPlane → ℂ) (c d : ℕ → ℂ) (hc : ∀ τ : UpperHalfPlane, HasSum (fun m : ℕ => c m * Function.Periodic.qParam h (τ : ℂ) ^ m) (F τ)) (hd : ∀ τ : UpperHalfPlane, HasSum (fun m : ℕ => d m * Function.Periodic.qParam h (τ : ℂ) ^ m) (F τ)) : c = d :=
   ModularCurve.Realized.coeff_unique hh hc hd
 

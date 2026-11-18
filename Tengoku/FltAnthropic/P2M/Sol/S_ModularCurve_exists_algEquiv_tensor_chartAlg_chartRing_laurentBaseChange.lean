@@ -530,6 +530,9 @@ open scoped _root_.P2MW.S_ModularCurve_exists_algEquiv_tensor_chartAlg_chartRing
 
 set_option synthInstance.maxHeartbeats 1600000 in
 
+/--
+@isnad1 id=and.1h4v.s19.515c159ac7dc from=translated src=- shape=349c2161 vocab=31247903
+-/
 theorem solution
     (F₀ : IntermediateField ℚ (LaurentSeries ℚ)) (p : ℕ) (j : ↥F₀) [Fact (j ≠ 0)]
     (jb : ↥(laurentBaseChange (AlgebraicClosure ℚ) F₀))

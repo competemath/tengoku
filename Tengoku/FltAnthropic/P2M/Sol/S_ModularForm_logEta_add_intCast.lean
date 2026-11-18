@@ -23,6 +23,9 @@ namespace DedekindEtaLog
 
 def logEta (z : ℂ) : ℂ := π * I * z / 12 + ∑' n : ℕ, log (1 - ModularForm.eta_q n z)
 
+/--
+@isnad1 id=eq.0h2v.s6.6af40fe17c5c from=translated src=- shape=39df3e0b vocab=b9e8aef1
+-/
 theorem logEta_add_int (z : ℂ) (m : ℤ) : logEta (z + m) = logEta z + π * I * m / 12 := by
   have hq : ∀ n : ℕ, ModularForm.eta_q n (z + m) = ModularForm.eta_q n z := by
     intro n
@@ -36,5 +39,8 @@ end DedekindEtaLog
 
 end
 
+/--
+@isnad1 id=eq.0h2v.s7.6dc1ff42103b from=translated src=- shape=e214be96 vocab=363665e5
+-/
 theorem solution (z : ℂ) (m : ℤ) : (Real.pi * Complex.I * (z + m) / 12 + ∑' n : ℕ, Complex.log (1 - ModularForm.eta_q n (z + m))) = (Real.pi * Complex.I * z / 12 + ∑' n : ℕ, Complex.log (1 - ModularForm.eta_q n z)) + Real.pi * Complex.I * m / 12 :=
   DedekindEtaLog.logEta_add_int z m

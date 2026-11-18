@@ -17,12 +17,18 @@ namespace P2mGrp
 
 variable {k : Type u} [Field k] {V : Type v} [AddCommGroup V] [Module k V] [FiniteDimensional k V]
 
+/--
+@isnad1 id=eq.1h3v.s10.43d826a8b805 from=translated src=- shape=f25dbb46 vocab=733f7ed3
+-/
 lemma charpoly_eq_of_finrank_eq_two (hV : finrank k V = 2) (T : Module.End k V) :
     T.charpoly = X ^ 2 - C (LinearMap.trace k V T) * X + C (LinearMap.det T) := by
   let b := Module.finBasisOfFinrankEq k V hV
   rw [← LinearMap.charpoly_toMatrix T b, Matrix.charpoly_fin_two,
     ← LinearMap.trace_eq_matrix_trace k b T, LinearMap.det_toMatrix b T]
 
+/--
+@isnad1 id=iff.1h5v.s10.5c531f2a00be from=translated src=- shape=27ebd79f vocab=d8a3223b
+-/
 lemma charpoly_eq_mul_iff (hV : finrank k V = 2) (T : Module.End k V) (a b : k) :
     T.charpoly = (X - C a) * (X - C b) ↔
       LinearMap.trace k V T = a + b ∧ LinearMap.det T = a * b := by
@@ -39,6 +45,9 @@ lemma charpoly_eq_mul_iff (hV : finrank k V = 2) (T : Module.End k V) (a b : k) 
   · rintro ⟨h1, h0⟩
     rw [h1, h0]
 
+/--
+@isnad1 id=eq.2h3v.s10.1eef976b16d9 from=translated src=- shape=078e2a7b vocab=666b3a92
+-/
 lemma mul_self_eq_smul_one_of_trace_eq_zero (hV : finrank k V = 2) (m : Module.End k V)
     (hm : LinearMap.trace k V m = 0) : m * m = (-LinearMap.det m) • (1 : Module.End k V) := by
   have h := LinearMap.aeval_self_charpoly m
@@ -49,6 +58,9 @@ lemma mul_self_eq_smul_one_of_trace_eq_zero (hV : finrank k V = 2) (m : Module.E
   rw [neg_smul, eq_neg_iff_add_eq_zero]
   exact h
 
+/--
+@isnad1 id=eq.2h4v.s10.abf86a0ef911 from=translated src=- shape=d2faac0f vocab=2f129c39
+-/
 lemma sub_smul_one_mul_self_eq_zero (hV : finrank k V = 2) {T : Module.End k V} {μ : k}
     (h : T.charpoly = (X - C μ) * (X - C μ)) :
     (T - μ • 1) * (T - μ • 1) = 0 := by
@@ -57,6 +69,9 @@ lemma sub_smul_one_mul_self_eq_zero (hV : finrank k V = 2) {T : Module.End k V} 
   simp [Module.algebraMap_end_eq_smul_id] at h'
   exact h'
 
+/--
+@isnad1 id=eq.2h4v.s8.7ace0e77b9d1 from=translated src=- shape=4fa5f8a3 vocab=a22bfc0c
+-/
 lemma smul_one_injective (hV : finrank k V = 2) {a b : k}
     (h : a • (1 : Module.End k V) = b • 1) : a = b := by
   have hne : (1 : Module.End k V) ≠ 0 := by
@@ -70,16 +85,28 @@ lemma smul_one_injective (hV : finrank k V = 2) {a b : k}
     omega
   exact smul_left_injective k hne h
 
+/--
+@isnad1 id=ne.0h5v.s9.14fa56a4cd5f from=translated src=- shape=acb8fc3a vocab=b9bd3d0a
+-/
 lemma det_ne_zero {H : Type w} [Group H] (ρ : H →* Module.End k V) (h : H) :
     LinearMap.det (ρ h) ≠ 0 :=
   (((Group.isUnit h).map ρ).map LinearMap.det).ne_zero
 
+/--
+@isnad1 id=eq.0h5v.s9.6214432e9cda from=translated src=- shape=f5ac4d20 vocab=565b4403
+-/
 lemma rho_mul_inv {H : Type w} [Group H] (ρ : H →* Module.End k V) (g : H) :
     ρ g * ρ g⁻¹ = 1 := by rw [← map_mul, mul_inv_cancel, map_one]
 
+/--
+@isnad1 id=eq.0h5v.s9.cdd11b09bcc8 from=translated src=- shape=b8b74d7a vocab=565b4403
+-/
 lemma rho_inv_mul {H : Type w} [Group H] (ρ : H →* Module.End k V) (g : H) :
     ρ g⁻¹ * ρ g = 1 := by rw [← map_mul, inv_mul_cancel, map_one]
 
+/--
+@isnad1 id=ex.3h3v.s9.46070a64ed06 from=translated src=- shape=39187147 vocab=8af6f030
+-/
 lemma exists_basis_of_mul_self_eq_zero (hV : finrank k V = 2) {n : Module.End k V}
     (hn : n ≠ 0) (hsq : n * n = 0) :
     ∃ b : Basis (Fin 2) k V, n (b 0) = 0 ∧ n (b 1) = b 0 := by
@@ -102,6 +129,9 @@ lemma exists_basis_of_mul_self_eq_zero (hV : finrank k V = 2) {n : Module.End k 
   · rw [coe_basisOfLinearIndependentOfCardEqFinrank]; exact hne₁
   · rw [coe_basisOfLinearIndependentOfCardEqFinrank]; rfl
 
+/--
+@isnad1 id=eq.2h4v.s10.f25c9a60a785 from=translated src=- shape=3340937a vocab=6384eef9
+-/
 lemma toMatrix_eq_of_adapted {n : Module.End k V} {b : Basis (Fin 2) k V}
     (h0 : n (b 0) = 0) (h1 : n (b 1) = b 0) :
     LinearMap.toMatrix b b n = !![0, 1; 0, 0] := by
@@ -113,6 +143,9 @@ lemma toMatrix_eq_of_adapted {n : Module.End k V} {b : Basis (Fin 2) k V}
     · simp [Matrix.toLin_self, Fin.sum_univ_two, h1]
   rw [this, LinearMap.toMatrix_toLin]
 
+/--
+@isnad1 id=eq.6h4v.s10.81280f131dbb from=translated src=- shape=fe106304 vocab=cfb5cae6
+-/
 lemma mul_self_eq_zero_of_commute_nilpotent (h2 : (2 : k) ≠ 0) (hV : finrank k V = 2)
     {n m : Module.End k V} (hn : n ≠ 0) (hsq : n * n = 0) (hcomm : m * n = n * m)
     (hm : LinearMap.trace k V m = 0) : m * m = 0 := by
@@ -147,11 +180,17 @@ def IsReg (h : H) : Prop := ∃ α β : k, α ≠ β ∧ (ρ h).charpoly = (X - 
 
 variable {ρ}
 
+/--
+@isnad1 id=iff.1h5v.s10.bfde9895248b from=translated src=- shape=7ce605b9 vocab=22e6daa3
+-/
 lemma isReg_iff (hV : finrank k V = 2) (h : H) :
     IsReg ρ h ↔ ∃ α β : k, α ≠ β ∧ LinearMap.trace k V (ρ h) = α + β ∧
       LinearMap.det (ρ h) = α * β := by
   simp only [IsReg, charpoly_eq_mul_iff hV]
 
+/--
+@isnad1 id=isreg.2h6v.s7.3cabf57c0ad0 from=translated src=- shape=6c72e221 vocab=d2ad6313
+-/
 lemma IsReg.conj (hV : finrank k V = 2) {h : H} (hh : IsReg ρ h) (g : H) :
     IsReg ρ (g * h * g⁻¹) := by
   rw [isReg_iff hV] at hh ⊢
@@ -162,6 +201,9 @@ lemma IsReg.conj (hV : finrank k V = 2) {h : H} (hh : IsReg ρ h) (g : H) :
   · rw [hρ, map_mul LinearMap.det, map_mul LinearMap.det, mul_comm, ← mul_assoc,
       ← map_mul LinearMap.det, rho_inv_mul, map_one, one_mul, hdet]
 
+/--
+@isnad1 id=isreg.4h5v.s10.da81ce8704d9 from=translated src=- shape=50acb956 vocab=6bc817a4
+-/
 lemma isReg_of_trace_eq_zero (h2 : (2 : k) ≠ 0) (hV : finrank k V = 2)
     (hsplit : ∀ h : H, ∃ α β : k, (ρ h).charpoly = (X - C α) * (X - C β))
     {g : H} (hg : LinearMap.trace k V (ρ g) = 0) : IsReg ρ g := by
@@ -175,6 +217,9 @@ lemma isReg_of_trace_eq_zero (h2 : (2 : k) ≠ 0) (hV : finrank k V = 2)
   apply det_ne_zero ρ g
   rw [hαβ.2, hα, mul_zero]
 
+/--
+@isnad1 id=ex.2h5v.s10.d92681883a30 from=translated src=- shape=68ea92e5 vocab=40ac968e
+-/
 lemma exists_charpoly_eq_sq_of_not_isReg
     (hsplit : ∀ h : H, ∃ α β : k, (ρ h).charpoly = (X - C α) * (X - C β))
     {h : H} (hh : ¬ IsReg ρ h) : ∃ μ : k, (ρ h).charpoly = (X - C μ) * (X - C μ) := by
@@ -183,6 +228,9 @@ lemma exists_charpoly_eq_sq_of_not_isReg
   · exact ⟨α, by rw [hαβ, hne]⟩
   · exact absurd ⟨α, β, hne, hαβ⟩ hh
 
+/--
+@isnad1 id=ex.4h4v.s10.7d73cd64da07 from=translated src=- shape=52e3a92d vocab=227548a1
+-/
 lemma exists_isReg (h2 : (2 : k) ≠ 0) (hV : finrank k V = 2)
     (hirr : ∀ W : Submodule k V, (∀ h : H, ∀ x ∈ W, ρ h x ∈ W) → W = ⊥ ∨ W = ⊤)
     (hsplit : ∀ h : H, ∃ α β : k, (ρ h).charpoly = (X - C α) * (X - C β)) :
@@ -297,6 +345,9 @@ lemma exists_isReg (h2 : (2 : k) ≠ 0) (hV : finrank k V = 2)
   · exact (hline _ (b.ne_zero 0)).1 h
   · exact (hline _ (b.ne_zero 0)).2 h
 
+/--
+@isnad1 id=false.4h5v.s10.341b684f3d52 from=translated src=- shape=951f8d6a vocab=fd460522
+-/
 lemma false_of_forall_commute (hV : finrank k V = 2)
     (hirr : ∀ W : Submodule k V, (∀ h : H, ∀ x ∈ W, ρ h x ∈ W) → W = ⊥ ∨ W = ⊤)
     {h₀ : H} (hreg : IsReg ρ h₀) (hcomm : ∀ g : H, ρ g * ρ h₀ = ρ h₀ * ρ g) : False := by
@@ -337,6 +388,9 @@ def tracePairing :
     (fun Y X₁ X₂ => by simp [mul_add])
     (fun c Y X => by simp)
 
+/--
+@isnad1 id=eq.0h4v.s14.d8f95454ac84 from=translated src=- shape=b3d11b8e vocab=d0ddd6aa
+-/
 @[scoped simp]
 theorem tracePairing_apply (Y X : LinearMap.ker (LinearMap.trace k V)) :
     tracePairing k V Y X = LinearMap.trace k V ((Y : Module.End k V) * (X : Module.End k V)) :=
@@ -344,6 +398,9 @@ theorem tracePairing_apply (Y X : LinearMap.ker (LinearMap.trace k V)) :
 
 variable {k V}
 
+/--
+@isnad1 id=injectiv.2h2v.s13.9f4124eede2b from=translated src=- shape=bb87b4c8 vocab=b4ebb83a
+-/
 theorem tracePairing_injective (h2 : (2 : k) ≠ 0) (hV : finrank k V = 2) :
     Function.Injective (tracePairing k V) := by
   classical
@@ -385,6 +442,9 @@ theorem tracePairing_injective (h2 : (2 : k) ≠ 0) (hV : finrank k V = 2) :
   apply (LinearMap.toMatrix b b).injective
   rw [← hA, hA0, map_zero]
 
+/--
+@isnad1 id=eq.2h2v.s10.36ea6ed24858 from=translated src=- shape=a4901de9 vocab=7dc8f65a
+-/
 lemma finrank_ker_trace (h2 : (2 : k) ≠ 0) (hV : finrank k V = 2) :
     finrank k (LinearMap.ker (LinearMap.trace k V)) = 3 := by
   have hE : finrank k (Module.End k V) = 4 := by
@@ -416,6 +476,9 @@ def conjS (ρ : H →* Module.End k V) (g : H) :
         LinearMap.mulLeft_apply]
       rw [LinearMap.trace_mul_comm, mul_assoc, rho_inv_mul, mul_one, hx])
 
+/--
+@isnad1 id=eq.0h6v.s13.283bb614856c from=translated src=- shape=63208e6a vocab=2a36bccb
+-/
 lemma coe_conjS (g : H) (x : LinearMap.ker (LinearMap.trace k V)) :
     ((conjS ρ g x : LinearMap.ker (LinearMap.trace k V)) : Module.End k V) =
       ρ g * (x : Module.End k V) * ρ g⁻¹ := by
@@ -423,6 +486,9 @@ lemma coe_conjS (g : H) (x : LinearMap.ker (LinearMap.trace k V)) :
   rw [mul_assoc]
 
 set_option maxHeartbeats 6400000 in
+/--
+@isnad1 id=ex.6h5v.s12.c8d2824e0ebe from=translated src=- shape=0479e6a7 vocab=8cf0f90b
+-/
 theorem main (h2 : (2 : k) ≠ 0) (hV : finrank k V = 2)
     (hirr : ∀ W : Submodule k V, (∀ h : H, ∀ x ∈ W, ρ h x ∈ W) → W = ⊥ ∨ W = ⊤)
     (hsplit : ∀ h : H, ∃ α β : k, (ρ h).charpoly = (X - C α) * (X - C β))
@@ -745,6 +811,9 @@ open scoped _root_.P2MW.S_Module_End_exists_charpoly_eq_and_commute_and_trace_eq
 end
 open scoped _root_.P2MW.S_Module_End_exists_charpoly_eq_and_commute_and_trace_eq_zero_and_notMem_of_irreducible.P2mGrp
 
+/--
+@isnad1 id=ex.6h5v.s12.b763f3ebc665 from=translated src=- shape=8382b6f3 vocab=8cf0f90b
+-/
 theorem solution
     {k : Type u} [Field k] (h2 : (2 : k) ≠ 0)
     {V : Type v} [AddCommGroup V] [Module k V] [FiniteDimensional k V]

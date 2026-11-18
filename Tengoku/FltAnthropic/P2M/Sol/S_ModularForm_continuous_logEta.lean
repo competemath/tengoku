@@ -23,21 +23,33 @@ namespace DedekindEtaLog
 
 def logEta (z : ℂ) : ℂ := π * I * z / 12 + ∑' n : ℕ, log (1 - ModularForm.eta_q n z)
 
+/--
+@isnad1 id=eq.0h2v.s6.24f7b70c0536 from=translated src=- shape=fa80c422 vocab=1c4cf3e7
+-/
 lemma norm_eta_q (n : ℕ) (z : ℂ) : ‖ModularForm.eta_q n z‖ = Real.exp (-(2 * π * (n + 1) * z.im)) := by
   rw [ModularForm.eta_q_eq_cexp, norm_exp]
   congr 1
   simp [mul_re, mul_im]
 
+/--
+@isnad1 id=lt.1h2v.s4.b55f3bc570ec from=translated src=- shape=ed1b8f24 vocab=a81f1cfa
+-/
 lemma norm_eta_q_lt_one (n : ℕ) {z : ℂ} (hz : 0 < z.im) : ‖ModularForm.eta_q n z‖ < 1 := by
   rw [norm_eta_q, Real.exp_lt_one_iff]
   have : 0 < 2 * π * (n + 1) * z.im := by positivity
   linarith
 
+/--
+@isnad1 id=mem.1h2v.s5.18e4a6b9719e from=translated src=- shape=1053b4d8 vocab=aa2b2d16
+-/
 lemma one_sub_eta_q_mem_slitPlane (n : ℕ) {z : ℂ} (hz : 0 < z.im) :
     1 - ModularForm.eta_q n z ∈ slitPlane := by
   rw [sub_eq_add_neg]
   exact mem_slitPlane_of_norm_lt_one (by rw [norm_neg]; exact norm_eta_q_lt_one n hz)
 
+/--
+@isnad1 id=continuo.1h1v.s5.cb3238a37b55 from=translated src=- shape=065642c4 vocab=fabf0be5
+-/
 lemma continuousOn_logEta {δ : ℝ} (hδ : 0 < δ) : ContinuousOn logEta {z : ℂ | δ < z.im} := by
   have hlin : Continuous fun z : ℂ => π * I * z / 12 := by fun_prop
   refine hlin.continuousOn.add ?_
@@ -86,6 +98,9 @@ lemma continuousOn_logEta {δ : ℝ} (hδ : 0 < δ) : ContinuousOn logEta {z : �
       _ = C * x := by rw [hC]; ring
       _ ≤ C * r ^ (n + 1) := mul_le_mul_of_nonneg_left (hq n z hz) hC0
 
+/--
+@isnad1 id=continuo.0h0v.s4.96c5851e475c from=translated src=- shape=55d8b4ca vocab=6264f156
+-/
 theorem continuous_logEta : Continuous fun τ : ℍ => logEta τ := by
   refine continuous_iff_continuousAt.2 fun τ => ?_
   have hδ : 0 < τ.im / 2 := half_pos τ.im_pos
@@ -100,5 +115,8 @@ end DedekindEtaLog
 
 end
 
+/--
+@isnad1 id=continuo.0h0v.s6.43ebf89d5c59 from=translated src=- shape=74ce9d22 vocab=9f2bdaa2
+-/
 theorem solution : Continuous fun τ : UpperHalfPlane => (Real.pi * Complex.I * (τ : ℂ) / 12 + ∑' n : ℕ, Complex.log (1 - ModularForm.eta_q n (τ : ℂ))) :=
   DedekindEtaLog.continuous_logEta

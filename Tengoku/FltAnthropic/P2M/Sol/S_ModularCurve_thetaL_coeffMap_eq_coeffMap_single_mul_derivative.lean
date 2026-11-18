@@ -35,6 +35,9 @@ end
 
 end ModularCurve
 
+/--
+@isnad1 id=eq.0h4v.s10.8019c5d674d9 from=translated src=- shape=1b372381 vocab=34bd11b7
+-/
 theorem solution {R : Type*} [CommRing R]
     {K : Type*} [Field K] (φ : R →+* K) (w : LaurentSeries R) :
     ModularCurve.thetaL K (ModularCurve.coeffMap φ w) =

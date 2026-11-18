@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_ModularCurve_zmultiples_componentGroupProj
 
 open ModularCurve
 
+/--
+@isnad1 id=eq.1h3v.s14.3c230d40e1f6 from=translated src=- shape=71b3c0ab vocab=bd113e4e
+-/
 theorem ModularCurve.zmultiples_componentGroupProj_smul_coord_eq_top_of_pairwise_coprime
     {ι : Type*} [Fintype ι] (e : ι → ℕ) (he : Pairwise fun s t => (e s).Coprime (e t))
     (s₀ : ι) :

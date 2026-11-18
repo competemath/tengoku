@@ -12,6 +12,9 @@ namespace ModularCurve
 export _root_.ModularCurve (legendreJ)
 open _root_.ModularCurve
 
+/--
+@isnad1 id=eq.0h2v.s5.6b669a21eca1 from=translated src=- shape=e841f6b3 vocab=7d41956a
+-/
 theorem legendreJ_inv' {K : Type*} [Field K] (t : K) : legendreJ t⁻¹ = legendreJ t := by
   rcases eq_or_ne t 0 with rfl | ht
   · rw [inv_zero]
@@ -28,5 +31,8 @@ end ModularCurve
 
 open _root_.ModularCurve open _root_.P2MW.S_ModularCurve_legendreJ_inv.ModularCurve
 
+/--
+@isnad1 id=eq.0h2v.s5.6b669a21eca1 from=translated src=- shape=e841f6b3 vocab=7d41956a
+-/
 theorem solution {K : Type*} [Field K] (t : K) : legendreJ t⁻¹ = legendreJ t :=
   ModularCurve.legendreJ_inv' t

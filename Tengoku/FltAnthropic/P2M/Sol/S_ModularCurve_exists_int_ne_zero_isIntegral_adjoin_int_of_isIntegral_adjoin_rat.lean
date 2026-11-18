@@ -16,6 +16,9 @@ set_option autoImplicit false
 
 open Polynomial in
 
+/--
+@isnad1 id=ex.1h2v.s9.3c39b54a8ccf from=translated src=- shape=0432293a vocab=af1c007f
+-/
 theorem adjoinRat_exists_int_mul_mem_adjoinInt (t : LaurentSeries ℚ) {y : LaurentSeries ℚ}
     (hy : y ∈ Algebra.adjoin ℚ ({t} : Set (LaurentSeries ℚ))) :
     ∃ D : ℤ, D ≠ 0 ∧ (D : LaurentSeries ℚ) * y ∈ Algebra.adjoin ℤ ({t} : Set (LaurentSeries ℚ)) := by
@@ -50,6 +53,9 @@ theorem adjoinRat_exists_int_mul_mem_adjoinInt (t : LaurentSeries ℚ) {y : Laur
       exact mul_mem m₁ m₂
 
 open Polynomial in
+/--
+@isnad1 id=ex.1h2v.s10.ae29962a45d9 from=translated src=- shape=9ca7b55f vocab=4e4f9170
+-/
 theorem solution (t x : LaurentSeries ℚ) (hx : IsIntegral (Algebra.adjoin ℚ ({t} : Set (LaurentSeries ℚ))) x) :
     ∃ d : ℤ, d ≠ 0 ∧
       IsIntegral (Algebra.adjoin ℤ ({t} : Set (LaurentSeries ℚ)))

@@ -11,6 +11,9 @@ set_option maxHeartbeats 16000000
 
 open Polynomial ModularCurve
 
+/--
+@isnad1 id=eq.0h0v.s12.d5f206e5607e from=translated src=- shape=c653ca41 vocab=fcaf2df4
+-/
 theorem solution :
     phiThree
       = ((C (X : Polynomial ℤ) : Polynomial (Polynomial ℤ)) ^ 3 + 684 * (C (X : Polynomial ℤ) : Polynomial (Polynomial ℤ)) ^ 2 + 513 * (C (X : Polynomial ℤ) : Polynomial (Polynomial ℤ)) + 27 - (X : Polynomial (Polynomial ℤ))) * ((C (X : Polynomial ℤ) : Polynomial (Polynomial ℤ)) - (X : Polynomial (Polynomial ℤ)) ^ 3 + 45 * (X : Polynomial (Polynomial ℤ)) ^ 2 + 216 * (X : Polynomial (Polynomial ℤ)) + 702)

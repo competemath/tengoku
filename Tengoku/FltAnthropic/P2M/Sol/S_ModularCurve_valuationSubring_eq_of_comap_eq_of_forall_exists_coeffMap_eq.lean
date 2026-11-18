@@ -341,6 +341,9 @@ open GaussMatchGeneric
 
 set_option maxHeartbeats 6400000 in
 
+/--
+@isnad1 id=eq.15h13v.s11.6fbe0e627f0a from=translated src=- shape=dc096b86 vocab=2a7ef2de
+-/
 theorem solution (p : ℕ) [Fact p.Prime]
     (O : Type*) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
     (hϖ : IsLocalRing.maximalIdeal O = Ideal.span {((p : ℕ) : O)})

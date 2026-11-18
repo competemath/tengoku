@@ -15,6 +15,9 @@ set_option autoImplicit false
 open Module Algebra
 open scoped IsMulCommutative
 
+/--
+@isnad1 id=ex.1h4v.s8.295d6da620eb from=translated src=- shape=a8b6663d vocab=8713eccb
+-/
 theorem solution
     {K : Type*} [Field K] [IsAlgClosed K] {V : Type*} [AddCommGroup V] [Module K V]
     [FiniteDimensional K V] [Nontrivial V] {ι : Type*} (T : ι → Module.End K V)

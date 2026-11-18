@@ -8,6 +8,9 @@ namespace P2MW.S_ModularCurve_laurentBaseChange_adjoin
 
 open ModularCurve IntermediateField Polynomial
 
+/--
+@isnad1 id=eq.0h2v.s8.fb7c04aa20c3 from=translated src=- shape=475f1a40 vocab=22f6ccf6
+-/
 theorem solution (L : Type*) [Field L] [Algebra ℚ L] (S : Set (LaurentSeries ℚ)) : ModularCurve.laurentBaseChange L (IntermediateField.adjoin ℚ S) = IntermediateField.adjoin L (ModularCurve.coeffEmb L '' S) := by
   apply le_antisymm
   · rw [laurentBaseChange, IntermediateField.adjoin_le_iff]

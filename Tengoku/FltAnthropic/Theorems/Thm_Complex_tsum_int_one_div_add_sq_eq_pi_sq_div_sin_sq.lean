@@ -9,5 +9,8 @@ set_option autoImplicit false
 
 open scoped MatrixGroups ModularForm Topology Real Matrix
 
+/--
+@isnad1 id=eq.1h1v.s7.21d5870a53fa from=translated src=- shape=485b6b8c vocab=256ddcb2
+-/
 theorem Complex.tsum_int_one_div_add_sq_eq_pi_sq_div_sin_sq (z : ℂ) (hz : z ∈ Complex.integerComplement) :
     ∑' n : ℤ, 1 / (z + n) ^ 2 = (π : ℂ) ^ 2 / Complex.sin (π * z) ^ 2 := by exact @_root_.P2MW.S_Complex_tsum_int_one_div_add_sq_eq_pi_sq_div_sin_sq.solution z hz

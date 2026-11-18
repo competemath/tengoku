@@ -20,6 +20,9 @@ variable (K : Type*) [Field K]
 def kaehlerPolynomialBasis : Basis Unit K[X] Ω[K[X]⁄K] :=
   (Basis.singleton Unit K[X]).map (KaehlerDifferential.polynomialEquiv K).symm
 
+/--
+@isnad1 id=formally.0h1v.s6.32fc56199da4 from=translated src=- shape=aa7e0af4 vocab=3baca019
+-/
 scoped instance instFormallyEtalePolynomialRatFunc : Algebra.FormallyEtale K[X] (RatFunc K) :=
   Algebra.FormallyEtale.of_isLocalization (nonZeroDivisors K[X])
 
@@ -35,6 +38,9 @@ def kaehlerOfRatFuncTowerBasis [Algebra (RatFunc K) F] [IsScalarTower K (RatFunc
   ((kaehlerRatFuncBasis K).baseChange F).map
     (KaehlerDifferential.tensorKaehlerEquivOfFormallyEtale K (RatFunc K) F)
 
+/--
+@isnad1 id=and.0h2v.s9.09f107e977ee from=translated src=- shape=05583604 vocab=9c8ff557
+-/
 theorem kaehlerRankOne_of_ratFuncTower [Algebra (RatFunc K) F] [IsScalarTower K (RatFunc K) F]
     [Algebra.IsSeparable (RatFunc K) F] :
     Module.Free F Ω[F⁄K] ∧ Module.finrank F Ω[F⁄K] = 1 :=
@@ -43,6 +49,9 @@ theorem kaehlerRankOne_of_ratFuncTower [Algebra (RatFunc K) F] [IsScalarTower K 
 
 variable {K}
 
+/--
+@isnad1 id=and.2h3v.s8.8bbfc132a90a from=translated src=- shape=99ab1683 vocab=605f92d7
+-/
 theorem kaehlerRankOne_of_transcendental {x : F} (htr : Transcendental K x)
     (hsep : Algebra.IsSeparable K⟮x⟯ F) :
     Module.Free F Ω[F⁄K] ∧ Module.finrank F Ω[F⁄K] = 1 := by
@@ -68,6 +77,9 @@ end KaehlerBridge
 open scoped _root_.P2MW.S_ModularCurve_kaehlerRankOne_modularFunctionFieldC_of_isSeparable_jqNModC.KaehlerBridge
 
 open KaehlerBridge in
+/--
+@isnad1 id=and.1h2v.s13.a7781c11e60e from=translated src=- shape=cb92785e vocab=dc5159b6
+-/
 theorem solution (K : Type*) [Field K] (N : ℕ) [NeZero N]
     (hsep : IsSeparable (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)))
       (jqNModC K N)) :

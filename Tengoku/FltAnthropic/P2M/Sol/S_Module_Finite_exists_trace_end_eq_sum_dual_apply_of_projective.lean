@@ -15,6 +15,9 @@ namespace TraceDual
 
 variable {A : Type u} [CommRing A] {M : Type v} [AddCommGroup M] [Module A M]
 
+/--
+@isnad1 id=eq.2h9v.s9.b45e2f741743 from=translated src=- shape=966cac85 vocab=15e89dea
+-/
 theorem sum_dual_apply_eq
     {n : ℕ} (x : Fin n → M) (φ : Fin n → (M →ₗ[A] A)) (hxφ : ∀ m : M, ∑ i, φ i m • x i = m)
     {n' : ℕ} (y : Fin n' → M) (ψ : Fin n' → (M →ₗ[A] A)) (hyψ : ∀ m : M, ∑ j, ψ j m • y j = m)
@@ -36,6 +39,9 @@ theorem sum_dual_apply_eq
 
 variable [Module.Finite A M] [Module.Projective A M]
 
+/--
+@isnad1 id=ex.0h2v.s8.8c61b1128aef from=translated src=- shape=38567755 vocab=f48783e5
+-/
 theorem exists_dual_family :
     ∃ (n : ℕ) (x : Fin n → M) (φ : Fin n → (M →ₗ[A] A)), ∀ m : M, ∑ i, φ i m • x i = m := by
   obtain ⟨n, π, s, -, -, hπs⟩ := Module.Finite.exists_comp_eq_id_of_projective A M
@@ -51,6 +57,9 @@ theorem exists_dual_family :
 
 end TraceDual
 
+/--
+@isnad1 id=ex.0h2v.s10.13bbdec965f6 from=translated src=- shape=f12fe3dd vocab=f48783e5
+-/
 theorem solution
     {A : Type u} [CommRing A] {M : Type v} [AddCommGroup M] [Module A M]
     [Module.Finite A M] [Module.Projective A M] :

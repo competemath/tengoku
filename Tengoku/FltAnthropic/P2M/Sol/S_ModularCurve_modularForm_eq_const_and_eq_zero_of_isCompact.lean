@@ -16,6 +16,9 @@ variable {Γ : Subgroup (GL (Fin 2) ℝ)} [Γ.HasDetOne] {k : ℤ}
 
 noncomputable def mgauge (f : ModularForm Γ k) (τ : ℍ) : ℝ := ‖f τ‖ ^ 2 * (τ.im) ^ k
 
+/--
+@isnad1 id=eq.1h5v.s9.bf514c57a05a from=translated src=- shape=ec2b4dd0 vocab=6a1c131c
+-/
 theorem mgauge_smul (f : ModularForm Γ k) {γ : GL (Fin 2) ℝ} (hγ : γ ∈ Γ) (τ : ℍ) :
     mgauge f (γ • τ) = mgauge f τ := by
   unfold mgauge
@@ -29,11 +32,17 @@ theorem mgauge_smul (f : ModularForm Γ k) {γ : GL (Fin 2) ℝ} (hγ : γ ∈ �
     rw [← zpow_natCast (‖denom γ τ‖ ^ k) 2, ← zpow_mul, ← zpow_natCast, ← zpow_mul, mul_comm]]
   field_simp
 
+/--
+@isnad1 id=continuo.0h3v.s6.3f0053cfa591 from=translated src=- shape=37140793 vocab=142cc9e4
+-/
 theorem continuous_mgauge (f : ModularForm Γ k) : Continuous (mgauge f) := by
   unfold mgauge
   refine ((continuous_norm.comp f.holo'.continuous).pow 2).mul ?_
   exact Continuous.zpow₀ UpperHalfPlane.continuous_im k fun τ => Or.inl τ.im_pos.ne'
 
+/--
+@isnad1 id=ex.1h3v.s9.5951fe845d7c from=translated src=- shape=f78bef26 vocab=68b26932
+-/
 theorem exists_forall_mgauge_le (hcpt : ∃ K : Set ℍ, IsCompact K ∧ ∀ τ : ℍ, ∃ γ ∈ Γ, γ • τ ∈ K)
     (f : ModularForm Γ k) : ∃ τ₀ : ℍ, ∀ τ : ℍ, mgauge f τ ≤ mgauge f τ₀ := by
   obtain ⟨K, hK, hcov⟩ := hcpt
@@ -48,8 +57,14 @@ theorem exists_forall_mgauge_le (hcpt : ∃ K : Set ℍ, IsCompact K ∧ ∀ τ 
 
 def U : Set ℂ := {z : ℂ | 0 < z.im}
 
+/--
+@isnad1 id=isopen.0h0v.s4.add6a75cace4 from=translated src=- shape=25b03439 vocab=36b8dfdd
+-/
 theorem isOpen_U : IsOpen U := isOpen_lt continuous_const Complex.continuous_im
 
+/--
+@isnad1 id=convex.0h0v.s5.98274bb5e194 from=translated src=- shape=54c8eceb vocab=29313698
+-/
 theorem convex_U : Convex ℝ U := by
   intro x hx y hy a b ha hb hab
   show 0 < (a • x + b • y).im
@@ -60,6 +75,9 @@ theorem convex_U : Convex ℝ U := by
     nlinarith [mul_pos ha' hx]
 
 omit [Γ.HasDetOne] in
+/--
+@isnad1 id=differen.0h3v.s7.052bbf73f6ee from=translated src=- shape=24f8ebbf vocab=b1ff498f
+-/
 theorem differentiableOn_comp_ofComplex (f : ModularForm Γ k) :
     DifferentiableOn ℂ (fun z : ℂ => f (ofComplex z)) U := by
   intro z hz
@@ -69,6 +87,9 @@ theorem differentiableOn_comp_ofComplex (f : ModularForm Γ k) :
 end T2A9
 
 open T2A9 in
+/--
+@isnad1 id=and.1h1v.s10.d7fa4c8a3bdc from=translated src=- shape=3f73dcb7 vocab=ef3e5f2a
+-/
 theorem solution
     (Γ : Subgroup (GL (Fin 2) ℝ)) [Γ.HasDetOne]
     [hdisc : DiscreteTopology ↥Γ]

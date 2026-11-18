@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 open ModularCurve
 
+/--
+@isnad1 id=ex.1h5v.s10.402acbba63b3 from=translated src=- shape=e1929d08 vocab=20e5d491
+-/
 theorem solution
     (k₀ : Type) [Field k₀] (A₀ : ValuationSubring k₀)
     (q : ℕ) [Fact q.Prime] (hq𝔪 : ((q : ↥A₀)) ∈ IsLocalRing.maximalIdeal ↥A₀)

@@ -11,6 +11,9 @@ universe u
 
 open TensorProduct
 
+/--
+@isnad1 id=and.4h5v.s12.498b2ba961ac from=translated src=- shape=60c82785 vocab=2c9c629d
+-/
 theorem Module.Flat.ker_baseChange_eq_bot_and_ker_le_range_of_flat_of_exact
     {R : Type u} [CommRing R] (C : ℕ → Type u) [∀ i, AddCommGroup (C i)] [∀ i, Module R (C i)]
     [∀ i, Module.Flat R (C i)] (d : ∀ i, C i →ₗ[R] C (i + 1))

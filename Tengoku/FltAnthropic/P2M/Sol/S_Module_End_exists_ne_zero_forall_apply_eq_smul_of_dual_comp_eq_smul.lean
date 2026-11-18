@@ -14,19 +14,34 @@ variable {K : Type*} [Field K] {M : Type*} [AddCommGroup M] [Module K M] [Finite
 
 noncomputable def N (r : R) : Module.End K M := T r - a r • (1 : Module.End K M)
 
+/--
+@isnad1 id=eq.0h7v.s8.a7868645ba15 from=translated src=- shape=d2be514e vocab=6700f0f8
+-/
 theorem N_apply (r : R) (x : M) : N T a r x = T r x - a r • x := by
   simp [N]
 
+/--
+@isnad1 id=eq.0h6v.s9.cd8324edeaca from=translated src=- shape=c2cadd8c vocab=966c4b1b
+-/
 theorem T_mul_comm (r s : R) : T r * T s = T s * T r := by
   rw [← map_mul, ← map_mul, mul_comm]
 
+/--
+@isnad1 id=eq.0h7v.s9.f7fbda4e87db from=translated src=- shape=da535a7d vocab=886e2718
+-/
 theorem T_comm_apply (r s : R) (x : M) : T r (T s x) = T s (T r x) := by
   have h := congrArg (fun f : Module.End K M => f x) (T_mul_comm T r s)
   simpa using h
 
+/--
+@isnad1 id=eq.0h8v.s9.357536fbc624 from=translated src=- shape=909c16e2 vocab=b95c4a2e
+-/
 theorem N_T_comm (r s : R) (x : M) : N T a r (T s x) = T s (N T a r x) := by
   rw [N_apply, N_apply, T_comm_apply T r s x, map_sub, map_smul]
 
+/--
+@isnad1 id=eq.0h9v.s9.48d2c088fc09 from=translated src=- shape=dc50af23 vocab=3486c595
+-/
 theorem N_pow_T_comm (r s : R) (k : ℕ) (x : M) : (N T a r ^ k) (T s x) = T s ((N T a r ^ k) x) := by
   induction k generalizing x with
   | zero => simp
@@ -34,16 +49,25 @@ theorem N_pow_T_comm (r s : R) (k : ℕ) (x : M) : (N T a r ^ k) (T s x) = T s (
 
 def Stable (W : Submodule K M) : Prop := ∀ r : R, ∀ w ∈ W, T r w ∈ W
 
+/--
+@isnad1 id=mem.2h8v.s8.e8737ff38f5c from=translated src=- shape=67407524 vocab=6e3ccef8
+-/
 theorem N_mem {W : Submodule K M} (hW : Stable T W) (r : R) {w : M} (hw : w ∈ W) : N T a r w ∈ W := by
   rw [N_apply]
   exact W.sub_mem (hW r w hw) (W.smul_mem _ hw)
 
+/--
+@isnad1 id=mem.2h9v.s8.a3123f6cf762 from=translated src=- shape=51aa4c8f vocab=47f3f7a1
+-/
 theorem N_pow_mem {W : Submodule K M} (hW : Stable T W) (r : R) (k : ℕ) {w : M} (hw : w ∈ W) :
     (N T a r ^ k) w ∈ W := by
   induction k generalizing w with
   | zero => simpa using hw
   | succ k ih => rw [pow_succ, Module.End.mul_apply]; exact ih (N_mem T a hW r hw)
 
+/--
+@isnad1 id=eq.1h6v.s11.78998e85b5ae from=translated src=- shape=fa03d9a4 vocab=38a99b60
+-/
 theorem coe_restrict_pow_apply (f : Module.End K M) {W : Submodule K M} (hf : ∀ w ∈ W, f w ∈ W) (k : ℕ) (x : W) :
     (((f.restrict hf) ^ k) x : M) = (f ^ k) (x : M) := by
   induction k generalizing x with
@@ -53,17 +77,26 @@ theorem coe_restrict_pow_apply (f : Module.End K M) {W : Submodule K M} (hf : �
 variable (μ : Module.Dual K M) (hco : ∀ r : R, μ ∘ₗ (T r : M →ₗ[K] M) = a r • μ)
 include hco
 
+/--
+@isnad1 id=eq.1h8v.s9.cce8d021498d from=translated src=- shape=d6937aad vocab=d5a86ffa
+-/
 theorem mu_N (r : R) (x : M) : μ (N T a r x) = 0 := by
   have h := congrArg (fun f : Module.Dual K M => f x) (hco r)
   simp only [LinearMap.coe_comp, Function.comp_apply, LinearMap.smul_apply, smul_eq_mul] at h
   rw [N_apply, map_sub, map_smul, h, smul_eq_mul, sub_self]
 
+/--
+@isnad1 id=eq.2h9v.s9.ed5fa4d891cd from=translated src=- shape=78de1f32 vocab=2609d8d6
+-/
 theorem mu_N_pow (r : R) {k : ℕ} (hk : 0 < k) (x : M) : μ ((N T a r ^ k) x) = 0 := by
   obtain ⟨j, rfl⟩ := Nat.exists_eq_succ_of_ne_zero hk.ne'
   rw [pow_succ', Module.End.mul_apply, mu_N T a μ hco]
 
 omit hco in
 
+/--
+@isnad1 id=ex.4h7v.s9.e3ec3c7fb906 from=translated src=- shape=4e4e1fe5 vocab=dde080c1
+-/
 theorem exists_of_nilpotent : ∀ (n : ℕ) (W : Submodule K M), Module.finrank K W = n → W ≠ ⊥ → Stable T W →
     (∀ r : R, ∃ k : ℕ, ∀ w ∈ W, (N T a r ^ k) w = 0) →
     ∃ m ∈ W, m ≠ 0 ∧ ∀ r : R, T r m = a r • m := by
@@ -111,6 +144,9 @@ theorem exists_of_nilpotent : ∀ (n : ℕ) (W : Submodule K M), Module.finrank 
       (fun s => by obtain ⟨k, hk⟩ := hnil s; exact ⟨k, fun w hw => hk w (hW'le hw)⟩)
     exact ⟨m, hW'le hmW', hm0, hm⟩
 
+/--
+@isnad1 id=ex.4h8v.s10.2667cd052233 from=translated src=- shape=2d07ea15 vocab=91684d2b
+-/
 theorem exists_of_mu_ne : ∀ (n : ℕ) (W : Submodule K M), Module.finrank K W = n → Stable T W →
     (∃ w ∈ W, μ w ≠ 0) → ∃ m ∈ W, m ≠ 0 ∧ ∀ r : R, T r m = a r • m := by
   intro n
@@ -186,6 +222,9 @@ theorem exists_of_mu_ne : ∀ (n : ℕ) (W : Submodule K M), Module.finrank K W 
 end D1Body
 
 open D1Body in
+/--
+@isnad1 id=ex.2h6v.s9.5c5929607feb from=translated src=- shape=671fe1e2 vocab=37b73ed6
+-/
 theorem solution
     {K : Type*} [Field K] {M : Type*} [AddCommGroup M] [Module K M] [FiniteDimensional K M]
     {R : Type*} [CommRing R] (T : R →+* Module.End K M) (a : R →+* K)

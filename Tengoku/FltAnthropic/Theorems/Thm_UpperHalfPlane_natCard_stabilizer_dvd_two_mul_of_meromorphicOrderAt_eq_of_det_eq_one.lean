@@ -10,6 +10,9 @@ set_option autoImplicit false
 open Filter UpperHalfPlane
 open scoped MatrixGroups Topology
 
+/--
+@isnad1 id=dvd.3h4v.s12.e6033d9bebf6 from=translated src=- shape=88ed308b vocab=36cf611f
+-/
 theorem UpperHalfPlane.natCard_stabilizer_dvd_two_mul_of_meromorphicOrderAt_eq_of_det_eq_one
     (Γ : Subgroup (GL (Fin 2) ℝ)) (hdet : ∀ γ ∈ Γ, Matrix.GeneralLinearGroup.det γ = 1)
     (F : ℍ → ℂ) (τ : ℍ)

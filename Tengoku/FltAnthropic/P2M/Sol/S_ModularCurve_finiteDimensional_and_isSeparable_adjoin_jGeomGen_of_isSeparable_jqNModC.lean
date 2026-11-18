@@ -13,6 +13,9 @@ set_option maxHeartbeats 6400000
 
 noncomputable section
 
+/--
+@isnad1 id=and.1h3v.s15.203435a83128 from=translated src=- shape=bfa93707 vocab=2f55ba03
+-/
 theorem solution (K : Type*) [Field K] (N : ℕ) [NeZero N]
     (data : ModularPolynomialData N)
     (hsep : IsSeparable (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)))

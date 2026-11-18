@@ -38,6 +38,9 @@ private theorem gcd_mul_gcd_of_coprime_of_dvd {M N d e : ℕ} (hMN : Nat.Coprime
     · exact Nat.mul_dvd_mul (Nat.gcd_dvd_left _ _) (Nat.gcd_dvd_left _ _)
     · exact Nat.mul_dvd_mul (Nat.gcd_dvd_right _ _) (Nat.gcd_dvd_right _ _)
 
+/--
+@isnad1 id=eq.3h2v.s5.3f8cb27cac43 from=translated src=- shape=e73a6713 vocab=76c295b6
+-/
 theorem solution {M N : ℕ} (hM : M ≠ 0) (hN : N ≠ 0) (hMN : Nat.Coprime M N) :
     cuspCount (M * N) = cuspCount M * cuspCount N := by
   simp only [cuspCount]

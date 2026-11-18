@@ -41,6 +41,9 @@ private theorem sq_add_one_eq_zero_iff_map {R S : Type*} [Ring R] [Ring S] (f : 
 
 end Helpers
 
+/--
+@isnad1 id=eq.1h2v.s4.831885a6d972 from=translated src=- shape=20e9f6dc vocab=97f5de0f
+-/
 theorem solution {M N : ℕ} (h : Nat.Coprime M N) :
     nuTwo (M * N) = nuTwo M * nuTwo N := by
   have key : ∀ x : ZMod (M * N),

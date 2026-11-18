@@ -14,6 +14,9 @@ namespace P2mS3jWidthGen
 
 variable {K : Type*} [Field K] [DecidableEq K]
 
+/--
+@isnad1 id=coprime.1h3v.s4.db533ccd1d75 from=translated src=- shape=89549be0 vocab=97bdc72f
+-/
 theorem coprime_jWidth_of_ne {a b : K} (hab : a ≠ b) : (jWidth a).Coprime (jWidth b) := by
   unfold jWidth
   by_cases ha0 : a = 0
@@ -32,6 +35,9 @@ theorem coprime_jWidth_of_ne {a b : K} (hab : a ≠ b) : (jWidth a).Coprime (jWi
 
 end P2mS3jWidthGen
 
+/--
+@isnad1 id=eq.2h5v.s14.cde1f0ad7f00 from=translated src=- shape=4df440c7 vocab=eff4a8ed
+-/
 theorem solution
     {K : Type*} [Field K] [DecidableEq K] {ι : Type*} [Fintype ι] (e : ι → ℕ)
     (j : ι → K) (hj : Function.Injective j) (he : ∀ s, e s = jWidth (j s)) (s₀ : ι) :

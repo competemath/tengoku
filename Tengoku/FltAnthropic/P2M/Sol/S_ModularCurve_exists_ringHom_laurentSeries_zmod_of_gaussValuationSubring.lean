@@ -20,6 +20,9 @@ section ValuationHelpers
 
 variable {K : Type*} [Field K]
 
+/--
+@isnad1 id=iff.2h3v.s7.c29cf335dd23 from=translated src=- shape=69b36f9e vocab=5a0f0c0a
+-/
 theorem isUnit_iff_inv_mem (A : ValuationSubring K) {a : K} (ha : a ∈ A) (ha0 : a ≠ 0) :
     IsUnit (⟨a, ha⟩ : A) ↔ a⁻¹ ∈ A := by
   constructor
@@ -32,6 +35,9 @@ theorem isUnit_iff_inv_mem (A : ValuationSubring K) {a : K} (ha : a ∈ A) (ha0 
     exact ⟨⟨⟨a, ha⟩, ⟨a⁻¹, h⟩, Subtype.ext (mul_inv_cancel₀ ha0),
       Subtype.ext (inv_mul_cancel₀ ha0)⟩, rfl⟩
 
+/--
+@isnad1 id=iff.0h3v.s6.f55dfce2d7c7 from=translated src=- shape=d5532793 vocab=4a90bfc4
+-/
 theorem mem_nonunits_iff' (A : ValuationSubring K) (a : K) :
     a ∈ A.nonunits ↔ a ∈ A ∧ (a = 0 ∨ a⁻¹ ∉ A) := by
   rw [ValuationSubring.mem_nonunits_iff_exists_mem_maximalIdeal]
@@ -56,6 +62,9 @@ theorem mem_nonunits_iff' (A : ValuationSubring K) (a : K) :
         rw [this] at hu; exact not_isUnit_zero hu
       exact hinv ((isUnit_iff_inv_mem A ha ha0).mp hu)
 
+/--
+@isnad1 id=mem.2h4v.s7.0ac9bfa5e5f5 from=translated src=- shape=9639b463 vocab=f70636bf
+-/
 theorem mul_mem_nonunits (A : ValuationSubring K) {a b : K} (ha : a ∈ A.nonunits) (hb : b ∈ A) :
     a * b ∈ A.nonunits := by
   rw [ValuationSubring.mem_nonunits_iff] at ha ⊢
@@ -76,6 +85,9 @@ abbrev ιQ : LaurentSeries ℤ →+* LaurentSeries ℚ := coeffMap (Int.castRing
 
 abbrev ϖ : LaurentSeries ℤ →+* LaurentSeries (ZMod p) := coeffMap (Int.castRingHom (ZMod p))
 
+/--
+@isnad1 id=injectiv.0h0v.s6.9c0ba596edde from=translated src=- shape=e5e4e7e9 vocab=a3a78013
+-/
 theorem ιQ_injective : Function.Injective ιQ := by
   intro x y h
   ext n
@@ -88,26 +100,41 @@ def IsPair (f : ↥F₀) (x y : LaurentSeries ℤ) : Prop :=
 
 variable {p F₀}
 
+/--
+@isnad1 id=ispair.2h8v.s11.547127b7106f from=translated src=- shape=08eddf7a vocab=5579e7e9
+-/
 theorem IsPair.mul {f g : ↥F₀} {x y x' y' : LaurentSeries ℤ} (h : IsPair p F₀ f x y)
     (h' : IsPair p F₀ g x' y') : IsPair p F₀ (f * g) (x * x') (y * y') := by
   refine ⟨?_, ?_⟩
   · rw [map_mul]; exact mul_ne_zero h.1 h'.1
   · rw [IntermediateField.coe_mul, map_mul, map_mul, ← h.2, ← h'.2]; ring
 
+/--
+@isnad1 id=ispair.2h8v.s11.40bd54b229c5 from=translated src=- shape=c683174b vocab=8aea8d0a
+-/
 theorem IsPair.add {f g : ↥F₀} {x y x' y' : LaurentSeries ℤ} (h : IsPair p F₀ f x y)
     (h' : IsPair p F₀ g x' y') : IsPair p F₀ (f + g) (x * y' + x' * y) (y * y') := by
   refine ⟨?_, ?_⟩
   · rw [map_mul]; exact mul_ne_zero h.1 h'.1
   · rw [IntermediateField.coe_add, map_mul, map_add, map_mul, map_mul, ← h.2, ← h'.2]; ring
 
+/--
+@isnad1 id=ispair.0h2v.s9.d6ace79e2ad3 from=translated src=- shape=c99fd075 vocab=582215ea
+-/
 theorem isPair_one : IsPair p F₀ 1 1 1 := by
   refine ⟨by rw [map_one]; exact one_ne_zero, ?_⟩
   rw [IntermediateField.coe_one, map_one, one_mul]
 
+/--
+@isnad1 id=ispair.0h2v.s9.2eef3534f6a8 from=translated src=- shape=c99fd075 vocab=582215ea
+-/
 theorem isPair_zero : IsPair p F₀ 0 0 1 := by
   refine ⟨by rw [map_one]; exact one_ne_zero, ?_⟩
   rw [IntermediateField.coe_zero, map_one, map_zero, zero_mul]
 
+/--
+@isnad1 id=eq.2h7v.s10.61aa16b8e141 from=translated src=- shape=365c7070 vocab=fda071c8
+-/
 theorem IsPair.red_eq {f : ↥F₀} {x y x' y' : LaurentSeries ℤ} (h : IsPair p F₀ f x y)
     (h' : IsPair p F₀ f x' y') : ϖ p x * (ϖ p y)⁻¹ = ϖ p x' * (ϖ p y')⁻¹ := by
   have key : x * y' = x' * y := by
@@ -128,6 +155,9 @@ def divP (x : LaurentSeries ℤ) : LaurentSeries ℤ where
     apply hn
     rw [h0, Int.zero_ediv])
 
+/--
+@isnad1 id=eq.1h2v.s8.772101673284 from=translated src=- shape=e66a1ca3 vocab=7de7738d
+-/
 theorem natCast_mul_divP {x : LaurentSeries ℤ} (hx : ϖ p x = 0) :
     ((p : ℤ) : LaurentSeries ℤ) * divP p x = x := by
   have hC : ((p : ℤ) : LaurentSeries ℤ) = HahnSeries.C (p : ℤ) :=
@@ -142,15 +172,24 @@ theorem natCast_mul_divP {x : LaurentSeries ℤ} (hx : ϖ p x = 0) :
     exact h1
   exact Int.mul_ediv_cancel' hdvd
 
+/--
+@isnad1 id=eq.0h2v.s10.f8c3f4dec7cd from=translated src=- shape=08b56d3b vocab=8a795405
+-/
 theorem coe_p_inv : ((((p : ℕ) : ↥F₀)⁻¹ : ↥F₀) : LaurentSeries ℚ) = ((p : ℕ) : LaurentSeries ℚ)⁻¹ := by
   rw [IntermediateField.coe_inv]
   push_cast
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s8.1188e39bfce9 from=translated src=- shape=d8fb1e7f vocab=133d6951
+-/
 theorem ϖ_natCast_p : ϖ p ((p : ℤ) : LaurentSeries ℤ) = 0 := by
   rw [map_intCast, Int.cast_natCast, ← map_natCast (HahnSeries.C : ZMod p →+* LaurentSeries (ZMod p)) p,
     ZMod.natCast_self, map_zero]
 
+/--
+@isnad1 id=eq.0h1v.s7.a732ad345b32 from=translated src=- shape=9693cf2c vocab=1899a1e7
+-/
 theorem ιQ_natCast_p : ιQ ((p : ℤ) : LaurentSeries ℤ) = ((p : ℕ) : LaurentSeries ℚ) := by
   rw [map_intCast, Int.cast_natCast]
 
@@ -159,6 +198,9 @@ variable (hW : ∀ f : ↥F₀, f ∈ W ↔ ∃ x y : LaurentSeries ℤ, ϖ p y 
 
 include hW
 
+/--
+@isnad1 id=ex.1h4v.s12.7f50fe1093a7 from=translated src=- shape=2f7befdb vocab=67885e15
+-/
 theorem exists_isPair (f : ↥W) : ∃ xy : LaurentSeries ℤ × LaurentSeries ℤ, IsPair p F₀ f xy.1 xy.2 := by
   obtain ⟨x, y, hy, hxy⟩ := (hW f).mp f.2
   exact ⟨(x, y), hy, hxy⟩
@@ -167,10 +209,16 @@ def redFun (f : ↥W) : LaurentSeries (ZMod p) :=
   ϖ p (Classical.choose (exists_isPair p F₀ W hW f)).1 *
     (ϖ p (Classical.choose (exists_isPair p F₀ W hW f)).2)⁻¹
 
+/--
+@isnad1 id=eq.2h6v.s12.e83322ce40ab from=translated src=- shape=3431a7ae vocab=2d2bd40f
+-/
 theorem redFun_eq {f : ↥W} {x y : LaurentSeries ℤ} (h : IsPair p F₀ f x y) :
     redFun p F₀ W hW f = ϖ p x * (ϖ p y)⁻¹ :=
   (Classical.choose_spec (exists_isPair p F₀ W hW f)).red_eq h
 
+/--
+@isnad1 id=eq.2h6v.s12.5d32f8a50852 from=translated src=- shape=e4920a1f vocab=59653581
+-/
 theorem redFun_mul_eq {f : ↥W} {x y : LaurentSeries ℤ} (h : IsPair p F₀ f x y) :
     redFun p F₀ W hW f * ϖ p y = ϖ p x := by
   rw [redFun_eq p F₀ W hW h, inv_mul_cancel_right₀ h.1]
@@ -200,6 +248,9 @@ def red : ↥W →+* LaurentSeries (ZMod p) where
     have hy' := h'.1
     field_simp
 
+/--
+@isnad1 id=not.1h3v.s12.115e93f297b7 from=translated src=- shape=0168b1a3 vocab=cfb9eab7
+-/
 theorem p_inv_notMem : ((p : ℕ) : ↥F₀)⁻¹ ∉ W := by
   intro h
   obtain ⟨x, y, hy, hxy⟩ := (hW _).mp h
@@ -211,6 +262,9 @@ theorem p_inv_notMem : ((p : ℕ) : ↥F₀)⁻¹ ∉ W := by
     rw [map_mul, ιQ_natCast_p, ← hxy, coe_p_inv, ← mul_assoc, mul_inv_cancel₀ hp0, one_mul]
   rw [ιQ_injective h1, map_mul, ϖ_natCast_p, zero_mul]
 
+/--
+@isnad1 id=mem.1h3v.s12.d230d709e9f6 from=translated src=- shape=acf40394 vocab=a853f70e
+-/
 theorem p_mem_nonunits : ((p : ℕ) : ↥F₀) ∈ W.nonunits := by
   rw [mem_nonunits_iff']
   refine ⟨(hW _).mpr ⟨((p : ℤ) : LaurentSeries ℤ), 1, by rw [map_one]; exact one_ne_zero, ?_⟩,
@@ -219,6 +273,9 @@ theorem p_mem_nonunits : ((p : ℕ) : ↥F₀) ∈ W.nonunits := by
   push_cast
   rfl
 
+/--
+@isnad1 id=iff.1h4v.s14.ca9271c63e6f from=translated src=- shape=400130da vocab=fbd0716e
+-/
 theorem red_eq_zero_iff (f : ↥W) : red p F₀ W hW f = 0 ↔ (f : ↥F₀) ∈ W.nonunits := by
   obtain ⟨⟨x, y⟩, h⟩ := exists_isPair p F₀ W hW f
   have hred : red p F₀ W hW f * ϖ p y = ϖ p x := redFun_mul_eq p F₀ W hW h
@@ -267,6 +324,9 @@ end GaussResidue
 end
 
 open ModularCurve in
+/--
+@isnad1 id=ex.1h3v.s15.4032d993ae96 from=translated src=- shape=0697cdbe vocab=26bdde8b
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] (F₀ : IntermediateField ℚ (LaurentSeries ℚ))
     (W : ValuationSubring ↥F₀)

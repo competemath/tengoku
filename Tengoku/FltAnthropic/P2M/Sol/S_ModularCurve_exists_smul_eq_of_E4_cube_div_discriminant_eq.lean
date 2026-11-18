@@ -21,6 +21,9 @@ private lemma pow_four_six_of_sq {t x : ℂ} (h : t ^ 2 = x) : t ^ 4 = x ^ 2 ∧
   constructor <;> [rw [show (4:ℕ) = 2 * 2 from rfl]; rw [show (6:ℕ) = 2 * 3 from rfl]] <;>
     rw [pow_mul, h]
 
+/--
+@isnad1 id=ex.3h4v.s8.5e5bc55762fb from=translated src=- shape=22b514df vocab=156dca26
+-/
 theorem exists_scalar {a₁ b₁ a₂ b₂ : ℂ}
     (h₁ : a₁ ^ 3 - b₁ ^ 2 ≠ 0) (h₂ : a₂ ^ 3 - b₂ ^ 2 ≠ 0)
     (R1 : a₁ ^ 3 * b₂ ^ 2 = a₂ ^ 3 * b₁ ^ 2) :
@@ -79,6 +82,9 @@ theorem exists_scalar {a₁ b₁ a₂ b₂ : ℂ}
         linear_combination -(b₁ * b₂) * R1
       exact ⟨t, ht0, ha, hb⟩
 
+/--
+@isnad1 id=and.1h5v.s6.b0c2f194dddc from=translated src=- shape=56dddf9b vocab=4b630ff3
+-/
 lemma int_indep (τ : ℍ) {m n m' n' : ℤ}
     (h : (m : ℂ) * τ + n = m' * τ + n') : m = m' ∧ n = n' := by
   have him := congrArg Complex.im h
@@ -94,6 +100,9 @@ lemma int_indep (τ : ℍ) {m n m' n' : ℤ}
   have := add_left_cancel h
   exact_mod_cast this
 
+/--
+@isnad1 id=ex.5h11v.s8.3d26a30856cd from=translated src=- shape=8a355084 vocab=eafd3182
+-/
 theorem exists_sl2z_of_lattice_rel (τ₁ τ₂ : ℍ) {u : ℂ} (hu : u ≠ 0)
     {a b c d p q r s : ℤ}
     (h1 : u * (a * τ₁ + b) = τ₂) (h2 : u * (c * τ₁ + d) = 1)
@@ -150,6 +159,9 @@ theorem exists_sl2z_of_lattice_rel (τ₁ τ₂ : ℍ) {u : ℂ} (hu : u ≠ 0)
 section Bridge
 open PeriodPair
 
+/--
+@isnad1 id=eq.1h2v.s8.ab17c689d6db from=translated src=- shape=9760cfd1 vocab=3b6f347d
+-/
 theorem G_ofTau_eq {k : ℕ} (hk : 3 ≤ k) (τ : ℍ) :
     (ofTau τ).G k = 2 * riemannZeta k * ModularForm.E hk τ := by
   rw [PeriodPair.G, ← (ofTau τ).latticeEquivProd.symm.toEquiv.tsum_eq]
@@ -166,6 +178,9 @@ theorem G_ofTau_eq {k : ℕ} (hk : 3 ≤ k) (τ : ℍ) :
     eisensteinSeriesSIF_apply, smul_eq_mul]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s5.1cff50f7813c from=translated src=- shape=e773aa32 vocab=951bce58
+-/
 theorem G_scale (L : PeriodPair) (α : ℂˣ) (k : ℕ) :
     (L.scale α).G k = ((α : ℂ) ^ k)⁻¹ * L.G k := by
   rw [PeriodPair.G, PeriodPair.G, ← (L.scale α).latticeEquivProd.symm.toEquiv.tsum_eq,
@@ -175,18 +190,33 @@ theorem G_scale (L : PeriodPair) (α : ℂˣ) (k : ℕ) :
   rw [show (p.1 : ℂ) * (α * L.ω₁) + p.2 * (α * L.ω₂) = α * (p.1 * L.ω₁ + p.2 * L.ω₂) by ring,
     mul_pow, mul_inv]
 
+/--
+@isnad1 id=eq.0h2v.s5.053c7a37e0ba from=translated src=- shape=05a96323 vocab=92de9a59
+-/
 theorem g₂_scale (L : PeriodPair) (α : ℂˣ) : (L.scale α).g₂ = ((α : ℂ) ^ 4)⁻¹ * L.g₂ := by
   rw [PeriodPair.g₂, PeriodPair.g₂, G_scale]; ring
 
+/--
+@isnad1 id=eq.0h2v.s5.5417c8248b70 from=translated src=- shape=05a96323 vocab=99d5e869
+-/
 theorem g₃_scale (L : PeriodPair) (α : ℂˣ) : (L.scale α).g₃ = ((α : ℂ) ^ 6)⁻¹ * L.g₃ := by
   rw [PeriodPair.g₃, PeriodPair.g₃, G_scale]; ring
 
+/--
+@isnad1 id=eq.0h1v.s8.a02438daf3b0 from=translated src=- shape=53bdfa7b vocab=ff00ef8b
+-/
 theorem g₂_ofTau (τ : ℍ) : (ofTau τ).g₂ = (120 * riemannZeta 4) * E₄ τ := by
   rw [PeriodPair.g₂, G_ofTau_eq (by norm_num : 3 ≤ 4)]; push_cast; ring
 
+/--
+@isnad1 id=eq.0h1v.s8.d39d70926b0d from=translated src=- shape=53bdfa7b vocab=faeb9d2b
+-/
 theorem g₃_ofTau (τ : ℍ) : (ofTau τ).g₃ = (280 * riemannZeta 6) * E₆ τ := by
   rw [PeriodPair.g₃, G_ofTau_eq (by norm_num : 3 ≤ 6)]; push_cast; ring
 
+/--
+@isnad1 id=iff.0h3v.s6.0af759e85050 from=translated src=- shape=92354d77 vocab=3994e13a
+-/
 theorem mem_scale_lattice (L : PeriodPair) (α : ℂˣ) (x : ℂ) :
     x ∈ (L.scale α).lattice ↔ ∃ m n : ℤ, (α : ℂ) * (m * L.ω₁ + n * L.ω₂) = x := by
   rw [mem_lattice]
@@ -197,6 +227,9 @@ theorem mem_scale_lattice (L : PeriodPair) (α : ℂˣ) (x : ℂ) :
 
 end Bridge
 
+/--
+@isnad1 id=ne.0h1v.s9.780017bd61c3 from=translated src=- shape=74d32513 vocab=a84ee79d
+-/
 theorem E₄_cube_sub_E₆_sq_ne_zero (z : ℍ) : E₄ z ^ 3 - E₆ z ^ 2 ≠ 0 := fun h0 => by
   have h := ModularForm.discriminant_eq_E₄_cube_sub_E₆_sq z
   rw [h0, zero_div] at h
@@ -205,6 +238,9 @@ theorem E₄_cube_sub_E₆_sq_ne_zero (z : ℍ) : E₄ z ^ 3 - E₆ z ^ 2 ≠ 0 
 end ModularCurve.JSeparatesOrbits
 
 open ModularCurve.JSeparatesOrbits in
+/--
+@isnad1 id=ex.1h2v.s9.4883b42cdd29 from=translated src=- shape=fcbe9ab5 vocab=02b489b3
+-/
 theorem solution (τ τ' : ℍ)
     (h : (ModularForm.E₄ : ℍ → ℂ) τ ^ 3 / ModularForm.discriminant τ =
       (ModularForm.E₄ : ℍ → ℂ) τ' ^ 3 / ModularForm.discriminant τ') :

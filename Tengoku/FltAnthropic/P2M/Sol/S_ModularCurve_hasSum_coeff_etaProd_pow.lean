@@ -24,18 +24,30 @@ def f (N : ℕ) : PowerSeries ℤ := ∏ n ∈ Finset.range N, ((1 : PowerSeries
 
 def Cong (m : ℕ) (G : PowerSeries ℤ) : Prop := (PowerSeries.X : PowerSeries ℤ) ^ (m + 1) ∣ G - 1
 
+/--
+@isnad1 id=cong.2h3v.s5.bc58f9f5324b from=translated src=- shape=c66a59ad vocab=a94e3cfe
+-/
 theorem Cong.mul {m : ℕ} {G H : PowerSeries ℤ} (hG : Cong m G) (hH : Cong m H) : Cong m (G * H) := by
   have : G * H - 1 = (G - 1) * H + (H - 1) := by ring
   rw [Cong, this]
   exact dvd_add (hG.mul_right _) hH
 
+/--
+@isnad1 id=cong.0h1v.s3.f50ec7920164 from=translated src=- shape=83a34da1 vocab=de85d589
+-/
 theorem Cong.one (m : ℕ) : Cong m 1 := by simp [Cong]
 
+/--
+@isnad1 id=cong.1h3v.s5.14255c97b40a from=translated src=- shape=f986cd54 vocab=a167fd93
+-/
 theorem Cong.pow {m : ℕ} {G : PowerSeries ℤ} (hG : Cong m G) (a : ℕ) : Cong m (G ^ a) := by
   induction a with
   | zero => simpa using Cong.one m
   | succ a ih => rw [pow_succ]; exact ih.mul hG
 
+/--
+@isnad1 id=cong.1h4v.s5.09adeeae9e35 from=translated src=- shape=4aeb2aac vocab=d48882c1
+-/
 theorem Cong.prod {m : ℕ} {ι : Type*} (s : Finset ι) {g : ι → PowerSeries ℤ} (hg : ∀ i ∈ s, Cong m (g i)) :
     Cong m (∏ i ∈ s, g i) := by
   classical
@@ -45,10 +57,16 @@ theorem Cong.prod {m : ℕ} {ι : Type*} (s : Finset ι) {g : ι → PowerSeries
     rw [Finset.prod_insert hi]
     exact (hg i (Finset.mem_insert_self i s)).mul (ih fun j hj => hg j (Finset.mem_insert_of_mem hj))
 
+/--
+@isnad1 id=cong.1h2v.s6.0c84dfc5d2af from=translated src=- shape=ea8c81a5 vocab=b5aa1bb1
+-/
 theorem Cong.one_sub_X_pow {m n : ℕ} (hn : m + 1 ≤ n + 1) : Cong m (1 - PowerSeries.X ^ (n + 1)) := by
   rw [Cong, sub_sub_cancel_left, dvd_neg]
   exact pow_dvd_pow _ hn
 
+/--
+@isnad1 id=eq.1h3v.s7.90e128ac44ed from=translated src=- shape=7e0f4554 vocab=a90a6f5e
+-/
 theorem coeff_mul_of_cong {m : ℕ} {G : PowerSeries ℤ} (hG : Cong m G) (H : PowerSeries ℤ) :
     PowerSeries.coeff m (H * G) = PowerSeries.coeff m H := by
   obtain ⟨K, hK⟩ := hG
@@ -56,6 +74,9 @@ theorem coeff_mul_of_cong {m : ℕ} {G : PowerSeries ℤ} (hG : Cong m G) (H : P
   rw [this, mul_add, mul_one, map_add, ← mul_assoc, mul_comm H, mul_assoc, PowerSeries.coeff_X_pow_mul',
     ite_eq_right (by omega), add_zero]
 
+/--
+@isnad1 id=eq.1h3v.s8.533ff205c59f from=translated src=- shape=b1e8dcb0 vocab=ad1d284b
+-/
 theorem coeff_prod_pow_eq (a m : ℕ) (s : Finset ℕ) (hs : Finset.range (m + 1) ⊆ s) :
     PowerSeries.coeff m ((∏ n ∈ s, ((1 : PowerSeries ℤ) - PowerSeries.X ^ (n + 1))) ^ a) =
       PowerSeries.coeff m (f (m + 1) ^ a) := by
@@ -67,6 +88,9 @@ theorem coeff_prod_pow_eq (a m : ℕ) (s : Finset ℕ) (hs : Finset.range (m + 1
   rw [Finset.mem_sdiff, Finset.mem_range, not_lt] at hn
   exact Cong.one_sub_X_pow (by omega)
 
+/--
+@isnad1 id=eq.0h2v.s7.fd4b3d056e02 from=translated src=- shape=d57cc18a vocab=069058c0
+-/
 theorem coeff_etaProd_pow (a m : ℕ) :
     PowerSeries.coeff m (etaProd ^ a) = PowerSeries.coeff m (f (m + 1) ^ a) := by
   have hmult := PowerSeries.WithPiTopology.multipliable_one_sub_X_pow ℤ
@@ -84,6 +108,9 @@ theorem coeff_etaProd_pow (a m : ℕ) :
     exact (coeff_prod_pow_eq a m s hs).symm
   exact tendsto_nhds_unique h2 h3
 
+/--
+@isnad1 id=eq.1h3v.s7.bf18a45aa24d from=translated src=- shape=25f79358 vocab=17c9d478
+-/
 theorem coeff_etaProd_pow_eq_coeff_f (a m N : ℕ) (hN : m < N) :
     PowerSeries.coeff m (etaProd ^ a) = PowerSeries.coeff m (f N ^ a) := by
   rw [coeff_etaProd_pow]
@@ -91,19 +118,31 @@ theorem coeff_etaProd_pow_eq_coeff_f (a m N : ℕ) (hN : m < N) :
 
 def p (N : ℕ) : Polynomial ℤ := ∏ n ∈ Finset.range N, ((1 : Polynomial ℤ) - Polynomial.X ^ (n + 1))
 
+/--
+@isnad1 id=eq.0h1v.s3.3e6282e7db2e from=translated src=- shape=d709d7a6 vocab=81e03018
+-/
 theorem coe_p (N : ℕ) : ((p N : Polynomial ℤ) : PowerSeries ℤ) = f N := by
   rw [p, f, ← Polynomial.coeToPowerSeries.ringHom_apply, map_prod]
   refine Finset.prod_congr rfl (fun n _ => ?_)
   rw [map_sub, map_one, map_pow, Polynomial.coeToPowerSeries.ringHom_apply, Polynomial.coe_X]
 
+/--
+@isnad1 id=eq.0h3v.s7.5d57cf7ca9c2 from=translated src=- shape=16385dcf vocab=c5c54493
+-/
 theorem coeff_f_pow (a N m : ℕ) : PowerSeries.coeff m (f N ^ a) = (p N ^ a).coeff m := by
   rw [← Polynomial.coeff_coe, Polynomial.coe_pow, coe_p]
 
+/--
+@isnad1 id=eq.0h3v.s6.e5da7d70bb34 from=translated src=- shape=591ed5be vocab=4afc832a
+-/
 theorem eval₂_p_pow (a N : ℕ) (q : ℂ) :
     (p N ^ a).eval₂ (Int.castRingHom ℂ) q = (∏ n ∈ Finset.range N, (1 - q ^ (n + 1))) ^ a := by
   rw [Polynomial.eval₂_pow, p, Polynomial.eval₂_finsetProd]
   simp [Polynomial.eval₂_sub, Polynomial.eval₂_X_pow]
 
+/--
+@isnad1 id=hassum.0h3v.s7.88fe47d9b7a5 from=translated src=- shape=8ed4f7da vocab=270f910f
+-/
 theorem hasSum_partial (a N : ℕ) (q : ℂ) :
     HasSum (fun m : ℕ => ((PowerSeries.coeff m (f N ^ a) : ℤ) : ℂ) * q ^ m)
       ((∏ n ∈ Finset.range N, (1 - q ^ (n + 1))) ^ a) := by
@@ -115,9 +154,15 @@ theorem hasSum_partial (a N : ℕ) (q : ℂ) :
 
 def Maj (φ : Polynomial ℤ) (Φ : Polynomial ℝ) : Prop := ∀ m, |((φ.coeff m : ℤ) : ℝ)| ≤ Φ.coeff m
 
+/--
+@isnad1 id=le.1h3v.s4.cd4b184686a0 from=translated src=- shape=142c0aca vocab=31bced6b
+-/
 theorem Maj.nonneg {φ : Polynomial ℤ} {Φ : Polynomial ℝ} (h : Maj φ Φ) (m : ℕ) : 0 ≤ Φ.coeff m :=
   (abs_nonneg _).trans (h m)
 
+/--
+@isnad1 id=maj.2h4v.s5.027d241fcda6 from=translated src=- shape=442351af vocab=6cda15b8
+-/
 theorem Maj.mul {φ ψ : Polynomial ℤ} {Φ Ψ : Polynomial ℝ} (hφ : Maj φ Φ) (hψ : Maj ψ Ψ) : Maj (φ * ψ) (Φ * Ψ) := by
   intro m
   rw [Polynomial.coeff_mul, Polynomial.coeff_mul, Int.cast_sum]
@@ -125,16 +170,25 @@ theorem Maj.mul {φ ψ : Polynomial ℤ} {Φ Ψ : Polynomial ℝ} (hφ : Maj φ 
   rw [Int.cast_mul, abs_mul]
   exact mul_le_mul (hφ _) (hψ _) (abs_nonneg _) (hφ.nonneg _)
 
+/--
+@isnad1 id=maj.0h0v.s4.64ce4129559b from=translated src=- shape=4e21f55a vocab=ea73b12c
+-/
 theorem Maj.one : Maj 1 1 := by
   intro m
   rw [Polynomial.coeff_one, Polynomial.coeff_one]
   split_ifs <;> simp
 
+/--
+@isnad1 id=maj.1h3v.s6.9ecc044880e1 from=translated src=- shape=e8f96a58 vocab=db2c4772
+-/
 theorem Maj.pow {φ : Polynomial ℤ} {Φ : Polynomial ℝ} (h : Maj φ Φ) (a : ℕ) : Maj (φ ^ a) (Φ ^ a) := by
   induction a with
   | zero => simpa using Maj.one
   | succ a ih => rw [pow_succ, pow_succ]; exact ih.mul h
 
+/--
+@isnad1 id=maj.1h4v.s6.e75da7df8e91 from=translated src=- shape=ae8e9306 vocab=e044cab1
+-/
 theorem Maj.prod {ι : Type*} (s : Finset ι) {φ : ι → Polynomial ℤ} {Φ : ι → Polynomial ℝ}
     (h : ∀ i ∈ s, Maj (φ i) (Φ i)) : Maj (∏ i ∈ s, φ i) (∏ i ∈ s, Φ i) := by
   classical
@@ -144,6 +198,9 @@ theorem Maj.prod {ι : Type*} (s : Finset ι) {φ : ι → Polynomial ℤ} {Φ :
     rw [Finset.prod_insert hi, Finset.prod_insert hi]
     exact (h i (Finset.mem_insert_self i s)).mul (ih fun j hj => h j (Finset.mem_insert_of_mem hj))
 
+/--
+@isnad1 id=maj.0h1v.s6.08e1665fe4bd from=translated src=- shape=5378fd80 vocab=f9a5ea5d
+-/
 theorem Maj.one_sub_X_pow (k : ℕ) : Maj (1 - Polynomial.X ^ k) (1 + Polynomial.X ^ k) := by
   intro m
   simp only [Polynomial.coeff_sub, Polynomial.coeff_add, Polynomial.coeff_one, Polynomial.coeff_X_pow, Int.cast_sub]
@@ -152,19 +209,31 @@ theorem Maj.one_sub_X_pow (k : ℕ) : Maj (1 - Polynomial.X ^ k) (1 + Polynomial
 
 def P (N : ℕ) : Polynomial ℝ := ∏ n ∈ Finset.range N, ((1 : Polynomial ℝ) + Polynomial.X ^ (n + 1))
 
+/--
+@isnad1 id=maj.0h2v.s6.0dac49babc3d from=translated src=- shape=4b5f226e vocab=cec9778a
+-/
 theorem maj_p_pow (a N : ℕ) : Maj (p N ^ a) (P N ^ a) :=
   (Maj.prod (Finset.range N) fun n _ => Maj.one_sub_X_pow (n + 1)).pow a
 
+/--
+@isnad1 id=eq.0h3v.s6.ee1b8ce3c750 from=translated src=- shape=f3de8a86 vocab=5f47d60c
+-/
 theorem eval_P_pow (a N : ℕ) (r : ℝ) : (P N ^ a).eval r = (∏ n ∈ Finset.range N, (1 + r ^ (n + 1))) ^ a := by
   rw [Polynomial.eval_pow, P, Polynomial.eval_prod]
   simp
 
+/--
+@isnad1 id=le.2h3v.s6.6d784ada7da6 from=translated src=- shape=60c3a49c vocab=76269b87
+-/
 theorem coeff_mul_pow_le_eval {Φ : Polynomial ℝ} (hΦ : ∀ m, 0 ≤ Φ.coeff m) {r : ℝ} (hr : 0 ≤ r) (m : ℕ) :
     Φ.coeff m * r ^ m ≤ Φ.eval r := by
   rw [Polynomial.eval_eq_sum_range' (n := max (Φ.natDegree + 1) (m + 1)) (lt_max_of_lt_left (Nat.lt_succ_self _))]
   refine Finset.single_le_sum (f := fun i => Φ.coeff i * r ^ i) (fun i _ => mul_nonneg (hΦ i) (pow_nonneg hr i))
     (Finset.mem_range.mpr (lt_max_of_lt_right (Nat.lt_succ_self m)))
 
+/--
+@isnad1 id=le.2h2v.s6.f93d7e49c57a from=translated src=- shape=4cacede8 vocab=c9c8fadd
+-/
 theorem prod_one_add_le_exp {N : ℕ} {r : ℝ} (hr0 : 0 ≤ r) (hr1 : r < 1) :
     ∏ n ∈ Finset.range N, (1 + r ^ (n + 1)) ≤ Real.exp (∑' n : ℕ, r ^ (n + 1)) := by
   have hsum : Summable (fun n : ℕ => r ^ (n + 1)) :=
@@ -176,6 +245,9 @@ theorem prod_one_add_le_exp {N : ℕ} {r : ℝ} (hr0 : 0 ≤ r) (hr1 : r < 1) :
     _ ≤ Real.exp (∑' n : ℕ, r ^ (n + 1)) :=
         Real.exp_le_exp.mpr (hsum.sum_le_tsum _ (fun n _ => pow_nonneg hr0 _))
 
+/--
+@isnad1 id=le.2h4v.s7.1c3be7dfab6b from=translated src=- shape=eaa6dd51 vocab=3256717c
+-/
 theorem norm_coeff_f_pow_mul_le (a N m : ℕ) {r : ℝ} (hr0 : 0 ≤ r) (hr1 : r < 1) :
     |((PowerSeries.coeff m (f N ^ a) : ℤ) : ℝ)| * r ^ m ≤ Real.exp (∑' n : ℕ, r ^ (n + 1)) ^ a := by
   have hmaj := maj_p_pow a N
@@ -186,6 +258,9 @@ theorem norm_coeff_f_pow_mul_le (a N m : ℕ) {r : ℝ} (hr0 : 0 ≤ r) (hr1 : r
     _ ≤ Real.exp (∑' n : ℕ, r ^ (n + 1)) ^ a :=
         pow_le_pow_left₀ (Finset.prod_nonneg fun n _ => by positivity) (prod_one_add_le_exp hr0 hr1) a
 
+/--
+@isnad1 id=hassum.1h2v.s7.d2e80a0f87e7 from=translated src=- shape=128415bc vocab=981dd466
+-/
 theorem main (a : ℕ) {q : ℂ} (hq : ‖q‖ < 1) :
     HasSum (fun m : ℕ => ((PowerSeries.coeff m (etaProd ^ a) : ℤ) : ℂ) * q ^ m)
       ((∏' n : ℕ, (1 - q ^ (n + 1))) ^ a) := by
@@ -241,6 +316,9 @@ end ModularCurve
 
 end
 
+/--
+@isnad1 id=hassum.1h2v.s7.d2e80a0f87e7 from=translated src=- shape=128415bc vocab=981dd466
+-/
 theorem solution (a : ℕ) {q : ℂ} (hq : ‖q‖ < 1) :
     HasSum (fun m : ℕ => ((PowerSeries.coeff m (etaProd ^ a) : ℤ) : ℂ) * q ^ m)
       ((∏' n : ℕ, (1 - q ^ (n + 1))) ^ a) :=

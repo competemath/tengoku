@@ -20,11 +20,17 @@ variable {N : ℕ} [NeZero N]
 def f (t : (ZMod N)ˣ) : ℂ := (π : ℂ) ^ 2 / Complex.sin (π * (t : ZMod N).val / N) ^ 2
 
 omit [NeZero N] in
+/--
+@isnad1 id=lt.1h2v.s5.01fe9f4c20cb from=translated src=- shape=d14ef1cf vocab=8fe02b9b
+-/
 lemma val_pos (hN : 2 ≤ N) (t : (ZMod N)ˣ) : 0 < (t : ZMod N).val := by
   haveI : Fact (1 < N) := ⟨hN⟩
   rw [Nat.pos_iff_ne_zero, Ne, ZMod.val_eq_zero]
   exact t.ne_zero
 
+/--
+@isnad1 id=mem.1h2v.s6.c87cac1f4b9d from=translated src=- shape=9e0e4217 vocab=38a8bd06
+-/
 lemma val_div_mem_integerComplement (hN : 2 ≤ N) (t : (ZMod N)ˣ) :
     (((t : ZMod N).val : ℂ) / N) ∈ Complex.integerComplement := by
   rintro ⟨m, hm⟩
@@ -51,11 +57,17 @@ lemma val_div_mem_integerComplement (hN : 2 ≤ N) (t : (ZMod N)ˣ) :
   have h0 : 0 < m := by exact_mod_cast hm0
   omega
 
+/--
+@isnad1 id=eq.1h2v.s7.5b3aaaa6f23b from=translated src=- shape=10b9f5d0 vocab=55942972
+-/
 lemma f_eq_tsum (hN : 2 ≤ N) (t : (ZMod N)ˣ) :
     f t = ∑' n : ℤ, 1 / ((((t : ZMod N).val : ℂ) / N) + n) ^ 2 := by
   rw [Complex.tsum_int_one_div_add_sq_eq_pi_sq_div_sin_sq _ (val_div_mem_integerComplement hN t), f,
     mul_div_assoc]
 
+/--
+@isnad1 id=eq.0h1v.s6.e2c180bc25ae from=translated src=- shape=190d3970 vocab=a07482e7
+-/
 lemma tsum_eq_two_mul_hurwitzZetaEven (x : ℝ) :
     ∑' n : ℤ, 1 / ((x : ℂ) + n) ^ 2 = 2 * hurwitzZetaEven (x : UnitAddCircle) 2 := by
   have h := hasSum_int_hurwitzZetaEven x (s := 2) (by norm_num)
@@ -72,12 +84,18 @@ lemma tsum_eq_two_mul_hurwitzZetaEven (x : ℝ) :
   simp_rw [hterm] at h2
   exact h2.tsum_eq
 
+/--
+@isnad1 id=eq.1h2v.s7.ef6cf29d9256 from=translated src=- shape=9184289e vocab=90e3d499
+-/
 lemma f_eq_hurwitz (hN : 2 ≤ N) (t : (ZMod N)ˣ) :
     f t = 2 * hurwitzZetaEven (ZMod.toAddCircle (t : ZMod N)) 2 := by
   rw [f_eq_tsum hN, ZMod.toAddCircle_apply, ← tsum_eq_two_mul_hurwitzZetaEven]
   push_cast
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.e1fae045b546 from=translated src=- shape=b8dd6bcd vocab=ec27baf1
+-/
 lemma sum_units_eq_sum (χ : DirichletCharacter ℂ N) (g : ZMod N → ℂ) :
     ∑ t : (ZMod N)ˣ, χ (t : ZMod N) * g t = ∑ j : ZMod N, χ j * g j := by
   classical
@@ -98,6 +116,9 @@ lemma sum_units_eq_sum (χ : DirichletCharacter ℂ N) (g : ZMod N → ℂ) :
         · rfl
         · rw [MulChar.map_nonunit χ hj, zero_mul]
 
+/--
+@isnad1 id=eq.2h2v.s7.130486c5f55c from=translated src=- shape=7066e814 vocab=e846b5c9
+-/
 lemma charsum_eq (hN : 2 ≤ N) (χ : DirichletCharacter ℂ N) (hχ : χ.Even) :
     ∑ t : (ZMod N)ˣ, χ (t : ZMod N) * f t = 2 * (N : ℂ) ^ 2 * DirichletCharacter.LFunction χ 2 := by
   have heven : Function.Even (χ : ZMod N → ℂ) := by
@@ -114,6 +135,9 @@ lemma charsum_eq (hN : 2 ≤ N) (χ : DirichletCharacter ℂ N) (hχ : χ.Even) 
   refine Finset.sum_congr rfl fun j _ => ?_
   ring
 
+/--
+@isnad1 id=ne.2h2v.s7.c1e54bca12bc from=translated src=- shape=a442d28c vocab=a4dbdd55
+-/
 lemma charsum_ne_zero (hN : 2 ≤ N) (χ : DirichletCharacter ℂ N) (hχ : χ.Even) :
     ∑ t : (ZMod N)ˣ, χ (t : ZMod N) * f t ≠ 0 := by
   rw [charsum_eq hN χ hχ]
@@ -123,11 +147,17 @@ lemma charsum_ne_zero (hN : 2 ≤ N) (χ : DirichletCharacter ℂ N) (hχ : χ.E
 
 def cinv (χ : DirichletCharacter ℂ N) : ℂ := ∑ t : (ZMod N)ˣ, f t * χ ((t⁻¹ : (ZMod N)ˣ) : ZMod N)
 
+/--
+@isnad1 id=eq.0h2v.s7.23ccda3a9a51 from=translated src=- shape=c89f2558 vocab=34087611
+-/
 lemma cinv_eq (χ : DirichletCharacter ℂ N) : cinv χ = ∑ t : (ZMod N)ˣ, χ⁻¹ (t : ZMod N) * f t := by
   unfold cinv
   refine Finset.sum_congr rfl fun t _ => ?_
   rw [mul_comm, MulChar.inv_apply, Ring.inverse_unit]
 
+/--
+@isnad1 id=ne.2h2v.s5.675b0693c6f6 from=translated src=- shape=8db26f05 vocab=d522b04a
+-/
 lemma cinv_ne_zero (hN : 2 ≤ N) (χ : DirichletCharacter ℂ N) (hχ : χ.Even) : cinv χ ≠ 0 := by
   rw [cinv_eq]
   refine charsum_ne_zero hN χ⁻¹ ?_
@@ -136,6 +166,9 @@ lemma cinv_ne_zero (hN : 2 ≤ N) (χ : DirichletCharacter ℂ N) (hχ : χ.Even
   simp at hχ ⊢
   exact hχ
 
+/--
+@isnad1 id=ex.1h1v.s9.19c4799d2d35 from=translated src=- shape=46865b6c vocab=3fa9023a
+-/
 theorem main (hN : 2 ≤ N) :
     ∃ h : (ZMod N)ˣ → ℂ, ∀ s : (ZMod N)ˣ,
       ∑ t : (ZMod N)ˣ, f t * h (t * s) = (if s = 1 then 1 else 0) + (if s = -1 then 1 else 0) := by
@@ -196,6 +229,9 @@ end EIS2K3
 
 end
 
+/--
+@isnad1 id=ex.1h1v.s9.e7e89a5d8a5e from=translated src=- shape=c693d31a vocab=058ab1a0
+-/
 theorem solution (N : ℕ) [NeZero N] (hN : 2 ≤ N) :
     ∃ h : (ZMod N)ˣ → ℂ, ∀ s : (ZMod N)ˣ,
       ∑ t : (ZMod N)ˣ, (π : ℂ) ^ 2 / Complex.sin (π * (t : ZMod N).val / N) ^ 2 * h (t * s) =

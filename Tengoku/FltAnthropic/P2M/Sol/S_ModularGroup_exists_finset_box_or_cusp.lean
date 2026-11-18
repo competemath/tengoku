@@ -8,6 +8,9 @@ namespace P2MW.S_ModularGroup_exists_finset_box_or_cusp
 
 open scoped UpperHalfPlane MatrixGroups
 
+/--
+@isnad1 id=ex.0h2v.s10.ddff1354bf14 from=translated src=- shape=d48c5800 vocab=dfcd6cf3
+-/
 theorem solution (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex] (Y : ℝ) :
     ∃ (S : Finset SL(2, ℤ)) (B y₀ Y₁ : ℝ), 0 < y₀ ∧ ∀ τ : ℍ, ∃ γ ∈ Γ,
       (|(γ • τ).re| ≤ B ∧ y₀ ≤ (γ • τ).im ∧ (γ • τ).im ≤ Y₁) ∨

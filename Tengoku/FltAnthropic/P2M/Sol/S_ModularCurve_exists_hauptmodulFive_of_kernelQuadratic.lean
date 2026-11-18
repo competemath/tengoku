@@ -8,6 +8,9 @@ namespace P2MW.S_ModularCurve_exists_hauptmodulFive_of_kernelQuadratic
 namespace ModularCurve
 namespace ProducerFivePort
 
+/--
+@isnad1 id=eq.2h4v.s9.b5c9dff8db9d from=translated src=- shape=9b2b0202 vocab=ca5acbf2
+-/
 theorem fiveKernel_clearedMembership (A B p q : ℚ)
     (hg3 : 2*A*p - 4*B - p^3 + 6*p*q = 0)
     (hg4 : A^2 - 2*A*q + 4*B*p - p^2*q + 5*q^2 = 0) :
@@ -56,6 +59,9 @@ theorem fiveKernel_clearedMembership (A B p q : ℚ)
       1455423488*B^4*p^2*q^3 + 5242880*B^6*p^2 + 109051904*B^5*p*q^2 - 16777216*A*B^6 -
       234881024*B^6*q) * hg4
 
+/--
+@isnad1 id=eq.3h5v.s8.edca8fb80bea from=translated src=- shape=f09fa97a vocab=9faf5bcf
+-/
 theorem hauptmodulFive_of_clearedMembership {N D W C u : ℚ} (hD : D ≠ 0) (hN : N = u * D)
     (key : (N^2 + 10*N*D + 5*D^2)^3 * W = C * N * D^5) :
     (u^2 + 10*u + 5)^3 * W = C * u := by
@@ -79,6 +85,9 @@ theorem eq_zero_and_eq_zero_of_sq_add_sq_eq_zero {a b : ℚ} (h : a ^ 2 + b ^ 2 
         (lt_of_le_of_ne (sq_nonneg b) (Ne.symm (pow_ne_zero 2 hb)))
   exact absurd h (ne_of_gt hpos)
 
+/--
+@isnad1 id=ne.3h4v.s8.4525db73381d from=translated src=- shape=cb7654e9 vocab=f37b0cf8
+-/
 theorem p_ne_zero_of_duplicationClosed {A B p q : ℚ} (hΔ : 4 * A ^ 3 + 27 * B ^ 2 ≠ 0)
     (hg3 : 2 * A * p - 4 * B - p ^ 3 + 6 * p * q = 0)
     (hg4 : A ^ 2 - 2 * A * q + 4 * B * p - p ^ 2 * q + 5 * q ^ 2 = 0) :
@@ -95,6 +104,9 @@ theorem p_ne_zero_of_duplicationClosed {A B p q : ℚ} (hΔ : 4 * A ^ 3 + 27 * B
   rw [hA0]
   ring
 
+/--
+@isnad1 id=ex.4h4v.s9.40481b70d27f from=translated src=- shape=245f42e9 vocab=ca5acbf2
+-/
 theorem exists_hauptmodulFive_of_kernelQuadratic (A B p q : ℚ)
     (hΔ : 4 * A ^ 3 + 27 * B ^ 2 ≠ 0) (hsep : p ^ 2 - 4 * q ≠ 0)
     (hg3 : 2 * A * p - 4 * B - p ^ 3 + 6 * p * q = 0)
@@ -125,6 +137,9 @@ theorem exists_hauptmodulFive_of_kernelQuadratic (A B p q : ℚ)
 
 end ModularCurve.ProducerFivePort
 
+/--
+@isnad1 id=ex.4h4v.s9.40481b70d27f from=translated src=- shape=245f42e9 vocab=ca5acbf2
+-/
 theorem solution (A B p q : ℚ) (hΔ : 4 * A ^ 3 + 27 * B ^ 2 ≠ 0) (hsep : p ^ 2 - 4 * q ≠ 0)
     (hg3 : 2 * A * p - 4 * B - p ^ 3 + 6 * p * q = 0)
     (hg4 : A ^ 2 - 2 * A * q + 4 * B * p - p ^ 2 * q + 5 * q ^ 2 = 0) :

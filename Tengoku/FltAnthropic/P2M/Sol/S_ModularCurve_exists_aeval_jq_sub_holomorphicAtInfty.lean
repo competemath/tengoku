@@ -16,6 +16,9 @@ namespace ModularCurve
 export _root_.ModularCurve (algebraMap_apply_eq_single jq coeff_jq_pow_self coeff_jq_pow_of_lt PoleOrderLE)
 open _root_.ModularCurve
 
+/--
+@isnad1 id=poleorde.1h2v.s8.a2733dfc9ad1 from=translated src=- shape=d5fd7e0b vocab=3952884c
+-/
 theorem poleOrderLE_sub_aeval_jq_succ {f : LaurentSeries ℚ} {n : ℕ}
     (hf : PoleOrderLE f (n + 1)) :
     PoleOrderLE
@@ -28,6 +31,9 @@ theorem poleOrderLE_sub_aeval_jq_succ {f : LaurentSeries ℚ} {n : ℕ}
   · rw [heq, coeff_jq_pow_self, mul_one, sub_self]
   · rw [hf k hlt, coeff_jq_pow_of_lt hlt, mul_zero, sub_zero]
 
+/--
+@isnad1 id=ex.1h2v.s8.1d233da9e2ec from=translated src=- shape=c74d3476 vocab=e68bfb57
+-/
 theorem exists_aeval_jq_sub_holomorphicAtInfty' (n : ℕ) :
     ∀ f : LaurentSeries ℚ, PoleOrderLE f n →
       ∃ P : Polynomial ℚ, P.natDegree ≤ n ∧ PoleOrderLE (f - Polynomial.aeval jq P) 0 := by
@@ -48,6 +54,9 @@ theorem exists_aeval_jq_sub_holomorphicAtInfty' (n : ℕ) :
 
 end ModularCurve
 
+/--
+@isnad1 id=ex.1h2v.s8.1d233da9e2ec from=translated src=- shape=c74d3476 vocab=e68bfb57
+-/
 theorem solution (n : ℕ) :
     ∀ f : LaurentSeries ℚ, ModularCurve.PoleOrderLE f n →
       ∃ P : Polynomial ℚ, P.natDegree ≤ n ∧ ModularCurve.PoleOrderLE (f - Polynomial.aeval ModularCurve.jq P) 0 :=

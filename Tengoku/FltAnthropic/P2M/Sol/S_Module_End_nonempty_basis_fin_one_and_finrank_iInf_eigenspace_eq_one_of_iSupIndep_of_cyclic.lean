@@ -32,6 +32,9 @@ variable {K : Type*} [Field K] {W : Type*} [AddCommGroup W] [Module K W] [Finite
     (hcyc : ∀ (i : ι), ∀ v ∈ V i, ∃ a : ↥A, (a : Module.End K W) (w i) = v)
 
 include hVtop he₁ he₀ in
+/--
+@isnad1 id=and.3h7v.s11.075ac061bf8e from=translated src=- shape=e7511305 vocab=c45f83ad
+-/
 theorem decomp [DecidableEq ι] (v : W) :
     (∑ i, (e i : Module.End K W) v = v) ∧ ∀ i, (e i : Module.End K W) v ∈ V i := by
   have hv : v ∈ ⨆ i, V i := by rw [hVtop]; trivial
@@ -53,11 +56,17 @@ theorem decomp [DecidableEq ι] (v : W) :
     · intro i; rw [map_add]; exact Submodule.add_mem _ (hx.2 i) (hy.2 i)
 
 include hVtop he₁ he₀ in
+/--
+@isnad1 id=mem.3h8v.s10.00a3ed33e6e2 from=translated src=- shape=bccf54e8 vocab=3ac22811
+-/
 theorem e_apply_mem (i : ι) (v : W) : (e i : Module.End K W) v ∈ V i := by
   classical
   exact (decomp V hVtop A e he₁ he₀ v).2 i
 
 include hVtop he₁ he₀ in
+/--
+@isnad1 id=eq.3h7v.s10.d19ce4771725 from=translated src=- shape=ee3cfd86 vocab=7463869b
+-/
 theorem sum_e_apply (v : W) : ∑ i, (e i : Module.End K W) v = v := by
   classical
   exact (decomp V hVtop A e he₁ he₀ v).1
@@ -65,6 +74,9 @@ theorem sum_e_apply (v : W) : ∑ i, (e i : Module.End K W) v = v := by
 def w0 : W := ∑ i, w i
 
 include he₁ he₀ hw in
+/--
+@isnad1 id=eq.3h8v.s10.8779567e5fd1 from=translated src=- shape=70f6b002 vocab=f979ec1d
+-/
 theorem e_w0 [DecidableEq ι] (i : ι) : (e i : Module.End K W) (w0 w) = w i := by
   unfold w0
   rw [map_sum, Finset.sum_eq_single i (fun j _ hji => he₀ i j hji _ (hw j))
@@ -77,9 +89,15 @@ def ψ : ↥A →ₗ[↥A] W where
     simp only [smul_eq_mul, Subalgebra.coe_mul, Module.End.mul_apply, RingHom.id_apply]
     rfl
 
+/--
+@isnad1 id=eq.0h6v.s12.d3a59088dd5a from=translated src=- shape=dc954c10 vocab=5cce644b
+-/
 theorem ψ_apply (a : ↥A) : ψ A w a = (a : Module.End K W) (w0 w) := rfl
 
 include hVtop he₁ he₀ hw hcyc in
+/--
+@isnad1 id=surjecti.5h7v.s12.0d158c5a4339 from=translated src=- shape=999fcef7 vocab=42a04f8c
+-/
 theorem ψ_surjective : Function.Surjective (ψ A w) := by
   classical
   intro v
@@ -92,6 +110,9 @@ theorem ψ_surjective : Function.Surjective (ψ A w) := by
   rw [Subalgebra.coe_mul, Module.End.mul_apply, e_w0 V A e he₁ he₀ w hw i, ha i]
 
 include hVtop hcomm he₁ he₀ hw hcyc in
+/--
+@isnad1 id=injectiv.6h7v.s13.ce22c6df9425 from=translated src=- shape=448930c5 vocab=b5352220
+-/
 theorem ψ_injective : Function.Injective (ψ A w) := by
   classical
   rw [← LinearMap.ker_eq_bot, LinearMap.ker_eq_bot']
@@ -134,10 +155,16 @@ noncomputable def ψe : ↥A ≃ₗ[↥A] W :=
     ⟨ψ_injective V hVtop A hcomm e he₁ he₀ w hw hcyc, ψ_surjective V hVtop A e he₁ he₀ w hw hcyc⟩
 
 include V hVtop hcomm e he₁ he₀ w hw hcyc in
+/--
+@isnad1 id=nonempty.6h7v.s11.d811cfd6fcc5 from=translated src=- shape=27dd9741 vocab=a8ff1305
+-/
 theorem nonempty_basis : Nonempty (Module.Basis (Fin 1) ↥A W) :=
   ⟨(Module.Basis.singleton (Fin 1) ↥A).map (ψe V hVtop A hcomm e he₁ he₀ w hw hcyc)⟩
 
 include hVtop he₁ he₀ in
+/--
+@isnad1 id=eq.3h6v.s11.4c60fcb28f37 from=translated src=- shape=6a9953e7 vocab=7463869b
+-/
 theorem sum_e_eq_one : ∑ i, e i = (1 : ↥A) := by
   apply Subtype.ext
   rw [AddSubmonoidClass.coe_finsetSum, OneMemClass.coe_one]
@@ -146,6 +173,9 @@ theorem sum_e_eq_one : ∑ i, e i = (1 : ↥A) := by
   exact sum_e_apply V hVtop A e he₁ he₀ v
 
 include hVtop he₁ he₀ in
+/--
+@isnad1 id=eq.3h7v.s11.0f7da45c1c4b from=translated src=- shape=67ab7b14 vocab=842f22c5
+-/
 theorem e_mul_e_self (i : ι) : e i * e i = e i := by
   apply Subtype.ext
   rw [Subalgebra.coe_mul]
@@ -154,6 +184,9 @@ theorem e_mul_e_self (i : ι) : e i * e i = e i := by
   exact he₁ i _ (e_apply_mem V hVtop A e he₁ he₀ i v)
 
 include hVtop he₁ he₀ in
+/--
+@isnad1 id=ex.3h7v.s11.e93aaa6fd0a7 from=translated src=- shape=eb166e27 vocab=e01aea23
+-/
 theorem exists_chi_e_eq_one (χ : ↥A →ₐ[K] K) : ∃ i, χ (e i) = 1 := by
   classical
   by_contra h
@@ -172,10 +205,16 @@ theorem exists_chi_e_eq_one (χ : ↥A →ₐ[K] K) : ∃ i, χ (e i) = 1 := by
 def Eig (χ : ↥A →ₐ[K] K) : Submodule K W :=
   ⨅ a : ↥A, Module.End.eigenspace (a : Module.End K W) (χ a)
 
+/--
+@isnad1 id=iff.0h5v.s11.0001fbca1158 from=translated src=- shape=5e1b9675 vocab=23c17b64
+-/
 theorem mem_Eig {χ : ↥A →ₐ[K] K} {v : W} : v ∈ Eig A χ ↔ ∀ a : ↥A, (a : Module.End K W) v = χ a • v := by
   simp [Eig, Submodule.mem_iInf, Module.End.mem_eigenspace_iff]
 
 include hVtop he₁ he₀ in
+/--
+@isnad1 id=le.4h8v.s11.c0672a905bab from=translated src=- shape=c3b3a54a vocab=8e81f12c
+-/
 theorem Eig_le (χ : ↥A →ₐ[K] K) {i : ι} (hi : χ (e i) = 1) : Eig A χ ≤ V i := by
   intro v hv
   rw [mem_Eig] at hv
@@ -185,6 +224,9 @@ theorem Eig_le (χ : ↥A →ₐ[K] K) {i : ι} (hi : χ (e i) = 1) : Eig A χ �
   exact e_apply_mem V hVtop A e he₁ he₀ i v
 
 include hVtop he₁ he₀ in
+/--
+@isnad1 id=le.4h7v.s13.bbe605a17796 from=translated src=- shape=ab09f3f7 vocab=451b4ae9
+-/
 theorem finrank_Eig_le (χ : ↥A →ₐ[K] K)
     (hle : ∀ (i : ι) (χ : ↥A →ₐ[K] K),
       Module.finrank K ↥(V i ⊓ ⨅ a : ↥A, Module.End.eigenspace (a : Module.End K W) (χ a)) ≤ 1) :
@@ -213,6 +255,9 @@ abbrev commRing : CommRing ↥A :=
 
 include hcomm in
 
+/--
+@isnad1 id=ex.1h4v.s12.bd8876b15722 from=translated src=- shape=ac473192 vocab=68787742
+-/
 theorem exists_socle (χ : ↥A →ₐ[K] K) : ∃ b : ↥A, b ≠ 0 ∧ ∀ a : ↥A, a * b = χ a • b := by
   classical
   letI : CommRing ↥A := commRing A hcomm
@@ -263,6 +308,9 @@ theorem exists_socle (χ : ↥A →ₐ[K] K) : ∃ b : ↥A, b ≠ 0 ∧ ∀ a :
     _ = χ a • (r * x) := by rw [hkill, zero_add, Algebra.smul_def]
 
 include hVtop hcomm he₁ he₀ hw hcyc in
+/--
+@isnad1 id=ex.6h8v.s11.b2c2e0f26d83 from=translated src=- shape=955d6614 vocab=358492d2
+-/
 theorem exists_mem_Eig_ne_zero (χ : ↥A →ₐ[K] K) : ∃ v ∈ Eig A χ, v ≠ 0 := by
   obtain ⟨b, hb0, hb⟩ := exists_socle A hcomm χ
   refine ⟨ψ A w b, ?_, ?_⟩
@@ -276,6 +324,9 @@ theorem exists_mem_Eig_ne_zero (χ : ↥A →ₐ[K] K) : ∃ v ∈ Eig A χ, v �
     rw [h, map_zero]
 
 include hVtop hcomm he₁ he₀ hw hcyc in
+/--
+@isnad1 id=eq.7h8v.s13.3cff888035e7 from=translated src=- shape=1c4d4146 vocab=71c57de2
+-/
 theorem finrank_Eig_eq_one (χ : ↥A →ₐ[K] K)
     (hle : ∀ (i : ι) (χ : ↥A →ₐ[K] K),
       Module.finrank K ↥(V i ⊓ ⨅ a : ↥A, Module.End.eigenspace (a : Module.End K W) (χ a)) ≤ 1) :
@@ -288,6 +339,9 @@ theorem finrank_Eig_eq_one (χ : ↥A →ₐ[K] K)
 
 end ALG
 
+/--
+@isnad1 id=and.9h7v.s14.2521b57ba066 from=translated src=- shape=d8ccd03b vocab=0e82a4cc
+-/
 theorem solution
     {K : Type*} [Field K] {W : Type*} [AddCommGroup W] [Module K W] [FiniteDimensional K W]
     {ι : Type*} [Fintype ι]

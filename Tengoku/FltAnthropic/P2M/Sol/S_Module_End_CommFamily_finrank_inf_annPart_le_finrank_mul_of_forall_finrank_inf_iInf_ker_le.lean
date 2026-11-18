@@ -13,6 +13,9 @@ namespace E4ABody
 
 open Polynomial
 
+/--
+@isnad1 id=le.0h4v.s10.a99b9391edfb from=translated src=- shape=60d4cea4 vocab=98451eec
+-/
 theorem ker_aeval_prod_X_sub_C_le_iSup {K M : Type*} [Field K] [AddCommGroup M] [Module K M]
     (g : Module.End K M) (s : Finset K) :
     LinearMap.ker (aeval g (∏ r ∈ s, (X - C r))) ≤
@@ -36,6 +39,9 @@ theorem ker_aeval_prod_X_sub_C_le_iSup {K M : Type*} [Field K] [AddCommGroup M] 
     rw [LinearMap.mem_ker] at hv ⊢
     simpa [sub_eq_add_neg, Module.algebraMap_end_apply] using hv
 
+/--
+@isnad1 id=eq.1h6v.s11.69a30868d17a from=translated src=- shape=ba3195b3 vocab=8e6a6c9e
+-/
 theorem coe_aeval_restrict {K M : Type*} [Field K] [AddCommGroup M] [Module K M]
     (g : Module.End K M) (A : Submodule K M) (hA : ∀ v ∈ A, g v ∈ A) (P : K[X]) (x : A) :
     ((aeval (g.restrict hA) P x : A) : M) = aeval g P (x : M) := by
@@ -51,6 +57,9 @@ theorem coe_aeval_restrict {K M : Type*} [Field K] [AddCommGroup M] [Module K M]
       rw [pow_succ, pow_succ, Module.End.mul_apply, Module.End.mul_apply, ih]
       rfl
 
+/--
+@isnad1 id=le.1h5v.s10.e841230aff71 from=translated src=- shape=46267f08 vocab=dfd04990
+-/
 theorem inf_ker_aeval_prod_le_iSup {K M : Type*} [Field K] [AddCommGroup M] [Module K M]
     (g : Module.End K M) (A : Submodule K M) (hA : ∀ v ∈ A, g v ∈ A) (s : Finset K) :
     A ⊓ LinearMap.ker (aeval g (∏ r ∈ s, (X - C r))) ≤
@@ -80,6 +89,9 @@ theorem inf_ker_aeval_prod_le_iSup {K M : Type*} [Field K] [AddCommGroup M] [Mod
 end E4ABody
 
 set_option maxHeartbeats 6400000 in
+/--
+@isnad1 id=and.3h10v.s12.99a1406da3b6 from=translated src=- shape=74e55561 vocab=ebeb1eeb
+-/
 theorem solution
     {K V : Type*} [Field K] [AddCommGroup V] [Module K V] {σ : Type*}
     (F : Module.End.CommFamily K V σ) (p : ℕ) [Fact p.Prime] [CharP K p]

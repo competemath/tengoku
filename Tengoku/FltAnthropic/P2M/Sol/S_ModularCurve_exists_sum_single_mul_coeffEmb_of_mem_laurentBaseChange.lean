@@ -22,6 +22,9 @@ noncomputable def algF₀ : Algebra ↥F₀ (LaurentSeries L) :=
 
 attribute [local instance] algF₀
 
+/--
+@isnad1 id=eq.0h3v.s11.9c04b06155a0 from=translated src=- shape=5afca1dd vocab=3223aca7
+-/
 theorem algebraMap_F₀_apply (f : ↥F₀) :
     algebraMap ↥F₀ (LaurentSeries L) f = coeffEmb L (f : LaurentSeries ℚ) := rfl
 
@@ -30,6 +33,9 @@ noncomputable def ratConst (r : ℚ) : ↥F₀ :=
     rw [← ModularCurve.algebraMap_laurentSeries_eq_single ℚ r]
     exact IntermediateField.algebraMap_mem F₀ r⟩
 
+/--
+@isnad1 id=eq.0h3v.s11.26aa50da57d9 from=translated src=- shape=db1ccfbd vocab=68fff662
+-/
 theorem C_ratCast (r : ℚ) :
     (HahnSeries.C (algebraMap ℚ L r) : LaurentSeries L) =
       algebraMap ↥F₀ (LaurentSeries L) (ratConst F₀ r) := by
@@ -42,6 +48,9 @@ variable {ι : Type} [Fintype ι] (b : Module.Basis ι ℚ L)
 noncomputable def M : Submodule ↥F₀ (LaurentSeries L) :=
   Submodule.span ↥F₀ (Set.range fun i => (HahnSeries.C (b i) : LaurentSeries L))
 
+/--
+@isnad1 id=mem.0h5v.s11.84046be24838 from=translated src=- shape=4954f807 vocab=54cb3b03
+-/
 theorem C_mem_M (c : L) : (HahnSeries.C c : LaurentSeries L) ∈ M L F₀ b := by
   have hc : c = ∑ i, (b.repr c i) • b i := (b.sum_repr c).symm
   rw [hc, map_sum]
@@ -49,9 +58,15 @@ theorem C_mem_M (c : L) : (HahnSeries.C c : LaurentSeries L) ∈ M L F₀ b := b
   rw [Algebra.smul_def, map_mul, C_ratCast L F₀, ← Algebra.smul_def]
   exact Submodule.smul_mem _ _ (Submodule.subset_span ⟨i, rfl⟩)
 
+/--
+@isnad1 id=mem.0h4v.s11.71fd0e95b4a8 from=translated src=- shape=63aaaae1 vocab=7390d7ab
+-/
 theorem one_mem_M : (1 : LaurentSeries L) ∈ M L F₀ b := by
   simpa using C_mem_M L F₀ b 1
 
+/--
+@isnad1 id=mem.2h6v.s13.6255ffbe1f9e from=translated src=- shape=7542aa8b vocab=adcaddc0
+-/
 theorem mul_mem_M (x y : LaurentSeries L) (hx : x ∈ M L F₀ b) (hy : y ∈ M L F₀ b) :
     x * y ∈ M L F₀ b := by
 
@@ -75,6 +90,9 @@ theorem mul_mem_M (x y : LaurentSeries L) (hx : x ∈ M L F₀ b) (hy : y ∈ M 
 noncomputable def D : Subalgebra ↥F₀ (LaurentSeries L) :=
   (M L F₀ b).toSubalgebra (one_mem_M L F₀ b) (mul_mem_M L F₀ b)
 
+/--
+@isnad1 id=isfield.0h4v.s10.587625bcd49b from=translated src=- shape=4c524dbd vocab=8e910dea
+-/
 theorem isField_D : IsField ↥(D L F₀ b) := by
   haveI : Module.Finite ↥F₀ ↥(D L F₀ b) := by
     change Module.Finite ↥F₀ ↥(M L F₀ b)
@@ -95,6 +113,9 @@ noncomputable def Dfield : Subfield (LaurentSeries L) :=
           rw [inv_eq_of_mul_eq_one_right hxy]
         rw [this]; exact y.2 }
 
+/--
+@isnad1 id=mem.1h5v.s10.fb1b5ef0c2b0 from=translated src=- shape=c33c7a09 vocab=4a868636
+-/
 theorem laurentBaseChange_le_D : ∀ y, y ∈ laurentBaseChange L F₀ → y ∈ D L F₀ b := by
   intro y hy
   rw [mem_laurentBaseChange_iff] at hy
@@ -114,6 +135,9 @@ theorem laurentBaseChange_le_D : ∀ y, y ∈ laurentBaseChange L F₀ → y ∈
 end ModularCurve.LaurentBaseChangeSpanAux
 
 open ModularCurve.LaurentBaseChangeSpanAux in
+/--
+@isnad1 id=ex.1h3v.s10.9a4503b7b174 from=translated src=- shape=84c69ee2 vocab=b1b52dbc
+-/
 theorem solution
     (L : Type) [Field L] [CharZero L] [FiniteDimensional ℚ L]
     (F₀ : IntermediateField ℚ (LaurentSeries ℚ))

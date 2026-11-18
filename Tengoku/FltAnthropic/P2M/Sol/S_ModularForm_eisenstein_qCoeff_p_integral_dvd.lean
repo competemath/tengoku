@@ -9,6 +9,9 @@ namespace P2MW.S_ModularForm_eisenstein_qCoeff_p_integral_dvd
 set_option autoImplicit false
 
 open scoped ArithmeticFunction.sigma in
+/--
+@isnad1 id=ex.4h3v.s8.9501bdae24ed from=translated src=- shape=ce55b796 vocab=76ecc5f3
+-/
 theorem solution (p : ℕ) [Fact p.Prime] {k : ℕ} (hk : 3 ≤ k) (hk2 : Even k)
     (hpk : p - 1 ∣ k) (m : ℕ) (hm : 0 < m) :
     ∃ (x : ℤ) (s : ℕ), ¬ p ∣ s ∧

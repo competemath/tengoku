@@ -28,38 +28,59 @@ noncomputable def py (k : ℕ) : PowerSeries K := PowerSeries.mk fun M =>
         - ((e + 1).choose 2 : K) * ((-1) ^ k * ((e + k - 1).choose k : K))))
       + (if k = 0 then ∑ e ∈ M.divisors, (e : K) else 0)
 
+/--
+@isnad1 id=eq.0h1v.s9.5170548abc90 from=translated src=- shape=42b3e64c vocab=cf5c0441
+-/
 theorem tateOriginX_eq : tateOriginX K = single (-2 : ℤ) (1 : PowerSeries K) + single (-1 : ℤ) 1 +
     HahnSeries.ofPowerSeries ℤ (PowerSeries K) (PowerSeries.mk (px K)) := rfl
 
+/--
+@isnad1 id=eq.0h1v.s10.7dee083a2318 from=translated src=- shape=0bb61737 vocab=79626d35
+-/
 theorem tateOriginY_eq : tateOriginY K = single (-3 : ℤ) (-1 : PowerSeries K) + single (-2 : ℤ) (-2) + single (-1 : ℤ) (-1) +
     HahnSeries.ofPowerSeries ℤ (PowerSeries K) (PowerSeries.mk (py K)) := rfl
 
 variable {K}
 
+/--
+@isnad1 id=eq.0h3v.s9.4ddd9e8e6d92 from=translated src=- shape=dd2e366f vocab=cf4ba005
+-/
 theorem coeff_derivative (x : LaurentSeries (PowerSeries K)) (n : ℤ) :
     (LaurentSeries.derivative (PowerSeries K) x).coeff n = ((n + 1 : ℤ) : PowerSeries K) * x.coeff (n + 1) := by
   rw [LaurentSeries.derivative_apply, LaurentSeries.hasseDeriv_coeff, Ring.choose_one_right, zsmul_eq_mul]
   push_cast
   ring_nf
 
+/--
+@isnad1 id=eq.0h3v.s8.7c657fbd94f8 from=translated src=- shape=34aeb703 vocab=d2107693
+-/
 theorem coeff_single_one_mul (x : LaurentSeries (PowerSeries K)) (n : ℤ) :
     (single (1 : ℤ) (1 : PowerSeries K) * x).coeff n = x.coeff (n - 1) := by
   have h := HahnSeries.coeff_single_mul_add (r := (1 : PowerSeries K)) (x := x) (a := n - 1) (b := (1 : ℤ))
   rw [sub_add_cancel, one_mul] at h
   exact h
 
+/--
+@isnad1 id=eq.0h2v.s7.4120b194bda4 from=translated src=- shape=b36d1906 vocab=b8544095
+-/
 theorem coeff_X (n : ℤ) : (tateOriginX K).coeff n =
     (if n = -2 then 1 else 0) + (if n = -1 then 1 else 0) + (if n < 0 then 0 else px K n.natAbs) := by
   rw [tateOriginX_eq, HahnSeries.coeff_add, HahnSeries.coeff_add, HahnSeries.coeff_single, HahnSeries.coeff_single,
     PowerSeries.coeff_coe, PowerSeries.coeff_mk]
   split_ifs <;> rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.aa74f9b8e7cb from=translated src=- shape=fc3504b7 vocab=30c2eacf
+-/
 theorem coeff_Y (n : ℤ) : (tateOriginY K).coeff n =
     (if n = -3 then -1 else 0) + (if n = -2 then -2 else 0) + (if n = -1 then -1 else 0) + (if n < 0 then 0 else py K n.natAbs) := by
   rw [tateOriginY_eq, HahnSeries.coeff_add, HahnSeries.coeff_add, HahnSeries.coeff_add, HahnSeries.coeff_single,
     HahnSeries.coeff_single, HahnSeries.coeff_single, PowerSeries.coeff_coe, PowerSeries.coeff_mk]
   split_ifs <;> rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.4bf26d88c612 from=translated src=- shape=4dbd388c vocab=5e5ce863
+-/
 theorem binom1 (e k : ℕ) :
     ((k + 1 : ℕ) : K) * (e : K) * (e.choose (k + 1) : K) + ((k : K) - 1) * (e : K) * (e.choose k : K)
       = 2 * (e.choose 2 : K) * (e.choose k : K) := by
@@ -81,6 +102,9 @@ theorem binom1 (e k : ℕ) :
         linear_combination this
       linear_combination (e : K) * h1' - (e.choose k : K) * h2'
 
+/--
+@isnad1 id=eq.1h3v.s9.38ea182ce6cf from=translated src=- shape=0d5bf7a2 vocab=8240cf9f
+-/
 theorem binom2 (e k : ℕ) (he : 1 ≤ e) :
     ((k + 1 : ℕ) : K) * (e : K) * ((-1) ^ (k + 1) * ((e + (k + 1) - 1).choose (k + 1) : K))
       + ((k : K) - 1) * (e : K) * ((-1) ^ k * ((e + k - 1).choose k : K))
@@ -104,6 +128,9 @@ theorem binom2 (e k : ℕ) (he : 1 ≤ e) :
   rw [pow_succ]
   linear_combination (e : K) * ((-1 : K) ^ k * (-1)) * h1' + ((-1 : K) ^ k * ((e + k - 1).choose k : K)) * h2'
 
+/--
+@isnad1 id=eq.1h3v.s9.41e46f6f3243 from=translated src=- shape=4cb06e94 vocab=5df272d2
+-/
 theorem keysum (k M : ℕ) (hM : M ≠ 0) :
     ((k + 1 : ℕ) : K) * PowerSeries.coeff M (px K (k + 1)) + (k : K) * PowerSeries.coeff M (px K k)
       = 2 * PowerSeries.coeff M (py K k) + PowerSeries.coeff M (px K k) := by
@@ -122,6 +149,9 @@ theorem keysum (k M : ℕ) (hM : M ≠ 0) :
   · simp only [ite_eq_right hk, sub_zero, add_zero]
     linear_combination hcore
 
+/--
+@isnad1 id=eq.0h1v.s10.2ad8186029a4 from=translated src=- shape=b5101125 vocab=b8a2c537
+-/
 theorem main : (1 + HahnSeries.single (1 : ℤ) (1 : PowerSeries K)) * LaurentSeries.derivative (PowerSeries K) (tateOriginX K)
       = 2 * tateOriginY K + tateOriginX K := by
   apply HahnSeries.ext; funext n
@@ -157,6 +187,9 @@ theorem main : (1 + HahnSeries.single (1 : ℤ) (1 : PowerSeries K)) * LaurentSe
 
 end ModularCurve.T1
 
+/--
+@isnad1 id=eq.0h1v.s10.2ad8186029a4 from=translated src=- shape=b5101125 vocab=b8a2c537
+-/
 theorem solution (K : Type*) [CommRing K] :
     (1 + HahnSeries.single (1 : ℤ) (1 : PowerSeries K)) * LaurentSeries.derivative (PowerSeries K) (ModularCurve.tateOriginX K)
       = 2 * ModularCurve.tateOriginY K + ModularCurve.tateOriginX K :=

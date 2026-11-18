@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 open ModularCurve
 
+/--
+@isnad1 id=linearin.1h4v.s8.9f26f6421a14 from=translated src=- shape=1dc509d4 vocab=ed989c74
+-/
 theorem solution
     (κ : Type*) [Field κ] (k : Type*) [Field k] [Algebra κ k]
     {n : ℕ} (f : Fin n → LaurentSeries κ) (hf : LinearIndependent κ f) :

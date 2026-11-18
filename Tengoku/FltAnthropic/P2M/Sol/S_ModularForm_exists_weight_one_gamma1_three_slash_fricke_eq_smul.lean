@@ -19,13 +19,22 @@ namespace LatticeSum
 def hexForm (v : ℤ × ℤ) : ℤ :=
   v.1 ^ 2 + v.1 * v.2 + v.2 ^ 2
 
+/--
+@isnad1 id=eq.0h2v.s6.a1ffe68ffa00 from=translated src=- shape=70758fe2 vocab=0d45ddb4
+-/
 @[scoped simp] lemma hexForm_mk (m n : ℤ) : hexForm (m, n) = m ^ 2 + m * n + n ^ 2 := rfl
 
+/--
+@isnad1 id=le.0h1v.s3.92adf8291ed3 from=translated src=- shape=70dff6bb vocab=948895eb
+-/
 lemma hexForm_nonneg (v : ℤ × ℤ) : 0 ≤ hexForm v := by
   obtain ⟨a, b⟩ := v
   simp only [hexForm_mk]
   nlinarith [sq_nonneg (a + b), sq_nonneg a, sq_nonneg b]
 
+/--
+@isnad1 id=iff.0h1v.s5.b77a4e2370d3 from=translated src=- shape=105a1e1d vocab=e730d396
+-/
 lemma hexForm_eq_zero_iff (v : ℤ × ℤ) : hexForm v = 0 ↔ v = (0, 0) := by
   obtain ⟨a, b⟩ := v
   simp only [hexForm_mk, Prod.mk.injEq]
@@ -34,6 +43,9 @@ lemma hexForm_eq_zero_iff (v : ℤ × ℤ) : hexForm v = 0 ↔ v = (0, 0) := by
     constructor <;> nlinarith [sq_nonneg (a + b), sq_nonneg a, sq_nonneg b, sq_nonneg (a - b)]
   · rintro ⟨rfl, rfl⟩; ring
 
+/--
+@isnad1 id=le.0h1v.s6.036ea4c0472b from=translated src=- shape=64955c5e vocab=bc53ccad
+-/
 lemma sq_add_sq_le_two_mul_hexForm (v : ℤ × ℤ) :
     v.1 ^ 2 + v.2 ^ 2 ≤ 2 * hexForm v := by
   obtain ⟨a, b⟩ := v
@@ -43,21 +55,33 @@ lemma sq_add_sq_le_two_mul_hexForm (v : ℤ × ℤ) :
 def hexFormNat (v : ℤ × ℤ) : ℕ :=
   (hexForm v).toNat
 
+/--
+@isnad1 id=eq.0h1v.s3.8290d3adced8 from=translated src=- shape=2c3b3e84 vocab=da35eb54
+-/
 @[scoped simp] lemma coe_hexFormNat (v : ℤ × ℤ) : (hexFormNat v : ℤ) = hexForm v :=
   Int.toNat_of_nonneg (hexForm_nonneg v)
 
+/--
+@isnad1 id=iff.0h2v.s4.abd9155f1cd7 from=translated src=- shape=e590b7a5 vocab=16831a0d
+-/
 lemma hexFormNat_eq_iff (v : ℤ × ℤ) (n : ℕ) : hexFormNat v = n ↔ hexForm v = (n : ℤ) := by
   rw [← coe_hexFormNat, Int.natCast_inj]
 
 noncomputable def latticeTerm (τ : ℂ) (v : ℤ × ℤ) : ℂ :=
   Complex.exp (2 * (π : ℂ) * Complex.I * (hexFormNat v : ℂ) * τ)
 
+/--
+@isnad1 id=eq.0h2v.s5.5076ee251c81 from=translated src=- shape=ed6b40db vocab=4572ee39
+-/
 lemma norm_latticeTerm (τ : ℂ) (v : ℤ × ℤ) :
     ‖latticeTerm τ v‖ = Real.exp (-(2 * π * (hexFormNat v : ℝ) * τ.im)) := by
   rw [latticeTerm, show (2 * (π : ℂ) * Complex.I * (hexFormNat v : ℂ) * τ)
       = ((2 * π * (hexFormNat v : ℝ) : ℝ) : ℂ) * τ * Complex.I by push_cast; ring]
   rw [Complex.norm_exp, mul_I_re, im_ofReal_mul]
 
+/--
+@isnad1 id=le.2h3v.s7.2917f244fc5a from=translated src=- shape=9c81f0f8 vocab=845c402e
+-/
 lemma norm_latticeTerm_le_of_le_im {T : ℝ} (hT : 0 < T) {τ : ℂ} (hτ : T ≤ τ.im) (v : ℤ × ℤ) :
     ‖latticeTerm τ v‖ ≤
       Real.exp (-(π * T * (v.1 : ℝ) ^ 2)) * Real.exp (-(π * T * (v.2 : ℝ) ^ 2)) := by
@@ -75,17 +99,26 @@ lemma norm_latticeTerm_le_of_le_im {T : ℝ} (hT : 0 < T) {τ : ℂ} (hτ : T �
   nlinarith [mul_le_mul_of_nonneg_left hQ (by positivity : (0 : ℝ) ≤ π * T),
     mul_le_mul_of_nonneg_left hτ (by positivity : (0 : ℝ) ≤ 2 * π * (hexFormNat v : ℝ))]
 
+/--
+@isnad1 id=summable.1h1v.s6.4f240042dd64 from=translated src=- shape=1aeaf676 vocab=fdde6e68
+-/
 lemma summable_gaussian_int {t : ℝ} (ht : 0 < t) :
     Summable fun m : ℤ ↦ Real.exp (-(π * t * (m : ℝ) ^ 2)) := by
   have h := summable_pow_mul_jacobiTheta₂_term_bound 0 ht 0
   simpa only [pow_zero, one_mul, mul_zero, zero_mul, sub_zero, neg_mul, mul_assoc] using h
 
+/--
+@isnad1 id=summable.1h1v.s6.8d30c703e1ed from=translated src=- shape=1c22b244 vocab=fcc0091e
+-/
 lemma summable_gaussian_prod {t : ℝ} (ht : 0 < t) :
     Summable fun v : ℤ × ℤ ↦
       Real.exp (-(π * t * (v.1 : ℝ) ^ 2)) * Real.exp (-(π * t * (v.2 : ℝ) ^ 2)) :=
   (summable_gaussian_int ht).mul_of_nonneg (summable_gaussian_int ht)
     (fun _ ↦ (Real.exp_pos _).le) (fun _ ↦ (Real.exp_pos _).le)
 
+/--
+@isnad1 id=summable.1h1v.s5.725aa1b8d549 from=translated src=- shape=d2cf2fee vocab=b3e5a7f6
+-/
 theorem summable_latticeTerm {τ : ℂ} (hτ : 0 < τ.im) : Summable (latticeTerm τ) :=
   (summable_gaussian_prod hτ).of_norm_bounded (norm_latticeTerm_le_of_le_im hτ le_rfl)
 
@@ -95,6 +128,9 @@ noncomputable def latticeSum (τ : ℂ) : ℂ :=
 noncomputable def repCount (n : ℕ) : ℕ :=
   (hexFormNat ⁻¹' {n}).ncard
 
+/--
+@isnad1 id=eq.0h0v.s3.5ecb4e43f737 from=translated src=- shape=3c26ae4f vocab=73a323c0
+-/
 @[scoped simp] theorem repCount_zero : repCount 0 = 1 := by
   have h : hexFormNat ⁻¹' {0} = {((0 : ℤ), (0 : ℤ))} := by
     ext v
@@ -102,6 +138,9 @@ noncomputable def repCount (n : ℕ) : ℕ :=
       hexForm_eq_zero_iff]
   rw [repCount, h, Set.ncard_singleton]
 
+/--
+@isnad1 id=eq.0h2v.s7.9d70b20d099a from=translated src=- shape=f662539d vocab=0e6239be
+-/
 lemma tsum_fiber_eq (τ : ℂ) (n : ℕ) :
     ∑' v : (hexFormNat ⁻¹' {n}), latticeTerm τ v
       = (repCount n : ℂ) * Complex.exp (2 * (π : ℂ) * Complex.I * (n : ℂ) * τ) := by
@@ -112,6 +151,9 @@ lemma tsum_fiber_eq (τ : ℂ) (n : ℕ) :
     simp [latticeTerm, hv]
   rw [tsum_congr hconst, tsum_const, Nat.card_coe_set_eq, nsmul_eq_mul, repCount]
 
+/--
+@isnad1 id=hassum.1h1v.s6.773b1d297d35 from=translated src=- shape=de024950 vocab=ddcb5fbf
+-/
 theorem hasSum_repCount_qpow {τ : ℂ} (hτ : 0 < τ.im) :
     HasSum (fun n : ℕ ↦ (repCount n : ℂ) * Complex.exp (2 * (π : ℂ) * Complex.I * (n : ℂ) * τ))
       (latticeSum τ) := by
@@ -135,10 +177,16 @@ def hexThetaTerm (σ : ℂ) (p : ℤ × ℤ) : ℂ :=
 def hexTheta (σ : ℂ) : ℂ :=
   ∑' p : ℤ × ℤ, hexThetaTerm σ p
 
+/--
+@isnad1 id=ne.1h1v.s4.b6cf537274cc from=translated src=- shape=2154ac66 vocab=3c72e7c9
+-/
 lemma ne_zero_of_im_pos {σ : ℂ} (hσ : 0 < σ.im) : σ ≠ 0 := by
   rintro rfl
   simp at hσ
 
+/--
+@isnad1 id=lt.1h1v.s5.7327e937ddcc from=translated src=- shape=3766181f vocab=2c79fcc4
+-/
 lemma im_neg_one_div_three_mul_pos {σ : ℂ} (hσ : 0 < σ.im) : 0 < (-1 / (3 * σ)).im := by
   have h3σ : (3 : ℂ) * σ ≠ 0 := mul_ne_zero (by norm_num) (ne_zero_of_im_pos hσ)
   have him : ((3 : ℂ) * σ).im = 3 * σ.im := by
@@ -147,9 +195,15 @@ lemma im_neg_one_div_three_mul_pos {σ : ℂ} (hσ : 0 < σ.im) : 0 < (-1 / (3 *
   rw [Complex.neg_im, Complex.inv_im, neg_div, neg_neg, him]
   exact div_pos (by linarith) (Complex.normSq_pos.mpr h3σ)
 
+/--
+@isnad1 id=ne.0h0v.s4.b5fd22c1bf1d from=translated src=- shape=43016b0b vocab=5679d3a5
+-/
 lemma sqrt_three_ne_zero : ((Real.sqrt 3 : ℝ) : ℂ) ≠ 0 :=
   Complex.ofReal_ne_zero.mpr (Real.sqrt_pos.mpr (by norm_num)).ne'
 
+/--
+@isnad1 id=eq.1h1v.s6.0f64b1e212ff from=translated src=- shape=703e8aea vocab=0f227843
+-/
 theorem hexTheta_fricke {σ : ℂ} (hσ : 0 < σ.im) :
     hexTheta (-1 / (3 * σ)) = -I * (Real.sqrt 3 : ℂ) * σ * hexTheta σ :=
   (HexagonalLattice.summable_thetaTerm_and_tsum_neg_inv_three_mul σ hσ).2
@@ -167,21 +221,39 @@ namespace A2Theta3
 
 namespace Gamma0Three
 
+/--
+@isnad1 id=fact.0h0v.s2.fdf266938498 from=translated src=- shape=8d7dbbf6 vocab=c1c9ca6d
+-/
 scoped instance fact_prime_three_A2T3 : Fact (Nat.Prime 3) := ⟨by norm_num⟩
 
 def repOfLabel : Option (ZMod 3) → SL(2, ℤ)
   | none => 1
   | some k => ⟨!![0, -1; 1, (k.val : ℤ)], by simp [Matrix.det_fin_two_of]⟩
 
+/--
+@isnad1 id=eq.0h0v.s6.d276d7c1b82c from=translated src=- shape=d32e451a vocab=4bb505c2
+-/
 @[scoped simp] lemma repOfLabel_none : repOfLabel none = 1 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.023e2f65b897 from=translated src=- shape=bb17f649 vocab=7245a740
+-/
 @[scoped simp] lemma repOfLabel_some_one_zero (k : ZMod 3) : repOfLabel (some k) 1 0 = 1 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.521b298fa609 from=translated src=- shape=167414b4 vocab=d0e1a223
+-/
 @[scoped simp] lemma repOfLabel_some_one_one (k : ZMod 3) :
     repOfLabel (some k) 1 1 = (k.val : ℤ) := rfl
 
+/--
+@isnad1 id=eq.0h0v.s7.a406afd5260e from=translated src=- shape=04eee0ce vocab=568d92df
+-/
 @[scoped simp] lemma one_apply_one_zero : (1 : SL(2, ℤ)) 1 0 = 0 := rfl
 
+/--
+@isnad1 id=eq.0h0v.s7.5416eec10a68 from=translated src=- shape=04eee0ce vocab=568d92df
+-/
 @[scoped simp] lemma one_apply_one_one : (1 : SL(2, ℤ)) 1 1 = 1 := rfl
 
 def transversal : Set SL(2, ℤ) := Set.range repOfLabel
@@ -193,6 +265,9 @@ def label (g : SL(2, ℤ)) : Option (ZMod 3) :=
 private lemma intCast_val (k : ZMod 3) : (((k.val : ℕ) : ℤ) : ZMod 3) = k := by
   exact_mod_cast ZMod.natCast_rightInverse k
 
+/--
+@isnad1 id=ne.1h1v.s8.77a26e577108 from=translated src=- shape=58cd7501 vocab=dff4a5aa
+-/
 lemma apply_one_one_ne_zero (g : SL(2, ℤ)) (hc : (g 1 0 : ZMod 3) = 0) :
     (g 1 1 : ZMod 3) ≠ 0 := by
   intro hd
@@ -221,11 +296,17 @@ private theorem inv_entries (A : SL(2, ℤ)) :
     rw [Matrix.SpecialLinearGroup.coe_inv, Matrix.adjugate_fin_two]
   refine ⟨?_, ?_, ?_, ?_⟩ <;> simp [h]
 
+/--
+@isnad1 id=eq.0h2v.s9.a27e34aa398c from=translated src=- shape=5a2ca795 vocab=f3f3675c
+-/
 lemma mul_inv_apply_one_zero (g h : SL(2, ℤ)) :
     (g * h⁻¹) 1 0 = g 1 0 * h 1 1 - g 1 1 * h 1 0 := by
   rw [mul_entry, (inv_entries h).1, (inv_entries h).2.2.1]
   ring
 
+/--
+@isnad1 id=iff.0h2v.s10.d86fc01a948b from=translated src=- shape=9a6ebe4a vocab=a1300a27
+-/
 theorem mul_inv_mem_iff (g h : SL(2, ℤ)) :
     g * h⁻¹ ∈ Gamma0 3 ↔
       (g 1 0 : ZMod 3) * (h 1 1 : ZMod 3) = (g 1 1 : ZMod 3) * (h 1 0 : ZMod 3) := by
@@ -233,6 +314,9 @@ theorem mul_inv_mem_iff (g h : SL(2, ℤ)) :
   push_cast
   exact sub_eq_zero
 
+/--
+@isnad1 id=iff.0h2v.s8.8349e62d4ddf from=translated src=- shape=071fbf96 vocab=9ac04f69
+-/
 theorem mul_inv_repOfLabel_mem_iff (g : SL(2, ℤ)) (l : Option (ZMod 3)) :
     g * (repOfLabel l)⁻¹ ∈ Gamma0 3 ↔ l = label g := by
   rw [mul_inv_mem_iff]
@@ -262,58 +346,106 @@ open scoped _root_.P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_frick
 
 def U₃ : SL(2, ℤ) := ⟨!![1, 0; -3, 1], by simp [Matrix.det_fin_two_of]⟩
 
+/--
+@isnad1 id=eq.0h0v.s6.72688fcb0f7f from=translated src=- shape=552b42ea vocab=171262ae
+-/
 @[scoped simp] lemma U₃_one_zero : U₃ 1 0 = -3 := rfl
+/--
+@isnad1 id=eq.0h0v.s6.c9520a640dce from=translated src=- shape=669cc5ff vocab=e2d892b1
+-/
 @[scoped simp] lemma U₃_one_one : U₃ 1 1 = 1 := rfl
 
+/--
+@isnad1 id=mem.0h0v.s7.196b421842dd from=translated src=- shape=95df9e21 vocab=8624f481
+-/
 lemma T_mem_gamma0_three : ModularGroup.T ∈ Gamma0 3 := by
   rw [Gamma0_mem]; decide
 
+/--
+@isnad1 id=mem.0h0v.s7.6d325fa70766 from=translated src=- shape=95df9e21 vocab=b5d01dfa
+-/
 lemma U₃_mem_gamma0_three : U₃ ∈ Gamma0 3 := by
   rw [Gamma0_mem]; decide
 
+/--
+@isnad1 id=mem.0h0v.s8.ebb0d762efe9 from=translated src=- shape=99b5c3fa vocab=3a18f723
+-/
 lemma neg_one_mem_gamma0_three : (-1 : SL(2, ℤ)) ∈ Gamma0 3 := by
   rw [Gamma0_mem]; decide
 
 def gens : Set SL(2, ℤ) := {ModularGroup.T, U₃, -1}
 
+/--
+@isnad1 id=le.0h0v.s7.6d56e0c48458 from=translated src=- shape=1eb93031 vocab=38c4e8e2
+-/
 lemma gens_subset_gamma0_three : gens ⊆ (Gamma0 3 : Subgroup SL(2, ℤ)) := by
   rintro x (rfl | rfl | rfl)
   · exact T_mem_gamma0_three
   · exact U₃_mem_gamma0_three
   · exact neg_one_mem_gamma0_three
 
+/--
+@isnad1 id=eq.0h0v.s6.7bfff77c5e62 from=translated src=- shape=ab32f238 vocab=6af3b117
+-/
 theorem closure_T_U_neg_one_eq : Subgroup.closure gens = Gamma0 3 :=
   CongruenceSubgroup.closure_T_U_neg_one_eq_Gamma0_three U₃ rfl
 
 def chi3 (γ : SL(2, ℤ)) : ℤ :=
   if (γ 1 1 : ZMod 3) = 1 then 1 else -1
 
+/--
+@isnad1 id=or.0h1v.s5.8d528b1d0100 from=translated src=- shape=9dedbdad vocab=a4a6faa8
+-/
 lemma chi3_eq_one_or_neg_one (γ : SL(2, ℤ)) : chi3 γ = 1 ∨ chi3 γ = -1 := by
   unfold chi3; split <;> simp
 
+/--
+@isnad1 id=eq.0h1v.s5.825c61afae2d from=translated src=- shape=1e92ce31 vocab=1f939ca7
+-/
 lemma chi3_mul_self (γ : SL(2, ℤ)) : chi3 γ * chi3 γ = 1 := by
   rcases chi3_eq_one_or_neg_one γ with h | h <;> rw [h] <;> norm_num
 
+/--
+@isnad1 id=eq.0h0v.s6.a1106b58b524 from=translated src=- shape=e9fbbcc9 vocab=797f5335
+-/
 @[scoped simp] lemma chi3_one : chi3 1 = 1 := by unfold chi3; norm_num
 
+/--
+@isnad1 id=eq.0h0v.s3.8626c29b698b from=translated src=- shape=b0ae1d2b vocab=1994d5fe
+-/
 @[scoped simp] lemma chi3_T : chi3 ModularGroup.T = 1 := by
   unfold chi3; rw [show (ModularGroup.T 1 1 : ZMod 3) = 1 by decide]; simp
 
+/--
+@isnad1 id=eq.0h0v.s3.ab2ea0691fe5 from=translated src=- shape=b0ae1d2b vocab=acd69766
+-/
 @[scoped simp] lemma chi3_U₃ : chi3 U₃ = 1 := by
   unfold chi3; rw [show (U₃ 1 1 : ZMod 3) = 1 by decide]; simp
 
+/--
+@isnad1 id=eq.0h0v.s6.1bc215a35ab8 from=translated src=- shape=6180c7c1 vocab=a4a6faa8
+-/
 @[scoped simp] lemma chi3_neg_one : chi3 (-1 : SL(2, ℤ)) = -1 := by
   unfold chi3; rw [show ((-1 : SL(2, ℤ)) 1 1 : ZMod 3) = 2 by decide]; decide
 
+/--
+@isnad1 id=ne.1h1v.s8.084cfb62b464 from=translated src=- shape=cb8c8818 vocab=6d9848f5
+-/
 lemma apply_one_one_ne_zero_of_mem {γ : SL(2, ℤ)} (hγ : γ ∈ Gamma0 3) :
     (γ 1 1 : ZMod 3) ≠ 0 :=
   Gamma0Three.apply_one_one_ne_zero γ (Gamma0_mem.mp hγ)
 
+/--
+@isnad1 id=eq.2h2v.s9.ec425988c324 from=translated src=- shape=6be88f89 vocab=25c0bdab
+-/
 lemma coe_mul_apply_one_one {γ δ : SL(2, ℤ)} (hγ : γ ∈ Gamma0 3) (hδ : δ ∈ Gamma0 3) :
     ((γ * δ) 1 1 : ZMod 3) = (γ 1 1 : ZMod 3) * (δ 1 1 : ZMod 3) := by
   have := map_mul (Gamma0Map 3) (⟨γ, hγ⟩ : Gamma0 3) (⟨δ, hδ⟩ : Gamma0 3)
   simpa [Gamma0Map] using this
 
+/--
+@isnad1 id=eq.2h2v.s9.d495acedac64 from=translated src=- shape=fccd3be2 vocab=e16e8d08
+-/
 theorem chi3_mul {γ δ : SL(2, ℤ)} (hγ : γ ∈ Gamma0 3) (hδ : δ ∈ Gamma0 3) :
     chi3 (γ * δ) = chi3 γ * chi3 δ := by
   have key : ∀ x : ZMod 3, x ≠ 0 → x = 1 ∨ x = 2 := by decide
@@ -323,6 +455,9 @@ theorem chi3_mul {γ δ : SL(2, ℤ)} (hγ : γ ∈ Gamma0 3) (hδ : δ ∈ Gamm
     rcases key _ (apply_one_one_ne_zero_of_mem hδ) with h2 | h2 <;>
       rw [h1, h2] <;> decide
 
+/--
+@isnad1 id=eq.1h1v.s7.ea9497f29643 from=translated src=- shape=b688f4e0 vocab=ec17ef7a
+-/
 theorem chi3_eq_one_of_mem_Gamma1 {γ : SL(2, ℤ)} (hγ : γ ∈ Gamma1 3) : chi3 γ = 1 := by
   unfold chi3
   rw [((Gamma1_mem 3 γ).mp hγ).2.1]
@@ -332,6 +467,9 @@ section Sweep
 
 variable (F : ℍ → ℂ)
 
+/--
+@isnad1 id=eq.0h1v.s8.cfa6ed90ae44 from=translated src=- shape=6260d37b vocab=2921ea66
+-/
 theorem slash_neg_one :
     F ∣[(1 : ℤ)] (-1 : SL(2, ℤ)) = ((chi3 (-1 : SL(2, ℤ)) : ℤ) : ℂ) • F := by
   rw [chi3_neg_one]
@@ -349,6 +487,9 @@ theorem slash_neg_one :
   push_cast
   ring
 
+/--
+@isnad1 id=eq.3h2v.s8.7e221fa0ea4e from=translated src=- shape=cee314b6 vocab=4c45c9aa
+-/
 theorem slash_eq_chi3_smul
     (hT : F ∣[(1 : ℤ)] ModularGroup.T = F) (hU : F ∣[(1 : ℤ)] U₃ = F)
     {γ : SL(2, ℤ)} (hγ : γ ∈ Gamma0 3) :
@@ -408,6 +549,9 @@ theorem slash_eq_chi3_smul
     rw [hchi]
     simpa using h3.symm
 
+/--
+@isnad1 id=eq.3h2v.s8.c176acf14b69 from=translated src=- shape=3cee13ae vocab=94de9fa8
+-/
 theorem slash_eq_self_of_mem_Gamma1
     (hT : F ∣[(1 : ℤ)] ModularGroup.T = F) (hU : F ∣[(1 : ℤ)] U₃ = F)
     {γ : SL(2, ℤ)} (hγ : γ ∈ Gamma1 3) :
@@ -442,6 +586,9 @@ namespace A2Theta3
 
 noncomputable section
 
+/--
+@isnad1 id=eq.0h2v.s3.b6ca3a779cca from=translated src=- shape=041c21f9 vocab=adc080b8
+-/
 lemma latticeTerm_eq_hexThetaTerm (τ : ℂ) (v : ℤ × ℤ) :
     latticeTerm τ v = hexThetaTerm τ v := by
   unfold latticeTerm hexThetaTerm
@@ -455,16 +602,28 @@ lemma latticeTerm_eq_hexThetaTerm (τ : ℂ) (v : ℤ × ℤ) :
   rw [h]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s3.ac6b40fe9aa9 from=translated src=- shape=0fc427d2 vocab=0ef7614d
+-/
 theorem latticeSum_eq_hexTheta (τ : ℂ) : latticeSum τ = hexTheta τ :=
   tsum_congr fun v => latticeTerm_eq_hexThetaTerm τ v
 
 def hexThetaH : ℍ → ℂ := fun τ => latticeSum (τ : ℂ)
 
+/--
+@isnad1 id=eq.0h1v.s3.671a365b6ea2 from=translated src=- shape=69b989be vocab=6cff656d
+-/
 @[scoped simp] lemma hexThetaH_apply (τ : ℍ) : hexThetaH τ = latticeSum (τ : ℂ) := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.f7c44c9021b3 from=translated src=- shape=69b989be vocab=d56d1973
+-/
 lemma hexThetaH_eq_hexTheta (τ : ℍ) : hexThetaH τ = hexTheta (τ : ℂ) :=
   latticeSum_eq_hexTheta _
 
+/--
+@isnad1 id=eq.0h2v.s4.079e91058e75 from=translated src=- shape=ce17660f vocab=e0613151
+-/
 lemma hexThetaTerm_add_one (σ : ℂ) (v : ℤ × ℤ) :
     hexThetaTerm (σ + 1) v = hexThetaTerm σ v := by
   rw [← latticeTerm_eq_hexThetaTerm, ← latticeTerm_eq_hexThetaTerm]
@@ -474,9 +633,15 @@ lemma hexThetaTerm_add_one (σ : ℂ) (v : ℤ × ℤ) :
         + (hexFormNat v : ℂ) * (2 * (π : ℂ) * Complex.I) by ring,
     Complex.exp_add, Complex.exp_nat_mul_two_pi_mul_I, mul_one]
 
+/--
+@isnad1 id=eq.0h1v.s4.3e28172ff33b from=translated src=- shape=3150584f vocab=b07881b8
+-/
 theorem hexTheta_add_one (σ : ℂ) : hexTheta (σ + 1) = hexTheta σ :=
   tsum_congr fun v => hexThetaTerm_add_one σ v
 
+/--
+@isnad1 id=eq.0h0v.s6.32074bd2791a from=translated src=- shape=656092e4 vocab=8cc09de6
+-/
 theorem hexThetaH_slash_T : hexThetaH ∣[(1 : ℤ)] ModularGroup.T = hexThetaH := by
   funext z
   refine (slash_action_eq'_iff 1 hexThetaH ModularGroup.T z).mpr ?_
@@ -487,10 +652,16 @@ theorem hexThetaH_slash_T : hexThetaH ∣[(1 : ℤ)] ModularGroup.T = hexThetaH 
   rw [UpperHalfPlane.coe_vadd, latticeSum_eq_hexTheta, latticeSum_eq_hexTheta,
     Complex.ofReal_one, add_comm, hexTheta_add_one]
 
+/--
+@isnad1 id=eq.0h0v.s5.3ad392d40293 from=translated src=- shape=71ddb1a6 vocab=5737b69d
+-/
 lemma sqrt_three_mul_sqrt_three : ((Real.sqrt 3 : ℝ) : ℂ) * ((Real.sqrt 3 : ℝ) : ℂ) = 3 := by
   rw [← Complex.ofReal_mul, Real.mul_self_sqrt (by norm_num : (0 : ℝ) ≤ 3)]
   norm_num
 
+/--
+@isnad1 id=ne.1h1v.s5.ee89095d884b from=translated src=- shape=9b138ed7 vocab=3410ccea
+-/
 lemma U_denom_ne_zero {z : ℂ} (hz : 0 < z.im) : (-3 : ℂ) * z + 1 ≠ 0 := by
   intro h
   have him : ((-3 : ℂ) * z + 1).im = -3 * z.im := by
@@ -499,6 +670,9 @@ lemma U_denom_ne_zero {z : ℂ} (hz : 0 < z.im) : (-3 : ℂ) * z + 1 ≠ 0 := by
   simp only [Complex.zero_im] at him
   nlinarith
 
+/--
+@isnad1 id=eq.1h1v.s7.a83b6ba141a8 from=translated src=- shape=71074c86 vocab=f9f8a77f
+-/
 lemma U_smul_eq_fricke_translate_fricke {z : ℂ} (hz : 0 < z.im) :
     z / ((-3) * z + 1) = -1 / (3 * (-1 / (3 * z) + 1)) := by
   have hz0 : z ≠ 0 := ne_zero_of_im_pos hz
@@ -513,6 +687,9 @@ lemma U_smul_eq_fricke_translate_fricke {z : ℂ} (hz : 0 < z.im) :
   rw [h1, div_eq_div_iff hden h2, mul_div_assoc', div_eq_iff hz0]
   ring
 
+/--
+@isnad1 id=eq.1h1v.s7.8d2a209f78ba from=translated src=- shape=11cc33d3 vocab=63ec1879
+-/
 lemma fricke_double_multiplier {z : ℂ} (hz : 0 < z.im) :
     -Complex.I * ((Real.sqrt 3 : ℝ) : ℂ) * (-1 / (3 * z) + 1)
       * (-Complex.I * ((Real.sqrt 3 : ℝ) : ℂ) * z) = (-3) * z + 1 := by
@@ -527,6 +704,9 @@ lemma fricke_double_multiplier {z : ℂ} (hz : 0 < z.im) :
     _ = (-1) * 3 * (z - 1 / 3) := by rw [Complex.I_mul_I, sqrt_three_mul_sqrt_three, key]
     _ = (-3) * z + 1 := by ring
 
+/--
+@isnad1 id=eq.1h1v.s6.70d47e797401 from=translated src=- shape=d275afaf vocab=4736a11d
+-/
 theorem hexTheta_U_law {z : ℂ} (hz : 0 < z.im) :
     hexTheta (z / ((-3) * z + 1)) = ((-3) * z + 1) * hexTheta z := by
 
@@ -550,6 +730,9 @@ theorem hexTheta_U_law {z : ℂ} (hz : 0 < z.im) :
               * (-Complex.I * ((Real.sqrt 3 : ℝ) : ℂ) * z) * hexTheta z by ring,
           fricke_double_multiplier hz]
 
+/--
+@isnad1 id=eq.0h1v.s7.0bac734b8ded from=translated src=- shape=db878cbd vocab=9d0f96f7
+-/
 lemma coe_U_smul (z : ℍ) : ((U₃ • z : ℍ) : ℂ) = (z : ℂ) / ((-3) * (z : ℂ) + 1) := by
   rw [UpperHalfPlane.coe_specialLinearGroup_apply]
   simp only [show U₃ 0 0 = 1 from rfl, show U₃ 0 1 = 0 from rfl,
@@ -557,6 +740,9 @@ lemma coe_U_smul (z : ℍ) : ((U₃ • z : ℍ) : ℂ) = (z : ℂ) / ((-3) * (z
   push_cast
   rw [one_mul, add_zero]
 
+/--
+@isnad1 id=eq.0h0v.s6.a40e0714c6a2 from=translated src=- shape=656092e4 vocab=9f4b5ec4
+-/
 theorem hexThetaH_slash_U : hexThetaH ∣[(1 : ℤ)] U₃ = hexThetaH := by
   funext z
   refine (slash_action_eq'_iff 1 hexThetaH U₃ z).mpr ?_
@@ -570,6 +756,9 @@ theorem hexThetaH_slash_U : hexThetaH ∣[(1 : ℤ)] U₃ = hexThetaH := by
 def thetaBound : ℝ :=
   ∑' v : ℤ × ℤ, Real.exp (-(π * (v.1 : ℝ) ^ 2)) * Real.exp (-(π * (v.2 : ℝ) ^ 2))
 
+/--
+@isnad1 id=le.1h1v.s4.73c889c28611 from=translated src=- shape=5cff623d vocab=15e6fed5
+-/
 theorem norm_latticeSum_le_of_one_le_im {τ : ℂ} (hτ : 1 ≤ τ.im) :
     ‖latticeSum τ‖ ≤ thetaBound := by
   have hτ0 : 0 < τ.im := lt_of_lt_of_le one_pos hτ
@@ -590,14 +779,23 @@ theorem norm_latticeSum_le_of_one_le_im {τ : ℂ} (hτ : 1 ≤ τ.im) :
         hsum_norm.tsum_le_tsum hdom hgauss
     _ = thetaBound := rfl
 
+/--
+@isnad1 id=isbounde.0h0v.s2.e6416af39603 from=translated src=- shape=25b03439 vocab=a263954a
+-/
 theorem isBoundedAtImInfty_hexThetaH : IsBoundedAtImInfty hexThetaH := by
   refine UpperHalfPlane.isBoundedAtImInfty_iff.mpr ⟨thetaBound, 1, fun z hz => ?_⟩
   exact norm_latticeSum_le_of_one_le_im (by rwa [UpperHalfPlane.coe_im])
 
+/--
+@isnad1 id=eq.0h2v.s5.04d4f4a1b672 from=translated src=- shape=21a44742 vocab=67c53065
+-/
 lemma im_add_natCast_div_three (w : ℂ) (n : ℕ) : ((w + (n : ℂ)) / 3).im = w.im / 3 := by
   rw [show (3 : ℂ) = ((3 : ℝ) : ℂ) by norm_num, Complex.div_ofReal_im]
   simp [Complex.add_im]
 
+/--
+@isnad1 id=le.0h0v.s5.d55ea1acaaca from=translated src=- shape=a05b7e42 vocab=e6874edf
+-/
 lemma norm_neg_I_div_sqrt_three_le_one :
     ‖(-Complex.I / ((Real.sqrt 3 : ℝ) : ℂ))‖ ≤ 1 := by
   have h3 : (1 : ℝ) ≤ Real.sqrt 3 := by
@@ -606,6 +804,9 @@ lemma norm_neg_I_div_sqrt_three_le_one :
     abs_of_nonneg (Real.sqrt_nonneg 3), div_le_one (by linarith)]
   exact h3
 
+/--
+@isnad1 id=eq.0h2v.s7.99f2c9941223 from=translated src=- shape=8522f791 vocab=372b3b74
+-/
 theorem hexThetaH_slash_repOfLabel_apply (k : ZMod 3) (z : ℍ) :
     (hexThetaH ∣[(1 : ℤ)] Gamma0Three.repOfLabel (some k)) z
       = (-Complex.I / ((Real.sqrt 3 : ℝ) : ℂ)) * hexTheta (((z : ℂ) + (k.val : ℂ)) / 3) := by
@@ -661,6 +862,9 @@ theorem hexThetaH_slash_repOfLabel_apply (k : ZMod 3) (z : ℍ) :
   rw [hsmul, latticeSum_eq_hexTheta, hfricke]
   linear_combination (hexTheta (((z : ℂ) + (k.val : ℂ)) / 3)) * hmul
 
+/--
+@isnad1 id=isbounde.0h1v.s6.35fdc4911db8 from=translated src=- shape=74fa5347 vocab=4f327962
+-/
 theorem isBoundedAtImInfty_hexThetaH_slash (γ : SL(2, ℤ)) :
     IsBoundedAtImInfty (hexThetaH ∣[(1 : ℤ)] γ) := by
 
@@ -693,6 +897,9 @@ theorem isBoundedAtImInfty_hexThetaH_slash (γ : SL(2, ℤ)) :
           mul_le_mul norm_neg_I_div_sqrt_three_le_one hbound (norm_nonneg _) zero_le_one
       _ = thetaBound := one_mul _
 
+/--
+@isnad1 id=isbounde.1h1v.s7.309c9ffa7898 from=translated src=- shape=458b6360 vocab=3df4c3cf
+-/
 theorem hexThetaH_isBoundedAt_cusp (c : OnePoint ℝ)
     (hc : IsCusp c ((Gamma1 3 : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ))) :
     c.IsBoundedAt hexThetaH 1 := by
@@ -715,6 +922,9 @@ namespace A2Theta3
 
 noncomputable section
 
+/--
+@isnad1 id=differen.0h1v.s6.dd0a05529f57 from=translated src=- shape=fe270221 vocab=b40d1820
+-/
 lemma differentiable_latticeTerm (v : ℤ × ℤ) :
     Differentiable ℂ fun τ : ℂ => latticeTerm τ v := by
   unfold latticeTerm
@@ -723,9 +933,15 @@ lemma differentiable_latticeTerm (v : ℤ × ℤ) :
 def thetaBoundAt (T : ℝ) : ℝ :=
   ∑' v : ℤ × ℤ, Real.exp (-(π * T * (v.1 : ℝ) ^ 2)) * Real.exp (-(π * T * (v.2 : ℝ) ^ 2))
 
+/--
+@isnad1 id=isopen.0h1v.s4.7faedd2a5855 from=translated src=- shape=c7f34c7d vocab=1a83d814
+-/
 lemma isOpen_lt_im (T : ℝ) : IsOpen {z : ℂ | T < z.im} :=
   isOpen_lt continuous_const Complex.continuous_im
 
+/--
+@isnad1 id=differen.1h1v.s6.3ac9dd3ce400 from=translated src=- shape=ec63d216 vocab=0d7b489b
+-/
 theorem differentiableOn_latticeSum_of_lt_im {T : ℝ} (hT : 0 < T) :
     DifferentiableOn ℂ latticeSum {z : ℂ | T < z.im} := by
   have h := Complex.differentiableOn_tsum_of_summable_norm
@@ -736,6 +952,9 @@ theorem differentiableOn_latticeSum_of_lt_im {T : ℝ} (hT : 0 < T) :
     (fun v w hw => norm_latticeTerm_le_of_le_im hT (le_of_lt hw) v)
   exact h
 
+/--
+@isnad1 id=differen.1h1v.s6.41575d55b04e from=translated src=- shape=f4fff64d vocab=54686937
+-/
 theorem differentiableAt_latticeSum {τ : ℂ} (hτ : 0 < τ.im) :
     DifferentiableAt ℂ latticeSum τ := by
   have hT : (0 : ℝ) < τ.im / 2 := by positivity
@@ -745,10 +964,16 @@ theorem differentiableAt_latticeSum {τ : ℂ} (hτ : 0 < τ.im) :
   exact (differentiableOn_latticeSum_of_lt_im hT).differentiableAt
     ((isOpen_lt_im _).mem_nhds hmem)
 
+/--
+@isnad1 id=differen.0h0v.s6.7ac7dc833008 from=translated src=- shape=71829fdc vocab=0d7b489b
+-/
 theorem differentiableOn_latticeSum :
     DifferentiableOn ℂ latticeSum {z : ℂ | 0 < z.im} :=
   fun _ hz => (differentiableAt_latticeSum hz).differentiableWithinAt
 
+/--
+@isnad1 id=mdiffere.0h0v.s6.b4b0b0c6d77d from=translated src=- shape=38f10366 vocab=6f73cab4
+-/
 theorem mdifferentiable_hexThetaH : MDiff hexThetaH := by
   rw [UpperHalfPlane.mdifferentiable_iff]
   refine DifferentiableOn.congr (f := latticeSum) differentiableOn_latticeSum
@@ -774,12 +999,21 @@ def thetaForm : ModularForm (Gamma1 3) 1 :=
     holo' := mdifferentiable_hexThetaH
     bdd_at_cusps' := fun {c} hc => hexThetaH_isBoundedAt_cusp c hc }
 
+/--
+@isnad1 id=eq.0h0v.s8.cc4594e7e4a4 from=translated src=- shape=c661b139 vocab=e8ec3f81
+-/
 @[scoped simp] theorem coe_thetaForm : (⇑thetaForm : ℍ → ℂ) = hexThetaH := rfl
 
+/--
+@isnad1 id=mem.0h0v.s7.16d664052a8d from=translated src=- shape=22184087 vocab=1bbc2817
+-/
 theorem one_mem_strictPeriods_Gamma1_three :
     (1 : ℝ) ∈ ((Gamma1 3 : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)).strictPeriods := by
   rw [CongruenceSubgroup.strictPeriods_Gamma1]; exact AddSubgroup.mem_zmultiples _
 
+/--
+@isnad1 id=eq.0h1v.s8.07c9fe4d436e from=translated src=- shape=df9a20ba vocab=01e9b5b6
+-/
 theorem qExpansion_coeff_thetaForm (n : ℕ) :
     (qExpansion 1 (⇑thetaForm : ℍ → ℂ)).coeff n = (repCount n : ℂ) := by
   symm
@@ -795,6 +1029,9 @@ theorem qExpansion_coeff_thetaForm (n : ℕ) :
   push_cast
   ring
 
+/--
+@isnad1 id=eq.1h1v.s10.d3a988b68ee4 from=translated src=- shape=c33c9286 vocab=e24d68ab
+-/
 theorem thetaForm_slash_fricke (W : GL (Fin 2) ℝ) (hW : (W : Matrix (Fin 2) (Fin 2) ℝ) = !![(0 : ℝ), -1; 3, 0]) :
     (⇑thetaForm : ℍ → ℂ) ∣[(1 : ℤ)] W = (-Complex.I / (Real.sqrt 3 : ℂ)) • (⇑thetaForm : ℍ → ℂ) := by
   funext τ
@@ -825,6 +1062,9 @@ end A2Theta3
 open scoped _root_.P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3 _root_.P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3.LatticeSum
 
 open scoped MatrixGroups ModularForm in
+/--
+@isnad1 id=ex.0h0v.s11.e982a577a2cb from=translated src=- shape=17c478a2 vocab=e7e8a4bb
+-/
 theorem solution :
     ∃ g : ModularForm (CongruenceSubgroup.Gamma1 3 : Subgroup (GL (Fin 2) ℝ)) 1,
       (∀ n : ℕ, ∃ r : ℚ, (UpperHalfPlane.qExpansion 1 g).coeff n = (r : ℂ)) ∧

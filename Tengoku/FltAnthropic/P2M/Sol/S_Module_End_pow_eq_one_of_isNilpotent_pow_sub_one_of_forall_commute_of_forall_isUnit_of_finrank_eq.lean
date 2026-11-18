@@ -8,6 +8,9 @@ namespace P2MW.S_Module_End_pow_eq_one_of_isNilpotent_pow_sub_one_of_forall_comm
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.4h6v.s9.3a989ca51dd3 from=translated src=- shape=237cea51 vocab=97f2ba08
+-/
 theorem solution
     {F : Type*} [Field F] {V : Type*} [AddCommGroup V] [Module F V] [FiniteDimensional F V]
     {D : Type*} [Ring D] [Algebra F D] (hD : ∀ x : D, x ≠ 0 → IsUnit x)

@@ -15,12 +15,18 @@ namespace PoincareAux
 noncomputable def term (k : ℤ) (φ : ℍ → ℂ) (γ : GL (Fin 2) ℝ) (τ : ℍ) : ℂ :=
   φ (γ • τ) * denom γ τ ^ (-k)
 
+/--
+@isnad1 id=eq.1h2v.s9.324c23b7faba from=translated src=- shape=ce2d155f vocab=7645ad0e
+-/
 theorem σ_eq_self_of_det_pos {g : GL (Fin 2) ℝ} (hg : 0 < ((Matrix.GeneralLinearGroup.det g) : ℝ)) (z : ℂ) :
     σ g z = z := by
   have hg' : 0 < (g : Matrix (Fin 2) (Fin 2) ℝ).det := by
     rwa [Matrix.GeneralLinearGroup.val_det_apply] at hg
   simp [σ, hg']
 
+/--
+@isnad1 id=eq.1h4v.s9.226c4f2015f7 from=translated src=- shape=4feba406 vocab=0af9e85a
+-/
 theorem slash_term (k : ℤ) (φ : ℍ → ℂ) (γ : GL (Fin 2) ℝ) {g : GL (Fin 2) ℝ}
     (hdg : Matrix.GeneralLinearGroup.det g = 1) :
     SlashAction.map k g (term k φ γ) = term k φ (γ * g) := by
@@ -54,6 +60,9 @@ noncomputable def poincareSIF (Γ : Subgroup (GL (Fin 2) ℝ)) [Γ.HasDetOne] (k
     simp_rw [hterm]
     exact (Equiv.mulRight (⟨g, hg⟩ : Γ)).tsum_eq (fun γ : Γ => term k φ (γ : GL (Fin 2) ℝ) τ)
 
+/--
+@isnad1 id=mdiffere.3h3v.s12.759cc7d0d6ed from=translated src=- shape=42d9f066 vocab=6021002f
+-/
 theorem mdifferentiable_tsum_term {Γ : Subgroup (GL (Fin 2) ℝ)}
     (hdet : ∀ γ ∈ Γ, Matrix.GeneralLinearGroup.det γ = 1) (k : ℤ) {φ : ℍ → ℂ} (hφ : MDiff φ)
     (hloc : ∀ τ₀ : ℍ, ∃ U : Set ℍ, IsOpen U ∧ τ₀ ∈ U ∧ ∃ u : ↥Γ → ℝ, Summable u ∧
@@ -101,6 +110,9 @@ noncomputable def poincareMF (Γ : Subgroup (GL (Fin 2) ℝ)) [Γ.HasDetOne] (k 
   holo' := hP
   bdd_at_cusps' hc := absurd hc (hcusp _)
 
+/--
+@isnad1 id=eq.0h1v.s7.b5f138e9bd4d from=translated src=- shape=b7b521ef vocab=da815e36
+-/
 theorem det_restrictScalars_toSpanSingleton (μ : ℂ) :
     ((ContinuousLinearMap.toSpanSingleton ℂ μ).restrictScalars ℝ).det = ‖μ‖ ^ 2 := by
   have h1 : ((ContinuousLinearMap.toSpanSingleton ℂ μ).restrictScalars ℝ : ℂ →ₗ[ℝ] ℂ) =
@@ -113,6 +125,9 @@ theorem det_restrictScalars_toSpanSingleton (μ : ℂ) :
 
 noncomputable def moeb (g : GL (Fin 2) ℝ) (z : ℂ) : ℂ := num g z / denom g z
 
+/--
+@isnad1 id=eq.1h1v.s9.fce9728cd694 from=translated src=- shape=ef776a39 vocab=04939a81
+-/
 theorem det_entries {g : GL (Fin 2) ℝ} (hg : Matrix.GeneralLinearGroup.det g = 1) :
     (g : Matrix (Fin 2) (Fin 2) ℝ) 0 0 * (g : Matrix (Fin 2) (Fin 2) ℝ) 1 1 -
       (g : Matrix (Fin 2) (Fin 2) ℝ) 0 1 * (g : Matrix (Fin 2) (Fin 2) ℝ) 1 0 = 1 := by
@@ -120,6 +135,9 @@ theorem det_entries {g : GL (Fin 2) ℝ} (hg : Matrix.GeneralLinearGroup.det g =
   simp only [Matrix.GeneralLinearGroup.val_det_apply, Units.val_one, Matrix.det_fin_two] at this
   exact this
 
+/--
+@isnad1 id=hasderiv.2h2v.s8.76d59846ba0b from=translated src=- shape=73130268 vocab=90058a22
+-/
 theorem hasDerivAt_moeb {g : GL (Fin 2) ℝ} (hg : Matrix.GeneralLinearGroup.det g = 1) {z : ℂ}
     (hz : denom g z ≠ 0) : HasDerivAt (moeb g) ((denom g z) ^ 2)⁻¹ z := by
   have hd := det_entries hg
@@ -140,6 +158,9 @@ theorem hasDerivAt_moeb {g : GL (Fin 2) ℝ} (hg : Matrix.GeneralLinearGroup.det
   rw [key, one_div] at h
   exact h
 
+/--
+@isnad1 id=injon.1h1v.s8.15ab5a843197 from=translated src=- shape=db5bc7a8 vocab=f2df3add
+-/
 theorem injOn_moeb {g : GL (Fin 2) ℝ} (hg : Matrix.GeneralLinearGroup.det g = 1) :
     Set.InjOn (moeb g) {z : ℂ | denom g z ≠ 0} := by
   intro z hz z' hz' h
@@ -154,6 +175,9 @@ theorem injOn_moeb {g : GL (Fin 2) ℝ} (hg : Matrix.GeneralLinearGroup.det g = 
   have : (z - z') * 1 = 0 := by rw [← hd']; linear_combination h
   simpa [sub_eq_zero] using this
 
+/--
+@isnad1 id=eq.3h3v.s9.1509f08b7f4c from=translated src=- shape=909532f7 vocab=efa4a6b7
+-/
 theorem lintegral_image_moeb {g : GL (Fin 2) ℝ} (hg : Matrix.GeneralLinearGroup.det g = 1)
     {B : Set ℂ} (hB : MeasurableSet B) (hBd : ∀ z ∈ B, denom g z ≠ 0) (F : ℂ → ℝ≥0∞) :
     ∫⁻ w in moeb g '' B, F w = ∫⁻ z in B, ENNReal.ofReal ((‖denom g z‖ ^ 4)⁻¹) * F (moeb g z) := by
@@ -171,17 +195,29 @@ noncomputable def Lf (g : GL (Fin 2) ℝ) (z : ℂ) : ℂ :=
   (((g : Matrix (Fin 2) (Fin 2) ℝ) 0 0 : ℂ) + Complex.I * ((g : Matrix (Fin 2) (Fin 2) ℝ) 1 0 : ℂ)) * z +
     (((g : Matrix (Fin 2) (Fin 2) ℝ) 0 1 : ℂ) + Complex.I * ((g : Matrix (Fin 2) (Fin 2) ℝ) 1 1 : ℂ))
 
+/--
+@isnad1 id=eq.0h2v.s5.bc0af7154b3a from=translated src=- shape=eec1b024 vocab=febcbe43
+-/
 theorem Lf_eq (g : GL (Fin 2) ℝ) (z : ℂ) : Lf g z = num g z + Complex.I * denom g z := by
   unfold Lf num denom; ring
 
+/--
+@isnad1 id=eq.1h2v.s5.5b9e94fbd0aa from=translated src=- shape=a865acfd vocab=12e222f4
+-/
 theorem moeb_add_I_mul_denom (g : GL (Fin 2) ℝ) {z : ℂ} (hz : denom g z ≠ 0) :
     (moeb g z + Complex.I) * denom g z = Lf g z := by
   rw [Lf_eq, add_mul, moeb, div_mul_cancel₀ _ hz]
 
+/--
+@isnad1 id=eq.0h3v.s7.6b42f1163929 from=translated src=- shape=7ff19ebf vocab=d4c5d414
+-/
 theorem Lf_sub (g : GL (Fin 2) ℝ) (z z' : ℂ) :
     Lf g z' - Lf g z = (((g : Matrix (Fin 2) (Fin 2) ℝ) 0 0 : ℂ) + Complex.I * ((g : Matrix (Fin 2) (Fin 2) ℝ) 1 0 : ℂ)) * (z' - z) := by
   unfold Lf; ring
 
+/--
+@isnad1 id=eq.1h2v.s9.d68d733d2c82 from=translated src=- shape=0e7ab99b vocab=0be7182a
+-/
 theorem normSq_Lf {g : GL (Fin 2) ℝ} (hg : Matrix.GeneralLinearGroup.det g = 1) (z : ℂ) :
     Complex.normSq (Lf g z) = Complex.normSq (num g z) + Complex.normSq (denom g z) + 2 * z.im := by
   have hd := det_entries hg
@@ -190,6 +226,9 @@ theorem normSq_Lf {g : GL (Fin 2) ℝ} (hg : Matrix.GeneralLinearGroup.det g = 1
   ring_nf
   linear_combination (2 * z.im) * hd
 
+/--
+@isnad1 id=le.1h2v.s8.2042f68d2d05 from=translated src=- shape=83219ec7 vocab=68285346
+-/
 theorem two_im_le_normSq_Lf {g : GL (Fin 2) ℝ} (hg : Matrix.GeneralLinearGroup.det g = 1) (z : ℂ) :
     2 * z.im ≤ Complex.normSq (Lf g z) := by
   rw [normSq_Lf hg]
@@ -197,6 +236,9 @@ theorem two_im_le_normSq_Lf {g : GL (Fin 2) ℝ} (hg : Matrix.GeneralLinearGroup
   have h2 := Complex.normSq_nonneg (denom g z)
   linarith
 
+/--
+@isnad1 id=le.2h2v.s9.69f4efdb32a9 from=translated src=- shape=91340651 vocab=65964d3d
+-/
 theorem norm_coeff_mul_im_le {g : GL (Fin 2) ℝ} (hg : Matrix.GeneralLinearGroup.det g = 1) {z : ℂ} (hz : 0 < z.im) :
     ‖(((g : Matrix (Fin 2) (Fin 2) ℝ) 0 0 : ℂ) + Complex.I * ((g : Matrix (Fin 2) (Fin 2) ℝ) 1 0 : ℂ))‖ * z.im ≤ ‖Lf g z‖ := by
 
@@ -220,6 +262,9 @@ theorem norm_coeff_mul_im_le {g : GL (Fin 2) ℝ} (hg : Matrix.GeneralLinearGrou
     mul_nonneg (norm_nonneg _) hz.le
   exact (pow_le_pow_iff_left₀ h0 (norm_nonneg _) two_ne_zero).1 hsq
 
+/--
+@isnad1 id=le.3h3v.s8.782cbd10e99c from=translated src=- shape=8126c3c0 vocab=e7563db2
+-/
 theorem norm_Lf_le_two_mul {g : GL (Fin 2) ℝ} (hg : Matrix.GeneralLinearGroup.det g = 1) {z z' : ℂ}
     (hz : 0 < z.im) (hzz' : ‖z' - z‖ ≤ z.im / 2) : ‖Lf g z‖ ≤ 2 * ‖Lf g z'‖ := by
   have hcoef := norm_coeff_mul_im_le hg hz
@@ -234,6 +279,9 @@ theorem norm_Lf_le_two_mul {g : GL (Fin 2) ℝ} (hg : Matrix.GeneralLinearGroup.
   have h2 : ‖Lf g z - Lf g z'‖ = ‖Lf g z' - Lf g z‖ := norm_sub_rev _ _
   linarith
 
+/--
+@isnad1 id=le.1h1v.s6.171ae4240d72 from=translated src=- shape=c85b2745 vocab=36210312
+-/
 theorem norm_add_I_bound {z : ℂ} (hz : 0 < z.im) :
     (‖z + Complex.I‖ ^ 4)⁻¹ ≤ 4 * (1 + ‖z‖) ^ (-(4 : ℝ)) := by
   have h1 : 1 + ‖z‖ ^ 2 ≤ ‖z + Complex.I‖ ^ 2 := by
@@ -252,6 +300,9 @@ theorem norm_add_I_bound {z : ℂ} (hz : 0 < z.im) :
         exact inv_anti₀ h8 h7
     _ = 4 * ((1 + ‖z‖) ^ 4)⁻¹ := by field_simp; ring
 
+/--
+@isnad1 id=lt.0h0v.s6.1ed389862602 from=translated src=- shape=85ed521f vocab=d63d86ef
+-/
 theorem lintegral_upperHalf_lt_top :
     ∫⁻ z in {z : ℂ | 0 < z.im}, ENNReal.ofReal ((‖z + Complex.I‖ ^ 4)⁻¹) < ⊤ := by
   have hfin : ∫⁻ z : ℂ, ENNReal.ofReal ((1 + ‖z‖) ^ (-(4 : ℝ))) < ⊤ := by
@@ -267,6 +318,9 @@ theorem lintegral_upperHalf_lt_top :
     _ = 4 * ∫⁻ z : ℂ, ENNReal.ofReal ((1 + ‖z‖) ^ (-(4 : ℝ))) := lintegral_const_mul 4 (by fun_prop)
     _ < ⊤ := ENNReal.mul_lt_top (by simp) hfin
 
+/--
+@isnad1 id=le.5h8v.s7.1d473735f633 from=translated src=- shape=d66624f0 vocab=6c3043fe
+-/
 theorem sum_setLIntegral_le_of_card_filter_le {X : Type*} [MeasurableSpace X] (μ : Measure X) {ι : Type*}
     (A : ι → Set X) (H : Set X) (hH : MeasurableSet H) (hA : ∀ i, MeasurableSet (A i)) (hAH : ∀ i, A i ⊆ H)
     (N : ℕ) (hN : ∀ (w : X) (T : Finset ι), (∀ i ∈ T, w ∈ A i) → T.card ≤ N)
@@ -296,6 +350,9 @@ theorem sum_setLIntegral_le_of_card_filter_le {X : Type*} [MeasurableSpace X] (�
       rw [Finset.sum_eq_zero this, Set.indicator_of_notMem hw]
       simp
 
+/--
+@isnad1 id=iscompac.0h1v.s9.477893a4a273 from=translated src=- shape=80b05417 vocab=66aaefce
+-/
 theorem isCompact_det_one_bounded (R : ℝ) :
     IsCompact {g : GL (Fin 2) ℝ | Matrix.GeneralLinearGroup.det g = 1 ∧
       ∀ i j, |(g : Matrix (Fin 2) (Fin 2) ℝ) i j| ≤ R} := by
@@ -341,6 +398,9 @@ theorem isCompact_det_one_bounded (R : ℝ) :
   haveI : CompactSpace C' := isCompact_iff_compactSpace.1 hC'cpt
   exact isCompact_range hψc
 
+/--
+@isnad1 id=finite.0h2v.s11.20f6a184b432 from=translated src=- shape=e36edc18 vocab=b731e926
+-/
 theorem finite_det_one_bounded {Γ : Subgroup (GL (Fin 2) ℝ)} [hΓ : DiscreteTopology ↥Γ] (R : ℝ) :
     Set.Finite {γ : ↥Γ | Matrix.GeneralLinearGroup.det (γ : GL (Fin 2) ℝ) = 1 ∧
       ∀ i j, |((γ : GL (Fin 2) ℝ) : Matrix (Fin 2) (Fin 2) ℝ) i j| ≤ R} := by
@@ -349,6 +409,9 @@ theorem finite_det_one_bounded {Γ : Subgroup (GL (Fin 2) ℝ)} [hΓ : DiscreteT
   have hcpt := hemb.isCompact_preimage (isCompact_det_one_bounded R)
   exact hcpt.finite_of_discrete
 
+/--
+@isnad1 id=and.4h6v.s6.f32b6cf4446f from=translated src=- shape=17f49c49 vocab=71e5e639
+-/
 theorem coeff_bound {α β : ℝ} {z : ℂ} {y R₀ W : ℝ} (hy0 : 0 < y) (hy : y ≤ z.im) (hz : ‖z‖ ≤ R₀)
     (hw : ‖(α : ℂ) * z + β‖ ≤ W) : |α| ≤ W / y ∧ |β| ≤ W + W / y * R₀ := by
   have him : ((α : ℂ) * z + β).im = α * z.im := by simp
@@ -374,6 +437,9 @@ theorem coeff_bound {α β : ℝ} {z : ℂ} {y R₀ W : ℝ} (hy0 : 0 < y) (hy :
     _ ≤ W + W / y * R₀ := by
         gcongr
 
+/--
+@isnad1 id=finite.3h4v.s11.a49fa836425d from=translated src=- shape=0240fbd5 vocab=675e2dca
+-/
 theorem finite_smul_mem {Γ : Subgroup (GL (Fin 2) ℝ)} [hΓ : DiscreteTopology ↥Γ]
     (hdet : ∀ γ ∈ Γ, Matrix.GeneralLinearGroup.det γ = 1)
     (K : Set ℍ) {y R₀ : ℝ} (hy0 : 0 < y) (hK : ∀ τ ∈ K, y ≤ τ.im ∧ ‖(τ : ℂ)‖ ≤ R₀) :
@@ -424,6 +490,9 @@ theorem finite_smul_mem {Γ : Subgroup (GL (Fin 2) ℝ)} [hΓ : DiscreteTopology
   · exact hc.1.trans (by rw [hRdef]; apply le_max_of_le_left; exact le_max_left _ _)
   · exact hc.2.trans (by rw [hRdef]; apply le_max_of_le_left; exact le_max_right _ _)
 
+/--
+@isnad1 id=measurab.3h2v.s8.f9f5f02d9dc4 from=translated src=- shape=da9c141b vocab=c59d73b0
+-/
 theorem measurableSet_image_moeb {g : GL (Fin 2) ℝ} (hg : Matrix.GeneralLinearGroup.det g = 1)
     {B : Set ℂ} (hB : MeasurableSet B) (hBd : ∀ z ∈ B, denom g z ≠ 0) : MeasurableSet (moeb g '' B) := by
   refine hB.image_of_continuousOn_injOn ?_ ((injOn_moeb hg).mono fun z hz => hBd z hz)
@@ -432,23 +501,38 @@ theorem measurableSet_image_moeb {g : GL (Fin 2) ℝ} (hg : Matrix.GeneralLinear
   exact ((continuous_const.mul continuous_id).add continuous_const).continuousAt.continuousWithinAt.div
     ((continuous_const.mul continuous_id).add continuous_const).continuousAt.continuousWithinAt (hBd z hz)
 
+/--
+@isnad1 id=ne.1h2v.s5.154d861d94f8 from=translated src=- shape=ff39d32a vocab=8c30ed41
+-/
 theorem denom_ne_zero_of_im_pos (g : GL (Fin 2) ℝ) {z : ℂ} (hz : 0 < z.im) : denom g z ≠ 0 :=
   denom_ne_zero g ⟨z, hz⟩
 
+/--
+@isnad1 id=eq.2h2v.s9.b96984b83488 from=translated src=- shape=f92ba6ea vocab=c222a72a
+-/
 theorem moeb_eq_coe_smul {g : GL (Fin 2) ℝ} (hg : 0 < ((Matrix.GeneralLinearGroup.det g) : ℝ)) {z : ℂ}
     (hz : 0 < z.im) : moeb g z = (((g • (⟨z, hz⟩ : ℍ)) : ℍ) : ℂ) := by
   rw [coe_smul_of_det_pos hg]; rfl
 
+/--
+@isnad1 id=lt.2h2v.s8.0d4ca4a1c534 from=translated src=- shape=ad5d684b vocab=4ddc3de6
+-/
 theorem moeb_im_pos {g : GL (Fin 2) ℝ} (hg : 0 < ((Matrix.GeneralLinearGroup.det g) : ℝ)) {z : ℂ}
     (hz : 0 < z.im) : 0 < (moeb g z).im := by
   rw [moeb_eq_coe_smul hg hz]; exact UpperHalfPlane.im_pos _
 
+/--
+@isnad1 id=lt.2h2v.s8.336dc8e75387 from=translated src=- shape=bb86f660 vocab=0225b692
+-/
 theorem norm_Lf_pos {g : GL (Fin 2) ℝ} (hg : Matrix.GeneralLinearGroup.det g = 1) {z : ℂ} (hz : 0 < z.im) :
     0 < ‖Lf g z‖ := by
   have h := two_im_le_normSq_Lf hg z
   have h2 : 0 < Complex.normSq (Lf g z) := by linarith
   exact norm_pos_iff.2 (Complex.normSq_pos.1 h2)
 
+/--
+@isnad1 id=le.2h5v.s9.b633015c4ef6 from=translated src=- shape=aa40187a vocab=0d9720db
+-/
 theorem norm_term_le {g : GL (Fin 2) ℝ} (hg : Matrix.GeneralLinearGroup.det g = 1) (k : ℤ) {φ : ℍ → ℂ} {M : ℝ}
     (hM : ∀ w : ℍ, ‖φ w‖ * ‖(w : ℂ) + Complex.I‖ ^ k ≤ M) (τ : ℍ) :
     ‖φ (g • τ) * denom g τ ^ (-k)‖ ≤ M * ‖Lf g τ‖ ^ (-k) := by
@@ -471,6 +555,9 @@ theorem norm_term_le {g : GL (Fin 2) ℝ} (hg : Matrix.GeneralLinearGroup.det g 
   rw [norm_mul, norm_zpow, hL, norm_mul, mul_zpow, ← mul_assoc]
   exact mul_le_mul_of_nonneg_right hφ (zpow_nonneg (norm_nonneg _) _)
 
+/--
+@isnad1 id=ex.3h5v.s11.6fa26ba43b94 from=translated src=- shape=29fec855 vocab=a44fe27b
+-/
 theorem local_majorant {Γ : Subgroup (GL (Fin 2) ℝ)} [hΓ : DiscreteTopology ↥Γ]
     (hdet : ∀ γ ∈ Γ, Matrix.GeneralLinearGroup.det γ = 1) (k : ℤ) (hk : 4 ≤ k)
     {φ : ℍ → ℂ} {M : ℝ} (hM : ∀ w : ℍ, ‖φ w‖ * ‖(w : ℂ) + Complex.I‖ ^ k ≤ M) (τ₀ : ℍ) :
@@ -645,6 +732,9 @@ end PoincareAux
 
 open PoincareAux in
 
+/--
+@isnad1 id=and.5h3v.s12.8c6c303b3fa1 from=translated src=- shape=a0bc07a1 vocab=d602279c
+-/
 theorem solution
     (Γ : Subgroup (GL (Fin 2) ℝ))
     (hdet : ∀ γ ∈ Γ, Matrix.GeneralLinearGroup.det γ = 1)

@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_ModularCurve_exists_meromorphic_logDeriv_e
 
 open scoped Topology
 
+/--
+@isnad1 id=ex.1h2v.s8.656603db3584 from=translated src=- shape=bb115a64 vocab=8a286d8c
+-/
 theorem ModularCurve.exists_meromorphic_logDeriv_eq_of_int_residue
     (m : ℂ → ℤ) (ω : ℂ → ℂ)
     (hres : ∀ a : ℂ, 0 < a.im → ∃ g : ℂ → ℂ, AnalyticAt ℂ g a ∧

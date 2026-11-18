@@ -19,6 +19,9 @@ namespace DoubleAnnihilatorZMod
 
 variable {n : ℕ} [NeZero n]
 
+/--
+@isnad1 id=ex.1h3v.s7.0694c3db4e13 from=translated src=- shape=ad4cd1ca vocab=ed727286
+-/
 theorem exists_eq_mul_of_forall_mul_eq_zero (a y : ZMod n)
     (h : ∀ t : ZMod n, t * a = 0 → t * y = 0) : ∃ s : ZMod n, y = a * s := by
 
@@ -51,6 +54,9 @@ theorem exists_eq_mul_of_forall_mul_eq_zero (a y : ZMod n)
   refine ⟨(Nat.gcdA A n : ZMod n) * (Y' : ZMod n), ?_⟩
   rw [← mul_assoc, ← hbez, ← Nat.cast_mul, ← hY', ZMod.natCast_zmod_val]
 
+/--
+@isnad1 id=baer.0h1v.s5.353f7ebc5db6 from=translated src=- shape=c6383666 vocab=9f89f81e
+-/
 theorem baer : Module.Baer (ZMod n) (ZMod n) := by
   intro I g
 
@@ -75,8 +81,14 @@ theorem baer : Module.Baer (ZMod n) (ZMod n) := by
   rw [e1, map_zsmul, map_zsmul, hs]
   simp only [LinearMap.flip_apply, LinearMap.lsmul_apply, smul_eq_mul]
 
+/--
+@isnad1 id=injectiv.0h1v.s5.89434c06d5e4 from=translated src=- shape=c6383666 vocab=de9ca3a2
+-/
 scoped instance injective_self : Module.Injective (ZMod n) (ZMod n) := baer.injective
 
+/--
+@isnad1 id=injectiv.0h2v.s6.face0334517b from=translated src=- shape=f37ea142 vocab=fb9cd072
+-/
 theorem injective_of_free (M : Type*) [AddCommGroup M] [Module (ZMod n) M]
     [Module.Free (ZMod n) M] [Module.Finite (ZMod n) M] : Module.Injective (ZMod n) M := by
   haveI := Module.Free.ChooseBasisIndex.fintype (ZMod n) M
@@ -85,6 +97,9 @@ theorem injective_of_free (M : Type*) [AddCommGroup M] [Module (ZMod n) M]
   haveI : Module.Injective (ZMod n) (Module.Free.ChooseBasisIndex (ZMod n) M → ZMod n) := inferInstance
   exact (Module.Baer.of_equiv e.symm (Module.Baer.of_injective inferInstance)).injective
 
+/--
+@isnad1 id=mem.1h4v.s9.cbe4e1caf767 from=translated src=- shape=3213d604 vocab=c2577e97
+-/
 theorem main {M : Type*} [AddCommGroup M] [Module (ZMod n) M]
     [Module.Free (ZMod n) M] [Module.Finite (ZMod n) M]
     (J : Ideal (Module.End (ZMod n) M)) (b : Module.End (ZMod n) M)
@@ -135,6 +150,9 @@ end Module.End
 open scoped _root_.P2MW.S_Module_End_mem_ideal_of_forall_apply_eq_zero_zmod.Module.End.DoubleAnnihilatorZMod _root_.P2MW.S_Module_End_mem_ideal_of_forall_apply_eq_zero_zmod.Module _root_.P2MW.S_Module_End_mem_ideal_of_forall_apply_eq_zero_zmod.Module.End
 open scoped _root_.P2MW.S_Module_End_mem_ideal_of_forall_apply_eq_zero_zmod.Module.End.DoubleAnnihilatorZMod _root_.P2MW.S_Module_End_mem_ideal_of_forall_apply_eq_zero_zmod.Module
 
+/--
+@isnad1 id=mem.1h4v.s9.cbe4e1caf767 from=translated src=- shape=3213d604 vocab=c2577e97
+-/
 theorem solution
     {n : ℕ} [NeZero n] {M : Type*} [AddCommGroup M] [Module (ZMod n) M]
     [Module.Free (ZMod n) M] [Module.Finite (ZMod n) M]

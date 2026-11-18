@@ -14,6 +14,9 @@ namespace P2MW.S_ModularForm_exists_coe_eq_of_levelOne
 open UpperHalfPlane
 open scoped MatrixGroups
 
+/--
+@isnad1 id=ex.0h3v.s10.68ec8e7f943d from=translated src=- shape=66866e13 vocab=5fe1d317
+-/
 theorem solution (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) {k : ℤ} (F : ModularForm 𝒮ℒ k) :
     ∃ G : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k, (G : ℍ → ℂ) = (F : ℍ → ℂ) := by
   have hle : ((Γ : Subgroup (GL (Fin 2) ℝ))) ≤ 𝒮ℒ := by

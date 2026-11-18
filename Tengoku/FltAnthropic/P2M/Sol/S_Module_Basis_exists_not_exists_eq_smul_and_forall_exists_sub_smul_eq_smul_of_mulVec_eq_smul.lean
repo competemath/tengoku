@@ -13,6 +13,9 @@ set_option maxHeartbeats 1600000
 namespace Ws23
 namespace LatticeLift
 
+/--
+@isnad1 id=ex.2h9v.s9.b449a66c75f4 from=translated src=- shape=425e3c23 vocab=8f1a8405
+-/
 theorem main {Λ : Type*} [AddCommGroup Λ] {t : ℕ} (b : Module.Basis (Fin t) ℤ Λ)
     {I : Type*} (T : I → Λ →ₗ[ℤ] Λ) (n : I → ℤ)
     (p : ℕ) [Fact p.Prime] (κ : Type*) [Field κ] [CharP κ p]
@@ -92,6 +95,9 @@ theorem main {Λ : Type*} [AddCommGroup Λ] {t : ℕ} (b : Module.Basis (Fin t) 
 
 end Ws23.LatticeLift
 
+/--
+@isnad1 id=ex.2h9v.s9.b449a66c75f4 from=translated src=- shape=425e3c23 vocab=8f1a8405
+-/
 theorem solution
     {Λ : Type*} [AddCommGroup Λ] {t : ℕ} (b : Module.Basis (Fin t) ℤ Λ)
     {I : Type*} (T : I → Λ →ₗ[ℤ] Λ) (n : I → ℤ)

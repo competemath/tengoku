@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open scoped Real
 
+/--
+@isnad1 id=and.0h1v.s8.3d50a0e046fa from=translated src=- shape=44de63e6 vocab=99c8a88e
+-/
 theorem EisensteinSeries.isBoundedAtImInfty_eisensteinG1_and_hasSum_eisensteinG1 (N : ℕ) [NeZero N] :
     (∀ v : Fin 2 → ℤ, (¬ ∀ i, (N : ℤ) ∣ v i) →
         UpperHalfPlane.IsBoundedAtImInfty (EisensteinSeries.eisensteinG1 N v)) ∧

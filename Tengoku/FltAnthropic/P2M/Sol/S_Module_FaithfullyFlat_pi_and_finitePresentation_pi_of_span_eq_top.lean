@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open TensorProduct
 
+/--
+@isnad1 id=and.3h4v.s9.72d4716c8c7b from=translated src=- shape=5516f595 vocab=5396ee47
+-/
 theorem solution
     {S : Type} [CommRing S] {ι : Type} [Fintype ι] [DecidableEq ι] (g : ι → S) (hg : Ideal.span (Set.range g) = ⊤)
     (C : ι → Type) [∀ i, CommRing (C i)] [∀ i, Algebra S (C i)] [∀ i, Algebra (Localization.Away (g i)) (C i)]

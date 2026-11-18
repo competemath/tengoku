@@ -10,6 +10,9 @@ set_option autoImplicit false
 open Filter UpperHalfPlane
 open scoped MatrixGroups Topology
 
+/--
+@isnad1 id=dvd.2h2v.s12.5901f6d3004f from=translated src=- shape=9914be11 vocab=2604e432
+-/
 theorem UpperHalfPlane.two_dvd_natCard_stabilizer_of_neg_one_mem
     (Γ : Subgroup (GL (Fin 2) ℝ))
     (hdet : ∀ γ ∈ Γ, Matrix.GeneralLinearGroup.det γ = 1)

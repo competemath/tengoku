@@ -16,6 +16,9 @@ noncomputable section
 
 namespace ANa
 
+/--
+@isnad1 id=ex.4h3v.s7.5d3850cacbef from=translated src=- shape=d659e181 vocab=75fd5ccc
+-/
 theorem local_factor {F G : ℂ → ℂ} {z : ℂ} (hF : AnalyticAt ℂ F z) (hG : AnalyticAt ℂ G z)
     (hG0 : ¬ (∀ᶠ w in 𝓝 z, G w = 0)) (hle : analyticOrderAt G z ≤ analyticOrderAt F z) :
     ∃ q : ℂ → ℂ, AnalyticAt ℂ q z ∧ ∀ᶠ w in 𝓝 z, F w = q w * G w := by
@@ -33,6 +36,9 @@ theorem local_factor {F G : ℂ → ℂ} {z : ℂ} (hF : AnalyticAt ℂ F z) (hG
 
 def quo (F G : ℂ → ℂ) (z : ℂ) : ℂ := limUnder (𝓝[≠] z) (fun w => F w / G w)
 
+/--
+@isnad1 id=eq.3h4v.s7.ec735fa92404 from=translated src=- shape=c44b0827 vocab=26ea6658
+-/
 theorem quo_eq {F G q : ℂ → ℂ} {z : ℂ} (hq : AnalyticAt ℂ q z) (hfac : ∀ᶠ w in 𝓝 z, F w = q w * G w)
     (hG : ∀ᶠ w in 𝓝[≠] z, G w ≠ 0) : quo F G z = q z := by
   apply Filter.Tendsto.limUnder_eq
@@ -41,6 +47,9 @@ theorem quo_eq {F G q : ℂ → ℂ} {z : ℂ} (hq : AnalyticAt ℂ q z) (hfac :
     rw [hw, mul_div_cancel_right₀ _ hGw]
   exact (hq.continuousAt.tendsto.mono_left nhdsWithin_le_nhds).congr' h1
 
+/--
+@isnad1 id=and.6h4v.s7.b8be062c03a4 from=translated src=- shape=28ac6998 vocab=65522a00
+-/
 theorem quo_analytic {F G : ℂ → ℂ} {U : Set ℂ} (hU : IsOpen U)
     (hF : ∀ z ∈ U, AnalyticAt ℂ F z) (hG : ∀ z ∈ U, AnalyticAt ℂ G z)
     (hG0 : ∀ z ∈ U, ¬ (∀ᶠ w in 𝓝 z, G w = 0))
@@ -58,11 +67,17 @@ theorem quo_analytic {F G : ℂ → ℂ} {U : Set ℂ} (hU : IsOpen U)
   rw [h1]
   exact h2
 
+/--
+@isnad1 id=analytic.2h2v.s7.72fbdb47bba0 from=translated src=- shape=ccefea21 vocab=144f6962
+-/
 theorem analyticAt_of_mdiff {P : ℍ → ℂ} (hP : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) P) {z : ℂ} (hz : 0 < z.im) :
     AnalyticAt ℂ (P ∘ ofComplex) z :=
   (UpperHalfPlane.mdifferentiable_iff.mp hP).analyticAt
     ((isOpen_lt continuous_const Complex.continuous_im).mem_nhds hz)
 
+/--
+@isnad1 id=eq.4h4v.s7.71bda0c709ea from=translated src=- shape=3ff352b3 vocab=519f21de
+-/
 theorem vanish {P : ℍ → ℂ} (hP : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) P) {W : Set ℍ} (hW : IsOpen W) {τ₀ : ℍ}
     (hτ₀ : τ₀ ∈ W) (h0 : ∀ τ ∈ W, P τ = 0) : ∀ τ, P τ = 0 := by
   have hPa : AnalyticOnNhd ℂ (P ∘ ofComplex) {z : ℂ | 0 < z.im} := fun z hz => analyticAt_of_mdiff hP hz
@@ -79,6 +94,9 @@ theorem vanish {P : ℍ → ℂ} (hP : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) P) {W
 
 end ANa
 
+/--
+@isnad1 id=ex.4h6v.s12.f85c266b94ff from=translated src=- shape=8d8327eb vocab=793acce5
+-/
 theorem solution
     (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) {a b : ℤ} (c : ℤ) (habc : b + c = a)
     (Φ : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) a) (Ψ : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) b) (hΨ : Ψ ≠ 0)

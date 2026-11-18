@@ -7,6 +7,9 @@ namespace P2MW.S_ModularCurve_laurentBaseChange_mono
 
 open ModularCurve IntermediateField HahnSeries
 
+/--
+@isnad1 id=le.1h3v.s9.e14c8732f094 from=translated src=- shape=4c76bbad vocab=e7ce6291
+-/
 theorem solution (L : Type*) [Field L] [Algebra ℚ L] {F₀ F₁ : IntermediateField ℚ (LaurentSeries ℚ)} (h : F₀ ≤ F₁) : ModularCurve.laurentBaseChange L F₀ ≤ ModularCurve.laurentBaseChange L F₁ :=
   by
   rw [laurentBaseChange, IntermediateField.adjoin_le_iff]

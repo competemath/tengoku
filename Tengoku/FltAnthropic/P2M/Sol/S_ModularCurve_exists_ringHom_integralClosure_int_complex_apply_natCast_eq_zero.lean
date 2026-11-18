@@ -11,6 +11,9 @@ namespace P2mIntegralClosureRedHom
 
 open Polynomial
 
+/--
+@isnad1 id=nonempty.1h3v.s6.b7eadbcd8ac6 from=translated src=- shape=672aabd8 vocab=cd52a2ae
+-/
 theorem nonempty_ringHom_of_charP_of_integral (F : Type*) [Field F] (K : Type*) [Field K]
     [IsAlgClosed K] (p : ℕ) [Fact p.Prime] [CharP F p] [CharP K p]
     (hint : ∀ x : F, ∃ f : ℤ[X], f.Monic ∧ f.eval₂ (Int.castRingHom F) x = 0) :
@@ -28,10 +31,16 @@ theorem nonempty_ringHom_of_charP_of_integral (F : Type*) [Field F] (K : Type*) 
   let ψ : F →ₐ[ZMod p] K := IsAlgClosed.lift
   exact ⟨ψ.toRingHom⟩
 
+/--
+@isnad1 id=ismaxima.0h1v.s4.83b5da2027c2 from=translated src=- shape=1a4968a7 vocab=592666df
+-/
 theorem span_natCast_int_isMaximal (p : ℕ) [hp : Fact p.Prime] :
     (Ideal.span {(p : ℤ)}).IsMaximal :=
   PrincipalIdealRing.isMaximal_of_irreducible (Nat.prime_iff_prime_int.mp hp.out).irreducible
 
+/--
+@isnad1 id=le.0h1v.s9.0573afabbca6 from=translated src=- shape=7eb17e49 vocab=060e81ab
+-/
 theorem ker_algebraMap_int_integralClosure_le (I : Ideal ℤ) :
     RingHom.ker (algebraMap ℤ ↥(integralClosure ℤ ℂ)) ≤ I := by
   intro n hn
@@ -45,6 +54,9 @@ theorem ker_algebraMap_int_integralClosure_le (I : Ideal ℤ) :
   subst this
   exact I.zero_mem
 
+/--
+@isnad1 id=ex.0h1v.s9.594b93e86431 from=translated src=- shape=58705ca1 vocab=1934e89d
+-/
 theorem exists_isMaximal_comap_eq (p : ℕ) [Fact p.Prime] :
     ∃ Q : Ideal ↥(integralClosure ℤ ℂ), Q.IsMaximal ∧
       Q.comap (algebraMap ℤ ↥(integralClosure ℤ ℂ)) = Ideal.span {(p : ℤ)} := by
@@ -52,6 +64,9 @@ theorem exists_isMaximal_comap_eq (p : ℕ) [Fact p.Prime] :
   exact Ideal.exists_ideal_over_maximal_of_isIntegral (S := ↥(integralClosure ℤ ℂ))
     (Ideal.span {(p : ℤ)}) (ker_algebraMap_int_integralClosure_le _)
 
+/--
+@isnad1 id=nonempty.0h2v.s7.405a095978df from=translated src=- shape=bd41d876 vocab=d0045948
+-/
 theorem nonempty_ringHom (K : Type*) [Field K] [IsAlgClosed K] (p : ℕ) [hp : Fact p.Prime]
     [CharP K p] : Nonempty (↥(integralClosure ℤ ℂ) →+* K) := by
   obtain ⟨Q, hQmax, hQ⟩ := exists_isMaximal_comap_eq p
@@ -86,6 +101,9 @@ theorem nonempty_ringHom (K : Type*) [Field K] [IsAlgClosed K] (p : ℕ) [hp : F
 
 end P2mIntegralClosureRedHom
 
+/--
+@isnad1 id=ex.0h2v.s10.81a90e8351d2 from=translated src=- shape=3b462c8c vocab=818aea0e
+-/
 theorem solution
     (K : Type*) [Field K] [IsAlgClosed K] (p : ℕ) [Fact p.Prime] [CharP K p] :
     ∃ φ : ↥(integralClosure ℤ ℂ) →+* K, φ (p : ↥(integralClosure ℤ ℂ)) = 0 := by

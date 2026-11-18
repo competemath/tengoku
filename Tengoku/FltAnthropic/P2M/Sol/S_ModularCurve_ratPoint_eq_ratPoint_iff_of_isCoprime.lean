@@ -13,6 +13,9 @@ open Matrix Matrix.SpecialLinearGroup OnePoint CongruenceSubgroup
 open scoped MatrixGroups
 open ModularCurve ModularCurve.CuspSpace
 
+/--
+@isnad1 id=iff.2h4v.s5.21b1e65e407b from=translated src=- shape=31eb8f55 vocab=ea568b16
+-/
 theorem solution {a c a' c' : ℤ} (h : IsCoprime a c)
     (h' : IsCoprime a' c') :
     ModularCurve.ratPoint a c = ModularCurve.ratPoint a' c' ↔ (a = a' ∧ c = c') ∨ (a = -a' ∧ c = -c') := by

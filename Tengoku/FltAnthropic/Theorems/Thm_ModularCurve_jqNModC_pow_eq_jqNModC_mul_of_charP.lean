@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open ModularCurve
 
+/--
+@isnad1 id=eq.0h3v.s7.6702a92720f7 from=translated src=- shape=4b87c375 vocab=149894cb
+-/
 theorem ModularCurve.jqNModC_pow_eq_jqNModC_mul_of_charP
     (K : Type) [CommRing K] (q : ℕ) [Fact q.Prime] [CharP K q] (n : ℕ) [NeZero n] [NeZero (q * n)] :
     (jqNModC K n) ^ q = jqNModC K (q * n) := by exact @_root_.P2MW.S_ModularCurve_jqNModC_pow_eq_jqNModC_mul_of_charP.solution K _ q _ _ n _ _

@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open scoped MatrixGroups ModularForm
 
+/--
+@isnad1 id=ex.1h4v.s11.03ace419b13a from=translated src=- shape=1ac73097 vocab=998e7815
+-/
 theorem solution
     (M : ℕ) [NeZero M] (k : ℤ) (i : ℕ)
     (F : ZMod M → ModularForm (CongruenceSubgroup.Gamma1 M : Subgroup (GL (Fin 2) ℝ)) k)

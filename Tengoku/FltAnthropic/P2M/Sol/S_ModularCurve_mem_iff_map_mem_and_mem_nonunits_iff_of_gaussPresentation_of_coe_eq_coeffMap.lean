@@ -14,6 +14,9 @@ namespace E142Bridge
 
 open HahnSeries
 
+/--
+@isnad1 id=eq.1h3v.s7.64a48ff03807 from=translated src=- shape=8a4291ab vocab=79406d9f
+-/
 theorem coeff_ofPowerSeries_of_neg {R : Type*} [CommSemiring R] (p : PowerSeries R) (n : ℤ) (hn : n < 0) :
     (HahnSeries.ofPowerSeries ℤ R p).coeff n = 0 := by
   rw [HahnSeries.ofPowerSeries_apply]
@@ -22,6 +25,9 @@ theorem coeff_ofPowerSeries_of_neg {R : Type*} [CommSemiring R] (p : PowerSeries
   have : ((m : ℕ) : ℤ) = n := by simpa using hm
   omega
 
+/--
+@isnad1 id=eq.0h4v.s9.768819a1ab66 from=translated src=- shape=3c04b3c9 vocab=18211310
+-/
 theorem coeffMap_ofPowerSeries {R S : Type*} [CommRing R] [CommRing S] (g : R →+* S) (p : PowerSeries R) :
     coeffMap g (HahnSeries.ofPowerSeries ℤ R p) = HahnSeries.ofPowerSeries ℤ S (p.map g) := by
   ext n
@@ -31,6 +37,9 @@ theorem coeffMap_ofPowerSeries {R S : Type*} [CommRing R] [CommRing S] (g : R �
     rw [coeffMap_coeff, HahnSeries.ofPowerSeries_apply_coeff, HahnSeries.ofPowerSeries_apply_coeff,
       PowerSeries.coeff_map]
 
+/--
+@isnad1 id=injectiv.1h3v.s7.f8ff7cd7cc54 from=translated src=- shape=1aeb3f0b vocab=4399a17a
+-/
 theorem coeffMap_injective {R S : Type*} [CommRing R] [CommRing S] (g : R →+* S) (hg : Function.Injective g) :
     Function.Injective (coeffMap g) := by
   intro x y h
@@ -48,6 +57,9 @@ def inclA {k₀ : IntermediateField ℚ (AlgebraicClosure ℚ)} (K₁ : Intermed
   map_zero' := by ext; simp
   map_add' a b := by ext; simp
 
+/--
+@isnad1 id=eq.1h5v.s15.094168b76a42 from=translated src=- shape=466c8964 vocab=586caefe
+-/
 @[scoped simp] theorem coe_inclA {k₀ : IntermediateField ℚ (AlgebraicClosure ℚ)} (K₁ : IntermediateField ↥k₀ (AlgebraicClosure ℚ))
     (A : ValuationSubring (AlgebraicClosure ℚ)) (A₁ : ValuationSubring ↥K₁)
     (h : ∀ a : ↥A₁, ((a : ↥K₁) : AlgebraicClosure ℚ) ∈ A) (a : ↥A₁) :
@@ -59,6 +71,9 @@ open scoped _root_.P2MW.S_ModularCurve_mem_iff_map_mem_and_mem_nonunits_iff_of_g
 open E142Bridge
 
 set_option maxHeartbeats 1600000 in
+/--
+@isnad1 id=and.4h9v.s21.16a70dd66bed from=translated src=- shape=ceeca13b vocab=dce547c7
+-/
 theorem solution
     (k₀ : IntermediateField ℚ (AlgebraicClosure ℚ)) (K₁ : IntermediateField ↥k₀ (AlgebraicClosure ℚ))
     (A : ValuationSubring (AlgebraicClosure ℚ))

@@ -175,6 +175,9 @@ private lemma discriminant_eq_qParam_mul_gfun (τ : ℍ) :
 end ModularCurve
 
 open ModularCurve in
+/--
+@isnad1 id=eq.0h0v.s7.0fd3a69f8e74 from=translated src=- shape=d9e50b71 vocab=97463d96
+-/
 theorem solution : UpperHalfPlane.qExpansion 1 ModularForm.discriminant = PowerSeries.X * ∏' n : ℕ, ((1 : PowerSeries ℂ) - PowerSeries.X ^ (n + 1)) ^ 24 := by
   have hsum : ∀ τ : ℍ, HasSum (fun m : ℕ =>
       PowerSeries.coeff m (PowerSeries.X * etaPow) • 𝕢 1 (τ : ℂ) ^ m) (CuspForm.discriminant τ) := by

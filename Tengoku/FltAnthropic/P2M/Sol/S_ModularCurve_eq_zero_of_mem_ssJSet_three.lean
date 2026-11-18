@@ -15,6 +15,9 @@ open ModularCurve WeierstrassCurve
 namespace FltWs24
 namespace SS
 
+/--
+@isnad1 id=eq.2h2v.s6.6e8757137d21 from=translated src=- shape=b163faee vocab=30713750
+-/
 theorem three {k : Type*} [Field k] [CharP k 3] [DecidableEq k]
     (a : k) (ha : a ∈ ssJSet 3 k) (ha2 : a ^ (3 ^ 2) = a) : a = 0 := by
   by_contra h0
@@ -83,6 +86,9 @@ theorem three {k : Type*} [Field k] [CharP k 3] [DecidableEq k]
 end FltWs24.SS
 
 open ModularCurve in
+/--
+@isnad1 id=eq.2h2v.s6.6e8757137d21 from=translated src=- shape=b163faee vocab=30713750
+-/
 theorem solution {k : Type*} [Field k] [CharP k 3] [DecidableEq k]
     (a : k) (ha : a ∈ ssJSet 3 k) (ha2 : a ^ (3 ^ 2) = a) : a = 0 :=
   FltWs24.SS.three a ha ha2

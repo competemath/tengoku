@@ -13,6 +13,9 @@ open Polynomial
 
 open ModularCurve in
 
+/--
+@isnad1 id=eq.2h5v.s9.2e98feda5b33 from=translated src=- shape=ecd54da3 vocab=b264b27e
+-/
 theorem solution (κ : Type*) [Field κ] (q : ℕ) [Fact q.Prime] [CharP κ q]
     (j : LaurentSeries κ) (hj : j.coeff (-1) ≠ 0) (e : Fin q → LaurentSeries κ)
     (h : ∑ m, ModularCurve.qExpand κ q (e m) * j ^ (m : ℕ) = 0) : ∀ m, e m = 0 := by

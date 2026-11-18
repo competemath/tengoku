@@ -9,6 +9,9 @@ open ModularCurve IntermediateField
 
 noncomputable section
 
+/--
+@isnad1 id=eq.1h1v.s4.af867e63232f from=translated src=- shape=b8d1d085 vocab=15ed365f
+-/
 theorem solution {p : ℕ} (hp : p.Prime) : dedekindPsi p = p + 1 :=by
   rw [dedekindPsi, Finset.sum_filter, hp.divisors, Finset.sum_pair hp.one_lt.ne]
   simp [hp.squarefree, Nat.div_self hp.pos]

@@ -33,6 +33,9 @@ namespace ZDFlatCA
 variable {R : Type*} [CommRing R]
 variable {N M : Type*} [AddCommGroup N] [Module R N] [AddCommGroup M] [Module R M]
 
+/--
+@isnad1 id=injectiv.2h5v.s10.234216f38246 from=translated src=- shape=a9762e9e vocab=dbb04c2f
+-/
 theorem lTensor_injective_of_isTorsionBySet [IsLocalRing R] (u : N →ₗ[R] M)
     (hu : Function.Injective (u.lTensor (ResidueField R)))
     (V : Type*) [AddCommGroup V] [Module R V]
@@ -63,6 +66,9 @@ theorem lTensor_injective_of_isTorsionBySet [IsLocalRing R] (u : N →ₗ[R] M)
   have h4 := h3.of_comp_right (AlgebraTensorModule.cancelBaseChange R _ _ V N).surjective
   rwa [AlgebraTensorModule.coe_lTensor] at h4
 
+/--
+@isnad1 id=injectiv.3h6v.s14.8485b898d537 from=translated src=- shape=46233bd8 vocab=0eac7a77
+-/
 theorem lTensor_quotient_injective_of_le [Module.Flat R M] (u : N →ₗ[R] M) {J' J : Ideal R}
     (h : J' ≤ J)
     (hA : Function.Injective (u.lTensor (LinearMap.ker (Submodule.factor h))))
@@ -93,6 +99,9 @@ theorem lTensor_quotient_injective_of_le [Module.Flat R M] (u : N →ₗ[R] M) {
   have h5 : a = 0 := hA (by rw [h4, map_zero])
   rw [h5, map_zero]
 
+/--
+@isnad1 id=istorsio.1h3v.s7.76823889c5f9 from=translated src=- shape=953bf34e vocab=6927fe08
+-/
 theorem isTorsionBySet_quotient {K s : Ideal R} (h : s ≤ K) :
     Module.IsTorsionBySet R (R ⧸ K) s := by
   rintro x ⟨a, ha⟩
@@ -101,6 +110,9 @@ theorem isTorsionBySet_quotient {K s : Ideal R} (h : s ≤ K) :
     rw [← Submodule.Quotient.mk_smul, Submodule.Quotient.mk_eq_zero]
     exact K.mul_mem_right r (h ha)
 
+/--
+@isnad1 id=istorsio.2h4v.s10.b3fa39675363 from=translated src=- shape=927ebe80 vocab=11605f99
+-/
 theorem isTorsionBySet_ker_factor {J' J : Ideal R} (h : J' ≤ J) {s : Ideal R} (hs : s * J ≤ J') :
     Module.IsTorsionBySet R (LinearMap.ker (Submodule.factor h)) s := by
   rintro ⟨x, hx⟩ ⟨a, ha⟩
@@ -113,6 +125,9 @@ theorem isTorsionBySet_ker_factor {J' J : Ideal R} (h : J' ≤ J) {s : Ideal R} 
     rw [← Submodule.Quotient.mk_smul, Submodule.Quotient.mk_eq_zero]
     exact hs (Ideal.mul_mem_mul ha hx)
 
+/--
+@isnad1 id=injectiv.1h6v.s12.2499054c4cd1 from=translated src=- shape=7bea4597 vocab=fb2d92ae
+-/
 theorem lTensor_quotient_sup_pow_injective [IsLocalRing R] [Module.Flat R M] (u : N →ₗ[R] M)
     (hu : Function.Injective (u.lTensor (ResidueField R))) (I : Ideal R) (n : ℕ) :
     Function.Injective (u.lTensor (R ⧸ (I ⊔ maximalIdeal R ^ n))) := by
@@ -130,6 +145,9 @@ theorem lTensor_quotient_sup_pow_injective [IsLocalRing R] [Module.Flat R M] (u 
     rw [Ideal.mul_sup, pow_succ']
     exact sup_le_sup_right Ideal.mul_le_right _
 
+/--
+@isnad1 id=iff.0h5v.s10.df50e2be967b from=translated src=- shape=2dfc5448 vocab=7ddc63fe
+-/
 theorem lTensor_quotient_injective_iff (u : N →ₗ[R] M) (J : Ideal R) :
     Function.Injective (u.lTensor (R ⧸ J)) ↔
       ∀ x, u x ∈ J • (⊤ : Submodule R M) → x ∈ J • (⊤ : Submodule R N) := by
@@ -157,6 +175,9 @@ theorem lTensor_quotient_injective_iff (u : N →ₗ[R] M) (J : Ideal R) :
       (Submodule.Quotient.mk_eq_zero _).mpr (h x h1)
     rw [ht', ← quotTensorEquivQuotSMul_symm_mk, h2, map_zero]
 
+/--
+@isnad1 id=mem.1h5v.s9.ae6d911c25c2 from=translated src=- shape=f194e2ed vocab=c41b9312
+-/
 theorem mem_smul_top_of_forall_mem_sup_pow_smul
     (S : Type*) [CommRing S] [Algebra R S] [IsLocalRing R] [IsLocalRing S]
     [IsLocalHom (algebraMap R S)] [IsNoetherianRing S]
@@ -194,6 +215,9 @@ theorem mem_smul_top_of_forall_mem_sup_pow_smul
   rw [← hK]
   exact hxK
 
+/--
+@isnad1 id=injectiv.1h6v.s10.cf7edaf4335b from=translated src=- shape=d69c0f36 vocab=67053de4
+-/
 theorem lTensor_quotient_injective
     (S : Type*) [CommRing S] [Algebra R S] [IsLocalRing R] [IsLocalRing S]
     [IsLocalHom (algebraMap R S)] [IsNoetherianRing S]
@@ -210,6 +234,9 @@ theorem lTensor_quotient_injective
   exact (lTensor_quotient_injective_iff u _).mp (lTensor_quotient_sup_pow_injective u hκ I n) x
     (Submodule.smul_mono_left le_sup_left hx)
 
+/--
+@isnad1 id=and.1h5v.s9.f0194f9cbe51 from=translated src=- shape=c554bb04 vocab=7b3a9b3e
+-/
 theorem injective_and_flat_quotient_range
     (S : Type*) [CommRing S] [Algebra R S] [IsLocalRing R] [IsLocalRing S]
     [IsLocalHom (algebraMap R S)] [IsNoetherianRing S]
@@ -237,6 +264,9 @@ end ZDFlatCA
 
 namespace ZDFlatCA
 
+/--
+@isnad1 id=and.1h3v.s11.bb01a5065215 from=translated src=- shape=7763de9e vocab=85b6d586
+-/
 theorem stacks00MF
     {R : Type*} {S : Type*} [CommRing R] [CommRing S] [Algebra R S] [IsLocalRing R] [IsLocalRing S]
     [IsLocalHom (algebraMap R S)] [IsNoetherianRing S] [Module.Flat R S] (f : S)
@@ -288,6 +318,9 @@ noncomputable def fiberEquivQuotient :
         simp [Localization.tensorLeftAlgEquiv_apply_one_tmul p.primeCompl])
       commutes' := by simp }
 
+/--
+@isnad1 id=ex.1h4v.s10.6b90bf9058d3 from=translated src=- shape=12dce6fb vocab=8d7f4d4a
+-/
 theorem exists_smul_mem_of_one_tmul_eq_zero (b : B)
     (h : ((1 : p.ResidueField) ⊗ₜ[A] b : p.Fiber B) = 0) :
     ∃ a ∉ p, a • b ∈ p.map (algebraMap A B) := by
@@ -308,6 +341,9 @@ theorem exists_smul_mem_of_one_tmul_eq_zero (b : B)
 
 end Fiber
 
+/--
+@isnad1 id=ex.2h5v.s10.ab013c6fa3fe from=translated src=- shape=6847bc32 vocab=911462a2
+-/
 theorem exists_smul_mem_of_mul_mem {A : Type u} {B : Type v} [CommRing A] [CommRing B] [Algebra A B]
     [Module.Flat A B] (g : B)
     (hg : ∀ (K : Type u) [Field K] [IsAlgClosed K] [Algebra A K],
@@ -344,6 +380,9 @@ theorem exists_smul_mem_of_mul_mem {A : Type u} {B : Type v} [CommRing A] [CommR
     rwa [TensorProduct.comm_tmul, map_zero] at this
   exact exists_smul_mem_of_one_tmul_eq_zero p b h3
 
+/--
+@isnad1 id=and.1h4v.s11.01369e706ee8 from=translated src=- shape=ef944e74 vocab=9f5352fc
+-/
 theorem localization_regular_and_flat {A : Type u} {B : Type v} [CommRing A] [CommRing B] [Algebra A B]
     [IsNoetherianRing B] [Module.Flat A B] (g : B)
     (H : ∀ (p : Ideal A) [p.IsPrime] (b : B), g * b ∈ p.map (algebraMap A B) →
@@ -395,6 +434,9 @@ theorem localization_regular_and_flat {A : Type u} {B : Type v} [CommRing A] [Co
       Ideal.Quotient.subsingleton_iff.mpr ((Ideal.span_singleton_eq_top).mpr hu)
     infer_instance
 
+/--
+@isnad1 id=and.1h3v.s10.0ce6c3fc51e7 from=translated src=- shape=8882236b vocab=dc933814
+-/
 theorem mem_nonZeroDivisors_and_flat_quotient {A : Type u} {B : Type v} [CommRing A] [CommRing B]
     [Algebra A B] [IsNoetherianRing B] [Module.Flat A B] (g : B)
     (hg : ∀ (K : Type u) [Field K] [IsAlgClosed K] [Algebra A K],
@@ -426,6 +468,9 @@ theorem mem_nonZeroDivisors_and_flat_quotient {A : Type u} {B : Type v} [CommRin
 
 end ZDFlatCA
 
+/--
+@isnad1 id=and.1h3v.s10.0ce6c3fc51e7 from=translated src=- shape=8882236b vocab=dc933814
+-/
 theorem solution
     {A : Type u} {B : Type v} [CommRing A] [CommRing B] [Algebra A B] [IsNoetherianRing B]
     [Module.Flat A B] (g : B)

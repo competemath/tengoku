@@ -18,15 +18,24 @@ open scoped ModularForm MatrixGroups Real
 
 namespace DedekindEtaLaw
 
+/--
+@isnad1 id=eq.0h1v.s4.24ab7fd8c012 from=translated src=- shape=6cd42883 vocab=38fbebb9
+-/
 lemma sqrt_sq (a : ℂ) : Complex.sqrt a ^ 2 = a := by
   have h := cpow_nat_inv_pow a two_ne_zero
   rw [Complex.sqrt]
   norm_num at h ⊢
   exact h
 
+/--
+@isnad1 id=eq.0h1v.s5.f413c23b74b2 from=translated src=- shape=5d265ca5 vocab=7db86fe2
+-/
 lemma sqrt_re (a : ℂ) : (Complex.sqrt a).re = √((‖a‖ + a.re) / 2) := by
   rw [Complex.sqrt]; exact cpow_inv_two_re a
 
+/--
+@isnad1 id=lt.1h1v.s4.a69019f5c3cf from=translated src=- shape=30855900 vocab=6086b543
+-/
 lemma sqrt_re_pos {a : ℂ} (ha : 0 < a.re) : 0 < (Complex.sqrt a).re := by
   rw [sqrt_re]
   apply Real.sqrt_pos_of_pos
@@ -41,8 +50,14 @@ lemma eq_of_sq_eq_sq_of_re_pos {s t : ℂ} (h : s ^ 2 = t ^ 2) (hs : 0 < s.re) (
     rw [h, neg_re] at hs
     linarith
 
+/--
+@isnad1 id=eq.0h1v.s4.b339df7c74cb from=translated src=- shape=e855e50d vocab=e8f90254
+-/
 lemma neg_I_mul_re (ζ : ℂ) : (-I * ζ).re = ζ.im := by simp
 
+/--
+@isnad1 id=eq.0h0v.s3.094314e6585f from=translated src=- shape=d36c3df8 vocab=6ad439d7
+-/
 lemma sqrt_I_inv : (Complex.sqrt I)⁻¹ = Complex.sqrt (-I) := by
   rw [Complex.sqrt_neg_I, Complex.sqrt_I]
   have hs : (√(2⁻¹) : ℝ) ^ 2 = 2⁻¹ := Real.sq_sqrt (by norm_num)
@@ -52,6 +67,9 @@ lemma sqrt_I_inv : (Complex.sqrt I)⁻¹ = Complex.sqrt (-I) := by
   push_cast
   ring
 
+/--
+@isnad1 id=eq.0h1v.s5.8e5b160f3386 from=translated src=- shape=477fcd39 vocab=1b37acc2
+-/
 lemma sqrt_I_inv_mul_sqrt (z : ℍ) : (Complex.sqrt I)⁻¹ * Complex.sqrt (z : ℂ) = Complex.sqrt (-I * z) := by
   rw [sqrt_I_inv]
   apply eq_of_sq_eq_sq_of_re_pos
@@ -75,9 +93,15 @@ lemma sqrt_I_inv_mul_sqrt (z : ℍ) : (Complex.sqrt I)⁻¹ * Complex.sqrt (z : 
     exact mul_pos (Real.sqrt_pos_of_pos (by norm_num)) (by linarith)
   · exact sqrt_re_pos (by rw [neg_I_mul_re]; exact z.2)
 
+/--
+@isnad1 id=eq.0h1v.s7.8545a5d9db42 from=translated src=- shape=20725053 vocab=55a66825
+-/
 lemma coe_S_smul (z : ℍ) : ((ModularGroup.S • z : ℍ) : ℂ) = -(z : ℂ)⁻¹ := by
   rw [modular_S_smul]; simp [inv_neg]
 
+/--
+@isnad1 id=eq.0h1v.s7.496674dd51e5 from=translated src=- shape=45db02e6 vocab=26214e6f
+-/
 lemma eta_S_smul (z : ℍ) : η (((ModularGroup.S • z : ℍ) : ℂ)) = Complex.sqrt (-I * z) * η z := by
   have he : η (-(z : ℂ)⁻¹) = (Complex.sqrt I)⁻¹ * (Complex.sqrt z * η z) := by
     simpa [neg_div] using ModularForm.eta_comp_eq_csqrt_I_inv z.2
@@ -87,5 +111,8 @@ end DedekindEtaLaw
 
 end
 
+/--
+@isnad1 id=eq.0h1v.s7.496674dd51e5 from=translated src=- shape=45db02e6 vocab=26214e6f
+-/
 theorem solution (z : UpperHalfPlane) : ModularForm.eta ((ModularGroup.S • z : UpperHalfPlane) : ℂ) = Complex.sqrt (-Complex.I * z) * ModularForm.eta z :=
   DedekindEtaLaw.eta_S_smul z

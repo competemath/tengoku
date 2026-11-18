@@ -9,6 +9,9 @@ open ModularCurve IntermediateField
 
 noncomputable section
 
+/--
+@isnad1 id=function.1h1v.s3.84e56e179790 from=translated src=- shape=87e44e80 vocab=6b9b139c
+-/
 theorem solution {ℓ : ℕ} [NeZero ℓ] (hℓ : ℓ.Prime) : FunctionFieldGeneration ℓ :=by
   intro d hd hne
   haveI := hne

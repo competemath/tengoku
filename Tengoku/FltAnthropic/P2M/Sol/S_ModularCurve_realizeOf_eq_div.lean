@@ -14,12 +14,18 @@ open scoped MatrixGroups Topology Manifold
 namespace ModularCurve export _root_.ModularCurve (realizeOf realizeOf_def) namespace RealizeOfWD end ModularCurve.RealizeOfWD
 open scoped _root_.ModularCurve in
 
+/--
+@isnad1 id=mem.1h1v.s8.bb6dbd38f994 from=translated src=- shape=a5e7fbcb vocab=3039e1ca
+-/
 theorem ModularCurve.RealizeOfWD.one_mem_strictPeriods (Γ : Subgroup SL(2, ℤ)) (hT : ModularGroup.T ∈ Γ) :
     (1 : ℝ) ∈ (Γ : Subgroup (GL (Fin 2) ℝ)).strictPeriods := by
   rw [Subgroup.strictPeriods_eq_zmultiples_one_of_T_mem hT]
   exact AddSubgroup.mem_zmultiples _
 
 open scoped MatrixGroups in
+/--
+@isnad1 id=eq.3h6v.s11.004d29f19d6d from=translated src=- shape=108a5bd3 vocab=eaeb72a0
+-/
 theorem solution
     (Γ : Subgroup SL(2, ℤ)) (hT : ModularGroup.T ∈ Γ) {k : ℤ}
     (g h : ModularForm Γ k) (x : LaurentSeries ℂ)

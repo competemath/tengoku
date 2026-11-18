@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u v
 
+/--
+@isnad1 id=finite.1h3v.s8.d9f30e1c6634 from=translated src=- shape=3b71640d vocab=db0c9d25
+-/
 theorem solution
     {R : Type u} [CommRing R] (I : Ideal R) [IsAdicComplete I R]
     (M : Type v) [AddCommGroup M] [Module R M] [IsHausdorff I M]

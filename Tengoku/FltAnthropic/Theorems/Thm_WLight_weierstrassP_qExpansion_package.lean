@@ -11,6 +11,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_WLight_weierstrassP_qExpansion_package
 open Complex Real
 open scoped UpperHalfPlane Manifold
 
+/--
+@isnad1 id=and.0h0v.s11.dad55f79aa7a from=translated src=- shape=ff423620 vocab=dfc2be99
+-/
 theorem WLight.weierstrassP_qExpansion_package :
 
     (∀ w : ℂ, 0 < w.im →

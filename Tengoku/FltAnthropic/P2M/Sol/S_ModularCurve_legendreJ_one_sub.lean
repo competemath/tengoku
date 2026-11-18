@@ -16,6 +16,9 @@ end ModularCurve
 
 open _root_.ModularCurve open _root_.P2MW.S_ModularCurve_legendreJ_one_sub.ModularCurve
 
+/--
+@isnad1 id=eq.0h2v.s5.a66583b1c258 from=translated src=- shape=0b5d9139 vocab=624010c0
+-/
 theorem solution {K : Type*} [Field K] (t : K) : legendreJ (1 - t) = legendreJ t := by
   simp only [legendreJ]
   ring

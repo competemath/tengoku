@@ -13,6 +13,9 @@ namespace S09A1C
 
 open ModularCurve
 
+/--
+@isnad1 id=ex.0h2v.s7.13c80bf5e730 from=translated src=- shape=aad2dd5a vocab=900b1372
+-/
 theorem exists_sub_C_mem_eisensteinIdeal (N : ℕ) (t : HeckeAlg) :
     ∃ n : ℤ, t - MvPolynomial.C n ∈ eisensteinIdeal N := by
   refine ⟨MvPolynomial.aeval (eisensteinSystem N) t, ?_⟩
@@ -21,5 +24,8 @@ theorem exists_sub_C_mem_eisensteinIdeal (N : ℕ) (t : HeckeAlg) :
 
 end S09A1C
 
+/--
+@isnad1 id=ex.0h2v.s7.13c80bf5e730 from=translated src=- shape=aad2dd5a vocab=900b1372
+-/
 theorem solution (N : ℕ) (t : HeckeAlg) : ∃ n : ℤ, t - MvPolynomial.C n ∈ eisensteinIdeal N := by
   exact S09A1C.exists_sub_C_mem_eisensteinIdeal N t

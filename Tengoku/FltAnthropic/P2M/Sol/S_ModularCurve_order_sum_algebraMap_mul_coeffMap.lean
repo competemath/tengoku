@@ -62,6 +62,9 @@ private theorem ModularCurve.order_sum_algebraMap_mul_coeffMap
 
 open AlgebraicCurve _root_.ModularCurve _root_.P2MW.S_ModularCurve_order_sum_algebraMap_mul_coeffMap.ModularCurve in
 
+/--
+@isnad1 id=and.3h7v.s10.ba6bae08e937 from=translated src=- shape=54b65c3d vocab=fc626647
+-/
 theorem solution {K K' : Type*} [Field K] [Field K'] (σ : K →+* K') {ι : Type*} (s : Finset ι) (hs : s.Nonempty)
     (c : ι → K') (hc : ∀ a : ι → K, ∑ i ∈ s, σ (a i) * c i = 0 → ∀ i ∈ s, a i = 0)
     (f : ι → LaurentSeries K) (hf : ∀ i ∈ s, f i ≠ 0) :

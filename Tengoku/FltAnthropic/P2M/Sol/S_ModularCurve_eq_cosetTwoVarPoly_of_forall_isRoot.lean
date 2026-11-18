@@ -21,12 +21,18 @@ open _root_.ModularCurve
 
 variable {K : Type*} [Field K]
 
+/--
+@isnad1 id=eq.0h5v.s8.a422f5c1880e from=translated src=- shape=e8915e6b vocab=b3559dad
+-/
 theorem coeff_cosetSubst_neg_sq (ζ : Kˣ) (a b : ℕ) [NeZero a] (J : LaurentSeries K) :
     (cosetSubst ζ a b J).coeff (-((a * a : ℕ) : ℤ)) = ((ζ ^ (a * b)) ^ (-1 : ℤ) : Kˣ) * J.coeff (-1) := by
   haveI : NeZero (a * a) := ⟨Nat.mul_ne_zero (NeZero.ne a) (NeZero.ne a)⟩
   show ((qExpand K (a * a)) (qTwist (ζ ^ (a * b)) J)).coeff _ = _
   rw [show (-((a * a : ℕ) : ℤ)) = ((a * a : ℕ) : ℤ) * (-1 : ℤ) by ring, qExpand_coeff_mul, qTwist_coeff]
 
+/--
+@isnad1 id=eq.2h6v.s8.6a77115154d5 from=translated src=- shape=6629b787 vocab=ea70c8bc
+-/
 theorem coeff_cosetSubst_of_lt (ζ : Kˣ) (a b : ℕ) [NeZero a] (J : LaurentSeries K)
     (hJ' : ∀ m : ℤ, m < -1 → J.coeff m = 0) (k : ℤ) (hk : k < -((a * a : ℕ) : ℤ)) :
     (cosetSubst ζ a b J).coeff k = 0 := by
@@ -45,12 +51,18 @@ theorem coeff_cosetSubst_of_lt (ζ : Kˣ) (a b : ℕ) [NeZero a] (J : LaurentSer
     rw [qExpand_coeff_mul, qTwist_coeff, hJ' m hm, mul_zero]
   · exact qExpand_coeff_of_not_dvd (a * a) _ hdvd
 
+/--
+@isnad1 id=ne.2h2v.s6.600c25979104 from=translated src=- shape=05453ca2 vocab=4dca662e
+-/
 theorem ne_zero_of_mem {N : ℕ} (hN : N ≠ 0) {t : ℕ × ℕ × ℕ} (ht : t ∈ primCosetReps N) : t.1 ≠ 0 := by
   obtain ⟨a, b, d⟩ := t
   rw [mem_primCosetReps hN] at ht
   rintro rfl
   exact hN (by simpa using ht.1.symm)
 
+/--
+@isnad1 id=eq.7h6v.s8.bb36fa99a2c2 from=translated src=- shape=d08b7892 vocab=d765a3fe
+-/
 theorem cosetConj_injOn {N : ℕ} (hN : N ≠ 0) (ζ : Kˣ) (hζ : IsPrimitiveRoot ζ N) (J : LaurentSeries K)
     (hJ : J.coeff (-1) ≠ 0) (hJ' : ∀ m : ℤ, m < -1 → J.coeff m = 0)
     {t t' : ℕ × ℕ × ℕ} (ht : t ∈ primCosetReps N) (ht' : t' ∈ primCosetReps N)
@@ -114,6 +126,9 @@ theorem cosetConj_injOn {N : ℕ} (hN : N ≠ 0) (ζ : Kˣ) (hζ : IsPrimitiveRo
 end ModularCurve.CosetSepAux
 
 open ModularCurve.CosetSepAux in
+/--
+@isnad1 id=eq.7h5v.s8.5f5085744044 from=translated src=- shape=1b74c210 vocab=7212a33f
+-/
 theorem solution (K : Type*) [Field K] (N : ℕ) (hN : N ≠ 0)
     (ζ : Kˣ) (hζ : IsPrimitiveRoot ζ N) (J : LaurentSeries K)
     (hJ : J.coeff (-1) ≠ 0) (hJ' : ∀ m : ℤ, m < -1 → J.coeff m = 0)

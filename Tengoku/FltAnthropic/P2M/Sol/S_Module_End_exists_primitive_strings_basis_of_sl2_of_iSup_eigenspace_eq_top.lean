@@ -25,12 +25,18 @@ variable (hhe : h ∘ₗ e - e ∘ₗ h = (2 : ℂ) • e) (hhf : h ∘ₗ f - f
   (hef : e ∘ₗ f - f ∘ₗ e = h)
 
 include hhe in
+/--
+@isnad1 id=eq.1h4v.s9.777508452d94 from=translated src=- shape=93ad5234 vocab=c2744366
+-/
 theorem h_e_apply (x : V) : h (e x) = e (h x) + (2 : ℂ) • e x := by
   have := congrArg (fun T : V →ₗ[ℂ] V => T x) hhe
   simp only [LinearMap.sub_apply, LinearMap.comp_apply, LinearMap.smul_apply] at this
   rw [← this]; abel
 
 include hhf in
+/--
+@isnad1 id=eq.1h4v.s9.dae7e0491e99 from=translated src=- shape=649b0bc8 vocab=2e83f787
+-/
 theorem h_f_apply (x : V) : h (f x) = f (h x) - (2 : ℂ) • f x := by
   have := congrArg (fun T : V →ₗ[ℂ] V => T x) hhf
   simp only [LinearMap.sub_apply, LinearMap.comp_apply, LinearMap.neg_apply, LinearMap.smul_apply] at this
@@ -39,20 +45,32 @@ theorem h_f_apply (x : V) : h (f x) = f (h x) - (2 : ℂ) • f x := by
     _ = f (h x) - (2 : ℂ) • f x := by abel
 
 include hef in
+/--
+@isnad1 id=eq.1h5v.s9.9a975554a9de from=translated src=- shape=cebfd214 vocab=f438b8ac
+-/
 theorem e_f_apply (x : V) : e (f x) = f (e x) + h x := by
   have := congrArg (fun T : V →ₗ[ℂ] V => T x) hef
   simp only [LinearMap.sub_apply, LinearMap.comp_apply] at this
   rw [← this]; abel
 
 include hhe in
+/--
+@isnad1 id=eq.2h5v.s9.f2d9e79aa4f4 from=translated src=- shape=8997b799 vocab=c2744366
+-/
 theorem h_e_of_weight {x : V} {μ : ℂ} (hx : h x = μ • x) : h (e x) = (μ + 2) • e x := by
   rw [h_e_apply hhe, hx, map_smul, add_smul]
 
 include hhf in
+/--
+@isnad1 id=eq.2h5v.s9.b7b7ab55e3f0 from=translated src=- shape=860b6448 vocab=2e83f787
+-/
 theorem h_f_of_weight {x : V} {μ : ℂ} (hx : h x = μ • x) : h (f x) = (μ - 2) • f x := by
   rw [h_f_apply hhf, hx, map_smul, sub_smul]
 
 include hhf in
+/--
+@isnad1 id=eq.2h6v.s9.9d10a2ac394a from=translated src=- shape=ac85b14e vocab=ad6138ae
+-/
 theorem h_f_pow_of_weight {x : V} {μ : ℂ} (hx : h x = μ • x) (p : ℕ) :
     h ((f ^ p) x) = (μ - 2 * (p : ℂ)) • (f ^ p) x := by
   induction p with
@@ -62,6 +80,9 @@ theorem h_f_pow_of_weight {x : V} {μ : ℂ} (hx : h x = μ • x) (p : ℕ) :
     congr 1; push_cast; ring
 
 include hhe in
+/--
+@isnad1 id=eq.2h6v.s9.0683d20e93b2 from=translated src=- shape=880c4156 vocab=6d16d68c
+-/
 theorem h_e_pow_of_weight {x : V} {μ : ℂ} (hx : h x = μ • x) (p : ℕ) :
     h ((e ^ p) x) = (μ + 2 * (p : ℂ)) • (e ^ p) x := by
   induction p with
@@ -70,6 +91,9 @@ theorem h_e_pow_of_weight {x : V} {μ : ℂ} (hx : h x = μ • x) (p : ℕ) :
     rw [pow_succ', Module.End.mul_apply, h_e_of_weight hhe ih]
     congr 1; push_cast; ring
 
+/--
+@isnad1 id=ex.3h6v.s9.eeda31e53496 from=translated src=- shape=a6841d5d vocab=97915663
+-/
 theorem exists_pow_apply_eq_zero_of_shift [FiniteDimensional ℂ V] (g : V →ₗ[ℂ] V) (c : ℂ) (hc : c ≠ 0)
     (hg : ∀ (x : V) (p : ℕ) (ν : ℂ), h x = ν • x → h ((g ^ p) x) = (ν + p * c) • (g ^ p) x)
     {v : V} {ν : ℂ} (hv : h v = ν • v) : ∃ k : ℕ, (g ^ k) v = 0 := by
@@ -89,17 +113,26 @@ theorem exists_pow_apply_eq_zero_of_shift [FiniteDimensional ℂ V] (g : V →�
   exact not_finite ℕ
 
 include hhe in
+/--
+@isnad1 id=ex.2h5v.s9.4cdd144e46c2 from=translated src=- shape=ac2195f3 vocab=02a7e40e
+-/
 theorem exists_pow_e_apply_eq_zero [FiniteDimensional ℂ V] {v : V} {ν : ℂ} (hv : h v = ν • v) : ∃ k : ℕ, (e ^ k) v = 0 :=
   exists_pow_apply_eq_zero_of_shift e 2 two_ne_zero
     (fun x p μ hx => by rw [h_e_pow_of_weight hhe hx p]; congr 1; ring) hv
 
 include hhf in
+/--
+@isnad1 id=ex.2h5v.s9.74efa7e37385 from=translated src=- shape=4320df2f vocab=77d849c7
+-/
 theorem exists_pow_f_apply_eq_zero [FiniteDimensional ℂ V] {v : V} {ν : ℂ} (hv : h v = ν • v) : ∃ k : ℕ, (f ^ k) v = 0 :=
   exists_pow_apply_eq_zero_of_shift f (-2) (by norm_num)
     (fun x p μ hx => by rw [h_f_pow_of_weight hhf hx p]; congr 1; ring) hv
 
 include hhf hef in
 
+/--
+@isnad1 id=eq.4h7v.s10.bc1764b2630b from=translated src=- shape=488d072d vocab=0f5507a8
+-/
 theorem e_f_pow_succ {z : V} {μ : ℂ} (hz : h z = μ • z) (hfe : f (e z) = 0) (j : ℕ) :
     e ((f ^ (j + 1)) z) = (((j : ℂ) + 1) * (μ - (j : ℂ))) • (f ^ j) z := by
   induction j with
@@ -111,6 +144,9 @@ theorem e_f_pow_succ {z : V} {μ : ℂ} (hz : h z = μ • z) (hfe : f (e z) = 0
 
 include hhf hef in
 
+/--
+@isnad1 id=ex.5h6v.s10.98943834199a from=translated src=- shape=ce4c6555 vocab=37860942
+-/
 theorem weight_nat [FiniteDimensional ℂ V] {z : V} {μ : ℂ} (hz : h z = μ • z) (hfe : f (e z) = 0)
     (hz0 : z ≠ 0) : ∃ n : ℕ, μ = n ∧ (f ^ (n + 1)) z = 0 ∧ ∀ p : ℕ, p ≤ n → (f ^ p) z ≠ 0 := by
   classical
@@ -131,6 +167,9 @@ theorem weight_nat [FiniteDimensional ℂ V] {z : V} {μ : ℂ} (hz : h z = μ �
 
 def κ (n q j : ℕ) : ℂ := ∏ l ∈ Finset.range j, ((((q + l : ℕ) : ℂ) + 1) * ((n : ℂ) - ((q + l : ℕ) : ℂ)))
 
+/--
+@isnad1 id=ne.1h3v.s5.90afbac3e7a6 from=translated src=- shape=68fdfaa4 vocab=f7375ff9
+-/
 theorem κ_ne_zero {n q j : ℕ} (hqj : q + j ≤ n) : κ n q j ≠ 0 := by
   unfold κ
   rw [Finset.prod_ne_zero_iff]
@@ -143,6 +182,9 @@ theorem κ_ne_zero {n q j : ℕ} (hqj : q + j ≤ n) : κ n q j ≠ 0 := by
     exact_mod_cast (ne_of_gt this)
 
 include hhf hef in
+/--
+@isnad1 id=eq.4h8v.s10.6eec64006bd1 from=translated src=- shape=074f57b8 vocab=af81ed38
+-/
 theorem e_pow_f_pow {t : V} {n : ℕ} (ht : h t = (n : ℂ) • t) (het : e t = 0) (q j : ℕ) :
     (e ^ j) ((f ^ (q + j)) t) = κ n q j • (f ^ q) t := by
   induction j with
@@ -153,6 +195,9 @@ theorem e_pow_f_pow {t : V} {n : ℕ} (ht : h t = (n : ℂ) • t) (het : e t = 
     congr 1; push_cast; ring
 
 include hhf hef in
+/--
+@isnad1 id=eq.5h8v.s10.c888f822caf6 from=translated src=- shape=5b525546 vocab=bbf8158c
+-/
 theorem e_pow_f_pow_eq_zero {t : V} {n : ℕ} (ht : h t = (n : ℂ) • t) (het : e t = 0) {p j : ℕ} (hpj : p < j) :
     (e ^ j) ((f ^ p) t) = 0 := by
   obtain ⟨d, rfl⟩ : ∃ d, j = p + 1 + d := ⟨j - (p + 1), by omega⟩
@@ -161,12 +206,18 @@ theorem e_pow_f_pow_eq_zero {t : V} {n : ℕ} (ht : h t = (n : ℂ) • t) (het 
     Module.End.mul_apply, het, map_zero, smul_zero]
 
 include hhe in
+/--
+@isnad1 id=eq.2h4v.s9.7a9ce5bb0b50 from=translated src=- shape=38bb2fc3 vocab=4e9f7d10
+-/
 theorem e_h_eq_zero {x : V} (hx : e x = 0) : e (h x) = 0 := by
   have := h_e_apply hhe x
   rw [hx, map_zero, smul_zero, add_zero] at this
   exact this.symm
 
 include hhe in
+/--
+@isnad1 id=ex.2h3v.s9.2c8a0ed4df5c from=translated src=- shape=8286f380 vocab=f32bd7bc
+-/
 theorem exists_eigenbasis_ker [FiniteDimensional ℂ V] (hdiag : ⨆ μ : ℂ, Module.End.eigenspace h μ = ⊤) :
     ∃ (r : ℕ) (t : Fin r → V) (w : Fin r → ℂ),
       (∀ i, t i ≠ 0 ∧ e (t i) = 0 ∧ h (t i) = w i • t i) ∧
@@ -221,6 +272,9 @@ theorem exists_eigenbasis_ker [FiniteDimensional ℂ V] (hdiag : ⨆ μ : ℂ, M
     exact Submodule.sum_mem _ fun i _ => Submodule.smul_mem _ _ (Submodule.subset_span ⟨i, rfl⟩)
 
 include hhf hef in
+/--
+@isnad1 id=linearin.5h7v.s10.b183246b30b7 from=translated src=- shape=d4c58524 vocab=481c96cd
+-/
 theorem strings_linearIndependent {r : ℕ} {t : Fin r → V} {n : Fin r → ℕ}
     (ht : ∀ i, h (t i) = (n i : ℂ) • t i) (het : ∀ i, e (t i) = 0) (hli : LinearIndependent ℂ t) :
     LinearIndependent ℂ (fun x : (Σ i : Fin r, Fin (n i + 1)) => (f ^ (x.2 : ℕ)) (t x.1)) := by
@@ -282,6 +336,9 @@ theorem strings_linearIndependent {r : ℕ} {t : Fin r → V} {n : Fin r → ℕ
         rw [hp]; exact h1
       · exact absurd h1 (κ_ne_zero (by simpa using hkn))
 
+/--
+@isnad1 id=eq.2h7v.s9.cf8a3807bdc0 from=translated src=- shape=a3967640 vocab=7cd9f934
+-/
 theorem proj {ι : Type} [Fintype ι] (u : ι → V) (wt : ι → ℂ) (hu : ∀ x, h (u x) = wt x • u x) (a : ι → ℂ)
     (μ : ℂ) (hμ : h (∑ x, a x • u x) = μ • ∑ x, a x • u x) :
     ∑ x ∈ Finset.univ.filter (fun x => wt x = μ), a x • u x = ∑ x, a x • u x := by
@@ -310,6 +367,9 @@ theorem proj {ι : Type} [Fintype ι] (u : ι → V) (wt : ι → ℂ) (hu : ∀
   rw [← hsplit, hy0, add_zero]
 
 include hhe hhf hef in
+/--
+@isnad1 id=eq.8h7v.s10.6dabb42d05d3 from=translated src=- shape=06977ee1 vocab=c28fce11
+-/
 theorem strings_span [FiniteDimensional ℂ V] (hdiag : ⨆ μ : ℂ, Module.End.eigenspace h μ = ⊤)
     {r : ℕ} {t : Fin r → V} {n : Fin r → ℕ}
     (ht : ∀ i, h (t i) = (n i : ℂ) • t i) (het : ∀ i, e (t i) = 0)
@@ -431,6 +491,9 @@ theorem strings_span [FiniteDimensional ℂ V] (hdiag : ⨆ μ : ℂ, Module.End
     exact absurd (by exact_mod_cast this : n x.1 + N + 2 = 0) (by omega)
 
 include hhe hhf hef in
+/--
+@isnad1 id=ex.4h4v.s11.cb375e6949f7 from=translated src=- shape=80ea8359 vocab=1583258e
+-/
 theorem main [FiniteDimensional ℂ V] (hdiag : ⨆ μ : ℂ, Module.End.eigenspace h μ = ⊤) :
     ∃ (r : ℕ) (t : Fin r → V) (n : Fin r → ℕ),
       (∀ i, e (t i) = 0 ∧ h (t i) = (n i : ℂ) • t i ∧ (f ^ (n i + 1)) (t i) = 0) ∧
@@ -454,6 +517,9 @@ end Ws26.Sl2Strings
 
 end
 
+/--
+@isnad1 id=ex.4h4v.s11.6c32abf0c6ca from=translated src=- shape=502227fd vocab=1583258e
+-/
 theorem solution
     (V : Type) [AddCommGroup V] [Module ℂ V] [FiniteDimensional ℂ V]
     (e f h : V →ₗ[ℂ] V)

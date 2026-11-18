@@ -8,12 +8,18 @@ namespace P2MW.S_ModularCurve_isIntegral_adjoin_of_isIntegral_adjoin_coeffMap
 
 open ModularCurve
 
+/--
+@isnad1 id=eq.0h2v.s8.cc8f87e4f19d from=translated src=- shape=0782e67a vocab=bc2c5aef
+-/
 theorem laurent_algebraMap_apply {R : Type*} [Field R] (c : R) :
     algebraMap R (LaurentSeries R) c = HahnSeries.single 0 c := by
   have h1 : algebraMap R (PowerSeries R) c = PowerSeries.C c := by simp
   rw [HahnSeries.algebraMap_apply', h1, HahnSeries.ofPowerSeries_C]
   rfl
 
+/--
+@isnad1 id=isintegr.1h5v.s11.b54ccf8eafc0 from=translated src=- shape=b7b48c95 vocab=ad975b2b
+-/
 theorem solution {k L : Type*} [Field k]
     [Field L] (σ : k →+* L) (j x : LaurentSeries k)
     (h : IsIntegral (Algebra.adjoin L ({coeffMap σ j} : Set (LaurentSeries L))) (coeffMap σ x)) :

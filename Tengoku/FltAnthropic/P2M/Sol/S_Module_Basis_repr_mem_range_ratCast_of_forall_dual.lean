@@ -11,6 +11,9 @@ open scoped BigOperators
 
 namespace RatCoords
 
+/--
+@isnad1 id=ex.1h6v.s8.58e594e52f13 from=translated src=- shape=d421f88e vocab=9869eae7
+-/
 theorem exists_sum_smul_eq_of_algebraMap {K : Type*} [Field K] [Algebra K ℂ]
     {ι E : Type*} [Fintype ι] [Fintype E]
     (col : ι → E → K) (β : E → K) (c : ι → ℂ)
@@ -63,6 +66,9 @@ theorem exists_sum_smul_eq_of_algebraMap {K : Type*} [Field K] [Algebra K ℂ]
   rw [h4] at h3
   exact h3
 
+/--
+@isnad1 id=ex.1h3v.s8.5736938e6b0c from=translated src=- shape=f2fa4b84 vocab=a61e04ac
+-/
 theorem exists_finset_separating {V : Type*} [AddCommGroup V] [Module ℂ V]
     [Module.Finite ℂ V] [Module.Free ℂ V]
     {A : Type*} (φ : A → V →ₗ[ℂ] ℂ) (hinj : ∀ x : V, (∀ a : A, φ a x = 0) → x = 0) :
@@ -78,6 +84,9 @@ theorem exists_finset_separating {V : Type*} [AddCommGroup V] [Module ℂ V]
   · intro ψ χ _ _ hψ hχ; simp [hψ, hχ]
   · intro r ψ _ hψ; simp [hψ]
 
+/--
+@isnad1 id=mem.3h7v.s8.871df9871048 from=translated src=- shape=c168903c vocab=8278bd5b
+-/
 theorem main
     {ι : Type*} [Fintype ι] {V : Type*} [AddCommGroup V] [Module ℂ V]
     (b : Module.Basis ι ℂ V) {A : Type*} (φ : A → V →ₗ[ℂ] ℂ)
@@ -136,6 +145,9 @@ theorem main
 
 end RatCoords
 
+/--
+@isnad1 id=mem.3h7v.s8.871df9871048 from=translated src=- shape=c168903c vocab=8278bd5b
+-/
 theorem solution
     {ι : Type*} [Fintype ι] {V : Type*} [AddCommGroup V] [Module ℂ V]
     (b : Module.Basis ι ℂ V) {A : Type*} (φ : A → V →ₗ[ℂ] ℂ)

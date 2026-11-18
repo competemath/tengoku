@@ -19,6 +19,9 @@ export _root_.ModularCurve (qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd q
 namespace CosetQParamAux
 open _root_.ModularCurve
 
+/--
+@isnad1 id=eq.2h5v.s7.b57081537165 from=translated src=- shape=71d31115 vocab=f728da56
+-/
 theorem qParam_coset {N a b d : ℕ} (hN : N ≠ 0) (had : a * d = N) (τ : ℂ) :
     Function.Periodic.qParam 1 ((a * τ + b) / d)
       = Complex.exp (2 * Real.pi * Complex.I / N) ^ (a * b) * Function.Periodic.qParam N τ ^ (a * a) := by
@@ -41,6 +44,9 @@ theorem qParam_coset {N a b d : ℕ} (hN : N ≠ 0) (had : a * d = N) (τ : ℂ)
 end ModularCurve.CosetQParamAux
 
 open ModularCurve.CosetQParamAux UpperHalfPlane in
+/--
+@isnad1 id=hassum.4h8v.s8.1dadaf978a09 from=translated src=- shape=6b80a7ad vocab=41a028dc
+-/
 theorem solution {N a b d : ℕ} (hN : N ≠ 0) (had : a * d = N)
     [NeZero a] (ζ : ℂˣ) (hζ : (ζ : ℂ) = Complex.exp (2 * Real.pi * Complex.I / N))
     (S : LaurentSeries ℂ) (τ : ℂ) (x : ℂ)

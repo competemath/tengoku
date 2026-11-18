@@ -123,6 +123,9 @@ private theorem ModularCurve.qExpansionDiffAlong_smul_map {K F F' L : Type*} [Fi
 
 open scoped _root_.ModularCurve in
 
+/--
+@isnad1 id=eq.0h7v.s10.457c7a51e89f from=translated src=- shape=118cb345 vocab=fcb73566
+-/
 theorem solution {K F F' L : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F'] [Field L] [Algebra K L] (σ : F' →ₐ[K] LaurentSeries L) (h : F') (ω : Ω[F⁄K]) : qExpansionDiffAlong σ (h • KaehlerDifferential.map K K F F' ω) = σ h * qExpansionDiffAlong (σ.comp (IsScalarTower.toAlgHom K F F')) ω :=
   ModularCurve.qExpansionDiffAlong_smul_map σ h ω
 

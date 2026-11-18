@@ -14,6 +14,9 @@ open _root_.Module.End open _root_.Module
 
 open _root_.Module open _root_.P2MW.S_Module_End_exists_forall_apply_eq_smul_of_pairwise_commute.Module open _root_.Submodule
 
+/--
+@isnad1 id=ex.1h4v.s8.c43d521c0f1b from=translated src=- shape=f34f4405 vocab=1f55df96
+-/
 theorem exists_forall_apply_eq_smul_of_pairwise_commute'
     {K V : Type*} [Field K] [IsAlgClosed K] [AddCommGroup V] [Module K V]
     [FiniteDimensional K V] [Nontrivial V]
@@ -91,6 +94,9 @@ theorem exists_forall_apply_eq_smul_of_pairwise_commute'
 
 end Module.End
 
+/--
+@isnad1 id=ex.1h4v.s8.c43d521c0f1b from=translated src=- shape=f34f4405 vocab=1f55df96
+-/
 theorem solution
     {K V : Type*} [Field K] [IsAlgClosed K] [AddCommGroup V] [Module K V]
     [FiniteDimensional K V] [Nontrivial V]

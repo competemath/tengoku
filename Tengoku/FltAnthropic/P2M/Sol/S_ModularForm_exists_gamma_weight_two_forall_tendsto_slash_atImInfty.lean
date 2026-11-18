@@ -22,32 +22,62 @@ variable {N : ℕ}
 abbrev redN (N : ℕ) (γ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) (ZMod N) :=
   ((γ : SL(2, ZMod N)) : Matrix (Fin 2) (Fin 2) (ZMod N))
 
+/--
+@isnad1 id=eq.0h4v.s7.9e44d353c63a from=translated src=- shape=08c9a90c vocab=1e4e1edf
+-/
 theorem redN_apply (γ : SL(2, ℤ)) (i j : Fin 2) : redN N γ i j = ((γ i j : ℤ) : ZMod N) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.62e31c2b42f5 from=translated src=- shape=96f4848b vocab=7c54fcc2
+-/
 theorem redN_mul (γ δ : SL(2, ℤ)) : redN N (γ * δ) = redN N γ * redN N δ := by
   simp [redN, Matrix.SpecialLinearGroup.coe_mul]
 
+/--
+@isnad1 id=eq.0h1v.s7.6f327d1bdba4 from=translated src=- shape=4a4f560f vocab=9f2878a4
+-/
 theorem redN_one : redN N 1 = 1 := by simp [redN]
 
+/--
+@isnad1 id=eq.0h4v.s8.3828d7c8c672 from=translated src=- shape=9a054c12 vocab=926b8672
+-/
 theorem vecMul_redN_mul (b : Fin 2 → ZMod N) (γ δ : SL(2, ℤ)) :
     b ᵥ* redN N (γ * δ) = (b ᵥ* redN N γ) ᵥ* redN N δ := by
   rw [redN_mul, Matrix.vecMul_vecMul]
 
+/--
+@isnad1 id=eq.0h2v.s6.fde5ed13e88d from=translated src=- shape=8c4bd4aa vocab=dfb02b58
+-/
 theorem vecMul_redN_one (b : Fin 2 → ZMod N) : b ᵥ* redN N 1 = b := by rw [redN_one, Matrix.vecMul_one]
 
+/--
+@isnad1 id=eq.0h3v.s7.c89a5682cb39 from=translated src=- shape=2ac81dd5 vocab=06c07072
+-/
 theorem vecMul_redN_mul_inv (b : Fin 2 → ZMod N) (γ : SL(2, ℤ)) : (b ᵥ* redN N γ) ᵥ* redN N γ⁻¹ = b := by
   rw [← vecMul_redN_mul, mul_inv_cancel, vecMul_redN_one]
 
+/--
+@isnad1 id=eq.0h3v.s7.8311076016ad from=translated src=- shape=aa4475a6 vocab=06c07072
+-/
 theorem vecMul_redN_inv_mul (b : Fin 2 → ZMod N) (γ : SL(2, ℤ)) : (b ᵥ* redN N γ⁻¹) ᵥ* redN N γ = b := by
   rw [← vecMul_redN_mul, inv_mul_cancel, vecMul_redN_one]
 
+/--
+@isnad1 id=eq.1h2v.s8.a7d556158795 from=translated src=- shape=bdfebd5b vocab=f8c1e900
+-/
 theorem redN_of_mem_Gamma {γ : SL(2, ℤ)} (hγ : γ ∈ Γ(N)) : redN N γ = 1 := by
   rw [redN, Gamma_mem'.mp hγ]; rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.68dbc0a91553 from=translated src=- shape=271ce12c vocab=fa71449e
+-/
 theorem vecMul_zero_s (s : ZMod N) (M : Matrix (Fin 2) (Fin 2) (ZMod N)) : ![0, s] ᵥ* M = ![s * M 1 0, s * M 1 1] := by
   funext j
   fin_cases j <;> simp [Matrix.vecMul, dotProduct, Fin.sum_univ_two]
 
+/--
+@isnad1 id=ex.2h3v.s10.0b0436acb4ff from=translated src=- shape=f09e1921 vocab=1bd5a0b8
+-/
 theorem exists_mem_Gamma_of_vecMul_eq (δ : SL(2, ℤ)) (s : ℤ) (hs : s = 1 ∨ s = -1)
     (h : ![0, 1] ᵥ* redN N δ = ![0, (s : ZMod N)]) :
     ∃ (ε : SL(2, ℤ)) (κ : SL(2, ℤ)) (j : ℤ), (ε = 1 ∨ ε = -1) ∧ κ ∈ Γ(N) ∧ δ = ε * κ * ModularGroup.T ^ j := by
@@ -100,6 +130,9 @@ section W
 
 variable (N) [NeZero N]
 
+/--
+@isnad1 id=linearin.0h1v.s6.7933d861fb0f from=translated src=- shape=5dd7ed49 vocab=129793df
+-/
 lemma indep_tau (τ : ℍ) : LinearIndependent ℝ ![(τ : ℂ), 1] := by
   rw [LinearIndependent.pair_iff]
   intro s t h
@@ -117,6 +150,9 @@ lemma indep_tau (τ : ℍ) : LinearIndependent ℝ ![(τ : ℂ), 1] := by
 
 def Lτ (τ : ℍ) : PeriodPair := ⟨(τ : ℂ), 1, indep_tau τ⟩
 
+/--
+@isnad1 id=and.0h1v.s4.5319c9a57380 from=translated src=- shape=b4a93845 vocab=078372cb
+-/
 lemma hLτ : ∀ τ : ℍ, (Lτ τ).ω₁ = (τ : ℂ) ∧ (Lτ τ).ω₂ = 1 := fun _ => ⟨rfl, rfl⟩
 
 def W (b : Fin 2 → ZMod N) : ℍ → ℂ := fun τ => (Lτ τ).weierstrassP ((((b 0).val : ℂ) * (τ : ℂ) + (b 1).val) / N)
@@ -129,6 +165,9 @@ def cst (b : Fin 2 → ZMod N) : ℂ := -((π : ℂ) ^ 2 / 3) + g N b
 
 variable {N}
 
+/--
+@isnad1 id=and.0h2v.s9.14c0e202892e from=translated src=- shape=c8e0aaff vocab=cfb73776
+-/
 theorem card_W (b : Fin 2 → ZMod N) :
     (∃ F : ModularForm Γ(N) 2, ⇑F = W N b) ∧
     (∀ γ : SL(2, ℤ), W N b ∣[(2 : ℤ)] γ = W N (b ᵥ* redN N γ)) ∧
@@ -139,13 +178,25 @@ theorem card_W (b : Fin 2 → ZMod N) :
 
 def MF (b : Fin 2 → ZMod N) : ModularForm Γ(N) 2 := (card_W b).1.choose
 
+/--
+@isnad1 id=eq.0h2v.s8.9ce279789ea9 from=translated src=- shape=0e66b7c5 vocab=9280677a
+-/
 theorem coe_MF (b : Fin 2 → ZMod N) : ⇑(MF b) = W N b := (card_W b).1.choose_spec
 
+/--
+@isnad1 id=eq.0h3v.s7.2b1cf43630ed from=translated src=- shape=48d64c00 vocab=dd978c85
+-/
 theorem W_slash (b : Fin 2 → ZMod N) (γ : SL(2, ℤ)) : W N b ∣[(2 : ℤ)] γ = W N (b ᵥ* redN N γ) := (card_W b).2.1 γ
 
+/--
+@isnad1 id=tendsto.1h2v.s6.94024a668b10 from=translated src=- shape=cfbeddfd vocab=cf28f887
+-/
 theorem tendsto_W {b : Fin 2 → ZMod N} (hb : b ≠ 0) : Tendsto (W N b) atImInfty (𝓝 (cst N b)) := (card_W b).2.2 hb
 
 omit [NeZero N] in
+/--
+@isnad1 id=ne.1h3v.s7.d24299e6ceab from=translated src=- shape=5b871e55 vocab=dfb02b58
+-/
 theorem vecMul_ne_zero {b : Fin 2 → ZMod N} (hb : b ≠ 0) (γ : SL(2, ℤ)) : b ᵥ* redN N γ ≠ 0 := by
   intro h
   apply hb
@@ -163,6 +214,9 @@ def e (N : ℕ) : Fin 2 → ZMod N := ![0, 1]
 def u (N : ℕ) (σ : SL(2, ℤ)) : Fin 2 → ZMod N := e N ᵥ* redN N σ⁻¹
 
 omit [NeZero N] in
+/--
+@isnad1 id=eq.0h2v.s6.8523ecaef9ff from=translated src=- shape=5a184871 vocab=6bab4fbb
+-/
 theorem smul_e (t : ZMod N) : t • e N = ![0, t] := by
   funext i; fin_cases i <;> simp [e]
 
@@ -171,6 +225,9 @@ theorem eq_vec (c : Fin 2 → ZMod N) : c = ![c 0, c 1] := by
   funext i; fin_cases i <;> simp
 
 omit [NeZero N] in
+/--
+@isnad1 id=eq.0h3v.s8.ab13a2409cc4 from=translated src=- shape=f7ae1ab1 vocab=c610b95c
+-/
 theorem u_vecMul (σ ρ : SL(2, ℤ)) : u N σ ᵥ* redN N ρ = e N ᵥ* redN N (σ⁻¹ * ρ) := by
   rw [u, vecMul_redN_mul]
 
@@ -180,10 +237,16 @@ def vecMulEquiv (σ : SL(2, ℤ)) : (Fin 2 → ZMod N) ≃ (Fin 2 → ZMod N) wh
   left_inv b := vecMul_redN_mul_inv b σ
   right_inv b := vecMul_redN_inv_mul b σ
 
+/--
+@isnad1 id=eq.0h3v.s7.5f02a36d90f0 from=translated src=- shape=41fa39ab vocab=07109f77
+-/
 theorem sum_vecMul_eq (F : (Fin 2 → ZMod N) → ℂ) (σ : SL(2, ℤ)) :
     ∑ b, F (b ᵥ* redN N σ) = ∑ b, F b :=
   Fintype.sum_equiv (vecMulEquiv σ) _ _ fun _ => rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.d4fd7222d389 from=translated src=- shape=be6c90cd vocab=396d18fb
+-/
 theorem sum_g_vecMul (d : (Fin 2 → ZMod N) → ℂ) (σ : SL(2, ℤ)) :
     ∑ b, d b * g N (b ᵥ* redN N σ) = ∑ t : ZMod N, f N t * d (t • u N σ) := by
 
@@ -213,6 +276,9 @@ def d₀ (b : Fin 2 → ZMod N) : ℂ := if h : b 0 = 0 ∧ IsUnit (b 1) then hK
 
 def n (N : ℕ) (σ ρ : SL(2, ℤ)) : ℕ := (if u N σ ᵥ* redN N ρ = e N then 1 else 0) + (if u N σ ᵥ* redN N ρ = -e N then 1 else 0)
 
+/--
+@isnad1 id=eq.0h3v.s8.496dc52e6dbc from=translated src=- shape=1dd513c3 vocab=285c148b
+-/
 theorem sum_dite_isUnit (F : (ZMod N)ˣ → ℂ) (G : ZMod N → ℂ) :
     ∑ t : ZMod N, G t * (if h : IsUnit t then F h.unit else 0) = ∑ t : (ZMod N)ˣ, G t * F t := by
   classical
@@ -237,6 +303,9 @@ theorem sum_dite_isUnit (F : (ZMod N)ˣ → ℂ) (G : ZMod N → ℂ) :
 
 variable {hK}
 
+/--
+@isnad1 id=eq.1h4v.s9.d701192584f2 from=translated src=- shape=41c90bc0 vocab=648655bc
+-/
 theorem sum_d₀ (hK_spec : ∀ s : (ZMod N)ˣ,
       ∑ t : (ZMod N)ˣ, f N (t : ZMod N) * hK (t * s) = (if s = 1 then 1 else 0) + (if s = -1 then 1 else 0))
     (σ ρ : SL(2, ℤ)) :
@@ -324,6 +393,9 @@ theorem sum_d₀ (hK_spec : ∀ s : (ZMod N)ˣ,
     rw [n, ite_eq_right hne1, ite_eq_right hne2]
     simp
 
+/--
+@isnad1 id=eq.3h4v.s9.07524d4db907 from=translated src=- shape=c4835e45 vocab=fc34c8dd
+-/
 theorem apply_eq_of_n_ne_zero (v : SL(2, ℤ) → ℂ)
     (hv : ∀ (σ γ : SL(2, ℤ)), γ ∈ Γ(N) → ∀ j : ℤ, v (γ * σ * ModularGroup.T ^ j) = v σ)
     (hneg : ∀ σ : SL(2, ℤ), v (-σ) = v σ) {σ ρ : SL(2, ℤ)} (h : n N σ ρ ≠ 0) : v ρ = v σ := by
@@ -358,6 +430,9 @@ section Count
 
 variable [NeZero N]
 
+/--
+@isnad1 id=normal.0h1v.s5.d5f3e4de1d3f from=translated src=- shape=88879285 vocab=98d65396
+-/
 scoped instance normalGamma (N : ℕ) : (Γ(N)).Normal := Gamma_normal N
 
 scoped instance fintypeQuot (N : ℕ) [NeZero N] : Fintype (SL(2, ℤ) ⧸ Γ(N)) := Subgroup.fintypeQuotientOfFiniteIndex
@@ -367,13 +442,22 @@ def ρq (q : SL(2, ℤ) ⧸ Γ(N)) : SL(2, ℤ) := q.out⁻¹
 def Mcount (N : ℕ) [NeZero N] (σ : SL(2, ℤ)) : ℕ := ∑ q : SL(2, ℤ) ⧸ Γ(N), n N σ (ρq q)
 
 omit [NeZero N] in
+/--
+@isnad1 id=eq.0h3v.s8.03ef0de4552b from=translated src=- shape=9307f264 vocab=f5189aa1
+-/
 theorem n_eq_n_one (σ ρ : SL(2, ℤ)) : n N σ ρ = n N 1 (σ⁻¹ * ρ) := by
   simp only [n, u_vecMul, inv_one, one_mul]
 
 omit [NeZero N] in
+/--
+@isnad1 id=eq.1h3v.s8.063b5bf8889d from=translated src=- shape=b8649014 vocab=3355f0ce
+-/
 theorem n_one_mul_of_mem {γ : SL(2, ℤ)} (hγ : γ ∈ Γ(N)) (ρ : SL(2, ℤ)) : n N 1 (γ * ρ) = n N 1 ρ := by
   simp only [n, u_vecMul, inv_one, one_mul, redN_mul, redN_of_mem_Gamma hγ, one_mul]
 
+/--
+@isnad1 id=ex.0h3v.s10.ba74600e20e3 from=translated src=- shape=8641da62 vocab=84797e54
+-/
 theorem ρq_mul_mk (q : SL(2, ℤ) ⧸ Γ(N)) (σ : SL(2, ℤ)) :
     ∃ γ : SL(2, ℤ), γ ∈ Γ(N) ∧ ρq (q * QuotientGroup.mk σ) = γ * (σ⁻¹ * ρq q) := by
   have hq : q * (QuotientGroup.mk σ : SL(2, ℤ) ⧸ Γ(N)) = QuotientGroup.mk (q.out * σ) := by
@@ -384,6 +468,9 @@ theorem ρq_mul_mk (q : SL(2, ℤ) ⧸ Γ(N)) (σ : SL(2, ℤ)) :
   rw [ρq, ρq, hq, hγ]
   group
 
+/--
+@isnad1 id=eq.0h2v.s6.b133a7878145 from=translated src=- shape=f9b0fe1a vocab=036d4b82
+-/
 theorem Mcount_eq (σ : SL(2, ℤ)) : Mcount N σ = Mcount N 1 := by
   unfold Mcount
   have h1 : ∀ q : SL(2, ℤ) ⧸ Γ(N), n N σ (ρq q) = n N 1 (ρq (q * QuotientGroup.mk σ)) := by
@@ -395,6 +482,9 @@ theorem Mcount_eq (σ : SL(2, ℤ)) : Mcount N σ = Mcount N 1 := by
   simp_rw [h2, ← n_eq_n_one]
   exact Fintype.sum_equiv (Equiv.mulRight (QuotientGroup.mk σ : SL(2, ℤ) ⧸ Γ(N))) _ _ fun q => rfl
 
+/--
+@isnad1 id=lt.0h1v.s6.a05274ac6142 from=translated src=- shape=121c1164 vocab=1b84a210
+-/
 theorem Mcount_pos : 0 < Mcount N 1 := by
   unfold Mcount
   have hq : 0 < n N 1 (ρq (QuotientGroup.mk 1 : SL(2, ℤ) ⧸ Γ(N))) := by
@@ -410,6 +500,9 @@ section Main
 
 variable [NeZero N]
 
+/--
+@isnad1 id=eq.0h5v.s7.71c55d9fc952 from=translated src=- shape=47599ed6 vocab=2dc95a7b
+-/
 theorem finset_sum_slash {ι : Type*} (s : Finset ι) (F : ι → ℍ → ℂ) (γ : SL(2, ℤ)) (k : ℤ) :
     (∑ i ∈ s, F i) ∣[k] γ = ∑ i ∈ s, F i ∣[k] γ := by
   classical
@@ -433,6 +526,9 @@ theorem eq_zero_of_one (hN : N = 1) (v : SL(2, ℤ) → ℂ)
   have hcard : (Fintype.card (SL(2, ℤ) ⧸ Γ(1)) : ℂ) ≠ 0 := Nat.cast_ne_zero.mpr Fintype.card_ne_zero
   exact (mul_eq_zero.mp hsum).resolve_left hcard
 
+/--
+@isnad1 id=ex.3h2v.s10.c352b9a53ab7 from=translated src=- shape=f9b18cb1 vocab=7c1c1121
+-/
 theorem main (v : SL(2, ℤ) → ℂ)
     (hv : ∀ (σ γ : SL(2, ℤ)), γ ∈ Γ(N) → ∀ j : ℤ, v (γ * σ * ModularGroup.T ^ j) = v σ)
     (hneg : ∀ σ : SL(2, ℤ), v (-σ) = v σ)
@@ -541,6 +637,9 @@ open scoped _root_.P2MW.S_ModularForm_exists_gamma_weight_two_forall_tendsto_sla
 end
 open scoped _root_.P2MW.S_ModularForm_exists_gamma_weight_two_forall_tendsto_slash_atImInfty.EIS2K5
 
+/--
+@isnad1 id=ex.3h2v.s10.c352b9a53ab7 from=translated src=- shape=f9b18cb1 vocab=7c1c1121
+-/
 theorem solution (N : ℕ) [NeZero N] (v : SL(2, ℤ) → ℂ)
     (hv : ∀ (σ γ : SL(2, ℤ)), γ ∈ CongruenceSubgroup.Gamma N → ∀ j : ℤ, v (γ * σ * ModularGroup.T ^ j) = v σ)
     (hneg : ∀ σ : SL(2, ℤ), v (-σ) = v σ)

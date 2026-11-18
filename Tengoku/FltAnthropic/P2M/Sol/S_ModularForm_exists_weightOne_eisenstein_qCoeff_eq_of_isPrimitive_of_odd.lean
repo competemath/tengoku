@@ -23,6 +23,9 @@ section arith
 
 variable {L : ℕ} [NeZero L]
 
+/--
+@isnad1 id=le.1h2v.s5.cf60b022fa7e from=translated src=- shape=4b660174 vocab=7b369845
+-/
 lemma three_le (χ : DirichletCharacter ℂ L) (hodd : χ.Odd) : 3 ≤ L := by
   by_contra h
   have hL : L = 1 ∨ L = 2 := by
@@ -34,11 +37,17 @@ lemma three_le (χ : DirichletCharacter ℂ L) (hodd : χ.Odd) : 3 ≤ L := by
   rw [hneg, map_one] at h1
   norm_num at h1
 
+/--
+@isnad1 id=factorst.1h3v.s6.a121c2027624 from=translated src=- shape=07dca48e vocab=2b60be2b
+-/
 lemma factorsThrough_inv (χ : DirichletCharacter ℂ L) {d : ℕ} (h : χ.FactorsThrough d) :
     χ⁻¹.FactorsThrough d := by
   obtain ⟨hd, χ₀, hχ₀⟩ := h
   exact ⟨hd, χ₀⁻¹, by rw [hχ₀, map_inv]⟩
 
+/--
+@isnad1 id=eq.0h2v.s6.9244905376ac from=translated src=- shape=2adde425 vocab=0c5badae
+-/
 lemma conductor_inv (χ : DirichletCharacter ℂ L) : χ⁻¹.conductor = χ.conductor := by
   have hset : χ⁻¹.conductorSet = χ.conductorSet := by
     ext d
@@ -49,6 +58,9 @@ lemma conductor_inv (χ : DirichletCharacter ℂ L) : χ⁻¹.conductor = χ.con
     · exact factorsThrough_inv χ
   rw [DirichletCharacter.conductor, DirichletCharacter.conductor, hset]
 
+/--
+@isnad1 id=isprimit.1h2v.s6.7cb5a95ced74 from=translated src=- shape=0d96559c vocab=aab8b366
+-/
 lemma isPrimitive_inv (χ : DirichletCharacter ℂ L) (hχ : χ.IsPrimitive) : χ⁻¹.IsPrimitive := by
   rw [DirichletCharacter.isPrimitive_def, conductor_inv]
   exact hχ
@@ -57,6 +69,9 @@ abbrev ψL (L : ℕ) [NeZero L] : AddChar (ZMod L) ℂ := ZMod.stdAddChar
 
 def gs (χ : DirichletCharacter ℂ L) : ℂ := gaussSum χ⁻¹ (ψL L)
 
+/--
+@isnad1 id=eq.1h3v.s7.410812974041 from=translated src=- shape=7c8ef0bf vocab=baf41718
+-/
 lemma sum_inv_mul_psi (χ : DirichletCharacter ℂ L) (hχ : χ.IsPrimitive) (a : ZMod L) :
     ∑ b : ZMod L, χ⁻¹ b * ψL L (b * a) = χ a * gs χ := by
   have h := gaussSum_mulShift_of_isPrimitive (ψL L) (isPrimitive_inv χ hχ) a
@@ -65,6 +80,9 @@ lemma sum_inv_mul_psi (χ : DirichletCharacter ℂ L) (hχ : χ.IsPrimitive) (a 
   refine Finset.sum_congr rfl fun b _ => ?_
   rw [AddChar.mulShift_apply, mul_comm a b]
 
+/--
+@isnad1 id=ne.1h2v.s5.1e5b2b618875 from=translated src=- shape=6f8d7430 vocab=3b9e33b4
+-/
 lemma gaussSum_ne_zero_of_isPrimitive (φ : DirichletCharacter ℂ L) (hφ : φ.IsPrimitive) :
     gaussSum φ (ψL L) ≠ 0 := by
   intro h0
@@ -78,9 +96,15 @@ lemma gaussSum_ne_zero_of_isPrimitive (φ : DirichletCharacter ℂ L) (hφ : φ.
   simp only [Pi.zero_apply, neg_neg, map_one, smul_eq_mul, mul_one] at h3
   exact (NeZero.ne (L : ℂ)) h3.symm
 
+/--
+@isnad1 id=ne.1h2v.s5.fc2ee6145318 from=translated src=- shape=f5f85db6 vocab=800f87df
+-/
 lemma gs_ne_zero (χ : DirichletCharacter ℂ L) (hχ : χ.IsPrimitive) : gs χ ≠ 0 :=
   gaussSum_ne_zero_of_isPrimitive χ⁻¹ (isPrimitive_inv χ hχ)
 
+/--
+@isnad1 id=ne.1h2v.s6.f7583a0baeea from=translated src=- shape=05cbb105 vocab=e2061a7f
+-/
 lemma inv_ne_one (χ : DirichletCharacter ℂ L) (hodd : χ.Odd) : χ⁻¹ ≠ 1 := by
   intro h
   have : χ = 1 := by rw [← inv_inv χ, h, inv_one]
@@ -88,14 +112,23 @@ lemma inv_ne_one (χ : DirichletCharacter ℂ L) (hodd : χ.Odd) : χ⁻¹ ≠ 1
   rw [this, MulChar.one_apply (isUnit_one.neg)] at h1
   norm_num at h1
 
+/--
+@isnad1 id=eq.1h2v.s6.ecfb0f3f958b from=translated src=- shape=86029e5a vocab=df67fd90
+-/
 lemma sum_inv_eq_zero (χ : DirichletCharacter ℂ L) (hodd : χ.Odd) : ∑ b : ZMod L, χ⁻¹ b = 0 :=
   MulChar.sum_eq_zero_of_ne_one (inv_ne_one χ hodd)
 
+/--
+@isnad1 id=eq.1h3v.s7.2eae8a749755 from=translated src=- shape=4eb42acf vocab=d36ec9fb
+-/
 lemma chi_neg (χ : DirichletCharacter ℂ L) (hodd : χ.Odd) (a : ZMod L) : χ (-a) = -χ a := by
   have h1 : χ (-1) = -1 := hodd
   rw [show -a = -1 * a by ring, map_mul, h1]
   ring
 
+/--
+@isnad1 id=eq.1h4v.s7.9bdb6279cc58 from=translated src=- shape=8103c94b vocab=328b5f57
+-/
 lemma inv_mul_unit (χ : DirichletCharacter ℂ L) (b u : ZMod L) (hu : IsUnit u) :
     χ⁻¹ (b * u) * χ u = χ⁻¹ b := by
   rw [map_mul, mul_assoc]
@@ -103,6 +136,9 @@ lemma inv_mul_unit (χ : DirichletCharacter ℂ L) (b u : ZMod L) (hu : IsUnit u
     rw [← MulChar.mul_apply, inv_mul_cancel, MulChar.one_apply hu]
   rw [this, mul_one]
 
+/--
+@isnad1 id=eq.2h2v.s6.53a7be72eb49 from=translated src=- shape=faf011f2 vocab=57dcf298
+-/
 lemma sum_mul_pow_eq {x : ℂ} (hx1 : x ≠ 1) (hxL : x ^ L = 1) :
     ∑ j ∈ Finset.range L, (j : ℂ) * x ^ j = L / (x - 1) := by
   have hx : x - 1 ≠ 0 := sub_ne_zero.mpr hx1
@@ -126,6 +162,9 @@ lemma sum_mul_pow_eq {x : ℂ} (hx1 : x ≠ 1) (hxL : x ^ L = 1) :
     ring
   rw [this, hgeom, mul_zero, sub_zero]
 
+/--
+@isnad1 id=eq.1h2v.s7.27e41d364aee from=translated src=- shape=1d7417d6 vocab=c36e324e
+-/
 lemma pi_cot_eq_sum (b : ZMod L) (hb : b ≠ 0) :
     (π : ℂ) * Complex.cot (π * (b.val : ℂ) / L) =
       π * I + 2 * π * I / L * ∑ j ∈ Finset.range L, (j : ℂ) * ψL L (b * (j : ZMod L)) := by
@@ -187,6 +226,9 @@ def E0 (τ : ℍ) : ℂ := ∑ b : ZMod L, χ⁻¹ b * eisensteinG1 L (vb L b) �
 
 variable {L}
 
+/--
+@isnad1 id=not.1h2v.s5.f0a0403d1ca4 from=translated src=- shape=66fd71ba vocab=51d35a45
+-/
 lemma vb_not_dvd {b : ZMod L} (hb : b ≠ 0) : ¬ ∀ i, (L : ℤ) ∣ vb L b i := by
   intro h
   have h1 : (L : ℤ) ∣ (b.val : ℤ) := by simpa [vb] using h 1
@@ -194,11 +236,17 @@ lemma vb_not_dvd {b : ZMod L} (hb : b ≠ 0) : ¬ ∀ i, (L : ℤ) ∣ vb L b i 
   have h3 : b.val = 0 := Nat.eq_zero_of_dvd_of_lt h2 (ZMod.val_lt b)
   exact hb ((ZMod.val_eq_zero b).mp h3)
 
+/--
+@isnad1 id=eq.1h2v.s6.85ac812f0445 from=translated src=- shape=00e22b2e vocab=6ed67e1e
+-/
 lemma inv_zero_eq (hL : 3 ≤ L) : χ⁻¹ (0 : ZMod L) = 0 := by
   haveI : Fact (1 < L) := ⟨by omega⟩
   apply MulChar.map_nonunit
   simp
 
+/--
+@isnad1 id=isunit.1h2v.s8.1e49f9731787 from=translated src=- shape=d5fe6e53 vocab=84f86800
+-/
 lemma isUnit_entry (γ : SL(2, ℤ)) (hγ : γ ∈ CongruenceSubgroup.Gamma0 L) : IsUnit (((γ 1 1 : ℤ) : ZMod L)) := by
   have hdet := Matrix.SpecialLinearGroup.det_coe γ
   rw [Matrix.det_fin_two] at hdet
@@ -210,6 +258,9 @@ lemma isUnit_entry (γ : SL(2, ℤ)) (hγ : γ ∈ CongruenceSubgroup.Gamma0 L) 
     exact this
   exact IsUnit.of_mul_eq_one_right _ h
 
+/--
+@isnad1 id=ex.1h3v.s9.51305291572f from=translated src=- shape=a563abc9 vocab=cba05b45
+-/
 lemma vb_vecMul_eq (γ : SL(2, ℤ)) (hγ : γ ∈ CongruenceSubgroup.Gamma0 L) (b : ZMod L) :
     ∃ w : Fin 2 → ℤ, vb L b ᵥ* (γ : Matrix (Fin 2) (Fin 2) ℤ) =
       vb L (b * ((γ 1 1 : ℤ) : ZMod L)) + (L : ℤ) • w := by
@@ -237,6 +288,9 @@ lemma vb_vecMul_eq (γ : SL(2, ℤ)) (hγ : γ ∈ CongruenceSubgroup.Gamma0 L) 
       Matrix.cons_val_one, Matrix.cons_val_fin_one, zero_mul, zero_add]
     linear_combination hw1
 
+/--
+@isnad1 id=eq.2h4v.s10.f66bb88b894b from=translated src=- shape=f05781ae vocab=bd2f59ca
+-/
 theorem E0_smul (hL : 3 ≤ L) (γ : SL(2, ℤ)) (hγ : γ ∈ CongruenceSubgroup.Gamma0 L) (τ : ℍ) :
     E0 L χ (γ • τ) = χ ((γ 1 1 : ℤ) : ZMod L) * denom γ τ * E0 L χ τ := by
   have hT := (EisensteinSeries.eisensteinG1_apply_smul_and_eisensteinG1_add L τ).1 γ
@@ -267,6 +321,9 @@ theorem E0_smul (hL : 3 ≤ L) (γ : SL(2, ℤ)) (hγ : γ ∈ CongruenceSubgrou
   refine Finset.sum_congr rfl fun b _ => ?_
   ring
 
+/--
+@isnad1 id=eq.0h2v.s10.b71efb6fc22a from=translated src=- shape=8c002090 vocab=7cd7a895
+-/
 lemma denom_eq (γ : SL(2, ℤ)) (τ : ℍ) :
     (denom γ τ : ℂ) = ((γ 1 0 : ℤ) : ℂ) * τ + ((γ 1 1 : ℤ) : ℂ) := by
   simp [ModularGroup.denom_apply]
@@ -289,6 +346,9 @@ def E0SIF (hL : 3 ≤ L) : SlashInvariantForm (CongruenceSubgroup.Gamma1 L) 1 wh
 
 variable {L}
 
+/--
+@isnad1 id=eq.0h3v.s8.25e61c6cd9c8 from=translated src=- shape=719fa338 vocab=b47404b6
+-/
 lemma E0_slash (A : SL(2, ℤ)) :
     E0 L χ ∣[(1 : ℤ)] A = fun τ => ∑ b : ZMod L,
       χ⁻¹ b * eisensteinG1 L (vb L b ᵥ* (A : Matrix (Fin 2) (Fin 2) ℤ)) τ := by
@@ -301,6 +361,9 @@ lemma E0_slash (A : SL(2, ℤ)) :
   refine Finset.sum_congr rfl fun b _ => ?_
   field_simp
 
+/--
+@isnad1 id=not.1h3v.s7.68368778e4ad from=translated src=- shape=4906ee5f vocab=9ecaea6d
+-/
 lemma not_dvd_vecMul {v : Fin 2 → ℤ} (hv : ¬ ∀ i, (L : ℤ) ∣ v i) (A : SL(2, ℤ)) :
     ¬ ∀ i, (L : ℤ) ∣ (v ᵥ* (A : Matrix (Fin 2) (Fin 2) ℤ)) i := by
   intro h
@@ -314,6 +377,9 @@ lemma not_dvd_vecMul {v : Fin 2 → ℤ} (hv : ¬ ∀ i, (L : ℤ) ∣ v i) (A :
   simp only [Matrix.vecMul, dotProduct, Fin.sum_univ_two]
   exact dvd_add ((h 0).mul_right _) ((h 1).mul_right _)
 
+/--
+@isnad1 id=isbounde.1h3v.s6.545cbdf9324a from=translated src=- shape=8ed11bb7 vocab=2c46e5e4
+-/
 theorem isBoundedAtImInfty_E0_slash (hL : 3 ≤ L) (A : SL(2, ℤ)) :
     IsBoundedAtImInfty (E0 L χ ∣[(1 : ℤ)] A) := by
   have hB := (EisensteinSeries.isBoundedAtImInfty_eisensteinG1_and_hasSum_eisensteinG1 L).1
@@ -349,6 +415,9 @@ def cb (b : ZMod L) (n : ℕ) : ℂ :=
     -(2 * π * I) / L * ∑ k ∈ n.divisors,
       (cexp (2 * π * I * ((b.val : ℤ) : ℂ) * k / L) - cexp (-(2 * π * I * ((b.val : ℤ) : ℂ) * k / L)))
 
+/--
+@isnad1 id=hassum.1h3v.s7.bab7bb8f0735 from=translated src=- shape=4afdebc6 vocab=24df9dc3
+-/
 lemma hasSum_G {b : ZMod L} (hb : b ≠ 0) (τ : ℍ) :
     HasSum (fun n : ℕ => cb b n * cexp (2 * π * I * τ) ^ n) (eisensteinG1 L (vb L b) τ) := by
   have hb' : ¬ (L : ℤ) ∣ (b.val : ℤ) := by
@@ -360,6 +429,9 @@ lemma hasSum_G {b : ZMod L} (hb : b ≠ 0) (τ : ℍ) :
 
 def A (n : ℕ) : ℂ := ∑ b : ZMod L, χ⁻¹ b * cb b n
 
+/--
+@isnad1 id=hassum.1h3v.s6.d5abbbed5f7c from=translated src=- shape=9ffb711b vocab=f55197b0
+-/
 theorem hasSum_E0 (hL : 3 ≤ L) (τ : ℍ) :
     HasSum (fun n : ℕ => A χ n * cexp (2 * π * I * τ) ^ n) (E0 L χ τ) := by
   have h : ∀ b ∈ (Finset.univ : Finset (ZMod L)),
@@ -376,6 +448,9 @@ theorem hasSum_E0 (hL : 3 ≤ L) (τ : ℍ) :
   refine Finset.sum_congr rfl fun b _ => ?_
   ring
 
+/--
+@isnad1 id=and.0h3v.s8.27f7c2a3cf1a from=translated src=- shape=0511a232 vocab=b56840f6
+-/
 lemma cexp_eq_psi (b : ZMod L) (k : ℕ) :
     cexp (2 * π * I * ((b.val : ℤ) : ℂ) * k / L) = ψL L (b * (k : ZMod L)) ∧
     cexp (-(2 * π * I * ((b.val : ℤ) : ℂ) * k / L)) = ψL L (b * (-(k : ZMod L))) := by
@@ -397,11 +472,17 @@ lemma cexp_eq_psi (b : ZMod L) (k : ℕ) :
 
 def cst (χ : DirichletCharacter ℂ L) : ℂ := -(4 * π * I) * gs χ / L
 
+/--
+@isnad1 id=ne.1h2v.s5.8b9a95d92e9d from=translated src=- shape=f5f85db6 vocab=10c5e730
+-/
 lemma cst_ne_zero (hχ : χ.IsPrimitive) : cst χ ≠ 0 := by
   have hL : (L : ℂ) ≠ 0 := by exact_mod_cast NeZero.ne L
   have hg := gs_ne_zero χ hχ
   simp [cst, hL, hg, Real.pi_ne_zero, I_ne_zero]
 
+/--
+@isnad1 id=eq.3h3v.s6.550a24e0f3f3 from=translated src=- shape=a9e94991 vocab=17e1d6dd
+-/
 theorem A_of_ne_zero (hχ : χ.IsPrimitive) (hodd : χ.Odd) {n : ℕ} (hn : n ≠ 0) :
     A χ n = cst χ * ∑ d ∈ n.divisors, χ (d : ZMod L) := by
   unfold A
@@ -422,6 +503,9 @@ theorem A_of_ne_zero (hχ : χ.IsPrimitive) (hodd : χ.Odd) {n : ℕ} (hn : n �
   refine Finset.sum_congr rfl fun k _ => ?_
   ring
 
+/--
+@isnad1 id=eq.2h2v.s7.1fd243fb7dba from=translated src=- shape=9c1b6c3a vocab=f9362fb8
+-/
 theorem A_zero (hχ : χ.IsPrimitive) (hodd : χ.Odd) :
     A χ 0 = cst χ * (-(∑ a ∈ Finset.range L, (a : ℂ) * χ (a : ZMod L)) / (2 * L)) := by
   have hL : (L : ℂ) ≠ 0 := by exact_mod_cast NeZero.ne L
@@ -465,6 +549,9 @@ theorem A_zero (hχ : χ.IsPrimitive) (hodd : χ.Odd) :
   field_simp
   ring
 
+/--
+@isnad1 id=le.0h3v.s6.4f4732055dc0 from=translated src=- shape=3979da90 vocab=b84b4ee0
+-/
 lemma norm_cb_le (b : ZMod L) (n : ℕ) : ‖cb b n‖ ≤ ‖cb b 0‖ + 4 * π * n := by
   by_cases hn : n = 0
   · subst hn; simp
@@ -498,6 +585,9 @@ lemma norm_cb_le (b : ZMod L) (n : ℕ) : ‖cb b n‖ ≤ ‖cb b 0‖ + 4 * π
 
 def K0 (L : ℕ) [NeZero L] : ℝ := ∑ b : ZMod L, ‖cb b 0‖
 
+/--
+@isnad1 id=le.0h3v.s6.1c82087507ed from=translated src=- shape=2b083222 vocab=4a8ebe0e
+-/
 lemma norm_A_le (n : ℕ) : ‖A χ n‖ ≤ K0 L + 4 * π * L * n := by
   unfold A K0
   refine (norm_sum_le _ _).trans ?_
@@ -514,6 +604,9 @@ lemma norm_A_le (n : ℕ) : ‖A χ n‖ ≤ K0 L + 4 * π * L * n := by
   ring_nf
   rfl
 
+/--
+@isnad1 id=differen.2h4v.s7.64f5f42b8866 from=translated src=- shape=b36a8d50 vocab=5884c354
+-/
 lemma differentiableOn_qseries (a : ℕ → ℂ) (K C : ℝ) (ha : ∀ n, ‖a n‖ ≤ K + C * n) {ε : ℝ}
     (hε : 0 < ε) :
     DifferentiableOn ℂ (fun w => ∑' n : ℕ, a n * cexp (2 * π * I * w) ^ n) {w | ε < w.im} := by
@@ -545,6 +638,9 @@ lemma differentiableOn_qseries (a : ℕ → ℂ) (K C : ℝ) (ha : ∀ n, ‖a n
     have h3 : 0 ≤ K + C * n := le_trans (norm_nonneg _) (ha n)
     exact mul_le_mul (ha n) h2 (by positivity) h3
 
+/--
+@isnad1 id=mdiffere.1h2v.s7.4c7196c6e80a from=translated src=- shape=14989d04 vocab=10cc7365
+-/
 theorem E0_mdifferentiable (hL : 3 ≤ L) : MDiff (E0 L χ) := by
   rw [UpperHalfPlane.mdifferentiable_iff]
   intro z hz
@@ -574,12 +670,18 @@ def E1 (τ : ℍ) : ℂ := (cst χ)⁻¹ * E0 L χ τ
 
 variable {L}
 
+/--
+@isnad1 id=eq.2h4v.s10.1a55c866287a from=translated src=- shape=f05781ae vocab=da404154
+-/
 lemma E1_smul (hL : 3 ≤ L) (γ : SL(2, ℤ)) (hγ : γ ∈ CongruenceSubgroup.Gamma0 L) (τ : ℍ) :
     E1 L χ (γ • τ) = χ ((γ 1 1 : ℤ) : ZMod L) * denom γ τ * E1 L χ τ := by
   unfold E1
   rw [E0_smul χ hL γ hγ τ]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s7.53491820e811 from=translated src=- shape=edb8ed9e vocab=8ef0dfa7
+-/
 lemma E1_slash (A : SL(2, ℤ)) : E1 L χ ∣[(1 : ℤ)] A = fun τ => (cst χ)⁻¹ * (E0 L χ ∣[(1 : ℤ)] A) τ := by
   funext τ
   simp only [ModularForm.SL_slash_apply, E1]
@@ -601,9 +703,15 @@ def E1SIF (hL : 3 ≤ L) : SlashInvariantForm (CongruenceSubgroup.Gamma1 L) 1 wh
     have hD : (denom γ τ : ℂ) ≠ 0 := denom_ne_zero _ τ
     field_simp
 
+/--
+@isnad1 id=mdiffere.1h2v.s7.f45c73dd8e3b from=translated src=- shape=14989d04 vocab=56e9f9f8
+-/
 theorem E1_mdifferentiable (hL : 3 ≤ L) : MDiff (E1 L χ) :=
   (E0_mdifferentiable χ hL).const_smul (cst χ)⁻¹
 
+/--
+@isnad1 id=isbounde.1h3v.s6.bd8e1108a9fe from=translated src=- shape=8ed11bb7 vocab=84eeb0e8
+-/
 theorem isBoundedAtImInfty_E1_slash (hL : 3 ≤ L) (A : SL(2, ℤ)) :
     IsBoundedAtImInfty (E1 L χ ∣[(1 : ℤ)] A) := by
   rw [E1_slash]
@@ -618,12 +726,21 @@ def E1MF (hL : 3 ≤ L) : ModularForm (CongruenceSubgroup.Gamma1 L) 1 where
     rw [OnePoint.isBoundedAt_iff_forall_SL2Z hc]
     exact fun γ _ => isBoundedAtImInfty_E1_slash L χ hL γ
 
+/--
+@isnad1 id=eq.1h3v.s8.c8918bf1c1b0 from=translated src=- shape=4a20b33b vocab=9a136c23
+-/
 lemma E1MF_apply (hL : 3 ≤ L) (τ : ℍ) : E1MF L χ hL τ = E1 L χ τ := rfl
 
+/--
+@isnad1 id=mem.0h1v.s7.dc80a1128265 from=translated src=- shape=8bab52d5 vocab=96cb9625
+-/
 lemma T_mem_Gamma1 : ModularGroup.T ∈ CongruenceSubgroup.Gamma1 L := by
   rw [CongruenceSubgroup.Gamma1_mem]
   simp [ModularGroup.coe_T]
 
+/--
+@isnad1 id=periodic.1h2v.s8.128ec5c102c5 from=translated src=- shape=f83e56a6 vocab=694088a9
+-/
 lemma periodic_E1MF (hL : 3 ≤ L) : Function.Periodic (⇑(E1MF L χ hL) ∘ ofComplex) (1 : ℝ) := by
   have hT : ⇑(E1MF L χ hL) ∣[(1 : ℤ)] ModularGroup.T = ⇑(E1MF L χ hL) := by
     have := SlashInvariantForm.slash_action_eqn (E1MF L χ hL)
@@ -644,6 +761,9 @@ lemma periodic_E1MF (hL : 3 ≤ L) : Function.Periodic (⇑(E1MF L χ hL) ∘ of
     simp only [Function.comp_apply]
     rw [ofComplex_apply_of_im_nonpos hw', ofComplex_apply_of_im_nonpos (not_lt.mp hw)]
 
+/--
+@isnad1 id=hassum.1h3v.s8.a717b4fcac3b from=translated src=- shape=b56c5c50 vocab=2aba2d41
+-/
 theorem hasSum_E1 (hL : 3 ≤ L) (τ : ℍ) :
     HasSum (fun n : ℕ => ((cst χ)⁻¹ * A χ n) • Function.Periodic.qParam 1 (τ : ℂ) ^ n)
       (E1MF L χ hL τ) := by
@@ -652,6 +772,9 @@ theorem hasSum_E1 (hL : 3 ≤ L) (τ : ℍ) :
   simp only [Function.Periodic.qParam, smul_eq_mul, Complex.ofReal_one, div_one]
   ring
 
+/--
+@isnad1 id=eq.1h3v.s8.0d5ea86a66d3 from=translated src=- shape=e5808a1d vocab=3f461ee6
+-/
 theorem qExpansion_coeff_E1MF (hL : 3 ≤ L) (n : ℕ) :
     (qExpansion 1 ⇑(E1MF L χ hL)).coeff n = (cst χ)⁻¹ * A χ n := by
   have hbdd : IsBoundedAtImInfty ⇑(E1MF L χ hL) := by
@@ -661,6 +784,9 @@ theorem qExpansion_coeff_E1MF (hL : 3 ≤ L) (n : ℕ) :
     analyticAt_cuspFunction_zero one_pos (periodic_E1MF L χ hL) (E1_mdifferentiable L χ hL) hbdd
   exact (qExpansion_coeff_unique (E1MF L χ hL) one_pos hA (hasSum_E1 L χ hL) n).symm
 
+/--
+@isnad1 id=ex.2h2v.s11.6db068092a42 from=translated src=- shape=77d35b4f vocab=2a0e9df0
+-/
 theorem main (hχ : χ.IsPrimitive) (hodd : χ.Odd) :
     ∃ E : ModularForm (CongruenceSubgroup.Gamma1 L) 1,
       (∀ γ : SL(2, ℤ), γ ∈ CongruenceSubgroup.Gamma0 L → ∀ τ : UpperHalfPlane,
@@ -687,6 +813,9 @@ end WZE
 
 end
 
+/--
+@isnad1 id=ex.2h2v.s11.6db068092a42 from=translated src=- shape=77d35b4f vocab=2a0e9df0
+-/
 theorem solution
     (L : ℕ) [NeZero L] (χ : DirichletCharacter ℂ L) (hχ : χ.IsPrimitive) (hodd : χ.Odd) :
     ∃ E : ModularForm (CongruenceSubgroup.Gamma1 L) 1,

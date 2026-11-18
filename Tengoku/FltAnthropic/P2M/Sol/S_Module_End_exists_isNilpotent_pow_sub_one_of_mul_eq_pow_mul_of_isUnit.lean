@@ -16,6 +16,9 @@ section AlgClosed
 variable {K : Type*} [Field K] [IsAlgClosed K] {W : Type*} [AddCommGroup W] [Module K W]
   [FiniteDimensional K W]
 
+/--
+@isnad1 id=isnilpot.1h3v.s7.88a98634bea1 from=translated src=- shape=4b7f8d06 vocab=0246fbdb
+-/
 theorem isNilpotent_of_spectrum_subset_zero (B : Module.End K W)
     (hB : spectrum K B ⊆ {0}) : IsNilpotent B := by
   classical
@@ -35,6 +38,9 @@ theorem isNilpotent_of_spectrum_subset_zero (B : Module.End K W)
   rw [hsplit.eq_prod_roots_of_monic hmonic, hrep]
   simp
 
+/--
+@isnad1 id=ex.3h4v.s9.7ad30dfa3f66 from=translated src=- shape=2401148d vocab=0f2ae0fd
+-/
 theorem exists_isNilpotent_pow_sub_one_of_forall_pow_mem (A : Module.End K W) (hA : IsUnit A)
     {q : ℕ} (hq : 2 ≤ q) (hstab : ∀ μ ∈ spectrum K A, μ ^ q ∈ spectrum K A) :
     ∃ e : ℕ, 0 < e ∧ IsNilpotent (A ^ e - 1) := by
@@ -91,6 +97,9 @@ section Descent
 
 variable {F : Type*} [Field F] {V : Type*} [AddCommGroup V] [Module F V] [FiniteDimensional F V]
 
+/--
+@isnad1 id=isnilpot.1h4v.s10.e7b64e04ea4d from=translated src=- shape=851a906d vocab=4defd177
+-/
 theorem isNilpotent_of_isNilpotent_baseChange (K : Type*) [Field K] [Algebra F K]
     (f : Module.End F V) (hf : IsNilpotent (f.baseChange K)) : IsNilpotent f := by
   rw [LinearMap.isNilpotent_iff_charpoly] at hf ⊢
@@ -103,6 +112,9 @@ end Descent
 end MonodromyEigenvalueTrick
 
 open MonodromyEigenvalueTrick in
+/--
+@isnad1 id=ex.4h5v.s9.3e9d5bb5e1a7 from=translated src=- shape=c5de62df vocab=7e254db4
+-/
 theorem solution
     {F : Type*} [Field F] {V : Type*} [AddCommGroup V] [Module F V] [FiniteDimensional F V]
     (g h : Module.End F V) (hg : IsUnit g) (hh : IsUnit h) {q : ℕ} (hq : 2 ≤ q)

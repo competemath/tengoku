@@ -465,6 +465,9 @@ open scoped _root_.P2MW.S_ModularCurve_dedekindPsi_mul_of_coprime.ModularCurve
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_dedekindPsi_mul_of_coprime.ModularCurve ModularCurve.PhiGen in
 
+/--
+@isnad1 id=eq.1h2v.s4.b51c3b378670 from=translated src=- shape=20e9f6dc vocab=c9372084
+-/
 theorem solution (M N : ℕ) (h : Nat.Coprime M N) : dedekindPsi (M * N) = dedekindPsi M * dedekindPsi N :=
   ModularCurve.dedekindPsi_mul_of_coprime M N h
 

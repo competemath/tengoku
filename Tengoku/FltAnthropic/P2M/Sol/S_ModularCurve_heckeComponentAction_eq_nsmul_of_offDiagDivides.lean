@@ -12,6 +12,9 @@ noncomputable section
 section Helpers
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
+/--
+@isnad1 id=subsingl.1h1v.s6.aa1a5e6c7713 from=translated src=- shape=724e1fdd vocab=1788fca6
+-/
 theorem characterLattice_subsingleton (hι : Fintype.card ι ≤ 1) :
     Subsingleton (characterLattice ι) := by
   constructor
@@ -26,10 +29,16 @@ theorem characterLattice_subsingleton (hι : Fintype.card ι ≤ 1) :
   simp [hD, hD']
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=surjecti.0h2v.s13.03762c42518c from=translated src=- shape=d3930f95 vocab=50c6e06a
+-/
 theorem componentGroupProj_surjective (e : ι → ℕ) :
     Function.Surjective (componentGroupProj e) :=
   Submodule.mkQ_surjective _
 
+/--
+@isnad1 id=dvd.2h5v.s5.ccabf7cb581d from=translated src=- shape=ec5520ae vocab=9d2907ae
+-/
 theorem dvd_diag_sub_of_offDiagDivides {e : ι → ℕ} {B : Matrix ι ι ℤ} {n : ℤ}
     (hrow : HeckeRowSums B n) (hdiv : HeckeOffDiagDivides e B) (i : ι) :
     (e i : ℤ) ∣ (B i i - n) := by
@@ -44,6 +53,9 @@ theorem dvd_diag_sub_of_offDiagDivides {e : ι → ℕ} {B : Matrix ι ι ℤ} {
 def etaWitness (e : ι → ℕ) (B : Matrix ι ι ℤ) (n : ℤ) (i : ι) : ι → ℤ :=
   fun k => (B i k - if k = i then n else 0) / (e i : ℤ)
 
+/--
+@isnad1 id=eq.2h6v.s6.9bac4cbf248b from=translated src=- shape=45781b68 vocab=a8eddce7
+-/
 theorem etaWitness_spec {e : ι → ℕ} {B : Matrix ι ι ℤ} {n : ℤ}
     (hrow : HeckeRowSums B n) (hdiv : HeckeOffDiagDivides e B) (i k : ι) :
     (e i : ℤ) * etaWitness e B n i k = B i k - if k = i then n else 0 := by
@@ -52,6 +64,9 @@ theorem etaWitness_spec {e : ι → ℕ} {B : Matrix ι ι ℤ} {n : ℤ}
   · simpa using dvd_diag_sub_of_offDiagDivides hrow hdiv k
   · simpa [hki] using hdiv i k (Ne.symm hki)
 
+/--
+@isnad1 id=mem.3h5v.s7.b93a229fad83 from=translated src=- shape=abb1bb95 vocab=0f00938e
+-/
 theorem etaWitness_mem_characterLattice {e : ι → ℕ} {B : Matrix ι ι ℤ} {n : ℤ}
     (he : ∀ x, 0 < e x) (hrow : HeckeRowSums B n) (hdiv : HeckeOffDiagDivides e B)
     (i : ι) : etaWitness e B n i ∈ characterLattice ι := by
@@ -67,6 +82,9 @@ theorem etaWitness_mem_characterLattice {e : ι → ℕ} {B : Matrix ι ι ℤ} 
           ite_eq_left (mem_univ i)]
     _ = 0 := by rw [hrow i]; ring
 
+/--
+@isnad1 id=eq.4h6v.s6.3b6c54e0c751 from=translated src=- shape=7a6ce855 vocab=ddae4ed2
+-/
 theorem etaWitness_gram_spec {e : ι → ℕ} {B : Matrix ι ι ℤ} {n : ℤ}
     (he : ∀ x, 0 < e x) (hrow : HeckeRowSums B n) (hsym : HeckeWeightSymm e B)
     (hdiv : HeckeOffDiagDivides e B) (i k : ι) :
@@ -87,6 +105,9 @@ def coordFunctional (j : ι) : Module.Dual ℤ (characterLattice ι) :=
   (LinearMap.proj j).domRestrict (characterLattice ι)
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.0h3v.s9.430e23f6cb20 from=translated src=- shape=cf28107f vocab=4051c384
+-/
 @[scoped simp] theorem coordFunctional_apply (j : ι) (D : characterLattice ι) :
     coordFunctional j D = D.1 j := rfl
 
@@ -109,6 +130,9 @@ theorem eq_sum_smul_basisDiff (i₀ : ι) (D : characterLattice ι) :
     rw [← Finset.sum_mul, hdeg, zero_mul]
   rw [h1, h2, sub_zero]
 
+/--
+@isnad1 id=eq.0h1v.s12.b0118323617c from=translated src=- shape=18ef16f2 vocab=3baf5380
+-/
 theorem span_coordFunctional_eq_top :
     Submodule.span ℤ (Set.range (coordFunctional (ι := ι))) = ⊤ := by
   rcases isEmpty_or_nonempty ι with hι | hι
@@ -133,6 +157,9 @@ theorem span_coordFunctional_eq_top :
     exact Submodule.sum_mem _ fun k _ =>
       Submodule.smul_mem _ _ (Submodule.subset_span ⟨k, rfl⟩)
 
+/--
+@isnad1 id=eq.4h5v.s13.f0897e9f5a31 from=translated src=- shape=df724a56 vocab=dcc81af3
+-/
 theorem gramMap_etaWitness {e : ι → ℕ} {B : Matrix ι ι ℤ} {n : ℤ}
     (he : ∀ x, 0 < e x) (hrow : HeckeRowSums B n) (hsym : HeckeWeightSymm e B)
     (hdiv : HeckeOffDiagDivides e B) (i : ι) :
@@ -155,6 +182,9 @@ theorem gramMap_etaWitness {e : ι → ℕ} {B : Matrix ι ι ℤ} {n : ℤ}
         simp only [ite_mul, zero_mul]
         rw [Finset.sum_ite_eq' univ i, ite_eq_left (mem_univ i)]
 
+/--
+@isnad1 id=mem.4h5v.s13.0a04b0eeb60e from=translated src=- shape=be833203 vocab=65fce729
+-/
 theorem etaDual_mem_range_gramMap {e : ι → ℕ} {B : Matrix ι ι ℤ} {n : ℤ}
     (he : ∀ x, 0 < e x) (hrow : HeckeRowSums B n) (hsym : HeckeWeightSymm e B)
     (hdiv : HeckeOffDiagDivides e B) (φ : Module.Dual ℤ (characterLattice ι)) :
@@ -178,6 +208,9 @@ theorem etaDual_mem_range_gramMap {e : ι → ℕ} {B : Matrix ι ι ℤ} {n : �
       rw [map_smul, smul_sub, smul_comm]
     rw [hsmul]; exact Submodule.smul_mem _ c hψ
 
+/--
+@isnad1 id=eq.4h5v.s14.f6de79ea8392 from=translated src=- shape=e4a275e8 vocab=f444553c
+-/
 theorem heckeComponentAction_eq_nsmul_of_offDiagDivides {e : ι → ℕ} {B : Matrix ι ι ℤ}
     {n : ℤ} (he : ∀ x, 0 < e x) (hrow : HeckeRowSums B n) (hsym : HeckeWeightSymm e B)
     (hdiv : HeckeOffDiagDivides e B) (x : componentGroup e) :
@@ -190,6 +223,9 @@ theorem heckeComponentAction_eq_nsmul_of_offDiagDivides {e : ι → ℕ} {B : Ma
 
 end Helpers
 
+/--
+@isnad1 id=eq.4h5v.s14.f6de79ea8392 from=translated src=- shape=e4a275e8 vocab=f444553c
+-/
 theorem solution {ι : Type*} [Fintype ι] [DecidableEq ι] {e : ι → ℕ} {B : Matrix ι ι ℤ}
     {n : ℤ} (he : ∀ x, 0 < e x) (hrow : ModularCurve.HeckeRowSums B n)
     (hsym : ModularCurve.HeckeWeightSymm e B)

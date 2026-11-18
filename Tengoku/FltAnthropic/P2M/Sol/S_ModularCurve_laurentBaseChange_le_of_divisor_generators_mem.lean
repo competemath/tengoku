@@ -14,6 +14,9 @@ open _root_.ModularCurve
 namespace ModularCurve export _root_.ModularCurve (qExpand algebraMap_apply_eq_single jq modularFunctionFieldFull coeffMap_single algebraMap_laurentSeries_eq_single coeffEmb laurentBaseChange mem_laurentBaseChange_iff) end ModularCurve
 open scoped _root_.ModularCurve in
 
+/--
+@isnad1 id=mem.3h5v.s10.68b1c5a03ccd from=translated src=- shape=21a939bb vocab=dde4b562
+-/
 theorem ModularCurve.ringHom_mem_of_mem_adjoin' {L : Type*} [Field L] (T : Subfield (LaurentSeries L))
     (g : LaurentSeries ℚ →+* LaurentSeries L)
     (hgc : ∀ c : ℚ, g (algebraMap ℚ (LaurentSeries ℚ) c) ∈ T)
@@ -26,6 +29,9 @@ theorem ModularCurve.ringHom_mem_of_mem_adjoin' {L : Type*} [Field L] (T : Subfi
   | inv x _ hx => rw [map_inv₀]; exact inv_mem hx
   | mul x y _ _ hx hy => rw [map_mul]; exact mul_mem hx hy
 
+/--
+@isnad1 id=le.1h3v.s9.b2a094810933 from=translated src=- shape=20d4cf99 vocab=c31b9cf8
+-/
 theorem solution
     (L : Type*) [Field L] [Algebra ℚ L] (M : ℕ) [NeZero M]
     (T : IntermediateField L (LaurentSeries L))

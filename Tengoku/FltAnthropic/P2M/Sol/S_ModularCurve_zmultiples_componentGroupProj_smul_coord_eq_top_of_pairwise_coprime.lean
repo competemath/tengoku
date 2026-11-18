@@ -17,6 +17,9 @@ def diffVec [DecidableEq ι] (s s₀ : ι) : characterLattice ι :=
     rw [mem_characterLattice]
     simp [Finset.sum_sub_distrib]⟩
 
+/--
+@isnad1 id=eq.0h3v.s7.419e36dd0563 from=translated src=- shape=066ba987 vocab=dcb81d4d
+-/
 @[scoped simp] theorem coe_diffVec [DecidableEq ι] (s s₀ : ι) :
     (diffVec s s₀ : ι → ℤ) = Pi.single s 1 - Pi.single s₀ 1 := rfl
 
@@ -30,6 +33,9 @@ theorem eq_sum_smul_diffVec [DecidableEq ι] (s₀ : ι) (D : characterLattice �
   ext x
   simp [Finset.sum_apply, Pi.single_apply]
 
+/--
+@isnad1 id=eq.0h4v.s10.3deff1fb6182 from=translated src=- shape=559eac4d vocab=d6516853
+-/
 theorem dual_apply_eq_sum [DecidableEq ι] (s₀ : ι) (φ : Module.Dual ℤ (characterLattice ι))
     (D : characterLattice ι) :
     φ D = ∑ s, (D : ι → ℤ) s * φ (diffVec s s₀) := by
@@ -37,6 +43,9 @@ theorem dual_apply_eq_sum [DecidableEq ι] (s₀ : ι) (φ : Module.Dual ℤ (ch
   rw [map_sum]
   exact Finset.sum_congr rfl fun s _ => by rw [map_smul, smul_eq_mul]
 
+/--
+@isnad1 id=ex.1h3v.s5.ee0a03cf7e18 from=translated src=- shape=468cd428 vocab=a8c341ad
+-/
 theorem exists_forall_dvd_sub (e : ι → ℕ) (he : Pairwise fun s t => (e s).Coprime (e t))
     (v : ι → ℤ) : ∃ c : ℤ, ∀ s, (e s : ℤ) ∣ v s - c := by
   have hI : Pairwise (Function.onFun IsCoprime fun s => Ideal.span ({(e s : ℤ)} : Set ℤ)) := by
@@ -53,8 +62,14 @@ theorem exists_forall_dvd_sub (e : ι → ℕ) (he : Pairwise fun s t => (e s).C
 abbrev coord (s₀ : ι) : Module.Dual ℤ (characterLattice ι) :=
   (LinearMap.proj s₀ : (ι → ℤ) →ₗ[ℤ] ℤ).comp (characterLattice ι).subtype
 
+/--
+@isnad1 id=eq.0h3v.s9.e8e0135519f2 from=translated src=- shape=cf28107f vocab=9c2fce7b
+-/
 theorem coord_apply (s₀ : ι) (D : characterLattice ι) : coord s₀ D = (D : ι → ℤ) s₀ := rfl
 
+/--
+@isnad1 id=ex.1h4v.s13.e81d58438911 from=translated src=- shape=8b9d7c9a vocab=6c6c5474
+-/
 theorem exists_gramMap_eq (e : ι → ℕ) (he : Pairwise fun s t => (e s).Coprime (e t))
     (s₀ : ι) (φ : Module.Dual ℤ (characterLattice ι)) :
     ∃ (k : ℤ) (D : characterLattice ι), gramMap e D = φ - k • ((e s₀ : ℤ) • coord s₀) := by
@@ -93,6 +108,9 @@ theorem exists_gramMap_eq (e : ι → ℕ) (he : Pairwise fun s t => (e s).Copri
   congr 1
   exact Finset.sum_congr rfl fun s _ => by ring
 
+/--
+@isnad1 id=eq.1h3v.s14.295610d2987f from=translated src=- shape=9fbe28d1 vocab=4aae8f0a
+-/
 theorem zmultiples_eq_top (e : ι → ℕ) (he : Pairwise fun s t => (e s).Coprime (e t)) (s₀ : ι) :
     AddSubgroup.zmultiples (componentGroupProj e ((e s₀ : ℤ) • coord s₀)) = ⊤ := by
   rw [AddSubgroup.eq_top_iff']
@@ -110,6 +128,9 @@ theorem zmultiples_eq_top (e : ι → ℕ) (he : Pairwise fun s t => (e s).Copri
 end P2mS3VertexGen
 open scoped _root_.P2MW.S_ModularCurve_zmultiples_componentGroupProj_smul_coord_eq_top_of_pairwise_coprime.P2mS3VertexGen
 
+/--
+@isnad1 id=eq.1h3v.s14.3c230d40e1f6 from=translated src=- shape=71b3c0ab vocab=bd113e4e
+-/
 theorem solution
     {ι : Type*} [Fintype ι] (e : ι → ℕ) (he : Pairwise fun s t => (e s).Coprime (e t))
     (s₀ : ι) :

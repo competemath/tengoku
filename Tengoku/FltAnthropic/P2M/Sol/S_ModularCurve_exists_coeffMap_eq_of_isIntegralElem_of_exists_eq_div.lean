@@ -26,6 +26,9 @@ private lemma isIntegrallyClosed_laurentSeries_int_s18 : IsIntegrallyClosed (Lau
   refine isIntegrallyClosed_of_isLocalization (LaurentSeries ℤ) (Submonoid.powers (PowerSeries.X : PowerSeries ℤ)) ?_
   exact powers_le_nonZeroDivisors_of_noZeroDivisors PowerSeries.X_ne_zero
 
+/--
+@isnad1 id=ex.2h1v.s9.d0dc479fb36d from=translated src=- shape=f6c6b98f vocab=ab8bb0ce
+-/
 theorem solution (y : LaurentSeries ℚ)
     (hy : ∃ a b : LaurentSeries ℤ, b ≠ 0 ∧ y = ModularCurve.coeffMap (Int.castRingHom ℚ) a / ModularCurve.coeffMap (Int.castRingHom ℚ) b)
     (hint : (ModularCurve.coeffMap (Int.castRingHom ℚ)).IsIntegralElem y) :

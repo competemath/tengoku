@@ -7,6 +7,9 @@ namespace P2MW.S_ModularCurve_twelve_mul_genusFormula
 
 open ModularCurve
 
+/--
+@isnad1 id=eq.0h1v.s6.ee60832b7a93 from=translated src=- shape=ee4844bc vocab=362af6e4
+-/
 theorem solution (N : ℕ) :
     12 * genusFormula N
       = 12 + (dedekindPsi N : ℚ) - 3 * (nuTwo N : ℚ) - 4 * (nuThree N : ℚ)

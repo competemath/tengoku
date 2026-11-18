@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_CongruenceSubgroup_closure_T_U_neg_one_eq_
 
 open scoped MatrixGroups in
 
+/--
+@isnad1 id=eq.1h1v.s9.56f1f6ec2051 from=translated src=- shape=52bc809b vocab=d2a43df6
+-/
 theorem CongruenceSubgroup.closure_T_U_neg_one_eq_Gamma0_three (U : SL(2, ℤ))
     (hU : (U : Matrix (Fin 2) (Fin 2) ℤ) = !![1, 0; -3, 1]) :
     Subgroup.closure ({ModularGroup.T, U, -1} : Set SL(2, ℤ)) = CongruenceSubgroup.Gamma0 3 := by exact @_root_.P2MW.S_CongruenceSubgroup_closure_T_U_neg_one_eq_Gamma0_three.solution U hU

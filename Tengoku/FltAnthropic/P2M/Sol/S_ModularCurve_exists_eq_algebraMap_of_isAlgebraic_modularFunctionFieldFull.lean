@@ -22,6 +22,9 @@ def v : ↥(modularFunctionFieldFull N) →+* LaurentSeries ℚ :=
   { toFun := Subtype.val, map_one' := rfl, map_mul' := fun _ _ => rfl,
     map_zero' := rfl, map_add' := fun _ _ => rfl }
 
+/--
+@isnad1 id=isalgebr.1h2v.s10.13917d7cc64f from=translated src=- shape=29e37bec vocab=2ea3b948
+-/
 theorem isAlgebraic_coe (x : ↥(modularFunctionFieldFull N)) (hx : IsAlgebraic ℚ x) :
     IsAlgebraic ℚ (x : LaurentSeries ℚ) := by
   obtain ⟨p, hp0, hpx⟩ := hx
@@ -36,6 +39,9 @@ theorem isAlgebraic_coe (x : ↥(modularFunctionFieldFull N)) (hx : IsAlgebraic 
   rw [← key, hpx]
   rfl
 
+/--
+@isnad1 id=ex.1h2v.s12.af8e908b86d3 from=translated src=- shape=67ac737e vocab=ece34815
+-/
 theorem main (x : ↥(modularFunctionFieldFull N)) (hx : IsAlgebraic ℚ x) :
     ∃ c : ℚ, x = algebraMap ℚ ↥(modularFunctionFieldFull N) c := by
   obtain ⟨c, hc⟩ := LaurentSeries.exists_eq_C_of_isAlgebraic (x : LaurentSeries ℚ) (isAlgebraic_coe N x hx)
@@ -51,6 +57,9 @@ end ModularCurve
 
 open _root_.ModularCurve open _root_.P2MW.S_ModularCurve_exists_eq_algebraMap_of_isAlgebraic_modularFunctionFieldFull.ModularCurve
 
+/--
+@isnad1 id=ex.1h2v.s12.af8e908b86d3 from=translated src=- shape=67ac737e vocab=ece34815
+-/
 theorem solution
     (N : ℕ) [NeZero N] (x : ↥(modularFunctionFieldFull N)) (hx : IsAlgebraic ℚ x) :
     ∃ c : ℚ, x = algebraMap ℚ ↥(modularFunctionFieldFull N) c :=

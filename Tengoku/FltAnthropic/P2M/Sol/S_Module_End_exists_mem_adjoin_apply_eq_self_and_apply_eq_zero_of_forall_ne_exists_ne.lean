@@ -22,11 +22,17 @@ noncomputable def factor (T : Module.End K V) (j : ι) : Module.End K V :=
   (c T i - c T j)⁻¹ • (T - c T j • (1 : Module.End K V))
 
 include hT in
+/--
+@isnad1 id=eq.3h11v.s9.81bea00ed61c from=translated src=- shape=8b59430b vocab=130aa763
+-/
 theorem factor_apply_of_mem (T : Module.End K V) (hTm : T ∈ 𝒯) (j l : ι) (v : V) (hv : v ∈ W l) :
     factor c i T j v = ((c T i - c T j)⁻¹ * (c T l - c T j)) • v := by
   simp only [factor, LinearMap.smul_apply, LinearMap.sub_apply, Module.End.one_apply, hT T hTm l v hv]
   rw [← sub_smul, smul_smul]
 
+/--
+@isnad1 id=mem.1h8v.s8.f66103928c50 from=translated src=- shape=dad1cac0 vocab=d608ef04
+-/
 theorem factor_mem (T : Module.End K V) (hTm : T ∈ 𝒯) (j : ι) :
     factor c i T j ∈ Algebra.adjoin K 𝒯 := by
   unfold factor
@@ -34,6 +40,9 @@ theorem factor_mem (T : Module.End K V) (hTm : T ∈ 𝒯) (j : ι) :
   exact Subalgebra.smul_mem _ (Subalgebra.one_mem _) _
 
 include hT hsep in
+/--
+@isnad1 id=ex.3h8v.s10.3ed2b08601f1 from=translated src=- shape=b09061db vocab=bc69be15
+-/
 theorem main_aux (s : Finset ι) (his : i ∉ s) :
     ∃ e ∈ Algebra.adjoin K 𝒯, (∀ v ∈ W i, e v = v) ∧ (∀ j ∈ s, ∀ v ∈ W j, e v = 0) ∧
       (∀ l : ι, ∀ v ∈ W l, ∃ a : K, e v = a • v) := by
@@ -67,6 +76,9 @@ theorem main_aux (s : Finset ι) (his : i ∉ s) :
 
 end M7
 
+/--
+@isnad1 id=ex.2h7v.s10.45b2990e3ff8 from=translated src=- shape=8c8ded5f vocab=75016d02
+-/
 theorem solution
     {K : Type*} [Field K] {V : Type*} [AddCommGroup V] [Module K V]
     {ι : Type*} [Fintype ι] [DecidableEq ι]

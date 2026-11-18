@@ -23,16 +23,25 @@ local notation "Δ" => ModularForm.discriminant
 
 def jf : ℍ → ℂ := fun τ => (E₄ : ℍ → ℂ) τ ^ 3 / ModularForm.discriminant τ
 
+/--
+@isnad1 id=eq.0h2v.s10.52ecc3fa1da0 from=translated src=- shape=05b466f0 vocab=9d8051c2
+-/
 lemma E₄_smul (γ : SL(2, ℤ)) (τ : ℍ) : E₄ (γ • τ) = denom γ τ ^ (4 : ℤ) * E₄ τ := by
   have h := slash_action_eqn'' (Γ := 𝒮ℒ) (k := (4 : ℤ)) E₄ (γ := (γ : GL (Fin 2) ℝ)) ⟨γ, rfl⟩ τ
   simpa [ModularGroup.sl_moeb] using h
 
+/--
+@isnad1 id=eq.0h2v.s10.7a09adf7acba from=translated src=- shape=8767563f vocab=becfccb2
+-/
 lemma Δ_smul (γ : SL(2, ℤ)) (τ : ℍ) :
     ModularForm.discriminant (γ • τ) = denom γ τ ^ (12 : ℤ) * ModularForm.discriminant τ := by
   have h := slash_action_eqn'' (Γ := 𝒮ℒ) (k := (12 : ℤ)) CuspForm.discriminant
     (γ := (γ : GL (Fin 2) ℝ)) ⟨γ, rfl⟩ τ
   simpa [ModularGroup.sl_moeb, CuspForm.coe_discriminant] using h
 
+/--
+@isnad1 id=eq.0h2v.s7.66034c4abf95 from=translated src=- shape=5b9dc79e vocab=b352cc81
+-/
 lemma jf_smul (γ : SL(2, ℤ)) (τ : ℍ) : jf (γ • τ) = jf τ := by
   simp only [jf]
   rw [E₄_smul, Δ_smul]
@@ -40,9 +49,15 @@ lemma jf_smul (γ : SL(2, ℤ)) (τ : ℍ) : jf (γ • τ) = jf τ := by
   have hΔ := discriminant_ne_zero τ
   field_simp
 
+/--
+@isnad1 id=mdiffere.0h0v.s6.4eec758b0743 from=translated src=- shape=38f10366 vocab=c1a7bcc8
+-/
 lemma mdifferentiable_jf : MDiff jf :=
   (E₄.holo'.pow 3).div CuspForm.discriminant.holo' discriminant_ne_zero
 
+/--
+@isnad1 id=eq.2h3v.s10.0e837ce1dd48 from=translated src=- shape=1d56f3e4 vocab=72767352
+-/
 lemma D_smul {F : ℍ → ℂ} (hF : MDiff F) (hinv : ∀ (γ : SL(2, ℤ)) (τ : ℍ), F (γ • τ) = F τ)
     (γ : SL(2, ℤ)) (τ : ℍ) : D F (γ • τ) = denom γ τ ^ 2 * D F τ := by
   have hdet1 : ((γ : GL (Fin 2) ℝ)).val.det = 1 := Matrix.SpecialLinearGroup.det_coe _
@@ -73,20 +88,41 @@ lemma D_smul {F : ℍ → ℂ} (hF : MDiff F) (hinv : ∀ (γ : SL(2, ℤ)) (τ 
   field_simp
   rfl
 
+/--
+@isnad1 id=mdiffere.0h0v.s8.9146da90ad2a from=translated src=- shape=d88b448d vocab=1f53e3ef
+-/
 lemma mdiff_E₄ : MDiff (E₄ : ℍ → ℂ) := E₄.holo'
+/--
+@isnad1 id=mdiffere.0h0v.s8.0f3cc9b3ce1a from=translated src=- shape=d88b448d vocab=c2bf97e9
+-/
 lemma mdiff_E₆ : MDiff (E₆ : ℍ → ℂ) := E₆.holo'
+/--
+@isnad1 id=mdiffere.0h0v.s6.9603df9502ab from=translated src=- shape=38f10366 vocab=b78e0804
+-/
 lemma mdiff_Δ : MDiff (ModularForm.discriminant : ℍ → ℂ) := CuspForm.discriminant.holo'
 
+/--
+@isnad1 id=eq.0h2v.s10.f6a9765c23f1 from=translated src=- shape=05b466f0 vocab=9d8d7f84
+-/
 lemma E₆_smul (γ : SL(2, ℤ)) (τ : ℍ) : E₆ (γ • τ) = denom γ τ ^ (6 : ℤ) * E₆ τ := by
   have h := slash_action_eqn'' (Γ := 𝒮ℒ) (k := (6 : ℤ)) E₆ (γ := (γ : GL (Fin 2) ℝ)) ⟨γ, rfl⟩ τ
   simpa [ModularGroup.sl_moeb] using h
 
+/--
+@isnad1 id=eq.0h0v.s7.56697d0a98ff from=translated src=- shape=ce6086d5 vocab=9fcdc47e
+-/
 lemma S_smul_I : ModularGroup.S • UpperHalfPlane.I = UpperHalfPlane.I :=
   ModularGroup.stabilizer_I.mpr (by simp)
 
+/--
+@isnad1 id=eq.0h0v.s8.5fafaac5c8af from=translated src=- shape=9dde3bfb vocab=6ef97c9c
+-/
 lemma TinvS_smul_ρ : (ModularGroup.T⁻¹ * ModularGroup.S) • ρ = ρ :=
   ModularGroup.stabilizer_ρ.mpr (by simp)
 
+/--
+@isnad1 id=eq.0h0v.s8.e6e3ed7f7b7d from=translated src=- shape=dfce2f6e vocab=bd8df4c4
+-/
 lemma E₆_I : E₆ UpperHalfPlane.I = 0 := by
   have h := E₆_smul ModularGroup.S UpperHalfPlane.I
   rw [S_smul_I, ModularGroup.denom_S, UpperHalfPlane.coe_I] at h
@@ -97,6 +133,9 @@ lemma E₆_I : E₆ UpperHalfPlane.I = 0 := by
   rw [hI6] at h
   linear_combination h / 2
 
+/--
+@isnad1 id=eq.0h0v.s10.7fd6fc27855b from=translated src=- shape=d26311f6 vocab=5ac3dc1d
+-/
 lemma denom_TinvS_ρ : denom (↑(ModularGroup.T⁻¹ * ModularGroup.S) : GL (Fin 2) ℝ) ρ = (ρ : ℂ) := by
   rw [ModularGroup.denom_apply]
   have h10 : (ModularGroup.T⁻¹ * ModularGroup.S) 1 0 = 1 := by
@@ -110,6 +149,9 @@ lemma denom_TinvS_ρ : denom (↑(ModularGroup.T⁻¹ * ModularGroup.S) : GL (Fi
   rw [h10, h11]
   simp
 
+/--
+@isnad1 id=ne.0h0v.s3.0674096d7506 from=translated src=- shape=b0ae1d2b vocab=c77a25d1
+-/
 lemma ρ_ne_one : (ρ : ℂ) ≠ 1 := by
   intro h
   have := congrArg Complex.im h
@@ -117,6 +159,9 @@ lemma ρ_ne_one : (ρ : ℂ) ≠ 1 := by
   simp at this
   exact ρ.im_pos.ne' this
 
+/--
+@isnad1 id=eq.0h0v.s8.0472104708bc from=translated src=- shape=dfce2f6e vocab=de526d7d
+-/
 lemma E₄_ρ : E₄ ρ = 0 := by
   have h := E₄_smul (ModularGroup.T⁻¹ * ModularGroup.S) ρ
   rw [TinvS_smul_ρ, denom_TinvS_ρ] at h
@@ -129,31 +174,52 @@ lemma E₄_ρ : E₄ ρ = 0 := by
   · exact absurd (sub_eq_zero.mp h1) ρ_ne_one
   · exact h1
 
+/--
+@isnad1 id=ne.0h0v.s8.650b4df497cb from=translated src=- shape=dfce2f6e vocab=8aac5a83
+-/
 lemma E₄_I_ne_zero : E₄ UpperHalfPlane.I ≠ 0 := by
   intro h
   have hΔ := discriminant_ne_zero UpperHalfPlane.I
   rw [discriminant_eq_E₄_cube_sub_E₆_sq, h, E₆_I] at hΔ
   norm_num at hΔ
 
+/--
+@isnad1 id=ne.0h0v.s8.f6fabe076ab3 from=translated src=- shape=dfce2f6e vocab=c96e8b00
+-/
 lemma E₆_ρ_ne_zero : E₆ ρ ≠ 0 := by
   intro h
   have hΔ := discriminant_ne_zero ρ
   rw [discriminant_eq_E₄_cube_sub_E₆_sq, h, E₄_ρ] at hΔ
   norm_num at hΔ
 
+/--
+@isnad1 id=eq.0h0v.s3.e469bae19384 from=translated src=- shape=b0ae1d2b vocab=89ada41a
+-/
 lemma jf_ρ : jf ρ = 0 := by simp [jf, E₄_ρ]
 
+/--
+@isnad1 id=ne.0h0v.s3.5e19603e16bf from=translated src=- shape=b0ae1d2b vocab=90116a3e
+-/
 lemma jf_I_ne_zero : jf UpperHalfPlane.I ≠ 0 :=
   div_ne_zero (pow_ne_zero _ E₄_I_ne_zero) (discriminant_ne_zero _)
 
+/--
+@isnad1 id=iff.0h2v.s9.9174e9c0c6c6 from=translated src=- shape=fde551af vocab=d169c01a
+-/
 lemma E₄_smul_eq_zero_iff (γ : SL(2, ℤ)) (τ : ℍ) : E₄ (γ • τ) = 0 ↔ E₄ τ = 0 := by
   rw [E₄_smul, mul_eq_zero, or_iff_right]
   exact zpow_ne_zero _ (denom_ne_zero _ _)
 
+/--
+@isnad1 id=iff.0h2v.s9.8da3905cbaea from=translated src=- shape=fde551af vocab=83e32abf
+-/
 lemma E₆_smul_eq_zero_iff (γ : SL(2, ℤ)) (τ : ℍ) : E₆ (γ • τ) = 0 ↔ E₆ τ = 0 := by
   rw [E₆_smul, mul_eq_zero, or_iff_right]
   exact zpow_ne_zero _ (denom_ne_zero _ _)
 
+/--
+@isnad1 id=eq.0h0v.s8.3a8fe3da3555 from=translated src=- shape=26ad8fcd vocab=cce45046
+-/
 lemma natCard_stabilizer_I : Nat.card (MulAction.stabilizer SL(2, ℤ) UpperHalfPlane.I) = 4 := by
   rw [Nat.card_congr (Equiv.subtypeEquivRight
     (q := fun g => g ∈ ({1, -1, ModularGroup.S, -ModularGroup.S} : Finset SL(2, ℤ)))
@@ -161,6 +227,9 @@ lemma natCard_stabilizer_I : Nat.card (MulAction.stabilizer SL(2, ℤ) UpperHalf
     Nat.card_eq_finsetCard]
   decide
 
+/--
+@isnad1 id=eq.0h0v.s8.be1be65b3152 from=translated src=- shape=26ad8fcd vocab=4e7a9486
+-/
 lemma natCard_stabilizer_ρ : Nat.card (MulAction.stabilizer SL(2, ℤ) ρ) = 6 := by
   rw [Nat.card_congr (Equiv.subtypeEquivRight
     (q := fun g => g ∈ ({1, -1, ModularGroup.S * ModularGroup.T, -(ModularGroup.S * ModularGroup.T),
@@ -169,11 +238,17 @@ lemma natCard_stabilizer_ρ : Nat.card (MulAction.stabilizer SL(2, ℤ) ρ) = 6 
     Nat.card_eq_finsetCard]
   decide
 
+/--
+@isnad1 id=eq.0h2v.s9.026ad1a9ebfd from=translated src=- shape=a51f510b vocab=218db66f
+-/
 lemma natCard_stabilizer_smul (γ : SL(2, ℤ)) (τ : ℍ) :
     Nat.card (MulAction.stabilizer SL(2, ℤ) (γ • τ)) =
       Nat.card (MulAction.stabilizer SL(2, ℤ) τ) :=
   (Nat.card_congr (MulAction.stabilizerEquivStabilizer (rfl : γ • τ = γ • τ)).toEquiv).symm
 
+/--
+@isnad1 id=or.0h1v.s9.cd2e974fbf67 from=translated src=- shape=d1a11499 vocab=87503245
+-/
 lemma orbit_trichotomy (τ : ℍ) :
     (∃ γ : SL(2, ℤ), τ = γ • UpperHalfPlane.I) ∨ (∃ γ : SL(2, ℤ), τ = γ • ρ) ∨
       (∀ g : SL(2, ℤ), g • τ = τ → g = 1 ∨ g = -1) := by
@@ -196,6 +271,9 @@ lemma orbit_trichotomy (τ : ℍ) :
     have := congrArg (fun x => g₀⁻¹ * x * g₀) h1
     simpa [mul_assoc] using this
 
+/--
+@isnad1 id=eq.1h1v.s9.80eea5e27a26 from=translated src=- shape=b8cccfc9 vocab=9569a2ef
+-/
 lemma natCard_stabilizer_eq_two {τ : ℍ} (h : ∀ g : SL(2, ℤ), g • τ = τ → g = 1 ∨ g = -1) :
     Nat.card (MulAction.stabilizer SL(2, ℤ) τ) = 2 := by
   have hiff : ∀ g : SL(2, ℤ), g ∈ MulAction.stabilizer SL(2, ℤ) τ ↔
@@ -210,6 +288,9 @@ lemma natCard_stabilizer_eq_two {τ : ℍ} (h : ∀ g : SL(2, ℤ), g • τ = �
     (q := fun g => g ∈ ({1, -1} : Finset SL(2, ℤ))) hiff), Nat.card_eq_finsetCard]
   decide
 
+/--
+@isnad1 id=le.3h4v.s7.aad7103ab7b4 from=translated src=- shape=93afdb0c vocab=735ee495
+-/
 lemma norm_deriv_le {G : ℍ → ℂ} (hG : MDiff G) {M A : ℝ}
     (hM : ∀ z : ℍ, A ≤ z.im → ‖G z‖ ≤ M) (z : ℍ) (hz : max A 0 + 1 < z.im) :
     ‖deriv (G ∘ ofComplex) z‖ ≤ M := by
@@ -241,6 +322,9 @@ lemma norm_deriv_le {G : ℍ → ℂ} (hG : MDiff G) {M A : ℝ}
     linarith
   simpa using Complex.norm_deriv_le_of_forall_mem_sphere_norm_le one_pos hd hC
 
+/--
+@isnad1 id=le.0h2v.s6.530a884d4aeb from=translated src=- shape=6774fbd6 vocab=3788a4fe
+-/
 lemma norm_D_le_norm_deriv (G : ℍ → ℂ) (z : ℍ) : ‖D G z‖ ≤ ‖deriv (G ∘ ofComplex) z‖ := by
   rw [normalizedDerivOfComplex, norm_mul]
   refine mul_le_of_le_one_left (norm_nonneg _) ?_
@@ -250,6 +334,9 @@ lemma norm_D_le_norm_deriv (G : ℍ → ℂ) (z : ℍ) : ‖D G z‖ ≤ ‖deri
     abs_of_pos Real.pi_pos, Complex.norm_I, mul_one]
   nlinarith [Real.pi_gt_three]
 
+/--
+@isnad1 id=isbounde.2h1v.s6.88f2e4311033 from=translated src=- shape=7e37206b vocab=1624b6c6
+-/
 lemma isBoundedAtImInfty_D {G : ℍ → ℂ} (hG : MDiff G) (hb : IsBoundedAtImInfty G) :
     IsBoundedAtImInfty (D G) := by
   rw [isBoundedAtImInfty_iff] at hb ⊢
@@ -257,6 +344,9 @@ lemma isBoundedAtImInfty_D {G : ℍ → ℂ} (hG : MDiff G) (hb : IsBoundedAtImI
   refine ⟨M, max A 0 + 2, fun z hz => (norm_D_le_norm_deriv G z).trans ?_⟩
   exact norm_deriv_le hG hM z (by linarith)
 
+/--
+@isnad1 id=iszeroat.2h1v.s7.ed429be9fba6 from=translated src=- shape=7e37206b vocab=089f5245
+-/
 lemma isZeroAtImInfty_D {G : ℍ → ℂ} (hG : MDiff G) (hb : IsZeroAtImInfty G) :
     IsZeroAtImInfty (D G) := by
   rw [isZeroAtImInfty_iff] at hb ⊢
@@ -265,6 +355,9 @@ lemma isZeroAtImInfty_D {G : ℍ → ℂ} (hG : MDiff G) (hb : IsZeroAtImInfty G
   refine ⟨max A 0 + 2, fun z hz => (norm_D_le_norm_deriv G z).trans ?_⟩
   exact norm_deriv_le hG hA z (by linarith)
 
+/--
+@isnad1 id=eq.0h0v.s9.8a922c3d2ea1 from=translated src=- shape=7143025a vocab=1e2593e5
+-/
 lemma D_jf_mul_Δ_sq :
     (fun z => D jf z * Δ z ^ 2) = D ((E₄ : ℍ → ℂ) ^ 3) * Δ - (E₄ : ℍ → ℂ) ^ 3 * D Δ := by
   have hprod : jf * Δ = (E₄ : ℍ → ℂ) ^ 3 := by
@@ -281,6 +374,9 @@ lemma D_jf_mul_Δ_sq :
   field_simp [discriminant_ne_zero z]
   ring
 
+/--
+@isnad1 id=iszeroat.0h0v.s5.2938bc0912a7 from=translated src=- shape=8621ffca vocab=5f93b75d
+-/
 lemma isZeroAtImInfty_D_jf_mul_Δ_sq : IsZeroAtImInfty (fun z => D jf z * Δ z ^ 2) := by
   rw [D_jf_mul_Δ_sq]
   have hE : MDiff ((E₄ : ℍ → ℂ) ^ 3) := E₄.holo'.pow 3
@@ -298,6 +394,9 @@ lemma isZeroAtImInfty_D_jf_mul_Δ_sq : IsZeroAtImInfty (fun z => D jf z * Δ z ^
   simp at h__af
   exact h__af
 
+/--
+@isnad1 id=eq.0h1v.s7.629065e9fbf5 from=translated src=- shape=e7db7f69 vocab=ee0cfef9
+-/
 lemma D_jf_mul_Δ_sq_slash (γ : SL(2, ℤ)) :
     (fun z => D jf z * Δ z ^ 2) ∣[(26 : ℤ)] γ = fun z => D jf z * Δ z ^ 2 := by
   funext z
@@ -321,11 +420,17 @@ def h26 : CuspForm 𝒮ℒ 26 where
     rw [D_jf_mul_Δ_sq_slash γ]
     exact isZeroAtImInfty_D_jf_mul_Δ_sq
 
+/--
+@isnad1 id=eq.0h1v.s8.b6d75c6aba0a from=translated src=- shape=eeda038a vocab=6e856ee5
+-/
 lemma h26_apply (z : ℍ) : h26 z = D jf z * Δ z ^ 2 := rfl
 
 def g14 : ModularForm 𝒮ℒ ((14 : ℕ) : ℤ) :=
   (CuspForm.discriminantEquiv h26).mcast (by norm_num)
 
+/--
+@isnad1 id=eq.0h1v.s8.9caaf8712189 from=translated src=- shape=903233ff vocab=70eec3ce
+-/
 lemma g14_apply (z : ℍ) : g14 z = D jf z * Δ z := by
   change (CuspForm.discriminantEquiv h26) z = _
   rw [CuspForm.discriminantEquiv_apply, h26_apply, pow_two, ← mul_assoc,
@@ -333,35 +438,62 @@ lemma g14_apply (z : ℍ) : g14 z = D jf z * Δ z := by
 
 def e14 : ModularForm 𝒮ℒ ((14 : ℕ) : ℤ) := ((E₄.mul E₄).mul E₆).mcast (by norm_num)
 
+/--
+@isnad1 id=eq.0h1v.s9.a9b244d7433b from=translated src=- shape=02a34e6c vocab=4a917d7c
+-/
 lemma e14_apply (z : ℍ) : e14 z = E₄ z ^ 2 * E₆ z := by
   change (E₄ z * E₄ z) * E₆ z = _
   rw [pow_two]
 
+/--
+@isnad1 id=eq.0h0v.s9.a78a55f25721 from=translated src=- shape=0a458c89 vocab=f5069600
+-/
 lemma finrank_fourteen : Module.finrank ℂ (ModularForm 𝒮ℒ ((14 : ℕ) : ℤ)) = 1 := by
   have h := ModularForm.dimension_level_one 14 (by decide)
   norm_num [Nat.ModEq] at h
   exact Module.finrank_eq_of_rank_eq h
 
+/--
+@isnad1 id=isopen.0h0v.s4.e26ef9da4148 from=translated src=- shape=fe99b8f8 vocab=1a83d814
+-/
 lemma isOpen_uhp : IsOpen {w : ℂ | 0 < w.im} := isOpen_upperHalfPlaneSet
 
+/--
+@isnad1 id=isprecon.0h0v.s4.d61867095a90 from=translated src=- shape=fe99b8f8 vocab=65a63ebb
+-/
 lemma isPreconnected_uhp : IsPreconnected {w : ℂ | 0 < w.im} :=
   (convex_halfSpace_im_gt 0).isPreconnected
 
+/--
+@isnad1 id=differen.1h1v.s7.69da6fdf471b from=translated src=- shape=93ba65f0 vocab=43c379d1
+-/
 lemma differentiableOn_comp {G : ℍ → ℂ} (hG : MDiff G) :
     DifferentiableOn ℂ (G ∘ ofComplex) {w : ℂ | 0 < w.im} :=
   UpperHalfPlane.mdifferentiable_iff.mp hG
 
+/--
+@isnad1 id=analytic.1h1v.s7.2962efa50243 from=translated src=- shape=93ba65f0 vocab=0437fed6
+-/
 lemma analyticOnNhd_comp {G : ℍ → ℂ} (hG : MDiff G) :
     AnalyticOnNhd ℂ (G ∘ ofComplex) {w : ℂ | 0 < w.im} :=
   (differentiableOn_comp hG).analyticOnNhd isOpen_uhp
 
+/--
+@isnad1 id=analytic.1h2v.s7.d303c94f62ce from=translated src=- shape=2539a356 vocab=30af0490
+-/
 lemma analyticAt_comp {G : ℍ → ℂ} (hG : MDiff G) (τ : ℍ) :
     AnalyticAt ℂ (G ∘ ofComplex) (τ : ℂ) :=
   analyticOnNhd_comp hG (τ : ℂ) τ.im_pos
 
+/--
+@isnad1 id=eq.0h2v.s5.33a9c8f05f76 from=translated src=- shape=725c437b vocab=ce37ecc2
+-/
 @[scoped simp] lemma comp_apply_coe (G : ℍ → ℂ) (τ : ℍ) : (G ∘ ofComplex) (τ : ℂ) = G τ := by
   simp [Function.comp_apply, ofComplex_apply]
 
+/--
+@isnad1 id=ne.2h3v.s7.b4115b9dadd0 from=translated src=- shape=b53ad553 vocab=f606ef5c
+-/
 lemma analyticOrderAt_ne_top {G : ℍ → ℂ} (hG : MDiff G) {z₀ : ℍ} (h0 : G z₀ ≠ 0) (τ : ℍ) :
     analyticOrderAt (G ∘ ofComplex) (τ : ℂ) ≠ ⊤ := by
   refine (analyticOnNhd_comp hG).analyticOrderAt_ne_top_of_isPreconnected isPreconnected_uhp
@@ -369,15 +501,24 @@ lemma analyticOrderAt_ne_top {G : ℍ → ℂ} (hG : MDiff G) {z₀ : ℍ} (h0 :
   rw [(analyticAt_comp hG z₀).analyticOrderAt_eq_zero.mpr (by simpa using h0)]
   exact ENat.zero_ne_top
 
+/--
+@isnad1 id=eq.2h2v.s7.7014495c2606 from=translated src=- shape=c2637cfc vocab=b10bc75a
+-/
 lemma analyticOrderAt_eq_zero_of_ne_zero {G : ℍ → ℂ} (hG : MDiff G) {τ : ℍ} (h0 : G τ ≠ 0) :
     analyticOrderAt (G ∘ ofComplex) (τ : ℂ) = 0 :=
   (analyticAt_comp hG τ).analyticOrderAt_eq_zero.mpr (by simpa using h0)
 
+/--
+@isnad1 id=eq.1h1v.s7.00759ab67059 from=translated src=- shape=b21d161e vocab=abf8817a
+-/
 lemma deriv_jf_eq (w : ℂ) (hw : 0 < w.im) :
     deriv (jf ∘ ofComplex) w = (2 * π * Complex.I) * D jf (ofComplex w) := by
   rw [normalizedDerivOfComplex, ofComplex_apply_of_im_pos hw, UpperHalfPlane.coe_mk, ← mul_assoc,
     mul_inv_cancel₀ (by simp [Real.pi_ne_zero, Complex.I_ne_zero]), one_mul]
 
+/--
+@isnad1 id=ne.0h0v.s9.7de5515173c3 from=translated src=- shape=ab8cbac2 vocab=ce4ab066
+-/
 lemma g14_ne_zero : g14 ≠ 0 := by
   intro h
   have hD : ∀ z : ℍ, D jf z = 0 := fun z => by
@@ -391,6 +532,9 @@ lemma g14_ne_zero : g14 ≠ 0 := by
   rw [comp_apply_coe, comp_apply_coe, jf_ρ] at this
   exact jf_I_ne_zero this.symm
 
+/--
+@isnad1 id=ne.0h0v.s9.8a3e723b0422 from=translated src=- shape=ab8cbac2 vocab=0d212b67
+-/
 lemma e14_ne_zero : e14 ≠ 0 := by
   intro h
   have hfun : ((E₄ : ℍ → ℂ) * (E₄ : ℍ → ℂ)) * (E₆ : ℍ → ℂ) = 0 := by
@@ -406,6 +550,9 @@ lemma e14_ne_zero : e14 ≠ 0 := by
   · exact E₄_I_ne_zero (by rw [h4]; rfl)
   · exact E₆_ρ_ne_zero (by rw [h6]; rfl)
 
+/--
+@isnad1 id=ex.0h0v.s9.50654c238332 from=translated src=- shape=b56a0b40 vocab=1426915e
+-/
 lemma exists_D_jf_mul_Δ_eq :
     ∃ c : ℂ, c ≠ 0 ∧ ∀ z : ℍ, D jf z * Δ z = c * (E₄ z ^ 2 * E₆ z) := by
   obtain ⟨c, hc⟩ := (finrank_eq_one_iff_of_nonzero' e14 e14_ne_zero).mp finrank_fourteen g14
@@ -417,6 +564,9 @@ lemma exists_D_jf_mul_Δ_eq :
   rw [zero_smul] at hc
   exact g14_ne_zero hc.symm
 
+/--
+@isnad1 id=eventual.1h2v.s10.05fb683fca52 from=translated src=- shape=33bc1663 vocab=d1cd32d2
+-/
 lemma deriv_jf_eventuallyEq {c : ℂ} (hc : ∀ z : ℍ, D jf z * Δ z = c * (E₄ z ^ 2 * E₆ z))
     (τ : ℍ) :
     deriv (jf ∘ ofComplex) =ᶠ[𝓝 (τ : ℂ)]
@@ -430,6 +580,9 @@ lemma deriv_jf_eventuallyEq {c : ℂ} (hc : ∀ z : ℍ, D jf z * Δ z = c * (E�
   rw [eq_div_iff hΔ |>.mpr h |> fun e => (e : D jf (ofComplex w) = _)]
   field_simp
 
+/--
+@isnad1 id=eq.2h2v.s10.b25ec61bc1f8 from=translated src=- shape=b6a5b195 vocab=f11f7e51
+-/
 lemma analyticOrderAt_deriv_jf {c : ℂ} (hc0 : c ≠ 0)
     (hc : ∀ z : ℍ, D jf z * Δ z = c * (E₄ z ^ 2 * E₆ z)) (τ : ℍ) :
     analyticOrderAt (deriv (jf ∘ ofComplex)) (τ : ℂ) =
@@ -449,12 +602,18 @@ lemma analyticOrderAt_deriv_jf {c : ℂ} (hc0 : c ≠ 0)
     hΔi.analyticOrderAt_eq_zero.mpr (by simpa using discriminant_ne_zero τ)]
   simp
 
+/--
+@isnad1 id=ne.1h1v.s9.3326105dda31 from=translated src=- shape=149d369d vocab=7867bb58
+-/
 lemma E₆_ne_zero_of_E₄_eq_zero {τ : ℍ} (h4 : E₄ τ = 0) : E₆ τ ≠ 0 := by
   intro h6
   have hΔ := discriminant_ne_zero τ
   rw [discriminant_eq_E₄_cube_sub_E₆_sq, h4, h6] at hΔ
   norm_num at hΔ
 
+/--
+@isnad1 id=eq.1h1v.s8.3f01912fe272 from=translated src=- shape=0e059574 vocab=276362f1
+-/
 lemma jf_eq_of_E₆_eq_zero {τ : ℍ} (h6 : E₆ τ = 0) : jf τ = 1728 := by
   have hΔ := discriminant_ne_zero τ
   have hΔ' := discriminant_eq_E₄_cube_sub_E₆_sq τ
@@ -468,6 +627,9 @@ lemma jf_eq_of_E₆_eq_zero {τ : ℍ} (h6 : E₆ τ = 0) : jf τ = 1728 := by
   rw [div_eq_iff hΔ, hΔ']
   ring
 
+/--
+@isnad1 id=eq.0h1v.s7.0fa6fe69f419 from=translated src=- shape=3128b392 vocab=fc294039
+-/
 lemma order_deriv_add_one (τ : ℍ) :
     analyticOrderAt (deriv (jf ∘ ofComplex)) (τ : ℂ) + 1 =
       analyticOrderAt (fun z : ℂ => jf (ofComplex z) - jf τ) (τ : ℂ) := by
@@ -475,6 +637,9 @@ lemma order_deriv_add_one (τ : ℍ) :
   rw [comp_apply_coe] at h
   exact h
 
+/--
+@isnad1 id=and.1h1v.s9.12020378c5b2 from=translated src=- shape=cf112827 vocab=31daeb74
+-/
 lemma case_E₄_eq_zero {τ : ℍ} (h4 : E₄ τ = 0) :
     analyticOrderAt (fun z : ℂ => jf (ofComplex z) - jf τ) (τ : ℂ) = (3 : ℕ) ∧
       Nat.card (MulAction.stabilizer SL(2, ℤ) τ) = 6 := by
@@ -510,6 +675,9 @@ lemma case_E₄_eq_zero {τ : ℍ} (h4 : E₄ τ = 0) :
       (show jf ρ = jf τ by rw [jf_ρ, hjτ])
     rw [← hγ, natCard_stabilizer_smul, natCard_stabilizer_ρ]
 
+/--
+@isnad1 id=and.1h1v.s9.938f5951255a from=translated src=- shape=cf112827 vocab=46639577
+-/
 lemma case_E₆_eq_zero {τ : ℍ} (h6 : E₆ τ = 0) :
     analyticOrderAt (fun z : ℂ => jf (ofComplex z) - jf τ) (τ : ℂ) = (2 : ℕ) ∧
       Nat.card (MulAction.stabilizer SL(2, ℤ) τ) = 4 := by
@@ -551,6 +719,9 @@ lemma case_E₆_eq_zero {τ : ℍ} (h6 : E₆ τ = 0) :
       UpperHalfPlane.I τ (show jf UpperHalfPlane.I = jf τ by rw [hjI, hjτ])
     rw [← hγ, natCard_stabilizer_smul, natCard_stabilizer_I]
 
+/--
+@isnad1 id=and.2h1v.s9.66b0e21b670d from=translated src=- shape=ade3ccbb vocab=e1329358
+-/
 lemma case_generic {τ : ℍ} (h4 : E₄ τ ≠ 0) (h6 : E₆ τ ≠ 0) :
     analyticOrderAt (fun z : ℂ => jf (ofComplex z) - jf τ) (τ : ℂ) = (1 : ℕ) ∧
       Nat.card (MulAction.stabilizer SL(2, ℤ) τ) = 2 := by
@@ -572,6 +743,9 @@ lemma case_generic {τ : ℍ} (h4 : E₄ τ ≠ 0) (h6 : E₆ τ ≠ 0) :
     · exact absurd ((E₄_smul_eq_zero_iff γ _).mpr E₄_ρ) h4
     · exact natCard_stabilizer_eq_two h
 
+/--
+@isnad1 id=ex.0h1v.s8.5d7d18ae5531 from=translated src=- shape=c2f60ad3 vocab=5b3cacd6
+-/
 lemma order_and_card (τ : ℍ) : ∃ m : ℕ,
     analyticOrderAt (fun z : ℂ => jf (ofComplex z) - jf τ) (τ : ℂ) = m ∧
       Nat.card (MulAction.stabilizer SL(2, ℤ) τ) = 2 * m := by
@@ -581,6 +755,9 @@ lemma order_and_card (τ : ℍ) : ∃ m : ℕ,
   · exact ⟨2, case_E₆_eq_zero h6⟩
   · exact ⟨1, case_generic h4 h6⟩
 
+/--
+@isnad1 id=eq.0h1v.s9.f4b5361f0412 from=translated src=- shape=2356da55 vocab=06743644
+-/
 theorem main (τ : ℍ) :
     meromorphicOrderAt
         (fun z : ℂ => (ModularForm.E₄ : ℍ → ℂ) (ofComplex z) ^ 3 /
@@ -604,6 +781,9 @@ open scoped _root_.P2MW.S_ModularCurve_meromorphicOrderAt_E4_cube_div_discrimina
 open UpperHalfPlane
 open scoped MatrixGroups
 
+/--
+@isnad1 id=eq.0h1v.s9.f4b5361f0412 from=translated src=- shape=2356da55 vocab=06743644
+-/
 theorem solution
     (τ : ℍ) :
     meromorphicOrderAt

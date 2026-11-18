@@ -38,5 +38,8 @@ private theorem ModularCurve.discriminant_slash_fricke_eq_discriminant_slash_hec
     fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two]
   rw [hW1, SlashAction.slash_mul, S09WD5.slash_mapGL, ModularForm.discriminant_S_invariant]
 
+/--
+@isnad1 id=eq.1h2v.s9.f68fd6256608 from=translated src=- shape=87a66e75 vocab=48d0bf8a
+-/
 theorem solution (p : ℕ) [NeZero p] (W : Matrix.GeneralLinearGroup (Fin 2) ℝ) (hW : ((W : Matrix.GeneralLinearGroup (Fin 2) ℝ) : Matrix (Fin 2) (Fin 2) ℝ) = !![0, -1; (p : ℝ), 0]) : ModularForm.discriminant ∣[(12 : ℤ)] W = ModularForm.discriminant ∣[(12 : ℤ)] ModularForm.heckeDiagMatrix p :=
   ModularCurve.discriminant_slash_fricke_eq_discriminant_slash_heckeDiagMatrix p W hW

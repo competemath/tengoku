@@ -15,6 +15,9 @@ set_option autoImplicit false
 namespace ModularCurve export _root_.ModularCurve (ssJSet mem_ssJSet_iff) end ModularCurve
 open scoped _root_.ModularCurve in
 
+/--
+@isnad1 id=mem.1h4v.s7.c4a94adeb6fe from=translated src=- shape=72f23406 vocab=8e742770
+-/
 theorem ModularCurve.solution_aux_ringEquiv_mem {K : Type} [Field K] [DecidableEq K] (p : ℕ)
     (σ : K ≃+* K) {a : K} (ha : a ∈ ssJSet p K) : σ a ∈ ssJSet p K := by
   rw [mem_ssJSet_iff] at ha ⊢
@@ -27,6 +30,9 @@ theorem ModularCurve.solution_aux_ringEquiv_mem {K : Type} [Field K] [DecidableE
   exact WeierstrassCurve.ratPointMap_injective (σ.symm : K →+* K)
     (h0.trans (WeierstrassCurve.ratPointMap_zero _).symm)
 
+/--
+@isnad1 id=iff.0h3v.s6.1b86f0b39833 from=translated src=- shape=5790a93b vocab=f466681a
+-/
 theorem solution {K : Type} [Field K] [DecidableEq K]
     (q : ℕ) [Fact q.Prime] [CharP K q] [PerfectField K] (a : K) :
     a ^ q ∈ ModularCurve.ssJSet q K ↔ a ∈ ModularCurve.ssJSet q K := by

@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open ModularCurve
 
+/--
+@isnad1 id=ex.2h2v.s9.4f292bb0c944 from=translated src=- shape=364c7e18 vocab=b58fa904
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime] (c : CyclotomicField q ℚ) (hc : c ∈ zetaSubring q)
     (hfix : ∀ σ : CyclotomicField q ℚ ≃ₐ[ℚ] CyclotomicField q ℚ, σ c = c) :

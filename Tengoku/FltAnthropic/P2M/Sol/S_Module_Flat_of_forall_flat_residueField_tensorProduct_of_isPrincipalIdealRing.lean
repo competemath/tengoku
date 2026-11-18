@@ -20,6 +20,9 @@ variable {R : Type u} [CommRing R] (p : Ideal R) [p.IsMaximal]
 variable (X : Type*) [CommRing X] [Algebra R X] (I : Ideal X) (hI : I = Ideal.map (algebraMap R X) p)
 
 include hI in
+/--
+@isnad1 id=le.1h4v.s11.eb961bb4d102 from=translated src=- shape=f6909723 vocab=ae8da445
+-/
 theorem map_le_ker_includeRight :
     I ≤ RingHom.ker (Algebra.TensorProduct.includeRight : X →ₐ[R] p.ResidueField ⊗[R] X).toRingHom := by
   rw [hI, Ideal.map_le_iff_le_comap]
@@ -37,9 +40,15 @@ noncomputable def fwd : (X ⧸ I) →ₐ[R] p.ResidueField ⊗[R] X :=
   Ideal.Quotient.liftₐ I (Algebra.TensorProduct.includeRight : X →ₐ[R] p.ResidueField ⊗[R] X)
     (fun a ha => map_le_ker_includeRight p X I hI ha)
 
+/--
+@isnad1 id=eq.1h5v.s10.a3d108cfd9cd from=translated src=- shape=8993245b vocab=ce996b9e
+-/
 theorem fwd_mk (x : X) : fwd p X I hI (Ideal.Quotient.mk I x) = (1 : p.ResidueField) ⊗ₜ[R] x := rfl
 
 include hI in
+/--
+@isnad1 id=le.1h4v.s7.27e189ad5845 from=translated src=- shape=3ded6ffa vocab=124c29d5
+-/
 theorem le_comap : p ≤ I.comap (Algebra.ofId R X) := by
   rw [hI]; exact Ideal.le_comap_map
 
@@ -48,6 +57,9 @@ noncomputable def bwd : p.ResidueField ⊗[R] X →ₐ[R] (X ⧸ I) :=
     ((Ideal.quotientMapₐ I (Algebra.ofId R X) (le_comap p X I hI)).comp (resEquiv p : p.ResidueField →ₐ[R] R ⧸ p))
     (Ideal.Quotient.mkₐ R I) (fun _ _ => Commute.all _ _)
 
+/--
+@isnad1 id=eq.1h5v.s10.a00fe436aa5e from=translated src=- shape=9649bc8d vocab=504a44d7
+-/
 theorem bwd_one_tmul (x : X) : bwd p X I hI ((1 : p.ResidueField) ⊗ₜ[R] x) = Ideal.Quotient.mk I x := by
   rw [bwd, Algebra.TensorProduct.lift_tmul, map_one, one_mul]
   rfl
@@ -71,8 +83,14 @@ noncomputable def fibreEquiv : (X ⧸ I) ≃ₐ[R] p.ResidueField ⊗[R] X :=
       show bwd p X I hI (fwd p X I hI (Ideal.Quotient.mk I x)) = Ideal.Quotient.mk I x
       rw [fwd_mk, bwd_one_tmul])
 
+/--
+@isnad1 id=eq.1h5v.s10.6dfd044c217c from=translated src=- shape=8993245b vocab=4c27db0b
+-/
 theorem fibreEquiv_mk (x : X) : fibreEquiv p X I hI (Ideal.Quotient.mk I x) = (1 : p.ResidueField) ⊗ₜ[R] x := rfl
 
+/--
+@isnad1 id=eq.1h5v.s11.384dbbfdd5b8 from=translated src=- shape=eda89155 vocab=ac30dd05
+-/
 theorem fibreEquiv_symm_one_tmul (x : X) :
     (fibreEquiv p X I hI).symm ((1 : p.ResidueField) ⊗ₜ[R] x) = Ideal.Quotient.mk I x := by
   rw [AlgEquiv.symm_apply_eq, fibreEquiv_mk]
@@ -88,17 +106,26 @@ variable (IA : Ideal A) (hIA : IA = Ideal.map (algebraMap R A) p)
 variable (IB : Ideal B) (hIB : IB = Ideal.map (algebraMap R B) p)
 
 include hIA hIB in
+/--
+@isnad1 id=le.2h6v.s8.9a72efd5cce7 from=translated src=- shape=dbce4453 vocab=09905f75
+-/
 theorem le_comap_AB : IA ≤ IB.comap (algebraMap A B) := by
   rw [hIA, hIB, Ideal.map_le_iff_le_comap.symm, Ideal.map_map, ← IsScalarTower.algebraMap_eq]
 
 noncomputable def quotMap : A ⧸ IA →+* B ⧸ IB :=
   Ideal.quotientMap IB (algebraMap A B) (le_comap_AB p IA hIA IB hIB)
 
+/--
+@isnad1 id=eq.2h7v.s9.5a54835bc294 from=translated src=- shape=18b53ada vocab=a9e3ac56
+-/
 theorem quotMap_mk (a : A) : quotMap p IA hIA IB hIB (Ideal.Quotient.mk IA a) = Ideal.Quotient.mk IB (algebraMap A B a) :=
   rfl
 
 include hIA hIB in
 
+/--
+@isnad1 id=flat.3h6v.s11.e06a2c129dea from=translated src=- shape=76376c01 vocab=ecd1a89a
+-/
 theorem quotMap_flat
     (hφ : (Algebra.TensorProduct.map (AlgHom.id p.ResidueField p.ResidueField)
         (IsScalarTower.toAlgHom R A B)).toRingHom.Flat) :
@@ -131,6 +158,9 @@ variable {A : Type v} [CommRing A] [Algebra R A] {B : Type w} [CommRing B] [Alge
   [Algebra A B] [IsScalarTower R A B]
 
 open scoped Pointwise in
+/--
+@isnad1 id=flat.2h4v.s12.f75152de5d92 from=translated src=- shape=c5ef4742 vocab=4a2b2ced
+-/
 theorem flat_quotSMulTop (t : R) (ht : Prime t) [(Ideal.span {t}).IsPrime]
     (hφ : (Algebra.TensorProduct.map (AlgHom.id (Ideal.span {t}).ResidueField (Ideal.span {t}).ResidueField)
         (IsScalarTower.toAlgHom R A B)).toRingHom.Flat) :
@@ -184,6 +214,9 @@ variable {A : Type v} [CommRing A] [Algebra R A] {B : Type w} [CommRing B] [Alge
 
 omit [IsPrincipalIdealRing R] in
 
+/--
+@isnad1 id=flat.0h1v.s9.5d5578a7a52e from=translated src=- shape=b466ad11 vocab=a104ae66
+-/
 theorem flat_residueField_bot : Module.Flat R (⊥ : Ideal R).ResidueField := by
   haveI : Module.Flat R (R ⧸ (⊥ : Ideal R)) :=
     Module.Flat.of_linearEquiv (Submodule.quotEquivOfEqBot (⊥ : Ideal R) rfl)
@@ -191,6 +224,9 @@ theorem flat_residueField_bot : Module.Flat R (⊥ : Ideal R).ResidueField := by
     IsLocalization.flat _ (nonZeroDivisors (R ⧸ (⊥ : Ideal R)))
   exact Module.Flat.trans R (R ⧸ (⊥ : Ideal R)) _
 
+/--
+@isnad1 id=flat.1h3v.s11.1391a16c9b24 from=translated src=- shape=7942bf70 vocab=0ffc2f43
+-/
 theorem main
     (hfib : ∀ (p : Ideal R) [p.IsPrime],
       (Algebra.TensorProduct.map (AlgHom.id p.ResidueField p.ResidueField)
@@ -307,6 +343,9 @@ end Main
 
 end L2
 
+/--
+@isnad1 id=flat.1h3v.s11.1391a16c9b24 from=translated src=- shape=7942bf70 vocab=0ffc2f43
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsDomain R] [IsPrincipalIdealRing R]
     {A : Type v} [CommRing A] [Algebra R A] {B : Type w} [CommRing B] [Algebra R B]

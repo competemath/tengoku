@@ -16,6 +16,9 @@ set_option autoImplicit false
 open ModularCurve AlgebraicCurve
 open scoped TensorProduct
 
+/--
+@isnad1 id=and.1h4v.s18.e0736efa536f from=translated src=- shape=a364649e vocab=525edc1d
+-/
 theorem ModularCurve.chartRing_laurentBaseChange_le_span_coeffEmb_chartAlg
     (F₀ : IntermediateField ℚ (LaurentSeries ℚ)) (p : ℕ) (j : ↥F₀) [Fact (j ≠ 0)]
     (jb : ↥(laurentBaseChange (AlgebraicClosure ℚ) F₀))

@@ -35,6 +35,9 @@ noncomputable def pointMap {L : Type*} [Field L] [DecidableEq L] (W : Weierstras
       rw [Affine.Point.add_some hxy, Affine.Point.add_some hxy']
       simp only [Affine.map_addX, Affine.map_addY, Affine.map_slope]
 
+/--
+@isnad1 id=injectiv.0h4v.s8.b0318b4be271 from=translated src=- shape=38e58cbb vocab=ca52b6d4
+-/
 theorem pointMap_injective {L : Type*} [Field L] [DecidableEq L] (W : WeierstrassCurve K)
     (f : K →+* L) : Function.Injective (pointMap W f) := by
   rintro (_ | ⟨x₁, y₁, h₁⟩) (_ | ⟨x₂, y₂, h₂⟩) h
@@ -47,6 +50,9 @@ theorem pointMap_injective {L : Type*} [Field L] [DecidableEq L] (W : Weierstras
 
 end SSFROBJ_body
 
+/--
+@isnad1 id=mem.1h4v.s6.d5585a87c9bf from=translated src=- shape=7974e87e vocab=742f1c35
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] (K : Type*) [Field K] [DecidableEq K] [CharP K p]
     (e : ℕ) (j : K) (h : j ^ (p ^ e) ∈ ssJSet p K) : j ∈ ssJSet p K := by

@@ -60,6 +60,9 @@ section Headline
 variable {G : Type*} [Group G] {J : Type*} [AddCommGroup J] [Module HeckeAlg J]
   [DistribMulAction G J] [SMulCommClass G HeckeAlg J]
 
+/--
+@isnad1 id=ex.8h5v.s13.1244aa2327ce from=translated src=- shape=d6a93da6 vocab=70dbc2d2
+-/
 theorem exists_blrBlock_of_cayleyHamilton_of_neBot
     (𝔪 : Ideal HeckeAlg) (hmax : 𝔪.IsMaximal)
     (ρ : G → Matrix (Fin 2) (Fin 2) (HeckeAlg ⧸ 𝔪))
@@ -136,6 +139,9 @@ end
 end ModularCurve
 open scoped _root_.P2MW.S_ModularCurve_exists_blrBlock_of_frobeniusQuadratic_of_dense.ModularCurve
 
+/--
+@isnad1 id=ex.11h7v.s14.c56e621f50f8 from=translated src=- shape=1d050f3e vocab=5fe129bf
+-/
 theorem solution {J : Type*} [AddCommGroup J]
     [Module ModularCurve.HeckeAlg J] [DistribMulAction (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) J]
     [SMulCommClass (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) ModularCurve.HeckeAlg J]

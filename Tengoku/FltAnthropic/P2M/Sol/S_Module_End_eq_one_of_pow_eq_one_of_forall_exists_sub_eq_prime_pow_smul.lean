@@ -20,12 +20,18 @@ namespace PCong
 
 variable {p : ℕ}
 
+/--
+@isnad1 id=pcong.2h6v.s5.d38e55a4332b from=translated src=- shape=f116f17d vocab=27ef579b
+-/
 theorem mono {D : Module.End R M} {k j : ℕ} (h : PCong p D k) (hjk : j ≤ k) : PCong p D j := by
   intro x
   obtain ⟨y, hy⟩ := h x
   refine ⟨p ^ (k - j) • y, ?_⟩
   rw [hy, ← mul_smul, ← pow_add, Nat.add_sub_cancel' hjk]
 
+/--
+@isnad1 id=pcong.2h6v.s7.986eba792e69 from=translated src=- shape=a3ac2002 vocab=ea1b61ca
+-/
 theorem add {D D' : Module.End R M} {k : ℕ} (h : PCong p D k) (h' : PCong p D' k) :
     PCong p (D + D') k := by
   intro x
@@ -33,23 +39,35 @@ theorem add {D D' : Module.End R M} {k : ℕ} (h : PCong p D k) (h' : PCong p D'
   obtain ⟨y', hy'⟩ := h' x
   exact ⟨y + y', by rw [LinearMap.add_apply, hy, hy', smul_add]⟩
 
+/--
+@isnad1 id=pcong.1h5v.s6.b6e02a85f828 from=translated src=- shape=54f8e1ad vocab=35fef86a
+-/
 theorem neg {D : Module.End R M} {k : ℕ} (h : PCong p D k) : PCong p (-D) k := by
   intro x
   obtain ⟨y, hy⟩ := h x
   exact ⟨-y, by rw [LinearMap.neg_apply, hy, smul_neg]⟩
 
+/--
+@isnad1 id=pcong.1h6v.s6.4511269eb46f from=translated src=- shape=1eec9f3b vocab=35fb63c9
+-/
 theorem mul_left {D : Module.End R M} {k : ℕ} (h : PCong p D k) (D' : Module.End R M) :
     PCong p (D' * D) k := by
   intro x
   obtain ⟨y, hy⟩ := h x
   exact ⟨D' y, by rw [Module.End.mul_apply, hy, map_nsmul]⟩
 
+/--
+@isnad1 id=pcong.0h5v.s7.8cea2ced0bd5 from=translated src=- shape=49e27e4b vocab=cbb64954
+-/
 theorem natCast_mul (X : Module.End R M) (j : ℕ) :
     PCong p (((p ^ j : ℕ) : Module.End R M) * X) j :=
   fun x => ⟨X x, by rw [Module.End.mul_apply, Module.End.natCast_apply]⟩
 
 end PCong
 
+/--
+@isnad1 id=eq.2h5v.s7.05e15fe42fb2 from=translated src=- shape=1f244e7f vocab=e15eb0c9
+-/
 theorem smul_pow_cancel {p : ℕ} (htf : ∀ x : M, p • x = 0 → x = 0) :
     ∀ (j : ℕ) {x y : M}, p ^ j • x = p ^ j • y → x = y := by
   intro j
@@ -62,6 +80,9 @@ theorem smul_pow_cancel {p : ℕ} (htf : ∀ x : M, p • x = 0 → x = 0) :
         rw [smul_sub, ← mul_smul, ← mul_smul, ← pow_succ', h, sub_self]
       exact sub_eq_zero.mp (htf _ h')
 
+/--
+@isnad1 id=eq.2h6v.s8.d1f54c0280b7 from=translated src=- shape=183388c0 vocab=3489d567
+-/
 theorem natCast_mul_cancel {p : ℕ} (htf : ∀ x : M, p • x = 0 → x = 0) (j : ℕ)
     {F G : Module.End R M}
     (h : ((p ^ j : ℕ) : Module.End R M) * F = ((p ^ j : ℕ) : Module.End R M) * G) : F = G := by
@@ -70,6 +91,9 @@ theorem natCast_mul_cancel {p : ℕ} (htf : ∀ x : M, p • x = 0 → x = 0) (j
   simp only [Module.End.mul_apply, Module.End.natCast_apply] at this
   exact smul_pow_cancel htf j this
 
+/--
+@isnad1 id=ex.2h5v.s8.c2d026d0c9be from=translated src=- shape=110cc9e9 vocab=caefb5f6
+-/
 theorem PCong.exists_eq_natCast_mul {p : ℕ} (htf : ∀ x : M, p • x = 0 → x = 0)
     {D : Module.End R M} {k : ℕ} (h : PCong p D k) :
     ∃ W : Module.End R M, D = ((p ^ k : ℕ) : Module.End R M) * W := by
@@ -86,6 +110,9 @@ theorem PCong.exists_eq_natCast_mul {p : ℕ} (htf : ∀ x : M, p • x = 0 → 
     rw [Module.End.mul_apply, Module.End.natCast_apply]
     exact hw x
 
+/--
+@isnad1 id=ex.0h1v.s8.cd465abf8325 from=translated src=- shape=76d4cb42 vocab=3abcc20a
+-/
 theorem exists_one_add_X_pow (n : ℕ) :
     ∃ Q : ℤ[X], ((1 : ℤ[X]) + X) ^ n = 1 + (n : ℤ[X]) * X + (n.choose 2 : ℤ[X]) * X ^ 2 + X ^ 3 * Q := by
   induction n with
@@ -99,6 +126,9 @@ theorem exists_one_add_X_pow (n : ℕ) :
       push_cast
       ring
 
+/--
+@isnad1 id=ex.0h3v.s7.bbf781842697 from=translated src=- shape=249c9cf6 vocab=457d22c9
+-/
 theorem exists_one_add_pow {E : Type*} [Ring E] (D : E) (n : ℕ) :
     ∃ Q : E, (1 + D) ^ n = 1 + (n : E) * D + (n.choose 2 : E) * D ^ 2 + D ^ 3 * Q := by
   obtain ⟨Q, hQ⟩ := exists_one_add_X_pow n
@@ -290,6 +320,9 @@ theorem eq_one_of_pow_eq_one_of_forall_exists_sub_eq_prime_pow_smul
 
 end P2mKcSerreRigidity
 
+/--
+@isnad1 id=eq.8h6v.s9.72384ebececc from=translated src=- shape=af7e50da vocab=9cf0eb61
+-/
 theorem solution
     {R : Type*} [Ring R] {M : Type*} [AddCommGroup M] [Module R M]
     {p : ℕ} (hp : p.Prime) (a : ℕ) (ha : 1 ≤ a) (ha2 : p = 2 → 2 ≤ a)

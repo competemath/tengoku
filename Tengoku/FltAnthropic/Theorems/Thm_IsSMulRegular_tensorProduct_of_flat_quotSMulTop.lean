@@ -9,6 +9,9 @@ open scoped TensorProduct
 
 universe u v w
 
+/--
+@isnad1 id=issmulre.3h4v.s9.3d6967f654a5 from=translated src=- shape=b81315f8 vocab=1cdadbb9
+-/
 theorem IsSMulRegular.tensorProduct_of_flat_quotSMulTop
     {A : Type u} [CommRing A] (t : A) {B : Type v} [AddCommGroup B] [Module A B]
     {M : Type w} [AddCommGroup M] [Module A M]

@@ -14,6 +14,9 @@ section Semisimple
 variable {K : Type*} [Field K] [PerfectField K] {V : Type*} [AddCommGroup V] [Module K V] [FiniteDimensional K V]
 
 omit [PerfectField K] [FiniteDimensional K V] in
+/--
+@isnad1 id=commute.3h5v.s10.ddbe6e3d3b1b from=translated src=- shape=d20527e4 vocab=6e06c21a
+-/
 theorem commute_of_mem_adjoin {s : Set (Module.End K V)} (hcomm : ∀ x ∈ s, ∀ y ∈ s, x * y = y * x)
     {x y : Module.End K V} (hx : x ∈ Algebra.adjoin K s) (hy : y ∈ Algebra.adjoin K s) : Commute x y := by
   have h1 := Algebra.adjoin_le_centralizer_centralizer K s hx
@@ -25,6 +28,9 @@ theorem commute_of_mem_adjoin {s : Set (Module.End K V)} (hcomm : ∀ x ∈ s, �
   rw [Subalgebra.mem_centralizer_iff] at h1
   exact (h1 y h2).symm
 
+/--
+@isnad1 id=issemisi.3h4v.s9.49049eef67af from=translated src=- shape=7b25e0f7 vocab=dee8cbad
+-/
 theorem isSemisimple_of_mem_adjoin {s : Set (Module.End K V)}
     (hcomm : ∀ x ∈ s, ∀ y ∈ s, x * y = y * x) (hs : ∀ x ∈ s, Module.End.IsSemisimple x)
     {a : Module.End K V} (ha : a ∈ Algebra.adjoin K s) : a.IsSemisimple := by
@@ -36,6 +42,9 @@ theorem isSemisimple_of_mem_adjoin {s : Set (Module.End K V)}
   | add x y hx hy ihx ihy => exact Module.End.IsSemisimple.add_of_commute (commute_of_mem_adjoin hcomm hx hy) ihx ihy
   | mul x y hx hy ihx ihy => exact Module.End.IsSemisimple.mul_of_commute (commute_of_mem_adjoin hcomm hx hy) ihx ihy
 
+/--
+@isnad1 id=isreduce.2h3v.s10.df011b979592 from=translated src=- shape=baff4716 vocab=a14538d2
+-/
 theorem isReduced_adjoin {s : Set (Module.End K V)}
     (hcomm : ∀ x ∈ s, ∀ y ∈ s, x * y = y * x) (hs : ∀ x ∈ s, Module.End.IsSemisimple x) :
     IsReduced (Algebra.adjoin K s) := by
@@ -51,6 +60,9 @@ end Semisimple
 
 end RRedEngine
 
+/--
+@isnad1 id=and.2h3v.s10.383b6262a766 from=translated src=- shape=cd88da99 vocab=a14538d2
+-/
 theorem solution
     {K : Type*} [Field K] [PerfectField K] {V : Type*} [AddCommGroup V] [Module K V] [FiniteDimensional K V]
     {s : Set (Module.End K V)} (hcomm : ∀ x ∈ s, ∀ y ∈ s, x * y = y * x)

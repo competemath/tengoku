@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Matrix_exists_ne_zero_forall_mulVec_eq_zer
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.2h6v.s8.25ab3cc5bc16 from=translated src=- shape=ca955834 vocab=29ec7782
+-/
 theorem Matrix.exists_ne_zero_forall_mulVec_eq_zero_of_forall_map_mulVec_eq_zero
     {k K : Type*} [Field k] [Field K] [Algebra k K] {ι : Type*} [Fintype ι] [DecidableEq ι]
     {J : Type*} (A : J → Matrix ι ι k) (v : ι → K) (hv : v ≠ 0)

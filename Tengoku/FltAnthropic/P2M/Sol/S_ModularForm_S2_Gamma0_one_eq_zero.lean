@@ -27,6 +27,9 @@ private lemma cuspForm_eq_zero_of_subgroup_eq {Γ₁ Γ₂ : Subgroup (GL (Fin 2
     f = 0 := by
   subst h; exact H f
 
+/--
+@isnad1 id=eq.0h1v.s9.0e0acc66cca1 from=translated src=- shape=571d3fe5 vocab=856228bc
+-/
 theorem solution (f : CuspForm (CongruenceSubgroup.Gamma0 1) 2) : f = 0 :=
   cuspForm_eq_zero_of_subgroup_eq coe_Gamma0_one_eq_SL.symm
     (fun g => rank_zero_iff_forall_zero.mp

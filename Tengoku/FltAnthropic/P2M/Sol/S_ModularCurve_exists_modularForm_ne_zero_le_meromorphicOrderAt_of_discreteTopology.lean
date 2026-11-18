@@ -22,6 +22,9 @@ export _root_.ModularCurve (exists_modularForm_separate_and_localParameter_of_di
 namespace T3bAux
 open _root_.ModularCurve
 
+/--
+@isnad1 id=analytic.1h2v.s7.ba397e3e3576 from=translated src=- shape=85a579bd vocab=402daf8e
+-/
 theorem analyticAt_comp_ofComplex {φ : ℍ → ℂ} (hφ : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) φ) (τ : ℍ) :
     AnalyticAt ℂ (fun z : ℂ => φ (ofComplex z)) (τ : ℂ) :=
   (UpperHalfPlane.mdifferentiable_iff.mp hφ).analyticAt (isOpen_upperHalfPlaneSet.mem_nhds τ.im_pos)
@@ -43,6 +46,9 @@ def mkForm (Γ : Subgroup (GL (Fin 2) ℝ)) (hdet : ∀ γ ∈ Γ, Matrix.Genera
   holo' := hF
   bdd_at_cusps' := fun hc => absurd hc (hcusp _)
 
+/--
+@isnad1 id=ne.2h2v.s7.1415d922f85c from=translated src=- shape=30ad66a5 vocab=fbe20daf
+-/
 theorem pow_ne_zero_of_mdifferentiable {f : ℍ → ℂ} (hf : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) f) (h0 : f ≠ 0) :
     ∀ n : ℕ, f ^ n ≠ 0 := by
   intro n
@@ -55,6 +61,9 @@ theorem pow_ne_zero_of_mdifferentiable {f : ℍ → ℂ} (hf : MDifferentiable �
     · exact ih h'
     · exact h0 h'
 
+/--
+@isnad1 id=mdiffere.1h3v.s7.fc0f72d913db from=translated src=- shape=35efda7b vocab=b623d9d3
+-/
 theorem mdifferentiable_finset_prod {ι : Type*} (s : Finset ι) (f : ι → ℍ → ℂ)
     (hf : ∀ i ∈ s, MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (f i)) : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (∏ i ∈ s, f i) := by
   classical
@@ -64,6 +73,9 @@ theorem mdifferentiable_finset_prod {ι : Type*} (s : Finset ι) (f : ι → ℍ
     rw [Finset.prod_insert ha]
     exact (hf a (Finset.mem_insert_self a s)).mul (ih fun i hi => hf i (Finset.mem_insert_of_mem hi))
 
+/--
+@isnad1 id=eq.0h4v.s6.585e024e480d from=translated src=- shape=60998bcb vocab=213e9db8
+-/
 theorem zpow_mul_pow_eq (d g : ℂ) (k : ℤ) (m : ℕ) : (d ^ k * g) ^ m = d ^ ((m : ℤ) * k) * g ^ m := by
   rw [mul_pow, ← zpow_natCast (d ^ k) m, ← zpow_mul, mul_comm k]
 
@@ -72,6 +84,9 @@ open scoped _root_.P2MW.S_ModularCurve_exists_modularForm_ne_zero_le_meromorphic
 open scoped _root_.P2MW.S_ModularCurve_exists_modularForm_ne_zero_le_meromorphicOrderAt_of_discreteTopology.ModularCurve
 
 open ModularCurve.T3bAux in
+/--
+@isnad1 id=ex.2h3v.s10.5cf4460cb27b from=translated src=- shape=875dbbb3 vocab=50cff757
+-/
 theorem solution
     (Γ : Subgroup (GL (Fin 2) ℝ))
     (hdet : ∀ γ ∈ Γ, Matrix.GeneralLinearGroup.det γ = 1)

@@ -6,6 +6,9 @@ import Tengoku.Seed.Tactic.LinearCombination
 namespace P2MW.S_ModularCurve_psiFifteen_birational_identity
 
 set_option maxHeartbeats 6400000 in
+/--
+@isnad1 id=eq.5h6v.s11.7576ef463f09 from=translated src=- shape=d31a5d5e vocab=f37b0cf8
+-/
 theorem solution (u v : ℚ)
     (hpsi : (u + 27) * (u + 3) ^ 3 * v - u * (v ^ 2 + 10 * v + 5) ^ 3 = 0)
     (Nx Dx Ny Dy : ℚ)

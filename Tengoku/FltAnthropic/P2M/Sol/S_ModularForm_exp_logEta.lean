@@ -23,10 +23,16 @@ namespace DedekindEtaLog
 
 def logEta (z : ℂ) : ℂ := π * I * z / 12 + ∑' n : ℕ, log (1 - ModularForm.eta_q n z)
 
+/--
+@isnad1 id=summable.0h1v.s5.03423fe03aeb from=translated src=- shape=4e0fa5b3 vocab=aed65d90
+-/
 lemma summable_log (z : ℍ) : Summable fun n : ℕ => log (1 - ModularForm.eta_q n z) := by
   have h := Complex.summable_log_one_add_of_summable (Summable.of_norm (ModularForm.summable_eta_q z))
   simpa [sub_eq_add_neg] using h
 
+/--
+@isnad1 id=eq.0h1v.s3.af2d2d7c51b7 from=translated src=- shape=1a06bf3a vocab=e54033ef
+-/
 theorem exp_logEta (z : ℍ) : exp (logEta z) = η (z : ℂ) := by
   rw [logEta, exp_add, ModularForm.eta,
     ← Complex.cexp_tsum_eq_tprod (fun n => ModularForm.one_sub_eta_q_ne_zero n z.2) (summable_log z)]
@@ -40,5 +46,8 @@ end DedekindEtaLog
 
 end
 
+/--
+@isnad1 id=eq.0h1v.s6.b02667ea2fed from=translated src=- shape=425f9a32 vocab=3e4b770a
+-/
 theorem solution (z : UpperHalfPlane) : Complex.exp (Real.pi * Complex.I * (z : ℂ) / 12 + ∑' n : ℕ, Complex.log (1 - ModularForm.eta_q n (z : ℂ))) = ModularForm.eta z :=
   DedekindEtaLog.exp_logEta z

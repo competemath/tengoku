@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open scoped MatrixGroups
 
+/--
+@isnad1 id=eq.3h6v.s11.004d29f19d6d from=translated src=- shape=108a5bd3 vocab=eaeb72a0
+-/
 theorem ModularCurve.realizeOf_eq_div
     (Γ : Subgroup SL(2, ℤ)) (hT : ModularGroup.T ∈ Γ) {k : ℤ}
     (g h : ModularForm Γ k) (x : LaurentSeries ℂ)

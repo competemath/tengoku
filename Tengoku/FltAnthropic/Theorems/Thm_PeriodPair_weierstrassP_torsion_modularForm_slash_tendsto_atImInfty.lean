@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open scoped MatrixGroups ModularForm Topology Real Matrix
 
+/--
+@isnad1 id=other.1h3v.s10.926d0626c82c from=translated src=- shape=9ada8e5b vocab=841951a1
+-/
 theorem PeriodPair.weierstrassP_torsion_modularForm_slash_tendsto_atImInfty
     (L : UpperHalfPlane → PeriodPair) (hL : ∀ τ : UpperHalfPlane, (L τ).ω₁ = (τ : ℂ) ∧ (L τ).ω₂ = 1)
     (N : ℕ) [NeZero N] (a : Fin 2 → ZMod N) :

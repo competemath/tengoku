@@ -8,6 +8,9 @@ namespace P2MW.S_ModularCurve_nuTwo_prime
 
 open ModularCurve
 
+/--
+@isnad1 id=eq.2h1v.s6.b70b8a0327a4 from=translated src=- shape=1bdfdd70 vocab=56d98954
+-/
 theorem solution {p : ℕ} (hp : p.Prime) (hp2 : p ≠ 2) :
     nuTwo p = if p % 4 = 1 then 2 else 0 := by
   haveI : Fact p.Prime := ⟨hp⟩

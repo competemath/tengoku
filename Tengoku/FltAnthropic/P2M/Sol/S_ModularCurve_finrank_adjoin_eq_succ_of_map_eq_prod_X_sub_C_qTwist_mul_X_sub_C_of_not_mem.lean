@@ -16,18 +16,30 @@ namespace KummerQ
 
 variable {κ : Type u} [Field κ]
 
+/--
+@isnad1 id=eq.0h4v.s9.d4640437f3e7 from=translated src=- shape=3de8dca3 vocab=158ec2e6
+-/
 theorem qTwist_pow_succ (ζ : κˣ) (k : ℕ) (f : LaurentSeries κ) :
     qTwist (ζ ^ (k + 1)) f = qTwist ζ (qTwist (ζ ^ k) f) := by
   rw [qTwist_qTwist, pow_succ']
 
+/--
+@isnad1 id=eq.1h4v.s8.8d9c4e74d33e from=translated src=- shape=77330b6c vocab=4fc7c742
+-/
 theorem qTwist_pow_eq_self_of {ζ : κˣ} {f : LaurentSeries κ} (h : qTwist ζ f = f) (k : ℕ) : qTwist (ζ ^ k) f = f := by
   induction k with
   | zero => rw [pow_zero, qTwist_one_apply]
   | succ k ih => rw [qTwist_pow_succ, ih, h]
 
+/--
+@isnad1 id=eq.1h3v.s7.ebd19972ea48 from=translated src=- shape=c7ff686c vocab=4277acb9
+-/
 theorem units_pow_eq_one {ℓ : ℕ} {ζ : κˣ} (hζ : IsPrimitiveRoot (ζ : κ) ℓ) : ζ ^ ℓ = 1 :=
   Units.ext (by rw [Units.val_pow_eq_pow_val, hζ.pow_eq_one, Units.val_one])
 
+/--
+@isnad1 id=eq.4h5v.s9.f966b77697ba from=translated src=- shape=c84f0f55 vocab=e4bb2df4
+-/
 theorem qTwist_eq_self_of_pow {ℓ : ℕ} (hℓ : ℓ.Prime) {ζ : κˣ} (hζ : IsPrimitiveRoot (ζ : κ) ℓ) {x : LaurentSeries κ}
     {e : ℕ} (he : ¬ ℓ ∣ e) (h : qTwist (ζ ^ e) x = x) : qTwist ζ x = x := by
   have hcop : Nat.Coprime e ℓ := Nat.Coprime.symm ((Nat.Prime.coprime_iff_not_dvd hℓ).mpr he)
@@ -39,6 +51,9 @@ theorem qTwist_eq_self_of_pow {ℓ : ℕ} (hℓ : ℓ.Prime) {ζ : κˣ} (hζ : 
   rw [← hζ1]
   exact qTwist_pow_eq_self_of h a
 
+/--
+@isnad1 id=injon.3h4v.s9.6a54b594485b from=translated src=- shape=1df89976 vocab=2c542520
+-/
 theorem qTwist_pow_injOn {ℓ : ℕ} (hℓ : ℓ.Prime) {ζ : κˣ} (hζ : IsPrimitiveRoot (ζ : κ) ℓ) {x : LaurentSeries κ}
     (hx : qTwist ζ x ≠ x) : Set.InjOn (fun k : ℕ => qTwist (ζ ^ k) x) (Finset.range ℓ : Set ℕ) := by
   intro k₁ hk₁ k₂ hk₂ h
@@ -54,6 +69,9 @@ theorem qTwist_pow_injOn {ℓ : ℕ} (hℓ : ℓ.Prime) {ζ : κˣ} (hζ : IsPri
     rw [qTwist_qTwist, ← pow_add, Nat.add_sub_cancel' hlt.le]
     exact h.symm
 
+/--
+@isnad1 id=eq.1h5v.s9.51e224662588 from=translated src=- shape=bd13b73f vocab=0b7000d3
+-/
 theorem qTwist_pow_mod {ℓ : ℕ} {ζ : κˣ} (hζ : IsPrimitiveRoot (ζ : κ) ℓ) (k : ℕ) (f : LaurentSeries κ) :
     qTwist (ζ ^ k) f = qTwist (ζ ^ (k % ℓ)) f := by
   conv_lhs => rw [← Nat.mod_add_div k ℓ, pow_add, pow_mul, units_pow_eq_one hζ, one_pow, mul_one]
@@ -61,6 +79,9 @@ theorem qTwist_pow_mod {ℓ : ℕ} {ζ : κˣ} (hζ : IsPrimitiveRoot (ζ : κ) 
 end KummerQ
 
 open KummerQ in
+/--
+@isnad1 id=eq.6h7v.s14.7f81e3a6954a from=translated src=- shape=d29d8987 vocab=b58fb636
+-/
 theorem solution
     (κ : Type u) [Field κ] (ℓ : ℕ) [Fact ℓ.Prime] (ζ : κˣ) (hζ : IsPrimitiveRoot (ζ : κ) ℓ)
     (F : IntermediateField κ (LaurentSeries κ))

@@ -25,9 +25,15 @@ variable {k : ℤ}
 
 def wd (Γ : Subgroup SL(2, ℤ)) : ℕ := Γ.normalCore.index
 
+/--
+@isnad1 id=nezero.0h1v.s6.e42f2cf24a16 from=translated src=- shape=c351a431 vocab=7ace9103
+-/
 scoped instance wd_neZero (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex] : NeZero (wd Γ) :=
   ⟨Subgroup.FiniteIndex.index_ne_zero⟩
 
+/--
+@isnad1 id=lt.0h1v.s6.786b4f820ab6 from=translated src=- shape=542f9a46 vocab=ca15f302
+-/
 theorem wd_pos (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex] : (0 : ℝ) < wd Γ := by
   exact_mod_cast Nat.pos_of_ne_zero (NeZero.ne (wd Γ))
 
@@ -56,6 +62,9 @@ private theorem mapGL_T_zpow (N : ℕ) :
   fin_cases i <;> fin_cases j <;>
     simp [Matrix.GeneralLinearGroup.upperRightHom]
 
+/--
+@isnad1 id=mem.0h2v.s11.d409e199ed60 from=translated src=- shape=0138e750 vocab=e717a8d1
+-/
 theorem natCast_mem_strictPeriods_translate (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex]
     (σ : SL(2, ℤ)) :
     (wd Γ : ℝ) ∈ Subgroup.strictPeriods
@@ -66,11 +75,17 @@ theorem natCast_mem_strictPeriods_translate (Γ : Subgroup SL(2, ℤ)) [Γ.Finit
 
 variable {Γ : Subgroup SL(2, ℤ)} [Γ.FiniteIndex]
 
+/--
+@isnad1 id=eq.0h4v.s13.c01037429a03 from=translated src=- shape=50a262fb vocab=5e94d2f6
+-/
 theorem coe_translate_SL (g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (σ : SL(2, ℤ)) :
     ⇑(ModularForm.translate g (σ : GL (Fin 2) ℝ)) = ⇑g ∣[k] σ := by
   rw [SL_slash]
   exact ModularForm.coe_translate g _
 
+/--
+@isnad1 id=periodic.0h4v.s9.4f4f6e2c95e8 from=translated src=- shape=1e87af99 vocab=a71b3401
+-/
 theorem slash_periodic (g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (σ : SL(2, ℤ)) :
     Periodic ((⇑g ∣[k] σ) ∘ ofComplex) (wd Γ : ℝ) := by
   rw [← coe_translate_SL g σ]
@@ -78,11 +93,17 @@ theorem slash_periodic (g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (σ 
     (ModularForm.translate g (σ : GL (Fin 2) ℝ))
     (natCast_mem_strictPeriods_translate Γ σ)
 
+/--
+@isnad1 id=mdiffere.0h4v.s9.d9b4920a0dca from=translated src=- shape=de2d2fe8 vocab=dd077dd4
+-/
 theorem slash_mdiff (g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (σ : SL(2, ℤ)) :
     MDiff (⇑g ∣[k] σ) := by
   rw [← coe_translate_SL g σ]
   exact ModularFormClass.holo _
 
+/--
+@isnad1 id=isbounde.0h4v.s9.3a6d374d0a30 from=translated src=- shape=e1ff6a2e vocab=0a4faebc
+-/
 theorem slash_bddAtImInfty (g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (σ : SL(2, ℤ)) :
     IsBoundedAtImInfty (⇑g ∣[k] σ) := by
   haveI hFact : Fact (IsCusp ∞ (ConjAct.toConjAct ((σ : GL (Fin 2) ℝ))⁻¹ •
@@ -183,6 +204,9 @@ private theorem eventually_ne_zero_atImInfty {N : ℕ} [NeZero N] {F : ℍ → �
   rw [hid τ]
   exact mul_ne_zero (pow_ne_zero _ (Complex.exp_ne_zero _)) hτ
 
+/--
+@isnad1 id=ne.1h4v.s10.f1754b64a197 from=translated src=- shape=8dd11260 vocab=c90eec81
+-/
 theorem qExpansion_slash_ne_zero
     (h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (σ : SL(2, ℤ)) (hh : h ≠ 0) :
     qExpansion (wd Γ) (⇑h ∣[k] σ) ≠ 0 := by
@@ -207,6 +231,9 @@ open ModularCurve
 
 variable (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex] (σ : SL(2, ℤ))
 
+/--
+@isnad1 id=eventual.1h4v.s10.9af7607e49a1 from=translated src=- shape=490de355 vocab=5a61edef
+-/
 theorem eventually_apply_smul_ne_zero {k : ℤ}
     (h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (hh : h ≠ 0) :
     ∀ᶠ τ in atImInfty, (h : ℍ → ℂ) (σ • τ) ≠ 0 := by
@@ -217,10 +244,16 @@ theorem eventually_apply_smul_ne_zero {k : ℤ}
   apply hτ
   rw [SL_slash_apply, hc, zero_mul]
 
+/--
+@isnad1 id=continuo.0h1v.s7.cfd1196d5628 from=translated src=- shape=1e2fed31 vocab=a612e88d
+-/
 theorem continuous_sl_smul : Continuous fun τ : ℍ => σ • τ := by
   show Continuous fun τ : ℍ => ((σ : GL (Fin 2) ℝ) • τ)
   exact continuous_const_smul _
 
+/--
+@isnad1 id=nebot.0h1v.s4.ad30518bda63 from=translated src=- shape=dea7913e vocab=57ec0df5
+-/
 theorem punctured_nhds_neBot (τ : ℍ) : (𝓝[≠] τ).NeBot := by
   rw [← not_not (a := (𝓝[≠] τ).NeBot), Filter.not_neBot, ← isOpen_singleton_iff_punctured_nhds]
   intro hopen
@@ -230,6 +263,9 @@ theorem punctured_nhds_neBot (τ : ℍ) : (𝓝[≠] τ).NeBot := by
   rw [isOpen_singleton_iff_punctured_nhds] at h1
   exact (inferInstance : (𝓝[≠] (τ : ℂ)).NeBot).ne h1
 
+/--
+@isnad1 id=tendsto.0h2v.s9.6d3d972d867a from=translated src=- shape=2d72ea29 vocab=9aca11b0
+-/
 theorem tendsto_coe_smul_punctured (τ : ℍ) :
     Tendsto (fun w : ℍ => ((σ • w : ℍ) : ℂ)) (𝓝[≠] τ) (𝓝[≠] ((σ • τ : ℍ) : ℂ)) := by
   have hc : Continuous fun w : ℍ => ((σ • w : ℍ) : ℂ) :=
@@ -252,6 +288,9 @@ end
 open scoped _root_.P2MW.S_ModularCurve_exists_tendsto_div_smul_of_eventuallyEq_realizeOf_of_tendsto.Ws49.LIMTR.S3CuspLimit _root_.P2MW.S_ModularCurve_exists_tendsto_div_smul_of_eventuallyEq_realizeOf_of_tendsto.Ws49 _root_.P2MW.S_ModularCurve_exists_tendsto_div_smul_of_eventuallyEq_realizeOf_of_tendsto.Ws49.LIMTR
 
 open Ws49.LIMTR in
+/--
+@isnad1 id=ex.5h7v.s11.4730f7dbf6df from=translated src=- shape=40b7f9b9 vocab=b83756d1
+-/
 theorem solution
     (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex] (hT : ModularGroup.T ∈ Γ) {k : ℤ}
     (g h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (hh : h ≠ 0) (x : LaurentSeries ℂ)

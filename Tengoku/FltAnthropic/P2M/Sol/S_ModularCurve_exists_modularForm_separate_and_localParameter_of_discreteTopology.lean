@@ -17,12 +17,18 @@ open UpperHalfPlane
 
 namespace T3aAux
 
+/--
+@isnad1 id=eq.1h4v.s11.ecb4ca8f3474 from=translated src=- shape=d6a7b4c1 vocab=a446200f
+-/
 theorem smul_pow_of_fix {Γ : Subgroup (GL (Fin 2) ℝ)} (τ₀ : ℍ)
     (γ : ↥Γ) (hγ : (γ : GL (Fin 2) ℝ) • τ₀ = τ₀) (m : ℕ) : ((γ ^ m : ↥Γ) : GL (Fin 2) ℝ) • τ₀ = τ₀ := by
   induction m with
   | zero => simp
   | succ j ih => rw [pow_succ, Subgroup.coe_mul, mul_smul, hγ, ih]
 
+/--
+@isnad1 id=eq.2h4v.s11.7ef2f479af5c from=translated src=- shape=3d9b633c vocab=7274b483
+-/
 theorem denom_pow_of_fix {Γ : Subgroup (GL (Fin 2) ℝ)}
     (hdet : ∀ γ ∈ Γ, Matrix.GeneralLinearGroup.det γ = 1) (τ₀ : ℍ)
     (γ : ↥Γ) (hγ : (γ : GL (Fin 2) ℝ) • τ₀ = τ₀) (m : ℕ) :
@@ -34,6 +40,9 @@ theorem denom_pow_of_fix {Γ : Subgroup (GL (Fin 2) ℝ)}
       (smul_pow_of_fix τ₀ γ hγ m)).2.2.2.2 (γ : GL (Fin 2) ℝ) (hdet _ γ.2) hγ
     rw [pow_succ, Subgroup.coe_mul, h5, ih, pow_succ]
 
+/--
+@isnad1 id=eq.2h3v.s12.7b1d07d7dab8 from=translated src=- shape=422e1c9d vocab=23980871
+-/
 theorem denom_pow_card_stabilizer {Γ : Subgroup (GL (Fin 2) ℝ)}
     (hdet : ∀ γ ∈ Γ, Matrix.GeneralLinearGroup.det γ = 1) (τ₀ : ℍ)
     (γ : ↥Γ) (hγ : γ ∈ MulAction.stabilizer ↥Γ τ₀) :
@@ -47,6 +56,9 @@ theorem denom_pow_card_stabilizer {Γ : Subgroup (GL (Fin 2) ℝ)}
   rw [h2]
   simp [denom]
 
+/--
+@isnad1 id=ne.0h2v.s5.7c0dbeb43402 from=translated src=- shape=db4fcea7 vocab=4bc1f922
+-/
 theorem sub_conj_ne_zero (σ τ₀ : ℍ) : (σ : ℂ) - (starRingEnd ℂ) (τ₀ : ℂ) ≠ 0 := by
   intro h
   have := congrArg Complex.im h
@@ -56,6 +68,9 @@ theorem sub_conj_ne_zero (σ τ₀ : ℍ) : (σ : ℂ) - (starRingEnd ℂ) (τ�
   rw [h2, UpperHalfPlane.coe_im] at this
   linarith [σ.im_pos, τ₀.im_pos]
 
+/--
+@isnad1 id=eq.3h6v.s12.3b1f4e92e16e from=translated src=- shape=89b4cb95 vocab=dbb7dc04
+-/
 theorem stab_term_eq {Γ : Subgroup (GL (Fin 2) ℝ)}
     (hdet : ∀ γ ∈ Γ, Matrix.GeneralLinearGroup.det γ = 1)
     (τ₀ : ℍ) (n : ℕ) (k : ℤ)
@@ -95,6 +110,9 @@ theorem stab_term_eq {Γ : Subgroup (GL (Fin 2) ℝ)}
     _ = (x / y) ^ n * y ^ (-k) * ((E ^ 2)⁻¹ ^ n * E ^ (-k)) := by rw [mul_pow]; ring
     _ = (x / y) ^ n * y ^ (-k) := by rw [hEE, mul_one]
 
+/--
+@isnad1 id=eq.2h5v.s13.2fe806aa7239 from=translated src=- shape=1ef86271 vocab=578334a3
+-/
 theorem stab_sum {Γ : Subgroup (GL (Fin 2) ℝ)}
     (hdet : ∀ γ ∈ Γ, Matrix.GeneralLinearGroup.det γ = 1) [hdisc : DiscreteTopology ↥Γ]
     (τ₀ : ℍ) (n : ℕ) (k : ℤ)
@@ -141,6 +159,9 @@ end T3aAux
 
 namespace T3aAux
 
+/--
+@isnad1 id=eq.0h1v.s6.5bf1c2c96c41 from=translated src=- shape=2ebaf465 vocab=8249b4ff
+-/
 theorem norm_sub_conj (τ : ℍ) : ‖(τ : ℂ) - (starRingEnd ℂ) (τ : ℂ)‖ = 2 * τ.im := by
   have : (τ : ℂ) - (starRingEnd ℂ) (τ : ℂ) = (2 * τ.im : ℝ) * Complex.I := by
     apply Complex.ext
@@ -149,8 +170,14 @@ theorem norm_sub_conj (τ : ℍ) : ‖(τ : ℂ) - (starRingEnd ℂ) (τ : ℂ)�
   rw [this, norm_mul, Complex.norm_I, mul_one, Complex.norm_real, Real.norm_eq_abs,
     abs_of_pos (by linarith [τ.im_pos])]
 
+/--
+@isnad1 id=eq.0h1v.s4.54b14e8beffa from=translated src=- shape=0ad6fec0 vocab=90b02f68
+-/
 theorem sqrt_im_mul_self (τ : ℍ) : Real.sqrt (τ.im * τ.im) = τ.im := Real.sqrt_mul_self τ.im_pos.le
 
+/--
+@isnad1 id=ex.3h2v.s6.deeefa1550e4 from=translated src=- shape=7d62fa7b vocab=d8b90f1e
+-/
 theorem eventually_small {A ϑ : ℝ} (hA : 0 ≤ A) (h0 : 0 ≤ ϑ) (h1 : ϑ < 1) :
     ∃ N : ℕ, ∀ m : ℕ, N ≤ m → A * ϑ ^ m < 1 / 2 := by
   have ht : Filter.Tendsto (fun m : ℕ => A * ϑ ^ m) Filter.atTop (𝓝 0) := by
@@ -160,6 +187,9 @@ theorem eventually_small {A ϑ : ℝ} (hA : 0 ≤ A) (h0 : 0 ≤ ϑ) (h1 : ϑ < 
   obtain ⟨N, hN⟩ := Filter.eventually_atTop.1 hev
   exact ⟨N, hN⟩
 
+/--
+@isnad1 id=ex.4h3v.s11.20b40d864bf7 from=translated src=- shape=49f77db0 vocab=5c7a0f6a
+-/
 theorem partA {Γ : Subgroup (GL (Fin 2) ℝ)}
     (hdet : ∀ γ ∈ Γ, Matrix.GeneralLinearGroup.det γ = 1) (hneg : -1 ∈ Γ) [hdisc : DiscreteTopology ↥Γ]
     (hcusp : ∀ c : OnePoint ℝ, ¬ IsCusp c Γ) (τ σ : ℍ) (hne : ∀ γ ∈ Γ, γ • τ ≠ σ) :
@@ -312,11 +342,17 @@ end T3aAux
 
 namespace T3aAux
 
+/--
+@isnad1 id=analytic.1h2v.s7.d303c94f62ce from=translated src=- shape=2539a356 vocab=30af0490
+-/
 theorem analyticAt_comp_ofComplex {f : ℍ → ℂ} (hf : MDiff f) (τ : ℍ) :
     AnalyticAt ℂ (f ∘ ↑ofComplex) (τ : ℂ) := by
   have hd := (UpperHalfPlane.mdifferentiable_iff).1 hf
   exact hd.analyticAt ((isOpen_lt continuous_const Complex.continuous_im).mem_nhds τ.im_pos)
 
+/--
+@isnad1 id=eq.3h3v.s6.9590fab77761 from=translated src=- shape=acfb6b9d vocab=366f52bf
+-/
 theorem meromorphicOrderAt_div_of_ne_zero {F G : ℂ → ℂ} {z₀ : ℂ} (hF : AnalyticAt ℂ F z₀) (hG : AnalyticAt ℂ G z₀)
     (hG0 : G z₀ ≠ 0) : meromorphicOrderAt (fun z => F z / G z) z₀ = meromorphicOrderAt F z₀ := by
   have h1 : (fun z => F z / G z) = F * G⁻¹ := by funext z; simp [div_eq_mul_inv]
@@ -324,11 +360,17 @@ theorem meromorphicOrderAt_div_of_ne_zero {F G : ℂ → ℂ} {z₀ : ℂ} (hF :
     hG.meromorphicOrderAt_eq, (hG.analyticOrderAt_eq_zero).2 hG0]
   simp
 
+/--
+@isnad1 id=eq.1h6v.s9.ecc50979ff3d from=translated src=- shape=8291f781 vocab=d971c18a
+-/
 theorem div_smul_eq {Γ : Subgroup (GL (Fin 2) ℝ)} [Γ.HasDetOne] {k : ℤ} (g h : ModularForm Γ k)
     {γ : GL (Fin 2) ℝ} (hγ : γ ∈ Γ) (z : ℍ) : g (γ • z) / h (γ • z) = g z / h z := by
   rw [SlashInvariantForm.slash_action_eqn'' g hγ z, SlashInvariantForm.slash_action_eqn'' h hγ z]
   rw [mul_div_mul_left _ _ (zpow_ne_zero k (denom_ne_zero γ z))]
 
+/--
+@isnad1 id=le.6h7v.s8.287e3817fc24 from=translated src=- shape=2bef8d3d vocab=b1fd4c2d
+-/
 theorem norm_coeff_le_of_sphere_bound {R G : ℂ → ℂ} {z₀ : ℂ} {e : ℕ} {ρ ρ' C : ℝ} (hρ : 0 < ρ) (hρρ' : ρ < ρ')
     (hR : DifferentiableOn ℂ R (Metric.ball z₀ ρ')) (hG : AnalyticAt ℂ G z₀)
     (hfac : ∀ᶠ z in 𝓝 z₀, R z = (z - z₀) ^ e • G z)
@@ -380,6 +422,9 @@ namespace T3aAux
 
 set_option maxHeartbeats 4000000 in
 
+/--
+@isnad1 id=ex.3h2v.s12.b0e0862b4400 from=translated src=- shape=6f5a02ff vocab=9f6ca063
+-/
 theorem partB {Γ : Subgroup (GL (Fin 2) ℝ)}
     (hdet : ∀ γ ∈ Γ, Matrix.GeneralLinearGroup.det γ = 1) (hneg : -1 ∈ Γ) [hdisc : DiscreteTopology ↥Γ]
     (hcusp : ∀ c : OnePoint ℝ, ¬ IsCusp c Γ) (τ : ℍ) :
@@ -728,6 +773,9 @@ theorem partB {Γ : Subgroup (GL (Fin 2) ℝ)}
 end T3aAux
 
 open T3aAux in
+/--
+@isnad1 id=and.3h1v.s12.0873f329b29f from=translated src=- shape=124711b0 vocab=3ed7a1fc
+-/
 theorem solution
     (Γ : Subgroup (GL (Fin 2) ℝ))
     (hdet : ∀ γ ∈ Γ, Matrix.GeneralLinearGroup.det γ = 1)

@@ -20,6 +20,9 @@ section Orders
 
 variable {K : Type*} [Field K]
 
+/--
+@isnad1 id=eq.1h2v.s8.45659410e7fd from=translated src=- shape=cb2e1fba vocab=9e85b625
+-/
 theorem order_inv' {f : LaurentSeries K} (hf : f ≠ 0) : (f⁻¹).order = -f.order := by
   have h : f⁻¹ * f = 1 := inv_mul_cancel₀ hf
   have hinv : f⁻¹ ≠ 0 := inv_ne_zero hf
@@ -27,11 +30,17 @@ theorem order_inv' {f : LaurentSeries K} (hf : f ≠ 0) : (f⁻¹).order = -f.or
   rw [h, HahnSeries.order_one] at this
   omega
 
+/--
+@isnad1 id=eq.2h3v.s8.9458c1f98a2b from=translated src=- shape=d97b52fc vocab=8b733f7f
+-/
 theorem order_div' {f g : LaurentSeries K} (hf : f ≠ 0) (hg : g ≠ 0) :
     (f / g).order = f.order - g.order := by
   rw [div_eq_mul_inv, HahnSeries.order_mul hf (inv_ne_zero hg), order_inv' hg]
   ring
 
+/--
+@isnad1 id=eq.1h3v.s7.d41c20a59b0d from=translated src=- shape=62dac129 vocab=91f35e0c
+-/
 theorem order_pow' {f : LaurentSeries K} (hf : f ≠ 0) (n : ℕ) : (f ^ n).order = n * f.order := by
   induction n with
   | zero => simp
@@ -40,6 +49,9 @@ theorem order_pow' {f : LaurentSeries K} (hf : f ≠ 0) (n : ℕ) : (f ^ n).orde
     push_cast
     ring
 
+/--
+@isnad1 id=eq.1h3v.s7.ea833af7f8d1 from=translated src=- shape=cb87c83b vocab=86c0b728
+-/
 theorem order_zpow' {f : LaurentSeries K} (hf : f ≠ 0) (n : ℤ) : (f ^ n).order = n * f.order := by
   rcases n with (n | n)
   · rw [Int.ofNat_eq_natCast, zpow_natCast, order_pow' hf]
@@ -85,24 +97,39 @@ def pullbackVS : ValuationSubring F where
     simp only [Set.mem_ofPred_eq, map_inv₀, order_inv' hθa]
     omega
 
+/--
+@isnad1 id=iff.0h4v.s7.36297fa9122f from=translated src=- shape=5efbad18 vocab=3f6873a1
+-/
 @[scoped simp] theorem mem_pullbackVS (x : F) : x ∈ pullbackVS θ ↔ 0 ≤ (θ x).order := Iff.rfl
 
 variable (hθ : ∀ a : k, θ (algebraMap k F a) = HahnSeries.C (algebraMap k K a))
 variable {π : F} (hπ : (θ π).order = 1)
 include hπ
 
+/--
+@isnad1 id=ne.1h4v.s8.67da38399fcd from=translated src=- shape=a726da4e vocab=3be3a547
+-/
 theorem θπ_ne_zero : θ π ≠ 0 :=
   fun h => one_ne_zero (hπ ▸ h ▸ order_zero)
 
+/--
+@isnad1 id=ne.1h4v.s7.bd5937b7a8aa from=translated src=- shape=ddce46f8 vocab=3be3a547
+-/
 theorem π_ne_zero : π ≠ 0 :=
   fun h => θπ_ne_zero θ hπ (h ▸ map_zero θ)
 
 def uniformizer : pullbackVS θ :=
   ⟨π, by rw [mem_pullbackVS, hπ]; omega⟩
 
+/--
+@isnad1 id=eq.1h4v.s7.7b0a82ed8df3 from=translated src=- shape=a1c84b89 vocab=297f1b59
+-/
 @[scoped simp] theorem coe_uniformizer : ((uniformizer θ hπ : pullbackVS θ) : F) = π := rfl
 
 omit hπ in
+/--
+@isnad1 id=iff.1h4v.s8.158182e77410 from=translated src=- shape=a9254721 vocab=7d95d5c7
+-/
 theorem isUnit_pullbackVS_iff {x : pullbackVS θ} (hx : (x : F) ≠ 0) :
     IsUnit x ↔ (θ (x : F)).order = 0 := by
   have hθx : θ (x : F) ≠ 0 := fun h => hx (θ.injective (by simp [h]))
@@ -128,6 +155,9 @@ theorem isUnit_pullbackVS_iff {x : pullbackVS θ} (hx : (x : F) ≠ 0) :
     push_cast
     exact mul_inv_cancel₀ hx
 
+/--
+@isnad1 id=irreduci.1h4v.s8.1ef4659b9020 from=translated src=- shape=1516bb27 vocab=232f6c73
+-/
 theorem irreducible_uniformizer : Irreducible (uniformizer θ hπ) := by
   constructor
   · rw [isUnit_pullbackVS_iff θ (π_ne_zero θ hπ), coe_uniformizer, hπ]
@@ -148,6 +178,9 @@ theorem irreducible_uniformizer : Irreducible (uniformizer θ hπ) := by
     · exact .inr ((isUnit_pullbackVS_iff θ hb0).mpr hb0'.symm)
     omega
 
+/--
+@isnad1 id=isprinci.1h4v.s8.04c692398854 from=translated src=- shape=e7090cc6 vocab=27dc3be2
+-/
 theorem pullbackVS_isPrincipalIdealRing : IsPrincipalIdealRing (pullbackVS θ) := by
   refine (IsDiscreteValuationRing.ofHasUnitMulPowIrreducibleFactorization
     ⟨uniformizer θ hπ, irreducible_uniformizer θ hπ, ?_⟩).toIsPrincipalIdealRing
@@ -184,6 +217,9 @@ def placeOfLaurentEmb : Place k F where
     omega
   isPrincipalIdealRing' := pullbackVS_isPrincipalIdealRing θ hπ
 
+/--
+@isnad1 id=eq.2h6v.s9.93a7d1534af5 from=translated src=- shape=a27f68ac vocab=4c238065
+-/
 theorem ord_placeOfLaurentEmb (f : F) :
     (placeOfLaurentEmb θ hθ hπ).ord f = (θ f).order := by
   rcases eq_or_ne f 0 with rfl | hf
@@ -233,6 +269,9 @@ def coeff0OnVS : (placeOfLaurentEmb θ hθ hπ).toValuationSubring →+* K where
     · rw [coeff_eq_zero_of_lt_order hxpos, zero_mul,
         coeff_eq_zero_of_lt_order (by rw [HahnSeries.order_mul hx0 hy0]; omega)]
 
+/--
+@isnad1 id=eq.3h6v.s10.28a942989d62 from=translated src=- shape=4a234b6e vocab=d9925124
+-/
 theorem coeff0OnVS_mem_maximalIdeal (x : (placeOfLaurentEmb θ hθ hπ).toValuationSubring)
     (hx : x ∈ IsLocalRing.maximalIdeal _) : coeff0OnVS θ hθ hπ x = 0 := by
   rcases eq_or_ne (x : F) 0 with hx0 | hx0
@@ -258,12 +297,18 @@ def residueToCoeff0 : (placeOfLaurentEmb θ hθ hπ).ResidueField →ₐ[k] K :=
       show (HahnSeries.single (0 : ℤ) (algebraMap k K q)).coeff 0 = algebraMap k K q
       exact HahnSeries.coeff_single_same _ _ }
 
+/--
+@isnad1 id=eq.2h6v.s11.78d21f6dee26 from=translated src=- shape=6824c4fa vocab=976959a3
+-/
 theorem residueToCoeff0_residue (x : (placeOfLaurentEmb θ hθ hπ).toValuationSubring) :
     residueToCoeff0 θ hθ hπ (IsLocalRing.residue _ x) = (θ (x : F)).coeff 0 :=
   rfl
 
 include hθ in
 
+/--
+@isnad1 id=ex.2h5v.s11.aa4b1cd625e8 from=translated src=- shape=475f0a1a vocab=c10a266f
+-/
 theorem exists_place :
     ∃ v : Place k F,
       (∀ f : F, f ∈ v.toValuationSubring ↔ 0 ≤ (θ f).order) ∧
@@ -281,6 +326,9 @@ open scoped _root_.P2MW.S_ModularCurve_exists_place_of_ringHom_laurentSeries.S12
 end
 open scoped _root_.P2MW.S_ModularCurve_exists_place_of_ringHom_laurentSeries.S12LaurentPlace
 
+/--
+@isnad1 id=ex.2h4v.s11.338665da5686 from=translated src=- shape=80fc5868 vocab=c10a266f
+-/
 theorem solution
     {k F K : Type*} [Field k] [Field F] [Field K] [Algebra k F] [Algebra k K]
     (θ : F →+* LaurentSeries K)

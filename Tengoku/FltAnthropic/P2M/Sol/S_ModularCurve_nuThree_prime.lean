@@ -9,6 +9,9 @@ namespace P2MW.S_ModularCurve_nuThree_prime
 
 open ModularCurve
 
+/--
+@isnad1 id=eq.2h1v.s6.4d73004ec089 from=translated src=- shape=1bdfdd70 vocab=1206542f
+-/
 theorem solution {p : ℕ} (hp : p.Prime) (hp3 : p ≠ 3) :
     nuThree p = if p % 3 = 1 then 2 else 0 := by
   haveI : Fact p.Prime := ⟨hp⟩

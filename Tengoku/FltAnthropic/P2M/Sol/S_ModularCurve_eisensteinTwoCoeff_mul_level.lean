@@ -36,5 +36,8 @@ private theorem ModularCurve.eisensteinTwoCoeff_mul_level (p : ℕ) [Fact p.Prim
   · rw [eisensteinTwoCoeff_of_ne_zero p (mul_ne_zero hn hp.ne_zero),
       eisensteinTwoCoeff_of_ne_zero p hn, S09WD4U.sigmaPrimeTo_mul_self hp hn]
 
+/--
+@isnad1 id=eq.0h2v.s4.cde8d6dc163d from=translated src=- shape=6f54646d vocab=232a18b3
+-/
 theorem solution (p : ℕ) [Fact p.Prime] (n : ℕ) : eisensteinTwoCoeff p (n * p) = eisensteinTwoCoeff p n :=
   ModularCurve.eisensteinTwoCoeff_mul_level p n

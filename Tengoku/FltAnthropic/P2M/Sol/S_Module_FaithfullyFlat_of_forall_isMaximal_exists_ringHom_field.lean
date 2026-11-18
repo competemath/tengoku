@@ -11,6 +11,9 @@ universe u v w
 
 namespace KatzDescFF
 
+/--
+@isnad1 id=faithful.1h2v.s8.bb3dd9481aba from=translated src=- shape=834caae4 vocab=c3866444
+-/
 theorem faithfullyFlat_of_exists_ringHom_field' {B : Type u} {S : Type v} [CommRing B]
     [CommRing S] [Algebra B S] [Module.Flat B S]
     (h : ∀ m : Ideal B, m.IsMaximal →
@@ -35,6 +38,9 @@ theorem faithfullyFlat_of_exists_ringHom_field' {B : Type u} {S : Type v} [CommR
 
 end KatzDescFF
 
+/--
+@isnad1 id=faithful.1h2v.s8.bb3dd9481aba from=translated src=- shape=834caae4 vocab=c3866444
+-/
 theorem solution
     {B : Type u} {S : Type v} [CommRing B] [CommRing S] [Algebra B S] [Module.Flat B S]
     (h : ∀ m : Ideal B, m.IsMaximal →

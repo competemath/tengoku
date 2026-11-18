@@ -11,6 +11,9 @@ open Polynomial
 
 universe u v
 
+/--
+@isnad1 id=finite.2h4v.s8.5ed0dfcd5d7d from=translated src=- shape=7246da2c vocab=8d560f48
+-/
 theorem solution
     (R : Type u) [CommRing R] (A : Type v) [CommRing A] [Algebra R A] [Algebra R[X] A]
     [IsScalarTower R R[X] A] [Module.Finite R[X] A]

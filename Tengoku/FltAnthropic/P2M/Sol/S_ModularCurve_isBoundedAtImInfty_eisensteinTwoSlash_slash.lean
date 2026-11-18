@@ -21,6 +21,9 @@ open scoped ModularForm
 
 namespace S09RD
 
+/--
+@isnad1 id=summable.0h0v.s6.b9dcd8a17618 from=translated src=- shape=a69f4c92 vocab=e965a618
+-/
 lemma summable_majorant :
     Summable (fun n : ℕ ↦ (ArithmeticFunction.sigma 1 n : ℝ) * Real.exp (-(2 * π)) ^ n) := by
   apply Summable.of_norm_bounded
@@ -32,6 +35,9 @@ lemma summable_majorant :
   gcongr
   exact_mod_cast (ArithmeticFunction.sigma_le_pow_succ 1 n).trans_eq (by norm_num)
 
+/--
+@isnad1 id=isbounde.0h0v.s2.f2f622059302 from=translated src=- shape=25b03439 vocab=14540859
+-/
 lemma isBoundedAtImInfty_E2 : UpperHalfPlane.IsBoundedAtImInfty EisensteinSeries.E2 := by
   rw [UpperHalfPlane.isBoundedAtImInfty_iff]
   refine ⟨1 + 24 * ∑' n : ℕ+,
@@ -72,6 +78,9 @@ lemma isBoundedAtImInfty_E2 : UpperHalfPlane.IsBoundedAtImInfty EisensteinSeries
         (ArithmeticFunction.sigma 1 (n : ℕ) : ℝ) * Real.exp (-(2 * π)) ^ (n : ℕ) := by
         gcongr
 
+/--
+@isnad1 id=isbounde.0h1v.s4.2793c42f648b from=translated src=- shape=54017f05 vocab=23c2c223
+-/
 lemma isBoundedAtImInfty_D2 (γ : SL(2, ℤ)) :
     UpperHalfPlane.IsBoundedAtImInfty (EisensteinSeries.D2 γ) := by
   rcases eq_or_ne (γ 1 0) 0 with hc | hc
@@ -99,11 +108,17 @@ lemma isBoundedAtImInfty_D2 (γ : SL(2, ℤ)) :
     rw [norm_div]
     exact div_le_self (norm_nonneg _) hone
 
+/--
+@isnad1 id=isbounde.0h1v.s6.a9024aaa264e from=translated src=- shape=74fa5347 vocab=cde937d2
+-/
 lemma isBoundedAtImInfty_E2_slash_SL (γ : SL(2, ℤ)) :
     UpperHalfPlane.IsBoundedAtImInfty (EisensteinSeries.E2 ∣[(2 : ℤ)] γ) := by
   rw [EisensteinSeries.E2_slash_action, sub_eq_add_neg]
   exact isBoundedAtImInfty_E2.add ((isBoundedAtImInfty_D2 γ).smul _).neg
 
+/--
+@isnad1 id=isbounde.1h2v.s9.fe83792515cb from=translated src=- shape=783dcae3 vocab=3cd63c3a
+-/
 lemma isBoundedAtImInfty_E2_slash_of_row (g : GL (Fin 2) ℝ) (N : SL(2, ℤ))
     (hN : (Matrix.SpecialLinearGroup.mapGL ℝ N * g) 1 0 = 0) :
     UpperHalfPlane.IsBoundedAtImInfty (EisensteinSeries.E2 ∣[(2 : ℤ)] g) := by
@@ -113,6 +128,9 @@ lemma isBoundedAtImInfty_E2_slash_of_row (g : GL (Fin 2) ℝ) (N : SL(2, ℤ))
   have h2 := h1.slash (2 : ℤ) hN
   rwa [← SlashAction.slash_mul, map_inv, inv_mul_cancel_left] at h2
 
+/--
+@isnad1 id=ex.1h2v.s10.b0f4cbfdce34 from=translated src=- shape=dfb5df1c vocab=b4bd2b46
+-/
 lemma exists_row_zero (p : ℕ) (hp : p ≠ 0) (γ : SL(2, ℤ)) :
     ∃ N : SL(2, ℤ), (Matrix.SpecialLinearGroup.mapGL ℝ N *
       (ModularForm.heckeDiagMatrix p * Matrix.SpecialLinearGroup.mapGL ℝ γ)) 1 0 = 0 := by
@@ -170,5 +188,8 @@ private theorem ModularCurve.isBoundedAtImInfty_eisensteinTwoSlash_slash (p : �
   exact h1.add (S09RD.isBoundedAtImInfty_E2_slash_SL γ).neg
 
 open scoped ModularForm in
+/--
+@isnad1 id=isbounde.0h2v.s7.a898c0a76735 from=translated src=- shape=955cfa91 vocab=1ccaef10
+-/
 theorem solution : ∀ (p : ℕ) [NeZero p], ∀ γ : Matrix.SpecialLinearGroup (Fin 2) ℤ, UpperHalfPlane.IsBoundedAtImInfty ((EisensteinSeries.E2 ∣[(2 : ℤ)] ModularForm.heckeDiagMatrix p - EisensteinSeries.E2) ∣[(2 : ℤ)] γ) :=
   @ModularCurve.isBoundedAtImInfty_eisensteinTwoSlash_slash

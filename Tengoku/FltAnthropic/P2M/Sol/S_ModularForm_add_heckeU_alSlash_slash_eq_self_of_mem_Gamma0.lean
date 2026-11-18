@@ -24,6 +24,9 @@ def repMat (ℓ : ℕ) : Option (Fin ℓ) → Matrix (Fin 2) (Fin 2) ℤ
   | none => !![(ℓ : ℤ), 0; 0, 1]
   | some j => !![1, (j : ℤ); 0, (ℓ : ℤ)]
 
+/--
+@isnad1 id=eq.0h2v.s5.057a6bf187cf from=translated src=- shape=b74e6989 vocab=a166d9e3
+-/
 lemma det_repMat (ℓ : ℕ) (i : Option (Fin ℓ)) : (repMat ℓ i).det = (ℓ : ℤ) := by
   cases i <;> simp [repMat, Matrix.det_fin_two_of]
 
@@ -174,6 +177,9 @@ variable {M q : ℕ} (W : ALData M q)
 
 include W in
 
+/--
+@isnad1 id=lt.0h3v.s4.20cd2798afbb from=translated src=- shape=480a14fa vocab=7a4ac9bc
+-/
 lemma q_pos [NeZero M] : 0 < q := by
   rcases Nat.eq_zero_or_pos q with h | h
   · exact absurd (W.hM.trans (Nat.mul_eq_zero.mpr (Or.inl h))) (NeZero.ne M)
@@ -181,6 +187,9 @@ lemma q_pos [NeZero M] : 0 < q := by
 
 def mat : Matrix (Fin 2) (Fin 2) ℤ := !![(q : ℤ) * W.a, W.b; (q : ℤ) * (W.R : ℤ), (q : ℤ)]
 
+/--
+@isnad1 id=eq.0h3v.s5.1f10cc051184 from=translated src=- shape=94c68e3f vocab=9c892d6d
+-/
 @[scoped simp] lemma det_mat : W.mat.det = (q : ℤ) := by
   rw [mat, Matrix.det_fin_two_of]
   linear_combination (q : ℤ) * W.bezout
@@ -189,6 +198,9 @@ def sqUnit : Matrix (Fin 2) (Fin 2) ℤ :=
   !![(q : ℤ) * W.a ^ 2 + (W.R : ℤ) * W.b, W.b * (W.a + 1);
      (q : ℤ) * (W.R : ℤ) * (W.a + 1), (W.R : ℤ) * W.b + (q : ℤ)]
 
+/--
+@isnad1 id=eq.0h3v.s5.94cceece4869 from=translated src=- shape=aa0bce4b vocab=c50683cf
+-/
 @[scoped simp] lemma det_sqUnit : W.sqUnit.det = 1 := by
   rw [sqUnit, Matrix.det_fin_two_of]
   linear_combination ((q : ℤ) * W.a - (W.R : ℤ) * W.b + 1) * W.bezout

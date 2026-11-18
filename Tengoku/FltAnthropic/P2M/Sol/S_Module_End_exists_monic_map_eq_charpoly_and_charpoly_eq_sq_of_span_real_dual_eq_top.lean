@@ -11,6 +11,9 @@ open Polynomial
 
 namespace RatAnCharpoly
 
+/--
+@isnad1 id=eq.3h6v.s13.766ffb6424e2 from=translated src=- shape=b99b86b6 vocab=deeb3b73
+-/
 theorem map_charpoly_eq_mul_conj
     {S : Type*} [AddCommGroup S] [Module ℂ S] [FiniteDimensional ℂ S]
     (T : S →ₗ[ℂ] S) (Λ : Submodule ℤ (Module.Dual ℂ S)) [Module.Finite ℤ Λ] [Module.Free ℤ Λ]
@@ -91,6 +94,9 @@ theorem map_charpoly_eq_mul_conj
   rw [hP, hQ, ← hpoly]
   rfl
 
+/--
+@isnad1 id=ex.4h3v.s7.a15348dd06bf from=translated src=- shape=4d1b5c01 vocab=a1b1f306
+-/
 theorem exists_map_rat_eq_of_sq_eq (n : ℕ) : ∀ (Rq : ℚ[X]), Rq.Monic → Rq.natDegree ≤ n →
     ∀ Q : ℂ[X], Q.Monic → Q ^ 2 = Rq.map (algebraMap ℚ ℂ) →
       ∃ Qq : ℚ[X], Qq.Monic ∧ Qq.map (algebraMap ℚ ℂ) = Q := by
@@ -159,6 +165,9 @@ theorem exists_map_rat_eq_of_sq_eq (n : ℕ) : ∀ (Rq : ℚ[X]), Rq.Monic → R
     refine ⟨P * Qq₁, hPmonic.mul hQq₁m, ?_⟩
     rw [Polynomial.map_mul, hQq₁, ← hQ₁e]
 
+/--
+@isnad1 id=ex.3h2v.s6.b15b47f59214 from=translated src=- shape=71cd8c27 vocab=deed128d
+-/
 theorem exists_map_int_eq_of_sq_eq (R : ℤ[X]) (hR : R.Monic) (Q : ℂ[X]) (hQ : Q.Monic)
     (h : Q ^ 2 = R.map (algebraMap ℤ ℂ)) :
     ∃ Q₀ : ℤ[X], Q₀.Monic ∧ Q₀.map (algebraMap ℤ ℂ) = Q := by
@@ -182,6 +191,9 @@ theorem exists_map_int_eq_of_sq_eq (R : ℤ[X]) (hR : R.Monic) (Q : ℂ[X]) (hQ 
 end RatAnCharpoly
 
 open RatAnCharpoly in
+/--
+@isnad1 id=ex.4h6v.s13.e7096ac47c3d from=translated src=- shape=48cc8b07 vocab=15e5d12b
+-/
 theorem solution
     {S : Type*} [AddCommGroup S] [Module ℂ S] [FiniteDimensional ℂ S]
     (T : S →ₗ[ℂ] S) (hreal : T.charpoly.map (starRingEnd ℂ) = T.charpoly)

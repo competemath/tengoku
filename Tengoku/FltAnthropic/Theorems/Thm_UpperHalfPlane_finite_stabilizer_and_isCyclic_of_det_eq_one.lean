@@ -10,6 +10,9 @@ set_option autoImplicit false
 open Filter UpperHalfPlane
 open scoped MatrixGroups Topology
 
+/--
+@isnad1 id=and.1h2v.s12.25d2429f7819 from=translated src=- shape=be005941 vocab=e03ad7c0
+-/
 theorem UpperHalfPlane.finite_stabilizer_and_isCyclic_of_det_eq_one
     (Γ : Subgroup (GL (Fin 2) ℝ))
     (hdet : ∀ γ ∈ Γ, Matrix.GeneralLinearGroup.det γ = 1)

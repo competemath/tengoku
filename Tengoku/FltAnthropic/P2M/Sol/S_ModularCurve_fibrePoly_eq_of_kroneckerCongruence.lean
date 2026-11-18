@@ -5,6 +5,9 @@ import Tengoku.FltAnthropic.Definitions.Def_ModularCurve_FibrePoly
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_ModularCurve_fibrePoly_eq_of_kroneckerCongruence.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 namespace P2MW.S_ModularCurve_fibrePoly_eq_of_kroneckerCongruence
 open Polynomial ModularCurve
+/--
+@isnad1 id=eq.1h4v.s8.90fd083ba8ca from=translated src=- shape=02031354 vocab=92783009
+-/
 theorem solution {k : Type*} [Field k]
     {ℓ : ℕ} [Fact ℓ.Prime] [CharP k ℓ] (data : ModularCurve.ModularPolynomialData ℓ)
     (hK : ModularCurve.KroneckerCongruence ℓ data) (a : k) :

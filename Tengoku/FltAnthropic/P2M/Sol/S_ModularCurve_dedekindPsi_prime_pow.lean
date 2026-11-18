@@ -10,6 +10,9 @@ namespace P2MW.S_ModularCurve_dedekindPsi_prime_pow
 
 open _root_.ModularCurve open _root_.Finset open _root_.Nat open _root_.Finset.Nat
 
+/--
+@isnad1 id=eq.2h2v.s6.b2ff13a5d944 from=translated src=- shape=905e5ace vocab=74312d1a
+-/
 theorem solution (p k : ℕ) (hp : p.Prime) (hk : k ≠ 0) :
     dedekindPsi (p ^ k) = p ^ k + p ^ (k - 1) := by
   have hsqfree : ∀ j, Squarefree (p ^ j) ↔ j ≤ 1 := fun j => by

@@ -33,10 +33,16 @@ section Regularity
 
 variable {f : ℍ → ℂ} (k : ℤ) (p : ℕ)
 
+/--
+@isnad1 id=mdiffere.1h3v.s8.8ad8d51c9bc7 from=translated src=- shape=820fb839 vocab=d0ed2265
+-/
 theorem mdifferentiable_heckeU (hf : MDiff f) : MDiff (heckeU k p f) :=
   Finset.sum_induction _ (fun g : ℍ → ℂ => MDiff g) (fun _ _ ha hb => ha.add hb)
     mdifferentiable_const (fun _ _ => hf.slash k _)
 
+/--
+@isnad1 id=mdiffere.1h3v.s8.625cd6c65b3c from=translated src=- shape=820fb839 vocab=f5e6a066
+-/
 theorem mdifferentiable_heckeT (hf : MDiff f) : MDiff (heckeT k p f) :=
   (mdifferentiable_heckeU k p hf).add (hf.slash k _)
 
@@ -63,5 +69,8 @@ end M4cP1W2
 
 end
 
+/--
+@isnad1 id=mdiffere.1h3v.s7.1f789bd7daae from=translated src=- shape=bd7c73b7 vocab=f5e6a066
+-/
 theorem solution {f : UpperHalfPlane → ℂ} (hf : MDifferentiable (modelWithCornersSelf ℂ ℂ) (modelWithCornersSelf ℂ ℂ) f) (k : ℤ) (p : ℕ) : MDifferentiable (modelWithCornersSelf ℂ ℂ) (modelWithCornersSelf ℂ ℂ) (ModularForm.heckeT k p f) :=
   M4cP1W2.mdifferentiable_heckeT k p hf

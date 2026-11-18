@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open ModularCurve
 
+/--
+@isnad1 id=eq.0h3v.s7.6702a92720f7 from=translated src=- shape=4b87c375 vocab=149894cb
+-/
 theorem solution
     (K : Type) [CommRing K] (q : ℕ) [Fact q.Prime] [CharP K q] (n : ℕ) [NeZero n] [NeZero (q * n)] :
     (jqNModC K n) ^ q = jqNModC K (q * n) := by

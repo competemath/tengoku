@@ -15,6 +15,9 @@ open TensorProduct
 
 namespace CoreNak17
 
+/--
+@isnad1 id=subsingl.1h2v.s6.101c93196a97 from=translated src=- shape=dad4a1b0 vocab=af5960f3
+-/
 theorem subsingleton_of_forall_isMaximal {R : Type u} [CommRing R] {H : Type u} [AddCommGroup H] [Module R H]
     [Module.Finite R H] (h : ∀ (𝔪 : Ideal R) [𝔪.IsMaximal], Subsingleton ((R ⧸ 𝔪) ⊗[R] H)) :
     Subsingleton H := by
@@ -41,6 +44,9 @@ theorem subsingleton_of_forall_isMaximal {R : Type u} [CommRing R] {H : Type u} 
     rwa [sub_sub_cancel] at this
   exact h𝔪.ne_top ((Ideal.eq_top_iff_one _).2 h1)
 
+/--
+@isnad1 id=surjecti.1h4v.s10.e50219b79a62 from=translated src=- shape=a72d1709 vocab=b00a2ab6
+-/
 theorem surjective_of_forall_isMaximal {R : Type u} [CommRing R] {M Z : Type u} [AddCommGroup M] [Module R M]
     [AddCommGroup Z] [Module R Z] (δ : M →ₗ[R] Z) [Module.Finite R (Z ⧸ LinearMap.range δ)]
     (h : ∀ (𝔪 : Ideal R) [𝔪.IsMaximal], Function.Surjective (δ.baseChange (R ⧸ 𝔪))) :
@@ -82,6 +88,9 @@ def dT : ∀ i, T C d j i →ₗ[R] T C d j (i + 1)
   | 0 => (LinearMap.ker (d (j + 1))).subtype
   | i + 1 => d (j + 1 + i)
 
+/--
+@isnad1 id=flat.1h5v.s10.01e6e994023e from=translated src=- shape=48520a5b vocab=b04ea3e6
+-/
 theorem flatT [∀ i, Module.Flat R (C i)] (hZ : Module.Flat R ↥(LinearMap.ker (d (j + 1)))) :
     ∀ i, Module.Flat R (T C d j i)
   | 0 => hZ
@@ -89,6 +98,9 @@ theorem flatT [∀ i, Module.Flat R (C i)] (hZ : Module.Flat R ↥(LinearMap.ker
 
 end Trunc
 
+/--
+@isnad1 id=and.4h6v.s14.85674e5259ee from=translated src=- shape=e9e582db vocab=2f003f9c
+-/
 theorem subtype_baseChange {R : Type u} [CommRing R] (C : ℕ → Type u) [∀ i, AddCommGroup (C i)] [∀ i, Module R (C i)]
     [∀ i, Module.Flat R (C i)] (d : ∀ i, C i →ₗ[R] C (i + 1)) (hdd : ∀ i, d (i + 1) ∘ₗ d i = 0)
     (n : ℕ) (hbd : ∀ i, n ≤ i → Subsingleton (C i)) (j : ℕ)
@@ -126,6 +138,9 @@ end CoreNak17
 open scoped _root_.P2MW.S_Module_Flat_ker_le_range_of_forall_isMaximal_ker_baseChange_quotient_le_range.CoreNak17
 
 open CoreNak17 in
+/--
+@isnad1 id=le.4h5v.s13.e66cc018f8cd from=translated src=- shape=e2f9d5e0 vocab=58180a17
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsNoetherianRing R]
     (C : ℕ → Type u) [∀ i, AddCommGroup (C i)] [∀ i, Module R (C i)] [∀ i, Module.Flat R (C i)]

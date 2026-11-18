@@ -23,26 +23,41 @@ variable (Λ : Submodule ℤ V) {n : ℕ} (b : Module.Basis (Fin n) ℤ Λ)
 def w : (Fin n → ℂ) →ₗ[ℂ] V :=
   Fintype.linearCombination ℂ (fun i => ((b i : Λ) : V))
 
+/--
+@isnad1 id=eq.0h5v.s9.c239a468a3ba from=translated src=- shape=8c1b4524 vocab=aef440e9
+-/
 theorem w_apply (z : Fin n → ℂ) : w Λ b z = ∑ i, z i • ((b i : Λ) : V) := rfl
 
 def P : ℂ ⊗[ℤ] Λ →ₗ[ℂ] V :=
   TensorProduct.AlgebraTensorModule.lift
     ((LinearMap.id : ℂ →ₗ[ℂ] ℂ).smulRight (Λ.subtype : Λ →ₗ[ℤ] V))
 
+/--
+@isnad1 id=eq.0h4v.s10.9af7798f2db3 from=translated src=- shape=ebeea91b vocab=b5affb2c
+-/
 @[scoped simp] theorem P_tmul (z : ℂ) (l : Λ) : P Λ (z ⊗ₜ l) = z • (l : V) := by
   simp [P]
 
 def conjZ : ℂ →ₗ[ℤ] ℂ := (starRingEnd ℂ).toAddMonoidHom.toIntLinearMap
 
+/--
+@isnad1 id=eq.0h1v.s6.f0cd0d16dd61 from=translated src=- shape=41c5cfe3 vocab=da9b9b11
+-/
 @[scoped simp] theorem conjZ_apply (z : ℂ) : conjZ z = starRingEnd ℂ z := rfl
 
 def Q : ℂ ⊗[ℤ] Λ →ₗ[ℤ] V :=
   ((P Λ).restrictScalars ℤ) ∘ₗ (LinearMap.rTensor Λ conjZ)
 
+/--
+@isnad1 id=eq.0h4v.s10.543b1a03ea36 from=translated src=- shape=b51677a4 vocab=a50b8657
+-/
 @[scoped simp] theorem Q_tmul (z : ℂ) (l : Λ) : Q Λ (z ⊗ₜ l) = (starRingEnd ℂ z) • (l : V) := by
   change P Λ (LinearMap.rTensor Λ conjZ (z ⊗ₜ l)) = _
   rw [LinearMap.rTensor_tmul, conjZ_apply, P_tmul]
 
+/--
+@isnad1 id=eq.0h4v.s11.0d052a145a00 from=translated src=- shape=8a27a67d vocab=afbace96
+-/
 theorem Q_smul (z : ℂ) (x : ℂ ⊗[ℤ] Λ) : Q Λ (z • x) = (starRingEnd ℂ z) • Q Λ x := by
   induction x using TensorProduct.induction_on with
   | zero => rw [smul_zero, map_zero, smul_zero]
@@ -51,19 +66,31 @@ theorem Q_smul (z : ℂ) (x : ℂ ⊗[ℤ] Λ) : Q Λ (z • x) = (starRingEnd �
 
 noncomputable def B : Module.Basis (Fin n) ℂ (ℂ ⊗[ℤ] Λ) := b.baseChange ℂ
 
+/--
+@isnad1 id=eq.0h5v.s10.dc14ef576bbe from=translated src=- shape=979252ca vocab=b01c152d
+-/
 theorem B_apply (i : Fin n) : B Λ b i = (1 : ℂ) ⊗ₜ (b i) := Module.Basis.baseChange_apply _ _ _
 
+/--
+@isnad1 id=eq.0h5v.s11.df4e1e45d3dd from=translated src=- shape=dd85ae86 vocab=2b8a783d
+-/
 theorem P_coord (z : Fin n → ℂ) : P Λ (∑ i, z i • B Λ b i) = w Λ b z := by
   rw [map_sum, w_apply]
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [map_smul, B_apply, P_tmul, one_smul]
 
+/--
+@isnad1 id=eq.0h5v.s11.458bb3229c53 from=translated src=- shape=c73d5909 vocab=c129e59c
+-/
 theorem Q_coord (z : Fin n → ℂ) :
     Q Λ (∑ i, z i • B Λ b i) = w Λ b (fun i => starRingEnd ℂ (z i)) := by
   rw [map_sum, w_apply]
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [Q_smul, B_apply, Q_tmul, map_one, one_smul]
 
+/--
+@isnad1 id=ex.0h5v.s10.2c9c8b84e1ba from=translated src=- shape=bc80e8e4 vocab=f1d7e737
+-/
 theorem exists_coord (x : ℂ ⊗[ℤ] Λ) : ∃ z : Fin n → ℂ, x = ∑ i, z i • B Λ b i :=
   ⟨fun i => (B Λ b).repr x i, ((B Λ b).sum_repr x).symm⟩
 
@@ -111,6 +138,9 @@ theorem eq_zero_of_P_eq_zero_of_Q_eq_zero (x : ℂ ⊗[ℤ] Λ) (hP : P Λ x = 0
 
 include hsp in
 
+/--
+@isnad1 id=ex.1h6v.s11.dbad7dd19237 from=translated src=- shape=f0ff2039 vocab=e67d3756
+-/
 theorem exists_P_eq_Q_eq (v₁ v₂ : V) : ∃ x : ℂ ⊗[ℤ] Λ, P Λ x = v₁ ∧ Q Λ x = v₂ := by
   obtain ⟨t, ht⟩ := hsp ((2 : ℂ)⁻¹ • (v₁ + v₂))
   obtain ⟨t', ht'⟩ := hsp ((-(Complex.I) / 2) • (v₁ - v₂))
@@ -143,6 +173,9 @@ variable {ι : Type x} (D : ι → Module.End ℂ V) (A : ι → Module.End ℤ 
   (hA : ∀ (i : ι) (x : Λ), ((A i x : Λ) : V) = D i (x : V)) (c : ι → ℂ)
 
 include hA in
+/--
+@isnad1 id=eq.1h7v.s12.eba4787cd2f9 from=translated src=- shape=314aea1e vocab=34645a8f
+-/
 theorem P_baseChange (i : ι) (x : ℂ ⊗[ℤ] Λ) : P Λ ((A i).baseChange ℂ x) = D i (P Λ x) := by
   induction x using TensorProduct.induction_on with
   | zero => rw [map_zero, map_zero, map_zero]
@@ -150,6 +183,9 @@ theorem P_baseChange (i : ι) (x : ℂ ⊗[ℤ] Λ) : P Λ ((A i).baseChange ℂ
   | add x y hx hy => simp only [map_add, hx, hy]
 
 include hA in
+/--
+@isnad1 id=eq.1h7v.s12.f320ae30f21c from=translated src=- shape=2eb5be83 vocab=c04f4e5d
+-/
 theorem Q_baseChange (i : ι) (x : ℂ ⊗[ℤ] Λ) : Q Λ ((A i).baseChange ℂ x) = D i (Q Λ x) := by
   induction x using TensorProduct.induction_on with
   | zero => rw [map_zero, map_zero, map_zero]
@@ -162,27 +198,45 @@ def E₁ : Submodule ℂ V := ⨅ i, Module.End.eigenspace (D i) (c i)
 
 def E₂ : Submodule ℂ V := ⨅ i, Module.End.eigenspace (D i) (starRingEnd ℂ (c i))
 
+/--
+@isnad1 id=iff.0h6v.s11.4ed82d12c5ab from=translated src=- shape=0f51c4ca vocab=7e93d9e9
+-/
 theorem mem_EX {x : ℂ ⊗[ℤ] Λ} : x ∈ EX A c ↔ ∀ i, (A i).baseChange ℂ x = c i • x := by
   simp [EX, Submodule.mem_iInf]
 
+/--
+@isnad1 id=iff.0h5v.s7.4cf0eb2981ee from=translated src=- shape=3394d7fc vocab=a001d146
+-/
 theorem mem_E₁ {v : V} : v ∈ E₁ D c ↔ ∀ i, D i v = c i • v := by
   simp [E₁, Submodule.mem_iInf]
 
+/--
+@isnad1 id=iff.0h5v.s7.da6757e07d48 from=translated src=- shape=1872a263 vocab=3d3077df
+-/
 theorem mem_E₂ {v : V} : v ∈ E₂ D c ↔ ∀ i, D i v = (starRingEnd ℂ (c i)) • v := by
   simp [E₂, Submodule.mem_iInf]
 
 include hA in
+/--
+@isnad1 id=mem.2h7v.s11.abd333659a86 from=translated src=- shape=12050c38 vocab=b88b2806
+-/
 theorem P_mem {x : ℂ ⊗[ℤ] Λ} (hx : x ∈ EX A c) : P Λ x ∈ E₁ D c := by
   rw [mem_E₁]; intro i
   rw [← P_baseChange (hA := hA), (mem_EX A c).mp hx i, map_smul]
 
 include hA in
+/--
+@isnad1 id=mem.2h7v.s11.06a9170400bf from=translated src=- shape=1b36a321 vocab=08eae878
+-/
 theorem Q_mem {x : ℂ ⊗[ℤ] Λ} (hx : x ∈ EX A c) : Q Λ x ∈ E₂ D c := by
   rw [mem_E₂]; intro i
   rw [← Q_baseChange (hA := hA), (mem_EX A c).mp hx i, Q_smul]
 
 include hli hA in
 
+/--
+@isnad1 id=mem.4h9v.s12.48835985d985 from=translated src=- shape=d6a3fe12 vocab=cf0b7d4f
+-/
 theorem mem_EX_of (x : ℂ ⊗[ℤ] Λ) (h₁ : P Λ x ∈ E₁ D c) (h₂ : Q Λ x ∈ E₂ D c) :
     x ∈ EX A c := by
   rw [mem_EX]; intro i
@@ -194,10 +248,16 @@ theorem mem_EX_of (x : ℂ ⊗[ℤ] Λ) (h₁ : P Λ x ∈ E₁ D c) (h₂ : Q �
 def P₁ : EX A c →ₗ[ℂ] E₁ D c :=
   ((P Λ).domRestrict (EX A c)).codRestrict (E₁ D c) (fun x => P_mem D A hA c x.2)
 
+/--
+@isnad1 id=eq.1h7v.s13.21cb357af7ca from=translated src=- shape=e415f087 vocab=66fdb4a4
+-/
 @[scoped simp] theorem P₁_apply (x : EX A c) : ((P₁ D A hA c x : E₁ D c) : V) = P Λ (x : ℂ ⊗[ℤ] Λ) :=
   rfl
 
 include hli hsp in
+/--
+@isnad1 id=surjecti.3h8v.s13.0423c1d344a6 from=translated src=- shape=0d1fc1ce vocab=54cfcc91
+-/
 theorem P₁_surjective : Function.Surjective (P₁ D A hA c) := by
   intro v
   obtain ⟨x, hx₁, hx₂⟩ := exists_P_eq_Q_eq hsp (v : V) 0
@@ -207,6 +267,9 @@ theorem P₁_surjective : Function.Surjective (P₁ D A hA c) := by
 
 include hli hsp in
 
+/--
+@isnad1 id=eq.3h8v.s14.e03158789314 from=translated src=- shape=29178b61 vocab=46b99d5c
+-/
 theorem finrank_ker_P₁ :
     Module.finrank ℂ (LinearMap.ker (P₁ D A hA c)) = Module.finrank ℂ (E₂ D c) := by
   classical
@@ -262,6 +325,9 @@ theorem finrank_ker_P₁ :
 
 include hli hsp hA in
 
+/--
+@isnad1 id=eq.3h8v.s11.f1a28a4b05eb from=translated src=- shape=88c38493 vocab=0a6de034
+-/
 theorem finrank_EX :
     Module.finrank ℂ (EX A c) = Module.finrank ℂ (E₁ D c) + Module.finrank ℂ (E₂ D c) := by
   haveI : Module.Finite ℂ (ℂ ⊗[ℤ] Λ) := Module.Finite.of_basis (B Λ b)
@@ -273,6 +339,9 @@ theorem finrank_EX :
 end ComplexifiedLattice
 open scoped _root_.P2MW.S_Module_End_finrank_iInf_eigenspace_baseChange_complex_eq_add.ComplexifiedLattice
 
+/--
+@isnad1 id=eq.3h8v.s13.943d576f48b3 from=translated src=- shape=32f639d3 vocab=88ca989d
+-/
 theorem solution
     {V : Type*} [AddCommGroup V] [Module ℂ V]
     (Λ : Submodule ℤ V) {n : ℕ} (b : Module.Basis (Fin n) ℤ Λ)

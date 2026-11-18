@@ -19,6 +19,9 @@ open Module Module.End
 
 variable {F : Type} [Field F]
 
+/--
+@isnad1 id=eq.2h7v.s8.0c2663214a46 from=translated src=- shape=fcd202eb vocab=fcc6a743
+-/
 theorem comap_maxGenEigenspace_eq_of_comm
     {X Y : Type} [AddCommGroup X] [Module F X] [AddCommGroup Y] [Module F Y]
     (ι : X →ₗ[F] Y) (hι : Function.Injective ι) (f' : Module.End F X) (f : Module.End F Y)
@@ -45,11 +48,17 @@ private noncomputable def _root_.GeneigTensorAux.coord (M : Type) [AddCommGroup 
     TensorProduct.map (LinearMap.id : M →ₗ[F] M) ((Module.finBasis F W).coord b)
 
 export _root_.GeneigTensorAux (coord)
+/--
+@isnad1 id=eq.0h6v.s9.fef14afaa6f7 from=translated src=- shape=b3b63bbd vocab=42816d14
+-/
 theorem coord_tmul (M : Type) [AddCommGroup M] [Module F M]
     (b : Fin (Module.finrank F W)) (m : M) (w : W) :
     coord M b (m ⊗ₜ[F] w) = (Module.finBasis F W).repr w b • m := by
   simp [coord, Module.Basis.coord]
 
+/--
+@isnad1 id=eq.0h7v.s10.e9590d20b05f from=translated src=- shape=eaa4eb23 vocab=bfe108b1
+-/
 theorem coord_map {M M' : Type} [AddCommGroup M] [Module F M] [AddCommGroup M'] [Module F M']
     (g : M' →ₗ[F] M) (b : Fin (Module.finrank F W)) (x : M' ⊗[F] W) :
     coord M b (TensorProduct.map g (LinearMap.id : W →ₗ[F] W) x) = g (coord M' b x) := by
@@ -58,6 +67,9 @@ theorem coord_map {M M' : Type} [AddCommGroup M] [Module F M] [AddCommGroup M'] 
   | tmul m w => simp [coord_tmul]
   | add x y hx hy => simp [map_add, hx, hy]
 
+/--
+@isnad1 id=eq.0h4v.s9.6d2da41b5b16 from=translated src=- shape=c0bd9bac vocab=957c764d
+-/
 theorem sum_coord_tmul (M : Type) [AddCommGroup M] [Module F M] (x : M ⊗[F] W) :
     ∑ b, coord M b x ⊗ₜ[F] (Module.finBasis F W) b = x := by
   induction x using TensorProduct.induction_on with
@@ -68,6 +80,9 @@ theorem sum_coord_tmul (M : Type) [AddCommGroup M] [Module F M] (x : M ⊗[F] W)
   | add x y hx hy =>
       simp_rw [map_add, TensorProduct.add_tmul, Finset.sum_add_distrib, hx, hy]
 
+/--
+@isnad1 id=iff.0h5v.s10.6fec270b2fd5 from=translated src=- shape=b04918ba vocab=57afe232
+-/
 theorem mem_range_map_subtype_iff (M : Type) [AddCommGroup M] [Module F M]
     (P : Submodule F M) (x : M ⊗[F] W) :
     x ∈ LinearMap.range (TensorProduct.map P.subtype (LinearMap.id : W →ₗ[F] W)) ↔
@@ -81,6 +96,9 @@ theorem mem_range_map_subtype_iff (M : Type) [AddCommGroup M] [Module F M]
     refine Submodule.sum_mem _ fun b _ => ?_
     exact ⟨(⟨coord M b x, h b⟩ : ↥P) ⊗ₜ[F] (Module.finBasis F W) b, by simp⟩
 
+/--
+@isnad1 id=injectiv.0h4v.s10.4e7c95d04180 from=translated src=- shape=98e09dec vocab=bc63c0fa
+-/
 theorem map_subtype_id_injective (M : Type) [AddCommGroup M] [Module F M] (P : Submodule F M) :
     Function.Injective (TensorProduct.map P.subtype (LinearMap.id : W →ₗ[F] W)) := by
   intro y y' hyy
@@ -94,6 +112,9 @@ theorem map_subtype_id_injective (M : Type) [AddCommGroup M] [Module F M] (P : S
   simp [hz]
 
 omit [FiniteDimensional F W] in
+/--
+@isnad1 id=eq.0h5v.s11.2e4b7e496d94 from=translated src=- shape=a92d5c9c vocab=a99db882
+-/
 theorem map_sub_smul_one (M : Type) [AddCommGroup M] [Module F M] (f : Module.End F M) (μ : F) :
     TensorProduct.map f (LinearMap.id : W →ₗ[F] W) - μ • 1 =
       TensorProduct.map (f - μ • 1) (LinearMap.id : W →ₗ[F] W) := by
@@ -102,6 +123,9 @@ theorem map_sub_smul_one (M : Type) [AddCommGroup M] [Module F M] (f : Module.En
   simp [TensorProduct.sub_tmul, TensorProduct.smul_tmul']
 
 omit [FiniteDimensional F W] in
+/--
+@isnad1 id=eq.0h6v.s11.b67b71262258 from=translated src=- shape=f0fe71c0 vocab=f657dbba
+-/
 theorem map_sub_smul_one_pow (M : Type) [AddCommGroup M] [Module F M] (f : Module.End F M) (μ : F)
     (k : ℕ) :
     (TensorProduct.map f (LinearMap.id : W →ₗ[F] W) - μ • 1) ^ k =
@@ -109,6 +133,9 @@ theorem map_sub_smul_one_pow (M : Type) [AddCommGroup M] [Module F M] (f : Modul
   rw [map_sub_smul_one]
   exact LinearMap.rTensor_pow (f - μ • 1) k
 
+/--
+@isnad1 id=iff.0h6v.s9.15973891f303 from=translated src=- shape=35c4a8bc vocab=cc7a08f5
+-/
 theorem mem_maxGenEigenspace_map_id_iff (M : Type) [AddCommGroup M] [Module F M]
     (f : Module.End F M) (μ : F) (x : M ⊗[F] W) :
     x ∈ Module.End.maxGenEigenspace (TensorProduct.map f (LinearMap.id : W →ₗ[F] W)) μ ↔
@@ -128,6 +155,9 @@ theorem mem_maxGenEigenspace_map_id_iff (M : Type) [AddCommGroup M] [Module F M]
     obtain ⟨d, hd⟩ := Nat.exists_eq_add_of_le' hle
     rw [hd, pow_add, Module.End.mul_apply, hk b, map_zero, TensorProduct.zero_tmul]
 
+/--
+@isnad1 id=eq.0h6v.s10.0900194bc1f7 from=translated src=- shape=d9d37ecd vocab=d733e348
+-/
 theorem iInf_maxGenEigenspace_map_id_eq_range (M : Type) [AddCommGroup M] [Module F M]
     {ι : Type} (A : ι → Module.End F M) (μ : ι → F) :
     (⨅ i, Module.End.maxGenEigenspace (TensorProduct.map (A i) (LinearMap.id : W →ₗ[F] W)) (μ i)) =
@@ -137,6 +167,9 @@ theorem iInf_maxGenEigenspace_map_id_eq_range (M : Type) [AddCommGroup M] [Modul
   simp only [Submodule.mem_iInf, mem_maxGenEigenspace_map_id_iff, mem_range_map_subtype_iff]
   exact forall_comm
 
+/--
+@isnad1 id=injectiv.0h4v.s10.e66af90a2b9f from=translated src=- shape=599f2da3 vocab=bc63c0fa
+-/
 theorem map_id_subtype_injective (M : Type) [AddCommGroup M] [Module F M] [FiniteDimensional F M]
     (N : Type) [AddCommGroup N] [Module F N] (P : Submodule F N) :
     Function.Injective (TensorProduct.map (LinearMap.id : M →ₗ[F] M) P.subtype) := by
@@ -151,6 +184,9 @@ theorem map_id_subtype_injective (M : Type) [AddCommGroup M] [Module F M] [Finit
   exact (TensorProduct.comm F N M).injective.comp
     ((map_subtype_id_injective (W := M) N P).comp (TensorProduct.comm F M ↥P).injective)
 
+/--
+@isnad1 id=eq.0h6v.s10.6d405e9ed151 from=translated src=- shape=05f91929 vocab=d733e348
+-/
 theorem iInf_maxGenEigenspace_id_map_eq_range (M : Type) [AddCommGroup M] [Module F M]
     [FiniteDimensional F M] (N : Type) [AddCommGroup N] [Module F N]
     {κ : Type} (B : κ → Module.End F N) (ν : κ → F) :
@@ -188,6 +224,9 @@ theorem iInf_maxGenEigenspace_id_map_eq_range (M : Type) [AddCommGroup M] [Modul
 
 end GeneigTensorAux
 
+/--
+@isnad1 id=eq.0h9v.s11.a8f7fab7117d from=translated src=- shape=42f23914 vocab=4371e0da
+-/
 theorem solution
     (F : Type) [Field F]
     (V W : Type) [AddCommGroup V] [Module F V] [FiniteDimensional F V]

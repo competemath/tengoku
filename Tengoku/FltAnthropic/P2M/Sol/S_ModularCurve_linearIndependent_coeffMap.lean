@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open ModularCurve
 
+/--
+@isnad1 id=linearin.1h5v.s8.c3a8c77d6695 from=translated src=- shape=66e3a996 vocab=c71aecdb
+-/
 theorem solution {k₀ k : Type*} [Field k₀] [Field k] (σ : k₀ →+* k)
     {n : ℕ} {v : Fin n → LaurentSeries k₀} (hv : LinearIndependent k₀ v) :
     LinearIndependent k (fun i => coeffMap σ (v i)) := by

@@ -15,6 +15,9 @@ open Polynomial IntermediateField
 
 variable {κ E : Type*} [Field κ] [Field E] [Algebra κ E]
 
+/--
+@isnad1 id=not.2h4v.s6.d186771a85a6 from=translated src=- shape=f3864464 vocab=0d6af3f0
+-/
 theorem not_mem_adjoin_pow {t : E} (ht : Transcendental κ t) {p : ℕ} (hp : 2 ≤ p) :
     t ∉ IntermediateField.adjoin κ ({t ^ p} : Set E) := by
   intro hmem
@@ -40,6 +43,9 @@ theorem not_mem_adjoin_pow {t : E} (ht : Transcendental κ t) {p : ℕ} (hp : 2 
     rw [Nat.mod_eq_of_lt (by omega : 1 < p)] at hmod
     exact one_ne_zero hmod
 
+/--
+@isnad1 id=eq.1h4v.s6.adc0c44b23a6 from=translated src=- shape=d465ba09 vocab=dceb7d50
+-/
 theorem relfinrank_adjoin_pow_eq (t : E) (ht : Transcendental κ t) (p : ℕ) [hp : Fact p.Prime] [CharP κ p] :
     IntermediateField.relfinrank (IntermediateField.adjoin κ ({t ^ p} : Set E))
       (IntermediateField.adjoin κ ({t} : Set E)) = p := by
@@ -84,6 +90,9 @@ theorem relfinrank_adjoin_pow_eq (t : E) (ht : Transcendental κ t) (p : ℕ) [h
 
 end FrobDegE96
 
+/--
+@isnad1 id=eq.0h2v.s8.90589c0630e0 from=translated src=- shape=0be0964c vocab=171bf3a3
+-/
 theorem solution
     (κ : Type) [Field κ] (p : ℕ) [Fact p.Prime] [CharP κ p] :
     IntermediateField.relfinrank

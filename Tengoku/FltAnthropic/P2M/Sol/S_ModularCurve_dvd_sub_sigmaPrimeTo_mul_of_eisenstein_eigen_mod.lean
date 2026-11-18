@@ -23,8 +23,14 @@ variable {p : ℕ}
 
 abbrev pdiv (p n : ℕ) : Finset ℕ := n.divisors.filter (fun d => ¬ p ∣ d)
 
+/--
+@isnad1 id=eq.0h2v.s4.92a28c65db08 from=translated src=- shape=1bcb668f vocab=123a85bb
+-/
 theorem sigmaPrimeTo_eq (n : ℕ) : ModularCurve.sigmaPrimeTo p n = ∑ d ∈ pdiv p n, d := rfl
 
+/--
+@isnad1 id=eq.1h1v.s4.0ca00b8441d9 from=translated src=- shape=642c4401 vocab=7d589451
+-/
 theorem sigmaPrimeTo_one (hp : p.Prime) : ModularCurve.sigmaPrimeTo p 1 = 1 := by
   rw [sigmaPrimeTo_eq]
   have : pdiv p 1 = {1} := by
@@ -36,6 +42,9 @@ theorem sigmaPrimeTo_one (hp : p.Prime) : ModularCurve.sigmaPrimeTo p 1 = 1 := b
     · rintro rfl; exact ⟨rfl, fun h => hp.one_lt.ne' (Nat.dvd_one.mp h)⟩
   rw [this, sum_singleton]
 
+/--
+@isnad1 id=eq.2h2v.s5.b1a61ce091b4 from=translated src=- shape=4a0b57d5 vocab=595a0234
+-/
 theorem sigmaPrimeTo_mul_self (hp : p.Prime) {n : ℕ} (hn : n ≠ 0) :
     ModularCurve.sigmaPrimeTo p (n * p) = ModularCurve.sigmaPrimeTo p n := by
   rw [sigmaPrimeTo_eq, sigmaPrimeTo_eq]
@@ -49,6 +58,9 @@ theorem sigmaPrimeTo_mul_self (hp : p.Prime) {n : ℕ} (hn : n ≠ 0) :
   · rintro ⟨hd, hpd⟩
     exact ⟨Dvd.dvd.mul_right hd p, hpd⟩
 
+/--
+@isnad1 id=eq.4h3v.s6.0b34df96bab8 from=translated src=- shape=0f9feedf vocab=1b49ae2f
+-/
 theorem pdiv_mul (hp : p.Prime) {ℓ : ℕ} (hℓ : ℓ.Prime) (hℓp : ℓ ≠ p) {n : ℕ} (hn : n ≠ 0) :
     pdiv p (n * ℓ) = pdiv p n ∪ (pdiv p n).image (fun d => ℓ * d) := by
   ext d
@@ -70,6 +82,9 @@ theorem pdiv_mul (hp : p.Prime) {ℓ : ℕ} (hℓ : ℓ.Prime) (hℓp : ℓ ≠ 
       intro h
       exact hpe ((Nat.Coprime.dvd_of_dvd_mul_left ((Nat.coprime_primes hp hℓ).mpr (Ne.symm hℓp))) h)
 
+/--
+@isnad1 id=eq.4h3v.s6.f9e4d3e298b4 from=translated src=- shape=b2d40158 vocab=16f7c794
+-/
 theorem pdiv_inter_image (hp : p.Prime) {ℓ : ℕ} (hℓ : ℓ.Prime) (hℓp : ℓ ≠ p) {n : ℕ} (hn : n ≠ 0) :
     pdiv p n ∩ (pdiv p n).image (fun d => ℓ * d)
       = if ℓ ∣ n then (pdiv p (n / ℓ)).image (fun d => ℓ * d) else ∅ := by
@@ -96,9 +111,15 @@ open Finset
 
 variable {p : ℕ}
 
+/--
+@isnad1 id=eq.1h2v.s5.38b162cce7e6 from=translated src=- shape=ede285b0 vocab=1df710e9
+-/
 theorem sum_image_mul (ℓ : ℕ) (hℓ : ℓ ≠ 0) (s : Finset ℕ) : ∑ d ∈ s.image (fun d => ℓ * d), d = ℓ * ∑ d ∈ s, d := by
   rw [sum_image (fun a _ b _ h => Nat.eq_of_mul_eq_mul_left (Nat.pos_of_ne_zero hℓ) h), mul_sum]
 
+/--
+@isnad1 id=eq.4h3v.s6.7b5e381f07b1 from=translated src=- shape=d87f5bb8 vocab=14f51ecd
+-/
 theorem sigmaPrimeTo_mul_prime (hp : p.Prime) {ℓ : ℕ} (hℓ : ℓ.Prime) (hℓp : ℓ ≠ p) {n : ℕ} (hn : n ≠ 0) :
     ModularCurve.sigmaPrimeTo p (n * ℓ) + (if ℓ ∣ n then ℓ * ModularCurve.sigmaPrimeTo p (n / ℓ) else 0)
       = (1 + ℓ) * ModularCurve.sigmaPrimeTo p n := by
@@ -111,6 +132,9 @@ theorem sigmaPrimeTo_mul_prime (hp : p.Prime) {ℓ : ℕ} (hℓ : ℓ.Prime) (h�
   · rw [ite_eq_right hℓn, sum_empty, add_zero] at h
     rw [ite_eq_right hℓn, add_zero, h]; ring
 
+/--
+@isnad1 id=dvd.4h4v.s7.dbe11f8a06ae from=translated src=- shape=23fb1445 vocab=d604f7a5
+-/
 theorem dvd_sub_sigmaPrimeTo_mul (hp : p.Prime) (m : ℕ) (af : ℕ → ℤ)
     (hT : ∀ ℓ : ℕ, ℓ.Prime → ℓ ≠ p → ∀ n : ℕ, n ≠ 0 →
       (m : ℤ) ∣ af (n * ℓ) + (if ℓ ∣ n then (ℓ : ℤ) * af (n / ℓ) else 0) - (1 + ℓ) * af n)
@@ -176,5 +200,8 @@ theorem dvd_sub_sigmaPrimeTo_mul (hp : p.Prime) (m : ℕ) (af : ℕ → ℤ)
 
 end S09A1U
 
+/--
+@isnad1 id=dvd.3h4v.s7.c70d3ccab67a from=translated src=- shape=bc244cf7 vocab=4cb5b6e0
+-/
 theorem solution (p m : ℕ) [Fact p.Prime] (af : ℕ → ℤ) (hT : ∀ ℓ : ℕ, ℓ.Prime → ℓ ≠ p → ∀ n : ℕ, n ≠ 0 → (m : ℤ) ∣ af (n * ℓ) + (if ℓ ∣ n then (ℓ : ℤ) * af (n / ℓ) else 0) - (1 + ℓ) * af n) (hU : ∀ n : ℕ, n ≠ 0 → (m : ℤ) ∣ af (n * p) - af n) : ∀ n : ℕ, n ≠ 0 → (m : ℤ) ∣ af n - (sigmaPrimeTo p n : ℤ) * af 1 :=
   S09A1U.dvd_sub_sigmaPrimeTo_mul (Fact.out : p.Prime) m af hT hU

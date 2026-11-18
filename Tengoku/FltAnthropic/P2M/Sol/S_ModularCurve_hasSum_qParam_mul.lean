@@ -18,10 +18,16 @@ namespace ModularCurve
 
 namespace Realized
 
+/--
+@isnad1 id=lt.1h2v.s4.66e1842663ee from=translated src=- shape=4f8cc68a vocab=6bddaf06
+-/
 theorem norm_qParam_lt_one_of_pos {h : ℝ} (hh : 0 < h) (τ : ℍ) : ‖𝕢 h (τ : ℂ)‖ < 1 := by
   have := (Periodic.norm_qParam_lt_iff hh 0 (τ : ℂ)).mpr (by simpa using τ.im_pos)
   simpa using this
 
+/--
+@isnad1 id=summable.3h4v.s7.2aed222a6699 from=translated src=- shape=b182a718 vocab=a42d2a61
+-/
 theorem summable_norm_of_hasSum_qParam {h : ℝ} (hh : 0 < h) {a : ℕ → ℂ} {F : ℍ → ℂ}
     (hA : ∀ τ : ℍ, HasSum (fun m : ℕ => a m * 𝕢 h (τ : ℂ) ^ m) (F τ)) {q : ℂ} (hq : ‖q‖ < 1) :
     Summable (fun m : ℕ => ‖a m * q ^ m‖) := by
@@ -46,6 +52,9 @@ theorem summable_norm_of_hasSum_qParam {h : ℝ} (hh : 0 < h) {a : ℕ → ℂ} 
     _ ≤ 1 * ‖q‖ ^ m := by gcongr
     _ = ‖q‖ ^ m := one_mul _
 
+/--
+@isnad1 id=hassum.3h6v.s8.cf1f143b5ede from=translated src=- shape=7e3466ee vocab=8097569b
+-/
 theorem hasSum_qParam_mul' (h : ℝ) (hh : 0 < h) (A B : PowerSeries ℂ) (F G : ℍ → ℂ)
     (hA : ∀ τ : ℍ, HasSum (fun m : ℕ => PowerSeries.coeff m A * 𝕢 h (τ : ℂ) ^ m) (F τ))
     (hB : ∀ τ : ℍ, HasSum (fun m : ℕ => PowerSeries.coeff m B * 𝕢 h (τ : ℂ) ^ m) (G τ)) (τ : ℍ) :
@@ -79,5 +88,8 @@ end ModularCurve
 
 end
 
+/--
+@isnad1 id=hassum.3h6v.s8.cf1f143b5ede from=translated src=- shape=7e3466ee vocab=8097569b
+-/
 theorem solution (h : ℝ) (hh : 0 < h) (A B : PowerSeries ℂ) (F G : UpperHalfPlane → ℂ) (hA : ∀ τ : UpperHalfPlane, HasSum (fun m : ℕ => PowerSeries.coeff m A * Function.Periodic.qParam h (τ : ℂ) ^ m) (F τ)) (hB : ∀ τ : UpperHalfPlane, HasSum (fun m : ℕ => PowerSeries.coeff m B * Function.Periodic.qParam h (τ : ℂ) ^ m) (G τ)) (τ : UpperHalfPlane) : HasSum (fun m : ℕ => PowerSeries.coeff m (A * B) * Function.Periodic.qParam h (τ : ℂ) ^ m) (F τ * G τ) :=
   ModularCurve.Realized.hasSum_qParam_mul' h hh A B F G hA hB τ

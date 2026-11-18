@@ -17,17 +17,29 @@ export _root_.UpperHalfPlane (continuous_im ofComplex_apply_of_im_pos denom_ne_z
 namespace EllipticOrderGL
 open _root_.UpperHalfPlane
 
+/--
+@isnad1 id=lt.1h1v.s9.ce0555f10f73 from=translated src=- shape=3de38c0a vocab=e296b66f
+-/
 theorem det_val_pos {g : GL (Fin 2) ℝ} (hg : Matrix.GeneralLinearGroup.det g = 1) : 0 < g.det.val := by
   rw [hg]; exact one_pos
 
+/--
+@isnad1 id=eq.1h1v.s8.c302084270ba from=translated src=- shape=ff4caa72 vocab=3101a4d3
+-/
 theorem val_det_eq_one {g : GL (Fin 2) ℝ} (hg : Matrix.GeneralLinearGroup.det g = 1) : g.val.det = 1 := by
   have := congrArg Units.val hg
   simpa [Matrix.GeneralLinearGroup.val_det_apply] using this
 
+/--
+@isnad1 id=eq.1h2v.s9.6428e7dff42b from=translated src=- shape=2af1f51d vocab=83310b2a
+-/
 theorem coe_smul_eq {g : GL (Fin 2) ℝ} (hg : Matrix.GeneralLinearGroup.det g = 1) (z : ℍ) :
     ((g • z : ℍ) : ℂ) = num g z / denom g z :=
   coe_smul_of_det_pos (det_val_pos hg) z
 
+/--
+@isnad1 id=eq.2h3v.s9.b586d3e7187d from=translated src=- shape=5252c76c vocab=e5aad060
+-/
 theorem denom_mul_of_smul_eq (γ δ : GL (Fin 2) ℝ) (hδ1 : Matrix.GeneralLinearGroup.det δ = 1)
     (τ : ℍ) (hδ : δ • τ = τ) :
     denom (γ * δ) τ = denom γ τ * denom δ τ := by
@@ -36,6 +48,9 @@ theorem denom_mul_of_smul_eq (γ δ : GL (Fin 2) ℝ) (hδ1 : Matrix.GeneralLine
   rw [← h2, hδ] at h
   exact h
 
+/--
+@isnad1 id=and.1h5v.s5.e8dbeb74050e from=translated src=- shape=2bf321ee vocab=49345d23
+-/
 theorem bottom_row_eq {c d c' d' : ℝ} (τ : ℍ)
     (h : (c : ℂ) * τ + d = (c' : ℂ) * τ + d') : c = c' ∧ d = d' := by
   have him := congrArg Complex.im h
@@ -54,6 +69,9 @@ def chi (Γ : Subgroup (GL (Fin 2) ℝ)) (hdet : ∀ γ ∈ Γ, Matrix.GeneralLi
   map_mul' γ δ := by
     rw [Subgroup.coe_mul, Subgroup.coe_mul, denom_mul_of_smul_eq _ _ (hdet _ (δ : Γ).2) _ δ.2]
 
+/--
+@isnad1 id=eq.1h3v.s15.b44265230290 from=translated src=- shape=68ea6f66 vocab=c12a7401
+-/
 theorem chi_apply (Γ : Subgroup (GL (Fin 2) ℝ)) (hdet : ∀ γ ∈ Γ, Matrix.GeneralLinearGroup.det γ = 1)
     (τ : ℍ) (γ : MulAction.stabilizer Γ τ) :
     chi Γ hdet τ γ = denom ((γ : Γ) : GL (Fin 2) ℝ) τ := rfl
@@ -83,6 +101,9 @@ theorem eq_one_of_denom_eq_one (τ : ℍ) (γ : GL (Fin 2) ℝ) (hγ1 : Matrix.G
   ext i j
   fin_cases i <;> fin_cases j <;> simp [hrow.1, hrow.2, h00, h01']
 
+/--
+@isnad1 id=injectiv.1h2v.s15.bcbfc7121a80 from=translated src=- shape=f5cad73c vocab=e067ecc6
+-/
 theorem chi_injective (Γ : Subgroup (GL (Fin 2) ℝ)) (hdet : ∀ γ ∈ Γ, Matrix.GeneralLinearGroup.det γ = 1)
     (τ : ℍ) : Function.Injective (chi Γ hdet τ) := by
   rw [← MonoidHom.ker_eq_bot_iff, Subgroup.eq_bot_iff_forall]
@@ -91,6 +112,9 @@ theorem chi_injective (Γ : Subgroup (GL (Fin 2) ℝ)) (hdet : ∀ γ ∈ Γ, Ma
   have hfix : ((γ : Γ) : GL (Fin 2) ℝ) • τ = τ := γ.2
   exact Subtype.ext (Subtype.ext (eq_one_of_denom_eq_one τ _ (hdet _ (γ : Γ).2) hfix hγ))
 
+/--
+@isnad1 id=dvd.2h3v.s15.1fe3219baaf0 from=translated src=- shape=37fd6371 vocab=109cd6d2
+-/
 theorem card_dvd_of_forall_chi_zpow_eq_one (Γ : Subgroup (GL (Fin 2) ℝ))
     (hdet : ∀ γ ∈ Γ, Matrix.GeneralLinearGroup.det γ = 1) (τ : ℍ) (n : ℤ)
     (h : ∀ γ : MulAction.stabilizer Γ τ, chi Γ hdet τ γ ^ (2 * n) = 1) :
@@ -125,6 +149,9 @@ theorem card_dvd_of_forall_chi_zpow_eq_one (Γ : Subgroup (GL (Fin 2) ℝ))
   · rw [h2]; exact Int.natCast_dvd_natCast.mpr hdvd
   · rw [h2]; exact (Int.natCast_dvd_natCast.mpr hdvd).neg_right
 
+/--
+@isnad1 id=eq.0h3v.s7.1b80689e58f8 from=translated src=- shape=2b361272 vocab=80e331cb
+-/
 theorem num_mul_denom_sub (g : GL (Fin 2) ℝ) (z w : ℂ) :
     num g z * denom g w - denom g z * num g w = (g.val.det : ℝ) * (z - w) := by
   simp only [num, denom, Matrix.det_fin_two]
@@ -133,9 +160,15 @@ theorem num_mul_denom_sub (g : GL (Fin 2) ℝ) (z w : ℂ) :
 
 def moeb (γ : GL (Fin 2) ℝ) (z : ℂ) : ℂ := num γ z / denom γ z
 
+/--
+@isnad1 id=eq.1h2v.s9.c82f8fbdac87 from=translated src=- shape=6a730cb8 vocab=58f45e52
+-/
 theorem coe_smul_eq_moeb {γ : GL (Fin 2) ℝ} (hγ1 : Matrix.GeneralLinearGroup.det γ = 1) (z : ℍ) :
     ((γ • z : ℍ) : ℂ) = moeb γ z := coe_smul_eq hγ1 z
 
+/--
+@isnad1 id=eq.3h3v.s9.550e54cbfa17 from=translated src=- shape=77cfbcfa vocab=235ba8d3
+-/
 theorem moeb_sub {γ : GL (Fin 2) ℝ} (hγ1 : Matrix.GeneralLinearGroup.det γ = 1) (τ : ℍ) (hγ : γ • τ = τ)
     (z : ℂ) (hz : denom γ z ≠ 0) :
     moeb γ z - τ = (z - τ) / (denom γ z * denom γ τ) := by
@@ -146,15 +179,27 @@ theorem moeb_sub {γ : GL (Fin 2) ℝ} (hγ1 : Matrix.GeneralLinearGroup.det γ 
   push_cast
   ring
 
+/--
+@isnad1 id=continuo.0h1v.s5.4df7fbb860cf from=translated src=- shape=cd1263fd vocab=101b6c81
+-/
 theorem continuous_denom (g : GL (Fin 2) ℝ) : Continuous (fun z : ℂ => denom g z) :=
   (continuous_const.mul continuous_id).add continuous_const
 
+/--
+@isnad1 id=continuo.0h1v.s5.d017856929ea from=translated src=- shape=cd1263fd vocab=12e2065a
+-/
 theorem continuous_num (g : GL (Fin 2) ℝ) : Continuous (fun z : ℂ => num g z) :=
   (continuous_const.mul continuous_id).add continuous_const
 
+/--
+@isnad1 id=continuo.0h2v.s5.aa546ff4fddf from=translated src=- shape=ea375387 vocab=8ac86956
+-/
 theorem continuousAt_moeb (γ : GL (Fin 2) ℝ) (τ : ℍ) : ContinuousAt (moeb γ) τ :=
   ContinuousAt.div (continuous_num γ).continuousAt (continuous_denom γ).continuousAt (denom_ne_zero _ τ)
 
+/--
+@isnad1 id=tendsto.0h1v.s6.5394e48ff7b1 from=translated src=- shape=3a7fe0da vocab=af7c69a3
+-/
 theorem tendsto_ofComplex (τ : ℍ) : Tendsto (fun z : ℂ => ofComplex z) (𝓝[≠] (τ : ℂ)) (𝓝[≠] τ) := by
   have h1 : Tendsto (fun z : ℂ => ofComplex z) (𝓝 (τ : ℂ)) (𝓝 τ) := by
     rw [isEmbedding_coe.isInducing.tendsto_nhds_iff]
@@ -170,6 +215,9 @@ theorem tendsto_ofComplex (τ : ℍ) : Tendsto (fun z : ℂ => ofComplex z) (�
   have := congrArg (fun w : ℍ => (w : ℂ)) habs
   rwa [ofComplex_apply_of_im_pos hz] at this
 
+/--
+@isnad1 id=eq.5h6v.s15.8b19aa73d417 from=translated src=- shape=a5549e91 vocab=2866d74e
+-/
 theorem chi_zpow_eq_one (Γ : Subgroup (GL (Fin 2) ℝ))
     (hdet : ∀ γ ∈ Γ, Matrix.GeneralLinearGroup.det γ = 1) (F : ℍ → ℂ) (τ : ℍ)
     (hF : ∀ γ ∈ Γ, γ • τ = τ → ∀ᶠ z in 𝓝[≠] τ, F (γ • z) = F z) (n : ℤ)
@@ -244,6 +292,9 @@ theorem chi_zpow_eq_one (Γ : Subgroup (GL (Fin 2) ℝ))
   rw [chi_apply, zpow_mul, zpow_two]
   exact heq
 
+/--
+@isnad1 id=dvd.3h4v.s12.e6033d9bebf6 from=translated src=- shape=88ed308b vocab=36cf611f
+-/
 theorem main (Γ : Subgroup (GL (Fin 2) ℝ)) (hdet : ∀ γ ∈ Γ, Matrix.GeneralLinearGroup.det γ = 1)
     (F : ℍ → ℂ) (τ : ℍ)
     (hF : ∀ γ ∈ Γ, γ • τ = τ → ∀ᶠ z in 𝓝[≠] τ, F (γ • z) = F z)
@@ -264,6 +315,9 @@ end
 
 open Filter _root_.UpperHalfPlane _root_.P2MW.S_UpperHalfPlane_natCard_stabilizer_dvd_two_mul_of_meromorphicOrderAt_eq_of_det_eq_one.UpperHalfPlane in
 open scoped MatrixGroups Topology in
+/--
+@isnad1 id=dvd.3h4v.s12.e6033d9bebf6 from=translated src=- shape=88ed308b vocab=36cf611f
+-/
 theorem solution
     (Γ : Subgroup (GL (Fin 2) ℝ)) (hdet : ∀ γ ∈ Γ, Matrix.GeneralLinearGroup.det γ = 1)
     (F : ℍ → ℂ) (τ : ℍ)

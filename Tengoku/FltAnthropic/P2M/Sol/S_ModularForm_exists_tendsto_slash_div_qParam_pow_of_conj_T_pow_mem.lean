@@ -16,6 +16,9 @@ noncomputable section
 
 namespace WCuspOrdAux
 
+/--
+@isnad1 id=ex.3h4v.s7.fed69ee2cae1 from=translated src=- shape=79e77955 vocab=7e65be02
+-/
 theorem exists_tendsto_div_qParam_pow {Γ' : Subgroup (GL (Fin 2) ℝ)} {k : ℤ} {h : ℝ} (hh : 0 < h)
     (hΓ : h ∈ Γ'.strictPeriods) (F : ModularForm Γ' k) (hF : F ≠ 0) :
     ∃ (n : ℕ) (a : ℂ), a ≠ 0 ∧
@@ -50,6 +53,9 @@ theorem exists_tendsto_div_qParam_pow {Γ' : Subgroup (GL (Fin 2) ℝ)} {k : ℤ
   simp only [Function.comp_apply]
   rw [UpperHalfPlane.eq_cuspFunction τ hh.ne' hper]
 
+/--
+@isnad1 id=eq.0h1v.s9.996b6ff8d97e from=translated src=- shape=4844cffe vocab=cb177661
+-/
 theorem mapGL_T_zpow (n : ℤ) :
     Matrix.SpecialLinearGroup.mapGL ℝ (ModularGroup.T ^ n) = Matrix.GeneralLinearGroup.upperRightHom (n : ℝ) := by
   simp only [Units.ext_iff, Matrix.SpecialLinearGroup.mapGL_coe_matrix, Matrix.SpecialLinearGroup.map_apply_coe]
@@ -60,6 +66,9 @@ end WCuspOrdAux
 
 open WCuspOrdAux in
 
+/--
+@isnad1 id=ex.3h5v.s11.184cb56a550c from=translated src=- shape=acbc9169 vocab=51816979
+-/
 theorem WCuspOrdAux.slash_main
     (Γ : Subgroup SL(2, ℤ)) (k : ℤ) (f : ModularForm Γ k) (hf : f ≠ 0)
     (σ : SL(2, ℤ)) (h : ℕ) (hh : 0 < h) (hper : σ * ModularGroup.T ^ h * σ⁻¹ ∈ Γ) :
@@ -89,6 +98,9 @@ theorem WCuspOrdAux.slash_main
   obtain ⟨n, a, ha, hlim⟩ := exists_tendsto_div_qParam_pow hhR hΓ' F hF
   exact ⟨n, a, ha, hlim⟩
 
+/--
+@isnad1 id=ex.3h5v.s11.184cb56a550c from=translated src=- shape=acbc9169 vocab=51816979
+-/
 theorem solution
     (Γ : Subgroup SL(2, ℤ)) (k : ℤ) (f : ModularForm Γ k) (hf : f ≠ 0)
     (σ : SL(2, ℤ)) (h : ℕ) (hh : 0 < h) (hper : σ * ModularGroup.T ^ h * σ⁻¹ ∈ Γ) :

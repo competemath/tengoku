@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 namespace WAnchorInjSolution
 
+/--
+@isnad1 id=linearin.1h5v.s8.25a305b42bb1 from=translated src=- shape=c1901317 vocab=6aa945d5
+-/
 theorem main (κ₀ K : Type) [Field κ₀] [Field K] (φ : κ₀ →+* K)
     (ι : Type) [Fintype ι] (x : ι → LaurentSeries κ₀) (hx : LinearIndependent κ₀ x) :
     LinearIndependent K (fun i => ModularCurve.coeffMap φ (x i)) := by
@@ -65,6 +68,9 @@ theorem main (κ₀ K : Type) [Field κ₀] [Field K] (φ : κ₀ →+* K)
 
 end WAnchorInjSolution
 
+/--
+@isnad1 id=linearin.1h5v.s8.25a305b42bb1 from=translated src=- shape=c1901317 vocab=6aa945d5
+-/
 theorem solution
     (κ₀ K : Type) [Field κ₀] [Field K] (φ : κ₀ →+* K)
     (ι : Type) [Fintype ι] (x : ι → LaurentSeries κ₀) (hx : LinearIndependent κ₀ x) :

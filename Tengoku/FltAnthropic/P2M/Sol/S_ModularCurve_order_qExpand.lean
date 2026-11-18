@@ -7,6 +7,9 @@ namespace P2MW.S_ModularCurve_order_qExpand
 
 open ModularCurve
 
+/--
+@isnad1 id=eq.0h3v.s7.84b84066a22a from=translated src=- shape=bf7865a7 vocab=776847ba
+-/
 theorem solution {R : Type*} [CommRing R] (N : ℕ) [NeZero N] (f : LaurentSeries R) : (qExpand R N f).order = N * f.order := by
   rcases eq_or_ne f 0 with rfl | hf
   · rw [map_zero, HahnSeries.order_zero, mul_zero]

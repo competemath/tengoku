@@ -14,6 +14,9 @@ open ModularCurve
 
 namespace SlotSubstMapAux
 
+/--
+@isnad1 id=hassubst.2h4v.s5.d8c6b2cb84bc from=translated src=- shape=cd750eaf vocab=399960e5
+-/
 theorem hasSubst_slotFamily {K : Type*} [CommRing K] (p : ℕ) (c : Kˣ) (j : ℕ) (hj : 0 < j) (hjp : j < p) :
     MvPowerSeries.HasSubst (slotFamily K p c j) :=
   MvPowerSeries.hasSubst_of_constantCoeff_zero (fun i => by
@@ -23,6 +26,9 @@ theorem hasSubst_slotFamily {K : Type*} [CommRing K] (p : ℕ) (c : Kˣ) (j : �
     · show PowerSeries.constantCoeff (PowerSeries.C ((c⁻¹ : Kˣ) : K) * PowerSeries.X ^ (p - j)) = 0
       simp [(Nat.sub_pos_of_lt hjp).ne'])
 
+/--
+@isnad1 id=eq.1h5v.s7.a7991b752935 from=translated src=- shape=0ba4602b vocab=78f4d96e
+-/
 theorem slotSubst_eq_subst_map {K : Type*} [CommRing K] (p : ℕ) (c : Kˣ) (j : ℕ)
     (h : MvPowerSeries.HasSubst (slotFamily K p c j)) (f : MvPowerSeries (Fin 2) ℤ) :
     slotSubst K p c j f =
@@ -33,6 +39,9 @@ theorem slotSubst_eq_subst_map {K : Type*} [CommRing K] (p : ℕ) (c : Kˣ) (j :
   funext s
   rw [MvPowerSeries.subst_X h]
 
+/--
+@isnad1 id=eq.0h7v.s8.2ecf6909abf1 from=translated src=- shape=a09f76a3 vocab=d2dc75af
+-/
 theorem map_slotFamily {A B : Type*} [CommRing A] [CommRing B] (g : A →+* B) (p : ℕ) (c : Aˣ) (j : ℕ)
     (i : Fin 2) : PowerSeries.map g (slotFamily A p c j i) = slotFamily B p (Units.map (g : A →* B) c) j i := by
   fin_cases i <;> simp [slotFamily, map_mul, map_pow, PowerSeries.map_C, PowerSeries.map_X, Units.coe_map,
@@ -41,6 +50,9 @@ theorem map_slotFamily {A B : Type*} [CommRing A] [CommRing B] (g : A →+* B) (
 end SlotSubstMapAux
 
 open SlotSubstMapAux in
+/--
+@isnad1 id=eq.2h7v.s8.b29b6beb2221 from=translated src=- shape=f7f1797e vocab=6110e655
+-/
 theorem solution
     {A B : Type} [CommRing A] [CommRing B] (g : A →+* B) (p : ℕ) (c : Aˣ) (j : ℕ) (hj : 0 < j) (hjp : j < p)
     (f : MvPowerSeries (Fin 2) ℤ) :

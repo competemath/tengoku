@@ -18,6 +18,9 @@ private theorem aux_eq_zero {ι : Type*} [Fintype ι] {e : ι → ℕ} (he : ∀
   · exact absurd (Int.natCast_eq_zero.mp hx) (he x).ne'
   · exact mul_self_eq_zero.mp hx
 
+/--
+@isnad1 id=injectiv.1h2v.s11.317bd5d9ffcd from=translated src=- shape=a8cb633c vocab=add33337
+-/
 theorem solution {ι : Type*} [Fintype ι] {e : ι → ℕ} (he : ∀ x, 0 < e x) :
     Function.Injective (gramMap e) := by
   rw [← LinearMap.ker_eq_bot, LinearMap.ker_eq_bot']

@@ -18,12 +18,18 @@ open _root_.ModularCurve
 
 open WeierstrassCurve
 
+/--
+@isnad1 id=eq.1h2v.s9.4ebc298a3648 from=translated src=- shape=a0b866f6 vocab=97bbaf41
+-/
 theorem natDegree_legendreFibrePoly {K : Type*} [Field K] (h2 : (2 : K) ≠ 0) (j : K) :
     (C (256 : K) * (X ^ 2 - X + 1) ^ 3 - C j * (X ^ 2 * (X - 1) ^ 2)).natDegree = 6 := by
   have h256 : (256 : K) ≠ 0 := by
     rw [show (256 : K) = 2 ^ 8 by norm_num]; exact pow_ne_zero _ h2
   compute_degree!
 
+/--
+@isnad1 id=ex.1h2v.s6.e4a562ac166a from=translated src=- shape=4f2ba2e9 vocab=eb14a030
+-/
 theorem exists_legendreJ_eq' {K : Type*} [Field K] [IsAlgClosed K] (h2 : (2 : K) ≠ 0) (j : K) :
     ∃ t : K, t ≠ 0 ∧ t ≠ 1 ∧ legendreJ t = j := by
   set F : K[X] := C (256 : K) * (X ^ 2 - X + 1) ^ 3 - C j * (X ^ 2 * (X - 1) ^ 2) with hF
@@ -52,6 +58,9 @@ end
 
 open _root_.Polynomial open _root_.ModularCurve open _root_.P2MW.S_ModularCurve_exists_legendreJ_eq.ModularCurve
 
+/--
+@isnad1 id=ex.1h2v.s6.e4a562ac166a from=translated src=- shape=4f2ba2e9 vocab=eb14a030
+-/
 theorem solution {K : Type*} [Field K] [IsAlgClosed K] (h2 : (2 : K) ≠ 0) (j : K) :
     ∃ t : K, t ≠ 0 ∧ t ≠ 1 ∧ legendreJ t = j :=
   ModularCurve.exists_legendreJ_eq' h2 j

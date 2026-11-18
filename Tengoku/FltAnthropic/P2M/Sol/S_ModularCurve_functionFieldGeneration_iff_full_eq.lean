@@ -9,6 +9,9 @@ open ModularCurve IntermediateField
 
 noncomputable section
 
+/--
+@isnad1 id=iff.0h1v.s6.bb5eca17272c from=translated src=- shape=6aad3ccd vocab=596e0bf6
+-/
 theorem solution (N : ℕ) [NeZero N] : FunctionFieldGeneration N ↔ modularFunctionFieldFull N = modularFunctionField N :=by
   constructor
   · intro hgen

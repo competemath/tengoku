@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open scoped BigOperators
 
+/--
+@isnad1 id=ex.1h3v.s11.04e1d78cc451 from=translated src=- shape=1f62688d vocab=979fd82c
+-/
 theorem solution
     (L : Type) [Field L] [Algebra ℚ L] (F₀ : IntermediateField ℚ (LaurentSeries ℚ))
     (x : LaurentSeries L) (hx : x ∈ ModularCurve.laurentBaseChange L F₀) :

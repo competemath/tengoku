@@ -27,6 +27,9 @@ section Matrices
 
 variable (p j : ℕ)
 
+/--
+@isnad1 id=eq.0h2v.s6.5da266461262 from=translated src=- shape=e17c5257 vocab=ff328639
+-/
 theorem heckeMatrix_one_zero :
     ((heckeMatrix p j : GL (Fin 2) ℝ) : Matrix (Fin 2) (Fin 2) ℝ) 1 0 = 0 := by
   rcases eq_or_ne p 0 with rfl | hp
@@ -39,6 +42,9 @@ section Regularity
 
 variable {f : ℍ → ℂ} (k : ℤ) (p : ℕ)
 
+/--
+@isnad1 id=isbounde.1h3v.s4.003e36d63973 from=translated src=- shape=322fb79c vocab=67f871bc
+-/
 theorem isBoundedAtImInfty_heckeU (hf : IsBoundedAtImInfty f) :
     IsBoundedAtImInfty (heckeU k p f) :=
   Finset.sum_induction _ (fun g : ℍ → ℂ => IsBoundedAtImInfty g)
@@ -68,5 +74,8 @@ end M4cP1W2
 
 end
 
+/--
+@isnad1 id=isbounde.1h3v.s4.40562f8f4ee8 from=translated src=- shape=ccb25218 vocab=67f871bc
+-/
 theorem solution {f : UpperHalfPlane → ℂ} (hf : UpperHalfPlane.IsBoundedAtImInfty f) (k : ℤ) (p : ℕ) : UpperHalfPlane.IsBoundedAtImInfty (ModularForm.heckeU k p f) :=
   M4cP1W2.isBoundedAtImInfty_heckeU k p hf

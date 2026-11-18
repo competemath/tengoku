@@ -22,6 +22,9 @@ noncomputable abbrev emb : LaurentSeries ↥A →+* LaurentSeries L := coeffMap 
 noncomputable abbrev red : LaurentSeries ↥A →+* LaurentSeries (ResidueField ↥A) :=
   coeffMap (IsLocalRing.residue ↥A)
 
+/--
+@isnad1 id=injectiv.0h2v.s8.46ab7562e913 from=translated src=- shape=82a6a399 vocab=605900cf
+-/
 theorem emb_injective : Function.Injective (emb A) := by
   intro x y h
   ext k
@@ -31,12 +34,18 @@ theorem emb_injective : Function.Injective (emb A) := by
 
 variable {A}
 
+/--
+@isnad1 id=eq.2h7v.s11.f999cb6816a8 from=translated src=- shape=b7ddf87c vocab=cb520d65
+-/
 theorem cross_eq {f : LaurentSeries L} {x y x' y' : LaurentSeries ↥A}
     (h : f * emb A y = emb A x) (h' : f * emb A y' = emb A x') : x * y' = x' * y := by
   apply emb_injective A
   rw [map_mul, map_mul, ← h, ← h']
   ring
 
+/--
+@isnad1 id=eq.2h7v.s13.3a0648a19a9c from=translated src=- shape=4766967a vocab=23b509c5
+-/
 theorem red_cross_eq {f : LaurentSeries L} {x y x' y' : LaurentSeries ↥A}
     (h : f * emb A y = emb A x) (h' : f * emb A y' = emb A x') :
     red A x * red A y' = red A x' * red A y := by
@@ -52,6 +61,9 @@ noncomputable def gaussRes (f : ↥O) : LaurentSeries (ResidueField ↥A) :=
 
 variable {A O hO}
 
+/--
+@isnad1 id=eq.3h7v.s13.6988cb66ef33 from=translated src=- shape=95b924d8 vocab=e5a06680
+-/
 theorem gaussRes_mul_eq_of_pres (f : ↥O) {x' y' : LaurentSeries ↥A} (hy' : red A y' ≠ 0)
     (h' : ((f : ↥F) : LaurentSeries L) * emb A y' = emb A x') :
     gaussRes A O hO f * red A y' = red A x' := by
@@ -59,6 +71,9 @@ theorem gaussRes_mul_eq_of_pres (f : ↥O) {x' y' : LaurentSeries ↥A} (hy' : r
   unfold gaussRes
   rw [div_mul_eq_mul_div, red_cross_eq h h', mul_div_assoc, div_self hy, mul_one]
 
+/--
+@isnad1 id=eq.3h7v.s13.8f8a0cc053cc from=translated src=- shape=e4021a30 vocab=d7188162
+-/
 theorem gaussRes_eq_div_of_pres (f : ↥O) {x' y' : LaurentSeries ↥A} (hy' : red A y' ≠ 0)
     (h' : ((f : ↥F) : LaurentSeries L) * emb A y' = emb A x') :
     gaussRes A O hO f = red A x' / red A y' :=
@@ -96,18 +111,30 @@ noncomputable def gaussResHom : ↥O →+* LaurentSeries (ResidueField ↥A) whe
 
 variable {A O hO}
 
+/--
+@isnad1 id=eq.1h5v.s14.9f1cc32e926a from=translated src=- shape=052ba837 vocab=6c19a758
+-/
 theorem gaussResHom_apply (f : ↥O) : gaussResHom A O hO f = gaussRes A O hO f := rfl
 
+/--
+@isnad1 id=eq.3h7v.s15.46c8db1421af from=translated src=- shape=76b9c587 vocab=220c921d
+-/
 theorem gaussResHom_mul_eq_of_pres (f : ↥O) {x' y' : LaurentSeries ↥A} (hy' : red A y' ≠ 0)
     (h' : ((f : ↥F) : LaurentSeries L) * emb A y' = emb A x') :
     gaussResHom A O hO f * red A y' = red A x' := by
   rw [gaussResHom_apply]; exact gaussRes_mul_eq_of_pres f hy' h'
 
+/--
+@isnad1 id=eq.3h7v.s15.38e0fc0081d2 from=translated src=- shape=77b26ab9 vocab=9ba887a9
+-/
 theorem gaussResHom_eq_div_of_pres (f : ↥O) {x' y' : LaurentSeries ↥A} (hy' : red A y' ≠ 0)
     (h' : ((f : ↥F) : LaurentSeries L) * emb A y' = emb A x') :
     gaussResHom A O hO f = red A x' / red A y' := by
   rw [gaussResHom_apply]; exact gaussRes_eq_div_of_pres f hy' h'
 
+/--
+@isnad1 id=isunit.2h5v.s15.bc599dfd4f12 from=translated src=- shape=3d13c79c vocab=991e7460
+-/
 theorem isUnit_of_gaussResHom_ne_zero (f : ↥O) (hf : gaussResHom A O hO f ≠ 0) : IsUnit f := by
   obtain ⟨x, y, hy, h⟩ := (hO (f : ↥F)).mp f.2
   have hx : red A x ≠ 0 := by
@@ -127,6 +154,9 @@ theorem isUnit_of_gaussResHom_ne_zero (f : ↥O) (hf : gaussResHom A O hO f ≠ 
     rw [this, ← h, ← mul_assoc, inv_mul_cancel₀ hf0, one_mul]
   exact isUnit_iff_exists_inv.mpr ⟨⟨(f : ↥F)⁻¹, hinv⟩, Subtype.ext (mul_inv_cancel₀ hf0')⟩
 
+/--
+@isnad1 id=iff.1h5v.s15.322e924b8923 from=translated src=- shape=425b45d4 vocab=991e7460
+-/
 theorem gaussResHom_eq_zero_iff (f : ↥O) : gaussResHom A O hO f = 0 ↔ ¬ IsUnit f := by
   constructor
   · intro h0 hu
@@ -152,6 +182,9 @@ end Theta
 
 end IgusaNodesE133
 
+/--
+@isnad1 id=ex.1h4v.s16.20a28462031a from=translated src=- shape=bf7e771b vocab=e50216a1
+-/
 theorem solution
     {L : Type*} [Field L] (A : ValuationSubring L) (F : IntermediateField L (LaurentSeries L))
     (W : ValuationSubring ↥F)

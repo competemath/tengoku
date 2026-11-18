@@ -11,6 +11,9 @@ open TensorProduct
 
 universe u
 
+/--
+@isnad1 id=ex.2h6v.s11.4befcc03e54b from=translated src=- shape=0078ac55 vocab=309325d3
+-/
 theorem solution
     {T : Type u} [CommRing T] {M : Type u} [AddCommGroup M] [Module T M] [Module.FinitePresentation T M]
     (p : Ideal T) [hp : p.IsPrime] (hfree : (⟨p, hp⟩ : PrimeSpectrum T) ∈ Module.freeLocus T M)

@@ -11,6 +11,9 @@ set_option maxHeartbeats 16000000
 
 open Polynomial ModularCurve
 
+/--
+@isnad1 id=eq.0h0v.s11.89ee647c60da from=translated src=- shape=72a600d6 vocab=6df565e5
+-/
 theorem solution :
     phiTwo
       = ((C (X : Polynomial ℤ) : Polynomial (Polynomial ℤ)) ^ 2 + 2608 * (C (X : Polynomial ℤ) : Polynomial (Polynomial ℤ)) + 768 - (X : Polynomial (Polynomial ℤ))) * ((C (X : Polynomial ℤ) : Polynomial (Polynomial ℤ)) - (X : Polynomial (Polynomial ℤ)) ^ 2 + 1488 * (X : Polynomial (Polynomial ℤ)) + 3328)

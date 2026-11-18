@@ -19,6 +19,9 @@ namespace P2MW.S_Module_End_exists_ne_zero_forall_apply_eq_smul_of_ringHom
 
 open Ideal
 
+/--
+@isnad1 id=ex.1h4v.s8.f78e423bd6a1 from=translated src=- shape=5c73b293 vocab=10014f6a
+-/
 theorem FrobChareqEngine.engine3
     {K A V : Type*} [Field K] [CommRing A] [Algebra K A] [AddCommGroup V] [Module K V]
     [Module A V] [IsScalarTower K A V] [Module.Finite K V] [FaithfulSMul A V]
@@ -64,6 +67,9 @@ theorem FrobChareqEngine.engine3
     rw [Submodule.mem_colon_singleton] at this
     simpa using this
 
+/--
+@isnad1 id=ex.0h4v.s9.85ed34ed5965 from=translated src=- shape=a09cbce8 vocab=d906e05b
+-/
 theorem FrobChareqEngine.engine4
     {K A V : Type*} [Field K] [CommRing A] [Algebra K A] [AddCommGroup V] [Module K V]
     [Module A V] [IsScalarTower K A V] [Module.Finite K V] [FaithfulSMul A V]
@@ -81,6 +87,9 @@ theorem FrobChareqEngine.engine4
 
 open scoped TensorProduct in
 
+/--
+@isnad1 id=ex.3h9v.s10.698085a732f8 from=translated src=- shape=19a7b073 vocab=e50af96e
+-/
 theorem FrobChareqEngine.engine5a
     {K V T D : Type*} [Field K] [AddCommGroup V] [Module K V] [CommRing T] [CommRing D]
     [Module.Finite ℤ D] [Module.Free ℤ D]
@@ -135,6 +144,9 @@ theorem FrobChareqEngine.engine5a
   rw [smul_eq_mul] at hw'
   rw [hιT, hw', map_smul, hχA, one_mul, hχ]
 
+/--
+@isnad1 id=ex.4h6v.s10.16990f11dc45 from=translated src=- shape=62c28f95 vocab=bda88be0
+-/
 theorem solution {K V T : Type*} [Field K] [CharZero K] [AddCommGroup V] [Module K V] [CommRing T] (ρ : T →+* Module.End K V) (L : Submodule ℤ V) (hL : L.FG) (hstab : ∀ (t : T), ∀ x ∈ L, ρ t x ∈ L) (hfaith : ∀ t : T, (∀ x ∈ L, ρ t x = 0) → t = 0) (hfree : ∀ (n : ℕ) (y : Fin n → V), (∀ i, y i ∈ L) → LinearIndependent ℤ y → LinearIndependent K y) (χ : T →+* K) : ∃ v : V, v ≠ 0 ∧ ∀ t : T, ρ t v = χ t • v := by
   classical
 

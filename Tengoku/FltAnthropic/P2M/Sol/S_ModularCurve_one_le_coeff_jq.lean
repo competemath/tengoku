@@ -373,6 +373,9 @@ private theorem one_le_coeff_jNum (n : ℕ) : 1 ≤ PowerSeries.coeff n jNum := 
     (by rw [map_pow, constantCoeff_eisenstein4, one_pow])
     one_le_coeff_dedekindEtaUnitInv n
 
+/--
+@isnad1 id=le.0h1v.s4.f1262521c35e from=translated src=- shape=20790861 vocab=503e289b
+-/
 theorem one_le_coeff_jq' (n : ℕ) : (1 : ℚ) ≤ jq.coeff (n : ℤ) := by
   have h : ((n : ℤ)) = ((n + 1 : ℕ) : ℤ) - 1 := by push_cast; ring
   rw [h, coeff_jq_eq_coeff_jNum]
@@ -381,6 +384,9 @@ theorem one_le_coeff_jq' (n : ℕ) : (1 : ℚ) ≤ jq.coeff (n : ℤ) := by
 end ModularCurve
 open scoped _root_.P2MW.S_ModularCurve_one_le_coeff_jq.ModularCurve
 
+/--
+@isnad1 id=le.0h1v.s4.f1262521c35e from=translated src=- shape=20790861 vocab=503e289b
+-/
 theorem solution (n : ℕ) : (1 : ℚ) ≤ ModularCurve.jq.coeff (n : ℤ) :=
   ModularCurve.one_le_coeff_jq' n
 

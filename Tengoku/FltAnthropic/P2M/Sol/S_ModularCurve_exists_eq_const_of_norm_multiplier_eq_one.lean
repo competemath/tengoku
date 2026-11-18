@@ -13,6 +13,9 @@ namespace UnitaryAutomorphicUnit
 
 local notation "𝕢" => Function.Periodic.qParam
 
+/--
+@isnad1 id=hasderiv.0h2v.s9.c3774eefdf2c from=translated src=- shape=c1929f93 vocab=7e3a74bb
+-/
 theorem hasDerivAt_smul_ofComplex (γ : SL(2, ℤ)) (τ : ℍ) :
     HasDerivAt (fun z : ℂ => ((γ • ofComplex z : ℍ) : ℂ))
       (denom (Matrix.SpecialLinearGroup.mapGL ℝ γ) ↑τ ^ (-2 : ℤ)) ↑τ := by
@@ -33,11 +36,17 @@ theorem hasDerivAt_smul_ofComplex (γ : SL(2, ℤ)) (τ : ℍ) :
   rw [zpow_neg, one_div]
   norm_cast
 
+/--
+@isnad1 id=tendsto.0h1v.s4.f4ebbab504f0 from=translated src=- shape=32e042a5 vocab=496815c3
+-/
 theorem tendsto_vadd_atImInfty (x : ℝ) :
     Tendsto (fun z : ℍ => x +ᵥ z) atImInfty atImInfty := by
   simp only [atImInfty, tendsto_comap_iff, Function.comp_def]
   exact tendsto_comap.congr fun z => (vadd_im x z).symm
 
+/--
+@isnad1 id=mem.0h2v.s9.5769fbf0a892 from=translated src=- shape=372adeee vocab=19dce87c
+-/
 theorem conj_T_zpow_mem_Gamma0 (N : ℕ) (δ : SL(2, ℤ)) :
     δ * ModularGroup.T ^ (N : ℤ) * δ⁻¹ ∈ CongruenceSubgroup.Gamma0 N := by
   have hTmem : ModularGroup.T ^ (N : ℤ) ∈ CongruenceSubgroup.Gamma N := by
@@ -60,6 +69,9 @@ structure Hyp (F : ℍ → ℂ) (χ : CongruenceSubgroup.Gamma0 N → ℂ) : Pro
 
 omit [NeZero N] in
 
+/--
+@isnad1 id=eq.2h5v.s9.3674f77a0d32 from=translated src=- shape=fe93c778 vocab=54136eda
+-/
 theorem norm_apply_smul (h : Hyp F χ) {γ : SL(2, ℤ)} (hγ : γ ∈ Γ) (z : ℍ) :
     ‖F (γ • z)‖ = ‖F z‖ := by
   have := h.mult ⟨γ, hγ⟩ z
@@ -68,6 +80,9 @@ theorem norm_apply_smul (h : Hyp F χ) {γ : SL(2, ℤ)} (hγ : γ ∈ Γ) (z : 
 
 omit [NeZero N] in
 
+/--
+@isnad1 id=eq.1h5v.s9.e5bebc5b7f16 from=translated src=- shape=398a9836 vocab=9d3e70ee
+-/
 theorem apply_smul_T_zpow_smul (h : Hyp F χ) (δ : SL(2, ℤ)) (w : ℍ) :
     F (δ • (ModularGroup.T ^ (N : ℤ) • w)) = F (δ • w) := by
   obtain ⟨L, hL0, hL⟩ := h.cusp δ
@@ -109,6 +124,9 @@ theorem apply_smul_T_zpow_smul (h : Hyp F χ) (δ : SL(2, ℤ)) (w : ℍ) :
 noncomputable def K (F : ℍ → ℂ) (ρ : SL(2, ℤ)) : ℍ → ℂ := fun w => F (ρ⁻¹ • w)
 
 omit [NeZero N] in
+/--
+@isnad1 id=periodic.1h4v.s8.ece70e6555d9 from=translated src=- shape=06d2a2bd vocab=b906809e
+-/
 theorem K_periodic (h : Hyp F χ) (ρ : SL(2, ℤ)) :
     Periodic (K F ρ ∘ ofComplex) (N : ℝ) := by
   intro z
@@ -126,6 +144,9 @@ theorem K_periodic (h : Hyp F χ) (ρ : SL(2, ℤ)) :
     simp only [Function.comp_apply, ofComplex_apply_eq_of_im_nonpos hz' hz]
 
 omit [NeZero N] in
+/--
+@isnad1 id=mdiffere.1h4v.s8.17262ef69eef from=translated src=- shape=aacc386d vocab=625b0e64
+-/
 theorem K_mdifferentiable (h : Hyp F χ) (ρ : SL(2, ℤ)) : MDiff (K F ρ) := by
   intro τ
   rw [UpperHalfPlane.mdifferentiableAt_iff]
@@ -145,12 +166,18 @@ theorem K_mdifferentiable (h : Hyp F χ) (ρ : SL(2, ℤ)) : MDiff (K F ρ) := b
   exact h4
 
 omit [NeZero N] in
+/--
+@isnad1 id=ex.1h4v.s8.8724fc484076 from=translated src=- shape=7a5b6c7c vocab=da580ab0
+-/
 theorem K_tendsto (h : Hyp F χ) (ρ : SL(2, ℤ)) :
     ∃ M : ℂ, Tendsto (K F ρ) atImInfty (𝓝 M) := by
   obtain ⟨L, -, hL⟩ := h.cusp ρ⁻¹
   exact ⟨L, hL⟩
 
 omit [NeZero N] in
+/--
+@isnad1 id=isbounde.1h4v.s8.6b6c891dbda5 from=translated src=- shape=abdba8e6 vocab=818e691c
+-/
 theorem K_bounded (h : Hyp F χ) (ρ : SL(2, ℤ)) :
     IsBoundedAtImInfty (K F ρ) := by
   obtain ⟨M, hM⟩ := K_tendsto h ρ
@@ -160,18 +187,30 @@ theorem K_bounded (h : Hyp F χ) (ρ : SL(2, ℤ)) :
 noncomputable def Φ (N : ℕ) (F : ℍ → ℂ) (ρ : SL(2, ℤ)) : ℂ → ℂ :=
   UpperHalfPlane.cuspFunction (N : ℝ) (K F ρ)
 
+/--
+@isnad1 id=lt.0h1v.s4.427b4dbfa21b from=translated src=- shape=e7d1cfd6 vocab=ce8009d3
+-/
 theorem hNpos : (0 : ℝ) < (N : ℝ) := by exact_mod_cast Nat.pos_of_ne_zero (NeZero.ne N)
 
+/--
+@isnad1 id=differen.1h4v.s8.db55680b9d59 from=translated src=- shape=5a3067aa vocab=07f6b3f2
+-/
 theorem Φ_differentiableOn (h : Hyp F χ) (ρ : SL(2, ℤ)) :
     DifferentiableOn ℂ (Φ N F ρ) (ball 0 1) :=
   differentiableOn_cuspFunction_ball hNpos (K_periodic h ρ) (K_mdifferentiable h ρ)
     (K_bounded h ρ)
 
+/--
+@isnad1 id=eq.1h5v.s8.40ef9e8f8675 from=translated src=- shape=bf8b62ac vocab=f9467c25
+-/
 theorem Φ_qParam (h : Hyp F χ) (ρ : SL(2, ℤ)) (w : ℍ) :
     Φ N F ρ (𝕢 (N : ℝ) ↑w) = F (ρ⁻¹ • w) :=
   UpperHalfPlane.eq_cuspFunction w (hNpos (N := N)).ne' (K_periodic h ρ)
 
 omit [NeZero N] in
+/--
+@isnad1 id=or.0h2v.s5.e0a422a3d3c1 from=translated src=- shape=3ff1e360 vocab=1dfae8a3
+-/
 theorem qParam_mem_ball (w : ℍ) : 𝕢 (N : ℝ) ↑w ∈ ball (0 : ℂ) 1 ∨ (N : ℝ) ≤ 0 := by
   by_cases hN : (0 : ℝ) < N
   · left
@@ -184,17 +223,26 @@ theorem qParam_mem_ball (w : ℍ) : 𝕢 (N : ℝ) ↑w ∈ ball (0 : ℂ) 1 ∨
       _ = 1 := Real.exp_zero
   · right; exact not_lt.mp hN
 
+/--
+@isnad1 id=mem.0h2v.s5.364ca1b8b33a from=translated src=- shape=09df3144 vocab=e126a1f2
+-/
 theorem qParam_mem_ball' (w : ℍ) : 𝕢 (N : ℝ) ↑w ∈ ball (0 : ℂ) 1 := by
   rcases qParam_mem_ball (N := N) w with h | h
   · exact h
   · exact absurd hNpos (not_lt.mpr h)
 
+/--
+@isnad1 id=mem.1h2v.s6.fe16a770819b from=translated src=- shape=2eb2b9a7 vocab=3a50ed41
+-/
 theorem qParam_mem_closedBall {w : ℍ} (hw : 1 / 2 ≤ w.im) :
     𝕢 (N : ℝ) ↑w ∈ closedBall (0 : ℂ) (Real.exp (-π / N)) := by
   rw [mem_closedBall_zero_iff, Function.Periodic.norm_qParam, Real.exp_le_exp, UpperHalfPlane.coe_im]
   rw [div_le_div_iff_of_pos_right hNpos]
   nlinarith [Real.pi_pos]
 
+/--
+@isnad1 id=ex.1h3v.s7.403fdc7688d8 from=translated src=- shape=d7caf5b9 vocab=cb5a7b1a
+-/
 theorem F_const (h : Hyp F χ) : ∃ c : ℂ, ∀ z : ℍ, F z = c := by
   classical
   haveI : Fintype (SL(2, ℤ) ⧸ Γ) := Subgroup.fintypeQuotientOfFiniteIndex
@@ -265,6 +313,9 @@ end ModularCurve.UnitaryAutomorphicUnit
 
 open UpperHalfPlane in
 open scoped MatrixGroups Topology in
+/--
+@isnad1 id=ex.4h3v.s10.75448001f043 from=translated src=- shape=844ec277 vocab=9c87b362
+-/
 theorem solution
     {N : ℕ} [NeZero N] (F : ℍ → ℂ) (χ : CongruenceSubgroup.Gamma0 N → ℂ)
     (hF : DifferentiableOn ℂ (fun z : ℂ => F (ofComplex z)) {z : ℂ | 0 < z.im})

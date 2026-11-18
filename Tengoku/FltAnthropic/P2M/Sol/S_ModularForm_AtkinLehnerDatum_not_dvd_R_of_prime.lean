@@ -7,6 +7,9 @@ namespace P2MW.S_ModularForm_AtkinLehnerDatum_not_dvd_R_of_prime
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=not.1h3v.s4.3f56772aee5a from=translated src=- shape=ac26aedd vocab=937d1fd1
+-/
 theorem solution {M q : ℕ} (W : ModularForm.AtkinLehnerDatum M q) (hq : q.Prime) :
     ¬ q ∣ W.R := by
   intro ⟨c, hc⟩

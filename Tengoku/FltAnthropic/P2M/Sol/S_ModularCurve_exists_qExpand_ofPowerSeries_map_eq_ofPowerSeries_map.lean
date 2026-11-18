@@ -20,20 +20,32 @@ variable {A : Type*} [CommRing A]
 noncomputable def expandPS (N : ℕ) (x : PowerSeries A) : PowerSeries A :=
   PowerSeries.mk fun n => if N ∣ n then PowerSeries.coeff (n / N) x else 0
 
+/--
+@isnad1 id=eq.0h4v.s8.167a980df2c4 from=translated src=- shape=7917efc1 vocab=a1e2e803
+-/
 theorem coeff_expandPS (N : ℕ) (x : PowerSeries A) (n : ℕ) :
     PowerSeries.coeff n (expandPS N x) = if N ∣ n then PowerSeries.coeff (n / N) x else 0 := by
   rw [expandPS, PowerSeries.coeff_mk]
 
+/--
+@isnad1 id=eq.0h4v.s8.dce1dcc2f5a9 from=translated src=- shape=691bb59b vocab=9f29236f
+-/
 theorem coeff_expandPS_mul (N : ℕ) [NeZero N] (x : PowerSeries A) (m : ℕ) :
     PowerSeries.coeff (N * m) (expandPS N x) = PowerSeries.coeff m x := by
   rw [coeff_expandPS, ite_eq_left (dvd_mul_right N m), Nat.mul_div_cancel_left m (Nat.pos_of_ne_zero (NeZero.ne N))]
 
+/--
+@isnad1 id=eq.0h5v.s7.00026adfff7b from=translated src=- shape=a4f65307 vocab=d87059c9
+-/
 theorem map_expandPS {B : Type*} [CommRing B] (φ : A →+* B) (N : ℕ) (x : PowerSeries A) :
     (expandPS N x).map φ = expandPS N (x.map φ) := by
   ext n
   simp only [PowerSeries.coeff_map, coeff_expandPS]
   split_ifs <;> simp
 
+/--
+@isnad1 id=iff.0h3v.s6.2caada3002bc from=translated src=- shape=e30868cc vocab=bceda801
+-/
 theorem expandPS_eq_zero_iff (N : ℕ) [NeZero N] (x : PowerSeries A) : expandPS N x = 0 ↔ x = 0 := by
   constructor
   · intro h
@@ -45,6 +57,9 @@ theorem expandPS_eq_zero_iff (N : ℕ) [NeZero N] (x : PowerSeries A) : expandPS
     rw [coeff_expandPS]
     split_ifs <;> simp
 
+/--
+@isnad1 id=eq.0h3v.s8.3f5cca017243 from=translated src=- shape=68dc2804 vocab=a842f8d3
+-/
 theorem coeff_ofPowerSeries {R : Type*} [CommRing R] (y : PowerSeries R) (k : ℤ) :
     (HahnSeries.ofPowerSeries ℤ R y).coeff k = if 0 ≤ k then PowerSeries.coeff k.toNat y else 0 := by
   split_ifs with hk
@@ -57,6 +72,9 @@ theorem coeff_ofPowerSeries {R : Type*} [CommRing R] (y : PowerSeries R) (k : �
     have : (n : ℤ) = k := by simpa using hn
     omega
 
+/--
+@isnad1 id=eq.0h3v.s9.5583d2abaa49 from=translated src=- shape=b64fb366 vocab=aa8a441c
+-/
 theorem qExpand_ofPowerSeries {R : Type*} [CommRing R] (N : ℕ) [NeZero N] (y : PowerSeries R) :
     ModularCurve.qExpand R N (HahnSeries.ofPowerSeries ℤ R y) = HahnSeries.ofPowerSeries ℤ R (expandPS N y) := by
   have hN : (0 : ℤ) < N := by exact_mod_cast Nat.pos_of_ne_zero (NeZero.ne N)
@@ -84,6 +102,9 @@ theorem qExpand_ofPowerSeries {R : Type*} [CommRing R] (N : ℕ) [NeZero N] (y :
 
 end ModularCurve.BetaGauss
 
+/--
+@isnad1 id=ex.0h4v.s10.b792bdafdabf from=translated src=- shape=da099821 vocab=322a03d6
+-/
 theorem solution
     (A : Type*) [CommRing A] (L : Type*) [Field L] [Algebra A L] (N : ℕ) [NeZero N] (x : PowerSeries A) :
     ∃ x' : PowerSeries A,

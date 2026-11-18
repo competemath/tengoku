@@ -23,6 +23,9 @@ open _root_.ModularCurve
 section FromE1
 open Complex
 
+/--
+@isnad1 id=iscompac.0h1v.s9.477893a4a273 from=translated src=- shape=80b05417 vocab=66aaefce
+-/
 theorem isCompact_det_one_bounded (R : ℝ) :
     IsCompact {g : GL (Fin 2) ℝ | Matrix.GeneralLinearGroup.det g = 1 ∧
       ∀ i j, |(g : Matrix (Fin 2) (Fin 2) ℝ) i j| ≤ R} := by
@@ -68,6 +71,9 @@ theorem isCompact_det_one_bounded (R : ℝ) :
   haveI : CompactSpace C' := isCompact_iff_compactSpace.1 hC'cpt
   exact isCompact_range hψc
 
+/--
+@isnad1 id=finite.0h2v.s11.20f6a184b432 from=translated src=- shape=e36edc18 vocab=b731e926
+-/
 theorem finite_det_one_bounded {Γ : Subgroup (GL (Fin 2) ℝ)} [hΓ : DiscreteTopology ↥Γ] (R : ℝ) :
     Set.Finite {γ : ↥Γ | Matrix.GeneralLinearGroup.det (γ : GL (Fin 2) ℝ) = 1 ∧
       ∀ i j, |((γ : GL (Fin 2) ℝ) : Matrix (Fin 2) (Fin 2) ℝ) i j| ≤ R} := by
@@ -76,6 +82,9 @@ theorem finite_det_one_bounded {Γ : Subgroup (GL (Fin 2) ℝ)} [hΓ : DiscreteT
   have hcpt := hemb.isCompact_preimage (isCompact_det_one_bounded R)
   exact hcpt.finite_of_discrete
 
+/--
+@isnad1 id=and.4h6v.s6.f32b6cf4446f from=translated src=- shape=17f49c49 vocab=71e5e639
+-/
 theorem coeff_bound {α β : ℝ} {z : ℂ} {y R₀ W : ℝ} (hy0 : 0 < y) (hy : y ≤ z.im) (hz : ‖z‖ ≤ R₀)
     (hw : ‖(α : ℂ) * z + β‖ ≤ W) : |α| ≤ W / y ∧ |β| ≤ W + W / y * R₀ := by
   have him : ((α : ℂ) * z + β).im = α * z.im := by simp
@@ -101,6 +110,9 @@ theorem coeff_bound {α β : ℝ} {z : ℂ} {y R₀ W : ℝ} (hy0 : 0 < y) (hy :
     _ ≤ W + W / y * R₀ := by
         gcongr
 
+/--
+@isnad1 id=finite.3h4v.s11.a49fa836425d from=translated src=- shape=0240fbd5 vocab=675e2dca
+-/
 theorem finite_smul_mem {Γ : Subgroup (GL (Fin 2) ℝ)} [hΓ : DiscreteTopology ↥Γ]
     (hdet : ∀ γ ∈ Γ, Matrix.GeneralLinearGroup.det γ = 1)
     (K : Set ℍ) {y R₀ : ℝ} (hy0 : 0 < y) (hK : ∀ τ ∈ K, y ≤ τ.im ∧ ‖(τ : ℂ)‖ ≤ R₀) :
@@ -153,6 +165,9 @@ theorem finite_smul_mem {Γ : Subgroup (GL (Fin 2) ℝ)} [hΓ : DiscreteTopology
 
 end FromE1
 
+/--
+@isnad1 id=eq.0h2v.s7.5ca2be542f27 from=translated src=- shape=4e2cc75f vocab=94097262
+-/
 theorem normSq_sub_conj_sub_normSq_sub (w τ₀ : ℍ) :
     ‖(w : ℂ) - (starRingEnd ℂ) (τ₀ : ℂ)‖ ^ 2 - ‖(w : ℂ) - (τ₀ : ℂ)‖ ^ 2 = 4 * w.im * τ₀.im := by
   rw [Complex.sq_norm, Complex.sq_norm, Complex.normSq_apply, Complex.normSq_apply]
@@ -160,12 +175,18 @@ theorem normSq_sub_conj_sub_normSq_sub (w τ₀ : ℍ) :
     UpperHalfPlane.coe_re, UpperHalfPlane.coe_im]
   ring
 
+/--
+@isnad1 id=le.0h2v.s6.358c9e596bfd from=translated src=- shape=da302974 vocab=1ce55f2b
+-/
 theorem norm_sub_le_norm_sub_conj (w τ₀ : ℍ) :
     ‖(w : ℂ) - (τ₀ : ℂ)‖ ≤ ‖(w : ℂ) - (starRingEnd ℂ) (τ₀ : ℂ)‖ := by
   have h := normSq_sub_conj_sub_normSq_sub w τ₀
   have hpos : 0 ≤ 4 * w.im * τ₀.im := by positivity
   nlinarith [norm_nonneg ((w : ℂ) - (τ₀ : ℂ)), norm_nonneg ((w : ℂ) - (starRingEnd ℂ) (τ₀ : ℂ))]
 
+/--
+@isnad1 id=le.0h2v.s6.a7c37acc94ac from=translated src=- shape=82560b89 vocab=c326a1f1
+-/
 theorem im_add_im_le_norm_sub_conj (w τ₀ : ℍ) :
     w.im + τ₀.im ≤ ‖(w : ℂ) - (starRingEnd ℂ) (τ₀ : ℂ)‖ := by
   have h := Complex.abs_im_le_norm ((w : ℂ) - (starRingEnd ℂ) (τ₀ : ℂ))
@@ -174,12 +195,21 @@ theorem im_add_im_le_norm_sub_conj (w τ₀ : ℍ) :
   rw [him, abs_of_pos (by positivity)] at h
   exact h
 
+/--
+@isnad1 id=lt.0h2v.s5.d9f770de1d85 from=translated src=- shape=05bd8daf vocab=ae0a2eab
+-/
 theorem norm_sub_conj_pos (w τ₀ : ℍ) : 0 < ‖(w : ℂ) - (starRingEnd ℂ) (τ₀ : ℂ)‖ :=
   lt_of_lt_of_le (by positivity) (im_add_im_le_norm_sub_conj w τ₀)
 
+/--
+@isnad1 id=ne.0h2v.s5.7c0dbeb43402 from=translated src=- shape=db4fcea7 vocab=4bc1f922
+-/
 theorem sub_conj_ne_zero (w τ₀ : ℍ) : (w : ℂ) - (starRingEnd ℂ) (τ₀ : ℂ) ≠ 0 :=
   norm_pos_iff.mp (norm_sub_conj_pos w τ₀)
 
+/--
+@isnad1 id=le.0h2v.s6.2afab9c409a8 from=translated src=- shape=225ec416 vocab=44d4542a
+-/
 theorem norm_sub_conj_le (w τ₀ : ℍ) :
     ‖(w : ℂ) - (starRingEnd ℂ) (τ₀ : ℂ)‖ ≤ ‖(w : ℂ) - (τ₀ : ℂ)‖ + 2 * τ₀.im := by
   have : (w : ℂ) - (starRingEnd ℂ) (τ₀ : ℂ) = ((w : ℂ) - (τ₀ : ℂ)) + ((τ₀ : ℂ) - (starRingEnd ℂ) (τ₀ : ℂ)) := by ring
@@ -197,6 +227,9 @@ theorem norm_sub_conj_le (w τ₀ : ℍ) :
 def phi (τ₀ : ℍ) (n : ℕ) (k : ℤ) (w : ℍ) : ℂ :=
   (((w : ℂ) - (τ₀ : ℂ)) / ((w : ℂ) - (starRingEnd ℂ) (τ₀ : ℂ))) ^ n * ((w : ℂ) - (starRingEnd ℂ) (τ₀ : ℂ)) ^ (-k)
 
+/--
+@isnad1 id=le.0h4v.s6.0529422d9fca from=translated src=- shape=dacf638a vocab=0e75f301
+-/
 theorem norm_phi_le (τ₀ : ℍ) (n : ℕ) (k : ℤ) (w : ℍ) :
     ‖phi τ₀ n k w‖ ≤ ‖(w : ℂ) - (starRingEnd ℂ) (τ₀ : ℂ)‖ ^ (-k) := by
   unfold phi
@@ -209,6 +242,9 @@ theorem norm_phi_le (τ₀ : ℍ) (n : ℕ) (k : ℤ) (w : ℍ) :
   calc _ ≤ 1 * ‖(w : ℂ) - (starRingEnd ℂ) (τ₀ : ℂ)‖ ^ (-k) := mul_le_mul_of_nonneg_right h2 h3
     _ = _ := one_mul _
 
+/--
+@isnad1 id=mdiffere.0h3v.s6.cddc1445cfa0 from=translated src=- shape=d48592a8 vocab=5b386900
+-/
 theorem mdifferentiable_phi (τ₀ : ℍ) (n : ℕ) (k : ℤ) : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (phi τ₀ n k) := by
   rw [UpperHalfPlane.mdifferentiable_iff]
   intro z hz
@@ -224,6 +260,9 @@ theorem mdifferentiable_phi (τ₀ : ℍ) (n : ℕ) (k : ℤ) : MDifferentiable 
   filter_upwards [isOpen_upperHalfPlaneSet.mem_nhds hz] with x hx
   simp only [Function.comp_apply, phi, ofComplex_apply_of_im_pos hx, UpperHalfPlane.coe_mk]
 
+/--
+@isnad1 id=ex.1h3v.s6.350142fc13a8 from=translated src=- shape=b914e449 vocab=b8e1916a
+-/
 theorem phi_decay (τ₀ : ℍ) (n : ℕ) (k : ℤ) (hk : 0 ≤ k) :
     ∃ M : ℝ, ∀ w : ℍ, ‖phi τ₀ n k w‖ * ‖(w : ℂ) + Complex.I‖ ^ k ≤ M := by
 
@@ -254,6 +293,9 @@ theorem phi_decay (τ₀ : ℍ) (n : ℕ) (k : ℤ) (hk : 0 ≤ k) :
         rw [div_le_iff₀ hB]
         exact hratio
 
+/--
+@isnad1 id=eq.1h3v.s10.d2eb8bd7be9d from=translated src=- shape=a48f7fd5 vocab=53692466
+-/
 theorem gauge_identity {γ : GL (Fin 2) ℝ} (hγ : Matrix.GeneralLinearGroup.det γ = 1) (σ τ₀ : ℍ) :
     4 * σ.im * τ₀.im / (‖(((γ • σ : ℍ)) : ℂ) - (starRingEnd ℂ) (τ₀ : ℂ)‖ ^ 2 * ‖denom γ σ‖ ^ 2) =
       1 - (‖(((γ • σ : ℍ)) : ℂ) - (τ₀ : ℂ)‖ / ‖(((γ • σ : ℍ)) : ℂ) - (starRingEnd ℂ) (τ₀ : ℂ)‖) ^ 2 := by
@@ -270,6 +312,9 @@ theorem gauge_identity {γ : GL (Fin 2) ℝ} (hγ : Matrix.GeneralLinearGroup.de
   field_simp
   nlinarith [hkey, hJpos, hB]
 
+/--
+@isnad1 id=ex.1h3v.s11.d23ae8818fe6 from=translated src=- shape=b11fa529 vocab=a85298b2
+-/
 theorem exists_nhds_norm_sub_ge {Γ : Subgroup (GL (Fin 2) ℝ)} [hΓ : DiscreteTopology ↥Γ]
     (hdet : ∀ γ ∈ Γ, Matrix.GeneralLinearGroup.det γ = 1) (τ₀ σ₀ : ℍ) :
     ∃ U : Set ℍ, IsOpen U ∧ σ₀ ∈ U ∧ ∃ r : ℝ, 0 < r ∧
@@ -341,6 +386,9 @@ theorem exists_nhds_norm_sub_ge {Γ : Subgroup (GL (Fin 2) ℝ)} [hΓ : Discrete
 end ModularCurve.E2bAux
 
 open ModularCurve.E2bAux in
+/--
+@isnad1 id=ex.2h3v.s13.e68beb86628c from=translated src=- shape=44e54541 vocab=51ef07ce
+-/
 theorem solution
     (Γ : Subgroup (GL (Fin 2) ℝ))
     (hdet : ∀ γ ∈ Γ, Matrix.GeneralLinearGroup.det γ = 1)

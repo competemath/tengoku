@@ -7,6 +7,9 @@ namespace P2MW.S_ModularCurve_eigenIdeal_isMaximal
 
 open ModularCurve
 
+/--
+@isnad1 id=ismaxima.0h2v.s5.4c8ee8c36947 from=translated src=- shape=5c890f4a vocab=33738a7b
+-/
 theorem solution {k : Type*} [Field k] [Finite k] (a : Nat.Primes → k) :
     (ModularCurve.eigenIdeal a).IsMaximal := by
   haveI : (eigenIdeal a).IsPrime := RingHom.ker_isPrime _

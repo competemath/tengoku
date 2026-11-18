@@ -41,6 +41,9 @@ private theorem sq_self_one_eq_zero_iff_map {R S : Type*} [Ring R] [Ring S] (f :
 
 end Helpers
 
+/--
+@isnad1 id=eq.1h2v.s4.a91ad9405dc1 from=translated src=- shape=20e9f6dc vocab=f022a7cd
+-/
 theorem solution {M N : ℕ} (h : Nat.Coprime M N) :
     nuThree (M * N) = nuThree M * nuThree N := by
   have key : ∀ x : ZMod (M * N),

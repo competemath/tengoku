@@ -13,6 +13,9 @@ set_option autoImplicit false
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=isfracti.0h2v.s14.ea4cc622d5a6 from=translated src=- shape=56b046cd vocab=003f5077
+-/
 theorem solution
     (L : Type*) [Field L] [Algebra ℚ L] (F₀ : IntermediateField ℚ (LaurentSeries ℚ)) :
     letI := ((ModularCurve.baseChangeHom L F₀).codRestrict (ModularCurve.laurentBaseChange L F₀).toSubalgebra

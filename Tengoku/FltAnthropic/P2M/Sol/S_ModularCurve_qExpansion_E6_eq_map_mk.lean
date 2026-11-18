@@ -19,6 +19,9 @@ private lemma bernoulli'_six_s18 : bernoulli' 6 = 1 / 42 := by
 private lemma bernoulli_six_s18 : bernoulli 6 = 1 / 42 := by
   rw [bernoulli_eq_bernoulli'_of_ne_one (by norm_num), bernoulli'_six_s18]
 
+/--
+@isnad1 id=eq.0h0v.s8.77dbe2622a79 from=translated src=- shape=865795b1 vocab=5a482b13
+-/
 theorem solution :
     UpperHalfPlane.qExpansion 1 ⇑ModularForm.E₆ =
       PowerSeries.map (Int.castRingHom ℂ)

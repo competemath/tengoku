@@ -132,6 +132,9 @@ end ModularCurve
 
 end
 
+/--
+@isnad1 id=ex.0h2v.s10.81d3232d7783 from=translated src=- shape=e9613013 vocab=372c1341
+-/
 theorem solution (ℓ : ℕ) [Fact (Nat.Prime ℓ)] (γ : Matrix.SpecialLinearGroup (Fin 2) ℤ) : ∃ e : Equiv.Perm (Fin (ℓ + 1)), ∀ i : Fin (ℓ + 1), (Fin.cases (1 : Matrix.SpecialLinearGroup (Fin 2) ℤ) (fun b : Fin ℓ => ModularGroup.S * ModularGroup.T ^ (b : ℕ)) i : Matrix.SpecialLinearGroup (Fin 2) ℤ) * γ * (Fin.cases (1 : Matrix.SpecialLinearGroup (Fin 2) ℤ) (fun b : Fin ℓ => ModularGroup.S * ModularGroup.T ^ (b : ℕ)) (e i) : Matrix.SpecialLinearGroup (Fin 2) ℤ)⁻¹ ∈ CongruenceSubgroup.Gamma0 ℓ := by
   haveI : NeZero ℓ := ⟨(Fact.out : ℓ.Prime).ne_zero⟩
   exact ModularCurve.QexpN.exists_perm ℓ γ

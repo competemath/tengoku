@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open ModularCurve ModularCurve.NodeLocalized
 
+/--
+@isnad1 id=eq.0h3v.s7.6fb54e135c5b from=translated src=- shape=5fb2254c vocab=56a8d3cd
+-/
 theorem solution (N : ℕ) [NeZero N] {L : Type*} [CommRing L] (A : Subring L) :
     CharPReduction.modularRing N A = (NodeLocalized.modularEval N A).range := by
   apply le_antisymm

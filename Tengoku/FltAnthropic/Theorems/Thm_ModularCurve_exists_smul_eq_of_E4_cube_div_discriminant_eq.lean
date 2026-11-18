@@ -9,6 +9,9 @@ attribute [-simp] PeriodPair.weierstrassCurve_a₆ PeriodPair.weierstrassCurve_a
 open UpperHalfPlane
 open scoped MatrixGroups
 
+/--
+@isnad1 id=ex.1h2v.s9.4883b42cdd29 from=translated src=- shape=fcbe9ab5 vocab=02b489b3
+-/
 theorem ModularCurve.exists_smul_eq_of_E4_cube_div_discriminant_eq (τ τ' : ℍ)
     (h : (ModularForm.E₄ : ℍ → ℂ) τ ^ 3 / ModularForm.discriminant τ =
       (ModularForm.E₄ : ℍ → ℂ) τ' ^ 3 / ModularForm.discriminant τ') :

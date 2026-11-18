@@ -88,6 +88,9 @@ end QuotEigenLift
 
 open QuotEigenLift in
 
+/--
+@isnad1 id=ex.4h7v.s9.0b01212d980f from=translated src=- shape=304419ce vocab=16ea91ec
+-/
 theorem solution
     {K : Type*} [Field K] {V : Type*} [AddCommGroup V] [Module K V] [FiniteDimensional K V]
     {ι : Type*} (T : ι → Module.End K V) (hT : ∀ i j, Commute (T i) (T j))

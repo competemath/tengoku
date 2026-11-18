@@ -23,5 +23,8 @@ private theorem ModularForm.levelOne_weight_six_qCoeff_one (Y : ModularForm 𝒮
     ModularForm.E₆_qExpansion_coeff_one]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s9.84d0d2a3c7a8 from=translated src=- shape=5aa86482 vocab=579687ce
+-/
 theorem solution (Y : ModularForm 𝒮ℒ 6) : ModularFormClass.qCoeff ⇑Y 1 = -504 * ModularFormClass.qCoeff ⇑Y 0 :=
   ModularForm.levelOne_weight_six_qCoeff_one Y

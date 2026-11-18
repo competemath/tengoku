@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open IsLocalRing
 
+/--
+@isnad1 id=faithful.2h2v.s9.23e79ae0e191 from=translated src=- shape=3094ae3e vocab=bf9c62df
+-/
 theorem solution
     (R B : Type*) [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
     [CommRing B] [IsLocalRing B] [IsAdicComplete (IsLocalRing.maximalIdeal B) B]
