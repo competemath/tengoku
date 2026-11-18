@@ -21,6 +21,9 @@ def HasZeroSumMultiplicity {p d : ℕ} [NeZero p]
   ∃ a : FpCoord p d → ℕ,
     a ≤ f ∧ natMass a = p ∧ (∑ v, a v • v) = 0
 
+/--
+@isnad1 id=haszeros.2h4v.s5.8473f066628d from=translated src=- shape=1c5a7be7 vocab=65b09ce5
+-/
 theorem HasZeroSumMultiplicity.mono {p d : ℕ} [NeZero p]
     {f g : FpCoord p d → ℕ} (h : HasZeroSumMultiplicity f)
     (hfg : f ≤ g) : HasZeroSumMultiplicity g := by
@@ -33,6 +36,9 @@ noncomputable def sequenceMultiplicity {p d : ℕ} {ι : Type*} [Fintype ι]
   classical
   exact (Finset.univ.filter fun i ↦ v i = q).card
 
+/--
+@isnad1 id=eq.0h4v.s5.93b4498c2974 from=translated src=- shape=1a118364 vocab=4fb803f7
+-/
 theorem natMass_sequenceMultiplicity {p d : ℕ} [NeZero p]
     {ι : Type*} [Fintype ι] (v : ι → FpCoord p d) :
     natMass (sequenceMultiplicity v) = Fintype.card ι := by
@@ -43,7 +49,9 @@ theorem natMass_sequenceMultiplicity {p d : ℕ} [NeZero p]
     (f := v) (by simp)).symm
 
 /-- Selecting bounded multiplicities selects distinct sequence positions,
-even when the vectors at those positions coincide.-/
+even when the vectors at those positions coincide.
+@isnad1 id=haszeros.1h4v.s5.dced4b43664b from=translated src=- shape=cee2edab vocab=68dc801f
+-/
 theorem hasZeroSumSubsequence_of_multiplicity {p d : ℕ} [NeZero p]
     {ι : Type*} [Fintype ι] (v : ι → FpCoord p d)
     (h : HasZeroSumMultiplicity (sequenceMultiplicity v)) :
@@ -75,7 +83,9 @@ theorem hasZeroSumSubsequence_of_multiplicity {p d : ℕ} [NeZero p]
       _ = 0 := hz
 
 /-- A multiplicity-form estimate at an exact length gives the EGZ property
-at that length.-/
+at that length.
+@isnad1 id=egzprope.1h3v.s5.feeb2a0694ce from=translated src=- shape=b5235ad9 vocab=c5fa67f5
+-/
 theorem egzProperty_of_multiplicity {p d n : ℕ} [NeZero p]
     (h : ∀ f : FpCoord p d → ℕ, natMass f = n → HasZeroSumMultiplicity f) :
     EGZProperty p d n := by
@@ -84,7 +94,9 @@ theorem egzProperty_of_multiplicity {p d n : ℕ} [NeZero p]
   apply h
   simpa using natMass_sequenceMultiplicity v
 
-/-- A zero sum in a cumulative node is a zero sum in the original input.-/
+/-- A zero sum in a cumulative node is a zero sum in the original input.
+@isnad1 id=haszeros.1h5v.s5.fa668c3ed847 from=translated src=- shape=0c9fd414 vocab=645acecd
+-/
 theorem FlagDecomposition.hasZeroSum_of_cumulative {p d : ℕ} [NeZero p]
     {f : FpCoord p d → ℕ} (Φ : FlagDecomposition p d f) (x : Φ.flag.Node)
     (h : HasZeroSumMultiplicity (Φ.cumulativeWeight x)) : HasZeroSumMultiplicity f := by

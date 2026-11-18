@@ -21,7 +21,9 @@ open FlagDecomposition
 /-- Uniform form of the paper's minimal decomposition lemma. The output is
 the actual recharted decomposition, so its node poset is definitionally the
 original node poset. Local and cumulative lifted weights are identified by
-the chart maps; retained mass and every node gap are unchanged.-/
+the chart maps; retained mass and every node gap are unchanged.
+@isnad1 id=ex.0h1v.s11.1c53d110f2e6 from=translated src=- shape=d75bbd90 vocab=6b34aa77
+-/
 theorem minimalization_lemma (d : ℕ) :
     ∃ A : ℕ → ℕ, Monotone A ∧ (∀ K, K ≤ A K) ∧
       ∀ BK : ℕ, ∃ p₀ : ℕ, 2 ≤ p₀ ∧

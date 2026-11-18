@@ -31,9 +31,15 @@ def closure (q : α → RealCoord d) (S : Finset α) : Set α :=
   q ⁻¹' (affineSpan ℝ (q '' (S : Set α)) : Set (RealCoord d))
 
 omit [Fintype α] in
+/--
+@isnad1 id=le.0h4v.s4.31b35f0d34c5 from=translated src=- shape=1574d9ff vocab=cc6f8a8b
+-/
 theorem rank_le (q : α → RealCoord d) (S : Finset α) : rank q S ≤ d := by
   simpa [rank] using (affineSpan ℝ (q '' (S : Set α))).direction.finrank_le
 
+/--
+@isnad1 id=lt.2h5v.s6.f89df05bd0c4 from=translated src=- shape=51ae2709 vocab=6a8e1819
+-/
 theorem rank_insert_lt (q : α → RealCoord d) (S : Finset α) (hS : S.Nonempty)
     (a : α) (ha : a ∉ closure q S) : rank q S < rank q (insert a S) := by
   classical
@@ -52,7 +58,9 @@ end LargeFaceSequence
 
 /-- A uniform large-face bound. The common total weight is positive; each
 face has mass at least `η` times that total, and each proper subface loses
-at least the fraction `δ` of its face's mass.-/
+at least the fraction `δ` of its face's mass.
+@isnad1 id=le.8h9v.s8.4cac4bda0b00 from=translated src=- shape=fe7c550d vocab=518e5459
+-/
 theorem card_largeFaceSequence_le {α : Type*} [Fintype α] {d N : ℕ}
     (q : α → RealCoord d) (w : α → ℝ) (hw : ∀ a, 0 ≤ w a)
     (hM : 0 < ∑ a, w a) (P : Fin N → RationalPolytope d) (Γ : ∀ i, (P i).Face)
@@ -100,7 +108,9 @@ theorem card_largeFaceSequence_le {α : Type*} [Fintype α] {d N : ℕ}
 /-- Proposition `large` for a finitely supported measure, with its explicit
 bound. The necessary positive initial-mass hypothesis is stated explicitly.
 Weights outside the first polytope are harmless and are restricted away in
-the proof. The weak proper-subface inequality suffices.-/
+the proof. The weak proper-subface inequality suffices.
+@isnad1 id=le.8h8v.s9.a9c12ec778ca from=translated src=- shape=d7d9d5a1 vocab=d7d97d37
+-/
 theorem card_largeFaceSequence_le_paper {α : Type*} [Fintype α] {d N : ℕ}
     (q : α → RealCoord d) (w : α → ℝ) (hw : ∀ a, 0 ≤ w a)
     (P : Fin (N + 1) → RationalPolytope d) (Γ : ∀ i, (P i).Face)

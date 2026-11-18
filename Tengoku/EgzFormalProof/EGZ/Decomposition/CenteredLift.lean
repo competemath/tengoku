@@ -17,11 +17,17 @@ open scoped BigOperators
 
 namespace EGZ
 
+/--
+@isnad1 id=iff.0h3v.s4.66273c0ba30c from=translated src=- shape=f6e59a85 vocab=d8f6c51a
+-/
 @[simp]
 theorem latticeSupNorm_le_iff {n K : ℕ} {z : IntCoord n} :
     latticeSupNorm z ≤ K ↔ ∀ i, (z i).natAbs ≤ K := by
   simp [latticeSupNorm, Finset.sup_le_iff]
 
+/--
+@isnad1 id=iff.0h3v.s5.4843a4b2ecde from=translated src=- shape=4d27afa3 vocab=aef94a83
+-/
 @[simp]
 theorem isCenteredLift_iff {p n : ℕ} {z : IntCoord n} :
     IsCenteredLift p z ↔ ∀ i, (z i).natAbs ≤ (p - 1) / 2 :=
@@ -31,6 +37,9 @@ theorem isCenteredLift_iff {p n : ℕ} {z : IntCoord n} :
 noncomputable def latticeBox (n K : ℕ) : Finset (IntCoord n) :=
   Fintype.piFinset fun _ : Fin n ↦ Finset.Icc (-(K : ℤ)) (K : ℤ)
 
+/--
+@isnad1 id=iff.0h3v.s5.d06d26672625 from=translated src=- shape=304854fc vocab=714f5719
+-/
 @[simp]
 theorem mem_latticeBox {n K : ℕ} {z : IntCoord n} :
     z ∈ latticeBox n K ↔ latticeSupNorm z ≤ K := by
@@ -39,6 +48,9 @@ theorem mem_latticeBox {n K : ℕ} {z : IntCoord n} :
   congr! 1
   omega
 
+/--
+@isnad1 id=eq.0h2v.s5.c65410ea41e2 from=translated src=- shape=d60b063b vocab=dd568da5
+-/
 @[simp]
 theorem card_latticeBox (n K : ℕ) :
     (latticeBox n K).card = (2 * K + 1) ^ n := by
@@ -46,6 +58,9 @@ theorem card_latticeBox (n K : ℕ) :
   congr 1
   omega
 
+/--
+@isnad1 id=le.1h3v.s6.21b7a25ca417 from=translated src=- shape=cb4f5ba5 vocab=5839d004
+-/
 theorem card_le_of_latticeSupNorm_le {n K : ℕ} (S : Finset (IntCoord n))
     (hS : ∀ z ∈ S, latticeSupNorm z ≤ K) :
     S.card ≤ (2 * K + 1) ^ n := by
@@ -58,16 +73,25 @@ namespace FpCoord
 def centeredLift {p n : ℕ} (c : FpCoord p n) : IntCoord n :=
   fun i ↦ (c i).valMinAbs
 
+/--
+@isnad1 id=eq.0h4v.s4.88660a357d42 from=translated src=- shape=04bd7158 vocab=f467b9d1
+-/
 @[simp]
 theorem centeredLift_apply {p n : ℕ} (c : FpCoord p n) (i : Fin n) :
     centeredLift c i = (c i).valMinAbs := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.c93ea64685b1 from=translated src=- shape=db68ba20 vocab=d4bbd598
+-/
 @[simp]
 theorem mod_centeredLift {p n : ℕ} (c : FpCoord p n) :
     (centeredLift c).mod p = c := by
   funext i
   exact ZMod.coe_valMinAbs (c i)
 
+/--
+@isnad1 id=iscenter.1h3v.s4.46f7b17764c0 from=translated src=- shape=36349888 vocab=e59f73e3
+-/
 theorem isCenteredLift_centeredLift {p n : ℕ} [NeZero p]
     (hp : Odd p) (c : FpCoord p n) : IsCenteredLift p (centeredLift c) := by
   rw [isCenteredLift_iff]
@@ -77,6 +101,9 @@ theorem isCenteredLift_centeredLift {p n : ℕ} [NeZero p]
     omega
   simpa only [centeredLift_apply, ← hpdiv] using (c i).natAbs_valMinAbs_le
 
+/--
+@isnad1 id=eq.1h3v.s4.80a9c30ef748 from=translated src=- shape=ab0d55f3 vocab=f408b038
+-/
 theorem centeredLift_mod {p n : ℕ} [NeZero p]
     {z : IntCoord n} (hz : IsCenteredLift p z) : centeredLift (z.mod p) = z := by
   funext i
@@ -96,7 +123,9 @@ theorem IsCenteredLift.eq_of_mod_eq {p n : ℕ} [NeZero p]
     (h : z.mod p = w.mod p) : z = w := by
   rw [← FpCoord.centeredLift_mod hz, h, FpCoord.centeredLift_mod hw]
 
-/-- For odd moduli each finite-field vector has exactly one centered lift.-/
+/-- For odd moduli each finite-field vector has exactly one centered lift.
+@isnad1 id=existsun.1h3v.s5.34f0173ae404 from=translated src=- shape=c00ff88a vocab=4d3f875e
+-/
 theorem existsUnique_isCenteredLift {p n : ℕ} [NeZero p] (hp : Odd p)
     (c : FpCoord p n) : ∃! z : IntCoord n, IsCenteredLift p z ∧ z.mod p = c := by
   refine ⟨FpCoord.centeredLift c,
@@ -105,7 +134,9 @@ theorem existsUnique_isCenteredLift {p n : ℕ} [NeZero p] (hp : Odd p)
   rw [← hz.2, FpCoord.centeredLift_mod hz.1]
 
 /-- Summing over centered integer coordinates is the same as summing over
-the finite coordinate space.-/
+the finite coordinate space.
+@isnad1 id=eq.1h3v.s6.6a0d312e6002 from=translated src=- shape=618829f8 vocab=61959c7c
+-/
 theorem sum_latticeBox_mod {p n : ℕ} [NeZero p] (hp : Odd p)
     (g : FpCoord p n → ℕ) :
     ∑ z ∈ latticeBox n ((p - 1) / 2), g (z.mod p) = ∑ c, g c := by
@@ -135,6 +166,9 @@ noncomputable def hatSupport (R : FpRepresentation p d F)
   exact (latticeBox (F.rank x) ((p - 1) / 2)).filter
     fun z ↦ hat R pieces x z ≠ 0
 
+/--
+@isnad1 id=iff.0h7v.s6.c063764447db from=translated src=- shape=2d21055e vocab=dd68c8e4
+-/
 @[simp]
 theorem mem_hatSupport (R : FpRepresentation p d F)
     (pieces : F.Node → FpCoord p d → ℕ) (x : F.Node)
@@ -149,6 +183,9 @@ theorem mem_hatSupport (R : FpRepresentation p d F)
     by_contra hcentered
     exact hz (by simp [hat, IsCenteredLift, hcentered])
 
+/--
+@isnad1 id=eq.0h5v.s6.15f0cd8b292e from=translated src=- shape=53ef5742 vocab=3bed8c9b
+-/
 theorem sum_affineFibreMass {n : ℕ} (w : FpCoord p d → ℕ)
     (φ : FpCoord p d → FpCoord p n) :
     ∑ c, affineFibreMass w φ c = natMass w := by
@@ -157,7 +194,9 @@ theorem sum_affineFibreMass {n : ℕ} (w : FpCoord p d → ℕ)
   rw [Finset.sum_comm]
   simp
 
-/-- Cumulative lifted mass is exactly cumulative finite-field mass.-/
+/-- Cumulative lifted mass is exactly cumulative finite-field mass.
+@isnad1 id=eq.1h6v.s6.f8bf88e9dcbc from=translated src=- shape=ecc169c7 vocab=51d32cf3
+-/
 theorem sum_hatSupport (hp : Odd p) (R : FpRepresentation p d F)
     (pieces : F.Node → FpCoord p d → ℕ) (x : F.Node) :
     ∑ z ∈ hatSupport R pieces x, hat R pieces x z =
@@ -187,6 +226,9 @@ namespace FlagDecomposition
 
 variable {p d : ℕ} [NeZero p] {f : FpCoord p d → ℕ}
 
+/--
+@isnad1 id=eq.0h5v.s6.80cc184c7868 from=translated src=- shape=6c1c2956 vocab=fdc7aac9
+-/
 theorem liftedSupport_eq_hatSupport (Φ : FlagDecomposition p d f)
     (x : Φ.flag.Node) :
     Φ.liftedSupport x =
@@ -194,7 +236,9 @@ theorem liftedSupport_eq_hatSupport (Φ : FlagDecomposition p d f)
   ext z
   rw [Φ.liftedSupport_spec, FlagDecompositionRaw.mem_hatSupport]
 
-/-- The stored support does not change the total cumulative mass.-/
+/-- The stored support does not change the total cumulative mass.
+@isnad1 id=eq.1h5v.s6.9b3999d69f1e from=translated src=- shape=ea2522bc vocab=0d9aab1b
+-/
 theorem sum_liftedSupport (hp : Odd p) (Φ : FlagDecomposition p d f)
     (x : Φ.flag.Node) :
     ∑ z ∈ Φ.liftedSupport x, Φ.hat x z = natMass (Φ.cumulativeWeight x) := by
@@ -205,7 +249,9 @@ end FlagDecomposition
 
 namespace FpRepresentation
 
-/-- The rank of a represented node cannot exceed the ambient dimension.-/
+/-- The rank of a represented node cannot exceed the ambient dimension.
+@isnad1 id=le.0h5v.s4.117a93cf4fe8 from=translated src=- shape=4c92cad3 vocab=4f62eb56
+-/
 theorem rank_le {p d : ℕ} [Fact p.Prime] {F : ConvexFlag}
     (R : FpRepresentation p d F) (x : F.Node) : F.rank x ≤ d := by
   have hsurj : Function.Surjective (R.map x) := by

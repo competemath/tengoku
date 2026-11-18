@@ -22,11 +22,17 @@ variable {p d : ℕ} [Fact p.Prime] {f : FpCoord p d → ℕ}
     (D : CompletePreparation Φ anchor t δ)
     (hp : Odd p) (hδ : 0 ≤ δ) (hsmall : (3 : ℝ) ^ (d + 1) * δ < 1)
 
+/--
+@isnad1 id=le.3h9v.s7.2586f82fa305 from=translated src=- shape=aeb870ec vocab=fd821765
+-/
 theorem extra_le_count (x : (D.split hp hδ hsmall).flag.Node) :
     D.extra hp hδ hsmall x ≤ D.count := by
   change (if x.1.1.2 = 0 then D.count else 0) ≤ D.count
   split_ifs <;> omega
 
+/--
+@isnad1 id=mem.5h10v.s7.be8e87a9af1d from=translated src=- shape=61a58ae3 vocab=a4f8f103
+-/
 theorem selected_of_extra_pos (x : (D.split hp hδ hsmall).flag.Node)
     (hx : 0 < D.extra hp hδ hsmall x) (v : FpCoord p d)
     (hv : (D.split hp hδ hsmall).cumulativeWeight x v ≠ 0) : v ∈ D.selectedSet := by
@@ -42,6 +48,9 @@ theorem selected_of_extra_pos (x : (D.split hp hδ hsmall).flag.Node)
   by_contra h
   exact hv (ite_eq_right h)
 
+/--
+@isnad1 id=le.6h10v.s9.c68fb6593e47 from=translated src=- shape=9d57e435 vocab=7eba746e
+-/
 theorem slabCoordinates_bound (ht : Monotone t)
     (htsmall : ∀ i : Fin D.count, 2 * t (i + 1) < p)
     (x : (D.split hp hδ hsmall).flag.Node) (v : FpCoord p d)
@@ -68,6 +77,9 @@ theorem slabCoordinates_bound (ht : Monotone t)
     have hi := i.isLt
     omega
 
+/--
+@isnad1 id=iskbound.4h9v.s7.837f48e67ccb from=translated src=- shape=4980f699 vocab=9dacbbc7
+-/
 theorem split_isKBounded {K : ℕ} (hK : Φ.IsKBounded (fun _ ↦ K)) :
     (D.split hp hδ hsmall).IsKBounded (fun _ ↦ K) := by
   intro x q hq
@@ -78,6 +90,9 @@ noncomputable abbrev diagram : LatticeSupportDiagram :=
   Augmented.diagram (D.split hp hδ hsmall) (D.extra hp hδ hsmall) D.chain.direction hp
     (D.extra_antitone hp hδ hsmall)
 
+/--
+@isnad1 id=le.3h9v.s7.1c49dd694826 from=translated src=- shape=d314e5b7 vocab=a861446c
+-/
 theorem diagram_rank_le (x : (D.diagram hp hδ hsmall).Node) :
     (D.diagram hp hδ hsmall).rank x ≤ 2 * d := by
   change (D.split hp hδ hsmall).flag.rank x + D.extra hp hδ hsmall x ≤ 2 * d
@@ -85,6 +100,9 @@ theorem diagram_rank_le (x : (D.diagram hp hδ hsmall).Node) :
   have he := (D.extra_le_count hp hδ hsmall x).trans D.count_le
   omega
 
+/--
+@isnad1 id=le.8h11v.s8.bae8871aa25f from=translated src=- shape=c24b44bf vocab=95f7690c
+-/
 theorem diagram_support_bound {K : ℕ} (hK : Φ.IsKBounded (fun _ ↦ K))
     (ht : Monotone t) (hKt : K ≤ t D.count)
     (htsmall : ∀ i : Fin D.count, 2 * t (i + 1) < p)

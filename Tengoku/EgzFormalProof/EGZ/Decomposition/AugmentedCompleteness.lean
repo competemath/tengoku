@@ -39,6 +39,9 @@ theorem eq_on_augmented_fibre {v w : FpCoord p d}
     (fun η hη ↦ hη v w hv hw hmap) hdir k le_rfl
   exact hle hξ
 
+/--
+@isnad1 id=not.5h11v.s12.0b2480d40a30 from=translated src=- shape=5549e850 vocab=c7d687c6
+-/
 theorem not_mem_of_augmented_fibre_witness {v w : FpCoord p d}
     (hv : v ∈ R.space x) (hw : w ∈ R.space x) (hmap : R.map x v = R.map x w)
     (hdir : ∀ i, i < k → D.direction i v = D.direction i w)
@@ -48,7 +51,9 @@ theorem not_mem_of_augmented_fibre_witness {v w : FpCoord p d}
 variable {weight : FpCoord p d → ℕ} {t : ℕ → ℕ} {δ : ℝ}
 
 /-- The selected weight is thick in every functional that distinguishes a
-pair in an augmented fibre. This is the completeness input for the new node.-/
+pair in an augmented fibre. This is the completeness input for the new node.
+@isnad1 id=isthicka.7h13v.s13.e2dcbe1f91c2 from=translated src=- shape=5bdc8602 vocab=5420442a
+-/
 theorem thick_slabIntersection_of_augmented_fibre
     (D : DirectionChain (R.fiberConstantSubmodule x)
       (fun i ξ ↦ IsThinAlong weight ξ (t (i + 1)) ((3 : ℝ) ^ (i + 1) * δ)) k)

@@ -7,7 +7,9 @@ open scoped BigOperators
 
 namespace EGZ
 
-/-- A singleton is hollow, so the hollow constant is positive.-/
+/-- A singleton is hollow, so the hollow constant is positive.
+@isnad1 id=le.1h2v.s4.c9aab5e55364 from=translated src=- shape=e8a362dc vocab=e71f8465
+-/
 theorem one_le_hollowConstant {p d : ℕ} (hp : p.Prime) : 1 ≤ hollowConstant p d := by
   apply hollowConstant_max hp
   refine ⟨fun _ : Fin 1 ↦ 0, ?_⟩
@@ -24,10 +26,15 @@ namespace MainProof
 /-- A convenient prime-independent upper bound for the hollow constant.-/
 def hollowBound (d : ℕ) : ℕ := (2 * d - 1).choose d + 1
 
+/--
+@isnad1 id=lt.0h1v.s3.e203124b4d7a from=translated src=- shape=8a62b088 vocab=cef91e0c
+-/
 theorem hollowBound_pos (d : ℕ) : 0 < hollowBound d := by unfold hollowBound; omega
 
 /-- Restricting to the ceiling length gives a uniform bound for input mass
-divided by the prime. This bound is needed before rounding the weights.-/
+divided by the prime. This bound is needed before rounding the weights.
+@isnad1 id=and.5h4v.s8.ae676789572a from=translated src=- shape=e76e2425 vocab=ae133fe9
+-/
 theorem normalized_input_bounds {p d : ℕ} [NeZero p] (hp : p.Prime) (hd : 0 < d)
     {ζ : ℝ} (hζ : 0 < ζ) (hζ1 : ζ ≤ 1)
     (f : FpCoord p d → ℕ)

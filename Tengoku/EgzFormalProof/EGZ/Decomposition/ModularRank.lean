@@ -21,6 +21,9 @@ def coefficientMatrix (A : IntCoord m →ₗ[ℤ] IntCoord n) : Matrix (Fin n) (
   fun i j ↦ A (Pi.single j 1) i
 
 omit [Fact p.Prime] in
+/--
+@isnad1 id=eq.0h4v.s8.59c28de71b17 from=translated src=- shape=92ccb8d5 vocab=1efb1d16
+-/
 theorem linearScalarExtension_eq_mulVec (R : Type*) [CommRing R]
     (A : IntCoord m →ₗ[ℤ] IntCoord n) :
     ⇑(linearScalarExtension R A) =
@@ -30,7 +33,9 @@ theorem linearScalarExtension_eq_mulVec (R : Type*) [CommRing R]
     dotProduct, Matrix.map_apply, Int.coe_castRingHom, coefficientMatrix, mul_comm]
 
 /-- A square integer linear map injective modulo `p` stays injective
-after extending scalars to the real numbers.-/
+after extending scalars to the real numbers.
+@isnad1 id=injectiv.1h3v.s9.27d4b3b02fd6 from=translated src=- shape=e2986372 vocab=2c512d9a
+-/
 theorem linearScalarExtension_real_injective_of_modp
     (A : IntCoord n →ₗ[ℤ] IntCoord n)
     (hA : Function.Injective (linearScalarExtension (ZMod p) A)) :
@@ -55,6 +60,9 @@ theorem linearScalarExtension_real_injective_of_modp
   rw [linearScalarExtension_eq_mulVec]
   exact Matrix.mulVec_injective_of_det_ne_zero hdetreal
 
+/--
+@isnad1 id=injectiv.1h3v.s9.f0a108cac764 from=translated src=- shape=b8fa2a03 vocab=97167ca1
+-/
 theorem ofIntAffineMap_real_injective_of_modp
     (A : IntCoord n →ᵃ[ℤ] IntCoord n)
     (hA : Function.Injective ((ofIntAffineMap A).modp p)) :
@@ -67,14 +75,18 @@ theorem ofIntAffineMap_real_injective_of_modp
     linearScalarExtension_real_injective_of_modp A.linear hlin
 
 /-- An equal-rank integral affine map which is injective modulo a prime
-is injective on its real coordinate spaces.-/
+is injective on its real coordinate spaces.
+@isnad1 id=injectiv.2h4v.s9.b3b76c3ccffd from=translated src=- shape=25cf8045 vocab=2311a9fe
+-/
 theorem real_injective_of_modp_of_rank_eq (A : IntegralAffineMap m n) (hrank : m = n)
     (hA : Function.Injective (A.modp p)) : Function.Injective A.real := by
   subst n
   have h := ofIntAffineMap_real_injective_of_modp A.toIntAffineMap (by simpa using hA)
   simpa using h
 
-/-- The same map is injective on its integer lattices.-/
+/-- The same map is injective on its integer lattices.
+@isnad1 id=injectiv.2h4v.s8.5f124e85697e from=translated src=- shape=c0ef29f7 vocab=4bb423b8
+-/
 theorem integer_injective_of_modp_of_rank_eq (A : IntegralAffineMap m n) (hrank : m = n)
     (hA : Function.Injective (A.modp p)) : Function.Injective A.integer := by
   have hr := A.real_injective_of_modp_of_rank_eq hrank hA

@@ -15,15 +15,24 @@ namespace EGZ.MainProof
 /-- A sufficiently small internal loss parameter.-/
 noncomputable def errorScale (C ζ : ℝ) : ℝ := ζ / (100 * (C + 1))
 
+/--
+@isnad1 id=lt.2h2v.s5.da218b7d7f23 from=translated src=- shape=3c77183c vocab=4a709be5
+-/
 theorem errorScale_pos {C ζ : ℝ} (hC : 0 ≤ C) (hζ : 0 < ζ) :
     0 < errorScale C ζ := by unfold errorScale; positivity
 
+/--
+@isnad1 id=le.2h2v.s5.3c1eaf6cc079 from=translated src=- shape=c0c5ffa1 vocab=d14ca065
+-/
 theorem errorScale_le {C ζ : ℝ} (hC : 0 ≤ C) (hζ : ζ ≤ 1) :
     errorScale C ζ ≤ 1 / 100 := by
   unfold errorScale
   apply (div_le_iff₀ (by positivity : 0 < 100 * (C + 1))).2
   linarith
 
+/--
+@isnad1 id=le.5h3v.s6.55e115156ee6 from=translated src=- shape=e3b4e7ff vocab=d3bafb45
+-/
 theorem errorScale_le_inv {C ζ W : ℝ} (hC : 0 ≤ C)
     (hζ : 0 < ζ) (hζ1 : ζ ≤ 1) (hW : 0 < W) (hWC : W ≤ C) :
     errorScale C ζ ≤ W⁻¹ := by
@@ -40,6 +49,9 @@ because the normalized input contains at least `p` terms.-/
 noncomputable def gapScale (d : ℕ) (δ : ℝ) (K : ℕ) : ℝ :=
   δ ^ 3 * (K : ℝ)⁻¹ ^ d
 
+/--
+@isnad1 id=lt.2h3v.s5.df1c71e13927 from=translated src=- shape=02efc01e vocab=a063089b
+-/
 theorem gapScale_pos {d K : ℕ} {δ : ℝ} (hδ : 0 < δ) (hK : 1 ≤ K) :
     0 < gapScale d δ K := by
   have hKR : (0 : ℝ) < K := by exact_mod_cast (show 0 < K by omega)
@@ -47,7 +59,9 @@ theorem gapScale_pos {d K : ℕ} {δ : ℝ} (hδ : 0 < δ) (hK : 1 ≤ K) :
   positivity
 
 /-- A fourth power accounts for the two rounding factors, the retained
-mass loss, and the final reserve in each fibre.-/
+mass loss, and the final reserve in each fibre.
+@isnad1 id=le.5h3v.s7.8108b6e87baf from=translated src=- shape=41dea198 vocab=06bc2cc0
+-/
 theorem balancing_margin {C ζ W : ℝ} (hC : 0 ≤ C) (hζ : 0 < ζ)
     (hζ1 : ζ ≤ 1) (hW : 0 ≤ W) (hWC : W ≤ C) :
     (1 + errorScale C ζ) * W ≤
@@ -69,7 +83,9 @@ theorem balancing_margin {C ζ W : ℝ} (hC : 0 ≤ C) (hζ : 0 < ζ)
 
 /-- The numerical step after rounding and balanced combination.  The
 centrality denominator `θ M` is bounded below by retained mass divided by
-the hollow constant.-/
+the hollow constant.
+@isnad1 id=le.10h7v.s8.fcebf6664d09 from=translated src=- shape=6ac4efbb vocab=4b430be3
+-/
 theorem coefficient_le_reserve {C ζ W p m R a : ℝ}
     (hC : 0 ≤ C) (hζ : 0 < ζ) (hζ1 : ζ ≤ 1)
     (hW : 0 ≤ W) (hWC : W ≤ C)
@@ -101,6 +117,9 @@ assumed.-/
 def drivingFunction (threshold : ℕ → ℕ) (K : ℕ) : ℕ :=
   K + 1 + (Finset.range (K + 1)).sup threshold
 
+/--
+@isnad1 id=isgrowin.0h1v.s2.4622028db3f4 from=translated src=- shape=ff8268f1 vocab=0cdaa9cd
+-/
 theorem drivingFunction_isGrowing (threshold : ℕ → ℕ) :
     IsGrowing (drivingFunction threshold) := by
   constructor
@@ -111,6 +130,9 @@ theorem drivingFunction_isGrowing (threshold : ℕ → ℕ) :
     unfold drivingFunction
     omega
 
+/--
+@isnad1 id=lt.0h2v.s3.8fc70d3c14d0 from=translated src=- shape=55ab8e1f vocab=fbb28c12
+-/
 theorem threshold_lt_drivingFunction (threshold : ℕ → ℕ) (K : ℕ) :
     threshold K < drivingFunction threshold K := by
   have h : threshold K ≤ (Finset.range (K + 1)).sup threshold :=

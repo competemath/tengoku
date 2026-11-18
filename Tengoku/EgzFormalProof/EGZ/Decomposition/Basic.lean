@@ -179,7 +179,9 @@ def VisibleFace (R : FpRepresentation p d F)
   (pointsOnFace R pieces x Γ).Nonempty
 
 /-- The proper-point set is convex-closed because it is itself defined as a
-flag convex hull.-/
+flag convex hull.
+@isnad1 id=le.0h5v.s5.7974cf9a0874 from=translated src=- shape=bec75a13 vocab=286af77f
+-/
 theorem omega_convex_closed (R : FpRepresentation p d F)
     (pieces : F.Node → FpCoord p d → ℕ) :
     F.convexHull (omega R pieces) ⊆ omega R pieces := by
@@ -298,6 +300,9 @@ noncomputable def faceIndex (Φ : FlagDecomposition p d f) (x : Φ.flag.Node)
     (Γ : (Φ.flag.polytope x).Face) : Φ.flag.Node :=
   (Φ.faceBases x Γ).sup' (faceBases_nonempty Φ x Γ) id
 
+/--
+@isnad1 id=le.0h6v.s6.52bea721df25 from=translated src=- shape=ca812a73 vocab=eb49c202
+-/
 theorem faceIndex_le (Φ : FlagDecomposition p d f) (x : Φ.flag.Node)
     (Γ : (Φ.flag.polytope x).Face) : Φ.faceIndex x Γ ≤ x := by
   classical

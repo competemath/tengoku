@@ -17,6 +17,9 @@ namespace EGZ.FlagDecomposition
 variable {p d : ℕ} [NeZero p] {f : FpCoord p d → ℕ}
     (Φ : FlagDecomposition p d f)
 
+/--
+@isnad1 id=le.3h7v.s8.fd22186f8dfd from=translated src=- shape=ded416ec vocab=116ff693
+-/
 theorem localWeight_base_le_faceIndex_top (hp : Odd p) {y x : Φ.flag.Node}
     (h : y ≤ x) (v : FpCoord p d) (hv : Φ.localWeight y v ≠ 0) :
     y ≤ Φ.faceIndex x ⊤ := by
@@ -35,6 +38,9 @@ theorem localWeight_base_le_faceIndex_top (hp : Odd p) {y x : Φ.flag.Node}
   simp only [faceBases, Finset.mem_filter, Finset.mem_univ, true_and]
   exact ⟨q, ⟨hq, h, q.coord_mem h⟩, rfl⟩
 
+/--
+@isnad1 id=eq.1h5v.s7.13aa2dfb1e46 from=translated src=- shape=3a44345c vocab=22bbf481
+-/
 theorem cumulativeWeight_faceIndex_top (hp : Odd p) (x : Φ.flag.Node) :
     Φ.cumulativeWeight (Φ.faceIndex x ⊤) = Φ.cumulativeWeight x := by
   classical
@@ -51,18 +57,25 @@ theorem cumulativeWeight_faceIndex_top (hp : Odd p) (x : Φ.flag.Node) :
     · simp only [ite_eq_right hy, ite_eq_right hyx]
 
 /-- Every node has a reduced node below it carrying the same cumulative
-function. In a minimal decomposition their finite-field spaces also agree.-/
+function. In a minimal decomposition their finite-field spaces also agree.
+@isnad1 id=ex.1h5v.s6.1c6e7ff87df2 from=translated src=- shape=6f2fb22d vocab=f1f751fa
+-/
 theorem exists_reducedRepresentative (hp : Odd p) (x : Φ.flag.Node) :
     ∃ y, y ≤ x ∧ Φ.IsReducedElement y ∧ Φ.cumulativeWeight y = Φ.cumulativeWeight x :=
   ⟨Φ.faceIndex x ⊤, Φ.faceIndex_le x ⊤, Φ.isReducedElement_faceIndex x ⊤,
     Φ.cumulativeWeight_faceIndex_top hp x⟩
 
+/--
+@isnad1 id=eq.2h5v.s8.a3147b277ba2 from=translated src=- shape=c503a70d vocab=a67034d0
+-/
 theorem space_faceIndex_top (hp : Odd p) (hminimal : Φ.IsMinimal) (x : Φ.flag.Node) :
     Φ.representation.space (Φ.faceIndex x ⊤) = Φ.representation.space x := by
   rw [(hminimal _).1, (hminimal _).1, Φ.cumulativeWeight_faceIndex_top hp x]
 
 /-- With minimal spaces, completeness passes to the reduced representative:
-its finer representation can only make the fibre condition weaker.-/
+its finer representation can only make the fibre condition weaker.
+@isnad1 id=iscomple.3h7v.s7.a0ea430fc51a from=translated src=- shape=30cb263d vocab=86318e70
+-/
 theorem isCompleteElement_faceIndex_top (hp : Odd p) (hminimal : Φ.IsMinimal)
     (x : Φ.flag.Node) {t : ℕ} {δ : ℝ} (hc : Φ.IsCompleteElement x t δ) :
     Φ.IsCompleteElement (Φ.faceIndex x ⊤) t δ := by

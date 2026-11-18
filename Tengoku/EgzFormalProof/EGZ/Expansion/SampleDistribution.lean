@@ -25,9 +25,15 @@ variable {I β : Type*} [Fintype I] [Fintype β]
 noncomputable def sampleWeight (v : β) : ℝ :=
   ∑ i, finiteProb (fun x : A i ↦ valid i x ∧ value i x = v)
 
+/--
+@isnad1 id=le.0h6v.s5.66ccce126380 from=translated src=- shape=a4b9214b vocab=89544f1b
+-/
 theorem sampleWeight_nonneg (v : β) : 0 ≤ sampleWeight A value valid v :=
   Finset.sum_nonneg (fun i _ ↦ finiteProb_nonneg _)
 
+/--
+@isnad1 id=eq.0h5v.s6.57d2367364ff from=translated src=- shape=3ccc5c9a vocab=56f0414b
+-/
 theorem finiteProb_sum_fibres {α : Type*} [Fintype α]
     (f : α → β) (Q : α → Prop) (P : β → Prop) :
     (∑ v, if P v then finiteProb (fun x ↦ Q x ∧ f x = v) else 0) =
@@ -57,7 +63,9 @@ theorem finiteProb_sum_fibres {α : Type*} [Fintype α]
   · simp [hx]
 
 /-- Mass on a set of vectors is the sum of the corresponding valid-sample
-probabilities over all components.-/
+probabilities over all components.
+@isnad1 id=eq.0h6v.s6.66a0bf99d2fe from=translated src=- shape=18528a13 vocab=cd6d0546
+-/
 theorem sampleWeight_massOn (P : β → Prop) :
     (∑ v, if P v then sampleWeight A value valid v else 0) =
       ∑ i, finiteProb (fun x : A i ↦ valid i x ∧ P (value i x)) := by
@@ -72,12 +80,18 @@ theorem sampleWeight_massOn (P : β → Prop) :
   intro i _
   exact finiteProb_sum_fibres (value i) (valid i) P
 
+/--
+@isnad1 id=eq.0h5v.s6.449ccdcca365 from=translated src=- shape=452b75a7 vocab=1767fd31
+-/
 theorem sampleWeight_mass : (∑ v, sampleWeight A value valid v) =
     ∑ i, finiteProb (valid i) := by
   simpa using sampleWeight_massOn A value valid (fun _ ↦ True)
 
 variable [∀ i, Nonempty (A i)]
 
+/--
+@isnad1 id=le.0h5v.s6.8cf2e9c89de0 from=translated src=- shape=1b8c9275 vocab=0a0d85af
+-/
 theorem sampleWeight_mass_le : (∑ v, sampleWeight A value valid v) ≤ Fintype.card I := by
   rw [sampleWeight_mass]
   calc
@@ -85,6 +99,9 @@ theorem sampleWeight_mass_le : (∑ v, sampleWeight A value valid v) ≤ Fintype
       Finset.sum_le_sum fun i _ ↦ finiteProb_le_one _
     _ = _ := by simp
 
+/--
+@isnad1 id=le.1h6v.s6.2dfdc7ec1dea from=translated src=- shape=b1d9cc63 vocab=968eff1a
+-/
 theorem sampleWeight_mass_ge {e : ℝ}
     (hbad : ∀ i, finiteProb (fun x : A i ↦ ¬valid i x) ≤ e) :
     (Fintype.card I : ℝ) * (1 - e) ≤ ∑ v, sampleWeight A value valid v := by
@@ -98,6 +115,9 @@ theorem sampleWeight_mass_ge {e : ℝ}
       rw [finiteProb_not] at hh
       linarith
 
+/--
+@isnad1 id=ex.1h6v.s6.d062ee1396cd from=translated src=- shape=83f0f44f vocab=d4b6e97b
+-/
 theorem sampleWeight_pos_exists {v : β} (hv : 0 < sampleWeight A value valid v) :
     ∃ (i : I) (x : A i), valid i x ∧ value i x = v := by
   classical
@@ -114,7 +134,9 @@ theorem sampleWeight_pos_exists {v : β} (hv : 0 < sampleWeight A value valid v)
 end FiniteSamples
 
 /-- Removing an exceptional set loses at most its probability from any
-event, without any independence assumption.-/
+event, without any independence assumption.
+@isnad1 id=le.0h3v.s5.b1309b0ca042 from=translated src=- shape=cb1d3d26 vocab=18443622
+-/
 theorem finiteProb_and_ge_sub {A : Type*} [Fintype A]
     (P Q : A → Prop) : finiteProb Q - finiteProb (fun x ↦ ¬P x) ≤
       finiteProb (fun x ↦ P x ∧ Q x) := by
@@ -136,12 +158,18 @@ variable {p d W : ℕ} [NeZero p]
 
 include hη hηone hbad
 
+/--
+@isnad1 id=lt.3h7v.s7.99ed19ba4aa3 from=translated src=- shape=dd607736 vocab=331cbef1
+-/
 theorem sampleWeight_mass_pos : 0 < ∑ v, sampleWeight A value valid v := by
   have hh := sampleWeight_mass_ge A value valid hbad
   have hI : (0 : ℝ) < Fintype.card I := by exact_mod_cast Fintype.card_pos
   have : 0 < (Fintype.card I : ℝ) * (1 - η / 2) := mul_pos hI (by linarith)
   linarith
 
+/--
+@isnad1 id=iscentra.4h8v.s10.1b396cd0ee07 from=translated src=- shape=ca8da928 vocab=3b8be553
+-/
 theorem sampleWeight_centrallyThick
     (hout : ∀ ξ : FpCoord p d →ₗ[ZMod p] ZMod p, ξ ≠ 0 →
       ∃ i, η ≤ finiteProb (fun x : A i ↦

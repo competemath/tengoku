@@ -16,6 +16,9 @@ open scoped BigOperators
 
 namespace EGZ.Expansion
 
+/--
+@isnad1 id=eq.0h2v.s9.ba79a6b5c025 from=translated src=- shape=0ef79244 vocab=43ed4c59
+-/
 theorem zmodAddEquiv_one {p : ℕ} [NeZero p] (r : ZMod p) :
     (AddChar.zmodAddEquiv r : AddChar (ZMod p) ℂ) 1 =
       Complex.exp (Complex.I * (2 * Real.pi * (r.valMinAbs : ℝ) / p)) := by
@@ -30,7 +33,9 @@ theorem zmodAddEquiv_one {p : ℕ} [NeZero p] (r : ZMod p) :
   ring
 
 /-- A centered residue controls the distance of its character value from
-one. This estimate does not require primality.-/
+one. This estimate does not require primality.
+@isnad1 id=le.0h2v.s9.dfec5b0c62a4 from=translated src=- shape=cf2ec398 vocab=5f073314
+-/
 theorem norm_zmodAddEquiv_one_sub_one_ge {p : ℕ} [NeZero p] (r : ZMod p) :
     4 * |(r.valMinAbs : ℝ)| / p ≤
       ‖(AddChar.zmodAddEquiv r : AddChar (ZMod p) ℂ) 1 - 1‖ := by
@@ -70,6 +75,9 @@ theorem norm_zmodAddEquiv_one_sub_one_ge {p : ℕ} [NeZero p] (r : ZMod p) :
   rw [← heq]
   exact mul_le_mul_of_nonneg_left hs (by norm_num)
 
+/--
+@isnad1 id=le.2h4v.s9.23f136410450 from=translated src=- shape=5f64a599 vocab=97c0077e
+-/
 theorem character_partial_sum_le {p K : ℕ} [NeZero p] (hK : 0 < K)
     (r : ZMod p) (hr : ¬ HasBoundedRepresentative p K r) (m : ℕ) :
     ‖∑ j ∈ Finset.range m, (AddChar.zmodAddEquiv r : AddChar (ZMod p) ℂ) (j : ZMod p)‖ ≤

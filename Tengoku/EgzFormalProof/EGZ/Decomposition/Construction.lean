@@ -15,7 +15,9 @@ variable {p d : ℕ} [NeZero p] [Fact p.Prime] {f : FpCoord p d → ℕ}
     (hprime : P.primeHorizon 1 (stoppingBound d ε) < p)
 
 /-- The interval-capacity theorem rules out a full horizon of unfinished
-steps, so one of the actual bounded states supplies the public conclusion.-/
+steps, so one of the actual bounded states supplies the public conclusion.
+@isnad1 id=hasflagd.8h6v.s8.4da7004f445e from=translated src=- shape=a2fb5651 vocab=642ad8d6
+-/
 theorem hasConclusion_of_capacity (hp : p.Prime)
     (hcapacity : ∀ Q : (i : ℕ) → i < stoppingBound d ε →
         Progress (state P hd hε hεhalf hg hf (stoppingBound d ε) hprime i)

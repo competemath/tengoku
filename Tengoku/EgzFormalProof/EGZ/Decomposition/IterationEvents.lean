@@ -16,6 +16,9 @@ namespace EGZ.FlagDecomposition
 variable {p d : ℕ} [NeZero p] [Fact p.Prime] {f : FpCoord p d → ℕ}
 
 omit [Fact p.Prime] in
+/--
+@isnad1 id=isrealiz.0h5v.s7.0088838ec06f from=translated src=- shape=b6cf3048 vocab=a1e86581
+-/
 theorem isRealizedFace_top (Φ : FlagDecomposition p d f) (x : Φ.flag.Node) :
     Φ.IsRealizedFace x ⊤ := by
   intro q hq
@@ -28,6 +31,9 @@ def faceAtNode (Φ : FlagDecomposition p d f) {x y : Φ.flag.Node}
   exact Γ
 
 omit [Fact p.Prime] in
+/--
+@isnad1 id=eq.0h6v.s6.fa89fa2fd4c0 from=translated src=- shape=7d1e9e6b vocab=d81d4c46
+-/
 @[simp]
 theorem faceAtNode_rfl (Φ : FlagDecomposition p d f) {x : Φ.flag.Node}
     (Γ : (Φ.flag.polytope x).Face) : Φ.faceAtNode Γ rfl = Γ := rfl
@@ -78,6 +84,9 @@ noncomputable def color : s.Event → ℕ
   | .face x _ => 2 * s.decomposition.level x + 1
   | .complete x => 2 * s.decomposition.level x
 
+/--
+@isnad1 id=lt.0h5v.s6.89cf0bc08a7b from=translated src=- shape=9951de0a vocab=6e502941
+-/
 theorem color_lt (E : s.Event) : E.color < 2 * (d + 1) ^ 2 + 1 := by
   cases E with
   | gap => exact Nat.lt_succ_self _
@@ -90,10 +99,16 @@ theorem color_lt (E : s.Event) : E.color < 2 * (d + 1) ^ 2 + 1 := by
     dsimp [color]
     omega
 
+/--
+@isnad1 id=le.1h6v.s6.5880fd36a441 from=translated src=- shape=4b209c8e vocab=9d30bb27
+-/
 theorem cutoff_ge_of_color_ge (E : s.Event) {L : ℕ} (h : 2 * L ≤ E.color) :
     L ≤ E.cutoff := by
   cases E <;> dsimp [color, cutoff] at * <;> omega
 
+/--
+@isnad1 id=le.0h5v.s6.6f4ad54daa49 from=translated src=- shape=16592b19 vocab=b4c22db2
+-/
 theorem cutoff_le_square (E : s.Event) : E.cutoff ≤ (d + 1) ^ 2 := by
   cases E with
   | gap => exact le_rfl
@@ -102,6 +117,9 @@ theorem cutoff_le_square (E : s.Event) : E.cutoff ≤ (d + 1) ^ 2 := by
 
 end Event
 
+/--
+@isnad1 id=ex.1h7v.s6.a6cf08f42ff2 from=translated src=- shape=9b272421 vocab=8813e57d
+-/
 theorem exists_valid_event (ε δ : ℝ) (g : ℕ → ℕ) (h : ¬ s.Finished ε δ g) :
     ∃ E : s.Event, E.Valid ε δ g := by
   classical

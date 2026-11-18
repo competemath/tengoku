@@ -20,6 +20,9 @@ noncomputable def gapState : State p d f where
   reduced := D.isReduced
   bounded := D.bounded
 
+/--
+@isnad1 id=gapcondi.5h9v.s8.1ca2e2888b1c from=translated src=- shape=0cd4d112 vocab=86ee0adb
+-/
 theorem gapState_gapCondition {i : ℕ} (hi : 1 ≤ i)
     (hε : 0 ≤ ε)
     (hcard : Fintype.card s.decomposition.flag.Node ≤ 2 ^ (i - 1))

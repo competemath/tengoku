@@ -40,10 +40,16 @@ def lift {d : ℕ} {P : RationalPolytope d} (A : FaceFlagModel P)
     (q : RealCoord d) (hq : q ∈ P.carrier) : A.flag.Point :=
   (A.properEquiv.symm ⟨q, hq⟩).1
 
+/--
+@isnad1 id=mem.1h4v.s5.7567b0df3106 from=translated src=- shape=c0bfaa2f vocab=22fa92e7
+-/
 theorem lift_proper {d : ℕ} {P : RationalPolytope d} (A : FaceFlagModel P)
     (q : RealCoord d) (hq : q ∈ P.carrier) : A.lift q hq ∈ A.proper :=
   (A.properEquiv.symm ⟨q, hq⟩).2
 
+/--
+@isnad1 id=eq.1h4v.s5.de32f3145127 from=translated src=- shape=906f1819 vocab=ccdd9b04
+-/
 @[simp]
 theorem physical_lift {d : ℕ} {P : RationalPolytope d} (A : FaceFlagModel P)
     (q : RealCoord d) (hq : q ∈ P.carrier) :
@@ -102,6 +108,9 @@ def restrict {d : ℕ} {P Q : RationalPolytope d} (F : P.Face)
         exact ⟨hqQ, hQP hqQ, hqlevel⟩
   nonempty := hnonempty
 
+/--
+@isnad1 id=eq.2h4v.s6.22de2d42497e from=translated src=- shape=588bf6b9 vocab=b63dcded
+-/
 @[simp]
 theorem restrict_carrier {d : ℕ} {P Q : RationalPolytope d}
     (F : P.Face) (hQP : Q.carrier ⊆ P.carrier)
@@ -120,6 +129,9 @@ noncomputable def asPolytope {d : ℕ} {P : RationalPolytope d}
       exact P.generators_rational q
         (F.generatorFinset_subset (by simpa using hq)))
 
+/--
+@isnad1 id=eq.0h3v.s4.afc2ca0d2f2f from=translated src=- shape=9f87991d vocab=2ea810eb
+-/
 @[simp]
 theorem asPolytope_carrier {d : ℕ} {P : RationalPolytope d}
     (F : P.Face) : F.asPolytope.carrier = F.carrier := by
@@ -137,6 +149,9 @@ noncomputable def generatorLattice {d : ℕ} {P : RationalPolytope d}
       exact P.generators_rational q
         (F.generatorFinset_subset (by simpa using hq)))
 
+/--
+@isnad1 id=eq.0h3v.s5.eef7964d4ecf from=translated src=- shape=a0f88b2a vocab=74047361
+-/
 @[simp]
 theorem generatorLattice_carrier {d : ℕ} {P : RationalPolytope d}
     (F : P.Face) : F.generatorLattice.carrier =
@@ -172,20 +187,32 @@ noncomputable abbrev faceFlag {d : ℕ} (P : RationalPolytope d) : ConvexFlag :=
     transition_refl := by intro; rfl
     transition_trans := by intros; rfl }
 
+/--
+@isnad1 id=eq.0h3v.s4.241c23e88ade from=translated src=- shape=72b04461 vocab=38762e53
+-/
 @[simp]
 theorem faceFlag_rank {d : ℕ} {P : RationalPolytope d} (F : P.Face) :
     (faceFlag P).rank F = d := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.e46e22db7c8e from=translated src=- shape=3a3d3f64 vocab=dcafaed9
+-/
 @[simp]
 theorem faceFlag_polytope_carrier {d : ℕ} {P : RationalPolytope d}
     (F : P.Face) : ((faceFlag P).polytope F).carrier = F.carrier := by
   exact F.asPolytope_carrier
 
+/--
+@isnad1 id=eq.0h3v.s5.0e67bc829e78 from=translated src=- shape=85f46514 vocab=baa0fabf
+-/
 @[simp]
 theorem faceFlag_lattice_carrier {d : ℕ} {P : RationalPolytope d}
     (F : P.Face) : ((faceFlag P).lattice F).carrier =
       affineIntSpan (F.generatorFinset : Set (RealCoord d)) := rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.0c2ac23f6e5e from=translated src=- shape=2f994956 vocab=86a76410
+-/
 @[simp]
 theorem faceFlag_coord {d : ℕ} {P : RationalPolytope d}
     (q : (faceFlag P).Point) {F : P.Face} (h : q.base ≤ F) :
@@ -305,6 +332,9 @@ noncomputable abbrev canonicalFaceFlagModel {d : ℕ} (P : RationalPolytope d) :
   proper := faceProper P
   properEquiv := facePhysicalEquiv P
 
+/--
+@isnad1 id=eq.1h3v.s5.762b4fd6f40c from=translated src=- shape=60b9b1c4 vocab=aaf6caac
+-/
 @[simp]
 theorem canonicalFaceFlagModel_physical {d : ℕ} {P : RationalPolytope d}
     (q : (faceFlag P).Point) (hq : q ∈ faceProper P) :
@@ -325,7 +355,9 @@ private theorem sum_pos_subtype {I : Type*} [Fintype I]
     _ = ∑ i, weight i := Fintype.sum_subtype_add_sum_subtype _ _
 
 /-- The canonical face flag respects physical convex combinations and its
-face lattices absorb every active affine-integer-span certificate.-/
+face lattices absorb every active affine-integer-span certificate.
+@isnad1 id=faceflag.0h2v.s3.198897ae3d2a from=translated src=- shape=e4b23468 vocab=1eaa8ca1
+-/
 theorem canonicalFaceFlagCombinationLaws {d : ℕ} (P : RationalPolytope d) :
     FaceFlagCombinationLaws (canonicalFaceFlagModel P) where
   combination_of_physical := by

@@ -57,6 +57,9 @@ namespace FlagDecompositionRaw
 variable {p d : ℕ} [NeZero p] {F : ConvexFlag}
 
 omit [NeZero p] in
+/--
+@isnad1 id=iff.0h6v.s6.1836c38d3b5b from=translated src=- shape=990ca390 vocab=3aa0f4d5
+-/
 theorem cumulative_ne_zero_iff (pieces : F.Node → FpCoord p d → ℕ)
     (x : F.Node) (v : FpCoord p d) :
     cumulativeWeight pieces x v ≠ 0 ↔ ∃ y, y ≤ x ∧ pieces y v ≠ 0 := by
@@ -74,6 +77,9 @@ theorem cumulative_ne_zero_iff (pieces : F.Node → FpCoord p d → ℕ)
         (fun _ _ ↦ Nat.zero_le _) (Finset.mem_univ y)
     exact ne_of_gt ((Nat.pos_of_ne_zero hy).trans_le hle)
 
+/--
+@isnad1 id=iff.0h6v.s6.202fd0ca13f7 from=translated src=- shape=8f9f408d vocab=81d0301e
+-/
 theorem affineFibreMass_ne_zero_iff {n : ℕ} (w : FpCoord p d → ℕ)
     (φ : FpCoord p d → FpCoord p n) (c : FpCoord p n) :
     affineFibreMass w φ c ≠ 0 ↔ ∃ v, φ v = c ∧ w v ≠ 0 := by
@@ -90,6 +96,9 @@ theorem affineFibreMass_ne_zero_iff {n : ℕ} (w : FpCoord p d → ℕ)
       (f := fun v ↦ if φ v = c then w v else 0)
       (fun _ _ ↦ Nat.zero_le _) (Finset.mem_univ v)
 
+/--
+@isnad1 id=iff.0h7v.s8.84bb4a872448 from=translated src=- shape=fe25b362 vocab=dbeb2c4d
+-/
 theorem hat_ne_zero_iff (R : FpRepresentation p d F)
     (pieces : F.Node → FpCoord p d → ℕ) (x : F.Node) (q : IntCoord (F.rank x)) :
     hat R pieces x q ≠ 0 ↔ IsCenteredLift p q ∧
@@ -103,6 +112,9 @@ theorem hat_ne_zero_iff (R : FpRepresentation p d F)
     simp only [ne_eq, not_true_eq_false, false_iff, not_and]
     exact fun h ↦ (hc h).elim
 
+/--
+@isnad1 id=iff.0h7v.s8.44f62242f7b2 from=translated src=- shape=093e1f27 vocab=fd26c334
+-/
 theorem localLift_ne_zero_iff (R : FpRepresentation p d F)
     (pieces : F.Node → FpCoord p d → ℕ) (x : F.Node) (q : IntCoord (F.rank x)) :
     localLift R pieces x q ≠ 0 ↔ IsCenteredLift p q ∧
@@ -141,10 +153,16 @@ noncomputable abbrev cumulative :=
 noncomputable abbrev hat := FlagDecompositionRaw.hat D.representation D.weight
 noncomputable abbrev localLift := FlagDecompositionRaw.localLift D.representation D.weight
 
+/--
+@isnad1 id=mem.1h9v.s8.5694c38d3acf from=translated src=- shape=7129dd0e vocab=9f58e70b
+-/
 theorem weight_supported (x : N) (v : FpCoord p d) (hv : D.weight x v ≠ 0) :
     v ∈ D.representation.space x :=
   Φ.local_supported (node x) v (ne_of_gt ((Nat.pos_of_ne_zero hv).trans_le (D.weight_le x v)))
 
+/--
+@isnad1 id=ne.1h9v.s7.33de1e97514e from=translated src=- shape=5ef3106d vocab=1c0ac3b4
+-/
 theorem cumulative_old_nonzero (x : N) (v : FpCoord p d)
     (hv : D.cumulative x v ≠ 0) : Φ.cumulativeWeight (node x) v ≠ 0 := by
   obtain ⟨y, hyx, hy⟩ := (FlagDecompositionRaw.cumulative_ne_zero_iff
@@ -152,16 +170,25 @@ theorem cumulative_old_nonzero (x : N) (v : FpCoord p d)
   exact (Φ.originalWeights.cumulative_ne_zero_iff (node x) v).mpr
     ⟨node y, node.monotone hyx, ne_of_gt ((Nat.pos_of_ne_zero hy).trans_le (D.weight_le y v))⟩
 
+/--
+@isnad1 id=mem.1h9v.s8.64bf395600eb from=translated src=- shape=7129dd0e vocab=5134c0eb
+-/
 theorem cumulative_supported (x : N) (v : FpCoord p d) (hv : D.cumulative x v ≠ 0) :
     v ∈ D.representation.space x :=
   Φ.originalWeights.cumulative_supported (node x) v (D.cumulative_old_nonzero x v hv)
 
+/--
+@isnad1 id=ne.1h9v.s8.b61e7d280183 from=translated src=- shape=2d1478bf vocab=ae122b7b
+-/
 theorem hat_old_nonzero (x : N) (q : IntCoord (Φ.flag.rank (node x)))
     (hq : D.hat x q ≠ 0) : Φ.hat (node x) q ≠ 0 := by
   obtain ⟨hc, v, hmap, hv⟩ := (FlagDecompositionRaw.hat_ne_zero_iff _ _ _ _).mp hq
   exact (Φ.originalWeights.hat_ne_zero_iff (node x) q).mpr
     ⟨hc, v, hmap, D.cumulative_old_nonzero x v hv⟩
 
+/--
+@isnad1 id=ne.1h9v.s8.da0480e18135 from=translated src=- shape=2d1478bf vocab=ca7b1317
+-/
 theorem localLift_old_nonzero (x : N) (q : IntCoord (Φ.flag.rank (node x)))
     (hq : D.localLift x q ≠ 0) : Φ.localLift (node x) q ≠ 0 := by
   obtain ⟨hc, v, hmap, hv⟩ := (FlagDecompositionRaw.localLift_ne_zero_iff _ _ _ _).mp hq
@@ -169,7 +196,9 @@ theorem localLift_old_nonzero (x : N) (q : IntCoord (Φ.flag.rank (node x)))
     ⟨hc, v, hmap, ne_of_gt ((Nat.pos_of_ne_zero hv).trans_le (D.weight_le x v))⟩
 
 /-- Centered support compatibility and visibility survive splitting the old
-local atoms among new bases.-/
+local atoms among new bases.
+@isnad1 id=rebuildd.1h7v.s7.0d90b043eeb2 from=translated src=- shape=67021a66 vocab=dcac80a6
+-/
 theorem rebuildData (hp : Odd p) :
     FlagDecompositionRaw.RebuildData D.representation D.weight f where
   odd := hp
@@ -207,22 +236,34 @@ theorem rebuildData (hp : Odd p) :
 noncomputable abbrev decomposition (hp : Odd p) : FlagDecomposition p d f :=
   (D.rebuildData hp).decomposition
 
+/--
+@isnad1 id=eq.1h8v.s7.1df985f248c9 from=translated src=- shape=659a98bb vocab=5b1cd812
+-/
 @[simp]
 theorem decomposition_retainedWeight (hp : Odd p) (v : FpCoord p d) :
     (D.decomposition hp).retainedWeight v = ∑ x, D.weight x v :=
   congrFun (D.rebuildData hp).decomposition_retainedWeight v
 
+/--
+@isnad1 id=eq.1h8v.s7.9d49a29f40d6 from=translated src=- shape=432682f1 vocab=4a21e202
+-/
 @[simp]
 theorem decomposition_cumulativeWeight (hp : Odd p)
     (x : (D.decomposition hp).flag.Node) :
     (D.decomposition hp).cumulativeWeight x = D.cumulative x.1 :=
   (D.rebuildData hp).decomposition_cumulativeWeight x
 
+/--
+@isnad1 id=eq.1h8v.s7.4b635c895948 from=translated src=- shape=70a983fe vocab=93ef0779
+-/
 @[simp]
 theorem decomposition_hat (hp : Odd p) (x : (D.decomposition hp).flag.Node) :
     (D.decomposition hp).hat x = D.hat x.1 :=
   (D.rebuildData hp).decomposition_hat x
 
+/--
+@isnad1 id=le.1h8v.s9.ecfefc4543fc from=translated src=- shape=350a53ca vocab=49473d87
+-/
 theorem decomposition_polytope_subset (hp : Odd p)
     (x : (D.decomposition hp).flag.Node) :
     ((D.decomposition hp).flag.polytope x).carrier ⊆
@@ -234,12 +275,18 @@ theorem decomposition_polytope_subset (hp : Odd p)
   exact Φ.originalWeights.mem_old_polytope (D.hat_old_nonzero x.1 q
     ((FlagDecompositionRaw.mem_hatSupport _ _ _ _).mp hq))
 
+/--
+@isnad1 id=iskbound.2h8v.s8.59f621de2aaa from=translated src=- shape=3039e1b1 vocab=7bc681ef
+-/
 theorem decomposition_isKBounded (hp : Odd p) {K : Φ.flag.Node → ℕ}
     (hK : Φ.IsKBounded K) :
     (D.decomposition hp).IsKBounded (fun x ↦ K (node x.1)) := by
   intro x q hq
   exact hK (node x.1) q (D.decomposition_polytope_subset hp x hq)
 
+/--
+@isnad1 id=le.1h7v.s7.33193c9b62e9 from=translated src=- shape=462e4205 vocab=aad73b58
+-/
 theorem decomposition_card_le (hp : Odd p) :
     @Fintype.card (D.decomposition hp).flag.Node (D.decomposition hp).flag.nodeFintype ≤
       Fintype.card N :=

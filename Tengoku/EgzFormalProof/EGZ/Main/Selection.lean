@@ -22,16 +22,25 @@ namespace EGZ.FlagDecomposition
 variable {p d : ℕ} [NeZero p] {f : FpCoord p d → ℕ}
     (Φ : FlagDecomposition p d f)
 
+/--
+@isnad1 id=ex.1h5v.s6.c757a61fced7 from=translated src=- shape=01cb9a8c vocab=6271aa8c
+-/
 theorem integralPoint_coordinates (q : Φ.flag.Point) (hq : q.IsIntegral) :
     ∃ c : IntCoord (Φ.flag.rank q.base), c.real = q.val :=
   (Φ.representation.lattice_eq_standard _ _).mp hq
 
+/--
+@isnad1 id=mem.1h6v.s9.0d773675ffff from=translated src=- shape=4e8a76a2 vocab=ae142545
+-/
 theorem integer_mem_affineSpan_liftedSupport (hmin : Φ.IsMinimal)
     (x : Φ.flag.Node) (c : IntCoord (Φ.flag.rank x)) :
     c ∈ affineSpan ℤ (↑(Φ.liftedSupport x) : Set (IntCoord (Φ.flag.rank x))) := by
   rw [(affineIntSpans_iff_affineSpan_eq_top _).mp (hmin x).2]
   exact AffineSubspace.mem_top _ _ _
 
+/--
+@isnad1 id=le.2h7v.s7.a13228d5d990 from=translated src=- shape=43bd062c vocab=dd7b8ccb
+-/
 theorem liftedSupport_bound {K : Φ.flag.Node → ℕ} (hK : Φ.IsKBounded K)
     (x : Φ.flag.Node) : ∀ z ∈ Φ.liftedSupport x, latticeSupNorm z ≤ K x := by
   intro z hz
@@ -39,15 +48,24 @@ theorem liftedSupport_bound {K : Φ.flag.Node → ℕ} (hK : Φ.IsKBounded K)
   rw [Φ.polytope_eq_liftedSupport]
   exact subset_convexHull ℝ _ ⟨z, hz, rfl⟩
 
+/--
+@isnad1 id=le.1h6v.s6.a428d9266658 from=translated src=- shape=1c9cd83e vocab=7241d192
+-/
 theorem liftedSupport_subset_latticeBox {K : Φ.flag.Node → ℕ} (hK : Φ.IsKBounded K)
     (x : Φ.flag.Node) : Φ.liftedSupport x ⊆ latticeBox (Φ.flag.rank x) (K x) := by
   intro z hz
   exact mem_latticeBox.mpr (Φ.liftedSupport_bound hK x z hz)
 
+/--
+@isnad1 id=le.2h7v.s7.29381c6fede2 from=translated src=- shape=8bd2e52b vocab=ce604a45
+-/
 theorem integralPoint_bound {K : Φ.flag.Node → ℕ} (hK : Φ.IsKBounded K)
     (q : Φ.flag.Point) (c : IntCoord (Φ.flag.rank q.base)) (hc : c.real = q.val) :
     latticeSupNorm c ≤ K q.base := hK q.base c (hc.symm ▸ q.val_mem)
 
+/--
+@isnad1 id=eq.1h5v.s8.9b5a9cb44511 from=translated src=- shape=f1e8616e vocab=915a6bdb
+-/
 theorem cumulativeSupport_sum (hodd : Odd p) (x : Φ.flag.Node) :
     (∑ q : Φ.liftedSupport x, Φ.hat x q) = natMass (Φ.cumulativeWeight x) := by
   simpa only [Finset.sum_coe_sort] using Φ.sum_liftedSupport hodd x
@@ -71,6 +89,9 @@ noncomputable def cumulativeCentrality (x : Φ.flag.Node) : ℝ :=
   (Φ.retainedMass : ℝ) /
     ((hollowConstant p d : ℝ) * (natMass (Φ.cumulativeWeight x) : ℝ))
 
+/--
+@isnad1 id=eq.1h5v.s6.26ff9b5ab66f from=translated src=- shape=345a2864 vocab=f6bc5120
+-/
 theorem cumulativeCentrality_mul_mass (hodd : Odd p) (x : Φ.flag.Node) :
     Φ.cumulativeCentrality x * (natMass (Φ.cumulativeWeight x) : ℝ) =
       (Φ.retainedMass : ℝ) / (hollowConstant p d : ℝ) := by
@@ -79,12 +100,18 @@ theorem cumulativeCentrality_mul_mass (hodd : Odd p) (x : Φ.flag.Node) :
   unfold cumulativeCentrality
   rw [div_mul_eq_div_mul_one_div, mul_assoc, one_div, inv_mul_cancel₀ hm, mul_one]
 
+/--
+@isnad1 id=lt.2h5v.s6.c6735dfe71ee from=translated src=- shape=5a9b3355 vocab=a93be284
+-/
 theorem cumulativeCentrality_pos (hodd : Odd p) (hw : 0 < hollowConstant p d)
     (x : Φ.flag.Node) : 0 < Φ.cumulativeCentrality x := by
   unfold cumulativeCentrality
   exact div_pos (by exact_mod_cast Φ.retainedMass_pos hodd)
     (mul_pos (by exact_mod_cast hw) (by exact_mod_cast Φ.cumulativeMass_pos hodd x))
 
+/--
+@isnad1 id=le.1h5v.s5.c286255f9793 from=translated src=- shape=1c3475e4 vocab=80506ad1
+-/
 theorem inv_hollowConstant_le_cumulativeCentrality (hodd : Odd p) (x : Φ.flag.Node) :
     (hollowConstant p d : ℝ)⁻¹ ≤ Φ.cumulativeCentrality x := by
   have hm : 0 < (natMass (Φ.cumulativeWeight x) : ℝ) := by
@@ -96,6 +123,9 @@ theorem inv_hollowConstant_le_cumulativeCentrality (hodd : Odd p) (x : Φ.flag.N
   simpa only [div_eq_mul_inv, mul_comm] using
     mul_le_mul_of_nonneg_right hmass (inv_nonneg.mpr (Nat.cast_nonneg (hollowConstant p d)))
 
+/--
+@isnad1 id=iscentra.4h6v.s10.29ceffd51efe from=translated src=- shape=50b5db26 vocab=42434ab4
+-/
 theorem cumulativeBalancedData_isCentral (hodd : Odd p) (hmin : Φ.IsMinimal)
     (x : Φ.flag.Node) (c : IntCoord (Φ.flag.rank x))
     (hc : c.real ∈ intrinsicInterior ℝ (Φ.flag.polytope x).carrier)
@@ -146,19 +176,31 @@ noncomputable def data (D : Φ.CumulativeSelection T K δ) :
   center_mem_span := D.center_mem_span
   center_mem_interior := D.center_mem_interior
 
+/--
+@isnad1 id=le.0h8v.s6.0c4eb2fdf5c1 from=translated src=- shape=39683040 vocab=c5ee9091
+-/
 theorem centrality_le_one (D : Φ.CumulativeSelection T K δ) :
     Φ.cumulativeCentrality D.node ≤ 1 := D.data.centrality_le_one D.central
 
+/--
+@isnad1 id=lt.1h8v.s9.040d9568b628 from=translated src=- shape=ac81d072 vocab=4945cb2b
+-/
 theorem mass_pos (D : Φ.CumulativeSelection T K δ) (hodd : Odd p) :
     0 < ∑ q : Φ.liftedSupport D.node, (Φ.hat D.node q : ℝ) := by
   exact_mod_cast (Φ.cumulativeSupport_sum hodd D.node).symm ▸ Φ.cumulativeMass_pos hodd D.node
 
+/--
+@isnad1 id=le.1h8v.s9.96a348cf8cb9 from=translated src=- shape=1f6a3c15 vocab=66853bd9
+-/
 theorem mass_le_retained (D : Φ.CumulativeSelection T K δ) (hodd : Odd p) :
     (∑ q : Φ.liftedSupport D.node, (Φ.hat D.node q : ℝ)) ≤ Φ.retainedMass := by
   have h := (Φ.cumulativeSupport_sum hodd D.node).le.trans
     (Φ.cumulativeMass_le_retainedMass D.node)
   exact_mod_cast h
 
+/--
+@isnad1 id=eq.1h8v.s9.d98d99e387b7 from=translated src=- shape=ee770040 vocab=c595f00a
+-/
 theorem centrality_mul_mass (D : Φ.CumulativeSelection T K δ) (hodd : Odd p) :
     Φ.cumulativeCentrality D.node *
       (∑ q : Φ.liftedSupport D.node, (Φ.hat D.node q : ℝ)) =
@@ -172,7 +214,9 @@ theorem centrality_mul_mass (D : Φ.CumulativeSelection T K δ) (hodd : Odd p) :
 end CumulativeSelection
 
 /-- Completeness and the flag centerpoint theorem select a full-dimensional
-interior lattice center in an element complete at the requested scale.-/
+interior lattice center in an element complete at the requested scale.
+@isnad1 id=nonempty.6h8v.s6.14b41f254b73 from=translated src=- shape=cf8d8cdf vocab=b17abd78
+-/
 theorem select_cumulative_node (hp : p.Prime) (hodd : Odd p)
     {ε δ : ℝ} {T K : Φ.flag.Node → ℕ} (hε : 0 ≤ ε)
     (hεW : ε ≤ (hollowConstant p d : ℝ)⁻¹)

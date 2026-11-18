@@ -17,15 +17,24 @@ namespace EGZ.Expansion
 noncomputable def vectorSum {G : Type*} [AddCommMonoid G] [Fintype G]
     (u : G → ℕ) : G := ∑ v, u v • v
 
+/--
+@isnad1 id=eq.0h3v.s6.38ee1d514aa7 from=translated src=- shape=69b6a18d vocab=4f35bd5c
+-/
 theorem vectorSum_add {G : Type*} [AddCommMonoid G] [Fintype G]
     (u w : G → ℕ) : vectorSum (u + w) = vectorSum u + vectorSum w := by
   simp [vectorSum, add_nsmul, Finset.sum_add_distrib]
 
+/--
+@isnad1 id=eq.0h3v.s5.0c59a0cb2123 from=translated src=- shape=393f5ab0 vocab=ecdf4707
+-/
 theorem vectorSum_sum {I G : Type*} [Fintype I] [Fintype G] [AddCommMonoid G]
     (u : I → G → ℕ) : vectorSum (∑ i, u i) = ∑ i, vectorSum (u i) := by
   simp only [vectorSum, Finset.sum_apply, Finset.sum_smul]
   exact Finset.sum_comm
 
+/--
+@isnad1 id=eq.0h4v.s7.205c571b8898 from=translated src=- shape=285e617b vocab=16506a95
+-/
 theorem map_vectorSum {G H : Type*} [AddCommMonoid G] [AddCommMonoid H]
     [Fintype G] [Fintype H] (π : G →+ H) (u : G → ℕ) :
     π (vectorSum u) = vectorSum (pushWeight π u) := by
@@ -37,6 +46,9 @@ noncomputable def choiceWeight {I G : Type*} [Fintype I]
     (left right : I → G → ℕ) (choice : I → Bool) : G → ℕ :=
   ∑ i, if choice i then left i else right i
 
+/--
+@isnad1 id=le.0h5v.s6.c8ad40aae3fc from=translated src=- shape=42526043 vocab=8e8362b4
+-/
 theorem choiceWeight_le {I G : Type*} [Fintype I]
     (left right : I → G → ℕ) (choice : I → Bool) :
     choiceWeight left right choice ≤ (∑ i, left i) + ∑ i, right i := by
@@ -46,6 +58,9 @@ theorem choiceWeight_le {I G : Type*} [Fintype I]
   intro i _
   cases choice i <;> simp
 
+/--
+@isnad1 id=eq.1h5v.s6.8369fca03b14 from=translated src=- shape=5a8450b5 vocab=8c878273
+-/
 theorem natMass_choiceWeight {I G : Type*} [Fintype I] [Fintype G]
     (left right : I → G → ℕ) (choice : I → Bool)
     (h : ∀ i, natMass (left i) = natMass (right i)) :
@@ -59,6 +74,9 @@ theorem natMass_choiceWeight {I G : Type*} [Fintype I] [Fintype G]
   · simpa only [hc, Bool.false_eq_true, ↓reduceIte, natMass] using (h i).symm
   · simp only [↓reduceIte]
 
+/--
+@isnad1 id=eq.0h5v.s7.8541feeb0d4c from=translated src=- shape=2fdb520a vocab=0c72aeb7
+-/
 theorem vectorSum_choiceWeight {I G : Type*} [Fintype I] [Fintype G] [AddCommGroup G]
     (left right : I → G → ℕ) (choice : I → Bool) :
     vectorSum (choiceWeight left right choice) = vectorSum (∑ i, right i) +
@@ -72,7 +90,9 @@ theorem vectorSum_choiceWeight {I G : Type*} [Fintype I] [Fintype G] [AddCommGro
   cases choice i <;> simp
 
 /-- A full quotient fibre of possible exchange sums gives a zero sum once
-the remaining prescribed counts fit outside all reserved positions.-/
+the remaining prescribed counts fit outside all reserved positions.
+@isnad1 id=ex.6h8v.s9.e1f4d2378d12 from=translated src=- shape=24e6c73b vocab=aec52a52
+-/
 theorem complete_exchange_family {G H I : Type*}
     [AddCommGroup G] [AddCommGroup H] [Fintype G] [Fintype H] [Fintype I]
     (π : G →+ H) (w : G → ℕ) (a : H → ℕ) (left right : I → G → ℕ)
@@ -136,7 +156,9 @@ theorem complete_exchange_family {G H I : Type*}
   · rw [vectorSum_add, hchoice, neg_add_cancel]
 
 /-- The equivalent form used by translation growth: binary sums of the
-exchange differences cover the quotient kernel.-/
+exchange differences cover the quotient kernel.
+@isnad1 id=ex.7h8v.s9.0415dac5798f from=translated src=- shape=c692d9c4 vocab=4298063f
+-/
 theorem complete_exchange_family_of_differences {G H I : Type*}
     [AddCommGroup G] [AddCommGroup H] [Fintype G] [Fintype H] [Fintype I]
     (π : G →+ H) (w : G → ℕ) (a : H → ℕ) (left right : I → G → ℕ)

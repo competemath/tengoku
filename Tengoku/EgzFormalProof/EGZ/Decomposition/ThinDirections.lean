@@ -33,6 +33,9 @@ def fiberConstantSubmodule (R : FpRepresentation p d F) (x : F.Node) :
     intro v w hv hw heq
     exact congrArg (c • ·) (hξ v w hv hw heq)
 
+/--
+@isnad1 id=iff.0h6v.s11.08cc94e46ff9 from=translated src=- shape=4d35610d vocab=a442e64a
+-/
 theorem mem_fiberConstantSubmodule_iff (R : FpRepresentation p d F) (x : F.Node)
     (ξ : FpCoord p d →ᵃ[ZMod p] ZMod p) :
     ξ ∈ R.fiberConstantSubmodule x ↔ ¬ R.NonconstantOnFibers x ξ := by
@@ -43,16 +46,24 @@ theorem mem_fiberConstantSubmodule_iff (R : FpRepresentation p d F) (x : F.Node)
     by_contra hne
     exact h ⟨v, w, hv, hw, heq, hne⟩
 
+/--
+@isnad1 id=mem.0h6v.s11.5a9d00fdac8d from=translated src=- shape=c15e83a5 vocab=1572e01d
+-/
 theorem const_mem_fiberConstantSubmodule (R : FpRepresentation p d F) (x : F.Node)
     (c : ZMod p) : AffineMap.const (ZMod p) (FpCoord p d) c ∈ R.fiberConstantSubmodule x :=
   fun _ _ _ _ _ ↦ rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.466d8f040b44 from=translated src=- shape=3656c830 vocab=ef20b1c8
+-/
 theorem finrank_affineFunctionals :
     Module.finrank (ZMod p) (FpCoord p d →ᵃ[ZMod p] ZMod p) = d + 1 := by
   rw [AffineMap.finrank_eq]
   simp
 
-/-- Constants account for at least one dimension of the fibre-constant space.-/
+/-- Constants account for at least one dimension of the fibre-constant space.
+@isnad1 id=lt.0h5v.s12.7a403906d671 from=translated src=- shape=f5f3def8 vocab=9697bcba
+-/
 theorem finrank_fiberConstantSubmodule_pos (R : FpRepresentation p d F) (x : F.Node) :
     0 < Module.finrank (ZMod p) (R.fiberConstantSubmodule x) := by
   apply Module.finrank_pos_iff_exists_ne_zero.mpr
@@ -62,7 +73,9 @@ theorem finrank_fiberConstantSubmodule_pos (R : FpRepresentation p d F) (x : F.N
   have heq := congrArg (fun ξ : R.fiberConstantSubmodule x ↦ (ξ : FpCoord p d →ᵃ[ZMod p] ZMod p) 0) h
   exact one_ne_zero heq
 
-/-- At most `d` independent directions can be added to the fibre-constant space.-/
+/-- At most `d` independent directions can be added to the fibre-constant space.
+@isnad1 id=le.0h5v.s11.a7029a9293d9 from=translated src=- shape=e2b098bc vocab=7b28f1c3
+-/
 theorem finrank_quotient_fiberConstantSubmodule_le (R : FpRepresentation p d F) (x : F.Node) :
     Module.finrank (ZMod p)
       ((FpCoord p d →ᵃ[ZMod p] ZMod p) ⧸ R.fiberConstantSubmodule x) ≤ d := by
@@ -133,7 +146,9 @@ noncomputable def append (D : DirectionChain W P k) (ξ : V)
     · have hil : i < k := by omega
       simpa [Function.update_of_ne hik] using D.selected i hil
 
-/-- Each independent singleton extension adds exactly one dimension.-/
+/-- Each independent singleton extension adds exactly one dimension.
+@isnad1 id=eq.1h7v.s8.3ce91c362199 from=translated src=- shape=bdfada70 vocab=71403186
+-/
 theorem finrank_space (D : DirectionChain W P k) (i : ℕ) (hi : i ≤ k) :
     Module.finrank K (D.space i) = Module.finrank K W + i := by
   induction i with
@@ -143,6 +158,9 @@ theorem finrank_space (D : DirectionChain W P k) (i : ℕ) (hi : i ≤ k) :
     rw [D.step i hik, Submodule.finrank_sup_span_singleton (D.independent i hik), ih (by omega)]
     omega
 
+/--
+@isnad1 id=le.0h6v.s7.1c75548e7df9 from=translated src=- shape=23b76ea6 vocab=3394a060
+-/
 theorem length_le_finrank_quotient (D : DirectionChain W P k) :
     k ≤ Module.finrank K (V ⧸ W) := by
   have hle := (D.space k).finrank_le
@@ -152,7 +170,9 @@ theorem length_le_finrank_quotient (D : DirectionChain W P k) :
 
 omit [FiniteDimensional K V] in
 /-- The enlarged space lies in every submodule containing the initial
-space and all the selected directions.-/
+space and all the selected directions.
+@isnad1 id=le.3h8v.s8.163942759336 from=translated src=- shape=9b28231e vocab=fda3ded2
+-/
 theorem space_le_of_mem (D : DirectionChain W P k) (U : Submodule K V)
     (hW : W ≤ U) (hdir : ∀ j, j < k → D.direction j ∈ U)
     (i : ℕ) (hi : i ≤ k) : D.space i ≤ U := by
@@ -169,7 +189,9 @@ theorem space_le_of_mem (D : DirectionChain W P k) (U : Submodule K V)
     exact hdir i hik
 
 omit [FiniteDimensional K V] in
-/-- If a first-stage direction exists, a maximal chain has positive length.-/
+/-- If a first-stage direction exists, a maximal chain has positive length.
+@isnad1 id=lt.2h6v.s7.709c15164095 from=translated src=- shape=9c08d5aa vocab=d42b3aed
+-/
 theorem length_pos_of_exists (D : DirectionChain W P k)
     (hmax : ∀ ξ, ξ ∉ D.space k → ¬ P k ξ)
     (hex : ∃ ξ, ξ ∉ W ∧ P 0 ξ) : 0 < k := by
@@ -182,7 +204,9 @@ theorem length_pos_of_exists (D : DirectionChain W P k)
 end DirectionChain
 
 /-- A maximal chain exists for arbitrary predicates assigned to its stages.
-Maximality is tested using the predicate for the next stage.-/
+Maximality is tested using the predicate for the next stage.
+@isnad1 id=ex.0h4v.s7.0fea659bfc20 from=translated src=- shape=716b5e7e vocab=4d52874a
+-/
 theorem exists_maximal_directionChain (W : Submodule K V) (P : ℕ → V → Prop) :
     ∃ k, k ≤ Module.finrank K (V ⧸ W) ∧ ∃ D : DirectionChain W P k,
       ∀ ξ, ξ ∉ D.space k → ¬ P k ξ := by
@@ -200,7 +224,9 @@ theorem exists_maximal_directionChain (W : Submodule K V) (P : ℕ → V → Pro
 end Greedy
 
 /-- Maximal independent thin functionals with the paper's stage-dependent
-width and error parameters. The first selected direction uses stage one.-/
+width and error parameters. The first selected direction uses stage one.
+@isnad1 id=ex.0h8v.s12.7c090470a358 from=translated src=- shape=22369647 vocab=4f7d87d0
+-/
 theorem exists_maximal_thinDirections {p d : ℕ} [Fact p.Prime] {F : ConvexFlag}
     (R : FpRepresentation p d F) (x : F.Node) (w : FpCoord p d → ℕ)
     (t : ℕ → ℕ) (δ : ℝ) :

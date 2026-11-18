@@ -32,7 +32,9 @@ noncomputable def localIntegerMassBelow (R : FpRepresentation p d F)
     else 0
 
 /-- A residue fibre can be summed over centered integer representatives in
-the source.-/
+the source.
+@isnad1 id=eq.2h8v.s10.889276e9f23b from=translated src=- shape=7a7d7628 vocab=86550cd5
+-/
 theorem sum_transitionFibres_eq_sum_localLift (hp : Odd p)
     (R : FpRepresentation p d F) (pieces : F.Node → FpCoord p d → ℕ)
     {y x : F.Node} (h : y ≤ x) (c : FpCoord p (F.rank x)) :
@@ -52,7 +54,9 @@ theorem sum_transitionFibres_eq_sum_localLift (hp : Odd p)
   exact (ite_eq_left hcentered).symm
 
 /-- If a transition stays in the centered box on the local support,
-congruence to a centered upper point is equality of integer coordinates.-/
+congruence to a centered upper point is equality of integer coordinates.
+@isnad1 id=iff.4h9v.s7.eb73a8bc2b10 from=translated src=- shape=919d4deb vocab=e2e91a16
+-/
 theorem transition_mod_eq_iff_of_localLift_ne_zero
     (R : FpRepresentation p d F) (pieces : F.Node → FpCoord p d → ℕ)
     {y x : F.Node} (h : y ≤ x) (z : IntCoord (F.rank y))
@@ -68,7 +72,9 @@ theorem transition_mod_eq_iff_of_localLift_ne_zero
     rw [heq]
 
 /-- The quotient-level partition is the exact integer-transition partition
-when nonzero local lifts remain centered after transition.-/
+when nonzero local lifts remain centered after transition.
+@isnad1 id=eq.3h7v.s7.c3ba10987b51 from=translated src=- shape=f4bccbf2 vocab=df8167bc
+-/
 theorem localTransitionMassBelow_eq_localIntegerMassBelow (hp : Odd p)
     (R : FpRepresentation p d F) (pieces : F.Node → FpCoord p d → ℕ)
     (x : F.Node) (q : IntCoord (F.rank x)) (hq : IsCenteredLift p q)
@@ -92,7 +98,9 @@ theorem localTransitionMassBelow_eq_localIntegerMassBelow (hp : Odd p)
         (hcentered y h z) hz]
   · rw [dite_eq_right h, dite_eq_right h]
 
-/-- Exact local-to-cumulative identity using local lifted weights.-/
+/-- Exact local-to-cumulative identity using local lifted weights.
+@isnad1 id=eq.4h7v.s8.05b532b1649e from=translated src=- shape=ccb27f82 vocab=04c5eba5
+-/
 theorem hat_eq_localIntegerMassBelow_of_centered (hp : Odd p)
     (R : FpRepresentation p d F) (pieces : F.Node → FpCoord p d → ℕ)
     (hsupported : ∀ y v, pieces y v ≠ 0 → v ∈ R.space y)
@@ -105,7 +113,9 @@ theorem hat_eq_localIntegerMassBelow_of_centered (hp : Odd p)
   exact localTransitionMassBelow_eq_localIntegerMassBelow hp R pieces x q hq hcentered
 
 /-- The local integer-transition sum has no mass outside the centered
-upper box if all transitions of its nonzero local terms stay centered.-/
+upper box if all transitions of its nonzero local terms stay centered.
+@isnad1 id=eq.2h7v.s6.60dbf0df63e5 from=translated src=- shape=36368ddd vocab=108a0fa5
+-/
 theorem localIntegerMassBelow_eq_zero_of_not_centered
     (R : FpRepresentation p d F) (pieces : F.Node → FpCoord p d → ℕ)
     (x : F.Node) (q : IntCoord (F.rank x)) (hq : ¬ IsCenteredLift p q)
@@ -126,7 +136,9 @@ theorem localIntegerMassBelow_eq_zero_of_not_centered
   · rfl
 
 /-- The exact local-to-cumulative identity holds for every integer upper
-coordinate; outside the centered box both sides vanish.-/
+coordinate; outside the centered box both sides vanish.
+@isnad1 id=eq.3h7v.s8.f37b372a12cb from=translated src=- shape=7449b8ed vocab=04c5eba5
+-/
 theorem hat_eq_localIntegerMassBelow (hp : Odd p)
     (R : FpRepresentation p d F) (pieces : F.Node → FpCoord p d → ℕ)
     (hsupported : ∀ y v, pieces y v ≠ 0 → v ∈ R.space y)
@@ -147,7 +159,9 @@ namespace EGZ.FlagDecomposition
 variable {p d : ℕ} [NeZero p] {f : FpCoord p d → ℕ}
 
 /-- At an upper node of radius less than `p / 2`, every nonzero local lift
-below it has centered integer transition coordinates.-/
+below it has centered integer transition coordinates.
+@isnad1 id=iscenter.4h8v.s7.6387157a0c74 from=translated src=- shape=8e6c7415 vocab=6de56aae
+-/
 theorem isCenteredLift_transition_of_localLift_ne_zero
     (Φ : FlagDecomposition p d f) (K : Φ.flag.Node → ℕ)
     (hbounded : Φ.IsKBounded K) {y x : Φ.flag.Node} (h : y ≤ x)
@@ -161,7 +175,9 @@ theorem isCenteredLift_transition_of_localLift_ne_zero
   omega
 
 /-- Section 4's corrected identity: the cumulative lift at `q` is the sum
-of local lifts at all lower nodes whose integer transitions equal `q`.-/
+of local lifts at all lower nodes whose integer transitions equal `q`.
+@isnad1 id=eq.4h7v.s8.8ea8c72ec19d from=translated src=- shape=8233599e vocab=5421b7ae
+-/
 theorem hat_eq_sum_localLift_of_centered (hp : Odd p)
     (Φ : FlagDecomposition p d f) (K : Φ.flag.Node → ℕ)
     (hbounded : Φ.IsKBounded K) (x : Φ.flag.Node)
@@ -177,7 +193,9 @@ theorem hat_eq_sum_localLift_of_centered (hp : Odd p)
     (fun y h z hz ↦ Φ.isCenteredLift_transition_of_localLift_ne_zero K hbounded h hK z hz)
 
 /-- The corrected local-to-cumulative identity for arbitrary integer
-coordinates, with the large-prime condition expressed by `2 * K x < p`.-/
+coordinates, with the large-prime condition expressed by `2 * K x < p`.
+@isnad1 id=eq.3h7v.s8.9a848134b9bd from=translated src=- shape=73cd4fd4 vocab=733c5fa9
+-/
 theorem hat_eq_sum_localLift (hp : Odd p)
     (Φ : FlagDecomposition p d f) (K : Φ.flag.Node → ℕ)
     (hbounded : Φ.IsKBounded K) (x : Φ.flag.Node)

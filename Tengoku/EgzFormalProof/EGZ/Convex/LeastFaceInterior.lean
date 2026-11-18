@@ -19,7 +19,9 @@ contradicting leastness.
 namespace EGZ.RationalPolytope.Face
 
 /-- A least exposed face containing `q` contains `q` in its relative
-interior.-/
+interior.
+@isnad1 id=mem.1h4v.s5.54ee06d42890 from=translated src=- shape=4665c014 vocab=f1e2b524
+-/
 theorem IsLeastFaceAt.mem_relInterior {d : ℕ} {P : RationalPolytope d}
     {q : RealCoord d} {F : P.Face} (hleast : IsLeastFaceAt P q F) :
     q ∈ F.relInterior := by

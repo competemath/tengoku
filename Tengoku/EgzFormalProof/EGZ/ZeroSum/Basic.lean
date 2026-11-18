@@ -38,13 +38,17 @@ def AdmitsPHollowLength (p d s : ℕ) : Prop :=
 
 namespace FpVec
 
-/-- The cardinality of `𝔽_p^d` (when `p` is nonzero, as it is for primes).-/
+/-- The cardinality of `𝔽_p^d` (when `p` is nonzero, as it is for primes).
+@isnad1 id=eq.0h2v.s5.1291a2e18fa3 from=translated src=- shape=7c9649d0 vocab=169c603f
+-/
 @[simp]
 theorem card (p d : ℕ) [NeZero p] : Fintype.card (FpVec p d) = p ^ d := by
   simp [FpVec, ZMod.card]
 
 /-- Every vector in `𝔽_p^d` is killed by `p`.  This also holds for the
-degenerate value `p = 0`, for which `ZMod 0` is represented by the integers.-/
+degenerate value `p = 0`, for which `ZMod 0` is represented by the integers.
+@isnad1 id=eq.0h3v.s6.ea8976b55f3f from=translated src=- shape=d6191862 vocab=8f4a01fa
+-/
 @[simp]
 theorem characteristic_nsmul (p : ℕ) {d : ℕ} (x : FpVec p d) : p • x = 0 := by
   funext j
@@ -54,7 +58,9 @@ end FpVec
 
 namespace IsPHollow
 
-/-- A `p`-hollow parametrization has no repetitions once `p ≥ 2`.-/
+/-- A `p`-hollow parametrization has no repetitions once `p ≥ 2`.
+@isnad1 id=injectiv.2h4v.s5.ea2188a74e16 from=translated src=- shape=17104711 vocab=c83ac32f
+-/
 theorem injective {p d s : ℕ} {v : Fin s → FpVec p d}
     (hv : IsPHollow p v) (hp : 2 ≤ p) : Function.Injective v := by
   classical
@@ -94,7 +100,9 @@ theorem injective {p d s : ℕ} {v : Fin s → FpVec p d}
     · simp [α, hki, hkj] at hk
       omega
 
-/-- A prime-field `p`-hollow family has at most all the vectors in the space.-/
+/-- A prime-field `p`-hollow family has at most all the vectors in the space.
+@isnad1 id=le.2h4v.s5.521d784961db from=translated src=- shape=31c5822a vocab=f397f81e
+-/
 theorem card_le {p d s : ℕ} {v : Fin s → FpVec p d}
     (hv : IsPHollow p v) (hp : Nat.Prime p) : s ≤ p ^ d := by
   letI : NeZero p := ⟨hp.ne_zero⟩
@@ -105,7 +113,9 @@ theorem card_le {p d s : ℕ} {v : Fin s → FpVec p d}
 family vanishes exactly when all `p` selected members have the same index.
 
 The indexing type is arbitrary; the cardinality hypothesis is what records
-that the sum has exactly `p` terms.-/
+that the sum has exactly `p` terms.
+@isnad1 id=iff.2h6v.s6.442b0b49b8c6 from=translated src=- shape=f1b08605 vocab=0e3fdc2f
+-/
 theorem sum_eq_zero_iff_constant {p d s : ℕ} {v : Fin s → FpVec p d}
     (hv : IsPHollow p v) {κ : Type*} [Fintype κ]
     (hcard : Fintype.card κ = p) (f : κ → Fin s) :
@@ -163,7 +173,9 @@ theorem sum_eq_zero_iff_constant {p d s : ℕ} {v : Fin s → FpVec p d}
       _ = p • v i := by rw [hcard]
       _ = 0 := FpVec.characteristic_nsmul p (v i)
 
-/-- The common special case of `sum_eq_zero_iff_constant` indexed by `Fin p`.-/
+/-- The common special case of `sum_eq_zero_iff_constant` indexed by `Fin p`.
+@isnad1 id=iff.1h5v.s6.ae76c894e6f9 from=translated src=- shape=7c23ea5f vocab=7ac1e34c
+-/
 theorem sum_fin_eq_zero_iff_constant {p d s : ℕ} {v : Fin s → FpVec p d}
     (hv : IsPHollow p v) (f : Fin p → Fin s) :
     (∑ x, v (f x)) = 0 ↔ ∃ i, ∀ x, f x = i :=
@@ -171,13 +183,17 @@ theorem sum_fin_eq_zero_iff_constant {p d s : ℕ} {v : Fin s → FpVec p d}
 
 end IsPHollow
 
-/-- The existence predicate for hollow families inherits the ambient cardinality bound.-/
+/-- The existence predicate for hollow families inherits the ambient cardinality bound.
+@isnad1 id=le.2h3v.s5.18b60467863c from=translated src=- shape=1b60ea3d vocab=74825e02
+-/
 theorem AdmitsPHollowLength.le_pow {p d s : ℕ} (hp : Nat.Prime p)
     (h : AdmitsPHollowLength p d s) : s ≤ p ^ d := by
   obtain ⟨v, hv⟩ := h
   exact hv.card_le hp
 
-/-- The empty family is hollow for every positive modulus.-/
+/-- The empty family is hollow for every positive modulus.
+@isnad1 id=admitsph.1h2v.s4.395eef672d30 from=translated src=- shape=4a9d209f vocab=093437fa
+-/
 theorem admitsPHollowLength_zero {p d : ℕ} (hp : 0 < p) :
     AdmitsPHollowLength p d 0 := by
   refine ⟨Fin.elim0, ?_⟩
@@ -187,7 +203,9 @@ theorem admitsPHollowLength_zero {p d : ℕ} (hp : 0 < p) :
 
 namespace EGZProperty
 
-/-- Exact-length EGZ properties persist when more terms are appended.-/
+/-- Exact-length EGZ properties persist when more terms are appended.
+@isnad1 id=egzprope.2h4v.s4.cc3b4f25484c from=translated src=- shape=a818efd2 vocab=fb17207e
+-/
 theorem mono {p d m n : ℕ} (hmn : m ≤ n)
     (hm : EGZProperty p d m) : EGZProperty p d n := by
   intro a
@@ -197,7 +215,9 @@ theorem mono {p d m n : ℕ} (hmn : m ≤ n)
   · simpa only [Finset.sum_map, Fin.castLEEmb_apply] using hIz
 
 /-- A crude pigeonhole upper bound.  It is not intended to be sharp; its role
-is to establish that the least EGZ length is well-defined.-/
+is to establish that the least EGZ length is well-defined.
+@isnad1 id=egzprope.0h2v.s5.78ce4ae9c91b from=translated src=- shape=8dca6909 vocab=e4d1e958
+-/
 theorem pigeonhole_bound (p d : ℕ) :
     EGZProperty p d ((p - 1) * p ^ d + 1) := by
   by_cases hp0 : p = 0
@@ -227,12 +247,16 @@ theorem pigeonhole_bound (p d : ℕ) :
 
 end EGZProperty
 
-/-- Some exact length has the EGZ property, uniformly for all natural `p`.-/
+/-- Some exact length has the EGZ property, uniformly for all natural `p`.
+@isnad1 id=ex.0h2v.s3.524c7f9bc4f0 from=translated src=- shape=b53ff43e vocab=f0a3990d
+-/
 theorem exists_egzProperty (p d : ℕ) : ∃ n, EGZProperty p d n :=
   ⟨(p - 1) * p ^ d + 1, EGZProperty.pigeonhole_bound p d⟩
 
 /-- Repeating each member of a positive-modulus hollow family only `p - 1`
-times gives a sequence with no `p`-term zero sum.-/
+times gives a sequence with no `p`-term zero sum.
+@isnad1 id=not.2h3v.s5.7fa923aebb5a from=translated src=- shape=835db525 vocab=121e3245
+-/
 theorem not_egzProperty_of_admitsPHollowLength {p d s : ℕ} (hp : 0 < p)
     (hadm : AdmitsPHollowLength p d s) : ¬ EGZProperty p d (s * (p - 1)) := by
   classical

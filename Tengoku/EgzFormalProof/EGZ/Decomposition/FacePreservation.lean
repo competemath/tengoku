@@ -29,7 +29,9 @@ def Point.map {F G : ConvexFlag} (q : F.Point) (node : SupHom F.Node G.Node)
 
 /-- Affine maps commuting with transitions preserve flag convex combinations
 when the node map preserves joins. The least-upper-bound condition is proved
-from the finite join of the strictly positive support.-/
+from the finite join of the strictly positive support.
+@isnad1 id=convexco.3h8v.s12.e149c1b8fc30 from=translated src=- shape=b9dcf186 vocab=4346e17f
+-/
 theorem ConvexCombination.map_on_polytope {F G : ConvexFlag}
     (node : SupHom F.Node G.Node)
     (fibre : (x : F.Node) → RealCoord (F.rank x) →ᵃ[ℝ] RealCoord (G.rank (node x)))
@@ -94,7 +96,9 @@ theorem ConvexCombination.map_on_polytope {F G : ConvexFlag}
       exact hcomm (c.base_isLUB.1 i i.2) (points i).val (points i).val_mem
 
 /-- Global commutation is a sufficient special case of commutation on the
-source polytopes.-/
+source polytopes.
+@isnad1 id=convexco.3h8v.s12.a857493edb13 from=translated src=- shape=8a6f4b4d vocab=548acfe7
+-/
 theorem ConvexCombination.map {F G : ConvexFlag}
     (node : SupHom F.Node G.Node)
     (fibre : (x : F.Node) → RealCoord (F.rank x) →ᵃ[ℝ] RealCoord (G.rank (node x)))
@@ -132,6 +136,9 @@ def preimage {m n : ℕ} {P : RationalPolytope m} {Q : RationalPolytope n}
       exact ⟨fun h ↦ ⟨h.1, h.2.2⟩, fun h ↦ ⟨h.1, hA h.1, h.2⟩⟩
   nonempty := hne
 
+/--
+@isnad1 id=eq.2h6v.s9.7de911f8061c from=translated src=- shape=b90a6925 vocab=3053123c
+-/
 @[simp]
 theorem preimage_carrier {m n : ℕ} {P : RationalPolytope m} {Q : RationalPolytope n}
     (Γ : P.Face) (A : RealCoord n →ᵃ[ℝ] RealCoord m)
@@ -194,13 +201,22 @@ def of_local_generators
 def point (q : Ψ.flag.Point) : Φ.flag.Point :=
   ⟨M.node q.base, M.fibre q.base q.val, M.polytope_mem q.base q.val_mem⟩
 
+/--
+@isnad1 id=eq.0h7v.s7.398fbe0e6358 from=translated src=- shape=ec842043 vocab=d384a3f2
+-/
 @[simp]
 theorem point_base (q : Ψ.flag.Point) : (M.point q).base = M.node q.base := rfl
 
+/--
+@isnad1 id=eq.1h8v.s11.a7b4dbf3bc85 from=translated src=- shape=d27c8d6b vocab=13e3f881
+-/
 theorem point_coord (q : Ψ.flag.Point) {x : Ψ.flag.Node} (h : q.base ≤ x) :
     (M.point q).coord (OrderHomClass.monotone M.node h) = M.fibre x (q.coord h) :=
   (M.transition_comm h q.val).symm
 
+/--
+@isnad1 id=mem.1h7v.s6.d2b4959c6ec1 from=translated src=- shape=cb79fdd2 vocab=42c90c98
+-/
 theorem point_proper {q : Ψ.flag.Point} (hq : q ∈ Ψ.omega) : M.point q ∈ Φ.omega :=
   M.proper q hq
 
@@ -218,6 +234,9 @@ def comp {Θ : FlagDecomposition p d f} (N : SubdivisionMap Ψ Θ) :
     rfl
   proper q hq := M.point_proper (N.point_proper hq)
 
+/--
+@isnad1 id=eq.0h9v.s6.90e2f121d357 from=translated src=- shape=9b49f9e7 vocab=23557009
+-/
 @[simp]
 theorem comp_point {Θ : FlagDecomposition p d f} (N : SubdivisionMap Ψ Θ)
     (q : Θ.flag.Point) : (M.comp N).point q = M.point (N.point q) := rfl
@@ -228,12 +247,18 @@ def face (x : Ψ.flag.Node) (Γ : (Φ.flag.polytope (M.node x)).Face)
     (Ψ.flag.polytope x).Face :=
   Γ.preimage (M.fibre x) (M.polytope_mem x) hne
 
+/--
+@isnad1 id=eq.1h8v.s12.3022ad041b55 from=translated src=- shape=091a824a vocab=29bc3d57
+-/
 @[simp]
 theorem face_carrier (x : Ψ.flag.Node) (Γ : (Φ.flag.polytope (M.node x)).Face)
     (hne : ((Ψ.flag.polytope x).carrier ∩ M.fibre x ⁻¹' Γ.carrier).Nonempty) :
     (M.face x Γ hne).carrier =
       (Ψ.flag.polytope x).carrier ∩ M.fibre x ⁻¹' Γ.carrier := rfl
 
+/--
+@isnad1 id=mem.2h9v.s11.d845c2efd1dd from=translated src=- shape=6794a083 vocab=0336651e
+-/
 theorem point_mem_pointsOnFace {x : Ψ.flag.Node}
     {Γ : (Φ.flag.polytope (M.node x)).Face}
     {hne : ((Ψ.flag.polytope x).carrier ∩ M.fibre x ⁻¹' Γ.carrier).Nonempty}
@@ -245,7 +270,9 @@ theorem point_mem_pointsOnFace {x : Ψ.flag.Node}
   exact hcoord.2
 
 /-- Every new proper-point base over the restricted face lies below the old
-face index. Join preservation gives the same inequality for their supremum.-/
+face index. Join preservation gives the same inequality for their supremum.
+@isnad1 id=le.1h8v.s11.6284bb445965 from=translated src=- shape=a9dac935 vocab=f59bd3c9
+-/
 theorem faceIndex_le (x : Ψ.flag.Node) (Γ : (Φ.flag.polytope (M.node x)).Face)
     (hne : ((Ψ.flag.polytope x).carrier ∩ M.fibre x ⁻¹' Γ.carrier).Nonempty) :
     M.node (Ψ.faceIndex x (M.face x Γ hne)) ≤ Φ.faceIndex (M.node x) Γ := by
@@ -262,7 +289,9 @@ theorem faceIndex_le (x : Ψ.flag.Node) (Γ : (Φ.flag.polytope (M.node x)).Face
 
 /-- Realization survives restriction of the polytopes and proper-point set.
 The new face index may move downwards; its old image still maps into the old
-face index, whose whole polytope maps into the realized face.-/
+face index, whose whole polytope maps into the realized face.
+@isnad1 id=isrealiz.2h8v.s11.c2ce06f8517a from=translated src=- shape=f02a864a vocab=566da253
+-/
 theorem isRealizedFace (x : Ψ.flag.Node) (Γ : (Φ.flag.polytope (M.node x)).Face)
     (hne : ((Ψ.flag.polytope x).carrier ∩ M.fibre x ⁻¹' Γ.carrier).Nonempty)
     (hΓ : Φ.IsRealizedFace (M.node x) Γ) :

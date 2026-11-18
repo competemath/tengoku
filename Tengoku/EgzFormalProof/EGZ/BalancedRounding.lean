@@ -19,10 +19,16 @@ namespace EGZ.BalancedCombination
 noncomputable def roundedWeight {I : Type*} (m : I → ℕ) (H : ℝ) (q : I) : ℕ :=
   ⌊(m q : ℝ) / H⌋₊
 
+/--
+@isnad1 id=le.1h4v.s5.ee09c15abec5 from=translated src=- shape=26cd7014 vocab=ec5661e3
+-/
 theorem roundedWeight_upper {I : Type*} (m : I → ℕ) {H : ℝ} (hH : 0 < H) (q : I) :
     (roundedWeight m H q : ℝ) ≤ (m q : ℝ) / H :=
   Nat.floor_le (div_nonneg (Nat.cast_nonneg _) hH.le)
 
+/--
+@isnad1 id=le.2h5v.s6.3ee91a526c34 from=translated src=- shape=ba9ba04a vocab=1e4f826d
+-/
 theorem roundedWeight_lower {I : Type*} (m : I → ℕ) {H η : ℝ}
     (hH : 0 < H) (hsmall : ∀ q, H ≤ η * m q) (q : I) :
     (1 - η) * ((m q : ℝ) / H) ≤ (roundedWeight m H q : ℝ) := by
@@ -33,6 +39,9 @@ theorem roundedWeight_lower {I : Type*} (m : I → ℕ) {H η : ℝ}
   change (1 - η) * ((m q : ℝ) / H) ≤ (⌊(m q : ℝ) / H⌋₊ : ℝ)
   nlinarith
 
+/--
+@isnad1 id=lt.3h5v.s6.bcc7418562e8 from=translated src=- shape=1d9facd7 vocab=5fc30d0b
+-/
 theorem roundedWeight_pos {I : Type*} (m : I → ℕ) {H η : ℝ}
     (hH : 0 < H) (hη : η ≤ 1) (hsmall : ∀ q, H ≤ η * m q) (q : I) :
     0 < roundedWeight m H q := by
@@ -41,12 +50,17 @@ theorem roundedWeight_pos {I : Type*} (m : I → ℕ) {H η : ℝ}
   simpa using (hsmall q).trans
     (mul_le_mul_of_nonneg_right hη (Nat.cast_nonneg (m q)))
 
+/--
+@isnad1 id=le.1h5v.s5.b58eaa9a5cf6 from=translated src=- shape=ae45e174 vocab=09dd315f
+-/
 theorem roundedWeight_le_bound {I : Type*} (m : I → ℕ) {H B : ℝ} (q : I)
     (hB : (m q : ℝ) / H ≤ B) : roundedWeight m H q ≤ ⌈B⌉₊ :=
   Nat.floor_le_of_le (hB.trans (Nat.le_ceil _))
 
 /-- Relative rounding bounds hold on every finite subset, not only the
-whole support or halfspaces.-/
+whole support or halfspaces.
+@isnad1 id=and.2h5v.s7.2a4ad5e31ecb from=translated src=- shape=c7f7d205 vocab=cca3b09e
+-/
 theorem roundedWeight_sum_bounds {I : Type*} (m : I → ℕ) {H η : ℝ}
     (hH : 0 < H) (hsmall : ∀ q, H ≤ η * m q) (T : Finset I) :
     (1 - η) * ((∑ q ∈ T, (m q : ℝ)) / H) ≤
@@ -59,7 +73,9 @@ theorem roundedWeight_sum_bounds {I : Type*} (m : I → ℕ) {H η : ℝ}
       Finset.sum_le_sum (fun q (_ : q ∈ T) ↦ roundedWeight_upper m hH q)
 
 /-- The rounded weight is central at the multiplicatively decreased
-parameter `(1 - η) * θ`.-/
+parameter `(1 - η) * θ`.
+@isnad1 id=iscentra.5h7v.s7.4104c9a44d6d from=translated src=- shape=5c41100d vocab=74aa5e92
+-/
 theorem IsCentral.rounded {d : ℕ} {S : Finset (IntCoord d)} (m : S → ℕ)
     {H η θ : ℝ} {c : RealCoord d}
     (h : IsCentral S (fun q ↦ (m q : ℝ)) θ c)
@@ -85,7 +101,9 @@ theorem IsCentral.rounded {d : ℕ} {S : Finset (IntCoord d)} (m : S → ℕ)
     _ = ∑ q : S, if ξ c ≤ ξ q.val.real then (roundedWeight m H q : ℝ) else 0 := by
       simp only [T, Finset.sum_filter]
 
-/-- Transfer the balanced upper bound back from the rounded weights.-/
+/-- Transfer the balanced upper bound back from the rounded weights.
+@isnad1 id=le.7h8v.s8.109af7aacba8 from=translated src=- shape=b0eea666 vocab=247918bf
+-/
 theorem rounded_coefficient_upper {I : Type*} [Fintype I]
     (m a : I → ℕ) {H η θ : ℝ} {n : ℕ}
     (hH : 0 < H) (hη : η < 1) (hθ : 0 < θ)
@@ -130,7 +148,9 @@ theorem rounded_coefficient_upper {I : Type*} [Fintype I]
 integer masses and the length may vary without bound: rounding places them
 in a finite family using only `d`, `K`, `C`, `γ`, and `η`. Both witnesses are
 chosen before the original masses, the centrality parameter, and the length.
-The only unproved ingredient is the explicitly supplied balanced lemma.-/
+The only unproved ingredient is the explicitly supplied balanced lemma.
+@isnad1 id=ex.4h5v.s10.2bf23b87b077 from=translated src=- shape=987602f2 vocab=4a8e9017
+-/
 theorem uniform_rounded_coefficients (hBalanced : BalancedCombinationLemma)
     (d K : ℕ) (C γ η : ℝ) (hγ : 0 < γ) (hη : 0 < η) (hηone : η < 1) :
     ∃ (μ : ℝ) (N : ℕ), 0 < μ ∧

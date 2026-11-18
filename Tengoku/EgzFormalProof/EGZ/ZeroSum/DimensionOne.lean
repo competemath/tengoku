@@ -27,6 +27,9 @@ def ForcesZeroSum (p N : ℕ) : Prop :=
   ∀ {ι : Type} [Fintype ι] (a : ι → ZMod p),
     N ≤ Fintype.card ι → HasZeroSumSubsequence p a
 
+/--
+@isnad1 id=forcesze.2h3v.s4.de34692b9c3a from=translated src=- shape=847200ad vocab=2076b089
+-/
 theorem ForcesZeroSum.mono {p N M : ℕ} (h : ForcesZeroSum p N) (hNM : N ≤ M) :
     ForcesZeroSum p M := by
   intro ι _ a hM
@@ -35,7 +38,9 @@ theorem ForcesZeroSum.mono {p N M : ℕ} (h : ForcesZeroSum p N) (hNM : N ≤ M)
 /-- The upper bound in the Erdős--Ginzburg--Ziv theorem.
 
 Mathlib contains the stronger theorem `ZMod.erdos_ginzburg_ziv`, valid for
-every modulus, not only a prime modulus.-/
+every modulus, not only a prime modulus.
+@isnad1 id=forcesze.0h1v.s4.1c1a24a55e5c from=translated src=- shape=da357a17 vocab=80c36840
+-/
 theorem forcesZeroSum_two_mul_sub_one (p : ℕ) :
     ForcesZeroSum p (2 * p - 1) := by
   classical
@@ -45,6 +50,9 @@ theorem forcesZeroSum_two_mul_sub_one (p : ℕ) :
       (by simpa using hcard)
   exact ⟨t, htcard, htsum⟩
 
+/--
+@isnad1 id=ex.0h1v.s3.ee9e4d9305b4 from=translated src=- shape=7d4b0599 vocab=9d7fee03
+-/
 theorem exists_forcing_length (p : ℕ) : ∃ N, ForcesZeroSum p N :=
   ⟨2 * p - 1, forcesZeroSum_two_mul_sub_one p⟩
 
@@ -54,10 +62,16 @@ noncomputable def sFp (p : ℕ) : ℕ := by
   classical
   exact Nat.find (exists_forcing_length p)
 
+/--
+@isnad1 id=forcesze.0h1v.s2.e884db1c264a from=translated src=- shape=9d44d080 vocab=4b52169a
+-/
 theorem sFp_spec (p : ℕ) : ForcesZeroSum p (sFp p) := by
   classical
   exact Nat.find_spec (exists_forcing_length p)
 
+/--
+@isnad1 id=le.1h2v.s3.64722b146101 from=translated src=- shape=b042ddd5 vocab=2f000499
+-/
 theorem sFp_min {p N : ℕ} (hN : ForcesZeroSum p N) : sFp p ≤ N := by
   classical
   exact Nat.find_min' (exists_forcing_length p) hN
@@ -66,7 +80,9 @@ theorem sFp_min {p N : ℕ} (hN : ForcesZeroSum p N) : sFp p ≤ N := by
 contain a zero-sum subsequence of length `p`.
 
 The positions are represented by `Fin (p - 1) × Bool`; the Boolean coordinate
-records whether the term is zero or one.-/
+records whether the term is zero or one.
+@isnad1 id=not.1h1v.s5.437efc654099 from=translated src=- shape=abf0836e vocab=0b2d1b2e
+-/
 theorem not_forcesZeroSum_two_mul_sub_two {p : ℕ} (hp : 2 ≤ p) :
     ¬ForcesZeroSum p (2 * p - 2) := by
   classical
@@ -132,7 +148,9 @@ theorem not_forcesZeroSum_two_mul_sub_two {p : ℕ} (hp : 2 ≤ p) :
   omega
 
 /-- Sharp Erdős--Ginzburg--Ziv theorem.  The proof actually works for every
-modulus `p ≥ 2`; the prime case is stated separately below.-/
+modulus `p ≥ 2`; the prime case is stated separately below.
+@isnad1 id=eq.1h1v.s5.46a59917b392 from=translated src=- shape=507a9bde vocab=1ad0918c
+-/
 theorem sFp_eq_two_mul_sub_one {p : ℕ} (hp : 2 ≤ p) :
     sFp p = 2 * p - 1 := by
   apply le_antisymm
@@ -143,7 +161,9 @@ theorem sFp_eq_two_mul_sub_one {p : ℕ} (hp : 2 ≤ p) :
       (ForcesZeroSum.mono (sFp_spec p) hs_le)
 
 /-- The Erdős--Ginzburg--Ziv theorem for the prime field `𝔽_p = ZMod p`:
-`s(𝔽_p) = 2p - 1`.-/
+`s(𝔽_p) = 2p - 1`.
+@isnad1 id=eq.1h1v.s5.d4222449a548 from=translated src=- shape=b2be30bc vocab=1b2ad73b
+-/
 theorem erdos_ginzburg_ziv_prime {p : ℕ} (hp : p.Prime) :
     sFp p = 2 * p - 1 :=
   sFp_eq_two_mul_sub_one hp.two_le

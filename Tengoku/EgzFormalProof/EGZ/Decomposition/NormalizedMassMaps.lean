@@ -24,6 +24,9 @@ noncomputable def normalizedStableNodeMap (x : (D.normalized hp C hmod hcenter).
   (D.cleanedStableNodeMap hp x).comp
     (Rechart.stableNodeMap (D.cleaned hp) C hp hmod hcenter x)
 
+/--
+@isnad1 id=eq.3h7v.s12.0ad98759fbf4 from=translated src=- shape=b89ff972 vocab=551240b0
+-/
 @[simp]
 theorem normalizedStableNodeMap_real (x : (D.normalized hp C hmod hcenter).flag.Node) :
     (D.normalizedStableNodeMap hp C hmod hcenter x).coord.real =
@@ -60,6 +63,9 @@ noncomputable def normalizedStableNodeMap
   (D.refinedStableNodeMap hp hδ hsmall C hmod hcenter x.val).comp
     ((D.refined hp hδ hsmall C hmod hcenter).reducedStableNodeMap hp x)
 
+/--
+@isnad1 id=eq.5h10v.s12.531f118b5a85 from=translated src=- shape=9cfb268f vocab=588bbc6c
+-/
 @[simp]
 theorem normalizedStableNodeMap_real
     (x : (D.normalized hp hδ hsmall C hmod hcenter).flag.Node) :
@@ -111,6 +117,9 @@ noncomputable def normalizedUpperStableNodeMap
     simp
     exact le_rfl
 
+/--
+@isnad1 id=eq.4h8v.s12.20df27970dc2 from=translated src=- shape=8591981e vocab=f91acf42
+-/
 @[simp]
 theorem normalizedUpperStableNodeMap_real
     (x : (normalized Φ anchor Γ hp C hmod hcenter).flag.Node)

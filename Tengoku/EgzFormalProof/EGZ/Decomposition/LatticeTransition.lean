@@ -15,7 +15,9 @@ namespace EGZ.IntegerLatticeChart
 variable {m n k : ℕ} {S : Finset (IntCoord m)} {T : Finset (IntCoord n)}
 
 /-- An affine map into a chart's generated lattice has a unique affine lift
-to the chart coordinates.-/
+to the chart coordinates.
+@isnad1 id=existsun.1h5v.s9.36c19c8a7f4c from=translated src=- shape=1c7f4148 vocab=e8ff6ea6
+-/
 theorem existsUnique_lift (C : IntegerLatticeChart T)
     (g : IntCoord k →ᵃ[ℤ] IntCoord n)
     (hg : ∀ q, g q ∈ affineSpan ℤ (T : Set (IntCoord n))) :
@@ -54,6 +56,9 @@ noncomputable def lift (C : IntegerLatticeChart T)
     IntCoord k →ᵃ[ℤ] IntCoord C.rank :=
   Classical.choose (C.existsUnique_lift g hg)
 
+/--
+@isnad1 id=eq.1h5v.s9.47667c572867 from=translated src=- shape=742a54ca vocab=917702c1
+-/
 @[simp]
 theorem map_comp_lift (C : IntegerLatticeChart T)
     (g : IntCoord k →ᵃ[ℤ] IntCoord n)
@@ -61,6 +66,9 @@ theorem map_comp_lift (C : IntegerLatticeChart T)
     C.map.comp (C.lift g hg) = g :=
   (Classical.choose_spec (C.existsUnique_lift g hg)).1
 
+/--
+@isnad1 id=eq.2h6v.s9.e8e6799a4370 from=translated src=- shape=5de1efb9 vocab=917702c1
+-/
 theorem lift_unique (C : IntegerLatticeChart T)
     (g : IntCoord k →ᵃ[ℤ] IntCoord n)
     (hg : ∀ q, g q ∈ affineSpan ℤ (T : Set (IntCoord n)))
@@ -69,7 +77,9 @@ theorem lift_unique (C : IntegerLatticeChart T)
   (Classical.choose_spec (C.existsUnique_lift g hg)).2 B hB
 
 /-- It suffices to check membership in the target generated lattice on the
-source generators.-/
+source generators.
+@isnad1 id=mem.1h7v.s10.1fc57738e085 from=translated src=- shape=799c5a4d vocab=74427dc4
+-/
 theorem map_chart_mem_affineSpan (C : IntegerLatticeChart S)
     (A : IntCoord m →ᵃ[ℤ] IntCoord n)
     (hA : ∀ z ∈ S, A z ∈ affineSpan ℤ (T : Set (IntCoord n)))
@@ -87,6 +97,9 @@ noncomputable def transition (C : IntegerLatticeChart S) (D : IntegerLatticeChar
     IntCoord C.rank →ᵃ[ℤ] IntCoord D.rank :=
   D.lift (A.comp C.map) (C.map_chart_mem_affineSpan A hA)
 
+/--
+@isnad1 id=eq.1h7v.s9.e2784d0bfeec from=translated src=- shape=a2c46529 vocab=8a97c4f0
+-/
 @[simp]
 theorem map_comp_transition (C : IntegerLatticeChart S) (D : IntegerLatticeChart T)
     (A : IntCoord m →ᵃ[ℤ] IntCoord n)
@@ -94,6 +107,9 @@ theorem map_comp_transition (C : IntegerLatticeChart S) (D : IntegerLatticeChart
     D.map.comp (C.transition D A hA) = A.comp C.map :=
   D.map_comp_lift _ _
 
+/--
+@isnad1 id=eq.1h8v.s10.dadc86c7f245 from=translated src=- shape=9ae766a8 vocab=4cd3ed91
+-/
 @[simp]
 theorem map_transition (C : IntegerLatticeChart S) (D : IntegerLatticeChart T)
     (A : IntCoord m →ᵃ[ℤ] IntCoord n)
@@ -102,6 +118,9 @@ theorem map_transition (C : IntegerLatticeChart S) (D : IntegerLatticeChart T)
     D.map (C.transition D A hA q) = A (C.map q) :=
   AffineMap.congr_fun (C.map_comp_transition D A hA) q
 
+/--
+@isnad1 id=eq.2h8v.s10.aa00b707cdba from=translated src=- shape=a758b330 vocab=8a97c4f0
+-/
 theorem transition_unique (C : IntegerLatticeChart S) (D : IntegerLatticeChart T)
     (A : IntCoord m →ᵃ[ℤ] IntCoord n)
     (hA : ∀ z ∈ S, A z ∈ affineSpan ℤ (T : Set (IntCoord n)))
@@ -109,7 +128,9 @@ theorem transition_unique (C : IntegerLatticeChart S) (D : IntegerLatticeChart T
     (hB : D.map.comp B = A.comp C.map) : B = C.transition D A hA :=
   D.lift_unique _ _ B hB
 
-/-- Recharting the identity transition gives the identity map.-/
+/-- Recharting the identity transition gives the identity map.
+@isnad1 id=eq.1h3v.s9.ce9038c27775 from=translated src=- shape=35f6261a vocab=91a3d4ee
+-/
 @[simp]
 theorem transition_id (C : IntegerLatticeChart S)
     (h : ∀ z ∈ S, (AffineMap.id ℤ (IntCoord m)) z ∈
@@ -120,7 +141,9 @@ theorem transition_id (C : IntegerLatticeChart S)
   apply C.transition_unique C
   simp
 
-/-- Uniqueness gives the cocycle law for consecutive recharted transitions.-/
+/-- Uniqueness gives the cocycle law for consecutive recharted transitions.
+@isnad1 id=eq.3h11v.s10.a6671e94ccbb from=translated src=- shape=e08737d0 vocab=f116b564
+-/
 theorem transition_comp {r : ℕ} {U : Finset (IntCoord r)}
     (C : IntegerLatticeChart S) (D : IntegerLatticeChart T) (E : IntegerLatticeChart U)
     (A : IntCoord m →ᵃ[ℤ] IntCoord n) (B : IntCoord n →ᵃ[ℤ] IntCoord r)

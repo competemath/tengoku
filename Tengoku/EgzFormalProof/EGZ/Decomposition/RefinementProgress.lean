@@ -89,7 +89,9 @@ noncomputable def faceProgress {anchor : s.decomposition.flag.Node}
     positivity
 
 /-- A valid incomplete-element event forces a positive number of added
-directions, even though the actual output radius is chosen with the charts.-/
+directions, even though the actual output radius is chosen with the charts.
+@isnad1 id=lt.4h10v.s7.3800b779b1fa from=translated src=- shape=451604ee vocab=83312674
+-/
 theorem completeStep_count_pos {anchor : s.decomposition.flag.Node}
     {ε δ : ℝ} {g : ℕ → ℕ} {hδ : 0 ≤ δ} {hsmall : (3 : ℝ) ^ (d + 1) * δ < 1}
     (D : NormalizedCompleteStep s.decomposition anchor g s.radius R δ hδ hsmall)

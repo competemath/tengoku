@@ -14,7 +14,9 @@ required inverse-power gap threshold.
 
 namespace EGZ
 
-/-- Increasing the box radius decreases the gap threshold.-/
+/-- Increasing the box radius decreases the gap threshold.
+@isnad1 id=le.3h5v.s7.e1ffbfe7f28e from=translated src=- shape=bb12b6c9 vocab=341180a7
+-/
 theorem gapThreshold_antitone_radius {a : ℝ} (ha : 0 ≤ a)
     {n K B : ℕ} (hn : 0 < n) (hKB : K ≤ B) (d : ℕ) :
     a / ((n : ℝ) * (2 * (B : ℝ) + 1) ^ d) ≤
@@ -41,72 +43,117 @@ noncomputable def normalizedNodeEmbedding :
   toFun x := x.val.val
   inj' _ _ h := Subtype.ext (Subtype.ext h)
 
+/--
+@isnad1 id=eq.3h7v.s10.0517ef8422ae from=translated src=- shape=28749c91 vocab=5b3d2d46
+-/
 @[simp]
 theorem normalized_localWeight (x : (D.cleaned hp).flag.Node) :
     (D.normalized hp C hmod hcenter).localWeight x = D.weight x.val.val := rfl
 
+/--
+@isnad1 id=eq.3h7v.s10.a139b13fd3b9 from=translated src=- shape=ffbfa286 vocab=b481a630
+-/
 @[simp]
 theorem normalized_cumulativeWeight (x : (D.cleaned hp).flag.Node) :
     (D.normalized hp C hmod hcenter).cumulativeWeight x = D.cumulative x.val.val :=
   D.cleaned_cumulativeWeight hp x
 
+/--
+@isnad1 id=le.3h8v.s10.8b2ba81938aa from=translated src=- shape=0933ba39 vocab=843e44ad
+-/
 theorem normalized_localWeight_le (x : (D.cleaned hp).flag.Node) (v : FpCoord p d) :
     (D.normalized hp C hmod hcenter).localWeight x v ≤ Φ.localWeight x.val.val v :=
   D.weight_le x.val.val v
 
+/--
+@isnad1 id=le.3h8v.s10.e634cad110a1 from=translated src=- shape=0933ba39 vocab=5a862639
+-/
 theorem normalized_cumulativeWeight_le (x : (D.cleaned hp).flag.Node) (v : FpCoord p d) :
     (D.normalized hp C hmod hcenter).cumulativeWeight x v ≤
       Φ.cumulativeWeight x.val.val v := by
   rw [D.normalized_cumulativeWeight]
   exact FlagDecompositionRaw.cumulativeWeight_mono D.weight_le x.val.val v
 
+/--
+@isnad1 id=eq.3h6v.s10.e7c73791ff8b from=translated src=- shape=0bc50aa5 vocab=c2a73ab4
+-/
 @[simp]
 theorem normalized_retainedWeight : (D.normalized hp C hmod hcenter).retainedWeight =
     FlagDecompositionRaw.retainedWeight D.weight := by
   change (D.cleaned hp).retainedWeight = _
   rw [reduced_retainedWeight, (D.rebuildData hp).decomposition_retainedWeight]
 
+/--
+@isnad1 id=le.3h7v.s10.67518bf0e114 from=translated src=- shape=0d134efa vocab=536bbf96
+-/
 theorem normalized_retainedWeight_le (v : FpCoord p d) :
     (D.normalized hp C hmod hcenter).retainedWeight v ≤ Φ.retainedWeight v := by
   rw [D.normalized_retainedWeight]
   exact Finset.sum_le_sum (fun x _ ↦ D.weight_le x v)
 
+/--
+@isnad1 id=eq.3h6v.s10.452064ea9c48 from=translated src=- shape=842de418 vocab=d7a56e34
+-/
 @[simp]
 theorem normalized_retainedMass : (D.normalized hp C hmod hcenter).retainedMass =
     (D.cleaned hp).retainedMass := rfl
 
+/--
+@isnad1 id=eq.3h7v.s10.34c3525aea60 from=translated src=- shape=9945b78c vocab=1a0f8406
+-/
 @[simp]
 theorem normalized_gap (x : (D.cleaned hp).flag.Node) :
     (D.normalized hp C hmod hcenter).gap x = (D.cleaned hp).gap x :=
   Rechart.decomposition_gap (D.cleaned hp) C hp hmod hcenter x
 
+/--
+@isnad1 id=eq.3h8v.s11.29f0501bfab4 from=translated src=- shape=f2e766fb vocab=62b8631d
+-/
 @[simp]
 theorem normalized_hat (x : (D.cleaned hp).flag.Node) (q : IntCoord (C x).rank) :
     (D.normalized hp C hmod hcenter).hat x q = D.hat x.val.val ((C x).map q) := by
   rw [Rechart.decomposition_hat, D.cleaned_hat]
 
+/--
+@isnad1 id=eq.3h8v.s11.d7d42d09e118 from=translated src=- shape=f2e766fb vocab=bbca455c
+-/
 @[simp]
 theorem normalized_localLift (x : (D.cleaned hp).flag.Node) (q : IntCoord (C x).rank) :
     (D.normalized hp C hmod hcenter).localLift x q = D.localLift x.val.val ((C x).map q) := by
   rw [Rechart.decomposition_localLift]
   rfl
 
+/--
+@isnad1 id=isminima.3h6v.s10.ab7e53ece710 from=translated src=- shape=f8faa8ab vocab=e2edb39a
+-/
 theorem normalized_isMinimal : (D.normalized hp C hmod hcenter).IsMinimal :=
   Rechart.decomposition_isMinimal (D.cleaned hp) C hp hmod hcenter
 
+/--
+@isnad1 id=isreduce.3h6v.s10.9d66f514284d from=translated src=- shape=f8faa8ab vocab=a5447e0a
+-/
 theorem normalized_isReduced : (D.normalized hp C hmod hcenter).IsReduced :=
   Rechart.decomposition_isReduced (D.cleaned hp) C hp hmod hcenter (D.cleaned_isReduced hp)
 
+/--
+@isnad1 id=eq.3h6v.s10.05064b4328a8 from=translated src=- shape=b3a07436 vocab=aece6d47
+-/
 theorem normalized_card_eq :
     @Fintype.card (D.normalized hp C hmod hcenter).flag.Node
       (D.normalized hp C hmod hcenter).flag.nodeFintype =
         @Fintype.card (D.cleaned hp).flag.Node (D.cleaned hp).flag.nodeFintype := rfl
 
+/--
+@isnad1 id=le.3h6v.s10.23343772a892 from=translated src=- shape=b8971b03 vocab=84e40e2e
+-/
 theorem normalized_card_le :
     @Fintype.card (D.normalized hp C hmod hcenter).flag.Node
       (D.normalized hp C hmod hcenter).flag.nodeFintype ≤ Fintype.card Φ.flag.Node :=
   D.cleaned_card_le hp
 
+/--
+@isnad1 id=iskbound.5h8v.s11.2239a50a1857 from=translated src=- shape=89a4e210 vocab=afba43e0
+-/
 theorem normalized_isKBounded {K : Φ.flag.Node → ℕ}
     {B : (D.cleaned hp).flag.Node → ℕ} (hK : Φ.IsKBounded K)
     (hC : ∀ x (q : IntCoord (C x).rank),
@@ -115,7 +162,9 @@ theorem normalized_isKBounded {K : Φ.flag.Node → ℕ}
   Rechart.decomposition_isKBounded (D.cleaned hp) C hp hmod hcenter
     (D.cleaned_isKBounded hp hK) hC
 
-/-- The coordinate change preserves the already established mass-loss bound.-/
+/-- The coordinate change preserves the already established mass-loss bound.
+@isnad1 id=le.4h7v.s10.ea21bd562f0c from=translated src=- shape=71769a39 vocab=18899698
+-/
 theorem normalized_retainedMass_loss_le {α : ℝ}
     (hmass : (1 - α) * (Φ.retainedMass : ℝ) ≤ (D.cleaned hp).retainedMass) :
     (Φ.retainedMass : ℝ) - (D.normalized hp C hmod hcenter).retainedMass ≤
@@ -124,7 +173,9 @@ theorem normalized_retainedMass_loss_le {α : ℝ}
   linarith
 
 /-- A gap bound in the old coordinates remains valid at larger coordinate
-bounds after recharting. The denominator uses the old node count.-/
+bounds after recharting. The denominator uses the old node count.
+@isnad1 id=le.6h10v.s11.d5f4deaa1c70 from=translated src=- shape=52306e01 vocab=0d4a3aa8
+-/
 theorem normalized_gap_bound {K : Φ.flag.Node → ℕ}
     {B : (D.cleaned hp).flag.Node → ℕ} {α : ℝ} (hα : 0 ≤ α)
     (hKB : ∀ x, K x.val.val ≤ B x)
@@ -143,10 +194,16 @@ noncomputable def normalizedSubdivisionMap :
     SubdivisionMap Φ (D.normalized hp C hmod hcenter) :=
   (D.cleanedSubdivisionMap hp).comp (Rechart.subdivisionMap (D.cleaned hp) C hp hmod hcenter)
 
+/--
+@isnad1 id=eq.3h7v.s10.0a5ae9a7a955 from=translated src=- shape=b9fdd22a vocab=5267e6f6
+-/
 @[simp]
 theorem normalizedSubdivisionMap_node (x : (D.cleaned hp).flag.Node) :
     (D.normalizedSubdivisionMap hp C hmod hcenter).node x = x.val.val := rfl
 
+/--
+@isnad1 id=isrealiz.5h8v.s12.93bb8cc9774a from=translated src=- shape=c08d0f04 vocab=5abb80fd
+-/
 theorem normalized_isRealizedFace (x : (D.cleaned hp).flag.Node)
     (Γ : (Φ.flag.polytope x.val.val).Face)
     (hne : (((D.normalized hp C hmod hcenter).flag.polytope x).carrier ∩
@@ -156,6 +213,9 @@ theorem normalized_isRealizedFace (x : (D.cleaned hp).flag.Node)
       ((D.normalizedSubdivisionMap hp C hmod hcenter).face x Γ hne) :=
   (D.normalizedSubdivisionMap hp C hmod hcenter).isRealizedFace x Γ hne hΓ
 
+/--
+@isnad1 id=iscomple.8h11v.s10.1e07c2351b7a from=translated src=- shape=59738600 vocab=5bb903de
+-/
 theorem normalized_isCompleteElement {x : (D.cleaned hp).flag.Node} {t : ℕ}
     {ε δ α : ℝ} (hε : 0 < ε) (hα : 0 ≤ α)
     (hlarge : Φ.IsLargeElement ε x.val.val) (hcomplete : Φ.IsCompleteElement x.val.val t δ)
@@ -171,7 +231,9 @@ open FlagDecomposition
 
 /-- Uniform normalized gap cleanup. The coordinate growth function depends
 only on dimension, and the prime threshold only on the old uniform bound.
-The resulting operation is both minimal and reduced.-/
+The resulting operation is both minimal and reduced.
+@isnad1 id=ex.0h1v.s11.9e6b32e47f03 from=translated src=- shape=6ff2f34d vocab=3dc5b7f2
+-/
 theorem normalized_gap_cleanup_lemma (d : ℕ) :
     ∃ A : ℕ → ℕ, Monotone A ∧ (∀ K, K ≤ A K) ∧
       ∀ BK : ℕ, ∃ p₀ : ℕ, 2 ≤ p₀ ∧

@@ -15,6 +15,9 @@ open scoped BigOperators
 
 namespace EGZ.Expansion
 
+/--
+@isnad1 id=injectiv.2h4v.s7.4a1bd6a613e5 from=translated src=- shape=583bd2ae vocab=17886742
+-/
 theorem mod_injective_on_support {p r K : ℕ} [NeZero p]
     (S : Finset (IntCoord r)) (hbox : ∀ q ∈ S, latticeSupNorm q ≤ K) (hKp : 2 * K < p) :
     Function.Injective (fun q : S ↦ q.val.mod p) := by
@@ -24,6 +27,9 @@ theorem mod_injective_on_support {p r K : ℕ} [NeZero p]
   · exact (hbox q q.property).trans (by omega)
   · exact (hbox z z.property).trans (by omega)
 
+/--
+@isnad1 id=le.2h5v.s5.1047489dd101 from=translated src=- shape=8c6ace44 vocab=1b4ca1d1
+-/
 theorem pushWeight_le_of_injective {A B : Type*} [Fintype A]
     (f : A → B) (hf : Function.Injective f) (u : A → ℕ) (w : B → ℕ)
     (hu : ∀ a, u a ≤ w (f a)) : pushWeight f u ≤ w := by
@@ -39,6 +45,9 @@ theorem pushWeight_le_of_injective {A B : Type*} [Fintype A]
     rw [hz]
     exact Nat.zero_le _
 
+/--
+@isnad1 id=ex.5h7v.s10.5fa2cec13651 from=translated src=- shape=9cc0e29b vocab=0ecee54b
+-/
 theorem prescribed_quotient_counts {p r t K : ℕ} [NeZero p]
     (S : Finset (IntCoord r)) (w : FpCoord p (r + t) → ℕ) (α : S → ℤ)
     (hbox : ∀ q ∈ S, latticeSupNorm q ≤ K) (hKp : 2 * K < p)
@@ -67,6 +76,9 @@ theorem prescribed_quotient_counts {p r t K : ℕ} [NeZero p]
     simpa [Finset.sum_apply, IntCoord.mod, nsmul_eq_mul,
       Pi.mul_apply, ← haZ] using hcast
 
+/--
+@isnad1 id=relative.2h5v.s5.1bb24eda4b58 from=translated src=- shape=e8477658 vocab=e5d2a69a
+-/
 theorem relativeExpansionAt_zero_fibre {p r K T : ℕ} [NeZero p] {δ : ℝ}
     (hδ : 0 < δ) (hKp : 2 * K < p) : RelativeExpansionAt r 0 K δ T p := by
   intro S w α hbox _hs hz hm ha _hthick

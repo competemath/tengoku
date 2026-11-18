@@ -22,6 +22,9 @@ namespace EGZ
 
 namespace ConvexFlag
 
+/--
+@isnad1 id=ex.4h5v.s7.2335586504e0 from=translated src=- shape=c15d77c9 vocab=c4c1b467
+-/
 theorem flagCenterpoint_fintype {F : ConvexFlag} (Ω : F.ProperPointSet)
     {I : Type*} [Fintype I] (points : I → F.Point)
     (hproper : ∀ i, points i ∈ Ω) (hintegral : ∀ i, (points i).IsIntegral)
@@ -53,6 +56,9 @@ variable {p d : ℕ} [NeZero p] {f : FpCoord p d → ℕ}
 /-- The nonzero local ambient atoms, with node labels retained.-/
 abbrev LocalAtom := {a : Φ.flag.Node × FpCoord p d // Φ.localWeight a.1 a.2 ≠ 0}
 
+/--
+@isnad1 id=ne.2h6v.s9.db8944d92ff3 from=translated src=- shape=1a02bf71 vocab=f2919eb9
+-/
 theorem localLift_centeredLift_ne_zero (hp : Odd p) (x : Φ.flag.Node)
     (v : FpCoord p d) (hv : Φ.localWeight x v ≠ 0) :
     Φ.localLift x (FpCoord.centeredLift (Φ.representation.map x v)) ≠ 0 := by
@@ -73,15 +79,24 @@ def localAtomPoint (hp : Odd p) (a : Φ.LocalAtom) : Φ.flag.Point where
   val_mem := Φ.mem_polytope_of_localLift_ne_zero _ _
     (Φ.localLift_centeredLift_ne_zero hp _ _ a.2)
 
+/--
+@isnad1 id=mem.1h5v.s6.f6e62a65026a from=translated src=- shape=241d8091 vocab=ebdafd8a
+-/
 theorem localAtomPoint_proper (hp : Odd p) (a : Φ.LocalAtom) :
     Φ.localAtomPoint hp a ∈ Φ.properPoints :=
   ConvexFlag.subset_convexHull Φ.flag Φ.omegaZero
     ⟨_, rfl, Φ.localLift_centeredLift_ne_zero hp _ _ a.2⟩
 
+/--
+@isnad1 id=isintegr.1h5v.s5.fb5a27e6c488 from=translated src=- shape=162abc37 vocab=28e8ebb3
+-/
 theorem localAtomPoint_integral (hp : Odd p) (a : Φ.LocalAtom) :
     (Φ.localAtomPoint hp a).IsIntegral :=
   (Φ.representation.lattice_eq_standard _ _).mpr ⟨_, rfl⟩
 
+/--
+@isnad1 id=eq.0h4v.s8.c857d3b23fa2 from=translated src=- shape=c9890d61 vocab=dde57e6d
+-/
 theorem sum_localAtom_weight : (∑ a : Φ.LocalAtom, Φ.localWeight a.1.1 a.1.2) = Φ.retainedMass := by
   have hz : (∑ a : {a : Φ.flag.Node × FpCoord p d // ¬ Φ.localWeight a.1 a.2 ≠ 0},
       Φ.localWeight a.1.1 a.1.2) = 0 := by
@@ -96,6 +111,9 @@ theorem sum_localAtom_weight : (∑ a : Φ.LocalAtom, Φ.localWeight a.1.1 a.1.2
   unfold retainedMass retainedWeight FlagDecompositionRaw.retainedWeight natMass
   exact Finset.sum_comm
 
+/--
+@isnad1 id=eq.2h6v.s9.61d3de62c5df from=translated src=- shape=2c8c79ee vocab=43cad36d
+-/
 theorem localAtomPoint_coord (hp : Odd p) (a : Φ.LocalAtom) {x : Φ.flag.Node}
     (h : a.1.1 ≤ x) :
     (Φ.localAtomPoint hp a).coord h =
@@ -110,7 +128,9 @@ theorem localAtomPoint_coord (hp : Odd p) (a : Φ.LocalAtom) {x : Φ.flag.Node}
   rw [(Φ.flag.transition h).real_integer, ← FpCoord.centeredLift_mod hc, hm]
 
 /-- Grouping local ambient atoms below a node gives exactly its cumulative
-lifted mass on any set of real coordinates.-/
+lifted mass on any set of real coordinates.
+@isnad1 id=eq.1h6v.s11.ee951b3b49a8 from=translated src=- shape=55960309 vocab=9fdfe56c
+-/
 theorem sum_localAtom_on (hp : Odd p) (x : Φ.flag.Node)
     (S : Set (RealCoord (Φ.flag.rank x))) :
     (∑ a : Φ.LocalAtom, if a.1.1 ≤ x ∧
@@ -139,7 +159,9 @@ theorem sum_localAtom_on (hp : Odd p) (x : Φ.flag.Node)
 
 /-- The flag centerpoint has an integral base coordinate, and every closed
 halfspace through it carries at least retained mass divided by the flag's
-Helly constant in the cumulative lift at that base.-/
+Helly constant in the cumulative lift at that base.
+@isnad1 id=ex.1h4v.s10.b31aff252bc6 from=translated src=- shape=ecb823a1 vocab=e229ab7e
+-/
 theorem exists_cumulative_centerpoint_helly (hp : Odd p) :
     ∃ q : Φ.flag.Point, q ∈ Φ.omega ∧ q.IsIntegral ∧
       ∀ ξ : RealCoord (Φ.flag.rank q.base) →ᵃ[ℝ] ℝ,
@@ -178,7 +200,9 @@ theorem exists_cumulative_centerpoint_helly (hp : Odd p) :
   exact h.trans_eq hmassR
 
 /-- Proposition 7.1 converts the cumulative centerpoint bound to the hollow
-constant of the original finite-field space.-/
+constant of the original finite-field space.
+@isnad1 id=ex.2h4v.s10.5c39c99684cd from=translated src=- shape=dd373698 vocab=b6e54c4b
+-/
 theorem exists_cumulative_centerpoint (hp : p.Prime) (hodd : Odd p) :
     ∃ q : Φ.flag.Point, q ∈ Φ.omega ∧ q.IsIntegral ∧
       ∀ ξ : RealCoord (Φ.flag.rank q.base) →ᵃ[ℝ] ℝ,
@@ -193,7 +217,9 @@ theorem exists_cumulative_centerpoint (hp : p.Prime) (hodd : Odd p) :
     (by exact_mod_cast Φ.propositionSevenOne hp)
 
 /-- The constant zero functional detects the entire cumulative mass,
-including when the base lattice has dimension zero.-/
+including when the base lattice has dimension zero.
+@isnad1 id=le.2h6v.s10.09a932c83791 from=translated src=- shape=655b7227 vocab=1a8bd9ce
+-/
 theorem cumulativeMass_lower_of_halfspace_lower (hodd : Odd p)
     (q : Φ.flag.Point) {a : ℝ}
     (h : ∀ ξ : RealCoord (Φ.flag.rank q.base) →ᵃ[ℝ] ℝ,
@@ -204,6 +230,9 @@ theorem cumulativeMass_lower_of_halfspace_lower (hodd : Odd p)
   rw [Φ.liftedMassOn_eq_natMassOn hodd] at hz
   simpa only [natMassOn, Set.mem_ofPred_eq, Set.mem_univ, ite_true, natMass] using hz
 
+/--
+@isnad1 id=islargee.2h6v.s10.5978595b5bcd from=translated src=- shape=e871c097 vocab=6dae4692
+-/
 theorem isLargeElement_of_halfspace_lower (hodd : Odd p)
     (q : Φ.flag.Point) {ε : ℝ}
     (h : ∀ ξ : RealCoord (Φ.flag.rank q.base) →ᵃ[ℝ] ℝ,
@@ -212,7 +241,9 @@ theorem isLargeElement_of_halfspace_lower (hodd : Odd p)
   rw [Φ.isLargeElement_iff_natMass hodd]
   exact Φ.cumulativeMass_lower_of_halfspace_lower hodd q h
 
-/-- The cumulative centerpoint lies at a node large at inverse-hollow scale.-/
+/-- The cumulative centerpoint lies at a node large at inverse-hollow scale.
+@isnad1 id=ex.2h4v.s10.a92b946f5923 from=translated src=- shape=3d99bb9d vocab=5587cda1
+-/
 theorem exists_cumulative_centerpoint_large (hp : p.Prime) (hodd : Odd p) :
     ∃ q : Φ.flag.Point, q ∈ Φ.omega ∧ q.IsIntegral ∧
       Φ.IsLargeElement (hollowConstant p d : ℝ)⁻¹ q.base ∧

@@ -53,12 +53,18 @@ structure Coefficients {d : ℕ} (D : Data d) (ε θ μ : ℝ) (n : ℕ) where
 
 namespace Data
 
+/--
+@isnad1 id=lt.0h2v.s6.9703568a2887 from=translated src=- shape=a27495cb vocab=698bef11
+-/
 theorem totalWeight_pos {d : ℕ} (D : Data d) : 0 < ∑ q, D.weight q := by
   classical
   obtain ⟨q, hq⟩ := D.support_nonempty
   exact Finset.sum_pos' (fun q _ ↦ (D.weight_pos q).le)
     ⟨⟨q, hq⟩, Finset.mem_univ _, D.weight_pos _⟩
 
+/--
+@isnad1 id=le.1h3v.s5.1d9c5d909981 from=translated src=- shape=603f65b9 vocab=9ad127fd
+-/
 theorem centrality_le_one {d : ℕ} (D : Data d) {θ : ℝ}
     (h : IsCentral D.support D.weight θ D.center.real) : θ ≤ 1 := by
   have hzero := h (AffineMap.const ℝ (RealCoord d) (0 : ℝ))
@@ -79,7 +85,9 @@ def mono_lower {d : ℕ} {D : Data d} {ε θ μ μ' : ℝ} {n : ℕ}
   upper := A.upper
 
 /-- Balance at length `p` becomes zero sum after reducing lattice coordinates
-modulo `p`. The center need not be zero.-/
+modulo `p`. The center need not be zero.
+@isnad1 id=eq.0h7v.s8.deca665403f2 from=translated src=- shape=fc3268c4 vocab=3f80c028
+-/
 theorem mod_sum_eq_zero {d p : ℕ} {D : Data d} {ε θ μ : ℝ}
     (A : Coefficients D ε θ μ p) :
     ∑ q, (A.coeff q : ZMod p) • q.val.mod p = 0 := by
@@ -91,7 +99,9 @@ theorem mod_sum_eq_zero {d p : ℕ} {D : Data d} {ε θ μ : ℝ}
 
 /-- The slack used by relative expansion follows from a positive lower
 fraction, a proportional upper bound, and a positive lower bound on each
-available fibre size.-/
+available fibre size.
+@isnad1 id=and.5h12v.s8.421ed4b54d33 from=translated src=- shape=008e0a9f vocab=dac0bc1e
+-/
 theorem expansion_slack {d n : ℕ} {D : Data d} {ε θ μ : ℝ}
     (A : Coefficients D ε θ μ n) (size : D.support → ℕ)
     {η γ δ : ℝ} (hη : 0 ≤ η) (hδμ : δ ≤ μ) (hδηγ : δ ≤ η * γ)
@@ -164,7 +174,9 @@ def BalancedCombinationLemma : Prop :=
 namespace BalancedCombinationLemma
 
 /-- A finite family admits common constants. Their dependence on centrality
-and on the eventual integer length remains absent.-/
+and on the eventual integer length remains absent.
+@isnad1 id=ex.2h4v.s6.908a06297c97 from=translated src=- shape=9fb7b172 vocab=f7a76dc6
+-/
 theorem uniform_finite_family (h : BalancedCombinationLemma)
     {I : Type*} [Fintype I] (d : I → ℕ) (D : ∀ i, BalancedCombination.Data (d i))
     (ε : ℝ) (hε : 0 < ε) :
@@ -191,7 +203,9 @@ theorem uniform_finite_family (h : BalancedCombinationLemma)
 
 /-- Bounded supports, bounded positive integer weights, and bounded lattice
 centers have common constants. No centrality parameter or length enters the
-choice of those constants.-/
+choice of those constants.
+@isnad1 id=ex.2h4v.s6.33e081bdf84f from=translated src=- shape=ddc127fb vocab=fd33e365
+-/
 theorem uniform_bounded_configurations (h : BalancedCombinationLemma)
     (d K W : ℕ) (ε : ℝ) (hε : 0 < ε) :
     ∃ (μ : ℝ) (N : ℕ), 0 < μ ∧
@@ -208,7 +222,9 @@ theorem uniform_bounded_configurations (h : BalancedCombinationLemma)
   exact ⟨μ, N, hμ, fun Q hQ ↦ hcoeff ⟨Q, hQ⟩⟩
 
 /-- The same constants can be chosen for every coordinate rank at most
-the fixed ambient dimension.-/
+the fixed ambient dimension.
+@isnad1 id=ex.2h4v.s6.5507616c8e59 from=translated src=- shape=ed3e405d vocab=3529f3d1
+-/
 theorem uniform_bounded_dimensions (h : BalancedCombinationLemma)
     (d K W : ℕ) (ε : ℝ) (hε : 0 < ε) :
     ∃ (μ : ℝ) (N : ℕ), 0 < μ ∧

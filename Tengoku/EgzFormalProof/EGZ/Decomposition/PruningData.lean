@@ -32,14 +32,23 @@ noncomputable abbrev hat := FlagDecompositionRaw.hat Φ.representation D.weight
 noncomputable abbrev localLift := FlagDecompositionRaw.localLift Φ.representation D.weight
 noncomputable abbrev support := FlagDecompositionRaw.hatSupport Φ.representation D.weight
 
+/--
+@isnad1 id=iff.0h7v.s6.505d909e2596 from=translated src=- shape=39ef0625 vocab=bb04d5a5
+-/
 @[simp]
 theorem mem_support (x : Φ.flag.Node) (q : IntCoord (Φ.flag.rank x)) :
     q ∈ D.support x ↔ D.hat x q ≠ 0 := FlagDecompositionRaw.mem_hatSupport _ _ _ _
 
+/--
+@isnad1 id=mem.1h7v.s8.2aa1d56ac925 from=translated src=- shape=5345bd56 vocab=ddfc7369
+-/
 theorem weight_supported (x : Φ.flag.Node) (v : FpCoord p d)
     (hv : D.weight x v ≠ 0) : v ∈ Φ.representation.space x :=
   Φ.local_supported x v (ne_of_gt ((Nat.pos_of_ne_zero hv).trans_le (D.weight_le x v)))
 
+/--
+@isnad1 id=iff.0h7v.s7.a596c3b9312e from=translated src=- shape=93b1919e vocab=96aa17ed
+-/
 theorem cumulative_ne_zero_iff (x : Φ.flag.Node) (v : FpCoord p d) :
     D.cumulative x v ≠ 0 ↔ ∃ y, y ≤ x ∧ D.weight y v ≠ 0 := by
   classical
@@ -56,19 +65,31 @@ theorem cumulative_ne_zero_iff (x : Φ.flag.Node) (v : FpCoord p d) :
         (fun _ _ ↦ Nat.zero_le _) (Finset.mem_univ y)
     exact ne_of_gt ((Nat.pos_of_ne_zero hy).trans_le hle)
 
+/--
+@isnad1 id=mem.1h7v.s8.183277bfdbe8 from=translated src=- shape=5345bd56 vocab=be43851d
+-/
 theorem cumulative_supported (x : Φ.flag.Node) (v : FpCoord p d)
     (hv : D.cumulative x v ≠ 0) : v ∈ Φ.representation.space x := by
   obtain ⟨y, hyx, hy⟩ := (D.cumulative_ne_zero_iff x v).mp hv
   exact Φ.representation.space_mono hyx (D.weight_supported y v hy)
 
+/--
+@isnad1 id=ne.2h8v.s6.a965e5de6913 from=translated src=- shape=473295de vocab=2fb11999
+-/
 theorem cumulative_ne_zero_of_le {y x : Φ.flag.Node} (h : y ≤ x)
     {v : FpCoord p d} (hv : D.cumulative y v ≠ 0) : D.cumulative x v ≠ 0 := by
   obtain ⟨z, hzy, hz⟩ := (D.cumulative_ne_zero_iff y v).mp hv
   exact (D.cumulative_ne_zero_iff x v).mpr ⟨z, hzy.trans h, hz⟩
 
+/--
+@isnad1 id=le.0h7v.s6.ba2a628e6e51 from=translated src=- shape=79d04b5a vocab=56ebd5dc
+-/
 theorem hat_le_old (x : Φ.flag.Node) (q : IntCoord (Φ.flag.rank x)) :
     D.hat x q ≤ Φ.hat x q := FlagDecompositionRaw.hat_mono _ D.weight_le _ _
 
+/--
+@isnad1 id=le.0h7v.s6.740a60b0ebd8 from=translated src=- shape=79d04b5a vocab=ac5fc6f9
+-/
 theorem localLift_le_old (x : Φ.flag.Node) (q : IntCoord (Φ.flag.rank x)) :
     D.localLift x q ≤ Φ.localLift x q := by
   classical
@@ -81,12 +102,18 @@ theorem localLift_le_old (x : Φ.flag.Node) (q : IntCoord (Φ.flag.rank x)) :
     · exact le_rfl
   · exact le_rfl
 
+/--
+@isnad1 id=mem.1h7v.s6.d4648e0abead from=translated src=- shape=9c7982f7 vocab=a34d7cf6
+-/
 theorem mem_old_polytope {x : Φ.flag.Node} {q : IntCoord (Φ.flag.rank x)}
     (hq : D.hat x q ≠ 0) : q.real ∈ (Φ.flag.polytope x).carrier := by
   rw [Φ.polytope_eq_liftedSupport]
   exact _root_.subset_convexHull ℝ _ ⟨q, (Φ.liftedSupport_spec x q).mpr
     (ne_of_gt ((Nat.pos_of_ne_zero hq).trans_le (D.hat_le_old x q))), rfl⟩
 
+/--
+@isnad1 id=iff.0h7v.s9.c39ea07ab160 from=translated src=- shape=e1a95d9e vocab=ec4898fd
+-/
 theorem hat_ne_zero_iff (x : Φ.flag.Node) (q : IntCoord (Φ.flag.rank x)) :
     D.hat x q ≠ 0 ↔ IsCenteredLift p q ∧
       ∃ v, Φ.representation.map x v = q.mod p ∧ D.cumulative x v ≠ 0 := by
@@ -112,6 +139,9 @@ theorem hat_ne_zero_iff (x : Φ.flag.Node) (q : IntCoord (Φ.flag.rank x)) :
     simp only [ne_eq, not_true_eq_false, false_iff, not_and]
     exact fun h ↦ (hc h).elim
 
+/--
+@isnad1 id=iff.1h6v.s6.540c193849ae from=translated src=- shape=914ce6e4 vocab=08c37334
+-/
 theorem support_nonempty_iff (hp : Odd p) (x : Φ.flag.Node) :
     (D.support x).Nonempty ↔ ∃ v, D.cumulative x v ≠ 0 := by
   constructor
@@ -125,12 +155,17 @@ theorem support_nonempty_iff (hp : Odd p) (x : Φ.flag.Node) :
       (FpCoord.mod_centeredLift _).symm, hv⟩
 
 /-- Upper transitions of surviving support points remain centered because
-they lie in the old, bounded upper polytope.-/
+they lie in the old, bounded upper polytope.
+@isnad1 id=iscenter.2h8v.s7.03d76ea640c8 from=translated src=- shape=0322be12 vocab=98337fa1
+-/
 theorem transition_centered {y x : Φ.flag.Node} (h : y ≤ x)
     {q : IntCoord (Φ.flag.rank y)} (hq : D.hat y q ≠ 0) :
     IsCenteredLift p ((Φ.flag.transition h).integer q) := by
   exact Φ.isCenteredLift_transition_of_mem_polytope h q (D.mem_old_polytope hq)
 
+/--
+@isnad1 id=mem.2h8v.s7.daf6fac2faeb from=translated src=- shape=f0e9434f vocab=7138e4c2
+-/
 theorem transition_mem_support {y x : Φ.flag.Node} (h : y ≤ x)
     {q : IntCoord (Φ.flag.rank y)} (hq : q ∈ D.support y) :
     (Φ.flag.transition h).integer q ∈ D.support x := by
@@ -142,7 +177,9 @@ theorem transition_mem_support {y x : Φ.flag.Node} (h : y ≤ x)
     (Φ.flag.transition h).mod_integer]
 
 /-- Every surviving cumulative atom comes from a surviving local atom at
-a lower node. This is the visibility input for the rebuilt support hulls.-/
+a lower node. This is the visibility input for the rebuilt support hulls.
+@isnad1 id=ex.2h7v.s7.677545e68787 from=translated src=- shape=9ae57347 vocab=1120b867
+-/
 theorem exists_localLift_of_hat_ne_zero (hp : Odd p)
     (x : Φ.flag.Node) (q : IntCoord (Φ.flag.rank x)) (hq : D.hat x q ≠ 0) :
     ∃ (y : Φ.flag.Node) (h : y ≤ x) (z : IntCoord (Φ.flag.rank y)),

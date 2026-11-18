@@ -16,7 +16,9 @@ open scoped BigOperators
 namespace EGZ
 
 /-- An integer point in an affine span admits finitely supported integer
-coefficients with sum one on the given generating support.-/
+coefficients with sum one on the given generating support.
+@isnad1 id=ex.1h3v.s8.bbbabe618714 from=translated src=- shape=74888648 vocab=a9af4851
+-/
 theorem exists_finsupp_affineCombination_of_mem_affineSpan {n : ℕ}
     {S : Finset (IntCoord n)} {z : IntCoord n}
     (hz : z ∈ affineSpan ℤ (S : Set (IntCoord n))) :
@@ -56,7 +58,9 @@ theorem exists_finsupp_affineCombination_of_mem_affineSpan {n : ℕ}
       exact hzcomb.symm
 
 /-- The finitely supported coefficient definition of minimality is
-equivalent to spanning the full integer affine space.-/
+equivalent to spanning the full integer affine space.
+@isnad1 id=iff.0h2v.s9.4a33b68c0632 from=translated src=- shape=d170a1ed vocab=e7a836da
+-/
 theorem FlagDecomposition.affineIntSpans_iff_affineSpan_eq_top {n : ℕ}
     (S : Finset (IntCoord n)) :
     FlagDecomposition.AffineIntSpans S ↔ affineSpan ℤ (S : Set (IntCoord n)) = ⊤ := by
@@ -85,16 +89,24 @@ variable {n : ℕ} {S : Finset (IntCoord n)} (C : IntegerLatticeChart S)
 irrelevant; the inverse laws below hold on the generated lattice.-/
 noncomputable def coordinates : IntCoord n → IntCoord C.rank := Function.invFun C.map
 
+/--
+@isnad1 id=eq.0h4v.s8.25a072821dfa from=translated src=- shape=3f56cb07 vocab=d10137d9
+-/
 @[simp]
 theorem coordinates_map (q : IntCoord C.rank) : C.coordinates (C.map q) = q :=
   Function.leftInverse_invFun C.injective q
 
 /-- The inverse coordinates recover each point in the support-generated
-integer affine lattice.-/
+integer affine lattice.
+@isnad1 id=eq.1h4v.s8.4bc711572867 from=translated src=- shape=8a4d3d33 vocab=315c2d46
+-/
 theorem map_coordinates_of_mem_affineSpan {z : IntCoord n}
     (hz : z ∈ affineSpan ℤ (S : Set (IntCoord n))) : C.map (C.coordinates z) = z :=
   Function.invFun_eq (C.range_eq.symm.subset hz)
 
+/--
+@isnad1 id=eq.1h4v.s8.0034dac7c7d7 from=translated src=- shape=de9ffbb1 vocab=07ffbed0
+-/
 theorem map_coordinates_of_mem {z : IntCoord n} (hz : z ∈ S) :
     C.map (C.coordinates z) = z :=
   C.map_coordinates_of_mem_affineSpan (subset_affineSpan ℤ _ hz)
@@ -104,11 +116,17 @@ noncomputable def coordinateSupport : Finset (IntCoord C.rank) := by
   classical
   exact S.image C.coordinates
 
+/--
+@isnad1 id=mem.1h4v.s6.0883ae9a7109 from=translated src=- shape=064d9a82 vocab=a8b3ed79
+-/
 theorem coordinates_mem_coordinateSupport {z : IntCoord n} (hz : z ∈ S) :
     C.coordinates z ∈ C.coordinateSupport := by
   classical
   exact Finset.mem_image.mpr ⟨z, hz, rfl⟩
 
+/--
+@isnad1 id=iff.0h4v.s8.a95453fe2680 from=translated src=- shape=166303d9 vocab=dd765f20
+-/
 @[simp]
 theorem mem_coordinateSupport {q : IntCoord C.rank} :
     q ∈ C.coordinateSupport ↔ C.map q ∈ S := by
@@ -120,6 +138,9 @@ theorem mem_coordinateSupport {q : IntCoord C.rank} :
   · intro hq
     exact Finset.mem_image.mpr ⟨C.map q, hq, C.coordinates_map q⟩
 
+/--
+@isnad1 id=eq.0h3v.s8.29acf97a4626 from=translated src=- shape=78a6584e vocab=bce8a7ec
+-/
 @[simp]
 theorem image_coordinateSupport : C.coordinateSupport.image C.map = S := by
   classical
@@ -132,9 +153,15 @@ theorem image_coordinateSupport : C.coordinateSupport.image C.map = S := by
     exact Finset.mem_image.mpr ⟨C.coordinates z,
       Finset.mem_image.mpr ⟨z, hz, rfl⟩, C.map_coordinates_of_mem hz⟩
 
+/--
+@isnad1 id=nonempty.1h3v.s4.d05f81cc3c17 from=translated src=- shape=ad347f84 vocab=f1f6304f
+-/
 theorem coordinateSupport_nonempty (hS : S.Nonempty) : C.coordinateSupport.Nonempty :=
   hS.image C.coordinates
 
+/--
+@isnad1 id=eq.0h3v.s4.0e1a1d0b7467 from=translated src=- shape=13856929 vocab=f53c5c45
+-/
 @[simp]
 theorem card_coordinateSupport : C.coordinateSupport.card = S.card := by
   classical
@@ -143,7 +170,9 @@ theorem card_coordinateSupport : C.coordinateSupport.card = S.card := by
       (Finset.card_image_of_injective _ C.injective).symm
     _ = S.card := congrArg Finset.card C.image_coordinateSupport
 
-/-- The new support generates every integer coordinate point.-/
+/-- The new support generates every integer coordinate point.
+@isnad1 id=eq.0h3v.s10.cb30496e268d from=translated src=- shape=05dd9d68 vocab=c6c3f357
+-/
 theorem affineSpan_coordinateSupport :
     affineSpan ℤ (C.coordinateSupport : Set (IntCoord C.rank)) = ⊤ := by
   have hmap : (affineSpan ℤ (C.coordinateSupport : Set (IntCoord C.rank))).map C.map =
@@ -158,12 +187,16 @@ theorem affineSpan_coordinateSupport :
   rwa [C.injective heq] at hr
 
 /-- The transformed support satisfies exactly the lattice-generation field
-in the definition of a minimal flag decomposition.-/
+in the definition of a minimal flag decomposition.
+@isnad1 id=affinein.0h3v.s4.2d66c422d201 from=translated src=- shape=a7f3b144 vocab=0ca0017d
+-/
 theorem coordinateSupport_affineIntSpans :
     FlagDecomposition.AffineIntSpans C.coordinateSupport :=
   (FlagDecomposition.affineIntSpans_iff_affineSpan_eq_top _).mpr C.affineSpan_coordinateSupport
 
-/-- An old support bound and a chart box bound give the new support bound.-/
+/-- An old support bound and a chart box bound give the new support bound.
+@isnad1 id=le.3h6v.s8.d2489ccfd491 from=translated src=- shape=4489d60e vocab=ae8dd01a
+-/
 theorem coordinateSupport_bound {K B : ℕ}
     (hS : ∀ z ∈ S, latticeSupNorm z ≤ K)
     (hC : ∀ q : IntCoord C.rank, latticeSupNorm (C.map q) ≤ K → latticeSupNorm q ≤ B) :

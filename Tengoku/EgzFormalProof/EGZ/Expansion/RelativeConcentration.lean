@@ -15,6 +15,9 @@ open scoped BigOperators Matrix
 
 namespace EGZ.Expansion
 
+/--
+@isnad1 id=le.1h4v.s6.b3f3a5153686 from=translated src=- shape=0e1a9ec5 vocab=ad2841b5
+-/
 theorem finiteProb_sigma_le {I : Type*} [Fintype I] [Nonempty I]
     (A : I → Type*) [∀ i, Fintype (A i)] [∀ i, Nonempty (A i)]
     (P : (Σ i, A i) → Prop) {η : ℝ}
@@ -32,6 +35,9 @@ theorem finiteProb_sigma_le {I : Type*} [Fintype I] [Nonempty I]
   rw [finiteProb, Fintype.expect_eq_sum_div_card] at hi
   exact (div_le_iff₀ (by exact_mod_cast (Fintype.card_pos (α := A i)))).mp hi
 
+/--
+@isnad1 id=eq.0h2v.s5.a75416585139 from=translated src=- shape=9afa423d vocab=74b19a54
+-/
 theorem finiteProb_eq_natMassOn {A : Type*} [Fintype A] (P : A → Prop) :
     finiteProb P = (natMassOn (fun _ : A ↦ 1) {a | P a} : ℝ) / Fintype.card A := by
   classical
@@ -39,6 +45,9 @@ theorem finiteProb_eq_natMassOn {A : Type*} [Fintype A] (P : A → Prop) :
   congr 1
   simp [natMassOn]
 
+/--
+@isnad1 id=isthinal.1h7v.s8.3cc76a38c75e from=translated src=- shape=c7b5bdd0 vocab=326490de
+-/
 theorem isThinAlong_pushWeight_of_finiteProb {A : Type*} [Fintype A] [Nonempty A]
     {p n K : ℕ} [NeZero p] (point : A → FpCoord p n)
     (ξ : FpCoord p n →ᵃ[ZMod p] ZMod p) {η : ℝ}
@@ -54,7 +63,9 @@ theorem isThinAlong_pushWeight_of_finiteProb {A : Type*} [Fintype A] [Nonempty A
   simpa only [natMass, Finset.sum_const, Finset.card_univ, smul_eq_mul, mul_one,
     slab, Set.preimage_ofPred_eq] using hmass
 
-/-- Grouping the signed slots of a relation by their labels.-/
+/-- Grouping the signed slots of a relation by their labels.
+@isnad1 id=eq.1h7v.s7.f1f49e325034 from=translated src=- shape=dc6f951b vocab=b460e9da
+-/
 theorem sum_signed_slots {S I R : Type*} [Fintype S] [DecidableEq S] [Fintype I] [CommRing R]
     (label : I → S) (sign : I → ℤ) (coeff : S → ℤ)
     (hcoeff : ∀ q, (∑ i, if label i = q then sign i else 0) = coeff q)
@@ -69,7 +80,9 @@ theorem sum_signed_slots {S I R : Type*} [Fintype S] [DecidableEq S] [Fintype I]
 
 /-- If every diagonal exchange and every chosen affine-relation exchange
 is concentrated, all positions lie mostly in one affine slab that varies
-in a fibre direction.-/
+in a fibre direction.
+@isnad1 id=ex.10h13v.s12.98b37affadb6 from=translated src=- shape=d1d2c664 vocab=3116f3dd
+-/
 theorem relative_concentration {p r t N B W : ℕ} [Fact p.Prime]
     (S : Finset (IntCoord r)) [Nonempty S]
     (X : S → Type*) [∀ q, Fintype (X q)] [∀ q, Nonempty (X q)]

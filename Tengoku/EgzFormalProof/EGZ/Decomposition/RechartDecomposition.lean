@@ -28,18 +28,26 @@ variable {p d : ℕ} [NeZero p] [Fact p.Prime] {f : FpCoord p d → ℕ}
 
 include hp hinj hcenter
 
+/--
+@isnad1 id=eq.3h7v.s10.0178651f214f from=translated src=- shape=87e7fcb7 vocab=087acd66
+-/
 theorem raw_hat (x : Φ.flag.Node) (q : IntCoord (C x).rank) :
     FlagDecompositionRaw.hat (representation Φ C hp hinj) Φ.localWeight x q =
       Φ.hat x ((C x).map q) :=
   Φ.hat_rechart hp x (C x) (hinj x) (hcenter x) q
 
+/--
+@isnad1 id=eq.3h7v.s10.e30a329275b1 from=translated src=- shape=87e7fcb7 vocab=4fa9b754
+-/
 theorem raw_localLift (x : Φ.flag.Node) (q : IntCoord (C x).rank) :
     FlagDecompositionRaw.localLift (representation Φ C hp hinj) Φ.localWeight x q =
       Φ.localLift x ((C x).map q) :=
   Φ.localLift_rechart hp x (C x) (hinj x) (hcenter x) q
 
 /-- Every new face is visible to a local generator transported from the old
-decomposition. This proves the visibility field of the new decomposition.-/
+decomposition. This proves the visibility field of the new decomposition.
+@isnad1 id=visiblef.3h7v.s10.1eed13ed7627 from=translated src=- shape=88324628 vocab=77f5f9e5
+-/
 theorem faces_visible (x : Φ.flag.Node) (Γ : (polytope Φ C x).Face) :
     FlagDecompositionRaw.VisibleFace (representation Φ C hp hinj) Φ.localWeight x Γ := by
   obtain ⟨q, hq⟩ := Γ.generatorFinset_nonempty
@@ -91,42 +99,68 @@ noncomputable abbrev decomposition : FlagDecomposition p d f where
   polytope_eq_liftedSupport := polytope_carrier Φ C
   faces_visible := faces_visible Φ C hp hinj hcenter
 
+/--
+@isnad1 id=eq.3h6v.s10.47c95586f438 from=translated src=- shape=0965295a vocab=f5be9e5c
+-/
 @[simp]
 theorem decomposition_localWeight (x : Φ.flag.Node) :
     (decomposition Φ C hp hinj hcenter).localWeight x = Φ.localWeight x := rfl
 
+/--
+@isnad1 id=eq.3h6v.s10.27debbff8e52 from=translated src=- shape=0965295a vocab=745377e2
+-/
 @[simp]
 theorem decomposition_cumulativeWeight (x : Φ.flag.Node) :
     (decomposition Φ C hp hinj hcenter).cumulativeWeight x = Φ.cumulativeWeight x := rfl
 
+/--
+@isnad1 id=eq.3h5v.s10.ed86d3e96fa2 from=translated src=- shape=6b3ecde3 vocab=6c207e80
+-/
 @[simp]
 theorem decomposition_retainedWeight :
     (decomposition Φ C hp hinj hcenter).retainedWeight = Φ.retainedWeight := rfl
 
+/--
+@isnad1 id=eq.3h5v.s10.d7b5a2703eb9 from=translated src=- shape=e5d1cc09 vocab=12d69e1d
+-/
 @[simp]
 theorem decomposition_retainedMass :
     (decomposition Φ C hp hinj hcenter).retainedMass = Φ.retainedMass := rfl
 
+/--
+@isnad1 id=eq.3h6v.s10.00ffd50fd64a from=translated src=- shape=0485d5b9 vocab=527fce0b
+-/
 @[simp]
 theorem decomposition_liftedSupport (x : Φ.flag.Node) :
     (decomposition Φ C hp hinj hcenter).liftedSupport x = (C x).coordinateSupport := rfl
 
+/--
+@isnad1 id=eq.3h7v.s10.c6db9839c04e from=translated src=- shape=cd8b6f32 vocab=8fbe3c1f
+-/
 @[simp]
 theorem decomposition_hat (x : Φ.flag.Node) (q : IntCoord (C x).rank) :
     (decomposition Φ C hp hinj hcenter).hat x q = Φ.hat x ((C x).map q) :=
   raw_hat Φ C hp hinj hcenter x q
 
+/--
+@isnad1 id=eq.3h7v.s10.53b9a6a78aad from=translated src=- shape=cd8b6f32 vocab=4212714a
+-/
 @[simp]
 theorem decomposition_localLift (x : Φ.flag.Node) (q : IntCoord (C x).rank) :
     (decomposition Φ C hp hinj hcenter).localLift x q = Φ.localLift x ((C x).map q) :=
   raw_localLift Φ C hp hinj hcenter x q
 
 /-- The new ambient spaces and integer coordinate supports satisfy both
-minimality conditions.-/
+minimality conditions.
+@isnad1 id=isminima.3h5v.s10.71a9d58b8c91 from=translated src=- shape=002d6aee vocab=e6fc9cb8
+-/
 theorem decomposition_isMinimal : (decomposition Φ C hp hinj hcenter).IsMinimal := by
   intro x
   exact ⟨rfl, (C x).coordinateSupport_affineIntSpans⟩
 
+/--
+@isnad1 id=iskbound.5h7v.s10.9650f3196fcb from=translated src=- shape=068af7fc vocab=c71f2bd9
+-/
 theorem decomposition_isKBounded {K B : Φ.flag.Node → ℕ} (hΦ : Φ.IsKBounded K)
     (hC : ∀ x (q : IntCoord (C x).rank),
       latticeSupNorm ((C x).map q) ≤ K x → latticeSupNorm q ≤ B x) :
@@ -134,7 +168,9 @@ theorem decomposition_isKBounded {K B : Φ.flag.Node → ℕ} (hΦ : Φ.IsKBound
   polytope_bound Φ C hΦ hC
 
 /-- Recharting preserves the complete finite set of positive lifted masses,
-so in particular it preserves their minimum.-/
+so in particular it preserves their minimum.
+@isnad1 id=eq.3h6v.s10.43d900418d20 from=translated src=- shape=a9d2b562 vocab=ab1bf93d
+-/
 theorem decomposition_gap (x : Φ.flag.Node) :
     (decomposition Φ C hp hinj hcenter).gap x = Φ.gap x := by
   have hmass : (C x).coordinateSupport.image

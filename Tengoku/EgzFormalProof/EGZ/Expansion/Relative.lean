@@ -47,7 +47,9 @@ def RelativeExpansionStatement : Prop :=
       ∀ p : ℕ, ∀ (_ : Fact p.Prime) (_ : NeZero p), p₀ ≤ p → 2 * K < p →
         RelativeExpansionAt r t K δ T p
 
-/-- A usable threshold can include injectivity of reduction on the box.-/
+/-- A usable threshold can include injectivity of reduction on the box.
+@isnad1 id=ex.3h4v.s6.d266aa2c6ce7 from=translated src=- shape=89d442ff vocab=065d0144
+-/
 theorem RelativeExpansionStatement.thresholds (h : RelativeExpansionStatement)
     (r t K : ℕ) (hK : 1 ≤ K) (δ : ℝ) (hδ : 0 < δ) :
     ∃ T₀ p₀ : ℕ, 2 * K < p₀ ∧
@@ -59,7 +61,9 @@ theorem RelativeExpansionStatement.thresholds (h : RelativeExpansionStatement)
   intro T hT p hpprime hpzero hpp
   exact hp T hT p hpprime hpzero (by omega) (by omega)
 
-/-- A theorem at a smaller slab width applies at every larger width.-/
+/-- A theorem at a smaller slab width applies at every larger width.
+@isnad1 id=relative.2h7v.s5.66e025d3c685 from=translated src=- shape=55c2a113 vocab=65b67dde
+-/
 theorem RelativeExpansionAt.mono_width {r t K T T' p : ℕ} [NeZero p] {δ : ℝ}
     (h : RelativeExpansionAt r t K δ T p) (hT : T ≤ T') :
     RelativeExpansionAt r t K δ T' p := by
@@ -67,7 +71,9 @@ theorem RelativeExpansionAt.mono_width {r t K T T' p : ℕ} [NeZero p] {δ : ℝ
   exact h S w α hbox hs hz hm ha (hthick.mono hT le_rfl)
 
 /-- Natural coefficients, as produced by balanced convex combinations,
-are a special case of the integer coefficients in the paper.-/
+are a special case of the integer coefficients in the paper.
+@isnad1 id=haszeros.7h9v.s10.6eeb53dd91f1 from=translated src=- shape=ef82932d vocab=9a6a969a
+-/
 theorem RelativeExpansionAt.of_nat_coefficients {r t K T p : ℕ} [NeZero p] {δ : ℝ}
     (h : RelativeExpansionAt r t K δ T p)
     (S : Finset (IntCoord r)) (w : FpCoord p (r + t) → ℕ) (α : S → ℕ)

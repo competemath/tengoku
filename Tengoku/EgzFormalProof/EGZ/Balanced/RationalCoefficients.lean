@@ -17,6 +17,9 @@ namespace EGZ.BalancedCombination.Data
 
 variable {d : ℕ} (D : Data d)
 
+/--
+@isnad1 id=ex.1h3v.s9.cef4594ce3d1 from=translated src=- shape=f621106d vocab=84394578
+-/
 theorem positive_rational_capped_barycenter_exists {η : ℝ} (hη : 0 < η) :
     ∃ β : D.support → ℚ, (∀ q, 0 < β q) ∧ (∑ q, β q = 1) ∧
       (∀ i, ∑ q, β q * (q.val i : ℚ) = (D.center i : ℚ)) ∧

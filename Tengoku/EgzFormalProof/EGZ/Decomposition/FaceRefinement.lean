@@ -22,7 +22,9 @@ namespace EGZ
 namespace ConvexFlag.ConvexCombination
 
 /-- Every positively weighted generator of a flag combination lies on any
-upper face containing the combination.-/
+upper face containing the combination.
+@isnad1 id=mem.4h8v.s7.ccba3b6f0030 from=translated src=- shape=e86b386f vocab=89e46a11
+-/
 theorem mem_face_of_pos {F : ConvexFlag} {I : Type*} [Fintype I]
     {points : I → F.Point} {weight : I → ℝ} {result : F.Point}
     (c : ConvexCombination points weight result) {x : F.Node}
@@ -45,7 +47,9 @@ namespace FlagDecomposition
 variable {p d : ℕ} [NeZero p] {f : FpCoord p d → ℕ}
 
 /-- Bounding the bases of the local generators over a face bounds its face
-index. The same bound passes to every proper convex combination.-/
+index. The same bound passes to every proper convex combination.
+@isnad1 id=le.1h7v.s8.813b3c83ad4e from=translated src=- shape=bf29f81e vocab=49697166
+-/
 theorem faceIndex_le_of_local_bases (Φ : FlagDecomposition p d f)
     (x : Φ.flag.Node) (Γ : (Φ.flag.polytope x).Face) (b : Φ.flag.Node)
     (hlocal : ∀ q, q ∈ Φ.omegaZero → ∀ h : q.base ≤ x,
@@ -62,7 +66,9 @@ theorem faceIndex_le_of_local_bases (Φ : FlagDecomposition p d f)
     (hcomb.mem_face_of_pos hx Γ hface hi)
 
 /-- A node containing every local-generator base over a face realizes the
-face as soon as its whole polytope maps into that face.-/
+face as soon as its whole polytope maps into that face.
+@isnad1 id=isrealiz.3h7v.s9.b2c106aaa9a3 from=translated src=- shape=25827710 vocab=aa45df44
+-/
 theorem isRealizedFace_of_local_bases (Φ : FlagDecomposition p d f)
     (x : Φ.flag.Node) (Γ : (Φ.flag.polytope x).Face) (b : Φ.flag.Node)
     (hb : b ≤ x)
@@ -100,18 +106,27 @@ noncomputable abbrev splitWeights : Φ.SplitWeights (projection Φ anchor) where
     rw [TwoLayer.sum_splitWeight]
     exact Φ.retained_le v
 
+/--
+@isnad1 id=eq.0h8v.s7.b5760dbdf4a9 from=translated src=- shape=ee258715 vocab=4afcf74b
+-/
 @[simp]
 theorem cumulative_upper (x : Φ.flag.Node) (v : FpCoord p d) :
     (splitWeights Φ anchor selected).cumulative (TwoLayer.upper anchor x) v =
       Φ.cumulativeWeight x v :=
   TwoLayer.cumulativeWeight_upper anchor Φ.localWeight selected x v
 
+/--
+@isnad1 id=eq.1h8v.s7.4eec3df29b5f from=translated src=- shape=79d95bc7 vocab=45704e95
+-/
 @[simp]
 theorem cumulative_lower (x : Φ.flag.Node) (hx : x ≤ anchor) (v : FpCoord p d) :
     (splitWeights Φ anchor selected).cumulative (TwoLayer.lower anchor x hx) v =
       if selected v then Φ.cumulativeWeight x v else 0 :=
   TwoLayer.cumulativeWeight_lower anchor Φ.localWeight selected x hx v
 
+/--
+@isnad1 id=eq.0h8v.s7.5095a9780878 from=translated src=- shape=f0f54eac vocab=9e674989
+-/
 @[simp]
 theorem hat_upper (x : Φ.flag.Node) (q : IntCoord (Φ.flag.rank x)) :
     (splitWeights Φ anchor selected).hat (TwoLayer.upper anchor x) q = Φ.hat x q := by
@@ -128,7 +143,9 @@ variable (hp : Odd p)
 noncomputable abbrev decomposition : FlagDecomposition p d f :=
   (splitWeights Φ anchor selected).decomposition hp
 
-/-- Every old node survives in the upper layer.-/
+/-- Every old node survives in the upper layer.
+@isnad1 id=active.1h7v.s8.c1c24a17d1c9 from=translated src=- shape=252b7551 vocab=46ad210c
+-/
 theorem active_upper (x : Φ.flag.Node) :
     ((splitWeights Φ anchor selected).rebuildData hp).Active (TwoLayer.upper anchor x) := by
   obtain ⟨q, hq⟩ := Φ.liftedSupport_nonempty x
@@ -142,7 +159,9 @@ theorem active_upper (x : Φ.flag.Node) :
   exact ⟨a, ha, v, hav⟩
 
 /-- A lower node is active whenever its old cumulative mass contains a
-selected atom.-/
+selected atom.
+@isnad1 id=active.3h9v.s8.90768e1be5e5 from=translated src=- shape=24976145 vocab=1948a23a
+-/
 theorem active_lower (x : Φ.flag.Node) (hx : x ≤ anchor) (v : FpCoord p d)
     (hv : Φ.cumulativeWeight x v ≠ 0) (hselected : selected v) :
     ((splitWeights Φ anchor selected).rebuildData hp).Active (TwoLayer.lower anchor x hx) := by
@@ -168,6 +187,9 @@ noncomputable def upperOrderEmbedding :
     intro x y
     exact TwoLayer.upper_le_upper anchor x y
 
+/--
+@isnad1 id=eq.1h7v.s6.b34949c89643 from=translated src=- shape=ee46ffaa vocab=2c28c512
+-/
 @[simp]
 theorem upper_cumulativeWeight (x : Φ.flag.Node) :
     (decomposition Φ anchor selected hp).cumulativeWeight (upper Φ anchor selected hp x) =
@@ -175,22 +197,34 @@ theorem upper_cumulativeWeight (x : Φ.flag.Node) :
   rw [SplitWeights.decomposition_cumulativeWeight]
   exact funext (cumulative_upper Φ anchor selected x)
 
+/--
+@isnad1 id=eq.1h8v.s6.25227fe142bb from=translated src=- shape=17d3b82a vocab=85aca3b4
+-/
 @[simp]
 theorem upper_hat (x : Φ.flag.Node) (q : IntCoord (Φ.flag.rank x)) :
     (decomposition Φ anchor selected hp).hat (upper Φ anchor selected hp x) q = Φ.hat x q := by
   rw [SplitWeights.decomposition_hat]
   exact hat_upper Φ anchor selected x q
 
+/--
+@isnad1 id=eq.1h7v.s7.b6cd0be2d965 from=translated src=- shape=a071fb3f vocab=a7b17545
+-/
 @[simp]
 theorem upper_space (x : Φ.flag.Node) :
     (decomposition Φ anchor selected hp).representation.space (upper Φ anchor selected hp x) =
       Φ.representation.space x := rfl
 
+/--
+@isnad1 id=eq.1h7v.s8.87f4ccecae1a from=translated src=- shape=01544d7a vocab=ca139724
+-/
 @[simp]
 theorem upper_map (x : Φ.flag.Node) :
     (decomposition Φ anchor selected hp).representation.map (upper Φ anchor selected hp x) =
       Φ.representation.map x := rfl
 
+/--
+@isnad1 id=eq.1h7v.s6.fc66f36f83a4 from=translated src=- shape=b290c72f vocab=34538290
+-/
 @[simp]
 theorem upper_liftedSupport (x : Φ.flag.Node) :
     (decomposition Φ anchor selected hp).liftedSupport (upper Φ anchor selected hp x) =
@@ -200,6 +234,9 @@ theorem upper_liftedSupport (x : Φ.flag.Node) :
     ((Iff.of_eq (congrArg (fun m : ℕ ↦ m ≠ 0) (upper_hat Φ anchor selected hp x q))).trans
       (Φ.liftedSupport_spec x q).symm)
 
+/--
+@isnad1 id=eq.1h7v.s6.29b68e134082 from=translated src=- shape=ca66a760 vocab=d893611e
+-/
 @[simp]
 theorem upper_gap (x : Φ.flag.Node) :
     (decomposition Φ anchor selected hp).gap (upper Φ anchor selected hp x) = Φ.gap x := by
@@ -213,7 +250,9 @@ theorem upper_gap (x : Φ.flag.Node) :
     rfl
   exact hmin _ _ hmass
 
-/-- The upper copy retains its original polytope.-/
+/-- The upper copy retains its original polytope.
+@isnad1 id=eq.1h7v.s7.45d488e88f29 from=translated src=- shape=ac675743 vocab=c1fb2f9f
+-/
 @[simp]
 theorem upper_polytope (x : Φ.flag.Node) :
     ((decomposition Φ anchor selected hp).flag.polytope (upper Φ anchor selected hp x)).carrier =
@@ -235,10 +274,16 @@ noncomputable def upperFace (x : Φ.flag.Node) (Γ : (Φ.flag.polytope x).Face) 
       exact hcarrier
   nonempty := Γ.nonempty
 
+/--
+@isnad1 id=eq.1h8v.s7.a75f13713f67 from=translated src=- shape=7e3f6301 vocab=61b468b8
+-/
 @[simp]
 theorem upperFace_carrier (x : Φ.flag.Node) (Γ : (Φ.flag.polytope x).Face) :
     (upperFace Φ anchor selected hp x Γ).carrier = Γ.carrier := rfl
 
+/--
+@isnad1 id=eq.1h6v.s6.da0cba480999 from=translated src=- shape=cc9e1e99 vocab=31520bad
+-/
 @[simp]
 theorem retainedWeight :
     (decomposition Φ anchor selected hp).retainedWeight = Φ.retainedWeight := by
@@ -246,18 +291,25 @@ theorem retainedWeight :
   rw [SplitWeights.decomposition_retainedWeight, TwoLayer.sum_splitWeight]
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s6.bb2fcdf50054 from=translated src=- shape=23fdbdab vocab=b0a37963
+-/
 @[simp]
 theorem retainedMass : (decomposition Φ anchor selected hp).retainedMass = Φ.retainedMass :=
   congrArg natMass (retainedWeight Φ anchor selected hp)
 
-/-- At most two copies of each old node survive.-/
+/-- At most two copies of each old node survive.
+@isnad1 id=le.1h6v.s6.a92f98c4bcc8 from=translated src=- shape=ce666602 vocab=f02bc6bf
+-/
 theorem card_le :
     @Fintype.card (decomposition Φ anchor selected hp).flag.Node
       (decomposition Φ anchor selected hp).flag.nodeFintype ≤ 2 * Fintype.card Φ.flag.Node :=
   ((splitWeights Φ anchor selected).decomposition_card_le hp).trans
     (TwoLayer.card_nodes_le anchor)
 
-/-- Both layers retain the old nodewise coordinate bounds.-/
+/-- Both layers retain the old nodewise coordinate bounds.
+@isnad1 id=iskbound.2h7v.s10.e04cf545bd20 from=translated src=- shape=e3329d0c vocab=aa9a3973
+-/
 theorem isKBounded {K : Φ.flag.Node → ℕ} (hK : Φ.IsKBounded K) :
     (decomposition Φ anchor selected hp).IsKBounded
       (fun x ↦ K (projection Φ anchor x.1)) :=
@@ -268,7 +320,9 @@ noncomputable def subdivisionMap : SubdivisionMap Φ (decomposition Φ anchor se
   (splitWeights Φ anchor selected).subdivisionMap hp (fun _ _ ↦ rfl)
 
 /-- Complete upper elements retain the same cumulative weight and
-representation fibres.-/
+representation fibres.
+@isnad1 id=iscomple.2h9v.s6.f0b98cb4e0ec from=translated src=- shape=d96c2343 vocab=1dcf3872
+-/
 theorem upper_isCompleteElement (x : Φ.flag.Node) (t : ℕ) (δ : ℝ)
     (hc : Φ.IsCompleteElement x t δ) :
     (decomposition Φ anchor selected hp).IsCompleteElement (upper Φ anchor selected hp x) t δ := by
@@ -276,7 +330,9 @@ theorem upper_isCompleteElement (x : Φ.flag.Node) (t : ℕ) (δ : ℝ)
   rw [upper_cumulativeWeight]
   exact hc ξ hξ
 
-/-- Realized old faces remain realized at the unchanged upper nodes.-/
+/-- Realized old faces remain realized at the unchanged upper nodes.
+@isnad1 id=isrealiz.2h8v.s6.7637306cbb0c from=translated src=- shape=4d095046 vocab=82819975
+-/
 theorem upper_isRealizedFace (x : Φ.flag.Node) (Γ : (Φ.flag.polytope x).Face)
     (hΓ : Φ.IsRealizedFace x Γ) :
     (decomposition Φ anchor selected hp).IsRealizedFace
@@ -301,7 +357,9 @@ theorem upper_isRealizedFace (x : Φ.flag.Node) (Γ : (Φ.flag.polytope x).Face)
 include hp
 
 /-- On the face-selected lower layer, a cumulative lifted fibre is either
-retained in full or deleted according to its upper transition coordinate.-/
+retained in full or deleted according to its upper transition coordinate.
+@isnad1 id=eq.2h8v.s10.b8552297b77d from=translated src=- shape=502e81f7 vocab=8a42a2a7
+-/
 theorem face_hat_lower (Γ : (Φ.flag.polytope anchor).Face)
     (x : Φ.flag.Node) (hx : x ≤ anchor) (q : IntCoord (Φ.flag.rank x)) :
     (splitWeights Φ anchor (Φ.faceSelector anchor Γ)).hat (TwoLayer.lower anchor x hx) q =
@@ -313,7 +371,9 @@ theorem face_hat_lower (Γ : (Φ.flag.polytope anchor).Face)
   rw [hc]
   exact Φ.centeredFibreMass_faceSelector hp hx Γ q
 
-/-- The lower anchor keeps precisely the lifted support points on its face.-/
+/-- The lower anchor keeps precisely the lifted support points on its face.
+@isnad1 id=eq.1h7v.s8.1bdda2931c12 from=translated src=- shape=e370a6f3 vocab=f385eea2
+-/
 theorem face_hat_lower_anchor (Γ : (Φ.flag.polytope anchor).Face)
     (q : IntCoord (Φ.flag.rank anchor)) :
     (splitWeights Φ anchor (Φ.faceSelector anchor Γ)).hat
@@ -324,7 +384,9 @@ theorem face_hat_lower_anchor (Γ : (Φ.flag.polytope anchor).Face)
 
 /-- A surviving local generator projecting onto the selected face lies in
 the lower layer: its selected ambient atoms were removed from the upper
-copy of its base.-/
+copy of its base.
+@isnad1 id=eq.4h7v.s10.d58892a8374f from=translated src=- shape=a771833a vocab=e1a44c35
+-/
 theorem face_local_layer_zero (Γ : (Φ.flag.polytope anchor).Face)
     (q : (decomposition Φ anchor (Φ.faceSelector anchor Γ) hp).flag.Point)
     (hq : q ∈ (decomposition Φ anchor (Φ.faceSelector anchor Γ) hp).omegaZero)
@@ -351,7 +413,9 @@ theorem face_local_layer_zero (Γ : (Φ.flag.polytope anchor).Face)
   rw [TwoLayer.splitWeight, ite_eq_right hlayer, ite_eq_left ⟨hproj, hs⟩]
 
 /-- Every nonempty face supplies a selected cumulative atom at the lower
-anchor, so that anchor survives the rebuilding.-/
+anchor, so that anchor survives the rebuilding.
+@isnad1 id=active.1h6v.s8.36b201923946 from=translated src=- shape=67c26deb vocab=509cf1e9
+-/
 theorem face_active_lower_anchor (Γ : (Φ.flag.polytope anchor).Face) :
     ((splitWeights Φ anchor (Φ.faceSelector anchor Γ)).rebuildData hp).Active
       (TwoLayer.lower anchor anchor le_rfl) := by
@@ -369,11 +433,17 @@ noncomputable def lowerAnchor (Γ : (Φ.flag.polytope anchor).Face) :
     (decomposition Φ anchor (Φ.faceSelector anchor Γ) hp).flag.Node :=
   ⟨TwoLayer.lower anchor anchor le_rfl, face_active_lower_anchor Φ anchor hp Γ⟩
 
+/--
+@isnad1 id=le.1h6v.s9.de5aa65ce3d1 from=translated src=- shape=9aaf1216 vocab=aae53d38
+-/
 theorem lowerAnchor_le_upper (Γ : (Φ.flag.polytope anchor).Face) :
     lowerAnchor Φ anchor hp Γ ≤ upper Φ anchor (Φ.faceSelector anchor Γ) hp anchor := by
   change TwoLayer.lower anchor anchor le_rfl ≤ TwoLayer.upper anchor anchor
   exact (TwoLayer.lower_le_upper anchor anchor anchor le_rfl).mpr le_rfl
 
+/--
+@isnad1 id=eq.1h6v.s8.119bd8f4434b from=translated src=- shape=4e84db82 vocab=1342efae
+-/
 @[simp]
 theorem lowerAnchor_liftedSupport (Γ : (Φ.flag.polytope anchor).Face) :
     (decomposition Φ anchor (Φ.faceSelector anchor Γ) hp).liftedSupport
@@ -396,7 +466,9 @@ theorem lowerAnchor_liftedSupport (Γ : (Φ.flag.polytope anchor).Face) :
   · rw [ite_eq_right hqΓ]
     exact ⟨fun h ↦ (h rfl).elim, fun h ↦ (hqΓ (Finset.mem_filter.mp h).2).elim⟩
 
-/-- The new lower anchor polytope is exactly the selected old face.-/
+/-- The new lower anchor polytope is exactly the selected old face.
+@isnad1 id=eq.1h6v.s7.cc52231524b0 from=translated src=- shape=e3fcc1d7 vocab=eb0f3cfb
+-/
 @[simp]
 theorem lowerAnchor_polytope (Γ : (Φ.flag.polytope anchor).Face) :
     ((decomposition Φ anchor (Φ.faceSelector anchor Γ) hp).flag.polytope
@@ -406,7 +478,9 @@ theorem lowerAnchor_polytope (Γ : (Φ.flag.polytope anchor).Face) :
   exact (Φ.face_eq_convexHull_liftedSupport anchor Γ).symm
 
 /-- Splitting all atoms over the face into the lower layer realizes that
-face at the unchanged upper anchor.-/
+face at the unchanged upper anchor.
+@isnad1 id=isrealiz.1h6v.s6.94503cf1666d from=translated src=- shape=ecd03894 vocab=26c38c5a
+-/
 theorem face_isRealized (Γ : (Φ.flag.polytope anchor).Face) :
     (decomposition Φ anchor (Φ.faceSelector anchor Γ) hp).IsRealizedFace
       (upper Φ anchor (Φ.faceSelector anchor Γ) hp anchor)
@@ -426,7 +500,9 @@ end FaceRefinement
 
 /-- Splitting the atoms over a chosen face realizes it at an upper copy of
 the anchor. This operation retains every old upper fibre and all mass, uses
-at most twice as many nodes, and preserves the old coordinate bounds.-/
+at most twice as many nodes, and preserves the old coordinate bounds.
+@isnad1 id=other.2h7v.s10.77c2af08bd6d from=translated src=- shape=5a1236b7 vocab=93873ebd
+-/
 theorem face_refinement_lemma (Φ : FlagDecomposition p d f) (hp : Odd p)
     (anchor : Φ.flag.Node) (Γ : (Φ.flag.polytope anchor).Face)
     {K : Φ.flag.Node → ℕ} (hK : Φ.IsKBounded K) :

@@ -32,34 +32,58 @@ noncomputable def lossBudget (d : ℕ) (ε δ₀ : ℝ) (i : ℕ) : ℝ :=
 noncomputable def initialScale (d : ℕ) (ε : ℝ) : ℝ :=
   ε ^ 2 / (16 * refinementConstant d)
 
+/--
+@isnad1 id=lt.0h1v.s3.7a879cae1008 from=translated src=- shape=b9369acb vocab=baded4bc
+-/
 theorem refinementConstant_pos (d : ℕ) : 0 < refinementConstant d := by
   unfold refinementConstant
   positivity
 
+/--
+@isnad1 id=le.0h1v.s3.c30ddac33415 from=translated src=- shape=b9369acb vocab=6f3097cd
+-/
 theorem one_le_refinementConstant (d : ℕ) : 1 ≤ refinementConstant d :=
   one_le_pow₀ (by norm_num)
 
+/--
+@isnad1 id=lt.0h1v.s3.12066035161b from=translated src=- shape=b9369acb vocab=910fc68d
+-/
 theorem decayRatio_pos (d : ℕ) : 0 < decayRatio d := by
   unfold decayRatio
   positivity
 
+/--
+@isnad1 id=le.1h1v.s5.c92fbeed934b from=translated src=- shape=faa6467d vocab=92baa20e
+-/
 theorem decayRatio_le_half {d : ℕ} (hd : 1 ≤ d) : decayRatio d ≤ 1 / 2 := by
   calc
     decayRatio d ≤ (3 : ℝ)⁻¹ :=
       pow_le_of_le_one (by norm_num) (by norm_num) (by omega)
     _ ≤ 1 / 2 := by norm_num
 
+/--
+@isnad1 id=eq.0h3v.s6.ccfe398bc8a5 from=translated src=- shape=0cab167f vocab=d6df4a3c
+-/
 theorem scale_eq_inv_pow (d : ℕ) (δ₀ : ℝ) (i : ℕ) :
     scale d δ₀ i = δ₀ * (3 : ℝ)⁻¹ ^ (2 * d * i) := by
   simp only [scale, decayRatio, pow_mul]
 
+/--
+@isnad1 id=eq.0h2v.s3.915d88d332ca from=translated src=- shape=62a9de80 vocab=df3279a0
+-/
 @[simp] theorem scale_zero (d : ℕ) (δ₀ : ℝ) : scale d δ₀ 0 = δ₀ := by
   simp [scale]
 
+/--
+@isnad1 id=lt.1h3v.s4.bb9d0c312e83 from=translated src=- shape=144bfabc vocab=72f57332
+-/
 theorem scale_pos (d : ℕ) {δ₀ : ℝ} (hδ : 0 < δ₀) (i : ℕ) :
     0 < scale d δ₀ i :=
   mul_pos hδ (pow_pos (decayRatio_pos d) i)
 
+/--
+@isnad1 id=antitone.2h2v.s5.3b1cddc0c1e2 from=translated src=- shape=920f4f5c vocab=120ca299
+-/
 theorem scale_antitone {d : ℕ} (hd : 1 ≤ d) {δ₀ : ℝ} (hδ : 0 ≤ δ₀) :
     Antitone (scale d δ₀) := by
   intro i j hij
@@ -67,22 +91,33 @@ theorem scale_antitone {d : ℕ} (hd : 1 ≤ d) {δ₀ : ℝ} (hδ : 0 ≤ δ₀
     (pow_le_pow_of_le_one (decayRatio_pos d).le
       ((decayRatio_le_half hd).trans (by norm_num)) hij) hδ
 
+/--
+@isnad1 id=le.2h3v.s6.43135340fa32 from=translated src=- shape=3bd0fbf7 vocab=8569e811
+-/
 theorem scale_le_geometric {d : ℕ} (hd : 1 ≤ d) {δ₀ : ℝ} (hδ : 0 ≤ δ₀)
     (i : ℕ) : scale d δ₀ i ≤ δ₀ * (1 / 2 : ℝ) ^ i := by
   exact mul_le_mul_of_nonneg_left
     (pow_le_pow_left₀ (decayRatio_pos d).le (decayRatio_le_half hd) i) hδ
 
+/--
+@isnad1 id=lt.1h2v.s4.c9ac90fdfe73 from=translated src=- shape=696abc3b vocab=26c59ddb
+-/
 theorem initialScale_pos (d : ℕ) {ε : ℝ} (hε : 0 < ε) :
     0 < initialScale d ε := by
   unfold initialScale
   exact div_pos (sq_pos_of_pos hε) (mul_pos (by norm_num) (refinementConstant_pos d))
 
+/--
+@isnad1 id=eq.0h2v.s5.a9a99aff5f69 from=translated src=- shape=7576a1f9 vocab=30d36740
+-/
 theorem refinementConstant_mul_initialScale (d : ℕ) (ε : ℝ) :
     refinementConstant d * initialScale d ε = ε ^ 2 / 16 := by
   unfold initialScale
   field_simp [ne_of_gt (refinementConstant_pos d)]
 
-/-- Basic inequalities for the explicit initial scale.-/
+/-- Basic inequalities for the explicit initial scale.
+@isnad1 id=and.2h2v.s7.7e351aa31bde from=translated src=- shape=a5ace56f vocab=70154c93
+-/
 theorem initialScale_bounds (d : ℕ) {ε : ℝ} (hε : 0 < ε) (hεhalf : ε ≤ 1 / 2) :
     refinementConstant d * initialScale d ε < 1 ∧
       initialScale d ε ≤ 1 ∧
@@ -105,6 +140,9 @@ theorem initialScale_bounds (d : ℕ) {ε : ℝ} (hε : 0 < ε) (hεhalf : ε �
     rw [hpow] at hmul
     nlinarith
 
+/--
+@isnad1 id=le.3h3v.s6.72004aaea4a3 from=translated src=- shape=057bd7b5 vocab=46ed6478
+-/
 theorem initialScale_scale_bound {d : ℕ} (hd : 1 ≤ d) {ε : ℝ}
     (hε : 0 < ε) (hεhalf : ε ≤ 1 / 2) (i : ℕ) :
     scale d (initialScale d ε) i ≤ ε * (3 : ℝ)⁻¹ ^ d * (2 : ℝ)⁻¹ ^ i := by
@@ -116,6 +154,9 @@ theorem initialScale_scale_bound {d : ℕ} (hd : 1 ≤ d) {ε : ℝ}
       exact mul_le_mul_of_nonneg_right (initialScale_bounds d hε hεhalf).2.2.2
         (by positivity)
 
+/--
+@isnad1 id=le.2h4v.s5.8020999e37a4 from=translated src=- shape=7076243c vocab=0ceaf255
+-/
 theorem lossBudget_nonneg (d : ℕ) {ε δ₀ : ℝ} (hε : 0 ≤ ε) (hδ : 0 ≤ δ₀)
     (i : ℕ) : 0 ≤ lossBudget d ε δ₀ i := by
   unfold lossBudget scale
@@ -123,6 +164,9 @@ theorem lossBudget_nonneg (d : ℕ) {ε δ₀ : ℝ} (hε : 0 ≤ ε) (hδ : 0 �
   have := (decayRatio_pos d).le
   positivity
 
+/--
+@isnad1 id=le.4h4v.s7.7a88c7892e39 from=translated src=- shape=0f801299 vocab=81ded92f
+-/
 theorem lossBudget_le_geometric {d : ℕ} (hd : 1 ≤ d) {ε δ₀ : ℝ}
     (hε : 0 ≤ ε) (hδ : 0 ≤ δ₀) (hsmall : ε * δ₀ ≤ refinementConstant d) (i : ℕ) :
     lossBudget d ε δ₀ i ≤
@@ -144,6 +188,9 @@ theorem lossBudget_le_geometric {d : ℕ} (hd : 1 ≤ d) {ε δ₀ : ℝ}
         positivity)
     _ = _ := by ring
 
+/--
+@isnad1 id=summable.4h3v.s6.4376cb8e8f55 from=translated src=- shape=cb109090 vocab=4cff94ce
+-/
 theorem lossBudget_summable {d : ℕ} (hd : 1 ≤ d) {ε δ₀ : ℝ}
     (hε : 0 ≤ ε) (hδ : 0 ≤ δ₀) (hsmall : ε * δ₀ ≤ refinementConstant d) :
     Summable (lossBudget d ε δ₀) := by
@@ -157,7 +204,9 @@ private theorem tsum_half_succ (A : ℝ) :
   rw [tsum_mul_left, tsum_mul_right, tsum_geometric_two]
   ring
 
-/-- Every tail of the loss budgets has a geometric bound.-/
+/-- Every tail of the loss budgets has a geometric bound.
+@isnad1 id=le.4h4v.s7.70213b3590f4 from=translated src=- shape=7a98ff55 vocab=81d22fa8
+-/
 theorem lossBudget_tsum_tail_le {d : ℕ} (hd : 1 ≤ d) {ε δ₀ : ℝ}
     (hε : 0 ≤ ε) (hδ : 0 ≤ δ₀) (hsmall : ε * δ₀ ≤ refinementConstant d) (s : ℕ) :
     (∑' i : ℕ, lossBudget d ε δ₀ (i + s + 1)) ≤
@@ -186,7 +235,9 @@ theorem lossBudget_tsum_tail_le {d : ℕ} (hd : 1 ≤ d) {ε δ₀ : ℝ}
 
 /-- For the chosen scale, the total future budget after stage `s` is at
 most `ε² / 8 * 2^(-s)`.  In particular, `s = 0` is the parameter-choice
-inequality in the paper.-/
+inequality in the paper.
+@isnad1 id=le.3h3v.s7.2a4b54f44575 from=translated src=- shape=76e92e04 vocab=d205c36b
+-/
 theorem initialScale_tsum_tail_le {d : ℕ} (hd : 1 ≤ d) {ε : ℝ}
     (hε : 0 < ε) (hεhalf : ε ≤ 1 / 2) (s : ℕ) :
     (∑' i : ℕ, lossBudget d ε (initialScale d ε) (i + s + 1)) ≤
@@ -197,13 +248,18 @@ theorem initialScale_tsum_tail_le {d : ℕ} (hd : 1 ≤ d) {ε : ℝ}
   rw [one_div, mul_assoc 2, refinementConstant_mul_initialScale]
   ring
 
+/--
+@isnad1 id=summable.3h2v.s6.3a41d830a8d3 from=translated src=- shape=56e670eb vocab=83da0432
+-/
 theorem initialScale_summable {d : ℕ} (hd : 1 ≤ d) {ε : ℝ}
     (hε : 0 < ε) (hεhalf : ε ≤ 1 / 2) :
     Summable (lossBudget d ε (initialScale d ε)) :=
   lossBudget_summable hd hε.le (initialScale_pos d hε).le
     (initialScale_bounds d hε hεhalf).2.2.1
 
-/-- The same bound applies to any finite subset of future stages.-/
+/-- The same bound applies to any finite subset of future stages.
+@isnad1 id=le.3h4v.s7.362da3bb7fa9 from=translated src=- shape=b754c43d vocab=03b1f373
+-/
 theorem initialScale_sum_tail_le {d : ℕ} (hd : 1 ≤ d) {ε : ℝ}
     (hε : 0 < ε) (hεhalf : ε ≤ 1 / 2) (s : ℕ) (t : Finset ℕ) :
     (∑ i ∈ t, lossBudget d ε (initialScale d ε) (i + s + 1)) ≤
@@ -218,7 +274,9 @@ theorem initialScale_sum_tail_le {d : ℕ} (hd : 1 ≤ d) {ε : ℝ}
       (initialScale_tsum_tail_le hd hε hεhalf s)
 
 /-- All three parameter requirements, with the dependence on `d` and `ε`
-made explicit by the witness `initialScale d ε`.-/
+made explicit by the witness `initialScale d ε`.
+@isnad1 id=ex.3h2v.s8.c952db8468f9 from=translated src=- shape=187e85aa vocab=80aac800
+-/
 theorem exists_parameter_choice {d : ℕ} (hd : 1 ≤ d) {ε : ℝ}
     (hε : 0 < ε) (hεhalf : ε ≤ 1 / 2) :
     ∃ δ₀ : ℝ, 0 < δ₀ ∧ refinementConstant d * δ₀ < 1 ∧
@@ -232,7 +290,9 @@ theorem exists_parameter_choice {d : ℕ} (hd : 1 ≤ d) {ε : ℝ}
   simpa using initialScale_tsum_tail_le hd hε hεhalf 0
 
 /-- Telescoping the individual stage estimates gives a bound for every
-finite interval of an iteration.-/
+finite interval of an iteration.
+@isnad1 id=le.5h6v.s7.75b4fc8cae79 from=translated src=- shape=e16b0156 vocab=2a959c6d
+-/
 theorem mass_loss_le {d : ℕ} (hd : 1 ≤ d) {ε : ℝ}
     (hε : 0 < ε) (hεhalf : ε ≤ 1 / 2) (mass : ℕ → ℝ) {M : ℝ} (hM : 0 ≤ M)
     (hstep : ∀ i, mass i - mass (i + 1) ≤
@@ -253,7 +313,9 @@ theorem mass_loss_le {d : ℕ} (hd : 1 ≤ d) {ε : ℝ}
 
 /-- The mass-and-tail invariant in the paper, and the final retained-mass
 bound, follow directly from the explicit budgets.  This theorem applies to
-every finite prefix; an infinite execution is not required.-/
+every finite prefix; an infinite execution is not required.
+@isnad1 id=and.6h4v.s8.2022202612bc from=translated src=- shape=5ac90478 vocab=282cd941
+-/
 theorem mass_and_tail {d : ℕ} (hd : 1 ≤ d) {ε : ℝ}
     (hε : 0 < ε) (hεhalf : ε ≤ 1 / 2) (mass : ℕ → ℝ) {M : ℝ} (hM : 0 ≤ M)
     (hmass : mass 0 = M)
@@ -286,7 +348,9 @@ its own scale.  There are at most `2^(i-1)` nodes before stage `i`; the
 additional factor `1/2` from retained mass gives exactly `2^(-i)`.
 
 `N` is the number of old nodes, regarded as a real number.  Its strict
-positivity is needed when taking its reciprocal.-/
+positivity is needed when taking its reciprocal.
+@isnad1 id=le.9h9v.s8.f593ae9e106a from=translated src=- shape=b393bbef vocab=ff874145
+-/
 theorem gap_threshold_of_cleanup {d i : ℕ} (hi : 1 ≤ i)
     {ε δ K N M M' G : ℝ} (hε : 0 ≤ ε) (hK : 1 ≤ K)
     (hN : 0 < N) (hNcard : N ≤ (2 : ℝ) ^ (i - 1))
@@ -325,7 +389,9 @@ theorem gap_threshold_of_cleanup {d i : ℕ} (hi : 1 ≤ i)
     _ = ε * δ ^ 2 * (2 * K + 1)⁻¹ ^ d * N⁻¹ * M' := by ring
     _ ≤ G := hgap
 
-/-- The gap-trigger estimate specialized to the explicit parameter choice.-/
+/-- The gap-trigger estimate specialized to the explicit parameter choice.
+@isnad1 id=le.10h8v.s8.7463a8cec879 from=translated src=- shape=fdd87dca vocab=18129a7a
+-/
 theorem initialScale_gap_threshold {d i : ℕ} (hd : 1 ≤ d) (hi : 1 ≤ i)
     {ε K N M M' G : ℝ} (hε : 0 < ε) (hεhalf : ε ≤ 1 / 2) (hK : 1 ≤ K)
     (hN : 0 < N) (hNcard : N ≤ (2 : ℝ) ^ (i - 1))

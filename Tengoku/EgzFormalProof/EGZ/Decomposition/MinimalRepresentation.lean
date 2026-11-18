@@ -20,6 +20,9 @@ noncomputable def affineLeftInverse {k : Type*} [Field k] {m n : ℕ}
   A.linear.leftInverse.toAffineMap.comp
     (AffineMap.id k _ - AffineMap.const k _ (A 0))
 
+/--
+@isnad1 id=eq.1h5v.s10.3942e687acc4 from=translated src=- shape=c003e760 vocab=0a93d68b
+-/
 theorem affineLeftInverse_apply {k : Type*} [Field k] {m n : ℕ}
     (A : (Fin m → k) →ᵃ[k] (Fin n → k)) (hA : Function.Injective A)
     (q : Fin m → k) : affineLeftInverse A (A q) = q := by
@@ -30,6 +33,9 @@ theorem affineLeftInverse_apply {k : Type*} [Field k] {m n : ℕ}
   exact LinearMap.leftInverse_apply_of_inj (LinearMap.ker_eq_bot.mpr
     (A.linear_injective_iff.mpr hA)) q
 
+/--
+@isnad1 id=eq.2h5v.s10.92a40df2426c from=translated src=- shape=71c0737b vocab=51c3697e
+-/
 theorem affineLeftInverse_retract {k : Type*} [Field k] {m n : ℕ}
     (A : (Fin m → k) →ᵃ[k] (Fin n → k)) (hA : Function.Injective A)
     {q : Fin n → k} (hq : q ∈ Set.range A) : A (affineLeftInverse A q) = q := by
@@ -37,7 +43,9 @@ theorem affineLeftInverse_retract {k : Type*} [Field k] {m n : ℕ}
   rw [affineLeftInverse_apply A hA]
 
 /-- Retraction through the chart is the identity on the entire affine span
-once it is the identity on the support.-/
+once it is the identity on the support.
+@isnad1 id=eq.3h8v.s11.cde5d4bd7d3d from=translated src=- shape=8ab59d95 vocab=523db054
+-/
 theorem affineLeftInverse_retract_affineSpan {k : Type*} [Field k] {l m n : ℕ}
     (A : (Fin m → k) →ᵃ[k] (Fin n → k)) (hA : Function.Injective A)
     (φ : (Fin l → k) →ᵃ[k] (Fin n → k)) (S : Set (Fin l → k))
@@ -47,6 +55,9 @@ theorem affineLeftInverse_retract_affineSpan {k : Type*} [Field k] {l m n : ℕ}
     (f := A.comp ((affineLeftInverse A).comp φ)) (g := φ)
     (fun v hv ↦ affineLeftInverse_retract A hA (hS v hv)) hv
 
+/--
+@isnad1 id=surjon.1h5v.s11.5434bb768eb4 from=translated src=- shape=f90cb71a vocab=2563f585
+-/
 theorem surjOn_affineSpan_of_image_span_eq_top {k : Type*} [Field k] {m n : ℕ}
     (φ : (Fin m → k) →ᵃ[k] (Fin n → k)) (S : Set (Fin m → k))
     (hS : affineSpan k (φ '' S) = ⊤) :
@@ -57,7 +68,9 @@ theorem surjOn_affineSpan_of_image_span_eq_top {k : Type*} [Field k] {m n : ℕ}
   exact hq
 
 /-- Integer affine generators generate the full finite-field affine space
-after reduction modulo a prime.-/
+after reduction modulo a prime.
+@isnad1 id=eq.1h3v.s10.515d138f23c7 from=translated src=- shape=d4629c2e vocab=dea31430
+-/
 theorem FlagDecomposition.AffineIntSpans.affineSpan_mod_eq_top {p n : ℕ} [NeZero p]
     [Fact p.Prime]
     {S : Finset (IntCoord n)} (hS : FlagDecomposition.AffineIntSpans S) :

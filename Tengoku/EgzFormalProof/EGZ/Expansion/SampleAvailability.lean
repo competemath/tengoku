@@ -16,6 +16,9 @@ open scoped BigOperators Matrix
 
 namespace EGZ.Expansion
 
+/--
+@isnad1 id=eq.0h1v.s5.a49b35e77dd9 from=translated src=- shape=fbbdeae3 vocab=2507f26b
+-/
 theorem finiteProb_pair_eq {A : Type*} [Fintype A] [Nonempty A] :
     finiteProb (fun x : A × A ↦ x.1 = x.2) = 1 / (Fintype.card A : ℝ) := by
   classical
@@ -24,6 +27,9 @@ theorem finiteProb_pair_eq {A : Type*} [Fintype A] [Nonempty A] :
     simpa only [eq_comm] using finiteProb_eq a
   simp only [h, Fintype.expect_const]
 
+/--
+@isnad1 id=ex.17h17v.s11.938d3c776e00 from=translated src=- shape=38beedf5 vocab=bd58c7a4
+-/
 theorem exists_thick_exchange_weight {p r t N B W : ℕ} [Fact p.Prime]
     (S : Finset (IntCoord r)) [Nonempty S]
     (X : S → Type*) [∀ q, Fintype (X q)] [∀ q, Nonempty (X q)]

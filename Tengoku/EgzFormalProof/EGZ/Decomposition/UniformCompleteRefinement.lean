@@ -17,7 +17,9 @@ namespace EGZ
 open FlagDecomposition
 
 /-- All possible maximal thin-direction preparations share one prime
-threshold. The chart bound uses their actual number of selected directions.-/
+threshold. The chart bound uses their actual number of selected directions.
+@isnad1 id=ex.0h2v.s11.0a7fed04d783 from=translated src=- shape=86ea05e9 vocab=ab8b0744
+-/
 theorem exists_uniform_completePreparation_charts (d : ℕ) (g : ℕ → ℕ) :
     ∃ A : ℕ → ℕ, Monotone A ∧ (∀ K, K ≤ A K) ∧
       ∀ K : ℕ, ∃ p₀ : ℕ, 2 ≤ p₀ ∧
@@ -62,7 +64,9 @@ theorem exists_uniform_completePreparation_charts (d : ℕ) (g : ℕ → ℕ) :
 /-- A uniform complete-element refinement, retaining its concrete direction
 preparation and lattice charts. The output radius is bounded by one monotone
 function of the original radius; its reduced complete node and non-reduced
-upper anchor are explicit nodes of the constructed two-layer flag.-/
+upper anchor are explicit nodes of the constructed two-layer flag.
+@isnad1 id=ex.1h2v.s13.aabf2d2b4b25 from=translated src=- shape=b33a1ae2 vocab=c4822519
+-/
 theorem complete_refinement_lemma (d : ℕ) (g : ℕ → ℕ) (hg : Monotone g) :
     ∃ B : ℕ → ℕ, Monotone B ∧ (∀ K, K ≤ B K) ∧
       ∀ K : ℕ, ∃ p₀ : ℕ, 2 ≤ p₀ ∧

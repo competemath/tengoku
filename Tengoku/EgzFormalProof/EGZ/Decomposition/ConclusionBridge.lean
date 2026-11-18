@@ -9,6 +9,9 @@ namespace EGZ.FlagDecomposition.Iteration
 
 variable {p d : ℕ} [NeZero p] [Fact p.Prime] {f : FpCoord p d → ℕ}
 
+/--
+@isnad1 id=hasflagd.5h9v.s7.d6c6e922a0ce from=translated src=- shape=84212793 vocab=cdd6cd95
+-/
 theorem State.hasConclusion (s : State p d f) (hp : p.Prime)
     {ε δ : ℝ} {g : ℕ → ℕ} {Bcard BK : ℕ}
     (h : s.Finished ε δ g)
@@ -20,6 +23,9 @@ theorem State.hasConclusion (s : State p d f) (hp : p.Prime)
     hcard, antitone_const, fun _ ↦ ⟨s.radius_pos, hK⟩, s.bounded,
     h.2, fun _ ↦ le_rfl, h.1, hmass⟩
 
+/--
+@isnad1 id=hasflagd.6h8v.s7.518bfefeec0f from=translated src=- shape=650f1fc6 vocab=6380f4bb
+-/
 theorem BoundedState.hasConclusion {g : ℕ → ℕ} {P : NormalizedOperationParameters d g}
     {ε : ℝ} {i : ℕ} (s : BoundedState (f := f) P ε i) (hp : p.Prime)
     (hd : 1 ≤ d) (hε : 0 < ε) (hεhalf : ε ≤ 1 / 2)

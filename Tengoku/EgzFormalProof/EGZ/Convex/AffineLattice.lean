@@ -17,7 +17,9 @@ namespace EGZ
 
 /-- The explicit finite-combination definition of `affineIntSpan` agrees
 with Mathlib's affine span over `ℤ`.  This characterization supplies the
-closure laws of the support-generated lattices used by the face flag.-/
+closure laws of the support-generated lattices used by the face flag.
+@isnad1 id=eq.0h2v.s7.6b5fa733e483 from=translated src=- shape=a151a49a vocab=0a225117
+-/
 theorem affineIntSpan_eq_affineSpan_int {d : ℕ} (S : Set (RealCoord d)) :
     affineIntSpan S = (affineSpan ℤ S : Set (RealCoord d)) := by
   classical
@@ -81,25 +83,33 @@ theorem affineIntSpan_eq_affineSpan_int {d : ℕ} (S : Set (RealCoord d)) :
           intro x hx
           exact Int.cast_smul_eq_zsmul ℝ (weight x) (points x)
 
-/-- Affine integer span is monotone.-/
+/-- Affine integer span is monotone.
+@isnad1 id=le.1h3v.s5.bfedc5c76870 from=translated src=- shape=3c10f9cc vocab=57d2168a
+-/
 theorem affineIntSpan_mono {d : ℕ} {S T : Set (RealCoord d)} (hST : S ⊆ T) :
     affineIntSpan S ⊆ affineIntSpan T := by
   rw [affineIntSpan_eq_affineSpan_int, affineIntSpan_eq_affineSpan_int]
   exact affineSpan_mono ℤ hST
 
-/-- Taking the affine integer span twice does not enlarge it.-/
+/-- Taking the affine integer span twice does not enlarge it.
+@isnad1 id=eq.0h2v.s4.0225d358ccbe from=translated src=- shape=c1b2f487 vocab=04f4f6c1
+-/
 theorem affineIntSpan_idempotent {d : ℕ} (S : Set (RealCoord d)) :
     affineIntSpan (affineIntSpan S) = affineIntSpan S := by
   rw [affineIntSpan_eq_affineSpan_int, affineIntSpan_eq_affineSpan_int,
     AffineSubspace.affineSpan_coe]
 
-/-- Every generator belongs to its affine integer span.-/
+/-- Every generator belongs to its affine integer span.
+@isnad1 id=le.0h2v.s4.46c448ae8ecb from=translated src=- shape=50af71e7 vocab=57d2168a
+-/
 theorem subset_affineIntSpan {d : ℕ} (S : Set (RealCoord d)) :
     S ⊆ affineIntSpan S := by
   rw [affineIntSpan_eq_affineSpan_int]
   exact subset_affineSpan ℤ S
 
-/-- Integer affine combinations of rational points are rational.-/
+/-- Integer affine combinations of rational points are rational.
+@isnad1 id=isration.2h3v.s5.143a9f1ba3bc from=translated src=- shape=6ac9e753 vocab=865a59d0
+-/
 theorem isRational_of_mem_affineIntSpan {d : ℕ}
     {S : Set (RealCoord d)}
     (hS : ∀ q ∈ S, IsRational q) {q : RealCoord d}
@@ -117,7 +127,9 @@ theorem isRational_of_mem_affineIntSpan {d : ℕ}
   rw [hvalue i]
 
 /-- A rational point becomes integral after multiplication by one positive
-integer.-/
+integer.
+@isnad1 id=ex.1h2v.s5.adae8d9b312c from=translated src=- shape=117aec07 vocab=53079d65
+-/
 theorem IsRational.exists_integral_nsmul {d : ℕ} {q : RealCoord d}
     (hq : IsRational q) :
     ∃ D : ℕ, 0 < D ∧ IsIntegral ((D : ℝ) • q) := by
@@ -142,7 +154,9 @@ theorem IsRational.exists_integral_nsmul {d : ℕ} {q : RealCoord d}
   field_simp
 
 /-- Integral points remain integral after multiplication by a natural
-number.-/
+number.
+@isnad1 id=isintegr.1h3v.s5.487eed3464eb from=translated src=- shape=18ea2ba9 vocab=2cdcc7bc
+-/
 theorem IsIntegral.nat_smul {d : ℕ} {q : RealCoord d}
     (hq : IsIntegral q) (m : ℕ) : IsIntegral ((m : ℝ) • q) := by
   obtain ⟨z, rfl⟩ := hq
@@ -151,7 +165,9 @@ theorem IsIntegral.nat_smul {d : ℕ} {q : RealCoord d}
   simp [IntCoord.real]
 
 /-- A finite set of rational points admits one positive common denominator
-in every coordinate.-/
+in every coordinate.
+@isnad1 id=ex.2h2v.s6.b8b20b9f1839 from=translated src=- shape=989d795b vocab=05571c24
+-/
 theorem Set.Finite.exists_common_integral_nsmul {d : ℕ}
     {S : Set (RealCoord d)} (hS : S.Finite)
     (hSrational : ∀ q ∈ S, IsRational q) :
@@ -189,7 +205,9 @@ theorem Set.Finite.exists_common_integral_nsmul {d : ℕ}
   ring
 
 /-- A common denominator for the generators is also a common denominator
-for every integer affine combination of them.-/
+for every integer affine combination of them.
+@isnad1 id=isintegr.2h4v.s6.5a7d7732c524 from=translated src=- shape=83ce05b3 vocab=55f1ab53
+-/
 theorem isIntegral_nsmul_of_mem_affineIntSpan {d D : ℕ}
     {S : Set (RealCoord d)}
     (hS : ∀ q ∈ S, IsIntegral ((D : ℝ) • q))
@@ -213,7 +231,9 @@ theorem isIntegral_nsmul_of_mem_affineIntSpan {d D : ℕ}
 
 /-- A compact set meets the affine integer span of a finite rational set in
 only finitely many points.  No affine independence or full-dimensionality is
-required.-/
+required.
+@isnad1 id=finite.3h3v.s6.c00c4fa199d2 from=translated src=- shape=ba2e3e1c vocab=7da85690
+-/
 theorem finite_inter_affineIntSpan_of_isCompact {d : ℕ}
     {S K : Set (RealCoord d)} (hSfinite : S.Finite)
     (hSrational : ∀ q ∈ S, IsRational q) (hK : IsCompact K) :
@@ -237,7 +257,9 @@ theorem finite_inter_affineIntSpan_of_isCompact {d : ℕ}
   · exact (smul_right_injective (RealCoord d)
       (by exact_mod_cast (Nat.ne_of_gt hD))).injOn
 
-/-- A finitely generated rational polytope is compact.-/
+/-- A finitely generated rational polytope is compact.
+@isnad1 id=iscompac.0h2v.s4.aa0993dbfa54 from=translated src=- shape=71337308 vocab=c2612ac4
+-/
 theorem RationalPolytope.isCompact {d : ℕ} (P : RationalPolytope d) :
     IsCompact P.carrier := by
   rw [P.carrier_eq_convexHull]
@@ -268,12 +290,16 @@ namespace AffineLattice
 instance {d : ℕ} : Membership (RealCoord d) (AffineLattice d) :=
   ⟨fun L q ↦ q ∈ L.carrier⟩
 
-/-- Membership in an affine lattice is membership in its carrier.-/
+/-- Membership in an affine lattice is membership in its carrier.
+@isnad1 id=iff.0h3v.s4.255dc3cfe21e from=translated src=- shape=5459c269 vocab=ef9c4b00
+-/
 @[simp]
 theorem mem_carrier {d : ℕ} (L : AffineLattice d) (q : RealCoord d) :
     q ∈ L.carrier ↔ q ∈ L := Iff.rfl
 
-/-- Only finitely many points of an affine lattice lie in a compact set.-/
+/-- Only finitely many points of an affine lattice lie in a compact set.
+@isnad1 id=finite.1h3v.s5.8ae3ccc1f84d from=translated src=- shape=9b5029a0 vocab=e37f39dc
+-/
 theorem finite_mem_of_isCompact {d : ℕ} (L : AffineLattice d)
     {K : Set (RealCoord d)} (hK : IsCompact K) :
     {q | q ∈ K ∧ q ∈ L}.Finite := by

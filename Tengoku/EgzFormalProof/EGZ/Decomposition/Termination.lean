@@ -24,6 +24,9 @@ def HasColorInterval (χ : ℕ → ℕ) (h : ℕ → ℕ) (a b l : ℕ) : Prop :
   a ≤ b ∧ (∀ i ∈ Finset.Icc a b, l ≤ χ i) ∧
     h a ≤ ((Finset.Icc a b).filter fun i => χ i = l).card
 
+/--
+@isnad1 id=hascolor.2h6v.s5.8b952fc71100 from=translated src=- shape=92e1dcc9 vocab=ce814a6f
+-/
 theorem HasColorInterval.congr {χ ψ : ℕ → ℕ} {h : ℕ → ℕ} {a b l : ℕ}
     (hχ : HasColorInterval χ h a b l)
     (heq : ∀ i ∈ Finset.Icc a b, χ i = ψ i) :
@@ -35,7 +38,9 @@ theorem HasColorInterval.congr {χ ψ : ℕ → ℕ} {h : ℕ → ℕ} {a b l : 
   exact Finset.filter_congr fun i hi => by rw [heq i hi]
 
 /-- Infinite version of the interval lemma: take the least color whose
-fiber is infinite, then start beyond every occurrence of a smaller color.-/
+fiber is infinite, then start beyond every occurrence of a smaller color.
+@isnad1 id=ex.1h3v.s5.a45f886b3949 from=translated src=- shape=901296df vocab=b92da7af
+-/
 theorem exists_color_interval (k : ℕ) (h χ : ℕ → ℕ) (hχ : ∀ i, χ i < k) :
     ∃ a b l, l < k ∧ HasColorInterval χ h a b l := by
   classical
@@ -100,7 +105,9 @@ private def restrictBadColoring {k : ℕ} {h : ℕ → ℕ} {n m : ℕ}
 /-- The finite-color interval claim in the proof of the Flag Decomposition
 Lemma.  The bound is uniform over all colorings and `h` need not be
 monotone.  Kőnig's lemma turns arbitrarily long bad colorings into an
-infinite bad coloring, contradicting `exists_color_interval`.-/
+infinite bad coloring, contradicting `exists_color_interval`.
+@isnad1 id=ex.0h2v.s5.2ed7d911463a from=translated src=- shape=0412ec14 vocab=4e33fdf4
+-/
 theorem exists_finite_color_interval_bound (k : ℕ) (h : ℕ → ℕ) :
     ∃ N, ∀ χ : Fin N → Fin k, ∃ a b l,
       b < N ∧ HasColorInterval (extendColoring χ) h a b l := by
@@ -134,7 +141,9 @@ theorem exists_finite_color_interval_bound (k : ℕ) (h : ℕ → ℕ) :
 
 /-- A formulation for operation sequences: among the first `N` operations,
 there is an interval whose smallest color occurs as often as prescribed by
-the interval's starting index.  Only these first `N` colors are constrained.-/
+the interval's starting index.  Only these first `N` colors are constrained.
+@isnad1 id=ex.0h2v.s5.5e1e4a05908b from=translated src=- shape=c7f2d6e9 vocab=b92da7af
+-/
 theorem exists_color_interval_bound (k : ℕ) (h : ℕ → ℕ) :
     ∃ N, ∀ χ : ℕ → ℕ, (∀ i < N, χ i < k) →
       ∃ a b l, b < N ∧ l < k ∧ HasColorInterval χ h a b l := by

@@ -32,7 +32,9 @@ noncomputable abbrev originalWeights (Φ : FlagDecomposition p d f) : PrunedWeig
       FlagDecompositionRaw.cumulativeWeight, hall]
 
 /-- Original transitions carry each lifted support into the upper lifted
-support, with no additional prime or coordinate-bound hypothesis.-/
+support, with no additional prime or coordinate-bound hypothesis.
+@isnad1 id=mem.2h7v.s7.8de26b8d50a7 from=translated src=- shape=fbf6393c vocab=d49f973a
+-/
 theorem transition_mem_liftedSupport (Φ : FlagDecomposition p d f)
     {x y : Φ.flag.Node} (h : x ≤ y) {q : IntCoord (Φ.flag.rank x)}
     (hq : q ∈ Φ.liftedSupport x) :
@@ -49,6 +51,9 @@ variable (Φ : FlagDecomposition p d f)
 noncomputable def chart (x : Φ.flag.Node) : IntegralAffineMap (C x).rank (Φ.flag.rank x) :=
   IntegralAffineMap.ofIntAffineMap (C x).map
 
+/--
+@isnad1 id=injectiv.0h6v.s9.ec70decb5589 from=translated src=- shape=d06864cf vocab=9854423b
+-/
 theorem chart_real_injective (x : Φ.flag.Node) : Function.Injective (chart Φ C x).real :=
   IntegralAffineMap.ofIntAffineMap_real_injective _ (C x).injective
 
@@ -62,13 +67,18 @@ noncomputable def polytope (x : Φ.flag.Node) : RationalPolytope (C x).rank :=
       intro i
       exact ⟨(z i : ℚ), by simp⟩)
 
+/--
+@isnad1 id=eq.0h6v.s9.e76d9b55cb72 from=translated src=- shape=5fda068f vocab=e4da6b2f
+-/
 @[simp]
 theorem polytope_carrier (x : Φ.flag.Node) :
     (polytope Φ C x).carrier =
       convexHull ℝ (IntCoord.real '' ((C x).coordinateSupport : Set (IntCoord (C x).rank))) := by
   simp only [polytope, RationalPolytope.ofFinsetConvexHull_carrier, Finset.coe_image]
 
-/-- The chart maps the new polytope onto the original one.-/
+/-- The chart maps the new polytope onto the original one.
+@isnad1 id=eq.0h6v.s9.ba3b0a54f537 from=translated src=- shape=119f862f vocab=45af8fe5
+-/
 theorem chart_image_polytope (x : Φ.flag.Node) :
     (chart Φ C x).real '' (polytope Φ C x).carrier = (Φ.flag.polytope x).carrier := by
   rw [polytope_carrier, AffineMap.image_convexHull, Φ.polytope_eq_liftedSupport]
@@ -85,6 +95,9 @@ theorem chart_image_polytope (x : Φ.flag.Node) :
     change ((C x).map ((C x).coordinates z)).real = z.real
     rw [(C x).map_coordinates_of_mem hz]
 
+/--
+@isnad1 id=iff.0h7v.s9.8e1185e487ba from=translated src=- shape=c86ff6a0 vocab=68bb6dab
+-/
 @[simp]
 theorem chart_mem_polytope_iff (x : Φ.flag.Node) (q : RealCoord (C x).rank) :
     (chart Φ C x).real q ∈ (Φ.flag.polytope x).carrier ↔ q ∈ (polytope Φ C x).carrier := by
@@ -92,7 +105,9 @@ theorem chart_mem_polytope_iff (x : Φ.flag.Node) (q : RealCoord (C x).rank) :
   exact (chart_real_injective Φ C x).mem_set_image
 
 /-- The uniform chart box bounds transfer boundedness of the original
-decomposition to every lattice point of each new polytope.-/
+decomposition to every lattice point of each new polytope.
+@isnad1 id=le.3h9v.s10.c9c31af241e0 from=translated src=- shape=d07a216c vocab=7c1b2282
+-/
 theorem polytope_bound {K B : Φ.flag.Node → ℕ} (hΦ : Φ.IsKBounded K)
     (hC : ∀ x (q : IntCoord (C x).rank),
       latticeSupNorm ((C x).map q) ≤ K x → latticeSupNorm q ≤ B x) :
@@ -106,7 +121,9 @@ theorem polytope_bound {K B : Φ.flag.Node → ℕ} (hΦ : Φ.IsKBounded K)
   exact (chart_mem_polytope_iff Φ C x q.real).mpr hq
 
 /-- Support membership supplies the target-lattice condition for factoring
-the original transition through the chosen charts.-/
+the original transition through the chosen charts.
+@isnad1 id=mem.2h7v.s10.e5c4843349cd from=translated src=- shape=acaabc33 vocab=0b623aa0
+-/
 theorem transition_support {x y : Φ.flag.Node} (h : x ≤ y) :
     ∀ z ∈ Φ.liftedSupport x, (Φ.flag.transition h).toIntAffineMap z ∈
       affineSpan ℤ (Φ.liftedSupport y : Set (IntCoord (Φ.flag.rank y))) := by
@@ -119,7 +136,9 @@ noncomputable def transition {x y : Φ.flag.Node} (h : x ≤ y) :
   IntegralAffineMap.ofIntAffineMap
     ((C x).transition (C y) (Φ.flag.transition h).toIntAffineMap (transition_support Φ h))
 
-/-- Chart maps intertwine new and old transitions as integral-affine maps.-/
+/-- Chart maps intertwine new and old transitions as integral-affine maps.
+@isnad1 id=eq.1h7v.s7.817f7d677c95 from=translated src=- shape=b3b8bbcf vocab=02b1e6e4
+-/
 theorem chart_comp_transition {x y : Φ.flag.Node} (h : x ≤ y) :
     (chart Φ C y).comp (transition Φ C h) = (Φ.flag.transition h).comp (chart Φ C x) := by
   apply IntegralAffineMap.ext_integer
@@ -127,12 +146,18 @@ theorem chart_comp_transition {x y : Φ.flag.Node} (h : x ≤ y) :
   exact (C x).map_transition (C y) (Φ.flag.transition h).toIntAffineMap
     (transition_support Φ h) q
 
+/--
+@isnad1 id=eq.1h8v.s11.072ef3cd2896 from=translated src=- shape=25e8db89 vocab=36fc855d
+-/
 theorem chart_transition_real {x y : Φ.flag.Node} (h : x ≤ y)
     (q : RealCoord (C x).rank) :
     (chart Φ C y).real ((transition Φ C h).real q) =
       (Φ.flag.transition h).real ((chart Φ C x).real q) :=
   AffineMap.congr_fun (congrArg IntegralAffineMap.real (chart_comp_transition Φ C h)) q
 
+/--
+@isnad1 id=eq.1h9v.s11.ac742af55018 from=translated src=- shape=f814e365 vocab=c05830d8
+-/
 theorem chart_transition_modp {x y : Φ.flag.Node} (h : x ≤ y) (r : ℕ)
     (q : FpCoord r (C x).rank) :
     (chart Φ C y).modp r ((transition Φ C h).modp r q) =
@@ -140,6 +165,9 @@ theorem chart_transition_modp {x y : Φ.flag.Node} (h : x ≤ y) (r : ℕ)
   AffineMap.congr_fun
     (congrArg (fun A ↦ A.modp r) (chart_comp_transition Φ C h)) q
 
+/--
+@isnad1 id=mem.2h8v.s10.f3bcd39e6672 from=translated src=- shape=80dbf9ac vocab=320078e4
+-/
 theorem transition_mem {x y : Φ.flag.Node} (h : x ≤ y) {q : RealCoord (C x).rank}
     (hq : q ∈ (polytope Φ C x).carrier) :
     (transition Φ C h).real q ∈ (polytope Φ C y).carrier := by
@@ -147,6 +175,9 @@ theorem transition_mem {x y : Φ.flag.Node} (h : x ≤ y) {q : RealCoord (C x).r
   rw [chart_transition_real]
   exact Φ.flag.transition_mem h ((chart_mem_polytope_iff Φ C x q).mpr hq)
 
+/--
+@isnad1 id=eq.0h6v.s6.4abe631b6b0d from=translated src=- shape=4130e101 vocab=5c456f3e
+-/
 theorem transition_refl (x : Φ.flag.Node) :
     transition Φ C (le_refl x) = IntegralAffineMap.id (C x).rank := by
   apply IntegralAffineMap.ext_integer
@@ -158,6 +189,9 @@ theorem transition_refl (x : Φ.flag.Node) :
   rw [Φ.flag.transition_refl]
   rfl
 
+/--
+@isnad1 id=eq.2h8v.s8.a5422443648d from=translated src=- shape=2c690d38 vocab=da3e0a0c
+-/
 theorem transition_trans {x y z : Φ.flag.Node} (hxy : x ≤ y) (hyz : y ≤ z) :
     transition Φ C (hxy.trans hyz) = (transition Φ C hyz).comp (transition Φ C hxy) := by
   apply IntegralAffineMap.ext_integer

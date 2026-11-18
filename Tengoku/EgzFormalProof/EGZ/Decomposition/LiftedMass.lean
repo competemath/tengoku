@@ -19,6 +19,9 @@ namespace EGZ.FlagDecomposition
 variable {p d : ℕ} [NeZero p] {f : FpCoord p d → ℕ}
     (Φ : FlagDecomposition p d f)
 
+/--
+@isnad1 id=eq.1h6v.s9.23c01bb7011f from=translated src=- shape=5df4d1e1 vocab=412bf515
+-/
 theorem liftedMassOn_eq_natMassOn (hp : Odd p) (x : Φ.flag.Node)
     (S : Set (RealCoord (Φ.flag.rank x))) :
     Φ.liftedMassOn x S = natMassOn (Φ.cumulativeWeight x)
@@ -67,6 +70,9 @@ theorem liftedMassOn_eq_natMassOn (hp : Odd p) (x : Φ.flag.Node)
       simp only [hneq, and_false, ite_false]
     · exact fun h ↦ (h hq).elim
 
+/--
+@isnad1 id=le.1h7v.s6.7140a14477d2 from=translated src=- shape=62d434ae vocab=81c93933
+-/
 theorem liftedMassOn_mono (x : Φ.flag.Node) {S T : Set (RealCoord (Φ.flag.rank x))}
     (h : S ⊆ T) : Φ.liftedMassOn x S ≤ Φ.liftedMassOn x T := by
   apply Finset.sum_le_sum

@@ -147,6 +147,9 @@ noncomputable def initial (f : FpCoord p d → ℕ) (hf : f ≠ 0) :
     · simpa [Q] using hq
   }
 
+/--
+@isnad1 id=eq.1h3v.s6.d445f0834ad8 from=translated src=- shape=6a93a562 vocab=c42107f9
+-/
 @[simp]
 theorem initial_retainedWeight (f : FpCoord p d → ℕ) (hf : f ≠ 0) :
     (initial f hf).retainedWeight = f := by
@@ -154,18 +157,26 @@ theorem initial_retainedWeight (f : FpCoord p d → ℕ) (hf : f ≠ 0) :
   change (∑ _ : Fin 1, f v) = f v
   simp
 
+/--
+@isnad1 id=eq.1h4v.s6.1ae9ffcc0b99 from=translated src=- shape=8dda86c0 vocab=e4e86065
+-/
 @[simp]
 theorem initial_cumulative (f : FpCoord p d → ℕ) (hf : f ≠ 0)
     (x : (initial f hf).flag.Node) : (initial f hf).cumulativeWeight x = f := by
   funext v
   exact initial_cumulativeWeight f x v
 
+/--
+@isnad1 id=eq.1h3v.s6.400da305d017 from=translated src=- shape=83822ecd vocab=5e3f62f8
+-/
 @[simp]
 theorem initial_retainedMass (f : FpCoord p d → ℕ) (hf : f ≠ 0) :
     (initial f hf).retainedMass = natMass f := by
   rw [retainedMass, initial_retainedWeight]
 
-/-- The initial flag has exactly one node.-/
+/-- The initial flag has exactly one node.
+@isnad1 id=eq.1h3v.s6.63f8aaa24bf3 from=translated src=- shape=8eb0e885 vocab=4ea0e5d2
+-/
 @[simp]
 theorem initial_card (f : FpCoord p d → ℕ) (hf : f ≠ 0) :
     Fintype.card (initial f hf).flag.Node = 1 := by
@@ -173,21 +184,27 @@ theorem initial_card (f : FpCoord p d → ℕ) (hf : f ≠ 0) :
   simp
 
 /-- Every coordinate of the initial fibre is zero, so every coordinate
-bound is valid.-/
+bound is valid.
+@isnad1 id=iskbound.1h4v.s6.353cc35ab5ac from=translated src=- shape=66f717b4 vocab=e173934d
+-/
 theorem initial_isKBounded (f : FpCoord p d → ℕ) (hf : f ≠ 0)
     (K : (initial f hf).flag.Node → ℕ) : (initial f hf).IsKBounded K := by
   intro x z hz
   change Finset.univ.sup (fun i : Fin 0 ↦ (z i).natAbs) ≤ K x
   simp
 
-/-- The unique initial node is reduced.-/
+/-- The unique initial node is reduced.
+@isnad1 id=isreduce.1h3v.s6.6e83a5073b3a from=translated src=- shape=1b2140b4 vocab=8f8dadd8
+-/
 theorem initial_isReduced (f : FpCoord p d → ℕ) (hf : f ≠ 0) :
     (initial f hf).IsReduced := by
   intro x
   apply (initial f hf).isReducedElement_of_localLift_ne_zero x 0
   exact (initial_localLift f hf x 0).trans_ne (natMass_ne_zero hf)
 
-/-- The initial affine space and rank-zero affine lattice are minimal.-/
+/-- The initial affine space and rank-zero affine lattice are minimal.
+@isnad1 id=isminima.1h3v.s6.94192b4b9b47 from=translated src=- shape=1b2140b4 vocab=d20f8f4f
+-/
 theorem initial_isMinimal (f : FpCoord p d → ℕ) (hf : f ≠ 0) :
     (initial f hf).IsMinimal := by
   classical
@@ -204,7 +221,9 @@ theorem initial_isMinimal (f : FpCoord p d → ℕ) (hf : f ≠ 0) :
       exact Subsingleton.elim _ _
 
 /-- The unique positive lifted mass of the initial decomposition is the
-entire input mass.-/
+entire input mass.
+@isnad1 id=eq.1h4v.s6.98ab25c458ec from=translated src=- shape=a2f91299 vocab=cdbc98d5
+-/
 @[simp]
 theorem initial_gap (f : FpCoord p d → ℕ) (hf : f ≠ 0)
     (x : (initial f hf).flag.Node) : (initial f hf).gap x = natMass f := by
@@ -215,7 +234,9 @@ theorem initial_gap (f : FpCoord p d → ℕ) (hf : f ≠ 0)
   simp only [Finset.image_singleton, Finset.min'_singleton]
   exact initial_hat f hf x 0
 
-/-- Every face of the initial polytope is realized.-/
+/-- Every face of the initial polytope is realized.
+@isnad1 id=isrealiz.1h5v.s6.b6183671cd16 from=translated src=- shape=32a58539 vocab=3ab1ea86
+-/
 theorem initial_isRealizedFace (f : FpCoord p d → ℕ) (hf : f ≠ 0)
     (x : (initial f hf).flag.Node) (Γ : ((initial f hf).flag.polytope x).Face) :
     (initial f hf).IsRealizedFace x Γ := by
@@ -227,7 +248,9 @@ theorem initial_isRealizedFace (f : FpCoord p d → ℕ) (hf : f ≠ 0)
   rwa [h]
 
 /-- In ambient dimension zero every affine functional is constant, so the
-initial node satisfies completeness for all parameters.-/
+initial node satisfies completeness for all parameters.
+@isnad1 id=iscomple.1h5v.s7.611bf7a9a99e from=translated src=- shape=440b2e2e vocab=ec68eb7c
+-/
 theorem initial_isComplete_dimZero (f : FpCoord p 0 → ℕ) (hf : f ≠ 0)
     (T : (initial f hf).flag.Node → ℕ) (ε δ : ℝ) :
     (initial f hf).IsComplete T ε δ := by

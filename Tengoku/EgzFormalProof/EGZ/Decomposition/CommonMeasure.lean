@@ -19,6 +19,9 @@ namespace WeightedIncidence
 
 variable {α : Type*} [Fintype α]
 
+/--
+@isnad1 id=le.1h4v.s5.e4f006098533 from=translated src=- shape=0a58d8a7 vocab=905b8148
+-/
 theorem mass_weight_mono (w u : α → ℝ) (h : ∀ a, u a ≤ w a) (S : Set α) :
     mass u S ≤ mass w S := by
   classical
@@ -26,6 +29,9 @@ theorem mass_weight_mono (w u : α → ℝ) (h : ∀ a, u a ≤ w a) (S : Set α
   intro a _
   by_cases ha : a ∈ S <;> simp [ha, h a]
 
+/--
+@isnad1 id=eq.0h4v.s5.cc9564ba49fe from=translated src=- shape=f9b00bb1 vocab=5688a514
+-/
 theorem mass_sub_weight (w u : α → ℝ) (S : Set α) :
     mass (fun a ↦ w a - u a) S = mass w S - mass u S := by
   classical
@@ -34,7 +40,9 @@ theorem mass_sub_weight (w u : α → ℝ) (S : Set α) :
   intro a _
   by_cases ha : a ∈ S <;> simp [ha]
 
-/-- The loss on any set is bounded by the loss on all atoms.-/
+/-- The loss on any set is bounded by the loss on all atoms.
+@isnad1 id=le.1h4v.s6.95712ea41da0 from=translated src=- shape=1d81b37f vocab=3aa2428c
+-/
 theorem mass_loss_le_total (w u : α → ℝ) (h : ∀ a, u a ≤ w a) (S : Set α) :
     mass w S - mass u S ≤ ∑ a, (w a - u a) := by
   rw [← mass_sub_weight]
@@ -45,7 +53,9 @@ end WeightedIncidence
 namespace CommonMeasure
 
 /-- Numerical form of the mass-and-tail estimate. The strict proper-face
-inequality has enough room to tolerate the whole permitted tail loss.-/
+inequality has enough room to tolerate the whole permitted tail loss.
+@isnad1 id=and.7h5v.s7.ca37d4f5f36a from=translated src=- shape=970d7ba9 vocab=e7bc5859
+-/
 theorem mass_tail_estimates {ε R D a b : ℝ}
     (hε : 0 < ε) (hεhalf : ε ≤ 1 / 2) (hR : 0 < R)
     (hD : 0 ≤ D) (hDsmall : D ≤ ε ^ 2 / 4 * R)
@@ -71,7 +81,9 @@ variable {α : Type*} [Fintype α]
 open WeightedIncidence
 
 /-- Positivity, reference-mass largeness, and strict proper-subface
-separation for a retained finite measure.-/
+separation for a retained finite measure.
+@isnad1 id=and.6h6v.s8.5f15daf82704 from=translated src=- shape=646624a4 vocab=f469b873
+-/
 theorem face_estimates (w u : α → ℝ)
     (hle : ∀ a, u a ≤ w a) {ε R : ℝ}
     (hε : 0 < ε) (hεhalf : ε ≤ 1 / 2) (hR : 0 < R)
@@ -87,7 +99,9 @@ theorem face_estimates (w u : α → ℝ)
     (hT.trans_lt h.2.2)⟩
 
 /-- Largeness relative to any polytope whose old mass is below the global
-reference mass.-/
+reference mass.
+@isnad1 id=le.7h7v.s7.685a690de434 from=translated src=- shape=8ed0c203 vocab=f469b873
+-/
 theorem relative_mass_le (w u : α → ℝ)
     (hle : ∀ a, u a ≤ w a) {ε R : ℝ}
     (hε : 0 < ε) (hεhalf : ε ≤ 1 / 2) (hR : 0 < R)
@@ -99,7 +113,9 @@ theorem relative_mass_le (w u : α → ℝ)
     (by positivity : 0 ≤ ε / 2)).trans h
 
 /-- A retained large face inside the final polytope bounds the final
-polytope mass relative to any initial set below the same reference mass.-/
+polytope mass relative to any initial set below the same reference mass.
+@isnad1 id=le.9h8v.s7.09a45d4e05e2 from=translated src=- shape=401e3f21 vocab=f469b873
+-/
 theorem final_mass_le (w u : α → ℝ) (hu : ∀ a, 0 ≤ u a)
     (hle : ∀ a, u a ≤ w a) {ε R : ℝ}
     (hε : 0 < ε) (hεhalf : ε ≤ 1 / 2) (hR : 0 < R)
@@ -113,7 +129,9 @@ theorem final_mass_le (w u : α → ℝ) (hu : ∀ a, 0 ≤ u a)
 end CommonMeasure
 
 /-- Apply the uniform large-face bound to varying old measures and one
-common retained measure. Only the dimension and `ε` occur in the bound.-/
+common retained measure. Only the dimension and `ε` occur in the bound.
+@isnad1 id=le.11h10v.s9.d74631c783d5 from=translated src=- shape=c044a5f7 vocab=65d32078
+-/
 theorem card_largeFaceSequence_of_mass_loss {α : Type*} [Fintype α] {d N : ℕ}
     (q : α → RealCoord d) (u : α → ℝ) (hu : ∀ a, 0 ≤ u a)
     (w : Fin (N + 1) → α → ℝ) (R : Fin (N + 1) → ℝ)

@@ -23,6 +23,9 @@ noncomputable def generatorFinset {n : ℕ} {P : RationalPolytope n}
   classical
   exact P.generators.filter (fun q ↦ q ∈ F.carrier)
 
+/--
+@isnad1 id=le.0h3v.s4.74e2b70d4bdd from=translated src=- shape=c61a17fb vocab=f00a50bb
+-/
 theorem generatorFinset_subset {n : ℕ} {P : RationalPolytope n}
     (F : P.Face) : F.generatorFinset ⊆ P.generators := by
   classical
@@ -30,7 +33,9 @@ theorem generatorFinset_subset {n : ℕ} {P : RationalPolytope n}
   exact Finset.filter_subset _ _
 
 /-- An exposed face is the convex hull of precisely the chosen generators
-which lie on it.-/
+which lie on it.
+@isnad1 id=eq.0h3v.s6.1eed9c77a368 from=translated src=- shape=9d14730d vocab=68dbb54c
+-/
 theorem carrier_eq_convexHull_generatorFinset {n : ℕ}
     {P : RationalPolytope n} (F : P.Face) :
     F.carrier = convexHull ℝ (↑F.generatorFinset : Set (RealCoord n)) := by
@@ -70,7 +75,9 @@ theorem carrier_eq_convexHull_generatorFinset {n : ℕ}
       rw [hfilter]
 
 /-- Every nonempty exposed face contains at least one generator of the
-ambient polytope.-/
+ambient polytope.
+@isnad1 id=nonempty.0h3v.s4.68407cea71f3 from=translated src=- shape=aaf65a20 vocab=08373d8e
+-/
 theorem generatorFinset_nonempty {n : ℕ} {P : RationalPolytope n}
     (F : P.Face) : F.generatorFinset.Nonempty := by
   by_contra h
@@ -79,6 +86,9 @@ theorem generatorFinset_nonempty {n : ℕ} {P : RationalPolytope n}
   rw [F.carrier_eq_convexHull_generatorFinset, h] at hface
   simpa using hface
 
+/--
+@isnad1 id=injectiv.0h2v.s3.e75e1ecb99a7 from=translated src=- shape=d1c9c0a8 vocab=37840ffa
+-/
 theorem generatorFinset_injective {n : ℕ} {P : RationalPolytope n} :
     Function.Injective (@generatorFinset n P) := by
   intro F G hFG
@@ -92,6 +102,9 @@ noncomputable def generatorCode {n : ℕ} {P : RationalPolytope n}
     (F : P.Face) : {s : Finset (RealCoord n) // s ∈ P.generators.powerset} :=
   ⟨F.generatorFinset, Finset.mem_powerset.mpr F.generatorFinset_subset⟩
 
+/--
+@isnad1 id=injectiv.0h2v.s5.da89b39bbe80 from=translated src=- shape=d2dc16df vocab=d08596ad
+-/
 theorem generatorCode_injective {n : ℕ} {P : RationalPolytope n} :
     Function.Injective (@generatorCode n P) := by
   intro F G hFG
@@ -103,7 +116,9 @@ noncomputable instance faceFintype {n : ℕ} (P : RationalPolytope n) :
   classical
   exact Fintype.ofInjective (@generatorCode n P) generatorCode_injective
 
-/-- A face carrier is convex.-/
+/-- A face carrier is convex.
+@isnad1 id=convex.0h3v.s5.2f56f1c28122 from=translated src=- shape=3614c2fb vocab=3e94038e
+-/
 theorem convex {n : ℕ} {P : RationalPolytope n} (F : P.Face) :
     Convex ℝ F.carrier := by
   rw [F.carrier_eq_convexHull_generatorFinset]
@@ -113,6 +128,9 @@ noncomputable instance facePartialOrder {n : ℕ} (P : RationalPolytope n) :
     PartialOrder P.Face :=
   PartialOrder.lift (fun F ↦ F.carrier) (fun _ _ h ↦ Face.ext h)
 
+/--
+@isnad1 id=iff.0h4v.s5.63c897cefc52 from=translated src=- shape=0edee075 vocab=0b15b501
+-/
 @[simp]
 theorem le_iff_carrier_subset {n : ℕ} {P : RationalPolytope n}
     {F G : P.Face} : F ≤ G ↔ F.carrier ⊆ G.carrier := Iff.rfl
@@ -127,6 +145,9 @@ def top {n : ℕ} (P : RationalPolytope n) : P.Face where
       simp
   nonempty := P.nonempty
 
+/--
+@isnad1 id=eq.0h2v.s4.a2dea628271c from=translated src=- shape=bebe8451 vocab=1e2945bf
+-/
 @[simp]
 theorem top_carrier {n : ℕ} (P : RationalPolytope n) :
     (top P).carrier = P.carrier := rfl
@@ -164,6 +185,9 @@ def interOfNonempty {n : ℕ} {P : RationalPolytope n}
         · linarith
   nonempty := hnonempty
 
+/--
+@isnad1 id=eq.1h4v.s5.dc28c5dbc697 from=translated src=- shape=dd72a7f6 vocab=c34a5654
+-/
 @[simp]
 theorem interOfNonempty_carrier {n : ℕ} {P : RationalPolytope n}
     (F G : P.Face) (hnonempty : (F.carrier ∩ G.carrier).Nonempty) :
@@ -255,6 +279,9 @@ private theorem supFace_le_commonUpper {n : ℕ} {P : RationalPolytope n}
       ⟨hgen_subset, hgen_ne⟩)
   exact (Nat.not_lt_of_ge (supFace_card_min F G I hFI hGI)) hcard_lt
 
+/--
+@isnad1 id=islub.0h4v.s5.57ec4d99079c from=translated src=- shape=91f7a370 vocab=bb374bc1
+-/
 theorem supFace_isLUB {n : ℕ} {P : RationalPolytope n}
     (F G : P.Face) : IsLUB {F, G} (supFace F G) := by
   constructor

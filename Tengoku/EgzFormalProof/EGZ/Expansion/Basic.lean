@@ -23,6 +23,9 @@ noncomputable def pushWeight {α β : Type*} [Fintype α]
   classical
   exact ∑ a, if f a = b then w a else 0
 
+/--
+@isnad1 id=le.1h5v.s5.725e4e160ab7 from=translated src=- shape=c6ad0167 vocab=d28f4c02
+-/
 theorem pushWeight_mono {α β : Type*} [Fintype α]
     (f : α → β) {w u : α → ℕ} (h : w ≤ u) : pushWeight f w ≤ pushWeight f u := by
   classical
@@ -33,6 +36,9 @@ theorem pushWeight_mono {α β : Type*} [Fintype α]
   · exact h a
   · exact le_rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.b5e78a802397 from=translated src=- shape=e0f8355b vocab=7fc8501a
+-/
 theorem sum_pushWeight {α β M : Type*} [Fintype α] [Fintype β]
     [AddCommMonoid M] (f : α → β) (w : α → ℕ) (g : β → M) :
     (∑ b, pushWeight f w b • g b) = ∑ a, w a • g (f a) := by
@@ -43,10 +49,16 @@ theorem sum_pushWeight {α β M : Type*} [Fintype α] [Fintype β]
   intro a _
   simp
 
+/--
+@isnad1 id=eq.0h4v.s5.2958e99cbba5 from=translated src=- shape=804d3020 vocab=d94357c4
+-/
 theorem natMass_pushWeight {α β : Type*} [Fintype α] [Fintype β]
     (f : α → β) (w : α → ℕ) : natMass (pushWeight f w) = natMass w := by
   simpa [natMass] using sum_pushWeight f w (fun _ ↦ (1 : ℕ))
 
+/--
+@isnad1 id=eq.0h5v.s5.0b39d458e173 from=translated src=- shape=63abe54e vocab=1a33b5fe
+-/
 theorem natMassOn_pushWeight {α β : Type*} [Fintype α] [Fintype β]
     (f : α → β) (w : α → ℕ) (S : Set β) :
     natMassOn (pushWeight f w) S = natMassOn w (f ⁻¹' S) := by
@@ -54,6 +66,9 @@ theorem natMassOn_pushWeight {α β : Type*} [Fintype α] [Fintype β]
   simpa [natMassOn, apply_ite, ite_mul] using
     sum_pushWeight f w (fun b ↦ if b ∈ S then (1 : ℕ) else 0)
 
+/--
+@isnad1 id=eq.0h6v.s5.ae071a468997 from=translated src=- shape=1a593c2f vocab=10e9fa05
+-/
 theorem pushWeight_comp {α β γ : Type*} [Fintype α] [Fintype β]
     (f : α → β) (g : β → γ) (w : α → ℕ) :
     pushWeight g (pushWeight f w) = pushWeight (g ∘ f) w := by
@@ -63,7 +78,9 @@ theorem pushWeight_comp {α β γ : Type*} [Fintype α] [Fintype β]
     sum_pushWeight f w (fun b ↦ if g b = c then (1 : ℕ) else 0)
 
 /-- Pulling a supported weight back along an injection and pushing it
-forward recovers every multiplicity.-/
+forward recovers every multiplicity.
+@isnad1 id=eq.2h4v.s5.a7fcd4117603 from=translated src=- shape=6a4c808b vocab=bec16954
+-/
 theorem pushWeight_pullback {α β : Type*} [Fintype α]
     (f : α → β) (hf : Function.Injective f) (w : β → ℕ)
     (hs : ∀ b, w b ≠ 0 → b ∈ Set.range f) :
@@ -80,7 +97,9 @@ theorem pushWeight_pullback {α β : Type*} [Fintype α]
     intro a _
     exact ite_eq_right (fun h ↦ hb ⟨a, h⟩)
 
-/-- Affine maps preserve a zero sum when its total multiplicity is `p`.-/
+/-- Affine maps preserve a zero sum when its total multiplicity is `p`.
+@isnad1 id=eq.2h5v.s9.33c9c81e4304 from=translated src=- shape=6f6af62f vocab=f8cef7d1
+-/
 theorem affine_sum_eq_zero {p m n : ℕ} [NeZero p]
     (A : FpCoord p m →ᵃ[ZMod p] FpCoord p n)
     (w : FpCoord p m → ℕ) (hm : natMass w = p)
@@ -100,6 +119,9 @@ theorem affine_sum_eq_zero {p m n : ℕ} [NeZero p]
       rw [show (∑ v, w v) = p from hm]
     _ = 0 := by rw [hz, map_zero, FpVec.characteristic_nsmul, add_zero]
 
+/--
+@isnad1 id=haszeros.1h5v.s9.b3b2a02e1ddc from=translated src=- shape=681628a9 vocab=c62a457d
+-/
 theorem hasZeroSumMultiplicity_pushWeight {p m n : ℕ} [NeZero p]
     (A : FpCoord p m →ᵃ[ZMod p] FpCoord p n)
     {w : FpCoord p m → ℕ} (h : HasZeroSumMultiplicity w) :
@@ -122,6 +144,9 @@ def IsThickRelative {p n r : ℕ} [NeZero p]
     (T : ℕ) (δ : ℝ) : Prop :=
   ∀ ξ, NonconstantOnFibers φ ξ → IsThickAlong w ξ T δ
 
+/--
+@isnad1 id=isthickr.3h9v.s6.6640bd9a2a95 from=translated src=- shape=56c52553 vocab=3d2637d4
+-/
 theorem IsThickRelative.mono {p n r T T' : ℕ} [NeZero p]
     {w : FpCoord p n → ℕ} {φ : FpCoord p n → FpCoord p r} {δ δ' : ℝ}
     (h : IsThickRelative w φ T δ) (hT : T' ≤ T) (hδ : δ' ≤ δ) :
@@ -130,7 +155,9 @@ theorem IsThickRelative.mono {p n r T T' : ℕ} [NeZero p]
   exact h ξ hξ ((hthin.mono_width hT).mono_error hδ)
 
 /-- For a linear projection, nonconstancy on its fibres is exactly
-nonconstancy on the fibre through zero, even for affine functionals.-/
+nonconstancy on the fibre through zero, even for affine functionals.
+@isnad1 id=iff.0h5v.s10.fb135bdd9da4 from=translated src=- shape=1704854b vocab=034b7519
+-/
 theorem nonconstantOnFibers_iff_kernel {p n r : ℕ}
     (φ : FpCoord p n →ₗ[ZMod p] FpCoord p r)
     (ξ : FpCoord p n →ᵃ[ZMod p] ZMod p) :

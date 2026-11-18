@@ -57,25 +57,43 @@ def upper (anchor : α) (a : α) : Node anchor := ⟨(a, 1), by simp⟩
 /-- The lower copy of a node below the anchor.-/
 def lower (anchor : α) (a : α) (ha : a ≤ anchor) : Node anchor := ⟨(a, 0), fun _ ↦ ha⟩
 
+/--
+@isnad1 id=eq.0h3v.s6.bc917cfef395 from=translated src=- shape=7ff87222 vocab=abe94599
+-/
 @[simp] theorem projection_upper (anchor a : α) : projection anchor (upper anchor a) = a := rfl
+/--
+@isnad1 id=eq.1h3v.s6.c6c514f492f6 from=translated src=- shape=1a74d442 vocab=89cf468d
+-/
 @[simp] theorem projection_lower (anchor a : α) (ha : a ≤ anchor) :
     projection anchor (lower anchor a ha) = a := rfl
 
+/--
+@isnad1 id=iff.0h4v.s7.95cbdc982afc from=translated src=- shape=418ae423 vocab=7233cea6
+-/
 @[simp] theorem upper_le_upper (anchor a b : α) :
     upper anchor a ≤ upper anchor b ↔ a ≤ b := by
   change (a ≤ b ∧ (1 : Fin 2) ≤ 1) ↔ a ≤ b
   simp
 
+/--
+@isnad1 id=iff.2h4v.s7.a2ffddc67819 from=translated src=- shape=a66973aa vocab=9d9a4ca7
+-/
 @[simp] theorem lower_le_lower (anchor a b : α) (ha : a ≤ anchor) (hb : b ≤ anchor) :
     lower anchor a ha ≤ lower anchor b hb ↔ a ≤ b := by
   change (a ≤ b ∧ (0 : Fin 2) ≤ 0) ↔ a ≤ b
   simp
 
+/--
+@isnad1 id=iff.1h4v.s7.3b6fe2da04dc from=translated src=- shape=43c4e581 vocab=97a5ed7c
+-/
 @[simp] theorem lower_le_upper (anchor a b : α) (ha : a ≤ anchor) :
     lower anchor a ha ≤ upper anchor b ↔ a ≤ b := by
   change (a ≤ b ∧ (0 : Fin 2) ≤ 1) ↔ a ≤ b
   simp
 
+/--
+@isnad1 id=not.1h4v.s7.1239d6b885b1 from=translated src=- shape=e53b654b vocab=97a5ed7c
+-/
 @[simp] theorem not_upper_le_lower (anchor a b : α) (hb : b ≤ anchor) :
     ¬ upper anchor a ≤ lower anchor b hb := by
   change ¬ (a ≤ b ∧ (1 : Fin 2) ≤ 0)
@@ -110,22 +128,33 @@ section Finite
 
 variable [Fintype α]
 
+/--
+@isnad1 id=eq.0h2v.s6.f88137cc3a0f from=translated src=- shape=a8a3c1fd vocab=8c4a9320
+-/
 theorem card_nodes (anchor : α) :
     Fintype.card (Node anchor) = Fintype.card α + Fintype.card {a : α // a ≤ anchor} := by
   rw [← Fintype.card_congr (layerEquiv anchor), Fintype.card_sum]
 
+/--
+@isnad1 id=le.0h2v.s5.ee29168c1015 from=translated src=- shape=a0545dcc vocab=934f4c67
+-/
 theorem card_nodes_le (anchor : α) : Fintype.card (Node anchor) ≤ 2 * Fintype.card α := by
   rw [card_nodes]
   have := Fintype.card_subtype_le (fun a : α ↦ a ≤ anchor)
   omega
 
-/-- Split a sum over layered nodes into upper and lower contributions.-/
+/-- Split a sum over layered nodes into upper and lower contributions.
+@isnad1 id=eq.0h4v.s7.5009de587fae from=translated src=- shape=a82a053d vocab=39010968
+-/
 theorem sum_nodes {M : Type*} [AddCommMonoid M] (anchor : α) (g : Node anchor → M) :
     ∑ a, g a = (∑ a : α, g (upper anchor a)) +
       ∑ a : {a : α // a ≤ anchor}, g (lower anchor a.1 a.2) := by
   rw [← (layerEquiv anchor).sum_comp g, Fintype.sum_sum_type]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.1dcd2480b8f7 from=translated src=- shape=6e4fac54 vocab=6c771bea
+-/
 theorem sum_below_eq {M : Type*} [AddCommMonoid M] (anchor : α) (g : α → M) :
     ∑ a : {a : α // a ≤ anchor}, g a = ∑ a : α, if a ≤ anchor then g a else 0 := by
   rw [← Finset.sum_filter]
@@ -142,6 +171,9 @@ noncomputable def splitWeight (anchor : α) (w : α → β → ℕ) (S : β → 
   if a.1.2 = 0 then (if S v then w a.1.1 v else 0)
   else if a.1.1 ≤ anchor ∧ S v then 0 else w a.1.1 v
 
+/--
+@isnad1 id=eq.0h7v.s6.b27058e9f8e3 from=translated src=- shape=bbcdd03a vocab=447092d1
+-/
 @[simp] theorem splitWeight_upper (anchor : α) (w : α → β → ℕ) (S : β → Prop)
     (a : α) (v : β) :
     splitWeight anchor w S (upper anchor a) v =
@@ -149,18 +181,26 @@ noncomputable def splitWeight (anchor : α) (w : α → β → ℕ) (S : β → 
   simp only [splitWeight, upper]
   split_ifs <;> rfl
 
+/--
+@isnad1 id=eq.1h7v.s6.875aaa301dde from=translated src=- shape=b1808e01 vocab=a042c544
+-/
 @[simp] theorem splitWeight_lower (anchor : α) (w : α → β → ℕ) (S : β → Prop)
     (a : α) (ha : a ≤ anchor) (v : β) :
     splitWeight anchor w S (lower anchor a ha) v = if S v then w a v else 0 := by
   simp [splitWeight, lower]
 
+/--
+@isnad1 id=le.0h7v.s6.147928578d2f from=translated src=- shape=1da7848d vocab=59aec640
+-/
 theorem splitWeight_le (anchor : α) (w : α → β → ℕ) (S : β → Prop)
     (a : Node anchor) (v : β) : splitWeight anchor w S a v ≤ w (projection anchor a) v := by
   change splitWeight anchor w S a v ≤ w a.1.1 v
   unfold splitWeight
   split_ifs <;> omega
 
-/-- Every old atom retains its full weight at one of the two copies.-/
+/-- Every old atom retains its full weight at one of the two copies.
+@isnad1 id=ex.0h7v.s6.fe22c5de5fd4 from=translated src=- shape=9c1c5910 vocab=05a6ad2f
+-/
 theorem exists_splitWeight_eq (anchor : α) (w : α → β → ℕ) (S : β → Prop)
     (a : α) (v : β) :
     ∃ b : Node anchor, projection anchor b = a ∧ splitWeight anchor w S b v = w a v := by
@@ -172,7 +212,9 @@ section Finite
 
 variable [Fintype α]
 
-/-- Splitting atoms between the two layers preserves every retained weight.-/
+/-- Splitting atoms between the two layers preserves every retained weight.
+@isnad1 id=eq.0h6v.s6.613985de0308 from=translated src=- shape=0976a172 vocab=b021d422
+-/
 theorem sum_splitWeight (anchor : α) (w : α → β → ℕ) (S : β → Prop) (v : β) :
     ∑ a : Node anchor, splitWeight anchor w S a v = ∑ a : α, w a v := by
   rw [sum_nodes]
@@ -186,7 +228,9 @@ theorem sum_splitWeight (anchor : α) (w : α → β → ℕ) (S : β → Prop) 
 noncomputable def cumulativeWeight (w : α → β → ℕ) (a : α) (v : β) : ℕ :=
   ∑ b, if b ≤ a then w b v else 0
 
-/-- Every upper node retains its entire old cumulative weight.-/
+/-- Every upper node retains its entire old cumulative weight.
+@isnad1 id=eq.0h7v.s6.01ec294c42e8 from=translated src=- shape=18c68d8a vocab=14caa2f8
+-/
 theorem cumulativeWeight_upper (anchor : α) (w : α → β → ℕ) (S : β → Prop)
     (a : α) (v : β) :
     cumulativeWeight (splitWeight anchor w S) (upper anchor a) v = cumulativeWeight w a v := by
@@ -200,7 +244,9 @@ theorem cumulativeWeight_upper (anchor : α) (w : α → β → ℕ) (S : β →
   by_cases hba : b ≤ a <;> by_cases hb : b ≤ anchor <;> by_cases hv : S v <;>
     simp [hba, hb, hv]
 
-/-- A lower node has precisely the selected part of its old cumulative weight.-/
+/-- A lower node has precisely the selected part of its old cumulative weight.
+@isnad1 id=eq.1h7v.s6.d660c38f0174 from=translated src=- shape=07d49102 vocab=b13fe3a7
+-/
 theorem cumulativeWeight_lower (anchor : α) (w : α → β → ℕ) (S : β → Prop)
     (a : α) (ha : a ≤ anchor) (v : β) :
     cumulativeWeight (splitWeight anchor w S) (lower anchor a ha) v =
@@ -219,7 +265,9 @@ theorem cumulativeWeight_lower (anchor : α) (w : α → β → ℕ) (S : β →
     · simp [hb]
   · simp [hv]
 
-/-- Every layered cumulative weight is bounded by its old projected weight.-/
+/-- Every layered cumulative weight is bounded by its old projected weight.
+@isnad1 id=le.0h7v.s6.5b47780e29b6 from=translated src=- shape=89c2718e vocab=0f72c509
+-/
 theorem cumulativeWeight_projection_le (anchor : α) (w : α → β → ℕ) (S : β → Prop)
     (a : Node anchor) (v : β) :
     cumulativeWeight (splitWeight anchor w S) a v ≤ cumulativeWeight w (projection anchor a) v := by

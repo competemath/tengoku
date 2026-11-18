@@ -49,6 +49,9 @@ def comp (M : NodeMassMap Φ Ψ x y) (N : NodeMassMap Ψ Ω y z) :
     rw [N.map_eq v hv]
     exact M.map_eq v (fun h ↦ hv (Nat.eq_zero_of_le_zero (h ▸ N.cumulative_le v)))
 
+/--
+@isnad1 id=eq.2h9v.s10.7cdd62cf00df from=translated src=- shape=6f147417 vocab=d5f52230
+-/
 theorem centeredLift_eq (M : NodeMassMap Φ Ψ x y) (hp : Odd p)
     (v : FpCoord p d) (hv : Ψ.cumulativeWeight y v ≠ 0) :
     M.coord.integer (FpCoord.centeredLift (Ψ.representation.map y v)) =
@@ -71,12 +74,18 @@ theorem centeredLift_eq (M : NodeMassMap Φ Ψ x y) (hp : Odd p)
       FpCoord.mod_centeredLift _, M.map_eq v hv]
   rw [← hm, FpCoord.centeredLift_mod hc]
 
+/--
+@isnad1 id=eq.2h9v.s10.b21e03cfcdb3 from=translated src=- shape=9d684ab1 vocab=9336536e
+-/
 theorem real_centeredLift_eq (M : NodeMassMap Φ Ψ x y) (hp : Odd p)
     (v : FpCoord p d) (hv : Ψ.cumulativeWeight y v ≠ 0) :
     M.coord.real (FpCoord.centeredLift (Ψ.representation.map y v)).real =
       (FpCoord.centeredLift (Φ.representation.map x v)).real := by
   rw [M.coord.real_integer, M.centeredLift_eq hp v hv]
 
+/--
+@isnad1 id=eq.1h9v.s10.4e8cebd2a46e from=translated src=- shape=1ee139c3 vocab=cc127a24
+-/
 theorem liftedMassOn_preimage (M : NodeMassMap Φ Ψ x y) (hp : Odd p)
     (S : Set (RealCoord (Φ.flag.rank x))) :
     Ψ.liftedMassOn y (M.coord.real ⁻¹' S) =
@@ -89,12 +98,18 @@ theorem liftedMassOn_preimage (M : NodeMassMap Φ Ψ x y) (hp : Odd p)
   · simp only [hv, ite_self]
   · simp only [Set.mem_ofPred_eq, Set.mem_preimage, M.real_centeredLift_eq hp v hv]
 
+/--
+@isnad1 id=le.1h9v.s9.1431fdfda969 from=translated src=- shape=77e44dce vocab=2905b793
+-/
 theorem liftedMassOn_preimage_le (M : NodeMassMap Φ Ψ x y) (hp : Odd p)
     (S : Set (RealCoord (Φ.flag.rank x))) :
     Ψ.liftedMassOn y (M.coord.real ⁻¹' S) ≤ Φ.liftedMassOn x S := by
   rw [M.liftedMassOn_preimage hp, Φ.liftedMassOn_eq_natMassOn hp]
   exact natMassOn_mono_weight M.cumulative_le _
 
+/--
+@isnad1 id=le.1h9v.s9.53fe6e7a2095 from=translated src=- shape=ac213f8a vocab=e346d3e1
+-/
 theorem liftedMassOn_loss_le (M : NodeMassMap Φ Ψ x y) (hp : Odd p)
     (S : Set (RealCoord (Φ.flag.rank x))) :
     (Φ.liftedMassOn x S : ℝ) - Ψ.liftedMassOn y (M.coord.real ⁻¹' S) ≤
@@ -123,6 +138,9 @@ def comp (M : StableNodeMap Φ Ψ x y) (N : StableNodeMap Ψ Ω y z) :
   toNodeMassMap := M.toNodeMassMap.comp N.toNodeMassMap
   mass_loss_le := by linarith [M.mass_loss_le, N.mass_loss_le]
 
+/--
+@isnad1 id=le.1h9v.s9.842d22821c10 from=translated src=- shape=0bcff480 vocab=e7edb469
+-/
 theorem liftedMassOn_loss_le (M : StableNodeMap Φ Ψ x y) (hp : Odd p)
     (S : Set (RealCoord (Φ.flag.rank x))) :
     (Φ.liftedMassOn x S : ℝ) - Ψ.liftedMassOn y (M.coord.real ⁻¹' S) ≤

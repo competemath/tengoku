@@ -15,7 +15,9 @@ namespace EGZ.FlagDecomposition
 
 variable {p d : ℕ} [NeZero p] {f : FpCoord p d → ℕ}
 
-/-- The real support polytope is contained in the centered coordinate box.-/
+/-- The real support polytope is contained in the centered coordinate box.
+@isnad1 id=le.0h5v.s7.00ddbee9ac27 from=translated src=- shape=29e7b215 vocab=6a9f369a
+-/
 theorem polytope_subset_centeredBox (Φ : FlagDecomposition p d f)
     (x : Φ.flag.Node) :
     (Φ.flag.polytope x).carrier ⊆
@@ -40,7 +42,9 @@ theorem polytope_subset_centeredBox (Φ : FlagDecomposition p d f)
     change (z i : ℝ) ≤ (((p - 1) / 2 : ℕ) : ℝ)
     simpa only [Int.cast_natCast] using (Int.cast_le (R := ℝ)).mpr hupp
 
-/-- Every integer point of a decomposition polytope is already centered.-/
+/-- Every integer point of a decomposition polytope is already centered.
+@isnad1 id=iscenter.1h6v.s6.71c266967149 from=translated src=- shape=f990dcd9 vocab=371ec2a6
+-/
 theorem isCenteredLift_of_mem_polytope (Φ : FlagDecomposition p d f)
     (x : Φ.flag.Node) (q : IntCoord (Φ.flag.rank x))
     (hq : q.real ∈ (Φ.flag.polytope x).carrier) : IsCenteredLift p q := by
@@ -57,7 +61,9 @@ theorem isCenteredLift_of_mem_polytope (Φ : FlagDecomposition p d f)
     exact (Int.cast_le (R := ℝ)).mp (by simpa only [Int.cast_natCast] using h)
   omega
 
-/-- Centeredness is preserved by a flag transition on integer polytope points.-/
+/-- Centeredness is preserved by a flag transition on integer polytope points.
+@isnad1 id=iscenter.2h7v.s7.33c3767a1930 from=translated src=- shape=630847c5 vocab=77bd6939
+-/
 theorem isCenteredLift_transition_of_mem_polytope (Φ : FlagDecomposition p d f)
     {y x : Φ.flag.Node} (h : y ≤ x) (q : IntCoord (Φ.flag.rank y))
     (hq : q.real ∈ (Φ.flag.polytope y).carrier) :
@@ -66,7 +72,9 @@ theorem isCenteredLift_transition_of_mem_polytope (Φ : FlagDecomposition p d f)
   rw [← (Φ.flag.transition h).real_integer]
   exact Φ.flag.transition_mem h hq
 
-/-- Transitions of nonzero local lifts stay centered automatically.-/
+/-- Transitions of nonzero local lifts stay centered automatically.
+@isnad1 id=iscenter.2h7v.s7.c45da5992cf1 from=translated src=- shape=980c741e vocab=4ff9174d
+-/
 theorem isCenteredLift_transition_of_localLift (Φ : FlagDecomposition p d f)
     {y x : Φ.flag.Node} (h : y ≤ x) (q : IntCoord (Φ.flag.rank y))
     (hq : Φ.localLift y q ≠ 0) :

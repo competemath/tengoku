@@ -19,6 +19,9 @@ namespace EGZ.FlagDecomposition
 
 variable {p d : ℕ} [NeZero p] {f : FpCoord p d → ℕ}
 
+/--
+@isnad1 id=lt.1h5v.s6.11d42c34763f from=translated src=- shape=956c7992 vocab=5318d701
+-/
 theorem cumulativeMass_pos (Φ : FlagDecomposition p d f) (hp : Odd p)
     (x : Φ.flag.Node) : 0 < natMass (Φ.cumulativeWeight x) := by
   classical
@@ -28,7 +31,9 @@ theorem cumulativeMass_pos (Φ : FlagDecomposition p d f) (hp : Odd p)
     (Finset.single_le_sum (fun _ _ ↦ Nat.zero_le _) hq)
 
 /-- Every decomposition has positive retained mass: its top lifted support
-is nonempty and all its stored masses are positive.-/
+is nonempty and all its stored masses are positive.
+@isnad1 id=lt.1h4v.s5.bc61d0d54993 from=translated src=- shape=12588182 vocab=6d8777cc
+-/
 theorem retainedMass_pos (Φ : FlagDecomposition p d f) (hp : Odd p) :
     0 < Φ.retainedMass := by
   classical
@@ -49,7 +54,9 @@ namespace PrunedWeights
 variable {Φ : FlagDecomposition p d f} (D : PrunedWeights Φ)
 
 /-- The old support polytopes supply all compatibility conditions for
-the rebuilding construction; none is an additional geometric assumption.-/
+the rebuilding construction; none is an additional geometric assumption.
+@isnad1 id=rebuildd.1h5v.s5.b9e7edc0a76e from=translated src=- shape=9fb3fdde vocab=c4d53084
+-/
 theorem rebuildData (hp : Odd p) :
     FlagDecompositionRaw.RebuildData Φ.representation D.weight f where
   odd := hp
@@ -68,6 +75,9 @@ noncomputable abbrev cleaned (hp : Odd p) : FlagDecomposition p d f :=
 
 variable (hp : Odd p)
 
+/--
+@isnad1 id=le.1h6v.s7.c6a0b49d3754 from=translated src=- shape=9ce60e64 vocab=737e726f
+-/
 theorem rebuilt_polytope_subset (x : (D.rebuilt hp).flag.Node) :
     ((D.rebuilt hp).flag.polytope x).carrier ⊆ (Φ.flag.polytope x.1).carrier := by
   rw [(D.rebuildData hp).polytope_carrier]
@@ -75,39 +85,63 @@ theorem rebuilt_polytope_subset (x : (D.rebuilt hp).flag.Node) :
   rintro _ ⟨z, hz, rfl⟩
   exact D.mem_old_polytope ((D.mem_support x.1 z).mp hz)
 
+/--
+@isnad1 id=eq.1h6v.s7.51f80501ea09 from=translated src=- shape=d48e77e1 vocab=d9f8ea93
+-/
 @[simp]
 theorem cleaned_localWeight (x : (D.cleaned hp).flag.Node) :
     (D.cleaned hp).localWeight x = D.weight x.1.1 := rfl
 
+/--
+@isnad1 id=eq.1h6v.s7.a4226eb600c5 from=translated src=- shape=7be6465a vocab=429aa698
+-/
 @[simp]
 theorem cleaned_cumulativeWeight (x : (D.cleaned hp).flag.Node) :
     (D.cleaned hp).cumulativeWeight x = D.cumulative x.1.1 := by
   rw [reduced_cumulativeWeight, (D.rebuildData hp).decomposition_cumulativeWeight]
 
+/--
+@isnad1 id=eq.1h6v.s7.ea29ff447ee3 from=translated src=- shape=9098a9f0 vocab=581659a4
+-/
 @[simp]
 theorem cleaned_hat (x : (D.cleaned hp).flag.Node) :
     (D.cleaned hp).hat x = D.hat x.1.1 := by
   rw [reduced_hat, (D.rebuildData hp).decomposition_hat]
 
+/--
+@isnad1 id=eq.1h5v.s6.10dad59b0d72 from=translated src=- shape=8954befa vocab=6b4b4fe4
+-/
 @[simp]
 theorem cleaned_retainedMass : (D.cleaned hp).retainedMass =
     natMass (FlagDecompositionRaw.retainedWeight D.weight) := by
   rw [reduced_retainedMass, retainedMass,
     (D.rebuildData hp).decomposition_retainedWeight]
 
+/--
+@isnad1 id=isreduce.1h5v.s5.6f643cd6b310 from=translated src=- shape=ceec325e vocab=65ef8160
+-/
 theorem cleaned_isReduced : (D.cleaned hp).IsReduced :=
   (D.rebuilt hp).reduced_isReduced hp
 
+/--
+@isnad1 id=le.1h5v.s6.7d49efd7fe31 from=translated src=- shape=f98c9421 vocab=ac0f5f64
+-/
 theorem cleaned_card_le : @Fintype.card (D.cleaned hp).flag.Node
     (D.cleaned hp).flag.nodeFintype ≤
     Fintype.card Φ.flag.Node :=
   ((D.rebuilt hp).card_reduced_le hp).trans
     (D.rebuildData hp).card_decomposition_le
 
+/--
+@isnad1 id=le.1h6v.s8.cacc12a5591b from=translated src=- shape=d882d41e vocab=c2f00bd3
+-/
 theorem cleaned_polytope_subset (x : (D.cleaned hp).flag.Node) :
     ((D.cleaned hp).flag.polytope x).carrier ⊆ (Φ.flag.polytope x.1.1).carrier :=
   D.rebuilt_polytope_subset hp x.1
 
+/--
+@isnad1 id=iskbound.2h6v.s7.0739da98df7f from=translated src=- shape=abd59e24 vocab=b9239abe
+-/
 theorem cleaned_isKBounded {K : Φ.flag.Node → ℕ} (hK : Φ.IsKBounded K) :
     (D.cleaned hp).IsKBounded (fun x ↦ K x.1.1) :=
   fun x z hz ↦ hK x.1.1 z (D.cleaned_polytope_subset hp x hz)
@@ -128,7 +162,9 @@ noncomputable def cleanedSubdivisionMap : SubdivisionMap Φ (D.cleaned hp) :=
   (D.rebuiltSubdivisionMap hp).comp ((D.rebuilt hp).reducedSubdivisionMap hp)
 
 /-- A realized old face remains realized on its nonempty intersection with
-the cleaned polytope. Its new index is allowed to move downwards.-/
+the cleaned polytope. Its new index is allowed to move downwards.
+@isnad1 id=isrealiz.3h7v.s9.5c94a27acde1 from=translated src=- shape=63e4ebac vocab=c6eff1d6
+-/
 theorem cleaned_isRealizedFace (x : (D.cleaned hp).flag.Node)
     (Γ : (Φ.flag.polytope x.1.1).Face)
     (hne : (((D.cleaned hp).flag.polytope x).carrier ∩ Γ.carrier).Nonempty)
@@ -138,7 +174,9 @@ theorem cleaned_isRealizedFace (x : (D.cleaned hp).flag.Node)
   (D.cleanedSubdivisionMap hp).isRealizedFace x Γ hne hΓ
 
 /-- The cleanup thickness bound holds for every resulting parameter,
-including negative ones, since every retained cumulative weight is nonzero.-/
+including negative ones, since every retained cumulative weight is nonzero.
+@isnad1 id=iscomple.6h10v.s8.119cf2a2621d from=translated src=- shape=20cc26b8 vocab=e36d6860
+-/
 theorem cleaned_isCompleteElement {x : (D.cleaned hp).flag.Node} {t : ℕ}
     {ε δ α : ℝ} (hε : 0 < ε) (hα : 0 ≤ α)
     (hlarge : Φ.IsLargeElement ε x.1.1) (hcomplete : Φ.IsCompleteElement x.1.1 t δ)
@@ -154,6 +192,9 @@ theorem cleaned_isCompleteElement {x : (D.cleaned hp).flag.Node} {t : ℕ}
       exact_mod_cast (D.cleaned hp).cumulativeMass_pos hp x
     exact (mul_neg_of_neg_of_pos (lt_of_not_ge hδ) hmass).trans_le (Nat.cast_nonneg _)
 
+/--
+@isnad1 id=lt.2h7v.s7.5671e188e249 from=translated src=- shape=4f1cd06f vocab=464cedaa
+-/
 theorem cleaned_gap_gt (threshold : Φ.flag.Node → ℝ)
     (hgap : ∀ x q, D.hat x q ≠ 0 → threshold x < (D.hat x q : ℝ))
     (x : (D.cleaned hp).flag.Node) :
@@ -176,7 +217,9 @@ end PrunedWeights
 /-- Gap cleanup with a rebuilt, reduced output decomposition. All geometric
 properties of the output (including preservation of realized faces and
 thickness) are supplied by the `PrunedWeights.cleaned_*` theorems above.
-No coordinate-versus-prime bound is needed for this operation.-/
+No coordinate-versus-prime bound is needed for this operation.
+@isnad1 id=ex.4h6v.s9.20e2048b104b from=translated src=- shape=a7a4cc01 vocab=d2365b6f
+-/
 theorem gap_cleanup_lemma [Fact p.Prime] (Φ : FlagDecomposition p d f)
     (hp : Odd p) {K : Φ.flag.Node → ℕ} (hK : Φ.IsKBounded K)
     {α : ℝ} (hα : 0 ≤ α) (hαone : α < 1) :

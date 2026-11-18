@@ -17,7 +17,9 @@ open scoped BigOperators
 namespace EGZ.BalancedCombination
 
 /-- A common denominator for any finite rational family, expressed using
-real casts for later quantitative estimates.-/
+real casts for later quantitative estimates.
+@isnad1 id=ex.0h2v.s5.3c54a1f563df from=translated src=- shape=f53aaaa5 vocab=94e1abd9
+-/
 theorem exists_common_denominator {I : Type*} [Fintype I] (β : I → ℚ) :
     ∃ m : ℕ, 0 < m ∧ ∃ b : I → ℤ,
       ∀ i, (b i : ℝ) = (m : ℝ) * (β i : ℝ) := by
@@ -34,6 +36,9 @@ theorem exists_common_denominator {I : Type*} [Fintype I] (β : I → ℚ) :
   push_cast
   field_simp
 
+/--
+@isnad1 id=ex.0h2v.s8.1bc308b64d82 from=translated src=- shape=a2a30ec7 vocab=f79f5d12
+-/
 theorem Data.exists_integer_affine_coefficients {d : ℕ} (D : Data d) :
     ∃ z : D.support → ℤ, (∑ q, z q) = 1 ∧ (∑ q, z q • q.val) = D.center := by
   classical
@@ -50,7 +55,9 @@ theorem Data.exists_integer_affine_coefficients {d : ℕ} (D : Data d) :
       rw [Finsupp.notMem_support_iff.mp hq, zero_smul])).symm
 
 /-- Exact integer affine combinations approximate `n * β` with a bounded
-error independent of `n`. Positivity is not needed for this algebraic step.-/
+error independent of `n`. Positivity is not needed for this algebraic step.
+@isnad1 id=ex.2h3v.s9.35d61729c2ca from=translated src=- shape=8ca3f1a0 vocab=747f627d
+-/
 theorem Data.exists_integer_approximation {d : ℕ} (D : Data d)
     (β : D.support → ℚ) (hsum : (∑ q, β q) = 1)
     (hvec : ∀ i, (∑ q, β q * (q.val i : ℚ)) = (D.center i : ℚ)) :
@@ -113,7 +120,9 @@ theorem Data.exists_integer_approximation {d : ℕ} (D : Data d)
 
 /-- A single positive rational affine combination satisfying all the relaxed
 caps yields the balanced integer combinations, with constants independent
-of the centrality parameter.-/
+of the centrality parameter.
+@isnad1 id=ex.5h4v.s9.dab5ffb1a2d4 from=translated src=- shape=ac8a6103 vocab=64fa34bf
+-/
 theorem Data.exists_coefficients_of_rational {d : ℕ} (D : Data d)
     (ε : ℝ) (hε : 0 < ε) (β : D.support → ℚ)
     (hβ : ∀ q, 0 < β q) (hsum : (∑ q, β q) = 1)

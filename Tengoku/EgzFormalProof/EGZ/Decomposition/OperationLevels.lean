@@ -27,25 +27,36 @@ variable {p d : ℕ} [Fact p.Prime] {f : FpCoord p d → ℕ}
       ((Rechart.chart (decomposition Φ anchor (Φ.faceSelector anchor Γ) hp) C x).modp p))
     (hcenter : ∀ x q, q ∈ (C x).coordinateSupport → IsCenteredLift p q)
 
+/--
+@isnad1 id=le.3h8v.s11.ebd027f1fccf from=translated src=- shape=984cb8c6 vocab=55927ef7
+-/
 theorem normalized_level_le (x : (normalized Φ anchor Γ hp C hmod hcenter).flag.Node) :
     Φ.level ((normalizedSubdivisionMap Φ anchor Γ hp C hmod hcenter).node x) ≤
       (normalized Φ anchor Γ hp C hmod hcenter).level x :=
   Rechart.decomposition_level_le (decomposition Φ anchor (Φ.faceSelector anchor Γ) hp)
     C hp hmod hcenter x.1
 
+/--
+@isnad1 id=lt.5h8v.s11.cd9579164d65 from=translated src=- shape=27233e87 vocab=fac8c2a8
+-/
 theorem normalized_lower_level_lt
     (hΓ : Γ.carrier ⊂ (Φ.flag.polytope anchor).carrier)
     (x : (normalized Φ anchor Γ hp C hmod hcenter).flag.Node) (hx : x.1.1.1.2 = 0) :
     Φ.level anchor < (normalized Φ anchor Γ hp C hmod hcenter).level x :=
   lower_rechart_level_lt Φ anchor hp Γ C hmod hcenter hΓ x.1 hx
 
+/--
+@isnad1 id=eq.6h7v.s11.4744e0df2916 from=translated src=- shape=05fd57d1 vocab=505b490f
+-/
 theorem normalizedTargetNode_level_eq (hΦ : Φ.IsMinimal)
     (hΓ : Γ ≠ ⊤) (hred : Φ.IsReducedElement anchor) :
     (normalized Φ anchor Γ hp C hmod hcenter).level
       (normalizedTargetNode Φ anchor Γ hp C hmod hcenter hΓ hred) = Φ.level anchor :=
   upper_rechart_level_eq Φ anchor hp Γ C hmod hcenter hΦ anchor
 
-/-- Face refinement uses injective charts at every surviving node.-/
+/-- Face refinement uses injective charts at every surviving node.
+@isnad1 id=injectiv.3h8v.s12.51ab43a8a405 from=translated src=- shape=3526f4ab vocab=dd1395a4
+-/
 theorem normalizedSubdivisionMap_fibre_injective
     (x : (normalized Φ anchor Γ hp C hmod hcenter).flag.Node) :
     Function.Injective ((normalizedSubdivisionMap Φ anchor Γ hp C hmod hcenter).fibre x) :=
@@ -63,16 +74,25 @@ variable {p d : ℕ} [Fact p.Prime] {f : FpCoord p d → ℕ}
     (hmod : ∀ x, Function.Injective ((IntegralAffineMap.ofIntAffineMap (C x).map).modp p))
     (hcenter : ∀ x q, q ∈ (C x).coordinateSupport → IsCenteredLift p q)
 
+/--
+@isnad1 id=le.5h10v.s11.33e3bf4a3226 from=translated src=- shape=69d28d01 vocab=57d3e00b
+-/
 theorem normalized_level_le (x : (D.normalized hp hδ hsmall C hmod hcenter).flag.Node) :
     Φ.level ((D.normalizedSubdivisionMap hp hδ hsmall C hmod hcenter).node x) ≤
       (D.normalized hp hδ hsmall C hmod hcenter).level x :=
   D.refined_level_le hp hδ hsmall C hmod hcenter x.1
 
+/--
+@isnad1 id=lt.7h10v.s11.190ec928f98c from=translated src=- shape=59be664f vocab=1b817c69
+-/
 theorem normalized_lower_level_lt (hcount : 0 < D.count)
     (x : (D.normalized hp hδ hsmall C hmod hcenter).flag.Node) (hx : x.1.1.1.2 = 0) :
     Φ.level anchor < (D.normalized hp hδ hsmall C hmod hcenter).level x :=
   D.lower_refined_level_lt hp hδ hsmall C hmod hcenter hcount x.1 hx
 
+/--
+@isnad1 id=lt.7h10v.s10.306f624d0791 from=translated src=- shape=5e879ceb vocab=ca920cb5
+-/
 theorem normalizedCompleteNode_level_lt_of_not_complete
     (T : ℕ) (hwidth : T ≤ t 1) (hnot : ¬ Φ.IsCompleteElement anchor T δ) :
     Φ.level anchor < (D.normalized hp hδ hsmall C hmod hcenter).level
@@ -80,7 +100,9 @@ theorem normalizedCompleteNode_level_lt_of_not_complete
   D.completeNode_level_lt_of_not_complete hp hδ hsmall C hmod hcenter T hwidth hnot
 
 /-- At a persistent level, forgetting added coordinates is injective on
-the whole real coordinate space of the surviving normalized node.-/
+the whole real coordinate space of the surviving normalized node.
+@isnad1 id=injectiv.6h10v.s12.e73bd0ce8eb5 from=translated src=- shape=9fc97196 vocab=11c912c2
+-/
 theorem normalizedSubdivisionMap_fibre_injective_of_level_eq
     (x : (D.normalized hp hδ hsmall C hmod hcenter).flag.Node)
     (hlevel : Φ.level ((D.normalizedSubdivisionMap hp hδ hsmall C hmod hcenter).node x) =

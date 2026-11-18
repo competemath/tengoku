@@ -17,6 +17,9 @@ open scoped BigOperators
 namespace EGZ
 namespace Expansion
 
+/--
+@isnad1 id=haszeros.9h14v.s11.281a9f00f2aa from=translated src=- shape=198a5753 vocab=5e6ffa97
+-/
 theorem AffineModel.apply_relativeExpansion {p d r t K T : ℕ}
     [NeZero p] [Fact p.Prime] {δ : ℝ}
     {V : AffineSubspace (ZMod p) (FpCoord p d)}
@@ -95,7 +98,9 @@ def AffineExpansionAt (d K : ℕ) (δ : ℝ) (T p : ℕ) [NeZero p] : Prop :=
     IsThickRelativeOn w V φ T δ → HasZeroSumMultiplicity w
 
 /-- Uniformity over the finitely many possible quotient and kernel
-dimensions gives thresholds depending only on `d`, `K`, and `δ`.-/
+dimensions gives thresholds depending only on `d`, `K`, and `δ`.
+@isnad1 id=ex.3h3v.s6.5dff84a1faef from=translated src=- shape=01e85a50 vocab=bb6e62e1
+-/
 theorem RelativeExpansionStatement.affine_thresholds
     (h : RelativeExpansionStatement) (d K : ℕ) (hK : 1 ≤ K)
     (δ : ℝ) (hδ : 0 < δ) :
@@ -118,7 +123,9 @@ theorem RelativeExpansionStatement.affine_thresholds
     w α hbox hc hw hs hz hm ha ht
 
 /-- The expansion interface applies directly to a complete decomposition
-node.  Its conclusion is a zero sum in the original multiplicity function.-/
+node.  Its conclusion is a zero sum in the original multiplicity function.
+@isnad1 id=haszeros.10h11v.s10.dc176c1de68c from=translated src=- shape=68ed5087 vocab=0a134b63
+-/
 theorem AffineExpansionAt.decomposition {p d K T : ℕ}
     [NeZero p] [Fact p.Prime] {δ δ₀ : ℝ}
     (h : AffineExpansionAt d K δ T p)

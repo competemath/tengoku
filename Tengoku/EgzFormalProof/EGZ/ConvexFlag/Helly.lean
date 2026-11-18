@@ -78,7 +78,9 @@ structure HellyIndependent {F : ConvexFlag} (Ω : F.ProperPointSet) {n : ℕ}
 namespace HellyIndependent
 
 /-- A Helly-independent family cannot have more members than there are
-integral flag points.-/
+integral flag points.
+@isnad1 id=le.1h4v.s4.c87f86dedbaa from=translated src=- shape=4b904d98 vocab=fdec148a
+-/
 theorem card_le_integralPointCount {F : ConvexFlag} {Ω : F.ProperPointSet}
     {n : ℕ} {points : Fin n → F.Point} (h : HellyIndependent Ω points) :
     n ≤ integralPointCount F := by
@@ -91,7 +93,9 @@ theorem card_le_integralPointCount {F : ConvexFlag} {Ω : F.ProperPointSet}
   simpa [integralPointCount] using Fintype.card_le_of_injective f hf
 
 /-- The empty indexed family has the extremal property vacuously: no convex
-combination on an empty index type can have total weight one.-/
+combination on an empty index type can have total weight one.
+@isnad1 id=hellyind.0h2v.s4.28d1a48add7d from=translated src=- shape=91cbec7f vocab=245048d2
+-/
 theorem empty (F : ConvexFlag) (Ω : F.ProperPointSet) :
     HellyIndependent Ω (fun i : Fin 0 ↦ Fin.elim0 i) := by
   refine ⟨fun i ↦ Fin.elim0 i, fun i ↦ Fin.elim0 i,
@@ -101,7 +105,9 @@ theorem empty (F : ConvexFlag) (Ω : F.ProperPointSet) :
   have hzero : (∑ i, weight i) = 0 := by simp
   exact zero_ne_one (hzero ▸ hcomb.sum_eq_one)
 
-/-- Every proper integral singleton is Helly-independent.-/
+/-- Every proper integral singleton is Helly-independent.
+@isnad1 id=hellyind.2h3v.s5.25f04039c080 from=translated src=- shape=9befa9c7 vocab=3ac9a59d
+-/
 theorem singleton {F : ConvexFlag} {Ω : F.ProperPointSet} {q : F.Point}
     (hqΩ : q ∈ Ω) (hqint : q.IsIntegral) :
     HellyIndependent Ω (fun _ : Fin 1 ↦ q) := by
@@ -121,7 +127,9 @@ noncomputable def hellyConstant {F : ConvexFlag} (Ω : F.ProperPointSet) : ℕ :
     (Classical.decPred _)
     (integralPointCount F)
 
-/-- The defining maximum is attained.-/
+/-- The defining maximum is attained.
+@isnad1 id=ex.0h2v.s4.86f3285f702b from=translated src=- shape=6f47c15d vocab=4aabe07f
+-/
 theorem hellyConstant_spec {F : ConvexFlag} (Ω : F.ProperPointSet) :
     ∃ points : Fin (hellyConstant Ω) → F.Point,
       HellyIndependent Ω points := by
@@ -132,7 +140,9 @@ theorem hellyConstant_spec {F : ConvexFlag} (Ω : F.ProperPointSet) :
     (n := integralPointCount F) (Nat.zero_le _)
     ⟨fun i : Fin 0 ↦ Fin.elim0 i, HellyIndependent.empty F Ω⟩
 
-/-- Maximality of the Helly constant.-/
+/-- Maximality of the Helly constant.
+@isnad1 id=le.1h4v.s4.4170a2bbf77d from=translated src=- shape=8a4fe0be vocab=48583f49
+-/
 theorem HellyIndependent.card_le_hellyConstant {F : ConvexFlag}
     {Ω : F.ProperPointSet} {n : ℕ} {points : Fin n → F.Point}
     (h : HellyIndependent Ω points) : n ≤ hellyConstant Ω := by
@@ -141,14 +151,18 @@ theorem HellyIndependent.card_le_hellyConstant {F : ConvexFlag}
   exact Nat.le_findGreatest h.card_le_integralPointCount ⟨points, h⟩
 
 /-- The Helly constant is bounded by the finite population of integral flag
-points.-/
+points.
+@isnad1 id=le.0h2v.s3.adbb8f84c285 from=translated src=- shape=df9e97da vocab=a022bd38
+-/
 theorem hellyConstant_le_integralPointCount {F : ConvexFlag}
     (Ω : F.ProperPointSet) : hellyConstant Ω ≤ integralPointCount F := by
   classical
   unfold hellyConstant
   exact Nat.findGreatest_le _
 
-/-- A proper integral point forces the Helly constant to be positive.-/
+/-- A proper integral point forces the Helly constant to be positive.
+@isnad1 id=lt.2h3v.s5.078c2490c244 from=translated src=- shape=0a850c4e vocab=800a2fa0
+-/
 theorem hellyConstant_pos {F : ConvexFlag} {Ω : F.ProperPointSet}
     {q : F.Point} (hqΩ : q ∈ Ω) (hqint : q.IsIntegral) :
     0 < hellyConstant Ω := by
@@ -1031,7 +1045,9 @@ private theorem flagHelly_finset {F : ConvexFlag} (Ω : F.ProperPointSet)
 
 The family may be infinite.  Only nonempty finite subfamilies of cardinality
 at most the Helly constant occur in the hypothesis; the separate existence
-assumption supplies the conclusion for an empty family.-/
+assumption supplies the conclusion for an empty family.
+@isnad1 id=hascommo.3h3v.s7.14677e0f1dfd from=translated src=- shape=d45dd2f2 vocab=1cfbf7f3
+-/
 theorem flagHelly {F : ConvexFlag} (Ω : F.ProperPointSet)
     (hnonempty : ∃ q, q ∈ Ω ∧ q.IsIntegral)
     (ℱ : Set (Set F.Point))
@@ -1066,7 +1082,9 @@ theorem flagHelly {F : ConvexFlag} (Ω : F.ProperPointSet)
     Finset.mem_image.mpr ⟨a, Finset.mem_univ _, rfl⟩
   exact hbadSet a (hq (badSet a) hbadMem)
 
-/-- Numbered alias for Theorem 3.13.-/
+/-- Numbered alias for Theorem 3.13.
+@isnad1 id=hascommo.3h3v.s7.14677e0f1dfd from=translated src=- shape=d45dd2f2 vocab=1cfbf7f3
+-/
 alias theorem_3_13 := flagHelly
 
 end EGZ.ConvexFlag

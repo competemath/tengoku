@@ -24,7 +24,9 @@ def EventualCeilZeroSum (d : ℕ) : Prop :=
         HasZeroSumMultiplicity f
 
 /-- Absorb the ceiling by applying the finite theorem with half the
-requested error (or less), and then taking sufficiently large primes.-/
+requested error (or less), and then taking sufficiently large primes.
+@isnad1 id=mainuppe.1h1v.s2.a65a80d99923 from=translated src=- shape=6321fd23 vocab=e9e4bbba
+-/
 theorem mainUpperBound_of_eventualCeilZeroSum (d : ℕ)
     (h : EventualCeilZeroSum d) : MainUpperBound d := by
   intro ε hε
@@ -55,7 +57,9 @@ theorem mainUpperBound_of_eventualCeilZeroSum (d : ℕ)
   nlinarith [mul_le_mul_of_nonneg_right hζε hp0]
 
 /-- The completed lower estimate and polynomial bound turn the corrected
-finite target into the paper's asymptotic statement.-/
+finite target into the paper's asymptotic statement.
+@isnad1 id=mainasym.2h1v.s4.c0442ef7f536 from=translated src=- shape=4963a319 vocab=8f76cd0b
+-/
 theorem mainAsymptotic_of_eventualCeilZeroSum (d : ℕ) (hd : 0 < d)
     (h : EventualCeilZeroSum d) : MainAsymptotic d :=
   mainAsymptotic_of_mainUpperBound d hd

@@ -16,6 +16,9 @@ open Module
 
 namespace EGZ.Expansion
 
+/--
+@isnad1 id=eq.4h5v.s8.b5024671691b from=translated src=- shape=154c5b04 vocab=41e5b64b
+-/
 theorem IsCentrallyThick.span_positive_eq_top {p d K : ℕ}
     [NeZero p] [Fact p.Prime] {w : FpCoord p d → ℝ} {δ : ℝ}
     (ht : IsCentrallyThick w K δ) (hw : ∀ v, 0 ≤ w v)
@@ -39,7 +42,9 @@ theorem IsCentrallyThick.span_positive_eq_top {p d K : ℕ}
   exact (not_le_of_gt (mul_pos hδ hW)) hout
 
 /-- Choose a basis indexed by the ambient dimension from positive-weight
-translations.-/
+translations.
+@isnad1 id=ex.4h5v.s9.d92a71bda566 from=translated src=- shape=172dba6c vocab=56a3f972
+-/
 theorem IsCentrallyThick.exists_basis {p d K : ℕ}
     [NeZero p] [Fact p.Prime] {w : FpCoord p d → ℝ} {δ : ℝ}
     (ht : IsCentrallyThick w K δ) (hw : ∀ v, 0 ≤ w v)

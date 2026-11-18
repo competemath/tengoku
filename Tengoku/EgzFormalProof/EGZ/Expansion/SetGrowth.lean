@@ -29,23 +29,38 @@ def translate (Y : Finset G) (a : G) : Finset G :=
   Y.map (Equiv.addRight a).toEmbedding
 
 omit [DecidableEq G] in
+/--
+@isnad1 id=iff.0h4v.s5.c09ff2131a21 from=translated src=- shape=91d990ae vocab=8879830a
+-/
 @[simp] theorem mem_translate {Y : Finset G} {a x : G} :
     x ∈ translate Y a ↔ x - a ∈ Y := by
   simp [translate, Finset.mem_map_equiv, sub_eq_add_neg]
 
 omit [DecidableEq G] in
+/--
+@isnad1 id=eq.0h3v.s4.3696c4a4f624 from=translated src=- shape=f51e9c00 vocab=5911ed59
+-/
 @[simp] theorem card_translate (Y : Finset G) (a : G) :
     (translate Y a).card = Y.card := Finset.card_map _
 
+/--
+@isnad1 id=eq.0h2v.s5.9439f1267218 from=translated src=- shape=29a21968 vocab=7f8562f0
+-/
 @[simp] theorem translate_zero (Y : Finset G) : translate Y 0 = Y := by
   ext x
   simp
 
+/--
+@isnad1 id=eq.0h4v.s5.306dca4d219e from=translated src=- shape=183daf88 vocab=77ea2060
+-/
 theorem translate_add (Y : Finset G) (a b : G) :
     translate Y (a + b) = translate (translate Y a) b := by
   ext x
   simp [sub_sub, add_comm]
 
+/--
+@isnad1 id=eq.0h4v.s5.8d42b7ac200b from=translated src=- shape=52569aab vocab=5b12fe8f
+-/
 theorem translate_sdiff (Y Z : Finset G) (a : G) :
     translate (Y \ Z) a = translate Y a \ translate Z a := by
   ext x
@@ -54,21 +69,36 @@ theorem translate_sdiff (Y Z : Finset G) (a : G) :
 /-- The number of new points added by one translation.-/
 def boundary (Y : Finset G) (a : G) : ℕ := (translate Y a \ Y).card
 
+/--
+@isnad1 id=eq.0h2v.s5.9143fd4f994c from=translated src=- shape=cd369f1d vocab=032fdd93
+-/
 @[simp] theorem boundary_zero (Y : Finset G) : boundary Y 0 = 0 := by
   simp [boundary]
 
+/--
+@isnad1 id=eq.0h3v.s5.45592096cec9 from=translated src=- shape=3d7674a4 vocab=8c44d795
+-/
 theorem boundary_add_card (Y : Finset G) (a : G) :
     boundary Y a + Y.card = (translate Y a ∪ Y).card :=
   Finset.card_sdiff_add_card _ _
 
+/--
+@isnad1 id=eq.0h3v.s5.fb46344a8f16 from=translated src=- shape=427fc29f vocab=9df515a4
+-/
 theorem boundary_add_overlap (Y : Finset G) (a : G) :
     boundary Y a + (translate Y a ∩ Y).card = Y.card := by
   simpa [boundary] using Finset.card_sdiff_add_card_inter (translate Y a) Y
 
+/--
+@isnad1 id=le.0h3v.s4.e1cc6d59864e from=translated src=- shape=f97ee385 vocab=36197f54
+-/
 theorem boundary_le_card (Y : Finset G) (a : G) : boundary Y a ≤ Y.card := by
   have := boundary_add_overlap Y a
   omega
 
+/--
+@isnad1 id=le.0h4v.s5.ef8f95e15b90 from=translated src=- shape=55e83bd8 vocab=79ea7244
+-/
 theorem boundary_add_le (Y : Finset G) (a b : G) :
     boundary Y (a + b) ≤ boundary Y a + boundary Y b := by
   have hsub : translate Y (a + b) \ Y ⊆
@@ -88,6 +118,9 @@ theorem boundary_add_le (Y : Finset G) (a b : G) :
       rw [translate_add, ← translate_sdiff, card_translate]
       rfl
 
+/--
+@isnad1 id=le.0h4v.s5.961ddeb7f888 from=translated src=- shape=5f212907 vocab=97a399a9
+-/
 theorem boundary_nsmul_le (Y : Finset G) (a : G) (n : ℕ) :
     boundary Y (n • a) ≤ n * boundary Y a := by
   induction n with
@@ -96,6 +129,9 @@ theorem boundary_nsmul_le (Y : Finset G) (a : G) (n : ℕ) :
     rw [succ_nsmul, Nat.succ_mul]
     exact (boundary_add_le Y (n • a) a).trans (Nat.add_le_add_right ih _)
 
+/--
+@isnad1 id=le.0h5v.s5.483a73b048c4 from=translated src=- shape=dd3006d8 vocab=aa8a43e8
+-/
 theorem boundary_sum_le {ι : Type*} (I : Finset ι) (Y : Finset G) (a : ι → G) :
     boundary Y (∑ i ∈ I, a i) ≤ ∑ i ∈ I, boundary Y (a i) := by
   classical
@@ -105,7 +141,9 @@ theorem boundary_sum_le {ι : Type*} (I : Finset ι) (Y : Finset G) (a : ι → 
     rw [Finset.sum_insert hi, Finset.sum_insert hi]
     exact (boundary_add_le Y (a i) _).trans (Nat.add_le_add_left ih _)
 
-/-- A translation cannot overlap a set at more positions than the set has.-/
+/-- A translation cannot overlap a set at more positions than the set has.
+@isnad1 id=le.0h3v.s5.96aac0713352 from=translated src=- shape=13452700 vocab=127b5966
+-/
 theorem sum_overlap_le (Y B : Finset G) :
     (∑ b ∈ B, (translate Y b ∩ Y).card) ≤ Y.card * Y.card := by
   classical
@@ -129,7 +167,9 @@ theorem sum_overlap_le (Y B : Finset G) :
     _ = Y.card * Y.card := by simp
 
 /-- Among at least twice as many distinct translations as points of `Y`,
-one translation adds at least half the points of `Y`.-/
+one translation adds at least half the points of `Y`.
+@isnad1 id=ex.2h3v.s6.25fe03dd0c6f from=translated src=- shape=25757323 vocab=7cb2546e
+-/
 theorem exists_boundary_double_le (Y B : Finset G) (hB : B.Nonempty)
     (hlarge : 2 * Y.card ≤ B.card) :
     ∃ b ∈ B, Y.card ≤ 2 * boundary Y b := by
@@ -160,6 +200,9 @@ noncomputable def basisBox (E : Basis (Fin d) (ZMod p) (FpCoord p d)) (m : ℕ) 
   exact Finset.univ.image fun a : Fin d → Fin m ↦
     E.equivFun.symm (fun i ↦ (a i : ℕ))
 
+/--
+@isnad1 id=injectiv.1h4v.s10.38207df05b89 from=translated src=- shape=f890afd6 vocab=431350b0
+-/
 theorem basisBox_injective (E : Basis (Fin d) (ZMod p) (FpCoord p d))
     {m : ℕ} (hm : m ≤ p) : Function.Injective
       (fun a : Fin d → Fin m ↦ E.equivFun.symm (fun i ↦ (a i : ℕ))) := by
@@ -172,12 +215,18 @@ theorem basisBox_injective (E : Basis (Fin d) (ZMod p) (FpCoord p d))
   simpa only [ZMod.val_natCast, Nat.mod_eq_of_lt ((a i).isLt.trans_le hm),
     Nat.mod_eq_of_lt ((b i).isLt.trans_le hm)] using hi
 
+/--
+@isnad1 id=eq.1h4v.s7.d696d39e4aa3 from=translated src=- shape=d9991408 vocab=bb1c6ef3
+-/
 theorem card_basisBox (E : Basis (Fin d) (ZMod p) (FpCoord p d))
     {m : ℕ} (hm : m ≤ p) : (basisBox E m).card = m ^ d := by
   classical
   rw [basisBox, Finset.card_image_of_injective _ (basisBox_injective E hm)]
   simp
 
+/--
+@isnad1 id=nonempty.1h4v.s7.d327d306f9e3 from=translated src=- shape=0dee7872 vocab=04942405
+-/
 theorem basisBox_nonempty (E : Basis (Fin d) (ZMod p) (FpCoord p d))
     {m : ℕ} (hm : 0 < m) : (basisBox E m).Nonempty := by
   classical
@@ -185,7 +234,9 @@ theorem basisBox_nonempty (E : Basis (Fin d) (ZMod p) (FpCoord p d))
   exact ⟨_, Finset.mem_image.mpr ⟨a, Finset.mem_univ _, rfl⟩⟩
 
 /-- A member of a basis box adds at most the sum of the boundaries of its
-individual basis steps, counted with their multiplicities.-/
+individual basis steps, counted with their multiplicities.
+@isnad1 id=le.1h6v.s8.524bb96e03a4 from=translated src=- shape=ce05a972 vocab=90569200
+-/
 theorem boundary_basisBox_le (E : Basis (Fin d) (ZMod p) (FpCoord p d))
     (Y : Finset (FpCoord p d)) {m : ℕ} {b : FpCoord p d}
     (hb : b ∈ basisBox E m) :
@@ -209,7 +260,9 @@ theorem boundary_basisBox_le (E : Basis (Fin d) (ZMod p) (FpCoord p d))
     _ = m * ∑ i, boundary Y (E i) := (Finset.mul_sum _ _ _).symm
 
 /-- Integer form of the basis growth estimate.  Taking
-`m = ceil (2 * |Y|^(1/d))` yields the usual power-size increment.-/
+`m = ceil (2 * |Y|^(1/d))` yields the usual power-size increment.
+@isnad1 id=ex.4h5v.s8.7862dd5521fe from=translated src=- shape=c4bfb684 vocab=9894ea8f
+-/
 theorem exists_basis_boundary (E : Basis (Fin d) (ZMod p) (FpCoord p d))
     (hd : 0 < d) (Y : Finset (FpCoord p d))
     {m : ℕ} (hmpos : 0 < m) (hmp : m ≤ p) (hsize : 2 * Y.card ≤ m ^ d) :
@@ -237,6 +290,9 @@ theorem exists_basis_boundary (E : Basis (Fin d) (ZMod p) (FpCoord p d))
 
 end Basis
 
+/--
+@isnad1 id=ex.4h5v.s8.284b4c2d4a02 from=translated src=- shape=95b270f5 vocab=4336e738
+-/
 theorem exists_basis_boundary_real {p d : ℕ} [NeZero p] [Fact p.Prime]
     (E : Basis (Fin d) (ZMod p) (FpCoord p d)) (hd : 0 < d)
     (Y : Finset (FpCoord p d)) (x : ℝ) (hx : 1 ≤ x)

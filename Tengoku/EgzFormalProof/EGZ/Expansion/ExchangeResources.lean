@@ -40,19 +40,40 @@ noncomputable def difference (E : Exchange point B) : FpCoord p (r + t) :=
   (∑ x ∈ E.left, point x) - ∑ x ∈ E.right, point x
 noncomputable def shift (E : Exchange point B) : FpCoord p t := Coord.last r t E.difference
 
+/--
+@isnad1 id=disjoint.0h7v.s5.9cf702fe6b1a from=translated src=- shape=adda7028 vocab=c1a76c9f
+-/
 theorem disjoint (E : Exchange point B) : Disjoint E.left E.right := E.property.1
+/--
+@isnad1 id=eq.0h7v.s5.51415b925b22 from=translated src=- shape=a8051bdf vocab=73ffbf43
+-/
 theorem card_eq (E : Exchange point B) : E.left.card = E.right.card := E.property.2.1
+/--
+@isnad1 id=eq.0h7v.s9.8121b225ffc5 from=translated src=- shape=b190b17f vocab=e0ea6d8b
+-/
 theorem first_sum_eq (E : Exchange point B) :
     (∑ x ∈ E.left, Coord.first r t (point x)) = ∑ x ∈ E.right, Coord.first r t (point x) :=
   E.property.2.2.1
+/--
+@isnad1 id=le.0h7v.s6.de0814947909 from=translated src=- shape=a00ab3df vocab=f64e329b
+-/
 theorem size_le (E : Exchange point B) : E.left.card + E.right.card ≤ B := E.property.2.2.2
 
+/--
+@isnad1 id=le.0h7v.s5.3381175073a1 from=translated src=- shape=5b2e4c6f vocab=b93597ed
+-/
 theorem support_card_le (E : Exchange point B) : E.support.card ≤ B :=
   (Finset.card_union_le _ _).trans E.size_le
 
+/--
+@isnad1 id=eq.0h7v.s9.a1236c47b936 from=translated src=- shape=7f97c500 vocab=fc597721
+-/
 theorem first_difference (E : Exchange point B) : Coord.first r t E.difference = 0 := by
   simp only [difference, map_sub, map_sum, E.first_sum_eq, sub_self]
 
+/--
+@isnad1 id=eq.1h7v.s6.ca3fbb728f1c from=translated src=- shape=589e9ba4 vocab=0e0f2835
+-/
 theorem shift_eq_zero_of_support_eq_empty (E : Exchange point B) (h : E.support = ∅) : E.shift = 0 := by
   have hh : E.left = ∅ ∧ E.right = ∅ := Finset.union_eq_empty.mp h
   simp [shift, difference, hh.1, hh.2]
@@ -65,12 +86,18 @@ noncomputable def ofPair (point : A → FpCoord p (r + t)) {B : ℕ}
     Exchange point B :=
   ⟨({y}, {x}), by simpa using hxy.symm, by simp, by simpa using hfirst, by simpa using hB⟩
 
+/--
+@isnad1 id=eq.3h8v.s10.edebd52e6760 from=translated src=- shape=ee81b0f9 vocab=35805c95
+-/
 @[simp] theorem ofPair_shift (point : A → FpCoord p (r + t)) {B : ℕ}
     (x y : A) (hxy : x ≠ y)
     (hfirst : Coord.first r t (point y) = Coord.first r t (point x)) (hB : 2 ≤ B) :
     (ofPair point x y hxy hfirst hB).shift = Coord.last r t (point y - point x) := by
   simp [ofPair, shift, difference, left, right]
 
+/--
+@isnad1 id=disjoint.5h9v.s9.80e71c688541 from=translated src=- shape=0c3e29d8 vocab=1e44f443
+-/
 theorem ofPair_support_avoids (point : A → FpCoord p (r + t)) {B : ℕ}
     (x y : A) (hxy : x ≠ y)
     (hfirst : Coord.first r t (point y) = Coord.first r t (point x)) (hB : 2 ≤ B)
@@ -97,18 +124,27 @@ noncomputable def negativeAtoms : Finset A :=
 
 include hinj
 
+/--
+@isnad1 id=eq.1h4v.s5.7d8928627795 from=translated src=- shape=a1927b8a vocab=05f11328
+-/
 theorem positiveAtoms_card : (positiveAtoms P atom).card = ∑ q, P.positive q := by
   calc
     _ = Fintype.card (Σ q, Fin (P.positive q)) :=
       Finset.card_image_of_injective _ (fun i j h ↦ Sum.inl_injective (hinj h))
     _ = _ := by simp
 
+/--
+@isnad1 id=eq.1h4v.s5.ccf10bb6fd8f from=translated src=- shape=a1927b8a vocab=73282cfc
+-/
 theorem negativeAtoms_card : (negativeAtoms P atom).card = ∑ q, P.negative q := by
   calc
     _ = Fintype.card (Σ q, Fin (P.negative q)) :=
       Finset.card_image_of_injective _ (fun i j h ↦ Sum.inr_injective (hinj h))
     _ = _ := by simp
 
+/--
+@isnad1 id=disjoint.1h4v.s5.87d98f918377 from=translated src=- shape=d228ae4f vocab=e75c939b
+-/
 theorem pattern_atoms_disjoint : Disjoint (positiveAtoms P atom) (negativeAtoms P atom) := by
   apply Finset.disjoint_left.mpr
   intro a ha hb
@@ -118,11 +154,17 @@ theorem pattern_atoms_disjoint : Disjoint (positiveAtoms P atom) (negativeAtoms 
       Sum.inr j := hinj (hi.trans hj.symm)
   cases hh
 
+/--
+@isnad1 id=eq.1h6v.s7.4d8ccb760a6c from=translated src=- shape=eb8123e5 vocab=4411f7c6
+-/
 theorem positiveAtoms_sum {G : Type*} [AddCommMonoid G] (f : A → G) :
     (∑ a ∈ positiveAtoms P atom, f a) = ∑ i : Σ q, Fin (P.positive q), f (atom (Sum.inl i)) := by
   rw [positiveAtoms, Finset.sum_image]
   exact fun i _ j _ h ↦ Sum.inl_injective (hinj h)
 
+/--
+@isnad1 id=eq.1h6v.s7.6cb664dd0480 from=translated src=- shape=fd4cd6cd vocab=bbade1e8
+-/
 theorem negativeAtoms_sum {G : Type*} [AddCommMonoid G] (f : A → G) :
     (∑ a ∈ negativeAtoms P atom, f a) = ∑ i : Σ q, Fin (P.negative q), f (atom (Sum.inr i)) := by
   rw [negativeAtoms, Finset.sum_image]
@@ -148,6 +190,9 @@ noncomputable def ofPattern (label : S → FpCoord p r)
   · rw [positiveAtoms_card P atom hinj, negativeAtoms_card P atom hinj]
     exact hsize
 
+/--
+@isnad1 id=eq.5h10v.s10.9ef175e9c225 from=translated src=- shape=bd01be17 vocab=43ddf883
+-/
 theorem ofPattern_shift (label : S → FpCoord p r)
     (hatom : ∀ i, Coord.first r t (point (atom i)) = label (P.label i))
     (hmass : (∑ q, P.positive q) = ∑ q, P.negative q)
@@ -160,6 +205,9 @@ theorem ofPattern_shift (label : S → FpCoord p r)
   change _ = ∑ i : (Σ q, Fin (P.positive q)) ⊕ (Σ q, Fin (P.negative q)), _
   simp [Fintype.sum_sum_type, ExchangePattern.sign, sub_eq_add_neg, Finset.sum_neg_distrib]
 
+/--
+@isnad1 id=disjoint.6h11v.s9.4729ca612a9c from=translated src=- shape=712ae319 vocab=bc73f2b6
+-/
 theorem ofPattern_support_avoids (label : S → FpCoord p r)
     (hatom : ∀ i, Coord.first r t (point (atom i)) = label (P.label i))
     (hmass : (∑ q, P.positive q) = ∑ q, P.negative q)
@@ -181,6 +229,9 @@ section Relation
 
 variable {S : Type*} [Fintype S] [DecidableEq S]
 
+/--
+@isnad1 id=eq.1h2v.s6.d555f44bf068 from=translated src=- shape=874abc95 vocab=227efdaf
+-/
 theorem relation_mass_eq (b : S → ℤ) (hb : ∑ q, b q = 0) :
     (∑ q, (ExchangePattern.ofRelation b).positive q) =
       ∑ q, (ExchangePattern.ofRelation b).negative q := by
@@ -190,6 +241,9 @@ theorem relation_mass_eq (b : S → ℤ) (hb : ∑ q, b q = 0) :
   have heq := sub_eq_zero.mp hh
   exact_mod_cast heq
 
+/--
+@isnad1 id=eq.1h4v.s7.70dfc6a6ed72 from=translated src=- shape=1e2432c6 vocab=fd70c813
+-/
 theorem relation_label_eq {G : Type*} [AddCommGroup G]
     (b : S → ℤ) (label : S → G) (hb : ∑ q, b q • label q = 0) :
     (∑ q, (ExchangePattern.ofRelation b).positive q • label q) =
@@ -198,6 +252,9 @@ theorem relation_label_eq {G : Type*} [AddCommGroup G]
   rw [ExchangePattern.sum_sign_smul, hb] at hh
   exact sub_eq_zero.mp hh
 
+/--
+@isnad1 id=eq.1h5v.s7.9eb7474c8610 from=translated src=- shape=b245c563 vocab=3041b85a
+-/
 theorem relation_mod_sum (b : S → ℤ) (label : S → IntCoord r)
     (hb : ∑ q, b q • label q = 0) : ∑ q, b q • (label q).mod p = 0 := by
   ext j
@@ -219,6 +276,9 @@ noncomputable def ofRelation (point : A → FpCoord p (r + t))
     (relation_label_eq b _ (relation_mod_sum b label hlabel))
     ((ExchangePattern.ofRelation_size b).trans_le hsize)
 
+/--
+@isnad1 id=eq.5h10v.s10.6613acb313e5 from=translated src=- shape=6784c487 vocab=51182728
+-/
 theorem ofRelation_shift (point : A → FpCoord p (r + t))
     (b : S → ℤ) (label : S → IntCoord r)
     (atom : (ExchangePattern.ofRelation b).Position → A)
@@ -232,6 +292,9 @@ theorem ofRelation_shift (point : A → FpCoord p (r + t))
         (ExchangePattern.ofRelation b).sign i • Coord.last r t (point (atom i)) :=
   ofPattern_shift _ _ _ _ _ _ _ _ _
 
+/--
+@isnad1 id=disjoint.6h11v.s9.613293eef01f from=translated src=- shape=3b90620a vocab=405e0b14
+-/
 theorem ofRelation_support_avoids (point : A → FpCoord p (r + t))
     (b : S → ℤ) (label : S → IntCoord r)
     (atom : (ExchangePattern.ofRelation b).Position → A)

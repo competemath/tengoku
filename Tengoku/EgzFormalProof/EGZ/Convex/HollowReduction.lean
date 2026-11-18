@@ -22,7 +22,9 @@ namespace EGZ
 namespace IntCoord
 
 /-- Lift a coordinatewise zero reduction modulo `p` to divisibility by `p`
-in the integral coordinate module.-/
+in the integral coordinate module.
+@isnad1 id=ex.1h3v.s6.89aa6395ce3b from=translated src=- shape=f9e88805 vocab=596594a2
+-/
 theorem exists_smul_eq_of_mod_eq_zero {p d : ℕ} (x : IntCoord d)
     (h : x.mod p = 0) :
     ∃ z : IntCoord d, (p : ℤ) • z = x := by
@@ -39,7 +41,9 @@ end IntCoord
 namespace RationalPolytope
 
 /-- The vertices of every hollow rational polytope admit a `p`-hollow
-reduction for some prime `p`.-/
+reduction for some prime `p`.
+@isnad1 id=hasprime.1h2v.s3.576ccef9718e from=translated src=- shape=b28a8773 vocab=7155a830
+-/
 theorem hasPrimeHollowReduction_of_isHollow {d : ℕ}
     (P : RationalPolytope d) (hP : P.IsHollow) :
     P.HasPrimeHollowReduction := by
@@ -235,7 +239,9 @@ theorem hasPrimeHollowReduction_of_isHollow {d : ℕ}
 end RationalPolytope
 
 /-- The unconditional dimensionwise reduction bridge from hollow rational
-polytopes to prime-field `p`-hollow configurations.-/
+polytopes to prime-field `p`-hollow configurations.
+@isnad1 id=hollowre.0h1v.s2.ba8dde2930b9 from=translated src=- shape=5c11bb93 vocab=81016509
+-/
 theorem hollowReductionBridge (d : ℕ) : HollowReductionBridge d := by
   intro P hP
   exact P.hasPrimeHollowReduction_of_isHollow hP

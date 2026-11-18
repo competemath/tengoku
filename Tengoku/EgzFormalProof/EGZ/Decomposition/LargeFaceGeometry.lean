@@ -15,7 +15,9 @@ namespace EGZ.RationalPolytope.Face
 
 attribute [local instance] Classical.propDecidable
 
-/-- An exposed face contains every polytope point in the affine span of its carrier.-/
+/-- An exposed face contains every polytope point in the affine span of its carrier.
+@isnad1 id=mem.2h4v.s7.71887c8764c7 from=translated src=- shape=d4286b9f vocab=79efa387
+-/
 theorem mem_of_mem_affineSpan {d : ℕ} {P : RationalPolytope d} (Γ : P.Face)
     {q : RealCoord d} (hqP : q ∈ P.carrier)
     (hq : q ∈ affineSpan ℝ Γ.carrier) : q ∈ Γ.carrier := by
@@ -26,6 +28,9 @@ theorem mem_of_mem_affineSpan {d : ℕ} {P : RationalPolytope d} (Γ : P.Face)
   rw [hΓ]
   exact ⟨hqP, heq⟩
 
+/--
+@isnad1 id=mem.3h5v.s7.c99a848c8d93 from=translated src=- shape=b5c7e2cb vocab=42613585
+-/
 theorem mem_of_mem_affineSpan_subset {d : ℕ} {P : RationalPolytope d} (Γ : P.Face)
     {S : Set (RealCoord d)} (hS : S ⊆ Γ.carrier) {q : RealCoord d}
     (hqP : q ∈ P.carrier) (hq : q ∈ affineSpan ℝ S) : q ∈ Γ.carrier :=
@@ -35,11 +40,16 @@ theorem mem_of_mem_affineSpan_subset {d : ℕ} {P : RationalPolytope d} (Γ : P.
 noncomputable def dimension {d : ℕ} {P : RationalPolytope d} (Γ : P.Face) : ℕ :=
   Module.finrank ℝ (affineSpan ℝ Γ.carrier).direction
 
+/--
+@isnad1 id=le.0h3v.s4.95eda9f3b126 from=translated src=- shape=a198c056 vocab=ca00825f
+-/
 theorem dimension_le {d : ℕ} {P : RationalPolytope d} (Γ : P.Face) : Γ.dimension ≤ d := by
   simpa [dimension] using (affineSpan ℝ Γ.carrier).direction.finrank_le
 
 /-- If an upper carrier contains a face and a point of the same polytope
-outside it, its affine dimension is strictly greater.-/
+outside it, its affine dimension is strictly greater.
+@isnad1 id=lt.2h5v.s6.33d5e833beb1 from=translated src=- shape=a54288de vocab=51356da1
+-/
 theorem dimension_lt_of_subset_of_witness {d : ℕ} {P Q : RationalPolytope d}
     (Γ : P.Face) (Δ : Q.Face) (hsub : Γ.carrier ⊆ Δ.carrier)
     (hw : ∃ q ∈ Δ.carrier, q ∈ P.carrier ∧ q ∉ Γ.carrier) : Γ.dimension < Δ.dimension := by
@@ -59,7 +69,9 @@ def MinimallyContains {d : ℕ} {P : RationalPolytope d} (Γ : P.Face)
     (S : Set (RealCoord d)) : Prop :=
   S ⊆ Γ.carrier ∧ ∀ Δ : P.Face, S ⊆ Δ.carrier → Γ.carrier ⊆ Δ.carrier
 
-/-- Failure of leastness supplies a proper subface still containing the set.-/
+/-- Failure of leastness supplies a proper subface still containing the set.
+@isnad1 id=ex.3h4v.s6.c2fd722cede5 from=translated src=- shape=8186c3d0 vocab=38c43778
+-/
 theorem exists_proper_subface_of_not_minimallyContains {d : ℕ} {P : RationalPolytope d}
     (Γ : P.Face) {S : Set (RealCoord d)} (hSne : S.Nonempty) (hS : S ⊆ Γ.carrier)
     (hnot : ¬ Γ.MinimallyContains S) :
@@ -80,7 +92,9 @@ theorem exists_proper_subface_of_not_minimallyContains {d : ℕ} {P : RationalPo
   exact hzE.2
 
 /-- Least containing faces have strictly decreasing dimensions across two
-nested polytopes when the old face does not restrict to the new one.-/
+nested polytopes when the old face does not restrict to the new one.
+@isnad1 id=lt.5h6v.s6.ceef63311d99 from=translated src=- shape=82f7a29c vocab=4bd7f241
+-/
 theorem dimension_lt_of_nested_minimallyContains {d : ℕ} {P Q : RationalPolytope d}
     (Γ : P.Face) (Δ : Q.Face) (hQP : Q.carrier ⊆ P.carrier)
     {S : Set (RealCoord d)} (hSne : S.Nonempty) (hSΓ : S ⊆ Γ.carrier)
@@ -100,7 +114,9 @@ theorem dimension_lt_of_nested_minimallyContains {d : ℕ} {P Q : RationalPolyto
   exact ⟨z, hzΓ, hzQ, hzΔ⟩
 
 /-- At most `d+1` members of a nested no-repetition sequence can be least
-containing faces for a fixed nonempty set.-/
+containing faces for a fixed nonempty set.
+@isnad1 id=le.3h5v.s7.49ea11145911 from=translated src=- shape=2d9bc9af vocab=3e09e353
+-/
 theorem card_minimallyContains_le {d N : ℕ} (P : Fin N → RationalPolytope d)
     (Γ : ∀ i, (P i).Face)
     (hnested : ∀ i j, i < j → (P j).carrier ⊆ (P i).carrier)

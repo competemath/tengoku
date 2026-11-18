@@ -17,7 +17,9 @@ namespace FlagDecomposition
 
 variable {p d : ℕ} [NeZero p] {f : FpCoord p d → ℕ}
 
-/-- Boundedness on the polytope bounds every lifted support generator.-/
+/-- Boundedness on the polytope bounds every lifted support generator.
+@isnad1 id=le.2h7v.s7.a13228d5d990 from=translated src=- shape=43bd062c vocab=dd7b8ccb
+-/
 theorem IsKBounded.liftedSupport_bound {Φ : FlagDecomposition p d f}
     {K : Φ.flag.Node → ℕ} (hΦ : Φ.IsKBounded K) (x : Φ.flag.Node)
     (z : IntCoord (Φ.flag.rank x)) (hz : z ∈ Φ.liftedSupport x) :
@@ -30,7 +32,9 @@ end FlagDecomposition
 
 /-- Uniform choices for replacing all node lattices with their generated
 coordinate lattices. The prime threshold is chosen before the prime, input
-weight, decomposition, and nodewise bounds.-/
+weight, decomposition, and nodewise bounds.
+@isnad1 id=ex.0h1v.s11.c496dec4ec34 from=translated src=- shape=3d785c29 vocab=8bc6b7de
+-/
 theorem exists_uniform_rechart_parameters (d : ℕ) :
     ∃ A : ℕ → ℕ, Monotone A ∧ (∀ K, K ≤ A K) ∧
       ∀ BK : ℕ, ∃ p₀ : ℕ, 2 ≤ p₀ ∧

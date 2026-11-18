@@ -23,6 +23,9 @@ variable {p d : ℕ} [NeZero p] {f : FpCoord p d → ℕ}
 noncomputable def weight (y : Φ.flag.Node) (v : FpCoord p d) : ℕ :=
   if y ≤ anchor then restrictWeight (Φ.localWeight y) S v else Φ.localWeight y v
 
+/--
+@isnad1 id=le.0h8v.s6.3c123741b510 from=translated src=- shape=877d0b5a vocab=aeef54bd
+-/
 theorem weight_le (y : Φ.flag.Node) (v : FpCoord p d) :
     weight Φ anchor S y v ≤ Φ.localWeight y v := by
   unfold weight
@@ -30,6 +33,9 @@ theorem weight_le (y : Φ.flag.Node) (v : FpCoord p d) :
   · exact restrictWeight_le _ _ v
   · exact le_rfl
 
+/--
+@isnad1 id=eq.1h8v.s6.d115585f2d1e from=translated src=- shape=42e36713 vocab=ea316677
+-/
 theorem cumulative_below (y : Φ.flag.Node) (hy : y ≤ anchor) (v : FpCoord p d) :
     FlagDecompositionRaw.cumulativeWeight (weight Φ anchor S) y v =
       restrictWeight (Φ.cumulativeWeight y) S v := by
@@ -48,12 +54,17 @@ theorem cumulative_below (y : Φ.flag.Node) (hy : y ≤ anchor) (v : FpCoord p d
     · simp only [weight, hz, ite_eq_left, hz.trans hy, restrictWeight, ite_eq_right hv]
     · simp only [ite_eq_right hz]
 
+/--
+@isnad1 id=le.0h7v.s6.9c2bf1a5c7ca from=translated src=- shape=63307a27 vocab=1552ef36
+-/
 theorem retainedWeight_le (v : FpCoord p d) :
     FlagDecompositionRaw.retainedWeight (weight Φ anchor S) v ≤ Φ.retainedWeight v :=
   Finset.sum_le_sum fun y _ ↦ weight_le Φ anchor S y v
 
 /-- At every ambient point, all loss occurs in the cumulative summand at the
-anchor and is exactly its excluded part.-/
+anchor and is exactly its excluded part.
+@isnad1 id=eq.0h7v.s6.ece6dfa87450 from=translated src=- shape=925c489a vocab=4a6bbef2
+-/
 theorem retainedWeight_loss (v : FpCoord p d) :
     Φ.retainedWeight v - FlagDecompositionRaw.retainedWeight (weight Φ anchor S) v =
       Φ.cumulativeWeight anchor v - restrictWeight (Φ.cumulativeWeight anchor) S v := by
@@ -71,6 +82,9 @@ theorem retainedWeight_loss (v : FpCoord p d) :
     intro y _
     by_cases hy : y ≤ anchor <;> simp [weight, hy, restrictWeight, hv]
 
+/--
+@isnad1 id=eq.0h6v.s7.3ebfad12f817 from=translated src=- shape=94449877 vocab=1769bc65
+-/
 theorem retainedMass_loss :
     Φ.retainedMass - natMass (FlagDecompositionRaw.retainedWeight (weight Φ anchor S)) =
       natMass (Φ.cumulativeWeight anchor) - natMass (restrictWeight (Φ.cumulativeWeight anchor) S) := by
@@ -83,6 +97,9 @@ variable (hne : ∃ v, restrictWeight (Φ.cumulativeWeight anchor) S v ≠ 0)
 
 include hne
 
+/--
+@isnad1 id=ex.1h6v.s6.a7c953dbbb74 from=translated src=- shape=de245a89 vocab=a19a3df8
+-/
 theorem nonzero : ∃ y v, weight Φ anchor S y v ≠ 0 := by
   obtain ⟨v, hv⟩ := hne
   have hc : FlagDecompositionRaw.cumulativeWeight (weight Φ anchor S) anchor v ≠ 0 := by
@@ -102,6 +119,9 @@ variable (hp : Odd p)
 noncomputable abbrev decomposition : FlagDecomposition p d f :=
   (prunedWeights Φ anchor S hne).rebuilt hp
 
+/--
+@isnad1 id=active.2h6v.s6.acad8628e9d9 from=translated src=- shape=9bb09019 vocab=34024fdd
+-/
 theorem active_anchor :
     ((prunedWeights Φ anchor S hne).rebuildData hp).Active anchor := by
   obtain ⟨v, hv⟩ := hne
@@ -114,6 +134,9 @@ theorem active_anchor :
 def anchorNode : (decomposition Φ anchor S hne hp).flag.Node :=
   ⟨anchor, active_anchor Φ anchor S hne hp⟩
 
+/--
+@isnad1 id=eq.2h6v.s6.96dfface4df2 from=translated src=- shape=599aabc9 vocab=51534bab
+-/
 @[simp]
 theorem cumulativeWeight_anchorNode :
     (decomposition Φ anchor S hne hp).cumulativeWeight (anchorNode Φ anchor S hne hp) =
@@ -121,6 +144,9 @@ theorem cumulativeWeight_anchorNode :
   rw [(prunedWeights Φ anchor S hne).rebuildData hp |>.decomposition_cumulativeWeight]
   exact funext (cumulative_below Φ anchor S anchor le_rfl)
 
+/--
+@isnad1 id=eq.3h7v.s8.b35bdf621f66 from=translated src=- shape=66e54385 vocab=300b1201
+-/
 theorem cumulativeWeight_below (x : (decomposition Φ anchor S hne hp).flag.Node)
     (hx : x ≤ anchorNode Φ anchor S hne hp) :
     (decomposition Φ anchor S hne hp).cumulativeWeight x =
@@ -128,6 +154,9 @@ theorem cumulativeWeight_below (x : (decomposition Φ anchor S hne hp).flag.Node
   rw [((prunedWeights Φ anchor S hne).rebuildData hp).decomposition_cumulativeWeight x]
   exact funext (cumulative_below Φ anchor S x.1 hx)
 
+/--
+@isnad1 id=eq.2h6v.s7.b4d441ff10b9 from=translated src=- shape=d634e3f7 vocab=6f76009a
+-/
 theorem decomposition_retainedMass_loss :
     (Φ.retainedMass : ℝ) - (decomposition Φ anchor S hne hp).retainedMass =
       (natMass (Φ.cumulativeWeight anchor) : ℝ) -

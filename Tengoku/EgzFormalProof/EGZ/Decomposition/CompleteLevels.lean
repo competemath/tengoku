@@ -22,12 +22,18 @@ variable {p d : ℕ} [Fact p.Prime] {f : FpCoord p d → ℕ}
     (hmod : ∀ x, Function.Injective ((IntegralAffineMap.ofIntAffineMap (C x).map).modp p))
     (hcenter : ∀ x q, q ∈ (C x).coordinateSupport → IsCenteredLift p q)
 
+/--
+@isnad1 id=le.5h10v.s11.1bd34af4acad from=translated src=- shape=c10c5a9c vocab=559c1416
+-/
 theorem refined_space_le_original (x : (D.split hp hδ hsmall).flag.Node) :
     (D.refined hp hδ hsmall C hmod hcenter).representation.space x ≤
       Φ.representation.space x.1.1.1.1 :=
   Augmented.representation_space_le_original (D.split hp hδ hsmall)
     (D.extra hp hδ hsmall) D.chain.direction hp (D.extra_antitone hp hδ hsmall) C hmod x
 
+/--
+@isnad1 id=eq.6h11v.s15.18638b4f441d from=translated src=- shape=6231724e vocab=08b84c43
+-/
 theorem refined_forget_map (x : (D.split hp hδ hsmall).flag.Node) (v : FpCoord p d)
     (hv : v ∈ (D.refined hp hδ hsmall C hmod hcenter).representation.space x) :
     (Augmented.forget (D.split hp hδ hsmall) (D.extra hp hδ hsmall) D.chain.direction hp
@@ -37,7 +43,9 @@ theorem refined_forget_map (x : (D.split hp hδ hsmall).flag.Node) (v : FpCoord 
   Augmented.forget_representation_map (D.split hp hδ hsmall)
     (D.extra hp hδ hsmall) D.chain.direction hp (D.extra_antitone hp hδ hsmall) C hmod x v hv
 
-/-- Every output node has level at least that of its original base.-/
+/-- Every output node has level at least that of its original base.
+@isnad1 id=le.5h10v.s11.72929c8e4b21 from=translated src=- shape=7dfc51ca vocab=f3a18dc7
+-/
 theorem refined_level_le (x : (D.split hp hδ hsmall).flag.Node) :
     Φ.level x.1.1.1.1 ≤ (D.refined hp hδ hsmall C hmod hcenter).level x := by
   apply Φ.representation.level_le_of_space_le_of_factor
@@ -56,6 +64,9 @@ noncomputable def addedCoordinate (x : (D.split hp hδ hsmall).flag.Node)
     ((Coord.last ((D.split hp hδ hsmall).flag.rank x) (D.extra hp hδ hsmall x)).toAffineMap.comp
       (((D.diagram hp hδ hsmall).chart C x).modp p))
 
+/--
+@isnad1 id=eq.6h12v.s12.f820c8070528 from=translated src=- shape=8a013df7 vocab=a07c0eec
+-/
 theorem addedCoordinate_map (x : (D.split hp hδ hsmall).flag.Node)
     (i : Fin (D.extra hp hδ hsmall x)) (v : FpCoord p d)
     (hv : v ∈ (D.refined hp hδ hsmall C hmod hcenter).representation.space x) :
@@ -70,6 +81,9 @@ theorem addedCoordinate_map (x : (D.split hp hδ hsmall).flag.Node)
     LinearMap.coe_toAffineMap, Augmented.map, Coord.last_append, AffineMap.pi_apply] using h
 
 omit hp hδ hsmall C hmod hcenter in
+/--
+@isnad1 id=nonconst.1h8v.s9.a37d719f2ebe from=translated src=- shape=4c477c5d vocab=773968c4
+-/
 theorem first_direction_nonconstant (hcount : 0 < D.count) :
     Φ.representation.NonconstantOnFibers anchor (D.chain.direction 0) := by
   have hi := D.chain.independent 0 hcount
@@ -78,7 +92,9 @@ theorem first_direction_nonconstant (hcount : 0 < D.count) :
   exact hi ((Φ.representation.mem_fiberConstantSubmodule_iff anchor _).mpr hn)
 
 /-- Each surviving lower node has strictly greater level than the old
-anchor as soon as at least one thin direction was selected.-/
+anchor as soon as at least one thin direction was selected.
+@isnad1 id=lt.7h10v.s11.b02de1d5957b from=translated src=- shape=6af36f23 vocab=02e754e1
+-/
 theorem lower_refined_level_lt (hcount : 0 < D.count)
     (x : (D.split hp hδ hsmall).flag.Node) (hx : x.1.1.2 = 0) :
     Φ.level anchor < (D.refined hp hδ hsmall C hmod hcenter).level x := by
@@ -97,6 +113,9 @@ theorem lower_refined_level_lt (hcount : 0 < D.count)
   intro v hv
   exact (D.addedCoordinate_map hp hδ hsmall C hmod hcenter x ⟨0, hextra⟩ v hv).symm
 
+/--
+@isnad1 id=lt.6h9v.s10.b43581c41167 from=translated src=- shape=92cf8143 vocab=009edf8c
+-/
 theorem completeNode_level_lt (hcount : 0 < D.count) :
     Φ.level anchor < (D.refined hp hδ hsmall C hmod hcenter).level
       (D.completeNode hp hδ hsmall C hmod hcenter) :=
@@ -106,7 +125,9 @@ theorem completeNode_level_lt (hcount : 0 < D.count) :
         (D.completeNode_le_lowerAnchor hp hδ hsmall C hmod hcenter))
 
 /-- Failure of completeness at the trigger width yields the strict
-level increase required by the iteration.-/
+level increase required by the iteration.
+@isnad1 id=lt.7h10v.s10.e67077dfb6d5 from=translated src=- shape=5e879ceb vocab=e61c166a
+-/
 theorem completeNode_level_lt_of_not_complete (T : ℕ) (hwidth : T ≤ t 1)
     (hnot : ¬ Φ.IsCompleteElement anchor T δ) :
     Φ.level anchor < (D.refined hp hδ hsmall C hmod hcenter).level

@@ -27,13 +27,22 @@ def binarySums (shift : E → G) (F : Finset E) : Finset G :=
   F.powerset.image fun J ↦ ∑ e ∈ J, shift e
 
 omit [DecidableEq E] in
+/--
+@isnad1 id=eq.0h3v.s5.149e08a304c7 from=translated src=- shape=2b1e2abe vocab=64ce81ce
+-/
 @[simp] theorem binarySums_empty (shift : E → G) : binarySums shift ∅ = {0} := by
   simp [binarySums]
 
 omit [DecidableEq E] in
+/--
+@isnad1 id=mem.0h4v.s5.6ed814fa0f04 from=translated src=- shape=a29388cb vocab=59a6de1f
+-/
 theorem zero_mem_binarySums (shift : E → G) (F : Finset E) : 0 ∈ binarySums shift F := by
   exact Finset.mem_image.mpr ⟨∅, by simp, by simp⟩
 
+/--
+@isnad1 id=eq.1h5v.s6.55e8a5ea38cb from=translated src=- shape=0cacbbff vocab=a4e226ae
+-/
 theorem binarySums_insert (shift : E → G) (F : Finset E) {e : E} (he : e ∉ F) :
     binarySums shift (insert e F) =
       translate (binarySums shift F) (shift e) ∪ binarySums shift F := by
@@ -54,7 +63,9 @@ theorem binarySums_insert (shift : E → G) (F : Finset E) {e : E} (he : e ∉ F
     abel
 
 /-- Subset sums can be expressed as Boolean choices indexed by the selected
-family, the form used by the exchange-completion argument.-/
+family, the form used by the exchange-completion argument.
+@isnad1 id=ex.1h5v.s7.ad050fd07e6a from=translated src=- shape=c27891fa vocab=9db97605
+-/
 theorem exists_bool_choice_of_mem_binarySums (shift : E → G) (F : Finset E)
     {x : G} (hx : x ∈ binarySums shift F) :
     ∃ choice : F → Bool, (∑ e : F, if choice e then shift e.val else 0) = x := by
@@ -74,15 +85,24 @@ theorem exists_bool_choice_of_mem_binarySums (shift : E → G) (F : Finset E)
 def usedAtoms (support : E → Finset A) (F : Finset E) : Finset A := F.biUnion support
 
 omit [DecidableEq E] in
+/--
+@isnad1 id=le.1h5v.s5.b7f05d14c6e8 from=translated src=- shape=1ed03aea vocab=5ced7d12
+-/
 theorem card_usedAtoms_le (support : E → Finset A) (F : Finset E) {B : ℕ}
     (hB : ∀ e, (support e).card ≤ B) : (usedAtoms support F).card ≤ B * F.card := by
   simpa only [usedAtoms, Nat.mul_comm] using Finset.card_biUnion_le_card_mul F support B (fun e _ ↦ hB e)
 
+/--
+@isnad1 id=eq.0h5v.s5.2a90f6e68ae5 from=translated src=- shape=fb2aaea4 vocab=674b8e22
+-/
 @[simp] theorem usedAtoms_insert (support : E → Finset A) (F : Finset E) (e : E) :
     usedAtoms support (insert e F) = support e ∪ usedAtoms support F := by
   simp [usedAtoms]
 
 omit [DecidableEq E] in
+/--
+@isnad1 id=not.3h8v.s6.07b0d8eb2d21 from=translated src=- shape=52d6bc2e vocab=632b8951
+-/
 theorem new_exchange_of_positive_boundary (support : E → Finset A) (shift : E → G)
     (hzero : ∀ e, support e = ∅ → shift e = 0) (F : Finset E) (Y : Finset G)
     {e : E} (he : Disjoint (support e) (usedAtoms support F))
@@ -98,9 +118,15 @@ def Admissible (support : E → Finset A) (U : Finset A) (F : Finset E) : Prop :
     Disjoint (usedAtoms support F) U
 
 omit [DecidableEq E] in
+/--
+@isnad1 id=admissib.0h4v.s4.55fef0db7851 from=translated src=- shape=84a136b1 vocab=32e9a571
+-/
 theorem admissible_empty (support : E → Finset A) (U : Finset A) :
     Admissible support U ∅ := by simp [Admissible, usedAtoms]
 
+/--
+@isnad1 id=admissib.2h6v.s6.abf03c2ef484 from=translated src=- shape=5ed6a3a2 vocab=e4eeb3d8
+-/
 theorem Admissible.insert {support : E → Finset A} {U : Finset A} {F : Finset E}
     (hF : Admissible support U F) {e : E}
     (he : Disjoint (support e) (U ∪ usedAtoms support F)) :
@@ -118,7 +144,9 @@ theorem Admissible.insert {support : E → Finset A} {U : Finset A} {F : Finset 
 
 /-- A finite greedy iteration, retaining the current family whenever its
 size already meets the next target. The optional stopping predicate is
-returned explicitly.-/
+returned explicitly.
+@isnad1 id=ex.3h10v.s8.1d2dad8ca712 from=translated src=- shape=2fea272d vocab=3a783c53
+-/
 theorem iterate_binary_growth (support : E → Finset A) (shift : E → G)
     (U : Finset A) (F₀ : Finset E) (hF₀ : Admissible support U F₀)
     (N : ℕ) (target : ℕ → ℝ) (stop : Finset E → Prop)
@@ -153,12 +181,17 @@ end FiniteSums
 /-- A convenient integer reciprocal step for polynomial growth.-/
 def growthDenominator (d : ℕ) : ℕ := 6 * d * d * 2 ^ d
 
+/--
+@isnad1 id=lt.1h1v.s4.182f3455527b from=translated src=- shape=35bd48ee vocab=104ad859
+-/
 theorem growthDenominator_pos {d : ℕ} (hd : 0 < d) : 0 < growthDenominator d := by
   unfold growthDenominator
   positivity
 
 /-- Increasing the root of the set size by a fixed reciprocal costs no
-more than the boundary provided by the basis estimate.-/
+more than the boundary provided by the basis estimate.
+@isnad1 id=le.2h2v.s7.844f1b217ff8 from=translated src=- shape=7187e214 vocab=dfa644e4
+-/
 theorem polynomial_growth_step {d : ℕ} (hd : 0 < d) {x : ℝ} (hx : 1 ≤ x) :
     (x + (growthDenominator d : ℝ)⁻¹) ^ d ≤
       x ^ d + x ^ (d - 1) / (6 * d) := by
@@ -202,6 +235,9 @@ variable {E A : Type*} [DecidableEq E] [DecidableEq A]
   {p d B budget : ℕ} [NeZero p] [Fact p.Prime]
   (support : E → Finset A) (shift : E → FpCoord p d)
 
+/--
+@isnad1 id=ex.6h10v.s9.7d0a4c3d298b from=translated src=- shape=3f44d538 vocab=c2ab065b
+-/
 theorem exists_polynomial_growth (hd : 0 < d)
     (hB : ∀ e, (support e).card ≤ B)
     (hzero : ∀ e, support e = ∅ → shift e = 0)
@@ -274,6 +310,9 @@ theorem exists_polynomial_growth (hd : 0 < d)
       simpa only [hxpow, add_comm] using hh)
   exact ⟨F, hF, by simpa using hcard, hsize.resolve_left id⟩
 
+/--
+@isnad1 id=ex.9h13v.s9.7faba0b3b07c from=translated src=- shape=fd726dc5 vocab=925482b3
+-/
 theorem exists_multiplicative_growth
     (hB : ∀ e, (support e).card ≤ B)
     (hzero : ∀ e, support e = ∅ → shift e = 0)
@@ -336,6 +375,9 @@ section Cover
 variable {E A G : Type*} [DecidableEq E] [DecidableEq A]
   [AddCommGroup G] [DecidableEq G]
 
+/--
+@isnad1 id=admissib.2h6v.s6.93c994a8da30 from=translated src=- shape=48184ef1 vocab=6e3bbc89
+-/
 theorem Admissible.union {support : E → Finset A} {U : Finset A} {F J : Finset E}
     (hF : Admissible support U F) (hJ : Admissible support (U ∪ usedAtoms support F) J) :
     Admissible support U (F ∪ J) := by
@@ -355,6 +397,9 @@ theorem Admissible.union {support : E → Finset A} {U : Finset A} {F J : Finset
   · simp only [usedAtoms, Finset.union_biUnion, Finset.disjoint_union_left]
     exact ⟨hF.2, (Finset.disjoint_union_right.mp hJ.2).1⟩
 
+/--
+@isnad1 id=mem.4h9v.s7.f7104ff6842c from=translated src=- shape=3db85a7b vocab=bb94850e
+-/
 theorem add_mem_binarySums_union (support : E → Finset A) (shift : E → G)
     (hzero : ∀ e, support e = ∅ → shift e = 0)
     {F J : Finset E} (hdis : Disjoint (usedAtoms support F) (usedAtoms support J))
@@ -377,6 +422,9 @@ theorem add_mem_binarySums_union (support : E → Finset A) (shift : E → G)
   have h := Finset.sum_union_inter (s₁ := L) (s₂ := M) (f := shift)
   simpa only [hsum, add_zero] using h
 
+/--
+@isnad1 id=eq.4h7v.s7.7bd5cd275b93 from=translated src=- shape=3206ffb1 vocab=42ca7705
+-/
 theorem binarySums_cover_of_two_large [Fintype G]
     (support : E → Finset A) (shift : E → G)
     (hzero : ∀ e, support e = ∅ → shift e = 0)
@@ -409,6 +457,9 @@ variable {E A : Type*} [DecidableEq E] [DecidableEq A]
   {p d B budget : ℕ} [NeZero p] [Fact p.Prime]
   (support : E → Finset A) (shift : E → FpCoord p d)
 
+/--
+@isnad1 id=ex.9h12v.s10.58aed2cd84d3 from=translated src=- shape=ff2a9b06 vocab=4b67a396
+-/
 theorem exists_half_binarySums (hd : 0 < d)
     (hB : ∀ e, (support e).card ≤ B)
     (hzero : ∀ e, support e = ∅ → shift e = 0)
@@ -434,7 +485,9 @@ theorem exists_half_binarySums (hd : 0 < d)
   exact ⟨F, hF, hcard.trans (Nat.add_le_add_right hcard₀ m), hsize⟩
 
 /-- Explicit finite criterion for complete binary-sum coverage using
-pairwise disjoint exchange supports.-/
+pairwise disjoint exchange supports.
+@isnad1 id=ex.9h11v.s10.f4e01d5981ab from=translated src=- shape=8f4dd256 vocab=5899e692
+-/
 theorem exists_binarySums_cover_finite (hd : 0 < d)
     (hB : ∀ e, (support e).card ≤ B)
     (hzero : ∀ e, support e = ∅ → shift e = 0)
@@ -473,7 +526,9 @@ theorem exists_binarySums_cover_finite (hd : 0 < d)
 end FiniteCriterion
 
 /-- Uniform numerical parameters for a linear atom budget. The two stages
-may have equal length; a deliberately generous fixed growth rate suffices.-/
+may have equal length; a deliberately generous fixed growth rate suffices.
+@isnad1 id=ex.2h3v.s8.d9b543f1a4da from=translated src=- shape=6717065c vocab=30cf5897
+-/
 theorem exists_binary_growth_parameters (d B : ℕ) (hd : 0 < d) (c : ℝ) (hc : 0 < c) :
     ∃ a : ℝ, ∃ p₀ : ℕ, 0 < a ∧ ∀ p : ℕ, p₀ ≤ p →
       ∃ n : ℕ, (B * (2 * (n + n)) : ℝ) ≤ c * p ∧
@@ -545,7 +600,9 @@ universe u v
 
 /-- For a sufficiently large fixed growth rate, a linear atom budget
 supports a family of disjoint exchanges whose binary sums cover the group.
-The growth rate and prime threshold are chosen before all exchange data.-/
+The growth rate and prime threshold are chosen before all exchange data.
+@isnad1 id=ex.2h3v.s9.1eb5a8e6c210 from=translated src=- shape=28c2d030 vocab=de6a22db
+-/
 theorem exists_binarySums_cover_uniform (d B : ℕ) (hd : 0 < d) (c : ℝ) (hc : 0 < c) :
     ∃ a : ℝ, ∃ p₀ : ℕ, 0 < a ∧
       ∀ p : ℕ, ∀ (_ : NeZero p) (_ : Fact p.Prime), p₀ ≤ p →

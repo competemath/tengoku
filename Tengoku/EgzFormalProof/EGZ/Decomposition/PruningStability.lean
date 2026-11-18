@@ -18,7 +18,9 @@ namespace FlagDecompositionRaw
 
 variable {p d : ℕ} [NeZero p] {F : ConvexFlag}
 
-/-- Cumulative mass is the mass of the local atoms based below the node.-/
+/-- Cumulative mass is the mass of the local atoms based below the node.
+@isnad1 id=eq.0h5v.s7.a8bdee8325ec from=translated src=- shape=072c444c vocab=0c738dc8
+-/
 theorem natMass_cumulativeWeight (pieces : F.Node → FpCoord p d → ℕ)
     (x : F.Node) :
     natMass (cumulativeWeight pieces x) =
@@ -29,7 +31,9 @@ theorem natMass_cumulativeWeight (pieces : F.Node → FpCoord p d → ℕ)
   rw [Fintype.sum_prod_type, Finset.sum_comm]
   rfl
 
-/-- Loss from a cumulative weight is bounded by loss from all local atoms.-/
+/-- Loss from a cumulative weight is bounded by loss from all local atoms.
+@isnad1 id=le.1h6v.s7.f5a2c0831093 from=translated src=- shape=ea78fe8f vocab=efe0a7b4
+-/
 theorem cumulativeWeight_mass_loss_le
     {pieces pieces' : F.Node → FpCoord p d → ℕ}
     (hle : ∀ x v, pieces' x v ≤ pieces x v) (x : F.Node) :
@@ -41,7 +45,9 @@ theorem cumulativeWeight_mass_loss_le
     {a | a.1 ≤ x}
 
 /-- Real-valued form of the cumulative mass-loss bound, ready for relative
-loss estimates.-/
+loss estimates.
+@isnad1 id=le.1h6v.s7.e12191fc2329 from=translated src=- shape=93a9e39c vocab=d9cecf42
+-/
 theorem cumulativeWeight_mass_loss_le_real
     {pieces pieces' : F.Node → FpCoord p d → ℕ}
     (hle : ∀ x v, pieces' x v ≤ pieces x v) (x : F.Node) :
@@ -59,7 +65,9 @@ namespace FlagDecomposition
 variable {p d : ℕ} [NeZero p] {f : FpCoord p d → ℕ}
 
 /-- Pruning at most `α` of the original retained mass preserves thickness
-at an old `ε`-large node, with deterioration at most `α / ε`.-/
+at an old `ε`-large node, with deterioration at most `α / ε`.
+@isnad1 id=isthicka.8h11v.s8.26e60946561d from=translated src=- shape=90dd54d8 vocab=cea271b6
+-/
 theorem cumulativeWeight_thick_of_pruning (Φ : FlagDecomposition p d f)
     (hp : Odd p) {pieces : Φ.flag.Node → FpCoord p d → ℕ}
     {x : Φ.flag.Node} {t : ℕ} {δ α ε : ℝ}
@@ -78,7 +86,9 @@ theorem cumulativeWeight_thick_of_pruning (Φ : FlagDecomposition p d f)
   · exact hδ
 
 /-- Every functional required for completeness remains thick after the
-same global pruning, before the surviving flag is repackaged.-/
+same global pruning, before the surviving flag is repackaged.
+@isnad1 id=isthicka.9h11v.s8.fb795560a98f from=translated src=- shape=c1d1caac vocab=bc9cf315
+-/
 theorem IsCompleteElement.thick_of_pruning {Φ : FlagDecomposition p d f}
     {x : Φ.flag.Node} {t : ℕ} {δ α ε : ℝ}
     (hcomplete : Φ.IsCompleteElement x t δ) (hp : Odd p)

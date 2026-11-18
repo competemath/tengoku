@@ -19,11 +19,17 @@ noncomputable def finiteProb {A : Type*} [Fintype A] (P : A → Prop) : ℝ := b
   classical
   exact 𝔼 a, if P a then 1 else 0
 
+/--
+@isnad1 id=le.0h2v.s4.322c3855fa38 from=translated src=- shape=369b0e77 vocab=ac9bed5c
+-/
 theorem finiteProb_nonneg {A : Type*} [Fintype A] (P : A → Prop) :
     0 ≤ finiteProb P := by
   classical
   exact Finset.expect_nonneg (by intro a _; split_ifs <;> norm_num)
 
+/--
+@isnad1 id=le.0h4v.s5.78912317a089 from=translated src=- shape=a55bc3cd vocab=ac9bed5c
+-/
 theorem finiteProb_mono {A : Type*} [Fintype A] {P Q : A → Prop}
     (h : ∀ a, P a → Q a) : finiteProb P ≤ finiteProb Q := by
   classical
@@ -31,18 +37,30 @@ theorem finiteProb_mono {A : Type*} [Fintype A] {P Q : A → Prop}
   intro a _
   by_cases hp : P a <;> by_cases hq : Q a <;> simp_all
 
+/--
+@isnad1 id=eq.0h1v.s4.22d828568fbd from=translated src=- shape=030f6fa5 vocab=3c54c02e
+-/
 @[simp] theorem finiteProb_true {A : Type*} [Fintype A] [Nonempty A] :
     finiteProb (fun _ : A ↦ True) = 1 := by
   simp [finiteProb]
 
+/--
+@isnad1 id=eq.0h1v.s4.88faff5085f5 from=translated src=- shape=26847842 vocab=8cb3f712
+-/
 @[simp] theorem finiteProb_false {A : Type*} [Fintype A] :
     finiteProb (fun _ : A ↦ False) = 0 := by
   simp [finiteProb]
 
+/--
+@isnad1 id=le.0h2v.s4.d296082d2248 from=translated src=- shape=f5bb8240 vocab=7e07687f
+-/
 theorem finiteProb_le_one {A : Type*} [Fintype A] [Nonempty A] (P : A → Prop) :
     finiteProb P ≤ 1 := by
   simpa using finiteProb_mono (P := P) (Q := fun _ ↦ True) (by simp)
 
+/--
+@isnad1 id=eq.0h2v.s5.e2dbd5e2b85d from=translated src=- shape=205a2bc2 vocab=1a4c05c8
+-/
 theorem finiteProb_not {A : Type*} [Fintype A] [Nonempty A] (P : A → Prop) :
     finiteProb (fun a ↦ ¬P a) = 1 - finiteProb P := by
   classical
@@ -52,6 +70,9 @@ theorem finiteProb_not {A : Type*} [Fintype A] [Nonempty A] (P : A → Prop) :
   intro a _
   by_cases h : P a <;> simp [h]
 
+/--
+@isnad1 id=le.0h3v.s5.de4876a38a35 from=translated src=- shape=ab5cf03e vocab=cb34759f
+-/
 theorem finiteProb_exists_le {A I : Type*} [Fintype A] [Fintype I]
     (P : I → A → Prop) :
     finiteProb (fun a ↦ ∃ i, P i a) ≤ ∑ i, finiteProb (P i) := by
@@ -69,6 +90,9 @@ theorem finiteProb_exists_le {A I : Type*} [Fintype A] [Fintype I]
   · simp only [h, ↓reduceIte]
     positivity
 
+/--
+@isnad1 id=ex.1h3v.s5.e9cbba063c5d from=translated src=- shape=e619a14c vocab=1c9f6ba5
+-/
 theorem exists_forall_not_of_sum_finiteProb_lt_one {A I : Type*}
     [Fintype A] [Nonempty A] [Fintype I] (P : I → A → Prop)
     (h : (∑ i, finiteProb (P i)) < 1) : ∃ a, ∀ i, ¬P i a := by
@@ -81,6 +105,9 @@ theorem exists_forall_not_of_sum_finiteProb_lt_one {A I : Type*}
   have := finiteProb_exists_le P
   linarith
 
+/--
+@isnad1 id=eq.0h3v.s5.396dd8951bbf from=translated src=- shape=f6dfc273 vocab=62811917
+-/
 theorem finiteProb_prod {A B : Type*} [Fintype A] [Fintype B]
     (P : A × B → Prop) :
     finiteProb P = 𝔼 a, finiteProb (fun b ↦ P (a, b)) := by
@@ -88,6 +115,9 @@ theorem finiteProb_prod {A B : Type*} [Fintype A] [Fintype B]
   simpa only [finiteProb, Finset.univ_product_univ] using
     Finset.expect_product Finset.univ Finset.univ (fun x : A × B ↦ if P x then (1 : ℝ) else 0)
 
+/--
+@isnad1 id=eq.0h4v.s9.9c6787bbcee3 from=translated src=- shape=9e3bb424 vocab=4875aec4
+-/
 theorem expect_pi_split {I : Type*} [Fintype I] [DecidableEq I]
     (A : I → Type*) [∀ i, Fintype (A i)] (i : I) (f : (∀ i, A i) → ℝ) :
     (𝔼 x, f x) = 𝔼 a, 𝔼 b : ∀ j : {j // j ≠ i}, A j,
@@ -99,6 +129,9 @@ theorem expect_pi_split {I : Type*} [Fintype I] [DecidableEq I]
     Finset.expect_product Finset.univ Finset.univ
       (fun x ↦ f ((Equiv.piSplitAt i A).symm x))
 
+/--
+@isnad1 id=eq.0h4v.s6.675fe63ce85d from=translated src=- shape=a29e7fd2 vocab=5fe5791b
+-/
 theorem expect_pi_eval {I : Type*} [Fintype I] [DecidableEq I]
     (A : I → Type*) [∀ i, Fintype (A i)] [∀ i, Nonempty (A i)]
     (i : I) (f : A i → ℝ) : (𝔼 x : ∀ i, A i, f (x i)) = 𝔼 a, f a := by
@@ -106,6 +139,9 @@ theorem expect_pi_eval {I : Type*} [Fintype I] [DecidableEq I]
   rw [expect_pi_split A i]
   simp [Equiv.piSplitAt]
 
+/--
+@isnad1 id=eq.0h4v.s6.f9b3852bba4a from=translated src=- shape=566a86fb vocab=51adb326
+-/
 theorem finiteProb_pi_eval {I : Type*} [Fintype I] [DecidableEq I]
     (A : I → Type*) [∀ i, Fintype (A i)] [∀ i, Nonempty (A i)]
     (i : I) (P : A i → Prop) :
@@ -113,6 +149,9 @@ theorem finiteProb_pi_eval {I : Type*} [Fintype I] [DecidableEq I]
   classical
   exact expect_pi_eval A i (fun a ↦ if P a then 1 else 0)
 
+/--
+@isnad1 id=eq.0h2v.s5.30d0c97cf221 from=translated src=- shape=c73cd982 vocab=20d8fd8d
+-/
 theorem finiteProb_eq_card {A : Type*} [Fintype A] (P : A → Prop)
     [DecidablePred P] :
     finiteProb P = ((Finset.univ.filter P).card : ℝ) / Fintype.card A := by
@@ -123,13 +162,18 @@ theorem finiteProb_eq_card {A : Type*} [Fintype A] (P : A → Prop)
     Finset.sum_boole _ _
   exact_mod_cast h
 
+/--
+@isnad1 id=eq.0h2v.s5.67c6c481bae4 from=translated src=- shape=b3fabac1 vocab=7133f64a
+-/
 @[simp] theorem finiteProb_eq {A : Type*} [Fintype A] (a : A) :
     finiteProb (fun x ↦ x = a) = 1 / (Fintype.card A : ℝ) := by
   classical
   simp [finiteProb]
 
 /-- The two samples at distinct coordinates of a finite product are
-independent, including when the coordinate types differ.-/
+independent, including when the coordinate types differ.
+@isnad1 id=eq.1h5v.s7.49ea1509d045 from=translated src=- shape=7c97cd84 vocab=5fe5791b
+-/
 theorem expect_pi_pair {I : Type*} [Fintype I] [DecidableEq I]
     (A : I → Type*) [∀ i, Fintype (A i)] [∀ i, Nonempty (A i)]
     {i j : I} (hij : j ≠ i) (f : A i → A j → ℝ) :
@@ -140,6 +184,9 @@ theorem expect_pi_pair {I : Type*} [Fintype I] [DecidableEq I]
   simpa only [Equiv.piSplitAt_symm_apply, ↓reduceDIte, dite_eq_right hij] using
     expect_pi_eval (fun k : {k // k ≠ i} ↦ A k) ⟨j, hij⟩ (f a)
 
+/--
+@isnad1 id=eq.1h5v.s6.57c21fc4302a from=translated src=- shape=9a16f7ba vocab=e103214e
+-/
 theorem finiteProb_pi_pair {I : Type*} [Fintype I] [DecidableEq I]
     (A : I → Type*) [∀ i, Fintype (A i)] [∀ i, Nonempty (A i)]
     {i j : I} (hij : j ≠ i) (P : A i → A j → Prop) :
@@ -149,7 +196,9 @@ theorem finiteProb_pi_pair {I : Type*} [Fintype I] [DecidableEq I]
   exact expect_pi_pair A hij (fun a b ↦ if P a b then 1 else 0)
 
 /-- A collision after injectively encoding the two coordinate types has
-probability at most the reciprocal size of the second coordinate type.-/
+probability at most the reciprocal size of the second coordinate type.
+@isnad1 id=le.2h6v.s6.2b8382840053 from=translated src=- shape=236a23ae vocab=6cf3df11
+-/
 theorem finiteProb_pi_collision_le {I B : Type*} [Fintype I] [DecidableEq I]
     (A : I → Type*) [∀ i, Fintype (A i)] [∀ i, Nonempty (A i)]
     (v : ∀ i, A i → B) (hv : ∀ i, Function.Injective (v i))
@@ -172,7 +221,9 @@ theorem finiteProb_pi_collision_le {I B : Type*} [Fintype I] [DecidableEq I]
     positivity
 
 /-- A union bound controls all repeated positions in an independent
-sample. The deliberately loose square bound avoids ordering the indices.-/
+sample. The deliberately loose square bound avoids ordering the indices.
+@isnad1 id=le.3h5v.s7.6d363cf787f9 from=translated src=- shape=dbbc54d7 vocab=8ff647c2
+-/
 theorem finiteProb_not_injective_le {I B : Type*} [Fintype I] [DecidableEq I]
     (A : I → Type*) [∀ i, Fintype (A i)] [∀ i, Nonempty (A i)]
     (v : ∀ i, A i → B) (hv : ∀ i, Function.Injective (v i))

@@ -23,14 +23,23 @@ variable {α I : Type*} [Fintype α] [Fintype I]
 noncomputable def mass (w : α → ℝ) (S : Set α) : ℝ :=
   ∑ a, if a ∈ S then w a else 0
 
+/--
+@isnad1 id=eq.0h3v.s5.b77f768358a4 from=translated src=- shape=89dcfda9 vocab=674bba5c
+-/
 @[simp]
 theorem mass_natCast (w : α → ℕ) (S : Set α) :
     mass (fun a ↦ (w a : ℝ)) S = (natMassOn w S : ℝ) := by
   simp [mass, natMassOn]
 
+/--
+@isnad1 id=le.1h3v.s5.b0795d63c973 from=translated src=- shape=a3687cc2 vocab=905b8148
+-/
 theorem mass_nonneg (w : α → ℝ) (hw : ∀ a, 0 ≤ w a) (S : Set α) :
     0 ≤ mass w S := Finset.sum_nonneg (fun a _ ↦ by split_ifs; exact hw a; exact le_rfl)
 
+/--
+@isnad1 id=le.2h4v.s5.07774106e257 from=translated src=- shape=cf37a2aa vocab=905b8148
+-/
 theorem mass_mono (w : α → ℝ) (hw : ∀ a, 0 ≤ w a) {S T : Set α}
     (hST : S ⊆ T) : mass w S ≤ mass w T := by
   apply Finset.sum_le_sum
@@ -42,10 +51,16 @@ theorem mass_mono (w : α → ℝ) (hw : ∀ a, 0 ≤ w a) {S T : Set α}
     · exact hw a
     · exact le_rfl
 
+/--
+@isnad1 id=le.1h3v.s5.8bffa6e86388 from=translated src=- shape=fd03b88e vocab=b8ff4aa3
+-/
 theorem mass_le_total (w : α → ℝ) (hw : ∀ a, 0 ≤ w a) (S : Set α) :
     mass w S ≤ ∑ a, w a := by
   simpa [mass] using mass_mono w hw (Set.subset_univ S)
 
+/--
+@isnad1 id=eq.0h4v.s5.858d0e536d66 from=translated src=- shape=f734ebb8 vocab=628d1ca3
+-/
 theorem mass_diff_add_inter (w : α → ℝ) (S T : Set α) :
     mass w (S \ T) + mass w (S ∩ T) = mass w S := by
   rw [mass, mass, ← Finset.sum_add_distrib, mass]
@@ -53,7 +68,9 @@ theorem mass_diff_add_inter (w : α → ℝ) (S T : Set α) :
   intro a _
   by_cases hS : a ∈ S <;> by_cases hT : a ∈ T <;> simp [hS, hT]
 
-/-- Restricting the common weight does not alter masses inside the retained set.-/
+/-- Restricting the common weight does not alter masses inside the retained set.
+@isnad1 id=eq.1h4v.s6.59bd5c34ba09 from=translated src=- shape=93875f31 vocab=ab389138
+-/
 theorem mass_restrict_eq_of_subset (w : α → ℝ) (S T : Set α) (hTS : T ⊆ S) :
     mass (fun a ↦ if a ∈ S then w a else 0) T = mass w T := by
   apply Finset.sum_congr rfl
@@ -66,6 +83,9 @@ theorem mass_restrict_eq_of_subset (w : α → ℝ) (S T : Set α) (hTS : T ⊆ 
 noncomputable def containing (F : I → Set α) (S : Finset α) : Finset I :=
   Finset.univ.filter fun i ↦ ∀ a ∈ S, a ∈ F i
 
+/--
+@isnad1 id=iff.0h5v.s6.0ae9b6d50158 from=translated src=- shape=3418edd0 vocab=02a126d7
+-/
 @[simp]
 theorem mem_containing (F : I → Set α) (S : Finset α) (i : I) :
     i ∈ containing F S ↔ ∀ a ∈ S, a ∈ F i := by simp [containing]
@@ -75,13 +95,18 @@ noncomputable def bound (c b : ℝ) : ℕ → ℝ
   | 0 => c
   | r + 1 => c + bound c b r / b
 
+/--
+@isnad1 id=le.2h3v.s5.f3b8c65a112a from=translated src=- shape=b4e35a70 vocab=19662f93
+-/
 theorem bound_nonneg {c b : ℝ} (hc : 0 ≤ c) (hb : 0 ≤ b) (r : ℕ) :
     0 ≤ bound c b r := by
   induction r with
   | zero => exact hc
   | succ r ih => exact add_nonneg hc (div_nonneg ih hb)
 
-/-- A convenient closed-form majorant for the recursive bound.-/
+/-- A convenient closed-form majorant for the recursive bound.
+@isnad1 id=le.2h3v.s6.e984ad04c152 from=translated src=- shape=6556e1ce vocab=9c9049b2
+-/
 theorem bound_le_pow {c b : ℝ} (hc : 0 ≤ c) (hb : 0 < b) (r : ℕ) :
     bound c b r ≤ (c + 1 + b⁻¹) ^ (r + 1) := by
   have hi : 0 ≤ b⁻¹ := inv_nonneg.mpr hb.le
@@ -96,7 +121,9 @@ theorem bound_le_pow {c b : ℝ} (hc : 0 ≤ c) (hb : 0 < b) (r : ℕ) :
     nlinarith
 
 omit [Fintype I] in
-/-- Exchange the two finite sums and count incidences at each atom.-/
+/-- Exchange the two finite sums and count incidences at each atom.
+@isnad1 id=eq.0h6v.s6.777fb16bf412 from=translated src=- shape=b73ef9b9 vocab=f62afcfe
+-/
 theorem sum_mass_eq (w : α → ℝ) (F : I → Set α) (G : Finset I) (U : Set α) :
     ∑ i ∈ G, mass w (F i ∩ U) =
       ∑ a, if a ∈ U then ((G.filter fun i ↦ a ∈ F i).card : ℝ) * w a else 0 := by
@@ -111,7 +138,9 @@ theorem sum_mass_eq (w : α → ℝ) (F : I → Set α) (G : Finset I) (U : Set 
   · simp [ha]
 
 /-- Abstract closure-and-rank induction. Exceptional sets need not be
-members of the containing family; only their cardinality is used.-/
+members of the containing family; only their cardinality is used.
+@isnad1 id=le.9h12v.s8.4616f4ad845d from=translated src=- shape=0224eeb8 vocab=b04c9540
+-/
 theorem card_containing_le
     (w : α → ℝ) (hw : ∀ a, 0 ≤ w a) (hM : 0 < ∑ a, w a)
     (F : I → Set α) (rank : Finset α → ℕ) (closure : Finset α → Set α)
@@ -193,7 +222,9 @@ theorem card_containing_le
     exact hcount.trans (by dsimp [bound]; linarith)
 
 /-- If each member also has positive relative mass, the entire family has
-a uniform cardinality bound.-/
+a uniform cardinality bound.
+@isnad1 id=le.9h11v.s8.3e4630ea69e4 from=translated src=- shape=a1fb638d vocab=eb121e6a
+-/
 theorem card_family_le
     (w : α → ℝ) (hw : ∀ a, 0 ≤ w a) (hM : 0 < ∑ a, w a)
     (F : I → Set α) (rank : Finset α → ℕ) (closure : Finset α → Set α)

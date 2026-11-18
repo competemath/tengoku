@@ -17,7 +17,9 @@ namespace TwoLayer
 
 variable {α : Type*} [SemilatticeSup α]
 
-/-- Forgetting the layer is injective on upper-layer nodes.-/
+/-- Forgetting the layer is injective on upper-layer nodes.
+@isnad1 id=injon.0h2v.s7.53753b24c22f from=translated src=- shape=94749a88 vocab=58d8a853
+-/
 theorem projection_injOn_nonzero (anchor : α) :
     Set.InjOn (projection anchor) {x : Node anchor | x.1.2 ≠ 0} := by
   intro x hx y hy hxy
@@ -34,9 +36,15 @@ namespace FlagDecomposition
 
 variable {p d : ℕ} [Fact p.Prime] {f : FpCoord p d → ℕ}
 
+/--
+@isnad1 id=injectiv.1h4v.s7.e42f0e6afa2e from=translated src=- shape=3f8b5ab9 vocab=c66b6d92
+-/
 theorem reducedSubdivisionMap_node_injective (Φ : FlagDecomposition p d f) (hp : Odd p) :
     Function.Injective (Φ.reducedSubdivisionMap hp).node := Subtype.val_injective
 
+/--
+@isnad1 id=injectiv.1h5v.s7.50cc9607c07c from=translated src=- shape=6679992f vocab=073e6dd6
+-/
 theorem PrunedWeights.cleanedSubdivisionMap_node_injective {Φ : FlagDecomposition p d f}
     (D : PrunedWeights Φ) (hp : Odd p) : Function.Injective (D.cleanedSubdivisionMap hp).node :=
   fun _ _ h ↦ Subtype.ext (Subtype.ext h)
@@ -51,6 +59,9 @@ variable (Φ : FlagDecomposition p d f) (anchor : Φ.flag.Node)
       ((Rechart.chart (decomposition Φ anchor (Φ.faceSelector anchor Γ) hp) C x).modp p))
     (hcenter : ∀ x q, q ∈ (C x).coordinateSupport → IsCenteredLift p q)
 
+/--
+@isnad1 id=ne.6h9v.s11.400394027ef1 from=translated src=- shape=c69e81f7 vocab=101412bc
+-/
 theorem normalized_low_layer_ne_zero (hΓ : Γ ≠ ⊤) (L : ℕ) (hL : L ≤ Φ.level anchor)
     (x : (normalized Φ anchor Γ hp C hmod hcenter).flag.Node)
     (hx : (normalized Φ anchor Γ hp C hmod hcenter).level x ≤ L) : x.1.1.1.2 ≠ 0 := by
@@ -61,7 +72,9 @@ theorem normalized_low_layer_ne_zero (hΓ : Γ ≠ ⊤) (L : ℕ) (hL : L ≤ Φ
   omega
 
 /-- No two output nodes at or below the selected level share an old
-parent. This does not require minimality of the input.-/
+parent. This does not require minimality of the input.
+@isnad1 id=injon.5h8v.s11.422e09e4ef9c from=translated src=- shape=da1d9834 vocab=819aced7
+-/
 theorem normalized_parent_injOn_low (hΓ : Γ ≠ ⊤) (L : ℕ) (hL : L ≤ Φ.level anchor) :
     Set.InjOn (normalizedSubdivisionMap Φ anchor Γ hp C hmod hcenter).node
       {x | (normalized Φ anchor Γ hp C hmod hcenter).level x ≤ L} := by
@@ -82,6 +95,9 @@ variable {Φ : FlagDecomposition p d f} {anchor : Φ.flag.Node} {t : ℕ → ℕ
     (hmod : ∀ x, Function.Injective ((IntegralAffineMap.ofIntAffineMap (C x).map).modp p))
     (hcenter : ∀ x q, q ∈ (C x).coordinateSupport → IsCenteredLift p q)
 
+/--
+@isnad1 id=ne.8h11v.s11.50e90d9b9b8a from=translated src=- shape=a67701a3 vocab=1b817c69
+-/
 theorem normalized_low_layer_ne_zero (hcount : 0 < D.count) (L : ℕ) (hL : L ≤ Φ.level anchor)
     (x : (D.normalized hp hδ hsmall C hmod hcenter).flag.Node)
     (hx : (D.normalized hp hδ hsmall C hmod hcenter).level x ≤ L) : x.1.1.1.2 ≠ 0 := by
@@ -89,6 +105,9 @@ theorem normalized_low_layer_ne_zero (hcount : 0 < D.count) (L : ℕ) (hL : L �
   have hlt := D.normalized_lower_level_lt hp hδ hsmall C hmod hcenter hcount x hz
   omega
 
+/--
+@isnad1 id=injon.7h10v.s11.acd06a2f2158 from=translated src=- shape=407cd208 vocab=5a434193
+-/
 theorem normalized_parent_injOn_low (hcount : 0 < D.count) (L : ℕ) (hL : L ≤ Φ.level anchor) :
     Set.InjOn (D.normalizedSubdivisionMap hp hδ hsmall C hmod hcenter).node
       {x | (D.normalized hp hδ hsmall C hmod hcenter).level x ≤ L} := by
@@ -101,7 +120,9 @@ theorem normalized_parent_injOn_low (hcount : 0 < D.count) (L : ℕ) (hL : L ≤
   exact Subtype.ext (Subtype.ext h)
 
 /-- Complete refinement deletes the old upper anchor, and all its new
-lower copies have larger level. Hence the anchor has no low-level child.-/
+lower copies have larger level. Hence the anchor has no low-level child.
+@isnad1 id=ne.8h11v.s11.d067e0002888 from=translated src=- shape=03b77bab vocab=d3fed74a
+-/
 theorem normalized_low_parent_ne_anchor (hcount : 0 < D.count) (L : ℕ)
     (hL : L ≤ Φ.level anchor)
     (x : (D.normalized hp hδ hsmall C hmod hcenter).flag.Node)

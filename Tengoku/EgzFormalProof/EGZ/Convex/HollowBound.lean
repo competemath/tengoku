@@ -35,7 +35,9 @@ def HollowReductionBridge (d : ℕ) : Prop :=
     P.IsHollow → P.HasPrimeHollowReduction
 
 /-- Conditional global boundedness of hollow-polytope vertex counts.  The
-bound is exactly the prime-independent polynomial bound.-/
+bound is exactly the prime-independent polynomial bound.
+@isnad1 id=bddabove.2h1v.s4.049d64b401fa from=translated src=- shape=fbb569a6 vocab=2434f8d0
+-/
 theorem bddAbove_hollowPolytopeVertexCount_of_reductionBridge {d : ℕ}
     (hd : 1 ≤ d) (hbridge : HollowReductionBridge d) :
     BddAbove {n : ℕ | AdmitsHollowPolytopeVertexCount d n} := by
@@ -54,7 +56,9 @@ namespace Module.Basis.SmithNormalForm
 /-- If a scalar is nonzero and coprime to every diagonal coefficient in a
 Smith normal form for `N`, then membership in `N` can be cancelled across
 multiplication by that scalar.  This is the algebraic core of the
-"all but finitely many primes are good" step in Proposition `wl`.-/
+"all but finitely many primes are good" step in Proposition `wl`.
+@isnad1 id=mem.3h7v.s7.92d1cd84d50c from=translated src=- shape=6f0f323d vocab=b8ddb1db
+-/
 theorem mem_of_smul_mem_of_isCoprime
     {M : Type*} [AddCommGroup M]
     {N : Submodule ℤ M} {ι : Type*} {r : ℕ}
@@ -101,7 +105,9 @@ theorem mem_of_smul_mem_of_isCoprime
     have hne : snf.f i ≠ j := fun h ↦ hj ⟨i, h⟩
     simp [hne]
 
-/-- Every diagonal coefficient in a Smith normal form is nonzero.-/
+/-- Every diagonal coefficient in a Smith normal form is nonzero.
+@isnad1 id=ne.0h6v.s5.f0f98e33bd7e from=translated src=- shape=73f350b9 vocab=469a2b78
+-/
 theorem coeff_ne_zero
     {M : Type*} [AddCommGroup M]
     {N : Submodule ℤ M} {ι : Type*} {r : ℕ}
@@ -117,7 +123,9 @@ namespace Submodule
 
 /-- A submodule of a finite free abelian group is saturated with respect to
 every sufficiently large prime.  The bound is the maximum absolute value of
-the diagonal entries in a Smith normal form.-/
+the diagonal entries in a Smith normal form.
+@isnad1 id=ex.0h4v.s7.54894eb6c5e1 from=translated src=- shape=b42374bb vocab=cfa86efd
+-/
 theorem exists_prime_saturation_bound
     {M : Type*} [AddCommGroup M] {ι : Type*} [Finite ι]
     (b : Module.Basis ι ℤ M) (N : Submodule ℤ M) :
@@ -144,7 +152,9 @@ theorem exists_prime_saturation_bound
 
 /-- A single threshold works simultaneously for a finite indexed family of
 integer submodules.  This is the facewise `p`-saturation package needed after
-assigning one homogenized lattice to every face of a polytope.-/
+assigning one homogenized lattice to every face of a polytope.
+@isnad1 id=ex.0h6v.s7.32ea44c3a4a8 from=translated src=- shape=da31805a vocab=924dd653
+-/
 theorem exists_uniform_prime_saturation_bound
     {α M : Type*} [AddCommGroup M] {ι : Type*} [Finite ι]
     (b : Module.Basis ι ℤ M) (s : Finset α) (L : α → Submodule ℤ M) :
@@ -157,7 +167,9 @@ theorem exists_uniform_prime_saturation_bound
   exact hbound a hp (lt_of_le_of_lt (Finset.le_sup ha) hBp) hx
 
 /-- Equivalent finite-bad-prime form of
-`exists_uniform_prime_saturation_bound`.-/
+`exists_uniform_prime_saturation_bound`.
+@isnad1 id=ex.0h6v.s7.466134b85d05 from=translated src=- shape=acab72b5 vocab=9494d8bb
+-/
 theorem exists_finite_exceptional_primes
     {α M : Type*} [AddCommGroup M] {ι : Type*} [Finite ι]
     (b : Module.Basis ι ℤ M) (s : Finset α) (L : α → Submodule ℤ M) :

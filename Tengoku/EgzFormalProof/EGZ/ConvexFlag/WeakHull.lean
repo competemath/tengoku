@@ -19,26 +19,35 @@ def weakConvexHull (F : ConvexFlag) (S : Set F.Point) : Set F.Point :=
   {q | ∀ (xi : F.LinearFunction) (hq : xi.EvaluableAt q),
     ∃ s, s ∈ S ∧ ∃ hs : xi.EvaluableAt s, xi.eval q hq ≤ xi.eval s hs}
 
+/--
+@isnad1 id=iff.0h3v.s6.b497f769fd1a from=translated src=- shape=7c53fc9a vocab=5b51f214
+-/
 theorem mem_weakConvexHull_iff {F : ConvexFlag} {S : Set F.Point} {q : F.Point} :
     q ∈ F.weakConvexHull S ↔
       ∀ (xi : F.LinearFunction) (hq : xi.EvaluableAt q),
         ∃ s, s ∈ S ∧ ∃ hs : xi.EvaluableAt s, xi.eval q hq ≤ xi.eval s hs :=
   Iff.rfl
 
-/-- Weak convex hull is extensive.-/
+/-- Weak convex hull is extensive.
+@isnad1 id=le.0h2v.s4.8892cedb447a from=translated src=- shape=50af71e7 vocab=bab1c10d
+-/
 theorem subset_weakConvexHull (F : ConvexFlag) (S : Set F.Point) :
     S ⊆ F.weakConvexHull S := by
   intro q hq xi hxi
   exact ⟨q, hq, hxi, le_rfl⟩
 
-/-- Monotonicity of weak convex hull.-/
+/-- Monotonicity of weak convex hull.
+@isnad1 id=le.1h3v.s5.6777c302c401 from=translated src=- shape=3c10f9cc vocab=bab1c10d
+-/
 theorem weakConvexHull_mono {F : ConvexFlag} {A B : Set F.Point} (hAB : A ⊆ B) :
     F.weakConvexHull A ⊆ F.weakConvexHull B := by
   intro q hq xi hxi
   obtain ⟨a, ha, hxa, hle⟩ := hq xi hxi
   exact ⟨a, hAB ha, hxa, hle⟩
 
-/-- Absorption, equation `wcabsorb` in the paper.-/
+/-- Absorption, equation `wcabsorb` in the paper.
+@isnad1 id=le.1h3v.s5.5f8eb87af26c from=translated src=- shape=9d85e5ff vocab=bab1c10d
+-/
 theorem weakConvexHull_absorb {F : ConvexFlag} {A B : Set F.Point}
     (hAB : A ⊆ F.weakConvexHull B) :
     F.weakConvexHull A ⊆ F.weakConvexHull B := by
@@ -47,7 +56,9 @@ theorem weakConvexHull_absorb {F : ConvexFlag} {A B : Set F.Point}
   obtain ⟨b, hb, hxb, hab⟩ := hAB ha xi hxa
   exact ⟨b, hb, hxb, hqa.trans hab⟩
 
-/-- Weak convex hull is idempotent.-/
+/-- Weak convex hull is idempotent.
+@isnad1 id=eq.0h2v.s4.876025955ee8 from=translated src=- shape=c1b2f487 vocab=3b70afd8
+-/
 theorem weakConvexHull_idempotent (F : ConvexFlag) (S : Set F.Point) :
     F.weakConvexHull (F.weakConvexHull S) = F.weakConvexHull S := by
   apply Set.Subset.antisymm
@@ -55,7 +66,9 @@ theorem weakConvexHull_idempotent (F : ConvexFlag) (S : Set F.Point) :
   · exact subset_weakConvexHull F _
 
 /-- Evaluation is unchanged by projection.  This packages the cocycle
-calculation used throughout the proof of Flag Helly.-/
+calculation used throughout the proof of Flag Helly.
+@isnad1 id=eq.3h4v.s6.a552eb85e1c0 from=translated src=- shape=0b74171c vocab=a56e5ba8
+-/
 theorem LinearFunction.eval_eq_of_projection {F : ConvexFlag}
     (xi : F.LinearFunction) (q q' : F.Point)
     (hbase : q'.base ≤ q.base) (hval : q.val = q'.coord hbase)
@@ -69,7 +82,9 @@ theorem LinearFunction.eval_eq_of_projection {F : ConvexFlag}
   rfl
 
 /-- An affine functional takes a flag-convex combination to the weighted
-average of its values on the positive support.-/
+average of its values on the positive support.
+@isnad1 id=eq.2h6v.s7.bc6891adfd9a from=translated src=- shape=ffdcb3f8 vocab=f11d5474
+-/
 theorem ConvexCombination.eval_eq {F : ConvexFlag} {I : Type*} [Fintype I]
     {points : I → F.Point} {weight : I → ℝ} {result : F.Point}
     (c : ConvexCombination points weight result) (xi : F.LinearFunction)
@@ -103,7 +118,9 @@ theorem ConvexCombination.eval_eq {F : ConvexFlag} {I : Type*} [Fintype I]
       rfl
 
 /-- Proposition 3.11 (`pf1`): for finite input, weak hull means projection
-of an ordinary flag-convex combination.-/
+of an ordinary flag-convex combination.
+@isnad1 id=iff.1h3v.s5.041ea956fc71 from=translated src=- shape=fdb21e23 vocab=6b34d1bf
+-/
 theorem mem_weakConvexHull_iff_exists_projection {F : ConvexFlag}
     {S : Set F.Point} (hS : S.Finite) (q : F.Point) :
     q ∈ F.weakConvexHull S ↔

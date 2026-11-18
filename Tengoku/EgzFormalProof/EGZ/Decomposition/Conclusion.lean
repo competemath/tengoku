@@ -45,7 +45,9 @@ def HasFlagDecompositionConclusion {p d : ℕ} (hp : p.Prime)
     (1 - ε) * (natMass f : ℝ) ≤ (Φ.retainedMass : ℝ)
 
 /-- The final conclusion is monotone in the permitted mass loss. This
-justifies the paper's reduction to `ε ≤ 1/2`.-/
+justifies the paper's reduction to `ε ≤ 1/2`.
+@isnad1 id=hasflagd.3h9v.s5.34e16477549d from=translated src=- shape=d468a156 vocab=66932ead
+-/
 theorem HasFlagDecompositionConclusion.mono_epsilon {p d : ℕ} {hp : p.Prime}
     {f : FpCoord p d → ℕ} {ε ε' δ : ℝ} {g : ℕ → ℕ} {Bcard BK : ℕ}
     (h : HasFlagDecompositionConclusion hp f ε δ g Bcard BK) (hε : ε ≤ ε') :
@@ -58,7 +60,9 @@ theorem HasFlagDecompositionConclusion.mono_epsilon {p d : ℕ} {hp : p.Prime}
     (Nat.cast_nonneg _)).trans hmass
 
 /-- A smaller positive scale preserves both completeness and the gap
-estimate. This is the final uniform-scale replacement in the paper.-/
+estimate. This is the final uniform-scale replacement in the paper.
+@isnad1 id=hasflagd.4h9v.s6.eea7fb2362cf from=translated src=- shape=95d2c741 vocab=66932ead
+-/
 theorem HasFlagDecompositionConclusion.mono_delta {p d : ℕ} {hp : p.Prime}
     {f : FpCoord p d → ℕ} {ε δ δ' : ℝ} {g : ℕ → ℕ} {Bcard BK : ℕ}
     (h : HasFlagDecompositionConclusion hp f ε δ g Bcard BK)
@@ -74,7 +78,9 @@ theorem HasFlagDecompositionConclusion.mono_delta {p d : ℕ} {hp : p.Prime}
   exact mul_le_mul_of_nonneg_right (pow_le_pow_left₀ hδ' hδ 3) (by positivity)
 
 /-- Dimension zero needs no refinement: there are no nonconstant affine
-functionals, and the unique lifted atom carries the full input mass.-/
+functionals, and the unique lifted atom carries the full input mass.
+@isnad1 id=hasflagd.3h4v.s6.5c92dd9e42d3 from=translated src=- shape=2c87ffc6 vocab=66932ead
+-/
 theorem hasFlagDecompositionConclusion_dimZero (p : ℕ) (hp : p.Prime)
     (f : FpCoord p 0 → ℕ) (hf : f ≠ 0) (ε : ℝ) (hε : 0 ≤ ε)
     (g : ℕ → ℕ) : HasFlagDecompositionConclusion hp f ε 1 g 1 1 := by
@@ -96,6 +102,9 @@ theorem hasFlagDecompositionConclusion_dimZero (p : ℕ) (hp : p.Prime)
     have hmass : (0 : ℝ) ≤ natMass f := Nat.cast_nonneg _
     nlinarith
 
+/--
+@isnad1 id=ex.1h1v.s7.1001700fb342 from=translated src=- shape=352af7fe vocab=70c9fed3
+-/
 theorem flag_decomposition_lemma_dimZero (ε : ℝ) (hε : 0 < ε) :
     ∃ (δ : ℝ) (Bcard : ℕ), 0 < δ ∧
       ∀ g : ℕ → ℕ, IsGrowing g →

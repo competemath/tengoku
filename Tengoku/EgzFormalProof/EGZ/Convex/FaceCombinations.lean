@@ -17,7 +17,9 @@ open scoped BigOperators
 namespace EGZ.RationalPolytope.Face
 
 /-- If a convex combination belongs to an exposed face, every input with
-strictly positive weight belongs to that face.-/
+strictly positive weight belongs to that face.
+@isnad1 id=mem.6h8v.s7.cbbb9b0c6f88 from=translated src=- shape=16ee4283 vocab=290d6b28
+-/
 theorem mem_of_pos_of_eq_convexCombination {d : ℕ}
     {P : RationalPolytope d} (F : P.Face) {I : Type*} [Fintype I]
     (points : I → RealCoord d) (weight : I → ℝ) (q : RealCoord d)
@@ -70,7 +72,9 @@ theorem mem_of_pos_of_eq_convexCombination {d : ℕ}
   exact ⟨hpoints i, hleveli⟩
 
 /-- A point in the relative interior of a face belongs to no smaller face:
-the relative-interior face lies below every face containing the point.-/
+the relative-interior face lies below every face containing the point.
+@isnad1 id=le.2h5v.s5.5c214193d871 from=translated src=- shape=34a22069 vocab=e43dd4e2
+-/
 theorem le_of_mem_relInterior {d : ℕ} {P : RationalPolytope d}
     {F G : P.Face} {q : RealCoord d} (hqF : q ∈ F.relInterior)
     (hqG : q ∈ G.carrier) : F ≤ G := by
@@ -107,7 +111,9 @@ def IsLeastFaceAt {d : ℕ} (P : RationalPolytope d)
 
 /-- Every point of a rational polytope has a least containing face.  This is
 purely finite: choose a containing face with the fewest generators, then
-intersect it with any competing containing face.-/
+intersect it with any competing containing face.
+@isnad1 id=ex.1h3v.s5.f0dfdcbb16ad from=translated src=- shape=f712ddb3 vocab=a93acaba
+-/
 theorem exists_isLeastFaceAt {d : ℕ} (P : RationalPolytope d)
     {q : RealCoord d} (hq : q ∈ P.carrier) :
     ∃ F : P.Face, IsLeastFaceAt P q F := by
@@ -144,14 +150,18 @@ theorem exists_isLeastFaceAt {d : ℕ} (P : RationalPolytope d)
   rw [hFcard] at hcard_lt
   exact (Nat.not_lt_of_ge hmin) hcard_lt
 
-/-- Relative-interior membership implies order-theoretic minimality.-/
+/-- Relative-interior membership implies order-theoretic minimality.
+@isnad1 id=isleastf.1h4v.s5.4103a91e1083 from=translated src=- shape=6ae6a018 vocab=f1e2b524
+-/
 theorem isLeastFaceAt_of_mem_relInterior {d : ℕ}
     {P : RationalPolytope d} {q : RealCoord d} {F : P.Face}
     (hq : q ∈ F.relInterior) : IsLeastFaceAt P q F := by
   exact ⟨intrinsicInterior_subset hq,
     fun G hqG ↦ le_of_mem_relInterior hq hqG⟩
 
-/-- Order-theoretic least faces are unique.-/
+/-- Order-theoretic least faces are unique.
+@isnad1 id=eq.2h5v.s5.ea28c19b72f2 from=translated src=- shape=d2200106 vocab=212a2f20
+-/
 theorem IsLeastFaceAt.unique {d : ℕ} {P : RationalPolytope d}
     {q : RealCoord d} {F G : P.Face}
     (hF : IsLeastFaceAt P q F) (hG : IsLeastFaceAt P q G) : F = G :=

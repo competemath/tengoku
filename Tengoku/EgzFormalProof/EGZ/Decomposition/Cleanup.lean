@@ -19,7 +19,9 @@ namespace EGZ
 /-- Simultaneous gap cleanup for any finite family of sets of atoms.
 The resulting weight is obtained only by deleting atoms, all surviving fibre
 masses exceed their thresholds, and the loss is at most the sum of thresholds.
-No disjointness assumption on the sets is needed.-/
+No disjointness assumption on the sets is needed.
+@isnad1 id=ex.1h6v.s7.9a924d510bd4 from=translated src=- shape=9624de12 vocab=0a584b6c
+-/
 theorem exists_gap_pruning {α β : Type*} [Fintype α]
     (s : Finset β) (fibre : β → Set α) (threshold : β → ℝ)
     (hnonneg : ∀ b ∈ s, 0 ≤ threshold b) (w : α → ℕ) :
@@ -83,6 +85,9 @@ namespace FlagDecompositionRaw
 variable {p d : ℕ} [NeZero p] {F : ConvexFlag}
 
 omit [NeZero p] in
+/--
+@isnad1 id=le.1h7v.s6.550558152960 from=translated src=- shape=98648370 vocab=3aa0f4d5
+-/
 theorem cumulativeWeight_mono {pieces pieces' : F.Node → FpCoord p d → ℕ}
     (hle : ∀ x v, pieces' x v ≤ pieces x v) (x : F.Node) (v : FpCoord p d) :
     cumulativeWeight pieces' x v ≤ cumulativeWeight pieces x v := by
@@ -93,6 +98,9 @@ theorem cumulativeWeight_mono {pieces pieces' : F.Node → FpCoord p d → ℕ}
   · exact hle y v
   · exact le_rfl
 
+/--
+@isnad1 id=le.1h8v.s6.e3835650d4a6 from=translated src=- shape=e52fb358 vocab=74099f0d
+-/
 theorem hat_mono (R : FpRepresentation p d F)
     {pieces pieces' : F.Node → FpCoord p d → ℕ}
     (hle : ∀ x v, pieces' x v ≤ pieces x v) (x : F.Node)
@@ -113,6 +121,9 @@ def cumulativeFibre (R : FpRepresentation p d F)
     (x : F.Node) (q : IntCoord (F.rank x)) : Set (F.Node × FpCoord p d) :=
   {a | a.1 ≤ x ∧ R.map x a.2 = q.mod p}
 
+/--
+@isnad1 id=eq.1h7v.s6.6b49d80d26fe from=translated src=- shape=ae45769b vocab=e3732945
+-/
 theorem hat_eq_natMassOn (R : FpRepresentation p d F)
     (pieces : F.Node → FpCoord p d → ℕ) (x : F.Node)
     (q : IntCoord (F.rank x)) (hq : IsCenteredLift p q) :
@@ -130,6 +141,9 @@ theorem hat_eq_natMassOn (R : FpRepresentation p d F)
   · simp [cumulativeFibre, hv]
   · simp [cumulativeFibre, hv]
 
+/--
+@isnad1 id=eq.0h4v.s6.8d5af7d97220 from=translated src=- shape=3c2bcb46 vocab=82ceecf7
+-/
 theorem natMass_retainedWeight (pieces : F.Node → FpCoord p d → ℕ) :
     natMass (retainedWeight pieces) =
       natMass (fun a : F.Node × FpCoord p d ↦ pieces a.1 a.2) := by
@@ -142,6 +156,9 @@ namespace FlagDecomposition
 
 variable {p d : ℕ} [NeZero p] {f : FpCoord p d → ℕ}
 
+/--
+@isnad1 id=lt.0h5v.s5.df61cb072a12 from=translated src=- shape=6e6282ac vocab=34b897db
+-/
 theorem gap_pos (Φ : FlagDecomposition p d f) (x : Φ.flag.Node) :
     0 < Φ.gap x := by
   classical
@@ -152,6 +169,9 @@ theorem gap_pos (Φ : FlagDecomposition p d f) (x : Φ.flag.Node) :
   rw [← heq]
   exact Nat.pos_of_ne_zero ((Φ.liftedSupport_spec x q).mp hq)
 
+/--
+@isnad1 id=le.1h6v.s6.1661f5073de6 from=translated src=- shape=a7c2c176 vocab=455411b6
+-/
 theorem gap_le_hat (Φ : FlagDecomposition p d f) (x : Φ.flag.Node)
     (q : IntCoord (Φ.flag.rank x)) (hq : Φ.hat x q ≠ 0) :
     Φ.gap x ≤ Φ.hat x q := by
@@ -160,7 +180,9 @@ theorem gap_le_hat (Φ : FlagDecomposition p d f) (x : Φ.flag.Node)
     ⟨q, (Φ.liftedSupport_spec x q).mpr hq, rfl⟩)
 
 /-- A coordinate bound controls the number of positive cumulative fibres,
-uniformly in the prime.-/
+uniformly in the prime.
+@isnad1 id=le.1h6v.s6.20e445a9824b from=translated src=- shape=b5c893ac vocab=c948124c
+-/
 theorem card_liftedSupport_le (Φ : FlagDecomposition p d f)
     {K : Φ.flag.Node → ℕ} (hK : Φ.IsKBounded K) (x : Φ.flag.Node) :
     (Φ.liftedSupport x).card ≤ (2 * K x + 1) ^ Φ.flag.rank x := by
@@ -170,6 +192,9 @@ theorem card_liftedSupport_le (Φ : FlagDecomposition p d f)
   rw [Φ.polytope_eq_liftedSupport]
   exact _root_.subset_convexHull ℝ _ ⟨q, hq, rfl⟩
 
+/--
+@isnad1 id=le.1h6v.s6.3816e3d0dde6 from=translated src=- shape=281daeb7 vocab=6bba25f5
+-/
 theorem card_liftedSupport_le_pow_dim [Fact p.Prime]
     (Φ : FlagDecomposition p d f)
     {K : Φ.flag.Node → ℕ} (hK : Φ.IsKBounded K) (x : Φ.flag.Node) :
@@ -180,7 +205,9 @@ theorem card_liftedSupport_le_pow_dim [Fact p.Prime]
 /-- Gap cleanup of all local atoms, before rebuilding the active polytopes.
 Its loss bound counts only the original lifted supports. The theorem applies
 to arbitrary node thresholds and preserves the original value of every
-surviving local atom.-/
+surviving local atom.
+@isnad1 id=ex.1h5v.s8.52af02acfa90 from=translated src=- shape=19db2473 vocab=31980083
+-/
 theorem exists_gap_pruned_localWeight (Φ : FlagDecomposition p d f)
     (threshold : Φ.flag.Node → ℝ) (hnonneg : ∀ x, 0 ≤ threshold x) :
     ∃ pieces : Φ.flag.Node → FpCoord p d → ℕ,
@@ -218,7 +245,9 @@ theorem exists_gap_pruned_localWeight (Φ : FlagDecomposition p d f)
 
 /-- The numerical conclusion of the gap cleanup lemma with the paper's
 uniform threshold. Rebuilding the reduced active flag is a separate geometric
-operation; this theorem supplies its local weights and complete loss estimate.-/
+operation; this theorem supplies its local weights and complete loss estimate.
+@isnad1 id=ex.2h6v.s8.0939408c51d3 from=translated src=- shape=c63c8b24 vocab=d7d22681
+-/
 theorem exists_bounded_gap_pruning [Fact p.Prime]
     (Φ : FlagDecomposition p d f) {K : Φ.flag.Node → ℕ}
     (hK : Φ.IsKBounded K) {α : ℝ} (hα : 0 ≤ α) :

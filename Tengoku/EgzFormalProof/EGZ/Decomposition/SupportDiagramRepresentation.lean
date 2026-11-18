@@ -28,6 +28,9 @@ variable (hinj : ∀ x, Function.Injective ((D.chart C x).modp p))
 include hinj
 
 omit [NeZero p] in
+/--
+@isnad1 id=eq.2h8v.s11.a08770d22a46 from=translated src=- shape=4f9caa23 vocab=7e3e5f39
+-/
 theorem coordinateMap_eq_mod (x : D.Node) (v : FpCoord p d) (q : IntCoord (C x).rank)
     (hv : φ x v = ((C x).map q).mod p) : coordinateMap D C φ x v = q.mod p := by
   change affineLeftInverse ((D.chart C x).modp p) (φ x v) = _
@@ -43,6 +46,9 @@ variable (himage : ∀ x,
 include himage
 
 omit [NeZero p] in
+/--
+@isnad1 id=eq.2h7v.s10.b1dfa0b838c8 from=translated src=- shape=ad47bf99 vocab=1cc169f0
+-/
 theorem coordinateMap_image_support (x : D.Node) :
     coordinateMap D C φ x ''
         {v | FlagDecompositionRaw.cumulativeWeight (F := D.toConvexFlag) w x v ≠ 0} =
@@ -69,6 +75,9 @@ theorem coordinateMap_image_support (x : D.Node) :
     exact ⟨v, hv, D.coordinateMap_eq_mod C φ hinj x v q hmod⟩
 
 omit [NeZero p] in
+/--
+@isnad1 id=eq.3h8v.s11.9fb7687292f9 from=translated src=- shape=ded22e8b vocab=d0110fee
+-/
 theorem chart_coordinateMap (x : D.Node) (v : FpCoord p d)
     (hv : FlagDecompositionRaw.cumulativeWeight (F := D.toConvexFlag) w x v ≠ 0) :
     (D.chart C x).modp p (coordinateMap D C φ x v) = φ x v := by
@@ -91,6 +100,9 @@ variable (hcompat : ∀ {x y : D.Node} (h : x ≤ y) {v : FpCoord p d},
 include hcompat
 
 omit [NeZero p] in
+/--
+@isnad1 id=eq.5h9v.s12.a79d3a594042 from=translated src=- shape=9c5017a6 vocab=98c7d42d
+-/
 theorem coordinateMap_compatible {x y : D.Node} (h : x ≤ y) {v : FpCoord p d}
     (hv : FlagDecompositionRaw.cumulativeWeight (F := D.toConvexFlag) w x v ≠ 0) :
     coordinateMap D C φ y v = (D.chartedTransition C h).modp p (coordinateMap D C φ x v) := by

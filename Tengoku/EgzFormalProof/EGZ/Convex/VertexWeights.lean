@@ -26,17 +26,26 @@ noncomputable def vertexFinset {d : ℕ} (P : RationalPolytope d) :
     Finset (RealCoord d) :=
   P.finite_vertexSet.toFinset
 
+/--
+@isnad1 id=eq.0h2v.s4.f6f2580fa264 from=translated src=- shape=412f4da7 vocab=8a8291f5
+-/
 @[simp]
 theorem coe_vertexFinset {d : ℕ} (P : RationalPolytope d) :
     (↑P.vertexFinset : Set (RealCoord d)) = P.vertexSet := by
   exact P.finite_vertexSet.coe_toFinset
 
+/--
+@isnad1 id=iff.0h3v.s5.ebabbb07e474 from=translated src=- shape=fe188c54 vocab=022b93cd
+-/
 @[simp]
 theorem mem_vertexFinset {d : ℕ} (P : RationalPolytope d)
     {v : RealCoord d} : v ∈ P.vertexFinset ↔ v ∈ P.vertexSet := by
   rw [← P.coe_vertexFinset]
   rfl
 
+/--
+@isnad1 id=mem.1h3v.s5.36a7cc8c0dfc from=translated src=- shape=51e21dc5 vocab=680e54af
+-/
 theorem vertexFinset_subset_carrier {d : ℕ} (P : RationalPolytope d) :
     ∀ {v : RealCoord d}, v ∈ P.vertexFinset → v ∈ P.carrier := by
   intro v hv
@@ -56,7 +65,9 @@ structure VertexWeights {d : ℕ} (P : RationalPolytope d)
   weighted_sum_eq : ∑ v ∈ P.vertexFinset, weight v • v = q
 
 /-- Every point of a rational polytope has a finite convex-combination
-representation using all of its vertices (with zero weights permitted).-/
+representation using all of its vertices (with zero weights permitted).
+@isnad1 id=nonempty.1h3v.s4.72f906ea19a8 from=translated src=- shape=636ce515 vocab=472a1dfb
+-/
 theorem exists_vertexWeights {d : ℕ} (P : RationalPolytope d)
     {q : RealCoord d} (hq : q ∈ P.carrier) :
     Nonempty (P.VertexWeights q) := by
@@ -153,7 +164,9 @@ theorem eq_of_pos_of_eq_convexCombination_of_mem_vertexSet
 namespace VertexWeights
 
 /-- If the represented point lies in an exposed face, every vertex carrying
-positive weight lies in that face.-/
+positive weight lies in that face.
+@isnad1 id=mem.3h6v.s6.0bdd47d3de56 from=translated src=- shape=f1f1dba1 vocab=081a75a1
+-/
 theorem mem_face_of_pos {d : ℕ} {P : RationalPolytope d}
     {q : RealCoord d} (W : P.VertexWeights q) (F : P.Face)
     (hqF : q ∈ F.carrier) {v : RealCoord d}
@@ -267,7 +280,9 @@ theorem eq_of_pos_of_mem_vertexSet {d : ℕ} {P : RationalPolytope d}
     hqHullComplement)
 
 /-- Equivalently, every vertex different from an extreme represented point
-has zero weight.-/
+has zero weight.
+@isnad1 id=eq.3h5v.s6.b9bdf648cffb from=translated src=- shape=30978e21 vocab=2ccc8a91
+-/
 theorem weight_eq_zero_of_mem_vertexSet_of_ne {d : ℕ}
     {P : RationalPolytope d} {q : RealCoord d} (W : P.VertexWeights q)
     (hq : q ∈ P.vertexSet) {v : RealCoord d} (hv : v ∈ P.vertexFinset)

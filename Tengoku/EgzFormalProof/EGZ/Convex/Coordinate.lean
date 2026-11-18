@@ -45,15 +45,23 @@ def real {n : ℕ} (z : IntCoord n) : RealCoord n := fun i ↦ (z i : ℝ)
 /-- Coordinatewise reduction modulo `p`.-/
 def mod (p : ℕ) {n : ℕ} (z : IntCoord n) : FpCoord p n := fun i ↦ (z i : ZMod p)
 
+/--
+@isnad1 id=eq.0h3v.s4.3290a02bb073 from=translated src=- shape=c1c587d9 vocab=5b5a12ce
+-/
 @[simp]
 theorem real_apply {n : ℕ} (z : IntCoord n) (i : Fin n) : z.real i = (z i : ℝ) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.fc9ed1b41706 from=translated src=- shape=7b23d035 vocab=820402ac
+-/
 @[simp]
 theorem mod_apply (p : ℕ) {n : ℕ} (z : IntCoord n) (i : Fin n) :
     z.mod p i = (z i : ZMod p) := rfl
 
 /-- Coordinatewise realification embeds the integer lattice as a closed
-discrete subset of finite-dimensional real coordinate space.-/
+discrete subset of finite-dimensional real coordinate space.
+@isnad1 id=isclosed.0h1v.s5.fb776581ee9a from=translated src=- shape=ca92e646 vocab=61efdd34
+-/
 theorem isClosedEmbedding_real {n : ℕ} :
     Topology.IsClosedEmbedding (@real n) := by
   let f : IntCoord n → RealCoord n :=
@@ -67,10 +75,16 @@ theorem isClosedEmbedding_real {n : ℕ} :
   rw [← hfr]
   exact hf
 
+/--
+@isnad1 id=isclosed.0h1v.s4.41839af11d9b from=translated src=- shape=8e963a68 vocab=09673d5c
+-/
 theorem isClosed_range_real {n : ℕ} :
     IsClosed (Set.range (@real n)) :=
   isClosedEmbedding_real.isClosed_range
 
+/--
+@isnad1 id=isdiscre.0h1v.s4.0c720ecf900b from=translated src=- shape=8e963a68 vocab=e979cac5
+-/
 theorem isDiscrete_range_real {n : ℕ} :
     IsDiscrete (Set.range (@real n)) :=
   isClosedEmbedding_real.isEmbedding.isDiscrete_range
@@ -118,12 +132,21 @@ def comp {l m n : ℕ} (f : IntegralAffineMap m n) (g : IntegralAffineMap l m) :
   real_integer z := by simp [f.real_integer, g.real_integer]
   mod_integer p z := by simp [f.mod_integer, g.mod_integer]
 
+/--
+@isnad1 id=eq.0h1v.s7.3b242193444e from=translated src=- shape=b75053f7 vocab=a01f1785
+-/
 @[simp]
 theorem id_real (n : ℕ) : (id n).real = AffineMap.id ℝ (RealCoord n) := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.92e7423af0df from=translated src=- shape=0bbfcb24 vocab=7ab3ef50
+-/
 @[simp]
 theorem id_integer (n : ℕ) : (id n).integer = _root_.id := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.6f43d9fc1939 from=translated src=- shape=8a889a6c vocab=94d49d87
+-/
 @[simp]
 theorem id_modp (p n : ℕ) :
     (id n).modp p = AffineMap.id (ZMod p) (FpCoord p n) := rfl
@@ -148,7 +171,9 @@ namespace RationalPolytope
 
 /-- Intersecting a finite convex hull with a supporting level set simply
 takes the convex hull of the generators on that level.  This is the finite
-polytope fact that makes exposed faces combinatorially finite.-/
+polytope fact that makes exposed faces combinatorially finite.
+@isnad1 id=eq.1h4v.s10.c3cfb9e9ee0e from=translated src=- shape=95ac5cf9 vocab=b4f5fffd
+-/
 theorem convexHull_supportingLevel_eq {n : ℕ}
     (generators : Finset (RealCoord n))
     (functional : RealCoord n →ᵃ[ℝ] ℝ) (level : ℝ)
@@ -233,7 +258,9 @@ theorem convexHull_supportingLevel_eq {n : ℕ}
       simp only [smul_eq_mul, ← add_mul, hab, one_mul]
 
 /-- A compact subset of finite-dimensional real coordinate space contains
-only finitely many points of the standard integer lattice.-/
+only finitely many points of the standard integer lattice.
+@isnad1 id=finite.1h2v.s5.6bc62c338e6d from=translated src=- shape=cfce3227 vocab=cb169da4
+-/
 theorem finite_integral_of_isCompact {n : ℕ} {S : Set (RealCoord n)}
     (hS : IsCompact S) : Set.Finite {q | q ∈ S ∧ IsIntegral q} := by
   have hcompact : IsCompact (S ∩ Set.range (@IntCoord.real n)) :=
@@ -253,7 +280,9 @@ theorem finite_integral_of_isCompact {n : ℕ} {S : Set (RealCoord n)}
   exact hfinite
 
 /-- The convex hull of a finite set contains only finitely many standard
-integer points.-/
+integer points.
+@isnad1 id=finite.0h2v.s7.7e780f2b77df from=translated src=- shape=50749cbf vocab=e5d1c831
+-/
 theorem finite_integral_convexHull {n : ℕ}
     (generators : Finset (RealCoord n)) :
     Set.Finite {q | q ∈ convexHull ℝ (↑generators : Set (RealCoord n)) ∧
@@ -273,6 +302,9 @@ def ofFinsetConvexHull {n : ℕ} (generators : Finset (RealCoord n))
   carrier_eq_convexHull := rfl
   finite_integral := finite_integral_convexHull generators
 
+/--
+@isnad1 id=eq.2h2v.s7.535b0425fc60 from=translated src=- shape=0ea6578b vocab=d8daf448
+-/
 @[simp]
 theorem ofFinsetConvexHull_carrier {n : ℕ}
     (generators : Finset (RealCoord n)) (hnonempty : generators.Nonempty)
@@ -290,6 +322,9 @@ noncomputable def ofFiniteConvexHull {n : ℕ} (S : Set (RealCoord n))
       intro q hq
       exact hrational q (by simpa using hq))
 
+/--
+@isnad1 id=eq.3h2v.s7.1d89f8dd7ab5 from=translated src=- shape=f11462e9 vocab=09888d86
+-/
 @[simp]
 theorem ofFiniteConvexHull_carrier {n : ℕ} (S : Set (RealCoord n))
     (hfinite : S.Finite) (hnonempty : S.Nonempty)
@@ -300,7 +335,9 @@ theorem ofFiniteConvexHull_carrier {n : ℕ} (S : Set (RealCoord n))
     hfinite.coe_toFinset]
 
 /-- The finite convex hull is contained in every convex set containing its
-generating set.-/
+generating set.
+@isnad1 id=le.5h3v.s6.ae29d18b4571 from=translated src=- shape=065b2d4d vocab=a15936b6
+-/
 theorem ofFiniteConvexHull_subset {n : ℕ} (S : Set (RealCoord n))
     (hfinite : S.Finite) (hnonempty : S.Nonempty)
     (hrational : ∀ q ∈ S, IsRational q)
@@ -309,12 +346,16 @@ theorem ofFiniteConvexHull_subset {n : ℕ} (S : Set (RealCoord n))
   rw [ofFiniteConvexHull_carrier]
   exact convexHull_min hSC hC
 
-/-- The carrier of a rational polytope is convex.-/
+/-- The carrier of a rational polytope is convex.
+@isnad1 id=convex.0h2v.s5.693ee6df68b8 from=translated src=- shape=e1abeb28 vocab=8d6e405b
+-/
 theorem convex {n : ℕ} (P : RationalPolytope n) : Convex ℝ P.carrier := by
   rw [P.carrier_eq_convexHull]
   exact convex_convexHull ℝ _
 
-/-- A rational polytope is nonempty.-/
+/-- A rational polytope is nonempty.
+@isnad1 id=nonempty.0h2v.s3.b3aa61d7ef82 from=translated src=- shape=71337308 vocab=9cc3008b
+-/
 theorem nonempty {n : ℕ} (P : RationalPolytope n) : P.carrier.Nonempty := by
   rw [P.carrier_eq_convexHull]
   obtain ⟨q, hq⟩ := P.generators_nonempty
@@ -325,14 +366,23 @@ separate from an arbitrary finite generating set, which may be redundant.-/
 def vertexSet {n : ℕ} (P : RationalPolytope n) : Set (RealCoord n) :=
   P.carrier.extremePoints ℝ
 
+/--
+@isnad1 id=le.0h2v.s4.89ade84daaa6 from=translated src=- shape=94d724bd vocab=77a0fe8e
+-/
 theorem vertexSet_subset_generators {n : ℕ} (P : RationalPolytope n) :
     P.vertexSet ⊆ (↑P.generators : Set (RealCoord n)) := by
   rw [vertexSet, P.carrier_eq_convexHull]
   exact extremePoints_convexHull_subset
 
+/--
+@isnad1 id=finite.0h2v.s3.eaaad17b5e56 from=translated src=- shape=71337308 vocab=dfdfc536
+-/
 theorem finite_vertexSet {n : ℕ} (P : RationalPolytope n) : P.vertexSet.Finite :=
   P.generators.finite_toSet.subset P.vertexSet_subset_generators
 
+/--
+@isnad1 id=isration.1h3v.s4.ce89b1f391ff from=translated src=- shape=1a78f53b vocab=092e6933
+-/
 theorem rational_of_mem_vertexSet {n : ℕ} (P : RationalPolytope n)
     {q : RealCoord n} (hq : q ∈ P.vertexSet) : IsRational q := by
   have hgen := P.vertexSet_subset_generators hq
@@ -349,6 +399,9 @@ structure Face {n : ℕ} (P : RationalPolytope n) where
 
 namespace Face
 
+/--
+@isnad1 id=le.0h3v.s4.96c80a75454e from=translated src=- shape=c61a17fb vocab=0dd88480
+-/
 theorem subset_polytope {n : ℕ} {P : RationalPolytope n} (F : P.Face) :
     F.carrier ⊆ P.carrier := by
   obtain ⟨functional, level, _hle, hcarrier⟩ := F.is_exposed
@@ -356,6 +409,9 @@ theorem subset_polytope {n : ℕ} {P : RationalPolytope n} (F : P.Face) :
   rw [hcarrier] at hq
   exact hq.1
 
+/--
+@isnad1 id=eq.1h4v.s5.1c576511cad0 from=translated src=- shape=0f6ad357 vocab=6582f546
+-/
 @[ext]
 theorem ext {n : ℕ} {P : RationalPolytope n} {F G : P.Face}
     (h : F.carrier = G.carrier) : F = G := by

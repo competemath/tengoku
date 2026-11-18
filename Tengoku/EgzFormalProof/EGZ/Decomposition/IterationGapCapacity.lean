@@ -10,6 +10,9 @@ variable {p d : ℕ} [NeZero p] [Fact p.Prime] {f : FpCoord p d → ℕ}
 
 namespace State
 
+/--
+@isnad1 id=gapcondi.3h6v.s5.3cb834e81fb0 from=translated src=- shape=ca0d916f vocab=7d3f336a
+-/
 theorem GapCondition.mono_delta {s : State p d f} {δ δ' : ℝ}
     (h : s.GapCondition δ) (hδ' : 0 ≤ δ') (hδ : δ' ≤ δ) : s.GapCondition δ' := by
   intro x
@@ -32,6 +35,9 @@ theorem Event.eq_gap_of_color_ge {s : State p d f} (E : s.Event)
 
 end State
 
+/--
+@isnad1 id=not.2h12v.s7.b06f84b56fce from=translated src=- shape=6bdea4ae vocab=803896b6
+-/
 theorem no_consecutive_gap {s t u : State p d f} {ε δ δ' : ℝ} {g : ℕ → ℕ}
     (P : Progress s t ε δ g) (Q : Progress t u ε δ' g)
     (hδ' : 0 ≤ δ') (hδ : δ' ≤ δ) : ¬ (P.event = .gap ∧ Q.event = .gap) := by
@@ -42,7 +48,9 @@ theorem no_consecutive_gap {s t u : State p d f} {ε δ δ' : ℝ} {g : ℕ → 
   rw [hQ] at hq
   exact hq (State.GapCondition.mono_delta hp hδ' hδ)
 
-/-- An interval consisting only of gap colors contains a single stage.-/
+/-- An interval consisting only of gap colors contains a single stage.
+@isnad1 id=le.5h11v.s7.f8f8e2da9e54 from=translated src=- shape=11e18f24 vocab=8a4ec7d7
+-/
 theorem card_gap_interval_le_one {s : ℕ → State p d f} {ε : ℝ} {δ : ℕ → ℝ}
     {g : ℕ → ℕ} {N a b : ℕ}
     (P : ∀ i, i < N → Progress (s i) (s (i + 1)) ε (δ i) g)

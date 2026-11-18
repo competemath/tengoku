@@ -13,6 +13,9 @@ and the prime threshold.
 
 namespace EGZ
 
+/--
+@isnad1 id=le.1h3v.s7.48278ab70af3 from=translated src=- shape=2a35bbad vocab=b202ae2b
+-/
 theorem convexHull_subset_coordinateBox {n K : ℕ} {S : Set (IntCoord n)}
     (hS : ∀ z ∈ S, latticeSupNorm z ≤ K) :
     convexHull ℝ (IntCoord.real '' S) ⊆
@@ -31,6 +34,9 @@ theorem convexHull_subset_coordinateBox {n K : ℕ} {S : Set (IntCoord n)}
     change (z i : ℝ) ≤ (K : ℝ)
     exact_mod_cast hupp
 
+/--
+@isnad1 id=le.2h4v.s7.3baad0312935 from=translated src=- shape=e03c8ec1 vocab=8d799694
+-/
 theorem latticeSupNorm_le_of_mem_convexHull {n K : ℕ} {S : Set (IntCoord n)}
     (hS : ∀ z ∈ S, latticeSupNorm z ≤ K) (q : IntCoord n)
     (hq : q.real ∈ convexHull ℝ (IntCoord.real '' S)) : latticeSupNorm q ≤ K := by
@@ -49,6 +55,9 @@ theorem latticeSupNorm_le_of_mem_convexHull {n K : ℕ} {S : Set (IntCoord n)}
 
 namespace LatticeSupportDiagram
 
+/--
+@isnad1 id=le.2h4v.s6.302a9b22a386 from=translated src=- shape=db3d97db vocab=68da6030
+-/
 theorem polytope_bound (D : LatticeSupportDiagram) {K : D.Node → ℕ}
     (hS : ∀ x q, q ∈ D.support x → latticeSupNorm q ≤ K x)
     (x : D.Node) (q : IntCoord (D.rank x)) (hq : q.real ∈ (D.polytope x).carrier) :
@@ -58,6 +67,9 @@ theorem polytope_bound (D : LatticeSupportDiagram) {K : D.Node → ℕ}
 
 end LatticeSupportDiagram
 
+/--
+@isnad1 id=ex.0h1v.s10.2c373f9fce0d from=translated src=- shape=126a9cde vocab=21f3af14
+-/
 theorem exists_uniform_supportChart_parameters (r : ℕ) :
     ∃ A : ℕ → ℕ, Monotone A ∧ (∀ K, K ≤ A K) ∧
       ∀ BK : ℕ, ∃ p₀ : ℕ, 2 ≤ p₀ ∧

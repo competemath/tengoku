@@ -16,7 +16,9 @@ open scoped BigOperators
 namespace EGZ.RationalPolytope.Face
 
 /-- A halfspace through a point of `F \ G` whose intersection with a
-prescribed finite support lies in `F \ G`.-/
+prescribed finite support lies in `F \ G`.
+@isnad1 id=ex.4h6v.s9.617a89ac1e12 from=translated src=- shape=0f5bab96 vocab=2afc9a1d
+-/
 theorem exists_halfspace_subset_sdiff {r : ℕ} {P : RationalPolytope r}
     (F G : P.Face) {c : RealCoord r} (hcF : c ∈ F.carrier)
     (hcG : c ∉ G.carrier) (S : Finset (IntCoord r)) (hS : S.Nonempty)
@@ -66,7 +68,9 @@ namespace EGZ.FlagDecomposition
 variable {p d : ℕ} [NeZero p] {f : FpCoord p d → ℕ}
 
 /-- A proper point based at `x` cannot lie on a realized proper face at
-`x`: its own base occurs in the supremum defining the face index.-/
+`x`: its own base occurs in the supremum defining the face index.
+@isnad1 id=eq.3h6v.s8.10eb490a84c8 from=translated src=- shape=5d455fe2 vocab=8c7da77b
+-/
 theorem realized_face_eq_top_of_point (Φ : FlagDecomposition p d f)
     (q : Φ.flag.Point) (hq : q ∈ Φ.omega)
     (F : (Φ.flag.polytope q.base).Face) (hqF : q.val ∈ F.carrier)
@@ -91,7 +95,9 @@ theorem realized_face_eq_top_of_point (Φ : FlagDecomposition p d f)
       AffineMap.id_apply] using hr
   exact hcollapse _ _ heq hreal z hz
 
-/-- The lifted mass of any subset is at most total retained mass.-/
+/-- The lifted mass of any subset is at most total retained mass.
+@isnad1 id=le.1h6v.s6.3629db3739a2 from=translated src=- shape=a0446a1c vocab=67f4facf
+-/
 theorem liftedMassOn_le_retainedMass (Φ : FlagDecomposition p d f) (hp : Odd p)
     (x : Φ.flag.Node) (S : Set (RealCoord (Φ.flag.rank x))) :
     Φ.liftedMassOn x S ≤ Φ.retainedMass := by
@@ -105,7 +111,9 @@ theorem liftedMassOn_le_retainedMass (Φ : FlagDecomposition p d f) (hp : Odd p)
     _ ≤ Φ.retainedMass := Φ.cumulativeMass_le_retainedMass x
 
 /-- Completeness forces a proper centerpoint to lie in the relative
-interior of its base polytope. This includes rank zero.-/
+interior of its base polytope. This includes rank zero.
+@isnad1 id=mem.5h6v.s10.d941ee8fd47b from=translated src=- shape=2374d369 vocab=01f29191
+-/
 theorem centerpoint_mem_interior (Φ : FlagDecomposition p d f) (hp : Odd p)
     (q : Φ.flag.Point) (hq : q ∈ Φ.omega) {ε : ℝ} (hε : 0 ≤ ε)
     (hcentral : ∀ ξ : RealCoord (Φ.flag.rank q.base) →ᵃ[ℝ] ℝ,

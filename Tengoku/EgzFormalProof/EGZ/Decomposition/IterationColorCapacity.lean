@@ -17,16 +17,24 @@ variable {p d : ℕ} [NeZero p] [Fact p.Prime] {f : FpCoord p d → ℕ}
 noncomputable def progressColor (i : ℕ) : ℕ :=
   if hi : i < N then (P i hi).event.color else 2 * (d + 1) ^ 2
 
+/--
+@isnad1 id=eq.1h10v.s7.0b2de82fafd3 from=translated src=- shape=b7e444c6 vocab=9e967d53
+-/
 theorem progressColor_eq (i : ℕ) (hi : i < N) :
     progressColor P i = (P i hi).event.color := dite_eq_left hi
 
+/--
+@isnad1 id=lt.1h10v.s7.348cf3ffe381 from=translated src=- shape=4515416b vocab=ec6b9163
+-/
 theorem progressColor_lt (i : ℕ) (hi : i < N) :
     progressColor P i < 2 * (d + 1) ^ 2 + 1 := by
   rw [progressColor_eq P i hi]
   exact (P i hi).event.color_lt
 
 /-- Complete and face event bounds, together with the checked gap bound,
-give precisely the interval-capacity hypothesis of the finite-color lemma.-/
+give precisely the interval-capacity hypothesis of the finite-color lemma.
+@isnad1 id=hasinter.4h9v.s9.e4922f9c6ecf from=translated src=- shape=c351e212 vocab=26a7a6e6
+-/
 theorem hasIntervalCapacity_of_event_bounds
     (hδ : Antitone δ) (hδnonneg : ∀ i, 0 ≤ δ i)
     (hcomplete : ∀ a b L, a ≤ b → b < N → L < (d + 1) ^ 2 →
@@ -60,6 +68,9 @@ theorem hasIntervalCapacity_of_event_bounds
   · rw [Finset.not_nonempty_iff_eq_empty.mp hn]
     exact Nat.zero_le _
 
+/--
+@isnad1 id=lt.4h9v.s9.a1499dc46d5d from=translated src=- shape=b81e209a vocab=aacf6172
+-/
 theorem length_lt_stoppingBound_of_event_bounds
     (hδ : Antitone δ) (hδnonneg : ∀ i, 0 ≤ δ i)
     (hcomplete : ∀ a b L, a ≤ b → b < N → L < (d + 1) ^ 2 →

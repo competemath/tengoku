@@ -19,7 +19,9 @@ open Module
 namespace EGZ.Expansion
 
 /-- For one fixed support, the analytic parameters are independent of the
-prime, the fibre multiplicities and the prescribed coefficients.-/
+prime, the fibre multiplicities and the prescribed coefficients.
+@isnad1 id=ex.3h4v.s11.f7ae543874aa from=translated src=- shape=6a47cca8 vocab=172d8430
+-/
 theorem relative_expansion_fixed_support {r t : ℕ} (ht : 0 < t)
     (S : Finset (IntCoord r)) (hS : S.Nonempty) (δ : ℝ) (hδ : 0 < δ) :
     ∃ T₀ p₀ : ℕ, ∀ T : ℕ, T₀ ≤ T → ∀ p : ℕ,
@@ -151,7 +153,9 @@ theorem relative_expansion_fixed_support {r t : ℕ} (ht : 0 < t)
     counts hcounts hcountsmass hcountszero (R := δ * p / 2) hused' hmargin
 
 /-- The relative expansion theorem, with uniform thresholds for all
-supports in a fixed integer box.-/
+supports in a fixed integer box.
+@isnad1 id=relative.0h0v.s0.93baf220057f from=translated src=- shape=45709ebd vocab=93baf220
+-/
 theorem relative_expansion_theorem : RelativeExpansionStatement := by
   classical
   intro r t K _hK δ hδ

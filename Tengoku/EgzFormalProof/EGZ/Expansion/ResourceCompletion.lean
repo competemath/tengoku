@@ -18,18 +18,27 @@ noncomputable def selectionWeight {A G : Type*} [Fintype A]
   classical
   exact pushWeight point (fun a ↦ if a ∈ J then 1 else 0)
 
+/--
+@isnad1 id=eq.0h4v.s4.a69a71179a23 from=translated src=- shape=789f1886 vocab=e8fbd3ec
+-/
 theorem natMass_selectionWeight {A G : Type*} [Fintype A] [Fintype G]
     (point : A → G) (J : Finset A) : natMass (selectionWeight point J) = J.card := by
   classical
   rw [selectionWeight, natMass_pushWeight]
   simp [natMass]
 
+/--
+@isnad1 id=eq.0h4v.s5.fc5024e95482 from=translated src=- shape=26357330 vocab=b055af1f
+-/
 theorem vectorSum_selectionWeight {A G : Type*} [Fintype A] [Fintype G] [AddCommMonoid G]
     (point : A → G) (J : Finset A) : vectorSum (selectionWeight point J) = ∑ a ∈ J, point a := by
   classical
   rw [selectionWeight, vectorSum, sum_pushWeight]
   simp
 
+/--
+@isnad1 id=le.1h7v.s9.f40e35959256 from=translated src=- shape=472de84e vocab=4b7f1b33
+-/
 theorem exchange_position_capacity {A : Type*} [Fintype A]
     {p r t B : ℕ} (point : A → FpCoord p (r + t))
     (F : Finset (Exchange point B))
@@ -65,6 +74,9 @@ theorem exchange_position_capacity {A : Type*} [Fintype A]
     intro he
     exact ha (Finset.mem_biUnion.mpr ⟨e.val, e.property, he⟩)
 
+/--
+@isnad1 id=le.1h7v.s9.40585c2e2869 from=translated src=- shape=d971cbca vocab=0a1dabdf
+-/
 theorem exchange_weight_capacity {A : Type*} [Fintype A]
     {p r t B : ℕ} [NeZero p] (point : A → FpCoord p (r + t))
     (F : Finset (Exchange point B))
@@ -77,6 +89,9 @@ theorem exchange_weight_capacity {A : Type*} [Fintype A]
   have h := pushWeight_mono point (exchange_position_capacity point F hF)
   simpa only [pushWeight_add, pushWeight_sum, selectionWeight] using h
 
+/--
+@isnad1 id=ex.2h8v.s10.a4a5de57d6a1 from=translated src=- shape=35a45b1d vocab=1ab53f49
+-/
 theorem exchange_difference_coverage {A : Type*} [Fintype A]
     {p r t B : ℕ} [NeZero p] (point : A → FpCoord p (r + t))
     (F : Finset (Exchange point B))
@@ -108,7 +123,9 @@ theorem exchange_difference_coverage {A : Type*} [Fintype A]
   · simp [map_sum, Exchange.first_difference, hv]
   · simpa only [map_sum, Exchange.shift] using hsum
 
-/-- Each quotient fibre contains at most the total mass.-/
+/-- Each quotient fibre contains at most the total mass.
+@isnad1 id=le.0h5v.s4.c89c0ec7a487 from=translated src=- shape=e0c36268 vocab=6bb99819
+-/
 theorem pushWeight_le_natMass {X Y : Type*} [Fintype X]
     (f : X → Y) (u : X → ℕ) (y : Y) : pushWeight f u y ≤ natMass u := by
   classical
@@ -116,6 +133,9 @@ theorem pushWeight_le_natMass {X Y : Type*} [Fintype X]
   intro x _
   split_ifs <;> omega
 
+/--
+@isnad1 id=le.0h4v.s5.36094a3da776 from=translated src=- shape=8446824c vocab=86bb9cd0
+-/
 theorem selectionWeight_le_all {A G : Type*} [Fintype A]
     (point : A → G) (J : Finset A) :
     selectionWeight point J ≤ pushWeight point (fun _ ↦ 1) := by
@@ -127,7 +147,9 @@ theorem selectionWeight_le_all {A G : Type*} [Fintype A]
   split_ifs <;> norm_num
 
 /-- Full coverage by disjoint exchanges gives a zero-sum submultiset when
-the reserved positions fit inside the margins of the prescribed counts.-/
+the reserved positions fit inside the margins of the prescribed counts.
+@isnad1 id=haszeros.8h10v.s11.b6d16df59cb1 from=translated src=- shape=b82d6071 vocab=1846662c
+-/
 theorem complete_exchange_resources {A : Type*} [Fintype A]
     {p r t B : ℕ} [NeZero p] (point : A → FpCoord p (r + t))
     (w : FpCoord p (r + t) → ℕ) (hpoint : pushWeight point (fun _ ↦ 1) ≤ w)
@@ -195,7 +217,9 @@ theorem complete_exchange_resources {A : Type*} [Fintype A]
   exact ⟨u, hu, hum.trans ham, huz⟩
 
 /-- The prescribed integer coefficients give quotient multiplicities with
-the same real margins on every nonempty quotient fibre.-/
+the same real margins on every nonempty quotient fibre.
+@isnad1 id=ex.6h7v.s11.d2146ec658c7 from=translated src=- shape=2079dfce vocab=37747b8e
+-/
 theorem prescribed_quotient_counts_with_margin {p r t : ℕ} [NeZero p]
     (S : Finset (IntCoord r)) (w : FpCoord p (r + t) → ℕ) (α : S → ℤ)
     (hinj : Function.Injective (fun q : S ↦ q.val.mod p))

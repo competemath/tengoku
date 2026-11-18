@@ -31,7 +31,9 @@ def IsInConvexPosition {d n : ℕ} (points : Fin n → RealCoord d) : Prop :=
 namespace IsInConvexPosition
 
 /-- For an injective family, the operational definition of convex position
-implies mathlib's set-theoretic convex independence.-/
+implies mathlib's set-theoretic convex independence.
+@isnad1 id=convexin.2h3v.s5.ab21e49f42c0 from=translated src=- shape=2b81d887 vocab=4018aa66
+-/
 theorem convexIndependent {d n : ℕ} {points : Fin n → RealCoord d}
     (hpos : IsInConvexPosition points) (hinjective : Function.Injective points) :
     ConvexIndependent ℝ points := by
@@ -85,7 +87,9 @@ theorem convexIndependent {d n : ℕ} {points : Fin n → RealCoord d}
   simpa [hij] using hjs
 
 /-- An injective family in operational convex position is exactly the vertex
-set of its convex hull.-/
+set of its convex hull.
+@isnad1 id=eq.2h3v.s7.ab1905a487a2 from=translated src=- shape=0e7d2ec7 vocab=04cb133b
+-/
 theorem extremePoints_convexHull_range {d n : ℕ}
     {points : Fin n → RealCoord d} (hpos : IsInConvexPosition points)
     (hinjective : Function.Injective points) :
@@ -174,7 +178,9 @@ end IsInConvexPosition
 /-- A relative-interior point can be extended past any distinct point of the
 set.  Equivalently, it is a strict convex combination of that point and a
 second point of the set.  This elementary form is particularly convenient
-when positive coefficients on a prescribed finite support must be retained.-/
+when positive coefficients on a prescribed finite support must be retained.
+@isnad1 id=ex.3h4v.s7.f3f9e2fac240 from=translated src=- shape=008a11bb vocab=b881373d
+-/
 theorem exists_openSegment_of_mem_intrinsicInterior {d : ℕ}
     {C : Set (RealCoord d)} {q x : RealCoord d}
     (hq : q ∈ intrinsicInterior ℝ C) (hx : x ∈ C) (hqx : q ≠ x) :

@@ -21,7 +21,9 @@ namespace RationalPolytope.Face
 variable {n : ℕ} {P : RationalPolytope n}
 
 /-- Every nonempty face of a finite hull contains one of its generators,
-even when that finite hull differs from the polytope's stored presentation.-/
+even when that finite hull differs from the polytope's stored presentation.
+@isnad1 id=ex.1h4v.s7.1e69d18b63b6 from=translated src=- shape=2a5be751 vocab=a11f6e73
+-/
 theorem exists_mem_of_eq_convexHull (Γ : P.Face) (S : Finset (RealCoord n))
     (hP : P.carrier = convexHull ℝ (S : Set (RealCoord n))) :
     ∃ q ∈ S, q ∈ Γ.carrier := by
@@ -52,7 +54,9 @@ namespace FlagDecompositionRaw
 
 variable {p d : ℕ} [NeZero p] {F : ConvexFlag}
 
-/-- A local lifted fibre contributes to its cumulative lifted fibre.-/
+/-- A local lifted fibre contributes to its cumulative lifted fibre.
+@isnad1 id=le.0h7v.s5.50b83b316879 from=translated src=- shape=bf4eb74c vocab=970da464
+-/
 theorem localLift_le_hat (R : FpRepresentation p d F)
     (pieces : F.Node → FpCoord p d → ℕ) (x : F.Node)
     (q : IntCoord (F.rank x)) : localLift R pieces x q ≤ hat R pieces x q := by
@@ -89,24 +93,36 @@ variable {R : FpRepresentation p d F} {pieces : F.Node → FpCoord p d → ℕ}
 
 include D
 
+/--
+@isnad1 id=iscenter.1h8v.s6.4102929db654 from=translated src=- shape=a5c93c51 vocab=c88b1441
+-/
 theorem support_centered (x : F.Node) (q : IntCoord (F.rank x))
     (hq : q ∈ D.support x) : IsCenteredLift p q := by
   have hne := (D.support_spec x q).mp hq
   by_contra hc
   exact hne (ite_eq_right hc)
 
+/--
+@isnad1 id=mem.1h8v.s6.3a42320fb157 from=translated src=- shape=f833c214 vocab=020e8f94
+-/
 theorem mem_support_of_localLift_ne_zero (x : F.Node) (q : IntCoord (F.rank x))
     (hq : localLift R pieces x q ≠ 0) : q ∈ D.support x := by
   apply (D.support_spec x q).mpr
   exact ne_of_gt ((Nat.pos_of_ne_zero hq).trans_le
     (localLift_le_hat R pieces x q))
 
+/--
+@isnad1 id=mem.1h8v.s6.5b33b92e757d from=translated src=- shape=94fc94e6 vocab=ecaa7e5a
+-/
 theorem mem_polytope_of_localLift_ne_zero (x : F.Node) (q : IntCoord (F.rank x))
     (hq : localLift R pieces x q ≠ 0) : q.real ∈ (F.polytope x).carrier := by
   rw [D.polytope_eq]
   apply subset_convexHull ℝ
   exact ⟨q, D.mem_support_of_localLift_ne_zero x q hq, rfl⟩
 
+/--
+@isnad1 id=iscenter.2h9v.s6.454db152ddc1 from=translated src=- shape=8d634a25 vocab=5b4c64bf
+-/
 theorem transition_centered_of_localLift_ne_zero {x y : F.Node} (h : x ≤ y)
     (q : IntCoord (F.rank x)) (hq : localLift R pieces x q ≠ 0) :
     IsCenteredLift p ((F.transition h).integer q) :=
@@ -114,7 +130,9 @@ theorem transition_centered_of_localLift_ne_zero {x y : F.Node} (h : x ≤ y)
     (D.transition_support h q (D.mem_support_of_localLift_ne_zero x q hq))
 
 /-- A cumulative support atom has a local antecedent with exact integer
-transition coordinates.-/
+transition coordinates.
+@isnad1 id=ex.2h8v.s7.62bd74d08ee3 from=translated src=- shape=38e2b3d3 vocab=294cbd7f
+-/
 theorem exists_localLift_of_hat_ne_zero (hp : Odd p) (x : F.Node)
     (q : IntCoord (F.rank x)) (hq : hat R pieces x q ≠ 0) :
     ∃ (y : F.Node) (h : y ≤ x) (z : IntCoord (F.rank y)),
@@ -132,7 +150,9 @@ theorem exists_localLift_of_hat_ne_zero (hp : Odd p) (x : F.Node)
   · exact (hy (dite_eq_right hyx)).elim
 
 /-- Support generation and transition compatibility imply that every face
-contains a proper point.-/
+contains a proper point.
+@isnad1 id=visiblef.1h8v.s5.7d3464d199ad from=translated src=- shape=71e0372b vocab=51e1e51f
+-/
 theorem faces_visible (hp : Odd p) (x : F.Node) (Γ : (F.polytope x).Face) :
     VisibleFace R pieces x Γ := by
   obtain ⟨q, hq, hface⟩ := Γ.exists_mem_of_eq_convexHull
@@ -163,21 +183,33 @@ noncomputable abbrev decomposition (hp : Odd p) (f : FpCoord p d → ℕ)
   polytope_eq_liftedSupport := D.polytope_eq
   faces_visible := D.faces_visible hp
 
+/--
+@isnad1 id=eq.2h7v.s6.88da5effe7ef from=translated src=- shape=b19de6be vocab=5ea22c99
+-/
 @[simp]
 theorem decomposition_retainedWeight (hp : Odd p) (f : FpCoord p d → ℕ)
     (hretained : ∀ v, retainedWeight pieces v ≤ f v) :
     (D.decomposition hp f hretained).retainedWeight = retainedWeight pieces := rfl
 
+/--
+@isnad1 id=eq.2h8v.s6.5e906356931f from=translated src=- shape=f7db72ac vocab=eb2f99e9
+-/
 @[simp]
 theorem decomposition_cumulativeWeight (hp : Odd p) (f : FpCoord p d → ℕ)
     (hretained : ∀ v, retainedWeight pieces v ≤ f v) (x : F.Node) :
     (D.decomposition hp f hretained).cumulativeWeight x = cumulativeWeight pieces x := rfl
 
+/--
+@isnad1 id=eq.2h8v.s6.611c0d5ba1a0 from=translated src=- shape=7e5bd6cb vocab=de236373
+-/
 @[simp]
 theorem decomposition_hat (hp : Odd p) (f : FpCoord p d → ℕ)
     (hretained : ∀ v, retainedWeight pieces v ≤ f v) (x : F.Node) :
     (D.decomposition hp f hretained).hat x = hat R pieces x := rfl
 
+/--
+@isnad1 id=eq.2h8v.s6.20d0b0df1e6b from=translated src=- shape=7e5bd6cb vocab=029c158d
+-/
 @[simp]
 theorem decomposition_localLift (hp : Odd p) (f : FpCoord p d → ℕ)
     (hretained : ∀ v, retainedWeight pieces v ≤ f v) (x : F.Node) :

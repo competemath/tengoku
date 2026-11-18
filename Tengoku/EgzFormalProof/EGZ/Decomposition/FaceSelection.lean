@@ -25,7 +25,9 @@ def faceSelector (x : Φ.flag.Node) (Γ : (Φ.flag.polytope x).Face)
   (FpCoord.centeredLift (Φ.representation.map x v)).real ∈ Γ.carrier
 
 /-- On supported atoms, taking centered representatives commutes with every
-transition of the old decomposition.-/
+transition of the old decomposition.
+@isnad1 id=eq.3h7v.s10.f912024c5890 from=translated src=- shape=218970de vocab=865b8183
+-/
 theorem transition_centeredLift (hp : Odd p) {y x : Φ.flag.Node} (h : y ≤ x)
     (v : FpCoord p d) (hv : Φ.cumulativeWeight y v ≠ 0) :
     (Φ.flag.transition h).integer (FpCoord.centeredLift (Φ.representation.map y v)) =
@@ -40,6 +42,9 @@ theorem transition_centeredLift (hp : Odd p) {y x : Φ.flag.Node} (h : y ≤ x)
     FpCoord.mod_centeredLift]
   exact (Φ.representation.compatible h (Φ.originalWeights.cumulative_supported y v hv)).symm
 
+/--
+@isnad1 id=iff.5h9v.s10.47a8502db7d5 from=translated src=- shape=496154cb vocab=173d4aa0
+-/
 theorem faceSelector_iff (hp : Odd p) {y x : Φ.flag.Node} (h : y ≤ x)
     (Γ : (Φ.flag.polytope x).Face) (q : IntCoord (Φ.flag.rank y))
     (hc : IsCenteredLift p q) (v : FpCoord p d)
@@ -51,7 +56,9 @@ theorem faceSelector_iff (hp : Odd p) {y x : Φ.flag.Node} (h : y ≤ x)
   rw [← Φ.transition_centeredLift hp h v hv, hz, ← (Φ.flag.transition h).real_integer]
 
 /-- Selecting a face does not split any nonzero cumulative fibre below the
-anchor: the entire fibre is retained or the entire fibre is removed.-/
+anchor: the entire fibre is retained or the entire fibre is removed.
+@isnad1 id=eq.2h8v.s10.a1adb74efef7 from=translated src=- shape=8e98e78e vocab=33687fd5
+-/
 theorem centeredFibreMass_faceSelector (hp : Odd p) {y x : Φ.flag.Node} (h : y ≤ x)
     (Γ : (Φ.flag.polytope x).Face) (q : IntCoord (Φ.flag.rank y)) :
     FlagDecompositionRaw.centeredFibreMass
@@ -89,7 +96,9 @@ theorem centeredFibreMass_faceSelector (hp : Odd p) {y x : Φ.flag.Node} (h : y 
     simp only [ite_self]
 
 /-- The selected support at the anchor is precisely its old support on the
-chosen face.-/
+chosen face.
+@isnad1 id=eq.1h7v.s9.2f30c1697bdc from=translated src=- shape=89ea1fdd vocab=912a2f7c
+-/
 theorem centeredFibreMass_faceSelector_self (hp : Odd p)
     (x : Φ.flag.Node) (Γ : (Φ.flag.polytope x).Face) (q : IntCoord (Φ.flag.rank x)) :
     FlagDecompositionRaw.centeredFibreMass

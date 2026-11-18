@@ -20,6 +20,9 @@ noncomputable def scalarCharacter (χ : AddChar (FpCoord p d) ℂ) (a : FpCoord 
     AddChar (ZMod p) ℂ :=
   χ.compAddMonoidHom (LinearMap.toSpanSingleton (ZMod p) (FpCoord p d) a).toAddMonoidHom
 
+/--
+@isnad1 id=eq.0h5v.s7.c48213ec14be from=translated src=- shape=cdd782c3 vocab=1b13e471
+-/
 @[simp] theorem scalarCharacter_apply (χ : AddChar (FpCoord p d) ℂ)
     (a : FpCoord p d) (z : ZMod p) : scalarCharacter χ a z = χ (z • a) := rfl
 
@@ -40,10 +43,16 @@ noncomputable def characterLog (χ : AddChar (FpCoord p d) ℂ) :
 noncomputable def characterLinear (χ : AddChar (FpCoord p d) ℂ) :
     FpCoord p d →ₗ[ZMod p] ZMod p := (characterLog χ).toZModLinearMap p
 
+/--
+@isnad1 id=eq.0h4v.s9.4f16878c6f49 from=translated src=- shape=131cea22 vocab=9106dd27
+-/
 theorem characterLinear_spec (χ : AddChar (FpCoord p d) ℂ) (a : FpCoord p d) :
     AddChar.zmodAddEquiv (characterLinear χ a) = scalarCharacter χ a :=
   AddEquiv.apply_symm_apply _ _
 
+/--
+@isnad1 id=eq.0h5v.s9.c065557730e2 from=translated src=- shape=890bf73b vocab=8e44a176
+-/
 theorem characterLinear_eval (χ : AddChar (FpCoord p d) ℂ) (a : FpCoord p d)
     (n : ℕ) : (AddChar.zmodAddEquiv (characterLinear χ a)) (n : ZMod p) = χ (n • a) := by
   rw [characterLinear_spec, scalarCharacter_apply]
@@ -51,6 +60,9 @@ theorem characterLinear_eval (χ : AddChar (FpCoord p d) ℂ) (a : FpCoord p d)
   ext i
   simp [Pi.smul_apply, smul_eq_mul, nsmul_eq_mul]
 
+/--
+@isnad1 id=ne.1h3v.s9.73c720b1bbf2 from=translated src=- shape=360345b3 vocab=7044f2fa
+-/
 theorem characterLinear_ne_zero {χ : AddChar (FpCoord p d) ℂ} (hχ : χ ≠ 0) :
     characterLinear χ ≠ 0 := by
   intro hz

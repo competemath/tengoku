@@ -15,6 +15,9 @@ open scoped BigOperators
 
 namespace EGZ.Expansion
 
+/--
+@isnad1 id=ex.1h5v.s7.49f1e7f11388 from=translated src=- shape=8bf3328f vocab=0047df75
+-/
 theorem exists_center_of_pair_concentration {A : Type*} [Fintype A] [Nonempty A]
     {p W : ℕ} (v : A → ZMod p) {η : ℝ}
     (h : finiteProb (fun x : A × A ↦
@@ -26,7 +29,9 @@ theorem exists_center_of_pair_concentration {A : Type*} [Fintype A] [Nonempty A]
 
 /-- If the samples usually lie near their individual centres, and their
 signed sum usually lies in a central slab, then the same is true of the
-signed sum of centres, at a wider deterministic radius.-/
+signed sum of centres, at a wider deterministic radius.
+@isnad1 id=hasbound.3h8v.s8.628a80a994ae from=translated src=- shape=6fceeecc vocab=24778ff8
+-/
 theorem bounded_center_sum_of_concentration {I : Type*} [Fintype I] [DecidableEq I]
     (A : I → Type*) [∀ i, Fintype (A i)] [∀ i, Nonempty (A i)]
     {p W : ℕ} (v : ∀ i, A i → ZMod p) (r : I → ZMod p) (a : I → ℤ)

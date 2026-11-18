@@ -25,7 +25,9 @@ open scoped BigOperators
 
 namespace EGZ
 
-/-- Every member of a set belongs to its affine integer span.-/
+/-- Every member of a set belongs to its affine integer span.
+@isnad1 id=mem.1h3v.s5.414313814cf0 from=translated src=- shape=61e70811 vocab=8ede6606
+-/
 theorem mem_affineIntSpan_of_mem {d : ℕ} {S : Set (RealCoord d)}
     {q : RealCoord d} (hq : q ∈ S) : q ∈ affineIntSpan S := by
   refine ⟨1, fun _ ↦ q, fun _ ↦ 1, ?_, ?_, ?_⟩
@@ -73,7 +75,9 @@ structure SupportHullFaceFlagAdapter {d : ℕ} (P : RationalPolytope d)
 
 namespace SupportHullFaceFlagAdapter
 
-/-- Every support point lies in the working support hull.-/
+/-- Every support point lies in the working support hull.
+@isnad1 id=le.0h4v.s5.80f012ec9414 from=translated src=- shape=6c344332 vocab=ed044727
+-/
 theorem support_mem_working {d : ℕ} {P : RationalPolytope d}
     {w : RealCoord d → NNReal} (A : SupportHullFaceFlagAdapter P w) :
     Function.support w ⊆ A.working.carrier := by
@@ -81,13 +85,17 @@ theorem support_mem_working {d : ℕ} {P : RationalPolytope d}
   exact subset_convexHull ℝ _
 
 /-- The support-hull reduction retains the original theorem's hypothesis that
-all weighted points lie in `P`.-/
+all weighted points lie in `P`.
+@isnad1 id=le.0h4v.s4.0abb04cf5f9a from=translated src=- shape=db95a318 vocab=97194c4c
+-/
 theorem support_subset_original {d : ℕ} {P : RationalPolytope d}
     {w : RealCoord d → NNReal} (A : SupportHullFaceFlagAdapter P w) :
     Function.support w ⊆ P.carrier :=
   A.support_mem_working.trans A.working_subset_original
 
-/-- A top-based flag functional is evaluable at every flag point.-/
+/-- A top-based flag functional is evaluable at every flag point.
+@isnad1 id=evaluabl.0h6v.s7.ca94c25f63ba from=translated src=- shape=f80f5c93 vocab=ca01ddbb
+-/
 theorem topFunctional_evaluable {d : ℕ} {P : RationalPolytope d}
     {w : RealCoord d → NNReal} (A : SupportHullFaceFlagAdapter P w)
     (xi : RealCoord d →ᵃ[ℝ] ℝ) (q : A.model.flag.Point) :
@@ -266,7 +274,9 @@ Corollary 3.14 implies the desired conclusion for the original polytope.
 
 The Helly bound used below is proved by
 `FaceFlagCombinationLaws.hellyConstant_le_hollowPolytopeNumber`; it is not an
-assumption of the adapter.-/
+assumption of the adapter.
+@isnad1 id=polytope.3h4v.s5.332ad10e2b06 from=translated src=- shape=930df6c0 vocab=b6be15b4
+-/
 theorem polytopeCenterpointConclusion_of_supportHullFaceFlagAdapter
     {d : ℕ} (P : RationalPolytope d) (w : RealCoord d → NNReal)
     (hfinite : (Function.support w).Finite) (hnonzero : w ≠ 0)
@@ -405,7 +415,9 @@ theorem polytopeCenterpointConclusion_of_supportHullFaceFlagAdapter
   · exact A.integral_output_span qproper hqintegral
 
 /-- The face-flag and centerpoint parts of Theorem 1.12 are unconditional;
-only boundedness of hollow-polytope vertex counts remains as an input here.-/
+only boundedness of hollow-polytope vertex counts remains as an input here.
+@isnad1 id=polytope.5h3v.s6.f401ac881279 from=translated src=- shape=016d253b vocab=ae02b735
+-/
 theorem polytopeCenterpointConclusion_of_hollowGeometry
     {d : ℕ} (P : RationalPolytope d) (w : RealCoord d → NNReal)
     (hfinite : (Function.support w).Finite) (hnonzero : w ≠ 0)
@@ -443,7 +455,9 @@ noncomputable def TheoremOneTwelveSetup.ofHollowGeometry
 
 /-- Exact assembly check against the corrected statement of Theorem 1.12.
 Once `TheoremOneTwelveSetup d` is constructed, no further geometric
-assumptions are needed.-/
+assumptions are needed.
+@isnad1 id=polytope.4h4v.s6.330607836cfd from=translated src=- shape=76c7fcfb vocab=1b1de3be
+-/
 theorem polytopeCenterpointConclusion_of_theoremOneTwelveSetup
     {d : ℕ} (D : TheoremOneTwelveSetup d)
     (P : RationalPolytope d) (w : RealCoord d → NNReal)

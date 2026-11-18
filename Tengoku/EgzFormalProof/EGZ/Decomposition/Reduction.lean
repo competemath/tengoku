@@ -16,7 +16,9 @@ open scoped BigOperators
 namespace EGZ.ConvexFlag
 
 /-- Every nonempty finite join of generator bases occurs in the flag hull.
-The witnesses are combined with equal, strictly positive coefficients.-/
+The witnesses are combined with equal, strictly positive coefficients.
+@isnad1 id=ex.2h3v.s6.87450960041f from=translated src=- shape=bad74888 vocab=0805a8a5
+-/
 theorem exists_mem_convexHull_base_sup' {F : ConvexFlag} {S : Set F.Point}
     (s : Finset F.Node) (hs : s.Nonempty)
     (hS : ∀ x ∈ s, ∃ q ∈ S, q.base = x) :
@@ -48,7 +50,9 @@ theorem exists_mem_convexHull_base_sup' {F : ConvexFlag} {S : Set F.Point}
       (hq.base_isLUB.1 ⟨x, hx⟩ (hweight ⟨x, hx⟩))
 
 /-- The bases occurring in a flag convex hull are exactly the nonempty
-finite joins of bases occurring in its generating set.-/
+finite joins of bases occurring in its generating set.
+@isnad1 id=iff.0h3v.s6.ded80ea959fb from=translated src=- shape=61d63d7f vocab=0805a8a5
+-/
 theorem exists_mem_convexHull_base_iff {F : ConvexFlag} {S : Set F.Point}
     (x : F.Node) :
     (∃ q ∈ F.convexHull S, q.base = x) ↔
@@ -85,7 +89,9 @@ theorem exists_mem_convexHull_base_iff {F : ConvexFlag} {S : Set F.Point}
   · rintro ⟨s, hs, hS, rfl⟩
     exact exists_mem_convexHull_base_sup' s hs hS
 
-/-- Bases of proper points are closed under every nonempty finite join.-/
+/-- Bases of proper points are closed under every nonempty finite join.
+@isnad1 id=ex.2h3v.s6.05dd49f2fd69 from=translated src=- shape=7bf36f71 vocab=805772f5
+-/
 theorem ProperPointSet.exists_mem_base_sup' {F : ConvexFlag}
     (Ω : F.ProperPointSet) (s : Finset F.Node) (hs : s.Nonempty)
     (hS : ∀ x ∈ s, ∃ q ∈ Ω.carrier, q.base = x) :
@@ -99,7 +105,9 @@ namespace EGZ.FlagDecomposition
 
 variable {p d : ℕ} [NeZero p] {f : FpCoord p d → ℕ}
 
-/-- A local weight is bounded by the cumulative weight at its own node.-/
+/-- A local weight is bounded by the cumulative weight at its own node.
+@isnad1 id=le.0h6v.s5.06c30c4c6ee1 from=translated src=- shape=f08f47f1 vocab=739e5f77
+-/
 theorem localWeight_le_cumulativeWeight (Φ : FlagDecomposition p d f)
     (x : Φ.flag.Node) (v : FpCoord p d) :
     Φ.localWeight x v ≤ Φ.cumulativeWeight x v := by
@@ -109,7 +117,9 @@ theorem localWeight_le_cumulativeWeight (Φ : FlagDecomposition p d f)
     (f := fun y ↦ if y ≤ x then Φ.localWeight y v else 0)
     (fun y _ ↦ Nat.zero_le _) (Finset.mem_univ x)
 
-/-- The local centered lift is bounded by the cumulative centered lift.-/
+/-- The local centered lift is bounded by the cumulative centered lift.
+@isnad1 id=le.0h6v.s5.17f2d8b77103 from=translated src=- shape=c8e2235c vocab=29e7e805
+-/
 theorem localLift_le_hat (Φ : FlagDecomposition p d f)
     (x : Φ.flag.Node) (z : IntCoord (Φ.flag.rank x)) :
     Φ.localLift x z ≤ Φ.hat x z := by
@@ -124,7 +134,9 @@ theorem localLift_le_hat (Φ : FlagDecomposition p d f)
     · exact le_rfl
   · exact le_rfl
 
-/-- Every nonzero local lifted point belongs to its node polytope.-/
+/-- Every nonzero local lifted point belongs to its node polytope.
+@isnad1 id=mem.1h6v.s6.f58cc9c334ce from=translated src=- shape=c0d3cd25 vocab=c4606e6e
+-/
 theorem mem_polytope_of_localLift_ne_zero (Φ : FlagDecomposition p d f)
     (x : Φ.flag.Node) (z : IntCoord (Φ.flag.rank x))
     (hz : Φ.localLift x z ≠ 0) : z.real ∈ (Φ.flag.polytope x).carrier := by
@@ -133,7 +145,9 @@ theorem mem_polytope_of_localLift_ne_zero (Φ : FlagDecomposition p d f)
   exact ⟨z, (Φ.liftedSupport_spec x z).mpr
     (ne_of_gt ((Nat.pos_of_ne_zero hz).trans_le (Φ.localLift_le_hat x z))), rfl⟩
 
-/-- A nonzero local lift supplies a generating point based at its node.-/
+/-- A nonzero local lift supplies a generating point based at its node.
+@isnad1 id=isreduce.1h6v.s6.959c725cb934 from=translated src=- shape=a3f08530 vocab=6080707c
+-/
 theorem isReducedElement_of_localLift_ne_zero (Φ : FlagDecomposition p d f)
     (x : Φ.flag.Node) (z : IntCoord (Φ.flag.rank x))
     (hz : Φ.localLift x z ≠ 0) : Φ.IsReducedElement x := by
@@ -142,7 +156,9 @@ theorem isReducedElement_of_localLift_ne_zero (Φ : FlagDecomposition p d f)
   exact ⟨z, rfl, hz⟩
 
 /-- Over an odd modulus every nonzero local weight is detected by its
-centered lift, and therefore its node is reduced.-/
+centered lift, and therefore its node is reduced.
+@isnad1 id=isreduce.2h6v.s5.15175952ba78 from=translated src=- shape=8ce2d990 vocab=92803de3
+-/
 theorem isReducedElement_of_localWeight_ne_zero (Φ : FlagDecomposition p d f)
     (hp : Odd p) (x : Φ.flag.Node) (v : FpCoord p d)
     (hv : Φ.localWeight x v ≠ 0) : Φ.IsReducedElement x := by
@@ -164,7 +180,9 @@ theorem isReducedElement_of_localWeight_ne_zero (Φ : FlagDecomposition p d f)
       (fun w _ ↦ Nat.zero_le _) (Finset.mem_univ v)
   exact ne_of_gt ((Nat.pos_of_ne_zero hv).trans_le hle)
 
-/-- Deleting a non-reduced node deletes no local mass.-/
+/-- Deleting a non-reduced node deletes no local mass.
+@isnad1 id=eq.2h6v.s6.715584e4ad63 from=translated src=- shape=bf188818 vocab=92803de3
+-/
 theorem localWeight_eq_zero_of_not_isReducedElement
     (Φ : FlagDecomposition p d f) (hp : Odd p)
     {x : Φ.flag.Node} (hx : ¬ Φ.IsReducedElement x) (v : FpCoord p d) :
@@ -173,7 +191,9 @@ theorem localWeight_eq_zero_of_not_isReducedElement
   exact hx (Φ.isReducedElement_of_localWeight_ne_zero hp x v hv)
 
 /-- Reduced nodes are exactly the nonempty finite joins of local generator
-bases, as in the paragraph preceding the reduced-decomposition lemma.-/
+bases, as in the paragraph preceding the reduced-decomposition lemma.
+@isnad1 id=iff.0h5v.s7.b0ce167038ab from=translated src=- shape=5afd5807 vocab=b805c965
+-/
 theorem isReducedElement_iff_sup'_omegaZero (Φ : FlagDecomposition p d f)
     (x : Φ.flag.Node) :
     Φ.IsReducedElement x ↔
@@ -182,7 +202,9 @@ theorem isReducedElement_iff_sup'_omegaZero (Φ : FlagDecomposition p d f)
   ConvexFlag.exists_mem_convexHull_base_iff x
 
 /-- The description of reduced nodes directly in terms of nonzero local
-lifts, matching the set displayed in the paper.-/
+lifts, matching the set displayed in the paper.
+@isnad1 id=iff.0h5v.s7.6a2379acc3a0 from=translated src=- shape=97f2f465 vocab=251eda51
+-/
 theorem isReducedElement_iff_sup'_localLift (Φ : FlagDecomposition p d f)
     (x : Φ.flag.Node) :
     Φ.IsReducedElement x ↔
@@ -202,14 +224,18 @@ theorem isReducedElement_iff_sup'_localLift (Φ : FlagDecomposition p d f)
     let q : Φ.flag.Point := ⟨y, z.real, Φ.mem_polytope_of_localLift_ne_zero y z hz⟩
     exact ⟨q, ⟨z, rfl, hz⟩, rfl⟩
 
-/-- The reduced nodes form a set closed under nonempty finite joins.-/
+/-- The reduced nodes form a set closed under nonempty finite joins.
+@isnad1 id=isreduce.2h5v.s7.8bb22b26a5cc from=translated src=- shape=f777a951 vocab=0ad919ec
+-/
 theorem isReducedElement_sup' (Φ : FlagDecomposition p d f)
     (s : Finset Φ.flag.Node) (hs : s.Nonempty)
     (hred : ∀ x ∈ s, Φ.IsReducedElement x) :
     Φ.IsReducedElement (s.sup' hs id) :=
   Φ.properPoints.exists_mem_base_sup' s hs hred
 
-/-- In particular the join of two reduced nodes is reduced.-/
+/-- In particular the join of two reduced nodes is reduced.
+@isnad1 id=isreduce.2h6v.s6.44c7d55518cb from=translated src=- shape=dc193cd9 vocab=bb1c9cca
+-/
 theorem isReducedElement_sup (Φ : FlagDecomposition p d f)
     {x y : Φ.flag.Node} (hx : Φ.IsReducedElement x)
     (hy : Φ.IsReducedElement y) : Φ.IsReducedElement (x ⊔ y) := by
@@ -220,7 +246,9 @@ theorem isReducedElement_sup (Φ : FlagDecomposition p d f)
   simpa using h
 
 /-- The index of any visible face is reduced, because it is a nonempty
-finite join of bases of proper points on that face.-/
+finite join of bases of proper points on that face.
+@isnad1 id=isreduce.0h6v.s5.d64383987cc5 from=translated src=- shape=ef785a47 vocab=ce27749b
+-/
 theorem isReducedElement_faceIndex (Φ : FlagDecomposition p d f)
     (x : Φ.flag.Node) (Γ : (Φ.flag.polytope x).Face) :
     Φ.IsReducedElement (Φ.faceIndex x Γ) := by

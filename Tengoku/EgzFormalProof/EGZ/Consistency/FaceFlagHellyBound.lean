@@ -98,7 +98,9 @@ The construction first averages all indexed vertices on the minimal face.
 If that centroid is not the given point, relative-interior extension writes
 the point strictly between the centroid and another point of the face.  A
 convex representation of the latter point then completes the desired
-representation while retaining every face vertex with positive weight.-/
+representation while retaining every face vertex with positive weight.
+@isnad1 id=ex.3h5v.s6.df20d5714690 from=translated src=- shape=0340abf7 vocab=885dbdf0
+-/
 theorem FiniteHullModel.nonvertex_intrinsic_combination
     {d n : ℕ} {points : Fin n → RealCoord d}
     (H : FiniteHullModel points) (q : RealCoord d)
@@ -266,7 +268,9 @@ namespace HollowPolytopeGeometry
 
 /-- Boundedness makes the `sSup` definition of `L(d)` an actual upper
 bound.  Without this hypothesis, `sSup` of an unbounded set of naturals is
-zero, so this step cannot be recovered from the bare definition.-/
+zero, so this step cannot be recovered from the bare definition.
+@isnad1 id=le.2h2v.s4.2ecd45a5cb27 from=translated src=- shape=a2f4f140 vocab=09c2a841
+-/
 theorem hollowCard_le {d : ℕ} (G : HollowPolytopeGeometry d)
     (Q : RationalPolytope d) (hQ : Q.IsHollow) :
     Q.vertexSet.ncard ≤ hollowPolytopeNumber d := by
@@ -275,7 +279,9 @@ theorem hollowCard_le {d : ℕ} (G : HollowPolytopeGeometry d)
   exact ⟨Q, hQ, rfl⟩
 
 /-- The paper's hollow-polytope branch, derived from the explicit geometric
-obligations above.-/
+obligations above.
+@isnad1 id=ex.5h3v.s6.33558ce5580c from=translated src=- shape=3b6c5de0 vocab=a7f9c71f
+-/
 theorem hollowCase {d n : ℕ} (G : HollowPolytopeGeometry d)
     (points : Fin n → RealCoord d) (hinjective : Function.Injective points)
     (hrational : ∀ i, IsRational (points i))
@@ -307,7 +313,9 @@ end HollowPolytopeGeometry
 namespace FaceFlagCombinationLaws
 
 /-- Failure of convex position already supplies the nontrivial integral
-combination from the second case in the paper.-/
+combination from the second case in the paper.
+@isnad1 id=ex.4h5v.s7.6f5421c14daf from=translated src=- shape=487722c8 vocab=0ea8ab8d
+-/
 theorem of_not_convexPosition {d n : ℕ} {P : RationalPolytope d}
     {A : FaceFlagModel P} (laws : FaceFlagCombinationLaws A)
     (points : Fin n → A.flag.Point)
@@ -327,7 +335,9 @@ theorem of_not_convexPosition {d n : ℕ} {P : RationalPolytope d}
     hnonnegative hsum hbarycenter
 
 /-- A repeated physical point supplies the half-half combination from the
-first case in the paper.-/
+first case in the paper.
+@isnad1 id=ex.5h7v.s7.13a9795ae33a from=translated src=- shape=64ae8af4 vocab=d8acba1a
+-/
 theorem of_physical_duplicate {d n : ℕ} {P : RationalPolytope d}
     {A : FaceFlagModel P} (laws : FaceFlagCombinationLaws A)
     (points : Fin n → A.flag.Point)
@@ -379,7 +389,9 @@ theorem of_physical_duplicate {d n : ℕ} {P : RationalPolytope d}
     hnonnegative hsum hbarycenter
 
 /-- The hollow-polytope case lifts the intrinsic integer certificate through
-the face-lattice compatibility law.-/
+the face-lattice compatibility law.
+@isnad1 id=ex.4h6v.s7.21be5e1db40b from=translated src=- shape=ab392721 vocab=9747d61f
+-/
 theorem of_hollowCase {d n : ℕ} {P : RationalPolytope d}
     {A : FaceFlagModel P} (laws : FaceFlagCombinationLaws A)
     (points : Fin n → A.flag.Point)
@@ -406,7 +418,9 @@ theorem of_hollowCase {d n : ℕ} {P : RationalPolytope d}
   simpa [result, PhysicalNontrivialCombination.IsActiveSpanIntegral,
     PhysicalNontrivialCombination.activeSet] using hcspan
 
-/-- Full three-case reduction for a family larger than `L(d)`.-/
+/-- Full three-case reduction for a family larger than `L(d)`.
+@isnad1 id=ex.6h5v.s7.9885bc3d3eef from=translated src=- shape=00e77d40 vocab=4cbf0ba1
+-/
 theorem exists_nontrivial_integral_combination_of_large
     {d n : ℕ} {P : RationalPolytope d}
     {A : FaceFlagModel P} (laws : FaceFlagCombinationLaws A)
@@ -455,7 +469,9 @@ theorem exists_nontrivial_integral_combination_of_large
 
 /-- The desired face-flag bound, with no wholesale `helly_bound` hypothesis.
 It follows by applying the three-case reduction to a hypothetical
-Helly-independent family of excessive size.-/
+Helly-independent family of excessive size.
+@isnad1 id=le.3h3v.s6.c47ebb21e6e1 from=translated src=- shape=45a1968e vocab=b25d6bb0
+-/
 theorem hellyConstant_le_hollowPolytopeNumber
     {d : ℕ} {P : RationalPolytope d}
     {A : FaceFlagModel P} (laws : FaceFlagCombinationLaws A)

@@ -16,6 +16,9 @@ open RCLike
 
 namespace EGZ.Expansion
 
+/--
+@isnad1 id=eq.0h3v.s5.0113c5fcab9c from=translated src=- shape=b60f948b vocab=fa1035fb
+-/
 theorem re_sum {ι : Type*} (I : Finset ι) (f : ι → ℂ) :
     (∑ i ∈ I, f i).re = ∑ i ∈ I, (f i).re :=
   map_sum Complex.reAddGroupHom f I
@@ -24,6 +27,9 @@ section InnerSums
 
 variable {G ι : Type*} [Fintype G]
 
+/--
+@isnad1 id=eq.0h6v.s6.70741c2d6d39 from=translated src=- shape=8f9ba663 vocab=b9f443a1
+-/
 theorem wInner_sum_left (I : Finset ι) (w : G → ℝ) (f : ι → G → ℂ) (g : G → ℂ) :
     ⟪∑ i ∈ I, f i, g⟫_[ℂ, w] = ∑ i ∈ I, ⟪f i, g⟫_[ℂ, w] := by
   classical
@@ -31,6 +37,9 @@ theorem wInner_sum_left (I : Finset ι) (w : G → ℝ) (f : ι → G → ℂ) (
   | empty => simp
   | @insert i I hi ih => simp only [Finset.sum_insert hi, RCLike.wInner_add_left, ih]
 
+/--
+@isnad1 id=eq.0h6v.s6.1c9783bd6cef from=translated src=- shape=0711ab10 vocab=b9f443a1
+-/
 theorem wInner_sum_right (I : Finset ι) (w : G → ℝ) (f : G → ℂ) (g : ι → G → ℂ) :
     ⟪f, ∑ i ∈ I, g i⟫_[ℂ, w] = ∑ i ∈ I, ⟪f, g i⟫_[ℂ, w] := by
   classical
@@ -48,11 +57,17 @@ variable {G : Type*} [AddCommGroup G] [Fintype G]
 noncomputable def fourierCoeff (f : G → ℂ) (χ : AddChar G ℂ) : ℂ :=
   (AddChar.complexBasis G).repr f χ
 
+/--
+@isnad1 id=eq.0h2v.s7.b1312ee4eceb from=translated src=- shape=2bb6677d vocab=9dbca40e
+-/
 theorem fourier_expansion (f : G → ℂ) :
     (∑ χ : AddChar G ℂ, fourierCoeff f χ • (χ : G → ℂ)) = f := by
   simpa only [fourierCoeff, AddChar.complexBasis_apply] using
     (AddChar.complexBasis G).sum_repr f
 
+/--
+@isnad1 id=eq.0h3v.s8.01df5e11685f from=translated src=- shape=80522223 vocab=820c4ea0
+-/
 theorem inner_character_sums (c d : AddChar G ℂ → ℂ) :
     ⟪∑ χ, c χ • (χ : G → ℂ), ∑ χ, d χ • (χ : G → ℂ)⟫ₙ_[ℂ] =
       ∑ χ, conj (c χ) * d χ := by
@@ -62,11 +77,16 @@ theorem inner_character_sums (c d : AddChar G ℂ → ℂ) :
     AddChar.wInner_cWeight_eq_boole, smul_eq_mul]
   simp
 
-/-- Finite Parseval identity in normalized character coordinates.-/
+/-- Finite Parseval identity in normalized character coordinates.
+@isnad1 id=eq.0h3v.s7.eb0497b044cb from=translated src=- shape=a196d628 vocab=41b3453d
+-/
 theorem fourier_inner (f g : G → ℂ) :
     ⟪f, g⟫ₙ_[ℂ] = ∑ χ, conj (fourierCoeff f χ) * fourierCoeff g χ := by
   rw [← inner_character_sums, fourier_expansion, fourier_expansion]
 
+/--
+@isnad1 id=eq.0h3v.s6.e9067d239b92 from=translated src=- shape=88a3efa5 vocab=5fd83e81
+-/
 theorem fourierCoeff_eq_inner (f : G → ℂ) (χ : AddChar G ℂ) :
     fourierCoeff f χ = ⟪(χ : G → ℂ), f⟫ₙ_[ℂ] := by
   classical
@@ -75,6 +95,9 @@ theorem fourierCoeff_eq_inner (f : G → ℂ) (χ : AddChar G ℂ) :
   simp_rw [RCLike.wInner_smul_right, AddChar.wInner_cWeight_eq_boole, smul_eq_mul]
   simp
 
+/--
+@isnad1 id=eq.0h3v.s7.5e85d088f984 from=translated src=- shape=c302f3e9 vocab=c4de4303
+-/
 theorem fourier_translation_inner (f : G → ℂ) (a : G) :
     ⟪f, (fun x ↦ f (x + a))⟫ₙ_[ℂ] =
       ∑ χ, (conj (fourierCoeff f χ) * fourierCoeff f χ) * χ a := by
@@ -104,9 +127,15 @@ noncomputable def setIndicator (Y : Finset G) (x : G) : ℂ := if x ∈ Y then 1
 
 noncomputable def density (Y : Finset G) : ℝ := Y.card / Fintype.card G
 
+/--
+@isnad1 id=eq.0h2v.s5.d882801f6ea7 from=translated src=- shape=65d8c3dd vocab=9a99f33a
+-/
 theorem sum_setIndicator (Y : Finset G) : (∑ x, setIndicator Y x) = (Y.card : ℂ) := by
   simp [setIndicator]
 
+/--
+@isnad1 id=eq.0h2v.s5.931f94c6a705 from=translated src=- shape=946ca647 vocab=66e6a874
+-/
 theorem inner_setIndicator_self (Y : Finset G) :
     ⟪setIndicator Y, setIndicator Y⟫ₙ_[ℂ] = (density Y : ℂ) := by
   rw [RCLike.wInner_cWeight_eq_expect, Fintype.expect_eq_sum_div_card]
@@ -116,6 +145,9 @@ theorem inner_setIndicator_self (Y : Finset G) :
   rw [sum_setIndicator]
   simp [density]
 
+/--
+@isnad1 id=eq.0h2v.s6.a35c6cc294e4 from=translated src=- shape=c1a563f8 vocab=bcac36c6
+-/
 theorem fourierCoeff_setIndicator_zero (Y : Finset G) :
     fourierCoeff (setIndicator Y) 0 = (density Y : ℂ) := by
   rw [fourierCoeff_eq_inner, RCLike.wInner_cWeight_eq_expect,
@@ -124,12 +156,18 @@ theorem fourierCoeff_setIndicator_zero (Y : Finset G) :
   rw [sum_setIndicator]
   simp [density]
 
+/--
+@isnad1 id=eq.0h2v.s6.5bd5481dcf4e from=translated src=- shape=cbd90f9f vocab=160dd472
+-/
 theorem sum_fourierCoeff_normSq (Y : Finset G) :
     (∑ χ : AddChar G ℂ, Complex.normSq (fourierCoeff (setIndicator Y) χ)) = density Y := by
   have h := congrArg Complex.re (fourier_inner (setIndicator Y) (setIndicator Y))
   rw [inner_setIndicator_self] at h
   simpa only [Complex.ofReal_re, re_sum, ← Complex.normSq_eq_conj_mul_self] using h.symm
 
+/--
+@isnad1 id=eq.0h3v.s6.9f37042eaef1 from=translated src=- shape=d87a9af1 vocab=11033b95
+-/
 theorem inner_setIndicator_translation (Y : Finset G) (a : G) :
     ⟪setIndicator Y, (fun x ↦ setIndicator Y (x - a))⟫ₙ_[ℂ] =
       ((translate Y a ∩ Y).card : ℂ) / Fintype.card G := by
@@ -142,7 +180,9 @@ theorem inner_setIndicator_translation (Y : Finset G) (a : G) :
   simp_rw [heq]
   simpa only [setIndicator] using sum_setIndicator (translate Y a ∩ Y)
 
-/-- The energy of one translation, expressed in character coordinates.-/
+/-- The energy of one translation, expressed in character coordinates.
+@isnad1 id=eq.0h3v.s7.082a1b92d012 from=translated src=- shape=2ec36394 vocab=a57eda39
+-/
 theorem boundary_fourier (Y : Finset G) (a : G) :
     (boundary Y a : ℝ) / Fintype.card G = density Y -
       ∑ χ : AddChar G ℂ, Complex.normSq (fourierCoeff (setIndicator Y) χ) *
@@ -170,7 +210,9 @@ section SpectralGrowth
 variable {G ι : Type*} [AddCommGroup G] [Fintype G] [DecidableEq G] [Fintype ι]
 
 /-- Fourier identity for an arbitrary finite real-weighted family of
-translations, allowing repeated translation vectors.-/
+translations, allowing repeated translation vectors.
+@isnad1 id=eq.0h5v.s8.3548385fbf0c from=translated src=- shape=a3b0059f vocab=a57eda39
+-/
 theorem translation_energy (Y : Finset G) (w : ι → ℝ) (a : ι → G) :
     (∑ i, w i * (boundary Y (a i) : ℝ)) / Fintype.card G =
       (∑ i, w i) * density Y -
@@ -194,7 +236,9 @@ theorem translation_energy (Y : Finset G) (w : ι → ℝ) (a : ι → G) :
       ring
 
 /-- A gap in every nontrivial character implies average boundary growth.
-This is the finite Cayley-graph spectral estimate in multiplicity form.-/
+This is the finite Cayley-graph spectral estimate in multiplicity form.
+@isnad1 id=le.4h6v.s8.43eae62a95f8 from=translated src=- shape=79560993 vocab=33c9da25
+-/
 theorem spectral_boundary_average (Y : Finset G) (w : ι → ℝ) (a : ι → G)
     (hw : ∀ i, 0 ≤ w i) {η : ℝ} (hη : 0 ≤ η)
     (hhalf : 2 * Y.card ≤ Fintype.card G)
@@ -245,7 +289,9 @@ theorem spectral_boundary_average (Y : Finset G) (w : ι → ℝ) (a : ι → G)
       mul_le_mul_of_nonneg_right havg hN.le
     _ = 2 * D := by rw [mul_assoc, div_mul_cancel₀ _ hN.ne']
 
-/-- Some positive-weight translation achieves the spectral average bound.-/
+/-- Some positive-weight translation achieves the spectral average bound.
+@isnad1 id=ex.5h6v.s8.4f70bb995110 from=translated src=- shape=cdc1b47d vocab=754f77f8
+-/
 theorem exists_boundary_of_spectral_gap (Y : Finset G) (w : ι → ℝ) (a : ι → G)
     (hw : ∀ i, 0 ≤ w i) (hW : 0 < ∑ i, w i) {η : ℝ} (hη : 0 ≤ η)
     (hhalf : 2 * Y.card ≤ Fintype.card G)

@@ -22,6 +22,9 @@ namespace Data
 
 variable {d : ℕ} (D : Data d)
 
+/--
+@isnad1 id=ex.0h3v.s9.06926b69aae5 from=translated src=- shape=ae424e0d vocab=14c60ede
+-/
 theorem exists_support_ge (ξ : RealCoord d →ᵃ[ℝ] ℝ) :
     ∃ q : D.support, ξ D.center.real ≤ ξ q.val.real := by
   classical
@@ -34,6 +37,9 @@ theorem exists_support_ge (ξ : RealCoord d →ᵃ[ℝ] ℝ) :
     (intrinsicInterior_subset D.center_mem_interior)
   exact (lt_irrefl _ (show ξ D.center.real < ξ D.center.real from hc))
 
+/--
+@isnad1 id=ex.0h2v.s5.5513c267c16c from=translated src=- shape=b2a27051 vocab=17c5b282
+-/
 theorem exists_positive_centrality :
     ∃ θ : ℝ, 0 < θ ∧ IsCentral D.support D.weight θ D.center.real := by
   classical
@@ -55,14 +61,23 @@ theorem exists_positive_centrality :
 noncomputable def maxCentrality : ℝ :=
   sSup {θ | IsCentral D.support D.weight θ D.center.real}
 
+/--
+@isnad1 id=le.1h3v.s4.d0211257da51 from=translated src=- shape=f945fc43 vocab=c606c11b
+-/
 theorem centrality_le_max {θ : ℝ}
     (hθ : IsCentral D.support D.weight θ D.center.real) : θ ≤ D.maxCentrality := by
   exact le_csSup ⟨1, fun _ h ↦ D.centrality_le_one h⟩ hθ
 
+/--
+@isnad1 id=lt.0h2v.s4.c278da7a6278 from=translated src=- shape=9363a417 vocab=8d61cd42
+-/
 theorem maxCentrality_pos : 0 < D.maxCentrality := by
   obtain ⟨θ, hθ, hc⟩ := D.exists_positive_centrality
   exact hθ.trans_le (D.centrality_le_max hc)
 
+/--
+@isnad1 id=iscentra.0h2v.s4.eb635ce3c643 from=translated src=- shape=68c4071b vocab=ea343a85
+-/
 theorem isCentral_maxCentrality :
     IsCentral D.support D.weight D.maxCentrality D.center.real := by
   intro ξ
@@ -70,6 +85,9 @@ theorem isCentral_maxCentrality :
   obtain ⟨θ, _, hθ⟩ := D.exists_positive_centrality
   exact csSup_le ⟨θ, hθ⟩ (fun t ht ↦ (le_div_iff₀ D.totalWeight_pos).mpr (ht ξ))
 
+/--
+@isnad1 id=le.0h2v.s4.ec9c0e869446 from=translated src=- shape=64d491c2 vocab=75faf6e7
+-/
 theorem maxCentrality_le_one : D.maxCentrality ≤ 1 :=
   D.centrality_le_one D.isCentral_maxCentrality
 
@@ -84,6 +102,9 @@ def cappedSimplex (θ : ℝ) : Set (D.support → ℝ) :=
   Set.Icc 0 (fun q ↦ D.weight q / (θ * ∑ r, D.weight r)) ∩
     {β | ∑ q, β q = 1}
 
+/--
+@isnad1 id=convex.0h3v.s7.9ee4bacf3bf5 from=translated src=- shape=79a039d8 vocab=306ca776
+-/
 theorem cappedSimplex_convex (θ : ℝ) : Convex ℝ (D.cappedSimplex θ) := by
   refine (convex_Icc _ _).inter ?_
   intro β hβ γ hγ a b _ _ hab
@@ -91,10 +112,16 @@ theorem cappedSimplex_convex (θ : ℝ) : Convex ℝ (D.cappedSimplex θ) := by
   rw [Finset.sum_add_distrib, ← Finset.mul_sum, ← Finset.mul_sum, hβ, hγ]
   simpa using hab
 
+/--
+@isnad1 id=iscompac.0h3v.s6.9b71dfc09311 from=translated src=- shape=48b3cf12 vocab=861c5b5a
+-/
 theorem cappedSimplex_compact (θ : ℝ) : IsCompact (D.cappedSimplex θ) := by
   exact isCompact_Icc.inter_right (isClosed_eq
     (continuous_finsetSum _ (fun q _ ↦ continuous_apply q)) continuous_const)
 
+/--
+@isnad1 id=ex.2h3v.s9.eb3b7fa06180 from=translated src=- shape=de3ba691 vocab=b30cdb04
+-/
 theorem capped_barycenter_exists {θ : ℝ} (hθ : 0 < θ)
     (hcentral : IsCentral D.support D.weight θ D.center.real) :
     ∃ β : D.support → ℝ, (∀ q, 0 ≤ β q) ∧ (∑ q, β q = 1) ∧
@@ -148,6 +175,9 @@ theorem capped_barycenter_exists {θ : ℝ} (hθ : 0 < θ)
   obtain ⟨β, hβ, hbc⟩ := hmem
   exact ⟨β, hβ.1.1, hβ.2, hbc, hβ.1.2⟩
 
+/--
+@isnad1 id=ex.1h3v.s8.f871aab0c7f3 from=translated src=- shape=c687143f vocab=16d87c52
+-/
 theorem coefficients_of_mem_convexHull {x : RealCoord d}
     (hx : x ∈ convexHull ℝ (IntCoord.real '' (↑D.support : Set (IntCoord d)))) :
     ∃ β : D.support → ℝ, (∀ q, 0 ≤ β q) ∧ (∑ q, β q = 1) ∧
@@ -168,6 +198,9 @@ theorem coefficients_of_mem_convexHull {x : RealCoord d}
       simpa using hab
     · simp [add_smul, Finset.sum_add_distrib, Finset.smul_sum, mul_smul]
 
+/--
+@isnad1 id=ex.0h2v.s8.8528a68b9c8e from=translated src=- shape=3d7f46a3 vocab=cec032b0
+-/
 theorem positive_barycenter_exists :
     ∃ β : D.support → ℝ, (∀ q, 0 < β q) ∧ (∑ q, β q = 1) ∧
       ∑ q, β q • q.val.real = D.center.real := by
@@ -199,7 +232,9 @@ theorem positive_barycenter_exists :
       _ = D.center.real := by rw [hβz]; exact hcomb
 
 /-- Strict positive coefficients with an arbitrarily small relaxation of
-the optimal cap. Both the coefficients and the cap depend only on `D`.-/
+the optimal cap. Both the coefficients and the cap depend only on `D`.
+@isnad1 id=ex.1h3v.s9.4f2bf17fff0d from=translated src=- shape=f458fbf1 vocab=a9dca445
+-/
 theorem positive_capped_barycenter_exists {η : ℝ} (hη : 0 < η) :
     ∃ β : D.support → ℝ, (∀ q, 0 < β q) ∧ (∑ q, β q = 1) ∧
       (∑ q, β q • q.val.real = D.center.real) ∧
@@ -243,6 +278,9 @@ theorem positive_capped_barycenter_exists {η : ℝ} (hη : 0 < η) :
     have htotal : (1 - t) * u q + t * v q < (1 + η) * cap q := by nlinarith
     simpa only [cap, mul_div_assoc] using htotal
 
+/--
+@isnad1 id=le.3h5v.s8.11495f3c6736 from=translated src=- shape=5a089cec vocab=fee297fe
+-/
 theorem relaxed_max_cap_le {η θ : ℝ} (hη : 0 ≤ η) (hθ : 0 < θ)
     (hc : IsCentral D.support D.weight θ D.center.real) (q : D.support) :
     (1 + η) * D.weight q / (D.maxCentrality * ∑ r, D.weight r) ≤

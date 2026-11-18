@@ -19,7 +19,9 @@ namespace EGZ.Expansion
 
 variable {I J : Type*} [Fintype I] [Fintype J]
 
-/-- An integer multiple of a generalized inverse.-/
+/-- An integer multiple of a generalized inverse.
+@isnad1 id=ex.0h3v.s7.46d1d20203cb from=translated src=- shape=3cb1451b vocab=3c665a32
+-/
 theorem exists_integer_generalized_inverse (A : Matrix I J ℤ) :
     ∃ (N : ℕ) (M : Matrix J I ℤ), 0 < N ∧ A * M * A = (N : ℤ) • A := by
   classical
@@ -41,6 +43,9 @@ theorem exists_integer_generalized_inverse (A : Matrix I J ℤ) :
   dsimp [AQ, Matrix.mul_apply, Matrix.map, Matrix.smul_apply] at h
   exact_mod_cast h
 
+/--
+@isnad1 id=ex.0h3v.s7.a6e63ce18c3f from=translated src=- shape=d0aafc9f vocab=ae7e17e9
+-/
 theorem exists_integer_relations [DecidableEq J] (A : Matrix I J ℤ) :
     ∃ (N : ℕ) (B : Matrix J I ℤ) (Q : Matrix J J ℤ),
       0 < N ∧ Q = (N : ℤ) • (1 : Matrix J J ℤ) - B * A ∧ A * Q = 0 := by
@@ -53,18 +58,27 @@ theorem exists_integer_relations [DecidableEq J] (A : Matrix I J ℤ) :
 def affineConstraintMatrix {r : ℕ} (S : Finset (IntCoord r)) :
     Matrix (Option (Fin r)) S ℤ := fun i q ↦ i.elim 1 (fun j ↦ q.val j)
 
+/--
+@isnad1 id=ex.0h2v.s10.68d6c699ffa9 from=translated src=- shape=ec52f201 vocab=b3fc44e1
+-/
 theorem exists_affine_relations {r : ℕ} (S : Finset (IntCoord r)) :
     ∃ (N : ℕ) (B : Matrix S (Option (Fin r)) ℤ) (Q : Matrix S S ℤ),
       0 < N ∧ Q = (N : ℤ) • (1 : Matrix S S ℤ) - B * affineConstraintMatrix S ∧
       affineConstraintMatrix S * Q = 0 :=
   exists_integer_relations (affineConstraintMatrix S)
 
+/--
+@isnad1 id=eq.1h4v.s8.b34ed6316198 from=translated src=- shape=029af8c5 vocab=5241b0dd
+-/
 theorem relation_column_sum {r : ℕ} {S : Finset (IntCoord r)}
     {Q : Matrix S S ℤ} (hQ : affineConstraintMatrix S * Q = 0) (q : S) :
     ∑ z, Q z q = 0 := by
   have h := congrArg (fun M : Matrix (Option (Fin r)) S ℤ ↦ M none q) hQ
   simpa [Matrix.mul_apply, affineConstraintMatrix] using h
 
+/--
+@isnad1 id=eq.1h4v.s9.95de4f30c5ea from=translated src=- shape=125aeed8 vocab=5a9bb4fa
+-/
 theorem relation_column_weighted_sum {r : ℕ} {S : Finset (IntCoord r)}
     {Q : Matrix S S ℤ} (hQ : affineConstraintMatrix S * Q = 0) (q : S) :
     ∑ z, Q z q • z.val = 0 := by
@@ -74,7 +88,9 @@ theorem relation_column_weighted_sum {r : ℕ} {S : Finset (IntCoord r)}
     zsmul_eq_mul, mul_comm] using h
 
 /-- A signed affine relation is represented by its positive and negative
-parts, which have the same nonnegative total size.-/
+parts, which have the same nonnegative total size.
+@isnad1 id=eq.1h4v.s9.0063c16db708 from=translated src=- shape=dae1740b vocab=e23ba8e7
+-/
 theorem relation_column_pos_neg_sum {r : ℕ} {S : Finset (IntCoord r)}
     {Q : Matrix S S ℤ} (hQ : affineConstraintMatrix S * Q = 0) (q : S) :
     ∑ z, (Q z q).toNat = ∑ z, (-Q z q).toNat := by
@@ -84,6 +100,9 @@ theorem relation_column_pos_neg_sum {r : ℕ} {S : Finset (IntCoord r)}
     exact relation_column_sum hQ q
   exact_mod_cast sub_eq_zero.mp h
 
+/--
+@isnad1 id=eq.1h4v.s9.241c774574e9 from=translated src=- shape=9225bace vocab=2515da61
+-/
 theorem relation_column_pos_neg_weighted_sum {r : ℕ} {S : Finset (IntCoord r)}
     {Q : Matrix S S ℤ} (hQ : affineConstraintMatrix S * Q = 0) (q : S) :
     ∑ z, (Q z q).toNat • z.val = ∑ z, (-Q z q).toNat • z.val := by
@@ -92,6 +111,9 @@ theorem relation_column_pos_neg_weighted_sum {r : ℕ} {S : Finset (IntCoord r)}
   simp only [← natCast_zsmul, ← sub_smul, Int.toNat_sub_toNat_neg]
   exact relation_column_weighted_sum hQ q
 
+/--
+@isnad1 id=eq.0h5v.s7.cf4f915af73c from=translated src=- shape=95019c35 vocab=090d482c
+-/
 theorem relation_column_evaluation_pos_neg {R : Type*} [AddCommGroup R]
     {Q : Matrix J J ℤ} (q : J) (v : J → R) :
     (∑ z, (Q z q).toNat • v z) - (∑ z, (-Q z q).toNat • v z) =
@@ -99,6 +121,9 @@ theorem relation_column_evaluation_pos_neg {R : Type*} [AddCommGroup R]
   rw [← Finset.sum_sub_distrib]
   simp only [← natCast_zsmul, ← sub_smul, Int.toNat_sub_toNat_neg]
 
+/--
+@isnad1 id=eq.1h8v.s8.a5fd696dd8e0 from=translated src=- shape=c84478eb vocab=a8b78946
+-/
 theorem relation_evaluation {R : Type*} [CommRing R] [DecidableEq J]
     {A : Matrix I J ℤ} {N : ℕ} {B : Matrix J I ℤ} {Q : Matrix J J ℤ}
     (hQ : Q = (N : ℤ) • (1 : Matrix J J ℤ) - B * A) (v : J → R) :
@@ -120,6 +145,9 @@ theorem relation_evaluation {R : Type*} [CommRing R] [DecidableEq J]
     Matrix.sub_mulVec, Matrix.smul_mulVec, Matrix.one_mulVec, Matrix.transpose_mul,
     Matrix.mulVec_mulVec]
 
+/--
+@isnad1 id=eq.1h8v.s10.86b4856eb4d2 from=translated src=- shape=ab21737e vocab=3b4fba16
+-/
 theorem affine_relation_evaluation {r : ℕ} {R : Type*} [CommRing R]
     {S : Finset (IntCoord r)} {N : ℕ} {B : Matrix S (Option (Fin r)) ℤ}
     {Q : Matrix S S ℤ}
@@ -141,6 +169,9 @@ def affineFromCoefficients {R : Type*} [CommRing R] {r : ℕ}
   AffineMap.const R (Fin r → R) (a none) +
     ∑ i : Fin r, a (some i) • AffineMap.proj i
 
+/--
+@isnad1 id=eq.0h4v.s8.9e15f3f75b39 from=translated src=- shape=a02a8322 vocab=4ae09136
+-/
 theorem affineFromCoefficients_apply {R : Type*} [CommRing R] {r : ℕ}
     (a : Option (Fin r) → R) (x : Fin r → R) :
     affineFromCoefficients a x = a none + ∑ i, a (some i) * x i := by
@@ -155,6 +186,9 @@ theorem affineFromCoefficients_apply {R : Type*} [CommRing R] {r : ℕ}
       (AffineMap.proj j : (Fin r → R) →ᵃ[R] R)) x = _
     rw [ih]
 
+/--
+@isnad1 id=hasbound.4h13v.s13.d600c5e2d892 from=translated src=- shape=999b81f7 vocab=d5281e3e
+-/
 theorem affine_relation_residual_bounded {p r t N W L : ℕ}
     {S : Finset (IntCoord r)} {B : Matrix S (Option (Fin r)) ℤ}
     {Q : Matrix S S ℤ}
@@ -182,7 +216,9 @@ theorem affine_relation_residual_bounded {p r t N W L : ℕ}
   ring
 
 /-- Scaling a nonzero functional in the fibre directions and subtracting
-an arbitrary affine function of the labels still distinguishes a fibre.-/
+an arbitrary affine function of the labels still distinguishes a fibre.
+@isnad1 id=nonconst.3h6v.s13.8d140756e6be from=translated src=- shape=c363d78a vocab=5ac490e3
+-/
 theorem nonconstant_scaled_fibre_residual {p r t N : ℕ} [Fact p.Prime]
     (hN : 0 < N) (hNp : N < p)
     (ξ : FpCoord p t →ₗ[ZMod p] ZMod p) (hξ : ξ ≠ 0)

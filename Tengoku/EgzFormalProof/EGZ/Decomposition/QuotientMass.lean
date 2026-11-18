@@ -57,7 +57,9 @@ noncomputable def localTransitionMassBelow
 fibre masses of the local pieces below the node.
 
 This is the finite-sum core of equation `local-to-cumulative`; importantly,
-the right-hand side uses `pieces y`, not the cumulative weight at `y`.-/
+the right-hand side uses `pieces y`, not the cumulative weight at `y`.
+@isnad1 id=eq.0h7v.s8.fcd8a18fcf76 from=translated src=- shape=1ba84267 vocab=897f6f42
+-/
 theorem affineFibreMass_cumulativeWeight
     (R : FpRepresentation p d F)
     (pieces : F.Node → FpCoord p d → ℕ) (x : F.Node)
@@ -85,7 +87,9 @@ theorem affineFibreMass_cumulativeWeight
 /-- On a local summand supported in `space y`, an upper fibre is the disjoint
 union of the lower fibres whose residue classes map to it.  This is where
 compatibility of the finite-field representation enters the
-local-to-cumulative calculation.-/
+local-to-cumulative calculation.
+@isnad1 id=eq.2h8v.s10.f43f33b1a316 from=translated src=- shape=b2ae0931 vocab=7c4ac075
+-/
 theorem affineFibreMass_eq_sum_transitionFibres
     (R : FpRepresentation p d F)
     (pieces : F.Node → FpCoord p d → ℕ)
@@ -137,7 +141,9 @@ theorem affineFibreMass_eq_sum_transitionFibres
 
 /-- Fully quotient-level local-to-cumulative identity.  It partitions each
 local summand by its own lattice residue and then applies the transition map
-to the upper residue.-/
+to the upper residue.
+@isnad1 id=eq.1h7v.s8.28e142d92e08 from=translated src=- shape=7bc6c248 vocab=456b0599
+-/
 theorem localFibreMassBelow_eq_localTransitionMassBelow
     (R : FpRepresentation p d F)
     (pieces : F.Node → FpCoord p d → ℕ)
@@ -156,7 +162,9 @@ theorem localFibreMassBelow_eq_localTransitionMassBelow
   · simp [h]
 
 /-- The cumulative centered lift is obtained from the same local fibre-mass
-sum whenever the displayed lattice coordinate is centered.-/
+sum whenever the displayed lattice coordinate is centered.
+@isnad1 id=eq.0h7v.s5.16d2f4c08147 from=translated src=- shape=bf4eb74c vocab=ca43decd
+-/
 theorem hat_eq_sum_localFibreMass
     (R : FpRepresentation p d F)
     (pieces : F.Node → FpCoord p d → ℕ) (x : F.Node)
@@ -171,7 +179,9 @@ theorem hat_eq_sum_localFibreMass
 /-- For a centered upper coordinate, cumulative lifted mass is the sum of
 the local quotient masses below it, partitioned through the transition maps.
 This is the strongest form of the local-to-cumulative identity that does not
-yet choose centered representatives in every lower lattice fibre.-/
+yet choose centered representatives in every lower lattice fibre.
+@isnad1 id=eq.2h7v.s8.019360e42ebd from=translated src=- shape=cf921378 vocab=72cafeff
+-/
 theorem hat_eq_localTransitionMassBelow_of_centered
     (R : FpRepresentation p d F)
     (pieces : F.Node → FpCoord p d → ℕ)

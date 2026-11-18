@@ -32,7 +32,9 @@ def MainAsymptotic (d : ℕ) : Prop :=
 /-! ## Consequences of the polynomial bound -/
 
 /-- The polynomial-method bound holds eventually (in fact, pointwise) along
-the primes.-/
+the primes.
+@isnad1 id=eventual.1h1v.s5.7cdd7ba20492 from=translated src=- shape=bc337915 vocab=3ead8bb4
+-/
 theorem eventually_hollowConstant_le_choose_add_one (d : ℕ) (hd : 1 ≤ d) :
     ∀ᶠ p in atTopAlongPrimes,
       hollowConstant p d ≤ (2 * d - 1).choose d + 1 := by
@@ -41,7 +43,9 @@ theorem eventually_hollowConstant_le_choose_add_one (d : ℕ) (hd : 1 ≤ d) :
     hollowConstant_le_choose_add_one hp hd
 
 /-- A uniformly bounded real-valued function is `o(p)` as `p → ∞` along
-the prime filter.-/
+the prime filter.
+@isnad1 id=islittle.1h2v.s5.ff65c0d5fd00 from=translated src=- shape=756cc58d vocab=37fbc5ce
+-/
 theorem isLittleO_natCast_of_eventually_norm_le {f : ℕ → ℝ} {C : ℝ}
     (hC : ∀ᶠ p in atTopAlongPrimes, ‖f p‖ ≤ C) :
     f =o[atTopAlongPrimes] (fun p : ℕ => (p : ℝ)) := by
@@ -68,12 +72,17 @@ theorem isLittleO_natCast_of_eventually_norm_le {f : ℕ → ℝ} {C : ℝ}
 noncomputable def elementaryHollowLowerBound (p d : ℕ) : ℕ :=
   hollowConstant p d * (p - 1) + 1
 
+/--
+@isnad1 id=le.1h2v.s4.6574ff382ab6 from=translated src=- shape=ad8d030a vocab=779c49e3
+-/
 theorem elementaryHollowLowerBound_le_egzConstant {p d : ℕ} (hp : p.Prime) :
     elementaryHollowLowerBound p d ≤ egzConstant p d :=
   hollowConstant_mul_add_one_le_egzConstant hp
 
 /-- The elementary hollow-family lower benchmark differs from `p * w` by
-`o(p)`, thanks to the uniform polynomial-method bound on `w`.-/
+`o(p)`, thanks to the uniform polynomial-method bound on `w`.
+@isnad1 id=islittle.1h1v.s5.fe13a86cfa69 from=translated src=- shape=f26a7abf vocab=c0de2e94
+-/
 theorem elementaryHollowLowerBound_error_isLittleO (d : ℕ) (hd : 1 ≤ d) :
     (fun p : ℕ =>
         (p : ℝ) * (hollowConstant p d : ℝ) -
@@ -102,7 +111,9 @@ theorem elementaryHollowLowerBound_error_isLittleO (d : ℕ) (hd : 1 ≤ d) :
 /-! ## The asymptotic bridge -/
 
 /-- The elementary lower bound gives the lower half of the asymptotic
-squeeze.-/
+squeeze.
+@isnad1 id=eventual.2h2v.s6.923807d04b6a from=translated src=- shape=7a02c7f3 vocab=c72d37e2
+-/
 theorem eventually_neg_mul_le_mainError (d : ℕ) (hd : 1 ≤ d)
     {ε : ℝ} (hε : 0 < ε) :
     ∀ᶠ p : ℕ in atTopAlongPrimes,
@@ -152,7 +163,9 @@ theorem eventually_neg_mul_le_mainError (d : ℕ) (hd : 1 ≤ d)
   nlinarith
 
 /-- Once the paper's upper estimate is available, the elementary lower
-estimate and the polynomial bound complete Theorem 1.2.-/
+estimate and the polynomial bound complete Theorem 1.2.
+@isnad1 id=mainasym.2h1v.s4.f7ed7e13e06f from=translated src=- shape=4963a319 vocab=6ff12651
+-/
 theorem mainAsymptotic_of_mainUpperBound (d : ℕ) (hd : 1 ≤ d)
     (hUpper : MainUpperBound d) : MainAsymptotic d := by
   rw [MainAsymptotic, Asymptotics.isLittleO_iff]

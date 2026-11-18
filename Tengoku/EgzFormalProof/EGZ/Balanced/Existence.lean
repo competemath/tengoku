@@ -14,7 +14,9 @@ with its lower fraction and threshold independent of centrality.
 namespace EGZ
 
 /-- The balanced-combination lemma, with the uniform quantifier order in
-the statement `BalancedCombinationLemma`.-/
+the statement `BalancedCombinationLemma`.
+@isnad1 id=balanced.0h0v.s0.3f23d462d984 from=translated src=- shape=45709ebd vocab=3f23d462
+-/
 theorem balanced_combination_lemma : BalancedCombinationLemma := by
   intro d D ε hε
   obtain ⟨β, hβ, hsum, hvec, hcap⟩ :=

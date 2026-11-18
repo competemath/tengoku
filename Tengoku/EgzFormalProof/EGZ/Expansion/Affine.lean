@@ -28,6 +28,9 @@ structure AffineModel {p d r : ℕ}
   range_chart : Set.range chart = V
   projection : ∀ q, φ (chart q) = Coord.first r t q + c
 
+/--
+@isnad1 id=ex.1h6v.s9.ca4424c39f05 from=translated src=- shape=ba5cb0ea vocab=e79803d9
+-/
 theorem exists_affineModel {p d r : ℕ} [NeZero p] [Fact p.Prime]
     (V : AffineSubspace (ZMod p) (FpCoord p d))
     (φ : FpCoord p d →ᵃ[ZMod p] FpCoord p r)
@@ -123,6 +126,9 @@ variable {p d r t : ℕ} [NeZero p] [Fact p.Prime]
   (hw : ∀ v, w v ≠ 0 → v ∈ V)
 
 omit [NeZero p] in
+/--
+@isnad1 id=mem.0h9v.s10.cc27f9416023 from=translated src=- shape=f9689545 vocab=c07049c4
+-/
 theorem chart_mem (q : FpCoord p (r + t)) : M.chart q ∈ V := by
   change M.chart q ∈ (V : Set (FpCoord p d))
   rw [← M.range_chart]
@@ -130,9 +136,15 @@ theorem chart_mem (q : FpCoord p (r + t)) : M.chart q ∈ V := by
 
 include hw
 
+/--
+@isnad1 id=eq.1h9v.s10.5f196449de71 from=translated src=- shape=e471783b vocab=f3ecf184
+-/
 theorem pushWeight_weight : pushWeight M.chart (w ∘ M.chart) = w :=
   pushWeight_pullback M.chart M.injective w (fun v hv ↦ M.range_chart.symm ▸ hw v hv)
 
+/--
+@isnad1 id=eq.1h10v.s11.ed6f8bc2722b from=translated src=- shape=6a0bad40 vocab=d6d1123c
+-/
 theorem fibreWeight (q : FpCoord p r) :
     pushWeight (Coord.first r t) (w ∘ M.chart) (q - c) = pushWeight φ w q := by
   classical
@@ -142,6 +154,9 @@ theorem fibreWeight (q : FpCoord p r) :
     _ = pushWeight φ (pushWeight M.chart (w ∘ M.chart)) q := by rw [pushWeight_comp]
     _ = _ := by rw [M.pushWeight_weight w hw]
 
+/--
+@isnad1 id=isthickr.2h11v.s11.74b3a2f7036e from=translated src=- shape=01391553 vocab=651f8048
+-/
 theorem thickRelative {T : ℕ} {δ : ℝ}
     (h : IsThickRelativeOn w V φ T δ) :
     IsThickRelative (w ∘ M.chart) (Coord.first r t) T δ := by
@@ -168,6 +183,9 @@ theorem thickRelative {T : ℕ} {δ : ℝ}
   rw [hset] at hon
   simpa only [hm, hon] using ht
 
+/--
+@isnad1 id=haszeros.2h9v.s10.589047cc1d42 from=translated src=- shape=c743efe8 vocab=a9540ad5
+-/
 theorem hasZeroSumMultiplicity_of_coordinates
     (h : HasZeroSumMultiplicity (w ∘ M.chart)) : HasZeroSumMultiplicity w := by
   have ht := hasZeroSumMultiplicity_pushWeight M.chart h

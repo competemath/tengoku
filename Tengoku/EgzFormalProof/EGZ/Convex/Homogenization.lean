@@ -22,11 +22,17 @@ namespace IntCoord
 def homogenize {d : ℕ} (z : IntCoord d) : IntCoord (d + 1) :=
   Fin.lastCases 1 z
 
+/--
+@isnad1 id=eq.0h2v.s4.c5f7146b8132 from=translated src=- shape=7960569f vocab=f0abf7ec
+-/
 @[simp]
 theorem homogenize_last {d : ℕ} (z : IntCoord d) :
     z.homogenize (Fin.last d) = 1 := by
   simp [homogenize]
 
+/--
+@isnad1 id=eq.0h3v.s4.44817ed7fd18 from=translated src=- shape=d2e5af3e vocab=7f2b6092
+-/
 @[simp]
 theorem homogenize_castSucc {d : ℕ} (z : IntCoord d) (i : Fin d) :
     z.homogenize i.castSucc = z i := by
@@ -69,12 +75,18 @@ def homogenizedVertex {d : ℕ} {P : RationalPolytope d}
     (H : VertexHomogenization P) (q : P.vertexSet) : IntCoord (d + 1) :=
   (H.scaledVertex q).homogenize
 
+/--
+@isnad1 id=eq.0h4v.s4.1b7f6438666f from=translated src=- shape=25d279be vocab=06a721f2
+-/
 @[simp]
 theorem homogenizedVertex_last {d : ℕ} {P : RationalPolytope d}
     (H : VertexHomogenization P) (q : P.vertexSet) :
     H.homogenizedVertex q (Fin.last d) = 1 := by
   simp [homogenizedVertex]
 
+/--
+@isnad1 id=eq.0h5v.s5.dc8cb9e273c6 from=translated src=- shape=688d3fb4 vocab=0e846201
+-/
 @[simp]
 theorem homogenizedVertex_castSucc {d : ℕ} {P : RationalPolytope d}
     (H : VertexHomogenization P) (q : P.vertexSet) (i : Fin d) :
@@ -93,7 +105,9 @@ def faceSubmodule {d : ℕ} {P : RationalPolytope d}
     Submodule ℤ (IntCoord (d + 1)) :=
   Submodule.span ℤ (H.faceHomogenizedSet F)
 
-/-- A vertex lying on `F` is one of the generators of the face submodule.-/
+/-- A vertex lying on `F` is one of the generators of the face submodule.
+@isnad1 id=mem.1h5v.s8.c877399a0513 from=translated src=- shape=89416b0a vocab=d26b46fe
+-/
 theorem homogenizedVertex_mem_faceSubmodule {d : ℕ}
     {P : RationalPolytope d} (H : VertexHomogenization P) (F : P.Face)
     (q : P.vertexSet) (hqF : (q : RealCoord d) ∈ F.carrier) :
@@ -103,7 +117,9 @@ theorem homogenizedVertex_mem_faceSubmodule {d : ℕ}
 
 /-- Membership of an integral point with final coordinate `1` in the
 homogenized face submodule is equivalent to affine-integer-span membership of
-the corresponding real point.-/
+the corresponding real point.
+@isnad1 id=iff.1h6v.s8.51868d86dcab from=translated src=- shape=b1c6fded vocab=425a705f
+-/
 theorem homogenize_mem_faceSubmodule_iff {d : ℕ} {P : RationalPolytope d}
     (H : VertexHomogenization P) (F : P.Face)
     {q : RealCoord d} {z : IntCoord d}
@@ -182,7 +198,9 @@ theorem homogenize_mem_faceSubmodule_iff {d : ℕ} {P : RationalPolytope d}
       intro i _
       ring
 
-/-- A single threshold makes every face submodule `p`-saturated.-/
+/-- A single threshold makes every face submodule `p`-saturated.
+@isnad1 id=ex.0h3v.s9.d92fa5e826ad from=translated src=- shape=99f69304 vocab=6128948b
+-/
 theorem exists_uniform_face_saturation_bound {d : ℕ}
     {P : RationalPolytope d} (H : VertexHomogenization P) :
     ∃ B : ℕ, ∀ {p : ℕ}, p.Prime → B < p →

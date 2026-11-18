@@ -59,6 +59,9 @@ namespace Point
 /-- The upper-set domain of a flag point.-/
 def domain {F : ConvexFlag} (q : F.Point) : Set F.Node := {x | q.base ≤ x}
 
+/--
+@isnad1 id=iff.0h3v.s5.c2039872ea68 from=translated src=- shape=0e8bce08 vocab=e8e18651
+-/
 @[simp]
 theorem mem_domain {F : ConvexFlag} (q : F.Point) (x : F.Node) :
     x ∈ q.domain ↔ q.base ≤ x := Iff.rfl
@@ -68,10 +71,16 @@ def coord {F : ConvexFlag} (q : F.Point) {x : F.Node} (h : q.base ≤ x) :
     RealCoord (F.rank x) :=
   (F.transition h).real q.val
 
+/--
+@isnad1 id=mem.1h3v.s5.04965114a77a from=translated src=- shape=67d6d78b vocab=4a6a1d67
+-/
 theorem coord_mem {F : ConvexFlag} (q : F.Point) {x : F.Node} (h : q.base ≤ x) :
     q.coord h ∈ (F.polytope x).carrier :=
   F.transition_mem h q.val_mem
 
+/--
+@isnad1 id=eq.0h2v.s4.7dc33e83f320 from=translated src=- shape=e803429a vocab=d620535f
+-/
 @[simp]
 theorem coord_base {F : ConvexFlag} (q : F.Point) : q.coord (le_refl q.base) = q.val := by
   rw [coord, F.transition_refl]
@@ -81,6 +90,9 @@ theorem coord_base {F : ConvexFlag} (q : F.Point) : q.coord (le_refl q.base) = q
 distinguished affine lattice.-/
 def IsIntegral {F : ConvexFlag} (q : F.Point) : Prop := q.val ∈ F.lattice q.base
 
+/--
+@isnad1 id=mem.2h3v.s5.2f037e7b9f42 from=translated src=- shape=cf8bab88 vocab=a8cdd412
+-/
 theorem isIntegral_coord {F : ConvexFlag} {q : F.Point} (hq : q.IsIntegral)
     {x : F.Node} (h : q.base ≤ x) : q.coord h ∈ F.lattice x :=
   F.transition_lattice h hq
@@ -90,12 +102,18 @@ on the domain of `q`.  By the cocycle law it is enough to compare at `q.base`.-/
 def IsProjectionOf {F : ConvexFlag} (q q' : F.Point) : Prop :=
   ∃ h : q'.base ≤ q.base, q.val = q'.coord h
 
+/--
+@isnad1 id=le.1h3v.s4.66484fbf6916 from=translated src=- shape=4dec4829 vocab=5b65e318
+-/
 theorem domain_subset_of_projection {F : ConvexFlag} {q q' : F.Point}
     (h : q.IsProjectionOf q') : q.domain ⊆ q'.domain := by
   obtain ⟨hbase, _⟩ := h
   intro x hx
   exact hbase.trans hx
 
+/--
+@isnad1 id=eq.3h4v.s6.d2ac440079b1 from=translated src=- shape=4f0ce071 vocab=4db6c817
+-/
 theorem coord_eq_of_projection {F : ConvexFlag} {q q' : F.Point}
     (hbase : q'.base ≤ q.base) (hval : q.val = q'.coord hbase)
     {x : F.Node} (hx : q.base ≤ x) :
@@ -117,6 +135,9 @@ namespace LinearFunction
 /-- The lower-set domain of a flag linear function.-/
 def domain {F : ConvexFlag} (xi : F.LinearFunction) : Set F.Node := {x | x ≤ xi.base}
 
+/--
+@isnad1 id=iff.0h3v.s5.a41478802572 from=translated src=- shape=0b4fd743 vocab=cf2c33d4
+-/
 @[simp]
 theorem mem_domain {F : ConvexFlag} (xi : F.LinearFunction) (x : F.Node) :
     x ∈ xi.domain ↔ x ≤ xi.base := Iff.rfl
@@ -125,6 +146,9 @@ theorem mem_domain {F : ConvexFlag} (xi : F.LinearFunction) (x : F.Node) :
 def EvaluableAt {F : ConvexFlag} (xi : F.LinearFunction) (q : F.Point) : Prop :=
   q.base ≤ xi.base
 
+/--
+@isnad1 id=iff.0h3v.s4.2579e853f1cb from=translated src=- shape=463a8e48 vocab=15a2b62d
+-/
 theorem evaluableAt_iff_domains_inter {F : ConvexFlag} (xi : F.LinearFunction)
     (q : F.Point) : xi.EvaluableAt q ↔ (xi.domain ∩ q.domain).Nonempty := by
   constructor
@@ -153,7 +177,9 @@ structure ConvexCombination {F : ConvexFlag} {I : Type*} [Fintype I]
 
 namespace ConvexCombination
 
-/-- The weights on the strictly positive support still sum to one.-/
+/-- The weights on the strictly positive support still sum to one.
+@isnad1 id=eq.1h5v.s7.db41a7c035e0 from=translated src=- shape=5ff5cde3 vocab=2e09e449
+-/
 theorem sum_active {F : ConvexFlag} {I : Type*} [Fintype I]
     {points : I → F.Point} {weight : I → ℝ} {result : F.Point}
     (c : ConvexCombination points weight result) :
@@ -175,7 +201,9 @@ theorem sum_active {F : ConvexFlag} {I : Type*} [Fintype I]
   exact hactive.trans c.sum_eq_one
 
 /-- Equation `convc` at an arbitrary upper node.  This is the API form used
-as equation `comb2` in Proposition 7.1.-/
+as equation `comb2` in Proposition 7.1.
+@isnad1 id=eq.2h6v.s7.c457678d24cd from=translated src=- shape=5c52c37a vocab=e6fc6216
+-/
 theorem coord_eq {F : ConvexFlag} {I : Type*} [Fintype I]
     {points : I → F.Point} {weight : I → ℝ} {result : F.Point}
     (c : ConvexCombination points weight result) {y : F.Node}
@@ -215,7 +243,9 @@ end ConvexCombination
 
 /-- Convex combinations exist.  This theorem is the implementation-level
 counterpart of equation `convc`: the base is the supremum of the positive
-support and convexity of the target fibre supplies membership.-/
+support and convexity of the target fibre supplies membership.
+@isnad1 id=ex.2h4v.s6.e96e97a971fe from=translated src=- shape=98aeb546 vocab=1c43ba12
+-/
 theorem exists_convexCombination {F : ConvexFlag} {I : Type*} [Fintype I]
     (points : I → F.Point) (weight : I → ℝ)
     (hnonneg : ∀ i, 0 ≤ weight i) (hsum : (∑ i, weight i) = 1) :

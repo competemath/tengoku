@@ -28,6 +28,9 @@ structure NextProgress (s : State p d f) (ε δ : ℝ) (g H : ℕ → ℕ) where
   progress : Progress s target ε δ g
   radius_le : target.radius ≤ H s.radius
 
+/--
+@isnad1 id=nonempty.6h8v.s7.cc46aa1115bf from=translated src=- shape=2db59c88 vocab=76aebbb5
+-/
 theorem exists_nextProgress (hd : 1 ≤ d) (hε : 0 < ε) (hεhalf : ε ≤ 1 / 2)
     (hg : Monotone g) {i : ℕ} (s : BoundedState (f := f) P ε i)
     (hprime : P.primeThreshold s.radius < p)
@@ -125,29 +128,47 @@ variable (hd : 1 ≤ d) (hε : 0 < ε) (hεhalf : ε ≤ 1 / 2)
 noncomputable abbrev state (i : ℕ) : State p d f :=
   (boundedRun P hd hε hεhalf hg hf N hprime i).toState
 
+/--
+@isnad1 id=eq.6h7v.s7.78b8bfe42ef4 from=translated src=- shape=50cedbca vocab=23401267
+-/
 @[simp]
 theorem initial_retainedMass :
     (state P hd hε hεhalf hg hf N hprime 0).decomposition.retainedMass = natMass f :=
   FlagDecomposition.initial_retainedMass f hf
 
+/--
+@isnad1 id=le.6h8v.s7.131025de20a4 from=translated src=- shape=7ffcdff5 vocab=8e1a67ec
+-/
 theorem card_bound (i : ℕ) :
     Fintype.card (state P hd hε hεhalf hg hf N hprime i).decomposition.flag.Node ≤ 2 ^ i :=
   (boundedRun P hd hε hεhalf hg hf N hprime i).card_bound
 
+/--
+@isnad1 id=le.6h8v.s7.baec0d207e6e from=translated src=- shape=6d115343 vocab=16c86698
+-/
 theorem radius_bound (i : ℕ) :
     (state P hd hε hεhalf hg hf N hprime i).radius ≤ P.radiusHorizon 1 i :=
   (boundedRun P hd hε hεhalf hg hf N hprime i).radius_bound
 
+/--
+@isnad1 id=le.7h8v.s7.99fe9ea4364a from=translated src=- shape=e154871b vocab=16c86698
+-/
 theorem radius_le_horizon (i : ℕ) (hi : i ≤ N) :
     (state P hd hε hεhalf hg hf N hprime i).radius ≤ P.radiusHorizon 1 N :=
   (radius_bound P hd hε hεhalf hg hf N hprime i).trans (P.radiusHorizon_monotone 1 hi)
 
+/--
+@isnad1 id=le.6h8v.s7.c8f9c6231973 from=translated src=- shape=c2c46ac3 vocab=2e26c7c9
+-/
 theorem radius_step (i : ℕ) :
     (state P hd hε hεhalf hg hf N hprime (i + 1)).radius ≤
       P.radiusGrowth (state P hd hε hεhalf hg hf N hprime i).radius :=
   (boundedTransition P hd hε hεhalf hg N hprime
     (boundedRun P hd hε hεhalf hg hf N hprime i)).radius_le
 
+/--
+@isnad1 id=or.6h8v.s7.67f488b56296 from=translated src=- shape=5a66ffe0 vocab=0ad016a6
+-/
 theorem progress_or_eq (i : ℕ) :
     Nonempty (Progress (state P hd hε hεhalf hg hf N hprime i)
       (state P hd hε hεhalf hg hf N hprime (i + 1)) ε (stageScale d ε i) g) ∨
@@ -156,6 +177,9 @@ theorem progress_or_eq (i : ℕ) :
   (boundedTransition P hd hε hεhalf hg N hprime
     (boundedRun P hd hε hεhalf hg hf N hprime i)).progress_or_eq
 
+/--
+@isnad1 id=nonempty.8h8v.s7.d15f9572f869 from=translated src=- shape=7ad6649f vocab=0af3059f
+-/
 theorem progress (i : ℕ) (hi : i < N)
     (hnot : ¬ (state P hd hε hεhalf hg hf N hprime i).Finished ε (stageScale d ε i) g) :
     Nonempty (Progress (state P hd hε hεhalf hg hf N hprime i)
@@ -163,18 +187,27 @@ theorem progress (i : ℕ) (hi : i < N)
   (boundedTransition P hd hε hεhalf hg N hprime
     (boundedRun P hd hε hεhalf hg hf N hprime i)).forced_progress hi hnot
 
+/--
+@isnad1 id=eq.7h8v.s7.0f5287b3bdae from=translated src=- shape=d1ad69e1 vocab=d6724432
+-/
 theorem state_succ_eq_of_ge (i : ℕ) (hi : N ≤ i) :
     state P hd hε hεhalf hg hf N hprime (i + 1) =
       state P hd hε hεhalf hg hf N hprime i :=
   (boundedTransition P hd hε hεhalf hg N hprime
     (boundedRun P hd hε hεhalf hg hf N hprime i)).after_horizon hi
 
+/--
+@isnad1 id=eq.7h8v.s7.034246c93742 from=translated src=- shape=976b86fe vocab=7bc8ab2e
+-/
 theorem state_eq_horizon (i : ℕ) (hi : N ≤ i) :
     state P hd hε hεhalf hg hf N hprime i = state P hd hε hεhalf hg hf N hprime N := by
   induction i, hi using Nat.le_induction with
   | base => rfl
   | succ i hi ih => exact (state_succ_eq_of_ge P hd hε hεhalf hg hf N hprime i hi).trans ih
 
+/--
+@isnad1 id=le.6h8v.s7.2de3bb641df7 from=translated src=- shape=1de19726 vocab=50f46e09
+-/
 theorem radius_mono_step (i : ℕ) :
     (state P hd hε hεhalf hg hf N hprime i).radius ≤
       (state P hd hε hεhalf hg hf N hprime (i + 1)).radius := by
@@ -183,9 +216,15 @@ theorem radius_mono_step (i : ℕ) :
     exact D.radius_le
   · rw [heq]
 
+/--
+@isnad1 id=monotone.6h7v.s7.81bf3561d585 from=translated src=- shape=5e9e0b2d vocab=1e266cfb
+-/
 theorem radius_monotone : Monotone (fun i ↦ (state P hd hε hεhalf hg hf N hprime i).radius) :=
   monotone_nat_of_le_succ (radius_mono_step P hd hε hεhalf hg hf N hprime)
 
+/--
+@isnad1 id=le.6h8v.s7.b29a942cf12a from=translated src=- shape=f2fc6f89 vocab=149250da
+-/
 theorem mass_mono_step (i : ℕ) :
     (state P hd hε hεhalf hg hf N hprime (i + 1)).decomposition.retainedMass ≤
       (state P hd hε hεhalf hg hf N hprime i).decomposition.retainedMass := by
@@ -194,10 +233,16 @@ theorem mass_mono_step (i : ℕ) :
     exact D.mass_le
   · rw [heq]
 
+/--
+@isnad1 id=antitone.6h7v.s7.c0a368b6cb0c from=translated src=- shape=6e4899ce vocab=54d61bc4
+-/
 theorem mass_antitone :
     Antitone (fun i ↦ (state P hd hε hεhalf hg hf N hprime i).decomposition.retainedMass) :=
   antitone_nat_of_succ_le (mass_mono_step P hd hε hεhalf hg hf N hprime)
 
+/--
+@isnad1 id=le.6h8v.s8.b0da88fd8761 from=translated src=- shape=f49f7978 vocab=dd2ec9a9
+-/
 theorem card_step (i : ℕ) :
     Fintype.card (state P hd hε hεhalf hg hf N hprime (i + 1)).decomposition.flag.Node ≤
       2 * Fintype.card (state P hd hε hεhalf hg hf N hprime i).decomposition.flag.Node := by
@@ -207,6 +252,9 @@ theorem card_step (i : ℕ) :
   · rw [heq]
     exact Nat.le_mul_of_pos_left _ (by omega)
 
+/--
+@isnad1 id=le.6h8v.s8.eab2a16d1210 from=translated src=- shape=3ad6f381 vocab=e4e01149
+-/
 theorem mass_step (i : ℕ) :
     ((state P hd hε hεhalf hg hf N hprime i).decomposition.retainedMass : ℝ) -
       (state P hd hε hεhalf hg hf N hprime (i + 1)).decomposition.retainedMass ≤
@@ -226,6 +274,9 @@ theorem mass_step (i : ℕ) :
   · rw [heq, sub_self]
     exact mul_nonneg hcoef (Nat.cast_nonneg _)
 
+/--
+@isnad1 id=and.6h8v.s8.85854c2bfd87 from=translated src=- shape=c91db9db vocab=fe82f834
+-/
 theorem retainedMass_bounds (i : ℕ) :
     (natMass f : ℝ) / 2 ≤ (state P hd hε hεhalf hg hf N hprime i).decomposition.retainedMass ∧
       (1 - ε) * (natMass f : ℝ) ≤
@@ -233,7 +284,9 @@ theorem retainedMass_bounds (i : ℕ) :
   (boundedRun P hd hε hεhalf hg hf N hprime i).mass_bounds hd hε hεhalf
 
 /-- The geometric tail bound holds for every interval of the extended
-finite run, including intervals crossing its constant tail.-/
+finite run, including intervals crossing its constant tail.
+@isnad1 id=le.6h9v.s8.5955602f4ccd from=translated src=- shape=7b3e2428 vocab=493fa308
+-/
 theorem mass_loss_tail (s n : ℕ) :
     ((state P hd hε hεhalf hg hf N hprime s).decomposition.retainedMass : ℝ) -
       (state P hd hε hεhalf hg hf N hprime (n + s)).decomposition.retainedMass ≤
@@ -242,6 +295,9 @@ theorem mass_loss_tail (s n : ℕ) :
     (fun i ↦ (state P hd hε hεhalf hg hf N hprime i).decomposition.retainedMass)
     (Nat.cast_nonneg _) (mass_step P hd hε hεhalf hg hf N hprime) s n
 
+/--
+@isnad1 id=le.6h9v.s8.be1e2fc10472 from=translated src=- shape=7c1c4784 vocab=8b42787d
+-/
 theorem mass_loss_tail_relative (s n : ℕ) :
     ((state P hd hε hεhalf hg hf N hprime s).decomposition.retainedMass : ℝ) -
       (state P hd hε hεhalf hg hf N hprime (n + s)).decomposition.retainedMass ≤
@@ -255,7 +311,9 @@ theorem mass_loss_tail_relative (s n : ℕ) :
 
 /-- The actual finite run either reaches a finished bounded state by its
 horizon, or provides a family of progress certificates at every earlier
-stage. Its state sequence is defined and constant beyond the horizon.-/
+stage. Its state sequence is defined and constant beyond the horizon.
+@isnad1 id=or.6h7v.s7.50551d5b6f22 from=translated src=- shape=7c96ff87 vocab=0af3059f
+-/
 theorem finished_or_progress :
     (∃ i, i ≤ N ∧ (state P hd hε hεhalf hg hf N hprime i).Finished ε (stageScale d ε i) g) ∨
       Nonempty ((i : ℕ) → i < N →

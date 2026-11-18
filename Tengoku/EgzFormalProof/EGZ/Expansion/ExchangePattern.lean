@@ -41,14 +41,23 @@ abbrev Sample (P : ExchangePattern S) (X : S → Type*) := ∀ i : P.Position, X
 
 def size (P : ExchangePattern S) : ℕ := (∑ q, P.positive q) + ∑ q, P.negative q
 
+/--
+@isnad1 id=eq.0h2v.s4.1db9ef51486a from=translated src=- shape=975aae62 vocab=741b4616
+-/
 @[simp] theorem card_position (P : ExchangePattern S) : Fintype.card P.Position = P.size := by
   rw [Fintype.card_congr (show P.Position ≃
       ((Σ q, Fin (P.positive q)) ⊕ (Σ q, Fin (P.negative q))) from Equiv.refl _)]
   simp only [Fintype.card_sum, Fintype.card_sigma, Fintype.card_fin, size]
 
+/--
+@isnad1 id=eq.0h3v.s4.fee46162718d from=translated src=- shape=c026c199 vocab=062fe078
+-/
 @[simp] theorem sign_natAbs (P : ExchangePattern S) (i : P.Position) : (P.sign i).natAbs = 1 := by
   cases i <;> simp [sign]
 
+/--
+@isnad1 id=eq.0h4v.s7.949101943917 from=translated src=- shape=2b3a1b5f vocab=e19f74d4
+-/
 theorem sum_sign_smul {G : Type*} [AddCommGroup G] (P : ExchangePattern S) (r : S → G) :
     (∑ i : P.Position, P.sign i • r (P.label i)) =
       (∑ q, P.positive q • r q) - ∑ q, P.negative q • r q := by
@@ -63,6 +72,9 @@ noncomputable def sampleSum {G : Type*} [AddCommGroup G]
 
 def ofRelation (b : S → ℤ) : ExchangePattern S := ⟨fun q ↦ (b q).toNat, fun q ↦ (-b q).toNat⟩
 
+/--
+@isnad1 id=eq.0h4v.s6.b48203b7764f from=translated src=- shape=c40ecc64 vocab=78a651e1
+-/
 theorem ofRelation_sum {G : Type*} [AddCommGroup G] (b : S → ℤ) (r : S → G) :
     (∑ i : (ofRelation b).Position, (ofRelation b).sign i • r ((ofRelation b).label i)) =
       ∑ q, b q • r q := by
@@ -76,6 +88,9 @@ theorem ofRelation_sum {G : Type*} [AddCommGroup G] (b : S → ℤ) (r : S → G
   · rw [Int.toNat_eq_zero.mpr h, zero_smul, zero_sub]
     rw [← natCast_zsmul, Int.toNat_of_nonneg (neg_nonneg.mpr h), neg_smul, neg_neg]
 
+/--
+@isnad1 id=eq.0h2v.s5.51fc289b2858 from=translated src=- shape=4e679432 vocab=9c4f8ead
+-/
 theorem ofRelation_size (b : S → ℤ) : (ofRelation b).size = ∑ q, (b q).natAbs := by
   rw [size, ← Finset.sum_add_distrib]
   apply Finset.sum_congr rfl
@@ -84,7 +99,9 @@ theorem ofRelation_size (b : S → ℤ) : (ofRelation b).size = ∑ q, (b q).nat
   omega
 
 /-- Product-sample concentration yields a deterministic bound for the
-corresponding sum of fibre centres.-/
+corresponding sum of fibre centres.
+@isnad1 id=hasbound.3h8v.s8.ba15f0e3b9b9 from=translated src=- shape=ede90735 vocab=02ba2e5b
+-/
 theorem center_sum_bounded (P : ExchangePattern S)
     {X : S → Type*} [∀ q, Fintype (X q)] [∀ q, Nonempty (X q)]
     {p W : ℕ} (v : ∀ q, X q → ZMod p) (r : S → ZMod p) {η : ℝ}

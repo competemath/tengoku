@@ -17,7 +17,9 @@ open scoped BigOperators Matrix
 namespace EGZ.BalancedCombination
 
 /-- Every rational matrix admits a generalized inverse, including rectangular
-and rank-deficient matrices.-/
+and rank-deficient matrices.
+@isnad1 id=ex.0h3v.s6.4573eea0dda6 from=translated src=- shape=39b2931f vocab=fcd7a181
+-/
 theorem exists_matrix_generalized_inverse {I J : Type*} [Fintype I] [Fintype J]
     (A : Matrix I J ℚ) : ∃ B : Matrix J I ℚ, A * B * A = A := by
   classical
@@ -37,7 +39,9 @@ theorem exists_matrix_generalized_inverse {I J : Type*} [Fintype I] [Fintype J]
 
 /-- Rational solutions of a rational linear system are dense in its real
 solution set. In particular, any open inequalities valid at a real solution
-remain valid at some rational solution.-/
+remain valid at some rational solution.
+@isnad1 id=ex.3h6v.s7.f4e6474ff2a1 from=translated src=- shape=c00c79f0 vocab=9fd85ce5
+-/
 theorem exists_rational_solution_mem_open {I J : Type*} [Fintype I] [Fintype J]
     (A : Matrix I J ℚ) (b : I → ℚ) (x : J → ℝ)
     (hx : (A.map (Rat.castHom ℝ)) *ᵥ x = fun i ↦ (b i : ℝ))

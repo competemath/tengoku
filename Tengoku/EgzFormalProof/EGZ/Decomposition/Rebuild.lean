@@ -46,11 +46,17 @@ include D
 def Active (_D : RebuildData R pieces f) (x : F.Node) : Prop :=
   ∃ y, y ≤ x ∧ ∃ v, pieces y v ≠ 0
 
+/--
+@isnad1 id=active.3h8v.s6.4fcb2158a752 from=translated src=- shape=807be740 vocab=b63b1d9d
+-/
 theorem active_mono {x y : F.Node} (h : x ≤ y) (hx : D.Active x) :
     D.Active y := by
   obtain ⟨z, hzx, v, hv⟩ := hx
   exact ⟨z, hzx.trans h, v, hv⟩
 
+/--
+@isnad1 id=active.1h6v.s6.dd6a404f43c4 from=translated src=- shape=45eba092 vocab=81f68c00
+-/
 theorem active_top : D.Active ⊤ := by
   obtain ⟨x, v, hv⟩ := D.nonzero
   exact ⟨x, le_top, v, hv⟩
@@ -66,11 +72,17 @@ instance : OrderTop D.ActiveNode where
   top := ⟨⊤, D.active_top⟩
   le_top _ := le_top
 
+/--
+@isnad1 id=eq.2h8v.s6.fc06e79af003 from=translated src=- shape=d90cd11e vocab=bfe628c2
+-/
 theorem pieces_eq_zero_of_not_active {x : F.Node} (hx : ¬ D.Active x)
     (v : FpCoord p d) : pieces x v = 0 := by
   by_contra hv
   exact hx ⟨x, le_rfl, v, hv⟩
 
+/--
+@isnad1 id=ex.2h7v.s6.6cbb0735144d from=translated src=- shape=81bc5006 vocab=6f355fc1
+-/
 theorem cumulative_pos_of_active {x : F.Node} (hx : D.Active x) :
     ∃ v, cumulativeWeight pieces x v ≠ 0 := by
   obtain ⟨y, hyx, v, hv⟩ := hx
@@ -80,6 +92,9 @@ theorem cumulative_pos_of_active {x : F.Node} (hx : D.Active x) :
     (f := fun y ↦ if y ≤ x then pieces y v else 0)
     (fun y _ ↦ Nat.zero_le _) (Finset.mem_univ y)
 
+/--
+@isnad1 id=nonempty.2h7v.s6.21decd0a6de2 from=translated src=- shape=486c0c83 vocab=dd058ab7
+-/
 theorem hatSupport_nonempty {x : F.Node} (hx : D.Active x) :
     (hatSupport R pieces x).Nonempty := by
   obtain ⟨v, hv⟩ := D.cumulative_pos_of_active hx
@@ -94,6 +109,9 @@ theorem hatSupport_nonempty {x : F.Node} (hx : D.Active x) :
     (f := fun w ↦ if R.map x w = R.map x v then cumulativeWeight pieces x w else 0)
     (fun w _ ↦ Nat.zero_le _) (Finset.mem_univ v)
 
+/--
+@isnad1 id=active.2h8v.s6.fb1be80335e9 from=translated src=- shape=e9857c4b vocab=99858308
+-/
 theorem active_of_localLift_ne_zero {x : F.Node} {z : IntCoord (F.rank x)}
     (hz : localLift R pieces x z ≠ 0) : D.Active x := by
   by_contra hx
@@ -101,6 +119,9 @@ theorem active_of_localLift_ne_zero {x : F.Node} {z : IntCoord (F.rank x)}
   unfold localLift affineFibreMass
   simp [D.pieces_eq_zero_of_not_active hx]
 
+/--
+@isnad1 id=le.1h8v.s6.f98f71493225 from=translated src=- shape=efb9cec6 vocab=4d5685ea
+-/
 theorem localLift_le_hat (x : F.Node) (z : IntCoord (F.rank x)) :
     localLift R pieces x z ≤ hat R pieces x z := by
   unfold localLift hat
@@ -126,6 +147,9 @@ noncomputable def polytope (x : D.ActiveNode) : RationalPolytope (F.rank x.1) :=
       intro i
       exact ⟨(z i : ℚ), by simp⟩)
 
+/--
+@isnad1 id=eq.1h7v.s9.32a82342fc62 from=translated src=- shape=3ef11657 vocab=d3283ce7
+-/
 @[simp]
 theorem polytope_carrier (x : D.ActiveNode) :
     (D.polytope x).carrier =
@@ -134,6 +158,9 @@ theorem polytope_carrier (x : D.ActiveNode) :
   simp only [polytope, RationalPolytope.ofFinsetConvexHull_carrier,
     Finset.coe_image]
 
+/--
+@isnad1 id=mem.2h8v.s7.7693e778d991 from=translated src=- shape=d9094d7d vocab=ccaca267
+-/
 theorem mem_polytope_of_localLift_ne_zero (x : D.ActiveNode)
     (z : IntCoord (F.rank x.1)) (hz : localLift R pieces x.1 z ≠ 0) :
     z.real ∈ (D.polytope x).carrier := by
@@ -142,6 +169,9 @@ theorem mem_polytope_of_localLift_ne_zero (x : D.ActiveNode)
   exact ⟨z, (mem_hatSupport R pieces x.1 z).mpr
     (ne_of_gt ((Nat.pos_of_ne_zero hz).trans_le (D.localLift_le_hat x.1 z))), rfl⟩
 
+/--
+@isnad1 id=mem.3h9v.s10.9c5c6aca6cc4 from=translated src=- shape=5f89e01c vocab=518ea85d
+-/
 theorem transition_mem {x y : D.ActiveNode} (h : x ≤ y) {q : RealCoord (F.rank x.1)}
     (hq : q ∈ (D.polytope x).carrier) :
     (F.transition h).real q ∈ (D.polytope y).carrier := by
@@ -175,6 +205,9 @@ noncomputable def representation : FpRepresentation p d D.flag where
   compatible h := R.compatible h
   lattice_eq_standard x := R.lattice_eq_standard x.1
 
+/--
+@isnad1 id=eq.1h7v.s6.5bc79b8e5712 from=translated src=- shape=2b6a9b38 vocab=f21caf78
+-/
 theorem sum_activeNode_eq (v : FpCoord p d) :
     ∑ x : D.ActiveNode, pieces x.1 v = ∑ x, pieces x v := by
   have h := Fintype.sum_subtype_add_sum_subtype D.Active (fun x ↦ pieces x v)
@@ -184,6 +217,9 @@ theorem sum_activeNode_eq (v : FpCoord p d) :
     exact D.pieces_eq_zero_of_not_active x.2 v
   simpa only [hz, add_zero] using h
 
+/--
+@isnad1 id=eq.1h8v.s6.8b037c92cacc from=translated src=- shape=ebd4d8bf vocab=fe3e30ea
+-/
 theorem cumulativeWeight_activeNode (x : D.ActiveNode) (v : FpCoord p d) :
     cumulativeWeight (F := D.flag) (fun y ↦ pieces y.1) x v =
       cumulativeWeight pieces x.1 v := by
@@ -195,6 +231,9 @@ theorem cumulativeWeight_activeNode (x : D.ActiveNode) (v : FpCoord p d) :
     simp [D.pieces_eq_zero_of_not_active y.2 v]
   simpa only [cumulativeWeight, hz, add_zero, Subtype.coe_le_coe] using h
 
+/--
+@isnad1 id=eq.1h8v.s7.aa1022cf44cc from=translated src=- shape=e6991a1a vocab=1953567f
+-/
 theorem hat_activeNode (x : D.ActiveNode) (z : IntCoord (F.rank x.1)) :
     hat D.representation (fun y ↦ pieces y.1) x z = hat R pieces x.1 z := by
   unfold hat
@@ -204,7 +243,9 @@ theorem hat_activeNode (x : D.ActiveNode) (z : IntCoord (F.rank x.1)) :
   rfl
 
 /-- Every face of a rebuilt support hull contains a projection of a surviving
-local generator, so it remains visible to the proper-point set.-/
+local generator, so it remains visible to the proper-point set.
+@isnad1 id=visiblef.1h8v.s7.694b0ea7f00d from=translated src=- shape=1220a9dd vocab=318624e2
+-/
 theorem faces_visible (x : D.ActiveNode) (Γ : (D.polytope x).Face) :
     VisibleFace D.representation (fun y ↦ pieces y.1) x Γ := by
   obtain ⟨q, hq⟩ := Γ.generatorFinset_nonempty
@@ -239,20 +280,32 @@ noncomputable abbrev decomposition : FlagDecomposition p d f where
   polytope_eq_liftedSupport x := D.polytope_carrier x
   faces_visible := D.faces_visible
 
+/--
+@isnad1 id=eq.1h7v.s6.0949f6d50c75 from=translated src=- shape=c8baec2d vocab=e0c1b7b5
+-/
 @[simp]
 theorem decomposition_cumulativeWeight (x : D.ActiveNode) :
     D.decomposition.cumulativeWeight x = cumulativeWeight pieces x.1 :=
   funext (D.cumulativeWeight_activeNode x)
 
+/--
+@isnad1 id=eq.1h7v.s6.4910c808a514 from=translated src=- shape=1e57b0e8 vocab=2554d2d0
+-/
 @[simp]
 theorem decomposition_hat (x : D.ActiveNode) :
     D.decomposition.hat x = hat R pieces x.1 := funext (D.hat_activeNode x)
 
+/--
+@isnad1 id=eq.1h6v.s6.8db0ec03a918 from=translated src=- shape=0bd4fc10 vocab=fa10c14f
+-/
 @[simp]
 theorem decomposition_retainedWeight :
     D.decomposition.retainedWeight = retainedWeight pieces :=
   funext (D.sum_activeNode_eq)
 
+/--
+@isnad1 id=le.1h6v.s6.ca99116d3328 from=translated src=- shape=3d207576 vocab=ec637b91
+-/
 theorem card_decomposition_le : Fintype.card D.decomposition.flag.Node ≤ Fintype.card F.Node :=
   Fintype.card_subtype_le _
 

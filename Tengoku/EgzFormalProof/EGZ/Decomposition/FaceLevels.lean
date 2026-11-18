@@ -22,7 +22,9 @@ variable (C : ∀ x : (decomposition Φ anchor (Φ.faceSelector anchor Γ) hp).f
     IntegerLatticeChart ((decomposition Φ anchor (Φ.faceSelector anchor Γ) hp).liftedSupport x))
 
 /-- A proper face gives a strictly smaller support-generated lattice at
-the lower anchor, even if the input coordinates were not minimal.-/
+the lower anchor, even if the input coordinates were not minimal.
+@isnad1 id=lt.2h7v.s8.33d9f95cac8d from=translated src=- shape=cda7f6b6 vocab=4f19abda
+-/
 theorem lowerAnchor_rechart_rank_lt (hΓ : Γ.carrier ⊂ (Φ.flag.polytope anchor).carrier) :
     (C (lowerAnchor Φ anchor hp Γ)).rank < Φ.flag.rank anchor := by
   have hdim : Γ.dimension < (RationalPolytope.Face.top (Φ.flag.polytope anchor)).dimension := by
@@ -39,7 +41,9 @@ variable (hinj : ∀ x, Function.Injective
     ((Rechart.chart (decomposition Φ anchor (Φ.faceSelector anchor Γ) hp) C x).modp p))
     (hcenter : ∀ x q, q ∈ (C x).coordinateSupport → IsCenteredLift p q)
 /-- Strict increase at the lower anchor after changing to minimal
-support-generated coordinates.-/
+support-generated coordinates.
+@isnad1 id=lt.4h7v.s11.c3b0e1bb5094 from=translated src=- shape=dca4bb37 vocab=248b4bae
+-/
 theorem lowerAnchor_rechart_level_lt (hΓ : Γ.carrier ⊂ (Φ.flag.polytope anchor).carrier) :
     Φ.level anchor <
       (Rechart.decomposition (decomposition Φ anchor (Φ.faceSelector anchor Γ) hp)
@@ -55,7 +59,9 @@ theorem lowerAnchor_rechart_level_lt (hΓ : Γ.carrier ⊂ (Φ.flag.polytope anc
   · exact lowerAnchor_rechart_rank_lt Φ anchor hp Γ C hΓ
 
 /-- Every surviving lower-layer node has strictly larger level than the
-old anchor.-/
+old anchor.
+@isnad1 id=lt.5h8v.s11.e724e5874c7e from=translated src=- shape=0fc6be1f vocab=f745d38a
+-/
 theorem lower_rechart_level_lt (hΓ : Γ.carrier ⊂ (Φ.flag.polytope anchor).carrier)
     (x : (decomposition Φ anchor (Φ.faceSelector anchor Γ) hp).flag.Node)
     (hx : x.1.1.2 = 0) : Φ.level anchor <
@@ -69,7 +75,9 @@ theorem lower_rechart_level_lt (hΓ : Γ.carrier ⊂ (Φ.flag.polytope anchor).c
       C hp hinj hcenter).level_antitone hxa)
 
 /-- Upper levels are unchanged when the input was already minimal: both
-their cumulative support and their lifted support remain the original ones.-/
+their cumulative support and their lifted support remain the original ones.
+@isnad1 id=eq.4h8v.s11.b65f9629eac1 from=translated src=- shape=bde885c4 vocab=6fed2932
+-/
 theorem upper_rechart_level_eq (hΦ : Φ.IsMinimal) (x : Φ.flag.Node) :
     (Rechart.decomposition (decomposition Φ anchor (Φ.faceSelector anchor Γ) hp)
       C hp hinj hcenter).level (upper Φ anchor (Φ.faceSelector anchor Γ) hp x) = Φ.level x := by

@@ -18,7 +18,9 @@ namespace EGZ.ConvexFlag
 
 namespace ConvexCombination
 
-/-- Reindex a convex combination along an equivalence of finite index types.-/
+/-- Reindex a convex combination along an equivalence of finite index types.
+@isnad1 id=convexco.1h7v.s6.26729dd555a1 from=translated src=- shape=254cda37 vocab=b83ebad0
+-/
 theorem reindex {F : ConvexFlag} {I J : Type*} [Fintype I] [Fintype J]
     {points : I → F.Point} {weight : I → ℝ} {result : F.Point}
     (c : ConvexCombination points weight result) (e : J ≃ I) :
@@ -48,7 +50,9 @@ theorem reindex {F : ConvexFlag} {I J : Type*} [Fintype I] [Fintype J]
     simpa only [Function.comp_apply, ea, Equiv.subtypeEquiv,
       Equiv.coe_fn_mk] using hsum.symm
 
-/-- The one-point convex combination.-/
+/-- The one-point convex combination.
+@isnad1 id=convexco.0h2v.s5.e3259b8806d3 from=translated src=- shape=332c23a4 vocab=0bdac224
+-/
 theorem singleton {F : ConvexFlag} (q : F.Point) :
     ConvexCombination (fun _ : Fin 1 ↦ q) (fun _ ↦ (1 : ℝ)) q := by
   classical
@@ -62,14 +66,18 @@ theorem singleton {F : ConvexFlag} (q : F.Point) :
 
 end ConvexCombination
 
-/-- Every point of a set belongs to its flag convex hull.-/
+/-- Every point of a set belongs to its flag convex hull.
+@isnad1 id=le.0h2v.s4.44c14fa8ef05 from=translated src=- shape=50af71e7 vocab=561c7a80
+-/
 theorem subset_convexHull (F : ConvexFlag) (S : Set F.Point) :
     S ⊆ F.convexHull S := by
   intro q hq
   exact ⟨1, fun _ ↦ q, fun _ ↦ 1, fun _ ↦ hq,
     ConvexCombination.singleton q⟩
 
-/-- Flag convex hull is monotone.-/
+/-- Flag convex hull is monotone.
+@isnad1 id=le.1h3v.s5.102dd5c5680e from=translated src=- shape=3c10f9cc vocab=561c7a80
+-/
 theorem convexHull_mono {F : ConvexFlag} {S T : Set F.Point} (hST : S ⊆ T) :
     F.convexHull S ⊆ F.convexHull T := by
   rintro q ⟨n, points, weight, hpoints, hcomb⟩
@@ -78,7 +86,9 @@ theorem convexHull_mono {F : ConvexFlag} {S T : Set F.Point} (hST : S ⊆ T) :
 /-- A convex combination of points which are themselves convex combinations
 can be flattened to one convex combination.  The flattened index contains
 only pairs on which both coefficients are strictly positive; this makes its
-base exactly the iterated least upper bound.-/
+base exactly the iterated least upper bound.
+@isnad1 id=le.0h2v.s4.4b8a87bcf807 from=translated src=- shape=c1b2f487 vocab=561c7a80
+-/
 theorem convexHull_convex_closed (F : ConvexFlag) (S : Set F.Point) :
     F.convexHull (F.convexHull S) ⊆ F.convexHull S := by
   classical
@@ -182,7 +192,9 @@ theorem convexHull_convex_closed (F : ConvexFlag) (S : Set F.Point) :
   intro i
   exact hinnerPoint (toFlat i).1.1 (toFlat i).2.1
 
-/-- Flag convex hull is idempotent.-/
+/-- Flag convex hull is idempotent.
+@isnad1 id=eq.0h2v.s4.49783127f786 from=translated src=- shape=c1b2f487 vocab=695af244
+-/
 theorem convexHull_idempotent (F : ConvexFlag) (S : Set F.Point) :
     F.convexHull (F.convexHull S) = F.convexHull S := by
   apply Set.Subset.antisymm

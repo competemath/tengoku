@@ -46,6 +46,9 @@ structure CoefficientParameters (d : ℕ) (δ ζ : ℝ) where
   bound : ∀ K, 1 ≤ K → RoundingBound d K ((hollowBound d : ℝ) + 2)
     (gapScale d δ K) (errorScale (hollowBound d) ζ) (fraction K) (threshold K)
 
+/--
+@isnad1 id=nonempty.4h3v.s5.f0637a192eeb from=translated src=- shape=ec4f5da9 vocab=55a5a4bc
+-/
 theorem exists_coefficientParameters (hBalanced : BalancedCombinationLemma)
     (d : ℕ) {δ ζ : ℝ} (hδ : 0 < δ) (hζ : 0 < ζ) (hζone : ζ ≤ 1) :
     Nonempty (CoefficientParameters d δ ζ) := by
@@ -80,19 +83,30 @@ decomposition's driving function is chosen.-/
 noncomputable def expansionScale (K : ℕ) : ℝ :=
   min (P.fraction K) (min δ (errorScale (hollowBound d) ζ * gapScale d δ K))
 
+/--
+@isnad1 id=lt.3h5v.s5.a7b9f3d7fa1d from=translated src=- shape=d151b713 vocab=e041bb1c
+-/
 theorem expansionScale_pos {K : ℕ} (hδ : 0 < δ) (hζ : 0 < ζ) (hK : 1 ≤ K) :
     0 < P.expansionScale K := by
   exact lt_min (P.fraction_pos K) (lt_min hδ
     (mul_pos (errorScale_pos (Nat.cast_nonneg _) hζ) (gapScale_pos hδ hK)))
 
+/--
+@isnad1 id=le.0h5v.s4.e6639a44eb08 from=translated src=- shape=0efb3bed vocab=2bd8027c
+-/
 theorem expansionScale_le_delta (K : ℕ) : P.expansionScale K ≤ δ :=
   (min_le_right _ _).trans (min_le_left _ _)
 
+/--
+@isnad1 id=le.0h5v.s4.562feb09ab2d from=translated src=- shape=3f74ffb6 vocab=28d17847
+-/
 theorem expansionScale_le_fraction (K : ℕ) : P.expansionScale K ≤ P.fraction K :=
   min_le_left _ _
 
 /-- The proportional reserve gives the two additive margins in the relative
-expansion theorem.-/
+expansion theorem.
+@isnad1 id=and.4h10v.s7.75593cb775b0 from=translated src=- shape=ede547e7 vocab=6c9b4946
+-/
 theorem expansion_slack {I : Type*} (K p : ℕ) (m a : I → ℕ) (hζ : 0 < ζ)
     (hmlower : ∀ q, gapScale d δ K * p ≤ (m q : ℝ))
     (hlower : ∀ q, P.fraction K * p ≤ (a q : ℝ))
@@ -110,7 +124,9 @@ theorem expansion_slack {I : Type*} (K p : ℕ) (m a : I → ℕ) (hζ : 0 < ζ)
   nlinarith [hupper q]
 
 /-- Apply the parameters to any selected cumulative node. The selection
-already records that this node is complete at `T(node), δ`.-/
+already records that this node is complete at `T(node), δ`.
+@isnad1 id=ex.11h10v.s11.81b9ebb65c0f from=translated src=- shape=099c3bea vocab=ea253790
+-/
 theorem coefficients_of_selection {p : ℕ} [NeZero p] [Fact p.Prime]
     {f : FpCoord p d → ℕ} (Φ : FlagDecomposition p d f)
     {T K : Φ.flag.Node → ℕ} (D : Φ.CumulativeSelection T K δ)
@@ -156,7 +172,9 @@ theorem coefficients_of_selection {p : ℕ} [NeZero p] [Fact p.Prime]
   ring
 
 /-- A threshold imposed on every allowed node radius permits selecting the
-node only after the flag decomposition has been constructed.-/
+node only after the flag decomposition has been constructed.
+@isnad1 id=ex.13h9v.s11.2ee3fa03692a from=translated src=- shape=130cbf27 vocab=7f7257b0
+-/
 theorem exists_selected_coefficients {p : ℕ} [NeZero p] [Fact p.Prime]
     {f : FpCoord p d → ℕ} (Φ : FlagDecomposition p d f)
     {T K : Φ.flag.Node → ℕ} (hodd : Odd p)

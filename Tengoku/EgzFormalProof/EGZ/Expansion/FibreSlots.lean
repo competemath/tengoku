@@ -33,6 +33,9 @@ abbrev Retained (w : G → ℕ) (U : Finset (Atom w)) := {a : Atom w // a ∉ U}
 noncomputable instance retainedFintype (w : G → ℕ) (U : Finset (Atom w)) :
     Fintype (Retained w U) := Fintype.ofFinite _
 
+/--
+@isnad1 id=eq.0h2v.s5.02d7455f8593 from=translated src=- shape=e1522e85 vocab=eec67a47
+-/
 theorem pushWeight_atoms (w : G → ℕ) :
     pushWeight Sigma.fst (fun _ : Atom w ↦ 1) = w := by
   classical
@@ -46,9 +49,15 @@ theorem pushWeight_atoms (w : G → ℕ) :
       by_cases hz : z = v <;> simp [hz]
     _ = w v := by simp
 
+/--
+@isnad1 id=eq.0h2v.s5.df14ee59e7bc from=translated src=- shape=db3495c5 vocab=2aa56803
+-/
 theorem card_atoms (w : G → ℕ) : Fintype.card (Atom w) = natMass w := by
   simp [natMass, Fintype.card_sigma]
 
+/--
+@isnad1 id=le.0h3v.s5.cc545e966902 from=translated src=- shape=a3a568ec vocab=75b9ffe3
+-/
 theorem remaining_le (w : G → ℕ) (U : Finset (Atom w)) : remaining w U ≤ w := by
   classical
   calc
@@ -59,6 +68,9 @@ theorem remaining_le (w : G → ℕ) (U : Finset (Atom w)) : remaining w U ≤ w
       split_ifs <;> omega
     _ = w := pushWeight_atoms w
 
+/--
+@isnad1 id=eq.0h3v.s5.bd7b28b16f99 from=translated src=- shape=9f67c4b4 vocab=9f774a4e
+-/
 theorem mass_remaining_add_card (w : G → ℕ) (U : Finset (Atom w)) :
     natMass (remaining w U) + U.card = natMass w := by
   classical
@@ -74,11 +86,17 @@ theorem mass_remaining_add_card (w : G → ℕ) (U : Finset (Atom w)) :
   rw [hnot, Finset.card_sdiff, Finset.inter_univ, Finset.card_univ]
   exact Nat.sub_add_cancel (Finset.card_le_univ U)
 
+/--
+@isnad1 id=eq.0h3v.s5.e2415f2b8794 from=translated src=- shape=a836954e vocab=94c098d4
+-/
 theorem mass_loss (w : G → ℕ) (U : Finset (Atom w)) :
     natMass w - natMass (remaining w U) = U.card := by
   have h := mass_remaining_add_card w U
   omega
 
+/--
+@isnad1 id=eq.0h6v.s5.98e681c2689f from=translated src=- shape=d65919cc vocab=db15d840
+-/
 theorem card_fibre_eq [Fintype H] (w : G → ℕ) (U : Finset (Atom w))
     (π : G → H) (q : H) :
     Fintype.card (Fibre w U π q) = pushWeight π (remaining w U) q := by
@@ -97,6 +115,9 @@ noncomputable def removedInFibre (w : G → ℕ) (U : Finset (Atom w))
   classical
   exact (U.filter (fun a ↦ π a.1 = q)).card
 
+/--
+@isnad1 id=eq.0h6v.s6.34f54bcd9b38 from=translated src=- shape=0abcc5bc vocab=422c1f01
+-/
 theorem card_fibre_eq_sub_removed [Fintype H] (w : G → ℕ) (U : Finset (Atom w))
     (π : G → H) (q : H) :
     Fintype.card (Fibre w U π q) = pushWeight π w q - removedInFibre w U π q := by
@@ -118,6 +139,9 @@ theorem card_fibre_eq_sub_removed [Fintype H] (w : G → ℕ) (U : Finset (Atom 
   rw [hfilter, Finset.card_sdiff, hinter, ← hall]
   rfl
 
+/--
+@isnad1 id=le.0h6v.s5.5196caa6e113 from=translated src=- shape=6842b703 vocab=3559026a
+-/
 theorem card_fibre_lower [Fintype H] (w : G → ℕ) (U : Finset (Atom w))
     (π : G → H) (q : H) :
     pushWeight π w q - U.card ≤ Fintype.card (Fibre w U π q) := by
@@ -131,6 +155,9 @@ theorem card_fibre_lower [Fintype H] (w : G → ℕ) (U : Finset (Atom w))
     simpa [natMassOn] using h
   omega
 
+/--
+@isnad1 id=eq.0h5v.s7.b80917c6bc56 from=translated src=- shape=5b5fd318 vocab=054c93cd
+-/
 theorem sum_retained [DecidableEq G] {M : Type*} [AddCommMonoid M]
     (w : G → ℕ) (U : Finset (Atom w)) (f : Atom w → M) :
     (∑ a : Retained w U, f a.val) = ∑ a, if a ∉ U then f a else 0 := by
@@ -161,7 +188,9 @@ noncomputable def labelledEquiv [Fintype S]
     exact ⟨⟨s, ⟨a, hs, haU⟩⟩, rfl⟩
 
 /-- Reassembling all surviving labelled fibres recovers exactly the
-remaining multiplicities, without identifying coincident positions.-/
+remaining multiplicities, without identifying coincident positions.
+@isnad1 id=eq.2h7v.s7.49505f29d612 from=translated src=- shape=c7341919 vocab=4437ad1a
+-/
 theorem reassemble_remaining [Fintype S]
     (w : G → ℕ) (U : Finset (Atom w)) (π : G → H) (label : S → H)
     (hinj : Function.Injective label)
@@ -182,6 +211,9 @@ theorem reassemble_remaining [Fintype S]
       intro a _
       by_cases ha : a ∈ U <;> by_cases hv : a.1 = v <;> simp [ha, hv]
 
+/--
+@isnad1 id=isthickr.4h8v.s7.7537204d1ead from=translated src=- shape=5151343a vocab=8038e4c8
+-/
 theorem remaining_isThickRelative {p d r T : ℕ} [NeZero p]
     (w : FpCoord p d → ℕ) (U : Finset (Atom w))
     (π : FpCoord p d → FpCoord p r) {δ : ℝ}

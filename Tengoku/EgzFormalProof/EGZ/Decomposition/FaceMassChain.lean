@@ -22,6 +22,9 @@ namespace FlagDecomposition
 
 variable {p d : ℕ} [NeZero p] {f : FpCoord p d → ℕ}
 
+/--
+@isnad1 id=le.0h5v.s6.74cbd3263d48 from=translated src=- shape=58c1d704 vocab=123286ef
+-/
 theorem cumulativeMass_le_retainedMass (Φ : FlagDecomposition p d f) (x : Φ.flag.Node) :
     natMass (Φ.cumulativeWeight x) ≤ Φ.retainedMass := by
   apply natMass_mono
@@ -34,7 +37,9 @@ theorem cumulativeMass_le_retainedMass (Φ : FlagDecomposition p d f) (x : Φ.fl
   · exact le_rfl
   · exact Nat.zero_le _
 
-/-- Positive lifted mass witnesses an actual point of the node polytope.-/
+/-- Positive lifted mass witnesses an actual point of the node polytope.
+@isnad1 id=nonempty.1h6v.s6.dd2fed39f8e2 from=translated src=- shape=abd7c5ab vocab=bd05b3cf
+-/
 theorem liftedMassOn_pos_nonempty (Φ : FlagDecomposition p d f) (x : Φ.flag.Node)
     (S : Set (RealCoord (Φ.flag.rank x))) (hS : 0 < Φ.liftedMassOn x S) :
     ((Φ.flag.polytope x).carrier ∩ S).Nonempty := by
@@ -51,7 +56,9 @@ namespace NodeMassMap
 
 variable {Φ Ψ : FlagDecomposition p d f} {x : Φ.flag.Node} {y : Ψ.flag.Node}
 
-/-- Express image-set mass in the original node's centered coordinates.-/
+/-- Express image-set mass in the original node's centered coordinates.
+@isnad1 id=eq.2h9v.s10.6599ee98b022 from=translated src=- shape=ea952964 vocab=74fa2b39
+-/
 theorem weightedMass_image (M : NodeMassMap Φ Ψ x y) (hp : Odd p)
     (hM : Function.Injective M.coord.real) (S : Set (RealCoord (Ψ.flag.rank y))) :
     WeightedIncidence.mass (fun v ↦ (Ψ.cumulativeWeight y v : ℝ))
@@ -68,17 +75,25 @@ namespace StableNodeMap
 
 variable {Φ Ψ : FlagDecomposition p d f} {x : Φ.flag.Node} {y : Ψ.flag.Node}
 
+/--
+@isnad1 id=le.0h8v.s7.099c7ec2ad66 from=translated src=- shape=6ac4f984 vocab=3a94c241
+-/
 theorem cumulativeMass_loss_nonneg (M : StableNodeMap Φ Ψ x y) :
     0 ≤ (natMass (Φ.cumulativeWeight x) : ℝ) - natMass (Ψ.cumulativeWeight y) :=
   sub_nonneg.mpr (Nat.cast_le.mpr (natMass_mono M.cumulative_le))
 
+/--
+@isnad1 id=le.0h8v.s6.c14dade9c0d6 from=translated src=- shape=96c95f37 vocab=49ca08ca
+-/
 theorem retainedMass_le (M : StableNodeMap Φ Ψ x y) : Ψ.retainedMass ≤ Φ.retainedMass := by
   have h := M.cumulativeMass_loss_nonneg.trans M.mass_loss_le
   exact Nat.cast_le.mp (sub_nonneg.mp h)
 
 /-- The tail estimate ensures that every old large face has a nonempty
 pullback in a later node polytope. This supplies the nonemptiness needed
-when applying preservation of realized faces.-/
+when applying preservation of realized faces.
+@isnad1 id=nonempty.5h10v.s9.7ae940c22092 from=translated src=- shape=14765bbf vocab=6e10f11e
+-/
 theorem largeFace_preimage_nonempty (M : StableNodeMap Φ Ψ x y)
     (hp : Odd p) {ε : ℝ} (hε : 0 < ε) (hεhalf : ε ≤ 1 / 2)
     (Γ : (Φ.flag.polytope x).Face) (hlarge : Φ.IsLargeFace ε x Γ)
@@ -96,7 +111,9 @@ end StableNodeMap
 
 end FlagDecomposition
 
-/-- The explicit large-face bound is monotone in the ambient dimension.-/
+/-- The explicit large-face bound is monotone in the ambient dimension.
+@isnad1 id=le.2h3v.s7.272d493d7aa0 from=translated src=- shape=78d7a336 vocab=fc058cfc
+-/
 theorem largeFaceBound_mono_dimension {ε : ℝ} (hε : 0 < ε) {r d : ℕ} (hrd : r ≤ d) :
     ((ε ^ 3)⁻¹ + (r : ℝ) + 2) ^ (r + 2) ≤
       ((ε ^ 3)⁻¹ + (d : ℝ) + 2) ^ (d + 2) := by
@@ -115,7 +132,9 @@ variable {p d N : ℕ} [NeZero p] [Fact p.Prime] {f : FpCoord p d → ℕ}
 
 /-- The face-counting step for one surviving lineage. Coordinate injectivity
 and the pullback no-repeat condition are explicit geometric inputs; all
-common-measure and dimension bookkeeping is proved here.-/
+common-measure and dimension bookkeeping is proved here.
+@isnad1 id=le.8h9v.s11.5e1ef7dfe9e8 from=translated src=- shape=abf4c042 vocab=ed6e413d
+-/
 theorem card_largeFaceChain_le
     (Φ : Fin (N + 1) → FlagDecomposition p d f) (x : ∀ i, (Φ i).flag.Node)
     (M : ∀ {i j : Fin (N + 1)}, i ≤ j → StableNodeMap (Φ i) (Φ j) (x i) (x j))

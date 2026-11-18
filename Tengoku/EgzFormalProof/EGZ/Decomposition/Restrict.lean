@@ -19,6 +19,9 @@ namespace EGZ.FlagDecomposition
 
 variable {p d : ℕ} [NeZero p] {f : FpCoord p d → ℕ}
 
+/--
+@isnad1 id=ex.0h4v.s5.76f4905d089b from=translated src=- shape=0e8ce87c vocab=3545b7fd
+-/
 theorem exists_isReducedElement (Φ : FlagDecomposition p d f) :
     ∃ x, Φ.IsReducedElement x := by
   obtain ⟨q, hq⟩ := Φ.faces_visible ⊤ (RationalPolytope.Face.top _)
@@ -64,13 +67,18 @@ def toReducedPoint (Φ : FlagDecomposition p d f) (q : Φ.flag.Point)
     (hq : Φ.IsReducedElement q.base) : Φ.reducedFlag.Point :=
   ⟨⟨q.base, hq⟩, q.val, q.val_mem⟩
 
+/--
+@isnad1 id=eq.1h5v.s6.42de9b027dca from=translated src=- shape=1b43411f vocab=dc877d47
+-/
 @[simp]
 theorem reducedPointInclusion_toReducedPoint (Φ : FlagDecomposition p d f)
     (q : Φ.flag.Point) (hq : Φ.IsReducedElement q.base) :
     Φ.reducedPointInclusion (Φ.toReducedPoint q hq) = q := rfl
 
 /-- Convex combinations in the original flag descend to the restricted
-flag whenever all the displayed bases are reduced.-/
+flag whenever all the displayed bases are reduced.
+@isnad1 id=convexco.3h8v.s7.029b1792fd16 from=translated src=- shape=6457d89e vocab=cc6bd5ad
+-/
 theorem convexCombination_toReducedPoint (Φ : FlagDecomposition p d f)
     {I : Type*} [Fintype I] (points : I → Φ.flag.Point)
     (weight : I → ℝ) (q : Φ.flag.Point)
@@ -89,7 +97,9 @@ theorem convexCombination_toReducedPoint (Φ : FlagDecomposition p d f)
 
 /-- Inclusion into the original flag preserves convex combinations.  The
 finite join of the active bases is reduced, so it can be used to compare
-the two least-upper-bound conditions.-/
+the two least-upper-bound conditions.
+@isnad1 id=convexco.1h8v.s6.4e512aba8120 from=translated src=- shape=082ce8ad vocab=fee92a8f
+-/
 theorem convexCombination_reducedPointInclusion (Φ : FlagDecomposition p d f)
     {I : Type*} [Fintype I] (points : I → Φ.reducedFlag.Point)
     (weight : I → ℝ) (q : Φ.reducedFlag.Point)
@@ -139,6 +149,9 @@ noncomputable def reducedRepresentation (Φ : FlagDecomposition p d f) :
   compatible h := Φ.representation.compatible h
   lattice_eq_standard x := Φ.representation.lattice_eq_standard x.1
 
+/--
+@isnad1 id=eq.1h5v.s7.94ffedd54ccc from=translated src=- shape=e5dd708c vocab=671ee7f8
+-/
 theorem sum_reducedNode_eq (Φ : FlagDecomposition p d f) (hp : Odd p)
     (v : FpCoord p d) :
     ∑ x : Φ.ReducedNode, Φ.localWeight x.1 v = ∑ x, Φ.localWeight x v := by
@@ -150,6 +163,9 @@ theorem sum_reducedNode_eq (Φ : FlagDecomposition p d f) (hp : Odd p)
     exact Φ.localWeight_eq_zero_of_not_isReducedElement hp x.2 v
   simpa only [hz, add_zero] using h
 
+/--
+@isnad1 id=eq.1h6v.s6.ff4315792131 from=translated src=- shape=6dd60af1 vocab=7c401f8e
+-/
 theorem cumulativeWeight_reducedNode (Φ : FlagDecomposition p d f) (hp : Odd p)
     (x : Φ.ReducedNode) (v : FpCoord p d) :
     FlagDecompositionRaw.cumulativeWeight (F := Φ.reducedFlag)
@@ -164,6 +180,9 @@ theorem cumulativeWeight_reducedNode (Φ : FlagDecomposition p d f) (hp : Odd p)
   simpa only [cumulativeWeight, FlagDecompositionRaw.cumulativeWeight,
     hz, add_zero, Subtype.coe_le_coe] using h
 
+/--
+@isnad1 id=eq.1h6v.s7.3e561088e996 from=translated src=- shape=fee9ab31 vocab=edced268
+-/
 theorem hat_reducedNode (Φ : FlagDecomposition p d f) (hp : Odd p)
     (x : Φ.ReducedNode) (z : IntCoord (Φ.flag.rank x.1)) :
     FlagDecompositionRaw.hat Φ.reducedRepresentation
@@ -175,6 +194,9 @@ theorem hat_reducedNode (Φ : FlagDecomposition p d f) (hp : Odd p)
   rw [hw]
   rfl
 
+/--
+@isnad1 id=iff.0h5v.s7.6681ad55e845 from=translated src=- shape=c8a9536e vocab=9cc2e161
+-/
 theorem omegaZero_reducedPointInclusion_iff (Φ : FlagDecomposition p d f)
     (q : Φ.reducedFlag.Point) :
     q ∈ FlagDecompositionRaw.omegaZero Φ.reducedRepresentation
@@ -182,7 +204,9 @@ theorem omegaZero_reducedPointInclusion_iff (Φ : FlagDecomposition p d f)
       Φ.reducedPointInclusion q ∈ Φ.omegaZero := Iff.rfl
 
 /-- Inclusion identifies the proper-point set of the restricted data with
-the original proper points whose bases lie in the restriction.-/
+the original proper points whose bases lie in the restriction.
+@isnad1 id=iff.0h5v.s7.540ed06a8d51 from=translated src=- shape=c8a9536e vocab=d121f5aa
+-/
 theorem omega_reducedPointInclusion_iff (Φ : FlagDecomposition p d f)
     (q : Φ.reducedFlag.Point) :
     q ∈ FlagDecompositionRaw.omega Φ.reducedRepresentation
@@ -227,41 +251,64 @@ noncomputable abbrev reduced (Φ : FlagDecomposition p d f) (hp : Odd p) :
     refine ⟨Φ.toReducedPoint q hred, ?_, hbase, hcoord⟩
     exact (Φ.omega_reducedPointInclusion_iff _).mpr hq
 
+/--
+@isnad1 id=eq.1h5v.s6.3f495805d6f5 from=translated src=- shape=87c878ed vocab=080b6a25
+-/
 @[simp]
 theorem reduced_localWeight (Φ : FlagDecomposition p d f) (hp : Odd p)
     (x : Φ.ReducedNode) : (Φ.reduced hp).localWeight x = Φ.localWeight x.1 := rfl
 
+/--
+@isnad1 id=eq.1h5v.s6.0c12def2b8c3 from=translated src=- shape=87c878ed vocab=637b0ebe
+-/
 @[simp]
 theorem reduced_cumulativeWeight (Φ : FlagDecomposition p d f) (hp : Odd p)
     (x : Φ.ReducedNode) :
     (Φ.reduced hp).cumulativeWeight x = Φ.cumulativeWeight x.1 :=
   funext (Φ.cumulativeWeight_reducedNode hp x)
 
+/--
+@isnad1 id=eq.1h4v.s5.a5e0abf651a5 from=translated src=- shape=e4f1f54a vocab=7081449c
+-/
 @[simp]
 theorem reduced_retainedWeight (Φ : FlagDecomposition p d f) (hp : Odd p) :
     (Φ.reduced hp).retainedWeight = Φ.retainedWeight :=
   funext (Φ.sum_reducedNode_eq hp)
 
+/--
+@isnad1 id=eq.1h4v.s5.ef63858095ca from=translated src=- shape=1dc25ff5 vocab=8dc2a6d1
+-/
 @[simp]
 theorem reduced_retainedMass (Φ : FlagDecomposition p d f) (hp : Odd p) :
     (Φ.reduced hp).retainedMass = Φ.retainedMass := by
   simp only [retainedMass, Φ.reduced_retainedWeight hp]
 
-/-- Removing non-reduced nodes cannot increase the number of nodes.-/
+/-- Removing non-reduced nodes cannot increase the number of nodes.
+@isnad1 id=le.1h4v.s6.d4c07b61ac94 from=translated src=- shape=11890288 vocab=f29e7916
+-/
 theorem card_reduced_le (Φ : FlagDecomposition p d f) (hp : Odd p) :
     Fintype.card (Φ.reduced hp).flag.Node ≤ Fintype.card Φ.flag.Node :=
   Fintype.card_subtype_le _
 
+/--
+@isnad1 id=eq.1h5v.s6.b87ca0aa9377 from=translated src=- shape=51ffad32 vocab=64073be2
+-/
 @[simp]
 theorem reduced_hat (Φ : FlagDecomposition p d f) (hp : Odd p)
     (x : Φ.ReducedNode) : (Φ.reduced hp).hat x = Φ.hat x.1 :=
   funext (Φ.hat_reducedNode hp x)
 
+/--
+@isnad1 id=eq.1h5v.s6.20ecfdd08881 from=translated src=- shape=6199f34e vocab=480617c0
+-/
 @[simp]
 theorem reduced_gap (Φ : FlagDecomposition p d f) (hp : Odd p)
     (x : Φ.ReducedNode) : (Φ.reduced hp).gap x = Φ.gap x.1 := by
   simp only [gap, Φ.reduced_hat hp]
 
+/--
+@isnad1 id=iff.1h5v.s6.56d694f48961 from=translated src=- shape=83a45ee4 vocab=a39b6020
+-/
 @[simp]
 theorem reduced_omega_iff (Φ : FlagDecomposition p d f) (hp : Odd p)
     (q : Φ.reducedFlag.Point) :
@@ -269,7 +316,9 @@ theorem reduced_omega_iff (Φ : FlagDecomposition p d f) (hp : Odd p)
   Φ.omega_reducedPointInclusion_iff q
 
 /-- Every original proper point is retained: its base is reduced by
-definition.  Thus inclusion identifies the two full proper-point sets.-/
+definition.  Thus inclusion identifies the two full proper-point sets.
+@isnad1 id=eq.1h4v.s6.7aa66aa62788 from=translated src=- shape=26da72d9 vocab=879e45ef
+-/
 theorem image_reduced_omega (Φ : FlagDecomposition p d f) (hp : Odd p) :
     Φ.reducedPointInclusion '' (Φ.reduced hp).omega = Φ.omega := by
   ext q
@@ -280,7 +329,9 @@ theorem image_reduced_omega (Φ : FlagDecomposition p d f) (hp : Odd p) :
     have hred : Φ.IsReducedElement q.base := ⟨q, hq, rfl⟩
     exact ⟨Φ.toReducedPoint q hred, (Φ.reduced_omega_iff hp _).mpr hq, rfl⟩
 
-/-- Every retained node is reduced in the restricted decomposition.-/
+/-- Every retained node is reduced in the restricted decomposition.
+@isnad1 id=isreduce.1h4v.s5.fe1360d2446a from=translated src=- shape=da4f1842 vocab=66f7a18b
+-/
 theorem reduced_isReduced (Φ : FlagDecomposition p d f) (hp : Odd p) :
     (Φ.reduced hp).IsReduced := by
   intro x
@@ -289,12 +340,17 @@ theorem reduced_isReduced (Φ : FlagDecomposition p d f) (hp : Odd p) :
   refine ⟨Φ.toReducedPoint q hred, (Φ.reduced_omega_iff hp _).mpr hq, ?_⟩
   exact Subtype.ext hbase
 
-/-- Restriction preserves the same coordinate bound at every retained node.-/
+/-- Restriction preserves the same coordinate bound at every retained node.
+@isnad1 id=iskbound.2h5v.s6.1a5eeee899c9 from=translated src=- shape=b6f48617 vocab=dcc7fd32
+-/
 theorem reduced_isKBounded (Φ : FlagDecomposition p d f) (hp : Odd p)
     {K : Φ.flag.Node → ℕ} (hK : Φ.IsKBounded K) :
     (Φ.reduced hp).IsKBounded (fun x ↦ K x.1) :=
   fun x z hz ↦ hK x.1 z hz
 
+/--
+@isnad1 id=eq.1h6v.s6.e154244aff5f from=translated src=- shape=556b09f9 vocab=f3863704
+-/
 @[simp]
 theorem reduced_liftedMassOn (Φ : FlagDecomposition p d f) (hp : Odd p)
     (x : Φ.ReducedNode) (S : Set (RealCoord (Φ.flag.rank x.1))) :
@@ -302,18 +358,27 @@ theorem reduced_liftedMassOn (Φ : FlagDecomposition p d f) (hp : Odd p)
   unfold liftedMassOn
   rw [Φ.reduced_hat hp]
 
+/--
+@isnad1 id=iff.1h6v.s6.a68e2b527847 from=translated src=- shape=3a648fc3 vocab=42a64eff
+-/
 @[simp]
 theorem reduced_isLargeElement_iff (Φ : FlagDecomposition p d f) (hp : Odd p)
     (ε : ℝ) (x : Φ.ReducedNode) :
     (Φ.reduced hp).IsLargeElement ε x ↔ Φ.IsLargeElement ε x.1 := by
   simp only [IsLargeElement, Φ.reduced_liftedMassOn hp, Φ.reduced_retainedMass hp]
 
+/--
+@isnad1 id=iff.1h7v.s7.2b8e95376f79 from=translated src=- shape=fc3defa1 vocab=08a81bbe
+-/
 @[simp]
 theorem reduced_isLargeFace_iff (Φ : FlagDecomposition p d f) (hp : Odd p)
     (ε : ℝ) (x : Φ.ReducedNode) (Γ : (Φ.flag.polytope x.1).Face) :
     (Φ.reduced hp).IsLargeFace ε x Γ ↔ Φ.IsLargeFace ε x.1 Γ := by
   simp only [IsLargeFace, Φ.reduced_liftedMassOn hp, Φ.reduced_retainedMass hp]
 
+/--
+@isnad1 id=iff.1h7v.s6.36fc9e1ed327 from=translated src=- shape=9eb04c08 vocab=98815512
+-/
 @[simp]
 theorem reduced_isCompleteElement_iff (Φ : FlagDecomposition p d f) (hp : Odd p)
     (x : Φ.ReducedNode) (t : ℕ) (δ : ℝ) :
@@ -322,7 +387,9 @@ theorem reduced_isCompleteElement_iff (Φ : FlagDecomposition p d f) (hp : Odd p
   rfl
 
 /-- The ambient affine spans and affine integer generating sets at retained
-nodes are unchanged, so minimality is preserved.-/
+nodes are unchanged, so minimality is preserved.
+@isnad1 id=isminima.2h4v.s5.b394ae2661ef from=translated src=- shape=9ea171b1 vocab=df3c4d4a
+-/
 theorem reduced_isMinimal (Φ : FlagDecomposition p d f) (hp : Odd p)
     (hmin : Φ.IsMinimal) : (Φ.reduced hp).IsMinimal := by
   intro x
@@ -331,6 +398,9 @@ theorem reduced_isMinimal (Φ : FlagDecomposition p d f) (hp : Odd p)
   rw [Φ.reduced_cumulativeWeight hp]
   exact hspace
 
+/--
+@isnad1 id=iff.1h7v.s7.370c2e850c30 from=translated src=- shape=a4ffe0cb vocab=146fdd50
+-/
 theorem reduced_pointsOnFace_iff (Φ : FlagDecomposition p d f) (hp : Odd p)
     (x : Φ.ReducedNode) (Γ : (Φ.flag.polytope x.1).Face)
     (q : Φ.reducedFlag.Point) :
@@ -343,6 +413,9 @@ theorem reduced_pointsOnFace_iff (Φ : FlagDecomposition p d f) (hp : Odd p)
   rw [Φ.reduced_omega_iff hp]
   rfl
 
+/--
+@isnad1 id=iff.1h7v.s8.bc8441bd131e from=translated src=- shape=5335a6d4 vocab=c99a8230
+-/
 theorem reduced_faceBases_iff (Φ : FlagDecomposition p d f) (hp : Odd p)
     (x y : Φ.ReducedNode) (Γ : (Φ.flag.polytope x.1).Face) :
     y ∈ (Φ.reduced hp).faceBases x Γ ↔ y.1 ∈ Φ.faceBases x.1 Γ := by
@@ -359,7 +432,9 @@ theorem reduced_faceBases_iff (Φ : FlagDecomposition p d f) (hp : Odd p)
       Subtype.ext hbase⟩
 
 /-- The face index computed after restriction is the same original node.
-Every face index is reduced, which makes it available in the restriction.-/
+Every face index is reduced, which makes it available in the restriction.
+@isnad1 id=eq.1h6v.s7.8e998503bd14 from=translated src=- shape=85fc2760 vocab=082e5d5d
+-/
 theorem reduced_faceIndex_val (Φ : FlagDecomposition p d f) (hp : Odd p)
     (x : Φ.ReducedNode) (Γ : (Φ.flag.polytope x.1).Face) :
     ((Φ.reduced hp).faceIndex x Γ).1 = Φ.faceIndex x.1 Γ := by
@@ -383,12 +458,18 @@ theorem reduced_faceIndex_val (Φ : FlagDecomposition p d f) (hp : Odd p)
       Finset.le_sup' id hynew
     exact hle
 
+/--
+@isnad1 id=eq.1h6v.s7.7fd3ef3bbd90 from=translated src=- shape=28932cef vocab=8f444702
+-/
 theorem reduced_faceIndex (Φ : FlagDecomposition p d f) (hp : Odd p)
     (x : Φ.ReducedNode) (Γ : (Φ.flag.polytope x.1).Face) :
     (Φ.reduced hp).faceIndex x Γ =
       (⟨Φ.faceIndex x.1 Γ, Φ.isReducedElement_faceIndex x.1 Γ⟩ : Φ.ReducedNode) :=
   Subtype.ext (Φ.reduced_faceIndex_val hp x Γ)
 
+/--
+@isnad1 id=iff.1h6v.s7.2e526bac320c from=translated src=- shape=ae01d584 vocab=874ce53e
+-/
 @[simp]
 theorem reduced_isRealizedFace_iff (Φ : FlagDecomposition p d f) (hp : Odd p)
     (x : Φ.ReducedNode) (Γ : (Φ.flag.polytope x.1).Face) :
@@ -403,7 +484,9 @@ theorem reduced_isRealizedFace_iff (Φ : FlagDecomposition p d f) (hp : Odd p)
     (Φ.reduced_faceIndex_val hp x Γ)
 
 /-- Restriction preserves completeness with the same thresholds at every
-retained node and the same parameters.-/
+retained node and the same parameters.
+@isnad1 id=iscomple.2h7v.s6.b85551b84fe8 from=translated src=- shape=d428706e vocab=289c66a7
+-/
 theorem reduced_isComplete (Φ : FlagDecomposition p d f) (hp : Odd p)
     {T : Φ.flag.Node → ℕ} {ε δ : ℝ} (hcomplete : Φ.IsComplete T ε δ) :
     (Φ.reduced hp).IsComplete (fun x ↦ T x.1) ε δ := by

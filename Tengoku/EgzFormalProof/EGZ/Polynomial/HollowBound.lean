@@ -48,6 +48,9 @@ def lowExponentTuple (d : ℕ) (a : LowExponent d) : Fin (d + 1) → ℕ :=
 def lowExponentMonomial (d : ℕ) (a : LowExponent d) : Fin d → ℕ :=
   fun j => lowExponentTuple d a j.castSucc
 
+/--
+@isnad1 id=eq.0h2v.s6.a690bb9d82ac from=translated src=- shape=e2b77ba0 vocab=894dc186
+-/
 theorem lowExponentTuple_sum (d : ℕ) (a : LowExponent d) :
     ∑ j, lowExponentTuple d a j = d - 1 :=
   (Sym.equivNatSumOfFintype (Fin (d + 1)) (d - 1) a).property
@@ -61,6 +64,9 @@ def lowExponentOfFun (d : ℕ) (e : Fin d → ℕ) (he : ∑ j, e j ≤ d - 1) :
       rw [Fin.sum_univ_castSucc, Fin.snoc_last]
       simpa only [Fin.snoc_castSucc] using Nat.add_sub_of_le he⟩
 
+/--
+@isnad1 id=eq.1h2v.s5.11f40d76c34f from=translated src=- shape=8a89f4df vocab=eb450cc5
+-/
 @[simp]
 theorem lowExponentMonomial_lowExponentOfFun (d : ℕ) (e : Fin d → ℕ)
     (he : ∑ j, e j ≤ d - 1) :
@@ -68,7 +74,9 @@ theorem lowExponentMonomial_lowExponentOfFun (d : ℕ) (e : Fin d → ℕ)
   funext j
   simp [lowExponentMonomial, lowExponentTuple, lowExponentOfFun]
 
-/-- The number of monomials in `d` variables of degree at most `d - 1`.-/
+/-- The number of monomials in `d` variables of degree at most `d - 1`.
+@isnad1 id=eq.1h1v.s6.2ceca123922d from=translated src=- shape=c8f2710f vocab=401332fd
+-/
 theorem card_lowExponent (d : ℕ) (hd : 1 ≤ d) :
     Fintype.card (LowExponent d) = (2 * d - 1).choose d := by
   rw [Sym.card_sym_eq_choose]
@@ -101,7 +109,9 @@ def equationMap {d n : ℕ} (v : Fin n → Fin d → K) (t₀ : Fin n) :
     | none => simp
     | some e => simp [Finset.mul_sum, mul_assoc, monomialValue]
 
-/-- More variables than equations give a nonzero annihilating weight.-/
+/-- More variables than equations give a nonzero annihilating weight.
+@isnad1 id=ex.2h5v.s7.5d771bea9f89 from=translated src=- shape=40e5199a vocab=4ef97f3d
+-/
 theorem exists_annihilator {d n : ℕ} (hd : 1 ≤ d)
     (hn : (2 * d - 1).choose d + 2 ≤ n)
     (v : Fin n → Fin d → K) (t₀ : Fin n) :
@@ -130,6 +140,9 @@ def AnnihilatesLow {d n : ℕ} (h : Fin n → K) (v : Fin n → Fin d → K) : P
   ∀ e : Fin d → ℕ, (∑ j, e j) ≤ d - 1 →
     ∑ i, h i * monomialValue e (v i) = 0
 
+/--
+@isnad1 id=ex.2h5v.s7.51672576140d from=translated src=- shape=e92ceece vocab=845a9f69
+-/
 theorem exists_annihilator' {d n : ℕ} (hd : 1 ≤ d)
     (hn : (2 * d - 1).choose d + 2 ≤ n)
     (v : Fin n → Fin d → K) (t₀ : Fin n) :
@@ -149,7 +162,9 @@ def zeroSumDetector (q d : ℕ) :
     MvPolynomial (Fin (q + 1) × Fin d) (ZMod (q + 1)) :=
   ∏ j : Fin d, (1 - (∑ i : Fin (q + 1), X (i, j)) ^ q)
 
-/-- Total-degree bound for the detector.-/
+/-- Total-degree bound for the detector.
+@isnad1 id=le.0h2v.s6.9db4efd1a26c from=translated src=- shape=07dfc1e8 vocab=5abb5a61
+-/
 theorem totalDegree_zeroSumDetector_le (q d : ℕ) [Fact (q + 1).Prime] :
     (zeroSumDetector q d).totalDegree ≤ d * q := by
   calc
@@ -169,13 +184,18 @@ theorem totalDegree_zeroSumDetector_le (q d : ℕ) [Fact (q + 1).Prime] :
       simpa using Nat.mul_le_mul_left q hs
     _ = d * q := by simp
 
+/--
+@isnad1 id=eq.0h3v.s10.f6f6c1e74cec from=translated src=- shape=b8ef6d8e vocab=03eb91f3
+-/
 theorem eval_zeroSumDetector (q d : ℕ)
     (y : Fin (q + 1) → FpVec (q + 1) d) :
     eval (fun ij => y ij.1 ij.2) (zeroSumDetector q d) =
       ∏ j : Fin d, (1 - (∑ i : Fin (q + 1), y i j) ^ q) := by
   simp [zeroSumDetector]
 
-/-- The detector is `1` exactly on tuples whose vector sum is zero.-/
+/-- The detector is `1` exactly on tuples whose vector sum is zero.
+@isnad1 id=iff.0h3v.s10.ea75b6fc3067 from=translated src=- shape=78b212e0 vocab=e6460a6f
+-/
 theorem eval_zeroSumDetector_eq_one_iff (q d : ℕ) [Fact (q + 1).Prime]
     (y : Fin (q + 1) → FpVec (q + 1) d) :
     eval (fun ij => y ij.1 ij.2) (zeroSumDetector q d) = 1 ↔
@@ -215,10 +235,16 @@ def blockValue {q d : ℕ} (e : (Fin (q + 1) × Fin d) →₀ ℕ)
     (i : Fin (q + 1)) (x : Fin d → K) : K :=
   ∏ j, x j ^ e (i, j)
 
+/--
+@isnad1 id=eq.0h3v.s7.d4450c15bf46 from=translated src=- shape=1cc76a36 vocab=167e09bd
+-/
 theorem sum_blockDegree {q d : ℕ} (e : (Fin (q + 1) × Fin d) →₀ ℕ) :
     ∑ i, blockDegree e i = e.sum fun _ n => n := by
   simp [blockDegree, Fintype.sum_prod_type, Finsupp.sum_fintype]
 
+/--
+@isnad1 id=eq.0h5v.s8.22aafc313dd0 from=translated src=- shape=09c80081 vocab=b6ea8294
+-/
 theorem fullMonomialValue_eq_blocks {q d : ℕ}
     (e : (Fin (q + 1) × Fin d) →₀ ℕ)
     (y : Fin (q + 1) → Fin d → K) :
@@ -227,7 +253,9 @@ theorem fullMonomialValue_eq_blocks {q d : ℕ}
   rfl
 
 /-- Every supported detector monomial either has low degree in one of the
-first `q` blocks, or degree zero in the last block.-/
+first `q` blocks, or degree zero in the last block.
+@isnad1 id=or.1h3v.s8.9424dbd7ed96 from=translated src=- shape=56af3578 vocab=9d2797d7
+-/
 theorem low_block_or_last_zero {q d : ℕ} [Fact (q + 1).Prime]
     {e : (Fin (q + 1) × Fin d) →₀ ℕ}
     (he : e ∈ (zeroSumDetector q d).support) :
@@ -248,6 +276,9 @@ theorem low_block_or_last_zero {q d : ℕ} [Fact (q + 1).Prime]
       exact (le_totalDegree he).trans (totalDegree_zeroSumDetector_le q d)
     omega
 
+/--
+@isnad1 id=eq.1h5v.s6.fe556f527192 from=translated src=- shape=967d2680 vocab=b7d36275
+-/
 theorem blockValue_last_eq_one_of_degree_zero {q d : ℕ}
     (e : (Fin (q + 1) × Fin d) →₀ ℕ) (x : Fin d → K)
     (he : blockDegree e (Fin.last q) = 0) :
@@ -267,6 +298,9 @@ def weightedMonomialSum {q d n : ℕ} (h : Fin n → K)
     ((∏ k, h (a k)) * ∏ k, blockValue e k.castSucc (v (a k))) *
       blockValue e (Fin.last q) (v t)
 
+/--
+@isnad1 id=eq.0h7v.s7.8678e1767445 from=translated src=- shape=400fe034 vocab=6561bb2a
+-/
 theorem sum_weighted_blockValues_eq_prod_sums {q d n : ℕ}
     (h : Fin n → K) (v : Fin n → Fin d → K)
     (e : (Fin (q + 1) × Fin d) →₀ ℕ) :
@@ -277,6 +311,9 @@ theorem sum_weighted_blockValues_eq_prod_sums {q d n : ℕ}
     (Fintype.prod_sum (fun k : Fin q => fun i : Fin n =>
       h i * blockValue e k.castSucc (v i))).symm
 
+/--
+@isnad1 id=eq.2h8v.s8.65f493ba855f from=translated src=- shape=a8e73629 vocab=d4234b06
+-/
 theorem weightedMonomialSum_eq_of_support {q d n : ℕ} [Fact (q + 1).Prime]
     {h : Fin n → ZMod (q + 1)} {v : Fin n → FpVec (q + 1) d}
     (ha : AnnihilatesLow h v) {e : (Fin (q + 1) × Fin d) →₀ ℕ}
@@ -314,6 +351,9 @@ def phi {q d n : ℕ} (h : Fin n → ZMod (q + 1))
   ∑ a : Fin q → Fin n, (∏ k, h (a k)) *
     eval (fun ij => tupleWithLast v a t ij.1 ij.2) (zeroSumDetector q d)
 
+/--
+@isnad1 id=eq.0h6v.s9.c2350d21382c from=translated src=- shape=208c6c26 vocab=782caa45
+-/
 theorem phi_eq_support_sum {q d n : ℕ} [Fact (q + 1).Prime]
     (h : Fin n → ZMod (q + 1)) (v : Fin n → FpVec (q + 1) d)
     (t : Fin n) :
@@ -333,7 +373,9 @@ theorem phi_eq_support_sum {q d n : ℕ} [Fact (q + 1).Prime]
   simp only [tupleWithLast, Fin.snoc_castSucc, Fin.snoc_last]
   ring
 
-/-- The low-moment conditions make `phi` independent of its final argument.-/
+/-- The low-moment conditions make `phi` independent of its final argument.
+@isnad1 id=eq.1h7v.s7.d712474e6acb from=translated src=- shape=f341e522 vocab=c8909fe4
+-/
 theorem phi_eq_of_annihilatesLow {q d n : ℕ} [Fact (q + 1).Prime]
     {h : Fin n → ZMod (q + 1)} {v : Fin n → FpVec (q + 1) d}
     (ha : AnnihilatesLow h v) (t u : Fin n) : phi h v t = phi h v u := by
@@ -342,7 +384,9 @@ theorem phi_eq_of_annihilatesLow {q d n : ℕ} [Fact (q + 1).Prime]
   intro e he
   rw [weightedMonomialSum_eq_of_support ha he]
 
-/-- Operational hollowness specialized to a `Fin (q + 1)` tuple.-/
+/-- Operational hollowness specialized to a `Fin (q + 1)` tuple.
+@isnad1 id=iff.1h5v.s8.957ec293d2ac from=translated src=- shape=af2a880e vocab=92a4f014
+-/
 theorem isPHollow_sum_zero_iff_constant {q d n : ℕ}
     {v : Fin n → FpVec (q + 1) d} (hv : IsPHollow (q + 1) v)
     (a : Fin (q + 1) → Fin n) :
@@ -350,7 +394,9 @@ theorem isPHollow_sum_zero_iff_constant {q d n : ℕ}
   hv.sum_fin_eq_zero_iff_constant a
 
 /-- On a hollow family, the detector is supported exactly on constant index
-tuples.-/
+tuples.
+@isnad1 id=eq.1h5v.s10.02d311c3fe19 from=translated src=- shape=5e6a9607 vocab=c446e12e
+-/
 theorem isPHollow_detector_on_tuple {q d n : ℕ} [Fact (q + 1).Prime]
     {v : Fin n → FpVec (q + 1) d} (hv : IsPHollow (q + 1) v)
     (a : Fin (q + 1) → Fin n) :
@@ -371,6 +417,9 @@ theorem isPHollow_detector_on_tuple {q d n : ℕ} [Fact (q + 1).Prime]
       simpa using ZMod.pow_card_sub_one_eq_one hj
     rw [hpw, sub_self]
 
+/--
+@isnad1 id=eq.1h6v.s10.0f3fda3d2c6e from=translated src=- shape=ec658fc0 vocab=fa920d20
+-/
 theorem isPHollow_detector_tupleWithLast {q d n : ℕ} [Fact (q + 1).Prime]
     {v : Fin n → FpVec (q + 1) d} (hv : IsPHollow (q + 1) v)
     (a : Fin q → Fin n) (t : Fin n) :
@@ -395,14 +444,18 @@ theorem isPHollow_detector_tupleWithLast {q d n : ℕ} [Fact (q + 1).Prime]
     refine Fin.lastCases ?_ (fun j => ?_) k <;> simp [indexTuple]
 
 /-- Hollowness gives the first computation of the contraction:
-`phi(t) = h(t)^q`.-/
+`phi(t) = h(t)^q`.
+@isnad1 id=eq.1h6v.s8.26c8aa9d000a from=translated src=- shape=d95679ca vocab=5228a7d7
+-/
 theorem phi_eq_pow_of_isPHollow {q d n : ℕ} [Fact (q + 1).Prime]
     {v : Fin n → FpVec (q + 1) d} (hv : IsPHollow (q + 1) v)
     (h : Fin n → ZMod (q + 1)) (t : Fin n) : phi h v t = h t ^ q := by
   classical
   simp [phi, isPHollow_detector_tupleWithLast hv]
 
-/-- Pointwise polynomial bound for a modulus written as the prime `q + 1`.-/
+/-- Pointwise polynomial bound for a modulus written as the prime `q + 1`.
+@isnad1 id=le.2h4v.s6.228f457410b0 from=translated src=- shape=e88c214c vocab=591f7c9a
+-/
 theorem phollow_length_le_succ_choose {q d n : ℕ} [Fact (q + 1).Prime]
     (hd : 1 ≤ d) {v : Fin n → FpVec (q + 1) d}
     (hv : IsPHollow (q + 1) v) :
@@ -429,7 +482,9 @@ end Polynomial
 namespace IsPHollow
 
 /-- **Proposition `thw`.** Every `p`-hollow family in positive dimension has
-at most `choose (2d - 1) d + 1` members.-/
+at most `choose (2d - 1) d + 1` members.
+@isnad1 id=le.3h4v.s6.a6856eed6ef8 from=translated src=- shape=35edb084 vocab=871c01a6
+-/
 theorem card_le_choose_add_one {p d s : ℕ} (hp : p.Prime) (hd : 1 ≤ d)
     {v : Fin s → FpVec p d} (hv : IsPHollow p v) :
     s ≤ (2 * d - 1).choose d + 1 := by
@@ -441,14 +496,18 @@ theorem card_le_choose_add_one {p d s : ℕ} (hp : p.Prime) (hd : 1 ≤ d)
 
 end IsPHollow
 
-/-- The polynomial upper bound on the extremal hollow number.-/
+/-- The polynomial upper bound on the extremal hollow number.
+@isnad1 id=le.2h2v.s5.c51fcee2f3ed from=translated src=- shape=c102564c vocab=bb53673f
+-/
 theorem hollowConstant_le_choose_add_one {p d : ℕ} (hp : p.Prime) (hd : 1 ≤ d) :
     hollowConstant p d ≤ (2 * d - 1).choose d + 1 := by
   obtain ⟨v, hv⟩ := hollowConstant_spec hp
   exact hv.card_le_choose_add_one hp hd
 
 /-- For fixed positive `d`, `𝔴(𝔽_p^d)` is bounded independently of the
-prime.  This is the form used by the asymptotic bridge.-/
+prime.  This is the form used by the asymptotic bridge.
+@isnad1 id=ex.1h1v.s4.c0039159b9bf from=translated src=- shape=83fa8213 vocab=e71f8465
+-/
 theorem exists_uniform_hollowConstant_bound (d : ℕ) (hd : 1 ≤ d) :
     ∃ C : ℕ, ∀ p : ℕ, p.Prime → hollowConstant p d ≤ C :=
   ⟨(2 * d - 1).choose d + 1,

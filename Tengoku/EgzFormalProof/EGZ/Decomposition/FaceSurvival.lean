@@ -21,7 +21,9 @@ variable {p d : ℕ} [NeZero p] {f : FpCoord p d → ℕ}
     (selected : FpCoord p d → Prop) (hp : Odd p)
 
 /-- A reduced old node remains reduced upstairs when some cumulative atom
-at that node is not moved to the lower layer.-/
+at that node is not moved to the lower layer.
+@isnad1 id=isreduce.3h7v.s6.ce921bb7b92e from=translated src=- shape=635a7b6c vocab=9e5e6f4c
+-/
 theorem upper_isReducedElement_of_unselected (x : Φ.flag.Node)
     (hred : Φ.IsReducedElement x)
     (houtside : ∃ v, Φ.cumulativeWeight x v ≠ 0 ∧ ¬ selected v) :
@@ -77,7 +79,9 @@ theorem upper_isReducedElement_of_unselected (x : Φ.flag.Node)
   exact Ψ.isReducedElement_faceIndex _ _
 
 omit selected in
-/-- A proper face leaves an unselected cumulative atom.-/
+/-- A proper face leaves an unselected cumulative atom.
+@isnad1 id=ex.1h6v.s7.ae5c50ebed5c from=translated src=- shape=652b96d4 vocab=2bee7626
+-/
 theorem exists_unselected_of_ne_top (Γ : (Φ.flag.polytope anchor).Face) (hΓ : Γ ≠ ⊤) :
     ∃ v, Φ.cumulativeWeight anchor v ≠ 0 ∧ ¬ Φ.faceSelector anchor Γ v := by
   have houtside : ∃ q ∈ Φ.liftedSupport anchor, q.real ∉ Γ.carrier := by
@@ -98,7 +102,9 @@ theorem exists_unselected_of_ne_top (Γ : (Φ.flag.polytope anchor).Face) (hΓ :
 
 omit selected in
 /-- The upper anchor of a proper-face refinement survives restriction to
-the reduced nodes.-/
+the reduced nodes.
+@isnad1 id=isreduce.3h6v.s7.74a128161da9 from=translated src=- shape=a032800f vocab=4baa49dd
+-/
 theorem face_upperAnchor_isReduced (Γ : (Φ.flag.polytope anchor).Face) (hΓ : Γ ≠ ⊤)
     (hred : Φ.IsReducedElement anchor) :
     (decomposition Φ anchor (Φ.faceSelector anchor Γ) hp).IsReducedElement

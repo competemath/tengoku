@@ -29,7 +29,9 @@ noncomputable def upperWeight {F : ConvexFlag} {n : ℕ}
     weight i
 
 /-- Nonnegative point weights give nonnegative weight to every functional
-upper side.-/
+upper side.
+@isnad1 id=le.2h6v.s5.7483ab146f45 from=translated src=- shape=06c6db41 vocab=eb477377
+-/
 theorem upperWeight_nonneg {F : ConvexFlag} {n : ℕ}
     (points : Fin n → F.Point) (weight : Fin n → ℝ)
     (hweight : ∀ i, 0 ≤ weight i)
@@ -42,7 +44,9 @@ theorem upperWeight_nonneg {F : ConvexFlag} {n : ℕ}
 
 /-- Positive total nonnegative weight, together with proper integrality of
 the input points, guarantees that the denominator in the centerpoint bound
-is positive.-/
+is positive.
+@isnad1 id=lt.4h5v.s6.d432e42451bb from=translated src=- shape=ef0dfdac vocab=a861c004
+-/
 theorem hellyConstant_pos_of_weighted_points {F : ConvexFlag}
     {Ω : F.ProperPointSet} {n : ℕ} (points : Fin n → F.Point)
     (weight : Fin n → ℝ) (hproper : ∀ i, points i ∈ Ω)
@@ -128,7 +132,9 @@ private theorem exists_common_of_large
 /-- Corollary 3.14 (`central`): the centerpoint theorem for convex flags.
 
 The quantified sum includes precisely those input points at which `xi` is
-defined and whose value is at least its value at the centerpoint.-/
+defined and whose value is at least its value at the centerpoint.
+@isnad1 id=ex.4h5v.s7.53282fe74ac1 from=translated src=- shape=91437d5a vocab=c7496086
+-/
 theorem flagCenterpoint_family {F : ConvexFlag} (Ω : F.ProperPointSet)
     {n : ℕ} (points : Fin n → F.Point)
     (hproper : ∀ i, points i ∈ Ω)
@@ -226,7 +232,9 @@ theorem flagCenterpoint_family {F : ConvexFlag} (Ω : F.ProperPointSet)
   exact (Finset.mem_compl.mp (by simpa [bad] using hibad)) higood
 
 /-- Compatibility form for a weighted set of distinct flag points. The
-centerpoint argument itself also applies to labelled points with repetition.-/
+centerpoint argument itself also applies to labelled points with repetition.
+@isnad1 id=ex.5h5v.s7.f31ba90add75 from=translated src=- shape=0a62e893 vocab=da30a25b
+-/
 theorem flagCenterpoint {F : ConvexFlag} (Ω : F.ProperPointSet)
     {n : ℕ} (points : Fin n → F.Point)
     (_hpoints_injective : Function.Injective points)
@@ -240,7 +248,9 @@ theorem flagCenterpoint {F : ConvexFlag} (Ω : F.ProperPointSet)
           upperWeight points weight xi q hq :=
   flagCenterpoint_family Ω points hproper hintegral weight hweight htotal
 
-/-- Numbered alias for Corollary 3.14.-/
+/-- Numbered alias for Corollary 3.14.
+@isnad1 id=ex.5h5v.s7.f31ba90add75 from=translated src=- shape=0a62e893 vocab=da30a25b
+-/
 alias corollary_3_14 := flagCenterpoint
 
 end EGZ.ConvexFlag

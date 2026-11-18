@@ -71,7 +71,9 @@ zero combination of total weight `p` in which every coefficient is strictly
 less than `p`.
 
 This is the exact operational consequence of `n > 𝔴(𝔽_p^d)` used in
-Proposition 7.1.-/
+Proposition 7.1.
+@isnad1 id=ex.2h4v.s7.7c297bd6c11c from=translated src=- shape=d90aeaa1 vocab=81714aea
+-/
 theorem exists_nontrivial_zero_combination_of_hollowConstant_lt
     {p d n : ℕ} (hp : Nat.Prime p) (hn : hollowConstant p d < n)
     (v : Fin n → FpVec p d) :
@@ -107,7 +109,9 @@ The vectors `z i` are coordinates relative to an affine lattice origin.
 Vanishing of the integer numerator modulo `p` says precisely that its
 normalized real sum has integer coordinates.  In Proposition 7.1 the
 additional equality `∑ α = p` makes this normalized sum an affine
-combination, but it is not needed for the divisibility calculation itself.-/
+combination, but it is not needed for the divisibility calculation itself.
+@isnad1 id=isintegr.2h5v.s7.b73652c7baff from=translated src=- shape=ea27ade9 vocab=9953fb3c
+-/
 theorem isIntegral_weighted_average_of_mod_eq_zero
     {p n : ℕ} {I : Type*} [Fintype I]
     (hp : 0 < p) (α : I → ℕ) (z : I → IntCoord n)
@@ -148,7 +152,9 @@ Each integral flag point is lifted to the representing affine subspace over
 `p`, gives an integral convex-combination result.  The proof checks both
 places where affine (rather than linear) coordinates matter: compatibility
 with the transition map, and cancellation of the translation term because
-the coefficient sum is zero in `ZMod p`.-/
+the coefficient sum is zero in `ZMod p`.
+@isnad1 id=isintegr.7h10v.s9.4a5acaf8be8d from=translated src=- shape=93b052b9 vocab=cb353a4c
+-/
 theorem convexCombination_isIntegral_of_zero_sum
     {p d n : ℕ} (hp : Nat.Prime p) {F : ConvexFlag}
     (R : FpRepresentation p d F) (points : Fin n → F.Point)
@@ -258,7 +264,9 @@ theorem convexCombination_isIntegral_of_zero_sum
 
 This version deliberately assumes only an `FpRepresentation`; none of the
 minimality, reducedness, completeness, mass, or face conditions of a flag
-decomposition enter the proof.-/
+decomposition enter the proof.
+@isnad1 id=le.2h7v.s5.27031e66b543 from=translated src=- shape=6b5c0ccf vocab=764519ee
+-/
 theorem hellyIndependent_card_le_hollowConstant
     {p d n : ℕ} (hp : Nat.Prime p) {F : ConvexFlag}
     (R : FpRepresentation p d F) {Omega : F.ProperPointSet}
@@ -304,7 +312,9 @@ theorem hellyIndependent_card_le_hollowConstant
   have hiNat : α i = p := by exact_mod_cast hiR
   exact (Nat.ne_of_lt (hαlt i)) hiNat
 
-/-- Proposition 7.1 at the level of an arbitrary representation.-/
+/-- Proposition 7.1 at the level of an arbitrary representation.
+@isnad1 id=le.1h5v.s4.fe131ebb8e51 from=translated src=- shape=4cc99191 vocab=5bdab528
+-/
 theorem hellyConstant_le_hollowConstant
     {p d : ℕ} (hp : Nat.Prime p) {F : ConvexFlag}
     (R : FpRepresentation p d F) (Omega : F.ProperPointSet) :
@@ -318,7 +328,9 @@ namespace FlagDecomposition
 
 /-- Proposition 7.1 (`lbound`) for the proper-point set of a flag
 decomposition.  The proof factors through the representation-only result
-above, recording precisely which part of the Section 4 structure it uses.-/
+above, recording precisely which part of the Section 4 structure it uses.
+@isnad1 id=le.1h4v.s5.d90ed8e30154 from=translated src=- shape=1b26fe7e vocab=61294c91
+-/
 theorem propositionSevenOne
     {p d : ℕ} [NeZero p] (hp : Nat.Prime p)
     {f : FpCoord p d → ℕ} (Phi : FlagDecomposition p d f) :

@@ -23,25 +23,43 @@ noncomputable def stageScale (d : ℕ) (ε : ℝ) (i : ℕ) : ℝ :=
 noncomputable def prefixBudget (d : ℕ) (ε : ℝ) (i : ℕ) : ℝ :=
   ∑ j ∈ Finset.range i, lossBudget d ε (initialScale d ε) (j + 1)
 
+/--
+@isnad1 id=eq.0h2v.s4.1e2ff2e9a7b9 from=translated src=- shape=c1a5d958 vocab=d3d85d76
+-/
 @[simp] theorem prefixBudget_zero (d : ℕ) (ε : ℝ) : prefixBudget d ε 0 = 0 := by
   simp [prefixBudget]
 
+/--
+@isnad1 id=eq.0h3v.s6.ac97ee816104 from=translated src=- shape=78e162d3 vocab=ddd4ff4f
+-/
 theorem prefixBudget_succ (d : ℕ) (ε : ℝ) (i : ℕ) :
     prefixBudget d ε (i + 1) = prefixBudget d ε i +
       (ε * stageScale d ε i ^ 2 + (3 : ℝ) ^ (d + 1) * stageScale d ε i) := by
   simp [prefixBudget, Finset.sum_range_succ, lossBudget, stageScale, refinementConstant]
 
+/--
+@isnad1 id=le.3h3v.s6.4d2da5166167 from=translated src=- shape=6a5148ab vocab=1635b80c
+-/
 theorem prefixBudget_le {d : ℕ} (hd : 1 ≤ d) {ε : ℝ}
     (hε : 0 < ε) (hεhalf : ε ≤ 1 / 2) (i : ℕ) : prefixBudget d ε i ≤ ε ^ 2 / 8 := by
   simpa [prefixBudget] using initialScale_sum_tail_le hd hε hεhalf 0 (Finset.range i)
 
+/--
+@isnad1 id=lt.1h3v.s4.c8c01e6005d2 from=translated src=- shape=144bfabc vocab=7959d855
+-/
 theorem stageScale_pos (d : ℕ) {ε : ℝ} (hε : 0 < ε) (i : ℕ) :
     0 < stageScale d ε i := scale_pos d (initialScale_pos d hε) (i + 1)
 
+/--
+@isnad1 id=antitone.2h2v.s5.9bf87921da5b from=translated src=- shape=d56dd863 vocab=566cf1e5
+-/
 theorem stageScale_antitone {d : ℕ} (hd : 1 ≤ d) {ε : ℝ} (hε : 0 < ε) :
     Antitone (stageScale d ε) :=
   fun _ _ h ↦ scale_antitone hd (initialScale_pos d hε).le (Nat.add_le_add_right h 1)
 
+/--
+@isnad1 id=and.3h3v.s7.1d4bd3cfd3cf from=translated src=- shape=e3693427 vocab=0dadb92e
+-/
 theorem stageScale_small {d : ℕ} (hd : 1 ≤ d) {ε : ℝ}
     (hε : 0 < ε) (hεhalf : ε ≤ 1 / 2) (i : ℕ) :
     (3 : ℝ) ^ (d + 1) * stageScale d ε i < 1 ∧
@@ -69,9 +87,15 @@ namespace BoundedState
 
 variable {P ε} {i : ℕ} (s : BoundedState (f := f) P ε i)
 
+/--
+@isnad1 id=le.0h8v.s6.ac4742edb54b from=translated src=- shape=e92bdbd0 vocab=cb5b7556
+-/
 theorem mass_le_input : s.decomposition.retainedMass ≤ natMass f :=
   natMass_mono s.decomposition.retained_le
 
+/--
+@isnad1 id=and.3h8v.s7.87fed20c64b3 from=translated src=- shape=cae0258a vocab=a8bfc4d0
+-/
 theorem mass_bounds (hd : 1 ≤ d) (hε : 0 < ε) (hεhalf : ε ≤ 1 / 2) :
     (natMass f : ℝ) / 2 ≤ s.decomposition.retainedMass ∧
       (1 - ε) * (natMass f : ℝ) ≤ s.decomposition.retainedMass := by

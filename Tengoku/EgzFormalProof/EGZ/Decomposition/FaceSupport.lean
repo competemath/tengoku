@@ -18,6 +18,9 @@ namespace EGZ.FlagDecomposition
 variable {p d : ℕ} [NeZero p] {f : FpCoord p d → ℕ}
     (Φ : FlagDecomposition p d f)
 
+/--
+@isnad1 id=eq.0h6v.s9.babb3174685a from=translated src=- shape=b1d389dc vocab=24545155
+-/
 theorem face_eq_convexHull_liftedSupport (x : Φ.flag.Node)
     (Γ : (Φ.flag.polytope x).Face) :
     Γ.carrier = convexHull ℝ (IntCoord.real ''
@@ -57,6 +60,9 @@ theorem face_eq_convexHull_liftedSupport (x : Φ.flag.Node)
       RationalPolytope.convexHull_supportingLevel_eq S ξ c hleS
     _ = _ := by rw [hfilter]
 
+/--
+@isnad1 id=nonempty.0h6v.s7.dd45edeee0e8 from=translated src=- shape=7427e0c6 vocab=0a53c74f
+-/
 theorem liftedSupport_face_nonempty (x : Φ.flag.Node)
     (Γ : (Φ.flag.polytope x).Face) :
     ((Φ.liftedSupport x).filter (fun q ↦ q.real ∈ Γ.carrier)).Nonempty := by

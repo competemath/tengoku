@@ -15,7 +15,9 @@ namespace EGZ
 
 /-- Theorem 1.12 (`thm:cpt`), with the rational-support hypothesis made
 explicit.  In the paper this is intended by `P ⊆ ℚ^d`; it is necessary once
-the polytope is represented in its real affine span.-/
+the polytope is represented in its real affine span.
+@isnad1 id=polytope.5h3v.s6.dc5bc337050f from=translated src=- shape=d96a079d vocab=bb55c47b
+-/
 theorem theorem_1_12_polytope_centerpoint {d : ℕ} (hd : 0 < d)
     (P : RationalPolytope d) (w : RealCoord d → NNReal)
     (hfinite : (Function.support w).Finite)

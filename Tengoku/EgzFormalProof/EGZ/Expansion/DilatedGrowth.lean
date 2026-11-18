@@ -24,7 +24,9 @@ def IsCentrallyThick {p d : ℕ} [NeZero p] (w : FpCoord p d → ℝ)
     δ * (∑ v, w v) ≤ ∑ v, if ¬ HasBoundedRepresentative p K (ξ v) then w v else 0
 
 /-- The growth step, separated from the one-dimensional character-sum
-estimate so that the combinatorial and analytic arguments remain reusable.-/
+estimate so that the combinatorial and analytic arguments remain reusable.
+@isnad1 id=ex.7h7v.s9.10d3fd95774a from=translated src=- shape=75665303 vocab=1c6cace1
+-/
 theorem exists_boundary_of_dilated_characters {p d K m : ℕ} [NeZero p]
     (w : FpCoord p d → ℝ) (hw : ∀ v, 0 ≤ w v) (hW : 0 < ∑ v, w v)
     (hm : 0 < m) {δ : ℝ} (hδ : 0 ≤ δ) (hthick : IsCentrallyThick w K δ)
@@ -93,7 +95,9 @@ theorem exists_boundary_of_dilated_characters {p d K m : ℕ} [NeZero p]
   nlinarith
 
 /-- Central thickness forces a translation with a proportionate boundary.
-The absolute constant `20` suffices; the paper uses the looser `200`.-/
+The absolute constant `20` suffices; the paper uses the looser `200`.
+@isnad1 id=ex.7h6v.s8.f848b31c260e from=translated src=- shape=a8986a4a vocab=6caf14b9
+-/
 theorem exists_boundary_of_central_thickness {p d K : ℕ} [NeZero p]
     (hK : 0 < K) (hKp : K ≤ p)
     (w : FpCoord p d → ℝ) (hw : ∀ v, 0 ≤ w v) (hW : 0 < ∑ v, w v)
@@ -131,7 +135,9 @@ theorem exists_boundary_of_central_thickness {p d K : ℕ} [NeZero p]
   have hmB := mul_le_mul_of_nonneg_right hmhi (show (0 : ℝ) ≤ 4 * boundary Y v by positivity)
   nlinarith
 
-/-- Multiplicative form of the central-thickness growth lemma.-/
+/-- Multiplicative form of the central-thickness growth lemma.
+@isnad1 id=ex.7h6v.s8.e9dc528dbb47 from=translated src=- shape=eb451152 vocab=a7e2bb35
+-/
 theorem exists_translate_growth_of_central_thickness {p d K : ℕ} [NeZero p]
     (hK : 0 < K) (hKp : K ≤ p)
     (w : FpCoord p d → ℝ) (hw : ∀ v, 0 ≤ w v) (hW : 0 < ∑ v, w v)
