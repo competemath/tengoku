@@ -34,9 +34,15 @@ def mulCount : ℕ → ℕ → ℕ
   | 0, _ => 0
   | t + 1, n => (if n % F.p = 0 then 0 else 1) + mulCount t (F.Ct n)
 
+/--
+@isnad1 id=eq.0h3v.s6.653dd45595b4 from=translated src=- shape=f1dc3d21 vocab=bba55c00
+-/
 lemma mulCount_succ (t n : ℕ) :
     F.mulCount (t + 1) n = (if n % F.p = 0 then 0 else 1) + F.mulCount t (F.Ct n) := rfl
 
+/--
+@isnad1 id=le.0h3v.s3.5bfb7d72285d from=translated src=- shape=ecd30ec2 vocab=42730715
+-/
 lemma mulCount_le : ∀ t n, F.mulCount t n ≤ t := by
   intro t
   induction t with
@@ -47,7 +53,9 @@ lemma mulCount_le : ∀ t n, F.mulCount t n ≤ t := by
     have := ih (F.Ct n)
     split_ifs <;> omega
 
-/-- Backward sandwiching ((ii) and item 3 of the seed argument in the accompanying paper).-/
+/-- Backward sandwiching ((ii) and item 3 of the seed argument in the accompanying paper).
+@isnad1 id=and.5h5v.s8.a77ec251eaea from=translated src=- shape=8485bb69 vocab=41703f92
+-/
 lemma backward_bounds {Y : ℕ} (hRY : (F.Rb : ℝ) ≤ ((F.q : ℝ) - F.p) * Y)
     {a : ℝ} (ha : (F.Rb : ℝ) = a * F.p * Y) (ha0 : 0 ≤ a) (ha1 : a ≤ 1) :
     ∀ t n, (∀ k < t, Y ≤ F.Ct^[k] n) →
@@ -152,7 +160,9 @@ lemma backward_bounds {Y : ℕ} (hRY : (F.Rb : ℝ) ≤ ((F.q : ℝ) - F.p) * Y)
           _ = (F.p : ℝ) ^ (t + 1) * (F.Ct^[t] (F.Ct n) : ℝ) * (1 + a) ^ (t + 1) := by ring
 
 /-- A finite set of natural numbers contained in the real interval `[lo, hi]` has at most
-`hi - lo + 1` elements.-/
+`hi - lo + 1` elements.
+@isnad1 id=le.2h3v.s6.cab5370c51eb from=translated src=- shape=6fdcff45 vocab=0cb7774f
+-/
 lemma card_le_of_forall_mem_real (S : Finset ℕ) (hS : S.Nonempty) (lo hi : ℝ)
     (h : ∀ n ∈ S, lo ≤ (n : ℝ) ∧ (n : ℝ) ≤ hi) : (S.card : ℝ) ≤ hi - lo + 1 := by
   set n₀ := S.min' hS with hn₀
@@ -177,7 +187,9 @@ lemma card_le_of_forall_mem_real (S : Finset ℕ) (hS : S.Nonempty) (lo hi : ℝ
   have := Nat.floor_le hlohi
   linarith
 
-/-- `(1 + a)^t ≤ 1 + 2ta` (`0 ≤ ta ≤ 1`).-/
+/-- `(1 + a)^t ≤ 1 + 2ta` (`0 ≤ ta ≤ 1`).
+@isnad1 id=le.2h2v.s6.25c12897387d from=translated src=- shape=a506ce20 vocab=72589b2f
+-/
 lemma one_add_pow_le {a : ℝ} (ha0 : 0 ≤ a) (t : ℕ) (hta : (t : ℝ) * a ≤ 1) :
     (1 + a) ^ t ≤ 1 + 2 * t * a := by
   have h1 : (1 + a) ^ t ≤ Real.exp a ^ t := by
@@ -191,7 +203,9 @@ lemma one_add_pow_le {a : ℝ} (ha0 : 0 ≤ a) (t : ℕ) (hta : (t : ℝ) * a �
   linarith
 
 /-- The number of elements of a fibre at a fixed time (the corollary and item 4 of the seed argument in
-the accompanying paper).-/
+the accompanying paper).
+@isnad1 id=le.5h6v.s8.68cdf640ff8c from=translated src=- shape=5e0d4dad vocab=eb7fb6d1
+-/
 theorem card_fiber_le {Y : ℕ} (hRY : (F.Rb : ℝ) ≤ ((F.q : ℝ) - F.p) * Y)
     {a : ℝ} (ha : (F.Rb : ℝ) = a * F.p * Y) (ha0 : 0 ≤ a) (ha1 : a ≤ 1) (M t y : ℕ)
     (hta : (t : ℝ) * a ≤ 1 / 4) :

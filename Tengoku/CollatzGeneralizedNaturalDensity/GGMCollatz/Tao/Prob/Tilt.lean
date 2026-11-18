@@ -38,6 +38,9 @@ noncomputable def tilt (p : PMF M) (w : M → ℝ≥0∞) (hZ0 : tiltZ p w ≠ 0
     rw [← h]
     exact ENNReal.summable.hasSum⟩
 
+/--
+@isnad1 id=eq.2h4v.s6.995c023eda60 from=translated src=- shape=6375c3b1 vocab=c8a5515c
+-/
 theorem tilt_apply (p : PMF M) (w : M → ℝ≥0∞) (hZ0 : tiltZ p w ≠ 0)
     (hZt : tiltZ p w ≠ ∞) (d : M) :
     tilt p w hZ0 hZt d = p d * w d * (tiltZ p w)⁻¹ := rfl
@@ -45,7 +48,9 @@ theorem tilt_apply (p : PMF M) (w : M → ℝ≥0∞) (hZ0 : tiltZ p w ≠ 0)
 /-- **The tilting identity for iid sums** (paper p.15, product form — total, no
 division): the tilted walk's point mass times `Zⁿ` is the original walk's point mass
 times the weight. Induction on `n`; the multiplicativity of `w` recombines the head
-draw's weight with the tail sum's weight on the diagonal `v = a + e`.-/
+draw's weight with the tail sum's weight on the diagonal `v = a + e`.
+@isnad1 id=eq.4h5v.s7.33c33e4b40da from=translated src=- shape=79ce431d vocab=53881d18
+-/
 theorem iidSum_tilt_apply [AddCommMonoid M] (p : PMF M) {w : M → ℝ≥0∞} (hw0 : w 0 = 1)
     (hwadd : ∀ a b, w (a + b) = w a * w b)
     (hZ0 : tiltZ p w ≠ 0) (hZt : tiltZ p w ≠ ∞) (n : ℕ) (v : M) :
@@ -92,13 +97,17 @@ theorem iidSum_tilt_apply [AddCommMonoid M] (p : PMF M) {w : M → ℝ≥0∞} (
           rw [ENNReal.inv_mul_cancel hZ0 hZt, one_mul, hB]
       _ = p a * (∑' e, if v = a + e then (iidSum p n) e else 0) * w v := by ring
 
-/-- Partition functions push forward: `tiltZ (p.map φ) w = tiltZ p (w ∘ φ)`.-/
+/-- Partition functions push forward: `tiltZ (p.map φ) w = tiltZ p (w ∘ φ)`.
+@isnad1 id=eq.0h5v.s5.25ce53f18091 from=translated src=- shape=0aa80502 vocab=1a4867fb
+-/
 theorem tiltZ_map {M' : Type*} (p : PMF M) (φ : M → M') (w : M' → ℝ≥0∞) :
     tiltZ (p.map φ) w = tiltZ p (w ∘ φ) :=
   PMF.tsum_map_mul p φ w
 
 /-- **Partition functions of iid sums are powers** (MGF multiplicativity, the
-Chernoff engine): `Z_{S_n}(λ) = Z(λ)ⁿ`.-/
+Chernoff engine): `Z_{S_n}(λ) = Z(λ)ⁿ`.
+@isnad1 id=eq.4h4v.s7.b481608a2ffa from=translated src=- shape=12201b0e vocab=527e9149
+-/
 theorem tiltZ_iidSum [AddCommMonoid M] (p : PMF M) {w : M → ℝ≥0∞} (hw0 : w 0 = 1)
     (hwadd : ∀ a b, w (a + b) = w a * w b)
     (hZ0 : tiltZ p w ≠ 0) (hZt : tiltZ p w ≠ ∞) (n : ℕ) :
@@ -110,7 +119,9 @@ theorem tiltZ_iidSum [AddCommMonoid M] (p : PMF M) {w : M → ℝ≥0∞} (hw0 :
 /-- **The tilting identity, consumption form** (paper p.15):
 `P(S_n = v) = P_λ(S̃_n = v) · M(λ)ⁿ · w(v)⁻¹` whenever the weight at `v` is finite
 and nonzero — the change of measure that converts the tilted walk's center-regime
-local bound into the original walk's off-center Gaussian bound.-/
+local bound into the original walk's off-center Gaussian bound.
+@isnad1 id=eq.6h5v.s7.e04cc5f795e7 from=translated src=- shape=9a7608a6 vocab=39ecd68d
+-/
 theorem iidSum_apply_eq_tilt [AddCommMonoid M] (p : PMF M) {w : M → ℝ≥0∞} (hw0 : w 0 = 1)
     (hwadd : ∀ a b, w (a + b) = w a * w b)
     (hZ0 : tiltZ p w ≠ 0) (hZt : tiltZ p w ≠ ∞) (n : ℕ) (v : M)
@@ -128,7 +139,9 @@ The 2-D `Hold` MGF second-order bound splits into two 1-D bounds via
 (mathlib's Hölder is stated for `ℝ≥0` with summability side conditions). -/
 
 /-- Pointwise AM–GM in `ℝ≥0∞`: `x·y ≤ (x² + y²)/2` (top cases by hand, finite case
-lifted to `ℝ` through `NNReal`).-/
+lifted to `ℝ` through `NNReal`).
+@isnad1 id=le.0h2v.s6.7c70e5288219 from=translated src=- shape=33c3bd74 vocab=84cee78a
+-/
 theorem ennreal_mul_le_sq_add_sq_div_two (x y : ℝ≥0∞) :
     x * y ≤ (x ^ 2 + y ^ 2) / 2 := by
   rcases eq_or_ne x 0 with hx0 | hx0
@@ -161,7 +174,9 @@ theorem ennreal_mul_le_sq_add_sq_div_two (x y : ℝ≥0∞) :
 `(Σ p·u·v)² ≤ (Σ p·u²)·(Σ p·v²)` — no summability side conditions.
 Double-sum expansion; each cross term `p_d p_e (u_d v_d)(u_e v_e)` is at most
 `p_d p_e ((u_d v_e)² + (u_e v_d)²)/2`, and the two halves each sum to the
-right-hand product (one after swapping the summation order).-/
+right-hand product (one after swapping the summation order).
+@isnad1 id=le.0h4v.s7.ae37a1d2e142 from=translated src=- shape=af27cec8 vocab=2a4207a7
+-/
 theorem tsum_mul_mul_sq_le {ι : Type*} (p u v : ι → ℝ≥0∞) :
     (∑' d, p d * (u d * v d)) ^ 2
       ≤ (∑' d, p d * (u d) ^ 2) * (∑' d, p d * (v d) ^ 2) := by

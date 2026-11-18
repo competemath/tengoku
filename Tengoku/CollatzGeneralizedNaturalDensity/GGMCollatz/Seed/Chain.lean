@@ -35,7 +35,9 @@ variable (F : Family)
 
 open Finset
 
-/-- Chain: the first bad point of the sequence of first passages descending one shell at a time.-/
+/-- Chain: the first bad point of the sequence of first passages descending one shell at a time.
+@isnad1 id=ex.4h4v.s7.7fe46293e027 from=translated src=- shape=06a9ffdc vocab=73afaf46
+-/
 theorem chain {L : ℕ} (hL : (F.Rb : ℝ) ≤ ((F.q : ℝ) - F.p) * (F.p : ℝ) ^ L) :
     ∀ m n, F.p ^ m ≤ n → n < F.p ^ (m + 1) → (∀ k, F.p ^ L ≤ F.Ct^[k] n) →
       ∃ j, L ≤ j ∧ j ≤ m ∧ ∃ t ≤ m ^ 2,
@@ -121,7 +123,9 @@ theorem chain {L : ℕ} (hL : (F.Rb : ℝ) ≤ ((F.q : ℝ) - F.p) * (F.p : ℝ)
       exact this
 
 /-- Counting (the counting in the accompanying paper): split according to the first bad point of the
-chain, and bound by the number of elements of the fibres and the density of the bad set.-/
+chain, and bound by the number of elements of the fibres and the density of the bad set.
+@isnad1 id=le.6h5v.s8.9377dfe02e04 from=translated src=- shape=2cdde80f vocab=05f67b09
+-/
 theorem count_le {ξ K : ℝ} (hξ0 : 0 < ξ) (hξ1 : ξ < 1) (hK : 0 ≤ K)
     (hbad : ∀ m, ((F.bad m).card : ℝ) ≤ K * (F.p : ℝ) ^ m * ξ ^ m) {L M : ℕ}
     (hL3 : (F.Rb : ℝ) ≤ (F.p : ℝ) ^ L) (hL2 : 4 * (M : ℝ) ^ 2 * F.Rb ≤ (F.p : ℝ) ^ (L + 2))

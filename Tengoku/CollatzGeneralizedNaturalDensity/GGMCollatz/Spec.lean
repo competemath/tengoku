@@ -28,15 +28,24 @@ of the statements)
 Every orbit of the worked example `(3, 4, [2, 1])` enters the cycle with minimum 1 or the cycle with minimum 7;
 7 is a periodic point of period 16. -/
 
+/--
+@isnad1 id=isperiod.0h0v.s3.16bcc90b6565 from=translated src=- shape=549de884 vocab=619a2bcd
+-/
 theorem per7 : Function.IsPeriodicPt example34.C 16 7 := by
   unfold Function.IsPeriodicPt Function.IsFixedPt; decide
 
+/--
+@isnad1 id=le.0h1v.s4.c0290547c5e5 from=translated src=- shape=2228bc53 vocab=ea0b64fa
+-/
 theorem orb7 (k : ℕ) : 7 ≤ example34.C^[k] 7 := by
   rw [← per7.iterate_mod_apply k]
   have hk : k % 16 < 16 := Nat.mod_lt _ (by norm_num)
   have h : ∀ j < 16, 7 ≤ example34.C^[j] 7 := by decide
   exact h _ hk
 
+/--
+@isnad1 id=eq.0h0v.s3.4e7113673477 from=translated src=- shape=904d2e91 vocab=b2490ffb
+-/
 theorem cmin7 : example34.Cmin 7 = 7 := by
   unfold Family.Cmin
   apply le_antisymm
@@ -45,6 +54,9 @@ theorem cmin7 : example34.Cmin 7 = 7 := by
     rintro _ ⟨k, rfl⟩
     exact orb7 k
 
+/--
+@isnad1 id=eq.0h0v.s3.f84de3f36d76 from=translated src=- shape=904d2e91 vocab=b2490ffb
+-/
 theorem cmin5 : example34.Cmin 5 = 5 := by
   unfold Family.Cmin
   apply le_antisymm
@@ -59,6 +71,9 @@ theorem cmin5 : example34.Cmin 5 = 5 := by
       have := orb7 m
       omega
 
+/--
+@isnad1 id=le.0h0v.s3.56e9b1b3dcc2 from=translated src=- shape=904d2e91 vocab=f45e87ca
+-/
 theorem cmin4 : example34.Cmin 4 ≤ 1 := Nat.sInf_le ⟨6, by decide⟩
 
 end GGMCollatz

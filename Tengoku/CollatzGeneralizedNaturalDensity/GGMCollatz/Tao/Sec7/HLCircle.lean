@@ -22,7 +22,9 @@ namespace HL
 def modPair (N : ℕ) (d : ℕ × ℤ) : ZMod N × ZMod N := ((d.1 : ZMod N), (d.2 : ZMod N))
 
 /-- Transfer a two-atom anti-concentration bound through mass lower bounds and a
-Jordan bound (helper for `charFn_hold_decay`).-/
+Jordan bound (helper for `charFn_hold_decay`).
+@isnad1 id=le.6h7v.s7.62074d9b0687 from=translated src=- shape=96e65cfb vocab=2ee782f6
+-/
 theorem pair_transfer {X m0 m1 c0 c1 R u : ℝ} (hm0 : c0 ≤ m0) (hm1 : c1 ≤ m1)
     (hc0 : 0 ≤ c0) (hc1 : 0 ≤ c1) (hJ : 8 * u ^ 2 ≤ 1 - R)
     (hb : 2 * m0 * m1 * (1 - R) ≤ X) : 2 * c0 * c1 * (8 * u ^ 2) ≤ X := by
@@ -44,7 +46,9 @@ any PMF `r` on `ZMod N × ZMod N` (`N ≥ 4`) whose masses at the four projected
 quadratically in the cyclic frequency distance, with explicit constant `2·μ²`.
 This is `charFn_hold_decay` with the hold atom masses abstracted out, so it applies
 verbatim to the exponentially tilted hold walk (whose atom masses at the same four
-points are merely perturbed) — the tilting step (F) of Lemma 2.2(i), paper pp.14–15.-/
+points are merely perturbed) — the tilting step (F) of Lemma 2.2(i), paper pp.14–15.
+@isnad1 id=le.6h4v.s8.e140b67c67eb from=translated src=- shape=bb94b074 vocab=ef44202e
+-/
 theorem charFn_decay_of_atoms {N : ℕ} [NeZero N] (hN : 4 ≤ N)
     (r : PMF (ZMod N × ZMod N)) {μ : ℝ} (hμ : 0 ≤ μ)
     (hm13 : μ ≤ (r (modPair N (1, 3))).toReal)
@@ -179,7 +183,9 @@ at `N = ⌊√n⌋ + 1` from a character-decay hypothesis with constant `c`): an
 the renewal lattice whose projected characteristic functions decay like
 `1 - (nd-sum)/c` uniformly in `N ≥ 4` has point masses `≤ (32c)²/(1+n)`.
 Instantiated at `hold` (`c = 768`) and at the tilted hold walk
-(`c = 80000`, via `charFn_decay_of_atoms` + `tilt_hold_apply_ge`).-/
+(`c = 80000`, via `charFn_decay_of_atoms` + `tilt_hold_apply_ge`).
+@isnad1 id=le.2h4v.s8.5b54d4429914 from=translated src=- shape=219de6db vocab=21962943
+-/
 theorem iidSum_apply_le_center_of_decay (p : PMF (ℕ × ℤ)) {c : ℝ} (hc : 1 ≤ c)
     (hdec : ∀ (N : ℕ) [NeZero N], 4 ≤ N → ∀ ξ : ZMod N × ZMod N,
       ‖charFn (p.map (modPair N)) ξ‖ ^ 2

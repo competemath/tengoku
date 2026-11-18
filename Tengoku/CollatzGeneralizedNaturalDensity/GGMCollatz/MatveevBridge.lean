@@ -24,7 +24,9 @@ namespace Matveev
 
 open Real
 
-/-- Degenerate case: for `p = 1` (`Real.log 1 = 0`) the statement is false.-/
+/-- Degenerate case: for `p = 1` (`Real.log 1 = 0`) the statement is false.
+@isnad1 id=not.0h0v.s3.eb450fbaeaf8 from=translated src=- shape=90d9b386 vocab=343571c6
+-/
 theorem not_hyp_1_2 : ¬ GGMCollatz.MatveevHyp 1 2 := by
   intro h
   have hl2 : 0 < Real.log 2 := Real.log_pos (by norm_num)
@@ -39,6 +41,9 @@ noncomputable def C1 : ℝ :=
   min ((1 / 1) * ((1 / 2) * Real.exp 1 * 2) ^ (1 : ℕ) * 30 ^ (2 + 3) * (2 : ℝ) ^ (3.5 : ℝ))
       (2 ^ (6 * 2 + 20))
 
+/--
+@isnad1 id=le.0h0v.s4.c01fb1f99776 from=translated src=- shape=0cd4e242 vocab=490f02ee
+-/
 lemma C1_le : C1 ≤ 10 ^ 9 := by
   have he : Real.exp 1 < 2.7182818286 := Real.exp_one_lt_d9
   have hsq : ((2 : ℝ) ^ (3.5 : ℝ)) ^ (2 : ℕ) = 128 := by
@@ -52,6 +57,9 @@ lemma C1_le : C1 ≤ 10 ^ 9 := by
   norm_num
   nlinarith
 
+/--
+@isnad1 id=le.0h0v.s3.e660c916b8a4 from=translated src=- shape=ff3a10fc vocab=bc3b7b02
+-/
 lemma C1_nonneg : 0 ≤ C1 := by unfold C1; positivity
 
 /-- Corollary 2.3 of the original (n = 2, K = ℚ, D = 1, κ = 1, A₁ = ln p, A₂ = ln q), in the form with `B*`.-/
@@ -69,6 +77,9 @@ def Cor23B13 (p q : ℕ) : Prop :=
         Real.log (Real.exp 1 * max 1 (max (|(b₁ : ℝ)| * Real.log p / Real.log q)
                                              (|(b₂ : ℝ)| * Real.log q / Real.log q)))
 
+/--
+@isnad1 id=le.1h4v.s6.8b664088aa43 from=translated src=- shape=0871f488 vocab=2ec4555e
+-/
 lemma M_ge_one (p q : ℕ) (b₁ b₂ : ℤ)
     (hΛ : (b₁ : ℝ) * Real.log p + (b₂ : ℝ) * Real.log q ≠ 0) :
     (1 : ℝ) ≤ ((max |b₁| |b₂| : ℤ) : ℝ) := by
@@ -82,7 +93,9 @@ lemma M_ge_one (p q : ℕ) (b₁ b₂ : ℤ)
     · exact le_trans (Int.one_le_abs h) (le_max_right _ _)
   exact_mod_cast h1
 
-/-- The essential line: from `log |Λ| > -C₁ Ω ln(e B*)` to the Lean statement.-/
+/-- The essential line: from `log |Λ| > -C₁ Ω ln(e B*)` to the Lean statement.
+@isnad1 id=le.4h4v.s8.6b3d7750c2bd from=translated src=- shape=033fadf2 vocab=bb97afe2
+-/
 lemma hyp_of_bound (p q : ℕ) (hp : 2 ≤ p) (hq : 2 ≤ q) (b₁ b₂ : ℤ)
     (hΛ : (b₁ : ℝ) * Real.log p + (b₂ : ℝ) * Real.log q ≠ 0)
     (hb : Real.log |(b₁ : ℝ) * Real.log p + (b₂ : ℝ) * Real.log q| >
@@ -102,6 +115,9 @@ lemma hyp_of_bound (p q : ℕ) (hp : 2 ≤ p) (hq : 2 ≤ q) (b₁ b₂ : ℤ)
   have hC := C1_le
   nlinarith
 
+/--
+@isnad1 id=matveevh.3h2v.s4.23dad124686a from=translated src=- shape=5bfdd39e vocab=8f983af7
+-/
 theorem hyp_of_Bstar (p q : ℕ) (hp : 2 ≤ p) (hq : 2 ≤ q) (h : Cor23Bstar p q) :
     GGMCollatz.MatveevHyp p q := by
   intro b₁ b₂ hΛ
@@ -112,7 +128,9 @@ theorem hyp_of_Bstar (p q : ℕ) (hp : 2 ≤ p) (hq : 2 ≤ q) (h : Cor23Bstar p
   rw [Real.log_mul (Real.exp_pos 1).ne' hMpos.ne', Real.log_exp] at h0
   simpa using h0
 
-/-- Also from the form with `B` from (1.3) (`B ≤ B*` when ordered as `p ≤ q`; otherwise swap the indices).-/
+/-- Also from the form with `B` from (1.3) (`B ≤ B*` when ordered as `p ≤ q`; otherwise swap the indices).
+@isnad1 id=matveevh.3h2v.s5.d083278edcb4 from=translated src=- shape=a9cef7d6 vocab=a661ce5c
+-/
 theorem hyp_of_B13 (h : ∀ p q : ℕ, 2 ≤ p → 2 ≤ q → Cor23B13 p q)
     (p q : ℕ) (hp : 2 ≤ p) (hq : 2 ≤ q) : GGMCollatz.MatveevHyp p q := by
   -- Lemma: choose the order and convert Cor23B13 to the form with B*

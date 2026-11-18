@@ -33,10 +33,15 @@ open Finset
 noncomputable def wt (θ : ℝ) (j : ℕ) : ℝ :=
   if j = 0 then ((F.p : ℝ)⁻¹) ^ θ else ((F.q : ℝ) / F.p) ^ θ
 
+/--
+@isnad1 id=le.0h3v.s4.265d505c8d7c from=translated src=- shape=2e917f89 vocab=ef708dd9
+-/
 lemma wt_nonneg (θ : ℝ) (j : ℕ) : 0 ≤ F.wt θ j := by
   unfold wt; split_ifs <;> positivity
 
-/-- One-step estimate of the θ-th power.-/
+/-- One-step estimate of the θ-th power.
+@isnad1 id=le.2h3v.s6.829cb685608e from=translated src=- shape=31fbbda5 vocab=d220e77d
+-/
 lemma Ct_rpow_le {θ : ℝ} (hθ0 : 0 ≤ θ) (hθ1 : θ ≤ 1) (x : ℕ) :
     (F.Ct x : ℝ) ^ θ ≤ F.wt θ (x % F.p) * (x : ℝ) ^ θ + ((F.Rb : ℝ) / F.p) ^ θ := by
   have hp : (0 : ℝ) < F.p := by exact_mod_cast F.p_pos
@@ -65,7 +70,9 @@ lemma Ct_rpow_le {θ : ℝ} (hθ0 : 0 ≤ θ) (hθ1 : θ ≤ 1) (x : ℕ) :
           rw [Real.mul_rpow (by positivity) (by positivity)]
           simp [wt, h]
 
-/-- Estimate over `m` steps: `C~^m(n)^θ ≤ (∏_{k<m} ω(ℓ_k)) n^θ + (R/p)^θ ∑_{i<m} ∏_{i<k<m} ω(ℓ_k)`.-/
+/-- Estimate over `m` steps: `C~^m(n)^θ ≤ (∏_{k<m} ω(ℓ_k)) n^θ + (R/p)^θ ∑_{i<m} ∏_{i<k<m} ω(ℓ_k)`.
+@isnad1 id=le.2h4v.s7.c58e8d2fbce6 from=translated src=- shape=01cf55e1 vocab=d3d1143f
+-/
 lemma iterate_rpow_le {θ : ℝ} (hθ0 : 0 ≤ θ) (hθ1 : θ ≤ 1) (n : ℕ) : ∀ m : ℕ,
     (F.Ct^[m] n : ℝ) ^ θ ≤ (∏ k ∈ range m, F.wt θ (F.Ct^[k] n % F.p)) * (n : ℝ) ^ θ
       + ((F.Rb : ℝ) / F.p) ^ θ *
@@ -94,7 +101,9 @@ lemma iterate_rpow_le {θ : ℝ} (hθ0 : 0 ≤ θ) (hθ1 : θ ≤ 1) (n : ℕ) :
           linarith
       _ = P * w * (n : ℝ) ^ θ + c * (Q * w + 1) := by ring
 
-/-- From condition (b): a `θ ∈ (0, 1]` with `1 + (p-1) q^θ < p · p^θ`.-/
+/-- From condition (b): a `θ ∈ (0, 1]` with `1 + (p-1) q^θ < p · p^θ`.
+@isnad1 id=ex.0h1v.s6.f65c939426c9 from=translated src=- shape=7fb64441 vocab=1bb951c6
+-/
 lemma exists_theta : ∃ θ : ℝ, 0 < θ ∧ θ ≤ 1 ∧
     1 + ((F.p : ℝ) - 1) * (F.q : ℝ) ^ θ < (F.p : ℝ) * (F.p : ℝ) ^ θ := by
   have hp2 : (2 : ℝ) ≤ F.p := by exact_mod_cast F.two_le_p
@@ -155,10 +164,15 @@ lemma exists_theta : ∃ θ : ℝ, 0 < θ ∧ θ ≤ 1 ∧
 def bad (m : ℕ) : Finset ℕ :=
   (Ico (F.p ^ m) (F.p ^ (m + 1))).filter (fun n => F.p ^ m ≤ F.Ct^[m] n)
 
+/--
+@isnad1 id=iff.0h3v.s6.054d5963ed94 from=translated src=- shape=5e240dc4 vocab=2736bf30
+-/
 lemma mem_bad {m n : ℕ} : n ∈ F.bad m ↔ (F.p ^ m ≤ n ∧ n < F.p ^ (m + 1)) ∧ F.p ^ m ≤ F.Ct^[m] n := by
   simp [bad]
 
-/-- Sum of the weights: `∑_{j<p} ω_θ(j) = p^{-θ} + (p - 1)(q/p)^θ`.-/
+/-- Sum of the weights: `∑_{j<p} ω_θ(j) = p^{-θ} + (p - 1)(q/p)^θ`.
+@isnad1 id=eq.0h2v.s6.6f90dd626d82 from=translated src=- shape=08165c0b vocab=0611c90e
+-/
 lemma sum_wt (θ : ℝ) :
     ∑ j ∈ range F.p, F.wt θ j = ((F.p : ℝ) ^ θ)⁻¹ * (1 + ((F.p : ℝ) - 1) * (F.q : ℝ) ^ θ) := by
   have hp : (0 : ℝ) < F.p := by exact_mod_cast F.p_pos
@@ -176,7 +190,9 @@ lemma sum_wt (θ : ℝ) :
   ring
 
 /-- Sum of the products over the window `(i, m)`: `∑_{n∈I_m} ∏_{i<k<m} ω(ℓ_k) ≤ (p-1) p^{i+1} W^{m-1-i}`,
-`W = ∑_j ω(j)`.-/
+`W = ∑_j ω(j)`.
+@isnad1 id=le.1h4v.s7.e2bb263663f9 from=translated src=- shape=3852a78a vocab=abc16aff
+-/
 lemma sum_window_le (θ : ℝ) {m i : ℕ} (hi : i < m) :
     ∑ n ∈ Ico (F.p ^ m) (F.p ^ (m + 1)), ∏ k ∈ Ico (i + 1) m, F.wt θ (F.Ct^[k] n % F.p)
       ≤ ((F.p : ℝ) - 1) * ((F.p : ℝ) ^ (i + 1) * (∑ j ∈ range F.p, F.wt θ j) ^ (m - 1 - i)) := by
@@ -212,7 +228,9 @@ lemma sum_window_le (θ : ℝ) {m i : ℕ} (hi : i < m) :
   simp_rw [lhs_eq] at key
   exact key
 
-/-- Estimate of the sum of the θ-th powers over a shell.-/
+/-- Estimate of the sum of the θ-th powers over a shell.
+@isnad1 id=le.2h3v.s8.51af821857ca from=translated src=- shape=331fc131 vocab=cb21bdb3
+-/
 lemma sum_rpow_le {θ : ℝ} (hθ0 : 0 ≤ θ) (hθ1 : θ ≤ 1) (m : ℕ) :
     ∑ n ∈ Ico (F.p ^ m) (F.p ^ (m + 1)), (F.Ct^[m] n : ℝ) ^ θ
       ≤ ((F.p : ℝ) - 1) * (((F.p : ℝ) ^ θ) ^ (m + 1) * (∑ j ∈ range F.p, F.wt θ j) ^ m
@@ -257,7 +275,9 @@ lemma sum_rpow_le {θ : ℝ} (hθ0 : 0 ≤ θ) (hθ1 : θ ≤ 1) (m : ℕ) :
           (F.p : ℝ) ^ (i + 1) * (∑ j ∈ range F.p, F.wt θ j) ^ (m - 1 - i)) := add_le_add hA' hB'
     _ = _ := by ring
 
-/-- Markov: `#bad m · (p^θ)^m ≤ ∑_{n∈I_m} C~^m(n)^θ`.-/
+/-- Markov: `#bad m · (p^θ)^m ≤ ∑_{n∈I_m} C~^m(n)^θ`.
+@isnad1 id=le.1h3v.s7.a2025fc056af from=translated src=- shape=7006b7f8 vocab=6e5bebdf
+-/
 lemma card_bad_mul_le {θ : ℝ} (hθ0 : 0 ≤ θ) (m : ℕ) :
     ((F.bad m).card : ℝ) * ((F.p : ℝ) ^ θ) ^ m
       ≤ ∑ n ∈ Ico (F.p ^ m) (F.p ^ (m + 1)), (F.Ct^[m] n : ℝ) ^ θ := by
@@ -274,7 +294,9 @@ lemma card_bad_mul_le {θ : ℝ} (hθ0 : 0 ≤ θ) (m : ℕ) :
     _ ≤ ∑ n ∈ Ico (F.p ^ m) (F.p ^ (m + 1)), (F.Ct^[m] n : ℝ) ^ θ :=
         sum_le_sum_of_subset_of_nonneg (filter_subset _ _) (fun _ _ _ => by positivity)
 
-/-- Geometric sum: `∑_{i<m} p^{i+1} (pν)^{m-1-i} ≤ p^m / (1 - ν)`.-/
+/-- Geometric sum: `∑_{i<m} p^{i+1} (pν)^{m-1-i} ≤ p^m / (1 - ν)`.
+@isnad1 id=le.2h3v.s7.65abbcf84552 from=translated src=- shape=21e9af70 vocab=fa767ba7
+-/
 lemma sum_geom_window_le {ν : ℝ} (hν0 : 0 ≤ ν) (hν1 : ν < 1) (m : ℕ) :
     ∑ i ∈ range m, (F.p : ℝ) ^ (i + 1) * ((F.p : ℝ) * ν) ^ (m - 1 - i)
       ≤ (F.p : ℝ) ^ m / (1 - ν) := by
@@ -292,7 +314,9 @@ lemma sum_geom_window_le {ν : ℝ} (hν0 : 0 ≤ ν) (hν1 : ν < 1) (m : ℕ) 
   simpa using this
 
 /-- Density of the bad set (the counterpart of the estimate in the accompanying paper): for some
-`ξ ∈ (0,1)` and `K ≥ 0`, `#bad m ≤ K p^m ξ^m`.-/
+`ξ ∈ (0,1)` and `K ≥ 0`, `#bad m ≤ K p^m ξ^m`.
+@isnad1 id=ex.0h1v.s6.c9810c5f4f10 from=translated src=- shape=3a626f24 vocab=02d68c64
+-/
 theorem bad_density : ∃ ξ : ℝ, 0 < ξ ∧ ξ < 1 ∧ ∃ K : ℝ, 0 ≤ K ∧
     ∀ m : ℕ, ((F.bad m).card : ℝ) ≤ K * (F.p : ℝ) ^ m * ξ ^ m := by
   obtain ⟨θ, hθ0, hθ1, hθ⟩ := F.exists_theta

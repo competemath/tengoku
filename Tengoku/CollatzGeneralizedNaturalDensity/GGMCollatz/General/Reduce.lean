@@ -25,23 +25,43 @@ namespace Gen
 
 variable (G : FamilyGen)
 
+/--
+@isnad1 id=lt.0h1v.s3.37952845aafd from=translated src=- shape=b9369acb vocab=ebd3d3fb
+-/
 lemma one_lt_p : 1 < G.p := G.two_le_p
 
+/--
+@isnad1 id=lt.0h1v.s3.84bff6749f1e from=translated src=- shape=b9369acb vocab=ebd3d3fb
+-/
 lemma p_pos : 0 < G.p := by have := G.two_le_p; omega
 
+/--
+@isnad1 id=lt.0h1v.s3.a25bf14decdc from=translated src=- shape=b9369acb vocab=d9ae838a
+-/
 lemma q_pos : 0 < G.q := by have := G.two_le_q; omega
 
 /-- `R = max_{0 < j < p} |r(j)|`.-/
 def bigR : ℕ := (Finset.Ioo 0 G.p).sup fun j => (G.r j).natAbs
 
+/--
+@isnad1 id=le.2h2v.s4.c00b6c85cb97 from=translated src=- shape=8057a2dc vocab=4cce954e
+-/
 lemma natAbs_le_bigR {j : ℕ} (hj0 : 0 < j) (hjp : j < G.p) : (G.r j).natAbs ≤ bigR G :=
   Finset.le_sup (f := fun j => (G.r j).natAbs) (Finset.mem_Ioo.mpr ⟨hj0, hjp⟩)
 
+/--
+@isnad1 id=lt.1h2v.s5.6ffed3823767 from=translated src=- shape=234ac1d0 vocab=368edde2
+-/
 lemma mod_pos {N : ℕ} (h : N % G.p ≠ 0) : 0 < N % G.p := Nat.pos_of_ne_zero h
 
+/--
+@isnad1 id=lt.0h2v.s4.c7cc153447b1 from=translated src=- shape=8428cc1e vocab=368edde2
+-/
 lemma mod_lt_p (N : ℕ) : N % G.p < G.p := Nat.mod_lt _ (p_pos G)
 
-/-- `r(j) ≠ 0` (from (a)(c)).-/
+/-- `r(j) ≠ 0` (from (a)(c)).
+@isnad1 id=ne.2h2v.s4.e12cceade426 from=translated src=- shape=51760d98 vocab=e2ea192c
+-/
 lemma r_ne_zero {j : ℕ} (hj0 : 0 < j) (hjp : j < G.p) : G.r j ≠ 0 := by
   intro h0
   have hdiv := G.divisible j hj0 hjp
@@ -52,16 +72,24 @@ lemma r_ne_zero {j : ℕ} (hj0 : 0 < j) (hjp : j < G.p) : G.r j ≠ 0 := by
   have := Nat.le_of_dvd hj0 h2
   omega
 
+/--
+@isnad1 id=le.0h1v.s3.5973cf923b9d from=translated src=- shape=b9369acb vocab=02364d44
+-/
 lemma one_le_bigR : 1 ≤ bigR G := by
   have h := natAbs_le_bigR G (j := 1) (by norm_num) (one_lt_p G)
   have h1 : (G.r 1).natAbs ≠ 0 := by
     rw [Int.natAbs_ne_zero]; exact r_ne_zero G (by norm_num) (one_lt_p G)
   omega
 
+/--
+@isnad1 id=eq.1h2v.s5.602bff4af20c from=translated src=- shape=cf213a02 vocab=f0d09469
+-/
 lemma C_of_mod_eq_zero {N : ℕ} (h : N % G.p = 0) : G.C N = N / G.p := by
   simp [FamilyGen.C, h]
 
-/-- Positivity of the value of a multiplication step: if `p ∤ N`, then `qN + r(N mod p) ≥ 1`.-/
+/-- Positivity of the value of a multiplication step: if `p ∤ N`, then `qN + r(N mod p) ≥ 1`.
+@isnad1 id=le.1h2v.s6.5bbda3c0fca6 from=translated src=- shape=cfbecbd8 vocab=d7fc84cc
+-/
 lemma one_le_step {N : ℕ} (h : N % G.p ≠ 0) :
     1 ≤ (G.q : ℤ) * N + G.r (N % G.p) := by
   have h1 := G.positive _ (mod_pos G h) (mod_lt_p G N)
@@ -69,16 +97,24 @@ lemma one_le_step {N : ℕ} (h : N % G.p ≠ 0) :
   have hq : (0 : ℤ) ≤ G.q := by positivity
   nlinarith
 
+/--
+@isnad1 id=eq.1h2v.s6.4f7cd7e9a969 from=translated src=- shape=e910d6ed vocab=c5791bc9
+-/
 lemma C_cast {N : ℕ} (h : N % G.p ≠ 0) : (G.C N : ℤ) = G.q * N + G.r (N % G.p) := by
   simp only [FamilyGen.C, ite_eq_right h]
   exact Int.toNat_of_nonneg (by linarith [one_le_step G h])
 
+/--
+@isnad1 id=le.1h2v.s5.9c3c41424c1c from=translated src=- shape=d5246b91 vocab=c2a16872
+-/
 lemma one_le_C {N : ℕ} (h : N % G.p ≠ 0) : 1 ≤ G.C N := by
   have := C_cast G h
   have := one_le_step G h
   omega
 
-/-- If `p ∤ N`, then `p ∣ C(N)` ((c)).-/
+/-- If `p ∤ N`, then `p ∣ C(N)` ((c)).
+@isnad1 id=eq.1h2v.s5.c3cba940d220 from=translated src=- shape=c92260c8 vocab=b407a2b5
+-/
 lemma mod_C {N : ℕ} (h : N % G.p ≠ 0) : G.C N % G.p = 0 := by
   apply Nat.mod_eq_zero_of_dvd
   have hdiv := G.divisible _ (mod_pos G h) (mod_lt_p G N)
@@ -92,7 +128,9 @@ lemma mod_C {N : ℕ} (h : N % G.p ≠ 0) : G.C N % G.p = 0 := by
     rw [e]; exact dvd_add hdiv (dvd_mul_right _ _)
   exact_mod_cast this
 
-/-- If `p ∤ N` and `N ≥ 1`, then `C(N) ≤ (q + R) N`.-/
+/-- If `p ∤ N` and `N ≥ 1`, then `C(N) ≤ (q + R) N`.
+@isnad1 id=le.2h2v.s5.09b2fd3b758e from=translated src=- shape=b20fe7d4 vocab=26ba44df
+-/
 lemma C_le {N : ℕ} (h : N % G.p ≠ 0) (hN : 1 ≤ N) : G.C N ≤ (G.q + bigR G) * N := by
   have e := C_cast G h
   have h1 : G.r (N % G.p) ≤ ((G.r (N % G.p)).natAbs : ℤ) := Int.le_natAbs
@@ -105,7 +143,9 @@ lemma C_le {N : ℕ} (h : N % G.p ≠ 0) (hN : 1 ≤ N) : G.C N ≤ (G.q + bigR 
   exact_mod_cast this
 
 /-- Injectivity of the multiplication step: if `N₁ ≡ N₂ (mod p)`, `p ∤ N₁` and `C(N₁) = C(N₂)`, then
-`N₁ = N₂`.-/
+`N₁ = N₂`.
+@isnad1 id=eq.3h3v.s5.3a5f75adda7e from=translated src=- shape=eedca24b vocab=b407a2b5
+-/
 lemma C_inj_of_mod_eq {N₁ N₂ : ℕ} (h1 : N₁ % G.p ≠ 0) (hmod : N₁ % G.p = N₂ % G.p)
     (hC : G.C N₁ = G.C N₂) : N₁ = N₂ := by
   have h2 : N₂ % G.p ≠ 0 := hmod ▸ h1
@@ -119,9 +159,15 @@ lemma C_inj_of_mod_eq {N₁ N₂ : ℕ} (h1 : N₁ % G.p ≠ 0) (hmod : N₁ % G
     exact mul_left_cancel₀ hq h'
   exact_mod_cast this.symm
 
+/--
+@isnad1 id=eq.0h2v.s4.6aa12070cdae from=translated src=- shape=6d0f84f9 vocab=70f8c958
+-/
 lemma C_p_mul (N : ℕ) : G.C (G.p * N) = N := by
   rw [C_of_mod_eq_zero G (Nat.mul_mod_right _ _), Nat.mul_div_cancel_left _ (p_pos G)]
 
+/--
+@isnad1 id=eq.0h3v.s5.a1d7e8c250e9 from=translated src=- shape=abaaa38b vocab=d7a1c4a0
+-/
 lemma iterate_C_pow_mul (k N : ℕ) : G.C^[k] (G.p ^ k * N) = N := by
   induction k with
   | zero => simp
@@ -130,19 +176,33 @@ lemma iterate_C_pow_mul (k N : ℕ) : G.C^[k] (G.p ^ k * N) = N := by
 
 /-! ### The orbit minimum -/
 
+/--
+@isnad1 id=le.0h3v.s4.77158f2fe109 from=translated src=- shape=9477440f vocab=ab339935
+-/
 lemma Cmin_le_iterate (N k : ℕ) : G.Cmin N ≤ G.C^[k] N := Nat.sInf_le ⟨k, rfl⟩
 
+/--
+@isnad1 id=le.0h2v.s3.6374b5074772 from=translated src=- shape=be8b5c95 vocab=9bf6951c
+-/
 lemma Cmin_le_self (N : ℕ) : G.Cmin N ≤ N := Cmin_le_iterate G N 0
 
+/--
+@isnad1 id=ex.0h2v.s4.83672cecb350 from=translated src=- shape=a8930181 vocab=3b16d01e
+-/
 lemma exists_Cmin_eq (N : ℕ) : ∃ k, G.C^[k] N = G.Cmin N :=
   Nat.sInf_mem (Set.range_nonempty fun k => G.C^[k] N)
 
+/--
+@isnad1 id=le.0h3v.s4.49d45c0c480c from=translated src=- shape=670c58b0 vocab=ab339935
+-/
 lemma Cmin_le_Cmin_iterate (N k : ℕ) : G.Cmin N ≤ G.Cmin (G.C^[k] N) := by
   obtain ⟨j, hj⟩ := exists_Cmin_eq G (G.C^[k] N)
   rw [← hj, ← Function.iterate_add_apply]
   exact Cmin_le_iterate G N _
 
-/-- `C_min(p^k N) ≤ C_min(N)` (the second half of Lemma 3.2 (iv) of the paper).-/
+/-- `C_min(p^k N) ≤ C_min(N)` (the second half of Lemma 3.2 (iv) of the paper).
+@isnad1 id=le.0h3v.s5.0a4daf111f3a from=translated src=- shape=741d4ca4 vocab=1afe2160
+-/
 lemma Cmin_pow_mul_le (k N : ℕ) : G.Cmin (G.p ^ k * N) ≤ G.Cmin N := by
   have := Cmin_le_Cmin_iterate G (G.p ^ k * N) k
   rwa [iterate_C_pow_mul] at this
@@ -157,17 +217,29 @@ structure CommonDiv (d : ℕ) : Prop where
 
 variable {G}
 
+/--
+@isnad1 id=lt.1h2v.s4.80726ef1b969 from=translated src=- shape=7f5fcd0b vocab=8d5a4e01
+-/
 lemma CommonDiv.pos {d : ℕ} (hd : CommonDiv G d) : 0 < d := by have := hd.two_le; omega
 
+/--
+@isnad1 id=coprime.1h2v.s3.081e8840d0a5 from=translated src=- shape=bfc3514f vocab=8586ead0
+-/
 lemma CommonDiv.coprime {d : ℕ} (hd : CommonDiv G d) : Nat.Coprime G.p d :=
   Nat.Coprime.coprime_dvd_right hd.dvd_q G.coprime
 
+/--
+@isnad1 id=ne.2h3v.s5.a20fa4c68920 from=translated src=- shape=30ce6073 vocab=ce1dc50d
+-/
 lemma CommonDiv.mul_mod_ne_zero {d : ℕ} (hd : CommonDiv G d) {i : ℕ} (hi : i % G.p ≠ 0) :
     d * i % G.p ≠ 0 := by
   intro h0
   have h1 : G.p ∣ d * i := Nat.dvd_of_mod_eq_zero h0
   exact hi (Nat.mod_eq_zero_of_dvd (hd.coprime.dvd_of_dvd_mul_left h1))
 
+/--
+@isnad1 id=eq.2h3v.s6.8a350d4bb28d from=translated src=- shape=38547c67 vocab=7830564f
+-/
 lemma CommonDiv.mul_div_r {d : ℕ} (hd : CommonDiv G d) {i : ℕ} (hi : i % G.p ≠ 0) :
     (d : ℤ) * (G.r (d * i % G.p) / d) = G.r (d * i % G.p) :=
   Int.mul_ediv_cancel' (hd.dvd_r _ (mod_pos G (hd.mul_mod_ne_zero hi)) (mod_lt_p G _))
@@ -219,13 +291,24 @@ def reduce (G : FamilyGen) (d : ℕ) (hd : CommonDiv G d) : FamilyGen where
 
 variable {d : ℕ} (hd : CommonDiv G d)
 
+/--
+@isnad1 id=eq.1h2v.s4.ce09f7548698 from=translated src=- shape=d6a0b170 vocab=d181f63f
+-/
 @[simp] lemma reduce_p : (reduce G d hd).p = G.p := rfl
 
+/--
+@isnad1 id=eq.1h2v.s4.f67ab8ad3540 from=translated src=- shape=d6a0b170 vocab=b76b6aea
+-/
 @[simp] lemma reduce_q : (reduce G d hd).q = G.q := rfl
 
+/--
+@isnad1 id=eq.1h3v.s5.689314bd0f78 from=translated src=- shape=f4a54efd vocab=3ff616ab
+-/
 lemma reduce_r (i : ℕ) : (reduce G d hd).r i = G.r (d * i % G.p) / d := rfl
 
-/-- **Conjugation**: `C(dN) = d C*(N)` (Lemma 3.5 (ii) of the paper).-/
+/-- **Conjugation**: `C(dN) = d C*(N)` (Lemma 3.5 (ii) of the paper).
+@isnad1 id=eq.1h3v.s5.8c885718323d from=translated src=- shape=ca63190d vocab=9aa6fa72
+-/
 lemma C_mul (N : ℕ) : G.C (d * N) = d * (reduce G d hd).C N := by
   by_cases hN : N % G.p = 0
   · have h1 : d * N % G.p = 0 := by rw [Nat.mul_mod, hN, mul_zero, Nat.zero_mod]
@@ -244,6 +327,9 @@ lemma C_mul (N : ℕ) : G.C (d * N) = d * (reduce G d hd).C N := by
       push_cast; ring
     exact_mod_cast this
 
+/--
+@isnad1 id=eq.1h4v.s5.8f2c024eacf6 from=translated src=- shape=cf169d41 vocab=edf88617
+-/
 lemma iterate_C_mul (k N : ℕ) : G.C^[k] (d * N) = d * (reduce G d hd).C^[k] N := by
   induction k generalizing N with
   | zero => rfl
@@ -251,7 +337,9 @@ lemma iterate_C_mul (k N : ℕ) : G.C^[k] (d * N) = d * (reduce G d hd).C^[k] N 
     rw [Function.iterate_succ_apply, Function.iterate_succ_apply, C_mul hd, ih]
 
 include hd in
-/-- If `p ∤ N`, then `d ∣ C(N)`.-/
+/-- If `p ∤ N`, then `d ∣ C(N)`.
+@isnad1 id=dvd.2h3v.s5.4fb633e9cba0 from=translated src=- shape=fbcd92b5 vocab=eb83154b
+-/
 lemma dvd_C {N : ℕ} (hN : N % G.p ≠ 0) : d ∣ G.C N := by
   have : (d : ℤ) ∣ (G.C N : ℤ) := by
     rw [C_cast G hN]
@@ -259,7 +347,9 @@ lemma dvd_C {N : ℕ} (hN : N % G.p ≠ 0) : d ∣ G.C N := by
       (hd.dvd_r _ (mod_pos G hN) (mod_lt_p G N))
   exact_mod_cast this
 
-/-- **Lemma 3.5 (iii) of the paper**: if `p ∤ N`, then `C_min(N) ≤ d C*_min(C(N)/d)`.-/
+/-- **Lemma 3.5 (iii) of the paper**: if `p ∤ N`, then `C_min(N) ≤ d C*_min(C(N)/d)`.
+@isnad1 id=le.2h3v.s5.ecba055eadca from=translated src=- shape=dd128064 vocab=374c10bb
+-/
 lemma Cmin_le_mul_Cmin {N : ℕ} (hN : N % G.p ≠ 0) :
     G.Cmin N ≤ d * (reduce G d hd).Cmin (G.C N / d) := by
   obtain ⟨k, hk⟩ := exists_Cmin_eq (reduce G d hd) (G.C N / d)
@@ -270,7 +360,9 @@ lemma Cmin_le_mul_Cmin {N : ℕ} (hN : N % G.p ≠ 0) :
     _ = d * (reduce G d hd).C^[k] (G.C N / d) := iterate_C_mul hd _ _
     _ = d * (reduce G d hd).Cmin (G.C N / d) := by rw [hk]
 
-/-- **The finiteness in Lemma 3.5 (iv) of the paper**: `R* ≤ R/d < R`.-/
+/-- **The finiteness in Lemma 3.5 (iv) of the paper**: `R* ≤ R/d < R`.
+@isnad1 id=le.1h2v.s4.36ba7d451153 from=translated src=- shape=0e1e8851 vocab=fa955a56
+-/
 lemma bigR_reduce_le : bigR (reduce G d hd) ≤ bigR G / d := by
   apply Finset.sup_le
   intro i hi
@@ -287,6 +379,9 @@ lemma bigR_reduce_le : bigR (reduce G d hd) ≤ bigR G / d := by
     rw [Int.natAbs_mul, Int.natAbs_natCast, mul_comm]
   rw [this]; exact h1
 
+/--
+@isnad1 id=lt.1h2v.s4.524187f85cd4 from=translated src=- shape=d6a0b170 vocab=795b0476
+-/
 lemma bigR_reduce_lt : bigR (reduce G d hd) < bigR G :=
   lt_of_le_of_lt (bigR_reduce_le hd) (Nat.div_lt_self (one_le_bigR G) hd.two_le)
 

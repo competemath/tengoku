@@ -30,6 +30,9 @@ namespace GGMCollatz
 
 namespace Asm
 
+/--
+@isnad1 id=iff.0h4v.s5.e544bf35ce9f from=translated src=- shape=42bc6f39 vocab=2de46b53
+-/
 theorem mem_logWindow {F : Family} {lo hi : ℝ} {N : ℕ} :
     N ∈ F.logWindow lo hi ↔ N % F.p ≠ 0 ∧ lo ≤ (N : ℝ) ∧ (N : ℝ) ≤ hi := by
   unfold Family.logWindow
@@ -42,6 +45,9 @@ theorem mem_logWindow {F : Family} {lo hi : ℝ} {N : ℕ} :
     have h2 : N ≤ ⌈hi⌉₊ := by exact_mod_cast h1
     omega
 
+/--
+@isnad1 id=ne.1h4v.s5.03dbc98b91e0 from=translated src=- shape=94d84680 vocab=aa5e68c7
+-/
 theorem ne_zero_of_mem_logWindow {F : Family} {lo hi : ℝ} {N : ℕ} (h : N ∈ F.logWindow lo hi) :
     N ≠ 0 := by
   intro h0
@@ -49,7 +55,9 @@ theorem ne_zero_of_mem_logWindow {F : Family} {lo hi : ℝ} {N : ℕ} (h : N ∈
   rw [h0, Nat.zero_mod] at this
   exact this rfl
 
-/-- The probability of an event under the logarithmic distribution on a window.-/
+/-- The probability of an event under the logarithmic distribution on a window.
+@isnad1 id=eq.1h4v.s6.81e41a133656 from=translated src=- shape=8f9223f7 vocab=d3a23fa8
+-/
 theorem expect_logUnif_indicator (F : Family) (lo hi : ℝ) (P : ℕ → Prop) [DecidablePred P]
     (h : (F.logWindow lo hi).Nonempty ∨ ¬ P 1) :
     Family.expect (F.logUnif lo hi) ({N | P N}.indicator 1) =
@@ -104,10 +112,15 @@ theorem expect_logUnif_indicator (F : Family) (lo hi : ℝ) (P : ℕ → Prop) [
     rw [hμ, expect_pure_indicator, hW0]
     simp [hP1]
 
+/--
+@isnad1 id=not.1h2v.s4.115e487e7101 from=translated src=- shape=511b886b vocab=471401ec
+-/
 theorem not_lt_Smin_one' (F : Family) {N₀ : ℕ} (hN₀ : 1 ≤ N₀) : ¬ N₀ < F.Smin 1 :=
   not_lt_Smin_one F hN₀
 
-/-- The window probability is "logarithmic mass of the bad points / total mass of the window".-/
+/-- The window probability is "logarithmic mass of the bad points / total mass of the window".
+@isnad1 id=eq.1h4v.s6.c35b990778e9 from=translated src=- shape=58546496 vocab=86b90d9f
+-/
 theorem windowProb_eq (F : Family) (α : ℝ) {N₀ : ℕ} (hN₀ : 1 ≤ N₀) (y : ℝ) :
     F.windowProb α N₀ y =
       (∑ N ∈ (F.logWindow y (y ^ α)).filter (fun N => N₀ < F.Smin N), (N : ℝ)⁻¹) /
@@ -115,13 +128,21 @@ theorem windowProb_eq (F : Family) (α : ℝ) {N₀ : ℕ} (hN₀ : 1 ≤ N₀) 
   expect_logUnif_indicator F y (y ^ α) (fun N => N₀ < F.Smin N)
     (Or.inr (not_lt_Smin_one F hN₀))
 
+/--
+@isnad1 id=le.0h4v.s4.441ec8f83af4 from=translated src=- shape=cac89e50 vocab=f4f649dc
+-/
 theorem windowProb_nonneg (F : Family) (α : ℝ) (N₀ : ℕ) (y : ℝ) : 0 ≤ F.windowProb α N₀ y :=
   expect_indicator_nonneg _ _
 
+/--
+@isnad1 id=le.0h4v.s4.4911e38e7dd7 from=translated src=- shape=65bd34bb vocab=f4f649dc
+-/
 theorem windowProb_le_one (F : Family) (α : ℝ) (N₀ : ℕ) (y : ℝ) : F.windowProb α N₀ y ≤ 1 :=
   expect_indicator_le_one _ _
 
-/-- Logarithmic mass of the bad points = window probability × total mass of the window.-/
+/-- Logarithmic mass of the bad points = window probability × total mass of the window.
+@isnad1 id=eq.1h4v.s6.3d8ccdbce32e from=translated src=- shape=5e8ebc26 vocab=57032b38
+-/
 theorem bad_mass_eq (F : Family) (α : ℝ) {N₀ : ℕ} (hN₀ : 1 ≤ N₀) (y : ℝ) :
     ∑ N ∈ (F.logWindow y (y ^ α)).filter (fun N => N₀ < F.Smin N), (N : ℝ)⁻¹ =
       F.windowProb α N₀ y * ∑ N ∈ F.logWindow y (y ^ α), (N : ℝ)⁻¹ := by
@@ -136,7 +157,9 @@ theorem bad_mass_eq (F : Family) (α : ℝ) {N₀ : ℕ} (hN₀ : 1 ≤ N₀) (y
     rw [this, hB]; simp
   · rw [div_mul_cancel₀ A hB]
 
-/-- Lower bound for the total mass of the window: if `y ≥ 2` and `3py ≤ y^α` then `∑_W 1/N ≥ 1/(6p)`.-/
+/-- Lower bound for the total mass of the window: if `y ≥ 2` and `3py ≤ y^α` then `∑_W 1/N ≥ 1/(6p)`.
+@isnad1 id=le.2h3v.s6.a5454530e695 from=translated src=- shape=4ec5031f vocab=63a81850
+-/
 theorem mass_ge (F : Family) {α y : ℝ} (hy : 2 ≤ y) (hyα : 3 * F.p * y ≤ y ^ α) :
     1 / (6 * F.p) ≤ ∑ N ∈ F.logWindow y (y ^ α), (N : ℝ)⁻¹ := by
   have hp2 : (2 : ℝ) ≤ F.p := by exact_mod_cast F.two_le_p
@@ -194,7 +217,9 @@ theorem mass_ge (F : Family) {α y : ℝ} (hy : 2 ≤ y) (hyα : 3 * F.p * y ≤
   linarith
 
 open Classical in
-/-- From the seed, an upper bound for the logarithmic mass of the bad points of the window `[lo, hi]`.-/
+/-- From the seed, an upper bound for the logarithmic mass of the bad points of the window `[lo, hi]`.
+@isnad1 id=le.4h7v.s8.e656dda83e5d from=translated src=- shape=58f1377d vocab=ef4459fe
+-/
 theorem bad_mass_le (F : Family) {c C : ℝ} (hC : 0 ≤ C) {L₀ : ℕ}
     (hseed : ∀ L M : ℕ, L₀ ≤ L → L ≤ M →
       (((Finset.Ico (F.p ^ M) (F.p ^ (M + 1))).filter
@@ -273,9 +298,14 @@ theorem bad_mass_le (F : Family) {c C : ℝ} (hC : 0 ≤ C) {L₀ : ℕ}
 /-- The threshold for the lower end of the window, `y_w = max(2, (3p)^{1/(α-1)})`.-/
 noncomputable def yw (F : Family) (α : ℝ) : ℝ := max 2 ((3 * F.p : ℝ) ^ (1 / (α - 1)))
 
+/--
+@isnad1 id=le.0h2v.s4.88ce189e9e78 from=translated src=- shape=787c1379 vocab=73d00d59
+-/
 theorem two_le_yw (F : Family) (α : ℝ) : 2 ≤ yw F α := le_max_left _ _
 
-/-- If `y ≥ y_w` then `3py ≤ y^α`.-/
+/-- If `y ≥ y_w` then `3py ≤ y^α`.
+@isnad1 id=le.2h3v.s6.b005273e6d95 from=translated src=- shape=c8b7c716 vocab=426e231c
+-/
 theorem three_p_mul_le (F : Family) {α y : ℝ} (hα : 1 < α) (hy : yw F α ≤ y) :
     3 * F.p * y ≤ y ^ α := by
   have hy2 : 2 ≤ y := le_trans (two_le_yw F α) hy
@@ -292,7 +322,9 @@ theorem three_p_mul_le (F : Family) {α y : ℝ} (hα : 1 < α) (hy : yw F α �
 
 open Classical in
 /-- The bottom windows ((o)(i) of the accompanying paper): if `log y ≤ Λ` then
-`P(N₀, y) ≤ 6pC(αΛ/log p + 1)²(L+1)e^{-cL}`. We assume `L ≥ L₀` and `y_w^α ≤ p^L`.-/
+`P(N₀, y) ≤ 6pC(αΛ/log p + 1)²(L+1)e^{-cL}`. We assume `L ≥ L₀` and `y_w^α ≤ p^L`.
+@isnad1 id=le.9h8v.s8.4c966efd6c09 from=translated src=- shape=fbfef268 vocab=5842647a
+-/
 theorem windowProb_base (F : Family) {α : ℝ} (hα : 1 < α) {c C : ℝ} (hC : 0 ≤ C) {L₀ : ℕ}
     (hseed : ∀ L M : ℕ, L₀ ≤ L → L ≤ M →
       (((Finset.Ico (F.p ^ M) (F.p ^ (M + 1))).filter

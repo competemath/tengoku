@@ -21,7 +21,9 @@ open Finset
 
 variable {G : FamilyGen} {d : ℕ} (hd : CommonDiv G d)
 
-/-- **Lemma 3.6 (i) of the paper**: (A) for `G` from (A) for `G*`.-/
+/-- **Lemma 3.6 (i) of the paper**: (A) for `G` from (A) for `G*`.
+@isnad1 id=mainagen.2h2v.s4.35867eb3751f from=translated src=- shape=61a18eb2 vocab=e1504cf3
+-/
 theorem transferA (h : (reduce G d hd).mainA_gen_statement) : G.mainA_gen_statement := by
   obtain ⟨K, c, hK, hc, hG'⟩ := h
   set Q : ℕ := G.q + bigR G with hQdef
@@ -64,7 +66,9 @@ theorem transferA (h : (reduce G d hd).mainA_gen_statement) : G.mainA_gen_statem
     _ = 2 * ((G.p : ℝ) * ((Q : ℝ) / d)) * K * (2 * (d : ℝ)) ^ c * (1 + Real.log Q) *
           (N₀ : ℝ) ^ (-c) * Real.log x := by ring
 
-/-- `∑_{k ≤ n} ⌊n/p^k⌋ ≤ 2n`.-/
+/-- `∑_{k ≤ n} ⌊n/p^k⌋ ≤ 2n`.
+@isnad1 id=le.1h2v.s6.79cd5af3902d from=translated src=- shape=95bc15d2 vocab=3d53c296
+-/
 lemma sum_div_pow_le (p : ℕ) (hp : 2 ≤ p) (n : ℕ) :
     ∑ k ∈ Finset.range (n + 1), ((n / p ^ k : ℕ) : ℝ) ≤ 2 * n := by
   have hp0 : (0 : ℝ) < p := by exact_mod_cast (by omega : 0 < p)
@@ -78,7 +82,9 @@ lemma sum_div_pow_le (p : ℕ) (hp : 2 ≤ p) (n : ℕ) :
     _ ≤ (n : ℝ) * 2 := mul_le_mul_of_nonneg_left (geom_le_two hp _) (Nat.cast_nonneg _)
     _ = 2 * n := mul_comm _ _
 
-/-- **Lemma 3.6 (ii) of the paper**: (B) for `G` from (B) for `G*`.-/
+/-- **Lemma 3.6 (ii) of the paper**: (B) for `G` from (B) for `G*`.
+@isnad1 id=mainbgen.2h2v.s4.acbe2d18a504 from=translated src=- shape=61a18eb2 vocab=387a9883
+-/
 theorem transferB (h : (reduce G d hd).mainB_gen_statement) : G.mainB_gen_statement := by
   obtain ⟨K, c, hK, hc, hG'⟩ := h
   set Q : ℕ := G.q + bigR G with hQdef

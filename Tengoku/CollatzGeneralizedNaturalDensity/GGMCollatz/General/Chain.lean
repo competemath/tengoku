@@ -27,7 +27,9 @@ open Finset
 
 variable (G : FamilyGen)
 
-/-- `q = p` is incompatible with (a).-/
+/-- `q = p` is incompatible with (a).
+@isnad1 id=ne.0h1v.s3.e77e86ad52ea from=translated src=- shape=b70c6bb1 vocab=e3fc3dd4
+-/
 lemma q_ne_p : G.q ≠ G.p := by
   intro h
   have hc := G.coprime
@@ -35,7 +37,9 @@ lemma q_ne_p : G.q ≠ G.p := by
   have := G.two_le_p
   omega
 
-/-- If `p ∤ N`, then `C(N) ≤ qN + R` (in ℤ).-/
+/-- If `p ∤ N`, then `C(N) ≤ qN + R` (in ℤ).
+@isnad1 id=le.1h2v.s5.d8329c885585 from=translated src=- shape=ce6bbcbb vocab=74e73127
+-/
 lemma C_cast_le {N : ℕ} (h : N % G.p ≠ 0) : (G.C N : ℤ) ≤ G.q * N + bigR G := by
   rw [C_cast G h]
   have h1 : G.r (N % G.p) ≤ ((G.r (N % G.p)).natAbs : ℤ) := Int.le_natAbs
@@ -43,7 +47,9 @@ lemma C_cast_le {N : ℕ} (h : N % G.p ≠ 0) : (G.C N : ℤ) ≤ G.q * N + bigR
     exact_mod_cast natAbs_le_bigR G (mod_pos G h) (mod_lt_p G N)
   linarith
 
-/-- **The case `q < p`** (GGM §2.2): `C_min(N) ≤ R` for every `N`.-/
+/-- **The case `q < p`** (GGM §2.2): `C_min(N) ≤ R` for every `N`.
+@isnad1 id=le.1h2v.s4.d0f0d7d7baf5 from=translated src=- shape=2ac4ff64 vocab=51efa4ad
+-/
 lemma Cmin_le_bigR_of_q_lt (hqp : G.q < G.p) (N : ℕ) : G.Cmin N ≤ bigR G := by
   induction N using Nat.strong_induction_on with
   | _ N ih =>
@@ -69,7 +75,9 @@ lemma Cmin_le_bigR_of_q_lt (hqp : G.q < G.p) (N : ℕ) : G.Cmin N ≤ bigR G := 
               rw [show G.C^[2] N = G.C (G.C N) from rfl, hCC]
           _ ≤ bigR G := ih _ hlt
 
-/-- **(A) for `q < p`**.-/
+/-- **(A) for `q < p`**.
+@isnad1 id=mainagen.1h1v.s3.6b6533b87ead from=translated src=- shape=43cdded7 vocab=df1d8b53
+-/
 theorem mainA_of_q_lt (hqp : G.q < G.p) : G.mainA_gen_statement := by
   apply mainA_of_large G (bigR G) (K := 1) (c := 1) one_pos one_pos
   intro N₀ _ hN x hx
@@ -82,7 +90,9 @@ theorem mainA_of_q_lt (hqp : G.q < G.p) : G.mainA_gen_statement := by
   exact mul_nonneg (mul_nonneg zero_le_one (Real.rpow_nonneg (Nat.cast_nonneg _) _))
     (by linarith [one_le_log hx])
 
-/-- **(B) for `q < p`**.-/
+/-- **(B) for `q < p`**.
+@isnad1 id=mainbgen.1h1v.s3.e72305b961b4 from=translated src=- shape=43cdded7 vocab=7fe1c0b9
+-/
 theorem mainB_of_q_lt (hqp : G.q < G.p) : G.mainB_gen_statement := by
   apply mainB_of_large G (bigR G) (K := 1) (c := 1) one_pos one_pos
   intro N₀ _ hN X hX
@@ -113,20 +123,30 @@ def toFamily (hpq : G.p < G.q) (h1 : GcdOne G) : Family where
   positive := G.positive
   gcd_one := h1
 
-/-- `Family.C` and `FamilyGen.C` are the same formula.-/
+/-- `Family.C` and `FamilyGen.C` are the same formula.
+@isnad1 id=eq.2h1v.s4.f3091d23b7e8 from=translated src=- shape=7d14fe14 vocab=52abcc95
+-/
 lemma toFamily_C (hpq : G.p < G.q) (h1 : GcdOne G) : (toFamily G hpq h1).C = G.C := rfl
 
-/-- Hence `C_min` also agrees.-/
+/-- Hence `C_min` also agrees.
+@isnad1 id=eq.2h1v.s4.569562e2e74c from=translated src=- shape=7d14fe14 vocab=c3db0e7a
+-/
 lemma toFamily_Cmin (hpq : G.p < G.q) (h1 : GcdOne G) : (toFamily G hpq h1).Cmin = G.Cmin := by
   funext N
   simp only [Family.Cmin, FamilyGen.Cmin, toFamily_C]
 
+/--
+@isnad1 id=mainagen.3h1v.s4.93326f1c1779 from=translated src=- shape=6202a6ff vocab=d03016e3
+-/
 lemma mainA_of_toFamily (hpq : G.p < G.q) (h1 : GcdOne G)
     (h : (toFamily G hpq h1).mainA_statement) : G.mainA_gen_statement := by
   unfold Family.mainA_statement at h
   rw [toFamily_Cmin] at h
   exact h
 
+/--
+@isnad1 id=mainbgen.3h1v.s4.04fd233c8d13 from=translated src=- shape=6202a6ff vocab=349c66c1
+-/
 lemma mainB_of_toFamily (hpq : G.p < G.q) (h1 : GcdOne G)
     (h : (toFamily G hpq h1).mainB_statement) : G.mainB_gen_statement := by
   unfold Family.mainB_statement at h
@@ -135,7 +155,9 @@ lemma mainB_of_toFamily (hpq : G.p < G.q) (h1 : GcdOne G)
 
 variable {G}
 
-/-- If (d) fails, there is a common divisor `d ≥ 2`.-/
+/-- If (d) fails, there is a common divisor `d ≥ 2`.
+@isnad1 id=ex.1h1v.s3.954e099c8e81 from=translated src=- shape=1f5cebaa vocab=05b4d556
+-/
 lemma exists_commonDiv (h : ¬ GcdOne G) : ∃ d, CommonDiv G d := by
   unfold GcdOne at h
   push Not at h
@@ -148,7 +170,9 @@ lemma exists_commonDiv (h : ¬ GcdOne G) : ∃ d, CommonDiv G d := by
   exact ⟨d, ⟨by omega, hdq, hdr⟩⟩
 
 /-- **Induction along the chain** (Lemma 3.5 (iv) of the paper): if a property `P` of families with `p < q` holds for the
-families satisfying (d) and can be pulled back along `reduce`, then it holds for every family with `p < q`.-/
+families satisfying (d) and can be pulled back along `reduce`, then it holds for every family with `p < q`.
+@isnad1 id=var.1h4v.s5.8dbe79259681 from=translated src=- shape=dc3ff3f2 vocab=39041f08
+-/
 theorem chain_induction (P : FamilyGen → Prop)
     (hbase : ∀ G : FamilyGen, G.p < G.q → GcdOne G → P G)
     (hstep : ∀ (G : FamilyGen) (d : ℕ) (hd : CommonDiv G d), P (reduce G d hd) → P G) :

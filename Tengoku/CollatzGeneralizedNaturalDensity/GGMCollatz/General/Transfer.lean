@@ -35,11 +35,16 @@ variable (G : FamilyGen)
 noncomputable def badFree (N₀ n : ℕ) : Finset ℕ :=
   (Finset.Icc 1 n).filter (fun N => N % G.p ≠ 0 ∧ N₀ < G.Cmin N)
 
+/--
+@isnad1 id=iff.0h4v.s6.54675d2094e3 from=translated src=- shape=fe23a2eb vocab=972a22d1
+-/
 lemma mem_badFree {N₀ n N : ℕ} :
     N ∈ badFree G N₀ n ↔ (1 ≤ N ∧ N ≤ n) ∧ N % G.p ≠ 0 ∧ N₀ < G.Cmin N := by
   rw [badFree, mem_filter, mem_Icc]
 
-/-- Write `N ≥ 1` as `p^k N'` (`p ∤ N'`).-/
+/-- Write `N ≥ 1` as `p^k N'` (`p ∤ N'`).
+@isnad1 id=ex.1h2v.s6.5e76e54e44db from=translated src=- shape=efe5c96f vocab=f1c90a3c
+-/
 lemma exists_pow_mul {N : ℕ} (hN : 1 ≤ N) :
     ∃ k N', N' % G.p ≠ 0 ∧ 1 ≤ N' ∧ N = G.p ^ k * N' ∧ k < G.p ^ k ∧ N' * G.p ^ k ≤ N := by
   obtain ⟨k, N', hN'p, rfl⟩ :=
@@ -48,7 +53,9 @@ lemma exists_pow_mul {N : ℕ} (hN : 1 ≤ N) :
   refine ⟨k, N', fun h0 => hN'p (Nat.dvd_of_mod_eq_zero h0), Nat.one_le_iff_ne_zero.mpr hN'0, rfl,
     Nat.lt_pow_self (one_lt_p G), le_of_eq (mul_comm _ _)⟩
 
-/-- **Separating the powers of `p` in (A)**: `∑_{N ≤ n, C_min(N) > N₀} 1/N ≤ 2 ∑_{N' ∈ badFree} 1/N'`.-/
+/-- **Separating the powers of `p` in (A)**: `∑_{N ≤ n, C_min(N) > N₀} 1/N ≤ 2 ∑_{N' ∈ badFree} 1/N'`.
+@isnad1 id=le.0h3v.s6.d7118a3e04ca from=translated src=- shape=60e29559 vocab=52a7ef14
+-/
 lemma sum_bad_le (N₀ n : ℕ) :
     ∑ N ∈ (Finset.Icc 1 n).filter (fun N => N₀ < G.Cmin N), (1 / (N : ℝ)) ≤
       2 * ∑ N ∈ badFree G N₀ n, (1 / (N : ℝ)) := by
@@ -81,7 +88,9 @@ lemma sum_bad_le (N₀ n : ℕ) :
     _ ≤ 2 * ∑ N ∈ badFree G N₀ n, (1 / (N : ℝ)) :=
         mul_le_mul_of_nonneg_right hgeom (sum_nonneg fun _ _ => by positivity)
 
-/-- **Separating the powers of `p` in (B)**: `#{N ≤ n | C_min(N) > N₀} ≤ ∑_{k ≤ n} #badFree(N₀, ⌊n/p^k⌋)`.-/
+/-- **Separating the powers of `p` in (B)**: `#{N ≤ n | C_min(N) > N₀} ≤ ∑_{k ≤ n} #badFree(N₀, ⌊n/p^k⌋)`.
+@isnad1 id=le.0h3v.s6.fade2d521158 from=translated src=- shape=6826c6d2 vocab=b9e271ae
+-/
 lemma card_bad_le (N₀ n : ℕ) :
     ((Finset.Icc 1 n).filter (fun N => N₀ < G.Cmin N)).card ≤
       ∑ k ∈ Finset.range (n + 1), (badFree G N₀ (n / G.p ^ k)).card := by
@@ -112,7 +121,9 @@ variable {G} {d : ℕ} (hd : CommonDiv G d)
 noncomputable def badStar (N₀ m : ℕ) : Finset ℕ :=
   (Finset.Icc 1 m).filter (fun M => N₀ / d < (reduce G d hd).Cmin M)
 
-/-- **The map `N' ↦ C(N')/d`** sends `badFree` into `badStar` (Lemma 3.5 (iii) of the paper).-/
+/-- **The map `N' ↦ C(N')/d`** sends `badFree` into `badStar` (Lemma 3.5 (iii) of the paper).
+@isnad1 id=mem.3h6v.s6.d4a232bc54f7 from=translated src=- shape=23de350a vocab=0714f848
+-/
 lemma mapsTo_badStar {N₀ n m : ℕ} (hm : (G.q + bigR G) * n ≤ m) {N : ℕ}
     (hN : N ∈ badFree G N₀ n) : G.C N / d ∈ badStar hd N₀ m := by
   rw [mem_badFree] at hN
@@ -137,7 +148,9 @@ lemma mapsTo_badStar {N₀ n m : ℕ} (hm : (G.q + bigR G) * n ≤ m) {N : ℕ}
 
 include hd in
 /-- **Fibre size**: at most `p` points of `badFree` are mapped to a single `M` (they are determined by the
-residue).-/
+residue).
+@isnad1 id=le.1h5v.s5.e5cdfe5faf08 from=translated src=- shape=9a18867a vocab=ad0d4911
+-/
 lemma fiber_card_le (N₀ n M : ℕ) :
     ((badFree G N₀ n).filter (fun N => G.C N / d = M)).card ≤ G.p := by
   calc _ ≤ (Finset.Ioo 0 G.p).card := by
@@ -154,7 +167,9 @@ lemma fiber_card_le (N₀ n M : ℕ) :
           exact C_inj_of_mod_eq G h₁.1.2.1 hmod hC
     _ ≤ G.p := by rw [Nat.card_Ioo]; omega
 
-/-- **The core of the transfer for (A)**: `∑_{badFree} 1/N' ≤ p ((q+R)/d) ∑_{badStar} 1/M`.-/
+/-- **The core of the transfer for (A)**: `∑_{badFree} 1/N' ≤ p ((q+R)/d) ∑_{badStar} 1/M`.
+@isnad1 id=le.2h5v.s7.247568b7e165 from=translated src=- shape=b647dc65 vocab=f1dc90ee
+-/
 lemma sum_badFree_le (N₀ n m : ℕ) (hm : (G.q + bigR G) * n ≤ m) :
     ∑ N ∈ badFree G N₀ n, (1 / (N : ℝ)) ≤
       (G.p : ℝ) * (((G.q + bigR G : ℕ) : ℝ) / d) * ∑ M ∈ badStar hd N₀ m, (1 / (M : ℝ)) := by
@@ -185,7 +200,9 @@ lemma sum_badFree_le (N₀ n m : ℕ) (hm : (G.q + bigR G) * n ≤ m) :
           (fun M _ => fiber_card_le hd N₀ n M)
     _ = (G.p : ℝ) * Q * ∑ M ∈ badStar hd N₀ m, (1 / (M : ℝ)) := by ring
 
-/-- **The core of the transfer for (B)**: `#badFree ≤ p #badStar`.-/
+/-- **The core of the transfer for (B)**: `#badFree ≤ p #badStar`.
+@isnad1 id=le.2h5v.s6.53fd1fcf4e6b from=translated src=- shape=452ca2da vocab=105fbe05
+-/
 lemma card_badFree_le (N₀ n m : ℕ) (hm : (G.q + bigR G) * n ≤ m) :
     ((badFree G N₀ n).card : ℝ) ≤ (G.p : ℝ) * ((badStar hd N₀ m).card : ℝ) := by
   have h := sum_comp_le (s := badFree G N₀ n) (t := badStar hd N₀ m) (fun N => G.C N / d)

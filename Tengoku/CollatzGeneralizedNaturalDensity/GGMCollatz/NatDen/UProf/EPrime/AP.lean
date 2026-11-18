@@ -17,7 +17,9 @@ namespace ND
 
 namespace EPrimeAux
 
-/-- **The number of elements of a residue class in a segment of an arithmetic progression**.-/
+/-- **The number of elements of a residue class in a segment of an arithmetic progression**.
+@isnad1 id=le.5h4v.s7.e18d81f7086b from=translated src=- shape=c57ff93e vocab=538d2070
+-/
 theorem ap_count {P Q : ℕ} (hP : 0 < P) (hQ : 0 < Q) (hcop : Nat.Coprime P Q) (S : Finset ℕ)
     (hcong : ∀ a ∈ S, ∀ b ∈ S, a ≡ b [MOD P])
     (hconv : ∀ a ∈ S, ∀ b ∈ S, ∀ c : ℕ, a ≤ c → c ≤ b → c ≡ a [MOD P] → c ∈ S)

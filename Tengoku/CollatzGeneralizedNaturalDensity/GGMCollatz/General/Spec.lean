@@ -30,6 +30,9 @@ def example34d : FamilyGen where
     intro j hj hjp
     interval_cases j <;> norm_num
 
+/--
+@isnad1 id=commondi.0h0v.s2.aab1ba884f83 from=translated src=- shape=aa0f4b0e vocab=746ffc3a
+-/
 lemma example34d_commonDiv : CommonDiv example34d 2 where
   two_le := le_rfl
   dvd_q := by decide
@@ -38,6 +41,9 @@ lemma example34d_commonDiv : CommonDiv example34d 2 where
     change j < 3 at hjp
     interval_cases j <;> decide
 
+/--
+@isnad1 id=not.0h0v.s1.1cdb9a46ce56 from=translated src=- shape=87ceb31f vocab=1107a4e1
+-/
 lemma example34d_not_gcdOne : ¬ GcdOne example34d := fun h =>
   absurd (h 2 example34d_commonDiv.dvd_q example34d_commonDiv.dvd_r) (by norm_num)
 

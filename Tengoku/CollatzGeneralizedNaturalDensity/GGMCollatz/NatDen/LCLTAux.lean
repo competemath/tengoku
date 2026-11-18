@@ -27,7 +27,9 @@ namespace LCLTAux
 /-- The Stirling main part `x log x - x + log(2πx)/2`.-/
 noncomputable def stir (x : ℝ) : ℝ := x * Real.log x - x + Real.log (2 * π * x) / 2
 
-/-- `log S(k) ≤ log √π + 1/(12k)` (`k ≥ 1`, from Robbins' bound).-/
+/-- `log S(k) ≤ log √π + 1/(12k)` (`k ≥ 1`, from Robbins' bound).
+@isnad1 id=le.1h1v.s5.a45e3cb39be7 from=translated src=- shape=5db84529 vocab=46a4ce1a
+-/
 theorem log_stirlingSeq_le (k : ℕ) (hk : 1 ≤ k) :
     Real.log (Stirling.stirlingSeq k) ≤ Real.log (√π) + 1 / (12 * (k : ℝ)) := by
   set a : ℕ → ℝ := fun j =>
@@ -65,7 +67,9 @@ theorem log_stirlingSeq_le (k : ℕ) (hk : 1 ≤ k) :
   push_cast
   linarith
 
-/-- The formula for `log S(k)` written in terms of `stir`.-/
+/-- The formula for `log S(k)` written in terms of `stir`.
+@isnad1 id=eq.1h1v.s5.da914813ce5e from=translated src=- shape=affd2e2b vocab=be825557
+-/
 theorem log_factorial_eq (k : ℕ) (hk : 1 ≤ k) :
     Real.log (k.factorial : ℝ) = Real.log (Stirling.stirlingSeq k) + stir k - Real.log (√π) := by
   have hk' : (0 : ℝ) < k := by exact_mod_cast hk
@@ -75,7 +79,9 @@ theorem log_factorial_eq (k : ℕ) (hk : 1 ≤ k) :
     Real.log_mul (x := 2) (by norm_num) hk'.ne', Real.log_div hk'.ne' (Real.exp_pos 1).ne', Real.log_exp]
   ring
 
-/-- **Two-sided Stirling**: `0 ≤ log k! - stir k ≤ 1/(12k)` (`k ≥ 1`).-/
+/-- **Two-sided Stirling**: `0 ≤ log k! - stir k ≤ 1/(12k)` (`k ≥ 1`).
+@isnad1 id=and.1h1v.s6.76508002ec0a from=translated src=- shape=7d55f668 vocab=fb478530
+-/
 theorem log_factorial_sub_stir (k : ℕ) (hk : 1 ≤ k) :
     0 ≤ Real.log (k.factorial : ℝ) - stir k ∧
       Real.log (k.factorial : ℝ) - stir k ≤ 1 / (12 * (k : ℝ)) := by
@@ -90,7 +96,9 @@ theorem log_factorial_sub_stir (k : ℕ) (hk : 1 ≤ k) :
     have := log_stirlingSeq_le k hk
     linarith
 
-/-- `|log k! - stir k| ≤ 1/k` (`k ≥ 1`).-/
+/-- `|log k! - stir k| ≤ 1/k` (`k ≥ 1`).
+@isnad1 id=le.1h1v.s5.5816a4a24f00 from=translated src=- shape=1b0478a9 vocab=26b39068
+-/
 theorem abs_log_factorial_sub_stir (k : ℕ) (hk : 1 ≤ k) :
     |Real.log (k.factorial : ℝ) - stir k| ≤ 1 / (k : ℝ) := by
   have hk' : (0 : ℝ) < k := by exact_mod_cast hk
@@ -103,7 +111,9 @@ theorem abs_log_factorial_sub_stir (k : ℕ) (hk : 1 ≤ k) :
 /-- `(1+t)log(1+t) - t - t²/2` (the cubic Taylor remainder).-/
 noncomputable def phi (t : ℝ) : ℝ := (1 + t) * Real.log (1 + t) - t - t ^ 2 / 2
 
-/-- `|log(1+t)| ≤ 2|t|` (`|t| ≤ 1/2`).-/
+/-- `|log(1+t)| ≤ 2|t|` (`|t| ≤ 1/2`).
+@isnad1 id=le.1h1v.s6.b633dd350d47 from=translated src=- shape=0e7cf13a vocab=a78f0c90
+-/
 theorem abs_log_one_add_le {t : ℝ} (ht : |t| ≤ 1 / 2) : |Real.log (1 + t)| ≤ 2 * |t| := by
   have h := Real.abs_log_sub_add_sum_range_le (x := -t) (by rw [abs_neg]; linarith) 0
   simp only [Finset.range_zero, Finset.sum_empty, zero_add, sub_neg_eq_add, abs_neg,
@@ -113,7 +123,9 @@ theorem abs_log_one_add_le {t : ℝ} (ht : |t| ≤ 1 / 2) : |Real.log (1 + t)| �
   rw [div_le_iff₀ hpos]
   nlinarith [abs_nonneg t]
 
-/-- `|log(1+t) - t + t²/2| ≤ 2|t|³` (`|t| ≤ 1/2`).-/
+/-- `|log(1+t) - t + t²/2| ≤ 2|t|³` (`|t| ≤ 1/2`).
+@isnad1 id=le.1h1v.s7.3d15d7186f91 from=translated src=- shape=5611f366 vocab=569808be
+-/
 theorem abs_log_one_add_sub_le {t : ℝ} (ht : |t| ≤ 1 / 2) :
     |Real.log (1 + t) - t + t ^ 2 / 2| ≤ 2 * |t| ^ 3 := by
   have h := Real.abs_log_sub_add_sum_range_le (x := -t) (by rw [abs_neg]; linarith) 2
@@ -130,7 +142,9 @@ theorem abs_log_one_add_sub_le {t : ℝ} (ht : |t| ≤ 1 / 2) :
   have h3 : (0 : ℝ) ≤ |t| ^ 3 := by positivity
   nlinarith [abs_nonneg t]
 
-/-- `|phi t| ≤ 4|t|³` (`|t| ≤ 1/2`).-/
+/-- `|phi t| ≤ 4|t|³` (`|t| ≤ 1/2`).
+@isnad1 id=le.1h1v.s6.918705f78d62 from=translated src=- shape=40508090 vocab=f825ada7
+-/
 theorem abs_phi_le {t : ℝ} (ht : |t| ≤ 1 / 2) : |phi t| ≤ 4 * |t| ^ 3 := by
   set R := Real.log (1 + t) - t + t ^ 2 / 2 with hR
   have hRb := abs_log_one_add_sub_le ht
@@ -155,7 +169,9 @@ theorem abs_phi_le {t : ℝ} (ht : |t| ≤ 1 / 2) : |phi t| ≤ 4 * |t| ^ 3 := b
 /-- **Logarithmic identity**: with `s = n + m`, `μ = P/(P-1)`, `σ² = P/(P-1)²`, `d = s - μn`, `u = d/(μn)`,
 `v = d(P-1)/n`,
 `stir s - stir n - stir m + log n - log s + n log(P-1) - s log P - (-(1/2)log(2πσ²n) - d²/(2σ²n))`
-`= μn·phi(u) - (1/(P-1))n·phi(v) - log(1+u)/2 - log(1+v)/2`.-/
+`= μn·phi(u) - (1/(P-1))n·phi(v) - log(1+u)/2 - log(1+v)/2`.
+@isnad1 id=eq.8h8v.s9.afb96dc8a9e1 from=translated src=- shape=3a5d471c vocab=060ad412
+-/
 theorem lclt_log_identity (P n m μ σ2 d u v : ℝ) (hP : 1 < P) (hn : 0 < n) (hm : 0 < m)
     (hμ : μ = P / (P - 1)) (hσ : σ2 = P / (P - 1) ^ 2) (hd : d = (n + m) - μ * n)
     (hu : u = d / (μ * n)) (hv : v = d * (P - 1) / n) :
@@ -207,7 +223,9 @@ theorem lclt_log_identity (P n m μ σ2 d u v : ℝ) (hP : 1 < P) (hn : 0 < n) (
   ring
 
 /-- **Bound for the remainder**: under `2(P-1)|d| ≤ n`, the right-hand side of the identity is at most
-`(4 + 4(P-1)²)|d|³/n² + P|d|/n`.-/
+`(4 + 4(P-1)²)|d|³/n² + P|d|/n`.
+@isnad1 id=le.6h6v.s8.566f0e7e0fcb from=translated src=- shape=d6c2657b vocab=fc4e5d39
+-/
 theorem lclt_rem_bound (P n μ d u v : ℝ) (hP : 1 < P) (hn : 0 < n)
     (hμ : μ = P / (P - 1)) (hu : u = d / (μ * n)) (hv : v = d * (P - 1) / n)
     (hsmall : 2 * (P - 1) * |d| ≤ n) :
@@ -269,7 +287,9 @@ theorem lclt_rem_bound (P n μ d u v : ℝ) (hP : 1 < P) (hn : 0 < n)
   rw [abs_le]
   constructor <;> nlinarith
 
-/-- `|e^x - 1| ≤ |x| e^{|x|}`.-/
+/-- `|e^x - 1| ≤ |x| e^{|x|}`.
+@isnad1 id=le.0h1v.s5.834f708609f6 from=translated src=- shape=8c6abe3b vocab=53b54c29
+-/
 theorem abs_exp_sub_one_le_mul (x : ℝ) : |Real.exp x - 1| ≤ |x| * Real.exp |x| := by
   rcases le_or_gt 0 x with hx | hx
   · rw [abs_of_nonneg hx, abs_of_nonneg (by linarith [Real.add_one_le_exp x])]

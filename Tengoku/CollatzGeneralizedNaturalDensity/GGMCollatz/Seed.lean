@@ -32,7 +32,9 @@ namespace Family
 open Finset
 
 open Classical in
-/-- **The seed theorem (Theorem 4.1 of the paper).**-/
+/-- **The seed theorem (Theorem 4.1 of the paper).**
+@isnad1 id=seedstat.0h1v.s2.1720ff8bb19f from=translated src=- shape=5c11bb93 vocab=38ce5fe8
+-/
 theorem seed (F : Family) : F.seed_statement := by
   obtain ⟨ξ, hξ0, hξ1, K, hK, hbad⟩ := F.bad_density
   have hp2 : (2 : ℝ) ≤ F.p := by exact_mod_cast F.two_le_p

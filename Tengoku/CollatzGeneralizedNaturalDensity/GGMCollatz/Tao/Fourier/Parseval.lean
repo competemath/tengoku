@@ -20,7 +20,9 @@ namespace GGMCollatz
 
 variable {N : ℕ} [NeZero N]
 
-/-- **Plancherel (complex form)**: `ZMod.dft` preserves the Hermitian inner product up to the factor `N`.-/
+/-- **Plancherel (complex form)**: `ZMod.dft` preserves the Hermitian inner product up to the factor `N`.
+@isnad1 id=eq.0h2v.s9.513fd328f152 from=translated src=- shape=842a7cf8 vocab=8e0fdcfe
+-/
 theorem dft_parseval_complex (Φ : ZMod N → ℂ) :
     ∑ k, ZMod.dft Φ k * conj (ZMod.dft Φ k) = (N : ℂ) * ∑ j, Φ j * conj (Φ j) := by
   have hortho : ∀ t : ZMod N, ∑ k : ZMod N, ZMod.stdAddChar (t * k)
@@ -57,7 +59,9 @@ theorem dft_parseval_complex (Φ : ZMod N → ℂ) :
     rw [← Finset.mul_sum, hortho (l - j), ite_eq_right (fun h => hl (sub_eq_zero.mp h)), mul_zero]
   · intro h; exact absurd (Finset.mem_univ j) h
 
-/-- **Parseval (real `L²` form)**: `∑ₖ ‖𝓕Φ(k)‖² = N · ∑ⱼ ‖Φ(j)‖²`.-/
+/-- **Parseval (real `L²` form)**: `∑ₖ ‖𝓕Φ(k)‖² = N · ∑ⱼ ‖Φ(j)‖²`.
+@isnad1 id=eq.0h2v.s8.2a746617c366 from=translated src=- shape=bb556649 vocab=4b67200a
+-/
 theorem dft_parseval (Φ : ZMod N → ℂ) :
     ∑ k, ‖ZMod.dft Φ k‖ ^ 2 = (N : ℝ) * ∑ j, ‖Φ j‖ ^ 2 := by
   have hz : ∀ z : ℂ, ((‖z‖ ^ 2 : ℝ) : ℂ) = z * conj z := fun z => by

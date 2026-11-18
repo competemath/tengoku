@@ -34,7 +34,9 @@ namespace GGMCollatz
 
 variable {N : ℕ} [NeZero N]
 
-/-- 1-D orthogonality: the geometric sum of the standard character `e(t·/N)`.-/
+/-- 1-D orthogonality: the geometric sum of the standard character `e(t·/N)`.
+@isnad1 id=eq.0h2v.s7.3b297adb87bc from=translated src=- shape=1d570b0e vocab=43545723
+-/
 theorem sum_stdAddChar_mul (t : ZMod N) :
     ∑ i : ZMod N, ZMod.stdAddChar (t * i) = if t = 0 then (N : ℂ) else 0 := by
   split_ifs with h
@@ -47,14 +49,23 @@ theorem sum_stdAddChar_mul (t : ZMod N) :
 noncomputable def pairChar (ξ y : ZMod N × ZMod N) : ℂ :=
   ZMod.stdAddChar (ξ.1 * y.1 + ξ.2 * y.2)
 
+/--
+@isnad1 id=eq.0h3v.s5.b9227a0fc069 from=translated src=- shape=376f560d vocab=3cd73a4d
+-/
 theorem pairChar_norm (ξ y : ZMod N × ZMod N) : ‖pairChar ξ y‖ = 1 := by
   rw [pairChar, ZMod.stdAddChar_apply]
   exact Circle.norm_coe _
 
+/--
+@isnad1 id=eq.0h2v.s6.504d81bed791 from=translated src=- shape=67940b2a vocab=cee260e1
+-/
 theorem pairChar_zero_right (ξ : ZMod N × ZMod N) : pairChar ξ 0 = 1 := by
   rw [pairChar]
   simp
 
+/--
+@isnad1 id=eq.0h4v.s6.3b8f0c8d2b2c from=translated src=- shape=59dbef9a vocab=f5783a73
+-/
 theorem pairChar_add_right (ξ y z : ZMod N × ZMod N) :
     pairChar ξ (y + z) = pairChar ξ y * pairChar ξ z := by
   rw [pairChar, pairChar, pairChar, ← AddChar.map_add_eq_mul]
@@ -62,7 +73,9 @@ theorem pairChar_add_right (ξ y z : ZMod N × ZMod N) :
   simp only [Prod.fst_add, Prod.snd_add]
   ring
 
-/-- 2-D orthogonality: `∑_ξ e(ξ·z/N) = N²` at `z = 0` and `0` elsewhere.-/
+/-- 2-D orthogonality: `∑_ξ e(ξ·z/N) = N²` at `z = 0` and `0` elsewhere.
+@isnad1 id=eq.0h2v.s7.03f6ca440c3a from=translated src=- shape=a048c6ea vocab=34aea940
+-/
 theorem sum_pairChar (z : ZMod N × ZMod N) :
     ∑ ξ : ZMod N × ZMod N, pairChar ξ z = if z = 0 then ((N : ℂ) ^ 2) else 0 := by
   have hsplit : ∑ ξ : ZMod N × ZMod N, pairChar ξ z
@@ -87,14 +100,18 @@ theorem sum_pairChar (z : ZMod N × ZMod N) :
 noncomputable def charFn (r : PMF (ZMod N × ZMod N)) (ξ : ZMod N × ZMod N) : ℂ :=
   ∑ y, ((r y).toReal : ℂ) * pairChar ξ y
 
-/-- Bind mass on a finite type, in real form.-/
+/-- Bind mass on a finite type, in real form.
+@isnad1 id=eq.0h5v.s6.9d6b61992455 from=translated src=- shape=6881cdf3 vocab=9e298f6d
+-/
 theorem toReal_bind_apply {α β : Type*} [Fintype α] (p : PMF α) (f : α → PMF β)
     (y : β) : ((p.bind f) y).toReal = ∑ a, (p a).toReal * ((f a) y).toReal := by
   rw [PMF.bind_apply, tsum_eq_sum (s := Finset.univ) (fun a ha => absurd (Finset.mem_univ a) ha),
     ENNReal.toReal_sum (fun a _ => ENNReal.mul_ne_top (p.apply_ne_top a) ((f a).apply_ne_top y))]
   exact Finset.sum_congr rfl fun a _ => ENNReal.toReal_mul
 
-/-- Pushforward change of variables for finite complex-weighted sums.-/
+/-- Pushforward change of variables for finite complex-weighted sums.
+@isnad1 id=eq.0h5v.s6.2be6a691d41f from=translated src=- shape=41a530dc vocab=fd2e39bd
+-/
 theorem sum_map_mul_complex {α β : Type*} [Fintype α] [Fintype β] [DecidableEq β]
     (q : PMF α) (φ : α → β) (g : β → ℂ) :
     ∑ y, (((q.map φ) y).toReal : ℂ) * g y = ∑ z, ((q z).toReal : ℂ) * g (φ z) := by
@@ -123,7 +140,9 @@ theorem sum_map_mul_complex {α β : Type*} [Fintype α] [Fintype β] [Decidable
           (fun h => absurd (Finset.mem_univ _) h)]
         rw [ite_eq_left rfl]
 
-/-- Fourier inversion for PMFs on the pair group (paper pp.15–16, finite form).-/
+/-- Fourier inversion for PMFs on the pair group (paper pp.15–16, finite form).
+@isnad1 id=eq.0h3v.s7.7861f6822bdf from=translated src=- shape=e6035f60 vocab=51c166e3
+-/
 theorem charFn_inversion (r : PMF (ZMod N × ZMod N)) (x : ZMod N × ZMod N) :
     ((r x).toReal : ℂ)
       = ((N : ℂ) ^ 2)⁻¹ * ∑ ξ, charFn r ξ * pairChar ξ (-x) := by
@@ -151,7 +170,9 @@ theorem charFn_inversion (r : PMF (ZMod N × ZMod N)) (x : ZMod N × ZMod N) :
   rw [hkey, mul_comm (((N : ℂ) ^ 2)⁻¹), mul_assoc, mul_inv_cancel₀ hN, mul_one]
 
 /-- Triangle-inequality form of the inversion: the point mass is at most the
-normalized `ℓ¹` mass of the characteristic function.-/
+normalized `ℓ¹` mass of the characteristic function.
+@isnad1 id=le.0h3v.s6.2a67b82ebbf1 from=translated src=- shape=50c692d8 vocab=a53ade43
+-/
 theorem apply_toReal_le_sum_norm_charFn (r : PMF (ZMod N × ZMod N))
     (x : ZMod N × ZMod N) :
     (r x).toReal ≤ ((N : ℝ) ^ 2)⁻¹ * ∑ ξ, ‖charFn r ξ‖ := by
@@ -166,6 +187,9 @@ theorem apply_toReal_le_sum_norm_charFn (r : PMF (ZMod N × ZMod N))
         refine le_trans (norm_sum_le _ _) (Finset.sum_le_sum fun ξ _ => ?_)
         rw [norm_mul, pairChar_norm, mul_one]
 
+/--
+@isnad1 id=eq.0h2v.s6.fc9352d3b403 from=translated src=- shape=e2400a14 vocab=900a81f6
+-/
 theorem charFn_pure_zero (ξ : ZMod N × ZMod N) :
     charFn (PMF.pure 0) ξ = 1 := by
   rw [charFn, Finset.sum_eq_single (0 : ZMod N × ZMod N)
@@ -177,7 +201,9 @@ theorem charFn_pure_zero (ξ : ZMod N × ZMod N) :
   rw [PMF.pure_apply, ite_eq_left rfl, ENNReal.toReal_one, Complex.ofReal_one, one_mul,
     pairChar_zero_right]
 
-/-- `charFn` of a translated PMF picks up the character of the shift.-/
+/-- `charFn` of a translated PMF picks up the character of the shift.
+@isnad1 id=eq.0h4v.s6.ee0604e53ce1 from=translated src=- shape=87168360 vocab=40d7c564
+-/
 theorem charFn_map_add (q : PMF (ZMod N × ZMod N)) (a ξ : ZMod N × ZMod N) :
     charFn (q.map (a + ·)) ξ = pairChar ξ a * charFn q ξ := by
   rw [charFn, sum_map_mul_complex q (a + ·) (pairChar ξ), charFn, Finset.mul_sum]
@@ -185,7 +211,9 @@ theorem charFn_map_add (q : PMF (ZMod N × ZMod N)) (a ξ : ZMod N × ZMod N) :
   rw [pairChar_add_right]
   ring
 
-/-- `charFn` of a bind averages the component characteristic functions.-/
+/-- `charFn` of a bind averages the component characteristic functions.
+@isnad1 id=eq.0h4v.s7.6b29ff47be43 from=translated src=- shape=c9584c76 vocab=1e05fb45
+-/
 theorem charFn_bind (p : PMF (ZMod N × ZMod N)) (f : ZMod N × ZMod N → PMF (ZMod N × ZMod N))
     (ξ : ZMod N × ZMod N) :
     charFn (p.bind f) ξ = ∑ a, ((p a).toReal : ℂ) * charFn (f a) ξ := by
@@ -203,7 +231,9 @@ theorem charFn_bind (p : PMF (ZMod N × ZMod N)) (f : ZMod N × ZMod N → PMF (
         rw [charFn, Finset.mul_sum]
         exact Finset.sum_congr rfl fun y _ => by ring
 
-/-- **Characteristic functions of iid sums are powers** (the circle-method engine).-/
+/-- **Characteristic functions of iid sums are powers** (the circle-method engine).
+@isnad1 id=eq.0h4v.s6.865622f65765 from=translated src=- shape=907b8f92 vocab=152d6480
+-/
 theorem charFn_iidSum (r : PMF (ZMod N × ZMod N)) (n : ℕ) (ξ : ZMod N × ZMod N) :
     charFn (iidSum r n) ξ = (charFn r ξ) ^ n := by
   induction n with
@@ -222,7 +252,9 @@ theorem charFn_iidSum (r : PMF (ZMod N × ZMod N)) (n : ℕ) (ξ : ZMod N × ZMo
           ring
 
 /-- **The composite circle-method bound**: for any PMF on `ZMod N × ZMod N`, the
-`n`-fold iid sum has point masses `≤ N⁻² ∑_ξ ‖r̂(ξ)‖ⁿ`.-/
+`n`-fold iid sum has point masses `≤ N⁻² ∑_ξ ‖r̂(ξ)‖ⁿ`.
+@isnad1 id=le.0h4v.s7.237e40e63cd8 from=translated src=- shape=3e84ef8e vocab=1d694a03
+-/
 theorem iidSum_apply_toReal_le (r : PMF (ZMod N × ZMod N)) (n : ℕ)
     (x : ZMod N × ZMod N) :
     ((iidSum r n) x).toReal ≤ ((N : ℝ) ^ 2)⁻¹ * ∑ ξ, ‖charFn r ξ‖ ^ n := by
@@ -231,7 +263,9 @@ theorem iidSum_apply_toReal_le (r : PMF (ZMod N × ZMod N)) (n : ℕ)
   refine le_of_eq (Finset.sum_congr rfl fun ξ _ => ?_)
   rw [charFn_iidSum, norm_pow]
 
-/-- Conjugating the product character negates its argument.-/
+/-- Conjugating the product character negates its argument.
+@isnad1 id=eq.0h3v.s6.4f4becf8124c from=translated src=- shape=b8bffff3 vocab=37c18dbe
+-/
 theorem pairChar_conj (ξ y : ZMod N × ZMod N) :
     (starRingEnd ℂ) (pairChar ξ y) = pairChar ξ (-y) := by
   have hneg : pairChar ξ (-y) = (pairChar ξ y)⁻¹ := by
@@ -241,12 +275,16 @@ theorem pairChar_conj (ξ y : ZMod N × ZMod N) :
       ring, AddChar.map_neg_eq_inv]
   rw [hneg, Complex.inv_eq_conj (pairChar_norm ξ y)]
 
-/-- Character product with a conjugate is the character of the difference.-/
+/-- Character product with a conjugate is the character of the difference.
+@isnad1 id=eq.0h4v.s7.32e1b011538e from=translated src=- shape=9780bba7 vocab=37d8fa38
+-/
 theorem pairChar_mul_conj (ξ y y' : ZMod N × ZMod N) :
     pairChar ξ y * (starRingEnd ℂ) (pairChar ξ y') = pairChar ξ (y - y') := by
   rw [pairChar_conj, ← pairChar_add_right, sub_eq_add_neg]
 
-/-- PMF masses on a finite type sum to one (real form).-/
+/-- PMF masses on a finite type sum to one (real form).
+@isnad1 id=eq.0h2v.s5.860e80102d13 from=translated src=- shape=821dc207 vocab=947d49fd
+-/
 theorem sum_toReal_eq_one {α : Type*} [Fintype α] (r : PMF α) :
     ∑ y, (r y).toReal = 1 := by
   have h := r.tsum_coe
@@ -255,7 +293,9 @@ theorem sum_toReal_eq_one {α : Type*} [Fintype α] (r : PMF α) :
 
 /-- **The two-atom anti-concentration bound** (heart of the paper's `|M(it)| < 1`
 nondegeneracy step, p.16): any two distinct atoms of `r` whose relative character is
-bounded away from `1` pull `‖r̂(ξ)‖` off the unit circle, quantitatively.-/
+bounded away from `1` pull `‖r̂(ξ)‖` off the unit circle, quantitatively.
+@isnad1 id=le.1h5v.s7.f75b767d8eca from=translated src=- shape=d0be87a7 vocab=179a0531
+-/
 theorem charFn_normSq_pair_bound (r : PMF (ZMod N × ZMod N))
     (ξ y₀ y₁ : ZMod N × ZMod N) (h01 : y₀ ≠ y₁) :
     2 * (r y₀).toReal * (r y₁).toReal * (1 - (pairChar ξ (y₀ - y₁)).re)
@@ -334,7 +374,9 @@ theorem charFn_normSq_pair_bound (r : PMF (ZMod N × ZMod N))
     _ ≤ ∑ y, ∑ y', F y y' := hfinal
 
 /-- **Jordan-type lower bound for the character defect**: `1 - Re e(j/N)` is at
-least `8·dist(j/N, ℤ)²` (where `dist(j/N, ℤ) = min(val, N - val)/N`).-/
+least `8·dist(j/N, ℤ)²` (where `dist(j/N, ℤ) = min(val, N - val)/N`).
+@isnad1 id=le.0h2v.s7.4881a9cc4ba0 from=translated src=- shape=4af3e2ef vocab=e8c998dc
+-/
 theorem one_sub_re_stdAddChar_ge (j : ZMod N) :
     8 * ((min (j.val : ℝ) ((N : ℝ) - j.val)) / N) ^ 2
       ≤ 1 - (ZMod.stdAddChar j).re := by
@@ -402,7 +444,9 @@ theorem one_sub_re_stdAddChar_ge (j : ZMod N) :
 /-- Distance of `j` to `0` on the cycle `ZMod N`: `min(val, N - val)`.-/
 def nd (j : ZMod N) : ℕ := min j.val (N - j.val)
 
-/-- Any integer representative bounds the cyclic distance.-/
+/-- Any integer representative bounds the cyclic distance.
+@isnad1 id=le.0h2v.s5.53c771ebcfd3 from=translated src=- shape=295049b8 vocab=2bcc3da3
+-/
 theorem nd_le_natAbs (x : ℤ) : nd ((x : ZMod N)) ≤ x.natAbs := by
   have hN : 0 < N := Nat.pos_of_ne_zero (NeZero.ne N)
   have hNz : (N : ℤ) ≠ 0 := by exact_mod_cast hN.ne'
@@ -431,7 +475,9 @@ theorem nd_le_natAbs (x : ℤ) : nd ((x : ZMod N)) ≤ x.natAbs := by
     generalize x % N = r at hval h0 hlt hq
     omega
 
-/-- The cyclic distance is attained by a representative.-/
+/-- The cyclic distance is attained by a representative.
+@isnad1 id=ex.0h2v.s5.c9dd703a126d from=translated src=- shape=368238a1 vocab=b402c709
+-/
 theorem exists_natAbs_eq_nd (j : ZMod N) :
     ∃ x : ℤ, (x : ZMod N) = j ∧ x.natAbs = nd j := by
   have hvlt : j.val < N := ZMod.val_lt j
@@ -445,7 +491,9 @@ theorem exists_natAbs_eq_nd (j : ZMod N) :
     · rw [nd, min_eq_right h.le]
       omega
 
-/-- Subadditivity of the cyclic distance over differences.-/
+/-- Subadditivity of the cyclic distance over differences.
+@isnad1 id=le.0h3v.s5.4aeb6ea20d4a from=translated src=- shape=95656b1d vocab=594cefdd
+-/
 theorem nd_sub_le (a b : ZMod N) : nd (a - b) ≤ nd a + nd b := by
   obtain ⟨x, hxa, hxn⟩ := exists_natAbs_eq_nd a
   obtain ⟨y, hyb, hyn⟩ := exists_natAbs_eq_nd b
@@ -456,7 +504,9 @@ theorem nd_sub_le (a b : ZMod N) : nd (a - b) ≤ nd a + nd b := by
     _ ≤ x.natAbs + y.natAbs := Int.natAbs_sub_le x y
     _ = nd a + nd b := by rw [hxn, hyn]
 
-/-- Real form of `nd` matching the Jordan bound's distance expression.-/
+/-- Real form of `nd` matching the Jordan bound's distance expression.
+@isnad1 id=eq.0h2v.s5.dc02beb8e055 from=translated src=- shape=d068bdaf vocab=fc2277e2
+-/
 theorem nd_cast (j : ZMod N) :
     ((nd j : ℕ) : ℝ) = min (j.val : ℝ) ((N : ℝ) - j.val) := by
   have hvlt : j.val ≤ N := (ZMod.val_lt j).le
@@ -469,7 +519,9 @@ theorem nd_cast (j : ZMod N) :
       rw [← Nat.cast_sub hvlt]
       exact_mod_cast h.le), ← Nat.cast_sub hvlt]
 
-/-- Jordan bound in `nd` form.-/
+/-- Jordan bound in `nd` form.
+@isnad1 id=le.0h2v.s7.7e0f716dd392 from=translated src=- shape=3e305b48 vocab=d327fa3f
+-/
 theorem one_sub_re_stdAddChar_ge' (j : ZMod N) :
     8 * ((nd j : ℝ) / N) ^ 2 ≤ 1 - (ZMod.stdAddChar j).re := by
   have h := one_sub_re_stdAddChar_ge j
@@ -479,7 +531,9 @@ theorem one_sub_re_stdAddChar_ge' (j : ZMod N) :
 
 /-- Powers of a sub-unit modulus with quadratic defect decay exponentially:
 `x² ≤ 1 - D` gives `xⁿ ≤ exp(-n·D/4)` for `n ≥ 2` (the lost factor `4` absorbs
-both the `n/2` halving and the odd-`n` floor).-/
+both the `n/2` halving and the odd-`n` floor).
+@isnad1 id=le.4h3v.s6.15d84bfdbd0d from=translated src=- shape=6b498793 vocab=3f5554db
+-/
 theorem pow_le_exp_of_sq_le_one_sub {x D : ℝ} (n : ℕ) (hn : 2 ≤ n)
     (hx : 0 ≤ x) (hD : 0 ≤ D) (h : x ^ 2 ≤ 1 - D) :
     x ^ n ≤ Real.exp (-(n : ℝ) * D / 4) := by
@@ -501,7 +555,9 @@ theorem pow_le_exp_of_sq_le_one_sub {x D : ℝ} (n : ℕ) (hn : 2 ≤ n)
         apply Real.exp_le_exp.mpr
         nlinarith [mul_nonneg hD (by linarith : (0 : ℝ) ≤ 4 * (m : ℝ) - n)]
 
-/-- Finite geometric sums with ratio `exp(-a)` are bounded by `(1 - exp(-a))⁻¹`.-/
+/-- Finite geometric sums with ratio `exp(-a)` are bounded by `(1 - exp(-a))⁻¹`.
+@isnad1 id=le.1h2v.s5.7ec1c2c65c8f from=translated src=- shape=2d1211b5 vocab=26877948
+-/
 theorem sum_exp_neg_mul_le {a : ℝ} (ha : 0 < a) (M : ℕ) :
     ∑ m ∈ Finset.range M, Real.exp (-(a * m)) ≤ (1 - Real.exp (-a))⁻¹ := by
   set q := Real.exp (-a) with hq
@@ -524,7 +580,9 @@ theorem sum_exp_neg_mul_le {a : ℝ} (ha : 0 < a) (M : ℕ) :
         linarith
     _ = (1 - q)⁻¹ := one_div _
 
-/-- Reindexing along `val`: sums over `ZMod N` are sums over `range N`.-/
+/-- Reindexing along `val`: sums over `ZMod N` are sums over `range N`.
+@isnad1 id=eq.0h2v.s5.b2a5819c3355 from=translated src=- shape=de32b0c5 vocab=030d8e2e
+-/
 theorem sum_zmod_eq_sum_range (f : ℕ → ℝ) :
     ∑ t : ZMod N, f t.val = ∑ m ∈ Finset.range N, f m :=
   Finset.sum_nbij' (fun t => t.val) (fun m => (m : ZMod N))
@@ -537,7 +595,9 @@ theorem sum_zmod_eq_sum_range (f : ℕ → ℝ) :
 /-- **1-D Gaussian summation on `ZMod N`** ((E) of node S3): the exponential sum of
 quadratic cyclic-distance decay is at most twice the geometric constant, uniformly
 in `N`. Route: `nd² ≥ nd`, `exp(-a·min) ≤ exp(-a·val) + exp(-a·(N-val))`, reindex
-both halves along `val` (the second reflected), geometric domination.-/
+both halves along `val` (the second reflected), geometric domination.
+@isnad1 id=le.1h2v.s6.4e1e818bb8d2 from=translated src=- shape=7ba8e609 vocab=aece822a
+-/
 theorem sum_exp_neg_nd_sq_le {a : ℝ} (ha : 0 < a) :
     ∑ t : ZMod N, Real.exp (-(a * ((nd t : ℝ)) ^ 2))
       ≤ 2 * (1 - Real.exp (-a))⁻¹ := by
@@ -585,7 +645,9 @@ theorem sum_exp_neg_nd_sq_le {a : ℝ} (ha : 0 < a) :
           nlinarith
     _ = 2 * (1 - Real.exp (-a))⁻¹ := by ring
 
-/-- Elementary bound `(1 - exp(-a))⁻¹ ≤ 2/a` on `(0, 1]` (via `exp(-a) ≤ (1+a)⁻¹`).-/
+/-- Elementary bound `(1 - exp(-a))⁻¹ ≤ 2/a` on `(0, 1]` (via `exp(-a) ≤ (1+a)⁻¹`).
+@isnad1 id=le.2h1v.s6.11c2d8a6dd80 from=translated src=- shape=141414d5 vocab=e5d57273
+-/
 theorem one_sub_exp_neg_inv_le {a : ℝ} (h0 : 0 < a) (h1 : a ≤ 1) :
     (1 - Real.exp (-a))⁻¹ ≤ 2 / a := by
   have hea : Real.exp (-a) ≤ (1 + a)⁻¹ := by

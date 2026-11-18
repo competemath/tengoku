@@ -25,11 +25,20 @@ namespace GGMCollatz
 /-- The Gaussian-type weight `G_t(x) = exp(-x²/t) + exp(-|x|)` (Tao (2.2)).-/
 noncomputable def Gweight (t x : ℝ) : ℝ := Real.exp (-(x ^ 2) / t) + Real.exp (-|x|)
 
+/--
+@isnad1 id=lt.0h2v.s4.024b5838d46a from=translated src=- shape=a120b2a8 vocab=ca16def8
+-/
 theorem Gweight_pos (t x : ℝ) : 0 < Gweight t x :=
   add_pos (Real.exp_pos _) (Real.exp_pos _)
 
+/--
+@isnad1 id=le.0h2v.s4.1f30e01442f3 from=translated src=- shape=a120b2a8 vocab=80f7f2e0
+-/
 theorem Gweight_nonneg (t x : ℝ) : 0 ≤ Gweight t x := (Gweight_pos t x).le
 
+/--
+@isnad1 id=le.1h2v.s4.1c23c77f69e5 from=translated src=- shape=3f00eb23 vocab=08df1f48
+-/
 theorem Gweight_le_two (t x : ℝ) (ht : 0 ≤ t) : Gweight t x ≤ 2 := by
   have h1 : Real.exp (-(x ^ 2) / t) ≤ 1 := by
     apply Real.exp_le_one_iff.mpr
@@ -46,12 +55,17 @@ variable {M : Type*} [AddCommMonoid M]
 noncomputable def iidSum (p : PMF M) (n : ℕ) : PMF M :=
   (p.iid n).map fun v => ∑ i, v i
 
+/--
+@isnad1 id=eq.0h2v.s5.50434f45541b from=translated src=- shape=546cf23a vocab=4085ee36
+-/
 theorem iidSum_zero (p : PMF M) : iidSum p 0 = PMF.pure 0 := by
   rw [iidSum, show p.iid 0 = PMF.pure (fun i : Fin 0 => i.elim0) from rfl,
     PMF.pure_map]
   simp
 
-/-- Peeling off the first term: in law, `S_{n+1} = a + S_n`.-/
+/-- Peeling off the first term: in law, `S_{n+1} = a + S_n`.
+@isnad1 id=eq.0h3v.s5.dbd87b935559 from=translated src=- shape=440e4cfa vocab=80e804eb
+-/
 theorem iidSum_succ (p : PMF M) (n : ℕ) :
     iidSum p (n + 1) = p.bind fun a => (iidSum p n).map (a + ·) := by
   rw [iidSum, show p.iid (n + 1) = p.bind fun a => (p.iid n).map (Fin.cons a) from rfl,
@@ -65,7 +79,9 @@ theorem iidSum_succ (p : PMF M) (n : ℕ) :
     rw [Fin.sum_cons]
   rw [hf]
 
-/-- Renewal additivity: `S_{k+n} = S_k + S'_n` (the two blocks are independent).-/
+/-- Renewal additivity: `S_{k+n} = S_k + S'_n` (the two blocks are independent).
+@isnad1 id=eq.0h4v.s5.88ad9e0fe514 from=translated src=- shape=3c8ed719 vocab=80e804eb
+-/
 theorem iidSum_add (p : PMF M) (k n : ℕ) :
     iidSum p (k + n) = (iidSum p k).bind fun s => (iidSum p n).map (s + ·) := by
   induction k with
@@ -87,7 +103,9 @@ theorem iidSum_add (p : PMF M) (k n : ℕ) :
       rw [add_assoc]
     rw [hf]
 
-/-- Sum of sums: the sum of `n` independent copies of `S_k` is `S_{nk}`.-/
+/-- Sum of sums: the sum of `n` independent copies of `S_k` is `S_{nk}`.
+@isnad1 id=eq.0h4v.s5.ad0c3965d3fc from=translated src=- shape=ee1ae9da vocab=3614dd64
+-/
 theorem iidSum_iidSum (p : PMF M) (k n : ℕ) :
     iidSum (iidSum p k) n = iidSum p (n * k) := by
   induction n with
@@ -97,7 +115,9 @@ theorem iidSum_iidSum (p : PMF M) (k n : ℕ) :
     refine congrArg _ (funext fun s => ?_)
     rw [IH]
 
-/-- Additive pushforward commutes with i.i.d. sums (the entry point of the circle method: take `φ` to be reduction mod `N`).-/
+/-- Additive pushforward commutes with i.i.d. sums (the entry point of the circle method: take `φ` to be reduction mod `N`).
+@isnad1 id=eq.2h5v.s6.1350a9c708be from=translated src=- shape=b5349a4f vocab=69b5b013
+-/
 theorem iidSum_map (p : PMF M) {M' : Type*} [AddCommMonoid M'] (φ : M → M')
     (hφ0 : φ 0 = 0) (hφ : ∀ a b, φ (a + b) = φ a + φ b) (n : ℕ) :
     (iidSum p n).map φ = iidSum (p.map φ) n := by
@@ -114,7 +134,9 @@ theorem iidSum_map (p : PMF M) {M' : Type*} [AddCommMonoid M'] (φ : M → M')
       rw [hφ]
     rw [hf]
 
-/-- `pascalP p` is the sum of 2 copies of `geomP p` (tao-collatz's `pascal_eq_iidSum`).-/
+/-- `pascalP p` is the sum of 2 copies of `geomP p` (tao-collatz's `pascal_eq_iidSum`).
+@isnad1 id=eq.0h1v.s4.c5dbdc1f0880 from=translated src=- shape=569e2d80 vocab=380af73c
+-/
 theorem pascalP_eq_iidSum (p : ℕ) : pascalP p = iidSum (geomP p) 2 := by
   rw [pascal_eq_map_iid, iidSum]
   have hf : (fun v : Fin 2 → ℕ => v 0 + v 1) = fun v : Fin 2 → ℕ => ∑ i, v i := by
@@ -123,14 +145,18 @@ theorem pascalP_eq_iidSum (p : ℕ) : pascalP p = iidSum (geomP p) 2 := by
   rw [hf]
 
 /-- The pointwise mass of the sum of `n` copies of `pascalP p`: the law of `|G(μ)^{(2n)}|`
-(`C(L-1, 2n-1)(p-1)^{2n} p^{-L}`, `negBinomial_apply`).-/
+(`C(L-1, 2n-1)(p-1)^{2n} p^{-L}`, `negBinomial_apply`).
+@isnad1 id=eq.3h3v.s7.500f0a0d25e4 from=translated src=- shape=90ca7eeb vocab=86f6d038
+-/
 theorem iidSum_pascalP_apply {p : ℕ} (hp : 2 ≤ p) (n L : ℕ) (hn : 1 ≤ n) (hL : 1 ≤ L) :
     (iidSum (pascalP p) n) L
       = (L - 1).choose (2 * n - 1) * ((p - 1 : ℕ) : ℝ≥0∞) ^ (2 * n) * ((p : ℝ≥0∞)⁻¹) ^ L := by
   rw [pascalP_eq_iidSum, iidSum_iidSum, show n * 2 = 2 * n from by ring]
   exact negBinomial_apply hp (2 * n) L (by omega) hL
 
-/-- The pointwise mass of the sum of `n` copies of `geomP p` (the `iidSum` form of `negBinomial_apply`).-/
+/-- The pointwise mass of the sum of `n` copies of `geomP p` (the `iidSum` form of `negBinomial_apply`).
+@isnad1 id=eq.3h3v.s7.b67670583345 from=translated src=- shape=7d24acd6 vocab=6bf6e489
+-/
 theorem iidSum_geomP_apply {p : ℕ} (hp : 2 ≤ p) (n L : ℕ) (hn : 1 ≤ n) (hL : 1 ≤ L) :
     (iidSum (geomP p) n) L
       = (L - 1).choose (n - 1) * ((p - 1 : ℕ) : ℝ≥0∞) ^ n * ((p : ℝ≥0∞)⁻¹) ^ L :=

@@ -29,18 +29,26 @@ namespace GGMCollatz
 /-- GGM's `μ = p/(p-1)` (the mean of `G(μ)`).-/
 noncomputable def muP (p : ℕ) : ℝ := (p : ℝ) / ((p : ℝ) - 1)
 
+/--
+@isnad1 id=lt.1h1v.s4.9a79cf073961 from=translated src=- shape=f8216502 vocab=54449a3c
+-/
 theorem muP_pos {p : ℕ} (hp : 2 ≤ p) : 0 < muP p := by
   have : (2 : ℝ) ≤ p := by exact_mod_cast hp
   unfold muP
   apply div_pos <;> linarith
 
-/-- `1 < μ ≤ 2`.-/
+/-- `1 < μ ≤ 2`.
+@isnad1 id=lt.1h1v.s4.49a5dd5dc6c1 from=translated src=- shape=f8216502 vocab=54449a3c
+-/
 theorem one_lt_muP {p : ℕ} (hp : 2 ≤ p) : 1 < muP p := by
   have : (2 : ℝ) ≤ p := by exact_mod_cast hp
   unfold muP
   rw [one_lt_div (by linarith)]
   linarith
 
+/--
+@isnad1 id=le.1h1v.s4.96656378aacc from=translated src=- shape=01574b0e vocab=1ddf6ac7
+-/
 theorem muP_le_two {p : ℕ} (hp : 2 ≤ p) : muP p ≤ 2 := by
   have : (2 : ℝ) ≤ p := by exact_mod_cast hp
   unfold muP
@@ -48,7 +56,9 @@ theorem muP_le_two {p : ℕ} (hp : 2 ≤ p) : muP p ≤ 2 := by
   linarith
 
 /-- **Optimization of the truncation of λ**: for `n ≥ 1` and a deviation `dev`, with `λ = clip(dev/(2000n), 1/200)`
-the Chernoff exponent `1000nλ² − λ·dev` is at most `−min(dev²/(4000n), |dev|/400)`.-/
+the Chernoff exponent `1000nλ² − λ·dev` is at most `−min(dev²/(4000n), |dev|/400)`.
+@isnad1 id=ex.1h2v.s7.2d2f293ee3e7 from=translated src=- shape=2dd691e1 vocab=b949ed45
+-/
 theorem chernoff_clip_le {n : ℕ} (hn : 1 ≤ n) (dev : ℝ) :
     ∃ lam : ℝ, -(1 / 200) ≤ lam ∧ lam ≤ 1 / 200 ∧
       1000 * (n : ℝ) * lam ^ 2 - lam * dev
@@ -86,7 +96,9 @@ theorem chernoff_clip_le {n : ℕ} (hn : 1 ≤ n) (dev : ℝ) :
         (neg_le_neg (min_le_right (dev ^ 2 / (4000 * n)) (|dev| / 400)))
       linarith
 
-/-- **Optimization of the truncation of λ, form for a nonnegative deviation**.-/
+/-- **Optimization of the truncation of λ, form for a nonnegative deviation**.
+@isnad1 id=ex.2h2v.s7.ce55e288e300 from=translated src=- shape=95e162e1 vocab=bd380c8e
+-/
 theorem chernoff_clip_le_nonneg {n : ℕ} (hn : 1 ≤ n) {dev : ℝ} (hdev : 0 ≤ dev) :
     ∃ mu : ℝ, 0 ≤ mu ∧ mu ≤ 1 / 200 ∧
       1000 * (n : ℝ) * mu ^ 2 - mu * dev
@@ -110,7 +122,9 @@ theorem chernoff_clip_le_nonneg {n : ℕ} (hn : 1 ≤ n) {dev : ℝ} (hdev : 0 �
     nlinarith
 
 /-- Matching the optimized Chernoff exponent to the two branches of `Gweight`: for `n ≥ 1`, `x ≥ 0`,
-`e^{−min(x²/4000n, x/400)} ≤ G_{1+n}(x/400)`.-/
+`e^{−min(x²/4000n, x/400)} ≤ G_{1+n}(x/400)`.
+@isnad1 id=le.2h2v.s7.944a55268338 from=translated src=- shape=f309bc15 vocab=9d09f4d2
+-/
 theorem exp_neg_min_le_Gweight {n : ℕ} (hn : 1 ≤ n) {x : ℝ} (hx : 0 ≤ x) :
     Real.exp (-min (x ^ 2 / (4000 * n)) (x / 400)) ≤ Gweight (1 + n) (1 / 400 * x) := by
   have hn' : (1 : ℝ) ≤ (n : ℝ) := by exact_mod_cast hn
@@ -131,7 +145,9 @@ theorem exp_neg_min_le_Gweight {n : ℕ} (hn : 1 ≤ n) {x : ℝ} (hx : 0 ≤ x)
     rw [hbr]
     exact le_add_of_nonneg_left (Real.exp_pos _).le
 
-/-- `Gweight` is even in its argument.-/
+/-- `Gweight` is even in its argument.
+@isnad1 id=eq.0h2v.s4.e881ca76a3b2 from=translated src=- shape=6be742d9 vocab=0dd218f1
+-/
 theorem Gweight_abs (t x : ℝ) : Gweight t |x| = Gweight t x := by
   rw [Gweight, Gweight, sq_abs, abs_abs]
 
@@ -139,7 +155,9 @@ theorem Gweight_abs (t x : ℝ) : Gweight t |x| = Gweight t x := by
 
 /-- **Quadratic bound on the moment generating function of `G(μ)`** (the mean `μ` is exact): for `|λ| ≤ 1/200`,
 `Z(λ) ≤ 1 + μλ + 8λ²`. The same constants for all `p ≥ 2` (`p = 2` is the worst case). From the closed form
-`tiltZ_geomP_frac` and the envelope `e^λ ≤ 1 + λ + 2λ²`. Generalizes tao-collatz's `tiltZ_geomHalf_le_quad`.-/
+`tiltZ_geomP_frac` and the envelope `e^λ ≤ 1 + λ + 2λ²`. Generalizes tao-collatz's `tiltZ_geomHalf_le_quad`.
+@isnad1 id=le.3h2v.s7.bf5b3995a3e1 from=translated src=- shape=98115d72 vocab=bde9a415
+-/
 theorem tiltZ_geomP_le_quad {p : ℕ} (hp : 2 ≤ p) {lam : ℝ} (hlo : -(1 / 200) ≤ lam)
     (hhi : lam ≤ 1 / 200) :
     tiltZ (geomP p) (expW lam) ≤ ENNReal.ofReal (1 + muP p * lam + 8 * lam ^ 2) := by
@@ -186,7 +204,9 @@ theorem tiltZ_geomP_le_quad {p : ℕ} (hp : 2 ≤ p) {lam : ℝ} (hlo : -(1 / 20
   nlinarith [mul_nonneg (sq_nonneg lam) hB]
 
 /-- **Quadratic bound on the moment generating function of `P(μ)`** (the mean `2μ` is exact): for `|λ| ≤ 1/200`,
-`Z(λ) ≤ 1 + 2μλ + 1000λ²` (the square of the bound for `G(μ)`).-/
+`Z(λ) ≤ 1 + 2μλ + 1000λ²` (the square of the bound for `G(μ)`).
+@isnad1 id=le.3h2v.s7.ad41833432df from=translated src=- shape=0eaa5fb1 vocab=55fe5bfe
+-/
 theorem tiltZ_pascalP_le_quad {p : ℕ} (hp : 2 ≤ p) {lam : ℝ} (hlo : -(1 / 200) ≤ lam)
     (hhi : lam ≤ 1 / 200) :
     tiltZ (pascalP p) (expW lam) ≤ ENNReal.ofReal (1 + 2 * muP p * lam + 1000 * lam ^ 2) := by
@@ -219,7 +239,9 @@ theorem tiltZ_pascalP_le_quad {p : ℕ} (hp : 2 ≤ p) {lam : ℝ} (hlo : -(1 / 
 /-! ### General machinery for one-dimensional Chernoff tails -/
 
 /-- **One-sided Markov bound on a one-dimensional half-line**: if the tilting weight is `≥ e^a` on the region `cond`,
-then the `iidSum` mass of that region is `≤ e^{-a}·Z(λ)ⁿ`.-/
+then the `iidSum` mass of that region is `≤ e^{-a}·Z(λ)ⁿ`.
+@isnad1 id=le.2h5v.s7.3bd986066697 from=translated src=- shape=c0abb60f vocab=51bdd4fb
+-/
 theorem iidSum_nat_halfspace_le (p : PMF ℕ) {t : ℝ}
     (hZt : tiltZ p (expW t) ≠ ∞) (n : ℕ)
     (cond : ℕ → Prop) [DecidablePred cond] (a : ℝ)
@@ -246,7 +268,9 @@ theorem iidSum_nat_halfspace_le (p : PMF ℕ) {t : ℝ}
   · exact bot_le
 
 /-- **General one-dimensional Lemma 2.2(ii)** (direct Chernoff): a walk on ℕ with the quadratic moment generating
-function bound `Z(λ) ≤ 1 + mλ + 1000λ²` for `|λ| ≤ 1/200` satisfies the tail bound with `c = 1/400`, `C = 2`.-/
+function bound `Z(λ) ≤ 1 + mλ + 1000λ²` for `|λ| ≤ 1/200` satisfies the tail bound with `c = 1/400`, `C = 2`.
+@isnad1 id=le.2h4v.s8.96de6b74b5f8 from=translated src=- shape=c3aade24 vocab=4752005d
+-/
 theorem iidSum_nat_tail_of_quad (p : PMF ℕ) (m : ℝ)
     (hquad : ∀ lam : ℝ, -(1 / 200) ≤ lam → lam ≤ 1 / 200 →
       tiltZ p (expW lam) ≤ ENNReal.ofReal (1 + m * lam + 1000 * lam ^ 2))
@@ -368,14 +392,22 @@ theorem iidSum_nat_tail_of_quad (p : PMF ℕ) (m : ℝ)
 /-- The `c` of `geomP_tail_bound` (tao-collatz's `c_geomTail`; independent of `p`).-/
 noncomputable def c_geomTail : ℝ := 1 / 400
 
+/--
+@isnad1 id=lt.0h0v.s3.9b17340085aa from=translated src=- shape=ff3a10fc vocab=dba025cd
+-/
 theorem c_geomTail_pos : 0 < c_geomTail := by norm_num [c_geomTail]
 
 /-- The `C` of `geomP_tail_bound` (tao-collatz's `C_geomTail`; independent of `p`).-/
 noncomputable def C_geomTail : ℝ := 2
 
+/--
+@isnad1 id=lt.0h0v.s3.6955475bf633 from=translated src=- shape=ff3a10fc vocab=0c3a5991
+-/
 theorem C_geomTail_pos : 0 < C_geomTail := by norm_num [C_geomTail]
 
-/-- **Tail of sums of `G(μ)`** (form with fixed constants): `P(||G(μ)^{(n)}| − μn| ≥ λ) ≤ 2 G_{1+n}(λ/400)`.-/
+/-- **Tail of sums of `G(μ)`** (form with fixed constants): `P(||G(μ)^{(n)}| − μn| ≥ λ) ≤ 2 G_{1+n}(λ/400)`.
+@isnad1 id=le.2h3v.s7.a074e666e49d from=translated src=- shape=cfe62136 vocab=4531f95a
+-/
 theorem geomP_tail_bound_atC {p : ℕ} (hp : 2 ≤ p) :
     ∀ (n : ℕ) (lam : ℝ), 0 ≤ lam →
       (∑' L : ℕ, if lam ≤ |(L : ℝ) - muP p * n| then ((iidSum (geomP p) n) L).toReal else 0)
@@ -386,14 +418,18 @@ theorem geomP_tail_bound_atC {p : ℕ} (hp : 2 ≤ p) :
     (fun t hlo hhi => le_trans (tiltZ_geomP_le_quad hp hlo hhi)
       (ENNReal.ofReal_le_ofReal (by nlinarith [sq_nonneg t]))) n lam hlam
 
-/-- **The `G(μ)` version of Lemma 2.2(ii)**: `P(||G(μ)^{(n)}| − μn| ≥ λ) ≪ G_n(cλ)` (constants independent of `p`).-/
+/-- **The `G(μ)` version of Lemma 2.2(ii)**: `P(||G(μ)^{(n)}| − μn| ≥ λ) ≪ G_n(cλ)` (constants independent of `p`).
+@isnad1 id=ex.1h1v.s7.283eb3b38984 from=translated src=- shape=33f1f01f vocab=36f31b23
+-/
 theorem geomP_tail_bound {p : ℕ} (hp : 2 ≤ p) :
     ∃ c > (0 : ℝ), ∃ C > (0 : ℝ), ∀ (n : ℕ) (lam : ℝ), 0 ≤ lam →
       (∑' L : ℕ, if lam ≤ |(L : ℝ) - muP p * n| then ((iidSum (geomP p) n) L).toReal else 0)
         ≤ C * Gweight (1 + n) (c * lam) :=
   ⟨c_geomTail, c_geomTail_pos, C_geomTail, C_geomTail_pos, geomP_tail_bound_atC hp⟩
 
-/-- **The `P(μ)` version of Lemma 2.2(ii)** (mean `2μ`).-/
+/-- **The `P(μ)` version of Lemma 2.2(ii)** (mean `2μ`).
+@isnad1 id=ex.1h1v.s7.c63b04bbf8b3 from=translated src=- shape=449c7f5c vocab=2b4ef9cf
+-/
 theorem pascalP_tail_bound {p : ℕ} (hp : 2 ≤ p) :
     ∃ c > (0 : ℝ), ∃ C > (0 : ℝ), ∀ (n : ℕ) (lam : ℝ), 0 ≤ lam →
       (∑' L : ℕ, if lam ≤ |(L : ℝ) - 2 * muP p * n| then ((iidSum (pascalP p) n) L).toReal
@@ -411,7 +447,9 @@ quadratic moment generating function bound `Z(λ) ≤ 1 + mλ + 1000λ²` for `|
 This is tao-collatz's `iidSum_nat_local_of_quad` (`δ = 3/16`, `C = 128`) with the lower bound on the point masses
 made general (because for `G(μ)` with `p ≥ 5` the mass `(p-1)/p²` of the second point falls below `3/16`).
 The tilted walk keeps mass `≥ δ/2` at the two points (weight `≥ e^{-3/200}`, `Z ≤ 209/200`), and
-`charFn_embMod_decay_of_adjacent_atoms` gives the decay constant `c = 1/(4δ²)`.-/
+`charFn_embMod_decay_of_adjacent_atoms` gives the decay constant `c = 1/(4δ²)`.
+@isnad1 id=le.8h6v.s8.1db238d560fb from=translated src=- shape=2e4e4deb vocab=1bf5d8dc
+-/
 theorem iidSum_nat_local_of_quad (p : PMF ℕ) (m : ℝ) (hm0 : 0 ≤ m) (hm4 : m ≤ 4)
     (hquad : ∀ lam : ℝ, -(1 / 200) ≤ lam → lam ≤ 1 / 200 →
       tiltZ p (expW lam) ≤ ENNReal.ofReal (1 + m * lam + 1000 * lam ^ 2))
@@ -573,7 +611,9 @@ theorem iidSum_nat_local_of_quad (p : PMF ℕ) (m : ℝ) (hm0 : 0 ≤ m) (hm4 : 
 
 /-! ### Local bounds for `G(μ)`, `P(μ)` (the `G(μ)` version of Tao's Lemma 2.2(i)) -/
 
-/-- The masses of `G(μ)` at 1 and 2 are at least `(p-1)/p²`.-/
+/-- The masses of `G(μ)` at 1 and 2 are at least `(p-1)/p²`.
+@isnad1 id=and.1h1v.s7.3dc0ab3a657a from=translated src=- shape=f4901a25 vocab=d6c2c610
+-/
 theorem geomP_toReal_one_two_ge {p : ℕ} (hp : 2 ≤ p) :
     ((p : ℝ) - 1) / (p : ℝ) ^ 2 ≤ (geomP p 1).toReal ∧
       ((p : ℝ) - 1) / (p : ℝ) ^ 2 ≤ (geomP p 2).toReal := by
@@ -590,7 +630,9 @@ theorem geomP_toReal_one_two_ge {p : ℕ} (hp : 2 ≤ p) :
     exact le_of_eq (div_eq_mul_inv _ _)
 
 /-- **The `G(μ)` version of Lemma 2.2(i)**: `P(|G(μ)^{(n)}| = L) ≪ (n+1)^{-1/2} G_n(c(L − μn))`
-(`c = 1/400`, `C = 8p⁴/(p-1)²`; depends on `p`).-/
+(`c = 1/400`, `C = 8p⁴/(p-1)²`; depends on `p`).
+@isnad1 id=ex.1h1v.s7.6a1bfa4146a4 from=translated src=- shape=47e316a6 vocab=0b579df9
+-/
 theorem geomP_local_bound {p : ℕ} (hp : 2 ≤ p) :
     ∃ c > (0 : ℝ), ∃ C > (0 : ℝ), ∀ (n L : ℕ),
       ((iidSum (geomP p) n) L).toReal
@@ -608,7 +650,9 @@ theorem geomP_local_bound {p : ℕ} (hp : 2 ≤ p) :
       (ENNReal.ofReal_le_ofReal (by nlinarith [sq_nonneg t])))
     1 (by omega) δ hδ0 hδ1 h1 h2 n L
 
-/-- The masses of `P(μ)` at 2 and 3 are at least `(p-1)²/p³`.-/
+/-- The masses of `P(μ)` at 2 and 3 are at least `(p-1)²/p³`.
+@isnad1 id=and.1h1v.s7.b3b250532e46 from=translated src=- shape=7ad087d0 vocab=1f8934a7
+-/
 theorem pascalP_toReal_two_three_ge {p : ℕ} (hp : 2 ≤ p) :
     ((p : ℝ) - 1) ^ 2 / (p : ℝ) ^ 3 ≤ (pascalP p 2).toReal ∧
       ((p : ℝ) - 1) ^ 2 / (p : ℝ) ^ 3 ≤ (pascalP p 3).toReal := by
@@ -641,7 +685,9 @@ theorem pascalP_toReal_two_three_ge {p : ℕ} (hp : 2 ≤ p) :
     rw [hkey]
     nlinarith [sq_nonneg ((p : ℝ) - 1)]
 
-/-- **The `P(μ)` version of Lemma 2.2(i)** (mean `2μ`, `c = 1/400`, `C = 8p⁶/(p-1)⁴`).-/
+/-- **The `P(μ)` version of Lemma 2.2(i)** (mean `2μ`, `c = 1/400`, `C = 8p⁶/(p-1)⁴`).
+@isnad1 id=ex.1h1v.s7.70e0b8ceaedf from=translated src=- shape=4c201643 vocab=ad8f0523
+-/
 theorem pascalP_local_bound {p : ℕ} (hp : 2 ≤ p) :
     ∃ c > (0 : ℝ), ∃ C > (0 : ℝ), ∀ (n L : ℕ),
       ((iidSum (pascalP p) n) L).toReal

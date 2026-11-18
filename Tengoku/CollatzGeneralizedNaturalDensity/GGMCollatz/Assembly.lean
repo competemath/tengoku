@@ -33,12 +33,16 @@ namespace GGMCollatz
 
 namespace Family
 
-/-- **Lemma 5.3 of the paper**: the one-step recursion from the form of GGM's Proposition 3.5.-/
+/-- **Lemma 5.3 of the paper**: the one-step recursion from the form of GGM's Proposition 3.5.
+@isnad1 id=onesteps.1h1v.s2.721209602e62 from=translated src=- shape=6321fd23 vocab=8956f75e
+-/
 theorem oneStep_of_prop35 (F : Family) (h : F.prop35_statement) : F.oneStep_statement :=
   Asm.oneStep_of_prop35' F h
 
 /-- **(A)** (Theorem 5.7 (ii) of the paper): from the form of GGM's Proposition 3.5, there are
-`K, c' > 0` such that for all `N₀ ≥ 1` and `x ≥ 3`, `∑_{N ≤ x, C_min(N) > N₀} 1/N ≤ K N₀^{-c'} log x`.-/
+`K, c' > 0` such that for all `N₀ ≥ 1` and `x ≥ 3`, `∑_{N ≤ x, C_min(N) > N₀} 1/N ≤ K N₀^{-c'} log x`.
+@isnad1 id=mainasta.1h1v.s2.0b847aa7c649 from=translated src=- shape=6321fd23 vocab=fbc21ecd
+-/
 theorem mainA_of_prop35 (F : Family) (h : F.prop35_statement) : F.mainA_statement := by
   obtain ⟨α, c, Cs, Xs, hα, hc, hCs, hS⟩ := Asm.stepHyp_of_oneStep F (oneStep_of_prop35 F h)
   obtain ⟨K, c', hK, hc', hU⟩ := Asm.uniform F hα hc hCs hS

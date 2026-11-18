@@ -23,7 +23,9 @@ namespace GGMCollatz
 namespace Asm
 
 /-- Covering by windows: if `2 ≤ N ≤ x < 2^{α^I}` and `p ∤ N`, then for some `i < I`,
-`N ∈ ℕ_p ∩ [2^{α^i}, (2^{α^i})^α]`.-/
+`N ∈ ℕ_p ∩ [2^{α^i}, (2^{α^i})^α]`.
+@isnad1 id=ex.5h5v.s7.df3e76b66428 from=translated src=- shape=2c3ebc5c vocab=c5ba7209
+-/
 theorem window_cover (F : Family) {α : ℝ} (hα : 1 < α) {x : ℝ} {I : ℕ} (hI : x < (2 : ℝ) ^ (α ^ I))
     {N : ℕ} (hN2 : 2 ≤ N) (hNx : (N : ℝ) ≤ x) (hNp : N % F.p ≠ 0) :
     ∃ i ∈ Finset.range I, N ∈ F.logWindow ((2 : ℝ) ^ (α ^ i)) (((2 : ℝ) ^ (α ^ i)) ^ α) := by
@@ -56,7 +58,9 @@ theorem window_cover (F : Family) {α : ℝ} (hα : 1 < α) {x : ℝ} {I : ℕ} 
       push Not at this
       exact this
 
-/-- Upper bound for the total mass of a window: `∑_{ℕ_p ∩ [y, Y]} 1/N ≤ 1 + log Y` (`Y ≥ 1`).-/
+/-- Upper bound for the total mass of a window: `∑_{ℕ_p ∩ [y, Y]} 1/N ≤ 1 + log Y` (`Y ≥ 1`).
+@isnad1 id=le.1h3v.s5.aa940c919726 from=translated src=- shape=4d9e9025 vocab=ce2471e1
+-/
 theorem mass_le (F : Family) {y Y : ℝ} (hY : 1 ≤ Y) :
     ∑ N ∈ F.logWindow y Y, (N : ℝ)⁻¹ ≤ 1 + Real.log Y := by
   set n := ⌊Y⌋₊ with hn
@@ -77,7 +81,9 @@ theorem mass_le (F : Family) {y Y : ℝ} (hY : 1 ≤ Y) :
   linarith
 
 /-- The number of windows and the geometric sum: if `2^{α^{I-1}} ≤ x` and `x ≥ 3`, then
-`∑_{i<I}(1 + α^{i+1} log 2) ≤ K₃ log x`.-/
+`∑_{i<I}(1 + α^{i+1} log 2) ≤ K₃ log x`.
+@isnad1 id=le.4h3v.s8.a336b05e555e from=translated src=- shape=9116c999 vocab=7112bcdb
+-/
 lemma window_sum_le {α x : ℝ} (hα : 1 < α) (hx : 3 ≤ x) {I : ℕ} (hI0 : 1 ≤ I)
     (hIx : (2 : ℝ) ^ (α ^ (I - 1)) ≤ x) :
     ∑ i ∈ Finset.range I, (1 + α ^ (i + 1) * Real.log 2) ≤
@@ -126,7 +132,9 @@ lemma window_sum_le {α x : ℝ} (hα : 1 < α) (hx : 3 ≤ x) {I : ℕ} (hI0 : 
   linarith
 
 /-- **Corollary (on `ℕ_p`)**: from the uniform bound for window probabilities, a bound for the
-logarithmic sum over `ℕ_p`.-/
+logarithmic sum over `ℕ_p`.
+@isnad1 id=le.5h6v.s8.3495ba02dfbc from=translated src=- shape=de791674 vocab=af74b277
+-/
 theorem logDensity_Np (F : Family) {α : ℝ} (hα : 1 < α) {K c' : ℝ} (hK : 0 ≤ K)
     (hU : ∀ N₀ : ℕ, 1 ≤ N₀ → ∀ y : ℝ, 0 < y → F.windowProb α N₀ y ≤ K * (N₀ : ℝ) ^ (-c'))
     {N₀ : ℕ} (hN₀ : 1 ≤ N₀) {x : ℝ} (hx : 3 ≤ x) :
@@ -219,7 +227,9 @@ theorem logDensity_Np (F : Family) {α : ℝ} (hα : 1 < α) {K c' : ℝ} (hK : 
         mul_le_mul_of_nonneg_left hcnt (mul_nonneg hK hNpow)
     _ = _ := by ring
 
-/-- Sum of powers of `p`: `∑_{k < n} p^{-k} ≤ p/(p-1)`.-/
+/-- Sum of powers of `p`: `∑_{k < n} p^{-k} ≤ p/(p-1)`.
+@isnad1 id=le.1h2v.s6.78d4e7c14ba3 from=translated src=- shape=411d54ad vocab=ebdb74cc
+-/
 lemma sum_inv_pow_le {p : ℝ} (hp : 1 < p) (n : ℕ) :
     ∑ k ∈ Finset.range n, (p ^ k)⁻¹ ≤ p / (p - 1) := by
   have hp0 : 0 < p := by linarith
@@ -232,7 +242,9 @@ lemma sum_inv_pow_le {p : ℝ} (hp : 1 < p) (n : ℕ) :
   simp_rw [← inv_pow]
   linarith
 
-/-- **Corollary (general `N`)**: via `N = p^k N'` and `C_min(N) > N₀ ⇒ S_min(N') > N₀`.-/
+/-- **Corollary (general `N`)**: via `N = p^k N'` and `C_min(N) > N₀ ⇒ S_min(N') > N₀`.
+@isnad1 id=le.0h3v.s7.292060d546dc from=translated src=- shape=51d637d2 vocab=0bb206c1
+-/
 theorem logDensity_C (F : Family) {N₀ : ℕ} (X : ℕ) :
     ∑ N ∈ (Finset.Icc 1 X).filter (fun N => N₀ < F.Cmin N), (N : ℝ)⁻¹ ≤
       (F.p : ℝ) / ((F.p : ℝ) - 1) *

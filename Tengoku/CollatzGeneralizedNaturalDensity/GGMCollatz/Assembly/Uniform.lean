@@ -31,7 +31,9 @@ def StepHyp (F : Family) (α c Cs Xs : ℝ) : Prop :=
   ∀ x : ℝ, Xs ≤ x → ∀ N₀ : ℕ, 1 ≤ N₀ → (N₀ : ℝ) ≤ x →
     F.windowProb α N₀ (x ^ (α ^ 2)) ≤ F.windowProb α N₀ (x ^ α) + Cs * (Real.log x) ^ (-c)
 
-/-- From `oneStep_statement`, a `StepHyp` normalized to `C_s ≥ 0`.-/
+/-- From `oneStep_statement`, a `StepHyp` normalized to `C_s ≥ 0`.
+@isnad1 id=ex.1h1v.s5.1513129acb6a from=translated src=- shape=9a5012af vocab=408a5e1a
+-/
 theorem stepHyp_of_oneStep (F : Family) (h : F.oneStep_statement) :
     ∃ α c Cs Xs : ℝ, 1 < α ∧ 0 < c ∧ 0 ≤ Cs ∧ StepHyp F α c Cs Xs := by
   obtain ⟨α, hα, c, hc, Cs, Xs, hS⟩ := h
@@ -45,7 +47,9 @@ theorem stepHyp_of_oneStep (F : Family) (h : F.oneStep_statement) :
   linarith
 
 /-- Write the window position `x ≥ X₁^α` as `x = x₁^{α^{J+1}}` with `X₁ ≤ x₁ < X₁^α` (`represent` of
-`lean/CollatzProof/Core/TaoFinal.lean`, for general `α`).-/
+`lean/CollatzProof/Core/TaoFinal.lean`, for general `α`).
+@isnad1 id=ex.3h3v.s6.cf7c8c8b2b6a from=translated src=- shape=f19acccd vocab=eda5d6d2
+-/
 lemma represent {α : ℝ} (hα : 1 < α) (X1 x : ℝ) (hX1 : 1 < X1) (hx : X1 ^ α ≤ x) :
     ∃ J : ℕ, ∃ x1 : ℝ, X1 ≤ x1 ∧ x1 < X1 ^ α ∧ x = x1 ^ (α ^ (J + 1)) := by
   have hα0 : 0 < α := by linarith
@@ -85,12 +89,17 @@ lemma represent {α : ℝ} (hα : 1 < α) (X1 x : ℝ) (hX1 : 1 < X1) (hx : X1 ^
   · have e : n - 2 + 1 = n - 1 := by omega
     rw [e, ← Real.rpow_mul (by linarith), inv_mul_cancel₀ (pow_pos hα0 _).ne', Real.rpow_one]
 
+/--
+@isnad1 id=le.2h3v.s5.195b66c9a06b from=translated src=- shape=53ee7571 vocab=821135e2
+-/
 lemma le_rpow_pow {α : ℝ} (hα : 1 < α) (x1 : ℝ) (hx1 : 1 ≤ x1) (j : ℕ) : x1 ≤ x1 ^ (α ^ j) := by
   have h1 : (1 : ℝ) ≤ α ^ j := one_le_pow₀ hα.le
   calc x1 = x1 ^ (1 : ℝ) := (Real.rpow_one x1).symm
     _ ≤ x1 ^ (α ^ j) := Real.rpow_le_rpow_of_exponent_le hx1 h1
 
-/-- Iteration of `StepHyp` (a generalization of `p_iter_step`).-/
+/-- Iteration of `StepHyp` (a generalization of `p_iter_step`).
+@isnad1 id=le.6h8v.s7.d613b0c6474d from=translated src=- shape=50d8de8f vocab=574aa5ef
+-/
 theorem iter_step (F : Family) {α c Cs Xs : ℝ} (hα : 1 < α) (hS : StepHyp F α c Cs Xs)
     (N₀ : ℕ) (hN₀ : 1 ≤ N₀) (x1 : ℝ) (hx1 : 1 ≤ x1) (hX : Xs ≤ x1) (hxN : (N₀ : ℝ) ≤ x1) :
     ∀ J : ℕ, F.windowProb α N₀ (x1 ^ (α ^ (J + 1))) ≤ F.windowProb α N₀ (x1 ^ α) +
@@ -106,7 +115,9 @@ theorem iter_step (F : Family) {α c Cs Xs : ℝ} (hα : 1 < α) (hS : StepHyp F
     rw [Finset.sum_range_succ]
     linarith
 
-/-- Sum of the errors: `∑_{j<J} C_s (log x₁^{α^j})^{-c} ≤ C_s/(1 - α^{-c}) · (log x₁)^{-c}`.-/
+/-- Sum of the errors: `∑_{j<J} C_s (log x₁^{α^j})^{-c} ≤ C_s/(1 - α^{-c}) · (log x₁)^{-c}`.
+@isnad1 id=le.4h5v.s7.30a1b3362159 from=translated src=- shape=63982b69 vocab=346a9c25
+-/
 theorem err_sum {α : ℝ} (hα : 1 < α) (Cs c x1 : ℝ) (hC : 0 ≤ Cs) (hc : 0 < c) (hx1 : 1 < x1)
     (J : ℕ) :
     ∑ j ∈ Finset.range J, Cs * (Real.log (x1 ^ (α ^ j))) ^ (-c) ≤
@@ -139,7 +150,9 @@ theorem err_sum {α : ℝ} (hα : 1 < α) (Cs c x1 : ℝ) (hC : 0 ≤ Cs) (hc : 
 
 open Classical in
 /-- Bound the window probability for all `y > 0` ((o)(i)(ii) of the accompanying paper).
-`v > 0`, `e^v ≥ X_s, N₀`.-/
+`v > 0`, `e^v ≥ X_s, N₀`.
+@isnad1 id=le.13h11v.s9.92865e81d374 from=translated src=- shape=09ed1ee8 vocab=9a921bea
+-/
 theorem window_all (F : Family) {α c Cs Xs : ℝ} (hα : 1 < α) (hc : 0 < c) (hCs : 0 ≤ Cs)
     (hS : StepHyp F α c Cs Xs) {cB CB : ℝ} (hCB : 0 ≤ CB) {L₀ : ℕ}
     (hseed : ∀ L M : ℕ, L₀ ≤ L → L ≤ M →
@@ -190,7 +203,9 @@ theorem window_all (F : Family) {α c Cs Xs : ℝ} (hα : 1 < α) (hc : 0 < c) (
     linarith
 
 /-- `(L+1) e^{-c₁ L} ≤ (1 + 2/c₁) e^{c₁/2} N₀^{-c₁/(2 log p)}` (`L = ⌊log_p N₀⌋`; `rate_to_N0` of
-`lean-nd`, for base `p`).-/
+`lean-nd`, for base `p`).
+@isnad1 id=le.3h3v.s7.206ea34dcc61 from=translated src=- shape=ab40ed3c vocab=55aed0d5
+-/
 lemma rate_to_N0 (p : ℕ) (hp : 1 < p) (c1 : ℝ) (hc1 : 0 < c1) (N0 : ℕ) (hN0 : 1 ≤ N0) :
     ((Nat.log p N0 : ℝ) + 1) * Real.exp (-(c1 * Nat.log p N0)) ≤
       (1 + 2 / c1) * Real.exp (c1 / 2) * (N0 : ℝ) ^ (-(c1 / (2 * Real.log p))) := by
@@ -231,7 +246,9 @@ lemma rate_to_N0 (p : ℕ) (hp : 1 < p) (c1 : ℝ) (hc1 : 0 < c1) (N0 : ℕ) (hN
     _ = (1 + 2 / c1) * Real.exp (c1 / 2) * (N0 : ℝ) ^ (-(c1 / (2 * Real.log p))) := by ring
 
 /-- Arithmetic 1 (the bottom-window term): with `v = e^{c_B L/4}`,
-`6PC(α(α²v)/lp + 1)²(L+1)e^{-c_B L} ≤ 6PC(α³/lp + 1)²(L+1)e^{-c₁L}`.-/
+`6PC(α(α²v)/lp + 1)²(L+1)e^{-c_B L} ≤ 6PC(α³/lp + 1)²(L+1)e^{-c₁L}`.
+@isnad1 id=le.7h7v.s8.65bdbf9cfb4a from=translated src=- shape=0f42e4e5 vocab=597a0a46
+-/
 lemma arith_base {α lp P CB cB c₁ L : ℝ} (hα : 0 < α) (hlp : 0 < lp) (hP : 0 ≤ P) (hCB : 0 ≤ CB)
     (hL : 0 ≤ L) (hcB : 0 < cB) (hc₁ : c₁ ≤ cB / 2) :
     6 * P * CB * (α * (α ^ 2 * Real.exp (cB * L / 4)) / lp + 1) ^ 2 * (L + 1) * Real.exp (-(cB * L))
@@ -262,7 +279,9 @@ lemma arith_base {α lp P CB cB c₁ L : ℝ} (hα : 0 < α) (hlp : 0 < lp) (hP 
         mul_le_mul_of_nonneg_left hve hA
     _ = _ := by ring
 
-/-- Arithmetic 2 (the error term): `K_E (e^{c_B L/4})^{-c} ≤ K_E (L+1) e^{-c₁ L}` (`c₁ ≤ c_B c/4`).-/
+/-- Arithmetic 2 (the error term): `K_E (e^{c_B L/4})^{-c} ≤ K_E (L+1) e^{-c₁ L}` (`c₁ ≤ c_B c/4`).
+@isnad1 id=le.3h5v.s7.9ff2bc1dde8c from=translated src=- shape=b16b7834 vocab=cdf5626f
+-/
 lemma arith_err {c cB c₁ L KE : ℝ} (hKE : 0 ≤ KE) (hL : 0 ≤ L) (hc₁ : c₁ ≤ cB * c / 4) :
     KE * (Real.exp (cB * L / 4)) ^ (-c) ≤ KE * ((L + 1) * Real.exp (-(c₁ * L))) := by
   apply mul_le_mul_of_nonneg_left _ hKE
@@ -278,7 +297,9 @@ lemma arith_err {c cB c₁ L KE : ℝ} (hKE : 0 ≤ KE) (hL : 0 ≤ L) (hc₁ : 
   linarith
 
 open Classical in
-/-- The case of large `L` ((iii) of the accompanying paper).-/
+/-- The case of large `L` ((iii) of the accompanying paper).
+@isnad1 id=le.17h11v.s9.b770ceeb5db0 from=translated src=- shape=97f7f912 vocab=9a921bea
+-/
 theorem uniform_large (F : Family) {α c Cs Xs : ℝ} (hα : 1 < α) (hc : 0 < c) (hCs : 0 ≤ Cs)
     (hS : StepHyp F α c Cs Xs) {cB CB : ℝ} (hcB : 0 < cB) (hCB : 0 ≤ CB) {L₀ : ℕ}
     (hseed : ∀ L M : ℕ, L₀ ≤ L → L ≤ M →
@@ -344,7 +365,9 @@ theorem uniform_large (F : Family) {α c Cs Xs : ℝ} (hα : 1 < α) (hc : 0 < c
     _ ≤ _ := mul_le_mul_of_nonneg_left hrate (by positivity)
 
 /-- **Theorem 5.7 (i) of the paper** (under `StepHyp` and the seed theorem): there are `K, c' > 0` such that for all
-`N₀ ≥ 1` and `y > 0`, `P(N₀, y) ≤ K N₀^{-c'}`.-/
+`N₀ ≥ 1` and `y > 0`, `P(N₀, y) ≤ K N₀^{-c'}`.
+@isnad1 id=ex.4h5v.s7.d3e1eca6b7c4 from=translated src=- shape=e71a4fb6 vocab=857906eb
+-/
 theorem uniform (F : Family) {α c Cs Xs : ℝ} (hα : 1 < α) (hc : 0 < c) (hCs : 0 ≤ Cs)
     (hS : StepHyp F α c Cs Xs) :
     ∃ K c' : ℝ, 0 < K ∧ 0 < c' ∧ ∀ N₀ : ℕ, 1 ≤ N₀ → ∀ y : ℝ, 0 < y →

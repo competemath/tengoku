@@ -24,7 +24,9 @@ namespace GGMCollatz
 namespace Asm
 
 /-- Decomposition by first passage: if `1 ≤ N₀ ≤ x_n`, then for every distribution `μ`,
-`E_μ[1_{S_min > N₀}] = E_μ[1_{T = ∞}] + E_{μ∘Pass^{-1}}[1_{S_min > N₀}]`.-/
+`E_μ[1_{S_min > N₀}] = E_μ[1_{T = ∞}] + E_{μ∘Pass^{-1}}[1_{S_min > N₀}]`.
+@isnad1 id=eq.2h4v.s7.0206b8ebecb2 from=translated src=- shape=5b3b06e2 vocab=b645307c
+-/
 theorem expect_bad_eq (F : Family) (μ : PMF ℕ) {xn N₀ : ℕ} (hN₀ : 1 ≤ N₀) (hx : N₀ ≤ xn) :
     Family.expect μ ({N | N₀ < F.Smin N}.indicator 1) =
       Family.expect μ ({N | ¬ F.passes xn N}.indicator 1) +
@@ -33,7 +35,9 @@ theorem expect_bad_eq (F : Family) (μ : PMF ℕ) {xn N₀ : ℕ} (hN₀ : 1 ≤
   conv_lhs => rw [h]
   rw [expect_indicator_union μ (disjoint_passes F hN₀), expect_map_indicator]
 
-/-- **Lemma 5.3 of the paper**: the one-step recursion from the form of Proposition 3.5.-/
+/-- **Lemma 5.3 of the paper**: the one-step recursion from the form of Proposition 3.5.
+@isnad1 id=onesteps.1h1v.s2.721209602e62 from=translated src=- shape=6321fd23 vocab=8956f75e
+-/
 theorem oneStep_of_prop35' (F : Family) (h : F.prop35_statement) : F.oneStep_statement := by
   obtain ⟨c, hc, hP⟩ := h
   set m := min c 1 with hmdef

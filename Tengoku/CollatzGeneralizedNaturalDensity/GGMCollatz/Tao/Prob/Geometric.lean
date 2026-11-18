@@ -27,23 +27,36 @@ open scoped ENNReal NNReal
 
 namespace GGMCollatz
 
-/-- Shift by one a `∑'` whose 0-th term vanishes.-/
+/-- Shift by one a `∑'` whose 0-th term vanishes.
+@isnad1 id=eq.0h1v.s6.37c0104e988e from=translated src=- shape=29b15e13 vocab=3aed26a3
+-/
 theorem tsum_ite_zero_eq_succ (g : ℕ → ℝ≥0∞) :
     ∑' a : ℕ, (if a = 0 then 0 else g a) = ∑' n : ℕ, g (n + 1) := by
   rw [tsum_eq_zero_add' ENNReal.summable]; simp
 
 /-! ### Basic facts about `p⁻¹` -/
 
+/--
+@isnad1 id=ne.1h1v.s4.6f8ecdf09c6b from=translated src=- shape=cc86c763 vocab=188c0426
+-/
 theorem natCast_inv_ne_top {p : ℕ} (hp : 1 ≤ p) : ((p : ℝ≥0∞)⁻¹) ≠ ⊤ :=
   ENNReal.inv_ne_top.mpr (by exact_mod_cast (by omega : p ≠ 0))
 
+/--
+@isnad1 id=ne.0h1v.s4.da8b23528515 from=translated src=- shape=ccb193b8 vocab=047ed5da
+-/
 theorem natCast_inv_ne_zero (p : ℕ) : ((p : ℝ≥0∞)⁻¹) ≠ 0 :=
   ENNReal.inv_ne_zero.mpr (ENNReal.natCast_ne_top p)
 
+/--
+@isnad1 id=ne.1h1v.s5.95923d75a4e2 from=translated src=- shape=ed8291d3 vocab=590a8df2
+-/
 theorem natCast_sub_one_ne_zero {p : ℕ} (hp : 2 ≤ p) : ((p - 1 : ℕ) : ℝ≥0∞) ≠ 0 := by
   exact_mod_cast (by omega : p - 1 ≠ 0)
 
-/-- `1 - p⁻¹ = (p-1) p⁻¹` (`p ≥ 1`).-/
+/-- `1 - p⁻¹ = (p-1) p⁻¹` (`p ≥ 1`).
+@isnad1 id=eq.1h1v.s6.faaf4a9af65e from=translated src=- shape=f6c10ed9 vocab=4023a63d
+-/
 theorem one_sub_inv_natCast {p : ℕ} (hp : 1 ≤ p) :
     (1 : ℝ≥0∞) - (p : ℝ≥0∞)⁻¹ = ((p - 1 : ℕ) : ℝ≥0∞) * (p : ℝ≥0∞)⁻¹ := by
   apply ENNReal.sub_eq_of_eq_add (natCast_inv_ne_top hp)
@@ -54,7 +67,9 @@ theorem one_sub_inv_natCast {p : ℕ} (hp : 1 ≤ p) :
 
 /-! ### The geometric distribution `G(μ)` -/
 
-/-- The mass function of the geometric distribution sums to 1.-/
+/-- The mass function of the geometric distribution sums to 1.
+@isnad1 id=hassum.1h1v.s6.26801b87b61e from=translated src=- shape=86c0c0f6 vocab=9865f87a
+-/
 theorem geomP_hasSum {p : ℕ} (hp : 2 ≤ p) :
     HasSum (fun k : ℕ => if k = 0 then (0 : ℝ≥0∞)
       else ((p - 1 : ℕ) : ℝ≥0∞) * ((p : ℝ≥0∞)⁻¹) ^ k) 1 := by
@@ -78,17 +93,23 @@ noncomputable def geomPAux {p : ℕ} (hp : 2 ≤ p) : PMF ℕ :=
 noncomputable def geomP (p : ℕ) : PMF ℕ :=
   if hp : 2 ≤ p then geomPAux hp else PMF.pure 1
 
-/-- The pointwise mass of `geomP`.-/
+/-- The pointwise mass of `geomP`.
+@isnad1 id=eq.1h2v.s6.b7ae874f9889 from=translated src=- shape=d58ea89f vocab=b9759da9
+-/
 theorem geomP_apply {p : ℕ} (hp : 2 ≤ p) (k : ℕ) :
     geomP p k = if k = 0 then 0 else ((p - 1 : ℕ) : ℝ≥0∞) * ((p : ℝ≥0∞)⁻¹) ^ k := by
   unfold geomP; rw [dite_eq_left hp]; rfl
 
-/-- For `p = 2` this is tao-collatz's `geomHalf` (`P(k) = 2^{-k}`).-/
+/-- For `p = 2` this is tao-collatz's `geomHalf` (`P(k) = 2^{-k}`).
+@isnad1 id=eq.0h1v.s6.c2fa532e5e95 from=translated src=- shape=086676a7 vocab=5d5cc34f
+-/
 theorem geomP_two_apply (k : ℕ) : geomP 2 k = if k = 0 then 0 else ((2 : ℝ≥0∞)⁻¹) ^ k := by
   rw [geomP_apply (le_refl 2)]
   norm_num
 
-/-- The real-valued mass of `geomP`.-/
+/-- The real-valued mass of `geomP`.
+@isnad1 id=eq.1h2v.s6.2ed3ea39e9d2 from=translated src=- shape=5b34e414 vocab=2ac739c9
+-/
 theorem geomP_toReal {p : ℕ} (hp : 2 ≤ p) (k : ℕ) :
     (geomP p k).toReal = if k = 0 then 0 else ((p : ℝ) - 1) * ((p : ℝ)⁻¹) ^ k := by
   rw [geomP_apply hp]
@@ -97,7 +118,9 @@ theorem geomP_toReal {p : ℕ} (hp : 2 ≤ p) (k : ℕ) :
   · rw [ENNReal.toReal_mul, ENNReal.toReal_pow, ENNReal.toReal_inv, ENNReal.toReal_natCast,
       ENNReal.toReal_natCast, Nat.cast_sub (by omega), Nat.cast_one]
 
-/-- The mass of the i.i.d. `G(μ)ⁿ` at a point whose components are all at least 1: `(p-1)^n p^{-Σa}`.-/
+/-- The mass of the i.i.d. `G(μ)ⁿ` at a point whose components are all at least 1: `(p-1)^n p^{-Σa}`.
+@isnad1 id=eq.2h3v.s7.677eb4de802c from=translated src=- shape=ec2799a6 vocab=2662387f
+-/
 theorem iid_geomP_apply_of_pos {p : ℕ} (hp : 2 ≤ p) (n : ℕ) (a : Fin n → ℕ)
     (ha : ∀ i, 1 ≤ a i) :
     (PMF.iid (geomP p) n) a = ((p - 1 : ℕ) : ℝ≥0∞) ^ n * ((p : ℝ≥0∞)⁻¹) ^ (∑ i, a i) := by
@@ -111,7 +134,9 @@ theorem iid_geomP_apply_of_pos {p : ℕ} (hp : 2 ≤ p) (n : ℕ) (a : Fin n →
         rw [Finset.prod_mul_distrib, Finset.prod_const, Finset.card_univ, Fintype.card_fin,
           Finset.prod_pow_eq_pow_sum]
 
-/-- The mass at a point having a component equal to 0 is 0.-/
+/-- The mass at a point having a component equal to 0 is 0.
+@isnad1 id=eq.2h3v.s6.c8cf6b88c911 from=translated src=- shape=57d3e6b3 vocab=1155b697
+-/
 theorem iid_geomP_apply_eq_zero_of_not_pos {p : ℕ} (hp : 2 ≤ p) (n : ℕ) (a : Fin n → ℕ)
     (ha : ¬ ∀ i, 1 ≤ a i) : (PMF.iid (geomP p) n) a = 0 := by
   rw [PMF.iid_apply_eq_prod]
@@ -120,7 +145,9 @@ theorem iid_geomP_apply_eq_zero_of_not_pos {p : ℕ} (hp : 2 ≤ p) (n : ℕ) (a
   apply Finset.prod_eq_zero (Finset.mem_univ i)
   rw [geomP_apply hp, ite_eq_left (by omega)]
 
-/-- The mass at a point with total sum 0 is 0 (`n ≥ 1`).-/
+/-- The mass at a point with total sum 0 is 0 (`n ≥ 1`).
+@isnad1 id=eq.3h3v.s6.4f0117af3314 from=translated src=- shape=faaeeec6 vocab=c4d8af20
+-/
 theorem iid_geomP_sum_zero {p : ℕ} (hp : 2 ≤ p) {n : ℕ} (hn : 1 ≤ n) (w : Fin n → ℕ)
     (hw : ∑ i, w i = 0) : (PMF.iid (geomP p) n) w = 0 := by
   apply iid_geomP_apply_eq_zero_of_not_pos hp
@@ -130,14 +157,18 @@ theorem iid_geomP_sum_zero {p : ℕ} (hp : 2 ≤ p) {n : ℕ} (hn : 1 ≤ n) (w 
   have := hpos 0
   omega
 
-/-- The mass of the pushforward under the sum, written as a weighted indicator function.-/
+/-- The mass of the pushforward under the sum, written as a weighted indicator function.
+@isnad1 id=eq.0h3v.s7.8d0794e9b36e from=translated src=- shape=638461fd vocab=512a9d01
+-/
 theorem map_sum_apply (μ : PMF ℕ) (n L : ℕ) :
     ((μ.iid n).map fun v => ∑ i, v i) L
       = ∑' v : Fin n → ℕ, (μ.iid n) v * (if L = ∑ i, v i then 1 else 0) := by
   rw [PMF.map_apply]
   exact tsum_congr fun v => by split_ifs <;> simp
 
-/-- Column sums of Pascal's triangle (hockey stick): `∑_{j<K} C(j,m) = C(K, m+1)`.-/
+/-- Column sums of Pascal's triangle (hockey stick): `∑_{j<K} C(j,m) = C(K, m+1)`.
+@isnad1 id=eq.0h2v.s5.66b265b1a0a8 from=translated src=- shape=84a7c831 vocab=7a05e5cf
+-/
 theorem sum_range_choose_col (K m : ℕ) :
     ∑ j ∈ Finset.range K, j.choose m = K.choose (m + 1) := by
   induction K with
@@ -146,7 +177,9 @@ theorem sum_range_choose_col (K m : ℕ) :
     rw [Finset.sum_range_succ, IH, Nat.choose_succ_succ, Nat.succ_eq_add_one]
     omega
 
-/-- The index shift used in the negative binomial convolution.-/
+/-- The index shift used in the negative binomial convolution.
+@isnad1 id=eq.0h2v.s6.2f733e40647e from=translated src=- shape=f04b23e0 vocab=478a4df0
+-/
 theorem sum_Ico_choose_shift (m L : ℕ) :
     ∑ a ∈ Finset.Ico 1 L, (L - a - 1).choose m = (L - 1).choose (m + 1) := by
   rw [← sum_range_choose_col (L - 1) m]
@@ -171,7 +204,9 @@ theorem sum_Ico_choose_shift (m L : ℕ) :
     congr 1
     omega
 
-/-- **Negative binomial**: the sum of `G(μ)ⁿ` puts mass `C(L-1, n-1)(p-1)^n p^{-L}` at `L` (`n, L ≥ 1`).-/
+/-- **Negative binomial**: the sum of `G(μ)ⁿ` puts mass `C(L-1, n-1)(p-1)^n p^{-L}` at `L` (`n, L ≥ 1`).
+@isnad1 id=eq.3h3v.s7.19ba98e67525 from=translated src=- shape=f18d1483 vocab=64f39049
+-/
 theorem negBinomial_apply {p : ℕ} (hp : 2 ≤ p) (n L : ℕ) (hn : 1 ≤ n) (hL : 1 ≤ L) :
     ((PMF.iid (geomP p) n).map (fun v => ∑ i, v i)) L
       = (L - 1).choose (n - 1) * ((p - 1 : ℕ) : ℝ≥0∞) ^ n * ((p : ℝ≥0∞)⁻¹) ^ L := by
@@ -245,11 +280,15 @@ theorem negBinomial_apply {p : ℕ} (hp : 2 ≤ p) (n L : ℕ) (hn : 1 ≤ n) (h
 /-- **Pascal distribution**: the law of the sum of two independent copies of `G(μ)` (GGM §2.1, §7).-/
 noncomputable def pascalP (p : ℕ) : PMF ℕ := (PMF.iid (geomP p) 2).map (fun v => v 0 + v 1)
 
-/-- By definition: Pascal is the pushforward of `G(μ)²` under the sum (tao-collatz's `pascal_eq_map_iid`).-/
+/-- By definition: Pascal is the pushforward of `G(μ)²` under the sum (tao-collatz's `pascal_eq_map_iid`).
+@isnad1 id=eq.0h1v.s6.82a41aa133a7 from=translated src=- shape=fa7f0260 vocab=f98f6840
+-/
 theorem pascal_eq_map_iid (p : ℕ) :
     pascalP p = (PMF.iid (geomP p) 2).map (fun v => v 0 + v 1) := rfl
 
-/-- **Pascal mass**: `P(b) = (b-1)(p-1)² p^{-b}` (`b ≥ 2`; 0 otherwise).-/
+/-- **Pascal mass**: `P(b) = (b-1)(p-1)² p^{-b}` (`b ≥ 2`; 0 otherwise).
+@isnad1 id=eq.1h2v.s7.d0ac1274bce9 from=translated src=- shape=8e0fbb9a vocab=92a93c16
+-/
 theorem pascalP_apply {p : ℕ} (hp : 2 ≤ p) (b : ℕ) :
     pascalP p b = if b < 2 then 0
       else ((b - 1 : ℕ) : ℝ≥0∞) * ((p - 1 : ℕ) : ℝ≥0∞) ^ 2 * ((p : ℝ≥0∞)⁻¹) ^ b := by
@@ -269,19 +308,25 @@ theorem pascalP_apply {p : ℕ} (hp : 2 ≤ p) (b : ℕ) :
       simp
     · rw [ite_eq_right (by omega), Nat.add_sub_cancel, Nat.choose_one_right]
 
-/-- `P(Pascal = 3) = 2(p-1)² p^{-3}`.-/
+/-- `P(Pascal = 3) = 2(p-1)² p^{-3}`.
+@isnad1 id=eq.1h1v.s7.f7dc71faaba1 from=translated src=- shape=814e8093 vocab=1ebc1f09
+-/
 theorem pascalP_three {p : ℕ} (hp : 2 ≤ p) :
     pascalP p 3 = 2 * ((p - 1 : ℕ) : ℝ≥0∞) ^ 2 * ((p : ℝ≥0∞)⁻¹) ^ 3 := by
   rw [pascalP_apply hp, ite_eq_right (by omega)]
   norm_num
 
-/-- `P(Pascal = 3) > 0`.-/
+/-- `P(Pascal = 3) > 0`.
+@isnad1 id=lt.1h1v.s5.2489fb48b847 from=translated src=- shape=05e4c553 vocab=ff701884
+-/
 theorem pascalP_three_pos {p : ℕ} (hp : 2 ≤ p) : 0 < pascalP p 3 := by
   rw [pascalP_three hp]
   exact ENNReal.mul_pos (mul_ne_zero (by norm_num) (pow_ne_zero _ (natCast_sub_one_ne_zero hp)))
     (pow_ne_zero _ (natCast_inv_ne_zero p))
 
-/-- `P(Pascal = 2) > 0`.-/
+/-- `P(Pascal = 2) > 0`.
+@isnad1 id=lt.1h1v.s5.178aa28ba202 from=translated src=- shape=05e4c553 vocab=ff701884
+-/
 theorem pascalP_two_pos {p : ℕ} (hp : 2 ≤ p) : 0 < pascalP p 2 := by
   rw [pascalP_apply hp, ite_eq_right (by omega)]
   exact ENNReal.mul_pos (mul_ne_zero (by norm_num) (pow_ne_zero _ (natCast_sub_one_ne_zero hp)))
@@ -295,7 +340,9 @@ noncomputable def pascalNe3P (p : ℕ) : PMF ℕ :=
       ⟨2, by simp, (PMF.mem_support_iff _ _).mpr (pascalP_two_pos hp).ne'⟩
   else PMF.pure 2
 
-/-- The Pascal mass on `{b ≠ 3}` sums to `1 - P(3)`.-/
+/-- The Pascal mass on `{b ≠ 3}` sums to `1 - P(3)`.
+@isnad1 id=eq.0h1v.s6.7232f949cbd3 from=translated src=- shape=da12c5b6 vocab=a6281c77
+-/
 theorem tsum_pascalP_ne_three (p : ℕ) :
     ∑' b, ({b | b ≠ 3} : Set ℕ).indicator (pascalP p) b = 1 - pascalP p 3 := by
   apply ENNReal.eq_sub_of_add_eq (PMF.apply_ne_top _ _)
@@ -309,7 +356,9 @@ theorem tsum_pascalP_ne_three (p : ℕ) :
   · simp [hb]
   · simp [hb]
 
-/-- **Mass of `pascalNe3P`**: `P(b) / (1 - P(3))` (`b ≠ 3`), and 0 at `b = 3`.-/
+/-- **Mass of `pascalNe3P`**: `P(b) / (1 - P(3))` (`b ≠ 3`), and 0 at `b = 3`.
+@isnad1 id=eq.1h2v.s6.497520dfe8ef from=translated src=- shape=19e7f3d5 vocab=e144da26
+-/
 theorem pascalNe3P_apply {p : ℕ} (hp : 2 ≤ p) (b : ℕ) :
     pascalNe3P p b = if b = 3 then 0 else (1 - pascalP p 3)⁻¹ * pascalP p b := by
   unfold pascalNe3P
@@ -320,7 +369,9 @@ theorem pascalNe3P_apply {p : ℕ} (hp : 2 ≤ p) (b : ℕ) :
 
 /-! ### The geometric distribution with success probability `s` (`J` in GGM §7) -/
 
-/-- The mass function of the geometric distribution with success probability `s` sums to 1 (`0 < s ≤ 1`).-/
+/-- The mass function of the geometric distribution with success probability `s` sums to 1 (`0 < s ≤ 1`).
+@isnad1 id=hassum.1h1v.s6.51a3c0d0a061 from=translated src=- shape=ee6d4280 vocab=3582583b
+-/
 theorem geomS_hasSum {s : ℝ≥0∞} (hs : 0 < s ∧ s ≤ 1) :
     HasSum (fun k : ℕ => if k = 0 then (0 : ℝ≥0∞) else s * (1 - s) ^ (k - 1)) 1 := by
   have hst : s ≠ ⊤ := ne_top_of_le_ne_top ENNReal.one_ne_top hs.2
@@ -341,11 +392,16 @@ noncomputable def geomSAux {s : ℝ≥0∞} (hs : 0 < s ∧ s ≤ 1) : PMF ℕ :
 noncomputable def geomS (s : ℝ≥0∞) : PMF ℕ :=
   if hs : 0 < s ∧ s ≤ 1 then geomSAux hs else PMF.pure 1
 
+/--
+@isnad1 id=eq.1h2v.s6.c67e10bd0f86 from=translated src=- shape=cba0aad5 vocab=2ebcfb15
+-/
 theorem geomS_apply {s : ℝ≥0∞} (hs : 0 < s ∧ s ≤ 1) (k : ℕ) :
     geomS s k = if k = 0 then 0 else s * (1 - s) ^ (k - 1) := by
   unfold geomS; rw [dite_eq_left hs]; rfl
 
-/-- The real-valued mass of `geomS`.-/
+/-- The real-valued mass of `geomS`.
+@isnad1 id=eq.1h2v.s6.7f41e8770d15 from=translated src=- shape=fe61f9d0 vocab=5edb2325
+-/
 theorem geomS_toReal {s : ℝ≥0∞} (hs : 0 < s ∧ s ≤ 1) (k : ℕ) :
     (geomS s k).toReal = if k = 0 then 0 else s.toReal * (1 - s.toReal) ^ (k - 1) := by
   rw [geomS_apply hs]
@@ -354,15 +410,22 @@ theorem geomS_toReal {s : ℝ≥0∞} (hs : 0 < s ∧ s ≤ 1) (k : ℕ) :
   · rw [ENNReal.toReal_mul, ENNReal.toReal_pow, ENNReal.toReal_sub_of_le hs.2 ENNReal.one_ne_top,
       ENNReal.toReal_one]
 
-/-- The real-valued masses of `geomS` sum to 1.-/
+/-- The real-valued masses of `geomS` sum to 1.
+@isnad1 id=eq.0h1v.s5.aafad7d2ae35 from=translated src=- shape=423df43c vocab=d64abce8
+-/
 theorem geomS_tsum_toReal (s : ℝ≥0∞) : ∑' k : ℕ, (geomS s k).toReal = 1 := by
   rw [← ENNReal.tsum_toReal_eq (fun k => (geomS s).apply_ne_top k),
     (geomS s).tsum_coe, ENNReal.toReal_one]
 
+/--
+@isnad1 id=summable.0h1v.s4.33b97bd0fde1 from=translated src=- shape=cb8c1028 vocab=66f7a048
+-/
 theorem geomS_summable_toReal (s : ℝ≥0∞) : Summable fun k : ℕ => (geomS s k).toReal :=
   ENNReal.summable_toReal (geomS s).tsum_coe_ne_top
 
-/-- **Tail of the geometric distribution**: the mass beyond `t` is exactly `(1-s)^t` (tao-collatz's `geomQuarter_tail`).-/
+/-- **Tail of the geometric distribution**: the mass beyond `t` is exactly `(1-s)^t` (tao-collatz's `geomQuarter_tail`).
+@isnad1 id=eq.1h2v.s6.8482cdebb6a9 from=translated src=- shape=d7a44166 vocab=45d1f430
+-/
 theorem geomS_tail {s : ℝ≥0∞} (hs : 0 < s ∧ s ≤ 1) (t : ℕ) :
     ∑' k : ℕ, (if t < k then (geomS s k).toReal else 0) = (1 - s.toReal) ^ t := by
   have hst : s ≠ ⊤ := ne_top_of_le_ne_top ENNReal.one_ne_top hs.2
@@ -400,7 +463,9 @@ theorem geomS_tail {s : ℝ≥0∞} (hs : 0 < s ∧ s ≤ 1) (t : ℕ) :
 /-- **The law of `J` in GGM §7**: the geometric distribution with success probability `P(Pascal = 3)` (tao-collatz's `geomQuarter`).-/
 noncomputable def holdGeom (p : ℕ) : PMF ℕ := geomS (pascalP p 3)
 
-/-- The success probability of `holdGeom` lies in `(0, 1]`.-/
+/-- The success probability of `holdGeom` lies in `(0, 1]`.
+@isnad1 id=and.1h1v.s6.59a8a6360487 from=translated src=- shape=b59cd7a5 vocab=ff701884
+-/
 theorem holdGeom_prob {p : ℕ} (hp : 2 ≤ p) : 0 < pascalP p 3 ∧ pascalP p 3 ≤ 1 :=
   ⟨pascalP_three_pos hp, PMF.coe_le_one _ _⟩
 
@@ -412,7 +477,9 @@ noncomputable def unifDigit (p : ℕ) : PMF ℕ :=
     PMF.uniformOfFinset (Finset.Ioo 0 p) (show (Finset.Ioo 0 p).Nonempty from ⟨1, by simp; omega⟩)
   else PMF.pure 1
 
-/-- The mass of `unifDigit`: `(p-1)⁻¹` (`0 < d < p`).-/
+/-- The mass of `unifDigit`: `(p-1)⁻¹` (`0 < d < p`).
+@isnad1 id=eq.1h2v.s6.c688cd0e9164 from=translated src=- shape=592595aa vocab=b9eedb73
+-/
 theorem unifDigit_apply {p : ℕ} (hp : 2 ≤ p) (d : ℕ) :
     unifDigit p d = if 0 < d ∧ d < p then ((p - 1 : ℕ) : ℝ≥0∞)⁻¹ else 0 := by
   unfold unifDigit
@@ -423,7 +490,9 @@ theorem unifDigit_apply {p : ℕ} (hp : 2 ≤ p) (d : ℕ) :
 noncomputable def stepLaw (p : ℕ) : PMF (ℕ × ℕ) :=
   (geomP p).bind fun a => (unifDigit p).map fun d => (a, d)
 
-/-- The mass of the one-step law is a product.-/
+/-- The mass of the one-step law is a product.
+@isnad1 id=eq.0h3v.s6.5d3071bbae0b from=translated src=- shape=63ee9923 vocab=f5885320
+-/
 theorem stepLaw_apply (p a d : ℕ) : stepLaw p (a, d) = geomP p a * unifDigit p d := by
   unfold stepLaw
   rw [PMF.bind_apply, tsum_eq_single a]
@@ -441,7 +510,9 @@ theorem stepLaw_apply (p a d : ℕ) : stepLaw p (a, d) = geomP p a * unifDigit p
     intro h
     exact ha' (Prod.mk.inj h).1.symm
 
-/-- The first component of the one-step law is `G(μ)`.-/
+/-- The first component of the one-step law is `G(μ)`.
+@isnad1 id=eq.0h1v.s4.71fbd477076d from=translated src=- shape=9d25b50b vocab=79dbd3ed
+-/
 theorem stepLaw_map_fst (p : ℕ) : (stepLaw p).map Prod.fst = geomP p := by
   unfold stepLaw
   rw [PMF.map_bind]
@@ -451,7 +522,9 @@ theorem stepLaw_map_fst (p : ℕ) : (stepLaw p).map Prod.fst = geomP p := by
     rw [show (Prod.fst ∘ fun d : ℕ => (a, d)) = Function.const ℕ a from rfl, PMF.map_const]
   exact PMF.bind_pure _
 
-/-- The second component of the one-step law is `U(1..p-1)`.-/
+/-- The second component of the one-step law is `U(1..p-1)`.
+@isnad1 id=eq.0h1v.s4.50786921be80 from=translated src=- shape=9d25b50b vocab=6a773464
+-/
 theorem stepLaw_map_snd (p : ℕ) : (stepLaw p).map Prod.snd = unifDigit p := by
   unfold stepLaw
   rw [PMF.map_bind]
@@ -460,7 +533,9 @@ theorem stepLaw_map_snd (p : ℕ) : (stepLaw p).map Prod.snd = unifDigit p := by
     rw [PMF.map_comp, show (Prod.snd ∘ fun d : ℕ => (a, d)) = id from rfl, PMF.map_id]
   exact PMF.bind_const _ _
 
-/-- Mapping an i.i.d. vector componentwise gives the i.i.d. vector of the mapped law.-/
+/-- Mapping an i.i.d. vector componentwise gives the i.i.d. vector of the mapped law.
+@isnad1 id=eq.0h5v.s5.b15e4dedf11c from=translated src=- shape=6414bbc7 vocab=d08d1128
+-/
 theorem iid_map_comp {α β : Type*} (μ : PMF α) (f : α → β) :
     ∀ n : ℕ, (μ.iid n).map (fun v => f ∘ v) = (μ.map f).iid n := by
   intro n
@@ -481,17 +556,23 @@ theorem iid_map_comp {α β : Type*} (μ : PMF α) (f : α → β) :
     funext i
     refine Fin.cases ?_ (fun k => ?_) i <;> simp
 
-/-- The valuation components of the i.i.d. one-step law are `G(μ)ⁿ`.-/
+/-- The valuation components of the i.i.d. one-step law are `G(μ)ⁿ`.
+@isnad1 id=eq.0h2v.s5.206d1b8c24ed from=translated src=- shape=cf5d5adc vocab=e6326464
+-/
 theorem iid_stepLaw_map_fst (p n : ℕ) :
     ((stepLaw p).iid n).map (fun v => Prod.fst ∘ v) = (geomP p).iid n := by
   rw [iid_map_comp, stepLaw_map_fst]
 
-/-- The digit components of the i.i.d. one-step law are `U(1..p-1)ⁿ`.-/
+/-- The digit components of the i.i.d. one-step law are `U(1..p-1)ⁿ`.
+@isnad1 id=eq.0h2v.s5.b34fcffd60be from=translated src=- shape=cf5d5adc vocab=4b2425e6
+-/
 theorem iid_stepLaw_map_snd (p n : ℕ) :
     ((stepLaw p).iid n).map (fun v => Prod.snd ∘ v) = (unifDigit p).iid n := by
   rw [iid_map_comp, stepLaw_map_snd]
 
-/-- The mass of the i.i.d. one-step law is a product.-/
+/-- The mass of the i.i.d. one-step law is a product.
+@isnad1 id=eq.0h3v.s6.42c106359ab1 from=translated src=- shape=bd6f61dc vocab=12e2e835
+-/
 theorem iid_stepLaw_apply (p n : ℕ) (v : Fin n → ℕ × ℕ) :
     ((stepLaw p).iid n) v = ∏ i, geomP p (v i).1 * unifDigit p (v i).2 := by
   rw [PMF.iid_apply_eq_prod]

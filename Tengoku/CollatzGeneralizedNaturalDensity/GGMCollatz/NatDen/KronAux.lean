@@ -42,10 +42,16 @@ variable {f : ℝ → ℝ} (hf : AntitoneOn f (Set.Icc 0 1))
 include hf01
 
 omit hf01 in
+/--
+@isnad1 id=eq.1h2v.s5.6e86eb3cc862 from=translated src=- shape=02a76354 vocab=4ef5a53f
+-/
 theorem extF_eq {t : ℝ} (ht : t ∈ Set.Icc (0 : ℝ) 1) : extF f t = f t := by
   unfold extF
   rw [ite_eq_right (not_lt.2 ht.1), ite_eq_right (not_lt.2 ht.2)]
 
+/--
+@isnad1 id=and.1h2v.s6.f260c2592ba6 from=translated src=- shape=86760c63 vocab=48bed595
+-/
 theorem extF_mem (t : ℝ) : 0 ≤ extF f t ∧ extF f t ≤ 1 := by
   unfold extF
   split_ifs with h1 h2
@@ -54,6 +60,9 @@ theorem extF_mem (t : ℝ) : 0 ≤ extF f t ∧ extF f t ≤ 1 := by
   · exact hf01 t ⟨not_lt.1 h1, not_lt.1 h2⟩
 
 include hf in
+/--
+@isnad1 id=antitone.2h1v.s6.c4ea48d03794 from=translated src=- shape=c54f5b70 vocab=422feedb
+-/
 theorem extF_antitone : Antitone (extF f) := by
   intro s t hst
   have hmem := extF_mem hf01
@@ -73,14 +82,23 @@ theorem extF_antitone : Antitone (extF f) := by
   exact hf hs ht hst
 
 omit hf01 in
+/--
+@isnad1 id=eq.1h2v.s4.c72ec432b058 from=translated src=- shape=2d7b02d1 vocab=4cd79c85
+-/
 theorem extF_neg {t : ℝ} (ht : t < 0) : extF f t = 1 := by simp [extF, ht]
 
 omit hf01 in
+/--
+@isnad1 id=eq.1h2v.s4.75c29000ef72 from=translated src=- shape=fa177043 vocab=4cd79c85
+-/
 theorem extF_big {t : ℝ} (ht : 1 < t) : extF f t = 0 := by
   have : ¬ t < 0 := by linarith
   simp [extF, this, ht]
 
 omit hf01 in
+/--
+@isnad1 id=eq.0h1v.s6.441ea0c19a9d from=translated src=- shape=b400a12c vocab=dee6f45f
+-/
 theorem extF_integral : ∫ θ in (0 : ℝ)..1, extF f θ = ∫ θ in (0 : ℝ)..1, f θ := by
   apply intervalIntegral.integral_congr
   intro t ht
@@ -95,6 +113,9 @@ variable {F : ℝ → ℝ} (hF : Antitone F) (h01 : ∀ t, 0 ≤ F t ∧ F t ≤
 include hF h01
 
 omit hF in
+/--
+@isnad1 id=and.1h1v.s6.c0e19a05fe18 from=translated src=- shape=9611d5ce vocab=480c1659
+-/
 theorem integral_mem : 0 ≤ ∫ t in (0 : ℝ)..1, F t ∧ ∫ t in (0 : ℝ)..1, F t ≤ 1 := by
   constructor
   · exact intervalIntegral.integral_nonneg zero_le_one (fun t _ => (h01 t).1)
@@ -103,6 +124,9 @@ theorem integral_mem : 0 ≤ ∫ t in (0 : ℝ)..1, F t ∧ ∫ t in (0 : ℝ)..
     rw [Real.norm_eq_abs] at this
     simpa using (le_abs_self _).trans this
 
+/--
+@isnad1 id=le.2h2v.s7.19169ae4778c from=translated src=- shape=b18dcb5f vocab=065d09fa
+-/
 theorem shift_integral (s : ℝ) :
     |(∫ t in s..s + 1, F t) - ∫ t in (0 : ℝ)..1, F t| ≤ 2 * |s| := by
   have hi : ∀ a b : ℝ, IntervalIntegrable F MeasureTheory.volume a b :=
@@ -125,7 +149,9 @@ theorem shift_integral (s : ℝ) :
     _ ≤ |s| + |s| := by linarith
     _ = 2 * |s| := by ring
 
-/-- Lower bound for the Riemann sum over the lattice `φ + (i+1)/h`.-/
+/-- Lower bound for the Riemann sum over the lattice `φ + (i+1)/h`.
+@isnad1 id=le.5h3v.s7.11a9dbba61b1 from=translated src=- shape=1837206f vocab=3c71ce59
+-/
 theorem riemann_lo {h : ℕ} (hh : 0 < h) {φ : ℝ} (hφ0 : 0 ≤ φ) (hφ1 : (h : ℝ) * φ < 1) :
     (h : ℝ) * (∫ t in (0 : ℝ)..1, F t) - 4 ≤ ∑ i ∈ Finset.range h, F (φ + ((i : ℝ) + 1) / h) := by
   have hpos : (0 : ℝ) < h := Nat.cast_pos.2 hh
@@ -150,7 +176,9 @@ theorem riemann_lo {h : ℕ} (hh : 0 < h) {φ : ℝ} (hφ0 : 0 ≤ φ) (hφ1 : (
   have := mul_le_mul_of_nonneg_left hlow hpos.le
   nlinarith
 
-/-- Upper bound for the Riemann sum over the lattice `φ + (i-1)/h`.-/
+/-- Upper bound for the Riemann sum over the lattice `φ + (i-1)/h`.
+@isnad1 id=le.5h3v.s7.72b3bce30cbf from=translated src=- shape=d95d61c6 vocab=3c71ce59
+-/
 theorem riemann_hi {h : ℕ} (hh : 0 < h) {φ : ℝ} (hφ0 : 0 ≤ φ) (hφ1 : (h : ℝ) * φ < 1) :
     ∑ i ∈ Finset.range h, F (φ + ((i : ℝ) - 1) / h) ≤ (h : ℝ) * (∫ t in (0 : ℝ)..1, F t) + 4 := by
   have hpos : (0 : ℝ) < h := Nat.cast_pos.2 hh
@@ -193,7 +221,9 @@ variable {F : ℝ → ℝ} (hF : Antitone F) (h01 : ∀ t, 0 ≤ F t ∧ F t ≤
 include hF h01 hneg hbig
 
 /-- Upper and lower bounds for the value at a point `x` displaced by less than `1/h` from the lattice point `φ + i/h`
-(`h x ∈ (hφ + i - 1, hφ + i + 1)`). The two end points (`i = 0` and `i = h - 1`) may wrap around under `Int.fract`, so `1` is added.-/
+(`h x ∈ (hφ + i - 1, hφ + i + 1)`). The two end points (`i = 0` and `i = h - 1`) may wrap around under `Int.fract`, so `1` is added.
+@isnad1 id=and.10h5v.s8.53e18e6b243f from=translated src=- shape=45bf156f vocab=806b072e
+-/
 theorem pt_bound {h : ℕ} (hh : 0 < h) {φ : ℝ} (hφ0 : 0 ≤ φ) (hφ1 : (h : ℝ) * φ < 1)
     {i : ℕ} (hi : i < h) {x : ℝ}
     (hxl : (h : ℝ) * φ + i - 1 < h * x) (hxu : (h : ℝ) * x < h * φ + i + 1) :
@@ -251,7 +281,9 @@ theorem pt_bound {h : ℕ} (hh : 0 < h) {φ : ℝ} (hφ0 : 0 ≤ φ) (hφ1 : (h 
 
 end Point
 
-/-- If `A` and `h` are coprime, then `k ↦ (m + kA) mod h` is a bijection of `range h`.-/
+/-- If `A` and `h` are coprime, then `k ↦ (m + kA) mod h` is a bijection of `range h`.
+@isnad1 id=eq.2h4v.s6.5403c361bd47 from=translated src=- shape=aa1a0b93 vocab=93462905
+-/
 theorem sum_perm {h : ℕ} (hh : 0 < h) {A : ℤ} (hcop : IsCoprime A (h : ℤ)) (m : ℤ) (g : ℕ → ℝ) :
     ∑ k ∈ Finset.range h, g ((m + (k : ℤ) * A) % (h : ℤ)).toNat = ∑ i ∈ Finset.range h, g i := by
   set σ : ℕ → ℕ := fun k => ((m + (k : ℤ) * A) % (h : ℤ)).toNat with hσ
@@ -297,7 +329,9 @@ variable {F : ℝ → ℝ} (hF : Antitone F) (h01 : ∀ t, 0 ≤ F t ∧ F t ≤
 include hF h01 hneg hbig
 
 /-- **One block**: if `λ = A/h + η` (`A` and `h` coprime, `h²|η| < 1`), then the sum over the `h` consecutive points
-`{θ + kλ}` (`k < h`) differs from `h ∫₀¹ F` by at most `5`.-/
+`{θ + kλ}` (`k < h`) differs from `h ∫₀¹ F` by at most `5`.
+@isnad1 id=le.7h5v.s8.696c5a20d74c from=translated src=- shape=265a203f vocab=91ca44f2
+-/
 theorem block_bound {h : ℕ} (hh : 0 < h) {A : ℤ} (hcop : IsCoprime A (h : ℤ)) {η : ℝ}
     (hη : (h : ℝ) * h * |η| < 1) (θ : ℝ) :
     |∑ k ∈ Finset.range h, F (Int.fract (θ + k * ((A : ℝ) / h + η)))
@@ -374,7 +408,9 @@ section Chain
 variable {F : ℝ → ℝ} (h01 : ∀ t, 0 ≤ F t ∧ F t ≤ 1)
 include h01
 
-/-- The leftover block: `|Σ_{k < r} F({θ + kλ}) - r ∫₀¹ F| ≤ r` (trivial bound).-/
+/-- The leftover block: `|Σ_{k < r} F({θ + kλ}) - r ∫₀¹ F| ≤ r` (trivial bound).
+@isnad1 id=le.1h4v.s7.0929d0e72f80 from=translated src=- shape=70d83cf2 vocab=e330ced2
+-/
 theorem rem_bound (lam θ : ℝ) (r : ℕ) :
     |∑ k ∈ Finset.range r, F (Int.fract (θ + k * lam)) - r * ∫ t in (0 : ℝ)..1, F t| ≤ r := by
   have hI := integral_mem h01
@@ -388,7 +424,9 @@ theorem rem_bound (lam θ : ℝ) (r : ℕ) :
   rw [abs_le]
   constructor <;> nlinarith
 
-/-- **Chaining the blocks**: if the error of one block is at most `5`, then the error for `mh + r` points is at most `5m + r`.-/
+/-- **Chaining the blocks**: if the error of one block is at most `5`, then the error for `mh + r` points is at most `5m + r`.
+@isnad1 id=le.2h6v.s8.d0125867a7a3 from=translated src=- shape=d3e91d9d vocab=e330ced2
+-/
 theorem chain_bound {lam : ℝ} {h : ℕ}
     (hblock : ∀ θ : ℝ, |∑ k ∈ Finset.range h, F (Int.fract (θ + k * lam))
         - h * ∫ t in (0 : ℝ)..1, F t| ≤ 5) (m r : ℕ) (θ : ℝ) :
@@ -416,14 +454,18 @@ theorem chain_bound {lam : ℝ} {h : ℕ}
 
 end Chain
 
-/-- A sum over an integer interval as a sum over `range`.-/
+/-- A sum over an integer interval as a sum over `range`.
+@isnad1 id=eq.0h4v.s6.4ca7bbc1c603 from=translated src=- shape=d0523386 vocab=7f774312
+-/
 theorem sum_Ico_int {M : Type*} [AddCommMonoid M] (a : ℤ) (L : ℕ) (g : ℤ → M) :
     ∑ n ∈ Finset.Ico a (a + L), g n = ∑ j ∈ Finset.range L, g (a + j) := by
   rw [Int.Ico_eq_finset_map, Finset.sum_map]
   simp
 
 /-- **Main body of the (KRON) block form** (the unfolded form of `kron_statement`, with the irrationality-measure hypothesis also unfolded).
-The constant is `C = 5 c^{-1/(μ-1)} + 2`.-/
+The constant is `C = 5 c^{-1/(μ-1)} + 2`.
+@isnad1 id=ex.3h3v.s8.5f840381c125 from=translated src=- shape=b2113b24 vocab=5def66d6
+-/
 theorem kron_main {lam c μ : ℝ} (hc : 0 < c) (hμ : 2 ≤ μ)
     (hirr : ∀ h : ℕ, 1 ≤ h → ∀ m : ℤ, c * (h : ℝ) ^ (-(μ - 1)) ≤ |(h : ℝ) * lam - m|) :
     ∃ C : ℝ, 0 < C ∧ ∀ f : ℝ → ℝ, AntitoneOn f (Set.Icc 0 1) →
@@ -534,7 +576,9 @@ theorem kron_main {lam c μ : ℝ} (hc : 0 < c) (hμ : 2 ≤ μ)
 
 section Weighted
 
-/-- Variation within a block: `|v(b+k) - v(b)| ≤ Σ_{i<k} |v(b+i+1) - v(b+i)|`.-/
+/-- Variation within a block: `|v(b+k) - v(b)| ≤ Σ_{i<k} |v(b+i+1) - v(b+i)|`.
+@isnad1 id=le.0h3v.s6.943d1d38e47a from=translated src=- shape=960d513d vocab=d3d12529
+-/
 theorem var_bound (v : ℕ → ℝ) (b : ℕ) :
     ∀ k : ℕ, |v (b + k) - v b| ≤ ∑ i ∈ Finset.range k, |v (b + i + 1) - v (b + i)| := by
   intro k
@@ -547,7 +591,9 @@ theorem var_bound (v : ℕ → ℝ) (b : ℕ) :
       _ ≤ |v (b + k + 1) - v (b + k)| + |v (b + k) - v b| := abs_add_le _ _
       _ ≤ _ := by linarith
 
-/-- **Freezing the weight at the left end of the block** (one block).-/
+/-- **Freezing the weight at the left end of the block** (one block).
+@isnad1 id=le.5h5v.s8.97025b3b4a23 from=translated src=- shape=b930675e vocab=4d6a18fb
+-/
 theorem wblock (v G : ℕ → ℝ) (hv : ∀ j, 0 ≤ v j) (hG : ∀ j, |G j| ≤ 1) {ℓ : ℕ} (hℓ : 1 ≤ ℓ)
     {Kb : ℝ} (hKb : 0 ≤ Kb) (b : ℕ) (hblk : |∑ k ∈ Finset.range ℓ, G (b + k)| ≤ Kb) :
     |∑ k ∈ Finset.range ℓ, v (b + k) * G (b + k)| ≤
@@ -600,7 +646,9 @@ theorem wblock (v G : ℕ → ℝ) (hv : ∀ j, 0 ≤ v j) (hG : ∀ j, |G j| �
     _ ≤ (WB / ℓ + DB) * Kb + ℓ * DB := by gcongr
     _ = _ := by ring
 
-/-- **Chaining the blocks** (weighted): for `m` blocks, the right-hand side is the sum of the right-hand sides of the blocks.-/
+/-- **Chaining the blocks** (weighted): for `m` blocks, the right-hand side is the sum of the right-hand sides of the blocks.
+@isnad1 id=le.5h5v.s8.9583b786f1a9 from=translated src=- shape=503ab7ef vocab=4d6a18fb
+-/
 theorem wchain (v G : ℕ → ℝ) (hv : ∀ j, 0 ≤ v j) (hG : ∀ j, |G j| ≤ 1) {ℓ : ℕ} (hℓ : 1 ≤ ℓ)
     {Kb : ℝ} (hKb : 0 ≤ Kb) (hblk : ∀ b : ℕ, |∑ k ∈ Finset.range ℓ, G (b + k)| ≤ Kb) (m : ℕ) :
     |∑ j ∈ Finset.range (m * ℓ), v j * G j| ≤
@@ -620,7 +668,9 @@ theorem wchain (v G : ℕ → ℝ) (hv : ∀ j, 0 ≤ v j) (hG : ∀ j, |G j| �
 
 end Weighted
 
-/-- **Main body of the (KRON) weighted form** (the unfolded form of `kron_statement ⟹ kronW_statement`). The constant is the `C` of the block form.-/
+/-- **Main body of the (KRON) weighted form** (the unfolded form of `kron_statement ⟹ kronW_statement`). The constant is the `C` of the block form.
+@isnad1 id=ex.1h2v.s9.32f60eba67d3 from=translated src=- shape=7c44da33 vocab=a4c3a1d8
+-/
 theorem kronW_main {lam μ : ℝ}
     (hk : ∃ C : ℝ, 0 < C ∧ ∀ f : ℝ → ℝ, AntitoneOn f (Set.Icc 0 1) →
       (∀ θ ∈ Set.Icc (0 : ℝ) 1, 0 ≤ f θ ∧ f θ ≤ 1) →

@@ -24,7 +24,9 @@ namespace Asm
 
 variable {α : Type*}
 
-/-- The expectation of an indicator function is the real value of the outer measure.-/
+/-- The expectation of an indicator function is the real value of the outer measure.
+@isnad1 id=eq.0h3v.s5.c581ac0da478 from=translated src=- shape=8c303da7 vocab=99bc3fbf
+-/
 theorem expect_indicator (μ : PMF α) (E : Set α) :
     Family.expect μ (E.indicator 1) = (μ.toOuterMeasure E).toReal := by
   rw [PMF.toOuterMeasure_apply, ENNReal.tsum_toReal_eq]
@@ -34,17 +36,29 @@ theorem expect_indicator (μ : PMF α) (E : Set α) :
   · intro a
     by_cases h : a ∈ E <;> simp [h, PMF.apply_ne_top]
 
+/--
+@isnad1 id=ne.0h3v.s4.3594b91d4056 from=translated src=- shape=5f260609 vocab=c2ded12e
+-/
 theorem toOuterMeasure_ne_top (μ : PMF α) (E : Set α) : μ.toOuterMeasure E ≠ ⊤ := by
   rw [PMF.toOuterMeasure_apply]; exact μ.tsum_coe_indicator_ne_top E
 
+/--
+@isnad1 id=le.0h3v.s5.219425d2c9e5 from=translated src=- shape=878d82d4 vocab=8b7e78b1
+-/
 theorem toOuterMeasure_le_one (μ : PMF α) (E : Set α) : μ.toOuterMeasure E ≤ 1 := by
   rw [PMF.toOuterMeasure_apply, ← μ.tsum_coe]
   exact ENNReal.tsum_le_tsum fun a => Set.indicator_le_self E μ a
 
+/--
+@isnad1 id=le.0h3v.s5.65b4f7ad2048 from=translated src=- shape=9fb3c0d4 vocab=55a29bd2
+-/
 theorem expect_indicator_nonneg (μ : PMF α) (E : Set α) :
     0 ≤ Family.expect μ (E.indicator 1) := by
   rw [expect_indicator]; exact ENNReal.toReal_nonneg
 
+/--
+@isnad1 id=le.0h3v.s5.c66b18958468 from=translated src=- shape=a7a884a8 vocab=55a29bd2
+-/
 theorem expect_indicator_le_one (μ : PMF α) (E : Set α) :
     Family.expect μ (E.indicator 1) ≤ 1 := by
   rw [expect_indicator]
@@ -52,7 +66,9 @@ theorem expect_indicator_le_one (μ : PMF α) (E : Set α) :
   have := ENNReal.toReal_mono ENNReal.one_ne_top h
   simpa using this
 
-/-- The probabilities of two disjoint events add.-/
+/-- The probabilities of two disjoint events add.
+@isnad1 id=eq.1h4v.s7.abd40d28ad10 from=translated src=- shape=80316206 vocab=83579eb2
+-/
 theorem expect_indicator_union (μ : PMF α) {E G : Set α} (h : Disjoint E G) :
     Family.expect μ ((E ∪ G).indicator 1) =
       Family.expect μ (E.indicator 1) + Family.expect μ (G.indicator 1) := by
@@ -64,26 +80,34 @@ theorem expect_indicator_union (μ : PMF α) {E G : Set α} (h : Disjoint E G) :
   refine tsum_congr fun a => ?_
   rw [Set.indicator_union_of_disjoint h]
 
-/-- Monotonicity.-/
+/-- Monotonicity.
+@isnad1 id=le.1h4v.s6.e86a8e62e2ab from=translated src=- shape=5ab07be8 vocab=55a29bd2
+-/
 theorem expect_indicator_mono (μ : PMF α) {E G : Set α} (h : E ⊆ G) :
     Family.expect μ (E.indicator 1) ≤ Family.expect μ (G.indicator 1) := by
   rw [expect_indicator, expect_indicator]
   exact ENNReal.toReal_mono (toOuterMeasure_ne_top μ G) (μ.toOuterMeasure.mono h)
 
-/-- The expectation under a pushforward law is the expectation of the preimage.-/
+/-- The expectation under a pushforward law is the expectation of the preimage.
+@isnad1 id=eq.0h5v.s6.81250148fd7e from=translated src=- shape=049ce50b vocab=f8dd3c59
+-/
 theorem expect_map_indicator {β : Type*} (μ : PMF α) (φ : α → β) (E : Set β) :
     Family.expect (μ.map φ) (E.indicator 1) = Family.expect μ ((φ ⁻¹' E).indicator 1) := by
   rw [expect_indicator, expect_indicator, PMF.toOuterMeasure_map_apply]
 
 open Classical in
-/-- Point-mass distribution.-/
+/-- Point-mass distribution.
+@isnad1 id=eq.0h3v.s6.31a6d5f97627 from=translated src=- shape=2edeed98 vocab=0b110733
+-/
 theorem expect_pure_indicator (a : α) (E : Set α) :
     Family.expect (PMF.pure a) (E.indicator 1) = if a ∈ E then 1 else 0 := by
   rw [expect_indicator, PMF.toOuterMeasure_pure_apply]
   split_ifs <;> simp
 
 /-- The difference of the probabilities of an event is at most the total variation (derived from
-tao-collatz's `abs_expect_indicator_sub_le_dTV`).-/
+tao-collatz's `abs_expect_indicator_sub_le_dTV`).
+@isnad1 id=le.0h4v.s6.f7c756ca6921 from=translated src=- shape=06dadadc vocab=f4966b1d
+-/
 theorem abs_expect_indicator_sub_le_dTV (p q : PMF α) (E : Set α) :
     |Family.expect p (E.indicator 1) - Family.expect q (E.indicator 1)| ≤ Family.dTV p q := by
   have hp : Summable fun a => (p a).toReal :=

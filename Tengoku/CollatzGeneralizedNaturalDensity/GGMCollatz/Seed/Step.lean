@@ -30,35 +30,65 @@ variable (F : Family)
 /-- `R := ∑_{j<p} |r j|`. Used as an upper bound for `|r j|` with `0 < j < p`.-/
 def Rb : ℕ := ∑ j ∈ Finset.range F.p, (F.r j).natAbs
 
+/--
+@isnad1 id=le.1h2v.s4.e86cb3b9fe6f from=translated src=- shape=be44fe07 vocab=c9294758
+-/
 lemma natAbs_r_le {j : ℕ} (hj : j < F.p) : (F.r j).natAbs ≤ F.Rb :=
   Finset.single_le_sum (f := fun j => (F.r j).natAbs) (fun _ _ => Nat.zero_le _)
     (Finset.mem_range.2 hj)
 
+/--
+@isnad1 id=le.1h2v.s4.5939c3024767 from=translated src=- shape=3e14c3bd vocab=eafab59a
+-/
 lemma abs_r_le {j : ℕ} (hj : j < F.p) : |F.r j| ≤ (F.Rb : ℤ) := by
   have := F.natAbs_r_le hj
   rw [Int.abs_eq_natAbs]
   exact_mod_cast this
 
+/--
+@isnad1 id=le.1h2v.s4.410fde4ceca9 from=translated src=- shape=49f7319d vocab=9e52d1d2
+-/
 lemma abs_r_le_real {j : ℕ} (hj : j < F.p) : |(F.r j : ℝ)| ≤ (F.Rb : ℝ) := by
   have := F.abs_r_le hj
   have h : ((|F.r j| : ℤ) : ℝ) ≤ ((F.Rb : ℤ) : ℝ) := by exact_mod_cast this
   simpa using h
 
+/--
+@isnad1 id=lt.0h1v.s3.6d3efc0383c3 from=translated src=- shape=b9369acb vocab=5a2cadd6
+-/
 lemma p_pos : 0 < F.p := by have := F.two_le_p; omega
 
+/--
+@isnad1 id=lt.0h1v.s3.c6bada672d2c from=translated src=- shape=b9369acb vocab=5a2cadd6
+-/
 lemma one_lt_p : 1 < F.p := by have := F.two_le_p; omega
 
+/--
+@isnad1 id=lt.0h1v.s3.e8af883218b5 from=translated src=- shape=b9369acb vocab=2371cff1
+-/
 lemma q_pos : 0 < F.q := lt_trans F.p_pos F.p_lt_q
 
+/--
+@isnad1 id=lt.0h2v.s4.2b6bed2e464e from=translated src=- shape=8428cc1e vocab=93ed904a
+-/
 lemma mod_lt_p (N : ℕ) : N % F.p < F.p := Nat.mod_lt _ F.p_pos
 
+/--
+@isnad1 id=eq.1h2v.s5.e3c1843229fd from=translated src=- shape=cf213a02 vocab=b14b801f
+-/
 lemma Ct_of_mod_eq_zero {N : ℕ} (h : N % F.p = 0) : F.Ct N = N / F.p := by
   simp [Ct, h]
 
+/--
+@isnad1 id=eq.1h2v.s5.d758d49da5d8 from=translated src=- shape=a5bf85ee vocab=1b3a4cd7
+-/
 lemma p_mul_Ct_of_mod_eq_zero {N : ℕ} (h : N % F.p = 0) : F.p * F.Ct N = N := by
   rw [F.Ct_of_mod_eq_zero h]
   exact Nat.mul_div_cancel' (Nat.dvd_of_mod_eq_zero h)
 
+/--
+@isnad1 id=dvd.1h2v.s6.aecad1ca4ddc from=translated src=- shape=1722fecd vocab=d708d68a
+-/
 lemma dvd_q_mul_add_r {N : ℕ} (h : N % F.p ≠ 0) :
     (F.p : ℤ) ∣ (F.q : ℤ) * N + F.r (N % F.p) := by
   have hj0 : 0 < N % F.p := Nat.pos_of_ne_zero h
@@ -71,6 +101,9 @@ lemma dvd_q_mul_add_r {N : ℕ} (h : N % F.p ≠ 0) :
   rw [this]
   exact dvd_add (dvd_mul_right _ _) hd
 
+/--
+@isnad1 id=le.1h2v.s6.141fb5b1d83b from=translated src=- shape=cfbecbd8 vocab=b22fed6d
+-/
 lemma one_le_q_mul_add_r {N : ℕ} (h : N % F.p ≠ 0) :
     1 ≤ (F.q : ℤ) * N + F.r (N % F.p) := by
   have hj0 : 0 < N % F.p := Nat.pos_of_ne_zero h
@@ -79,7 +112,9 @@ lemma one_le_q_mul_add_r {N : ℕ} (h : N % F.p ≠ 0) :
   have hq : (0 : ℤ) ≤ F.q := by positivity
   nlinarith
 
-/-- Multiplication step: `p · C~(N) = qN + r(N mod p)` (in the integers).-/
+/-- Multiplication step: `p · C~(N) = qN + r(N mod p)` (in the integers).
+@isnad1 id=eq.1h2v.s6.d25a3492b108 from=translated src=- shape=7b4a5119 vocab=07ce7bf4
+-/
 lemma p_mul_Ct_of_mod_ne_zero {N : ℕ} (h : N % F.p ≠ 0) :
     (F.p : ℤ) * (F.Ct N : ℤ) = (F.q : ℤ) * N + F.r (N % F.p) := by
   have hd := F.dvd_q_mul_add_r h
@@ -90,18 +125,26 @@ lemma p_mul_Ct_of_mod_ne_zero {N : ℕ} (h : N % F.p ≠ 0) :
   rw [hCt, Int.toNat_of_nonneg hnn]
   exact Int.mul_ediv_cancel' hd
 
+/--
+@isnad1 id=eq.1h2v.s6.d09f86eba1b6 from=translated src=- shape=fd7fdf58 vocab=80f21dab
+-/
 lemma p_mul_Ct_real_of_mod_ne_zero {N : ℕ} (h : N % F.p ≠ 0) :
     (F.p : ℝ) * (F.Ct N : ℝ) = (F.q : ℝ) * N + F.r (N % F.p) := by
   have := F.p_mul_Ct_of_mod_ne_zero h
   exact_mod_cast this
 
+/--
+@isnad1 id=eq.1h2v.s5.0985548e98bc from=translated src=- shape=c670490c vocab=9888c9b3
+-/
 lemma p_mul_Ct_real_of_mod_eq_zero {N : ℕ} (h : N % F.p = 0) :
     (F.p : ℝ) * (F.Ct N : ℝ) = N := by
   have := F.p_mul_Ct_of_mod_eq_zero h
   exact_mod_cast this
 
 /-- Increase in a multiplication step (item 3 of the seed argument in the accompanying paper):
-if `(q - p)N ≥ R` then `N ≤ C~(N)`.-/
+if `(q - p)N ≥ R` then `N ≤ C~(N)`.
+@isnad1 id=le.2h2v.s6.cf501fca7388 from=translated src=- shape=836fb2cb vocab=73ee0e49
+-/
 lemma le_Ct_of_mod_ne_zero {N : ℕ} (h : N % F.p ≠ 0)
     (hN : (F.Rb : ℝ) ≤ ((F.q : ℝ) - F.p) * N) : N ≤ F.Ct N := by
   have h1 := F.p_mul_Ct_real_of_mod_ne_zero h
@@ -115,7 +158,9 @@ lemma le_Ct_of_mod_ne_zero {N : ℕ} (h : N % F.p ≠ 0)
 
 /-! ## Injectivity of the letters -/
 
-/-- If the first `m` letters agree, then the numbers are congruent modulo `p^m`.-/
+/-- If the first `m` letters agree, then the numbers are congruent modulo `p^m`.
+@isnad1 id=modeq.1h4v.s6.5000ffd847be from=translated src=- shape=f1094ad4 vocab=4bc26533
+-/
 lemma modEq_of_chars : ∀ (m n n' : ℕ),
     (∀ k < m, F.Ct^[k] n % F.p = F.Ct^[k] n' % F.p) → n ≡ n' [MOD F.p ^ m] := by
   intro m
@@ -158,7 +203,9 @@ lemma modEq_of_chars : ∀ (m n n' : ℕ),
 /-- The sequence of the first `m` letters.-/
 def charVec (m n : ℕ) : Fin m → Fin F.p := fun k => ⟨F.Ct^[k] n % F.p, F.mod_lt_p _⟩
 
-/-- In the shell `I_m = [p^m, p^{m+1})`, at most `p - 1` numbers have a given letter sequence.-/
+/-- In the shell `I_m = [p^m, p^{m+1})`, at most `p - 1` numbers have a given letter sequence.
+@isnad1 id=le.0h3v.s6.cf8ceb9fa93f from=translated src=- shape=ef819e1e vocab=886d7fe6
+-/
 lemma card_fiber_charVec_le (m : ℕ) (w : Fin m → Fin F.p) :
     ((Finset.Ico (F.p ^ m) (F.p ^ (m + 1))).filter (fun n => F.charVec m n = w)).card
       ≤ F.p - 1 := by
@@ -190,7 +237,9 @@ lemma card_fiber_charVec_le (m : ℕ) (w : Fin m → Fin F.p) :
 
 /-- Averaging lemma: the sum over the shell `I_m` of the product of the position-wise weights `f k` of
 the letters is at most `p - 1` times the sum over uniform letter sequences (the upper-bound direction of
-"each sequence is taken `p - 1` times" in the accompanying paper).-/
+"each sequence is taken `p - 1` times" in the accompanying paper).
+@isnad1 id=le.1h3v.s7.cb4a76c0e010 from=translated src=- shape=dc230146 vocab=dc650ca2
+-/
 lemma sum_prod_chars_le (m : ℕ) (f : ℕ → ℕ → ℝ) (hf : ∀ k j, 0 ≤ f k j) :
     ∑ n ∈ Finset.Ico (F.p ^ m) (F.p ^ (m + 1)), ∏ k ∈ Finset.range m, f k (F.Ct^[k] n % F.p)
       ≤ ((F.p : ℝ) - 1) * ∏ k ∈ Finset.range m, ∑ j ∈ Finset.range F.p, f k j := by

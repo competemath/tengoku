@@ -31,17 +31,25 @@ variable {N : ℕ} [NeZero N]
 /-- The first-coordinate embedding `ℕ → ZMod N × ZMod N` (additive).-/
 def embMod (N : ℕ) [NeZero N] (L : ℕ) : ZMod N × ZMod N := ((L : ZMod N), 0)
 
+/--
+@isnad1 id=eq.0h1v.s6.438718e35865 from=translated src=- shape=5c533687 vocab=14204785
+-/
 theorem embMod_zero : embMod N 0 = 0 := by
   rw [embMod]
   norm_num
 
+/--
+@isnad1 id=eq.0h3v.s6.d5021c68f11c from=translated src=- shape=a60220b0 vocab=43423b77
+-/
 theorem embMod_add (a b : ℕ) : embMod N (a + b) = embMod N a + embMod N b := by
   rw [embMod, embMod, embMod, Prod.mk_add_mk, add_zero]
   congr 1
   push_cast
   ring
 
-/-- The embedded pushforward has no mass off the first-coordinate axis.-/
+/-- The embedded pushforward has no mass off the first-coordinate axis.
+@isnad1 id=eq.1h3v.s6.69e70acb4bc8 from=translated src=- shape=5efc5ce1 vocab=1b1c1c7e
+-/
 theorem map_embMod_apply_ne (p : PMF ℕ) {y : ZMod N × ZMod N} (hy : y.2 ≠ 0) :
     (p.map (embMod N)) y = 0 := by
   rw [PMF.map_apply]
@@ -50,7 +58,9 @@ theorem map_embMod_apply_ne (p : PMF ℕ) {y : ZMod N × ZMod N} (hy : y.2 ≠ 0
   intro h
   exact hy (by rw [h]; rfl)
 
-/-- The embedded characteristic function is independent of the second frequency.-/
+/-- The embedded characteristic function is independent of the second frequency.
+@isnad1 id=eq.0h3v.s6.8c0120bb2fc0 from=translated src=- shape=6713f76a vocab=07900254
+-/
 theorem charFn_map_embMod_snd (p : PMF ℕ) (ξ : ZMod N × ZMod N) :
     charFn (p.map (embMod N)) ξ = charFn (p.map (embMod N)) (ξ.1, 0) := by
   rw [charFn, charFn]
@@ -66,7 +76,9 @@ theorem charFn_map_embMod_snd (p : PMF ℕ) (ξ : ZMod N × ZMod N) :
 
 /-- **The d=1 circle-method bound**: for any walk on `ℕ` and any modulus `N`,
 `P(S_n = L) ≤ N⁻¹ ∑_j ‖φ(j)‖ⁿ` where `φ` is the embedded projected
-characteristic function.-/
+characteristic function.
+@isnad1 id=le.0h4v.s6.3d98d076ea02 from=translated src=- shape=d0ece5f5 vocab=74faf728
+-/
 theorem iidSum_nat_apply_toReal_le (p : PMF ℕ) (n : ℕ) (N : ℕ) [NeZero N] (L : ℕ) :
     ((iidSum p n) L).toReal
       ≤ ((N : ℝ))⁻¹ * ∑ j : ZMod N, ‖charFn (p.map (embMod N)) (j, 0)‖ ^ n := by
@@ -105,7 +117,9 @@ if the embedded projected walk keeps mass `≥ μ` at `embMod a` and
 `embMod (a+1)` (`N ≥ 4`), its characteristic function decays like
 `1 − 16μ²·(nd j / N)²`. Adjacency makes the difference character exactly
 `e(j/N)`, so no triangle step is needed. Stated for an abstract PMF `r` on the
-pair group so it applies verbatim to tilted projected walks.-/
+pair group so it applies verbatim to tilted projected walks.
+@isnad1 id=le.4h5v.s8.e47a3bd13daa from=translated src=- shape=03b31f38 vocab=2bd809f0
+-/
 theorem charFn_embMod_decay_of_adjacent_atoms (hN : 4 ≤ N)
     (r : PMF (ZMod N × ZMod N)) {μ : ℝ} (hμ : 0 ≤ μ) (a : ℕ)
     (hma : μ ≤ (r (embMod N a)).toReal) (hmb : μ ≤ (r (embMod N (a + 1))).toReal)
@@ -168,7 +182,9 @@ theorem charFn_embMod_decay_of_adjacent_atoms (hN : 4 ≤ N)
 `N = ⌊√n⌋ + 1`): any walk on `ℕ` whose embedded projected characteristic
 functions decay like `1 − (nd j/N)²/c` uniformly in `N ≥ 4` has point masses
 `≤ 32c/√(1+n)` — the d=1 normalization of `iidSum_apply_le_center_of_decay`
-(one factor of `N`, hence `1/√n` instead of `1/n`).-/
+(one factor of `N`, hence `1/√n` instead of `1/n`).
+@isnad1 id=le.2h4v.s7.9c61f4c5b93e from=translated src=- shape=d410e918 vocab=2988b9e9
+-/
 theorem iidSum_nat_apply_le_center_of_decay (p : PMF ℕ) {c : ℝ} (hc : 1 ≤ c)
     (hdec : ∀ (N : ℕ) [NeZero N], 4 ≤ N → ∀ j : ZMod N,
       ‖charFn (p.map (embMod N)) (j, 0)‖ ^ 2 ≤ 1 - ((nd j : ℝ) / N) ^ 2 / c)

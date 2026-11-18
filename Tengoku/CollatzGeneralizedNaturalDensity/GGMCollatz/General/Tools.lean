@@ -21,12 +21,17 @@ namespace Gen
 
 open Finset
 
+/--
+@isnad1 id=le.1h1v.s4.1d626d8529af from=translated src=- shape=35bd48ee vocab=766ac740
+-/
 lemma one_le_log {x : ℝ} (hx : 3 ≤ x) : 1 ≤ Real.log x := by
   rw [Real.le_log_iff_exp_le (by linarith)]
   have := Real.exp_one_lt_d9
   linarith
 
-/-- Harmonic sum: if `n ≤ x` and `x ≥ 3`, then `∑_{1 ≤ N ≤ n} 1/N ≤ 2 log x`.-/
+/-- Harmonic sum: if `n ≤ x` and `x ≥ 3`, then `∑_{1 ≤ N ≤ n} 1/N ≤ 2 log x`.
+@isnad1 id=le.2h2v.s6.26b59b72e676 from=translated src=- shape=3c35be62 vocab=c5847aa9
+-/
 lemma sum_Icc_one_div_le (n : ℕ) {x : ℝ} (hx : 3 ≤ x) (hn : (n : ℝ) ≤ x) :
     ∑ N ∈ Finset.Icc 1 n, (1 / (N : ℝ)) ≤ 2 * Real.log x := by
   have h2 : ∑ N ∈ Finset.Icc 1 n, (1 / (N : ℝ)) = (harmonic n : ℝ) := by
@@ -39,7 +44,9 @@ lemma sum_Icc_one_div_le (n : ℕ) {x : ℝ} (hx : 3 ≤ x) (hn : (n : ℝ) ≤ 
   have h5 := one_le_log hx
   linarith
 
-/-- If `N₀ < N₁`, then `1 ≤ (N₁ + 1)^c N₀^{-c}`.-/
+/-- If `N₀ < N₁`, then `1 ≤ (N₁ + 1)^c N₀^{-c}`.
+@isnad1 id=le.3h3v.s6.0bb5ba109700 from=translated src=- shape=12020893 vocab=f17755a4
+-/
 lemma one_le_rpow_mul {N₀ N₁ : ℕ} (hN₀ : 1 ≤ N₀) (hN : N₀ < N₁) {c : ℝ} (hc : 0 ≤ c) :
     1 ≤ ((N₁ : ℝ) + 1) ^ c * (N₀ : ℝ) ^ (-c) := by
   have hN₀pos : (0 : ℝ) < N₀ := by exact_mod_cast hN₀
@@ -52,7 +59,9 @@ lemma one_le_rpow_mul {N₀ N₁ : ℕ} (hN₀ : 1 ≤ N₀) (hN : N₀ < N₁) 
         rw [Real.rpow_neg hN₀pos.le, mul_inv_cancel₀ (by positivity)]
     _ ≤ ((N₁ : ℝ) + 1) ^ c * (N₀ : ℝ) ^ (-c) := mul_le_mul_of_nonneg_right hmono hpow
 
-/-- **Absorbing small `N₀` in (A)**: if the rate holds for `N₀ ≥ N₁`, then `mainA_gen_statement` holds.-/
+/-- **Absorbing small `N₀` in (A)**: if the rate holds for `N₀ ≥ N₁`, then `mainA_gen_statement` holds.
+@isnad1 id=mainagen.3h4v.s7.27e69083d520 from=translated src=- shape=18723c4a vocab=380b1d30
+-/
 lemma mainA_of_large (G : FamilyGen) (N₁ : ℕ) {K c : ℝ} (hK : 0 < K) (hc : 0 < c)
     (h : ∀ N₀ : ℕ, 1 ≤ N₀ → N₁ ≤ N₀ → ∀ x : ℝ, 3 ≤ x →
       ∑ N ∈ (Finset.Icc 1 ⌊x⌋₊).filter (fun N => N₀ < G.Cmin N), (1 / (N : ℝ))
@@ -79,7 +88,9 @@ lemma mainA_of_large (G : FamilyGen) (N₁ : ℕ) {K c : ℝ} (hK : 0 < K) (hc :
       _ ≤ max K (2 * ((N₁ : ℝ) + 1) ^ c) * (N₀ : ℝ) ^ (-c) * Real.log x := by
           gcongr; exact le_max_right _ _
 
-/-- **Absorbing small `N₀` in (B)**.-/
+/-- **Absorbing small `N₀` in (B)**.
+@isnad1 id=mainbgen.3h4v.s7.6c530ccf560d from=translated src=- shape=ddd1e528 vocab=13a341a3
+-/
 lemma mainB_of_large (G : FamilyGen) (N₁ : ℕ) {K c : ℝ} (hK : 0 < K) (hc : 0 < c)
     (h : ∀ N₀ : ℕ, 1 ≤ N₀ → N₁ ≤ N₀ → ∀ X : ℝ, 1 ≤ X →
       (((Finset.Icc 1 ⌊X⌋₊).filter (fun N => N₀ < G.Cmin N)).card : ℝ) ≤ K * X * (N₀ : ℝ) ^ (-c)) :
@@ -105,7 +116,9 @@ lemma mainB_of_large (G : FamilyGen) (N₁ : ℕ) {K c : ℝ} (hK : 0 < K) (hc :
       _ ≤ max K (((N₁ : ℝ) + 1) ^ c) * X * (N₀ : ℝ) ^ (-c) := by
           gcongr; exact le_max_right _ _
 
-/-- Transferring a sum along a map `φ : s → t` whose fibres have size at most `m`.-/
+/-- Transferring a sum along a map `φ : s → t` whose fibres have size at most `m`.
+@isnad1 id=le.3h5v.s7.b97b77a6d933 from=translated src=- shape=b5578636 vocab=c8b60a9e
+-/
 lemma sum_comp_le {s t : Finset ℕ} (φ : ℕ → ℕ) (f : ℕ → ℝ) (hf : ∀ M ∈ t, 0 ≤ f M)
     (hmaps : ∀ N ∈ s, φ N ∈ t) (m : ℕ)
     (hfib : ∀ M ∈ t, (s.filter (fun N => φ N = M)).card ≤ m) :
@@ -117,7 +130,9 @@ lemma sum_comp_le {s t : Finset ℕ} (φ : ℕ → ℕ) (f : ℕ → ℝ) (hf : 
     nsmul_eq_mul]
   exact mul_le_mul_of_nonneg_right (by exact_mod_cast hfib M hM) (hf M hM)
 
-/-- `∑_{k < n} p^{-k} ≤ 2` (`p ≥ 2`).-/
+/-- `∑_{k < n} p^{-k} ≤ 2` (`p ≥ 2`).
+@isnad1 id=le.1h2v.s6.f4929dd094db from=translated src=- shape=3cde4774 vocab=9e1c013c
+-/
 lemma geom_le_two {p : ℕ} (hp : 2 ≤ p) (n : ℕ) :
     ∑ k ∈ Finset.range n, (1 / (p : ℝ)) ^ k ≤ 2 := by
   have h12 : 1 / (p : ℝ) ≤ 1 / 2 :=
@@ -126,7 +141,9 @@ lemma geom_le_two {p : ℕ} (hp : 2 ≤ p) (n : ℕ) :
         Finset.sum_le_sum (fun k _ => pow_le_pow_left₀ (by positivity) h12 k)
     _ ≤ 2 := sum_geometric_two_le n
 
-/-- If `N₀ ≥ d ≥ 1`, then `⌊N₀/d⌋^{-c} ≤ (2d)^c N₀^{-c}`.-/
+/-- If `N₀ ≥ d ≥ 1`, then `⌊N₀/d⌋^{-c} ≤ (2d)^c N₀^{-c}`.
+@isnad1 id=le.3h3v.s6.6b12cc499f9b from=translated src=- shape=2d09b40e vocab=483ba5e0
+-/
 lemma rpow_div_le {N₀ d : ℕ} (hd : 0 < d) (hdN₀ : d ≤ N₀) {c : ℝ} (hc : 0 ≤ c) :
     ((N₀ / d : ℕ) : ℝ) ^ (-c) ≤ (2 * (d : ℝ)) ^ c * (N₀ : ℝ) ^ (-c) := by
   set t := N₀ / d with ht
@@ -149,7 +166,9 @@ lemma rpow_div_le {N₀ d : ℕ} (hd : 0 < d) (hdN₀ : d ≤ N₀) {c : ℝ} (h
     _ = (2 * (d : ℝ)) ^ c * (N₀ : ℝ) ^ (-c) := by
         rw [Real.rpow_neg (by positivity : (0 : ℝ) ≤ 2 * (d : ℝ)) c, div_inv_eq_mul, mul_comm]
 
-/-- `log(Qx) ≤ (1 + log Q) log x` (`Q ≥ 1`, `x ≥ 3`).-/
+/-- `log(Qx) ≤ (1 + log Q) log x` (`Q ≥ 1`, `x ≥ 3`).
+@isnad1 id=le.2h2v.s6.de4b48418a6b from=translated src=- shape=88a9d99d vocab=7c657f89
+-/
 lemma log_mul_le {Q x : ℝ} (hQ : 1 ≤ Q) (hx : 3 ≤ x) :
     Real.log (Q * x) ≤ (1 + Real.log Q) * Real.log x := by
   rw [Real.log_mul (by linarith) (by linarith)]

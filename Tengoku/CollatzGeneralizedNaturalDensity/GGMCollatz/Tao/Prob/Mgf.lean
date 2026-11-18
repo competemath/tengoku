@@ -26,10 +26,16 @@ namespace GGMCollatz
 noncomputable def expW (lam : ℝ) : ℕ → ℝ≥0∞ :=
   fun a => ENNReal.ofReal (Real.exp (lam * a))
 
+/--
+@isnad1 id=eq.0h1v.s4.200e4a18077e from=translated src=- shape=59ae2d96 vocab=6497c817
+-/
 theorem expW_zero (lam : ℝ) : expW lam 0 = 1 := by
   rw [expW]
   norm_num
 
+/--
+@isnad1 id=eq.0h3v.s5.bcf8778342dc from=translated src=- shape=b51cb01a vocab=93841eb9
+-/
 theorem expW_add (lam : ℝ) (a b : ℕ) :
     expW lam (a + b) = expW lam a * expW lam b := by
   rw [expW, expW, expW, ← ENNReal.ofReal_mul (Real.exp_pos _).le, ← Real.exp_add]
@@ -37,7 +43,9 @@ theorem expW_add (lam : ℝ) (a b : ℕ) :
   push_cast
   ring
 
-/-- A positive weight does not make the partition function vanish: `Z(λ) ≠ 0` for any PMF on ℕ.-/
+/-- A positive weight does not make the partition function vanish: `Z(λ) ≠ 0` for any PMF on ℕ.
+@isnad1 id=ne.0h2v.s4.2d608d86501a from=translated src=- shape=ac84f064 vocab=6fe09b76
+-/
 theorem tiltZ_expW_ne_zero (p : PMF ℕ) (lam : ℝ) : tiltZ p (expW lam) ≠ 0 := by
   intro h
   rw [tiltZ, ENNReal.tsum_eq_zero] at h
@@ -53,7 +61,9 @@ theorem tiltZ_expW_ne_zero (p : PMF ℕ) (lam : ℝ) : tiltZ p (expW lam) ≠ 0 
   exact zero_ne_one this
 
 /-- **Moment generating function of `G(μ)` (exact)**: `Z(λ) = (p-1)·r(1-r)⁻¹`, `r = e^λ/p`. Holds for all `λ`
-(outside the band `e^λ < p` both sides are `∞`). Generalizes tao-collatz's `tiltZ_geomHalf`.-/
+(outside the band `e^λ < p` both sides are `∞`). Generalizes tao-collatz's `tiltZ_geomHalf`.
+@isnad1 id=eq.1h2v.s6.5db952e3c7c3 from=translated src=- shape=df19df58 vocab=397266e3
+-/
 theorem tiltZ_geomP {p : ℕ} (hp : 2 ≤ p) (lam : ℝ) :
     tiltZ (geomP p) (expW lam)
       = ((p - 1 : ℕ) : ℝ≥0∞) * (ENNReal.ofReal (Real.exp lam / p)
@@ -76,9 +86,15 @@ theorem tiltZ_geomP {p : ℕ} (hp : 2 ≤ p) (lam : ℝ) :
     tsum_ite_zero_eq_succ (fun a => ((p - 1 : ℕ) : ℝ≥0∞) * r ^ a),
     ENNReal.tsum_mul_left, ENNReal.tsum_geometric_add_one]
 
+/--
+@isnad1 id=ne.0h2v.s4.b04d90da90f1 from=translated src=- shape=992d636b vocab=f4bc8ceb
+-/
 theorem tiltZ_geomP_ne_zero {p : ℕ} (lam : ℝ) : tiltZ (geomP p) (expW lam) ≠ 0 :=
   tiltZ_expW_ne_zero _ lam
 
+/--
+@isnad1 id=ne.2h2v.s5.f6a1a73a2462 from=translated src=- shape=0486aaf3 vocab=b0134201
+-/
 theorem tiltZ_geomP_ne_top {p : ℕ} (hp : 2 ≤ p) {lam : ℝ} (hlam : Real.exp lam < p) :
     tiltZ (geomP p) (expW lam) ≠ ∞ := by
   rw [tiltZ_geomP hp]
@@ -90,7 +106,9 @@ theorem tiltZ_geomP_ne_top {p : ℕ} (hp : 2 ≤ p) {lam : ℝ} (hlam : Real.exp
   rw [Ne, tsub_eq_zero_iff_le, not_le]
   exact hr1
 
-/-- **The moment generating function of `P(μ)` is the square of that of `G(μ)`** (on the band).-/
+/-- **The moment generating function of `P(μ)` is the square of that of `G(μ)`** (on the band).
+@isnad1 id=eq.2h2v.s5.353460ca6ed3 from=translated src=- shape=11ce379e vocab=b78d3943
+-/
 theorem tiltZ_pascalP {p : ℕ} (hp : 2 ≤ p) {lam : ℝ} (hlam : Real.exp lam < p) :
     tiltZ (pascalP p) (expW lam) = (tiltZ (geomP p) (expW lam)) ^ 2 := by
   rw [pascalP_eq_iidSum]
@@ -99,7 +117,9 @@ theorem tiltZ_pascalP {p : ℕ} (hp : 2 ≤ p) {lam : ℝ} (hlam : Real.exp lam 
 
 /-! ### Numerical envelopes (independent of `p`) -/
 
-/-- On `[0, 1)`, `e^x ≤ (1-x)⁻¹` (from `1 - x ≤ e^{-x}`).-/
+/-- On `[0, 1)`, `e^x ≤ (1-x)⁻¹` (from `1 - x ≤ e^{-x}`).
+@isnad1 id=le.1h1v.s5.61c5fe84346b from=translated src=- shape=8cfc1f2c vocab=cff3f0e7
+-/
 theorem exp_le_inv_one_sub {x : ℝ} (h1 : x < 1) :
     Real.exp x ≤ (1 - x)⁻¹ := by
   have hpos : 0 < 1 - x := by linarith
@@ -115,7 +135,9 @@ theorem exp_le_inv_one_sub {x : ℝ} (h1 : x < 1) :
     _ ≤ 1 * (1 - x)⁻¹ := mul_le_mul_of_nonneg_right hmul (by positivity)
     _ = (1 - x)⁻¹ := one_mul _
 
-/-- Monotone bound on the closed form `r(1-r)⁻¹` of the geometric series in terms of a rational upper bound on the ratio.-/
+/-- Monotone bound on the closed form `r(1-r)⁻¹` of the geometric series in terms of a rational upper bound on the ratio.
+@isnad1 id=le.3h2v.s6.18bcb31ad37f from=translated src=- shape=4381a35b vocab=5c47d99e
+-/
 theorem geom_closed_le {q q' : ℝ} (h0 : 0 ≤ q) (hqq : q ≤ q') (h1 : q' < 1) :
     ENNReal.ofReal q * (1 - ENNReal.ofReal q)⁻¹
       ≤ ENNReal.ofReal (q' / (1 - q')) := by
@@ -129,7 +151,9 @@ theorem geom_closed_le {q q' : ℝ} (h0 : 0 ≤ q) (hqq : q ≤ q') (h1 : q' < 1
     ← ENNReal.ofReal_sub 1 h0', ← ENNReal.ofReal_inv_of_pos h1q',
     ← ENNReal.ofReal_mul h0', div_eq_mul_inv]
 
-/-- Quadratic upper envelope of the exponential: for `u ≤ 1/2`, `e^u ≤ 1 + u + 2u²` (from `e^u ≤ (1-u)⁻¹`).-/
+/-- Quadratic upper envelope of the exponential: for `u ≤ 1/2`, `e^u ≤ 1 + u + 2u²` (from `e^u ≤ (1-u)⁻¹`).
+@isnad1 id=le.1h1v.s6.f69752ad9d00 from=translated src=- shape=72c45c5a vocab=19c893c6
+-/
 theorem exp_le_one_add_add_two_sq {u : ℝ} (hu : u ≤ 1 / 2) :
     Real.exp u ≤ 1 + u + 2 * u ^ 2 := by
   have h1u : 0 < 1 - u := by linarith
@@ -143,7 +167,9 @@ theorem exp_le_one_add_add_two_sq {u : ℝ} (hu : u ≤ 1 / 2) :
   rw [inv_eq_one_div, div_le_iff₀ h1u]
   nlinarith [sq_nonneg u]
 
-/-- Monotone bound on `a·(1-r)⁻¹` in terms of rational upper bounds (the form of `geom_closed_le` with a free numerator).-/
+/-- Monotone bound on `a·(1-r)⁻¹` in terms of rational upper bounds (the form of `geom_closed_le` with a free numerator).
+@isnad1 id=le.5h4v.s6.a550db6c3080 from=translated src=- shape=f6fb2d04 vocab=5c47d99e
+-/
 theorem frac_closed_le {a a' r r' : ℝ} (ha : 0 ≤ a) (haa : a ≤ a') (hr : 0 ≤ r)
     (hrr : r ≤ r') (h1 : r' < 1) :
     ENNReal.ofReal a * (1 - ENNReal.ofReal r)⁻¹
@@ -159,7 +185,9 @@ theorem frac_closed_le {a a' r r' : ℝ} (ha : 0 ≤ a) (haa : a ≤ a') (hr : 0
     ← ENNReal.ofReal_sub 1 (le_trans hr hrr), ← ENNReal.ofReal_inv_of_pos h1r,
     ← ENNReal.ofReal_mul (le_trans ha haa), div_eq_mul_inv]
 
-/-- The moment generating function of `G(μ)` written as a real fraction: `Z(λ) = ofReal((p-1)e^λ/p)·(1 - ofReal(e^λ/p))⁻¹`.-/
+/-- The moment generating function of `G(μ)` written as a real fraction: `Z(λ) = ofReal((p-1)e^λ/p)·(1 - ofReal(e^λ/p))⁻¹`.
+@isnad1 id=eq.1h2v.s6.70453b1bccdc from=translated src=- shape=1c4d8151 vocab=397266e3
+-/
 theorem tiltZ_geomP_frac {p : ℕ} (hp : 2 ≤ p) (lam : ℝ) :
     tiltZ (geomP p) (expW lam)
       = ENNReal.ofReal (((p : ℝ) - 1) * Real.exp lam / p)
@@ -180,9 +208,15 @@ theorem tiltZ_geomP_frac {p : ℕ} (hp : 2 ≤ p) (lam : ℝ) :
 noncomputable def expW2 (l1 l2 : ℝ) : ℕ × ℤ → ℝ≥0∞ :=
   fun d => ENNReal.ofReal (Real.exp (l1 * d.1 + l2 * d.2))
 
+/--
+@isnad1 id=eq.0h2v.s5.063e2b01dc6d from=translated src=- shape=a954ef85 vocab=36c29d35
+-/
 theorem expW2_zero (l1 l2 : ℝ) : expW2 l1 l2 0 = 1 := by
   simp [expW2]
 
+/--
+@isnad1 id=eq.0h4v.s5.9ec09ed8f056 from=translated src=- shape=6aa827db vocab=a06832d1
+-/
 theorem expW2_add (l1 l2 : ℝ) (a b : ℕ × ℤ) :
     expW2 l1 l2 (a + b) = expW2 l1 l2 a * expW2 l1 l2 b := by
   simp only [expW2]
@@ -192,7 +226,9 @@ theorem expW2_add (l1 l2 : ℝ) (a b : ℕ × ℤ) :
   push_cast
   ring
 
-/-- `expW2` is the product of the weights of the two coordinates.-/
+/-- `expW2` is the product of the weights of the two coordinates.
+@isnad1 id=eq.0h3v.s5.edeca490b73d from=translated src=- shape=9045d92b vocab=3111aee1
+-/
 theorem expW2_eq_mul (l1 l2 : ℝ) (d : ℕ × ℤ) :
     expW2 l1 l2 d = expW2 l1 0 d * expW2 0 l2 d := by
   simp only [expW2]
@@ -200,7 +236,9 @@ theorem expW2_eq_mul (l1 l2 : ℝ) (d : ℕ × ℤ) :
   congr 2
   ring
 
-/-- The square of the weight is the weight with doubled tilt.-/
+/-- The square of the weight is the weight with doubled tilt.
+@isnad1 id=eq.0h3v.s6.43da3e7b5c7f from=translated src=- shape=f5bb0213 vocab=7adb5d28
+-/
 theorem expW2_sq (l1 l2 : ℝ) (d : ℕ × ℤ) :
     expW2 l1 l2 d ^ 2 = expW2 (2 * l1) (2 * l2) d := by
   simp only [expW2]
@@ -208,7 +246,9 @@ theorem expW2_sq (l1 l2 : ℝ) (d : ℕ × ℤ) :
   congr 2
   ring
 
-/-- **Cauchy–Schwarz splitting of the two-dimensional moment generating function**: `Z(λ₁,λ₂)² ≤ Z(2λ₁,0)·Z(0,2λ₂)`.-/
+/-- **Cauchy–Schwarz splitting of the two-dimensional moment generating function**: `Z(λ₁,λ₂)² ≤ Z(2λ₁,0)·Z(0,2λ₂)`.
+@isnad1 id=le.0h3v.s6.dceba08b3aa4 from=translated src=- shape=b6a056bc vocab=b8ad20e3
+-/
 theorem tiltZ_expW2_sq_le (p : PMF (ℕ × ℤ)) (l1 l2 : ℝ) :
     tiltZ p (expW2 l1 l2) ^ 2
       ≤ tiltZ p (expW2 (2 * l1) 0) * tiltZ p (expW2 0 (2 * l2)) := by
