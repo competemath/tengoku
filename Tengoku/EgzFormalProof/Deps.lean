@@ -1,0 +1,1 @@
+-- EgzFormalProof: a factory bundle (data/intake/egz-formal-proof). This file only marks the library for Tengoku/All.lean.
