@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "dd324d1fe0733eb137fe60282321e026b360b39c5476789122a979529cc8d4ea",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "sharp-intermediate-subgroup-bounds",
+ "lint_mode": "proposed",
+ "modules": 15,
+ "part": 1,
+ "theorems": 261
+}
