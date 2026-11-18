@@ -12,6 +12,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry MvPolynomial
 
+/--
+@isnad1 id=le.2h3v.s9.9fba009cf2c4 from=translated src=- shape=ec50e765 vocab=46b4f434
+-/
 theorem solution
     (W : Type u) [CommRing W] [IsDomain W] [IsNoetherianRing W] (n : ℕ) (hW : ringKrullDim W = n)
     (t : W) (ht : t ≠ 0) :

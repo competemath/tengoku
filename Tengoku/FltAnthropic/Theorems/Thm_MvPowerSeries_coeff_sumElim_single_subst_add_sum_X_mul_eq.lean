@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u v w x
 
+/--
+@isnad1 id=eq.2h10v.s10.6d8f97dd75b0 from=translated src=- shape=262e7bab vocab=d80c71d3
+-/
 theorem MvPowerSeries.coeff_sumElim_single_subst_add_sum_X_mul_eq
     {R : Type u} [CommRing R] {σ : Type v} [Fintype σ] {τ : Type w} {κ : Type x} [Fintype κ]
     (f : MvPowerSeries σ R) (Df : σ → MvPowerSeries σ R)

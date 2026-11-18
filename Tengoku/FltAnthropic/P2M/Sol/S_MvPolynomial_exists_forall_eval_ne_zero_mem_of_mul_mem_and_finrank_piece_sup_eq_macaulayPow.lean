@@ -19,8 +19,14 @@ attribute [local instance] MvPolynomial.gradedAlgebra
 
 variable {L : Type} [Field L] {n : ℕ}
 
+/--
+@isnad1 id=eq.0h1v.s4.4c1971dcb6e5 from=translated src=- shape=fe2c2146 vocab=9e4fbcdb
+-/
 theorem macaulayPow_zero (a : ℕ) : Nat.macaulayPow 0 a = 0 := by simp [Nat.macaulayPow]
 
+/--
+@isnad1 id=eq.0h1v.s4.1e3b0bba89c7 from=translated src=- shape=1d838610 vocab=9e4fbcdb
+-/
 theorem macaulayPow_zero_right : ∀ d : ℕ, Nat.macaulayPow d 0 = 0
   | 0 => rfl
   | d + 1 => by
@@ -35,13 +41,22 @@ noncomputable def Ik (I : Ideal (MvPolynomial (Fin (n + 1)) L)) (d : ℕ) :
     Submodule L ↥(homogeneousSubmodule (Fin (n + 1)) L d) :=
   Submodule.comap (homogeneousSubmodule (Fin (n + 1)) L d).subtype (I.restrictScalars L)
 
+/--
+@isnad1 id=iff.0h5v.s12.e9672928501c from=translated src=- shape=2449af7b vocab=c84ab0dd
+-/
 theorem mem_Ik {I : Ideal (MvPolynomial (Fin (n + 1)) L)} {d : ℕ}
     (x : ↥(homogeneousSubmodule (Fin (n + 1)) L d)) :
     x ∈ Ik I d ↔ (x : MvPolynomial (Fin (n + 1)) L) ∈ I := Iff.rfl
 
+/--
+@isnad1 id=le.1h5v.s11.ee5e21f222ba from=translated src=- shape=2067f1e5 vocab=03071b4b
+-/
 theorem Ik_mono {I I' : Ideal (MvPolynomial (Fin (n + 1)) L)} (h : I ≤ I') (d : ℕ) : Ik I d ≤ Ik I' d :=
   fun x hx => (mem_Ik x).mpr (h ((mem_Ik x).mp hx))
 
+/--
+@isnad1 id=finite.0h3v.s9.19d59e743ba8 from=translated src=- shape=05453094 vocab=53df335a
+-/
 scoped instance finite_homogeneousSubmodule (d : ℕ) :
     Module.Finite L ↥(homogeneousSubmodule (Fin (n + 1)) L d) := by
   rw [MvPolynomial.homogeneousSubmodule_eq_finsupp_supported]
@@ -49,11 +64,17 @@ scoped instance finite_homogeneousSubmodule (d : ℕ) :
     ((Finsupp.finite_of_degree_le d).subset fun x (hx : x.degree = d) => le_of_eq hx).to_subtype
   exact Module.Finite.of_basis (MvPolynomial.basisRestrictSupport L {x : Fin (n + 1) →₀ ℕ | x.degree = d})
 
+/--
+@isnad1 id=eq.0h4v.s13.f02746305096 from=translated src=- shape=943f8070 vocab=6819ae23
+-/
 theorem finrank_piece_add (I : Ideal (MvPolynomial (Fin (n + 1)) L)) (d : ℕ) :
     Module.finrank L (piece I d) + Module.finrank L ↥(Ik I d) =
       Module.finrank L ↥(homogeneousSubmodule (Fin (n + 1)) L d) := by
   unfold Ik; exact Submodule.finrank_quotient_add_finrank _
 
+/--
+@isnad1 id=le.1h5v.s13.84e94c5a330c from=translated src=- shape=e8cb15a8 vocab=3f414c30
+-/
 theorem finrank_piece_anti {I I' : Ideal (MvPolynomial (Fin (n + 1)) L)} (h : I ≤ I') (d : ℕ) :
     Module.finrank L (piece I' d) ≤ Module.finrank L (piece I d) := by
   have h1 := finrank_piece_add I d
@@ -61,6 +82,9 @@ theorem finrank_piece_anti {I I' : Ideal (MvPolynomial (Fin (n + 1)) L)} (h : I 
   have h3 : Module.finrank L ↥(Ik I d) ≤ Module.finrank L ↥(Ik I' d) := Submodule.finrank_mono (Ik_mono h d)
   omega
 
+/--
+@isnad1 id=eq.1h4v.s12.fab1454578e2 from=translated src=- shape=2bc73cb9 vocab=54bb64c4
+-/
 theorem finrank_piece_eq_zero_of_forall {I : Ideal (MvPolynomial (Fin (n + 1)) L)} {d : ℕ}
     (h : ∀ f : MvPolynomial (Fin (n + 1)) L, f.IsHomogeneous d → f ∈ I) : Module.finrank L (piece I d) = 0 := by
   have htop : Ik I d = ⊤ := eq_top_iff.mpr fun x _ => (mem_Ik x).mpr (h x x.2)
@@ -68,6 +92,9 @@ theorem finrank_piece_eq_zero_of_forall {I : Ideal (MvPolynomial (Fin (n + 1)) L
   rw [htop, finrank_top] at h1
   omega
 
+/--
+@isnad1 id=mem.2h5v.s12.f32398e53376 from=translated src=- shape=1963917c vocab=54bb64c4
+-/
 theorem mem_of_finrank_piece_eq_zero {I : Ideal (MvPolynomial (Fin (n + 1)) L)} {d : ℕ}
     (h : Module.finrank L (piece I d) = 0) (f : MvPolynomial (Fin (n + 1)) L) (hf : f.IsHomogeneous d) :
     f ∈ I := by
@@ -77,11 +104,17 @@ theorem mem_of_finrank_piece_eq_zero {I : Ideal (MvPolynomial (Fin (n + 1)) L)} 
   have : (⟨f, hf⟩ : ↥(homogeneousSubmodule (Fin (n + 1)) L d)) ∈ Ik I d := by rw [htop]; trivial
   exact (mem_Ik _).mp this
 
+/--
+@isnad1 id=eq.0h4v.s13.b1495762c1d1 from=translated src=- shape=040c0151 vocab=2b87f92f
+-/
 theorem decompose_eq (q : MvPolynomial (Fin (n + 1)) L) (d : ℕ) :
     (DirectSum.decompose (homogeneousSubmodule (Fin (n + 1)) L) q d : MvPolynomial (Fin (n + 1)) L) =
       homogeneousComponent d q :=
   MvPolynomial.decomposition.decompose'_apply q d
 
+/--
+@isnad1 id=eq.1h6v.s10.b055d87c18ea from=translated src=- shape=113bda57 vocab=83a62396
+-/
 theorem homogeneousComponent_mul_add {G : MvPolynomial (Fin (n + 1)) L} {m : ℕ} (hG : G.IsHomogeneous m)
     (a : MvPolynomial (Fin (n + 1)) L) (d : ℕ) :
     homogeneousComponent (m + d) (a * G) = homogeneousComponent d a * G := by
@@ -90,6 +123,9 @@ theorem homogeneousComponent_mul_add {G : MvPolynomial (Fin (n + 1)) L} {m : ℕ
   rw [decompose_eq, decompose_eq, Nat.add_sub_cancel_left] at this
   exact this
 
+/--
+@isnad1 id=mem.2h5v.s10.370caffca20f from=translated src=- shape=e070ef1b vocab=f24d7698
+-/
 theorem span_homogeneous (s : Set (MvPolynomial (Fin (n + 1)) L))
     (hs : ∀ p ∈ s, ∃ i : ℕ, p.IsHomogeneous i) :
     ∀ p ∈ Ideal.span s, ∀ d : ℕ, homogeneousComponent d p ∈ Ideal.span s := by
@@ -98,6 +134,9 @@ theorem span_homogeneous (s : Set (MvPolynomial (Fin (n + 1)) L))
   have := H d hp
   rwa [decompose_eq] at this
 
+/--
+@isnad1 id=ex.1h4v.s8.b5024f5e06da from=translated src=- shape=c27a2400 vocab=fded63d7
+-/
 theorem exists_eq_sum_X_mul (k : ℕ) (g : MvPolynomial (Fin (n + 1)) L) (hg : g.IsHomogeneous (k + 1)) :
     ∃ q : Fin (n + 1) → MvPolynomial (Fin (n + 1)) L, (∀ i, (q i).IsHomogeneous k) ∧ g = ∑ i, X i * q i := by
   classical
@@ -140,6 +179,9 @@ theorem exists_eq_sum_X_mul (k : ℕ) (g : MvPolynomial (Fin (n + 1)) L) (hg : g
       rw [smul_eq_C_mul, Finset.mul_sum]
       exact Finset.sum_congr rfl fun i _ => by rw [mul_left_comm]
 
+/--
+@isnad1 id=eq.1h4v.s13.47f31cf354cc from=translated src=- shape=5178a582 vocab=7c83008e
+-/
 theorem finrank_piece_succ_eq_zero {I : Ideal (MvPolynomial (Fin (n + 1)) L)} {k : ℕ}
     (h : Module.finrank L (piece I k) = 0) : Module.finrank L (piece I (k + 1)) = 0 := by
   apply finrank_piece_eq_zero_of_forall
@@ -152,13 +194,22 @@ noncomputable def Ck (I : Ideal (MvPolynomial (Fin (n + 1)) L)) (ℓ : MvPolynom
   Submodule.comap ((LinearMap.mulLeft L ℓ) ∘ₗ (homogeneousSubmodule (Fin (n + 1)) L k).subtype)
     (I.restrictScalars L)
 
+/--
+@isnad1 id=iff.0h6v.s12.c7bed3ee97bf from=translated src=- shape=df426be2 vocab=0abb46e5
+-/
 theorem mem_Ck {I : Ideal (MvPolynomial (Fin (n + 1)) L)} {ℓ : MvPolynomial (Fin (n + 1)) L} {k : ℕ}
     (x : ↥(homogeneousSubmodule (Fin (n + 1)) L k)) :
     x ∈ Ck I ℓ k ↔ ℓ * (x : MvPolynomial (Fin (n + 1)) L) ∈ I := Iff.rfl
 
+/--
+@isnad1 id=le.0h5v.s11.3096a0ea17db from=translated src=- shape=54f37dc3 vocab=bf98d5da
+-/
 theorem Ik_le_Ck (I : Ideal (MvPolynomial (Fin (n + 1)) L)) (ℓ : MvPolynomial (Fin (n + 1)) L) (k : ℕ) :
     Ik I k ≤ Ck I ℓ k := fun x hx => (mem_Ck x).mpr (I.mul_mem_left ℓ ((mem_Ik x).mp hx))
 
+/--
+@isnad1 id=eq.3h5v.s14.b5d9d18e43eb from=translated src=- shape=74857507 vocab=ac61185f
+-/
 theorem finrank_piece_succ_add_eq (I : Ideal (MvPolynomial (Fin (n + 1)) L))
     (hI : ∀ p ∈ I, ∀ i : ℕ, homogeneousComponent i p ∈ I)
     (ℓ : MvPolynomial (Fin (n + 1)) L) (hℓ : ℓ.IsHomogeneous 1) (hℓ0 : ℓ ≠ 0) (k : ℕ) :
@@ -232,11 +283,17 @@ variable {m : ℕ} (J : Ideal (MvPolynomial (Fin (n + 1)) L))
   (ℓ : MvPolynomial (Fin (n + 1)) L) (hℓ : ℓ.IsHomogeneous 1)
 
 include hJ in
+/--
+@isnad1 id=mem.2h6v.s10.91a2e82dc193 from=translated src=- shape=c87f0fd7 vocab=f24d7698
+-/
 theorem homogeneous_of_gen : ∀ p ∈ J, ∀ i : ℕ, homogeneousComponent i p ∈ J := by
   obtain ⟨s, hs, rfl⟩ := hJ
   exact span_homogeneous s fun p hp => ⟨m, hs p hp⟩
 
 include hJ hℓ in
+/--
+@isnad1 id=mem.3h7v.s11.e1b7a647a2cf from=translated src=- shape=30495cfe vocab=55c0fd2f
+-/
 theorem homogeneous_sup : ∀ p ∈ J ⊔ Ideal.span {ℓ}, ∀ i : ℕ, homogeneousComponent i p ∈ J ⊔ Ideal.span {ℓ} := by
   obtain ⟨s, hs, rfl⟩ := hJ
   have : Ideal.span s ⊔ Ideal.span {ℓ} = Ideal.span (s ∪ {ℓ}) := (Submodule.span_union s {ℓ}).symm
@@ -268,10 +325,16 @@ theorem eq_top_of_zero (hm : m = 0) (h1 : Module.finrank L (piece J 1) = 0) : J 
   rw [hbot, Ideal.mem_bot] at hX
   exact X_ne_zero 0 hX
 
+/--
+@isnad1 id=ishomoge.0h3v.s9.ba48b15f0f60 from=translated src=- shape=e088671c vocab=c38bbb65
+-/
 theorem isHomogeneous_linearForm (a : Fin (n + 1) → L) :
     (∑ i, C (a i) * X i : MvPolynomial (Fin (n + 1)) L).IsHomogeneous 1 :=
   IsHomogeneous.sum _ _ _ fun i _ => isHomogeneous_C_mul_X (a i) i
 
+/--
+@isnad1 id=ex.2h4v.s15.4397095784a0 from=translated src=- shape=637c3727 vocab=0955f396
+-/
 theorem main (n m : ℕ) (K : Type) [Field K] [Infinite K] (J : Ideal (MvPolynomial (Fin (n + 1)) K))
     (hJ : ∃ s : Set (MvPolynomial (Fin (n + 1)) K), (∀ p ∈ s, p.IsHomogeneous m) ∧ J = Ideal.span s)
     (hmax : Module.finrank K (piece J (m + 1)) = Nat.macaulayPow m (Module.finrank K (piece J m))) :
@@ -338,6 +401,9 @@ end GotzRegA
 open scoped _root_.P2MW.S_MvPolynomial_exists_forall_eval_ne_zero_mem_of_mul_mem_and_finrank_piece_sup_eq_macaulayPow.GotzRegA
 
 open MvPolynomial AlgebraicGeometry.HilbertFunctor in
+/--
+@isnad1 id=ex.2h4v.s15.4397095784a0 from=translated src=- shape=637c3727 vocab=0955f396
+-/
 theorem solution
     (n m : ℕ) (K : Type) [Field K] [Infinite K] (J : Ideal (MvPolynomial (Fin (n + 1)) K))
     (hJ : ∃ s : Set (MvPolynomial (Fin (n + 1)) K), (∀ p ∈ s, p.IsHomogeneous m) ∧ J = Ideal.span s)

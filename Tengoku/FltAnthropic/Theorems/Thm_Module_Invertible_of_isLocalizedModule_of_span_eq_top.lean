@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open TensorProduct
 
+/--
+@isnad1 id=invertib.2h6v.s9.b1cf5399f4e0 from=translated src=- shape=031e5aa5 vocab=34e06439
+-/
 theorem Module.Invertible.of_isLocalizedModule_of_span_eq_top
     {R : Type*} [CommRing R] {M : Type*} [AddCommGroup M] [Module R M]
     (s : Set R) (hs : Ideal.span s = ⊤)

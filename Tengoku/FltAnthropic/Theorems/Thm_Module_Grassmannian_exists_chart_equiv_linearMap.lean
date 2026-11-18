@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=ex.0h4v.s18.dec8a04674c2 from=translated src=- shape=9fb69c02 vocab=6948aa2b
+-/
 theorem Module.Grassmannian.exists_chart_equiv_linearMap
     (R : Type) [CommRing R] (M : Type) [AddCommGroup M] [Module R M] (k : ℕ) (x : Fin k → M) :
     ∃ pt : ∀ (A : Type) [CommRing A] [Algebra R A],

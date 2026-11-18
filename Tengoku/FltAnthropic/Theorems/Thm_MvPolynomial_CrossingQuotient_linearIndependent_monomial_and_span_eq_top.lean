@@ -9,6 +9,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_MvPolynomial_CrossingQuotient_linearIndepe
 set_option autoImplicit false
 
 open MvPolynomial MvPolynomial.CrossingQuotient
+/--
+@isnad1 id=and.0h2v.s12.326c3dbbfa45 from=translated src=- shape=9132bdbc vocab=ca6f698a
+-/
 theorem MvPolynomial.CrossingQuotient.linearIndependent_monomial_and_span_eq_top
     {W : Type*} [CommRing W] (t : W) :
     LinearIndependent W (MvPolynomial.CrossingQuotient.monomial t) ∧

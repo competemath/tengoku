@@ -11,6 +11,9 @@ universe u v w t
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=ex.1h6v.s12.ee00d6510e81 from=translated src=- shape=67f66271 vocab=8290750c
+-/
 theorem MvPowerSeries.exists_algEquiv_tensorProduct_quotient_span_map_of_pow_span_X_le
     {σ : Type w} [Finite σ] {R : Type u} [CommRing R] (S : Type v) [CommRing S] [Algebra R S]
     {ι : Type t} (φ : ι → MvPowerSeries σ R) (N : ℕ)

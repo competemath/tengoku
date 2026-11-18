@@ -336,6 +336,9 @@ end Restricted
 end THensel
 
 open THensel in
+/--
+@isnad1 id=eventual.9h8v.s10.1ebe294f0840 from=translated src=- shape=4b139256 vocab=368975fc
+-/
 theorem solution
     {𝓞 : Type u} [CommRing 𝓞] (p : ℕ) {d : ℕ}
     (φ ψ : Fin d → MvPowerSeries (Fin d) 𝓞)

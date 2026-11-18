@@ -17,6 +17,9 @@ namespace P2mKcCartierIsogInj
 
 open MvPowerSeries
 
+/--
+@isnad1 id=ex.1h4v.s8.b3d9148bb707 from=translated src=- shape=20317977 vocab=619bf427
+-/
 theorem exists_X_pow_mem {k : Type u} [Field k] {σ : Type*} (I : Ideal (MvPowerSeries σ k))
     (hfin : Module.Finite k (MvPowerSeries σ k ⧸ I)) (i : σ) :
     ∃ r : ℕ, (X i : MvPowerSeries σ k) ^ r ∈ I := by
@@ -66,6 +69,9 @@ theorem exists_X_pow_mem {k : Type u} [Field k] {σ : Type*} (I : Ideal (MvPower
     exact hPmem
   exact (Ideal.mul_unit_mem_iff_mem I hunit).mp hmem
 
+/--
+@isnad1 id=ex.1h3v.s8.7db76f3cac04 from=translated src=- shape=b915b2cd vocab=2a666a3c
+-/
 theorem exists_forall_X_pow_mem {k : Type u} [Field k] {σ : Type*} [Fintype σ]
     (I : Ideal (MvPowerSeries σ k)) (hfin : Module.Finite k (MvPowerSeries σ k ⧸ I)) :
     ∃ s : ℕ, ∀ i : σ, (X i : MvPowerSeries σ k) ^ s ∈ I := by
@@ -76,6 +82,9 @@ theorem exists_forall_X_pow_mem {k : Type u} [Field k] {σ : Type*} [Fintype σ]
 
 variable {p : ℕ} [Fact p.Prime] {R : Type u} [CommRing R] {d d' : ℕ}
 
+/--
+@isnad1 id=injectiv.1h8v.s8.2957e75240e9 from=translated src=- shape=2282160e vocab=6adb794a
+-/
 theorem map_injective_of_X_pow_mem [IsDomain R] {Φ : MvFormalGroup d R} [Φ.IsComm]
     {Φ' : MvFormalGroup d' R} [Φ'.IsComm] (φ : Φ.Hom Φ') (s : ℕ)
     (hs : ∀ i : Fin d, (X i : MvPowerSeries (Fin d) R) ^ s ∈ Ideal.span (Set.range φ.toPowerSeries)) :
@@ -108,6 +117,9 @@ end P2mKcCartierIsogInj
 
 open P2mKcCartierIsogInj in
 
+/--
+@isnad1 id=injectiv.1h7v.s9.c95eca1d9e15 from=translated src=- shape=138b1830 vocab=a2a2430b
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] {k : Type u} [Field k] {d d' : ℕ}
     (Φ : MvFormalGroup d k) [Φ.IsComm] (Φ' : MvFormalGroup d' k) [Φ'.IsComm] (φ : Φ.Hom Φ')

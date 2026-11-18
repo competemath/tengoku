@@ -32,6 +32,9 @@ section PID
 
 variable {𝒪 : Type u} [CommRing 𝒪] [IsDomain 𝒪]
 
+/--
+@isnad1 id=eq.0h3v.s10.4f5396939fa3 from=translated src=- shape=f0ae7a68 vocab=6f98cece
+-/
 theorem length_quotient_smul_top (F : Type*) [AddCommGroup F] [Module 𝒪 F] [Module.Free 𝒪 F]
     [Module.Finite 𝒪 F] (c : 𝒪) :
     Module.length 𝒪 (F ⧸ (c • (⊤ : Submodule 𝒪 F))) =
@@ -74,6 +77,9 @@ section Aug
 variable {𝒪 : Type u} {T : Type w} [CommRing 𝒪] [CommRing T] [Algebra 𝒪 T] (πT : T →ₐ[𝒪] 𝒪)
 variable {M : Type x} [AddCommGroup M] [Module T M]
 
+/--
+@isnad1 id=mem.1h6v.s8.8592952de073 from=translated src=- shape=8527a2b9 vocab=57afc0b7
+-/
 theorem smul_mem_torsion_of_mem_annihilator {a : T} (ha : a ∈ (RingHom.ker πT).annihilator) (n : M) :
     a • n ∈ Submodule.torsionBySet T M ↑(RingHom.ker πT) := by
   rw [Submodule.mem_torsionBySet_iff]
@@ -84,6 +90,9 @@ theorem smul_mem_torsion_of_mem_annihilator {a : T} (ha : a ∈ (RingHom.ker πT
 
 variable [Module 𝒪 M] [IsScalarTower 𝒪 T M]
 
+/--
+@isnad1 id=eq.1h6v.s9.14d3bdda04a3 from=translated src=- shape=d5cef9e1 vocab=e0096199
+-/
 theorem smul_eq_of_mem_torsion {x : M} (hx : x ∈ Submodule.torsionBySet T M ↑(RingHom.ker πT))
     (t : T) : t • x = (πT t) • x := by
   rw [Submodule.mem_torsionBySet_iff] at hx
@@ -91,6 +100,9 @@ theorem smul_eq_of_mem_torsion {x : M} (hx : x ∈ Submodule.torsionBySet T M �
   rw [sub_smul, sub_eq_zero, algebraMap_smul] at h1
   exact h1
 
+/--
+@isnad1 id=ex.1h3v.s8.45f899dfbda4 from=translated src=- shape=eacb40de vocab=38361d99
+-/
 theorem exists_mem_annihilator_ne_zero (hη : (RingHom.ker πT).annihilator.map πT ≠ ⊥) :
     ∃ e ∈ (RingHom.ker πT).annihilator, πT e ≠ 0 := by
   by_contra h
@@ -113,9 +125,15 @@ variable {𝒪 : Type u} {T : Type w} [CommRing 𝒪]
 noncomputable def Φ : M →ₗ[𝒪] Module.Dual 𝒪 ↥(Submodule.torsionBySet T M ↑(RingHom.ker πT)) :=
   ((Submodule.torsionBySet T M ↑(RingHom.ker πT)).subtype.restrictScalars 𝒪).dualMap ∘ₗ B
 
+/--
+@isnad1 id=eq.0h7v.s12.54800d9911af from=translated src=- shape=26711d00 vocab=4f53bfe3
+-/
 theorem Φ_apply (m : M) (x : ↥(Submodule.torsionBySet T M ↑(RingHom.ker πT))) :
     Φ πT B m x = B m x := rfl
 
+/--
+@isnad1 id=eq.0h5v.s12.dc6cf73ad4b1 from=translated src=- shape=d53d69b9 vocab=f48d5c8c
+-/
 theorem range_gram_eq_map :
     LinearMap.range (B.compl₁₂ ((Submodule.torsionBySet T M ↑(RingHom.ker πT)).subtype.restrictScalars 𝒪)
         ((Submodule.torsionBySet T M ↑(RingHom.ker πT)).subtype.restrictScalars 𝒪)) =
@@ -130,6 +148,9 @@ theorem range_gram_eq_map :
 
 omit [IsScalarTower 𝒪 T M] in
 
+/--
+@isnad1 id=mem.3h6v.s11.5c565a826db4 from=translated src=- shape=6c7c8fc2 vocab=de1cff5f
+-/
 theorem mem_torsionI_of_apply_eq_zero (hB : ∀ (t : T) (m n : M), B (t • m) n = B m (t • n))
     (hBi : Function.Injective B) {m : M}
     (h : ∀ x ∈ Submodule.torsionBySet T M ↑(RingHom.ker πT), B m x = 0) :
@@ -144,6 +165,9 @@ theorem mem_torsionI_of_apply_eq_zero (hB : ∀ (t : T) (m n : M), B (t • m) n
 
 variable [IsDomain 𝒪]
 
+/--
+@isnad1 id=eq.4h7v.s11.97eba0e9d9cd from=translated src=- shape=7346e96d vocab=1eeaf689
+-/
 theorem apply_eq_zero_of_mem_torsionI (hη : (RingHom.ker πT).annihilator.map πT ≠ ⊥)
     (hB : ∀ (t : T) (m n : M), B (t • m) n = B m (t • n))
     {m x : M} (hm : m ∈ Submodule.torsionBySet T M ↑(RingHom.ker πT).annihilator)
@@ -159,6 +183,9 @@ theorem apply_eq_zero_of_mem_torsionI (hη : (RingHom.ker πT).annihilator.map �
       _ = 0 := by rw [hem, map_zero, LinearMap.zero_apply]
   exact (mul_eq_zero.mp this).resolve_left hπe
 
+/--
+@isnad1 id=iff.3h6v.s11.31c995152c7f from=translated src=- shape=6c0a59ca vocab=a79f9cc4
+-/
 theorem mem_ker_Φ_iff (hη : (RingHom.ker πT).annihilator.map πT ≠ ⊥)
     (hB : ∀ (t : T) (m n : M), B (t • m) n = B m (t • n)) (hBi : Function.Injective B) (m : M) :
     m ∈ LinearMap.ker (Φ πT B) ↔ m ∈ Submodule.torsionBySet T M ↑(RingHom.ker πT).annihilator := by
@@ -173,6 +200,9 @@ theorem mem_ker_Φ_iff (hη : (RingHom.ker πT).annihilator.map πT ≠ ⊥)
     rw [Φ_apply, LinearMap.zero_apply]
     exact apply_eq_zero_of_mem_torsionI πT B hη hB h x.2
 
+/--
+@isnad1 id=eq.3h5v.s15.9a7fb7f57bdd from=translated src=- shape=a72802d2 vocab=5f8507d9
+-/
 theorem ker_mkQ_comp_Φ (hη : (RingHom.ker πT).annihilator.map πT ≠ ⊥)
     (hB : ∀ (t : T) (m n : M), B (t • m) n = B m (t • n)) (hBi : Function.Injective B) :
     LinearMap.ker ((LinearMap.range (B.compl₁₂
@@ -195,6 +225,9 @@ theorem ker_mkQ_comp_Φ (hη : (RingHom.ker πT).annihilator.map πT ≠ ⊥)
 
 variable [IsPrincipalIdealRing 𝒪] [Module.Finite 𝒪 M] [Module.Free 𝒪 M]
 
+/--
+@isnad1 id=ex.0h4v.s11.701bc88fc18a from=translated src=- shape=51fb0414 vocab=3041f084
+-/
 theorem exists_retraction :
     ∃ p : M →ₗ[𝒪] ↥(Submodule.torsionBySet T M ↑(RingHom.ker πT)),
       ∀ x : ↥(Submodule.torsionBySet T M ↑(RingHom.ker πT)), p x = x := by
@@ -232,6 +265,9 @@ theorem exists_retraction :
   change (x : M) - s (N₀.mkQ (x : M)) = x
   rw [hx0, map_zero, sub_zero]
 
+/--
+@isnad1 id=surjecti.1h5v.s12.b0f1513a3d67 from=translated src=- shape=bd0186b5 vocab=fdbc09f7
+-/
 theorem Φ_surjective (hBs : Function.Surjective B) : Function.Surjective (Φ πT B) := by
   intro f
   obtain ⟨p, hp⟩ := exists_retraction (𝒪 := 𝒪) πT (M := M)
@@ -282,6 +318,9 @@ variable (B : M →ₗ[𝒪] M →ₗ[𝒪] 𝒪) (B' : M' →ₗ[𝒪] M' →�
 
 include hadj hji in
 
+/--
+@isnad1 id=eq.2h12v.s11.d7eef93fdc40 from=translated src=- shape=2dfeb43b vocab=b1fa8d2b
+-/
 theorem gram_transport (x y : ↥(Submodule.torsionBySet T M ↑(RingHom.ker πT))) :
     B' (i x) (i y) = πT Δ * B x y := by
   rw [← hadj, hji, smul_eq_of_mem_torsion πT x.2 Δ, map_smul, LinearMap.smul_apply, smul_eq_mul]
@@ -289,6 +328,9 @@ theorem gram_transport (x y : ↥(Submodule.torsionBySet T M ↑(RingHom.ker πT
 variable [IsDomain 𝒪] [Module.Free 𝒪 M]
 
 include hji hΔ in
+/--
+@isnad1 id=bijectiv.3h10v.s11.96200677bbf8 from=translated src=- shape=da03156d vocab=07356aa6
+-/
 theorem iRes_bijective : Function.Bijective (iRes πT πT' i h℘) := by
   constructor
   · intro x y hxy
@@ -309,11 +351,17 @@ noncomputable def eRes : ↥(Submodule.torsionBySet T M ↑(RingHom.ker πT)) �
     ↥(Submodule.torsionBySet T' M' ↑(RingHom.ker πT')) :=
   LinearEquiv.ofBijective (iRes πT πT' i h℘) (iRes_bijective πT πT' i j Δ hji hΔ h℘)
 
+/--
+@isnad1 id=eq.3h11v.s12.b2f21c2fc949 from=translated src=- shape=9e62c1f7 vocab=a4e88a40
+-/
 theorem eRes_apply (x : ↥(Submodule.torsionBySet T M ↑(RingHom.ker πT))) :
     (eRes πT πT' i j Δ hji hΔ h℘ x : M') = i x := rfl
 
 include hadj in
 
+/--
+@isnad1 id=eq.4h12v.s14.fc13d3409477 from=translated src=- shape=9cc27437 vocab=c039d618
+-/
 theorem map_dualMap_range_gram :
     (LinearMap.range (B'.compl₁₂
         ((Submodule.torsionBySet T' M' ↑(RingHom.ker πT')).subtype.restrictScalars 𝒪)
@@ -348,6 +396,9 @@ variable {𝒪 : Type u} [CommRing 𝒪] [IsDomain 𝒪]
   {N : Type*} [AddCommGroup N] [Module 𝒪 N]
   {D : Type*} [AddCommGroup D] [Module 𝒪 D] [Module.Finite 𝒪 D] [Module.Free 𝒪 D]
 
+/--
+@isnad1 id=eq.1h5v.s10.62a11819a891 from=translated src=- shape=eeba96d6 vocab=163d12ab
+-/
 theorem length_quotient_range_smul (g : N →ₗ[𝒪] D) {c : 𝒪} (hc : c ≠ 0) :
     Module.length 𝒪 (D ⧸ LinearMap.range (c • g)) =
       Module.length 𝒪 (D ⧸ LinearMap.range g) +
@@ -408,6 +459,9 @@ end Cokernel
 end M4cP4PairB
 
 open M4cP4PairB in
+/--
+@isnad1 id=and.10h12v.s13.5088db32a5df from=translated src=- shape=435222ac vocab=70c5f4d9
+-/
 theorem solution
     {𝒪 : Type u} {T T' : Type w} [CommRing 𝒪] [IsDomain 𝒪] [IsPrincipalIdealRing 𝒪]
     [CommRing T] [Algebra 𝒪 T] [CommRing T'] [Algebra 𝒪 T']

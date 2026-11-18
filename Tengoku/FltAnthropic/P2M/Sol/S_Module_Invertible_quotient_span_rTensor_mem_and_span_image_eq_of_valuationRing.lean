@@ -11,6 +11,9 @@ open TensorProduct
 
 universe u v w
 
+/--
+@isnad1 id=ex.0h4v.s7.fda2f60c1905 from=translated src=- shape=d55103e8 vocab=3da44e5f
+-/
 theorem VAAux.span_pair_eq_span_singleton (V : Type v) [CommRing V] [IsDomain V] [ValuationRing V]
     (L : Type v) [Field L] [Algebra V L] [IsFractionRing V L] (a g : L) :
     ∃ h : L, Submodule.span V {a, g} = Submodule.span V {h} := by
@@ -51,6 +54,9 @@ theorem VAAux.span_pair_eq_span_singleton (V : Type v) [CommRing V] [IsDomain V]
       · exact Submodule.subset_span rfl
     · exact Submodule.span_mono (Set.singleton_subset_iff.mpr (Set.mem_insert_of_mem _ rfl))
 
+/--
+@isnad1 id=ex.0h3v.s7.a00cc2e86f71 from=translated src=- shape=aedf976b vocab=c278f612
+-/
 theorem VAAux.exists_span_eq_span_singleton (V : Type v) [CommRing V] [IsDomain V] [ValuationRing V]
     (L : Type v) [Field L] [Algebra V L] [IsFractionRing V L] (s : Finset L) :
     ∃ g : L, Submodule.span V (s : Set L) = Submodule.span V {g} := by
@@ -65,6 +71,9 @@ theorem VAAux.exists_span_eq_span_singleton (V : Type v) [CommRing V] [IsDomain 
 
 set_option maxHeartbeats 3200000 in
 set_option synthInstance.maxHeartbeats 800000 in
+/--
+@isnad1 id=and.1h5v.s12.bca1a670556e from=translated src=- shape=3076b377 vocab=469ec5c6
+-/
 theorem solution
     {𝒪 : Type u} [CommRing 𝒪]
     (V : Type v) [CommRing V] [IsDomain V] [ValuationRing V] [Algebra 𝒪 V]

@@ -15,6 +15,9 @@ namespace C2
 
 variable {k : Type*} [Field k]
 
+/--
+@isnad1 id=hassubst.1h2v.s7.ab1ae42fe424 from=translated src=- shape=6796c310 vocab=3cde6461
+-/
 lemma hasSubst_br (φ : PowerSeries k) (hφ : PowerSeries.constantCoeff φ = 0) :
     MvPowerSeries.HasSubst ![(PowerSeries.X : PowerSeries k), φ] :=
   MvPowerSeries.hasSubst_of_constantCoeff_zero (fun s => by
@@ -22,6 +25,9 @@ lemma hasSubst_br (φ : PowerSeries k) (hφ : PowerSeries.constantCoeff φ = 0) 
     · exact PowerSeries.constantCoeff_X
     · exact hφ)
 
+/--
+@isnad1 id=hassubst.1h2v.s7.d0046b7185c9 from=translated src=- shape=e84dc10a vocab=3cde6461
+-/
 lemma hasSubst_br' (ψ : PowerSeries k) (hψ : PowerSeries.constantCoeff ψ = 0) :
     MvPowerSeries.HasSubst ![ψ, (PowerSeries.X : PowerSeries k)] :=
   MvPowerSeries.hasSubst_of_constantCoeff_zero (fun s => by
@@ -29,19 +35,31 @@ lemma hasSubst_br' (ψ : PowerSeries k) (hψ : PowerSeries.constantCoeff ψ = 0)
     · exact hψ
     · exact PowerSeries.constantCoeff_X)
 
+/--
+@isnad1 id=hassubst.0h2v.s5.4330a68a0c09 from=translated src=- shape=a23da66b vocab=3a9a64b9
+-/
 lemma hasSubst_const_X (i : Fin 2) :
     MvPowerSeries.HasSubst (fun (_ : Unit) => (X i : MvPowerSeries (Fin 2) k)) :=
   MvPowerSeries.hasSubst_of_constantCoeff_zero (fun _ => by simp)
 
+/--
+@isnad1 id=eq.1h2v.s7.8d283e550ff3 from=translated src=- shape=b21a0c7b vocab=5a89eee9
+-/
 lemma ev_X0 (φ : PowerSeries k) (hφ : PowerSeries.constantCoeff φ = 0) :
     MvPowerSeries.subst ![(PowerSeries.X : PowerSeries k), φ] (X 0 : MvPowerSeries (Fin 2) k) =
       PowerSeries.X := by
   rw [MvPowerSeries.subst_X (hasSubst_br φ hφ)]; rfl
 
+/--
+@isnad1 id=eq.1h2v.s7.b12b5aed7439 from=translated src=- shape=15913900 vocab=5a89eee9
+-/
 lemma ev_X1 (φ : PowerSeries k) (hφ : PowerSeries.constantCoeff φ = 0) :
     MvPowerSeries.subst ![(PowerSeries.X : PowerSeries k), φ] (X 1 : MvPowerSeries (Fin 2) k) = φ := by
   rw [MvPowerSeries.subst_X (hasSubst_br φ hφ)]; rfl
 
+/--
+@isnad1 id=eq.1h3v.s7.20fd6bf5afdf from=translated src=- shape=e6619ab4 vocab=39e94bc4
+-/
 lemma ev_substX0 (φ : PowerSeries k) (hφ : PowerSeries.constantCoeff φ = 0) (g : PowerSeries k) :
     MvPowerSeries.subst ![(PowerSeries.X : PowerSeries k), φ]
       (PowerSeries.subst (X 0 : MvPowerSeries (Fin 2) k) g) = g := by
@@ -51,6 +69,9 @@ lemma ev_substX0 (φ : PowerSeries k) (hφ : PowerSeries.constantCoeff φ = 0) (
     funext u; exact ev_X0 φ hφ
   rw [this, ← PowerSeries.subst_def, PowerSeries.X_subst]
 
+/--
+@isnad1 id=eq.1h3v.s7.88940b15855a from=translated src=- shape=d865583b vocab=39e94bc4
+-/
 lemma ev_substX1 (φ : PowerSeries k) (hφ : PowerSeries.constantCoeff φ = 0) (g : PowerSeries k) :
     MvPowerSeries.subst ![(PowerSeries.X : PowerSeries k), φ]
       (PowerSeries.subst (X 1 : MvPowerSeries (Fin 2) k) g) = PowerSeries.subst φ g := by
@@ -60,15 +81,24 @@ lemma ev_substX1 (φ : PowerSeries k) (hφ : PowerSeries.constantCoeff φ = 0) (
     funext u; exact ev_X1 φ hφ
   rw [this, ← PowerSeries.subst_def]
 
+/--
+@isnad1 id=eq.1h2v.s7.d7b903e09588 from=translated src=- shape=0864646c vocab=5a89eee9
+-/
 lemma ev'_X0 (ψ : PowerSeries k) (hψ : PowerSeries.constantCoeff ψ = 0) :
     MvPowerSeries.subst ![ψ, (PowerSeries.X : PowerSeries k)] (X 0 : MvPowerSeries (Fin 2) k) = ψ := by
   rw [MvPowerSeries.subst_X (hasSubst_br' ψ hψ)]; rfl
 
+/--
+@isnad1 id=eq.1h2v.s7.f569dbc9c99b from=translated src=- shape=d2410bba vocab=5a89eee9
+-/
 lemma ev'_X1 (ψ : PowerSeries k) (hψ : PowerSeries.constantCoeff ψ = 0) :
     MvPowerSeries.subst ![ψ, (PowerSeries.X : PowerSeries k)] (X 1 : MvPowerSeries (Fin 2) k) =
       PowerSeries.X := by
   rw [MvPowerSeries.subst_X (hasSubst_br' ψ hψ)]; rfl
 
+/--
+@isnad1 id=eq.1h3v.s7.efeb6b346385 from=translated src=- shape=657f1885 vocab=39e94bc4
+-/
 lemma ev'_substX0 (ψ : PowerSeries k) (hψ : PowerSeries.constantCoeff ψ = 0) (g : PowerSeries k) :
     MvPowerSeries.subst ![ψ, (PowerSeries.X : PowerSeries k)]
       (PowerSeries.subst (X 0 : MvPowerSeries (Fin 2) k) g) = PowerSeries.subst ψ g := by
@@ -78,6 +108,9 @@ lemma ev'_substX0 (ψ : PowerSeries k) (hψ : PowerSeries.constantCoeff ψ = 0) 
     funext u; exact ev'_X0 ψ hψ
   rw [this, ← PowerSeries.subst_def]
 
+/--
+@isnad1 id=eq.1h3v.s7.ae12dfa357d8 from=translated src=- shape=6fb0dac3 vocab=39e94bc4
+-/
 lemma ev'_substX1 (ψ : PowerSeries k) (hψ : PowerSeries.constantCoeff ψ = 0) (g : PowerSeries k) :
     MvPowerSeries.subst ![ψ, (PowerSeries.X : PowerSeries k)]
       (PowerSeries.subst (X 1 : MvPowerSeries (Fin 2) k) g) = g := by
@@ -87,6 +120,9 @@ lemma ev'_substX1 (ψ : PowerSeries k) (hψ : PowerSeries.constantCoeff ψ = 0) 
     funext u; exact ev'_X1 ψ hψ
   rw [this, ← PowerSeries.subst_def, PowerSeries.X_subst]
 
+/--
+@isnad1 id=eq.1h2v.s9.9c1413500c95 from=translated src=- shape=987de1e6 vocab=8cb2b01d
+-/
 lemma ker_ev_eq (φ : PowerSeries k) (hφ : PowerSeries.constantCoeff φ = 0) :
     RingHom.ker ((MvPowerSeries.substAlgHom (hasSubst_br φ hφ)).toRingHom :
         MvPowerSeries (Fin 2) k →+* PowerSeries k) =
@@ -124,11 +160,17 @@ lemma ker_ev_eq (φ : PowerSeries k) (hφ : PowerSeries.constantCoeff φ = 0) :
       MvPowerSeries.substAlgHom_apply, MvPowerSeries.subst_sub (hasSubst_br φ hφ), ev_X1 φ hφ,
       ev_substX0 φ hφ, sub_self]
 
+/--
+@isnad1 id=isprime.1h2v.s8.e12a39b7d7bb from=translated src=- shape=6662d1b5 vocab=7ab2b838
+-/
 lemma isPrime_span_branch (φ : PowerSeries k) (hφ : PowerSeries.constantCoeff φ = 0) :
     (Ideal.span {X 1 - PowerSeries.subst (X 0 : MvPowerSeries (Fin 2) k) φ}).IsPrime := by
   rw [← ker_ev_eq φ hφ]
   exact RingHom.ker_isPrime _
 
+/--
+@isnad1 id=eq.1h2v.s8.deadb7850ac6 from=translated src=- shape=20841e74 vocab=088d20c7
+-/
 lemma order_branch (φ : PowerSeries k) (hφ : PowerSeries.constantCoeff φ = 0) :
     (X 1 - PowerSeries.subst (X 0 : MvPowerSeries (Fin 2) k) φ).order = 1 := by
   classical
@@ -150,6 +192,9 @@ lemma order_branch (φ : PowerSeries k) (hφ : PowerSeries.constantCoeff φ = 0)
     rw [MvPowerSeries.coeff_zero_eq_constantCoeff_apply, map_sub, MvPowerSeries.constantCoeff_X,
       PowerSeries.constantCoeff_subst_eq_zero (by simp) φ hφ, sub_zero]
 
+/--
+@isnad1 id=ne.1h2v.s8.4d2bac32884a from=translated src=- shape=9afae253 vocab=a7ae6ba6
+-/
 lemma branch_ne_zero (φ : PowerSeries k) (hφ : PowerSeries.constantCoeff φ = 0) :
     (X 1 - PowerSeries.subst (X 0 : MvPowerSeries (Fin 2) k) φ) ≠ 0 := by
   intro h
@@ -157,10 +202,16 @@ lemma branch_ne_zero (φ : PowerSeries k) (hφ : PowerSeries.constantCoeff φ = 
   rw [h, MvPowerSeries.order_zero] at this
   exact ENat.top_ne_one this
 
+/--
+@isnad1 id=prime.1h2v.s8.ab62567fb79b from=translated src=- shape=4ab97347 vocab=264e7241
+-/
 lemma prime_branch (φ : PowerSeries k) (hφ : PowerSeries.constantCoeff φ = 0) :
     Prime (X 1 - PowerSeries.subst (X 0 : MvPowerSeries (Fin 2) k) φ) :=
   (Ideal.span_singleton_prime (branch_ne_zero φ hφ)).mp (isPrime_span_branch φ hφ)
 
+/--
+@isnad1 id=dvd.3h5v.s7.a62822e41301 from=translated src=- shape=200f64d8 vocab=d84a2926
+-/
 lemma finset_prod_dvd_of_prime {M : Type*} [CommMonoidWithZero M] {ι : Type*}
     (s : Finset ι) (p : ι → M) (f : M)
     (hp : ∀ i ∈ s, Prime (p i)) (hdvd : ∀ i ∈ s, p i ∣ f)
@@ -185,6 +236,9 @@ lemma finset_prod_dvd_of_prime {M : Type*} [CommMonoidWithZero M] {ι : Type*}
       rw [Finset.prod_insert ha, hc]
       exact Dvd.intro c' (by rw [mul_assoc, mul_left_comm])
 
+/--
+@isnad1 id=eq.0h4v.s6.c160fb24b956 from=translated src=- shape=a80cbf5c vocab=025838ff
+-/
 lemma order_finset_prod {ι : Type*} (s : Finset ι) (p : ι → MvPowerSeries (Fin 2) k) :
     (∏ i ∈ s, p i).order = ∑ i ∈ s, (p i).order := by
   classical
@@ -196,6 +250,9 @@ lemma order_finset_prod {ι : Type*} (s : Finset ι) (p : ι → MvPowerSeries (
     simp at h
   | insert a s ha ih => rw [Finset.prod_insert ha, Finset.sum_insert ha, MvPowerSeries.order_mul, ih]
 
+/--
+@isnad1 id=le.1h3v.s8.41c1d6928b6c from=translated src=- shape=3903e918 vocab=0b2a4d3e
+-/
 lemma le_order_of_mem_pow (n : ℕ) :
     ∀ G : MvPowerSeries (Fin 2) k,
       G ∈ (Ideal.span {(X 0 : MvPowerSeries (Fin 2) k), X 1}) ^ n → (n : ℕ∞) ≤ G.order := by
@@ -217,6 +274,9 @@ lemma le_order_of_mem_pow (n : ℕ) :
     · intro a b ha hb
       exact (le_min ha hb).trans MvPowerSeries.min_order_le_add
 
+/--
+@isnad1 id=eq.1h2v.s8.d514820d5972 from=translated src=- shape=20841e74 vocab=088d20c7
+-/
 lemma order_branch' (ψ : PowerSeries k) (hψ : PowerSeries.constantCoeff ψ = 0) :
     (X 0 - PowerSeries.subst (X 1 : MvPowerSeries (Fin 2) k) ψ).order = 1 := by
   classical
@@ -238,6 +298,9 @@ lemma order_branch' (ψ : PowerSeries k) (hψ : PowerSeries.constantCoeff ψ = 0
     rw [MvPowerSeries.coeff_zero_eq_constantCoeff_apply, map_sub, MvPowerSeries.constantCoeff_X,
       PowerSeries.constantCoeff_subst_eq_zero (by simp) ψ hψ, sub_zero]
 
+/--
+@isnad1 id=eq.3h3v.s9.046d7a1063d1 from=translated src=- shape=7d786424 vocab=57ba06f6
+-/
 lemma coeff_one_subst_of_sq_dvd (φ ψ : PowerSeries k) (hφ : PowerSeries.constantCoeff φ = 0)
     (hψ0 : PowerSeries.constantCoeff ψ = 0) (hψ1 : PowerSeries.coeff 1 ψ = 0) :
     PowerSeries.coeff 1 (PowerSeries.subst φ ψ) = 0 := by
@@ -255,6 +318,9 @@ lemma coeff_one_subst_of_sq_dvd (φ ψ : PowerSeries k) (hφ : PowerSeries.const
     ⟨φ₁ ^ 2 * PowerSeries.subst (PowerSeries.X * φ₁) ψ₂, by ring⟩
   exact (PowerSeries.X_pow_dvd_iff.mp this) 1 (by norm_num)
 
+/--
+@isnad1 id=eq.3h3v.s9.1ac27cc824ec from=translated src=- shape=9303064c vocab=57ba06f6
+-/
 lemma coeff_one_subst_of_sq_dvd' (φ ψ : PowerSeries k) (hφ : PowerSeries.constantCoeff φ = 0)
     (hψ0 : PowerSeries.constantCoeff ψ = 0) (hψ1 : PowerSeries.coeff 1 ψ = 0) :
     PowerSeries.coeff 1 (PowerSeries.subst ψ φ) = 0 := by
@@ -276,6 +342,9 @@ end C2
 
 open C2 in
 
+/--
+@isnad1 id=isreduce.2h3v.s10.1ca34830e768 from=translated src=- shape=44f771b8 vocab=d531a0eb
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime] (k : Type*) [Field k] (hq : (q : k) = 0)
     (f : MvPowerSeries (Fin 2) k)

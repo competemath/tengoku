@@ -12,6 +12,9 @@ universe u v w
 
 open TensorProduct
 
+/--
+@isnad1 id=invertib.3h3v.s8.05e3ba5a677f from=translated src=- shape=538a7a9a vocab=9b620823
+-/
 theorem solution
     {R : Type u} {S : Type v} [CommRing R] [CommRing S] [Algebra R S]
     (hπ : Function.Surjective (algebraMap R S)) (hker : IsNilpotent (RingHom.ker (algebraMap R S)))

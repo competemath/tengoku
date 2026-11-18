@@ -15,19 +15,37 @@ variable {k : Type*} [CommRing k]
 
 def VB (n : ℕ) (x : PowerSeries k) : Prop := ∀ m : ℕ, m < n → PowerSeries.coeff m x = 0
 
+/--
+@isnad1 id=vb.0h2v.s4.edb93a9bde8e from=translated src=- shape=1fc3748b vocab=c30ed916
+-/
 theorem VB.zero_le {x : PowerSeries k} : VB 0 x := fun m hm => (Nat.not_lt_zero m hm).elim
 
+/--
+@isnad1 id=vb.2h4v.s4.7053f9cbaa68 from=translated src=- shape=df9f5693 vocab=b4e55267
+-/
 theorem VB.mono {n n' : ℕ} {x : PowerSeries k} (h : VB n x) (hle : n' ≤ n) : VB n' x :=
   fun m hm => h m (lt_of_lt_of_le hm hle)
 
+/--
+@isnad1 id=vb.2h4v.s5.a195e9113859 from=translated src=- shape=83515136 vocab=ded99c6b
+-/
 theorem VB.add {n : ℕ} {x y : PowerSeries k} (hx : VB n x) (hy : VB n y) : VB n (x + y) := by
   intro m hm; rw [map_add, hx m hm, hy m hm, add_zero]
 
+/--
+@isnad1 id=vb.0h2v.s4.24349e4845bd from=translated src=- shape=f5c52bc8 vocab=827f738d
+-/
 theorem VB.of_zero (n : ℕ) : VB n (0 : PowerSeries k) := fun m _ => by simp
 
+/--
+@isnad1 id=vb.1h4v.s6.3f614637eef5 from=translated src=- shape=53bb9ddf vocab=653a72e6
+-/
 theorem VB.C_mul {n : ℕ} {x : PowerSeries k} (hx : VB n x) (c : k) : VB n (PowerSeries.C c * x) := by
   intro m hm; rw [PowerSeries.coeff_C_mul, hx m hm, mul_zero]
 
+/--
+@isnad1 id=vb.2h5v.s5.2b0899291c5f from=translated src=- shape=8c1b3dc0 vocab=aed18f04
+-/
 theorem VB.mul {n n' : ℕ} {x y : PowerSeries k} (hx : VB n x) (hy : VB n' y) : VB (n + n') (x * y) := by
   intro m hm
   rw [PowerSeries.coeff_mul]
@@ -38,16 +56,25 @@ theorem VB.mul {n n' : ℕ} {x y : PowerSeries k} (hx : VB n x) (hy : VB n' y) :
   · have h2 : p.2 < n' := by omega
     rw [hy p.2 h2, mul_zero]
 
+/--
+@isnad1 id=vb.1h4v.s5.e3b7ebbe9c12 from=translated src=- shape=3887589f vocab=d38883d2
+-/
 theorem VB.pow {n : ℕ} {x : PowerSeries k} (hx : VB n x) : ∀ j : ℕ, VB (n * j) (x ^ j)
   | 0 => by simpa using (VB.zero_le (x := (1 : PowerSeries k)))
   | j + 1 => by
     rw [pow_succ, Nat.mul_succ]
     exact VB.mul (VB.pow hx j) hx
 
+/--
+@isnad1 id=vb.0h2v.s5.84f61c8cffc6 from=translated src=- shape=7fac70b6 vocab=15a1ece3
+-/
 theorem VB.of_X_pow (j : ℕ) : VB j ((PowerSeries.X : PowerSeries k) ^ j) := by
   intro m hm
   rw [PowerSeries.coeff_X_pow, ite_eq_right (by omega)]
 
+/--
+@isnad1 id=vb.1h2v.s6.ceb39874af8a from=translated src=- shape=66221c03 vocab=bdbb295a
+-/
 theorem VB.of_constantCoeff {x : PowerSeries k} (h : PowerSeries.constantCoeff x = 0) : VB 1 x := by
   intro m hm
   have : m = 0 := by omega
@@ -57,6 +84,9 @@ theorem VB.of_constantCoeff {x : PowerSeries k} (h : PowerSeries.constantCoeff x
 theorem VB.eq_zero {x : PowerSeries k} (h : ∀ n, VB n x) : x = 0 := by
   ext m; exact (h (m + 1)) m (Nat.lt_succ_self m)
 
+/--
+@isnad1 id=vb.4h5v.s7.fed42b6635a7 from=translated src=- shape=7de7e7e0 vocab=b8c032b8
+-/
 theorem VB.pow_sub_pow {n : ℕ} {φ φ' : PowerSeries k} (hφ : VB 1 φ) (hφ' : VB 1 φ') (h : VB n (φ - φ')) :
     ∀ j : ℕ, 1 ≤ j → VB (n + j - 1) (φ ^ j - φ' ^ j)
   | 0 => fun h0 => absurd h0 (by omega)
@@ -73,6 +103,9 @@ theorem VB.pow_sub_pow {n : ℕ} {φ φ' : PowerSeries k} (hφ : VB 1 φ) (hφ' 
 
 noncomputable abbrev Sb (φ : PowerSeries k) : Fin 2 → PowerSeries k := ![(PowerSeries.X : PowerSeries k), φ]
 
+/--
+@isnad1 id=hassubst.1h2v.s6.bfd1d2ae5d49 from=translated src=- shape=1e0f51b9 vocab=0bb89182
+-/
 theorem hasSubst_Sb {φ : PowerSeries k} (hφ : PowerSeries.constantCoeff φ = 0) : HasSubst (Sb φ) := by
   apply hasSubst_of_constantCoeff_zero
   intro s
@@ -84,11 +117,17 @@ theorem hasSubst_Sb {φ : PowerSeries k} (hφ : PowerSeries.constantCoeff φ = 0
 
 noncomputable abbrev Φ (f : MvPowerSeries (Fin 2) k) (φ : PowerSeries k) : PowerSeries k := subst (Sb φ) f
 
+/--
+@isnad1 id=eq.0h3v.s8.f37c8b782ca6 from=translated src=- shape=71b67411 vocab=f5965ccb
+-/
 theorem prod_Sb (φ : PowerSeries k) (d : Fin 2 →₀ ℕ) :
     (d.prod fun s e => (Sb φ s) ^ e) = (PowerSeries.X : PowerSeries k) ^ (d 0) * φ ^ (d 1) := by
   rw [Finsupp.prod_fintype _ _ (fun i => by simp), Fin.prod_univ_two]
   rfl
 
+/--
+@isnad1 id=vb.4h6v.s8.426bd78b731d from=translated src=- shape=3f401804 vocab=a0824d32
+-/
 theorem VB.subst_sub_subst {N n : ℕ} {f : MvPowerSeries (Fin 2) k} (hf : (N : ℕ∞) ≤ f.order)
     {φ φ' : PowerSeries k} (hφ : PowerSeries.constantCoeff φ = 0) (hφ' : PowerSeries.constantCoeff φ' = 0)
     (h : VB n (φ - φ')) : VB (n + N - 1) (Φ f φ - Φ f φ') := by
@@ -127,6 +166,9 @@ theorem VB.subst_sub_subst {N n : ℕ} {f : MvPowerSeries (Fin 2) k} (hf : (N : 
   rw [show PowerSeries.coeff m = MvPowerSeries.coeff (Finsupp.single () m) from rfl, map_sub] at this
   rw [this, smul_zero]
 
+/--
+@isnad1 id=le.1h3v.s8.4ef25f711b66 from=translated src=- shape=3903e918 vocab=ea3f7327
+-/
 theorem le_order_of_mem_pow {R : Type*} [CommRing R] (m : ℕ) (g : MvPowerSeries (Fin 2) R)
     (hg : g ∈ Ideal.span {(X 0 : MvPowerSeries (Fin 2) R), X 1} ^ m) : (m : ℕ∞) ≤ g.order := by
   induction m generalizing g with
@@ -144,6 +186,9 @@ theorem le_order_of_mem_pow {R : Type*} [CommRing R] (m : ℕ) (g : MvPowerSerie
         _ ≤ (a * b).order := le_order_mul
     · exact le_trans (le_min ha hb) min_order_le_add
 
+/--
+@isnad1 id=vb.2h4v.s6.dc7fccc100b7 from=translated src=- shape=3b2c525b vocab=56ef8a22
+-/
 theorem VB.subst_of_le_order {N : ℕ} {f : MvPowerSeries (Fin 2) k} (hf : (N : ℕ∞) ≤ f.order)
     {ψ : PowerSeries k} (hψ : PowerSeries.constantCoeff ψ = 0) : VB N (Φ f ψ) := by
   have hX : (1 : ℕ∞) ≤ MvPowerSeries.order (PowerSeries.X : PowerSeries k) := by
@@ -167,6 +212,9 @@ theorem VB.subst_of_le_order {N : ℕ} {f : MvPowerSeries (Fin 2) k} (hf : (N : 
   rw [Finsupp.degree_single]
   exact_mod_cast hm
 
+/--
+@isnad1 id=eq.1h3v.s9.5685c1af3213 from=translated src=- shape=671ea228 vocab=04fa47de
+-/
 theorem subst_form {φ : PowerSeries k} (hφ : PowerSeries.constantCoeff φ = 0) (q : ℕ) :
     Φ (X 0 * X 1 ^ q - X 0 ^ q * X 1) φ = PowerSeries.X * φ ^ q - PowerSeries.X ^ q * φ := by
   have ha := hasSubst_Sb hφ
@@ -178,6 +226,9 @@ section CharQ
 
 variable (q : ℕ) [Fact q.Prime] [CharP k q]
 
+/--
+@isnad1 id=vb.3h6v.s10.9b8bcf14b107 from=translated src=- shape=b15088f8 vocab=35f1faee
+-/
 theorem VB.perturb {f : MvPowerSeries (Fin 2) k}
     (hf : f - (X 0 * X 1 ^ q - X 0 ^ q * X 1) ∈ (Ideal.span {(X 0 : MvPowerSeries (Fin 2) k), X 1}) ^ (q + 2))
     {φ : PowerSeries k} (hφ : PowerSeries.constantCoeff φ = 0) (n : ℕ) (hn : 2 ≤ n) (δ : k) :
@@ -225,6 +276,9 @@ end NewtonBranch
 
 open NewtonBranch in
 
+/--
+@isnad1 id=ex.3h4v.s10.41557d8bf320 from=translated src=- shape=5f701269 vocab=c7a90ca6
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime] (k : Type*) [Field k] (hq : (q : k) = 0)
     (f : MvPowerSeries (Fin 2) k)

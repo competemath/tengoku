@@ -18,9 +18,15 @@ open MonoidAlgebra
 
 variable {𝒪 : Type u} [CommRing 𝒪] {G : Type v} [Group G]
 
+/--
+@isnad1 id=eq.0h3v.s8.3b3881cc4e09 from=translated src=- shape=b0692990 vocab=802f52fc
+-/
 theorem counit_of (g : G) : Coalgebra.counit (R := 𝒪) (MonoidAlgebra.of 𝒪 G g) = 1 := by
   rw [MonoidAlgebra.of_apply, MonoidAlgebra.counit_single, CommSemiring.counit_apply]
 
+/--
+@isnad1 id=mem.1h4v.s9.ff60b754395d from=translated src=- shape=8b1b5cb1 vocab=a58f6ea6
+-/
 theorem of_sub_one_mem_span (S : Set G) (hS : Subgroup.closure S = ⊤) (g : G) :
     MonoidAlgebra.of 𝒪 G g - 1 ∈ Ideal.span ((fun g => MonoidAlgebra.of 𝒪 G g - 1) '' S) := by
   set J := Ideal.span ((fun g => MonoidAlgebra.of 𝒪 G g - 1) '' S)
@@ -43,6 +49,9 @@ theorem of_sub_one_mem_span (S : Set G) (hS : Subgroup.closure S = ⊤) (g : G) 
 end M4cP4R2A
 
 open M4cP4R2A in
+/--
+@isnad1 id=eq.1h3v.s9.a28aa117cc73 from=translated src=- shape=1bf6084e vocab=dfcf0a74
+-/
 theorem solution
     {𝒪 : Type u} [CommRing 𝒪] {G : Type v} [Group G] (S : Set G) (hS : Subgroup.closure S = ⊤) :
     RingHom.ker (Bialgebra.counitAlgHom 𝒪 (MonoidAlgebra 𝒪 G)) =

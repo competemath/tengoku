@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open MvPolynomial TensorProduct KaehlerDifferential
 
+/--
+@isnad1 id=ex.0h5v.s11.42b768fc2151 from=translated src=- shape=209cb815 vocab=86e21e73
+-/
 theorem MvPolynomial.exists_tensor_kaehlerDifferential_linearEquiv_pi_of_isLocalization
     (R : Type) [CommRing R] {n : ℕ} (M : Submonoid (MvPolynomial (Fin n) R))
     (P : Type) [CommRing P] [Algebra (MvPolynomial (Fin n) R) P] [IsLocalization M P]

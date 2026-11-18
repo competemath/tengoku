@@ -22,12 +22,18 @@ variable (A B : Type) [CommRing A] [CommRing B] [Algebra R A] [Algebra R B] [Alg
 noncomputable def l : A ⊗[R] M →ₗ[A] B ⊗[R] M :=
   AlgebraTensorModule.rTensor R M (Algebra.linearMap A B)
 
+/--
+@isnad1 id=eq.0h6v.s9.858b18520186 from=translated src=- shape=da9224ce vocab=592ef861
+-/
 @[scoped simp] lemma l_tmul (a : A) (m : M) : l R M A B (a ⊗ₜ[R] m) = algebraMap A B a ⊗ₜ[R] m := by
   simp [l]
 
 scoped instance (S : Submonoid A) [IsLocalization S B] : IsLocalizedModule S (l R M A B) := by
   unfold l; infer_instance
 
+/--
+@isnad1 id=eq.0h6v.s12.0dfe2ce305f8 from=translated src=- shape=adefafbd vocab=8e1ac468
+-/
 lemma baseChangeMkQ_l (N : Submodule A (A ⊗[R] M)) (m : A ⊗[R] M) :
     Module.Grassmannian.baseChangeMkQ B N (l R M A B m) = (1 : B) ⊗ₜ[A] N.mkQ m := by
   induction m using TensorProduct.induction_on with
@@ -40,6 +46,9 @@ lemma baseChangeMkQ_l (N : Submodule A (A ⊗[R] M)) (m : A ⊗[R] M) :
 
 variable {A B} in
 
+/--
+@isnad1 id=eq.1h7v.s11.c4e184b9929b from=translated src=- shape=d4c4aab6 vocab=9884f119
+-/
 lemma map_toSubmodule' {k : ℕ} (f : A →ₐ[R] B) (hf : ∀ a, algebraMap A B a = f a)
     (N : Module.Grassmannian A (A ⊗[R] M) k) :
     (Module.Grassmannian.map f N).toSubmodule =
@@ -49,6 +58,9 @@ lemma map_toSubmodule' {k : ℕ} (f : A →ₐ[R] B) (hf : ∀ a, algebraMap A B
   subst h
   exact Module.Grassmannian.map_toSubmodule f N
 
+/--
+@isnad1 id=eq.0h6v.s11.dea6cbb776ee from=translated src=- shape=ace63ae0 vocab=4bf20dfb
+-/
 lemma ker_baseChangeMkQ_eq_localized' (S : Submonoid A) [IsLocalization S B]
     (N : Submodule A (A ⊗[R] M)) :
     LinearMap.ker (Module.Grassmannian.baseChangeMkQ B N) = N.localized' B S (l R M A B) := by
@@ -72,6 +84,9 @@ variable (A B C : Type) [CommRing A] [CommRing B] [CommRing C] [Algebra R A] [Al
   [Algebra R C] [Algebra A B] [Algebra B C] [Algebra A C] [IsScalarTower A B C]
   [IsScalarTower R A B] [IsScalarTower R B C] [IsScalarTower R A C]
 
+/--
+@isnad1 id=eq.0h6v.s11.865f3bcded1d from=translated src=- shape=880136ab vocab=8d499997
+-/
 lemma l_l (m : A ⊗[R] M) : l R M B C (l R M A B m) = l R M A C m := by
   induction m using TensorProduct.induction_on with
   | zero => simp
@@ -96,6 +111,9 @@ def Cocycle : Prop :=
 
 variable {A f B N}
 
+/--
+@isnad1 id=ex.2h11v.s12.2fd42eaaa93a from=translated src=- shape=403af1d5 vocab=91d4a70c
+-/
 lemma exists_pow_smul_mem (hN : Cocycle R M A f B N) (i j : Fin n) (m : A ⊗[R] M)
     (hm : l R M A (B i) m ∈ (N i).toSubmodule) :
     ∃ a : ℕ, l R M A (B j) (f i ^ a • m) ∈ (N j).toSubmodule := by
@@ -135,10 +153,16 @@ variable (A B N) in
 noncomputable def glued : Submodule A (A ⊗[R] M) :=
   ⨅ i, ((N i).toSubmodule.restrictScalars A).comap (l R M A (B i))
 
+/--
+@isnad1 id=iff.0h8v.s11.31dbc2abf19c from=translated src=- shape=23586020 vocab=37685a5a
+-/
 lemma mem_glued {m : A ⊗[R] M} :
     m ∈ glued R M A B N ↔ ∀ i, l R M A (B i) m ∈ (N i).toSubmodule := by
   simp [glued, Submodule.mem_iInf]
 
+/--
+@isnad1 id=eq.1h9v.s10.e526bba58fad from=translated src=- shape=14c7cd77 vocab=bddf2f05
+-/
 lemma localized'_glued (hN : Cocycle R M A f B N) (i : Fin n) :
     (glued R M A B N).localized' (B i) (Submonoid.powers (f i)) (l R M A (B i)) =
       (N i).toSubmodule := by
@@ -186,19 +210,34 @@ noncomputable def idx (r : Set.range f) : Fin n := r.2.choose
 
 omit [CommRing A] in
 omit [CommRing A] in
+/--
+@isnad1 id=eq.0h4v.s5.885161859e6e from=translated src=- shape=661829a6 vocab=8ed691c3
+-/
 lemma f_idx (r : Set.range f) : f (idx f r) = r.1 := r.2.choose_spec
 
+/--
+@isnad1 id=away.0h5v.s7.38ddbc417190 from=translated src=- shape=e7d1b30b vocab=a7496fd3
+-/
 lemma away_idx (r : Set.range f) : IsLocalization.Away r.1 (B (idx f r)) := by
   rw [← f_idx r]; infer_instance
 
+/--
+@isnad1 id=islocali.1h9v.s11.8646d851169f from=translated src=- shape=447386bb vocab=82e39f87
+-/
 lemma isLocalizedModule_idx (hN : Cocycle R M A f B N) (r : Set.range f) :
     IsLocalizedModule (Submonoid.powers r.1) (gq R M hN (idx f r)) := by
   rw [← f_idx r]; infer_instance
 
+/--
+@isnad1 id=islocali.0h7v.s9.49e1d3871c0f from=translated src=- shape=0935b589 vocab=7c011bbd
+-/
 lemma isLocalizedModule_l_idx (r : Set.range f) :
     IsLocalizedModule (Submonoid.powers r.1) (l R M A (B (idx f r))) := by
   rw [← f_idx r]; infer_instance
 
+/--
+@isnad1 id=finite.2h8v.s9.f23df208b645 from=translated src=- shape=0fa12cf7 vocab=e5243af4
+-/
 lemma finite_Q0 (hf : Ideal.span (Set.range f) = ⊤) (hN : Cocycle R M A f B N) :
     Module.Finite A (Q0 R M A B N) := by
   haveI := fun r => away_idx (f := f) (B := B) r
@@ -207,6 +246,9 @@ lemma finite_Q0 (hf : Ideal.span (Set.range f) = ⊤) (hN : Cocycle R M A f B N)
     (Rₚ := fun r => B (idx f r)) (Mₚ := fun r => (B (idx f r) ⊗[R] M) ⧸ (N (idx f r)).toSubmodule)
     (fun r => gq R M hN (idx f r)) fun r => inferInstance
 
+/--
+@isnad1 id=finitepr.2h8v.s9.d49b3a600ad6 from=translated src=- shape=0fa12cf7 vocab=eb938688
+-/
 lemma finitePresentation_Q0 (hf : Ideal.span (Set.range f) = ⊤) (hN : Cocycle R M A f B N) :
     Module.FinitePresentation A (Q0 R M A B N) := by
   haveI := fun r => away_idx (f := f) (B := B) r
@@ -215,6 +257,9 @@ lemma finitePresentation_Q0 (hf : Ideal.span (Set.range f) = ⊤) (hN : Cocycle 
     (Rₚ := fun r => B (idx f r)) (Mₚ := fun r => (B (idx f r) ⊗[R] M) ⧸ (N (idx f r)).toSubmodule)
     (fun r => gq R M hN (idx f r)) fun r => Module.finitePresentation_of_projective _ _
 
+/--
+@isnad1 id=ex.1h4v.s6.54509727d10a from=translated src=- shape=29a2d795 vocab=c6e8234f
+-/
 lemma exists_not_mem (hf : Ideal.span (Set.range f) = ⊤) (p : PrimeSpectrum A) :
     ∃ i, f i ∉ p.asIdeal := by
   by_contra! h
@@ -224,6 +269,9 @@ lemma exists_not_mem (hf : Ideal.span (Set.range f) = ⊤) (p : PrimeSpectrum A)
   exact h i
 
 attribute [local instance] RingHomInvPair.of_ringEquiv RingHomInvPair.of_ringEquiv_symm in
+/--
+@isnad1 id=projecti.1h9v.s10.62333aec283a from=translated src=- shape=3a010acd vocab=16bf584b
+-/
 lemma projective_localizedModule (hN : Cocycle R M A f B N) (i : Fin n) :
     Module.Projective (Localization.Away (f i)) (LocalizedModule.Away (f i) (Q0 R M A B N)) := by
   set e := (IsLocalization.algEquiv (Submonoid.powers (f i)) (B i)
@@ -240,6 +288,9 @@ lemma projective_localizedModule (hN : Cocycle R M A f B N) (i : Fin n) :
   simp only [← map_smul, ← smul_assoc, IsLocalization.smul_mk'_self, algebraMap_smul,
     IsLocalization.map_id_mk', AlgEquiv.commutes]
 
+/--
+@isnad1 id=projecti.2h8v.s9.1e0ac6e9c9b2 from=translated src=- shape=0fa12cf7 vocab=63b7ff1e
+-/
 lemma projective_Q0 (hf : Ideal.span (Set.range f) = ⊤) (hN : Cocycle R M A f B N) :
     Module.Projective A (Q0 R M A B N) := by
   haveI := finitePresentation_Q0 R M hf hN
@@ -254,6 +305,9 @@ noncomputable def baseChangeEquiv (hN : Cocycle R M A f B N) (i : Fin n) :
       (TensorProduct.mk A (B i) (Q0 R M A B N) 1) (gq R M hN i)).extendScalarsOfIsLocalization
     (Submonoid.powers (f i)) (B i)
 
+/--
+@isnad1 id=eq.2h9v.s9.5f83c9c09acb from=translated src=- shape=9c86f6b0 vocab=4539f907
+-/
 lemma rankAtStalk_Q0 (hf : Ideal.span (Set.range f) = ⊤) (hN : Cocycle R M A f B N)
     (p : PrimeSpectrum A) : Module.rankAtStalk (Q0 R M A B N) p = k := by
   haveI := projective_Q0 R M hf hN
@@ -278,6 +332,9 @@ end GrassSheafS1b
 open scoped _root_.P2MW.S_Module_Grassmannian_existsUnique_forall_map_toAlgHom_eq_of_isLocalization_away.GrassSheafS1b
 
 open GrassSheafS1b in
+/--
+@isnad1 id=existsun.2h8v.s10.03e3e235f814 from=translated src=- shape=265d16fb vocab=7fc90fe2
+-/
 theorem solution
     (R : Type) [CommRing R] (M : Type) [AddCommGroup M] [Module R M] (k : ℕ)
     (A : Type) [CommRing A] [Algebra R A] (n : ℕ) (f : Fin n → A) (hf : Ideal.span (Set.range f) = ⊤)

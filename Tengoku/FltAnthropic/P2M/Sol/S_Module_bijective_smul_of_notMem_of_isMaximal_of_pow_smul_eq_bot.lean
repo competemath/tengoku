@@ -6,6 +6,9 @@ import Tengoku
 namespace P2MW.S_Module_bijective_smul_of_notMem_of_isMaximal_of_pow_smul_eq_bot
 set_option autoImplicit false
 
+/--
+@isnad1 id=bijectiv.3h5v.s8.43af0925fb10 from=translated src=- shape=40b7c539 vocab=a28a9423
+-/
 theorem solution
     {T : Type*} [CommRing T] {M : Type*} [AddCommGroup M] [Module T M]
     (𝔓 : Ideal T) (h𝔓 : 𝔓.IsMaximal) (k : ℕ) (hk : ∀ (a : T), a ∈ 𝔓 ^ k → ∀ x : M, a • x = 0)

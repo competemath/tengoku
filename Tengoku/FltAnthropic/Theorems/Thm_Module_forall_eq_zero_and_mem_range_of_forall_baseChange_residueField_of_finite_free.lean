@@ -11,6 +11,9 @@ universe u
 
 open TensorProduct
 
+/--
+@isnad1 id=and.4h4v.s13.6e0f7539db8a from=translated src=- shape=bd94b954 vocab=f9cc7f2d
+-/
 theorem Module.forall_eq_zero_and_mem_range_of_forall_baseChange_residueField_of_finite_free
     (R : Type u) [CommRing R] [IsLocalRing R] (n : ℕ)
     (K : ℕ → Type u) [∀ i, AddCommGroup (K i)] [∀ i, Module R (K i)]

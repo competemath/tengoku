@@ -9,6 +9,9 @@ universe u v
 
 open TensorProduct
 
+/--
+@isnad1 id=and.2h7v.s12.6e6868be0324 from=translated src=- shape=ddbe3910 vocab=4bac1f5d
+-/
 theorem Module.ker_baseChange_field_of_subsingleton_H1_of_projective
     (R : Type u) [CommRing R]
     {C0 C1 C2 : Type v} [AddCommGroup C0] [Module R C0] [AddCommGroup C1] [Module R C1]

@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Module_Invertible_of_projective_of_forall_
 
 universe u v
 
+/--
+@isnad1 id=invertib.1h2v.s7.611d52594f94 from=translated src=- shape=e4b4eeb8 vocab=90ae3be9
+-/
 theorem Module.Invertible.of_projective_of_forall_finrank_eq_one
     {A : Type u} [CommRing A] (P : Type v) [AddCommGroup P] [Module A P]
     [Module.Finite A P] [Module.Projective A P]

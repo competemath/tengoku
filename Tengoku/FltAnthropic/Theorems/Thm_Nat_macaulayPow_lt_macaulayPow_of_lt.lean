@@ -8,5 +8,8 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Nat_macaulayPow_lt_macaulayPow_of_lt
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=lt.2h3v.s4.fd7c94b92438 from=translated src=- shape=aad03d02 vocab=958acc08
+-/
 theorem Nat.macaulayPow_lt_macaulayPow_of_lt {d : ℕ} (hd : 1 ≤ d) {a b : ℕ} (h : a < b) :
     Nat.macaulayPow d a < Nat.macaulayPow d b := by exact @_root_.P2MW.S_Nat_macaulayPow_lt_macaulayPow_of_lt.solution d hd a b h

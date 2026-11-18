@@ -12,6 +12,9 @@ universe u
 
 open TensorProduct
 
+/--
+@isnad1 id=ex.4h4v.s17.20863d5fc0c3 from=translated src=- shape=fcb70d4b vocab=2d9bda0c
+-/
 theorem Module.exists_mumfordTruncation_of_flat_complex
     (R : Type u) [CommRing R] [IsNoetherianRing R]
     (C : ℕ → Type u) [∀ i, AddCommGroup (C i)] [∀ i, Module R (C i)] [∀ i, Module.Flat R (C i)]

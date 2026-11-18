@@ -14,6 +14,9 @@ open TensorProduct
 
 namespace FibreAcyclic
 
+/--
+@isnad1 id=and.3h5v.s12.d3cb3785e27a from=translated src=- shape=6a5b9b05 vocab=10fb3e6a
+-/
 theorem transfer {X Y : ℕ → Type u} [∀ i, AddCommGroup (X i)] [∀ i, AddCommGroup (Y i)]
     (dX : ∀ i, X i →+ X (i + 1)) (dY : ∀ i, Y i →+ Y (i + 1)) (e : ∀ i, X i ≃+ Y i)
     (comm : ∀ i (x : X i), e (i + 1) (dX i x) = dY i (e i x))
@@ -32,6 +35,9 @@ theorem transfer {X Y : ℕ → Type u} [∀ i, AddCommGroup (X i)] [∀ i, AddC
 
 variable {S : Type u} [CommRing S]
 
+/--
+@isnad1 id=subsingl.0h3v.s6.8a6f79db8727 from=translated src=- shape=25d44006 vocab=e3735ba3
+-/
 theorem subsingleton_tensor (A : Type u) [CommRing A] [Algebra S A] (M : Type u) [AddCommGroup M] [Module S M]
     [Subsingleton M] : Subsingleton (A ⊗[S] M) := by
   refine ⟨fun x y => ?_⟩
@@ -45,6 +51,9 @@ theorem subsingleton_tensor (A : Type u) [CommRing A] [Algebra S A] (M : Type u)
 end FibreAcyclic
 
 open FibreAcyclic in
+/--
+@isnad1 id=and.6h6v.s14.4f406e4013a7 from=translated src=- shape=1ebb7075 vocab=a7128b4d
+-/
 theorem solution
     (S : Type u) [CommRing S] (𝔪 : Ideal S) [𝔪.IsMaximal] (n : ℕ)
     (K : ℕ → Type u) [∀ i, AddCommGroup (K i)] [∀ i, Module S (K i)]

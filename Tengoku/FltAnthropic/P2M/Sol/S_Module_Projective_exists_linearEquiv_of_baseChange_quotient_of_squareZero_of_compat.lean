@@ -56,6 +56,9 @@ private lemma Module.Projective.surjective_of_one_tmul_aux
   exact Submodule.sub_mem _ (Submodule.mem_sup_left (LinearMap.mem_range_self f n))
     (Submodule.mem_sup_right hmem)
 
+/--
+@isnad1 id=ex.1h5v.s11.c13980b34120 from=translated src=- shape=953fe11a vocab=2d4f53fb
+-/
 theorem solution
     {R : Type u} [CommRing R] (I : Ideal R) (hI : I ^ 2 = ⊥)
     (P₁ P₂ : Type u) [AddCommGroup P₁] [AddCommGroup P₂] [Module R P₁] [Module R P₂]

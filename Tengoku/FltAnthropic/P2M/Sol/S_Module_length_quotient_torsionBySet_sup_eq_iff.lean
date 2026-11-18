@@ -25,6 +25,9 @@ section PID
 
 variable {𝒪 : Type u} [CommRing 𝒪] [IsDomain 𝒪] [IsPrincipalIdealRing 𝒪]
 
+/--
+@isnad1 id=eq.0h3v.s10.4f962637781c from=translated src=- shape=85bd442a vocab=7f15b9aa
+-/
 theorem length_quotient_smul_top (F : Type*) [AddCommGroup F] [Module 𝒪 F] [Module.Free 𝒪 F]
     [Module.Finite 𝒪 F] (e₀ : 𝒪) :
     Module.length 𝒪 (F ⧸ (e₀ • (⊤ : Submodule 𝒪 F))) =
@@ -60,6 +63,9 @@ theorem length_quotient_smul_top (F : Type*) [AddCommGroup F] [Module 𝒪 F] [M
     _ = (n : ℕ∞) * Module.length 𝒪 (𝒪 ⧸ Ideal.span ({e₀} : Set 𝒪)) := by
         simp [Finset.sum_const, Finset.card_univ, Fintype.card_fin, nsmul_eq_mul]
 
+/--
+@isnad1 id=ne.1h2v.s7.4ab0890d5a2e from=translated src=- shape=9a0255af vocab=f3020039
+-/
 theorem length_quotient_span_singleton_ne_top {e₀ : 𝒪} (he₀ : e₀ ≠ 0) :
     Module.length 𝒪 (𝒪 ⧸ Ideal.span ({e₀} : Set 𝒪)) ≠ ⊤ := by
   set J : Ideal 𝒪 := Ideal.span ({e₀} : Set 𝒪)
@@ -93,17 +99,29 @@ section Ring
 
 variable {𝒪 : Type u} {T : Type w} [CommRing 𝒪] [CommRing T] [Algebra 𝒪 T] (πT : T →ₐ[𝒪] 𝒪)
 
+/--
+@isnad1 id=surjecti.0h3v.s6.eedf9cd30270 from=translated src=- shape=f2edbfd8 vocab=aa66f34d
+-/
 theorem πT_surjective : Function.Surjective πT :=
   fun c => ⟨algebraMap 𝒪 T c, πT.commutes c⟩
 
+/--
+@isnad1 id=mem.0h4v.s8.acd45f76980d from=translated src=- shape=ee24298f vocab=610d7cd3
+-/
 theorem sub_algebraMap_mem_ker (t : T) : t - algebraMap 𝒪 T (πT t) ∈ RingHom.ker πT := by
   simp [RingHom.mem_ker]
 
+/--
+@isnad1 id=eq.2h5v.s8.727fb5250333 from=translated src=- shape=28f60e79 vocab=66c849d7
+-/
 theorem mul_eq_zero_of_mem_annihilator {i a : T} (hi : i ∈ (RingHom.ker πT).annihilator)
     (ha : a ∈ RingHom.ker πT) : i * a = 0 := by
   rw [Submodule.mem_annihilator] at hi
   simpa [smul_eq_mul] using hi a ha
 
+/--
+@isnad1 id=ex.5h6v.s9.d81f671697f8 from=translated src=- shape=4f91c758 vocab=bdd1a93e
+-/
 theorem exists_eq_smul_of_mem_annihilator [IsDomain 𝒪] [Module.Free 𝒪 T] {e₀ : 𝒪} (he₀ : e₀ ≠ 0)
     (hη : (RingHom.ker πT).annihilator.map πT = Ideal.span ({e₀} : Set 𝒪))
     {x₀ : T} (hx₀ : x₀ ∈ (RingHom.ker πT).annihilator) (hπx₀ : πT x₀ = e₀)
@@ -138,6 +156,9 @@ variable {𝒪 : Type u} {T : Type w} [CommRing 𝒪] [IsDomain 𝒪] [IsPrincip
   (M : Type x) [AddCommGroup M] [Module T M] [Module 𝒪 M] [IsScalarTower 𝒪 T M]
   [Module.Finite 𝒪 M] [Module.Free 𝒪 M]
 
+/--
+@isnad1 id=ex.2h5v.s11.1eca642c3d6d from=translated src=- shape=1e1e64ba vocab=858d174c
+-/
 theorem core {e₀ : 𝒪} (he₀ : e₀ ≠ 0)
     (hη : (RingHom.ker πT).annihilator.map πT = Ideal.span ({e₀} : Set 𝒪)) :
     ∃ c : ℕ∞,
@@ -291,6 +312,9 @@ variable {𝒪 : Type u} {T : Type w} [CommRing 𝒪] [IsDomain 𝒪] [IsPrincip
   (M : Type x) [AddCommGroup M] [Module T M] [Module 𝒪 M] [IsScalarTower 𝒪 T M]
   [Module.Finite 𝒪 M] [Module.Free 𝒪 M]
 
+/--
+@isnad1 id=ex.1h4v.s11.bffb24838099 from=translated src=- shape=386ea95c vocab=eaa1ec6d
+-/
 theorem main (hη : (RingHom.ker πT).annihilator.map πT ≠ ⊥) :
     ∃ c : ℕ∞,
       Module.length 𝒪 (M ⧸ (Submodule.torsionBySet T M ↑(RingHom.ker πT) ⊔
@@ -316,6 +340,9 @@ end Assembly
 
 end M4cP4NCMOD
 
+/--
+@isnad1 id=iff.1h4v.s11.39907009fb03 from=translated src=- shape=0df5eefa vocab=633f6ff9
+-/
 theorem solution
     {𝒪 : Type u} {T : Type w} [CommRing 𝒪] [IsDomain 𝒪] [IsPrincipalIdealRing 𝒪]
     [CommRing T] [Algebra 𝒪 T] [Module.Free 𝒪 T]

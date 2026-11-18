@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 namespace EsymmCongAux
 
+/--
+@isnad1 id=mem.1h5v.s7.90185f31807b from=translated src=- shape=4c906099 vocab=0a0a35f4
+-/
 theorem prod_mem_pow {A : Type} [CommRing A] (I : Ideal A) {ι : Type} (t : Finset ι) (y : ι → A)
     (hy : ∀ i ∈ t, y i ∈ I) : (∏ i ∈ t, y i) ∈ I ^ t.card := by
   classical
@@ -19,6 +22,9 @@ theorem prod_mem_pow {A : Type} [CommRing A] (I : Ideal A) {ι : Type} (t : Fins
     exact Ideal.mul_mem_mul (hy a (Finset.mem_insert_self a t))
       (ih fun i hi => hy i (Finset.mem_insert_of_mem hi))
 
+/--
+@isnad1 id=mem.2h6v.s8.7bb682b898de from=translated src=- shape=230e3467 vocab=469dcc50
+-/
 theorem prod_sub_prod_mem_pow_succ {A : Type} [CommRing A] (I : Ideal A) {ι : Type} (t : Finset ι) (y z : ι → A)
     (hz : ∀ i ∈ t, z i ∈ I) (hyz : ∀ i ∈ t, y i - z i ∈ I ^ 2) :
     (∏ i ∈ t, y i) - (∏ i ∈ t, z i) ∈ I ^ (t.card + 1) := by
@@ -46,6 +52,9 @@ theorem prod_sub_prod_mem_pow_succ {A : Type} [CommRing A] (I : Ideal A) {ι : T
 end EsymmCongAux
 
 open EsymmCongAux in
+/--
+@isnad1 id=mem.2h7v.s8.8193a5aebe6e from=translated src=- shape=39b952a8 vocab=ee6ace69
+-/
 theorem solution
     (A : Type) [CommRing A] (I : Ideal A) (ι : Type) (s : Finset ι) (y z : ι → A)
     (hz : ∀ i ∈ s, z i ∈ I) (hyz : ∀ i ∈ s, y i - z i ∈ I ^ 2) (k : ℕ) :

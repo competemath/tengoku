@@ -29,12 +29,18 @@ variable {C0 C1 : Type u} [AddCommGroup C0] [Module R C0] [AddCommGroup C1] [Mod
 variable (d : C0 →ₗ[R] C1) [Module.Finite R (C1 ⧸ LinearMap.range d)]
 variable (A : Type u) [CommRing A] [Algebra R A]
 
+/--
+@isnad1 id=injectiv.0h5v.s13.545d4b7f2d5f from=translated src=- shape=fbe75203 vocab=5f9fff4b
+-/
 theorem subtype_baseChange_injective [Module.Flat R C1] :
     Function.Injective ((K0 d).subtype.baseChange A) := by
   rw [LinearMap.baseChange_eq_ltensor]
   exact LinearMap.lTensor_injective_of_exact_of_flat (d.coprod (lift d))
     (surjective_coprod d) _ (K0 d).subtype_injective (LinearMap.exact_subtype_ker_map _) A
 
+/--
+@isnad1 id=iff.0h6v.s14.11d586ef91bf from=translated src=- shape=99464242 vocab=286dcb47
+-/
 theorem mem_range_subtype_baseChange (w : A ⊗[R] (C0 × (Fin (rank d) → R))) :
     ((d.coprod (lift d)).baseChange A) w = 0 ↔ ∃ z, ((K0 d).subtype.baseChange A) z = w := by
   have heqι : ⇑((K0 d).subtype.baseChange A) = ⇑((K0 d).subtype.lTensor A) :=
@@ -45,6 +51,9 @@ theorem mem_range_subtype_baseChange (w : A ⊗[R] (C0 × (Fin (rank d) → R)))
   simp only [heqι]
   exact lTensor_exact A (LinearMap.exact_subtype_ker_map _) (surjective_coprod d) w
 
+/--
+@isnad1 id=eq.0h5v.s11.8bdb99bc4044 from=translated src=- shape=083ed500 vocab=a59133d6
+-/
 theorem prodRight_apply_eq_baseChange {M N : Type u} [AddCommGroup M] [Module R M]
     [AddCommGroup N] [Module R N] (w : A ⊗[R] (M × N)) :
     (TensorProduct.prodRight R A A M N) w
@@ -54,6 +63,9 @@ theorem prodRight_apply_eq_baseChange {M N : Type u} [AddCommGroup M] [Module R 
   | tmul a x => simp [TensorProduct.prodRight_tmul]
   | add x y hx hy => simp only [map_add, hx, hy, Prod.mk_add_mk]
 
+/--
+@isnad1 id=eq.0h6v.s15.75076cd43bad from=translated src=- shape=e2910bba vocab=fbea74f4
+-/
 theorem prodRight_subtype_baseChange (z : A ⊗[R] K0 d) :
     (TensorProduct.prodRight R A A C0 (Fin (rank d) → R)) (((K0 d).subtype.baseChange A) z)
       = (((ι0 d).baseChange A) z, ((dK d).baseChange A) z) := by
@@ -64,6 +76,9 @@ theorem prodRight_subtype_baseChange (z : A ⊗[R] K0 d) :
   · show ((LinearMap.snd R C0 (Fin (rank d) → R)).baseChange A) (((K0 d).subtype.baseChange A) z) = _
     rw [← LinearMap.comp_apply, ← LinearMap.baseChange_comp]; rfl
 
+/--
+@isnad1 id=injectiv.0h5v.s17.7002f77a1109 from=translated src=- shape=cdd7330f vocab=12fea19c
+-/
 theorem kerMapBaseChange_injective [Module.Flat R C1] :
     Function.Injective (kerMapBaseChange (dK d) d (ι0 d) (ι1 d) (comm d) A) := by
   rintro ⟨z, hz⟩ ⟨z', hz'⟩ hzz'
@@ -76,6 +91,9 @@ theorem kerMapBaseChange_injective [Module.Flat R C1] :
   rw [h1, h2]
   exact congrArg (·, (0 : A ⊗[R] (Fin (rank d) → R))) (congrArg Subtype.val hzz')
 
+/--
+@isnad1 id=surjecti.0h5v.s17.3b912ef187da from=translated src=- shape=24a5ceb1 vocab=3948cf8b
+-/
 theorem kerMapBaseChange_surjective :
     Function.Surjective (kerMapBaseChange (dK d) d (ι0 d) (ι1 d) (comm d) A) := by
   rintro ⟨w, hw⟩
@@ -100,6 +118,9 @@ theorem kerMapBaseChange_surjective :
 end TwoChartCech.Mumford
 
 open _root_.TwoChartCech.Mumford _root_.P2MW.S_TwoChartCech_Mumford_bijective_kerMapBaseChange.TwoChartCech.Mumford in
+/--
+@isnad1 id=bijectiv.0h5v.s17.aafa82f7719b from=translated src=- shape=ea4bb07d vocab=3c7b2571
+-/
 theorem solution
     {R : Type u} [CommRing R]
     {C0 C1 : Type u} [AddCommGroup C0] [Module R C0] [AddCommGroup C1] [Module R C1] [Module.Flat R C1]

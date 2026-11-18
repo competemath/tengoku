@@ -33,11 +33,17 @@ def lowSub (i : σ) (N : ℕ) : Submodule R (MvPowerSeries σ R) where
     intro a φ hφ m hm
     rw [map_smul, hφ m hm, smul_zero]
 
+/--
+@isnad1 id=mem.1h6v.s8.1848f5700db3 from=translated src=- shape=e4c626fe vocab=e20b15d3
+-/
 theorem C_mul_mem {i : σ} {N : ℕ} {φ : MvPowerSeries σ R} (a : R) (h : φ ∈ lowSub i N) :
     C a * φ ∈ lowSub i N := by
   rw [← smul_eq_C_mul]
   exact (lowSub i N).smul_mem a h
 
+/--
+@isnad1 id=mem.2h6v.s8.05c7151e3445 from=translated src=- shape=05b5f755 vocab=5e2aebf3
+-/
 theorem X_mul_mem_of_ne {i j : σ} (hij : i ≠ j) {N : ℕ} {φ : MvPowerSeries σ R}
     (h : φ ∈ lowSub j N) : X i * φ ∈ lowSub j N := by
   intro m hm
@@ -54,16 +60,28 @@ def low (i : σ) (N : ℕ) (φ : MvPowerSeries σ R) : MvPowerSeries σ R :=
 def high (i : σ) (N : ℕ) (φ : MvPowerSeries σ R) : MvPowerSeries σ R :=
   fun m => coeff (m + Finsupp.single i N) φ
 
+/--
+@isnad1 id=eq.0h6v.s8.64e9a1bbb7ec from=translated src=- shape=a29fa7f4 vocab=d6f47c5e
+-/
 theorem coeff_low (i : σ) (N : ℕ) (φ : MvPowerSeries σ R) (m : σ →₀ ℕ) :
     coeff m (low i N φ) = if m i < N then coeff m φ else 0 := rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.6da897aa47e1 from=translated src=- shape=11a8c5c7 vocab=88edbd3a
+-/
 theorem coeff_high (i : σ) (N : ℕ) (φ : MvPowerSeries σ R) (m : σ →₀ ℕ) :
     coeff m (high i N φ) = coeff (m + Finsupp.single i N) φ := rfl
 
+/--
+@isnad1 id=mem.0h5v.s7.6c307ba73c96 from=translated src=- shape=f6b1f059 vocab=118e66ba
+-/
 theorem low_mem (i : σ) (N : ℕ) (φ : MvPowerSeries σ R) : low i N φ ∈ lowSub i N := by
   intro m hm
   rw [coeff_low, ite_eq_right (not_lt.mpr hm)]
 
+/--
+@isnad1 id=mem.1h7v.s8.c905bd31cb09 from=translated src=- shape=21730ede vocab=118e66ba
+-/
 theorem low_mem_of_mem (i : σ) (N : ℕ) {j : σ} {N' : ℕ} {φ : MvPowerSeries σ R}
     (h : φ ∈ lowSub j N') : low i N φ ∈ lowSub j N' := by
   intro m hm
@@ -72,6 +90,9 @@ theorem low_mem_of_mem (i : σ) (N : ℕ) {j : σ} {N' : ℕ} {φ : MvPowerSerie
   · exact h m hm
   · rfl
 
+/--
+@isnad1 id=mem.2h7v.s8.6a0c3a28b140 from=translated src=- shape=ae0aca6a vocab=a75a8c10
+-/
 theorem high_mem_of_ne {i j : σ} (hij : i ≠ j) (N : ℕ) {N' : ℕ} {φ : MvPowerSeries σ R}
     (h : φ ∈ lowSub j N') : high i N φ ∈ lowSub j N' := by
   intro m hm
@@ -81,11 +102,17 @@ theorem high_mem_of_ne {i j : σ} (hij : i ≠ j) (N : ℕ) {N' : ℕ} {φ : MvP
   rw [Finsupp.add_apply, Finsupp.single_eq_of_ne hij.symm, add_zero]
   exact hm
 
+/--
+@isnad1 id=eq.0h6v.s7.b3bc96d644e7 from=translated src=- shape=12cf458d vocab=a6d6eb80
+-/
 theorem high_C_mul (i : σ) (N : ℕ) (a : R) (φ : MvPowerSeries σ R) :
     high i N (C a * φ) = C a * high i N φ := by
   refine MvPowerSeries.ext fun m => ?_
   rw [coeff_high, coeff_C_mul, coeff_C_mul, coeff_high]
 
+/--
+@isnad1 id=eq.0h5v.s7.fe7433831f25 from=translated src=- shape=8a75b993 vocab=96c77fc7
+-/
 theorem low_add_X_pow_mul_high (i : σ) (N : ℕ) (φ : MvPowerSeries σ R) :
     low i N φ + X i ^ N * high i N φ = φ := by
   refine MvPowerSeries.ext fun m => ?_
@@ -122,15 +149,24 @@ def highL (i : σ) (N : ℕ) : MvPowerSeries σ R →ₗ[R] MvPowerSeries σ R w
 def stepL (i : σ) (N : ℕ) (c : R) : MvPowerSeries σ R →ₗ[R] MvPowerSeries σ R :=
   -(LinearMap.mulLeft R (C c * X i) ∘ₗ highL i N)
 
+/--
+@isnad1 id=eq.0h6v.s8.aa635b4ea08d from=translated src=- shape=46a66465 vocab=edfd7d2d
+-/
 theorem stepL_apply (i : σ) (N : ℕ) (c : R) (φ : MvPowerSeries σ R) :
     stepL i N c φ = -(C c * X i * high i N φ) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.22b1f6a51855 from=translated src=- shape=535ca580 vocab=fe80f08e
+-/
 theorem high_mul_add_low (i : σ) (N : ℕ) (c : R) (φ : MvPowerSeries σ R) :
     high i N φ * sepPoly i N c + low i N φ = φ - stepL i N c φ := by
   have h := low_add_X_pow_mul_high i N φ
   rw [stepL_apply]
   linear_combination h
 
+/--
+@isnad1 id=ex.0h7v.s8.c0b21b511958 from=translated src=- shape=3dbb9ea8 vocab=cc0f46e0
+-/
 theorem iterate_stepL (i : σ) (N : ℕ) (c : R) :
     ∀ (k : ℕ) (φ : MvPowerSeries σ R), ∃ ψ : MvPowerSeries σ R,
       (⇑(stepL i N c))^[k] φ = C (c ^ k) * ψ := by
@@ -152,18 +188,33 @@ def quoL (i : σ) (N : ℕ) (c : R) : ℕ → (MvPowerSeries σ R →ₗ[R] MvPo
   | 0 => 0
   | k + 1 => highL i N + quoL i N c k ∘ₗ stepL i N c
 
+/--
+@isnad1 id=eq.0h6v.s7.c284efa27644 from=translated src=- shape=e84cd7bf vocab=d13351c2
+-/
 theorem remL_zero_apply (i : σ) (N : ℕ) (c : R) (φ : MvPowerSeries σ R) :
     remL i N c 0 φ = 0 := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.f74f26ab2f09 from=translated src=- shape=e84cd7bf vocab=0aabb748
+-/
 theorem quoL_zero_apply (i : σ) (N : ℕ) (c : R) (φ : MvPowerSeries σ R) :
     quoL i N c 0 φ = 0 := rfl
 
+/--
+@isnad1 id=eq.0h7v.s9.6cd5913c1f88 from=translated src=- shape=7cbd57dc vocab=36d31f82
+-/
 theorem remL_succ_apply (i : σ) (N : ℕ) (c : R) (k : ℕ) (φ : MvPowerSeries σ R) :
     remL i N c (k + 1) φ = low i N φ + remL i N c k (stepL i N c φ) := rfl
 
+/--
+@isnad1 id=eq.0h7v.s9.24947cffa9d5 from=translated src=- shape=7cbd57dc vocab=d6ba05e1
+-/
 theorem quoL_succ_apply (i : σ) (N : ℕ) (c : R) (k : ℕ) (φ : MvPowerSeries σ R) :
     quoL i N c (k + 1) φ = high i N φ + quoL i N c k (stepL i N c φ) := rfl
 
+/--
+@isnad1 id=eq.0h7v.s9.d10d9f647722 from=translated src=- shape=524f41a6 vocab=0c55f827
+-/
 theorem quoL_mul_add_remL (i : σ) (N : ℕ) (c : R) :
     ∀ (k : ℕ) (φ : MvPowerSeries σ R),
       quoL i N c k φ * sepPoly i N c + remL i N c k φ = φ - (⇑(stepL i N c))^[k] φ := by
@@ -179,6 +230,9 @@ theorem quoL_mul_add_remL (i : σ) (N : ℕ) (c : R) :
     rw [quoL_succ_apply, remL_succ_apply, Function.iterate_succ_apply]
     linear_combination h1 + h2
 
+/--
+@isnad1 id=mem.0h7v.s8.b91e95fd650d from=translated src=- shape=dd1d6805 vocab=fd28fc1c
+-/
 theorem remL_mem (i : σ) (N : ℕ) (c : R) :
     ∀ (k : ℕ) (φ : MvPowerSeries σ R), remL i N c k φ ∈ lowSub i N := by
   intro k
@@ -189,11 +243,17 @@ theorem remL_mem (i : σ) (N : ℕ) (c : R) :
     rw [remL_succ_apply]
     exact Submodule.add_mem _ (low_mem i N φ) (ih _)
 
+/--
+@isnad1 id=mem.2h8v.s9.e0599606afcf from=translated src=- shape=924d4428 vocab=18684dfe
+-/
 theorem stepL_mem_of_ne {i j : σ} (hij : i ≠ j) (N : ℕ) (c : R) {N' : ℕ} {φ : MvPowerSeries σ R}
     (h : φ ∈ lowSub j N') : stepL i N c φ ∈ lowSub j N' := by
   rw [stepL_apply, mul_assoc]
   exact Submodule.neg_mem _ (C_mul_mem c (X_mul_mem_of_ne hij (high_mem_of_ne hij N h)))
 
+/--
+@isnad1 id=mem.2h9v.s9.6d79e98c18f7 from=translated src=- shape=70662854 vocab=fd28fc1c
+-/
 theorem remL_mem_of_ne {i j : σ} (hij : i ≠ j) (N : ℕ) (c : R) {N' : ℕ} :
     ∀ (k : ℕ) {φ : MvPowerSeries σ R}, φ ∈ lowSub j N' → remL i N c k φ ∈ lowSub j N' := by
   intro k
@@ -231,6 +291,9 @@ theorem eq_zero_of_mul_sep_mem {i : σ} {N : ℕ} {c : R} {n : ℕ} (hn : c ^ n 
   obtain ⟨ψ, hψ⟩ := hk n
   rw [hψ, hn, map_zero, zero_mul]
 
+/--
+@isnad1 id=and.4h10v.s8.0a93e6334b4f from=translated src=- shape=eff6b16e vocab=1f6dcc3a
+-/
 theorem unique_div {i : σ} {N : ℕ} {c : R} {n : ℕ} (hn : c ^ n = 0)
     {q q' r r' : MvPowerSeries σ R} (hr : r ∈ lowSub i N) (hr' : r' ∈ lowSub i N)
     (h : q * sepPoly i N c + r = q' * sepPoly i N c + r') : q = q' ∧ r = r' := by
@@ -246,31 +309,49 @@ section Rem
 
 variable {i : σ} {N : ℕ} {c : R} {n : ℕ}
 
+/--
+@isnad1 id=eq.1h7v.s9.06a56da3bbb3 from=translated src=- shape=e9d069bb vocab=56893381
+-/
 theorem quo_mul_add_rem (hn : c ^ n = 0) (φ : MvPowerSeries σ R) :
     quoL i N c n φ * sepPoly i N c + remL i N c n φ = φ := by
   obtain ⟨ψ, hψ⟩ := iterate_stepL i N c n φ
   rw [quoL_mul_add_remL, hψ, hn, map_zero, zero_mul, sub_zero]
 
+/--
+@isnad1 id=mem.1h7v.s8.aa87ef60f4f5 from=translated src=- shape=9d3305c0 vocab=14dc3afb
+-/
 theorem sub_rem_mem (hn : c ^ n = 0) (φ : MvPowerSeries σ R) :
     φ - remL i N c n φ ∈ Ideal.span ({sepPoly i N c} : Set (MvPowerSeries σ R)) :=
   Ideal.mem_span_singleton'.mpr ⟨quoL i N c n φ, by
     have h := quo_mul_add_rem (i := i) (N := N) hn φ
     linear_combination h⟩
 
+/--
+@isnad1 id=eq.2h7v.s8.7796d94d7a73 from=translated src=- shape=d81f01a8 vocab=ea49e529
+-/
 theorem rem_eq_self (hn : c ^ n = 0) {φ : MvPowerSeries σ R} (hφ : φ ∈ lowSub i N) :
     remL i N c n φ = φ :=
   (unique_div hn (remL_mem i N c n φ) hφ
     (by rw [quo_mul_add_rem hn φ, zero_mul, zero_add])).2
 
+/--
+@isnad1 id=eq.1h7v.s8.d1d20f78850a from=translated src=- shape=5d0b4225 vocab=99ec1907
+-/
 theorem rem_mul_sep (hn : c ^ n = 0) (q : MvPowerSeries σ R) :
     remL i N c n (q * sepPoly i N c) = 0 :=
   (unique_div hn (remL_mem i N c n _) (Submodule.zero_mem _)
     (by rw [quo_mul_add_rem hn, add_zero])).2
 
+/--
+@isnad1 id=eq.0h8v.s9.92f879568c6d from=translated src=- shape=247a4c56 vocab=5b793ee5
+-/
 theorem rem_C_mul (a : R) (φ : MvPowerSeries σ R) :
     remL i N c n (C a * φ) = C a * remL i N c n φ := by
   rw [← smul_eq_C_mul, map_smul, smul_eq_C_mul]
 
+/--
+@isnad1 id=eq.2h8v.s9.f066b71b8eda from=translated src=- shape=bae3b12e vocab=0ccbf6a0
+-/
 theorem rem_X_mul (hn : c ^ n = 0) {j : σ} (hji : j ≠ i) (φ : MvPowerSeries σ R) :
     remL i N c n (X j * φ) = X j * remL i N c n φ := by
   have e1 := quo_mul_add_rem (i := i) (N := N) hn (X j * φ)
@@ -279,6 +360,9 @@ theorem rem_X_mul (hn : c ^ n = 0) {j : σ} (hji : j ≠ i) (φ : MvPowerSeries 
     (X_mul_mem_of_ne hji (remL_mem i N c n φ))
     (by simp only [sepPoly] at e1 e2 ⊢; linear_combination e1 - X j * e2)).2
 
+/--
+@isnad1 id=eq.2h9v.s9.7c8a3c6a697a from=translated src=- shape=9b7b548f vocab=0ccbf6a0
+-/
 theorem rem_X_pow_mul (hn : c ^ n = 0) {j : σ} (hji : j ≠ i) (φ : MvPowerSeries σ R) :
     ∀ k : ℕ, remL i N c n (X j ^ k * φ) = X j ^ k * remL i N c n φ := by
   intro k
@@ -287,6 +371,9 @@ theorem rem_X_pow_mul (hn : c ^ n = 0) {j : σ} (hji : j ≠ i) (φ : MvPowerSer
   | succ k ih =>
     rw [pow_succ', mul_assoc, rem_X_mul hn hji, mul_assoc, ← ih]
 
+/--
+@isnad1 id=eq.2h10v.s9.2b97a6717b8c from=translated src=- shape=5af8bb73 vocab=99ec1907
+-/
 theorem rem_sep_mul (hn : c ^ n = 0) {j : σ} (hji : j ≠ i) (N' : ℕ) (a : R)
     (φ : MvPowerSeries σ R) :
     remL i N c n (sepPoly j N' a * φ) = sepPoly j N' a * remL i N c n φ := by
@@ -310,9 +397,15 @@ abbrev sep (N : Fin g → ℕ) (c : Fin g → R) (i : Fin g) : MvPowerSeries (Fi
 abbrev sepIdeal (N : Fin g → ℕ) (c : Fin g → R) : Ideal (MvPowerSeries (Fin g) R) :=
   Ideal.span (Set.range fun i : Fin g => C (c i) * X i + (X i : MvPowerSeries (Fin g) R) ^ N i)
 
+/--
+@isnad1 id=mem.0h5v.s6.dc323f866217 from=translated src=- shape=5eb40d8b vocab=90a2ae53
+-/
 theorem sep_mem_sepIdeal (N : Fin g → ℕ) (c : Fin g → R) (i : Fin g) : sep N c i ∈ sepIdeal N c :=
   Ideal.subset_span ⟨i, rfl⟩
 
+/--
+@isnad1 id=le.0h5v.s7.6bef26d3efe2 from=translated src=- shape=87f28ced vocab=50e8536e
+-/
 theorem span_sep_le (N : Fin g → ℕ) (c : Fin g → R) (i : Fin g) :
     Ideal.span ({sepPoly i (N i) (c i)} : Set (MvPowerSeries (Fin g) R)) ≤ sepIdeal N c :=
   (Ideal.span_singleton_le_iff_mem _).mpr (sep_mem_sepIdeal N c i)
@@ -325,13 +418,22 @@ def RedUpTo : ℕ → (MvPowerSeries (Fin g) R →ₗ[R] MvPowerSeries (Fin g) R
     if h : k < g then remL (⟨k, h⟩ : Fin g) (N ⟨k, h⟩) (c ⟨k, h⟩) (n ⟨k, h⟩) ∘ₗ RedUpTo k
     else RedUpTo k
 
+/--
+@isnad1 id=eq.0h6v.s8.12d07c0283d3 from=translated src=- shape=7d2abc18 vocab=d26dd29c
+-/
 theorem RedUpTo_zero_apply (φ : MvPowerSeries (Fin g) R) : RedUpTo N c n 0 φ = φ := rfl
 
+/--
+@isnad1 id=eq.1h7v.s9.73092a6ef753 from=translated src=- shape=1d45ffdf vocab=c2b52132
+-/
 theorem RedUpTo_succ_of_lt {k : ℕ} (h : k < g) (φ : MvPowerSeries (Fin g) R) :
     RedUpTo N c n (k + 1) φ =
       remL (⟨k, h⟩ : Fin g) (N ⟨k, h⟩) (c ⟨k, h⟩) (n ⟨k, h⟩) (RedUpTo N c n k φ) := by
   simp only [RedUpTo, dite_eq_left h, LinearMap.comp_apply]
 
+/--
+@isnad1 id=eq.1h7v.s8.86bed0daa4bc from=translated src=- shape=e0da8946 vocab=083ba3c5
+-/
 theorem RedUpTo_succ_of_not_lt {k : ℕ} (h : ¬ k < g) (φ : MvPowerSeries (Fin g) R) :
     RedUpTo N c n (k + 1) φ = RedUpTo N c n k φ := by
   simp only [RedUpTo, dite_eq_right h]
@@ -341,6 +443,9 @@ abbrev Red : MvPowerSeries (Fin g) R →ₗ[R] MvPowerSeries (Fin g) R := RedUpT
 variable {N c n} (hn : ∀ i, c i ^ n i = 0)
 include hn
 
+/--
+@isnad1 id=mem.1h7v.s8.35c8a8e0fea4 from=translated src=- shape=d0427af3 vocab=d282e36f
+-/
 theorem sub_RedUpTo_mem :
     ∀ (k : ℕ) (φ : MvPowerSeries (Fin g) R), φ - RedUpTo N c n k φ ∈ sepIdeal N c := by
   intro k
@@ -356,6 +461,9 @@ theorem sub_RedUpTo_mem :
       exact ih φ
 
 omit hn in
+/--
+@isnad1 id=mem.1h8v.s8.7042f810e710 from=translated src=- shape=79cb5a90 vocab=0c8acce3
+-/
 theorem RedUpTo_mem :
     ∀ (k : ℕ) (φ : MvPowerSeries (Fin g) R) (j : Fin g), (j : ℕ) < k →
       RedUpTo N c n k φ ∈ lowSub j (N j) := by
@@ -376,6 +484,9 @@ theorem RedUpTo_mem :
     · rw [RedUpTo_succ_of_not_lt N c n h]
       exact ih φ j (by omega)
 
+/--
+@isnad1 id=eq.2h7v.s8.c0292d8f644e from=translated src=- shape=e5cf29b0 vocab=a9ba1e57
+-/
 theorem RedUpTo_eq_self :
     ∀ (k : ℕ) {φ : MvPowerSeries (Fin g) R}, (∀ j : Fin g, φ ∈ lowSub j (N j)) →
       RedUpTo N c n k φ = φ := by
@@ -389,6 +500,9 @@ theorem RedUpTo_eq_self :
       exact rem_eq_self (hn ⟨k, h⟩) (hφ ⟨k, h⟩)
     · rw [RedUpTo_succ_of_not_lt N c n h, ih hφ]
 
+/--
+@isnad1 id=eq.2h8v.s9.3d466bb44e34 from=translated src=- shape=a5f709d4 vocab=050297f4
+-/
 theorem RedUpTo_sep_mul :
     ∀ (k : ℕ) (i : Fin g), k ≤ (i : ℕ) → ∀ φ : MvPowerSeries (Fin g) R,
       RedUpTo N c n k (sep N c i * φ) = sep N c i * RedUpTo N c n k φ := by
@@ -405,6 +519,9 @@ theorem RedUpTo_sep_mul :
     · rw [RedUpTo_succ_of_not_lt N c n h, RedUpTo_succ_of_not_lt N c n h]
       exact ih i (by omega) φ
 
+/--
+@isnad1 id=eq.2h8v.s8.f877f65848c6 from=translated src=- shape=770b5db0 vocab=eb5eefca
+-/
 theorem RedUpTo_mul_sep :
     ∀ (k : ℕ) (i : Fin g), (i : ℕ) < k → ∀ q : MvPowerSeries (Fin g) R,
       RedUpTo N c n k (q * sep N c i) = 0 := by
@@ -424,17 +541,29 @@ theorem RedUpTo_mul_sep :
     · rw [RedUpTo_succ_of_not_lt N c n h]
       exact ih i (by omega) q
 
+/--
+@isnad1 id=mem.1h6v.s8.3baa3d99cad4 from=translated src=- shape=f843f3fa vocab=883cb0ce
+-/
 theorem sub_Red_mem (φ : MvPowerSeries (Fin g) R) : φ - Red N c n φ ∈ sepIdeal N c :=
   sub_RedUpTo_mem hn g φ
 
 omit hn in
+/--
+@isnad1 id=mem.0h7v.s8.138f37a672df from=translated src=- shape=a0dc1807 vocab=0f90a490
+-/
 theorem Red_mem (φ : MvPowerSeries (Fin g) R) (j : Fin g) : Red N c n φ ∈ lowSub j (N j) :=
   RedUpTo_mem g φ j j.isLt
 
+/--
+@isnad1 id=eq.2h6v.s8.1749b2f54ee8 from=translated src=- shape=043b7848 vocab=6bb65185
+-/
 theorem Red_eq_self {φ : MvPowerSeries (Fin g) R} (hφ : ∀ j : Fin g, φ ∈ lowSub j (N j)) :
     Red N c n φ = φ :=
   RedUpTo_eq_self hn g hφ
 
+/--
+@isnad1 id=eq.2h6v.s8.7163a5d31283 from=translated src=- shape=5ca2ade7 vocab=756530ae
+-/
 theorem Red_eq_zero_of_mem {φ : MvPowerSeries (Fin g) R} (hφ : φ ∈ sepIdeal N c) :
     Red N c n φ = 0 := by
   obtain ⟨q, rfl⟩ := Ideal.mem_span_range_iff_exists_fun.mp hφ
@@ -453,6 +582,9 @@ def InBox (N : Fin g → ℕ) (d : Fin g →₀ ℕ) : Prop := ∀ i, d i < N i
 scoped instance instDecidableInBox (N : Fin g → ℕ) (d : Fin g →₀ ℕ) : Decidable (InBox N d) := by
   unfold InBox; infer_instance
 
+/--
+@isnad1 id=eq.2h5v.s8.0533dbf4e90c from=translated src=- shape=01b7b9bf vocab=91e81dd9
+-/
 theorem coeff_eq_zero_of_not_inBox {φ : MvPowerSeries (Fin g) R} (hφ : ∀ j : Fin g, φ ∈ lowSub j (N j))
     {d : Fin g →₀ ℕ} (hd : ¬ InBox N d) : coeff d φ = 0 := by
   obtain ⟨j, hj⟩ := not_forall.mp hd
@@ -461,10 +593,19 @@ theorem coeff_eq_zero_of_not_inBox {φ : MvPowerSeries (Fin g) R} (hφ : ∀ j :
 def toFinsupp (u : (i : Fin g) → Fin (N i)) : Fin g →₀ ℕ :=
   Finsupp.equivFunOnFinite.symm fun i => (u i : ℕ)
 
+/--
+@isnad1 id=eq.0h4v.s5.0d8159242fbd from=translated src=- shape=8f433d38 vocab=7f283d1e
+-/
 @[scoped simp] theorem toFinsupp_apply (u : (i : Fin g) → Fin (N i)) (i : Fin g) : toFinsupp u i = u i := rfl
 
+/--
+@isnad1 id=inbox.0h3v.s4.5a27b50d73d9 from=translated src=- shape=8360a44a vocab=86b087b0
+-/
 theorem inBox_toFinsupp (u : (i : Fin g) → Fin (N i)) : InBox N (toFinsupp u) := fun i => (u i).isLt
 
+/--
+@isnad1 id=eq.1h3v.s6.f54a8816b20b from=translated src=- shape=6af75a1d vocab=3e92f7be
+-/
 theorem toFinsupp_mk {d : Fin g →₀ ℕ} (h : InBox N d) :
     toFinsupp (fun i => (⟨d i, h i⟩ : Fin (N i))) = d := by
   ext i
@@ -473,15 +614,24 @@ theorem toFinsupp_mk {d : Fin g →₀ ℕ} (h : InBox N d) :
 def extend (v : ((i : Fin g) → Fin (N i)) → R) : MvPowerSeries (Fin g) R :=
   fun d => if h : InBox N d then v (fun i => ⟨d i, h i⟩) else 0
 
+/--
+@isnad1 id=eq.0h5v.s8.f078ed60d275 from=translated src=- shape=b6a30862 vocab=5bf6bd56
+-/
 theorem coeff_extend (v : ((i : Fin g) → Fin (N i)) → R) (d : Fin g →₀ ℕ) :
     coeff d (extend v) = if h : InBox N d then v (fun i => ⟨d i, h i⟩) else 0 :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.7dd67953f43a from=translated src=- shape=2244f7bb vocab=e41e9047
+-/
 theorem coeff_extend_toFinsupp (v : ((i : Fin g) → Fin (N i)) → R) (u : (i : Fin g) → Fin (N i)) :
     coeff (toFinsupp u) (extend v) = v u := by
   rw [coeff_extend, dite_eq_left (inBox_toFinsupp u)]
   rfl
 
+/--
+@isnad1 id=mem.0h5v.s7.6687107efe40 from=translated src=- shape=859edae9 vocab=79a4f1fe
+-/
 theorem extend_mem (v : ((i : Fin g) → Fin (N i)) → R) (j : Fin g) : extend v ∈ lowSub j (N j) := by
   intro d hd
   rw [coeff_extend, dite_eq_right]
@@ -501,12 +651,18 @@ def extendLin : (((i : Fin g) → Fin (N i)) → R) →ₗ[R] (MvPowerSeries (Fi
         rw [map_smul, coeff_extend, coeff_extend, RingHom.id_apply, smul_eq_mul]
         split_ifs <;> simp }
 
+/--
+@isnad1 id=eq.0h5v.s10.9f0dd26eeca7 from=translated src=- shape=50efae97 vocab=6c977ddf
+-/
 theorem extendLin_apply (v : ((i : Fin g) → Fin (N i)) → R) :
     extendLin N c v = Ideal.Quotient.mk (sepIdeal N c) (extend v) := rfl
 
 variable {N c n} (hn : ∀ i, c i ^ n i = 0)
 include hn
 
+/--
+@isnad1 id=injectiv.1h5v.s9.8f76a82794e9 from=translated src=- shape=047e6eaf vocab=b381b596
+-/
 theorem extendLin_injective : Function.Injective (extendLin N c) := by
   rw [injective_iff_map_eq_zero]
   intro v hv
@@ -518,6 +674,9 @@ theorem extendLin_injective : Function.Injective (extendLin N c) := by
   rw [← coeff_extend_toFinsupp v u, h0, map_zero]
   rfl
 
+/--
+@isnad1 id=surjecti.1h5v.s9.f8201e672381 from=translated src=- shape=047e6eaf vocab=193cd176
+-/
 theorem extendLin_surjective : Function.Surjective (extendLin N c) := by
   intro x
   obtain ⟨θ, rfl⟩ := Ideal.Quotient.mk_surjective x
@@ -545,6 +704,9 @@ end
 open scoped _root_.P2MW.S_MvPowerSeries_free_and_finite_and_finrank_quotient_span_range_C_mul_X_add_X_pow_of_isNilpotent.P2mKcWeierSep
 
 open P2mKcWeierSep in
+/--
+@isnad1 id=and.1h4v.s11.189001164f2d from=translated src=- shape=8794b2fd vocab=ed0d0715
+-/
 theorem solution
     (R : Type u) [CommRing R] [Nontrivial R] (g : ℕ) (N : Fin g → ℕ) (c : Fin g → R)
     (hc : ∀ i, IsNilpotent (c i)) :

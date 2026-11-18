@@ -10,6 +10,9 @@ namespace P2MW.S_QuotSMulTop_linearIndependent_of_quotientMk_linearIndependent
 
 open scoped Pointwise
 
+/--
+@isnad1 id=linearin.3h5v.s10.44eef595c360 from=translated src=- shape=61f1aab6 vocab=f2faa9e7
+-/
 theorem solution {R : Type*} [CommRing R] {M : Type*} [AddCommGroup M] [Module R M] [IsLocalRing R] [IsNoetherianRing R] (x : R) (hx : x ∈ IsLocalRing.maximalIdeal R) (hreg : IsSMulRegular M x) {ι : Type*} [Fintype ι] (m : ι → M) (hli : LinearIndependent (R ⧸ Ideal.span {x}) (fun i => (Submodule.Quotient.mk (m i) : QuotSMulTop x M))) :
     LinearIndependent R m := by
   classical

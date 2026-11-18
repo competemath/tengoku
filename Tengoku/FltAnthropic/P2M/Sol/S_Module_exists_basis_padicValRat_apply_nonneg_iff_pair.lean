@@ -37,8 +37,14 @@ def intSubring : Subring ℚ where
 
 variable {p}
 
+/--
+@isnad1 id=iff.0h2v.s5.7ae17249b10f from=translated src=- shape=ce2e877e vocab=28f4a7f5
+-/
 theorem mem_intSubring_iff {x : ℚ} : x ∈ intSubring p ↔ 0 ≤ padicValRat p x := Iff.rfl
 
+/--
+@isnad1 id=mem.0h2v.s5.1efe40a4c5ab from=translated src=- shape=6f370cae vocab=9cac94af
+-/
 theorem pow_mem_intSubring (n : ℕ) : (p : ℚ) ^ n ∈ intSubring p := by
   rw [mem_intSubring_iff]
   have hp : (Fact.out : p.Prime).one_lt = (Fact.out : p.Prime).one_lt := rfl
@@ -46,9 +52,15 @@ theorem pow_mem_intSubring (n : ℕ) : (p : ℚ) ^ n ∈ intSubring p := by
   rw [padicValRat.pow _, padicValRat.self (Fact.out : p.Prime).one_lt]
   simp
 
+/--
+@isnad1 id=mem.1h2v.s5.b1ef64409397 from=translated src=- shape=1211887d vocab=8ed341aa
+-/
 theorem inv_mem_intSubring_of_padicValRat_eq_zero {x : ℚ} (hx : padicValRat p x = 0) : x⁻¹ ∈ intSubring p := by
   rw [mem_intSubring_iff, padicValRat.inv, hx, neg_zero]
 
+/--
+@isnad1 id=ex.2h2v.s8.b205d7748a08 from=translated src=- shape=bd5ae44e vocab=39bcb983
+-/
 theorem exists_unit_mul_pow_eq {x : ℚ} (hx : x ∈ intSubring p) (hx0 : x ≠ 0) :
     ∃ (u : (intSubring p)ˣ) (n : ℕ), ((u : intSubring p) : ℚ) * (p : ℚ) ^ n = x := by
   have hpq : (p : ℚ) ≠ 0 := by exact_mod_cast (Fact.out : p.Prime).ne_zero
@@ -132,6 +144,9 @@ def lattice (p : ℕ) [Fact p.Prime] (a : ℤ → M →ₗ[ℚ] ℚ) : Submodule
     rw [show (r • x : M) = ((r : ℚ) • x) from rfl, map_smul, smul_eq_mul]
     exact mul_mem r.2 (hx m)
 
+/--
+@isnad1 id=ex.1h2v.s7.8fb3c89a00d6 from=translated src=- shape=659fbd3c vocab=cc82c655
+-/
 theorem exists_finset_forall_eq_zero [FiniteDimensional ℚ M] (a : ℤ → M →ₗ[ℚ] ℚ)
     (hinj : ∀ x, (∀ m, a m x = 0) → x = 0) :
     ∃ S : Finset ℤ, ∀ x : M, (∀ m ∈ S, a m x = 0) → x = 0 := by
@@ -156,6 +171,9 @@ theorem exists_finset_forall_eq_zero [FiniteDimensional ℚ M] (a : ℤ → M �
   rw [hK] at hx'
   exact hx' m (Finset.mem_insert_self m S₀)
 
+/--
+@isnad1 id=ex.1h3v.s9.4b2e6a673964 from=translated src=- shape=7df4aaa2 vocab=d2acfc83
+-/
 theorem exists_latticeBasis [FiniteDimensional ℚ M] (p : ℕ) [Fact p.Prime]
     (a : ℤ → M →ₗ[ℚ] ℚ) (hinj : ∀ x, (∀ m, a m x = 0) → x = 0) :
     ∃ n : ℕ, Nonempty (Module.Basis (Fin n) (intSubring p) ↥(lattice p a)) := by
@@ -239,6 +257,9 @@ theorem exists_latticeBasis [FiniteDimensional ℚ M] (p : ℕ) [Fact p.Prime]
   obtain ⟨n, bN⟩ := Submodule.basisOfPid (Pi.basisFun (intSubring p) (Fin r)) (LinearMap.range Φ)
   exact ⟨n, ⟨bN.map (LinearEquiv.ofInjective Φ hΦ).symm⟩⟩
 
+/--
+@isnad1 id=ex.1h5v.s11.d2969615d499 from=translated src=- shape=f7612dc1 vocab=50b8829f
+-/
 theorem exists_basis_of_latticeBasis (p : ℕ) [Fact p.Prime] (a : ℤ → M →ₗ[ℚ] ℚ)
     (hbd : ∀ x, ∃ N : ℕ, ∀ m, 0 ≤ padicValRat p ((p : ℚ) ^ N * a m x))
     {n : ℕ} (bΛ : Module.Basis (Fin n) (intSubring p) ↥(lattice p a)) :
@@ -331,6 +352,9 @@ open scoped _root_.P2MW.S_Module_exists_basis_padicValRat_apply_nonneg_iff_pair.
 
 namespace PadicLattice
 
+/--
+@isnad1 id=ex.1h6v.s9.de6485c84454 from=translated src=- shape=6df10213 vocab=76560f7b
+-/
 theorem exists_basis_update {ι R N : Type*} [Fintype ι] [DecidableEq ι] [CommRing R] [AddCommGroup N] [Module R N]
     (b : Module.Basis ι R N) (v : N) (i₀ : ι) (hu : IsUnit (b.repr v i₀)) :
     ∃ b' : Module.Basis ι R N, b' i₀ = v ∧ ∀ i, i ≠ i₀ → b' i = b i := by
@@ -403,6 +427,9 @@ theorem exists_basis_update {ι R N : Type*} [Fintype ι] [DecidableEq ι] [Comm
 
 variable {p : ℕ} [Fact p.Prime]
 
+/--
+@isnad1 id=iff.0h2v.s7.34a8ff61951d from=translated src=- shape=d659a660 vocab=1f5f0ad5
+-/
 theorem isUnit_iff {x : intSubring p} : IsUnit x ↔ (x : ℚ) ≠ 0 ∧ padicValRat p (x : ℚ) = 0 := by
   constructor
   · intro hx
@@ -423,6 +450,9 @@ theorem isUnit_iff {x : intSubring p} : IsUnit x ↔ (x : ℚ) ≠ 0 ∧ padicVa
     have hinv : (x : ℚ)⁻¹ ∈ intSubring p := inv_mem_intSubring_of_padicValRat_eq_zero hv
     exact ⟨⟨x, ⟨_, hinv⟩, Subtype.ext (mul_inv_cancel₀ hx0), Subtype.ext (inv_mul_cancel₀ hx0)⟩, rfl⟩
 
+/--
+@isnad1 id=ex.1h2v.s8.60745488963e from=translated src=- shape=7f3fb218 vocab=746511f6
+-/
 theorem exists_eq_p_mul_of_not_isUnit {x : intSubring p} (hx : ¬ IsUnit x) :
     ∃ y : intSubring p, (x : ℚ) = p * y := by
   have hp : p.Prime := Fact.out
@@ -448,6 +478,9 @@ variable {M : Type*} [AddCommGroup M] [Module ℚ M]
 
 set_option maxHeartbeats 3200000 in
 
+/--
+@isnad1 id=ex.6h5v.s10.2b14df4d2504 from=translated src=- shape=c0601989 vocab=d959ef99
+-/
 theorem exists_basis_pair [FiniteDimensional ℚ M] (p : ℕ) [Fact p.Prime]
     (a a' : ℤ → M →ₗ[ℚ] ℚ) (hinj' : ∀ x, (∀ m, a' m x = 0) → x = 0)
     (hbd : ∀ x, ∃ N : ℕ, ∀ m, 0 ≤ padicValRat p ((p : ℚ) ^ N * a m x))
@@ -615,6 +648,9 @@ open scoped _root_.P2MW.S_Module_exists_basis_padicValRat_apply_nonneg_iff_pair.
 
 set_option maxHeartbeats 3200000 in
 
+/--
+@isnad1 id=ex.6h5v.s10.2b14df4d2504 from=translated src=- shape=c0601989 vocab=d959ef99
+-/
 theorem solution
     {M : Type*} [AddCommGroup M] [Module ℚ M] [FiniteDimensional ℚ M] (p : ℕ) [Fact p.Prime]
     (a a' : ℤ → M →ₗ[ℚ] ℚ) (hinj' : ∀ x, (∀ m, a' m x = 0) → x = 0)

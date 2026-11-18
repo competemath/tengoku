@@ -23,6 +23,9 @@ section UnitsBaseChange
 variable {A : Type*} [CommRing A] (S : Submonoid A) (T : Type*) [CommRing T] [Algebra A T]
   (X : Type*) [AddCommGroup X] [Module A X]
 
+/--
+@isnad1 id=islocali.1h4v.s8.31ce8071b040 from=translated src=- shape=8b53b461 vocab=78eb365b
+-/
 theorem isLocalizedModule_id_of_forall_isUnit (hT : ∀ s : S, IsUnit (algebraMap A T s)) :
     IsLocalizedModule S (LinearMap.id : T ⊗[A] X →ₗ[A] T ⊗[A] X) where
   map_units s := by
@@ -63,6 +66,9 @@ section Artinian
 variable (k : Type*) [Field k] (B : Type*) [CommRing B] [Algebra k B] [IsArtinianRing B]
   (V : Type*) [AddCommGroup V] [Module B V] [Module k V] [IsScalarTower k B V] [Module.Finite k V]
 
+/--
+@isnad1 id=eq.0h3v.s9.d2cc9d03a6c1 from=translated src=- shape=332c185b vocab=ef140350
+-/
 theorem finrank_eq_sum_finrank_localization [Fintype (PrimeSpectrum B)] :
     Module.finrank k V =
       ∑ q : PrimeSpectrum B, Module.finrank k (Localization.AtPrime q.asIdeal ⊗[B] V) := by
@@ -80,6 +86,9 @@ theorem finrank_eq_sum_finrank_localization [Fintype (PrimeSpectrum B)] :
         (IsArtinianRing.localization_surjective q.asIdeal.primeCompl _))
   rw [(e.restrictScalars k).finrank_eq, Module.finrank_pi_fintype k]
 
+/--
+@isnad1 id=eq.1h4v.s10.0a4f34144bf1 from=translated src=- shape=d857e411 vocab=529fe3fd
+-/
 theorem finrank_eq_of_forall_localization_equiv (W : Type*) [AddCommGroup W] [Module B W]
     [Module k W] [IsScalarTower k B W] [Module.Finite k W]
     (H : ∀ q : PrimeSpectrum B, Nonempty
@@ -95,6 +104,9 @@ end Artinian
 end RankAtStalkLocallyIso
 
 open RankAtStalkLocallyIso in
+/--
+@isnad1 id=eq.2h5v.s9.6c9d04f4ac67 from=translated src=- shape=5fe59224 vocab=39c90784
+-/
 theorem solution
     {R A : Type u} [CommRing R] [CommRing A] [Algebra R A] [Module.Finite R A]
     (M N : Type u) [AddCommGroup M] [Module R M] [Module A M] [IsScalarTower R A M]

@@ -41,6 +41,9 @@ def boxKer (R : Type*) [CommRing R] (g : ℕ) (N : Fin g → ℕ) : Ideal (MvPow
     have hx2 : InBox N x.2 := fun i => lt_of_le_of_lt (by rw [← hx]; simp) (hd i)
     rw [hθ x.2 hx2, mul_zero]
 
+/--
+@isnad1 id=mem.0h4v.s7.287f1dea3983 from=translated src=- shape=887e0be2 vocab=d1f859c1
+-/
 theorem X_pow_mem_boxKer (i : Fin g) :
     (X i : MvPowerSeries (Fin g) R) ^ N i ∈ boxKer R g N := by
   classical
@@ -51,6 +54,9 @@ theorem X_pow_mem_boxKer (i : Fin g) :
   rw [Finsupp.single_eq_same] at this
   exact lt_irrefl _ this
 
+/--
+@isnad1 id=le.0h3v.s6.03c18d39bdb7 from=translated src=- shape=88ffd6be vocab=463b1349
+-/
 theorem powIdeal_le_boxKer : powIdeal R g N ≤ boxKer R g N :=
   Ideal.span_le.mpr (by
     rintro _ ⟨i, rfl⟩
@@ -59,11 +65,17 @@ theorem powIdeal_le_boxKer : powIdeal R g N ≤ boxKer R g N :=
 def part (N : Fin g → ℕ) (θ : MvPowerSeries (Fin g) R) (i : Fin g) : MvPowerSeries (Fin g) R :=
   fun e => if (∀ j, j < i → e j < N j) then coeff (e + Finsupp.single i (N i)) θ else 0
 
+/--
+@isnad1 id=eq.0h6v.s9.56bc7ec95848 from=translated src=- shape=f4700a0f vocab=5a73ca57
+-/
 theorem coeff_part (θ : MvPowerSeries (Fin g) R) (i : Fin g) (e : Fin g →₀ ℕ) :
     coeff e (part N θ i)
       = if (∀ j, j < i → e j < N j) then coeff (e + Finsupp.single i (N i)) θ else 0 :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.0ec4e5212096 from=translated src=- shape=22c244bc vocab=3346dac9
+-/
 theorem coeff_X_pow_mul_part (θ : MvPowerSeries (Fin g) R) (i : Fin g) (d : Fin g →₀ ℕ) :
     coeff d ((X i : MvPowerSeries (Fin g) R) ^ N i * part N θ i)
       = if (N i ≤ d i ∧ ∀ j, j < i → d j < N j) then coeff d θ else 0 := by
@@ -122,33 +134,54 @@ theorem eq_sum_X_pow_mul_part {θ : MvPowerSeries (Fin g) R} (hθ : θ ∈ boxKe
     · intro h
       exact absurd (Finset.mem_univ i₀) h
 
+/--
+@isnad1 id=le.0h3v.s6.7a9aa85abbc4 from=translated src=- shape=88ffd6be vocab=463b1349
+-/
 theorem boxKer_le_powIdeal : boxKer R g N ≤ powIdeal R g N := by
   intro θ hθ
   rw [eq_sum_X_pow_mul_part hθ]
   exact Ideal.sum_mem _ fun i _ => Ideal.mul_mem_right _ _ (Ideal.subset_span ⟨i, rfl⟩)
 
+/--
+@isnad1 id=eq.0h3v.s5.78d55da3b7bb from=translated src=- shape=88ffd6be vocab=3808a394
+-/
 theorem powIdeal_eq_boxKer : powIdeal R g N = boxKer R g N :=
   le_antisymm powIdeal_le_boxKer boxKer_le_powIdeal
 
 def toFinsupp (u : (i : Fin g) → Fin (N i)) : Fin g →₀ ℕ :=
   Finsupp.equivFunOnFinite.symm fun i => (u i : ℕ)
 
+/--
+@isnad1 id=eq.0h4v.s5.44026ef5393d from=translated src=- shape=8f433d38 vocab=73a4e990
+-/
 @[scoped simp] theorem toFinsupp_apply (u : (i : Fin g) → Fin (N i)) (i : Fin g) : toFinsupp u i = u i := rfl
 
+/--
+@isnad1 id=inbox.0h3v.s4.b469c5c24d25 from=translated src=- shape=8360a44a vocab=541134f6
+-/
 theorem inBox_toFinsupp (u : (i : Fin g) → Fin (N i)) : InBox N (toFinsupp u) := fun i => (u i).isLt
 
 def extend (v : ((i : Fin g) → Fin (N i)) → R) : MvPowerSeries (Fin g) R :=
   fun d => if h : InBox N d then v (fun i => ⟨d i, h i⟩) else 0
 
+/--
+@isnad1 id=eq.0h5v.s8.58d77e2a20ef from=translated src=- shape=b6a30862 vocab=2452a7cf
+-/
 theorem coeff_extend (v : ((i : Fin g) → Fin (N i)) → R) (d : Fin g →₀ ℕ) :
     coeff d (extend v) = if h : InBox N d then v (fun i => ⟨d i, h i⟩) else 0 :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.281a817d1a4e from=translated src=- shape=2244f7bb vocab=2fc6a45d
+-/
 theorem coeff_extend_toFinsupp (v : ((i : Fin g) → Fin (N i)) → R) (u : (i : Fin g) → Fin (N i)) :
     coeff (toFinsupp u) (extend v) = v u := by
   rw [coeff_extend, dite_eq_left (inBox_toFinsupp u)]
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s6.a23fa24bb5c8 from=translated src=- shape=6af75a1d vocab=6536e0e1
+-/
 theorem toFinsupp_mk {d : Fin g →₀ ℕ} (h : InBox N d) :
     toFinsupp (fun i => (⟨d i, h i⟩ : Fin (N i))) = d := by
   ext i
@@ -167,9 +200,15 @@ def extendLin (R : Type*) [CommRing R] (g : ℕ) (N : Fin g → ℕ) :
         rw [map_smul, coeff_extend, coeff_extend, RingHom.id_apply, smul_eq_mul]
         split_ifs <;> simp }
 
+/--
+@isnad1 id=eq.0h4v.s10.4d44ef5c20e4 from=translated src=- shape=dcf6f8c8 vocab=796a01dd
+-/
 theorem extendLin_apply (v : ((i : Fin g) → Fin (N i)) → R) :
     extendLin R g N v = Ideal.Quotient.mk (powIdeal R g N) (extend v) := rfl
 
+/--
+@isnad1 id=injectiv.0h3v.s9.3d262fbfe0a6 from=translated src=- shape=878ba5a1 vocab=00f27157
+-/
 theorem extendLin_injective : Function.Injective (extendLin R g N) := by
   rw [injective_iff_map_eq_zero]
   intro v hv
@@ -178,6 +217,9 @@ theorem extendLin_injective : Function.Injective (extendLin R g N) := by
   rw [← coeff_extend_toFinsupp v u]
   exact hv _ (inBox_toFinsupp u)
 
+/--
+@isnad1 id=surjecti.0h3v.s9.87a8c455a5d2 from=translated src=- shape=878ba5a1 vocab=73e1c158
+-/
 theorem extendLin_surjective : Function.Surjective (extendLin R g N) := by
   intro x
   obtain ⟨θ, rfl⟩ := Ideal.Quotient.mk_surjective x
@@ -197,6 +239,9 @@ end
 open scoped _root_.P2MW.S_MvPowerSeries_free_and_finite_and_finrank_quotient_span_range_X_pow.P2mKcBoxBasis
 
 open P2mKcBoxBasis in
+/--
+@isnad1 id=and.0h3v.s10.d0be73822274 from=translated src=- shape=dacf7bef vocab=29a2b643
+-/
 theorem solution (R : Type u) [CommRing R] [Nontrivial R] (g : ℕ) (N : Fin g → ℕ) :
     Module.Free R (MvPowerSeries (Fin g) R ⧸
         Ideal.span (Set.range fun i : Fin g => (MvPowerSeries.X i : MvPowerSeries (Fin g) R) ^ N i)) ∧

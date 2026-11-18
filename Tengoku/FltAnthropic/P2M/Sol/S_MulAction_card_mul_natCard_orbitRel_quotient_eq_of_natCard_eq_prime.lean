@@ -8,6 +8,9 @@ namespace P2MW.S_MulAction_card_mul_natCard_orbitRel_quotient_eq_of_natCard_eq_p
 set_option autoImplicit false
 
 open MulAction in
+/--
+@isnad1 id=eq.2h3v.s6.a012ae5dd2bb from=translated src=- shape=edfd2541 vocab=a7f8e153
+-/
 theorem solution
     (G : Type*) {X : Type*} [Group G] [MulAction G X] [Finite G] [Finite X]
     {p : ℕ} (hp : p.Prime) (hG : Nat.card G = p) :

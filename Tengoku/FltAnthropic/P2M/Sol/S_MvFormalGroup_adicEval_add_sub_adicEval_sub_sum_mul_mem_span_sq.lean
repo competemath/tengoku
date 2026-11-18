@@ -475,6 +475,9 @@ private theorem coeff_sumElim_zero_bquot (g : MvPowerSeries (Fin d ⊕ Fin d) R)
 end TaylorEval
 
 open TaylorEval in
+/--
+@isnad1 id=mem.3h8v.s9.72790a0a2504 from=translated src=- shape=706e4aba vocab=54000d23
+-/
 theorem solution
     {R : Type u} [CommRing R] {S : Type v} [CommRing S] [Algebra R S]
     (J : Ideal S) [IsAdicComplete J S] {d : ℕ}

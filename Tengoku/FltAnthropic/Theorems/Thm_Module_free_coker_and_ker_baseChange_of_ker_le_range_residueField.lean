@@ -9,6 +9,9 @@ universe u v
 
 open TensorProduct
 
+/--
+@isnad1 id=and.2h6v.s12.0543c3f0ed75 from=translated src=- shape=7c3aaaff vocab=199b2f22
+-/
 theorem Module.free_coker_and_ker_baseChange_of_ker_le_range_residueField
     (R : Type u) [CommRing R] [IsLocalRing R]
     {C0 C1 C2 : Type v} [AddCommGroup C0] [Module R C0] [AddCommGroup C1] [Module R C1]

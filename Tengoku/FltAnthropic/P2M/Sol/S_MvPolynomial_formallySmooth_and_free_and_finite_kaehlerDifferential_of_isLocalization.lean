@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open MvPolynomial TensorProduct KaehlerDifferential
 
+/--
+@isnad1 id=and.0h4v.s8.6fb16756b899 from=translated src=- shape=4d1c7c32 vocab=0fe96842
+-/
 theorem solution
     (R : Type) [CommRing R] {n : ℕ} (M : Submonoid (MvPolynomial (Fin n) R))
     (P : Type) [CommRing P] [Algebra (MvPolynomial (Fin n) R) P] [IsLocalization M P]

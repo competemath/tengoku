@@ -23,9 +23,15 @@ section Core
 variable {E : Type*} [AddCommGroup E] [Module R E]
 
 omit [IsLocalRing R] in
+/--
+@isnad1 id=eq.1h4v.s9.f05a191153ee from=translated src=- shape=43e87914 vocab=051c463e
+-/
 theorem factor_mk {p p' : Ideal R} (h : p ≤ p') (x : R) :
     Submodule.factor h (Submodule.Quotient.mk x) = Submodule.Quotient.mk x := rfl
 
+/--
+@isnad1 id=eq.1h4v.s9.39bad8f9d88e from=translated src=- shape=33afe699 vocab=c20c37f2
+-/
 theorem smul_eq_zero_of_mem {r : R} (hr : r ∈ 𝔪) (ψ : E →ₗ[R] R ⧸ 𝔪) : r • ψ = 0 := by
   ext x
   rw [LinearMap.smul_apply, LinearMap.zero_apply]
@@ -33,10 +39,16 @@ theorem smul_eq_zero_of_mem {r : R} (hr : r ∈ 𝔪) (ψ : E →ₗ[R] R ⧸ �
   rw [← hy, ← Submodule.Quotient.mk_smul, Submodule.Quotient.mk_eq_zero, smul_eq_mul]
   exact Ideal.mul_mem_right _ _ hr
 
+/--
+@isnad1 id=isunit.1h2v.s7.25536b569d37 from=translated src=- shape=113ff04a vocab=cfcd892c
+-/
 theorem isUnit_of_mk_ne_zero {c : R} (hc : (Submodule.Quotient.mk c : R ⧸ 𝔪) ≠ 0) : IsUnit c := by
   by_contra h
   exact hc ((Submodule.Quotient.mk_eq_zero 𝔪).mpr ((IsLocalRing.mem_maximalIdeal c).mpr h))
 
+/--
+@isnad1 id=eq.2h4v.s10.4609bae7fe84 from=translated src=- shape=f28f7a72 vocab=a127b351
+-/
 theorem span_singleton_eq_top [Module.Finite R E] (ψ₀ : E →ₗ[R] R ⧸ 𝔪)
     (hU : ∀ ψ : E →ₗ[R] R ⧸ 𝔪, ∃ r : R, ψ = r • ψ₀) (e : E) (he : ψ₀ e ≠ 0) :
     Submodule.span R {e} = ⊤ := by
@@ -91,6 +103,9 @@ theorem span_singleton_eq_top [Module.Finite R E] (ψ₀ : E →ₗ[R] R ⧸ �
 
 variable [IsNoetherianRing R]
 
+/--
+@isnad1 id=nonempty.5h4v.s11.c7dc4a3c2c93 from=translated src=- shape=6c302c76 vocab=2dc66079
+-/
 theorem core [Module.Finite R E] (I : Ideal R) (hI : I ≤ 𝔪) (hIN : ∃ N : ℕ, 𝔪 ^ N ≤ I)
     (ψ₀ : E →ₗ[R] R ⧸ 𝔪) (hψ₀ : ψ₀ ≠ 0) (hU : ∀ ψ : E →ₗ[R] R ⧸ 𝔪, ∃ r : R, ψ = r • ψ₀)
     (hW : ∀ (J' : Ideal R) (hJ' : J' ≤ 𝔪), (∃ N : ℕ, 𝔪 ^ N ≤ J') →
@@ -182,6 +197,9 @@ end Core
 section Dict
 
 omit [IsLocalRing R] in
+/--
+@isnad1 id=iff.0h6v.s10.ccfbda0ff504 from=translated src=- shape=9a21200a vocab=9d2a3e76
+-/
 theorem mem_ker_lTensor_iff_baseChange {A : Type u} [CommRing A] [Algebra R A] {K₀ K₁ : Type u}
     [AddCommGroup K₀] [Module R K₀] [AddCommGroup K₁] [Module R K₁] (d : K₀ →ₗ[R] K₁) (z : A ⊗[R] K₀) :
     z ∈ LinearMap.ker (d.lTensor A) ↔ d.baseChange A z = 0 := by
@@ -192,6 +210,9 @@ end Dict
 end SeesawPin29
 
 open SeesawPin29 in
+/--
+@isnad1 id=nonempty.4h5v.s13.1724ea5d94ca from=translated src=- shape=d158aed8 vocab=ca55c730
+-/
 theorem solution
     (R : Type u) [CommRing R] [IsNoetherianRing R] [IsLocalRing R]
     (K₀ K₁ : Type u) [AddCommGroup K₀] [Module R K₀] [Module.Finite R K₀] [Module.Free R K₀]

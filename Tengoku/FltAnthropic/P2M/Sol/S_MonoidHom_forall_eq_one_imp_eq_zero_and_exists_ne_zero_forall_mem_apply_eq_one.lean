@@ -9,6 +9,9 @@ namespace P2MW.S_MonoidHom_forall_eq_one_imp_eq_zero_and_exists_ne_zero_forall_m
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=and.1h3v.s10.fbb034826c60 from=translated src=- shape=62e4d462 vocab=fff4b833
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] (M : Type) [AddCommGroup M] [Finite M] (hM : ∀ m : M, p • m = 0)
     (L : Type) [Field L] [IsAlgClosed L] [CharZero L] :

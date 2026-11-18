@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open MvPolynomial
 
+/--
+@isnad1 id=eq.6h13v.s10.93847de91286 from=translated src=- shape=e1a1234e vocab=fa4daaaa
+-/
 theorem solution
     {σ : Type*} {E : Type*} {M : Type*} {R : Type*}
     [AddCommGroup M] [Module (MvPolynomial σ ℤ) M] [AddCommGroup R]

@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=ex.14h17v.s12.7d0a51e7f6df from=translated src=- shape=4c593222 vocab=52f7a2e5
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsNoetherianRing R] (I : Ideal R)
     {M N K : Type u} [AddCommGroup M] [Module R M] [Module.Finite R M]

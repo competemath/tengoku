@@ -24,6 +24,9 @@ noncomputable def Mon (e : ℕ) : Finset (Fin (n + 1) →₀ ℕ) :=
   ((Finsupp.finite_of_degree_le (σ := Fin (n + 1)) e).subset
     (fun m (hm : m ∈ {m : Fin (n + 1) →₀ ℕ | m.degree = e}) => le_of_eq hm)).toFinset
 
+/--
+@isnad1 id=iff.0h3v.s8.153366640a56 from=translated src=- shape=d4edef69 vocab=8cd65d3e
+-/
 @[scoped simp] theorem mem_Mon (e : ℕ) (m : Fin (n + 1) →₀ ℕ) : m ∈ Mon n e ↔ m.degree = e := by
   simp [Mon]
 
@@ -32,6 +35,9 @@ private noncomputable def _root_.MacaulayRed.lex : MonomialOrder (Fin (n + 1)) :
 export _root_.MacaulayRed (lex)
 variable (K : Type) [Field K]
 
+/--
+@isnad1 id=eq.2h5v.s8.d988b45c7a33 from=translated src=- shape=2a68abc4 vocab=80f1af4b
+-/
 theorem degree_eq_of_mem_support {e : ℕ} {p : MvPolynomial (Fin (n + 1)) K}
     (hp : p.IsHomogeneous e) {m : Fin (n + 1) →₀ ℕ} (hm : m ∈ p.support) : m.degree = e := by
   have h : p ∈ homogeneousSubmodule (Fin (n + 1)) K e := hp
@@ -43,22 +49,34 @@ noncomputable def LM (J : Ideal (MvPolynomial (Fin (n + 1)) K)) (e : ℕ) : Fins
   exact (Mon n e).filter fun a => ∃ f : MvPolynomial (Fin (n + 1)) K,
     f ∈ J ∧ f.IsHomogeneous e ∧ f ≠ 0 ∧ (lex n).degree f = a
 
+/--
+@isnad1 id=iff.0h5v.s10.3b96059b7f86 from=translated src=- shape=22de1a1b vocab=6aac7058
+-/
 theorem mem_LM (J : Ideal (MvPolynomial (Fin (n + 1)) K)) (e : ℕ) (a : Fin (n + 1) →₀ ℕ) :
     a ∈ LM n K J e ↔ a.degree = e ∧ ∃ f : MvPolynomial (Fin (n + 1)) K,
       f ∈ J ∧ f.IsHomogeneous e ∧ f ≠ 0 ∧ (lex n).degree f = a := by
   classical
   simp [LM]
 
+/--
+@isnad1 id=le.0h4v.s7.6a4de1aa27d7 from=translated src=- shape=8ef87d52 vocab=71342c97
+-/
 theorem LM_subset (J : Ideal (MvPolynomial (Fin (n + 1)) K)) (e : ℕ) : LM n K J e ⊆ Mon n e := by
   classical
   intro a ha; unfold LM at ha; exact (Finset.mem_filter.1 ha).1
 
+/--
+@isnad1 id=mem.3h5v.s9.c7bb162b80cf from=translated src=- shape=17533154 vocab=54e76128
+-/
 theorem degree_mem_LM (J : Ideal (MvPolynomial (Fin (n + 1)) K)) (e : ℕ)
     {f : MvPolynomial (Fin (n + 1)) K} (hfJ : f ∈ J) (hf : f.IsHomogeneous e) (hf0 : f ≠ 0) :
     (lex n).degree f ∈ LM n K J e := by
   rw [mem_LM]
   exact ⟨degree_eq_of_mem_support n K hf ((lex n).degree_mem_support hf0), f, hfJ, hf, hf0, rfl⟩
 
+/--
+@isnad1 id=mem.1h6v.s8.f07baf0f9259 from=translated src=- shape=2dea17de vocab=56f87c68
+-/
 theorem add_single_mem_LM (J : Ideal (MvPolynomial (Fin (n + 1)) K)) (d : ℕ)
     {a : Fin (n + 1) →₀ ℕ} (ha : a ∈ LM n K J d) (i : Fin (n + 1)) :
     a + Finsupp.single i 1 ∈ LM n K J (d + 1) := by
@@ -76,10 +94,16 @@ noncomputable def W (J : Ideal (MvPolynomial (Fin (n + 1)) K)) (e : ℕ) :
     Submodule K ↥(homogeneousSubmodule (Fin (n + 1)) K e) :=
   Submodule.comap (homogeneousSubmodule (Fin (n + 1)) K e).subtype (J.restrictScalars K)
 
+/--
+@isnad1 id=iff.0h5v.s12.0452afb86498 from=translated src=- shape=8a456656 vocab=17edd7c7
+-/
 theorem mem_W (J : Ideal (MvPolynomial (Fin (n + 1)) K)) (e : ℕ)
     (p : ↥(homogeneousSubmodule (Fin (n + 1)) K e)) : p ∈ W n K J e ↔ (p : MvPolynomial _ K) ∈ J :=
   Iff.rfl
 
+/--
+@isnad1 id=finite.0h3v.s9.e2ab4c8b43a1 from=translated src=- shape=d42354e4 vocab=53df335a
+-/
 scoped instance finite_homogeneousSubmodule (e : ℕ) :
     Module.Finite K ↥(homogeneousSubmodule (Fin (n + 1)) K e) := by
   rw [MvPolynomial.homogeneousSubmodule_eq_finsupp_supported]
@@ -87,6 +111,9 @@ scoped instance finite_homogeneousSubmodule (e : ℕ) :
     ((Finsupp.finite_of_degree_le e).subset fun x (hx : x.degree = e) => le_of_eq hx).to_subtype
   exact Module.Finite.of_basis (MvPolynomial.basisRestrictSupport K {x : Fin (n + 1) →₀ ℕ | x.degree = e})
 
+/--
+@isnad1 id=eq.0h3v.s9.c7211b0cd944 from=translated src=- shape=f6420eef vocab=1bfa544f
+-/
 theorem finrank_homogeneousSubmodule (e : ℕ) :
     Module.finrank K ↥(homogeneousSubmodule (Fin (n + 1)) K e) = (Mon n e).card := by
   rw [MvPolynomial.homogeneousSubmodule_eq_finsupp_supported]
@@ -97,6 +124,9 @@ theorem finrank_homogeneousSubmodule (e : ℕ) :
       (fun m (hm : m ∈ {m : Fin (n + 1) →₀ ℕ | m.degree = e}) => le_of_eq hm))]
   rfl
 
+/--
+@isnad1 id=le.0h4v.s12.923efbbbbfa9 from=translated src=- shape=a639978b vocab=db58d776
+-/
 theorem finrank_W_le (J : Ideal (MvPolynomial (Fin (n + 1)) K)) (e : ℕ) :
     Module.finrank K ↥(W n K J e) ≤ (LM n K J e).card := by
   classical
@@ -122,6 +152,9 @@ theorem finrank_W_le (J : Ideal (MvPolynomial (Fin (n + 1)) K)) (e : ℕ) :
   have := LinearMap.finrank_le_finrank_of_injective hψ
   rwa [Module.finrank_fintype_fun_eq_card, Fintype.card_coe] at this
 
+/--
+@isnad1 id=linearin.2h4v.s10.5e9b991837aa from=translated src=- shape=4588695a vocab=8b8e0bb0
+-/
 theorem linearIndependent_of_degree_eq (s : Finset (Fin (n + 1) →₀ ℕ))
     (g : ↥s → MvPolynomial (Fin (n + 1)) K) (hg0 : ∀ a, g a ≠ 0)
     (hg : ∀ a, (lex n).degree (g a) = a.1) : LinearIndependent K g := by
@@ -153,6 +186,9 @@ theorem linearIndependent_of_degree_eq (s : Finset (Fin (n + 1) →₀ ℕ))
   rw [hc, coeff_zero] at hcoeff
   exact mul_ne_zero hca₀ ((lex n).leadingCoeff_ne_zero_iff.2 (hg0 a₀)) hcoeff.symm
 
+/--
+@isnad1 id=le.0h4v.s12.33e1c0c87a53 from=translated src=- shape=c699310f vocab=db58d776
+-/
 theorem card_LM_le (J : Ideal (MvPolynomial (Fin (n + 1)) K)) (e : ℕ) :
     (LM n K J e).card ≤ Module.finrank K ↥(W n K J e) := by
   classical
@@ -169,10 +205,16 @@ theorem card_LM_le (J : Ideal (MvPolynomial (Fin (n + 1)) K)) (e : ℕ) :
   have := hli.fintype_card_le_finrank
   rwa [Fintype.card_coe] at this
 
+/--
+@isnad1 id=eq.0h4v.s12.e724810d08ca from=translated src=- shape=a639978b vocab=06cb43f0
+-/
 theorem finrank_W (J : Ideal (MvPolynomial (Fin (n + 1)) K)) (e : ℕ) :
     Module.finrank K ↥(W n K J e) = (LM n K J e).card :=
   le_antisymm (finrank_W_le n K J e) (card_LM_le n K J e)
 
+/--
+@isnad1 id=eq.0h4v.s12.80432a048b56 from=translated src=- shape=e279e569 vocab=4660e9be
+-/
 theorem finrank_piece_add (J : Ideal (MvPolynomial (Fin (n + 1)) K)) (e : ℕ) :
     Module.finrank K (piece J e) + (LM n K J e).card = (Mon n e).card := by
   rw [← finrank_W n K J e, ← finrank_homogeneousSubmodule n K e]
@@ -182,6 +224,9 @@ end MacaulayRed
 open scoped _root_.P2MW.S_MvPolynomial_finrank_piece_succ_le_macaulayPow.MacaulayRed
 
 open MacaulayRed MvPolynomial AlgebraicGeometry.HilbertFunctor in
+/--
+@isnad1 id=le.2h4v.s13.1758ec89163e from=translated src=- shape=3b54936b vocab=ce28f11b
+-/
 theorem solution
     (n d : ℕ) (hd : 1 ≤ d) (K : Type) [Field K] (J : Ideal (MvPolynomial (Fin (n + 1)) K))
     (hJ : ∀ p ∈ J, ∀ i : ℕ, homogeneousComponent i p ∈ J) :

@@ -11,6 +11,9 @@ namespace P2MW.S_MonoidHom_isOpen_ker_of_cycloCharSpec
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=isopen.1h2v.s11.891cafda1448 from=translated src=- shape=5a806d28 vocab=5ca8ad67
+-/
 theorem solution (m : ℕ) [NeZero m]
     (cyc : (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) →* (ZMod m)ˣ)
     (hcyc : ∀ (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) (μ : AlgebraicClosure ℚ),

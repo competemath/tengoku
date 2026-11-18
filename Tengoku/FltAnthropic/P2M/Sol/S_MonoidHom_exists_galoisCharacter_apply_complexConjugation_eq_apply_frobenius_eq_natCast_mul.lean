@@ -17,6 +17,9 @@ open scoped ComplexConjugate
 
 local notation "ℚbar" => AlgebraicClosure ℚ
 
+/--
+@isnad1 id=eq.0h1v.s7.72133ebf0e15 from=translated src=- shape=e79615fb vocab=c6e6cac9
+-/
 theorem card_rootsOfUnity (m : ℕ) [NeZero m] :
     Nat.card (rootsOfUnity m ℚbar) = m := by
   haveI : NeZero (m : ℚbar) := ⟨Nat.cast_ne_zero.mpr (NeZero.ne m)⟩
@@ -28,6 +31,9 @@ noncomputable def cyc (m : ℕ) [NeZero m] :
     (fun σ => modularCyclotomicCharacter ℚbar (card_rootsOfUnity m) (σ : ℚbar ≃+* ℚbar))
     (fun a b => by rw [← map_mul]; rfl)
 
+/--
+@isnad1 id=eq.1h3v.s10.2d87f657e97c from=translated src=- shape=243bb1ea vocab=4466a8c2
+-/
 theorem cyc_spec (m : ℕ) [NeZero m] (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ)
     (μ : ℚbar) (hμ : μ ^ m = 1) :
     σ μ = μ ^ ((cyc m σ : ZMod m)).val := by
@@ -37,6 +43,9 @@ theorem cyc_spec (m : ℕ) [NeZero m] (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] Alg
   rw [rootsOfUnity.val_mkOfPowEq_coe] at h
   exact h
 
+/--
+@isnad1 id=eq.1h2v.s8.4ac51906b845 from=translated src=- shape=915d8f64 vocab=af49fe54
+-/
 theorem complexConjugation_apply_of_pow_eq_one {m : ℕ} [NeZero m] (μ : ℚbar) (hμ : μ ^ m = 1) :
     complexConjugation μ = μ⁻¹ := by
   apply (complexEmbedding : ℚbar →ₐ[ℚ] ℂ).toRingHom.injective
@@ -45,6 +54,9 @@ theorem complexConjugation_apply_of_pow_eq_one {m : ℕ} [NeZero m] (μ : ℚbar
   have h1 : (complexEmbedding μ) ^ m = 1 := by rw [← map_pow, hμ, map_one]
   exact (Complex.inv_eq_conj (Complex.norm_eq_one_of_pow_eq_one h1 (NeZero.ne m))).symm
 
+/--
+@isnad1 id=eq.0h1v.s10.750d8562b3c9 from=translated src=- shape=56c9ebf7 vocab=725910d2
+-/
 theorem cyc_complexConjugation (m : ℕ) [NeZero m] : cyc m complexConjugation = -1 := by
   haveI : NeZero (m : ℚbar) := ⟨Nat.cast_ne_zero.mpr (NeZero.ne m)⟩
   obtain ⟨ζ, hζ⟩ := HasEnoughRootsOfUnity.prim (M := ℚbar) (n := m)
@@ -76,6 +88,9 @@ end
 
 end CycTwist
 
+/--
+@isnad1 id=ex.0h4v.s11.fc77bae598ad from=translated src=- shape=5378a0c0 vocab=60f3a98b
+-/
 theorem solution
     {k : Type} [Field k] (p : ℕ) [Fact p.Prime] [CharP k p]
     (M : ℕ) [NeZero M] (χ : (ZMod M)ˣ →* kˣ) :

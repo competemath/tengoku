@@ -25,6 +25,9 @@ def box : Set (ι →₀ ℕ) := {m | ∀ i, m i < N i}
 def K : Ideal (MvPolynomial ι k) :=
   Ideal.span (Set.range fun i : ι => (X i : MvPolynomial ι k) ^ N i)
 
+/--
+@isnad1 id=eq.0h3v.s8.24e38d5f786a from=translated src=- shape=353e4e3e vocab=5716a9fa
+-/
 theorem K_eq : K k N = Ideal.span ((fun s => monomial s (1 : k)) ''
     Set.range fun i : ι => Finsupp.single i (N i)) := by
   rw [K, ← Set.range_comp]
@@ -34,6 +37,9 @@ theorem K_eq : K k N = Ideal.span ((fun s => monomial s (1 : k)) ''
 
 variable {k N}
 
+/--
+@isnad1 id=iff.0h4v.s7.4774dd0393dc from=translated src=- shape=3cb5c2f2 vocab=7803c620
+-/
 theorem mem_K_iff (P : MvPolynomial ι k) : P ∈ K k N ↔ ∀ m ∈ P.support, m ∉ box N := by
   rw [K_eq, mem_ideal_span_monomial_image]
   refine forall₂_congr fun m _ => ?_
@@ -47,10 +53,16 @@ theorem mem_K_iff (P : MvPolynomial ι k) : P ∈ K k N ↔ ∀ m ∈ P.support,
     obtain ⟨i, hi⟩ := hm
     exact ⟨_, ⟨i, rfl⟩, Finsupp.single_le_iff.2 hi⟩
 
+/--
+@isnad1 id=iff.0h4v.s8.d2b02d17e3fc from=translated src=- shape=45d0cfb6 vocab=f03503ce
+-/
 theorem mem_restrictSupport_iff (P : MvPolynomial ι k) :
     P ∈ restrictSupport k (box N) ↔ ∀ m ∈ P.support, m ∈ box N :=
   (MvPolynomial.mem_restrictSupport_iff k).trans Iff.rfl
 
+/--
+@isnad1 id=iscompl.0h3v.s8.41a4d2b06e06 from=translated src=- shape=24d26adc vocab=3e176532
+-/
 theorem isCompl : IsCompl ((K k N).restrictScalars k) (restrictSupport k (box N)) := by
   classical
   constructor
@@ -100,6 +112,9 @@ def boxEquiv [Fintype ι] : box N ≃ (∀ i, Fin (N i)) where
     exact Fin.ext (congrFun (Finsupp.coe_equivFunOnFinite_symm _) i)
 
 variable (k N) in
+/--
+@isnad1 id=eq.0h3v.s8.848de8d761df from=translated src=- shape=b2e82797 vocab=ae44d89e
+-/
 theorem finrank_quotient [Nontrivial k] [Fintype ι] :
     Module.finrank k (MvPolynomial ι k ⧸ K k N) = ∏ i, N i := by
   have e₁ : (MvPolynomial ι k ⧸ (K k N).restrictScalars k) ≃ₗ[k] MvPolynomial ι k ⧸ K k N :=
@@ -112,6 +127,9 @@ theorem finrank_quotient [Nontrivial k] [Fintype ι] :
 
 end MvPolynomial.TruncatedBox
 
+/--
+@isnad1 id=eq.0h3v.s9.c3db6f6a5561 from=translated src=- shape=f882727f vocab=dab7e1a3
+-/
 theorem solution
     (k : Type u) [CommRing k] [Nontrivial k] {ι : Type v} [Fintype ι] (N : ι → ℕ) :
     Module.finrank k (MvPolynomial ι k ⧸

@@ -15,6 +15,9 @@ namespace EXREF
 
 variable {A : Type u} [CommRing A]
 
+/--
+@isnad1 id=ex.2h3v.s8.fc6ea4a0da43 from=translated src=- shape=ab1aba24 vocab=00e20893
+-/
 theorem exists_crt_coeff (S : Finset (Ideal A)) (hS : ∀ 𝔭 ∈ S, 𝔭.IsMaximal) (𝔭 : Ideal A) (h𝔭 : 𝔭 ∈ S) :
     ∃ a : A, a - 1 ∈ 𝔭 ∧ ∀ 𝔮 ∈ S, 𝔮 ≠ 𝔭 → a ∈ 𝔮 := by
   classical
@@ -33,6 +36,9 @@ theorem exists_crt_coeff (S : Finset (Ideal A)) (hS : ∀ 𝔭 ∈ S, 𝔭.IsMax
 
 variable {P : Type v} [AddCommGroup P] [Module A P]
 
+/--
+@isnad1 id=ex.1h4v.s10.7737c8364ec9 from=translated src=- shape=02f994d8 vocab=4b17b3e2
+-/
 theorem exists_lift_basis_fibre (𝔭 : Ideal A) [𝔭.IsMaximal] [Module.Finite A P] (d : ℕ)
     (hrank : Module.finrank (A ⧸ 𝔭) ((A ⧸ 𝔭) ⊗[A] P) = d) :
     ∃ (e : Fin d → P) (b : Module.Basis (Fin d) (A ⧸ 𝔭) ((A ⧸ 𝔭) ⊗[A] P)),
@@ -44,6 +50,9 @@ theorem exists_lift_basis_fibre (𝔭 : Ideal A) [𝔭.IsMaximal] [Module.Finite
   choose e he using fun i => hsurj (b i)
   exact ⟨e, b, fun i => (he i).symm⟩
 
+/--
+@isnad1 id=mem.1h4v.s9.fab14f7c7700 from=translated src=- shape=c1e13c6e vocab=78ae3d23
+-/
 theorem mem_smul_top_of_tmul_eq_zero (𝔮 : Ideal A) (p : P) (h : (1 : A ⧸ 𝔮) ⊗ₜ[A] p = 0) :
     p ∈ 𝔮 • (⊤ : Submodule A P) := by
   have h2 : TensorProduct.quotTensorEquivQuotSMul P 𝔮 (Ideal.Quotient.mk 𝔮 1 ⊗ₜ[A] p) = 0 := by
@@ -51,10 +60,16 @@ theorem mem_smul_top_of_tmul_eq_zero (𝔮 : Ideal A) (p : P) (h : (1 : A ⧸ �
   rw [TensorProduct.quotTensorEquivQuotSMul_mk_tmul, one_smul] at h2
   exact (Submodule.Quotient.mk_eq_zero _).mp h2
 
+/--
+@isnad1 id=eq.0h5v.s10.d94eebaf5a00 from=translated src=- shape=6498de9a vocab=ebccc17f
+-/
 theorem smul_one_tmul (𝔮 : Ideal A) (a : A) (p : P) :
     a • ((1 : A ⧸ 𝔮) ⊗ₜ[A] p) = (Ideal.Quotient.mk 𝔮 a) • ((1 : A ⧸ 𝔮) ⊗ₜ[A] p) := by
   rw [← IsScalarTower.algebraMap_smul (A ⧸ 𝔮) a, Ideal.Quotient.algebraMap_eq]
 
+/--
+@isnad1 id=ex.3h4v.s9.59f114788f9c from=translated src=- shape=5576342b vocab=a32086c0
+-/
 theorem exists_forall_not_mem_and_linearIndependent_and_smul_mem_span
     [IsDomain A] [Module.Finite A P] (d : ℕ)
     (S : Finset (Ideal A)) (hS : ∀ 𝔭 ∈ S, 𝔭.IsMaximal) (hSne : S.Nonempty)
@@ -208,6 +223,9 @@ theorem exists_forall_not_mem_and_linearIndependent_and_smul_mem_span
 
 end EXREF
 
+/--
+@isnad1 id=ex.3h4v.s9.498b8bdc5774 from=translated src=- shape=8427bf12 vocab=4705ab7c
+-/
 theorem solution
     {A : Type u} [CommRing A] [IsDomain A] {P : Type v} [AddCommGroup P] [Module A P] [Module.Finite A P]
     (d : ℕ) (S : Finset (Ideal A)) (hS : ∀ 𝔭 ∈ S, 𝔭.IsMaximal) (hSne : S.Nonempty)

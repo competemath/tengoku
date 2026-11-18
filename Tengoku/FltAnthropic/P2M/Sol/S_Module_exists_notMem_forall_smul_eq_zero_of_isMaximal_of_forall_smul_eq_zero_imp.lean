@@ -31,6 +31,9 @@ theorem eq_bot_of_pow_smul_eq_bot {R M : Type*} [CommRing R] [AddCommGroup M] [M
     apply eq_bot_of_smul_eq_bot P htors
     rwa [← Submodule.mul_smul, ← pow_succ']
 
+/--
+@isnad1 id=ex.2h3v.s8.05578ce63ad5 from=translated src=- shape=6724775d vocab=02c3dbd5
+-/
 theorem exists_not_mem_and_forall_smul_eq_zero_of_finite_of_noTorsion
     {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M] [Finite M]
     (P : Ideal R) (hP : P ≠ ⊤) (htors : ∀ m : M, (∀ t ∈ P, t • m = 0) → m = 0) :
@@ -80,6 +83,9 @@ theorem exists_not_mem_and_forall_smul_eq_zero_of_finite_of_noTorsion
 
 end S17R2
 
+/--
+@isnad1 id=ex.2h3v.s8.811b37dbc4ba from=translated src=- shape=23f49afe vocab=4042db95
+-/
 theorem solution
     {T : Type*} [CommRing T] {M : Type*} [AddCommGroup M] [Module T M] [Finite M]
     (𝔓 : Ideal T) (h𝔓 : 𝔓.IsMaximal)

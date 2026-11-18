@@ -12,6 +12,9 @@ namespace P2MW.S_QuotSMulTop_exists_basis_lift
 
 open scoped Pointwise
 
+/--
+@isnad1 id=ex.2h5v.s10.0ef3dfd34b53 from=translated src=- shape=54f0c551 vocab=ef94da79
+-/
 theorem solution {R : Type*} [CommRing R] {M : Type*} [AddCommGroup M] [Module R M] [IsLocalRing R] [IsNoetherianRing R] [Module.Finite R M] (x : R) (hx : x ∈ IsLocalRing.maximalIdeal R) (hreg : IsSMulRegular M x) {ι : Type*} [Fintype ι] (b : Module.Basis ι (R ⧸ Ideal.span {x}) (QuotSMulTop x M)) :
     ∃ b' : Module.Basis ι R M,
       ∀ i, (Submodule.Quotient.mk (b' i) : QuotSMulTop x M) = b i := by

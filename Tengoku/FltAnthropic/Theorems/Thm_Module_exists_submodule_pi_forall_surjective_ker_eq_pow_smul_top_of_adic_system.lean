@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=ex.3h4v.s12.6fbc4e01ce54 from=translated src=- shape=e11eeb2f vocab=45f69b3b
+-/
 theorem Module.exists_submodule_pi_forall_surjective_ker_eq_pow_smul_top_of_adic_system
     {R : Type u} [CommRing R] (I : Ideal R) (hI : I.FG)
     (E : ℕ → Type u) [∀ k, AddCommGroup (E k)] [∀ k, Module R (E k)]

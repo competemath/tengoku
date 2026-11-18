@@ -10,6 +10,9 @@ universe u v w
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=finite.0h4v.s10.87e1ab97e14a from=translated src=- shape=c31830e2 vocab=6940f3e4
+-/
 theorem TwoChartCech.Mumford.finite_K0
     {R : Type u} [CommRing R] [IsNoetherianRing R]
     {C0 : Type v} {C1 : Type w} [AddCommGroup C0] [Module R C0] [AddCommGroup C1] [Module R C1]

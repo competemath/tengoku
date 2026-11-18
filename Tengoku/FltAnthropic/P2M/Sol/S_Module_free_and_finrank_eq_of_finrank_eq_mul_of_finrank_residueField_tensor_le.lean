@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open IsLocalRing TensorProduct
 
+/--
+@isnad1 id=and.2h5v.s8.afd397ba54c1 from=translated src=- shape=6db14890 vocab=d02f1dba
+-/
 theorem C1Sol.free_and_finrank_eq_of_span_eq_top
     {𝒪 A M : Type*} [CommRing 𝒪] [IsDomain 𝒪] [CommRing A] [Nontrivial A] [Algebra 𝒪 A]
     [Module.Finite 𝒪 A] [Module.Free 𝒪 A]
@@ -49,6 +52,9 @@ theorem C1Sol.free_and_finrank_eq_of_span_eq_top
   let e : (Fin d → A) ≃ₗ[A] M := LinearEquiv.ofBijective φ ⟨hinj, hφ⟩
   exact ⟨Module.Free.of_equiv e, by rw [← e.finrank_eq, Module.finrank_fin_fun]⟩
 
+/--
+@isnad1 id=and.2h4v.s9.977289a1970c from=translated src=- shape=64d70fee vocab=1bcd8dd6
+-/
 theorem solution
     {𝒪 A M : Type*} [CommRing 𝒪] [IsDomain 𝒪] [CommRing A] [IsLocalRing A] [Algebra 𝒪 A]
     [Module.Finite 𝒪 A] [Module.Free 𝒪 A]

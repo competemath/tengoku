@@ -17,17 +17,29 @@ local notation "A" => MonoidAlgebra K (Multiplicative (ZMod n))
 
 abbrev γ : Multiplicative (ZMod n) := Multiplicative.ofAdd (1 : ZMod n)
 
+/--
+@isnad1 id=eq.0h1v.s6.c06407593cc0 from=translated src=- shape=e298b379 vocab=0f5fb9f9
+-/
 lemma γ_pow_n : (γ n) ^ n = 1 := by
   rw [← ofAdd_nsmul, nsmul_eq_mul, mul_one, ZMod.natCast_self, ofAdd_zero]
 
+/--
+@isnad1 id=eq.0h2v.s6.2912372ccceb from=translated src=- shape=509424cb vocab=51739ee1
+-/
 lemma γ_pow_val (g : G) : (γ n) ^ (Multiplicative.toAdd g).val = g := by
   rw [← ofAdd_nsmul, nsmul_eq_mul, mul_one, ZMod.natCast_val, ZMod.cast_id', id_eq,
     ofAdd_toAdd]
 
+/--
+@isnad1 id=eq.0h3v.s9.71710d704c0a from=translated src=- shape=e602c23f vocab=2e30e96f
+-/
 lemma val_pow_eq_one (f : WithConv (A →ₐ[K] K̄)) :
     (f (MonoidAlgebra.of K G (γ n))) ^ n = 1 := by
   rw [← map_pow, ← map_pow, γ_pow_n, map_one, map_one]
 
+/--
+@isnad1 id=ne.0h3v.s9.1b45ba410462 from=translated src=- shape=5a1bfcff vocab=73c51b42
+-/
 lemma val_ne_zero (f : WithConv (A →ₐ[K] K̄)) :
     f (MonoidAlgebra.of K G (γ n)) ≠ 0 := fun h => by
   have := val_pow_eq_one K n f
@@ -38,9 +50,15 @@ noncomputable def toRoot (f : WithConv (A →ₐ[K] K̄)) : rootsOfUnity n K̄ :
   ⟨Units.mk0 _ (val_ne_zero K n f), by
     rw [mem_rootsOfUnity]; ext; push_cast; exact val_pow_eq_one K n f⟩
 
+/--
+@isnad1 id=eq.0h3v.s10.9f41103a4cbc from=translated src=- shape=24d7a0b6 vocab=23a9b4d6
+-/
 lemma toRoot_coe (f : WithConv (A →ₐ[K] K̄)) :
     ((toRoot K n f : K̄ˣ) : K̄) = f (MonoidAlgebra.of K G (γ n)) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.f3a13fd597fc from=translated src=- shape=817970dd vocab=77de1099
+-/
 lemma convMul_of (f g : WithConv (A →ₐ[K] K̄)) (x : G) :
     (f * g) (MonoidAlgebra.of K G x)
     = f (MonoidAlgebra.of K G x) * g (MonoidAlgebra.of K G x) := by
@@ -51,17 +69,26 @@ lemma convMul_of (f g : WithConv (A →ₐ[K] K̄)) (x : G) :
   rw [h1, TensorProduct.map_tmul, Algebra.TensorProduct.lift_tmul]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.73734b0783f7 from=translated src=- shape=6ac647cb vocab=75536bd2
+-/
 lemma toRoot_mul (f g : WithConv (A →ₐ[K] K̄)) :
     toRoot K n (f * g) = toRoot K n f * toRoot K n g := by
   refine Subtype.ext (Units.ext ?_)
   push_cast
   exact convMul_of K n f g (γ n)
 
+/--
+@isnad1 id=eq.1h5v.s10.e7f98d561216 from=translated src=- shape=391b7321 vocab=c7cffae7
+-/
 lemma toRoot_gal (σ : K̄ ≃ₐ[K] K̄) (f g : WithConv (A →ₐ[K] K̄))
     (hfg : ∀ a, g a = σ (f a)) :
     ((toRoot K n g : K̄ˣ) : K̄) = σ ((toRoot K n f : K̄ˣ) : K̄) := by
   rw [toRoot_coe, toRoot_coe]; exact hfg _
 
+/--
+@isnad1 id=injectiv.0h2v.s8.55f925f2c631 from=translated src=- shape=5f2915b9 vocab=05461ec2
+-/
 lemma toRoot_injective : Function.Injective (toRoot K n) := by
   intro f g h
   have hval : f (MonoidAlgebra.of K G (γ n)) = g (MonoidAlgebra.of K G (γ n)) := by
@@ -87,6 +114,9 @@ noncomputable def rootHom (ζ : K̄ˣ) (hζ : ζ ^ n = 1) : G →* K̄ˣ where
     simp only [toAdd_mul]
     rw [ZMod.val_add, ← hζpow, pow_add]
 
+/--
+@isnad1 id=eq.1h3v.s9.758e5c5eaa05 from=translated src=- shape=19b00dad vocab=60c8e3c2
+-/
 lemma rootHom_γ (ζ : K̄ˣ) (hζ : ζ ^ n = 1) : rootHom K n ζ hζ (γ n) = ζ := by
   show ζ ^ (Multiplicative.toAdd (γ n)).val = ζ
   have hv : (Multiplicative.toAdd (γ n)).val = 1 % n := by
@@ -101,6 +131,9 @@ noncomputable def fromRoot (ζ : rootsOfUnity n K̄) : WithConv (A →ₐ[K] K̄
   WithConv.toConv <| (MonoidAlgebra.lift K K̄ G) <|
     (Units.coeHom K̄).comp (rootHom K n (ζ : K̄ˣ) ((mem_rootsOfUnity ..).mp ζ.2))
 
+/--
+@isnad1 id=eq.0h3v.s10.7412565800e8 from=translated src=- shape=0a5786b4 vocab=f3b10868
+-/
 lemma fromRoot_val (ζ : rootsOfUnity n K̄) :
     (fromRoot K n ζ) (MonoidAlgebra.of K G (γ n)) = ((ζ : K̄ˣ) : K̄) := by
   show ((MonoidAlgebra.lift K K̄ G) _) (MonoidAlgebra.of K G (γ n)) = _
@@ -109,17 +142,26 @@ lemma fromRoot_val (ζ : rootsOfUnity n K̄) :
   simp only [MonoidHom.comp_apply, Units.coeHom_apply]
   rw [rootHom_γ]
 
+/--
+@isnad1 id=eq.0h3v.s8.9fcb16d32b76 from=translated src=- shape=c6f8f3c7 vocab=cba69a20
+-/
 lemma toRoot_fromRoot (ζ : rootsOfUnity n K̄) :
     toRoot K n (fromRoot K n ζ) = ζ := by
   refine Subtype.ext (Units.ext ?_)
   rw [toRoot_coe, fromRoot_val]
 
+/--
+@isnad1 id=surjecti.0h2v.s8.23083787ae42 from=translated src=- shape=5f2915b9 vocab=4f4c6e3b
+-/
 lemma toRoot_surjective : Function.Surjective (toRoot K n) :=
   fun ζ => ⟨fromRoot K n ζ, toRoot_fromRoot K n ζ⟩
 
 end MuPoints
 
 open MuPoints in
+/--
+@isnad1 id=ex.0h2v.s13.bce2d940268f from=translated src=- shape=44d5324e vocab=b61eabd3
+-/
 theorem solution
     (K : Type) [Field K] [CharZero K] (n : ℕ) [NeZero n] :
     ∃ eμ : WithConv (MonoidAlgebra K (Multiplicative (ZMod n)) →ₐ[K] AlgebraicClosure K)

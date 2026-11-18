@@ -19,17 +19,29 @@ open _root_.Tengoku.FltAnthropic.MvFormalGroup.Hom open _root_.Tengoku.FltAnthro
 
 variable {R : Type} [CommRing R] {g h k l : ℕ}
 
+/--
+@isnad1 id=eq.0h10v.s6.9b00a7b64922 from=translated src=- shape=58060a8b vocab=301e7c29
+-/
 @[scoped simp] theorem comp_toPowerSeries {F : MvFormalGroup g R} {G : MvFormalGroup h R} {H : MvFormalGroup k R}
     (ψ : Hom G H) (φ : Hom F G) (i : Fin k) :
     (ψ.comp φ).toPowerSeries i = subst φ.toPowerSeries (ψ.toPowerSeries i) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.606a60463b94 from=translated src=- shape=6849df4b vocab=e12126d2
+-/
 @[scoped simp] theorem id_toPowerSeries (F : MvFormalGroup g R) (i : Fin g) : (Hom.id F).toPowerSeries i = X i := rfl
 
+/--
+@isnad1 id=eq.0h6v.s5.8e7899d7b731 from=translated src=- shape=ebddded0 vocab=3a8a10cf
+-/
 theorem id_comp {F : MvFormalGroup g R} {G : MvFormalGroup h R} (φ : Hom F G) : (Hom.id G).comp φ = φ := by
   apply Hom.ext
   funext i
   rw [comp_toPowerSeries, id_toPowerSeries, subst_X φ.hasSubst_toPowerSeries]
 
+/--
+@isnad1 id=eq.0h12v.s6.50550e7d037c from=translated src=- shape=0a027ec9 vocab=38d3cd02
+-/
 theorem comp_assoc' {F : MvFormalGroup g R} {G : MvFormalGroup h R} {H : MvFormalGroup k R} {K : MvFormalGroup l R}
     (χ : Hom H K) (ψ : Hom G H) (φ : Hom F G) : (χ.comp ψ).comp φ = χ.comp (ψ.comp φ) := by
   apply Hom.ext
@@ -44,6 +56,9 @@ open scoped _root_.P2MW.S_MvFormalGroup_Deformation_isIso_equivalence.MvFormalGr
 
 open _root_.Tengoku.FltAnthropic.MvFormalGroup _root_.P2MW.S_MvFormalGroup_Deformation_isIso_equivalence.MvFormalGroup in
 
+/--
+@isnad1 id=equivale.0h4v.s6.035e1a5c1723 from=translated src=- shape=01324e67 vocab=92dd983d
+-/
 theorem solution
     {S : Type} [CommRing S] {d : ℕ} (G₀ : MvFormalGroup d S) (B : Type) [CommRing B] [Algebra B S] :
     Equivalence (fun D D' : MvFormalGroup.Deformation G₀ B => D.IsIso D') where

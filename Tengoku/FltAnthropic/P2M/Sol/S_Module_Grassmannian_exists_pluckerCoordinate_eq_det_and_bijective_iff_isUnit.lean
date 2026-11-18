@@ -28,6 +28,9 @@ section chart
 
 variable (R) (M) (k)
 
+/--
+@isnad1 id=ex.0h4v.s18.f3967599fbc1 from=translated src=- shape=ff61a16a vocab=8b0ce386
+-/
 theorem exists_pt (x : Fin k → M) :
     ∃ pt : ∀ (A : Type) [CommRing A] [Algebra R A], Chart R x A ≃ HomX R x A,
       (∀ (A : Type) [CommRing A] [Algebra R A] (N : Chart R x A) (m : M),
@@ -49,11 +52,17 @@ noncomputable def ptx (x : Fin k → M) (A : Type) [CommRing A] [Algebra R A] :
 
 variable {R M k}
 
+/--
+@isnad1 id=eq.0h7v.s16.44e6b6ff6354 from=translated src=- shape=a213e5c8 vocab=2828e124
+-/
 theorem sum_ptx_smul (x : Fin k → M) {A : Type} [CommRing A] [Algebra R A] (N : Chart R x A) (m : M) :
     ∑ i, (ptx R M k x A N).1 m i • N.1.toSubmodule.mkQ ((1 : A) ⊗ₜ[R] x i) =
       N.1.toSubmodule.mkQ ((1 : A) ⊗ₜ[R] m) :=
   (exists_pt R M k x).choose_spec.1 A N m
 
+/--
+@isnad1 id=ex.0h8v.s17.297a558f8f0f from=translated src=- shape=f9a8c029 vocab=ca886834
+-/
 theorem ptx_natural (x : Fin k → M) {A B : Type} [CommRing A] [CommRing B] [Algebra R A] [Algebra R B]
     (φ : A →ₐ[R] B) (N : Chart R x A) :
     ∃ h : Function.Bijective fun v : Fin k → B =>
@@ -62,6 +71,9 @@ theorem ptx_natural (x : Fin k → M) {A B : Type} [CommRing A] [CommRing B] [Al
         (ptx R M k x B ⟨Module.Grassmannian.map φ N.1, h⟩).1 m i = φ ((ptx R M k x A N).1 m i) :=
   (exists_pt R M k x).choose_spec.2.2 A B φ N
 
+/--
+@isnad1 id=eq.0h7v.s9.2613a17b1c7d from=translated src=- shape=03915c80 vocab=dcdb2352
+-/
 theorem ptx_x (x : Fin k → M) {A : Type} [CommRing A] [Algebra R A] (N : Chart R x A) (j : Fin k) :
     (ptx R M k x A N).1 (x j) = Pi.single j 1 :=
   (ptx R M k x A N).2 j
@@ -70,6 +82,9 @@ end chart
 
 variable (x : Fin k → M) {A : Type} [CommRing A] [Algebra R A]
 
+/--
+@isnad1 id=eq.1h8v.s17.4c4dfc4e05e2 from=translated src=- shape=bdddadec vocab=cb9c6d78
+-/
 theorem coeff_unique (N : Chart R x A) {c d : Fin k → A}
     (h : ∑ i, c i • N.1.toSubmodule.mkQ ((1 : A) ⊗ₜ[R] x i) =
       ∑ i, d i • N.1.toSubmodule.mkQ ((1 : A) ⊗ₜ[R] x i)) : c = d :=
@@ -78,16 +93,25 @@ theorem coeff_unique (N : Chart R x A) {c d : Fin k → A}
 noncomputable def cmat (N : Chart R x A) (y : Fin k → M) : Matrix (Fin k) (Fin k) A :=
   Matrix.of fun i j => (ptx R M k x A N).1 (y j) i
 
+/--
+@isnad1 id=eq.0h9v.s9.5732cfa27afa from=translated src=- shape=44961f30 vocab=bf0660af
+-/
 theorem cmat_apply (N : Chart R x A) (y : Fin k → M) (i j : Fin k) :
     cmat x N y i j = (ptx R M k x A N).1 (y j) i := rfl
 
 noncomputable def plucker (N : Chart R x A) (y : Fin k → M) : A :=
   (cmat x N y).det
 
+/--
+@isnad1 id=eq.0h6v.s6.dca5d95fdaec from=translated src=- shape=137fe7f2 vocab=1dd4dc1c
+-/
 theorem cmat_self (N : Chart R x A) : cmat x N x = 1 := by
   ext i j
   rw [cmat_apply, ptx_x, Matrix.one_apply, Pi.single_apply]
 
+/--
+@isnad1 id=eq.0h8v.s9.c855e880dc52 from=translated src=- shape=a0de8903 vocab=463d1db2
+-/
 theorem cmat_update (N : Chart R x A) (i : Fin k) (m : M) :
     cmat x N (Function.update x i m) = (1 : Matrix (Fin k) (Fin k) A).updateCol i ((ptx R M k x A N).1 m) := by
   ext a b
@@ -97,16 +121,25 @@ theorem cmat_update (N : Chart R x A) (i : Fin k) (m : M) :
     simp
   · rw [Function.update_of_ne hb, ptx_x, ite_eq_right hb, Matrix.one_apply, Pi.single_apply]
 
+/--
+@isnad1 id=eq.0h8v.s9.0084c0295424 from=translated src=- shape=2f435370 vocab=0a72512c
+-/
 theorem plucker_update (N : Chart R x A) (i : Fin k) (m : M) :
     plucker x N (Function.update x i m) = (ptx R M k x A N).1 m i := by
   unfold plucker
   rw [cmat_update x N i m, ← Matrix.cramer_apply, Matrix.cramer_one]
   simp
 
+/--
+@isnad1 id=eq.0h6v.s6.d637da662f3a from=translated src=- shape=84ecab27 vocab=b28427b9
+-/
 theorem plucker_self (N : Chart R x A) : plucker x N x = 1 := by
   unfold plucker
   rw [cmat_self, Matrix.det_one]
 
+/--
+@isnad1 id=eq.0h7v.s17.e2151a37a394 from=translated src=- shape=b7dc0a3e vocab=16716cde
+-/
 theorem family_eq (N : Chart R x A) (y : Fin k → M) :
     (fun v : Fin k → A => ∑ j, v j • N.1.toSubmodule.mkQ ((1 : A) ⊗ₜ[R] y j)) =
       (fun v : Fin k → A => ∑ i, v i • N.1.toSubmodule.mkQ ((1 : A) ⊗ₜ[R] x i)) ∘
@@ -125,6 +158,9 @@ theorem family_eq (N : Chart R x A) (y : Fin k → M) :
   refine Finset.sum_congr rfl fun j _ => ?_
   ring
 
+/--
+@isnad1 id=bijectiv.1h3v.s6.d40cd3a24bff from=translated src=- shape=9f181604 vocab=27b13e20
+-/
 theorem mulVec_bijective_of_isUnit {C : Matrix (Fin k) (Fin k) A} (hC : IsUnit C) :
     Function.Bijective fun v : Fin k → A => C.mulVec v := by
   obtain ⟨u, rfl⟩ := hC
@@ -133,6 +169,9 @@ theorem mulVec_bijective_of_isUnit {C : Matrix (Fin k) (Fin k) A} (hC : IsUnit C
     simpa only [Matrix.mulVec_mulVec, Units.inv_mul, Matrix.one_mulVec] using h
   · simp only [Matrix.mulVec_mulVec, Units.mul_inv, Matrix.one_mulVec]
 
+/--
+@isnad1 id=iff.0h7v.s16.06d5ce291519 from=translated src=- shape=7ed9c352 vocab=075736b4
+-/
 theorem bijective_iff_isUnit (N : Chart R x A) (y : Fin k → M) :
     (Function.Bijective fun v : Fin k → A => ∑ j, v j • N.1.toSubmodule.mkQ ((1 : A) ⊗ₜ[R] y j)) ↔
       IsUnit (plucker x N y) := by
@@ -144,6 +183,9 @@ theorem bijective_iff_isUnit (N : Chart R x A) (y : Fin k → M) :
     exact Matrix.mulVec_surjective_iff_isUnit.mp h.2
   · exact mulVec_bijective_of_isUnit
 
+/--
+@isnad1 id=eq.1h8v.s16.b70403c12a41 from=translated src=- shape=2752be02 vocab=2004cb19
+-/
 theorem cmat_mul (N : Chart R x A) (y : Fin k → M)
     (hy : Function.Bijective fun v : Fin k → A => ∑ j, v j • N.1.toSubmodule.mkQ ((1 : A) ⊗ₜ[R] y j))
     (z : Fin k → M) :
@@ -165,6 +207,9 @@ theorem cmat_mul (N : Chart R x A) (y : Fin k → M)
   refine Finset.sum_congr rfl fun l _ => ?_
   rw [cmat_apply, cmat_apply, mul_comm]
 
+/--
+@isnad1 id=eq.1h8v.s16.704e7bbca34e from=translated src=- shape=e7e6c5c8 vocab=f865abb7
+-/
 theorem plucker_mul (N : Chart R x A) (y : Fin k → M)
     (hy : Function.Bijective fun v : Fin k → A => ∑ j, v j • N.1.toSubmodule.mkQ ((1 : A) ⊗ₜ[R] y j))
     (z : Fin k → M) :
@@ -172,6 +217,9 @@ theorem plucker_mul (N : Chart R x A) (y : Fin k → M)
   unfold plucker
   rw [cmat_mul x N y hy z, Matrix.det_mul]
 
+/--
+@isnad1 id=ex.0h8v.s17.6691b486303f from=translated src=- shape=d7beab0d vocab=59de4924
+-/
 theorem plucker_natural {B : Type} [CommRing B] [Algebra R B] (φ : A →ₐ[R] B) (N : Chart R x A) :
     ∃ h : Function.Bijective fun v : Fin k → B =>
         ∑ i, v i • (Module.Grassmannian.map φ N.1).toSubmodule.mkQ ((1 : B) ⊗ₜ[R] x i),
@@ -187,6 +235,9 @@ theorem plucker_natural {B : Type} [CommRing B] [Algebra R B] (φ : A →ₐ[R] 
 end GrassPlucker
 
 open GrassPlucker in
+/--
+@isnad1 id=ex.0h3v.s19.79db1ac93870 from=translated src=- shape=1826bf82 vocab=cd00e015
+-/
 theorem solution
     (R : Type) [CommRing R] (M : Type) [AddCommGroup M] [Module R M] (k : ℕ) :
     ∃ P : ∀ (A : Type) [CommRing A] [Algebra R A] (x : Fin k → M),

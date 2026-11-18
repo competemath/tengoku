@@ -53,6 +53,9 @@ def kerEquiv : LinearMap.ker (dK d) ≃ₗ[R] LinearMap.ker d := by
 end TwoChartCech.Mumford
 
 open _root_.TwoChartCech.Mumford _root_.P2MW.S_TwoChartCech_Mumford_finite_K0.TwoChartCech.Mumford in
+/--
+@isnad1 id=finite.0h4v.s10.87e1ab97e14a from=translated src=- shape=c31830e2 vocab=6940f3e4
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsNoetherianRing R]
     {C0 : Type v} {C1 : Type w} [AddCommGroup C0] [Module R C0] [AddCommGroup C1] [Module R C1]

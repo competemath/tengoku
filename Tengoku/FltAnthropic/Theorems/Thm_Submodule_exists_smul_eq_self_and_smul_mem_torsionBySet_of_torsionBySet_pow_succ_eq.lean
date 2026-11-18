@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Submodule_exists_smul_eq_self_and_smul_mem
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.1h4v.s9.56aada550e70 from=translated src=- shape=723e58f9 vocab=cf1a3d0a
+-/
 theorem Submodule.exists_smul_eq_self_and_smul_mem_torsionBySet_of_torsionBySet_pow_succ_eq
     {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M] [Finite M]
     (I : Ideal R) (N : ℕ)

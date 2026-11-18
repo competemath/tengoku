@@ -21,6 +21,9 @@ variable {σ : Type w} [Finite σ] {R : Type u} [CommRing R]
 
 omit [Finite σ] in
 
+/--
+@isnad1 id=ex.1h3v.s8.b65492eb050e from=translated src=- shape=0700483c vocab=96386928
+-/
 theorem exists_le_degree_eq (N : ℕ) (x : σ →₀ ℕ) (hx : N ≤ x.degree) :
     ∃ y : σ →₀ ℕ, y ≤ x ∧ y.degree = N := by
   classical
@@ -52,6 +55,9 @@ theorem exists_le_degree_eq (N : ℕ) (x : σ →₀ ℕ) (hx : N ≤ x.degree) 
 
 omit [Finite σ] in
 
+/--
+@isnad1 id=mem.0h3v.s8.f9fe67b8e233 from=translated src=- shape=662cdc93 vocab=a4f002cd
+-/
 theorem monomial_one_mem_pow_span_X (y : σ →₀ ℕ) :
     (monomial y (1 : R) : MvPowerSeries σ R) ∈
       Ideal.span (Set.range (X : σ → MvPowerSeries σ R)) ^ y.degree := by
@@ -61,6 +67,9 @@ theorem monomial_one_mem_pow_span_X (y : σ →₀ ℕ) :
   refine Ideal.prod_mem_prod fun i _ => ?_
   exact Ideal.pow_mem_pow (Ideal.subset_span (Set.mem_range_self i)) _
 
+/--
+@isnad1 id=mem.2h5v.s9.4b9f33f84943 from=translated src=- shape=4056441e vocab=084fdc06
+-/
 theorem mem_of_forall_coeff_eq_zero_of_forall_monomial_mem (N : ℕ) (I : Ideal (MvPowerSeries σ R))
     (hI : ∀ y : σ →₀ ℕ, y.degree = N → (monomial y (1 : R) : MvPowerSeries σ R) ∈ I)
     (q : MvPowerSeries σ R) (hq : ∀ x : σ →₀ ℕ, x.degree < N → coeff x q = 0) : q ∈ I := by
@@ -114,6 +123,9 @@ theorem mem_of_forall_coeff_eq_zero_of_forall_monomial_mem (N : ℕ) (I : Ideal 
   refine Ideal.sum_mem _ fun y hy => ?_
   exact Ideal.mul_mem_right _ _ (hI y ((hmemD y).mp hy))
 
+/--
+@isnad1 id=mem.1h4v.s8.a312e76865cc from=translated src=- shape=2d8c0d7a vocab=f42a41ea
+-/
 theorem mem_pow_span_X_of_forall_coeff_eq_zero (N : ℕ) (q : MvPowerSeries σ R)
     (hq : ∀ x : σ →₀ ℕ, x.degree < N → coeff x q = 0) :
     q ∈ Ideal.span (Set.range (X : σ → MvPowerSeries σ R)) ^ N :=
@@ -134,9 +146,15 @@ noncomputable def coeAlgHom (R : Type u) [CommRing R] (σ : Type w) :
       rw [MvPolynomial.algebraMap_eq, MvPolynomial.coe_C]
       rfl }
 
+/--
+@isnad1 id=eq.0h3v.s7.e681a0a61884 from=translated src=- shape=ce46bede vocab=d7336265
+-/
 @[scoped simp] theorem coeAlgHom_apply (t : MvPolynomial σ R) : coeAlgHom R σ t = (t : MvPowerSeries σ R) :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.b288d0c72890 from=translated src=- shape=4ba6ad2d vocab=32a2d49c
+-/
 theorem map_coeAlgHom_idealOfVars :
     Ideal.map (coeAlgHom R σ) (MvPolynomial.idealOfVars σ R) =
       Ideal.span (Set.range (X : σ → MvPowerSeries σ R)) := by
@@ -145,6 +163,9 @@ theorem map_coeAlgHom_idealOfVars :
   ext q
   simp only [Set.mem_range, Function.comp_apply, coeAlgHom_apply, MvPolynomial.coe_X]
 
+/--
+@isnad1 id=mem.1h4v.s8.842d67abe7e3 from=translated src=- shape=698bd730 vocab=b375c804
+-/
 theorem coe_mem_pow_span_X_of_mem {N : ℕ} {t : MvPolynomial σ R}
     (ht : t ∈ MvPolynomial.idealOfVars σ R ^ N) :
     (t : MvPowerSeries σ R) ∈ Ideal.span (Set.range (X : σ → MvPowerSeries σ R)) ^ N := by
@@ -157,16 +178,25 @@ section Trunc
 
 variable {σ : Type w} [Finite σ] {R : Type u} [CommRing R]
 
+/--
+@isnad1 id=eq.0h6v.s9.02a4a5278e9b from=translated src=- shape=fb75ad3a vocab=d691f360
+-/
 theorem truncTotal_map {S : Type v} [CommRing S] (f : R →+* S) (N : ℕ) (q : MvPowerSeries σ R) :
     truncTotal N (MvPowerSeries.map f q) = MvPolynomial.map f (truncTotal N q) :=
   truncFinset_map f q
 
+/--
+@isnad1 id=mem.0h4v.s8.dbb75688a110 from=translated src=- shape=65ccd6fa vocab=a67728b4
+-/
 theorem sub_coe_truncTotal_mem_pow_span_X (N : ℕ) (q : MvPowerSeries σ R) :
     q - ((truncTotal N q : MvPolynomial σ R) : MvPowerSeries σ R) ∈
       Ideal.span (Set.range (X : σ → MvPowerSeries σ R)) ^ N := by
   refine mem_pow_span_X_of_forall_coeff_eq_zero N _ fun x hx => ?_
   rw [map_sub, MvPolynomial.coeff_coe, coeff_truncTotal _ hx, sub_self]
 
+/--
+@isnad1 id=eq.1h5v.s10.d62c85c43d5f from=translated src=- shape=aaf3a2d9 vocab=0aa2f148
+-/
 theorem mk_coe_truncTotal (N : ℕ) (I : Ideal (MvPowerSeries σ R))
     (hI : Ideal.span (Set.range (X : σ → MvPowerSeries σ R)) ^ N ≤ I) (q : MvPowerSeries σ R) :
     Ideal.Quotient.mk I ((truncTotal N q : MvPolynomial σ R) : MvPowerSeries σ R) =
@@ -181,6 +211,9 @@ section BaseChangeIdeals
 
 variable {σ : Type w} {R : Type u} [CommRing R] {S : Type v} [CommRing S]
 
+/--
+@isnad1 id=eq.0h4v.s7.ec89531e3e60 from=translated src=- shape=97737980 vocab=fdf6e1d1
+-/
 theorem map_map_span_X (f : R →+* S) :
     Ideal.map (MvPowerSeries.map (σ := σ) f) (Ideal.span (Set.range (X : σ → MvPowerSeries σ R))) =
       Ideal.span (Set.range (X : σ → MvPowerSeries σ S)) := by
@@ -189,12 +222,18 @@ theorem map_map_span_X (f : R →+* S) :
   ext q
   simp only [Set.mem_range, Function.comp_apply, MvPowerSeries.map_X]
 
+/--
+@isnad1 id=eq.0h6v.s8.9ad0277bf9d5 from=translated src=- shape=5d46663f vocab=b351c5c2
+-/
 theorem map_map_span_range {ι : Type*} (f : R →+* S) (φ : ι → MvPowerSeries σ R) :
     Ideal.map (MvPowerSeries.map (σ := σ) f) (Ideal.span (Set.range φ)) =
       Ideal.span (Set.range fun i => MvPowerSeries.map f (φ i)) := by
   rw [Ideal.map_span, ← Set.range_comp]
   rfl
 
+/--
+@isnad1 id=le.1h7v.s9.15c139b4b871 from=translated src=- shape=29871ee0 vocab=4e882210
+-/
 theorem pow_span_X_le_span_map {ι : Type*} (f : R →+* S) (φ : ι → MvPowerSeries σ R) (N : ℕ)
     (hN : Ideal.span (Set.range (X : σ → MvPowerSeries σ R)) ^ N ≤ Ideal.span (Set.range φ)) :
     Ideal.span (Set.range (X : σ → MvPowerSeries σ S)) ^ N ≤
@@ -218,12 +257,18 @@ noncomputable def theta (φ : ι → MvPowerSeries σ R) (N : ℕ)
     exact hN (coe_mem_pow_span_X_of_mem ht)
 
 omit [Finite σ] in
+/--
+@isnad1 id=eq.1h6v.s12.1d89a8616293 from=translated src=- shape=7e1bbac5 vocab=9e5bf409
+-/
 theorem theta_mk (φ : ι → MvPowerSeries σ R) (N : ℕ)
     (hN : Ideal.span (Set.range (X : σ → MvPowerSeries σ R)) ^ N ≤ Ideal.span (Set.range φ))
     (t : MvPolynomial σ R) :
     theta φ N hN (Ideal.Quotient.mk _ t) = Ideal.Quotient.mk _ (t : MvPowerSeries σ R) :=
   rfl
 
+/--
+@isnad1 id=isscalar.0h4v.s11.3fbb01ca151f from=translated src=- shape=cde66ae6 vocab=8c7a522a
+-/
 scoped instance instIsScalarTowerTensorQuot (N : ℕ) :
     IsScalarTower R S (S ⊗[R] (MvPolynomial σ R ⧸ MvPolynomial.idealOfVars σ R ^ N)) :=
   TensorProduct.isScalarTower_left
@@ -233,6 +278,9 @@ noncomputable def xfam (R : Type u) [CommRing R] (S : Type v) [CommRing S] [Alge
   fun i => (1 : S) ⊗ₜ[R] Ideal.Quotient.mk _ (MvPolynomial.X i)
 
 omit [Finite σ] in
+/--
+@isnad1 id=eq.0h5v.s13.3b128a2524a2 from=translated src=- shape=55780935 vocab=570cadba
+-/
 theorem aeval_xfam (N : ℕ) (t : MvPolynomial σ R) :
     MvPolynomial.aeval (xfam R S σ N) t = (1 : S) ⊗ₜ[R] Ideal.Quotient.mk _ t := by
   have h : MvPolynomial.aeval (R := R) (xfam R S σ N) =
@@ -249,12 +297,18 @@ noncomputable def beta0 (R : Type u) [CommRing R] (S : Type v) [CommRing S] [Alg
   MvPolynomial.aeval (xfam R S σ N)
 
 omit [Finite σ] in
+/--
+@isnad1 id=eq.0h5v.s13.736ce59044fa from=translated src=- shape=817d47ed vocab=7ea1fc9f
+-/
 theorem beta0_map (N : ℕ) (t : MvPolynomial σ R) :
     beta0 R S σ N (MvPolynomial.map (algebraMap R S) t) = (1 : S) ⊗ₜ[R] Ideal.Quotient.mk _ t := by
   rw [beta0, MvPolynomial.aeval_map_algebraMap]
   exact aeval_xfam N t
 
 omit [Finite σ] in
+/--
+@isnad1 id=eq.1h5v.s12.12fac3af10d8 from=translated src=- shape=d50bc475 vocab=f1a46c20
+-/
 theorem beta0_ker (N : ℕ) (a : MvPolynomial σ S) (ha : a ∈ MvPolynomial.idealOfVars σ S ^ N) :
     beta0 R S σ N a = 0 := by
   rw [MvPolynomial.pow_idealOfVars_eq_span] at ha
@@ -294,6 +348,9 @@ noncomputable def G0 (S : Type v) [CommRing S] [Algebra R S] (φ : ι → MvPowe
     MvPowerSeries σ S →ₐ[S] S ⊗[R] (MvPowerSeries σ R ⧸ Ideal.span (Set.range φ)) :=
   (Algebra.TensorProduct.map (AlgHom.id S S) (theta φ N hN)).comp ((beta R S σ N).comp (tau S σ N))
 
+/--
+@isnad1 id=eq.1h7v.s13.4553987eb2b6 from=translated src=- shape=9dba1e78 vocab=94a3ee5c
+-/
 theorem G0_apply (φ : ι → MvPowerSeries σ R) (N : ℕ)
     (hN : Ideal.span (Set.range (X : σ → MvPowerSeries σ R)) ^ N ≤ Ideal.span (Set.range φ))
     (q : MvPowerSeries σ S) :
@@ -301,6 +358,9 @@ theorem G0_apply (φ : ι → MvPowerSeries σ R) (N : ℕ)
       Algebra.TensorProduct.map (AlgHom.id S S) (theta φ N hN) (beta0 R S σ N (truncTotal N q)) :=
   rfl
 
+/--
+@isnad1 id=eq.1h7v.s11.f8e22eb010cf from=translated src=- shape=e976f3a5 vocab=b51aee35
+-/
 theorem G0_map (φ : ι → MvPowerSeries σ R) (N : ℕ)
     (hN : Ideal.span (Set.range (X : σ → MvPowerSeries σ R)) ^ N ≤ Ideal.span (Set.range φ))
     (q : MvPowerSeries σ R) :
@@ -322,6 +382,9 @@ noncomputable def G (S : Type v) [CommRing S] [Algebra R S] (φ : ι → MvPower
     rw [G0_map, Ideal.Quotient.eq_zero_iff_mem.mpr (Ideal.subset_span (Set.mem_range_self i)),
       TensorProduct.tmul_zero]
 
+/--
+@isnad1 id=eq.1h7v.s12.ffd621b45d26 from=translated src=- shape=9cb3f308 vocab=0574fe77
+-/
 theorem G_mk (φ : ι → MvPowerSeries σ R) (N : ℕ)
     (hN : Ideal.span (Set.range (X : σ → MvPowerSeries σ R)) ^ N ≤ Ideal.span (Set.range φ))
     (q : MvPowerSeries σ S) :
@@ -337,6 +400,9 @@ noncomputable def mapAH (R : Type u) [CommRing R] (S : Type v) [CommRing S] [Alg
         Algebra.algebraMap_self, RingHom.id_apply] }
 
 omit [Finite σ] in
+/--
+@isnad1 id=eq.0h4v.s8.e0aba5ce7d97 from=translated src=- shape=50c1082d vocab=82403372
+-/
 @[scoped simp] theorem mapAH_apply (q : MvPowerSeries σ R) :
     mapAH R S σ q = MvPowerSeries.map (algebraMap R S) q :=
   rfl
@@ -350,6 +416,9 @@ noncomputable def chi (S : Type v) [CommRing S] [Algebra R S] (φ : ι → MvPow
     exact Ideal.mem_map_of_mem _ ha
 
 omit [Finite σ] in
+/--
+@isnad1 id=eq.0h6v.s11.615f4aaf66d8 from=translated src=- shape=93af532a vocab=aa6b8580
+-/
 theorem chi_mk (φ : ι → MvPowerSeries σ R) (q : MvPowerSeries σ R) :
     chi S φ (Ideal.Quotient.mk _ q) = Ideal.Quotient.mk _ (MvPowerSeries.map (algebraMap R S) q) :=
   rfl
@@ -360,12 +429,18 @@ noncomputable def F (S : Type v) [CommRing S] [Algebra R S] (φ : ι → MvPower
   Algebra.TensorProduct.lift (Algebra.ofId S _) (chi S φ) fun _ _ => Commute.all _ _
 
 omit [Finite σ] in
+/--
+@isnad1 id=eq.0h7v.s12.6e00473ce8dc from=translated src=- shape=e655d239 vocab=c67c409b
+-/
 theorem F_tmul (φ : ι → MvPowerSeries σ R) (s : S) (q : MvPowerSeries σ R) :
     F S φ (s ⊗ₜ[R] Ideal.Quotient.mk _ q) =
       s • Ideal.Quotient.mk _ (MvPowerSeries.map (algebraMap R S) q) := by
   rw [F, Algebra.TensorProduct.lift_tmul, chi_mk, Algebra.ofId_apply]
   exact (Algebra.smul_def s _).symm
 
+/--
+@isnad1 id=eq.1h6v.s11.47e00120287b from=translated src=- shape=f5a168a8 vocab=c8883cf9
+-/
 theorem G_comp_F (φ : ι → MvPowerSeries σ R) (N : ℕ)
     (hN : Ideal.span (Set.range (X : σ → MvPowerSeries σ R)) ^ N ≤ Ideal.span (Set.range φ)) :
     (G S φ N hN).comp (F S φ) = AlgHom.id S _ := by
@@ -374,6 +449,9 @@ theorem G_comp_F (φ : ι → MvPowerSeries σ R) (N : ℕ)
   rw [AlgHom.comp_apply, F_tmul, map_smul, G_mk, G0_map, AlgHom.id_apply, TensorProduct.smul_tmul',
     smul_eq_mul, mul_one]
 
+/--
+@isnad1 id=eq.1h6v.s11.32b1fded66dc from=translated src=- shape=73685a79 vocab=c8883cf9
+-/
 theorem F_comp_G (φ : ι → MvPowerSeries σ R) (N : ℕ)
     (hN : Ideal.span (Set.range (X : σ → MvPowerSeries σ R)) ^ N ≤ Ideal.span (Set.range φ)) :
     (F S φ).comp (G S φ N hN) = AlgHom.id S _ := by
@@ -398,6 +476,9 @@ noncomputable def baseChangeEquiv (S : Type v) [CommRing S] [Algebra R S]
       (MvPowerSeries σ S ⧸ Ideal.span (Set.range fun i => MvPowerSeries.map (algebraMap R S) (φ i))) :=
   AlgEquiv.ofAlgHom (F S φ) (G S φ N hN) (F_comp_G φ N hN) (G_comp_F φ N hN)
 
+/--
+@isnad1 id=eq.1h8v.s12.d60c880cc545 from=translated src=- shape=13e0ad78 vocab=908eba9b
+-/
 theorem baseChangeEquiv_tmul (φ : ι → MvPowerSeries σ R) (N : ℕ)
     (hN : Ideal.span (Set.range (X : σ → MvPowerSeries σ R)) ^ N ≤ Ideal.span (Set.range φ))
     (s : S) (q : MvPowerSeries σ R) :
@@ -423,6 +504,9 @@ def lowVanishing (σ : Type w) (R : Type u) [CommRing R] (N : ℕ) : Ideal (MvPo
     have hj : ij.2 ≤ x := hij ▸ le_add_self
     rw [hq ij.2 ((Finsupp.degree_mono hj).trans_lt hx), mul_zero]
 
+/--
+@isnad1 id=le.0h2v.s6.3b31f51b7083 from=translated src=- shape=3e3f7c07 vocab=babba02a
+-/
 theorem span_X_le_lowVanishing_one :
     Ideal.span (Set.range (X : σ → MvPowerSeries σ R)) ≤ lowVanishing σ R 1 := by
   rw [Ideal.span_le]
@@ -431,6 +515,9 @@ theorem span_X_le_lowVanishing_one :
   subst hx0
   exact coeff_zero_X i
 
+/--
+@isnad1 id=le.0h4v.s7.40235ae30ff3 from=translated src=- shape=89c991c5 vocab=54270b59
+-/
 theorem lowVanishing_mul_le (a b : ℕ) :
     lowVanishing σ R a * lowVanishing σ R b ≤ lowVanishing σ R (a + b) := by
   classical
@@ -445,6 +532,9 @@ theorem lowVanishing_mul_le (a b : ℕ) :
     have hj : ij.2.degree < b := by omega
     rw [hs ij.2 hj, mul_zero]
 
+/--
+@isnad1 id=le.0h3v.s7.81326b79f545 from=translated src=- shape=d4143556 vocab=089de552
+-/
 theorem pow_span_X_le_lowVanishing (N : ℕ) :
     Ideal.span (Set.range (X : σ → MvPowerSeries σ R)) ^ N ≤ lowVanishing σ R N := by
   induction N with
@@ -455,11 +545,17 @@ theorem pow_span_X_le_lowVanishing (N : ℕ) :
     rw [pow_succ]
     exact (Ideal.mul_mono ih span_X_le_lowVanishing_one).trans (lowVanishing_mul_le n 1)
 
+/--
+@isnad1 id=le.1h4v.s9.8e13e288c429 from=translated src=- shape=e4252ada vocab=df67e4cc
+-/
 theorem pow_span_X_le_of_forall_monomial_mem [Finite σ] (N : ℕ) (I : Ideal (MvPowerSeries σ R))
     (hI : ∀ y : σ →₀ ℕ, y.degree = N → (monomial y (1 : R) : MvPowerSeries σ R) ∈ I) :
     Ideal.span (Set.range (X : σ → MvPowerSeries σ R)) ^ N ≤ I := fun q hq =>
   mem_of_forall_coeff_eq_zero_of_forall_monomial_mem N I hI q (pow_span_X_le_lowVanishing N hq)
 
+/--
+@isnad1 id=le.1h4v.s8.627cf54fe0a2 from=translated src=- shape=ffecf0ee vocab=dab924e1
+-/
 theorem pow_span_X_le_of_forall_X_pow_mem [Fintype σ] (N : ℕ) (I : Ideal (MvPowerSeries σ R))
     (hI : ∀ i : σ, (X i : MvPowerSeries σ R) ^ N ∈ I) :
     Ideal.span (Set.range (X : σ → MvPowerSeries σ R)) ^ (Fintype.card σ * (N - 1) + 1) ≤ I := by
@@ -490,6 +586,9 @@ open scoped _root_.P2MW.S_MvPowerSeries_exists_algEquiv_tensorProduct_quotient_s
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=ex.1h5v.s12.40947616c128 from=translated src=- shape=acbc9496 vocab=faa997f3
+-/
 theorem solution
     {R : Type} [CommRing R] {S : Type} [CommRing S] [Algebra R S]
     {σ : Type} [Fintype σ] {ι : Type} (φ : ι → MvPowerSeries σ R)

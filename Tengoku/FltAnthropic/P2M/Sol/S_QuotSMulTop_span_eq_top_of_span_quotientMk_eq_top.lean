@@ -10,6 +10,9 @@ namespace P2MW.S_QuotSMulTop_span_eq_top_of_span_quotientMk_eq_top
 
 open scoped Pointwise
 
+/--
+@isnad1 id=eq.2h5v.s11.b146aa3d3a1d from=translated src=- shape=2a204443 vocab=73c38e8f
+-/
 theorem solution {R : Type*} [CommRing R] {M : Type*} [AddCommGroup M] [Module R M] [IsLocalRing R] [Module.Finite R M] (x : R) (hx : x ∈ IsLocalRing.maximalIdeal R) {ι : Type*} (m : ι → M) (hspan : Submodule.span (R ⧸ Ideal.span {x}) (Set.range fun i => (Submodule.Quotient.mk (m i) : QuotSMulTop x M)) = ⊤) :
     Submodule.span R (Set.range m) = ⊤ := by
   have h1 : Submodule.span R

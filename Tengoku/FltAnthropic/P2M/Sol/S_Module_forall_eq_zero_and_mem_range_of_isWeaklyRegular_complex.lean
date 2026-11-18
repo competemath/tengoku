@@ -16,15 +16,24 @@ namespace AcyclicHelpers
 
 variable {R : Type u} [CommRing R]
 
+/--
+@isnad1 id=eq.2h4v.s7.3da2b8cc8b32 from=translated src=- shape=d2cce8c2 vocab=ff33ac7b
+-/
 theorem reg_zero {M : Type v} [AddCommGroup M] [Module R M] {x : R} (h : IsSMulRegular M x) {m : M}
     (hm : x • m = 0) : m = 0 :=
   h (show x • m = x • 0 by rw [hm, smul_zero])
 
+/--
+@isnad1 id=ex.1h4v.s8.cecb7c18032b from=translated src=- shape=3d79a7cb vocab=317a5c85
+-/
 theorem mem_smul_top {M : Type v} [AddCommGroup M] [Module R M] {x : R} {m : M}
     (h : m ∈ x • (⊤ : Submodule R M)) : ∃ m' : M, x • m' = m := by
   obtain ⟨m', -, hm'⟩ := (Submodule.mem_smul_pointwise_iff_exists m x ⊤).mp h
   exact ⟨m', hm'⟩
 
+/--
+@isnad1 id=mem.0h4v.s8.b29470b19dbd from=translated src=- shape=4395bfaf vocab=317a5c85
+-/
 theorem smul_mem_smul_top {M : Type v} [AddCommGroup M] [Module R M] (x : R) (m : M) :
     x • m ∈ x • (⊤ : Submodule R M) :=
   Submodule.smul_mem_pointwise_smul m x ⊤ trivial
@@ -39,10 +48,16 @@ noncomputable def dBar {K : ℕ → Type v} [∀ i, AddCommGroup (K i)] [∀ i, 
     rw [map_smul]
     exact smul_mem_smul_top x (d i m'))
 
+/--
+@isnad1 id=eq.0h6v.s13.7fbd2539fafc from=translated src=- shape=ec9b9bba vocab=d841c236
+-/
 theorem dBar_mk {K : ℕ → Type v} [∀ i, AddCommGroup (K i)] [∀ i, Module R (K i)]
     (d : ∀ i, K i →ₗ[R] K (i + 1)) (x : R) (i : ℕ) (m : K i) :
     dBar d x i (Submodule.Quotient.mk m) = Submodule.Quotient.mk (d i m) := rfl
 
+/--
+@isnad1 id=and.4h4v.s12.6d4b39527727 from=translated src=- shape=60ce69b9 vocab=03c954f7
+-/
 theorem core : ∀ (rs : List R) (K : ℕ → Type v) [∀ i, AddCommGroup (K i)] [∀ i, Module R (K i)]
     (d : ∀ i, K i →ₗ[R] K (i + 1)) (_hdd : ∀ i (m : K i), d (i + 1) (d i m) = 0)
     (_hreg : ∀ i, IsWeaklyRegular (K i) rs)
@@ -169,6 +184,9 @@ theorem core : ∀ (rs : List R) (K : ℕ → Type v) [∀ i, AddCommGroup (K i)
 
 end AcyclicHelpers
 
+/--
+@isnad1 id=and.4h4v.s12.684322de1531 from=translated src=- shape=b196f2fa vocab=6c2ebe78
+-/
 theorem solution
     (R : Type u) [CommRing R] (rs : List R)
     (K : ℕ → Type u) [∀ i, AddCommGroup (K i)] [∀ i, Module R (K i)]

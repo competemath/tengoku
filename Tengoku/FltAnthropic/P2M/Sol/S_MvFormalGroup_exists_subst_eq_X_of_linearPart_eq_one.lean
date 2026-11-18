@@ -203,6 +203,9 @@ end Newton
 end FormalInverse
 
 open FormalInverse in
+/--
+@isnad1 id=ex.2h3v.s8.de07629bb6c7 from=translated src=- shape=b5bc08e2 vocab=e3bf0132
+-/
 theorem solution
     {𝓞 : Type u} [CommRing 𝓞] {d : ℕ}
     (φ : Fin d → MvPowerSeries (Fin d) 𝓞)

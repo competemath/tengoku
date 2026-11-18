@@ -10,6 +10,9 @@ set_option autoImplicit false
 universe u w
 
 open IsLocalRing
+/--
+@isnad1 id=eq.3h5v.s8.b8120eec84e4 from=translated src=- shape=35a75965 vocab=bace6393
+-/
 theorem MonoidHom.apply_eq_one_of_sub_one_mem_maximalIdeal_of_pow_eq_one {G : Type u} {A : Type w} [Group G] [CommRing A] [IsLocalRing A]
     (χ : G →* Aˣ) (g : G) (hprin : (χ g : A) - 1 ∈ IsLocalRing.maximalIdeal A)
     {n : ℕ} (hn : IsUnit (n : A)) (hgn : g ^ n = 1) : χ g = 1 := by exact @_root_.P2MW.S_MonoidHom_apply_eq_one_of_sub_one_mem_maximalIdeal_of_pow_eq_one.solution G A _ _ _ χ g hprin n hn hgn

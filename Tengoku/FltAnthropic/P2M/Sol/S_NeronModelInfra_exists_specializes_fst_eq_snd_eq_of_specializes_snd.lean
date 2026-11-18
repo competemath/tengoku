@@ -15,6 +15,9 @@ universe u
 
 namespace P2mSliceGoingDown
 
+/--
+@isnad1 id=flat.0h3v.s5.6c2fc5994435 from=translated src=- shape=61f6c1fe vocab=c59e2a04
+-/
 theorem flat_SpecMap_of_field {k L : Type u} [Field k] [Field L] (φ : CommRingCat.of k ⟶ CommRingCat.of L) :
     Flat (Spec.map φ) := by
   rw [Flat.SpecMap_iff]
@@ -22,6 +25,9 @@ theorem flat_SpecMap_of_field {k L : Type u} [Field k] [Field L] (φ : CommRingC
   change Module.Flat k L
   infer_instance
 
+/--
+@isnad1 id=ex.3h5v.s10.8047ce6cca2d from=translated src=- shape=798265f0 vocab=4d41f5aa
+-/
 theorem main
     {R : Type u} [CommRing R] [IsLocalRing R]
     {X : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of R))
@@ -97,6 +103,9 @@ theorem main
 
 end P2mSliceGoingDown
 
+/--
+@isnad1 id=ex.3h5v.s10.8047ce6cca2d from=translated src=- shape=798265f0 vocab=4d41f5aa
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsLocalRing R]
     {X : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of R))

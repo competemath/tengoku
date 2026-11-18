@@ -11,11 +11,17 @@ open scoped TensorProduct
 
 namespace FlatCrit
 
+/--
+@isnad1 id=eq.0h5v.s10.6abb191048ae from=translated src=- shape=dc907ffc vocab=66722183
+-/
 theorem piScalarRight_one_tmul {A K : Type*} [CommRing A] [Field K] [Algebra A K] {n : ℕ} (x : Fin n → A) (i : Fin n) :
     TensorProduct.piScalarRight A K K (Fin n) ((1 : K) ⊗ₜ[A] x) i = algebraMap A K (x i) := by
   classical
   simp [TensorProduct.piScalarRight_apply, TensorProduct.piScalarRightHom_tmul, Algebra.algebraMap_eq_smul_one]
 
+/--
+@isnad1 id=and.2h5v.s10.4f547f51a103 from=translated src=- shape=c28d25d6 vocab=a4cdb821
+-/
 theorem free_of_surjective_of_lTensor_injective
     {A : Type*} [CommRing A] [IsDomain A]
     {C : Type*} [AddCommGroup C] [Module A C] {n : ℕ} (f : (Fin n → A) →ₗ[A] C) (hf : Function.Surjective f)
@@ -39,6 +45,9 @@ end FlatCrit
 
 open FlatCrit in
 
+/--
+@isnad1 id=and.2h3v.s9.3a02e7216b8b from=translated src=- shape=b4152910 vocab=3f520ca3
+-/
 theorem solution
     {A : Type*} [CommRing A] [IsDomain A] [IsLocalRing A]
     {C : Type*} [AddCommGroup C] [Module A C] [Module.Finite A C] (n : ℕ)

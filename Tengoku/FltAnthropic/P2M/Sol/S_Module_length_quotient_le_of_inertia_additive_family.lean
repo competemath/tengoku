@@ -34,6 +34,9 @@ variable {R : Type} [CommRing R]
 
 def sl2M (s t u : R) : Matrix (Fin 2) (Fin 2) R := Matrix.of ![![s, t], ![u, -s]]
 
+/--
+@isnad1 id=ex.0h2v.s10.6e44409469bb from=translated src=- shape=9c37b9a0 vocab=95cd8ffc
+-/
 theorem exists_conjAdjugate_matrix_det_sub_sq_smul_one (F : Matrix (Fin 2) (Fin 2) R) :
     ∃ T : Matrix (Fin 3) (Fin 3) R,
       (∀ s t u : R,
@@ -67,6 +70,9 @@ variable {R : Type} [CommRing R] [IsDomain R] [IsPrincipalIdealRing R]
 
 omit [IsPrincipalIdealRing R] in
 
+/--
+@isnad1 id=eq.1h4v.s6.e08bcbd7fb69 from=translated src=- shape=09ffd3c5 vocab=fee69a04
+-/
 lemma ord_prod_eq_sum {ι : Type} (s : Finset ι) (d : ι → R) (hd : ∀ i ∈ s, d i ≠ 0) :
     Ring.ord R (∏ i ∈ s, d i) = ∑ i ∈ s, Ring.ord R (d i) := by
   classical
@@ -78,6 +84,9 @@ lemma ord_prod_eq_sum {ι : Type} (s : Finset ι) (d : ι → R) (hd : ∀ i ∈
         fun j hj => hd j (Finset.mem_insert_of_mem hj))),
       IH fun j hj => hd j (Finset.mem_insert_of_mem hj)]
 
+/--
+@isnad1 id=eq.1h3v.s12.4bba8af2aa7f from=translated src=- shape=007cde66 vocab=5352b793
+-/
 theorem length_quotient_range_toLin_eq_ord_det
     {n : ℕ} (A : Matrix (Fin n) (Fin n) R) (hA : A.det ≠ 0) :
     Module.length R ((Fin n → R) ⧸ LinearMap.range (Matrix.toLin' A)) = Ring.ord R A.det := by
@@ -157,6 +166,9 @@ end WCOTDev
 
 namespace WCOTDev1f
 
+/--
+@isnad1 id=eq.1h3v.s8.fd06894d0cdc from=translated src=- shape=435aa7fe vocab=0aefcf50
+-/
 theorem length_ker_eq_length_quotient_range {R M : Type} [Ring R] [AddCommGroup M] [Module R M]
     (f : M →ₗ[R] M) (hM : Module.length R M ≠ ⊤) :
     Module.length R (LinearMap.ker f) = Module.length R (M ⧸ LinearMap.range f) := by
@@ -180,6 +192,9 @@ end WCOTDev1f
 
 namespace WCOTGlueAHcFree
 
+/--
+@isnad1 id=eq.0h1v.s7.81226adf6620 from=translated src=- shape=0079e2d5 vocab=ede1655d
+-/
 theorem length_quotient_span_zero_eq_top (𝒪 : Type) [CommRing 𝒪] [IsDomain 𝒪] [IsDiscreteValuationRing 𝒪] :
     Module.length 𝒪 (𝒪 ⧸ Ideal.span {(0 : 𝒪)}) = ⊤ := by
   by_contra h
@@ -191,6 +206,9 @@ theorem length_quotient_span_zero_eq_top (𝒪 : Type) [CommRing 𝒪] [IsDomain
   haveI : IsArtinianRing 𝒪 := isArtinian_of_injective _ hinj
   exact IsDiscreteValuationRing.not_isField 𝒪 (IsArtinianRing.isField_of_isDomain 𝒪)
 
+/--
+@isnad1 id=le.1h3v.s7.61a4edce1a0a from=translated src=- shape=1cd6da8f vocab=7a2ba81d
+-/
 theorem le_length_quotient_span_of_ne_zero_imp (𝒪 : Type) [CommRing 𝒪] [IsDomain 𝒪]
     [IsDiscreteValuationRing 𝒪] (L : ℕ∞) (c : 𝒪)
     (h : c ≠ 0 → L ≤ Module.length 𝒪 (𝒪 ⧸ Ideal.span {c})) :
@@ -207,6 +225,9 @@ open WCOTDev
 
 variable {𝒪 : Type} [CommRing 𝒪] [IsDomain 𝒪] [IsDiscreteValuationRing 𝒪]
 
+/--
+@isnad1 id=ne.0h2v.s8.fc5c696064a1 from=translated src=- shape=0c897e4b vocab=61c09e32
+-/
 lemma length_pi_quotient_pow_ne_top (m : ℕ) :
     Module.length 𝒪 (Fin 3 → 𝒪 ⧸ (IsLocalRing.maximalIdeal 𝒪) ^ m) ≠ ⊤ := by
   haveI hP : (IsLocalRing.maximalIdeal 𝒪).IsPrincipal :=
@@ -225,6 +246,9 @@ lemma length_pi_quotient_pow_ne_top (m : ℕ) :
   rw [Module.length_ne_top_iff]
   exact isFiniteLength_iff_isNoetherian_isArtinian.mpr ⟨inferInstance, inferInstance⟩
 
+/--
+@isnad1 id=ex.3h5v.s17.64d3e068573d from=translated src=- shape=c1a62c31 vocab=4951a6e4
+-/
 theorem exists_matrix_length_ker_le (F : Matrix (Fin 2) (Fin 2) 𝒪) (a q : 𝒪)
     (htr : F.trace = a) (hdet : F.det = q) (hq : IsUnit q) (m : ℕ) :
     ∃ T : Matrix (Fin 3) (Fin 3) 𝒪,
@@ -312,6 +336,9 @@ def Wsub (I : Ideal 𝒪) (F F' : Matrix (Fin 2) (Fin 2) 𝒪) (q : ℕ) :
     rw [Matrix.mul_smul, Matrix.smul_mul, h2]
     exact smul_comm c q X
 
+/--
+@isnad1 id=le.3h6v.s14.e0f77f6bdf21 from=translated src=- shape=88cee6a6 vocab=dcd08968
+-/
 theorem length_Wsub_le (I : Ideal 𝒪) (F F' : Matrix (Fin 2) (Fin 2) 𝒪) (hFF' : F * F' = 1) (q : ℕ)
     (hdet : F.det = (q : 𝒪)) (T : Matrix (Fin 3) (Fin 3) 𝒪)
     (hT : ∀ s t u : 𝒪, F * sl2M s t u * F.adjugate =
@@ -425,6 +452,9 @@ namespace WCOTL13
 
 variable {G : Type} [Group G] {C : Type} [AddCommGroup C]
 
+/--
+@isnad1 id=eq.1h4v.s7.58d85b30e9f4 from=translated src=- shape=cbb53771 vocab=6248f83f
+-/
 theorem apply_one (I : Subgroup G) (f : G → C) (hadd : ∀ a ∈ I, ∀ b ∈ I, f (a * b) = f a + f b) :
     f 1 = 0 := by
   have h := hadd 1 I.one_mem 1 I.one_mem
@@ -432,11 +462,17 @@ theorem apply_one (I : Subgroup G) (f : G → C) (hadd : ∀ a ∈ I, ∀ b ∈ 
   have h' : f 1 + 0 = f 1 + f 1 := by rw [add_zero]; exact h
   exact (add_left_cancel h').symm
 
+/--
+@isnad1 id=eq.2h6v.s7.0c56111341c8 from=translated src=- shape=c0eb5767 vocab=d79d81a1
+-/
 theorem apply_pow (I : Subgroup G) (f : G → C) (hadd : ∀ a ∈ I, ∀ b ∈ I, f (a * b) = f a + f b)
     (x : G) (hx : x ∈ I) : ∀ n : ℕ, f (x ^ n) = n • f x
   | 0 => by rw [pow_zero, zero_nsmul]; exact apply_one I f hadd
   | n + 1 => by rw [pow_succ, hadd _ (I.pow_mem hx n) _ hx, apply_pow I f hadd x hx n, succ_nsmul]
 
+/--
+@isnad1 id=eq.4h9v.s8.3a36a1e05417 from=translated src=- shape=beeb97e7 vocab=2aadd0e6
+-/
 theorem apply_conj_eq_nsmul (I : Subgroup G) (f : G → C) (hadd : ∀ a ∈ I, ∀ b ∈ I, f (a * b) = f a + f b)
     (p m q : ℕ) (hC : ∀ c : C, p ^ m • c = 0) (σ : G)
     (hdivI : ∀ τ ∈ I, ∃ w ∈ I, w ^ (p ^ m) = σ * τ * σ⁻¹ * (τ ^ q)⁻¹)
@@ -446,6 +482,9 @@ theorem apply_conj_eq_nsmul (I : Subgroup G) (f : G → C) (hadd : ∀ a ∈ I, 
   rw [this, hadd _ (I.pow_mem hw _) _ (I.pow_mem hτ _), apply_pow I f hadd w hw, apply_pow I f hadd τ hτ, hC,
     zero_add]
 
+/--
+@isnad1 id=eq.5h10v.s8.7d23d6b99582 from=translated src=- shape=635c7cce vocab=2aadd0e6
+-/
 theorem op_apply_eq_nsmul (I : Subgroup G) (f : G → C) (hadd : ∀ a ∈ I, ∀ b ∈ I, f (a * b) = f a + f b)
     (p m q : ℕ) (hC : ∀ c : C, p ^ m • c = 0) (σ : G)
     (hdivI : ∀ τ ∈ I, ∃ w ∈ I, w ^ (p ^ m) = σ * τ * σ⁻¹ * (τ ^ q)⁻¹)
@@ -454,6 +493,9 @@ theorem op_apply_eq_nsmul (I : Subgroup G) (f : G → C) (hadd : ∀ a ∈ I, �
   rw [← hequiv τ hτ]
   exact apply_conj_eq_nsmul I f hadd p m q hC σ hdivI τ hτ
 
+/--
+@isnad1 id=eq.6h11v.s8.6169a33ea556 from=translated src=- shape=47c7a6dd vocab=d79d81a1
+-/
 theorem apply_eq_nsmul_apply_gen (I : Subgroup G) (f : G → C) (hadd : ∀ a ∈ I, ∀ b ∈ I, f (a * b) = f a + f b)
     (p m : ℕ) (hC : ∀ c : C, p ^ m • c = 0) (γ : G) (hγI : γ ∈ I)
     (τ : G) (j : ℕ) (x w : G) (hx : x ∈ I) (hw : w ∈ I) (hτ : τ = γ ^ j * x ^ (p ^ m) * w ^ (p ^ m)) :
@@ -462,6 +504,9 @@ theorem apply_eq_nsmul_apply_gen (I : Subgroup G) (f : G → C) (hadd : ∀ a �
     hadd _ (I.pow_mem hγI j) _ (I.pow_mem hx _), apply_pow I f hadd γ hγI, apply_pow I f hadd x hx,
     apply_pow I f hadd w hw, hC, hC, add_zero, add_zero]
 
+/--
+@isnad1 id=eq.6h8v.s8.d0b08101b701 from=translated src=- shape=85b89627 vocab=d79d81a1
+-/
 theorem apply_eq_zero_of_apply_gen_eq_zero (I : Subgroup G) (f : G → C)
     (hadd : ∀ a ∈ I, ∀ b ∈ I, f (a * b) = f a + f b) (p m : ℕ) (hC : ∀ c : C, p ^ m • c = 0) (γ : G) (hγI : γ ∈ I)
     (hgen : ∀ τ ∈ I, ∃ (j : ℕ) (x w : G), x ∈ I ∧ w ∈ I ∧ τ = γ ^ j * x ^ (p ^ m) * w ^ (p ^ m))
@@ -469,6 +514,9 @@ theorem apply_eq_zero_of_apply_gen_eq_zero (I : Subgroup G) (f : G → C)
   obtain ⟨j, x, w, hx, hw, hτe⟩ := hgen τ hτ
   rw [apply_eq_nsmul_apply_gen I f hadd p m hC γ hγI τ j x w hx hw hτe, h0, nsmul_zero]
 
+/--
+@isnad1 id=le.6h11v.s10.7f03e53c58ec from=translated src=- shape=52a95855 vocab=33bf21a0
+-/
 theorem length_quotient_le {𝒪 H : Type} [CommRing 𝒪] [AddCommGroup H] [Module 𝒪 H] [Module 𝒪 C]
     (I : Subgroup G) (p m : ℕ) (hC : ∀ c : C, p ^ m • c = 0) (γ : G) (hγI : γ ∈ I)
     (hgen : ∀ τ ∈ I, ∃ (j : ℕ) (x w : G), x ∈ I ∧ w ∈ I ∧ τ = γ ^ j * x ^ (p ^ m) * w ^ (p ^ m))
@@ -504,6 +552,9 @@ namespace WCOTLchain
 
 open WCOTDev
 
+/--
+@isnad1 id=le.12h14v.s14.343d123ac912 from=translated src=- shape=7a36872d vocab=00cb0a06
+-/
 theorem length_quotient_le_length_factor
     {𝒪 : Type} [CommRing 𝒪] [IsDomain 𝒪] [IsDiscreteValuationRing 𝒪]
     {G : Type} [Group G] (Isub : Subgroup G) (σ γ : G) (hγI : γ ∈ Isub) (p q m : ℕ)
@@ -539,6 +590,9 @@ theorem length_quotient_le_length_factor
 
 end WCOTLchain
 
+/--
+@isnad1 id=le.12h14v.s14.343d123ac912 from=translated src=- shape=7a36872d vocab=00cb0a06
+-/
 theorem solution
     {𝒪 : Type} [CommRing 𝒪] [IsDomain 𝒪] [IsDiscreteValuationRing 𝒪]
     {G : Type} [Group G] (Isub : Subgroup G) (σ γ : G) (hγI : γ ∈ Isub) (p q m : ℕ)

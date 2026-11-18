@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open IsLocalRing Tengoku.FltAnthropic.MvFormalGroup
 
+/--
+@isnad1 id=and.3h11v.s16.ee99ec809f85 from=translated src=- shape=aecc7134 vocab=f087e91a
+-/
 theorem solution
     {B : Type} [CommRing B] [IsLocalRing B] {B₁ : Type} [CommRing B₁] [Algebra B B₁]
     (hI : RingHom.ker (algebraMap B B₁) ≤ maximalIdeal B)

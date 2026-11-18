@@ -14,6 +14,9 @@ open scoped BigOperators
 
 namespace K2Aux
 
+/--
+@isnad1 id=eq.1h6v.s10.e3e0a2089196 from=translated src=- shape=2ff8e4f1 vocab=76d98a0c
+-/
 theorem sub_eq_sum_pderiv {R : Type} [CommRing R] {n : ℕ} {D : Type} [CommRing D] [Algebra R D]
     (φ₁ φ₂ : MvPolynomial (Fin n) R →ₐ[R] D)
     (hδ : ∀ i j, (φ₁ (X i) - φ₂ (X i)) * (φ₁ (X j) - φ₂ (X j)) = 0) (f : MvPolynomial (Fin n) R) :
@@ -48,6 +51,9 @@ theorem sub_eq_sum_pderiv {R : Type} [CommRing R] {n : ℕ} {D : Type} [CommRing
 
 end K2Aux
 
+/--
+@isnad1 id=mem.5h7v.s15.87db4396a74e from=translated src=- shape=97ffc82d vocab=4cc4cb75
+-/
 theorem solution
     (R : Type) [CommRing R] [IsNoetherianRing R] {n : ℕ}
     (I J : Ideal (MvPolynomial (Fin n) R)) (hIJ : I ≤ J) (hJ : J.IsMaximal)

@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.Theorems.Thm_Submodule_exists_smul_eq_self_and_smul_
 namespace P2MW.S_Module_exists_smul_smul_eq_and_smul_eq_iff_mem_iSup_torsionBySet_pow_of_finite
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.0h4v.s9.d811bbd01754 from=translated src=- shape=c330e6cf vocab=afaed1db
+-/
 theorem solution
     {T : Type*} [CommRing T] {M : Type*} [AddCommGroup M] [Module T M]
     (N : Submodule T M) [Finite ↥N] (𝔓 : Ideal T) :

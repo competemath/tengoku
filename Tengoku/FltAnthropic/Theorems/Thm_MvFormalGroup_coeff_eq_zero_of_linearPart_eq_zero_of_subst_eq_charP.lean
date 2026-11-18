@@ -12,6 +12,9 @@ open MvPowerSeries
 
 universe u
 
+/--
+@isnad1 id=eq.4h9v.s9.b678be4e6897 from=translated src=- shape=8b0d8732 vocab=5b318c42
+-/
 theorem Tengoku.FltAnthropic.MvFormalGroup.coeff_eq_zero_of_linearPart_eq_zero_of_subst_eq_charP
     {S : Type u} [CommRing S] (p : ℕ) [Fact p.Prime] [CharP S p]
     {g h : ℕ} (F : MvFormalGroup g S) (G : MvFormalGroup h S)

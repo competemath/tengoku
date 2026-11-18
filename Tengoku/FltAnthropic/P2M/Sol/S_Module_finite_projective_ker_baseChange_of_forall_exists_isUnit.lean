@@ -14,6 +14,9 @@ universe u
 
 open TensorProduct
 
+/--
+@isnad1 id=and.1h8v.s13.81146f0fa51d from=translated src=- shape=1627b070 vocab=7b58e34f
+-/
 theorem solution
     {R : Type u} [CommRing R] (A : Type u) [CommRing A] [Algebra R A]
     {C0 C1 F : Type u} [AddCommGroup C0] [Module R C0] [AddCommGroup C1] [Module R C1]

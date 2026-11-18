@@ -8,6 +8,9 @@ import Tengoku.Seed.RingTheory.Ideal.Prime
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_Module_exists_mem_maximalIdeal_isSMulRegular_isSMulRegular.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 namespace P2MW.S_Module_exists_mem_maximalIdeal_isSMulRegular_isSMulRegular
 
+/--
+@isnad1 id=ex.2h3v.s8.0407078cc8a4 from=translated src=- shape=b059dd68 vocab=4b1754cf
+-/
 theorem solution {R : Type*} [CommRing R] [IsLocalRing R] [IsNoetherianRing R] (N₁ N₂ : Type*) [AddCommGroup N₁] [Module R N₁] [Module.Finite R N₁] [AddCommGroup N₂] [Module R N₂] [Module.Finite R N₂] (h₁ : ¬ IsAssociatedPrime (IsLocalRing.maximalIdeal R) N₁) (h₂ : ¬ IsAssociatedPrime (IsLocalRing.maximalIdeal R) N₂) :
     ∃ z ∈ IsLocalRing.maximalIdeal R, IsSMulRegular N₁ z ∧ IsSMulRegular N₂ z := by
   by_contra hcon

@@ -28,16 +28,25 @@ variable {k : Type u} [CommRing k]
 def box (ι : Type*) [Finite ι] [DecidableEq ι] (N : ℕ) : Finset (ι →₀ ℕ) :=
   Finset.Iic (Finsupp.equivFunOnFinite.symm fun _ => N)
 
+/--
+@isnad1 id=iff.0h3v.s6.791812af584f from=translated src=- shape=38728e21 vocab=b4bed252
+-/
 theorem mem_box {ι : Type*} [Finite ι] [DecidableEq ι] {N : ℕ} {c : ι →₀ ℕ} :
     c ∈ box ι N ↔ ∀ i, c i ≤ N := by
   rw [box, Finset.mem_Iic, Finsupp.le_def]
   refine forall_congr' fun i => ?_
   rw [Finsupp.coe_equivFunOnFinite_symm]
 
+/--
+@isnad1 id=mem.1h3v.s7.938e7469ea75 from=translated src=- shape=dd9f4089 vocab=de983d5f
+-/
 theorem mem_box_of_degree_le {ι : Type*} [Finite ι] [DecidableEq ι] {N : ℕ} {c : ι →₀ ℕ}
     (h : c.degree ≤ N) : c ∈ box ι N :=
   mem_box.mpr fun i => (Finsupp.le_degree i c).trans h
 
+/--
+@isnad1 id=lt.1h3v.s7.7352d9a4e690 from=translated src=- shape=7dbc24ee vocab=ac8b75ce
+-/
 theorem lt_degree_of_not_mem_box {ι : Type*} [Finite ι] [DecidableEq ι] {N : ℕ} {c : ι →₀ ℕ}
     (h : c ∉ box ι N) : N < c.degree := by
   rw [mem_box] at h
@@ -45,12 +54,18 @@ theorem lt_degree_of_not_mem_box {ι : Type*} [Finite ι] [DecidableEq ι] {N : 
   obtain ⟨i, hi⟩ := h
   exact lt_of_lt_of_le hi (Finsupp.le_degree i c)
 
+/--
+@isnad1 id=le.1h3v.s5.9475e4b5568c from=translated src=- shape=54f98d15 vocab=31b7a9fb
+-/
 theorem box_mono {ι : Type*} [Finite ι] [DecidableEq ι] {N N' : ℕ} (h : N ≤ N') :
     box ι N ⊆ box ι N' := by
   intro c hc
   rw [mem_box] at hc ⊢
   exact fun i => (hc i).trans h
 
+/--
+@isnad1 id=iff.0h5v.s7.77a9719d3b48 from=translated src=- shape=90cf9a5b vocab=e7464de1
+-/
 theorem sumElim_mem_box_iff {α β : Type*} [Finite α] [Finite β] [DecidableEq α] [DecidableEq β]
     {N : ℕ} {x : α →₀ ℕ} {y : β →₀ ℕ} :
     x.sumElim y ∈ box (α ⊕ β) N ↔ x ∈ box α N ∧ y ∈ box β N := by
@@ -62,11 +77,17 @@ theorem sumElim_mem_box_iff {α β : Type*} [Finite α] [Finite β] [DecidableEq
     · exact h1 i
     · exact h2 j
 
+/--
+@isnad1 id=eq.0h4v.s8.8e4127dd5e9e from=translated src=- shape=cf202ec5 vocab=5dd2e975
+-/
 theorem degree_sumElim {α β : Type*} (x : α →₀ ℕ) (y : β →₀ ℕ) :
     (x.sumElim y).degree = x.degree + y.degree := by
   classical
   rw [Finsupp.sumElim_eq_add, map_add, Finsupp.degree_mapDomain, Finsupp.degree_mapDomain]
 
+/--
+@isnad1 id=eq.0h5v.s7.f00615dcdaf4 from=translated src=- shape=71df5b76 vocab=8447b1f8
+-/
 theorem sum_box_sum {α β : Type*} [Finite α] [Finite β] [DecidableEq α] [DecidableEq β]
     {M : Type*} [AddCommMonoid M] (N : ℕ)
     (f : (α ⊕ β →₀ ℕ) → M) :
@@ -81,12 +102,18 @@ theorem sum_box_sum {α β : Type*} [Finite α] [Finite β] [DecidableEq α] [De
   · rintro ⟨x, y⟩ _
     rfl
 
+/--
+@isnad1 id=eq.2h6v.s9.69ada998cea1 from=translated src=- shape=7c160f24 vocab=0d41bf80
+-/
 theorem coeff_finsuppProd_pow_eq_zero_of_degree_lt {ι τ : Type*} {σ : ι → MvPowerSeries τ k}
     (hσ : ∀ t, constantCoeff (σ t) = 0) {c : ι →₀ ℕ} {e : τ →₀ ℕ} (h : e.degree < c.degree) :
     coeff e (c.prod fun t m => σ t ^ m) = 0 := by
   refine coeff_of_lt_order (lt_of_lt_of_le ?_ (MvFormalGroup.le_order_finsuppProd_pow hσ c))
   exact_mod_cast h
 
+/--
+@isnad1 id=eq.2h7v.s9.fc1a7c645d8d from=translated src=- shape=cc8ea8ea vocab=cabf9adb
+-/
 theorem coeff_subst_eq_sum {ι τ : Type*} [Finite ι] {σ : ι → MvPowerSeries τ k}
     (hσ : ∀ t, constantCoeff (σ t) = 0) (f : MvPowerSeries ι k) (e : τ →₀ ℕ)
     (T : Finset (ι →₀ ℕ)) (hT : ∀ c : ι →₀ ℕ, c.degree ≤ e.degree → c ∈ T) :
@@ -102,12 +129,18 @@ theorem coeff_subst_eq_sum {ι τ : Type*} [Finite ι] {σ : ι → MvPowerSerie
   show coeff c f • coeff e (c.prod fun t m => σ t ^ m) = 0
   rw [coeff_finsuppProd_pow_eq_zero_of_degree_lt hσ hlt, smul_zero]
 
+/--
+@isnad1 id=eq.2h7v.s9.b47d6bd49d07 from=translated src=- shape=2961335b vocab=0a6751f5
+-/
 theorem coeff_subst_eq_sum_box {ι τ : Type*} [Finite ι] [DecidableEq ι] {σ : ι → MvPowerSeries τ k}
     (hσ : ∀ t, constantCoeff (σ t) = 0) (f : MvPowerSeries ι k) (e : τ →₀ ℕ)
     {N : ℕ} (hN : e.degree ≤ N) :
     coeff e (subst σ f) = ∑ c ∈ box ι N, coeff c f * coeff e (c.prod fun t m => σ t ^ m) :=
   coeff_subst_eq_sum hσ f e _ fun c hc => mem_box_of_degree_le (hc.trans hN)
 
+/--
+@isnad1 id=eq.2h8v.s9.3d345534248c from=translated src=- shape=e7fac922 vocab=2efeaf9f
+-/
 theorem coeff_subst_eq_sum_box₂ {α β τ : Type*} [Finite α] [Finite β] [DecidableEq α] [DecidableEq β]
     {σ : α ⊕ β → MvPowerSeries τ k}
     (hσ : ∀ t, constantCoeff (σ t) = 0) (f : MvPowerSeries (α ⊕ β) k) (e : τ →₀ ℕ)
@@ -119,18 +152,30 @@ theorem coeff_subst_eq_sum_box₂ {α β τ : Type*} [Finite α] [Finite β] [De
   rw [Finsupp.prod_sumElim]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.7c8422f4acf2 from=translated src=- shape=02dd28fa vocab=75624403
+-/
 theorem prod_X_pow_eq_monomial {ι : Type*} (e : ι →₀ ℕ) :
     (e.prod fun s m => (X s : MvPowerSeries ι k) ^ m) = monomial e 1 :=
   (monomial_one_eq e).symm
 
+/--
+@isnad1 id=eq.0h4v.s7.8151ff1af393 from=translated src=- shape=632ffbb4 vocab=e13d7bdb
+-/
 theorem rename_inl_eq_subst {α β : Type*} [Finite α] (f : MvPowerSeries α k) :
     rename (Sum.inl : α → α ⊕ β) f = subst (fun j => (X (Sum.inl j) : MvPowerSeries (α ⊕ β) k)) f :=
   rename_eq_subst _ f
 
+/--
+@isnad1 id=eq.0h4v.s7.62dab7b876e4 from=translated src=- shape=70a92a38 vocab=8bc7171d
+-/
 theorem rename_inr_eq_subst {α β : Type*} [Finite β] (f : MvPowerSeries β k) :
     rename (Sum.inr : β → α ⊕ β) f = subst (fun j => (X (Sum.inr j) : MvPowerSeries (α ⊕ β) k)) f :=
   rename_eq_subst _ f
 
+/--
+@isnad1 id=eq.0h6v.s9.71a7417af9b1 from=translated src=- shape=f874ec46 vocab=9123c58f
+-/
 theorem coeff_sumElim_rename_inl {α β : Type*} [Finite α] [DecidableEq β]
     (f : MvPowerSeries α k) (x : α →₀ ℕ) (y : β →₀ ℕ) :
     coeff (x.sumElim y) (rename (Sum.inl : α → α ⊕ β) f) = if y = 0 then coeff x f else 0 := by
@@ -146,6 +191,9 @@ theorem coeff_sumElim_rename_inl {α β : Type*} [Finite α] [DecidableEq β]
     · rintro ⟨i, hi⟩
       exact Sum.inl_ne_inr hi
 
+/--
+@isnad1 id=eq.0h6v.s9.137516b790e4 from=translated src=- shape=64f3f0ef vocab=7ecd8a21
+-/
 theorem coeff_sumElim_rename_inr {α β : Type*} [Finite β] [DecidableEq α]
     (f : MvPowerSeries β k) (x : α →₀ ℕ) (y : β →₀ ℕ) :
     coeff (x.sumElim y) (rename (Sum.inr : β → α ⊕ β) f) = if x = 0 then coeff y f else 0 := by
@@ -161,6 +209,9 @@ theorem coeff_sumElim_rename_inr {α β : Type*} [Finite β] [DecidableEq α]
     · rintro ⟨i, hi⟩
       exact Sum.inr_ne_inl hi
 
+/--
+@isnad1 id=eq.0h7v.s9.d419f8b091d9 from=translated src=- shape=12bfafbd vocab=747121d5
+-/
 theorem coeff_sumElim_rename_inl_mul {α β : Type*} [Finite α] [DecidableEq α] [DecidableEq β]
     (f : MvPowerSeries α k) (H : MvPowerSeries (α ⊕ β) k) (s : α →₀ ℕ) (b : β →₀ ℕ) :
     coeff (s.sumElim b) (rename (Sum.inl : α → α ⊕ β) f * H) =
@@ -212,6 +263,9 @@ theorem coeff_sumElim_rename_inl_mul {α β : Type*} [Finite α] [DecidableEq α
     · show coeff (x₁.sumElim y₁) _ * _ = 0
       rw [coeff_sumElim_rename_inl, ite_eq_right hy₁, zero_mul]
 
+/--
+@isnad1 id=eq.0h7v.s9.97a46d86a85c from=translated src=- shape=f6b745e6 vocab=efc83d98
+-/
 theorem coeff_sumElim_rename_inl_mul_rename_inr {α β : Type*} [Finite α] [Finite β]
     [DecidableEq α] [DecidableEq β]
     (f : MvPowerSeries α k) (h : MvPowerSeries β k) (s : α →₀ ℕ) (b : β →₀ ℕ) :
@@ -230,6 +284,9 @@ theorem coeff_sumElim_rename_inl_mul_rename_inr {α β : Type*} [Finite α] [Fin
   · intro h
     exact absurd (Finset.HasAntidiagonal.mem_antidiagonal.mpr (add_zero s)) h
 
+/--
+@isnad1 id=eq.0h7v.s8.45ad967d6b64 from=translated src=- shape=e404f563 vocab=e1876109
+-/
 theorem finsuppProd_pow_rename {α ι τ : Type*} (e : ι → τ) [Filter.TendstoCofinite e]
     (u : α → MvPowerSeries ι k) (x : α →₀ ℕ) :
     (x.prod fun j m => rename e (u j) ^ m) = rename e (x.prod fun j m => u j ^ m) := by
@@ -254,6 +311,9 @@ def rowX (a : Fin n →₀ ℕ) : MvPowerSeries (Fin n ⊕ Fin n) k →ₗ[k] Mv
 def D (F : MvFormalGroup n k) (a : Fin n →₀ ℕ) : MvPowerSeries (Fin n) k →ₗ[k] MvPowerSeries (Fin n) k :=
   rowX a ∘ₗ (substAlgHom F.hasSubst_toPowerSeries).toLinearMap
 
+/--
+@isnad1 id=eq.0h6v.s9.82a715e4b1e0 from=translated src=- shape=0d13b16c vocab=5a54621c
+-/
 theorem coeff_D (F : MvFormalGroup n k) (a b : Fin n →₀ ℕ) (G : MvPowerSeries (Fin n) k) :
     coeff b (D F a G) = coeff (a.sumElim b) (subst F.toPowerSeries G) := by
   show coeff (a.sumElim b) (substAlgHom F.hasSubst_toPowerSeries G) = _
@@ -262,6 +322,9 @@ theorem coeff_D (F : MvFormalGroup n k) (a b : Fin n →₀ ℕ) (G : MvPowerSer
 def Fpow (F : MvFormalGroup n k) (c : Fin n →₀ ℕ) : MvPowerSeries (Fin n ⊕ Fin n) k :=
   c.prod fun j m => F.toPowerSeries j ^ m
 
+/--
+@isnad1 id=eq.1h7v.s10.b91b998cc8d1 from=translated src=- shape=9d2a9290 vocab=543ca11f
+-/
 theorem coeff_D_eq_sum (F : MvFormalGroup n k) (a b : Fin n →₀ ℕ) (G : MvPowerSeries (Fin n) k)
     {N : ℕ} (hN : a.degree + b.degree ≤ N) :
     coeff b (D F a G) = ∑ c ∈ box (Fin n) N, coeff c G * coeff (a.sumElim b) (Fpow F c) := by
@@ -281,6 +344,9 @@ def FYZ (j : Fin n) : MvPowerSeries (Fin n ⊕ (Fin n ⊕ Fin n)) k :=
 def θ₁ : Fin n ⊕ Fin n → MvPowerSeries (Fin n ⊕ (Fin n ⊕ Fin n)) k :=
   Sum.elim (fun j => X (Sum.inl j)) (FYZ F)
 
+/--
+@isnad1 id=eq.0h4v.s7.893dc10744ca from=translated src=- shape=f86e879d vocab=42577be2
+-/
 theorem constantCoeff_θ₁ : ∀ t, constantCoeff (θ₁ F t) = 0 := by
   rintro (j | j)
   · exact constantCoeff_X _
@@ -290,22 +356,34 @@ theorem constantCoeff_θ₁ : ∀ t, constantCoeff (θ₁ F t) = 0 := by
 def τ₁ (j : Fin n) : MvPowerSeries (Fin n ⊕ (Fin n ⊕ Fin n)) k :=
   subst (θ₁ F) (F.toPowerSeries j)
 
+/--
+@isnad1 id=eq.0h4v.s7.42f762e461b6 from=translated src=- shape=b6e740de vocab=d243eee8
+-/
 theorem constantCoeff_τ₁ (j : Fin n) : constantCoeff (τ₁ F j) = 0 :=
   constantCoeff_subst_eq_zero (hasSubst_of_constantCoeff_zero (constantCoeff_θ₁ F))
     (constantCoeff_θ₁ F) (F.constantCoeff_eq_zero j)
 
+/--
+@isnad1 id=eq.0h4v.s6.42e7bfd8ebd8 from=translated src=- shape=f449140b vocab=ecd3c50d
+-/
 theorem subst_τ₁ (G : MvPowerSeries (Fin n) k) :
     subst (τ₁ F) G = subst (θ₁ F) (subst F.toPowerSeries G) := by
   rw [subst_comp_subst_apply F.hasSubst_toPowerSeries
     (hasSubst_of_constantCoeff_zero (constantCoeff_θ₁ F))]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.c7332f2306b7 from=translated src=- shape=2df4f188 vocab=583c4bcd
+-/
 theorem prod_X_inl_pow (x : Fin n →₀ ℕ) :
     (x.prod fun j m => (X (Sum.inl j) : MvPowerSeries (Fin n ⊕ (Fin n ⊕ Fin n)) k) ^ m) =
       rename (Sum.inl : Fin n → Fin n ⊕ (Fin n ⊕ Fin n)) (monomial x (1 : k)) := by
   rw [← prod_X_pow_eq_monomial, map_finsuppProd]
   simp only [map_pow, rename_X]
 
+/--
+@isnad1 id=eq.0h7v.s9.871a8de3705b from=translated src=- shape=e0ca4136 vocab=accd7c2d
+-/
 theorem coeff_subst_τ₁ (G : MvPowerSeries (Fin n) k) (a b c : Fin n →₀ ℕ) :
     coeff (a.sumElim (b.sumElim c)) (subst (τ₁ F) G) = coeff c (D F b (D F a G)) := by
   have hN : (a.sumElim (b.sumElim c)).degree ≤ a.degree + b.degree + c.degree := by
@@ -336,11 +414,17 @@ def sw : Fin n ⊕ (Fin n ⊕ Fin n) → Fin n ⊕ (Fin n ⊕ Fin n)
   | Sum.inr (Sum.inl b) => Sum.inl b
   | Sum.inr (Sum.inr c) => Sum.inr (Sum.inr c)
 
+/--
+@isnad1 id=involuti.0h1v.s3.bbd194974a33 from=translated src=- shape=d545098c vocab=da58375b
+-/
 theorem sw_sw : Function.Involutive (sw (n := n)) := by
   rintro (a | b | c) <;> rfl
 
 def swPerm : Equiv.Perm (Fin n ⊕ (Fin n ⊕ Fin n)) := Function.Involutive.toPerm sw sw_sw
 
+/--
+@isnad1 id=eq.0h4v.s7.85fcf800de3e from=translated src=- shape=4019b914 vocab=bb08f1e5
+-/
 theorem embDomain_swPerm (a b c : Fin n →₀ ℕ) :
     Finsupp.embDomain (swPerm (n := n)).toEmbedding (b.sumElim (a.sumElim c)) = a.sumElim (b.sumElim c) := by
   ext t
@@ -358,11 +442,17 @@ theorem embDomain_swPerm (a b c : Fin n →₀ ℕ) :
     rw [h, Finsupp.embDomain_apply_self]
     rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.df36d6b6e822 from=translated src=- shape=af157ae9 vocab=1e2cbfe0
+-/
 theorem coeff_rename_sw (P : MvPowerSeries (Fin n ⊕ (Fin n ⊕ Fin n)) k) (a b c : Fin n →₀ ℕ) :
     coeff (a.sumElim (b.sumElim c)) (rename (sw (n := n)) P) = coeff (b.sumElim (a.sumElim c)) P := by
   rw [← embDomain_swPerm]
   exact coeff_embDomain_rename (swPerm (n := n)).toEmbedding P _
 
+/--
+@isnad1 id=eq.0h4v.s8.5e83d37c8ee7 from=translated src=- shape=35ed34be vocab=6f65f090
+-/
 theorem rename_sw_τ₁ [F.IsComm] (j : Fin n) : rename (sw (n := n)) (τ₁ F j) = τ₁ F j := by
 
   let A : Fin n → MvPowerSeries (Fin n ⊕ (Fin n ⊕ Fin n)) k := fun l => X (Sum.inl l)
@@ -408,6 +498,9 @@ theorem rename_sw_τ₁ [F.IsComm] (j : Fin n) : rename (sw (n := n)) (τ₁ F j
     funext t
     rcases t with (l' | l') <;> rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.c70d4e18072f from=translated src=- shape=0ffa4455 vocab=d6b7cd7d
+-/
 theorem D_comm [F.IsComm] (a b : Fin n →₀ ℕ) : D F a ∘ₗ D F b = D F b ∘ₗ D F a := by
   refine LinearMap.ext fun G => ?_
   ext c
@@ -427,8 +520,14 @@ variable {k : Type u} [CommRing k] {n : ℕ} (F : MvFormalGroup n k)
 def 𝒜 : Subalgebra k (Module.End k (MvPowerSeries (Fin n) k)) :=
   Algebra.adjoin k (Set.range (D F))
 
+/--
+@isnad1 id=mem.0h4v.s9.4c5cd9f6ba63 from=translated src=- shape=74287a7f vocab=8293e9f7
+-/
 theorem D_mem_𝒜 (a : Fin n →₀ ℕ) : D F a ∈ 𝒜 F := Algebra.subset_adjoin ⟨a, rfl⟩
 
+/--
+@isnad1 id=ismulcom.0h3v.s11.1b9df204594a from=translated src=- shape=eaa2d252 vocab=98dc9afc
+-/
 scoped instance isMulCommutative_𝒜 [F.IsComm] : IsMulCommutative (𝒜 F) :=
   Algebra.isMulCommutative_adjoin k (by
     rintro _ ⟨a, rfl⟩ _ ⟨b, rfl⟩
@@ -439,11 +538,17 @@ def genD : MvPowerSeries (Fin n) (𝒜 F) := fun a => ⟨D F a, D_mem_𝒜 F a�
 def Q (m : ℕ) (s : Fin n →₀ ℕ) : Module.End k (MvPowerSeries (Fin n) k) :=
   ((coeff s (genD F ^ m) : 𝒜 F) : Module.End k (MvPowerSeries (Fin n) k))
 
+/--
+@isnad1 id=eq.0h4v.s9.4fba99145508 from=translated src=- shape=c5d97c61 vocab=e21c95bb
+-/
 theorem Q_zero (s : Fin n →₀ ℕ) : Q F 0 s = if s = 0 then 1 else 0 := by
   classical
   rw [Q, pow_zero, coeff_one]
   split_ifs <;> rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.7be37e816c09 from=translated src=- shape=32374660 vocab=303ae96c
+-/
 theorem Q_succ (m : ℕ) (s : Fin n →₀ ℕ) :
     Q F (m + 1) s = ∑ q ∈ Finset.HasAntidiagonal.antidiagonal s, D F q.1 * Q F m q.2 := by
   rw [Q, pow_succ', coeff_mul, AddSubmonoidClass.coe_finsetSum]
@@ -454,12 +559,18 @@ theorem Q_succ (m : ℕ) (s : Fin n →₀ ℕ) :
 def nthL (m : ℕ) (j : Fin n) : MvPowerSeries (Fin n ⊕ Fin n) k :=
   rename (Sum.inl : Fin n → Fin n ⊕ Fin n) (F.nthSeries m j)
 
+/--
+@isnad1 id=eq.0h5v.s7.6bad8ed653c4 from=translated src=- shape=86d84589 vocab=d28e8db5
+-/
 theorem constantCoeff_nthL (m : ℕ) (j : Fin n) : constantCoeff (nthL F m j) = 0 := by
   rw [nthL, constantCoeff_rename, MvFormalGroup.constantCoeff_nthSeries]
 
 def θD (m : ℕ) : Fin n ⊕ Fin n → MvPowerSeries (Fin n ⊕ Fin n) k :=
   Sum.elim (nthL F m) fun j => X (Sum.inr j)
 
+/--
+@isnad1 id=eq.0h5v.s7.824e84544f6a from=translated src=- shape=387c5493 vocab=ea18aa21
+-/
 theorem constantCoeff_θD (m : ℕ) : ∀ t, constantCoeff (θD F m t) = 0 := by
   rintro (j | j)
   · exact constantCoeff_nthL F m j
@@ -468,10 +579,16 @@ theorem constantCoeff_θD (m : ℕ) : ∀ t, constantCoeff (θD F m t) = 0 := by
 def τD (m : ℕ) (j : Fin n) : MvPowerSeries (Fin n ⊕ Fin n) k :=
   subst (θD F m) (F.toPowerSeries j)
 
+/--
+@isnad1 id=eq.0h5v.s7.c58b513f7719 from=translated src=- shape=86d84589 vocab=776a9162
+-/
 theorem constantCoeff_τD (m : ℕ) (j : Fin n) : constantCoeff (τD F m j) = 0 :=
   constantCoeff_subst_eq_zero (hasSubst_of_constantCoeff_zero (constantCoeff_θD F m))
     (constantCoeff_θD F m) (F.constantCoeff_eq_zero j)
 
+/--
+@isnad1 id=eq.0h5v.s6.4ab7d8addb79 from=translated src=- shape=532d0052 vocab=5fd2b601
+-/
 theorem subst_τD (m : ℕ) (G : MvPowerSeries (Fin n) k) :
     subst (τD F m) G = subst (θD F m) (subst F.toPowerSeries G) := by
   rw [subst_comp_subst_apply F.hasSubst_toPowerSeries
@@ -481,11 +598,17 @@ theorem subst_τD (m : ℕ) (G : MvPowerSeries (Fin n) k) :
 def θE (m : ℕ) : Fin n ⊕ Fin n → MvPowerSeries (Fin n ⊕ Fin n) k :=
   Sum.elim (nthL F m) F.toPowerSeries
 
+/--
+@isnad1 id=eq.0h5v.s7.64d075f4a048 from=translated src=- shape=387c5493 vocab=52322db6
+-/
 theorem constantCoeff_θE (m : ℕ) : ∀ t, constantCoeff (θE F m t) = 0 := by
   rintro (j | j)
   · exact constantCoeff_nthL F m j
   · exact F.constantCoeff_eq_zero j
 
+/--
+@isnad1 id=eq.0h4v.s5.9d95b2863fe4 from=translated src=- shape=0c88adc0 vocab=ae52bca8
+-/
 theorem τD_zero (j : Fin n) : τD F 0 j = X (Sum.inr j) := by
   have hXr : HasSubst (fun l : Fin n => (X (Sum.inr l) : MvPowerSeries (Fin n ⊕ Fin n) k)) :=
     hasSubst_of_constantCoeff_zero fun l => constantCoeff_X _
@@ -503,6 +626,9 @@ theorem τD_zero (j : Fin n) : τD F 0 j = X (Sum.inr j) := by
   · show X (Sum.inr l) = subst _ (X l)
     rw [subst_X hXr]
 
+/--
+@isnad1 id=eq.0h5v.s6.677e8db930a1 from=translated src=- shape=eb2441cd vocab=3da85afc
+-/
 theorem nthL_succ (m : ℕ) (j : Fin n) :
     nthL F (m + 1) j = subst (Sum.elim (nthL F m) fun l => X (Sum.inl l)) (F.toPowerSeries j) := by
   have hXl : HasSubst (X ∘ Sum.inl : Fin n → MvPowerSeries (Fin n ⊕ Fin n) k) := HasSubst.X_comp _
@@ -518,6 +644,9 @@ theorem nthL_succ (m : ℕ) (j : Fin n) :
     rw [subst_X hXl]
     rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.cc339afbe837 from=translated src=- shape=7b0368d6 vocab=0555303d
+-/
 theorem τD_succ (m : ℕ) (j : Fin n) : τD F (m + 1) j = subst (θE F m) (F.toPowerSeries j) := by
   have hXl : ∀ l : Fin n, constantCoeff (X (Sum.inl l) : MvPowerSeries (Fin n ⊕ Fin n) k) = 0 :=
     fun l => constantCoeff_X _
@@ -539,6 +668,9 @@ theorem τD_succ (m : ℕ) (j : Fin n) : τD F (m + 1) j = subst (θE F m) (F.to
   rw [hX]
   exact congrFun subst_self _
 
+/--
+@isnad1 id=eq.0h5v.s6.f3170ac292d6 from=translated src=- shape=334f7a1b vocab=0555303d
+-/
 theorem subst_τD_succ (m : ℕ) (G : MvPowerSeries (Fin n) k) :
     subst (τD F (m + 1)) G = subst (θE F m) (subst F.toPowerSeries G) := by
   rw [subst_comp_subst_apply F.hasSubst_toPowerSeries
@@ -550,34 +682,52 @@ theorem subst_τD_succ (m : ℕ) (G : MvPowerSeries (Fin n) k) :
 def nthPow (m : ℕ) (x : Fin n →₀ ℕ) : MvPowerSeries (Fin n) k :=
   x.prod fun j m' => F.nthSeries m j ^ m'
 
+/--
+@isnad1 id=eq.0h5v.s8.96358b3575d5 from=translated src=- shape=333db255 vocab=da93e06c
+-/
 theorem prod_nthL_pow (m : ℕ) (x : Fin n →₀ ℕ) :
     (x.prod fun j m' => nthL F m j ^ m') = rename (Sum.inl : Fin n → Fin n ⊕ Fin n) (nthPow F m x) :=
   finsuppProd_pow_rename _ _ x
 
+/--
+@isnad1 id=eq.0h3v.s8.ed154d043cee from=translated src=- shape=f415fd7c vocab=25b6b881
+-/
 theorem prod_X_inr_pow (y : Fin n →₀ ℕ) :
     (y.prod fun j m => (X (Sum.inr j) : MvPowerSeries (Fin n ⊕ Fin n) k) ^ m) =
       rename (Sum.inr : Fin n → Fin n ⊕ Fin n) (monomial y (1 : k)) := by
   rw [← prod_X_pow_eq_monomial, map_finsuppProd]
   simp only [map_pow, rename_X]
 
+/--
+@isnad1 id=le.1h3v.s7.26d6606b996e from=translated src=- shape=f7aeaa0e vocab=95e259ec
+-/
 theorem degree_le_of_mem_box {N : ℕ} {y : Fin n →₀ ℕ} (hy : y ∈ box (Fin n) N) : y.degree ≤ n * N := by
   rw [mem_box] at hy
   rw [Finsupp.degree_eq_sum]
   calc ∑ i, y i ≤ ∑ _i : Fin n, N := Finset.sum_le_sum fun i _ => hy i
     _ = n * N := by simp
 
+/--
+@isnad1 id=le.1h3v.s8.287e9743edb0 from=translated src=- shape=12573213 vocab=c1bafe6a
+-/
 theorem degree_fst_le_of_mem_antidiagonal {s : Fin n →₀ ℕ} {q : (Fin n →₀ ℕ) × (Fin n →₀ ℕ)}
     (hq : q ∈ Finset.HasAntidiagonal.antidiagonal s) : q.1.degree ≤ s.degree := by
   rw [Finset.HasAntidiagonal.mem_antidiagonal] at hq
   rw [← hq, map_add]
   exact Nat.le_add_right _ _
 
+/--
+@isnad1 id=le.1h3v.s8.65ab6f496a6d from=translated src=- shape=12573213 vocab=f55540ef
+-/
 theorem degree_snd_le_of_mem_antidiagonal {s : Fin n →₀ ℕ} {q : (Fin n →₀ ℕ) × (Fin n →₀ ℕ)}
     (hq : q ∈ Finset.HasAntidiagonal.antidiagonal s) : q.2.degree ≤ s.degree := by
   rw [Finset.HasAntidiagonal.mem_antidiagonal] at hq
   rw [← hq, map_add]
   exact Nat.le_add_left _ _
 
+/--
+@isnad1 id=eq.1h8v.s9.1d5ced659284 from=translated src=- shape=c4b7b1ec vocab=ce47630c
+-/
 theorem coeff_subst_τD_eq_sum (m : ℕ) (G : MvPowerSeries (Fin n) k) (s y : Fin n →₀ ℕ) {N : ℕ}
     (hN : s.degree + y.degree ≤ N) :
     coeff (s.sumElim y) (subst (τD F m) G) =
@@ -599,6 +749,9 @@ theorem coeff_subst_τD_eq_sum (m : ℕ) (G : MvPowerSeries (Fin n) k) (s y : Fi
     rw [h1, h2, coeff_sumElim_rename_inl_mul_rename_inr, coeff_monomial, ite_eq_right (Ne.symm hy'), mul_zero,
       mul_zero]
 
+/--
+@isnad1 id=eq.0h7v.s9.23e089ec29bb from=translated src=- shape=ea3f90c3 vocab=369c2526
+-/
 theorem coeff_subst_τD [F.IsComm] (m : ℕ) :
     ∀ (G : MvPowerSeries (Fin n) k) (s b : Fin n →₀ ℕ),
       coeff (s.sumElim b) (subst (τD F m) G) = coeff b (Q F m s G) := by
@@ -673,12 +826,18 @@ section Frob
 
 variable {k : Type u} [CommRing k] {n : ℕ} (F : MvFormalGroup n k)
 
+/--
+@isnad1 id=injectiv.0h3v.s12.73e425320921 from=translated src=- shape=6a411c27 vocab=7d8f973e
+-/
 theorem algebraMap_𝒜_injective : Function.Injective (algebraMap k (𝒜 F)) := by
   intro c c' h
   have h' := congrArg (fun z : 𝒜 F => constantCoeff ((z : Module.End k (MvPowerSeries (Fin n) k)) 1)) h
   simp only [Subalgebra.coe_algebraMap, Module.algebraMap_end_apply] at h'
   simpa using h'
 
+/--
+@isnad1 id=eq.0h5v.s9.e5accb103fbf from=translated src=- shape=8b66f118 vocab=233944f1
+-/
 theorem Q_prime_nsmul [F.IsComm] (p : ℕ) [hp : Fact p.Prime] [CharP k p] (a : Fin n →₀ ℕ) :
     Q F p (p • a) = D F a ^ p := by
   open scoped IsMulCommutative in
@@ -689,6 +848,9 @@ theorem Q_prime_nsmul [F.IsComm] (p : ℕ) [hp : Fact p.Prime] [CharP k p] (a : 
     Subalgebra.coe_pow]
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s9.573318a6c7b6 from=translated src=- shape=84811931 vocab=21d0d526
+-/
 theorem killCompl_inl_subst {ι : Type*} [Finite ι] (τ : ι → MvPowerSeries (Fin n ⊕ Fin n) k)
     (hτ : ∀ i, constantCoeff (τ i) = 0) (G : MvPowerSeries ι k) :
     killCompl (Function.Embedding.inl : Fin n ↪ Fin n ⊕ Fin n) (subst τ G) =
@@ -708,6 +870,9 @@ theorem killCompl_inl_subst {ι : Type*} [Finite ι] (τ : ι → MvPowerSeries 
     map_finsuppProd]
   simp only [map_pow]
 
+/--
+@isnad1 id=eq.1h6v.s7.c63ae62f6936 from=translated src=- shape=3746c1cf vocab=7713a209
+-/
 theorem subst_elim_zero_right {τ : Type*} (u : Fin n → MvPowerSeries τ k)
     (hu : ∀ i, constantCoeff (u i) = 0) (j : Fin n) :
     subst (Sum.elim u fun _ => (0 : MvPowerSeries τ k)) (F.toPowerSeries j) = u j := by
@@ -725,6 +890,9 @@ theorem subst_elim_zero_right {τ : Type*} (u : Fin n → MvPowerSeries τ k)
   · show 0 = subst u 0
     rw [← coe_substAlgHom hsu, map_zero]
 
+/--
+@isnad1 id=eq.0h5v.s7.362a0b303ca0 from=translated src=- shape=eafb56c2 vocab=c47530fd
+-/
 theorem killCompl_inl_τD (m : ℕ) (j : Fin n) :
     killCompl (Function.Embedding.inl : Fin n ↪ Fin n ⊕ Fin n) (τD F m j) = F.nthSeries m j := by
   rw [τD, killCompl_inl_subst _ (constantCoeff_θD F m)]
@@ -738,6 +906,9 @@ theorem killCompl_inl_τD (m : ℕ) (j : Fin n) :
       exact Sum.inl_ne_inr hi
   rw [hfam, subst_elim_zero_right F _ (MvFormalGroup.constantCoeff_nthSeries F m) j]
 
+/--
+@isnad1 id=eq.0h6v.s8.90abf2937a0e from=translated src=- shape=65bb5f36 vocab=58df212a
+-/
 theorem coeff_sumElim_zero_subst_τD (m : ℕ) (G : MvPowerSeries (Fin n) k) (s : Fin n →₀ ℕ) :
     coeff (s.sumElim 0) (subst (τD F m) G) = coeff s (subst (F.nthSeries m) G) := by
   rw [← Finsupp.embDomain_inl, ← coeff_killCompl (e := (Function.Embedding.inl : Fin n ↪ Fin n ⊕ Fin n)),
@@ -746,12 +917,18 @@ theorem coeff_sumElim_zero_subst_τD (m : ℕ) (G : MvPowerSeries (Fin n) k) (s 
   funext j
   exact killCompl_inl_τD F m j
 
+/--
+@isnad1 id=eq.0h6v.s10.f52317c842f3 from=translated src=- shape=5f593cde vocab=ba1d46e4
+-/
 theorem constantCoeff_D_pow_apply [F.IsComm] (p : ℕ) [Fact p.Prime] [CharP k p] (a : Fin n →₀ ℕ)
     (g : MvPowerSeries (Fin n) k) :
     constantCoeff ((D F a ^ p) g) = coeff (p • a) (subst (F.nthSeries p) g) := by
   rw [← Q_prime_nsmul, ← coeff_zero_eq_constantCoeff_apply, ← coeff_subst_τD F p g (p • a) 0,
     coeff_sumElim_zero_subst_τD]
 
+/--
+@isnad1 id=eq.3h7v.s9.08a75d0a411c from=translated src=- shape=bd17c009 vocab=802574f6
+-/
 theorem coeff_nsmul_subst_nthSeries (p : ℕ) (hp : p ≠ 0)
     (V : Fin n → MvPowerSeries (Fin n) k) (hV0 : ∀ i, constantCoeff (V i) = 0)
     (hV : ∀ i, subst (fun l => (X l : MvPowerSeries (Fin n) k) ^ p) (V i) = F.nthSeries p i)
@@ -768,6 +945,9 @@ section Assembly
 
 variable {k : Type u} [CommRing k] {n : ℕ} (F : MvFormalGroup n k)
 
+/--
+@isnad1 id=eq.3h9v.s10.1e12cdd0e3a3 from=translated src=- shape=1a9175db vocab=64b91a8e
+-/
 theorem constantCoeff_iterate_eq (p : ℕ) [hp : Fact p.Prime] [CharP k p] [F.IsComm]
     (V : Fin n → MvPowerSeries (Fin n) k) (hV0 : ∀ i, constantCoeff (V i) = 0)
     (hV : ∀ i, subst (fun l => (X l : MvPowerSeries (Fin n) k) ^ p) (V i) = F.nthSeries p i)
@@ -811,6 +991,9 @@ section Hopf
 
 variable {k : Type u} [Field k] {n : ℕ}
 
+/--
+@isnad1 id=ex.0h3v.s9.58458b9d80bf from=translated src=- shape=a0ba550e vocab=2902feb8
+-/
 theorem exists_ker_constantCoeff_pow_le (J : Ideal (MvPowerSeries (Fin n) k))
     [Module.Finite k (MvPowerSeries (Fin n) k ⧸ J)] :
     ∃ N : ℕ, 0 < N ∧ (RingHom.ker (constantCoeff : MvPowerSeries (Fin n) k →+* k)) ^ N ≤ J := by
@@ -836,6 +1019,9 @@ theorem exists_ker_constantCoeff_pow_le (J : Ideal (MvPowerSeries (Fin n) k))
   rw [Ideal.map_eq_bot_iff_le_ker, Ideal.mk_ker] at h1
   exact h1
 
+/--
+@isnad1 id=ex.0h4v.s8.172173af99e5 from=translated src=- shape=3bfae329 vocab=d2b1ea20
+-/
 theorem exists_pow_X_eq_zero {L : Type v} [CommRing L] [Algebra k L] [Module.Finite k L]
     (π : MvPowerSeries (Fin n) k →ₐ[k] L) :
     ∃ N : ℕ, 1 ≤ N ∧ ∀ j : Fin n, π (X j) ^ N = 0 := by
@@ -851,6 +1037,9 @@ theorem exists_pow_X_eq_zero {L : Type v} [CommRing L] [Algebra k L] [Module.Fin
   rw [RingHom.mem_ker, map_pow] at h
   exact h
 
+/--
+@isnad1 id=mem.1h5v.s8.03b2d4107619 from=translated src=- shape=e0848cfd vocab=a02cb4fd
+-/
 theorem mem_span_X_pow {ι : Type*} [DecidableEq ι] (N : ℕ) (T : Finset ι) :
     ∀ f : MvPowerSeries ι k, (∀ e : ι →₀ ℕ, (∀ s ∈ T, e s < N) → coeff e f = 0) →
       f ∈ Ideal.span ((fun s => (X s : MvPowerSeries ι k) ^ N) '' (T : Set ι)) := by
@@ -889,6 +1078,9 @@ theorem mem_span_X_pow {ι : Type*} [DecidableEq ι] (N : ℕ) (T : Finset ι) :
     rw [this]
     refine Ideal.add_mem _ (h3 h2) (Ideal.mul_mem_right _ _ (Ideal.subset_span ⟨s₀, by simp, rfl⟩))
 
+/--
+@isnad1 id=eq.2h6v.s9.7b71510731d5 from=translated src=- shape=7c393b85 vocab=f26c2a21
+-/
 theorem algHom_eq_sum_box {ι : Type*} [Fintype ι] [DecidableEq ι] {A : Type*} [Ring A] [Algebra k A]
     (ψ : MvPowerSeries ι k →ₐ[k] A) {N : ℕ} (hN : 1 ≤ N) (hψ : ∀ s, ψ (X s) ^ N = 0)
     (H : MvPowerSeries ι k) :
@@ -918,6 +1110,9 @@ theorem algHom_eq_sum_box {ι : Type*} [Fintype ι] [DecidableEq ι] {A : Type*}
   refine Finset.sum_congr rfl fun e _ => ?_
   rw [map_smul]
 
+/--
+@isnad1 id=eq.0h4v.s10.c07e95cc4b34 from=translated src=- shape=2dd60adf vocab=2445739c
+-/
 theorem monomial_sumElim (x y : Fin n →₀ ℕ) :
     monomial (x.sumElim y) (1 : k) =
       rename (Sum.inl : Fin n → Fin n ⊕ Fin n) (monomial x (1 : k)) *
@@ -929,9 +1124,15 @@ variable {L : Type v} [CommRing L] [HopfAlgebra k L]
 def ρ (φ : CartierDual k L) : L →ₗ[k] L :=
   (TensorProduct.lid k L).toLinearMap ∘ₗ (CartierDual.toDual k L φ).rTensor L ∘ₗ Coalgebra.comul
 
+/--
+@isnad1 id=eq.0h4v.s12.425fe465bdf8 from=translated src=- shape=10c66ea5 vocab=e66142e5
+-/
 theorem ρ_apply (φ : CartierDual k L) (a : L) :
     ρ φ a = TensorProduct.lid k L ((CartierDual.toDual k L φ).rTensor L (Coalgebra.comul (R := k) a)) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.2a01b13d3278 from=translated src=- shape=c4ccb846 vocab=bc61d3fd
+-/
 theorem mul_apply_eq (φ ψ : CartierDual k L) (a : L) : (φ * ψ) a = ψ (ρ φ a) := by
   rw [CartierDual.mul_apply, ρ_apply]
   induction (Coalgebra.comul (R := k) a) using TensorProduct.induction_on with
@@ -941,6 +1142,9 @@ theorem mul_apply_eq (φ ψ : CartierDual k L) (a : L) : (φ * ψ) a = ψ (ρ φ
       LinearMap.rTensor_tmul, TensorProduct.lid_tmul, CartierDual.toDual_apply, map_smul, smul_eq_mul]
   | add s t hs ht => rw [map_add, hs, map_add, map_add, map_add, ht]
 
+/--
+@isnad1 id=eq.0h5v.s10.10e5e872fbf3 from=translated src=- shape=9e0e852b vocab=5a32de78
+-/
 theorem pow_apply_eq_counit_iterate (φ : CartierDual k L) (m : ℕ) :
     ∀ a : L, (φ ^ m) a = Coalgebra.counit (R := k) ((ρ φ)^[m] a) := by
   induction m with
@@ -954,6 +1158,9 @@ open scoped _root_.P2MW.S_MvFormalGroup_cartierDual_pow_apply_eq_finsum_coeff_su
 
 open P2mFV in
 
+/--
+@isnad1 id=eq.6h10v.s13.6fbf62871e23 from=translated src=- shape=612a6e64 vocab=550f600f
+-/
 theorem solution
     {k : Type u} [Field k] (p : ℕ) [Fact p.Prime] [CharP k p]
     {n : ℕ} (F : MvFormalGroup n k) [F.IsComm]

@@ -14,6 +14,9 @@ variable {k : ℕ} (C : Fin k → Type) [∀ i, CommRing (C i)]
 
 def e (i : Fin k) : (∀ i, C i) := Pi.single i 1
 
+/--
+@isnad1 id=eq.0h2v.s7.6f96725d0b72 from=translated src=- shape=e3f2267f vocab=cce662ed
+-/
 theorem span_e_eq_top : Ideal.span (Set.range (e C)) = ⊤ := by
   classical
   rw [Ideal.eq_top_iff_one]
@@ -25,6 +28,9 @@ theorem span_e_eq_top : Ideal.span (Set.range (e C)) = ⊤ := by
 
 abbrev algC (i : Fin k) : Algebra (∀ i, C i) (C i) := (Pi.evalRingHom C i).toAlgebra
 
+/--
+@isnad1 id=islocali.0h3v.s6.829ec999f87c from=translated src=- shape=67e2155c vocab=55fbd49a
+-/
 theorem isLocalization_e (i : Fin k) :
     letI := algC C i
     IsLocalization (Submonoid.powers (e C i)) (C i) := by
@@ -53,6 +59,9 @@ theorem isLocalization_e (i : Fin k) :
 end FFPI
 
 open FFPI in
+/--
+@isnad1 id=faithful.2h3v.s9.eb0fe1d6e809 from=translated src=- shape=85099198 vocab=95b5872c
+-/
 theorem solution
     {k : ℕ} (C : Fin k → Type) [∀ i, CommRing (C i)] (D : Fin k → Type) [∀ i, CommRing (D i)] [∀ i, Algebra (C i) (D i)]
     [inst : Algebra (∀ i, C i) (∀ i, D i)]

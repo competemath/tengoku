@@ -15,15 +15,27 @@ open MulAction Subgroup
 
 variable {G : Type*} [Group G] [Finite G]
 
+/--
+@isnad1 id=fact.0h0v.s2.2cde8ffc8dda from=translated src=- shape=8d7dbbf6 vocab=c1c9ca6d
+-/
 scoped instance fact_prime_two' : Fact (Nat.Prime 2) := ⟨Nat.prime_two⟩
+/--
+@isnad1 id=fact.0h0v.s2.fdf266938498 from=translated src=- shape=8d7dbbf6 vocab=c1c9ca6d
+-/
 scoped instance fact_prime_three' : Fact (Nat.Prime 3) := ⟨Nat.prime_three⟩
 
+/--
+@isnad1 id=eq.0h0v.s5.3714ead1ab3b from=translated src=- shape=58c0127f vocab=03902c67
+-/
 theorem factorization_twelve_three : (12 : ℕ).factorization 3 = 1 := by
   rw [Nat.factorization_def _ Nat.prime_three]
   have : (12 : ℕ) = 3 ^ 1 * 4 := by norm_num
   rw [this, padicValNat.mul (by norm_num) (by norm_num), padicValNat.prime_pow,
     padicValNat.eq_zero_of_not_dvd (by norm_num)]
 
+/--
+@isnad1 id=eq.0h0v.s5.4db937aa66ed from=translated src=- shape=58c0127f vocab=03902c67
+-/
 theorem factorization_twelve_two : (12 : ℕ).factorization 2 = 2 := by
   rw [Nat.factorization_def _ Nat.prime_two]
   have : (12 : ℕ) = 2 ^ 2 * 3 := by norm_num
@@ -35,6 +47,9 @@ section Structure
 variable (hG : Nat.card G = 12) (hexp : ∀ g : G, g ^ 2 = 1 ∨ g ^ 3 = 1)
 
 include hexp in
+/--
+@isnad1 id=or.1h2v.s7.ff05903f2bda from=translated src=- shape=f40452cf vocab=8d375b19
+-/
 theorem orderOf_cases (g : G) : orderOf g = 1 ∨ orderOf g = 2 ∨ orderOf g = 3 := by
   rcases hexp g with h | h
   · have hd := orderOf_dvd_of_pow_eq_one h
@@ -46,19 +61,31 @@ theorem orderOf_cases (g : G) : orderOf g = 1 ∨ orderOf g = 2 ∨ orderOf g = 
 
 include hexp in
 
+/--
+@isnad1 id=not.3h3v.s7.db85e7cfe920 from=translated src=- shape=c414e3b6 vocab=943a3c48
+-/
 theorem not_commute {a b : G} (ha : orderOf a = 2) (hb : orderOf b = 3) : ¬Commute a b := by
   intro h
   have h6 : orderOf (a * b) = 6 := by
     rw [h.orderOf_mul_eq_mul_orderOf_of_coprime (by rw [ha, hb]; norm_num), ha, hb]
   rcases orderOf_cases hexp (a * b) with h1 | h1 | h1 <;> omega
 
+/--
+@isnad1 id=eq.2h2v.s6.ecf6be46d212 from=translated src=- shape=bf6dc1fc vocab=8d375b19
+-/
 theorem orderOf_eq_two_of_sq {a : G} (ha : a ^ 2 = 1) (ha1 : a ≠ 1) : orderOf a = 2 :=
   orderOf_eq_prime ha ha1
 
+/--
+@isnad1 id=eq.2h2v.s6.1492bc02d4f2 from=translated src=- shape=bf6dc1fc vocab=8d375b19
+-/
 theorem orderOf_eq_three_of_cube {b : G} (hb : b ^ 3 = 1) (hb1 : b ≠ 1) : orderOf b = 3 :=
   orderOf_eq_prime hb hb1
 
 include hexp in
+/--
+@isnad1 id=eq.2h2v.s7.5b19044b294d from=translated src=- shape=d71b81ef vocab=8d375b19
+-/
 theorem sq_eq_one_of_orderOf_ne_three {g : G} (h : orderOf g ≠ 3) : g ^ 2 = 1 := by
   rcases orderOf_cases hexp g with h1 | h1 | h1
   · rw [orderOf_eq_one_iff.mp h1, one_pow]
@@ -66,13 +93,22 @@ theorem sq_eq_one_of_orderOf_ne_three {g : G} (h : orderOf g ≠ 3) : g ^ 2 = 1 
   · exact absurd h1 h
 
 include hG in
+/--
+@isnad1 id=eq.1h2v.s5.65e36875f211 from=translated src=- shape=80512324 vocab=c4f034ea
+-/
 theorem card_sylow_three (P : Sylow 3 G) : Nat.card (P : Subgroup G) = 3 := by
   rw [Sylow.card_eq_multiplicity, hG, factorization_twelve_three, pow_one]
 
 include hG in
+/--
+@isnad1 id=eq.1h2v.s5.6dde8cc850f1 from=translated src=- shape=80512324 vocab=c4f034ea
+-/
 theorem card_sylow_two (Q : Sylow 2 G) : Nat.card (Q : Subgroup G) = 4 := by
   rw [Sylow.card_eq_multiplicity, hG, factorization_twelve_two]; norm_num
 
+/--
+@isnad1 id=eq.3h3v.s6.636dae64bf3a from=translated src=- shape=8e61c0f3 vocab=a788afd0
+-/
 theorem orderOf_eq_three_of_mem {H : Subgroup G} (hH : Nat.card H = 3) {g : G} (hg : g ∈ H)
     (hg1 : g ≠ 1) : orderOf g = 3 := by
   have hd : orderOf g ∣ 3 := hH ▸ Subgroup.orderOf_dvd_natCard H hg
@@ -80,6 +116,9 @@ theorem orderOf_eq_three_of_mem {H : Subgroup G} (hH : Nat.card H = 3) {g : G} (
   · exact absurd (orderOf_eq_one_iff.mp h) hg1
   · exact h
 
+/--
+@isnad1 id=eq.3h3v.s6.0b2e6b05c456 from=translated src=- shape=23aa9528 vocab=2a45a578
+-/
 theorem zpowers_eq_of_mem {H : Subgroup G} (hH : Nat.card H = 3) {g : G} (hg : g ∈ H) (hg1 : g ≠ 1) :
     Subgroup.zpowers g = H := by
   haveI : Finite H := Nat.finite_of_card_ne_zero (by rw [hH]; norm_num)
@@ -87,6 +126,9 @@ theorem zpowers_eq_of_mem {H : Subgroup G} (hH : Nat.card H = 3) {g : G} (hg : g
   · rw [Subgroup.zpowers_le]; exact hg
   · rw [hH, Nat.card_zpowers, orderOf_eq_three_of_mem hH hg hg1]
 
+/--
+@isnad1 id=or.4h4v.s7.4f34b6ba5271 from=translated src=- shape=c1c87945 vocab=8af69cb6
+-/
 theorem mem_of_card_three {H : Subgroup G} (hH : Nat.card H = 3) {c : G} (hc : c ∈ H) (hc1 : c ≠ 1)
     {g : G} (hg : g ∈ H) : g = 1 ∨ g = c ∨ g = c ^ 2 := by
   have hoc := orderOf_eq_three_of_mem hH hc hc1
@@ -102,6 +144,9 @@ theorem mem_of_card_three {H : Subgroup G} (hH : Nat.card H = 3) {c : G} (hc : c
 
 include hG hexp in
 
+/--
+@isnad1 id=not.2h2v.s6.60874306d4ba from=translated src=- shape=eff4615a vocab=6f61ede8
+-/
 theorem sylow_three_not_normal (P : Sylow 3 G) : ¬(P : Subgroup G).Normal := by
   intro hn
   have hP := card_sylow_three hG P
@@ -187,6 +232,9 @@ section Structure2
 variable (hG : Nat.card G = 12) (hexp : ∀ g : G, g ^ 2 = 1 ∨ g ^ 3 = 1)
 include hG hexp
 
+/--
+@isnad1 id=eq.2h1v.s6.69f390156251 from=translated src=- shape=e0dbcfd1 vocab=e2a8e4b9
+-/
 theorem card_sylow_three_eq_four : Nat.card (Sylow 3 G) = 4 := by
   obtain ⟨P⟩ : Nonempty (Sylow 3 G) := inferInstance
   have h1 : Nat.card (Sylow 3 G) ≡ 1 [MOD 3] := card_sylow_modEq_one 3 G
@@ -211,24 +259,36 @@ theorem card_sylow_three_eq_four : Nat.card (Sylow 3 G) = 4 := by
   · rfl
 
 omit hG hexp in
+/--
+@isnad1 id=ex.1h2v.s6.5acd92c6c7fa from=translated src=- shape=fdcb0ddb vocab=6756a750
+-/
 theorem exists_sylow_mem_of_orderOf {g : G} (hg : orderOf g = 3) : ∃ P : Sylow 3 G, g ∈ (P : Subgroup G) := by
   have : IsPGroup 3 (Subgroup.zpowers g) := IsPGroup.of_card (n := 1) (by rw [Nat.card_zpowers, hg, pow_one])
   obtain ⟨P, hP⟩ := this.exists_le_sylow
   exact ⟨P, hP (Subgroup.mem_zpowers g)⟩
 
 omit hexp in
+/--
+@isnad1 id=eq.4h4v.s6.7c26195dc754 from=translated src=- shape=a1a17885 vocab=fa924908
+-/
 theorem sylow_eq_of_mem {g : G} (hg1 : g ≠ 1) {P P' : Sylow 3 G} (h : g ∈ (P : Subgroup G))
     (h' : g ∈ (P' : Subgroup G)) : P = P' := by
   apply Sylow.ext
   rw [← zpowers_eq_of_mem (card_sylow_three hG P) h hg1, ← zpowers_eq_of_mem (card_sylow_three hG P') h' hg1]
 
 omit hG hexp in
+/--
+@isnad1 id=heq.3h4v.s8.6c95466c4885 from=translated src=- shape=f0dbf65c vocab=6b7a3425
+-/
 theorem heq_subtype_of_sylow_eq {P₁ P₂ : Sylow 3 G} (h : P₁ = P₂) {g : G}
     (h₁ : g ∈ (P₁ : Subgroup G) ∧ g ≠ 1) (h₂ : g ∈ (P₂ : Subgroup G) ∧ g ≠ 1) :
     HEq (⟨g, h₁⟩ : {g : G // g ∈ (P₁ : Subgroup G) ∧ g ≠ 1})
       (⟨g, h₂⟩ : {g : G // g ∈ (P₂ : Subgroup G) ∧ g ≠ 1}) := by
   subst h; rfl
 
+/--
+@isnad1 id=eq.2h1v.s6.464bb5a44589 from=translated src=- shape=385bc5b0 vocab=3a78a1c2
+-/
 theorem ncard_orderOf_eq_three : {g : G | orderOf g = 3}.ncard = 8 := by
   classical
   letI : Fintype (Sylow 3 G) := Fintype.ofFinite _
@@ -262,6 +322,9 @@ theorem ncard_orderOf_eq_three : {g : G | orderOf g = 3}.ncard = 8 := by
   simp only [h2, Finset.sum_const, Finset.card_univ, smul_eq_mul]
   rw [← Nat.card_eq_fintype_card, card_sylow_three_eq_four hG hexp]
 
+/--
+@isnad1 id=eq.2h1v.s7.39ae3ebb8c07 from=translated src=- shape=a8f9cdcd vocab=31b25a82
+-/
 theorem ncard_sq_eq_one : {g : G | g ^ 2 = 1}.ncard = 4 := by
   have hunion : {g : G | g ^ 2 = 1} ∪ {g | orderOf g = 3} = Set.univ := by
     ext g
@@ -279,6 +342,9 @@ theorem ncard_sq_eq_one : {g : G | g ^ 2 = 1}.ncard = 4 := by
   rw [hunion, Set.ncard_univ, hG, ncard_orderOf_eq_three hG hexp] at h
   omega
 
+/--
+@isnad1 id=iff.3h3v.s7.6682e02f9feb from=translated src=- shape=4ef7ce51 vocab=8af69cb6
+-/
 theorem mem_iff_sq_eq_one_of_card_eq_four {H : Subgroup G} (hH : Nat.card H = 4) (g : G) :
     g ∈ H ↔ g ^ 2 = 1 := by
   have hsub : (H : Set G) ⊆ {g : G | g ^ 2 = 1} := by
@@ -293,12 +359,18 @@ theorem mem_iff_sq_eq_one_of_card_eq_four {H : Subgroup G} (hH : Nat.card H = 4)
       exact hH.symm.le) (Set.toFinite _)
   rw [← SetLike.mem_coe, heq]; rfl
 
+/--
+@isnad1 id=eq.4h3v.s7.6c7363bf5db5 from=translated src=- shape=47234eb6 vocab=6d2303ea
+-/
 theorem sq_mul_eq_one {x y : G} (hx : x ^ 2 = 1) (hy : y ^ 2 = 1) : (x * y) ^ 2 = 1 := by
   obtain ⟨Q⟩ : Nonempty (Sylow 2 G) := inferInstance
   have hQ := card_sylow_two hG Q
   rw [← mem_iff_sq_eq_one_of_card_eq_four hG hexp hQ] at hx hy ⊢
   exact (Q : Subgroup G).mul_mem hx hy
 
+/--
+@isnad1 id=iff.3h3v.s7.69b4dbbd12db from=translated src=- shape=4c2f4f23 vocab=2ebcb543
+-/
 theorem mul_eq_mul_iff_sq_eq_one {a : G} (ha : orderOf a = 2) (x : G) : x * a = a * x ↔ x ^ 2 = 1 := by
   constructor
   · intro h
@@ -315,6 +387,9 @@ theorem mul_eq_mul_iff_sq_eq_one {a : G} (ha : orderOf a = 2) (x : G) : x * a = 
     have h3 : a⁻¹ = a := by rw [inv_eq_iff_mul_eq_one, ← sq, ha2]
     rw [h1, mul_inv_rev, h2, h3]
 
+/--
+@isnad1 id=ex.4h3v.s7.0bb503a8ac3c from=translated src=- shape=55e9c325 vocab=eec17c30
+-/
 theorem exists_conj_eq {a τ : G} (ha : orderOf a = 2) (hτ : orderOf τ = 2) : ∃ x : G, x⁻¹ * a * x = τ := by
   obtain ⟨b, hb⟩ := exists_prime_orderOf_dvd_card' (G := G) 3 (by rw [hG]; norm_num)
   have hb3 : b ^ 3 = 1 := by rw [← hb, pow_orderOf_eq_one]
@@ -391,6 +466,9 @@ theorem exists_conj_eq {a τ : G} (ha : orderOf a = 2) (hτ : orderOf τ = 2) : 
   · exact ⟨b, by rw [h, ha₁]⟩
   · exact ⟨b ^ 2, by rw [h, ha₂]⟩
 
+/--
+@isnad1 id=mem.4h3v.s7.f1268ff6e8c6 from=translated src=- shape=00b1eea6 vocab=3a01d7ab
+-/
 theorem mem_zpowers_of_mul_eq_mul {b x : G} (hb : orderOf b = 3) (h : x * b = b * x) :
     x ∈ Subgroup.zpowers b := by
   set C := Subgroup.centralizer ({b} : Set G) with hC
@@ -413,6 +491,9 @@ theorem mem_zpowers_of_mul_eq_mul {b x : G} (hb : orderOf b = 3) (h : x * b = b 
   rw [zpowers_eq_of_mem (card_sylow_three hG P) (hCP hbC) hb1]
   exact hCP hxC
 
+/--
+@isnad1 id=ne.3h3v.s7.750f6d028c13 from=translated src=- shape=ede7fdcc vocab=eec17c30
+-/
 theorem conj_ne_sq {c z : G} (hc : orderOf c = 3) : z⁻¹ * c * z ≠ c ^ 2 := by
   intro h
   have hc3 : c ^ 3 = 1 := by rw [← hc, pow_orderOf_eq_one]
@@ -465,6 +546,9 @@ section Marks
 
 variable (X : Type*) [MulAction G X]
 
+/--
+@isnad1 id=eq.0h4v.s7.1a63e07ea8c2 from=translated src=- shape=0c76f519 vocab=f2850db4
+-/
 theorem card_fixedBy_mul_card_stabilizer [IsPretransitive G X] (x₀ : X) (g : G) :
     Nat.card (fixedBy X g) * Nat.card (stabilizer G x₀) =
       Nat.card {x : G // x⁻¹ * g * x ∈ stabilizer G x₀} := by
@@ -496,6 +580,9 @@ theorem card_fixedBy_mul_card_stabilizer [IsPretransitive G X] (x₀ : X) (g : G
     _ = Nat.card {x : G // x⁻¹ * g * x ∈ H} := by rw [e2]; rfl
 
 omit [Finite G] in
+/--
+@isnad1 id=iff.0h4v.s7.0c3c7b77c75d from=translated src=- shape=0fa56776 vocab=ade7fe83
+-/
 theorem mem_smul_sylow_iff (g : G) (P : Sylow 3 G) (x : G) :
     x ∈ ((g • P : Sylow 3 G) : Subgroup G) ↔ g⁻¹ * x * g ∈ (P : Subgroup G) := by
   rw [Sylow.coe_subgroup_smul, Subgroup.mem_pointwise_smul_iff_inv_smul_mem]
@@ -505,6 +592,9 @@ variable (hG : Nat.card G = 12) (hexp : ∀ g : G, g ^ 2 = 1 ∨ g ^ 3 = 1)
 variable [Nonempty X] [IsPretransitive G X]
 include hG hexp
 
+/--
+@isnad1 id=and.2h2v.s9.6673e0985908 from=translated src=- shape=63f3e0f4 vocab=0ec0882c
+-/
 theorem marks :
     (Nat.card X = 1 ∨ Nat.card X = 3 ∨ Nat.card X = 4 ∨ Nat.card X = 6 ∨ Nat.card X = 12) ∧
     (∀ a : G, a ≠ 1 → a ^ 2 = 1 →
@@ -779,6 +869,9 @@ end Marks
 end P2MKcMarksA4
 open scoped _root_.P2MW.S_MulAction_natCard_fixedBy_of_isPretransitive_of_card_eq_twelve.P2MKcMarksA4
 
+/--
+@isnad1 id=and.2h2v.s9.33ed0e03d065 from=translated src=- shape=a13e5d41 vocab=0ec0882c
+-/
 theorem solution
     {G : Type*} [Group G] [Finite G] (hG : Nat.card G = 12)
     (hG' : ∀ g : G, g ^ 2 = 1 ∨ g ^ 3 = 1)

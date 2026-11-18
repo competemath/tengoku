@@ -28,16 +28,28 @@ variable {k : Type u} [CommRing k]
 def pd {σ : Type*} (s : σ) (f : MvPowerSeries σ k) : MvPowerSeries σ k :=
   fun m => ((m s + 1 : ℕ) : k) * coeff (m + Finsupp.single s 1) f
 
+/--
+@isnad1 id=eq.0h5v.s8.9d9dd831c891 from=translated src=- shape=5757c65e vocab=ad0665c1
+-/
 theorem coeff_pd {σ : Type*} (s : σ) (f : MvPowerSeries σ k) (m : σ →₀ ℕ) :
     coeff m (pd s f) = ((m s + 1 : ℕ) : k) * coeff (m + Finsupp.single s 1) f := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.22b700cb2f99 from=translated src=- shape=947353de vocab=551bad14
+-/
 theorem pd_smul {σ : Type*} (s : σ) (c : k) (f : MvPowerSeries σ k) : pd s (c • f) = c • pd s f := by
   ext m; simp only [coeff_pd, map_smul, smul_eq_mul]; ring
 
+/--
+@isnad1 id=eq.0h6v.s6.81d7e5c5772d from=translated src=- shape=fc499f6a vocab=31b360c8
+-/
 theorem pd_sum {σ : Type*} {ι : Type*} (s : σ) (t : Finset ι) (f : ι → MvPowerSeries σ k) :
     pd s (∑ i ∈ t, f i) = ∑ i ∈ t, pd s (f i) := by
   ext m; simp only [coeff_pd, map_sum, Finset.mul_sum]
 
+/--
+@isnad1 id=eq.0h4v.s6.64d6f189b09d from=translated src=- shape=c430a74b vocab=6ceb57d6
+-/
 theorem pd_X {σ : Type*} [DecidableEq σ] (s t : σ) :
     pd s (X t : MvPowerSeries σ k) = if s = t then 1 else 0 := by
   ext m
@@ -57,15 +69,24 @@ theorem pd_X {σ : Type*} [DecidableEq σ] (s t : σ) :
     have := congrArg (fun n => n s) h
     simp [Ne.symm hst] at this
 
+/--
+@isnad1 id=eq.0h4v.s8.b459e38d36e0 from=translated src=- shape=8fbf15d8 vocab=077095a4
+-/
 theorem constantCoeff_pd {σ : Type*} (s : σ) (f : MvPowerSeries σ k) :
     constantCoeff (pd s f) = coeff (Finsupp.single s 1) f := by
   rw [← coeff_zero_eq_constantCoeff_apply, coeff_pd]
   simp
 
+/--
+@isnad1 id=eq.0h5v.s8.671466426222 from=translated src=- shape=4230cf49 vocab=ad0665c1
+-/
 theorem hDf_pd {σ : Type*} (f : MvPowerSeries σ k) :
     ∀ (i : σ) (m : σ →₀ ℕ), coeff m (pd i f) = ((m i + 1 : ℕ) : k) * coeff (m + Finsupp.single i 1) f :=
   fun i m => coeff_pd i f m
 
+/--
+@isnad1 id=eq.3h8v.s10.439303631271 from=translated src=- shape=1f5f501a vocab=ce719a1b
+-/
 theorem coeff_mul_congr_le {τ : Type*} {a a' b b' : MvPowerSeries τ k} (N : τ →₀ ℕ)
     (ha : ∀ n ≤ N, coeff n a = coeff n a') (hb : ∀ n ≤ N, coeff n b = coeff n b') :
     ∀ n ≤ N, coeff n (a * b) = coeff n (a' * b') := by
@@ -78,6 +99,9 @@ theorem coeff_mul_congr_le {τ : Type*} {a a' b b' : MvPowerSeries τ k} (N : τ
   have h2 : x.2 ≤ N := le_trans (by rw [← hx]; exact le_add_self) hn
   rw [ha _ h1, hb _ h2]
 
+/--
+@isnad1 id=eq.2h7v.s9.d2e1e3f6e81e from=translated src=- shape=3d4a3893 vocab=172afe37
+-/
 theorem coeff_pow_congr_le {τ : Type*} {a a' : MvPowerSeries τ k} (N : τ →₀ ℕ)
     (ha : ∀ n ≤ N, coeff n a = coeff n a') (e : ℕ) :
     ∀ n ≤ N, coeff n (a ^ e) = coeff n (a' ^ e) := by
@@ -88,6 +112,9 @@ theorem coeff_pow_congr_le {τ : Type*} {a a' : MvPowerSeries τ k} (N : τ →�
     rw [pow_succ, pow_succ]
     exact coeff_mul_congr_le N ih ha n hn
 
+/--
+@isnad1 id=eq.2h8v.s9.078578cc8191 from=translated src=- shape=20a1c44b vocab=9734bfae
+-/
 theorem coeff_prod_congr_le {τ ι : Type*} (t : Finset ι) {u v : ι → MvPowerSeries τ k} (N : τ →₀ ℕ)
     (h : ∀ i ∈ t, ∀ n ≤ N, coeff n (u i) = coeff n (v i)) :
     ∀ n ≤ N, coeff n (∏ i ∈ t, u i) = coeff n (∏ i ∈ t, v i) := by
@@ -100,6 +127,9 @@ theorem coeff_prod_congr_le {τ ι : Type*} (t : Finset ι) {u v : ι → MvPowe
     exact coeff_mul_congr_le N (h i (Finset.mem_insert_self i t))
       (ih fun j hj => h j (Finset.mem_insert_of_mem hj)) n hn
 
+/--
+@isnad1 id=eq.3h7v.s9.57b37ec29317 from=translated src=- shape=06057589 vocab=a36b5275
+-/
 theorem coeff_subst_congr_le {σ τ : Type*} {a b : σ → MvPowerSeries τ k}
     (ha : HasSubst a) (hb : HasSubst b) (N : τ →₀ ℕ)
     (h : ∀ s, ∀ n ≤ N, coeff n (a s) = coeff n (b s)) (f : MvPowerSeries σ k) :
@@ -111,6 +141,9 @@ theorem coeff_subst_congr_le {σ τ : Type*} {a b : σ → MvPowerSeries τ k}
   rw [Finsupp.prod, Finsupp.prod]
   exact coeff_prod_congr_le e.support N (fun i _ => coeff_pow_congr_le N (h i) (e i)) N le_rfl
 
+/--
+@isnad1 id=ex.1h3v.s7.e34df0e5a348 from=translated src=- shape=dd9ff878 vocab=17b59516
+-/
 theorem sumElim_cases {τ : Type*} (n : τ ⊕ Unit →₀ ℕ) (m : τ →₀ ℕ)
     (hn : n ≤ m.sumElim (Finsupp.single () 1)) :
     ∃ n' : τ →₀ ℕ, n = n'.sumElim 0 ∨ n = n'.sumElim (Finsupp.single () 1) := by
@@ -130,6 +163,9 @@ theorem sumElim_cases {τ : Type*} (n : τ ⊕ Unit →₀ ℕ) (m : τ →₀ �
     · simp [Finsupp.sumElim_inl, Finsupp.comapDomain_apply]
     · simp [Finsupp.sumElim_inr, h1]
 
+/--
+@isnad1 id=eq.1h6v.s7.ed33d752151d from=translated src=- shape=66ee18af vocab=ee6a0fc6
+-/
 theorem pd_subst {σ τ : Type*} [Fintype σ] [Fintype τ] [DecidableEq σ] [DecidableEq τ]
     (G : σ → MvPowerSeries τ k) (hG : ∀ s, constantCoeff (G s) = 0)
     (f : MvPowerSeries σ k) (t : τ) :
@@ -228,6 +264,9 @@ section SubstHelpers
 
 variable {k : Type u} [CommRing k]
 
+/--
+@isnad1 id=eq.1h5v.s8.ca55e1228a32 from=translated src=- shape=fad2862f vocab=771f4d09
+-/
 theorem constantCoeff_subst_of_zero {σ τ : Type*} [Finite σ] {a : σ → MvPowerSeries τ k}
     (ha0 : ∀ s, constantCoeff (a s) = 0) (f : MvPowerSeries σ k) :
     constantCoeff (subst a f) = constantCoeff f := by
@@ -246,6 +285,9 @@ theorem constantCoeff_subst_of_zero {σ τ : Type*} [Finite σ] {a : σ → MvPo
       rw [map_pow, ha0, zero_pow hs]
     rw [hz, smul_zero]
 
+/--
+@isnad1 id=eq.0h4v.s7.cdbbacf74432 from=translated src=- shape=8a04a7d3 vocab=f6981e18
+-/
 theorem subst_zero_family {σ τ : Type*} [Finite σ] (g : MvPowerSeries σ k) :
     subst (fun _ : σ => (0 : MvPowerSeries τ k)) g = C (constantCoeff g) := by
   classical
@@ -272,13 +314,22 @@ variable {k : Type u} [Field k] {d : ℕ}
 def linTuple (A : Matrix (Fin d) (Fin d) k) : Fin d → MvPowerSeries (Fin d) k :=
   fun i => ∑ j, A i j • (X j : MvPowerSeries (Fin d) k)
 
+/--
+@isnad1 id=eq.0h4v.s6.6ad66f0f3c29 from=translated src=- shape=fa1984a5 vocab=e139054c
+-/
 theorem constantCoeff_linTuple (A : Matrix (Fin d) (Fin d) k) (i : Fin d) :
     (linTuple A i).constantCoeff = 0 := by
   simp [linTuple, map_sum, constantCoeff_X]
 
+/--
+@isnad1 id=hassubst.0h3v.s4.ded7bb703ead from=translated src=- shape=1b02627c vocab=ce0b7d3d
+-/
 theorem hasSubst_linTuple (A : Matrix (Fin d) (Fin d) k) : HasSubst (linTuple A) :=
   hasSubst_of_constantCoeff_zero (constantCoeff_linTuple A)
 
+/--
+@isnad1 id=eq.0h3v.s5.2e8e33e25d45 from=translated src=- shape=3d2e83d1 vocab=b9a97e80
+-/
 theorem linearPart_linTuple (A : Matrix (Fin d) (Fin d) k) : linearPart (linTuple A) = A := by
   classical
   ext i j
@@ -290,6 +341,9 @@ theorem linearPart_linTuple (A : Matrix (Fin d) (Fin d) k) : linearPart (linTupl
     simp [Ne.symm hlj]
   · intro hj; exact absurd (Finset.mem_univ j) hj
 
+/--
+@isnad1 id=eq.1h6v.s7.3ead155bcea3 from=translated src=- shape=1caff762 vocab=cfb9ff6e
+-/
 theorem subst_linTuple {τ : Type*} {b : Fin d → MvPowerSeries τ k} (hb : HasSubst b)
     (A : Matrix (Fin d) (Fin d) k) (i : Fin d) :
     subst b (linTuple A i) = ∑ j, A i j • b j := by
@@ -297,17 +351,26 @@ theorem subst_linTuple {τ : Type*} {b : Fin d → MvPowerSeries τ k} (hb : Has
   refine Finset.sum_congr rfl fun j _ => ?_
   rw [coe_substAlgHom hb, subst_X hb]
 
+/--
+@isnad1 id=eq.0h5v.s6.91fffb2ee911 from=translated src=- shape=91088fc7 vocab=f9504065
+-/
 theorem subst_linTuple_linTuple (A B : Matrix (Fin d) (Fin d) k) (i : Fin d) :
     subst (linTuple B) (linTuple A i) = linTuple (A * B) i := by
   rw [subst_linTuple (hasSubst_linTuple B)]
   simp only [linTuple, Finset.smul_sum, smul_smul, Matrix.mul_apply, Finset.sum_smul]
   rw [Finset.sum_comm]
 
+/--
+@isnad1 id=eq.0h3v.s6.9d71a1508c88 from=translated src=- shape=311ae792 vocab=aacc27b1
+-/
 theorem linTuple_one (i : Fin d) : linTuple (1 : Matrix (Fin d) (Fin d) k) i = X i := by
   classical
   simp only [linTuple, Matrix.one_apply, ite_smul, one_smul, zero_smul, Finset.sum_ite_eq,
     Finset.mem_univ, ite_true]
 
+/--
+@isnad1 id=eq.0h4v.s7.5d7c3245aa9d from=translated src=- shape=fa6e2d2e vocab=1ac134d0
+-/
 theorem linearPart_sum_smul (A : Matrix (Fin d) (Fin d) k) (c : Fin d → MvPowerSeries (Fin d) k) :
     linearPart (fun i => ∑ j, A i j • c j) = A * linearPart c := by
   ext i l
@@ -322,11 +385,17 @@ variable {k : Type u} [Field k] {d : ℕ}
 def ev0fam : Fin d ⊕ Fin d → MvPowerSeries (Fin d) k :=
   Sum.elim (fun i => (X i : MvPowerSeries (Fin d) k)) fun _ => 0
 
+/--
+@isnad1 id=eq.0h3v.s6.eeced8cab1ee from=translated src=- shape=69c4f82d vocab=7e09a154
+-/
 theorem ev0fam_zero (s : Fin d ⊕ Fin d) : constantCoeff (ev0fam (k := k) (d := d) s) = 0 := by
   rcases s with i | i
   · exact constantCoeff_X _
   · exact map_zero _
 
+/--
+@isnad1 id=hassubst.0h2v.s4.efae60cf5477 from=translated src=- shape=9583c8d5 vocab=3a64f446
+-/
 theorem hasSubst_ev0fam : HasSubst (ev0fam (k := k) (d := d)) :=
   hasSubst_of_constantCoeff_zero ev0fam_zero
 
@@ -335,15 +404,24 @@ variable (Ψ : MvFormalGroup d k)
 def Cf (j l : Fin d) : MvPowerSeries (Fin d) k :=
   subst (ev0fam (k := k) (d := d)) (pd (Sum.inr j) (Ψ.toPowerSeries l))
 
+/--
+@isnad1 id=eq.0h5v.s7.846aa655b01b from=translated src=- shape=ab7e5525 vocab=0503818f
+-/
 theorem constantCoeff_Cf (j l : Fin d) : constantCoeff (Cf Ψ j l) = if l = j then 1 else 0 := by
   rw [Cf, constantCoeff_subst_of_zero ev0fam_zero, constantCoeff_pd, Ψ.coeff_single_inr]
 
+/--
+@isnad1 id=eq.0h4v.s6.0434a931adf2 from=translated src=- shape=f889e2b3 vocab=0143692c
+-/
 theorem ev0_law (l : Fin d) :
     subst (ev0fam (k := k) (d := d)) (Ψ.toPowerSeries l) = (X l : MvPowerSeries (Fin d) k) :=
   Ψ.subst_elim_zero_right (fun j => constantCoeff_X j) l
 
 variable {Ψ} {Φ : MvFormalGroup d k} (ψ : Ψ.Hom Φ)
 
+/--
+@isnad1 id=eq.1h7v.s8.93181d75d178 from=translated src=- shape=4b016770 vocab=4ac3eb56
+-/
 theorem sum_Cf_pd_eq_zero (v : Fin d → k) (hv : (linearPart ψ.toPowerSeries).mulVec v = 0)
     (i : Fin d) :
     (∑ j, v j • ∑ l, Cf Ψ j l * pd l (ψ.toPowerSeries i)) = 0 := by
@@ -432,6 +510,9 @@ theorem sum_Cf_pd_eq_zero (v : Fin d → k) (hv : (linearPart ψ.toPowerSeries).
   simp only [hterm]
   rw [← Finset.sum_mul, ← map_sum, hv', map_zero, zero_mul]
 
+/--
+@isnad1 id=eq.1h7v.s7.c937182c3b4b from=translated src=- shape=198f095c vocab=ff6ffed0
+-/
 theorem sum_mul_sum_eq {R : Type*} [CommRing R] {n : ℕ} (a : Fin n → R) (M1 : Fin n → Fin n → R)
     (M2r : Fin n → R) (b : R) (s' : Fin n) (h : ∀ i, (∑ m, M2r m * M1 m i) = if s' = i then 1 else 0) :
     (∑ m, ∑ i, a i * M1 m i * (M2r m * b)) = a s' * b := by
@@ -443,6 +524,9 @@ theorem sum_mul_sum_eq {R : Type*} [CommRing R] {n : ℕ} (a : Fin n → R) (M1 
     _ = a s' * b := by
         simp only [h, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq, Finset.mem_univ, ite_true]
 
+/--
+@isnad1 id=eq.2h6v.s8.69b079f5be09 from=translated src=- shape=6070c2a0 vocab=e7098afd
+-/
 theorem transport {α β : Fin d → MvPowerSeries (Fin d) k} (hα0 : ∀ i, constantCoeff (α i) = 0)
     (hαβ : ∀ i, subst α (β i) = X i) (c : Fin d → MvPowerSeries (Fin d) k) (g : MvPowerSeries (Fin d) k) :
     (∑ m, subst α (∑ s, c s * pd s (β m)) * pd m (subst α g)) = subst α (∑ s, c s * pd s g) := by
@@ -488,6 +572,9 @@ section Main
 
 variable {k : Type u} [Field k] {d : ℕ}
 
+/--
+@isnad1 id=ex.0h6v.s9.7e8aeeea34a0 from=translated src=- shape=667eb1c2 vocab=4f1f381f
+-/
 theorem main (p : ℕ) [Fact p.Prime] [CharP k p] (Ψ Φ : MvFormalGroup d k) (ψ : Ψ.Hom Φ) :
     ∃ (T : Finset (Fin d)) (Q : Matrix (Fin d) (Fin d) k) (α β : Fin d → MvPowerSeries (Fin d) k),
       T.card = (linearPart ψ.toPowerSeries).rank ∧ IsUnit Q ∧
@@ -712,6 +799,9 @@ end P2mKcNormalForm
 
 open MvPowerSeries in
 
+/--
+@isnad1 id=ex.0h6v.s9.d5669de37510 from=translated src=- shape=099195ae vocab=4f1f381f
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] {k : Type u} [Field k] [CharP k p] {d : ℕ}
     (Ψ Φ : MvFormalGroup d k) (ψ : Ψ.Hom Φ) :

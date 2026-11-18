@@ -12,6 +12,9 @@ set_option maxHeartbeats 6400000
 
 open TensorProduct
 
+/--
+@isnad1 id=nonempty.1h5v.s9.58a5a0473748 from=translated src=- shape=bd216724 vocab=39d49d73
+-/
 theorem solution
     {R : Type u} [CommRing R] (I : Ideal R) (hI : I ^ 2 = ⊥)
     (P₁ P₂ : Type u) [AddCommGroup P₁] [AddCommGroup P₂] [Module R P₁] [Module R P₂]

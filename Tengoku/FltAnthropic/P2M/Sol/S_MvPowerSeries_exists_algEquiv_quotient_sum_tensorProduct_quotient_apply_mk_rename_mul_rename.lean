@@ -28,11 +28,17 @@ def uncurryFun (g : MvPowerSeries σ (MvPowerSeries τ R)) : MvPowerSeries (σ �
   fun d => g (d.comapDomain Sum.inl Sum.inl_injective.injOn) (d.comapDomain Sum.inr Sum.inr_injective.injOn)
 
 omit [CommRing R] in
+/--
+@isnad1 id=eq.0h4v.s4.e6edc1c36914 from=translated src=- shape=4aad8e2f vocab=73145763
+-/
 theorem uncurryFun_curryFun [CommRing R] (f : MvPowerSeries (σ ⊕ τ) R) : uncurryFun (curryFun f) = f := by
   funext d
   change f (sumElim (d.comapDomain Sum.inl Sum.inl_injective.injOn) (d.comapDomain Sum.inr Sum.inr_injective.injOn)) = f d
   rw [comapDomain_sumElim_comapDomain]
 
+/--
+@isnad1 id=eq.0h4v.s4.d612d4a2137e from=translated src=- shape=d0185ab5 vocab=d45a5947
+-/
 theorem curryFun_uncurryFun (g : MvPowerSeries σ (MvPowerSeries τ R)) : curryFun (uncurryFun g) = g := by
   funext d₁ d₂
   change g ((d₁.sumElim d₂).comapDomain Sum.inl Sum.inl_injective.injOn) ((d₁.sumElim d₂).comapDomain Sum.inr Sum.inr_injective.injOn) = g d₁ d₂

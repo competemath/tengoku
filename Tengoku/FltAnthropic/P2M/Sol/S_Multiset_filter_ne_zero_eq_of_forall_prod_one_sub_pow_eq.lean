@@ -27,10 +27,16 @@ noncomputable def chi (u : Multiset ℂˣ) : GA :=
 noncomputable def ev (n : ℕ) : GA →ₐ[ℂ] ℂ :=
   MonoidAlgebra.lift ℂ ℂ ℂˣ ((powMonoidHom n).comp (Units.coeHom ℂ))
 
+/--
+@isnad1 id=eq.0h2v.s8.291ef32b784f from=translated src=- shape=64c5f167 vocab=ce98bde1
+-/
 theorem ev_of (n : ℕ) (z : ℂˣ) : ev n (MonoidAlgebra.of ℂ ℂˣ z) = (z : ℂ) ^ n := by
   rw [ev, MonoidAlgebra.lift_of]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.2f9980331610 from=translated src=- shape=a1a81201 vocab=37db150d
+-/
 theorem ev_E (n : ℕ) (u : Multiset ℂˣ) :
     ev n (E u) = (u.map fun z : ℂˣ => 1 - (z : ℂ) ^ n).prod := by
   rw [E, map_multiset_prod, Multiset.map_map]
@@ -38,6 +44,9 @@ theorem ev_E (n : ℕ) (u : Multiset ℂˣ) :
   refine Multiset.map_congr rfl fun z _ => ?_
   simp only [Function.comp_apply, map_sub, map_one, ev_of]
 
+/--
+@isnad1 id=eq.0h2v.s7.c714b0b7e19a from=translated src=- shape=cf1fbba0 vocab=30c3f98e
+-/
 theorem ev_apply (n : ℕ) (f : GA) : ev n f = f.coeff.sum fun z a => a * (z : ℂ) ^ n := by
   rw [ev, MonoidAlgebra.lift_apply]
   rfl
@@ -77,6 +86,9 @@ theorem eq_zero_of_forall_ev_eq_zero (f : GA) (hf : ∀ n : ℕ, 0 < n → ev n 
     exact (Finsupp.mem_support_iff.mp hx) hi
   exact MonoidAlgebra.coeff_injective (Finsupp.support_eq_empty.mp hSempty)
 
+/--
+@isnad1 id=eq.1h2v.s7.a287ac0a8bca from=translated src=- shape=67302fff vocab=dca096e9
+-/
 theorem E_eq_of_forall_ev_eq (s t : Multiset ℂˣ)
     (h : ∀ n : ℕ, 0 < n → ev n (E s) = ev n (E t)) : E s = E t := by
   have := eq_zero_of_forall_ev_eq_zero (E s - E t) fun n hn => by
@@ -93,6 +105,9 @@ noncomputable def L : ℂˣ →* Multiplicative ℝ where
 noncomputable def Psi : GA →+* AddMonoidAlgebra ℂ ℝ :=
   (AddMonoidAlgebra.toMultiplicative ℂ ℝ).symm.toRingHom.comp (MonoidAlgebra.mapDomainRingHom ℂ L)
 
+/--
+@isnad1 id=eq.0h1v.s8.2ee13e68f11b from=translated src=- shape=72aa3bc4 vocab=0b3def8a
+-/
 theorem Psi_of (z : ℂˣ) :
     Psi (MonoidAlgebra.of ℂ ℂˣ z) = AddMonoidAlgebra.single (Real.log ‖(z : ℂ)‖) 1 := by
   have h1 : MonoidAlgebra.mapDomainRingHom ℂ L (MonoidAlgebra.of ℂ ℂˣ z) =
@@ -104,6 +119,9 @@ theorem Psi_of (z : ℂˣ) :
 noncomputable def F (u : Multiset ℝ) : AddMonoidAlgebra ℂ ℝ :=
   (u.map fun w => (1 : AddMonoidAlgebra ℂ ℝ) - AddMonoidAlgebra.single w 1).prod
 
+/--
+@isnad1 id=eq.0h1v.s6.41220e023ed8 from=translated src=- shape=96206897 vocab=53a5af4a
+-/
 theorem Psi_E (u : Multiset ℂˣ) : Psi (E u) = F (u.map fun z : ℂˣ => Real.log ‖(z : ℂ)‖) := by
   rw [E, map_multiset_prod, Multiset.map_map, F, Multiset.map_map]
   congr 1
@@ -114,12 +132,21 @@ section StageC
 
 open AddMonoidAlgebra
 
+/--
+@isnad1 id=eq.0h3v.s7.089bc87863e0 from=translated src=- shape=277250ea vocab=3502fb15
+-/
 theorem ama_sub_apply (p q : AddMonoidAlgebra ℂ ℝ) (v : ℝ) : (p - q) v = p v - q v := by
   rw [AddMonoidAlgebra.coeff_sub, Finsupp.sub_apply]
 
+/--
+@isnad1 id=eq.0h1v.s5.31ce0ed8506d from=translated src=- shape=83305d91 vocab=55d0f89c
+-/
 theorem ama_zero_apply (v : ℝ) : (0 : AddMonoidAlgebra ℂ ℝ) v = 0 := by
   rw [AddMonoidAlgebra.coeff_zero, Finsupp.zero_apply]
 
+/--
+@isnad1 id=eq.0h3v.s6.1ca9676d366d from=translated src=- shape=6b3ae1b0 vocab=e2f350c5
+-/
 theorem single_mul_apply (w : ℝ) (p : AddMonoidAlgebra ℂ ℝ) (v : ℝ) :
     (AddMonoidAlgebra.single w (1 : ℂ) * p) v = p (v - w) := by
   rw [AddMonoidAlgebra.coeff_single_mul_eq_mul_coeff (v - w), one_mul]
@@ -128,47 +155,80 @@ theorem single_mul_apply (w : ℝ) (p : AddMonoidAlgebra ℂ ℝ) (v : ℝ) :
   · intro h; linarith
   · intro h; linarith
 
+/--
+@isnad1 id=eq.0h0v.s4.0767ea6c2e75 from=translated src=- shape=c76c0657 vocab=b7f602f5
+-/
 theorem F_zero : F 0 = 1 := by
   simp [F]
 
+/--
+@isnad1 id=eq.0h2v.s6.e7d860ce8951 from=translated src=- shape=96d6d48b vocab=5919cd29
+-/
 theorem F_cons (w : ℝ) (u : Multiset ℝ) :
     F (w ::ₘ u) = F u - AddMonoidAlgebra.single w 1 * F u := by
   rw [F, Multiset.map_cons, Multiset.prod_cons, sub_mul, one_mul]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.c285c9965e52 from=translated src=- shape=c04e86e0 vocab=b65f3bc2
+-/
 theorem F_cons_apply (w : ℝ) (u : Multiset ℝ) (v : ℝ) :
     F (w ::ₘ u) v = F u v - F u (v - w) := by
   rw [F_cons, ama_sub_apply, single_mul_apply]
 
+/--
+@isnad1 id=eq.0h2v.s5.8c93fbc3104e from=translated src=- shape=316b9fb9 vocab=63c5c10a
+-/
 theorem F_add (u u' : Multiset ℝ) : F (u + u') = F u * F u' := by
   rw [F, Multiset.map_add, Multiset.prod_add]
   rfl
 
+/--
+@isnad1 id=eq.1h1v.s5.165a4830adbf from=translated src=- shape=03baa064 vocab=55d0f89c
+-/
 theorem one_apply_of_ne {v : ℝ} (hv : v ≠ 0) : (1 : AddMonoidAlgebra ℂ ℝ) v = 0 := by
   rw [AddMonoidAlgebra.one_def, AddMonoidAlgebra.coeff_single, Finsupp.single_apply,
     ite_eq_right (Ne.symm hv)]
 
+/--
+@isnad1 id=eq.0h0v.s5.648609c77331 from=translated src=- shape=bd9bdf4e vocab=55d0f89c
+-/
 theorem one_apply_zero : (1 : AddMonoidAlgebra ℂ ℝ) 0 = 1 := by
   rw [AddMonoidAlgebra.one_def, AddMonoidAlgebra.coeff_single, Finsupp.single_apply, ite_eq_left rfl]
 
+/--
+@isnad1 id=eq.1h1v.s5.5b47fb73bc5d from=translated src=- shape=67e58102 vocab=c1230a48
+-/
 theorem F_eq_zero_of_zero_mem {u : Multiset ℝ} (h : (0 : ℝ) ∈ u) : F u = 0 := by
   obtain ⟨u', rfl⟩ := Multiset.exists_cons_of_mem h
   rw [F_cons, ← AddMonoidAlgebra.one_def, one_mul, sub_self]
 
 noncomputable def sigma (u : Multiset ℝ) : ℝ := (u.filter fun w => w < 0).sum
 
+/--
+@isnad1 id=eq.1h2v.s4.e80a3dfc9dc8 from=translated src=- shape=90455553 vocab=9daf5a0f
+-/
 theorem sigma_cons_of_pos {w : ℝ} (hw : 0 < w) (u : Multiset ℝ) : sigma (w ::ₘ u) = sigma u := by
   rw [sigma, Multiset.filter_cons_of_neg (p := fun w => w < 0) u (not_lt.mpr hw.le), sigma]
 
+/--
+@isnad1 id=eq.1h2v.s5.24a73edbab2f from=translated src=- shape=213c3c19 vocab=bf53ef92
+-/
 theorem sigma_cons_of_neg {w : ℝ} (hw : w < 0) (u : Multiset ℝ) : sigma (w ::ₘ u) = w + sigma u := by
   rw [sigma, Multiset.filter_cons_of_pos (p := fun w => w < 0) u hw, Multiset.sum_cons, sigma]
 
+/--
+@isnad1 id=le.0h1v.s3.0117aca62ae4 from=translated src=- shape=505c726b vocab=f5aeec96
+-/
 theorem sigma_nonpos (u : Multiset ℝ) : sigma u ≤ 0 := by
   rw [sigma]
   refine Multiset.sum_induction (fun x : ℝ => x ≤ 0) _ (fun a b ha hb => by linarith) le_rfl
     fun w hw => ?_
   exact (Multiset.mem_filter.mp hw).2.le
 
+/--
+@isnad1 id=lt.2h2v.s5.2955789e7860 from=translated src=- shape=a977367c vocab=7f64242a
+-/
 theorem sigma_neg_of_mem {u : Multiset ℝ} {w : ℝ} (hw : w ∈ u) (hw0 : w < 0) : sigma u < 0 := by
   have hmem : w ∈ u.filter fun w => w < 0 := Multiset.mem_filter.mpr ⟨hw, hw0⟩
   obtain ⟨u', hu'⟩ := Multiset.exists_cons_of_mem hmem
@@ -182,6 +242,9 @@ theorem sigma_neg_of_mem {u : Multiset ℝ} {w : ℝ} (hw : w ∈ u) (hw0 : w < 
   rw [hfilt] at hle
   linarith
 
+/--
+@isnad1 id=and.1h1v.s7.afb76faa2b04 from=translated src=- shape=a2791d51 vocab=b7b99c4b
+-/
 theorem F_apply_sigma (u : Multiset ℝ) (hu : ∀ w ∈ u, w ≠ 0) :
     (F u (sigma u) = 1 ∨ F u (sigma u) = -1) ∧ ∀ v : ℝ, v < sigma u → F u v = 0 := by
   induction u using Multiset.induction with
@@ -209,6 +272,9 @@ theorem F_apply_sigma (u : Multiset ℝ) (hu : ∀ w ∈ u, w ≠ 0) :
         exact ih1
       · rw [F_cons_apply, ih2 v hv, ih2 (v - w) (by linarith), sub_zero]
 
+/--
+@isnad1 id=eq.1h1v.s6.2b30b994b51b from=translated src=- shape=eb507a4a vocab=e2abd402
+-/
 theorem F_apply_zero (u : Multiset ℝ) (hu : ∀ w ∈ u, 0 < w) : F u 0 = 1 := by
   induction u using Multiset.induction with
   | empty => rw [F_zero, one_apply_zero]
@@ -222,6 +288,9 @@ theorem F_apply_zero (u : Multiset ℝ) (hu : ∀ w ∈ u, 0 < w) : F u 0 = 1 :=
     rw [hσ] at h2
     rw [F_cons_apply, ih hu', h2 (0 - w) (by linarith), sub_zero]
 
+/--
+@isnad1 id=eq.2h2v.s6.029cff0f5c17 from=translated src=- shape=66cbfbed vocab=e2abd402
+-/
 theorem F_apply_of_neg (u : Multiset ℝ) (hu : ∀ w ∈ u, 0 < w) {v : ℝ} (hv : v < 0) : F u v = 0 := by
   have hσ : sigma u = 0 := by
     rw [sigma, Multiset.filter_eq_nil.mpr, Multiset.sum_zero]
@@ -230,6 +299,9 @@ theorem F_apply_of_neg (u : Multiset ℝ) (hu : ∀ w ∈ u, 0 < w) {v : ℝ} (h
   rw [hσ] at h2
   exact h2 v hv
 
+/--
+@isnad1 id=eq.3h2v.s6.8f43440099b5 from=translated src=- shape=1c13fc01 vocab=19465f56
+-/
 theorem F_apply_eq_neg_count (u : Multiset ℝ) (hu : ∀ w ∈ u, 0 < w) (v : ℝ) (hv0 : 0 < v)
     (hv : ∀ w ∈ u, v ≤ w) : F u v = -(u.count v : ℂ) := by
   classical
@@ -336,25 +408,43 @@ theorem eq_replicate_of_F_eq (u : Multiset ℝ) (r : ℕ) (h : ℝ) (hh : 0 < h)
 
 end StageC
 
+/--
+@isnad1 id=eq.0h1v.s6.19193219b7f4 from=translated src=- shape=3794db9d vocab=2e66a78b
+-/
 theorem ga_zero_apply (μ : ℂˣ) : (0 : GA) μ = 0 := by
   rw [MonoidAlgebra.coeff_zero, Finsupp.zero_apply]
 
+/--
+@isnad1 id=eq.0h3v.s7.9f795f0b877d from=translated src=- shape=5916ebb6 vocab=87326730
+-/
 theorem ga_add_apply (p q : GA) (μ : ℂˣ) : (p + q) μ = p μ + q μ := by
   rw [MonoidAlgebra.coeff_add, Finsupp.add_apply]
 
+/--
+@isnad1 id=eq.0h3v.s7.cf1b3901dab3 from=translated src=- shape=5916ebb6 vocab=274adab2
+-/
 theorem ga_sub_apply (p q : GA) (μ : ℂˣ) : (p - q) μ = p μ - q μ := by
   rw [MonoidAlgebra.coeff_sub, Finsupp.sub_apply]
 
+/--
+@isnad1 id=eq.0h2v.s8.3fa3e2c5b3d1 from=translated src=- shape=92b815b7 vocab=b632cde5
+-/
 theorem E_cons (z : ℂˣ) (u : Multiset ℂˣ) :
     E (z ::ₘ u) = E u - MonoidAlgebra.of ℂ ℂˣ z * E u := by
   rw [E, Multiset.map_cons, Multiset.prod_cons, sub_mul, one_mul]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.e120d58dffee from=translated src=- shape=2d853b90 vocab=6fde842f
+-/
 theorem chi_cons (z : ℂˣ) (u : Multiset ℂˣ) :
     chi (z ::ₘ u) = MonoidAlgebra.of ℂ ℂˣ z + chi u := by
   rw [chi, Multiset.map_cons, Multiset.sum_cons]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.496d4d53ecb8 from=translated src=- shape=e583a772 vocab=b61d2306
+-/
 theorem chi_apply (u : Multiset ℂˣ) (μ : ℂˣ) : chi u μ = (u.count μ : ℂ) := by
   classical
   induction u using Multiset.induction with
@@ -366,12 +456,18 @@ theorem chi_apply (u : Multiset ℂˣ) (μ : ℂˣ) : chi u μ = (u.count μ : �
     · subst hz; simp [add_comm]
     · rw [ite_eq_right hz, ite_eq_right (Ne.symm hz)]; simp
 
+/--
+@isnad1 id=mem.1h2v.s6.14bacb181133 from=translated src=- shape=b1515053 vocab=ebdcf514
+-/
 theorem support_chi (u : Multiset ℂˣ) : ∀ μ ∈ (chi u).coeff.support, μ ∈ u := by
   classical
   intro μ hμ
   rw [Finsupp.mem_support_iff, chi_apply] at hμ
   exact Multiset.count_pos.mp (Nat.pos_of_ne_zero fun h0 => hμ (by rw [h0, Nat.cast_zero]))
 
+/--
+@isnad1 id=ex.1h3v.s8.dae347e5fa65 from=translated src=- shape=179c2bdb vocab=7a5910c4
+-/
 theorem support_of_mul (z : ℂˣ) (p : GA) :
     ∀ μ ∈ (MonoidAlgebra.of ℂ ℂˣ z * p).coeff.support, ∃ ν ∈ p.coeff.support, μ = z * ν := by
   classical
@@ -381,6 +477,9 @@ theorem support_of_mul (z : ℂˣ) (p : GA) :
   obtain ⟨ν, hν, rfl⟩ := Finset.mem_image.mp this
   exact ⟨ν, hν, rfl⟩
 
+/--
+@isnad1 id=le.3h3v.s7.ecc99d2a2275 from=translated src=- shape=dd3f2d77 vocab=44b47bf1
+-/
 theorem norm_of_mem_support_W {c : ℝ} (hc : 1 ≤ c) (u : Multiset ℂˣ)
     (hu : ∀ z ∈ u, ‖(z : ℂ)‖ = c) :
     ∀ μ ∈ (E u - 1 + chi u).coeff.support, c ^ 2 ≤ ‖(μ : ℂ)‖ := by
@@ -440,6 +539,9 @@ theorem eq_of_E_eq {c : ℝ} (hc : 1 < c) (s t : Multiset ℂˣ)
   simp only [chi_apply] at this
   exact_mod_cast this
 
+/--
+@isnad1 id=eq.3h3v.s7.edfcbe27c7e1 from=translated src=- shape=369c4f53 vocab=3ff9b66a
+-/
 theorem units_eq_of_forall_prod_eq {c : ℝ} (hc : 1 < c) (s t : Multiset ℂˣ)
     (ht : ∀ z ∈ t, ‖(z : ℂ)‖ = c)
     (h : ∀ n : ℕ, 0 < n →
@@ -475,12 +577,18 @@ noncomputable def toUnits (s : Multiset ℂ) : Multiset ℂˣ :=
   (s.filter fun z => z ≠ 0).attach.map fun z =>
     Units.mk0 z.1 (by obtain ⟨-, h⟩ := Multiset.mem_filter.mp z.2; exact h)
 
+/--
+@isnad1 id=eq.0h1v.s5.b0742f342395 from=translated src=- shape=a39ba9c3 vocab=cefd0ca0
+-/
 theorem map_val_toUnits (s : Multiset ℂ) :
     (toUnits s).map (fun z : ℂˣ => (z : ℂ)) = s.filter fun z => z ≠ 0 := by
   rw [toUnits, Multiset.map_map]
   conv_rhs => rw [← Multiset.attach_map_val (s.filter fun z => z ≠ 0)]
   rfl
 
+/--
+@isnad1 id=eq.1h2v.s6.8fe45787d858 from=translated src=- shape=261aa032 vocab=c8cabe92
+-/
 theorem prod_map_toUnits (s : Multiset ℂ) (n : ℕ) (hn : 0 < n) :
     ((toUnits s).map fun z : ℂˣ => 1 - (z : ℂ) ^ n).prod = (s.map fun z => 1 - z ^ n).prod := by
   classical
@@ -500,6 +608,9 @@ theorem prod_map_toUnits (s : Multiset ℂ) (n : ℕ) (hn : 0 < n) :
     rw [hz0, zero_pow hn.ne', sub_zero]
   rw [h2, mul_one]
 
+/--
+@isnad1 id=eq.3h3v.s7.3e1cf5566fd4 from=translated src=- shape=79ada094 vocab=a2eae6d9
+-/
 theorem filter_ne_zero_eq (s t : Multiset ℂ) (c : ℝ) (hc : 1 < c) (ht : ∀ z ∈ t, ‖z‖ = c)
     (h : ∀ n : ℕ, 0 < n →
       (s.map fun z => 1 - z ^ n).prod = (t.map fun z => 1 - z ^ n).prod) :
@@ -520,6 +631,9 @@ theorem filter_ne_zero_eq (s t : Multiset ℂ) (c : ℝ) (hc : 1 < c) (ht : ∀ 
 
 end P2mRigid
 
+/--
+@isnad1 id=eq.3h3v.s7.3e1cf5566fd4 from=translated src=- shape=79ada094 vocab=a2eae6d9
+-/
 theorem solution
     (s t : Multiset ℂ) (c : ℝ) (hc : 1 < c) (ht : ∀ z ∈ t, ‖z‖ = c)
     (h : ∀ n : ℕ, 0 < n →

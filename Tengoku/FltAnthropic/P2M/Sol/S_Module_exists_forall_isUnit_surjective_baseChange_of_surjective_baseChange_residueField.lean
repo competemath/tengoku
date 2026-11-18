@@ -16,6 +16,9 @@ namespace K4FSurjSpread
 
 variable {R : Type u} [CommRing R] {M N : Type u} [AddCommGroup M] [Module R M] [AddCommGroup N] [Module R N]
 
+/--
+@isnad1 id=surjecti.1h5v.s9.c64324d7f9df from=translated src=- shape=19baaf61 vocab=01f0c8aa
+-/
 theorem lTensor_surjective_of_subsingleton (f : M →ₗ[R] N) (A : Type u) [AddCommGroup A] [Module R A]
     (h : Subsingleton (A ⊗[R] (N ⧸ LinearMap.range f))) : Function.Surjective (f.lTensor A) := by
   have ex := lTensor_exact A (LinearMap.exact_map_mkQ_range f) (Submodule.mkQ_surjective _)
@@ -23,6 +26,9 @@ theorem lTensor_surjective_of_subsingleton (f : M →ₗ[R] N) (A : Type u) [Add
   ext x
   exact Subsingleton.elim _ _
 
+/--
+@isnad1 id=subsingl.2h4v.s7.d9327c2665c9 from=translated src=- shape=d8bb8869 vocab=28a36cbc
+-/
 theorem subsingleton_tensor_of_smul_eq_zero (Q : Type u) [AddCommGroup Q] [Module R Q] (g : R)
     (hg : ∀ q : Q, g • q = 0) (A : Type u) [CommRing A] [Algebra R A] (hu : IsUnit (algebraMap R A g)) :
     Subsingleton (A ⊗[R] Q) := by
@@ -41,6 +47,9 @@ theorem subsingleton_tensor_of_smul_eq_zero (Q : Type u) [AddCommGroup Q] [Modul
 end K4FSurjSpread
 
 open K4FSurjSpread in
+/--
+@isnad1 id=ex.1h5v.s12.6be489a3fadb from=translated src=- shape=bc177733 vocab=81c6968e
+-/
 theorem solution
     {R : Type u} [CommRing R]
     {M N : Type u} [AddCommGroup M] [Module R M] [AddCommGroup N] [Module R N] [Module.Finite R N]

@@ -12,10 +12,16 @@ open scoped TensorProduct
 
 namespace P2mKcLocalInvertible
 
+/--
+@isnad1 id=eq.0h2v.s5.e43bc62d8e65 from=translated src=- shape=ac87a97b vocab=86ff3db6
+-/
 theorem finrank_eq_one_of_invertible (K : Type) [Field K] (V : Type) [AddCommGroup V] [Module K V] [Module.Invertible K V] :
     Module.finrank K V = 1 :=
   Module.finrank_eq_of_rank_eq (Module.Invertible.rank_eq_one K V)
 
+/--
+@isnad1 id=invertib.1h2v.s7.62d31110a0d4 from=translated src=- shape=64267fb0 vocab=cfcdb271
+-/
 theorem main {R : Type} [CommRing R] {M : Type} [AddCommGroup M] [Module R M] [Module.FinitePresentation R M]
     (H : ∀ (P : Ideal R) [P.IsMaximal], Module.Invertible (Localization.AtPrime P) (LocalizedModule P.primeCompl M)) :
     Module.Invertible R M := by
@@ -43,6 +49,9 @@ theorem main {R : Type} [CommRing R] {M : Type} [AddCommGroup M] [Module R M] [M
 
 end P2mKcLocalInvertible
 
+/--
+@isnad1 id=invertib.1h2v.s7.62d31110a0d4 from=translated src=- shape=64267fb0 vocab=cfcdb271
+-/
 theorem solution
     {R : Type} [CommRing R] {M : Type} [AddCommGroup M] [Module R M] [Module.FinitePresentation R M]
     (H : ∀ (P : Ideal R) [P.IsMaximal], Module.Invertible (Localization.AtPrime P) (LocalizedModule P.primeCompl M)) :

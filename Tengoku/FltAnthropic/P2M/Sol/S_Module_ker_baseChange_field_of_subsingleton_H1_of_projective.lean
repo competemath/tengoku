@@ -20,6 +20,9 @@ variable {S : Type*} [CommRing S]
   {A B C A' B' C' : Type*} [AddCommGroup A] [Module S A] [AddCommGroup B] [Module S B] [AddCommGroup C] [Module S C]
   [AddCommGroup A'] [Module S A'] [AddCommGroup B'] [Module S B'] [AddCommGroup C'] [Module S C']
 
+/--
+@isnad1 id=exact.3h14v.s10.9f3e8c3be50a from=translated src=- shape=f7fbb654 vocab=e6b2f2bb
+-/
 theorem exact_of_equiv (f : A →ₗ[S] B) (g : B →ₗ[S] C) (f' : A' →ₗ[S] B') (g' : B' →ₗ[S] C')
     (eA : A ≃ₗ[S] A') (eB : B ≃ₗ[S] B') (eC : C ≃ₗ[S] C')
     (hf : ∀ a, eB (f a) = f' (eA a)) (hg : ∀ b, eC (g b) = g' (eB b)) (h : Function.Exact f g) :
@@ -39,6 +42,9 @@ theorem exact_of_equiv (f : A →ₗ[S] B) (g : B →ₗ[S] C) (f' : A' →ₗ[S
     have : f a = b := eB.injective ha'
     rw [← this, (h (f a)).mpr ⟨a, rfl⟩, map_zero]
 
+/--
+@isnad1 id=injectiv.2h9v.s9.ac8bcd332037 from=translated src=- shape=6e3e367f vocab=429b4fc2
+-/
 theorem injective_of_equiv (f : A →ₗ[S] B) (f' : A' →ₗ[S] B') (eA : A ≃ₗ[S] A') (eB : B ≃ₗ[S] B')
     (hf : ∀ a, eB (f a) = f' (eA a)) (h : Function.Injective f) : Function.Injective f' := by
   intro x y hxy
@@ -47,6 +53,9 @@ theorem injective_of_equiv (f : A →ₗ[S] B) (f' : A' →ₗ[S] B') (eA : A �
   rw [← hf, ← hf] at hxy
   rw [h (eB.injective hxy)]
 
+/--
+@isnad1 id=and.3h14v.s10.356dca641515 from=translated src=- shape=ab5167d6 vocab=1ada7a01
+-/
 theorem ker_eq_range_and_injective_of_equiv (f : A →ₗ[S] B) (g : B →ₗ[S] C) (f' : A' →ₗ[S] B') (g' : B' →ₗ[S] C')
     (eA : A ≃ₗ[S] A') (eB : B ≃ₗ[S] B') (eC : C ≃ₗ[S] C')
     (hf : ∀ a, eB (f a) = f' (eA a)) (hg : ∀ b, eC (g b) = g' (eB b))
@@ -67,6 +76,9 @@ variable (R : Type*) [CommRing R] (A : Type*) [CommRing A] [Algebra R A] (B : Ty
 noncomputable abbrev can (M : Type*) [AddCommGroup M] [Module R M] : B ⊗[A] (A ⊗[R] M) ≃ₗ[B] B ⊗[R] M :=
   TensorProduct.AlgebraTensorModule.cancelBaseChange R A B B M
 
+/--
+@isnad1 id=eq.0h7v.s12.69f9e4e7db71 from=translated src=- shape=a81f8b28 vocab=fd03c415
+-/
 theorem can_nat (z : B ⊗[A] (A ⊗[R] M)) :
     can R A B N ((f.baseChange A).baseChange B z) = f.baseChange B (can R A B M z) := by
   induction z using TensorProduct.induction_on with
@@ -83,6 +95,9 @@ theorem can_nat (z : B ⊗[A] (A ⊗[R] M)) :
 
 end Cancel
 
+/--
+@isnad1 id=and.2h7v.s12.6e6868be0324 from=translated src=- shape=ddbe3910 vocab=4bac1f5d
+-/
 theorem main
     (R : Type u) [CommRing R]
     {C0 C1 C2 : Type v} [AddCommGroup C0] [Module R C0] [AddCommGroup C1] [Module R C1]
@@ -210,6 +225,9 @@ theorem main
 
 end BC0Pt
 
+/--
+@isnad1 id=and.2h7v.s12.6e6868be0324 from=translated src=- shape=ddbe3910 vocab=4bac1f5d
+-/
 theorem solution
     (R : Type u) [CommRing R]
     {C0 C1 C2 : Type v} [AddCommGroup C0] [Module R C0] [AddCommGroup C1] [Module R C1]

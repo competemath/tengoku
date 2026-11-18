@@ -26,6 +26,9 @@ abbrev I₂ : Ideal (S₂ ⊗[R] A) := Ideal.span {(1 : S₂) ⊗ₜ[R] a - alge
 noncomputable abbrev canc : S₂ ⊗[S₁] (S₁ ⊗[R] A) ≃ₐ[S₂] S₂ ⊗[R] A :=
   Algebra.TensorProduct.cancelBaseChange R S₁ S₂ S₂ A
 
+/--
+@isnad1 id=eq.0h7v.s10.e7bfa800f0ee from=translated src=- shape=9ae55979 vocab=c20e5431
+-/
 theorem canc_tmul (x : S₂) (y : S₁) (z : A) :
     canc R S₁ S₂ A (x ⊗ₜ[S₁] (y ⊗ₜ[R] z)) = (y • x) ⊗ₜ[R] z :=
   Algebra.TensorProduct.cancelBaseChange_tmul R S₁ S₂ S₂ A x y z
@@ -40,6 +43,9 @@ abbrev rel₁ : S₁ ⊗[R] A := (1 : S₁) ⊗ₜ[R] a - s₁ ⊗ₜ[R] (1 : A)
 
 abbrev rel₂ : S₂ ⊗[R] A := (1 : S₂) ⊗ₜ[R] a - algebraMap S₁ S₂ s₁ ⊗ₜ[R] (1 : A)
 
+/--
+@isnad1 id=eq.0h6v.s10.918236a76ef3 from=translated src=- shape=84fe417c vocab=158e00c3
+-/
 theorem canc_one_tmul_rel₁ : canc R S₁ S₂ A ((1 : S₂) ⊗ₜ[S₁] rel₁ R S₁ A a s₁) = rel₂ R S₁ S₂ A a s₁ := by
   simp only [TensorProduct.tmul_sub, map_sub, canc_tmul, one_smul]
   show _ = (1 : S₂) ⊗ₜ[R] a - algebraMap S₁ S₂ s₁ ⊗ₜ[R] (1 : A)
@@ -48,6 +54,9 @@ theorem canc_one_tmul_rel₁ : canc R S₁ S₂ A ((1 : S₂) ⊗ₜ[S₁] rel�
 abbrev Rg : Submodule S₁ (S₂ ⊗[S₁] (S₁ ⊗[R] A)) :=
   LinearMap.range (TensorProduct.map (LinearMap.id : S₂ →ₗ[S₁] S₂) ((I₁ R S₁ A a s₁).restrictScalars S₁).subtype)
 
+/--
+@isnad1 id=eq.0h6v.s12.f8ec96c3938a from=translated src=- shape=8579e7c4 vocab=f67b5b01
+-/
 theorem map_Rg_eq :
     (Rg R S₁ S₂ A a s₁).map ((canc R S₁ S₂ A).toLinearEquiv.restrictScalars S₁).toLinearMap
       = (I₂ R S₁ S₂ A a s₁).restrictScalars S₁ := by
@@ -90,6 +99,9 @@ noncomputable def equiv₁ :
       ((canc R S₁ S₂ A).toLinearEquiv.restrictScalars S₁) (map_Rg_eq R S₁ S₂ A a s₁)).trans
     (Submodule.Quotient.restrictScalarsEquiv S₁ (I₂ R S₁ S₂ A a s₁))
 
+/--
+@isnad1 id=eq.0h8v.s14.dc7d407534e9 from=translated src=- shape=d5fa0d4c vocab=12079f7e
+-/
 theorem equiv₁_tmul_mk (x : S₂) (p : S₁ ⊗[R] A) :
     equiv₁ R S₁ S₂ A a s₁ (x ⊗ₜ[S₁] Ideal.Quotient.mk (I₁ R S₁ A a s₁) p)
       = Ideal.Quotient.mk (I₂ R S₁ S₂ A a s₁) (canc R S₁ S₂ A (x ⊗ₜ[S₁] p)) := by
@@ -97,10 +109,16 @@ theorem equiv₁_tmul_mk (x : S₂) (p : S₁ ⊗[R] A) :
     Submodule.Quotient.restrictScalarsEquiv]
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s11.b7c0c0ccc33b from=translated src=- shape=adf55cd2 vocab=c20e5431
+-/
 theorem canc_tmul_eq_smul (x : S₂) (p : S₁ ⊗[R] A) :
     canc R S₁ S₂ A (x ⊗ₜ[S₁] p) = x • canc R S₁ S₂ A ((1 : S₂) ⊗ₜ[S₁] p) := by
   rw [← map_smul, TensorProduct.smul_tmul', smul_eq_mul, mul_one]
 
+/--
+@isnad1 id=eq.0h8v.s14.104ea70eb8d9 from=translated src=- shape=41a364cc vocab=c63510dd
+-/
 theorem equiv₁_smul (x : S₂) (t : S₂ ⊗[S₁] (S₁ ⊗[R] A ⧸ I₁ R S₁ A a s₁)) :
     equiv₁ R S₁ S₂ A a s₁ (x • t) = x • equiv₁ R S₁ S₂ A a s₁ t := by
   induction t using TensorProduct.induction_on with
@@ -135,6 +153,9 @@ variable (R S A : Type u) [CommRing R] [CommRing S] [CommRing A] [Algebra R S] [
 local notation "II" => (Ideal.span {(1 : S) ⊗ₜ[R] (a ^ n) - s ⊗ₜ[R] (1 : A)} : Ideal (S ⊗[R] A))
 local notation "JJ" => (Ideal.span {(1 : S') ⊗ₜ[R] a - h.root ⊗ₜ[R] (1 : A)} : Ideal (S' ⊗[R] A))
 
+/--
+@isnad1 id=eq.0h5v.s8.874f4ce2000f from=translated src=- shape=b42d1ae3 vocab=e183cb4c
+-/
 theorem root_pow : h.root ^ n = algebraMap S S' s := by
   have h0 : Polynomial.aeval h.root (Polynomial.X ^ n - Polynomial.C s : S[X]) = 0 := IsAdjoinRoot.aeval_root_self h
   rw [map_sub, map_pow, Polynomial.aeval_X, Polynomial.aeval_C, sub_eq_zero] at h0
@@ -143,8 +164,14 @@ theorem root_pow : h.root ^ n = algebraMap S S' s := by
 def gA : A →ₐ[R] (S' ⊗[R] A ⧸ JJ) :=
   ((Ideal.Quotient.mkₐ S' JJ).restrictScalars R).comp Algebra.TensorProduct.includeRight
 
+/--
+@isnad1 id=eq.0h9v.s14.818fd424a808 from=translated src=- shape=e9458805 vocab=531d66e2
+-/
 theorem gA_apply (x : A) : gA R S A a n s S' h x = Ideal.Quotient.mk JJ ((1 : S') ⊗ₜ[R] x) := rfl
 
+/--
+@isnad1 id=eq.0h8v.s14.653496679675 from=translated src=- shape=a51c1db9 vocab=89b7660c
+-/
 theorem mk_one_tmul_a :
     Ideal.Quotient.mk JJ ((1 : S') ⊗ₜ[R] a) = Algebra.ofId S' (S' ⊗[R] A ⧸ JJ) h.root := by
   change _ = Ideal.Quotient.mk JJ (algebraMap S' (S' ⊗[R] A) h.root)
@@ -155,21 +182,36 @@ def ψ₀ : S ⊗[R] A →ₐ[S] (S' ⊗[R] A ⧸ JJ) :=
   Algebra.TensorProduct.lift (Algebra.ofId S (S' ⊗[R] A ⧸ JJ)) (gA R S A a n s S' h)
     (fun x z => Commute.all (Algebra.ofId S (S' ⊗[R] A ⧸ JJ) x) (gA R S A a n s S' h z))
 
+/--
+@isnad1 id=eq.0h9v.s13.a8e60d794c73 from=translated src=- shape=67d80ce6 vocab=4d2ece1c
+-/
 theorem ψ₀_one_tmul (x : A) : ψ₀ R S A a n s S' h ((1 : S) ⊗ₜ[R] x) = gA R S A a n s S' h x :=
   AlgHom.congr_fun (Algebra.TensorProduct.lift_comp_includeRight (Algebra.ofId S (S' ⊗[R] A ⧸ JJ))
     (gA R S A a n s S' h) (fun x z => Commute.all (Algebra.ofId S (S' ⊗[R] A ⧸ JJ) x) (gA R S A a n s S' h z))) x
 
+/--
+@isnad1 id=eq.0h9v.s14.be53ef7cee09 from=translated src=- shape=59731562 vocab=cd7efcdd
+-/
 theorem ψ₀_tmul_one (c : S) : ψ₀ R S A a n s S' h (c ⊗ₜ[R] (1 : A)) = Algebra.ofId S (S' ⊗[R] A ⧸ JJ) c :=
   AlgHom.congr_fun (Algebra.TensorProduct.lift_comp_includeLeft (Algebra.ofId S (S' ⊗[R] A ⧸ JJ))
     (gA R S A a n s S' h) (fun x z => Commute.all (Algebra.ofId S (S' ⊗[R] A ⧸ JJ) x) (gA R S A a n s S' h z))) c
 
+/--
+@isnad1 id=eq.0h8v.s14.50adfefd22c3 from=translated src=- shape=57b3c802 vocab=79385d36
+-/
 theorem gA_pow_eq : gA R S A a n s S' h (a ^ n) = Algebra.ofId S (S' ⊗[R] A ⧸ JJ) s := by
   rw [map_pow, gA_apply, mk_one_tmul_a, ← map_pow, root_pow, Algebra.ofId_apply, Algebra.ofId_apply]
   exact (IsScalarTower.algebraMap_apply S S' _ s).symm
 
+/--
+@isnad1 id=eq.0h8v.s13.58bcdffce69f from=translated src=- shape=b44f89fd vocab=299659b4
+-/
 theorem ψ₀_rel : ψ₀ R S A a n s S' h ((1 : S) ⊗ₜ[R] (a ^ n) - s ⊗ₜ[R] (1 : A)) = 0 := by
   rw [map_sub, ψ₀_one_tmul, ψ₀_tmul_one, gA_pow_eq, sub_self]
 
+/--
+@isnad1 id=eq.1h9v.s13.de43ab40797e from=translated src=- shape=3a429687 vocab=4f649cd1
+-/
 theorem ψ₀_ker : ∀ z ∈ II, ψ₀ R S A a n s S' h z = 0 := fun z hz =>
   (RingHom.mem_ker).mp ((Ideal.span_le (I := RingHom.ker (ψ₀ R S A a n s S' h).toRingHom)).mpr
     (Set.singleton_subset_iff.mpr ((RingHom.mem_ker).mpr (ψ₀_rel R S A a n s S' h))) hz)
@@ -177,15 +219,24 @@ theorem ψ₀_ker : ∀ z ∈ II, ψ₀ R S A a n s S' h z = 0 := fun z hz =>
 def Φ : (S ⊗[R] A ⧸ II) →ₐ[S] (S' ⊗[R] A ⧸ JJ) :=
   Ideal.Quotient.liftₐ II (ψ₀ R S A a n s S' h) (ψ₀_ker R S A a n s S' h)
 
+/--
+@isnad1 id=eq.0h9v.s14.e29ec09e9d5c from=translated src=- shape=02762781 vocab=58e33edc
+-/
 theorem Φ_mk (z : S ⊗[R] A) : Φ R S A a n s S' h (Ideal.Quotient.mk _ z) = ψ₀ R S A a n s S' h z := rfl
 
 def gA' : A →ₐ[R] (S ⊗[R] A ⧸ II) :=
   ((Ideal.Quotient.mkₐ S II).restrictScalars R).comp Algebra.TensorProduct.includeRight
 
+/--
+@isnad1 id=eq.0h7v.s13.053f65ba4531 from=translated src=- shape=d50ec2d6 vocab=78ada23a
+-/
 theorem gA'_apply (x : A) : gA' R S A a n s x = Ideal.Quotient.mk II ((1 : S) ⊗ₜ[R] x) := rfl
 
 abbrev abar : S ⊗[R] A ⧸ II := Ideal.Quotient.mk II ((1 : S) ⊗ₜ[R] a)
 
+/--
+@isnad1 id=eq.0h6v.s13.1981aa06e454 from=translated src=- shape=7603ff95 vocab=1554cb4a
+-/
 theorem abar_root : Polynomial.aeval (abar R S A a n s) (Polynomial.X ^ n - Polynomial.C s : S[X]) = 0 := by
   rw [map_sub, map_pow, Polynomial.aeval_X, Polynomial.aeval_C, ← map_pow, Algebra.TensorProduct.tmul_pow, one_pow,
     sub_eq_zero]
@@ -195,23 +246,38 @@ theorem abar_root : Polynomial.aeval (abar R S A a n s) (Polynomial.X ^ n - Poly
 
 def fS' : S' →ₐ[S] (S ⊗[R] A ⧸ II) := h.liftHom (abar R S A a n s) (abar_root R S A a n s)
 
+/--
+@isnad1 id=eq.0h8v.s12.1df69a219f2f from=translated src=- shape=535e53d1 vocab=d2b7b314
+-/
 theorem fS'_root : fS' R S A a n s S' h h.root = abar R S A a n s := h.liftHom_root _
 
 def χ₀ : S' ⊗[R] A →ₐ[S] (S ⊗[R] A ⧸ II) :=
   Algebra.TensorProduct.lift (fS' R S A a n s S' h) (gA' R S A a n s)
     (fun x z => Commute.all (fS' R S A a n s S' h x) (gA' R S A a n s z))
 
+/--
+@isnad1 id=eq.0h9v.s13.6033eeda53a8 from=translated src=- shape=9bc7d140 vocab=a2fdcb52
+-/
 theorem χ₀_one_tmul (x : A) : χ₀ R S A a n s S' h ((1 : S') ⊗ₜ[R] x) = gA' R S A a n s x :=
   AlgHom.congr_fun (Algebra.TensorProduct.lift_comp_includeRight (fS' R S A a n s S' h) (gA' R S A a n s)
     (fun x z => Commute.all (fS' R S A a n s S' h x) (gA' R S A a n s z))) x
 
+/--
+@isnad1 id=eq.0h9v.s13.e7473908071d from=translated src=- shape=a7cdefc5 vocab=df9351ed
+-/
 theorem χ₀_tmul_one (c : S') : χ₀ R S A a n s S' h (c ⊗ₜ[R] (1 : A)) = fS' R S A a n s S' h c :=
   AlgHom.congr_fun (Algebra.TensorProduct.lift_comp_includeLeft (fS' R S A a n s S' h) (gA' R S A a n s)
     (fun x z => Commute.all (fS' R S A a n s S' h x) (gA' R S A a n s z))) c
 
+/--
+@isnad1 id=eq.0h8v.s13.36b2f58077b3 from=translated src=- shape=2540261a vocab=e03ba4ba
+-/
 theorem χ₀_rel : χ₀ R S A a n s S' h ((1 : S') ⊗ₜ[R] a - h.root ⊗ₜ[R] (1 : A)) = 0 := by
   rw [map_sub, χ₀_one_tmul, χ₀_tmul_one, gA'_apply, fS'_root, sub_self]
 
+/--
+@isnad1 id=eq.1h9v.s13.b5bcbc28de5a from=translated src=- shape=3562c044 vocab=54686d81
+-/
 theorem χ₀_ker : ∀ z ∈ JJ, χ₀ R S A a n s S' h z = 0 := fun z hz =>
   (RingHom.mem_ker).mp ((Ideal.span_le (I := RingHom.ker (χ₀ R S A a n s S' h).toRingHom)).mpr
     (Set.singleton_subset_iff.mpr ((RingHom.mem_ker).mpr (χ₀_rel R S A a n s S' h))) hz)
@@ -219,6 +285,9 @@ theorem χ₀_ker : ∀ z ∈ JJ, χ₀ R S A a n s S' h z = 0 := fun z hz =>
 def Ψ : (S' ⊗[R] A ⧸ JJ) →ₐ[S] (S ⊗[R] A ⧸ II) :=
   Ideal.Quotient.liftₐ JJ (χ₀ R S A a n s S' h) (χ₀_ker R S A a n s S' h)
 
+/--
+@isnad1 id=eq.0h9v.s14.0cd2e5bbe7b8 from=translated src=- shape=680c5013 vocab=3161f8e6
+-/
 theorem Ψ_mk (z : S' ⊗[R] A) : Ψ R S A a n s S' h (Ideal.Quotient.mk _ z) = χ₀ R S A a n s S' h z := rfl
 
 def mapₐ : S[X] →ₐ[S] S' where
@@ -228,8 +297,14 @@ def mapₐ : S[X] →ₐ[S] S' where
     rw [Polynomial.algebraMap_eq]
     exact (h.algebraMap_apply r).symm
 
+/--
+@isnad1 id=eq.0h6v.s9.69a555ad974c from=translated src=- shape=0ae1ec1e vocab=79f26850
+-/
 theorem mapₐ_apply (p : S[X]) : mapₐ S n s S' h p = h.map p := rfl
 
+/--
+@isnad1 id=eq.1h8v.s9.ae2c9b0abaf2 from=translated src=- shape=de2b4afb vocab=f7c2535b
+-/
 theorem algHom_ext_root {T : Type u} [Semiring T] [Algebra S T] (f₁ f₂ : S' →ₐ[S] T) (hf : f₁ h.root = f₂ h.root) :
     f₁ = f₂ := by
   have key : f₁.comp (mapₐ S n s S' h) = f₂.comp (mapₐ S n s S' h) :=
@@ -238,6 +313,9 @@ theorem algHom_ext_root {T : Type u} [Semiring T] [Algebra S T] (f₁ f₂ : S' 
   obtain ⟨p, rfl⟩ := h.map_surjective c
   exact AlgHom.congr_fun key p
 
+/--
+@isnad1 id=eq.0h8v.s14.53c8baeac62c from=translated src=- shape=2ae88fbb vocab=f2c4d3d2
+-/
 theorem Φ_Ψ : (Φ R S A a n s S' h).comp (Ψ R S A a n s S' h) = AlgHom.id S _ := by
   apply Ideal.Quotient.algHom_ext
   apply Algebra.TensorProduct.ext
@@ -251,6 +329,9 @@ theorem Φ_Ψ : (Φ R S A a n s S' h).comp (Ψ R S A a n s S' h) = AlgHom.id S _
     show Φ R S A a n s S' h (Ψ R S A a n s S' h (Ideal.Quotient.mk _ ((1 : S') ⊗ₜ[R] x))) = Ideal.Quotient.mk _ ((1 : S') ⊗ₜ[R] x)
     rw [Ψ_mk, χ₀_one_tmul, gA'_apply, Φ_mk, ψ₀_one_tmul, gA_apply]
 
+/--
+@isnad1 id=eq.0h8v.s13.779f9d2f80e6 from=translated src=- shape=191cdc66 vocab=f2c4d3d2
+-/
 theorem Ψ_Φ : (Ψ R S A a n s S' h).comp (Φ R S A a n s S' h) = AlgHom.id S _ := by
   apply Ideal.Quotient.algHom_ext
   apply Algebra.TensorProduct.ext
@@ -279,6 +360,9 @@ namespace LevelPow
 
 variable {R : Type u} [CommRing R] {A : Type u} [CommRing A] [Algebra R A] (a : A)
 
+/--
+@isnad1 id=finite.1h5v.s11.eb78c4135158 from=translated src=- shape=0e316fa4 vocab=b55e487a
+-/
 theorem finite_levelSet (hfin : (Polynomial.aeval a : R[X] →ₐ[R] A).toRingHom.Finite)
     (T : Type u) [CommRing T] [Algebra R T] (t : T) :
     Module.Finite T (T ⊗[R] A ⧸ Ideal.span {(1 : T) ⊗ₜ[R] a - t ⊗ₜ[R] (1 : A)}) := by
@@ -331,6 +415,9 @@ theorem finite_levelSet (hfin : (Polynomial.aeval a : R[X] →ₐ[R] A).toRingHo
             exact Submodule.smul_mem _ _ (hy t'')
       exact key x hx t'
 
+/--
+@isnad1 id=flat.1h6v.s13.348b5ccdc2b9 from=translated src=- shape=d3e793dc vocab=9a527dc7
+-/
 theorem flat_levelSet (m : ℕ)
     (h : ∀ (S : Type u) [CommRing S] [Algebra R S] [IsLocalRing S] (s : S),
       Module.Finite S (S ⊗[R] A ⧸ Ideal.span {(1 : S) ⊗ₜ[R] a - s ⊗ₜ[R] (1 : A)}) ∧
@@ -352,6 +439,9 @@ theorem flat_levelSet (m : ℕ)
     Module.Flat.trans S' T _
   exact Module.Flat.of_linearEquiv ((baseChangeEquiv R S' T A a y).restrictScalars S')
 
+/--
+@isnad1 id=finite.0h2v.s6.be1e1f60ad7a from=translated src=- shape=a554b80c vocab=4abef15c
+-/
 theorem finite_maximalSpectrum (S S' : Type u) [CommRing S] [CommRing S'] [IsLocalRing S] [Algebra S S']
     [Module.Finite S S'] : Finite (MaximalSpectrum S') := by
   classical
@@ -386,6 +476,9 @@ theorem finite_maximalSpectrum (S S' : Type u) [CommRing S] [CommRing S'] [IsLoc
       sup_eq_left.mpr (hle P), sup_eq_left.mpr (hle Q)] at this
   exact MaximalSpectrum.ext h1
 
+/--
+@isnad1 id=and.2h7v.s14.4df3c71817de from=translated src=- shape=d7bc6070 vocab=2764d6f2
+-/
 theorem finite_free_finrank_over_base (m : ℕ) (hfin : (Polynomial.aeval a : R[X] →ₐ[R] A).toRingHom.Finite)
     (h : ∀ (S : Type u) [CommRing S] [Algebra R S] [IsLocalRing S] (s : S),
       Module.Finite S (S ⊗[R] A ⧸ Ideal.span {(1 : S) ⊗ₜ[R] a - s ⊗ₜ[R] (1 : A)}) ∧
@@ -421,6 +514,9 @@ end LevelPow
 open scoped _root_.P2MW.S_Module_free_and_finrank_tensorProduct_quot_span_tmul_pow_sub_eq_mul.LevelPow
 
 open LevelPow in
+/--
+@isnad1 id=and.3h7v.s14.5fee57886483 from=translated src=- shape=3f80a9b3 vocab=e4cc748b
+-/
 theorem solution
     (R : Type u) [CommRing R] (A : Type u) [CommRing A] [Algebra R A] (a : A) (m n : ℕ) (hn : 1 ≤ n)
     (hfin : (Polynomial.aeval a : R[X] →ₐ[R] A).toRingHom.Finite)

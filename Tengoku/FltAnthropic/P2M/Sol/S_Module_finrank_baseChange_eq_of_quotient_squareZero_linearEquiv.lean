@@ -12,6 +12,9 @@ open TensorProduct
 set_option autoImplicit false
 set_option maxHeartbeats 8000000
 
+/--
+@isnad1 id=eq.2h9v.s9.9c340515f71d from=translated src=- shape=d9582daf vocab=09b9b721
+-/
 theorem solution
     {R : Type u} [CommRing R] (J : Ideal R) (hJ : J ^ 2 = ⊥)
     {S : Type u} [CommRing S] (φ : R ⧸ J ≃+* S)

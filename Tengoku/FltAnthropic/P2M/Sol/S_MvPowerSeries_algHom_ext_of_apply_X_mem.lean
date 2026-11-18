@@ -21,6 +21,9 @@ section Vars
 
 variable {σ : Type w} {R : Type u} [CommRing R]
 
+/--
+@isnad1 id=iff.0h5v.s8.03dd5da8e05d from=translated src=- shape=834ce8f4 vocab=06f1776e
+-/
 theorem smodEq_pow_smul_top_iff (I : Ideal R) (n : ℕ) (x y : R) :
     x ≡ y [SMOD (I ^ n • ⊤ : Submodule R R)] ↔ x - y ∈ I ^ n := by
   rw [SModEq.sub_mem, smul_eq_mul, Ideal.mul_top]
@@ -28,9 +31,15 @@ theorem smodEq_pow_smul_top_iff (I : Ideal R) (n : ℕ) (x y : R) :
 def dropVar (i : σ) (φ : MvPowerSeries σ R) : MvPowerSeries σ R :=
   fun m => if m i = 0 then φ m else 0
 
+/--
+@isnad1 id=eq.0h5v.s8.94ab7fc6dcc7 from=translated src=- shape=7afaa1ba vocab=ce3d0afd
+-/
 theorem coeff_dropVar (i : σ) (φ : MvPowerSeries σ R) (m : σ →₀ ℕ) :
     coeff m (dropVar i φ) = if m i = 0 then coeff m φ else 0 := rfl
 
+/--
+@isnad1 id=mem.1h4v.s8.c4a0d6fd455b from=translated src=- shape=6d6c7ac7 vocab=f42a41ea
+-/
 theorem mem_pow_span_X_of_coeff_eq_zero [Finite σ] (k : ℕ) (φ : MvPowerSeries σ R)
     (hφ : ∀ m : σ →₀ ℕ, m.degree < k → coeff m φ = 0) :
     φ ∈ Ideal.span (Set.range (X : σ → MvPowerSeries σ R)) ^ k := by
@@ -94,11 +103,17 @@ theorem mem_pow_span_X_of_coeff_eq_zero [Finite σ] (k : ℕ) (φ : MvPowerSerie
       exact Ideal.add_mem _ (pow_succ' J k ▸ hrest)
         (Ideal.mul_mem_mul (Ideal.subset_span ⟨i, rfl⟩) (ihk q hqk))
 
+/--
+@isnad1 id=mem.0h4v.s8.f30ed1f03bac from=translated src=- shape=d6d72230 vocab=a67728b4
+-/
 theorem sub_truncTotal_mem_pow_span_X [Finite σ] (k : ℕ) (φ : MvPowerSeries σ R) :
     φ - (truncTotal k φ : MvPolynomial σ R) ∈ Ideal.span (Set.range (X : σ → MvPowerSeries σ R)) ^ k := by
   refine mem_pow_span_X_of_coeff_eq_zero k _ fun m hm => ?_
   rw [map_sub, MvPolynomial.coeff_coe, coeff_truncTotal _ hm, sub_self]
 
+/--
+@isnad1 id=le.1h6v.s9.2a9e87164b74 from=translated src=- shape=829c5532 vocab=6af4cc46
+-/
 theorem map_pow_span_X_le {𝒪 : Type u} {A : Type v} [CommRing 𝒪] [CommRing A] [Algebra 𝒪 A]
     (φ : MvPowerSeries σ 𝒪 →ₐ[𝒪] A) (I : Ideal A) (hφ : ∀ i, φ (X i) ∈ I) (k : ℕ) :
     (Ideal.span (Set.range (X : σ → MvPowerSeries σ 𝒪)) ^ k).map φ ≤ I ^ k := by
@@ -108,6 +123,9 @@ theorem map_pow_span_X_le {𝒪 : Type u} {A : Type v} [CommRing 𝒪] [CommRing
   rintro _ ⟨_, ⟨i, rfl⟩, rfl⟩
   exact hφ i
 
+/--
+@isnad1 id=eq.1h6v.s9.49891c60a53b from=translated src=- shape=bda8b11b vocab=5ae71750
+-/
 theorem algHom_apply_coe_eq {𝒪 : Type u} {A : Type v} [CommRing 𝒪] [CommRing A] [Algebra 𝒪 A]
     (φ ψ : MvPowerSeries σ 𝒪 →ₐ[𝒪] A) (h : ∀ i, φ (X i) = ψ (X i)) (P : MvPolynomial σ 𝒪) :
     φ (P : MvPowerSeries σ 𝒪) = ψ (P : MvPowerSeries σ 𝒪) := by
@@ -127,6 +145,9 @@ variable {σ : Type w} [Finite σ] (𝒪 : Type u) {A : Type v} [CommRing 𝒪] 
 include ha
 
 omit [Finite σ] in
+/--
+@isnad1 id=le.1h6v.s9.f68e6593279a from=translated src=- shape=de5e6de9 vocab=0c568078
+-/
 theorem idealOfVars_pow_le (k : ℕ) :
     MvPolynomial.idealOfVars σ 𝒪 ^ k ≤ (I ^ k).comap (MvPolynomial.aeval (R := 𝒪) a).toRingHom := by
   refine le_trans (Ideal.pow_right_mono ?_ k) (Ideal.le_comap_pow _ k)
@@ -138,10 +159,16 @@ noncomputable def evalTrunc (k : ℕ) : MvPowerSeries σ 𝒪 →+* A ⧸ I ^ k 
   (Ideal.quotientMap (I ^ k) (MvPolynomial.aeval (R := 𝒪) a).toRingHom
     (idealOfVars_pow_le 𝒪 a I ha k)).comp (truncTotalAlgHom σ 𝒪 k).toRingHom
 
+/--
+@isnad1 id=eq.1h7v.s10.1ccb109cbb1e from=translated src=- shape=4d8e4905 vocab=9db306c7
+-/
 theorem evalTrunc_apply (k : ℕ) (p : MvPowerSeries σ 𝒪) :
     evalTrunc 𝒪 a I ha k p = Ideal.Quotient.mk (I ^ k) (MvPolynomial.aeval (R := 𝒪) a (truncTotal k p)) := by
   simp [evalTrunc]
 
+/--
+@isnad1 id=eq.2h7v.s9.b2d68ef50e59 from=translated src=- shape=78ed5ae7 vocab=891cc4e8
+-/
 theorem evalTrunc_compat {k l : ℕ} (h : k ≤ l) :
     (Ideal.Quotient.factorPow I h).comp (evalTrunc 𝒪 a I ha l) = evalTrunc 𝒪 a I ha k := by
   ext p
@@ -154,11 +181,17 @@ variable [IsAdicComplete I A]
 noncomputable def lift : MvPowerSeries σ 𝒪 →+* A :=
   IsAdicComplete.liftRingHom I (evalTrunc 𝒪 a I ha) (fun h => evalTrunc_compat 𝒪 a I ha h)
 
+/--
+@isnad1 id=eq.1h7v.s10.0e3d641cf4bd from=translated src=- shape=804cb10c vocab=1ccd5082
+-/
 theorem mk_lift (k : ℕ) (p : MvPowerSeries σ 𝒪) :
     Ideal.Quotient.mk (I ^ k) (lift 𝒪 a I ha p) =
       Ideal.Quotient.mk (I ^ k) (MvPolynomial.aeval (R := 𝒪) a (truncTotal k p)) := by
   rw [lift, IsAdicComplete.mk_liftRingHom, evalTrunc_apply]
 
+/--
+@isnad1 id=eq.1h6v.s8.e22a88248b98 from=translated src=- shape=fa1ebe07 vocab=54d8d954
+-/
 theorem lift_coe (P : MvPolynomial σ 𝒪) :
     lift 𝒪 a I ha (P : MvPowerSeries σ 𝒪) = MvPolynomial.aeval (R := 𝒪) a P := by
   refine (IsHausdorff.eq_iff_smodEq (I := I)).mpr fun k => ?_
@@ -168,6 +201,9 @@ theorem lift_coe (P : MvPolynomial σ 𝒪) :
   intro x hx
   rw [MvPolynomial.coeff_sub, sub_eq_zero, coeff_truncTotal _ hx, MvPolynomial.coeff_coe]
 
+/--
+@isnad1 id=eq.1h6v.s8.7cebabb7a3ab from=translated src=- shape=8c066204 vocab=58d01939
+-/
 theorem lift_C (c : 𝒪) : lift 𝒪 a I ha (C c) = algebraMap 𝒪 A c := by
   rw [← MvPolynomial.coe_C, lift_coe, MvPolynomial.aeval_C]
 
@@ -184,6 +220,9 @@ section Heads
 
 variable {σ : Type w} {𝒪 : Type u} {A : Type v} [CommRing 𝒪] [CommRing A] [Algebra 𝒪 A]
 
+/--
+@isnad1 id=eq.2h6v.s9.d1904e200583 from=translated src=- shape=f2e65655 vocab=16f6da9d
+-/
 theorem algHom_ext_of_X_mem [Finite σ] (I : Ideal A) [IsHausdorff I A]
     (φ ψ : MvPowerSeries σ 𝒪 →ₐ[𝒪] A) (hφ : ∀ i, φ (X i) ∈ I) (h : ∀ i, φ (X i) = ψ (X i)) :
     φ = ψ := by
@@ -202,6 +241,9 @@ end Heads
 
 end M4cP4PS
 
+/--
+@isnad1 id=eq.2h6v.s9.1f6267554236 from=translated src=- shape=4a05cfd8 vocab=16f6da9d
+-/
 theorem solution {σ : Type u} {𝒪 : Type v} {A : Type w} [Finite σ]
     [CommRing 𝒪] [CommRing A] [Algebra 𝒪 A] (I : Ideal A) [IsHausdorff I A]
     (φ ψ : MvPowerSeries σ 𝒪 →ₐ[𝒪] A) (hφ : ∀ i, φ (MvPowerSeries.X i) ∈ I)

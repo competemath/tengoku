@@ -24,10 +24,16 @@ noncomputable def Φ (B : Type u) [AddCommGroup B] [Module R B] :
     ((TensorProduct.congr (Module.evalEquiv R K) (LinearEquiv.refl R B)).trans
       (dualTensorHomEquiv R (Module.Dual R K) B))
 
+/--
+@isnad1 id=eq.0h6v.s11.a0d29db84901 from=translated src=- shape=e66b15ed vocab=1c8b11a4
+-/
 theorem Φ_tmul (B : Type u) [AddCommGroup B] [Module R B] (b : B) (x : K) (φ : Module.Dual R K) :
     Φ B (b ⊗ₜ[R] x) φ = φ x • b := by
   simp [Φ, dualTensorHomEquivOfBasis_apply, dualTensorHom_apply]
 
+/--
+@isnad1 id=eq.0h5v.s11.e428219c992e from=translated src=- shape=66bd537b vocab=3c228995
+-/
 theorem Φ_apply_eq_rid_lTensor (B : Type u) [AddCommGroup B] [Module R B] (s : B ⊗[R] K) (φ : Module.Dual R K) :
     Φ B s φ = TensorProduct.rid R B (φ.lTensor B s) := by
   induction s using TensorProduct.induction_on with
@@ -35,6 +41,9 @@ theorem Φ_apply_eq_rid_lTensor (B : Type u) [AddCommGroup B] [Module R B] (s : 
   | tmul b x => rw [Φ_tmul, LinearMap.lTensor_tmul, TensorProduct.rid_tmul]
   | add s t hs ht => rw [map_add, LinearMap.add_apply, hs, ht, map_add, map_add]
 
+/--
+@isnad1 id=eq.0h6v.s12.2739e1d787e8 from=translated src=- shape=d980db67 vocab=465f091b
+-/
 theorem Φ_naturality (B B' : Type u) [AddCommGroup B] [Module R B] [AddCommGroup B'] [Module R B']
     (u : B →ₗ[R] B') (s : B ⊗[R] K) : Φ B' (u.rTensor K s) = u ∘ₗ Φ B s := by
   induction s using TensorProduct.induction_on with
@@ -49,6 +58,9 @@ end one
 variable {K₀ K₁ : Type u} [AddCommGroup K₀] [Module R K₀] [Module.Finite R K₀] [Module.Free R K₀]
   [AddCommGroup K₁] [Module R K₁] [Module.Finite R K₁] [Module.Free R K₁]
 
+/--
+@isnad1 id=eq.0h6v.s12.d32ff3bbef64 from=translated src=- shape=b76be122 vocab=ebee78fe
+-/
 theorem Φ_comp_dualMap (d : K₀ →ₗ[R] K₁) (B : Type u) [AddCommGroup B] [Module R B] (s : B ⊗[R] K₀) :
     (Φ B s) ∘ₗ d.dualMap = Φ B (d.lTensor B s) := by
   induction s using TensorProduct.induction_on with
@@ -58,6 +70,9 @@ theorem Φ_comp_dualMap (d : K₀ →ₗ[R] K₁) (B : Type u) [AddCommGroup B] 
     rw [LinearMap.comp_apply, Φ_tmul, LinearMap.dualMap_apply, LinearMap.lTensor_tmul, Φ_tmul]
   | add s t hs ht => rw [map_add, LinearMap.add_comp, hs, ht, map_add, map_add]
 
+/--
+@isnad1 id=iff.0h6v.s11.40e4246f83ab from=translated src=- shape=caa79786 vocab=ebee78fe
+-/
 theorem comp_dualMap_eq_zero_iff (d : K₀ →ₗ[R] K₁) (B : Type u) [AddCommGroup B] [Module R B] (s : B ⊗[R] K₀) :
     (Φ B s) ∘ₗ d.dualMap = 0 ↔ d.lTensor B s = 0 := by
   rw [Φ_comp_dualMap, LinearEquiv.map_eq_zero_iff]
@@ -65,6 +80,9 @@ theorem comp_dualMap_eq_zero_iff (d : K₀ →ₗ[R] K₁) (B : Type u) [AddComm
 end FormalHomHelpers
 
 open FormalHomHelpers in
+/--
+@isnad1 id=ex.0h4v.s16.87807e924771 from=translated src=- shape=c25441ab vocab=5f497d5e
+-/
 theorem solution
     (R : Type u) [CommRing R]
     (K₀ K₁ : Type u) [AddCommGroup K₀] [Module R K₀] [Module.Finite R K₀] [Module.Free R K₀]

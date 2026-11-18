@@ -27,9 +27,15 @@ variable {R A}
 def cmap (N : Submodule A (A ⊗[R] M)) : (Fin k → A) →ₗ[A] (A ⊗[R] M) ⧸ N :=
   Fintype.linearCombination A (fun i => N.mkQ ((1 : A) ⊗ₜ[R] x i))
 
+/--
+@isnad1 id=eq.0h6v.s12.696f52ad6979 from=translated src=- shape=8a7b773a vocab=2700f7e9
+-/
 lemma coe_cmap (N : Submodule A (A ⊗[R] M)) :
     ⇑(cmap x N) = fun v : Fin k → A => ∑ i, v i • N.mkQ ((1 : A) ⊗ₜ[R] x i) := rfl
 
+/--
+@isnad1 id=eq.0h7v.s11.88f3fb73a761 from=translated src=- shape=cedffc2b vocab=373971c3
+-/
 lemma cmap_single (N : Submodule A (A ⊗[R] M)) (j : Fin k) :
     cmap x N (Pi.single j 1) = N.mkQ ((1 : A) ⊗ₜ[R] x j) := by
   classical
@@ -38,9 +44,15 @@ lemma cmap_single (N : Submodule A (A ⊗[R] M)) (j : Fin k) :
 noncomputable def coordEquiv (N : Chart R x A) : (Fin k → A) ≃ₗ[A] (A ⊗[R] M) ⧸ N.1.toSubmodule :=
   LinearEquiv.ofBijective (cmap x N.1.toSubmodule) N.2
 
+/--
+@isnad1 id=eq.0h7v.s16.82f4523f2de2 from=translated src=- shape=d18b6150 vocab=418abec8
+-/
 lemma coordEquiv_apply (N : Chart R x A) (v : Fin k → A) :
     coordEquiv x N v = cmap x N.1.toSubmodule v := rfl
 
+/--
+@isnad1 id=eq.0h7v.s16.42344a612ecf from=translated src=- shape=918db52d vocab=37918a29
+-/
 lemma coordEquiv_symm_mkQ_x (N : Chart R x A) (j : Fin k) :
     (coordEquiv x N).symm (N.1.toSubmodule.mkQ ((1 : A) ⊗ₜ[R] x j)) = Pi.single j 1 := by
   rw [LinearEquiv.symm_apply_eq, coordEquiv_apply, cmap_single]
@@ -53,12 +65,18 @@ noncomputable def toHomX (N : Chart R x A) : HomX R x A :=
         Function.comp_apply, TensorProduct.mk_apply]
       exact coordEquiv_symm_mkQ_x x N j⟩
 
+/--
+@isnad1 id=eq.0h7v.s16.ef1e083d848c from=translated src=- shape=d0384f02 vocab=a3ccf600
+-/
 lemma toHomX_apply (N : Chart R x A) (m : M) :
     (toHomX x N).1 m = (coordEquiv x N).symm (N.1.toSubmodule.mkQ ((1 : A) ⊗ₜ[R] m)) := rfl
 
 noncomputable abbrev ext' (ψ : M →ₗ[R] (Fin k → A)) : A ⊗[R] M →ₗ[A] (Fin k → A) :=
   ψ.liftBaseChange A
 
+/--
+@isnad1 id=surjecti.0h6v.s9.1b53fe58804d from=translated src=- shape=31207bb7 vocab=2e6da0bf
+-/
 lemma ext'_surjective (ψ : HomX R x A) : Function.Surjective (ext' ψ.1) := by
   intro v
   refine ⟨∑ i, v i ⊗ₜ[R] x i, ?_⟩
@@ -70,10 +88,16 @@ noncomputable def quotEquiv (ψ : HomX R x A) :
     ((A ⊗[R] M) ⧸ LinearMap.ker (ext' ψ.1)) ≃ₗ[A] (Fin k → A) :=
   (ext' ψ.1).quotKerEquivOfSurjective (ext'_surjective x ψ)
 
+/--
+@isnad1 id=eq.0h7v.s13.6be089201ef0 from=translated src=- shape=f796d9f2 vocab=d481eda7
+-/
 lemma quotEquiv_mkQ (ψ : HomX R x A) (p : A ⊗[R] M) :
     quotEquiv x ψ ((LinearMap.ker (ext' ψ.1)).mkQ p) = ext' ψ.1 p :=
   LinearMap.quotKerEquivOfSurjective_apply_mk _ _ _
 
+/--
+@isnad1 id=eq.0h7v.s13.1b83f619b75f from=translated src=- shape=fd055e2f vocab=dd466694
+-/
 lemma quotEquiv_cmap (ψ : HomX R x A) (v : Fin k → A) :
     quotEquiv x ψ (cmap x (LinearMap.ker (ext' ψ.1)) v) = v := by
   simp only [coe_cmap, map_sum, map_smul, quotEquiv_mkQ, LinearMap.liftBaseChange_tmul, one_smul,
@@ -81,6 +105,9 @@ lemma quotEquiv_cmap (ψ : HomX R x A) (v : Fin k → A) :
   ext i
   simp [Finset.sum_apply, Pi.single_apply]
 
+/--
+@isnad1 id=eq.0h6v.s14.b0971f76184b from=translated src=- shape=fba6d172 vocab=8099025c
+-/
 lemma cmap_ker_eq (ψ : HomX R x A) :
     ⇑(cmap x (LinearMap.ker (ext' ψ.1))) = (quotEquiv x ψ).symm := by
   funext v
@@ -102,9 +129,15 @@ noncomputable def ofHomX (ψ : HomX R x A) : Chart R x A := by
     rw [cmap_ker_eq]
     exact (quotEquiv x ψ).symm.bijective
 
+/--
+@isnad1 id=eq.0h6v.s12.e023dd7869fb from=translated src=- shape=a7f8c4bf vocab=e3e341a1
+-/
 lemma ofHomX_toSubmodule (ψ : HomX R x A) :
     (ofHomX x ψ).1.toSubmodule = LinearMap.ker (ext' ψ.1) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s15.6d242ab89dc5 from=translated src=- shape=45519ea4 vocab=48e1b7f7
+-/
 lemma ext'_toHomX (N : Chart R x A) :
     ext' (toHomX x N).1 = (coordEquiv x N).symm.toLinearMap ∘ₗ N.1.toSubmodule.mkQ := by
   refine TensorProduct.AlgebraTensorModule.ext fun a m => ?_
@@ -112,11 +145,17 @@ lemma ext'_toHomX (N : Chart R x A) :
     Function.comp_apply]
   rw [← map_smul, ← map_smul, TensorProduct.smul_tmul', smul_eq_mul, mul_one]
 
+/--
+@isnad1 id=eq.0h6v.s6.a408d317fe73 from=translated src=- shape=7d3ce6a1 vocab=866e5ec4
+-/
 lemma ofHomX_toHomX (N : Chart R x A) : ofHomX x (toHomX x N) = N := by
   apply Subtype.ext
   apply Module.Grassmannian.ext
   rw [ofHomX_toSubmodule, ext'_toHomX, LinearEquiv.ker_comp, Submodule.ker_mkQ]
 
+/--
+@isnad1 id=eq.0h7v.s16.ce9d8843bb88 from=translated src=- shape=79108e87 vocab=ecb01e36
+-/
 lemma coordEquiv_ofHomX_symm (ψ : HomX R x A) (y) :
     (coordEquiv x (ofHomX x ψ)).symm y = quotEquiv x ψ y := by
   have h1 : (coordEquiv x (ofHomX x ψ)) ((coordEquiv x (ofHomX x ψ)).symm y) = y :=
@@ -127,6 +166,9 @@ lemma coordEquiv_ofHomX_symm (ψ : HomX R x A) (y) :
   change quotEquiv x ψ (cmap x (LinearMap.ker (ext' ψ.1)) _) = _ at h2
   rwa [quotEquiv_cmap] at h2
 
+/--
+@isnad1 id=eq.0h6v.s6.2b3538a5a88d from=translated src=- shape=7d3ce6a1 vocab=266aa47c
+-/
 lemma toHomX_ofHomX (ψ : HomX R x A) : toHomX x (ofHomX x ψ) = ψ := by
   apply Subtype.ext
   apply LinearMap.ext
@@ -148,9 +190,15 @@ def pushHomX (ψ : HomX R x A) : HomX R x B :=
     ext i
     simp [LinearMap.compLeft, ψ.2, Pi.single_apply, apply_ite φ]⟩
 
+/--
+@isnad1 id=eq.0h10v.s10.0537e30b42bf from=translated src=- shape=1a1c0955 vocab=365afcee
+-/
 lemma pushHomX_apply (ψ : HomX R x A) (m : M) (i : Fin k) :
     (pushHomX x φ ψ).1 m i = φ (ψ.1 m i) := rfl
 
+/--
+@isnad1 id=eq.0h8v.s12.0fb132d8f4bc from=translated src=- shape=c209c44a vocab=53361ffc
+-/
 lemma map_ofHomX_toSubmodule (ψ : HomX R x A) :
     (Module.Grassmannian.map φ (ofHomX x ψ).1).toSubmodule =
       LinearMap.ker (ext' (pushHomX x φ ψ).1) := by
@@ -176,10 +224,16 @@ lemma map_ofHomX_toSubmodule (ψ : HomX R x A) :
     rfl
   rw [← hT, LinearEquiv.ker_comp]
 
+/--
+@isnad1 id=eq.0h8v.s13.54152fd73da1 from=translated src=- shape=8f0beac5 vocab=4c5ddd00
+-/
 lemma map_ofHomX (ψ : HomX R x A) :
     Module.Grassmannian.map φ (ofHomX x ψ).1 = (ofHomX x (pushHomX x φ ψ)).1 :=
   Module.Grassmannian.ext (map_ofHomX_toSubmodule x φ ψ)
 
+/--
+@isnad1 id=bijectiv.0h8v.s16.29e64cc7936a from=translated src=- shape=9b381824 vocab=844cd36a
+-/
 lemma map_mem_chart (N : Chart R x A) :
     Function.Bijective fun v : Fin k → B =>
       ∑ i, v i • (Module.Grassmannian.map φ N.1).toSubmodule.mkQ ((1 : B) ⊗ₜ[R] x i) := by
@@ -187,6 +241,9 @@ lemma map_mem_chart (N : Chart R x A) :
   rw [hN, map_ofHomX]
   exact (ofHomX x (pushHomX x φ (toHomX x N))).2
 
+/--
+@isnad1 id=eq.0h8v.s13.cc011ae48e43 from=translated src=- shape=062699b0 vocab=7e780d59
+-/
 lemma chartEquiv_map (N : Chart R x A) :
     chartEquiv x ⟨Module.Grassmannian.map φ N.1, map_mem_chart x φ N⟩ =
       pushHomX x φ (chartEquiv x N) := by
@@ -203,6 +260,9 @@ lemma chartEquiv_map (N : Chart R x A) :
 end GrassChartS1a
 
 open GrassChartS1a in
+/--
+@isnad1 id=ex.0h4v.s18.dec8a04674c2 from=translated src=- shape=9fb69c02 vocab=6948aa2b
+-/
 theorem solution
     (R : Type) [CommRing R] (M : Type) [AddCommGroup M] [Module R M] (k : ℕ) (x : Fin k → M) :
     ∃ pt : ∀ (A : Type) [CommRing A] [Algebra R A],

@@ -18,14 +18,23 @@ noncomputable def emm (𝔫 : Ideal R) : Ideal (MvPowerSeries (Fin 2) R) :=
   Ideal.span (Set.range (MvPowerSeries.X : Fin 2 → MvPowerSeries (Fin 2) R)) ⊔
     𝔫.map (algebraMap R (MvPowerSeries (Fin 2) R))
 
+/--
+@isnad1 id=mem.0h3v.s7.57fcb64fccac from=translated src=- shape=1edf4ff9 vocab=9856b59f
+-/
 theorem X_mem_emm (𝔫 : Ideal R) (i : Fin 2) :
     (MvPowerSeries.X i : MvPowerSeries (Fin 2) R) ∈ emm 𝔫 :=
   Ideal.mem_sup_left (Ideal.subset_span ⟨i, rfl⟩)
 
+/--
+@isnad1 id=mem.1h3v.s8.f30b892a421a from=translated src=- shape=85364de3 vocab=5a166063
+-/
 theorem algebraMap_mem_emm (𝔫 : Ideal R) {n : R} (hn : n ∈ 𝔫) :
     algebraMap R (MvPowerSeries (Fin 2) R) n ∈ emm 𝔫 :=
   Ideal.mem_sup_right (Ideal.mem_map_of_mem _ hn)
 
+/--
+@isnad1 id=mem.1h3v.s8.95fb8809a338 from=translated src=- shape=10c6dff6 vocab=bbb5dd48
+-/
 theorem constantCoeff_mem_of_mem_emm (𝔫 : Ideal R) {t : MvPowerSeries (Fin 2) R}
     (ht : t ∈ emm 𝔫) : MvPowerSeries.constantCoeff t ∈ 𝔫 := by
   have h : emm 𝔫 ≤ 𝔫.comap (MvPowerSeries.constantCoeff : MvPowerSeries (Fin 2) R →+* R) := by
@@ -41,6 +50,9 @@ theorem constantCoeff_mem_of_mem_emm (𝔫 : Ideal R) {t : MvPowerSeries (Fin 2)
       exact hn
   exact h ht
 
+/--
+@isnad1 id=mem.3h4v.s9.b0b6cf8fae7d from=translated src=- shape=530b6ce5 vocab=23bfa902
+-/
 theorem mem_mul_of_coeff_mem [IsNoetherianRing R] (J : Ideal (MvPowerSeries (Fin 2) R))
     (hproj : Module.Projective R (MvPowerSeries (Fin 2) R ⧸ J)) (𝔫 : Ideal R)
     {e : MvPowerSeries (Fin 2) R} (he : e ∈ J) (hcoef : ∀ d, MvPowerSeries.coeff d e ∈ 𝔫) :
@@ -86,6 +98,9 @@ theorem mem_mul_of_coeff_mem [IsNoetherianRing R] (J : Ideal (MvPowerSeries (Fin
   rw [map_smul, Algebra.smul_def]
   exact Ideal.mul_mem_mul (algebraMap_mem_emm 𝔫 (hnmem l)) (hπJ _)
 
+/--
+@isnad1 id=ex.4h4v.s11.9e7ffe881634 from=translated src=- shape=888ada6f vocab=5c89c1f7
+-/
 theorem main [IsNoetherianRing R] (J : Ideal (MvPowerSeries (Fin 2) R))
     (hproj : Module.Projective R (MvPowerSeries (Fin 2) R ⧸ J))
     (𝔫 : Ideal R) (h𝔫 : 𝔫 ≠ ⊤)
@@ -152,6 +167,9 @@ theorem main [IsNoetherianRing R] (J : Ideal (MvPowerSeries (Fin 2) R))
 
 end Nak2GenAux
 
+/--
+@isnad1 id=ex.4h4v.s11.9e7ffe881634 from=translated src=- shape=888ada6f vocab=5c89c1f7
+-/
 theorem solution
     {R : Type} [CommRing R] [IsNoetherianRing R] (J : Ideal (MvPowerSeries (Fin 2) R))
     (hproj : Module.Projective R (MvPowerSeries (Fin 2) R ⧸ J))

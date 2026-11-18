@@ -11,6 +11,9 @@ universe u v
 
 open _root_.MvPowerSeries hiding exists_algEquiv_apply_X_eq span_singleton_isPrime_of_sub_linear_mem_sq exists_eq_X_sub_subst_mul_of_subst_eq_zero
 
+/--
+@isnad1 id=ex.3h7v.s11.58551bc68035 from=translated src=- shape=aef8e6fa vocab=ee569edb
+-/
 theorem MvPowerSeries.exists_eq_mul_of_sub_mul_prod_linear_mem_pow_of_det_ne_zero
     {κ : Type u} [Field κ] {ι : Type v} [Fintype ι]
     (a b : κ) (hab : a ≠ 0 ∨ b ≠ 0)

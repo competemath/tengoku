@@ -11,6 +11,9 @@ open TensorProduct
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.1h3v.s7.fba7e3fa272d from=translated src=- shape=ff8d18c4 vocab=0ddfffe0
+-/
 theorem solution
     {R : Type u} [CommRing R] (P : Type u) [AddCommGroup P] [Module R P]
     [Module.Finite R P] [Module.Flat R P]

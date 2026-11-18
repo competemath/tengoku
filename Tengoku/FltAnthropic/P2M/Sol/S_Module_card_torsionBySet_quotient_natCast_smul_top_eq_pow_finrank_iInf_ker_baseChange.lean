@@ -13,6 +13,9 @@ open Submodule
 
 open Submodule
 
+/--
+@isnad1 id=ex.0h4v.s7.9421ecec734d from=translated src=- shape=e5dad3b6 vocab=2c69fd40
+-/
 theorem exists_finset_iInf_eq {R M : Type*} [Ring R] [AddCommGroup M] [Module R M] [IsArtinian R M]
     {ι : Type*} (S : ι → Submodule R M) : ∃ s : Finset ι, ⨅ i, S i = ⨅ i ∈ s, S i := by
   classical
@@ -26,6 +29,9 @@ theorem exists_finset_iInf_eq {R M : Type*} [Ring R] [AddCommGroup M] [Module R 
   rw [← heq]
   exact biInf_le _ (Finset.mem_insert_self j s₀)
 
+/--
+@isnad1 id=le.0h5v.s9.d940469d19ed from=translated src=- shape=da2bd78f vocab=8ea84493
+-/
 theorem baseChange_le_ker {F : Type*} [CommRing F] (K : Type*) [CommRing K] [Algebra F K]
     {V W : Type*} [AddCommGroup V] [Module F V] [AddCommGroup W] [Module F W]
     (f : V →ₗ[F] W) : (LinearMap.ker f).baseChange K ≤ LinearMap.ker (f.baseChange K) := by
@@ -34,6 +40,9 @@ theorem baseChange_le_ker {F : Type*} [CommRing F] (K : Type*) [CommRing K] [Alg
   simp only [SetLike.mem_coe, LinearMap.mem_ker] at hw ⊢
   rw [TensorProduct.mk_apply, LinearMap.baseChange_tmul, LinearMap.mem_ker.mp hw, TensorProduct.tmul_zero]
 
+/--
+@isnad1 id=eq.0h5v.s11.5e79b8d47214 from=translated src=- shape=ef433aaa vocab=2988086a
+-/
 theorem finrank_iInf_ker_baseChange_eq
     (F : Type) [Field F] (K : Type) [Field K] [Algebra F K]
     (V : Type) [AddCommGroup V] [Module F V] [Module.Finite F V]
@@ -98,6 +107,9 @@ theorem finrank_iInf_ker_baseChange_eq
 
   rw [← (Submodule.toBaseChange.toLinearEquiv K W).finrank_eq, Module.finrank_baseChange]
 
+/--
+@isnad1 id=eq.1h7v.s10.fff665a16614 from=translated src=- shape=1307e69b vocab=74d25d8f
+-/
 theorem finrank_iInf_ker_eq_of_linearEquiv {k : Type*} [Field k] {X Y : Type*}
     [AddCommGroup X] [Module k X] [AddCommGroup Y] [Module k Y] (E : X ≃ₗ[k] Y)
     {ι : Type*} (f : ι → (X →ₗ[k] X)) (g : ι → (Y →ₗ[k] Y))
@@ -114,6 +126,9 @@ theorem finrank_iInf_ker_eq_of_linearEquiv {k : Type*} [Field k] {X Y : Type*}
       rw [← h, hx i, map_zero]
   rw [← hmap, Submodule.comap_equiv_eq_map_symm, LinearEquiv.finrank_map_eq]
 
+/--
+@isnad1 id=eq.3h9v.s12.1b0125fa2286 from=translated src=- shape=287ae67a vocab=dff29d65
+-/
 theorem key (p : ℕ) [Fact p.Prime] (k : Type) [Field k] [CharP k p]
     {M : Type} [AddCommGroup M] (V : Type) [AddCommGroup V] [instV : Module (ZMod p) V]
     [finV : Module.Finite (ZMod p) V]
@@ -159,6 +174,9 @@ theorem key (p : ℕ) [Fact p.Prime] (k : Type) [Field k] [CharP k p]
 end G3Aux
 
 open G3Aux in
+/--
+@isnad1 id=eq.0h5v.s12.3529a6132498 from=translated src=- shape=936535a9 vocab=1446c025
+-/
 theorem solution
     (T : Type) [CommRing T] (M : Type) [AddCommGroup M] [Module T M] [Module.Finite ℤ M]
     (𝔪 : Ideal T) (p : ℕ) [Fact p.Prime] (k : Type) [Field k] [CharP k p] :

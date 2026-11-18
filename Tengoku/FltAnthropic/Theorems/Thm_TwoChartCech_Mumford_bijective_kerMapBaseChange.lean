@@ -11,6 +11,9 @@ universe u
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=bijectiv.0h5v.s17.aafa82f7719b from=translated src=- shape=ea4bb07d vocab=3c7b2571
+-/
 theorem TwoChartCech.Mumford.bijective_kerMapBaseChange
     {R : Type u} [CommRing R]
     {C0 C1 : Type u} [AddCommGroup C0] [Module R C0] [AddCommGroup C1] [Module R C1] [Module.Flat R C1]

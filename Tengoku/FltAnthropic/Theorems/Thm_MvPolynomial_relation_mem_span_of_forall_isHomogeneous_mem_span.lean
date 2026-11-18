@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open _root_.MvPolynomial hiding exists_skew_eq_sum_mul_X_of_sum_mul_X_eq_zero
 
+/--
+@isnad1 id=mem.4h7v.s11.a8e355fc756f from=translated src=- shape=8de28c67 vocab=1345e3a2
+-/
 theorem MvPolynomial.relation_mem_span_of_forall_isHomogeneous_mem_span
     (n m g : ℕ) (K : Type) [Field K] (F : Fin g → MvPolynomial (Fin (n + 1)) K)
     (hF : ∀ i, (F i).IsHomogeneous m)

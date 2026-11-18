@@ -7,6 +7,9 @@ namespace P2MW.S_MonoidAlgebra_quotient_mk_eq_zero_iff_mem_map_augmentation_smul
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=iff.1h6v.s12.721670693caa from=translated src=- shape=d74ad4f8 vocab=b0db7d59
+-/
 theorem solution
     {𝒪 A : Type} [CommRing 𝒪] [CommRing A] [Algebra 𝒪 A] {G : Type} [CommGroup G] [Fintype G]
     (ι : MonoidAlgebra 𝒪 G →ₐ[𝒪] A) (Mn : Type) [AddCommGroup Mn] [Module A Mn]

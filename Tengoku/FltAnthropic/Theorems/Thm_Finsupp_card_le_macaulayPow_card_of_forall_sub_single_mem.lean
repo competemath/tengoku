@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Finsupp_card_le_macaulayPow_card_of_forall
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=le.4h4v.s10.20b8cd7248e2 from=translated src=- shape=26e8c55c vocab=272e004a
+-/
 theorem Finsupp.card_le_macaulayPow_card_of_forall_sub_single_mem
     (n d : ℕ) (hd : 1 ≤ d) (B : Finset (Fin (n + 1) →₀ ℕ)) (hB : ∀ m ∈ B, m.degree = d)
     (C : Finset (Fin (n + 1) →₀ ℕ)) (hC : ∀ u ∈ C, u.degree = d + 1)

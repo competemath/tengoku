@@ -16,6 +16,9 @@ set_option autoImplicit false
 
 open MvPolynomial in
 
+/--
+@isnad1 id=eq.1h4v.s9.00664d3b1bb0 from=translated src=- shape=da95acf3 vocab=bd799130
+-/
 theorem A3H.eval_reverse (D : Polynomial ℂ) (a x y : ℂ) (hy : y ≠ 0) :
     MvPolynomial.eval ![x, y]
         (∑ i ∈ Finset.range (D.natDegree + 1), C (D.coeff i * a ^ i) * X 0 ^ i * X 1 ^ (D.natDegree - i)) =
@@ -31,6 +34,9 @@ theorem A3H.eval_reverse (D : Polynomial ℂ) (a x y : ℂ) (hy : y ≠ 0) :
 
 open MvPolynomial in
 
+/--
+@isnad1 id=eq.2h7v.s10.363393ed0646 from=translated src=- shape=ed5c0ab9 vocab=42847ef0
+-/
 theorem A3H.eval_twist (P : MvPolynomial (Fin 3) ℂ) (r b₁ b₂ x y : ℂ) (hy : y ≠ 0) (m : ℕ) (hm : ∀ n ∈ P.support, n 1 ≤ m) :
     MvPolynomial.eval ![x, y]
         (∑ n ∈ P.support, C (P.coeff n * r ^ (n 0) * b₁ ^ (n 1) * b₂ ^ (n 2)) * X 0 ^ (n 0) * X 1 ^ (m - n 1 + n 2)) =
@@ -47,6 +53,9 @@ theorem A3H.eval_twist (P : MvPolynomial (Fin 3) ℂ) (r b₁ b₂ x y : ℂ) (h
   linear_combination (-(P.coeff n * r ^ n 0 * b₁ ^ n 1 * b₂ ^ n 2 * x ^ n 0 * y ^ (m - n 1) * y ^ n 2)) * hyinv
 
 open MvPolynomial in
+/--
+@isnad1 id=ex.6h9v.s10.49a4c1834289 from=translated src=- shape=8cbb6dcc vocab=8e84887c
+-/
 theorem solution
     (r b₁ b₂ ω c : ℂ) (hr : r ≠ 0) (hb₁ : b₁ ≠ 0) (hb₂ : b₂ ≠ 0) (hω : ω ≠ 0)
     (P : MvPolynomial (Fin 3) ℂ) (D₁ D₂ : Polynomial ℂ) (e : ℕ)

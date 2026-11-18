@@ -20,6 +20,9 @@ section Split
 variable {K M B : Type v} [AddCommGroup K] [Module R K] [AddCommGroup M] [Module R M]
   [AddCommGroup B] [Module R B]
 
+/--
+@isnad1 id=and.4h9v.s10.748b2e5b08f9 from=translated src=- shape=c9b2ac93 vocab=55d5d254
+-/
 theorem lTensor_split (i : K →ₗ[R] M) (r : M →ₗ[R] K) (p : M →ₗ[R] B) (s : B →ₗ[R] M)
     (hri : r ∘ₗ i = LinearMap.id) (hps : p ∘ₗ s = LinearMap.id) (hpi : p ∘ₗ i = 0)
     (hsum : i ∘ₗ r + s ∘ₗ p = LinearMap.id)
@@ -62,10 +65,16 @@ noncomputable def dbar (d0 : C0 →ₗ[R] C1) (d1 : C1 →ₗ[R] C2) (hdd : d1 �
     rintro _ ⟨x, rfl⟩
     rw [LinearMap.mem_ker, ← LinearMap.comp_apply, hdd, LinearMap.zero_apply])
 
+/--
+@isnad1 id=eq.1h6v.s9.4d0e57185208 from=translated src=- shape=d51112b9 vocab=93c2d4c1
+-/
 theorem dbar_comp_mkQ (d0 : C0 →ₗ[R] C1) (d1 : C1 →ₗ[R] C2) (hdd : d1 ∘ₗ d0 = 0) :
     dbar d0 d1 hdd ∘ₗ (LinearMap.range d0).mkQ = d1 :=
   (LinearMap.range d0).liftQ_mkQ _ _
 
+/--
+@isnad1 id=injectiv.2h6v.s12.81f070ab3126 from=translated src=- shape=a2ce3781 vocab=feaa7ecf
+-/
 theorem lTensor_dbar_injective (d0 : C0 →ₗ[R] C1) (d1 : C1 →ₗ[R] C2) (hdd : d1 ∘ₗ d0 = 0)
     (hH1 : LinearMap.ker (d1.baseChange (IsLocalRing.ResidueField R)) ≤
       LinearMap.range (d0.baseChange (IsLocalRing.ResidueField R))) :
@@ -89,6 +98,9 @@ theorem lTensor_dbar_injective (d0 : C0 →ₗ[R] C1) (d1 : C1 →ₗ[R] C2) (hd
   rw [← LinearMap.mem_ker]
   exact (hex y).mpr this |> fun h => by rw [LinearMap.mem_ker]; exact h
 
+/--
+@isnad1 id=free.2h6v.s11.82164a59f143 from=translated src=- shape=40d5c59e vocab=06c80f75
+-/
 theorem free_coker (d0 : C0 →ₗ[R] C1) (d1 : C1 →ₗ[R] C2) (hdd : d1 ∘ₗ d0 = 0)
     (hH1 : LinearMap.ker (d1.baseChange (IsLocalRing.ResidueField R)) ≤
       LinearMap.range (d0.baseChange (IsLocalRing.ResidueField R))) :
@@ -100,6 +112,9 @@ theorem free_coker (d0 : C0 →ₗ[R] C1) (d1 : C1 →ₗ[R] C2) (hdd : d1 ∘�
   haveI : Module.Flat R (C1 ⧸ LinearMap.range d0) := Module.Flat.of_projective
   exact Module.free_of_flat_of_isLocalRing
 
+/--
+@isnad1 id=and.2h7v.s12.deedb8f9fcdc from=translated src=- shape=e71f8813 vocab=987c3eea
+-/
 theorem ker_baseChange (d0 : C0 →ₗ[R] C1) (d1 : C1 →ₗ[R] C2) (hdd : d1 ∘ₗ d0 = 0)
     (hH1 : LinearMap.ker (d1.baseChange (IsLocalRing.ResidueField R)) ≤
       LinearMap.range (d0.baseChange (IsLocalRing.ResidueField R)))
@@ -187,6 +202,9 @@ end Main
 
 end BC0Free
 
+/--
+@isnad1 id=and.2h6v.s12.0543c3f0ed75 from=translated src=- shape=7c3aaaff vocab=199b2f22
+-/
 theorem solution
     (R : Type u) [CommRing R] [IsLocalRing R]
     {C0 C1 C2 : Type v} [AddCommGroup C0] [Module R C0] [AddCommGroup C1] [Module R C1]

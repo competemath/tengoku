@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=ex.1h5v.s12.40947616c128 from=translated src=- shape=acbc9496 vocab=faa997f3
+-/
 theorem MvPowerSeries.exists_algEquiv_tensorProduct_quotient_span_map_of_X_pow_mem
     {R : Type} [CommRing R] {S : Type} [CommRing S] [Algebra R S]
     {σ : Type} [Fintype σ] {ι : Type} (φ : ι → MvPowerSeries σ R)

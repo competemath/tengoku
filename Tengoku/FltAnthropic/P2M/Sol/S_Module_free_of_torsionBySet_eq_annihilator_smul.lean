@@ -24,17 +24,29 @@ section Ring
 
 variable {𝒪 : Type u} {T : Type w} [CommRing 𝒪] [CommRing T] [Algebra 𝒪 T] (πT : T →ₐ[𝒪] 𝒪)
 
+/--
+@isnad1 id=surjecti.0h3v.s6.eedf9cd30270 from=translated src=- shape=f2edbfd8 vocab=aa66f34d
+-/
 theorem πT_surjective : Function.Surjective πT :=
   fun c => ⟨algebraMap 𝒪 T c, πT.commutes c⟩
 
+/--
+@isnad1 id=mem.0h4v.s8.acd45f76980d from=translated src=- shape=ee24298f vocab=610d7cd3
+-/
 theorem sub_algebraMap_mem_ker (t : T) : t - algebraMap 𝒪 T (πT t) ∈ RingHom.ker πT := by
   simp [RingHom.mem_ker]
 
+/--
+@isnad1 id=eq.2h5v.s8.727fb5250333 from=translated src=- shape=28f60e79 vocab=66c849d7
+-/
 theorem mul_eq_zero_of_mem_annihilator {i a : T} (hi : i ∈ (RingHom.ker πT).annihilator)
     (ha : a ∈ RingHom.ker πT) : i * a = 0 := by
   rw [Submodule.mem_annihilator] at hi
   simpa [smul_eq_mul] using hi a ha
 
+/--
+@isnad1 id=eq.1h5v.s8.4ad6150edbd9 from=translated src=- shape=abd3199f vocab=2c794d8c
+-/
 theorem mul_eq_smul_of_mem_annihilator {x₀ : T} (hx₀ : x₀ ∈ (RingHom.ker πT).annihilator)
     (t : T) : t * x₀ = πT t • x₀ :=
   calc t * x₀ = (t - algebraMap 𝒪 T (πT t)) * x₀ + algebraMap 𝒪 T (πT t) * x₀ := by ring
@@ -42,12 +54,18 @@ theorem mul_eq_smul_of_mem_annihilator {x₀ : T} (hx₀ : x₀ ∈ (RingHom.ker
         rw [mul_comm, mul_eq_zero_of_mem_annihilator πT hx₀ (sub_algebraMap_mem_ker πT t),
           zero_add, Algebra.smul_def]
 
+/--
+@isnad1 id=eq.2h6v.s11.0801798d12bc from=translated src=- shape=3cae8377 vocab=c983c797
+-/
 theorem pairing_apply_x₀ (C : T →ₗ[𝒪] T →ₗ[𝒪] 𝒪) (hC : ∀ s t u : T, C (s * t) u = C t (s * u))
     {x₀ : T} (hx₀ : x₀ ∈ (RingHom.ker πT).annihilator) (t : T) : C t x₀ = πT t * C 1 x₀ := by
   have h := hC t 1 x₀
   rw [mul_one] at h
   rw [h, mul_eq_smul_of_mem_annihilator πT hx₀ t, map_smul, smul_eq_mul]
 
+/--
+@isnad1 id=isunit.1h4v.s7.f39bed4472ef from=translated src=- shape=2703eb0a vocab=672dc68e
+-/
 theorem isUnit_of_isUnit_map [IsDomain 𝒪] [IsLocalRing T] {t : T} (ht : IsUnit (πT t)) :
     IsUnit t := by
   by_contra h
@@ -69,6 +87,9 @@ section F1
 
 variable [IsDomain 𝒪] [Module.Free 𝒪 T]
 
+/--
+@isnad1 id=ex.5h6v.s9.d81f671697f8 from=translated src=- shape=4f91c758 vocab=bdd1a93e
+-/
 theorem exists_eq_smul_of_mem_annihilator {e₀ : 𝒪} (he₀ : e₀ ≠ 0)
     (hη : (RingHom.ker πT).annihilator.map πT = Ideal.span ({e₀} : Set 𝒪))
     {x₀ : T} (hx₀ : x₀ ∈ (RingHom.ker πT).annihilator) (hπx₀ : πT x₀ = e₀)
@@ -93,6 +114,9 @@ theorem exists_eq_smul_of_mem_annihilator {e₀ : 𝒪} (he₀ : e₀ ≠ 0)
   have : y = 0 := (smul_eq_zero_iff_right he₀).mp hey
   rwa [hy, sub_eq_zero] at this
 
+/--
+@isnad1 id=isunit.6h6v.s11.59bc1fe35b37 from=translated src=- shape=66ae60b6 vocab=08dd0b79
+-/
 theorem isUnit_pairing_one_x₀
     (C : T →ₗ[𝒪] T →ₗ[𝒪] 𝒪) (hC : ∀ s t u : T, C (s * t) u = C t (s * u))
     (hCb : Function.Bijective C) {e₀ : 𝒪} (he₀ : e₀ ≠ 0)
@@ -125,6 +149,9 @@ section ModuleFacts
 variable {𝒪 : Type u} {T : Type w} [CommRing 𝒪] [CommRing T] [Algebra 𝒪 T] (πT : T →ₐ[𝒪] 𝒪)
   {M : Type x} [AddCommGroup M] [Module T M]
 
+/--
+@isnad1 id=mem.1h6v.s8.8592952de073 from=translated src=- shape=8527a2b9 vocab=57afc0b7
+-/
 theorem x₀_smul_mem {x₀ : T} (hx₀ : x₀ ∈ (RingHom.ker πT).annihilator) (m : M) :
     x₀ • m ∈ Submodule.torsionBySet T M ↑(RingHom.ker πT) := by
   rw [Submodule.mem_torsionBySet_iff]
@@ -132,12 +159,18 @@ theorem x₀_smul_mem {x₀ : T} (hx₀ : x₀ ∈ (RingHom.ker πT).annihilator
   show a • x₀ • m = 0
   rw [smul_smul, mul_comm, mul_eq_zero_of_mem_annihilator πT hx₀ ha, zero_smul]
 
+/--
+@isnad1 id=eq.2h7v.s8.2d97d8401c8e from=translated src=- shape=583c2a77 vocab=65f314fe
+-/
 theorem x₀_smul_smul_eq_zero {x₀ : T} (hx₀ : x₀ ∈ (RingHom.ker πT).annihilator) {a : T}
     (ha : a ∈ RingHom.ker πT) (m : M) : x₀ • a • m = 0 := by
   rw [smul_smul, mul_eq_zero_of_mem_annihilator πT hx₀ ha, zero_smul]
 
 variable [Module 𝒪 M] [IsScalarTower 𝒪 T M]
 
+/--
+@isnad1 id=eq.2h7v.s9.07a52da55e97 from=translated src=- shape=595281d6 vocab=e0096199
+-/
 theorem x₀_smul_eq {e₀ : 𝒪} {x₀ : T} (hπx₀ : πT x₀ = e₀) {n : M}
     (hn : n ∈ Submodule.torsionBySet T M ↑(RingHom.ker πT)) : x₀ • n = e₀ • n := by
   rw [Submodule.mem_torsionBySet_iff] at hn
@@ -145,6 +178,9 @@ theorem x₀_smul_eq {e₀ : 𝒪} {x₀ : T} (hπx₀ : πT x₀ = e₀) {n : M
   rw [hπx₀, sub_smul, sub_eq_zero, algebraMap_smul] at h
   exact h
 
+/--
+@isnad1 id=eq.5h9v.s11.156b8e3aafa4 from=translated src=- shape=e9c4f157 vocab=4839ba61
+-/
 theorem pairing_eq_zero [IsDomain 𝒪] (B : M →ₗ[𝒪] M →ₗ[𝒪] 𝒪)
     (hB : ∀ (t : T) (m n : M), B (t • m) n = B m (t • n))
     {e₀ : 𝒪} (he₀ : e₀ ≠ 0) {x₀ : T} (hπx₀ : πT x₀ = e₀)
@@ -165,6 +201,9 @@ variable {𝒪 : Type u} {T : Type w} [CommRing 𝒪] [CommRing T] [Algebra 𝒪
 local notation "P℘" =>
   Submodule.restrictScalars 𝒪 (Submodule.torsionBySet T M (RingHom.ker πT : Set T))
 
+/--
+@isnad1 id=free.10h11v.s12.909a4394133e from=translated src=- shape=e9c5ffaa vocab=6c3916a6
+-/
 theorem core [IsDomain 𝒪] [IsPrincipalIdealRing 𝒪] [IsLocalRing T] [Module.Finite 𝒪 T]
     [Module.Free 𝒪 T] [Module.Finite 𝒪 M] [Module.Free 𝒪 M]
     (C : T →ₗ[𝒪] T →ₗ[𝒪] 𝒪) (hC : ∀ s t u : T, C (s * t) u = C t (s * u))
@@ -381,6 +420,9 @@ end Main
 
 end M4cP4NCMOD3
 
+/--
+@isnad1 id=free.7h6v.s12.91289b39e028 from=translated src=- shape=bf9ff974 vocab=d5ca0d56
+-/
 theorem solution
     {𝒪 : Type u} {T : Type w} [CommRing 𝒪] [IsDomain 𝒪] [IsPrincipalIdealRing 𝒪]
     [CommRing T] [IsLocalRing T] [Algebra 𝒪 T] [Module.Finite 𝒪 T] [Module.Free 𝒪 T]

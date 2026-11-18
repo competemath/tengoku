@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u v
 
+/--
+@isnad1 id=ex.0h3v.s8.ce4cf9ee9027 from=translated src=- shape=fb7bcf31 vocab=7cba5515
+-/
 theorem solution
     {R : Type u} [CommRing R] {M : Type v} [AddCommGroup M] [Module R M] [Module.Invertible R M]
     (p : Ideal R) [p.IsPrime] :

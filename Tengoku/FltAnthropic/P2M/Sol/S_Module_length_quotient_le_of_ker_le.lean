@@ -7,6 +7,9 @@ namespace P2MW.S_Module_length_quotient_le_of_ker_le
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=le.1h5v.s7.89dd404bf4d6 from=translated src=- shape=ada0aed1 vocab=d7268c45
+-/
 theorem solution
     {R M N : Type} [CommRing R] [AddCommGroup M] [Module R M] [AddCommGroup N] [Module R N]
     (K : Submodule R M) (f : M →ₗ[R] N) (h : LinearMap.ker f ≤ K) :

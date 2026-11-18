@@ -16,6 +16,9 @@ attribute [local instance] MvPolynomial.gradedAlgebra
 
 namespace GotzmannB29
 
+/--
+@isnad1 id=lt.6h7v.s13.033c35b0b609 from=translated src=- shape=2ecf876c vocab=d40dbcdc
+-/
 theorem lt_of_lt {n : ℕ} {K : Type} [Field K] (J : Ideal (MvPolynomial (Fin (n + 1)) K))
     (hJ : ∀ p ∈ J, ∀ i : ℕ, homogeneousComponent i p ∈ J)
     (H : ℕ → ℕ) (g : ℕ) (hg : 1 ≤ g) (hH : ∀ e, g ≤ e → H (e + 1) = Nat.macaulayPow e (H e))
@@ -35,6 +38,9 @@ theorem lt_of_lt {n : ℕ} {K : Type} [Field K] (J : Ideal (MvPolynomial (Fin (n
         _ < Nat.macaulayPow e (H e) := Nat.macaulayPow_lt_macaulayPow_of_lt (by omega) (ih h)
         _ = H (e + 1) := (hH e (by omega)).symm
 
+/--
+@isnad1 id=le.5h6v.s13.87cf16f62b4c from=translated src=- shape=d8201e97 vocab=ce28f11b
+-/
 theorem le_finrank_piece {n : ℕ} {K : Type} [Field K] (J : Ideal (MvPolynomial (Fin (n + 1)) K))
     (hJ : ∀ p ∈ J, ∀ i : ℕ, homogeneousComponent i p ∈ J)
     (H : ℕ → ℕ) (g : ℕ) (hg : 1 ≤ g) (hH : ∀ e, g ≤ e → H (e + 1) = Nat.macaulayPow e (H e))
@@ -50,6 +56,9 @@ theorem le_finrank_piece {n : ℕ} {K : Type} [Field K] (J : Ideal (MvPolynomial
 end GotzmannB29
 
 open GotzmannB29 in
+/--
+@isnad1 id=le.5h6v.s13.648fc02316e0 from=translated src=- shape=67e45ea9 vocab=ce28f11b
+-/
 theorem solution
     (n g : ℕ) (hg : 1 ≤ g) (H : ℕ → ℕ)
     (hH : ∀ e : ℕ, g ≤ e → H (e + 1) = Nat.macaulayPow e (H e))

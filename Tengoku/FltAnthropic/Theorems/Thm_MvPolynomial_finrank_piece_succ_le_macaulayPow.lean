@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open MvPolynomial AlgebraicGeometry.HilbertFunctor
 
+/--
+@isnad1 id=le.2h4v.s13.1758ec89163e from=translated src=- shape=3b54936b vocab=ce28f11b
+-/
 theorem MvPolynomial.finrank_piece_succ_le_macaulayPow
     (n d : ℕ) (hd : 1 ≤ d) (K : Type) [Field K] (J : Ideal (MvPolynomial (Fin (n + 1)) K))
     (hJ : ∀ p ∈ J, ∀ i : ℕ, homogeneousComponent i p ∈ J) :

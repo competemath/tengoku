@@ -24,6 +24,9 @@ private theorem trace_apply_mul_mul_inv_eq {G R : Type} [Group G] [CommRing R] (
     (g τ : G) : (ρ (g * τ * g⁻¹)).trace = (ρ τ).trace := by
   rw [map_mul, map_mul, Matrix.trace_mul_comm, ← mul_assoc, ← map_mul, inv_mul_cancel, map_one, one_mul]
 
+/--
+@isnad1 id=eq.3h6v.s13.8e1ac09f8541 from=translated src=- shape=bbf6b075 vocab=d3a9ce0d
+-/
 theorem solution
     (p : ℕ) (hp2 : p ≠ 2) (F : Type) [Field F] [CharP F p]
     (ρ₁ ρ₂ : (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) →* Matrix (Fin 2) (Fin 2) F)

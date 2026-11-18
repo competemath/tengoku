@@ -19,14 +19,23 @@ variable {κ : Type u} [Field κ]
 def killX1 (p : MvPowerSeries (Fin 2) κ) : MvPowerSeries (Fin 2) κ :=
   fun m => if m 1 = 0 then coeff m p else 0
 
+/--
+@isnad1 id=eq.0h3v.s9.a9c600c2ba75 from=translated src=- shape=d33f2ce3 vocab=e99e247b
+-/
 theorem coeff_killX1 (p : MvPowerSeries (Fin 2) κ) (m : Fin 2 →₀ ℕ) :
     coeff m (killX1 p) = if m 1 = 0 then coeff m p else 0 := rfl
 
+/--
+@isnad1 id=dvd.0h2v.s7.103bee83ea2c from=translated src=- shape=42e90a48 vocab=46b138d2
+-/
 theorem X1_dvd_sub_killX1 (p : MvPowerSeries (Fin 2) κ) : (X 1 : MvPowerSeries (Fin 2) κ) ∣ p - killX1 p := by
   rw [X_dvd_iff]
   intro m hm
   rw [map_sub, coeff_killX1, ite_eq_left hm, sub_self]
 
+/--
+@isnad1 id=iff.0h2v.s7.e5a3a3014f08 from=translated src=- shape=3c36a82b vocab=49994234
+-/
 theorem X1_dvd_iff_killX1_eq_zero (p : MvPowerSeries (Fin 2) κ) :
     (X 1 : MvPowerSeries (Fin 2) κ) ∣ p ↔ killX1 p = 0 := by
   rw [X_dvd_iff]
@@ -38,6 +47,9 @@ theorem X1_dvd_iff_killX1_eq_zero (p : MvPowerSeries (Fin 2) κ) :
     have := congrArg (coeff m) h
     rwa [coeff_killX1, ite_eq_left hm, map_zero] at this
 
+/--
+@isnad1 id=eq.0h3v.s7.dfdd8799dadc from=translated src=- shape=2db287be vocab=800c20c8
+-/
 theorem killX1_mul (p q : MvPowerSeries (Fin 2) κ) : killX1 (p * q) = killX1 p * killX1 q := by
   classical
   ext m
@@ -61,6 +73,9 @@ theorem killX1_mul (p q : MvPowerSeries (Fin 2) κ) : killX1 (p * q) = killX1 p 
     · rw [coeff_killX1, ite_eq_right h, zero_mul]
     · rw [coeff_killX1 q, ite_eq_right h, mul_zero]
 
+/--
+@isnad1 id=ex.2h2v.s8.25f7553f42db from=translated src=- shape=7dd19d32 vocab=5a359998
+-/
 theorem exists_eq_X0_pow_mul_unit {r : MvPowerSeries (Fin 2) κ} (hr : killX1 r = r) (hr0 : r ≠ 0) :
     ∃ (n : ℕ) (w : MvPowerSeries (Fin 2) κ), IsUnit w ∧ r = X 0 ^ n * w := by
   classical
@@ -96,9 +111,15 @@ theorem exists_eq_X0_pow_mul_unit {r : MvPowerSeries (Fin 2) κ} (hr : killX1 r 
   rw [← this]
   exact isUnit_iff_ne_zero.mpr hn
 
+/--
+@isnad1 id=eq.0h2v.s5.bad5096fffe9 from=translated src=- shape=0d50d6ad vocab=2d6dc080
+-/
 theorem killX1_killX1 (p : MvPowerSeries (Fin 2) κ) : killX1 (killX1 p) = killX1 p := by
   ext m; rw [coeff_killX1, coeff_killX1]; split_ifs <;> rfl
 
+/--
+@isnad1 id=not.0h1v.s7.e2fa5ce84800 from=translated src=- shape=6366375f vocab=39391456
+-/
 theorem X0_not_dvd_by_X1 : ¬ ((X 1 : MvPowerSeries (Fin 2) κ) ∣ X 0) := by
   classical
   rw [X_dvd_iff]
@@ -107,6 +128,9 @@ theorem X0_not_dvd_by_X1 : ¬ ((X 1 : MvPowerSeries (Fin 2) κ) ∣ X 0) := by
   rw [coeff_index_single_X] at this
   simp at this
 
+/--
+@isnad1 id=isprime.0h1v.s6.95c66048bee7 from=translated src=- shape=fbf1b031 vocab=fd64a0d7
+-/
 theorem span_X1_isPrime : (Ideal.span {(X 1 : MvPowerSeries (Fin 2) κ)}).IsPrime := by
   have hX : (X 1 : MvPowerSeries (Fin 2) κ) ≠ 0 := by
     intro h
@@ -140,6 +164,9 @@ theorem eq_span_X1 (P : Ideal (MvPowerSeries (Fin 2) κ)) [hP : P.IsPrime]
       rwa [mul_assoc, IsUnit.mul_val_inv, mul_one] at this
     exact h0 (hP.mem_of_pow_mem n this)
 
+/--
+@isnad1 id=mem.1h2v.s8.6996c22ce41c from=translated src=- shape=e073ff1c vocab=23c14637
+-/
 theorem mem_span_X_of_constantCoeff_eq_zero (p : MvPowerSeries (Fin 2) κ) (hp : constantCoeff p = 0) :
     p ∈ Ideal.span {(X 0 : MvPowerSeries (Fin 2) κ), X 1} := by
   have h1 : p - killX1 p ∈ Ideal.span {(X 0 : MvPowerSeries (Fin 2) κ), X 1} := by
@@ -158,6 +185,9 @@ theorem mem_span_X_of_constantCoeff_eq_zero (p : MvPowerSeries (Fin 2) κ) (hp :
     rw [ht]; exact Ideal.mul_mem_right _ _ (Ideal.subset_span (by simp))
   simpa using Ideal.add_mem _ h1 h2
 
+/--
+@isnad1 id=eq.2h3v.s9.3dd30715ca39 from=translated src=- shape=d90baf3e vocab=1f744a7e
+-/
 theorem coeff_eq_zero_of_mem_sq (p : MvPowerSeries (Fin 2) κ)
     (hp : p ∈ (Ideal.span {(X 0 : MvPowerSeries (Fin 2) κ), X 1}) ^ 2)
     (d : Fin 2 →₀ ℕ) (hd : d.degree < 2) : coeff d p = 0 := by
@@ -186,6 +216,9 @@ theorem coeff_eq_zero_of_mem_sq (p : MvPowerSeries (Fin 2) κ)
   · intro x y hx hy d hd
     rw [map_add, hx d hd, hy d hd, add_zero]
 
+/--
+@isnad1 id=eq.1h4v.s9.5cef6ff6c7d5 from=translated src=- shape=fc7e8db2 vocab=fdf0bcc7
+-/
 theorem coeff_single_one_mul (p q : MvPowerSeries (Fin 2) κ) (hq : constantCoeff q = 0) (j : Fin 2) :
     coeff (Finsupp.single j 1) (p * q) = constantCoeff p * coeff (Finsupp.single j 1) q := by
   classical
@@ -198,6 +231,9 @@ theorem coeff_single_one_mul (p q : MvPowerSeries (Fin 2) κ) (hq : constantCoef
 end LinPrimeGC7
 
 open LinPrimeGC7 in
+/--
+@isnad1 id=and.2h4v.s11.63239ac0cf56 from=translated src=- shape=563c320d vocab=daeaa165
+-/
 theorem solution
     {κ : Type u} [Field κ] (a b : κ) (hab : a ≠ 0 ∨ b ≠ 0)
     (ℓ : MvPowerSeries (Fin 2) κ)

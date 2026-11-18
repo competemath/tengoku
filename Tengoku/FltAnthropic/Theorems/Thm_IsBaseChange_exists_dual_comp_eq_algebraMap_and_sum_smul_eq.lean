@@ -11,6 +11,9 @@ universe u v w w'
 
 open scoped BigOperators
 
+/--
+@isnad1 id=ex.2h8v.s10.51d90eee0498 from=translated src=- shape=a96daf88 vocab=c93ccc2c
+-/
 theorem IsBaseChange.exists_dual_comp_eq_algebraMap_and_sum_smul_eq
     {A : Type u} [CommRing A] {A' : Type v} [CommRing A'] [Algebra A A']
     {M : Type w} [AddCommGroup M] [Module A M]

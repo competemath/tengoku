@@ -14,6 +14,9 @@ open MvPolynomial AlgebraicGeometry.HilbertFunctor
 
 attribute [local instance] MvPolynomial.gradedAlgebra
 
+/--
+@isnad1 id=other.4h5v.s15.c595ecc2ff3c from=translated src=- shape=31968faf vocab=2c627d81
+-/
 theorem solution
     (n m : ℕ) (hm : 1 ≤ m) (k : Type) [Field k]
     (J : Ideal (MvPolynomial (Fin (n + 1)) k))

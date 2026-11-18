@@ -28,26 +28,44 @@ def W (R : Type u) [CommRing R] (m : ℕ) : Submodule R (ℕ → R) where
 
 def πv (m : ℕ) : (ℕ → R) →ₗ[R] (Fin m → R) := LinearMap.funLeft R R (Fin.val : Fin m → ℕ)
 
+/--
+@isnad1 id=eq.0h4v.s7.07fd875cb354 from=translated src=- shape=6526ac9e vocab=3859ed97
+-/
 theorem πv_apply (m : ℕ) (f : ℕ → R) (k : Fin m) : πv m f k = f k := rfl
 
 def ιv (m : ℕ) : (Fin m → R) →ₗ[R] (ℕ → R) :=
   LinearMap.pi fun k => if h : k < m then LinearMap.proj (⟨k, h⟩ : Fin m) else 0
 
+/--
+@isnad1 id=eq.0h4v.s8.5063a2dae808 from=translated src=- shape=7162e081 vocab=2acf202e
+-/
 theorem ιv_apply (m : ℕ) (v : Fin m → R) (k : ℕ) :
     ιv m v k = if h : k < m then v ⟨k, h⟩ else 0 := by
   unfold ιv
   rw [LinearMap.pi_apply]
   split_ifs <;> rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.585924e42438 from=translated src=- shape=5cbd4f0f vocab=85fec051
+-/
 theorem ιv_apply_lt (m : ℕ) (v : Fin m → R) (k : Fin m) : ιv m v k = v k := by
   rw [ιv_apply, dite_eq_left k.2]
 
+/--
+@isnad1 id=mem.0h3v.s8.4f4250a79aef from=translated src=- shape=6bbcadc0 vocab=f1c31b22
+-/
 theorem ιv_mem (m : ℕ) (v : Fin m → R) : ιv m v ∈ W R m := fun k hk => by
   rw [ιv_apply, dite_eq_right (not_lt.mpr hk)]
 
+/--
+@isnad1 id=eq.0h3v.s8.6e685b7d12e7 from=translated src=- shape=6512d6c3 vocab=50630303
+-/
 theorem πv_ιv (m : ℕ) (v : Fin m → R) : πv m (ιv m v) = v :=
   funext fun k => by rw [πv_apply, ιv_apply_lt]
 
+/--
+@isnad1 id=eq.1h3v.s9.c7233ba11524 from=translated src=- shape=ab62f448 vocab=2eaecf75
+-/
 theorem ιv_πv (m : ℕ) {f : ℕ → R} (hf : f ∈ W R m) : ιv m (πv m f) = f :=
   funext fun k => by
     rw [ιv_apply]
@@ -61,18 +79,27 @@ theorem eq_zero_of_mem_W_zero {f : ℕ → R} (hf : f ∈ W R 0) : f = 0 :=
 def lc {M : Type u} [AddCommGroup M] [Module R M] {r : ℕ} (v : Fin r → M) : (Fin r → R) →ₗ[R] M :=
   ∑ k : Fin r, (LinearMap.proj k : (Fin r → R) →ₗ[R] R).smulRight (v k)
 
+/--
+@isnad1 id=eq.0h5v.s8.c879afc0cb57 from=translated src=- shape=34f3b280 vocab=9a367841
+-/
 theorem lc_apply {M : Type u} [AddCommGroup M] [Module R M] {r : ℕ} (v : Fin r → M) (a : Fin r → R) :
     lc v a = ∑ k : Fin r, a k • v k := by
   unfold lc
   rw [LinearMap.sum_apply]
   rfl
 
+/--
+@isnad1 id=eq.0h8v.s8.170c06df6f53 from=translated src=- shape=fe6faac4 vocab=8309eaa4
+-/
 theorem lc_append_apply {M : Type u} [AddCommGroup M] [Module R M] {r s : ℕ} (v : Fin r → M) (w : Fin s → M)
     (a : Fin r → R) (b : Fin s → R) :
     lc (Fin.append v w) (Fin.append a b) = (∑ k : Fin r, a k • v k) + ∑ l : Fin s, b l • w l := by
   rw [lc_apply, Fin.sum_univ_add]
   simp only [Fin.append_left, Fin.append_right]
 
+/--
+@isnad1 id=eq.0h7v.s9.2f52fcd29afc from=translated src=- shape=cd25fda3 vocab=b3d2e7ed
+-/
 theorem map_lc {M N : Type u} [AddCommGroup M] [Module R M] [AddCommGroup N] [Module R N] {r : ℕ}
     (g : M →ₗ[R] N) (v : Fin r → M) (a : Fin r → R) : g (lc v a) = lc (fun k => g (v k)) a := by
   rw [lc_apply, lc_apply, map_sum]
@@ -116,6 +143,9 @@ section Step
 
 variable [IsNoetherianRing R]
 
+/--
+@isnad1 id=nonempty.2h6v.s13.bd24e5712e3c from=translated src=- shape=cddabe90 vocab=c157104e
+-/
 theorem Stage.nonempty_step
     (hfin : ∀ i, Module.Finite R
       (LinearMap.ker (d (i + 1)) ⧸ (LinearMap.range (d i)).comap (LinearMap.ker (d (i + 1))).subtype))
@@ -244,6 +274,9 @@ theorem Stage.nonempty_step
 
 end Step
 
+/--
+@isnad1 id=nonempty.2h4v.s13.f6d7327defda from=translated src=- shape=d8aff8ed vocab=df48f744
+-/
 theorem Stage.nonempty_descend [IsNoetherianRing R] (hbdd : ∀ i, n < i → Subsingleton (C i))
     (hfin : ∀ i, Module.Finite R
       (LinearMap.ker (d (i + 1)) ⧸ (LinearMap.range (d i)).comap (LinearMap.ker (d (i + 1))).subtype)) :
@@ -269,20 +302,38 @@ def Stage.δs (i : ℕ) : S.K i →ₗ[R] S.K (i + 1) := πv (S.m (i + 1)) ∘�
 
 def Stage.φs (i : ℕ) : S.K i →ₗ[R] C i := S.gφ i ∘ₗ ιv (S.m i)
 
+/--
+@isnad1 id=eq.0h7v.s10.2a5a03486c24 from=translated src=- shape=cfda7503 vocab=d0a980e5
+-/
 theorem Stage.δs_apply (i : ℕ) (v : S.K i) : S.δs i v = πv (S.m (i + 1)) (S.gδ i (ιv (S.m i) v)) := rfl
 
+/--
+@isnad1 id=eq.0h7v.s10.47cf5d43ec71 from=translated src=- shape=44e0d1ab vocab=ba3a5040
+-/
 theorem Stage.φs_apply (i : ℕ) (v : S.K i) : S.φs i v = S.gφ i (ιv (S.m i) v) := rfl
 
+/--
+@isnad1 id=eq.1h7v.s10.c26b9fbd5722 from=translated src=- shape=e4a884fd vocab=25c7eee9
+-/
 theorem Stage.ιv_δs {i : ℕ} (hi : 1 ≤ i) (v : S.K i) :
     ιv (S.m (i + 1)) (S.δs i v) = S.gδ i (ιv (S.m i) v) := by
   rw [Stage.δs_apply, ιv_πv _ (S.maps i hi _ (ιv_mem _ _))]
 
+/--
+@isnad1 id=eq.1h7v.s10.e321b4cb6340 from=translated src=- shape=20ac97fd vocab=2df2a076
+-/
 theorem Stage.δs_δs {i : ℕ} (hi : 1 ≤ i) (v : S.K i) : S.δs (i + 1) (S.δs i v) = 0 := by
   rw [Stage.δs_apply, S.ιv_δs hi, S.dd i hi _ (ιv_mem _ _), map_zero]
 
+/--
+@isnad1 id=eq.1h7v.s10.4af251a741ed from=translated src=- shape=23715042 vocab=994f3cad
+-/
 theorem Stage.d_φs {i : ℕ} (hi : 1 ≤ i) (v : S.K i) : d i (S.φs i v) = S.φs (i + 1) (S.δs i v) := by
   rw [Stage.φs_apply, Stage.φs_apply, S.ιv_δs hi, S.chain i hi _ (ιv_mem _ _)]
 
+/--
+@isnad1 id=ex.3h7v.s11.f2d62ee81abd from=translated src=- shape=ca84dc86 vocab=f03e7f39
+-/
 theorem Stage.s_inj {i : ℕ} (hi : 1 ≤ i) (v : S.K (i + 1)) (hδ : S.δs (i + 1) v = 0)
     (hφ : S.φs (i + 1) v ∈ LinearMap.range (d i)) : ∃ w : S.K i, S.δs i w = v := by
   have h1 : S.gδ (i + 1) (ιv (S.m (i + 1)) v) = 0 := by
@@ -291,6 +342,9 @@ theorem Stage.s_inj {i : ℕ} (hi : 1 ≤ i) (v : S.K (i + 1)) (hδ : S.δs (i +
   refine ⟨πv (S.m i) g, ?_⟩
   rw [Stage.δs_apply, ιv_πv _ hg, hgv, πv_ιv]
 
+/--
+@isnad1 id=ex.1h7v.s11.8a54e3e40bf8 from=translated src=- shape=e651d733 vocab=7b57395a
+-/
 theorem Stage.s_surj (i : ℕ) (y : C (i + 1)) (hy : d (i + 1) y = 0) :
     ∃ v : S.K (i + 1), S.δs (i + 1) v = 0 ∧ S.φs (i + 1) v - y ∈ LinearMap.range (d i) := by
   obtain ⟨f, hf, hδ, hφ⟩ := S.surj i (by omega) y hy
@@ -303,12 +357,18 @@ abbrev Stage.G (i : ℕ) : Type u := S.K (i + 1) × C i
 def Stage.Δ (i : ℕ) : S.G i →ₗ[R] S.G (i + 1) :=
   (S.δs (i + 1) ∘ₗ LinearMap.fst R _ _).prod (S.φs (i + 1) ∘ₗ LinearMap.fst R _ _ - d i ∘ₗ LinearMap.snd R _ _)
 
+/--
+@isnad1 id=eq.0h8v.s11.1137fb307e79 from=translated src=- shape=64295b3d vocab=67ec1151
+-/
 theorem Stage.Δ_apply (i : ℕ) (v : S.K (i + 1)) (c : C i) :
     S.Δ i (v, c) = (S.δs (i + 1) v, S.φs (i + 1) v - d i c) := rfl
 
 variable (hdd : ∀ i, d (i + 1) ∘ₗ d i = 0)
 
 include hdd in
+/--
+@isnad1 id=eq.1h7v.s12.7293ce61d620 from=translated src=- shape=32004ef6 vocab=8350d048
+-/
 theorem Stage.Δ_Δ (i : ℕ) (x : S.G i) : S.Δ (i + 1) (S.Δ i x) = 0 := by
   obtain ⟨v, c⟩ := x
   rw [Stage.Δ_apply, Stage.Δ_apply, Prod.mk_eq_zero]
@@ -317,6 +377,9 @@ theorem Stage.Δ_Δ (i : ℕ) (x : S.G i) : S.Δ (i + 1) (S.Δ i x) = 0 := by
   have h := LinearMap.congr_fun (hdd i) c
   rwa [LinearMap.comp_apply, LinearMap.zero_apply] at h
 
+/--
+@isnad1 id=mem.1h7v.s12.fd405a007107 from=translated src=- shape=a906746b vocab=8c143417
+-/
 theorem Stage.Δ_exact (i : ℕ) (x : S.G (i + 1)) (hx : S.Δ (i + 1) x = 0) : x ∈ LinearMap.range (S.Δ i) := by
   obtain ⟨v, c⟩ := x
   rw [Stage.Δ_apply, Prod.mk_eq_zero, sub_eq_zero] at hx
@@ -331,6 +394,9 @@ theorem Stage.Δ_exact (i : ℕ) (x : S.G (i + 1)) (hx : S.Δ (i + 1) x = 0) : x
   rw [hc'']
   abel
 
+/--
+@isnad1 id=flat.0h3v.s6.dbecd758aa99 from=translated src=- shape=4cc2dc3b vocab=0221ee20
+-/
 theorem flat_prod (M N : Type u) [AddCommGroup M] [Module R M] [AddCommGroup N] [Module R N]
     [Module.Flat R M] [Module.Flat R N] : Module.Flat R (M × N) := by
   rw [Module.Flat.iff_rTensor_preserves_injective_linearMap]
@@ -354,6 +420,9 @@ variable [IsNoetherianRing R] [∀ i, Module.Flat R (C i)]
 
 include hdd in
 
+/--
+@isnad1 id=flat.2h6v.s12.c4d51842e5eb from=translated src=- shape=57c9edd6 vocab=f88ab0fa
+-/
 theorem Stage.flat_ker_Δ (hbdd : ∀ i, n < i → Subsingleton (C i)) (i : ℕ) :
     Module.Flat R (LinearMap.ker (S.Δ i)) := by
 
@@ -405,9 +474,15 @@ variable (S : Stage C d n 1)
 
 abbrev Stage.Z0 : Submodule R (S.G 0) := LinearMap.ker (S.Δ 0)
 
+/--
+@isnad1 id=iff.0h7v.s11.458242ad146f from=translated src=- shape=338d4040 vocab=e578e03d
+-/
 theorem Stage.mem_Z0 (v : S.K 1) (c : C 0) : (v, c) ∈ S.Z0 ↔ S.δs 1 v = 0 ∧ S.φs 1 v = d 0 c := by
   rw [LinearMap.mem_ker, Stage.Δ_apply, Prod.mk_eq_zero, sub_eq_zero]
 
+/--
+@isnad1 id=finite.1h5v.s11.b7f38af5c996 from=translated src=- shape=e2679faf vocab=1f72bca4
+-/
 theorem Stage.finite_Z0 [IsNoetherianRing R] (hfin0 : Module.Finite R (LinearMap.ker (d 0))) :
     Module.Finite R S.Z0 := by
   let pr : S.Z0 →ₗ[R] S.K 1 := LinearMap.fst R _ _ ∘ₗ S.Z0.subtype
@@ -431,6 +506,9 @@ theorem Stage.finite_Z0 [IsNoetherianRing R] (hfin0 : Module.Finite R (LinearMap
   haveI : Module.Finite R (LinearMap.ker pr) := Module.Finite.of_surjective e he
   exact Module.Finite.of_submodule_quotient (LinearMap.ker pr)
 
+/--
+@isnad1 id=projecti.3h5v.s11.e880bbea7e2a from=translated src=- shape=75df5b0a vocab=c8ae7756
+-/
 theorem Stage.projective_Z0 [IsNoetherianRing R] [∀ i, Module.Flat R (C i)]
     (hdd : ∀ i, d (i + 1) ∘ₗ d i = 0) (hbdd : ∀ i, n < i → Subsingleton (C i))
     (hfin0 : Module.Finite R (LinearMap.ker (d 0))) : Module.Projective R S.Z0 := by
@@ -445,16 +523,28 @@ def Stage.Sfin : (i : ℕ) → Submodule R (S.U i)
   | 0 => LinearMap.range (LinearMap.inr R (S.K 0) (S.G 0) ∘ₗ S.Z0.subtype)
   | (j + 1) => LinearMap.range (LinearMap.inl R (S.K (j + 1)) (S.G (j + 1)))
 
+/--
+@isnad1 id=eq.0h5v.s12.dd70d61d9a65 from=translated src=- shape=37ce1e72 vocab=453156a1
+-/
 theorem Stage.Sfin_zero : S.Sfin 0 = LinearMap.range (LinearMap.inr R (S.K 0) (S.G 0) ∘ₗ S.Z0.subtype) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s11.76698f84f127 from=translated src=- shape=55500722 vocab=8bb5dc34
+-/
 theorem Stage.Sfin_succ (j : ℕ) : S.Sfin (j + 1) = LinearMap.range (LinearMap.inl R (S.K (j + 1)) (S.G (j + 1))) := rfl
 
+/--
+@isnad1 id=iff.0h6v.s11.c711782741fd from=translated src=- shape=c1be87e5 vocab=3873999f
+-/
 theorem Stage.mem_Sfin_zero {x : S.U 0} : x ∈ S.Sfin 0 ↔ x.1 = 0 ∧ x.2 ∈ S.Z0 := by
   rw [Stage.Sfin_zero, LinearMap.mem_range]
   constructor
   · rintro ⟨z, rfl⟩; exact ⟨rfl, z.2⟩
   · rintro ⟨h1, h2⟩; exact ⟨⟨x.2, h2⟩, Prod.ext h1.symm rfl⟩
 
+/--
+@isnad1 id=iff.0h7v.s11.330bea1e6e69 from=translated src=- shape=6bd1dd55 vocab=c4a4ddcb
+-/
 theorem Stage.mem_Sfin_succ {j : ℕ} {x : S.U (j + 1)} : x ∈ S.Sfin (j + 1) ↔ x.2 = 0 := by
   rw [Stage.Sfin_succ, LinearMap.mem_range]
   constructor
@@ -467,14 +557,23 @@ def Stage.AΔ (i : ℕ) : S.U i →ₗ[R] S.U (i + 1) :=
   LinearMap.inl R (S.K (i + 1)) (S.G (i + 1)) ∘ₗ
     (S.δs i ∘ₗ LinearMap.fst R _ _ + LinearMap.fst R _ _ ∘ₗ LinearMap.snd R _ _)
 
+/--
+@isnad1 id=eq.0h7v.s12.5e1d9d66f7fd from=translated src=- shape=8b9b403d vocab=23a26e19
+-/
 theorem Stage.AΔ_apply (i : ℕ) (x : S.U i) : S.AΔ i x = (S.δs i x.1 + x.2.1, 0) := rfl
 
+/--
+@isnad1 id=mem.0h7v.s12.cb7e0423d3c6 from=translated src=- shape=9c2f2067 vocab=16ceb6da
+-/
 theorem Stage.AΔ_mem (i : ℕ) (x : S.U i) : S.AΔ i x ∈ S.Sfin (i + 1) := by
   rw [Stage.mem_Sfin_succ, Stage.AΔ_apply]
 
 def Stage.δK (i : ℕ) : S.KK i →ₗ[R] S.KK (i + 1) :=
   LinearMap.codRestrict _ (S.AΔ i ∘ₗ (S.Sfin i).subtype) (fun x => S.AΔ_mem i x)
 
+/--
+@isnad1 id=eq.0h7v.s13.23d0fc1b06a9 from=translated src=- shape=436e9592 vocab=de53d420
+-/
 theorem Stage.δK_val (i : ℕ) (x : S.KK i) : ((S.δK i x : S.KK (i + 1)) : S.U (i + 1)) = (S.δs i x.1.1 + x.1.2.1, 0) := rfl
 
 def Stage.Aφ (i : ℕ) : S.U i →ₗ[R] C i :=
@@ -482,8 +581,14 @@ def Stage.Aφ (i : ℕ) : S.U i →ₗ[R] C i :=
 
 def Stage.φK (i : ℕ) : S.KK i →ₗ[R] C i := S.Aφ i ∘ₗ (S.Sfin i).subtype
 
+/--
+@isnad1 id=eq.0h7v.s12.77b7b4c8d791 from=translated src=- shape=e59afa4b vocab=3aaef674
+-/
 theorem Stage.φK_apply (i : ℕ) (x : S.KK i) : S.φK i x = S.φs i x.1.1 + x.1.2.2 := rfl
 
+/--
+@isnad1 id=finite.1h6v.s11.f2ccee9b3774 from=translated src=- shape=aa325834 vocab=e893145e
+-/
 theorem Stage.finite_KK [IsNoetherianRing R] (hfin0 : Module.Finite R (LinearMap.ker (d 0))) (i : ℕ) :
     Module.Finite R (S.KK i) := by
   cases i with
@@ -493,6 +598,9 @@ theorem Stage.finite_KK [IsNoetherianRing R] (hfin0 : Module.Finite R (LinearMap
   | succ j =>
     exact (inferInstance : Module.Finite R (LinearMap.range (LinearMap.inl R (S.K (j + 1)) (S.G (j + 1)))))
 
+/--
+@isnad1 id=projecti.3h6v.s11.80149034706d from=translated src=- shape=4c3b0c99 vocab=8e983dd1
+-/
 theorem Stage.projective_KK [IsNoetherianRing R] [∀ i, Module.Flat R (C i)]
     (hdd : ∀ i, d (i + 1) ∘ₗ d i = 0) (hbdd : ∀ i, n < i → Subsingleton (C i))
     (hfin0 : Module.Finite R (LinearMap.ker (d 0))) (i : ℕ) : Module.Projective R (S.KK i) := by
@@ -506,6 +614,9 @@ theorem Stage.projective_KK [IsNoetherianRing R] [∀ i, Module.Flat R (C i)]
     exact Module.Projective.of_equiv
       (LinearEquiv.ofInjective (LinearMap.inl R (S.K (j + 1)) (S.G (j + 1))) LinearMap.inl_injective)
 
+/--
+@isnad1 id=subsingl.1h6v.s7.0491789851ec from=translated src=- shape=5acc67d9 vocab=01e2e836
+-/
 theorem Stage.subsingleton_KK {i : ℕ} (hi : n < i) : Subsingleton (S.KK i) := by
   obtain ⟨j, rfl⟩ : ∃ j, i = j + 1 := ⟨i - 1, by omega⟩
   haveI : Subsingleton (S.K (j + 1)) := by
@@ -516,6 +627,9 @@ theorem Stage.subsingleton_KK {i : ℕ} (hi : n < i) : Subsingleton (S.KK i) := 
   have hy := S.mem_Sfin_succ.mp y.2
   exact Prod.ext (Subsingleton.elim _ _) (hx.trans hy.symm)
 
+/--
+@isnad1 id=eq.0h6v.s14.0207d665778a from=translated src=- shape=fc4cda7b vocab=12245f91
+-/
 theorem Stage.δK_δK_zero (x : S.KK 0) : S.δK 1 (S.δK 0 x) = 0 := by
   obtain ⟨h1, h2⟩ := S.mem_Sfin_zero.mp x.2
   apply Subtype.ext
@@ -527,6 +641,9 @@ theorem Stage.δK_δK_zero (x : S.KK 0) : S.δK 1 (S.δK 0 x) = 0 := by
   simp only [zero_add]
   exact ((S.mem_Z0 _ _).mp h2).1
 
+/--
+@isnad1 id=eq.0h7v.s14.f14b34be67d6 from=translated src=- shape=81da9677 vocab=12245f91
+-/
 theorem Stage.δK_δK_succ (j : ℕ) (x : S.KK (j + 1)) : S.δK (j + 1 + 1) (S.δK (j + 1) x) = 0 := by
   have h2 := S.mem_Sfin_succ.mp x.2
   apply Subtype.ext
@@ -537,6 +654,9 @@ theorem Stage.δK_δK_succ (j : ℕ) (x : S.KK (j + 1)) : S.δK (j + 1 + 1) (S.�
   rw [add_zero, map_add, S.δs_δs (by omega), zero_add, show x.1.2.1 = (x.1.2).1 from rfl, h2,
     Prod.fst_zero, map_zero]
 
+/--
+@isnad1 id=eq.0h6v.s14.6696c7dfc119 from=translated src=- shape=d216d18f vocab=fa8f84ed
+-/
 theorem Stage.δK_δK (i : ℕ) : S.δK (i + 1) ∘ₗ S.δK i = 0 := by
   refine LinearMap.ext fun x => ?_
   rw [LinearMap.comp_apply, LinearMap.zero_apply]
@@ -544,6 +664,9 @@ theorem Stage.δK_δK (i : ℕ) : S.δK (i + 1) ∘ₗ S.δK i = 0 := by
   | zero => exact S.δK_δK_zero x
   | succ j => exact S.δK_δK_succ j x
 
+/--
+@isnad1 id=eq.0h6v.s13.39e01e655a33 from=translated src=- shape=74ffe5a1 vocab=981bac04
+-/
 theorem Stage.d_φK_zero (x : S.KK 0) : d 0 (S.φK 0 x) = S.φK 1 (S.δK 0 x) := by
   obtain ⟨h1, h2⟩ := S.mem_Sfin_zero.mp x.2
   rw [Stage.φK_apply, Stage.φK_apply]
@@ -552,6 +675,9 @@ theorem Stage.d_φK_zero (x : S.KK 0) : d 0 (S.φK 0 x) = S.φK 1 (S.δK 0 x) :=
   simp only [zero_add]
   exact ((S.mem_Z0 _ _).mp h2).2.symm
 
+/--
+@isnad1 id=eq.0h7v.s14.8715bbdf62e9 from=translated src=- shape=4f4b2b43 vocab=981bac04
+-/
 theorem Stage.d_φK_succ (j : ℕ) (x : S.KK (j + 1)) :
     d (j + 1) (S.φK (j + 1) x) = S.φK (j + 1 + 1) (S.δK (j + 1) x) := by
   have h2 := S.mem_Sfin_succ.mp x.2
@@ -560,6 +686,9 @@ theorem Stage.d_φK_succ (j : ℕ) (x : S.KK (j + 1)) :
   rw [add_zero, show x.1.2.1 = (x.1.2).1 from rfl, show x.1.2.2 = (x.1.2).2 from rfl, h2,
     Prod.fst_zero, Prod.snd_zero, add_zero, add_zero, S.d_φs (by omega)]
 
+/--
+@isnad1 id=eq.0h6v.s12.4946b1e39d6e from=translated src=- shape=999628c0 vocab=87a70022
+-/
 theorem Stage.d_φK (i : ℕ) : d i ∘ₗ S.φK i = S.φK (i + 1) ∘ₗ S.δK i := by
   refine LinearMap.ext fun x => ?_
   rw [LinearMap.comp_apply, LinearMap.comp_apply]
@@ -567,6 +696,9 @@ theorem Stage.d_φK (i : ℕ) : d i ∘ₗ S.φK i = S.φK (i + 1) ∘ₗ S.δK 
   | zero => exact S.d_φK_zero x
   | succ j => exact S.d_φK_succ j x
 
+/--
+@isnad1 id=eq.2h6v.s13.8cd77a64bf26 from=translated src=- shape=e1200839 vocab=981bac04
+-/
 theorem Stage.h0inj (x : S.KK 0) (hδ : S.δK 0 x = 0) (hφ : S.φK 0 x = 0) : x = 0 := by
   obtain ⟨h1, h2⟩ := S.mem_Sfin_zero.mp x.2
   have hb : x.1.2.1 = 0 := by
@@ -579,6 +711,9 @@ theorem Stage.h0inj (x : S.KK 0) (hδ : S.δK 0 x = 0) (hφ : S.φK 0 x = 0) : x
   rw [Submodule.coe_zero]
   exact Prod.ext h1 (Prod.ext hb hc)
 
+/--
+@isnad1 id=ex.1h6v.s13.d6a10a2fd7a2 from=translated src=- shape=9ae7a7c8 vocab=981bac04
+-/
 theorem Stage.h0surj (y : C 0) (hy : d 0 y = 0) : ∃ x : S.KK 0, S.δK 0 x = 0 ∧ S.φK 0 x = y := by
   have hz : ((0 : S.K 1), y) ∈ S.Z0 := by
     rw [Stage.mem_Z0, map_zero, map_zero, hy]; exact ⟨rfl, rfl⟩
@@ -588,6 +723,9 @@ theorem Stage.h0surj (y : C 0) (hy : d 0 y = 0) : ∃ x : S.KK 0, S.δK 0 x = 0 
     exact ⟨by show S.δs 0 0 + 0 = 0; rw [map_zero, add_zero], rfl⟩
   · rw [Stage.φK_apply]; show S.φs 0 0 + y = y; rw [map_zero, zero_add]
 
+/--
+@isnad1 id=and.1h7v.s14.b6f30326a403 from=translated src=- shape=e6b5e749 vocab=8438d0f9
+-/
 theorem Stage.hKinj_aux (i : ℕ) (x : S.KK (i + 1)) (hδ : S.δK (i + 1) x = 0) :
     x.1.2 = 0 ∧ S.δs (i + 1) x.1.1 = 0 ∧ S.φK (i + 1) x = S.φs (i + 1) x.1.1 := by
   have h2 := S.mem_Sfin_succ.mp x.2
@@ -599,6 +737,9 @@ theorem Stage.hKinj_aux (i : ℕ) (x : S.KK (i + 1)) (hδ : S.δK (i + 1) x = 0)
     rwa [hb, add_zero] at this
   · rw [Stage.φK_apply, hc, add_zero]
 
+/--
+@isnad1 id=mem.2h6v.s14.6652e775baf1 from=translated src=- shape=c481684b vocab=ef3e6015
+-/
 theorem Stage.hKinj_zero (x : S.KK 1) (hδ : S.δK 1 x = 0)
     (hφ : S.φK 1 x ∈ LinearMap.range (d 0)) : x ∈ LinearMap.range (S.δK 0) := by
   obtain ⟨h2, ha, hφeq⟩ := S.hKinj_aux 0 x hδ
@@ -611,6 +752,9 @@ theorem Stage.hKinj_zero (x : S.KK 1) (hδ : S.δK 1 x = 0)
   simp only [map_zero, zero_add]
   exact Prod.ext rfl h2.symm
 
+/--
+@isnad1 id=mem.2h7v.s15.9a89691796d6 from=translated src=- shape=72bc832e vocab=ef3e6015
+-/
 theorem Stage.hKinj_succ (j : ℕ) (x : S.KK (j + 1 + 1)) (hδ : S.δK (j + 1 + 1) x = 0)
     (hφ : S.φK (j + 1 + 1) x ∈ LinearMap.range (d (j + 1))) : x ∈ LinearMap.range (S.δK (j + 1)) := by
   obtain ⟨h2, ha, hφeq⟩ := S.hKinj_aux (j + 1) x hδ
@@ -622,12 +766,18 @@ theorem Stage.hKinj_succ (j : ℕ) (x : S.KK (j + 1 + 1)) (hδ : S.δK (j + 1 + 
   rw [add_zero, hw]
   exact Prod.ext rfl h2.symm
 
+/--
+@isnad1 id=mem.2h7v.s14.fb5c75017d69 from=translated src=- shape=d0439b87 vocab=ef3e6015
+-/
 theorem Stage.hKinj (i : ℕ) (x : S.KK (i + 1)) (hδ : S.δK (i + 1) x = 0)
     (hφ : S.φK (i + 1) x ∈ LinearMap.range (d i)) : x ∈ LinearMap.range (S.δK i) := by
   cases i with
   | zero => exact S.hKinj_zero x hδ hφ
   | succ j => exact S.hKinj_succ j x hδ hφ
 
+/--
+@isnad1 id=ex.1h7v.s14.52a2c755c838 from=translated src=- shape=e651d733 vocab=269c6e97
+-/
 theorem Stage.hKsurj (i : ℕ) (y : C (i + 1)) (hy : d (i + 1) y = 0) :
     ∃ x : S.KK (i + 1), S.δK (i + 1) x = 0 ∧ S.φK (i + 1) x - y ∈ LinearMap.range (d i) := by
   obtain ⟨v, hv, hvy⟩ := S.s_surj i y hy
@@ -644,6 +794,9 @@ end Final
 end MumfordModel
 
 open MumfordModel in
+/--
+@isnad1 id=ex.4h4v.s14.b34e7feb0461 from=translated src=- shape=bd7cdf01 vocab=374997cc
+-/
 theorem solution
     (R : Type u) [CommRing R] [IsNoetherianRing R]
     (C : ℕ → Type u) [∀ i, AddCommGroup (C i)] [∀ i, Module R (C i)] [∀ i, Module.Flat R (C i)]

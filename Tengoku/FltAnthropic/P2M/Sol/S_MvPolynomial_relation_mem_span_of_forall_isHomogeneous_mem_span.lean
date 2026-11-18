@@ -16,11 +16,17 @@ attribute [local instance] MvPolynomial.gradedAlgebra
 
 variable {L : Type} [Field L] {n : ℕ}
 
+/--
+@isnad1 id=eq.0h4v.s13.b1495762c1d1 from=translated src=- shape=040c0151 vocab=2b87f92f
+-/
 theorem decompose_eq (q : MvPolynomial (Fin (n + 1)) L) (d : ℕ) :
     (DirectSum.decompose (homogeneousSubmodule (Fin (n + 1)) L) q d : MvPolynomial (Fin (n + 1)) L) =
       homogeneousComponent d q :=
   MvPolynomial.decomposition.decompose'_apply q d
 
+/--
+@isnad1 id=eq.1h6v.s10.b055d87c18ea from=translated src=- shape=113bda57 vocab=83a62396
+-/
 theorem homogeneousComponent_mul_add {G : MvPolynomial (Fin (n + 1)) L} {m : ℕ} (hG : G.IsHomogeneous m)
     (a : MvPolynomial (Fin (n + 1)) L) (d : ℕ) :
     homogeneousComponent (m + d) (a * G) = homogeneousComponent d a * G := by
@@ -29,6 +35,9 @@ theorem homogeneousComponent_mul_add {G : MvPolynomial (Fin (n + 1)) L} {m : ℕ
   rw [decompose_eq, decompose_eq, Nat.add_sub_cancel_left] at this
   exact this
 
+/--
+@isnad1 id=ex.1h4v.s8.b5024f5e06da from=translated src=- shape=c27a2400 vocab=fded63d7
+-/
 theorem exists_eq_sum_X_mul (k : ℕ) (g : MvPolynomial (Fin (n + 1)) L) (hg : g.IsHomogeneous (k + 1)) :
     ∃ q : Fin (n + 1) → MvPolynomial (Fin (n + 1)) L, (∀ i, (q i).IsHomogeneous k) ∧ g = ∑ i, X i * q i := by
   classical
@@ -71,6 +80,9 @@ theorem exists_eq_sum_X_mul (k : ℕ) (g : MvPolynomial (Fin (n + 1)) L) (hg : g
       rw [smul_eq_C_mul, Finset.mul_sum]
       exact Finset.sum_congr rfl fun i _ => by rw [mul_left_comm]
 
+/--
+@isnad1 id=ex.2h7v.s9.779e6f90b074 from=translated src=- shape=8fb2fd2a vocab=6a4e12d9
+-/
 theorem exists_eq_sum_mul_of_span {N q : ℕ} (u : Fin N → MvPolynomial (Fin (n + 1)) L)
     (hspan : ∀ w : MvPolynomial (Fin (n + 1)) L, w.IsHomogeneous q → w ∈ Submodule.span L (Set.range u)) :
     ∀ (p : ℕ) (w : MvPolynomial (Fin (n + 1)) L), w.IsHomogeneous (q + p) →
@@ -90,6 +102,9 @@ theorem exists_eq_sum_mul_of_span {N q : ℕ} (u : Fin N → MvPolynomial (Fin (
           _ = ∑ j, (∑ i, X i * d i j) * u j := by
               rw [Finset.sum_comm]; exact Finset.sum_congr rfl fun j _ => by rw [Finset.sum_mul]
 
+/--
+@isnad1 id=eq.2h3v.s6.e786e865f1cc from=translated src=- shape=e8405dda vocab=e95693a7
+-/
 theorem sum_sum_eq_zero_of_alternating {M : Type} [AddCommGroup M] {N : ℕ} (f : Fin N → Fin N → M)
     (hskew : ∀ ν μ, f ν μ = -f μ ν) (hdiag : ∀ ν, f ν ν = 0) : ∑ ν, ∑ μ, f ν μ = 0 := by
   rw [← Finset.sum_product']
@@ -101,6 +116,9 @@ theorem sum_sum_eq_zero_of_alternating {M : Type} [AddCommGroup M] {N : ℕ} (f 
     have : a.1 = a.2 := by have := congrArg Prod.fst h; simpa using this.symm
     rw [this]; exact hdiag _
 
+/--
+@isnad1 id=mem.4h7v.s11.fed11b68bff4 from=translated src=- shape=d419bce9 vocab=1345e3a2
+-/
 theorem main (m g : ℕ) (F : Fin g → MvPolynomial (Fin (n + 1)) L) (hF : ∀ i, (F i).IsHomogeneous m)
     (hspan : ∀ w : MvPolynomial (Fin (n + 1)) L, w.IsHomogeneous m → w ∈ Submodule.span L (Set.range F)) :
     ∀ (d : ℕ) (c : Fin g → MvPolynomial (Fin (n + 1)) L), (∀ i, (c i).IsHomogeneous d) →
@@ -216,6 +234,9 @@ theorem main (m g : ℕ) (F : Fin g → MvPolynomial (Fin (n + 1)) L) (hF : ∀ 
 end GotzRegD
 
 open MvPolynomial in
+/--
+@isnad1 id=mem.4h7v.s11.a8e355fc756f from=translated src=- shape=8de28c67 vocab=1345e3a2
+-/
 theorem solution
     (n m g : ℕ) (K : Type) [Field K] (F : Fin g → MvPolynomial (Fin (n + 1)) K)
     (hF : ∀ i, (F i).IsHomogeneous m)

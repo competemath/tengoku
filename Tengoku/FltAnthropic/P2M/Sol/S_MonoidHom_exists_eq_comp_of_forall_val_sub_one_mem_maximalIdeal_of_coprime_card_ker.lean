@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 universe u v w
 
+/--
+@isnad1 id=ex.4h6v.s9.106990ec4876 from=translated src=- shape=1b7116ec vocab=2e20c529
+-/
 theorem solution {G : Type u} {Δ : Type v} {R : Type w} [Group G] [Finite G] [Group Δ] [CommRing R] [IsLocalRing R]
     (π : G →* Δ) (hπ : Function.Surjective π) {p : ℕ} (hp : (p : R) ∈ IsLocalRing.maximalIdeal R)
     (hcop : (Nat.card π.ker).Coprime p)

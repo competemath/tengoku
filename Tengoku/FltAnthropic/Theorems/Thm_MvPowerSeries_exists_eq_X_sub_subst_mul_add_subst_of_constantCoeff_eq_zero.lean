@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open MvPowerSeries
 
+/--
+@isnad1 id=ex.1h3v.s9.571055920a92 from=translated src=- shape=cfe0b5e3 vocab=1ea1b7af
+-/
 theorem MvPowerSeries.exists_eq_X_sub_subst_mul_add_subst_of_constantCoeff_eq_zero
     (k : Type*) [CommRing k] (φ : PowerSeries k) (hφ0 : PowerSeries.constantCoeff φ = 0)
     (G : MvPowerSeries (Fin 2) k) :

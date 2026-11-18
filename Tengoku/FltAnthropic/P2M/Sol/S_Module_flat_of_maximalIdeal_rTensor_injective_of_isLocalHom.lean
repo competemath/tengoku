@@ -16,6 +16,9 @@ namespace LCF
 variable {A : Type u} [CommRing A] [IsLocalRing A]
 variable (M : Type u) [AddCommGroup M] [Module A M]
 
+/--
+@isnad1 id=injectiv.2h3v.s11.305bb5a7103e from=translated src=- shape=b2d33646 vocab=556f753b
+-/
 theorem inj_subtype_of_le (h𝔪 : Function.Injective (LinearMap.lTensor M (maximalIdeal A).subtype))
     (J : Ideal A) (hJ : maximalIdeal A ≤ J) : Function.Injective (LinearMap.lTensor M J.subtype) := by
   rcases eq_or_ne J ⊤ with rfl | hne
@@ -27,12 +30,18 @@ theorem inj_subtype_of_le (h𝔪 : Function.Injective (LinearMap.lTensor M (maxi
     subst this
     exact h𝔪
 
+/--
+@isnad1 id=injectiv.1h5v.s8.be80b753255c from=translated src=- shape=a1a482cb vocab=a32adeb4
+-/
 theorem inj_of_bijective {P Q : Type u} [AddCommGroup P] [Module A P] [AddCommGroup Q] [Module A Q]
     (f : P →ₗ[A] Q) (hf : Function.Bijective f) : Function.Injective (LinearMap.lTensor M f) := by
   have : f = (LinearEquiv.ofBijective f hf).toLinearMap := rfl
   rw [this]
   exact ((LinearEquiv.ofBijective f hf).lTensor M).injective
 
+/--
+@isnad1 id=injectiv.4h6v.s11.229f9186b840 from=translated src=- shape=67f25b29 vocab=304e11d4
+-/
 theorem alpha (h𝔪 : Function.Injective (LinearMap.lTensor M (maximalIdeal A).subtype))
     {P : Type u} [AddCommGroup P] [Module A P] (Q Q'' : Submodule A P) (p : P) (hQ : Q ≤ Q'')
     (hQ'' : Q'' = Q ⊔ Submodule.span A {p}) (hp : ∀ a ∈ maximalIdeal A, a • p ∈ Q) :
@@ -97,6 +106,9 @@ theorem alpha (h𝔪 : Function.Injective (LinearMap.lTensor M (maximalIdeal A).
     rw [LinearMap.fst_comp_inl, LinearMap.lTensor_id, LinearMap.id_apply]
   rw [this, LinearMap.lTensor_comp, LinearMap.comp_apply, h2, map_zero]
 
+/--
+@isnad1 id=injectiv.3h5v.s11.e620275a0596 from=translated src=- shape=51a79d81 vocab=c9f012d4
+-/
 theorem beta (h𝔪 : Function.Injective (LinearMap.lTensor M (maximalIdeal A).subtype))
     {P' P : Type u} [AddCommGroup P'] [Module A P'] [AddCommGroup P] [Module A P] [Module.Finite A P]
     (u : P' →ₗ[A] P) (hu : Function.Injective u)
@@ -139,6 +151,9 @@ theorem beta (h𝔪 : Function.Injective (LinearMap.lTensor M (maximalIdeal A).s
   rw [hfac, LinearMap.lTensor_comp, LinearMap.lTensor_comp]
   exact ((hsub _ htop).comp (chain s)).comp (inj_of_bijective M e he)
 
+/--
+@isnad1 id=injectiv.3h6v.s11.82b95b739f85 from=translated src=- shape=70e8aba1 vocab=db7ceebc
+-/
 theorem gamma [IsNoetherianRing A] (h𝔪 : Function.Injective (LinearMap.lTensor M (maximalIdeal A).subtype)) (n : ℕ) :
     ∀ (N : Type u) [AddCommGroup N] [Module A N] [Module.Finite A N],
       (maximalIdeal A) ^ n • (⊤ : Submodule A N) = ⊥ →
@@ -218,6 +233,9 @@ end LCF
 
 namespace LCF
 
+/--
+@isnad1 id=finite.0h4v.s8.284bc109e0a4 from=translated src=- shape=37abe939 vocab=9f4258f4
+-/
 theorem finite_tensor {A B : Type u} [CommRing A] [CommRing B] [Algebra A B]
     (M : Type u) [AddCommGroup M] [Module A M] [Module B M] [IsScalarTower A B M] [Module.Finite B M]
     (I : Type u) [AddCommGroup I] [Module A I] [Module.Finite A I] :
@@ -263,6 +281,9 @@ theorem finite_tensor {A B : Type u} [CommRing A] [CommRing B] [Algebra A B]
 end LCF
 
 open LCF in
+/--
+@isnad1 id=flat.1h3v.s11.4dfd1c4e19f8 from=translated src=- shape=26abc2b0 vocab=f1316dfa
+-/
 theorem solution
     {A B : Type u} [CommRing A] [CommRing B] [IsNoetherianRing A] [IsNoetherianRing B] [IsLocalRing A] [IsLocalRing B]
     [Algebra A B] [IsLocalHom (algebraMap A B)]

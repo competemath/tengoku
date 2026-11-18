@@ -14,10 +14,16 @@ open MvPolynomial MvPolynomial.CrossingQuotient
 
 variable {W : Type*} [CommRing W] (s : W)
 
+/--
+@isnad1 id=eq.0h3v.s12.f76f43e28df3 from=translated src=- shape=d7d847a1 vocab=911d00c7
+-/
 theorem mk_C_eq (w : W) : mk s (C w) = algebraMap W (CrossingQuotient W s) w := by
   change mk s (algebraMap W (MvPolynomial (Fin 2) W) w) = _
   exact AlgHom.commutes _ w
 
+/--
+@isnad1 id=ex.0h3v.s12.c2a14df172b7 from=translated src=- shape=97eb3db4 vocab=0e87926f
+-/
 theorem exists_normalForm (f : CrossingQuotient W s) :
     ∃ p q : Polynomial W, f = Polynomial.aeval (U s) p + V s * Polynomial.aeval (V s) q := by
   obtain ⟨F, rfl⟩ := mk_surjective s f
@@ -61,6 +67,9 @@ theorem exists_normalForm (f : CrossingQuotient W s) :
 
 variable (I : Ideal W)
 
+/--
+@isnad1 id=eq.1h3v.s8.a5de2f82a508 from=translated src=- shape=49cdb961 vocab=48c3c340
+-/
 theorem algebraMap_quot_s (hs : s ∈ I) : algebraMap W (Polynomial (W ⧸ I)) s = 0 := by
   rw [Polynomial.algebraMap_apply, Ideal.Quotient.algebraMap_eq,
     Ideal.Quotient.eq_zero_iff_mem.mpr hs, map_zero]
@@ -71,24 +80,48 @@ noncomputable def branchY (hs : s ∈ I) : CrossingQuotient W s →ₐ[W] Polyno
 noncomputable def branchX (hs : s ∈ I) : CrossingQuotient W s →ₐ[W] Polynomial (W ⧸ I) :=
   CrossingQuotient.lift s Polynomial.X 0 (by rw [mul_zero, algebraMap_quot_s s I hs])
 
+/--
+@isnad1 id=eq.1h3v.s11.0474a49b2e1d from=translated src=- shape=2ee7f7b0 vocab=2f30d152
+-/
 @[scoped simp] theorem branchY_U (hs : s ∈ I) : branchY s I hs (U s) = 0 := lift_U _ _ _ _
+/--
+@isnad1 id=eq.1h3v.s11.a7e7fec5b0ce from=translated src=- shape=9b32dff5 vocab=f187ad34
+-/
 @[scoped simp] theorem branchY_V (hs : s ∈ I) : branchY s I hs (V s) = Polynomial.X := lift_V _ _ _ _
+/--
+@isnad1 id=eq.1h3v.s11.1eef5fa6db59 from=translated src=- shape=9b32dff5 vocab=ef986967
+-/
 @[scoped simp] theorem branchX_U (hs : s ∈ I) : branchX s I hs (U s) = Polynomial.X := lift_U _ _ _ _
+/--
+@isnad1 id=eq.1h3v.s11.b4ec3bd54d94 from=translated src=- shape=2ee7f7b0 vocab=49e69b91
+-/
 @[scoped simp] theorem branchX_V (hs : s ∈ I) : branchX s I hs (V s) = 0 := lift_V _ _ _ _
 
+/--
+@isnad1 id=eq.1h4v.s12.bd0b3da1ed54 from=translated src=- shape=f2a0776b vocab=263f89f5
+-/
 theorem branchY_aeval_U (hs : s ∈ I) (p : Polynomial W) : branchY s I hs (Polynomial.aeval (U s) p) =
     Polynomial.C (algebraMap W (W ⧸ I) (p.coeff 0)) := by
   rw [← Polynomial.aeval_algHom_apply, branchY_U, ← Polynomial.coeff_zero_eq_aeval_zero',
     Polynomial.algebraMap_apply]
 
+/--
+@isnad1 id=eq.1h4v.s12.5bbb4969c887 from=translated src=- shape=8e397dc5 vocab=561fb400
+-/
 theorem branchY_aeval_V (hs : s ∈ I) (q : Polynomial W) :
     branchY s I hs (Polynomial.aeval (V s) q) = q.map (algebraMap W (W ⧸ I)) := by
   rw [← Polynomial.aeval_algHom_apply, branchY_V, Polynomial.aeval_X_left_eq_map]
 
+/--
+@isnad1 id=eq.1h4v.s12.c5b5b3d530dd from=translated src=- shape=8e397dc5 vocab=9818ce13
+-/
 theorem branchX_aeval_U (hs : s ∈ I) (p : Polynomial W) :
     branchX s I hs (Polynomial.aeval (U s) p) = p.map (algebraMap W (W ⧸ I)) := by
   rw [← Polynomial.aeval_algHom_apply, branchX_U, Polynomial.aeval_X_left_eq_map]
 
+/--
+@isnad1 id=mem.1h5v.s8.93fe3134eec7 from=translated src=- shape=6fd9ce1e vocab=f1e7123f
+-/
 theorem aeval_mem_map_of_map_eq_zero {A : Type*} [CommRing A] [Algebra W A] (a : A)
     {q : Polynomial W} (hq : q.map (algebraMap W (W ⧸ I)) = 0) :
     Polynomial.aeval a q ∈ I.map (algebraMap W A) := by
@@ -98,6 +131,9 @@ theorem aeval_mem_map_of_map_eq_zero {A : Type*} [CommRing A] [Algebra W A] (a :
   refine Ideal.sum_mem _ (fun n _ => Ideal.mul_mem_right _ _ (Ideal.mem_map_of_mem _ ?_))
   exact (Ideal.mem_map_C_iff.mp hmem) n
 
+/--
+@isnad1 id=eq.1h3v.s13.6c40110ab785 from=translated src=- shape=2c8d57aa vocab=e083bfd6
+-/
 theorem ker_branchY (hs : s ∈ I) : RingHom.ker (branchY s I hs) =
     Ideal.span {U s} ⊔ I.map (algebraMap W (CrossingQuotient W s)) := by
   apply le_antisymm
@@ -128,6 +164,9 @@ theorem ker_branchY (hs : s ∈ I) : RingHom.ker (branchY s I hs) =
     rw [Ideal.mem_comap, RingHom.mem_ker, AlgHom.commutes, Polynomial.algebraMap_apply,
       Ideal.Quotient.algebraMap_eq, Ideal.Quotient.eq_zero_iff_mem.mpr hw, map_zero]
 
+/--
+@isnad1 id=eq.1h3v.s13.c6798126b286 from=translated src=- shape=2c8d57aa vocab=0df2c32b
+-/
 theorem ker_branchX (hs : s ∈ I) : RingHom.ker (branchX s I hs) =
     Ideal.span {V s} ⊔ I.map (algebraMap W (CrossingQuotient W s)) := by
   apply le_antisymm
@@ -144,26 +183,44 @@ theorem ker_branchX (hs : s ∈ I) : RingHom.ker (branchX s I hs) =
     rw [Ideal.mem_comap, RingHom.mem_ker, AlgHom.commutes, Polynomial.algebraMap_apply,
       Ideal.Quotient.algebraMap_eq, Ideal.Quotient.eq_zero_iff_mem.mpr hw, map_zero]
 
+/--
+@isnad1 id=mem.0h2v.s12.b879377457d0 from=translated src=- shape=34ab73cc vocab=b87727f5
+-/
 theorem algebraMap_mem_span_U : algebraMap W (CrossingQuotient W s) s ∈ Ideal.span {U s} := by
   rw [← U_mul_V]; exact Ideal.mul_mem_right _ _ (Ideal.subset_span rfl)
 
+/--
+@isnad1 id=mem.0h2v.s12.c68c3b161c28 from=translated src=- shape=34ab73cc vocab=3b70f549
+-/
 theorem algebraMap_mem_span_V : algebraMap W (CrossingQuotient W s) s ∈ Ideal.span {V s} := by
   rw [← U_mul_V]; exact Ideal.mul_mem_left _ _ (Ideal.subset_span rfl)
 
+/--
+@isnad1 id=le.0h2v.s12.8c2e338d1bbc from=translated src=- shape=76c2c3ee vocab=43c7c134
+-/
 theorem map_span_le_span_U :
     (Ideal.span {s}).map (algebraMap W (CrossingQuotient W s)) ≤ Ideal.span {U s} := by
   rw [Ideal.map_span, Set.image_singleton, Ideal.span_singleton_le_iff_mem]
   exact algebraMap_mem_span_U s
 
+/--
+@isnad1 id=le.0h2v.s12.c7789307075d from=translated src=- shape=76c2c3ee vocab=93099a77
+-/
 theorem map_span_le_span_V :
     (Ideal.span {s}).map (algebraMap W (CrossingQuotient W s)) ≤ Ideal.span {V s} := by
   rw [Ideal.map_span, Set.image_singleton, Ideal.span_singleton_le_iff_mem]
   exact algebraMap_mem_span_V s
 
+/--
+@isnad1 id=eq.0h2v.s11.8ef5f790c5dd from=translated src=- shape=828cdd46 vocab=01e6646c
+-/
 theorem ker_branchY_self : RingHom.ker (branchY s (Ideal.span {s}) (Ideal.mem_span_singleton_self s))
     = Ideal.span {U s} := by
   rw [ker_branchY, sup_eq_left]; exact map_span_le_span_U s
 
+/--
+@isnad1 id=eq.0h2v.s11.d9d735a25f1b from=translated src=- shape=828cdd46 vocab=1df364f6
+-/
 theorem ker_branchX_self : RingHom.ker (branchX s (Ideal.span {s}) (Ideal.mem_span_singleton_self s))
     = Ideal.span {V s} := by
   rw [ker_branchX, sup_eq_left]; exact map_span_le_span_V s
@@ -177,22 +234,37 @@ open MvPolynomial MvPolynomial.CrossingQuotient CrossingResolutionBranch
 
 variable {W : Type*} [CommRing W] (t : W)
 
+/--
+@isnad1 id=not.0h2v.s11.abc3ff6ace99 from=translated src=- shape=5ac67f76 vocab=e3ff84c0
+-/
 theorem V_notMem_span_U [Nontrivial (W ⧸ Ideal.span {t})] : V t ∉ Ideal.span {U t} := by
   intro h
   rw [← ker_branchY_self t, RingHom.mem_ker, branchY_V] at h
   exact Polynomial.X_ne_zero h
 
+/--
+@isnad1 id=not.0h2v.s11.2748605ccf27 from=translated src=- shape=5ac67f76 vocab=e3ff84c0
+-/
 theorem U_notMem_span_V [Nontrivial (W ⧸ Ideal.span {t})] : U t ∉ Ideal.span {V t} := by
   intro h
   rw [← ker_branchX_self t, RingHom.mem_ker, branchX_U] at h
   exact Polynomial.X_ne_zero h
 
+/--
+@isnad1 id=le.0h2v.s12.54a879ee580e from=translated src=- shape=ce659c5e vocab=d614f14c
+-/
 theorem span_t_le_span_U : Ideal.span {algebraMap W (CrossingQuotient W t) t} ≤ Ideal.span {U t} := by
   rw [Ideal.span_singleton_le_iff_mem]; exact algebraMap_mem_span_U t
 
+/--
+@isnad1 id=le.0h2v.s12.12bf0c7aa615 from=translated src=- shape=ce659c5e vocab=2d93b52f
+-/
 theorem span_t_le_span_V : Ideal.span {algebraMap W (CrossingQuotient W t) t} ≤ Ideal.span {V t} := by
   rw [Ideal.span_singleton_le_iff_mem]; exact algebraMap_mem_span_V t
 
+/--
+@isnad1 id=or.2h3v.s13.cdb54c3af10d from=translated src=- shape=e531535f vocab=02fd1db3
+-/
 theorem le_or_le_of_isPrime {q : Ideal (CrossingQuotient W t)} (hq : q.IsPrime)
     (hle : Ideal.span {algebraMap W (CrossingQuotient W t) t} ≤ q) :
     Ideal.span {U t} ≤ q ∨ Ideal.span {V t} ≤ q := by
@@ -204,12 +276,21 @@ theorem le_or_le_of_isPrime {q : Ideal (CrossingQuotient W t)} (hq : q.IsPrime)
 
 variable [IsDomain (W ⧸ Ideal.span {t})]
 
+/--
+@isnad1 id=isprime.0h2v.s10.74d03ee40809 from=translated src=- shape=24e8cf8c vocab=a2abe0aa
+-/
 theorem isPrime_span_U : (Ideal.span {U t}).IsPrime := by
   rw [← ker_branchY_self t]; exact RingHom.ker_isPrime _
 
+/--
+@isnad1 id=isprime.0h2v.s10.5f56996f3097 from=translated src=- shape=24e8cf8c vocab=7c6f3b66
+-/
 theorem isPrime_span_V : (Ideal.span {V t}).IsPrime := by
   rw [← ker_branchX_self t]; exact RingHom.ker_isPrime _
 
+/--
+@isnad1 id=and.0h2v.s13.efa5699a92a7 from=translated src=- shape=1f8c5f74 vocab=4eef43b6
+-/
 theorem main :
     (Ideal.span {algebraMap W (CrossingQuotient W t) t}).minimalPrimes =
         {Ideal.span {U t}, Ideal.span {V t}} ∧
@@ -239,6 +320,9 @@ open scoped _root_.P2MW.S_MvPolynomial_CrossingQuotient_minimalPrimes_span_algeb
 
 open MvPolynomial MvPolynomial.CrossingQuotient in
 
+/--
+@isnad1 id=and.0h2v.s13.efa5699a92a7 from=translated src=- shape=1f8c5f74 vocab=4eef43b6
+-/
 theorem solution
     {W : Type*} [CommRing W] (t : W) [IsDomain (W ⧸ Ideal.span {t})] :
     (Ideal.span {algebraMap W (CrossingQuotient W t) t}).minimalPrimes =

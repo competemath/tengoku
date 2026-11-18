@@ -32,12 +32,18 @@ variable {C0 C1 C2 : Type u} [AddCommGroup C0] [Module R C0] [AddCommGroup C1] [
 variable (d0 : C0 →ₗ[R] C1) (d1 : C1 →ₗ[R] C2) (hsq : d1 ∘ₗ d0 = 0)
 variable [Module.Finite R (C2 ⧸ LinearMap.range d1)]
 
+/--
+@isnad1 id=injectiv.0h5v.s13.6d394e2515b0 from=translated src=- shape=8881e597 vocab=5f9fff4b
+-/
 theorem subtype_baseChange_injective [Module.Flat R C2] (A : Type u) [CommRing A] [Algebra R A] :
     Function.Injective ((K0 d1).subtype.baseChange A) := by
   rw [LinearMap.baseChange_eq_ltensor]
   exact LinearMap.lTensor_injective_of_exact_of_flat (d1.coprod (lift d1))
     (surjective_coprod d1) _ (K0 d1).subtype_injective (LinearMap.exact_subtype_ker_map _) A
 
+/--
+@isnad1 id=eq.0h5v.s11.8bdb99bc4044 from=translated src=- shape=083ed500 vocab=a59133d6
+-/
 theorem prodRight_apply_eq_baseChange (A : Type u) [CommRing A] [Algebra R A] {M N : Type u}
     [AddCommGroup M] [Module R M] [AddCommGroup N] [Module R N] (w : A ⊗[R] (M × N)) :
     (TensorProduct.prodRight R A A M N) w
@@ -47,6 +53,9 @@ theorem prodRight_apply_eq_baseChange (A : Type u) [CommRing A] [Algebra R A] {M
   | tmul a x => simp [TensorProduct.prodRight_tmul]
   | add x y hx hy => simp only [map_add, hx, hy, Prod.mk_add_mk]
 
+/--
+@isnad1 id=eq.0h6v.s15.75076cd43bad from=translated src=- shape=e2910bba vocab=fbea74f4
+-/
 theorem prodRight_subtype_baseChange (A : Type u) [CommRing A] [Algebra R A] (z : A ⊗[R] K0 d1) :
     (TensorProduct.prodRight R A A C1 (Fin (rank d1) → R)) (((K0 d1).subtype.baseChange A) z)
       = (((ι0 d1).baseChange A) z, ((dK d1).baseChange A) z) := by
@@ -57,6 +66,9 @@ theorem prodRight_subtype_baseChange (A : Type u) [CommRing A] [Algebra R A] (z 
   · show ((LinearMap.snd R C1 (Fin (rank d1) → R)).baseChange A) (((K0 d1).subtype.baseChange A) z) = _
     rw [← LinearMap.comp_apply, ← LinearMap.baseChange_comp]; rfl
 
+/--
+@isnad1 id=eq.0h6v.s14.59e39ecc311d from=translated src=- shape=c5fbe3a3 vocab=48f47a81
+-/
 theorem coprod_baseChange_apply (A : Type u) [CommRing A] [Algebra R A]
     (w : A ⊗[R] (C1 × (Fin (rank d1) → R))) :
     ((d1.coprod (lift d1)).baseChange A) w
@@ -73,20 +85,35 @@ def stepDiff : C0 →ₗ[R] K0 d1 :=
       rw [LinearMap.mem_ker, LinearMap.comp_apply, LinearMap.inl_apply, LinearMap.coprod_apply,
         map_zero, add_zero, ← LinearMap.comp_apply, hsq, LinearMap.zero_apply])
 
+/--
+@isnad1 id=eq.1h7v.s12.d2cb867d8167 from=translated src=- shape=f9d1b6b4 vocab=ba8d34ec
+-/
 theorem stepDiff_coe (y : C0) :
     ((stepDiff d0 d1 hsq y : K0 d1) : C1 × (Fin (rank d1) → R)) = (d0 y, 0) := rfl
 
+/--
+@isnad1 id=eq.1h6v.s11.c1e4b38c64c5 from=translated src=- shape=82fe95e4 vocab=4ee10ede
+-/
 theorem subtype_comp_stepDiff : (K0 d1).subtype ∘ₗ stepDiff d0 d1 hsq = (LinearMap.inl R C1 _) ∘ₗ d0 := rfl
 
+/--
+@isnad1 id=eq.1h6v.s11.ff8046274924 from=translated src=- shape=345fdf07 vocab=6e53badd
+-/
 theorem dK_comp_stepDiff : dK d1 ∘ₗ stepDiff d0 d1 hsq = 0 := by
   ext y; rfl
 
+/--
+@isnad1 id=eq.1h6v.s10.023d84c01fdc from=translated src=- shape=68ec8101 vocab=4052c22a
+-/
 theorem stepDiff_ker : LinearMap.ker (stepDiff d0 d1 hsq) = LinearMap.ker d0 := by
   ext y
   rw [LinearMap.mem_ker, LinearMap.mem_ker, ← (K0 d1).subtype_injective.eq_iff,
     Submodule.coe_subtype, stepDiff_coe, Submodule.coe_zero, Prod.mk_eq_zero]
   exact ⟨fun h => h.1, fun h => ⟨h, rfl⟩⟩
 
+/--
+@isnad1 id=eq.1h7v.s12.5b3ecd1878a5 from=translated src=- shape=823f41f4 vocab=6b7c2337
+-/
 theorem stepDiff_ker_baseChange [Module.Flat R C2] (A : Type u) [CommRing A] [Algebra R A] :
     LinearMap.ker ((stepDiff d0 d1 hsq).baseChange A) = LinearMap.ker (d0.baseChange A) := by
   have hinl : Function.Injective ((LinearMap.inl R C1 (Fin (rank d1) → R)).baseChange A) := by
@@ -99,6 +126,9 @@ theorem stepDiff_ker_baseChange [Module.Flat R C2] (A : Type u) [CommRing A] [Al
     ← LinearMap.comp_apply, ← LinearMap.baseChange_comp, subtype_comp_stepDiff,
     LinearMap.baseChange_comp, LinearMap.comp_apply, ← hinl.eq_iff, map_zero]
 
+/--
+@isnad1 id=le.2h7v.s14.35532d2aee0a from=translated src=- shape=73b02d1d vocab=54d5fef0
+-/
 theorem ker_dK_baseChange_le [Module.Flat R C2] (A : Type u) [CommRing A] [Algebra R A]
     (hA : LinearMap.ker (d1.baseChange A) ≤ LinearMap.range (d0.baseChange A)) :
     LinearMap.ker ((dK d1).baseChange A) ≤ LinearMap.range ((stepDiff d0 d1 hsq).baseChange A) := by
@@ -124,6 +154,9 @@ def kerToK0 : LinearMap.ker d1 →ₗ[R] K0 d1 :=
         add_zero, Submodule.coe_subtype]
       exact x.2)
 
+/--
+@isnad1 id=eq.0h4v.s11.fb89c8f7563e from=translated src=- shape=05947d6a vocab=1373b137
+-/
 theorem dK_comp_kerToK0 : dK d1 ∘ₗ kerToK0 d1 = 0 := by
   ext x; rfl
 
@@ -139,6 +172,9 @@ def h1ToCoker :
 def cokerToFree : (K0 d1 ⧸ LinearMap.range (stepDiff d0 d1 hsq)) →ₗ[R] (Fin (rank d1) → R) :=
   Submodule.liftQ _ (dK d1) (by rintro _ ⟨y, rfl⟩; rfl)
 
+/--
+@isnad1 id=eq.1h6v.s14.ff354d960463 from=translated src=- shape=1087e559 vocab=616f4fdb
+-/
 theorem h1ToCoker_exact :
     LinearMap.range (h1ToCoker d0 d1 hsq) = LinearMap.ker (cokerToFree d0 d1 hsq) := by
   refine le_antisymm ?_ ?_
@@ -162,6 +198,9 @@ theorem h1ToCoker_exact :
 
 variable [IsNoetherianRing R]
 
+/--
+@isnad1 id=finite.1h6v.s13.256785780a01 from=translated src=- shape=d06619df vocab=39010404
+-/
 theorem stepDiff_coker_finite
     [Module.Finite R (LinearMap.ker d1 ⧸ (LinearMap.range d0).comap (LinearMap.ker d1).subtype)] :
     Module.Finite R (K0 d1 ⧸ LinearMap.range (stepDiff d0 d1 hsq)) := by
@@ -253,9 +292,15 @@ variable [Module.Finite R (K1 ⧸ LinearMap.range δ)]
 def epsK : (Fin (rank δ) → R) →ₗ[R] F := ε ∘ₗ ι1 δ
 
 include hεδ in
+/--
+@isnad1 id=eq.1h6v.s12.c945ad9a5f6e from=translated src=- shape=9b323bad vocab=f2e40257
+-/
 theorem epsK_comp_dK : epsK δ ε ∘ₗ dK δ = 0 := by
   rw [epsK, LinearMap.comp_assoc, ← comm δ, ← LinearMap.comp_assoc, hεδ, LinearMap.zero_comp]
 
+/--
+@isnad1 id=iff.0h6v.s14.11d586ef91bf from=translated src=- shape=99464242 vocab=286dcb47
+-/
 theorem mem_range_subtype_baseChange (A : Type u) [CommRing A] [Algebra R A]
     (w : A ⊗[R] (C0 × (Fin (rank δ) → R))) :
     ((δ.coprod (lift δ)).baseChange A) w = 0 ↔ ∃ z, ((K0 δ).subtype.baseChange A) z = w := by
@@ -267,6 +312,9 @@ theorem mem_range_subtype_baseChange (A : Type u) [CommRing A] [Algebra R A]
   simp only [heqι]
   exact lTensor_exact A (LinearMap.exact_subtype_ker_map _) (surjective_coprod δ) w
 
+/--
+@isnad1 id=le.1h7v.s13.936cc2f4d93f from=translated src=- shape=84609f95 vocab=99c341df
+-/
 theorem ker_epsK_baseChange_le (A : Type u) [CommRing A] [Algebra R A]
     (hA : LinearMap.ker (ε.baseChange A) ≤ LinearMap.range (δ.baseChange A)) :
     LinearMap.ker ((epsK δ ε).baseChange A) ≤ LinearMap.range ((dK δ).baseChange A) := by
@@ -286,6 +334,9 @@ theorem ker_epsK_baseChange_le (A : Type u) [CommRing A] [Algebra R A]
   simp only [prodRight_subtype_baseChange, hw] at this
   exact this
 
+/--
+@isnad1 id=bijectiv.0h4v.s16.c4b848286687 from=translated src=- shape=883a6f4c vocab=06ff6954
+-/
 theorem kerMap_bijective : Function.Bijective (kerMap (dK δ) δ (ι0 δ) (ι1 δ) (comm δ)) := by
   constructor
   · rintro ⟨⟨⟨x, v⟩, hxv⟩, hv⟩ ⟨⟨⟨x', v'⟩, hxv'⟩, hv'⟩ h
@@ -300,12 +351,18 @@ theorem kerMap_bijective : Function.Bijective (kerMap (dK δ) δ (ι0 δ) (ι1 �
 
 def kerMapEquiv : LinearMap.ker (dK δ) ≃ₗ[R] LinearMap.ker δ := LinearEquiv.ofBijective _ (kerMap_bijective δ)
 
+/--
+@isnad1 id=eq.0h4v.s15.b31faddba085 from=translated src=- shape=c23683a7 vocab=f4f77795
+-/
 theorem subtype_comp_kerMap :
     (LinearMap.ker δ).subtype ∘ₗ kerMap (dK δ) δ (ι0 δ) (ι1 δ) (comm δ) = ι0 δ ∘ₗ (LinearMap.ker (dK δ)).subtype :=
   LinearMap.ext fun _ => rfl
 
 variable [Module.Flat R K1]
 
+/--
+@isnad1 id=eq.1h5v.s15.0003372b6012 from=translated src=- shape=6d218b01 vocab=202dafc6
+-/
 theorem range_subtype_baseChange_eq_ker (A : Type u) [CommRing A] [Algebra R A]
     (h : LinearMap.range ((LinearMap.ker (dK δ)).subtype.baseChange A) = LinearMap.ker ((dK δ).baseChange A)) :
     LinearMap.range ((LinearMap.ker δ).subtype.baseChange A) = LinearMap.ker (δ.baseChange A) := by
@@ -323,6 +380,9 @@ theorem range_subtype_baseChange_eq_ker (A : Type u) [CommRing A] [Algebra R A]
     rw [← LinearMap.comp_apply, ← LinearMap.baseChange_comp, subtype_comp_kerMap, LinearMap.baseChange_comp,
       LinearMap.comp_apply, hw, hzx]
 
+/--
+@isnad1 id=injectiv.1h5v.s17.13f3794d09fd from=translated src=- shape=9647a327 vocab=e8fde122
+-/
 theorem subtype_baseChange_injective_of (A : Type u) [CommRing A] [Algebra R A]
     (h : Function.Injective ((LinearMap.ker (dK δ)).subtype.baseChange A)) :
     Function.Injective ((LinearMap.ker δ).subtype.baseChange A) := by
@@ -374,6 +434,9 @@ variable [Module.Finite R (LinearMap.ker d1 ⧸ (LinearMap.range d0).comap (Line
 
 set_option maxHeartbeats 1600000 in
 include hsq in
+/--
+@isnad1 id=ex.2h6v.s17.59463cf15fc8 from=translated src=- shape=2ad44429 vocab=2d5aa21c
+-/
 theorem finalStep (hfin0 : Module.Finite R (LinearMap.ker d0)) :
     ∃ (m₀ m₁ : ℕ) (P : Submodule R (C0 × (Fin m₀ → R))) (ε : (Fin m₀ → R) →ₗ[R] (Fin m₁ → R)),
       Module.Finite R P ∧ Module.Flat R P ∧
@@ -437,6 +500,9 @@ open scoped _root_.P2MW.S_Module_exists_mumfordTruncation_of_flat_complex.TwoCha
 
 set_option maxHeartbeats 1600000 in
 open _root_.TwoChartCech.Mumford _root_.P2MW.S_Module_exists_mumfordTruncation_of_flat_complex.TwoChartCech.Mumford TwoChartCech.Mumford.NTerm in
+/--
+@isnad1 id=ex.4h4v.s17.20863d5fc0c3 from=translated src=- shape=fcb70d4b vocab=2d9bda0c
+-/
 theorem solution
     (R : Type u) [CommRing R] [IsNoetherianRing R]
     (C : ℕ → Type u) [∀ i, AddCommGroup (C i)] [∀ i, Module R (C i)] [∀ i, Module.Flat R (C i)]

@@ -186,6 +186,9 @@ private theorem rename_subst {σ τ τ' : Type*} [Finite σ] (f : τ → τ') [F
 end IterDeriv
 
 open IterDeriv in
+/--
+@isnad1 id=eq.4h8v.s10.559afdbba7b2 from=translated src=- shape=de1f442d vocab=836f1f6b
+-/
 theorem solution
     {𝓞 : Type u} [CommRing 𝓞] {d : ℕ} (F : MvFormalGroup d 𝓞)
     (G : (n : ℕ) → Fin d → MvPowerSeries (Fin n × Fin d) 𝓞)

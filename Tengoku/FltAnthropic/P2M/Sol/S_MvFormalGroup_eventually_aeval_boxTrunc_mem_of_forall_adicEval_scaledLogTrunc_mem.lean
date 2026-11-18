@@ -19,6 +19,9 @@ variable {𝓞 : Type*} [CommRing 𝓞] {σ : Type*}
 
 noncomputable def rho (p : ℕ) : MvPowerSeries σ 𝓞 →+* MvPowerSeries σ 𝓞 := rescale (fun _ => (p : 𝓞))
 
+/--
+@isnad1 id=eq.0h5v.s9.8ad79abae4ce from=translated src=- shape=eabae586 vocab=d859eea4
+-/
 theorem coeff_rho (p : ℕ) (f : MvPowerSeries σ 𝓞) (m : σ →₀ ℕ) :
     coeff m (rho p f) = (p : 𝓞) ^ m.degree * coeff m f := by
   rw [rho, coeff_rescale]
@@ -26,16 +29,28 @@ theorem coeff_rho (p : ℕ) (f : MvPowerSeries σ 𝓞) (m : σ →₀ ℕ) :
   rw [Finsupp.prod, Finset.prod_pow_eq_pow_sum, Finsupp.degree]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.348e845e614a from=translated src=- shape=98c80be6 vocab=da787ae3
+-/
 theorem rho_natCast (p n : ℕ) : rho (σ := σ) (𝓞 := 𝓞) p (n : MvPowerSeries σ 𝓞) = n := map_natCast _ n
 
+/--
+@isnad1 id=eq.0h4v.s7.05727b40f884 from=translated src=- shape=24c17b48 vocab=93c894cc
+-/
 theorem rho_eq_subst (p : ℕ) (f : MvPowerSeries σ 𝓞) :
     rho p f = subst ((fun _ : σ => (p : 𝓞)) • (X : σ → MvPowerSeries σ 𝓞)) f :=
   rescale_eq_subst _ f
 
+/--
+@isnad1 id=eq.0h4v.s7.e05315be724d from=translated src=- shape=19f284eb vocab=dd1c58f3
+-/
 theorem rho_X (p : ℕ) (s : σ) : rho (𝓞 := 𝓞) p (X s) = (p : 𝓞) • X s := by
   rw [rho_eq_subst, subst_X (HasSubst.smul_X _)]
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s7.8353459cd696 from=translated src=- shape=826f76d7 vocab=92cf62d0
+-/
 theorem rho_subst (p : ℕ) {τ : Type*} {a : τ → MvPowerSeries σ 𝓞} (ha : HasSubst a) (f : MvPowerSeries τ 𝓞) :
     rho p (subst a f) = subst (fun t => rho p (a t)) f := by
   rw [rho_eq_subst, subst_comp_subst_apply ha (HasSubst.smul_X _)]
@@ -43,6 +58,9 @@ theorem rho_subst (p : ℕ) {τ : Type*} {a : τ → MvPowerSeries σ 𝓞} (ha 
   funext t
   rw [rho_eq_subst]
 
+/--
+@isnad1 id=eq.1h6v.s7.40451f9c646e from=translated src=- shape=3a5058b3 vocab=95d67854
+-/
 theorem subst_smul_family (p : ℕ) {τ : Type*} {a : σ → MvPowerSeries τ 𝓞} (ha : HasSubst a) (f : MvPowerSeries σ 𝓞) :
     subst (fun s => (p : 𝓞) • a s) f = subst a (rho p f) := by
   rw [rho_eq_subst, subst_comp_subst_apply (HasSubst.smul_X _) ha]
@@ -51,11 +69,17 @@ theorem subst_smul_family (p : ℕ) {τ : Type*} {a : σ → MvPowerSeries τ �
   show (p : 𝓞) • a s = subst a (((fun _ : σ => (p : 𝓞)) • (X : σ → MvPowerSeries σ 𝓞)) s)
   rw [Pi.smul_apply', subst_smul ha, subst_X ha]
 
+/--
+@isnad1 id=eq.2h5v.s9.661ffc39a99a from=translated src=- shape=dd23626e vocab=17881278
+-/
 theorem coeff_eq_zero_of_coeff_rho {p : ℕ} (hp : (p : 𝓞) ∈ nonZeroDivisors 𝓞) {f : MvPowerSeries σ 𝓞}
     {m : σ →₀ ℕ} (h : coeff m (rho p f) = 0) : coeff m f = 0 := by
   rw [coeff_rho] at h
   exact (mem_nonZeroDivisors_iff.1 (pow_mem hp m.degree)).1 _ h
 
+/--
+@isnad1 id=eq.0h4v.s7.748a9690f710 from=translated src=- shape=5ab58f7d vocab=3592fdac
+-/
 theorem subst_zero_family {τ : Type*} (f : MvPowerSeries σ 𝓞) :
     subst (fun _ : σ => (0 : MvPowerSeries τ 𝓞)) f = C (constantCoeff f) := by
   classical
@@ -80,11 +104,20 @@ noncomputable def Hp (Fp : Fin d → MvPowerSeries (Fin d ⊕ Fin d) 𝓞) : ℕ
 
 variable (Fp : Fin d → MvPowerSeries (Fin d ⊕ Fin d) 𝓞) (hFp0 : ∀ i, (Fp i).constantCoeff = 0)
 
+/--
+@isnad1 id=eq.0h3v.s5.751db80e1cf0 from=translated src=- shape=482e2604 vocab=ed1a2151
+-/
 theorem Hp_zero : Hp Fp 0 = fun _ => 0 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.d6139dddf140 from=translated src=- shape=3d0320af vocab=5c83f57b
+-/
 theorem Hp_succ (n : ℕ) : Hp Fp (n + 1) = fun i => subst (Sum.elim (Hp Fp n) fun j => X j) (Fp i) := rfl
 
 include hFp0 in
+/--
+@isnad1 id=eq.1h5v.s7.728e03fbc8a3 from=translated src=- shape=2b3b14d3 vocab=93dd814a
+-/
 theorem constantCoeff_Hp (n : ℕ) : ∀ i, (Hp Fp n i).constantCoeff = 0 := by
   induction n with
   | zero => intro i; rw [Hp_zero, map_zero]
@@ -96,15 +129,24 @@ theorem constantCoeff_Hp (n : ℕ) : ∀ i, (Hp Fp n i).constantCoeff = 0 := by
       (fun s => by rcases s with j | j <;> simp [ih j, constantCoeff_X]) (hFp0 i)
 
 include hFp0 in
+/--
+@isnad1 id=hassubst.1h4v.s7.7792be109554 from=translated src=- shape=59e087c6 vocab=0e1f7d83
+-/
 theorem hasSubst_Hp_elim (n : ℕ) : HasSubst (Sum.elim (Hp Fp n) fun j => (X j : MvPowerSeries (Fin d) 𝓞)) :=
   MvFormalGroup.hasSubst_elim (constantCoeff_Hp Fp hFp0 n) (fun j => constantCoeff_X j)
 
 include hFp0 in
+/--
+@isnad1 id=hassubst.1h4v.s7.f10a48e6c3f0 from=translated src=- shape=db92254d vocab=4eee05f7
+-/
 theorem hasSubst_Hp (n : ℕ) : HasSubst (Hp Fp n) :=
   hasSubst_of_constantCoeff_zero (constantCoeff_Hp Fp hFp0 n)
 
 include hFp0 in
 
+/--
+@isnad1 id=eq.3h6v.s8.3fb9e06e402c from=translated src=- shape=7943709b vocab=4bc60af6
+-/
 theorem subst_Hp_eq_nsmul (φ : Fin d → MvPowerSeries (Fin d) 𝓞) (hφ0 : ∀ i, (φ i).constantCoeff = 0)
     (hφF : ∀ i, subst Fp (φ i) =
       subst (fun j => (X (Sum.inl j) : MvPowerSeries (Fin d ⊕ Fin d) 𝓞)) (φ i) +
@@ -133,6 +175,9 @@ variable (F : MvFormalGroup d 𝓞)
 
 include hFp hFp0 in
 
+/--
+@isnad1 id=eq.2h6v.s10.5329159a510d from=translated src=- shape=ce2ceeb6 vocab=33528115
+-/
 theorem rho_law (i : Fin d) : rho p (F.toPowerSeries i) = (p : 𝓞) • Fp i := by
   ext m
   rw [coeff_rho, map_smul, smul_eq_mul]
@@ -143,6 +188,9 @@ theorem rho_law (i : Fin d) : rho p (F.toPowerSeries i) = (p : 𝓞) • Fp i :=
 
 include hFp hFp0 in
 
+/--
+@isnad1 id=eq.2h7v.s10.24504c477fe2 from=translated src=- shape=7c98b871 vocab=a071c026
+-/
 theorem rho_nthSeries (n : ℕ) (i : Fin d) : rho p (F.nthSeries n i) = (p : 𝓞) • Hp Fp n i := by
   induction n generalizing i with
   | zero => simp [MvFormalGroup.nthSeries_zero, Hp_zero]
@@ -168,6 +216,9 @@ section Arith
 variable {𝓞 : Type*} [CommRing 𝓞] {p : ℕ} [hp : Fact p.Prime] {d : ℕ}
 
 omit hp in
+/--
+@isnad1 id=mem.3h5v.s8.16d00cc55dc6 from=translated src=- shape=aa094489 vocab=25c7dea7
+-/
 theorem mem_span_pow_of_pow_mul_mem (hpR : (p : 𝓞) ∈ nonZeroDivisors 𝓞) {a : 𝓞} {K e : ℕ} (hKe : K ≤ e)
     (h : (p : 𝓞) ^ K * a ∈ Ideal.span {(p : 𝓞) ^ e}) : a ∈ Ideal.span {(p : 𝓞) ^ (e - K)} := by
   obtain ⟨b, hb⟩ := Ideal.mem_span_singleton'.1 h
@@ -176,6 +227,9 @@ theorem mem_span_pow_of_pow_mul_mem (hpR : (p : 𝓞) ∈ nonZeroDivisors 𝓞) 
     rw [mul_sub, sub_eq_zero, ← hb, mul_comm ((p : 𝓞) ^ K), mul_assoc, ← pow_add, Nat.sub_add_cancel hKe]
   exact sub_eq_zero.1 ((mem_nonZeroDivisors_iff.1 (pow_mem hpR K)).1 _ h0)
 
+/--
+@isnad1 id=mem.2h5v.s7.bf5cd5f24003 from=translated src=- shape=a13c979b vocab=91bd8253
+-/
 theorem mem_span_pow_of_natCast_mul_mem {u : ℕ} (hu : ¬ p ∣ u) {a : 𝓞} {e : ℕ}
     (h : (u : 𝓞) * a ∈ Ideal.span {(p : 𝓞) ^ e}) : a ∈ Ideal.span {(p : 𝓞) ^ e} := by
   have hcop : IsCoprime (u : ℤ) ((p : ℤ) ^ e) :=
@@ -191,6 +245,9 @@ theorem mem_span_pow_of_natCast_mul_mem {u : ℕ} (hu : ¬ p ∣ u) {a : 𝓞} {
   exact Ideal.add_mem _ (Ideal.mul_mem_left _ _ h) (Ideal.mul_mem_right _ _ (Ideal.mem_span_singleton_self _))
 
 omit hp in
+/--
+@isnad1 id=mem.2h6v.s9.6ac775ea3b00 from=translated src=- shape=28dc851b vocab=3003441c
+-/
 theorem natCast_mul_coeff_mem (φi : MvPowerSeries (Fin d) 𝓞)
     (hint : ∀ (j : Fin d) (m : Fin d →₀ ℕ),
       ((m j + 1 : ℕ) : 𝓞) * coeff (m + Finsupp.single j 1) φi ∈ Ideal.span {(p : 𝓞) ^ m.degree})
@@ -209,6 +266,9 @@ theorem natCast_mul_coeff_mem (φi : MvPowerSeries (Fin d) 𝓞)
   have := hint i m
   rwa [h1, hM, h2] at this
 
+/--
+@isnad1 id=eq.4h7v.s11.328e4a2fe7c3 from=translated src=- shape=8f3bf6d6 vocab=47048aaf
+-/
 theorem pow_degree_mul_coeff_eq (hpR : (p : 𝓞) ∈ nonZeroDivisors 𝓞) (φi : MvPowerSeries (Fin d) 𝓞)
     (hint : ∀ (j : Fin d) (m : Fin d →₀ ℕ),
       ((m j + 1 : ℕ) : 𝓞) * coeff (m + Finsupp.single j 1) φi ∈ Ideal.span {(p : 𝓞) ^ m.degree})
@@ -265,6 +325,9 @@ variable {𝓞 : Type*} [CommRing 𝓞] {p : ℕ} [hp : Fact p.Prime] {d : ℕ}
     ((m j + 1 : ℕ) : 𝓞) * coeff (m + Finsupp.single j 1) (φ i) ∈ Ideal.span {(p : 𝓞) ^ m.degree})
 
 include hpR hFp hFp0 hφ0 hφF hint in
+/--
+@isnad1 id=eq.8h11v.s11.a9a6b9a419b3 from=translated src=- shape=607b7422 vocab=af0701d7
+-/
 theorem coeff_shadow_eq_zero (v N : ℕ) (i : Fin d) (G : MvPowerSeries (Fin d) 𝓞)
     (hG : ∀ m : Fin d →₀ ℕ,
       (m.degree ≤ N → G.coeff m = (p : 𝓞) ^ (N - m.degree) * (φ i).coeff m) ∧
@@ -319,6 +382,9 @@ variable {𝓞 : Type*} [CommRing 𝓞] {R : Type*} [CommRing R] [Algebra 𝓞 R
 noncomputable def psum (x : σ → R) (T : Finset (σ →₀ ℕ)) (S : MvPowerSeries σ 𝓞) : R :=
   ∑ m ∈ T, coeff m S • m.prod fun s e => x s ^ e
 
+/--
+@isnad1 id=haseval.1h4v.s6.07da492764ce from=translated src=- shape=e691acbb vocab=1250b557
+-/
 theorem hasEval_of_mem_radical [Finite σ] (J : Ideal R) {x : σ → R} (hx : ∀ s, x s ∈ J.radical) :
     letI : TopologicalSpace R := J.adicTopology
     MvPowerSeries.HasEval x := by
@@ -335,6 +401,9 @@ theorem hasEval_of_mem_radical [Finite σ] (J : Ideal R) {x : σ → R} (hx : �
   · rw [Filter.cofinite_eq_bot]
     exact Filter.tendsto_bot
 
+/--
+@isnad1 id=ex.1h7v.s8.23a8a9294d17 from=translated src=- shape=a2101c72 vocab=2edb84e0
+-/
 theorem exists_adicEval_sub_psum_mem [Finite σ] (J : Ideal R) [IsAdicComplete J R] {x : σ → R}
     (hx : ∀ s, x s ∈ J.radical) (S : MvPowerSeries σ 𝓞) (K : ℕ) :
     ∃ T₀ : Finset (σ →₀ ℕ), ∀ T : Finset (σ →₀ ℕ), T₀ ⊆ T →
@@ -364,6 +433,9 @@ theorem exists_adicEval_sub_psum_mem [Finite σ] (J : Ideal R) [IsAdicComplete J
     sub_add_cancel_left]
   exact (J ^ K).neg_mem_iff.2 hz
 
+/--
+@isnad1 id=mem.2h7v.s9.79cf19b81ec9 from=translated src=- shape=9a8694ce vocab=aac7d16e
+-/
 theorem adicEval_mem_pow [Finite σ] (J : Ideal R) [IsAdicComplete J R] {x : σ → R}
     (hx : ∀ s, x s ∈ J.radical) (S : MvPowerSeries σ 𝓞) (K : ℕ)
     (h : ∀ m : σ →₀ ℕ, coeff m S = 0 ∨ (m.prod fun s e => x s ^ e) ∈ J ^ K) :
@@ -380,6 +452,9 @@ theorem adicEval_mem_pow [Finite σ] (J : Ideal R) [IsAdicComplete J R] {x : σ 
 
 omit [Algebra 𝓞 R] in
 
+/--
+@isnad1 id=mem.2h8v.s7.b46e5fb36363 from=translated src=- shape=c0c78d36 vocab=e6c6a0ef
+-/
 theorem prod_pow_mem_pow {x : σ → R} {J : Ideal R} {e : ℕ} (hxe : ∀ s, x s ^ e ∈ J) (m : σ →₀ ℕ)
     {s : σ} {K : ℕ} (hs : e * K < m s) : (m.prod fun s k => x s ^ k) ∈ J ^ K := by
   classical
@@ -391,6 +466,9 @@ theorem prod_pow_mem_pow {x : σ → R} {J : Ideal R} {e : ℕ} (hxe : ∀ s, x 
 
 omit [Algebra 𝓞 R] [CommRing R] in
 
+/--
+@isnad1 id=ex.1h3v.s7.65c707da0320 from=translated src=- shape=a1a9fab5 vocab=7853873d
+-/
 theorem exists_lt_apply [Fintype σ] (m : σ →₀ ℕ) (B : ℕ) (h : Fintype.card σ * B < m.degree) : ∃ s, B < m s := by
   by_contra h'
   have h'' : ∀ s, m s ≤ B := fun s => not_lt.1 (not_exists.1 h' s)
@@ -402,6 +480,9 @@ theorem exists_lt_apply [Fintype σ] (m : σ →₀ ℕ) (B : ℕ) (h : Fintype.
 
 omit [Algebra 𝓞 R] [CommRing R] in
 
+/--
+@isnad1 id=ex.1h3v.s5.fa76fc11c6ce from=translated src=- shape=861ea342 vocab=3f16b8dd
+-/
 theorem exists_N1 {q : ℕ} (hq : 2 ≤ q) (A₀ v : ℕ) : ∃ N₁ : ℕ, ∀ N : ℕ, N₁ ≤ N → A₀ * (N + v) < q ^ N := by
   refine ⟨(A₀ * (v + 1) + 1) ^ 2 + 1, fun N hN => ?_⟩
   set A := A₀ * (v + 1) + 1 with hA
@@ -449,6 +530,9 @@ variable {𝓞 : Type*} [CommRing 𝓞] {Y : Type*} [CommRing Y] [Algebra 𝓞 Y
 noncomputable def box (d n : ℕ) : Finset (Fin d →₀ ℕ) :=
   (Finset.univ : Finset (Fin d → Fin n)).image fun f => Finsupp.equivFunOnFinite.symm fun j => (f j : ℕ)
 
+/--
+@isnad1 id=iff.0h3v.s6.0d991fe739ed from=translated src=- shape=e7ec9dd2 vocab=11790e75
+-/
 theorem mem_box {n : ℕ} (m : Fin d →₀ ℕ) : m ∈ box d n ↔ ∀ j, m j < n := by
   constructor
   · intro hm j
@@ -458,6 +542,9 @@ theorem mem_box {n : ℕ} (m : Fin d →₀ ℕ) : m ∈ box d n ↔ ∀ j, m j 
     refine Finset.mem_image.2 ⟨fun j => ⟨m j, h j⟩, Finset.mem_univ _, ?_⟩
     ext j; simp
 
+/--
+@isnad1 id=ex.0h2v.s5.0af002dab5c6 from=translated src=- shape=194d7532 vocab=d318ac8a
+-/
 theorem exists_subset_box (T : Finset (Fin d →₀ ℕ)) : ∃ n₀ : ℕ, ∀ n, n₀ ≤ n → T ⊆ box d n := by
   classical
   refine ⟨T.sup (fun m => (Finset.univ : Finset (Fin d)).sup m) + 1, fun n hn m hm => ?_⟩
@@ -470,10 +557,16 @@ theorem exists_subset_box (T : Finset (Fin d →₀ ℕ)) : ∃ n₀ : ℕ, ∀ 
 
 noncomputable def lowDeg (d D : ℕ) : Finset (Fin d →₀ ℕ) := (box d D).filter fun m => m.degree < D
 
+/--
+@isnad1 id=iff.0h3v.s7.60c1a13fad92 from=translated src=- shape=3f9ed69d vocab=50bdec21
+-/
 theorem mem_lowDeg {D : ℕ} (m : Fin d →₀ ℕ) : m ∈ lowDeg d D ↔ m.degree < D := by
   rw [lowDeg, Finset.mem_filter, mem_box]
   exact ⟨fun h => h.2, fun h => ⟨fun j => lt_of_le_of_lt (Finsupp.le_degree j m) h, h⟩⟩
 
+/--
+@isnad1 id=eq.1h7v.s9.80edf612bf6d from=translated src=- shape=d219a902 vocab=5ce5369b
+-/
 theorem aeval_eq_psum_box {n : ℕ} {S : MvPowerSeries (Fin d) 𝓞} (P : MvPolynomial (Fin d) 𝓞)
     (hP : ∀ m : Fin d →₀ ℕ, P.coeff m = if ∀ j, m j < n then coeff m S else 0) (w' : Fin d → Y) :
     MvPolynomial.aeval w' P = psum w' (box d n) S := by
@@ -493,6 +586,9 @@ theorem aeval_eq_psum_box {n : ℕ} {S : MvPowerSeries (Fin d) 𝓞} (P : MvPoly
     rw [MvPolynomial.notMem_support_iff.1 hm, ite_eq_left ((mem_box m).1 hmb)] at h0
     rw [← h0, zero_smul]
 
+/--
+@isnad1 id=mem.2h8v.s8.67c1eba53b04 from=translated src=- shape=ea1a9cfd vocab=aed3f12a
+-/
 theorem psum_sub_psum_mem {x : Fin d → Y} {S : MvPowerSeries (Fin d) 𝓞} {I : Ideal 𝓞} {B s : Finset (Fin d →₀ ℕ)}
     (hB : B ⊆ s) (h : ∀ m, m ∉ B → coeff m S ∈ I) :
     psum x s S - psum x B S ∈ I.map (algebraMap 𝓞 Y) := by
@@ -503,6 +599,9 @@ theorem psum_sub_psum_mem {x : Fin d → Y} {S : MvPowerSeries (Fin d) 𝓞} {I 
   exact Ideal.mul_mem_right _ _ (Ideal.mem_map_of_mem _ (h m (Finset.mem_sdiff.1 hm).2))
 
 omit [Algebra 𝓞 Y] in
+/--
+@isnad1 id=eq.0h5v.s8.7d9f20267107 from=translated src=- shape=8c701e22 vocab=0e33406d
+-/
 theorem monom_smul (c : Y) (t : Fin d → Y) (m : Fin d →₀ ℕ) :
     (m.prod fun s e => (c * t s) ^ e) = c ^ m.degree * m.prod fun s e => t s ^ e := by
   classical
@@ -511,6 +610,9 @@ theorem monom_smul (c : Y) (t : Fin d → Y) (m : Fin d →₀ ℕ) :
   rw [Finset.prod_pow_eq_pow_sum, Finsupp.degree]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.89118e3eaa52 from=translated src=- shape=85201df8 vocab=00095642
+-/
 theorem map_span_pow (p v : ℕ) : (Ideal.span {(p : 𝓞) ^ v}).map (algebraMap 𝓞 Y) = Ideal.span {(p : Y) ^ v} := by
   rw [Ideal.map_span, Set.image_singleton, map_pow, map_natCast]
 
@@ -526,6 +628,9 @@ noncomputable def Gpin (φi : MvPowerSeries (Fin d) 𝓞) (N : ℕ) : MvPowerSer
   if m.degree ≤ N then (p : 𝓞) ^ (N - m.degree) * coeff m φi
   else if h : (p : 𝓞) ^ (m.degree - N) ∣ coeff m φi then Classical.choose h else 0
 
+/--
+@isnad1 id=and.0h6v.s10.77d150c7e495 from=translated src=- shape=503b6e71 vocab=a90d9572
+-/
 theorem Gpin_spec (φi : MvPowerSeries (Fin d) 𝓞) (N : ℕ) (m : Fin d →₀ ℕ) :
     (m.degree ≤ N → (Gpin p φi N).coeff m = (p : 𝓞) ^ (N - m.degree) * φi.coeff m) ∧
     (N < m.degree → (Gpin p φi N).coeff m * (p : 𝓞) ^ (m.degree - N) = φi.coeff m ∨
@@ -578,6 +683,9 @@ variable {𝓞 : Type*} [CommRing 𝓞] (p : ℕ) [hp : Fact p.Prime] (hpR : (p 
     MvFormalGroup.adicEval (Ideal.span {(p : Y)}) ŷ G ∈ Ideal.span {(p : Y) ^ N})
 
 include hpR hFp hFp0 hφ0 hφT hφF hφint hŷ hw' hG in
+/--
+@isnad1 id=ex.10h10v.s12.42a842f12a60 from=translated src=- shape=57a8b174 vocab=83e17db5
+-/
 theorem main :
     ∃ n₀ : ℕ, ∀ n : ℕ, n₀ ≤ n → ∀ (i : Fin d) (P : MvPolynomial (Fin d) 𝓞),
       (∀ m : Fin d →₀ ℕ, P.coeff m = if ∀ j, m j < n then (φ i).coeff m else 0) →
@@ -700,6 +808,9 @@ open MvPowerSeries
 
 universe u w
 
+/--
+@isnad1 id=ex.10h10v.s12.18dea9d3d61e from=translated src=- shape=b5e4e336 vocab=14423fe4
+-/
 theorem solution
     {𝓞 : Type u} [CommRing 𝓞] (p : ℕ) [Fact p.Prime] (hp : (p : 𝓞) ∈ nonZeroDivisors 𝓞)
     {d : ℕ} (F : MvFormalGroup d 𝓞) [F.IsComm]

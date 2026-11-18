@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=ex.1h3v.s8.02da710d42db from=translated src=- shape=12b5a30c vocab=797e68fd
+-/
 theorem MvPolynomial.exists_skew_eq_sum_mul_X_of_sum_mul_X_eq_zero
     (B : Type*) [CommRing B] {m : ℕ} (c : Fin m → MvPolynomial (Fin m) B)
     (hc : ∑ j, c j * MvPolynomial.X j = 0) :

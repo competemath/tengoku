@@ -16,6 +16,9 @@ section BC
 variable {K L : Type*} [Field K] [CommRing L] [Algebra K L]
 variable {V : Type*} [AddCommGroup V] [Module K V]
 
+/--
+@isnad1 id=eq.0h7v.s11.8dd809d63a96 from=translated src=- shape=27be4fe6 vocab=66c85408
+-/
 theorem equivFinsuppOfBasisLeft_baseChange {ι' : Type*} [DecidableEq ι'] (ℬ : Basis ι' K L)
     (δ : V →ₗ[K] V) (w : L ⊗[K] V) :
     equivFinsuppOfBasisLeft ℬ (δ.baseChange L w) =
@@ -30,6 +33,9 @@ theorem equivFinsuppOfBasisLeft_baseChange {ι' : Type*} [DecidableEq ι'] (ℬ 
   | add x y hx hy =>
       rw [map_add, map_add, hx, hy, map_add, Finsupp.mapRange_add' (f := δ)]
 
+/--
+@isnad1 id=iff.0h8v.s10.49b181d36532 from=translated src=- shape=1bdb1095 vocab=0afc1f92
+-/
 theorem mem_iInf_ker_baseChange_iff {ι ι' : Type*} [DecidableEq ι'] (ℬ : Basis ι' K L)
     (δ : ι → V →ₗ[K] V) (w : L ⊗[K] V) :
     w ∈ (⨅ i, LinearMap.ker ((δ i).baseChange L)) ↔
@@ -48,6 +54,9 @@ theorem mem_iInf_ker_baseChange_iff {ι ι' : Type*} [DecidableEq ι'] (ℬ : Ba
     simp only [Finsupp.mapRange_apply, Finsupp.coe_zero, Pi.zero_apply]
     exact h b i
 
+/--
+@isnad1 id=iff.0h7v.s10.e14bfe59766a from=translated src=- shape=b9cd9e2a vocab=4dae64b5
+-/
 theorem mem_range_baseChange_subtype_iff {ι' : Type*} [DecidableEq ι'] (ℬ : Basis ι' K L)
     (E : Submodule K V) (w : L ⊗[K] V) :
     w ∈ LinearMap.range (E.subtype.baseChange L) ↔
@@ -69,6 +78,9 @@ theorem mem_range_baseChange_subtype_iff {ι' : Type*} [DecidableEq ι'] (ℬ : 
     refine Submodule.finsuppSum_mem _ _ _ _ fun b _ => ?_
     exact ⟨ℬ b ⊗ₜ[K] ⟨_, h b⟩, by rw [LinearMap.baseChange_tmul, Submodule.subtype_apply]⟩
 
+/--
+@isnad1 id=eq.0h5v.s11.83afe3a9918d from=translated src=- shape=5348417c vocab=17546c93
+-/
 theorem iInf_ker_baseChange_eq {ι : Type*} (δ : ι → V →ₗ[K] V) :
     (⨅ i, LinearMap.ker ((δ i).baseChange L)) =
       LinearMap.range ((⨅ i, LinearMap.ker (δ i)).subtype.baseChange L) := by
@@ -77,11 +89,17 @@ theorem iInf_ker_baseChange_eq {ι : Type*} (δ : ι → V →ₗ[K] V) :
   ext w
   rw [mem_iInf_ker_baseChange_iff ℬ, mem_range_baseChange_subtype_iff ℬ]
 
+/--
+@isnad1 id=injectiv.1h5v.s9.cbdf40bd8171 from=translated src=- shape=2e0da200 vocab=45894bfc
+-/
 theorem baseChange_injective {W : Type*} [AddCommGroup W] [Module K W] (f : W →ₗ[K] V)
     (hf : Function.Injective f) : Function.Injective (f.baseChange L) := by
   rw [LinearMap.baseChange_eq_ltensor]
   exact Module.Flat.lTensor_preserves_injective_linearMap f hf
 
+/--
+@isnad1 id=eq.0h5v.s11.ef19a17ef770 from=translated src=- shape=13c0fa7f vocab=9e8360f6
+-/
 theorem finrank_iInf_ker_baseChange [Nontrivial L] [Module.Finite K V] {ι : Type*} (δ : ι → V →ₗ[K] V) :
     finrank L ↥(⨅ i, LinearMap.ker ((δ i).baseChange L)) = finrank K ↥(⨅ i, LinearMap.ker (δ i)) := by
   rw [iInf_ker_baseChange_eq, LinearMap.finrank_range_of_inj (baseChange_injective _ (Submodule.injective_subtype _)),
@@ -114,10 +132,16 @@ def δ (a : A) : (X →ₗ[K] Y) →ₗ[K] (X →ₗ[K] Y) where
       map_smul, smul_sub]
 
 variable {A} in
+/--
+@isnad1 id=eq.0h7v.s10.9f56d6046c71 from=translated src=- shape=d204e93d vocab=6d68aa72
+-/
 theorem δ_apply (a : A) (f : X →ₗ[K] Y) (x : X) : δ K X Y a f x = f (a • x) - a • f x := rfl
 
 def inter : Submodule K (X →ₗ[K] Y) := ⨅ a : A, LinearMap.ker (δ K X Y a)
 
+/--
+@isnad1 id=iff.0h5v.s10.dbf44f08b14b from=translated src=- shape=b33261eb vocab=0ec97e10
+-/
 theorem mem_inter_iff (f : X →ₗ[K] Y) : f ∈ inter K A X Y ↔ ∀ (a : A) (x : X), f (a • x) = a • f x := by
   simp only [inter, Submodule.mem_iInf, LinearMap.mem_ker]
   refine forall_congr' fun a => ?_
@@ -153,6 +177,9 @@ def δL (a : A) : (L ⊗[K] X →ₗ[L] L ⊗[K] Y) →ₗ[L] (L ⊗[K] X →ₗ
 
 def interL : Submodule L (L ⊗[K] X →ₗ[L] L ⊗[K] Y) := ⨅ a : A, LinearMap.ker (δL K L X Y a)
 
+/--
+@isnad1 id=iff.0h6v.s12.5893d959494d from=translated src=- shape=7221e154 vocab=e25b65c6
+-/
 theorem mem_interL_iff (g : L ⊗[K] X →ₗ[L] L ⊗[K] Y) :
     g ∈ interL K L A X Y ↔ ∀ a : A, g ∘ₗ (ρ K a).baseChange L = (ρ K a).baseChange L ∘ₗ g := by
   simp only [interL, Submodule.mem_iInf, LinearMap.mem_ker]
@@ -161,6 +188,9 @@ theorem mem_interL_iff (g : L ⊗[K] X →ₗ[L] L ⊗[K] Y) :
 
 variable [Nontrivial L] [Module.Finite K X] [Module.Finite K Y]
 
+/--
+@isnad1 id=eq.0h5v.s12.16fe10f04b40 from=translated src=- shape=d753b1fa vocab=046b8871
+-/
 theorem finrank_interL_eq : finrank L (interL K L A X Y) = finrank K (inter K A X Y) := by
 
   let jX : IsBaseChange L (TensorProduct.mk K L X 1) := TensorProduct.isBaseChange K X L
@@ -209,6 +239,9 @@ variable (X : Type*) [AddCommGroup X] [Module A X] [Module K X] [IsScalarTower K
 
 include he in
 
+/--
+@isnad1 id=iff.1h8v.s13.bf5f21412cb9 from=translated src=- shape=1cb0a78c vocab=51c133e9
+-/
 theorem comp_mem_interL_iff (g : L ⊗[K] X →ₗ[L] L ⊗[K] M) :
     e.toLinearMap ∘ₗ g ∈ interL K L A X N ↔ g ∈ interL K L A X M := by
   have he' : ∀ a : A, e.toLinearMap ∘ₗ (ρ K a).baseChange L = (ρ K a).baseChange L ∘ₗ e.toLinearMap :=
@@ -226,6 +259,9 @@ theorem comp_mem_interL_iff (g : L ⊗[K] X →ₗ[L] L ⊗[K] M) :
 
 include he in
 
+/--
+@isnad1 id=nonempty.1h7v.s13.b02e4c13102b from=translated src=- shape=6c79d72e vocab=1d24ce18
+-/
 theorem nonempty_interL_equiv : Nonempty (interL K L A X M ≃ₗ[L] interL K L A X N) := by
   refine ⟨{ toFun := fun g => ⟨e.toLinearMap ∘ₗ g.1, (comp_mem_interL_iff K L A e he X g.1).2 g.2⟩
             invFun := fun g => ⟨e.symm.toLinearMap ∘ₗ g.1, (comp_mem_interL_iff K L A e he X _).1 ?_⟩
@@ -241,6 +277,9 @@ theorem nonempty_interL_equiv : Nonempty (interL K L A X M ≃ₗ[L] interL K L 
 
 include he in
 
+/--
+@isnad1 id=eq.1h7v.s12.bd6324ea8fab from=translated src=- shape=76ec87ca vocab=332655c7
+-/
 theorem natCard_linearMap_eq [Nontrivial L] [Module.Finite K M] [Module.Finite K N] [Module.Finite K X] :
     Nat.card (X →ₗ[A] M) = Nat.card (X →ₗ[A] N) := by
   obtain ⟨ε⟩ := nonempty_interL_equiv K L A e he X
@@ -251,6 +290,9 @@ theorem natCard_linearMap_eq [Nontrivial L] [Module.Finite K M] [Module.Finite K
 
 include K he in
 
+/--
+@isnad1 id=eq.1h7v.s12.76310500b2d7 from=translated src=- shape=c33f2f3d vocab=7bc035e9
+-/
 theorem natCard_linearMap_eq' [Nontrivial L] [Module.Finite K M] [Module.Finite K N]
     (X : Type*) [AddCommGroup X] [Module A X] [Finite X] :
     Nat.card (X →ₗ[A] M) = Nat.card (X →ₗ[A] N) := by
@@ -281,9 +323,15 @@ def kerFiberEquiv (U : Submodule A X) :
   left_inv f := Subtype.ext (U.liftQ_mkQ _ _)
   right_inv g := Subtype.ext (LinearMap.ext fun x => Submodule.Quotient.induction_on U x fun _ => rfl)
 
+/--
+@isnad1 id=finite.0h3v.s6.92568de827d2 from=translated src=- shape=2d7b4e13 vocab=bbc19664
+-/
 theorem finite_linearMap [Finite X] [Finite Y] : Finite (X →ₗ[A] Y) :=
   Finite.of_injective (fun f : X →ₗ[A] Y => (f : X → Y)) DFunLike.coe_injective
 
+/--
+@isnad1 id=eq.0h3v.s8.1edfad82788e from=translated src=- shape=ff24590b vocab=765ef199
+-/
 theorem natCard_linearMap_eq_sum [Finite X] [Finite Y] [Fintype (Submodule A X)] :
     Nat.card (X →ₗ[A] Y) =
       ∑ U : Submodule A X, Nat.card {g : X ⧸ U →ₗ[A] Y // Function.Injective g} := by
@@ -298,6 +346,9 @@ def injCongr {X' : Type*} [AddCommGroup X'] [Module A X'] (φ : X ≃ₗ[A] X') 
   left_inv g := Subtype.ext (LinearMap.ext fun x => by simp)
   right_inv g := Subtype.ext (LinearMap.ext fun x => by simp)
 
+/--
+@isnad1 id=lt.1h3v.s6.dd26d0f742d0 from=translated src=- shape=64e6e461 vocab=45518794
+-/
 theorem natCard_quotient_lt [Finite X] (U : Submodule A X) (hU : U ≠ ⊥) :
     Nat.card (X ⧸ U) < Nat.card X := by
   haveI : Finite (X ⧸ U) := Finite.of_surjective _ U.mkQ_surjective
@@ -312,6 +363,9 @@ end
 
 variable {M N : Type*} [AddCommGroup M] [Module A M] [AddCommGroup N] [Module A N] [Finite M] [Finite N]
 
+/--
+@isnad1 id=eq.2h5v.s8.1aae5d98d471 from=translated src=- shape=bda93523 vocab=7c27eba1
+-/
 theorem natCard_inj_eq
     (hH : ∀ (X : Type u) [AddCommGroup X] [Module A X] [Finite X],
       Nat.card (X →ₗ[A] M) = Nat.card (X →ₗ[A] N)) :
@@ -352,6 +406,9 @@ variable {A : Type*} [Ring A] [Algebra K A]
 variable {M N : Type*} [AddCommGroup M] [Module A M] [Module K M] [IsScalarTower K A M] [Module.Finite K M]
   [AddCommGroup N] [Module A N] [Module K N] [IsScalarTower K A N] [Module.Finite K N]
 
+/--
+@isnad1 id=nonempty.1h6v.s11.2b750d32c324 from=translated src=- shape=fbe6b208 vocab=8e930f28
+-/
 theorem nonempty_linearEquiv (e : L ⊗[K] M ≃ₗ[L] L ⊗[K] N)
     (he : ∀ (a : A) (x : L ⊗[K] M),
       e ((DistribSMul.toLinearMap K M a).baseChange L x) =
@@ -385,6 +442,9 @@ end Main
 end NoetherDeuringFinite
 
 open scoped TensorProduct in
+/--
+@isnad1 id=nonempty.1h6v.s11.560ef300d155 from=translated src=- shape=9b461525 vocab=8e930f28
+-/
 theorem solution
     (K : Type*) [Field K] [Finite K] (L : Type*) [CommRing L] [Nontrivial L] [Algebra K L]
     (A : Type*) [Ring A] [Algebra K A]

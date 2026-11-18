@@ -12,6 +12,9 @@ set_option maxHeartbeats 9600000
 
 open TensorProduct Polynomial
 
+/--
+@isnad1 id=ex.1h3v.s9.2e5bd60d75c1 from=translated src=- shape=a2845f5c vocab=39d49d73
+-/
 theorem solution
     {R : Type u} [CommRing R] (I : Ideal R) (hI : I ^ 2 = ⊥)
     (P : Type u) [AddCommGroup P] [Module (R ⧸ I) P]

@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Nat_macaulayPow_add_add_le_macaulayPow_add
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=le.4h5v.s7.1caa5c66295b from=translated src=- shape=0c853a95 vocab=644d85f7
+-/
 theorem Nat.macaulayPow_add_add_le_macaulayPow_add_of_le_add
     (d x y u v : ℕ) (hd : 1 ≤ d) (hx : x ≤ u + v)
     (hu : Nat.macaulayPow d u + y ≤ Nat.macaulayPow d y)

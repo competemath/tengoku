@@ -12,15 +12,24 @@ open Polynomial
 
 variable {A : Type*} [CommRing A]
 
+/--
+@isnad1 id=eq.0h5v.s7.e9a3c1d683f6 from=translated src=- shape=9326a9dd vocab=cbcba46a
+-/
 theorem ringHom_eval {R S : Type*} [CommRing R] [CommRing S] (g : R →+* S) (p : R[X]) (x : R) :
     g (p.eval x) = (p.map g).eval (g x) := by
   rw [Polynomial.eval_map, Polynomial.eval₂_at_apply]
 
+/--
+@isnad1 id=eq.1h4v.s6.b601db44af47 from=translated src=- shape=e4e131cd vocab=edcf062b
+-/
 theorem coeff_zero_eval_eq (H : Polynomial (Polynomial A)) (W W' : Polynomial A) (h : W.coeff 0 = W'.coeff 0) :
     (H.eval W).coeff 0 = (H.eval W').coeff 0 := by
   rw [← Polynomial.constantCoeff_apply, ← Polynomial.constantCoeff_apply, ringHom_eval, ringHom_eval,
     Polynomial.constantCoeff_apply, Polynomial.constantCoeff_apply W', h]
 
+/--
+@isnad1 id=ex.0h4v.s9.4c8d89e1ce1c from=translated src=- shape=ac83a1d3 vocab=97653030
+-/
 theorem eval_add_eq (H : Polynomial (Polynomial A)) (W y : Polynomial A) :
     ∃ Q : Polynomial A, H.eval (W + y) = H.eval W + H.derivative.eval W * y + y ^ 2 * Q := by
   set G := taylor W H with hG
@@ -39,6 +48,9 @@ theorem eval_add_eq (H : Polynomial (Polynomial A)) (W y : Polynomial A) :
   rw [hG, taylor_coeff_zero, taylor_coeff_one]
   simp only [eval_add, eval_mul, eval_C, eval_X, eval_pow]
 
+/--
+@isnad1 id=eq.2h6v.s9.cf5f7b947d9f from=translated src=- shape=1a74faee vocab=bf238ab6
+-/
 theorem coeff_eval_add_C_mul_X_pow (H : Polynomial (Polynomial A)) (W : Polynomial A) (c : A) (n : ℕ)
     (hn : 0 < n) (r : ℕ) (hr : r ≤ n) :
     (H.eval (W + C c * X ^ n)).coeff r =
@@ -57,6 +69,9 @@ theorem coeff_eval_add_C_mul_X_pow (H : Polynomial (Polynomial A)) (W : Polynomi
     · rw [ite_eq_right (by omega), ite_eq_right hrn]
   rw [h2, add_zero, h1]
 
+/--
+@isnad1 id=ex.2h4v.s9.7dbf166d78da from=translated src=- shape=370f95ca vocab=0317f9cb
+-/
 theorem exists_jet (F : Polynomial (Polynomial A)) (w₀ : A)
     (h0 : (F.eval (C w₀)).coeff 0 = 0) (hder : IsUnit ((F.derivative.eval (C w₀)).coeff 0)) (m : ℕ) :
     ∃ W : Polynomial A, W.coeff 0 = w₀ ∧ W.natDegree ≤ m ∧ ∀ r, r ≤ m → (F.eval W).coeff r = 0 := by
@@ -81,6 +96,9 @@ theorem exists_jet (F : Polynomial (Polynomial A)) (w₀ : A)
       · rw [ite_eq_right hrm, add_zero]
         exact hWr r (by omega)
 
+/--
+@isnad1 id=ex.2h4v.s10.91a4d6734f77 from=translated src=- shape=a3e44a4c vocab=926c2fe9
+-/
 theorem exists_jet_vec (F : Polynomial (Polynomial A)) (w₀ : A)
     (h0 : (F.eval (C w₀)).coeff 0 = 0) (hder : IsUnit ((F.derivative.eval (C w₀)).coeff 0)) (m : ℕ) :
     ∃ w : Fin (m + 1) → A, w 0 = w₀ ∧
@@ -95,6 +113,9 @@ theorem exists_jet_vec (F : Polynomial (Polynomial A)) (w₀ : A)
 
 end NewtonJet
 
+/--
+@isnad1 id=ex.2h4v.s10.91a4d6734f77 from=translated src=- shape=a3e44a4c vocab=926c2fe9
+-/
 theorem solution
     {A : Type*} [CommRing A] (F : Polynomial (Polynomial A)) (w₀ : A)
     (h0 : (F.eval (Polynomial.C w₀)).coeff 0 = 0)

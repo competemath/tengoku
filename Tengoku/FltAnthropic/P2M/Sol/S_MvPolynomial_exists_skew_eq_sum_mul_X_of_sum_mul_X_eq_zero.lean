@@ -16,6 +16,9 @@ open MvPolynomial
 
 universe u
 
+/--
+@isnad1 id=iff.0h3v.s8.48ba5e08f261 from=translated src=- shape=11a98adf vocab=45febaf9
+-/
 theorem mem_span_range_X_iff {σ : Type*} {R : Type*} [CommRing R] (p : MvPolynomial σ R) :
     p ∈ Ideal.span (Set.range (X : σ → MvPolynomial σ R)) ↔ constantCoeff p = 0 := by
   classical
@@ -34,6 +37,9 @@ theorem mem_span_range_X_iff {σ : Type*} {R : Type*} [CommRing R] (p : MvPolyno
     rw [mem_support_iff] at hm
     exact hm h
 
+/--
+@isnad1 id=ex.1h3v.s8.ccd1ae8ed431 from=translated src=- shape=7b4f5747 vocab=797e68fd
+-/
 theorem aux : ∀ (m : ℕ) (B : Type u) [CommRing B] (c : Fin m → MvPolynomial (Fin m) B),
     ∑ j, c j * X j = 0 →
     ∃ e : Fin m → Fin m → MvPolynomial (Fin m) B,
@@ -112,6 +118,9 @@ theorem aux : ∀ (m : ℕ) (B : Type u) [CommRing B] (c : Fin m → MvPolynomia
         rw [← he' j']
         ring
 
+/--
+@isnad1 id=ex.1h3v.s8.02da710d42db from=translated src=- shape=12b5a30c vocab=797e68fd
+-/
 theorem main (B : Type*) [CommRing B] {m : ℕ} (c : Fin m → MvPolynomial (Fin m) B)
     (hc : ∑ j, c j * MvPolynomial.X j = 0) :
     ∃ e : Fin m → Fin m → MvPolynomial (Fin m) B,
@@ -120,6 +129,9 @@ theorem main (B : Type*) [CommRing B] {m : ℕ} (c : Fin m → MvPolynomial (Fin
 
 end Ws23.K1
 
+/--
+@isnad1 id=ex.1h3v.s8.02da710d42db from=translated src=- shape=12b5a30c vocab=797e68fd
+-/
 theorem solution
     (B : Type*) [CommRing B] {m : ℕ} (c : Fin m → MvPolynomial (Fin m) B)
     (hc : ∑ j, c j * MvPolynomial.X j = 0) :

@@ -13,6 +13,9 @@ universe u
 
 namespace TorsorRank
 
+/--
+@isnad1 id=islocalr.1h3v.s7.56ea00c5e73d from=translated src=- shape=2285bf09 vocab=205272a1
+-/
 theorem isLocalRing_quotient_maximal_pow {R : Type*} [CommRing R] (m : Ideal R) [hm : m.IsMaximal] {n : ℕ}
     (hn : n ≠ 0) : IsLocalRing (R ⧸ m ^ n) := by
   have hsurj : Function.Surjective (Ideal.Quotient.mk (m ^ n)) := Ideal.Quotient.mk_surjective
@@ -39,6 +42,9 @@ theorem isLocalRing_quotient_maximal_pow {R : Type*} [CommRing R] (m : Ideal R) 
 end TorsorRank
 
 open TorsorRank in
+/--
+@isnad1 id=eq.0h5v.s9.52a3ba4fb7e1 from=translated src=- shape=b860c6f8 vocab=db15a416
+-/
 theorem solution
     {κ : Type u} [Field κ] {B C D : Type u} [CommRing B] [CommRing C] [Algebra κ B] [Algebra κ C]
     [Algebra B C] [IsScalarTower κ B C] [AddCommGroup D] [Module κ D]

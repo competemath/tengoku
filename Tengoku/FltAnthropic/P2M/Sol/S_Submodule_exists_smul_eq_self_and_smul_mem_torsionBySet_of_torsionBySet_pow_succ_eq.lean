@@ -11,11 +11,17 @@ namespace IdemAux
 
 variable {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
 
+/--
+@isnad1 id=iff.0h4v.s7.aa18a9ad40f0 from=translated src=- shape=4f5830d0 vocab=3dfc981d
+-/
 theorem mem_torsionBySet_ideal_iff (J : Ideal R) (x : M) :
     x ∈ Submodule.torsionBySet R M (J : Set R) ↔ ∀ a ∈ J, a • x = 0 := by
   rw [Submodule.mem_torsionBySet_iff, Subtype.forall]
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s8.51ec9f5c5e4e from=translated src=- shape=3ea13cf5 vocab=064d5f06
+-/
 theorem torsionBySet_pow_add_eq (I : Ideal R) (N : ℕ)
     (hN : Submodule.torsionBySet R M (↑(I ^ (N + 1)) : Set R) = Submodule.torsionBySet R M (↑(I ^ N) : Set R))
     (k : ℕ) :
@@ -44,6 +50,9 @@ theorem torsionBySet_pow_add_eq (I : Ideal R) (N : ℕ)
 
 end IdemAux
 
+/--
+@isnad1 id=ex.1h4v.s9.56aada550e70 from=translated src=- shape=723e58f9 vocab=cf1a3d0a
+-/
 theorem solution
     {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M] [Finite M]
     (I : Ideal R) (N : ℕ)

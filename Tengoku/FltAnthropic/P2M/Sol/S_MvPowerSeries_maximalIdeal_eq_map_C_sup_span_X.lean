@@ -16,6 +16,9 @@ open MvPowerSeries IsLocalRing
 
 variable {σ : Type u} {R : Type v} [CommRing R]
 
+/--
+@isnad1 id=eq.0h2v.s6.a4fab4979b4f from=translated src=- shape=643f6d6f vocab=e5cce57c
+-/
 theorem maximalIdeal_eq_comap [IsLocalRing R] :
     maximalIdeal (MvPowerSeries σ R) = (maximalIdeal R).comap (constantCoeff (σ := σ) (R := R)) := by
   ext φ
@@ -25,9 +28,15 @@ theorem maximalIdeal_eq_comap [IsLocalRing R] :
 def dropVar (i : σ) (φ : MvPowerSeries σ R) : MvPowerSeries σ R :=
   fun m => if m i = 0 then φ m else 0
 
+/--
+@isnad1 id=eq.0h5v.s8.f4efac325fe1 from=translated src=- shape=7afaa1ba vocab=9ef24526
+-/
 theorem coeff_dropVar (i : σ) (φ : MvPowerSeries σ R) (m : σ →₀ ℕ) :
     coeff m (dropVar i φ) = if m i = 0 then coeff m φ else 0 := rfl
 
+/--
+@isnad1 id=mem.1h3v.s7.3d27f2b782e0 from=translated src=- shape=7c3ef572 vocab=4a5fb7bd
+-/
 theorem mem_span_X_of_constantCoeff_eq_zero [Finite σ] (φ : MvPowerSeries σ R)
     (hφ : constantCoeff φ = 0) : φ ∈ Ideal.span (Set.range (X : σ → MvPowerSeries σ R)) := by
   classical
@@ -76,6 +85,9 @@ theorem mem_span_X_of_constantCoeff_eq_zero [Finite σ] (φ : MvPowerSeries σ R
     rw [this]
     exact Ideal.add_mem _ hrest (Ideal.mul_mem_right _ _ (Ideal.subset_span ⟨i, rfl⟩))
 
+/--
+@isnad1 id=eq.0h2v.s7.44efcfab6e84 from=translated src=- shape=a1f9c5b8 vocab=ea5fe6ea
+-/
 theorem maximalIdeal_eq_map_C_sup_span_X [Finite σ] [IsLocalRing R] :
     maximalIdeal (MvPowerSeries σ R) =
       (maximalIdeal R).map (C (σ := σ) (R := R)) ⊔
@@ -100,6 +112,9 @@ theorem maximalIdeal_eq_map_C_sup_span_X [Finite σ] [IsLocalRing R] :
 
 end M4cP4PS
 
+/--
+@isnad1 id=eq.0h2v.s7.a8ada51e30dc from=translated src=- shape=8a563aef vocab=ea5fe6ea
+-/
 theorem solution {σ : Type u} {R : Type v} [Finite σ]
     [CommRing R] [IsLocalRing R] :
     IsLocalRing.maximalIdeal (MvPowerSeries σ R) =

@@ -13,10 +13,16 @@ open Module
 
 namespace HTEND
 
+/--
+@isnad1 id=eq.0h5v.s7.656663e36cd2 from=translated src=- shape=b31e05f2 vocab=c26bd05d
+-/
 lemma smul_zpow_eq {C : Type*} [Field C] {G : Type*} [Monoid G] [MulSemiringAction G C]
     (σ : G) (y : C) (k : ℤ) : σ • y ^ k = (σ • y) ^ k :=
   map_zpow₀ (MulSemiringAction.toRingHom G C σ) y k
 
+/--
+@isnad1 id=mem.1h6v.s9.953bfd088fce from=translated src=- shape=cfdd5bce vocab=a4afcec0
+-/
 lemma sum_smul_mem_span_fixedPoints {C : Type*} [Field C] {G : Type*} [Monoid G]
     [MulSemiringAction G C] {W : Type*} [AddCommGroup W] [Module C W]
     {κ : Type*} [Fintype κ] (e : κ → W) (g : κ → C) (hg : ∀ (σ : G) (x : κ), σ • g x = g x) :
@@ -27,6 +33,9 @@ lemma sum_smul_mem_span_fixedPoints {C : Type*} [Field C] {G : Type*} [Monoid G]
   have := Submodule.smul_mem _ (⟨g x, fun σ => hg σ x⟩ : FixedPoints.subfield G C) hmem
   exact this
 
+/--
+@isnad1 id=eq.3h8v.s10.01502d4151b9 from=translated src=- shape=f665a80d vocab=e139f233
+-/
 lemma invariant_of_mem_span_fixedPoints {C : Type*} [Field C] {G : Type*} [Monoid G]
     [MulSemiringAction G C] {W : Type*} [AddCommGroup W] [Module C W]
     (ρ : G → W →+ W) (hρ : ∀ (σ : G) (c : C) (w : W), ρ σ (c • w) = (σ • c) • ρ σ w)
@@ -47,6 +56,9 @@ lemma invariant_of_mem_span_fixedPoints {C : Type*} [Field C] {G : Type*} [Monoi
 end HTEND
 
 open HTEND in
+/--
+@isnad1 id=ex.16h13v.s13.bcdfc82d3ada from=translated src=- shape=d4e625cc vocab=5cebda6d
+-/
 theorem solution
     {C : Type*} [Field C] [TopologicalSpace C] [IsTopologicalRing C]
     {G : Type*} [Monoid G] [TopologicalSpace G] [MulSemiringAction G C] (χ : G →* Cˣ)

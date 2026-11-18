@@ -15,6 +15,9 @@ variable {K : Type*} [Field K] [Infinite K]
 
 open Polynomial
 
+/--
+@isnad1 id=eq.1h3v.s6.2de6d293fc4f from=translated src=- shape=440c1303 vocab=9a5c879f
+-/
 theorem poly_eq_of_forall_ne_zero (p q : K[X]) (h : ∀ s : K, s ≠ 0 → p.eval s = q.eval s) : p = q := by
   have hinf : Set.Infinite {s : K | s ≠ 0} := by
     have : ({s : K | s ≠ 0}) = ({(0 : K)} : Set K)ᶜ := by ext; simp
@@ -83,6 +86,9 @@ theorem eq_X_pow_of_mul : ∀ (N : ℕ) (p : K[X]), p.natDegree ≤ N →
         · exact absurd h3 h0
         · linear_combination h3
 
+/--
+@isnad1 id=ex.3h3v.s8.186ea10356aa from=translated src=- shape=b5c27236 vocab=12f0bde9
+-/
 theorem exists_eq_prod_pow {ι : Type*} [Fintype ι] [DecidableEq ι] (g : (ι → K) → K)
     (hmul : ∀ y y' : ι → K, g (y * y') = g y * g y') (hone : g 1 = 1)
     (hpoly : ∀ i : ι, ∃ p : K[X], ∀ s : K, g (Function.update 1 i s) = p.eval s) :
@@ -129,6 +135,9 @@ def mulV {R : Type*} [CommRing R] (D c : R) (v w : Fin 4 → R) : Fin 4 → R :=
     v 0 * w 2 + v 2 * w 0 + D * (v 1 * w 3 + v 3 * w 1),
     v 0 * w 3 + v 3 * w 0 + v 1 * w 2 + v 2 * w 1]
 
+/--
+@isnad1 id=eq.0h7v.s8.abc251b24f70 from=translated src=- shape=7fe993d2 vocab=ed0856aa
+-/
 theorem map_mulV {R S : Type*} [CommRing R] [CommRing S] (φ : R →+* S) (D c : R) (v w : Fin 4 → R) :
     (fun i => φ (mulV D c v w i)) = mulV (φ D) (φ c) (fun i => φ (v i)) (fun i => φ (w i)) := by
   ext i
@@ -137,11 +146,17 @@ theorem map_mulV {R S : Type*} [CommRing R] [CommRing S] (φ : R →+* S) (D c :
 noncomputable def mulPoly (D c : ℚ) : Fin 4 → MvPolynomial (Fin 4 ⊕ Fin 4) ℚ :=
   mulV (MvPolynomial.C D) (MvPolynomial.C c) (fun i => MvPolynomial.X (Sum.inl i)) (fun i => MvPolynomial.X (Sum.inr i))
 
+/--
+@isnad1 id=eq.0h5v.s8.7c101c93ad84 from=translated src=- shape=1c3dde04 vocab=f539b144
+-/
 theorem aeval_mulPoly {S : Type*} [CommRing S] [Algebra ℚ S] (D c : ℚ) (x : Fin 4 ⊕ Fin 4 → S) (i : Fin 4) :
     MvPolynomial.aeval x (mulPoly D c i) =
       mulV (algebraMap ℚ S D) (algebraMap ℚ S c) (fun i => x (Sum.inl i)) (fun i => x (Sum.inr i)) i := by
   fin_cases i <;> simp [mulPoly, mulV]
 
+/--
+@isnad1 id=eq.2h7v.s9.f25806974ac0 from=translated src=- shape=e067a951 vocab=26ba8fab
+-/
 theorem aeval_mulV_eq {S : Type*} [CommRing S] [Algebra ℚ S] (D c : ℤ) (F : (Fin 4 → ℤ) → ℕ)
     (P : MvPolynomial (Fin 4) ℚ)
     (hF : ∀ v : Fin 4 → ℤ, (F v : ℚ) = MvPolynomial.eval (fun i => (v i : ℚ)) P)
@@ -181,6 +196,9 @@ theorem aeval_mulV_eq {S : Type*} [CommRing S] [Algebra ℚ S] (D c : ℤ) (F : 
     MvPolynomial.aeval_rename, sub_eq_zero] at this
   simpa only [aeval_mulPoly, Sum.elim_inl, Sum.elim_inr, Sum.elim_comp_inl, Sum.elim_comp_inr] using this
 
+/--
+@isnad1 id=eq.1h6v.s7.97731bc94b7a from=translated src=- shape=183a0db1 vocab=a761568f
+-/
 theorem eval_smul_of_isHomogeneous {σ R : Type*} [CommSemiring R] {φ : MvPolynomial σ R} {n : ℕ}
     (hφ : φ.IsHomogeneous n) (r : R) (x : σ → R) :
     MvPolynomial.eval (r • x) φ = r ^ n * MvPolynomial.eval x φ := by
@@ -190,11 +208,17 @@ theorem eval_smul_of_isHomogeneous {σ R : Type*} [CommSemiring R] {φ : MvPolyn
   refine congrArg _ (Finset.prod_congr rfl fun i _ => ?_)
   rw [Pi.smul_apply, smul_eq_mul, mul_pow]
 
+/--
+@isnad1 id=eq.1h3v.s8.b4970fd3af79 from=translated src=- shape=818165b4 vocab=e3f12acf
+-/
 theorem aeval_smul_real (P : MvPolynomial (Fin 4) ℚ) (hP : P.IsHomogeneous 4) (r : ℝ) (v : Fin 4 → ℝ) :
     MvPolynomial.aeval (r • v) P = r ^ 4 * MvPolynomial.aeval v P := by
   rw [MvPolynomial.aeval_def, MvPolynomial.aeval_def, ← MvPolynomial.eval_map, ← MvPolynomial.eval_map]
   exact eval_smul_of_isHomogeneous (hP.map _) r v
 
+/--
+@isnad1 id=eq.1h3v.s8.af092adf4fa2 from=translated src=- shape=7ae39b4f vocab=62d9c440
+-/
 theorem aeval_intCast (F : (Fin 4 → ℤ) → ℕ) (P : MvPolynomial (Fin 4) ℚ)
     (hF : ∀ v : Fin 4 → ℤ, (F v : ℚ) = MvPolynomial.eval (fun i => (v i : ℚ)) P) (z : Fin 4 → ℤ) :
     MvPolynomial.aeval (fun i => ((z i : ℤ) : ℝ)) P = (F z : ℝ) := by
@@ -223,33 +247,57 @@ noncomputable def xi (d e : ℝ) (y : Fin 4 → ℝ) : Fin 4 → ℝ :=
 
 variable {d e : ℝ}
 
+/--
+@isnad1 id=eq.0h4v.s7.65b9f029c403 from=translated src=- shape=cd9205ed vocab=8a2cb545
+-/
 theorem chi_apply (v : Fin 4 → ℝ) (i : Fin 4) :
     chi d e v i = v 0 + sgn1 i * d * v 1 + sgn2 i * e * v 2 + sgn1 i * sgn2 i * (d * e) * v 3 := rfl
 
+/--
+@isnad1 id=eq.2h3v.s5.7dcf2a93abdf from=translated src=- shape=7f296a64 vocab=2d7bfa3b
+-/
 theorem chi_xi (hd : d ≠ 0) (he : e ≠ 0) (y : Fin 4 → ℝ) : chi d e (xi d e y) = y := by
   ext i
   fin_cases i <;> simp [chi, xi, sgn1, sgn2] <;> field_simp <;> ring
 
+/--
+@isnad1 id=eq.2h3v.s5.b76d12a5cc2b from=translated src=- shape=7f296a64 vocab=2d7bfa3b
+-/
 theorem xi_chi (hd : d ≠ 0) (he : e ≠ 0) (v : Fin 4 → ℝ) : xi d e (chi d e v) = v := by
   ext i
   fin_cases i <;> simp [chi, xi, sgn1, sgn2] <;> field_simp <;> ring
 
+/--
+@isnad1 id=injectiv.2h2v.s5.8c07432d887c from=translated src=- shape=f5e030c2 vocab=7b9943b2
+-/
 theorem chi_injective (hd : d ≠ 0) (he : e ≠ 0) : Function.Injective (chi d e) :=
   Function.LeftInverse.injective (xi_chi hd he)
 
+/--
+@isnad1 id=eq.0h4v.s7.eeacf24e738d from=translated src=- shape=689cc85a vocab=91317875
+-/
 theorem chi_mulV (v w : Fin 4 → ℝ) : chi d e (mulV (d ^ 2) (e ^ 2) v w) = chi d e v * chi d e w := by
   ext i
   fin_cases i <;> simp [chi, mulV, sgn1, sgn2] <;> ring
 
+/--
+@isnad1 id=eq.2h4v.s7.78c9dd3a9cec from=translated src=- shape=d2861b3d vocab=10ef4955
+-/
 theorem xi_mul (hd : d ≠ 0) (he : e ≠ 0) (y y' : Fin 4 → ℝ) :
     xi d e (y * y') = mulV (d ^ 2) (e ^ 2) (xi d e y) (xi d e y') := by
   apply chi_injective hd he
   rw [chi_mulV, chi_xi hd he, chi_xi hd he, chi_xi hd he]
 
+/--
+@isnad1 id=eq.0h2v.s6.bac6775c968f from=translated src=- shape=0c265156 vocab=9a7c0e05
+-/
 theorem xi_one : xi d e 1 = ![1, 0, 0, 0] := by
   ext i
   fin_cases i <;> simp [xi]; ring
 
+/--
+@isnad1 id=eq.0h4v.s8.0cc33ad7d1eb from=translated src=- shape=73d0903d vocab=b35026bd
+-/
 theorem xi_update (i : Fin 4) (s : ℝ) :
     xi d e (Function.update 1 i s) = xi d e (Function.update 1 i 0) + s • xi d e (Pi.single i 1) := by
   ext j
@@ -261,30 +309,48 @@ section Values
 
 variable {d e : ℝ} (α : Fin 4 → ℕ)
 
+/--
+@isnad1 id=eq.0h4v.s7.7f925810dabd from=translated src=- shape=71dcf42d vocab=e84c4afa
+-/
 theorem cast_vec (a₀ a₁ a₂ a₃ : ℤ) :
     (fun i => ((![a₀, a₁, a₂, a₃] i : ℤ) : ℝ)) = ![(a₀ : ℝ), (a₁ : ℝ), (a₂ : ℝ), (a₃ : ℝ)] := by
   ext i; fin_cases i <;> simp
 
+/--
+@isnad1 id=eq.0h3v.s8.41431658f1ae from=translated src=- shape=21979d4b vocab=6f09b8bc
+-/
 theorem prod_chi_1100 : ∏ i, chi d e ![1, 1, 0, 0] i ^ α i = (1 + d) ^ (α 0 + α 1) * (1 - d) ^ (α 2 + α 3) := by
   simp only [Fin.prod_univ_four, chi_apply, sgn1, sgn2, pow_add]
   simp
   ring
 
+/--
+@isnad1 id=eq.0h3v.s8.f6e86ed8fbf4 from=translated src=- shape=8a4d0394 vocab=6f09b8bc
+-/
 theorem prod_chi_1010 : ∏ i, chi d e ![1, 0, 1, 0] i ^ α i = (1 + e) ^ (α 0 + α 2) * (1 - e) ^ (α 1 + α 3) := by
   simp only [Fin.prod_univ_four, chi_apply, sgn1, sgn2, pow_add]
   simp
   ring
 
+/--
+@isnad1 id=eq.0h4v.s8.f82dcd07d859 from=translated src=- shape=d247bfeb vocab=6f09b8bc
+-/
 theorem prod_chi_r001 (r : ℝ) :
     ∏ i, chi d e ![r, 0, 0, 1] i ^ α i = (r + d * e) ^ (α 0 + α 3) * (r - d * e) ^ (α 1 + α 2) := by
   simp only [Fin.prod_univ_four, chi_apply, sgn1, sgn2, pow_add]
   simp
   ring
 
+/--
+@isnad1 id=eq.0h3v.s8.bf307453f4c0 from=translated src=- shape=a7e5f3ac vocab=4e00a885
+-/
 theorem prod_chi_2000 : ∏ i, chi d e ((2 : ℝ) • ![1, 0, 0, 0]) i ^ α i = 2 ^ (α 0 + α 1 + α 2 + α 3) := by
   simp only [Fin.prod_univ_four, chi_apply, sgn1, sgn2, pow_add]
   simp
 
+/--
+@isnad1 id=eq.0h5v.s7.8e0168c15063 from=translated src=- shape=8a2ea24d vocab=734a56eb
+-/
 theorem chi_test (w : ℚ) (i j : Fin 4) :
     chi d e ![((w.num : ℤ) : ℝ), -sgn1 i * (w.den : ℝ), -sgn2 i * (w.den : ℝ), 0] j =
       (w.den : ℝ) * ((w : ℝ) - (sgn1 j * sgn1 i * d + sgn2 j * sgn2 i * e)) := by
@@ -293,12 +359,18 @@ theorem chi_test (w : ℚ) (i j : Fin 4) :
   simp [hw]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s6.ce043dc2047b from=translated src=- shape=34adc160 vocab=734a56eb
+-/
 theorem chi_test_self (w : ℚ) (i : Fin 4) :
     chi d e ![((w.num : ℤ) : ℝ), -sgn1 i * (w.den : ℝ), -sgn2 i * (w.den : ℝ), 0] i =
       (w.den : ℝ) * ((w : ℝ) - (d + e)) := by
   rw [chi_test]
   fin_cases i <;> simp [sgn1, sgn2]
 
+/--
+@isnad1 id=lt.3h5v.s7.26a7e401bc24 from=translated src=- shape=b48228ad vocab=88176beb
+-/
 theorem chi_test_pos (hd : 0 < d) (w : ℚ) (hw : |d - e| < (w : ℝ)) (i j : Fin 4) (hij : j ≠ i) :
     0 < chi d e ![((w.num : ℤ) : ℝ), -sgn1 i * (w.den : ℝ), -sgn2 i * (w.den : ℝ), 0] j := by
   rw [chi_test]
@@ -307,6 +379,9 @@ theorem chi_test_pos (hd : 0 < d) (w : ℚ) (hw : |d - e| < (w : ℝ)) (i j : Fi
   rw [abs_sub_lt_iff] at hw
   fin_cases i <;> fin_cases j <;> simp [sgn1, sgn2] at hij ⊢ <;> linarith
 
+/--
+@isnad1 id=ex.0h2v.s7.2db721da9545 from=translated src=- shape=b50637f8 vocab=9082c086
+-/
 theorem cast_test (w : ℚ) (i : Fin 4) : ∃ z : Fin 4 → ℤ,
     (fun j => ((z j : ℤ) : ℝ)) = ![((w.num : ℤ) : ℝ), -sgn1 i * (w.den : ℝ), -sgn2 i * (w.den : ℝ), 0] := by
   fin_cases i
@@ -317,6 +392,9 @@ theorem cast_test (w : ℚ) (i : Fin 4) : ∃ z : Fin 4 → ℤ,
 
 end Values
 
+/--
+@isnad1 id=eq.6h5v.s7.a203f3f20adf from=translated src=- shape=e8fcc6a2 vocab=54ad64c5
+-/
 theorem two_of_rat (x : ℝ) (hx : Irrational x) (X : ℚ) (hx2 : x ^ 2 = (X : ℝ))
     (A B : ℕ) (hA : Even A) (hB : Even B) (hAB : A + B = 4) (m : ℚ) (hm : (1 + x) ^ A * (1 - x) ^ B = (m : ℝ)) :
     A = 2 := by
@@ -351,6 +429,9 @@ theorem two_of_rat (x : ℝ) (hx : Irrational x) (X : ℚ) (hx2 : x ^ 2 = (X : �
     field_simp
     linarith
 
+/--
+@isnad1 id=or.7h4v.s8.90d82013d0c0 from=translated src=- shape=ce31b3f1 vocab=75425b7d
+-/
 theorem main (D c : ℤ) (hD : 0 < D) (hc : 0 < c)
     (F : (Fin 4 → ℤ) → ℕ) (P : MvPolynomial (Fin 4) ℚ) (hP : P.IsHomogeneous 4)
     (hF : ∀ v : Fin 4 → ℤ, (F v : ℚ) = MvPolynomial.eval (fun i => (v i : ℚ)) P)
@@ -527,6 +608,9 @@ theorem main (D c : ℤ) (hD : 0 < D) (hc : 0 < c)
 end P2mKcQuarticNorm
 
 open P2mKcQuarticNorm in
+/--
+@isnad1 id=or.7h4v.s10.3063881af901 from=translated src=- shape=af6830c9 vocab=f0ea8f5f
+-/
 theorem solution
     (D c : ℤ) (hD : 0 < D) (hc : 0 < c)
     (F : (Fin 4 → ℤ) → ℕ) (P : MvPolynomial (Fin 4) ℚ) (hP : P.IsHomogeneous 4)

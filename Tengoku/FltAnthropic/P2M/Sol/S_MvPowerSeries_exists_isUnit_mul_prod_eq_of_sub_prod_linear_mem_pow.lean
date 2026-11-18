@@ -14,6 +14,9 @@ open MvPowerSeries
 
 namespace TCHenselGC7
 
+/--
+@isnad1 id=ex.3h6v.s11.5d112187014c from=translated src=- shape=07a6659a vocab=f50147bc
+-/
 theorem aux {κ : Type u} [Field κ] (n : ℕ) :
     ∀ {ι : Type v} [Fintype ι] (a b : ι → κ), Fintype.card ι = n →
       (∀ i j : ι, i ≠ j → a i * b j - a j * b i ≠ 0) →
@@ -87,6 +90,9 @@ theorem aux {κ : Type u} [Field κ] (n : ℕ) :
 end TCHenselGC7
 
 open TCHenselGC7 in
+/--
+@isnad1 id=ex.2h5v.s11.cb202ca6160d from=translated src=- shape=d688ba64 vocab=f50147bc
+-/
 theorem solution
     {κ : Type u} [Field κ] {ι : Type v} [Fintype ι]
     (a b : ι → κ) (hab : ∀ i j : ι, i ≠ j → a i * b j - a j * b i ≠ 0)

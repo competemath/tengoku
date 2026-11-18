@@ -21,19 +21,34 @@ variable {A : Type*} [CommRing A] {M : Type*} [AddCommGroup M] [Module A M]
 
 def combo : (Fin n → A) →ₗ[A] M := ∑ i, (LinearMap.proj i).smulRight (x i)
 
+/--
+@isnad1 id=eq.0h5v.s8.e1e0053fbfc1 from=translated src=- shape=34f3b280 vocab=61e6c891
+-/
 theorem combo_apply (c : Fin n → A) : combo x c = ∑ i, c i • x i := by
   simp [combo, LinearMap.sum_apply, LinearMap.smulRight_apply]
 
+/--
+@isnad1 id=eq.1h6v.s9.7f778e59d215 from=translated src=- shape=c6c3cb63 vocab=41758449
+-/
 theorem combo_pi (hxφ : ∀ m : M, ∑ i, φ i m • x i = m) (m : M) : combo x (LinearMap.pi φ m) = m := by
   rw [combo_apply]
   simpa only [LinearMap.pi_apply] using hxφ m
 
+/--
+@isnad1 id=finite.1h5v.s8.3a4a5f830408 from=translated src=- shape=97eff413 vocab=02c1f492
+-/
 theorem finite_of_dualFamily (hxφ : ∀ m : M, ∑ i, φ i m • x i = m) : Module.Finite A M :=
   Module.Finite.of_surjective (combo x) fun m => ⟨LinearMap.pi φ m, combo_pi x φ hxφ m⟩
 
+/--
+@isnad1 id=projecti.1h5v.s8.0affda6b2381 from=translated src=- shape=97eff413 vocab=80dbd3d3
+-/
 theorem projective_of_dualFamily (hxφ : ∀ m : M, ∑ i, φ i m • x i = m) : Module.Projective A M :=
   Module.Projective.of_split (LinearMap.pi φ) (combo x) (LinearMap.ext fun m => combo_pi x φ hxφ m)
 
+/--
+@isnad1 id=eq.1h5v.s8.0db7c090d463 from=translated src=- shape=9ecebf35 vocab=136db3b4
+-/
 theorem sum_dual_apply_eq_finrank [Module.Free A M] [Module.Finite A M]
     (hxφ : ∀ m : M, ∑ i, φ i m • x i = m) :
     ∑ i, φ i (x i) = (Module.finrank A M : A) := by
@@ -49,6 +64,9 @@ end DualFamily
 
 end Ws23TR
 
+/--
+@isnad1 id=eq.2h6v.s8.67a8dd33f897 from=translated src=- shape=2c52aa8d vocab=ae5dffbd
+-/
 theorem solution
     {A : Type u} [CommRing A] {M : Type v} [AddCommGroup M] [Module A M]
     {n : ℕ} (x : Fin n → M) (φ : Fin n → (M →ₗ[A] A)) (hxφ : ∀ m : M, ∑ i, φ i m • x i = m)

@@ -11,6 +11,9 @@ namespace RC
 
 open Finset FormalMultilinearSeries
 
+/--
+@isnad1 id=ex.1h1v.s7.0ca3f62bf35d from=translated src=- shape=8570b029 vocab=b38b2863
+-/
 theorem inv_poly_series (D : Polynomial ℂ) (hD : D.eval 0 ≠ 0) :
     ∃ (c : ℕ → ℂ) (R : ℝ), 0 < R ∧ (∀ Y : ℂ, ‖Y‖ < R → D.eval Y ≠ 0) ∧
       ∀ Y : ℂ, ‖Y‖ < R → Summable (fun n => ‖c n * Y ^ n‖) ∧ ∑' n, c n * Y ^ n = (D.eval Y)⁻¹ := by
@@ -45,6 +48,9 @@ theorem inv_poly_series (D : Polynomial ℂ) (hD : D.eval 0 ≠ 0) :
   · rw [show (∑' n, (cauchyPowerSeries f 0 R).coeff n * Y ^ n) = ∑' n, cauchyPowerSeries f 0 R n fun _ => Y
         from tsum_congr fun n => (hterm n).symm, hsum.tsum_eq, zero_add]
 
+/--
+@isnad1 id=ex.0h1v.s8.9cf09bb6cad8 from=translated src=- shape=72054e57 vocab=de3ed48e
+-/
 theorem poly_decomp (P : MvPolynomial (Fin 2) ℂ) :
     ∃ (d : ℕ) (pc : ℕ → Polynomial ℂ), (∀ i, d < i → pc i = 0) ∧
       ∀ X Y : ℂ, MvPolynomial.eval ![X, Y] P = ∑ i ∈ range (d + 1), (pc i).eval X * Y ^ i := by
@@ -74,6 +80,9 @@ theorem poly_decomp (P : MvPolynomial (Fin 2) ℂ) :
       _ = ∑ s ∈ P.support, P.coeff s * (X ^ (s 0) * Y ^ (s 1)) := by
           refine Finset.sum_congr rfl fun s _ => ?_; ring
 
+/--
+@isnad1 id=and.1h3v.s8.57d9658f753c from=translated src=- shape=69fb782c vocab=66656fb2
+-/
 theorem rows (A : ℕ × ℕ → ℂ) (X z : ℂ)
     (hS : Summable fun m : ℕ × ℕ => ‖A m * X ^ m.1 * z ^ m.2‖) :
     (∀ j, Summable fun m₁ => ‖A (m₁, j) * X ^ m₁ * z ^ j‖) ∧
@@ -97,6 +106,9 @@ theorem rows (A : ℕ × ℕ → ℂ) (X z : ℂ)
   · simp_rw [← hinner]
     rw [hfib.tsum_eq, hswap]
 
+/--
+@isnad1 id=eq.4h3v.s7.24d1ac42cfcb from=translated src=- shape=8bfb71dd vocab=00c9bc0e
+-/
 theorem coeff_unique (a b : ℕ → ℂ) (ρ : ℝ) (hρ : 0 < ρ)
     (ha : ∀ z : ℂ, ‖z‖ < ρ → Summable fun n => ‖a n * z ^ n‖)
     (hb : ∀ z : ℂ, ‖z‖ < ρ → Summable fun n => ‖b n * z ^ n‖)
@@ -130,6 +142,9 @@ theorem coeff_unique (a b : ℕ → ℂ) (ρ : ℝ) (hρ : 0 < ρ)
 
 end RC
 open Finset in
+/--
+@isnad1 id=ex.3h5v.s9.21def9865573 from=translated src=- shape=04590f3c vocab=1b7454c3
+-/
 theorem solution
     (A : ℕ × ℕ → ℂ) (D₁ D₂ : Polynomial ℂ) (P : MvPolynomial (Fin 2) ℂ) (r : ℝ)
     (hD₂ : D₂.eval 0 ≠ 0) (hr : 0 < r)

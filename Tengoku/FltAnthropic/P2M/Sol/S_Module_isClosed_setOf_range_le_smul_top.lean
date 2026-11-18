@@ -7,6 +7,9 @@ namespace P2MW.S_Module_isClosed_setOf_range_le_smul_top
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=isclosed.0h4v.s8.ab4064cb58e7 from=translated src=- shape=12b89511 vocab=746a0628
+-/
 theorem solution
     {R : Type*} [CommRing R] {P Q : Type*} [AddCommGroup P] [Module R P] [AddCommGroup Q] [Module R Q]
     [Module.Finite R Q] [Module.Projective R Q] (f : P →ₗ[R] Q) :

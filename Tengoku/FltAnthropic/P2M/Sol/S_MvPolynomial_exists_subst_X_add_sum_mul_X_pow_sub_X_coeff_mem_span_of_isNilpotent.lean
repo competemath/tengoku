@@ -238,6 +238,9 @@ end Lift
 
 end AutFrob
 
+/--
+@isnad1 id=ex.2h4v.s10.44976ec6ce8a from=translated src=- shape=e78f7a18 vocab=46d65f5d
+-/
 theorem solution
     {𝓞 : Type u} [CommRing 𝓞] (p : ℕ) [Fact p.Prime]
     [Algebra 𝓞 (ZMod p)] (hker : RingHom.ker (algebraMap 𝓞 (ZMod p)) = Ideal.span {(p : 𝓞)})

@@ -25,6 +25,9 @@ variable {𝒪 : Type u} [CommRing 𝒪] {G : Type v} [CommGroup G]
 
 local notation "Λ" => MonoidAlgebra 𝒪 G
 
+/--
+@isnad1 id=mem.0h3v.s9.1cf7dca13c27 from=translated src=- shape=1d514e56 vocab=47838f29
+-/
 theorem sub_algebraMap_counit_mem (x : Λ) :
     x - algebraMap 𝒪 Λ (Coalgebra.counit (R := 𝒪) x) ∈
       Ideal.span (Set.range fun g : G => MonoidAlgebra.of 𝒪 G g - 1) := by
@@ -48,6 +51,9 @@ section PPow
 
 variable {p : ℕ} [Fact p.Prime]
 
+/--
+@isnad1 id=mem.1h5v.s9.5188d0b7bea2 from=translated src=- shape=43400241 vocab=69c9bf71
+-/
 theorem of_sub_one_pow_mem (g : G) (k : ℕ) (hg : g ^ p ^ k = 1) :
     (MonoidAlgebra.of 𝒪 G g - 1) ^ p ^ k ∈ Ideal.span {(p : Λ)} := by
   obtain ⟨r, hr⟩ := exists_add_pow_prime_pow_eq (Fact.out : p.Prime) (MonoidAlgebra.of 𝒪 G g) (-1) k
@@ -67,6 +73,9 @@ section Local
 
 variable [IsLocalRing 𝒪]
 
+/--
+@isnad1 id=isunit.1h3v.s8.0579baec0b8b from=translated src=- shape=e1c01cd3 vocab=67879246
+-/
 theorem isUnit_one_add_of_mem_map [Finite G] {m : Λ}
     (hm : m ∈ (maximalIdeal 𝒪).map (algebraMap 𝒪 Λ)) : IsUnit (1 + m) := by
 
@@ -85,6 +94,9 @@ theorem isUnit_one_add_of_mem_map [Finite G] {m : Λ}
 
 variable [Finite G] {p : ℕ} [Fact p.Prime]
 
+/--
+@isnad1 id=ex.2h3v.s9.827188f7b0f4 from=translated src=- shape=ada2d609 vocab=d2a75036
+-/
 theorem exists_pow_augIdeal_le (hp : (p : 𝒪) ∈ maximalIdeal 𝒪) (hG : IsPGroup p G) :
     ∃ N : ℕ, Ideal.span (Set.range fun g : G => MonoidAlgebra.of 𝒪 G g - 1) ^ N ≤
       (maximalIdeal 𝒪).map (algebraMap 𝒪 Λ) := by
@@ -98,6 +110,9 @@ theorem exists_pow_augIdeal_le (hp : (p : 𝒪) ∈ maximalIdeal 𝒪) (hG : IsP
     exact Ideal.mem_map_of_mem _ hp
   exact (Ideal.span_singleton_le_iff_mem _ |>.mpr hpmem) (of_sub_one_pow_mem g k hk)
 
+/--
+@isnad1 id=isunit.3h4v.s9.6917fc40a18a from=translated src=- shape=e539a054 vocab=47a6a490
+-/
 theorem isUnit_one_add_of_mem_augIdeal (hp : (p : 𝒪) ∈ maximalIdeal 𝒪) (hG : IsPGroup p G) {i : Λ}
     (hi : i ∈ Ideal.span (Set.range fun g : G => MonoidAlgebra.of 𝒪 G g - 1)) : IsUnit (1 + i) := by
   obtain ⟨N, hN⟩ := exists_pow_augIdeal_le (𝒪 := 𝒪) (G := G) hp hG
@@ -113,6 +128,9 @@ theorem isUnit_one_add_of_mem_augIdeal (hp : (p : 𝒪) ∈ maximalIdeal 𝒪) (
     exact isUnit_one_add_of_mem_map (Ideal.neg_mem_iff _ |>.mpr hiN)
   exact isUnit_of_mul_isUnit_left hu
 
+/--
+@isnad1 id=isunit.3h4v.s8.d00782ba5466 from=translated src=- shape=0f71d36c vocab=2aed6008
+-/
 theorem isUnit_of_counit_not_mem (hp : (p : 𝒪) ∈ maximalIdeal 𝒪) (hG : IsPGroup p G) {x : Λ}
     (hx : Coalgebra.counit (R := 𝒪) x ∉ maximalIdeal 𝒪) : IsUnit x := by
   set c := Coalgebra.counit (R := 𝒪) x
@@ -131,6 +149,9 @@ end Local
 end M4cP4R2L
 
 open M4cP4R2L IsLocalRing in
+/--
+@isnad1 id=islocalr.2h3v.s6.5f631012f015 from=translated src=- shape=552f68da vocab=cada2863
+-/
 theorem solution
     {𝒪 : Type u} [CommRing 𝒪] [IsLocalRing 𝒪] {p : ℕ} [Fact p.Prime]
     (hp : (p : 𝒪) ∈ IsLocalRing.maximalIdeal 𝒪)

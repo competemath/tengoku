@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=isnoethe.0h2v.s4.2581ed7f22fa from=translated src=- shape=65f277ad vocab=897e9348
+-/
 theorem MvPowerSeries.isNoetherianRing_fin_of_isNoetherianRing
     (R : Type u) [CommRing R] [IsNoetherianRing R] (n : ℕ) :
     IsNoetherianRing (MvPowerSeries (Fin n) R) := by exact @_root_.P2MW.S_MvPowerSeries_isNoetherianRing_fin_of_isNoetherianRing.solution R _ _ n

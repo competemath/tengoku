@@ -6,6 +6,9 @@ import Tengoku
 namespace P2MW.S_Submodule_span_fixedPoints_semilinear_eq_top
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.3h4v.s10.ab6da20838c0 from=translated src=- shape=72f4193b vocab=dd454ab8
+-/
 theorem solution
     (K L : Type*) [Field K] [Field L] [Algebra K L] [FiniteDimensional K L] [IsGalois K L]
     (V : Type*) [AddCommGroup V] [Module L V] [Module K V] [IsScalarTower K L V]

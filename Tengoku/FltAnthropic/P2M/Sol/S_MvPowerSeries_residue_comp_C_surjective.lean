@@ -16,6 +16,9 @@ open MvPowerSeries IsLocalRing
 
 variable {σ : Type u} {R : Type v} [CommRing R]
 
+/--
+@isnad1 id=eq.0h2v.s6.a4fab4979b4f from=translated src=- shape=643f6d6f vocab=e5cce57c
+-/
 theorem maximalIdeal_eq_comap [IsLocalRing R] :
     maximalIdeal (MvPowerSeries σ R) = (maximalIdeal R).comap (constantCoeff (σ := σ) (R := R)) := by
   ext φ
@@ -25,6 +28,9 @@ theorem maximalIdeal_eq_comap [IsLocalRing R] :
 def dropVar (i : σ) (φ : MvPowerSeries σ R) : MvPowerSeries σ R :=
   fun m => if m i = 0 then φ m else 0
 
+/--
+@isnad1 id=surjecti.0h2v.s8.84cf3dcdcaa4 from=translated src=- shape=f6ec3699 vocab=0812e674
+-/
 theorem residue_comp_C_surjective [IsLocalRing R] :
     Function.Surjective (⇑(residue (MvPowerSeries σ R)) ∘ ⇑(C (σ := σ) (R := R))) := by
   intro x
@@ -38,6 +44,9 @@ theorem residue_comp_C_surjective [IsLocalRing R] :
 
 end M4cP4PS
 
+/--
+@isnad1 id=surjecti.0h2v.s8.84cf3dcdcaa4 from=translated src=- shape=f6ec3699 vocab=0812e674
+-/
 theorem solution {σ : Type u} {R : Type v} [CommRing R]
     [IsLocalRing R] :
     Function.Surjective (⇑(IsLocalRing.residue (MvPowerSeries σ R)) ∘ ⇑(MvPowerSeries.C (σ := σ) (R := R))) :=

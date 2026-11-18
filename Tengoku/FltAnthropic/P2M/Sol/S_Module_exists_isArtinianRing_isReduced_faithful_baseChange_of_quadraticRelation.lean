@@ -17,6 +17,9 @@ section Semisimple
 variable {K : Type} [Field K] [PerfectField K] {V : Type} [AddCommGroup V] [Module K V] [FiniteDimensional K V]
 
 omit [PerfectField K] [FiniteDimensional K V] in
+/--
+@isnad1 id=commute.3h5v.s10.a0a2e1ca9023 from=translated src=- shape=cf5dd4ec vocab=6e06c21a
+-/
 theorem commute_of_mem_adjoin {s : Set (Module.End K V)} (hcomm : ∀ x ∈ s, ∀ y ∈ s, x * y = y * x)
     {x y : Module.End K V} (hx : x ∈ Algebra.adjoin K s) (hy : y ∈ Algebra.adjoin K s) : Commute x y := by
   have h1 := Algebra.adjoin_le_centralizer_centralizer K s hx
@@ -28,6 +31,9 @@ theorem commute_of_mem_adjoin {s : Set (Module.End K V)} (hcomm : ∀ x ∈ s, �
   rw [Subalgebra.mem_centralizer_iff] at h1
   exact (h1 y h2).symm
 
+/--
+@isnad1 id=issemisi.3h4v.s9.3f7ab9a265cd from=translated src=- shape=e7be9962 vocab=dee8cbad
+-/
 theorem isSemisimple_of_mem_adjoin {s : Set (Module.End K V)}
     (hcomm : ∀ x ∈ s, ∀ y ∈ s, x * y = y * x) (hs : ∀ x ∈ s, Module.End.IsSemisimple x)
     {a : Module.End K V} (ha : a ∈ Algebra.adjoin K s) : a.IsSemisimple := by
@@ -39,6 +45,9 @@ theorem isSemisimple_of_mem_adjoin {s : Set (Module.End K V)}
   | add x y hx hy ihx ihy => exact Module.End.IsSemisimple.add_of_commute (commute_of_mem_adjoin hcomm hx hy) ihx ihy
   | mul x y hx hy ihx ihy => exact Module.End.IsSemisimple.mul_of_commute (commute_of_mem_adjoin hcomm hx hy) ihx ihy
 
+/--
+@isnad1 id=isreduce.2h3v.s10.e03ab1f2f128 from=translated src=- shape=a039c940 vocab=a14538d2
+-/
 theorem isReduced_adjoin {s : Set (Module.End K V)}
     (hcomm : ∀ x ∈ s, ∀ y ∈ s, x * y = y * x) (hs : ∀ x ∈ s, Module.End.IsSemisimple x) :
     IsReduced (Algebra.adjoin K s) := by
@@ -54,6 +63,9 @@ end Semisimple
 
 section Radical
 
+/--
+@isnad1 id=dvd.1h3v.s6.cc8d8ca3315e from=translated src=- shape=94191d2e vocab=e5de31ee
+-/
 theorem multiset_prod_dvd_pow {A : Type} [CommMonoid A] (r : A) :
     ∀ m : Multiset A, (∀ q ∈ m, q ∣ r) → m.prod ∣ r ^ Multiset.card m := by
   intro m
@@ -64,6 +76,9 @@ theorem multiset_prod_dvd_pow {A : Type} [CommMonoid A] (r : A) :
     rw [Multiset.prod_cons, Multiset.card_cons, pow_succ']
     exact mul_dvd_mul (h a (Multiset.mem_cons_self a m)) (ih fun q hq => h q (Multiset.mem_cons_of_mem hq))
 
+/--
+@isnad1 id=ex.1h2v.s8.73ac388daf6b from=translated src=- shape=3f888362 vocab=b50022a0
+-/
 theorem exists_squarefree_dvd_pow {K : Type} [Field K] {p : K[X]} (hp : p ≠ 0) :
     ∃ q : K[X], Squarefree q ∧ ∃ n : ℕ, p ∣ q ^ n := by
   classical
@@ -111,6 +126,9 @@ noncomputable def theta : Module.End R Y →+* Module.End K (Mloc 𝒪 K Y) wher
     show ((f + g).restrictScalars 𝒪).baseChange K = _
     rw [LinearMap.restrictScalars_add, LinearMap.baseChange_add]
 
+/--
+@isnad1 id=eq.0h7v.s10.b131687fa349 from=translated src=- shape=e8778f1c vocab=4df63ae2
+-/
 theorem theta_tmul (f : Module.End R Y) (a : K) (y : Y) :
     theta 𝒪 K R Y f (a ⊗ₜ[𝒪] y) = a ⊗ₜ[𝒪] f y := rfl
 
@@ -119,9 +137,15 @@ variable (𝒪 K R Y) in
 noncomputable def rho : R →+* Module.End K (Mloc 𝒪 K Y) :=
   (theta 𝒪 K R Y).comp (algebraMap R (Module.End R Y))
 
+/--
+@isnad1 id=eq.0h7v.s10.9be53d4fdb59 from=translated src=- shape=fa9a31c7 vocab=a3b2bc6f
+-/
 theorem rho_tmul (r : R) (a : K) (y : Y) :
     rho 𝒪 K R Y r (a ⊗ₜ[𝒪] y) = a ⊗ₜ[𝒪] (r • y) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.bb9908a6069a from=translated src=- shape=325d5b90 vocab=981e865e
+-/
 theorem rho_algebraMap (a : 𝒪) :
     rho 𝒪 K R Y (algebraMap 𝒪 R a)
       = algebraMap K (Module.End K (Mloc 𝒪 K Y)) (algebraMap 𝒪 K a) := by
@@ -130,6 +154,9 @@ theorem rho_algebraMap (a : 𝒪) :
   rw [rho_tmul, algebraMap_smul, Module.algebraMap_end_apply, TensorProduct.smul_tmul', algebraMap_smul,
     TensorProduct.smul_tmul]
 
+/--
+@isnad1 id=injectiv.0h3v.s10.e7feac2c069e from=translated src=- shape=9324d04c vocab=699c9723
+-/
 theorem mk_one_injective [Module.IsTorsionFree 𝒪 Y] :
     Function.Injective (TensorProduct.mk 𝒪 K Y 1) := by
   rw [← LinearMap.ker_eq_bot, Submodule.eq_bot_iff]
@@ -139,6 +166,9 @@ theorem mk_one_injective [Module.IsTorsionFree 𝒪 Y] :
     (TensorProduct.mk 𝒪 K Y 1)).mp hy
   exact (smul_eq_zero_iff_right (nonZeroDivisors.coe_ne_zero s)).mp hs
 
+/--
+@isnad1 id=injectiv.1h4v.s10.bb659e6b507d from=translated src=- shape=48b12768 vocab=5149837c
+-/
 theorem rho_injective [Module.IsTorsionFree 𝒪 Y] (hfaith : ∀ x : R, (∀ y : Y, x • y = 0) → x = 0) :
     Function.Injective (rho 𝒪 K R Y) := by
   intro r r' h
@@ -149,6 +179,9 @@ theorem rho_injective [Module.IsTorsionFree 𝒪 Y] (hfaith : ∀ x : R, (∀ y 
   rw [rho_tmul] at h1
   exact mk_one_injective (by simpa using h1)
 
+/--
+@isnad1 id=issemisi.1h5v.s10.4afa8e8a9b0e from=translated src=- shape=8beb26a8 vocab=d9117745
+-/
 theorem isSemisimple_rho [CharZero 𝒪] [Module.Finite 𝒪 R] [IsReduced R] [Module.Finite 𝒪 Y]
     [Module.IsTorsionFree 𝒪 Y]
     (hfaith : ∀ x : R, (∀ y : Y, x • y = 0) → x = 0) (r : R) :
@@ -220,6 +253,9 @@ variable (𝒪 K R Y) in
 noncomputable def Dt (D : Δ →* Module.End R Y) : Δ →* Aend 𝒪 K Y :=
   (theta 𝒪 K R Y : Module.End R Y →* Aend 𝒪 K Y).comp D
 
+/--
+@isnad1 id=eq.0h7v.s10.4dc96bc97431 from=translated src=- shape=a9f292c7 vocab=7922464a
+-/
 theorem Dt_apply (D : Δ →* Module.End R Y) (d : Δ) : Dt 𝒪 K R Y D d = theta 𝒪 K R Y (D d) := rfl
 
 variable (𝒪 K R Y) in
@@ -227,6 +263,9 @@ variable (𝒪 K R Y) in
 def genSet (D : Δ →* Module.End R Y) : Set (Aend 𝒪 K Y) :=
   Set.range (rho 𝒪 K R Y) ∪ Set.range (Dt 𝒪 K R Y D)
 
+/--
+@isnad1 id=eq.2h8v.s9.9d65c1542778 from=translated src=- shape=7bbcba48 vocab=04330c84
+-/
 theorem genSet_comm (D : Δ →* Module.End R Y) :
     ∀ x ∈ genSet 𝒪 K R Y D, ∀ y ∈ genSet 𝒪 K R Y D, x * y = y * x := by
   have hρD : ∀ (r : R) (d : Δ), rho 𝒪 K R Y r * Dt 𝒪 K R Y D d = Dt 𝒪 K R Y D d * rho 𝒪 K R Y r := by
@@ -253,12 +292,21 @@ noncomputable instance kS_ring (D : Δ →* Module.End R Y) : Ring (kS 𝒪 K R 
       (commute_of_mem_adjoin (genSet_comm D) (by have h := a.2; unfold kS at h; exact h)
         (by have h := b.2; unfold kS at h; exact h)) }
 
+/--
+@isnad1 id=mem.0h7v.s11.f9c9299ca776 from=translated src=- shape=15dd184c vocab=da6a9139
+-/
 theorem rho_mem_kS (D : Δ →* Module.End R Y) (r : R) : rho 𝒪 K R Y r ∈ kS 𝒪 K R Y D := by
   unfold kS; exact Algebra.subset_adjoin (Or.inl ⟨r, rfl⟩)
 
+/--
+@isnad1 id=mem.0h7v.s10.344f4d0fb3c6 from=translated src=- shape=9fff40f0 vocab=e1dee418
+-/
 theorem Dt_mem_kS (D : Δ →* Module.End R Y) (d : Δ) : Dt 𝒪 K R Y D d ∈ kS 𝒪 K R Y D := by
   unfold kS; exact Algebra.subset_adjoin (Or.inr ⟨d, rfl⟩)
 
+/--
+@isnad1 id=eq.2h8v.s12.0b0c74140353 from=translated src=- shape=5da270f5 vocab=40686a97
+-/
 theorem comm_of_mem_kS (D : Δ →* Module.End R Y) (f : Module.End R Y) (hf : ∀ d, D d * f = f * D d)
     (x : Aend 𝒪 K Y) (hx : x ∈ kS 𝒪 K R Y D) : x * theta 𝒪 K R Y f = theta 𝒪 K R Y f * x := by
   have hmem : theta 𝒪 K R Y f ∈ Subalgebra.centralizer K (genSet 𝒪 K R Y D) := by
@@ -272,6 +320,9 @@ theorem comm_of_mem_kS (D : Δ →* Module.End R Y) (f : Module.End R Y) (hf : �
   rw [Subalgebra.mem_centralizer_iff] at hx'
   exact (hx' _ hmem).symm
 
+/--
+@isnad1 id=issemisi.2h4v.s7.5f55cc1f6bcd from=translated src=- shape=6c166361 vocab=72e83146
+-/
 theorem isSemisimple_of_pow_eq_one {K : Type} [Field K] [CharZero K] {V : Type} [AddCommGroup V] [Module K V]
     (f : Module.End K V) {n : ℕ} (hn : 0 < n) (hf : f ^ n = 1) : f.IsSemisimple := by
   have hsq : Squarefree (X ^ n - C (1 : K)) :=
@@ -279,6 +330,9 @@ theorem isSemisimple_of_pow_eq_one {K : Type} [Field K] [CharZero K] {V : Type} 
   apply Module.End.isSemisimple_of_squarefree_aeval_eq_zero hsq
   rw [map_sub, map_pow, aeval_X, aeval_C, map_one, hf, sub_self]
 
+/--
+@isnad1 id=isreduce.1h6v.s11.d70962d7e127 from=translated src=- shape=7a548295 vocab=64e767ae
+-/
 theorem isReduced_kS [CharZero 𝒪] [Module.Finite 𝒪 R] [IsReduced R] [Module.Finite 𝒪 Y] [Module.IsTorsionFree 𝒪 Y]
     [Finite Δ] (hfaith : ∀ x : R, (∀ y : Y, x • y = 0) → x = 0) (D : Δ →* Module.End R Y) :
     IsReduced (kS 𝒪 K R Y D) := by
@@ -297,6 +351,9 @@ end Assembly
 end BLRFaceE
 
 open BLRFaceE in
+/--
+@isnad1 id=ex.3h11v.s13.1c8a3c1ade77 from=translated src=- shape=78e3e5ad vocab=d082f7aa
+-/
 theorem BLRFaceE.main
     {𝒪 : Type} [CommRing 𝒪] [IsDomain 𝒪] [CharZero 𝒪] (K : Type) [Field K] [Algebra 𝒪 K] [IsFractionRing 𝒪 K]
     {R : Type} [CommRing R] [Algebra 𝒪 R] [Module.Finite 𝒪 R] [IsReduced R]
@@ -442,6 +499,9 @@ theorem BLRFaceE.main
     obtain ⟨⟨y, a⟩, hya⟩ := IsLocalizedModule.surj (nonZeroDivisors 𝒪) (TensorProduct.mk 𝒪 K Y 1) m
     exact ⟨a, nonZeroDivisors.coe_ne_zero a, y, hya.symm⟩
 
+/--
+@isnad1 id=ex.3h10v.s13.9fd0ad00c657 from=translated src=- shape=5f62d3c3 vocab=232ae357
+-/
 theorem solution
     {𝒪 : Type} [CommRing 𝒪] [IsDomain 𝒪] [CharZero 𝒪]
     {R : Type} [CommRing R] [Algebra 𝒪 R] [Module.Finite 𝒪 R] [IsReduced R]

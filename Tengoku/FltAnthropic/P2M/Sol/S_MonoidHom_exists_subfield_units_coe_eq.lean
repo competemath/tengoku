@@ -8,6 +8,9 @@ namespace P2MW.S_MonoidHom_exists_subfield_units_coe_eq
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.1h4v.s13.ce427ca655dd from=translated src=- shape=06f11306 vocab=0b216f99
+-/
 theorem solution
     {G : Type*} [Group G] {L : Type*} [Field L] (K : Subfield L)
     (F : G →* G →* Lˣ) (hF : ∀ α β : G, ((F α β : Lˣ) : L) ∈ K) :

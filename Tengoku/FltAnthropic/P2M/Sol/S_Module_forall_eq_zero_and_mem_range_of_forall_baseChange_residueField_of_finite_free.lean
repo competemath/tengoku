@@ -17,6 +17,9 @@ open IsLocalRing
 
 variable {R : Type u} [CommRing R] [IsLocalRing R]
 
+/--
+@isnad1 id=injectiv.2h6v.s12.75a95ddefe09 from=translated src=- shape=016f0a4d vocab=4ef1a63f
+-/
 theorem lTensor_liftQ_injective
     {A B C : Type u} [AddCommGroup A] [Module R A] [AddCommGroup B] [Module R B]
     [AddCommGroup C] [Module R C]
@@ -39,6 +42,9 @@ theorem lTensor_liftQ_injective
     LinearMap.ext fun a => (Submodule.Quotient.mk_eq_zero _).mpr (LinearMap.mem_range_self f a)
   rw [hq, LinearMap.lTensor_zero, LinearMap.zero_apply]
 
+/--
+@isnad1 id=free.3h4v.s12.0779bdc2ded7 from=translated src=- shape=6c60eb27 vocab=c8144a51
+-/
 theorem free_coker (K : ℕ → Type u) [∀ i, AddCommGroup (K i)] [∀ i, Module R (K i)]
     [∀ i, Module.Finite R (K i)] [∀ i, Module.Free R (K i)]
     (δ : ∀ i, K i →ₗ[R] K (i + 1)) (hdd : ∀ i, δ (i + 1) ∘ₗ δ i = 0)
@@ -60,6 +66,9 @@ theorem free_coker (K : ℕ → Type u) [∀ i, AddCommGroup (K i)] [∀ i, Modu
       (Submodule.mkQ_surjective _) ?_ (lTensor_liftQ_injective (δ i) (δ (i + 1)) hle (hS i))
     rw [LinearMap.exact_iff, Submodule.ker_mkQ, Submodule.range_liftQ]
 
+/--
+@isnad1 id=and.3h3v.s13.c0cf53eca9ef from=translated src=- shape=932ede5c vocab=55541c1f
+-/
 theorem main (K : ℕ → Type u) [∀ i, AddCommGroup (K i)] [∀ i, Module R (K i)]
     [∀ i, Module.Finite R (K i)] [∀ i, Module.Free R (K i)]
     (δ : ∀ i, K i →ₗ[R] K (i + 1)) (hdd : ∀ i, δ (i + 1) ∘ₗ δ i = 0)
@@ -92,6 +101,9 @@ theorem main (K : ℕ → Type u) [∀ i, AddCommGroup (K i)] [∀ i, Module R (
 
 end NakAcyclicPen
 
+/--
+@isnad1 id=and.4h4v.s13.6e0f7539db8a from=translated src=- shape=bd94b954 vocab=f9cc7f2d
+-/
 theorem solution
     (R : Type u) [CommRing R] [IsLocalRing R] (n : ℕ)
     (K : ℕ → Type u) [∀ i, AddCommGroup (K i)] [∀ i, Module R (K i)]

@@ -20,12 +20,18 @@ variable {R : Type*} [CommRing R] (S : Type*) [CommRing S] [Algebra R S]
 noncomputable def dualBC : S ⊗[R] Module.Dual R M →ₗ[S] Module.Dual S (S ⊗[R] M) :=
   (Module.Dual.baseChange S).liftBaseChange S
 
+/--
+@isnad1 id=eq.0h5v.s12.b57c03c014ae from=translated src=- shape=602393de vocab=d955a346
+-/
 theorem dualBC_tmul (s : S) (f : Module.Dual R M) :
     dualBC S M (s ⊗ₜ f) = s • f.baseChange S :=
   LinearMap.liftBaseChange_tmul ..
 
 variable {M} in
 
+/--
+@isnad1 id=eq.0h6v.s12.8401d69d5fd3 from=translated src=- shape=f50cedc9 vocab=b77dfb03
+-/
 theorem dualBC_natural (u : M →ₗ[R] N) (z : S ⊗[R] Module.Dual R N) :
     dualBC S M (u.dualMap.lTensor S z) = (dualBC S N z) ∘ₗ u.baseChange S := by
   induction z using TensorProduct.induction_on with
@@ -37,6 +43,9 @@ theorem dualBC_natural (u : M →ₗ[R] N) (z : S ⊗[R] Module.Dual R N) :
     intro a m
     simp [LinearMap.smul_comp]
 
+/--
+@isnad1 id=bijectiv.0h3v.s11.528ec6581c44 from=translated src=- shape=bb2e969d vocab=5a705d5c
+-/
 theorem dualBC_bijective_of_free [Module.Free R M] [Module.Finite R M] :
     Function.Bijective (dualBC (R := R) S M) := by
   have ibc := TensorProduct.isBaseChange R M S
@@ -60,6 +69,9 @@ theorem dualBC_bijective_of_free [Module.Free R M] [Module.Finite R M] :
   rw [heq]
   exact hd.equiv.bijective
 
+/--
+@isnad1 id=bijectiv.0h3v.s11.8d62efad599f from=translated src=- shape=bb2e969d vocab=624598db
+-/
 theorem dualBC_bijective_of_projective [Module.Projective R M] [Module.Finite R M] :
     Function.Bijective (dualBC (R := R) S M) := by
   obtain ⟨n, p, hp⟩ := Module.Finite.exists_fin' R M
@@ -94,6 +106,9 @@ variable {R : Type*} [CommRing R] (S : Type*) [CommRing S] [Algebra R S] [Module
 
 omit [Module.FaithfullyFlat R S] in
 
+/--
+@isnad1 id=bijectiv.1h5v.s9.7c6b0a3569b0 from=translated src=- shape=8c13fbd1 vocab=533e5088
+-/
 theorem bijective_of_lTensor_bijective [Module.FaithfullyFlat R S] {N P : Type*} [AddCommMonoid N]
     [Module R N] [AddCommMonoid P] [Module R P] (f : N →ₗ[R] P)
     (h : Function.Bijective (f.lTensor S)) : Function.Bijective f := by
@@ -101,6 +116,9 @@ theorem bijective_of_lTensor_bijective [Module.FaithfullyFlat R S] {N P : Type*}
   letI : AddCommGroup P := Module.addCommMonoidToAddCommGroup R
   exact (Module.FaithfullyFlat.lTensor_bijective_iff_bijective R S f).mp h
 
+/--
+@isnad1 id=finitepr.0h3v.s7.e6357ff83f97 from=translated src=- shape=8956969b vocab=0130effc
+-/
 theorem finitePresentation_of_faithfullyFlat [Module.FinitePresentation S (S ⊗[R] M)] :
     Module.FinitePresentation R M := by
   classical
@@ -125,6 +143,9 @@ theorem finitePresentation_of_faithfullyFlat [Module.FinitePresentation S (S ⊗
     Module.Finite.of_finite_tensorProduct_of_faithfullyFlat S
   exact Module.Finite.iff_fg.mp inferInstance
 
+/--
+@isnad1 id=projecti.0h3v.s8.ec50b5666251 from=translated src=- shape=0bdf209e vocab=17ba656a
+-/
 theorem projective_of_faithfullyFlat [Module.Finite S (S ⊗[R] M)]
     [Module.Projective S (S ⊗[R] M)] : Module.Projective R M := by
   haveI : Module.FinitePresentation S (S ⊗[R] M) :=
@@ -133,6 +154,9 @@ theorem projective_of_faithfullyFlat [Module.Finite S (S ⊗[R] M)]
   haveI : Module.Flat R M := Module.Flat.of_flat_tensorProduct R M S
   exact Module.Flat.projective_of_finitePresentation
 
+/--
+@isnad1 id=invertib.0h3v.s7.db72aee7bfc2 from=translated src=- shape=8956969b vocab=acbec33e
+-/
 theorem invertible_of_faithfullyFlat [Module.Invertible S (S ⊗[R] M)] :
     Module.Invertible R M := by
   haveI : Module.Projective R M := projective_of_faithfullyFlat S
@@ -178,6 +202,9 @@ end S17FF
 
 universe u v w
 
+/--
+@isnad1 id=invertib.0h3v.s7.db72aee7bfc2 from=translated src=- shape=8956969b vocab=acbec33e
+-/
 theorem solution
     {R : Type u} [CommRing R] (S : Type v) [CommRing S] [Algebra R S] [Module.FaithfullyFlat R S]
     {M : Type w} [AddCommGroup M] [Module R M]

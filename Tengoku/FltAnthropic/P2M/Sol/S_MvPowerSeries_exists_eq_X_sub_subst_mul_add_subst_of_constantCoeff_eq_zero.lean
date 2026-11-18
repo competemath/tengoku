@@ -13,9 +13,15 @@ namespace P2mTaylorDiv
 
 variable {k : Type*} [CommRing k]
 
+/--
+@isnad1 id=hassubst.0h1v.s6.0347e6b19ca6 from=translated src=- shape=1642b604 vocab=bcc13d1c
+-/
 theorem hasSubst_X_zero_zero : HasSubst ![(X 0 : MvPowerSeries (Fin 2) k), 0] :=
   hasSubst_of_constantCoeff_zero (fun s => by fin_cases s <;> simp)
 
+/--
+@isnad1 id=eq.0h2v.s9.2d17969d8ba9 from=translated src=- shape=22e63eba vocab=44136de9
+-/
 theorem prod_X_zero_zero (d : Fin 2 →₀ ℕ) :
     (d.prod fun s n => ((![(X 0 : MvPowerSeries (Fin 2) k), 0]) s) ^ n) =
       if d 1 = 0 then monomial d (1 : k) else 0 := by
@@ -33,6 +39,9 @@ theorem prod_X_zero_zero (d : Fin 2 →₀ ℕ) :
     rw [h1, pow_zero, mul_one, X_pow_eq, hd]
   · rw [zero_pow h1, mul_zero]
 
+/--
+@isnad1 id=eq.0h3v.s9.bffd96ce754d from=translated src=- shape=a65cded8 vocab=385fb58b
+-/
 theorem coeff_subst_X_zero_zero (F : MvPowerSeries (Fin 2) k) (e : Fin 2 →₀ ℕ) :
     coeff e (subst ![(X 0 : MvPowerSeries (Fin 2) k), 0] F) = if e 1 = 0 then coeff e F else 0 := by
   classical
@@ -47,12 +56,18 @@ theorem coeff_subst_X_zero_zero (F : MvPowerSeries (Fin 2) k) (e : Fin 2 →₀ 
     · rw [coeff_monomial_ne (Ne.symm hd), smul_zero]
     · rw [map_zero, smul_zero]
 
+/--
+@isnad1 id=dvd.0h2v.s8.8cf5f2410655 from=translated src=- shape=dd293798 vocab=993215e4
+-/
 theorem X_one_dvd_sub_subst (F : MvPowerSeries (Fin 2) k) :
     (X 1 : MvPowerSeries (Fin 2) k) ∣ F - subst ![(X 0 : MvPowerSeries (Fin 2) k), 0] F := by
   rw [X_dvd_iff]
   intro m hm
   rw [map_sub, coeff_subst_X_zero_zero, ite_eq_left hm, sub_self]
 
+/--
+@isnad1 id=eq.2h3v.s7.c3cd0659e170 from=translated src=- shape=c44c93e8 vocab=01613aa5
+-/
 theorem subst_subst_X_zero (φ : PowerSeries k) (a : Fin 2 → MvPowerSeries (Fin 2) k) (ha : HasSubst a)
     (h0 : a 0 = X 0) :
     subst a (PowerSeries.subst (X 0 : MvPowerSeries (Fin 2) k) φ) =
@@ -64,6 +79,9 @@ theorem subst_subst_X_zero (φ : PowerSeries k) (a : Fin 2 → MvPowerSeries (Fi
   funext u
   rw [subst_X ha, h0]
 
+/--
+@isnad1 id=eq.2h3v.s6.11bf59fa3550 from=translated src=- shape=de7143bd vocab=00dd0f92
+-/
 theorem vec2_ext {α : Type*} (a b : Fin 2 → α) (h0 : a 0 = b 0) (h1 : a 1 = b 1) : a = b := by
   funext s
   fin_cases s
@@ -74,6 +92,9 @@ end P2mTaylorDiv
 
 open P2mTaylorDiv in
 
+/--
+@isnad1 id=ex.1h3v.s9.571055920a92 from=translated src=- shape=cfe0b5e3 vocab=1ea1b7af
+-/
 theorem solution
     (k : Type*) [CommRing k] (φ : PowerSeries k) (hφ0 : PowerSeries.constantCoeff φ = 0)
     (G : MvPowerSeries (Fin 2) k) :

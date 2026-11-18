@@ -17,6 +17,9 @@ variable {σ : Type v}
 
 def BddExp (σ : Type v) (d : ℕ) : Type v := {α : σ →₀ ℕ // ∀ s, α s ≤ d}
 
+/--
+@isnad1 id=finite.0h2v.s3.ce88db9ad789 from=translated src=- shape=cf59a32c vocab=cce9046b
+-/
 scoped instance instFiniteBddExp [Finite σ] (d : ℕ) : Finite (BddExp σ d) := by
   classical
   refine Finite.of_injective (fun α : BddExp σ d => fun s : σ => (⟨α.1 s, Nat.lt_succ_of_le
@@ -32,6 +35,9 @@ noncomputable scoped instance instFintypeBddExp [Finite σ] (d : ℕ) : Fintype 
 
 abbrev Vars (σ : Type v) (d : ℕ) : Type v := BddExp σ d ⊕ BddExp σ d ⊕ Bool
 
+/--
+@isnad1 id=finite.0h2v.s3.7fa728d312aa from=translated src=- shape=cf59a32c vocab=c15c74ed
+-/
 scoped instance instFiniteVars [Finite σ] (d : ℕ) : Finite (Vars σ d) := by
   unfold Vars; infer_instance
 
@@ -64,19 +70,31 @@ noncomputable def readH {E : Type w} [CommRing E] (ψ : MvPolynomial (Vars σ d)
     MvPolynomial σ E :=
   ∑ b : BddExp σ d, monomial b.1 (ψ (X (Sum.inr (Sum.inl b))))
 
+/--
+@isnad1 id=eq.0h5v.s8.e83dd75e8227 from=translated src=- shape=23f871bf vocab=263f9498
+-/
 lemma map_genG {E : Type w} [CommRing E] (ψ : MvPolynomial (Vars σ d) R →+* E) :
     map ψ (genG (R := R) d) = readG ψ := by
   simp only [genG, readG, map_sum, map_monomial]
 
+/--
+@isnad1 id=eq.0h5v.s8.69a4a9785906 from=translated src=- shape=23f871bf vocab=1d4cd98c
+-/
 lemma map_genH {E : Type w} [CommRing E] (ψ : MvPolynomial (Vars σ d) R →+* E) :
     map ψ (genH (R := R) d) = readH ψ := by
   simp only [genH, readH, map_sum, map_monomial]
 
+/--
+@isnad1 id=eq.0h6v.s9.a90ceec7df93 from=translated src=- shape=1d5a00bf vocab=e47ed8a7
+-/
 lemma map_genRel {E : Type w} [CommRing E] (ψ : MvPolynomial (Vars σ d) R →+* E)
     (F : MvPolynomial σ R) :
     map ψ (genRel d F) = readG ψ * readH ψ - map (ψ.comp C) F := by
   simp only [genRel, map_sub, map_mul, map_genG, map_genH, map_map]
 
+/--
+@isnad1 id=eq.0h5v.s8.aa719839d6a0 from=translated src=- shape=dbbd0798 vocab=c78061bc
+-/
 lemma coeff_sum_monomial {E : Type w} [CommRing E] (c : BddExp σ d → E) (a : BddExp σ d) :
     (∑ b : BddExp σ d, monomial b.1 (c b) : MvPolynomial σ E).coeff a.1 = c a := by
   classical
@@ -90,14 +108,23 @@ lemma coeff_sum_monomial {E : Type w} [CommRing E] (c : BddExp σ d → E) (a : 
     exact hb (Subtype.ext h)
   · intro h; exact absurd (Finset.mem_univ a) h
 
+/--
+@isnad1 id=eq.0h6v.s7.9ee7fb5b09a6 from=translated src=- shape=862c59eb vocab=8028843c
+-/
 lemma coeff_readG {E : Type w} [CommRing E] (ψ : MvPolynomial (Vars σ d) R →+* E)
     (a : BddExp σ d) : (readG ψ).coeff a.1 = ψ (X (Sum.inl a)) :=
   coeff_sum_monomial _ a
 
+/--
+@isnad1 id=eq.0h6v.s7.0b22607b34f5 from=translated src=- shape=9612b07d vocab=3e249638
+-/
 lemma coeff_readH {E : Type w} [CommRing E] (ψ : MvPolynomial (Vars σ d) R →+* E)
     (b : BddExp σ d) : (readH ψ).coeff b.1 = ψ (X (Sum.inr (Sum.inl b))) :=
   coeff_sum_monomial _ b
 
+/--
+@isnad1 id=and.1h8v.s10.b88b04dc22df from=translated src=- shape=56abc889 vocab=70c17c56
+-/
 lemma factor_of_forall_mem_sysIdeal {E : Type w} [CommRing E]
     (ψ : MvPolynomial (Vars σ d) R →+* E) (F : MvPolynomial σ R) (a b : BddExp σ d)
     (hψ : ∀ p ∈ sysIdeal d F a b, ψ p = 0) :
@@ -138,6 +165,9 @@ lemma eq_sum_monomial_of_bdd {E : Type w} [CommRing E] (g : MvPolynomial σ E)
       intro h
       exact hm (h ▸ b.2)
 
+/--
+@isnad1 id=ex.5h12v.s10.0e9f21caec10 from=translated src=- shape=508e3170 vocab=954c6731
+-/
 lemma exists_hom_of_factor {E : Type w} [CommRing E] (φ : R →+* E) (F : MvPolynomial σ R)
     (g h : MvPolynomial σ E) (hg : ∀ m ∈ g.support, ∀ s, m s ≤ d)
     (hh : ∀ m ∈ h.support, ∀ s, m s ≤ d) (hgh : g * h = map φ F) (a b : BddExp σ d)
@@ -177,6 +207,9 @@ end System
 
 set_option backward.isDefEq.respectTransparency false in
 
+/--
+@isnad1 id=ex.1h3v.s9.be0f66d8df48 from=translated src=- shape=e27bce80 vocab=8c9f3e97
+-/
 theorem exists_C_mem_of_forall_exists_aeval_ne_zero
     {R : Type u} [CommRing R] [IsDomain R] {ι : Type v} [Finite ι]
     (J : Ideal (MvPolynomial ι R))
@@ -245,6 +278,9 @@ section Main
 
 variable {R : Type u} [CommRing R]
 
+/--
+@isnad1 id=ex.2h3v.s7.53a40131e4b7 from=translated src=- shape=13816cf6 vocab=c267139a
+-/
 lemma exists_coeff_ne_zero_of_not_isUnit {E : Type w} [Field E] {p : MvPolynomial σ E}
     (hp0 : p ≠ 0) (hp : ¬ IsUnit p) : ∃ m : σ →₀ ℕ, m ≠ 0 ∧ p.coeff m ≠ 0 := by
   classical
@@ -266,6 +302,9 @@ lemma exists_coeff_ne_zero_of_not_isUnit {E : Type w} [Field E] {p : MvPolynomia
     · subst hm; simp
     · rw [ite_eq_right (Ne.symm hm), hcon m hm]
 
+/--
+@isnad1 id=not.2h4v.s7.0d467464b1e7 from=translated src=- shape=8db3b5c5 vocab=5a601532
+-/
 lemma not_isUnit_of_coeff_ne_zero {E : Type w} [CommRing E] [IsReduced E] {p : MvPolynomial σ E}
     {m : σ →₀ ℕ} (hm : m ≠ 0) (h : p.coeff m ≠ 0) : ¬ IsUnit p := by
   classical
@@ -275,10 +314,16 @@ lemma not_isUnit_of_coeff_ne_zero {E : Type w} [CommRing E] [IsReduced E] {p : M
   rw [coeff_C, ite_eq_right (Ne.symm hm)] at h
   exact h rfl
 
+/--
+@isnad1 id=le.0h5v.s7.d4e6d0433451 from=translated src=- shape=e8466e67 vocab=3c0579d0
+-/
 lemma totalDegree_map_le {E : Type w} [CommRing E] (φ : R →+* E) (F : MvPolynomial σ R) :
     (map φ F).totalDegree ≤ F.totalDegree :=
   Finset.sup_mono (support_map_subset φ F)
 
+/--
+@isnad1 id=le.3h8v.s9.691b02ec899d from=translated src=- shape=3ba867dc vocab=7c8cbe1f
+-/
 lemma bdd_of_dvd {E : Type w} [Field E] {φ : R →+* E} {F : MvPolynomial σ R}
     {g : MvPolynomial σ E} (hg : g ∣ map φ F) (hF : map φ F ≠ 0) :
     ∀ m ∈ g.support, ∀ s, m s ≤ F.totalDegree := by
@@ -297,6 +342,9 @@ section Final
 
 set_option backward.isDefEq.respectTransparency false in
 
+/--
+@isnad1 id=ex.1h3v.s9.6226e799747b from=translated src=- shape=ac20a198 vocab=1531e356
+-/
 theorem bertiniNoether {R : Type u} [CommRing R] [IsDomain R] [Finite σ]
     (F : MvPolynomial σ R)
     (hF : Irreducible (map (algebraMap R (AlgebraicClosure (FractionRing R))) F)) :
@@ -384,6 +432,9 @@ open scoped _root_.P2MW.S_MvPolynomial_exists_ne_zero_and_forall_irreducible_map
 
 universe u v w
 
+/--
+@isnad1 id=ex.1h3v.s9.3251f7e00262 from=translated src=- shape=7428567c vocab=1531e356
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsDomain R] {σ : Type v} [Finite σ] (F : MvPolynomial σ R)
     (hF : Irreducible (MvPolynomial.map (algebraMap R (AlgebraicClosure (FractionRing R))) F)) :

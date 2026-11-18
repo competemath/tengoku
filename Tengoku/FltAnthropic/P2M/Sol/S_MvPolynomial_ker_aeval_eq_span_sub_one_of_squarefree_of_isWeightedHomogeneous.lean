@@ -16,10 +16,16 @@ section Top
 
 variable {σ K : Type*} [CommRing K] (w : σ → ℕ)
 
+/--
+@isnad1 id=le.1h5v.s7.a286aecc2852 from=translated src=- shape=3e1bc387 vocab=7322af3d
+-/
 lemma weight_le_of_coeff_ne_zero {φ : MvPolynomial σ K} {d : σ →₀ ℕ} (h : coeff d φ ≠ 0) :
     weight w d ≤ weightedTotalDegree w φ :=
   le_weightedTotalDegree w (mem_support_iff.2 h)
 
+/--
+@isnad1 id=iff.0h5v.s7.4f8af9e88014 from=translated src=- shape=c9fa13c2 vocab=7322af3d
+-/
 lemma weightedTotalDegree_le_iff {φ : MvPolynomial σ K} {n : ℕ} :
     weightedTotalDegree w φ ≤ n ↔ ∀ d, coeff d φ ≠ 0 → weight w d ≤ n := by
   rw [weightedTotalDegree, Finset.sup_le_iff]
@@ -28,14 +34,23 @@ lemma weightedTotalDegree_le_iff {φ : MvPolynomial σ K} {n : ℕ} :
 noncomputable def top (φ : MvPolynomial σ K) : MvPolynomial σ K :=
   weightedHomogeneousComponent w (weightedTotalDegree w φ) φ
 
+/--
+@isnad1 id=eq.0h5v.s8.bff5b8f252d4 from=translated src=- shape=b2bdcaae vocab=6aed46a7
+-/
 lemma coeff_top (φ : MvPolynomial σ K) (d : σ →₀ ℕ) :
     coeff d (top w φ) = if weight w d = weightedTotalDegree w φ then coeff d φ else 0 :=
   coeff_weightedHomogeneousComponent _ _ _
 
+/--
+@isnad1 id=isweight.0h4v.s5.4e4450baf8d1 from=translated src=- shape=373ab2fa vocab=cbd2758c
+-/
 lemma top_isWeightedHomogeneous (φ : MvPolynomial σ K) :
     (top w φ).IsWeightedHomogeneous w (weightedTotalDegree w φ) :=
   weightedHomogeneousComponent_isWeightedHomogeneous _ _
 
+/--
+@isnad1 id=ne.1h4v.s7.adac4e0090ac from=translated src=- shape=6c90c12d vocab=ddaed69f
+-/
 lemma top_ne_zero {φ : MvPolynomial σ K} (hφ : φ ≠ 0) : top w φ ≠ 0 := by
   classical
   obtain ⟨d, hd, hdeg⟩ :=
@@ -45,12 +60,18 @@ lemma top_ne_zero {φ : MvPolynomial σ K} (hφ : φ ≠ 0) : top w φ ≠ 0 := 
   rw [coeff_top, coeff_zero, ite_eq_left (by rw [weightedTotalDegree]; exact hdeg.symm)] at h1
   exact (mem_support_iff.1 hd) h1
 
+/--
+@isnad1 id=eq.2h5v.s6.cb7d862939c1 from=translated src=- shape=ba8e5070 vocab=26c88dfc
+-/
 lemma weightedTotalDegree_eq_of_isWeightedHomogeneous {φ : MvPolynomial σ K} {n : ℕ}
     (h : φ.IsWeightedHomogeneous w n) (hφ : φ ≠ 0) : weightedTotalDegree w φ = n := by
   have h1 := h.weighted_total_degree hφ
   rw [weightedTotalDegree_coe w φ hφ] at h1
   exact_mod_cast h1
 
+/--
+@isnad1 id=le.0h5v.s6.ce874fda800e from=translated src=- shape=a5ee7c8a vocab=db6b7df2
+-/
 lemma weightedTotalDegree_mul_le (φ ψ : MvPolynomial σ K) :
     weightedTotalDegree w (φ * ψ) ≤ weightedTotalDegree w φ + weightedTotalDegree w ψ := by
   classical
@@ -63,6 +84,9 @@ lemma weightedTotalDegree_mul_le (φ ψ : MvPolynomial σ K) :
   rw [← Finset.HasAntidiagonal.mem_antidiagonal.1 hp, map_add]
   exact add_le_add (weight_le_of_coeff_ne_zero w h1) (weight_le_of_coeff_ne_zero w h2)
 
+/--
+@isnad1 id=eq.1h6v.s8.2e86b67a16f6 from=translated src=- shape=bdd42014 vocab=4fcde64a
+-/
 lemma coeff_mul_of_weight_eq (φ ψ : MvPolynomial σ K) {d : σ →₀ ℕ}
     (hd : weight w d = weightedTotalDegree w φ + weightedTotalDegree w ψ) :
     coeff d (φ * ψ) = coeff d (top w φ * top w ψ) := by
@@ -83,6 +107,9 @@ lemma coeff_mul_of_weight_eq (φ ψ : MvPolynomial σ K) {d : σ →₀ ℕ}
 
 variable [IsDomain K]
 
+/--
+@isnad1 id=eq.2h5v.s7.609a2a3dfe52 from=translated src=- shape=88887052 vocab=88ad61f0
+-/
 lemma weightedTotalDegree_mul {φ ψ : MvPolynomial σ K} (hφ : φ ≠ 0) (hψ : ψ ≠ 0) :
     weightedTotalDegree w (φ * ψ) = weightedTotalDegree w φ + weightedTotalDegree w ψ := by
   classical
@@ -98,6 +125,9 @@ lemma weightedTotalDegree_mul {φ ψ : MvPolynomial σ K} (hφ : φ ≠ 0) (hψ 
   rw [← hwd]
   exact weight_le_of_coeff_ne_zero w hd
 
+/--
+@isnad1 id=eq.2h5v.s8.af7ff0338680 from=translated src=- shape=0f93c659 vocab=69996e27
+-/
 lemma top_mul {φ ψ : MvPolynomial σ K} (hφ : φ ≠ 0) (hψ : ψ ≠ 0) :
     top w (φ * ψ) = top w φ * top w ψ := by
   classical
@@ -117,6 +147,9 @@ variable {σ K : Type*} [CommRing K] (w : σ → ℕ) (ζ : K)
 noncomputable def rot : MvPolynomial σ K →ₐ[K] MvPolynomial σ K :=
   aeval fun i => C (ζ ^ w i) * X i
 
+/--
+@isnad1 id=eq.0h6v.s9.f8f22aef3917 from=translated src=- shape=a72a862f vocab=b163fe85
+-/
 lemma rot_monomial (d : σ →₀ ℕ) (c : K) :
     rot w ζ (monomial d c) = monomial d (c * ζ ^ weight w d) := by
   classical
@@ -134,6 +167,9 @@ lemma rot_monomial (d : σ →₀ ℕ) (c : K) :
     rw [← pow_mul, smul_eq_mul, mul_comm]
   rw [h1, ← mul_assoc, ← map_mul, C_mul_monomial, mul_one]
 
+/--
+@isnad1 id=eq.0h6v.s8.a99a712976b9 from=translated src=- shape=600ef5d1 vocab=104a107c
+-/
 lemma coeff_rot (φ : MvPolynomial σ K) (d : σ →₀ ℕ) :
     coeff d (rot w ζ φ) = ζ ^ weight w d * coeff d φ := by
   classical
@@ -145,6 +181,9 @@ lemma coeff_rot (φ : MvPolynomial σ K) (d : σ →₀ ℕ) :
     · rw [mul_zero]
   | add p q hp hq => rw [map_add, coeff_add, coeff_add, hp, hq, mul_add]
 
+/--
+@isnad1 id=eq.1h6v.s8.536c6bd1aca5 from=translated src=- shape=267e5483 vocab=6d996014
+-/
 lemma rot_of_isWeightedHomogeneous {φ : MvPolynomial σ K} {n : ℕ}
     (h : φ.IsWeightedHomogeneous w n) : rot w ζ φ = C (ζ ^ n) * φ := by
   classical
@@ -154,6 +193,9 @@ lemma rot_of_isWeightedHomogeneous {φ : MvPolynomial σ K} {n : ℕ}
   · simp [hd]
   · rw [h hd]
 
+/--
+@isnad1 id=eq.0h5v.s8.17094fc2f64b from=translated src=- shape=e7914a7b vocab=b812897a
+-/
 lemma constantCoeff_rot (φ : MvPolynomial σ K) :
     constantCoeff (rot w ζ φ) = constantCoeff φ := by
   show coeff 0 (rot w ζ φ) = coeff 0 φ
@@ -161,16 +203,25 @@ lemma constantCoeff_rot (φ : MvPolynomial σ K) :
 
 variable [IsDomain K]
 
+/--
+@isnad1 id=eq.1h5v.s8.9f256dae5701 from=translated src=- shape=12400ecc vocab=cce57319
+-/
 lemma support_rot (hζ : ζ ≠ 0) (φ : MvPolynomial σ K) : (rot w ζ φ).support = φ.support := by
   classical
   ext d
   rw [mem_support_iff, mem_support_iff, coeff_rot, mul_ne_zero_iff]
   exact ⟨fun h => h.2, fun h => ⟨pow_ne_zero _ hζ, h⟩⟩
 
+/--
+@isnad1 id=eq.1h5v.s8.3ad03f26d862 from=translated src=- shape=df633ee2 vocab=6a6de9de
+-/
 lemma weightedTotalDegree_rot (hζ : ζ ≠ 0) (φ : MvPolynomial σ K) :
     weightedTotalDegree w (rot w ζ φ) = weightedTotalDegree w φ := by
   simp only [weightedTotalDegree, support_rot w ζ hζ]
 
+/--
+@isnad1 id=eq.1h5v.s8.b782e5b55dd4 from=translated src=- shape=b2439e01 vocab=624a3bb5
+-/
 lemma top_rot (hζ : ζ ≠ 0) (φ : MvPolynomial σ K) :
     top w (rot w ζ φ) = C (ζ ^ weightedTotalDegree w φ) * top w φ := by
   classical
@@ -188,6 +239,9 @@ variable {K : Type*} [Field K]
 
 local notation "𝔴" => (![4, 6] : Fin 2 → ℕ)
 
+/--
+@isnad1 id=iff.0h1v.s8.76874d72e9e5 from=translated src=- shape=485b1ec9 vocab=cfb40ffa
+-/
 lemma weight_eq_zero_iff (d : Fin 2 →₀ ℕ) : weight 𝔴 d = 0 ↔ d = 0 := by
   constructor
   · intro h
@@ -211,6 +265,9 @@ lemma eq_C_of_weightedTotalDegree_eq_zero {φ : MvPolynomial (Fin 2) K}
     rw [Ne, weight_eq_zero_iff]
     exact Ne.symm hd
 
+/--
+@isnad1 id=irreduci.5h4v.s8.66fdaf3b03aa from=translated src=- shape=d2f2a1fe vocab=e7247301
+-/
 theorem irreducible_sub_one {N : ℕ} (hN : 0 < N) {ζ : K} (hζ : IsPrimitiveRoot ζ N)
     {A : MvPolynomial (Fin 2) K} (hA : A.IsWeightedHomogeneous 𝔴 N) (hsq : Squarefree A)
     (hA0 : A ≠ 0) : Irreducible (A - 1) := by
@@ -364,6 +421,9 @@ theorem irreducible_sub_one {N : ℕ} (hN : 0 < N) {ζ : K} (hζ : IsPrimitiveRo
 
 end Irred
 
+/--
+@isnad1 id=eq.8h6v.s10.419f026ab194 from=translated src=- shape=58eaf2a8 vocab=872db48c
+-/
 theorem main {K : Type*} [Field K] {N : ℕ} (hN : 0 < N) {ζ : K} (hζ : IsPrimitiveRoot ζ N)
     {Q R : PowerSeries K} (hQ0 : PowerSeries.constantCoeff Q = 1)
     (hR0 : PowerSeries.constantCoeff R = 1) (hQR : Q ^ 3 ≠ R ^ 2)
@@ -423,6 +483,9 @@ theorem main {K : Type*} [Field K] {N : ℕ} (hN : 0 < N) {ζ : K} (hζ : IsPrim
 
 end MvPolynomial.KerAevalIsobaricProof
 
+/--
+@isnad1 id=eq.8h6v.s10.419f026ab194 from=translated src=- shape=58eaf2a8 vocab=872db48c
+-/
 theorem solution
     {K : Type*} [Field K] {N : ℕ} (hN : 0 < N) {ζ : K} (hζ : IsPrimitiveRoot ζ N)
     {Q R : PowerSeries K} (hQ0 : PowerSeries.constantCoeff Q = 1)

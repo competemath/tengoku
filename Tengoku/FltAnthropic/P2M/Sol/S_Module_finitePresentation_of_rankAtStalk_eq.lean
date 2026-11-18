@@ -20,6 +20,9 @@ variable {R : Type*} [CommRing R] (S : Submonoid R) (A : Type*) [CommRing A] [Al
   [AddCommGroup Mₛ] [Module R Mₛ] [Module A Mₛ] [IsScalarTower R A Mₛ] (f : M →ₗ[R] Mₛ)
   [IsLocalizedModule S f]
 
+/--
+@isnad1 id=iff.0h7v.s9.4d118627b7ec from=translated src=- shape=ac01e4dc vocab=4f6a3905
+-/
 theorem localized'_eq_top_iff (N : Submodule R M) :
     N.localized' A S f = ⊤ ↔ ∀ x : M, ∃ t : S, (t : R) • x ∈ N := by
   constructor
@@ -39,6 +42,9 @@ theorem localized'_eq_top_iff (N : Submodule R M) :
     rw [IsLocalizedModule.mk'_eq_iff, map_smul, ← hxt, Submonoid.smul_def, Submonoid.smul_def,
       Submonoid.coe_mul, mul_smul]
 
+/--
+@isnad1 id=iff.0h7v.s8.7c21ae6d1bc7 from=translated src=- shape=90ee7697 vocab=345754db
+-/
 theorem localized'_eq_top_iff_subsingleton (N : Submodule R M) :
     N.localized' A S f = ⊤ ↔ Subsingleton (LocalizedModule S (M ⧸ N)) := by
   rw [localized'_eq_top_iff, LocalizedModule.subsingleton_iff]
@@ -61,6 +67,9 @@ section surjection
 variable {A : Type*} [CommRing A] {P : Type*} [AddCommGroup P] [Module A P]
   [Module.Finite A P] [Module.Flat A P] {n : ℕ}
 
+/--
+@isnad1 id=injectiv.2h4v.s8.c16affe79402 from=translated src=- shape=d1afc28f vocab=3622f50c
+-/
 theorem injective_of_surjective_of_rankAtStalk_eq
     (h : ∀ p : PrimeSpectrum A, rankAtStalk P p = n)
     (ψ : (Fin n → A) →ₗ[A] P) (hψ : Function.Surjective ψ) : Function.Injective ψ := by
@@ -88,6 +97,9 @@ theorem injective_of_surjective_of_rankAtStalk_eq
     (e.toLinearMap ∘ₗ LocalizedModule.map J.primeCompl ψ) (e.surjective.comp hsurj)
   exact fun x y hxy ↦ hinj (by simp [hxy])
 
+/--
+@isnad1 id=finitepr.2h4v.s8.f8b07b3b0e33 from=translated src=- shape=5edb13bb vocab=edb72a7a
+-/
 theorem finitePresentation_of_surjective_of_rankAtStalk_eq
     (h : ∀ p : PrimeSpectrum A, rankAtStalk P p = n)
     (ψ : (Fin n → A) →ₗ[A] P) (hψ : Function.Surjective ψ) : Module.FinitePresentation A P := by
@@ -102,6 +114,9 @@ section localToGlobal
 
 variable {R : Type u} [CommRing R] {M : Type v} [AddCommGroup M] [Module R M] [Module.Finite R M]
 
+/--
+@isnad1 id=finitepr.2h3v.s8.333d4a308689 from=translated src=- shape=7a6ed45e vocab=4ced699f
+-/
 theorem finitePresentation_of_localizationSpan (s : Set R) (hs : Ideal.span s = ⊤)
     (H : ∀ r : s, Module.FinitePresentation (Localization.Away (r : R))
       (LocalizedModule (Submonoid.powers (r : R)) M)) :
@@ -129,6 +144,9 @@ section mainProof
 variable {R : Type u} [CommRing R] {M : Type v} [AddCommGroup M] [Module R M]
   [Module.Finite R M] [Module.Flat R M] {n : ℕ}
 
+/--
+@isnad1 id=ex.1h4v.s8.ca150cf755b3 from=translated src=- shape=0294fbe2 vocab=b39ae968
+-/
 theorem exists_finitePresentation_away (h : ∀ p : PrimeSpectrum R, rankAtStalk M p = n)
     (p : PrimeSpectrum R) :
     ∃ r : R, r ∉ p.asIdeal ∧ Module.FinitePresentation (Localization.Away r)
@@ -185,6 +203,9 @@ section main
 variable {R : Type u} [CommRing R] {M : Type v} [AddCommGroup M] [Module R M]
   [Module.Finite R M] [Module.Flat R M] {n : ℕ}
 
+/--
+@isnad1 id=finitepr.1h3v.s6.945145bebfb8 from=translated src=- shape=c07ae3e3 vocab=8caf1d23
+-/
 theorem finitePresentation_of_rankAtStalk_eq (h : ∀ p : PrimeSpectrum R, rankAtStalk M p = n) :
     Module.FinitePresentation R M := by
   choose r hr hfp using exists_finitePresentation_away (M := M) h
@@ -199,6 +220,9 @@ end main
 
 end FPRank
 
+/--
+@isnad1 id=finitepr.1h3v.s6.945145bebfb8 from=translated src=- shape=c07ae3e3 vocab=8caf1d23
+-/
 theorem solution {R : Type u} [CommRing R]
     (M : Type v) [AddCommGroup M] [Module R M] [Module.Finite R M] [Module.Flat R M] (n : ℕ)
     (h : ∀ p : PrimeSpectrum R, Module.rankAtStalk M p = n) : Module.FinitePresentation R M :=

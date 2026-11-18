@@ -13,10 +13,16 @@ attribute [local instance] MvPolynomial.gradedAlgebra
 
 namespace K5ASOL
 
+/--
+@isnad1 id=eq.0h4v.s12.103688acf525 from=translated src=- shape=74025e42 vocab=296eca33
+-/
 theorem coe_decompose {σ A : Type} [CommRing A] (φ : MvPolynomial σ A) (i : ℕ) :
     ((DirectSum.decompose (homogeneousSubmodule σ A) φ) i : MvPolynomial σ A) = homogeneousComponent i φ :=
   MvPolynomial.decomposition.decompose'_apply φ i
 
+/--
+@isnad1 id=eq.1h6v.s9.f1b873f2fe2c from=translated src=- shape=cf54ee92 vocab=2140f051
+-/
 theorem homogeneousComponent_mul_of_mem_right {σ A : Type} [CommRing A] {e : ℕ} (a : MvPolynomial σ A)
     {g : MvPolynomial σ A} (hg : g ∈ homogeneousSubmodule σ A e) (d : ℕ) :
     homogeneousComponent d (a * g) = if e ≤ d then homogeneousComponent (d - e) a * g else 0 := by
@@ -28,6 +34,9 @@ end K5ASOL
 
 open K5ASOL in
 
+/--
+@isnad1 id=ex.3h5v.s9.a619ec4b02e6 from=translated src=- shape=c66e13f0 vocab=5021c9e3
+-/
 theorem solution
     {σ A : Type} [CommRing A] (J₀ : Set (MvPolynomial σ A))
     (hJ₀ : ∀ G ∈ J₀, ∃ e : ℕ, G.IsHomogeneous e)

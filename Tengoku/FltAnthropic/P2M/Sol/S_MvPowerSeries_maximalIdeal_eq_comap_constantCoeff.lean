@@ -16,6 +16,9 @@ open MvPowerSeries IsLocalRing
 
 variable {σ : Type u} {R : Type v} [CommRing R]
 
+/--
+@isnad1 id=eq.0h2v.s6.a4fab4979b4f from=translated src=- shape=643f6d6f vocab=e5cce57c
+-/
 theorem maximalIdeal_eq_comap [IsLocalRing R] :
     maximalIdeal (MvPowerSeries σ R) = (maximalIdeal R).comap (constantCoeff (σ := σ) (R := R)) := by
   ext φ
@@ -27,6 +30,9 @@ def dropVar (i : σ) (φ : MvPowerSeries σ R) : MvPowerSeries σ R :=
 
 end M4cP4PS
 
+/--
+@isnad1 id=eq.0h2v.s6.a4fab4979b4f from=translated src=- shape=643f6d6f vocab=e5cce57c
+-/
 theorem solution {σ : Type u} {R : Type v} [CommRing R]
     [IsLocalRing R] :
     IsLocalRing.maximalIdeal (MvPowerSeries σ R) =

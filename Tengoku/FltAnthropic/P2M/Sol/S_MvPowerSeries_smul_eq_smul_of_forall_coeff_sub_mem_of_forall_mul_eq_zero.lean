@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u w
 
+/--
+@isnad1 id=eq.2h6v.s9.36b50534142f from=translated src=- shape=8cfe8781 vocab=76db39d1
+-/
 theorem solution
     {R : Type u} [CommRing R] {τ : Type w} (M : Ideal R) (j : R) (hj : ∀ m ∈ M, m * j = 0)
     (g g' : MvPowerSeries τ R) (h : ∀ n, MvPowerSeries.coeff n g - MvPowerSeries.coeff n g' ∈ M) :

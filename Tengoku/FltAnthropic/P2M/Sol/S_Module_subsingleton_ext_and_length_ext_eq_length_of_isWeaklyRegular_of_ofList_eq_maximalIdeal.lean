@@ -44,6 +44,9 @@ noncomputable abbrev dL (hx : IsSMulRegular M x) (n : ℕ) :
     Ext N (ModuleCat.of R (QuotSMulTop x M)) n →ₗ[R] Ext N M (n + 1) :=
   postL hx.smulShortComplex_shortExact.extClass (rfl : n + 1 = n + 1)
 
+/--
+@isnad1 id=eq.1h6v.s9.ae2a1e56832e from=translated src=- shape=183199a6 vocab=f1a53205
+-/
 theorem comp_f_eq_zero (hN : x ∈ Module.annihilator R N) (n : ℕ) (e : Ext N M n) :
     e.comp (Ext.mk₀ (M.smulShortComplex x).f) (add_zero n) = 0 := by
   have h := Ext.postcomp_smul_id_eq_zero_of_mem_annihilator (M := M) hN n
@@ -53,6 +56,9 @@ theorem comp_f_eq_zero (hN : x ∈ Module.annihilator R N) (n : ℕ) (e : Ext N 
   simp at this
   exact this
 
+/--
+@isnad1 id=surjecti.2h5v.s14.001badaaf4db from=translated src=- shape=e49793a2 vocab=4fe2a9fd
+-/
 theorem dL_surjective (hx : IsSMulRegular M x) (hN : x ∈ Module.annihilator R N) (n : ℕ) :
     Function.Surjective (dL N M x hx n) := by
   intro e
@@ -60,12 +66,18 @@ theorem dL_surjective (hx : IsSMulRegular M x) (hN : x ∈ Module.annihilator R 
     (comp_f_eq_zero N M x hN (n + 1) e) rfl
   exact ⟨e₃, he₃⟩
 
+/--
+@isnad1 id=exact.1h5v.s14.2a1a76eb4cda from=translated src=- shape=043a556c vocab=057a697f
+-/
 theorem exact_gL_dL (hx : IsSMulRegular M x) (n : ℕ) :
     Function.Exact (gL N M x n) (dL N M x hx n) := by
   have := Ext.covariant_sequence_exact₃' N hx.smulShortComplex_shortExact n (n + 1) rfl
   rw [ShortComplex.ab_exact_iff_function_exact] at this
   exact this
 
+/--
+@isnad1 id=bijectiv.3h5v.s14.6201f0ebf539 from=translated src=- shape=62e68151 vocab=552b0a4c
+-/
 theorem dL_bijective (hx : IsSMulRegular M x) (hN : x ∈ Module.annihilator R N) (n : ℕ)
     (h0 : Subsingleton (Ext N M n)) : Function.Bijective (dL N M x hx n) := by
   refine ⟨?_, dL_surjective N M x hx hN n⟩
@@ -78,6 +90,9 @@ theorem dL_bijective (hx : IsSMulRegular M x) (hN : x ∈ Module.annihilator R N
 
 end Rees
 
+/--
+@isnad1 id=and.2h4v.s11.65852d72a998 from=translated src=- shape=cff99f0c vocab=02e0e6a0
+-/
 theorem ext_along_sequence (N : ModuleCat.{u} R) :
     ∀ (rs : List R) (M : ModuleCat.{u} R), IsWeaklyRegular M rs →
       (∀ r ∈ rs, r ∈ Module.annihilator R N) →
@@ -141,10 +156,16 @@ def Good (g : ℕ) (X : ModuleCat.{u} R) : Prop :=
 
 variable {R}
 
+/--
+@isnad1 id=good.1h5v.s5.d1e68f64eeb4 from=translated src=- shape=f254bc60 vocab=3a054170
+-/
 theorem good_of_iso {g : ℕ} {X X' : ModuleCat.{u} R} (e : X ≅ X') (h : Good R g X') : Good R g X := by
   refine ⟨fun i hi => (extCongrLeft e i).symm.toEquiv.subsingleton_congr.mpr (h.1 i hi), ?_⟩
   rw [← (extCongrLeft (Y := R₀ R) e g).length_eq, h.2, e.toLinearEquiv.length_eq]
 
+/--
+@isnad1 id=good.1h3v.s5.f2270f78d632 from=translated src=- shape=5f361411 vocab=03f6458b
+-/
 theorem good_zero {g : ℕ} {X : ModuleCat.{u} R} (h : Subsingleton X) : Good R g X := by
   have hz : Limits.IsZero X := ModuleCat.isZero_of_subsingleton X
   have hp := hz.hasProjectiveDimensionLT_zero
@@ -154,6 +175,9 @@ theorem good_zero {g : ℕ} {X : ModuleCat.{u} R} (h : Subsingleton X) : Good R 
   haveI := hall g
   rw [Module.length_eq_zero, Module.length_eq_zero]
 
+/--
+@isnad1 id=eq.0h1v.s6.901d41b1a803 from=translated src=- shape=0a69f6e7 vocab=60cefedd
+-/
 theorem length_κ : Module.length R (R ⧸ maximalIdeal R) = 1 := by
   haveI : IsSimpleModule R (R ⧸ maximalIdeal R) :=
     isSimpleModule_iff_quot_maximal.mpr ⟨maximalIdeal R, maximalIdeal.isMaximal R, ⟨LinearEquiv.refl R _⟩⟩
@@ -174,6 +198,9 @@ noncomputable def homκEquiv : ((R ⧸ maximalIdeal R) →ₗ[R] (R ⧸ maximalI
     conv_rhs => rw [h1, map_smul]
     simp [Algebra.smul_def, mul_comm]
 
+/--
+@isnad1 id=good.2h2v.s6.c840fa567d2f from=translated src=- shape=4f5f7e2c vocab=db12c86a
+-/
 theorem good_κ (rs : List R) (hreg : IsWeaklyRegular R rs)
     (hmax : Ideal.ofList rs = maximalIdeal R) : Good R rs.length (κ R) := by
   have hann : ∀ r ∈ rs, r ∈ Module.annihilator R (κ R) := by
@@ -208,6 +235,9 @@ theorem good_κ (rs : List R) (hreg : IsWeaklyRegular R rs)
     · exact HasProjectiveDimensionLT.subsingleton (κ R) (rs.length + 1) i h (R₀ R)
   · rw [etop'.length_eq, length_κ]
 
+/--
+@isnad1 id=good.3h3v.s7.483a26cbcb6d from=translated src=- shape=ab1a0ab2 vocab=eeb62d96
+-/
 theorem good_X₂ {g : ℕ} {S : ShortComplex (ModuleCat.{u} R)} (hS : S.ShortExact)
     (h1 : Good R g S.X₁) (h3 : Good R g S.X₃) : Good R g S.X₂ := by
 
@@ -264,6 +294,9 @@ theorem good_X₂ {g : ℕ} {S : ShortComplex (ModuleCat.{u} R)} (hS : S.ShortEx
       (ShortComplex.ShortExact.moduleCat_exact_iff_function_exact S).mp hS.exact
     rw [Module.length_eq_add_of_exact S.f.hom S.g.hom hf hg hfg, add_comm]
 
+/--
+@isnad1 id=isfinite.1h2v.s7.e0112c169590 from=translated src=- shape=56a62eb9 vocab=b2b65a4b
+-/
 theorem isFiniteLength_of_tors (N : Type u) [AddCommGroup N] [Module R N] [Module.Finite R N]
     (htors : ∃ k : ℕ, ∀ a ∈ maximalIdeal R ^ k, ∀ z : N, a • z = 0) : IsFiniteLength R N := by
   obtain ⟨k, hk⟩ := htors
@@ -291,6 +324,9 @@ theorem isFiniteLength_of_tors (N : Type u) [AddCommGroup N] [Module R N] [Modul
   rw [← Module.length_ne_top_iff, hlen]
   exact Module.length_ne_top
 
+/--
+@isnad1 id=good.3h3v.s6.db895bd6009d from=translated src=- shape=b6cc7894 vocab=7e8ccd14
+-/
 theorem good_of_isFiniteLength (rs : List R) (hreg : IsWeaklyRegular R rs)
     (hmax : Ideal.ofList rs = maximalIdeal R)
     (N : Type u) [AddCommGroup N] [Module R N] (hN : IsFiniteLength R N) :
@@ -334,6 +370,9 @@ open scoped _root_.P2MW.S_Module_subsingleton_ext_and_length_ext_eq_length_of_is
 
 open ExtLengthF3d in
 
+/--
+@isnad1 id=and.3h3v.s9.24fbb9aa7c38 from=translated src=- shape=f4a561fc vocab=65499a80
+-/
 theorem solution
     (R : Type u) [CommRing R] [IsNoetherianRing R] [IsLocalRing R] (rs : List R)
     (hreg : RingTheory.Sequence.IsWeaklyRegular R rs)

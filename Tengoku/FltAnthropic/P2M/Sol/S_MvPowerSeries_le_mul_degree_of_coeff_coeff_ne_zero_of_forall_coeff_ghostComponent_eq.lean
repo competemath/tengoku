@@ -90,6 +90,9 @@ private theorem word_of_C_mul {c L : ℕ} {r : 𝓞} (hr : r ∈ nonZeroDivisors
 
 end MvPowerSeries.D2Dwork
 
+/--
+@isnad1 id=le.5h9v.s10.bdac67fbda15 from=translated src=- shape=491dddc9 vocab=d888a563
+-/
 theorem solution
     {𝓞 : Type u} [CommRing 𝓞] (p : ℕ) [Fact p.Prime] (hp : (p : 𝓞) ∈ nonZeroDivisors 𝓞)
     {τ : Type v} [Fintype τ] (M L : ℕ) (H : MvPowerSeries τ 𝓞)

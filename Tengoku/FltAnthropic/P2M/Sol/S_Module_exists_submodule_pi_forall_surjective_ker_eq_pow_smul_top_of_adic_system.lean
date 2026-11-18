@@ -26,6 +26,9 @@ def limSub (E : ℕ → Type u) [∀ k, AddCommGroup (E k)] [∀ k, Module R (E 
     intro c a ha k
     simp only [Pi.smul_apply, map_smul, ha k]
 
+/--
+@isnad1 id=eq.3h6v.s8.58bf1a9d0728 from=translated src=- shape=19a1f866 vocab=ce4075b7
+-/
 theorem apply_eq_zero_of_le {E : ℕ → Type u} [∀ k, AddCommGroup (E k)] [∀ k, Module R (E k)]
     (τ : ∀ k, E (k + 1) →ₗ[R] E k) {e : ∀ k, E k} (he : e ∈ limSub E τ) {N j : ℕ} (hj : j ≤ N)
     (hN : e N = 0) : e j = 0 := by
@@ -42,6 +45,9 @@ theorem apply_eq_zero_of_le {E : ℕ → Type u} [∀ k, AddCommGroup (E k)] [�
   rw [Nat.add_sub_of_le hj]
   exact hN
 
+/--
+@isnad1 id=ex.1h5v.s9.43e1b02a0dc3 from=translated src=- shape=95b9aa12 vocab=22eed85d
+-/
 theorem exists_mem_apply_eq {E : ℕ → Type u} [∀ k, AddCommGroup (E k)] [∀ k, Module R (E k)]
     (τ : ∀ k, E (k + 1) →ₗ[R] E k) (hτs : ∀ k, Function.Surjective (τ k)) :
     ∀ (k : ℕ) (x : E k), ∃ e : ∀ j, E j, e ∈ limSub E τ ∧ e k = x := by
@@ -82,6 +88,9 @@ theorem exists_mem_apply_eq {E : ℕ → Type u} [∀ k, AddCommGroup (E k)] [�
       rw [hseq_k1, hseq_le j le_rfl, hk]
     · rw [hseq_gt j hgt]; exact Classical.choose_spec (hτs j (seq j))
 
+/--
+@isnad1 id=ex.1h6v.s8.2b3229ea2be4 from=translated src=- shape=745d80e9 vocab=770067b0
+-/
 theorem exists_sum_of_mem_span_smul {X : Type u} [AddCommGroup X] [Module R X] {s : ℕ} (g : Fin s → R)
     (N : Submodule R X) {x : X} (hx : x ∈ Submodule.span R (Set.range g) • N) :
     ∃ v : Fin s → X, (∀ i, v i ∈ N) ∧ x = ∑ i, g i • v i := by
@@ -103,6 +112,9 @@ theorem exists_sum_of_mem_span_smul {X : Type u} [AddCommGroup X] [Module R X] {
 
 end E29AL
 
+/--
+@isnad1 id=ex.3h4v.s12.6fbc4e01ce54 from=translated src=- shape=e11eeb2f vocab=45f69b3b
+-/
 theorem solution
     {R : Type u} [CommRing R] (I : Ideal R) (hI : I.FG)
     (E : ℕ → Type u) [∀ k, AddCommGroup (E k)] [∀ k, Module R (E k)]

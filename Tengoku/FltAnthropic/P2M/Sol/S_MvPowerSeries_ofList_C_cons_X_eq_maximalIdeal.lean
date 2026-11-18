@@ -32,6 +32,9 @@ def vanishIdeal (S : Set σ) (𝔞 : Ideal R) : Ideal (MvPowerSeries σ R) where
     have hmj := hm j hj
     omega
 
+/--
+@isnad1 id=mem.1h5v.s6.b66c3afb4bad from=translated src=- shape=1d72c7c6 vocab=6a097b32
+-/
 theorem X_mem_vanishIdeal {S : Set σ} (𝔞 : Ideal R) {j : σ} (hj : j ∈ S) :
     (X j : MvPowerSeries σ R) ∈ vanishIdeal S 𝔞 := by
   classical
@@ -42,6 +45,9 @@ theorem X_mem_vanishIdeal {S : Set σ} (𝔞 : Ideal R) {j : σ} (hj : j ∈ S) 
     have := hm j hj
     simp at this
 
+/--
+@isnad1 id=mem.1h5v.s7.05881e89eb0c from=translated src=- shape=ef668da5 vocab=5b4dd0bb
+-/
 theorem C_mem_vanishIdeal (S : Set σ) {𝔞 : Ideal R} {a : R} (ha : a ∈ 𝔞) :
     (C a : MvPowerSeries σ R) ∈ vanishIdeal S 𝔞 := by
   classical
@@ -51,6 +57,9 @@ theorem C_mem_vanishIdeal (S : Set σ) {𝔞 : Ideal R} {a : R} (ha : a ∈ 𝔞
   · exact ha
   · exact 𝔞.zero_mem
 
+/--
+@isnad1 id=le.0h4v.s8.055f00591051 from=translated src=- shape=1a7c8fad vocab=988723b5
+-/
 theorem map_C_sup_span_le_vanishIdeal (S : Set σ) (𝔞 : Ideal R) :
     𝔞.map (C : R →+* MvPowerSeries σ R) ⊔ Ideal.span ((X : σ → MvPowerSeries σ R) '' S) ≤
       vanishIdeal S 𝔞 := by
@@ -62,6 +71,9 @@ theorem map_C_sup_span_le_vanishIdeal (S : Set σ) (𝔞 : Ideal R) :
     rintro _ ⟨j, hj, rfl⟩
     exact X_mem_vanishIdeal 𝔞 hj
 
+/--
+@isnad1 id=le.0h4v.s8.b032ee4835c4 from=translated src=- shape=06690947 vocab=524be55f
+-/
 theorem vanishIdeal_le_of_principal (S : Finset σ) (a : R) :
     vanishIdeal (↑S : Set σ) (Ideal.span {a}) ≤
       Ideal.span {(C a : MvPowerSeries σ R)} ⊔ Ideal.span ((X : σ → MvPowerSeries σ R) '' ↑S) := by
@@ -109,6 +121,9 @@ theorem vanishIdeal_le_of_principal (S : Finset σ) (a : R) :
     rw [this]
     exact Ideal.add_mem _ (Ideal.mem_sup_right h1) h2
 
+/--
+@isnad1 id=eq.0h4v.s7.c11e6de9e6f2 from=translated src=- shape=06690947 vocab=1ab06245
+-/
 theorem vanishIdeal_eq_of_principal (S : Finset σ) (a : R) :
     vanishIdeal (↑S : Set σ) (Ideal.span {a}) =
       Ideal.span {(C a : MvPowerSeries σ R)} ⊔ Ideal.span ((X : σ → MvPowerSeries σ R) '' ↑S) := by
@@ -116,12 +131,18 @@ theorem vanishIdeal_eq_of_principal (S : Finset σ) (a : R) :
   have := map_C_sup_span_le_vanishIdeal (↑S : Set σ) (Ideal.span {a} : Ideal R)
   rwa [Ideal.map_span, Set.image_singleton] at this
 
+/--
+@isnad1 id=eq.0h3v.s6.98cced79095c from=translated src=- shape=30cfe010 vocab=ccba3188
+-/
 theorem vanishIdeal_bot_eq (S : Finset σ) :
     vanishIdeal (↑S : Set σ) (⊥ : Ideal R) = Ideal.span ((X : σ → MvPowerSeries σ R) '' ↑S) := by
   have h := vanishIdeal_eq_of_principal S (0 : R)
   rw [Ideal.span_singleton_eq_bot.mpr rfl] at h
   rw [h, map_zero, Ideal.span_singleton_eq_bot.mpr rfl, bot_sup_eq]
 
+/--
+@isnad1 id=eq.0h4v.s5.2b756106c0ac from=translated src=- shape=0d3b52c9 vocab=c626c2e0
+-/
 theorem setOf_mem_take_ofFn {α : Type*} {n : ℕ} (f : Fin n → α) (i : ℕ) :
     {x | x ∈ (List.ofFn f).take i} = f '' {j : Fin n | (j : ℕ) < i} := by
   ext x
@@ -135,12 +156,18 @@ theorem setOf_mem_take_ofFn {α : Type*} {n : ℕ} (f : Fin n → α) (i : ℕ) 
     rw [List.mem_iff_getElem]
     refine ⟨j, by simp; omega, by simp⟩
 
+/--
+@isnad1 id=eq.0h3v.s7.784a05bf3a8a from=translated src=- shape=9f9b358b vocab=07ac584a
+-/
 theorem ofList_take_ofFn_X {n : ℕ} (i : ℕ) :
     Ideal.ofList ((List.ofFn (X : Fin n → MvPowerSeries (Fin n) R)).take i) =
       vanishIdeal (↑(Finset.univ.filter fun j : Fin n => (j : ℕ) < i) : Set (Fin n)) (⊥ : Ideal R) := by
   rw [vanishIdeal_bot_eq, Ideal.ofList, setOf_mem_take_ofFn, Finset.coe_filter]
   simp
 
+/--
+@isnad1 id=eq.0h2v.s6.4b2134d57d9b from=translated src=- shape=64a4a719 vocab=6ed339c8
+-/
 theorem ofList_ofFn_X {n : ℕ} :
     Ideal.ofList (List.ofFn (X : Fin n → MvPowerSeries (Fin n) R)) =
       vanishIdeal (Set.univ : Set (Fin n)) (⊥ : Ideal R) := by
@@ -151,12 +178,18 @@ theorem ofList_ofFn_X {n : ℕ} :
   ext j
   simp
 
+/--
+@isnad1 id=eq.0h3v.s7.51ca2f196989 from=translated src=- shape=37d3e0ff vocab=b8f8bf5f
+-/
 theorem ofList_X_append_C (n : ℕ) (ϖ : R) :
     Ideal.ofList (List.ofFn (X : Fin n → MvPowerSeries (Fin n) R) ++ [C ϖ]) =
       vanishIdeal (Set.univ : Set (Fin n)) (Ideal.span {ϖ}) := by
   rw [Ideal.ofList_append, Ideal.ofList_singleton, ofList_ofFn_X, ← Finset.coe_univ,
     vanishIdeal_bot_eq, vanishIdeal_eq_of_principal, sup_comm]
 
+/--
+@isnad1 id=eq.1h3v.s7.f0e66cb8c8fe from=translated src=- shape=12d4935c vocab=dfafc3cf
+-/
 theorem ofList_X_append_C_eq_maximalIdeal [IsLocalRing R] (n : ℕ) {ϖ : R}
     (hϖ : IsLocalRing.maximalIdeal R = Ideal.span {ϖ}) :
     Ideal.ofList (List.ofFn (X : Fin n → MvPowerSeries (Fin n) R) ++ [C ϖ]) =
@@ -181,6 +214,9 @@ theorem ofList_X_append_C_eq_maximalIdeal [IsLocalRing R] (n : ℕ) {ϖ : R}
     rw [← hϖ, IsLocalRing.mem_maximalIdeal, mem_nonunits_iff, coeff_zero_eq_constantCoeff]
     exact fun hc => hφ (isUnit_iff_constantCoeff.mpr hc)
 
+/--
+@isnad1 id=eq.1h3v.s7.6d30b7f38662 from=translated src=- shape=9b5c20d3 vocab=4636a98c
+-/
 theorem ofList_C_cons_X_eq_maximalIdeal [IsLocalRing R] (n : ℕ) {ϖ : R}
     (hϖ : IsLocalRing.maximalIdeal R = Ideal.span {ϖ}) :
     Ideal.ofList (C ϖ :: List.ofFn (X : Fin n → MvPowerSeries (Fin n) R)) =
@@ -190,6 +226,9 @@ theorem ofList_C_cons_X_eq_maximalIdeal [IsLocalRing R] (n : ℕ) {ϖ : R}
 
 end M4cP4PSII
 
+/--
+@isnad1 id=eq.1h3v.s7.6d30b7f38662 from=translated src=- shape=9b5c20d3 vocab=4636a98c
+-/
 theorem solution {R : Type u} [CommRing R] [IsLocalRing R]
     (n : ℕ) {ϖ : R} (hϖ : IsLocalRing.maximalIdeal R = Ideal.span {ϖ}) :
     Ideal.ofList (MvPowerSeries.C ϖ :: List.ofFn (MvPowerSeries.X : Fin n → MvPowerSeries (Fin n) R)) =

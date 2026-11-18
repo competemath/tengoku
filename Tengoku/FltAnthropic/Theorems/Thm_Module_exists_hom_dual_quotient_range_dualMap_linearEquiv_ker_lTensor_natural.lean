@@ -11,6 +11,9 @@ universe u
 
 open TensorProduct
 
+/--
+@isnad1 id=ex.0h4v.s16.87807e924771 from=translated src=- shape=c25441ab vocab=5f497d5e
+-/
 theorem Module.exists_hom_dual_quotient_range_dualMap_linearEquiv_ker_lTensor_natural
     (R : Type u) [CommRing R]
     (K₀ K₁ : Type u) [AddCommGroup K₀] [Module R K₀] [Module.Finite R K₀] [Module.Free R K₀]

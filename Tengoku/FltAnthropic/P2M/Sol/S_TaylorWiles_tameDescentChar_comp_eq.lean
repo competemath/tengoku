@@ -12,6 +12,9 @@ universe u v w
 
 open Function
 
+/--
+@isnad1 id=eq.2h6v.s9.7f4dc6db4760 from=translated src=- shape=47879318 vocab=7ccbcbbf
+-/
 theorem solution {G : Type u} {Δ : Type v} {A : Type w} [Group G] [Group Δ] [CommRing A]
     (π : G →* Δ) (hπ : Function.Surjective π) (χ : G →* Aˣ)
     (hχ : ∀ g ∈ π.ker, χ g = 1) (g : G) :

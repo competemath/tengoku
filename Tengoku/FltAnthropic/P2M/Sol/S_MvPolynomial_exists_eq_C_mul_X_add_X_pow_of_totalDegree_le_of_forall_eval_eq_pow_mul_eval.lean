@@ -11,10 +11,16 @@ namespace R3PolyLemma
 
 open MvPolynomial
 
+/--
+@isnad1 id=eq.0h6v.s8.147bc461649f from=translated src=- shape=2f4f2e4d vocab=efda476f
+-/
 theorem eval_bind₁ {σ τ R : Type*} [CommSemiring R] (x : τ → R) (h : σ → MvPolynomial τ R)
     (φ : MvPolynomial σ R) : eval x (bind₁ h φ) = eval (fun i => eval x (h i)) φ :=
   eval₂Hom_bind₁ _ _ _ _
 
+/--
+@isnad1 id=eq.0h5v.s8.93d7c45f5649 from=translated src=- shape=ea7cd13c vocab=8fcad39a
+-/
 theorem coeff_bind₁_C_mul_X {σ R : Type*} [CommSemiring R] [DecidableEq σ] (c : σ → R)
     (Q : MvPolynomial σ R) (m : σ →₀ ℕ) :
     coeff m (bind₁ (fun i => C (c i) * X i) Q) = (m.prod fun i e => c i ^ e) * coeff m Q := by
@@ -33,6 +39,9 @@ theorem coeff_bind₁_C_mul_X {σ R : Type*} [CommSemiring R] [DecidableEq σ] (
   · rfl
   · rw [notMem_support_iff.1 hm, mul_zero]
 
+/--
+@isnad1 id=le.1h5v.s7.3bfbf3f33e94 from=translated src=- shape=47a430b5 vocab=1929c381
+-/
 theorem totalDegree_bind₁_le {σ τ R : Type*} [CommSemiring R] (f : σ → MvPolynomial τ R)
     (hf : ∀ i, (f i).totalDegree ≤ 1) (p : MvPolynomial σ R) :
     (bind₁ f p).totalDegree ≤ p.totalDegree := by
@@ -48,6 +57,9 @@ theorem totalDegree_bind₁_le {σ τ R : Type*} [CommSemiring R] (f : σ → Mv
   simp_rw [mul_one]
   exact le_totalDegree hd
 
+/--
+@isnad1 id=ex.5h5v.s9.1afdf588555c from=translated src=- shape=e07dd070 vocab=03d21af8
+-/
 theorem main (g n : ℕ) (hn : 2 ≤ n) (α β : ℕ) (hαβ : α + β = n ^ 2) (hα : α = β + n)
     (P : MvPolynomial (Fin 2) ℚ) (hP : P.totalDegree ≤ g)
     (h : ∀ a b : ℕ,
@@ -161,6 +173,9 @@ theorem main (g n : ℕ) (hn : 2 ≤ n) (α β : ℕ) (hαβ : α + β = n ^ 2) 
 
 end R3PolyLemma
 
+/--
+@isnad1 id=ex.5h5v.s9.1afdf588555c from=translated src=- shape=e07dd070 vocab=03d21af8
+-/
 theorem solution
     (g n : ℕ) (hn : 2 ≤ n) (α β : ℕ) (hαβ : α + β = n ^ 2) (hα : α = β + n)
     (P : MvPolynomial (Fin 2) ℚ) (hP : P.totalDegree ≤ g)

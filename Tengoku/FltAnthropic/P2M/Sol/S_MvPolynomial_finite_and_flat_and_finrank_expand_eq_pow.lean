@@ -11,6 +11,9 @@ open MvPolynomial
 
 namespace FrobRankC2
 
+/--
+@isnad1 id=and.2h5v.s8.117d43d07a76 from=translated src=- shape=67ae4475 vocab=46ca7e37
+-/
 theorem finite_flat_finrank_of_unique_decomposition
     {R S : Type*} [CommRing R] [CommRing S] (f : R →+* S)
     {ι : Type*} [Fintype ι] (b : ι → S)
@@ -44,6 +47,9 @@ variable {σ : Type*} (p : ℕ)
 
 noncomputable def divP (e : σ →₀ ℕ) : σ →₀ ℕ := e.mapRange (· / p) (by simp)
 
+/--
+@isnad1 id=eq.0h4v.s6.ade3ceaad1de from=translated src=- shape=b7838fcf vocab=7925cd55
+-/
 @[scoped simp] lemma divP_apply (e : σ →₀ ℕ) (i : σ) : divP p e i = e i / p := by
   simp [divP]
 
@@ -52,6 +58,9 @@ variable [Finite σ]
 noncomputable def ofRes (r : σ → Fin p) : σ →₀ ℕ :=
   Finsupp.equivFunOnFinite.symm (fun i => (r i : ℕ))
 
+/--
+@isnad1 id=eq.0h4v.s5.74e09f7ebd13 from=translated src=- shape=5d761f8c vocab=94e569f9
+-/
 @[scoped simp] lemma ofRes_apply (r : σ → Fin p) (i : σ) : ofRes p r i = (r i : ℕ) := by
   simp [ofRes]
 
@@ -61,18 +70,30 @@ include hp
 def modP (e : σ →₀ ℕ) : σ → Fin p := fun i => ⟨e i % p, Nat.mod_lt _ hp⟩
 
 omit [Finite σ] in
+/--
+@isnad1 id=eq.1h4v.s5.d3caf38eec1c from=translated src=- shape=dccf6e62 vocab=aeedadef
+-/
 @[scoped simp] lemma modP_apply (e : σ →₀ ℕ) (i : σ) : (modP hp e i : ℕ) = e i % p := rfl
 
+/--
+@isnad1 id=eq.1h3v.s6.2922d0c65356 from=translated src=- shape=8d33be10 vocab=bd02092e
+-/
 lemma decomp (e : σ →₀ ℕ) : p • divP p e + ofRes p (modP hp e) = e := by
   ext i
   simp [Nat.div_add_mod]
 
+/--
+@isnad1 id=eq.1h4v.s6.186cb3fbe093 from=translated src=- shape=d851f08f vocab=af370161
+-/
 lemma divP_add (d : σ →₀ ℕ) (r : σ → Fin p) : divP p (p • d + ofRes p r) = d := by
   ext i
   simp only [divP_apply, Finsupp.coe_add, Finsupp.coe_smul, Pi.add_apply, Pi.smul_apply,
     smul_eq_mul, ofRes_apply]
   rw [Nat.add_comm, Nat.add_mul_div_left _ _ hp, Nat.div_eq_of_lt (r i).isLt, Nat.zero_add]
 
+/--
+@isnad1 id=eq.1h4v.s6.62ab4d5232fa from=translated src=- shape=243c4e21 vocab=e2f02729
+-/
 lemma modP_add (d : σ →₀ ℕ) (r : σ → Fin p) : modP hp (p • d + ofRes p r) = r := by
   funext i
   apply Fin.ext
@@ -80,6 +101,9 @@ lemma modP_add (d : σ →₀ ℕ) (r : σ → Fin p) : modP hp (p • d + ofRes
     smul_eq_mul, ofRes_apply]
   rw [Nat.add_comm, Nat.add_mul_mod_self_left, Nat.mod_eq_of_lt (r i).isLt]
 
+/--
+@isnad1 id=iff.1h4v.s6.9b1098028126 from=translated src=- shape=e6c16016 vocab=fbacc0c8
+-/
 lemma le_and_dvd_iff (e : σ →₀ ℕ) (r : σ → Fin p) :
     (ofRes p r ≤ e ∧ ∀ i, p ∣ (e - ofRes p r) i) ↔ modP hp e = r := by
   constructor
@@ -100,6 +124,9 @@ lemma le_and_dvd_iff (e : σ →₀ ℕ) (r : σ → Fin p) :
       have := Nat.div_add_mod (e i) p
       omega
 
+/--
+@isnad1 id=eq.1h3v.s6.cf35344334c8 from=translated src=- shape=dd19d5ab vocab=14ddcfde
+-/
 lemma sub_ofRes_modP (e : σ →₀ ℕ) : e - ofRes p (modP hp e) = p • divP p e := by
   ext i
   simp only [Finsupp.coe_tsub, Pi.sub_apply, ofRes_apply, modP_apply, Finsupp.coe_smul,
@@ -117,8 +144,14 @@ include hp
 noncomputable def bvec (r : σ → Fin p) : MvPolynomial σ R := monomial (ofRes p r) 1
 
 omit hp in
+/--
+@isnad1 id=eq.0h4v.s7.57dd8b906596 from=translated src=- shape=bfe3644e vocab=a3dfd076
+-/
 lemma bvec_def (r : σ → Fin p) : (bvec r : MvPolynomial σ R) = monomial (ofRes p r) 1 := rfl
 
+/--
+@isnad1 id=eq.1h6v.s8.730d5d77b8a6 from=translated src=- shape=2c2414f0 vocab=4b0ff829
+-/
 lemma coeff_expand_mul_bvec [DecidableEq (σ → Fin p)]
     (c : MvPolynomial σ R) (r : σ → Fin p) (e : σ →₀ ℕ) :
     coeff e (expand p c * bvec r) = if modP hp e = r then coeff (divP p e) c else 0 := by
@@ -149,9 +182,15 @@ noncomputable def Ψ (c : (σ → Fin p) → MvPolynomial σ R) : MvPolynomial �
   ∑ r, expand p (c r) * bvec r
 
 omit hp in
+/--
+@isnad1 id=eq.0h4v.s8.8841aa35d2bc from=translated src=- shape=519924a1 vocab=ca36f9eb
+-/
 lemma Ψ_def (c : (σ → Fin p) → MvPolynomial σ R) :
     Ψ c = ∑ r, expand p (c r) * bvec r := rfl
 
+/--
+@isnad1 id=eq.1h5v.s6.704354b2f312 from=translated src=- shape=4ea09958 vocab=4e5d00ff
+-/
 lemma coeff_Ψ (c : (σ → Fin p) → MvPolynomial σ R) (e : σ →₀ ℕ) :
     coeff e (Ψ c) = coeff (divP p e) (c (modP hp e)) := by
   classical
@@ -159,6 +198,9 @@ lemma coeff_Ψ (c : (σ → Fin p) → MvPolynomial σ R) (e : σ →₀ ℕ) :
   simp_rw [coeff_expand_mul_bvec hp]
   rw [Finset.sum_ite_eq, ite_eq_left (Finset.mem_univ _)]
 
+/--
+@isnad1 id=eq.2h5v.s7.911693533af6 from=translated src=- shape=c54c9601 vocab=e4a2331d
+-/
 lemma Ψ_eq_zero (c : (σ → Fin p) → MvPolynomial σ R) (h : Ψ c = 0) : ∀ r, c r = 0 := by
   intro r
   ext d
@@ -166,6 +208,9 @@ lemma Ψ_eq_zero (c : (σ → Fin p) → MvPolynomial σ R) (h : Ψ c = 0) : ∀
   rw [h, coeff_zero, divP_add hp, modP_add hp] at this
   simpa using this.symm
 
+/--
+@isnad1 id=ex.1h4v.s6.87e219ff6bb6 from=translated src=- shape=9d792ace vocab=6eeecb7b
+-/
 lemma Ψ_surjective (s : MvPolynomial σ R) : ∃ c : (σ → Fin p) → MvPolynomial σ R, Ψ c = s := by
   classical
   refine ⟨fun r => ∑ e ∈ s.support,
@@ -197,6 +242,9 @@ lemma Ψ_surjective (s : MvPolynomial σ R) : ∃ c : (σ → Fin p) → MvPolyn
 
 end
 
+/--
+@isnad1 id=and.1h3v.s9.5d5384b08572 from=translated src=- shape=517d1bad vocab=6770fafe
+-/
 theorem main (R : Type*) [CommRing R] (σ : Type*) [Finite σ] (p : ℕ) (hp : 0 < p) :
     (expand p (σ := σ) (R := R)).toRingHom.Finite ∧
     (expand p (σ := σ) (R := R)).toRingHom.Flat ∧
@@ -217,6 +265,9 @@ open scoped _root_.P2MW.S_MvPolynomial_finite_and_flat_and_finrank_expand_eq_pow
 
 universe u v
 
+/--
+@isnad1 id=and.1h3v.s9.f90401eef8fc from=translated src=- shape=517d1bad vocab=6770fafe
+-/
 theorem solution
     (R : Type u) [CommRing R] (σ : Type v) [Finite σ] (p : ℕ) (hp : 0 < p) :
     (MvPolynomial.expand p (σ := σ) (R := R)).toRingHom.Finite ∧

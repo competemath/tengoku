@@ -10,6 +10,9 @@ universe u v
 open Polynomial Module
 open scoped DirectSum
 
+/--
+@isnad1 id=eq.3h4v.s6.dee9edb1e78b from=translated src=- shape=8aa1ae25 vocab=50d684e5
+-/
 theorem solution {n : ℕ} (hn : 0 < n) (m m' : ℕ → ℕ)
     (h : ∀ e, e ∣ n → ∑ d ∈ e.divisors, m d = ∑ d ∈ e.divisors, m' d) :
     ∀ d, d ∣ n → m d = m' d := by

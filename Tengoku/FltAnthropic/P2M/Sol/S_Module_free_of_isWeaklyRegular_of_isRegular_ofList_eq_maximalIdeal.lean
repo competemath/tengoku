@@ -16,6 +16,9 @@ namespace OnePrime
 
 universe w
 
+/--
+@isnad1 id=le.1h2v.s5.69eb86fecbd4 from=translated src=- shape=3290fe5e vocab=7c30302f
+-/
 theorem le_zero_of_add_natCast_le {a : WithBot ℕ∞} {n : ℕ} (h : a + (n : WithBot ℕ∞) ≤ n) : a ≤ 0 := by
   induction a with
   | bot => exact bot_le
@@ -30,6 +33,9 @@ theorem le_zero_of_add_natCast_le {a : WithBot ℕ∞} {n : ℕ} (h : a + (n : W
       subst he
       exact le_of_eq (by simp)
 
+/--
+@isnad1 id=hasproje.3h3v.s7.b04dbb43733b from=translated src=- shape=df1ca217 vocab=6630d6c8
+-/
 theorem hasProjectiveDimensionLT_of_isFiniteLength {R : Type u} [CommRing R] [IsNoetherianRing R]
     [IsLocalRing R] [Small.{w} R] (xs : List R) (hxs : RingTheory.Sequence.IsRegular R xs)
     (hspan : Ideal.ofList xs = IsLocalRing.maximalIdeal R)
@@ -56,6 +62,9 @@ theorem hasProjectiveDimensionLT_of_isFiniteLength {R : Type u} [CommRing R] [Is
       hasProjectiveDimensionLT_of_iso (LinearEquiv.ofEq _ _ (Submodule.ker_mkQ P).symm).toModuleIso _
     exact hS.hasProjectiveDimensionLT_X₂ (xs.length + 1) h1 h3
 
+/--
+@isnad1 id=free.1h2v.s6.d98539047845 from=translated src=- shape=c7d45b98 vocab=ccbdb379
+-/
 theorem free_of_hasProjectiveDimensionLT_one {R : Type u} [CommRing R] [IsLocalRing R]
     {M : Type v} [AddCommGroup M] [Module R M] [Module.Finite R M]
     (h : HasProjectiveDimensionLT (ModuleCat.of R (ULift.{u} M)) 1) : Module.Free R M := by
@@ -66,6 +75,9 @@ theorem free_of_hasProjectiveDimensionLT_one {R : Type u} [CommRing R] [IsLocalR
 
 end OnePrime
 
+/--
+@isnad1 id=free.6h4v.s9.3e2dae21b0dd from=translated src=- shape=f92cc032 vocab=364d56a7
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsNoetherianRing R] [IsLocalRing R]
     {M : Type v} [AddCommGroup M] [Module R M] [Module.Finite R M]

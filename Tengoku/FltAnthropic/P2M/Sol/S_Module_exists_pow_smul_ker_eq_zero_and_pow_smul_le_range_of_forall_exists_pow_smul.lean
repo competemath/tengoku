@@ -15,6 +15,9 @@ open PrimeSpectrum
 
 variable {R : Type u} [CommRing R]
 
+/--
+@isnad1 id=ex.2h3v.s7.f0d5bdb896fc from=translated src=- shape=60cf991e vocab=2ba7ee06
+-/
 theorem exists_pow_le_annihilator_of_support_subset
     {K : Type v} [AddCommGroup K] [Module R K] [Module.Finite R K]
     {J : Ideal R} (hJ : J.FG) (h : Module.support R K ⊆ zeroLocus (J : Set R)) :
@@ -22,6 +25,9 @@ theorem exists_pow_le_annihilator_of_support_subset
   rw [Module.support_eq_zeroLocus, zeroLocus_subset_zeroLocus_iff] at h
   exact Ideal.exists_pow_le_of_le_radical_of_fg h hJ
 
+/--
+@isnad1 id=le.1h3v.s7.8d604df70138 from=translated src=- shape=4929cf3f vocab=17404e8e
+-/
 theorem support_subset_zeroLocus_of_forall_exists_pow_smul_eq_zero
     {K : Type v} [AddCommGroup K] [Module R K]
     {s : Set R} (h : ∀ a ∈ s, ∀ x : K, ∃ k : ℕ, a ^ k • x = 0) :
@@ -34,6 +40,9 @@ theorem support_subset_zeroLocus_of_forall_exists_pow_smul_eq_zero
     exact ⟨a ^ k, ⟨k, rfl⟩, hk⟩
   exact key hp (Set.mem_singleton a)
 
+/--
+@isnad1 id=ex.3h4v.s8.accb0d293770 from=translated src=- shape=38abe71d vocab=f505d3a0
+-/
 theorem exists_pow_le_annihilator_of_forall_exists_pow_smul_eq_zero
     {K : Type v} [AddCommGroup K] [Module R K] [Module.Finite R K]
     {J : Ideal R} (hJ : J.FG) {s : Set R} (hs : Ideal.span s = J)
@@ -45,6 +54,9 @@ theorem exists_pow_le_annihilator_of_forall_exists_pow_smul_eq_zero
 
 end K72WS
 
+/--
+@isnad1 id=ex.5h6v.s10.53a98a10e658 from=translated src=- shape=016199d5 vocab=25385ae1
+-/
 theorem solution
     {R : Type u} [CommRing R] (S : Finset R) (J : Ideal R) (hJ : Ideal.span (S : Set R) = J)
     {M : Type v} [AddCommGroup M] [Module R M] {N : Type w} [AddCommGroup N] [Module R N]

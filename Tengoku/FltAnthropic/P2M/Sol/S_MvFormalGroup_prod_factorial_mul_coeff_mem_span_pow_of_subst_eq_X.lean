@@ -621,6 +621,9 @@ end Induction
 end ExpDenom
 
 open ExpDenom in
+/--
+@isnad1 id=mem.10h9v.s10.6c83469ff4ca from=translated src=- shape=fff9678c vocab=cee87903
+-/
 theorem solution
     {𝓞 : Type u} [CommRing 𝓞] (p : ℕ) [Fact p.Prime] (hp : (p : 𝓞) ∈ nonZeroDivisors 𝓞)
     {d : ℕ} (F : MvFormalGroup d 𝓞) [F.IsComm]

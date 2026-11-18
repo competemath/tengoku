@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open _root_.MvPolynomial hiding finrank_piece_succ_le_macaulayPow exists_forall_eval_ne_zero_macaulayPow_finrank_piece_sup_add_le open _root_.AlgebraicGeometry.HilbertFunctor
 
+/--
+@isnad1 id=ex.2h4v.s15.4397095784a0 from=translated src=- shape=637c3727 vocab=0955f396
+-/
 theorem MvPolynomial.exists_forall_eval_ne_zero_mem_of_mul_mem_and_finrank_piece_sup_eq_macaulayPow
     (n m : ℕ) (K : Type) [Field K] [Infinite K] (J : Ideal (MvPolynomial (Fin (n + 1)) K))
     (hJ : ∃ s : Set (MvPolynomial (Fin (n + 1)) K), (∀ p ∈ s, p.IsHomogeneous m) ∧ J = Ideal.span s)

@@ -12,6 +12,9 @@ open MvPolynomial MvPolynomial.CrossingQuotient
 
 namespace CrossingResolutionR2
 
+/--
+@isnad1 id=ex.1h5v.s7.5183719df13c from=translated src=- shape=db9dfdff vocab=98e9a77b
+-/
 theorem exists_factor {O : Type*} [CommRing O] [IsDomain O] [ValuationRing O] :
     ∀ (n : ℕ) (a b c : O), a * b = c ^ (n + 1) →
       ∃ (i : ℕ) (x y : O), i ≤ n ∧ x * y = c ∧ a = c ^ i * x ∧ b = c ^ (n - i) * y := by
@@ -49,10 +52,16 @@ theorem exists_factor {O : Type*} [CommRing O] [IsDomain O] [ValuationRing O] :
 
 variable {W : Type*} [CommRing W] (t : W)
 
+/--
+@isnad1 id=eq.0h3v.s12.f76f43e28df3 from=translated src=- shape=d7d847a1 vocab=911d00c7
+-/
 theorem mk_C_eq (s : W) (w : W) : mk s (C w) = algebraMap W (CrossingQuotient W s) w := by
   change mk s (algebraMap W (MvPolynomial (Fin 2) W) w) = _
   exact AlgHom.commutes _ w
 
+/--
+@isnad1 id=ex.1h5v.s12.4c4afe0cab42 from=translated src=- shape=3897805d vocab=543fd894
+-/
 theorem exists_comp_resolutionChart_eq {e : ℕ} (he : 0 < e)
     {O : Type*} [CommRing O] [IsDomain O] [ValuationRing O]
     (g : CrossingQuotient W (t ^ e) →+* O) :
@@ -93,6 +102,9 @@ end CrossingResolutionR2
 
 open MvPolynomial MvPolynomial.CrossingQuotient in
 
+/--
+@isnad1 id=ex.1h5v.s12.4c4afe0cab42 from=translated src=- shape=3897805d vocab=543fd894
+-/
 theorem solution
     {W : Type*} [CommRing W] (t : W) {e : ℕ} (he : 0 < e)
     {O : Type*} [CommRing O] [IsDomain O] [ValuationRing O]

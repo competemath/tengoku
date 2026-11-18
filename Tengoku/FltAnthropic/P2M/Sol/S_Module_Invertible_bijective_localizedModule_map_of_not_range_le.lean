@@ -12,6 +12,9 @@ namespace InvLocAux
 open IsLocalRing
 open scoped TensorProduct
 
+/--
+@isnad1 id=mem.2h5v.s8.a37b2667e764 from=translated src=- shape=224e03aa vocab=6e6bf80b
+-/
 theorem mem_smul_top_of_smul_mem {R : Type*} [CommRing R] {Q : Type*} [AddCommGroup Q] [Module R Q] [Module.Flat R Q]
     (I : Ideal R) [hI : I.IsPrime] (u : R) (hu : u ∉ I) (q : Q) (h : u • q ∈ I • (⊤ : Submodule R Q)) :
     q ∈ I • (⊤ : Submodule R Q) := by
@@ -31,6 +34,9 @@ theorem mem_smul_top_of_smul_mem {R : Type*} [CommRing R] {Q : Type*} [AddCommGr
   rw [← Submodule.Quotient.mk_eq_zero, ← e.symm.map_eq_zero_iff]
   exact h4
 
+/--
+@isnad1 id=ex.1h5v.s9.8e3f16438090 from=translated src=- shape=14426d00 vocab=d066fb6a
+-/
 theorem exists_smul_mem_of_mk_mem {R : Type*} [CommRing R] (S : Submonoid R) {Q : Type*} [AddCommGroup Q] [Module R Q]
     (N : Submodule R Q) (q : Q)
     (h : LocalizedModule.mk q (1 : S) ∈ N.localized' (Localization S) S (LocalizedModule.mkLinearMap S Q)) :
@@ -44,6 +50,9 @@ theorem exists_smul_mem_of_mk_mem {R : Type*} [CommRing R] (S : Submonoid R) {Q 
   rw [Submonoid.coe_mul, mul_smul, ← hc']
   exact N.smul_mem _ hm
 
+/--
+@isnad1 id=bijectiv.1h5v.s12.68cc4e258b44 from=translated src=- shape=a341a850 vocab=fa2dc275
+-/
 theorem bijective_map {R : Type*} [CommRing R] {P Q : Type*} [AddCommGroup P] [Module R P] [AddCommGroup Q] [Module R Q]
     [Module.Invertible R P] [Module.Invertible R Q] (f : P →ₗ[R] Q) (x : PrimeSpectrum R)
     (hx : ¬ LinearMap.range f ≤ x.asIdeal • (⊤ : Submodule R Q)) :
@@ -90,6 +99,9 @@ theorem bijective_map {R : Type*} [CommRing R] {P Q : Type*} [AddCommGroup P] [M
 
 end InvLocAux
 
+/--
+@isnad1 id=bijectiv.1h5v.s12.68cc4e258b44 from=translated src=- shape=a341a850 vocab=fa2dc275
+-/
 theorem solution
     {R : Type*} [CommRing R] {P Q : Type*} [AddCommGroup P] [Module R P] [AddCommGroup Q] [Module R Q]
     [Module.Invertible R P] [Module.Invertible R Q] (f : P →ₗ[R] Q) (x : PrimeSpectrum R)

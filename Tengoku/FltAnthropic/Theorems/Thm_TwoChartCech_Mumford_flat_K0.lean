@@ -10,6 +10,9 @@ universe u v w
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=flat.0h4v.s10.15fa6aca5db9 from=translated src=- shape=9044e4f3 vocab=78c9de1a
+-/
 theorem TwoChartCech.Mumford.flat_K0
     {R : Type u} [CommRing R]
     {C0 : Type v} {C1 : Type w} [AddCommGroup C0] [Module R C0] [AddCommGroup C1] [Module R C1]

@@ -15,6 +15,9 @@ section Helpers
 
 variable {R : Type*} [CommRing R] {S T : Type*} [CommRing S] [CommRing T] [Algebra R S] [Algebra R T]
 
+/--
+@isnad1 id=eq.0h7v.s10.a752c50d9a61 from=translated src=- shape=e7b992f1 vocab=1210e24e
+-/
 theorem rTensor_algHom_smul (σ : S →ₐ[R] T) (Q : Type*) [AddCommGroup Q] [Module R Q]
     (b : S) (z : S ⊗[R] Q) :
     σ.toLinearMap.rTensor Q (b • z) = σ b • σ.toLinearMap.rTensor Q z := by
@@ -23,6 +26,9 @@ theorem rTensor_algHom_smul (σ : S →ₐ[R] T) (Q : Type*) [AddCommGroup Q] [M
   | tmul s q => simp [TensorProduct.smul_tmul', smul_eq_mul]
   | add x y hx hy => simp [smul_add, hx, hy]
 
+/--
+@isnad1 id=eq.1h6v.s10.66e42c21a1a0 from=translated src=- shape=7fdf0baa vocab=81083ff3
+-/
 theorem ext_one_tmul {P N : Type*} [AddCommGroup P] [Module R P] [AddCommGroup N] [Module R N]
     [Module S N] [IsScalarTower R S N]
     {f₁ f₂ : S ⊗[R] P →ₗ[S] N} (h : ∀ p, f₁ (1 ⊗ₜ p) = f₂ (1 ⊗ₜ p)) : f₁ = f₂ := by
@@ -31,6 +37,9 @@ theorem ext_one_tmul {P N : Type*} [AddCommGroup P] [Module R P] [AddCommGroup N
   have : s ⊗ₜ[R] p = s • ((1 : S) ⊗ₜ[R] p) := by simp [TensorProduct.smul_tmul']
   rw [this, map_smul, map_smul, h]
 
+/--
+@isnad1 id=eq.0h9v.s11.d073c7805992 from=translated src=- shape=954ef25e vocab=13662996
+-/
 theorem rTensor_comp_apply_tmul (σ : S →ₐ[R] T) {P Q : Type*} [AddCommGroup P] [Module R P]
     [AddCommGroup Q] [Module R Q] (ξ : S ⊗[R] P →ₗ[S] S ⊗[R] Q) (b : S) (p : P) :
     (σ.toLinearMap.rTensor Q ∘ₗ ξ.restrictScalars R) (b ⊗ₜ p) =
@@ -38,6 +47,9 @@ theorem rTensor_comp_apply_tmul (σ : S →ₐ[R] T) {P Q : Type*} [AddCommGroup
   have hb : b ⊗ₜ[R] p = b • ((1 : S) ⊗ₜ[R] p) := by simp [TensorProduct.smul_tmul']
   rw [LinearMap.comp_apply, LinearMap.restrictScalars_apply, hb, ξ.map_smul, rTensor_algHom_smul]
 
+/--
+@isnad1 id=eq.0h9v.s10.b1e6354a1bd2 from=translated src=- shape=0123c881 vocab=716b3798
+-/
 theorem comp_rTensor_apply_tmul (σ : S →ₐ[R] T) {P N : Type*} [AddCommGroup P] [Module R P]
     [AddCommGroup N] [Module R N] [Module T N] [IsScalarTower R T N]
     (ξ : T ⊗[R] P →ₗ[T] N) (b : S) (p : P) :
@@ -56,8 +68,14 @@ variable {R : Type*} [CommRing R] {ι : Type*} [Preorder ι] [Nonempty ι] [IsDi
   {A : Type*} [AddCommGroup A] [Module R A] (ψ : ∀ i, G i →ₗ[R] A)
 
 omit [Nonempty ι] in
+/--
+@isnad1 id=ex.0h3v.s5.6bc8ab11c9eb from=translated src=- shape=9776a19f vocab=40a00977
+-/
 theorem exists_ge_ge (i j : ι) : ∃ k, i ≤ k ∧ j ≤ k := directed_of (· ≤ ·) i j
 
+/--
+@isnad1 id=ex.2h8v.s10.d42413738e7b from=translated src=- shape=9190dfcd vocab=fb80f241
+-/
 theorem cocone_rTensor_surj (hψ : ∀ i j (h : i ≤ j) x, ψ j (t i j h x) = ψ i x)
     (hsurj : ∀ a, ∃ i x, ψ i x = a) (Q : Type*) [AddCommGroup Q] [Module R Q]
     (z : A ⊗[R] Q) : ∃ (i : ι) (x : G i ⊗[R] Q), (ψ i).rTensor Q x = z := by
@@ -75,6 +93,9 @@ theorem cocone_rTensor_surj (hψ : ∀ i j (h : i ≤ j) x, ψ j (t i j h x) = �
     have e₂ : ψ k ∘ₗ t i₂ k h₂k = ψ i₂ := LinearMap.ext (hψ _ _ _)
     simp only [map_add, ← LinearMap.comp_apply, ← LinearMap.rTensor_comp, e₁, e₂]
 
+/--
+@isnad1 id=bijectiv.3h6v.s10.bd702efa5223 from=translated src=- shape=26d567f8 vocab=21c825d2
+-/
 theorem lift_bijective [DecidableEq ι] (hψ : ∀ i j (h : i ≤ j) x, ψ j (t i j h x) = ψ i x)
     (hsurj : ∀ a, ∃ i x, ψ i x = a)
     (hzero : ∀ i x, ψ i x = 0 → ∃ (j : ι) (h : i ≤ j), t i j h x = 0) :
@@ -90,6 +111,9 @@ theorem lift_bijective [DecidableEq ι] (hψ : ∀ i j (h : i ≤ j) x, ψ j (t 
     obtain ⟨i, x, rfl⟩ := hsurj a
     exact ⟨Module.DirectLimit.of R ι G t i x, Module.DirectLimit.lift_of ..⟩
 
+/--
+@isnad1 id=ex.4h9v.s10.567b8cc168c7 from=translated src=- shape=6dbcdf95 vocab=4baf2091
+-/
 theorem cocone_rTensor_zero [DirectedSystem G (t · · ·)]
     (hψ : ∀ i j (h : i ≤ j) x, ψ j (t i j h x) = ψ i x)
     (hsurj : ∀ a, ∃ i x, ψ i x = a)
@@ -109,6 +133,9 @@ theorem cocone_rTensor_zero [DirectedSystem G (t · · ·)]
   rw [TensorProduct.directLimitLeft_rTensor_of, map_zero] at h3
   exact Module.DirectLimit.of.zero_exact h3
 
+/--
+@isnad1 id=ex.2h10v.s10.c11c97421588 from=translated src=- shape=71b80af7 vocab=09ef5eb6
+-/
 theorem exists_comp_eq_of_finite [DirectedSystem G (t · · ·)]
     (hzero : ∀ i x, ψ i x = 0 → ∃ (j : ι) (h : i ≤ j), t i j h x = 0)
     {M : Type*} [AddCommGroup M] [Module R M] [Module.Finite R M]
@@ -132,6 +159,9 @@ theorem exists_comp_eq_of_finite [DirectedSystem G (t · · ·)]
   rw [show t i j hij (w m) = t (jf m) j hjm (t i (jf m) (hjf m) (w m)) from
     (DirectedSystem.map_map (f := (t · · ·)) (hjf m) hjm (w m)).symm, hz, map_zero]
 
+/--
+@isnad1 id=ex.3h8v.s10.957c96240858 from=translated src=- shape=1ce729b1 vocab=368e9b3f
+-/
 theorem exists_factor_of_finitePresentation [DirectedSystem G (t · · ·)]
     (hψ : ∀ i j (h : i ≤ j) x, ψ j (t i j h x) = ψ i x)
     (hsurj : ∀ a, ∃ i x, ψ i x = a)
@@ -185,11 +215,17 @@ variable {ι : Type v} [Preorder ι] [IsDirectedOrder ι] [Nonempty ι]
   (P Q : Type*) [AddCommGroup P] [Module B₀ P] [AddCommGroup Q] [Module B₀ Q]
 
 omit [IsDirectedOrder ι] [Nonempty ι] in
+/--
+@isnad1 id=directed.0h4v.s8.3902ec179c80 from=translated src=- shape=2b231f4e vocab=5170f2b3
+-/
 theorem directedSystem_linear : DirectedSystem B (fun i j h => (τ i j h).toLinearMap) :=
   ⟨fun _ x => DirectedSystem.map_self (f := fun i j h => ⇑(τ i j h)) x,
     fun _ _ _ h₁ h₂ x => DirectedSystem.map_map (f := fun i j h => ⇑(τ i j h)) h₁ h₂ x⟩
 
 omit [IsDirectedOrder ι] [Nonempty ι] in
+/--
+@isnad1 id=eq.0h7v.s10.80cb71ee54d9 from=translated src=- shape=22f0a117 vocab=73e68342
+-/
 theorem rTensor_self (i : ι) {M : Type*} [AddCommGroup M] [Module B₀ M] (z : B i ⊗[B₀] M) :
     (τ i i le_rfl).toLinearMap.rTensor M z = z := by
   induction z using TensorProduct.induction_on with
@@ -202,18 +238,27 @@ theorem rTensor_self (i : ι) {M : Type*} [AddCommGroup M] [Module B₀ M] (z : 
 
 omit [DirectedSystem B (fun i j h => τ i j h)] [IsDirectedOrder ι] [Nonempty ι] in
 include hg in
+/--
+@isnad1 id=eq.2h8v.s9.b4a376758826 from=translated src=- shape=b95a6ca9 vocab=b7c3be94
+-/
 theorem glin_comp (k l : ι) (h : k ≤ l) :
     (g l).toLinearMap ∘ₗ (τ k l h).toLinearMap = (g k).toLinearMap :=
   LinearMap.ext fun x => by simpa using DFunLike.congr_fun (hg k l h) x
 
 omit [DirectedSystem B (fun i j h => τ i j h)] [IsDirectedOrder ι] [Nonempty ι] in
 include hg in
+/--
+@isnad1 id=eq.2h9v.s9.fb85d39d0bb8 from=translated src=- shape=65859aa4 vocab=9fe75ef9
+-/
 theorem glin_compat : ∀ k l (h : k ≤ l) (x : B k),
     (g l).toLinearMap ((τ k l h).toLinearMap x) = (g k).toLinearMap x :=
   fun k l h x => by simpa using DFunLike.congr_fun (hg k l h) x
 
 omit [DirectedSystem B (fun i j h => τ i j h)] [IsDirectedOrder ι] [Nonempty ι] in
 include hg in
+/--
+@isnad1 id=eq.2h10v.s11.9da183939937 from=translated src=- shape=966da8cf vocab=4ab3dfaa
+-/
 theorem gQ_compat (Q : Type*) [AddCommGroup Q] [Module B₀ Q] : ∀ k l (h : k ≤ l) (x : B k ⊗[B₀] Q),
     (g l).toLinearMap.rTensor Q ((τ k l h).toLinearMap.rTensor Q x) = (g k).toLinearMap.rTensor Q x := by
   intro k l h x
@@ -221,12 +266,18 @@ theorem gQ_compat (Q : Type*) [AddCommGroup Q] [Module B₀ Q] : ∀ k l (h : k 
 
 include hg hsurj in
 omit [DirectedSystem B (fun i j h => τ i j h)] in
+/--
+@isnad1 id=ex.2h8v.s10.27de9e025663 from=translated src=- shape=749c90ff vocab=d8623790
+-/
 theorem gQ_surj (Q : Type*) [AddCommGroup Q] [Module B₀ Q] :
     ∀ z : Bω ⊗[B₀] Q, ∃ (i : ι) (x : B i ⊗[B₀] Q), (g i).toLinearMap.rTensor Q x = z :=
   cocone_rTensor_surj (fun k l h => (τ k l h).toLinearMap) (fun k => (g k).toLinearMap)
     (glin_compat B τ Bω g hg) hsurj Q
 
 include hg hsurj hzero in
+/--
+@isnad1 id=ex.4h9v.s11.1ae6706e5083 from=translated src=- shape=4b7b026b vocab=142a4445
+-/
 theorem gQ_zero (Q : Type*) [AddCommGroup Q] [Module B₀ Q] :
     ∀ (i : ι) (x : B i ⊗[B₀] Q), (g i).toLinearMap.rTensor Q x = 0 →
       ∃ (j : ι) (h : i ≤ j), (τ i j h).toLinearMap.rTensor Q x = 0 :=
@@ -236,6 +287,9 @@ theorem gQ_zero (Q : Type*) [AddCommGroup Q] [Module B₀ Q] :
 
 include hg hsurj hzero in
 
+/--
+@isnad1 id=ex.4h11v.s12.932ce284fd9f from=translated src=- shape=ba600351 vocab=3fa4abf1
+-/
 theorem hom_inj [Module.Finite B₀ P] (i : ι) (φ φ' : B i ⊗[B₀] P →ₗ[B i] B i ⊗[B₀] Q)
     (h : (g i).toLinearMap.rTensor Q ∘ₗ φ.restrictScalars B₀ =
       (g i).toLinearMap.rTensor Q ∘ₗ φ'.restrictScalars B₀) :
@@ -257,6 +311,9 @@ theorem hom_inj [Module.Finite B₀ P] (i : ι) (φ φ' : B i ⊗[B₀] P →ₗ
 
 include hg hsurj hzero in
 
+/--
+@isnad1 id=ex.3h9v.s12.0b8968b21787 from=translated src=- shape=a7a145eb vocab=ff17b689
+-/
 theorem iso_desc [Module.FinitePresentation B₀ P] [Module.FinitePresentation B₀ Q]
     (e : Bω ⊗[B₀] P ≃ₗ[Bω] Bω ⊗[B₀] Q) :
     ∃ (i : ι) (eᵢ : B i ⊗[B₀] P ≃ₗ[B i] B i ⊗[B₀] Q),
@@ -382,6 +439,9 @@ end S17LFP
 
 universe u v w
 
+/--
+@isnad1 id=ex.3h9v.s12.0e774df4b42e from=translated src=- shape=a7a145eb vocab=ff17b689
+-/
 theorem solution
     {ι : Type v} [Preorder ι] [IsDirectedOrder ι] [Nonempty ι]
     {B₀ : Type u} [CommRing B₀]

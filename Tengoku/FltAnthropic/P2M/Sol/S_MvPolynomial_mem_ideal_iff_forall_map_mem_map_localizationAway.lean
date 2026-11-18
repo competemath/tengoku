@@ -12,6 +12,9 @@ namespace P3LocalMem
 
 attribute [local instance] MvPolynomial.algebraMvPolynomial
 
+/--
+@isnad1 id=ex.1h5v.s10.33c73aaac595 from=translated src=- shape=470979b6 vocab=81c09cb2
+-/
 theorem exists_pow_C_mul_mem {σ : Type} {A : Type} [CommRing A] (a : A)
     (I : Ideal (MvPolynomial σ A)) (f : MvPolynomial σ A)
     (h : MvPolynomial.map (algebraMap A (Localization.Away a)) f ∈
@@ -36,6 +39,9 @@ theorem exists_pow_C_mul_mem {σ : Type} {A : Type} [CommRing A] (a : A)
 
 end P3LocalMem
 
+/--
+@isnad1 id=iff.1h6v.s10.9cd901d56edc from=translated src=- shape=08b0d304 vocab=326b26ff
+-/
 theorem solution
     {σ : Type} (A : Type) [CommRing A] {ι : Type} (r : ι → A) (hr : Ideal.span (Set.range r) = ⊤)
     (I : Ideal (MvPolynomial σ A)) (f : MvPolynomial σ A) :

@@ -18,6 +18,9 @@ variable {k : Type u} [CommRing k]
 
 noncomputable abbrev Sb (φ : PowerSeries k) : Fin 2 → PowerSeries k := ![(PowerSeries.X : PowerSeries k), φ]
 
+/--
+@isnad1 id=hassubst.1h2v.s6.f3d2f4e1362f from=translated src=- shape=1e0f51b9 vocab=04e728da
+-/
 theorem hasSubst_Sb {φ : PowerSeries k} (hφ : PowerSeries.constantCoeff φ = 0) : HasSubst (Sb φ) := by
   apply hasSubst_of_constantCoeff_zero
   intro s
@@ -30,6 +33,9 @@ theorem hasSubst_Sb {φ : PowerSeries k} (hφ : PowerSeries.constantCoeff φ = 0
 end FactorThmGC7
 
 open FactorThmGC7 in
+/--
+@isnad1 id=ex.2h3v.s8.c9719abe24c1 from=translated src=- shape=29846bc6 vocab=570a1e29
+-/
 theorem solution
     {R : Type u} [CommRing R] (f : MvPowerSeries (Fin 2) R)
     (φ : PowerSeries R) (hφ0 : PowerSeries.constantCoeff φ = 0)

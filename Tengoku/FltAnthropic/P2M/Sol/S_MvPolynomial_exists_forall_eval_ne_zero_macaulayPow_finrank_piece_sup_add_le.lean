@@ -21,9 +21,15 @@ variable {E F : Type*} [AddCommGroup E] [Module K E] [AddCommGroup F] [Module K 
 
 def fam (g : Fin N → E →ₗ[K] F) (a : Fin N → K) : E →ₗ[K] F := ∑ i, a i • g i
 
+/--
+@isnad1 id=eq.0h7v.s8.92f1acd62c7a from=translated src=- shape=8002d144 vocab=8fc38d4a
+-/
 theorem fam_apply (g : Fin N → E →ₗ[K] F) (a : Fin N → K) (x : E) : fam g a x = ∑ i, a i • g i x := by
   simp [fam, LinearMap.sum_apply]
 
+/--
+@isnad1 id=ex.0h5v.s9.968dbdf14c37 from=translated src=- shape=de819fb4 vocab=17c0dea8
+-/
 theorem exists_generic_rank [Module.Finite K E] (g : Fin N → E →ₗ[K] F) :
     ∃ G : MvPolynomial (Fin N) K, G ≠ 0 ∧ ∀ a : Fin N → K, eval a G ≠ 0 →
       ∀ a' : Fin N → K, Module.finrank K ↥(LinearMap.range (fam g a')) ≤
@@ -105,6 +111,9 @@ variable (K : Type) [Field K] (M : ℕ)
 
 abbrev HS (m : ℕ) : Submodule K (MvPolynomial (Fin M) K) := homogeneousSubmodule (Fin M) K m
 
+/--
+@isnad1 id=finite.0h3v.s8.d1f837ff8724 from=translated src=- shape=f49248e9 vocab=b4063495
+-/
 scoped instance finite_HS (m : ℕ) : Module.Finite K ↥(HS K M m) := by
   rw [HS, MvPolynomial.homogeneousSubmodule_eq_finsupp_supported]
   haveI : Finite {x : Fin M →₀ ℕ | x.degree = m} :=
@@ -115,12 +124,21 @@ variable {K M}
 
 noncomputable def lin (a : Fin M → K) : MvPolynomial (Fin M) K := ∑ i, C (a i) * X i
 
+/--
+@isnad1 id=ishomoge.0h3v.s4.0c8ff082b5d3 from=translated src=- shape=e837e973 vocab=efbaa676
+-/
 theorem lin_isHomogeneous (a : Fin M → K) : (lin a).IsHomogeneous 1 := by
   unfold lin
   exact IsHomogeneous.sum _ _ _ fun i _ => isHomogeneous_C_mul_X _ _
 
+/--
+@isnad1 id=mem.0h3v.s7.99eefa79e9f1 from=translated src=- shape=c150dd32 vocab=9b9930c4
+-/
 theorem lin_mem (a : Fin M → K) : lin a ∈ HS K M 1 := lin_isHomogeneous a
 
+/--
+@isnad1 id=eq.0h4v.s5.696b04e5ecb7 from=translated src=- shape=86ba2f40 vocab=816329ea
+-/
 theorem coeff_lin_single (a : Fin M → K) (i : Fin M) : coeff (Finsupp.single i 1) (lin a) = a i := by
   classical
   unfold lin
@@ -134,20 +152,35 @@ theorem coeff_lin_single (a : Fin M → K) (i : Fin M) : coeff (Finsupp.single i
     exact hji (Finsupp.single_left_injective one_ne_zero h)
   · intro h; exact absurd (Finset.mem_univ i) h
 
+/--
+@isnad1 id=ne.1h4v.s6.ea25d6839dd8 from=translated src=- shape=11213cb4 vocab=afb1e478
+-/
 theorem lin_ne_zero {a : Fin M → K} {i : Fin M} (h : a i ≠ 0) : lin a ≠ 0 := by
   intro h0
   have := coeff_lin_single a i
   rw [h0, coeff_zero] at this
   exact h this.symm
 
+/--
+@isnad1 id=eq.0h2v.s6.b13d19a2fb1f from=translated src=- shape=e7d1aa90 vocab=afb1e478
+-/
 theorem lin_zero : lin (0 : Fin M → K) = 0 := by simp [lin]
 
+/--
+@isnad1 id=eq.0h4v.s7.c17b9cd27b4c from=translated src=- shape=7ba10b5c vocab=dea93890
+-/
 theorem lin_add (a b : Fin M → K) : lin (a + b) = lin a + lin b := by
   simp [lin, Finset.sum_add_distrib, add_mul]
 
+/--
+@isnad1 id=eq.0h4v.s7.56c6a0bddd17 from=translated src=- shape=4a3af34d vocab=90adc5a3
+-/
 theorem lin_smul (c : K) (a : Fin M → K) : lin (c • a) = C c * lin a := by
   simp [lin, Finset.mul_sum, mul_assoc]
 
+/--
+@isnad1 id=eq.0h3v.s6.f48be9c4d6bb from=translated src=- shape=023041a5 vocab=fc100598
+-/
 theorem lin_single [DecidableEq (Fin M)] (i : Fin M) : lin (Pi.single i (1 : K)) = X i := by
   unfold lin
   rw [Finset.sum_eq_single i]
@@ -155,6 +188,9 @@ theorem lin_single [DecidableEq (Fin M)] (i : Fin M) : lin (Pi.single i (1 : K))
   · intro j _ hji; simp [hji]
   · intro h; exact absurd (Finset.mem_univ i) h
 
+/--
+@isnad1 id=ex.1h2v.s7.01c8cb881796 from=translated src=- shape=5f63e7dc vocab=e929581b
+-/
 theorem exists_eq_single_of_degree_eq_one (s : Fin M →₀ ℕ) (hs : s.degree = 1) :
     ∃ i, s = Finsupp.single i 1 := by
   classical
@@ -189,36 +225,60 @@ theorem eq_lin_of_mem_one {p : MvPolynomial (Fin M) K} (hp : p ∈ HS K M 1) :
 noncomputable def mulSub (ℓ : MvPolynomial (Fin M) K) (m : ℕ) : Submodule K (MvPolynomial (Fin M) K) :=
   (HS K M m).map (LinearMap.mulLeft K ℓ)
 
+/--
+@isnad1 id=mem.1h5v.s8.5d45d8b8ee61 from=translated src=- shape=db6b47f6 vocab=df8c9dc5
+-/
 theorem mul_mem_mulSub (ℓ : MvPolynomial (Fin M) K) {m : ℕ} {p : MvPolynomial (Fin M) K} (hp : p ∈ HS K M m) :
     ℓ * p ∈ mulSub ℓ m := Submodule.mem_map_of_mem hp
 
+/--
+@isnad1 id=iff.0h5v.s8.be851aed8dec from=translated src=- shape=003eb3bd vocab=df8c9dc5
+-/
 theorem mem_mulSub_iff (ℓ : MvPolynomial (Fin M) K) (m : ℕ) (q : MvPolynomial (Fin M) K) :
     q ∈ mulSub ℓ m ↔ ∃ p ∈ HS K M m, ℓ * p = q := Submodule.mem_map
 
+/--
+@isnad1 id=le.1h4v.s8.62c6a2ce3567 from=translated src=- shape=b8b56848 vocab=e5dd6ac2
+-/
 theorem mulSub_le {ℓ : MvPolynomial (Fin M) K} (hℓ : ℓ ∈ HS K M 1) (m : ℕ) : mulSub ℓ m ≤ HS K M (m + 1) := by
   rintro _ ⟨p, hp, rfl⟩
   show (ℓ * p).IsHomogeneous (m + 1)
   rw [Nat.add_comm]; exact IsHomogeneous.mul hℓ hp
 
+/--
+@isnad1 id=eq.1h4v.s9.fa6ca4d6c28d from=translated src=- shape=c959269e vocab=7e5f166f
+-/
 theorem finrank_mulSub {ℓ : MvPolynomial (Fin M) K} (hℓ : ℓ ≠ 0) (m : ℕ) :
     Module.finrank K ↥(mulSub ℓ m) = Module.finrank K ↥(HS K M m) := by
   have hinj : Function.Injective (LinearMap.mulLeft K ℓ) := fun p q h => mul_left_cancel₀ hℓ h
   exact ((Submodule.equivMapOfInjective _ hinj (HS K M m)).finrank_eq).symm
 
+/--
+@isnad1 id=eq.0h3v.s7.bd06c416d781 from=translated src=- shape=6d660c6a vocab=74181990
+-/
 theorem mulSub_zero (m : ℕ) : mulSub (0 : MvPolynomial (Fin M) K) m = ⊥ := by
   rw [eq_bot_iff]
   rintro _ ⟨p, _, rfl⟩
   simp
 
+/--
+@isnad1 id=finite.0h4v.s8.55bfc31e9b31 from=translated src=- shape=58db95a5 vocab=bc5522c7
+-/
 scoped instance finite_mulSub (ℓ : MvPolynomial (Fin M) K) (m : ℕ) : Module.Finite K ↥(mulSub ℓ m) :=
   Module.Finite.map _ _
 
 noncomputable def codim (K : Type) [Field K] (M m : ℕ) (V : Submodule K (MvPolynomial (Fin M) K)) : ℕ :=
   Module.finrank K ↥(HS K M m) - Module.finrank K ↥V
 
+/--
+@isnad1 id=le.1h4v.s9.56053b7489e0 from=translated src=- shape=57857fb0 vocab=f3133391
+-/
 theorem finrank_le_of_le {m : ℕ} {V : Submodule K (MvPolynomial (Fin M) K)} (hV : V ≤ HS K M m) :
     Module.finrank K ↥V ≤ Module.finrank K ↥(HS K M m) := Submodule.finrank_mono hV
 
+/--
+@isnad1 id=eq.2h6v.s10.b25ed3eef2ab from=translated src=- shape=cd823a1e vocab=d4ab2a1a
+-/
 theorem finrank_map_add {X' : Type*} [AddCommGroup X'] [Module K X']
     (f : MvPolynomial (Fin M) K →ₗ[K] X') (p W : Submodule K (MvPolynomial (Fin M) K)) [Module.Finite K ↥p]
     (hW : W ≤ p) (hker : ∀ x ∈ p, f x = 0 ↔ x ∈ W) :
@@ -232,6 +292,9 @@ theorem finrank_map_add {X' : Type*} [AddCommGroup X'] [Module K X']
   rw [hk, (Submodule.comapSubtypeEquivOfLe hW).finrank_eq] at h
   exact h
 
+/--
+@isnad1 id=eq.0h4v.s11.6b0cebf8de5c from=translated src=- shape=238e5c54 vocab=06cadffe
+-/
 theorem finrank_sup_eq (V A : Submodule K (MvPolynomial (Fin M) K)) [Module.Finite K ↥V] [Module.Finite K ↥A] :
     Module.finrank K ↥(V ⊔ A) = Module.finrank K ↥V + Module.finrank K ↥(A.map V.mkQ) := by
   have h := finrank_map_add V.mkQ (V ⊔ A) V le_sup_left (fun x _ => by
@@ -239,6 +302,9 @@ theorem finrank_sup_eq (V A : Submodule K (MvPolynomial (Fin M) K)) [Module.Fini
   rw [Submodule.map_sup, Submodule.mkQ_map_self, bot_sup_eq] at h
   omega
 
+/--
+@isnad1 id=eq.0h5v.s11.aa9e96c6ea32 from=translated src=- shape=9630a349 vocab=a387da21
+-/
 theorem finrank_sup_mulSub_add {m : ℕ} (V : Submodule K (MvPolynomial (Fin M) K)) [Module.Finite K ↥V]
     (ℓ : MvPolynomial (Fin M) K) :
     Module.finrank K ↥(V ⊔ mulSub ℓ m) +
@@ -261,6 +327,9 @@ theorem finrank_sup_mulSub_add {m : ℕ} (V : Submodule K (MvPolynomial (Fin M) 
   rw [hinf, (Submodule.equivMapOfInjective _ hinj _).symm.finrank_eq, finrank_mulSub hℓ] at e1
   omega
 
+/--
+@isnad1 id=eq.2h5v.s9.2c7b8918f3db from=translated src=- shape=97d690fa vocab=ce4a0cea
+-/
 theorem codim_eq_colon_add {m : ℕ} {V : Submodule K (MvPolynomial (Fin M) K)} (hV : V ≤ HS K M (m + 1))
     {ℓ : MvPolynomial (Fin M) K} (hℓ : ℓ ∈ HS K M 1) :
     codim K M (m + 1) V =
@@ -275,6 +344,9 @@ theorem codim_eq_colon_add {m : ℕ} {V : Submodule K (MvPolynomial (Fin M) K)} 
   unfold codim
   omega
 
+/--
+@isnad1 id=ex.0h4v.s11.e107808196f6 from=translated src=- shape=550144f3 vocab=2536cd0c
+-/
 theorem exists_generic_codim (m : ℕ) (V : Submodule K (MvPolynomial (Fin M) K)) [Module.Finite K ↥V] :
     ∃ G : MvPolynomial (Fin M) K, G ≠ 0 ∧ ∀ a : Fin M → K, eval a G ≠ 0 →
       ∀ a' : Fin M → K, Module.finrank K ↥(V ⊔ mulSub (lin a') m) ≤ Module.finrank K ↥(V ⊔ mulSub (lin a) m) := by
@@ -302,6 +374,9 @@ theorem exists_generic_codim (m : ℕ) (V : Submodule K (MvPolynomial (Fin M) K)
 
 variable [Infinite K]
 
+/--
+@isnad1 id=ex.1h3v.s7.8ed5a3351a3f from=translated src=- shape=e22435c3 vocab=3286f03b
+-/
 theorem exists_eval_ne_zero {G : MvPolynomial (Fin M) K} (hG : G ≠ 0) : ∃ a : Fin M → K, eval a G ≠ 0 := by
   by_contra h
   push Not at h
@@ -318,12 +393,21 @@ noncomputable def bvec (a : Fin (N + 1) → K) : Fin N → K := fun j => -(a (Fi
 noncomputable def θ (a : Fin (N + 1) → K) : Fin (N + 1) → MvPolynomial (Fin N) K :=
   Fin.snoc (fun j => X j) (lin (bvec a))
 
+/--
+@isnad1 id=eq.0h4v.s5.4582d53b9d55 from=translated src=- shape=ab3afce1 vocab=ad43885e
+-/
 theorem θ_castSucc (a : Fin (N + 1) → K) (j : Fin N) : θ a (Fin.castSucc j) = X j := by
   simp [θ]
 
+/--
+@isnad1 id=eq.0h3v.s5.6c08577e500a from=translated src=- shape=9caa5415 vocab=8665d9b9
+-/
 theorem θ_last (a : Fin (N + 1) → K) : θ a (Fin.last N) = lin (bvec a) := by
   simp [θ]
 
+/--
+@isnad1 id=ishomoge.0h4v.s5.0b3da5817ece from=translated src=- shape=079a8276 vocab=1c48639d
+-/
 theorem θ_isHomogeneous (a : Fin (N + 1) → K) (i : Fin (N + 1)) : (θ a i).IsHomogeneous 1 := by
   refine Fin.lastCases ?_ (fun j => ?_) i
   · rw [θ_last]; exact lin_isHomogeneous _
@@ -332,35 +416,59 @@ theorem θ_isHomogeneous (a : Fin (N + 1) → K) (i : Fin (N + 1)) : (θ a i).Is
 noncomputable def φ (a : Fin (N + 1) → K) : MvPolynomial (Fin (N + 1)) K →ₐ[K] MvPolynomial (Fin N) K :=
   aeval (θ a)
 
+/--
+@isnad1 id=mem.1h5v.s9.356d5334057a from=translated src=- shape=bfe4c340 vocab=b55aa199
+-/
 theorem φ_mem {a : Fin (N + 1) → K} {m : ℕ} {p : MvPolynomial (Fin (N + 1)) K} (hp : p ∈ HS K (N + 1) m) :
     φ a p ∈ HS K N m := by
   have := IsHomogeneous.aeval hp (θ a) (θ_isHomogeneous a)
   rwa [one_mul] at this
 
+/--
+@isnad1 id=le.0h4v.s10.8ed917b91279 from=translated src=- shape=eff48c70 vocab=f16e21cd
+-/
 theorem map_φ_le (a : Fin (N + 1) → K) (m : ℕ) : (HS K (N + 1) m).map (φ a).toLinearMap ≤ HS K N m := by
   rintro _ ⟨p, hp, rfl⟩; exact φ_mem hp
 
+/--
+@isnad1 id=eq.0h4v.s9.cab5d8242de8 from=translated src=- shape=10bbfc01 vocab=ffd0af94
+-/
 theorem φ_rename (a : Fin (N + 1) → K) (q : MvPolynomial (Fin N) K) : φ a (rename Fin.castSucc q) = q := by
   unfold φ
   rw [aeval_rename]
   have : (θ a) ∘ Fin.castSucc = X := funext fun j => θ_castSucc a j
   rw [this, aeval_X_left_apply]
 
+/--
+@isnad1 id=eq.0h4v.s9.fa270f80b328 from=translated src=- shape=eff48c70 vocab=8586b5ae
+-/
 theorem map_φ_eq (a : Fin (N + 1) → K) (m : ℕ) : (HS K (N + 1) m).map (φ a).toLinearMap = HS K N m := by
   apply le_antisymm (map_φ_le a m)
   intro q hq
   exact ⟨rename Fin.castSucc q, IsHomogeneous.rename_isHomogeneous hq, φ_rename a q⟩
 
+/--
+@isnad1 id=finite.0h4v.s11.0a399c52befd from=translated src=- shape=50c3b822 vocab=a06f85c6
+-/
 scoped instance finite_map_φ (a : Fin (N + 1) → K) (U : Submodule K (MvPolynomial (Fin (N + 1)) K))
     [Module.Finite K ↥U] : Module.Finite K ↥(U.map (φ a).toLinearMap) :=
   Module.Finite.map _ _
 
+/--
+@isnad1 id=eq.0h4v.s9.d006372935ab from=translated src=- shape=9886c67d vocab=36c3d064
+-/
 theorem φ_X_castSucc (a : Fin (N + 1) → K) (j : Fin N) : φ a (X (Fin.castSucc j)) = X j := by
   unfold φ; rw [aeval_X, θ_castSucc]
 
+/--
+@isnad1 id=eq.0h3v.s9.07e56d0c083f from=translated src=- shape=a3dfdbd7 vocab=81658fb8
+-/
 theorem φ_X_last (a : Fin (N + 1) → K) : φ a (X (Fin.last N)) = lin (bvec a) := by
   unfold φ; rw [aeval_X, θ_last]
 
+/--
+@isnad1 id=eq.0h5v.s9.b7ee3d3ac1a5 from=translated src=- shape=a0096331 vocab=ae4ff04a
+-/
 theorem algHom_lin {M M' : ℕ} (f : MvPolynomial (Fin M) K →ₐ[K] MvPolynomial (Fin M') K) (a : Fin M → K) :
     f (lin a) = ∑ i, C (a i) * f (X i) := by
   simp [lin, map_sum, map_mul, algHom_C]
@@ -368,6 +476,9 @@ theorem algHom_lin {M M' : ℕ} (f : MvPolynomial (Fin M) K →ₐ[K] MvPolynomi
 noncomputable def Lmap (a a' : Fin (N + 1) → K) : Fin N → K :=
   fun j => a' (Fin.castSucc j) + a' (Fin.last N) * bvec a j
 
+/--
+@isnad1 id=eq.0h4v.s9.68d8603e3be5 from=translated src=- shape=675a972b vocab=8a0ba0ca
+-/
 theorem φ_lin (a a' : Fin (N + 1) → K) : φ a (lin a') = lin (Lmap a a') := by
   have hL : Lmap a a' = (fun j => a' (Fin.castSucc j)) + a' (Fin.last N) • bvec a := by
     funext j; simp [Lmap]
@@ -375,20 +486,32 @@ theorem φ_lin (a a' : Fin (N + 1) → K) : φ a (lin a') = lin (Lmap a a') := b
   simp only [φ_X_castSucc, φ_X_last]
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s6.7c97cef8c65c from=translated src=- shape=e7392695 vocab=6a084c55
+-/
 theorem Lmap_self (a : Fin (N + 1) → K) (ha : a (Fin.last N) ≠ 0) : Lmap a a = 0 := by
   funext j
   simp only [Lmap, bvec, Pi.zero_apply, mul_neg, mul_div_cancel₀ _ ha]
   ring
 
+/--
+@isnad1 id=eq.1h3v.s9.39704caec026 from=translated src=- shape=64d08fa3 vocab=672f08ef
+-/
 theorem φ_lin_self (a : Fin (N + 1) → K) (ha : a (Fin.last N) ≠ 0) : φ a (lin a) = 0 := by
   rw [φ_lin, Lmap_self a ha, lin_zero]
 
+/--
+@isnad1 id=eq.0h4v.s6.94516a403bb5 from=translated src=- shape=b489b4d5 vocab=7c0583ee
+-/
 theorem Lmap_snoc (a : Fin (N + 1) → K) (b : Fin N → K) : Lmap a (Fin.snoc b 0) = b := by
   funext j; simp [Lmap]
 
 noncomputable def pull (a : Fin (N + 1) → K) (G : MvPolynomial (Fin N) K) : MvPolynomial (Fin (N + 1)) K :=
   bind₁ (fun j => X (Fin.castSucc j) + X (Fin.last N) * C (bvec a j)) G
 
+/--
+@isnad1 id=eq.0h5v.s8.cc4383550067 from=translated src=- shape=c6f19fd8 vocab=d8b7dfc8
+-/
 theorem eval_pull (a a' : Fin (N + 1) → K) (G : MvPolynomial (Fin N) K) :
     eval a' (pull a G) = eval (Lmap a a') G := by
   unfold pull
@@ -400,6 +523,9 @@ theorem eval_pull (a a' : Fin (N + 1) → K) (G : MvPolynomial (Fin N) K) :
     simp [Lmap]
   rw [this]
 
+/--
+@isnad1 id=ne.1h4v.s8.70fa61560552 from=translated src=- shape=cb018970 vocab=48eb69c4
+-/
 theorem pull_ne_zero [Infinite K] (a : Fin (N + 1) → K) {G : MvPolynomial (Fin N) K} (hG : G ≠ 0) :
     pull a G ≠ 0 := by
   obtain ⟨b, hb⟩ := exists_eval_ne_zero hG
@@ -408,6 +534,9 @@ theorem pull_ne_zero [Infinite K] (a : Fin (N + 1) → K) {G : MvPolynomial (Fin
   rw [h, map_zero, Lmap_snoc] at this
   exact hb this.symm
 
+/--
+@isnad1 id=mem.3h5v.s10.90d5273ad60d from=translated src=- shape=2e913688 vocab=7d1fef41
+-/
 theorem mem_mulSub_X_of_φ_eq_zero (a : Fin (N + 1) → K) (haX : φ a (X (Fin.last N)) = 0) {m : ℕ}
     {p : MvPolynomial (Fin (N + 1)) K} (hp : p ∈ HS K (N + 1) (m + 1)) (h0 : φ a p = 0) :
     p ∈ mulSub (X (Fin.last N) : MvPolynomial (Fin (N + 1)) K) m := by
@@ -454,6 +583,9 @@ variable (a : Fin (N + 1) → K)
 noncomputable def gA (m : ℕ) : ↥(HS K (N + 1) (m + 1)) →ₗ[K] MvPolynomial (Fin N) K :=
   (φ a).toLinearMap.domRestrict (HS K (N + 1) (m + 1))
 
+/--
+@isnad1 id=eq.0h4v.s12.e63f437a6b6a from=translated src=- shape=6ec3d606 vocab=23657fc3
+-/
 theorem finrank_ker_gA (m : ℕ) :
     Module.finrank K ↥(HS K N (m + 1)) + Module.finrank K ↥(LinearMap.ker (gA a m)) =
       Module.finrank K ↥(HS K (N + 1) (m + 1)) := by
@@ -466,6 +598,9 @@ noncomputable def BA (m : ℕ) : Submodule K ↥(HS K (N + 1) (m + 1)) :=
 
 variable {a}
 
+/--
+@isnad1 id=le.1h4v.s11.b6823d301f07 from=translated src=- shape=5ebbc7bb vocab=b3f43b34
+-/
 theorem BA_le_ker (ha : a (Fin.last N) ≠ 0) (m : ℕ) : BA a m ≤ LinearMap.ker (gA a m) := by
   rintro ⟨p, hp⟩ hB
   obtain ⟨q, _, hq⟩ := (mem_mulSub_iff _ _ _).mp hB
@@ -473,6 +608,9 @@ theorem BA_le_ker (ha : a (Fin.last N) ≠ 0) (m : ℕ) : BA a m ≤ LinearMap.k
   simp only [LinearMap.mem_ker, gA, LinearMap.domRestrict_apply, AlgHom.toLinearMap_apply]
   rw [← hq', map_mul, φ_lin_self a ha, zero_mul]
 
+/--
+@isnad1 id=eq.1h4v.s12.1583edc46e52 from=translated src=- shape=7292b1d5 vocab=f06c595e
+-/
 theorem finrank_BA (ha : a (Fin.last N) ≠ 0) (m : ℕ) :
     Module.finrank K ↥(BA a m) = Module.finrank K ↥(HS K (N + 1) m) := by
   rw [BA, (Submodule.comapSubtypeEquivOfLe (mulSub_le (lin_mem a) m)).finrank_eq,
@@ -480,6 +618,9 @@ theorem finrank_BA (ha : a (Fin.last N) ≠ 0) (m : ℕ) :
 
 end Kernel
 
+/--
+@isnad1 id=eq.0h3v.s10.2348d99e7b48 from=translated src=- shape=8276ce6c vocab=420f69c5
+-/
 theorem finrank_HS_succ (m : ℕ) :
     Module.finrank K ↥(HS K (N + 1) (m + 1)) =
       Module.finrank K ↥(HS K N (m + 1)) + Module.finrank K ↥(HS K (N + 1) m) := by
@@ -499,6 +640,9 @@ theorem finrank_HS_succ (m : ℕ) :
   rw [hker, finrank_BA heN] at h
   exact h.symm
 
+/--
+@isnad1 id=iff.2h5v.s10.02806c05ee2f from=translated src=- shape=dd61decb vocab=f27aa0e6
+-/
 theorem φ_eq_zero_iff {a : Fin (N + 1) → K} (ha : a (Fin.last N) ≠ 0) {m : ℕ}
     {p : MvPolynomial (Fin (N + 1)) K} (hp : p ∈ HS K (N + 1) (m + 1)) :
     φ a p = 0 ↔ p ∈ mulSub (lin a) m := by
@@ -518,6 +662,9 @@ theorem φ_eq_zero_iff {a : Fin (N + 1) → K} (ha : a (Fin.last N) ≠ 0) {m : 
     have : (⟨p, hp⟩ : ↥(HS K (N + 1) (m + 1))) ∈ LinearMap.ker (gA a m) := by rw [← hker]; exact hB
     simpa [gA] using this
 
+/--
+@isnad1 id=eq.3h5v.s10.fe6741164ef3 from=translated src=- shape=9060f60b vocab=cb3a05a3
+-/
 theorem codim_map_φ (a : Fin (N + 1) → K) (ha : a (Fin.last N) ≠ 0) {m : ℕ}
     {U : Submodule K (MvPolynomial (Fin (N + 1)) K)} (h1 : mulSub (lin a) m ≤ U) (h2 : U ≤ HS K (N + 1) (m + 1)) :
     codim K N (m + 1) (U.map (φ a).toLinearMap) = codim K (N + 1) (m + 1) U := by
@@ -531,6 +678,9 @@ theorem codim_map_φ (a : Fin (N + 1) → K) (ha : a (Fin.last N) ≠ 0) {m : �
   unfold codim
   omega
 
+/--
+@isnad1 id=eq.0h5v.s10.709258698d42 from=translated src=- shape=30023980 vocab=de08a5a7
+-/
 theorem map_mulSub (a : Fin (N + 1) → K) (ℓ : MvPolynomial (Fin (N + 1)) K) (m : ℕ) :
     (mulSub ℓ m).map (φ a).toLinearMap = mulSub (φ a ℓ) m := by
   unfold mulSub
@@ -540,6 +690,9 @@ theorem map_mulSub (a : Fin (N + 1) → K) (ℓ : MvPolynomial (Fin (N + 1)) K) 
   intro p
   simp
 
+/--
+@isnad1 id=le.0h6v.s11.7f111e5fd54d from=translated src=- shape=9cce16a0 vocab=271af19a
+-/
 theorem map_colon_le (a : Fin (N + 1) → K) {m : ℕ} (V : Submodule K (MvPolynomial (Fin (N + 1)) K))
     (ℓ : MvPolynomial (Fin (N + 1)) K) :
     (HS K (N + 1) m ⊓ V.comap (LinearMap.mulLeft K ℓ)).map (φ a).toLinearMap ≤
@@ -555,6 +708,9 @@ section Main
 
 variable {K : Type} [Field K]
 
+/--
+@isnad1 id=eq.0h1v.s4.53cd8a5c100c from=translated src=- shape=c3982312 vocab=aa789aff
+-/
 theorem macaulayPow_one (a : ℕ) : Nat.macaulayPow 1 a = (a + 1).choose 2 := by
   have h0 : ∀ b, Nat.macaulayPow 0 b = 0 := fun b => by simp [Nat.macaulayPow]
   have hfg : Nat.findGreatest (fun k => k.choose (0 + 1) ≤ a) (a + 0 + 1) = a := by
@@ -564,6 +720,9 @@ theorem macaulayPow_one (a : ℕ) : Nat.macaulayPow 1 a = (a + 1).choose 2 := by
   rw [Nat.macaulayPow, hfg, h0]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.d5357facb1e8 from=translated src=- shape=77b733a2 vocab=25b35dbf
+-/
 theorem HS_zero_vars (m : ℕ) : HS K 0 (m + 1) = ⊥ := by
   rw [eq_bot_iff]
   intro p hp
@@ -577,6 +736,9 @@ theorem HS_zero_vars (m : ℕ) : HS K 0 (m + 1) = ⊥ := by
 
 variable [Infinite K]
 
+/--
+@isnad1 id=ex.1h4v.s9.5abfc7ffb94e from=translated src=- shape=809b6910 vocab=ee21c288
+-/
 theorem main : ∀ (M e : ℕ) (V : Submodule K (MvPolynomial (Fin M) K)), V ≤ HS K M (e + 1) →
     ∃ G : MvPolynomial (Fin M) K, G ≠ 0 ∧ ∀ a : Fin M → K, eval a G ≠ 0 →
       Nat.macaulayPow (e + 1) (codim K M (e + 1) (V ⊔ mulSub (lin a) e)) + codim K M (e + 1) V ≤
@@ -737,6 +899,9 @@ attribute [local instance] MvPolynomial.gradedAlgebra
 
 open AlgebraicGeometry.HilbertFunctor
 
+/--
+@isnad1 id=eq.0h4v.s12.f20fcd64d6c6 from=translated src=- shape=1a46c0c0 vocab=8534f31d
+-/
 theorem finrank_piece_eq_codim (I : Ideal (MvPolynomial (Fin (n + 1)) K)) (m : ℕ) :
     Module.finrank K (piece I m) = codim K (n + 1) m (HS K (n + 1) m ⊓ I.restrictScalars K) := by
   have h : Module.finrank K (piece I m) +
@@ -752,11 +917,17 @@ theorem finrank_piece_eq_codim (I : Ideal (MvPolynomial (Fin (n + 1)) K)) (m : �
   unfold codim
   omega
 
+/--
+@isnad1 id=eq.0h4v.s13.b1495762c1d1 from=translated src=- shape=040c0151 vocab=2b87f92f
+-/
 theorem decompose_eq (q : MvPolynomial (Fin (n + 1)) K) (d : ℕ) :
     (DirectSum.decompose (homogeneousSubmodule (Fin (n + 1)) K) q d : MvPolynomial (Fin (n + 1)) K) =
       homogeneousComponent d q :=
   MvPolynomial.decomposition.decompose'_apply q d
 
+/--
+@isnad1 id=eq.1h6v.s10.b055d87c18ea from=translated src=- shape=113bda57 vocab=83a62396
+-/
 theorem homogeneousComponent_mul_add {G : MvPolynomial (Fin (n + 1)) K} {m : ℕ} (hG : G.IsHomogeneous m)
     (a : MvPolynomial (Fin (n + 1)) K) (d : ℕ) :
     homogeneousComponent (m + d) (a * G) = homogeneousComponent d a * G := by
@@ -765,6 +936,9 @@ theorem homogeneousComponent_mul_add {G : MvPolynomial (Fin (n + 1)) K} {m : ℕ
   rw [decompose_eq, decompose_eq, Nat.add_sub_cancel_left] at this
   exact this
 
+/--
+@isnad1 id=eq.1h5v.s11.782d98cdce93 from=translated src=- shape=35951534 vocab=884b05b4
+-/
 theorem HS_inf_sup_span {J : Ideal (MvPolynomial (Fin (n + 1)) K)}
     (hJ : ∀ p ∈ J, ∀ i : ℕ, homogeneousComponent i p ∈ J) (a : Fin (n + 1) → K) (e : ℕ) :
     HS K (n + 1) (e + 1) ⊓ (J ⊔ Ideal.span {lin a}).restrictScalars K =
@@ -795,6 +969,9 @@ open scoped _root_.P2MW.S_MvPolynomial_exists_forall_eval_ne_zero_macaulayPow_fi
 
 open MvPolynomial AlgebraicGeometry.HilbertFunctor GreenHRT in
 
+/--
+@isnad1 id=ex.2h4v.s14.5af57acaad5f from=translated src=- shape=0d9ece23 vocab=d0782da3
+-/
 theorem solution (n d : ℕ) (hd : 1 ≤ d) (K : Type) [Field K] [Infinite K]
     (J : Ideal (MvPolynomial (Fin (n + 1)) K)) (hJ : ∀ p ∈ J, ∀ i : ℕ, homogeneousComponent i p ∈ J) :
     ∃ G : MvPolynomial (Fin (n + 1)) K, G ≠ 0 ∧ ∀ a : Fin (n + 1) → K, MvPolynomial.eval a G ≠ 0 →

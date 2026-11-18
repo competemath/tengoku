@@ -11,6 +11,9 @@ universe u
 
 open MvPowerSeries
 
+/--
+@isnad1 id=and.2h4v.s11.63239ac0cf56 from=translated src=- shape=563c320d vocab=daeaa165
+-/
 theorem MvPowerSeries.span_singleton_isPrime_of_sub_linear_mem_sq
     {κ : Type u} [Field κ] (a b : κ) (hab : a ≠ 0 ∨ b ≠ 0)
     (ℓ : MvPowerSeries (Fin 2) κ)

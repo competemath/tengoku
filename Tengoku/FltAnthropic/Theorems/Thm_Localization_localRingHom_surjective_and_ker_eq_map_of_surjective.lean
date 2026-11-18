@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Localization_localRingHom_surjective_and_k
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=and.2h5v.s10.ec481338dd25 from=translated src=- shape=d43f8826 vocab=93ab98ed
+-/
 theorem Localization.localRingHom_surjective_and_ker_eq_map_of_surjective
     {A B : Type} [CommRing A] [CommRing B] (f : A →+* B) (hf : Function.Surjective f)
     (p : Ideal A) [p.IsPrime] (q : Ideal B) [q.IsPrime] (hpq : p = Ideal.comap f q) :

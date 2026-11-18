@@ -16,6 +16,9 @@ section Modules
 
 variable {A : Type} [CommRing A]
 
+/--
+@isnad1 id=ex.1h4v.s11.f170e93225bb from=translated src=- shape=64f01732 vocab=5bc7db60
+-/
 theorem exists_equiv_prod_ker {Q₁ Q₂ : Type} [AddCommGroup Q₁] [Module A Q₁] [AddCommGroup Q₂] [Module A Q₂]
     [Module.Projective A Q₂] (π : Q₁ →ₗ[A] Q₂) (hπ : Function.Surjective π) :
     ∃ e : Q₁ ≃ₗ[A] Q₂ × LinearMap.ker π, ∀ x, (e x).1 = π x := by
@@ -31,6 +34,9 @@ theorem exists_equiv_prod_ker {Q₁ Q₂ : Type} [AddCommGroup Q₁] [Module A Q
               have hk' : π k = 0 := hk
               ext <;> simp [hs', hk'] }, fun x => rfl⟩
 
+/--
+@isnad1 id=nontrivi.0h2v.s3.702aa2f0a992 from=translated src=- shape=17207180 vocab=7a2fd7aa
+-/
 theorem nontrivial_of_primeSpectrum (q : PrimeSpectrum A) : Nontrivial A :=
   not_subsingleton_iff_nontrivial.mp fun _ => (IsEmpty.false q)
 
@@ -43,11 +49,17 @@ variable {A : Type} [CommRing A] {M : Type} [AddCommGroup M] [Module A M] {r : �
 def syz (ε : (Fin r → A) →ₗ[A] M) : Ideal A :=
   ⨆ i : Fin r, (LinearMap.ker ε).map (LinearMap.proj i)
 
+/--
+@isnad1 id=mem.1h6v.s8.10f8e553b0b9 from=translated src=- shape=75baba15 vocab=64399904
+-/
 theorem apply_mem_syz (ε : (Fin r → A) →ₗ[A] M) {k : Fin r → A} (hk : ε k = 0) (i : Fin r) :
     k i ∈ syz ε := by
   refine Submodule.mem_iSup_of_mem i ?_
   exact Submodule.mem_map_of_mem (f := LinearMap.proj i) (LinearMap.mem_ker.mpr hk)
 
+/--
+@isnad1 id=iff.0h5v.s8.b1a5ce680b00 from=translated src=- shape=d2c024dd vocab=66c70060
+-/
 theorem syz_le_iff (ε : (Fin r → A) →ₗ[A] M) (J : Ideal A) :
     syz ε ≤ J ↔ ∀ k : Fin r → A, ε k = 0 → ∀ i, k i ∈ J := by
   constructor
@@ -60,6 +72,9 @@ theorem syz_le_iff (ε : (Fin r → A) →ₗ[A] M) (J : Ideal A) :
 
 variable (C : Type) [CommRing C] [Algebra A C]
 
+/--
+@isnad1 id=eq.0h5v.s10.2b05d30d0347 from=translated src=- shape=c8eaff69 vocab=c1d7b5d0
+-/
 theorem piScalarRight_tmul (c : C) (k : Fin r → A) :
     piScalarRight A C C (Fin r) (c ⊗ₜ[A] k) = fun i => algebraMap A C (k i) * c := by
   classical
@@ -67,6 +82,9 @@ theorem piScalarRight_tmul (c : C) (k : Fin r → A) :
   funext i
   rw [Algebra.smul_def]
 
+/--
+@isnad1 id=ex.2h5v.s10.aa29fe30608c from=translated src=- shape=1469b4ef vocab=b45a43c6
+-/
 theorem core_equiv (ε : (Fin r → A) →ₗ[A] M) (hε : Function.Surjective ε)
     (h : ∀ a ∈ syz ε, algebraMap A C a = 0) :
     ∃ e : (C ⊗[A] M) ≃ₗ[C] (Fin r → C),
@@ -103,6 +121,9 @@ theorem core_equiv (ε : (Fin r → A) →ₗ[A] M) (hε : Function.Surjective �
   funext i
   rw [mul_one]
 
+/--
+@isnad1 id=eq.3h6v.s9.142d833609aa from=translated src=- shape=a2252de3 vocab=43fd71d7
+-/
 theorem core_vanish (ε : (Fin r → A) →ₗ[A] M) (hε : Function.Surjective ε)
     [Module.Projective C (C ⊗[A] M)] (hrank : ∀ q : PrimeSpectrum C, Module.rankAtStalk (C ⊗[A] M) q = r) :
     ∀ a ∈ syz ε, algebraMap A C a = 0 := by
@@ -167,11 +188,17 @@ def IsChart (A : Type) [CommRing A] {M : Type} [AddCommGroup M] [Module A M] {r 
 
 variable {A : Type} [CommRing A] {M : Type} [AddCommGroup M] [Module A M] {r : ℕ}
 
+/--
+@isnad1 id=surjecti.1h5v.s8.752a24485639 from=translated src=- shape=44c5fcab vocab=61b71435
+-/
 theorem pres_surjective {A' : Type} [CommRing A'] [Algebra A A'] {m : Fin r → M} (hm : IsChart A A' m) :
     Function.Surjective (pres A A' m) := by
   rw [← LinearMap.range_eq_top, pres, Fintype.range_linearCombination]
   exact hm
 
+/--
+@isnad1 id=nonempty.2h6v.s8.93b1bfc9061a from=translated src=- shape=5944f89a vocab=74229d3a
+-/
 theorem chart_equiv {A' : Type} [CommRing A'] [Algebra A A'] {m : Fin r → M}
     (C : Type) [CommRing C] [Algebra A C] [Algebra A' C] [IsScalarTower A A' C]
     (hm : IsChart A A' m) (h : ∀ a ∈ chartIdeal A A' m, algebraMap A' C a = 0) :
@@ -179,6 +206,9 @@ theorem chart_equiv {A' : Type} [CommRing A'] [Algebra A A'] {m : Fin r → M}
   obtain ⟨e, -⟩ := core_equiv C (pres A A' m) (pres_surjective hm) h
   exact ⟨(AlgebraTensorModule.cancelBaseChange A A' C C M).symm ≪≫ₗ e⟩
 
+/--
+@isnad1 id=eq.3h7v.s8.8bdb3a026e69 from=translated src=- shape=da8fab70 vocab=693155f5
+-/
 theorem chart_vanish {A' : Type} [CommRing A'] [Algebra A A'] {m : Fin r → M}
     (C : Type) [CommRing C] [Algebra A C] [Algebra A' C] [IsScalarTower A A' C]
     (hm : IsChart A A' m) [Module.Projective C (C ⊗[A] M)]
@@ -198,12 +228,18 @@ variable (A : Type) [CommRing A] (M : Type) [AddCommGroup M] [Module A M] [Modul
 
 omit [Module.Finite A M] in
 
+/--
+@isnad1 id=eq.0h3v.s9.c4e7bcd7863d from=translated src=- shape=fecb08f0 vocab=d6cea3c8
+-/
 theorem span_one_tmul_eq_top (L : Type) [CommRing L] [Algebra A L] :
     Submodule.span L (Set.range fun x : M => (1 : L) ⊗ₜ[A] x) = ⊤ := by
   have h := Submodule.baseChange_top (R := A) (M := M) L
   rw [Submodule.baseChange_eq_span, Submodule.map_top, LinearMap.coe_range] at h
   exact h
 
+/--
+@isnad1 id=ex.1h4v.s10.18820d0c8caa from=translated src=- shape=e6715ffa vocab=5e121d43
+-/
 theorem exists_chart (p : PrimeSpectrum A)
     (hr : Module.finrank p.asIdeal.ResidueField (p.asIdeal.ResidueField ⊗[A] M) ≤ r) :
     ∃ f : A, f ∉ p.asIdeal ∧ ∃ m : Fin r → M, IsChart A (Localization.Away f) m := by
@@ -301,6 +337,9 @@ section Compat
 
 variable {A : Type} [CommRing A] {M : Type} [AddCommGroup M] [Module A M] {r : ℕ}
 
+/--
+@isnad1 id=ex.3h8v.s10.7f42cc15324f from=translated src=- shape=09855a0c vocab=a632d964
+-/
 theorem compat (g g' : A) (m m' : Fin r → M) (hm : IsChart A (Localization.Away g) m)
     (hm' : IsChart A (Localization.Away g') m') (a : A)
     (ha : algebraMap A (Localization.Away g) a ∈ chartIdeal A (Localization.Away g) m) :
@@ -349,6 +388,9 @@ section Glue
 
 variable (A : Type) [CommRing A] (M : Type) [AddCommGroup M] [Module A M] [Module.Finite A M] (r : ℕ)
 
+/--
+@isnad1 id=ex.1h3v.s10.c2c073bba982 from=translated src=- shape=febed5b0 vocab=fef622a7
+-/
 theorem main
     (hr : ∀ p : PrimeSpectrum A,
       Module.finrank p.asIdeal.ResidueField (p.asIdeal.ResidueField ⊗[A] M) ≤ r) :
@@ -478,6 +520,9 @@ end Glue
 
 end FittingClosed
 
+/--
+@isnad1 id=ex.1h3v.s10.c2c073bba982 from=translated src=- shape=febed5b0 vocab=fef622a7
+-/
 theorem solution
     (A : Type) [CommRing A] (M : Type) [AddCommGroup M] [Module A M] [Module.Finite A M] (r : ℕ)
     (hr : ∀ p : PrimeSpectrum A,

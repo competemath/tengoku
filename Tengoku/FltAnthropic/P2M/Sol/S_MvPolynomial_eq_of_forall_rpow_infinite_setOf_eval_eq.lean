@@ -22,6 +22,9 @@ theorem eq_of_forall_mem_forall_mem_eval_eq {K : Type*} [CommRing K] [IsDomain K
   have hv' : v = ![v 0, v 1] := by ext i; fin_cases i <;> rfl
   rw [hv']; exact h _ h0 _ h1
 
+/--
+@isnad1 id=eq.0h4v.s9.1449143aa1ec from=translated src=- shape=171d7cd1 vocab=bbfdc986
+-/
 theorem eval_aeval_X_C_eq_eval {K : Type*} [CommRing K] (P : MvPolynomial (Fin 2) K) (x y : K) :
     Polynomial.eval x (MvPolynomial.aeval ![Polynomial.X, Polynomial.C y] P) =
       MvPolynomial.eval ![x, y] P := by
@@ -69,6 +72,9 @@ theorem eq_of_forall_rpow_infinite_setOf_eval_eq (N : ℕ) (hN : 1 < N) (u₀ : 
 
 end MvPolynomial
 
+/--
+@isnad1 id=eq.2h4v.s8.55b596151e92 from=translated src=- shape=0c7fdfab vocab=1809185c
+-/
 theorem solution (N : ℕ) (hN : 1 < N) (u₀ : ℝ)
     (P Q : MvPolynomial (Fin 2) ℂ)
     (h : ∀ u : ℝ, u₀ < u →

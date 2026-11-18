@@ -43,6 +43,9 @@ theorem eq_of_forall_eval_rpow_eq (N : ℕ) (hN : 1 < N) (u₀ : ℝ) (S : Set �
 
 end MvPolynomial
 
+/--
+@isnad1 id=eq.3h5v.s8.cf713c291096 from=translated src=- shape=1faccddb vocab=c725f5f6
+-/
 theorem solution (N : ℕ) (hN : 1 < N) (u₀ : ℝ) (S : Set ℂ)
     (hS : S.Infinite) (P Q : MvPolynomial (Fin 2) ℂ)
     (h : ∀ x ∈ S, ∀ u : ℝ, u₀ < u →

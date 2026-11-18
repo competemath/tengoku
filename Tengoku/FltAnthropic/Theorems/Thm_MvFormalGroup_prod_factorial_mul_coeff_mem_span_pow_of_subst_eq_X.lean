@@ -12,6 +12,9 @@ open MvPowerSeries
 
 universe u
 
+/--
+@isnad1 id=mem.10h9v.s10.6c83469ff4ca from=translated src=- shape=fff9678c vocab=cee87903
+-/
 theorem Tengoku.FltAnthropic.MvFormalGroup.prod_factorial_mul_coeff_mem_span_pow_of_subst_eq_X
     {𝓞 : Type u} [CommRing 𝓞] (p : ℕ) [Fact p.Prime] (hp : (p : 𝓞) ∈ nonZeroDivisors 𝓞)
     {d : ℕ} (F : MvFormalGroup d 𝓞) [F.IsComm]

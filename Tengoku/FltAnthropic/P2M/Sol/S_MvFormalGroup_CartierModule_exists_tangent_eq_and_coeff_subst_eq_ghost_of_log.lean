@@ -24,6 +24,9 @@ open Classical
 
 variable (p : ℕ) [hp : Fact p.Prime] {𝓞 : Type u} [CommRing 𝓞]
 
+/--
+@isnad1 id=and.1h5v.s6.7f42bc4eb146 from=translated src=- shape=0196e694 vocab=a493c1d0
+-/
 theorem single_pow_inj {k n k' n' : ℕ}
     (h : (Finsupp.single k (p ^ n) : ℕ →₀ ℕ) = Finsupp.single k' (p ^ n')) : k = k' ∧ n = n' := by
   rcases (Finsupp.single_eq_single_iff _ _ _ _).mp h with ⟨hk, hpn⟩ | ⟨h0, -⟩
@@ -34,6 +37,9 @@ def ghostS (c : ℕ → 𝓞) : MvPowerSeries ℕ 𝓞 := fun e =>
   if h : ∃ kn : ℕ × ℕ, e = Finsupp.single kn.1 (p ^ kn.2)
   then (p : 𝓞) ^ h.choose.1 * c (h.choose.1 + h.choose.2) else 0
 
+/--
+@isnad1 id=eq.0h5v.s8.ec3c531557f6 from=translated src=- shape=6008b1e1 vocab=41840584
+-/
 theorem coeff_ghostS_single (c : ℕ → 𝓞) (k n : ℕ) :
     coeff (Finsupp.single k (p ^ n)) (ghostS p c) = (p : 𝓞) ^ k * c (k + n) := by
   show ghostS p c (Finsupp.single k (p ^ n)) = _
@@ -44,6 +50,9 @@ theorem coeff_ghostS_single (c : ℕ → 𝓞) (k n : ℕ) :
   obtain ⟨hk, hn⟩ := single_pow_inj p hex.choose_spec
   rw [← hk, ← hn]
 
+/--
+@isnad1 id=eq.1h4v.s7.a9a568e9fc28 from=translated src=- shape=310a00ad vocab=a40eaca8
+-/
 theorem coeff_ghostS_of_ne (c : ℕ → 𝓞) (e : ℕ →₀ ℕ)
     (he : ∀ k n : ℕ, e ≠ Finsupp.single k (p ^ n)) : coeff e (ghostS p c) = 0 := by
   show ghostS p c e = _
@@ -52,11 +61,17 @@ theorem coeff_ghostS_of_ne (c : ℕ → 𝓞) (e : ℕ →₀ ℕ)
   rintro ⟨⟨k, n⟩, hkn⟩
   exact he k n hkn
 
+/--
+@isnad1 id=eq.0h3v.s7.68807d1a7168 from=translated src=- shape=da82753a vocab=43579e81
+-/
 theorem coeff_ghostS_single_zero_one (c : ℕ → 𝓞) :
     coeff (Finsupp.single 0 1) (ghostS p c) = c 0 := by
   have := coeff_ghostS_single p c 0 0
   rwa [pow_zero, pow_zero, one_mul, zero_add] at this
 
+/--
+@isnad1 id=eq.0h3v.s6.f9533590a806 from=translated src=- shape=558d4b62 vocab=0eda2b40
+-/
 theorem constantCoeff_ghostS (c : ℕ → 𝓞) : constantCoeff (ghostS p c) = 0 := by
   rw [← coeff_zero_eq_constantCoeff_apply]
   refine coeff_ghostS_of_ne p c 0 fun k n h => ?_
@@ -77,10 +92,19 @@ variable {d : ℕ} (Φ : MvFormalGroup d 𝓞) [Φ.IsComm]
 
 def G (c : ℕ → Fin d → 𝓞) : Fin d → MvPowerSeries ℕ 𝓞 := fun j => ghostS p (fun N => c N j)
 
+/--
+@isnad1 id=eq.0h5v.s6.9b63e23f3156 from=translated src=- shape=c954944c vocab=8a4d1705
+-/
 theorem constantCoeff_G (j : Fin d) : (G p c j).constantCoeff = 0 := constantCoeff_ghostS p _
 
+/--
+@isnad1 id=hassubst.0h4v.s5.63c2809b541a from=translated src=- shape=97d9bade vocab=9a3cbef3
+-/
 theorem hasSubst_G : HasSubst (G p c) := hasSubst_of_constantCoeff_zero (constantCoeff_G p c)
 
+/--
+@isnad1 id=eq.0h5v.s8.bad6a6b3dbae from=translated src=- shape=1330f6a0 vocab=af701902
+-/
 theorem subst_addFam_G (j : Fin d) :
     subst (MvFormalGroup.WittLaw.addFam p 𝓞) (G p c j) =
       subst (fun m => (X (0, m) : MvPowerSeries (Fin 2 × ℕ) 𝓞)) (G p c j) +
@@ -92,15 +116,24 @@ def mser (ψ : Fin d → MvPowerSeries (Fin d) 𝓞) (c : ℕ → Fin d → 𝓞
   fun j => subst (G p c) (ψ j)
 
 include hψ0 in
+/--
+@isnad1 id=eq.1h6v.s7.cbfb25a16b15 from=translated src=- shape=dfbe7dd4 vocab=a9255bc0
+-/
 theorem constantCoeff_mser (j : Fin d) : (mser p ψ c j).constantCoeff = 0 :=
   constantCoeff_subst_eq_zero (hasSubst_G p c) (constantCoeff_G p c) (hψ0 j)
 
 include hψ0 in
+/--
+@isnad1 id=hassubst.1h5v.s7.40ed5c3398e1 from=translated src=- shape=156b9deb vocab=4fb922c3
+-/
 theorem hasSubst_mser : HasSubst (mser p ψ c) :=
   hasSubst_of_constantCoeff_zero (constantCoeff_mser p ψ hψ0 c)
 
 include hψ0 hfψ in
 
+/--
+@isnad1 id=eq.2h7v.s7.ed53229456a4 from=translated src=- shape=ea7ee3bf vocab=80eb7263
+-/
 theorem subst_mser_f (j : Fin d) : subst (mser p ψ c) (f j) = G p c j := by
   have hψ : HasSubst ψ := hasSubst_of_constantCoeff_zero hψ0
   show subst (fun i => subst (G p c) (ψ i)) (f j) = G p c j
@@ -108,6 +141,9 @@ theorem subst_mser_f (j : Fin d) : subst (mser p ψ c) (f j) = G p c j := by
 
 include hf0 hψf hlog in
 
+/--
+@isnad1 id=eq.3h6v.s9.46054a722096 from=translated src=- shape=8c4cd809 vocab=f4794f20
+-/
 theorem law_eq (j : Fin d) :
     Φ.toPowerSeries j = subst (fun i =>
       subst (fun l => (X (Sum.inl l) : MvPowerSeries (Fin d ⊕ Fin d) 𝓞)) (f i) +
@@ -120,6 +156,9 @@ theorem law_eq (j : Fin d) :
   funext i
   exact hlog i
 
+/--
+@isnad1 id=eq.1h6v.s8.1fa2d676588f from=translated src=- shape=15a536e2 vocab=20978cce
+-/
 theorem subst_addLog {τ : Type*} (e : Fin d ⊕ Fin d → MvPowerSeries τ 𝓞)
     (he : ∀ s, (e s).constantCoeff = 0) (i : Fin d) :
     subst e (subst (fun l => (X (Sum.inl l) : MvPowerSeries (Fin d ⊕ Fin d) 𝓞)) (f i) +
@@ -135,6 +174,9 @@ theorem subst_addLog {τ : Type*} (e : Fin d ⊕ Fin d → MvPowerSeries τ 𝓞
 
 include hf0 hψ0 hfψ hψf hlog in
 
+/--
+@isnad1 id=eq.5h8v.s9.5035a21953dd from=translated src=- shape=647c033a vocab=0bf9bcae
+-/
 theorem mser_subst_eq (j : Fin d) :
     subst (MvFormalGroup.WittLaw.addFam p 𝓞) (mser p ψ c j) =
       subst
@@ -213,6 +255,9 @@ def mElt (Φ : MvFormalGroup d 𝓞) [Φ.IsComm]
 
 include hf0 hf1 hψf in
 
+/--
+@isnad1 id=eq.3h6v.s9.b881dde32f0b from=translated src=- shape=afba5a05 vocab=e2807a07
+-/
 theorem coeff_single_ψ (j t : Fin d) :
     coeff (Finsupp.single t 1) (ψ j) = if j = t then 1 else 0 := by
   classical
@@ -231,6 +276,9 @@ theorem coeff_single_ψ (j t : Fin d) :
 end GHEBody
 
 open GHEBody in
+/--
+@isnad1 id=ex.6h7v.s10.9ee0f69c11a6 from=translated src=- shape=3065f7a6 vocab=0bd740a8
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] {𝓞 : Type u} [CommRing 𝓞] {d : ℕ}
     (Φ : MvFormalGroup d 𝓞) [Φ.IsComm]

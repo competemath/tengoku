@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open scoped Pointwise
 
+/--
+@isnad1 id=and.4h4v.s10.82b05c6ba0a9 from=translated src=- shape=0144def1 vocab=93120a65
+-/
 theorem solution
     {B : Type*} [CommRing B] {G : Type*} [Group G] [Finite G] [MulSemiringAction G B]
     (I P : Ideal B) (hIP : I ≤ P) (hI : ∀ (g : G) (b : B), b ∈ I → g • b ∈ I)

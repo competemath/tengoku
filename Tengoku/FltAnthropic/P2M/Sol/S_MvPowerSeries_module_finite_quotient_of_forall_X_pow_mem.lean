@@ -19,6 +19,9 @@ variable {σ : Type w} [Finite σ] {R : Type u} [CommRing R]
 
 omit [Finite σ] in
 
+/--
+@isnad1 id=ex.1h3v.s8.b65492eb050e from=translated src=- shape=0700483c vocab=96386928
+-/
 theorem exists_le_degree_eq (N : ℕ) (x : σ →₀ ℕ) (hx : N ≤ x.degree) :
     ∃ y : σ →₀ ℕ, y ≤ x ∧ y.degree = N := by
   classical
@@ -50,6 +53,9 @@ theorem exists_le_degree_eq (N : ℕ) (x : σ →₀ ℕ) (hx : N ≤ x.degree) 
 
 omit [Finite σ] in
 
+/--
+@isnad1 id=mem.0h3v.s8.f9fe67b8e233 from=translated src=- shape=662cdc93 vocab=a4f002cd
+-/
 theorem monomial_one_mem_pow_span_X (y : σ →₀ ℕ) :
     (monomial y (1 : R) : MvPowerSeries σ R) ∈
       Ideal.span (Set.range (X : σ → MvPowerSeries σ R)) ^ y.degree := by
@@ -59,6 +65,9 @@ theorem monomial_one_mem_pow_span_X (y : σ →₀ ℕ) :
   refine Ideal.prod_mem_prod fun i _ => ?_
   exact Ideal.pow_mem_pow (Ideal.subset_span (Set.mem_range_self i)) _
 
+/--
+@isnad1 id=mem.2h5v.s9.4b9f33f84943 from=translated src=- shape=4056441e vocab=084fdc06
+-/
 theorem mem_of_forall_coeff_eq_zero_of_forall_monomial_mem (N : ℕ) (I : Ideal (MvPowerSeries σ R))
     (hI : ∀ y : σ →₀ ℕ, y.degree = N → (monomial y (1 : R) : MvPowerSeries σ R) ∈ I)
     (q : MvPowerSeries σ R) (hq : ∀ x : σ →₀ ℕ, x.degree < N → coeff x q = 0) : q ∈ I := by
@@ -112,6 +121,9 @@ theorem mem_of_forall_coeff_eq_zero_of_forall_monomial_mem (N : ℕ) (I : Ideal 
   refine Ideal.sum_mem _ fun y hy => ?_
   exact Ideal.mul_mem_right _ _ (hI y ((hmemD y).mp hy))
 
+/--
+@isnad1 id=mem.1h4v.s8.a312e76865cc from=translated src=- shape=2d8c0d7a vocab=f42a41ea
+-/
 theorem mem_pow_span_X_of_forall_coeff_eq_zero (N : ℕ) (q : MvPowerSeries σ R)
     (hq : ∀ x : σ →₀ ℕ, x.degree < N → coeff x q = 0) :
     q ∈ Ideal.span (Set.range (X : σ → MvPowerSeries σ R)) ^ N :=
@@ -124,12 +136,18 @@ section Trunc
 
 variable {σ : Type w} [Finite σ] {R : Type u} [CommRing R]
 
+/--
+@isnad1 id=mem.0h4v.s8.dbb75688a110 from=translated src=- shape=65ccd6fa vocab=a67728b4
+-/
 theorem sub_coe_truncTotal_mem_pow_span_X (N : ℕ) (q : MvPowerSeries σ R) :
     q - ((truncTotal N q : MvPolynomial σ R) : MvPowerSeries σ R) ∈
       Ideal.span (Set.range (X : σ → MvPowerSeries σ R)) ^ N := by
   refine mem_pow_span_X_of_forall_coeff_eq_zero N _ fun x hx => ?_
   rw [map_sub, MvPolynomial.coeff_coe, coeff_truncTotal _ hx, sub_self]
 
+/--
+@isnad1 id=eq.1h5v.s10.d62c85c43d5f from=translated src=- shape=aaf3a2d9 vocab=0aa2f148
+-/
 theorem mk_coe_truncTotal (N : ℕ) (I : Ideal (MvPowerSeries σ R))
     (hI : Ideal.span (Set.range (X : σ → MvPowerSeries σ R)) ^ N ≤ I) (q : MvPowerSeries σ R) :
     Ideal.Quotient.mk I ((truncTotal N q : MvPolynomial σ R) : MvPowerSeries σ R) =
@@ -156,6 +174,9 @@ def lowVanishing (σ : Type w) (R : Type u) [CommRing R] (N : ℕ) : Ideal (MvPo
     have hj : ij.2 ≤ x := hij ▸ le_add_self
     rw [hq ij.2 ((Finsupp.degree_mono hj).trans_lt hx), mul_zero]
 
+/--
+@isnad1 id=le.0h2v.s6.6a9c689ddab5 from=translated src=- shape=3e3f7c07 vocab=e73b6955
+-/
 theorem span_X_le_lowVanishing_one :
     Ideal.span (Set.range (X : σ → MvPowerSeries σ R)) ≤ lowVanishing σ R 1 := by
   rw [Ideal.span_le]
@@ -164,6 +185,9 @@ theorem span_X_le_lowVanishing_one :
   subst hx0
   exact coeff_zero_X i
 
+/--
+@isnad1 id=le.0h4v.s7.9959bb0dcbc9 from=translated src=- shape=89c991c5 vocab=b9575bb4
+-/
 theorem lowVanishing_mul_le (a b : ℕ) :
     lowVanishing σ R a * lowVanishing σ R b ≤ lowVanishing σ R (a + b) := by
   classical
@@ -178,6 +202,9 @@ theorem lowVanishing_mul_le (a b : ℕ) :
     have hj : ij.2.degree < b := by omega
     rw [hs ij.2 hj, mul_zero]
 
+/--
+@isnad1 id=le.0h3v.s7.b2e612fc4233 from=translated src=- shape=d4143556 vocab=28b45ccf
+-/
 theorem pow_span_X_le_lowVanishing (N : ℕ) :
     Ideal.span (Set.range (X : σ → MvPowerSeries σ R)) ^ N ≤ lowVanishing σ R N := by
   induction N with
@@ -188,11 +215,17 @@ theorem pow_span_X_le_lowVanishing (N : ℕ) :
     rw [pow_succ]
     exact (Ideal.mul_mono ih span_X_le_lowVanishing_one).trans (lowVanishing_mul_le n 1)
 
+/--
+@isnad1 id=le.1h4v.s9.8e13e288c429 from=translated src=- shape=e4252ada vocab=df67e4cc
+-/
 theorem pow_span_X_le_of_forall_monomial_mem [Finite σ] (N : ℕ) (I : Ideal (MvPowerSeries σ R))
     (hI : ∀ y : σ →₀ ℕ, y.degree = N → (monomial y (1 : R) : MvPowerSeries σ R) ∈ I) :
     Ideal.span (Set.range (X : σ → MvPowerSeries σ R)) ^ N ≤ I := fun q hq =>
   mem_of_forall_coeff_eq_zero_of_forall_monomial_mem N I hI q (pow_span_X_le_lowVanishing N hq)
 
+/--
+@isnad1 id=le.1h4v.s8.627cf54fe0a2 from=translated src=- shape=ffecf0ee vocab=dab924e1
+-/
 theorem pow_span_X_le_of_forall_X_pow_mem [Fintype σ] (N : ℕ) (I : Ideal (MvPowerSeries σ R))
     (hI : ∀ i : σ, (X i : MvPowerSeries σ R) ^ N ∈ I) :
     Ideal.span (Set.range (X : σ → MvPowerSeries σ R)) ^ (Fintype.card σ * (N - 1) + 1) ≤ I := by
@@ -222,6 +255,9 @@ section Finite
 
 variable {σ : Type} [Fintype σ] [DecidableEq σ] {R : Type} [CommRing R]
 
+/--
+@isnad1 id=finite.1h4v.s8.1cf5b76cf799 from=translated src=- shape=30171ee8 vocab=670a0b17
+-/
 theorem finite_quotient_of_forall_X_pow_mem (N : ℕ) (I : Ideal (MvPowerSeries σ R))
     (hI : ∀ i : σ, (X i : MvPowerSeries σ R) ^ N ∈ I) : Module.Finite R (MvPowerSeries σ R ⧸ I) := by
   classical
@@ -245,6 +281,9 @@ end Finite
 end TruncFinEngine
 
 open TruncFinEngine in
+/--
+@isnad1 id=finite.1h4v.s8.119c6c376f8c from=translated src=- shape=6f943d13 vocab=a859025c
+-/
 theorem solution
     {σ : Type} [Fintype σ] {R : Type} [CommRing R] (I : Ideal (MvPowerSeries σ R)) (N : ℕ)
     (hI : ∀ s : σ, (MvPowerSeries.X s : MvPowerSeries σ R) ^ N ∈ I) :

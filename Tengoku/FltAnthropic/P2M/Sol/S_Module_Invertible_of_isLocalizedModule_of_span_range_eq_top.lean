@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=invertib.3h7v.s9.0d2b31c33530 from=translated src=- shape=fb420c54 vocab=b5c46c01
+-/
 theorem solution
     {B : Type u} [CommRing B] {k : ℕ} (f : Fin k → B) (hf : Ideal.span (Set.range f) = ⊤)
     (N : Type u) [AddCommGroup N] [Module B N]

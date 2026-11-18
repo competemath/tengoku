@@ -157,6 +157,9 @@ open scoped _root_.P2MW.S_MvPowerSeries_isNoetherianRing_fin_of_isNoetherianRing
 end W2MV
 open scoped _root_.P2MW.S_MvPowerSeries_isNoetherianRing_fin_of_isNoetherianRing.W2MV.MvPowerSeries _root_.P2MW.S_MvPowerSeries_isNoetherianRing_fin_of_isNoetherianRing.W2MV
 
+/--
+@isnad1 id=isnoethe.0h2v.s4.2581ed7f22fa from=translated src=- shape=65f277ad vocab=897e9348
+-/
 theorem solution
     (R : Type u) [CommRing R] [IsNoetherianRing R] (n : ℕ) :
     IsNoetherianRing (MvPowerSeries (Fin n) R) :=

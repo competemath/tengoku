@@ -26,14 +26,23 @@ abbrev Q (σ : Type*) : Type _ := MvPolynomial σ k ⧸ I f σ
 
 variable {f}
 
+/--
+@isnad1 id=mem.0h4v.s8.a6c594a01ddd from=translated src=- shape=2b5ca221 vocab=2efcb285
+-/
 theorem aeval_X_mem (σ : Type*) (i : σ) :
     Polynomial.aeval (MvPolynomial.X i : MvPolynomial σ k) f ∈ I f σ :=
   Ideal.subset_span ⟨i, rfl⟩
 
+/--
+@isnad1 id=eq.0h4v.s10.e4caff17c968 from=translated src=- shape=c0c66b68 vocab=21459ea0
+-/
 theorem mk_aeval_X (σ : Type*) (i : σ) :
     Ideal.Quotient.mk (I f σ) (Polynomial.aeval (MvPolynomial.X i : MvPolynomial σ k) f) = 0 :=
   Ideal.Quotient.eq_zero_iff_mem.2 (aeval_X_mem σ i)
 
+/--
+@isnad1 id=le.1h5v.s9.7a3ff520b094 from=translated src=- shape=f94815df vocab=2486d206
+-/
 theorem I_le_ker {σ : Type*} {S : Type*} [CommRing S] [Algebra k S] (φ : MvPolynomial σ k →ₐ[k] S)
     (h : ∀ i, Polynomial.aeval (φ (MvPolynomial.X i)) f = 0) : I f σ ≤ RingHom.ker φ := by
   refine Ideal.span_le.2 ?_
@@ -42,6 +51,9 @@ theorem I_le_ker {σ : Type*} {S : Type*} [CommRing S] [Algebra k S] (φ : MvPol
   change φ (Polynomial.aeval (MvPolynomial.X i : MvPolynomial σ k) f) = 0
   rw [← Polynomial.aeval_algHom_apply, h i]
 
+/--
+@isnad1 id=eq.0h5v.s9.fe90a2e3a70a from=translated src=- shape=fd7c2736 vocab=17a71022
+-/
 theorem I_eq_map_rename {σ τ : Type*} (e : σ ≃ τ) :
     I f τ = (I f σ).map ((MvPolynomial.renameEquiv k e : MvPolynomial σ k ≃ₐ[k] MvPolynomial τ k) :
       MvPolynomial σ k →+* MvPolynomial τ k) := by
@@ -62,6 +74,9 @@ theorem I_eq_map_rename {σ τ : Type*} (e : σ ≃ τ) :
 def equivOfEquiv {σ τ : Type*} (e : σ ≃ τ) : Q f σ ≃ₐ[k] Q f τ :=
   Ideal.quotientEquivAlg (I f σ) (I f τ) (MvPolynomial.renameEquiv k e) (I_eq_map_rename e)
 
+/--
+@isnad1 id=eq.0h3v.s7.8d65d1ba4037 from=translated src=- shape=6def2b0d vocab=3cffda04
+-/
 theorem I_eq_bot_of_isEmpty (σ : Type*) [IsEmpty σ] : I f σ = ⊥ := by
   unfold I
   rw [Set.range_eq_empty, Ideal.span_empty]
@@ -85,26 +100,44 @@ abbrev S : Type _ := AdjoinRoot (g f σ)
 
 variable {σ}
 
+/--
+@isnad1 id=monic.1h3v.s6.1033b1e71141 from=translated src=- shape=2e356c2c vocab=9225b486
+-/
 theorem g_monic (hf : f.Monic) : (g f σ).Monic := hf.map _
 
+/--
+@isnad1 id=eq.0h3v.s10.211633bcad77 from=translated src=- shape=b4368a01 vocab=26f2eefa
+-/
 theorem aeval_root_eq_zero : Polynomial.aeval (AdjoinRoot.root (g f σ)) f = 0 := by
   rw [← Polynomial.aeval_map_algebraMap (R f σ), ← g.eq_def, AdjoinRoot.aeval_eq, AdjoinRoot.mk_self]
 
 def ψ₀ : R f σ →ₐ[k] S f σ := IsScalarTower.toAlgHom k (R f σ) (S f σ)
 
+/--
+@isnad1 id=eq.0h4v.s10.742e6aca4252 from=translated src=- shape=06a0c12b vocab=322b7f94
+-/
 theorem ψ₀_apply (r : R f σ) : ψ₀ f r = AdjoinRoot.of (g f σ) r := rfl
 
 def φ : MvPolynomial (Option σ) k →ₐ[k] S f σ :=
   MvPolynomial.aeval fun o => Option.elim o (AdjoinRoot.root (g f σ))
     fun i => ψ₀ f (Ideal.Quotient.mk (I f σ) (MvPolynomial.X i))
 
+/--
+@isnad1 id=eq.0h3v.s9.1e8244fd3669 from=translated src=- shape=b68fe50c vocab=5d5318cb
+-/
 theorem φ_X_none : φ f (σ := σ) (MvPolynomial.X none) = AdjoinRoot.root (g f σ) := by
   rw [φ, MvPolynomial.aeval_X]; rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.a4a4ade97543 from=translated src=- shape=a831a286 vocab=c33011d8
+-/
 theorem φ_X_some (i : σ) :
     φ f (MvPolynomial.X (some i)) = ψ₀ f (Ideal.Quotient.mk (I f σ) (MvPolynomial.X i)) := by
   rw [φ, MvPolynomial.aeval_X]; rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.bbb9890f90cd from=translated src=- shape=0f94db70 vocab=c54336b8
+-/
 theorem φ_comp_rename :
     (φ f).comp (MvPolynomial.rename (some : σ → Option σ)) =
       (ψ₀ f).comp (Ideal.Quotient.mkₐ k (I f σ)) := by
@@ -112,6 +145,9 @@ theorem φ_comp_rename :
   rw [AlgHom.comp_apply, AlgHom.comp_apply, MvPolynomial.rename_X, φ_X_some]
   rfl
 
+/--
+@isnad1 id=le.0h3v.s9.fe6d1b61b12e from=translated src=- shape=b5bb6b86 vocab=0cbc37ad
+-/
 theorem I_le_ker_φ : I f (Option σ) ≤ RingHom.ker (φ f (σ := σ)) := by
   refine I_le_ker _ fun o => ?_
   cases o with
@@ -124,6 +160,9 @@ theorem I_le_ker_φ : I f (Option σ) ≤ RingHom.ker (φ f (σ := σ)) := by
 def φbar : Q f (Option σ) →ₐ[k] S f σ :=
   Ideal.Quotient.liftₐ (I f (Option σ)) (φ f) fun _ hx => I_le_ker_φ f hx
 
+/--
+@isnad1 id=eq.0h4v.s10.b156806f8ec0 from=translated src=- shape=36bf504b vocab=e845caa1
+-/
 theorem φbar_mk (x : MvPolynomial (Option σ) k) :
     φbar f (Ideal.Quotient.mk (I f (Option σ)) x) = φ f x := rfl
 
@@ -134,9 +173,15 @@ def j : R f σ →ₐ[k] Q f (Option σ) :=
       rw [AlgHom.comp_apply, MvPolynomial.rename_X, Polynomial.aeval_algHom_apply,
         Ideal.Quotient.mkₐ_eq_mk, mk_aeval_X]) hx
 
+/--
+@isnad1 id=eq.0h4v.s11.f7b4856c1b33 from=translated src=- shape=0b1b6b3a vocab=3f01b5ef
+-/
 theorem j_mk (x : MvPolynomial σ k) :
     j f (Ideal.Quotient.mk (I f σ) x) = Ideal.Quotient.mk (I f (Option σ)) (MvPolynomial.rename some x) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.56ce66a74007 from=translated src=- shape=415da241 vocab=84c2a21b
+-/
 theorem eval₂_j_g :
     Polynomial.eval₂ (j f (σ := σ)).toRingHom (Ideal.Quotient.mk (I f (Option σ)) (MvPolynomial.X none))
       (g f σ) = 0 := by
@@ -160,12 +205,21 @@ def ψ : S f σ →ₐ[k] Q f (Option σ) :=
         AdjoinRoot.lift_of]
       exact (j f).commutes r }
 
+/--
+@isnad1 id=eq.0h3v.s10.2d1ad0e15ee1 from=translated src=- shape=00b0116d vocab=672ce7cd
+-/
 theorem ψ_root : ψ f (AdjoinRoot.root (g f σ)) = Ideal.Quotient.mk (I f (Option σ)) (MvPolynomial.X none) :=
   AdjoinRoot.lift_root (eval₂_j_g f)
 
+/--
+@isnad1 id=eq.0h4v.s10.3ac8257ad51d from=translated src=- shape=99f99622 vocab=842e83c3
+-/
 theorem ψ_of (r : R f σ) : ψ f (AdjoinRoot.of (g f σ) r) = j f r :=
   AdjoinRoot.lift_of (eval₂_j_g f)
 
+/--
+@isnad1 id=eq.0h3v.s9.04659bbb4919 from=translated src=- shape=d5e83e95 vocab=d6fb2e2a
+-/
 theorem ψ_comp_φbar : (ψ f).comp (φbar f (σ := σ)) = AlgHom.id k (Q f (Option σ)) := by
   refine Ideal.Quotient.algHom_ext k (MvPolynomial.algHom_ext fun o => ?_)
   rw [AlgHom.comp_apply, AlgHom.comp_apply, AlgHom.comp_apply, AlgHom.id_apply,
@@ -174,6 +228,9 @@ theorem ψ_comp_φbar : (ψ f).comp (φbar f (σ := σ)) = AlgHom.id k (Q f (Opt
   | none => rw [φ_X_none, ψ_root]
   | some i => rw [φ_X_some, ψ₀_apply, ψ_of, j_mk, MvPolynomial.rename_X]
 
+/--
+@isnad1 id=injectiv.0h3v.s9.fdc95f83a2b0 from=translated src=- shape=16a67860 vocab=19ba623a
+-/
 theorem φbar_injective : Function.Injective (φbar f (σ := σ)) := by
   intro x y hxy
   have h := congrArg (ψ f) hxy
@@ -182,6 +239,9 @@ theorem φbar_injective : Function.Injective (φbar f (σ := σ)) := by
   rw [AlgHom.comp_apply, AlgHom.id_apply] at hx hy
   rwa [hx, hy] at h
 
+/--
+@isnad1 id=surjecti.0h3v.s9.0aad0efd625a from=translated src=- shape=54fa33e7 vocab=0b427bbe
+-/
 theorem φ_surjective : Function.Surjective (φ f (σ := σ)) := by
   intro s
   induction s using AdjoinRoot.induction_on with
@@ -207,6 +267,9 @@ theorem φ_surjective : Function.Surjective (φ f (σ := σ)) := by
       change φ f (MvPolynomial.X none) = _
       exact φ_X_none f
 
+/--
+@isnad1 id=surjecti.0h3v.s9.f79ba7c1ab64 from=translated src=- shape=16a67860 vocab=c1c27a43
+-/
 theorem φbar_surjective : Function.Surjective (φbar f (σ := σ)) := by
   intro s
   obtain ⟨x, rfl⟩ := φ_surjective f s
@@ -215,6 +278,9 @@ theorem φbar_surjective : Function.Surjective (φbar f (σ := σ)) := by
 def linearEquivS : Q f (Option σ) ≃ₗ[k] S f σ :=
   LinearEquiv.ofBijective (φbar f (σ := σ)).toLinearMap ⟨φbar_injective f, φbar_surjective f⟩
 
+/--
+@isnad1 id=and.3h3v.s10.1cabf8fb3976 from=translated src=- shape=c9d909c3 vocab=cdb107c6
+-/
 theorem step (hf : f.Monic) [Fintype σ] (hfin : Module.Finite k (R f σ))
     (hrk : Module.finrank k (R f σ) = f.natDegree ^ Fintype.card σ) :
     Module.Finite k (Q f (Option σ)) ∧
@@ -250,6 +316,9 @@ theorem step (hf : f.Monic) [Fintype σ] (hfin : Module.Finite k (R f σ))
 
 end OptionStep
 
+/--
+@isnad1 id=and.1h3v.s9.8220dee21b11 from=translated src=- shape=5eface80 vocab=f82999bb
+-/
 theorem main (hf : f.Monic) (ι : Type v) [Fintype ι] :
     Module.Finite k (Q f ι) ∧ Module.finrank k (Q f ι) = f.natDegree ^ Fintype.card ι := by
   refine Fintype.induction_empty_option
@@ -273,6 +342,9 @@ end MonogenicTensorPower
 
 end
 
+/--
+@isnad1 id=and.1h3v.s11.600e401bf225 from=translated src=- shape=6662afd6 vocab=82d6fda4
+-/
 theorem solution
     (k : Type u) [Field k] (ι : Type v) [Finite ι] (f : Polynomial k) (hf : f.Monic) :
     Module.Finite k (MvPolynomial ι k ⧸

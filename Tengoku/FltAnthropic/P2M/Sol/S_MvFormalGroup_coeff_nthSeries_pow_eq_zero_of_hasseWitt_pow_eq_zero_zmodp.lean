@@ -130,6 +130,9 @@ end Law
 end HWIterate
 
 open HWIterate in
+/--
+@isnad1 id=eq.2h6v.s10.2a6f5fefdb65 from=translated src=- shape=0b82e4e9 vocab=a4fab963
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] {d : ℕ} (F : MvFormalGroup d (ZMod p)) [F.IsComm]
     (ν : ℕ)

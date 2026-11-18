@@ -19,10 +19,16 @@ noncomputable def evalT (A : Type w) [CommRing A] [Algebra R A] (M' : Type w') [
     (M' →ₗ[R] A) ⊗[R] M' →ₗ[R] A :=
   TensorProduct.lift (LinearMap.id)
 
+/--
+@isnad1 id=eq.0h5v.s10.df19ca790836 from=translated src=- shape=6f89cd8e vocab=bada7b9e
+-/
 @[scoped simp] theorem evalT_tmul (A : Type w) [CommRing A] [Algebra R A] (M' : Type w') [AddCommGroup M'] [Module R M']
     (δ : M' →ₗ[R] A) (m : M') : evalT (R := R) A M' (δ ⊗ₜ m) = δ m := by
   simp [evalT]
 
+/--
+@isnad1 id=bijectiv.0h4v.s10.df35666e204c from=translated src=- shape=cd133929 vocab=0711bf61
+-/
 theorem evalT_bijective (S : Submonoid R) (A : Type w) [CommRing A] [Algebra R A] [IsLocalization S A]
     (M' : Type w') [AddCommGroup M'] [Module R M'] [Module A M'] [IsScalarTower R A M'] [Module.Invertible A M'] :
     Function.Bijective (evalT (R := R) A M') := by
@@ -48,6 +54,9 @@ theorem evalT_bijective (S : Submonoid R) (A : Type w) [CommRing A] [Algebra R A
   have h3 : Function.Bijective ((contractLeft A M').restrictScalars R) := Module.Invertible.bijective
   exact h3.comp (h2.comp h1)
 
+/--
+@isnad1 id=finitepr.2h6v.s9.6953caec3288 from=translated src=- shape=1ff1a0f0 vocab=736fb1ad
+-/
 theorem fp_of_localizationSpan
     (s : Set R) (hs : Ideal.span s = ⊤)
     {Mₚ : ↥s → Type w'} [∀ r : ↥s, AddCommGroup (Mₚ r)] [∀ r : ↥s, Module R (Mₚ r)]
@@ -71,6 +80,9 @@ theorem fp_of_localizationSpan
     (fun g => (LinearMap.ker f).toLocalized' (Rₚ g) (Submonoid.powers (g.1 : R)) (TensorProduct.mk R (Rₚ g) (Fin n → R) 1))
     (fun g => Module.Finite.iff_fg.mpr (H g))
 
+/--
+@isnad1 id=invertib.2h6v.s9.48c42649b12a from=translated src=- shape=6a216b26 vocab=34e06439
+-/
 theorem inv_descent_core
     (s : Set R) (hs : Ideal.span s = ⊤)
     (Rₚ : ↥s → Type u) [∀ r : ↥s, CommRing (Rₚ r)] [∀ r : ↥s, Algebra R (Rₚ r)]
@@ -104,6 +116,9 @@ theorem inv_descent_core
   rw [hmap]
   exact evalT_bijective (Submonoid.powers (r.1 : R)) (Rₚ r) (Mₚ r)
 
+/--
+@isnad1 id=invertib.0h9v.s9.9d24cbc4941e from=translated src=- shape=29120e0b vocab=2c413d03
+-/
 theorem invertible_transfer (S : Submonoid R)
     (A : Type*) [CommRing A] [Algebra R A] [IsLocalization S A]
     (N : Type*) [AddCommGroup N] [Module R N] [Module A N] [IsScalarTower R A N]
@@ -156,6 +171,9 @@ theorem invertible_transfer (S : Submonoid R)
     exact this
   exact ⟨by rw [this]; exact g.bijective.comp (hb.comp Θ.symm.bijective)⟩
 
+/--
+@isnad1 id=invertib.2h6v.s9.6dbfb612abf0 from=translated src=- shape=436441c9 vocab=34e06439
+-/
 theorem inv_descent
     (s : Set R) (hs : Ideal.span s = ⊤)
     (Rₚ : ↥s → Type w) [∀ r : ↥s, CommRing (Rₚ r)] [∀ r : ↥s, Algebra R (Rₚ r)]
@@ -175,6 +193,9 @@ theorem inv_descent
 end InvDescent
 open scoped _root_.P2MW.S_Module_Invertible_of_isLocalizedModule_span.InvDescent
 
+/--
+@isnad1 id=invertib.2h6v.s9.6dbfb612abf0 from=translated src=- shape=436441c9 vocab=34e06439
+-/
 theorem solution
     {R : Type*} [CommRing R] {M : Type*} [AddCommGroup M] [Module R M]
     (s : Set R) (hs : Ideal.span s = ⊤)

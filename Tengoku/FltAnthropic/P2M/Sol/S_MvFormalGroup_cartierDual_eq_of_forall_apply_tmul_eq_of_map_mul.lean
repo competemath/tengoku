@@ -75,6 +75,9 @@ private theorem eq_C_add_sum_X_mul_quot (G : MvPowerSeries (Fin d) R) :
 end DerivUniq
 
 open DerivUniq in
+/--
+@isnad1 id=eq.5h7v.s14.4d11a2b6f21b from=translated src=- shape=36843cb4 vocab=d7c23652
+-/
 theorem solution
     {𝓞 : Type u} [CommRing 𝓞] (p : ℕ) [Fact p.Prime] [Algebra 𝓞 (ZMod p)]
     {d : ℕ} (R : Type v) [CommRing R] [HopfAlgebra 𝓞 R] [Module.Free 𝓞 R] [Module.Finite 𝓞 R]

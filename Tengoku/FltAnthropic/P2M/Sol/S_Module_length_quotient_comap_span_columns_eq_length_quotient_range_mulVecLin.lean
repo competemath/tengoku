@@ -13,6 +13,9 @@ namespace ColengthInBasisAux
 
 variable {R : Type} [CommRing R] {M : Type} [AddCommGroup M] [Module R M]
 
+/--
+@isnad1 id=eq.2h5v.s11.7f562d9f2e2f from=translated src=- shape=68977ff1 vocab=0c6d7e4c
+-/
 theorem main (P : Submodule R M) (e : Fin 2 → M) (he : ∀ r, e r ∈ P)
     (heb : ∀ m ∈ P, ∃! w : Fin 2 → R, m = ∑ r, w r • e r)
     (A : Matrix (Fin 2) (Fin 2) R) :
@@ -59,6 +62,9 @@ theorem main (P : Submodule R M) (e : Fin 2 → M) (he : ∀ r, e r ∈ P)
 
 end ColengthInBasisAux
 
+/--
+@isnad1 id=eq.2h5v.s11.7f562d9f2e2f from=translated src=- shape=68977ff1 vocab=0c6d7e4c
+-/
 theorem solution
     (R : Type) [CommRing R] (M : Type) [AddCommGroup M] [Module R M]
     (P : Submodule R M) (e : Fin 2 → M) (he : ∀ r, e r ∈ P)

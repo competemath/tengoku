@@ -11,6 +11,9 @@ namespace G2Aux
 
 open Submodule
 
+/--
+@isnad1 id=ex.0h4v.s7.9421ecec734d from=translated src=- shape=e5dad3b6 vocab=2c69fd40
+-/
 theorem exists_finset_iInf_eq {R M : Type*} [Ring R] [AddCommGroup M] [Module R M] [IsArtinian R M]
     {ι : Type*} (S : ι → Submodule R M) : ∃ s : Finset ι, ⨅ i, S i = ⨅ i ∈ s, S i := by
   classical
@@ -24,6 +27,9 @@ theorem exists_finset_iInf_eq {R M : Type*} [Ring R] [AddCommGroup M] [Module R 
   rw [← heq]
   exact biInf_le _ (Finset.mem_insert_self j s₀)
 
+/--
+@isnad1 id=le.0h5v.s9.d940469d19ed from=translated src=- shape=da2bd78f vocab=8ea84493
+-/
 theorem baseChange_le_ker {F : Type*} [CommRing F] (K : Type*) [CommRing K] [Algebra F K]
     {V W : Type*} [AddCommGroup V] [Module F V] [AddCommGroup W] [Module F W]
     (f : V →ₗ[F] W) : (LinearMap.ker f).baseChange K ≤ LinearMap.ker (f.baseChange K) := by
@@ -35,6 +41,9 @@ theorem baseChange_le_ker {F : Type*} [CommRing F] (K : Type*) [CommRing K] [Alg
 end G2Aux
 
 open G2Aux in
+/--
+@isnad1 id=eq.0h5v.s11.5e79b8d47214 from=translated src=- shape=ef433aaa vocab=2988086a
+-/
 theorem solution
     (F : Type) [Field F] (K : Type) [Field K] [Algebra F K]
     (V : Type) [AddCommGroup V] [Module F V] [Module.Finite F V]

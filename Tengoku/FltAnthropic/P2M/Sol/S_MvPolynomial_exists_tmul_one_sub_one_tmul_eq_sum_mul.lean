@@ -15,6 +15,9 @@ namespace CoreA1
 open scoped TensorProduct
 open MvPolynomial
 
+/--
+@isnad1 id=ex.0h3v.s11.8925b5c13116 from=translated src=- shape=a8702b20 vocab=95ec8c4d
+-/
 theorem main (R : Type*) [CommRing R] {m : ℕ} (g : MvPolynomial (Fin m) R) :
     ∃ a : Fin m → MvPolynomial (Fin m) R ⊗[R] MvPolynomial (Fin m) R,
       g ⊗ₜ[R] (1 : MvPolynomial (Fin m) R) - (1 : MvPolynomial (Fin m) R) ⊗ₜ[R] g =
@@ -51,6 +54,9 @@ theorem main (R : Type*) [CommRing R] {m : ℕ} (g : MvPolynomial (Fin m) R) :
 
 end Ws23.CoreA1
 
+/--
+@isnad1 id=ex.0h3v.s11.8925b5c13116 from=translated src=- shape=a8702b20 vocab=95ec8c4d
+-/
 theorem solution
     (R : Type*) [CommRing R] {m : ℕ} (g : MvPolynomial (Fin m) R) :
     ∃ a : Fin m → MvPolynomial (Fin m) R ⊗[R] MvPolynomial (Fin m) R,

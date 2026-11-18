@@ -68,6 +68,9 @@ private theorem mem_span_pow_of_pow_mul_mem {𝓞 : Type u} [CommRing 𝓞] {p :
 end UnipExpOdd
 
 open UnipExpOdd in
+/--
+@isnad1 id=ex.7h6v.s10.29420d663ae5 from=translated src=- shape=c06718e9 vocab=f68040e9
+-/
 theorem solution
     {𝓞 : Type u} [CommRing 𝓞] (p : ℕ) [Fact p.Prime] (hp : (p : 𝓞) ∈ nonZeroDivisors 𝓞)
     (hp2 : p ≠ 2)

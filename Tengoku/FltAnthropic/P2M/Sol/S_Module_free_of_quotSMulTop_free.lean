@@ -11,6 +11,9 @@ namespace P2MW.S_Module_free_of_quotSMulTop_free
 
 open scoped Pointwise
 
+/--
+@isnad1 id=free.3h3v.s9.3831d96f009d from=translated src=- shape=ea513e22 vocab=9c26f410
+-/
 theorem solution {R : Type*} [CommRing R] {M : Type*} [AddCommGroup M] [Module R M] [IsLocalRing R] [IsNoetherianRing R] [Module.Finite R M] (x : R) (hx : x ∈ IsLocalRing.maximalIdeal R) (hreg : IsSMulRegular M x) (hfree : Module.Free (R ⧸ Ideal.span {x}) (QuotSMulTop x M)) :
     Module.Free R M := by
   haveI := hfree

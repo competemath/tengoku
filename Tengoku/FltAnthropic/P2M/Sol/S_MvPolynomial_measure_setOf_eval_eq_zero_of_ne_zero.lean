@@ -14,6 +14,9 @@ open scoped ENNReal
 namespace E8A
 namespace NS
 
+/--
+@isnad1 id=nebot.1h1v.s5.e8764bfcb7ae from=translated src=- shape=9806ba47 vocab=0271e5c8
+-/
 theorem nhdsNE_zero_neBot (F : Type) [AddGroup F] [TopologicalSpace F] [IsTopologicalAddGroup F]
     (hF : ¬ DiscreteTopology F) : (𝓝[≠] (0 : F)).NeBot := by
   rw [discreteTopology_iff_nhds_ne] at hF
@@ -26,6 +29,9 @@ theorem nhdsNE_zero_neBot (F : Type) [AddGroup F] [TopologicalSpace F] [IsTopolo
   rw [← h]
   exact hx'.map _
 
+/--
+@isnad1 id=eq.2h4v.s8.8535dbc4765e from=translated src=- shape=e9951758 vocab=b456e5a6
+-/
 theorem pi_fin (F : Type) [Field F] [TopologicalSpace F] [IsTopologicalRing F] [LocallyCompactSpace F]
     [T2Space F] [SecondCountableTopology F] [MeasurableSpace F] [BorelSpace F] (hF : ¬ DiscreteTopology F)
     (μF : Measure F) [μF.IsAddHaarMeasure] :
@@ -86,6 +92,9 @@ theorem pi_fin (F : Type) [Field F] [TopologicalSpace F] [IsTopologicalRing F] [
     simp only [Finset.mem_coe, Multiset.mem_toFinset, Polynomial.mem_roots hQ, Polynomial.IsRoot]
     exact hx
 
+/--
+@isnad1 id=eq.2h4v.s8.9f91b5ff56d3 from=translated src=- shape=1f3f08d0 vocab=342cf52d
+-/
 theorem nullset (F : Type) [Field F] [TopologicalSpace F] [IsTopologicalRing F] [LocallyCompactSpace F]
     [T2Space F] [SecondCountableTopology F] [MeasurableSpace F] [BorelSpace F] (hF : ¬ DiscreteTopology F)
     (ι : Type) [Fintype ι] (p : MvPolynomial ι F) (hp : p ≠ 0)
@@ -116,6 +125,9 @@ theorem nullset (F : Type) [Field F] [TopologicalSpace F] [IsTopologicalRing F] 
 
 end E8A.NS
 
+/--
+@isnad1 id=eq.2h4v.s8.9f91b5ff56d3 from=translated src=- shape=1f3f08d0 vocab=342cf52d
+-/
 theorem solution
     (F : Type) [Field F] [TopologicalSpace F] [IsTopologicalRing F] [LocallyCompactSpace F] [T2Space F]
     [SecondCountableTopology F] [MeasurableSpace F] [BorelSpace F] (hF : ¬ DiscreteTopology F)

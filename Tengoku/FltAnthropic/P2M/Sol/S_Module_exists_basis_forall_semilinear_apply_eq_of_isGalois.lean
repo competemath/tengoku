@@ -12,6 +12,9 @@ set_option maxHeartbeats 6400000
 
 open IntermediateField
 
+/--
+@isnad1 id=ex.4h4v.s10.12bdf3c14d1f from=translated src=- shape=a6bda470 vocab=20ad99b3
+-/
 theorem solution
     (K L : Type*) [Field K] [Field L] [Algebra K L] [IsGalois K L]
     (V : Type*) [AddCommGroup V] [Module L V] [FiniteDimensional L V]

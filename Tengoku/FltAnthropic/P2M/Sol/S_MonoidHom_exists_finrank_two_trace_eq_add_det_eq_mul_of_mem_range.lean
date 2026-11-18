@@ -17,9 +17,15 @@ section Frob
 
 variable {k Ω : Type} [Field k] [Fintype k] [Field Ω] (ι : k →+* Ω)
 
+/--
+@isnad1 id=eq.0h4v.s7.f6e3027382d4 from=translated src=- shape=e6d97797 vocab=ed87231e
+-/
 theorem pow_card_apply (y : k) : ι y ^ Fintype.card k = ι y := by
   rw [← map_pow, FiniteField.pow_card]
 
+/--
+@isnad1 id=and.1h2v.s6.59c82ada3438 from=translated src=- shape=53e9ec82 vocab=5f1ec847
+-/
 theorem finite_and_ncard_le {m : ℕ} (hm : 1 < m) :
     {y : Ω | y ^ m = y}.Finite ∧ {y : Ω | y ^ m = y}.ncard ≤ m := by
   classical
@@ -39,6 +45,9 @@ theorem finite_and_ncard_le {m : ℕ} (hm : 1 < m) :
     _ ≤ (X ^ m - X : Polynomial Ω).natDegree := card_roots' _
     _ = m := FiniteField.X_pow_card_sub_X_natDegree_eq Ω hm
 
+/--
+@isnad1 id=eq.0h3v.s6.d2852344739f from=translated src=- shape=776c001c vocab=0640a755
+-/
 theorem range_eq_setOf_pow_card : (Set.range ι : Set Ω) = {y : Ω | y ^ Fintype.card k = y} := by
   have hq : 1 < Fintype.card k := Fintype.one_lt_card
   have hsub : Set.range ι ⊆ {y : Ω | y ^ Fintype.card k = y} := by
@@ -48,11 +57,17 @@ theorem range_eq_setOf_pow_card : (Set.range ι : Set Ω) = {y : Ω | y ^ Fintyp
   rw [Set.ncard_range_of_injective ι.injective, Nat.card_eq_fintype_card]
   exact hle
 
+/--
+@isnad1 id=mem.1h4v.s6.acd5ecd10650 from=translated src=- shape=ae2f2e8d vocab=4696410f
+-/
 theorem mem_range_of_pow_card_eq {x : Ω} (hx : x ^ Fintype.card k = x) : x ∈ ι.range := by
   have h : x ∈ (Set.range ι : Set Ω) := by rw [range_eq_setOf_pow_card ι]; exact hx
   obtain ⟨y, rfl⟩ := h
   exact ⟨y, rfl⟩
 
+/--
+@isnad1 id=eq.1h4v.s6.b655f36df0b3 from=translated src=- shape=5b23e12c vocab=4696410f
+-/
 theorem pow_card_eq_of_mem_range {x : Ω} (hx : x ∈ ι.range) : x ^ Fintype.card k = x := by
   obtain ⟨y, rfl⟩ := hx; exact pow_card_apply ι y
 
@@ -62,6 +77,9 @@ section Roots
 
 variable {Ω : Type} [Field Ω]
 
+/--
+@isnad1 id=or.1h4v.s7.6d0ed07915f1 from=translated src=- shape=a0f3614b vocab=5f818f28
+-/
 theorem root_dichotomy {x x' y : Ω} (hy : y * y - (x + x') * y + x * x' = 0) :
     y = x ∨ y = x' := by
   have h : (y - x) * (y - x') = 0 := by linear_combination hy
@@ -69,6 +87,9 @@ theorem root_dichotomy {x x' y : Ω} (hy : y * y - (x + x') * y + x * x' = 0) :
   · exact Or.inl (sub_eq_zero.mp h)
   · exact Or.inr (sub_eq_zero.mp h)
 
+/--
+@isnad1 id=eq.3h6v.s8.f21ddcaf875c from=translated src=- shape=192be633 vocab=4a9aedd8
+-/
 theorem pow_root (p n : ℕ) [Fact p.Prime] [CharP Ω p] {x s t : Ω}
     (hs : s ^ p ^ n = s) (ht : t ^ p ^ n = t) (hx : x * x - s * x + t = 0) :
     x ^ p ^ n * x ^ p ^ n - s * x ^ p ^ n + t = 0 := by
@@ -94,9 +115,15 @@ noncomputable def liftChar (χ : G →* Ωˣ) (h : ∀ g, (χ g : Ω) ∈ ι.ran
     rw [(h (a * b)).choose_spec, map_mul ι, (h a).choose_spec, (h b).choose_spec, map_mul χ,
       Units.val_mul])
 
+/--
+@isnad1 id=eq.1h6v.s8.a21c16c1b6aa from=translated src=- shape=93c63c36 vocab=5c169539
+-/
 theorem liftChar_spec (χ : G →* Ωˣ) (h : ∀ g, (χ g : Ω) ∈ ι.range) (g : G) :
     ι (liftChar ι χ h g) = χ g := (h g).choose_spec
 
+/--
+@isnad1 id=ex.2h6v.s12.c4a16d0d9431 from=translated src=- shape=6c484d10 vocab=5cbe4b15
+-/
 theorem caseA (χ₁ χ₂ : G →* Ωˣ)
     (h₁ : ∀ g, (χ₁ g : Ω) ∈ ι.range) (h₂ : ∀ g, (χ₂ g : Ω) ∈ ι.range) :
     ∃ (V₀ : Type) (_ : AddCommGroup V₀) (_ : Module k V₀) (ρ₀ : G →* (V₀ ≃ₗ[k] V₀)),
@@ -157,6 +184,9 @@ def fixedSubfield (φ : Ω →+* Ω) : Subfield Ω where
 variable {G : Type*} [Group G] {k : Type} [Field k] [Fintype k] (ι : k →+* Ω)
   (p n : ℕ) [Fact p.Prime] [CharP Ω p]
 
+/--
+@isnad1 id=ex.6h9v.s12.a1cd5347ed4f from=translated src=- shape=c3bfce04 vocab=1ee17a6d
+-/
 theorem caseB (hq : Fintype.card k = p ^ n) (χ₁ χ₂ : G →* Ωˣ)
     (hadd : ∀ g, (χ₁ g : Ω) + χ₂ g ∈ ι.range) (hmul : ∀ g, (χ₁ g : Ω) * χ₂ g ∈ ι.range)
     (hpow : ∀ g, (χ₁ g : Ω) ^ Fintype.card k = χ₂ g)
@@ -330,6 +360,9 @@ theorem caseB (hq : Fintype.card k = p ^ n) (χ₁ χ₂ : G →* Ωˣ)
 
 end CaseB
 
+/--
+@isnad1 id=ex.2h6v.s12.b8e650d748db from=translated src=- shape=912f5a30 vocab=98b9742d
+-/
 theorem main {G : Type*} [Group G] {k Ω : Type} [Field k] [Finite k] [Field Ω]
     (ι : k →+* Ω) (χ₁ χ₂ : G →* Ωˣ)
     (hadd : ∀ g, (χ₁ g : Ω) + χ₂ g ∈ ι.range) (hmul : ∀ g, (χ₁ g : Ω) * χ₂ g ∈ ι.range) :
@@ -415,6 +448,9 @@ theorem main {G : Type*} [Group G] {k Ω : Type} [Field k] [Finite k] [Field Ω]
 
 end TwoCharDescent
 
+/--
+@isnad1 id=ex.2h6v.s12.b8e650d748db from=translated src=- shape=912f5a30 vocab=98b9742d
+-/
 theorem solution
     {G : Type*} [Group G] {k Ω : Type} [Field k] [Finite k] [Field Ω]
     (ι : k →+* Ω) (χ₁ χ₂ : G →* Ωˣ)

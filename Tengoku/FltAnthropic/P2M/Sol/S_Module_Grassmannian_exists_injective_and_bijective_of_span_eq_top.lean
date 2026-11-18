@@ -16,6 +16,9 @@ variable {R : Type} [CommRing R] {M : Type} [AddCommGroup M] [Module R M] {k : �
 variable {ι : Type} (g : ι → M)
 variable {K : Type} [Field K] [Algebra R K]
 
+/--
+@isnad1 id=eq.1h6v.s12.ad0367cbf58c from=translated src=- shape=eb81a25d vocab=1592ac2c
+-/
 lemma span_mkQ_tmul_eq_top (hg : Submodule.span R (Set.range g) = ⊤) (N : Submodule K (K ⊗[R] M)) :
     Submodule.span K (Set.range fun t => N.mkQ ((1 : K) ⊗ₜ[R] g t)) = ⊤ := by
   have h1 : Submodule.span K (Set.range fun t => (1 : K) ⊗ₜ[R] g t) = ⊤ := by
@@ -27,12 +30,18 @@ lemma span_mkQ_tmul_eq_top (hg : Submodule.span R (Set.range g) = ⊤) (N : Subm
     rw [← Set.range_comp]; rfl
   rw [h2, ← Submodule.map_span, h1, Submodule.map_top, Submodule.range_mkQ]
 
+/--
+@isnad1 id=eq.0h5v.s10.97b9a53ae71b from=translated src=- shape=e628a2d0 vocab=8b5c02e0
+-/
 lemma finrank_quotient_eq (N : Module.Grassmannian K (K ⊗[R] M) k) :
     Module.finrank K ((K ⊗[R] M) ⧸ N.toSubmodule) = k := by
   have h := N.rankAtStalk_eq ⟨⊥, Ideal.isPrime_bot⟩
   rw [Module.rankAtStalk_eq_finrank_of_free] at h
   exact_mod_cast h
 
+/--
+@isnad1 id=ex.1h7v.s12.4bb7026ee47c from=translated src=- shape=06fb9595 vocab=d9f58994
+-/
 theorem cover (hg : Submodule.span R (Set.range g) = ⊤) (N : Module.Grassmannian K (K ⊗[R] M) k) :
     ∃ I : Fin k → ι, Function.Injective I ∧
       Function.Bijective fun v : Fin k → K =>
@@ -62,6 +71,9 @@ theorem cover (hg : Submodule.span R (Set.range g) = ⊤) (N : Module.Grassmanni
 
 end GrassCoverS1b
 
+/--
+@isnad1 id=ex.1h7v.s12.94e43558beff from=translated src=- shape=763aa2b4 vocab=d9f58994
+-/
 theorem solution
     (R : Type) [CommRing R] (M : Type) [AddCommGroup M] [Module R M] (k : ℕ)
     (ι : Type) (g : ι → M) (hg : Submodule.span R (Set.range g) = ⊤)

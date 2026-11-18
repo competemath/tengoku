@@ -16,10 +16,16 @@ section Top
 
 variable {σ K : Type*} [CommRing K] (w : σ → ℕ)
 
+/--
+@isnad1 id=le.1h5v.s7.a286aecc2852 from=translated src=- shape=3e1bc387 vocab=7322af3d
+-/
 lemma weight_le_of_coeff_ne_zero {φ : MvPolynomial σ K} {d : σ →₀ ℕ} (h : coeff d φ ≠ 0) :
     weight w d ≤ weightedTotalDegree w φ :=
   le_weightedTotalDegree w (mem_support_iff.2 h)
 
+/--
+@isnad1 id=iff.0h5v.s7.4f8af9e88014 from=translated src=- shape=c9fa13c2 vocab=7322af3d
+-/
 lemma weightedTotalDegree_le_iff {φ : MvPolynomial σ K} {n : ℕ} :
     weightedTotalDegree w φ ≤ n ↔ ∀ d, coeff d φ ≠ 0 → weight w d ≤ n := by
   rw [weightedTotalDegree, Finset.sup_le_iff]
@@ -28,14 +34,23 @@ lemma weightedTotalDegree_le_iff {φ : MvPolynomial σ K} {n : ℕ} :
 noncomputable def top (φ : MvPolynomial σ K) : MvPolynomial σ K :=
   weightedHomogeneousComponent w (weightedTotalDegree w φ) φ
 
+/--
+@isnad1 id=eq.0h5v.s8.e9b0d63877a2 from=translated src=- shape=b2bdcaae vocab=0da3c187
+-/
 lemma coeff_top (φ : MvPolynomial σ K) (d : σ →₀ ℕ) :
     coeff d (top w φ) = if weight w d = weightedTotalDegree w φ then coeff d φ else 0 :=
   coeff_weightedHomogeneousComponent _ _ _
 
+/--
+@isnad1 id=isweight.0h4v.s5.7697d7c8c8f1 from=translated src=- shape=373ab2fa vocab=ad9002dd
+-/
 lemma top_isWeightedHomogeneous (φ : MvPolynomial σ K) :
     (top w φ).IsWeightedHomogeneous w (weightedTotalDegree w φ) :=
   weightedHomogeneousComponent_isWeightedHomogeneous _ _
 
+/--
+@isnad1 id=ne.1h4v.s7.c6125e1c79a1 from=translated src=- shape=6c90c12d vocab=3fc7c454
+-/
 lemma top_ne_zero {φ : MvPolynomial σ K} (hφ : φ ≠ 0) : top w φ ≠ 0 := by
   classical
   obtain ⟨d, hd, hdeg⟩ :=
@@ -45,12 +60,18 @@ lemma top_ne_zero {φ : MvPolynomial σ K} (hφ : φ ≠ 0) : top w φ ≠ 0 := 
   rw [coeff_top, coeff_zero, ite_eq_left (by rw [weightedTotalDegree]; exact hdeg.symm)] at h1
   exact (mem_support_iff.1 hd) h1
 
+/--
+@isnad1 id=eq.2h5v.s6.cb7d862939c1 from=translated src=- shape=ba8e5070 vocab=26c88dfc
+-/
 lemma weightedTotalDegree_eq_of_isWeightedHomogeneous {φ : MvPolynomial σ K} {n : ℕ}
     (h : φ.IsWeightedHomogeneous w n) (hφ : φ ≠ 0) : weightedTotalDegree w φ = n := by
   have h1 := h.weighted_total_degree hφ
   rw [weightedTotalDegree_coe w φ hφ] at h1
   exact_mod_cast h1
 
+/--
+@isnad1 id=le.0h5v.s6.ce874fda800e from=translated src=- shape=a5ee7c8a vocab=db6b7df2
+-/
 lemma weightedTotalDegree_mul_le (φ ψ : MvPolynomial σ K) :
     weightedTotalDegree w (φ * ψ) ≤ weightedTotalDegree w φ + weightedTotalDegree w ψ := by
   classical
@@ -63,6 +84,9 @@ lemma weightedTotalDegree_mul_le (φ ψ : MvPolynomial σ K) :
   rw [← Finset.HasAntidiagonal.mem_antidiagonal.1 hp, map_add]
   exact add_le_add (weight_le_of_coeff_ne_zero w h1) (weight_le_of_coeff_ne_zero w h2)
 
+/--
+@isnad1 id=eq.1h6v.s8.474b5a1c5953 from=translated src=- shape=bdd42014 vocab=bbb5e269
+-/
 lemma coeff_mul_of_weight_eq (φ ψ : MvPolynomial σ K) {d : σ →₀ ℕ}
     (hd : weight w d = weightedTotalDegree w φ + weightedTotalDegree w ψ) :
     coeff d (φ * ψ) = coeff d (top w φ * top w ψ) := by
@@ -81,6 +105,9 @@ lemma coeff_mul_of_weight_eq (φ ψ : MvPolynomial σ K) {d : σ →₀ ℕ}
     rw [← map_add, hsum, hd]
   rw [ite_eq_left (by omega), ite_eq_left (by omega)]
 
+/--
+@isnad1 id=eq.3h8v.s10.1bfe794d23bc from=translated src=- shape=1961ebaa vocab=217b22c4
+-/
 lemma coeff_mul_of_weight_eq_bot (φ ψ : MvPolynomial σ K) {m₁ m₂ : ℕ}
     (hφ : ∀ a, coeff a φ ≠ 0 → m₁ ≤ weight w a) (hψ : ∀ b, coeff b ψ ≠ 0 → m₂ ≤ weight w b)
     {d : σ →₀ ℕ} (hd : weight w d = m₁ + m₂) :
@@ -102,6 +129,9 @@ lemma coeff_mul_of_weight_eq_bot (φ ψ : MvPolynomial σ K) {m₁ m₂ : ℕ}
 
 variable [IsDomain K]
 
+/--
+@isnad1 id=eq.2h5v.s7.609a2a3dfe52 from=translated src=- shape=88887052 vocab=88ad61f0
+-/
 lemma weightedTotalDegree_mul {φ ψ : MvPolynomial σ K} (hφ : φ ≠ 0) (hψ : ψ ≠ 0) :
     weightedTotalDegree w (φ * ψ) = weightedTotalDegree w φ + weightedTotalDegree w ψ := by
   classical
@@ -117,6 +147,9 @@ lemma weightedTotalDegree_mul {φ ψ : MvPolynomial σ K} (hφ : φ ≠ 0) (hψ 
   rw [← hwd]
   exact weight_le_of_coeff_ne_zero w hd
 
+/--
+@isnad1 id=eq.1h5v.s7.165cee6ead25 from=translated src=- shape=d0ae0f33 vocab=efc925d8
+-/
 lemma weightedTotalDegree_pow {φ : MvPolynomial σ K} (hφ : φ ≠ 0) (n : ℕ) :
     weightedTotalDegree w (φ ^ n) = n * weightedTotalDegree w φ := by
   induction n with
@@ -127,6 +160,9 @@ lemma weightedTotalDegree_pow {φ : MvPolynomial σ K} (hφ : φ ≠ 0) (n : ℕ
   | succ n ih =>
     rw [pow_succ, weightedTotalDegree_mul w (pow_ne_zero _ hφ) hφ, ih, Nat.succ_mul]
 
+/--
+@isnad1 id=isweight.3h6v.s7.ac625c8aea5a from=translated src=- shape=96a2acbc vocab=f2ad59ab
+-/
 lemma isWeightedHomogeneous_of_mul_eq {φ ψ : MvPolynomial σ K} {n : ℕ}
     (h : (φ * ψ).IsWeightedHomogeneous w n) (hφ : φ ≠ 0) (hψ : ψ ≠ 0) :
     φ.IsWeightedHomogeneous w (weightedTotalDegree w φ) := by
@@ -183,11 +219,17 @@ variable {K : Type*} [Field K]
 
 local notation "𝔴" => (![4, 6] : Fin 2 → ℕ)
 
+/--
+@isnad1 id=eq.0h1v.s8.247bde8faa2c from=translated src=- shape=f4db82f8 vocab=c97edc29
+-/
 lemma weight_fin_two (d : Fin 2 →₀ ℕ) : weight 𝔴 d = 4 * d 0 + 6 * d 1 := by
   rw [weight_apply, Finsupp.sum_fintype _ _ (by simp)]
   simp only [Fin.sum_univ_two, Matrix.cons_val_zero, Matrix.cons_val_one, smul_eq_mul]
   ring
 
+/--
+@isnad1 id=iff.0h1v.s8.76874d72e9e5 from=translated src=- shape=485b1ec9 vocab=cfb40ffa
+-/
 lemma weight_eq_zero_iff (d : Fin 2 →₀ ℕ) : weight 𝔴 d = 0 ↔ d = 0 := by
   constructor
   · intro h
@@ -197,6 +239,9 @@ lemma weight_eq_zero_iff (d : Fin 2 →₀ ℕ) : weight 𝔴 d = 0 ↔ d = 0 :=
   · rintro rfl
     simp
 
+/--
+@isnad1 id=ne.0h1v.s7.0c8f0e4d73a1 from=translated src=- shape=c8a1d23e vocab=cfb40ffa
+-/
 lemma weight_ne_two (d : Fin 2 →₀ ℕ) : weight 𝔴 d ≠ 2 := by
   rw [weight_fin_two]; omega
 
@@ -213,6 +258,9 @@ lemma eq_C_of_weightedTotalDegree_eq_zero {φ : MvPolynomial (Fin 2) K}
     rw [Ne, weight_eq_zero_iff]
     exact Ne.symm hd
 
+/--
+@isnad1 id=iff.0h3v.s6.9db17baffb65 from=translated src=- shape=3fa037f0 vocab=ee1f8b1b
+-/
 lemma isWeightedHomogeneous_int_iff {φ : MvPolynomial (Fin 2) K} {n : ℕ} :
     φ.IsWeightedHomogeneous (fun i => (𝔴 i : ℤ)) (n : ℤ) ↔ φ.IsWeightedHomogeneous 𝔴 n := by
   have hw : ∀ d : Fin 2 →₀ ℕ, weight (fun i => (𝔴 i : ℤ)) d = ((weight 𝔴 d : ℕ) : ℤ) := by
@@ -233,10 +281,16 @@ lemma isWeightedHomogeneous_int_iff {φ : MvPolynomial (Fin 2) K} {n : ℕ} :
 noncomputable def D : Derivation K (MvPolynomial (Fin 2) K) (MvPolynomial (Fin 2) K) :=
   (-4 * X 1 : MvPolynomial (Fin 2) K) • pderiv 0 + (-6 * X 0 ^ 2 : MvPolynomial (Fin 2) K) • pderiv 1
 
+/--
+@isnad1 id=eq.0h2v.s11.ffe2f076747f from=translated src=- shape=284dcf2b vocab=e00d1e34
+-/
 lemma D_apply (Φ : MvPolynomial (Fin 2) K) :
     D Φ = (-4 * X 1) * pderiv 0 Φ + (-6 * X 0 ^ 2) * pderiv 1 Φ := by
   simp [D, smul_eq_mul]
 
+/--
+@isnad1 id=isweight.1h3v.s9.59a23b87f08f from=translated src=- shape=ff9505cc vocab=835831a2
+-/
 lemma isWeightedHomogeneous_D {Φ : MvPolynomial (Fin 2) K} {k : ℕ}
     (h : Φ.IsWeightedHomogeneous 𝔴 k) : (D Φ).IsWeightedHomogeneous 𝔴 (k + 2) := by
   rw [← isWeightedHomogeneous_int_iff] at h ⊢
@@ -263,6 +317,9 @@ lemma isWeightedHomogeneous_D {Φ : MvPolynomial (Fin 2) K} {k : ℕ}
   · rw [e1]; exact (hc4.mul hX1).mul h0
   · rw [e2, pow_two]; exact (hc6.mul (hX0.mul hX0)).mul h1
 
+/--
+@isnad1 id=eq.1h3v.s10.1c9ad2748f68 from=translated src=- shape=559f327a vocab=fe126e05
+-/
 lemma euler {Φ : MvPolynomial (Fin 2) K} {k : ℕ} (h : Φ.IsWeightedHomogeneous 𝔴 k) :
     4 * (X 0 * pderiv 0 Φ) + 6 * (X 1 * pderiv 1 Φ) = (k : MvPolynomial (Fin 2) K) * Φ := by
   have := h.sum_weight_X_mul_pderiv
@@ -279,12 +336,21 @@ local notation "𝔴" => (![4, 6] : Fin 2 → ℕ)
 local notation "ε" => MvPolynomial.aeval (R := K) (![Q, R] : Fin 2 → PowerSeries K)
 local notation "θ" F => (PowerSeries.X : PowerSeries K) * PowerSeries.derivative K F
 
+/--
+@isnad1 id=eq.0h3v.s9.580e37c30d14 from=translated src=- shape=7e7de317 vocab=5c13227a
+-/
 lemma theta_mul (F G : PowerSeries K) : (θ (F * G)) = F * (θ G) + G * (θ F) := by
   rw [Derivation.leibniz, smul_eq_mul, smul_eq_mul]; ring
 
+/--
+@isnad1 id=eq.0h2v.s8.36bb0c4974be from=translated src=- shape=ebebe090 vocab=760fdb8d
+-/
 lemma theta_algebraMap (a : K) : (θ (algebraMap K (PowerSeries K) a)) = 0 := by
   rw [Derivation.map_algebraMap, mul_zero]
 
+/--
+@isnad1 id=eq.2h5v.s12.056c71a148b0 from=translated src=- shape=059ebe58 vocab=6abc6878
+-/
 lemma compat (hQ : 3 * (θ Q) = P * Q - R) (hR : 2 * (θ R) = P * R - Q ^ 2)
     (Φ : MvPolynomial (Fin 2) K) :
     12 * (θ (ε Φ)) - ε (D Φ) = P * ε (4 * (X 0 * pderiv 0 Φ) + 6 * (X 1 * pderiv 1 Φ)) := by
@@ -328,6 +394,9 @@ lemma compat (hQ : 3 * (θ Q) = P * Q - R) (hR : 2 * (θ R) = P * R - Q ^ 2)
       rw [theta_mul]
       linear_combination R * ih + 6 * (ε p) * hR
 
+/--
+@isnad1 id=eq.3h6v.s11.85c0e73fb46b from=translated src=- shape=b4f30e4a vocab=ca07ec28
+-/
 lemma aeval_D (hQ : 3 * (θ Q) = P * Q - R) (hR : 2 * (θ R) = P * R - Q ^ 2)
     {Φ : MvPolynomial (Fin 2) K} {k : ℕ} (h : Φ.IsWeightedHomogeneous 𝔴 k) :
     ε (D Φ) = 12 * (θ (ε Φ)) - (k : PowerSeries K) * P * ε Φ := by
@@ -344,6 +413,9 @@ variable {K : Type*} [Field K] {Q R : PowerSeries K}
 local notation "𝔴" => (![4, 6] : Fin 2 → ℕ)
 local notation "ε" => MvPolynomial.aeval (R := K) (![Q, R] : Fin 2 → PowerSeries K)
 
+/--
+@isnad1 id=not.3h3v.s9.3e905c8f100e from=translated src=- shape=c4ac2853 vocab=3827f2f3
+-/
 lemma ker_not_isMaximal (hQ0 : PowerSeries.constantCoeff Q = 1)
     (hR0 : PowerSeries.constantCoeff R = 1) (hQR : Q ^ 3 ≠ R ^ 2) :
     ¬ (RingHom.ker (ε).toRingHom).IsMaximal := by
@@ -435,6 +507,9 @@ variable {K : Type*} [Field K]
 
 local notation "𝔴" => (![4, 6] : Fin 2 → ℕ)
 
+/--
+@isnad1 id=squarefr.10h6v.s10.e1d33b72c2fd from=translated src=- shape=c87c5888 vocab=01074e8e
+-/
 theorem main {ℓ : ℕ} [Fact ℓ.Prime] [CharP K ℓ] (h5 : 5 ≤ ℓ)
     {P Q R : PowerSeries K}
     (hP0 : PowerSeries.constantCoeff P = 1) (hQ0 : PowerSeries.constantCoeff Q = 1)
@@ -593,6 +668,9 @@ end Main
 
 end MvPolynomial.SquarefreeIsobaricProof
 
+/--
+@isnad1 id=squarefr.10h6v.s10.e1d33b72c2fd from=translated src=- shape=c87c5888 vocab=01074e8e
+-/
 theorem solution
     {K : Type*} [Field K] {ℓ : ℕ} [Fact ℓ.Prime] [CharP K ℓ] (h5 : 5 ≤ ℓ)
     {P Q R : PowerSeries K}

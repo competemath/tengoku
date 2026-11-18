@@ -28,6 +28,9 @@ section chart
 
 variable (R) (M) (k)
 
+/--
+@isnad1 id=ex.0h4v.s18.141aa4a430e7 from=translated src=- shape=ff61a16a vocab=5ee07793
+-/
 theorem exists_pt (x : Fin k → M) :
     ∃ pt : ∀ (A : Type) [CommRing A] [Algebra R A], Chart R x A ≃ HomX R x A,
       (∀ (A : Type) [CommRing A] [Algebra R A] (N : Chart R x A) (m : M),
@@ -49,11 +52,17 @@ noncomputable def ptx (x : Fin k → M) (A : Type) [CommRing A] [Algebra R A] :
 
 variable {R M k}
 
+/--
+@isnad1 id=eq.0h7v.s16.cf86aae5962f from=translated src=- shape=a213e5c8 vocab=b9291cca
+-/
 theorem sum_ptx_smul (x : Fin k → M) {A : Type} [CommRing A] [Algebra R A] (N : Chart R x A) (m : M) :
     ∑ i, (ptx R M k x A N).1 m i • N.1.toSubmodule.mkQ ((1 : A) ⊗ₜ[R] x i) =
       N.1.toSubmodule.mkQ ((1 : A) ⊗ₜ[R] m) :=
   (exists_pt R M k x).choose_spec.1 A N m
 
+/--
+@isnad1 id=ex.0h8v.s17.510d371b26d8 from=translated src=- shape=f9a8c029 vocab=d9381dab
+-/
 theorem ptx_natural (x : Fin k → M) {A B : Type} [CommRing A] [CommRing B] [Algebra R A] [Algebra R B]
     (φ : A →ₐ[R] B) (N : Chart R x A) :
     ∃ h : Function.Bijective fun v : Fin k → B =>
@@ -73,9 +82,15 @@ noncomputable def T : Subalgebra R S :=
   Algebra.adjoin R {s : S | ∃ (a : ι) (c : Fin k → S) (i : Fin k),
     ∑ j, c j • N.1.toSubmodule.mkQ ((1 : S) ⊗ₜ[R] x j) = N.1.toSubmodule.mkQ ((1 : S) ⊗ₜ[R] g a) ∧ s = c i}
 
+/--
+@isnad1 id=mem.0h10v.s9.1b62c7be68b6 from=translated src=- shape=5fb7bbde vocab=5032564e
+-/
 theorem ptx_g_mem (a : ι) (i : Fin k) : (ptx R M k x S N).1 (g a) i ∈ T x N g :=
   Algebra.subset_adjoin ⟨a, (ptx R M k x S N).1 (g a), i, sum_ptx_smul x N (g a), rfl⟩
 
+/--
+@isnad1 id=mem.1h10v.s9.83106e607a24 from=translated src=- shape=16f2cd2c vocab=b3981954
+-/
 theorem ptx_mem (hg : Submodule.span R (Set.range g) = ⊤) (m : M) (i : Fin k) :
     (ptx R M k x S N).1 m i ∈ T x N g := by
   have hm : m ∈ Submodule.span R (Set.range g) := by rw [hg]; trivial
@@ -98,9 +113,15 @@ noncomputable def ψT (hg : Submodule.span R (Set.range g) = ⊤) : M →ₗ[R] 
     funext i; apply Subtype.ext
     simp only [map_smul, Pi.smul_apply, RingHom.id_apply, Subalgebra.coe_smul]
 
+/--
+@isnad1 id=eq.1h10v.s10.dab73e267671 from=translated src=- shape=08ac59e7 vocab=cdf504e9
+-/
 theorem ψT_apply_val (hg : Submodule.span R (Set.range g) = ⊤) (m : M) (i : Fin k) :
     ((ψT x N g hg m i : T x N g) : S) = (ptx R M k x S N).1 m i := rfl
 
+/--
+@isnad1 id=eq.1h9v.s10.95a0ddedc281 from=translated src=- shape=ce1b5534 vocab=3d65c3d3
+-/
 theorem ψT_x (hg : Submodule.span R (Set.range g) = ⊤) (j : Fin k) : ψT x N g hg (x j) = Pi.single j 1 := by
   funext i
   apply Subtype.ext
@@ -110,6 +131,9 @@ theorem ψT_x (hg : Submodule.span R (Set.range g) = ⊤) (j : Fin k) : ψT x N 
 noncomputable def NT (hg : Submodule.span R (Set.range g) = ⊤) : Chart R x (T x N g) :=
   (ptx R M k x (T x N g)).symm ⟨ψT x N g hg, ψT_x x N g hg⟩
 
+/--
+@isnad1 id=eq.1h8v.s16.4eb45d6d7ff8 from=translated src=- shape=da575e33 vocab=d9469e1a
+-/
 theorem map_val_NT (hg : Submodule.span R (Set.range g) = ⊤) :
     Module.Grassmannian.map (T x N g).val (NT x N g hg).1 = N.1 := by
   obtain ⟨h, hnat⟩ := ptx_natural x (T x N g).val (NT x N g hg)
@@ -130,6 +154,9 @@ end algebra
 end GrassChartGen
 
 open GrassChartGen in
+/--
+@isnad1 id=eq.4h12v.s14.4db2eddbebd2 from=translated src=- shape=bdc79ce1 vocab=03a3a9a6
+-/
 theorem solution
     (R : Type) [CommRing R] (M : Type) [AddCommGroup M] [Module R M] (k : ℕ)
     (Gr : Scheme.{0}) (p : Gr ⟶ Spec (CommRingCat.of R))

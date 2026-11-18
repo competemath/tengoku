@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u v
 
+/--
+@isnad1 id=invertib.1h4v.s8.8192512d8d63 from=translated src=- shape=6b6a143e vocab=1ee13968
+-/
 theorem solution
     {R R' : Type u} [CommRing R] [CommRing R'] (σ : R ≃+* R')
     (M : Type v) [AddCommGroup M] [Module R' M] [Module.Invertible R' M]

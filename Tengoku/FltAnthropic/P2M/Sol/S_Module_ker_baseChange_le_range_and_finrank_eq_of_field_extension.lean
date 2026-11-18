@@ -19,24 +19,36 @@ variable {R : Type u} [CommRing R] (K : Type u) [Field K] [Algebra R K] (K' : Ty
 
 noncomputable def incl : K →ₗ[R] K' := (Algebra.linearMap K K').restrictScalars R
 
+/--
+@isnad1 id=ex.0h2v.s8.a44b8a55380d from=translated src=- shape=24987af7 vocab=bbd66c43
+-/
 theorem exists_retraction : ∃ r : K' →ₗ[K] K, r ∘ₗ Algebra.linearMap K K' = LinearMap.id := by
   apply LinearMap.exists_leftInverse_of_injective
   exact LinearMap.ker_eq_bot_of_injective (algebraMap K K').injective
 
 variable {X Y : Type u} [AddCommGroup X] [Module R X] [AddCommGroup Y] [Module R Y]
 
+/--
+@isnad1 id=eq.0h7v.s11.db33e7175a26 from=translated src=- shape=87d8d557 vocab=6a7845f1
+-/
 theorem baseChange_j (φ : X →ₗ[R] Y) (z : K ⊗[R] X) :
     φ.baseChange K' ((incl K K').rTensor X z) = (incl K K').rTensor Y (φ.baseChange K z) := by
   show (φ.lTensor K') ((incl K K').rTensor X z) = (incl K K').rTensor Y ((φ.lTensor K) z)
   rw [← LinearMap.comp_apply, ← LinearMap.comp_apply, LinearMap.lTensor_comp_rTensor,
     LinearMap.rTensor_comp_lTensor]
 
+/--
+@isnad1 id=eq.0h8v.s11.8bf45a8ee581 from=translated src=- shape=cb965e9f vocab=7f576c1f
+-/
 theorem baseChange_ρ (r : K' →ₗ[K] K) (φ : X →ₗ[R] Y) (z : K' ⊗[R] X) :
     φ.baseChange K ((r.restrictScalars R).rTensor X z) = (r.restrictScalars R).rTensor Y (φ.baseChange K' z) := by
   show (φ.lTensor K) ((r.restrictScalars R).rTensor X z) = (r.restrictScalars R).rTensor Y ((φ.lTensor K') z)
   rw [← LinearMap.comp_apply, ← LinearMap.comp_apply, LinearMap.lTensor_comp_rTensor,
     LinearMap.rTensor_comp_lTensor]
 
+/--
+@isnad1 id=eq.1h6v.s10.9a2afc0f4561 from=translated src=- shape=ae161c0a vocab=5071f4ed
+-/
 theorem ρ_j (r : K' →ₗ[K] K) (hr : r ∘ₗ Algebra.linearMap K K' = LinearMap.id) (z : K ⊗[R] X) :
     (r.restrictScalars R).rTensor X ((incl K K').rTensor X z) = z := by
   rw [← LinearMap.comp_apply, ← LinearMap.rTensor_comp]
@@ -45,6 +57,9 @@ theorem ρ_j (r : K' →ₗ[K] K) (hr : r ∘ₗ Algebra.linearMap K K' = Linear
     exact congrArg (fun f : K →ₗ[K] K => f c) hr
   rw [this, LinearMap.rTensor_id, LinearMap.id_apply]
 
+/--
+@isnad1 id=le.1h8v.s11.461cef6b02ff from=translated src=- shape=80467b9c vocab=1a3e0b73
+-/
 theorem ker_le_range_descend {Z : Type u} [AddCommGroup Z] [Module R Z]
     (f : X →ₗ[R] Y) (g : Y →ₗ[R] Z)
     (h : LinearMap.ker (g.baseChange K') ≤ LinearMap.range (f.baseChange K')) :
@@ -58,6 +73,9 @@ theorem ker_le_range_descend {Z : Type u} [AddCommGroup Z] [Module R Z]
   refine ⟨(r.restrictScalars R).rTensor X v, ?_⟩
   rw [baseChange_ρ, hv, ρ_j K K' r hr]
 
+/--
+@isnad1 id=eq.0h7v.s13.4d37f27a9417 from=translated src=- shape=fa90508a vocab=27575eda
+-/
 theorem cancelBaseChange_baseChange_baseChange (φ : X →ₗ[R] Y) (z : K' ⊗[K] (K ⊗[R] X)) :
     AlgebraTensorModule.cancelBaseChange R K K' K' Y (((φ.baseChange K).baseChange K') z) =
       (φ.baseChange K') (AlgebraTensorModule.cancelBaseChange R K K' K' X z) := by
@@ -72,10 +90,16 @@ theorem cancelBaseChange_baseChange_baseChange (φ : X →ₗ[R] Y) (z : K' ⊗[
   | add z₁ z₂ h₁ h₂ => simp only [map_add, h₁, h₂]
 
 omit [Algebra R K] [Algebra R K'] [IsScalarTower R K K'] in
+/--
+@isnad1 id=eq.0h3v.s7.4104078aa180 from=translated src=- shape=510a70f4 vocab=7827525a
+-/
 theorem finrank_baseChange_field (V : Type u) [AddCommGroup V] [Module K V] :
     Module.finrank K' (K' ⊗[K] V) = Module.finrank K V :=
   Module.finrank_baseChange
 
+/--
+@isnad1 id=eq.0h6v.s11.e4c70054e153 from=translated src=- shape=0848776b vocab=77fc797c
+-/
 theorem finrank_ker_descend (φ : X →ₗ[R] Y) :
     Module.finrank K' (LinearMap.ker (φ.baseChange K')) = Module.finrank K (LinearMap.ker (φ.baseChange K)) := by
   set eX := AlgebraTensorModule.cancelBaseChange R K K' K' X
@@ -98,6 +122,9 @@ theorem finrank_ker_descend (φ : X →ₗ[R] Y) :
 end K4EDescendGood
 
 open K4EDescendGood in
+/--
+@isnad1 id=and.3h8v.s13.35b6d9278935 from=translated src=- shape=df93058d vocab=47c9cc59
+-/
 theorem solution
     {R : Type u} [CommRing R]
     (C : ℕ → Type u) [∀ i, AddCommGroup (C i)] [∀ i, Module R (C i)]

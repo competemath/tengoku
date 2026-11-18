@@ -8,6 +8,9 @@ namespace P2MW.S_MonoidHom_map_transfer_eq_transfer_comp
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.0h7v.s8.75c40cffdd02 from=translated src=- shape=01e0a5cb vocab=22650b04
+-/
 theorem solution
     {G : Type*} [Group G] {H : Subgroup G} [H.FiniteIndex]
     {A B : Type*} [CommGroup A] [CommGroup B] (ϕ : ↥H →* A) (f : A →* B) (g : G) :

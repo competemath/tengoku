@@ -13,6 +13,9 @@ open MvPolynomial
 
 variable {R : Type*} [CommRing R] {σ : Type*}
 
+/--
+@isnad1 id=eq.0h6v.s10.77ad762273b4 from=translated src=- shape=a0b403ac vocab=e8b5c876
+-/
 theorem pderiv_aeval [Fintype σ] {τ : Type*} (w : τ) (φ : σ → MvPolynomial τ R) (g : MvPolynomial σ R) :
     pderiv w (aeval φ g) = ∑ u : σ, pderiv w (φ u) * aeval φ (pderiv u g) := by
   classical
@@ -47,10 +50,16 @@ noncomputable def delta (q : MvPolynomial σ R) : MvPolynomial (σ ⊕ σ) R :=
   plus q - rename Sum.inl q - rename Sum.inr q
 
 omit [Fintype σ] in
+/--
+@isnad1 id=eq.0h4v.s7.28a8a6bd74d0 from=translated src=- shape=a24015af vocab=5328ba64
+-/
 theorem delta_smul (c : R) (q : MvPolynomial σ R) : delta (c • q) = c • delta q := by
   simp only [delta, plus, map_smul, smul_sub]
 
 omit [Fintype σ] in
+/--
+@isnad1 id=eq.0h5v.s6.133d8ff4e0cd from=translated src=- shape=2a5099de vocab=05f7b6d0
+-/
 theorem delta_sum {ι : Type*} (s : Finset ι) (q : ι → MvPolynomial σ R) :
     delta (∑ i ∈ s, q i) = ∑ i ∈ s, delta (q i) := by
   simp only [delta, plus, map_sum, Finset.sum_sub_distrib]
@@ -77,6 +86,9 @@ noncomputable def gk (Γ : P2) (k : σ) : P1 := aeval (Sum.elim X (fun _ => (0 :
 omit [Fintype σ] in
 open Classical in
 
+/--
+@isnad1 id=and.0h3v.s11.1e46caa80ee8 from=translated src=- shape=71d2bd5d vocab=de814ae0
+-/
 theorem pderiv_Z_φ (k : σ) :
     (∀ u, pderiv (Sum.inr (Sum.inr k)) (φYZ R σ u) = if u = Sum.inr k then 1 else 0) ∧
     (∀ u, pderiv (Sum.inr (Sum.inr k)) (φXYZ R σ u) = if u = Sum.inr k then 1 else 0) ∧
@@ -86,6 +98,9 @@ theorem pderiv_Z_φ (k : σ) :
   refine ⟨?_, ?_, ?_, ?_⟩ <;> rintro (s | s) <;>
     simp [φYZ, φXYZ, φXYZ', φXY, pderiv_X, Pi.single_apply, eq_comm]
 
+/--
+@isnad1 id=eq.1h4v.s11.c64e74b531f5 from=translated src=- shape=2cee5dfa vocab=410f767c
+-/
 theorem pderiv_inr_eq (Γ : P2)
     (hcoc : aeval (φYZ R σ) Γ - aeval (φXYZ R σ) Γ + aeval (φXYZ' R σ) Γ - aeval (φXY R σ) Γ = 0) (k : σ) :
     pderiv (Sum.inr k) Γ = plus (gk Γ k) - rename Sum.inr (gk Γ k) := by
@@ -112,6 +127,9 @@ theorem pderiv_inr_eq (Γ : P2)
   rw [e1, e2, e3, sub_zero] at key
   linear_combination key
 
+/--
+@isnad1 id=eq.2h4v.s11.9c7d6db619ab from=translated src=- shape=e557ec8e vocab=a4edf04a
+-/
 theorem pderiv_inl_eq (Γ : P2) (hsymm : rename Sum.swap Γ = Γ)
     (hcoc : aeval (φYZ R σ) Γ - aeval (φXYZ R σ) Γ + aeval (φXYZ' R σ) Γ - aeval (φXY R σ) Γ = 0) (k : σ) :
     pderiv (Sum.inl k) Γ = plus (gk Γ k) - rename Sum.inl (gk Γ k) := by
@@ -125,6 +143,9 @@ theorem pderiv_inl_eq (Γ : P2) (hsymm : rename Sum.swap Γ = Γ)
   rw [hsw, h, map_sub, rename_rename, plus, comp_aeval_apply, e1]
   rfl
 
+/--
+@isnad1 id=eq.3h4v.s11.e73123ffd74f from=translated src=- shape=92070077 vocab=19327f42
+-/
 theorem nsmul_eq_delta (n : ℕ) (Γ : P2) (hhom : Γ.IsHomogeneous n) (hsymm : rename Sum.swap Γ = Γ)
     (hcoc : aeval (φYZ R σ) Γ - aeval (φXYZ R σ) Γ + aeval (φXYZ' R σ) Γ - aeval (φXY R σ) Γ = 0) :
     n • Γ = delta (∑ s, X s * gk Γ s) := by
@@ -136,6 +157,9 @@ theorem nsmul_eq_delta (n : ℕ) (Γ : P2) (hhom : Γ.IsHomogeneous n) (hsymm : 
   simp only [delta, plus, map_mul, aeval_X, rename_X]
   ring
 
+/--
+@isnad1 id=ishomoge.2h4v.s7.ba312d81361f from=translated src=- shape=70611345 vocab=3048e7f7
+-/
 theorem isHomogeneous_H (n : ℕ) (hn : n ≠ 0) (Γ : P2) (hhom : Γ.IsHomogeneous n) :
     (∑ s, X s * gk Γ s : P1).IsHomogeneous n := by
   refine IsHomogeneous.sum _ _ _ fun s _ => ?_
@@ -149,6 +173,9 @@ theorem isHomogeneous_H (n : ℕ) (hn : n ≠ 0) (Γ : P2) (hhom : Γ.IsHomogene
   have := (isHomogeneous_X R s).mul hg
   rwa [show 1 + (n - 1) = n by omega] at this
 
+/--
+@isnad1 id=ex.4h4v.s11.4a98793bdacf from=translated src=- shape=eefe38cb vocab=3bc136d8
+-/
 theorem main (n : ℕ) (hn : IsUnit (n : R)) (Γ : P2) (hhom : Γ.IsHomogeneous n)
     (hsymm : rename Sum.swap Γ = Γ)
     (hcoc : aeval (φYZ R σ) Γ - aeval (φXYZ R σ) Γ + aeval (φXYZ' R σ) Γ - aeval (φXY R σ) Γ = 0) :
@@ -169,6 +196,9 @@ end S17CB
 
 universe u v
 
+/--
+@isnad1 id=ex.4h4v.s11.6ae5df92603a from=translated src=- shape=1f924e8a vocab=ab3a6882
+-/
 theorem solution
     {R : Type u} [CommRing R] {σ : Type v} [Finite σ] (n : ℕ) (hn : IsUnit (n : R))
     (Γ : MvPolynomial (σ ⊕ σ) R) (hhom : Γ.IsHomogeneous n)

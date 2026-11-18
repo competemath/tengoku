@@ -43,6 +43,9 @@ variable {R : Type u} [CommRing R] {M : Type v} [AddCommGroup M] [Module R M]
 
 abbrev κ (𝔭 : PrimeSpectrum R) : Type u := 𝔭.asIdeal.ResidueField
 
+/--
+@isnad1 id=eq.0h3v.s11.0745b213be00 from=translated src=- shape=c0c11087 vocab=271ea99e
+-/
 theorem span_one_tmul_eq_top (𝔭 : PrimeSpectrum R) :
     Submodule.span (κ 𝔭) (Set.range fun x : M => (1 : κ 𝔭) ⊗ₜ[R] x) = ⊤ := by
   rw [eq_top_iff]
@@ -56,6 +59,9 @@ theorem span_one_tmul_eq_top (𝔭 : PrimeSpectrum R) :
     exact Submodule.smul_mem _ _ (Submodule.subset_span ⟨x, rfl⟩)
   | add s t hs ht => exact Submodule.add_mem _ hs ht
 
+/--
+@isnad1 id=ex.0h3v.s11.d6dc20215449 from=translated src=- shape=dc77255a vocab=e6179298
+-/
 theorem exists_basis_one_tmul [Module.Finite R M] (𝔭 : PrimeSpectrum R) :
     ∃ (ι : Type v) (_ : Fintype ι) (m : ι → M) (b : Module.Basis ι (κ 𝔭) (κ 𝔭 ⊗[R] M)),
       ∀ i, b i = (1 : κ 𝔭) ⊗ₜ[R] m i := by
@@ -67,6 +73,9 @@ theorem exists_basis_one_tmul [Module.Finite R M] (𝔭 : PrimeSpectrum R) :
   · rw [haspan, span_one_tmul_eq_top]
   · simp only [Module.Basis.mk_apply, Function.comp_apply]
 
+/--
+@isnad1 id=subsingl.1h6v.s11.57e895759b3c from=translated src=- shape=26c89c70 vocab=a1343456
+-/
 theorem subsingleton_residue_tensor_coker (𝔭 : PrimeSpectrum R) {ι : Type v} [Fintype ι]
     (m : ι → M) (b : Module.Basis ι (κ 𝔭) (κ 𝔭 ⊗[R] M)) (hb : ∀ i, b i = (1 : κ 𝔭) ⊗ₜ[R] m i) :
     Subsingleton (κ 𝔭 ⊗[R] (M ⧸ LinearMap.range (Fintype.linearCombination R m))) := by
@@ -94,6 +103,9 @@ theorem subsingleton_residue_tensor_coker (𝔭 : PrimeSpectrum R) {ι : Type v}
   rw [hzero]
   rfl
 
+/--
+@isnad1 id=injectiv.3h8v.s13.0a16cbede92e from=translated src=- shape=65a58e6f vocab=4f2dcbe3
+-/
 theorem baseChange_injective_of_le [Module.Finite R M] {e : ℕ}
     (hconst : ∀ 𝔮 : PrimeSpectrum R, Module.finrank (κ 𝔮) (κ 𝔮 ⊗[R] M) = e)
     (𝔭 : PrimeSpectrum R) {ι : Type v}
@@ -131,6 +143,9 @@ theorem baseChange_injective_of_le [Module.Finite R M] {e : ℕ}
   exact (LinearMap.injective_iff_surjective_of_finrank_eq_finrank (hdom.trans hcod.symm)).mpr
     hsurjφ
 
+/--
+@isnad1 id=mem.4h10v.s12.c9eea33128c5 from=translated src=- shape=c09c059e vocab=4e55d874
+-/
 theorem coeff_mem_of_rel [Module.Finite R M] {e : ℕ}
     (hconst : ∀ 𝔮 : PrimeSpectrum R, Module.finrank (κ 𝔮) (κ 𝔮 ⊗[R] M) = e)
     (𝔭 : PrimeSpectrum R) {ι : Type v} [Fintype ι]
@@ -149,6 +164,9 @@ theorem coeff_mem_of_rel [Module.Finite R M] {e : ℕ}
     Algebra.algebraMap_eq_smul_one]
   exact hcoord
 
+/--
+@isnad1 id=eq.3h9v.s12.27850c6338cc from=translated src=- shape=87330f81 vocab=31117809
+-/
 theorem algebraMap_coeff_eq_zero [IsReduced R] [Module.Finite R M] {e : ℕ}
     (hconst : ∀ 𝔮 : PrimeSpectrum R, Module.finrank (κ 𝔮) (κ 𝔮 ⊗[R] M) = e)
     (𝔭 : PrimeSpectrum R)
@@ -169,6 +187,9 @@ theorem algebraMap_coeff_eq_zero [IsReduced R] [Module.Finite R M] {e : ℕ}
   have hmem : x i ∈ 𝔮.asIdeal := coeff_mem_of_rel hconst 𝔭 m b hb hle x hx i
   exact Ideal.mem_comap.mp hmem
 
+/--
+@isnad1 id=free.1h4v.s10.0e083273a583 from=translated src=- shape=71da1cac vocab=a70c325f
+-/
 theorem free_localizedModule_of_isReduced [IsReduced R] [Module.Finite R M] {e : ℕ}
     (hconst : ∀ 𝔮 : PrimeSpectrum R, Module.finrank (κ 𝔮) (κ 𝔮 ⊗[R] M) = e)
     (𝔭 : PrimeSpectrum R) :
@@ -222,6 +243,9 @@ theorem free_localizedModule_of_isReduced [IsReduced R] [Module.Finite R M] {e :
     exact (hs_unit.mul_right_eq_zero).mp this
   exact Module.Free.of_basis (Module.Basis.mk hli (by rw [hspan]))
 
+/--
+@isnad1 id=projecti.1h3v.s9.09f717d1e5f8 from=translated src=- shape=2fecfb40 vocab=849210cc
+-/
 theorem projective_of_isReduced_of_finrank_const [IsReduced R] [Module.FinitePresentation R M]
     {e : ℕ} (hconst : ∀ 𝔮 : PrimeSpectrum R, Module.finrank (κ 𝔮) (κ 𝔮 ⊗[R] M) = e) :
     Module.Projective R M := by
@@ -233,6 +257,9 @@ end FittingFree
 
 end CBCSol
 
+/--
+@isnad1 id=projecti.1h3v.s10.87343eec4dc9 from=translated src=- shape=35f2aff9 vocab=0722788e
+-/
 theorem solution {R : Type u} [CommRing R]
     [IsReduced R] {M : Type v} [AddCommGroup M] [Module R M] [Module.FinitePresentation R M]
     {e : ℕ} (h : ∀ 𝔭 : PrimeSpectrum R,

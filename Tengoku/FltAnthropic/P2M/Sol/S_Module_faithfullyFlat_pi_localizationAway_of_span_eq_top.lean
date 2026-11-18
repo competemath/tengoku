@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=faithful.1h3v.s8.daadefe760ef from=translated src=- shape=366e0fb8 vocab=5811a8b3
+-/
 theorem solution
     {S : Type u} [CommRing S] {k : ℕ} (r : Fin k → S) (hr : Ideal.span (Set.range r) = ⊤) :
     Module.FaithfullyFlat S (∀ i : Fin k, Localization.Away (r i)) := by

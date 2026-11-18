@@ -13,21 +13,33 @@ variable {𝕜 : Type*} [Field 𝕜]
 
 local notation "M₂" => Matrix (Fin 2) (Fin 2) 𝕜
 
+/--
+@isnad1 id=eq.0h2v.s8.a1435b09b70c from=translated src=- shape=8b857a31 vocab=4a0ae6d5
+-/
 theorem mul_self_eq (M : M₂) : M * M = M.trace • M - M.det • (1 : M₂) := by
   ext i j
   fin_cases i <;> fin_cases j <;>
     simp [Matrix.mul_apply, Fin.sum_univ_two, Matrix.trace_fin_two, Matrix.det_fin_two] <;> ring
 
+/--
+@isnad1 id=eq.0h2v.s8.3552b89dae44 from=translated src=- shape=8beab87c vocab=8d821690
+-/
 theorem trace_mul_self (M : M₂) : (M * M).trace = M.trace ^ 2 - 2 * M.det := by
   rw [mul_self_eq, trace_sub, trace_smul, trace_smul, trace_one, smul_eq_mul, smul_eq_mul]
   simp
   ring
 
+/--
+@isnad1 id=eq.0h3v.s8.d02623eea7f5 from=translated src=- shape=e124d80c vocab=7698d88e
+-/
 theorem trace_mul_self_mul (A B : M₂) :
     (A * A * B).trace = A.trace * (A * B).trace - A.det * B.trace := by
   rw [mul_self_eq, sub_mul, smul_mul_assoc, smul_mul_assoc, one_mul, trace_sub, trace_smul,
     trace_smul, smul_eq_mul, smul_eq_mul]
 
+/--
+@isnad1 id=eq.7h6v.s9.8677e4c6f00f from=translated src=- shape=b7ed8261 vocab=f01316b1
+-/
 theorem two_mul_eq_of_discs {t₁ t₂ d₁ d₂ T : 𝕜} (h2 : (2 : 𝕜) ≠ 0)
     (hd₁ : d₁ ≠ 0) (hd₂ : d₂ ≠ 0)
     (h₁ : t₁ ^ 2 = 4 * d₁) (h₂ : t₂ ^ 2 = 4 * d₂)
@@ -74,6 +86,9 @@ theorem two_mul_eq_of_discs {t₁ t₂ d₁ d₂ T : 𝕜} (h2 : (2 : 𝕜) ≠ 
   · exact ht₁ h
   · exact ht₂ h
 
+/--
+@isnad1 id=eq.2h2v.s9.7ceac12c54fa from=translated src=- shape=1f809476 vocab=b0d3378a
+-/
 theorem nilPart_mul_self (h2 : (2 : 𝕜) ≠ 0) (M : M₂) (hdisc : M.trace ^ 2 = 4 * M.det) :
     (M - (M.trace / 2) • (1 : M₂)) * (M - (M.trace / 2) • (1 : M₂)) = 0 := by
   set l := M.trace / 2 with hl
@@ -89,6 +104,9 @@ theorem nilPart_mul_self (h2 : (2 : 𝕜) ≠ 0) (M : M₂) (hdisc : M.trace ^ 2
   simp only [smul_mul_assoc, mul_smul_comm, one_mul, mul_one, smul_smul]
   module
 
+/--
+@isnad1 id=eq.1h2v.s8.8fcdb7cade1c from=translated src=- shape=d06d6b8a vocab=e129f43d
+-/
 theorem trace_nilPart (h2 : (2 : 𝕜) ≠ 0) (M : M₂) :
     (M - (M.trace / 2) • (1 : M₂)).trace = 0 := by
   rw [trace_sub, trace_smul, trace_one, smul_eq_mul]
@@ -96,10 +114,16 @@ theorem trace_nilPart (h2 : (2 : 𝕜) ≠ 0) (M : M₂) :
   field_simp
   ring
 
+/--
+@isnad1 id=eq.1h2v.s7.270038eec835 from=translated src=- shape=e2f592dc vocab=6dc2445f
+-/
 theorem det_eq_zero_of_mul_self_eq_zero (n : M₂) (hn : n * n = 0) : n.det = 0 := by
   have : n.det * n.det = 0 := by rw [← det_mul, hn, det_zero]
   exact mul_self_eq_zero.mp this
 
+/--
+@isnad1 id=eq.2h2v.s7.da516d5991b3 from=translated src=- shape=77c5dec2 vocab=5431afd9
+-/
 theorem trace_eq_zero_of_trace_mul_self (Y : M₂) (hdet : Y.det = 0) (htr : (Y * Y).trace = 0) :
     Y.trace = 0 := by
   rw [trace_mul_self, hdet, mul_zero, sub_zero] at htr
@@ -107,12 +131,21 @@ theorem trace_eq_zero_of_trace_mul_self (Y : M₂) (hdet : Y.det = 0) (htr : (Y 
 
 variable {G : Type*} [Group G]
 
+/--
+@isnad1 id=eq.0h4v.s9.1ecad073cc46 from=translated src=- shape=451764d3 vocab=281c08d7
+-/
 theorem map_mul_map_inv (ρ : G →* M₂) (g : G) : ρ g * ρ g⁻¹ = 1 := by
   rw [← map_mul, mul_inv_cancel, map_one]
 
+/--
+@isnad1 id=eq.0h4v.s9.17aa4f38d573 from=translated src=- shape=db999090 vocab=281c08d7
+-/
 theorem map_inv_mul_map (ρ : G →* M₂) (g : G) : ρ g⁻¹ * ρ g = 1 := by
   rw [← map_mul, inv_mul_cancel, map_one]
 
+/--
+@isnad1 id=ne.0h4v.s8.0f4cbd3c9d7f from=translated src=- shape=21af5c11 vocab=04ba18e6
+-/
 theorem det_map_ne_zero (ρ : G →* M₂) (g : G) : (ρ g).det ≠ 0 := by
   intro h
   have : (ρ g * ρ g⁻¹).det = 1 := by rw [map_mul_map_inv, det_one]
@@ -122,6 +155,9 @@ theorem det_map_ne_zero (ρ : G →* M₂) (g : G) : (ρ g).det ≠ 0 := by
 def unitOf (ρ : G →* M₂) (g : G) : (M₂)ˣ :=
   ⟨ρ g, ρ g⁻¹, map_mul_map_inv ρ g, map_inv_mul_map ρ g⟩
 
+/--
+@isnad1 id=commute.1h5v.s9.d2c465582128 from=translated src=- shape=be25764a vocab=496cfc5a
+-/
 theorem commute_map_inv (ρ : G →* M₂) {g : G} {Y : M₂} (h : Commute (ρ g) Y) :
     Commute (ρ g⁻¹) Y := by
   have := Commute.units_inv_left (u := unitOf ρ g) h
@@ -150,6 +186,9 @@ def traceOrth (n : M₂) : Submodule 𝕜 M₂ where
     simp only [Set.mem_ofPred_eq] at *
     rw [smul_mul_assoc, trace_smul, hx, smul_zero]
 
+/--
+@isnad1 id=ex.2h4v.s10.3d9bc54b37e6 from=translated src=- shape=a6e97f87 vocab=312638f2
+-/
 theorem exists_mem_trace_sq_ne (h2 : (2 : 𝕜) ≠ 0) (ρ : G →* M₂)
     (hρ : Submodule.span 𝕜 (Set.range ρ) = ⊤)
     (N : Subgroup G) [N.Normal] [IsCyclic (G ⧸ N)] :
@@ -303,6 +342,9 @@ theorem exists_mem_trace_sq_ne (h2 : (2 : 𝕜) ≠ 0) (ρ : G →* M₂)
 
 end TWCliffordSeed
 
+/--
+@isnad1 id=ex.2h4v.s10.e195924a4ed5 from=translated src=- shape=fe739773 vocab=312638f2
+-/
 theorem solution
     {G : Type*} [Group G] {𝕜 : Type*} [Field 𝕜] (h2 : (2 : 𝕜) ≠ 0)
     (ρ : G →* Matrix (Fin 2) (Fin 2) 𝕜)

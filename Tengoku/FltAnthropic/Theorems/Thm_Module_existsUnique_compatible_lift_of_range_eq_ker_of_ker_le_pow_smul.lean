@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=existsun.7h10v.s11.52a90b30d90f from=translated src=- shape=e649a466 vocab=d44b2aa9
+-/
 theorem Module.existsUnique_compatible_lift_of_range_eq_ker_of_ker_le_pow_smul
     {R : Type u} [CommRing R] (I : Ideal R)
     (E : ℕ → Type u) [∀ k, AddCommGroup (E k)] [∀ k, Module R (E k)]

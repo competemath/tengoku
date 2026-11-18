@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open MvPolynomial
 
+/--
+@isnad1 id=existsun.1h6v.s12.21b4341519be from=translated src=- shape=fb232d8f vocab=6194c8b0
+-/
 theorem solution
     {W : Type*} [CommRing W] {S : Type*} [CommRing S] (ι : W →+* S) (t : W) (x y : S)
     (hxy : x * y = ι t) :

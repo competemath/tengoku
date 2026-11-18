@@ -11,6 +11,9 @@ universe u
 
 namespace FinrankComplexW4
 
+/--
+@isnad1 id=eq.4h6v.s7.919ed86d5e8e from=translated src=- shape=5d856675 vocab=b37c503d
+-/
 theorem telescope (n : ℕ) (κ r d h : ℕ → ℤ) (h0 : ℤ)
     (hd : ∀ i, d i = κ i + r i) (hh : ∀ i, h i = κ (i + 1) - r i) (hh0 : h0 = κ 0)
     (hrn : r n = 0) :
@@ -35,6 +38,9 @@ theorem telescope (n : ℕ) (κ r d h : ℕ → ℤ) (h0 : ℤ)
 end FinrankComplexW4
 
 open FinrankComplexW4 in
+/--
+@isnad1 id=eq.4h8v.s13.23da82728e52 from=translated src=- shape=9f3e3151 vocab=3208e1b1
+-/
 theorem solution
     (k : Type u) [Field k]
     (K : ℕ → Type u) [∀ i, AddCommGroup (K i)] [∀ i, Module k (K i)] [∀ i, Module.Finite k (K i)]

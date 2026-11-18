@@ -18,6 +18,9 @@ namespace S17RQ
 
 variable {𝓞 : Type u} [CommRing 𝓞] (p : ℕ) [Fact p.Prime]
 
+/--
+@isnad1 id=mem.2h5v.s7.2a8935829cf0 from=translated src=- shape=15b3d8fb vocab=91bd8253
+-/
 theorem mem_of_natCast_mul_mem {u k : ℕ} (hu : ¬ p ∣ u) {x : 𝓞}
     (hx : (u : 𝓞) * x ∈ Ideal.span {(p : 𝓞) ^ k}) : x ∈ Ideal.span {(p : 𝓞) ^ k} := by
   have hcop : Nat.Coprime u (p ^ k) :=
@@ -33,6 +36,9 @@ theorem mem_of_natCast_mul_mem {u k : ℕ} (hu : ¬ p ∣ u) {x : 𝓞}
   exact Ideal.add_mem _ (Ideal.mul_mem_left _ _ hx)
     (Ideal.mul_mem_left _ _ (Ideal.mem_span_singleton_self _))
 
+/--
+@isnad1 id=mem.3h5v.s8.df01aae62a12 from=translated src=- shape=7428e9d7 vocab=98e19e31
+-/
 theorem mem_of_pow_mul_mem (hp : (p : 𝓞) ∈ nonZeroDivisors 𝓞) {v k : ℕ} (hvk : v ≤ k) {x : 𝓞}
     (hx : (p : 𝓞) ^ v * x ∈ Ideal.span {(p : 𝓞) ^ k}) : x ∈ Ideal.span {(p : 𝓞) ^ (k - v)} := by
   obtain ⟨t, ht⟩ := Ideal.mem_span_singleton'.1 hx
@@ -41,6 +47,9 @@ theorem mem_of_pow_mul_mem (hp : (p : 𝓞) ∈ nonZeroDivisors 𝓞) {v k : ℕ
     rw [← ht, mul_comm ((p:𝓞)^v), mul_assoc, ← pow_add, Nat.sub_add_cancel hvk]
   exact (mul_cancel_left_mem_nonZeroDivisors (pow_mem hp v)).1 this
 
+/--
+@isnad1 id=lt.1h1v.s5.748f3258a153 from=translated src=- shape=d716e741 vocab=33c613ef
+-/
 theorem two_pow_gt : ∀ n : ℕ, 3 ≤ n → n < 2 ^ (n - 1)
   | 0, h => by omega
   | 1, h => by omega
@@ -51,6 +60,9 @@ theorem two_pow_gt : ∀ n : ℕ, 3 ≤ n → n < 2 ^ (n - 1)
     rw [show n + 4 - 1 = (n + 3 - 1) + 1 by omega, pow_succ]
     omega
 
+/--
+@isnad1 id=and.2h4v.s10.18a4394bb258 from=translated src=- shape=8a914880 vocab=d4127fc3
+-/
 theorem main (hp : (p : 𝓞) ∈ nonZeroDivisors 𝓞) {d : ℕ} (φi : MvPowerSeries (Fin d) 𝓞)
     (hφint : ∀ (j : Fin d) (m : Fin d →₀ ℕ),
       ((m j + 1 : ℕ) : 𝓞) * φi.coeff (m + Finsupp.single j 1) ∈ Ideal.span {(p : 𝓞) ^ m.degree}) :
@@ -110,6 +122,9 @@ theorem main (hp : (p : 𝓞) ∈ nonZeroDivisors 𝓞) {d : ℕ} (φi : MvPower
 
 end S17RQ
 
+/--
+@isnad1 id=and.6h6v.s10.024df3aa2f69 from=translated src=- shape=19ef4b02 vocab=c68c9215
+-/
 theorem solution
     {𝓞 : Type u} [CommRing 𝓞] (p : ℕ) [Fact p.Prime] (hp : (p : 𝓞) ∈ nonZeroDivisors 𝓞)
     {d : ℕ} (F : MvFormalGroup d 𝓞) [F.IsComm]

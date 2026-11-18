@@ -9,6 +9,9 @@ set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 3200000
 
+/--
+@isnad1 id=eq.4h6v.s8.9800a88fea0d from=translated src=- shape=6bbda4e6 vocab=fe192373
+-/
 theorem solution {G U F : Type*} [CommGroup G] [CommGroup U]
     [CommGroup F] (ι : U →* G) (φ : G →* F) (hι : Function.Injective ι) (hφ : Function.Surjective φ)
     (hexact : ι.range = φ.ker) {n : ℕ} (hF : ∀ x : F, x ^ n = 1 → x = 1) :

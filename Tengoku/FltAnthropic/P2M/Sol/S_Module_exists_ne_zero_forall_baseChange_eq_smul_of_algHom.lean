@@ -16,6 +16,9 @@ section LinAlg
 
 variable {F : Type*} [Field F]
 
+/--
+@isnad1 id=eq.1h6v.s11.cfeea19d835c from=translated src=- shape=ad4f12d2 vocab=79393079
+-/
 theorem coe_restrict_pow {M : Type*} [AddCommGroup M] [Module F M] (f : M →ₗ[F] M)
     (P : Submodule F M) (h : ∀ v ∈ P, f v ∈ P) (k : ℕ) (v : ↥P) :
     (((f.restrict h) ^ k) v : M) = (f ^ k) (v : M) := by
@@ -23,6 +26,9 @@ theorem coe_restrict_pow {M : Type*} [AddCommGroup M] [Module F M] (f : M →ₗ
   | zero => rfl
   | succ k ih => rw [pow_succ, pow_succ, Module.End.mul_apply, Module.End.mul_apply, ih]; rfl
 
+/--
+@isnad1 id=ex.4h5v.s8.e8c0e0173d14 from=translated src=- shape=a40a5dce vocab=51b0c4c7
+-/
 theorem exists_common_ker_of_nilpotent : ∀ (d : ℕ) {M : Type*} [AddCommGroup M] [Module F M]
     [FiniteDimensional F M] {ι : Type*} (T : ι → M →ₗ[F] M),
     (∀ i j, Commute (T i) (T j)) → (∀ i, IsNilpotent (T i)) → Nontrivial M →
@@ -66,6 +72,9 @@ theorem exists_common_ker_of_nilpotent : ∀ (d : ℕ) {M : Type*} [AddCommGroup
   refine ⟨(v : M), fun h => hv (Subtype.ext h), fun i => ?_⟩
   exact congrArg Subtype.val (hTv i)
 
+/--
+@isnad1 id=ex.4h6v.s8.285a109167b8 from=translated src=- shape=7defd987 vocab=1bc573b6
+-/
 theorem exists_common_ker_of_range_le : ∀ (d : ℕ) {M : Type*} [AddCommGroup M] [Module F M]
     [FiniteDimensional F M] {ι : Type*} (T : ι → M →ₗ[F] M),
     (∀ i j, Commute (T i) (T j)) → ∀ (P : Submodule F M), P ≠ ⊤ → (∀ i x, T i x ∈ P) →
@@ -130,6 +139,9 @@ theorem exists_common_ker_of_range_le : ∀ (d : ℕ) {M : Type*} [AddCommGroup 
   refine ⟨(v : M), fun h => hv (Subtype.ext h), fun i => ?_⟩
   exact congrArg Subtype.val (hTv i)
 
+/--
+@isnad1 id=ex.3h6v.s9.c7cf341095a3 from=translated src=- shape=bfd765c3 vocab=d0987e92
+-/
 theorem exists_common_eigenvector {M : Type*} [AddCommGroup M] [Module F M] [FiniteDimensional F M]
     {ι : Type*} (T : ι → M →ₗ[F] M) (hT : ∀ i j, Commute (T i) (T j)) (c : ι → F)
     (P : Submodule F M) (hP : P ≠ ⊤) (hTP : ∀ i x, T i x - c i • x ∈ P) :
@@ -153,6 +165,9 @@ end LinAlg
 
 section Support
 
+/--
+@isnad1 id=nontrivi.0h3v.s7.d3728726b897 from=translated src=- shape=0938e03f vocab=d504167e
+-/
 theorem nontrivial_tensorProduct_of_faithfulSMul {A : Type*} [CommRing A] {M : Type*} [AddCommGroup M]
     [Module A M] [Module.Finite A M] [FaithfulSMul A M] {F : Type*} [Field F] [Algebra A F] :
     Nontrivial (F ⊗[A] M) := by
@@ -190,6 +205,9 @@ variable {R : Type*} [CommRing R] {M : Type*} [AddCommGroup M] [Module R M] [Mod
 
 open scoped IsMulCommutative in
 
+/--
+@isnad1 id=ex.1h7v.s11.4021d6e6d810 from=translated src=- shape=a76b70aa vocab=39473b50
+-/
 theorem main' (t : ι → Module.End R M) (A : Subalgebra R (Module.End R M)) [IsMulCommutative ↥A]
     (htA : ∀ i, t i ∈ A) (χ : ↥A →ₐ[R] F) :
     ∃ y : F ⊗[R] M, y ≠ 0 ∧ ∀ i, (t i).baseChange F y = χ ⟨t i, htA i⟩ • y := by
@@ -231,6 +249,9 @@ theorem main' (t : ι → Module.End R M) (A : Subalgebra R (Module.End R M)) [I
   exact exists_common_eigenvector (fun i => (t i).baseChange F) hcomm (fun i => χ ⟨t i, htA i⟩)
     (LinearMap.ker π) hP (fun i y => by rw [LinearMap.mem_ker, map_sub, map_smul, hπt, sub_self])
 
+/--
+@isnad1 id=ex.1h6v.s11.14214b6bdb22 from=translated src=- shape=e57eefb5 vocab=d4572960
+-/
 theorem main (t : ι → Module.End R M) (ht : ∀ i j, Commute (t i) (t j))
     (χ : ↥(Algebra.adjoin R (Set.range t)) →ₐ[R] F) :
     ∃ y : F ⊗[R] M, y ≠ 0 ∧
@@ -245,6 +266,9 @@ end C3ESChar
 
 open scoped TensorProduct in
 
+/--
+@isnad1 id=ex.1h6v.s11.14214b6bdb22 from=translated src=- shape=e57eefb5 vocab=d4572960
+-/
 theorem solution
     {R : Type*} [CommRing R] {M : Type*} [AddCommGroup M] [Module R M] [Module.Finite R M]
     {F : Type*} [Field F] [Algebra R F]

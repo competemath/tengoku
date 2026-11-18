@@ -11,6 +11,9 @@ namespace P2MW.S_Module_finrank_quotSMulTop_eq
 
 open scoped Pointwise
 
+/--
+@isnad1 id=eq.3h3v.s9.d4f1c6e78d78 from=translated src=- shape=26cbee0f vocab=ba99a407
+-/
 theorem solution {R : Type*} [CommRing R] {M : Type*} [AddCommGroup M] [Module R M] [IsLocalRing R] [IsNoetherianRing R] [Module.Finite R M] (x : R) (hx : x ∈ IsLocalRing.maximalIdeal R) (hreg : IsSMulRegular M x) (hfree : Module.Free (R ⧸ Ideal.span {x}) (QuotSMulTop x M)) :
     Module.finrank (R ⧸ Ideal.span {x}) (QuotSMulTop x M) = Module.finrank R M := by
   haveI := hfree

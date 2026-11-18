@@ -40,17 +40,29 @@ def F (I : Ideal O) (m n : ℕ) : Ideal (MvPowerSeries σ O) where
         omega)
     exact Ideal.mul_mem_left _ _ (hle (hf p.2))
 
+/--
+@isnad1 id=iff.0h6v.s8.e7bdd4f21fc2 from=translated src=- shape=ffcebb95 vocab=802e14cb
+-/
 theorem mem_F {I : Ideal O} {m n : ℕ} {G : MvPowerSeries σ O} :
     G ∈ F I m n ↔ ∀ e : σ →₀ ℕ, coeff e G ∈ I ^ (n - m * e.degree) := Iff.rfl
 
+/--
+@isnad1 id=le.1h6v.s6.4a303c0c5ea3 from=translated src=- shape=16079d09 vocab=fb169b2c
+-/
 theorem F_antitone (I : Ideal O) (m : ℕ) {n n' : ℕ} (h : n ≤ n') : F (σ := σ) I m n' ≤ F I m n := by
   intro G hG e
   exact Ideal.pow_le_pow_right (by omega) (hG e)
 
+/--
+@isnad1 id=eq.0h4v.s6.d827dc7338f4 from=translated src=- shape=9226b5b1 vocab=dcb3ef4b
+-/
 theorem F_zero (I : Ideal O) (m : ℕ) : F (σ := σ) I m 0 = ⊤ := by
   ext G
   simp [mem_F]
 
+/--
+@isnad1 id=mem.2h8v.s8.36bb147aaf2a from=translated src=- shape=59a8df05 vocab=f21cdfa2
+-/
 theorem mul_mem_F {I : Ideal O} {m a b : ℕ} {G H : MvPowerSeries σ O}
     (hG : G ∈ F I m a) (hH : H ∈ F I m b) : G * H ∈ F I m (a + b) := by
   classical
@@ -77,12 +89,18 @@ local notation "κ" => IsLocalRing.ResidueField O
 local notation "𝔪" => IsLocalRing.maximalIdeal O
 
 include hπ in
+/--
+@isnad1 id=ex.2h4v.s7.059a25b0a878 from=translated src=- shape=1e7ab9d5 vocab=9aa07910
+-/
 theorem exists_eq_pow_mul {k : ℕ} {c : O} (h : c ∈ 𝔪 ^ k) : ∃ a : O, c = π ^ k * a := by
   rw [hπ.maximalIdeal_eq, Ideal.span_singleton_pow, Ideal.mem_span_singleton'] at h
   obtain ⟨a, ha⟩ := h
   exact ⟨a, by rw [← ha, mul_comm]⟩
 
 include hπ in
+/--
+@isnad1 id=mem.1h4v.s7.505c1781b437 from=translated src=- shape=5c1cb279 vocab=9aa07910
+-/
 theorem pow_mul_mem_pow (k : ℕ) (a : O) : π ^ k * a ∈ 𝔪 ^ k := by
   rw [hπ.maximalIdeal_eq, Ideal.span_singleton_pow]
   exact Ideal.mul_mem_right _ _ (Ideal.mem_span_singleton_self _)
@@ -91,6 +109,9 @@ def dres (k : ℕ) (c : O) : κ :=
   if h : ∃ a : O, c = π ^ k * a then IsLocalRing.residue O h.choose else 0
 
 include hπ in
+/--
+@isnad1 id=eq.2h5v.s7.b37eca5bf41b from=translated src=- shape=e03e00e8 vocab=394ae7e9
+-/
 theorem dres_eq {k : ℕ} {c a : O} (h : c = π ^ k * a) : dres π k c = IsLocalRing.residue O a := by
   have hex : ∃ a : O, c = π ^ k * a := ⟨a, h⟩
   rw [dres, dite_eq_left hex]
@@ -103,6 +124,9 @@ variable (m : ℕ)
 def idx [Finite σ] (n : ℕ) : Finset (σ →₀ ℕ) :=
   ((Finsupp.finite_of_degree_le (σ := σ) n).toFinset).filter fun e => m * e.degree ≤ n
 
+/--
+@isnad1 id=iff.1h4v.s7.4307b6a757c3 from=translated src=- shape=b4572fbd vocab=e2c0ef41
+-/
 theorem mem_idx [Finite σ] (hm : 1 ≤ m) {n : ℕ} {e : σ →₀ ℕ} : e ∈ idx (σ := σ) m n ↔ m * e.degree ≤ n := by
   rw [idx, Finset.mem_filter, Set.Finite.mem_toFinset, Set.mem_ofPred_eq]
   constructor
@@ -117,6 +141,9 @@ def sym [Finite σ] (n : ℕ) (G : MvPowerSeries σ O) : MvPolynomial σ κ :=
 variable [Finite σ] (hm : 1 ≤ m)
 include hm
 
+/--
+@isnad1 id=eq.1h7v.s9.f6d1c3d212b9 from=translated src=- shape=209b4719 vocab=f50f49f9
+-/
 theorem coeff_sym (n : ℕ) (G : MvPowerSeries σ O) (e : σ →₀ ℕ) :
     MvPolynomial.coeff e (sym π m n G) =
       if m * e.degree ≤ n then dres π (n - m * e.degree) (coeff e G) else 0 := by
@@ -135,6 +162,9 @@ theorem coeff_sym (n : ℕ) (G : MvPowerSeries σ O) (e : σ →₀ ℕ) :
 
 include hπ
 
+/--
+@isnad1 id=eq.3h6v.s8.b8c119cc4c15 from=translated src=- shape=ff4270a5 vocab=b1496d0e
+-/
 theorem sym_eq_zero_of_mem_F_succ {n : ℕ} {G : MvPowerSeries σ O} (hG : G ∈ F 𝔪 m (n + 1)) : sym π m n G = 0 := by
   classical
   ext e
@@ -148,6 +178,9 @@ theorem sym_eq_zero_of_mem_F_succ {n : ℕ} {G : MvPowerSeries σ O} (hG : G ∈
     rw [dres_eq π hπ ha, map_mul, hπ0, zero_mul]
   · rfl
 
+/--
+@isnad1 id=mem.4h6v.s8.fc4e09695fbb from=translated src=- shape=d774ac67 vocab=b1496d0e
+-/
 theorem mem_F_succ_of_sym_eq_zero {n : ℕ} {G : MvPowerSeries σ O} (hG : G ∈ F 𝔪 m n) (h0 : sym π m n G = 0) :
     G ∈ F 𝔪 m (n + 1) := by
   classical
@@ -168,9 +201,15 @@ theorem mem_F_succ_of_sym_eq_zero {n : ℕ} {G : MvPowerSeries σ O} (hG : G ∈
 
 omit hm in
 
+/--
+@isnad1 id=eq.1h2v.s7.a8be45465919 from=translated src=- shape=122e880c vocab=42d4ccef
+-/
 theorem residue_pi : IsLocalRing.residue O π = 0 :=
   (IsLocalRing.residue_eq_zero_iff π).mpr (by rw [hπ.maximalIdeal_eq]; exact Ideal.mem_span_singleton_self _)
 
+/--
+@isnad1 id=eq.4h8v.s8.f8b008ee555e from=translated src=- shape=796ae341 vocab=d1cd603c
+-/
 theorem sym_mul {a b : ℕ} {G H : MvPowerSeries σ O} (hG : G ∈ F 𝔪 m a) (hH : H ∈ F 𝔪 m b) :
     sym π m (a + b) (G * H) = sym π m a G * sym π m b H := by
   classical
@@ -235,10 +274,16 @@ theorem sym_mul {a b : ℕ} {G H : MvPowerSeries σ O} (hG : G ∈ F 𝔪 m a) (
     have hdeg : m * e.degree = m * p.1.degree + m * p.2.degree := by rw [← hpe, map_add, Nat.mul_add]
     omega
 
+/--
+@isnad1 id=iff.3h6v.s8.f26aea76fead from=translated src=- shape=4bef311b vocab=b1496d0e
+-/
 theorem sym_ne_zero_iff {n : ℕ} {G : MvPowerSeries σ O} (hG : G ∈ F 𝔪 m n) :
     sym π m n G ≠ 0 ↔ G ∉ F 𝔪 m (n + 1) :=
   ⟨fun h hG' => h (sym_eq_zero_of_mem_F_succ π hπ m hm hG'), fun h h0 => h (mem_F_succ_of_sym_eq_zero π hπ m hm hG h0)⟩
 
+/--
+@isnad1 id=not.6h8v.s9.5484c91c5211 from=translated src=- shape=41f0e327 vocab=24cc13a8
+-/
 theorem mul_notMem_F_succ {a b : ℕ} {G H : MvPowerSeries σ O} (hG : G ∈ F 𝔪 m a) (hGn : G ∉ F 𝔪 m (a + 1))
     (hH : H ∈ F 𝔪 m b) (hHn : H ∉ F 𝔪 m (b + 1)) : G * H ∉ F 𝔪 m (a + b + 1) := by
   have h1 : sym π m a G ≠ 0 := (sym_ne_zero_iff π hπ m hm hG).mpr hGn
@@ -247,6 +292,9 @@ theorem mul_notMem_F_succ {a b : ℕ} {G H : MvPowerSeries σ O} (hG : G ∈ F �
     rw [sym_mul π hπ m hm hG hH]; exact mul_ne_zero h1 h2
   exact (sym_ne_zero_iff π hπ m hm (mul_mem_F hG hH)).mp h3
 
+/--
+@isnad1 id=ex.3h5v.s8.3efb85bcca19 from=translated src=- shape=14813057 vocab=0c636e6b
+-/
 theorem exists_mem_F_notMem_succ {G : MvPowerSeries σ O} (hG : G ≠ 0) :
     ∃ a : ℕ, G ∈ F 𝔪 m a ∧ G ∉ F 𝔪 m (a + 1) := by
   classical
@@ -274,6 +322,9 @@ theorem exists_mem_F_notMem_succ {G : MvPowerSeries σ O} (hG : G ≠ 0) :
   push Not at this
   exact this
 
+/--
+@isnad1 id=mem.5h8v.s9.fe08bb16f6d0 from=translated src=- shape=9f9b2794 vocab=5b082b23
+-/
 theorem sym_mul_mem_span {r c : ℕ} {ρ H : MvPowerSeries σ O} (hρ : ρ ∈ F 𝔪 m r) (hρn : sym π m r ρ ≠ 0)
     (hHρ : H * ρ ∈ F 𝔪 m c) : sym π m c (H * ρ) ∈ Ideal.span {sym π m r ρ} := by
   classical
@@ -307,6 +358,9 @@ end DVR
 
 end WIF
 
+/--
+@isnad1 id=ex.6h9v.s11.50e0fb02a158 from=translated src=- shape=30ff3fc3 vocab=319cea75
+-/
 theorem WIF.main
     (σ : Type u) [Finite σ] (O : Type v) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
     (π : O) (hπ : Irreducible π) (m : ℕ) (hm : 1 ≤ m) (r c : ℕ)
@@ -356,6 +410,9 @@ end
 
 universe u' v'
 
+/--
+@isnad1 id=ex.6h9v.s11.50e0fb02a158 from=translated src=- shape=30ff3fc3 vocab=319cea75
+-/
 theorem solution
     (σ : Type u') [Finite σ] (O : Type v') [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
     (π : O) (hπ : Irreducible π) (m : ℕ) (hm : 1 ≤ m) (r c : ℕ)

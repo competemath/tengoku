@@ -13,6 +13,9 @@ namespace P2mPolyLines
 
 variable {R : Type*}
 
+/--
+@isnad1 id=eq.1h4v.s8.0571f99937ca from=translated src=- shape=ac879641 vocab=e109a846
+-/
 theorem mvPolynomial_eq_of_forall_eval_intCast_eq [CommRing R] [IsDomain R] [CharZero R]
     {ι : Type*} {p q : MvPolynomial ι R}
     (h : ∀ c : ι → ℤ, eval (fun i => (c i : R)) p = eval (fun i => (c i : R)) q) : p = q := by
@@ -24,6 +27,9 @@ theorem mvPolynomial_eq_of_forall_eval_intCast_eq [CommRing R] [IsDomain R] [Cha
   subst hx'
   exact h c
 
+/--
+@isnad1 id=eq.1h6v.s8.ad41422c21de from=translated src=- shape=c5898972 vocab=9130cbbf
+-/
 theorem eval_mul_of_isHomogeneous [CommRing R] {ι : Type*} {φ : MvPolynomial ι R} {n : ℕ}
     (hφ : φ.IsHomogeneous n) (t : R) (x : ι → R) :
     eval (fun i => t * x i) φ = t ^ n * eval x φ := by
@@ -41,6 +47,9 @@ theorem eval_mul_of_isHomogeneous [CommRing R] {ι : Type*} {φ : MvPolynomial �
   rw [hprod]
   ring
 
+/--
+@isnad1 id=ishomoge.1h4v.s8.a79235094e00 from=translated src=- shape=880b129e vocab=1e66fcc2
+-/
 theorem isHomogeneous_of_forall_eval_intCast_mul [CommRing R] [IsDomain R] [CharZero R]
     {ι : Type*} (P : MvPolynomial ι R) (d : ℕ)
     (h : ∀ (n : ℤ) (c : ι → ℤ), eval (fun i => ((n * c i : ℤ) : R)) P =
@@ -99,6 +108,9 @@ theorem isHomogeneous_of_forall_eval_intCast_mul [CommRing R] [IsDomain R] [Char
 
 end P2mPolyLines
 
+/--
+@isnad1 id=ishomoge.1h4v.s8.a79235094e00 from=translated src=- shape=880b129e vocab=1e66fcc2
+-/
 theorem solution
     {R : Type*} [CommRing R] [IsDomain R] [CharZero R] {ι : Type*} (P : MvPolynomial ι R) (d : ℕ)
     (h : ∀ (n : ℤ) (c : ι → ℤ), MvPolynomial.eval (fun i => ((n * c i : ℤ) : R)) P =

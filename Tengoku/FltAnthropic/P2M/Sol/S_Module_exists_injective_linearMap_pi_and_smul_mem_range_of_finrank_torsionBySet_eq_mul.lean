@@ -15,6 +15,9 @@ open Module Polynomial
 
 section Integral
 
+/--
+@isnad1 id=ex.2h3v.s7.9c8306142f0e from=translated src=- shape=bb83e390 vocab=1868442d
+-/
 theorem exists_algebraMap_eq_mul {𝒪 Q : Type*} [CommRing 𝒪] [CommRing Q] [IsDomain Q]
     [Algebra 𝒪 Q] {q : Q} (hint : IsIntegral 𝒪 q) (hq : q ≠ 0) :
     ∃ (c : 𝒪) (s : Q), c ≠ 0 ∧ algebraMap 𝒪 Q c = s * q := by
@@ -39,6 +42,9 @@ theorem exists_algebraMap_eq_mul {𝒪 Q : Type*} [CommRing 𝒪] [CommRing Q] [
   rw [haev, map_add, map_mul, Polynomial.aeval_X, Polynomial.aeval_C] at h2
   linear_combination h2
 
+/--
+@isnad1 id=ex.2h6v.s8.3d7542c89d43 from=translated src=- shape=dfd3b631 vocab=c56b3cc3
+-/
 theorem exists_smul_mem_of_smul_mem {𝒪 Q V : Type*} [CommRing 𝒪] [CommRing Q] [IsDomain Q]
     [Algebra 𝒪 Q] [Algebra.IsIntegral 𝒪 Q] [AddCommGroup V] [Module Q V] [Module 𝒪 V]
     [IsScalarTower 𝒪 Q V] (F : Submodule Q V) {q : Q} (hq : q ≠ 0) {v : V} (hv : q • v ∈ F) :
@@ -50,6 +56,9 @@ theorem exists_smul_mem_of_smul_mem {𝒪 Q V : Type*} [CommRing 𝒪] [CommRing
   rw [this]
   exact F.smul_mem s hv
 
+/--
+@isnad1 id=ex.1h2v.s8.a6435946184b from=translated src=- shape=226addae vocab=643e3d65
+-/
 theorem exists_forall_smul_eq_zero {𝒪 W : Type*} [CommRing 𝒪] [IsDomain 𝒪] [AddCommGroup W]
     [Module 𝒪 W] [Module.Finite 𝒪 W] (h : ∀ w : W, ∃ c : 𝒪, c ≠ 0 ∧ c • w = 0) :
     ∃ c : 𝒪, c ≠ 0 ∧ ∀ w : W, c • w = 0 := by
@@ -64,6 +73,9 @@ theorem exists_forall_smul_eq_zero {𝒪 W : Type*} [CommRing 𝒪] [IsDomain �
   rw [smul_comm, ← Finset.mul_prod_erase Finset.univ c (Finset.mem_univ j), mul_comm, mul_smul,
     hcs j, smul_zero, smul_zero]
 
+/--
+@isnad1 id=ex.1h4v.s8.8d9b8d5b3ad6 from=translated src=- shape=01fda8c1 vocab=0d70e0c8
+-/
 theorem exists_forall_smul_mem {𝒪 Q V : Type*} [CommRing 𝒪] [IsDomain 𝒪] [CommRing Q]
     [Algebra 𝒪 Q] [AddCommGroup V] [Module Q V] [Module 𝒪 V] [IsScalarTower 𝒪 Q V]
     [Module.Finite 𝒪 V] (F : Submodule Q V) (h : ∀ v : V, ∃ c : 𝒪, c ≠ 0 ∧ c • v ∈ F) :
@@ -92,6 +104,9 @@ variable {Q : Type*} [CommRing Q] [IsDomain Q] [Algebra 𝒪 Q] [Module.Finite �
 variable {V : Type*} [AddCommGroup V] [Module Q V] [Module 𝒪 V] [IsScalarTower 𝒪 Q V]
   [Module.Finite 𝒪 V] [IsTorsionFree 𝒪 V]
 
+/--
+@isnad1 id=eq.1h5v.s8.433bab0d015e from=translated src=- shape=a55a4ea7 vocab=148356b7
+-/
 theorem finrank_span_of_linearIndependent {n : ℕ} {b : Fin n → V} (hb : LinearIndependent Q b) :
     finrank 𝒪 ↥(Submodule.span Q (Set.range b)) = n * finrank 𝒪 Q := by
   haveI : Module.Free 𝒪 Q := Module.free_of_finite_type_torsion_free'
@@ -100,6 +115,9 @@ theorem finrank_span_of_linearIndependent {n : ℕ} {b : Fin n → V} (hb : Line
   rw [← e.finrank_eq, Module.finrank_pi_fintype, Finset.sum_const, Finset.card_univ,
     Fintype.card_fin, smul_eq_mul]
 
+/--
+@isnad1 id=ex.1h4v.s8.d984c78d7a20 from=translated src=- shape=e70e9c23 vocab=7091d061
+-/
 theorem exists_forall_smul_mem_of_isTorsion (F : Submodule Q V)
     (hF : Module.IsTorsion Q (V ⧸ F)) : ∃ c : 𝒪, c ≠ 0 ∧ ∀ v : V, c • v ∈ F := by
   haveI : Algebra.IsIntegral 𝒪 Q := Algebra.IsIntegral.of_finite 𝒪 Q
@@ -111,6 +129,9 @@ theorem exists_forall_smul_mem_of_isTorsion (F : Submodule Q V)
     exact hqv
   exact exists_smul_mem_of_smul_mem F hq0 hmem
 
+/--
+@isnad1 id=istorsio.1h3v.s7.1d61e83a551c from=translated src=- shape=c09f6a59 vocab=631e288e
+-/
 theorem isTorsion_quotient_of_finrank_eq [Module.Finite Q V] (F : Submodule Q V)
     (hF : finrank Q ↥F = finrank Q V) : Module.IsTorsion Q (V ⧸ F) := by
   rw [← Module.finrank_eq_zero_iff_isTorsion]
@@ -119,12 +140,18 @@ theorem isTorsion_quotient_of_finrank_eq [Module.Finite Q V] (F : Submodule Q V)
 
 omit [IsTorsionFree 𝒪 V] in
 
+/--
+@isnad1 id=eq.2h3v.s7.1db1747d5874 from=translated src=- shape=b1d83498 vocab=3b67704d
+-/
 theorem finrank_eq_zero_of_forall_smul_eq_zero {W : Type*} [AddCommGroup W] [Module 𝒪 W]
     [Module.Finite 𝒪 W] {c : 𝒪} (hc : c ≠ 0) (h : ∀ w : W, c • w = 0) : finrank 𝒪 W = 0 := by
   rw [Module.finrank_eq_zero_iff_isTorsion]
   intro w
   exact ⟨⟨c, mem_nonZeroDivisors_of_ne_zero hc⟩, h w⟩
 
+/--
+@isnad1 id=eq.0h3v.s8.13ddd15dd564 from=translated src=- shape=f9249aca vocab=a040017f
+-/
 theorem finrank_eq_finrank_mul_finrank [IsTorsionFree Q V] :
     finrank 𝒪 V = finrank Q V * finrank 𝒪 Q := by
   haveI : Module.Finite Q V := Module.Finite.of_restrictScalars_finite 𝒪 Q V
@@ -148,6 +175,9 @@ theorem finrank_eq_finrank_mul_finrank [IsTorsionFree Q V] :
   have h3 : finrank 𝒪 ↥F = finrank Q V * finrank 𝒪 Q := finrank_span_of_linearIndependent hb
   omega
 
+/--
+@isnad1 id=ex.1h4v.s9.b0572fc1d1de from=translated src=- shape=ad1cc8c3 vocab=326c2f25
+-/
 theorem exists_linearIndependent_and_smul_mem_span [IsTorsionFree Q V] (d : ℕ)
     (h : finrank 𝒪 V = d * finrank 𝒪 Q) :
     ∃ (b : Fin d → V) (c : 𝒪), LinearIndependent Q b ∧ c ≠ 0 ∧
@@ -177,17 +207,26 @@ variable {T : Type*} [CommRing T] [Algebra 𝒪 T] [Module.Finite 𝒪 T]
 variable {M : Type*} [AddCommGroup M] [Module T M] [Module 𝒪 M] [IsScalarTower 𝒪 T M]
   [Module.Finite 𝒪 M] [IsTorsionFree 𝒪 M]
 
+/--
+@isnad1 id=istorsio.1h4v.s7.57bb8fba67af from=translated src=- shape=41c68a79 vocab=e8e45e60
+-/
 theorem isTorsionFree_of_injective {R X Y : Type*} [CommRing R] [AddCommGroup X] [Module R X]
     [AddCommGroup Y] [Module R Y] [IsTorsionFree R Y] (g : X →ₗ[R] Y)
     (hg : Function.Injective g) : IsTorsionFree R X :=
   Function.Injective.moduleIsTorsionFree g hg (map_smul g)
 
+/--
+@isnad1 id=istorsio.0h4v.s8.7fd601a95dc9 from=translated src=- shape=9b60c78e vocab=04f0b82a
+-/
 theorem isTorsionFree_quotient_ker {A : Type*} [CommRing A] [Algebra 𝒪 A] [IsTorsionFree 𝒪 A]
     (χ : T →ₐ[𝒪] A) : IsTorsionFree 𝒪 (T ⧸ RingHom.ker χ) := by
   let g : (T ⧸ RingHom.ker χ) →ₐ[𝒪] A := Ideal.kerLiftAlg χ
   have hg : Function.Injective g := Ideal.kerLiftAlg_injective χ
   exact Function.Injective.moduleIsTorsionFree g hg (map_smul g)
 
+/--
+@isnad1 id=istorsio.0h5v.s9.523ce090f873 from=translated src=- shape=1f41ced2 vocab=dbc5c22b
+-/
 theorem isTorsionFree_torsionBySet_quotient {A : Type*} [CommRing A] [IsDomain A] [Algebra 𝒪 A]
     [IsTorsionFree 𝒪 A] (χ : T →ₐ[𝒪] A) :
     haveI : (RingHom.ker χ).IsPrime := RingHom.ker_isPrime _
@@ -215,6 +254,9 @@ theorem isTorsionFree_torsionBySet_quotient {A : Type*} [CommRing A] [IsDomain A
 
 set_option maxHeartbeats 3200000 in
 
+/--
+@isnad1 id=ex.4h8v.s10.5c21d6b94f4a from=translated src=- shape=0e275789 vocab=acb6cab7
+-/
 theorem main
     {ι : Type*} [Fintype ι]
     {A : ι → Type*} [∀ i, CommRing (A i)] [∀ i, IsDomain (A i)] [∀ i, Algebra 𝒪 (A i)]
@@ -370,6 +412,9 @@ end Main
 
 end FKAlgSol
 
+/--
+@isnad1 id=ex.4h8v.s10.5c21d6b94f4a from=translated src=- shape=0e275789 vocab=acb6cab7
+-/
 theorem solution
     {𝒪 : Type*} [CommRing 𝒪] [IsDomain 𝒪] [IsPrincipalIdealRing 𝒪]
     {T : Type*} [CommRing T] [Algebra 𝒪 T] [Module.Finite 𝒪 T]

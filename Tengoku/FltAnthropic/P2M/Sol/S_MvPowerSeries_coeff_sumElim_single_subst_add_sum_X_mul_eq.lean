@@ -18,6 +18,9 @@ local notation "D" => DualNumber R
 noncomputable def iota (a : MvPowerSeries τ R) : MvPowerSeries (τ ⊕ κ) R :=
   subst (fun t => (X (Sum.inl t) : MvPowerSeries (τ ⊕ κ) R)) a
 
+/--
+@isnad1 id=hassubst.0h3v.s5.ae76ddf00619 from=translated src=- shape=c3c1d3c7 vocab=1d9f05d0
+-/
 theorem hasSubst_Xinl : HasSubst (fun t : τ => (X (Sum.inl t) : MvPowerSeries (τ ⊕ κ) R)) := by
   classical
   refine ⟨fun t => by rw [constantCoeff_X]; exact IsNilpotent.zero, fun d => ?_⟩
@@ -29,6 +32,9 @@ theorem hasSubst_Xinl : HasSubst (fun t : τ => (X (Sum.inl t) : MvPowerSeries (
     exact Sum.inl_injective (Finsupp.single_left_injective one_ne_zero this)
   all_goals simp_all
 
+/--
+@isnad1 id=eq.1h4v.s7.30d47dc85efb from=translated src=- shape=1739bffd vocab=af9c73e4
+-/
 theorem constantCoeff_iota (a : MvPowerSeries τ R) (ha : constantCoeff a = 0) :
     constantCoeff (iota (κ := κ) a) = 0 :=
   constantCoeff_subst_eq_zero hasSubst_Xinl (fun t => constantCoeff_X _) ha
@@ -40,11 +46,17 @@ noncomputable def Gfam (A : σ → MvPowerSeries τ R) (B : σ → κ → MvPowe
   iota (A i) + ∑ k' : κ, X (Sum.inr k') * iota (B i k')
 
 omit [Fintype σ] in
+/--
+@isnad1 id=eq.1h7v.s7.a1000368dbec from=translated src=- shape=090032bb vocab=f78d7b92
+-/
 theorem constantCoeff_Gfam (A : σ → MvPowerSeries τ R) (hA : ∀ i, constantCoeff (A i) = 0)
     (B : σ → κ → MvPowerSeries τ R) (i : σ) : constantCoeff (Gfam A B i) = 0 := by
   rw [Gfam, map_add, constantCoeff_iota _ (hA i), map_sum, zero_add]
   exact Finset.sum_eq_zero fun k' _ => by rw [map_mul, constantCoeff_X, zero_mul]
 
+/--
+@isnad1 id=hassubst.1h6v.s7.fd6874bb81ce from=translated src=- shape=144935b6 vocab=2b5e82d0
+-/
 theorem hasSubst_Gfam (A : σ → MvPowerSeries τ R) (hA : ∀ i, constantCoeff (A i) = 0)
     (B : σ → κ → MvPowerSeries τ R) : HasSubst (Gfam A B) :=
   hasSubst_of_constantCoeff_zero (constantCoeff_Gfam A hA B)
@@ -54,6 +66,9 @@ open Classical in
 noncomputable def ak (k : κ) : τ ⊕ κ → MvPowerSeries τ D :=
   Sum.elim (fun t => X t) (fun k' => if k' = k then C DualNumber.eps else 0)
 
+/--
+@isnad1 id=hassubst.0h4v.s5.314289418e0c from=translated src=- shape=df1bcf27 vocab=3706b531
+-/
 theorem hasSubst_ak (k : κ) : HasSubst (ak (R := R) (τ := τ) k) := by
   classical
   refine ⟨?_, fun d => ?_⟩
@@ -79,15 +94,24 @@ theorem hasSubst_ak (k : κ) : HasSubst (ak (R := R) (τ := τ) k) := by
 noncomputable def theta (k : κ) : MvPowerSeries (τ ⊕ κ) R →ₐ[R] MvPowerSeries τ D :=
   substAlgHom (hasSubst_ak k)
 
+/--
+@isnad1 id=eq.0h5v.s8.bf4f33a0b787 from=translated src=- shape=e53d6ce3 vocab=fb9816c5
+-/
 theorem theta_apply (k : κ) (g : MvPowerSeries (τ ⊕ κ) R) : theta k g = subst (ak k) g := by
   rw [theta, substAlgHom_apply]
 
 open Classical in
+/--
+@isnad1 id=eq.0h5v.s9.2ab076ed7f44 from=translated src=- shape=88d12d88 vocab=1f8ee203
+-/
 theorem theta_X_inr (k k' : κ) :
     theta (R := R) (τ := τ) k (X (Sum.inr k')) = if k' = k then C DualNumber.eps else 0 := by
   classical
   rw [theta, substAlgHom_X]; rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.f9f5c50ef6e1 from=translated src=- shape=ab3f6eb1 vocab=ab21d3e7
+-/
 theorem theta_iota (k : κ) (a : MvPowerSeries τ R) :
     theta k (iota (κ := κ) a) = map (algebraMap R D) a := by
   rw [theta_apply, iota, subst_comp_subst_apply hasSubst_Xinl (hasSubst_ak k), map_algebraMap_eq_subst_X]
@@ -95,6 +119,9 @@ theorem theta_iota (k : κ) (a : MvPowerSeries τ R) :
   funext t
   rw [subst_X (hasSubst_ak k)]; rfl
 
+/--
+@isnad1 id=eq.0h8v.s10.33c74463bf2f from=translated src=- shape=d3cfb3a3 vocab=a375575a
+-/
 theorem theta_Gfam (k : κ) (A : σ → MvPowerSeries τ R) (B : σ → κ → MvPowerSeries τ R) (i : σ) :
     theta k (Gfam A B i) = map (algebraMap R D) (A i) + C DualNumber.eps * map (algebraMap R D) (B i k) := by
   classical
@@ -102,9 +129,15 @@ theorem theta_Gfam (k : κ) (A : σ → MvPowerSeries τ R) (B : σ → κ → M
   congr 1
   simp_rw [map_mul, theta_X_inr, theta_iota, ite_mul, zero_mul, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
 
+/--
+@isnad1 id=eq.0h2v.s9.4dee4f132362 from=translated src=- shape=4af36152 vocab=900c9260
+-/
 theorem C_eps_mul_C_eps : (C DualNumber.eps : MvPowerSeries τ D) * C DualNumber.eps = 0 := by
   rw [← map_mul, DualNumber.eps_mul_eps, map_zero]
 
+/--
+@isnad1 id=eq.0h8v.s11.fd6fdf8dfda2 from=translated src=- shape=8e40cbcb vocab=9d4583b4
+-/
 theorem aeval_dual (k : κ) (A : σ → MvPowerSeries τ R) (B : σ → κ → MvPowerSeries τ R) (P : MvPolynomial σ R) :
     MvPolynomial.aeval (fun i => map (algebraMap R D) (A i) + C DualNumber.eps * map (algebraMap R D) (B i k)) P =
       map (algebraMap R D) (MvPolynomial.aeval A P) +
@@ -146,6 +179,9 @@ theorem aeval_dual (k : κ) (A : σ → MvPowerSeries τ R) (B : σ → κ → M
 noncomputable def a0 : τ ⊕ κ → MvPowerSeries τ R := Sum.elim (fun t => X t) (fun _ => 0)
 
 omit [Fintype σ] [Fintype κ] in
+/--
+@isnad1 id=hassubst.0h3v.s4.72ca2958aad8 from=translated src=- shape=c436134a vocab=398bc624
+-/
 theorem hasSubst_a0 : HasSubst (a0 (R := R) (τ := τ) (κ := κ)) := by
   classical
   refine ⟨?_, fun d => ?_⟩
@@ -164,6 +200,9 @@ theorem hasSubst_a0 : HasSubst (a0 (R := R) (τ := τ) (κ := κ)) := by
 noncomputable def theta0 : MvPowerSeries (τ ⊕ κ) R →ₐ[R] MvPowerSeries τ R := substAlgHom hasSubst_a0
 
 omit [Fintype σ] in
+/--
+@isnad1 id=eq.0h3v.s9.d544a783bfb7 from=translated src=- shape=f5a998b7 vocab=6de004b9
+-/
 theorem prod_X_pow_eq_monomial (n : τ →₀ ℕ) :
     (n.prod fun t e => (X t : MvPowerSeries τ D) ^ e) = monomial n 1 :=
   (MvPowerSeries.monomial_one_eq n).symm
@@ -171,6 +210,9 @@ theorem prod_X_pow_eq_monomial (n : τ →₀ ℕ) :
 omit [Fintype σ] in
 open Classical in
 
+/--
+@isnad1 id=eq.0h6v.s10.67f122ad2fc0 from=translated src=- shape=84836c54 vocab=846ff688
+-/
 theorem coeff_prod_ak (k : κ) (m : τ →₀ ℕ) (n : τ ⊕ κ →₀ ℕ) :
     coeff m (n.prod fun u e => ak (R := R) k u ^ e) =
       if n = m.sumElim 0 then 1 else if n = m.sumElim (Finsupp.single k 1) then DualNumber.eps else 0 := by
@@ -233,6 +275,9 @@ theorem coeff_prod_ak (k : κ) (m : τ →₀ ℕ) (n : τ ⊕ κ →₀ ℕ) :
 
 omit [Fintype σ] in
 
+/--
+@isnad1 id=eq.0h6v.s10.a2ceea481bb2 from=translated src=- shape=1459618b vocab=73c73b36
+-/
 theorem coeff_theta (k : κ) (g : MvPowerSeries (τ ⊕ κ) R) (m : τ →₀ ℕ) :
     coeff m (theta k g) = TrivSqZeroExt.inl (coeff (m.sumElim 0) g) +
       (coeff (m.sumElim (Finsupp.single k 1)) g) • DualNumber.eps := by
@@ -254,6 +299,9 @@ theorem coeff_theta (k : κ) (g : MvPowerSeries (τ ⊕ κ) R) (m : τ →₀ �
     exact hn rfl
 
 omit [Fintype σ] [Fintype κ] in
+/--
+@isnad1 id=eq.0h5v.s8.554f0912962f from=translated src=- shape=4cdbaeb8 vocab=02456708
+-/
 theorem coeff_pderiv (Q : MvPolynomial σ R) (i : σ) (n : σ →₀ ℕ) :
     MvPolynomial.coeff n (MvPolynomial.pderiv i Q) = ((n i + 1 : ℕ) : R) * MvPolynomial.coeff (n + Finsupp.single i 1) Q := by
   classical
@@ -281,6 +329,9 @@ noncomputable def lowDeg (σ : Type*) [Fintype σ] (N : ℕ) : Finset (σ →₀
     fun n => n.degree ≤ N
 
 omit [Fintype κ] in
+/--
+@isnad1 id=iff.0h3v.s7.cab3be80a9dd from=translated src=- shape=ccbf4f66 vocab=27bedb89
+-/
 theorem mem_lowDeg {N : ℕ} (n : σ →₀ ℕ) : n ∈ lowDeg σ N ↔ n.degree ≤ N := by
   classical
   rw [lowDeg, Finset.mem_filter]
@@ -295,6 +346,9 @@ noncomputable def truncTot (N : ℕ) (f : MvPowerSeries σ R) : MvPolynomial σ 
   ∑ n ∈ lowDeg σ N, MvPolynomial.monomial n (coeff n f)
 
 omit [Fintype κ] in
+/--
+@isnad1 id=eq.0h5v.s8.aeab4bc65647 from=translated src=- shape=19669241 vocab=2cf5dbfe
+-/
 theorem coeff_truncTot (N : ℕ) (f : MvPowerSeries σ R) (n : σ →₀ ℕ) :
     MvPolynomial.coeff n (truncTot N f) = if n.degree ≤ N then coeff n f else 0 := by
   classical
@@ -304,12 +358,18 @@ theorem coeff_truncTot (N : ℕ) (f : MvPowerSeries σ R) (n : σ →₀ ℕ) :
   simp only [mem_lowDeg]
 
 omit [Fintype κ] in
+/--
+@isnad1 id=le.0h4v.s6.f9a4df4279ea from=translated src=- shape=9f80556e vocab=beceb03b
+-/
 theorem le_order_sub_truncTot (N : ℕ) (f : MvPowerSeries σ R) :
     ((N + 1 : ℕ) : ℕ∞) ≤ (f - (truncTot N f : MvPowerSeries σ R)).order :=
   nat_le_order fun n hn => by
     rw [map_sub, MvPolynomial.coeff_coe, coeff_truncTot, ite_eq_left (by omega), sub_self]
 
 omit [Fintype κ] in
+/--
+@isnad1 id=le.1h6v.s9.163ea408e76d from=translated src=- shape=e3f168a8 vocab=c869a684
+-/
 theorem le_order_Df_sub (f : MvPowerSeries σ R) (Df : σ → MvPowerSeries σ R)
     (hDf : ∀ (i : σ) (m : σ →₀ ℕ), coeff m (Df i) = ((m i + 1 : ℕ) : R) * coeff (m + Finsupp.single i 1) f)
     (N : ℕ) (i : σ) :
@@ -319,6 +379,9 @@ theorem le_order_Df_sub (f : MvPowerSeries σ R) (Df : σ → MvPowerSeries σ R
       ite_eq_left (by rw [map_add, Finsupp.degree_single]; omega), sub_self]
 
 omit [Fintype σ] in
+/--
+@isnad1 id=le.1h6v.s7.f5b8083e7c8f from=translated src=- shape=d2394a46 vocab=ef57eb4f
+-/
 theorem one_le_iInf_order (A : σ → MvPowerSeries τ R) (hA : ∀ i, constantCoeff (A i) = 0)
     (B : σ → κ → MvPowerSeries τ R) : (1 : ℕ∞) ≤ ⨅ i, (Gfam A B i).order := by
   refine le_iInf fun i => nat_le_order fun d hd => ?_
@@ -326,6 +389,9 @@ theorem one_le_iInf_order (A : σ → MvPowerSeries τ R) (hA : ∀ i, constantC
   rw [this, coeff_zero_eq_constantCoeff_apply, constantCoeff_Gfam A hA B]
 
 omit [Fintype σ] [Fintype κ] in
+/--
+@isnad1 id=le.1h4v.s7.cfa957135bc0 from=translated src=- shape=7bde0477 vocab=83443275
+-/
 theorem one_le_iInf_order' (A : σ → MvPowerSeries τ R) (hA : ∀ i, constantCoeff (A i) = 0) :
     (1 : ℕ∞) ≤ ⨅ i, (A i).order := by
   refine le_iInf fun i => nat_le_order fun d hd => ?_
@@ -333,9 +399,15 @@ theorem one_le_iInf_order' (A : σ → MvPowerSeries τ R) (hA : ∀ i, constant
   rw [this, coeff_zero_eq_constantCoeff_apply, hA]
 
 omit [Fintype σ] [Fintype κ] in
+/--
+@isnad1 id=eq.0h4v.s8.8e4127dd5e9e from=translated src=- shape=cf202ec5 vocab=5dd2e975
+-/
 theorem degree_sumElim (m : τ →₀ ℕ) (c : κ →₀ ℕ) : (m.sumElim c).degree = m.degree + c.degree := by
   rw [Finsupp.sumElim_eq_add, map_add, Finsupp.degree_mapDomain, Finsupp.degree_mapDomain]
 
+/--
+@isnad1 id=eq.2h9v.s9.386c2b4eff7d from=translated src=- shape=1b2439e2 vocab=a5084529
+-/
 theorem coeff_subst_eq_coeff_aeval (f : MvPowerSeries σ R) (A : σ → MvPowerSeries τ R)
     (hA : ∀ i, constantCoeff (A i) = 0) (B : σ → κ → MvPowerSeries τ R) (N : ℕ) (e : τ ⊕ κ →₀ ℕ)
     (he : e.degree ≤ N) :
@@ -353,6 +425,9 @@ theorem coeff_subst_eq_coeff_aeval (f : MvPowerSeries σ R) (A : σ → MvPowerS
         le_mul_of_one_le_left (by simp) (one_le_iInf_order A hA B)
     _ ≤ _ := le_order_subst hG _
 
+/--
+@isnad1 id=and.3h11v.s11.4c31df9acd00 from=translated src=- shape=50ca68a7 vocab=a36aaaf4
+-/
 theorem coeff_theta_subst (k : κ) (f : MvPowerSeries σ R) (Df : σ → MvPowerSeries σ R)
     (hDf : ∀ (i : σ) (m : σ →₀ ℕ), coeff m (Df i) = ((m i + 1 : ℕ) : R) * coeff (m + Finsupp.single i 1) f)
     (A : σ → MvPowerSeries τ R) (hA : ∀ i, constantCoeff (A i) = 0) (B : σ → κ → MvPowerSeries τ R)
@@ -395,6 +470,9 @@ theorem coeff_theta_subst (k : κ) (f : MvPowerSeries σ R) (Df : σ → MvPower
           le_add_self
       _ ≤ _ := le_order_mul
 
+/--
+@isnad1 id=eq.2h10v.s10.8a40fd3e6945 from=translated src=- shape=3aaeee82 vocab=31644051
+-/
 theorem main1 (f : MvPowerSeries σ R) (Df : σ → MvPowerSeries σ R)
     (hDf : ∀ (i : σ) (m : σ →₀ ℕ), coeff m (Df i) = ((m i + 1 : ℕ) : R) * coeff (m + Finsupp.single i 1) f)
     (A : σ → MvPowerSeries τ R) (hA : ∀ i, constantCoeff (A i) = 0) (B : σ → κ → MvPowerSeries τ R)
@@ -418,6 +496,9 @@ end S17TY
 
 universe u v w x
 
+/--
+@isnad1 id=eq.2h10v.s10.6d8f97dd75b0 from=translated src=- shape=262e7bab vocab=d80c71d3
+-/
 theorem solution
     {R : Type u} [CommRing R] {σ : Type v} [Fintype σ] {τ : Type w} {κ : Type x} [Fintype κ]
     (f : MvPowerSeries σ R) (Df : σ → MvPowerSeries σ R)

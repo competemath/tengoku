@@ -25,6 +25,9 @@ variable {𝒪 : Type u₁} [CommRing 𝒪] {A : Type u₂} [CommRing A] [Algebr
 def kerSmulSet (π : A →ₐ[𝒪] k) (P : Type u₄) [AddCommGroup P] [Module A P] : Set P :=
   {x : P | ∃ a : A, π a = 0 ∧ ∃ n : P, x = a • n}
 
+/--
+@isnad1 id=mem.1h7v.s8.d5352f448258 from=translated src=- shape=d650a1c3 vocab=3b5f7cb0
+-/
 theorem smul_mem_span_kerSmulSet (π : A →ₐ[𝒪] k) {a : A} (ha : π a = 0) (n : P) :
     a • n ∈ span A (kerSmulSet π P) :=
   subset_span ⟨a, ha, n, rfl⟩
@@ -44,11 +47,17 @@ namespace Setup
 
 variable (D : Setup 𝒪 A k P W)
 
+/--
+@isnad1 id=ex.0h7v.s8.6998069b14c5 from=translated src=- shape=438350e4 vocab=a1f57c4e
+-/
 theorem exists_sub_algebraMap_mem_ker (a : A) :
     ∃ r : 𝒪, algebraMap 𝒪 k r = D.π a ∧ D.π (a - algebraMap 𝒪 A r) = 0 := by
   obtain ⟨r, hr⟩ := D.hk (D.π a)
   exact ⟨r, hr, by rw [map_sub, AlgHom.commutes, hr, sub_self]⟩
 
+/--
+@isnad1 id=eq.0h8v.s9.69c08c1ccf53 from=translated src=- shape=1f060402 vocab=cfb32704
+-/
 theorem map_algebraMap_smul (r : 𝒪) (m : P) :
     D.β (algebraMap 𝒪 A r • m) = algebraMap 𝒪 k r • D.β m := by
   apply LinearMap.ext
@@ -66,6 +75,9 @@ def rangeSubspace : Submodule k (Module.Dual k W) where
     obtain ⟨r, rfl⟩ := D.hk c
     exact ⟨algebraMap 𝒪 A r • m, D.map_algebraMap_smul r m⟩
 
+/--
+@isnad1 id=ex.0h7v.s8.1291d5b0c69e from=translated src=- shape=7ad3ddf7 vocab=3854e47f
+-/
 theorem β_surjective [FiniteDimensional k W] (φ : Module.Dual k W) : ∃ m : P, D.β m = φ := by
   have hco : D.rangeSubspace.dualCoannihilator = ⊥ := by
     rw [eq_bot_iff]
@@ -92,6 +104,9 @@ def imageKerSmul : Submodule k (Module.Dual k W) where
 
 def W0 : Submodule k W := D.imageKerSmul.dualCoannihilator
 
+/--
+@isnad1 id=eq.2h8v.s9.adfff07116a2 from=translated src=- shape=a690cd09 vocab=922e5116
+-/
 theorem apply_eq_zero_of_mem_span {n : P} (hn : n ∈ span A (kerSmulSet D.π P)) :
     ∀ w : W, (∀ a : A, D.π a = 0 → a • w = 0) → D.β n w = 0 := by
   induction hn using span_induction with
@@ -111,6 +126,9 @@ theorem apply_eq_zero_of_mem_span {n : P} (hn : n ∈ span A (kerSmulSet D.π P)
       rw [smul_smul]
       exact hw _ (by rw [map_mul, hc, zero_mul])
 
+/--
+@isnad1 id=iff.0h7v.s8.ceadff31408e from=translated src=- shape=a0356d8e vocab=13ec25da
+-/
 theorem mem_W0_iff (w : W) : w ∈ D.W0 ↔ ∀ a : A, D.π a = 0 → a • w = 0 := by
   constructor
   · intro hw a ha
@@ -123,6 +141,9 @@ theorem mem_W0_iff (w : W) : w ∈ D.W0 ↔ ∀ a : A, D.π a = 0 → a • w = 
     rintro _ ⟨n, hn, rfl⟩
     exact D.apply_eq_zero_of_mem_span hn w hw
 
+/--
+@isnad1 id=mem.1h7v.s9.fa024c6b5de6 from=translated src=- shape=22f7ed22 vocab=286d19b1
+-/
 theorem mem_span_of_forall_apply_eq_zero [FiniteDimensional k W]
     (m : P) (hm : ∀ w ∈ D.W0, D.β m w = 0) : m ∈ span A (kerSmulSet D.π P) := by
   have hann : D.W0.dualAnnihilator = D.imageKerSmul :=
@@ -134,12 +155,18 @@ theorem mem_span_of_forall_apply_eq_zero [FiniteDimensional k W]
   have := add_mem hdiff hn
   rwa [sub_add_cancel] at this
 
+/--
+@isnad1 id=eq.1h8v.s8.44ffc3d59edd from=translated src=- shape=7142b875 vocab=13ec25da
+-/
 theorem smul_eq_of_mem_W0 (a : A) {w : W} (hw : w ∈ D.W0) : a • w = D.π a • w := by
   obtain ⟨r, hr, hker⟩ := D.exists_sub_algebraMap_mem_ker a
   have h0 : (a - algebraMap 𝒪 A r) • w = 0 := (D.mem_W0_iff w).mp hw _ hker
   rw [sub_smul, sub_eq_zero] at h0
   rw [h0, D.hπW, hr]
 
+/--
+@isnad1 id=le.1h6v.s9.f354697f986d from=translated src=- shape=44160420 vocab=2b06169b
+-/
 theorem finrank_W0_le_two [FiniteDimensional k W]
     (h2 : ∃ u v : W, ∀ w : W, (∀ a : A, D.π a = 0 → a • w = 0) → ∃ c d : k, w = c • u + d • v) :
     finrank k D.W0 ≤ 2 := by
@@ -155,6 +182,9 @@ theorem finrank_W0_le_two [FiniteDimensional k W]
 
 end Setup
 
+/--
+@isnad1 id=ex.1h3v.s5.c7dd3facc892 from=translated src=- shape=a8e2b4bc vocab=20006f7b
+-/
 theorem exists_pair_range_subset {ι : Type*} [Fintype ι] (hι : Fintype.card ι ≤ 2) (x : ι → P) :
     ∃ x₀ x₁ : P, Set.range x ⊆ {x₀, x₁} := by
   classical
@@ -176,6 +206,9 @@ namespace Setup
 
 variable (D : Setup 𝒪 A k P W)
 
+/--
+@isnad1 id=ex.1h6v.s9.aa5c973fbb65 from=translated src=- shape=c145ac09 vocab=6671ac4a
+-/
 theorem exists_span_pair [FiniteDimensional k W]
     (h2 : ∃ u v : W, ∀ w : W, (∀ a : A, D.π a = 0 → a • w = 0) → ∃ c d : k, w = c • u + d • v) :
     ∃ x y : P, span A ({x, y} ∪ kerSmulSet D.π P) = ⊤ := by
@@ -247,6 +280,9 @@ end DualPairingAssembly
 
 end
 
+/--
+@isnad1 id=ex.6h7v.s11.6b6166da3f0c from=translated src=- shape=ec51cc7a vocab=07439ca4
+-/
 theorem solution
     {𝒪 : Type*} [CommRing 𝒪] {A : Type*} [CommRing A] [Algebra 𝒪 A]
     {k : Type*} [Field k] [Algebra 𝒪 k] (hk : Function.Surjective (algebraMap 𝒪 k))

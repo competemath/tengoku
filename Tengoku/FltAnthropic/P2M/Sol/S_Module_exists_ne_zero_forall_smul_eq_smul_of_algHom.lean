@@ -19,6 +19,9 @@ namespace P2MW.S_Module_exists_ne_zero_forall_smul_eq_smul_of_algHom
 
 open Ideal
 
+/--
+@isnad1 id=ex.1h4v.s8.f78e423bd6a1 from=translated src=- shape=5c73b293 vocab=10014f6a
+-/
 theorem FrobChareqEngine.engine3
     {K A V : Type*} [Field K] [CommRing A] [Algebra K A] [AddCommGroup V] [Module K V]
     [Module A V] [IsScalarTower K A V] [Module.Finite K V] [FaithfulSMul A V]
@@ -64,6 +67,9 @@ theorem FrobChareqEngine.engine3
     rw [Submodule.mem_colon_singleton] at this
     simpa using this
 
+/--
+@isnad1 id=ex.0h4v.s9.85ed34ed5965 from=translated src=- shape=a09cbce8 vocab=d906e05b
+-/
 theorem solution {K A V : Type*} [Field K] [CommRing A] [Algebra K A] [AddCommGroup V] [Module K V] [Module A V] [IsScalarTower K A V] [Module.Finite K V] [FaithfulSMul A V] (χ : A →ₐ[K] K) : ∃ v : V, v ≠ 0 ∧ ∀ a : A, a • v = χ a • v := by
   have hsurj : Function.Surjective χ := fun c => ⟨algebraMap K A c, χ.commutes c⟩
   have hmax : (RingHom.ker χ).IsMaximal := RingHom.ker_isMaximal_of_surjective χ hsurj

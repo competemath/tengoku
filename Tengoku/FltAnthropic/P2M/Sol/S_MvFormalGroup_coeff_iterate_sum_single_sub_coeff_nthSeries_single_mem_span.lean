@@ -659,6 +659,9 @@ end HNABody
 open scoped _root_.P2MW.S_MvFormalGroup_coeff_iterate_sum_single_sub_coeff_nthSeries_single_mem_span.HNAOrbit.Tup _root_.P2MW.S_MvFormalGroup_coeff_iterate_sum_single_sub_coeff_nthSeries_single_mem_span.HNAOrbit _root_.P2MW.S_MvFormalGroup_coeff_iterate_sum_single_sub_coeff_nthSeries_single_mem_span.HNABody
 
 open HNABody in
+/--
+@isnad1 id=mem.2h7v.s9.9dbf537a8436 from=translated src=- shape=9ac66f15 vocab=9b0df9a0
+-/
 theorem solution
     {𝓞 : Type u} [CommRing 𝓞] (p : ℕ) [Fact p.Prime] {d : ℕ} (F : MvFormalGroup d 𝓞) [F.IsComm]
     (G : (n : ℕ) → Fin d → MvPowerSeries (Fin n × Fin d) 𝓞)

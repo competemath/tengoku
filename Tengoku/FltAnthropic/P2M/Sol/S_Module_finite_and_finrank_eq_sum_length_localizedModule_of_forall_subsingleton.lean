@@ -19,6 +19,9 @@ variable {S : Type u} [CommRing S] [Algebra k S]
 noncomputable abbrev loclen (𝔪 : MaximalSpectrum S) (H : Type u) [AddCommGroup H] [Module S H] : ℕ∞ :=
   Module.length (Localization.AtPrime 𝔪.asIdeal) (LocalizedModule 𝔪.asIdeal.primeCompl H)
 
+/--
+@isnad1 id=eq.0h5v.s10.19710f3bb128 from=translated src=- shape=24b2bcdd vocab=0e39bb90
+-/
 theorem loclen_of_equiv_quotient (N : Type u) [AddCommGroup N] [Module S N]
     (𝔪₀ : Ideal S) (e : N ≃ₗ[S] S ⧸ 𝔪₀) (𝔪 : MaximalSpectrum S) :
     loclen 𝔪 N = Module.length (Localization.AtPrime 𝔪.asIdeal)
@@ -33,6 +36,9 @@ theorem loclen_of_equiv_quotient (N : Type u) [AddCommGroup N] [Module S N]
     (Algebra.TensorProduct.quotIdealMapEquivTensorQuot A 𝔪₀).toLinearEquiv.symm
   exact (e1.trans (e2.trans e3)).length_eq
 
+/--
+@isnad1 id=eq.1h4v.s7.84862feb3e8e from=translated src=- shape=c02f7a35 vocab=81af279a
+-/
 theorem loclen_eq_one_of_equiv_quotient (N : Type u) [AddCommGroup N] [Module S N]
     (𝔪₀ : Ideal S) (h𝔪₀ : 𝔪₀.IsMaximal) (e : N ≃ₗ[S] S ⧸ 𝔪₀) :
     loclen ⟨𝔪₀, h𝔪₀⟩ N = 1 := by
@@ -44,6 +50,9 @@ theorem loclen_eq_one_of_equiv_quotient (N : Type u) [AddCommGroup N] [Module S 
     isSimpleModule_iff_quot_maximal.mpr ⟨_, IsLocalRing.maximalIdeal.isMaximal _, ⟨LinearEquiv.refl _ _⟩⟩
   exact Module.length_eq_one _ _
 
+/--
+@isnad1 id=eq.2h5v.s7.6c882441c249 from=translated src=- shape=d294824d vocab=ec3e6512
+-/
 theorem loclen_eq_zero_of_equiv_quotient (N : Type u) [AddCommGroup N] [Module S N]
     (𝔪₀ : Ideal S) (h𝔪₀ : 𝔪₀.IsMaximal) (e : N ≃ₗ[S] S ⧸ 𝔪₀) (𝔪 : MaximalSpectrum S)
     (h : 𝔪 ≠ ⟨𝔪₀, h𝔪₀⟩) : loclen 𝔪 N = 0 := by
@@ -64,6 +73,9 @@ theorem loclen_eq_zero_of_equiv_quotient (N : Type u) [AddCommGroup N] [Module S
       Ideal.Quotient.subsingleton_iff.mpr rfl
     exact Module.length_eq_zero
 
+/--
+@isnad1 id=eq.1h5v.s8.a8f9a14203e1 from=translated src=- shape=ede36eb4 vocab=ccc45c07
+-/
 theorem finrank_eq_one_of_equiv_quotient [Algebra.FiniteType k S] (N : Type u) [AddCommGroup N] [Module S N]
     [Module k N] [IsScalarTower k S N]
     (𝔪₀ : Ideal S) (h𝔪₀ : 𝔪₀.IsMaximal) (e : N ≃ₗ[S] S ⧸ 𝔪₀) : Module.finrank k N = 1 := by
@@ -77,6 +89,9 @@ theorem finrank_eq_one_of_equiv_quotient [Algebra.FiniteType k S] (N : Type u) [
   rw [← h1]
   exact (e.restrictScalars k).finrank_eq
 
+/--
+@isnad1 id=eq.0h4v.s7.f891b6dc2f07 from=translated src=- shape=48bf65a3 vocab=91bcc4af
+-/
 theorem loclen_eq_add (H : Type u) [AddCommGroup H] [Module S H] (N : Submodule S H) (𝔪 : MaximalSpectrum S) :
     loclen 𝔪 H = loclen 𝔪 N + loclen 𝔪 (H ⧸ N) := by
   set p := 𝔪.asIdeal.primeCompl
@@ -89,6 +104,9 @@ theorem loclen_eq_add (H : Type u) [AddCommGroup H] [Module S H] (N : Submodule 
   exact Module.length_eq_add_of_exact (f.extendScalarsOfIsLocalization p A) (g.extendScalarsOfIsLocalization p A)
     hf hg hfg
 
+/--
+@isnad1 id=subsingl.1h4v.s7.f75916b4a7f4 from=translated src=- shape=fb1b606e vocab=6f7cbe30
+-/
 theorem subsingleton_submodule (H : Type u) [AddCommGroup H] [Module S H] (N : Submodule S H) (𝔪 : MaximalSpectrum S)
     (h : Subsingleton (LocalizedModule 𝔪.asIdeal.primeCompl H)) :
     Subsingleton (LocalizedModule 𝔪.asIdeal.primeCompl N) := by
@@ -97,6 +115,9 @@ theorem subsingleton_submodule (H : Type u) [AddCommGroup H] [Module S H] (N : S
   have hf : Function.Injective f := IsLocalizedModule.map_injective p _ _ _ N.injective_subtype
   exact hf.subsingleton
 
+/--
+@isnad1 id=subsingl.1h4v.s7.407d022581b1 from=translated src=- shape=23f61885 vocab=1b1b26ed
+-/
 theorem subsingleton_quotient (H : Type u) [AddCommGroup H] [Module S H] (N : Submodule S H) (𝔪 : MaximalSpectrum S)
     (h : Subsingleton (LocalizedModule 𝔪.asIdeal.primeCompl H)) :
     Subsingleton (LocalizedModule 𝔪.asIdeal.primeCompl (H ⧸ N)) := by
@@ -105,6 +126,9 @@ theorem subsingleton_quotient (H : Type u) [AddCommGroup H] [Module S H] (N : Su
   have hg : Function.Surjective g := IsLocalizedModule.map_surjective p _ _ _ (Submodule.mkQ_surjective N)
   exact hg.subsingleton
 
+/--
+@isnad1 id=eq.2h5v.s8.a5bb593b0da4 from=translated src=- shape=b6761d73 vocab=1bcf5097
+-/
 theorem finrank_eq_sum_aux [Algebra.FiniteType k S] (T : Finset (MaximalSpectrum S)) (d : ℕ) :
     ∀ (H : Type u) [AddCommGroup H] [Module S H] [Module k H] [IsScalarTower k S H] [Module.Finite k H],
       (∀ 𝔪 : MaximalSpectrum S, 𝔪 ∉ T → Subsingleton (LocalizedModule 𝔪.asIdeal.primeCompl H)) →
@@ -160,6 +184,9 @@ theorem finrank_eq_sum_aux [Algebra.FiniteType k S] (T : Finset (MaximalSpectrum
 
 omit [IsAlgClosed k] in
 
+/--
+@isnad1 id=ismaxima.3h5v.s7.7744cafffeca from=translated src=- shape=b33b2def vocab=58494d4f
+-/
 theorem isMaximal_of_isPrime_of_annihilator_le [Algebra.FiniteType k S]
     (H : Type u) [AddCommGroup H] [Module S H] [Module.Finite S H]
     (T : Finset (MaximalSpectrum S))
@@ -189,6 +216,9 @@ theorem isMaximal_of_isPrime_of_annihilator_le [Algebra.FiniteType k S]
   exact 𝔪.isMaximal
 
 omit [IsAlgClosed k] in
+/--
+@isnad1 id=finite.1h4v.s8.697293b78086 from=translated src=- shape=e81b7832 vocab=7eb6ed26
+-/
 theorem finite_of_forall_subsingleton [Algebra.FiniteType k S]
     (H : Type u) [AddCommGroup H] [Module S H] [Module k H] [IsScalarTower k S H] [Module.Finite S H]
     (T : Finset (MaximalSpectrum S))
@@ -220,6 +250,9 @@ theorem finite_of_forall_subsingleton [Algebra.FiniteType k S]
 end FinSuppLen
 
 open FinSuppLen in
+/--
+@isnad1 id=and.1h4v.s9.77228bb115d2 from=translated src=- shape=04a248d7 vocab=d252411f
+-/
 theorem solution
     (k : Type u) [Field k] [IsAlgClosed k]
     (S : Type u) [CommRing S] [Algebra k S] [Algebra.FiniteType k S]

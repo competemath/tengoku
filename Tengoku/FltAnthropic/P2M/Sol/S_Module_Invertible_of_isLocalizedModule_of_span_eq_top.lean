@@ -18,6 +18,9 @@ variable {R : Type*} [CommRing R] {M : Type*} [AddCommGroup M] [Module R M]
 
 include φ in
 
+/--
+@isnad1 id=bijectiv.0h6v.s14.956f8d6b55ce from=translated src=- shape=525988d2 vocab=fe7ac87c
+-/
 theorem bijective_map_contractLeft [Module.FinitePresentation R M] [Module.Invertible A M'] :
     Function.Bijective
       (IsLocalizedModule.map S (TensorProduct.mk R A (Module.Dual R M ⊗[R] M) 1) (Algebra.linearMap R A)
@@ -50,6 +53,9 @@ theorem bijective_map_contractLeft [Module.FinitePresentation R M] [Module.Inver
 end InvLocal29
 
 open InvLocal29 in
+/--
+@isnad1 id=invertib.2h6v.s9.b1cf5399f4e0 from=translated src=- shape=031e5aa5 vocab=34e06439
+-/
 theorem solution
     {R : Type*} [CommRing R] {M : Type*} [AddCommGroup M] [Module R M]
     (s : Set R) (hs : Ideal.span s = ⊤)

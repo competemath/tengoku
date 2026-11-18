@@ -31,17 +31,26 @@ export _root_.TruncatedDieudonneCount (mk)
 abbrev u : E p n a b := mk (X true)
 abbrev v : E p n a b := mk (X false)
 
+/--
+@isnad1 id=eq.0h4v.s7.67196db53e83 from=translated src=- shape=be7b4190 vocab=d2caa8e9
+-/
 theorem u_mul_v : (u : E p n a b) * v = (p : E p n a b) := by
   have h : (mk (X true * X false - C (p : ℤ)) : E p n a b) = 0 :=
     Ideal.Quotient.eq_zero_iff_mem.2 (Ideal.subset_span (by simp [rels]))
   rw [map_sub, map_mul, sub_eq_zero] at h
   rw [h, eq_intCast, map_intCast, Int.cast_natCast]
 
+/--
+@isnad1 id=eq.0h4v.s7.6c9b37c09789 from=translated src=- shape=56d8dca2 vocab=175f1430
+-/
 theorem v_pow_n : (v : E p n a b) ^ n = 0 := by
   have h : (mk (X false ^ n) : E p n a b) = 0 :=
     Ideal.Quotient.eq_zero_iff_mem.2 (Ideal.subset_span (by simp [rels]))
   rwa [map_pow] at h
 
+/--
+@isnad1 id=eq.0h4v.s7.5f548304f9e5 from=translated src=- shape=3a84a8cb vocab=62a486ce
+-/
 theorem u_pow_b : (u : E p n a b) ^ b = u ^ a := by
   have h : (mk (X true ^ b - X true ^ a) : E p n a b) = 0 :=
     Ideal.Quotient.eq_zero_iff_mem.2 (Ideal.subset_span (by simp [rels]))
@@ -49,16 +58,25 @@ theorem u_pow_b : (u : E p n a b) ^ b = u ^ a := by
 
 def comb (c : Fin b → ℤ) : E p n a b := ∑ i : Fin b, (c i : E p n a b) * u ^ (i : ℕ)
 
+/--
+@isnad1 id=eq.0h6v.s7.64434883cc4f from=translated src=- shape=9966764e vocab=66f0ae17
+-/
 theorem comb_add (c c' : Fin b → ℤ) : comb (p := p) (n := n) (a := a) (c + c') = comb c + comb c' := by
   unfold comb
   rw [← Finset.sum_add_distrib]
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [Pi.add_apply, Int.cast_add, add_mul]
 
+/--
+@isnad1 id=eq.0h4v.s6.d885b3bac21f from=translated src=- shape=856e3b33 vocab=071548d3
+-/
 theorem comb_zero : comb (p := p) (n := n) (a := a) (0 : Fin b → ℤ) = 0 := by
   unfold comb
   exact Finset.sum_eq_zero fun i _ => by rw [Pi.zero_apply, Int.cast_zero, zero_mul]
 
+/--
+@isnad1 id=eq.0h6v.s7.644e0ca5d9e4 from=translated src=- shape=a80f368a vocab=1033ed1e
+-/
 theorem comb_single (i : Fin b) (c : ℤ) :
     comb (p := p) (n := n) (a := a) (Pi.single i c) = (c : E p n a b) * u ^ (i : ℕ) := by
   classical
@@ -69,6 +87,9 @@ theorem comb_single (i : Fin b) (c : ℤ) :
     rw [Pi.single_eq_of_ne hji, Int.cast_zero, zero_mul]
   · intro h; exact absurd (Finset.mem_univ i) h
 
+/--
+@isnad1 id=ex.1h5v.s6.63d27ba4f370 from=translated src=- shape=7f7bbdb2 vocab=ebf0587f
+-/
 theorem exists_comb_mul_u (hab : a < b) (c : Fin b → ℤ) :
     ∃ c' : Fin b → ℤ, comb (p := p) (n := n) (a := a) c * u = comb c' := by
   classical
@@ -85,6 +106,9 @@ theorem exists_comb_mul_u (hab : a < b) (c : Fin b → ℤ) :
     rw [mul_assoc, ← pow_succ]
   · rw [mul_assoc, ← pow_succ, u_pow_b]
 
+/--
+@isnad1 id=ex.1h5v.s7.8f1ee2cae0e1 from=translated src=- shape=79dec59d vocab=3935184c
+-/
 theorem exists_normalForm (hab : a < b) (x : E p n a b) :
     ∃ (c : Fin b → ℤ) (y : E p n a b), x = comb c + v * y := by
   classical
@@ -117,10 +141,16 @@ theorem exists_normalForm (hab : a < b) (x : E p n a b) :
 
 abbrev Ev (p n a b m : ℕ) : Type := E p n a b ⧸ Ideal.span {(v : E p n a b) ^ m}
 
+/--
+@isnad1 id=mem.0h4v.s8.78deecd8045b from=translated src=- shape=e05162e0 vocab=a61fcd36
+-/
 theorem natCast_p_mem_span_v : (p : E p n a b) ∈ Ideal.span {(v : E p n a b) ^ 1} := by
   rw [pow_one, Ideal.mem_span_singleton', ← u_mul_v]
   exact ⟨u, rfl⟩
 
+/--
+@isnad1 id=and.2h4v.s6.c1ae109a434a from=translated src=- shape=ed1a8559 vocab=b2ab76db
+-/
 theorem finite_and_card_Ev_one (hp : 0 < p) (hab : a < b) :
     Finite (Ev p n a b 1) ∧ Nat.card (Ev p n a b 1) ≤ p ^ b := by
   haveI : NeZero p := ⟨hp.ne'⟩
@@ -155,6 +185,9 @@ theorem finite_and_card_Ev_one (hp : 0 < p) (hab : a < b) :
   calc Nat.card (Ev p n a b 1) ≤ Nat.card (Fin b → ZMod p) := Nat.card_le_card_of_surjective θ hθ
     _ = p ^ b := by rw [Nat.card_fun, Nat.card_zmod, Nat.card_eq_fintype_card, Fintype.card_fin]
 
+/--
+@isnad1 id=le.0h5v.s8.5f3c94cb7e92 from=translated src=- shape=c0255444 vocab=27fd2233
+-/
 theorem span_succ_le (m : ℕ) :
     Ideal.span {(v : E p n a b) ^ (m + 1)} ≤ Ideal.span {(v : E p n a b) ^ m} := by
   rw [Ideal.span_singleton_le_span_singleton]
@@ -162,9 +195,15 @@ theorem span_succ_le (m : ℕ) :
 
 def red (m : ℕ) : Ev p n a b (m + 1) →+* Ev p n a b m := Ideal.Quotient.factor (span_succ_le m)
 
+/--
+@isnad1 id=surjecti.0h5v.s9.612524de95a8 from=translated src=- shape=cc4463cb vocab=f71f4120
+-/
 theorem red_surjective (m : ℕ) : Function.Surjective (red (p := p) (n := n) (a := a) (b := b) m) :=
   Ideal.Quotient.factor_surjective _
 
+/--
+@isnad1 id=and.2h5v.s11.85c5666e1ad9 from=translated src=- shape=dbbd5132 vocab=58cb302a
+-/
 theorem card_ker_red_le (hp : 0 < p) (hab : a < b) (m : ℕ) :
     Finite (red (p := p) (n := n) (a := a) (b := b) m).toAddMonoidHom.ker ∧
       Nat.card (red (p := p) (n := n) (a := a) (b := b) m).toAddMonoidHom.ker ≤ p ^ b := by
@@ -196,6 +235,9 @@ theorem card_ker_red_le (hp : 0 < p) (hab : a < b) (m : ℕ) :
     exact Ideal.mul_mem_left _ _ (Ideal.subset_span rfl)
   exact ⟨Finite.of_surjective s hs, le_trans (Nat.card_le_card_of_surjective s hs) hcard⟩
 
+/--
+@isnad1 id=and.2h5v.s6.6d36f6109dd0 from=translated src=- shape=67a854ee vocab=b2ab76db
+-/
 theorem finite_and_card_Ev (hp : 0 < p) (hab : a < b) (m : ℕ) :
     Finite (Ev p n a b m) ∧ Nat.card (Ev p n a b m) ≤ (p ^ b) ^ m := by
   induction m with
@@ -225,6 +267,9 @@ theorem finite_and_card_Ev (hp : 0 < p) (hab : a < b) (m : ℕ) :
     rw [hprod, hq, pow_succ (p ^ b) m]
     exact Nat.mul_le_mul hcard hcardK
 
+/--
+@isnad1 id=and.2h4v.s5.04dccc1769a3 from=translated src=- shape=c8b94b89 vocab=17cd9de8
+-/
 theorem finite_and_card_E (hp : 0 < p) (hab : a < b) :
     Finite (E p n a b) ∧ Nat.card (E p n a b) ≤ p ^ (n * b) := by
   obtain ⟨hfin, hcard⟩ := finite_and_card_Ev (n := n) hp hab n
@@ -240,6 +285,9 @@ end TruncatedDieudonneCount
 
 end
 
+/--
+@isnad1 id=and.2h4v.s9.7e6205f2bccf from=translated src=- shape=38e0f160 vocab=66933561
+-/
 theorem solution
     (p : ℕ) (hp : 0 < p) (n a b : ℕ) (hab : a < b) :
     Finite (MvPolynomial Bool ℤ ⧸ Ideal.span

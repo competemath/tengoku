@@ -16,10 +16,16 @@ variable {R : Type*} [CommRing R]
 def minorsG {ρ γ : Type*} [Fintype ρ] [DecidableEq ρ] (Y : Matrix ρ γ R) : Ideal R :=
   Ideal.span (Set.range fun c : ρ → γ => (Y.submatrix id c).det)
 
+/--
+@isnad1 id=mem.0h5v.s6.33cc9e25fef3 from=translated src=- shape=78863e57 vocab=aa89dbb4
+-/
 theorem det_submatrix_mem_minorsG {ρ γ : Type*} [Fintype ρ] [DecidableEq ρ] (Y : Matrix ρ γ R) (c : ρ → γ) :
     (Y.submatrix id c).det ∈ minorsG Y :=
   Ideal.subset_span ⟨c, rfl⟩
 
+/--
+@isnad1 id=mem.0h5v.s6.fe92268686b3 from=translated src=- shape=34b5d544 vocab=f3443914
+-/
 theorem det_mul_mem_minorsG {ρ γ : Type*} [Fintype ρ] [DecidableEq ρ] [Fintype γ] (Y : Matrix ρ γ R) (C : Matrix γ ρ R) :
     (Y * C).det ∈ minorsG Y := by
   classical
@@ -47,6 +53,9 @@ theorem det_mul_mem_minorsG {ρ γ : Type*} [Fintype ρ] [DecidableEq ρ] [Finty
   rw [this]
   exact det_submatrix_mem_minorsG Y r
 
+/--
+@isnad1 id=le.1h6v.s8.1c5409931f91 from=translated src=- shape=2cf74cdc vocab=9afaaeef
+-/
 theorem minorsG_le_of_forall_col_mem_span {ρ γ γ' : Type*} [Fintype ρ] [DecidableEq ρ] [Fintype γ]
     (Y : Matrix ρ γ R) (Y' : Matrix ρ γ' R)
     (h : ∀ j' : γ', (fun i => Y' i j') ∈ Submodule.span R (Set.range fun j : γ => fun i => Y i j)) :
@@ -66,6 +75,9 @@ theorem minorsG_le_of_forall_col_mem_span {ρ γ γ' : Type*} [Fintype ρ] [Deci
   rw [hmul]
   exact det_mul_mem_minorsG Y _
 
+/--
+@isnad1 id=eq.1h6v.s7.35232d0d4aeb from=translated src=- shape=b7ecfea3 vocab=ef60552a
+-/
 theorem minorsG_eq_of_span_col_eq {ρ γ γ' : Type*} [Fintype ρ] [DecidableEq ρ] [Fintype γ] [Fintype γ']
     (Y : Matrix ρ γ R) (Y' : Matrix ρ γ' R)
     (h : Submodule.span R (Set.range fun j : γ => fun i => Y i j) =
@@ -82,18 +94,30 @@ variable {ι ι' κ : Type*} [Fintype ι] [DecidableEq ι] [Fintype ι'] [Decida
 
 abbrev adjoin : Matrix (ι ⊕ ι') (κ ⊕ ι') R := Matrix.fromBlocks X A 0 (-1)
 
+/--
+@isnad1 id=eq.0h7v.s7.56faea8bbe1a from=translated src=- shape=843de8aa vocab=138fb6f4
+-/
 theorem adjoin_submatrix_sumMap (c₀ : ι → κ) :
     (adjoin X A).submatrix id (Sum.map c₀ id) = Matrix.fromBlocks (X.submatrix id c₀) A 0 (-1) := by
   ext r s
   rcases r with i | j <;> rcases s with i' | j' <;> rfl
 
+/--
+@isnad1 id=eq.0h7v.s7.e86f839ce0e3 from=translated src=- shape=69ad9074 vocab=dd06869b
+-/
 theorem det_adjoin_submatrix_sumMap (c₀ : ι → κ) :
     ((adjoin X A).submatrix id (Sum.map c₀ id)).det = (X.submatrix id c₀).det * (-1 : Matrix ι' ι' R).det := by
   rw [adjoin_submatrix_sumMap, Matrix.det_fromBlocks_zero₂₁]
 
+/--
+@isnad1 id=eq.0h2v.s7.9804728593ee from=translated src=- shape=563b2bcd vocab=58f25f30
+-/
 theorem det_neg_one_mul_self : (-1 : Matrix ι' ι' R).det * (-1 : Matrix ι' ι' R).det = 1 := by
   rw [← Matrix.det_mul, neg_mul_neg, one_mul, Matrix.det_one]
 
+/--
+@isnad1 id=le.0h6v.s7.5daae9729018 from=translated src=- shape=49074740 vocab=fef82bd6
+-/
 theorem minorsG_le_minorsG_adjoin : minorsG X ≤ minorsG (adjoin X A) := by
   refine Ideal.span_le.mpr ?_
   rintro _ ⟨c₀, rfl⟩
@@ -105,6 +129,9 @@ theorem minorsG_le_minorsG_adjoin : minorsG X ≤ minorsG (adjoin X A) := by
   rw [this]
   exact Ideal.mul_mem_right _ _ h
 
+/--
+@isnad1 id=eq.1h8v.s7.ffd978357a9d from=translated src=- shape=ee183a40 vocab=2860a90b
+-/
 theorem det_adjoin_submatrix_eq_zero_of_forall_ne (c : ι ⊕ ι' → κ ⊕ ι') (j : ι') (hj : ∀ s, c s ≠ Sum.inr j) :
     ((adjoin X A).submatrix id c).det = 0 := by
   apply Matrix.det_eq_zero_of_row_eq_zero (Sum.inr j)
@@ -116,6 +143,9 @@ theorem det_adjoin_submatrix_eq_zero_of_forall_ne (c : ι ⊕ ι' → κ ⊕ ι'
     show (-1 : Matrix ι' ι' R) j j' = 0
     rw [Matrix.neg_apply, Matrix.one_apply_ne hne, neg_zero]
 
+/--
+@isnad1 id=mem.0h7v.s7.a942a9a671db from=translated src=- shape=231961cd vocab=ee6280a6
+-/
 theorem det_adjoin_submatrix_mem (c : ι ⊕ ι' → κ ⊕ ι') : ((adjoin X A).submatrix id c).det ∈ minorsG X := by
   classical
 
@@ -173,6 +203,9 @@ theorem det_adjoin_submatrix_mem (c : ι ⊕ ι' → κ ⊕ ι') : ((adjoin X A)
   rw [this, mul_comm ((X.submatrix id c₀).det), ← mul_assoc]
   exact Ideal.mul_mem_left _ _ (det_submatrix_mem_minorsG X c₀)
 
+/--
+@isnad1 id=eq.0h6v.s6.719fd7bc0b4b from=translated src=- shape=6dcb0995 vocab=5377e8cc
+-/
 theorem minorsG_adjoin : minorsG (adjoin X A) = minorsG X :=
   le_antisymm (Ideal.span_le.mpr (by rintro _ ⟨c, rfl⟩; exact det_adjoin_submatrix_mem X A c))
     (minorsG_le_minorsG_adjoin X A)
@@ -183,6 +216,9 @@ section Reindex
 
 variable {ρ ρ' γ γ' : Type*} [Fintype ρ] [DecidableEq ρ] [Fintype ρ'] [DecidableEq ρ']
 
+/--
+@isnad1 id=eq.0h8v.s6.1f4b01d2d8f1 from=translated src=- shape=de888b9f vocab=fd859063
+-/
 theorem minorsG_submatrix_equiv (Y : Matrix ρ γ R) (eρ : ρ' ≃ ρ) (eγ : γ' ≃ γ) :
     minorsG (Y.submatrix eρ eγ) = minorsG Y := by
   apply le_antisymm
@@ -201,6 +237,9 @@ theorem minorsG_submatrix_equiv (Y : Matrix ρ γ R) (eρ : ρ' ≃ ρ) (eγ : �
     rw [h1, Matrix.det_submatrix_equiv_self]
     exact det_submatrix_mem_minorsG _ _
 
+/--
+@isnad1 id=eq.0h8v.s8.3f1d46aba783 from=translated src=- shape=105074a6 vocab=895d8538
+-/
 theorem span_col_submatrix (Y : Matrix ρ γ R) (eρ : ρ' ≃ ρ) (eγ : γ' ≃ γ) :
     Submodule.span R (Set.range fun s' : γ' => fun r' => (Y.submatrix eρ eγ) r' s') =
       (Submodule.span R (Set.range fun s : γ => fun r => Y r s)).map (LinearEquiv.funCongrLeft R R eρ).toLinearMap := by
@@ -227,6 +266,9 @@ variable {M : Type*} [AddCommGroup M] [Module R M]
 def sumPres : (ι ⊕ ι' → R) →ₗ[R] M :=
   π ∘ₗ LinearMap.funLeft R R Sum.inl + π' ∘ₗ LinearMap.funLeft R R Sum.inr
 
+/--
+@isnad1 id=eq.0h7v.s9.0b0b73e9781f from=translated src=- shape=dc572b48 vocab=60941658
+-/
 theorem sumPres_apply (w : ι ⊕ ι' → R) : sumPres π π' w = π (w ∘ Sum.inl) + π' (w ∘ Sum.inr) := rfl
 
 def extL : (ι → R) →ₗ[R] (ι ⊕ ι' → R) where
@@ -234,10 +276,16 @@ def extL : (ι → R) →ₗ[R] (ι ⊕ ι' → R) where
   map_add' x y := by ext r; rcases r with i | j <;> simp
   map_smul' a x := by ext r; rcases r with i | j <;> simp
 
+/--
+@isnad1 id=eq.0h7v.s8.93cea5338c6a from=translated src=- shape=4294b52e vocab=8bfd548c
+-/
 theorem col_adjoin_inl (j : κ) : (fun r => adjoin X A r (Sum.inl j)) = extL (fun i => X i j) := by
   ext r; rcases r with i | i' <;> rfl
 
 include hX hA in
+/--
+@isnad1 id=eq.2h9v.s9.e0ef8e7355b2 from=translated src=- shape=4a04d557 vocab=49bd1be4
+-/
 theorem ker_sumPres_eq_span : LinearMap.ker (sumPres π π') =
     Submodule.span R (Set.range fun s : κ ⊕ ι' => fun r => adjoin X A r s) := by
   classical
@@ -317,6 +365,9 @@ end SumPresentation
 end Fitting
 
 open Fitting in
+/--
+@isnad1 id=eq.4h10v.s9.9e60b952fd4b from=translated src=- shape=d4940e3d vocab=6e58cc50
+-/
 theorem solution
     {R : Type*} [CommRing R] {M : Type*} [AddCommGroup M] [Module R M]
     {k l : ℕ} (π : (Fin k → R) →ₗ[R] M) (hπ : Function.Surjective π)

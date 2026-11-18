@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=eq.2h4v.s9.b2f5117aaf11 from=translated src=- shape=6ad829b3 vocab=46b7a08c
+-/
 theorem Tengoku.FltAnthropic.MvFormalGroup.WittLaw.subst_addFam_eq_add_of_coeff_eq_ghost
     (p : ℕ) [Fact p.Prime] {R : Type u} [CommRing R] (c : ℕ → R) (G : MvPowerSeries ℕ R)
     (hG : ∀ k n : ℕ, (MvPowerSeries.coeff (Finsupp.single k (p ^ n)) G : R) = (p : R) ^ k * c (k + n))

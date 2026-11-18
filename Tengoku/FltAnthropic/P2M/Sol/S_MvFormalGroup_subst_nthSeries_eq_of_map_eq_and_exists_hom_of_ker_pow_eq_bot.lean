@@ -22,11 +22,20 @@ variable {τ : Type*}
 
 def CoeffsIn (J : Ideal R) (s : MvPowerSeries τ R) : Prop := ∀ d, coeff d s ∈ J
 
+/--
+@isnad1 id=coeffsin.2h5v.s6.968350ae650f from=translated src=- shape=eb57b754 vocab=b9c25fb1
+-/
 theorem CoeffsIn.mono {J J' : Ideal R} (h : J ≤ J') {s : MvPowerSeries τ R} (hs : CoeffsIn J s) :
     CoeffsIn J' s := fun d => h (hs d)
 
+/--
+@isnad1 id=coeffsin.0h3v.s5.79a8c3bacaa6 from=translated src=- shape=6312854b vocab=0bf1d41a
+-/
 theorem coeffsIn_top (s : MvPowerSeries τ R) : CoeffsIn ⊤ s := fun _ => Submodule.mem_top
 
+/--
+@isnad1 id=coeffsin.2h6v.s6.e7ef00b1ade6 from=translated src=- shape=d2658c1c vocab=9bf70592
+-/
 theorem CoeffsIn.mul {J J' : Ideal R} {s t : MvPowerSeries τ R} (hs : CoeffsIn J s)
     (ht : CoeffsIn J' t) : CoeffsIn (J * J') (s * t) := by
   classical
@@ -34,11 +43,17 @@ theorem CoeffsIn.mul {J J' : Ideal R} {s t : MvPowerSeries τ R} (hs : CoeffsIn 
   rw [coeff_mul]
   exact Ideal.sum_mem _ fun x _ => Ideal.mul_mem_mul (hs x.1) (ht x.2)
 
+/--
+@isnad1 id=coeffsin.1h5v.s6.f915f13c9264 from=translated src=- shape=11454a4c vocab=7b50f066
+-/
 theorem CoeffsIn.pow {J : Ideal R} {s : MvPowerSeries τ R} (hs : CoeffsIn J s) :
     ∀ m : ℕ, CoeffsIn (J ^ m) (s ^ m)
   | 0 => by rw [pow_zero, pow_zero, Ideal.one_eq_top]; exact coeffsIn_top _
   | m + 1 => by rw [pow_succ, pow_succ]; exact (hs.pow m).mul hs
 
+/--
+@isnad1 id=coeffsin.1h7v.s7.dcbe99f347db from=translated src=- shape=db1b84f4 vocab=e6e9b49a
+-/
 theorem coeffsIn_prod {α : Type*} (J : Ideal R) (s : Finset α) (t : α → MvPowerSeries τ R)
     (k : α → ℕ) (h : ∀ a ∈ s, CoeffsIn (J ^ k a) (t a)) :
     CoeffsIn (J ^ (∑ a ∈ s, k a)) (∏ a ∈ s, t a) := by
@@ -52,12 +67,18 @@ theorem coeffsIn_prod {α : Type*} (J : Ideal R) (s : Finset α) (t : α → MvP
     exact (h a (Finset.mem_insert_self a s)).mul
       (ih fun b hb => h b (Finset.mem_insert_of_mem hb))
 
+/--
+@isnad1 id=coeffsin.1h6v.s8.b3a3445db030 from=translated src=- shape=61656c32 vocab=f7bc8fd3
+-/
 theorem coeffsIn_finsuppProd {σ' : Type*} (J : Ideal R) {c : σ' → MvPowerSeries τ R}
     (hc : ∀ j, CoeffsIn J (c j)) (e : σ' →₀ ℕ) :
     CoeffsIn (J ^ e.degree) (e.prod fun s m => c s ^ m) := by
   rw [Finsupp.prod, Finsupp.degree_apply]
   exact coeffsIn_prod J e.support (fun s => c s ^ e s) (fun s => e s) fun s _ => (hc s).pow (e s)
 
+/--
+@isnad1 id=iff.0h5v.s7.1903ddbe2d8d from=translated src=- shape=5ee4b616 vocab=048cef29
+-/
 theorem coeffsIn_ker_iff_map_eq_zero {S : Type*} [CommRing S] (π : R →+* S) (s : MvPowerSeries τ R) :
     CoeffsIn (RingHom.ker π) s ↔ MvPowerSeries.map π s = 0 := by
   constructor
@@ -82,6 +103,9 @@ section Linearise
 
 variable {σ' τ : Type*} [Finite σ']
 
+/--
+@isnad1 id=coeffsin.3h6v.s9.b2c3ad2e5aa4 from=translated src=- shape=528dc7d2 vocab=7cd82360
+-/
 theorem coeffsIn_sq_subst (J : Ideal R) {c : σ' → MvPowerSeries τ R}
     (hc0 : ∀ j, (c j).constantCoeff = 0) (hc : ∀ j, CoeffsIn J (c j))
     (f : MvPowerSeries σ' R) (hf : ∀ e : σ' →₀ ℕ, e.degree ≤ 1 → coeff e f = 0) :
@@ -106,6 +130,9 @@ variable {h : ℕ} (G : MvFormalGroup h R)
 
 omit [CommRing R] in
 
+/--
+@isnad1 id=ex.1h2v.s7.744e2e49167b from=translated src=- shape=bdf8b0dd vocab=dbf5d1eb
+-/
 theorem exists_eq_single_of_degree_eq_one {σ' : Type*} (e : σ' →₀ ℕ) (he : e.degree = 1) :
     ∃ k, e = Finsupp.single k 1 := by
   classical
@@ -134,6 +161,9 @@ theorem exists_eq_single_of_degree_eq_one {σ' : Type*} (e : σ' →₀ ℕ) (he
   rw [(Finsupp.degree_eq_zero_iff _).mp hdeg, add_zero] at hsplit
   exact hsplit
 
+/--
+@isnad1 id=eq.2h7v.s8.881a3b3b05e0 from=translated src=- shape=f2d0724b vocab=d90fee66
+-/
 theorem coeff_nthSeries_eq_zero_of_degree_le_one (p n : ℕ) (hp : (p : R) ^ n = 0) (i : Fin h)
     (e : Fin h →₀ ℕ) (he : e.degree ≤ 1) : coeff e (G.nthSeries (p ^ n) i) = 0 := by
   rcases Nat.lt_or_ge e.degree 1 with h0 | h1
@@ -153,6 +183,9 @@ noncomputable def step (p n : ℕ) {τ : Type*} (c : Fin h → MvPowerSeries τ 
   fun i => subst c (G.nthSeries (p ^ n) i)
 
 omit [G.IsComm] in
+/--
+@isnad1 id=eq.1h8v.s7.8ec897ba54bd from=translated src=- shape=f7f32738 vocab=36a6a0e0
+-/
 theorem constantCoeff_step (p n : ℕ) {τ : Type*} {c : Fin h → MvPowerSeries τ R}
     (hc0 : ∀ j, (c j).constantCoeff = 0) (i : Fin h) : (step G p n c i).constantCoeff = 0 :=
   constantCoeff_subst_eq_zero (hasSubst_of_constantCoeff_zero hc0) hc0
@@ -160,6 +193,9 @@ theorem constantCoeff_step (p n : ℕ) {τ : Type*} {c : Fin h → MvPowerSeries
 
 omit [G.IsComm] in
 
+/--
+@isnad1 id=coeffsin.3h10v.s8.d96b188e78a6 from=translated src=- shape=6ad0fedb vocab=6f08f11f
+-/
 theorem coeffsIn_step (p n : ℕ) (hp : (p : R) ^ n = 0) (I : Ideal R) (j : ℕ) {τ : Type*}
     {c : Fin h → MvPowerSeries τ R} (hc0 : ∀ j, (c j).constantCoeff = 0)
     (hc : ∀ i, CoeffsIn (I ^ (j + 1)) (c i)) (i : Fin h) :
@@ -171,6 +207,9 @@ theorem coeffsIn_step (p n : ℕ) (hp : (p : R) ^ n = 0) (I : Ideal R) (j : ℕ)
 
 omit [G.IsComm] in
 
+/--
+@isnad1 id=and.3h9v.s8.7afcdfb68340 from=translated src=- shape=a87b5a07 vocab=4de1ba3c
+-/
 theorem coeffsIn_iterate_step (p n : ℕ) (hp : (p : R) ^ n = 0) (I : Ideal R) {τ : Type*} (k : ℕ) :
     ∀ {c : Fin h → MvPowerSeries τ R}, (∀ j, (c j).constantCoeff = 0) →
       (∀ i, CoeffsIn (I ^ 1) (c i)) →
@@ -184,10 +223,16 @@ theorem coeffsIn_iterate_step (p n : ℕ) (hp : (p : R) ^ n = 0) (I : Ideal R) {
     obtain ⟨h0, h1⟩ := ih hc0 hc
     exact ⟨fun j => constantCoeff_step G p n h0 j, fun i => coeffsIn_step G p n hp I k h0 h1 i⟩
 
+/--
+@isnad1 id=eq.0h5v.s6.1cbd31c97aca from=translated src=- shape=80b68d48 vocab=70b940a5
+-/
 theorem toPowerSeries_natCast_pow (q k : ℕ) :
     Hom.toPowerSeries (((q : End G)) ^ k) = G.nthSeries (q ^ k) := by
   rw [← Nat.cast_pow, End.toPowerSeries_natCast]
 
+/--
+@isnad1 id=eq.1h9v.s7.7236f7c5cc1f from=translated src=- shape=02fdff51 vocab=383b27b9
+-/
 theorem subst_pow_eq_iterate (p n : ℕ) {τ : Type*} (k : ℕ) :
     ∀ {c : Fin h → MvPowerSeries τ R}, (∀ j, (c j).constantCoeff = 0) → ∀ i,
       subst c (Hom.toPowerSeries ((((p ^ n : ℕ) : End G)) ^ k) i) = (step G p n)^[k] c i := by
@@ -209,6 +254,9 @@ theorem subst_pow_eq_iterate (p n : ℕ) {τ : Type*} (k : ℕ) :
     rw [hfam]
     exact ih (fun j => constantCoeff_step G p n hc0 j) i
 
+/--
+@isnad1 id=eq.4h10v.s8.4521d07362e7 from=translated src=- shape=706fbd48 vocab=7966605d
+-/
 theorem subst_nthSeries_eq_zero_of_coeffsIn (p n μ : ℕ) (hp : (p : R) ^ n = 0) (I : Ideal R)
     (hI : I ^ (μ + 1) = ⊥) {τ : Type*} {c : Fin h → MvPowerSeries τ R}
     (hc0 : ∀ j, (c j).constantCoeff = 0) (hc : ∀ i, CoeffsIn I (c i)) (i : Fin h) :
@@ -226,6 +274,9 @@ section GroupStep
 
 variable {g h : ℕ}
 
+/--
+@isnad1 id=eq.2h10v.s8.bae702c948a9 from=translated src=- shape=ff4556f1 vocab=2130fd45
+-/
 theorem hom_subst_elim (F : MvFormalGroup g R) (G : MvFormalGroup h R) (φ : F.Hom G) {τ : Type*}
     {a b : Fin g → MvPowerSeries τ R} (ha : ∀ j, (a j).constantCoeff = 0)
     (hb : ∀ j, (b j).constantCoeff = 0) (i : Fin h) :
@@ -277,6 +328,9 @@ variable (G : MvFormalGroup h R) [G.IsComm]
 
 omit [G.IsComm] in
 
+/--
+@isnad1 id=eq.1h7v.s8.b477435a7dc2 from=translated src=- shape=baa5152e vocab=bd247a84
+-/
 theorem map_negSeries {S : Type*} [CommRing S] (π : R →+* S) {τ : Type*}
     {b : Fin h → MvPowerSeries τ R} (hb : ∀ j, (b j).constantCoeff = 0) :
     (fun j => MvPowerSeries.map π (negSeries G b j)) =
@@ -292,6 +346,9 @@ theorem map_negSeries {S : Type*} [CommRing S] (π : R →+* S) {τ : Type*}
   rw [hfam] at key
   exact key
 
+/--
+@isnad1 id=eq.5h12v.s9.1c3cffb04240 from=translated src=- shape=3119cb9a vocab=26027d7b
+-/
 theorem subst_nthSeries_eq_of_map_eq {S : Type*} [CommRing S] (π : R →+* S) (μ : ℕ)
     (hI : RingHom.ker π ^ (μ + 1) = ⊥) (p n : ℕ) (hp : (p : R) ^ n = 0) {τ : Type*}
     {a b : Fin h → MvPowerSeries τ R} (ha : ∀ j, (a j).constantCoeff = 0)
@@ -349,6 +406,9 @@ section LiftHom
 
 variable {g h : ℕ} (F : MvFormalGroup g R) (G : MvFormalGroup h R) [G.IsComm]
 
+/--
+@isnad1 id=ex.4h12v.s9.618fa6ebe3ce from=translated src=- shape=4e30b600 vocab=56a4041b
+-/
 theorem exists_hom {S : Type*} [CommRing S] (π : R →+* S) (μ : ℕ)
     (hI : RingHom.ker π ^ (μ + 1) = ⊥) (p n : ℕ) (hp : (p : R) ^ n = 0)
     (φ : Fin h → MvPowerSeries (Fin g) R) (hφ : ∀ i, (φ i).constantCoeff = 0)
@@ -425,6 +485,9 @@ end LiftHom
 end P2mKcLawRigidity
 
 open P2mKcLawRigidity in
+/--
+@isnad1 id=and.2h8v.s10.3440ded361c9 from=translated src=- shape=f80a9652 vocab=56a4041b
+-/
 theorem solution
     {R S : Type u} [CommRing R] [CommRing S] (π : R →+* S) (μ : ℕ)
     (hI : RingHom.ker π ^ (μ + 1) = ⊥) (p n : ℕ) (hp : (p : R) ^ n = 0)

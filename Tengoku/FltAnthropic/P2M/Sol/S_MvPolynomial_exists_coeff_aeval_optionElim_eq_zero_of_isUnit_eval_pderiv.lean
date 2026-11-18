@@ -11,6 +11,9 @@ namespace ChainJet
 
 open MvPolynomial
 
+/--
+@isnad1 id=eq.0h7v.s9.0f06c1a10ab4 from=translated src=- shape=8a5e1de8 vocab=ee2636b5
+-/
 theorem aeval_eq_eval_optionEquivLeft {R : Type*} [CommRing R] {σ τ : Type*} {S : Type*} [CommRing S] [Algebra R S]
     (e : Option τ ≃ σ) (g : σ → S) (H : MvPolynomial σ R) :
     aeval g H =
@@ -38,6 +41,9 @@ theorem aeval_eq_eval_optionEquivLeft {R : Type*} [CommRing R] {σ τ : Type*} {
     rw [rename_X, hs, optionEquivLeft_X_some, Polynomial.map_C, Polynomial.eval_C]
     simp [this]
 
+/--
+@isnad1 id=eq.0h3v.s10.a32ac4c40d2a from=translated src=- shape=e7afecf8 vocab=28b9a3c5
+-/
 theorem derivative_optionEquivLeft {R : Type*} [CommRing R] {σ : Type*} (p : MvPolynomial (Option σ) R) :
     Polynomial.derivative (optionEquivLeft R σ p) = optionEquivLeft R σ (pderiv none p) := by
   classical
@@ -51,6 +57,9 @@ theorem derivative_optionEquivLeft {R : Type*} [CommRing R] {σ : Type*} (p : Mv
     | none => rw [optionEquivLeft_X_none, Polynomial.derivative_X, pderiv_X]; simp; ring
     | some t => rw [optionEquivLeft_X_some, Polynomial.derivative_C, pderiv_X]; simp; ring
 
+/--
+@isnad1 id=eq.2h7v.s8.0ac0dc47a47e from=translated src=- shape=69cf9d34 vocab=68b326b3
+-/
 theorem aeval_congr_of_not_mem_vars {R : Type*} [CommRing R] {σ : Type*} {S : Type*} [CommRing S] [Algebra R S]
     (H : MvPolynomial σ R) (s : σ) (hH : s ∉ H.vars) (g g' : σ → S) (hg : ∀ o, o ≠ s → g o = g' o) :
     aeval g H = aeval g' H := by
@@ -60,6 +69,9 @@ theorem aeval_congr_of_not_mem_vars {R : Type*} [CommRing R] {σ : Type*} {S : T
 
 variable {A : Type*} [CommRing A]
 
+/--
+@isnad1 id=eq.0h4v.s8.da1e5cbd5ec7 from=translated src=- shape=08d14680 vocab=3b154610
+-/
 theorem coeff_zero_aeval {σ : Type*} (c : σ → Polynomial A) (H : MvPolynomial σ A) :
     (aeval c H).coeff 0 = MvPolynomial.eval (fun o => (c o).coeff 0) H := by
   induction H using MvPolynomial.induction_on with
@@ -67,6 +79,9 @@ theorem coeff_zero_aeval {σ : Type*} (c : σ → Polynomial A) (H : MvPolynomia
   | add p q hp hq => simp [hp, hq]
   | mul_X p o hp => simp [hp, Polynomial.mul_coeff_zero]
 
+/--
+@isnad1 id=eq.0h3v.s8.7dbb91a72a68 from=translated src=- shape=21bab4cd vocab=2a3205aa
+-/
 theorem coeff_zero_jet {m : ℕ} (w : Fin (m + 1) → A) :
     (∑ r' : Fin (m + 1), Polynomial.monomial (r' : ℕ) (w r')).coeff 0 = w 0 := by
   rw [Polynomial.finsetSum_coeff, Finset.sum_eq_single (0 : Fin (m + 1))]
@@ -77,12 +92,18 @@ theorem coeff_zero_jet {m : ℕ} (w : Fin (m + 1) → A) :
   · intro h
     exact absurd (Finset.mem_univ _) h
 
+/--
+@isnad1 id=ex.2h4v.s10.91a4d6734f77 from=translated src=- shape=a3e44a4c vocab=926c2fe9
+-/
 theorem newton_jet_vec (F : Polynomial (Polynomial A)) (w₀ : A)
     (h0 : (F.eval (Polynomial.C w₀)).coeff 0 = 0) (hder : IsUnit ((F.derivative.eval (Polynomial.C w₀)).coeff 0)) (m : ℕ) :
     ∃ w : Fin (m + 1) → A, w 0 = w₀ ∧
       ∀ r : Fin (m + 1), (F.eval (∑ r' : Fin (m + 1), Polynomial.monomial (r' : ℕ) (w r'))).coeff r = 0 :=
   Polynomial.exists_coeff_eval_sum_monomial_eq_zero_of_isUnit_derivative F w₀ h0 hder m
 
+/--
+@isnad1 id=eq.0h5v.s10.f598692cbed2 from=translated src=- shape=fa35a0e3 vocab=3c9eb791
+-/
 theorem eval_isolate (H : MvPolynomial (Option (Fin 2)) A) (j : Fin 2) (c : Option (Fin 2) → Polynomial A) (V : Polynomial A) :
     ((optionEquivLeft A (Fin 2) (rename (Equiv.swap none (some j)).symm H)).map
         (aeval (fun t => c (Equiv.swap none (some j) (some t))) : MvPolynomial (Fin 2) A →ₐ[A] Polynomial A).toRingHom).eval V
@@ -101,6 +122,9 @@ theorem eval_isolate (H : MvPolynomial (Option (Fin 2)) A) (j : Fin 2) (c : Opti
     exact Function.update_of_ne (hs t) V c
   rw [hfun]
 
+/--
+@isnad1 id=ex.3h7v.s10.440e9cefd06e from=translated src=- shape=5073bd39 vocab=8cc265f5
+-/
 theorem solve_slot (m : ℕ) (u : A) (w0 : Fin 2 → A) (H : MvPolynomial (Option (Fin 2)) A) (j : Fin 2)
     (c : Option (Fin 2) → Polynomial A) (hc : ∀ o, (c o).coeff 0 = Option.elim o u w0)
     (hroot : MvPolynomial.eval (fun o => Option.elim o u w0) H = 0)
@@ -134,6 +158,9 @@ theorem solve_slot (m : ℕ) (u : A) (w0 : Fin 2 → A) (H : MvPolynomial (Optio
   refine ⟨wj, hwj0, fun r => ?_⟩
   rw [← hwj r, hF, hφ, he, eval_isolate]
 
+/--
+@isnad1 id=ex.3h5v.s10.0adce6344776 from=translated src=- shape=9da322db vocab=1d1c3f47
+-/
 theorem exists_branch_jets (m : ℕ) (u : A) (w0 : Fin 2 → A) (G : Fin 2 → MvPolynomial (Option (Fin 2)) A)
     (hvars : (some 1 : Option (Fin 2)) ∉ (G 0).vars)
     (hroot : ∀ j, MvPolynomial.eval (fun o => Option.elim o u w0) (G j) = 0)
@@ -183,6 +210,9 @@ theorem exists_branch_jets (m : ℕ) (u : A) (w0 : Fin 2 → A) (G : Fin 2 → M
 
 end ChainJet
 
+/--
+@isnad1 id=ex.3h5v.s10.0adce6344776 from=translated src=- shape=9da322db vocab=1d1c3f47
+-/
 theorem solution
     {A : Type*} [CommRing A] (m : ℕ) (u : A) (w0 : Fin 2 → A) (G : Fin 2 → MvPolynomial (Option (Fin 2)) A)
     (hvars : (some 1 : Option (Fin 2)) ∉ (G 0).vars)

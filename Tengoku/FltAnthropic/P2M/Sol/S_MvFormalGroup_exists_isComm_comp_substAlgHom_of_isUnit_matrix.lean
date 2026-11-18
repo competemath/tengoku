@@ -491,6 +491,9 @@ end Fibre
 end Recoord
 
 open Recoord in
+/--
+@isnad1 id=ex.8h7v.s14.bf21bcb406fa from=translated src=- shape=4f6b5b35 vocab=8548519a
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] {d : ℕ}
     (G : ℕ → Type v) [∀ v, CommRing (G v)] [∀ v, HopfAlgebra (ZMod p) (G v)]

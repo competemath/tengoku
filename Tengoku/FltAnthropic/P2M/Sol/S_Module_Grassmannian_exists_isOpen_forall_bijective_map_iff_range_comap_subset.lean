@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 namespace GrassOpenS1b
 
+/--
+@isnad1 id=bijectiv.2h4v.s8.20d905510df9 from=translated src=- shape=960e614a vocab=58ddf758
+-/
 lemma bijective_of_surjective_of_rankAtStalk (B P : Type) [CommRing B] [AddCommGroup P] [Module B P]
     [Module.Finite B P] [Module.Projective B P] (k : ℕ) (hk : ∀ p, Module.rankAtStalk (R := B) P p = k)
     (g : (Fin k → B) →ₗ[B] P) (hg : Function.Surjective g) : Function.Bijective g := by
@@ -48,6 +51,9 @@ lemma bijective_of_surjective_of_rankAtStalk (B P : Type) [CommRing B] [AddCommG
     simpa using congrArg Subtype.val this
   exact LinearMap.ker_eq_bot.mp hbot
 
+/--
+@isnad1 id=subsingl.0h3v.s5.1673099f8e85 from=translated src=- shape=ac83a946 vocab=5332d5a2
+-/
 lemma subsingleton_tensor (R S T : Type) [CommRing R] [AddCommGroup S] [Module R S] [AddCommGroup T]
     [Module R T] [Subsingleton T] : Subsingleton (S ⊗[R] T) := by
   refine ⟨fun a b => ?_⟩
@@ -72,8 +78,14 @@ abbrev K : Type := Q R N ⧸ W R x N
 def U : Set (PrimeSpectrum A) :=
   (PrimeSpectrum.zeroLocus (Module.annihilator A (K R x N) : Set A))ᶜ
 
+/--
+@isnad1 id=isopen.0h6v.s7.7fef4244169a from=translated src=- shape=5564c2c5 vocab=d3773472
+-/
 lemma isOpen_U : IsOpen (U R x N) := (PrimeSpectrum.isClosed_zeroLocus _).isOpen_compl
 
+/--
+@isnad1 id=iff.0h7v.s10.4a265b01c604 from=translated src=- shape=85344995 vocab=8e356a00
+-/
 lemma mem_U {p : PrimeSpectrum A} : p ∈ U R x N ↔ ¬ Module.annihilator A (K R x N) ≤ p.asIdeal := by
   simp [U, PrimeSpectrum.mem_zeroLocus]
 
@@ -83,6 +95,9 @@ variable (B : Type) [CommRing B] [Algebra R B] [Algebra A B] [IsScalarTower R A 
 
 omit [Algebra R B] [IsScalarTower R A B] in
 
+/--
+@isnad1 id=iff.0h7v.s12.430f7c5de047 from=translated src=- shape=c497280b vocab=f998e31d
+-/
 lemma span_tmul_eq_top_iff :
     Submodule.span B (Set.range fun i => (1 : B) ⊗ₜ[A] q0 R x N i) = ⊤ ↔
       Subsingleton (B ⊗[A] K R x N) := by
@@ -119,6 +134,9 @@ lemma span_tmul_eq_top_iff :
 
 omit [Algebra R B] [IsScalarTower R A B] in
 
+/--
+@isnad1 id=iff.0h7v.s10.6e5ad62ea584 from=translated src=- shape=0ff67695 vocab=ef3dfcb0
+-/
 lemma subsingleton_iff_forall_mem_U :
     Subsingleton (B ⊗[A] K R x N) ↔
       ∀ q : PrimeSpectrum B, PrimeSpectrum.comap (algebraMap A B) q ∈ U R x N := by
@@ -175,6 +193,9 @@ lemma subsingleton_iff_forall_mem_U :
         tmul_zero]
     | add u v hu hv => rw [smul_add, hu, hv, add_zero]
 
+/--
+@isnad1 id=ex.1h8v.s14.a35896942489 from=translated src=- shape=bb8bd9d5 vocab=e925d88b
+-/
 lemma exists_equiv (f : A →ₐ[R] B) (hf : ∀ a, algebraMap A B a = f a) :
     ∃ e : ((B ⊗[R] M) ⧸ (Module.Grassmannian.map f N).toSubmodule) ≃ₗ[B] B ⊗[A] Q R N,
       ∀ i, e ((Module.Grassmannian.map f N).toSubmodule.mkQ ((1 : B) ⊗ₜ[R] x i)) =
@@ -193,6 +214,9 @@ lemma exists_equiv (f : A →ₐ[R] B) (hf : ∀ a, algebraMap A B a = f a) :
     LinearMap.baseChange_tmul]
   rfl
 
+/--
+@isnad1 id=iff.1h8v.s13.15475903d6ff from=translated src=- shape=2e788c77 vocab=13ca0cbc
+-/
 lemma bijective_iff (f : A →ₐ[R] B) (hf : ∀ a, algebraMap A B a = f a) :
     (Function.Bijective fun v : Fin k → B =>
         ∑ i, v i • (Module.Grassmannian.map f N).toSubmodule.mkQ ((1 : B) ⊗ₜ[R] x i)) ↔
@@ -225,6 +249,9 @@ end baseChange
 end GrassOpenS1b
 
 open GrassOpenS1b in
+/--
+@isnad1 id=ex.0h6v.s12.7b6829df81d8 from=translated src=- shape=26d55805 vocab=7712e079
+-/
 theorem solution
     (R : Type) [CommRing R] (M : Type) [AddCommGroup M] [Module R M] (k : ℕ) (x : Fin k → M)
     (A : Type) [CommRing A] [Algebra R A] (N : Module.Grassmannian A (A ⊗[R] M) k) :

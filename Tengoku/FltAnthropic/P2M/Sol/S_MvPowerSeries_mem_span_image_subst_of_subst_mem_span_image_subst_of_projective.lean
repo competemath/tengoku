@@ -17,6 +17,9 @@ section Exponents
 
 variable {α β : Type*}
 
+/--
+@isnad1 id=iff.0h6v.s6.a0828b984b9b from=translated src=- shape=d60a99c4 vocab=de266023
+-/
 theorem sumElim_ext {f f' : α →₀ ℕ} {g g' : β →₀ ℕ} :
     f.sumElim g = f'.sumElim g' ↔ f = f' ∧ g = g' := by
   constructor
@@ -31,22 +34,40 @@ theorem sumElim_ext {f f' : α →₀ ℕ} {g g' : β →₀ ℕ} :
 noncomputable def fstE (D : α ⊕ β →₀ ℕ) : α →₀ ℕ := (Finsupp.sumFinsuppEquivProdFinsupp D).1
 noncomputable def sndE (D : α ⊕ β →₀ ℕ) : β →₀ ℕ := (Finsupp.sumFinsuppEquivProdFinsupp D).2
 
+/--
+@isnad1 id=eq.0h4v.s6.780aa5872e0a from=translated src=- shape=0c9316b9 vocab=3c6e1565
+-/
 theorem fstE_apply (D : α ⊕ β →₀ ℕ) (x : α) : fstE D x = D (Sum.inl x) :=
   Finsupp.fst_sumFinsuppEquivProdFinsupp D x
+/--
+@isnad1 id=eq.0h4v.s6.8ce9d5c2b30e from=translated src=- shape=935eaec9 vocab=44d01392
+-/
 theorem sndE_apply (D : α ⊕ β →₀ ℕ) (y : β) : sndE D y = D (Sum.inr y) :=
   Finsupp.snd_sumFinsuppEquivProdFinsupp D y
 
+/--
+@isnad1 id=eq.0h3v.s5.bb56c9a0cd1a from=translated src=- shape=1a547053 vocab=1555919d
+-/
 theorem sumElim_fstE_sndE (D : α ⊕ β →₀ ℕ) : (fstE D).sumElim (sndE D) = D := by
   ext v
   rcases v with x | y
   · rw [Finsupp.sumElim_inl, fstE_apply]
   · rw [Finsupp.sumElim_inr, sndE_apply]
 
+/--
+@isnad1 id=eq.0h4v.s5.f6d766e77e7c from=translated src=- shape=c92d7cd7 vocab=51809082
+-/
 theorem fstE_sumElim (f : α →₀ ℕ) (g : β →₀ ℕ) : fstE (f.sumElim g) = f := by
   ext x; rw [fstE_apply, Finsupp.sumElim_inl]
+/--
+@isnad1 id=eq.0h4v.s5.533f95d6a952 from=translated src=- shape=d7518383 vocab=f9bb1bb4
+-/
 theorem sndE_sumElim (f : α →₀ ℕ) (g : β →₀ ℕ) : sndE (f.sumElim g) = g := by
   ext y; rw [sndE_apply, Finsupp.sumElim_inr]
 
+/--
+@isnad1 id=eq.0h6v.s7.d8ad3f562ff5 from=translated src=- shape=f7901172 vocab=81b9b207
+-/
 theorem sumElim_add (f f' : α →₀ ℕ) (g g' : β →₀ ℕ) :
     f.sumElim g + f'.sumElim g' = (f + f').sumElim (g + g') := by
   ext v
@@ -54,6 +75,9 @@ theorem sumElim_add (f f' : α →₀ ℕ) (g g' : β →₀ ℕ) :
   · simp only [Finsupp.add_apply, Finsupp.sumElim_inl]
   · simp only [Finsupp.add_apply, Finsupp.sumElim_inr]
 
+/--
+@isnad1 id=iff.0h6v.s6.234e53fb0732 from=translated src=- shape=d60a99c4 vocab=4ba974c9
+-/
 theorem sumElim_le_iff (f f' : α →₀ ℕ) (g g' : β →₀ ℕ) :
     f.sumElim g ≤ f'.sumElim g' ↔ f ≤ f' ∧ g ≤ g' := by
   simp only [Finsupp.le_iff, Finsupp.mem_support_iff, ne_eq]
@@ -69,6 +93,9 @@ theorem sumElim_le_iff (f f' : α →₀ ℕ) (g g' : β →₀ ℕ) :
     · simp only [Finsupp.sumElim_inl] at hv ⊢; exact hf x hv
     · simp only [Finsupp.sumElim_inr] at hv ⊢; exact hg y hv
 
+/--
+@isnad1 id=eq.0h6v.s7.b8206e728698 from=translated src=- shape=f7901172 vocab=58ca146b
+-/
 theorem sumElim_tsub (f f' : α →₀ ℕ) (g g' : β →₀ ℕ) :
     f.sumElim g - f'.sumElim g' = (f - f').sumElim (g - g') := by
   ext v
@@ -76,6 +103,9 @@ theorem sumElim_tsub (f f' : α →₀ ℕ) (g g' : β →₀ ℕ) :
   · simp only [Finsupp.tsub_apply, Finsupp.sumElim_inl]
   · simp only [Finsupp.tsub_apply, Finsupp.sumElim_inr]
 
+/--
+@isnad1 id=eq.0h2v.s6.b042da8efdad from=translated src=- shape=f054b250 vocab=de266023
+-/
 theorem sumElim_zero_zero : (0 : α →₀ ℕ).sumElim (0 : β →₀ ℕ) = 0 := by
   ext v; rcases v with x | y <;> simp
 
@@ -99,6 +129,9 @@ theorem eq_embDomain_inl (f : α →₀ ℕ) :
     · rfl
     · rintro ⟨x, hx⟩; cases hx
 
+/--
+@isnad1 id=not.1h4v.s7.d80bc62c78ef from=translated src=- shape=200deab9 vocab=904f949f
+-/
 theorem not_mem_range_mapDomain_inr {f : α →₀ ℕ} (g : β →₀ ℕ) (hf : f ≠ 0) :
     f.sumElim g ∉ Set.range (Finsupp.mapDomain (Sum.inr : β → α ⊕ β)) := by
   rintro ⟨g', hg'⟩
@@ -109,6 +142,9 @@ theorem not_mem_range_mapDomain_inr {f : α →₀ ℕ} (g : β →₀ ℕ) (hf 
   rw [hg', Finsupp.sumElim_inl] at h1
   exact hx h1
 
+/--
+@isnad1 id=not.1h4v.s7.6298f0a8c946 from=translated src=- shape=76b7f4ea vocab=6ce2bac5
+-/
 theorem not_mem_range_mapDomain_inl (f : α →₀ ℕ) {g : β →₀ ℕ} (hg : g ≠ 0) :
     f.sumElim g ∉ Set.range (Finsupp.mapDomain (Sum.inl : α → α ⊕ β)) := by
   rintro ⟨f', hf'⟩
@@ -128,6 +164,9 @@ variable {B : Type*} [CommRing B] {n m : ℕ}
 noncomputable def M (a : Fin n → MvPowerSeries (Fin m) B) (μ : Fin m →₀ ℕ) (ν : Fin n →₀ ℕ) : B :=
   coeff μ (ν.prod fun j k => a j ^ k)
 
+/--
+@isnad1 id=finite.1h5v.s6.d4a49c5a2f81 from=translated src=- shape=7cd712cc vocab=f6e3b997
+-/
 theorem M_row_finite {a : Fin n → MvPowerSeries (Fin m) B} (ha : HasSubst a) (μ : Fin m →₀ ℕ) :
     {ν : Fin n →₀ ℕ | M a μ ν ≠ 0}.Finite := by
   have h := coeff_subst_finite ha (fun _ => (1 : B) : MvPowerSeries (Fin n) B) μ
@@ -138,10 +177,16 @@ theorem M_row_finite {a : Fin n → MvPowerSeries (Fin m) B} (ha : HasSubst a) (
 noncomputable def S {a : Fin n → MvPowerSeries (Fin m) B} (ha : HasSubst a) (μ : Fin m →₀ ℕ) :
     Finset (Fin n →₀ ℕ) := (M_row_finite ha μ).toFinset
 
+/--
+@isnad1 id=iff.1h6v.s6.6012402f83a0 from=translated src=- shape=a535e65f vocab=b06a7007
+-/
 theorem mem_S {a : Fin n → MvPowerSeries (Fin m) B} (ha : HasSubst a) {μ : Fin m →₀ ℕ} {ν : Fin n →₀ ℕ} :
     ν ∈ S ha μ ↔ M a μ ν ≠ 0 := by
   rw [S, Set.Finite.mem_toFinset]; rfl
 
+/--
+@isnad1 id=eq.1h6v.s8.cf7927b037ff from=translated src=- shape=d6cb7599 vocab=4e12638f
+-/
 theorem prod_X_pow_eq_monomial {σ τ : Type*} (ι : σ → τ) (ε : σ →₀ ℕ) (E : τ →₀ ℕ)
     (hE : ∀ t, E t = ∑ s ∈ ε.support, if ι s = t then ε s else 0) :
     (ε.prod fun s k => (X (ι s) : MvPowerSeries τ B) ^ k) = monomial E 1 := by
@@ -168,10 +213,16 @@ noncomputable def θL (ω : Type*) (a : Fin n → MvPowerSeries (Fin m) B) :
   Sum.elim (fun w => X (Sum.inl w)) (fun k => subst (fun j => (X (Sum.inr j) : MvPowerSeries (ω ⊕ Fin m) B)) (a k))
 
 omit [Finite ω] in
+/--
+@isnad1 id=eq.0h6v.s7.b8267a4c75bb from=translated src=- shape=34f63e63 vocab=d4ca72e1
+-/
 theorem θL_inr (a : Fin n → MvPowerSeries (Fin m) B) (k : Fin n) :
     θL ω a (Sum.inr k) = rename (⇑(Function.Embedding.inr : Fin m ↪ ω ⊕ Fin m)) (a k) := by
   rw [θL, Sum.elim_inr, rename_eq_subst]; rfl
 
+/--
+@isnad1 id=hassubst.1h5v.s7.74b6e95c5c88 from=translated src=- shape=319d6ca1 vocab=dd3cc421
+-/
 theorem hasSubst_θL {a : Fin n → MvPowerSeries (Fin m) B} (ha0 : ∀ k, constantCoeff (a k) = 0) :
     HasSubst (θL ω a) := by
   refine hasSubst_of_constantCoeff_zero fun v => ?_
@@ -180,6 +231,9 @@ theorem hasSubst_θL {a : Fin n → MvPowerSeries (Fin m) B} (ha0 : ∀ k, const
   · rw [θL_inr, constantCoeff_rename, ha0]
 
 omit [Finite ω] in
+/--
+@isnad1 id=eq.0h9v.s8.32d208c0e130 from=translated src=- shape=63b0e66a vocab=78ed9bf6
+-/
 theorem coeff_prod_θL (a : Fin n → MvPowerSeries (Fin m) B)
     (ε ε' : ω →₀ ℕ) (ν : Fin n →₀ ℕ) (μ : Fin m →₀ ℕ) :
     coeff (ε'.sumElim μ) ((ε.sumElim ν).prod fun v k => θL ω a v ^ k) = if ε = ε' then M a μ ν else 0 := by
@@ -216,6 +270,9 @@ theorem coeff_prod_θL (a : Fin n → MvPowerSeries (Fin m) B)
       exact not_mem_range_mapDomain_inr μ hne
     · rw [ite_eq_right hle]
 
+/--
+@isnad1 id=eq.1h8v.s9.3e1aa3eb2c9b from=translated src=- shape=a01e3efa vocab=0fc80266
+-/
 theorem coeff_subst_θL {a : Fin n → MvPowerSeries (Fin m) B} (ha0 : ∀ k, constantCoeff (a k) = 0)
     (V : MvPowerSeries (ω ⊕ Fin n) B) (ε : ω →₀ ℕ) (μ : Fin m →₀ ℕ) :
     coeff (ε.sumElim μ) (subst (θL ω a) V) =
@@ -251,10 +308,16 @@ noncomputable def θF (ω : Type*) (a : Fin n → MvPowerSeries (Fin m) B) :
   Sum.elim (fun k => subst (fun j => (X (Sum.inl j) : MvPowerSeries (Fin m ⊕ ω) B)) (a k)) (fun t => X (Sum.inr t))
 
 omit [Finite ω] in
+/--
+@isnad1 id=eq.0h6v.s7.82f1b0133c95 from=translated src=- shape=edcbcf60 vocab=715108a4
+-/
 theorem θF_inl (a : Fin n → MvPowerSeries (Fin m) B) (k : Fin n) :
     θF ω a (Sum.inl k) = rename (⇑(Function.Embedding.inl : Fin m ↪ Fin m ⊕ ω)) (a k) := by
   rw [θF, Sum.elim_inl, rename_eq_subst]; rfl
 
+/--
+@isnad1 id=hassubst.1h5v.s7.5003f93e4806 from=translated src=- shape=d6f05222 vocab=28b6cded
+-/
 theorem hasSubst_θF {a : Fin n → MvPowerSeries (Fin m) B} (ha0 : ∀ k, constantCoeff (a k) = 0) :
     HasSubst (θF ω a) := by
   refine hasSubst_of_constantCoeff_zero fun v => ?_
@@ -263,6 +326,9 @@ theorem hasSubst_θF {a : Fin n → MvPowerSeries (Fin m) B} (ha0 : ∀ k, const
   · rw [θF, Sum.elim_inr, constantCoeff_X]
 
 omit [Finite ω] in
+/--
+@isnad1 id=eq.0h9v.s8.09d364912636 from=translated src=- shape=2a4e3997 vocab=a9dfb69d
+-/
 theorem coeff_prod_θF (a : Fin n → MvPowerSeries (Fin m) B)
     (δ δ' : ω →₀ ℕ) (ν : Fin n →₀ ℕ) (μ : Fin m →₀ ℕ) :
     coeff (μ.sumElim δ') ((ν.sumElim δ).prod fun v k => θF ω a v ^ k) = if δ = δ' then M a μ ν else 0 := by
@@ -299,6 +365,9 @@ theorem coeff_prod_θF (a : Fin n → MvPowerSeries (Fin m) B)
       exact not_mem_range_mapDomain_inl μ hne
     · rw [ite_eq_right hle]
 
+/--
+@isnad1 id=eq.1h8v.s9.cfe566c5f3bc from=translated src=- shape=fb2a4fb4 vocab=6f35b477
+-/
 theorem coeff_subst_θF {a : Fin n → MvPowerSeries (Fin m) B} (ha0 : ∀ k, constantCoeff (a k) = 0)
     (H : MvPowerSeries (Fin n ⊕ ω) B) (μ : Fin m →₀ ℕ) (δ : ω →₀ ℕ) :
     coeff (μ.sumElim δ) (subst (θF ω a) H) =
@@ -333,9 +402,15 @@ def sl (V : MvPowerSeries ((Fin d ⊕ Fin q) ⊕ Fin n) B) (δ : Fin d →₀ �
     MvPowerSeries (Fin q) B :=
   fun γ => coeff ((δ.sumElim γ).sumElim ν) V
 
+/--
+@isnad1 id=eq.0h8v.s8.bf510da32b4c from=translated src=- shape=e21e2a39 vocab=60e57b02
+-/
 theorem coeff_sl (V : MvPowerSeries ((Fin d ⊕ Fin q) ⊕ Fin n) B) (δ : Fin d →₀ ℕ) (ν : Fin n →₀ ℕ)
     (γ : Fin q →₀ ℕ) : coeff γ (sl V δ ν) = coeff ((δ.sumElim γ).sumElim ν) V := rfl
 
+/--
+@isnad1 id=eq.0h9v.s6.23af8db11db6 from=translated src=- shape=621a798b vocab=bed1c755
+-/
 theorem sl_sum {κ : Type*} (s : Finset κ) (V : κ → MvPowerSeries ((Fin d ⊕ Fin q) ⊕ Fin n) B)
     (δ : Fin d →₀ ℕ) (ν : Fin n →₀ ℕ) : sl (∑ k ∈ s, V k) δ ν = ∑ k ∈ s, sl (V k) δ ν := by
   ext γ; simp only [coeff_sl, map_sum]
@@ -350,6 +425,9 @@ noncomputable def ofSl (φ : (Fin d →₀ ℕ) → (Fin n →₀ ℕ) → MvPow
     MvPowerSeries ((Fin d ⊕ Fin q) ⊕ Fin n) B :=
   fun E => coeff (sndE (fstE E)) (φ (fstE (fstE E)) (sndE E))
 
+/--
+@isnad1 id=eq.0h7v.s6.451427cd296b from=translated src=- shape=d79987c5 vocab=5dc9628d
+-/
 theorem sl_ofSl (φ : (Fin d →₀ ℕ) → (Fin n →₀ ℕ) → MvPowerSeries (Fin q) B) (δ : Fin d →₀ ℕ) (ν : Fin n →₀ ℕ) :
     sl (ofSl φ) δ ν = φ δ ν := by
   ext γ
@@ -360,10 +438,16 @@ theorem sl_ofSl (φ : (Fin d →₀ ℕ) → (Fin n →₀ ℕ) → MvPowerSerie
 def ιE (d q n : ℕ) : Fin q ↪ (Fin d ⊕ Fin q) ⊕ Fin n :=
   ⟨fun l => Sum.inl (Sum.inr l), fun _ _ h => by simpa using h⟩
 
+/--
+@isnad1 id=eq.0h5v.s8.8c0982d56561 from=translated src=- shape=d920ae5f vocab=3f919c4f
+-/
 theorem subst_eq_rename_ιE (i : MvPowerSeries (Fin q) B) :
     subst (fun l => (X (Sum.inl (Sum.inr l)) : MvPowerSeries ((Fin d ⊕ Fin q) ⊕ Fin n) B)) i = rename (⇑(ιE d q n)) i := by
   rw [rename_eq_subst]; rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.eca00b45e886 from=translated src=- shape=1fb4b7b1 vocab=1fb70fce
+-/
 theorem embDomain_ιE (γ : Fin q →₀ ℕ) :
     Finsupp.embDomain (ιE d q n) γ = (((0 : Fin d →₀ ℕ).sumElim γ).sumElim (0 : Fin n →₀ ℕ)) := by
   ext v
@@ -377,6 +461,9 @@ theorem embDomain_ιE (γ : Fin q →₀ ℕ) :
     · rfl
     · rintro ⟨l, hl⟩; cases hl
 
+/--
+@isnad1 id=eq.0h8v.s9.9a666888dd75 from=translated src=- shape=973c3de4 vocab=7aaf2885
+-/
 theorem coeff_rename_ιE (i : MvPowerSeries (Fin q) B) (δ : Fin d →₀ ℕ) (γ : Fin q →₀ ℕ) (ν : Fin n →₀ ℕ) :
     coeff ((δ.sumElim γ).sumElim ν) (rename (⇑(ιE d q n)) i) = if δ = 0 ∧ ν = 0 then coeff γ i else 0 := by
   split_ifs with h
@@ -386,6 +473,9 @@ theorem coeff_rename_ιE (i : MvPowerSeries (Fin q) B) (δ : Fin d →₀ ℕ) (
     rw [← Finsupp.embDomain_eq_mapDomain, embDomain_ιE, sumElim_ext, sumElim_ext] at hγ'
     exact h ⟨hγ'.1.1.symm, hγ'.2.symm⟩
 
+/--
+@isnad1 id=eq.0h8v.s8.af10557bcf38 from=translated src=- shape=daaffe9a vocab=010f7a52
+-/
 theorem sl_mul_rename (h : MvPowerSeries ((Fin d ⊕ Fin q) ⊕ Fin n) B) (i : MvPowerSeries (Fin q) B)
     (δ : Fin d →₀ ℕ) (ν : Fin n →₀ ℕ) :
     sl (h * rename (⇑(ιE d q n)) i) δ ν = sl h δ ν * i := by
@@ -439,6 +529,9 @@ section SpanChar
 
 variable {B : Type*} [CommRing B] {d q n : ℕ}
 
+/--
+@isnad1 id=mem.1h8v.s8.b877f0f1c33f from=translated src=- shape=c4df6f5b vocab=fae57dd1
+-/
 theorem sl_mem_of_mem_span (I : Ideal (MvPowerSeries (Fin q) B))
     {V : MvPowerSeries ((Fin d ⊕ Fin q) ⊕ Fin n) B}
     (hV : V ∈ Ideal.span ((MvPowerSeries.subst
@@ -453,6 +546,9 @@ theorem sl_mem_of_mem_span (I : Ideal (MvPowerSeries (Fin q) B))
     subst_eq_rename_ιE, sl_mul_rename]
   exact I.mul_mem_left _ hi
 
+/--
+@isnad1 id=mem.1h6v.s8.6e2648dbbbf3 from=translated src=- shape=a4cd0a31 vocab=1f4b7ada
+-/
 theorem mem_span_of_sl_mem [IsNoetherianRing B] (I : Ideal (MvPowerSeries (Fin q) B))
     {V : MvPowerSeries ((Fin d ⊕ Fin q) ⊕ Fin n) B} (hV : ∀ δ ν, sl V δ ν ∈ I) :
     V ∈ Ideal.span ((MvPowerSeries.subst
@@ -481,6 +577,9 @@ end SpanChar
 end K2Transfer
 
 open MvPowerSeries K2Transfer in
+/--
+@isnad1 id=mem.5h8v.s10.72df6e34edfa from=translated src=- shape=68f6ea44 vocab=2f322bbd
+-/
 theorem solution
     {B : Type} [CommRing B] [IsNoetherianRing B] {q : ℕ} (I : Ideal (MvPowerSeries (Fin q) B))
     (hfin : Module.Finite B (MvPowerSeries (Fin q) B ⧸ I))

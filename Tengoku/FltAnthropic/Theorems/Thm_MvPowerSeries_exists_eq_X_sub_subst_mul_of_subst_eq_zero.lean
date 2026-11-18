@@ -11,6 +11,9 @@ universe u
 
 open MvPowerSeries
 
+/--
+@isnad1 id=ex.2h3v.s8.c9719abe24c1 from=translated src=- shape=29846bc6 vocab=570a1e29
+-/
 theorem MvPowerSeries.exists_eq_X_sub_subst_mul_of_subst_eq_zero
     {R : Type u} [CommRing R] (f : MvPowerSeries (Fin 2) R)
     (φ : PowerSeries R) (hφ0 : PowerSeries.constantCoeff φ = 0)

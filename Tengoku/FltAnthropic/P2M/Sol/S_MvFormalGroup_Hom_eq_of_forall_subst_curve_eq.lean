@@ -19,6 +19,9 @@ variable {R : Type u} [CommRing R] {d : ℕ}
 def deg (β : Fin d →₀ ℕ) : ℕ := ∑ j, β j
 def wt (K : ℕ) (β : Fin d →₀ ℕ) : ℕ := ∑ j, β j * K ^ (j : ℕ)
 
+/--
+@isnad1 id=le.0h3v.s5.62daae61ef38 from=translated src=- shape=1fd2705e vocab=cdd0dc98
+-/
 theorem le_deg (β : Fin d →₀ ℕ) (j : Fin d) : β j ≤ deg β :=
   Finset.single_le_sum (f := fun j => β j) (fun _ _ => Nat.zero_le _) (Finset.mem_univ j)
 
@@ -34,6 +37,9 @@ theorem eq_of_wt_eq {K : ℕ} {α β : Fin d →₀ ℕ} (hα : ∀ j, α j < K)
   have := congrFun this j
   simpa using this
 
+/--
+@isnad1 id=lt.1h3v.s5.156fee5ae3eb from=translated src=- shape=22af9382 vocab=5dd8f732
+-/
 theorem wt_lt_pow {K : ℕ} {α : Fin d →₀ ℕ} (hK : deg α < K) : wt K α < K ^ d := by
   rcases Nat.eq_zero_or_pos d with hd | hd
   · subst hd
@@ -46,6 +52,9 @@ theorem wt_lt_pow {K : ℕ} {α : Fin d →₀ ℕ} (hK : deg α < K) : wt K α 
       _ < K * K ^ (d - 1) := Nat.mul_lt_mul_of_lt_of_le hK le_rfl (Nat.pow_pos (by omega))
       _ = K ^ d := by rw [← pow_succ']; congr 1; omega
 
+/--
+@isnad1 id=eq.0h3v.s7.bf0f7f03c7a4 from=translated src=- shape=907d0e8a vocab=bd27cc0e
+-/
 theorem weight_eq (K : ℕ) (β : Fin d →₀ ℕ) :
     (∑ j : Fin d, (K ^ d + K ^ (j : ℕ)) * β j) = K ^ d * deg β + wt K β := by
   simp only [add_mul, Finset.sum_add_distrib, deg, wt, Finset.mul_sum]
@@ -123,6 +132,9 @@ theorem eq_zero_of_forall_subst_X_pow (D : MvPowerSeries (Fin d) R)
 end HomExtSol
 
 open HomExtSol in
+/--
+@isnad1 id=eq.1h7v.s7.eed82c32b085 from=translated src=- shape=d7f5042d vocab=52e42105
+-/
 theorem solution
     {R : Type u} [CommRing R] {d d' : ℕ} (Φ : MvFormalGroup d R) (Φ' : MvFormalGroup d' R)
     (φ ψ : Φ.Hom Φ')

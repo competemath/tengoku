@@ -11,6 +11,9 @@ universe u
 
 open TensorProduct
 
+/--
+@isnad1 id=ex.2h4v.s10.a77796e7dc7c from=translated src=- shape=e44e329b vocab=e7576d4f
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsNoetherianRing R]
     (M : Type u) [AddCommGroup M] [Module R M] [Module.Finite R M]

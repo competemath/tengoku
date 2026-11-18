@@ -23,6 +23,9 @@ open Classical
 
 variable (p : ℕ) [hp : Fact p.Prime] (R : Type u) [CommRing R]
 
+/--
+@isnad1 id=eq.0h5v.s9.a665be642c91 from=translated src=- shape=9414692b vocab=a9baead6
+-/
 theorem subst_coe_coe {σ τ : Type*} (g : σ → MvPolynomial τ ℤ) (P : MvPolynomial σ ℤ) :
     subst (fun s => ((MvPolynomial.map (Int.castRingHom R) (g s) : MvPolynomial τ R) :
       MvPowerSeries τ R)) ((MvPolynomial.map (Int.castRingHom R) P : MvPolynomial σ R) :
@@ -49,6 +52,9 @@ def wS (N : ℕ) : MvPowerSeries ℕ R :=
   ((MvPolynomial.map (Int.castRingHom R) (wittPolynomial p ℤ N) : MvPolynomial ℕ R) :
     MvPowerSeries ℕ R)
 
+/--
+@isnad1 id=eq.0h4v.s8.117793d1a874 from=translated src=- shape=166469d7 vocab=4ac4a848
+-/
 theorem coeff_wS (N : ℕ) (e : ℕ →₀ ℕ) :
     coeff e (wS p R N) = ∑ k ∈ Finset.range (N + 1),
       if e = Finsupp.single k (p ^ (N - k)) then (p : R) ^ k else 0 := by
@@ -59,6 +65,9 @@ theorem coeff_wS (N : ℕ) (e : ℕ →₀ ℕ) :
   · rw [ite_eq_left h.symm, ite_eq_left h]
   · rw [ite_eq_right (fun h' => h h'.symm), ite_eq_right h]
 
+/--
+@isnad1 id=eq.0h5v.s8.5cd27f33de63 from=translated src=- shape=06148b27 vocab=aec495b3
+-/
 theorem coeff_wS_single (N k n : ℕ) :
     coeff (Finsupp.single k (p ^ n)) (wS p R N) = if k + n = N then (p : R) ^ k else 0 := by
   rw [coeff_wS]
@@ -81,6 +90,9 @@ theorem coeff_wS_single (N k n : ℕ) :
       omega
     · exact pow_ne_zero _ hp.out.ne_zero h0
 
+/--
+@isnad1 id=eq.1h4v.s7.fd2313c827b5 from=translated src=- shape=95d0a174 vocab=e430f5bd
+-/
 theorem coeff_wS_of_ne (N : ℕ) (e : ℕ →₀ ℕ) (he : ∀ k n : ℕ, e ≠ Finsupp.single k (p ^ n)) :
     coeff e (wS p R N) = 0 := by
   rw [coeff_wS]
@@ -95,6 +107,9 @@ variable (c : ℕ → R) (G : MvPowerSeries ℕ R)
   (hG' : ∀ e : ℕ →₀ ℕ, (∀ k n : ℕ, e ≠ Finsupp.single k (p ^ n)) → (coeff e G : R) = 0)
 
 include hG hG' in
+/--
+@isnad1 id=ex.2h5v.s9.c3d05fd5dee4 from=translated src=- shape=30ee2b3b vocab=fda67b99
+-/
 theorem coeff_GM_eventually (e : ℕ →₀ ℕ) :
     ∃ M₀ : ℕ, ∀ M ≥ M₀, coeff e (GM p c M) = coeff e G := by
   by_cases he : ∃ k n : ℕ, e = Finsupp.single k (p ^ n)
@@ -112,6 +127,9 @@ theorem coeff_GM_eventually (e : ℕ →₀ ℕ) :
     rw [map_smul, coeff_wS_of_ne p R N e he, smul_zero]
 
 include hG hG' in
+/--
+@isnad1 id=tendsto.2h4v.s9.d4a905c21be1 from=translated src=- shape=5977bcb7 vocab=0d691f9a
+-/
 theorem tendsto_GM :
     @Tendsto ℕ (MvPowerSeries ℕ R) (GM p c) atTop
       (@nhds _ (@MvPowerSeries.WithPiTopology.instTopologicalSpace ℕ R ⊥) G) := by
@@ -121,6 +139,9 @@ theorem tendsto_GM :
   obtain ⟨M₀, hM₀⟩ := coeff_GM_eventually p c G hG hG' e
   exact tendsto_atTop_of_eventually_const hM₀
 
+/--
+@isnad1 id=eq.0h3v.s8.2f94e1ae3607 from=translated src=- shape=2f468e92 vocab=d8c19f88
+-/
 theorem subst_addFam_wS (N : ℕ) :
     subst (MvFormalGroup.WittLaw.addFam p R) (wS p R N) =
       subst (fun m => (X (0, m) : MvPowerSeries (Fin 2 × ℕ) R)) (wS p R N) +
@@ -141,6 +162,9 @@ theorem subst_addFam_wS (N : ℕ) :
     MvPolynomial.rename_eq_aeval]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.a36623d88640 from=translated src=- shape=a3d5e004 vocab=f35d0881
+-/
 theorem subst_addFam_GM (M : ℕ) :
     subst (MvFormalGroup.WittLaw.addFam p R) (GM p c M) =
       subst (fun m => (X (0, m) : MvPowerSeries (Fin 2 × ℕ) R)) (GM p c M) +
@@ -158,6 +182,9 @@ theorem subst_addFam_GM (M : ℕ) :
 end GWAddBody
 
 open GWAddBody Filter MvPowerSeries.WithPiTopology in
+/--
+@isnad1 id=eq.2h4v.s9.b2f5117aaf11 from=translated src=- shape=6ad829b3 vocab=46b7a08c
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] {R : Type u} [CommRing R] (c : ℕ → R) (G : MvPowerSeries ℕ R)
     (hG : ∀ k n : ℕ, (MvPowerSeries.coeff (Finsupp.single k (p ^ n)) G : R) = (p : R) ^ k * c (k + n))

@@ -19,6 +19,9 @@ open _root_.Module.Invertible open _root_.Module
 
 variable {A : Type u} [CommRing A] {P : Type v} [AddCommGroup P] [Module A P]
 
+/--
+@isnad1 id=eq.0h7v.s8.a29a02a1dc86 from=translated src=- shape=64e867e0 vocab=28101022
+-/
 lemma mul_comm_of_equiv {B : Type*} [CommRing B] {L : Type*} [AddCommGroup L] [Module B L]
     (e : B ≃ₗ[B] L) (f g : Module.Dual B L) (l l' : L) : f l * g l' = f l' * g l := by
   obtain ⟨a, rfl⟩ := e.surjective l
@@ -34,6 +37,9 @@ variable [Module.Finite A P] [Module.Projective A P]
 
 include h in
 
+/--
+@isnad1 id=eq.1h3v.s9.33f881c76351 from=translated src=- shape=64f507ee vocab=20620a39
+-/
 lemma finrank_localization_eq_one (m : Ideal A) [m.IsMaximal] :
     Module.finrank (Localization.AtPrime m) (Localization.AtPrime m ⊗[A] P) = 1 := by
   haveI : Module.Free (Localization.AtPrime m) (Localization.AtPrime m ⊗[A] P) :=
@@ -48,6 +54,9 @@ lemma finrank_localization_eq_one (m : Ideal A) [m.IsMaximal] :
 
 include h in
 
+/--
+@isnad1 id=eq.1h6v.s8.2e63543296e8 from=translated src=- shape=0ed94fbb vocab=35d43be6
+-/
 lemma apply_mul_apply_comm (φ ψ : Module.Dual A P) (p q : P) : φ p * ψ q = φ q * ψ p := by
   rw [← sub_eq_zero]
   apply eq_zero_of_localization
@@ -66,6 +75,9 @@ lemma apply_mul_apply_comm (φ ψ : Module.Dual A P) (p q : P) : φ p * ψ q = �
 
 omit h in
 
+/--
+@isnad1 id=ex.0h2v.s7.8e509ec37b91 from=translated src=- shape=9514193f vocab=1abad674
+-/
 lemma exists_dualBasis :
     ∃ (n : ℕ) (x : Fin n → P) (φ : Fin n → Module.Dual A P), ∀ p : P, ∑ i, φ i p • x i = p := by
   obtain ⟨n, f, hf⟩ := Module.Finite.exists_fin' A P
@@ -79,6 +91,9 @@ lemma exists_dualBasis :
   simp [map_sum, map_smul]
 
 include h in
+/--
+@isnad1 id=surjecti.1h2v.s10.3c0d88115a32 from=translated src=- shape=20031fc6 vocab=b134157c
+-/
 lemma surjective_contractLeft : Function.Surjective (contractLeft A P) := by
   obtain ⟨n, x, φ, hx⟩ := exists_dualBasis (A := A) (P := P)
   rw [← LinearMap.range_eq_top]
@@ -99,6 +114,9 @@ lemma surjective_contractLeft : Function.Surjective (contractLeft A P) := by
   exact zero_ne_one h1
 
 include h in
+/--
+@isnad1 id=injectiv.1h2v.s10.cf9ae0d53884 from=translated src=- shape=20031fc6 vocab=0f392cb7
+-/
 lemma injective_contractLeft : Function.Injective (contractLeft A P) := by
   obtain ⟨n, x, φ, hx⟩ := exists_dualBasis (A := A) (P := P)
   let u : Module.Dual A P ⊗[A] P := ∑ i, φ i ⊗ₜ x i
@@ -123,6 +141,9 @@ lemma injective_contractLeft : Function.Injective (contractLeft A P) := by
 
 end Module.Invertible.RankOneAux
 
+/--
+@isnad1 id=invertib.1h2v.s7.611d52594f94 from=translated src=- shape=e4b4eeb8 vocab=90ae3be9
+-/
 theorem solution
     {A : Type u} [CommRing A] (P : Type v) [AddCommGroup P] [Module A P]
     [Module.Finite A P] [Module.Projective A P]

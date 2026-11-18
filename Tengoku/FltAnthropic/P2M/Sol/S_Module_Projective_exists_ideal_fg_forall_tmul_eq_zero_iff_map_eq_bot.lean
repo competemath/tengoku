@@ -11,6 +11,9 @@ universe u v
 
 open TensorProduct
 
+/--
+@isnad1 id=ex.0h3v.s8.df9b703ed931 from=translated src=- shape=dc6072a3 vocab=05077313
+-/
 theorem solution
     (B : Type u) [CommRing B] (M : Type v) [AddCommGroup M] [Module B M]
     [Module.Finite B M] [Module.Projective B M] (x : M) :

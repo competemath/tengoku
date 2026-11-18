@@ -27,22 +27,37 @@ abbrev Xl (n : ℕ) (R : Type u) [CommRing R] : Fin n → MvPowerSeries (Fin n �
 abbrev Xr (n : ℕ) (R : Type u) [CommRing R] : Fin n → MvPowerSeries (Fin n ⊕ Fin n) R :=
   fun l => X (Sum.inr l)
 
+/--
+@isnad1 id=eq.0h3v.s7.b0b7db80b31a from=translated src=- shape=e2685574 vocab=f37bd4ff
+-/
 theorem constantCoeff_Xl (i : Fin n) : (Xl n R i).constantCoeff = 0 := constantCoeff_X _
+/--
+@isnad1 id=eq.0h3v.s7.750d6f68d575 from=translated src=- shape=e2685574 vocab=c026a7c5
+-/
 theorem constantCoeff_Xr (i : Fin n) : (Xr n R i).constantCoeff = 0 := constantCoeff_X _
 
 def app {τ : Type} (T : Fin n → MvPowerSeries (Fin n) R) (a : Fin n → MvPowerSeries τ R) :
     Fin n → MvPowerSeries τ R :=
   fun j => subst a (T j)
 
+/--
+@isnad1 id=eq.0h6v.s5.16d2f2e3a52e from=translated src=- shape=a4cdd3f5 vocab=9a3f6c50
+-/
 theorem app_apply {τ : Type} (T : Fin n → MvPowerSeries (Fin n) R)
     (a : Fin n → MvPowerSeries τ R) (j : Fin n) : app T a j = subst a (T j) := rfl
 
+/--
+@isnad1 id=eq.2h6v.s8.2007e8bf4492 from=translated src=- shape=f5ba1c5b vocab=9922f97c
+-/
 theorem constantCoeff_app {τ : Type} {T : Fin n → MvPowerSeries (Fin n) R}
     {a : Fin n → MvPowerSeries τ R}
     (hT : ∀ j, (T j).constantCoeff = 0) (ha : ∀ j, (a j).constantCoeff = 0) (j : Fin n) :
     (app T a j).constantCoeff = 0 :=
   constantCoeff_subst_eq_zero (hasSubst_of_constantCoeff_zero ha) ha (hT j)
 
+/--
+@isnad1 id=eq.2h6v.s7.a5836f3e0e76 from=translated src=- shape=d9874dbc vocab=9922f97c
+-/
 theorem app_app {τ : Type} {T U : Fin n → MvPowerSeries (Fin n) R}
     {a : Fin n → MvPowerSeries τ R}
     (hU : ∀ j, (U j).constantCoeff = 0) (ha : ∀ j, (a j).constantCoeff = 0) :
@@ -53,6 +68,9 @@ theorem app_app {τ : Type} {T U : Fin n → MvPowerSeries (Fin n) R}
     (hasSubst_of_constantCoeff_zero ha)]
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s7.5417fbd0cf99 from=translated src=- shape=ff689ae1 vocab=10c18872
+-/
 theorem app_X_left {τ : Type} (a : Fin n → MvPowerSeries τ R)
     (ha : ∀ j, (a j).constantCoeff = 0) :
     app (fun i => (X i : MvPowerSeries (Fin n) R)) a = a := by
@@ -60,6 +78,9 @@ theorem app_X_left {τ : Type} (a : Fin n → MvPowerSeries τ R)
   simp only [app_apply]
   rw [subst_X (hasSubst_of_constantCoeff_zero ha)]
 
+/--
+@isnad1 id=eq.1h8v.s8.2ac86235d226 from=translated src=- shape=e20485ad vocab=948fad82
+-/
 theorem map_app {τ : Type} (f : R →+* S) {T : Fin n → MvPowerSeries (Fin n) R}
     {a : Fin n → MvPowerSeries τ R} (ha : ∀ j, (a j).constantCoeff = 0) (j : Fin n) :
     MvPowerSeries.map f (app T a j) =
@@ -67,12 +88,21 @@ theorem map_app {τ : Type} (f : R →+* S) {T : Fin n → MvPowerSeries (Fin n)
   simp only [app_apply]
   rw [map_subst (hasSubst_of_constantCoeff_zero ha)]
 
+/--
+@isnad1 id=eq.0h5v.s7.43ecd56512d9 from=translated src=- shape=2a135a55 vocab=17842b2b
+-/
 theorem map_Xl (f : R →+* S) (l : Fin n) : MvPowerSeries.map f (Xl n R l) = Xl n S l := by
   simp [Xl]
 
+/--
+@isnad1 id=eq.0h5v.s7.58872911dee9 from=translated src=- shape=2a135a55 vocab=df9346ef
+-/
 theorem map_Xr (f : R →+* S) (l : Fin n) : MvPowerSeries.map f (Xr n R l) = Xr n S l := by
   simp [Xr]
 
+/--
+@isnad1 id=eq.0h6v.s8.e72542a9fe7a from=translated src=- shape=ea9a687b vocab=00e2133a
+-/
 theorem map_elim_app_Xl_Xr (f : R →+* S) (T : Fin n → MvPowerSeries (Fin n) R)
     (s : Fin n ⊕ Fin n) :
     MvPowerSeries.map f (Sum.elim (app T (Xl n R)) (app T (Xr n R)) s) =
@@ -90,6 +120,9 @@ theorem map_elim_app_Xl_Xr (f : R →+* S) (T : Fin n → MvPowerSeries (Fin n) 
     funext l
     exact map_Xr f l
 
+/--
+@isnad1 id=eq.1h7v.s8.b58d9f821d94 from=translated src=- shape=ab29ce5f vocab=dd523465
+-/
 theorem map_subst_of_constantCoeff {σ τ : Type} [Finite σ] (f : R →+* S)
     {a : σ → MvPowerSeries τ R} (ha : ∀ s, (a s).constantCoeff = 0) (g : MvPowerSeries σ R) :
     MvPowerSeries.map f (subst a g) =
@@ -116,6 +149,9 @@ theorem eq_of_proj_eq {b₁ b₂ : B} (h' : p' b₁ = p' b₂) (h'' : p'' b₁ =
 
 include hcomm hpb in
 
+/--
+@isnad1 id=eq.4h11v.s9.43bf2ff21069 from=translated src=- shape=94457767 vocab=297242f1
+-/
 theorem mv_eq_of_proj_eq {τ : Type} {g₁ g₂ : MvPowerSeries τ B}
     (h' : MvPowerSeries.map p' g₁ = MvPowerSeries.map p' g₂)
     (h'' : MvPowerSeries.map p'' g₁ = MvPowerSeries.map p'' g₂) : g₁ = g₂ := by
@@ -134,6 +170,9 @@ noncomputable def glue {τ : Type} (f' : MvPowerSeries τ A') (f'' : MvPowerSeri
         have := congrArg (coeff e) h
         simpa only [coeff_map] using this))
 
+/--
+@isnad1 id=and.2h12v.s10.b312f15505a6 from=translated src=- shape=6e259ade vocab=9c7cf633
+-/
 theorem coeff_glue {τ : Type} (f' : MvPowerSeries τ A') (f'' : MvPowerSeries τ A'')
     (h : MvPowerSeries.map q' f' = MvPowerSeries.map q'' f'') (e : τ →₀ ℕ) :
     p' (coeff e (glue p' p'' q' q'' hpb f' f'' h)) = coeff e f' ∧
@@ -143,6 +182,9 @@ theorem coeff_glue {τ : Type} (f' : MvPowerSeries τ A') (f'' : MvPowerSeries �
         have := congrArg (coeff e) h
         simpa only [coeff_map] using this))).1
 
+/--
+@isnad1 id=eq.2h11v.s9.dfebbb8dbcc6 from=translated src=- shape=590ee6a1 vocab=50795fbc
+-/
 theorem map_glue_left {τ : Type} (f' : MvPowerSeries τ A') (f'' : MvPowerSeries τ A'')
     (h : MvPowerSeries.map q' f' = MvPowerSeries.map q'' f'') :
     MvPowerSeries.map p' (glue p' p'' q' q'' hpb f' f'' h) = f' := by
@@ -150,6 +192,9 @@ theorem map_glue_left {τ : Type} (f' : MvPowerSeries τ A') (f'' : MvPowerSerie
   rw [coeff_map]
   exact (coeff_glue p' p'' q' q'' hpb f' f'' h e).1
 
+/--
+@isnad1 id=eq.2h11v.s9.d37cdfd3e9ad from=translated src=- shape=dc55ca3b vocab=50795fbc
+-/
 theorem map_glue_right {τ : Type} (f' : MvPowerSeries τ A') (f'' : MvPowerSeries τ A'')
     (h : MvPowerSeries.map q' f' = MvPowerSeries.map q'' f'') :
     MvPowerSeries.map p'' (glue p' p'' q' q'' hpb f' f'' h) = f'' := by
@@ -159,6 +204,9 @@ theorem map_glue_right {τ : Type} (f' : MvPowerSeries τ A') (f'' : MvPowerSeri
 
 include hcomm hpb in
 
+/--
+@isnad1 id=eq.4h10v.s9.36bead95b7e5 from=translated src=- shape=5a037ccd vocab=d5052c9b
+-/
 theorem constantCoeff_eq_zero_of_proj {τ : Type} {g : MvPowerSeries τ B}
     (h' : (MvPowerSeries.map p' g).constantCoeff = 0)
     (h'' : (MvPowerSeries.map p'' g).constantCoeff = 0) : g.constantCoeff = 0 := by
@@ -182,6 +230,9 @@ def homR (M : Fin n → MvPowerSeries (Fin n ⊕ Fin n) R) (T : Fin n → MvPowe
     (i : Fin n) : MvPowerSeries (Fin n ⊕ Fin n) R :=
   subst (Sum.elim (app T (Xl n R)) (app T (Xr n R))) (M i)
 
+/--
+@isnad1 id=iff.0h6v.s7.57bec397831d from=translated src=- shape=e497eb1e vocab=e8cf4556
+-/
 theorem hom_iff (F G : MvFormalGroup n R) (T : Fin n → MvPowerSeries (Fin n) R) (i : Fin n) :
     subst F.toPowerSeries (T i) =
         subst (Sum.elim (fun j => subst (fun l => (X (Sum.inl l) : MvPowerSeries (Fin n ⊕ Fin n) R))
@@ -190,6 +241,9 @@ theorem hom_iff (F G : MvFormalGroup n R) (T : Fin n → MvPowerSeries (Fin n) R
       homL F.toPowerSeries T i = homR G.toPowerSeries T i :=
   Iff.rfl
 
+/--
+@isnad1 id=eq.1h7v.s9.2a61d4e52e59 from=translated src=- shape=ed01ef3a vocab=eb9729f4
+-/
 theorem map_homL (f : R →+* S) {L : Fin n → MvPowerSeries (Fin n ⊕ Fin n) R}
     (hL : ∀ i, (L i).constantCoeff = 0) (T : Fin n → MvPowerSeries (Fin n) R) (i : Fin n) :
     MvPowerSeries.map f (homL L T i) =
@@ -197,6 +251,9 @@ theorem map_homL (f : R →+* S) {L : Fin n → MvPowerSeries (Fin n ⊕ Fin n) 
   simp only [homL]
   rw [map_subst_of_constantCoeff f hL]
 
+/--
+@isnad1 id=eq.1h7v.s9.5166048f8513 from=translated src=- shape=bafbf40b vocab=45a8617c
+-/
 theorem map_homR (f : R →+* S) (M : Fin n → MvPowerSeries (Fin n ⊕ Fin n) R)
     {T : Fin n → MvPowerSeries (Fin n) R} (hT : ∀ i, (T i).constantCoeff = 0) (i : Fin n) :
     MvPowerSeries.map f (homR M T i) =
@@ -221,6 +278,9 @@ variable {B A' A'' A : Type u} [CommRing B] [CommRing A'] [CommRing A''] [CommRi
   (hpb : ∀ (a' : A') (a'' : A''), q' a' = q'' a'' → ∃! b : B, p' b = a' ∧ p'' b = a'')
 
 include hcomm hpb in
+/--
+@isnad1 id=existsun.3h13v.s9.082d37cd0b54 from=translated src=- shape=44acb99d vocab=b575dd9d
+-/
 theorem existsUnique_hom {n : ℕ} (G₁ G₂ : MvFormalGroup n B)
     (α' : (G₁.map p').Hom (G₂.map p')) (α'' : (G₁.map p'').Hom (G₂.map p''))
     (hα : ∀ i, MvPowerSeries.map q' (α'.toPowerSeries i) =
@@ -277,9 +337,15 @@ def mulVecT {τ : Type} (M : Matrix (Fin n) (Fin n) R) (T : Fin n → MvPowerSer
     Fin n → MvPowerSeries τ R :=
   fun i => ∑ j, M i j • T j
 
+/--
+@isnad1 id=eq.0h6v.s6.22b3337b50ee from=translated src=- shape=b49e5afe vocab=9a08fa5e
+-/
 theorem mulVecT_apply {τ : Type} (M : Matrix (Fin n) (Fin n) R) (T : Fin n → MvPowerSeries τ R)
     (i : Fin n) : mulVecT M T i = ∑ j, M i j • T j := rfl
 
+/--
+@isnad1 id=eq.1h6v.s7.e7e2443aa540 from=translated src=- shape=eb3447a6 vocab=1ae7458d
+-/
 theorem constantCoeff_mulVecT {τ : Type} (M : Matrix (Fin n) (Fin n) R)
     {T : Fin n → MvPowerSeries τ R} (hT : ∀ j, (T j).constantCoeff = 0) (i : Fin n) :
     (mulVecT M T i).constantCoeff = 0 := by
@@ -287,6 +353,9 @@ theorem constantCoeff_mulVecT {τ : Type} (M : Matrix (Fin n) (Fin n) R)
   refine Finset.sum_eq_zero fun j _ => ?_
   rw [map_smul, coeff_zero_eq_constantCoeff_apply, hT j, smul_zero]
 
+/--
+@isnad1 id=eq.1h8v.s6.19d6b1f852db from=translated src=- shape=7bb13d43 vocab=35927faa
+-/
 theorem subst_mulVecT {τ τ' : Type} (M : Matrix (Fin n) (Fin n) R) (T : Fin n → MvPowerSeries τ R)
     {a : τ → MvPowerSeries τ' R} (ha : HasSubst a) (i : Fin n) :
     subst a (mulVecT M T i) = mulVecT M (fun j => subst a (T j)) i := by
@@ -295,17 +364,26 @@ theorem subst_mulVecT {τ τ' : Type} (M : Matrix (Fin n) (Fin n) R) (T : Fin n 
   refine Finset.sum_congr rfl fun j _ => ?_
   rw [map_smul]
 
+/--
+@isnad1 id=eq.0h6v.s6.b92a210cbc17 from=translated src=- shape=bed414bb vocab=a1626c96
+-/
 theorem mulVecT_mulVecT {τ : Type} (M N : Matrix (Fin n) (Fin n) R)
     (T : Fin n → MvPowerSeries τ R) : mulVecT M (mulVecT N T) = mulVecT (M * N) T := by
   funext i
   simp only [mulVecT_apply, Matrix.mul_apply, Finset.smul_sum, smul_smul, Finset.sum_smul]
   rw [Finset.sum_comm]
 
+/--
+@isnad1 id=eq.0h4v.s6.180a8712ad42 from=translated src=- shape=7e490790 vocab=15497098
+-/
 theorem mulVecT_one {τ : Type} (T : Fin n → MvPowerSeries τ R) : mulVecT 1 T = T := by
   funext i
   simp only [mulVecT_apply, Matrix.one_apply, ite_smul, one_smul, zero_smul,
     Finset.sum_ite_eq, Finset.mem_univ, ite_true]
 
+/--
+@isnad1 id=eq.0h5v.s6.68b668b9e4f4 from=translated src=- shape=1e9c0167 vocab=44902686
+-/
 theorem linearPart_mulVecT {m : ℕ} (M : Matrix (Fin n) (Fin n) R)
     (T : Fin n → MvPowerSeries (Fin m) R) :
     MvFormalGroup.linearPart (mulVecT M T) = M * MvFormalGroup.linearPart T := by
@@ -313,6 +391,9 @@ theorem linearPart_mulVecT {m : ℕ} (M : Matrix (Fin n) (Fin n) R)
   simp only [MvFormalGroup.linearPart, Matrix.of_apply, Matrix.mul_apply, mulVecT_apply,
     map_sum, map_smul, smul_eq_mul]
 
+/--
+@isnad1 id=ex.2h3v.s8.38b1b7ac24b2 from=translated src=- shape=1bacf72a vocab=16d287ba
+-/
 theorem exists_inverse_of_isUnit_linearPart (Φ : Fin n → MvPowerSeries (Fin n) R)
     (h0 : ∀ i, (Φ i).constantCoeff = 0) (hU : IsUnit (MvFormalGroup.linearPart Φ)) :
     ∃ Ψ : Fin n → MvPowerSeries (Fin n) R,
@@ -378,6 +459,9 @@ section Lift
 
 variable {A'' A : Type u} [CommRing A''] [CommRing A] (q : A'' →+* A) {n : ℕ}
 
+/--
+@isnad1 id=ex.2h5v.s8.81e7e9849825 from=translated src=- shape=7237b637 vocab=867ff451
+-/
 theorem exists_lift (hq : Function.Surjective q) (φ : Fin n → MvPowerSeries (Fin n) A)
     (h0 : ∀ i, (φ i).constantCoeff = 0) :
     ∃ Φ : Fin n → MvPowerSeries (Fin n) A'',
@@ -397,12 +481,18 @@ theorem exists_lift (hq : Function.Surjective q) (φ : Fin n → MvPowerSeries (
       rw [ite_eq_left rfl, map_zero, coeff_zero_eq_constantCoeff_apply, h0]
     · rw [ite_eq_right he, Function.surjInv_eq hq]
 
+/--
+@isnad1 id=eq.0h5v.s7.4bc35ed739eb from=translated src=- shape=96d36933 vocab=956055a2
+-/
 theorem linearPart_map (Φ : Fin n → MvPowerSeries (Fin n) A'') :
     MvFormalGroup.linearPart (fun i => MvPowerSeries.map q (Φ i)) =
       (MvFormalGroup.linearPart Φ).map q := by
   ext i j
   simp only [MvFormalGroup.linearPart, Matrix.of_apply, Matrix.map_apply, coeff_map]
 
+/--
+@isnad1 id=isunit.1h5v.s8.769ad616d292 from=translated src=- shape=9da8cf2f vocab=7cd1ef14
+-/
 theorem isUnit_linearPart_of_map [IsLocalHom q] (Φ : Fin n → MvPowerSeries (Fin n) A'')
     (hU : IsUnit (MvFormalGroup.linearPart (fun i => MvPowerSeries.map q (Φ i)))) :
     IsUnit (MvFormalGroup.linearPart Φ) := by
@@ -424,22 +514,34 @@ def lawApp {τ : Type} (L : Fin n → MvPowerSeries (Fin n ⊕ Fin n) R)
     (a b : Fin n → MvPowerSeries τ R) : Fin n → MvPowerSeries τ R :=
   fun k => subst (Sum.elim a b) (L k)
 
+/--
+@isnad1 id=eq.0h7v.s6.10a735eeeaed from=translated src=- shape=3d00b2e0 vocab=51b93869
+-/
 theorem lawApp_apply {τ : Type} (L : Fin n → MvPowerSeries (Fin n ⊕ Fin n) R)
     (a b : Fin n → MvPowerSeries τ R) (k : Fin n) :
     lawApp L a b k = subst (Sum.elim a b) (L k) := rfl
 
+/--
+@isnad1 id=eq.2h6v.s8.7e2dc5ae1baf from=translated src=- shape=dfae3d4c vocab=492bfea3
+-/
 theorem elim_constantCoeff {τ : Type} {a b : Fin n → MvPowerSeries τ R}
     (ha : ∀ j, (a j).constantCoeff = 0) (hb : ∀ j, (b j).constantCoeff = 0) :
     ∀ s, (Sum.elim a b s).constantCoeff = 0 := by
   rintro (j | j)
   exacts [ha j, hb j]
 
+/--
+@isnad1 id=eq.3h7v.s8.04bfde0bfd8b from=translated src=- shape=f2207d18 vocab=e5dd48d5
+-/
 theorem constantCoeff_lawApp {τ : Type} {L : Fin n → MvPowerSeries (Fin n ⊕ Fin n) R}
     {a b : Fin n → MvPowerSeries τ R} (hL : ∀ k, (L k).constantCoeff = 0)
     (ha : ∀ j, (a j).constantCoeff = 0) (hb : ∀ j, (b j).constantCoeff = 0) (k : Fin n) :
     (lawApp L a b k).constantCoeff = 0 :=
   constantCoeff_subst_eq_zero (MvFormalGroup.hasSubst_elim ha hb) (elim_constantCoeff ha hb) (hL k)
 
+/--
+@isnad1 id=eq.0h3v.s5.e93d56e6b69b from=translated src=- shape=965ae059 vocab=7c4b68a6
+-/
 theorem lawApp_Xl_Xr (L : Fin n → MvPowerSeries (Fin n ⊕ Fin n) R) :
     lawApp L (Xl n R) (Xr n R) = L := by
   funext k
@@ -449,6 +551,9 @@ theorem lawApp_Xl_Xr (L : Fin n → MvPowerSeries (Fin n ⊕ Fin n) R) :
   rw [this, subst_self]
   rfl
 
+/--
+@isnad1 id=eq.3h7v.s8.b24274f0a456 from=translated src=- shape=e6283b1d vocab=530ba450
+-/
 theorem subst_elim_app_Xl {τ : Type} {T : Fin n → MvPowerSeries (Fin n) R}
     {a b : Fin n → MvPowerSeries τ R} (hT : ∀ j, (T j).constantCoeff = 0)
     (ha : ∀ j, (a j).constantCoeff = 0) (hb : ∀ j, (b j).constantCoeff = 0) (j : Fin n) :
@@ -460,6 +565,9 @@ theorem subst_elim_app_Xl {τ : Type} {T : Fin n → MvPowerSeries (Fin n) R}
   funext l
   exact subst_X (MvFormalGroup.hasSubst_elim ha hb) (Sum.inl l)
 
+/--
+@isnad1 id=eq.3h7v.s8.109d88c4a06d from=translated src=- shape=9052ac16 vocab=5d4a89e0
+-/
 theorem subst_elim_app_Xr {τ : Type} {T : Fin n → MvPowerSeries (Fin n) R}
     {a b : Fin n → MvPowerSeries τ R} (hT : ∀ j, (T j).constantCoeff = 0)
     (ha : ∀ j, (a j).constantCoeff = 0) (hb : ∀ j, (b j).constantCoeff = 0) (j : Fin n) :
@@ -471,6 +579,9 @@ theorem subst_elim_app_Xr {τ : Type} {T : Fin n → MvPowerSeries (Fin n) R}
   funext l
   exact subst_X (MvFormalGroup.hasSubst_elim ha hb) (Sum.inr l)
 
+/--
+@isnad1 id=eq.3h8v.s8.2a4e2fdb5368 from=translated src=- shape=812bfdfe vocab=0508405a
+-/
 theorem subst_elim_lawApp_app {τ : Type} {L : Fin n → MvPowerSeries (Fin n ⊕ Fin n) R}
     {T : Fin n → MvPowerSeries (Fin n) R} {a b : Fin n → MvPowerSeries τ R}
     (hT : ∀ j, (T j).constantCoeff = 0)
@@ -488,6 +599,9 @@ theorem subst_elim_lawApp_app {τ : Type} {L : Fin n → MvPowerSeries (Fin n �
   · exact subst_elim_app_Xl hT ha hb j
   · exact subst_elim_app_Xr hT ha hb j
 
+/--
+@isnad1 id=eq.2h9v.s9.2d9740c1a946 from=translated src=- shape=85a6be4d vocab=7e38604b
+-/
 theorem map_lawApp {τ : Type} (f : R →+* S) (L : Fin n → MvPowerSeries (Fin n ⊕ Fin n) R)
     {a b : Fin n → MvPowerSeries τ R} (ha : ∀ j, (a j).constantCoeff = 0)
     (hb : ∀ j, (b j).constantCoeff = 0) (k : Fin n) :
@@ -499,6 +613,9 @@ theorem map_lawApp {τ : Type} (f : R →+* S) (L : Fin n → MvPowerSeries (Fin
   funext s
   rcases s with j | j <;> rfl
 
+/--
+@isnad1 id=eq.2h8v.s9.c1bc967cfd56 from=translated src=- shape=461cf218 vocab=902e92d6
+-/
 theorem coeff_single_lawApp {τ : Type} (F : MvFormalGroup n R)
     {a b : Fin n → MvPowerSeries τ R} (ha : ∀ j, (a j).constantCoeff = 0)
     (hb : ∀ j, (b j).constantCoeff = 0) (k : Fin n) (t : τ) :
@@ -510,6 +627,9 @@ theorem coeff_single_lawApp {τ : Type} (F : MvFormalGroup n R)
   simp only [Sum.elim_inl, Sum.elim_inr, F.coeff_single_inl, F.coeff_single_inr, ite_mul,
     one_mul, zero_mul, Finset.sum_ite_eq, Finset.mem_univ, ite_true]
 
+/--
+@isnad1 id=eq.1h5v.s9.38ff578c3337 from=translated src=- shape=23d6fb2d vocab=2706f49b
+-/
 theorem coeff_inl_app_Xl {T : Fin n → MvPowerSeries (Fin n) R}
     (hT : ∀ j, (T j).constantCoeff = 0) (k j : Fin n) :
     coeff (Finsupp.single (Sum.inl j) 1) (app T (Xl n R) k) = coeff (Finsupp.single j 1) (T k) := by
@@ -519,6 +639,9 @@ theorem coeff_inl_app_Xl {T : Fin n → MvPowerSeries (Fin n) R}
   rw [Finset.sum_ite_eq]
   simp
 
+/--
+@isnad1 id=eq.1h5v.s8.a2ebba28c2ce from=translated src=- shape=edab7b0f vocab=16c39fec
+-/
 theorem coeff_inl_app_Xr {T : Fin n → MvPowerSeries (Fin n) R}
     (hT : ∀ j, (T j).constantCoeff = 0) (k j : Fin n) :
     coeff (Finsupp.single (Sum.inl j) 1) (app T (Xr n R) k) = 0 := by
@@ -526,6 +649,9 @@ theorem coeff_inl_app_Xr {T : Fin n → MvPowerSeries (Fin n) R}
   rw [app_apply, MvFormalGroup.coeff_single_subst (constantCoeff_Xr (R := R))]
   simp only [Xr, coeff_index_single_X, reduceCtorEq, ite_false, mul_zero, Finset.sum_const_zero]
 
+/--
+@isnad1 id=eq.1h5v.s8.66479e63fbe6 from=translated src=- shape=edab7b0f vocab=12687900
+-/
 theorem coeff_inr_app_Xl {T : Fin n → MvPowerSeries (Fin n) R}
     (hT : ∀ j, (T j).constantCoeff = 0) (k j : Fin n) :
     coeff (Finsupp.single (Sum.inr j) 1) (app T (Xl n R) k) = 0 := by
@@ -533,6 +659,9 @@ theorem coeff_inr_app_Xl {T : Fin n → MvPowerSeries (Fin n) R}
   rw [app_apply, MvFormalGroup.coeff_single_subst (constantCoeff_Xl (R := R))]
   simp only [Xl, coeff_index_single_X, reduceCtorEq, ite_false, mul_zero, Finset.sum_const_zero]
 
+/--
+@isnad1 id=eq.1h5v.s9.f46e076e6d52 from=translated src=- shape=23d6fb2d vocab=d4f30b4d
+-/
 theorem coeff_inr_app_Xr {T : Fin n → MvPowerSeries (Fin n) R}
     (hT : ∀ j, (T j).constantCoeff = 0) (k j : Fin n) :
     coeff (Finsupp.single (Sum.inr j) 1) (app T (Xr n R) k) = coeff (Finsupp.single j 1) (T k) := by
@@ -552,23 +681,35 @@ def transportT (L : Fin n → MvPowerSeries (Fin n ⊕ Fin n) R)
     (Φ Ψ : Fin n → MvPowerSeries (Fin n) R) : Fin n → MvPowerSeries (Fin n ⊕ Fin n) R :=
   app Ψ (lawApp L (app Φ (Xl n R)) (app Φ (Xr n R)))
 
+/--
+@isnad1 id=eq.0h5v.s6.c1420d3b587f from=translated src=- shape=7e624675 vocab=017ed9c5
+-/
 theorem transportT_def (L : Fin n → MvPowerSeries (Fin n ⊕ Fin n) R)
     (Φ Ψ : Fin n → MvPowerSeries (Fin n) R) :
     transportT L Φ Ψ = app Ψ (lawApp L (app Φ (Xl n R)) (app Φ (Xr n R))) := rfl
 
 variable {L : Fin n → MvPowerSeries (Fin n ⊕ Fin n) R} {Φ Ψ : Fin n → MvPowerSeries (Fin n) R}
 
+/--
+@isnad1 id=eq.2h5v.s8.226e46c10d18 from=translated src=- shape=66c27c11 vocab=986272e0
+-/
 theorem constantCoeff_lawApp_app (hL : ∀ k, (L k).constantCoeff = 0)
     (hΦ0 : ∀ i, (Φ i).constantCoeff = 0) :
     ∀ k, (lawApp L (app Φ (Xl n R)) (app Φ (Xr n R)) k).constantCoeff = 0 :=
   constantCoeff_lawApp hL (constantCoeff_app hΦ0 (constantCoeff_Xl (R := R)))
     (constantCoeff_app hΦ0 (constantCoeff_Xr (R := R)))
 
+/--
+@isnad1 id=eq.3h6v.s8.172fa3d9bdcc from=translated src=- shape=f3014ac1 vocab=721f6d69
+-/
 theorem constantCoeff_transportT (hL : ∀ k, (L k).constantCoeff = 0)
     (hΦ0 : ∀ i, (Φ i).constantCoeff = 0) (hΨ0 : ∀ i, (Ψ i).constantCoeff = 0) (i : Fin n) :
     (transportT L Φ Ψ i).constantCoeff = 0 :=
   constantCoeff_app hΨ0 (constantCoeff_lawApp_app hL hΦ0) i
 
+/--
+@isnad1 id=eq.4h8v.s8.f9e21e0ec5c5 from=translated src=- shape=e3e81ace vocab=e7d19c08
+-/
 theorem lawApp_transportT (hL : ∀ k, (L k).constantCoeff = 0)
     (hΦ0 : ∀ i, (Φ i).constantCoeff = 0) {τ : Type} {a b : Fin n → MvPowerSeries τ R}
     (ha : ∀ j, (a j).constantCoeff = 0) (hb : ∀ j, (b j).constantCoeff = 0) :
@@ -581,6 +722,9 @@ theorem lawApp_transportT (hL : ∀ k, (L k).constantCoeff = 0)
   funext k
   exact subst_elim_lawApp_app hΦ0 ha hb k
 
+/--
+@isnad1 id=eq.3h6v.s8.68f69b7441e5 from=translated src=- shape=4a39122a vocab=88f42b51
+-/
 theorem app_app_cancel (hΨ0 : ∀ i, (Ψ i).constantCoeff = 0) (hΦΨ : ∀ i, subst Ψ (Φ i) = X i)
     {τ : Type} {c : Fin n → MvPowerSeries τ R} (hc : ∀ j, (c j).constantCoeff = 0) :
     app Φ (app Ψ c) = c := by
@@ -588,6 +732,9 @@ theorem app_app_cancel (hΨ0 : ∀ i, (Ψ i).constantCoeff = 0) (hΦΨ : ∀ i, 
   have : app Φ Ψ = fun i => (X i : MvPowerSeries (Fin n) R) := funext hΦΨ
   rw [this, app_X_left c hc]
 
+/--
+@isnad1 id=eq.6h8v.s9.caa50cbc7ea3 from=translated src=- shape=6fc65036 vocab=62b1f224
+-/
 theorem app_lawApp_transportT (hL : ∀ k, (L k).constantCoeff = 0)
     (hΦ0 : ∀ i, (Φ i).constantCoeff = 0) (hΨ0 : ∀ i, (Ψ i).constantCoeff = 0)
     (hΦΨ : ∀ i, subst Ψ (Φ i) = X i) {τ : Type} {a b : Fin n → MvPowerSeries τ R}
@@ -604,8 +751,17 @@ abbrev X3b (n : ℕ) (R : Type u) [CommRing R] : Fin n → MvPowerSeries (Fin n 
 abbrev X3c (n : ℕ) (R : Type u) [CommRing R] : Fin n → MvPowerSeries (Fin n ⊕ (Fin n ⊕ Fin n)) R :=
   fun l => X (Sum.inr (Sum.inr l))
 
+/--
+@isnad1 id=eq.0h3v.s7.c187f62659ce from=translated src=- shape=d7cf1ff3 vocab=4cbefdfe
+-/
 theorem constantCoeff_X3a (l : Fin n) : (X3a n R l).constantCoeff = 0 := constantCoeff_X _
+/--
+@isnad1 id=eq.0h3v.s7.82755522937f from=translated src=- shape=d7cf1ff3 vocab=e14b5f70
+-/
 theorem constantCoeff_X3b (l : Fin n) : (X3b n R l).constantCoeff = 0 := constantCoeff_X _
+/--
+@isnad1 id=eq.0h3v.s7.3b9bb0bf623c from=translated src=- shape=d7cf1ff3 vocab=386878cd
+-/
 theorem constantCoeff_X3c (l : Fin n) : (X3c n R l).constantCoeff = 0 := constantCoeff_X _
 
 def transport (F : MvFormalGroup n R) (Φ Ψ : Fin n → MvPowerSeries (Fin n) R)
@@ -705,16 +861,25 @@ def transportInv (F : MvFormalGroup n R) (Φ Ψ : Fin n → MvPowerSeries (Fin n
       app_app_cancel hΨ0 hΦΨ (constantCoeff_Xl (R := R)),
       app_app_cancel hΨ0 hΦΨ (constantCoeff_Xr (R := R)), lawApp_Xl_Xr]
 
+/--
+@isnad1 id=eq.1h6v.s8.c9acb9465d81 from=translated src=- shape=a41d4d6c vocab=c63c100d
+-/
 theorem map_constantCoeff (f : R →+* S) {T : Fin n → MvPowerSeries (Fin n) R}
     (hT : ∀ i, (T i).constantCoeff = 0) (i : Fin n) :
     (MvPowerSeries.map f (T i)).constantCoeff = 0 := by
   rw [constantCoeff_map, hT i, map_zero]
 
+/--
+@isnad1 id=eq.2h7v.s8.e50a0042dc1c from=translated src=- shape=48cbe9d7 vocab=6e333134
+-/
 theorem map_inverse (f : R →+* S) {T U : Fin n → MvPowerSeries (Fin n) R}
     (hT : ∀ i, (T i).constantCoeff = 0) (hUT : ∀ i, subst T (U i) = X i) (i : Fin n) :
     subst (fun j => MvPowerSeries.map f (T j)) (MvPowerSeries.map f (U i)) = X i := by
   rw [← map_subst (hasSubst_of_constantCoeff_zero hT), hUT i, map_X]
 
+/--
+@isnad1 id=eq.4h7v.s9.2c97d1747033 from=translated src=- shape=eecff93a vocab=02c62ef1
+-/
 theorem transport_map (f : R →+* S) (F : MvFormalGroup n R) (Φ Ψ : Fin n → MvPowerSeries (Fin n) R)
     (hΦ0 : ∀ i, (Φ i).constantCoeff = 0) (hΨ0 : ∀ i, (Ψ i).constantCoeff = 0)
     (hΨΦ : ∀ i, subst Φ (Ψ i) = X i) (hΦΨ : ∀ i, subst Ψ (Φ i) = X i) :
@@ -745,6 +910,9 @@ theorem transport_map (f : R →+* S) (F : MvFormalGroup n R) (Φ Ψ : Fin n →
     funext l
     exact map_Xr f l
 
+/--
+@isnad1 id=eq.5h6v.s8.4655bae8a939 from=translated src=- shape=e930a743 vocab=e0759f44
+-/
 theorem transport_eq_of_hom (F₁ F : MvFormalGroup n R) (Φ Ψ : Fin n → MvPowerSeries (Fin n) R)
     (hΦ0 : ∀ i, (Φ i).constantCoeff = 0) (hΨ0 : ∀ i, (Ψ i).constantCoeff = 0)
     (hΨΦ : ∀ i, subst Φ (Ψ i) = X i) (hΦΨ : ∀ i, subst Ψ (Φ i) = X i)
@@ -770,6 +938,9 @@ variable {B A' A'' A : Type u} [CommRing B] [CommRing A'] [CommRing A''] [CommRi
   (hpb : ∀ (a' : A') (a'' : A''), q' a' = q'' a'' → ∃! b : B, p' b = a' ∧ p'' b = a'')
 
 omit hcomm hpb in
+/--
+@isnad1 id=eq.1h6v.s9.b717bf3c440c from=translated src=- shape=e948c902 vocab=9aa1efd4
+-/
 theorem map_assocL {R S : Type u} [CommRing R] [CommRing S] (f : R →+* S) {n : ℕ}
     {T : Fin n → MvPowerSeries (Fin n ⊕ Fin n) R} (hT : ∀ k, (T k).constantCoeff = 0) (i : Fin n) :
     MvPowerSeries.map f (lawApp T (lawApp T (X3a n R) (X3b n R)) (X3c n R) i) =
@@ -786,6 +957,9 @@ theorem map_assocL {R S : Type u} [CommRing R] [CommRing S] (f : R →+* S) {n :
   · funext l; simp [X3c]
 
 omit hcomm hpb in
+/--
+@isnad1 id=eq.1h6v.s9.a5aee4ed72c1 from=translated src=- shape=24ed8f0a vocab=9aa1efd4
+-/
 theorem map_assocR {R S : Type u} [CommRing R] [CommRing S] (f : R →+* S) {n : ℕ}
     {T : Fin n → MvPowerSeries (Fin n ⊕ Fin n) R} (hT : ∀ k, (T k).constantCoeff = 0) (i : Fin n) :
     MvPowerSeries.map f (lawApp T (X3a n R) (lawApp T (X3b n R) (X3c n R)) i) =
@@ -803,6 +977,9 @@ theorem map_assocR {R S : Type u} [CommRing R] [CommRing S] (f : R →+* S) {n :
 
 include hcomm hpb in
 
+/--
+@isnad1 id=ex.3h11v.s8.510f604d3344 from=translated src=- shape=f90a0f06 vocab=fa0b9598
+-/
 theorem exists_law_glue {n : ℕ} (F' : MvFormalGroup n A') (F₂ : MvFormalGroup n A'')
     (h : F'.map q' = F₂.map q'') :
     ∃ G : MvFormalGroup n B, G.map p' = F' ∧ G.map p'' = F₂ := by
@@ -859,6 +1036,9 @@ end LawGlue
 end P2mFGGlue
 
 open P2mFGGlue in
+/--
+@isnad1 id=and.2h9v.s10.dd5c3d53695d from=translated src=- shape=f1b98467 vocab=8d31f2d0
+-/
 theorem solution
     {B A' A'' A : Type u} [CommRing B] [CommRing A'] [CommRing A''] [CommRing A]
     (p' : B →+* A') (p'' : B →+* A'') (q' : A' →+* A) (q'' : A'' →+* A)

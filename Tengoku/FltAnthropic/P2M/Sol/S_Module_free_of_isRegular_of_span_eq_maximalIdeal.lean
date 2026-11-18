@@ -15,12 +15,18 @@ open _root_.Module
 open scoped Pointwise
 open RingTheory.Sequence
 
+/--
+@isnad1 id=eq.0h3v.s6.ca4e2f17c8cc from=translated src=- shape=e3aa9df5 vocab=8d3a0231
+-/
 theorem ofList_cons {A : Type*} [CommRing A] (r : A) (rs : List A) :
     Ideal.ofList (r :: rs) = Ideal.span {r} ⊔ Ideal.ofList rs := by
   rw [show r :: rs = [r] ++ rs from rfl, Ideal.ofList_append]
   congr 1
   simp [Ideal.ofList]
 
+/--
+@isnad1 id=eq.1h2v.s8.9a4c31985ee9 from=translated src=- shape=91278451 vocab=3c485cba
+-/
 theorem map_mk_maximalIdeal {A : Type*} [CommRing A] [IsLocalRing A] (I : Ideal A) (hI : I ≠ ⊤)
     [IsLocalRing (A ⧸ I)] : (IsLocalRing.maximalIdeal A).map (Ideal.Quotient.mk I) = IsLocalRing.maximalIdeal (A ⧸ I) := by
   have hsurj : Function.Surjective (Ideal.Quotient.mk I) := Ideal.Quotient.mk_surjective
@@ -32,6 +38,9 @@ theorem map_mk_maximalIdeal {A : Type*} [CommRing A] [IsLocalRing A] (I : Ideal 
     exact (IsLocalRing.maximalIdeal.isMaximal A).ne_top h2
   · exact IsLocalRing.eq_maximalIdeal h
 
+/--
+@isnad1 id=free.2h3v.s9.b0f51f06873e from=translated src=- shape=8172c71d vocab=9c26f410
+-/
 theorem free_of_free_quotSMulTop {A : Type*} [CommRing A] [IsLocalRing A] [IsNoetherianRing A]
     {r : A} (hr𝔪 : r ∈ IsLocalRing.maximalIdeal A) (M : Type*) [AddCommGroup M] [Module A M] [Module.Finite A M]
     (hr : IsSMulRegular M r) [Module.Free (A ⧸ Ideal.span {r}) (QuotSMulTop r M)] : Module.Free A M := by
@@ -101,6 +110,9 @@ theorem free_of_free_quotSMulTop {A : Type*} [CommRing A] [IsLocalRing A] [IsNoe
   have hinj : Function.Injective φ := LinearMap.ker_eq_bot.mp hKbot
   exact Module.Free.of_equiv (LinearEquiv.ofBijective φ ⟨hinj, hsurj⟩)
 
+/--
+@isnad1 id=free.3h4v.s6.28596f87979a from=translated src=- shape=b0681771 vocab=ac227a00
+-/
 theorem free_of_isWeaklyRegular_aux (n : ℕ) :
     ∀ (A : Type*) [CommRing A] [IsLocalRing A] [IsNoetherianRing A] (rs : List A), rs.length = n →
       Ideal.ofList rs = IsLocalRing.maximalIdeal A →
@@ -137,6 +149,9 @@ theorem free_of_isWeaklyRegular_aux (n : ℕ) :
 
 end Module.FreeOfRegular
 
+/--
+@isnad1 id=free.3h3v.s6.e70ee010e913 from=translated src=- shape=c90a3da0 vocab=973f1847
+-/
 theorem solution
     {A : Type*} [CommRing A] [IsLocalRing A] [IsNoetherianRing A]
     (rs : List A) (hA : RingTheory.Sequence.IsRegular A rs) (hspan : Ideal.ofList rs = IsLocalRing.maximalIdeal A)

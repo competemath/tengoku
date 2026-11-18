@@ -24,6 +24,9 @@ open _root_.TwoChartCech.Mumford open _root_.TwoChartCech
 
 variable {R : Type u} [CommRing R]
 
+/--
+@isnad1 id=flat.0h3v.s6.885972f58c16 from=translated src=- shape=37f748aa vocab=0221ee20
+-/
 theorem flat_prod' {M : Type v} {N : Type w} [AddCommGroup M] [Module R M] [AddCommGroup N] [Module R N]
     [Module.Flat R M] [Module.Flat R N] : Module.Flat R (M × N) := by
   rw [Module.Flat.iff_rTensor_injectiveₛ]
@@ -46,6 +49,9 @@ theorem flat_prod' {M : Type v} {N : Type w} [AddCommGroup M] [Module R M] [AddC
   simp only [LinearMap.comp_apply] at hL
   exact (TensorProduct.prodRight R R Q M N).injective ((hM.prodMap hN) hL)
 
+/--
+@isnad1 id=flat.1h4v.s8.9d1f924419f2 from=translated src=- shape=10184ece vocab=25293bb2
+-/
 theorem flat_ker_of_surjective' {M : Type v} {N : Type w} [AddCommGroup M] [Module R M]
     [AddCommGroup N] [Module R N] [Module.Flat R M] [Module.Flat R N]
     (f : M →ₗ[R] N) (hf : Function.Surjective f) :
@@ -72,6 +78,9 @@ theorem flat_ker_of_surjective' {M : Type v} {N : Type w} [AddCommGroup M] [Modu
 end TwoChartCech.Mumford
 
 open _root_.TwoChartCech.Mumford _root_.P2MW.S_TwoChartCech_Mumford_flat_K0.TwoChartCech.Mumford in
+/--
+@isnad1 id=flat.0h4v.s10.15fa6aca5db9 from=translated src=- shape=9044e4f3 vocab=78c9de1a
+-/
 theorem solution
     {R : Type u} [CommRing R]
     {C0 : Type v} {C1 : Type w} [AddCommGroup C0] [Module R C0] [AddCommGroup C1] [Module R C1]

@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open MvPolynomial
 
+/--
+@isnad1 id=mem.7h8v.s12.1f81893a6aab from=translated src=- shape=96715da7 vocab=759e4c1a
+-/
 theorem MvPolynomial.mem_span_of_linear_mul_mem_of_forall_relation_modulo_mem_span
     (n m g : ℕ) (K : Type) [Field K] (F : Fin g → MvPolynomial (Fin (n + 1)) K)
     (hF : ∀ i, (F i).IsHomogeneous m) (ℓ : MvPolynomial (Fin (n + 1)) K) (hℓ : ℓ.IsHomogeneous 1)

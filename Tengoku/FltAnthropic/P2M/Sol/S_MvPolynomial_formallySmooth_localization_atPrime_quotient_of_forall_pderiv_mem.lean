@@ -17,6 +17,9 @@ open scoped TensorProduct
 
 set_option synthInstance.maxHeartbeats 800000 in
 set_option maxHeartbeats 3200000 in
+/--
+@isnad1 id=formally.2h4v.s12.927e540a0c01 from=translated src=- shape=104ce32e vocab=9d6c5fd6
+-/
 theorem solution
     (R : Type) [CommRing R] [IsNoetherianRing R] {n : ℕ}
     (I J : Ideal (MvPolynomial (Fin n) R)) (hIJ : I ≤ J) [hJ : J.IsMaximal]

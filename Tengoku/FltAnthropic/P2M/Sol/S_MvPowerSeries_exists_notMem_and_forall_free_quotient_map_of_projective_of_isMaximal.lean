@@ -12,10 +12,16 @@ open scoped TensorProduct
 
 namespace FreeChartAux
 
+/--
+@isnad1 id=eq.0h2v.s6.595ec40f0b84 from=translated src=- shape=89dc2e92 vocab=2ade4106
+-/
 theorem span_range_val {A : Type} [CommRing A] (I : Ideal A) :
     Ideal.span (Set.range (Subtype.val : ↥I → A)) = I := by
   rw [Subtype.range_coe, Ideal.span_eq]
 
+/--
+@isnad1 id=eq.0h3v.s9.731cc2a6263b from=translated src=- shape=9864b153 vocab=9ccd1e38
+-/
 theorem span_range_map_val {B S : Type} [CommRing B] [CommRing S] [Algebra B S]
     (I : Ideal (MvPowerSeries (Fin 2) B)) :
     Ideal.span (Set.range fun i : ↥I =>
@@ -25,6 +31,9 @@ theorem span_range_map_val {B S : Type} [CommRing B] [CommRing S] [Algebra B S]
   rw [Set.image_eq_range]
   rfl
 
+/--
+@isnad1 id=nonempty.1h3v.s10.28fdd0c8915b from=translated src=- shape=66a63ec4 vocab=7829ebd1
+-/
 theorem exists_equiv_baseChange {B : Type} [CommRing B] (I : Ideal (MvPowerSeries (Fin 2) B))
     (hnil : ∃ q : ℕ, ∀ i : Fin 2, (MvPowerSeries.X i : MvPowerSeries (Fin 2) B) ^ q ∈ I)
     (S : Type) [CommRing S] [Algebra B S] :
@@ -48,6 +57,9 @@ theorem exists_equiv_baseChange {B : Type} [CommRing B] (I : Ideal (MvPowerSerie
     Ideal.quotientEquivAlgOfEq S (span_range_map_val I)
   exact ⟨e₁ ≪≫ₗ e.toLinearEquiv ≪≫ₗ e₂.toLinearEquiv⟩
 
+/--
+@isnad1 id=free.1h4v.s8.696a450e5afb from=translated src=- shape=30bc1ae2 vocab=ef2c35d9
+-/
 theorem free_baseChange_of_isUnit {B : Type} [CommRing B] (M : Type) [AddCommGroup M] [Module B M]
     (g : B) [Module.Free (Localization.Away g) (LocalizedModule.Away g M)]
     (R' : Type) [CommRing R'] [Algebra B R'] (hu : IsUnit (algebraMap B R' g)) :
@@ -63,6 +75,9 @@ theorem free_baseChange_of_isUnit {B : Type} [CommRing B] (M : Type) [AddCommGro
 
   exact Module.Free.of_equiv (TensorProduct.AlgebraTensorModule.cancelBaseChange B S R' R' M)
 
+/--
+@isnad1 id=ex.4h3v.s10.712537e3c674 from=translated src=- shape=596754b1 vocab=97a5a628
+-/
 theorem main {B : Type} [CommRing B] [IsNoetherianRing B] (I : Ideal (MvPowerSeries (Fin 2) B))
     (hfin : Module.Finite B (MvPowerSeries (Fin 2) B ⧸ I))
     (hproj : Module.Projective B (MvPowerSeries (Fin 2) B ⧸ I))
@@ -91,6 +106,9 @@ theorem main {B : Type} [CommRing B] [IsNoetherianRing B] (I : Ideal (MvPowerSer
 
 end FreeChartAux
 
+/--
+@isnad1 id=ex.4h3v.s10.712537e3c674 from=translated src=- shape=596754b1 vocab=97a5a628
+-/
 theorem solution
     {B : Type} [CommRing B] [IsNoetherianRing B] (I : Ideal (MvPowerSeries (Fin 2) B))
     (hfin : Module.Finite B (MvPowerSeries (Fin 2) B ⧸ I))

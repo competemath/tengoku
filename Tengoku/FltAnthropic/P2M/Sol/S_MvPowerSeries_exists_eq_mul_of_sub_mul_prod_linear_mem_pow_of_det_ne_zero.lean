@@ -21,20 +21,35 @@ variable {κ : Type u} [Field κ]
 def killX1 (p : MvPowerSeries (Fin 2) κ) : MvPowerSeries (Fin 2) κ :=
   fun m => if m 1 = 0 then coeff m p else 0
 
+/--
+@isnad1 id=eq.0h3v.s9.86775492ac7a from=translated src=- shape=d33f2ce3 vocab=17b3393e
+-/
 theorem coeff_killX1 (p : MvPowerSeries (Fin 2) κ) (m : Fin 2 →₀ ℕ) :
     coeff m (killX1 p) = if m 1 = 0 then coeff m p else 0 := rfl
 
+/--
+@isnad1 id=dvd.0h2v.s7.7460eedf111a from=translated src=- shape=42e90a48 vocab=2f107ef8
+-/
 theorem X1_dvd_sub_killX1 (p : MvPowerSeries (Fin 2) κ) : (X 1 : MvPowerSeries (Fin 2) κ) ∣ p - killX1 p := by
   rw [X_dvd_iff]
   intro m hm
   rw [map_sub, coeff_killX1, ite_eq_left hm, sub_self]
 
+/--
+@isnad1 id=eq.0h2v.s5.0f0322ba21af from=translated src=- shape=0d50d6ad vocab=43a9f5d4
+-/
 theorem killX1_killX1 (p : MvPowerSeries (Fin 2) κ) : killX1 (killX1 p) = killX1 p := by
   ext m; rw [coeff_killX1, coeff_killX1]; split_ifs <;> rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.59a92ddaf918 from=translated src=- shape=fc988796 vocab=4b83f181
+-/
 theorem constantCoeff_killX1 (p : MvPowerSeries (Fin 2) κ) : constantCoeff (killX1 p) = constantCoeff p := by
   rw [← coeff_zero_eq_constantCoeff_apply, coeff_killX1, ite_eq_left (by simp), coeff_zero_eq_constantCoeff_apply]
 
+/--
+@isnad1 id=mem.1h2v.s8.6996c22ce41c from=translated src=- shape=e073ff1c vocab=23c14637
+-/
 theorem mem_span_X_of_constantCoeff_eq_zero (p : MvPowerSeries (Fin 2) κ) (hp : constantCoeff p = 0) :
     p ∈ Ideal.span {(X 0 : MvPowerSeries (Fin 2) κ), X 1} := by
   have h1 : p - killX1 p ∈ Ideal.span {(X 0 : MvPowerSeries (Fin 2) κ), X 1} := by
@@ -53,6 +68,9 @@ theorem mem_span_X_of_constantCoeff_eq_zero (p : MvPowerSeries (Fin 2) κ) (hp :
     rw [ht]; exact Ideal.mul_mem_right _ _ (Ideal.subset_span (by simp))
   simpa using Ideal.add_mem _ h1 h2
 
+/--
+@isnad1 id=le.2h3v.s10.0774d3852519 from=translated src=- shape=3966507f vocab=378b83cd
+-/
 theorem map_pow_le {E : MvPowerSeries (Fin 2) κ →ₐ[κ] MvPowerSeries (Fin 2) κ}
     (h0 : constantCoeff (E (X 0)) = 0) (h1 : constantCoeff (E (X 1)) = 0) (k : ℕ) :
     ((Ideal.span {(X 0 : MvPowerSeries (Fin 2) κ), X 1}) ^ k).map E ≤
@@ -65,6 +83,9 @@ theorem map_pow_le {E : MvPowerSeries (Fin 2) κ →ₐ[κ] MvPowerSeries (Fin 2
   · exact mem_span_X_of_constantCoeff_eq_zero _ h0
   · exact mem_span_X_of_constantCoeff_eq_zero _ h1
 
+/--
+@isnad1 id=le.1h3v.s8.41c1d6928b6c from=translated src=- shape=3903e918 vocab=0b2a4d3e
+-/
 theorem le_order_of_mem_pow (m : ℕ) (g : MvPowerSeries (Fin 2) κ)
     (hg : g ∈ Ideal.span {(X 0 : MvPowerSeries (Fin 2) κ), X 1} ^ m) : (m : ℕ∞) ≤ g.order := by
   induction m generalizing g with
@@ -82,6 +103,9 @@ theorem le_order_of_mem_pow (m : ℕ) (g : MvPowerSeries (Fin 2) κ)
         _ ≤ (a * b).order := le_order_mul
     · exact le_trans (le_min ha hb) min_order_le_add
 
+/--
+@isnad1 id=mem.1h3v.s8.0d00d9ac5dbc from=translated src=- shape=8a233e97 vocab=0b2a4d3e
+-/
 theorem mem_pow_of_le_order (m : ℕ) : ∀ (g : MvPowerSeries (Fin 2) κ), (m : ℕ∞) ≤ g.order →
     g ∈ Ideal.span {(X 0 : MvPowerSeries (Fin 2) κ), X 1} ^ m := by
   induction m with
@@ -136,6 +160,9 @@ theorem mem_pow_of_le_order (m : ℕ) : ∀ (g : MvPowerSeries (Fin 2) κ), (m :
     refine Ideal.add_mem _ (Ideal.mul_mem_mul (Ideal.subset_span (by simp)) (ih t ht'))
       (Ideal.mul_mem_mul (Ideal.subset_span (by simp)) (ih s hs'))
 
+/--
+@isnad1 id=eq.2h3v.s9.0588bfd39c9b from=translated src=- shape=64564f40 vocab=91f1a15c
+-/
 theorem apply_eq_self_of_killX1 (E : MvPowerSeries (Fin 2) κ →ₐ[κ] MvPowerSeries (Fin 2) κ)
     (hE : E (X 0) = X 0) (p : MvPowerSeries (Fin 2) κ) (hp : killX1 p = p) : E p = p := by
   classical
@@ -187,6 +214,9 @@ theorem apply_eq_self_of_killX1 (E : MvPowerSeries (Fin 2) κ →ₐ[κ] MvPower
     exact (X_pow_dvd_iff.mp (dvd_mul_right _ _)) m (by omega)
   rwa [map_sub, sub_eq_zero] at this
 
+/--
+@isnad1 id=eq.0h1v.s8.fba45b4ff06a from=translated src=- shape=49ea6cc3 vocab=57dd135f
+-/
 theorem degree_two (d : Fin 2 →₀ ℕ) : d.degree = d 0 + d 1 := by
   rw [Finsupp.degree_eq_sum, Fin.sum_univ_two]
 
@@ -199,6 +229,9 @@ theorem eq_of_degree_lt_two (d : Fin 2 →₀ ℕ) (hd : d.degree < 2) :
     · right; right; ext i; fin_cases i <;> simp [h0]; omega
   · right; left; ext i; fin_cases i <;> simp; all_goals omega
 
+/--
+@isnad1 id=mem.3h2v.s10.1ca2a3c9de4f from=translated src=- shape=47b9bc61 vocab=ceb5dd15
+-/
 theorem mem_sq_of_coeff (p : MvPowerSeries (Fin 2) κ) (h0 : constantCoeff p = 0)
     (h1 : coeff (Finsupp.single 0 1) p = 0) (h2 : coeff (Finsupp.single 1 1) p = 0) :
     p ∈ Ideal.span {(X 0 : MvPowerSeries (Fin 2) κ), X 1} ^ 2 := by
@@ -209,11 +242,17 @@ theorem mem_sq_of_coeff (p : MvPowerSeries (Fin 2) κ) (h0 : constantCoeff p = 0
   · exact h1
   · exact h2
 
+/--
+@isnad1 id=eq.0h3v.s8.c84e69ade202 from=translated src=- shape=862fd169 vocab=b79cab71
+-/
 theorem coeff_single_one_X_mul (s : Fin 2) (p : MvPowerSeries (Fin 2) κ) :
     coeff (Finsupp.single s 1) (X s * p) = constantCoeff p := by
   classical
   rw [X_def, coeff_monomial_mul, ite_eq_left le_rfl, one_mul, tsub_self, coeff_zero_eq_constantCoeff_apply]
 
+/--
+@isnad1 id=eq.1h4v.s8.d815289205cd from=translated src=- shape=76f83471 vocab=f61e1656
+-/
 theorem coeff_single_one_X_mul_of_ne (s t : Fin 2) (hst : s ≠ t) (p : MvPowerSeries (Fin 2) κ) :
     coeff (Finsupp.single s 1) (X t * p) = 0 := by
   classical
@@ -222,6 +261,9 @@ theorem coeff_single_one_X_mul_of_ne (s t : Fin 2) (hst : s ≠ t) (p : MvPowerS
   have := h t
   simp [Finsupp.single_apply, hst.symm] at this
 
+/--
+@isnad1 id=and.0h3v.s11.ae23a9b5d137 from=translated src=- shape=531868a1 vocab=7773b94b
+-/
 theorem coeff_lin (d c : κ) :
     constantCoeff (C d * X 0 + C c * X 1 : MvPowerSeries (Fin 2) κ) = 0 ∧
     coeff (Finsupp.single 0 1) (C d * X 0 + C c * X 1 : MvPowerSeries (Fin 2) κ) = d ∧
@@ -233,6 +275,9 @@ theorem coeff_lin (d c : κ) :
   · rw [map_add, coeff_C_mul, coeff_C_mul, coeff_index_single_X, coeff_index_single_X,
       ite_eq_right (by decide), ite_eq_left rfl, mul_one, mul_zero, zero_add]
 
+/--
+@isnad1 id=ex.2h5v.s11.f872b4bdf688 from=translated src=- shape=9a64ed6d vocab=ee569edb
+-/
 theorem core {ι : Type v} [Fintype ι] (A B : ι → κ) (hA : ∀ i, A i ≠ 0) (f : MvPowerSeries (Fin 2) κ)
     (hf : f - X 1 * ∏ i, (C (A i) * X 0 + C (B i) * X 1) ∈
       (Ideal.span {(X 0 : MvPowerSeries (Fin 2) κ), X 1}) ^ (Fintype.card ι + 2)) :
@@ -440,6 +485,9 @@ theorem core {ι : Type v} [Fintype ι] (A B : ι → κ) (hA : ∀ i, A i ≠ 0
     rw [h12] at hrhs
     exact (ENat.add_le_add_iff_left ENat.one_ne_top).mp hrhs
 
+/--
+@isnad1 id=eq.0h3v.s9.50628b579b90 from=translated src=- shape=9db01740 vocab=a8b51894
+-/
 theorem constantCoeff_algEquiv_X (E : MvPowerSeries (Fin 2) κ ≃ₐ[κ] MvPowerSeries (Fin 2) κ) (k : Fin 2) :
     constantCoeff (E (X k)) = 0 := by
   by_contra h
@@ -448,12 +496,18 @@ theorem constantCoeff_algEquiv_X (E : MvPowerSeries (Fin 2) κ ≃ₐ[κ] MvPowe
   rw [isUnit_iff_constantCoeff, constantCoeff_X] at this
   exact not_isUnit_zero this
 
+/--
+@isnad1 id=mem.1h4v.s10.856c72b4de95 from=translated src=- shape=57004729 vocab=cfc17969
+-/
 theorem algEquiv_mem_pow (E : MvPowerSeries (Fin 2) κ ≃ₐ[κ] MvPowerSeries (Fin 2) κ) (k : ℕ)
     {p : MvPowerSeries (Fin 2) κ} (hp : p ∈ (Ideal.span {(X 0 : MvPowerSeries (Fin 2) κ), X 1}) ^ k) :
     E p ∈ (Ideal.span {(X 0 : MvPowerSeries (Fin 2) κ), X 1}) ^ k := by
   have := map_pow_le (E := E.toAlgHom) (constantCoeff_algEquiv_X E 0) (constantCoeff_algEquiv_X E 1) k
   exact this (Ideal.mem_map_of_mem E.toAlgHom hp)
 
+/--
+@isnad1 id=ex.4h10v.s12.ee85bbe0d546 from=translated src=- shape=557037ad vocab=78a9e649
+-/
 theorem transport {ι : Type v} [Fintype ι] (a b : κ) (A B A' B' : ι → κ) (hA' : ∀ i, A' i ≠ 0)
     (E : MvPowerSeries (Fin 2) κ ≃ₐ[κ] MvPowerSeries (Fin 2) κ)
     (hE1 : E (X 1) = C a * X 0 + C b * X 1)
@@ -489,6 +543,9 @@ theorem transport {ι : Type v} [Fintype ι] (a b : κ) (A B A' B' : ι → κ) 
 end OneBranchGC7
 
 open OneBranchGC7 in
+/--
+@isnad1 id=ex.3h7v.s11.58551bc68035 from=translated src=- shape=aef8e6fa vocab=ee569edb
+-/
 theorem solution
     {κ : Type u} [Field κ] {ι : Type v} [Fintype ι]
     (a b : κ) (hab : a ≠ 0 ∨ b ≠ 0)

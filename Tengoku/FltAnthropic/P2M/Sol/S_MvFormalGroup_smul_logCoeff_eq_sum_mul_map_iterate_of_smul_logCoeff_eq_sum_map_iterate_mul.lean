@@ -13,6 +13,9 @@ open Finset Finset.Nat
 
 namespace B23U4
 
+/--
+@isnad1 id=eq.0h3v.s6.b96d737d7289 from=translated src=- shape=f082019a vocab=63142caf
+-/
 theorem sum_antidiagonal_assoc {M : Type*} [AddCommMonoid M] (n : ℕ) (F : ℕ → ℕ → ℕ → M) :
     ∑ x ∈ antidiagonal n, ∑ y ∈ antidiagonal x.2, F x.1 y.1 y.2 =
       ∑ x ∈ antidiagonal n, ∑ y ∈ antidiagonal x.1, F y.1 y.2 x.2 := by
@@ -38,6 +41,9 @@ theorem sum_antidiagonal_assoc {M : Type*} [AddCommMonoid M] (n : ℕ) (F : ℕ 
   · rintro ⟨⟨m, r⟩, ⟨i, j⟩⟩ h
     rfl
 
+/--
+@isnad1 id=eq.4h7v.s9.3672b48ef8b1 from=translated src=- shape=29a0be5e vocab=38333e7e
+-/
 theorem lastPeel {R : Type*} [CommRing R] {d : ℕ} (τ : R →+* R) (c : R)
     (hc : ∀ M N : Matrix (Fin d) (Fin d) R, c • M = c • N → M = N) (hτc : τ c = c)
     (Xm a : ℕ → Matrix (Fin d) (Fin d) R) (h1 : a 0 = 1)
@@ -104,6 +110,9 @@ theorem lastPeel {R : Type*} [CommRing R] {d : ℕ} (τ : R →+* R) (c : R)
 
 end B23U4
 
+/--
+@isnad1 id=eq.2h4v.s12.17dea068632c from=translated src=- shape=fd5c10f3 vocab=74012049
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] (d : ℕ)
     (a : ℕ → Matrix (Fin d) (Fin d) (MvPolynomial (ℕ × Fin d × Fin d) (Padic p)))
