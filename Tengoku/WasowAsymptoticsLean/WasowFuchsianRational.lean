@@ -17,7 +17,9 @@ namespace WasowFuchsianRational
 open CRGNormalFormGoal WasowRational
 variable {m : ℕ}
 
-/-- A convenient finite-entry upper bound for the actual operator norm.-/
+/-- A convenient finite-entry upper bound for the actual operator norm.
+@isnad1 id=le.0h2v.s6.cf684d9349b6 from=translated src=- shape=156947d5 vocab=dad622ce
+-/
 theorem norm_le_sum_entries (M : Matrix (Fin m) (Fin m) ℂ) :
     ‖M‖ ≤ ∑ i, ∑ j, ‖M i j‖ := by
   have h : ‖M‖₊ ≤ ∑ i, ∑ j, ‖M i j‖₊ := by
@@ -29,7 +31,9 @@ theorem norm_le_sum_entries (M : Matrix (Fin m) (Fin m) ℂ) :
 
 /-- Zero polynomial part is the rational, algebraic regular-singular condition
 at infinity. It automatically supplies continuous actual ray coefficients,
-a common pole-free tail, and a uniform `K/r` operator norm bound.-/
+a common pole-free tail, and a uniform `K/r` operator norm bound.
+@isnad1 id=ex.1h2v.s7.88aa95c4e134 from=translated src=- shape=c1024462 vocab=57d45e03
+-/
 theorem exists_proper_ray_bound (A : Matrix (Fin m) (Fin m) (RatFunc ℂ))
     (hproper : ∀ i j, polynomialPart (A i j) = 0) :
     ∃ K : ℝ, 0 < K ∧ ∃ R : ℝ, 1 ≤ R ∧ ∀ θ : ℝ,

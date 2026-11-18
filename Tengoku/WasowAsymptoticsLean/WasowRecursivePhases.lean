@@ -26,7 +26,9 @@ open CRGNormalFormGoal WasowFormalSuccessor WasowFormalNormalization
 open WasowFormalSplit WasowReductionTermination WasowScalarPhase
 
 /-- The spectral child dimensions exhaust the input dimension, as proved by
-the true spectral basis and each child's two-sided coordinate inverses.-/
+the true spectral basis and each child's two-sided coordinate inverses.
+@isnad1 id=eq.0h4v.s10.a7379558d4d8 from=translated src=- shape=9d0f0222 vocab=e591a165
+-/
 theorem family_dimension {ι : Type*} [Fintype ι] [DecidableEq ι]
     {A : Series ι} {rank : ℕ} (F : Family A rank) :
     ∑ a : Spectrum A, dim (F.child a).shape = Fintype.card ι := by
@@ -61,6 +63,9 @@ def toPhaseTree {old : FormalState} : WasowRecursiveTree.Tree old → WasowPhase
           let a := (Fintype.equivFin (Spectrum (rawSeries old d.slope))).symm j
           .scalar (rankPhase rank a.val) (rankPhase_coeff_zero _ _) (toPhaseTree (children a))))
 
+/--
+@isnad1 id=eq.0h2v.s3.180a943e2e35 from=translated src=- shape=ae6c49e1 vocab=39bd2d35
+-/
 theorem toPhaseTree_dimension {old : FormalState} (t : WasowRecursiveTree.Tree old) :
     WasowPhaseTree.dimension (toPhaseTree t) = dim old.shape := by
   induction t with
@@ -85,6 +90,9 @@ def reductionPhaseTree {ι : Type*} [Fintype ι] [DecidableEq ι]
     let a := (Fintype.equivFin (Spectrum A)).symm j
     .scalar (rankPhase rank a.val) (rankPhase_coeff_zero _ _) (toPhaseTree (R.trees a)))
 
+/--
+@isnad1 id=eq.0h4v.s5.eb73a1c7f935 from=translated src=- shape=2c6adf42 vocab=745c068c
+-/
 theorem reductionPhaseTree_dimension {ι : Type*} [Fintype ι] [DecidableEq ι]
     {A : Series ι} {rank : ℕ} (R : WasowRecursiveTree.Reduction A rank) :
     WasowPhaseTree.dimension (reductionPhaseTree R) = Fintype.card ι := by
@@ -108,11 +116,17 @@ def phaseValue {ι : Type*} [Fintype ι] [DecidableEq ι]
   WasowPhaseTree.phaseValue (reductionPhaseTree R) θ r
     (Fin.cast (reductionPhaseTree_dimension R).symm j)
 
+/--
+@isnad1 id=eq.0h5v.s5.6c78440f0f35 from=translated src=- shape=c7b5b7f2 vocab=faa5236a
+-/
 theorem phaseFamily_coeff_zero {ι : Type*} [Fintype ι] [DecidableEq ι]
     {A : Series ι} {rank : ℕ} (R : WasowRecursiveTree.Reduction A rank)
     (j : Fin (Fintype.card ι)) : (phaseFamily R j).coeff 0 = 0 :=
   WasowPhaseTree.family_coeff_zero _ _
 
+/--
+@isnad1 id=eq.1h7v.s6.026d8f9d3c31 from=translated src=- shape=e6267893 vocab=f81110c0
+-/
 theorem phaseValue_eq {ι : Type*} [Fintype ι] [DecidableEq ι]
     {A : Series ι} {rank : ℕ} (R : WasowRecursiveTree.Reduction A rank)
     (θ : ℝ) {r : ℝ} (hr : 0 ≤ r) (j : Fin (Fintype.card ι)) :
@@ -122,7 +136,9 @@ theorem phaseValue_eq {ι : Type*} [Fintype ι] [DecidableEq ι]
 
 /-- An arbitrary complete matrix series has a genuine finite formal reduction
 and a single normalized phase family, all selected before the ray direction.
-This is a formal phase-family existence theorem, not yet a ray-gauge theorem.-/
+This is a formal phase-family existence theorem, not yet a ray-gauge theorem.
+@isnad1 id=ex.0h3v.s7.7d05e51516d0 from=translated src=- shape=3a7c0ccc vocab=458a3cb4
+-/
 theorem exists_reduction_fixed_phases {ι : Type*} [Fintype ι] [DecidableEq ι]
     (A : Series ι) (rank : ℕ) :
     ∃ R : WasowRecursiveTree.Reduction A rank,

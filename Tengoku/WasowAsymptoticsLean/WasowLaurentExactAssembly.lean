@@ -27,7 +27,9 @@ local instance : ContinuousENorm (Matrix (Fin m) (Fin m) ℂ) where
 
 /-- Construct the actual approximate gauge from separate concrete factors.
 Its polynomial exponent is exactly K+L; both actual inverse identities and
-the differentiated product are retained.-/
+the differentiated product are retained.
+@isnad1 id=ex.5h17v.s10.09ad90ae9196 from=translated src=- shape=72764c86 vocab=a8720462
+-/
 theorem exists_approximateRayGauge_of_laurent_regular
     (A : Matrix (Fin m) (Fin m) (RatFunc ℂ)) (θ Rmin : ℝ)
     (Z W Z' : ℝ → Mat (m := m)) (K : ℕ) (z : FiniteGauge Z W Z' K)
@@ -104,7 +106,9 @@ theorem exists_approximateRayGauge_of_laurent_regular
 
 /-- Fixed Puiseux phases provide the integration modes automatically. The
 actual Volterra correction produces a complete exact RayGaugeWitness from
-an arbitrary finite Laurent gauge and the actual commuting regular factor.-/
+an arbitrary finite Laurent gauge and the actual commuting regular factor.
+@isnad1 id=nonempty.5h18v.s8.b5ffcff28436 from=translated src=- shape=aabc8b1b vocab=68cf375f
+-/
 theorem exists_exact_rayGauge_of_laurent_regular
     (A : Matrix (Fin m) (Fin m) (RatFunc ℂ)) (θ Rmin : ℝ)
     (Z W Z' : ℝ → Mat (m := m)) (K : ℕ) (z : FiniteGauge Z W Z' K)

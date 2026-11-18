@@ -49,17 +49,26 @@ def shiftedExpansion (f : PowerSeries ℂ) (p : ℕ) (hp : p ≠ 0) (L R : ℕ) 
   PowerSeries.mk (fun l => PowerSeries.coeff (l+L)
     (PowerSeries.X^R * PowerSeries.expand p hp f))
 
+/--
+@isnad1 id=eq.1h5v.s8.84868d9f705c from=translated src=- shape=6343fb0a vocab=915d9d23
+-/
 theorem shiftedExpansion_coeff (f : PowerSeries ℂ) (p : ℕ) (hp : p ≠ 0)
     (L R l : ℕ) :
     PowerSeries.coeff l (shiftedExpansion f p hp L R) =
       PowerSeries.coeff (l+L) (PowerSeries.X^R * PowerSeries.expand p hp f) :=
   PowerSeries.coeff_mk _ _
 
+/--
+@isnad1 id=eq.2h6v.s7.29ddfd3b275e from=translated src=- shape=604c993c vocab=1b2ca774
+-/
 theorem shiftedExpansion_coeff_at (f : PowerSeries ℂ) (p : ℕ) (hp : p ≠ 0)
     (L R l k : ℕ) (hk : l+L=p*k+R) :
     PowerSeries.coeff l (shiftedExpansion f p hp L R)=PowerSeries.coeff k f := by
   rw [shiftedExpansion_coeff,hk,PowerSeries.coeff_X_pow_mul,PowerSeries.coeff_expand_mul]
 
+/--
+@isnad1 id=ex.2h5v.s7.beb26fb9b1ca from=translated src=- shape=0dc05482 vocab=1b2ca774
+-/
 theorem shiftedExpansion_coeff_nonzero (f : PowerSeries ℂ) (p : ℕ) (hp : p ≠ 0)
     (L R l : ℕ) (hne : PowerSeries.coeff l (shiftedExpansion f p hp L R) ≠ 0) :
     ∃ k, l+L=p*k+R ∧ PowerSeries.coeff k f ≠ 0 := by
@@ -74,7 +83,9 @@ theorem shiftedExpansion_coeff_nonzero (f : PowerSeries ℂ) (p : ℕ) (hp : p �
   · exact False.elim (hne rfl)
 
 /-- No coefficients are discarded when the actual support obeys the
-nonnegative exponent bound. This is the formal clear-powers identity.-/
+nonnegative exponent bound. This is the formal clear-powers identity.
+@isnad1 id=eq.2h4v.s8.757be71b609b from=translated src=- shape=92799799 vocab=155d52c7
+-/
 theorem shiftedExpansion_clear_powers (f : PowerSeries ℂ) (p : ℕ) (hp : p ≠ 0)
     (L R : ℕ) (hsupport : ∀ k, PowerSeries.coeff k f ≠ 0 → L ≤ p*k+R) :
     PowerSeries.X^L * shiftedExpansion f p hp L R =
@@ -109,6 +120,9 @@ def shearedSeries (A : PowerSeries (Matrix (Fin n) (Fin n) ℂ))
   PowerSeries.mk (fun l => (show Matrix (Fin n) (Fin n) ℂ from fun i j => PowerSeries.coeff l
     (shiftedExpansion (WasowPowerSeries.entry A i j) p hp (a*(i.val+1)) (a*j.val))))
 
+/--
+@isnad1 id=eq.1h6v.s6.1a63cbef3497 from=translated src=- shape=96b1aa6f vocab=96cbe488
+-/
 theorem entry_shearedSeries (A : PowerSeries (Matrix (Fin n) (Fin n) ℂ))
     (p : ℕ) (hp : p ≠ 0) (a : ℕ) (i j : Fin n) :
     WasowPowerSeries.entry (shearedSeries A p hp a) i j =
@@ -121,7 +135,9 @@ theorem entry_shearedSeries (A : PowerSeries (Matrix (Fin n) (Fin n) ℂ))
       (shiftedExpansion (WasowPowerSeries.entry A i j) p hp (a*(i.val+1)) (a*j.val))))) i) j
 
 /-- The constructed complete matrix series is the actual entrywise
-power-substituted gauge transform after clearing its diagonal powers.-/
+power-substituted gauge transform after clearing its diagonal powers.
+@isnad1 id=eq.2h6v.s8.2533c4b1cd7b from=translated src=- shape=47fcd54b vocab=f9857c3d
+-/
 theorem shearedSeries_clear_powers (A : PowerSeries (Matrix (Fin n) (Fin n) ℂ))
     (p : ℕ) (hp : p ≠ 0) (a : ℕ) (hA : Supported A p a) (i j : Fin n) :
     PowerSeries.X^(a*(i.val+1)) * WasowPowerSeries.entry (shearedSeries A p hp a) i j =
@@ -131,6 +147,9 @@ theorem shearedSeries_clear_powers (A : PowerSeries (Matrix (Fin n) (Fin n) ℂ)
   intro k hk
   exact hA k i j (by simpa only [WasowPowerSeries.coeff_entry] using hk)
 
+/--
+@isnad1 id=supporte.2h4v.s8.4841cfe30e81 from=translated src=- shape=cfe1850d vocab=8c9cbf59
+-/
 theorem supported_of_weightedDegree (A : PowerSeries (Matrix (Fin n) (Fin n) ℂ))
     (p : ℕ) (hp : p ≠ 0) (a : ℕ)
     (hA : ∀ k i j, (PowerSeries.coeff k A) i j ≠ 0 →
@@ -144,6 +163,9 @@ theorem supported_of_weightedDegree (A : PowerSeries (Matrix (Fin n) (Fin n) ℂ
     nlinarith
   exact_mod_cast hh
 
+/--
+@isnad1 id=iff.1h6v.s6.c412241fe14b from=translated src=- shape=92d2d5c2 vocab=b59d75d1
+-/
 theorem weightedDegree_zero_iff (p : ℕ) (hp : p ≠ 0) (a k : ℕ) (i j : Fin n) :
     WasowShearingLeading.weightedDegree ((a : ℚ)/p) k i j=0 ↔
       a*(i.val+1)=p*k+a*j.val := by
@@ -161,7 +183,9 @@ theorem weightedDegree_zero_iff (p : ℕ) (hp : p ≠ 0) (a k : ℕ) (i j : Fin 
       WasowShearingLeading.weightedDegree ((a : ℚ)/p) k i j=0 by rw [he]; nlinarith)).resolve_left hp'
 
 /-- The constant coefficient agrees with the already proved actual
-zero-weight leading matrix, entry by entry.-/
+zero-weight leading matrix, entry by entry.
+@isnad1 id=eq.1h4v.s9.a6a207c7bbd2 from=translated src=- shape=00dad898 vocab=91190efa
+-/
 theorem constantCoeff_shearedSeries (A : PowerSeries (Matrix (Fin n) (Fin n) ℂ))
     (p : ℕ) (hp : p ≠ 0) (a : ℕ) :
     PowerSeries.constantCoeff (shearedSeries A p hp a) =
@@ -186,7 +210,9 @@ theorem constantCoeff_shearedSeries (A : PowerSeries (Matrix (Fin n) (Fin n) ℂ
       p hp (a*(i.val+1)) (a*j.val) 0 hn
     exact hex ⟨k,(weightedDegree_zero_iff p hp a k i j).mpr (by simpa using hk)⟩
 
-/-- The scalar derivative identity of the actual diagonal gauge power.-/
+/-- The scalar derivative identity of the actual diagonal gauge power.
+@isnad1 id=eq.0h2v.s8.2d8655446fcf from=translated src=- shape=bcf3bc40 vocab=a79e95b6
+-/
 theorem power_times_derivative_X_pow (Q b : ℕ) :
     (PowerSeries.X : PowerSeries ℂ)^(Q+1) *
         PowerSeries.derivative ℂ (PowerSeries.X^b) =
@@ -201,6 +227,9 @@ theorem power_times_derivative_X_pow (Q b : ℕ) :
     rw [show Q+(b+1)=Q+1+b by omega,pow_add]
     ring
 
+/--
+@isnad1 id=eq.1h5v.s9.b22d1771102a from=translated src=- shape=8b503ab9 vocab=acdcc9cd
+-/
 theorem derivative_correction_clear (p a q : ℕ) (ha : a ≤ p*(q+1)) (i : Fin n) :
     (PowerSeries.X : PowerSeries ℂ)^(a*(i.val+1)) *
         PowerSeries.monomial (p*(q+1)-a) (((a*i.val : ℕ) : ℂ)/(p : ℂ)) =
@@ -223,6 +252,9 @@ def normalizedSeries (A : PowerSeries (Matrix (Fin n) (Fin n) ℂ))
     (p : ℕ) (hp : p ≠ 0) (a q : ℕ) : PowerSeries (Matrix (Fin n) (Fin n) ℂ) :=
   shearedSeries A p hp a + correctionSeries p a q
 
+/--
+@isnad1 id=eq.1h7v.s7.ed5a78407377 from=translated src=- shape=30e46cb8 vocab=0de8fcd9
+-/
 theorem entry_normalizedSeries (A : PowerSeries (Matrix (Fin n) (Fin n) ℂ))
     (p : ℕ) (hp : p ≠ 0) (a q : ℕ) (i j : Fin n) :
     WasowPowerSeries.entry (normalizedSeries A p hp a q) i j =
@@ -241,7 +273,9 @@ theorem entry_normalizedSeries (A : PowerSeries (Matrix (Fin n) (Fin n) ℂ))
 /-- The complete formal gauge equation with the genuine diagonal-gauge
 derivative. The plus sign comes from using the inverse variable `z⁻¹`.
 For the unscaled substitution `x=zᵖ`, multiply the resulting coefficient
-matrix by `p` as required by the chain rule.-/
+matrix by `p` as required by the chain rule.
+@isnad1 id=eq.3h7v.s9.071f1a149e27 from=translated src=- shape=3810dabb vocab=f8b3a9ef
+-/
 theorem normalizedSeries_clear_powers
     (A : PowerSeries (Matrix (Fin n) (Fin n) ℂ)) (p : ℕ) (hp : p ≠ 0)
     (a q : ℕ) (hA : Supported A p a) (ha : a ≤ p*(q+1)) (i j : Fin n) :
@@ -254,6 +288,9 @@ theorem normalizedSeries_clear_powers
   · rw [ite_eq_left hij,ite_eq_left hij,derivative_correction_clear p a q ha]
   · simp only [ite_eq_right hij,map_zero,mul_zero,add_zero]
 
+/--
+@isnad1 id=lt.2h3v.s6.f269a55c4f8d from=translated src=- shape=26f724c4 vocab=3b7eff14
+-/
 theorem correction_exponent_pos (p : ℕ) (hp : p ≠ 0) (a q : ℕ)
     (hσ : (a : ℚ)/p < (q+1 : ℕ)) : 0 < p*(q+1)-a := by
   have hp' : (0 : ℚ)<p := by exact_mod_cast Nat.pos_of_ne_zero hp
@@ -264,7 +301,9 @@ theorem correction_exponent_pos (p : ℕ) (hp : p ≠ 0) (a q : ℕ)
   omega
 
 /-- Below the stopping threshold, the derivative correction has positive
-order and the full normalized series keeps the proved leading matrix.-/
+order and the full normalized series keeps the proved leading matrix.
+@isnad1 id=eq.2h5v.s9.3d086f6855db from=translated src=- shape=60f98484 vocab=85124c3e
+-/
 theorem constantCoeff_normalizedSeries
     (A : PowerSeries (Matrix (Fin n) (Fin n) ℂ)) (p : ℕ) (hp : p ≠ 0)
     (a q : ℕ) (hσ : (a : ℚ)/p < (q+1 : ℕ)) :
@@ -282,6 +321,9 @@ def ramifiedSeries (A : PowerSeries (Matrix (Fin n) (Fin n) ℂ))
     (p : ℕ) (hp : p ≠ 0) (a q : ℕ) : PowerSeries (Matrix (Fin n) (Fin n) ℂ) :=
   (p : ℂ) • normalizedSeries A p hp a q
 
+/--
+@isnad1 id=eq.1h7v.s6.e01e1883b2d0 from=translated src=- shape=c017bb59 vocab=05c73b9a
+-/
 theorem entry_ramifiedSeries (A : PowerSeries (Matrix (Fin n) (Fin n) ℂ))
     (p : ℕ) (hp : p ≠ 0) (a q : ℕ) (i j : Fin n) :
     WasowPowerSeries.entry (ramifiedSeries A p hp a q) i j =
@@ -292,7 +334,9 @@ theorem entry_ramifiedSeries (A : PowerSeries (Matrix (Fin n) (Fin n) ℂ))
     PowerSeries.coeff_C_mul,Matrix.smul_apply,smul_eq_mul]
 
 /-- With the actual ramification prefactor, the cleared formal gauge
-identity has exactly the unscaled derivative of the diagonal gauge.-/
+identity has exactly the unscaled derivative of the diagonal gauge.
+@isnad1 id=eq.3h7v.s9.e36199537528 from=translated src=- shape=dc532331 vocab=887e9192
+-/
 theorem ramifiedSeries_clear_powers
     (A : PowerSeries (Matrix (Fin n) (Fin n) ℂ)) (p : ℕ) (hp : p ≠ 0)
     (a q : ℕ) (hA : Supported A p a) (ha : a ≤ p*(q+1)) (i j : Fin n) :
@@ -319,6 +363,9 @@ theorem ramifiedSeries_clear_powers
       · simp only [ite_eq_right hij,mul_zero,add_zero]
         ring
 
+/--
+@isnad1 id=eq.2h5v.s9.07021f06e89c from=translated src=- shape=c832cbd7 vocab=297b6906
+-/
 theorem constantCoeff_ramifiedSeries
     (A : PowerSeries (Matrix (Fin n) (Fin n) ℂ)) (p : ℕ) (hp : p ≠ 0)
     (a q : ℕ) (hσ : (a : ℚ)/p < (q+1 : ℕ)) :
@@ -328,7 +375,9 @@ theorem constantCoeff_ramifiedSeries
   rw [ramifiedSeries,PowerSeries.constantCoeff_smul,constantCoeff_normalizedSeries A p hp a q hσ]
 
 /-- Complete non-stopping formal update, constructed from the old full
-series and the verified coefficient support bound.-/
+series and the verified coefficient support bound.
+@isnad1 id=ex.3h5v.s10.5304956e495a from=translated src=- shape=ac47d331 vocab=40ff895a
+-/
 theorem exists_formal_sheared_series
     (A : PowerSeries (Matrix (Fin n) (Fin n) ℂ)) (p : ℕ) (hp : p ≠ 0)
     (a q : ℕ) (hA : Supported A p a) (hσ : (a : ℚ)/p < (q+1 : ℕ)) :

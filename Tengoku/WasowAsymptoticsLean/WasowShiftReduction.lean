@@ -19,6 +19,9 @@ namespace WasowShiftReduction
 def shift (h : ℕ) : Matrix (Fin (h + 1)) (Fin (h + 1)) ℂ :=
   fun i j => if j.val = i.val + 1 then 1 else 0
 
+/--
+@isnad1 id=eq.0h5v.s8.edc82d992f8b from=translated src=- shape=a051b8a5 vocab=8384a46e
+-/
 theorem shift_mul_apply {h k : ℕ}
     (P : Matrix (Fin (h + 1)) (Fin k) ℂ) (i : Fin (h + 1)) (j : Fin k) :
     (shift h * P) i j = if hi : i.val < h then P ⟨i.val + 1, by omega⟩ j else 0 := by
@@ -47,7 +50,9 @@ def rows {h k : ℕ} (K : Matrix (Fin k) (Fin k) ℂ)
   | r + 1 => Matrix.vecMul (rows K H r) K + H ⟨min r h, by omega⟩
 
 /-- Every rectangular residual admits a normalized resonant coefficient step.
-There is no spectral or Jordan assumption on the right coefficient `K`.-/
+There is no spectral or Jordan assumption on the right coefficient `K`.
+@isnad1 id=ex.0h4v.s9.09d55e116bb7 from=translated src=- shape=bf2ca766 vocab=d12cbb20
+-/
 theorem exists_rectangular_step {h k : ℕ} (K : Matrix (Fin k) (Fin k) ℂ)
     (H : Matrix (Fin (h + 1)) (Fin k) ℂ) :
     ∃ P B : Matrix (Fin (h + 1)) (Fin k) ℂ,
@@ -79,7 +84,9 @@ theorem exists_rectangular_step {h k : ℕ} (K : Matrix (Fin k) (Fin k) ℂ)
 
 /-- The actual single-shift version of Wasow's formal row normalization, to
 all orders. The leading shift is retained; only positive transformed orders
-are constrained to their last row.-/
+are constrained to their last row.
+@isnad1 id=ex.2h3v.s10.8addf80b0ec4 from=translated src=- shape=05a25b40 vocab=e93eeb30
+-/
 theorem exists_formal_shift_reduction {h : ℕ}
     (A : ℕ → Matrix (Fin (h + 1)) (Fin (h + 1)) ℂ)
     (hA : A 0 = shift h) {q : ℕ} (hq : 0 < q) :

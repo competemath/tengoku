@@ -28,6 +28,9 @@ attribute [local instance] Measure.Subtype.measureSpace
 open WasowVolterra
 namespace WasowFundamental
 
+/--
+@isnad1 id=tendsto.0h1v.s5.6eb67fd811fd from=translated src=- shape=03b2e8d4 vocab=5bfcff01
+-/
 theorem retract_tendsto_atTop (a : ℝ) : Tendsto (retract a) atTop atTop := by
   apply tendsto_atTop.mpr
   intro b
@@ -35,6 +38,9 @@ theorem retract_tendsto_atTop (a : ℝ) : Tendsto (retract a) atTop atTop := by
   change (b : ℝ) ≤ max a r
   exact hr.trans (le_max_right _ _)
 
+/--
+@isnad1 id=tendsto.1h4v.s6.bf92c4a17ce9 from=translated src=- shape=8cdc4763 vocab=dcfb0d65
+-/
 theorem extend_tendsto {α : Type*} [TopologicalSpace α] {a : ℝ}
     {u : Ici a → α} {v : α} (hu : Tendsto u atTop (𝓝 v)) :
     Tendsto (extend a u) atTop (𝓝 v) := hu.comp (retract_tendsto_atTop a)
@@ -50,6 +56,9 @@ def fundamentalMatrix {m : ℕ} {a : ℝ}
     Matrix (Fin m) (Fin m) ℂ :=
   normalizedMatrix u r * Matrix.diagonal (fun j => Complex.exp (Q j r))
 
+/--
+@isnad1 id=eq.0h7v.s7.c0ed3eb84e82 from=translated src=- shape=531c2aae vocab=b4141d69
+-/
 @[simp] theorem fundamentalMatrix_apply {m : ℕ} {a : ℝ}
     (u : Fin m → Ici a →ᵇ (Fin m → ℂ)) (Q : Fin m → ℝ → ℂ)
     (r : ℝ) (i j : Fin m) :
@@ -57,7 +66,9 @@ def fundamentalMatrix {m : ℕ} {a : ℝ}
   simp [fundamentalMatrix, Matrix.mul_diagonal, normalizedMatrix, mul_comm]
 
 /-- The full normalized matrix tends to the identity, rather than merely
-having separately prescribed entries on unrelated tails.-/
+having separately prescribed entries on unrelated tails.
+@isnad1 id=tendsto.1h3v.s8.445a1018bce9 from=translated src=- shape=ee6eb18a vocab=08cd2c9e
+-/
 theorem normalizedMatrix_tendsto_one {m : ℕ} {a : ℝ}
     (u : Fin m → Ici a →ᵇ (Fin m → ℂ))
     (hu : ∀ j, Tendsto (u j) atTop (𝓝 (Pi.single j (1 : ℂ) : Fin m → ℂ))) :
@@ -69,7 +80,9 @@ theorem normalizedMatrix_tendsto_one {m : ℕ} {a : ℝ}
   have hentry := tendsto_pi_nhds.mp (extend_tendsto (hu j)) i
   simpa [normalizedMatrix, Matrix.one_apply, Pi.single_apply, eq_comm] using hentry
 
-/-- The determinant is eventually nonzero because its limit is exactly one.-/
+/-- The determinant is eventually nonzero because its limit is exactly one.
+@isnad1 id=eventual.1h3v.s8.9be8b499ac61 from=translated src=- shape=ddc82ccf vocab=b4e6f81c
+-/
 theorem eventually_det_normalizedMatrix_ne_zero {m : ℕ} {a : ℝ}
     (u : Fin m → Ici a →ᵇ (Fin m → ℂ))
     (hu : ∀ j, Tendsto (u j) atTop (𝓝 (Pi.single j (1 : ℂ) : Fin m → ℂ))) :
@@ -82,7 +95,9 @@ theorem eventually_det_normalizedMatrix_ne_zero {m : ℕ} {a : ℝ}
     isClosed_singleton.isOpen_compl.mem_nhds (by simp)
   simpa only [Function.comp_apply] using hl.eventually he
 
-/-- Restoring exponentials preserves the nonzero determinant pointwise.-/
+/-- Restoring exponentials preserves the nonzero determinant pointwise.
+@isnad1 id=ne.1h5v.s6.32870fba3728 from=translated src=- shape=fcfb689c vocab=cf67bae8
+-/
 theorem det_fundamentalMatrix_ne_zero {m : ℕ} {a : ℝ}
     (u : Fin m → Ici a →ᵇ (Fin m → ℂ)) (Q : Fin m → ℝ → ℂ) {r : ℝ}
     (hu : (normalizedMatrix u r).det ≠ 0) : (fundamentalMatrix u Q r).det ≠ 0 := by
@@ -90,7 +105,9 @@ theorem det_fundamentalMatrix_ne_zero {m : ℕ} {a : ℝ}
   exact mul_ne_zero hu (Finset.prod_ne_zero_iff.mpr (fun j _ => Complex.exp_ne_zero _))
 
 /-- A normalized column solving the phase-difference equation gives a column
-of the actual solution matrix satisfying the original ODE.-/
+of the actual solution matrix satisfying the original ODE.
+@isnad1 id=hasderiv.2h8v.s10.39a060ce4e93 from=translated src=- shape=85dcc916 vocab=72716a05
+-/
 theorem fundamentalMatrix_column_hasDerivAt {m : ℕ} {a : ℝ}
     (u : Fin m → Ici a →ᵇ (Fin m → ℂ)) (Q dQ : Fin m → ℝ → ℂ)
     (R : Ici a → (Fin m → ℂ) →L[ℂ] (Fin m → ℂ))
@@ -111,7 +128,9 @@ theorem fundamentalMatrix_column_hasDerivAt {m : ℕ} {a : ℝ}
 
 /-- Actual fundamental-matrix construction under the mixed-Volterra hypotheses.
 The first index of `mode` selects the column, the second the component. All
-columns use the same half-line and the same integrable operator remainder.-/
+columns use the same half-line and the same integrable operator remainder.
+@isnad1 id=ex.6h7v.s11.672bf6fabefc from=translated src=- shape=f81e16bb vocab=dd5bc859
+-/
 theorem exists_fundamental_matrix (m : ℕ) (a : ℝ)
     (mode : Fin m → Fin m → Bool) (Q dQ : Fin m → ℝ → ℂ)
     (hQ : ∀ i, Continuous (Q i))

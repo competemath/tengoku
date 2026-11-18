@@ -40,7 +40,9 @@ structure RayGaugeChange (A B : Matrix (Fin m) (Fin m) (RatFunc ℂ)) (θ : ℝ)
   identity : ∀ r > R, coefficientOnRay A θ r * H r =
     H' r + H r * coefficientOnRay B θ r
 
-/-- Exact algebra of an intermediate change followed by the final gauge.-/
+/-- Exact algebra of an intermediate change followed by the final gauge.
+@isnad1 id=eq.2h9v.s9.6f002b35cfe1 from=translated src=- shape=59c5a55f vocab=9c5f9906
+-/
 theorem gauge_composition_identity (A B H S H' U V U' : Matrix (Fin m) (Fin m) ℂ)
     (hH : A * H = H' + H * B) (hSH : S * H = 1) :
     (V * S) * A * (H * U) - (V * S) * (H' * U + H * U') =
@@ -56,7 +58,9 @@ theorem gauge_composition_identity (A B H S H' U V U' : Matrix (Fin m) (Fin m) �
 
 /-- Compose genuine intermediate coordinates with an already constructed
 normal form of the transformed system. The original pole-free tail is derived
-from rationality, so no new normal form or pole assumption is introduced.-/
+from rationality, so no new normal form or pole assumption is introduced.
+@isnad1 id=nonempty.0h7v.s5.ec333373f3cb from=translated src=- shape=53a4fb72 vocab=1e2076c8
+-/
 theorem pullback_rayGauge (A B : Matrix (Fin m) (Fin m) (RatFunc ℂ)) (θ : ℝ)
     (Q : Fin m → ℝ → ℂ) (F : RayGaugeChange A B θ) (W : RayGaugeWitness B θ Q) :
     Nonempty (RayGaugeWitness A θ Q) := by
@@ -118,12 +122,17 @@ def constantConjugate (A : Matrix (Fin m) (Fin m) (RatFunc ℂ))
     (C : Matrix (Fin m) (Fin m) ℂ) : Matrix (Fin m) (Fin m) (RatFunc ℂ) :=
   constantMatrix C⁻¹ * A * constantMatrix C
 
+/--
+@isnad1 id=eq.0h4v.s5.e448f6f77d12 from=translated src=- shape=8ec635fc vocab=003ed3a1
+-/
 @[simp] theorem value_constantMatrix (C : Matrix (Fin m) (Fin m) ℂ) (θ r : ℝ) :
     (constantMatrix C).map (value θ r) = C := by
   ext i j
   exact value_constant θ r (C i j)
 
-/-- The rational constant similarity agrees with its actual ray evaluation.-/
+/-- The rational constant similarity agrees with its actual ray evaluation.
+@isnad1 id=eventual.0h4v.s6.7bc7cc1218e7 from=translated src=- shape=764b863c vocab=c46916ee
+-/
 theorem eventually_constantConjugate (A : Matrix (Fin m) (Fin m) (RatFunc ℂ))
     (C : Matrix (Fin m) (Fin m) ℂ) (θ : ℝ) :
     ∀ᶠ r in atTop, coefficientOnRay (constantConjugate A C) θ r =
@@ -138,7 +147,9 @@ theorem eventually_constantConjugate (A : Matrix (Fin m) (Fin m) (RatFunc ℂ))
   rw [hc, he, hc, Matrix.mul_smul, Matrix.smul_mul]
 
 /-- Construct the genuine constant coordinate change from an arbitrary
-nonsingular complex matrix, with actual inverse and finite operator bounds.-/
+nonsingular complex matrix, with actual inverse and finite operator bounds.
+@isnad1 id=nonempty.1h4v.s5.469e42ef2284 from=translated src=- shape=ae0da816 vocab=d9062dc1
+-/
 theorem constant_change (A : Matrix (Fin m) (Fin m) (RatFunc ℂ))
     (C : Matrix (Fin m) (Fin m) ℂ) (hC : C.det ≠ 0) (θ : ℝ) :
     Nonempty (RayGaugeChange A (constantConjugate A C) θ) := by
@@ -173,7 +184,9 @@ theorem constant_change (A : Matrix (Fin m) (Fin m) (RatFunc ℂ))
       ← Matrix.mul_assoc, hj, Matrix.one_mul]
 
 /-- A genuine constant coordinate transformation preserves the exact ray
-normal-form conclusion for the same phase functions.-/
+normal-form conclusion for the same phase functions.
+@isnad1 id=nonempty.1h6v.s5.007fa2bd9715 from=translated src=- shape=65192fe1 vocab=ce810946
+-/
 theorem pullback_constant_rayGauge (A : Matrix (Fin m) (Fin m) (RatFunc ℂ))
     (C : Matrix (Fin m) (Fin m) ℂ) (hC : C.det ≠ 0) (θ : ℝ)
     (Q : Fin m → ℝ → ℂ) (W : RayGaugeWitness (constantConjugate A C) θ Q) :

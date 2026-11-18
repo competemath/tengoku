@@ -18,7 +18,9 @@ open scoped Topology Matrix.Norms.Operator
 namespace WasowFuchsianBounds
 
 /-- A derivative estimate K/r gives a polynomial bound in the original
-radius. The starting radius lies strictly inside the differentiability tail.-/
+radius. The starting radius lies strictly inside the differentiability tail.
+@isnad1 id=le.6h7v.s7.3444c10c7c29 from=translated src=- shape=37551e2c vocab=80dcbf45
+-/
 theorem norm_le_polynomial_of_deriv_bound
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (f f' : ℝ → E) (a R K : ℝ) (hR : 1 ≤ R) (haR : a < R) (hK : 0 ≤ K)
@@ -56,7 +58,9 @@ theorem norm_le_polynomial_of_deriv_bound
   nlinarith
 
 /-- The two independently constructed ODE solutions are genuine inverses.
-Continuity at the initial endpoint supplies the boundary value.-/
+Continuity at the initial endpoint supplies the boundary value.
+@isnad1 id=and.7h6v.s9.aaa9d06af428 from=translated src=- shape=b1564b09 vocab=a47f8ac7
+-/
 theorem matrix_solutions_inverse {m : ℕ} (a : ℝ)
     (A T S : ℝ → Matrix (Fin m) (Fin m) ℂ)
     (hT0 : T a = 1) (hS0 : S a = 1)
@@ -90,7 +94,9 @@ theorem matrix_solutions_inverse {m : ℕ} (a : ℝ)
   have hleft : S r * T r = 1 := (he' hr).trans hinit.symm
   exact ⟨hleft, mul_eq_one_comm.mp hleft⟩
 
-/-- Both actual fundamental matrices have a common polynomial bound.-/
+/-- Both actual fundamental matrices have a common polynomial bound.
+@isnad1 id=ex.6h7v.s9.068db399159e from=translated src=- shape=f2f3130f vocab=edb3cfd3
+-/
 theorem matrix_solutions_bounds {m : ℕ} (a R K : ℝ)
     (A T S : ℝ → Matrix (Fin m) (Fin m) ℂ)
     (hR : 1 ≤ R) (haR : a < R) (hK : 0 ≤ K)

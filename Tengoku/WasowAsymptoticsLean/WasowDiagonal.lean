@@ -20,6 +20,9 @@ open scoped Topology BigOperators
 open CRGNormalFormGoal WasowRational WasowScalarGauge
 namespace WasowDiagonal
 
+/--
+@isnad1 id=le.2h4v.s7.579536e1c360 from=translated src=- shape=b9ed6be8 vocab=1af467de
+-/
 theorem diagonal_mulVec_norm_le {m : ℕ} (d x : Fin m → ℂ) {B : ℝ}
     (hB : 0 ≤ B) (hd : ∀ i, ‖d i‖ ≤ B) :
     ‖(Matrix.diagonal d).mulVec x‖ ≤ B * ‖x‖ := by
@@ -28,6 +31,9 @@ theorem diagonal_mulVec_norm_le {m : ℕ} (d x : Fin m → ℂ) {B : ℝ}
   rw [Matrix.mulVec_diagonal, norm_mul]
   exact mul_le_mul (hd i) (norm_le_pi_norm x i) (norm_nonneg _) hB
 
+/--
+@isnad1 id=eq.0h4v.s6.607a8ec6457c from=translated src=- shape=57b36c33 vocab=6819af53
+-/
 theorem coefficientOnRay_diagonal {m : ℕ} (a : Fin m → RatFunc ℂ) (θ r : ℝ) :
     coefficientOnRay (Matrix.diagonal a) θ r =
       Matrix.diagonal (fun i => Complex.exp ((θ : ℂ) * Complex.I) *
@@ -37,7 +43,9 @@ theorem coefficientOnRay_diagonal {m : ℕ} (a : Fin m → RatFunc ℂ) (θ r : 
   by_cases h : i = j <;> simp [coefficientOnRay, h]
 
 /-- The full witness is constructed whenever the chosen phases have the
-polynomial-part derivatives. No gauge or inverse bounds are assumed.-/
+polynomial-part derivatives. No gauge or inverse bounds are assumed.
+@isnad1 id=nonempty.1h4v.s6.e64117e6cbeb from=translated src=- shape=539e5040 vocab=2be8ad65
+-/
 theorem exists_diagonal_rayGauge {m : ℕ} (a : Fin m → RatFunc ℂ)
     (θ : ℝ) (q : Fin m → ℝ → ℂ)
     (hq : ∀ i r, HasDerivAt (q i)
@@ -127,7 +135,9 @@ theorem exists_diagonal_rayGauge {m : ℕ} (a : Fin m → RatFunc ℂ)
       _ = _ := by rw [hinv, one_mul]; exact (sub_eq_iff_eq_add.mp hid).symm ▸ by ring
 
 /-- The original normal-form conclusion for every diagonal rational system.
-The phases are selected before the angle and have zero constant term.-/
+The phases are selected before the angle and have zero constant term.
+@isnad1 id=ex.0h2v.s6.cc922ece92db from=translated src=- shape=751e7fa7 vocab=60f04a32
+-/
 theorem diagonal_rational_normal_form {m : ℕ} (a : Fin m → RatFunc ℂ) :
     ∃ (p : ℕ), 0 < p ∧ ∃ G : Fin m → Polynomial ℂ,
       (∀ i, (G i).coeff 0 = 0) ∧
@@ -140,7 +150,9 @@ theorem diagonal_rational_normal_form {m : ℕ} (a : Fin m → RatFunc ℂ) :
     (fun i r => WasowPolynomialPhase.phase_hasDerivAt (polynomialPart (a i)) θ r)
 
 /-- Every one-dimensional rational system satisfies the unmodified normal-form
-conclusion, without any assumption on its coefficient.-/
+conclusion, without any assumption on its coefficient.
+@isnad1 id=ex.0h1v.s6.fc9449d13402 from=translated src=- shape=49d473a5 vocab=8a308e16
+-/
 theorem scalar_rational_normal_form (A : Matrix (Fin 1) (Fin 1) (RatFunc ℂ)) :
     ∃ (p : ℕ), 0 < p ∧ ∃ G : Fin 1 → Polynomial ℂ,
       (∀ i, (G i).coeff 0 = 0) ∧

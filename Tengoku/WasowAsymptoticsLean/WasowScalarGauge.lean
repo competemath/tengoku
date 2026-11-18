@@ -25,14 +25,23 @@ def primitive (b : ℝ → ℂ) (R r : ℝ) : ℂ := ∫ s in R..r, tailExtensio
 def gauge (b : ℝ → ℂ) (R r : ℝ) : ℂ := Complex.exp (primitive b R r)
 def inverseGauge (b : ℝ → ℂ) (R r : ℝ) : ℂ := Complex.exp (-primitive b R r)
 
+/--
+@isnad1 id=continuo.1h2v.s5.0ecec7ab4064 from=translated src=- shape=06ede008 vocab=739b515c
+-/
 theorem tailExtension_continuous {b : ℝ → ℂ} {R : ℝ}
     (hb : ContinuousOn b (Ici R)) : Continuous (tailExtension b R) := by
   exact hb.comp_continuous (continuous_const.max continuous_id) (fun r => le_max_left R r)
 
+/--
+@isnad1 id=and.0h3v.s5.16cd5ce7163a from=translated src=- shape=0601f430 vocab=a7faa14e
+-/
 theorem gauge_inverse (b : ℝ → ℂ) (R r : ℝ) :
     inverseGauge b R r * gauge b R r = 1 ∧ gauge b R r * inverseGauge b R r = 1 := by
   simp [gauge, inverseGauge, Complex.exp_neg, Complex.exp_ne_zero]
 
+/--
+@isnad1 id=hasderiv.2h3v.s6.4c854ef10b87 from=translated src=- shape=b6b7ce6f vocab=6fbf72eb
+-/
 theorem primitive_hasDerivAt {b : ℝ → ℂ} {R r : ℝ}
     (hb : ContinuousOn b (Ici R)) (hr : R ≤ r) :
     HasDerivAt (primitive b R) (b r) r := by
@@ -41,12 +50,17 @@ theorem primitive_hasDerivAt {b : ℝ → ℂ} {R r : ℝ}
     (hc.intervalIntegrable R r) hc.stronglyMeasurable.stronglyMeasurableAtFilter hc.continuousAt
   convert hd using 1 <;> first | rfl | simp [tailExtension, max_eq_right hr]
 
+/--
+@isnad1 id=hasderiv.2h3v.s6.581145cbf49a from=translated src=- shape=e4df2862 vocab=2bafe8e9
+-/
 theorem gauge_hasDerivAt {b : ℝ → ℂ} {R r : ℝ}
     (hb : ContinuousOn b (Ici R)) (hr : R ≤ r) :
     HasDerivAt (gauge b R) (b r * gauge b R r) r := by
   convert (primitive_hasDerivAt hb hr).cexp using 1 <;> first | rfl | simp [gauge, mul_comm]
 
-/-- The residual's reciprocal bound gives a genuine logarithmic integral bound.-/
+/-- The residual's reciprocal bound gives a genuine logarithmic integral bound.
+@isnad1 id=le.5h4v.s6.4e6ad21a20cc from=translated src=- shape=647a973a vocab=6194b4b1
+-/
 theorem primitive_norm_le {b : ℝ → ℂ} {R C r : ℝ}
     (hR : 1 ≤ R) (hC : 0 ≤ C) (hb : ContinuousOn b (Ici R))
     (hbound : ∀ s : ℝ, R ≤ s → ‖b s‖ ≤ C/s) (hr : R ≤ r) :
@@ -75,7 +89,9 @@ theorem primitive_norm_le {b : ℝ → ℂ} {R C r : ℝ}
       apply mul_le_mul_of_nonneg_left _ hC
       exact Real.log_le_log (div_pos hr0 hR0) (div_le_self hr0.le hR)
 
-/-- Both directions of the explicit scalar gauge have the same polynomial bound.-/
+/-- Both directions of the explicit scalar gauge have the same polynomial bound.
+@isnad1 id=and.5h4v.s7.f74bacacc69b from=translated src=- shape=780eb0f6 vocab=28fbe07a
+-/
 theorem gauge_norm_bounds {b : ℝ → ℂ} {R C r : ℝ}
     (hR : 1 ≤ R) (hC : 0 ≤ C) (hb : ContinuousOn b (Ici R))
     (hbound : ∀ s : ℝ, R ≤ s → ‖b s‖ ≤ C/s) (hr : R ≤ r) :

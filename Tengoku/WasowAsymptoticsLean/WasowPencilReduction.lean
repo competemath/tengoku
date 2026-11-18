@@ -105,18 +105,30 @@ def rowMatrix (h : σ → ℕ) : Matrix (NewIndex h) (OldIndex h) ℂ[X] :=
 def rowInverse (h : σ → ℕ) : Matrix (OldIndex h) (NewIndex h) ℂ[X] :=
   LinearMap.toMatrix' (rowEquiv h).symm.toLinearMap
 
+/--
+@isnad1 id=eq.0h2v.s7.e1e922ab876a from=translated src=- shape=0ee9bcba vocab=bc217ed9
+-/
 theorem right_mul_inverse (h : σ → ℕ) : rightMatrix h * rightInverse h = 1 := by
   apply Matrix.toLin'.injective
   simp [rightMatrix, rightInverse, Matrix.toLin'_mul]
 
+/--
+@isnad1 id=eq.0h2v.s7.70428dd1efa7 from=translated src=- shape=0ee9bcba vocab=bc217ed9
+-/
 theorem inverse_mul_right (h : σ → ℕ) : rightInverse h * rightMatrix h = 1 := by
   apply Matrix.toLin'.injective
   simp [rightMatrix, rightInverse, Matrix.toLin'_mul]
 
+/--
+@isnad1 id=eq.0h2v.s7.73eed47a9db0 from=translated src=- shape=0ee9bcba vocab=b4160fd1
+-/
 theorem row_mul_inverse (h : σ → ℕ) : rowMatrix h * rowInverse h = 1 := by
   apply Matrix.toLin'.injective
   simp [rowMatrix, rowInverse, Matrix.toLin'_mul]
 
+/--
+@isnad1 id=eq.0h2v.s7.91511f32f653 from=translated src=- shape=0ee9bcba vocab=b4160fd1
+-/
 theorem inverse_mul_row (h : σ → ℕ) : rowInverse h * rowMatrix h = 1 := by
   apply Matrix.toLin'.injective
   simp [rowMatrix, rowInverse, Matrix.toLin'_mul]
@@ -133,7 +145,9 @@ def presentation {h : σ → ℕ} (C : Matrix (OldIndex h) (OldIndex h) ℂ) : M
   fun a b => (if a = b then X ^ (h a + 1) else 0) -
     WasowPencilCoefficients.rowPolynomial (fun j => C ⟨a, Fin.last (h a)⟩ ⟨b, j⟩)
 
-/-- The normalized rows act as X v_i-v_(i+1).-/
+/-- The normalized rows act as X v_i-v_(i+1).
+@isnad1 id=eq.1h6v.s7.fa00181b258c from=translated src=- shape=5399c15e vocab=103fa151
+-/
 theorem pencil_mulVec_top {h : σ → ℕ} {C : Matrix (OldIndex h) (OldIndex h) ℂ}
     (hC : LastRowForm h C) (v : OldIndex h → ℂ[X]) (a : σ) (i : Fin (h a)) :
     (pencil C *ᵥ v) ⟨a, i.castSucc⟩ = X * v ⟨a, i.castSucc⟩ - v ⟨a, i.succ⟩ := by
@@ -149,16 +163,25 @@ theorem pencil_mulVec_top {h : σ → ℕ} {C : Matrix (OldIndex h) (OldIndex h)
   · simp
 
 omit [Fintype σ] [DecidableEq σ] in
+/--
+@isnad1 id=eq.0h4v.s9.7fcd8bb3e948 from=translated src=- shape=40fcbb57 vocab=e2309d75
+-/
 theorem column_zero (h : σ → ℕ) (v : NewIndex h → ℂ[X]) (a : σ) :
     columnEquiv h v ⟨a, 0⟩ = v (.inr a) := by
   simp [columnEquiv]
 
 omit [Fintype σ] [DecidableEq σ] in
+/--
+@isnad1 id=eq.0h5v.s9.60be215cec1c from=translated src=- shape=9cfb233b vocab=baee9c21
+-/
 theorem column_succ (h : σ → ℕ) (v : NewIndex h → ℂ[X]) (a : σ) (i : Fin (h a)) :
     columnEquiv h v ⟨a, i.succ⟩ = v (.inl ⟨a, i⟩) + X^(i.val+1) * v (.inr a) := by
   simp [columnEquiv]
 
 omit [Fintype σ] in
+/--
+@isnad1 id=eq.0h5v.s9.68f3fe293110 from=translated src=- shape=8394c93b vocab=c2b59e51
+-/
 theorem column_single_right (h : σ → ℕ) (a b : σ) (i : Fin (h a+1)) :
     columnEquiv h (Pi.single (.inr b) 1) ⟨a, i⟩ = if a = b then X^i.val else 0 := by
   refine Fin.cases ?_ (fun j => ?_) i
@@ -168,6 +191,9 @@ theorem column_single_right (h : σ → ℕ) (a b : σ) (i : Fin (h a+1)) :
     simp [Pi.single_apply]
 
 omit [Fintype σ] in
+/--
+@isnad1 id=eq.0h6v.s9.f4a1c5a1881c from=translated src=- shape=5fe7641a vocab=e3269b71
+-/
 theorem column_single_left (h : σ → ℕ) (a b : σ) (i : Fin (h a+1)) (j : Fin (h b)) :
     columnEquiv h (Pi.single (.inl ⟨b, j⟩) 1) ⟨a, i⟩ =
       if (⟨a, i⟩ : OldIndex h) = ⟨b, j.succ⟩ then 1 else 0 := by
@@ -196,6 +222,9 @@ theorem column_single_left (h : σ → ℕ) (a b : σ) (i : Fin (h a+1)) (j : Fi
 def afterColumns {h : σ → ℕ} (C : Matrix (OldIndex h) (OldIndex h) ℂ) :
     Matrix (NewIndex h) (NewIndex h) ℂ[X] := rowMatrix h * pencil C * rightMatrix h
 
+/--
+@isnad1 id=eq.0h5v.s9.a0bd4b7d4307 from=translated src=- shape=0fa32907 vocab=0db8929a
+-/
 theorem afterColumns_apply {h : σ → ℕ} (C : Matrix (OldIndex h) (OldIndex h) ℂ)
     (r c : NewIndex h) :
     afterColumns C r c =
@@ -208,7 +237,9 @@ theorem afterColumns_apply {h : σ → ℕ} (C : Matrix (OldIndex h) (OldIndex h
     Matrix.toLin'_toMatrix', LinearMap.comp_apply, Matrix.toLin'_apply]
   rfl
 
-/-- The chain columns kill all normalized shift rows exactly.-/
+/-- The chain columns kill all normalized shift rows exactly.
+@isnad1 id=eq.1h6v.s6.90bf27687c84 from=translated src=- shape=a0e0f826 vocab=eeeb2d53
+-/
 theorem afterColumns_top_right {h : σ → ℕ} {C : Matrix (OldIndex h) (OldIndex h) ℂ}
     (hC : LastRowForm h C) (a b : σ) (i : Fin (h a)) :
     afterColumns C (.inl ⟨a, i⟩) (.inr b) = 0 := by
@@ -220,7 +251,9 @@ theorem afterColumns_top_right {h : σ → ℕ} {C : Matrix (OldIndex h) (OldInd
     simp [pow_succ, mul_comm]
   · simp [hab]
 
-/-- The remaining entries are exactly the polynomials of the original last rows.-/
+/-- The remaining entries are exactly the polynomials of the original last rows.
+@isnad1 id=eq.0h5v.s5.85c2ec3c1690 from=translated src=- shape=e0f095c7 vocab=ec69c077
+-/
 theorem afterColumns_bottom_right {h : σ → ℕ}
     (C : Matrix (OldIndex h) (OldIndex h) ℂ) (a b : σ) :
     afterColumns C (.inr a) (.inr b) = presentation C a b := by
@@ -242,7 +275,9 @@ theorem afterColumns_bottom_right {h : σ → ℕ}
   · intro c hcb
     simp [hcb]
 
-/-- The surviving upper-left block is a universal unit, independent of the last rows.-/
+/-- The surviving upper-left block is a universal unit, independent of the last rows.
+@isnad1 id=eq.1h7v.s7.27dfcfcd6566 from=translated src=- shape=a4b6840e vocab=a84a2157
+-/
 theorem afterColumns_top_left {h : σ → ℕ} {C : Matrix (OldIndex h) (OldIndex h) ℂ}
     (hC : LastRowForm h C) (a b : σ) (i : Fin (h a)) (j : Fin (h b)) :
     afterColumns C (.inl ⟨a, i⟩) (.inl ⟨b, j⟩) =
@@ -266,7 +301,9 @@ theorem afterColumns_top_left {h : σ → ℕ} {C : Matrix (OldIndex h) (OldInde
       hab (congrArg Sigma.fst hh)
     simp only [ite_eq_right hn₁, ite_eq_right hn₂, mul_zero, sub_self]
 
-/-- Exact block form of the original pencil under actual invertible coordinate changes.-/
+/-- Exact block form of the original pencil under actual invertible coordinate changes.
+@isnad1 id=eq.1h3v.s8.5f7bafac58fb from=translated src=- shape=de87b391 vocab=8f2350c7
+-/
 theorem afterColumns_eq {h : σ → ℕ} {C : Matrix (OldIndex h) (OldIndex h) ℂ}
     (hC : LastRowForm h C) :
     rowMatrix h * pencil C * rightMatrix h =
@@ -287,7 +324,9 @@ theorem afterColumns_eq {h : σ → ℕ} {C : Matrix (OldIndex h) (OldIndex h) �
     | inr b => exact afterColumns_bottom_right C a b
 
 /-- A complete, genuinely invertible left/right reduction of the original
-matrix pencil. The small matrix is computed from the original last rows.-/
+matrix pencil. The small matrix is computed from the original last rows.
+@isnad1 id=ex.1h3v.s10.df3256ef7b5e from=translated src=- shape=225ece3b vocab=823106e8
+-/
 theorem exists_pencil_reduction {h : σ → ℕ} {C : Matrix (OldIndex h) (OldIndex h) ℂ}
     (hC : LastRowForm h C) :
     ∃ (L : Matrix (NewIndex h) (OldIndex h) ℂ[X])
@@ -320,7 +359,9 @@ theorem exists_pencil_reduction {h : σ → ℕ} {C : Matrix (OldIndex h) (OldIn
       _ = _ := WasowPencilElimination.elimination_mul B B⁻¹ F (presentation C) hBl
 
 omit [Fintype σ] in
-/-- Off-diagonal entries have the precise coefficient form used in degree descent.-/
+/-- Off-diagonal entries have the precise coefficient form used in degree descent.
+@isnad1 id=eq.1h5v.s6.ffa692f5e54d from=translated src=- shape=70654f98 vocab=7b8d915c
+-/
 theorem presentation_offDiagonal {h : σ → ℕ}
     (C : Matrix (OldIndex h) (OldIndex h) ℂ) (a b : σ) (hab : a ≠ b) :
     presentation C a b = -WasowPencilCoefficients.rowPolynomial
@@ -328,7 +369,9 @@ theorem presentation_offDiagonal {h : σ → ℕ}
   simp [presentation, hab]
 
 omit [Fintype σ] in
-/-- A shift diagonal block has zero last row, hence contributes exactly X^(h+1).-/
+/-- A shift diagonal block has zero last row, hence contributes exactly X^(h+1).
+@isnad1 id=eq.1h4v.s7.6784d7ca8cec from=translated src=- shape=7dd46fec vocab=65451c3d
+-/
 theorem presentation_diagonal {h : σ → ℕ}
     (C : Matrix (OldIndex h) (OldIndex h) ℂ) (a : σ)
     (ha : ∀ j, C ⟨a, Fin.last (h a)⟩ ⟨a, j⟩ = 0) :
@@ -336,7 +379,9 @@ theorem presentation_diagonal {h : σ → ℕ}
   simp [presentation, WasowPencilCoefficients.rowPolynomial, ha]
 
 omit [Fintype σ] in
-/-- Every actual nonzero off-diagonal last row survives with the required strict degree bound.-/
+/-- Every actual nonzero off-diagonal last row survives with the required strict degree bound.
+@isnad1 id=and.2h5v.s7.5ea5ca772498 from=translated src=- shape=b288ae09 vocab=2288a3a1
+-/
 theorem presentation_offDiagonal_nonzero_degree {h : σ → ℕ}
     (C : Matrix (OldIndex h) (OldIndex h) ℂ) (a b : σ) (hab : a ≠ b)
     (hn : ∃ j, C ⟨a, Fin.last (h a)⟩ ⟨b, j⟩ ≠ 0) :

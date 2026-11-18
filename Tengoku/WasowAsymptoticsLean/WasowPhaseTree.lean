@@ -37,6 +37,9 @@ def denominator : Tree → ℕ
   | .ramify p _ t => p * denominator t
   | .split _ t => commonDenominator (fun i => denominator (t i))
 
+/--
+@isnad1 id=lt.0h1v.s3.6a489447c07d from=translated src=- shape=b9369acb vocab=8f0c32e8
+-/
 theorem denominator_pos (t : Tree) : 0 < denominator t := by
   induction t with
   | regular m => exact Nat.zero_lt_one
@@ -60,6 +63,9 @@ def phaseValue : (t : Tree) → ℝ → ℝ → Fin (dimension t) → ℂ
       let a := (finSigmaFinEquiv (n := fun i => dimension (t i))).symm j
       phaseValue (t a.1) θ r a.2
 
+/--
+@isnad1 id=eq.0h2v.s4.62a021a638b3 from=translated src=- shape=c6136889 vocab=2d706dc0
+-/
 theorem family_coeff_zero (t : Tree) (j : Fin (dimension t)) : (family t j).coeff 0 = 0 := by
   induction t with
   | regular m => simp [family]
@@ -71,7 +77,9 @@ theorem family_coeff_zero (t : Tree) (j : Fin (dimension t)) : (family t j).coef
       exact commonFamily_coeff_zero _ (fun i => denominator_pos (t i)) _ ih _
 
 /-- The computed finite family has precisely the actual recursive ray values.
-All polynomial and denominator choices precede the universal angle quantifier.-/
+All polynomial and denominator choices precede the universal angle quantifier.
+@isnad1 id=eq.1h4v.s5.cfcc397b22ee from=translated src=- shape=950cedea vocab=d3c2312e
+-/
 theorem phaseValue_eq (t : Tree) (θ : ℝ) {r : ℝ} (hr : 0 ≤ r)
     (j : Fin (dimension t)) :
     phaseValue t θ r j = phaseOnRay (denominator t) (family t j) θ ⟨0,denominator_pos t⟩ r := by
@@ -99,7 +107,9 @@ theorem phaseValue_eq (t : Tree) (θ : ℝ) {r : ℝ} (hr : 0 ≤ r)
         (fun i => denominator_pos (t i)) (fun i => family (t i)) a θ hr).symm
 
 /-- A finite tree yields a single fixed denominator and normalized family,
-with an actual functional equality for every positive radius and every angle.-/
+with an actual functional equality for every positive radius and every angle.
+@isnad1 id=ex.0h1v.s6.968e883d80b7 from=translated src=- shape=7376f011 vocab=3d91a4aa
+-/
 theorem exists_fixed_family (t : Tree) :
     ∃ (p : ℕ) (hp : 0 < p) (F : Fin (dimension t) → Polynomial ℂ),
       (∀ j, (F j).coeff 0 = 0) ∧ ∀ θ r, 0 ≤ r → ∀ j,

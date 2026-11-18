@@ -34,6 +34,9 @@ structure SlopeData (old : FormalState) where
   feedback : slope = (old.shape.rank : ℚ)+1 ∨
     ∃ i j, j ≤ i ∧ leadingMatrix (flatCoefficients old.shape.sizes (coefficients old)) slope i j ≠ 0
 
+/--
+@isnad1 id=nonempty.0h1v.s2.e75eb4941397 from=translated src=- shape=76a08d12 vocab=a4df8550
+-/
 theorem exists_slopeData (old : FormalState) : Nonempty (SlopeData old) := by
   obtain ⟨σ, hp, hb, hw, hf⟩ := exists_slope_with_leading_feedback
     (flatCoefficients old.shape.sizes (coefficients old)) old.shape.rank
@@ -43,6 +46,9 @@ theorem exists_slopeData (old : FormalState) : Nonempty (SlopeData old) := by
   · exact_mod_cast hb
   · simpa only [Nat.cast_add, Nat.cast_one] using hf
 
+/--
+@isnad1 id=supporte.0h2v.s5.ddcff036adc2 from=translated src=- shape=1ca39e3b vocab=56e2fc94
+-/
 theorem slope_supported {old : FormalState} (d : SlopeData old) :
     Supported (flattenSeries old) d.slope.den d.slope.num.toNat := by
   apply supported_of_weightedDegree _ _ d.slope.den_ne_zero
@@ -50,6 +56,9 @@ theorem slope_supported {old : FormalState} (d : SlopeData old) :
   rw [slope_num_div_den d.slope d.positive.le]
   exact d.weights k a b hab
 
+/--
+@isnad1 id=le.0h2v.s5.d8d9eec479fa from=translated src=- shape=49a6664f vocab=9d6e528b
+-/
 theorem numerator_le {old : FormalState} (d : SlopeData old) :
     d.slope.num.toNat ≤ d.slope.den*(old.shape.rank+1) := by
   have hp : (0 : ℚ) < d.slope.den := by exact_mod_cast d.slope.den_pos
@@ -62,7 +71,9 @@ theorem numerator_le {old : FormalState} (d : SlopeData old) :
   exact_mod_cast hh'
 
 /-- The exact full-series edge relation applies also in the stopping branch;
-the derivative correction is retained even when its order becomes zero.-/
+the derivative correction is retained even when its order becomes zero.
+@isnad1 id=eq.0h4v.s10.b1c09a26b544 from=translated src=- shape=b0af3279 vocab=e7cf1709
+-/
 theorem full_shearing_identity {old : FormalState} (d : SlopeData old)
     (a b : Fin (∑ j, (old.shape.sizes j+1))) :
     PowerSeries.X^(d.slope.num.toNat*(a.val+1)) *
@@ -84,7 +95,9 @@ theorem full_shearing_identity {old : FormalState} (d : SlopeData old)
   exact ramifiedSeries_clear_powers _ _ _ _ _ (slope_supported d) (numerator_le d) a b
 
 /-- The stopping leaf has the genuine regular-singular exponent `-1`.
-Its coefficient is the full `rawSeries`, not just its constant coefficient.-/
+Its coefficient is the full `rawSeries`, not just its constant coefficient.
+@isnad1 id=eq.1h2v.s6.4b1dd25dd37f from=translated src=- shape=a27fbab1 vocab=b8026809
+-/
 theorem stopping_rank {old : FormalState} (d : SlopeData old)
     (hstop : d.slope = (old.shape.rank : ℚ)+1) :
     (d.slope.den : ℚ)*((old.shape.rank : ℚ)+1-d.slope)-1 = -1 := by
@@ -111,11 +124,16 @@ def Smaller (next old : FormalState) : Prop :=
   Prod.Lex Nat.lt (Prod.Lex Nat.lt Nat.lt)
     (WasowReductionTermination.measure next.shape) (WasowReductionTermination.measure old.shape)
 
+/--
+@isnad1 id=wellfoun.0h0v.s1.1639d1b4034d from=translated src=- shape=25b03439 vocab=00a98df8
+-/
 theorem smaller_wellFounded : WellFounded Smaller :=
   InvImage.wf FormalState.shape WasowReductionTermination.measure_wellFounded
 
 /-- Actual full-series reductions exist recursively from every normalized
-input, with finitely many branches and regular-singular full-series leaves.-/
+input, with finitely many branches and regular-singular full-series leaves.
+@isnad1 id=nonempty.0h1v.s2.4f1d3d511529 from=translated src=- shape=76a08d12 vocab=137ab13d
+-/
 theorem exists_tree (old : FormalState) : Nonempty (Tree old) := by
   classical
   apply smaller_wellFounded.induction old
@@ -156,7 +174,9 @@ structure Reduction {ι : Type*} [Fintype ι] [DecidableEq ι] (A : Series ι) (
   trees : ∀ a, Tree (initial.child a)
 
 /-- Finite recursive formal reduction from an arbitrary complete matrix series.
-No initial spectral coordinates, Jordan form, or terminal canonical data are assumed.-/
+No initial spectral coordinates, Jordan form, or terminal canonical data are assumed.
+@isnad1 id=nonempty.0h3v.s4.9a5198508ac5 from=translated src=- shape=7f00c5e1 vocab=8901c6a0
+-/
 theorem exists_reduction {ι : Type*} [Fintype ι] [DecidableEq ι]
     (A : Series ι) (rank : ℕ) : Nonempty (Reduction A rank) := by
   classical

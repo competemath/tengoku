@@ -27,7 +27,9 @@ open WasowFormalRecurrence WasowNormalizedLemma WasowShiftReduction
 section General
 variable {R : Type*} [Ring R] [Algebra ℂ R]
 
-/-- Recover the coefficient step from the full convolution equation.-/
+/-- Recover the coefficient step from the full convolution equation.
+@isnad1 id=eq.4h6v.s8.985bd631db55 from=translated src=- shape=27d9d833 vocab=8bd72414
+-/
 theorem step_of_coefficient_identity (A P B : ℕ → R) (q k : ℕ)
     (hk : 0 < k) (hP : P 0 = 1) (hB : B 0 = A 0)
     (hfull : (∑ i ∈ Finset.range (k+1),
@@ -64,7 +66,9 @@ def NormalizedFormalSolution (A : ℕ → R) (q : ℕ) (pNorm bNorm : R → Prop
     (A (k-i) * s.1 i - s.1 i * s.2 (k-i))) = -derivativeCoeff q s.1 k
 
 /-- A proved unique normalized algebraic step implies uniqueness of every
-coefficient of any solution of the complete formal convolution equation.-/
+coefficient of any solution of the complete formal convolution equation.
+@isnad1 id=eq.4h7v.s8.75e183bbcb7e from=translated src=- shape=5dde1cfb vocab=ac0853e4
+-/
 theorem normalized_formal_solution_unique (A : ℕ → R) {q : ℕ} (hq : 0 < q)
     (pNorm bNorm : R → Prop)
     (hstep : ∀ H : R, ∀ s t : R × R,
@@ -97,7 +101,9 @@ theorem normalized_formal_solution_unique (A : ℕ → R) {q : ℕ} (hq : 0 < q)
 end General
 
 /-- The single nilpotent shift has one and only one normalized all-order
-formal solution, with identity constant gauge coefficient.-/
+formal solution, with identity constant gauge coefficient.
+@isnad1 id=existsun.2h3v.s9.3c5c946bd204 from=translated src=- shape=d8318b36 vocab=cdf32c9c
+-/
 theorem existsUnique_formal_shift_reduction {h : ℕ}
     (A : ℕ → Matrix (Fin (h+1)) (Fin (h+1)) ℂ)
     (hA : A 0 = shift h) {q : ℕ} (hq : 0 < q) :
@@ -118,7 +124,9 @@ theorem existsUnique_formal_shift_reduction {h : ℕ}
 open WasowMultiShiftReduction
 
 /-- The unique normalized formal solution for an arbitrary finite family of
-shift blocks, including all off-diagonal rectangular blocks.-/
+shift blocks, including all off-diagonal rectangular blocks.
+@isnad1 id=existsun.2h4v.s9.ac31025506fb from=translated src=- shape=cd9a4064 vocab=08113e4c
+-/
 theorem existsUnique_formal_multishift_reduction {σ : Type*} [Fintype σ] [DecidableEq σ]
     (h : σ → ℕ) (A : ℕ → Matrix (Index h) (Index h) ℂ)
     (hA : A 0 = jordanShift h) {q : ℕ} (hq : 0 < q) :
@@ -148,7 +156,9 @@ def NormalizedPowerSeriesSolution {σ : Type*} [Fintype σ] [DecidableEq σ]
   A*s.1-s.1*s.2 = -(PowerSeries.X^(q+1)*WasowPowerSeries.derivative s.1)
 
 /-- Extract the full coefficient equation from an equality in the actual
-noncommutative power-series ring.-/
+noncommutative power-series ring.
+@isnad1 id=normaliz.1h5v.s12.f9d0667ccf8b from=translated src=- shape=4ecaeed3 vocab=b472402a
+-/
 theorem powerSeries_solution_coefficients {σ : Type*} [Fintype σ] [DecidableEq σ]
     (h : σ → ℕ) (A : PowerSeries (Matrix (Index h) (Index h) ℂ)) (q : ℕ)
     {s : PowerSeries (Matrix (Index h) (Index h) ℂ) ×
@@ -167,6 +177,9 @@ theorem powerSeries_solution_coefficients {σ : Type*} [Fintype σ] [DecidableEq
       WasowPowerSeries.coeff_mul_range_left, WasowPowerSeries.coeff_rank_derivative] at hk
     simpa only [derivativeCoeff, ← Finset.sum_sub_distrib] using hk
 
+/--
+@isnad1 id=eq.4h6v.s9.fa3e334243a2 from=translated src=- shape=bcedda30 vocab=350251ee
+-/
 theorem normalized_multishift_powerSeries_unique {σ : Type*} [Fintype σ] [DecidableEq σ]
     (h : σ → ℕ) (A : PowerSeries (Matrix (Index h) (Index h) ℂ))
     (hA : PowerSeries.constantCoeff A = jordanShift h) {q : ℕ} (hq : 0<q)
@@ -188,7 +201,9 @@ theorem normalized_multishift_powerSeries_unique {σ : Type*} [Fintype σ] [Deci
     exact congrFun (congrArg Prod.snd he) k
 
 /-- Unique normalized formal power-series pair. Existence is supplied by the
-proved multishift construction, which also gives a genuine formal inverse.-/
+proved multishift construction, which also gives a genuine formal inverse.
+@isnad1 id=existsun.2h4v.s9.794574dea797 from=translated src=- shape=b9d8abe5 vocab=7608bb6b
+-/
 theorem existsUnique_normalized_multishift_powerSeries {σ : Type*} [Fintype σ] [DecidableEq σ]
     (h : σ → ℕ) (A : PowerSeries (Matrix (Index h) (Index h) ℂ))
     (hA : PowerSeries.constantCoeff A = jordanShift h) {q : ℕ} (hq : 0<q) :

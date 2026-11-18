@@ -45,7 +45,9 @@ def tailOperator (T S E : ℝ → Mat (m := m)) (R : ℝ) :
     Ici R → ((Fin m → ℂ) →L[ℂ] (Fin m → ℂ)) :=
   fun r => toOperator (S r * E r * T r)
 
-/-- Multiplication adds the two genuine polynomial exponents.-/
+/-- Multiplication adds the two genuine polynomial exponents.
+@isnad1 id=le.4h9v.s8.8af1b0340e65 from=translated src=- shape=74f524ea vocab=19bcb61c
+-/
 theorem product_mulVec_bound (M N : Mat (m := m)) (C D : ℝ) (hC : 0≤C)
     (K L : ℕ) {r : ℝ} (hr : 0≤r)
     (hM : ‖M‖ ≤ C*r^K) (hN : ‖N‖ ≤ D*r^L) (x : Fin m → ℂ) :

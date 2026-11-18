@@ -26,7 +26,9 @@ def shearedCoefficient (A : Matrix (Fin m) (Fin m) (RatFunc ℂ)) (k : Fin m →
   inverseShear k (RatFunc.X : RatFunc ℂ) * A * shear k (RatFunc.X : RatFunc ℂ) -
     inverseShear k (RatFunc.X : RatFunc ℂ) * derivativeShear k (RatFunc.X : RatFunc ℂ)
 
-/-- Integer powers on an arbitrary ray have their actual complex-direction derivative.-/
+/-- Integer powers on an arbitrary ray have their actual complex-direction derivative.
+@isnad1 id=hasderiv.1h6v.s7.3ea92312718f from=translated src=- shape=e633fb78 vocab=827c4a60
+-/
 theorem shear_ray_hasDerivAt (k : Fin m → ℤ) (θ : ℝ) {r : ℝ} (hr : 0 < r) (i j : Fin m) :
     HasDerivAt (fun t => shear k (ray θ t) i j)
       ((Complex.exp ((θ : ℂ) * Complex.I) • derivativeShear k (ray θ r)) i j) r := by
@@ -42,7 +44,9 @@ theorem shear_ray_hasDerivAt (k : Fin m → ℤ) (θ : ℝ) {r : ℝ} (hr : 0 < 
     convert! hh using 1
   · simpa [shear, derivativeShear, Matrix.diagonal_apply, hij] using hasDerivAt_const r (0 : ℂ)
 
-/-- Both integer shearing factors have a common polynomial bound on every ray.-/
+/-- Both integer shearing factors have a common polynomial bound on every ray.
+@isnad1 id=ex.0h3v.s7.8c5b25d74c1a from=translated src=- shape=1488ce05 vocab=a6bad766
+-/
 theorem shear_ray_bounds (k : Fin m → ℤ) (θ : ℝ) :
     ∃ K : ℝ, 0 ≤ K ∧ ∀ r : ℝ, 1 ≤ r → ∀ x : Fin m → ℂ,
       ‖(shear k (ray θ r)).mulVec x‖ ≤ r ^ K * ‖x‖ ∧
@@ -61,7 +65,9 @@ theorem shear_ray_bounds (k : Fin m → ℤ) (θ : ℝ) :
   exact ⟨hb k (fun i => (le_abs_self _).trans (hki i)),
     hb (fun i => -k i) (fun i => by simpa using (neg_le_abs (k i : ℝ)).trans (hki i))⟩
 
-/-- The rational shear itself evaluates to the actual complex diagonal powers.-/
+/-- The rational shear itself evaluates to the actual complex diagonal powers.
+@isnad1 id=eventual.0h3v.s5.5e34acf13f02 from=translated src=- shape=2b99940e vocab=06f46634
+-/
 theorem eventually_value_shear (k : Fin m → ℤ) (θ : ℝ) :
     ∀ᶠ r in atTop, (shear k (RatFunc.X : RatFunc ℂ)).map (value θ r) = shear k (ray θ r) := by
   have hh : ∀ᶠ r in atTop, ∀ i, value θ r ((RatFunc.X : RatFunc ℂ) ^ k i) = (ray θ r) ^ k i := by
@@ -75,7 +81,9 @@ theorem eventually_value_shear (k : Fin m → ℤ) (θ : ℝ) :
     simpa only [Matrix.map_apply, shear, Matrix.diagonal_apply_eq] using hr i
   · simp [shear, hij, value]
 
-/-- The rational derivative matrix evaluates to its actual complex derivative.-/
+/-- The rational derivative matrix evaluates to its actual complex derivative.
+@isnad1 id=eventual.0h3v.s5.b02e81542507 from=translated src=- shape=2b99940e vocab=eccd3653
+-/
 theorem eventually_value_derivativeShear (k : Fin m → ℤ) (θ : ℝ) :
     ∀ᶠ r in atTop, (derivativeShear k (RatFunc.X : RatFunc ℂ)).map (value θ r) =
       derivativeShear k (ray θ r) := by
@@ -99,7 +107,9 @@ theorem eventually_value_derivativeShear (k : Fin m → ℤ) (θ : ℝ) :
   · simp [derivativeShear, hij, value]
 
 /-- The full rational expression, including its derivative correction, has the
-actual shearing value on a genuine tail.-/
+actual shearing value on a genuine tail.
+@isnad1 id=eventual.0h4v.s7.2e5519cfe703 from=translated src=- shape=2129a7a7 vocab=e2bb30e5
+-/
 theorem eventually_sheared_value (A : Matrix (Fin m) (Fin m) (RatFunc ℂ))
     (k : Fin m → ℤ) (θ : ℝ) :
     ∀ᶠ r in atTop, (shearedCoefficient A k).map (value θ r) =
@@ -130,7 +140,9 @@ theorem eventually_sheared_value (A : Matrix (Fin m) (Fin m) (RatFunc ℂ))
   rfl
 
 /-- Construct the actual integer shearing change for the actual rational
-transformed coefficient on an arbitrary complex ray.-/
+transformed coefficient on an arbitrary complex ray.
+@isnad1 id=nonempty.0h4v.s4.8926b6cec89e from=translated src=- shape=28be4270 vocab=0477cf87
+-/
 theorem shearing_change (A : Matrix (Fin m) (Fin m) (RatFunc ℂ))
     (k : Fin m → ℤ) (θ : ℝ) :
     Nonempty (RayGaugeChange A (shearedCoefficient A k) θ) := by
@@ -167,7 +179,9 @@ theorem shearing_change (A : Matrix (Fin m) (Fin m) (RatFunc ℂ))
     abel
 
 /-- Pull back an exact normal form through the integer rational shear.
-The phase functions are unchanged, and both actual inverse bounds persist.-/
+The phase functions are unchanged, and both actual inverse bounds persist.
+@isnad1 id=nonempty.0h6v.s5.13b5f7f22395 from=translated src=- shape=8815d5be vocab=2a2449a3
+-/
 theorem pullback_shearing_rayGauge (A : Matrix (Fin m) (Fin m) (RatFunc ℂ))
     (k : Fin m → ℤ) (θ : ℝ) (Q : Fin m → ℝ → ℂ)
     (W : RayGaugeWitness (shearedCoefficient A k) θ Q) :

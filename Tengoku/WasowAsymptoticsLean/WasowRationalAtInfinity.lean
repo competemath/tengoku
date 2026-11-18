@@ -28,12 +28,16 @@ open scoped BigOperators Matrix.Norms.Operator
 namespace WasowRationalAtInfinity
 open Polynomial CRGNormalFormGoal
 
-/-- A nonzero denominator has a nonzero reversed value at the origin.-/
+/-- A nonzero denominator has a nonzero reversed value at the origin.
+@isnad1 id=ne.0h1v.s5.d34fe7794a32 from=translated src=- shape=ddb7a758 vocab=b11fe59e
+-/
 theorem reverse_denom_zero (f : RatFunc ℂ) : f.denom.reverse.eval 0 ≠ 0 := by
   rw [← Polynomial.coeff_zero_eq_eval_zero, Polynomial.coeff_zero_reverse]
   exact Polynomial.leadingCoeff_ne_zero.mpr (RatFunc.denom_ne_zero f)
 
-/-- The exact reversal identity, restricted only to nonzero inverse variable.-/
+/-- The exact reversal identity, restricted only to nonzero inverse variable.
+@isnad1 id=eq.1h2v.s5.e028dcab1173 from=translated src=- shape=c253b07e vocab=9d484b65
+-/
 theorem eval_inv (P : Polynomial ℂ) {t : ℂ} (ht : t ≠ 0) :
     P.eval t⁻¹ = P.reverse.eval t / t ^ P.natDegree := by
   let : Invertible t⁻¹ := invertibleOfNonzero (inv_ne_zero ht)
@@ -46,12 +50,18 @@ def scalarCoefficient (d : ℕ) (f : RatFunc ℂ) (t : ℂ) : ℂ :=
   t ^ (d + f.denom.natDegree - f.num.natDegree) *
     f.num.reverse.eval t / f.denom.reverse.eval t
 
+/--
+@isnad1 id=analytic.0h2v.s5.a86ee0fe611c from=translated src=- shape=7178711b vocab=2393eec3
+-/
 theorem scalarCoefficient_analytic (d : ℕ) (f : RatFunc ℂ) :
     AnalyticAt ℂ (scalarCoefficient d f) 0 := by
   have hp (P : Polynomial ℂ) : AnalyticAt ℂ (fun z => P.eval z) 0 := by
     simpa using (analyticAt_id (𝕜 := ℂ) (z := (0 : ℂ))).aeval_polynomial P
   exact ((analyticAt_id.pow _).mul (hp _)).div (hp _) (reverse_denom_zero f)
 
+/--
+@isnad1 id=eq.2h3v.s6.ab9b59298650 from=translated src=- shape=8b2a36cb vocab=fffc8d2a
+-/
 theorem scalarCoefficient_eq (d : ℕ) (f : RatFunc ℂ)
     (hd : f.num.natDegree ≤ d) {t : ℂ} (ht : t ≠ 0) :
     scalarCoefficient d f t = t ^ d * RatFunc.eval (RingHom.id ℂ) t⁻¹ f := by
@@ -73,6 +83,9 @@ theorem scalarCoefficient_eq (d : ℕ) (f : RatFunc ℂ)
 def order {m : ℕ} (A : Matrix (Fin m) (Fin m) (RatFunc ℂ)) : ℕ :=
   ∑ i, ∑ j, (A i j).num.natDegree
 
+/--
+@isnad1 id=le.0h4v.s5.d0773a3ec4fd from=translated src=- shape=a026f052 vocab=d6f910e9
+-/
 theorem numerator_degree_le_order {m : ℕ}
     (A : Matrix (Fin m) (Fin m) (RatFunc ℂ)) (i j : Fin m) :
     (A i j).num.natDegree ≤ order A := by
@@ -86,7 +99,9 @@ def coefficient {m : ℕ} (A : Matrix (Fin m) (Fin m) (RatFunc ℂ)) (t : ℂ) :
     Matrix (Fin m) (Fin m) ℂ := fun i j => scalarCoefficient (order A) (A i j) t
 
 /-- Analyticity is proved in the actual matrix operator norm via a finite
-sum of scalar analytic functions times constant coordinate matrices.-/
+sum of scalar analytic functions times constant coordinate matrices.
+@isnad1 id=analytic.0h2v.s6.a1662a4b9185 from=translated src=- shape=7066d00f vocab=311823ae
+-/
 theorem coefficient_analytic {m : ℕ} (A : Matrix (Fin m) (Fin m) (RatFunc ℂ)) :
     AnalyticAt ℂ (coefficient A) 0 := by
   have he : coefficient A = fun t => ∑ i : Fin m, ∑ j : Fin m,
@@ -102,6 +117,9 @@ theorem coefficient_analytic {m : ℕ} (A : Matrix (Fin m) (Fin m) (RatFunc ℂ)
   intro j _
   exact (scalarCoefficient_analytic _ _).smul analyticAt_const
 
+/--
+@isnad1 id=eq.1h3v.s6.231170d27a9d from=translated src=- shape=b97ca89e vocab=72f05b1c
+-/
 theorem coefficient_eq {m : ℕ} (A : Matrix (Fin m) (Fin m) (RatFunc ℂ))
     {t : ℂ} (ht : t ≠ 0) :
     coefficient A t = t ^ order A • A.map (RatFunc.eval (RingHom.id ℂ) t⁻¹) := by
@@ -109,7 +127,9 @@ theorem coefficient_eq {m : ℕ} (A : Matrix (Fin m) (Fin m) (RatFunc ℂ))
   exact scalarCoefficient_eq _ _ (numerator_degree_le_order A i j) ht
 
 /-- The actual Taylor series and its coefficient identity are constructed
-from rationality and the analytic extension, with no series premise.-/
+from rationality and the analytic extension, with no series premise.
+@isnad1 id=ex.0h2v.s9.96d12d7cae81 from=translated src=- shape=1f01b31b vocab=1567e204
+-/
 theorem exists_formal_expansion {m : ℕ} (A : Matrix (Fin m) (Fin m) (RatFunc ℂ)) :
     ∃ (s : FormalMultilinearSeries ℂ ℂ (Matrix (Fin m) (Fin m) ℂ))
       (F : PowerSeries (Matrix (Fin m) (Fin m) ℂ)),
@@ -126,6 +146,9 @@ def rayAnalytic {m : ℕ} (A : Matrix (Fin m) (Fin m) (RatFunc ℂ)) (θ : ℝ)
   Complex.exp ((θ : ℂ) * Complex.I) ^ (order A + 1) •
     coefficient A ((Complex.exp ((θ : ℂ) * Complex.I))⁻¹ * t)
 
+/--
+@isnad1 id=analytic.0h3v.s6.66d59709a130 from=translated src=- shape=de6a3233 vocab=f72eb9d7
+-/
 theorem rayAnalytic_analytic {m : ℕ}
     (A : Matrix (Fin m) (Fin m) (RatFunc ℂ)) (θ : ℝ) :
     AnalyticAt ℂ (rayAnalytic A θ) 0 := by
@@ -136,7 +159,9 @@ theorem rayAnalytic_analytic {m : ℕ}
     analyticAt_const
   exact hu.fun_smul hc
 
-/-- Exact identification with the original rational ODE on the ray.-/
+/-- Exact identification with the original rational ODE on the ray.
+@isnad1 id=eq.1h4v.s5.616d6843b2d0 from=translated src=- shape=c5f16f0d vocab=93b4bc4e
+-/
 theorem coefficientOnRay_eq {m : ℕ}
     (A : Matrix (Fin m) (Fin m) (RatFunc ℂ)) (θ : ℝ)
     {r : ℝ} (hr : 0 < r) :
@@ -157,7 +182,9 @@ theorem coefficientOnRay_eq {m : ℕ}
   field_simp
 
 /-- Every rational matrix automatically supplies all initial analytic-series
-premises used by the finite-gauge remainder theorem.-/
+premises used by the finite-gauge remainder theorem.
+@isnad1 id=ex.0h3v.s9.5e6253eccfb8 from=translated src=- shape=1b0cdddb vocab=66ac8de9
+-/
 theorem exists_ray_expansion {m : ℕ}
     (A : Matrix (Fin m) (Fin m) (RatFunc ℂ)) (θ : ℝ) :
     ∃ (s : FormalMultilinearSeries ℂ ℂ (Matrix (Fin m) (Fin m) ℂ))

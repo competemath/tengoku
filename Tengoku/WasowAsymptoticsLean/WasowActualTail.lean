@@ -30,7 +30,9 @@ local instance : ContinuousENorm (Matrix ι ι ℂ) where
     fun_prop
 
 /-- Actual finite residuals are continuous wherever the coefficient function
-is continuous; the differentiated gauge is itself a finite polynomial.-/
+is continuous; the differentiated gauge is itself a finite polynomial.
+@isnad1 id=continuo.1h7v.s6.cacc62a314d9 from=translated src=- shape=19ed22a3 vocab=c662c87f
+-/
 theorem actualDefect_continuousAt {a : ℂ → Matrix ι ι ℂ} {z : ℂ}
     (ha : ContinuousAt a z) (P B : PowerSeries (Matrix ι ι ℂ)) (q N : ℕ) :
     ContinuousAt (actualDefect a P B q N) z := by
@@ -48,7 +50,9 @@ section Tail
 variable {E : Type*} [NormedAddCommGroup E]
 
 /-- A local `O(|z|^N)` estimate and actual continuity near zero yield a common
-real inverse-variable tail with continuity and pointwise polynomial decay.-/
+real inverse-variable tail with continuity and pointwise polynomial decay.
+@isnad1 id=ex.2h3v.s7.240c19353112 from=translated src=- shape=8395f95e vocab=3826d56d
+-/
 theorem exists_inverse_tail_bound_of_isBigO {f : ℂ → E} {N : ℕ}
     (hf : ∀ᶠ z in 𝓝 (0 : ℂ), ContinuousAt f z)
     (hO : f =O[𝓝 (0 : ℂ)] (fun z : ℂ => ‖z‖ ^ N)) :
@@ -75,7 +79,9 @@ theorem exists_inverse_tail_bound_of_isBigO {f : ℂ → E} {N : ℕ}
       Real.norm_of_nonneg hrnonneg, inv_pow, div_eq_mul_inv] using hh
 
 /-- The inverse-variable remainder has a genuine arbitrarily small `L¹` tail;
-its integrability is proved by domination, rather than assumed.-/
+its integrability is proved by domination, rather than assumed.
+@isnad1 id=ex.4h4v.s8.a8a64a16df15 from=translated src=- shape=42354128 vocab=e3d8380c
+-/
 theorem exists_small_inverse_tail_of_isBigO {f : ℂ → E} {N : ℕ}
     (hf : ∀ᶠ z in 𝓝 (0 : ℂ), ContinuousAt f z)
     (hO : f =O[𝓝 (0 : ℂ)] (fun z : ℂ => ‖z‖ ^ N))
@@ -106,7 +112,9 @@ end Tail
 /-- The actual residual of the finite formal gauge, with no residual-series
 hypothesis, has a continuous and arbitrarily small integrable ray tail. This
 is the raw gauge defect; inverse gauge factors and rank weights must still be
-accounted for before identifying a transformed differential-equation error.-/
+accounted for before identifying a transformed differential-equation error.
+@isnad1 id=ex.5h9v.s9.ce8196121d3a from=translated src=- shape=f5ed0bfd vocab=6781c81d
+-/
 theorem actualDefect_small_inverse_tail
     {a : ℂ → Matrix ι ι ℂ} {p : FormalMultilinearSeries ℂ ℂ (Matrix ι ι ℂ)}
     (ha : HasFPowerSeriesAt a p 0) (A P B : PowerSeries (Matrix ι ι ℂ))

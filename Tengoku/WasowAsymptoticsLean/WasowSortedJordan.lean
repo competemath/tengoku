@@ -17,7 +17,9 @@ noncomputable section
 open Module Module.End
 namespace WasowSortedJordan
 
-/-- Sort a finite family by its values, breaking ties by a finite enumeration.-/
+/-- Sort a finite family by its values, breaking ties by a finite enumeration.
+@isnad1 id=ex.0h2v.s6.b821a94b90cd from=translated src=- shape=3142c4dc vocab=8456fbe3
+-/
 theorem exists_sorted_equiv {σ : Type*} [Fintype σ] (h : σ → ℕ) :
     ∃ e : Fin (Fintype.card σ) ≃ σ, Monotone (h ∘ e) := by
   let f : σ → Lex (ℕ × Fin (Fintype.card σ)) := fun a => toLex (h a, Fintype.equivFin σ a)
@@ -33,7 +35,9 @@ theorem exists_sorted_equiv {σ : Type*} [Fintype σ] (h : σ → ℕ) :
   · exact hh.le
   · exact hh.1.le
 
-/-- Permuting whole chains preserves their actual Jordan-shift matrix.-/
+/-- Permuting whole chains preserves their actual Jordan-shift matrix.
+@isnad1 id=eq.0h4v.s9.c6ec5020be1f from=translated src=- shape=d427b608 vocab=48f231c8
+-/
 theorem jordanShift_reindex {σ τ : Type*} [DecidableEq σ] [DecidableEq τ]
     (h : σ → ℕ) (e : τ ≃ σ) :
     (WasowMultiShiftReduction.jordanShift h).submatrix
@@ -47,7 +51,9 @@ theorem jordanShift_reindex {σ τ : Type*} [DecidableEq σ] [DecidableEq τ]
     simp [WasowMultiShiftReduction.jordanShift, Matrix.submatrix,
       Matrix.blockDiagonal'_apply_ne _ _ _ hab, Matrix.blockDiagonal'_apply_ne _ _ _ he]
 
-/-- A nilpotent operator has an actual Jordan basis with sorted chain lengths.-/
+/-- A nilpotent operator has an actual Jordan basis with sorted chain lengths.
+@isnad1 id=ex.1h2v.s9.475f119c57ac from=translated src=- shape=ec01a588 vocab=1f81a76e
+-/
 theorem exists_sorted_jordan_basis {V : Type*} [AddCommGroup V] [Module ℂ V]
     [FiniteDimensional ℂ V] (f : End ℂ V) (hf : IsNilpotent f) :
     ∃ (s : ℕ) (h : Fin s → ℕ), Monotone h ∧
@@ -67,7 +73,9 @@ theorem exists_sorted_jordan_basis {V : Type*} [AddCommGroup V] [Module ℂ V]
       simp [LinearMap.toMatrix_apply, Basis.reindex_apply]
     _ = _ := by rw [hb]; exact jordanShift_reindex h e
 
-/-- Sorted actual matrix coordinates, with both inverse identities.-/
+/-- Sorted actual matrix coordinates, with both inverse identities.
+@isnad1 id=ex.1h2v.s8.bafc52f16edd from=translated src=- shape=d1b77e59 vocab=23b77708
+-/
 theorem exists_sorted_jordan_matrix_coordinates {ι : Type*} [Fintype ι] [DecidableEq ι]
     (A : Matrix ι ι ℂ) (hA : IsNilpotent A) :
     ∃ (s : ℕ) (h : Fin s → ℕ), Monotone h ∧

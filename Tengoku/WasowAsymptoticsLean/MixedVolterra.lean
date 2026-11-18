@@ -45,6 +45,9 @@ def kernel (forward : Bool) (q : α → ℂ) (r s : α) : ℂ :=
   else
     if r ≤ s then -Complex.exp (q r - q s) else 0
 
+/--
+@isnad1 id=le.0h6v.s6.9a342ef90f8c from=translated src=- shape=53781a53 vocab=6968ed8b
+-/
 lemma kernel_bound (forward : Bool) (q : α → ℂ)
     (hord : if forward then Antitone (fun t => (q t).re)
       else Monotone (fun t => (q t).re)) (r s : α) :
@@ -63,6 +66,9 @@ lemma kernel_bound (forward : Bool) (q : α → ℂ)
     · exact CRGRay.exponential_kernel_bound (q r) (q s) (hord hsr)
     · simp
 
+/--
+@isnad1 id=measurab.1h4v.s6.3e63c323d755 from=translated src=- shape=3f546a51 vocab=e5e62fc3
+-/
 lemma kernel_measurable (forward : Bool) (q : α → ℂ) (hq : Continuous q) (r : α) :
     Measurable (kernel forward q r) := by
   have hExp : Measurable (fun s => Complex.exp (q r - q s)) :=
@@ -73,6 +79,9 @@ lemma kernel_measurable (forward : Bool) (q : α → ℂ) (hq : Continuous q) (r
   · change Measurable (fun s => if s ≤ r then Complex.exp (q r - q s) else 0)
     exact hExp.ite measurableSet_Iic measurable_const
 
+/--
+@isnad1 id=continuo.2h5v.s6.aa316e29fb0f from=translated src=- shape=2a514935 vocab=94f42877
+-/
 lemma kernel_continuousAt (forward : Bool) (q : α → ℂ) (hq : Continuous q)
     (r s : α) (hs : s ≠ r) : ContinuousAt (fun t => kernel forward q t s) r := by
   have hExp : ContinuousAt (fun t => Complex.exp (q t - q s)) r :=
@@ -109,6 +118,9 @@ def integralVector (u : α →ᵇ (ι → ℂ)) (r : α) (i : ι) : ℂ :=
   ∫ s, kernel (mode i) (q i) r s * (R s (u s)) i ∂μ
 
 include hord hRb in
+/--
+@isnad1 id=le.1h11v.s9.52a1c4fd08ea from=translated src=- shape=ea43310e vocab=cf28df45
+-/
 lemma integrand_bound (u : α →ᵇ (ι → ℂ)) (r : α) (i : ι) (s : α) :
     ‖kernel (mode i) (q i) r s * (R s (u s)) i‖ ≤ b s * ‖u‖ := by
   calc
@@ -121,12 +133,18 @@ lemma integrand_bound (u : α →ᵇ (ι → ℂ)) (r : α) (i : ι) (s : α) :
       (norm_nonneg _) ((norm_nonneg _).trans (hRb s))
 
 include hq hR in
+/--
+@isnad1 id=aestrong.2h9v.s9.e6cedcc66a90 from=translated src=- shape=a5434944 vocab=8441b4eb
+-/
 lemma integrand_measurable (u : α →ᵇ (ι → ℂ)) (r : α) (i : ι) :
     AEStronglyMeasurable (fun s => kernel (mode i) (q i) r s * (R s (u s)) i) μ := by
   have hc : Continuous (fun s => (R s (u s)) i) := by fun_prop
   exact ((kernel_measurable _ _ (hq i) r).mul hc.measurable).aestronglyMeasurable
 
 include hq hord hR hb hRb in
+/--
+@isnad1 id=integrab.4h11v.s10.ed482aa22003 from=translated src=- shape=fea0e04f vocab=3309c8dd
+-/
 lemma integrand_integrable (u : α →ᵇ (ι → ℂ)) (r : α) (i : ι) :
     Integrable (fun s => kernel (mode i) (q i) r s * (R s (u s)) i) μ := by
   exact (hb.mul_const ‖u‖).mono'
@@ -134,6 +152,9 @@ lemma integrand_integrable (u : α →ᵇ (ι → ℂ)) (r : α) (i : ι) :
     (ae_of_all μ (integrand_bound mode q hord R b hRb u r i))
 
 include hq hord hR hb hRb in
+/--
+@isnad1 id=continuo.4h9v.s9.54ef8ec3f611 from=translated src=- shape=a5411a06 vocab=59f3bc4f
+-/
 lemma integralVector_continuous (u : α →ᵇ (ι → ℂ)) :
     Continuous (integralVector μ mode q R u) := by
   apply continuous_pi
@@ -149,6 +170,9 @@ lemma integralVector_continuous (u : α →ᵇ (ι → ℂ)) :
   exact (kernel_continuousAt _ _ (hq i) r s hs).mul continuousAt_const
 
 include hq hord hR hb hRb in
+/--
+@isnad1 id=le.4h10v.s9.d05d69e718be from=translated src=- shape=b202636b vocab=d8828a73
+-/
 lemma integralVector_bound (u : α →ᵇ (ι → ℂ)) (r : α) :
     ‖integralVector μ mode q R u r‖ ≤ (∫ s, b s ∂μ) * ‖u‖ := by
   have hbpos : 0 ≤ ∫ s, b s ∂μ := integral_nonneg fun s => (norm_nonneg _).trans (hRb s)
@@ -168,6 +192,9 @@ def integralOperator (u : α →ᵇ (ι → ℂ)) : α →ᵇ (ι → ℂ) :=
     (integralVector_bound μ mode q hq hord R hR b hb hRb u)
 
 include hq hord hR hb hRb in
+/--
+@isnad1 id=eq.4h11v.s9.b1db404d3dfd from=translated src=- shape=f83558d1 vocab=bbf17d6d
+-/
 lemma integralVector_sub (u v : α →ᵇ (ι → ℂ)) (r : α) :
     integralVector μ mode q R (u - v) r =
     integralVector μ mode q R u r - integralVector μ mode q R v r := by
@@ -177,6 +204,9 @@ lemma integralVector_sub (u v : α →ᵇ (ι → ℂ)) (r : α) :
     (integrand_integrable μ mode q hq hord R hR b hb hRb u r i)
     (integrand_integrable μ mode q hq hord R hR b hb hRb v r i)
 
+/--
+@isnad1 id=le.4h10v.s10.39abc90ec1bb from=translated src=- shape=757cdd6b vocab=e4b0399e
+-/
 lemma integralOperator_lipschitz (u v : α →ᵇ (ι → ℂ)) :
     ‖integralOperator μ mode q hq hord R hR b hb hRb u -
       integralOperator μ mode q hq hord R hR b hb hRb v‖ ≤
@@ -190,7 +220,9 @@ lemma integralOperator_lipschitz (u v : α →ᵇ (ι → ℂ)) :
 
 /-- The manuscript's integral equation has a unique bounded continuous solution
 when the L1 tail mass is < 1. The affine forcing is arbitrary; for column j it
-is the constant vector whose components are δij in the equal-phase block and 0 elsewhere.-/
+is the constant vector whose components are δij in the equal-phase block and 0 elsewhere.
+@isnad1 id=existsun.5h9v.s9.7280ea1901ea from=translated src=- shape=7b0b4160 vocab=3df18a8b
+-/
 theorem exists_unique_fixed_point (c : α →ᵇ (ι → ℂ))
     (hsmall : (∫ s, b s ∂μ) < 1) :
     ∃! u : α →ᵇ (ι → ℂ),
@@ -210,7 +242,9 @@ theorem exists_unique_fixed_point (c : α →ᵇ (ι → ℂ))
     (fun u => c + integralOperator μ mode q hq hord R hR b hb hRb u) a ha hF
   exact ⟨u, hu.symm, fun v hv => huniq v hv.symm⟩
 
-/-- The forward exponential kernel tends to zero for a phase with real part → -∞.-/
+/-- The forward exponential kernel tends to zero for a phase with real part → -∞.
+@isnad1 id=tendsto.1h3v.s6.4e6199e43e05 from=translated src=- shape=7aab8215 vocab=0784b68b
+-/
 lemma forward_kernel_tendsto_zero (q₀ : α → ℂ)
     (hdecay : Tendsto (fun r => (q₀ r).re) atTop atBot) (s : α) :
     Tendsto (fun r => kernel true q₀ r s) atTop (𝓝 0) := by
@@ -226,7 +260,9 @@ lemma forward_kernel_tendsto_zero (q₀ : α → ℂ)
   filter_upwards [eventually_ge_atTop s] with r hr
   simp [kernel, hr]
 
-/-- The backward kernel has empty support at a fixed s once r has passed s.-/
+/-- The backward kernel has empty support at a fixed s once r has passed s.
+@isnad1 id=tendsto.0h3v.s6.1f093d18399a from=translated src=- shape=42d8fa0a vocab=89c5f468
+-/
 lemma backward_kernel_tendsto_zero [NoMaxOrder α] (q₀ : α → ℂ) (s : α) :
     Tendsto (fun r => kernel false q₀ r s) atTop (𝓝 0) := by
   apply tendsto_const_nhds.congr'
@@ -235,7 +271,9 @@ lemma backward_kernel_tendsto_zero [NoMaxOrder α] (q₀ : α → ℂ) (s : α) 
 
 include hq hord hR hb hRb in
 /-- This proves the forward split-integral limit and all backward tail limits
-for the actual cutoff kernels, using dominated convergence.-/
+for the actual cutoff kernels, using dominated convergence.
+@isnad1 id=tendsto.5h9v.s9.06cf0b379047 from=translated src=- shape=f8d41ea8 vocab=1393d5b6
+-/
 lemma integralVector_tendsto_zero [NoMaxOrder α]
     [(atTop : Filter α).IsCountablyGenerated]
     (hdecay : ∀ i, mode i = true → Tendsto (fun r => (q i r).re) atTop atBot)
@@ -258,7 +296,9 @@ lemma integralVector_tendsto_zero [NoMaxOrder α]
       (Eventually.of_forall fun r => ae_of_all μ (integrand_bound mode q hord R b hRb u r i))
       (hb.mul_const ‖u‖) hpoint
 
-/-- A fixed point with constant forcing converges to that constant vector.-/
+/-- A fixed point with constant forcing converges to that constant vector.
+@isnad1 id=tendsto.6h10v.s10.b6a84da9b46e from=translated src=- shape=3e61547e vocab=884bdd7a
+-/
 theorem fixed_point_tendsto [NoMaxOrder α]
     [(atTop : Filter α).IsCountablyGenerated]
     (hdecay : ∀ i, mode i = true → Tendsto (fun r => (q i r).re) atTop atBot)

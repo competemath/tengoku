@@ -19,7 +19,9 @@ namespace WasowPencilCoordinates
 open WasowPencilReduction WasowReductionDescent WasowPencilDescent
 
 /-- A rectangular pair with both inverse identities has equal dimensions,
-as follows from the traces of its two products over the complex numbers.-/
+as follows from the traces of its two products over the complex numbers.
+@isnad1 id=eq.2h4v.s6.82f14b6444c7 from=translated src=- shape=3d977ce8 vocab=ac5ffa48
+-/
 theorem card_eq_of_two_sided_inverse {ι κ : Type*} [Fintype ι] [Fintype κ]
     [DecidableEq ι] [DecidableEq κ]
     (P : Matrix ι κ ℂ) (Q : Matrix κ ι ℂ) (hPQ : P * Q = 1) (hQP : Q * P = 1) :
@@ -33,7 +35,9 @@ variable {σ τ : Type*} [Fintype σ] [Fintype τ] [DecidableEq σ] [DecidableEq
 
 omit [Fintype τ] in
 /-- The actual characteristic pencil transforms by the mapped rectangular
-coordinate matrices, including the coefficient of the variable.-/
+coordinate matrices, including the coefficient of the variable.
+@isnad1 id=eq.1h7v.s9.e2c54f1b9f27 from=translated src=- shape=d8e294e0 vocab=2eb59ab7
+-/
 theorem pencil_coordinates (C : Matrix (OldIndex h) (OldIndex h) ℂ)
     (P : Matrix (OldIndex h) (OldIndex g) ℂ)
     (Q : Matrix (OldIndex g) (OldIndex h) ℂ) (hQP : Q * P = 1) :
@@ -44,7 +48,9 @@ theorem pencil_coordinates (C : Matrix (OldIndex h) (OldIndex h) ℂ)
   rw [← Matrix.map_mul (L := Q) (M := P), hQP]
   simp
 
-/-- Every determinantal divisor is preserved in the new coordinate type.-/
+/-- Every determinantal divisor is preserved in the new coordinate type.
+@isnad1 id=eq.2h8v.s9.3632f45c3bd4 from=translated src=- shape=4633141e vocab=5cdcbc49
+-/
 theorem minorGCD_coordinates (C : Matrix (OldIndex h) (OldIndex h) ℂ)
     (P : Matrix (OldIndex h) (OldIndex g) ℂ)
     (Q : Matrix (OldIndex g) (OldIndex h) ℂ)
@@ -59,7 +65,9 @@ theorem minorGCD_coordinates (C : Matrix (OldIndex h) (OldIndex h) ℂ)
     (P.map Polynomial.C) (Q.map Polynomial.C) hm hm k
 
 /-- The full degree sum, with its actual dimension-dependent range, is
-preserved across a genuine rectangular two-sided coordinate change.-/
+preserved across a genuine rectangular two-sided coordinate change.
+@isnad1 id=eq.2h7v.s9.bba0f5da9b54 from=translated src=- shape=b0e35701 vocab=8310df0f
+-/
 theorem degreeMass_coordinates (C : Matrix (OldIndex h) (OldIndex h) ℂ)
     (P : Matrix (OldIndex h) (OldIndex g) ℂ)
     (Q : Matrix (OldIndex g) (OldIndex h) ℂ)
@@ -71,7 +79,9 @@ theorem degreeMass_coordinates (C : Matrix (OldIndex h) (OldIndex h) ℂ)
   rw [hc]
 
 /-- The coordinate invariant also survives the actual scalar subtraction
-used before choosing the next nilpotent Jordan basis.-/
+used before choosing the next nilpotent Jordan basis.
+@isnad1 id=eq.2h8v.s9.c75517dd481b from=translated src=- shape=99409da3 vocab=e2b4c5c0
+-/
 theorem degreeMass_translated_coordinates (C : Matrix (OldIndex h) (OldIndex h) ℂ)
     (α : ℂ) (P : Matrix (OldIndex h) (OldIndex g) ℂ)
     (Q : Matrix (OldIndex g) (OldIndex h) ℂ)

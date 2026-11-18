@@ -36,21 +36,36 @@ namespace WasowVolterra
 
 def retract (a r : ℝ) : Ici a := ⟨max a r, by change a ≤ max a r; exact le_max_left a r⟩
 
+/--
+@isnad1 id=continuo.0h1v.s5.d88cafa4c2f8 from=translated src=- shape=4683b4e5 vocab=414666d0
+-/
 theorem continuous_retract (a : ℝ) : Continuous (retract a) := by
   exact ((continuous_const : Continuous (fun _ : ℝ => a)).max continuous_id).subtype_mk _
 
+/--
+@isnad1 id=eq.0h2v.s5.eadb9ccc5748 from=translated src=- shape=7bd29a5d vocab=7236526a
+-/
 @[simp] theorem retract_coe (a : ℝ) (r : Ici a) : retract a r = r := by
   apply Subtype.ext
   exact max_eq_right (show a ≤ (r : ℝ) from r.property)
 
 def extend {α : Type*} (a : ℝ) (u : Ici a → α) (r : ℝ) : α := u (retract a r)
 
+/--
+@isnad1 id=continuo.1h3v.s5.9f86e25bc0f6 from=translated src=- shape=7eb97282 vocab=8362b2ab
+-/
 theorem continuous_extend {α : Type*} [TopologicalSpace α] {a : ℝ} {u : Ici a → α}
     (hu : Continuous u) : Continuous (extend a u) := hu.comp (continuous_retract a)
 
+/--
+@isnad1 id=eq.0h4v.s5.d5ce995c241b from=translated src=- shape=2711a3e3 vocab=ec3cac54
+-/
 @[simp] theorem extend_coe {α : Type*} (a : ℝ) (u : Ici a → α) (r : Ici a) :
     extend a u r = u r := by simp [extend]
 
+/--
+@isnad1 id=eq.1h4v.s6.6bfab777827a from=translated src=- shape=09aac0e7 vocab=d027b8db
+-/
 theorem forward_integral_eq (q h : ℝ → ℂ) {a r : ℝ} (hr : a ≤ r) :
     (∫ s in Ici a, MixedVolterra.kernel true q r s * h s) =
       Complex.exp (q r) * ∫ s in a..r, Complex.exp (-q s) * h s := by
@@ -65,6 +80,9 @@ theorem forward_integral_eq (q h : ℝ → ℂ) {a r : ℝ} (hr : a ≤ r) :
   have hset : Iic r ∩ Ici a = Icc a r := by ext s; simp only [mem_inter_iff, mem_Iic, mem_Ici, mem_Icc]; tauto
   rw [hset, integral_const_mul, integral_Icc_eq_integral_Ioc, intervalIntegral.integral_of_le hr]
 
+/--
+@isnad1 id=eq.1h4v.s6.335441104ff6 from=translated src=- shape=29852477 vocab=589e1ecb
+-/
 theorem backward_integral_eq (q h : ℝ → ℂ) {a r : ℝ} (hr : a ≤ r) :
     (∫ s in Ici a, MixedVolterra.kernel false q r s * h s) =
       -Complex.exp (q r) * ∫ s in Ici r, Complex.exp (-q s) * h s := by
@@ -78,7 +96,9 @@ theorem backward_integral_eq (q h : ℝ → ℂ) {a r : ℝ} (hr : a ≤ r) :
   rw [heq, integral_indicator measurableSet_Ici, Measure.restrict_restrict measurableSet_Ici,
     inter_eq_left.mpr (Ici_subset_Ici.mpr hr), integral_const_mul]
 
-/-- The literal subtype integral is the real integral restricted to the half-line.-/
+/-- The literal subtype integral is the real integral restricted to the half-line.
+@isnad1 id=eq.0h5v.s7.e58bcdd18e4e from=translated src=- shape=60cd76ae vocab=a4ab185b
+-/
 theorem subtype_integral_eq (forward : Bool) (q : ℝ → ℂ) {a : ℝ}
     (h : Ici a → ℂ) (r : Ici a) :
     (∫ s : Ici a, MixedVolterra.kernel forward (fun t : Ici a => q t) r s * h s) =
@@ -88,7 +108,9 @@ theorem subtype_integral_eq (forward : Bool) (q : ℝ → ℂ) {a : ℝ}
   exact ae_of_all _ (fun s => by simp [MixedVolterra.kernel])
 
 /-- Backward monotonicity makes the weighted forcing integrable on the whole
-half-line. No extra weighted L1 hypothesis is added to the fixed-point inputs.-/
+half-line. No extra weighted L1 hypothesis is added to the fixed-point inputs.
+@isnad1 id=integrab.4h6v.s10.d1966ee19272 from=translated src=- shape=dd3dfd91 vocab=df015bf2
+-/
 theorem backward_weighted_integrable {ι : Type*} [Fintype ι] {a : ℝ}
     (q : ℝ → ℂ) (hq : Continuous q)
     (hmono : Monotone (fun s : Ici a => (q s).re))
@@ -126,7 +148,9 @@ theorem backward_weighted_integrable {ι : Type*} [Fintype ι] {a : ℝ}
       mul_le_mul hexp hRu (norm_nonneg _) hC
     _ = _ := by ring
 
-/-- Differentiation of both cutoff kernels on the open half-line.-/
+/-- Differentiation of both cutoff kernels on the open half-line.
+@isnad1 id=hasderiv.4h6v.s8.20003c77fec3 from=translated src=- shape=2f9efcd0 vocab=970a3a9c
+-/
 theorem mixed_integral_hasDerivAt (forward : Bool) (q h : ℝ → ℂ)
     {a r : ℝ} {d : ℂ} (hr : a < r) (hq : HasDerivAt q d r)
     (hc : Continuous (fun s => Complex.exp (-q s) * h s))
@@ -143,13 +167,18 @@ theorem mixed_integral_hasDerivAt (forward : Bool) (q h : ℝ → ℂ)
     filter_upwards [Ioi_mem_nhds hr] with t ht
     exact forward_integral_eq q h ht.le
 
+/--
+@isnad1 id=eq.1h4v.s5.f178757287d3 from=translated src=- shape=2f4e37f6 vocab=9bc711e4
+-/
 @[simp] theorem extend_of_mem {α : Type*} (a : ℝ) (u : Ici a → α)
     {r : ℝ} (hr : a ≤ r) : extend a u r = u ⟨r, hr⟩ := by
   simp [extend, retract, max_eq_right hr]
 
 /-- The actual bounded continuous fixed point is differentiable in every
 component on the interior of its real half-line. For arbitrary forcing `v`,
-the diagonal term is exactly `q' * (u - v)`.-/
+the diagonal term is exactly `q' * (u - v)`.
+@isnad1 id=hasderiv.6h11v.s11.20f6b8660e47 from=translated src=- shape=b70572af vocab=a9b0c8db
+-/
 theorem fixed_point_component_hasDerivAt {ι : Type*} [Fintype ι] {a : ℝ}
     (mode : ι → Bool) (q : ι → ℝ → ℂ) (hq : ∀ i, Continuous (q i))
     (hord : ∀ i, if mode i then Antitone (fun t : Ici a => (q i t).re)
@@ -188,7 +217,9 @@ theorem fixed_point_component_hasDerivAt {ι : Type*} [Fintype ι] {a : ℝ}
   simp only [add_sub_cancel_left]
   rfl
 
-/-- The vector ODE obtained from the actual mixed fixed point.-/
+/-- The vector ODE obtained from the actual mixed fixed point.
+@isnad1 id=hasderiv.6h10v.s11.025d8b183a04 from=translated src=- shape=90edd5b7 vocab=a9b0c8db
+-/
 theorem fixed_point_hasDerivAt {ι : Type*} [Fintype ι] {a : ℝ}
     (mode : ι → Bool) (q : ι → ℝ → ℂ) (hq : ∀ i, Continuous (q i))
     (hord : ∀ i, if mode i then Antitone (fun t : Ici a => (q i t).re)
@@ -206,7 +237,9 @@ theorem fixed_point_hasDerivAt {ι : Type*} [Fintype ι] {a : ℝ}
   exact fixed_point_component_hasDerivAt mode q hq hord R hR hL1 v u hu hr i (hd i)
 
 /-- Compatibility of the forcing with the diagonal derivative removes the
-inhomogeneous diagonal term.-/
+inhomogeneous diagonal term.
+@isnad1 id=hasderiv.7h10v.s11.d70b44a082e7 from=translated src=- shape=00328268 vocab=4c9634ac
+-/
 theorem fixed_point_normalized_ode {ι : Type*} [Fintype ι] {a : ℝ}
     (mode : ι → Bool) (q : ι → ℝ → ℂ) (hq : ∀ i, Continuous (q i))
     (hord : ∀ i, if mode i then Antitone (fun t : Ici a => (q i t).re)
@@ -224,7 +257,9 @@ theorem fixed_point_normalized_ode {ι : Type*} [Fintype ι] {a : ℝ}
   simpa only [mul_sub, hcompat, sub_zero] using hd'
 
 /-- Existence, the literal integral equation, its asymptotic limit, and the
-interior ODE for one concrete half-line column.-/
+interior ODE for one concrete half-line column.
+@isnad1 id=ex.7h8v.s11.dc43909bc384 from=translated src=- shape=2ba3c5c4 vocab=519a3da0
+-/
 theorem exists_column_ode (m : ℕ) (a : ℝ)
     (mode : Fin m → Bool) (q : Fin m → ℝ → ℂ) (hq : ∀ i, Continuous (q i))
     (dq : Fin m → ℝ → ℂ) (hdq : ∀ i r, a < r → HasDerivAt (q i) (dq i r) r)
@@ -250,7 +285,9 @@ theorem exists_column_ode (m : ℕ) (a : ℝ)
     (fun i => dq i r) (fun i => hdq i r hr) (fun i => hcompat i r hr)
 
 /-- The diagonal compatibility is automatic for a normalized column: the
-phase on component `i` is `Qᵢ-Qⱼ`, and the constant forcing is `eⱼ`.-/
+phase on component `i` is `Qᵢ-Qⱼ`, and the constant forcing is `eⱼ`.
+@isnad1 id=ex.6h8v.s11.dc58e64ee1ee from=translated src=- shape=0aa92154 vocab=7611bb5a
+-/
 theorem exists_phase_difference_column_ode (m : ℕ) (a : ℝ) (j : Fin m)
     (mode : Fin m → Bool) (Q dQ : Fin m → ℝ → ℂ)
     (hQ : ∀ i, Continuous (Q i))
@@ -281,7 +318,9 @@ theorem exists_phase_difference_column_ode (m : ℕ) (a : ℝ) (j : Fin m)
 
 /-- Multiplying a normalized phase-difference column by `exp Qⱼ` gives the
 original diagonal-plus-remainder ODE. This is the actual product rule for the
-constructed functions, not a formal matrix identity.-/
+constructed functions, not a formal matrix identity.
+@isnad1 id=hasderiv.2h7v.s9.decb32c30437 from=translated src=- shape=ab68f122 vocab=77ff36cd
+-/
 theorem denormalize_hasDerivAt {ι : Type*} [Fintype ι]
     (u : ℝ → ι → ℂ) (Q : ℝ → ℂ) (D : ι → ℂ)
     (R : (ι → ℂ) →L[ℂ] (ι → ℂ)) (j : ι) {r : ℝ}

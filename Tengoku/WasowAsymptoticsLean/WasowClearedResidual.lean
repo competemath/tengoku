@@ -32,7 +32,9 @@ def polynomialDefect (a h N : ℕ) (A P B : Series (ι := ι)) : Polynomial (Mat
     Polynomial.X ^ h * (PowerSeries.trunc N P).derivative +
     (a : ℂ) • (Polynomial.X ^ (h - 1) * PowerSeries.trunc N P)
 
-/-- Multiplication by a nonnegative power cannot expose a discarded term.-/
+/-- Multiplication by a nonnegative power cannot expose a discarded term.
+@isnad1 id=eq.1h5v.s10.62398af642f2 from=translated src=- shape=220e1992 vocab=cec17df5
+-/
 theorem coeff_shifted_truncation (P : Series (ι := ι)) (d : ℕ)
     {N k : ℕ} (hk : k < N) :
     PowerSeries.coeff k (PowerSeries.X ^ d *
@@ -43,7 +45,9 @@ theorem coeff_shifted_truncation (P : Series (ι := ι)) (d : ℕ)
   · exact WasowTruncation.coeff_truncation P (by omega)
   · rfl
 
-/-- Every low coefficient cancels using the actual cleared formal equation.-/
+/-- Every low coefficient cancels using the actual cleared formal equation.
+@isnad1 id=eq.3h8v.s6.450ff2908b5f from=translated src=- shape=34477a23 vocab=488988fc
+-/
 theorem polynomialDefect_coeff_zero (a h N : ℕ) (hh : 0 < h)
     (A P B : Series (ι := ι)) (heq : Equation a h A P B) :
     ∀ k < N, (polynomialDefect a h N A P B).coeff k = 0 := by
@@ -71,6 +75,9 @@ theorem polynomialDefect_coeff_zero (a h N : ℕ) (hh : 0 < h)
     Polynomial.coe_mul, Polynomial.coe_pow, Polynomial.coe_X, coe_derivative,
     map_add, map_sub, hsm, PowerSeries.coeff_smul, hAP, hPB, hd, hs] using hc
 
+/--
+@isnad1 id=dvd.2h7v.s7.9339ee583c3c from=translated src=- shape=d5c03b21 vocab=6ff25b8a
+-/
 theorem polynomialDefect_divisible (a h N : ℕ) (hh : 0 < h)
     (A P B : Series (ι := ι)) (heq : Equation a h A P B) :
     Polynomial.X ^ N ∣ polynomialDefect a h N A P B :=
@@ -85,7 +92,9 @@ def actualDefect (a h N : ℕ) (c : ℂ → Matrix ι ι ℂ)
     z ^ h • deriv (eval (PowerSeries.trunc N P)) z +
     ((a : ℂ) * z ^ (h - 1)) • eval (PowerSeries.trunc N P) z
 
-/-- Exact separation into the analytic Taylor remainder and a finite polynomial.-/
+/-- Exact separation into the analytic Taylor remainder and a finite polynomial.
+@isnad1 id=eq.0h9v.s9.e13b4fcd38be from=translated src=- shape=e8d73aa5 vocab=ffe82ebb
+-/
 theorem actualDefect_eq (a h N : ℕ) (c : ℂ → Matrix ι ι ℂ)
     (A P B : Series (ι := ι)) (z : ℂ) :
     actualDefect a h N c P B z =
@@ -104,7 +113,9 @@ theorem actualDefect_eq (a h N : ℕ) (c : ℂ → Matrix ι ι ℂ)
   abel
 
 /-- Arbitrarily high-order actual residual; no invertibility or convergence
-assumption is made on the formal P or B. Pole losses are accounted for later.-/
+assumption is made on the formal P or B. Pole losses are accounted for later.
+@isnad1 id=isbigo.4h9v.s9.45478a4a8a08 from=translated src=- shape=f8e6ffcd vocab=cf1daca3
+-/
 theorem actualDefect_isBigO
     (a h N : ℕ) (hh : 0 < h)
     {c : ℂ → Matrix ι ι ℂ} {s : FormalMultilinearSeries ℂ ℂ (Matrix ι ι ℂ)}

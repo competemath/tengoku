@@ -40,6 +40,9 @@ def inverseShear {𝕂 : Type*} [Field 𝕂] (k : Fin m → ℤ) (x : 𝕂) : Ma
 def derivativeShear {𝕂 : Type*} [Field 𝕂] (k : Fin m → ℤ) (x : 𝕂) : Matrix (Fin m) (Fin m) 𝕂 :=
   Matrix.diagonal (fun i => (k i : 𝕂) * x ^ (k i - 1))
 
+/--
+@isnad1 id=eq.1h4v.s7.4ef81854b093 from=translated src=- shape=91de01f1 vocab=fbc1371c
+-/
 theorem inverseShear_mul_shear {𝕂 : Type*} [Field 𝕂] (k : Fin m → ℤ) {x : 𝕂} (hx : x ≠ 0) :
     inverseShear k x * shear k x = 1 := by
   rw [inverseShear, shear, shear, Matrix.diagonal_mul_diagonal, ← Matrix.diagonal_one]
@@ -48,6 +51,9 @@ theorem inverseShear_mul_shear {𝕂 : Type*} [Field 𝕂] (k : Fin m → ℤ) {
   rw [← zpow_add₀ hx]
   simp
 
+/--
+@isnad1 id=eq.1h4v.s7.56f8eb55020c from=translated src=- shape=91de01f1 vocab=fbc1371c
+-/
 theorem shear_mul_inverseShear {𝕂 : Type*} [Field 𝕂] (k : Fin m → ℤ) {x : 𝕂} (hx : x ≠ 0) :
     shear k x * inverseShear k x = 1 := by
   rw [inverseShear, shear, shear, Matrix.diagonal_mul_diagonal, ← Matrix.diagonal_one]
@@ -56,6 +62,9 @@ theorem shear_mul_inverseShear {𝕂 : Type*} [Field 𝕂] (k : Fin m → ℤ) {
   rw [← zpow_add₀ hx]
   simp
 
+/--
+@isnad1 id=hasderiv.1h5v.s6.62fb7776efed from=translated src=- shape=76b8ed5b vocab=92ab2c06
+-/
 theorem shear_hasDerivAt (k : Fin m → ℤ) {r : ℝ} (hr : 0 < r) (i j : Fin m) :
     HasDerivAt (fun t : ℝ => shear k (t : ℂ) i j) (derivativeShear k (r : ℂ) i j) r := by
   by_cases hij : i = j
@@ -66,7 +75,9 @@ theorem shear_hasDerivAt (k : Fin m → ℤ) {r : ℝ} (hr : 0 < r) (i j : Fin m
   · simpa [shear, derivativeShear, Matrix.diagonal_apply, hij] using
       hasDerivAt_const r (0 : ℂ)
 
-/-- Conjugation shifts each entry by its exact integer weight difference.-/
+/-- Conjugation shifts each entry by its exact integer weight difference.
+@isnad1 id=eq.1h7v.s7.02921add7e1c from=translated src=- shape=3e4c823a vocab=ea6654e1
+-/
 theorem conjugate_shear_apply {𝕂 : Type*} [Field 𝕂] (k : Fin m → ℤ) (A : Matrix (Fin m) (Fin m) 𝕂)
     {x : 𝕂} (hx : x ≠ 0) (i j : Fin m) :
     (inverseShear k x * A * shear k x) i j = x ^ (k j-k i) * A i j := by
@@ -74,7 +85,9 @@ theorem conjugate_shear_apply {𝕂 : Type*} [Field 𝕂] (k : Fin m → ℤ) (A
   rw [sub_eq_add_neg, zpow_add₀ hx]
   ring
 
-/-- The derivative correction in the exact gauge transform is `diag(kᵢ/x)`.-/
+/-- The derivative correction in the exact gauge transform is `diag(kᵢ/x)`.
+@isnad1 id=eq.1h4v.s7.6a60f8899c78 from=translated src=- shape=1915bf59 vocab=9eae805f
+-/
 theorem inverseShear_mul_derivative {𝕂 : Type*} [Field 𝕂] (k : Fin m → ℤ) {x : 𝕂} (hx : x ≠ 0) :
     inverseShear k x * derivativeShear k x = Matrix.diagonal (fun i => (k i : 𝕂) / x) := by
   rw [inverseShear, shear, derivativeShear, Matrix.diagonal_mul_diagonal]
@@ -86,7 +99,9 @@ theorem inverseShear_mul_derivative {𝕂 : Type*} [Field 𝕂] (k : Fin m → �
     _ = (k i : 𝕂) * x ^ (-1 : ℤ) := by rw [← zpow_add₀ hx]; congr 2; omega
     _ = _ := by simp [div_eq_mul_inv]
 
-/-- The actual transformed coefficient, including the derivative term.-/
+/-- The actual transformed coefficient, including the derivative term.
+@isnad1 id=eq.1h5v.s8.670cb3f45a91 from=translated src=- shape=3d6facff vocab=356b54a0
+-/
 theorem exact_transformed_coefficient {𝕂 : Type*} [Field 𝕂] (k : Fin m → ℤ)
     (A : Matrix (Fin m) (Fin m) 𝕂) {x : 𝕂} (hx : x ≠ 0) :
     inverseShear k x * A * shear k x - inverseShear k x * derivativeShear k x =
@@ -97,7 +112,9 @@ theorem exact_transformed_coefficient {𝕂 : Type*} [Field 𝕂] (k : Fin m →
   exact conjugate_shear_apply k A hx i j
 
 /-- Every integer shearing and its actual inverse have a common polynomial
-bound on positive real rays. Negative powers are included.-/
+bound on positive real rays. Negative powers are included.
+@isnad1 id=ex.0h2v.s7.e35deae6e4a9 from=translated src=- shape=ad9d6772 vocab=56ab3de6
+-/
 theorem exists_polynomial_mulVec_bounds (k : Fin m → ℤ) :
     ∃ K : ℝ, 0 ≤ K ∧ ∀ r : ℝ, 1 ≤ r → ∀ v : Fin m → ℂ,
       ‖(shear k (r : ℂ)).mulVec v‖ ≤ r ^ K * ‖v‖ ∧
@@ -118,7 +135,9 @@ theorem exists_polynomial_mulVec_bounds (k : Fin m → ℤ) :
     hbound (fun i => -k i) (fun i => by simpa using (neg_le_abs (k i : ℝ)).trans (hki i))⟩
 
 /-- The lower envelope meets `β=σ` at a positive rational slope. This is the
-finite numerical core of the §19.3 choice; it does not assert nonnilpotence.-/
+finite numerical core of the §19.3 choice; it does not assert nonnilpotence.
+@isnad1 id=ex.1h3v.s6.de7b1083287c from=translated src=- shape=1a43df48 vocab=65bd8b83
+-/
 theorem exists_rational_slope {ι : Type*} [Fintype ι] [Nonempty ι]
     (α : ι → ℚ) (d : ι → ℕ) (hα : ∀ i, 0 < α i) :
     ∃ σ : ℚ, 0 < σ ∧ (∀ i, σ ≤ α i - (d i : ℚ) * σ) ∧
@@ -137,7 +156,9 @@ theorem exists_rational_slope {ι : Type*} [Fintype ι] [Nonempty ι]
   · nlinarith
 
 /-- The same coefficient identity holds inside the actual rational-function
-field; the shearing need not be replaced by an abstract invertibility premise.-/
+field; the shearing need not be replaced by an abstract invertibility premise.
+@isnad1 id=eq.0h3v.s9.f47023c1b52d from=translated src=- shape=837bdb1b vocab=1399f304
+-/
 theorem rational_transformed_coefficient (k : Fin m → ℤ)
     (A : Matrix (Fin m) (Fin m) (RatFunc ℂ)) :
     inverseShear k RatFunc.X * A * shear k RatFunc.X -
@@ -149,7 +170,9 @@ theorem rational_transformed_coefficient (k : Fin m → ℤ)
 
 /-- A nonzero feedback entry closes a single two-dimensional nilpotent chain
 and forces the new leading matrix to be nonnilpotent. This is a genuine
-special case, not the multiblock termination assertion of §19.4.-/
+special case, not the multiblock termination assertion of §19.4.
+@isnad1 id=not.1h1v.s8.48c0a746cd81 from=translated src=- shape=ba47f7c0 vocab=017904ad
+-/
 theorem feedback_two_not_nilpotent {c : ℂ} (hc : c ≠ 0) :
     ¬ IsNilpotent (!![0, 1; c, 0] : Matrix (Fin 2) (Fin 2) ℂ) := by
   apply IsUnit.not_isNilpotent

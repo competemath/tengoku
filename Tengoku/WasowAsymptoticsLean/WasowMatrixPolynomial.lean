@@ -41,23 +41,41 @@ def evaluation (z : ℂ) : Polynomial (Matrix ι ι ℂ) →+* Matrix ι ι ℂ 
 
 def eval (P : Polynomial (Matrix ι ι ℂ)) (z : ℂ) : Matrix ι ι ℂ := evaluation z P
 
+/--
+@isnad1 id=eq.0h4v.s7.21e6286b58d6 from=translated src=- shape=cc8c6b92 vocab=678e772e
+-/
 @[simp] theorem eval_add (P Q : Polynomial (Matrix ι ι ℂ)) (z : ℂ) :
     eval (P + Q) z = eval P z + eval Q z := (evaluation z).map_add P Q
 
+/--
+@isnad1 id=eq.0h4v.s7.9141084d1432 from=translated src=- shape=cc8c6b92 vocab=49567f8d
+-/
 @[simp] theorem eval_sub (P Q : Polynomial (Matrix ι ι ℂ)) (z : ℂ) :
     eval (P - Q) z = eval P z - eval Q z := (evaluation z).map_sub P Q
 
+/--
+@isnad1 id=eq.0h4v.s7.931789646db7 from=translated src=- shape=cc8c6b92 vocab=60670549
+-/
 @[simp] theorem eval_mul (P Q : Polynomial (Matrix ι ι ℂ)) (z : ℂ) :
     eval (P * Q) z = eval P z * eval Q z := (evaluation z).map_mul P Q
 
+/--
+@isnad1 id=eq.0h2v.s6.5d5bdff95a87 from=translated src=- shape=4c165889 vocab=699cb515
+-/
 @[simp] theorem eval_X (z : ℂ) :
     eval (Polynomial.X : Polynomial (Matrix ι ι ℂ)) z = z • 1 := by
   simp [eval, evaluation, Polynomial.eval₂RingHom'_apply, Algebra.algebraMap_eq_smul_one]
 
+/--
+@isnad1 id=eq.0h3v.s7.09c6601684bc from=translated src=- shape=8b6ec7d8 vocab=e2b2f572
+-/
 @[simp] theorem eval_C (M : Matrix ι ι ℂ) (z : ℂ) : eval (Polynomial.C M) z = M := by
   change Polynomial.eval₂ (RingHom.id _) (algebraMap ℂ (Matrix ι ι ℂ) z) (Polynomial.C M) = M
   simp
 
+/--
+@isnad1 id=eq.0h3v.s6.c63578b0c1a9 from=translated src=- shape=721bec58 vocab=75e945c4
+-/
 theorem eval_eq_sum (P : Polynomial (Matrix ι ι ℂ)) (z : ℂ) :
     eval P z = ∑ n ∈ P.support, z ^ n • P.coeff n := by
   change Polynomial.eval₂ (RingHom.id _) (algebraMap ℂ (Matrix ι ι ℂ) z) P = _
@@ -67,7 +85,9 @@ theorem eval_eq_sum (P : Polynomial (Matrix ι ι ℂ)) (z : ℂ) :
   simp only [RingHom.id_apply, ← map_pow, Algebra.smul_def]
   exact (Algebra.commutes (z ^ n) (P.coeff n)).symm
 
-/-- A central monomial factor evaluates to the corresponding scalar power.-/
+/-- A central monomial factor evaluates to the corresponding scalar power.
+@isnad1 id=eq.0h4v.s7.0cbd41f2ffba from=translated src=- shape=4a23ca69 vocab=f8044626
+-/
 theorem eval_X_pow_mul (P : Polynomial (Matrix ι ι ℂ)) (N : ℕ) (z : ℂ) :
     eval (Polynomial.X ^ N * P) z = z ^ N • eval P z := by
   rw [eval_mul]
@@ -76,14 +96,18 @@ theorem eval_X_pow_mul (P : Polynomial (Matrix ι ι ℂ)) (N : ℕ) (z : ℂ) :
   change eval Polynomial.X z ^ N * eval P z = _
   rw [eval_X, smul_pow, one_pow, Matrix.smul_mul, Matrix.one_mul]
 
-/-- Polynomial evaluation is continuous in the actual complex argument.-/
+/-- Polynomial evaluation is continuous in the actual complex argument.
+@isnad1 id=continuo.0h2v.s5.bd6af671a5a9 from=translated src=- shape=f616b1f5 vocab=8e17f21c
+-/
 theorem continuous_eval (P : Polynomial (Matrix ι ι ℂ)) : Continuous (eval P) := by
   change Continuous (fun z => eval P z)
   simp_rw [eval_eq_sum]
   fun_prop
 
 /-- The noncommutative polynomial derivative agrees with the coefficientwise
-matrix power-series derivative used in the formal gauge equation.-/
+matrix power-series derivative used in the formal gauge equation.
+@isnad1 id=eq.0h2v.s8.c1fe3e803063 from=translated src=- shape=c48b14b7 vocab=35aedf14
+-/
 theorem coe_derivative (P : Polynomial (Matrix ι ι ℂ)) :
     (P.derivative : PowerSeries (Matrix ι ι ℂ)) =
       WasowPowerSeries.derivative (P : PowerSeries (Matrix ι ι ℂ)) := by
@@ -96,7 +120,9 @@ theorem coe_derivative (P : Polynomial (Matrix ι ι ℂ)) :
     rw [← Algebra.algebraMap_eq_smul_one, map_natCast]
   rw [hcast, Matrix.mul_smul, Matrix.mul_one]
 
-/-- Derivative evaluation is the actual finite termwise derivative sum.-/
+/-- Derivative evaluation is the actual finite termwise derivative sum.
+@isnad1 id=eq.0h3v.s9.cea7899b99db from=translated src=- shape=63851b41 vocab=68f641a7
+-/
 theorem eval_derivative_eq_sum (P : Polynomial (Matrix ι ι ℂ)) (z : ℂ) :
     eval P.derivative z =
       ∑ n ∈ P.support, ((n : ℂ) * z ^ (n - 1)) • P.coeff n := by
@@ -117,7 +143,9 @@ theorem eval_derivative_eq_sum (P : Polynomial (Matrix ι ι ℂ)) (z : ℂ) :
     rw [← Algebra.algebraMap_eq_smul_one, map_natCast]
   rw [hcast, Matrix.mul_smul, Matrix.mul_one, smul_smul, mul_comm]
 
-/-- Finite polynomial differentiation is an actual complex derivative.-/
+/-- Finite polynomial differentiation is an actual complex derivative.
+@isnad1 id=hasderiv.0h3v.s8.2a154c1f5f3b from=translated src=- shape=4af5f99c vocab=c2cfe0d3
+-/
 theorem hasDerivAt_eval (P : Polynomial (Matrix ι ι ℂ)) (z : ℂ) :
     HasDerivAt (eval P) (eval P.derivative z) z := by
   rw [eval_derivative_eq_sum]
@@ -125,7 +153,9 @@ theorem hasDerivAt_eval (P : Polynomial (Matrix ι ι ℂ)) (z : ℂ) :
   simp_rw [eval_eq_sum]
   exact HasDerivAt.fun_sum (fun n _ => (hasDerivAt_pow n z).smul_const (P.coeff n))
 
-/-- A scalar factor `X^N` gives an actual local norm estimate of that order.-/
+/-- A scalar factor `X^N` gives an actual local norm estimate of that order.
+@isnad1 id=isbigo.1h3v.s8.6cf1ccbefa09 from=translated src=- shape=a492a60d vocab=2b73fd4e
+-/
 theorem isBigO_eval_of_X_pow_dvd (P : Polynomial (Matrix ι ι ℂ)) (N : ℕ)
     (hP : Polynomial.X ^ N ∣ P) :
     eval P =O[𝓝 (0 : ℂ)] (fun z : ℂ => ‖z‖ ^ N) := by

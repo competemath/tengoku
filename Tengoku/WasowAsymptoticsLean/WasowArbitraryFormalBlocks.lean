@@ -17,7 +17,9 @@ open WasowLeadingBlocks WasowPowerSeries
 variable {ι κ : Type*} [Fintype ι] [DecidableEq ι] [Fintype κ] [DecidableEq κ]
 
 /-- Algebraic coordinate transport commutes with the actual coefficientwise
-formal derivative, including its complex scalar factors.-/
+formal derivative, including its complex scalar factors.
+@isnad1 id=eq.0h4v.s8.0dc1402b4921 from=translated src=- shape=41450b15 vocab=5abc2f19
+-/
 theorem map_derivative (e : Matrix ι ι ℂ →ₐ[ℂ] Matrix κ κ ℂ)
     (P : PowerSeries (Matrix ι ι ℂ)) :
     PowerSeries.map e.toRingHom (derivative P) =
@@ -34,7 +36,9 @@ def coordinateSeries (A : PowerSeries (Matrix ι ι ℂ)) :
     PowerSeries (Matrix (BlockIndex A) (BlockIndex A) ℂ) :=
   PowerSeries.map (matrixCoordinates (PowerSeries.constantCoeff A)).toRingHom A
 
-/-- Every coefficient is transported by the same actual constant similarity.-/
+/-- Every coefficient is transported by the same actual constant similarity.
+@isnad1 id=eq.0h3v.s18.f309f9ae1ff2 from=translated src=- shape=6e7e53a1 vocab=010d9351
+-/
 theorem coordinateSeries_coeff (A : PowerSeries (Matrix ι ι ℂ)) (n : ℕ) :
     PowerSeries.coeff n (coordinateSeries A) =
       inverseChangeMatrix (PowerSeries.constantCoeff A) * PowerSeries.coeff n A *
@@ -43,7 +47,9 @@ theorem coordinateSeries_coeff (A : PowerSeries (Matrix ι ι ℂ)) (n : ℕ) :
   exact matrixCoordinates_apply _ _
 
 /-- The input series itself supplies the complete block decomposition of its
-constant term; no external basis or splitting is assumed.-/
+constant term; no external basis or splitting is assumed.
+@isnad1 id=eq.0h2v.s16.5b5078cbef8a from=translated src=- shape=926cf9e3 vocab=c8e93e3f
+-/
 theorem coordinateSeries_leading (A : PowerSeries (Matrix ι ι ℂ)) :
     PowerSeries.constantCoeff (coordinateSeries A) =
       WasowMultiBlockReduction.leading (blockSize (Matrix.toLin' (PowerSeries.constantCoeff A)))
@@ -52,7 +58,9 @@ theorem coordinateSeries_leading (A : PowerSeries (Matrix ι ι ℂ)) :
   exact matrixCoordinates_leading _
 
 /-- All-order splitting for an arbitrary input matrix series. Its constant
-coordinate change has already been constructed with two-sided inverses.-/
+coordinate change has already been constructed with two-sided inverses.
+@isnad1 id=ex.1h3v.s20.0e0aa7b0a585 from=translated src=- shape=624bb17c vocab=342f3834
+-/
 theorem exists_arbitrary_formal_block_reduction (A : PowerSeries (Matrix ι ι ℂ))
     {q : ℕ} (hq : 0 < q) :
     ∃ P B S : PowerSeries (Matrix (BlockIndex A) (BlockIndex A) ℂ),

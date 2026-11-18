@@ -20,7 +20,9 @@ open CRGNormalFormGoal
 variable {m : ℕ}
 
 /-- A continuous actual coefficient with a `K/r` bound has an exact zero-phase
-gauge on the ray. Both the gauge and its inverse have polynomial growth.-/
+gauge on the ray. Both the gauge and its inverse have polynomial growth.
+@isnad1 id=nonempty.5h5v.s7.caaa06c47da8 from=translated src=- shape=1787b6a2 vocab=2793a190
+-/
 theorem exists_fuchsian_rayGauge
     (A : Matrix (Fin m) (Fin m) (RatFunc ℂ)) (θ a K : ℝ)
     (ha : 1 ≤ a) (hK : 0 ≤ K)
@@ -65,7 +67,9 @@ theorem exists_fuchsian_rayGauge
     simp [Matrix.mul_assoc]
 
 /-- For proper rational matrices the continuity, pole exclusion and inverse-
-radius estimate are consequences, not additional analytic assumptions.-/
+radius estimate are consequences, not additional analytic assumptions.
+@isnad1 id=nonempty.1h3v.s5.1b620744f39c from=translated src=- shape=791c7c3e vocab=f220c2dc
+-/
 theorem exists_proper_rayGauge
     (A : Matrix (Fin m) (Fin m) (RatFunc ℂ))
     (hproper : ∀ i j, WasowRational.polynomialPart (A i j) = 0) (θ : ℝ) :
@@ -76,7 +80,9 @@ theorem exists_proper_rayGauge
 
 /-- The entire proper rational class has one fixed, zero phase family before
 choosing the ray angle. This is the regular-singular stopping case of the
-original normal-form conclusion, for arbitrary matrix size and multiplicities.-/
+original normal-form conclusion, for arbitrary matrix size and multiplicities.
+@isnad1 id=ex.1h2v.s6.31cd7e998367 from=translated src=- shape=7f9960c9 vocab=80662459
+-/
 theorem proper_rational_normal_form
     (A : Matrix (Fin m) (Fin m) (RatFunc ℂ))
     (hproper : ∀ i j, WasowRational.polynomialPart (A i j) = 0) :

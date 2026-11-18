@@ -24,7 +24,9 @@ def padded {s : ℕ} (d : ℕ) (T : Matrix (Fin s) (Fin s) (Polynomial ℂ)) :
 def paddedDegrees {s : ℕ} (d : ℕ) (m : Fin s → ℕ) : Fin (d+s) → ℕ :=
   Fin.addCases (fun _ => 0) m
 
-/-- Ordering the auxiliary zeros first preserves the sorted exponent list.-/
+/-- Ordering the auxiliary zeros first preserves the sorted exponent list.
+@isnad1 id=monotone.1h3v.s5.8c6d1907b07f from=translated src=- shape=a7acce2b vocab=990c98c4
+-/
 theorem paddedDegrees_monotone {s : ℕ} (d : ℕ) (m : Fin s → ℕ) (hm : Monotone m) :
     Monotone (paddedDegrees d m) := by
   intro i
@@ -45,7 +47,9 @@ theorem paddedDegrees_monotone {s : ℕ} (d : ℕ) (m : Fin s → ℕ) (hm : Mon
       change a.val ≤ b.val
       simpa only [Fin.val_natAdd, Nat.add_le_add_iff_left] using hh
 
-/-- The actual block diagonal padding is lower triangular in the displayed order.-/
+/-- The actual block diagonal padding is lower triangular in the displayed order.
+@isnad1 id=islowert.1h3v.s5.2a43afc59f6c from=translated src=- shape=ba0a3a81 vocab=7f3905db
+-/
 theorem padded_lowerTriangular {s : ℕ} (d : ℕ)
     (T : Matrix (Fin s) (Fin s) (Polynomial ℂ)) (hT : T.IsLowerTriangular) :
     (padded d T).IsLowerTriangular := by
@@ -71,7 +75,9 @@ theorem padded_lowerTriangular {s : ℕ} (d : ℕ)
         simpa only [Fin.val_natAdd, Nat.add_lt_add_iff_left] using hab
       simpa [padded, Matrix.reindex_apply] using hT hh
 
-/-- The diagonal is exactly zero-exponent units followed by the reduced diagonal.-/
+/-- The diagonal is exactly zero-exponent units followed by the reduced diagonal.
+@isnad1 id=eq.1h5v.s6.0588fe12d2a7 from=translated src=- shape=062154d0 vocab=0ae48945
+-/
 theorem padded_diagonal {s : ℕ} (d : ℕ)
     (T : Matrix (Fin s) (Fin s) (Polynomial ℂ)) (m : Fin s → ℕ)
     (hdiag : ∀ i, T i i = X^m i) (i : Fin (d+s)) :
@@ -80,14 +86,18 @@ theorem padded_diagonal {s : ℕ} (d : ℕ)
   · simp [padded, paddedDegrees, Matrix.reindex_apply]
   · simp [padded, paddedDegrees, Matrix.reindex_apply, hdiag]
 
-/-- An actual reduced entry remains the same entry after adjoining the unit block.-/
+/-- An actual reduced entry remains the same entry after adjoining the unit block.
+@isnad1 id=eq.0h5v.s5.eba43d42bac1 from=translated src=- shape=67eb4cf0 vocab=9f61187b
+-/
 theorem padded_entry {s : ℕ} (d : ℕ)
     (T : Matrix (Fin s) (Fin s) (Polynomial ℂ)) (a b : Fin s) :
     padded d T (Fin.natAdd d a) (Fin.natAdd d b) = T a b := by
   simp [padded, Matrix.reindex_apply]
 
 /-- The strict degree-mass drop holds in the original dimension, with all
-auxiliary unit blocks explicitly included.-/
+auxiliary unit blocks explicitly included.
+@isnad1 id=lt.4h4v.s7.69a249335fd4 from=translated src=- shape=b4398b7c vocab=b2793c4a
+-/
 theorem padded_degreeMass_strict_drop {s : ℕ} (d : ℕ)
     (T : Matrix (Fin s) (Fin s) (Polynomial ℂ)) (hT : T.IsLowerTriangular)
     (m : Fin s → ℕ) (hm : Monotone m) (hdiag : ∀ i, T i i = X^m i)

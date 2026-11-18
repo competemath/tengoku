@@ -26,6 +26,9 @@ namespace WasowAnalyticRemainder
 
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
 
+/--
+@isnad1 id=eq.1h4v.s7.99c32f4a4352 from=translated src=- shape=8282edb3 vocab=02bd9550
+-/
 theorem partialSum_eq_zero {p : FormalMultilinearSeries ℂ ℂ E} {N : ℕ}
     (hp : ∀ k < N, p.coeff k = 0) (z : ℂ) : p.partialSum N z = 0 := by
   unfold FormalMultilinearSeries.partialSum
@@ -33,17 +36,25 @@ theorem partialSum_eq_zero {p : FormalMultilinearSeries ℂ ℂ E} {N : ℕ}
   intro k hk
   rw [FormalMultilinearSeries.apply_eq_pow_smul_coeff, hp k (Finset.mem_range.mp hk), smul_zero]
 
+/--
+@isnad1 id=isbigo.2h4v.s7.152cd32e140c from=translated src=- shape=8271cf49 vocab=cfa73f7c
+-/
 theorem isBigO_of_initial_coefficients_zero {f : ℂ → E}
     {p : FormalMultilinearSeries ℂ ℂ E} {N : ℕ}
     (hf : HasFPowerSeriesAt f p 0) (hp : ∀ k < N, p.coeff k = 0) :
     f =O[𝓝 0] (fun z : ℂ => ‖z‖ ^ N) := by
   simpa only [zero_add, partialSum_eq_zero hp, sub_zero] using hf.isBigO_sub_partialSum_pow N
 
+/--
+@isnad1 id=tendsto.0h0v.s5.bcd7f4731ac8 from=translated src=- shape=c351d842 vocab=209b4b2d
+-/
 theorem inverse_real_tendsto_zero :
     Tendsto (fun r : ℝ => (r : ℂ)⁻¹) atTop (𝓝 0) := by
   simpa only [Complex.ofReal_inv, Complex.ofReal_zero] using tendsto_inv_atTop_zero.ofReal
 
-/-- One common genuine tail supports both continuity and a pointwise bound.-/
+/-- One common genuine tail supports both continuity and a pointwise bound.
+@isnad1 id=ex.2h4v.s7.42ac79b5ae5a from=translated src=- shape=d34e1fbb vocab=ed9f5ae1
+-/
 theorem exists_inverse_tail_bound {f : ℂ → E}
     {p : FormalMultilinearSeries ℂ ℂ E} {N : ℕ}
     (hf : HasFPowerSeriesAt f p 0) (hp : ∀ k < N, p.coeff k = 0) :
@@ -70,7 +81,9 @@ theorem exists_inverse_tail_bound {f : ℂ → E}
       norm_inv, Complex.norm_real, Real.norm_of_nonneg hr0, inv_pow, div_eq_mul_inv] using hh
 
 /-- Vanishing to order at least two implies genuine Bochner integrability on
-a sufficiently late half-line, obtained by domination by an integrable power.-/
+a sufficiently late half-line, obtained by domination by an integrable power.
+@isnad1 id=ex.3h4v.s7.457b60f81e9c from=translated src=- shape=9a8e59b3 vocab=3c4e5545
+-/
 theorem exists_integrable_inverse_tail {f : ℂ → E}
     {p : FormalMultilinearSeries ℂ ℂ E} {N : ℕ}
     (hf : HasFPowerSeriesAt f p 0) (hp : ∀ k < N, p.coeff k = 0) (hN : 2 ≤ N) :
@@ -88,7 +101,9 @@ theorem exists_integrable_inverse_tail {f : ℂ → E}
   simpa only [Real.rpow_neg (le_of_lt (lt_of_lt_of_le zero_lt_one (hR.trans hr.le))),
     Real.rpow_natCast, div_eq_mul_inv] using hb r hr.le
 
-/-- The late tail is truly integrable and has arbitrarily small integral norm.-/
+/-- The late tail is truly integrable and has arbitrarily small integral norm.
+@isnad1 id=ex.4h5v.s8.f1a0a52ebf0e from=translated src=- shape=b18eb0f7 vocab=1238d852
+-/
 theorem exists_small_integrable_inverse_tail {f : ℂ → E}
     {p : FormalMultilinearSeries ℂ ℂ E} {N : ℕ}
     (hf : HasFPowerSeriesAt f p 0) (hp : ∀ k < N, p.coeff k = 0) (hN : 2 ≤ N)

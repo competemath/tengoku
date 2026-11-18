@@ -30,6 +30,9 @@ namespace WasowRealization
 def operatorMatrix {m : ℕ} (R : (Fin m → ℂ) →L[ℂ] (Fin m → ℂ)) :
     Matrix (Fin m) (Fin m) ℂ := LinearMap.toMatrix' R.toLinearMap
 
+/--
+@isnad1 id=eq.0h5v.s8.4c2073ab0742 from=translated src=- shape=adef36f3 vocab=d782c1df
+-/
 theorem operatorMatrix_mul_apply {m : ℕ}
     (R : (Fin m → ℂ) →L[ℂ] (Fin m → ℂ))
     (U : Matrix (Fin m) (Fin m) ℂ) (i j : Fin m) :
@@ -37,6 +40,9 @@ theorem operatorMatrix_mul_apply {m : ℕ}
   have h := congrFun (LinearMap.toMatrix'_mulVec R.toLinearMap (fun k => U k j)) i
   exact h
 
+/--
+@isnad1 id=hasderiv.2h8v.s8.f45bf9899cc4 from=translated src=- shape=66d9d5c4 vocab=40de9751
+-/
 theorem matrix_product_hasDerivAt {m : ℕ}
     (H U : ℝ → Matrix (Fin m) (Fin m) ℂ)
     (H' U' : Matrix (Fin m) (Fin m) ℂ) {r : ℝ}
@@ -47,6 +53,9 @@ theorem matrix_product_hasDerivAt {m : ℕ}
     HasDerivAt.fun_sum (fun k (_ : k ∈ (Finset.univ : Finset (Fin m))) =>
       (hH i k).mul (hU k j))
 
+/--
+@isnad1 id=eq.2h8v.s9.571d5353c020 from=translated src=- shape=99a97740 vocab=9c5f9906
+-/
 theorem corrected_derivative_identity {m : ℕ}
     (A H H' U U' D B : Matrix (Fin m) (Fin m) ℂ)
     (hH : A * H = H' + H * (D + B))
@@ -59,7 +68,9 @@ theorem corrected_derivative_identity {m : ℕ}
     _ = A * (H * U) - (H * U) * D := by rw [← hH, Matrix.mul_assoc]
 
 /-- The actual near-identity correction is obtained by solving all Volterra
-columns on one common half-line.-/
+columns on one common half-line.
+@isnad1 id=ex.6h7v.s10.4016ad4acef7 from=translated src=- shape=0950a42b vocab=3b96e79d
+-/
 theorem exists_normalized_correction (m : ℕ) (a : ℝ)
     (mode : Fin m → Fin m → Bool) (Q dQ : Fin m → ℝ → ℂ)
     (hQ : ∀ i, Continuous (Q i))
@@ -118,7 +129,9 @@ structure ApproximateRayGauge {m : ℕ}
       (Matrix.diagonal (fun i => dQ i r) + operatorMatrix (extend a R r))
 
 /-- Construct an exact ray gauge by an actual Volterra correction of the
-approximate gauge. The input remainder need not vanish.-/
+approximate gauge. The input remainder need not vanish.
+@isnad1 id=nonempty.6h10v.s10.8016f19cd664 from=translated src=- shape=5b11c43a vocab=1caef974
+-/
 theorem exists_exact_rayGauge {m : ℕ}
     (A : Matrix (Fin m) (Fin m) (RatFunc ℂ)) (θ a : ℝ)
     (Q dQ : Fin m → ℝ → ℂ)

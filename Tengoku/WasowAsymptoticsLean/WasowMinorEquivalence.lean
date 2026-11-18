@@ -18,7 +18,9 @@ namespace WasowMinorEquivalence
 open WasowReductionDescent WasowMinorExpansion
 
 /-- Rectangular row operations preserve divisibility by every common divisor
-of the minors of the untransformed rectangular matrix.-/
+of the minors of the untransformed rectangular matrix.
+@isnad1 id=dvd.1h10v.s7.4fa8e39a0caf from=translated src=- shape=4a6c748e vocab=7b7c70cb
+-/
 theorem dvd_minor_left_product {R α β γ : Type*} [CommRing R]
     [Fintype α] [Fintype β] [Fintype γ]
     (A : Matrix α β R) (B : Matrix β γ R) (k : ℕ) (d : R)
@@ -31,6 +33,9 @@ theorem dvd_minor_left_product {R α β γ : Type*} [CommRing R]
   apply dvd_mul_of_dvd_right
   simpa only [Matrix.submatrix_submatrix, Function.id_comp, Function.comp_id] using hd f c
 
+/--
+@isnad1 id=dvd.1h10v.s7.925841dadd8d from=translated src=- shape=539d5b78 vocab=7b7c70cb
+-/
 theorem dvd_minor_right_product {R α β γ : Type*} [CommRing R]
     [Fintype α] [Fintype β] [Fintype γ]
     (A : Matrix α β R) (B : Matrix β γ R) (k : ℕ) (d : R)
@@ -49,7 +54,9 @@ theorem dvd_minor_right_product {R α β γ : Type*} [CommRing R]
 
 variable {ι κ : Type*} [Fintype ι] [Fintype κ]
 
-/-- Two-sided coordinate changes with genuinely different finite index types.-/
+/-- Two-sided coordinate changes with genuinely different finite index types.
+@isnad1 id=dvd.0h6v.s7.243bab8f9583 from=translated src=- shape=c1f00770 vocab=2e1ea25a
+-/
 theorem minorGCD_dvd_two_sided (L : Matrix κ ι (Polynomial ℂ))
     (T : Matrix ι ι (Polynomial ℂ)) (V : Matrix ι κ (Polynomial ℂ)) (k : ℕ) :
     minorGCD T k ∣ minorGCD (L*T*V) k := by
@@ -58,7 +65,9 @@ theorem minorGCD_dvd_two_sided (L : Matrix κ ι (Polynomial ℂ))
     (dvd_minor_left_product L T k (minorGCD T k) (minorGCD_dvd_minor T k))
 
 /-- Exact invariance under concrete left and right polynomial inverses.
-This applies directly to the sum-type coordinates of a Jordan pencil.-/
+This applies directly to the sum-type coordinates of a Jordan pencil.
+@isnad1 id=eq.2h8v.s8.52efca550a05 from=translated src=- shape=43d90fe1 vocab=e7260a3f
+-/
 theorem minorGCD_equivalent [DecidableEq ι] (L : Matrix κ ι (Polynomial ℂ))
     (S : Matrix ι κ (Polynomial ℂ)) (T : Matrix ι ι (Polynomial ℂ))
     (V : Matrix ι κ (Polynomial ℂ)) (W : Matrix κ ι (Polynomial ℂ))
@@ -76,7 +85,9 @@ theorem minorGCD_equivalent [DecidableEq ι] (L : Matrix κ ι (Polynomial ℂ))
     rwa [he] at hh
   · exact minorGCD_dvd_two_sided L T V k
 
-/-- Relabeling coordinates alone does not change any determinantal divisor.-/
+/-- Relabeling coordinates alone does not change any determinantal divisor.
+@isnad1 id=eq.0h5v.s6.c0cf31743b4a from=translated src=- shape=6c227ec6 vocab=1d04a944
+-/
 theorem minorGCD_reindex (T : Matrix ι ι (Polynomial ℂ)) (e : κ ≃ ι) (k : ℕ) :
     minorGCD (T.submatrix e e) k = minorGCD T k := by
   classical

@@ -23,6 +23,9 @@ set_option autoImplicit false
 noncomputable section
 namespace WasowRegularSingular
 variable {A : Type*} [NormedRing A] [NormedAlgebra ℂ A] [CompleteSpace A] [NormOneClass A]
+/--
+@isnad1 id=le.0h2v.s6.c20b79c18dfb from=translated src=- shape=2093cc7e vocab=803f3f53
+-/
 theorem norm_exp_le (x : A) : ‖NormedSpace.exp x‖ ≤ Real.exp ‖x‖ := by
   have hreal : HasSum (fun n : ℕ => ((n.factorial : ℝ)⁻¹) * ‖x‖ ^ n)
       (Real.exp ‖x‖) := by
@@ -39,12 +42,18 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] [CompleteSpace E
 /-- A fixed branch of the logarithm along the ray.-/
 def rayLog (θ r : ℝ) : ℂ := (Real.log r : ℂ) + (θ : ℂ) * Complex.I
 
+/--
+@isnad1 id=le.1h2v.s5.14e72319ffa9 from=translated src=- shape=db965e52 vocab=8ab93684
+-/
 theorem norm_rayLog_le (θ : ℝ) {r : ℝ} (hr : 1 ≤ r) :
     ‖rayLog θ r‖ ≤ Real.log r + |θ| := by
   calc
     ‖rayLog θ r‖ ≤ ‖(Real.log r : ℂ)‖ + ‖(θ : ℂ) * Complex.I‖ := norm_add_le _ _
     _ = Real.log r + |θ| := by simp [abs_of_nonneg (Real.log_nonneg hr)]
 
+/--
+@isnad1 id=le.1h4v.s9.5114f175c82a from=translated src=- shape=33cc198d vocab=73b6574a
+-/
 theorem exp_ray_norm_bound (G : E →L[ℂ] E) (θ : ℝ) {r : ℝ} (hr : 1 ≤ r) :
     ‖NormedSpace.exp (rayLog θ r • G)‖ ≤
       Real.exp (|θ| * ‖G‖) * r ^ ‖G‖ := by
@@ -75,6 +84,9 @@ def rayPowerInverse (G : Matrix ι ι ℂ) (θ r : ℝ) : Matrix ι ι ℂ :=
   LinearMap.toMatrix' (NormedSpace.exp (-(rayLog θ r • matrixOperator G))).toLinearMap
 
 omit [Nonempty ι] in
+/--
+@isnad1 id=eq.0h4v.s6.bd79e040652f from=translated src=- shape=c2d363fd vocab=c4e78fbe
+-/
 theorem rayPowerInverse_mul_rayPower (G : Matrix ι ι ℂ) (θ r : ℝ) :
     rayPowerInverse G θ r * rayPower G θ r = 1 := by
   let : NormedAlgebra ℚ ((ι → ℂ) →L[ℂ] (ι → ℂ)) :=
@@ -88,6 +100,9 @@ theorem rayPowerInverse_mul_rayPower (G : Matrix ι ι ℂ) (θ r : ℝ) :
   rw [hh, ContinuousLinearMap.toLinearMap_one, LinearMap.toMatrix'_one]
 
 omit [Nonempty ι] in
+/--
+@isnad1 id=eq.0h4v.s6.09df1e2aa113 from=translated src=- shape=c2d363fd vocab=c4e78fbe
+-/
 theorem rayPower_mul_rayPowerInverse (G : Matrix ι ι ℂ) (θ r : ℝ) :
     rayPower G θ r * rayPowerInverse G θ r = 1 := by
   let : NormedAlgebra ℚ ((ι → ℂ) →L[ℂ] (ι → ℂ)) :=
@@ -100,6 +115,9 @@ theorem rayPower_mul_rayPowerInverse (G : Matrix ι ι ℂ) (θ r : ℝ) :
       add_neg_cancel, NormedSpace.exp_zero]
   rw [hh, ContinuousLinearMap.toLinearMap_one, LinearMap.toMatrix'_one]
 
+/--
+@isnad1 id=le.1h5v.s9.3de3784d5b4e from=translated src=- shape=dbb33cb2 vocab=932138d8
+-/
 theorem rayPower_mulVec_bound (G : Matrix ι ι ℂ) (θ : ℝ) {r : ℝ} (hr : 1 ≤ r)
     (x : ι → ℂ) :
     ‖(rayPower G θ r).mulVec x‖ ≤
@@ -109,6 +127,9 @@ theorem rayPower_mulVec_bound (G : Matrix ι ι ℂ) (θ : ℝ) {r : ℝ} (hr : 
   exact (ContinuousLinearMap.le_opNorm _ x).trans
     (mul_le_mul_of_nonneg_right (exp_ray_norm_bound _ θ hr) (norm_nonneg x))
 
+/--
+@isnad1 id=le.1h5v.s9.545ee986d385 from=translated src=- shape=dbb33cb2 vocab=0d5d1103
+-/
 theorem rayPowerInverse_mulVec_bound (G : Matrix ι ι ℂ) (θ : ℝ) {r : ℝ} (hr : 1 ≤ r)
     (x : ι → ℂ) :
     ‖(rayPowerInverse G θ r).mulVec x‖ ≤
@@ -121,7 +142,9 @@ theorem rayPowerInverse_mulVec_bound (G : Matrix ι ι ℂ) (θ : ℝ) {r : ℝ}
 
 /-- Both matrix factors have polynomial operator growth on the ray.  The
 exponent is the norm of the fixed matrix acting on the finite-dimensional
-sup-norm space; no diagonalizability or Jordan normal form is required.-/
+sup-norm space; no diagonalizability or Jordan normal form is required.
+@isnad1 id=ex.0h3v.s7.463d50cb03d8 from=translated src=- shape=09e5c60e vocab=57aa58d3
+-/
 theorem exists_polynomial_bounds (G : Matrix ι ι ℂ) (θ : ℝ) :
     ∃ C K : ℝ, 0 < C ∧ 0 ≤ K ∧ ∀ r : ℝ, 1 ≤ r → ∀ x : ι → ℂ,
       ‖(rayPower G θ r).mulVec x‖ ≤ C * r ^ K * ‖x‖ ∧

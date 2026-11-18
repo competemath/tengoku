@@ -38,7 +38,9 @@ def remainder (a : ℂ → Matrix (Fin m) (Fin m) ℂ)
   (r : ℂ) ^ (q - 1) • normalizedDefect a P B q N ((r : ℂ)⁻¹)
 
 /-- Local invertibility of the actual finite gauge preserves the proved
-vanishing order, and provides actual continuity on a whole neighborhood.-/
+vanishing order, and provides actual continuity on a whole neighborhood.
+@isnad1 id=and.5h8v.s10.09e8e1a9d2d5 from=translated src=- shape=7ba4386f vocab=0d67cb06
+-/
 theorem normalizedDefect_control
     {a : ℂ → Matrix (Fin m) (Fin m) ℂ}
     {p : FormalMultilinearSeries ℂ ℂ (Matrix (Fin m) (Fin m) ℂ)}
@@ -71,7 +73,9 @@ section WeightedTail
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
 
 /-- Multiplication by the inverse-variable rank weight loses exactly `d`
-powers. The retained two powers yield an actual continuous decaying tail.-/
+powers. The retained two powers yield an actual continuous decaying tail.
+@isnad1 id=ex.3h4v.s8.d4bf86473006 from=translated src=- shape=0580fd53 vocab=d72d02f6
+-/
 theorem exists_weighted_inverse_tail_bound {f : ℂ → E} {N d : ℕ}
     (hf : ∀ᶠ z in 𝓝 (0 : ℂ), ContinuousAt f z)
     (hO : f =O[𝓝 (0 : ℂ)] (fun z : ℂ => ‖z‖ ^ N)) (hN : d + 2 ≤ N) :
@@ -96,7 +100,9 @@ theorem exists_weighted_inverse_tail_bound {f : ℂ → E} {N d : ℕ}
       field_simp
 
 /-- Genuine arbitrarily small tails, after the rank loss, beyond any requested
-starting radius. Integrability follows from the explicit `C/r²` majorant.-/
+starting radius. Integrability follows from the explicit `C/r²` majorant.
+@isnad1 id=ex.4h6v.s9.daed7c3e8ea9 from=translated src=- shape=d5ef59ef vocab=ce448875
+-/
 theorem exists_small_weighted_inverse_tail {f : ℂ → E} {N d : ℕ}
     (hf : ∀ᶠ z in 𝓝 (0 : ℂ), ContinuousAt f z)
     (hO : f =O[𝓝 (0 : ℂ)] (fun z : ℂ => ‖z‖ ^ N)) (hN : d + 2 ≤ N)
@@ -132,7 +138,9 @@ end WeightedTail
 
 /-- The true inverse-gauge, rank-weighted remainder has a common continuous
 and arbitrarily small integrable tail. All estimates are derived from the
-actual coefficient expansion and the complete formal gauge equation.-/
+actual coefficient expansion and the complete formal gauge equation.
+@isnad1 id=ex.7h10v.s10.4d633746084d from=translated src=- shape=d1b6db7e vocab=75fa5318
+-/
 theorem exists_small_remainder_tail
     {a : ℂ → Matrix (Fin m) (Fin m) ℂ}
     {p : FormalMultilinearSeries ℂ ℂ (Matrix (Fin m) (Fin m) ℂ)}

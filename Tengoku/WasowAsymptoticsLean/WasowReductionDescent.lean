@@ -42,11 +42,17 @@ def minorGCD (T : Matrix ι ι (Polynomial ℂ)) (k : ℕ) : Polynomial ℂ :=
   Finset.univ.gcd (fun s : (Fin k → ι) × (Fin k → ι) =>
     (T.submatrix s.1 s.2).det)
 
+/--
+@isnad1 id=dvd.0h5v.s6.b6873962e940 from=translated src=- shape=66c593ea vocab=0bdde951
+-/
 theorem minorGCD_dvd_minor (T : Matrix ι ι (Polynomial ℂ)) (k : ℕ)
     (r c : Fin k → ι) : minorGCD T k ∣ (T.submatrix r c).det := by
   exact Finset.gcd_dvd (f := fun s : (Fin k → ι) × (Fin k → ι) =>
     (T.submatrix s.1 s.2).det) (Finset.mem_univ (r,c))
 
+/--
+@isnad1 id=iff.0h4v.s6.1e38ba9674c0 from=translated src=- shape=88820ad7 vocab=0bdde951
+-/
 theorem dvd_minorGCD_iff (T : Matrix ι ι (Polynomial ℂ)) (k : ℕ)
     (p : Polynomial ℂ) : p ∣ minorGCD T k ↔
       ∀ r c : Fin k → ι, p ∣ (T.submatrix r c).det := by
@@ -54,6 +60,9 @@ theorem dvd_minorGCD_iff (T : Matrix ι ι (Polynomial ℂ)) (k : ℕ)
     Prod.forall]
 
 omit [Fintype ι] in
+/--
+@isnad1 id=eq.1h5v.s6.a9a3b7dad920 from=translated src=- shape=0593170c vocab=79f8a809
+-/
 theorem det_submatrix_eq_zero_of_not_injective
     (T : Matrix ι ι (Polynomial ℂ)) (k : ℕ) (r c : Fin k → ι)
     (hr : ¬ Function.Injective r) : (T.submatrix r c).det = 0 := by
@@ -63,7 +72,9 @@ theorem det_submatrix_eq_zero_of_not_injective
 
 omit [Fintype ι] in
 /-- Every principal minor of a triangular matrix is the product of its
-selected diagonal entries, even if the selector does not preserve order.-/
+selected diagonal entries, even if the selector does not preserve order.
+@isnad1 id=eq.2h4v.s6.7453eee9319f from=translated src=- shape=5c67bbec vocab=c74e0771
+-/
 theorem det_principal_submatrix [LinearOrder ι]
     (T : Matrix ι ι (Polynomial ℂ)) (hT : T.IsLowerTriangular)
     (k : ℕ) (r : Fin k → ι) (hr : Function.Injective r) :
@@ -74,7 +85,9 @@ theorem det_principal_submatrix [LinearOrder ι]
   exact hT hij
 
 /-- A triangular matrix has determinantal divisors dividing those of its
-diagonal matrix. This proves the weak part of the actual invariant decrease.-/
+diagonal matrix. This proves the weak part of the actual invariant decrease.
+@isnad1 id=dvd.1h3v.s6.07da989c0a1e from=translated src=- shape=bb0a11d2 vocab=a8f0a777
+-/
 theorem minorGCD_dvd_diagonal [LinearOrder ι]
     (T : Matrix ι ι (Polynomial ℂ)) (hT : T.IsLowerTriangular) (k : ℕ) :
     minorGCD T k ∣ minorGCD (Matrix.diagonal (fun i => T i i)) k := by
@@ -95,7 +108,9 @@ theorem minorGCD_dvd_diagonal [LinearOrder ι]
   · rw [det_submatrix_eq_zero_of_not_injective _ k r c hr]
     exact dvd_zero _
 
-/-- Increasing finite selections cannot move an index to the left.-/
+/-- Increasing finite selections cannot move an index to the left.
+@isnad1 id=le.1h4v.s5.eba5033a533a from=translated src=- shape=60fddcf1 vocab=e50a9bf4
+-/
 theorem le_val_of_strictMono {k n : ℕ} (r : Fin k → Fin n)
     (hr : StrictMono r) (i : Fin k) : i.val ≤ (r i).val := by
   have h : ∀ a, ∀ ha : a < k, a ≤ (r ⟨a,ha⟩).val := by
@@ -111,7 +126,9 @@ theorem le_val_of_strictMono {k n : ℕ} (r : Fin k → Fin n)
   exact h i.val i.isLt
 
 /-- Among selections of `k` distinct indices, the initial `k` indices have
-smallest total weight when the weights are increasing.-/
+smallest total weight when the weights are increasing.
+@isnad1 id=le.3h4v.s6.8ebaf4c7fbca from=translated src=- shape=6db4d9d9 vocab=32bb3e10
+-/
 theorem initial_sum_le_selection {k n : ℕ} (hkn : k ≤ n)
     (m : Fin n → ℕ) (hm : Monotone m) (r : Fin k → Fin n)
     (hr : Function.Injective r) :
@@ -130,7 +147,9 @@ theorem initial_sum_le_selection {k n : ℕ} (hkn : k ≤ n)
     _ = _ := by exact Finset.sum_image (by exact hr.injOn)
 
 omit [Fintype ι] in
-/-- Every diagonal minor factors by the product of its selected row entries.-/
+/-- Every diagonal minor factors by the product of its selected row entries.
+@isnad1 id=eq.0h5v.s8.09e1c84595e3 from=translated src=- shape=46e592b4 vocab=c2a90899
+-/
 theorem det_diagonal_submatrix [DecidableEq ι] (d : ι → Polynomial ℂ) (k : ℕ)
     (r c : Fin k → ι) :
     ((Matrix.diagonal d).submatrix r c).det =
@@ -146,7 +165,9 @@ theorem det_diagonal_submatrix [DecidableEq ι] (d : ι → Polynomial ℂ) (k :
     (fun i j => if r i = c j then (1 : Polynomial ℂ) else 0)]
   rfl
 
-/-- The initial principal minor of a diagonal matrix of powers of `X`.-/
+/-- The initial principal minor of a diagonal matrix of powers of `X`.
+@isnad1 id=eq.1h3v.s7.0f9c90cf22e3 from=translated src=- shape=aea8bc62 vocab=1315776e
+-/
 theorem diagonal_initial_minor {n k : ℕ} (hkn : k ≤ n) (m : Fin n → ℕ) :
     ((Matrix.diagonal (fun i => (X : Polynomial ℂ)^m i)).submatrix
       (Fin.castLE hkn) (Fin.castLE hkn)).det =
@@ -159,7 +180,9 @@ theorem diagonal_initial_minor {n k : ℕ} (hkn : k ≤ n) (m : Fin n → ℕ) :
   rw [he, Matrix.det_diagonal, Finset.prod_pow_eq_pow_sum]
 
 /-- The determinantal divisor of an ordered diagonal matrix has exactly the
-sum of its smallest `k` exponents as degree.-/
+sum of its smallest `k` exponents as degree.
+@isnad1 id=eq.2h3v.s6.103f6f462c03 from=translated src=- shape=c5c65105 vocab=a0d07f6b
+-/
 theorem natDegree_minorGCD_diagonal {n k : ℕ} (hkn : k ≤ n)
     (m : Fin n → ℕ) (hm : Monotone m) :
     (minorGCD (Matrix.diagonal (fun i => (X : Polynomial ℂ)^m i)) k).natDegree =
@@ -189,7 +212,9 @@ theorem natDegree_minorGCD_diagonal {n k : ℕ} (hkn : k ≤ n)
   exact le_antisymm h₁ h₂
 
 /-- Replace the last row of an initial principal minor. Triangularity gives
-an explicit minor exposing an arbitrary entry below the diagonal.-/
+an explicit minor exposing an arbitrary entry below the diagonal.
+@isnad1 id=eq.1h4v.s8.5f0dbcd0721b from=translated src=- shape=91393648 vocab=f297a548
+-/
 theorem det_replaced_last_row_minor {n : ℕ}
     (T : Matrix (Fin n) (Fin n) (Polynomial ℂ)) (hT : T.IsLowerTriangular)
     (ℓ a : Fin n) :
@@ -220,7 +245,9 @@ theorem det_replaced_last_row_minor {n : ℕ}
     rfl
 
 /-- An actual nonzero reduced entry forces a strict decrease of one
- determinantal-divisor degree.-/
+ determinantal-divisor degree.
+@isnad1 id=lt.5h5v.s7.9cd1a2c80cb7 from=translated src=- shape=95042748 vocab=31ed654e
+-/
 theorem strict_minor_degree_drop {n : ℕ}
     (T : Matrix (Fin n) (Fin n) (Polynomial ℂ))
     (hT : T.IsLowerTriangular) (m : Fin n → ℕ) (hm : Monotone m)
@@ -256,7 +283,9 @@ theorem strict_minor_degree_drop {n : ℕ}
   rw [hsum]
   omega
 
-/-- The old diagonal divisors are nonzero for all orders through the size.-/
+/-- The old diagonal divisors are nonzero for all orders through the size.
+@isnad1 id=ne.1h3v.s6.e0c23ce688b6 from=translated src=- shape=b77e368c vocab=bfb144ff
+-/
 theorem minorGCD_diagonal_ne_zero {n k : ℕ} (hkn : k ≤ n) (m : Fin n → ℕ) :
     minorGCD (Matrix.diagonal (fun i => (X : Polynomial ℂ)^m i)) k ≠ 0 := by
   apply ne_zero_of_dvd_ne_zero (pow_ne_zero _ X_ne_zero)
@@ -264,7 +293,9 @@ theorem minorGCD_diagonal_ne_zero {n k : ℕ} (hkn : k ≤ n) (m : Fin n → ℕ
     minorGCD_dvd_minor (Matrix.diagonal (fun i => (X : Polynomial ℂ)^m i))
       k (Fin.castLE hkn) (Fin.castLE hkn)
 
-/-- All other determinantal-divisor degrees weakly decrease.-/
+/-- All other determinantal-divisor degrees weakly decrease.
+@isnad1 id=le.3h4v.s7.399d93551180 from=translated src=- shape=4d681f42 vocab=3677f0b1
+-/
 theorem minor_degree_le_diagonal {n k : ℕ} (hkn : k ≤ n)
     (T : Matrix (Fin n) (Fin n) (Polynomial ℂ)) (hT : T.IsLowerTriangular)
     (m : Fin n → ℕ) (hdiag : ∀ i, T i i = X^m i) :
@@ -279,7 +310,9 @@ def degreeMass {n : ℕ} (T : Matrix (Fin n) (Fin n) (Polynomial ℂ)) : ℕ :=
   ∑ k : Fin (n+1), (minorGCD T k.val).natDegree
 
 /-- Genuine strict descent, deduced from a nonzero reduced matrix entry.
-This is the polynomial-matrix core of the exceptional step in Lemma 19.4.-/
+This is the polynomial-matrix core of the exceptional step in Lemma 19.4.
+@isnad1 id=lt.4h3v.s7.fe354d7f07fc from=translated src=- shape=fca05eac vocab=f3f4c22a
+-/
 theorem degreeMass_strict_drop {n : ℕ}
     (T : Matrix (Fin n) (Fin n) (Polynomial ℂ))
     (hT : T.IsLowerTriangular) (m : Fin n → ℕ) (hm : Monotone m)

@@ -42,15 +42,23 @@ def rightMul (B : Matrix n n ℂ) : Module.End ℂ (Matrix m n ℂ) where
   map_smul' a X := Matrix.smul_mul a X B
 
 omit [Fintype n] [DecidableEq m] [DecidableEq n] in
+/--
+@isnad1 id=eq.0h4v.s7.2743841deb14 from=translated src=- shape=4462b02f vocab=6245a80a
+-/
 @[simp] theorem leftMul_apply (A : Matrix m m ℂ) (X : Matrix m n ℂ) :
     leftMul A X = A * X := rfl
 
 omit [Fintype m] [DecidableEq m] [DecidableEq n] in
+/--
+@isnad1 id=eq.0h4v.s7.45c121507c8d from=translated src=- shape=0d10359e vocab=8945226f
+-/
 @[simp] theorem rightMul_apply (B : Matrix n n ℂ) (X : Matrix m n ℂ) :
     rightMul B X = X * B := rfl
 
 omit [Fintype n] [DecidableEq n] in
-/-- Matrix powers agree with powers of the left multiplication operator.-/
+/-- Matrix powers agree with powers of the left multiplication operator.
+@isnad1 id=eq.0h5v.s8.0dde3b0a4103 from=translated src=- shape=6d1be267 vocab=b0a97ddf
+-/
 theorem leftMul_pow_apply (A : Matrix m m ℂ) (k : ℕ) (X : Matrix m n ℂ) :
     (leftMul A ^ k) X = A ^ k * X := by
   induction k generalizing X with
@@ -59,7 +67,9 @@ theorem leftMul_pow_apply (A : Matrix m m ℂ) (k : ℕ) (X : Matrix m n ℂ) :
     rw [pow_succ, Module.End.mul_apply, leftMul_apply, ih, pow_succ, Matrix.mul_assoc]
 
 omit [Fintype m] [DecidableEq m] in
-/-- Right multiplication powers preserve the order of matrix multiplication.-/
+/-- Right multiplication powers preserve the order of matrix multiplication.
+@isnad1 id=eq.0h5v.s8.d66540b6dcca from=translated src=- shape=933901b0 vocab=b4bf97ed
+-/
 theorem rightMul_pow_apply (B : Matrix n n ℂ) (k : ℕ) (X : Matrix m n ℂ) :
     (rightMul B ^ k) X = X * B ^ k := by
   induction k generalizing X with
@@ -68,7 +78,9 @@ theorem rightMul_pow_apply (B : Matrix n n ℂ) (k : ℕ) (X : Matrix m n ℂ) :
     rw [pow_succ, Module.End.mul_apply, rightMul_apply, ih, pow_succ', Matrix.mul_assoc]
 
 omit [DecidableEq m] [DecidableEq n] in
-/-- Left and right multiplication commute even for nondiagonal blocks.-/
+/-- Left and right multiplication commute even for nondiagonal blocks.
+@isnad1 id=commute.0h4v.s6.128777ce684c from=translated src=- shape=1cddb656 vocab=0f292db0
+-/
 theorem leftMul_commute_rightMul (A : Matrix m m ℂ) (B : Matrix n n ℂ) :
     Commute (leftMul (n := n) A) (rightMul (m := m) B) := by
   apply LinearMap.ext
@@ -76,6 +88,9 @@ theorem leftMul_commute_rightMul (A : Matrix m m ℂ) (B : Matrix n n ℂ) :
   exact (Matrix.mul_assoc A X B).symm
 
 omit [Fintype n] [DecidableEq n] in
+/--
+@isnad1 id=isnilpot.1h3v.s7.14d49c627400 from=translated src=- shape=d3fb7f39 vocab=2df9baaa
+-/
 theorem isNilpotent_leftMul {A : Matrix m m ℂ} (hA : IsNilpotent A) :
     IsNilpotent (leftMul (n := n) A) := by
   obtain ⟨k, hk⟩ := hA
@@ -83,6 +98,9 @@ theorem isNilpotent_leftMul {A : Matrix m m ℂ} (hA : IsNilpotent A) :
   simp [leftMul_pow_apply, hk]
 
 omit [Fintype m] [DecidableEq m] in
+/--
+@isnad1 id=isnilpot.1h3v.s7.6b238f8a8c34 from=translated src=- shape=1fbf397e vocab=a5f69bf5
+-/
 theorem isNilpotent_rightMul {B : Matrix n n ℂ} (hB : IsNilpotent B) :
     IsNilpotent (rightMul (m := m) B) := by
   obtain ⟨k, hk⟩ := hB
@@ -94,10 +112,15 @@ def sylvester (A : Matrix m m ℂ) (B : Matrix n n ℂ) :
     Module.End ℂ (Matrix m n ℂ) := leftMul A - rightMul B
 
 omit [DecidableEq m] [DecidableEq n] in
+/--
+@isnad1 id=eq.0h5v.s7.9fa49c5f5df5 from=translated src=- shape=d3379a87 vocab=cb4ecae5
+-/
 @[simp] theorem sylvester_apply (A : Matrix m m ℂ) (B : Matrix n n ℂ)
     (X : Matrix m n ℂ) : sylvester A B X = A * X - X * B := rfl
 
-/-- The nilpotent parts may have any sizes and any Jordan block multiplicities.-/
+/-- The nilpotent parts may have any sizes and any Jordan block multiplicities.
+@isnad1 id=eq.0h6v.s9.507de882562e from=translated src=- shape=3a9639df vocab=d1fe0314
+-/
 theorem sylvester_scalar_parts (α β : ℂ) (N : Matrix m m ℂ) (M : Matrix n n ℂ) :
     sylvester (α • 1 + N) (β • 1 + M) =
       algebraMap ℂ (Module.End ℂ (Matrix m n ℂ)) (α - β) + sylvester N M := by
@@ -110,7 +133,9 @@ theorem sylvester_scalar_parts (α β : ℂ) (N : Matrix m m ℂ) (M : Matrix n 
   abel
 
 /-- Nonresonant Sylvester invertibility for arbitrary nilpotent blocks.
-No invertibility or solvability of the Sylvester map is assumed.-/
+No invertibility or solvability of the Sylvester map is assumed.
+@isnad1 id=isunit.3h6v.s8.513db7b9bcef from=translated src=- shape=bce646a0 vocab=03660259
+-/
 theorem isUnit_sylvester_of_nilpotent_parts {α β : ℂ}
     (hαβ : α ≠ β) {N : Matrix m m ℂ} {M : Matrix n n ℂ}
     (hN : IsNilpotent N) (hM : IsNilpotent M) :
@@ -127,7 +152,9 @@ theorem isUnit_sylvester_of_nilpotent_parts {α β : ℂ}
   exact hnil.isUnit_add_left_of_commute hscalar hcomm
 
 /-- The actual unique off-diagonal coefficient needed at every formal
-block-reduction step exists, including repeated eigenvalues within each block.-/
+block-reduction step exists, including repeated eigenvalues within each block.
+@isnad1 id=existsun.3h7v.s8.3e9253e09961 from=translated src=- shape=03adb25a vocab=c36432dc
+-/
 theorem existsUnique_sylvester_of_nilpotent_parts {α β : ℂ}
     (hαβ : α ≠ β) {N : Matrix m m ℂ} {M : Matrix n n ℂ}
     (hN : IsNilpotent N) (hM : IsNilpotent M) (C : Matrix m n ℂ) :
@@ -137,7 +164,9 @@ theorem existsUnique_sylvester_of_nilpotent_parts {α β : ℂ}
 
 /-- One full coefficient step of Wasow's formal block reduction: the diagonal
 part of the new gauge coefficient is zero and the transformed coefficient is
-block diagonal. The residual `H` may be any matrix produced by earlier steps.-/
+block diagonal. The residual `H` may be any matrix produced by earlier steps.
+@isnad1 id=ex.3h7v.s9.e374c453659b from=translated src=- shape=deeb5684 vocab=6cb4a58d
+-/
 theorem exists_block_coefficient {α β : ℂ} (hαβ : α ≠ β)
     {N : Matrix m m ℂ} {M : Matrix n n ℂ}
     (hN : IsNilpotent N) (hM : IsNilpotent M)

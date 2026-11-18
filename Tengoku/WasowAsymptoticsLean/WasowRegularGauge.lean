@@ -26,12 +26,17 @@ namespace WasowRegularGauge
 open WasowRegularSingular CRGNormalFormGoal
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
+/--
+@isnad1 id=hasderiv.1h2v.s6.3bf9f1b754b2 from=translated src=- shape=bd592744 vocab=a264cb54
+-/
 theorem rayLog_hasDerivAt (θ : ℝ) {r : ℝ} (hr : r ≠ 0) :
     HasDerivAt (rayLog θ) ((r : ℂ)⁻¹) r := by
   convert! ((Real.hasDerivAt_log hr).ofReal_comp).add_const ((θ : ℂ)*Complex.I) using 1
   simp only [Complex.ofReal_inv]
 
-/-- Actual entrywise real derivative of the regular-singular matrix power.-/
+/-- Actual entrywise real derivative of the regular-singular matrix power.
+@isnad1 id=hasderiv.1h6v.s7.db0b980bc8fb from=translated src=- shape=016520da vocab=0f329147
+-/
 theorem rayPower_hasDerivAt (G : Matrix ι ι ℂ) (θ : ℝ) {r : ℝ}
     (hr : r ≠ 0) (i j : ι) :
     HasDerivAt (fun t => rayPower G θ t i j)
@@ -48,20 +53,26 @@ theorem rayPower_hasDerivAt (G : Matrix ι ι ℂ) (θ : ℝ) {r : ℝ}
   congr 1
 
 omit [DecidableEq ι] in
-/-- Matrix action preserves actual matrix multiplication.-/
+/-- Matrix action preserves actual matrix multiplication.
+@isnad1 id=eq.0h3v.s9.47cb88f7485d from=translated src=- shape=d400d7d8 vocab=b380f74d
+-/
 theorem matrixOperator_mul (D G : Matrix ι ι ℂ) :
     matrixOperator (D*G) = matrixOperator D * matrixOperator G := by
   ext x i
   exact congrFun (Matrix.mulVec_mulVec x D G).symm i
 
-/-- The constant matrix action returns the original matrix in coordinates.-/
+/-- The constant matrix action returns the original matrix in coordinates.
+@isnad1 id=eq.0h2v.s10.97558b722862 from=translated src=- shape=d8d29fd7 vocab=f2a4eead
+-/
 theorem toMatrix_matrixOperator (G : Matrix ι ι ℂ) :
     LinearMap.toMatrix' (matrixOperator G).toLinearMap = G := by
   ext i j
   simp [matrixOperator, LinearMap.toMatrix'_apply, Matrix.mulVec_single]
 
 /-- Constant matrices commuting with the residue also commute with its
-actual exponential gauge.-/
+actual exponential gauge.
+@isnad1 id=commute.1h5v.s5.1d55d3db161a from=translated src=- shape=ce336962 vocab=db972777
+-/
 theorem commute_rayPower (D G : Matrix ι ι ℂ) (hDG : Commute D G) (θ r : ℝ) :
     Commute D (rayPower G θ r) := by
   have h : Commute (matrixOperator D) (matrixOperator G) := by
@@ -82,13 +93,17 @@ theorem commute_rayPower (D G : Matrix ι ι ℂ) (hDG : Commute D G) (θ r : �
     toMatrix_matrixOperator] at he
   exact he
 
-/-- Continuity of the actual gauge on every nonzero radial parameter.-/
+/-- Continuity of the actual gauge on every nonzero radial parameter.
+@isnad1 id=continuo.1h4v.s5.ee7ff0da5adb from=translated src=- shape=37fbcdcd vocab=9ebfec49
+-/
 theorem rayPower_continuousAt (G : Matrix ι ι ℂ) (θ : ℝ) {r : ℝ} (hr : r ≠ 0) :
     ContinuousAt (rayPower G θ) r := by
   exact continuousAt_pi.mpr (fun i => continuousAt_pi.mpr
     (fun j => (rayPower_hasDerivAt G θ hr i j).continuousAt))
 
-/-- The displayed inverse really is the negative-residue power.-/
+/-- The displayed inverse really is the negative-residue power.
+@isnad1 id=eq.0h4v.s5.29b0b88c4e3f from=translated src=- shape=cc8e3f70 vocab=ece67fa3
+-/
 theorem rayPowerInverse_eq (G : Matrix ι ι ℂ) (θ r : ℝ) :
     rayPowerInverse G θ r = rayPower (-G) θ r := by
   have hneg : matrixOperator (-G) = -matrixOperator G := by
@@ -96,13 +111,18 @@ theorem rayPowerInverse_eq (G : Matrix ι ι ℂ) (θ r : ℝ) :
     simp [matrixOperator]
   simp only [rayPowerInverse, rayPower, hneg, smul_neg]
 
+/--
+@isnad1 id=continuo.1h4v.s5.d40548984d95 from=translated src=- shape=37fbcdcd vocab=34792624
+-/
 theorem rayPowerInverse_continuousAt (G : Matrix ι ι ℂ) (θ : ℝ)
     {r : ℝ} (hr : r ≠ 0) : ContinuousAt (rayPowerInverse G θ) r := by
   rw [show rayPowerInverse G θ = rayPower (-G) θ from funext (rayPowerInverse_eq G θ)]
   exact rayPower_continuousAt (-G) θ hr
 
 /-- A rational matrix whose actual ray coefficient is `G/r` has a complete
-zero-phase gauge with polynomial bounds in both directions.-/
+zero-phase gauge with polynomial bounds in both directions.
+@isnad1 id=nonempty.3h5v.s7.69dabc30ae6e from=translated src=- shape=bb883b1b vocab=9e76ea26
+-/
 theorem exists_constant_regular_rayGauge {m : ℕ} [NeZero m]
     (A : Matrix (Fin m) (Fin m) (RatFunc ℂ)) (G : Matrix (Fin m) (Fin m) ℂ)
     (θ : ℝ) (a : ℝ) (ha : 1 ≤ a)

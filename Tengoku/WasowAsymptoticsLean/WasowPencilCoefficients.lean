@@ -21,6 +21,9 @@ namespace WasowPencilCoefficients
 def rowPolynomial {h : ℕ} (v : Fin (h+1) → ℂ) : Polynomial ℂ :=
   ∑ i, Polynomial.monomial i.val (v i)
 
+/--
+@isnad1 id=eq.0h3v.s5.f5a0913cee42 from=translated src=- shape=5fb1c943 vocab=7d78b3f0
+-/
 theorem rowPolynomial_coeff {h : ℕ} (v : Fin (h+1) → ℂ) (i : Fin (h+1)) :
     (rowPolynomial v).coeff i.val = v i := by
   classical
@@ -31,6 +34,9 @@ theorem rowPolynomial_coeff {h : ℕ} (v : Fin (h+1) → ℂ) (i : Fin (h+1)) :
     rw [ite_eq_right (fun he => hji (Fin.ext he))]
   · simp
 
+/--
+@isnad1 id=iff.0h2v.s6.966f594e6617 from=translated src=- shape=68ba2187 vocab=0cb4c8de
+-/
 theorem rowPolynomial_eq_zero_iff {h : ℕ} (v : Fin (h+1) → ℂ) :
     rowPolynomial v = 0 ↔ ∀ i, v i = 0 := by
   constructor
@@ -40,10 +46,16 @@ theorem rowPolynomial_eq_zero_iff {h : ℕ} (v : Fin (h+1) → ℂ) :
   · intro hv
     simp [rowPolynomial, hv]
 
+/--
+@isnad1 id=iff.0h2v.s6.61aeb8e74f44 from=translated src=- shape=dd51519a vocab=0cb4c8de
+-/
 theorem rowPolynomial_ne_zero_iff {h : ℕ} (v : Fin (h+1) → ℂ) :
     rowPolynomial v ≠ 0 ↔ ∃ i, v i ≠ 0 := by
   simp only [ne_eq, rowPolynomial_eq_zero_iff, not_forall]
 
+/--
+@isnad1 id=lt.0h2v.s5.a61e89524240 from=translated src=- shape=0b421e17 vocab=c2273610
+-/
 theorem natDegree_rowPolynomial_lt {h : ℕ} (v : Fin (h+1) → ℂ) :
     (rowPolynomial v).natDegree < h+1 := by
   apply Nat.lt_succ_of_le
@@ -51,12 +63,17 @@ theorem natDegree_rowPolynomial_lt {h : ℕ} (v : Fin (h+1) → ℂ) :
   intro i _
   exact (Polynomial.natDegree_monomial_le (v i)).trans (by omega)
 
+/--
+@isnad1 id=eq.0h2v.s7.7b8620d0a327 from=translated src=- shape=ce4aed5b vocab=edfbf6e5
+-/
 theorem rowPolynomial_eq_sum_C_mul_X_pow {h : ℕ} (v : Fin (h+1) → ℂ) :
     rowPolynomial v = ∑ i, Polynomial.C (v i) * X^i.val := by
   simp only [rowPolynomial, Polynomial.C_mul_X_pow_eq_monomial]
 
 /-- Thus every nonzero rectangular last row gives a nonzero reduced entry
-of degree strictly below its column block size.-/
+of degree strictly below its column block size.
+@isnad1 id=and.1h2v.s6.0279685cc791 from=translated src=- shape=755832b0 vocab=1d8499e4
+-/
 theorem neg_rowPolynomial_nonzero_degree {h : ℕ} (v : Fin (h+1) → ℂ)
     (hv : ∃ i, v i ≠ 0) :
     -rowPolynomial v ≠ 0 ∧ (-rowPolynomial v).natDegree < h+1 := by

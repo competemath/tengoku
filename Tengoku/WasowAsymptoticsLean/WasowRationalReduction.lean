@@ -22,7 +22,9 @@ def phaseValue {m : ℕ} {A : PowerSeries (Matrix (Fin m) (Fin m) ℂ)} {rank : 
 
 /-- All formal reduction data and all Puiseux phase polynomials are genuinely
 constructed from the rational input; the angle is universally quantified last.
-The remaining analytic task is realization of the composed formal tree.-/
+The remaining analytic task is realization of the composed formal tree.
+@isnad1 id=ex.0h2v.s9.70ab246b2e9d from=translated src=- shape=0a7c828f vocab=727bbb01
+-/
 theorem exists_rational_reduction_fixed_phases {m : ℕ}
     (A : Matrix (Fin m) (Fin m) (RatFunc ℂ)) :
     ∃ (s : FormalMultilinearSeries ℂ ℂ (Matrix (Fin m) (Fin m) ℂ))

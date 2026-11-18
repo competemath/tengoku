@@ -17,7 +17,9 @@ open CRGNormalFormGoal WasowGaugeAssembly WasowRegularSingular
 
 /-- A canonical formal reduction of the actual ramified coefficient yields
 the original system's exact ray gauge. No gauge, inverse estimate, integrable
-remainder, phase ordering, or branch choice is assumed in this implication.-/
+remainder, phase ordering, or branch choice is assumed in this implication.
+@isnad1 id=ex.11h15v.s10.7191e05dd092 from=translated src=- shape=84f80c06 vocab=8f714b06
+-/
 theorem exists_original_rayGauge_of_ramified_formal_truncation
     {m : ℕ} [NeZero m]
     (A₀ : Matrix (Fin m) (Fin m) (RatFunc ℂ))

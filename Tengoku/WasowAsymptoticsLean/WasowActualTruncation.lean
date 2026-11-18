@@ -25,7 +25,9 @@ open WasowMatrixPolynomial
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
 /-- The polynomial-to-series map preserves subtraction also for the
-noncommutative matrix coefficient ring.-/
+noncommutative matrix coefficient ring.
+@isnad1 id=eq.0h3v.s6.f0fa918b84cc from=translated src=- shape=e69ef69b vocab=8ed2871d
+-/
 theorem coe_sub_noncomm {R : Type*} [Ring R] (P Q : Polynomial R) :
     ((P - Q : Polynomial R) : PowerSeries R) = (P : PowerSeries R) - (Q : PowerSeries R) := by
   apply PowerSeries.ext
@@ -39,7 +41,9 @@ def polynomialDefect (A P B : PowerSeries (Matrix ι ι ℂ)) (q N : ℕ) :
     PowerSeries.trunc N P * PowerSeries.trunc N B +
     Polynomial.X ^ (q + 1) * (PowerSeries.trunc N P).derivative
 
-/-- Evaluation of the analytic Taylor polynomial is its actual partial sum.-/
+/-- Evaluation of the analytic Taylor polynomial is its actual partial sum.
+@isnad1 id=eq.1h5v.s9.e5e230058366 from=translated src=- shape=4d219224 vocab=b0e764e7
+-/
 theorem eval_trunc_eq_partialSum
     (p : FormalMultilinearSeries ℂ ℂ (Matrix ι ι ℂ))
     (A : PowerSeries (Matrix ι ι ℂ))
@@ -58,7 +62,9 @@ theorem eval_trunc_eq_partialSum
   exact (Algebra.commutes (z ^ n) (PowerSeries.coeff n A)).symm
 
 /-- The actual finite polynomial residual inherits all low-order cancellations
-from the complete formal gauge equation.-/
+from the complete formal gauge equation.
+@isnad1 id=eq.2h7v.s8.06ee06367072 from=translated src=- shape=b8af654e vocab=cd0b2030
+-/
 theorem polynomialDefect_coeff_zero (A P B : PowerSeries (Matrix ι ι ℂ)) (q N : ℕ)
     (heq : A * P - P * B = -(PowerSeries.X ^ (q + 1) * WasowPowerSeries.derivative P)) :
     ∀ k < N, (polynomialDefect A P B q N).coeff k = 0 := by
@@ -75,7 +81,9 @@ theorem polynomialDefect_coeff_zero (A P B : PowerSeries (Matrix ι ι ℂ)) (q 
     Polynomial.coe_mul, Polynomial.coe_pow, Polynomial.coe_X, coe_derivative,
     map_add, map_sub, hh, WasowTruncation.defect] using hz
 
-/-- A finite quotient polynomial witnesses the order of vanishing.-/
+/-- A finite quotient polynomial witnesses the order of vanishing.
+@isnad1 id=dvd.1h6v.s8.cf81829101da from=translated src=- shape=61804eb0 vocab=0233da4a
+-/
 theorem polynomialDefect_divisible (A P B : PowerSeries (Matrix ι ι ℂ)) (q N : ℕ)
     (heq : A * P - P * B = -(PowerSeries.X ^ (q + 1) * WasowPowerSeries.derivative P)) :
     Polynomial.X ^ N ∣ polynomialDefect A P B q N :=
@@ -90,7 +98,9 @@ def actualDefect (a : ℂ → Matrix ι ι ℂ)
     z ^ (q + 1) • deriv (eval (PowerSeries.trunc N P)) z
 
 /-- Exact separation of the analytic Taylor remainder and a finite polynomial
-whose low-order coefficients have already been proved to vanish.-/
+whose low-order coefficients have already been proved to vanish.
+@isnad1 id=eq.0h8v.s9.413e20b9d483 from=translated src=- shape=47b951ed vocab=982518c7
+-/
 theorem actualDefect_eq (a : ℂ → Matrix ι ι ℂ)
     (A P B : PowerSeries (Matrix ι ι ℂ)) (q N : ℕ) (z : ℂ) :
     actualDefect a P B q N z =
@@ -105,7 +115,9 @@ theorem actualDefect_eq (a : ℂ → Matrix ι ι ℂ)
   abel
 
 /-- Genuine order-`N` analytic residual for the actual finite gauge. The only
-analytic expansion assumed is that of `a`; the formal `P` and `B` can diverge.-/
+analytic expansion assumed is that of `a`; the formal `P` and `B` can diverge.
+@isnad1 id=isbigo.3h8v.s9.ba19dbadb538 from=translated src=- shape=bbfb33b7 vocab=97e05120
+-/
 theorem actualDefect_isBigO
     {a : ℂ → Matrix ι ι ℂ} {p : FormalMultilinearSeries ℂ ℂ (Matrix ι ι ℂ)}
     (ha : HasFPowerSeriesAt a p 0) (A P B : PowerSeries (Matrix ι ι ℂ))

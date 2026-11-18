@@ -37,7 +37,9 @@ open Filter MeasureTheory
 
 namespace CRGRay
 
-/-- The exact quotient identity obtained from the normalized original ODE.-/
+/-- The exact quotient identity obtained from the normalized original ODE.
+@isnad1 id=eq.1h6v.s6.c5d084d013cb from=translated src=- shape=048f1a78 vocab=ae231a28
+-/
 theorem residual_identity {ι : Type*} (s : Finset ι)
     (u v : ℂ) (w h : ι → ℂ)
     (heq : v + ∑ i ∈ s, w i * h i = 0) :
@@ -49,13 +51,17 @@ theorem residual_identity {ι : Type*} (s : Finset ι)
   intro i hi
   simp only [mul_div_assoc]
 
-/-- Dividing by a nonzero value of f yields an exact reduced equation.-/
+/-- Dividing by a nonzero value of f yields an exact reduced equation.
+@isnad1 id=eq.1h2v.s5.545210c13586 from=translated src=- shape=616a166c vocab=59910e2d
+-/
 theorem exact_reduced_equation (u v : ℂ) (hu : u ≠ 0) :
     v - (v / u) * u = 0 := by
   rw [div_mul_cancel₀ v hu, sub_self]
 
 /-- Finite sums preserve exponential suppression when the quotient terms
-    are bounded by the common scalar B. The hypotheses are pointwise.-/
+    are bounded by the common scalar B. The hypotheses are pointwise.
+@isnad1 id=le.3h7v.s7.f245a9425627 from=translated src=- shape=d700b59f vocab=695cff24
+-/
 theorem residual_bound {ι : Type*} (s : Finset ι)
     (epsilon : ℂ) (phase term : ι → ℂ) (b B : ℝ)
     (heq : epsilon = - ∑ i ∈ s, Complex.exp (phase i) * term i)
@@ -74,7 +80,9 @@ theorem residual_bound {ι : Type*} (s : Finset ι)
         (norm_nonneg _) (Real.exp_pos _).le
     _ = _ := by simp
 
-/-- Polynomial weights cannot prevent exponential decay.-/
+/-- Polynomial weights cannot prevent exponential decay.
+@isnad1 id=tendsto.1h3v.s6.f9320095f1af from=translated src=- shape=047dc5f0 vocab=b1a37df6
+-/
 theorem polynomial_exp_decay (K c C : ℝ) (hc : 0 < c) :
     Tendsto (fun r : ℝ => C * (r ^ K * Real.exp (-c * r)))
       atTop (𝓝 0) := by
@@ -82,7 +90,9 @@ theorem polynomial_exp_decay (K c C : ℝ) (hc : 0 < c) :
     (tendsto_rpow_mul_exp_neg_mul_atTop_nhds_zero K c hc).const_mul C
 
 /-- The precise logarithmic loss in transferring a polynomially comparable
-    jet norm back to the scalar modulus.-/
+    jet norm back to the scalar modulus.
+@isnad1 id=and.4h4v.s6.dc330d2ea137 from=translated src=- shape=b24c17cb vocab=173f195d
+-/
 theorem logarithmic_comparison {a b r K : ℝ} (ha : 0 < a) (hr : 0 < r)
     (hab : a ≤ b) (hba : b ≤ r ^ K * a) :
     0 ≤ Real.log b - Real.log a ∧
@@ -94,7 +104,9 @@ theorem logarithmic_comparison {a b r K : ℝ} (ha : 0 < a) (hr : 0 < r)
     linarith
 
 /-- Monotonicity of the real phase in the chosen integration direction
-    bounds the actual complex exponential kernel by one.-/
+    bounds the actual complex exponential kernel by one.
+@isnad1 id=le.1h2v.s5.ff85051c5cca from=translated src=- shape=5ddad4be vocab=5073f68e
+-/
 theorem exponential_kernel_bound (a b : ℂ) (h : a.re ≤ b.re) :
     ‖Complex.exp (a - b)‖ ≤ 1 := by
   rw [Complex.norm_exp]
@@ -103,7 +115,9 @@ theorem exponential_kernel_bound (a b : ℂ) (h : a.re ≤ b.re) :
 /-- A concrete integral-kernel estimate, valid on any restricted measure
     (hence both forward and backward intervals). Row sums of the matrix
     give the scalar majorant b * M when this is applied componentwise.
-    Measurability and integrability of the input are explicit hypotheses.-/
+    Measurability and integrability of the input are explicit hypotheses.
+@isnad1 id=and.4h6v.s8.adb7e9e01536 from=translated src=- shape=120bab43 vocab=d4812b2a
+-/
 theorem integral_kernel_bound {α : Type*} [MeasurableSpace α] (μ : Measure α)
     (k h : α → ℂ) (b : α → ℝ) (M : ℝ)
     (hb : Integrable b μ) (hh : AEStronglyMeasurable (fun s => k s * h s) μ)
@@ -125,7 +139,9 @@ theorem integral_kernel_bound {α : Type*} [MeasurableSpace α] (μ : Measure α
 
 /-- The dominated-convergence step for a varying kernel. An interval cutoff
     can be included in k; measurability, the uniform bound and the pointwise
-    kernel limit must still be established for that particular cutoff.-/
+    kernel limit must still be established for that particular cutoff.
+@isnad1 id=tendsto.4h5v.s7.c4d7389c56a3 from=translated src=- shape=409986af vocab=daec4229
+-/
 theorem vanishing_kernel_integral {α : Type*} [MeasurableSpace α] (μ : Measure α)
     (k : ℝ → α → ℂ) (h : α → ℂ) (b : α → ℝ)
     (hb : Integrable b μ)
@@ -140,7 +156,9 @@ theorem vanishing_kernel_integral {α : Type*} [MeasurableSpace α] (μ : Measur
 
 /-- A selected phase with nonzero normalized leading term cannot have degree
     above a two-sided logarithmic growth bound. This uses real exponents and
-    excludes both positive and negative leading coefficients.-/
+    excludes both positive and negative leading coefficients.
+@isnad1 id=le.3h5v.s6.b6b6f76afc07 from=translated src=- shape=2d580d54 vocab=827cfe74
+-/
 theorem phase_degree_le {u : ℝ → ℝ} {s d a C : ℝ}
     (hbound : ∀ᶠ r in atTop, |u r| ≤ C * r ^ s)
     (hlead : Tendsto (fun r => u r / r ^ d) atTop (𝓝 a))
@@ -163,7 +181,9 @@ theorem phase_degree_le {u : ℝ → ℝ} {s d a C : ℝ}
   have hlim : |a| = 0 := tendsto_nhds_unique hlead.abs habs
   exact ha (abs_eq_zero.mp hlim)
 
-/-- Using bounds for every s > rho excludes every selected degree d > rho.-/
+/-- Using bounds for every s > rho excludes every selected degree d > rho.
+@isnad1 id=le.3h4v.s6.2db6f7ed3758 from=translated src=- shape=649c15eb vocab=3331523a
+-/
 theorem phase_degree_le_order {u : ℝ → ℝ} {rho d a : ℝ}
     (hbound : ∀ s > rho, ∃ C : ℝ, ∀ᶠ r in atTop, |u r| ≤ C * r ^ s)
     (hlead : Tendsto (fun r => u r / r ^ d) atTop (𝓝 a))
@@ -175,7 +195,9 @@ theorem phase_degree_le_order {u : ℝ → ℝ} {rho d a : ℝ}
   exact (not_le.mpr hsd) (phase_degree_le hC hlead ha)
 
 /-- The exact companion residual changes only its last row and first column.
-    The input is a derivative vector with the original residual already known.-/
+    The input is a derivative vector with the original residual already known.
+@isnad1 id=eq.1h5v.s10.5559d622bf3c from=translated src=- shape=cfadee6d vocab=ffe0ecc5
+-/
 theorem companion_correction {m : ℕ} (A : Matrix (Fin (m + 1)) (Fin (m + 1)) ℂ)
     (X dX : Fin (m + 1) → ℂ) (epsilon : ℂ)
     (hderiv : dX = A.mulVec X +
@@ -193,7 +215,9 @@ theorem companion_correction {m : ℕ} (A : Matrix (Fin (m + 1)) (Fin (m + 1)) �
 /-- Once a concrete integral map has been shown to act on a complete normed
     space with this difference bound, Banach supplies its unique fixed point.
     The estimate itself for the mixed forward/backward integrals is NOT assumed
-    to have been formally established by this theorem.-/
+    to have been formally established by this theorem.
+@isnad1 id=existsun.2h3v.s6.839a4cb9f753 from=translated src=- shape=eceba18a vocab=2ef05579
+-/
 theorem fixed_point_of_norm_bound {E : Type*}
     [NormedAddCommGroup E] [CompleteSpace E]
     (F : E → E) (a : NNReal) (ha : a < 1)
@@ -205,7 +229,9 @@ theorem fixed_point_of_norm_bound {E : Type*}
   intro u hu
   exact hcontract.fixedPoint_unique hu
 
-/-- A.e. pointwise convergence identifies any limit in measure.-/
+/-- A.e. pointwise convergence identifies any limit in measure.
+@isnad1 id=eventual.2h5v.s6.37c60fec0d51 from=translated src=- shape=885f32a3 vocab=a895043b
+-/
 theorem measure_limit_unique {α : Type*} [MeasurableSpace α] (μ : Measure α)
     (u : ℕ → α → ℝ) (v H : α → ℝ)
     (hmeasure : TendstoInMeasure μ u atTop v)
@@ -217,7 +243,9 @@ theorem measure_limit_unique {α : Type*} [MeasurableSpace α] (μ : Measure α)
 
 /-- In particular a pointwise a.e. limit identifies every L1 limit.
     The existence of L1 subsequences from subharmonic compactness is outside
-    this formalization.-/
+    this formalization.
+@isnad1 id=eventual.4h5v.s7.e8339ee78a72 from=translated src=- shape=b29a5993 vocab=bb432991
+-/
 theorem l1_limit_unique {α : Type*} [MeasurableSpace α] (μ : Measure α)
     (u : ℕ → α → ℝ) (v H : α → ℝ)
     (hu : ∀ n, AEStronglyMeasurable (u n) μ)

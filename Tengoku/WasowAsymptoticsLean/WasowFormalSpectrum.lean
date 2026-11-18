@@ -12,7 +12,9 @@ open Module WasowLeadingBlocks
 
 /-- Over the complex numbers, absence of a second distinct eigenvalue means
 that subtracting one scalar leaves a genuinely nilpotent matrix. Empty matrices
-are included without a nonzero-dimension premise.-/
+are included without a nonzero-dimension premise.
+@isnad1 id=or.0h2v.s12.8f3915c44fae from=translated src=- shape=b33b82b4 vocab=56ff80a1
+-/
 theorem single_eigen_or_split {ι : Type*} [Fintype ι] [DecidableEq ι]
     (C : Matrix ι ι ℂ) :
     (∃ α : ℂ, IsNilpotent (C - α • 1)) ∨

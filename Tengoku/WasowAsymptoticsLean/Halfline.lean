@@ -15,6 +15,9 @@ open scoped Topology BoundedContinuousFunction
 attribute [local instance] Measure.Subtype.measureSpace
 namespace CRGHalfline
 
+/--
+@isnad1 id=nullsing.0h1v.s5.db147287dd9b from=translated src=- shape=74d457a4 vocab=a59fdb9f
+-/
 local instance halflineNullSingleton (r₀ : ℝ) :
     NullSingletonClass (volume : Measure (Ici r₀)) := by
   refine ⟨fun x => ?_⟩
@@ -22,7 +25,9 @@ local instance halflineNullSingleton (r₀ : ℝ) :
   simp
 
 /-- All completeness, order/filter, and non-atomic measure instances used by the
-mixed-operator proof are discharged by mathlib on this actual half-line.-/
+mixed-operator proof are discharged by mathlib on this actual half-line.
+@isnad1 id=ex.5h7v.s11.3d917367b9cb from=translated src=- shape=9a565b4a vocab=a66f05e5
+-/
 theorem exists_column (m : ℕ) (r₀ : ℝ)
     (mode : Fin m → Bool) (q : Fin m → Ici r₀ → ℂ)
     (hq : ∀ i, Continuous (q i))

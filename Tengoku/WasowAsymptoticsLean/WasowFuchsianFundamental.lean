@@ -27,7 +27,9 @@ def rightAction : Matrix (Fin m) (Fin m) ℂ →ₗ[ℝ]
 
 /-- Both matrix initial-value problems are solved on the entire half-line.
 The inverse identities and growth estimates can then be proved from these
-actual derivatives; they are not input assumptions.-/
+actual derivatives; they are not input assumptions.
+@isnad1 id=ex.1h3v.s9.9635dc3ac4d5 from=translated src=- shape=19a87f95 vocab=3058673e
+-/
 theorem exists_matrix_solutions
     (A : ℝ → Matrix (Fin m) (Fin m) ℂ)
     (hA : ContinuousOn A (Ici a)) :

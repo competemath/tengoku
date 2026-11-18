@@ -27,6 +27,9 @@ open WasowPencilReduction WasowReductionDescent WasowPencilDescent
 
 variable {ι : Type*} [Fintype ι]
 
+/--
+@isnad1 id=associat.0h4v.s7.31fc55ec1d6b from=translated src=- shape=994e8ae8 vocab=328bf0ee
+-/
 theorem minorGCD_map_associated (T : Matrix ι ι ℂ[X]) (e : ℂ[X] ≃+* ℂ[X]) (k : ℕ) :
     Associated (e (minorGCD T k)) (minorGCD (T.map e) k) := by
   have hmap (A : Matrix ι ι ℂ[X]) (f : ℂ[X] ≃+* ℂ[X]) (r c : Fin k → ι) :
@@ -50,11 +53,17 @@ theorem minorGCD_map_associated (T : Matrix ι ι ℂ[X]) (e : ℂ[X] ≃+* ℂ[
     refine ⟨e q, ?_⟩
     simpa using congrArg e hq
 
+/--
+@isnad1 id=eq.0h2v.s7.497dbc07ba97 from=translated src=- shape=62e16968 vocab=9ad6ab01
+-/
 theorem natDegree_translate (p : ℂ[X]) (α : ℂ) :
     (Polynomial.algEquivAevalXAddC α p).natDegree = p.natDegree := by
   simp [Polynomial.algEquivAevalXAddC_apply, ← Polynomial.comp_eq_aeval,
     Polynomial.natDegree_comp]
 
+/--
+@isnad1 id=eq.0h4v.s7.7e9c13873f58 from=translated src=- shape=5e69a3d5 vocab=3a2a1194
+-/
 theorem minorGCD_translate_degree (T : Matrix ι ι ℂ[X]) (α : ℂ) (k : ℕ) :
     (minorGCD (T.map (Polynomial.algEquivAevalXAddC α)) k).natDegree =
       (minorGCD T k).natDegree := by
@@ -63,6 +72,9 @@ theorem minorGCD_translate_degree (T : Matrix ι ι ℂ[X]) (α : ℂ) (k : ℕ)
       (minorGCD_map_associated T (Polynomial.algEquivAevalXAddC α).toRingEquiv k))
   exact hh.symm.trans (natDegree_translate _ α)
 
+/--
+@isnad1 id=eq.0h3v.s7.1893a4f58652 from=translated src=- shape=fcbc871e vocab=f3e4afbc
+-/
 theorem degreeMass_translate (T : Matrix ι ι ℂ[X]) (α : ℂ) :
     WasowPencilDescent.degreeMass (T.map (Polynomial.algEquivAevalXAddC α)) =
       WasowPencilDescent.degreeMass T := by
@@ -72,6 +84,9 @@ theorem degreeMass_translate (T : Matrix ι ι ℂ[X]) (α : ℂ) :
 variable {σ : Type*} [Fintype σ] [DecidableEq σ] {h : σ → ℕ}
 
 omit [Fintype σ] in
+/--
+@isnad1 id=eq.0h4v.s8.7b027fb99d43 from=translated src=- shape=ee87b935 vocab=d011206d
+-/
 theorem pencil_sub_scalar (C : Matrix (OldIndex h) (OldIndex h) ℂ) (α : ℂ) :
     pencil (C - α • 1) = (pencil C).map (Polynomial.algEquivAevalXAddC α) := by
   apply Matrix.ext
@@ -81,11 +96,17 @@ theorem pencil_sub_scalar (C : Matrix (OldIndex h) (OldIndex h) ℂ) (α : ℂ) 
       smul_eq_mul, map_sub]
     ; ring
 
+/--
+@isnad1 id=eq.0h4v.s8.a91d581abb6f from=translated src=- shape=0ea9b9d9 vocab=d839e04b
+-/
 theorem degreeMass_sub_scalar (C : Matrix (OldIndex h) (OldIndex h) ℂ) (α : ℂ) :
     WasowPencilDescent.degreeMass (pencil (C - α • 1)) =
       WasowPencilDescent.degreeMass (pencil C) := by
   rw [pencil_sub_scalar, degreeMass_translate]
 
+/--
+@isnad1 id=eq.1h5v.s9.85cc01c62844 from=translated src=- shape=d8e31505 vocab=2eb59ab7
+-/
 theorem pencil_similarity (C L R : Matrix (OldIndex h) (OldIndex h) ℂ)
     (hLR : L * R = 1) :
     pencil (L * C * R) = L.map Polynomial.C * pencil C * R.map Polynomial.C := by
@@ -95,6 +116,9 @@ theorem pencil_similarity (C L R : Matrix (OldIndex h) (OldIndex h) ℂ)
   rw [← Matrix.map_mul (L := L) (M := R), hLR]
   simp
 
+/--
+@isnad1 id=eq.2h5v.s9.f18044f32f62 from=translated src=- shape=9826df97 vocab=8310df0f
+-/
 theorem degreeMass_similarity (C L R : Matrix (OldIndex h) (OldIndex h) ℂ)
     (hLR : L * R = 1) (hRL : R * L = 1) :
     WasowPencilDescent.degreeMass (pencil (L * C * R)) =
@@ -109,7 +133,9 @@ theorem degreeMass_similarity (C L R : Matrix (OldIndex h) (OldIndex h) ℂ)
     (R.map Polynomial.C) (L.map Polynomial.C) hm hm]
 
 /-- The full single-eigenvalue normalization has weak descent for the original
-constant matrix, including the scalar translation of its pencil.-/
+constant matrix, including the scalar translation of its pencil.
+@isnad1 id=le.3h4v.s8.ffb40803e7da from=translated src=- shape=c4a06f2b vocab=5e108ce1
+-/
 theorem single_eigen_pencil_mass_le {s : ℕ} {h : Fin s → ℕ}
     (C : Matrix (OldIndex h) (OldIndex h) ℂ) (α : ℂ)
     (hrows : LastRowForm h C) (hlower : WasowSingleEigenBlocks.LowerBlocks C)
@@ -129,7 +155,9 @@ theorem single_eigen_pencil_mass_le {s : ℕ} {h : Fin s → ℕ}
     exact congrArg (fun A => A i j) (hdiag a)
 
 /-- A nonzero actual off-diagonal block makes the original pencil invariant
-strictly smaller after a single-eigenvalue normalized shearing step.-/
+strictly smaller after a single-eigenvalue normalized shearing step.
+@isnad1 id=lt.5h4v.s9.594a71e8b58a from=translated src=- shape=255add49 vocab=b6917d00
+-/
 theorem single_eigen_pencil_mass_strict {s : ℕ} {h : Fin s → ℕ}
     (C : Matrix (OldIndex h) (OldIndex h) ℂ) (α : ℂ) (hh : Monotone h)
     (hrows : LastRowForm h C) (hlower : WasowSingleEigenBlocks.LowerBlocks C)

@@ -18,13 +18,18 @@ namespace WasowShearingExceptional
 open WasowShearingLeading
 variable {n : ℕ}
 
+/--
+@isnad1 id=eq.1h3v.s5.1eafff71472c from=translated src=- shape=62dc5922 vocab=9c0519a2
+-/
 theorem fractional_leading_trace_zero
     (A : ℕ → Matrix (Fin n) (Fin n) ℂ) (σ : ℚ)
     (hfrac : ∀ k : ℕ, σ  ≠  k) : (leadingMatrix A σ).trace=0 := by
   simp only [Matrix.trace,Matrix.diag,leadingMatrix_diagonal_zero A σ hfrac,Finset.sum_const_zero]
 
 /-- A scalar translate of a nilpotent complex matrix has that scalar as
-its mean trace. In positive dimension, zero trace forces the scalar to vanish.-/
+its mean trace. In positive dimension, zero trace forces the scalar to vanish.
+@isnad1 id=and.3h3v.s7.4ab0ea6b1aa4 from=translated src=- shape=b44d3d64 vocab=14bae555
+-/
 theorem scalar_part_zero_of_trace_zero (C : Matrix (Fin n) (Fin n) ℂ)
     (hn : 0 < n) (α : ℂ) (htr : C.trace=0)
     (hN : IsNilpotent (C-α • 1)) : α=0 ∧ IsNilpotent C := by
@@ -38,7 +43,9 @@ theorem scalar_part_zero_of_trace_zero (C : Matrix (Fin n) (Fin n) ℂ)
   simpa only [hα,zero_smul,sub_zero] using hN
 
 /-- Non-stopping fractional feedback must lie in an allowed last row and
-strictly below the diagonal. Both claims are deduced from actual coefficients.-/
+strictly below the diagonal. Both claims are deduced from actual coefficients.
+@isnad1 id=ex.5h4v.s7.181e3066aa3f from=translated src=- shape=9ad7dcc2 vocab=91949b5b
+-/
 theorem fractional_feedback_last_row
     (A : ℕ → Matrix (Fin n) (Fin n) ℂ)
     (hshape : ∀ i j, A 0 i j  ≠  0 → j.val=i.val+1)
@@ -59,7 +66,9 @@ theorem fractional_feedback_last_row
   omega
 
 /-- The actual slope selection separates the integral branch from a
-fractional branch with the concrete exceptional-entry properties.-/
+fractional branch with the concrete exceptional-entry properties.
+@isnad1 id=ex.2h4v.s8.5c7157acc844 from=translated src=- shape=6bc492d9 vocab=32e4ed14
+-/
 theorem exists_slope_integral_or_exceptional
     (A : ℕ → Matrix (Fin n) (Fin n) ℂ) (q : ℕ)
     (hshape : ∀ i j, A 0 i j  ≠  0 → j.val=i.val+1)

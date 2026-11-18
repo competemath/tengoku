@@ -39,6 +39,9 @@ structure BlockData (A : Series ι) (rank : ℕ) where
   equation : coordinateSeries A*gauge - gauge*series =
     -(PowerSeries.X^(rank+2) * WasowPowerSeries.derivative gauge)
 
+/--
+@isnad1 id=nonempty.0h3v.s4.8c63421d7ddc from=translated src=- shape=7f00c5e1 vocab=7d1c5d41
+-/
 theorem exists_blockData (A : Series ι) (rank : ℕ) : Nonempty (BlockData A rank) := by
   obtain ⟨P, B, S, hP0, hPu, hB0, _, hB, hSP, hPS, heq⟩ :=
     exists_arbitrary_formal_block_reduction A (Nat.succ_pos rank)
@@ -49,11 +52,17 @@ def component {A : Series ι} {rank : ℕ} (d : BlockData A rank) (a : Spectrum 
     Series (Fin (blockSize (Matrix.toLin' (PowerSeries.constantCoeff A)) a + 1)) :=
   PowerSeries.mk (fun k => block (PowerSeries.coeff k d.series) a a)
 
+/--
+@isnad1 id=eq.0h6v.s19.5377641624e3 from=translated src=- shape=a1b2a2a6 vocab=a63dfd3b
+-/
 theorem component_coeff {A : Series ι} {rank : ℕ} (d : BlockData A rank)
     (a : Spectrum A) (k : ℕ) :
     PowerSeries.coeff k (component d a) = block (PowerSeries.coeff k d.series) a a :=
   PowerSeries.coeff_mk _ _
 
+/--
+@isnad1 id=eq.0h5v.s16.57a747d7b795 from=translated src=- shape=d6284308 vocab=0e4dd442
+-/
 theorem component_leading {A : Series ι} {rank : ℕ} (d : BlockData A rank)
     (a : Spectrum A) :
     PowerSeries.constantCoeff (component d a) =
@@ -74,6 +83,9 @@ theorem component_leading {A : Series ι} {rank : ℕ} (d : BlockData A rank)
 def translatedComponent {A : Series ι} {rank : ℕ} (d : BlockData A rank) (a : Spectrum A) :=
   component d a - PowerSeries.C (a.val • 1)
 
+/--
+@isnad1 id=eq.0h5v.s15.eb515716f0e0 from=translated src=- shape=fbecf101 vocab=f9358bbd
+-/
 theorem translatedComponent_leading {A : Series ι} {rank : ℕ} (d : BlockData A rank)
     (a : Spectrum A) :
     PowerSeries.constantCoeff (translatedComponent d a) =
@@ -86,6 +98,9 @@ structure Family (A : Series ι) (rank : ℕ) where
   child : Spectrum A → FormalState
   normalization : ∀ a, Data (translatedComponent blocks a) rank (child a)
 
+/--
+@isnad1 id=nonempty.0h3v.s4.61347dc2b985 from=translated src=- shape=7f00c5e1 vocab=71ff00db
+-/
 theorem exists_family (A : Series ι) (rank : ℕ) : Nonempty (Family A rank) := by
   classical
   obtain ⟨d⟩ := exists_blockData A rank
@@ -96,7 +111,9 @@ theorem exists_family (A : Series ι) (rank : ℕ) : Nonempty (Family A rank) :=
   exact ⟨⟨d, next, fun a => Classical.choice (hd a)⟩⟩
 
 /-- A second eigenvalue proves a child's dimension decrease from actual bases;
-it is not a premise about the numerical reduction invariant.-/
+it is not a premise about the numerical reduction invariant.
+@isnad1 id=lt.1h6v.s5.7fa9f9454e69 from=translated src=- shape=7e58dd45 vocab=e708241f
+-/
 theorem child_dimension_lt {A : Series ι} {rank : ℕ} (F : Family A rank)
     (a b : Spectrum A) (hab : a ≠ b) :
     WasowReductionTermination.dim (F.child a).shape < Fintype.card ι := by
@@ -108,6 +125,9 @@ theorem child_dimension_lt {A : Series ι} {rank : ℕ} (F : Family A rank)
   rw [hd, Fintype.card_fin]
   exact hl
 
+/--
+@isnad1 id=lt.1h7v.s5.4271e7732607 from=translated src=- shape=13edb9f3 vocab=e708241f
+-/
 theorem all_children_dimension_lt {A : Series ι} {rank : ℕ} (F : Family A rank)
     (a b : Spectrum A) (hab : a ≠ b) :
     ∀ c, WasowReductionTermination.dim (F.child c).shape < Fintype.card ι := by

@@ -24,7 +24,9 @@ open WasowFuchsianRealization WasowFuchsianTruncation WasowMatrixPolynomial
 variable {m : ℕ}
 
 /-- Constants in the commutant of the coefficient remain in the commutant
-of the actual initialized fundamental matrix and of its true inverse.-/
+of the actual initialized fundamental matrix and of its true inverse.
+@isnad1 id=and.8h7v.s9.7d8ea71ada24 from=translated src=- shape=c5f565c7 vocab=8046b25d
+-/
 theorem matrix_solutions_commute (a : ℝ)
     (A T S : ℝ → Matrix (Fin m) (Fin m) ℂ)
     (hT0 : T a = 1) (hS0 : S a = 1)
@@ -84,7 +86,9 @@ theorem matrix_solutions_commute (a : ℝ)
       _ = _ := by rw [mul_assoc, hTS, mul_one]
 
 /-- A matrix with zero entries between distinct fibers commutes with each
-diagonal whose entries are constant on those fibers.-/
+diagonal whose entries are constant on those fibers.
+@isnad1 id=commute.2h5v.s6.ca4671500e39 from=translated src=- shape=a1617420 vocab=c9b9b898
+-/
 theorem diagonal_commute_of_separated {β : Type*} (F : Fin m → β)
     (A : Matrix (Fin m) (Fin m) ℂ)
     (hA : ∀ i j, F i ≠ F j → A i j = 0)
@@ -97,7 +101,9 @@ theorem diagonal_commute_of_separated {β : Type*} (F : Fin m → β)
   · rw [hc i j h, mul_comm]
   · rw [hA i j h]; simp
 
-/-- The actual finite polynomial retains every zero off-fiber entry.-/
+/-- The actual finite polynomial retains every zero off-fiber entry.
+@isnad1 id=eq.2h8v.s9.d09f0f9e9f70 from=translated src=- shape=5deeda2f vocab=fffcbd2a
+-/
 theorem eval_trunc_separated {β : Type*} (F : Fin m → β)
     (R : PowerSeries (Matrix (Fin m) (Fin m) ℂ))
     (hR : ∀ n i j, F i ≠ F j → (PowerSeries.coeff n R) i j = 0)
@@ -111,7 +117,9 @@ theorem eval_trunc_separated {β : Type*} (F : Fin m → β)
   split_ifs <;> simp [hR n i j hij]
 
 /-- Every actual regular truncation has a coefficient commuting with every
-constant diagonal on the original phase fibers.-/
+constant diagonal on the original phase fibers.
+@isnad1 id=commute.2h7v.s8.1594421358c2 from=translated src=- shape=3dc24f4d vocab=101a3402
+-/
 theorem regularCoefficient_commute {β : Type*} (F : Fin m → β)
     (R : PowerSeries (Matrix (Fin m) (Fin m) ℂ))
     (hR : ∀ n i j, F i ≠ F j → (PowerSeries.coeff n R) i j = 0)
@@ -124,7 +132,9 @@ theorem regularCoefficient_commute {β : Type*} (F : Fin m → β)
   rw [eval_trunc_separated F R hR M _ i j hij, mul_zero]
 
 /-- The initialized ODE constructs one genuine regular gauge which commutes
-with all fiber-constant diagonals simultaneously.-/
+with all fiber-constant diagonals simultaneously.
+@isnad1 id=ex.3h6v.s9.bd14667c0944 from=translated src=- shape=5b8c772e vocab=5be75c85
+-/
 theorem exists_regularGauge_preserving_fibers {β : Type*} (F : Fin m → β)
     (R : PowerSeries (Matrix (Fin m) (Fin m) ℂ))
     (hR : ∀ n i j, F i ≠ F j → (PowerSeries.coeff n R) i j = 0)

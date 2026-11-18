@@ -16,7 +16,9 @@ open WasowShearingTermination
 
 /-- Below the stopping slope, the rational expression for the next rank is
 an integer at least zero. Positivity of the slope is not needed for this
-arithmetic fact; it is retained in the genuine successor theorem below.-/
+arithmetic fact; it is retained in the genuine successor theorem below.
+@isnad1 id=ex.1h2v.s6.3bcbd32ef836 from=translated src=- shape=d7d2ce79 vocab=d728242b
+-/
 theorem exists_ramified_rank (q : ℕ) (σ : ℚ) (hcap : σ < (q : ℚ) + 1) :
     ∃ q' : ℕ, (q' : ℚ) = (σ.den : ℚ) * ((q : ℚ) + 1 - σ) - 1 := by
   have hd : (0 : ℚ) < σ.den := by exact_mod_cast σ.den_pos
@@ -36,7 +38,9 @@ theorem exists_ramified_rank (q : ℕ) (σ : ℚ) (hcap : σ < (q : ℚ) + 1) :
   ring
 
 /-- Continuing actual ramified single-eigenvalue data automatically produce
-both a nonnegative next rank and the required sorted Jordan coordinates.-/
+both a nonnegative next rank and the required sorted Jordan coordinates.
+@isnad1 id=ex.7h4v.s10.0161e6561cc7 from=translated src=- shape=fc5b4945 vocab=f2fc69d8
+-/
 theorem exists_ramified_successor (old : State)
     (A : ℕ → Matrix (Index old.sizes) (Index old.sizes) ℂ)
     (hA : A 0 = jordanShift old.sizes)

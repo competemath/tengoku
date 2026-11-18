@@ -23,7 +23,9 @@ open CRGNormalFormGoal WasowGaugeAssembly WasowPhaseRealization
 Puiseux diagonal part gives a genuine exact ray gauge. In particular, neither
 convergence of the formal gauge nor an assumed remainder estimate is needed.
 The output has the exact differential identity and polynomial bounds on the
-actual gauge and its actual inverse from the original goal.-/
+actual gauge and its actual inverse from the original goal.
+@isnad1 id=nonempty.10h14v.s10.1b22979056e0 from=translated src=- shape=4be3bb65 vocab=1c6001c8
+-/
 theorem exists_exact_rayGauge_of_formal_truncation {m : ℕ}
     (A₀ : Matrix (Fin m) (Fin m) (RatFunc ℂ)) (θ Rmin : ℝ)
     {a : ℂ → Matrix (Fin m) (Fin m) ℂ}

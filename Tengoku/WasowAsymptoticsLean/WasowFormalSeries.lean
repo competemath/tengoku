@@ -19,7 +19,9 @@ open WasowPowerSeries WasowFormalRecurrence
 variable {m n : Type*} [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq n]
 
 /-- The all-order block recursion yields an actual formal unit and a block
-normal form satisfying the exact formal differential gauge equation.-/
+normal form satisfying the exact formal differential gauge equation.
+@isnad1 id=ex.5h8v.s12.bf7d4f0f8bf2 from=translated src=- shape=ed0841be vocab=c8fb3896
+-/
 theorem exists_block_powerSeries {α β : ℂ} (hαβ : α ≠ β)
     {N : Matrix m m ℂ} {M : Matrix n n ℂ}
     (hN : IsNilpotent N) (hM : IsNilpotent M)
@@ -57,7 +59,9 @@ theorem exists_block_powerSeries {α β : ℂ} (hαβ : α ≠ β)
     simpa only [hmk] using hh
 
 /-- The formal power-series equation for an arbitrary finite family of
-single-eigenvalue blocks, with arbitrary nilpotent parts inside the blocks.-/
+single-eigenvalue blocks, with arbitrary nilpotent parts inside the blocks.
+@isnad1 id=ex.4h6v.s13.8f2608e81a2a from=translated src=- shape=e00c8dd6 vocab=64a8b2bf
+-/
 theorem exists_multiblock_powerSeries {σ : Type*} [Fintype σ] [DecidableEq σ]
     (h : σ → ℕ) (eigenvalue : σ → ℂ)
     (N : ∀ a, Matrix (Fin (h a+1)) (Fin (h a+1)) ℂ)
@@ -95,7 +99,9 @@ theorem exists_multiblock_powerSeries {σ : Type*} [Fintype σ] [DecidableEq σ]
     simpa only [hmk] using hh
 
 /-- The actual invertible formal series for row normalization of an arbitrary
-finite family of nilpotent Jordan shift blocks.-/
+finite family of nilpotent Jordan shift blocks.
+@isnad1 id=ex.2h4v.s13.45189996c4de from=translated src=- shape=b8d6adf3 vocab=f04961db
+-/
 theorem exists_multishift_powerSeries {σ : Type*} [Fintype σ] [DecidableEq σ]
     (h : σ → ℕ)
     (A : PowerSeries (Matrix (WasowMultiShiftReduction.Index h) (WasowMultiShiftReduction.Index h) ℂ))

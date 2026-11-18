@@ -34,6 +34,9 @@ def derivativeCoeff (q : ℕ) (P : ℕ → R) (k : ℕ) : R :=
 def residual (A : ℕ → R) (q : ℕ) (P B : ℕ → R) (k : ℕ) : R :=
   lowerSum A P B k - A k - derivativeCoeff q P k
 
+/--
+@isnad1 id=eq.3h8v.s6.cbf810c42a3d from=translated src=- shape=15cb7584 vocab=2acc2cb7
+-/
 theorem residual_congr {A : ℕ → R} {q k : ℕ} (hq : 0 < q)
     {P B P' B' : ℕ → R} (hP : ∀ i < k, P i = P' i)
     (hB : ∀ i < k, B i = B' i) :
@@ -60,11 +63,17 @@ def coefficients (A : ℕ → R) (q : ℕ) (step : R → R × R) : ℕ → R × 
         (fun i => if hi : i < k then (previous i hi).1 else 0)
         (fun i => if hi : i < k then (previous i hi).2 else 0) k)
 
+/--
+@isnad1 id=eq.0h4v.s5.e6e14101d276 from=translated src=- shape=6b0854e8 vocab=24bbc222
+-/
 @[simp] theorem coefficients_zero (A : ℕ → R) (q : ℕ) (step : R → R × R) :
     coefficients A q step 0 = (1, A 0) := by
   rw [coefficients, Nat.strongRec_eq]
   simp
 
+/--
+@isnad1 id=eq.2h5v.s6.332344c2e12e from=translated src=- shape=108e82d4 vocab=51a976a7
+-/
 theorem coefficients_pos (A : ℕ → R) {q k : ℕ} (hq : 0 < q) (hk : 0 < k)
     (step : R → R × R) :
     coefficients A q step k = step (residual A q
@@ -81,7 +90,9 @@ theorem coefficients_pos (A : ℕ → R) {q k : ℕ} (hq : 0 < q) (hk : 0 < k)
     rfl
 
 /-- The Sylvester equation at order `k` implies the full convolution identity
-at that order, including the derivative term and both endpoint coefficients.-/
+at that order, including the derivative term and both endpoint coefficients.
+@isnad1 id=eq.4h6v.s8.1ca565e3fdbf from=translated src=- shape=a40691b5 vocab=8bd72414
+-/
 theorem coefficient_identity_of_step (A P B : ℕ → R) (q k : ℕ)
     (hk : 0 < k) (hP : P 0 = 1) (hB : B 0 = A 0)
     (hstep : A 0 * P k - P k * A 0 = B k + residual A q P B k) :
@@ -117,7 +128,9 @@ section Blocks
 variable {m n : Type*} [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq n]
 
 /-- The exact single-step solver supplied by the proved nilpotent-block
-Sylvester theorem, with the required diagonal/off-diagonal normalizations.-/
+Sylvester theorem, with the required diagonal/off-diagonal normalizations.
+@isnad1 id=ex.3h7v.s9.6413c3f87180 from=translated src=- shape=debd48eb vocab=b24b0d8c
+-/
 theorem exists_step {α β : ℂ} (hαβ : α ≠ β)
     {N : Matrix m m ℂ} {M : Matrix n n ℂ}
     (hN : IsNilpotent N) (hM : IsNilpotent M)
@@ -135,7 +148,9 @@ theorem exists_step {α β : ℂ} (hαβ : α ≠ β)
 /-- Formal two-block reduction to all orders. The gauge has constant term one,
 all its higher coefficients are off diagonal, and the transformed series is
 block diagonal. The convolution equation is exactly the coefficient equation
-of `A(t) P(t) - P(t) B(t) = -t^(q+1) P'(t)`, for every natural degree.-/
+of `A(t) P(t) - P(t) B(t) = -t^(q+1) P'(t)`, for every natural degree.
+@isnad1 id=ex.5h8v.s9.e2639765801a from=translated src=- shape=60a4d052 vocab=1bdf2172
+-/
 theorem exists_formal_block_reduction {α β : ℂ} (hαβ : α ≠ β)
     {N : Matrix m m ℂ} {M : Matrix n n ℂ}
     (hN : IsNilpotent N) (hM : IsNilpotent M)

@@ -22,6 +22,9 @@ open WasowPhaseFamilyBlocks WasowRegularLeaf WasowFuchsianTruncation
 open WasowFuchsianRealization WasowPolynomialTail
 variable {s : ℕ} (d : Fin s → ℕ)
 
+/--
+@isnad1 id=continuo.1h4v.s7.75ab04a817cc from=translated src=- shape=61bde2f9 vocab=9c1c1a92
+-/
 theorem blockMatrix_continuousOn
     (T : ∀ a, ℝ → Matrix (Fin (d a)) (Fin (d a)) ℂ) (I : Set ℝ)
     (hT : ∀ a, ContinuousOn (T a) I) :
@@ -40,7 +43,9 @@ theorem blockMatrix_continuousOn
       (continuousOn_const : ContinuousOn (fun _ : ℝ => (0 : ℂ)) I)
 
 /-- Actual finite block assembly retains derivatives and inverse identities,
-while taking a common radius and a common operator-norm bound.-/
+while taking a common radius and a common operator-norm bound.
+@isnad1 id=nonempty.0h7v.s7.379c73661c13 from=translated src=- shape=4a48ee30 vocab=70767d1f
+-/
 theorem assemble_regularGauge
     (J T S : ∀ a, ℝ → Matrix (Fin (d a)) (Fin (d a)) ℂ) (L : ℕ)
     (g : ∀ a, RegularGauge (J a) (T a) (S a) L) :
@@ -109,7 +114,9 @@ theorem assemble_regularGauge
       exact (g a).inverse_right r ((hRg a).trans_lt hr)
     rw [heq, blockMatrix_one]
 
-/-- Every block-scalar phase commutes with the complete assembled gauge.-/
+/-- Every block-scalar phase commutes with the complete assembled gauge.
+@isnad1 id=commute.0h4v.s8.a1ec36a54b24 from=translated src=- shape=4078a6b3 vocab=a526ecac
+-/
 theorem block_scalar_commute (c : Fin s → ℂ)
     (T : ∀ a, Matrix (Fin (d a)) (Fin (d a)) ℂ) :
     Commute (Matrix.diagonal (fun i => c ((columns d).symm i).1)) (blockMatrix d T) := by
@@ -121,7 +128,9 @@ theorem block_scalar_commute (c : Fin s → ℂ)
   exact (scalar_diagonal_commute (c a) (T a)).eq
 
 /-- Actual block regular gauges for any common integer exponent dominating
-all residues. This exponent is allowed to be fixed before choosing M.-/
+all residues. This exponent is allowed to be fixed before choosing M.
+@isnad1 id=ex.2h5v.s8.3b503e0342cc from=translated src=- shape=4fe5a120 vocab=84c9a0c5
+-/
 theorem exists_block_regularGauge
     (D : ∀ a, PowerSeries (Matrix (Fin (d a)) (Fin (d a)) ℂ)) (L : ℕ)
     (hL : ∀ a, ‖PowerSeries.constantCoeff (D a)‖ + 1 ≤ L)
@@ -135,7 +144,9 @@ theorem exists_block_regularGauge
   exact ⟨T, S, assemble_regularGauge d _ T S L (fun a => Classical.choice (hg a))⟩
 
 /-- One integer exponent controls all finite regular truncations on all
-blocks. Neither the formal series nor a putative infinite gauge is evaluated.-/
+blocks. Neither the formal series nor a putative infinite gauge is evaluated.
+@isnad1 id=ex.0h3v.s8.7f5ecf0a963e from=translated src=- shape=73317af0 vocab=84c9a0c5
+-/
 theorem exists_uniform_block_regularGauge
     (D : ∀ a, PowerSeries (Matrix (Fin (d a)) (Fin (d a)) ℂ)) :
     ∃ L : ℕ, (∀ a, ‖PowerSeries.constantCoeff (D a)‖ + 1 ≤ L) ∧
@@ -155,7 +166,9 @@ theorem exists_uniform_block_regularGauge
 
 /-- A complete finite canonical form with finitely many scalar-phase regular
 blocks is analytically realized. The full block regular gauges and their
-commutation with the phase diagonal are constructed by this theorem.-/
+commutation with the phase diagonal are constructed by this theorem.
+@isnad1 id=nonempty.12h18v.s12.1e687be60d9c from=translated src=- shape=e0787a44 vocab=e8c54f6e
+-/
 theorem exists_exact_rayGauge_of_regular_blocks
     (A₀ : Matrix (Fin (∑ a, d a)) (Fin (∑ a, d a)) (RatFunc ℂ)) (θ Rmin : ℝ)
     (D : ∀ a, PowerSeries (Matrix (Fin (d a)) (Fin (d a)) ℂ)) (L M : ℕ)

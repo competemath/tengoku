@@ -36,6 +36,9 @@ def coefficients (old : FormalState) := fun k => PowerSeries.coeff k old.series
 def flattenSeries (old : FormalState) := PowerSeries.map
   (Matrix.reindexAlgEquiv ℂ ℂ (flatten old.shape.sizes)).toRingHom old.series
 
+/--
+@isnad1 id=eq.0h2v.s12.60589f7414ea from=translated src=- shape=fbfda874 vocab=d51fc475
+-/
 theorem flattenSeries_coeff (old : FormalState) (k : ℕ) :
     PowerSeries.coeff k (flattenSeries old) = flatCoefficients old.shape.sizes (coefficients old) k := rfl
 
@@ -45,6 +48,9 @@ def rawSeries (old : FormalState) (σ : ℚ) := PowerSeries.map
   (Matrix.reindexAlgEquiv ℂ ℂ (flatten old.shape.sizes).symm).toRingHom
   (ramifiedSeries (flattenSeries old) σ.den σ.den_ne_zero σ.num.toNat old.shape.rank)
 
+/--
+@isnad1 id=eq.1h1v.s5.fd38aa0b58c6 from=translated src=- shape=38f9ff82 vocab=dd6ed6f1
+-/
 theorem slope_num_div_den (σ : ℚ) (hσ : 0 ≤ σ) :
     ((σ.num.toNat : ℕ) : ℚ) / σ.den = σ := by
   have hn : 0 ≤ σ.num := Rat.num_nonneg.mpr hσ
@@ -52,7 +58,9 @@ theorem slope_num_div_den (σ : ℚ) (hσ : 0 ≤ σ) :
   exact σ.num_div_den
 
 /-- The constructed entire ramified series has exactly the scaled leading
-matrix used by the established matrix/rank transition.-/
+matrix used by the established matrix/rank transition.
+@isnad1 id=eq.2h2v.s10.a5d267e29513 from=translated src=- shape=77bca4b5 vocab=6073472d
+-/
 theorem rawSeries_leading (old : FormalState) (σ : ℚ) (hσ : 0 < σ)
     (hcap : σ < (old.shape.rank : ℚ) + 1) :
     PowerSeries.constantCoeff (rawSeries old σ) =
@@ -81,7 +89,9 @@ structure ContinuingInput (old : FormalState) where
     shearedLeading old.shape.sizes (coefficients old) slope - eigenvalue • 1)
 
 /-- Every coefficient satisfies the no-negative-power condition after actual
-minimal-denominator expansion; no coefficient is silently truncated away.-/
+minimal-denominator expansion; no coefficient is silently truncated away.
+@isnad1 id=supporte.0h2v.s5.19c45b43314b from=translated src=- shape=1ca39e3b vocab=7d3b8e7b
+-/
 theorem supported_flattenSeries {old : FormalState} (i : ContinuingInput old) :
     Supported (flattenSeries old) i.slope.den i.slope.num.toNat := by
   apply supported_of_weightedDegree _ _ i.slope.den_ne_zero
@@ -90,7 +100,9 @@ theorem supported_flattenSeries {old : FormalState} (i : ContinuingInput old) :
   exact i.weights k a b hab
 
 /-- The full cleared entry identity, including the true derivative of the
-actual diagonal shearing gauge and the ramification prefactor.-/
+actual diagonal shearing gauge and the ramification prefactor.
+@isnad1 id=eq.0h4v.s10.5feac24a1167 from=translated src=- shape=b0af3279 vocab=8d787d3e
+-/
 theorem rawSeries_clear_powers {old : FormalState} (i : ContinuingInput old)
     (a b : Fin (∑ j, (old.shape.sizes j+1))) :
     PowerSeries.X^(i.slope.num.toNat*(a.val+1)) *
@@ -166,7 +178,9 @@ structure SingleData (old next : FormalState) (i : ContinuingInput old) where
       -(PowerSeries.X^(next.shape.rank+2) * WasowPowerSeries.derivative gauge)
 
 /-- The complete series successor really gives the previously verified
-matrix/rank transition, with its actual ramification prefactor.-/
+matrix/rank transition, with its actual ramification prefactor.
+@isnad1 id=step.0h4v.s4.58d6183fce69 from=translated src=- shape=74de1b64 vocab=277d6004
+-/
 theorem singleData_step {old next : FormalState} {i : ContinuingInput old}
     (d : SingleData old next i) : Step next.shape old.shape := by
   refine ⟨⟨coefficients old, (by simpa only [coefficients, PowerSeries.coeff_zero_eq_constantCoeff_apply] using old.leading), old.rows,
@@ -176,7 +190,9 @@ theorem singleData_step {old next : FormalState} {i : ContinuingInput old}
   exact_mod_cast i.slope.den_ne_zero
 
 /-- Every verified continuing single-eigenvalue branch produces a complete
-normalized successor series and exact invertible formal gauge data.-/
+normalized successor series and exact invertible formal gauge data.
+@isnad1 id=ex.0h2v.s3.e078b16672ee from=translated src=- shape=40d4b134 vocab=28bf6c00
+-/
 theorem exists_single_successor (old : FormalState) (i : ContinuingInput old) :
     ∃ next : FormalState, Nonempty (SingleData old next i) := by
   obtain ⟨q', hq'⟩ := WasowRankSelection.exists_ramified_rank old.shape.rank i.slope i.nonstopping
@@ -205,6 +221,9 @@ theorem exists_single_successor (old : FormalState) (i : ContinuingInput old) :
 def FormalStep (next old : FormalState) : Prop :=
   ∃ i : ContinuingInput old, Nonempty (SingleData old next i)
 
+/--
+@isnad1 id=wellfoun.0h0v.s1.8f84db8a2445 from=translated src=- shape=25b03439 vocab=4fa1fd27
+-/
 theorem formalStep_wellFounded : WellFounded FormalStep := by
   apply (InvImage.wf FormalState.shape WasowShearingTermination.step_wellFounded).mono
   intro next old hs

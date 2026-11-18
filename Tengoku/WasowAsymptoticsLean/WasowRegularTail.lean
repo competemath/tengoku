@@ -28,14 +28,18 @@ local instance : ContinuousENorm (Matrix (Fin m) (Fin m) ℂ) where
     simp_rw [Matrix.linfty_opNNNorm_def]
     fun_prop
 
-/-- The matrix operator norm follows directly from its action bound.-/
+/-- The matrix operator norm follows directly from its action bound.
+@isnad1 id=le.2h3v.s7.c2e0b328dfdb from=translated src=- shape=cb50e229 vocab=eebb1b35
+-/
 theorem matrix_norm_le_of_mulVec_bound (M : Matrix (Fin m) (Fin m) ℂ)
     {C : ℝ} (hC : 0 ≤ C) (hM : ∀ x, ‖M.mulVec x‖ ≤ C * ‖x‖) : ‖M‖ ≤ C := by
   rw [← norm_toOperator]
   apply ContinuousLinearMap.opNorm_le_bound _ hC
   exact hM
 
-/-- An integer exponent bounds both actual regular-singular factors.-/
+/-- An integer exponent bounds both actual regular-singular factors.
+@isnad1 id=and.2h5v.s10.d29ad47404bb from=translated src=- shape=10cb4191 vocab=3d4173c6
+-/
 theorem regular_norm_bounds [NeZero m] (G : Matrix (Fin m) (Fin m) ℂ) (θ : ℝ)
     (L : ℕ) (hL : ‖matrixOperator G‖ ≤ L) {r : ℝ} (hr : 1 ≤ r) :
     ‖rayPower G θ r‖ ≤ Real.exp (|θ| * ‖matrixOperator G‖) * r ^ L ∧
@@ -57,7 +61,9 @@ def conjugatedRemainder [NeZero m] (G : Matrix (Fin m) (Fin m) ℂ) (θ : ℝ)
     (P B : PowerSeries (Matrix (Fin m) (Fin m) ℂ)) (q N : ℕ) (r : ℝ) :=
   rayPowerInverse G θ r * remainder a P B q N r * rayPower G θ r
 
-/-- Pointwise conjugation costs at most the two integer growth exponents.-/
+/-- Pointwise conjugation costs at most the two integer growth exponents.
+@isnad1 id=le.2h7v.s9.e92a653c7537 from=translated src=- shape=9db225cb vocab=8b381796
+-/
 theorem conjugation_norm_bound [NeZero m] (G : Matrix (Fin m) (Fin m) ℂ) (θ : ℝ)
     (L d : ℕ) (hL : ‖matrixOperator G‖ ≤ L) {r : ℝ} (hr : 1 ≤ r)
     (M : Matrix (Fin m) (Fin m) ℂ) :
@@ -78,7 +84,9 @@ theorem conjugation_norm_bound [NeZero m] (G : Matrix (Fin m) (Fin m) ℂ) (θ :
       ring
 
 /-- Increasing the actual truncation order absorbs both regular-singular
-polynomial losses and yields a continuous `C/r²` majorant.-/
+polynomial losses and yields a continuous `C/r²` majorant.
+@isnad1 id=ex.7h11v.s10.d5c4bd66d91b from=translated src=- shape=63322875 vocab=1908d480
+-/
 theorem conjugated_remainder_control [NeZero m]
     (G : Matrix (Fin m) (Fin m) ℂ) (θ : ℝ) (L : ℕ)
     (hL : ‖matrixOperator G‖ ≤ L)
@@ -119,7 +127,9 @@ theorem conjugated_remainder_control [NeZero m]
       _ = _ := by ring
 
 /-- The genuinely conjugated remainder has an arbitrarily small integrable
-tail beyond every requested starting radius. No integrability is assumed.-/
+tail beyond every requested starting radius. No integrability is assumed.
+@isnad1 id=ex.8h13v.s10.a4f2eeb914ad from=translated src=- shape=69ae34f1 vocab=3bd0f4f6
+-/
 theorem exists_small_conjugated_tail [NeZero m]
     (G : Matrix (Fin m) (Fin m) ℂ) (θ : ℝ) (L : ℕ)
     (hL : ‖matrixOperator G‖ ≤ L)

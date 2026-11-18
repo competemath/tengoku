@@ -25,7 +25,9 @@ def NormalizedStep {h k : ℕ} (K : Matrix (Fin k) (Fin k) ℂ)
     shift h * s.1 - s.1 * K = s.2 + H
 
 /-- The first row and the equations in all preceding rows uniquely propagate
-every gauge row. The final equation then uniquely determines the residual row.-/
+every gauge row. The final equation then uniquely determines the residual row.
+@isnad1 id=eq.2h6v.s7.ca35d2493812 from=translated src=- shape=7f3747e3 vocab=b6d33d29
+-/
 theorem normalized_step_unique {h k : ℕ} (K : Matrix (Fin k) (Fin k) ℂ)
     (H : Matrix (Fin (h+1)) (Fin k) ℂ)
     {s t : Matrix (Fin (h+1)) (Fin k) ℂ × Matrix (Fin (h+1)) (Fin k) ℂ}
@@ -63,7 +65,9 @@ theorem normalized_step_unique {h k : ℕ} (K : Matrix (Fin k) (Fin k) ℂ)
   exact Prod.ext hP hB
 
 /-- Normalized coefficient solver: existence and uniqueness of the entire
-pair, without a spectral assumption on the right matrix.-/
+pair, without a spectral assumption on the right matrix.
+@isnad1 id=existsun.0h4v.s6.8db6e598c877 from=translated src=- shape=1be4b739 vocab=b186b8f6
+-/
 theorem existsUnique_normalized_step {h k : ℕ} (K : Matrix (Fin k) (Fin k) ℂ)
     (H : Matrix (Fin (h+1)) (Fin k) ℂ) : ∃! s, NormalizedStep K H s := by
   obtain ⟨P,B,hP,hB,heq⟩ := exists_rectangular_step K H
@@ -74,7 +78,9 @@ theorem existsUnique_normalized_step {h k : ℕ} (K : Matrix (Fin k) (Fin k) ℂ
 /-- The corrected book statement. The first `h` rows of `M` are prescribed
 by `D`; its last row is free. Requiring the first row of `X` to vanish yields
 one and only one pair `(X,M)` solving `shift h * X - X * K = M`.
-The actual row count is `h+1`, so this includes the one-row boundary case.-/
+The actual row count is `h+1`, so this includes the one-row boundary case.
+@isnad1 id=existsun.0h4v.s9.4c2782dc621f from=translated src=- shape=bbeb72f4 vocab=3458828b
+-/
 theorem existsUnique_normalized_lemma_19_1 {h k : ℕ}
     (K : Matrix (Fin k) (Fin k) ℂ) (D : Matrix (Fin (h+1)) (Fin k) ℂ) :
     ∃! s : Matrix (Fin (h+1)) (Fin k) ℂ × Matrix (Fin (h+1)) (Fin k) ℂ,
@@ -108,7 +114,9 @@ def NormalizedMultiStep {σ : Type*} [Fintype σ] [DecidableEq σ]
   jordanShift h * s.1 - s.1 * jordanShift h = s.2 + H
 
 /-- The normalized rectangular uniqueness theorem applies simultaneously
-to every block of the actual matrix coefficient equation.-/
+to every block of the actual matrix coefficient equation.
+@isnad1 id=eq.2h5v.s6.aebacc78cb5d from=translated src=- shape=7f3def97 vocab=cdc83d67
+-/
 theorem normalized_multishift_step_unique {σ : Type*} [Fintype σ] [DecidableEq σ]
     (h : σ → ℕ) (H : Matrix (Index h) (Index h) ℂ)
     {s t : Matrix (Index h) (Index h) ℂ × Matrix (Index h) (Index h) ℂ}
@@ -131,7 +139,9 @@ theorem normalized_multishift_step_unique {σ : Type*} [Fintype σ] [DecidableEq
     exact congrFun (congrFun (congrArg Prod.snd (blocks a b)) i) j
 
 /-- A unique normalized coefficient pair for an arbitrary finite family
-of Jordan shift blocks, with arbitrary block sizes and multiplicities.-/
+of Jordan shift blocks, with arbitrary block sizes and multiplicities.
+@isnad1 id=existsun.0h3v.s6.dc744c19a112 from=translated src=- shape=baace430 vocab=f7281896
+-/
 theorem existsUnique_normalized_multishift_step {σ : Type*} [Fintype σ] [DecidableEq σ]
     (h : σ → ℕ) (H : Matrix (Index h) (Index h) ℂ) :
     ∃! s, NormalizedMultiStep h H s := by

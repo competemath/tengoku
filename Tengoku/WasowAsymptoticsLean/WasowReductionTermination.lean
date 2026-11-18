@@ -25,7 +25,9 @@ open Module
 open WasowLeadingBlocks WasowMultiShiftReduction WasowShearingTermination
 
 /-- A second distinct eigenvalue forces the chosen generalized eigenspace
-to be proper: the other nonzero block is disjoint from it.-/
+to be proper: the other nonzero block is disjoint from it.
+@isnad1 id=ne.1h4v.s6.66d83625a74f from=translated src=- shape=c0296fa6 vocab=e251606f
+-/
 theorem blockSpace_ne_top {V : Type*} [AddCommGroup V] [Module ℂ V]
     [FiniteDimensional ℂ V] (f : Module.End ℂ V)
     (a b : Eigenvalues f) (hab : a ≠ b) : blockSpace f a ≠ ⊤ := by
@@ -36,7 +38,9 @@ theorem blockSpace_ne_top {V : Type*} [AddCommGroup V] [Module ℂ V]
   rw [ht, top_disjoint] at hd
   exact blockSpace_ne_bot f b hd
 
-/-- The actual block dimension is strictly smaller than the ambient dimension.-/
+/-- The actual block dimension is strictly smaller than the ambient dimension.
+@isnad1 id=lt.1h4v.s7.00dc34a6c0cd from=translated src=- shape=cb27086d vocab=be531e49
+-/
 theorem block_finrank_lt {V : Type*} [AddCommGroup V] [Module ℂ V]
     [FiniteDimensional ℂ V] (f : Module.End ℂ V)
     (a b : Eigenvalues f) (hab : a ≠ b) :
@@ -46,7 +50,9 @@ theorem block_finrank_lt {V : Type*} [AddCommGroup V] [Module ℂ V]
 /-- The dimension of a reduction state is its actual Jordan coordinate cardinality.-/
 def dim (x : State) : ℕ := Fintype.card (Index x.sizes)
 
-/-- A genuine single-eigenvalue coordinate transition preserves dimension.-/
+/-- A genuine single-eigenvalue coordinate transition preserves dimension.
+@isnad1 id=eq.1h2v.s3.2e60fd036f89 from=translated src=- shape=52d409ee vocab=d2570887
+-/
 theorem dim_eq_of_step {next old : State} (hs : Step next old) : dim next = dim old := by
   obtain ⟨d⟩ := hs
   exact (WasowPencilCoordinates.card_eq_of_two_sided_inverse d.P d.Q d.PQ d.QP).symm
@@ -70,6 +76,9 @@ structure SplitData (next old : State) where
 numeric dimension-decrease certificate.-/
 def Split (next old : State) : Prop := Nonempty (SplitData next old)
 
+/--
+@isnad1 id=lt.1h2v.s3.08ef5fc525bb from=translated src=- shape=52d409ee vocab=1243dd77
+-/
 theorem dim_lt_of_split {next old : State} (hs : Split next old) : dim next < dim old := by
   obtain ⟨d⟩ := hs
   have hh := block_finrank_lt (Matrix.toLin' d.C) d.a d.b d.distinct
@@ -77,7 +86,9 @@ theorem dim_lt_of_split {next old : State} (hs : Split next old) : dim next < di
   exact hh
 
 /-- Actual distinct eigenvalues automatically produce a sorted Jordan
-successor of the selected component, with no assumed coordinate basis.-/
+successor of the selected component, with no assumed coordinate basis.
+@isnad1 id=ex.1h5v.s12.4430fe605f50 from=translated src=- shape=9bd6a6d3 vocab=24f32e47
+-/
 theorem exists_split_successor (old : State)
     (C : Matrix (Index old.sizes) (Index old.sizes) ℂ)
     (a b : Eigenvalues (Matrix.toLin' C)) (hab : a ≠ b) (q' : ℕ) :
@@ -95,7 +106,9 @@ def CombinedStep (next old : State) : Prop := Step next old ∨ Split next old
 def measure (x : State) : ℕ × (ℕ × ℕ) :=
   (dim x, WasowShearingTermination.measure x)
 
-/-- The lexicographic triple decreases for either actual operation.-/
+/-- The lexicographic triple decreases for either actual operation.
+@isnad1 id=lex.1h2v.s4.d3575059eb6c from=translated src=- shape=0bb09b08 vocab=deade320
+-/
 theorem measure_decreases {next old : State} (hs : CombinedStep next old) :
     Prod.Lex Nat.lt (Prod.Lex Nat.lt Nat.lt) (measure next) (measure old) := by
   rcases hs with hs | hs
@@ -104,16 +117,23 @@ theorem measure_decreases {next old : State} (hs : CombinedStep next old) :
     exact Prod.Lex.right _ (WasowShearingTermination.measure_decreases hs)
   · exact Prod.Lex.left _ _ (dim_lt_of_split hs)
 
-/-- The stated dimension/mass/rank lexicographic order is well-founded.-/
+/-- The stated dimension/mass/rank lexicographic order is well-founded.
+@isnad1 id=wellfoun.0h0v.s4.0fc01e37e67f from=translated src=- shape=27d96d51 vocab=dc5d140b
+-/
 theorem measure_wellFounded :
     WellFounded (InvImage (Prod.Lex Nat.lt (Prod.Lex Nat.lt Nat.lt)) measure) := by
   exact InvImage.wf measure
     (Prod.lex Nat.lt_wfRel (Prod.lex Nat.lt_wfRel Nat.lt_wfRel)).wf
 
-/-- Genuine shear and generalized-eigenspace split steps cannot continue forever.-/
+/-- Genuine shear and generalized-eigenspace split steps cannot continue forever.
+@isnad1 id=wellfoun.0h0v.s1.0a7d1c386c8d from=translated src=- shape=25b03439 vocab=ea174fcc
+-/
 theorem combinedStep_wellFounded : WellFounded CombinedStep :=
   measure_wellFounded.mono (fun _ _ hs => measure_decreases hs)
 
+/--
+@isnad1 id=not.0h1v.s4.0dd34cb12e9c from=translated src=- shape=0bf22c72 vocab=e48921fc
+-/
 theorem no_infinite_combined_steps (x : ℕ → State) :
     ¬ ∀ n, CombinedStep (x (n+1)) (x n) := by
   intro hx

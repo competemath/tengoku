@@ -65,7 +65,9 @@ structure StepData (next old : State) where
 
 def Step (next old : State) : Prop := Nonempty (StepData next old)
 
-/-- Actual coordinate changes and scalar subtraction preserve the next mass.-/
+/-- Actual coordinate changes and scalar subtraction preserve the next mass.
+@isnad1 id=eq.0h3v.s6.88ecd677f6ef from=translated src=- shape=4c36401d vocab=2e02775e
+-/
 theorem next_mass {next old : State} (d : StepData next old) :
     mass next = WasowPencilDescent.degreeMass
       (pencil (shearedLeading old.sizes d.A d.slope)) := by
@@ -75,14 +77,18 @@ theorem next_mass {next old : State} (d : StepData next old) :
     WasowPencilSimilarity.degreeMass_sub_scalar,
     WasowPencilScaling.degreeMass_smul _ d.scale d.scale_ne_zero]
 
-/-- The first measure never increases in a genuine single-eigenvalue step.-/
+/-- The first measure never increases in a genuine single-eigenvalue step.
+@isnad1 id=le.0h3v.s3.67acd1f428cf from=translated src=- shape=52d409ee vocab=1cdf851b
+-/
 theorem mass_le {next old : State} (d : StepData next old) : mass next ≤ mass old := by
   rw [next_mass d]
   exact shearedLeading_single_eigen_mass_le old.sizes d.A d.initial d.rows
     d.slope_pos (d.eigenvalue / d.scale)
     (WasowPencilScaling.isNilpotent_unscale _ _ _ d.scale_ne_zero d.nilpotent)
 
-/-- A fractional slope strictly decreases the actual determinantal invariant.-/
+/-- A fractional slope strictly decreases the actual determinantal invariant.
+@isnad1 id=lt.1h3v.s4.7ff9b7bc676f from=translated src=- shape=d376224a vocab=895c57b3
+-/
 theorem mass_lt_of_fractional {next old : State} (d : StepData next old)
     (hfrac : ∀ k : ℕ, d.slope ≠ k) : mass next < mass old := by
   rw [next_mass d]
@@ -91,7 +97,9 @@ theorem mass_lt_of_fractional {next old : State} (d : StepData next old)
     (WasowPencilScaling.isNilpotent_unscale _ _ _ d.scale_ne_zero d.nilpotent)
 
 /-- For an integral slope the minimal ramification denominator is one, so
-its exact rank update strictly decreases the nonnegative rank.-/
+its exact rank update strictly decreases the nonnegative rank.
+@isnad1 id=lt.1h3v.s4.8f9e2d7d8634 from=translated src=- shape=1477b197 vocab=d3a8522b
+-/
 theorem rank_lt_of_integral {next old : State} (d : StepData next old)
     (hint : ∃ k : ℕ, d.slope = k) : next.rank < old.rank := by
   obtain ⟨k,hk⟩ := hint
@@ -102,7 +110,9 @@ theorem rank_lt_of_integral {next old : State} (d : StepData next old)
   have hs := d.slope_pos
   exact_mod_cast (show (next.rank : ℚ) < old.rank by linarith)
 
-/-- The lexicographic decrease is a conclusion of the actual step equations.-/
+/-- The lexicographic decrease is a conclusion of the actual step equations.
+@isnad1 id=lex.1h2v.s4.9169aea5c957 from=translated src=- shape=dd2f8401 vocab=8c148ebb
+-/
 theorem measure_decreases {next old : State} (h : Step next old) :
     Prod.Lex Nat.lt Nat.lt (measure next) (measure old) := by
   classical
@@ -112,20 +122,26 @@ theorem measure_decreases {next old : State} (h : Step next old) :
   · exact Prod.Lex.left _ _ (mass_lt_of_fractional d (by simpa only [not_exists] using hint))
 
 /-- No indefinite sequence of these genuine single-eigenvalue shear steps exists,
-even though an individual fractional step can increase the integer rank.-/
+even though an individual fractional step can increase the integer rank.
+@isnad1 id=wellfoun.0h0v.s1.b7187c9aba98 from=translated src=- shape=25b03439 vocab=7083abf8
+-/
 theorem step_wellFounded : WellFounded Step := by
   have hw : WellFounded (Prod.Lex Nat.lt Nat.lt) := (Prod.lex Nat.lt_wfRel Nat.lt_wfRel).wf
   exact (InvImage.wf measure hw).mono (fun _ _ h => measure_decreases h)
 
 /-- Every infinite candidate sequence has an index at which a genuine step
-fails; this is the chain formulation of the proved well-foundedness.-/
+fails; this is the chain formulation of the proved well-foundedness.
+@isnad1 id=not.0h1v.s4.caec0e23864b from=translated src=- shape=0bf22c72 vocab=cef281ac
+-/
 theorem no_infinite_steps (x : ℕ → State) : ¬ ∀ n, Step (x (n+1)) (x n) := by
   intro hx
   exact (wellFounded_iff_isEmpty_descending_chain.mp step_wellFounded).false ⟨x, hx⟩
 
 /-- Continuing single-eigenvalue data actually produce a successor: the
 next sorted Jordan coordinates are supplied by the general Jordan theorem.
-The nonzero scale includes the true ramification prefactor.-/
+The nonzero scale includes the true ramification prefactor.
+@isnad1 id=ex.9h6v.s10.31c2b0039de3 from=translated src=- shape=ae41bf2b vocab=7b0d11f7
+-/
 theorem exists_successor (old : State)
     (A : ℕ → Matrix (Index old.sizes) (Index old.sizes) ℂ)
     (hA : A 0 = jordanShift old.sizes)

@@ -25,6 +25,9 @@ noncomputable section
 open scoped BigOperators
 namespace WasowNilpotentNormalized
 
+/--
+@isnad1 id=eq.1h2v.s7.ac7a9cadd0cd from=translated src=- shape=48b4c69d vocab=248d5ba8
+-/
 theorem nilpotent_pow_size {n : ℕ} (C : Matrix (Fin n) (Fin n) ℂ)
     (hC : IsNilpotent C) : C^n = 0 := by
   have hp : C.charpoly = Polynomial.X^n := by
@@ -34,7 +37,9 @@ theorem nilpotent_pow_size {n : ℕ} (C : Matrix (Fin n) (Fin n) ℂ)
   simpa only [hp, map_pow, Polynomial.aeval_X] using he
 
 /-- Before reaching the last row, the zeroth row of a power walks along
-the actual superdiagonal chain.-/
+the actual superdiagonal chain.
+@isnad1 id=eq.2h4v.s9.5d51b5e95502 from=translated src=- shape=4b174f09 vocab=8544ff60
+-/
 theorem pow_first_row {h : ℕ} (C : Matrix (Fin (h+1)) (Fin (h+1)) ℂ)
     (hrows : ∀ i j, i.val < h →
       C i j = if j.val = i.val+1 then 1 else 0)
@@ -56,7 +61,9 @@ theorem pow_first_row {h : ℕ} (C : Matrix (Fin (h+1)) (Fin (h+1)) ℂ)
       simp [hl]
 
 /-- A nilpotent normalized block has zero last row, hence is exactly the
-original shift. Nilpotence is an input, the vanishing last row is proved.-/
+original shift. Nilpotence is an input, the vanishing last row is proved.
+@isnad1 id=eq.2h2v.s8.04aaac7e25d9 from=translated src=- shape=b707d587 vocab=f81bcd7b
+-/
 theorem nilpotent_normalized_eq_shift {h : ℕ}
     (C : Matrix (Fin (h+1)) (Fin (h+1)) ℂ)
     (hrows : ∀ i j, i.val < h →
@@ -90,7 +97,9 @@ def ShiftRows {h : ℕ} (N : Matrix (Fin (h+1)) (Fin (h+1)) ℂ) (α : ℂ) : Pr
     N i j = (if j.val = i.val+1 then 1 else 0) - (if i=j then α else 0)
 
 /-- Powers of the translated matrix form a triangular Krylov family with
-unit diagonal; no characteristic-polynomial calculation is assumed.-/
+unit diagonal; no characteristic-polynomial calculation is assumed.
+@isnad1 id=and.2h4v.s9.9a3d786b976e from=translated src=- shape=3fedbe04 vocab=ccab58cb
+-/
 theorem pow_first_row_triangular {h : ℕ}
     (N : Matrix (Fin (h+1)) (Fin (h+1)) ℂ) (α : ℂ) (hrows : ShiftRows N α)
     (k : ℕ) (hk : k ≤ h) :
@@ -138,6 +147,9 @@ theorem pow_first_row_triangular {h : ℕ}
 def krylovRows {h : ℕ} (N : Matrix (Fin (h+1)) (Fin (h+1)) ℂ) :
     Matrix (Fin (h+1)) (Fin (h+1)) ℂ := fun i j => (N^i.val) 0 j
 
+/--
+@isnad1 id=eq.1h3v.s6.24851a7deefd from=translated src=- shape=dec8860f vocab=a1960432
+-/
 theorem krylovRows_det_one {h : ℕ}
     (N : Matrix (Fin (h+1)) (Fin (h+1)) ℂ) (α : ℂ) (hrows : ShiftRows N α) :
     (krylovRows N).det = 1 := by
@@ -150,6 +162,9 @@ theorem krylovRows_det_one {h : ℕ}
     exact (pow_first_row_triangular N α hrows i.val (by omega)).2
   simp only [hd, Finset.prod_const_one]
 
+/--
+@isnad1 id=eq.1h4v.s6.a94362759688 from=translated src=- shape=cb24ccb8 vocab=31eeebfe
+-/
 theorem krylovRows_last_column {h : ℕ}
     (N : Matrix (Fin (h+1)) (Fin (h+1)) ℂ) (α : ℂ) (hrows : ShiftRows N α)
     (i : Fin (h+1)) : krylovRows N i (Fin.last h) = if i=Fin.last h then 1 else 0 := by
@@ -163,6 +178,9 @@ theorem krylovRows_last_column {h : ℕ}
     simp only [Fin.val_last]
     omega
 
+/--
+@isnad1 id=eq.1h2v.s9.209d8aa8be8c from=translated src=- shape=edc62808 vocab=b5458808
+-/
 theorem krylovRows_intertwines {h : ℕ}
     (N : Matrix (Fin (h+1)) (Fin (h+1)) ℂ) (hN : IsNilpotent N) :
     krylovRows N * N = WasowShiftReduction.shift h * krylovRows N := by
@@ -178,7 +196,9 @@ theorem krylovRows_intertwines {h : ℕ}
 
 /-- A normalized block with one eigenvalue has a concrete determinant-one
 similarity to the shift after subtracting that eigenvalue. The final-column
-identity is included to preserve off-diagonal last-row normalizations.-/
+identity is included to preserve off-diagonal last-row normalizations.
+@isnad1 id=ex.2h3v.s11.cea291e8bc6e from=translated src=- shape=f18db2e1 vocab=0f8001f6
+-/
 theorem normalized_single_eigenvalue_similarity {h : ℕ}
     (C : Matrix (Fin (h+1)) (Fin (h+1)) ℂ) (α : ℂ)
     (hrows : ∀ i j, i.val < h →
@@ -202,7 +222,9 @@ theorem normalized_single_eigenvalue_similarity {h : ℕ}
   rw [krylovRows_intertwines N hN, Matrix.mul_assoc, hPQ, Matrix.mul_one]
 
 /-- The explicit similarity preserves a rectangular last-row block on
-its left, because its final column is the last standard vector.-/
+its left, because its final column is the last standard vector.
+@isnad1 id=eq.2h4v.s8.f4b93be28509 from=translated src=- shape=d1802c0b vocab=ddb43966
+-/
 theorem left_mul_last_row {h k : ℕ}
     (P : Matrix (Fin (h+1)) (Fin (h+1)) ℂ)
     (hP : ∀ i, P i (Fin.last h)=if i=Fin.last h then 1 else 0)
@@ -223,6 +245,9 @@ theorem left_mul_last_row {h k : ℕ}
       omega
     rw [hF l j hlt,mul_zero]
 
+/--
+@isnad1 id=eq.2h6v.s8.ac5281a98701 from=translated src=- shape=c72ec10f vocab=174a309c
+-/
 theorem right_mul_last_row {h k : ℕ}
     (F : Matrix (Fin (h+1)) (Fin (k+1)) ℂ)
     (Q : Matrix (Fin (k+1)) (Fin (k+1)) ℂ)
@@ -231,6 +256,9 @@ theorem right_mul_last_row {h k : ℕ}
   intro i j hi
   simp only [Matrix.mul_apply,hF i _ hi,zero_mul,Finset.sum_const_zero]
 
+/--
+@isnad1 id=ne.2h5v.s9.3c517ddcd25b from=translated src=- shape=20d12526 vocab=4c483301
+-/
 theorem right_mul_nonzero {h k : ℕ}
     (F : Matrix (Fin (h+1)) (Fin (k+1)) ℂ)
     (Q P : Matrix (Fin (k+1)) (Fin (k+1)) ℂ) (hQP : Q*P=1)

@@ -31,12 +31,21 @@ def toOperator : Matrix (Fin m) (Fin m) ℂ →ₗ[ℂ]
     ((Fin m → ℂ) →L[ℂ] (Fin m → ℂ)) :=
   (Matrix.toLin'.trans LinearMap.toContinuousLinearMap).toLinearMap
 
+/--
+@isnad1 id=continuo.0h1v.s10.1f60b9826bfb from=translated src=- shape=19e49feb vocab=0d8608e6
+-/
 theorem continuous_toOperator : Continuous (toOperator (m := m)) :=
   toOperator.continuous_of_finiteDimensional
 
+/--
+@isnad1 id=eq.0h2v.s10.2d7cb5547976 from=translated src=- shape=223a11c2 vocab=25374508
+-/
 @[simp] theorem norm_toOperator (M : Matrix (Fin m) (Fin m) ℂ) : ‖toOperator M‖ = ‖M‖ := by
   exact (Matrix.linfty_opNorm_eq_opNorm M).symm
 
+/--
+@isnad1 id=eq.0h2v.s9.4314562543d5 from=translated src=- shape=64c561c8 vocab=ce199208
+-/
 @[simp] theorem operatorMatrix_toOperator (M : Matrix (Fin m) (Fin m) ℂ) :
     operatorMatrix (toOperator M) = M := by
   exact LinearMap.toMatrix'_toLin' M
@@ -55,6 +64,9 @@ def entryMap (i j : Fin m) : Matrix (Fin m) (Fin m) ℂ →L[ℂ] ℂ :=
      map_add' := fun _ _ => rfl
      map_smul' := fun _ _ => rfl } : Matrix (Fin m) (Fin m) ℂ →ₗ[ℂ] ℂ).toContinuousLinearMap
 
+/--
+@isnad1 id=hasderiv.1h6v.s6.f81c83142d33 from=translated src=- shape=0d30d59f vocab=e467a57f
+-/
 theorem rayGauge_hasDerivAt (P : PowerSeries (Matrix (Fin m) (Fin m) ℂ))
     (N : ℕ) {r : ℝ} (hr : r ≠ 0) (i j : Fin m) :
     HasDerivAt (fun s => rayGauge P N s i j) (rayGaugeDerivative P N r i j) r := by
@@ -72,14 +84,18 @@ def truncatedCoefficient (B : PowerSeries (Matrix (Fin m) (Fin m) ℂ))
     (q N : ℕ) (r : ℝ) :=
   (r : ℂ) ^ (q - 1) • eval (PowerSeries.trunc N B) ((r : ℂ)⁻¹)
 
-/-- The rank weight and the inverse-variable derivative factor agree exactly.-/
+/-- The rank weight and the inverse-variable derivative factor agree exactly.
+@isnad1 id=eq.2h2v.s6.f384a1f843ab from=translated src=- shape=58b56b57 vocab=ef1c9fee
+-/
 theorem rank_chain_factor (q : ℕ) (hq : 0 < q) {z : ℂ} (hz : z ≠ 0) :
     z ^ (q - 1) * (z⁻¹) ^ (q + 1) = (z ^ 2)⁻¹ := by
   have he : q + 1 = (q - 1) + 2 := by omega
   rw [he, pow_add, ← mul_assoc, ← mul_pow, mul_inv_cancel₀ hz, one_pow, one_mul, inv_pow]
 
 /-- The actual transformed differential equation, with its true remainder.
-The sole pointwise condition is the established right inverse identity.-/
+The sole pointwise condition is the established right inverse identity.
+@isnad1 id=eq.3h7v.s8.18fa9d9d87d4 from=translated src=- shape=dc0b3382 vocab=267fd270
+-/
 theorem transformed_identity (a : ℂ → Matrix (Fin m) (Fin m) ℂ)
     (P B : PowerSeries (Matrix (Fin m) (Fin m) ℂ)) (q N : ℕ)
     (hq : 0 < q) {r : ℝ} (hr : r ≠ 0)
@@ -116,7 +132,9 @@ def tailOperator (a : ℂ → Matrix (Fin m) (Fin m) ℂ)
 realization. The two structural identifications are explicit: the rational ray
 coefficient must equal the rank-scaled analytic coefficient, and the finite
 transformed coefficient must equal the chosen diagonal phase derivative.
-Neither an approximate gauge nor any remainder estimate is assumed.-/
+Neither an approximate gauge nor any remainder estimate is assumed.
+@isnad1 id=ex.10h13v.s11.d6102bc48dd4 from=translated src=- shape=25bbe0af vocab=30ff0a53
+-/
 theorem exists_approximateRayGauge_of_formal_truncation
     (A₀ : Matrix (Fin m) (Fin m) (RatFunc ℂ)) (θ Rmin : ℝ)
     {a : ℂ → Matrix (Fin m) (Fin m) ℂ}

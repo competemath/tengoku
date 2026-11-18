@@ -32,6 +32,9 @@ structure Data {ι : Type*} [Fintype ι] [DecidableEq ι]
   equation : PowerSeries.map (coordinateEquiv P Q PQ QP).toRingHom A * gauge -
     gauge * next.series = -(PowerSeries.X^(rank+2) * WasowPowerSeries.derivative gauge)
 
+/--
+@isnad1 id=ex.1h3v.s7.c4b913bcfda1 from=translated src=- shape=cc85925c vocab=0bee9917
+-/
 theorem exists_normalization {ι : Type*} [Fintype ι] [DecidableEq ι]
     (A : Series ι) (rank : ℕ) (hN : IsNilpotent (PowerSeries.constantCoeff A)) :
     ∃ next : FormalState, Nonempty (Data A rank next) := by
@@ -51,7 +54,9 @@ theorem exists_normalization {ι : Type*} [Fintype ι] [DecidableEq ι]
   let next : FormalState := ⟨st, B, hB0.trans hD, hrows⟩
   exact ⟨next, ⟨⟨P, Q, hPQ, hQP, hJ, rfl, U, V, hU0, hUunit, hVU, hUV, heq⟩⟩⟩
 
-/-- Dimension equality follows from the actual rectangular coordinate inverses.-/
+/-- Dimension equality follows from the actual rectangular coordinate inverses.
+@isnad1 id=eq.0h5v.s6.cb468f5d87c9 from=translated src=- shape=c1249704 vocab=a43199be
+-/
 theorem data_dimension {ι : Type*} [Fintype ι] [DecidableEq ι]
     {A : Series ι} {rank : ℕ} {next : FormalState} (d : Data A rank next) :
     Fintype.card (Index next.shape.sizes) = Fintype.card ι :=

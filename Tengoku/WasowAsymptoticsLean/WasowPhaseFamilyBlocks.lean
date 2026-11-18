@@ -32,23 +32,35 @@ def blockMatrix {R : Type*} [Zero R] (M : ∀ a, Matrix (Fin (d a)) (Fin (d a)) 
     Matrix (Fin (∑ a, d a)) (Fin (∑ a, d a)) R :=
   (Matrix.blockDiagonal' M).submatrix (columns d).symm (columns d).symm
 
+/--
+@isnad1 id=eq.0h7v.s8.244f54d3e649 from=translated src=- shape=c31401f8 vocab=e821954b
+-/
 theorem blockMatrix_apply_same {R : Type*} [Zero R]
     (M : ∀ a, Matrix (Fin (d a)) (Fin (d a)) R) (a : Fin s) (i j : Fin (d a)) :
     blockMatrix d M (columns d ⟨a,i⟩) (columns d ⟨a,j⟩) = M a i j := by
   simp [blockMatrix]
 
+/--
+@isnad1 id=eq.1h8v.s8.961b430cc53e from=translated src=- shape=907559ca vocab=e821954b
+-/
 theorem blockMatrix_apply_ne {R : Type*} [Zero R]
     (M : ∀ a, Matrix (Fin (d a)) (Fin (d a)) R) (a b : Fin s)
     (h : a ≠ b) (i : Fin (d a)) (j : Fin (d b)) :
     blockMatrix d M (columns d ⟨a,i⟩) (columns d ⟨b,j⟩) = 0 := by
   simp [blockMatrix, Matrix.blockDiagonal'_apply_ne _ _ _ h]
 
+/--
+@isnad1 id=eq.0h5v.s8.292cf7e2327a from=translated src=- shape=a9b7e42e vocab=639ebfc3
+-/
 theorem blockMatrix_mul {R : Type*} [NonUnitalNonAssocSemiring R]
     (M N : ∀ a, Matrix (Fin (d a)) (Fin (d a)) R) :
     blockMatrix d (fun a => M a * N a) = blockMatrix d M * blockMatrix d N := by
   unfold blockMatrix
   rw [Matrix.blockDiagonal'_mul, Matrix.submatrix_mul_equiv]
 
+/--
+@isnad1 id=eq.0h5v.s8.bd9d8610cfd7 from=translated src=- shape=a9b7e42e vocab=50d2ce66
+-/
 theorem blockMatrix_sub {R : Type*} [AddGroup R]
     (M N : ∀ a, Matrix (Fin (d a)) (Fin (d a)) R) :
     blockMatrix d (fun a => M a - N a) = blockMatrix d M - blockMatrix d N := by
@@ -57,12 +69,18 @@ theorem blockMatrix_sub {R : Type*} [AddGroup R]
   rw [Matrix.blockDiagonal'_sub]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.8a6b80ea9198 from=translated src=- shape=3d46c37c vocab=dc5f1827
+-/
 theorem blockMatrix_one {R : Type*} [Zero R] [One R] :
     blockMatrix d (fun _ => (1 : Matrix _ _ R)) = 1 := by
   unfold blockMatrix
   change (Matrix.blockDiagonal' (1 : ∀ a, Matrix (Fin (d a)) (Fin (d a)) R)).submatrix _ _ = _
   rw [Matrix.blockDiagonal'_one, Matrix.submatrix_one_equiv]
 
+/--
+@isnad1 id=eq.0h4v.s9.3192b5b38709 from=translated src=- shape=43dca3f7 vocab=1dfd5804
+-/
 theorem blockMatrix_diagonal {R : Type*} [Zero R] (v : ∀ a, Fin (d a) → R) :
     blockMatrix d (fun a => Matrix.diagonal (v a)) =
       Matrix.diagonal (fun i => v ((columns d).symm i).1 ((columns d).symm i).2) := by
@@ -70,6 +88,9 @@ theorem blockMatrix_diagonal {R : Type*} [Zero R] (v : ∀ a, Fin (d a) → R) :
   rw [Matrix.blockDiagonal'_diagonal, Matrix.submatrix_diagonal_equiv]
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.cb4cd2e75889 from=translated src=- shape=4cbeec60 vocab=370e5547
+-/
 theorem blockMatrix_mulVec (M : ∀ a, Matrix (Fin (d a)) (Fin (d a)) ℂ)
     (x : Fin (∑ a, d a) → ℂ) (a : Fin s) (i : Fin (d a)) :
     (blockMatrix d M).mulVec x (columns d ⟨a,i⟩) =
@@ -84,6 +105,9 @@ theorem blockMatrix_mulVec (M : ∀ a, Matrix (Fin (d a)) (Fin (d a)) ℂ)
     intro j _
     rw [blockMatrix_apply_ne d M a b (Ne.symm hb), zero_mul]
 
+/--
+@isnad1 id=le.2h5v.s8.d3e65186e19d from=translated src=- shape=f9b8a068 vocab=542bff94
+-/
 theorem blockMatrix_bound (M : ∀ a, Matrix (Fin (d a)) (Fin (d a)) ℂ)
     (B : ℝ) (hB : 0 ≤ B)
     (hM : ∀ a x, ‖(M a).mulVec x‖ ≤ B * ‖x‖) (x : Fin (∑ a, d a) → ℂ) :
@@ -95,6 +119,9 @@ theorem blockMatrix_bound (M : ∀ a, Matrix (Fin (d a)) (Fin (d a)) ℂ)
   exact (norm_le_pi_norm _ i).trans ((hM a _).trans
     (mul_le_mul_of_nonneg_left (pi_norm_comp_le x (fun j => columns d ⟨a,j⟩)) hB))
 
+/--
+@isnad1 id=eq.0h5v.s6.c3c44db0fae8 from=translated src=- shape=a0045c55 vocab=4acf9eb3
+-/
 theorem coefficientOnRay_blockMatrix
     (A : ∀ a, Matrix (Fin (d a)) (Fin (d a)) (RatFunc ℂ)) (θ r : ℝ) :
     coefficientOnRay (blockMatrix d A) θ r = blockMatrix d (fun a => coefficientOnRay (A a) θ r) := by
@@ -106,6 +133,9 @@ theorem coefficientOnRay_blockMatrix
     simp only [coefficientOnRay, blockMatrix_apply_same]
   · simp only [coefficientOnRay, blockMatrix_apply_ne d _ a b hab, RatFunc.eval_zero, mul_zero]
 
+/--
+@isnad1 id=hasderiv.1h7v.s7.0492e73c31b7 from=translated src=- shape=c25d13f6 vocab=5ec5ae04
+-/
 theorem blockMatrix_hasDerivAt
     (M : ∀ a, ℝ → Matrix (Fin (d a)) (Fin (d a)) ℂ)
     (M' : ∀ a, Matrix (Fin (d a)) (Fin (d a)) ℂ) (r : ℝ)
@@ -120,7 +150,9 @@ theorem blockMatrix_hasDerivAt
   · simpa only [blockMatrix_apply_ne d _ a b hab] using hasDerivAt_const r (0 : ℂ)
 
 /-- Assemble actual witnesses from finitely many blocks on one common tail.
-The operator norm estimate uses restrictions of the same infinity-norm vector.-/
+The operator norm estimate uses restrictions of the same infinity-norm vector.
+@isnad1 id=nonempty.0h6v.s8.4dd918bde60e from=translated src=- shape=16494a06 vocab=7d6f740e
+-/
 theorem assemble_rayGauge
     (A : ∀ a, Matrix (Fin (d a)) (Fin (d a)) (RatFunc ℂ)) (θ : ℝ)
     (q : ∀ a, Fin (d a) → ℝ → ℂ) (W : ∀ a, RayGaugeWitness (A a) θ (q a)) :
@@ -208,7 +240,9 @@ theorem assemble_rayGauge
     rw [hh, blockMatrix_diagonal]
 
 /-- Different child denominators are converted to one fixed parent family.
-Both the family and the product denominator are independent of the angle.-/
+Both the family and the product denominator are independent of the angle.
+@isnad1 id=nonempty.2h6v.s8.bbd596c7d3db from=translated src=- shape=aa05709e vocab=3ccdaaa0
+-/
 theorem block_family_assembly
     (A : ∀ a, Matrix (Fin (d a)) (Fin (d a)) (RatFunc ℂ))
     (p : Fin s → ℕ) (hp : ∀ a, 0 < p a)

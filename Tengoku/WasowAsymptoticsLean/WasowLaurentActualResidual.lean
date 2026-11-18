@@ -26,6 +26,9 @@ def gaugeDerivative (a N : ℕ) (P : Series (ι := ι)) (z : ℂ) : Matrix ι ι
   z ^ (-(a : ℤ)) • eval (PowerSeries.trunc N P).derivative z +
     ((-(a : ℂ)) * z ^ (-(a : ℤ) - 1)) • eval (PowerSeries.trunc N P) z
 
+/--
+@isnad1 id=hasderiv.1h5v.s6.9d87cb358dcf from=translated src=- shape=effb8c51 vocab=82b04460
+-/
 theorem finiteGauge_hasDerivAt (a N : ℕ) (P : Series (ι := ι))
     {z : ℂ} (hz : z ≠ 0) : HasDerivAt (finiteGauge a N P) (gaugeDerivative a N P z) z := by
   apply hasDerivAt_pi.mpr
@@ -44,7 +47,9 @@ def rawDefect (a h N : ℕ) (c : ℂ → Matrix ι ι ℂ)
     deriv (finiteGauge a N P) z
 
 /-- Exact pole loss in the raw differential defect, including the derivative
-of the Laurent monomial. This is an identity, not an assumed error estimate.-/
+of the Laurent monomial. This is an identity, not an assumed error estimate.
+@isnad1 id=eq.2h8v.s7.cd8d6c7f4d6f from=translated src=- shape=6ff5aad6 vocab=03725671
+-/
 theorem rawDefect_eq (a h N : ℕ) (hh : 0 < h)
     (c : ℂ → Matrix ι ι ℂ) (P B : Series (ι := ι)) {z : ℂ} (hz : z ≠ 0) :
     rawDefect a h N c P B z = z ^ (-((a+h : ℕ) : ℤ)) •
@@ -76,7 +81,9 @@ theorem rawDefect_eq (a h N : ℕ) (hh : 0 < h)
   rw [h₄, neg_mul, neg_smul]
   abel
 
-/-- The cleared residual is continuous in an actual neighborhood of zero.-/
+/-- The cleared residual is continuous in an actual neighborhood of zero.
+@isnad1 id=continuo.1h8v.s6.b1dda3dc70c9 from=translated src=- shape=be1fe584 vocab=8aa5cc4c
+-/
 theorem clearedDefect_continuousAt (a h N : ℕ) {c : ℂ → Matrix ι ι ℂ}
     {z : ℂ} (hc : ContinuousAt c z) (P B : Series (ι := ι)) :
     ContinuousAt (WasowClearedResidual.actualDefect a h N c P B) z := by

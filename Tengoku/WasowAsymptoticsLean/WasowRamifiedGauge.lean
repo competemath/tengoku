@@ -35,19 +35,30 @@ def rootRadius (p : ℕ) (r : ℝ) : ℝ := r ^ (1 / (p : ℝ))
 def rootRadiusDerivative (p : ℕ) (r : ℝ) : ℝ :=
   (1 / (p : ℝ)) * r ^ (1 / (p : ℝ) - 1)
 
+/--
+@isnad1 id=lt.1h2v.s4.126f7f34499b from=translated src=- shape=696abc3b vocab=70f8b7b6
+-/
 theorem rootRadius_pos (p : ℕ) {r : ℝ} (hr : 0 < r) : 0 < rootRadius p r :=
   Real.rpow_pos_of_pos hr _
 
+/--
+@isnad1 id=eq.2h2v.s5.48cc5e73166e from=translated src=- shape=56a096fd vocab=5ab242a7
+-/
 theorem rootRadius_pow (p : ℕ) (hp : 0 < p) {r : ℝ} (hr : 0 ≤ r) :
     (rootRadius p r) ^ p = r := by
   simpa only [rootRadius, one_div] using Real.rpow_inv_natCast_pow hr hp.ne'
 
+/--
+@isnad1 id=hasderiv.1h2v.s5.78762628e764 from=translated src=- shape=3d6aca6b vocab=bf54c85a
+-/
 theorem rootRadius_hasDerivAt (p : ℕ) {r : ℝ} (hr : 0 < r) :
     HasDerivAt (rootRadius p) (rootRadiusDerivative p r) r :=
   Real.hasDerivAt_rpow_const (Or.inl hr.ne')
 
 /-- Differentiating the true positive-root identity gives the exact reciprocal
-chain factor without any asymptotic replacement.-/
+chain factor without any asymptotic replacement.
+@isnad1 id=eq.2h2v.s6.961e353027ad from=translated src=- shape=47f4ffc4 vocab=ff55a91d
+-/
 theorem rootRadius_chain_factor (p : ℕ) (hp : 0 < p) {r : ℝ} (hr : 0 < r) :
     rootRadiusDerivative p r * ((p : ℝ) * (rootRadius p r) ^ (p - 1)) = 1 := by
   have hh := (rootRadius_hasDerivAt p hr).pow p
@@ -57,7 +68,9 @@ theorem rootRadius_chain_factor (p : ℕ) (hp : 0 < p) {r : ℝ} (hr : 0 < r) :
   have hu := (hh.congr_of_eventuallyEq he.symm).unique (hasDerivAt_id r)
   simpa only [mul_comm, mul_left_comm, mul_assoc] using hu
 
-/-- The chosen complex direction has exactly the required p-th power.-/
+/-- The chosen complex direction has exactly the required p-th power.
+@isnad1 id=eq.1h2v.s6.511f59b5cf88 from=translated src=- shape=7e7393c2 vocab=d79da35c
+-/
 theorem direction_pow (p : ℕ) (hp : 0 < p) (θ : ℝ) :
     Complex.exp (((θ / p : ℝ) : ℂ) * Complex.I) ^ p =
       Complex.exp ((θ : ℂ) * Complex.I) := by
@@ -67,19 +80,25 @@ theorem direction_pow (p : ℕ) (hp : 0 < p) (θ : ℝ) :
   have hp0 : (p : ℂ) ≠ 0 := by exact_mod_cast hp.ne'
   field_simp
 
-/-- The ramified ray maps to the original ray as an actual complex equality.-/
+/-- The ramified ray maps to the original ray as an actual complex equality.
+@isnad1 id=eq.2h3v.s6.eada68739641 from=translated src=- shape=ef6ec8e5 vocab=686d91f7
+-/
 theorem ray_root_pow (p : ℕ) (hp : 0 < p) (θ : ℝ) {r : ℝ} (hr : 0 ≤ r) :
     ray (θ / p) (rootRadius p r) ^ p = ray θ r := by
   simp only [ray, mul_pow, ← Complex.ofReal_pow, rootRadius_pow p hp hr,
     direction_pow p hp θ]
 
-/-- Composition gives the actual Puiseux-polynomial phase of the original goal.-/
+/-- Composition gives the actual Puiseux-polynomial phase of the original goal.
+@isnad1 id=eq.1h4v.s6.ceed27e15eb4 from=translated src=- shape=e73e1710 vocab=1db7ce92
+-/
 theorem phase_root_comp (p : ℕ) (hp : 0 < p) (G : Polynomial ℂ) (θ r : ℝ) :
     phaseOnRay 1 G (θ / p) 0 (rootRadius p r) =
       phaseOnRay p G θ ⟨0, hp⟩ r := by
   simp [phaseOnRay, rootOnRay, rootRadius]
 
-/-- The reciprocal chain rule, including the complex ray direction.-/
+/-- The reciprocal chain rule, including the complex ray direction.
+@isnad1 id=eq.2h3v.s7.35d715543aca from=translated src=- shape=af18ab8b vocab=d6bb8ad4
+-/
 theorem ray_chain_factor (p : ℕ) (hp : 0 < p) (θ : ℝ) {r : ℝ} (hr : 0 < r) :
     (rootRadiusDerivative p r : ℂ) *
       (Complex.exp (((θ / p : ℝ) : ℂ) * Complex.I) *
@@ -102,7 +121,9 @@ theorem ray_chain_factor (p : ℕ) (hp : 0 < p) (θ : ℝ) {r : ℝ} (hr : 0 < r
     _ = _ := by rw [hc, hu, one_mul]
 
 /-- Rational evaluation of the actual ramified matrix, after multiplication
-by ds/dr, is exactly the original ray coefficient at genuine nonpoles.-/
+by ds/dr, is exactly the original ray coefficient at genuine nonpoles.
+@isnad1 id=eq.3h5v.s7.44fac1e9efb9 from=translated src=- shape=fb818535 vocab=674f32f2
+-/
 theorem coefficient_pullback {m : ℕ} (p : ℕ) (hp : 0 < p)
     (A : Matrix (Fin m) (Fin m) (RatFunc ℂ)) (θ : ℝ) {r : ℝ} (hr : 0 < r)
     (hpole : ∀ i j, (A i j).denom.eval (ray θ r) ≠ 0) :
@@ -126,7 +147,9 @@ theorem coefficient_pullback {m : ℕ} (p : ℕ) (hp : 0 < p)
           RatFunc.eval (RingHom.id ℂ) (ray θ r) (A i j) := by ring
     _ = _ := by rw [ray_chain_factor p hp θ hr]
 
-/-- The phase derivative transforms by the same actual real chain rule.-/
+/-- The phase derivative transforms by the same actual real chain rule.
+@isnad1 id=eq.2h4v.s7.f8a9398dce8e from=translated src=- shape=b94c7744 vocab=7a52a5c7
+-/
 theorem phase_derivative_pullback (p : ℕ) (hp : 0 < p) (G : Polynomial ℂ)
     (θ : ℝ) {r : ℝ} (hr : 0 < r) :
     deriv (phaseOnRay p G θ ⟨0, hp⟩) r =
@@ -140,14 +163,18 @@ theorem phase_derivative_pullback (p : ℕ) (hp : 0 < p) (G : Polynomial ℂ)
   rw [he] at hh
   simpa only [Complex.real_smul, smul_eq_mul] using hh.deriv
 
-/-- The two polynomial operator bounds change exponent by exactly `1/p`.-/
+/-- The two polynomial operator bounds change exponent by exactly `1/p`.
+@isnad1 id=eq.1h3v.s5.64f80b7b3d39 from=translated src=- shape=0cf55dfa vocab=09bb313c
+-/
 theorem rootRadius_rpow (p : ℕ) {r : ℝ} (hr : 0 ≤ r) (K : ℝ) :
     (rootRadius p r) ^ K = r ^ (K / p) := by
   rw [rootRadius, ← Real.rpow_mul hr]
   congr 1
   ring
 
-/-- A finite rational matrix has a genuine common pole-free tail on every ray.-/
+/-- A finite rational matrix has a genuine common pole-free tail on every ray.
+@isnad1 id=eventual.0h3v.s5.73f5e27df9d1 from=translated src=- shape=38573f7f vocab=7447b4ec
+-/
 theorem eventually_original_pole_free {m : ℕ}
     (A : Matrix (Fin m) (Fin m) (RatFunc ℂ)) (θ : ℝ) :
     ∀ᶠ r : ℝ in atTop, ∀ i j, (A i j).denom.eval (ray θ r) ≠ 0 := by
@@ -160,7 +187,9 @@ theorem eventually_original_pole_free {m : ℕ}
 /-- Descend an actual gauge of the ramified rational system to the original
 system. The zero branch is explicit and works at every original angle.
 All inverse identities, actual derivatives, nonpoles, and both polynomial
-operator bounds are proved for the descended gauge.-/
+operator bounds are proved for the descended gauge.
+@isnad1 id=nonempty.1h6v.s6.6d074406f507 from=translated src=- shape=4fe4670d vocab=4953fc95
+-/
 theorem descend_rayGauge {m : ℕ} (p : ℕ) (hp : 0 < p)
     (A : Matrix (Fin m) (Fin m) (RatFunc ℂ)) (G : Fin m → Polynomial ℂ) (θ : ℝ)
     (H : RayGaugeWitness (rationalCoefficient p hp A) (θ / p)
@@ -215,7 +244,9 @@ theorem descend_rayGauge {m : ℕ} (p : ℕ) (hp : 0 < p)
       split_ifs <;> simp
     exact hh.trans hd
 
-/-- The branch-existential form used by the original normal-form goal.-/
+/-- The branch-existential form used by the original normal-form goal.
+@isnad1 id=ex.1h6v.s6.9948c8495d55 from=translated src=- shape=5f125b30 vocab=70504851
+-/
 theorem exists_descended_branch {m : ℕ} (p : ℕ) (hp : 0 < p)
     (A : Matrix (Fin m) (Fin m) (RatFunc ℂ)) (G : Fin m → Polynomial ℂ) (θ : ℝ)
     (H : RayGaugeWitness (rationalCoefficient p hp A) (θ / p)

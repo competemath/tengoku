@@ -16,7 +16,9 @@ namespace WasowJordanFormal
 open WasowPowerSeries
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
-/-- The constant scalar matrix commutes with every matrix power series.-/
+/-- The constant scalar matrix commutes with every matrix power series.
+@isnad1 id=eq.0h3v.s8.fb4d7a5803de from=translated src=- shape=83d59915 vocab=8199919c
+-/
 theorem scalarSeries_commute (μ : ℂ) (P : PowerSeries (Matrix ι ι ℂ)) :
     PowerSeries.C (μ • (1 : Matrix ι ι ℂ)) * P =
       P * PowerSeries.C (μ • (1 : Matrix ι ι ℂ)) := by
@@ -26,7 +28,9 @@ theorem scalarSeries_commute (μ : ℂ) (P : PowerSeries (Matrix ι ι ℂ)) :
   simp
 
 /-- Scalar shifts do not alter the coefficient commutator, so the normalized
-multishift recurrence applies with an arbitrary scalar leading eigenvalue.-/
+multishift recurrence applies with an arbitrary scalar leading eigenvalue.
+@isnad1 id=ex.2h5v.s13.cde67f14ede1 from=translated src=- shape=874f5d43 vocab=270744aa
+-/
 theorem exists_scalar_multishift_powerSeries {σ : Type} [Fintype σ] [DecidableEq σ]
     (h : σ → ℕ) (μ : ℂ)
     (A : PowerSeries (Matrix (WasowMultiShiftReduction.Index h) (WasowMultiShiftReduction.Index h) ℂ))
@@ -58,7 +62,9 @@ theorem exists_scalar_multishift_powerSeries {σ : Type} [Fintype σ] [Decidable
       _ = _ := heq
 
 /-- For any formal system whose leading matrix has one eigenvalue, construct
-its Jordan coordinates and the normalized formal gauge of all orders.-/
+its Jordan coordinates and the normalized formal gauge of all orders.
+@isnad1 id=ex.2h4v.s13.67e849ac6dc3 from=translated src=- shape=43410a20 vocab=a5e0d50c
+-/
 theorem exists_single_eigenvalue_normalization (A : PowerSeries (Matrix ι ι ℂ)) (μ : ℂ)
     (hN : IsNilpotent (PowerSeries.constantCoeff A - μ • 1)) {q : ℕ} (hq : 0 < q) :
     ∃ (σ : Type) (_ : Fintype σ) (_ : DecidableEq σ) (h : σ → ℕ)

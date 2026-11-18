@@ -25,7 +25,9 @@ def regularCoefficient (B : PowerSeries (Matrix (Fin m) (Fin m) ℂ)) (N : ℕ)
     (r : ℝ) : Matrix (Fin m) (Fin m) ℂ :=
   (r : ℂ)⁻¹ • gauge B N ((r : ℂ)⁻¹)
 
-/-- Only the finite polynomial is evaluated. Its constant term is the residue.-/
+/-- Only the finite polynomial is evaluated. Its constant term is the residue.
+@isnad1 id=tendsto.1h3v.s7.0a6280e15ce7 from=translated src=- shape=5153fede vocab=75f1333e
+-/
 theorem truncation_inverse_tendsto
     (B : PowerSeries (Matrix (Fin m) (Fin m) ℂ)) {N : ℕ} (hN : 0 < N) :
     Tendsto (fun r : ℝ => gauge B N ((r : ℂ)⁻¹)) atTop
@@ -35,7 +37,9 @@ theorem truncation_inverse_tendsto
   change Tendsto (fun r : ℝ => gauge B N ((r : ℂ)⁻¹)) atTop (𝓝 (gauge B N 0)) at hh
   rwa [gauge_zero B hN] at hh
 
-/-- The full finite truncated coefficient is continuous away from the origin.-/
+/-- The full finite truncated coefficient is continuous away from the origin.
+@isnad1 id=continuo.0h3v.s5.eafed1b2b5d6 from=translated src=- shape=623a3fc6 vocab=3f5683e1
+-/
 theorem regularCoefficient_continuousOn
     (B : PowerSeries (Matrix (Fin m) (Fin m) ℂ)) (N : ℕ) :
     ContinuousOn (regularCoefficient B N) (Ici 1) := by
@@ -44,7 +48,9 @@ theorem regularCoefficient_continuousOn
       Complex.ofReal_ne_zero.mpr (ne_of_gt (zero_lt_one.trans_le hr)))
   exact hi.smul ((continuous_eval (PowerSeries.trunc N B)).comp_continuousOn hi)
 
-/-- The Fuchsian exponent bound is independent of the truncation order.-/
+/-- The Fuchsian exponent bound is independent of the truncation order.
+@isnad1 id=ex.1h3v.s8.d5ab8762194e from=translated src=- shape=1b10ac99 vocab=f49b2831
+-/
 theorem exists_regular_tail_bound
     (B : PowerSeries (Matrix (Fin m) (Fin m) ℂ)) {N : ℕ} (hN : 0 < N) :
     ∃ a : ℝ, 1 ≤ a ∧ ContinuousOn (regularCoefficient B N) (Ici a) ∧
@@ -67,7 +73,9 @@ theorem exists_regular_tail_bound
     _ = _ := by rw [div_eq_mul_inv, mul_comm]
 
 /-- A genuinely constructed fundamental matrix and true inverse for the
-entire finite regular truncation, including every nonconstant matrix term.-/
+entire finite regular truncation, including every nonconstant matrix term.
+@isnad1 id=ex.1h3v.s10.f56859a498e4 from=translated src=- shape=b6a379a7 vocab=6f729bd4
+-/
 theorem exists_truncated_fundamental
     (B : PowerSeries (Matrix (Fin m) (Fin m) ℂ)) {N : ℕ} (hN : 0 < N) :
     ∃ R C : ℝ, 1 ≤ R ∧ 0 < C ∧

@@ -18,6 +18,9 @@ open scoped Topology
 namespace WasowPhaseFamilyRamification
 open CRGNormalFormGoal WasowRamifiedGauge WasowRamification
 
+/--
+@isnad1 id=eq.3h4v.s6.0a5f347bbb48 from=translated src=- shape=2950300d vocab=224ea95b
+-/
 theorem rootOnRay_comp (p d : ℕ) (hp : 0 < p) (hd : 0 < d)
     (θ : ℝ) {r : ℝ} (hr : 0 ≤ r) :
     rootOnRay d (θ / p) ⟨0,hd⟩ (rootRadius p r) =
@@ -31,12 +34,18 @@ theorem rootOnRay_comp (p d : ℕ) (hp : 0 < p) (hd : 0 < d)
   simp only [rootOnRay, rootRadius, Nat.cast_zero, mul_zero, add_zero,
     ← Real.rpow_mul hr, he, ha]
 
+/--
+@isnad1 id=eq.3h5v.s6.a4596bfcf2a5 from=translated src=- shape=2a408b6f vocab=96e8d692
+-/
 theorem phaseOnRay_comp (p d : ℕ) (hp : 0 < p) (hd : 0 < d)
     (F : Polynomial ℂ) (θ : ℝ) {r : ℝ} (hr : 0 ≤ r) :
     phaseOnRay d F (θ / p) ⟨0,hd⟩ (rootRadius p r) =
       phaseOnRay (p*d) F θ ⟨0,Nat.mul_pos hp hd⟩ r := by
   simp only [phaseOnRay, rootOnRay_comp p d hp hd θ hr]
 
+/--
+@isnad1 id=eq.3h5v.s7.f2da9e41e077 from=translated src=- shape=602c4a92 vocab=fa10d108
+-/
 theorem phase_derivative_comp (p d : ℕ) (hp : 0 < p) (hd : 0 < d)
     (F : Polynomial ℂ) (θ : ℝ) {r : ℝ} (hr : 0 < r) :
     deriv (phaseOnRay (p*d) F θ ⟨0,Nat.mul_pos hp hd⟩) r =
@@ -52,7 +61,9 @@ theorem phase_derivative_comp (p d : ℕ) (hp : 0 < p) (hd : 0 < d)
   simpa only [Complex.real_smul, smul_eq_mul] using hh'.deriv
 
 /-- Genuine gauge descent, allowing a nontrivial denominator in the child.
-The original rational coefficient and its nonpoles are evaluated exactly.-/
+The original rational coefficient and its nonpoles are evaluated exactly.
+@isnad1 id=nonempty.2h7v.s7.982915063111 from=translated src=- shape=53966248 vocab=0180ff9d
+-/
 theorem descend_rayGauge {m : ℕ} (p d : ℕ) (hp : 0 < p) (hd : 0 < d)
     (A : Matrix (Fin m) (Fin m) (RatFunc ℂ)) (F : Fin m → Polynomial ℂ) (θ : ℝ)
     (H : RayGaugeWitness (rationalCoefficient p hp A) (θ / p)
@@ -109,7 +120,9 @@ theorem descend_rayGauge {m : ℕ} (p d : ℕ) (hp : 0 < p) (hd : 0 < d)
     exact hh.trans hD
 
 /-- The child denominator and its phase polynomials are chosen before the
-angle; the same is therefore true of their product denominator in the parent.-/
+angle; the same is therefore true of their product denominator in the parent.
+@isnad1 id=nonempty.3h6v.s6.bd9378c93ad4 from=translated src=- shape=bd78069b vocab=0ee74365
+-/
 theorem ramification_family_pullback {m : ℕ} (p d : ℕ) (hp : 0 < p) (hd : 0 < d)
     (A : Matrix (Fin m) (Fin m) (RatFunc ℂ)) (F : Fin m → Polynomial ℂ)
     (h : ∀ θ : ℝ, Nonempty (RayGaugeWitness (rationalCoefficient p hp A) θ

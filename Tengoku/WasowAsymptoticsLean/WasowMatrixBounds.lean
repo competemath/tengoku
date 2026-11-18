@@ -26,6 +26,9 @@ open scoped Matrix.Norms.Elementwise
 
 namespace WasowMatrixBounds
 
+/--
+@isnad1 id=le.0h3v.s7.fcbd2559b2f8 from=translated src=- shape=61bcd7cc vocab=e1fbbae9
+-/
 theorem mulVec_norm_le {m : ℕ} (M : Matrix (Fin m) (Fin m) ℂ) (x : Fin m → ℂ) :
     ‖M.mulVec x‖ ≤ (m : ℝ) * ‖M‖ * ‖x‖ := by
   apply (pi_norm_le_iff_of_nonneg (by positivity)).mpr
@@ -42,6 +45,9 @@ theorem mulVec_norm_le {m : ℕ} (M : Matrix (Fin m) (Fin m) ℂ) (x : Fin m →
         (norm_le_pi_norm x j) (norm_nonneg _) (norm_nonneg _)
     _ = (m : ℝ) * ‖M‖ * ‖x‖ := by simp [mul_assoc]
 
+/--
+@isnad1 id=tendsto.1h4v.s7.7c8f0330b541 from=translated src=- shape=df05cd55 vocab=2d3af796
+-/
 theorem tendsto_inv_of_tendsto_one {α : Type*} {m : ℕ} {l : Filter α}
     {U : α → Matrix (Fin m) (Fin m) ℂ}
     (hU : Tendsto U l (𝓝 1)) :
@@ -52,6 +58,9 @@ theorem tendsto_inv_of_tendsto_one {α : Type*} {m : ℕ} {l : Filter α}
       exact continuousAt_inv₀ one_ne_zero)
   simpa [Function.comp_def] using hinv.tendsto.comp hU
 
+/--
+@isnad1 id=eventual.1h4v.s6.a116d12f6c36 from=translated src=- shape=8de7b827 vocab=44f0d5d8
+-/
 theorem eventually_det_ne_zero {α : Type*} {m : ℕ} {l : Filter α}
     {U : α → Matrix (Fin m) (Fin m) ℂ}
     (hU : Tendsto U l (𝓝 1)) :
@@ -60,6 +69,9 @@ theorem eventually_det_ne_zero {α : Type*} {m : ℕ} {l : Filter α}
     simpa [Function.comp_def] using continuous_id.matrix_det.continuousAt.tendsto.comp hU
   exact hdet.eventually_ne one_ne_zero
 
+/--
+@isnad1 id=eventual.1h4v.s7.15a5bb240c60 from=translated src=- shape=463fa81f vocab=069571fe
+-/
 theorem eventually_inverse_identities {α : Type*} {m : ℕ} {l : Filter α}
     {U : α → Matrix (Fin m) (Fin m) ℂ}
     (hU : Tendsto U l (𝓝 1)) :
@@ -68,7 +80,9 @@ theorem eventually_inverse_identities {α : Type*} {m : ℕ} {l : Filter α}
   exact ⟨Matrix.nonsing_inv_mul _ (isUnit_iff_ne_zero.mpr hr),
     Matrix.mul_nonsing_inv _ (isUnit_iff_ne_zero.mpr hr)⟩
 
-/-- A single constant controls both operators on one common tail.-/
+/-- A single constant controls both operators on one common tail.
+@isnad1 id=ex.1h4v.s8.7cc28f557513 from=translated src=- shape=254755ff vocab=ddfbde3c
+-/
 theorem eventually_uniform_mulVec_bounds {α : Type*} {m : ℕ} {l : Filter α}
     {U : α → Matrix (Fin m) (Fin m) ℂ}
     (hU : Tendsto U l (𝓝 1)) :

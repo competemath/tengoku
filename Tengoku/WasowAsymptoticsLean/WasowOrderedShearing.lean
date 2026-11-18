@@ -33,11 +33,17 @@ variable {s : ℕ}
 
 def flatten (h : Fin s → ℕ) : Index h ≃ Fin (∑ a, (h a+1)) := finSigmaFinEquiv (m := s) (n := fun a => h a+1)
 
+/--
+@isnad1 id=eq.0h4v.s8.5a66f3e0fcc4 from=translated src=- shape=55726f6b vocab=f595563b
+-/
 theorem flatten_val (h : Fin s → ℕ) (a : Fin s) (i : Fin (h a+1)) :
     (flatten h ⟨a,i⟩).val =
       (∑ b : Fin a.val, (h (Fin.castLE a.isLt.le b)+1)) + i.val :=
   finSigmaFinEquiv_apply (n := fun a => h a+1) ⟨a,i⟩
 
+/--
+@isnad1 id=le.2h4v.s6.e0bfa7b06d20 from=translated src=- shape=cf6610d3 vocab=b2608c40
+-/
 theorem prefix_sum_le {k l : ℕ} (hkl : k≤l) (hls : l≤s) (h : Fin s → ℕ) :
     (∑ a : Fin k, h (Fin.castLE (hkl.trans hls) a)) ≤
       ∑ a : Fin l, h (Fin.castLE hls a) := by
@@ -50,6 +56,9 @@ theorem prefix_sum_le {k l : ℕ} (hkl : k≤l) (hls : l≤s) (h : Fin s → ℕ
   rw [hh]
   exact Finset.sum_le_sum_of_subset (Finset.subset_univ _)
 
+/--
+@isnad1 id=lt.1h6v.s9.c7bb4aac9c9e from=translated src=- shape=29c646ab vocab=34488c36
+-/
 theorem flatten_block_lt (h : Fin s → ℕ) (a b : Fin s) (hab : a<b)
     (i : Fin (h a+1)) (j : Fin (h b+1)) : flatten h ⟨a,i⟩ < flatten h ⟨b,j⟩ := by
   have hprefix := prefix_sum_le (show a.val+1≤b.val by omega) b.isLt.le
@@ -78,11 +87,17 @@ def shearedLeading (h : Fin s → ℕ)
 def flatLastRows (h : Fin s → ℕ) : Set (Fin (∑ a, (h a+1))) :=
   {i | ((flatten h).symm i).2.val = h ((flatten h).symm i).1}
 
+/--
+@isnad1 id=eq.0h6v.s8.0064a953d512 from=translated src=- shape=0652c11a vocab=afe49a66
+-/
 theorem flatCoefficients_apply (h : Fin s → ℕ)
     (A : ℕ → Matrix (Index h) (Index h) ℂ) (k : ℕ) (i j : Index h) :
     flatCoefficients h A k (flatten h i) (flatten h j)=A k i j := by
   simp [flatCoefficients,Matrix.submatrix]
 
+/--
+@isnad1 id=eq.1h4v.s8.fbef629bca0e from=translated src=- shape=e65854d7 vocab=82882a7c
+-/
 theorem jordan_nonzero_flat_adjacent (h : Fin s → ℕ) (i j : Index h)
     (hne : jordanShift h i j ≠ 0) :
     (flatten h j).val = (flatten h i).val+1 := by
@@ -97,6 +112,9 @@ theorem jordan_nonzero_flat_adjacent (h : Fin s → ℕ) (i j : Index h)
     omega
   · exact False.elim (hne (Matrix.blockDiagonal'_apply_ne _ _ _ hab))
 
+/--
+@isnad1 id=eq.2h5v.s7.a432a2269581 from=translated src=- shape=b9b38bcc vocab=dae2ece9
+-/
 theorem flat_initial_shape (h : Fin s → ℕ)
     (A : ℕ → Matrix (Index h) (Index h) ℂ) (hA : A 0=jordanShift h) :
     ∀ i j, flatCoefficients h A 0 i j≠0 → j.val=i.val+1 := by
@@ -105,6 +123,9 @@ theorem flat_initial_shape (h : Fin s → ℕ)
     (by simpa only [flatCoefficients,Matrix.submatrix_apply,hA] using hne)
   simpa using hh
 
+/--
+@isnad1 id=eq.3h6v.s8.ca747a144a47 from=translated src=- shape=41640f7c vocab=9dea72b7
+-/
 theorem flat_normalized_rows (h : Fin s → ℕ)
     (A : ℕ → Matrix (Index h) (Index h) ℂ)
     (hrows : ∀ k, 0<k → ∀ a (i : Fin (h a+1)) j, i.val<h a → A k ⟨a,i⟩ j=0) :
@@ -117,7 +138,9 @@ theorem flat_normalized_rows (h : Fin s → ℕ)
   exact hrows k hk ((flatten h).symm i).1 ((flatten h).symm i).2
     ((flatten h).symm j) hil
 
-/-- The zero-weight entries retain exactly the original global shift rows.-/
+/-- The zero-weight entries retain exactly the original global shift rows.
+@isnad1 id=lastrowf.3h4v.s7.d6b33930507c from=translated src=- shape=9376b7f3 vocab=700cdd35
+-/
 theorem shearedLeading_lastRowForm (h : Fin s → ℕ)
     (A : ℕ → Matrix (Index h) (Index h) ℂ) (hA : A 0=jordanShift h)
     (hrows : ∀ k, 0<k → ∀ a (i : Fin (h a+1)) j, i.val<h a → A k ⟨a,i⟩ j=0)
@@ -137,7 +160,9 @@ theorem shearedLeading_lastRowForm (h : Fin s → ℕ)
   exact WasowPencilDescent.jordan_lastRowForm h a i j
 
 /-- Later blocks have larger actual shearing weights, so every upper
-off-diagonal block vanishes in the new leading matrix.-/
+off-diagonal block vanishes in the new leading matrix.
+@isnad1 id=lowerblo.2h4v.s6.6c30b802d37a from=translated src=- shape=8006c3fe vocab=3fbd8a76
+-/
 theorem shearedLeading_lowerBlocks (h : Fin s → ℕ)
     (A : ℕ → Matrix (Index h) (Index h) ℂ) (hA : A 0=jordanShift h)
     {σ : ℚ} (hσ : 0<σ) : WasowPencilDescent.LowerBlocks h (shearedLeading h A σ) := by
@@ -148,7 +173,9 @@ theorem shearedLeading_lowerBlocks (h : Fin s → ℕ)
   exact Matrix.blockDiagonal'_apply_ne _ _ _ (ne_of_lt hab)
 
 /-- Every single-eigenvalue shearing step has weak mass decrease, including
-integer slopes. The matrix shape is proved from the input coefficient sequence.-/
+integer slopes. The matrix shape is proved from the input coefficient sequence.
+@isnad1 id=le.4h5v.s9.9aaf30503a15 from=translated src=- shape=a2cac3d3 vocab=f8790632
+-/
 theorem shearedLeading_single_eigen_mass_le (h : Fin s → ℕ)
     (A : ℕ → Matrix (Index h) (Index h) ℂ) (hA : A 0=jordanShift h)
     (hrows : ∀ k, 0<k → ∀ a (i : Fin (h a+1)) j, i.val<h a → A k ⟨a,i⟩ j=0)
@@ -162,7 +189,9 @@ theorem shearedLeading_single_eigen_mass_le (h : Fin s → ℕ)
   exact shearedLeading_lowerBlocks h A hA hσ u.1 v.1 huv u.2 v.2
 
 /-- In the fractional single-eigenvalue branch, actual feedback cannot
-stay inside a diagonal block: nilpotence forces every such block to be a shift.-/
+stay inside a diagonal block: nilpotence forces every such block to be a shift.
+@isnad1 id=and.6h5v.s9.cfa437151158 from=translated src=- shape=80401d7c vocab=53446404
+-/
 theorem fractional_single_eigen_feedback (h : Fin s → ℕ)
     (A : ℕ → Matrix (Index h) (Index h) ℂ) (hA : A 0=jordanShift h)
     (hrows : ∀ k, 0<k → ∀ a (i : Fin (h a+1)) j, i.val<h a → A k ⟨a,i⟩ j=0)
@@ -223,7 +252,9 @@ theorem fractional_single_eigen_feedback (h : Fin s → ℕ)
   exact hentry hz
 
 /-- Strict decrease of the original full pencil for the actual fractional
-single-eigenvalue leading matrix selected by shearing.-/
+single-eigenvalue leading matrix selected by shearing.
+@isnad1 id=lt.7h5v.s9.6d42cc6b3f39 from=translated src=- shape=e7000f36 vocab=3fcbfd3f
+-/
 theorem fractional_single_eigen_strict_drop (h : Fin s → ℕ) (hh : Monotone h)
     (A : ℕ → Matrix (Index h) (Index h) ℂ) (hA : A 0=jordanShift h)
     (hrows : ∀ k, 0<k → ∀ a (i : Fin (h a+1)) j, i.val<h a → A k ⟨a,i⟩ j=0)
@@ -238,7 +269,9 @@ theorem fractional_single_eigen_strict_drop (h : Fin s → ℕ) (hh : Monotone h
     (shearedLeading_lowerBlocks h A hA hσ) hd hfb
 
 /-- Slope selection and the actual ordered-block matrix together supply
-the strict branch; no invariant-decrease hypothesis is accepted by this theorem.-/
+the strict branch; no invariant-decrease hypothesis is accepted by this theorem.
+@isnad1 id=ex.3h4v.s9.5e5366b36da4 from=translated src=- shape=22d90114 vocab=adefb857
+-/
 theorem exists_slope_with_pencil_descent (h : Fin s → ℕ) (hh : Monotone h)
     (A : ℕ → Matrix (Index h) (Index h) ℂ) (hA : A 0=jordanShift h)
     (hrows : ∀ k, 0<k → ∀ a (i : Fin (h a+1)) j, i.val<h a → A k ⟨a,i⟩ j=0)

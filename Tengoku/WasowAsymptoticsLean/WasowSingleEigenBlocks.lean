@@ -31,6 +31,9 @@ def LowerBlocks {h : σ → ℕ} (C : Matrix (Index h) (Index h) ℂ) : Prop :=
   C.BlockTriangular (fun p => OrderDual.toDual p.1)
 
 omit [DecidableEq σ] in
+/--
+@isnad1 id=eq.2h5v.s8.92eac343412c from=translated src=- shape=859f83c3 vocab=44d01472
+-/
 theorem diagonalBlock_mul {h : σ → ℕ}
     (C D : Matrix (Index h) (Index h) ℂ) (hC : LowerBlocks C) (hD : LowerBlocks D)
     (a : σ) : block (C*D) a a = block C a a * block D a a := by
@@ -44,6 +47,9 @@ theorem diagonalBlock_mul {h : σ → ℕ}
   · rw [hD (show OrderDual.toDual a < OrderDual.toDual b from hb),mul_zero]
   · rw [hC (show OrderDual.toDual b < OrderDual.toDual a from hb),zero_mul]
 
+/--
+@isnad1 id=eq.1h5v.s8.0d1aebd5532a from=translated src=- shape=271fd596 vocab=b64e75d7
+-/
 theorem diagonalBlock_pow {h : σ → ℕ}
     (C : Matrix (Index h) (Index h) ℂ) (hC : LowerBlocks C) (a : σ) (k : ℕ) :
     block (C^k) a a = (block C a a)^k := by
@@ -52,6 +58,9 @@ theorem diagonalBlock_pow {h : σ → ℕ}
   | succ k ih =>
     rw [pow_succ,diagonalBlock_mul _ _ (hC.pow k) hC,ih,pow_succ]
 
+/--
+@isnad1 id=isnilpot.2h4v.s8.19a37ac33605 from=translated src=- shape=b49eff6d vocab=d8c6f4fe
+-/
 theorem diagonalBlock_nilpotent {h : σ → ℕ}
     (C : Matrix (Index h) (Index h) ℂ) (hC : LowerBlocks C)
     (hN : IsNilpotent C) (a : σ) : IsNilpotent (block C a a) := by
@@ -61,6 +70,9 @@ theorem diagonalBlock_nilpotent {h : σ → ℕ}
   rfl
 
 omit [Fintype σ] in
+/--
+@isnad1 id=lowerblo.1h4v.s7.826c6e1238d9 from=translated src=- shape=78eebc3a vocab=9104a192
+-/
 theorem lowerBlocks_sub_scalar {h : σ → ℕ}
     (C : Matrix (Index h) (Index h) ℂ) (hC : LowerBlocks C) (α : ℂ) :
     LowerBlocks (C-α • 1) := by
@@ -70,6 +82,9 @@ theorem lowerBlocks_sub_scalar {h : σ → ℕ}
     ite_eq_right hne,smul_zero,sub_zero]
 
 omit [Fintype σ] [LinearOrder σ] in
+/--
+@isnad1 id=eq.0h5v.s9.062b949f4cc4 from=translated src=- shape=fe6e39af vocab=478920ed
+-/
 theorem diagonalBlock_sub_scalar {h : σ → ℕ}
     (C : Matrix (Index h) (Index h) ℂ) (α : ℂ) (a : σ) :
     block (C-α • 1) a a = block C a a - α • 1 := by
@@ -77,6 +92,9 @@ theorem diagonalBlock_sub_scalar {h : σ → ℕ}
   simp [block,Matrix.one_apply]
 
 omit [Fintype σ] [LinearOrder σ] in
+/--
+@isnad1 id=eq.1h6v.s7.211978f1da54 from=translated src=- shape=d342f88e vocab=478920ed
+-/
 theorem offDiagonalBlock_sub_scalar {h : σ → ℕ}
     (C : Matrix (Index h) (Index h) ℂ) (α : ℂ) (a b : σ) (hab : a≠b) :
     block (C-α • 1) a b = block C a b := by
@@ -85,6 +103,9 @@ theorem offDiagonalBlock_sub_scalar {h : σ → ℕ}
   simp [block,he]
 
 omit [Fintype σ] [LinearOrder σ] in
+/--
+@isnad1 id=eq.2h6v.s7.e3842a9170f0 from=translated src=- shape=c4cce1d9 vocab=d6305f04
+-/
 theorem lastRowForm_diagonal_rows {h : σ → ℕ}
     (C : Matrix (Index h) (Index h) ℂ) (hC : LastRowForm h C) (a : σ) :
     ∀ i j, i.val < h a → block C a a i j = if j.val=i.val+1 then 1 else 0 := by
@@ -94,6 +115,9 @@ theorem lastRowForm_diagonal_rows {h : σ → ℕ}
   simpa [Fin.ext_iff] using hh
 
 omit [Fintype σ] [LinearOrder σ] in
+/--
+@isnad1 id=eq.3h7v.s6.569093b5ff43 from=translated src=- shape=1694efd1 vocab=7c1d2692
+-/
 theorem lastRowForm_offDiagonal_rows {h : σ → ℕ}
     (C : Matrix (Index h) (Index h) ℂ) (hC : LastRowForm h C)
     (a b : σ) (hab : a≠b) : ∀ i j, i.val < h a → block C a b i j=0 := by
@@ -107,7 +131,9 @@ theorem lastRowForm_offDiagonal_rows {h : σ → ℕ}
 
 omit [Fintype σ] [LinearOrder σ] in
 /-- The block conclusions give exactly the input format of the polynomial
-pencil reduction, with no additional row-normalization premise.-/
+pencil reduction, with no additional row-normalization premise.
+@isnad1 id=lastrowf.2h3v.s7.dbd1ab123838 from=translated src=- shape=8a7cf6aa vocab=38cceded
+-/
 theorem lastRowForm_of_blocks {h : σ → ℕ}
     (T : Matrix (Index h) (Index h) ℂ)
     (hdiag : ∀ a, block T a a=WasowShiftReduction.shift (h a))
@@ -126,7 +152,9 @@ theorem lastRowForm_of_blocks {h : σ → ℕ}
     exact hoff a b hab i.castSucc j i.isLt
 
 /-- A single actual similarity simultaneously restores every diagonal
-shift block and preserves every nonzero off-diagonal last-row block.-/
+shift block and preserves every nonzero off-diagonal last-row block.
+@isnad1 id=ex.3h4v.s10.373a1e5e5d00 from=translated src=- shape=cf2e9dcf vocab=1e52168f
+-/
 theorem exists_shift_diagonal_similarity {h : σ → ℕ}
     (C : Matrix (Index h) (Index h) ℂ) (α : ℂ)
     (hrows : LastRowForm h C) (hlower : LowerBlocks C)

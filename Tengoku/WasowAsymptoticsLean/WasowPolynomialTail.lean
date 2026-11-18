@@ -37,6 +37,9 @@ def conjugatedRemainder (T S : ℝ → Matrix (Fin m) (Fin m) ℂ)
     (P B : PowerSeries (Matrix (Fin m) (Fin m) ℂ)) (q N : ℕ) (r : ℝ) :=
   S r * remainder a P B q N r * T r
 
+/--
+@isnad1 id=le.1h8v.s8.b59406f7e6ff from=translated src=- shape=9f337883 vocab=51e5350d
+-/
 theorem conjugation_norm_bound (T S : ℝ → Matrix (Fin m) (Fin m) ℂ)
     (L d : ℕ) (h : Control T S L) {r : ℝ} (hr : h.R ≤ r)
     (M : Matrix (Fin m) (Fin m) ℂ) :
@@ -56,7 +59,9 @@ theorem conjugation_norm_bound (T S : ℝ → Matrix (Fin m) (Fin m) ℂ)
       ring
 
 /-- A full analytic-to-formal coefficient match produces an actual inverse
-square majorant after both polynomially bounded factors.-/
+square majorant after both polynomially bounded factors.
+@isnad1 id=ex.6h12v.s10.91445b02edf5 from=translated src=- shape=a901b407 vocab=d430687c
+-/
 theorem conjugated_remainder_control
     (T S : ℝ → Matrix (Fin m) (Fin m) ℂ) (L : ℕ) (h : Control T S L)
     {a : ℂ → Matrix (Fin m) (Fin m) ℂ}
@@ -92,7 +97,9 @@ theorem conjugated_remainder_control
         (hb r (hR₁'.trans hr)) (sq_nonneg _)
       _ = _ := by ring
 
-/-- Arbitrarily small true conjugated tails follow beyond any chosen radius.-/
+/-- Arbitrarily small true conjugated tails follow beyond any chosen radius.
+@isnad1 id=ex.7h14v.s10.c1ed209624eb from=translated src=- shape=eb001569 vocab=9200cd26
+-/
 theorem exists_small_conjugated_tail
     (T S : ℝ → Matrix (Fin m) (Fin m) ℂ) (L : ℕ) (h : Control T S L)
     {a : ℂ → Matrix (Fin m) (Fin m) ℂ}

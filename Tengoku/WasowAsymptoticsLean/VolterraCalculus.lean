@@ -17,7 +17,9 @@ open Filter MeasureTheory Set
 open scoped Topology
 namespace VolterraCalculus
 
-/-- The derivative of an actual improper tail integral is minus its integrand.-/
+/-- The derivative of an actual improper tail integral is minus its integrand.
+@isnad1 id=hasderiv.3h3v.s7.a32a11268511 from=translated src=- shape=3531f9e3 vocab=c62652e8
+-/
 theorem tail_hasDerivAt (h : ℝ → ℂ) (a r : ℝ) (hcont : Continuous h)
     (hL1 : IntegrableOn h (Ici a)) (har : a < r) :
     HasDerivAt (fun t => ∫ s in Ici t, h s) (-h r) r := by
@@ -30,7 +32,9 @@ theorem tail_hasDerivAt (h : ℝ → ℂ) (a r : ℝ) (hcont : Continuous h)
   have hid := intervalIntegral.integral_Ici_sub_Ici' hL1 (hL1.mono_set (Ici_subset_Ici.mpr ht.le))
   exact (sub_eq_iff_eq_add.mp hid).symm ▸ by abel
 
-/-- Forward variation of constants has the required scalar differential equation.-/
+/-- Forward variation of constants has the required scalar differential equation.
+@isnad1 id=hasderiv.2h5v.s8.c77bbc52f319 from=translated src=- shape=032b2366 vocab=231c60dd
+-/
 theorem forward_hasDerivAt (Δ h : ℝ → ℂ) (a r : ℝ) (d : ℂ)
     (hΔ : HasDerivAt Δ d r)
     (hc : Continuous (fun s => Complex.exp (-Δ s) * h s)) :
@@ -44,7 +48,9 @@ theorem forward_hasDerivAt (Δ h : ℝ → ℂ) (a r : ℝ) (d : ℂ)
   | (simp only [Complex.exp_neg, ← mul_assoc, mul_inv_cancel₀ (Complex.exp_ne_zero _), one_mul]; ring)
 
 /-- Backward variation of constants has the same scalar differential equation.
-The L1 hypothesis is on the weighted integrand of the actual improper integral.-/
+The L1 hypothesis is on the weighted integrand of the actual improper integral.
+@isnad1 id=hasderiv.4h5v.s8.a3f4b49b6ea5 from=translated src=- shape=c25f2279 vocab=eb0df1b4
+-/
 theorem backward_hasDerivAt (Δ h : ℝ → ℂ) (a r : ℝ) (d : ℂ)
     (hΔ : HasDerivAt Δ d r) (har : a < r)
     (hc : Continuous (fun s => Complex.exp (-Δ s) * h s))

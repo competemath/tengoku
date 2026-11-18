@@ -35,7 +35,9 @@ def regularTailOperator (T S : ℝ → Matrix (Fin m) (Fin m) ℂ)
 
 /-- The actual approximate gauge with its genuine inverse, derivative,
 polynomial bounds, exact residual identity, and arbitrarily small operator tail.
-The explicit canonical-part identity includes the entire finite truncation.-/
+The explicit canonical-part identity includes the entire finite truncation.
+@isnad1 id=ex.11h18v.s11.90c433eadeea from=translated src=- shape=30065920 vocab=841b65b8
+-/
 theorem exists_approximateRayGauge_of_fuchsian_formal_truncation
     (A₀ : Matrix (Fin m) (Fin m) (RatFunc ℂ)) (θ Rmin : ℝ)
     (J T S : ℝ → Matrix (Fin m) (Fin m) ℂ) (L : ℕ) (g : RegularGauge J T S L)
@@ -143,7 +145,9 @@ theorem exists_approximateRayGauge_of_fuchsian_formal_truncation
     exact hh.symm ▸ hsmall
 
 /-- Exact realization with the full variable regular coefficient retained.
-The truncation order pays for both actual fundamental matrix bounds.-/
+The truncation order pays for both actual fundamental matrix bounds.
+@isnad1 id=nonempty.11h19v.s10.b76fa11e2509 from=translated src=- shape=2b9c6e8a vocab=0f58fb72
+-/
 theorem exists_exact_rayGauge_of_fuchsian_formal_truncation
     (A₀ : Matrix (Fin m) (Fin m) (RatFunc ℂ)) (θ Rmin : ℝ)
     (J T S : ℝ → Matrix (Fin m) (Fin m) ℂ) (L : ℕ) (g : RegularGauge J T S L)

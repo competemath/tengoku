@@ -17,7 +17,9 @@ open WasowFormalRecurrence
 
 /-- Any actual linear coefficient solver lifts to all formal orders. The
 normalization predicates apply to positive orders; the constant transformed
-coefficient remains `A 0` and need not satisfy either predicate.-/
+coefficient remains `A 0` and need not satisfy either predicate.
+@isnad1 id=ex.2h5v.s8.8067577fca3c from=translated src=- shape=7bc7d66a vocab=335b5347
+-/
 theorem exists_formal_reduction_of_step {R : Type*} [Ring R] [Algebra ℂ R]
     (A : ℕ → R) {q : ℕ} (hq : 0 < q) (pNorm bNorm : R → Prop)
     (hstep : ∀ H : R, ∃ p b : R,

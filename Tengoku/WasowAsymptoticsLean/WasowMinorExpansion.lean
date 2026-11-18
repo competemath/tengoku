@@ -16,7 +16,9 @@ open Matrix Polynomial
 open scoped BigOperators
 namespace WasowMinorExpansion
 
-/-- Exact multilinear expansion of a rectangular matrix product determinant.-/
+/-- Exact multilinear expansion of a rectangular matrix product determinant.
+@isnad1 id=eq.0h5v.s7.e78777193eb7 from=translated src=- shape=b61a1651 vocab=b1bd5481
+-/
 theorem det_rectangular_mul {R ι κ : Type*} [CommRing R]
     [Fintype ι] [Fintype κ] [DecidableEq κ]
     (A : Matrix κ ι R) (B : Matrix ι κ R) :
@@ -34,7 +36,9 @@ theorem det_rectangular_mul {R ι κ : Type*} [CommRing R]
   exact d.map_smul_univ (fun i => A i (f i)) (fun i => B (f i))
 
 /-- Any common divisor of all selected minors of the right factor divides
-every minor of the product, without invertibility assumptions.-/
+every minor of the product, without invertibility assumptions.
+@isnad1 id=dvd.1h8v.s7.bee51eb0df6d from=translated src=- shape=3e2483fe vocab=f7d4c6f1
+-/
 theorem dvd_minor_mul {R ι : Type*} [CommRing R] [Fintype ι] [DecidableEq ι]
     (A B : Matrix ι ι R) (k : ℕ) (d : R)
     (hd : ∀ r c : Fin k → ι, d ∣ (B.submatrix r c).det)
@@ -45,7 +49,9 @@ theorem dvd_minor_mul {R ι : Type*} [CommRing R] [Fintype ι] [DecidableEq ι]
   apply dvd_mul_of_dvd_right
   simpa only [Matrix.submatrix_submatrix, Function.id_comp, Function.comp_id] using hd f c
 
-/-- The corresponding statement for common divisors of the left factor.-/
+/-- The corresponding statement for common divisors of the left factor.
+@isnad1 id=dvd.1h8v.s7.7f8e4dc4452d from=translated src=- shape=eceff193 vocab=f7d4c6f1
+-/
 theorem dvd_minor_mul_left {R ι : Type*} [CommRing R] [Fintype ι] [DecidableEq ι]
     (A B : Matrix ι ι R) (k : ℕ) (d : R)
     (hd : ∀ r c : Fin k → ι, d ∣ (A.submatrix r c).det)

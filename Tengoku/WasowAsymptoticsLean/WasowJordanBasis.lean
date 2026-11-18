@@ -35,7 +35,9 @@ abbrev Truncated (k : ℕ) := ℂ[X] ⧸ Ideal.span {((X : ℂ[X]) ^ k)}
 
 variable {V : Type*} [AddCommGroup V] [Module ℂ V]
 
-/-- Nilpotence supplies the primary torsion hypothesis; no chain basis is assumed.-/
+/-- Nilpotence supplies the primary torsion hypothesis; no chain basis is assumed.
+@isnad1 id=istorsio.1h2v.s9.049b31dff80a from=translated src=- shape=3cced8d9 vocab=5394a1da
+-/
 theorem primary_torsion (f : End ℂ V) (hf : IsNilpotent f) :
     Module.IsTorsion' (Module.AEval' f) (Submonoid.powers (X : ℂ[X])) := by
   obtain ⟨n, hn⟩ := hf
@@ -45,7 +47,9 @@ theorem primary_torsion (f : End ℂ V) (hf : IsNilpotent f) :
   obtain ⟨v, rfl⟩ := (Module.AEval'.of f).surjective x
   rw [Module.AEval'.X_pow_smul_of, hn, zero_smul, map_zero]
 
-/-- The actual polynomial-linear decomposition into truncated polynomial rings.-/
+/-- The actual polynomial-linear decomposition into truncated polynomial rings.
+@isnad1 id=ex.1h2v.s9.5afd1f8c8027 from=translated src=- shape=1cadc46e vocab=3df8b4f8
+-/
 theorem exists_cyclic_decomposition [FiniteDimensional ℂ V] (f : End ℂ V) (hf : IsNilpotent f) :
     ∃ (d : ℕ) (k : Fin d → ℕ),
       Nonempty (Module.AEval' f ≃ₗ[ℂ[X]] ⨁ i : Fin d, Truncated (k i)) := by
@@ -66,6 +70,9 @@ def reversedBasis (k : ℕ) : Basis (Fin k) ℂ (Truncated k) :=
   (((AdjoinRoot.powerBasis' ((monic_X : (X : ℂ[X]).Monic).pow k)).basis.reindex
     (finCongr (by simp))).reindex (Fin.revPerm (n := k))).map (quotientEquiv k)
 
+/--
+@isnad1 id=eq.0h2v.s9.445579b90129 from=translated src=- shape=fba72ea3 vocab=714374cc
+-/
 theorem reversedBasis_apply (k : ℕ) (i : Fin k) :
     reversedBasis k i = AdjoinRoot.root ((X : ℂ[X]) ^ k) ^ (k - 1 - i.val) := by
   unfold reversedBasis
@@ -73,7 +80,9 @@ theorem reversedBasis_apply (k : ℕ) (i : Fin k) :
   simp [quotientEquiv, Fin.revPerm, Fin.rev, Nat.sub_sub, Nat.add_comm]
   rfl
 
-/-- Multiplication by X kills the first vector in each reversed chain.-/
+/-- Multiplication by X kills the first vector in each reversed chain.
+@isnad1 id=eq.1h1v.s9.223e1f1aaa34 from=translated src=- shape=95977251 vocab=55139ff9
+-/
 theorem X_smul_reversedBasis_zero (k : ℕ) (hk : 0 < k) :
     (X : ℂ[X]) • reversedBasis k ⟨0, hk⟩ = 0 := by
   rw [reversedBasis_apply]
@@ -82,7 +91,9 @@ theorem X_smul_reversedBasis_zero (k : ℕ) (hk : 0 < k) :
   rw [Nat.sub_zero, ← pow_succ', Nat.sub_add_cancel hk]
   simpa only [map_pow, AdjoinRoot.mk_X] using (AdjoinRoot.mk_self (f := (X : ℂ[X]) ^ k))
 
-/-- The remaining vectors move one step down the chain.-/
+/-- The remaining vectors move one step down the chain.
+@isnad1 id=eq.1h2v.s9.2edcf7c480d1 from=translated src=- shape=bdf6bbfe vocab=f6ad1542
+-/
 theorem X_smul_reversedBasis_succ (k : ℕ) (i : Fin k) (hi : 0 < i.val) :
     (X : ℂ[X]) • reversedBasis k i = reversedBasis k ⟨i.val - 1, by omega⟩ := by
   rw [reversedBasis_apply, reversedBasis_apply]
@@ -93,7 +104,9 @@ theorem X_smul_reversedBasis_succ (k : ℕ) (i : Fin k) (hi : 0 < i.val) :
   change k - 1 - i.val + 1 = k - 1 - (i.val - 1)
   omega
 
-/-- Evaluation of the actual direct-sum basis.-/
+/-- Evaluation of the actual direct-sum basis.
+@isnad1 id=eq.0h4v.s10.6edca2aaace4 from=translated src=- shape=5d45ecbd vocab=f2115c43
+-/
 theorem sumBasis_apply {d : ℕ} (k : Fin d → ℕ) (a : Fin d) (i : Fin (k a)) :
     DFinsupp.basis (fun a => reversedBasis (k a)) ⟨a, i⟩ =
       DFinsupp.single a (reversedBasis (k a) i) := by
@@ -114,6 +127,9 @@ def chainBasis (f : End ℂ V) {d : ℕ} {k : Fin d → ℕ}
   (DFinsupp.basis (fun a => reversedBasis (k a))).map
     ((e.symm.restrictScalars ℂ).trans (Module.AEval'.of f).symm)
 
+/--
+@isnad1 id=eq.0h7v.s12.3eb071cf4104 from=translated src=- shape=00196f82 vocab=f5bc3408
+-/
 theorem chainBasis_apply (f : End ℂ V) {d : ℕ} {k : Fin d → ℕ}
     (e : Module.AEval' f ≃ₗ[ℂ[X]] ⨁ a : Fin d, Truncated (k a))
     (a : Fin d) (i : Fin (k a)) :
@@ -121,6 +137,9 @@ theorem chainBasis_apply (f : End ℂ V) {d : ℕ} {k : Fin d → ℕ}
       (Module.AEval'.of f).symm (e.symm (DFinsupp.single a (reversedBasis (k a) i))) := by
   simp [chainBasis, sumBasis_apply]
 
+/--
+@isnad1 id=eq.1h6v.s9.9999c31b720c from=translated src=- shape=c001086c vocab=1b15a8a2
+-/
 theorem chainBasis_zero (f : End ℂ V) {d : ℕ} {k : Fin d → ℕ}
     (e : Module.AEval' f ≃ₗ[ℂ[X]] ⨁ a : Fin d, Truncated (k a))
     (a : Fin d) (ha : 0 < k a) :
@@ -129,6 +148,9 @@ theorem chainBasis_zero (f : End ℂ V) {d : ℕ} {k : Fin d → ℕ}
     ← DFinsupp.single_smul, X_smul_reversedBasis_zero _ ha]
   simp
 
+/--
+@isnad1 id=eq.1h7v.s9.5932e032ae85 from=translated src=- shape=967ad31a vocab=003e2783
+-/
 theorem chainBasis_succ (f : End ℂ V) {d : ℕ} {k : Fin d → ℕ}
     (e : Module.AEval' f ≃ₗ[ℂ[X]] ⨁ a : Fin d, Truncated (k a))
     (a : Fin d) (i : Fin (k a)) (hi : 0 < i.val) :
@@ -151,6 +173,9 @@ def positiveBasis (f : End ℂ V) {d : ℕ} {k : Fin d → ℕ}
     Basis (WasowMultiShiftReduction.Index (fun a : {a : Fin d // 0 < k a} => k a.val - 1)) ℂ V :=
   (chainBasis f e).reindex (positiveIndexEquiv k).symm
 
+/--
+@isnad1 id=eq.0h7v.s10.8e4bfec34351 from=translated src=- shape=bb216b58 vocab=8fa73edf
+-/
 theorem positiveBasis_apply (f : End ℂ V) {d : ℕ} {k : Fin d → ℕ}
     (e : Module.AEval' f ≃ₗ[ℂ[X]] ⨁ a : Fin d, Truncated (k a))
     (a : {a : Fin d // 0 < k a}) (i : Fin (k a.val - 1 + 1)) :
@@ -159,12 +184,18 @@ theorem positiveBasis_apply (f : End ℂ V) {d : ℕ} {k : Fin d → ℕ}
   rw [positiveBasis, Basis.reindex_apply]
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.487488ce3263 from=translated src=- shape=8a1be097 vocab=9482ba45
+-/
 theorem positiveBasis_zero (f : End ℂ V) {d : ℕ} {k : Fin d → ℕ}
     (e : Module.AEval' f ≃ₗ[ℂ[X]] ⨁ a : Fin d, Truncated (k a))
     (a : {a : Fin d // 0 < k a}) : f (positiveBasis f e ⟨a, 0⟩) = 0 := by
   rw [positiveBasis_apply]
   exact chainBasis_zero f e a.val a.property
 
+/--
+@isnad1 id=eq.1h7v.s10.aba9d5f5b7a0 from=translated src=- shape=a5fc1fa2 vocab=f03ea2a4
+-/
 theorem positiveBasis_succ (f : End ℂ V) {d : ℕ} {k : Fin d → ℕ}
     (e : Module.AEval' f ≃ₗ[ℂ[X]] ⨁ a : Fin d, Truncated (k a))
     (a : {a : Fin d // 0 < k a}) (i : Fin (k a.val - 1 + 1)) (hi : 0 < i.val) :
@@ -173,7 +204,9 @@ theorem positiveBasis_succ (f : End ℂ V) {d : ℕ} {k : Fin d → ℕ}
   rw [positiveBasis_apply, positiveBasis_apply]
   exact chainBasis_succ f e a.val _ hi
 
-/-- The actual Jordan matrix in the constructed chain basis.-/
+/-- The actual Jordan matrix in the constructed chain basis.
+@isnad1 id=eq.0h5v.s11.c02a5a0ea0c9 from=translated src=- shape=48ac436c vocab=4c32121a
+-/
 theorem toMatrix_positiveBasis (f : End ℂ V) {d : ℕ} {k : Fin d → ℕ}
     (e : Module.AEval' f ≃ₗ[ℂ[X]] ⨁ a : Fin d, Truncated (k a)) :
     LinearMap.toMatrix (positiveBasis f e) (positiveBasis f e) f =
@@ -209,7 +242,9 @@ theorem toMatrix_positiveBasis (f : End ℂ V) {d : ℕ} {k : Fin d → ℕ}
         exact hab (congrArg Sigma.fst hh).symm
       simp only [hne, ite_false]
 
-/-- Every nilpotent complex operator has a genuine finite Jordan shift basis.-/
+/-- Every nilpotent complex operator has a genuine finite Jordan shift basis.
+@isnad1 id=ex.1h2v.s9.bb6204bbc963 from=translated src=- shape=3bb3fae4 vocab=bba937e4
+-/
 theorem exists_jordan_basis [FiniteDimensional ℂ V] (f : End ℂ V) (hf : IsNilpotent f) :
     ∃ (σ : Type) (_ : Fintype σ) (_ : DecidableEq σ) (h : σ → ℕ)
       (b : Basis (WasowMultiShiftReduction.Index h) ℂ V),
@@ -219,7 +254,9 @@ theorem exists_jordan_basis [FiniteDimensional ℂ V] (f : End ℂ V) (hf : IsNi
   exact ⟨{a : Fin d // 0 < k a}, inferInstance, inferInstance, (fun a => k a.val - 1),
     positiveBasis f e, toMatrix_positiveBasis f e⟩
 
-/-- Actual mutually inverse matrix coordinates for an arbitrary nilpotent matrix.-/
+/-- Actual mutually inverse matrix coordinates for an arbitrary nilpotent matrix.
+@isnad1 id=ex.1h2v.s8.9fbf8c8d9d12 from=translated src=- shape=f9aa5360 vocab=8398573c
+-/
 theorem exists_jordan_matrix_coordinates {ι : Type*} [Fintype ι] [DecidableEq ι]
     (A : Matrix ι ι ℂ) (hA : IsNilpotent A) :
     ∃ (σ : Type) (_ : Fintype σ) (_ : DecidableEq σ) (h : σ → ℕ)
@@ -238,7 +275,9 @@ theorem exists_jordan_matrix_coordinates {ι : Type*} [Fintype ι] [DecidableEq 
   simpa only [LinearMap.toMatrix_eq_toMatrix', LinearMap.toMatrix'_toLin', hb] using hh
 
 /-- Every generalized-eigenvalue block is further split into genuine Jordan
-chains. Repeated eigenvalues and multiple chains within one eigenspace are allowed.-/
+chains. Repeated eigenvalues and multiple chains within one eigenspace are allowed.
+@isnad1 id=ex.0h2v.s10.8e47d369ce22 from=translated src=- shape=a07c4f91 vocab=282cc703
+-/
 theorem exists_generalized_jordan_basis [FiniteDimensional ℂ V] (f : End ℂ V) :
     ∃ (τ : WasowLeadingBlocks.Eigenvalues f → Type)
       (_ : ∀ a, Fintype (τ a)) (_ : ∀ a, DecidableEq (τ a)) (h : ∀ a, τ a → ℕ)

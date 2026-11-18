@@ -24,7 +24,9 @@ open scoped Topology BigOperators
 namespace WasowPhaseOrdering
 
 /-- The sign of a nonnegative leading coefficient controls a real polynomial
-on a sufficiently late half-line, including constant polynomials.-/
+on a sufficiently late half-line, including constant polynomials.
+@isnad1 id=eventual.1h1v.s5.fd4fe21c6730 from=translated src=- shape=4819ae1c vocab=10ab22ee
+-/
 theorem eventually_eval_nonneg (P : Polynomial ℝ) (hP : 0 ≤ P.leadingCoeff) :
     ∀ᶠ x : ℝ in atTop, 0 ≤ P.eval x := by
   by_cases hd : P.natDegree = 0
@@ -39,7 +41,9 @@ theorem eventually_eval_nonneg (P : Polynomial ℝ) (hP : 0 ≤ P.leadingCoeff) 
         (eventually_ge_atTop 0)
 
 /-- Positive leading coefficient gives eventual monotonicity; a constant
-polynomial is allowed.-/
+polynomial is allowed.
+@isnad1 id=ex.1h1v.s5.014300cba782 from=translated src=- shape=770cddf6 vocab=4f70a55c
+-/
 theorem exists_monotone_tail (P : Polynomial ℝ) (hP : 0 ≤ P.leadingCoeff) :
     ∃ a : ℝ, MonotoneOn (fun r => P.eval r) (Ici a) := by
   have hd : 0 ≤ P.derivative.leadingCoeff := by
@@ -52,7 +56,9 @@ theorem exists_monotone_tail (P : Polynomial ℝ) (hP : 0 ≤ P.leadingCoeff) :
   exact ha r (interior_subset hr)
 
 /-- Every real polynomial is eventually increasing, or decreasing to minus
-infinity. Constants belong to the increasing alternative.-/
+infinity. Constants belong to the increasing alternative.
+@isnad1 id=ex.0h1v.s5.35d351dd41c9 from=translated src=- shape=b6df82e3 vocab=649eb9cd
+-/
 theorem polynomial_tail_dichotomy (P : Polynomial ℝ) :
     ∃ a : ℝ, MonotoneOn (fun r => P.eval r) (Ici a) ∨
       (AntitoneOn (fun r => P.eval r) (Ici a) ∧
@@ -77,6 +83,9 @@ real polynomial in the radial root parameter.-/
 def realPhasePolynomial (P : Polynomial ℂ) (c : ℂ) : Polynomial ℝ :=
   ∑ n ∈ P.support, monomial n ((P.coeff n * c ^ n).re)
 
+/--
+@isnad1 id=eq.0h3v.s5.82ee55341904 from=translated src=- shape=32db339c vocab=c3ff6954
+-/
 theorem eval_realPhasePolynomial (P : Polynomial ℂ) (c : ℂ) (r : ℝ) :
     (realPhasePolynomial P c).eval r = (P.eval ((r : ℂ) * c)).re := by
   unfold realPhasePolynomial
@@ -90,7 +99,9 @@ theorem eval_realPhasePolynomial (P : Polynomial ℂ) (c : ℂ) (r : ℝ) :
   simp only [Complex.mul_re, Complex.ofReal_re,
     Complex.ofReal_im, mul_zero, sub_zero]
 
-/-- Taking a positive real root preserves the eventual polynomial dichotomy.-/
+/-- Taking a positive real root preserves the eventual polynomial dichotomy.
+@isnad1 id=ex.1h2v.s6.9f36054a19f6 from=translated src=- shape=4e446eb7 vocab=4478361a
+-/
 theorem root_polynomial_tail_dichotomy (P : Polynomial ℝ) {s : ℝ} (hs : 0 < s) :
     ∃ a : ℝ, 1 ≤ a ∧
       (MonotoneOn (fun r => P.eval (r ^ s)) (Ici a) ∨
@@ -112,7 +123,9 @@ theorem root_polynomial_tail_dichotomy (P : Polynomial ℝ) {s : ℝ} (hs : 0 < 
 open CRGNormalFormGoal
 
 /-- Each actual phase difference on any chosen root branch admits the
-integration direction needed by the Volterra construction.-/
+integration direction needed by the Volterra construction.
+@isnad1 id=ex.1h5v.s7.76cf7c8d8a4b from=translated src=- shape=259e815b vocab=2899289c
+-/
 theorem phase_difference_tail_dichotomy (p : ℕ) (hp : 0 < p)
     (G H : Polynomial ℂ) (θ : ℝ) (ℓ : Fin p) :
     ∃ a : ℝ, 1 ≤ a ∧
@@ -129,7 +142,9 @@ theorem phase_difference_tail_dichotomy (p : ℕ) (hp : 0 < p)
     (one_div_pos.mpr (by exact_mod_cast hp) : 0 < 1/(p : ℝ))
 
 /-- All pairwise choices work on a single common half-line. The finite
-Puiseux phases are fixed independently of the ray angle and root branch.-/
+Puiseux phases are fixed independently of the ray angle and root branch.
+@isnad1 id=ex.1h5v.s8.912641a37900 from=translated src=- shape=0f2ffa2a vocab=08dcfe45
+-/
 theorem exists_common_phase_ordering {ι : Type*} [Fintype ι]
     (p : ℕ) (hp : 0 < p) (G : ι → Polynomial ℂ) (θ : ℝ) (ℓ : Fin p) :
     ∃ a : ℝ, 1 ≤ a ∧ ∃ mode : ι → ι → Bool,
@@ -175,14 +190,18 @@ theorem exists_common_phase_ordering {ι : Type*} [Fintype ι]
       cases hm
     exact ((hord j i).resolve_left hn).2.comp hval
 
-/-- The actual phases are continuous on the entire real parameter line.-/
+/-- The actual phases are continuous on the entire real parameter line.
+@isnad1 id=continuo.1h4v.s5.30d976eb0964 from=translated src=- shape=eaceb4dd vocab=122a66b5
+-/
 theorem phase_continuous (p : ℕ) (hp : 0 < p) (G : Polynomial ℂ) (θ : ℝ) (ℓ : Fin p) :
     Continuous (phaseOnRay p G θ ℓ) := by
   unfold phaseOnRay rootOnRay
   exact G.continuous.comp ((Complex.continuous_ofReal.comp
     (Real.continuous_rpow_const (by positivity : 0 ≤ 1/(p : ℝ)))).mul continuous_const)
 
-/-- Actual real-parameter derivative, including the ramified root factor.-/
+/-- Actual real-parameter derivative, including the ramified root factor.
+@isnad1 id=hasderiv.1h5v.s8.d798ebfb7981 from=translated src=- shape=1fcd593a vocab=30624862
+-/
 theorem phase_hasDerivAt (p : ℕ) (G : Polynomial ℂ) (θ : ℝ) (ℓ : Fin p)
     {r : ℝ} (hr : 0 < r) :
     HasDerivAt (phaseOnRay p G θ ℓ)

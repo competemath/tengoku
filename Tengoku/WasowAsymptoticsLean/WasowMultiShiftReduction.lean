@@ -41,11 +41,16 @@ def assemble {h : σ → ℕ}
   fun i j => P i.1 j.1 i.2 j.2
 
 omit [Fintype σ] [DecidableEq σ] in
+/--
+@isnad1 id=eq.0h5v.s6.d62af6b0ce15 from=translated src=- shape=18b8ce0e vocab=2245c44b
+-/
 @[simp] theorem block_assemble {h : σ → ℕ}
     (P : ∀ a b, Matrix (Fin (h a + 1)) (Fin (h b + 1)) ℂ) (a b : σ) :
     block (assemble P) a b = P a b := rfl
 
-/-- Left multiplication selects exactly the corresponding row shift block.-/
+/-- Left multiplication selects exactly the corresponding row shift block.
+@isnad1 id=eq.0h5v.s8.35b4c94c61fe from=translated src=- shape=5526c85e vocab=59ac3878
+-/
 theorem block_jordanShift_mul (h : σ → ℕ)
     (P : Matrix (Index h) (Index h) ℂ) (a b : σ) :
     block (jordanShift h * P) a b = shift (h a) * block P a b := by
@@ -58,7 +63,9 @@ theorem block_jordanShift_mul (h : σ → ℕ)
     intro l hl
     rw [Matrix.blockDiagonal'_apply_ne _ _ _ hca.symm, zero_mul]
 
-/-- Right multiplication selects exactly the corresponding column shift block.-/
+/-- Right multiplication selects exactly the corresponding column shift block.
+@isnad1 id=eq.0h5v.s8.1065b1bc849d from=translated src=- shape=215f35bb vocab=59ac3878
+-/
 theorem block_mul_jordanShift (h : σ → ℕ)
     (P : Matrix (Index h) (Index h) ℂ) (a b : σ) :
     block (P * jordanShift h) a b = block P a b * shift (h b) := by
@@ -74,7 +81,9 @@ theorem block_mul_jordanShift (h : σ → ℕ)
 /-- An actual full coefficient step for arbitrary many shift blocks. The first
 row of every gauge block vanishes; only the last row of each transformed block
 is allowed to remain. Existence, rather than an unnecessary uniqueness claim,
-is the conclusion.-/
+is the conclusion.
+@isnad1 id=ex.0h3v.s9.c1f04ea8e96f from=translated src=- shape=3debd5e2 vocab=08ac5bd0
+-/
 theorem exists_multishift_step (h : σ → ℕ)
     (H : Matrix (Index h) (Index h) ℂ) :
     ∃ P B : Matrix (Index h) (Index h) ℂ,
@@ -97,7 +106,9 @@ theorem exists_multishift_step (h : σ → ℕ)
 
 /-- The complete formal coefficient recursion for an arbitrary finite family
 of nilpotent shift blocks. Constant coefficients are retained, and the row
-normalizations apply to every positive order.-/
+normalizations apply to every positive order.
+@isnad1 id=ex.2h4v.s9.60b27b45f5e6 from=translated src=- shape=76225744 vocab=62dab193
+-/
 theorem exists_formal_multishift_reduction (h : σ → ℕ)
     (A : ℕ → Matrix (Index h) (Index h) ℂ)
     (hA : A 0 = jordanShift h) {q : ℕ} (hq : 0 < q) :

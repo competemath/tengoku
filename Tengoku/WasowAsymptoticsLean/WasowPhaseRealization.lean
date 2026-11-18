@@ -26,7 +26,9 @@ def OrderedOn {ι : Type*} (Q : ι → ℝ → ℂ) (mode : ι → ι → Bool) 
     Tendsto (fun t : Ici a => (Q i t-Q j t).re) atTop atBot)
 
 /-- Integration directions already valid on one tail remain valid on every
-later tail, including their actual decay limits.-/
+later tail, including their actual decay limits.
+@isnad1 id=orderedo.2h5v.s5.740d4f152db9 from=translated src=- shape=9440ae32 vocab=87937445
+-/
 theorem orderedOn_mono {ι : Type*} {Q : ι → ℝ → ℂ} {mode : ι → ι → Bool}
     {a b : ℝ} (hab : a ≤ b) (h : OrderedOn Q mode a) : OrderedOn Q mode b := by
   let e : Ici b → Ici a := fun t => ⟨t,hab.trans t.property⟩
@@ -44,7 +46,9 @@ theorem orderedOn_mono {ι : Type*} {Q : ι → ℝ → ℂ} {mode : ι → ι �
     exact (h.2 j i hm).comp ht
 
 /-- Construct one common phase-ordering threshold and reuse its directions
-at every later radius. No exceptional ray angle is excluded.-/
+at every later radius. No exceptional ray angle is excluded.
+@isnad1 id=ex.1h6v.s6.976a4c53e13d from=translated src=- shape=ec693f36 vocab=a043a81b
+-/
 theorem exists_persistent_phase_ordering {ι : Type*} [Fintype ι]
     (p : ℕ) (hp : 0 < p) (G : ι → Polynomial ℂ) (θ : ℝ) (ℓ : Fin p) (a₀ : ℝ) :
     ∃ a : ℝ, a₀ ≤ a ∧ 1 ≤ a ∧ ∃ mode : ι → ι → Bool,
@@ -55,7 +59,9 @@ theorem exists_persistent_phase_ordering {ι : Type*} [Fintype ι]
 
 /-- Once the actual approximate gauge and integrable remainder are supplied,
 finite Puiseux phases themselves provide every direction and derivative input
-needed for an exact gauge. The same phase polynomials work for every angle.-/
+needed for an exact gauge. The same phase polynomials work for every angle.
+@isnad1 id=ex.1h7v.s10.7d6b01f229a8 from=translated src=- shape=9e7c97cb vocab=9c5c8034
+-/
 theorem exists_exact_rayGauge_of_puiseux_phases {m : ℕ}
     (A : Matrix (Fin m) (Fin m) (RatFunc ℂ))
     (p : ℕ) (hp : 0 < p) (G : Fin m → Polynomial ℂ) (θ : ℝ) (ℓ : Fin p) (a₀ : ℝ) :

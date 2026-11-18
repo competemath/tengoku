@@ -33,15 +33,24 @@ def firstOrder (v : ℕ → ℂ) : ℕ := by
   classical
   exact if hv : ∃ k, v k ≠ 0 then Nat.find hv else 0
 
+/--
+@isnad1 id=ne.1h1v.s5.972e4fd572de from=translated src=- shape=ffef06a4 vocab=55fb31cf
+-/
 theorem firstOrder_spec (v : ℕ → ℂ) (hv : ∃ k, v k ≠ 0) :
     v (firstOrder v) ≠ 0 := by
   simpa only [firstOrder, dite_eq_left hv] using Nat.find_spec hv
 
+/--
+@isnad1 id=le.1h2v.s4.49df4319fbf7 from=translated src=- shape=05c20748 vocab=24cf3d44
+-/
 theorem firstOrder_le (v : ℕ → ℂ) {k : ℕ} (hk : v k ≠ 0) :
     firstOrder v ≤ k := by
   have hv : ∃ k, v k ≠ 0 := ⟨k,hk⟩
   simpa only [firstOrder, dite_eq_left hv] using Nat.find_min' hv hk
 
+/--
+@isnad1 id=lt.2h1v.s5.99f2a770fe99 from=translated src=- shape=ba553747 vocab=19eda121
+-/
 theorem firstOrder_pos (v : ℕ → ℂ) (hv : ∃ k, v k ≠ 0) (hzero : v 0 = 0) :
     0 < firstOrder v := by
   have hs := firstOrder_spec v hv
@@ -60,7 +69,9 @@ abbrev Feedback (A : ℕ → Matrix (Fin n) (Fin n) ℂ) :=
 
 /-- There is a positive rational slope no larger than `q+1`. Every nonzero
 coefficient has nonnegative transformed exponent. Either the derivative
-candidate is reached, or a genuine lower-triangular coefficient survives.-/
+candidate is reached, or a genuine lower-triangular coefficient survives.
+@isnad1 id=ex.1h3v.s7.9bb482b1c80f from=translated src=- shape=dd1b7400 vocab=4b9e9530
+-/
 theorem exists_leading_slope (A : ℕ → Matrix (Fin n) (Fin n) ℂ) (q : ℕ)
     (hzero : ∀ i j, j ≤ i → A 0 i j = 0) :
     ∃ σ : ℚ, 0 < σ ∧ σ ≤ (q+1 : ℕ) ∧
@@ -120,6 +131,9 @@ def leadingMatrix (A : ℕ → Matrix (Fin n) (Fin n) ℂ) (σ : ℚ) :
   classical
   exact if hk : ∃ k, weightedDegree σ k i j = 0 then A (Nat.find hk) i j else 0
 
+/--
+@isnad1 id=injectiv.0h4v.s4.c819eebb7f50 from=translated src=- shape=a3646f0f vocab=8eeb1d6a
+-/
 theorem weightedDegree_injective (σ : ℚ) (i j : Fin n) :
     Function.Injective (fun k => weightedDegree σ k i j) := by
   intro k l hkl
@@ -127,6 +141,9 @@ theorem weightedDegree_injective (σ : ℚ) (i j : Fin n) :
   have h : (k : ℚ) = l := by linarith
   exact_mod_cast h
 
+/--
+@isnad1 id=eq.1h6v.s5.043e26208724 from=translated src=- shape=86cd1328 vocab=83857e41
+-/
 theorem leadingMatrix_eq_coeff (A : ℕ → Matrix (Fin n) (Fin n) ℂ)
     (σ : ℚ) (k : ℕ) (i j : Fin n) (hk : weightedDegree σ k i j = 0) :
     leadingMatrix A σ i j = A k i j := by
@@ -136,6 +153,9 @@ theorem leadingMatrix_eq_coeff (A : ℕ → Matrix (Fin n) (Fin n) ℂ)
     ((Nat.find_spec hex).trans hk.symm)
   simp only [leadingMatrix, dite_eq_left hex, he]
 
+/--
+@isnad1 id=iff.0h5v.s6.90f280f8402e from=translated src=- shape=cd8b10a6 vocab=83857e41
+-/
 theorem leadingMatrix_ne_zero_iff (A : ℕ → Matrix (Fin n) (Fin n) ℂ)
     (σ : ℚ) (i j : Fin n) :
     leadingMatrix A σ i j ≠ 0 ↔
@@ -149,7 +169,9 @@ theorem leadingMatrix_ne_zero_iff (A : ℕ → Matrix (Fin n) (Fin n) ℂ)
   · rintro ⟨k,hk,hne⟩
     simpa only [leadingMatrix_eq_coeff A σ k i j hk] using hne
 
-/-- Above the main diagonal the old shift entries are retained exactly.-/
+/-- Above the main diagonal the old shift entries are retained exactly.
+@isnad1 id=eq.3h5v.s6.1e368200e385 from=translated src=- shape=f7dfc7d7 vocab=59fd1d30
+-/
 theorem leadingMatrix_above (A : ℕ → Matrix (Fin n) (Fin n) ℂ)
     (hshape : ∀ i j, A 0 i j ≠ 0 → j.val = i.val+1)
     {σ : ℚ} (hσ : 0 < σ) (i j : Fin n) (hij : i < j) :
@@ -173,7 +195,9 @@ theorem leadingMatrix_above (A : ℕ → Matrix (Fin n) (Fin n) ℂ)
     have hold : A 0 i j = 0 := by by_contra hh; exact hadj (hshape i j hh)
     rw [hlead,hold]
 
-/-- A fractional slope cannot have a diagonal zero-weight coefficient.-/
+/-- A fractional slope cannot have a diagonal zero-weight coefficient.
+@isnad1 id=eq.1h4v.s5.62333bf4c8d4 from=translated src=- shape=5f3e7c93 vocab=447826d8
+-/
 theorem leadingMatrix_diagonal_zero (A : ℕ → Matrix (Fin n) (Fin n) ℂ)
     (σ : ℚ) (hfrac : ∀ k : ℕ, σ ≠ k) (i : Fin n) :
     leadingMatrix A σ i i = 0 := by
@@ -184,7 +208,9 @@ theorem leadingMatrix_diagonal_zero (A : ℕ → Matrix (Fin n) (Fin n) ℂ)
   linarith
 
 /-- Positive-order row normalization passes to the sheared leading matrix.
-Rows outside `lastRows` remain exactly their old shift rows.-/
+Rows outside `lastRows` remain exactly their old shift rows.
+@isnad1 id=eq.4h6v.s7.68294ced60a9 from=translated src=- shape=00d83746 vocab=b441235e
+-/
 theorem leadingMatrix_normalized_rows (A : ℕ → Matrix (Fin n) (Fin n) ℂ)
     (hshape : ∀ i j, A 0 i j ≠ 0 → j.val = i.val+1)
     (lastRows : Set (Fin n))
@@ -208,7 +234,9 @@ theorem leadingMatrix_normalized_rows (A : ℕ → Matrix (Fin n) (Fin n) ℂ)
     exact hne (hnorm k hkpos i j hi)
 
 /-- The selected non-stopping slope has a new nonzero lower-triangular
-entry. It follows from attainment of the finite minimum.-/
+entry. It follows from attainment of the finite minimum.
+@isnad1 id=ex.1h3v.s7.1b63df859048 from=translated src=- shape=990695e5 vocab=27931e97
+-/
 theorem exists_slope_with_leading_feedback
     (A : ℕ → Matrix (Fin n) (Fin n) ℂ) (q : ℕ)
     (hshape : ∀ i j, A 0 i j ≠ 0 → j.val = i.val+1) :
@@ -227,10 +255,15 @@ theorem exists_slope_with_leading_feedback
 
 /-- Below the derivative threshold its exponent is strictly positive, so
 it cannot alter the selected leading matrix. The threshold branch is not
-silently identified with this case.-/
+silently identified with this case.
+@isnad1 id=lt.1h2v.s5.234d143534a5 from=translated src=- shape=ec7e6612 vocab=25d96bd1
+-/
 theorem derivative_correction_positive {q : ℕ} {σ : ℚ}
     (hσ : σ < (q+1 : ℕ)) : 0 < (q+1 : ℕ)-σ := sub_pos.mpr hσ
 
+/--
+@isnad1 id=eq.1h6v.s6.03eaabdcac81 from=translated src=- shape=4138dd18 vocab=1d4392f0
+-/
 theorem weightedDegree_ramified (p a k : ℕ) (hp : p ≠ 0) (i j : Fin n) :
     (p : ℚ) * weightedDegree ((a : ℚ)/p) k i j =
       p*k + ((j.val : ℚ)-i.val-1)*a := by

@@ -23,7 +23,9 @@ open WasowRegularSingular WasowRegularGauge WasowRegularTail
 open WasowGaugeAssembly WasowRealization WasowPhaseRealization CRGNormalFormGoal
 variable {m : ℕ}
 
-/-- Exact algebraic identity for insertion of a commuting regular factor.-/
+/-- Exact algebraic identity for insertion of a commuting regular factor.
+@isnad1 id=eq.3h9v.s9.b266eb931506 from=translated src=- shape=dc75e08c vocab=9d270dac
+-/
 theorem regular_transformed_identity (A H H' D J R T S : Matrix (Fin m) (Fin m) ℂ)
     (hH : A * H = H' + H * (D + J + R))
     (hTS : T * S = 1) (hDT : Commute D T) :
@@ -51,7 +53,9 @@ def regularTailOperator [NeZero m] (G : Matrix (Fin m) (Fin m) ℂ) (θ : ℝ)
 
 /-- The actual approximate gauge with its genuine inverse, derivative,
 polynomial bounds, exact residual identity, and arbitrarily small operator tail.
-The explicit canonical-part identity includes the entire finite truncation.-/
+The explicit canonical-part identity includes the entire finite truncation.
+@isnad1 id=ex.12h15v.s11.5631c0e6d356 from=translated src=- shape=e763bd03 vocab=78df4673
+-/
 theorem exists_approximateRayGauge_of_regular_formal_truncation [NeZero m]
     (A₀ : Matrix (Fin m) (Fin m) (RatFunc ℂ)) (θ Rmin : ℝ)
     (G : Matrix (Fin m) (Fin m) ℂ) (L : ℕ) (hL : ‖matrixOperator G‖ ≤ L)
@@ -163,7 +167,9 @@ theorem exists_approximateRayGauge_of_regular_formal_truncation [NeZero m]
     exact hh.symm ▸ hsmall
 
 /-- Actual finite-truncation realization including the entire commuting `G/r`
-block. The truncation order explicitly pays for both regular-factor norms.-/
+block. The truncation order explicitly pays for both regular-factor norms.
+@isnad1 id=nonempty.12h16v.s10.e73aee3483b8 from=translated src=- shape=b40ae8e4 vocab=339e7011
+-/
 theorem exists_exact_rayGauge_of_regular_formal_truncation [NeZero m]
     (A₀ : Matrix (Fin m) (Fin m) (RatFunc ℂ)) (θ Rmin : ℝ)
     (G : Matrix (Fin m) (Fin m) ℂ) (L : ℕ) (hL : ‖matrixOperator G‖ ≤ L)

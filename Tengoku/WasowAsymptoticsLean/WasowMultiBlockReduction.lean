@@ -19,7 +19,9 @@ namespace WasowMultiBlockReduction
 open WasowMultiShiftReduction
 variable {σ : Type*} [Fintype σ] [DecidableEq σ]
 
-/-- Generic left multiplication by a dependent block diagonal matrix.-/
+/-- Generic left multiplication by a dependent block diagonal matrix.
+@isnad1 id=eq.0h6v.s8.37449b8133ad from=translated src=- shape=9e4ba88a vocab=83e365c5
+-/
 theorem block_diagonal_mul (h : σ → ℕ)
     (L : ∀ a, Matrix (Fin (h a+1)) (Fin (h a+1)) ℂ)
     (P : Matrix (Index h) (Index h) ℂ) (a b : σ) :
@@ -33,7 +35,9 @@ theorem block_diagonal_mul (h : σ → ℕ)
     intro l hl
     rw [Matrix.blockDiagonal'_apply_ne _ _ _ hca.symm, zero_mul]
 
-/-- Generic right multiplication by a dependent block diagonal matrix.-/
+/-- Generic right multiplication by a dependent block diagonal matrix.
+@isnad1 id=eq.0h6v.s8.407261a226bb from=translated src=- shape=0ffd422b vocab=83e365c5
+-/
 theorem block_mul_diagonal (h : σ → ℕ)
     (L : ∀ a, Matrix (Fin (h a+1)) (Fin (h a+1)) ℂ)
     (P : Matrix (Index h) (Index h) ℂ) (a b : σ) :
@@ -52,7 +56,9 @@ def leading (h : σ → ℕ) (eigenvalue : σ → ℂ)
   Matrix.blockDiagonal' (fun a => eigenvalue a • 1 + N a)
 
 /-- Every off-diagonal rectangular equation is genuinely solved, then all
-blocks are assembled into one full coefficient equation.-/
+blocks are assembled into one full coefficient equation.
+@isnad1 id=ex.2h5v.s9.a486630f36f9 from=translated src=- shape=fbdc6c14 vocab=88fcb3d4
+-/
 theorem exists_multiblock_step (h : σ → ℕ) (eigenvalue : σ → ℂ)
     (N : ∀ a, Matrix (Fin (h a+1)) (Fin (h a+1)) ℂ)
     (heigenvalue : Function.Injective eigenvalue) (hN : ∀ a, IsNilpotent (N a))
@@ -90,7 +96,9 @@ theorem exists_multiblock_step (h : σ → ℕ) (eigenvalue : σ → ℂ)
       rw [hb, zero_add]
       exact congrFun (congrFun (hX a b hab) i) j
 
-/-- All formal orders for an arbitrary finite family of eigenvalue blocks.-/
+/-- All formal orders for an arbitrary finite family of eigenvalue blocks.
+@isnad1 id=ex.4h6v.s10.e6ac7ac7c976 from=translated src=- shape=65173e1a vocab=9ad71fd1
+-/
 theorem exists_formal_multiblock_reduction (h : σ → ℕ) (eigenvalue : σ → ℂ)
     (N : ∀ a, Matrix (Fin (h a+1)) (Fin (h a+1)) ℂ)
     (heigenvalue : Function.Injective eigenvalue) (hN : ∀ a, IsNilpotent (N a))

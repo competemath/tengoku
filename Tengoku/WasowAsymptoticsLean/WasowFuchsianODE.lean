@@ -28,10 +28,16 @@ def extend (hab : a ≤ b) (u : C(Icc a b, E)) (t : ℝ) : E :=
   u (projIcc a b hab t)
 
 omit [NormedSpace ℝ E] [CompleteSpace E] in
+/--
+@isnad1 id=continuo.1h4v.s6.3e9710bf8b8f from=translated src=- shape=1efcdd89 vocab=d8cdbbc2
+-/
 theorem continuous_extend (hab : a ≤ b) (u : C(Icc a b, E)) :
     Continuous (extend hab u) := u.continuous.comp (continuous_projIcc)
 
 omit [NormedSpace ℝ E] [CompleteSpace E] in
+/--
+@isnad1 id=eq.2h5v.s7.84c34a470ec2 from=translated src=- shape=4a331605 vocab=31cd7c01
+-/
 @[simp] theorem extend_of_mem (hab : a ≤ b) (u : C(Icc a b, E))
     {t : ℝ} (ht : t ∈ Icc a b) : extend hab u t = u ⟨t, ht⟩ := by
   simp [extend, projIcc_of_mem hab ht]
@@ -41,6 +47,9 @@ def integrand (hab : a ≤ b) (A : C(Icc a b, E →L[ℝ] E))
   A (projIcc a b hab t) (extend hab u t)
 
 omit [CompleteSpace E] in
+/--
+@isnad1 id=continuo.1h5v.s7.e2c58bea6f6d from=translated src=- shape=057d3e58 vocab=ad7d84f9
+-/
 theorem continuous_integrand (hab : a ≤ b) (A : C(Icc a b, E →L[ℝ] E))
     (u : C(Icc a b, E)) : Continuous (integrand hab A u) :=
   (A.continuous.comp continuous_projIcc).clm_apply (continuous_extend hab u)
@@ -53,7 +62,9 @@ def next (hab : a ≤ b) (A : C(Icc a b, E →L[ℝ] E)) (x : E)
       continuous_subtype_val)
 
 /-- The factorial estimate gives a contraction of some Picard iterate on
-any compact time interval, irrespective of its length.-/
+any compact time interval, irrespective of its length.
+@isnad1 id=le.2h10v.s10.98f123880377 from=translated src=- shape=6b8fc74b vocab=d0c9118d
+-/
 theorem iterate_bound (hab : a ≤ b) (A : C(Icc a b, E →L[ℝ] E))
     (K : ℝ≥0) (hK : ∀ t, ‖A t‖ ≤ K) (x : E)
     (u v : C(Icc a b, E)) (n : ℕ) (t : Icc a b) :
@@ -98,7 +109,9 @@ theorem iterate_bound (hab : a ≤ b) (A : C(Icc a b, E →L[ℝ] E))
           NNReal.abs_eq, abs_abs, mul_div, div_div, ← abs_mul,
           ← Nat.cast_succ, ← Nat.cast_mul, ← Nat.factorial_succ, Nat.abs_cast, ← mul_pow]
 
-/-- Existence of the actual Picard fixed point on an arbitrary compact interval.-/
+/-- Existence of the actual Picard fixed point on an arbitrary compact interval.
+@isnad1 id=ex.1h5v.s8.8094924f063c from=translated src=- shape=88ba4836 vocab=15cdf8e3
+-/
 theorem exists_fixedPoint (hab : a ≤ b) (A : C(Icc a b, E →L[ℝ] E)) (x : E) :
     ∃ u : C(Icc a b, E), next hab A x u = u := by
   let K : ℝ≥0 := ‖A‖₊
@@ -122,7 +135,9 @@ theorem exists_fixedPoint (hab : a ≤ b) (A : C(Icc a b, E →L[ℝ] E)) (x : E
 
 /-- A solution on an arbitrary compact time interval, constructed from the
 actual continuous coefficient. The chosen extension also has the stated
-ordinary derivative at both endpoints.-/
+ordinary derivative at both endpoints.
+@isnad1 id=ex.2h5v.s8.f0009780ec3a from=translated src=- shape=46376bd3 vocab=0423ad85
+-/
 theorem exists_solution_Icc (hab : a ≤ b) (A : ℝ → E →L[ℝ] E)
     (hA : ContinuousOn A (Icc a b)) (x : E) :
     ∃ u : ℝ → E, Continuous u ∧ u a = x ∧
@@ -142,7 +157,9 @@ theorem exists_solution_Icc (hab : a ≤ b) (A : ℝ → E →L[ℝ] E)
   exact congrArg (A t) (huv ⟨t, ht⟩)
 
 omit [CompleteSpace E] in
-/-- Uniqueness on a compact interval uses only the actual linear coefficient.-/
+/-- Uniqueness on a compact interval uses only the actual linear coefficient.
+@isnad1 id=eqon.5h6v.s9.06a39bf8288d from=translated src=- shape=2c54ad8c vocab=def3bd16
+-/
 theorem solution_eqOn_Icc (_hab : a ≤ b) (A : ℝ → E →L[ℝ] E)
     (hA : ContinuousOn A (Icc a b)) (u v : ℝ → E)
     (hu : ∀ t ∈ Icc a b, HasDerivAt u (A t (u t)) t)
@@ -166,7 +183,9 @@ theorem solution_eqOn_Icc (_hab : a ≤ b) (A : ℝ → E →L[ℝ] E)
 
 /-- Every continuous, time-dependent bounded linear operator field has an
 actual solution on the whole right half-line. No global bound on the field,
-nor any pre-existing solution, is assumed.-/
+nor any pre-existing solution, is assumed.
+@isnad1 id=ex.1h4v.s8.930d7da8bf84 from=translated src=- shape=c9e30b60 vocab=a4d30cc4
+-/
 theorem exists_solution_Ici (A : ℝ → E →L[ℝ] E)
     (hA : ContinuousOn A (Ici a)) (x : E) :
     ∃ u : ℝ → E, u a = x ∧ ContinuousOn u (Ici a) ∧

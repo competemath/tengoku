@@ -34,7 +34,9 @@ namespace WasowRamification
 def coefficient {m : ℕ} (p : ℕ) (A : ℂ → Matrix (Fin m) (Fin m) ℂ) (t : ℂ) :
     Matrix (Fin m) (Fin m) ℂ := (p * t ^ (p-1)) • A (t^p)
 
-/-- Ramification of an actual complex-parameter solution by the chain rule.-/
+/-- Ramification of an actual complex-parameter solution by the chain rule.
+@isnad1 id=hasderiv.1h5v.s8.8da2a51d54cf from=translated src=- shape=83c85d69 vocab=736dd362
+-/
 theorem solution_hasDerivAt {m : ℕ} (p : ℕ)
     (A : ℂ → Matrix (Fin m) (Fin m) ℂ) (y : ℂ → Fin m → ℂ) (t : ℂ)
     (hy : HasDerivAt y ((A (t^p)).mulVec (y (t^p))) (t^p)) :
@@ -44,7 +46,9 @@ theorem solution_hasDerivAt {m : ℕ} (p : ℕ)
   exact Matrix.smul_mulVec _ _ _
 
 /-- The same exact pullback on a real ray parameter, without any implicit
-complex differentiation of the ray function.-/
+complex differentiation of the ray function.
+@isnad1 id=hasderiv.1h5v.s8.5a4f6e9c9e05 from=translated src=- shape=8868a472 vocab=47127e1f
+-/
 theorem real_solution_hasDerivAt {m : ℕ} (p : ℕ)
     (A : ℝ → Matrix (Fin m) (Fin m) ℂ) (y : ℝ → Fin m → ℂ) (t : ℝ)
     (hy : HasDerivAt y ((A (t^p)).mulVec (y (t^p))) (t^p)) :
@@ -57,7 +61,9 @@ theorem real_solution_hasDerivAt {m : ℕ} (p : ℕ)
   simp only [Pi.smul_apply, Complex.real_smul, smul_eq_mul, Complex.ofReal_mul,
     Complex.ofReal_natCast, Complex.ofReal_pow]
 
-/-- A monomial coefficient transforms with the exact ramified integer exponent.-/
+/-- A monomial coefficient transforms with the exact ramified integer exponent.
+@isnad1 id=eq.2h5v.s7.3a72346f0550 from=translated src=- shape=f97a62fc vocab=4709bb82
+-/
 theorem coefficient_monomial {m : ℕ} (p : ℕ) (n : ℤ)
     (B : Matrix (Fin m) (Fin m) ℂ) {t : ℂ} (ht : t ≠ 0) (hp : 0 < p) :
     coefficient p (fun x => x ^ n • B) t =
@@ -73,7 +79,9 @@ theorem coefficient_monomial {m : ℕ} (p : ℕ) (n : ℤ)
   rw [mul_assoc, hz]
 
 /-- Clearing a rational slope denominator makes the new rank integral.
-This is the exact arithmetic `h=p*(q+1-σ)-1` from §19.3.-/
+This is the exact arithmetic `h=p*(q+1-σ)-1` from §19.3.
+@isnad1 id=eq.1h3v.s6.bf1e517430ae from=translated src=- shape=24a11698 vocab=0c5c4908
+-/
 theorem ramified_rank (q : ℤ) (a : ℤ) (p : ℕ) (hp : 0 < p) :
     (p : ℚ) * ((q : ℚ)+1-(a : ℚ)/(p : ℚ))-1 =
       ((p : ℤ)*(q+1)-a-1 : ℤ) := by
@@ -82,10 +90,14 @@ theorem ramified_rank (q : ℤ) (a : ℤ) (p : ℕ) (hp : 0 < p) :
   field_simp
 
 /-- An integral positive shearing slope strictly reduces the unramified rank.
-No conclusion about a sequence of nonintegral shears is hidden here.-/
+No conclusion about a sequence of nonintegral shears is hidden here.
+@isnad1 id=lt.1h2v.s4.7228d7b933b8 from=translated src=- shape=1f82edbc vocab=e1801bab
+-/
 theorem integral_slope_rank_decreases (q s : ℤ) (hs : 0 < s) : q-s < q := by omega
 
-/-- A nonconstant power substitution never annihilates a nonzero polynomial.-/
+/-- A nonconstant power substitution never annihilates a nonzero polynomial.
+@isnad1 id=ne.2h2v.s6.300b3de35d8c from=translated src=- shape=c64184bd vocab=35c51fe7
+-/
 theorem polynomial_comp_pow_ne_zero (p : ℕ) (hp : 0 < p)
     (P : Polynomial ℂ) (hP : P ≠ 0) : P.comp (Polynomial.X ^ p) ≠ 0 := by
   intro hz
@@ -95,6 +107,9 @@ theorem polynomial_comp_pow_ne_zero (p : ℕ) (hp : 0 < p)
     simp only [Polynomial.natDegree_X_pow, Polynomial.natDegree_C] at hd
     omega
 
+/--
+@isnad1 id=le.1h1v.s8.48c073791aff from=translated src=- shape=cf6a76f4 vocab=3e775f03
+-/
 theorem powerSubstitution_preserves_nonZeroDivisors (p : ℕ) (hp : 0 < p) :
     nonZeroDivisors (Polynomial ℂ) ≤
       (nonZeroDivisors (Polynomial ℂ)).comap (Polynomial.compRingHom (Polynomial.X ^ p)) := by
@@ -108,7 +123,9 @@ def powerSubstitution (p : ℕ) (hp : 0 < p) : RatFunc ℂ →+* RatFunc ℂ :=
   RatFunc.mapRingHom (Polynomial.compRingHom (Polynomial.X ^ p))
     (powerSubstitution_preserves_nonZeroDivisors p hp)
 
-/-- Rational substitution is literally numerator and denominator substitution.-/
+/-- Rational substitution is literally numerator and denominator substitution.
+@isnad1 id=eq.1h3v.s9.04b0dc05a27a from=translated src=- shape=9738b1c2 vocab=22fe0fb4
+-/
 theorem powerSubstitution_div (p : ℕ) (hp : 0 < p) (P Q : Polynomial ℂ) :
     powerSubstitution p hp (algebraMap (Polynomial ℂ) (RatFunc ℂ) P /
       algebraMap (Polynomial ℂ) (RatFunc ℂ) Q) =
@@ -121,7 +138,9 @@ def rationalCoefficient {m : ℕ} (p : ℕ) (hp : 0 < p)
     (A : Matrix (Fin m) (Fin m) (RatFunc ℂ)) : Matrix (Fin m) (Fin m) (RatFunc ℂ) :=
   ((p : RatFunc ℂ) * (RatFunc.X : RatFunc ℂ) ^ (p-1)) • A.map (powerSubstitution p hp)
 
-/-- Every positive rational slope has an explicit positive integral ramification.-/
+/-- Every positive rational slope has an explicit positive integral ramification.
+@isnad1 id=ex.1h1v.s5.5b8936542851 from=translated src=- shape=f53a8358 vocab=8a4769b7
+-/
 theorem exists_integral_ramification (σ : ℚ) (hσ : 0 < σ) :
     ∃ p : ℕ, 0 < p ∧ ∃ a : ℤ, 0 < a ∧ (p : ℚ) * σ = a := by
   refine ⟨σ.den, σ.den_pos, σ.num, ?_, ?_⟩
@@ -133,7 +152,9 @@ theorem exists_integral_ramification (σ : ℚ) (hσ : 0 < σ) :
       _ = σ.num := by field_simp
 
 /-- Evaluating a displayed rational fraction is legitimate at every nonpole
-of its displayed denominator, even when the fraction is not reduced.-/
+of its displayed denominator, even when the fraction is not reduced.
+@isnad1 id=eq.1h3v.s8.7f3e6d54f90f from=translated src=- shape=4724f170 vocab=6d6a0a31
+-/
 theorem eval_polynomial_fraction (P Q : Polynomial ℂ) (z : ℂ) (hQ : Q.eval z ≠ 0) :
     RatFunc.eval (RingHom.id ℂ) z
       (algebraMap (Polynomial ℂ) (RatFunc ℂ) P / algebraMap (Polynomial ℂ) (RatFunc ℂ) Q) =
@@ -151,7 +172,9 @@ theorem eval_polynomial_fraction (P Q : Polynomial ℂ) (z : ℂ) (hQ : Q.eval z
   simpa only [Polynomial.eval_mul] using he
 
 /-- The rational endomorphism agrees with the actual analytic substitution
-at genuine nonpoles; totalized rational evaluation is not used across poles.-/
+at genuine nonpoles; totalized rational evaluation is not used across poles.
+@isnad1 id=eq.2h3v.s7.1abb9bdeb10a from=translated src=- shape=6e2ba62f vocab=0cb1420f
+-/
 theorem eval_powerSubstitution (p : ℕ) (hp : 0 < p) (f : RatFunc ℂ) (z : ℂ)
     (hf : f.denom.eval (z^p) ≠ 0) :
     RatFunc.eval (RingHom.id ℂ) z (powerSubstitution p hp f) =
@@ -166,7 +189,9 @@ theorem eval_powerSubstitution (p : ℕ) (hp : 0 < p) (f : RatFunc ℂ) (z : ℂ
       rw [powerSubstitution_div, eval_polynomial_fraction _ _ _ hh]
     _ = _ := by simp only [Polynomial.eval_comp, Polynomial.eval_pow, Polynomial.eval_X]; rfl
 
-/-- A genuine nonpole remains a nonpole after positive power substitution.-/
+/-- A genuine nonpole remains a nonpole after positive power substitution.
+@isnad1 id=ne.2h3v.s7.3698587c75b1 from=translated src=- shape=358a7a5d vocab=99f3efae
+-/
 theorem powerSubstitution_pole_free (p : ℕ) (hp : 0 < p) (f : RatFunc ℂ) (z : ℂ)
     (hf : f.denom.eval (z^p) ≠ 0) : (powerSubstitution p hp f).denom.eval z ≠ 0 := by
   have he : powerSubstitution p hp f =
@@ -182,7 +207,9 @@ theorem powerSubstitution_pole_free (p : ℕ) (hp : 0 < p) (f : RatFunc ℂ) (z 
   have hh := Polynomial.eval_eq_zero_of_dvd_of_eval_eq_zero hd hz
   exact hf (by simpa only [Polynomial.eval_comp, Polynomial.eval_pow, Polynomial.eval_X] using hh)
 
-/-- Scalar evaluation of the actual ramified coefficient at a nonpole.-/
+/-- Scalar evaluation of the actual ramified coefficient at a nonpole.
+@isnad1 id=eq.2h3v.s8.9dbce82f6236 from=translated src=- shape=e0adb2e8 vocab=8da5b49d
+-/
 theorem eval_ramifiedScalar (p : ℕ) (hp : 0 < p) (f : RatFunc ℂ) (z : ℂ)
     (hf : f.denom.eval (z^p) ≠ 0) :
     RatFunc.eval (RingHom.id ℂ) z
@@ -201,7 +228,9 @@ theorem eval_ramifiedScalar (p : ℕ) (hp : 0 < p) (f : RatFunc ℂ) (z : ℂ)
   simp
 
 /-- The actual rational coefficient evaluates to the exact chain-rule
-coefficient of the transformed analytic system at every genuine nonpole.-/
+coefficient of the transformed analytic system at every genuine nonpole.
+@isnad1 id=eq.2h4v.s7.03882d454648 from=translated src=- shape=dddd0042 vocab=c255097c
+-/
 theorem eval_rationalCoefficient {m : ℕ} (p : ℕ) (hp : 0 < p)
     (A : Matrix (Fin m) (Fin m) (RatFunc ℂ)) (z : ℂ)
     (hA : ∀ i j, (A i j).denom.eval (z^p) ≠ 0) :
