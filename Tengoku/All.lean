@@ -158,6 +158,7 @@ import Tengoku.QuadraticNumberFields
 import Tengoku.AbelFormalization
 import Tengoku.Rankamplificationtotient
 import Tengoku.EquationalTheories
+import Tengoku.XzMathieuSu2Counterexamples
 import Tengoku.FormalConjectures
 import Tengoku.ForbiddenMatrix
 import Tengoku.FactorialHypergraphAuxiliaryErdos

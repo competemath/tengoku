@@ -1,0 +1,1 @@
+-- XzMathieuSu2Counterexamples: a factory bundle (data/intake/xz-mathieu-su2-counterexamples). This file only marks the library for Tengoku/All.lean.
