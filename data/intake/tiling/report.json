@@ -1,0 +1,13 @@
+{
+ "bundle_sha256": "621de22ec085ce58cf05c275e4532f0dc2a2f883c466357679e6d4e16eae2d65",
+ "factory_changes": {
+  "inert lines removed": 19,
+  "modules changed": 18
+ },
+ "gate2_unjudged": [],
+ "library": "tiling",
+ "lint_mode": "proposed",
+ "modules": 37,
+ "part": 1,
+ "theorems": 278
+}

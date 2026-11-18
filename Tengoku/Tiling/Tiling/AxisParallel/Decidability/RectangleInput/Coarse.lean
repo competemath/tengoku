@@ -1,0 +1,95 @@
+import Tengoku.Tiling.Tiling.AxisParallel.Decidability.RectangleInput.Vertices
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Subdivision on intrinsic coordinate levels
+
+The fine subdivision can contain internal rectangle endpoints that are absent
+from the intrinsic vertex set. Runtime region input uses only intrinsic levels.
+This second finite pass retains levels used by a vertex and merges the fine
+subdivision. A coarse cell is occupied when it contains an occupied fine cell.
+-/
+
+set_option autoImplicit false
+
+open Tiling.AxisParallel.SetFormulation
+
+namespace Tiling.AxisParallel.Decidability.RectangleInput
+
+def usedLevel (input : TableInput) (vertical : Bool) (i : ℕ) : Bool :=
+  (vertexLabels input).any fun p => (bif vertical then p.2 else p.1) == i
+
+def coarseAdjacent (input : TableInput) (vertical : Bool) (i j : ℕ) : Bool :=
+  usedLevel input vertical i && usedLevel input vertical j &&
+    strictLevel (2 * input.1) input.2 vertical i j &&
+    allBelow (2 * input.1) (fun k => !(usedLevel input vertical k &&
+      strictLevel (2 * input.1) input.2 vertical i k &&
+      strictLevel (2 * input.1) input.2 vertical k j))
+
+def cellContained (input : TableInput) (outer inner : Cell) : Bool :=
+  compare (2 * input.1) input.2 false outer.1.1 inner.1.1 &&
+    compare (2 * input.1) input.2 false inner.1.2 outer.1.2 &&
+    compare (2 * input.1) input.2 true outer.2.1 inner.2.1 &&
+    compare (2 * input.1) input.2 true inner.2.2 outer.2.2
+
+def coarseAccepted (input : TableInput) (c : Cell) : Bool :=
+  coarseAdjacent input false c.1.1 c.1.2 && coarseAdjacent input true c.2.1 c.2.2 &&
+    (cells input).any (cellContained input c)
+
+def coarseCells (input : TableInput) : List Cell :=
+  (candidates (2 * input.1)).filter (coarseAccepted input)
+
+/--
+@isnad1 id=iff.0h3v.s5.41d2ba046533 from=translated src=- shape=64cc05b7 vocab=6c9c093a
+-/
+theorem usedLevel_eq_true {input : TableInput} {vertical : Bool} {i : ℕ} :
+    usedLevel input vertical i = true ↔
+      ∃ p ∈ vertexLabels input, (bif vertical then p.2 else p.1) = i := by
+  simp [usedLevel, List.any_eq_true]
+
+/--
+@isnad1 id=nodup.0h1v.s2.3dbd4fa53bc1 from=translated src=- shape=1a6c1393 vocab=3ef79f25
+-/
+theorem coarseCells_nodup (input : TableInput) : (coarseCells input).Nodup :=
+  (candidates_nodup (2 * input.1)).filter (coarseAccepted input)
+
+/--
+@isnad1 id=iff.0h2v.s7.a97c81ce05cc from=translated src=- shape=370f12ff vocab=4fe8b1f8
+-/
+theorem mem_coarseCells {input : TableInput} {c : Cell} :
+    c ∈ coarseCells input ↔
+      (c.1.1 < 2 * input.1 ∧ c.1.2 < 2 * input.1 ∧
+        c.2.1 < 2 * input.1 ∧ c.2.2 < 2 * input.1) ∧ coarseAccepted input c = true := by
+  simp [coarseCells, mem_candidates]
+
+/--
+@isnad1 id=primrec.0h0v.s6.bba9cbe9869f from=translated src=- shape=87e29431 vocab=d0b5ae86
+-/
+theorem cellContained_primrec :
+    Primrec (fun x : TableInput × Cell × Cell => cellContained x.1 x.2.1 x.2.2) := by
+  have hn : Primrec (fun x : TableInput × Cell × Cell => 2 * x.1.1) :=
+    Primrec.nat_mul.comp (Primrec.const 2) (Primrec.fst.comp Primrec.fst)
+  have hh : Primrec (fun x : TableInput × Cell × Cell => x.1.2) :=
+    Primrec.snd.comp Primrec.fst
+  have ho : Primrec (fun x : TableInput × Cell × Cell => x.2.1) :=
+    Primrec.fst.comp Primrec.snd
+  have hi : Primrec (fun x : TableInput × Cell × Cell => x.2.2) :=
+    Primrec.snd.comp Primrec.snd
+  exact (Primrec.dom_bool₂ Bool.and).comp
+    ((Primrec.dom_bool₂ Bool.and).comp
+      ((Primrec.dom_bool₂ Bool.and).comp
+        (compare_comp hn hh (Primrec.const false)
+          (Primrec.fst.comp (Primrec.fst.comp ho))
+          (Primrec.fst.comp (Primrec.fst.comp hi)))
+        (compare_comp hn hh (Primrec.const false)
+          (Primrec.snd.comp (Primrec.fst.comp hi))
+          (Primrec.snd.comp (Primrec.fst.comp ho))))
+      (compare_comp hn hh (Primrec.const true)
+        (Primrec.fst.comp (Primrec.snd.comp ho))
+        (Primrec.fst.comp (Primrec.snd.comp hi))))
+    (compare_comp hn hh (Primrec.const true)
+      (Primrec.snd.comp (Primrec.snd.comp hi))
+      (Primrec.snd.comp (Primrec.snd.comp ho)))
+
+end Tiling.AxisParallel.Decidability.RectangleInput

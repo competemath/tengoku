@@ -69,6 +69,7 @@ import Tengoku.PrimeGaps186
 import Tengoku.Flt
 import Tengoku.HasseMinkowski
 import Tengoku.Toric
+import Tengoku.Tiling
 import Tengoku.Jsp000937Lean
 import Tengoku.AgrawalR5
 import Tengoku.LanaGenl
