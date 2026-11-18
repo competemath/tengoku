@@ -1,0 +1,33 @@
+import Tengoku
+import Tengoku.FltAnthropic.Definitions.Def_ModularCurve_NodeLocalized
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_ModularCurve_modularRing_eq_range_modularEval.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_ModularCurve_modularRing_eq_range_modularEval
+
+set_option autoImplicit false
+
+open ModularCurve ModularCurve.NodeLocalized
+
+theorem solution (N : ℕ) [NeZero N] {L : Type*} [CommRing L] (A : Subring L) :
+    CharPReduction.modularRing N A = (NodeLocalized.modularEval N A).range := by
+  apply le_antisymm
+  · rw [CharPReduction.modularRing, Subring.closure_le]
+    rintro x (⟨c, rfl⟩ | rfl | rfl)
+    · exact ⟨MvPolynomial.C c, by simp [NodeLocalized.modularEval]⟩
+    · exact ⟨MvPolynomial.X 0, by simp [NodeLocalized.modularEval]⟩
+    · exact ⟨MvPolynomial.X 1, by simp [NodeLocalized.modularEval]⟩
+  · rintro x ⟨p, rfl⟩
+    induction p using MvPolynomial.induction_on with
+    | C c =>
+      rw [NodeLocalized.modularEval, MvPolynomial.coe_eval₂Hom, MvPolynomial.eval₂_C]
+      exact CharPReduction.constSeries_mem_modularRing N A c
+    | add p r hp hr => rw [map_add]; exact add_mem hp hr
+    | mul_X p i hp =>
+      rw [map_mul]
+      refine mul_mem hp ?_
+      rw [NodeLocalized.modularEval, MvPolynomial.eval₂Hom_X']
+      fin_cases i
+      · exact CharPReduction.jqModC_mem_modularRing N A
+      · exact CharPReduction.jqNModC_mem_modularRing N A
