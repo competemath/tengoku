@@ -1,0 +1,49 @@
+name: requeue-lost
+# A merge-queue build can end when GitHub's hosted runner loses contact with the server: the job fails with no failing step, nothing is explained to the author,
+# and the PR is dropped from the queue though nothing is wrong with it (six builds on 17 and 18 Nov 2026: #885, #897, #894, #907 twice, #910). This puts such a PR
+# back (scripts/ci/requeue_lost.py): only for a one-PR group whose queue-build job failed with no failing step and the lost-runner annotation, a PR that is open
+# and not labelled ejected, at most four removals by the queue. It runs when queue-gate has finished, from this repository's default branch, so the code that holds
+# the bot's token is main's and never the PR's; what it reads about the failed run is data. Without the secret TENGOKU_BOT_TOKEN it only says what it would have done.
+on:
+  workflow_run:
+    workflows: [queue-gate]
+    types: [completed]
+
+permissions: {}
+
+concurrency:
+  group: requeue-lost-${{ github.event.workflow_run.head_branch }}
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  requeue:
+    # a merge group of this repository that did not pass; a pull_request run of queue-gate has nothing to build
+    if: github.event.workflow_run.conclusion == 'failure' && github.event.workflow_run.event == 'merge_group' && github.event.workflow_run.head_repository.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions: { contents: read, actions: read, checks: read, pull-requests: read }
+    steps:
+      - uses: step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2 # v2
+        with: { egress-policy: audit }
+      # main's script, read through the API: a workflow_run workflow never checks a ref out
+      - name: Main's script
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          mkdir -p scripts/ci
+          for try in 1 2 3 4; do
+            gh api "repos/$GITHUB_REPOSITORY/contents/scripts/ci/requeue_lost.py?ref=main" -H "Accept: application/vnd.github.raw" > scripts/ci/requeue_lost.py && break
+            [ "$try" = 4 ] && exit 1
+            sleep $((2 ** try))
+          done
+      - name: Back into the queue if the build lost its runner
+        env:
+          GH_TOKEN: "${{ github.token }}"
+          # the bot's token, never the job token: a queue entry the job token starts does not start the queue's own workflows
+          BOT_TOKEN: "${{ secrets.TENGOKU_BOT_TOKEN }}"
+          RUN: "${{ github.event.workflow_run.id }}"
+          BRANCH: "${{ github.event.workflow_run.head_branch }}"
+        run: python3 scripts/ci/requeue_lost.py "$RUN" "$BRANCH"
