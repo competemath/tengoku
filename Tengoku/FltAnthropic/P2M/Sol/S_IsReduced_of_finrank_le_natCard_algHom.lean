@@ -1,0 +1,73 @@
+import Tengoku
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_IsReduced_of_finrank_le_natCard_algHom.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_IsReduced_of_finrank_le_natCard_algHom
+
+namespace B7
+
+/--
+@isnad1 id=eq.1h2v.s10.ac2b8d4a1573 from=translated src=- shape=1746ddfd vocab=155d1c03
+-/
+theorem algHom_toLinearMap_span_top_of_finrank_le (K B : Type*)
+    [Field K] [Ring B] [Algebra K B] [Module.Finite K B]
+    (h : Module.finrank K B ≤ Nat.card (B →ₐ[K] K)) :
+    Submodule.span K (Set.range (AlgHom.toLinearMap : (B →ₐ[K] K) → B →ₗ[K] K)) = ⊤ := by
+  classical
+  have hli : LinearIndependent K (AlgHom.toLinearMap : (B →ₐ[K] K) → B →ₗ[K] K) :=
+    linearIndependent_algHom_toLinearMap K B K
+  rcases isEmpty_or_nonempty (B →ₐ[K] K) with hemp | hne
+  · rw [Nat.card_of_isEmpty, Nat.le_zero] at h
+    have hdtriv : Module.finrank K (B →ₗ[K] K) = 0 := by
+      rw [Module.finrank_linearMap, Module.finrank_self, mul_one, h]
+    haveI := Module.finrank_zero_iff.mp hdtriv
+    exact Subsingleton.elim _ _
+  haveI : Finite (B →ₐ[K] K) := hli.finite
+  haveI : Fintype (B →ₐ[K] K) := Fintype.ofFinite _
+  have hrk : Module.finrank K (B →ₗ[K] K) = Module.finrank K B := by
+    rw [Module.finrank_linearMap, Module.finrank_self, mul_one]
+  have hcardeq : Nat.card (B →ₐ[K] K) = Fintype.card (B →ₐ[K] K) :=
+    Nat.card_eq_fintype_card (α := B →ₐ[K] K)
+  have hcard : Fintype.card (B →ₐ[K] K) = Module.finrank K (B →ₗ[K] K) := by
+    apply le_antisymm
+    · have hD := card_algHom_le_finrank K B K
+      rw [hrk]
+      simpa [Nat.card_eq_fintype_card] using hD
+    · rw [hrk, ← hcardeq]; exact h
+  exact hli.span_eq_top_of_card_eq_finrank' hcard
+
+/--
+@isnad1 id=isreduce.1h2v.s7.a706ceb73eac from=translated src=- shape=c0034d50 vocab=d1e5140c
+-/
+theorem isReduced_of_finrank_le (K B : Type*)
+    [Field K] [CommRing B] [Algebra K B] [Module.Finite K B]
+    (h : Module.finrank K B ≤ Nat.card (B →ₐ[K] K)) : IsReduced B := by
+  constructor
+  intro b ⟨n, hbn⟩
+  have hspan := algHom_toLinearMap_span_top_of_finrank_le K B h
+  have hvan : ∀ ℓ : B →ₗ[K] K, ℓ b = 0 := by
+    intro ℓ
+    have hℓmem : ℓ ∈ (⊤ : Submodule K (B →ₗ[K] K)) := trivial
+    rw [← hspan] at hℓmem
+    induction hℓmem using Submodule.span_induction with
+    | mem x hx =>
+      obtain ⟨φ, rfl⟩ := hx
+      show φ b = 0
+      exact IsNilpotent.eq_zero ⟨n, by rw [← map_pow, hbn, map_zero]⟩
+    | zero => simp
+    | add x y _ _ hx hy => simp [hx, hy]
+    | smul c x _ hx => simp [hx]
+  have heval : Module.Dual.eval K B b = 0 :=
+    LinearMap.ext fun ℓ => by simp [Module.Dual.eval_apply, hvan ℓ]
+  have hinj := (Module.evalEquiv K B).injective
+  have : Module.evalEquiv K B b = Module.evalEquiv K B 0 := by
+    rw [map_zero]; exact_mod_cast heval
+  exact hinj this
+end B7
+
+/--
+@isnad1 id=isreduce.1h2v.s7.a706ceb73eac from=translated src=- shape=c0034d50 vocab=d1e5140c
+-/
+theorem solution (K B : Type*) [Field K] [CommRing B] [Algebra K B] [Module.Finite K B] (h : Module.finrank K B ≤ Nat.card (B →ₐ[K] K)) : IsReduced B :=
+  B7.isReduced_of_finrank_le K B h

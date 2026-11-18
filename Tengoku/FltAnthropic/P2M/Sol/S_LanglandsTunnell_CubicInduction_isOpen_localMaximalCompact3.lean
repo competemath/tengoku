@@ -1,0 +1,56 @@
+import Tengoku.FltAnthropic.Definitions.Def_LanglandsTunnell_CubicInduction_Carrier
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_LanglandsTunnell_CubicInduction_isOpen_localMaximalCompact3.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_LanglandsTunnell_CubicInduction_isOpen_localMaximalCompact3
+
+set_option autoImplicit false
+
+open IsDedekindDomain
+
+open LanglandsTunnell.CubicInduction
+
+namespace IntegralEntriesOpen
+
+private theorem continuous_entry {A : Type*} [CommRing A] [TopologicalSpace A] (i j : Fin 3) :
+    Continuous fun k : GL (Fin 3) A => (k : Matrix (Fin 3) (Fin 3) A) i j :=
+  Units.continuous_val.matrix_elem i j
+
+private theorem continuous_inv_entry {A : Type*} [CommRing A] [TopologicalSpace A] (i j : Fin 3) :
+    Continuous fun k : GL (Fin 3) A => ((k⁻¹ : GL (Fin 3) A) : Matrix (Fin 3) (Fin 3) A) i j :=
+  Units.continuous_coe_inv.matrix_elem i j
+
+private theorem coe_localMaximalCompact3_eq (R K : Type*) [CommRing R] [IsDedekindDomain R] [Field K]
+    [Algebra R K] [IsFractionRing R K] (v : HeightOneSpectrum R) :
+    ((LanglandsTunnell.CubicInduction.localMaximalCompact3 R K v :
+        Subgroup (GL (Fin 3) (v.adicCompletion K))) : Set (GL (Fin 3) (v.adicCompletion K))) =
+      (⋂ i : Fin 3, ⋂ j : Fin 3,
+          (fun k : GL (Fin 3) (v.adicCompletion K) => (k : Matrix (Fin 3) (Fin 3) (v.adicCompletion K)) i j) ⁻¹'
+            (v.adicCompletionIntegers K : Set (v.adicCompletion K))) ∩
+        (⋂ i : Fin 3, ⋂ j : Fin 3,
+          (fun k : GL (Fin 3) (v.adicCompletion K) =>
+              ((k⁻¹ : GL (Fin 3) (v.adicCompletion K)) : Matrix (Fin 3) (Fin 3) (v.adicCompletion K)) i j) ⁻¹'
+            (v.adicCompletionIntegers K : Set (v.adicCompletion K))) := by
+  ext k
+  simp only [SetLike.mem_coe, LanglandsTunnell.CubicInduction.mem_localMaximalCompact3_iff, Set.mem_inter_iff,
+    Set.mem_iInter, Set.mem_preimage, IsDedekindDomain.HeightOneSpectrum.mem_adicCompletionIntegers]
+
+end IntegralEntriesOpen
+
+open IntegralEntriesOpen
+
+/--
+@isnad1 id=isopen.0h3v.s9.bd261fba8aef from=translated src=- shape=6f37c14c vocab=e6eea353
+-/
+theorem solution
+    (R K : Type*) [CommRing R] [IsDedekindDomain R] [Field K] [Algebra R K] [IsFractionRing R K]
+    (v : HeightOneSpectrum R) :
+    IsOpen ((localMaximalCompact3 R K v : Subgroup (GL (Fin 3) (v.adicCompletion K))) :
+      Set (GL (Fin 3) (v.adicCompletion K))) := by
+  have hO : IsOpen (v.adicCompletionIntegers K : Set (v.adicCompletion K)) :=
+    Valued.isOpen_valuationSubring _
+  rw [coe_localMaximalCompact3_eq R K v]
+  refine IsOpen.inter ?_ ?_
+  · exact isOpen_iInter_of_finite fun i => isOpen_iInter_of_finite fun j => hO.preimage (continuous_entry i j)
+  · exact isOpen_iInter_of_finite fun i => isOpen_iInter_of_finite fun j => hO.preimage (continuous_inv_entry i j)

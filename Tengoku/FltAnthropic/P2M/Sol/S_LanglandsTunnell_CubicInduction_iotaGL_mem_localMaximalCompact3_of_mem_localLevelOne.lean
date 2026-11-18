@@ -1,0 +1,47 @@
+import Tengoku.FltAnthropic.Definitions.Def_LanglandsTunnell_CubicInduction_Congruence
+import Tengoku.FltAnthropic.Definitions.Def_AdelicDock_LocalEmbedding
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_LanglandsTunnell_CubicInduction_iotaGL_mem_localMaximalCompact3_of_mem_localLevelOne.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_LanglandsTunnell_CubicInduction_iotaGL_mem_localMaximalCompact3_of_mem_localLevelOne
+
+set_option autoImplicit false
+
+open Matrix IsDedekindDomain NumberField
+
+open LanglandsTunnell.CubicInduction
+
+namespace CongruenceBottomRow
+
+section BottomRow
+
+variable (R K : Type*) [CommRing R] [IsDedekindDomain R] [Field K] [Algebra R K] [IsFractionRing R K]
+  (v : HeightOneSpectrum R)
+
+private theorem valued_embedMat2_entry_le_one {m : Matrix (Fin 2) (Fin 2) (v.adicCompletion K)}
+    (hm : ∀ i j, m i j ∈ v.adicCompletionIntegers K) (i j : Fin 3) :
+    Valued.v (LanglandsTunnell.CubicInduction.embedMat2 m i j) ≤ 1 := by
+  have hm' : ∀ i j, Valued.v (m i j) ≤ 1 := fun i j =>
+    (IsDedekindDomain.HeightOneSpectrum.mem_adicCompletionIntegers R K v).1 (hm i j)
+  fin_cases i <;> fin_cases j <;> simp [LanglandsTunnell.CubicInduction.embedMat2, hm']
+
+end BottomRow
+
+end CongruenceBottomRow
+
+open CongruenceBottomRow
+
+/--
+@isnad1 id=mem.1h2v.s11.0e8fa0af7035 from=translated src=- shape=ed197b61 vocab=052c72db
+-/
+theorem solution
+    (v : HeightOneSpectrum (𝓞 ℚ)) {g : GL (Fin 2) (v.adicCompletion ℚ)}
+    (hg : g ∈ AdelicDock.localLevelOne (𝓞 ℚ) ℚ v ⊤) :
+    iotaGL g ∈ localMaximalCompact3 (𝓞 ℚ) ℚ v := by
+  obtain ⟨h₁, h₂⟩ := (AdelicDock.mem_localLevelOne_iff (𝓞 ℚ) ℚ v g).1 hg
+  refine (mem_localMaximalCompact3_iff (𝓞 ℚ) ℚ v).2 ⟨fun i j => ?_, fun i j => ?_⟩
+  · rw [coe_iotaGL]
+    exact valued_embedMat2_entry_le_one (𝓞 ℚ) ℚ v h₁.integral i j
+  · rw [← map_inv iotaGL g, coe_iotaGL]
+    exact valued_embedMat2_entry_le_one (𝓞 ℚ) ℚ v h₂.integral i j
