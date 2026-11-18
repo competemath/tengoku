@@ -1,0 +1,1 @@
+-- DamianFormalizare: a factory bundle (data/intake/damian-formalizare). This file only marks the library for Tengoku/All.lean.
