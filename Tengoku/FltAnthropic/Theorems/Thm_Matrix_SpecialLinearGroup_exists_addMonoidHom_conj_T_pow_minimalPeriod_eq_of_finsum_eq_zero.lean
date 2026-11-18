@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Matrix_SpecialLinearGroup_exists_addMonoid
 local notation α "^+" M:51 => FixedPoints.addSubgroup M α
 
 set_option autoImplicit false
+/--
+@isnad1 id=ex.2h3v.s13.d13a00f3b7a2 from=translated src=- shape=e52c5e22 vocab=f7acb9e9
+-/
 theorem Matrix.SpecialLinearGroup.exists_addMonoidHom_conj_T_pow_minimalPeriod_eq_of_finsum_eq_zero
     (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.FiniteIndex]
     (hneg : (-1 : Matrix.SpecialLinearGroup (Fin 2) ℤ) ∈ Γ) (R : Type) [AddCommGroup R]

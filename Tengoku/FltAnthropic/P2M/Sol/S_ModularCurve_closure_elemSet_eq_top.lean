@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 open Matrix MatrixGroups Subgroup ModularCurve
 
+/--
+@isnad1 id=eq.0h1v.s7.0cf025ab54f4 from=translated src=- shape=2cf782c4 vocab=96777411
+-/
 theorem solution (N : ℕ) [NeZero N] :
     Subgroup.closure (ModularCurve.elemSet (ZMod N)) = ⊤ := by
   set φ : SL(2, ℤ) →* SL(2, ZMod N) :=

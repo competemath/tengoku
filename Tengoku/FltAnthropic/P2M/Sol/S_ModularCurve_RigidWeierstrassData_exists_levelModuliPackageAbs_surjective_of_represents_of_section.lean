@@ -14,6 +14,9 @@ universe u
 
 open ModularCurve
 
+/--
+@isnad1 id=ex.3h6v.s9.5a2bc9cb4b89 from=translated src=- shape=3e9ec950 vocab=38a05c6d
+-/
 theorem solution
     {A : Type u} [CommRing A] (R : RigidWeierstrassData.{u} A)
 

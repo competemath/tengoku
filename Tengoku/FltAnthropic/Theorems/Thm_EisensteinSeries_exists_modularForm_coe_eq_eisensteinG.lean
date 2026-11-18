@@ -11,6 +11,9 @@ set_option autoImplicit false
 open Matrix
 open scoped MatrixGroups CongruenceSubgroup ModularForm
 
+/--
+@isnad1 id=and.1h3v.s10.e2f23194eaee from=translated src=- shape=6989af96 vocab=d2b0e257
+-/
 theorem EisensteinSeries.exists_modularForm_coe_eq_eisensteinG
     (N : ℕ) [NeZero N] (k : ℤ) (hk : 3 ≤ k) (a : Fin 2 → ZMod N) :
     (∃ F : ModularForm Γ(N) k, ⇑F = EisensteinSeries.eisensteinG N k a) ∧

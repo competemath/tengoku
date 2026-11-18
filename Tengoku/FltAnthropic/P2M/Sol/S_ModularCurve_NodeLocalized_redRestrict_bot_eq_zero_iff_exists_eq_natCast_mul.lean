@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open ModularCurve ModularCurve.NodeLocalized
 
+/--
+@isnad1 id=iff.1h5v.s13.6c47ae154f86 from=translated src=- shape=d4008126 vocab=547489ce
+-/
 theorem solution
     {q : ℕ} [Fact q.Prime] {A : ValuationSubring (AlgebraicClosure ℚ)}
     {k : Type*} [Field k] [CharP k q] (red : A →+* k)

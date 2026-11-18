@@ -86,6 +86,9 @@ end Admissible
 
 end
 
+/--
+@isnad1 id=eq.7h7v.s9.5a601f986926 from=translated src=- shape=b09a3d77 vocab=dff6a1ad
+-/
 theorem solution
     {G : Type*} [Group G] [MeasurableSpace G] [MeasurableMul₂ G] [MeasurableInv G]
     (H : Subgroup G) (μ : Measure G) [μ.IsMulLeftInvariant] [SFinite μ] (μH : Measure H) [SFinite μH]

@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open Set
 
+/--
+@isnad1 id=contdiff.2h3v.s9.8a67510b4e97 from=translated src=- shape=ec21fd73 vocab=2f65e620
+-/
 theorem solution
     {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
     {F : Type} [NormedAddCommGroup F] [NormedSpace ℝ F] [CompleteSpace F]

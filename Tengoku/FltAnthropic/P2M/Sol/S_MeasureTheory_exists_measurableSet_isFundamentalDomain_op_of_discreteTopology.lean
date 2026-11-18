@@ -16,6 +16,9 @@ namespace R3FafFdEx
 
 variable {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
 
+/--
+@isnad1 id=ex.1h2v.s7.e0932c19d32b from=translated src=- shape=5ccf1b7a vocab=64e1e5b2
+-/
 theorem exists_open_inv_mul_subset {W : Set G} (hW : W ∈ 𝓝 (1 : G)) :
     ∃ V : Set G, IsOpen V ∧ (1 : G) ∈ V ∧ ∀ v ∈ V, ∀ w ∈ V, w⁻¹ * v ∈ W := by
   obtain ⟨V₁, hV₁o, hV₁1, hV₁⟩ := exists_open_nhds_one_split hW
@@ -25,6 +28,9 @@ theorem exists_open_inv_mul_subset {W : Set G} (hW : W ∈ 𝓝 (1 : G)) :
 
 variable [SecondCountableTopology G]
 
+/--
+@isnad1 id=ex.1h2v.s7.3124eea31d3e from=translated src=- shape=b94dae6c vocab=863f17e4
+-/
 theorem exists_transversal (Γ : Subgroup G) (hΓ : DiscreteTopology Γ) :
     ∃ D : Set G, (∃ (U : ℕ → Set G) (S : ℕ → Set G), (∀ k, IsOpen (U k)) ∧ (∀ k, IsOpen (S k)) ∧
         D = ⋃ k, (U k ∩ ⋂ j ∈ Finset.range k, (S j)ᶜ)) ∧
@@ -129,6 +135,9 @@ theorem exists_transversal (Γ : Subgroup G) (hΓ : DiscreteTopology Γ) :
 
 end R3FafFdEx
 
+/--
+@isnad1 id=ex.1h2v.s7.d7538595053c from=translated src=- shape=f89b16be vocab=4205a1e0
+-/
 theorem solution
     {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [T2Space G]
     [SecondCountableTopology G] [MeasurableSpace G] [BorelSpace G]

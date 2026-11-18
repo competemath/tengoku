@@ -238,6 +238,9 @@ end
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_PhiGenDescends_intCoeffs.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_PhiGenDescends_intCoeffs.ModularCurve.PhiGen in
 
+/--
+@isnad1 id=intcoeff.2h5v.s7.75964df07f09 from=translated src=- shape=2d08d543 vocab=1c856342
+-/
 theorem solution {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ} {c : ℕ → LaurentSeries ℚ} (hc : PhiGenDescends ℓ ζ c) (hζ1 : ζ ^ ℓ = 1) (k : ℕ) : IntCoeffs (c k) :=
   ModularCurve.PhiGen.PhiGenDescends.intCoeffs hc hζ1 k
 

@@ -70,6 +70,9 @@ private theorem ModularCurve.MTorsionNeBot.of_surjective_of_finite_impl {𝕋 : 
   obtain ⟨x, hx0, hx⟩ := exists_ne_zero_smul_eq_zero_of_pow_smul_eq_zero 𝔪 n m hm0 hm
   exact ⟨x, (Submodule.mem_torsionBySet_iff _ _).2 (fun a => hx a.1 a.2), hx0⟩
 
+/--
+@isnad1 id=mtorsion.2h5v.s7.a353373db47f from=translated src=- shape=551bbd18 vocab=a04c70d4
+-/
 theorem solution {𝕋 : Type*} [CommRing 𝕋]
     {N N'' : Type*} [AddCommGroup N] [Module 𝕋 N] [AddCommGroup N''] [Module 𝕋 N''] (𝔪 : Ideal 𝕋)
     [Finite N] (f : N →ₗ[𝕋] N'') (hf : Function.Surjective f) :

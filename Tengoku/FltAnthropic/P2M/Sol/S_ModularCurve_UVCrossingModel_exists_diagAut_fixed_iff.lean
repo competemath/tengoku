@@ -17,31 +17,52 @@ variable {W : Type*} [CommRing W]
 
 noncomputable def ij (a b : ℕ) : Fin 2 →₀ ℕ := Finsupp.single 0 a + Finsupp.single 1 b
 
+/--
+@isnad1 id=eq.0h2v.s5.6c3ca1a77dfd from=translated src=- shape=d13958d8 vocab=ff8987ac
+-/
 @[scoped simp] theorem ij_zero (a b : ℕ) : ij a b 0 = a := by simp [ij]
+/--
+@isnad1 id=eq.0h2v.s5.50c345bfb433 from=translated src=- shape=63341c4e vocab=ff8987ac
+-/
 @[scoped simp] theorem ij_one (a b : ℕ) : ij a b 1 = b := by simp [ij]
 
 theorem eq_ij (d : Fin 2 →₀ ℕ) : d = ij (d 0) (d 1) := by
   ext i; fin_cases i <;> simp
 
+/--
+@isnad1 id=and.1h4v.s5.f7f932171703 from=translated src=- shape=556210f6 vocab=e5ca0a38
+-/
 theorem ij_injective' {a b a' b' : ℕ} (h : ij a b = ij a' b') : a = a' ∧ b = b' := by
   have h0 := congrArg (fun d => d 0) h
   have h1 := congrArg (fun d => d 1) h
   simp only [ij_zero, ij_one] at h0 h1
   exact ⟨h0, h1⟩
 
+/--
+@isnad1 id=iff.0h4v.s5.0bd7695aa8a3 from=translated src=- shape=71ada6db vocab=0160d482
+-/
 theorem ij_le_ij_iff {a b a' b' : ℕ} : ij a b ≤ ij a' b' ↔ a ≤ a' ∧ b ≤ b' := by
   constructor
   · intro h; exact ⟨by simpa using h 0, by simpa using h 1⟩
   · rintro ⟨ha, hb⟩ i; fin_cases i <;> simpa
 
+/--
+@isnad1 id=eq.0h4v.s6.793772b07726 from=translated src=- shape=614071e8 vocab=b7fbf045
+-/
 theorem ij_sub_ij (a b a' b' : ℕ) : ij a b - ij a' b' = ij (a - a') (b - b') := by
   ext i; fin_cases i <;> simp [ij]
 
 noncomputable def crossing (c : W) : MvPowerSeries (Fin 2) W := X 0 * X 1 - C c
 
+/--
+@isnad1 id=eq.0h1v.s8.a6f63566fd35 from=translated src=- shape=800fcc21 vocab=cf8093e3
+-/
 theorem X_mul_X_eq : (X 0 * X 1 : MvPowerSeries (Fin 2) W) = monomial (ij 1 1) 1 := by
   rw [X_def, X_def, monomial_mul_monomial, one_mul]; rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.c015b0cd894d from=translated src=- shape=7e006f61 vocab=e4d6e283
+-/
 theorem coeff_crossing_mul (c : W) (G : MvPowerSeries (Fin 2) W) (a b : ℕ) :
     coeff (ij a b) (crossing c * G)
       = (if 1 ≤ a ∧ 1 ≤ b then coeff (ij (a - 1) (b - 1)) G else 0) - c * coeff (ij a b) G := by
@@ -57,10 +78,16 @@ variable (π : W) [IsPrecomplete (Ideal.span {π}) W] (hsep : ∀ x : W, (∀ n 
 noncomputable def ps (w : ℕ → W) (k : ℕ) : W := (Finset.range k).sum fun m => w m * π ^ m
 
 omit [IsPrecomplete (Ideal.span {π}) W] in
+/--
+@isnad1 id=eq.0h4v.s6.42c3969ffe15 from=translated src=- shape=5aadf644 vocab=e23ef2b9
+-/
 theorem ps_succ (w : ℕ → W) (k : ℕ) : ps π w (k + 1) = ps π w k + w k * π ^ k := by
   rw [ps, ps, Finset.sum_range_succ]
 
 omit [IsPrecomplete (Ideal.span {π}) W] in
+/--
+@isnad1 id=eq.0h4v.s6.727c33e28939 from=translated src=- shape=de8166c1 vocab=3ee1c78f
+-/
 theorem ps_succ' (w : ℕ → W) (k : ℕ) : ps π w (k + 1) = w 0 + π * ps π (fun m => w (m + 1)) k := by
   rw [ps, ps, Finset.sum_range_succ', Finset.mul_sum, pow_zero, mul_one, add_comm]
   congr 1
@@ -68,11 +95,17 @@ theorem ps_succ' (w : ℕ → W) (k : ℕ) : ps π w (k + 1) = w 0 + π * ps π 
   rw [pow_succ]; ring
 
 omit [IsPrecomplete (Ideal.span {π}) W] in
+/--
+@isnad1 id=iff.0h4v.s8.04b34f48d667 from=translated src=- shape=cc89b778 vocab=3d86a4d7
+-/
 theorem mem_smul_top_iff (k : ℕ) (x : W) :
     x ∈ (Ideal.span {π} ^ k • ⊤ : Submodule W W) ↔ π ^ k ∣ x := by
   rw [smul_eq_mul, Ideal.mul_top, Ideal.span_singleton_pow, Ideal.mem_span_singleton]
 
 omit [IsPrecomplete (Ideal.span {π}) W] in
+/--
+@isnad1 id=dvd.1h5v.s6.0f980a54ea13 from=translated src=- shape=e97df46b vocab=1910b7d1
+-/
 theorem ps_dvd_sub (w : ℕ → W) {m n : ℕ} (h : m ≤ n) : π ^ m ∣ ps π w n - ps π w m := by
   induction n, h using Nat.le_induction with
   | base => simp
@@ -80,6 +113,9 @@ theorem ps_dvd_sub (w : ℕ → W) {m n : ℕ} (h : m ≤ n) : π ^ m ∣ ps π 
     rw [ps_succ, add_sub_right_comm]
     exact dvd_add ih (dvd_mul_of_dvd_right (pow_dvd_pow π hmn) (w n))
 
+/--
+@isnad1 id=ex.0h3v.s6.e09e6ed24cd4 from=translated src=- shape=70cc2c3c vocab=ac874b45
+-/
 theorem exists_lim (w : ℕ → W) : ∃ L : W, ∀ k : ℕ, π ^ k ∣ L - ps π w k := by
   have h : ∀ {m n : ℕ}, m ≤ n → ps π w m ≡ ps π w n [SMOD (Ideal.span {π} ^ m • ⊤ : Submodule W W)] := by
     intro m n hmn
@@ -93,6 +129,9 @@ theorem exists_lim (w : ℕ → W) : ∃ L : W, ∀ k : ℕ, π ^ k ∣ L - ps �
 
 noncomputable def S (w : ℕ → W) : W := Classical.choose (exists_lim π w)
 
+/--
+@isnad1 id=dvd.0h4v.s6.a2a013989655 from=translated src=- shape=4cabe567 vocab=b960be6e
+-/
 theorem S_spec (w : ℕ → W) (k : ℕ) : π ^ k ∣ S π w - ps π w k := Classical.choose_spec (exists_lim π w) k
 
 include hsep in
@@ -105,6 +144,9 @@ theorem eq_of_forall_dvd_sub {x y : W} (w : ℕ → W) (hx : ∀ k, π ^ k ∣ x
 
 include hsep in
 
+/--
+@isnad1 id=eq.1h3v.s7.648642c32167 from=translated src=- shape=e8f0c265 vocab=6c266c8b
+-/
 theorem S_eq_add_mul_S (w : ℕ → W) : S π w = w 0 + π * S π (fun m => w (m + 1)) := by
   apply eq_of_forall_dvd_sub π hsep w (S_spec π w)
   intro k
@@ -132,16 +174,25 @@ noncomputable def tail : MvPowerSeries (Fin 2) W := fun d =>
   if d 1 ≤ d 0 then S π (fun m => rayX F (d 0 - d 1) (d 1 + 1 + m))
   else S π (fun m => rayY F (d 1 - d 0) (d 0 + 1 + m))
 
+/--
+@isnad1 id=eq.0h5v.s8.0e48ecd4d74b from=translated src=- shape=8293ed74 vocab=bcd989e1
+-/
 theorem coeff_nf (a b : ℕ) : coeff (ij a b) (nf π F)
     = if b = 0 then S π (rayX F a) else if a = 0 then S π (rayY F b) else 0 := by
   rw [coeff_apply]; simp [nf]
 
+/--
+@isnad1 id=eq.0h5v.s8.f4fe296cafc9 from=translated src=- shape=0374d6c4 vocab=8f52c8fe
+-/
 theorem coeff_tail (a b : ℕ) : coeff (ij a b) (tail π F)
     = if b ≤ a then S π (fun m => rayX F (a - b) (b + 1 + m)) else S π (fun m => rayY F (b - a) (a + 1 + m)) := by
   rw [coeff_apply]; simp [tail]
 
 include hsep in
 
+/--
+@isnad1 id=eq.1h3v.s7.d11b67265ecf from=translated src=- shape=5bde7166 vocab=24a64079
+-/
 theorem sub_nf_eq : F - nf π F = crossing π * tail π F := by
   refine MvPowerSeries.ext fun d => ?_
   obtain ⟨a, b, rfl⟩ : ∃ a b : ℕ, d = ij a b := ⟨d 0, d 1, eq_ij d⟩
@@ -226,15 +277,24 @@ def cvec : Fin 2 → W := ![ζ, ζ']
 def cvec' : Fin 2 → W := ![ζ', ζ]
 
 include hζζ' in
+/--
+@isnad1 id=eq.1h3v.s7.5c45526dfa40 from=translated src=- shape=17bdfb2f vocab=2f19e612
+-/
 theorem cvec_mul_cvec' : cvec ζ ζ' * cvec' ζ ζ' = 1 := by
   funext i; fin_cases i
   · show ζ * ζ' = 1; exact hζζ'
   · show ζ' * ζ = 1; rw [mul_comm]; exact hζζ'
 
 include hζζ' in
+/--
+@isnad1 id=eq.1h3v.s7.5cb56404fd28 from=translated src=- shape=17bdfb2f vocab=2f19e612
+-/
 theorem cvec'_mul_cvec : cvec' ζ ζ' * cvec ζ ζ' = 1 := by
   rw [mul_comm]; exact cvec_mul_cvec' ζ ζ' hζζ'
 
+/--
+@isnad1 id=eq.0h4v.s7.989c9e17d14e from=translated src=- shape=aa70654f vocab=c95182ce
+-/
 theorem prod_ij (c : Fin 2 → W) (a b : ℕ) : ((ij a b).prod fun s m => c s ^ m) = c 0 ^ a * c 1 ^ b := by
   rw [ij, Finsupp.prod_add_index', Finsupp.prod_single_index, Finsupp.prod_single_index]
   · exact pow_zero _
@@ -242,10 +302,16 @@ theorem prod_ij (c : Fin 2 → W) (a b : ℕ) : ((ij a b).prod fun s m => c s ^ 
   · intro i; exact pow_zero _
   · intro i m n; exact pow_add _ _ _
 
+/--
+@isnad1 id=eq.0h5v.s9.0c05c21efd37 from=translated src=- shape=d9bca688 vocab=48ca0565
+-/
 theorem coeff_rescale_ij (c : Fin 2 → W) (F : MvPowerSeries (Fin 2) W) (a b : ℕ) :
     coeff (ij a b) (rescale c F) = c 0 ^ a * c 1 ^ b * coeff (ij a b) F := by
   rw [coeff_rescale, prod_ij]
 
+/--
+@isnad1 id=eq.0h3v.s8.e58ea69253c8 from=translated src=- shape=b87ef990 vocab=008b0bdf
+-/
 theorem rescale_C' (c : Fin 2 → W) (w : W) : rescale c (C w : MvPowerSeries (Fin 2) W) = C w := by
   refine MvPowerSeries.ext fun d => ?_
   obtain ⟨a, b, rfl⟩ : ∃ a b : ℕ, d = ij a b := ⟨d 0, d 1, eq_ij d⟩
@@ -266,6 +332,9 @@ noncomputable def rescaleAlgEquiv : MvPowerSeries (Fin 2) W ≃ₐ[W] MvPowerSer
     (fun w => rescale_C' _ w)
 
 include hζζ' in
+/--
+@isnad1 id=eq.1h4v.s7.950514c25efe from=translated src=- shape=159d2fcf vocab=b7e997a2
+-/
 theorem rescale_crossing (π : W) : rescale (cvec ζ ζ') (crossing π) = crossing π := by
   rw [crossing, X_mul_X_eq, map_sub, rescale_C']
   congr 1
@@ -287,6 +356,9 @@ open scoped _root_.P2MW.S_ModularCurve_UVCrossingModel_exists_diagAut_fixed_iff.
 
 open ModularCurve ModularCurve.UVCrossingModel GaussPencil.L9d
 
+/--
+@isnad1 id=ex.5h5v.s11.21883e0b3b0e from=translated src=- shape=26b4e82a vocab=88ed2081
+-/
 theorem solution
     {W : Type*} [CommRing W] (π : W) [IsPrecomplete (Ideal.span {π}) W]
     (hsep : ∀ x : W, (∀ n : ℕ, π ^ n ∣ x) → x = 0) (e : ℕ) (he : e ≠ 0)

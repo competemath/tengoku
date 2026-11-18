@@ -11,12 +11,18 @@ namespace CycUnit
 
 open IsDedekindDomain IsDedekindDomain.HeightOneSpectrum NumberField WithZero
 
+/--
+@isnad1 id=le.2h1v.s6.310efc4dc025 from=translated src=- shape=51e4da80 vocab=6b2015c6
+-/
 theorem le_exp_neg_one_of_lt_one {x : ℤᵐ⁰} (hx0 : x ≠ 0) (hx : x < 1) : x ≤ exp (-1 : ℤ) := by
   rw [← exp_log hx0] at hx ⊢
   rw [← exp_zero, exp_lt_exp] at hx
   rw [exp_le_exp]
   omega
 
+/--
+@isnad1 id=eq.4h6v.s8.54714dfc61de from=translated src=- shape=32ded1c3 vocab=289dd392
+-/
 theorem maximalIdeal_eq_span_one_sub
     (q : ℕ) [hq : Fact q.Prime] (ℓ : ℕ) [Fact ℓ.Prime] (hℓq : ℓ ≠ q)
     (L : Type) [Field L] [CharZero L] [IsCyclotomicExtension {q * ℓ} ℚ L]
@@ -209,6 +215,9 @@ end CycUnit
 
 open CycUnit in
 
+/--
+@isnad1 id=mem.8h9v.s10.26e42c48be46 from=translated src=- shape=354efba5 vocab=e58dcdb5
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime] (ℓ : ℕ) [Fact ℓ.Prime] (hℓq : ℓ ≠ q)
     (L : Type) [Field L] [CharZero L] [IsCyclotomicExtension {q * ℓ} ℚ L]

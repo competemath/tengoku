@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open ModularCurve
 
+/--
+@isnad1 id=ex.1h5v.s6.5df3fab8b07c from=translated src=- shape=5686f1f3 vocab=dca93018
+-/
 theorem solution
     {A : Type} [CommRing A] (R : ModularCurve.RigidWeierstrassData A)
     {T : Type} [CommRing T] [Algebra A T] (x y : R.Raw T)

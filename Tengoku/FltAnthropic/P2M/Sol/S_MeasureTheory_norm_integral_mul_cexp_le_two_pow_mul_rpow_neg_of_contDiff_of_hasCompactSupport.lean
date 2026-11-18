@@ -14,14 +14,23 @@ namespace C1cB
 
 noncomputable def osc (l : ℝ) (u : ℝ) : ℂ := Complex.exp (Complex.I * (l : ℂ) * (u : ℂ))
 
+/--
+@isnad1 id=eq.0h2v.s4.fa316744247b from=translated src=- shape=18e50d40 vocab=333e0517
+-/
 theorem norm_osc (l u : ℝ) : ‖osc l u‖ = 1 := by
   unfold osc
   rw [Complex.norm_exp]
   simp
 
+/--
+@isnad1 id=continuo.0h1v.s4.f20fac2476c9 from=translated src=- shape=9bb0b988 vocab=e25b28ee
+-/
 theorem continuous_osc (l : ℝ) : Continuous (osc l) := by
   unfold osc; fun_prop
 
+/--
+@isnad1 id=hasderiv.0h2v.s6.9181899fb483 from=translated src=- shape=4a696eb1 vocab=bfb3b991
+-/
 theorem hasDerivAt_osc (l u : ℝ) :
     HasDerivAt (osc l) (Complex.I * (l : ℂ) * osc l u) u := by
   have h1 : HasDerivAt (fun y : ℝ => ((id y : ℝ) : ℂ)) ((1 : ℝ) : ℂ) u := (hasDerivAt_id u).ofReal_comp
@@ -30,6 +39,9 @@ theorem hasDerivAt_osc (l u : ℝ) :
   simp only [id, Complex.ofReal_one, mul_one, osc]
   ring
 
+/--
+@isnad1 id=tendsto.1h1v.s5.aba3c6ded43a from=translated src=- shape=089eb50d vocab=a3bcefce
+-/
 theorem tendsto_atTop_zero_of_hasCompactSupport (f : ℝ → ℂ) (hf : HasCompactSupport f) :
     Filter.Tendsto f Filter.atTop (nhds 0) := by
   obtain ⟨R, hR⟩ := hf.isCompact.bddAbove
@@ -37,6 +49,9 @@ theorem tendsto_atTop_zero_of_hasCompactSupport (f : ℝ → ℂ) (hf : HasCompa
   filter_upwards [Filter.eventually_gt_atTop R] with x hx
   exact (image_eq_zero_of_notMem_tsupport (fun h => (not_le.mpr hx) (hR h))).symm
 
+/--
+@isnad1 id=tendsto.1h1v.s5.c6959e240509 from=translated src=- shape=089eb50d vocab=07b36487
+-/
 theorem tendsto_atBot_zero_of_hasCompactSupport (f : ℝ → ℂ) (hf : HasCompactSupport f) :
     Filter.Tendsto f Filter.atBot (nhds 0) := by
   obtain ⟨R, hR⟩ := hf.isCompact.bddBelow
@@ -44,6 +59,9 @@ theorem tendsto_atBot_zero_of_hasCompactSupport (f : ℝ → ℂ) (hf : HasCompa
   filter_upwards [Filter.eventually_lt_atBot R] with x hx
   exact (image_eq_zero_of_notMem_tsupport (fun h => (not_le.mpr hx) (hR h))).symm
 
+/--
+@isnad1 id=eq.2h2v.s7.61c2fa810335 from=translated src=- shape=41e45b52 vocab=e0c192a9
+-/
 theorem ibp_step (l : ℝ) (G : ℝ → ℂ) (hG : ContDiff ℝ 1 G) (hGc : HasCompactSupport G) :
     Complex.I * (l : ℂ) * ∫ u : ℝ, G u * osc l u = - ∫ u : ℝ, deriv G u * osc l u := by
   have hGd : Differentiable ℝ G := hG.differentiable one_ne_zero
@@ -67,6 +85,9 @@ theorem ibp_step (l : ℝ) (G : ℝ → ℂ) (hG : ContDiff ℝ 1 G) (hGc : HasC
     _ = 0 - 0 - ∫ u : ℝ, deriv G u * osc l u := key
     _ = - ∫ u : ℝ, deriv G u * osc l u := by ring
 
+/--
+@isnad1 id=eq.2h3v.s7.f536b9ca6921 from=translated src=- shape=68da2583 vocab=23479de1
+-/
 theorem ibp_iter (l : ℝ) : ∀ (n : ℕ) (G : ℝ → ℂ), ContDiff ℝ n G → HasCompactSupport G →
     (Complex.I * (l : ℂ)) ^ n * ∫ u : ℝ, G u * osc l u = (-1) ^ n * ∫ u : ℝ, iteratedDeriv n G u * osc l u := by
   intro n
@@ -87,6 +108,9 @@ theorem ibp_iter (l : ℝ) : ∀ (n : ℕ) (G : ℝ → ℂ), ContDiff ℝ n G �
       _ = - ((-1) ^ n * ∫ u : ℝ, iteratedDeriv n (deriv G) u * osc l u) := by rw [rec_]
       _ = (-1) ^ n * (-1) * ∫ u : ℝ, iteratedDeriv n (deriv G) u * osc l u := by ring
 
+/--
+@isnad1 id=le.0h2v.s6.6f1d5c2a2739 from=translated src=- shape=4648a654 vocab=00022382
+-/
 theorem norm_integral_mul_osc_le (l : ℝ) (G : ℝ → ℂ) :
     ‖∫ u : ℝ, G u * osc l u‖ ≤ ∫ u : ℝ, ‖G u‖ := by
   refine (norm_integral_le_integral_norm _).trans (le_of_eq ?_)
@@ -94,6 +118,9 @@ theorem norm_integral_mul_osc_le (l : ℝ) (G : ℝ → ℂ) :
   show ‖G u * osc l u‖ = ‖G u‖
   rw [norm_mul, norm_osc, mul_one]
 
+/--
+@isnad1 id=le.2h3v.s8.1a1b01b069ca from=translated src=- shape=7e7613bd vocab=70367f2a
+-/
 theorem main (N : ℕ) (H : ℝ → ℂ) (hH : ContDiff ℝ N H) (hHc : HasCompactSupport H) (l : ℝ) :
     ‖∫ u : ℝ, H u * Complex.exp (Complex.I * (l : ℂ) * (u : ℂ))‖
       ≤ 2 ^ N * ((∫ u : ℝ, ‖H u‖) + ∫ u : ℝ, ‖iteratedDeriv N H u‖) * (1 + |l|) ^ (-(N : ℝ)) := by
@@ -151,6 +178,9 @@ theorem main (N : ℕ) (H : ℝ → ℂ) (hH : ContDiff ℝ N H) (hHc : HasCompa
 
 end Ws31.C1cB
 
+/--
+@isnad1 id=le.2h3v.s8.1a1b01b069ca from=translated src=- shape=7e7613bd vocab=70367f2a
+-/
 theorem solution
     (N : ℕ) (H : ℝ → ℂ) (hH : ContDiff ℝ N H) (hHc : HasCompactSupport H) (l : ℝ) :
     ‖∫ u : ℝ, H u * Complex.exp (Complex.I * (l : ℂ) * (u : ℂ))‖

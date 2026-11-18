@@ -19,6 +19,9 @@ variable {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [T2Sp
   (T S : Subgroup G) [MeasurableSpace T] [BorelSpace T] [MeasurableSpace S] [BorelSpace S]
   (e : T × S ≃ₜ G)
 
+/--
+@isnad1 id=isclosed.1h4v.s9.901f6fea44a8 from=translated src=- shape=9b676cf6 vocab=3dc38c1e
+-/
 theorem isClosed_left (he : ∀ p : T × S, e p = (p.1 : G) * (p.2 : G)) : IsClosed (T : Set G) := by
   have h : (T : Set G) = e '' ((Set.univ : Set T) ×ˢ ({1} : Set S)) := by
     ext g
@@ -30,6 +33,9 @@ theorem isClosed_left (he : ∀ p : T × S, e p = (p.1 : G) * (p.2 : G)) : IsClo
   rw [h]
   exact (e.isClosedMap _ (isClosed_univ.prod isClosed_singleton))
 
+/--
+@isnad1 id=isclosed.1h4v.s9.06999214d45c from=translated src=- shape=b18df56d vocab=3dc38c1e
+-/
 theorem isClosed_right (he : ∀ p : T × S, e p = (p.1 : G) * (p.2 : G)) : IsClosed (S : Set G) := by
   have h : (S : Set G) = e '' (({1} : Set T) ×ˢ (Set.univ : Set S)) := by
     ext g
@@ -41,6 +47,9 @@ theorem isClosed_right (he : ∀ p : T × S, e p = (p.1 : G) * (p.2 : G)) : IsCl
   rw [h]
   exact (e.isClosedMap _ (isClosed_singleton.prod isClosed_univ))
 
+/--
+@isnad1 id=ex.1h7v.s10.81faacb2db0e from=translated src=- shape=e688103f vocab=c47a3659
+-/
 theorem exists_haar_eq_smul_map (he : ∀ p : T × S, e p = (p.1 : G) * (p.2 : G))
     (μ : Measure G) [μ.IsHaarMeasure] [μ.IsMulRightInvariant]
     (τ : Measure T) [τ.IsHaarMeasure]
@@ -114,6 +123,9 @@ end P2mHaarProduct
 
 open MeasureTheory in
 open scoped ENNReal in
+/--
+@isnad1 id=ex.1h7v.s10.81faacb2db0e from=translated src=- shape=e688103f vocab=c47a3659
+-/
 theorem solution
     {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [T2Space G] [LocallyCompactSpace G]
     [SecondCountableTopology G] [MeasurableSpace G] [BorelSpace G]

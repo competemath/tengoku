@@ -18,9 +18,15 @@ variable {S : Type*} [Fintype S] [DecidableEq S]
 def dzlE (s₀ s : S) : characterLattice S :=
   ⟨Pi.single s 1 - Pi.single s₀ 1, single_sub_single_mem s s₀⟩
 
+/--
+@isnad1 id=eq.0h3v.s7.10985aa78159 from=translated src=- shape=8af80b78 vocab=769d0e20
+-/
 @[scoped simp]
 theorem coe_dzlE (s₀ s : S) : (dzlE s₀ s : S → ℤ) = Pi.single s 1 - Pi.single s₀ 1 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.c1b197795a20 from=translated src=- shape=c84182cf vocab=9ca99930
+-/
 theorem sum_smul_dzlE (s₀ : S) (a : characterLattice S) :
     ∑ s, (a : S → ℤ) s • dzlE s₀ s = a := by
   have ha : ∑ s, (a : S → ℤ) s = 0 := mem_characterLattice.1 a.2
@@ -34,10 +40,16 @@ theorem sum_smul_dzlE (s₀ : S) (a : characterLattice S) :
 
 variable {G : Type*} [CommGroup G]
 
+/--
+@isnad1 id=eq.0h5v.s6.4168bd60e868 from=translated src=- shape=d1c939c5 vocab=02b39f2d
+-/
 theorem prod_zpow_single (s : S) (n : ℤ) (w : S → G) :
     ∏ t, w t ^ (Pi.single s n : S → ℤ) t = w s ^ n := by
   rw [Fintype.prod_eq_single s fun t ht => by rw [Pi.single_eq_of_ne ht, zpow_zero], Pi.single_eq_same]
 
+/--
+@isnad1 id=eq.0h5v.s7.e46eadc137c8 from=translated src=- shape=f57dbe9a vocab=84d21a1e
+-/
 theorem evalHom_dzlE (s₀ s : S) (w : S → G) : evalHom (dzlE s₀ s) w = w s * (w s₀)⁻¹ := by
   show zpowProd (Pi.single s (1 : ℤ) - Pi.single s₀ 1) w = _
   rw [sub_eq_add_neg, zpowProd_add, zpowProd_neg, zpowProd_def, zpowProd_def, prod_zpow_single,
@@ -47,6 +59,9 @@ end DZLTorusAux
 open scoped _root_.P2MW.S_ModularCurve_characterLattice_evalHom_surjective_and_trivial_iff_const.DZLTorusAux
 
 open DZLTorusAux in
+/--
+@isnad1 id=and.0h2v.s11.f9a9997112f3 from=translated src=- shape=be501231 vocab=9bb6afe7
+-/
 theorem solution
     (S : Type*) [Fintype S] [Nonempty S] (G : Type*) [CommGroup G] :
     (∀ χ : ModularCurve.characterLattice S →+ Additive G,

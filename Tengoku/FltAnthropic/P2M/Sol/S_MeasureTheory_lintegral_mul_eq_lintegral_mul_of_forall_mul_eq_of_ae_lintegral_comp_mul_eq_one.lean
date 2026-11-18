@@ -19,15 +19,24 @@ variable {G X : Type*} [Group G] [MeasurableSpace G] [MeasurableMul₂ G]
   [AddGroup X] [MeasurableSpace X] [MeasurableNeg X]
 
 omit [MeasurableSpace G] [MeasurableMul₂ G] [MeasurableSpace X] [MeasurableNeg X] in
+/--
+@isnad1 id=eq.1h3v.s6.777f02b8773a from=translated src=- shape=89416fb8 vocab=2f380a08
+-/
 theorem map_zero_of_forall_map_add (n : X → G) (hn : ∀ x y, n (x + y) = n x * n y) : n 0 = 1 := by
   have h := hn 0 0
   rw [add_zero] at h
   exact ((left_eq_mul.1 h).symm).symm
 
 omit [MeasurableSpace G] [MeasurableMul₂ G] [MeasurableSpace X] [MeasurableNeg X] in
+/--
+@isnad1 id=eq.1h4v.s6.0309ed429500 from=translated src=- shape=85439f9c vocab=d2365fb8
+-/
 theorem map_neg_mul (n : X → G) (hn : ∀ x y, n (x + y) = n x * n y) (x : X) : n (-x) * n x = 1 := by
   rw [← hn, neg_add_cancel, map_zero_of_forall_map_add n hn]
 
+/--
+@isnad1 id=eq.8h8v.s8.c18ad64719f7 from=translated src=- shape=4752c352 vocab=7cfe240a
+-/
 theorem main
     (τ : Measure G) [SFinite τ] [τ.IsMulRightInvariant]
     (μ : Measure X) [SFinite μ] [μ.IsNegInvariant]
@@ -71,6 +80,9 @@ theorem main
 
 end MeasureTheory.SectionAveraging
 
+/--
+@isnad1 id=eq.8h8v.s8.c18ad64719f7 from=translated src=- shape=4752c352 vocab=7cfe240a
+-/
 theorem solution
     {G X : Type*} [Group G] [MeasurableSpace G] [MeasurableMul₂ G]
     [AddGroup X] [MeasurableSpace X] [MeasurableNeg X]

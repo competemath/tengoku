@@ -16,11 +16,17 @@ open PowerSeries
 
 variable {F : Type} [Field F]
 
+/--
+@isnad1 id=eq.0h5v.s9.d83c476d479a from=translated src=- shape=a3110c12 vocab=300084bb
+-/
 theorem coeff_heckePS (k : ℤ) (ℓ : ℕ) (φ : PowerSeries F) (n : ℕ) :
     coeff n (heckePS k ℓ φ) =
       coeff (n * ℓ) φ + if ℓ ∣ n then (ℓ : F) ^ (k - 1) * coeff (n / ℓ) φ else 0 := by
   unfold heckePS; rw [coeff_mk]
 
+/--
+@isnad1 id=eq.3h5v.s5.806b5d51f6e8 from=translated src=- shape=88d06862 vocab=9a66f824
+-/
 theorem heckePS_comm (k : ℤ) {ℓ ℓ' : ℕ} (hℓ : ℓ ≠ 0) (hℓ' : ℓ' ≠ 0) (hcop : Nat.Coprime ℓ ℓ')
     (φ : PowerSeries F) : heckePS k ℓ (heckePS k ℓ' φ) = heckePS k ℓ' (heckePS k ℓ φ) := by
   ext n
@@ -86,6 +92,9 @@ end S2A
 
 open ModPForms
 
+/--
+@isnad1 id=eq.2h5v.s5.889c5dad4021 from=translated src=- shape=05078b8f vocab=3e9f983c
+-/
 theorem solution
     (F : Type) [Field F] (k : ℤ) (ℓ ℓ' : ℕ) (hℓ : ℓ.Prime) (hℓ' : ℓ'.Prime) (φ : PowerSeries F) :
     ModPForms.heckePS k ℓ (ModPForms.heckePS k ℓ' φ) = ModPForms.heckePS k ℓ' (ModPForms.heckePS k ℓ φ) := by

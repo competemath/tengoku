@@ -50,6 +50,9 @@ def fracField (S : Subring LQ) : Subfield LQ where
 variable {q : ℕ} [Fact q.Prime] {A : ValuationSubring Qb} {k : Type*} [Field k] (red : A →+* k) (a : k)
   (K : IntermediateField ℚ Qb)
 
+/--
+@isnad1 id=le.0h6v.s9.d010968dc498 from=translated src=- shape=ac2fe171 vocab=5f5145fd
+-/
 theorem fieldOver_le :
     fieldOver (1 * q) K ≤ fracField (modularLocalizedAtPoint (1 * q) (coeffSubring A K) (redRestrict red K) a (a ^ q)) := by
   have hmem : ∀ p : MvPolynomial (Fin 2) ↥(coeffSubring A K), modularEval (1 * q) (coeffSubring A K) p ∈
@@ -79,6 +82,9 @@ end D5
 end ModularCurve
 end
 
+/--
+@isnad1 id=ex.1h7v.s10.027d482e48e5 from=translated src=- shape=74b331d4 vocab=cb0e3124
+-/
 theorem solution
     {q : ℕ} [Fact q.Prime] {A : ValuationSubring (AlgebraicClosure ℚ)}
     {k : Type*} [Field k] (red : A →+* k) (a : k)

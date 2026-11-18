@@ -16,14 +16,23 @@ namespace FourierDensityAux
 
 noncomputable def dil : ℝ := -(2 * Real.pi)⁻¹
 
+/--
+@isnad1 id=ne.0h0v.s3.0e62c8c53ffa from=translated src=- shape=ffdda526 vocab=9eed08f6
+-/
 theorem dil_ne_zero : dil ≠ 0 := by
   unfold dil
   exact neg_ne_zero.2 (inv_ne_zero (by positivity))
 
+/--
+@isnad1 id=eq.0h0v.s4.459718cfa416 from=translated src=- shape=4e014eed vocab=8bc94a07
+-/
 theorem abs_dil_inv : |dil⁻¹| = 2 * Real.pi := by
   unfold dil
   rw [inv_neg, inv_inv, abs_neg, abs_of_pos (by positivity)]
 
+/--
+@isnad1 id=eq.0h2v.s6.25517568270c from=translated src=- shape=18748a53 vocab=7d74d9e7
+-/
 theorem fourier_apply_dil_mul (h : ℝ → ℂ) (t : ℝ) :
     𝓕 h (dil * t) = ∫ x : ℝ, h x * Complex.exp ((t : ℂ) * Complex.I * (x : ℂ)) := by
   rw [Real.fourier_real_eq]
@@ -36,6 +45,9 @@ theorem fourier_apply_dil_mul (h : ℝ → ℂ) (t : ℝ) :
   push_cast
   field_simp
 
+/--
+@isnad1 id=memlp.2h2v.s7.d306710f7142 from=translated src=- shape=345de3dd vocab=b6970024
+-/
 theorem memLp_comp_mul {G : ℝ → ℂ} (hG : MemLp G 2 volume) {b : ℝ} (hb : b ≠ 0) :
     MemLp (fun y : ℝ => G (b * y)) 2 volume := by
   have h1 : MemLp G 2 (Measure.map (fun y : ℝ => b * y) volume) := by
@@ -43,6 +55,9 @@ theorem memLp_comp_mul {G : ℝ → ℂ} (hG : MemLp G 2 volume) {b : ℝ} (hb :
     exact hG.smul_measure ENNReal.ofReal_ne_top
   exact h1.comp_of_map (measurable_id.const_mul b).aemeasurable
 
+/--
+@isnad1 id=eq.1h1v.s7.2a6f147f5a71 from=translated src=- shape=3b6f0f6c vocab=7469b0a3
+-/
 theorem toReal_eLpNorm_eq_sqrt {f : ℝ → ℂ} (hf : MemLp f 2 volume) :
     (eLpNorm f 2 volume).toReal = Real.sqrt (∫ x, ‖f x‖ ^ 2) := by
   rw [hf.eLpNorm_eq_integral_rpow_norm two_ne_zero ENNReal.ofNat_ne_top,
@@ -50,10 +65,16 @@ theorem toReal_eLpNorm_eq_sqrt {f : ℝ → ℂ} (hf : MemLp f 2 volume) :
     Real.sqrt_eq_rpow]
   simp only [ENNReal.toReal_ofNat, Real.rpow_two, one_div]
 
+/--
+@isnad1 id=eq.1h1v.s7.2badc936fbdb from=translated src=- shape=ce64f862 vocab=fd4cce46
+-/
 theorem integral_norm_sq_eq_sq {f : ℝ → ℂ} (hf : MemLp f 2 volume) :
     (∫ x, ‖f x‖ ^ 2) = (eLpNorm f 2 volume).toReal ^ 2 := by
   rw [toReal_eLpNorm_eq_sqrt hf, Real.sq_sqrt (integral_nonneg fun x => by positivity)]
 
+/--
+@isnad1 id=eq.2h4v.s11.3de137608aec from=translated src=- shape=5440a079 vocab=c7d342a9
+-/
 theorem norm_sub_eq_toReal {u v : Lp ℂ 2 (volume : Measure ℝ)} {f g : ℝ → ℂ}
     (hu : (u : ℝ → ℂ) =ᵐ[volume] f) (hv : (v : ℝ → ℂ) =ᵐ[volume] g) :
     ‖u - v‖ = (eLpNorm (f - g) 2 volume).toReal := by
@@ -67,6 +88,9 @@ end FourierDensityAux
 
 open FourierDensityAux in
 
+/--
+@isnad1 id=ex.2h2v.s8.c09146c83e84 from=translated src=- shape=11f6c015 vocab=1d1daecc
+-/
 theorem solution
     (G : ℝ → ℂ) (_hG : MemLp G 2) (ε : ℝ) (_hε : 0 < ε) :
     ∃ h : ℝ → ℂ, ContDiff ℝ ∞ h ∧ HasCompactSupport h ∧

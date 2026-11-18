@@ -22,10 +22,16 @@ open _root_.ModularCurve.LevelModuliPackageAbs open _root_.ModularCurve
 
 variable {A : Type u} [CommRing A] {D : LevelModuliDatum.{u} A} (P : LevelModuliPackageAbs A D)
 
+/--
+@isnad1 id=eq.0h5v.s7.109cfea203c3 from=translated src=- shape=f70ddc0e vocab=84096a14
+-/
 theorem classify_map_univ {T : Type u} [CommRing T] [Algebra A T] (φ : P.B₀ →ₐ[A] T) :
     P.classify (D.map φ P.univ) = φ :=
   (P.classify_unique (D.map φ P.univ) φ rfl).symm
 
+/--
+@isnad1 id=eq.1h6v.s7.1f2ebe92d313 from=translated src=- shape=ce4b216d vocab=c00d9a86
+-/
 theorem algHom_eq_of_map_univ_eq {T : Type u} [CommRing T] [Algebra A T] (φ ψ : P.B₀ →ₐ[A] T)
     (h : D.map φ P.univ = D.map ψ P.univ) : φ = ψ :=
   (P.classify_unique (D.map ψ P.univ) φ h).trans (P.classify_unique (D.map ψ P.univ) ψ rfl).symm
@@ -33,6 +39,9 @@ theorem algHom_eq_of_map_univ_eq {T : Type u} [CommRing T] [Algebra A T] (φ ψ 
 end ModularCurve.LevelModuliPackageAbs.ProRepAux
 
 open ModularCurve.LevelModuliPackageAbs.ProRepAux in
+/--
+@isnad1 id=and.4h11v.s12.3cc5830a5a5c from=translated src=- shape=44bcb3f5 vocab=5765f6fc
+-/
 theorem solution
     {A : Type u} [CommRing A] {D : LevelModuliDatum.{u} A} (P : LevelModuliPackageAbs A D)
 

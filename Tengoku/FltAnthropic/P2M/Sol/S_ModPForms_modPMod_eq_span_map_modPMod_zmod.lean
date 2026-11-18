@@ -19,11 +19,17 @@ variable (p : ℕ) [Fact p.Prime] (F : Type) [Field F] [CharP F p]
 noncomputable abbrev ι : PowerSeries (ZMod p) →+* PowerSeries F :=
   PowerSeries.map (ZMod.castHom (dvd_refl p) F)
 
+/--
+@isnad1 id=eq.0h3v.s7.dccc23400976 from=translated src=- shape=98e8e1b5 vocab=1472921c
+-/
 theorem ι_mk_intCast (a : ℕ → ℤ) :
     ι p F (PowerSeries.mk fun n => ((a n : ℤ) : ZMod p)) = PowerSeries.mk fun n => ((a n : ℤ) : F) := by
   ext n
   simp [PowerSeries.coeff_map, PowerSeries.coeff_mk, map_intCast]
 
+/--
+@isnad1 id=eq.0h3v.s9.64b45c142268 from=translated src=- shape=513b47ab vocab=1967b4ad
+-/
 theorem span_image_span (S : Set (PowerSeries (ZMod p))) :
     Submodule.span F (ι p F '' (Submodule.span (ZMod p) S : Set (PowerSeries (ZMod p)))) =
       Submodule.span F (ι p F '' S) := by
@@ -41,6 +47,9 @@ theorem span_image_span (S : Set (PowerSeries (ZMod p))) :
       exact Submodule.smul_mem _ _ hy
   · exact Submodule.span_mono (Set.image_mono Submodule.subset_span)
 
+/--
+@isnad1 id=eq.0h4v.s10.b0d8f4b5da12 from=translated src=- shape=5ef33243 vocab=23a48bf9
+-/
 theorem genSet_modPMod_eq_image (N : ℕ) (k : ℤ) :
     {φ : PowerSeries F | ∃ (f : ModularForm (CongruenceSubgroup.Gamma0 N) k) (a : ℕ → ℤ),
       (∀ n, ModularFormClass.qCoeff f n = (a n : ℂ)) ∧ φ = PowerSeries.mk fun n => ((a n : ℤ) : F)} =
@@ -53,6 +62,9 @@ theorem genSet_modPMod_eq_image (N : ℕ) (k : ℤ) :
   · rintro ⟨_, ⟨f, a, ha, rfl⟩, rfl⟩
     exact ⟨f, a, ha, ι_mk_intCast p F a⟩
 
+/--
+@isnad1 id=eq.0h4v.s8.3d0ca0952176 from=translated src=- shape=27be894d vocab=a540ce04
+-/
 theorem modPMod_eq_span_image (N : ℕ) (k : ℤ) :
     ModPForms.modPMod N k F =
       Submodule.span F (ι p F '' (ModPForms.modPMod N k (ZMod p) : Set (PowerSeries (ZMod p)))) := by
@@ -60,6 +72,9 @@ theorem modPMod_eq_span_image (N : ℕ) (k : ℤ) :
 
 end ModPForms.BaseChange
 
+/--
+@isnad1 id=eq.0h4v.s8.fef99168afb4 from=translated src=- shape=258721f7 vocab=0b97b79f
+-/
 theorem solution (p : ℕ) [Fact p.Prime] (N : ℕ) (k : ℤ) (F : Type) [Field F] [CharP F p] :
     ModPForms.modPMod N k F =
       Submodule.span F (PowerSeries.map (ZMod.castHom (dvd_refl p) F) ''

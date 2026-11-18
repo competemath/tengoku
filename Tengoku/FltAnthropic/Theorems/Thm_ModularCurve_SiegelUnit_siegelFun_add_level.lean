@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open ModularCurve
 
+/--
+@isnad1 id=and.0h3v.s7.f35b595dcaa8 from=translated src=- shape=8d28570f vocab=ca4c1968
+-/
 theorem ModularCurve.SiegelUnit.siegelFun_add_level (N : ℕ) (r s : ℤ) :
     (∀ z : ℂ, siegelFun N r (s + N) z =
         Complex.exp (Real.pi * Complex.I * ((r : ℂ) - (N : ℂ)) / (N : ℂ)) * siegelFun N r s z) ∧

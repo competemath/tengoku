@@ -13,6 +13,9 @@ open Polynomial
 
 def wt (n : ℕ) : ℕ := n ^ 2 - if Even n then 4 else 1
 
+/--
+@isnad1 id=eq.2h1v.s5.ca8619ff9a07 from=translated src=- shape=1e4632e5 vocab=e31dceea
+-/
 theorem wt_add_of_even {k : ℕ} (hk : Even k) (hk0 : k ≠ 0) : wt k + 4 = k ^ 2 := by
   unfold wt
   rw [ite_eq_left hk]
@@ -20,6 +23,9 @@ theorem wt_add_of_even {k : ℕ} (hk : Even k) (hk0 : k ≠ 0) : wt k + 4 = k ^ 
   have h4 : 4 ≤ k ^ 2 := by nlinarith
   exact Nat.sub_add_cancel h4
 
+/--
+@isnad1 id=eq.1h1v.s5.dec62c77cc64 from=translated src=- shape=2a317266 vocab=e31dceea
+-/
 theorem wt_add_of_odd {k : ℕ} (hk : ¬Even k) : wt k + 1 = k ^ 2 := by
   unfold wt
   rw [ite_eq_right hk]
@@ -30,14 +36,32 @@ theorem wt_add_of_odd {k : ℕ} (hk : ¬Even k) : wt k + 1 = k ^ 2 := by
   have : 1 ≤ k ^ 2 := Nat.one_le_pow _ _ h1
   exact Nat.sub_add_cancel this
 
+/--
+@isnad1 id=eq.0h0v.s3.0b05de0a5cb7 from=translated src=- shape=3c26ae4f vocab=6749f533
+-/
 @[scoped simp] theorem wt_zero : wt 0 = 0 := by simp [wt]
+/--
+@isnad1 id=eq.0h0v.s3.43f2b0627476 from=translated src=- shape=3c26ae4f vocab=6749f533
+-/
 @[scoped simp] theorem wt_one : wt 1 = 0 := by decide
+/--
+@isnad1 id=eq.0h0v.s3.c52403068725 from=translated src=- shape=3c26ae4f vocab=6749f533
+-/
 @[scoped simp] theorem wt_two : wt 2 = 0 := by decide
+/--
+@isnad1 id=eq.0h0v.s3.ce7eb1200f6c from=translated src=- shape=3c26ae4f vocab=6749f533
+-/
 @[scoped simp] theorem wt_three : wt 3 = 8 := by decide
+/--
+@isnad1 id=eq.0h0v.s3.5b735105d42c from=translated src=- shape=3c26ae4f vocab=6749f533
+-/
 @[scoped simp] theorem wt_four : wt 4 = 12 := by decide
 
 variable {R : Type*} [CommRing R]
 
+/--
+@isnad1 id=eq.0h6v.s7.5b0f1a4d05d0 from=translated src=- shape=247665e4 vocab=a1b58097
+-/
 theorem preNormEDS'_smul (b c d μ : R) (n : ℕ) :
     preNormEDS' (μ ^ 12 * b) (μ ^ 8 * c) (μ ^ 12 * d) n = μ ^ wt n * preNormEDS' b c d n := by
   induction n using normEDSRec' with
@@ -182,6 +206,9 @@ open Polynomial WeierstrassCurve
 
 variable {R : Type*} [CommRing R] (W : WeierstrassCurve R) (C : WeierstrassCurve.VariableChange R)
 
+/--
+@isnad1 id=eq.0h4v.s7.e89ac6f1a1c5 from=translated src=- shape=be6cbe42 vocab=cfb172a8
+-/
 theorem eval_Ψ₂Sq_variableChange (x : R) :
     (C • W).Ψ₂Sq.eval (((C.u⁻¹ : Rˣ) : R) ^ 2 * (x - C.r)) =
       ((C.u⁻¹ : Rˣ) : R) ^ 6 * W.Ψ₂Sq.eval x := by
@@ -190,6 +217,9 @@ theorem eval_Ψ₂Sq_variableChange (x : R) :
     WeierstrassCurve.variableChange_b₆]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s7.783cbca5805c from=translated src=- shape=be6cbe42 vocab=0942a42c
+-/
 theorem eval_Ψ₃_variableChange (x : R) :
     (C • W).Ψ₃.eval (((C.u⁻¹ : Rˣ) : R) ^ 2 * (x - C.r)) =
       ((C.u⁻¹ : Rˣ) : R) ^ 8 * W.Ψ₃.eval x := by
@@ -199,6 +229,9 @@ theorem eval_Ψ₃_variableChange (x : R) :
   ring
 
 set_option maxHeartbeats 3200000 in
+/--
+@isnad1 id=eq.0h4v.s7.3dc6cd6c3066 from=translated src=- shape=be6cbe42 vocab=e5b12968
+-/
 theorem eval_preΨ₄_variableChange (x : R) :
     (C • W).preΨ₄.eval (((C.u⁻¹ : Rˣ) : R) ^ 2 * (x - C.r)) =
       ((C.u⁻¹ : Rˣ) : R) ^ 12 * W.preΨ₄.eval x := by
@@ -207,6 +240,9 @@ theorem eval_preΨ₄_variableChange (x : R) :
     WeierstrassCurve.variableChange_b₆, WeierstrassCurve.variableChange_b₈]
   linear_combination (-(((C.u⁻¹ : Rˣ) : R) ^ 12) * (2 * x * C.r - C.r ^ 2)) * W.b_relation
 
+/--
+@isnad1 id=eq.0h5v.s7.45d03133d1ba from=translated src=- shape=901c13a7 vocab=201f004b
+-/
 theorem eval_preΨ'_variableChange (n : ℕ) (x : R) :
     ((C • W).preΨ' n).eval (((C.u⁻¹ : Rˣ) : R) ^ 2 * (x - C.r)) =
       ((C.u⁻¹ : Rˣ) : R) ^ wt n * (W.preΨ' n).eval x := by
@@ -215,6 +251,9 @@ theorem eval_preΨ'_variableChange (n : ℕ) (x : R) :
     eval_Ψ₂Sq_variableChange, eval_Ψ₃_variableChange, eval_preΨ₄_variableChange, mul_pow,
     ← pow_mul, preNormEDS'_smul]
 
+/--
+@isnad1 id=eq.0h6v.s9.556d95950f9b from=translated src=- shape=ba8e28be vocab=47fc36fa
+-/
 theorem lineFactor_variableChange (n : ℕ) (x₀ x : R) :
     (((C.u⁻¹ : Rˣ) : R) ^ 2 * (x - C.r)) *
         ((C • W).ΨSq (n + 1 : ℕ)).eval (((C.u⁻¹ : Rˣ) : R) ^ 2 * (x₀ - C.r)) -
@@ -284,6 +323,9 @@ namespace KatzTransport
 
 open Polynomial
 
+/--
+@isnad1 id=eq.0h5v.s8.887124f2038a from=translated src=- shape=46cded88 vocab=28e63f8f
+-/
 theorem eval_Phi_vc {R : Type*} [CommRing R]
     (W : WeierstrassCurve R) (C : WeierstrassCurve.VariableChange R) (n : ℤ) (x : R) :
     ((C • W).Φ n).eval (((C.u⁻¹ : Rˣ) : R) ^ 2 * (x - C.r)) =
@@ -305,6 +347,9 @@ theorem eval_Phi_vc {R : Type*} [CommRing R]
 end KatzTransport
 open scoped _root_.P2MW.S_WeierstrassCurve_eval_Phi_variableChange.KatzTransport
 
+/--
+@isnad1 id=eq.0h5v.s8.887124f2038a from=translated src=- shape=46cded88 vocab=28e63f8f
+-/
 theorem solution {R : Type*} [CommRing R]
     (W : WeierstrassCurve R) (C : WeierstrassCurve.VariableChange R) (n : ℤ) (x : R) :
     ((C • W).Φ n).eval (((C.u⁻¹ : Rˣ) : R) ^ 2 * (x - C.r)) =

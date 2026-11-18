@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_MvPowerSeries_exists_algEquiv_apply_X_eq
 set_option autoImplicit false
 
 open MvPowerSeries
+/--
+@isnad1 id=ex.2h2v.s10.2b8d1d4a2381 from=translated src=- shape=87208842 vocab=16967e71
+-/
 theorem MvPowerSeries.exists_algEquiv_apply_X_eq
     {W : Type*} [CommRing W] (f : Fin 2 → MvPowerSeries (Fin 2) W)
     (h0 : ∀ i, MvPowerSeries.constantCoeff (f i) = 0)

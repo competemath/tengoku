@@ -13,14 +13,23 @@ namespace NullsetMvPolynomialSol
 
 open MvPolynomial
 
+/--
+@isnad1 id=measurab.0h2v.s6.f27ad6736ce9 from=translated src=- shape=012f5c00 vocab=da2acf51
+-/
 theorem measurableSet_zeroSet {n : ℕ} (p : MvPolynomial (Fin n) ℝ) :
     MeasurableSet {x : Fin n → ℝ | MvPolynomial.eval x p = 0} :=
   (isClosed_eq (MvPolynomial.continuous_eval p) continuous_const).measurableSet
 
+/--
+@isnad1 id=eq.1h1v.s6.76d2c47d9ac8 from=translated src=- shape=e511563b vocab=93478ac4
+-/
 theorem volume_setOf_polynomial_eval_eq_zero (P : Polynomial ℝ) (hP : P ≠ 0) :
     volume {a : ℝ | Polynomial.eval a P = 0} = 0 :=
   (Polynomial.finite_setOfPred_isRoot hP).measure_zero volume
 
+/--
+@isnad1 id=eq.1h2v.s7.149316e03b63 from=translated src=- shape=aaf0048a vocab=66491bc2
+-/
 theorem main : ∀ (n : ℕ) (p : MvPolynomial (Fin n) ℝ), p ≠ 0 →
     volume {x : Fin n → ℝ | MvPolynomial.eval x p = 0} = 0
   | 0, p, hp => by
@@ -80,6 +89,9 @@ theorem main : ∀ (n : ℕ) (p : MvPolynomial (Fin n) ℝ), p ≠ 0 →
 
 end NullsetMvPolynomialSol
 
+/--
+@isnad1 id=eq.1h2v.s7.149316e03b63 from=translated src=- shape=aaf0048a vocab=66491bc2
+-/
 theorem solution
     {n : ℕ} (p : MvPolynomial (Fin n) ℝ) (hp : p ≠ 0) :
     volume {x : Fin n → ℝ | MvPolynomial.eval x p = 0} = 0 :=

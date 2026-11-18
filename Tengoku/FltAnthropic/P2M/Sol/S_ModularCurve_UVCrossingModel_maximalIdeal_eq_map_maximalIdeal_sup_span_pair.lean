@@ -15,6 +15,9 @@ export _root_.ModularCurve (uvCrossingIdeal UVCrossingModel UVCrossingModel.mk U
 open _root_.ModularCurve
 namespace Ws30MaxGen
 
+/--
+@isnad1 id=mem.1h2v.s8.b9dbf9637ebc from=translated src=- shape=e073ff1c vocab=e3ce9f79
+-/
 theorem mem_span_X_of_constantCoeff_eq_zero {W : Type*} [CommRing W] (g : MvPowerSeries (Fin 2) W)
     (hg : MvPowerSeries.constantCoeff g = 0) :
     g ∈ Ideal.span {(MvPowerSeries.X 0 : MvPowerSeries (Fin 2) W), MvPowerSeries.X 1} := by
@@ -47,6 +50,9 @@ theorem mem_span_X_of_constantCoeff_eq_zero {W : Type*} [CommRing W] (g : MvPowe
 
 variable {W : Type*} [CommRing W] [IsLocalRing W] (π : W)
 
+/--
+@isnad1 id=eq.1h2v.s8.96f36e5e87ac from=translated src=- shape=738d0110 vocab=a68d2d5e
+-/
 theorem maximalIdeal_eq (hπu : ¬ IsUnit π) [IsLocalRing (UVCrossingModel W π)] :
     maximalIdeal (UVCrossingModel W π) =
       (maximalIdeal W).map (UVCrossingModel.constHom π) ⊔ Ideal.span {U π, V π} := by
@@ -102,6 +108,9 @@ end Ws30MaxGen
 end ModularCurve
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_UVCrossingModel_maximalIdeal_eq_map_maximalIdeal_sup_span_pair.ModularCurve ModularCurve.UVCrossingModel in
+/--
+@isnad1 id=eq.1h2v.s8.96f36e5e87ac from=translated src=- shape=738d0110 vocab=a68d2d5e
+-/
 theorem solution
     {W : Type*} [CommRing W] [IsLocalRing W] {π : W} (hπu : ¬IsUnit π) [IsLocalRing (UVCrossingModel W π)] :
     IsLocalRing.maximalIdeal (UVCrossingModel W π) =

@@ -13,6 +13,9 @@ namespace Ws18BDist
 
 def Bt (N t : ℤ) : ℤ := 6 * t ^ 2 - 6 * N * t + N ^ 2
 
+/--
+@isnad1 id=eq.0h4v.s8.a67b63e333eb from=translated src=- shape=16cb167f vocab=14fd3ef3
+-/
 theorem sum_range_Bt_aux (N p₀ g : ℤ) (M : ℕ) :
     ∑ j ∈ range M, Bt N (p₀ + g * j) =
       M * (6 * p₀ ^ 2 - 6 * N * p₀ + N ^ 2) + (6 * p₀ * g - 3 * N * g) * (M * (M - 1)) +
@@ -24,11 +27,17 @@ theorem sum_range_Bt_aux (N p₀ g : ℤ) (M : ℕ) :
       push_cast
       ring
 
+/--
+@isnad1 id=eq.0h3v.s7.8723322940ac from=translated src=- shape=2fcca40e vocab=14fd3ef3
+-/
 theorem sum_range_Bt (p₀ g : ℤ) (M : ℕ) :
     ∑ j ∈ range M, Bt (g * M) (p₀ + g * j) = M * (6 * p₀ ^ 2 - 6 * g * p₀ + g ^ 2) := by
   rw [sum_range_Bt_aux]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s6.8c23dbe2950d from=translated src=- shape=dde25a74 vocab=eeb057bd
+-/
 theorem sum_zmod_eq_sum_range {β : Type*} [AddCommMonoid β] (N : ℕ) [NeZero N] (Φ : ZMod N → β) :
     ∑ s : ZMod N, Φ s = ∑ i ∈ range N, Φ (i : ZMod N) := by
   obtain ⟨n, rfl⟩ : ∃ n, N = n + 1 := ⟨N - 1, (Nat.succ_pred_eq_of_pos (Nat.pos_of_ne_zero (NeZero.ne N))).symm⟩
@@ -36,12 +45,18 @@ theorem sum_zmod_eq_sum_range {β : Type*} [AddCommMonoid β] (N : ℕ) [NeZero 
   refine Fintype.sum_congr _ _ fun s => ?_
   exact congrArg Φ (ZMod.natCast_zmod_val s).symm
 
+/--
+@isnad1 id=eq.1h5v.s5.80de3a2abdaf from=translated src=- shape=47750788 vocab=5c386ba3
+-/
 theorem periodic_shift {β : Type*} (M : ℕ) (h : ℕ → β) (hper : ∀ n, h (n + M) = h n) (k n : ℕ) :
     h (k * M + n) = h n := by
   induction k with
   | zero => simp
   | succ k ihk => rw [Nat.succ_mul, show k * M + M + n = (k * M + n) + M by ring, hper, ihk]
 
+/--
+@isnad1 id=eq.1h4v.s6.3492c76b5b93 from=translated src=- shape=3ff08300 vocab=3329ec0b
+-/
 theorem sum_range_mul_of_periodic {β : Type*} [AddCommMonoid β] (M g : ℕ) (h : ℕ → β)
     (hper : ∀ n, h (n + M) = h n) : ∑ n ∈ range (g * M), h n = g • ∑ n ∈ range M, h n := by
   induction g with
@@ -51,6 +66,9 @@ theorem sum_range_mul_of_periodic {β : Type*} [AddCommMonoid β] (M g : ℕ) (h
       congr 1
       exact sum_congr rfl fun n _ => periodic_shift M h hper g n
 
+/--
+@isnad1 id=eq.3h4v.s6.b62c0512966d from=translated src=- shape=f01f908b vocab=e8145711
+-/
 theorem emod_progression (p₀ g k : ℤ) (M : ℕ) (hp₀ : 0 ≤ p₀) (hp₀g : p₀ < g) (hM : 0 < M) :
     (p₀ + g * k) % (g * M) = p₀ + g * (k % M) := by
   have hg : 0 < g := lt_of_le_of_lt hp₀ hp₀g
@@ -68,6 +86,9 @@ theorem emod_progression (p₀ g k : ℤ) (M : ℕ) (hp₀ : 0 ≤ p₀) (hp₀g
       _ < g + g * (M - 1) := by linarith
       _ = g * M := by ring
 
+/--
+@isnad1 id=eq.2h4v.s6.3e86e784e52e from=translated src=- shape=c41d0c87 vocab=e384a49f
+-/
 theorem sum_range_affine_unit (M : ℕ) (hM : 0 < M) (c u : ℤ) (hu : IsCoprime u M) (φ : ℤ → ℤ) :
     ∑ n ∈ range M, φ ((c + n * u) % M) = ∑ n ∈ range M, φ n := by
   haveI : NeZero M := ⟨Nat.pos_iff_ne_zero.mp hM⟩
@@ -100,6 +121,9 @@ theorem sum_range_affine_unit (M : ℕ) (hM : 0 < M) (c u : ℤ) (hu : IsCoprime
     _ = ∑ n ∈ range M, ψ (n : ZMod M) := sum_zmod_eq_sum_range M ψ
     _ = ∑ n ∈ range M, φ n := sum_congr rfl fun n hn => (hR n hn).symm
 
+/--
+@isnad1 id=eq.5h6v.s7.a8a05defb55b from=translated src=- shape=59f0bb33 vocab=0d95b73e
+-/
 theorem sum_zmod_comp_val_affine (N g M : ℕ) [NeZero N] (hN : N = g * M) (hg : 0 < g) (hM : 0 < M)
     (p r : ℤ) (hgr : (g : ℤ) ∣ r) (hcop : IsCoprime (r / g) (M : ℤ)) (F : ℤ → ℤ) :
     ∑ s : ZMod N, F ((((p : ZMod N) + s * (r : ZMod N)).val : ℤ)) =
@@ -136,6 +160,9 @@ theorem sum_zmod_comp_val_affine (N g M : ℕ) [NeZero N] (hN : N = g * M) (hg :
   rw [sum_congr rfl fun n _ => hval n]
   exact sum_range_affine_unit M hM (p / g) r' hcop (fun k => F (p % g + g * k))
 
+/--
+@isnad1 id=and.1h2v.s6.3b4fdf285d91 from=translated src=- shape=3b998191 vocab=0ea912d0
+-/
 theorem gcd_bookkeeping (N : ℕ) (hN : N ≠ 0) (r : ℤ) :
     ((Int.gcd r N : ℤ) ∣ r) ∧ (Int.gcd r N ∣ N) ∧ 0 < Int.gcd r N ∧
       IsCoprime (r / Int.gcd r N) ((N / Int.gcd r N : ℕ) : ℤ) := by
@@ -151,6 +178,9 @@ theorem gcd_bookkeeping (N : ℕ) (hN : N ≠ 0) (r : ℤ) :
   rw [hdiv]
   exact Int.gcd_div_gcd_div_gcd hgpos
 
+/--
+@isnad1 id=eq.0h3v.s8.2cd3fe1d710c from=translated src=- shape=4858b926 vocab=6947a0be
+-/
 theorem sum_zmod_Bt (N : ℕ) [NeZero N] (p r : ℤ) :
     ∑ s : ZMod N, Bt N ((((p : ZMod N) + s * (r : ZMod N)).val : ℤ)) =
       N * (6 * (p % Int.gcd r N) ^ 2 - 6 * (Int.gcd r N) * (p % Int.gcd r N) + (Int.gcd r N) ^ 2) := by
@@ -168,6 +198,9 @@ theorem sum_zmod_Bt (N : ℕ) [NeZero N] (p r : ℤ) :
 end Ws18BDist
 
 open Ws18BDist in
+/--
+@isnad1 id=eq.0h3v.s8.510233f96498 from=translated src=- shape=e53561b4 vocab=0fff5314
+-/
 theorem solution (N : ℕ) [NeZero N] (p r : ℤ) :
     ∑ s : ZMod N,
         (6 * ((((p : ZMod N) + s * (r : ZMod N)).val : ℕ) : ℤ) ^ 2

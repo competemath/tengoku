@@ -14,6 +14,9 @@ namespace LevelNCoset
 
 variable {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [MeasurableSpace G] [BorelSpace G]
 
+/--
+@isnad1 id=ex.10h7v.s10.400e91b89912 from=translated src=- shape=02900be3 vocab=d7368061
+-/
 theorem exists_section (μ : Measure G) [μ.IsMulLeftInvariant] (U : Set G)
     (hUo : IsOpen U) (hUc : IsCompact U) (hμUtop : μ U ≠ ⊤)
     (h1U : (1 : G) ∈ U) (hUmul : ∀ a ∈ U, ∀ b ∈ U, a * b ∈ U) (hUinv : ∀ a ∈ U, a⁻¹ ∈ U)
@@ -116,6 +119,9 @@ theorem exists_section (μ : Measure G) [μ.IsMulLeftInvariant] (U : Set G)
 end LevelNCoset
 
 open MeasureTheory in
+/--
+@isnad1 id=ex.10h7v.s10.400e91b89912 from=translated src=- shape=02900be3 vocab=d7368061
+-/
 theorem solution
     {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [MeasurableSpace G] [BorelSpace G]
     (μ : Measure G) [μ.IsMulLeftInvariant] (U : Set G)

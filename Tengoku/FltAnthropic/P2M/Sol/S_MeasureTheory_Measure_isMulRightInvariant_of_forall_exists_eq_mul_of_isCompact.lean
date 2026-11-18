@@ -10,6 +10,9 @@ set_option autoImplicit false
 open MeasureTheory
 open scoped ENNReal NNReal
 
+/--
+@isnad1 id=ismulrig.3h4v.s7.53da55b54786 from=translated src=- shape=d34fd32d vocab=03e7b278
+-/
 theorem solution
     {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [LocallyCompactSpace G]
     [MeasurableSpace G] [BorelSpace G] [SecondCountableTopology G] [T2Space G]

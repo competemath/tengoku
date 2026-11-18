@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_EisensteinSeries_tsum_inv_cube_congr_one_n
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=and.1h1v.s9.d49f7c325ed0 from=translated src=- shape=b5da3889 vocab=69aa8ec3
+-/
 theorem EisensteinSeries.tsum_inv_cube_congr_one_ne_zero_and_exists_isIntegral
     (N : ℕ) (hN : 3 ≤ N) :
     (∑' d : {d : ℤ // (d : ZMod N) = 1}, ((d : ℂ) ^ 3)⁻¹) ≠ 0 ∧

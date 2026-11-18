@@ -14,6 +14,9 @@ namespace P2mScattLip
 open MeasureTheory Set Metric Filter intervalIntegral
 open scoped Topology
 
+/--
+@isnad1 id=continuo.3h3v.s7.3fa68dad12c9 from=translated src=- shape=7d5369ba vocab=c2fa59d2
+-/
 theorem continuousOn_deriv_param {X : Type*} [TopologicalSpace X] (N : ℂ → X → ℂ) (O : Set ℂ)
     (hO : IsOpen O) (hN : ContinuousOn (fun p : ℂ × X => N p.1 p.2) (O ×ˢ univ))
     (hNa : ∀ x : X, AnalyticOnNhd ℂ (fun s => N s x) O) :
@@ -86,6 +89,9 @@ theorem continuousOn_deriv_param {X : Type*} [TopologicalSpace X] (N : ℂ → X
     _ < ε / 2 + ε / 2 := add_lt_add h1 h2
     _ = ε := by ring
 
+/--
+@isnad1 id=le.2h3v.s7.ce4202712f74 from=translated src=- shape=1ea50284 vocab=fd8df6d1
+-/
 theorem sq_integral_norm_le {a b : ℝ} (hab : a ≤ b) (g : ℝ → ℂ) (hg : Continuous g) :
     (∫ τ in Ioc a b, ‖g τ‖) ^ 2 ≤ (b - a) * ∫ τ in Ioc a b, ‖g τ‖ ^ 2 := by
   set μI : Measure ℝ := volume.restrict (Ioc a b) with hμI
@@ -115,6 +121,9 @@ theorem sq_integral_norm_le {a b : ℝ} (hab : a ≤ b) (g : ℝ → ℂ) (hg : 
     _ = (b - a) * ∫ τ, ‖g τ‖ ^ 2 ∂μI := by
         rw [mul_pow, ← Real.sqrt_eq_rpow, ← Real.sqrt_eq_rpow, Real.sq_sqrt hPn, Real.sq_sqrt hba, mul_comm]
 
+/--
+@isnad1 id=le.5h7v.s8.de120f52248e from=translated src=- shape=748ca0ed vocab=1e163e7a
+-/
 theorem main {X : Type*} [TopologicalSpace X] [CompactSpace X] [MeasurableSpace X] [OpensMeasurableSpace X]
     (μ : Measure X) [IsFiniteMeasure μ]
     (O : Set ℂ) (hO : IsOpen O) (hO₀ : {s : ℂ | s.re = 0} ⊆ O)
@@ -207,6 +216,9 @@ end P2mScattLip
 end
 
 open MeasureTheory in
+/--
+@isnad1 id=le.5h7v.s8.de120f52248e from=translated src=- shape=748ca0ed vocab=1e163e7a
+-/
 theorem solution
     {X : Type*} [TopologicalSpace X] [CompactSpace X] [MeasurableSpace X] [OpensMeasurableSpace X]
     (μ : Measure X) [IsFiniteMeasure μ]

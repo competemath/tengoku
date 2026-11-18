@@ -344,6 +344,9 @@ end StripContour
 
 open MeasureTheory
 
+/--
+@isnad1 id=integrab.4h4v.s8.c248a29c3724 from=translated src=- shape=c38508ff vocab=12927d15
+-/
 theorem solution
     (σ σ₀ : ℝ) (_hσ₀ : 0 < σ₀) (f : ℂ → ℂ) (m : ℝ → ℝ)
     (_hf : DifferentiableOn ℂ f {s : ℂ | |s.re - σ| < σ₀}) (_hm : Integrable m)

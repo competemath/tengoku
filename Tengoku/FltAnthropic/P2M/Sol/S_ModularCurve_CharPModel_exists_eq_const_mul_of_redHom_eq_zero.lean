@@ -42,6 +42,9 @@ section Scaling
 
 variable {A : Type*} [CommRing A] [IsDomain A] [ValuationRing A]
 
+/--
+@isnad1 id=ex.1h4v.s6.b41aecf6a09b from=translated src=- shape=6fe1e356 vocab=a9f21448
+-/
 theorem exists_dvd_forall {ι : Type*} (c : ι → A) (s : Finset ι) (hs : s.Nonempty) :
     ∃ i ∈ s, ∀ j ∈ s, c i ∣ c j := by
   classical
@@ -72,6 +75,9 @@ variable {R : Type*} [CommRing R] (𝔭 : Ideal R) (φ : A →+* R) {ι : Type*}
 def IndepModPrime : Prop :=
   ∀ (s : Finset ι) (c : ι → A), (∑ i ∈ s, φ (c i) * b i) ∈ 𝔭 → ∀ i ∈ s, c i ∈ maximalIdeal A
 
+/--
+@isnad1 id=ex.3h7v.s8.bd5b0b90715e from=translated src=- shape=0288f60c vocab=1071a272
+-/
 theorem exists_eq_mul_notMem
     (hspan : ∀ r : R, ∃ (s : Finset ι) (c : ι → A), r = ∑ i ∈ s, φ (c i) * b i)
     (hind : IndepModPrime 𝔭 φ b) {r : R} (hr : r ≠ 0) :
@@ -114,11 +120,17 @@ variable {A : Type*} [CommRing A] [IsLocalRing A]
 variable {R : Type*} [CommRing R] {k : Type*} [Field k] {S : Type*} [CommRing S] [Algebra k S]
 variable (φ : A →+* R) (red : A →+* k) (red₀ : R →+* S)
 
+/--
+@isnad1 id=mem.1h4v.s7.063ba7d2f1b6 from=translated src=- shape=39864b6f vocab=777af588
+-/
 theorem mem_maximalIdeal_of_map_eq_zero {a : A} (ha : red a = 0) : a ∈ maximalIdeal A := by
   rw [mem_maximalIdeal, mem_nonunits_iff]
   intro hu
   exact (hu.map red).ne_zero ha
 
+/--
+@isnad1 id=mem.4h12v.s9.a7a831706f6f from=translated src=- shape=c5c54bc5 vocab=d4ae9ad3
+-/
 theorem indepModKer_of_linearIndependent {ι : Type*} (b : ι → R)
     (hcompat : ∀ a, red₀ (φ a) = algebraMap k S (red a))
     (hli : LinearIndependent k (fun i => red₀ (b i))) :
@@ -139,6 +151,9 @@ section H2
 
 variable {k E : Type*} [Field k] [Field E] [Algebra k E]
 
+/--
+@isnad1 id=linearin.1h3v.s6.2eb931ab486d from=translated src=- shape=5c27c1b4 vocab=e8e04318
+-/
 theorem linearIndependent_pow_of_transcendental {x : E} (hx : Transcendental k x) :
     LinearIndependent k (fun a : ℕ => x ^ a) := by
   classical
@@ -158,6 +173,9 @@ theorem linearIndependent_pow_of_transcendental {x : E} (hx : Transcendental k x
   rw [hpz, Polynomial.coeff_zero] at hc
   exact hc.symm
 
+/--
+@isnad1 id=linearin.2h5v.s8.20ff00c74da8 from=translated src=- shape=2a9fa046 vocab=021b79a2
+-/
 theorem linearIndependent_pow_fin_of_relfinrank (x y : E) {n : ℕ} (hn : 0 < n)
     (hdeg : relfinrank k⟮x⟯ (adjoin k {x, y}) = n) :
     LinearIndependent k⟮x⟯ (fun i : Fin n => y ^ (i : ℕ)) := by
@@ -198,6 +216,9 @@ theorem linearIndependent_pow_fin_of_relfinrank (x y : E) {n : ℕ} (hn : 0 < n)
   subst hdim
   exact hli
 
+/--
+@isnad1 id=linearin.3h5v.s7.4c096da55207 from=translated src=- shape=333e95f7 vocab=4044640f
+-/
 theorem linearIndependent_monomial_of_relfinrank (x y : E) {n : ℕ} (hn : 0 < n)
     (hx : Transcendental k x) (hdeg : relfinrank k⟮x⟯ (adjoin k {x, y}) = n) :
     LinearIndependent k (fun p : ℕ × Fin n => x ^ p.1 * y ^ (p.2 : ℕ)) := by
@@ -217,6 +238,9 @@ variable {A : Type*} [CommRing A] [IsLocalRing A]
 variable {R : Type*} [CommRing R] {k E : Type*} [Field k] [Field E] [Algebra k E]
 variable (φ : A →+* R) (red : A →+* k) (red₀ : R →+* E)
 
+/--
+@isnad1 id=mem.6h13v.s9.4a2991f45504 from=translated src=- shape=9dd58e40 vocab=ececdf5a
+-/
 theorem indepModKer_monomial (hcompat : ∀ a, red₀ (φ a) = algebraMap k E (red a))
     (X Y : R) {n : ℕ} (hn : 0 < n) (hx : Transcendental k (red₀ X))
     (hdeg : relfinrank k⟮red₀ X⟯ (adjoin k {red₀ X, red₀ Y}) = n) :
@@ -231,6 +255,9 @@ theorem indepModKer_monomial (hcompat : ∀ a, red₀ (φ a) = algebraMap k E (r
 
 end Dock
 
+/--
+@isnad1 id=ex.3h7v.s9.688475a6c5ff from=translated src=- shape=734685b3 vocab=9d6b624e
+-/
 theorem exists_sum_monomial_of_mem_closure {A E : Type*} [CommRing A] [CommRing E]
     (φ : A →+* E) (X Y : E) {P : Polynomial (Polynomial A)} (hP : P.Monic)
     (hrel : P.eval₂ (Polynomial.eval₂RingHom φ X) Y = 0)
@@ -285,6 +312,9 @@ end CharpS10bB
 
 end
 
+/--
+@isnad1 id=ex.11h12v.s11.56cb9ed04659 from=translated src=- shape=237e349c vocab=accf3476
+-/
 theorem solution
     {A : Type*} [CommRing A] [IsDomain A] [ValuationRing A]
     {k : Type*} [Field k] (red : A →+* k)

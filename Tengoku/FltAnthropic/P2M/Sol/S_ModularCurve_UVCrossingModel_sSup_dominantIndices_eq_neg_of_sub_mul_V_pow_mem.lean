@@ -18,6 +18,9 @@ open ModularCurve ModularCurve.UVCrossingModel IsLocalRing
 
 variable {W : Type*} [CommRing W]
 
+/--
+@isnad1 id=eq.0h4v.s8.60ea6ab80d37 from=translated src=- shape=3a9ffecb vocab=03a40164
+-/
 theorem coeff_X_mul_X_mul_single (G : MvPowerSeries (Fin 2) W) (s : Fin 2) (j : ℕ) :
     MvPowerSeries.coeff (Finsupp.single s j)
       ((MvPowerSeries.X 0 : MvPowerSeries (Fin 2) W) * MvPowerSeries.X 1 * G) = 0 := by
@@ -33,6 +36,9 @@ theorem coeff_X_mul_X_mul_single (G : MvPowerSeries (Fin 2) W) (s : Fin 2) (j : 
   · have := h 0
     simp at this
 
+/--
+@isnad1 id=ex.4h10v.s10.baa5f590d7af from=translated src=- shape=dec23807 vocab=c416730e
+-/
 theorem coeff_axis_of_congr (π ϖ : W) (e : ℕ) (he : 1 ≤ e) (hπ : π = ϖ ^ e) (s s' : Fin 2) (hss' : s ≠ s')
     (F G : MvPowerSeries (Fin 2) W) (n : ℕ)
     (h : mk π F - mk π G * mk π (MvPowerSeries.X s) ^ n ∈
@@ -77,6 +83,9 @@ theorem coeff_axis_of_congr (π ϖ : W) (e : ℕ) (he : 1 ≤ e) (hπ : π = ϖ 
   exact ⟨MvPowerSeries.coeff (Finsupp.single s j) Rr - ϖ ^ (e - 1) * MvPowerSeries.coeff (Finsupp.single s j) Q,
     by linear_combination -hc⟩
 
+/--
+@isnad1 id=ex.1h3v.s9.79c229471e9b from=translated src=- shape=5eef64b2 vocab=d7fac80e
+-/
 theorem constantCoeff_mul_eq_of_isUnit_mk (π : W) (G : MvPowerSeries (Fin 2) W) (hG : IsUnit (mk π G)) :
     ∃ D Q : MvPowerSeries (Fin 2) W,
       MvPowerSeries.constantCoeff G * MvPowerSeries.constantCoeff D = 1 - π * MvPowerSeries.constantCoeff Q := by
@@ -97,17 +106,26 @@ section DVR
 
 variable {W : Type*} [CommRing W] [IsDomain W] [IsDiscreteValuationRing W]
 
+/--
+@isnad1 id=le.2h4v.s6.1cbcd22d6e95 from=translated src=- shape=59b4f3d1 vocab=f9f11612
+-/
 theorem one_le_addVal_of_eq_mul {ϖ : W} (hϖ : Irreducible ϖ) {c z : W} (h : c = ϖ * z) :
     1 ≤ IsDiscreteValuationRing.addVal W c := by
   rw [h, IsDiscreteValuationRing.addVal_mul, IsDiscreteValuationRing.addVal_uniformizer hϖ]
   exact le_self_add
 
+/--
+@isnad1 id=eq.2h3v.s6.8501f91a2e9a from=translated src=- shape=e8982e1f vocab=57480a1f
+-/
 theorem addVal_eq_zero_of_isUnit {ϖ : W} (hϖ : Irreducible ϖ) {c : W} (hc : IsUnit c) :
     IsDiscreteValuationRing.addVal W c = 0 := by
   obtain ⟨u, rfl⟩ := hc
   have := IsDiscreteValuationRing.addVal_def (u : W) u hϖ 0 (by simp)
   simpa using this
 
+/--
+@isnad1 id=isunit.2h4v.s6.535c95a3c643 from=translated src=- shape=922f8e2d vocab=c2c5a0c1
+-/
 theorem isUnit_add_mul {ϖ : W} (hϖ : Irreducible ϖ) {g z : W} (hg : IsUnit g) : IsUnit (g + ϖ * z) := by
   by_contra h
   have h1 : g + ϖ * z ∈ maximalIdeal W := (mem_maximalIdeal _).mpr h
@@ -115,6 +133,9 @@ theorem isUnit_add_mul {ϖ : W} (hϖ : Irreducible ϖ) {g z : W} (hg : IsUnit g)
   have h3 : g ∈ maximalIdeal W := by simpa using sub_mem h1 h2
   exact (mem_maximalIdeal _).mp h3 hg
 
+/--
+@isnad1 id=isunit.3h4v.s9.660f28e5deb7 from=translated src=- shape=cd215ed1 vocab=99a5751d
+-/
 theorem isUnit_constantCoeff_of_isUnit_mk {ϖ : W} (hϖ : Irreducible ϖ) (e : ℕ) (he : 1 ≤ e)
     (G : MvPowerSeries (Fin 2) W) (hG : IsUnit (mk (ϖ ^ e) G)) : IsUnit (MvPowerSeries.constantCoeff G) := by
   obtain ⟨D, Q, hGD⟩ := constantCoeff_mul_eq_of_isUnit_mk (ϖ ^ e) G hG
@@ -125,6 +146,9 @@ theorem isUnit_constantCoeff_of_isUnit_mk {ϖ : W} (hϖ : Irreducible ϖ) (e : �
   rw [← hGD] at hu
   exact isUnit_of_mul_isUnit_left hu
 
+/--
+@isnad1 id=and.5h8v.s11.b91a6968931c from=translated src=- shape=88515528 vocab=134c5825
+-/
 theorem addVal_coeff_axis {ϖ : W} (hϖ : Irreducible ϖ) (e : ℕ) (he : 1 ≤ e) (s s' : Fin 2) (hss' : s ≠ s')
     (F G : MvPowerSeries (Fin 2) W) (hG : IsUnit (mk (ϖ ^ e) G)) (n : ℕ)
     (h : mk (ϖ ^ e) F - mk (ϖ ^ e) G * mk (ϖ ^ e) (MvPowerSeries.X s) ^ n ∈
@@ -141,6 +165,9 @@ theorem addVal_coeff_axis {ϖ : W} (hϖ : Irreducible ϖ) (e : ℕ) (he : 1 ≤ 
     rw [hz]
     exact addVal_eq_zero_of_isUnit hϖ (isUnit_add_mul hϖ (isUnit_constantCoeff_of_isUnit_mk hϖ e he G hG))
 
+/--
+@isnad1 id=and.7h8v.s11.0b1eab1c9619 from=translated src=- shape=e9483402 vocab=ffb4c0b0
+-/
 theorem sSup_dominantIndices_eq_neg [IsAdicComplete (maximalIdeal W) W]
     (ϖ : W) (hϖ : Irreducible ϖ) (e : ℕ) (he : 1 ≤ e) (q : ℕ) (hq : 1 ≤ q)
     (x : UVCrossingModel W (ϖ ^ e))
@@ -253,6 +280,9 @@ end DVR
 end AnnulusGT
 
 open ModularCurve ModularCurve.UVCrossingModel IsLocalRing in
+/--
+@isnad1 id=and.8h8v.s11.8674736b84ae from=translated src=- shape=3147bed8 vocab=ffb4c0b0
+-/
 theorem solution
     {W : Type u} [CommRing W] [IsDomain W] [IsDiscreteValuationRing W] [IsAdicComplete (maximalIdeal W) W]
     (ϖ : W) (hϖ : Irreducible ϖ) (e : ℕ) (he : 1 ≤ e) (q : ℕ) (hq : 1 ≤ q)

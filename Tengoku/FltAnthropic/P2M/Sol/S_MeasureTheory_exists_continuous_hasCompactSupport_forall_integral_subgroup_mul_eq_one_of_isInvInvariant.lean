@@ -17,10 +17,16 @@ variable {T : Type*} [Group T] [TopologicalSpace T] [IsTopologicalGroup T] [Loca
   (S : Subgroup T) (hS : IsClosed (S : Set T)) [MeasurableSpace S] [BorelSpace S]
   (τS : Measure S) [τS.IsHaarMeasure] [τS.IsInvInvariant]
 
+/--
+@isnad1 id=continuo.1h4v.s7.90c8924c415d from=translated src=- shape=52068647 vocab=764ebcde
+-/
 theorem fibre_continuous (ψ : T → ℝ) (hψ : Continuous ψ) (t : T) : Continuous fun s : S => ψ ((s : T) * t) :=
   hψ.comp (continuous_subtype_val.mul continuous_const)
 
 include hS in
+/--
+@isnad1 id=hascompa.3h4v.s7.24496f4e4366 from=translated src=- shape=9a892eba vocab=e10e59e4
+-/
 theorem fibre_hasCompactSupport (ψ : T → ℝ) (hψ : Continuous ψ) (hψc : HasCompactSupport ψ) (t : T) :
     HasCompactSupport fun s : S => ψ ((s : T) * t) := by
 
@@ -40,12 +46,18 @@ theorem fibre_hasCompactSupport (ψ : T → ℝ) (hψ : Continuous ψ) (hψc : H
 noncomputable def mass (ψ : T → ℝ) (t : T) : ℝ := ∫ s : S, ψ ((s : T) * t) ∂τS
 
 include hS in
+/--
+@isnad1 id=lt.5h6v.s8.d448770e0e29 from=translated src=- shape=8ab3df61 vocab=9aadf74a
+-/
 theorem mass_pos (ψ : T → ℝ) (hψ : Continuous ψ) (hψc : HasCompactSupport ψ) (hψ0 : ∀ x, 0 ≤ ψ x)
     (t : T) (s₀ : S) (h1 : ψ ((s₀ : T) * t) ≠ 0) : 0 < mass S τS ψ t :=
   (fibre_continuous S ψ hψ t).integral_pos_of_hasCompactSupport_nonneg_nonzero
     (fibre_hasCompactSupport S hS ψ hψ hψc t) (fun s => hψ0 _) h1
 
 omit [LocallyCompactSpace T] [SecondCountableTopology T] [MeasurableSpace T] [BorelSpace T] in
+/--
+@isnad1 id=eq.0h6v.s8.cccf7ef8fdb8 from=translated src=- shape=721ba81b vocab=ab2b082b
+-/
 theorem mass_mul_left (ψ : T → ℝ) (s' : S) (t : T) : mass S τS ψ ((s' : T) * t) = mass S τS ψ t := by
   unfold mass
   haveI : τS.IsMulRightInvariant := by
@@ -58,6 +70,9 @@ theorem mass_mul_left (ψ : T → ℝ) (s' : S) (t : T) : mass S τS ψ ((s' : T
 omit [τS.IsInvInvariant] in
 include hS in
 
+/--
+@isnad1 id=continuo.4h4v.s7.b10ec92cab42 from=translated src=- shape=54346769 vocab=774b3e92
+-/
 theorem mass_continuous (ψ : T → ℝ) (hψ : Continuous ψ) (hψc : HasCompactSupport ψ) (hψ1 : ∀ x, |ψ x| ≤ 1) :
     Continuous (mass S τS ψ) := by
   haveI : LocallyCompactSpace S := hS.isClosedEmbedding_subtypeVal.locallyCompactSpace
@@ -87,6 +102,9 @@ theorem mass_continuous (ψ : T → ℝ) (hψ : Continuous ψ) (hψc : HasCompac
 
 end P2mBruhat
 
+/--
+@isnad1 id=ex.3h4v.s8.08ebeeaef7e7 from=translated src=- shape=c550e425 vocab=2d65576c
+-/
 theorem solution
     {T : Type*} [Group T] [TopologicalSpace T] [IsTopologicalGroup T] [LocallyCompactSpace T]
     [SecondCountableTopology T] [MeasurableSpace T] [BorelSpace T]

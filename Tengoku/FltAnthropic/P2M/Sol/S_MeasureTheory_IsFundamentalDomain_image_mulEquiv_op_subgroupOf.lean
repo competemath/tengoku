@@ -10,6 +10,9 @@ set_option autoImplicit false
 open MeasureTheory
 open scoped Pointwise
 
+/--
+@isnad1 id=isfundam.4h7v.s9.0044a9138600 from=translated src=- shape=3af8d044 vocab=1df64b42
+-/
 theorem solution
     {A B : Type*} [Group A] [Group B] [MeasurableSpace A] [MeasurableSpace B]
     [MeasurableMul A] [MeasurableMul B]

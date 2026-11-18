@@ -10,6 +10,9 @@ set_option autoImplicit false
 open MeasureTheory
 open scoped ENNReal
 
+/--
+@isnad1 id=and.1h5v.s13.6be46ee92950 from=translated src=- shape=d633ed70 vocab=72f38418
+-/
 theorem MeasureTheory.Lp.finiteDimensional_and_finrank_le_of_forall_ae_norm_le_mul_norm
     {X : Type*} [MeasurableSpace X] {μ : Measure X} [IsFiniteMeasure μ] {𝕜 : Type*} [RCLike 𝕜]
     (V : Submodule 𝕜 (Lp 𝕜 2 μ)) (C : ℝ)

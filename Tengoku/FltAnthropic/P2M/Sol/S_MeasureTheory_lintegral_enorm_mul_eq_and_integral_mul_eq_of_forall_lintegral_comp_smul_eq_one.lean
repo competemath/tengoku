@@ -20,6 +20,9 @@ variable {A X : Type*} [Group A] [MulAction A X] [MeasurableSpace A] [Measurable
 variable (τ : Measure A) [SFinite τ] [τ.IsInvInvariant]
 variable (ρ : Measure X) [SFinite ρ]
 
+/--
+@isnad1 id=eq.8h7v.s8.040859c82e6d from=translated src=- shape=5c8e3efc vocab=922c4cbc
+-/
 theorem lintegral_indep (hact : Measurable fun z : A × X => z.1 • z.2)
     (hρ : ∀ a : A, MeasurePreserving (fun x : X => a • x) ρ ρ)
     {k : X → ℝ≥0∞} (hk : Measurable k) (hkinv : ∀ (a : A) (x : X), k (a • x) = k x)
@@ -81,6 +84,9 @@ theorem lintegral_indep (hact : Measurable fun z : A × X => z.1 • z.2)
 
 variable {h : X → ℂ} {w₁ w₂ : X → ℝ}
 
+/--
+@isnad1 id=eq.12h8v.s8.12c61c48f690 from=translated src=- shape=89d3d7fa vocab=8fa2c1fc
+-/
 theorem lintegral_ofReal_indep (hact : Measurable fun z : A × X => z.1 • z.2)
     (hρ : ∀ a : A, MeasurePreserving (fun x : X => a • x) ρ ρ)
     (hh : Measurable h) (hhinv : ∀ (a : A) (x : X), h (a • x) = h x)
@@ -99,11 +105,17 @@ theorem lintegral_ofReal_indep (hact : Measurable fun z : A × X => z.1 • z.2)
   simp only [← ENNReal.ofReal_mul' (hw₁0 _), ← ENNReal.ofReal_mul' (hw₂0 _)] at this
   exact this
 
+/--
+@isnad1 id=eq.1h2v.s6.dca8f298351f from=translated src=- shape=bfb931a6 vocab=dc66d824
+-/
 theorem enorm_real_mul {z : ℂ} {r : ℝ} (hr : 0 ≤ r) : ‖z * (r : ℂ)‖ₑ = ‖z‖ₑ * ENNReal.ofReal r := by
   rw [enorm_mul]
   congr 1
   rw [← ofReal_norm, Complex.norm_real, Real.norm_of_nonneg hr]
 
+/--
+@isnad1 id=and.10h7v.s9.03fa83cf16b9 from=translated src=- shape=9300c0d2 vocab=7b0239e8
+-/
 theorem main (hact : Measurable fun z : A × X => z.1 • z.2)
     (hρ : ∀ a : A, MeasurePreserving (fun x : X => a • x) ρ ρ)
     (hh : Measurable h) (hhinv : ∀ (a : A) (x : X), h (a • x) = h x)
@@ -162,6 +174,9 @@ end KcSectionIndep
 end
 
 open KcSectionIndep in
+/--
+@isnad1 id=and.10h7v.s9.752d1b0f7814 from=translated src=- shape=afa1c0c6 vocab=7b0239e8
+-/
 theorem solution
     {A X : Type*} [Group A] [MulAction A X] [MeasurableSpace A] [MeasurableInv A] [MeasurableSpace X]
     (hact : Measurable fun z : A × X => z.1 • z.2)

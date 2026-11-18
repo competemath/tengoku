@@ -6,6 +6,9 @@ import Tengoku.FltAnthropic.Definitions.Def_ModularCurve_UVCrossingChart
 namespace P2MW.S_ModularCurve_UVCrossingModel_chartHom_C
 
 open ModularCurve ModularCurve.UVCrossingModel in
+/--
+@isnad1 id=eq.0h3v.s7.3b53d9c1f7eb from=translated src=- shape=dd33af7f vocab=560d31eb
+-/
 theorem solution {W : Type*} [CommRing W] (π : W) (w : W) :
     chartHom π (PowerSeries.C w) = const π w :=
   by

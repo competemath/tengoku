@@ -17,6 +17,9 @@ section Haar
 variable {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [CompactSpace G]
   [MeasurableSpace G] [BorelSpace G] (μ : Measure G) [μ.IsHaarMeasure] [μ.Regular]
 
+/--
+@isnad1 id=ismulrig.0h2v.s5.7155e8b46908 from=translated src=- shape=7db52468 vocab=3b2f1c76
+-/
 theorem isMulRightInvariant_of_compactSpace : μ.IsMulRightInvariant := by
   refine ⟨fun g => ?_⟩
   have h := Measure.map_right_mul_eq_modularCharacterFun_smul μ g
@@ -38,21 +41,33 @@ variable {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [Comp
   [MeasurableSpace G] [BorelSpace G] (μ : Measure G) [μ.IsHaarMeasure]
   (V : Submodule ℂ (G → ℂ)) (hcont : ∀ f ∈ V, Continuous f)
 
+/--
+@isnad1 id=eq.0h1v.s6.249db730c05f from=translated src=- shape=5d076620 vocab=5795afd4
+-/
 theorem conj_mul_self_eq (z : ℂ) : conj z * z = ((‖z‖ ^ 2 : ℝ) : ℂ) := by
   rw [mul_comm, Complex.mul_conj, Complex.normSq_eq_norm_sq, Complex.ofReal_pow]
 
 include hcont in
+/--
+@isnad1 id=integrab.3h5v.s8.deae45910e99 from=translated src=- shape=2bf3f45f vocab=5e5ee2cf
+-/
 theorem integrable_conj_mul (u w : G → ℂ) (hu : u ∈ V) (hw : w ∈ V) :
     Integrable (fun x => conj (u x) * w x) μ :=
   ((Complex.continuous_conj.comp (hcont u hu)).mul (hcont w hw)).integrable_of_hasCompactSupport
     (HasCompactSupport.of_compactSpace _)
 
 include hcont in
+/--
+@isnad1 id=integrab.2h4v.s8.6035f0c3e680 from=translated src=- shape=43ae874f vocab=10d0e185
+-/
 theorem integrable_norm_sq (u : G → ℂ) (hu : u ∈ V) :
     Integrable (fun x => ‖u x‖ ^ 2) μ :=
   (((hcont u hu).norm).pow 2).integrable_of_hasCompactSupport (HasCompactSupport.of_compactSpace _)
 
 include hcont in
+/--
+@isnad1 id=eq.2h4v.s8.44d88660b53b from=translated src=- shape=bc8fc290 vocab=f2b8f951
+-/
 theorem integral_conj_mul_self (u : G → ℂ) (hu : u ∈ V) :
     (∫ x, conj (u x) * u x ∂μ) = ((∫ x, ‖u x‖ ^ 2 ∂μ : ℝ) : ℂ) := by
   simp_rw [conj_mul_self_eq]
@@ -100,6 +115,9 @@ section Main
 variable {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [CompactSpace G]
   [MeasurableSpace G] [BorelSpace G]
 
+/--
+@isnad1 id=le.3h5v.s9.bb570e4efc10 from=translated src=- shape=3bd5713d vocab=75e8665b
+-/
 theorem main (μ : Measure G) [μ.IsHaarMeasure] [μ.Regular]
     (V : Submodule ℂ (G → ℂ)) [FiniteDimensional ℂ V]
     (hcont : ∀ f ∈ V, Continuous f)
@@ -193,6 +211,9 @@ end Main
 
 end RKB
 
+/--
+@isnad1 id=le.3h5v.s9.bb570e4efc10 from=translated src=- shape=3bd5713d vocab=75e8665b
+-/
 theorem solution
     {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [CompactSpace G]
     [MeasurableSpace G] [BorelSpace G]

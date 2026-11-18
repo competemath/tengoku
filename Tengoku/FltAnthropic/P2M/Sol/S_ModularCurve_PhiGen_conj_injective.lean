@@ -33,6 +33,9 @@ private theorem coeff_coeffEmb_jq_neg_one : (coeffEmb K jq).coeff (-1 : ℤ) = 1
 
 end CoeffEmbJq
 
+/--
+@isnad1 id=eq.0h3v.s6.54a2fe437ef8 from=translated src=- shape=dac1777f vocab=c9eba9e6
+-/
 theorem conj_zero_coeff_neg_one {K : Type*} [Field K] [Algebra ℚ K] (ℓ : ℕ)
     [hℓ : Fact (Nat.Prime ℓ)] (ζ : Kˣ) :
     (conj ℓ ζ (0 : Fin (ℓ + 1))).coeff (-1 : ℤ) = 0 := by
@@ -45,6 +48,9 @@ theorem conj_zero_coeff_neg_one {K : Type*} [Field K] [Algebra ℚ K] (ℓ : ℕ
   have h4 : 2 ≤ ℓ := hℓ.out.two_le
   nlinarith
 
+/--
+@isnad1 id=eq.0h4v.s7.31d59e2bbd07 from=translated src=- shape=e89baae2 vocab=1fc126be
+-/
 theorem conj_succ_coeff_neg_one {K : Type*} [Field K] [Algebra ℚ K] (ℓ : ℕ)
     [hℓ : Fact (Nat.Prime ℓ)] (ζ : Kˣ) (b : Fin ℓ) :
     (conj ℓ ζ b.succ).coeff (-1 : ℤ) = (((ζ ^ (b : ℕ))⁻¹ : Kˣ) : K) := by
@@ -84,6 +90,9 @@ end
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_conj_injective.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_conj_injective.ModularCurve.PhiGen in
 
+/--
+@isnad1 id=injectiv.1h3v.s6.b32f18ba97f7 from=translated src=- shape=6c746522 vocab=1db2a0c5
+-/
 theorem solution {K : Type*} [Field K] [Algebra ℚ K] (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) ℓ) : Function.Injective (conj ℓ ζ (K := K)) :=
   ModularCurve.PhiGen.conj_injective ℓ ζ hζ
 

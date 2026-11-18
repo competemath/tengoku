@@ -5,6 +5,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_WeierstrassCurve_eval_Phi_variableChange
 
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `Theorems/Thm_WeierstrassCurve_eval_Phi_variableChange.lean`: wrote out 1 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_exact_reverting`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 
+/--
+@isnad1 id=eq.0h5v.s8.887124f2038a from=translated src=- shape=46cded88 vocab=28e63f8f
+-/
 theorem WeierstrassCurve.eval_Phi_variableChange {R : Type*} [CommRing R]
     (W : WeierstrassCurve R) (C : WeierstrassCurve.VariableChange R) (n : ℤ) (x : R) :
     ((C • W).Φ n).eval (((C.u⁻¹ : Rˣ) : R) ^ 2 * (x - C.r)) =

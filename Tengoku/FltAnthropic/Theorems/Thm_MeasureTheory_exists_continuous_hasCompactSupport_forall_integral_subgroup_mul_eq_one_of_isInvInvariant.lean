@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open MeasureTheory
 
+/--
+@isnad1 id=ex.3h4v.s8.08ebeeaef7e7 from=translated src=- shape=c550e425 vocab=2d65576c
+-/
 theorem MeasureTheory.exists_continuous_hasCompactSupport_forall_integral_subgroup_mul_eq_one_of_isInvInvariant
     {T : Type*} [Group T] [TopologicalSpace T] [IsTopologicalGroup T] [LocallyCompactSpace T]
     [SecondCountableTopology T] [MeasurableSpace T] [BorelSpace T]

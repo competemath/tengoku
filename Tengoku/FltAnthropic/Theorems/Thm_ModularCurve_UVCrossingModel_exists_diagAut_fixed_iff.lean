@@ -9,6 +9,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_ModularCurve_UVCrossingModel_exists_diagAu
 set_option autoImplicit false
 
 open ModularCurve ModularCurve.UVCrossingModel
+/--
+@isnad1 id=ex.5h5v.s11.21883e0b3b0e from=translated src=- shape=26b4e82a vocab=88ed2081
+-/
 theorem ModularCurve.UVCrossingModel.exists_diagAut_fixed_iff
     {W : Type*} [CommRing W] (π : W) [IsPrecomplete (Ideal.span {π}) W]
     (hsep : ∀ x : W, (∀ n : ℕ, π ^ n ∣ x) → x = 0) (e : ℕ) (he : e ≠ 0)

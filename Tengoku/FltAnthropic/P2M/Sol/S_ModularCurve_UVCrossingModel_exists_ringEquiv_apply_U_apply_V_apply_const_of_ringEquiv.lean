@@ -22,12 +22,18 @@ noncomputable def mapEquiv {σ : Type*} {W W' : Type*} [CommRing W] [CommRing W'
       ext p n
       simp)
 
+/--
+@isnad1 id=eq.0h5v.s8.cc03e9b73189 from=translated src=- shape=56a29c03 vocab=b736dc1b
+-/
 theorem mapEquiv_apply {σ : Type*} {W W' : Type*} [CommRing W] [CommRing W'] (ρ : W ≃+* W')
     (p : MvPowerSeries σ W) : mapEquiv ρ p = MvPowerSeries.map (ρ : W →+* W') p := rfl
 
 end ModelTransport
 
 open ModelTransport in
+/--
+@isnad1 id=ex.0h4v.s13.6af33d392ee1 from=translated src=- shape=5f9f265e vocab=5f9988d1
+-/
 theorem solution
     (W W' : Type) [CommRing W] [CommRing W'] (ρ : W ≃+* W') (π : W) :
     ∃ θ : UVCrossingModel W π ≃+* UVCrossingModel W' (ρ π),

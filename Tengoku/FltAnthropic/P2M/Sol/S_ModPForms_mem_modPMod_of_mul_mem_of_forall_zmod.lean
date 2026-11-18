@@ -19,11 +19,17 @@ variable (p : ℕ) [Fact p.Prime] (F : Type) [Field F] [CharP F p]
 noncomputable abbrev ι : PowerSeries (ZMod p) →+* PowerSeries F :=
   PowerSeries.map (ZMod.castHom (dvd_refl p) F)
 
+/--
+@isnad1 id=eq.0h3v.s7.7e693aad5cd7 from=translated src=- shape=98e8e1b5 vocab=3f8dfc09
+-/
 theorem ι_mk_intCast (a : ℕ → ℤ) :
     ι p F (PowerSeries.mk fun n => ((a n : ℤ) : ZMod p)) = PowerSeries.mk fun n => ((a n : ℤ) : F) := by
   ext n
   simp [PowerSeries.coeff_map, PowerSeries.coeff_mk, map_intCast]
 
+/--
+@isnad1 id=eq.0h3v.s9.20123f494633 from=translated src=- shape=513b47ab vocab=f0f1fc30
+-/
 theorem span_image_span (S : Set (PowerSeries (ZMod p))) :
     Submodule.span F (ι p F '' (Submodule.span (ZMod p) S : Set (PowerSeries (ZMod p)))) =
       Submodule.span F (ι p F '' S) := by
@@ -41,6 +47,9 @@ theorem span_image_span (S : Set (PowerSeries (ZMod p))) :
       exact Submodule.smul_mem _ _ hy
   · exact Submodule.span_mono (Set.image_mono Submodule.subset_span)
 
+/--
+@isnad1 id=eq.0h4v.s10.6b40dae4bcaf from=translated src=- shape=5ef33243 vocab=27b076b3
+-/
 theorem genSet_modPMod_eq_image (N : ℕ) (k : ℤ) :
     {φ : PowerSeries F | ∃ (f : ModularForm (CongruenceSubgroup.Gamma0 N) k) (a : ℕ → ℤ),
       (∀ n, ModularFormClass.qCoeff f n = (a n : ℂ)) ∧ φ = PowerSeries.mk fun n => ((a n : ℤ) : F)} =
@@ -53,6 +62,9 @@ theorem genSet_modPMod_eq_image (N : ℕ) (k : ℤ) :
   · rintro ⟨_, ⟨f, a, ha, rfl⟩, rfl⟩
     exact ⟨f, a, ha, ι_mk_intCast p F a⟩
 
+/--
+@isnad1 id=eq.0h4v.s8.8a7c6584271f from=translated src=- shape=27be894d vocab=6b860c2a
+-/
 theorem modPMod_eq_span_image (N : ℕ) (k : ℤ) :
     ModPForms.modPMod N k F =
       Submodule.span F (ι p F '' (ModPForms.modPMod N k (ZMod p) : Set (PowerSeries (ZMod p)))) := by
@@ -66,10 +78,16 @@ noncomputable def coordPS (lam : F →+ ZMod p) : PowerSeries F →+ PowerSeries
   map_zero' := by ext n; simp
   map_add' φ ψ := by ext n; simp
 
+/--
+@isnad1 id=eq.0h5v.s9.5adb761efe40 from=translated src=- shape=0e407f8c vocab=23acc77f
+-/
 theorem coeff_coordPS (lam : F →+ ZMod p) (φ : PowerSeries F) (n : ℕ) :
     PowerSeries.coeff n (coordPS p F lam φ) = lam (PowerSeries.coeff n φ) := by
   simp [coordPS, PowerSeries.coeff_mk]
 
+/--
+@isnad1 id=eq.1h5v.s9.90461b7dd14b from=translated src=- shape=a9d8b7d4 vocab=19448dcf
+-/
 theorem coordPS_smul_ι (lam : F →+ ZMod p)
     (hlam : ∀ (t : ZMod p) (c : F), lam ((ZMod.castHom (dvd_refl p) F t) * c) = t * lam c)
     (c : F) (s : PowerSeries (ZMod p)) :
@@ -78,6 +96,9 @@ theorem coordPS_smul_ι (lam : F →+ ZMod p)
   rw [coeff_coordPS, PowerSeries.coeff_smul, PowerSeries.coeff_smul, PowerSeries.coeff_map, smul_eq_mul,
     smul_eq_mul, mul_comm c, hlam, mul_comm]
 
+/--
+@isnad1 id=mem.2h5v.s10.c10009160b0f from=translated src=- shape=f75986d8 vocab=1f32478a
+-/
 theorem coordPS_mem_of_mem_span_image (lam : F →+ ZMod p)
     (hlam : ∀ (t : ZMod p) (c : F), lam ((ZMod.castHom (dvd_refl p) F t) * c) = t * lam c)
     (S : Submodule (ZMod p) (PowerSeries (ZMod p))) (φ : PowerSeries F)
@@ -104,6 +125,9 @@ end Transfer
 section Reconstruct
 variable (p : ℕ) [Fact p.Prime] (F : Type) [Field F] [CharP F p]
 
+/--
+@isnad1 id=mem.2h4v.s10.2480184e5bc6 from=translated src=- shape=035dc2a0 vocab=22cc7700
+-/
 theorem mem_span_image_of_forall_coordPS_mem (T : Submodule (ZMod p) (PowerSeries (ZMod p)))
     (φ : PowerSeries F) (hfin : φ ∈ Submodule.span F (Set.range (ι p F)))
     (hT : letI : Algebra (ZMod p) F := ZMod.algebra F p
@@ -174,6 +198,9 @@ theorem mem_span_image_of_forall_coordPS_mem (T : Submodule (ZMod p) (PowerSerie
   rw [R0 φ B₀ h₀]
   refine Submodule.sum_mem _ fun b _ => Submodule.smul_mem _ _ (Submodule.subset_span ⟨_, hT b, rfl⟩)
 
+/--
+@isnad1 id=mem.3h8v.s10.e939d8f19393 from=translated src=- shape=5c6c8dbc vocab=ba8418db
+-/
 theorem mem_of_mul_mem_of_forall_zmod' (N : ℕ) (k k' k'' : ℤ) (P : PowerSeries (ZMod p))
     (h : ∀ ψ : PowerSeries (ZMod p), ψ ∈ ModPForms.modPMod N k (ZMod p) →
       P * ψ ∈ ModPForms.modPMod N k' (ZMod p) → ψ ∈ ModPForms.modPMod N k'' (ZMod p))
@@ -211,6 +238,9 @@ end Reconstruct
 
 end ModPForms.BaseChange
 
+/--
+@isnad1 id=mem.3h8v.s10.b8b9e4212e55 from=translated src=- shape=3fa8fd40 vocab=aa01e854
+-/
 theorem solution (p : ℕ) [Fact p.Prime] (N : ℕ) (k k' k'' : ℤ) (F : Type) [Field F] [CharP F p]
     (P : PowerSeries (ZMod p))
     (h : ∀ ψ : PowerSeries (ZMod p), ψ ∈ ModPForms.modPMod N k (ZMod p) →

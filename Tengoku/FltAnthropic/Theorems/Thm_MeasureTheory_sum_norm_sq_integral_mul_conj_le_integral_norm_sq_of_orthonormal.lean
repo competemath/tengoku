@@ -10,6 +10,9 @@ set_option autoImplicit false
 open MeasureTheory
 open scoped ComplexConjugate
 
+/--
+@isnad1 id=le.4h5v.s8.0ee7a74b4950 from=translated src=- shape=db4f2b13 vocab=15f54c3d
+-/
 theorem MeasureTheory.sum_norm_sq_integral_mul_conj_le_integral_norm_sq_of_orthonormal
     {X : Type*} [MeasurableSpace X] (μ : Measure X) {n : ℕ} (e : Fin n → X → ℂ)
     (hint : ∀ i j, Integrable (fun x => e i x * conj (e j x)) μ)

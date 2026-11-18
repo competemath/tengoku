@@ -13,15 +13,24 @@ open scoped MatrixGroups
 namespace FltWs24
 namespace ModPMul
 
+/--
+@isnad1 id=mem.0h1v.s7.cdd8bd13907c from=translated src=- shape=fab0867b vocab=8624f481
+-/
 theorem T_mem_Gamma0 (N : ℕ) : ModularGroup.T ∈ CongruenceSubgroup.Gamma0 N := by
   simp [CongruenceSubgroup.Gamma0_mem, ModularGroup.coe_T]
 
+/--
+@isnad1 id=mem.0h1v.s7.42dd5cae402a from=translated src=- shape=eaec2ebd vocab=fbf1a2fe
+-/
 theorem one_mem_strictPeriods_Gamma0 (N : ℕ) :
     (1 : ℝ) ∈ ((CongruenceSubgroup.Gamma0 N : Subgroup SL(2, ℤ)) :
       Subgroup (GL (Fin 2) ℝ)).strictPeriods := by
   rw [Subgroup.strictPeriods_eq_zmultiples_one_of_T_mem (T_mem_Gamma0 N)]
   exact AddSubgroup.mem_zmultiples 1
 
+/--
+@isnad1 id=and.2h10v.s9.8733633090e6 from=translated src=- shape=4beb3733 vocab=267c5f63
+-/
 theorem qCoeff_mul_of_intCast {N : ℕ} {a b : ℤ} {F : Type} [Field F]
     {G₁ G₂ : Type*} [FunLike G₁ UpperHalfPlane ℂ] [FunLike G₂ UpperHalfPlane ℂ]
     (f : G₁) [ModularFormClass G₁ (CongruenceSubgroup.Gamma0 N) a]
@@ -42,6 +51,9 @@ theorem qCoeff_mul_of_intCast {N : ℕ} {a b : ℤ} {F : Type} [Field F]
 end FltWs24.ModPMul
 
 open FltWs24.ModPMul in
+/--
+@isnad1 id=mem.2h6v.s9.c37c37c4871f from=translated src=- shape=46dd6bbc vocab=15d45cad
+-/
 theorem solution (N : ℕ) (a b : ℤ) (F : Type) [Field F]
     (φ ψ : PowerSeries F) (hφ : φ ∈ ModPForms.modPMod N a F) (hψ : ψ ∈ ModPForms.modPMod N b F) :
     φ * ψ ∈ ModPForms.modPMod N (a + b) F := by

@@ -15,6 +15,9 @@ namespace P2mKcHeckeFixedPoint
 
 variable {Γ : Subgroup (GL (Fin 2) ℝ)} {Fc : Type} [Field Fc] [Algebra ℂ Fc]
 
+/--
+@isnad1 id=ex.1h4v.s8.acbf558749e8 from=translated src=- shape=06afbf6a vocab=60eed310
+-/
 theorem exists_mem_of_mem_support_sum_map_single {ι : Type*} (m : Multiset (GL (Fin 2) ℝ))
     (g : GL (Fin 2) ℝ → ι) (x : ι)
     (hx : x ∈ ((m.map fun δ => Finsupp.single (g δ) (1 : ℤ)).sum).support) :
@@ -31,6 +34,9 @@ theorem exists_mem_of_mem_support_sum_map_single {ι : Type*} (m : Multiset (GL 
       · obtain ⟨δ, hδ, rfl⟩ := ih h
         exact ⟨δ, Multiset.mem_cons_of_mem hδ, rfl⟩
 
+/--
+@isnad1 id=ex.2h6v.s9.1edf0b61ef77 from=translated src=- shape=12ab944a vocab=95f7f147
+-/
 theorem exists_heckePoint_of_mem_support (U : UniformizedHeckeCurve Γ Fc) (ℓ : ℕ) (hℓ : ℓ.Prime)
     (τ : UpperHalfPlane) (P : AlgebraicCurve.Place ℂ Fc)
     (hP : P ∈ (U.corr ℓ hℓ (Finsupp.single (U.pt τ) 1)).support) :
@@ -38,11 +44,17 @@ theorem exists_heckePoint_of_mem_support (U : UniformizedHeckeCurve Γ Fc) (ℓ 
   rw [U.corr_single_pt ℓ hℓ τ] at hP
   exact exists_mem_of_mem_support_sum_map_single _ (fun δ => U.pt (δ • τ)) P hP
 
+/--
+@isnad1 id=eq.0h3v.s9.d660ee29951f from=translated src=- shape=bfad15b3 vocab=e33d9243
+-/
 theorem prod_reverse_ofFn_snoc (e : ℕ) (δ' : Fin e → GL (Fin 2) ℝ) (x : GL (Fin 2) ℝ) :
     (List.ofFn (Fin.snoc δ' x : Fin (e + 1) → GL (Fin 2) ℝ)).reverse.prod = x * (List.ofFn δ').reverse.prod := by
   rw [List.ofFn_succ']
   simp [Fin.snoc_castSucc, Fin.snoc_last, List.concat_eq_append, List.reverse_append]
 
+/--
+@isnad1 id=ex.3h7v.s9.307b4daf4031 from=translated src=- shape=8d48d108 vocab=8b047dd4
+-/
 theorem exists_heckePoints_pt_prod_smul_eq (U : UniformizedHeckeCurve Γ Fc) :
     ∀ (e : ℕ) (ℓ : Fin e → ℕ) (hℓ : ∀ j, (ℓ j).Prime) (P : Fin (e + 1) → AlgebraicCurve.Place ℂ Fc)
       (τ₀ : UpperHalfPlane), U.pt τ₀ = P 0 →
@@ -74,6 +86,9 @@ theorem exists_heckePoints_pt_prod_smul_eq (U : UniformizedHeckeCurve Γ Fc) :
 end P2mKcHeckeFixedPoint
 
 open P2mKcHeckeFixedPoint in
+/--
+@isnad1 id=ex.4h7v.s10.5db4623ed0e0 from=translated src=- shape=2f994d4f vocab=bb3a5ed4
+-/
 theorem solution
     {Γ : Subgroup (GL (Fin 2) ℝ)} {Fc : Type} [Field Fc] [Algebra ℂ Fc] (U : UniformizedHeckeCurve Γ Fc)
     (e : ℕ) (ℓ : Fin e → ℕ) (hℓ : ∀ j, (ℓ j).Prime) (P : Fin (e + 1) → AlgebraicCurve.Place ℂ Fc)

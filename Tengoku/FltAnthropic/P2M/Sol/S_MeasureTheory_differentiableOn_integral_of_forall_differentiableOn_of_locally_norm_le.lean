@@ -11,6 +11,9 @@ open MeasureTheory Metric Filter Topology
 
 namespace RS11IC
 
+/--
+@isnad1 id=differen.4h4v.s8.0364d6f061ad from=translated src=- shape=81b3fa59 vocab=6bde5231
+-/
 theorem main {Y : Type*} [MeasurableSpace Y] (ν : Measure Y)
     {U : Set ℂ} (hU : IsOpen U) (F : ℂ → Y → ℂ)
     (hmeas : ∀ z ∈ U, AEStronglyMeasurable (F z) ν)
@@ -91,6 +94,9 @@ theorem main {Y : Type*} [MeasurableSpace Y] (ν : Measure Y)
 
 end RS11IC
 
+/--
+@isnad1 id=differen.4h4v.s8.0364d6f061ad from=translated src=- shape=81b3fa59 vocab=6bde5231
+-/
 theorem solution
     {Y : Type*} [MeasurableSpace Y] (ν : Measure Y)
     {U : Set ℂ} (hU : IsOpen U) (F : ℂ → Y → ℂ)

@@ -14,6 +14,9 @@ namespace MeasureTheory
 export _root_.MeasureTheory (Measure.restrict_apply_univ Measure ae_restrict_iff' measure_ne_top ae_restrict_of_ae eLpNorm_add_le eLpNorm_le_of_ae_bound IsFiniteMeasure eLpNorm AEStronglyMeasurable measure_mono eLpNorm_indicator_eq_eLpNorm_restrict)
 open _root_.MeasureTheory
 
+/--
+@isnad1 id=ex.3h5v.s6.716df58c2293 from=translated src=- shape=5d3bcc94 vocab=6301f37c
+-/
 theorem exists_forall_norm_le_of_equicontinuous_of_isCompact
     {X : Type*} [TopologicalSpace X] {E : Type*} [NormedAddCommGroup E] {ι : Type*}
     (u : ι → X → E) (hequi : Equicontinuous u)
@@ -39,6 +42,9 @@ end MeasureTheory
 
 open _root_.MeasureTheory open _root_.P2MW.S_MeasureTheory_exists_finset_forall_exists_eLpNorm_sub_lt_of_equicontinuous_of_forall_ae_norm_le.MeasureTheory
 
+/--
+@isnad1 id=ex.7h8v.s8.848c86b386b6 from=translated src=- shape=71230bf5 vocab=d15093d6
+-/
 theorem solution
     {X : Type*} [TopologicalSpace X] [T2Space X] [MeasurableSpace X] [OpensMeasurableSpace X]
     {E : Type*} [NormedAddCommGroup E] [ProperSpace E]

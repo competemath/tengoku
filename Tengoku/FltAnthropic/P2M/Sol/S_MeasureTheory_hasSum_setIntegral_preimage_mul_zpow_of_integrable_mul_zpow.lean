@@ -13,24 +13,39 @@ namespace ShellDecomp
 
 variable {Ω : Type*} [MeasurableSpace Ω]
 
+/--
+@isnad1 id=measurab.1h3v.s5.3dca010b49ac from=translated src=- shape=9d653c36 vocab=bc917733
+-/
 theorem measurable_const_zpow (c : ℂ) {E : Ω → ℤ} (hE : Measurable E) :
     Measurable fun ω => c ^ E ω :=
   (measurable_of_countable fun n : ℤ => c ^ n).comp hE
 
+/--
+@isnad1 id=measurab.1h3v.s5.723bf1ea3c37 from=translated src=- shape=34176597 vocab=3692caaf
+-/
 theorem measurableSet_fiber {E : Ω → ℤ} (hE : Measurable E) (n : ℤ) :
     MeasurableSet (E ⁻¹' {n}) :=
   hE (measurableSet_singleton n)
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=eq.0h2v.s4.e1b23913a9e8 from=translated src=- shape=215d25ea vocab=363c5db0
+-/
 theorem iUnion_fiber (E : Ω → ℤ) : (⋃ n : ℤ, E ⁻¹' {n}) = Set.univ := by
   ext ω; simp
 
 omit [MeasurableSpace Ω] in
 
+/--
+@isnad1 id=eq.1h6v.s6.2ec0d2db4bcf from=translated src=- shape=15f1e81c vocab=89b51aeb
+-/
 theorem norm_mul_zpow (G : Ω → ℂ) (E : Ω → ℤ) {Y : ℂ} {r : ℝ} (hY : ‖Y‖ = r) (ω : Ω) :
     ‖G ω * Y ^ E ω‖ = ‖G ω‖ * r ^ E ω := by
   rw [norm_mul, norm_zpow, hY]
 
+/--
+@isnad1 id=aestrong.3h5v.s6.c758ebe2f99c from=translated src=- shape=710d5afc vocab=e1fa361b
+-/
 theorem aestronglyMeasurable_of_mul_zpow (ρ : Measure Ω) {E : Ω → ℤ} (hE : Measurable E)
     (G : Ω → ℂ) {r : ℝ} (hr : 0 < r)
     (hG : AEStronglyMeasurable (fun ω => G ω * (r : ℂ) ^ E ω) ρ) :
@@ -44,6 +59,9 @@ theorem aestronglyMeasurable_of_mul_zpow (ρ : Measure Ω) {E : Ω → ℤ} (hE 
   show G ω * (r : ℂ) ^ E ω * ((r : ℂ) ^ E ω)⁻¹ = G ω
   rw [mul_assoc, mul_inv_cancel₀ (hne ω), mul_one]
 
+/--
+@isnad1 id=integrab.4h6v.s7.d03fea85c7f8 from=translated src=- shape=43ed6dca vocab=59031f17
+-/
 theorem integrable_mul_zpow_of_norm_eq (ρ : Measure Ω) {E : Ω → ℤ} (hE : Measurable E)
     (G : Ω → ℂ) {r : ℝ} (hr : 0 < r)
     (hG : Integrable (fun ω => G ω * (r : ℂ) ^ E ω) ρ) {Y : ℂ} (hY : ‖Y‖ = r) :
@@ -56,6 +74,9 @@ theorem integrable_mul_zpow_of_norm_eq (ρ : Measure Ω) {E : Ω → ℤ} (hE : 
     rw [Complex.norm_real, Real.norm_eq_abs, abs_of_pos hr]
   rw [norm_mul_zpow G E hr', norm_mul_zpow G E hY]
 
+/--
+@isnad1 id=integrab.2h5v.s7.83c784a74410 from=translated src=- shape=e7cd5dd8 vocab=93684fb1
+-/
 theorem integrable_norm_mul_zpow (ρ : Measure Ω) {E : Ω → ℤ}
     (G : Ω → ℂ) {r : ℝ} (hr : 0 < r)
     (hG : Integrable (fun ω => G ω * (r : ℂ) ^ E ω) ρ) :
@@ -70,6 +91,9 @@ end ShellDecomp
 
 open ShellDecomp in
 
+/--
+@isnad1 id=and.3h5v.s8.5df4686409d5 from=translated src=- shape=336929ca vocab=617fa596
+-/
 theorem solution
     {Ω : Type*} [MeasurableSpace Ω] (ρ : Measure Ω) (E : Ω → ℤ) (hE : Measurable E)
     (G : Ω → ℂ) {r : ℝ} (hr : 0 < r)

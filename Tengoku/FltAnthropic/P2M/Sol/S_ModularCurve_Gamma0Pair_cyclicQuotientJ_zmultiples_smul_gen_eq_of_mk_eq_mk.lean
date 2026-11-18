@@ -28,9 +28,15 @@ noncomputable def vcAddEquiv (γ : VariableChange L) (E : WeierstrassCurve L) :
   right_inv := Point.vcFun_leftInverse
   map_add' := Point.vcInvFun_add γ E.toAffine
 
+/--
+@isnad1 id=eq.0h4v.s8.e7f096070fbf from=translated src=- shape=09b7a146 vocab=41ee72c6
+-/
 @[scoped simp] theorem vcAddEquiv_symm_apply (γ : VariableChange L) (E : WeierstrassCurve L) (R : (γ • E).toAffine.Point) :
     (vcAddEquiv γ E).symm R = Point.vcFun γ E.toAffine R := rfl
 
+/--
+@isnad1 id=eq.1h3v.s5.1fe5e25457d7 from=translated src=- shape=dfb595f3 vocab=a5bc0377
+-/
 theorem zmultiples_nsmul_eq_of_coprime {A : Type*} [AddGroup A] (a : A) {k : ℕ} (hk : k.Coprime (addOrderOf a)) :
     AddSubgroup.zmultiples (k • a) = AddSubgroup.zmultiples a := by
   apply le_antisymm
@@ -44,6 +50,9 @@ end ClassJ
 open scoped _root_.P2MW.S_ModularCurve_Gamma0Pair_cyclicQuotientJ_zmultiples_smul_gen_eq_of_mk_eq_mk.ClassJ
 
 open ClassJ in
+/--
+@isnad1 id=eq.3h5v.s8.db40e0f1ad19 from=translated src=- shape=e7cbf33c vocab=9b15ef45
+-/
 theorem solution
     {L : Type u} [Field L] [DecidableEq L] {N : ℕ} [NeZero N] (hN : (N : L) ≠ 0)
     (P Q : ModularCurve.Gamma0Pair N L)

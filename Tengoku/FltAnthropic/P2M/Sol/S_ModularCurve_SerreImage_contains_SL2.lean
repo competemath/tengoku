@@ -22,6 +22,9 @@ section Generation
 
 variable {p : ℕ} [Fact p.Prime]
 
+/--
+@isnad1 id=ex.1h3v.s6.9b559c892873 from=translated src=- shape=92163f0e vocab=471e3071
+-/
 lemma exists_natCast_mul_eq {a : ZMod p} (ha : a ≠ 0) (c : ZMod p) :
     ∃ n : ℕ, (n : ZMod p) * a = c := by
   haveI : NeZero p := ⟨(Fact.out : p.Prime).ne_zero⟩
@@ -29,11 +32,17 @@ lemma exists_natCast_mul_eq {a : ZMod p} (ha : a ≠ 0) (c : ZMod p) :
   refine ⟨n, ?_⟩
   rw [hn, mul_assoc, ZMod.inv_mul_of_unit a (isUnit_iff_ne_zero.mpr ha), mul_one]
 
+/--
+@isnad1 id=mem.1h3v.s7.3eded4226634 from=translated src=- shape=67c19795 vocab=b65583d5
+-/
 lemma mem_range_toGL_of_det_eq_one {n : Type*} [DecidableEq n] [Fintype n] {R : Type*}
     [CommRing R] {g : GL n R} (hg : Matrix.det (g : Matrix n n R) = 1) :
     g ∈ (Matrix.SpecialLinearGroup.toGL (n := n) (R := R)).range :=
   ⟨⟨(g : Matrix n n R), hg⟩, Units.ext rfl⟩
 
+/--
+@isnad1 id=le.4h5v.s11.e1969ac537f3 from=translated src=- shape=2d49489f vocab=9b99b717
+-/
 theorem range_toGL_le_of_conj_elem (H : Subgroup (GL (Fin 2) (ZMod p)))
     (P : GL (Fin 2) (ZMod p)) {a b : ZMod p} (ha : a ≠ 0) (hb : b ≠ 0)
     (hu : P * Matrix.SpecialLinearGroup.toGL (upperElem a) * P⁻¹ ∈ H)
@@ -95,6 +104,9 @@ section Unipotent
 
 variable {F : Type*} [Field F]
 
+/--
+@isnad1 id=eq.2h3v.s6.11bf59fa3550 from=translated src=- shape=de7143bd vocab=00dd0f92
+-/
 lemma funext_fin_two {α : Type*} {f g : Fin 2 → α} (h0 : f 0 = g 0) (h1 : f 1 = g 1) :
     f = g := by
   funext i
@@ -102,14 +114,23 @@ lemma funext_fin_two {α : Type*} {f g : Fin 2 → α} (h0 : f 0 = g 0) (h1 : f 
   · exact h0
   · exact h1
 
+/--
+@isnad1 id=eq.0h2v.s7.062534f047c0 from=translated src=- shape=1330b1ee vocab=a730121e
+-/
 lemma mulVec_e0 (M : Matrix (Fin 2) (Fin 2) F) : M.mulVec ![1, 0] = ![M 0 0, M 1 0] := by
   funext i
   fin_cases i <;> simp [Matrix.mulVec, dotProduct, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.0h2v.s7.4db70b9a1be9 from=translated src=- shape=1330b1ee vocab=a730121e
+-/
 lemma mulVec_e1 (M : Matrix (Fin 2) (Fin 2) F) : M.mulVec ![0, 1] = ![M 0 1, M 1 1] := by
   funext i
   fin_cases i <;> simp [Matrix.mulVec, dotProduct, Fin.sum_univ_two]
 
+/--
+@isnad1 id=ex.1h2v.s8.dbb8d5ffd441 from=translated src=- shape=012a2e56 vocab=30040c27
+-/
 lemma exists_fixed_vec {M : Matrix (Fin 2) (Fin 2) F} (h : (M - 1) ^ 2 = 0) :
     ∃ v : Fin 2 → F, v ≠ 0 ∧ M.mulVec v = v := by
   have hdet : Matrix.det (M - 1) = 0 := by
@@ -123,6 +144,9 @@ lemma exists_fixed_vec {M : Matrix (Fin 2) (Fin 2) F} (h : (M - 1) ^ 2 = 0) :
   rw [Matrix.one_mulVec, hMv] at h1
   exact sub_eq_zero.mp h1.symm
 
+/--
+@isnad1 id=ex.2h3v.s8.7d826b143a54 from=translated src=- shape=cfeb4709 vocab=6c1c018f
+-/
 lemma exists_smul_eq_of_cross_eq_zero {v w : Fin 2 → F} (hv : v ≠ 0)
     (hD : v 0 * w 1 - v 1 * w 0 = 0) : ∃ c : F, w = c • v := by
   have hkey : v 0 * w 1 = v 1 * w 0 := sub_eq_zero.mp hD
@@ -196,6 +220,9 @@ variable {p : ℕ} [Fact p.Prime]
 
 local notation "𝕄" => Matrix (Fin 2) (Fin 2) (ZMod p)
 
+/--
+@isnad1 id=eq.1h3v.s10.581d7faaa250 from=translated src=- shape=b4227b5c vocab=6e8da850
+-/
 lemma conj_unipotent {g : GL (Fin 2) (ZMod p)} (h : GL (Fin 2) (ZMod p))
     (hg : ((g : 𝕄) - 1) ^ 2 = 0) :
     (((h * g * h⁻¹ : GL (Fin 2) (ZMod p)) : 𝕄) - 1) ^ 2 = 0 := by
@@ -217,6 +244,9 @@ lemma conj_unipotent {g : GL (Fin 2) (ZMod p)} (h : GL (Fin 2) (ZMod p))
     noncomm_ring
   rw [key, hsq, hinv', mul_one, ← pow_two, hg, mul_zero, zero_mul]
 
+/--
+@isnad1 id=le.2h2v.s11.551e523c2bd0 from=translated src=- shape=ee8a08a7 vocab=f7fdcf27
+-/
 theorem contains_SL2 (H : Subgroup (GL (Fin 2) (ZMod p)))
     (hirr : ∀ v : Fin 2 → ZMod p, v ≠ 0 → ∃ g ∈ H, ∀ c : ZMod p,
       ((g : GL (Fin 2) (ZMod p)) : 𝕄).mulVec v ≠ c • v)
@@ -348,6 +378,9 @@ end ModularCurve
 
 open _root_.ModularCurve open _root_.P2MW.S_ModularCurve_SerreImage_contains_SL2.ModularCurve open _root_.P2MW.S_ModularCurve_SerreImage_contains_SL2.ModularCurve.SerreImage
 
+/--
+@isnad1 id=le.2h2v.s11.551e523c2bd0 from=translated src=- shape=ee8a08a7 vocab=f7fdcf27
+-/
 theorem solution {p : ℕ} [Fact p.Prime]
     (H : Subgroup (GL (Fin 2) (ZMod p)))
     (hirr : ∀ v : Fin 2 → ZMod p, v ≠ 0 → ∃ g ∈ H, ∀ c : ZMod p,

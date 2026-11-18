@@ -105,6 +105,9 @@ end Topological
 end CosetNormalisation
 
 open CosetNormalisation in
+/--
+@isnad1 id=ex.3h4v.s8.472b531dc727 from=translated src=- shape=9aca6265 vocab=453fd957
+-/
 theorem solution
     {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [LocallyCompactSpace G] [T2Space G]
     [FirstCountableTopology G]

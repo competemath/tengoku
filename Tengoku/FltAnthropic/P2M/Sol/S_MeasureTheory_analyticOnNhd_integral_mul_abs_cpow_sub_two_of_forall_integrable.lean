@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open MeasureTheory
 
+/--
+@isnad1 id=and.3h2v.s8.dd33a9b4415e from=translated src=- shape=cf7df0f6 vocab=a946f56a
+-/
 theorem solution
     (P : ℝ → ℝ) (x₀ : ℝ) (hP : Measurable P) (hP0 : ∀ y : ℝ, 0 ≤ P y)
     (hPint : ∀ σ : ℝ, x₀ < σ → Integrable (fun y : ℝ => P y * |y| ^ (σ - 2))) :

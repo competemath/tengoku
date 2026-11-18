@@ -61,6 +61,9 @@ private theorem enorm_integral_mul_sq_le (ρ : Measure A) (p : A → ℝ) (hp : 
 end JensenL2Proof
 
 open JensenL2Proof in
+/--
+@isnad1 id=le.6h7v.s8.7313ec55cc45 from=translated src=- shape=e8587aee vocab=28335de9
+-/
 theorem solution
     {X A : Type*} [MeasurableSpace X] [MeasurableSpace A] (ν : Measure X) (ρ : Measure A) [SFinite ν] [SFinite ρ]
     (p : A → ℝ) (hp : Measurable p) (hp0 : ∀ a, 0 ≤ p a) (hp1 : ∫ a, p a ∂ρ = 1)

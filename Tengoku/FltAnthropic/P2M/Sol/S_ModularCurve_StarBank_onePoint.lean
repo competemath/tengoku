@@ -22,12 +22,18 @@ section OnePointKit
 
 variable {K : Type*} [Field K]
 
+/--
+@isnad1 id=eq.0h2v.s8.991b0e6b8b70 from=translated src=- shape=0782e67a vocab=2962618f
+-/
 theorem algebraMap_laurent_eq_single (K' : Type*) [CommRing K'] (c : K') :
     algebraMap K' (LaurentSeries K') c = HahnSeries.single (0 : ℤ) c := by
   have h1 : algebraMap K' (PowerSeries K') c = PowerSeries.C c := by simp
   rw [HahnSeries.algebraMap_apply', h1, HahnSeries.ofPowerSeries_C]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.93f06269cd0a from=translated src=- shape=e7ce0de1 vocab=75fbd2f7
+-/
 theorem leadingCoeff_laurent_pow (x : LaurentSeries K) (n : ℕ) :
     (x ^ n).leadingCoeff = x.leadingCoeff ^ n := by
   induction n with
@@ -37,6 +43,9 @@ theorem leadingCoeff_laurent_pow (x : LaurentSeries K) (n : ℕ) :
   | succ n ih =>
     rw [pow_succ, pow_succ, HahnSeries.leadingCoeff_mul, ih]
 
+/--
+@isnad1 id=eq.1h3v.s7.50b31244b32c from=translated src=- shape=29cf5b97 vocab=f575f06d
+-/
 theorem order_laurent_pow {x : LaurentSeries K} (hx : x ≠ 0) (n : ℕ) :
     (x ^ n).order = n • x.order := by
   induction n with
@@ -49,11 +58,17 @@ theorem order_laurent_pow {x : LaurentSeries K} (hx : x ≠ 0) (n : ℕ) :
         (HahnSeries.leadingCoeff_ne_zero.mpr hx)
     rw [pow_succ, HahnSeries.order_mul_of_ne_zero hlc, ih, succ_nsmul]
 
+/--
+@isnad1 id=eq.0h4v.s8.6f982dff66f9 from=translated src=- shape=85166969 vocab=84aa2910
+-/
 theorem coeff_C_mul (c : K) (y : LaurentSeries K) (g : ℤ) :
     (HahnSeries.C c * y).coeff g = c * y.coeff g := by
   rw [show (HahnSeries.C c : LaurentSeries K) = HahnSeries.single 0 c from rfl,
     HahnSeries.coeff_single_mul, sub_zero]
 
+/--
+@isnad1 id=eq.1h3v.s7.be0c9be1325c from=translated src=- shape=935ec0e5 vocab=c3870633
+-/
 theorem coeff_C_of_ne (c : K) {g : ℤ} (hg : g ≠ 0) :
     (HahnSeries.C c : LaurentSeries K).coeff g = 0 := by
   rw [show (HahnSeries.C c : LaurentSeries K) = HahnSeries.single 0 c from rfl,
@@ -194,6 +209,9 @@ private theorem ModularCurve.StarBank.onePoint {K : Type*} [Field K] {M : ℕ}
 
 open Polynomial HahnSeries _root_.ModularCurve _root_.P2MW.S_ModularCurve_StarBank_onePoint.ModularCurve in
 
+/--
+@isnad1 id=ex.3h4v.s11.eeb04ae63008 from=translated src=- shape=4b1cec7e vocab=a4412575
+-/
 theorem solution {K : Type*} [Field K] {M : ℕ}
     (hM : (M : K) ≠ 0) {c : K} (hc : c ≠ 0) {β₀ : K}
     (hstar : Polynomial.aeval (ModularCurve.jqModC K)

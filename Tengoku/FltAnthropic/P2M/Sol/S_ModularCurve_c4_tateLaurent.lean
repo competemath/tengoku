@@ -16,11 +16,17 @@ export _root_.ModularCurve (tateA4 coeff_tateA4 tatePowerSeries tatePowerSeries_
 namespace TD1
 open _root_.ModularCurve
 
+/--
+@isnad1 id=eq.0h0v.s6.1c10b78fce6c from=translated src=- shape=8c4c9982 vocab=381ab859
+-/
 theorem c₄_tatePowerSeries : tatePowerSeries.c₄ = 1 - 48 * tateA4 := by
   rw [WeierstrassCurve.c₄, WeierstrassCurve.b₂, WeierstrassCurve.b₄, tatePowerSeries_a₁, tatePowerSeries_a₂,
     tatePowerSeries_a₃, tatePowerSeries_a₄]
   ring
 
+/--
+@isnad1 id=eq.0h0v.s6.03e1c00e653a from=translated src=- shape=c3f2c256 vocab=8eeafffa
+-/
 theorem one_sub_48_tateA4 : (1 - 48 * tateA4 : PowerSeries ℤ) = eisenstein4 := by
   ext n
   have h48 : (48 : PowerSeries ℤ) * tateA4 = (48 : ℕ) • tateA4 := by
@@ -32,6 +38,9 @@ theorem one_sub_48_tateA4 : (1 - 48 * tateA4 : PowerSeries ℤ) = eisenstein4 :=
   · simp only [zero_sub, mul_neg, neg_neg, Finset.mul_sum]
     exact Finset.sum_congr rfl fun d _ => by ring
 
+/--
+@isnad1 id=eq.0h1v.s8.67aff56a7fbf from=translated src=- shape=f896f4b6 vocab=41538bc9
+-/
 theorem main (K : Type*) [CommRing K] :
     (tateLaurent K).c₄ = HahnSeries.ofPowerSeries ℤ K (PowerSeries.map (Int.castRingHom K) eisenstein4) := by
   rw [tateLaurent, WeierstrassCurve.map_c₄, c₄_tatePowerSeries, one_sub_48_tateA4, laurentOfInt_apply]
@@ -39,6 +48,9 @@ theorem main (K : Type*) [CommRing K] :
 end ModularCurve.TD1
 
 open PowerSeries HahnSeries in
+/--
+@isnad1 id=eq.0h1v.s8.67aff56a7fbf from=translated src=- shape=f896f4b6 vocab=41538bc9
+-/
 theorem solution (K : Type*) [CommRing K] :
     (tateLaurent K).c₄ = HahnSeries.ofPowerSeries ℤ K (PowerSeries.map (Int.castRingHom K) eisenstein4) :=
   ModularCurve.TD1.main K

@@ -20,12 +20,18 @@ variable {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
   [MeasurableSpace G] [BorelSpace G]
   (T : Subgroup G) [MeasurableSpace T] [BorelSpace T]
 
+/--
+@isnad1 id=measurab.0h2v.s7.eac4338474ad from=translated src=- shape=511804b6 vocab=ee203608
+-/
 theorem measurable_subgroup_mul [SecondCountableTopology G] :
     Measurable fun p : G × T => ((p.2 : G) * p.1) := by
   have hc : Continuous fun p : G × T => ((p.2 : G) * p.1) :=
     (continuous_subtype_val.comp continuous_snd).mul continuous_fst
   exact hc.measurable
 
+/--
+@isnad1 id=measurab.1h4v.s7.e5c577b4a2df from=translated src=- shape=070fb997 vocab=e7ba8a7f
+-/
 theorem measurable_fibre {w : G → ℝ} (hw : Measurable w) (x : G) :
     Measurable fun t : T => w ((t : G) * x) :=
   hw.comp ((continuous_subtype_val.mul continuous_const).measurable)
@@ -39,6 +45,9 @@ variable {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [Loca
   (T : Subgroup G) [MeasurableSpace T] [BorelSpace T]
   (μ : Measure G) (τ : Measure T)
 
+/--
+@isnad1 id=eq.3h5v.s8.2616db0aeb43 from=translated src=- shape=c813bbc9 vocab=2eb240d5
+-/
 theorem lintegral_fibre_eq_one {w : G → ℝ} (hw0 : ∀ x, 0 ≤ w x) (hw : Measurable w) {x : G}
     (h : ∫ t : T, w ((t : G) * x) ∂τ = 1) :
     ∫⁻ t : T, ENNReal.ofReal (w ((t : G) * x)) ∂τ = 1 := by
@@ -49,13 +58,22 @@ theorem lintegral_fibre_eq_one {w : G → ℝ} (hw0 : ∀ x, 0 ≤ w x) (hw : Me
 variable [μ.IsHaarMeasure] [τ.IsHaarMeasure] [τ.IsInvInvariant] (hT : IsClosed (T : Set G))
 include hT
 
+/--
+@isnad1 id=sigmacom.1h2v.s7.2486e32b7d4b from=translated src=- shape=b1b5f180 vocab=fed070fc
+-/
 theorem sigmaCompactSpace_subgroup : SigmaCompactSpace T :=
   hT.isClosedEmbedding_subtypeVal.sigmaCompactSpace
 
+/--
+@isnad1 id=sfinite.1h3v.s7.083d651d0aed from=translated src=- shape=62332dce vocab=13d47b8d
+-/
 theorem sFinite_tau : SFinite τ := by
   haveI := sigmaCompactSpace_subgroup T hT
   infer_instance
 
+/--
+@isnad1 id=lt.8h7v.s9.965e2a5d34e3 from=translated src=- shape=eb8c5556 vocab=c972bf5f
+-/
 theorem lintegral_enorm_mul_lt_top (F : G → ℂ) (hFm : Measurable F) {C : ℝ} (hFb : ∀ x, ‖F x‖ ≤ C)
     (hFT : ∀ (t : T) (x : G), F ((t : G) * x) = F x)
     (w : G → ℝ) (hw0 : ∀ x, 0 ≤ w x) (hwm : Measurable w) (hwc : HasCompactSupport w)
@@ -174,6 +192,9 @@ end Main
 
 end P2mSectionIntegralB
 
+/--
+@isnad1 id=integrab.5h6v.s8.4b25c705efa7 from=translated src=- shape=13780019 vocab=5bc2da78
+-/
 theorem solution
     {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [LocallyCompactSpace G]
     [SecondCountableTopology G] [MeasurableSpace G] [BorelSpace G]

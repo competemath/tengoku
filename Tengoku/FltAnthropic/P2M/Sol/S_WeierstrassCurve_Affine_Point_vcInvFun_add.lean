@@ -20,8 +20,14 @@ variable (C : VariableChange K) (W : WeierstrassCurve.Affine K)
 
 variable {C W}
 
+/--
+@isnad1 id=ne.0h2v.s5.3388c88c9ce4 from=translated src=- shape=7101dedf vocab=0fd0ad29
+-/
 theorem vcAdd_u_ne_zero : (C.u : K) ≠ 0 := C.u.ne_zero
 
+/--
+@isnad1 id=injectiv.0h2v.s4.e988a5c466af from=translated src=- shape=5922b6b2 vocab=58530f4b
+-/
 theorem vcX_injective : Function.Injective (vcX C) := by
   intro a b h
   have hu : (C.u : K) ≠ 0 := vcAdd_u_ne_zero
@@ -29,6 +35,9 @@ theorem vcX_injective : Function.Injective (vcX C) := by
   have : (C.u : K) ^ 2 * a = (C.u : K) ^ 2 * b := by linear_combination h
   exact mul_left_cancel₀ (pow_ne_zero 2 hu) this
 
+/--
+@isnad1 id=injectiv.0h3v.s4.59285b71052c from=translated src=- shape=7d54893b vocab=d6b18354
+-/
 theorem vcY_injective (x' : K) : Function.Injective (vcY C x') := by
   intro a b h
   have hu : (C.u : K) ≠ 0 := vcAdd_u_ne_zero
@@ -36,6 +45,9 @@ theorem vcY_injective (x' : K) : Function.Injective (vcY C x') := by
   have : (C.u : K) ^ 3 * a = (C.u : K) ^ 3 * b := by linear_combination h
   exact mul_left_cancel₀ (pow_ne_zero 3 hu) this
 
+/--
+@isnad1 id=eq.0h5v.s9.9d8adc8c79ce from=translated src=- shape=0a8d0288 vocab=98a06282
+-/
 theorem vcAdd_partialX_aux (x' y' : K) :
     W.a₁ * vcY C x' y' - (3 * vcX C x' ^ 2 + 2 * W.a₂ * vcX C x' + W.a₄)
       + C.s * (2 * vcY C x' y' + W.a₁ * vcX C x' + W.a₃)
@@ -46,6 +58,9 @@ theorem vcAdd_partialX_aux (x' y' : K) :
     Units.val_inv_eq_inv_val]
   field_simp; ring
 
+/--
+@isnad1 id=eq.0h5v.s8.4c0fdcb9f1d0 from=translated src=- shape=198e6a02 vocab=1fd92642
+-/
 theorem vcAdd_partialY_aux (x' y' : K) :
     2 * vcY C x' y' + W.a₁ * vcX C x' + W.a₃
       = (C.u : K) ^ 3 * (2 * y' + (C • W).a₁ * x' + (C • W).a₃) := by
@@ -53,6 +68,9 @@ theorem vcAdd_partialY_aux (x' y' : K) :
   simp only [vcX, vcY, variableChange_a₁, variableChange_a₃, Units.val_inv_eq_inv_val]
   field_simp; ring
 
+/--
+@isnad1 id=eq.0h5v.s6.9fa19fc83356 from=translated src=- shape=191eceed vocab=690b5006
+-/
 theorem negY_variableChange (x' y' : K) :
     W.negY (vcX C x') (vcY C x' y') = vcY C x' ((C • W).toAffine.negY x' y') := by
   have hu : (C.u : K) ≠ 0 := vcAdd_u_ne_zero
@@ -60,6 +78,9 @@ theorem negY_variableChange (x' y' : K) :
   field_simp
   ring
 
+/--
+@isnad1 id=iff.0h7v.s6.35970a680690 from=translated src=- shape=5bea9f4b vocab=690b5006
+-/
 theorem Yeq_variableChange_iff (x₁' x₂' y₁' y₂' : K) :
     (vcX C x₁' = vcX C x₂' ∧ vcY C x₁' y₁' = W.negY (vcX C x₂') (vcY C x₂' y₂'))
       ↔ (x₁' = x₂' ∧ y₁' = (C • W).toAffine.negY x₂' y₂') := by
@@ -74,6 +95,9 @@ theorem Yeq_variableChange_iff (x₁' x₂' y₁' y₂' : K) :
     subst hx
     exact ⟨rfl, by rw [negY_variableChange x₁' y₂', hy]⟩
 
+/--
+@isnad1 id=eq.3h7v.s8.3295a95e2a55 from=translated src=- shape=894de732 vocab=2dcd9bba
+-/
 theorem slope_variableChange [DecidableEq K] (x₁' x₂' y₁' y₂' : K)
     (h₁ : (C • W).toAffine.Equation x₁' y₁') (h₂ : (C • W).toAffine.Equation x₂' y₂')
     (hxy : ¬(x₁' = x₂' ∧ y₁' = (C • W).toAffine.negY x₂' y₂')) :
@@ -120,6 +144,9 @@ theorem slope_variableChange [DecidableEq K] (x₁' x₂' y₁' y₂' : K)
     have hxne : x₁' - x₂' ≠ 0 := sub_ne_zero_of_ne hx
     field_simp
 
+/--
+@isnad1 id=eq.0h6v.s7.853a40ef9233 from=translated src=- shape=9317ef05 vocab=4411b2bf
+-/
 theorem addX_variableChange (x₁' x₂' L : K) :
     W.addX (vcX C x₁') (vcX C x₂') ((C.u : K) * L + C.s)
       = vcX C ((C • W).toAffine.addX x₁' x₂' L) := by
@@ -128,6 +155,9 @@ theorem addX_variableChange (x₁' x₂' L : K) :
   field_simp
   ring
 
+/--
+@isnad1 id=eq.0h7v.s7.13484a57fa5b from=translated src=- shape=82cc15d0 vocab=3b83147b
+-/
 theorem addY_variableChange (x₁' x₂' y₁' L : K) :
     W.addY (vcX C x₁') (vcX C x₂') (vcY C x₁' y₁') ((C.u : K) * L + C.s)
       = vcY C ((C • W).toAffine.addX x₁' x₂' L) ((C • W).toAffine.addY x₁' x₂' y₁' L) := by
@@ -145,6 +175,9 @@ open _root_.WeierstrassCurve.Affine.Point
 
 variable {C : VariableChange K} {W : WeierstrassCurve.Affine K}
 
+/--
+@isnad1 id=eq.4h6v.s6.b99000d6ab17 from=translated src=- shape=201893ae vocab=a6578b85
+-/
 theorem some_of_eq_of_eq' {V : WeierstrassCurve.Affine K} {x₁ y₁ x₂ y₂ : K}
     {h₁ : V.Nonsingular x₁ y₁} {h₂ : V.Nonsingular x₂ y₂} (hx : x₁ = x₂) (hy : y₁ = y₂) :
     (Point.some x₁ y₁ h₁ : V.Point) = Point.some x₂ y₂ h₂ := by
@@ -154,6 +187,9 @@ theorem some_of_eq_of_eq' {V : WeierstrassCurve.Affine K} {x₁ y₁ x₂ y₂ :
 
 variable [DecidableEq K]
 
+/--
+@isnad1 id=eq.0h5v.s8.8ba4162ed89e from=translated src=- shape=a637da62 vocab=b960e225
+-/
 theorem vcFun_add (P Q : (C • W).toAffine.Point) :
     vcFun C W (P + Q) = vcFun C W P + vcFun C W Q := by
   rcases P with _ | ⟨x₁, y₁, h₁⟩
@@ -175,6 +211,9 @@ theorem vcFun_add (P Q : (C • W).toAffine.Point) :
     · rw [hslope, addX_variableChange]
     · rw [hslope, addY_variableChange]
 
+/--
+@isnad1 id=eq.0h5v.s8.7c89d1c49206 from=translated src=- shape=a1fbc9a7 vocab=50ebe054
+-/
 theorem vcInvFun_add' (P Q : W.Point) :
     vcInvFun C W (P + Q) = vcInvFun C W P + vcInvFun C W Q := by
   apply vcFun_leftInverse.injective
@@ -184,6 +223,9 @@ end Point
 
 end WeierstrassCurve.Affine
 
+/--
+@isnad1 id=eq.0h5v.s8.7767ccd56901 from=translated src=- shape=7c935748 vocab=50ebe054
+-/
 theorem solution {K : Type*} [Field K] [DecidableEq K]
     (C : WeierstrassCurve.VariableChange K) (W : WeierstrassCurve.Affine K) (P Q : W.Point) :
     WeierstrassCurve.Affine.Point.vcInvFun C W (P + Q) =

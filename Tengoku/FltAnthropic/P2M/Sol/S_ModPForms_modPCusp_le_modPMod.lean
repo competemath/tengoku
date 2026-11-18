@@ -8,6 +8,9 @@ set_option autoImplicit false
 
 open ModPForms
 
+/--
+@isnad1 id=le.0h3v.s7.151832b6a477 from=translated src=- shape=26d5c977 vocab=775556d9
+-/
 theorem solution (N' : ℕ) [NeZero N'] (k : ℤ) (F : Type) [Field F] :
     modPCusp N' k F ≤ modPMod N' k F := by
   refine Submodule.span_mono ?_

@@ -19,22 +19,37 @@ abbrev Orb : Type _ := MulAction.orbitRel.Quotient (Subgroup.zpowers σ) X
 
 def orbQ (x : X) : Orb σ := Quotient.mk (MulAction.orbitRel (Subgroup.zpowers σ) X) x
 
+/--
+@isnad1 id=surjecti.0h2v.s3.eec62a3a69ce from=translated src=- shape=101200ff vocab=6339586b
+-/
 theorem orbQ_surjective : Function.Surjective (orbQ σ) := by
   rintro ⟨x⟩; exact ⟨x, rfl⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.44a573efd1ae from=translated src=- shape=410532cd vocab=040d21a0
+-/
 theorem orbQ_apply_perm (x : X) : orbQ σ (σ x) = orbQ σ x := by
   apply Quotient.sound
   show σ x ∈ MulAction.orbit (Subgroup.zpowers σ) x
   exact ⟨⟨σ, Subgroup.mem_zpowers σ⟩, rfl⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.ec83354539ec from=translated src=- shape=df7b1cd0 vocab=68652228
+-/
 theorem natCard_fixedBy_eq (τ : Equiv.Perm X) :
     Nat.card (MulAction.fixedBy X τ) = Nat.card {x // τ x = x} :=
   Nat.card_congr (Equiv.subtypeEquivRight fun x => by simp [MulAction.mem_fixedBy])
 
+/--
+@isnad1 id=eq.0h1v.s5.6aae27f6f7d9 from=translated src=- shape=5ee510fe vocab=ec29d037
+-/
 theorem natCard_fixedBy_one : Nat.card (MulAction.fixedBy X (1 : Equiv.Perm X)) = Nat.card X := by
   rw [natCard_fixedBy_eq]
   exact Nat.card_congr (Equiv.subtypeUnivEquiv fun x => by simp)
 
+/--
+@isnad1 id=eq.0h2v.s6.5baa3f6b5829 from=translated src=- shape=8863df48 vocab=3e25097b
+-/
 theorem sum_range_orderOf_natCard_fixedBy [Finite X] :
     ∑ i ∈ Finset.range (orderOf σ), Nat.card (MulAction.fixedBy X (σ ^ i)) =
       Nat.card (Orb σ) * orderOf σ := by
@@ -53,6 +68,9 @@ theorem sum_range_orderOf_natCard_fixedBy [Finite X] :
   rw [finEquivZPowers_apply, Nat.card_eq_fintype_card]
   rfl
 
+/--
+@isnad1 id=eq.1h2v.s6.804761bc9173 from=translated src=- shape=e2d04be7 vocab=b62f6de7
+-/
 theorem two_mul_natCard_orb [Finite X] (h2 : σ ^ 2 = 1) :
     2 * Nat.card (Orb σ) = Nat.card X + Nat.card {x // σ x = x} := by
   have hsum := sum_range_orderOf_natCard_fixedBy σ
@@ -67,6 +85,9 @@ theorem two_mul_natCard_orb [Finite X] (h2 : σ ^ 2 = 1) :
       natCard_fixedBy_eq] at hsum
     omega
 
+/--
+@isnad1 id=eq.1h2v.s6.3c272aaccac3 from=translated src=- shape=ed30acff vocab=b62f6de7
+-/
 theorem three_mul_natCard_orb [Finite X] (h3 : σ ^ 3 = 1) :
     3 * Nat.card (Orb σ) = Nat.card X + 2 * Nat.card {x // σ x = x} := by
   have hsum := sum_range_orderOf_natCard_fixedBy σ
@@ -112,6 +133,9 @@ def relSpace : Submodule K (X → K) where
     · simp only [Pi.smul_apply, smul_eq_mul]; rw [← mul_add, ← mul_add, hm3 x, mul_zero]
 
 variable {K σ₂ σ₃} in
+/--
+@isnad1 id=iff.0h5v.s8.65d8ac74a974 from=translated src=- shape=c383ef95 vocab=50e15998
+-/
 theorem mem_relSpace {m : X → K} :
     m ∈ relSpace K σ₂ σ₃ ↔
       (∀ x, m x + m (σ₂ x) = 0) ∧ ∀ x, m x + m (σ₃ x) + m (σ₃ (σ₃ x)) = 0 :=
@@ -135,11 +159,17 @@ noncomputable def orbFun : ((Orb σ₂ → K) × (Orb σ₃ → K)) →ₗ[K] Mo
       simp only [Pi.smul_apply, smul_eq_mul, Finset.mul_sum]
       refine Finset.sum_congr rfl fun x _ => by ring)
 
+/--
+@isnad1 id=eq.0h6v.s10.6f663a158d58 from=translated src=- shape=fa636e5c vocab=fa6134b4
+-/
 theorem orbFun_apply (ab : (Orb σ₂ → K) × (Orb σ₃ → K)) (m : X → K) :
     orbFun K σ₂ σ₃ ab m = ∑ x, m x * (ab.1 (orbQ σ₂ x) + ab.2 (orbQ σ₃ x)) := rfl
 
 variable [CharZero K]
 
+/--
+@isnad1 id=le.0h4v.s9.977d2eade5ff from=translated src=- shape=853b9be0 vocab=38bcef74
+-/
 theorem relSpace_le_dualCoannihilator :
     relSpace K σ₂ σ₃ ≤ (LinearMap.range (orbFun K σ₂ σ₃)).dualCoannihilator := by
   intro m hm
@@ -182,6 +212,9 @@ def Connected (σ₂ σ₃ : Equiv.Perm X) (K : Type*) : Prop :=
   ∀ f : X → K, (∀ x, f (σ₂ x) = f x) → (∀ x, f (σ₃ x) = f x) → ∀ x y, f x = f y
 
 omit [CharZero K] in
+/--
+@isnad1 id=le.1h4v.s10.014e8da4fcc3 from=translated src=- shape=ef877981 vocab=8f46949f
+-/
 theorem ker_orbFun_le (hconn : Connected σ₂ σ₃ K) :
     LinearMap.ker (orbFun K σ₂ σ₃) ≤
       LinearMap.range (LinearMap.toSpanSingleton K _
@@ -218,6 +251,9 @@ theorem ker_orbFun_le (hconn : Connected σ₂ σ₃ K) :
     have hc : a (orbQ σ₂ x₀) = a (orbQ σ₂ x) := hconst x₀ x
     rw [hc]; linear_combination (-1 : K) * this
 
+/--
+@isnad1 id=le.3h4v.s9.4d8eb40da508 from=translated src=- shape=d1d2727e vocab=8c30f641
+-/
 theorem relSpace_rank_bound (h2 : σ₂ ^ 2 = 1) (h3 : σ₃ ^ 3 = 1) (hconn : Connected σ₂ σ₃ K) :
     6 * Module.finrank K (relSpace K σ₂ σ₃) + 3 * Nat.card {x // σ₂ x = x}
         + 4 * Nat.card {x // σ₃ x = x} ≤ 6 + Nat.card X := by
@@ -251,11 +287,17 @@ open Matrix Matrix.SpecialLinearGroup ModularGroup CongruenceSubgroup OnePoint
 open ModularCurve ModularCurve.Period
 open scoped MatrixGroups
 
+/--
+@isnad1 id=iff.0h1v.s9.fad887a13a81 from=translated src=- shape=293c59ed vocab=df08b8ec
+-/
 theorem smul_infty_eq_iff (γ : SL(2, ℤ)) :
     mapGL ℚ γ • (∞ : OnePoint ℚ) = ∞ ↔ γ 1 0 = 0 := by
   rw [OnePoint.smul_infty_eq_self_iff]
   simp
 
+/--
+@isnad1 id=eq.1h1v.s7.653d2259f6ca from=translated src=- shape=7853b900 vocab=5ddcb8c4
+-/
 theorem trace_sq_of_lower_left (γ : SL(2, ℤ)) (h : γ 1 0 = 0) :
     (γ : Matrix (Fin 2) (Fin 2) ℤ).trace ^ 2 = 4 := by
   have hdet := Matrix.det_fin_two (γ : Matrix (Fin 2) (Fin 2) ℤ)
@@ -264,30 +306,57 @@ theorem trace_sq_of_lower_left (γ : SL(2, ℤ)) (h : γ 1 0 = 0) :
   rcases Int.eq_one_or_neg_one_of_mul_eq_one' hdet.symm with ⟨h1, h2⟩ | ⟨h1, h2⟩ <;>
     rw [h1, h2] <;> norm_num
 
+/--
+@isnad1 id=eq.0h2v.s8.cf74d555a17f from=translated src=- shape=302a2d1d vocab=ff003392
+-/
 theorem trace_conj (σ δ : SL(2, ℤ)) :
     ((σ⁻¹ * δ * σ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).trace =
       (δ : Matrix (Fin 2) (Fin 2) ℤ).trace := by
   rw [coe_mul, coe_mul, Matrix.trace_mul_cycle, ← coe_mul, mul_inv_cancel,
     Matrix.SpecialLinearGroup.coe_one, one_mul]
 
+/--
+@isnad1 id=eq.0h0v.s7.99ae1f1a53f0 from=translated src=- shape=f5255fcb vocab=36f00b27
+-/
 theorem neg_one_lower : (-1 : SL(2, ℤ)) 1 0 = 0 := by simp
 
+/--
+@isnad1 id=eq.0h0v.s7.97e2d842587a from=translated src=- shape=5fe560b9 vocab=3f90bb67
+-/
 theorem T_inv_lower : (T⁻¹ : SL(2, ℤ)) 1 0 = 0 := by rw [coe_T_inv]; rfl
 
+/--
+@isnad1 id=eq.0h0v.s6.4ad26957fe5c from=translated src=- shape=669cc5ff vocab=3e6f04eb
+-/
 theorem T_lower : (T : SL(2, ℤ)) 1 0 = 0 := by rw [coe_T]; rfl
 
+/--
+@isnad1 id=eq.0h0v.s8.3085e60fa5e2 from=translated src=- shape=5caeb2af vocab=e8357168
+-/
 theorem S_inv_eq : (S : SL(2, ℤ))⁻¹ = S * (-1) :=
   inv_eq_of_mul_eq_one_right (by decide)
 
+/--
+@isnad1 id=eq.0h0v.s8.2345512d3c8a from=translated src=- shape=238a76cc vocab=1284dd92
+-/
 theorem ST_inv_mul_S : (S * T : SL(2, ℤ))⁻¹ * S = T⁻¹ := by group
 
+/--
+@isnad1 id=eq.0h0v.s9.5bd08a6a3fa8 from=translated src=- shape=d2d4033a vocab=61b891dc
+-/
 theorem ST_cube : (S * T : SL(2, ℤ)) * (S * T) * (S * T) = -1 := by decide
 
+/--
+@isnad1 id=eq.0h0v.s9.48ae03f1ebc8 from=translated src=- shape=628455ea vocab=5fb1867b
+-/
 theorem ST_inv_mul_ST_inv : (S * T : SL(2, ℤ))⁻¹ * (S * T)⁻¹ = S * T * (-1) := by
   calc ((S * T : SL(2, ℤ))⁻¹ * (S * T)⁻¹)
       = (S * T) * ((S * T) * (S * T) * (S * T))⁻¹ := by group
     _ = S * T * (-1) := by rw [ST_cube]; simp
 
+/--
+@isnad1 id=mem.0h1v.s8.dd309ee66a53 from=translated src=- shape=47a2a55e vocab=3a18f723
+-/
 theorem neg_one_mem_Gamma0 (N : ℕ) : (-1 : SL(2, ℤ)) ∈ Gamma0 N := by simp [Gamma0_mem]
 
 variable (Γ : Subgroup SL(2, ℤ)) {K : Type*} [Field K]
@@ -297,34 +366,55 @@ open Classical in
 noncomputable def Phi (φ : Additive Γ →+ K) (g : SL(2, ℤ)) : K :=
   if h : g ∈ Γ then φ (Additive.ofMul ⟨g, h⟩) else 0
 
+/--
+@isnad1 id=eq.1h4v.s12.f290561b726d from=translated src=- shape=03ea6da7 vocab=959bbf7d
+-/
 theorem Phi_of_mem (φ : Additive Γ →+ K) {g : SL(2, ℤ)} (h : g ∈ Γ) :
     Phi Γ φ g = φ (Additive.ofMul ⟨g, h⟩) := dite_eq_left h
 
+/--
+@isnad1 id=eq.2h5v.s10.9eb073222967 from=translated src=- shape=1f70924a vocab=e7cc1e42
+-/
 theorem Phi_mul (φ : Additive Γ →+ K) {g h : SL(2, ℤ)} (hg : g ∈ Γ) (hh : h ∈ Γ) :
     Phi Γ φ (g * h) = Phi Γ φ g + Phi Γ φ h := by
   rw [Phi_of_mem Γ φ (mul_mem hg hh), Phi_of_mem Γ φ hg, Phi_of_mem Γ φ hh, ← map_add]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.c96df779b2e1 from=translated src=- shape=8e5ef9a9 vocab=3f7c8779
+-/
 theorem Phi_one (φ : Additive Γ →+ K) : Phi Γ φ 1 = 0 := by
   rw [Phi_of_mem Γ φ (one_mem Γ)]
   exact map_zero φ
 
+/--
+@isnad1 id=eq.1h4v.s10.460961cc04c6 from=translated src=- shape=831e5c7f vocab=072d86ec
+-/
 theorem Phi_inv (φ : Additive Γ →+ K) {g : SL(2, ℤ)} (hg : g ∈ Γ) :
     Phi Γ φ g⁻¹ = -Phi Γ φ g := by
   have h := Phi_mul Γ φ (inv_mem hg) hg
   rw [inv_mul_cancel, Phi_one] at h
   linear_combination -h
 
+/--
+@isnad1 id=eq.0h5v.s13.821990a01779 from=translated src=- shape=8c60a56b vocab=669b9c7e
+-/
 theorem Phi_add (φ ψ : Additive Γ →+ K) (g : SL(2, ℤ)) :
     Phi Γ (φ + ψ) g = Phi Γ φ g + Phi Γ ψ g := by
   unfold Phi
   split_ifs <;> simp
 
+/--
+@isnad1 id=eq.0h5v.s13.9145d623c0ad from=translated src=- shape=d3b40665 vocab=06be8948
+-/
 theorem Phi_smul (c : K) (φ : Additive Γ →+ K) (g : SL(2, ℤ)) :
     Phi Γ (c • φ) g = c * Phi Γ φ g := by
   unfold Phi
   split_ifs <;> simp
 
+/--
+@isnad1 id=eq.3h4v.s10.04ff81a37a72 from=translated src=- shape=7e768edd vocab=573f4aac
+-/
 theorem Phi_parabolic {φ : Additive Γ →+ K} (hφ : IsParabolicHom Γ φ) {g : SL(2, ℤ)} (hg : g ∈ Γ)
     (htr : (g : Matrix (Fin 2) (Fin 2) ℤ).trace ^ 2 = 4) : Phi Γ φ g = 0 := by
   rw [Phi_of_mem Γ φ hg]
@@ -334,17 +424,29 @@ variable (N : ℕ)
 
 noncomputable def rep (C : CuspSpace N) : OnePoint ℚ := (CuspSpace.mk_surjective N C).choose
 
+/--
+@isnad1 id=eq.0h2v.s3.07e51ac5a245 from=translated src=- shape=6ddf6d3e vocab=30b1c8d1
+-/
 theorem mk_rep (C : CuspSpace N) : CuspSpace.mk N (rep N C) = C :=
   (CuspSpace.mk_surjective N C).choose_spec
 
+/--
+@isnad1 id=ex.0h2v.s9.6f08d498bfb8 from=translated src=- shape=4b58ada0 vocab=8b44f767
+-/
 theorem exists_gam (a : OnePoint ℚ) :
     ∃ γ ∈ Gamma0 N, mapGL ℚ γ • rep N (CuspSpace.mk N a) = a :=
   CuspSpace.mk_eq_mk_iff.mp (mk_rep N _).symm
 
 noncomputable def gam (a : OnePoint ℚ) : SL(2, ℤ) := (exists_gam N a).choose
 
+/--
+@isnad1 id=mem.0h2v.s7.c73727b65dad from=translated src=- shape=d448662b vocab=7e003163
+-/
 theorem gam_mem (a : OnePoint ℚ) : gam N a ∈ Gamma0 N := (exists_gam N a).choose_spec.1
 
+/--
+@isnad1 id=eq.0h2v.s9.1b0af71a9d4e from=translated src=- shape=5ed99e23 vocab=e9b0c77b
+-/
 theorem gam_smul (a : OnePoint ℚ) : mapGL ℚ (gam N a) • rep N (CuspSpace.mk N a) = a :=
   (exists_gam N a).choose_spec.2
 
@@ -353,6 +455,9 @@ noncomputable def Gpot (φ : Additive (Gamma0 N) →+ K) (c : CuspSpace N → K)
 
 variable {N}
 
+/--
+@isnad1 id=eq.3h5v.s11.7e39031f9693 from=translated src=- shape=bdc49ee2 vocab=33ec6dc3
+-/
 theorem Phi_eq_zero_of_fix {φ : Additive (Gamma0 N) →+ K} (hφ : IsParabolicHom (Gamma0 N) φ)
     {δ : SL(2, ℤ)} (hδ : δ ∈ Gamma0 N) {r : OnePoint ℚ} (hfix : mapGL ℚ δ • r = r) :
     Phi (Gamma0 N) φ δ = 0 := by
@@ -365,6 +470,9 @@ theorem Phi_eq_zero_of_fix {φ : Additive (Gamma0 N) →+ K} (hφ : IsParabolicH
   rw [trace_conj] at htr
   exact Phi_parabolic _ hφ hδ htr
 
+/--
+@isnad1 id=eq.2h6v.s11.be4b154365f5 from=translated src=- shape=cb5103e9 vocab=d524d5d5
+-/
 theorem Gpot_smul {φ : Additive (Gamma0 N) →+ K} (hφ : IsParabolicHom (Gamma0 N) φ)
     (c : CuspSpace N → K) {γ : SL(2, ℤ)} (hγ : γ ∈ Gamma0 N) (a : OnePoint ℚ) :
     Gpot N φ c (mapGL ℚ γ • a) = Phi (Gamma0 N) φ γ + Gpot N φ c a := by
@@ -391,12 +499,18 @@ noncomputable def Ppot (φ : Additive (Gamma0 N) →+ K) (c : CuspSpace N → K)
 
 variable {N}
 
+/--
+@isnad1 id=eq.2h6v.s10.8a6b964c2675 from=translated src=- shape=3e3c5c34 vocab=d4d273df
+-/
 theorem Ppot_mul_left {φ : Additive (Gamma0 N) →+ K} (hφ : IsParabolicHom (Gamma0 N) φ)
     (c : CuspSpace N → K) {γ : SL(2, ℤ)} (hγ : γ ∈ Gamma0 N) (g : SL(2, ℤ)) :
     Ppot N φ c (γ * g) = Phi (Gamma0 N) φ γ + Ppot N φ c g := by
   unfold Ppot
   rw [map_mul, mul_smul, Gpot_smul hφ c hγ]
 
+/--
+@isnad1 id=eq.1h6v.s10.7cd1492d3d02 from=translated src=- shape=ff6b0f5a vocab=16734d10
+-/
 theorem Ppot_mul_right (φ : Additive (Gamma0 N) →+ K) (c : CuspSpace N → K) (g : SL(2, ℤ))
     {k : SL(2, ℤ)} (hk : k 1 0 = 0) : Ppot N φ c (g * k) = Ppot N φ c g := by
   unfold Ppot
@@ -413,6 +527,9 @@ noncomputable def nX (φ : Additive (Gamma0 N) →+ K) (c : CuspSpace N → K)
 
 variable {N}
 
+/--
+@isnad1 id=eq.1h5v.s10.f114fcd1e267 from=translated src=- shape=8b667c47 vocab=da6b3714
+-/
 theorem nX_mk {φ : Additive (Gamma0 N) →+ K} (hφ : IsParabolicHom (Gamma0 N) φ)
     (c : CuspSpace N → K) (g : SL(2, ℤ)) :
     nX N φ c (g : SL(2, ℤ) ⧸ Gamma0 N) = nSL N φ c g := by
@@ -423,6 +540,9 @@ theorem nX_mk {φ : Additive (Gamma0 N) →+ K} (hφ : IsParabolicHom (Gamma0 N)
   rw [_root_.mul_inv_rev, mul_assoc, Ppot_mul_left hφ c (inv_mem γ.2), Ppot_mul_left hφ c (inv_mem γ.2)]
   ring
 
+/--
+@isnad1 id=eq.0h5v.s10.9b2808339d98 from=translated src=- shape=0ebb03d4 vocab=39eb28f4
+-/
 theorem nSL_two_term (φ : Additive (Gamma0 N) →+ K) (c : CuspSpace N → K) (g : SL(2, ℤ)) :
     nSL N φ c (S * g) + nSL N φ c g = 0 := by
   unfold nSL
@@ -430,6 +550,9 @@ theorem nSL_two_term (φ : Additive (Gamma0 N) →+ K) (c : CuspSpace N → K) (
     Ppot_mul_right φ c _ neg_one_lower]
   ring
 
+/--
+@isnad1 id=eq.0h5v.s11.8cac9216aa49 from=translated src=- shape=e6ff5837 vocab=df3f3ab0
+-/
 theorem nSL_three_term (φ : Additive (Gamma0 N) →+ K) (c : CuspSpace N → K) (g : SL(2, ℤ)) :
     nSL N φ c g + nSL N φ c (S * T * g) + nSL N φ c (S * T * (S * T * g)) = 0 := by
   unfold nSL
@@ -445,11 +568,17 @@ theorem nSL_three_term (φ : Additive (Gamma0 N) →+ K) (c : CuspSpace N → K)
   rw [e1, e2, hA, hB, hC]
   ring
 
+/--
+@isnad1 id=eq.0h7v.s13.86e10d2f39af from=translated src=- shape=f0abb4c4 vocab=14d89b17
+-/
 theorem nX_add (φ ψ : Additive (Gamma0 N) →+ K) (c d : CuspSpace N → K) (x : SL(2, ℤ) ⧸ Gamma0 N) :
     nX N (φ + ψ) (c + d) x = nX N φ c x + nX N ψ d x := by
   simp only [nX, nSL, Ppot, Gpot, Phi_add, Pi.add_apply]
   ring
 
+/--
+@isnad1 id=eq.0h6v.s13.1f0d97e878a4 from=translated src=- shape=be976647 vocab=fe4673a1
+-/
 theorem nX_smul (r : K) (φ : Additive (Gamma0 N) →+ K) (c : CuspSpace N → K)
     (x : SL(2, ℤ) ⧸ Gamma0 N) :
     nX N (r • φ) (r • c) x = r * nX N φ c x := by
@@ -464,16 +593,28 @@ noncomputable def sig2 : Equiv.Perm (X N) := MulAction.toPerm (S : SL(2, ℤ))
 
 noncomputable def sig3 : Equiv.Perm (X N) := MulAction.toPerm (S * T : SL(2, ℤ))
 
+/--
+@isnad1 id=eq.0h2v.s8.6fc3cb7c7172 from=translated src=- shape=0505a220 vocab=82dd7b8a
+-/
 theorem sig2_apply (x : X N) : sig2 N x = (S : SL(2, ℤ)) • x := rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.c03396c596ad from=translated src=- shape=c496295e vocab=f7e0e0dd
+-/
 theorem sig3_apply (x : X N) : sig3 N x = (S * T : SL(2, ℤ)) • x := rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.d737d73c6ab6 from=translated src=- shape=78a49373 vocab=cf6fc8d5
+-/
 theorem mk_neg_one_mul (g : SL(2, ℤ)) : ((-1 * g : SL(2, ℤ)) : X N) = (g : X N) := by
   rw [neg_one_mul, ← mul_neg_one]
   symm
   rw [QuotientGroup.eq, inv_mul_cancel_left]
   exact neg_one_mem_Gamma0 N
 
+/--
+@isnad1 id=eq.0h1v.s5.0c5e0ef6a154 from=translated src=- shape=794702db vocab=eadaeefc
+-/
 theorem sig2_sq : sig2 N ^ 2 = 1 := by
   ext x
   induction x using QuotientGroup.induction_on with
@@ -482,6 +623,9 @@ theorem sig2_sq : sig2 N ^ 2 = 1 := by
       MulAction.Quotient.smul_mk, Equiv.Perm.one_apply, smul_eq_mul, smul_eq_mul, ← mul_assoc,
       show (S : SL(2, ℤ)) * S = -1 by decide, mk_neg_one_mul]
 
+/--
+@isnad1 id=eq.0h1v.s5.28aec03083bd from=translated src=- shape=794702db vocab=aadaa5ba
+-/
 theorem sig3_cube : sig3 N ^ 3 = 1 := by
   ext x
   induction x using QuotientGroup.induction_on with
@@ -493,6 +637,9 @@ theorem sig3_cube : sig3 N ^ 3 = 1 := by
 
 omit [Field K] in
 
+/--
+@isnad1 id=connecte.0h2v.s3.217465ee0842 from=translated src=- shape=6486a3eb vocab=2a8680b0
+-/
 theorem connected : Connected (sig2 N) (sig3 N) K := by
   intro f h2 h3 x y
   have hS : ∀ x : X N, f ((S : SL(2, ℤ)) • x) = f x := h2
@@ -541,9 +688,15 @@ noncomputable def theta : W K N →ₗ[K] (X N → K) where
     simp only [Prod.smul_fst, Prod.smul_snd, Submodule.coe_smul, Pi.smul_apply, smul_eq_mul,
       RingHom.id_apply, nX_smul]
 
+/--
+@isnad1 id=eq.0h4v.s17.1107fcdca3fd from=translated src=- shape=25494b93 vocab=dda7c1ab
+-/
 theorem theta_apply (w : W K N) (x : X N) :
     theta K N w x = nX N (w.1 : Additive (Gamma0 N) →+ K) w.2 x := rfl
 
+/--
+@isnad1 id=mem.0h3v.s16.f6e722034b4a from=translated src=- shape=dc0a549d vocab=651f636b
+-/
 theorem theta_mem (w : W K N) : theta K N w ∈ relSpace K (sig2 N) (sig3 N) := by
   have hφ : IsParabolicHom (Gamma0 N) (w.1 : Additive (Gamma0 N) →+ K) := w.1.2
   rw [mem_relSpace]
@@ -566,6 +719,9 @@ noncomputable def thetaPlus : W K N →ₗ[K] ↥(relSpace K (sig2 N) (sig3 N)) 
   (LinearMap.codRestrict _ (theta K N) (theta_mem K N)).prod
     ((LinearMap.proj (CuspSpace.mk N ∞)).comp (LinearMap.snd K _ _))
 
+/--
+@isnad1 id=injectiv.0h2v.s16.cecd7803695a from=translated src=- shape=f6e86d4a vocab=90449255
+-/
 theorem thetaPlus_injective : Function.Injective (thetaPlus K N) := by
   classical
   rw [injective_iff_map_eq_zero]
@@ -630,6 +786,9 @@ scoped instance : Module.Finite K (W K N) :=
 scoped instance : Module.Finite K ↥(parabolicHoms K (Gamma0 N) K) :=
   Module.Finite.of_injective (LinearMap.inl K _ (CuspSpace N → K)) LinearMap.inl_injective
 
+/--
+@isnad1 id=le.0h2v.s14.74002b734893 from=translated src=- shape=849735fd vocab=ed7d826d
+-/
 theorem finrank_W_le :
     Module.finrank K ↥(parabolicHoms K (Gamma0 N) K) + Nat.card (CuspSpace N) ≤
       Module.finrank K ↥(relSpace K (sig2 N) (sig3 N)) + 1 := by
@@ -640,6 +799,9 @@ theorem finrank_W_le :
     Module.finrank_fintype_fun_eq_card, ← Nat.card_eq_fintype_card] at h
   exact h
 
+/--
+@isnad1 id=le.0h2v.s14.872e71657d2c from=translated src=- shape=334a1966 vocab=436f5de7
+-/
 theorem engine (N : ℕ) [NeZero N] (K : Type*) [Field K] [CharZero K] :
     6 * Module.finrank K (ModularCurve.Period.parabolicHoms K (CongruenceSubgroup.Gamma0 N) K)
         + 6 * Nat.card (ModularCurve.CuspSpace N)
@@ -667,6 +829,9 @@ end W7S
 open scoped _root_.P2MW.S_ModularCurve_Period_six_mul_finrank_parabolicHoms_add_le_index.W7S
 
 open scoped MatrixGroups in
+/--
+@isnad1 id=le.0h2v.s14.872e71657d2c from=translated src=- shape=334a1966 vocab=436f5de7
+-/
 theorem solution (N : ℕ) [NeZero N]
     (K : Type*) [Field K] [CharZero K] :
     6 * Module.finrank K (ModularCurve.Period.parabolicHoms K (CongruenceSubgroup.Gamma0 N) K)

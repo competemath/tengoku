@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_iteratedFDerivWithin_comp_equivPerm_of_con
 namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.4h8v.s9.57693dd35aaf from=translated src=- shape=1190ee80 vocab=c0e8aacc
+-/
 theorem _root_.Tengoku.FltAnthropic.iteratedFDerivWithin_comp_equivPerm_of_contDiffOn_of_convex
     {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {F : Type} [NormedAddCommGroup F] [NormedSpace ℝ F]

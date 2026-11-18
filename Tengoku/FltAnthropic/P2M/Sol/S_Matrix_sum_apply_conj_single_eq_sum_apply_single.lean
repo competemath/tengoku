@@ -13,6 +13,9 @@ variable {K : Type} [Field K]
 
 abbrev s (i j : Fin 3) : Matrix (Fin 3) (Fin 3) K := Matrix.single i j (1 : K)
 
+/--
+@isnad1 id=eq.0h4v.s8.8fadbde9b4ca from=translated src=- shape=74ccc2f2 vocab=9bcef270
+-/
 theorem single_mul_eq (D : Matrix (Fin 3) (Fin 3) K) (i j : Fin 3) :
     s i j * D = ∑ b : Fin 3, D j b • (s i b : Matrix (Fin 3) (Fin 3) K) := by
   ext x y
@@ -26,6 +29,9 @@ theorem single_mul_eq (D : Matrix (Fin 3) (Fin 3) K) (i j : Fin 3) :
       ite_eq_left ⟨rfl, rfl⟩]
   · rw [Finset.sum_eq_zero (fun n _ => ite_eq_right (fun h => hx h.1)), Finset.sum_eq_zero (fun b _ => ite_eq_right (fun h => hx h.1))]
 
+/--
+@isnad1 id=eq.0h4v.s8.991f67752f6f from=translated src=- shape=b465c965 vocab=9bcef270
+-/
 theorem mul_single_eq (C : Matrix (Fin 3) (Fin 3) K) (j k : Fin 3) :
     C * s j k = ∑ c : Fin 3, C c j • (s c k : Matrix (Fin 3) (Fin 3) K) := by
   ext x y
@@ -39,6 +45,9 @@ theorem mul_single_eq (C : Matrix (Fin 3) (Fin 3) K) (j k : Fin 3) :
       ite_eq_left ⟨rfl, rfl⟩]
   · rw [Finset.sum_eq_zero (fun n _ => ite_eq_right (fun h => hy h.2)), Finset.sum_eq_zero (fun c _ => ite_eq_right (fun h => hy h.2))]
 
+/--
+@isnad1 id=eq.1h4v.s7.6a9639e59fed from=translated src=- shape=4fd0f50e vocab=b1bdebca
+-/
 theorem contractCD (C : Matrix (Fin 3) (Fin 3) K) (hC : C.det ≠ 0) (c b : Fin 3) :
     (∑ j : Fin 3, C c j * C⁻¹ j b) = if c = b then 1 else 0 := by
   have h : C * C⁻¹ = 1 := Matrix.mul_nonsing_inv C (isUnit_iff_ne_zero.2 hC)
@@ -48,6 +57,9 @@ theorem contractCD (C : Matrix (Fin 3) (Fin 3) K) (hC : C.det ≠ 0) (c b : Fin 
 
 variable {W : Type} [AddCommGroup W] [Module K W]
 
+/--
+@isnad1 id=eq.1h8v.s11.d56c0348663b from=translated src=- shape=413ba824 vocab=ff874f83
+-/
 theorem stageA (C : Matrix (Fin 3) (Fin 3) K) (hC : C.det ≠ 0) (γ : Matrix (Fin 3) (Fin 3) K →ₗ[K] Matrix (Fin 3) (Fin 3) K →ₗ[K] W)
     (X Y : Matrix (Fin 3) (Fin 3) K) (i k : Fin 3) :
     (∑ j : Fin 3, γ (X * s i j * C⁻¹) (C * s j k * Y)) = ∑ b : Fin 3, γ (X * s i b) (s b k * Y) := by
@@ -68,6 +80,9 @@ theorem stageA (C : Matrix (Fin 3) (Fin 3) K) (hC : C.det ≠ 0) (γ : Matrix (F
     Finset.sum_congr rfl fun y _ => by rw [← Finset.sum_smul, contractCD C hC b y]]
   simp only [ite_smul, one_smul, zero_smul, Finset.sum_ite_eq, Finset.mem_univ, ite_true]
 
+/--
+@isnad1 id=eq.1h6v.s11.40a67525b077 from=translated src=- shape=eda1d573 vocab=ff874f83
+-/
 theorem stageB (C : Matrix (Fin 3) (Fin 3) K) (hC : C.det ≠ 0) (γ : Matrix (Fin 3) (Fin 3) K →ₗ[K] Matrix (Fin 3) (Fin 3) K →ₗ[K] W)
     (b c : Fin 3) :
     (∑ i : Fin 3, γ (C * s i b) (s c i * C⁻¹)) = ∑ a : Fin 3, γ (s a b) (s c a) := by
@@ -87,6 +102,9 @@ theorem stageB (C : Matrix (Fin 3) (Fin 3) K) (hC : C.det ≠ 0) (γ : Matrix (F
 end AdInvAsm
 
 open AdInvAsm in
+/--
+@isnad1 id=and.1h5v.s14.a3d3be0e0b4a from=translated src=- shape=3a08fccd vocab=c85a624b
+-/
 theorem solution
     {K : Type} [Field K] {V : Type} [AddCommGroup V] [Module K V]
     (C : Matrix (Fin 3) (Fin 3) K) (hC : C.det ≠ 0)

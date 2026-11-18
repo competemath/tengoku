@@ -8,6 +8,9 @@ namespace P2MW.S_ModPForms_thetaPS_not_mem_of_sub_smul_mem
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=not.4h5v.s10.f2c2bb3fa986 from=translated src=- shape=ce06f8a8 vocab=843fed21
+-/
 theorem solution (p : ℕ) (F : Type) [Field F] [CharP F p]
     (M : ℤ → Submodule F (PowerSeries F)) (k : ℤ) (hpk : ¬ (p : ℤ) ∣ k) (φ : PowerSeries F)
     (hserre : (12 : F) • ModPForms.thetaPS φ - (k : F) • (SwdAlgebra.qP F * φ) ∈ M (k + 2))

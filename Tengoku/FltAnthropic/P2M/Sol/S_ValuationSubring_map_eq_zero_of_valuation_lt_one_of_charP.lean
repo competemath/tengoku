@@ -13,6 +13,9 @@ open Polynomial
 
 namespace S12R4
 
+/--
+@isnad1 id=ne.1h2v.s6.defe99461bdf from=translated src=- shape=5fdec799 vocab=106bc949
+-/
 theorem map_ne_zero_of_isPrimitive {Q : ℤ[X]} (hQ : Q.IsPrimitive) (ℓ : ℕ) [hℓ : Fact ℓ.Prime] :
     Q.map (Int.castRingHom (ZMod ℓ)) ≠ 0 := by
   intro h
@@ -27,6 +30,9 @@ theorem map_ne_zero_of_isPrimitive {Q : ℤ[X]} (hQ : Q.IsPrimitive) (ℓ : ℕ)
   rw [Int.isUnit_iff_natAbs_eq, Int.natAbs_natCast] at hunit
   exact hℓ.out.one_lt.ne' hunit
 
+/--
+@isnad1 id=ex.0h2v.s9.74b1d63ed6f8 from=translated src=- shape=bc02e38b vocab=2ad02d16
+-/
 theorem exists_isPrimitive_aeval_eq_zero (A : ValuationSubring (AlgebraicClosure ℚ)) (a : A) :
     ∃ Q : ℤ[X], Q.IsPrimitive ∧ aeval a Q = 0 := by
   have halg : IsAlgebraic ℤ (a : AlgebraicClosure ℚ) :=
@@ -49,6 +55,9 @@ theorem exists_isPrimitive_aeval_eq_zero (A : ValuationSubring (AlgebraicClosure
 
 end S12R4
 
+/--
+@isnad1 id=eq.2h5v.s9.ea5fa0fa1ce0 from=translated src=- shape=06c74468 vocab=6b9f2380
+-/
 theorem solution
     (A : ValuationSubring (AlgebraicClosure ℚ)) (ℓ : ℕ) [Fact ℓ.Prime] (hA : A.LiesOverPrime ℓ)
     {k : Type*} [Field k] [CharP k ℓ] (red : ↥A →+* k)

@@ -26,6 +26,9 @@ def dLk (s ρ : ℝ) : ℝ := 2 * ρ / (s ^ 2 + ρ ^ 2)
 
 def dθk (s ρ : ℝ) : ℝ := s / (s ^ 2 + ρ ^ 2)
 
+/--
+@isnad1 id=le.0h2v.s3.d7ce4a01bead from=translated src=- shape=93377384 vocab=0cf85325
+-/
 theorem abs_θk_le (s ρ : ℝ) : |θk s ρ| ≤ π := by
   unfold θk
   split_ifs with h h'
@@ -35,6 +38,9 @@ theorem abs_θk_le (s ρ : ℝ) : |θk s ρ| ≤ π := by
   · rw [abs_of_nonneg Real.pi_pos.le]
   · simp [Real.pi_pos.le]
 
+/--
+@isnad1 id=le.2h3v.s7.0737e1a1e0e1 from=translated src=- shape=7ea4417a vocab=a71d86b6
+-/
 theorem abs_Lk_le {s ρ M : ℝ} (hs : s ≠ 0) (hρ : |ρ| ≤ M) :
     |Lk s ρ| ≤ |Real.log (s ^ 2)| + Real.log (1 + s ^ 2) + Real.log (1 + M ^ 2) := by
   have hs2 : 0 < s ^ 2 := by positivity
@@ -59,6 +65,9 @@ theorem abs_Lk_le {s ρ M : ℝ} (hs : s ≠ 0) (hρ : |ρ| ≤ M) :
       _ = Real.log (1 + s ^ 2) + Real.log (1 + M ^ 2) := Real.log_mul (by positivity) (by positivity)
       _ ≤ _ := by linarith [abs_nonneg (Real.log (s ^ 2))]
 
+/--
+@isnad1 id=integrab.0h2v.s7.0d77f1fff931 from=translated src=- shape=e651fa5e vocab=56cebd3b
+-/
 theorem integrableOn_logBound (R M : ℝ) :
     IntegrableOn (fun s : ℝ => |Real.log (s ^ 2)| + Real.log (1 + s ^ 2) + Real.log (1 + M ^ 2)) (Set.Icc (-R) R) := by
   have h1 : IntervalIntegrable (fun s : ℝ => |Real.log (s ^ 2)|) volume (-R) R := by
@@ -87,6 +96,9 @@ variable {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E]
   {V : Type} [NormedAddCommGroup V] [NormedSpace ℝ V] [CompleteSpace V]
 
 omit [CompleteSpace V] in
+/--
+@isnad1 id=ex.2h3v.s7.3ab48d74b9f5 from=translated src=- shape=ae85455f vocab=8d8ad59b
+-/
 theorem exists_bounds (k : E × ℝ → V) (hk : Continuous k) (hkc : HasCompactSupport k) :
     ∃ R C : ℝ, 0 ≤ C ∧ (∀ (e : E) (s : ℝ), R < |s| → k (e, s) = 0) ∧ ∀ p, ‖k p‖ ≤ C := by
   obtain ⟨C, hC⟩ := hk.bounded_above_of_compact_support hkc
@@ -97,21 +109,36 @@ theorem exists_bounds (k : E × ℝ → V) (hk : Continuous k) (hkc : HasCompact
   rw [Metric.mem_closedBall, dist_zero_right, Real.norm_eq_abs] at this
   linarith
 
+/--
+@isnad1 id=measurab.0h1v.s3.2829cec2c248 from=translated src=- shape=b33faf8c vocab=c051d86a
+-/
 theorem measurable_Lk (ρ : ℝ) : Measurable fun s : ℝ => Lk s ρ :=
   Real.measurable_log.comp (by fun_prop)
 
+/--
+@isnad1 id=continuo.1h1v.s4.ab9bb3efaee5 from=translated src=- shape=15ab19bd vocab=502fc4a4
+-/
 theorem continuous_Lk_left {s : ℝ} (hs : s ≠ 0) : Continuous fun ρ : ℝ => Lk s ρ := by
   refine continuous_iff_continuousAt.mpr fun ρ => ?_
   exact (Real.continuousAt_log (by positivity)).comp
     (by fun_prop : Continuous fun ρ : ℝ => s ^ 2 + ρ ^ 2).continuousAt
 
+/--
+@isnad1 id=continuo.1h1v.s4.96c2d36de25a from=translated src=- shape=f3df82ed vocab=502fc4a4
+-/
 theorem continuous_Lk_right {ρ : ℝ} (hρ : ρ ≠ 0) : Continuous fun s : ℝ => Lk s ρ := by
   refine continuous_iff_continuousAt.mpr fun s => ?_
   exact (Real.continuousAt_log (by positivity)).comp
     (by fun_prop : Continuous fun s : ℝ => s ^ 2 + ρ ^ 2).continuousAt
 
+/--
+@isnad1 id=eq.1h2v.s5.4c198fec6105 from=translated src=- shape=476a4d3f vocab=52c96ecb
+-/
 theorem θk_of_pos {ρ : ℝ} (hρ : 0 < ρ) (s : ℝ) : θk s ρ = π / 2 - Real.arctan (s / ρ) := ite_eq_left hρ
 
+/--
+@isnad1 id=measurab.0h1v.s3.e15c94c32c76 from=translated src=- shape=b33faf8c vocab=b48902d3
+-/
 theorem measurable_θk (ρ : ℝ) : Measurable fun s : ℝ => θk s ρ := by
   by_cases h : 0 < ρ
   · simp only [θk_of_pos h]
@@ -121,10 +148,16 @@ theorem measurable_θk (ρ : ℝ) : Measurable fun s : ℝ => θk s ρ := by
     rw [this]
     exact Measurable.ite measurableSet_Iio measurable_const measurable_const
 
+/--
+@isnad1 id=continuo.1h1v.s4.9e7f43225cde from=translated src=- shape=02df4fc5 vocab=75f4e7c5
+-/
 theorem continuous_θk_right {ρ : ℝ} (hρ : 0 < ρ) : Continuous fun s : ℝ => θk s ρ := by
   simp only [θk_of_pos hρ]
   exact continuous_const.sub (Real.continuous_arctan.comp (continuous_id.div_const ρ))
 
+/--
+@isnad1 id=continuo.2h2v.s5.3d5c05f8d2de from=translated src=- shape=7cb2f822 vocab=8a5f6121
+-/
 theorem continuousWithinAt_θk {s : ℝ} (hs : s ≠ 0) {ρ₀ : ℝ} (hρ₀ : 0 ≤ ρ₀) :
     ContinuousWithinAt (fun ρ : ℝ => θk s ρ) (Set.Ici 0) ρ₀ := by
   have hform : ∀ ρ : ℝ, 0 < ρ → θk s ρ = π / 2 - Real.arctan (s * ρ⁻¹) := fun ρ hρ => by
@@ -169,17 +202,26 @@ namespace LogPot
 variable {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E]
   {V : Type} [NormedAddCommGroup V] [NormedSpace ℝ V] [CompleteSpace V]
 
+/--
+@isnad1 id=eventual.0h0v.s4.b6de8fea69e3 from=translated src=- shape=adeb6d0b vocab=7312dbb8
+-/
 theorem ae_ne_zero : ∀ᵐ a : ℝ, a ≠ 0 := by
   rw [ae_iff]
   have : {a : ℝ | ¬a ≠ 0} = {0} := by ext a; simp
   rw [this, measure_singleton]
 
+/--
+@isnad1 id=lt.1h2v.s4.744ad95ac8f4 from=translated src=- shape=e3a6d85f vocab=3aa78d74
+-/
 theorem lt_abs_of_not_mem_Icc {R a : ℝ} (h : a ∉ Set.Icc (-R) R) : R < |a| := by
   simp only [Set.mem_Icc, not_and_or, not_le] at h
   rcases h with h | h
   · exact lt_of_lt_of_le (by linarith) (neg_le_abs a)
   · exact h.trans_le (le_abs_self a)
 
+/--
+@isnad1 id=eventual.4h7v.s8.13038c30d2f5 from=translated src=- shape=1177643a vocab=372b568e
+-/
 theorem log_dom {k : E × ℝ → V} {R C : ℝ} (hC : 0 ≤ C) (hR : ∀ (e : E) (s : ℝ), R < |s| → k (e, s) = 0)
     (hCk : ∀ p, ‖k p‖ ≤ C) {M : ℝ} (x : E × ℝ) (hx : |x.2| ≤ M) :
     ∀ᵐ a : ℝ, ‖(Lk a x.2) • k (x.1, a)‖ ≤
@@ -190,6 +232,9 @@ theorem log_dom {k : E × ℝ → V} {R C : ℝ} (hC : 0 ≤ C) (hR : ∀ (e : E
     exact mul_le_mul (hCk _) (abs_Lk_le ha hx) (abs_nonneg _) hC
   · rw [Set.indicator_of_notMem hmem, hR _ _ (lt_abs_of_not_mem_Icc hmem), smul_zero, norm_zero]
 
+/--
+@isnad1 id=le.3h7v.s7.67804c31eec3 from=translated src=- shape=c437947d vocab=a595d753
+-/
 theorem theta_dom {k : E × ℝ → V} {R C : ℝ} (hC : 0 ≤ C) (hR : ∀ (e : E) (s : ℝ), R < |s| → k (e, s) = 0)
     (hCk : ∀ p, ‖k p‖ ≤ C) (x : E × ℝ) :
     ∀ a : ℝ, ‖(θk a x.2) • k (x.1, a)‖ ≤ (Set.Icc (-R) R).indicator (fun _ => π * C) a := by
@@ -200,17 +245,26 @@ theorem theta_dom {k : E × ℝ → V} {R C : ℝ} (hC : 0 ≤ C) (hR : ∀ (e :
   · rw [Set.indicator_of_notMem hmem, hR _ _ (lt_abs_of_not_mem_Icc hmem), smul_zero, norm_zero]
 
 omit [CompleteSpace V] in
+/--
+@isnad1 id=aestrong.1h4v.s7.8370272580f4 from=translated src=- shape=df8da6b0 vocab=f329de83
+-/
 theorem aesm_Lk (k : E × ℝ → V) (hk : Continuous k) (x : E × ℝ) :
     AEStronglyMeasurable (fun a : ℝ => (Lk a x.2) • k (x.1, a)) volume :=
   (measurable_Lk x.2).aestronglyMeasurable.smul
     (hk.comp (continuous_const.prodMk continuous_id)).aestronglyMeasurable
 
 omit [CompleteSpace V] in
+/--
+@isnad1 id=aestrong.1h4v.s7.73a26fb92762 from=translated src=- shape=df8da6b0 vocab=444882b5
+-/
 theorem aesm_θk (k : E × ℝ → V) (hk : Continuous k) (x : E × ℝ) :
     AEStronglyMeasurable (fun a : ℝ => (θk a x.2) • k (x.1, a)) volume :=
   (measurable_θk x.2).aestronglyMeasurable.smul
     (hk.comp (continuous_const.prodMk continuous_id)).aestronglyMeasurable
 
+/--
+@isnad1 id=integrab.0h3v.s7.60319f10f72a from=translated src=- shape=b935c9c0 vocab=25e5d6e1
+-/
 theorem integrable_logBound (R M C : ℝ) :
     Integrable ((Set.Icc (-R) R).indicator
       (fun a : ℝ => C * (|Real.log (a ^ 2)| + Real.log (1 + a ^ 2) + Real.log (1 + M ^ 2)))) volume := by
@@ -218,11 +272,17 @@ theorem integrable_logBound (R M C : ℝ) :
       (Set.Icc (-R) R) := (integrableOn_logBound R M).const_mul C
   exact h.integrable_indicator measurableSet_Icc
 
+/--
+@isnad1 id=integrab.2h4v.s7.a0891da22995 from=translated src=- shape=d86ce197 vocab=3ce73879
+-/
 theorem integrable_Lk_smul (k : E × ℝ → V) (hk : Continuous k) (hkc : HasCompactSupport k) (x : E × ℝ) :
     Integrable (fun a : ℝ => (Lk a x.2) • k (x.1, a)) volume := by
   obtain ⟨R, C, hC, hR, hCk⟩ := exists_bounds k hk hkc
   exact (integrable_logBound R |x.2| C).mono' (aesm_Lk k hk x) (log_dom hC hR hCk x le_rfl)
 
+/--
+@isnad1 id=integrab.2h4v.s7.b0693c470c8d from=translated src=- shape=d86ce197 vocab=5a2946d5
+-/
 theorem integrable_θk_smul (k : E × ℝ → V) (hk : Continuous k) (hkc : HasCompactSupport k) (x : E × ℝ) :
     Integrable (fun a : ℝ => (θk a x.2) • k (x.1, a)) volume := by
   obtain ⟨R, C, hC, hR, hCk⟩ := exists_bounds k hk hkc
@@ -230,6 +290,9 @@ theorem integrable_θk_smul (k : E × ℝ → V) (hk : Continuous k) (hkc : HasC
     (Filter.Eventually.of_forall (theta_dom hC hR hCk x))
   exact (integrableOn_const (by simp)).integrable_indicator measurableSet_Icc
 
+/--
+@isnad1 id=continuo.2h4v.s7.17cc240a112f from=translated src=- shape=81a647f3 vocab=697f9f00
+-/
 theorem continuousAt_FL (k : E × ℝ → V) (hk : Continuous k) (hkc : HasCompactSupport k) (p₀ : E × ℝ) :
     ContinuousAt (fun p : E × ℝ => ∫ s, (Lk s p.2) • k (p.1, s)) p₀ := by
   obtain ⟨R, C, hC, hR, hCk⟩ := exists_bounds k hk hkc
@@ -244,6 +307,9 @@ theorem continuousAt_FL (k : E × ℝ → V) (hk : Continuous k) (hkc : HasCompa
   exact (((continuous_Lk_left ha).comp continuous_snd).smul
     (hk.comp (continuous_fst.prodMk continuous_const))).continuousAt
 
+/--
+@isnad1 id=continuo.3h4v.s8.2c6a42dc009f from=translated src=- shape=fb11ecee vocab=859c88d8
+-/
 theorem continuousWithinAt_FT (k : E × ℝ → V) (hk : Continuous k) (hkc : HasCompactSupport k) (p₀ : E × ℝ)
     (hp₀ : 0 ≤ p₀.2) :
     ContinuousWithinAt (fun p : E × ℝ => ∫ s, (θk s p.2) • k (p.1, s)) {p : E × ℝ | 0 ≤ p.2} p₀ := by
@@ -265,27 +331,48 @@ def dsh (h : E × ℝ → ℂ) : E × ℝ → ℂ := fun q => fderiv ℝ h q ((0
 
 def Deh (h : E × ℝ → ℂ) : E × ℝ → (E →L[ℝ] ℂ) := fun q => (fderiv ℝ h q).comp (ContinuousLinearMap.inl ℝ E ℝ)
 
+/--
+@isnad1 id=contdiff.1h2v.s7.98e54a3ae106 from=translated src=- shape=e47d9bf9 vocab=8777883c
+-/
 theorem contDiff_dsh {h : E × ℝ → ℂ} (hh : ContDiff ℝ (⊤ : ℕ∞) h) : ContDiff ℝ (⊤ : ℕ∞) (dsh h) :=
   (hh.fderiv_right (by exact_mod_cast le_top)).clm_apply contDiff_const
 
+/--
+@isnad1 id=hascompa.1h2v.s6.2d76a7079434 from=translated src=- shape=b878069a vocab=4b5b58ff
+-/
 theorem hasCompactSupport_dsh {h : E × ℝ → ℂ} (hhc : HasCompactSupport h) : HasCompactSupport (dsh h) :=
   (hhc.fderiv (𝕜 := ℝ)).comp_left (g := fun L : E × ℝ →L[ℝ] ℂ => L ((0 : E), (1 : ℝ))) rfl
 
+/--
+@isnad1 id=continuo.1h2v.s8.c44b4afa5b37 from=translated src=- shape=708db389 vocab=5a3b43ee
+-/
 theorem continuous_Deh {h : E × ℝ → ℂ} (hh : ContDiff ℝ (⊤ : ℕ∞) h) : Continuous (Deh h) :=
   (hh.continuous_fderiv (by simp)).clm_comp continuous_const
 
+/--
+@isnad1 id=hascompa.1h2v.s7.b86ddddddcda from=translated src=- shape=19e9530f vocab=eefbe36f
+-/
 theorem hasCompactSupport_Deh {h : E × ℝ → ℂ} (hhc : HasCompactSupport h) : HasCompactSupport (Deh h) :=
   (hhc.fderiv (𝕜 := ℝ)).comp_left (g := fun L : E × ℝ →L[ℝ] ℂ => L.comp (ContinuousLinearMap.inl ℝ E ℝ))
     (ContinuousLinearMap.zero_comp _)
 
 def deh (h : E × ℝ → ℂ) (u : E) : E × ℝ → ℂ := fun q => fderiv ℝ h q ((u, 0) : E × ℝ)
 
+/--
+@isnad1 id=contdiff.1h3v.s7.da68172c226d from=translated src=- shape=ec6f4790 vocab=21d055e8
+-/
 theorem contDiff_deh {h : E × ℝ → ℂ} (hh : ContDiff ℝ (⊤ : ℕ∞) h) (u : E) : ContDiff ℝ (⊤ : ℕ∞) (deh h u) :=
   (hh.fderiv_right (by exact_mod_cast le_top)).clm_apply contDiff_const
 
+/--
+@isnad1 id=hascompa.1h3v.s6.eef44f243440 from=translated src=- shape=be81a9dc vocab=de3e871b
+-/
 theorem hasCompactSupport_deh {h : E × ℝ → ℂ} (hhc : HasCompactSupport h) (u : E) : HasCompactSupport (deh h u) :=
   (hhc.fderiv (𝕜 := ℝ)).comp_left (g := fun L : E × ℝ →L[ℝ] ℂ => L ((u, 0) : E × ℝ)) rfl
 
+/--
+@isnad1 id=hasderiv.1h2v.s6.cff3b838931f from=translated src=- shape=aac1c209 vocab=a8a61fb6
+-/
 theorem hasDerivAt_Lk_right {a ρ : ℝ} (h : a ^ 2 + ρ ^ 2 ≠ 0) :
     HasDerivAt (fun ρ : ℝ => Lk a ρ) (dLk a ρ) ρ := by
   have h1 : HasDerivAt (fun ρ : ℝ => a ^ 2 + ρ ^ 2) (2 * ρ) ρ := by
@@ -294,6 +381,9 @@ theorem hasDerivAt_Lk_right {a ρ : ℝ} (h : a ^ 2 + ρ ^ 2 ≠ 0) :
   unfold Lk dLk
   convert this using 1 <;> try rfl
 
+/--
+@isnad1 id=hasderiv.1h2v.s7.4aca6dd6898f from=translated src=- shape=c73b5378 vocab=cd86c21f
+-/
 theorem hasDerivAt_Lk_left {a ρ : ℝ} (h : a ^ 2 + ρ ^ 2 ≠ 0) :
     HasDerivAt (fun a : ℝ => Lk a ρ) (2 * a / (a ^ 2 + ρ ^ 2)) a := by
   have h1 : HasDerivAt (fun a : ℝ => a ^ 2 + ρ ^ 2) (2 * a) a := by
@@ -302,6 +392,9 @@ theorem hasDerivAt_Lk_left {a ρ : ℝ} (h : a ^ 2 + ρ ^ 2 ≠ 0) :
   unfold Lk
   convert this using 1 <;> try rfl
 
+/--
+@isnad1 id=hasderiv.1h2v.s6.1cc02d9477c6 from=translated src=- shape=811394d8 vocab=879702e0
+-/
 theorem hasDerivAt_θk_left {ρ : ℝ} (hρ : 0 < ρ) (a : ℝ) :
     HasDerivAt (fun a : ℝ => θk a ρ) (-(ρ / (a ^ 2 + ρ ^ 2))) a := by
   simp only [θk_of_pos hρ]
@@ -310,6 +403,9 @@ theorem hasDerivAt_θk_left {ρ : ℝ} (hρ : 0 < ρ) (a : ℝ) :
   have h2 := h1.const_sub (π / 2)
   convert h2 using 1 <;> first | rfl | ring1 | (field_simp; ring1)
 
+/--
+@isnad1 id=hasderiv.1h2v.s5.18391e11e1a0 from=translated src=- shape=26887a96 vocab=1039108f
+-/
 theorem hasDerivAt_θk_right {ρ : ℝ} (hρ : 0 < ρ) (a : ℝ) :
     HasDerivAt (fun ρ : ℝ => θk a ρ) (dθk a ρ) ρ := by
   have hev : (fun ρ : ℝ => π / 2 - Real.arctan (a * ρ⁻¹)) =ᶠ[𝓝 ρ] fun ρ => θk a ρ :=
@@ -330,12 +426,18 @@ namespace LogPot
 
 variable {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
+/--
+@isnad1 id=hasderiv.1h4v.s7.2cbdfdc5ab07 from=translated src=- shape=c88c333c vocab=36750b85
+-/
 theorem hasDerivAt_slice {h : E × ℝ → ℂ} (hh : ContDiff ℝ (⊤ : ℕ∞) h) (e : E) (a : ℝ) :
     HasDerivAt (fun a : ℝ => h (e, a)) (dsh h (e, a)) a := by
   have hc : HasDerivAt (fun a : ℝ => ((e, a) : E × ℝ)) ((0 : E), (1 : ℝ)) a :=
     (hasDerivAt_const a e).prodMk (hasDerivAt_id a)
   exact ((hh.differentiable (by simp)).differentiableAt.hasFDerivAt).comp_hasDerivAt a hc
 
+/--
+@isnad1 id=eq.1h2v.s6.27b1080fdd60 from=translated src=- shape=142a0694 vocab=da290571
+-/
 theorem integral_eq_intervalIntegral {f : ℝ → ℂ} {R : ℝ} (hf : ∀ a, R < |a| → f a = 0) :
     ∫ a, f a = ∫ a in (-(|R| + 1))..(|R| + 1), f a := by
   rw [intervalIntegral.integral_of_le (by linarith [abs_nonneg R]), setIntegral_eq_integral_of_forall_compl_eq_zero]
@@ -351,6 +453,9 @@ theorem integral_eq_intervalIntegral {f : ℝ → ℂ} {R : ℝ} (hf : ∀ a, R 
       _ < a := by linarith
       _ ≤ |a| := le_abs_self a
 
+/--
+@isnad1 id=eq.5h5v.s8.b4672bfa6ad2 from=translated src=- shape=9fda3ab5 vocab=a0cb2c13
+-/
 theorem ibp {h : E × ℝ → ℂ} (hh : ContDiff ℝ (⊤ : ℕ∞) h) (hhc : HasCompactSupport h) (e : E)
     (v v' : ℝ → ℝ) (hv : ∀ a, HasDerivAt v (v' a) a) (hvc : Continuous v) (hv'c : Continuous v') :
     ∫ a, (v' a) • h (e, a) = -∫ a, (v a) • dsh h (e, a) := by
@@ -380,6 +485,9 @@ theorem ibp {h : E × ℝ → ℂ} (hh : ContDiff ℝ (⊤ : ℕ∞) h) (hhc : H
     h1 A hA1, h1 (-A) hA2]
   simp
 
+/--
+@isnad1 id=eq.3h4v.s8.62b4ec11039a from=translated src=- shape=5888868f vocab=35162c2a
+-/
 theorem ibp_dLk {h : E × ℝ → ℂ} (hh : ContDiff ℝ (⊤ : ℕ∞) h) (hhc : HasCompactSupport h) (e : E)
     {ρ : ℝ} (hρ : 0 < ρ) :
     ∫ a, (dLk a ρ) • h (e, a) = (2 : ℝ) • ∫ a, (θk a ρ) • dsh h (e, a) := by
@@ -390,6 +498,9 @@ theorem ibp_dLk {h : E × ℝ → ℂ} (hh : ContDiff ℝ (⊤ : ℕ∞) h) (hhc
     rw [this, integral_smul, key, smul_neg, neg_smul, neg_neg]
   · exact Continuous.neg (continuous_const.div (by fun_prop) fun a => by positivity)
 
+/--
+@isnad1 id=eq.3h4v.s8.287a14ebfa43 from=translated src=- shape=3dbb4346 vocab=2898cf2f
+-/
 theorem ibp_dθk {h : E × ℝ → ℂ} (hh : ContDiff ℝ (⊤ : ℕ∞) h) (hhc : HasCompactSupport h) (e : E)
     {ρ : ℝ} (hρ : 0 < ρ) :
     ∫ a, (dθk a ρ) • h (e, a) = (-(1 / 2) : ℝ) • ∫ a, (Lk a ρ) • dsh h (e, a) := by
@@ -415,8 +526,14 @@ variable {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
 def sndC : E × ℝ →L[ℝ] ℂ := Complex.ofRealCLM.comp (ContinuousLinearMap.snd ℝ E ℝ)
 
+/--
+@isnad1 id=eq.0h2v.s7.73cc4d24db69 from=translated src=- shape=da6ee639 vocab=e54ea19e
+-/
 theorem sndC_apply (v : E × ℝ) : (sndC : E × ℝ →L[ℝ] ℂ) v = (v.2 : ℂ) := rfl
 
+/--
+@isnad1 id=hasfderi.9h7v.s11.ec7e8ed0abcc from=translated src=- shape=20449592 vocab=9f4304ba
+-/
 theorem hasFDerivAt_op (K dK : ℝ → ℝ → ℝ) {ρ₀ : ℝ} (hρ₀ : 0 < ρ₀)
     (hKc : ∀ ρ : ℝ, 0 < ρ → Continuous fun a : ℝ => K a ρ)
     (hdKc : ∀ ρ : ℝ, 0 < ρ → Continuous fun a : ℝ => dK a ρ)
@@ -589,24 +706,39 @@ def DT (h : E × ℝ → ℂ) (p : E × ℝ) : E × ℝ →L[ℝ] ℂ :=
   (∫ a, (θk a p.2) • Deh h (p.1, a)).comp (ContinuousLinearMap.fst ℝ E ℝ) +
     ((-(1 / 2) : ℝ) • ∫ a, (Lk a p.2) • dsh h (p.1, a)) • (sndC : E × ℝ →L[ℝ] ℂ)
 
+/--
+@isnad1 id=continuo.1h1v.s4.5d420147318d from=translated src=- shape=02df4fc5 vocab=ec76c85f
+-/
 theorem continuous_dLk_right {ρ : ℝ} (hρ : 0 < ρ) : Continuous fun a : ℝ => dLk a ρ := by
   unfold dLk
   exact continuous_const.div (by fun_prop) fun a => by positivity
 
+/--
+@isnad1 id=continuo.1h1v.s4.b8c668cbc6b1 from=translated src=- shape=02df4fc5 vocab=a43353a6
+-/
 theorem continuous_dθk_right {ρ : ℝ} (hρ : 0 < ρ) : Continuous fun a : ℝ => dθk a ρ := by
   unfold dθk
   exact continuous_id.div (by fun_prop) fun a => by positivity
 
+/--
+@isnad1 id=le.1h2v.s5.c544cc6c4b2f from=translated src=- shape=8cf2d32c vocab=cde34c47
+-/
 theorem abs_dLk_le (a : ℝ) {ρ : ℝ} (hρ : 0 < ρ) : |dLk a ρ| ≤ 2 / ρ := by
   unfold dLk
   rw [abs_of_nonneg (by positivity), div_le_div_iff₀ (by positivity) hρ]
   nlinarith [sq_nonneg a]
 
+/--
+@isnad1 id=le.1h2v.s5.dace8c385692 from=translated src=- shape=8cf2d32c vocab=b6abd2e9
+-/
 theorem abs_dθk_le (a : ℝ) {ρ : ℝ} (hρ : 0 < ρ) : |dθk a ρ| ≤ 2 / ρ := by
   unfold dθk
   rw [abs_div, abs_of_nonneg (by positivity : (0 : ℝ) ≤ a ^ 2 + ρ ^ 2), div_le_div_iff₀ (by positivity) hρ]
   nlinarith [sq_nonneg (|a| - ρ), sq_abs a, abs_nonneg a]
 
+/--
+@isnad1 id=hasfderi.3h3v.s7.51ecc74d3ff8 from=translated src=- shape=55a110e2 vocab=c82cb68a
+-/
 theorem hasFDerivAt_FLs {h : E × ℝ → ℂ} (hh : ContDiff ℝ (⊤ : ℕ∞) h) (hhc : HasCompactSupport h)
     (p : E × ℝ) (hp : 0 < p.2) : HasFDerivAt (FLs h) (DL h p) p := by
   have key := hasFDerivAt_op Lk dLk hp (fun ρ hρ => continuous_Lk_right hρ.ne') (fun ρ hρ => continuous_dLk_right hρ)
@@ -622,6 +754,9 @@ theorem hasFDerivAt_FLs {h : E × ℝ → ℂ} (hh : ContDiff ℝ (⊤ : ℕ∞)
   rw [ibp_dLk hh hhc p.1 hp]
   rfl
 
+/--
+@isnad1 id=hasfderi.3h3v.s7.a4ea6bcaf6c9 from=translated src=- shape=55a110e2 vocab=2eb67c87
+-/
 theorem hasFDerivAt_FTs {h : E × ℝ → ℂ} (hh : ContDiff ℝ (⊤ : ℕ∞) h) (hhc : HasCompactSupport h)
     (p : E × ℝ) (hp : 0 < p.2) : HasFDerivAt (FTs h) (DT h p) p := by
   have key := hasFDerivAt_op θk dθk hp (fun ρ hρ => continuous_θk_right hρ) (fun ρ hρ => continuous_dθk_right hρ)
@@ -632,6 +767,9 @@ theorem hasFDerivAt_FTs {h : E × ℝ → ℂ} (hh : ContDiff ℝ (⊤ : ℕ∞)
   rw [ibp_dθk hh hhc p.1 hp]
   rfl
 
+/--
+@isnad1 id=continuo.3h3v.s8.2f265b9e3e99 from=translated src=- shape=0f86ec9e vocab=35c2b3f5
+-/
 theorem continuousWithinAt_DL {h : E × ℝ → ℂ} (hh : ContDiff ℝ (⊤ : ℕ∞) h) (hhc : HasCompactSupport h)
     (p₀ : E × ℝ) (hp₀ : 0 ≤ p₀.2) : ContinuousWithinAt (DL h) {p : E × ℝ | 0 ≤ p.2} p₀ := by
   have t1 : ContinuousAt (fun p : E × ℝ => ∫ a, (Lk a p.2) • Deh h (p.1, a)) p₀ :=
@@ -642,6 +780,9 @@ theorem continuousWithinAt_DL {h : E × ℝ → ℂ} (hh : ContDiff ℝ (⊤ : �
   exact (t1.continuousWithinAt.clm_comp continuousWithinAt_const).fun_add
     ((continuousWithinAt_const.fun_smul t2).fun_smul continuousWithinAt_const)
 
+/--
+@isnad1 id=continuo.3h3v.s8.1eea178dfeb3 from=translated src=- shape=0f86ec9e vocab=6c145f7c
+-/
 theorem continuousWithinAt_DT {h : E × ℝ → ℂ} (hh : ContDiff ℝ (⊤ : ℕ∞) h) (hhc : HasCompactSupport h)
     (p₀ : E × ℝ) (hp₀ : 0 ≤ p₀.2) : ContinuousWithinAt (DT h) {p : E × ℝ | 0 ≤ p.2} p₀ := by
   have t1 : ContinuousWithinAt (fun p : E × ℝ => ∫ a, (θk a p.2) • Deh h (p.1, a)) {p : E × ℝ | 0 ≤ p.2} p₀ :=
@@ -652,12 +793,18 @@ theorem continuousWithinAt_DT {h : E × ℝ → ℂ} (hh : ContDiff ℝ (⊤ : �
   exact (t1.clm_comp continuousWithinAt_const).fun_add
     ((continuousWithinAt_const.fun_smul t2.continuousWithinAt).fun_smul continuousWithinAt_const)
 
+/--
+@isnad1 id=eq.0h1v.s6.2059cbae693a from=translated src=- shape=5f93ed35 vocab=df9c2746
+-/
 theorem closure_openHalfSpace :
     closure ({p : E × ℝ | 0 < p.2} : Set (E × ℝ)) = {p : E × ℝ | 0 ≤ p.2} := by
   have h1 : ({p : E × ℝ | 0 < p.2} : Set (E × ℝ)) = Prod.snd ⁻¹' Set.Ioi 0 := rfl
   have h2 : ({p : E × ℝ | 0 ≤ p.2} : Set (E × ℝ)) = Prod.snd ⁻¹' Set.Ici 0 := rfl
   rw [h1, h2, ← isOpenMap_snd.preimage_closure_eq_closure_preimage continuous_snd, closure_Ioi]
 
+/--
+@isnad1 id=convex.0h1v.s6.36f02caa252a from=translated src=- shape=4248be78 vocab=a847852c
+-/
 theorem convex_openHalfSpace : Convex ℝ ({p : E × ℝ | 0 < p.2} : Set (E × ℝ)) := by
   intro a ha b hb s t hs ht hst
   show (0 : ℝ) < (s • a + t • b).2
@@ -666,9 +813,15 @@ theorem convex_openHalfSpace : Convex ℝ ({p : E × ℝ | 0 < p.2} : Set (E × 
   · subst h0; rw [zero_add] at hst; subst hst; simpa using hb
   · exact add_pos_of_pos_of_nonneg (mul_pos hspos ha) (mul_nonneg ht hb.le)
 
+/--
+@isnad1 id=isopen.0h1v.s5.cbf3ba68ff32 from=translated src=- shape=a0213b5a vocab=3551071a
+-/
 theorem isOpen_openHalfSpace : IsOpen ({p : E × ℝ | 0 < p.2} : Set (E × ℝ)) :=
   isOpen_lt continuous_const continuous_snd
 
+/--
+@isnad1 id=hasfderi.4h4v.s9.8293a700df63 from=translated src=- shape=2a4fcab5 vocab=b2fcfd0f
+-/
 theorem hasFDerivWithinAt_halfSpace {f : E × ℝ → ℂ} {D : E × ℝ → (E × ℝ →L[ℝ] ℂ)}
     (hint : ∀ p : E × ℝ, 0 < p.2 → HasFDerivAt f (D p) p)
     (hcont : ∀ p : E × ℝ, 0 ≤ p.2 → ContinuousWithinAt f {p : E × ℝ | 0 ≤ p.2} p)
@@ -686,18 +839,27 @@ theorem hasFDerivWithinAt_halfSpace {f : E × ℝ → ℂ} {D : E × ℝ → (E 
       eventually_nhdsWithin_of_forall fun y hy => (hint y hy).fderiv
     exact (((hD p₀ hp₀).mono hsub).tendsto).congr' hev.symm
 
+/--
+@isnad1 id=hasfderi.3h3v.s7.5cadb59f39db from=translated src=- shape=78b403a3 vocab=1ba231f2
+-/
 theorem hasFDerivWithinAt_FLs {h : E × ℝ → ℂ} (hh : ContDiff ℝ (⊤ : ℕ∞) h) (hhc : HasCompactSupport h)
     (p : E × ℝ) (hp : 0 ≤ p.2) : HasFDerivWithinAt (FLs h) (DL h p) {p : E × ℝ | 0 ≤ p.2} p :=
   hasFDerivWithinAt_halfSpace (hasFDerivAt_FLs hh hhc)
     (fun q _ => (continuousAt_FL h hh.continuous hhc q).continuousWithinAt)
     (continuousWithinAt_DL hh hhc) p hp
 
+/--
+@isnad1 id=hasfderi.3h3v.s7.40eade188c98 from=translated src=- shape=78b403a3 vocab=9c0c9bad
+-/
 theorem hasFDerivWithinAt_FTs {h : E × ℝ → ℂ} (hh : ContDiff ℝ (⊤ : ℕ∞) h) (hhc : HasCompactSupport h)
     (p : E × ℝ) (hp : 0 ≤ p.2) : HasFDerivWithinAt (FTs h) (DT h p) {p : E × ℝ | 0 ≤ p.2} p :=
   hasFDerivWithinAt_halfSpace (hasFDerivAt_FTs hh hhc)
     (fun q hq => continuousWithinAt_FT h hh.continuous hhc q hq)
     (continuousWithinAt_DT hh hhc) p hp
 
+/--
+@isnad1 id=eq.2h4v.s8.3cc62236ae60 from=translated src=- shape=7909627d vocab=bcfb0bb4
+-/
 theorem DL_apply {h : E × ℝ → ℂ} (hh : ContDiff ℝ (⊤ : ℕ∞) h) (hhc : HasCompactSupport h)
     (p : E × ℝ) (y : E × ℝ) :
     DL h p y = FLs (deh h y.1) p + ((2 : ℝ) • FTs (dsh h) p) * (y.2 : ℂ) := by
@@ -706,6 +868,9 @@ theorem DL_apply {h : E × ℝ → ℂ} (hh : ContDiff ℝ (⊤ : ℕ∞) h) (hh
     ContinuousLinearMap.integral_apply (integrable_Lk_smul (Deh h) (continuous_Deh hh) (hasCompactSupport_Deh hhc) p)]
   rfl
 
+/--
+@isnad1 id=eq.2h4v.s8.a45e6da0176c from=translated src=- shape=f095a6f2 vocab=a22b20b8
+-/
 theorem DT_apply {h : E × ℝ → ℂ} (hh : ContDiff ℝ (⊤ : ℕ∞) h) (hhc : HasCompactSupport h)
     (p : E × ℝ) (y : E × ℝ) :
     DT h p y = FTs (deh h y.1) p + ((-(1 / 2) : ℝ) • FLs (dsh h) p) * (y.2 : ℂ) := by
@@ -714,6 +879,9 @@ theorem DT_apply {h : E × ℝ → ℂ} (hh : ContDiff ℝ (⊤ : ℕ∞) h) (hh
     ContinuousLinearMap.integral_apply (integrable_θk_smul (Deh h) (continuous_Deh hh) (hasCompactSupport_Deh hhc) p)]
   rfl
 
+/--
+@isnad1 id=uniquedi.0h1v.s6.7201ee03a885 from=translated src=- shape=4248be78 vocab=20d1ecba
+-/
 theorem uniqueDiffOn_H : UniqueDiffOn ℝ ({p : E × ℝ | 0 ≤ p.2} : Set (E × ℝ)) := by
   refine uniqueDiffOn_convex ?_ ⟨((0 : E), (1 : ℝ)), ?_⟩
   · intro a ha b hb s t hs ht _
@@ -724,6 +892,9 @@ theorem uniqueDiffOn_H : UniqueDiffOn ℝ ({p : E × ℝ | 0 ≤ p.2} : Set (E �
     exact Filter.mem_of_superset (isOpen_openHalfSpace.mem_nhds (by show (0 : ℝ) < 1; norm_num))
       fun p hp => show (0 : ℝ) ≤ p.2 from le_of_lt hp
 
+/--
+@isnad1 id=and.2h3v.s8.4fec23eb5822 from=translated src=- shape=d328979a vocab=7f988e26
+-/
 theorem main [FiniteDimensional ℝ E] (n : ℕ) : ∀ (h : E × ℝ → ℂ), ContDiff ℝ (⊤ : ℕ∞) h → HasCompactSupport h →
     ContDiffOn ℝ n (FLs h) {p : E × ℝ | 0 ≤ p.2} ∧ ContDiffOn ℝ n (FTs h) {p : E × ℝ | 0 ≤ p.2} := by
   induction n with
@@ -759,6 +930,9 @@ end LogPot
 end
 
 open LogPot in
+/--
+@isnad1 id=contdiff.2h2v.s8.3a0b9818c09a from=translated src=- shape=f6bf7735 vocab=1df93d05
+-/
 theorem solution
     {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
     (g : E × ℝ → ℂ) (hg : ContDiff ℝ (⊤ : ℕ∞) g) (hgc : HasCompactSupport g) :

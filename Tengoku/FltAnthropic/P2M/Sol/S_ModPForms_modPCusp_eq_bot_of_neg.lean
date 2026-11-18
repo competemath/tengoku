@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open scoped MatrixGroups
 
+/--
+@isnad1 id=eq.1h3v.s7.b00dd857e128 from=translated src=- shape=06bd905d vocab=24c6120a
+-/
 theorem solution (N : ℕ) [NeZero N] (k : ℤ) (hk : k < 0) (F : Type) [Field F] :
     ModPForms.modPCusp N k F = ⊥ := by
   unfold ModPForms.modPCusp

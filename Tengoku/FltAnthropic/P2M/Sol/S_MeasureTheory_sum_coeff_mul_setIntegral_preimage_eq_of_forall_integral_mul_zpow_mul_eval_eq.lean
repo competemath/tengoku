@@ -16,6 +16,9 @@ namespace LaurentCoeffFE
 noncomputable def lcoeff (P : Polynomial ℂ) (n : ℤ) (j : ℤ) : ℂ :=
   if n ≤ j then P.coeff (j - n).toNat else 0
 
+/--
+@isnad1 id=eq.0h3v.s4.759998a355a0 from=translated src=- shape=1fb55387 vocab=63bbdc5b
+-/
 theorem lcoeff_natCast_add (P : Polynomial ℂ) (n : ℤ) (i : ℕ) :
     lcoeff P n ((i : ℤ) + n) = P.coeff i := by
   simp only [lcoeff]
@@ -23,6 +26,9 @@ theorem lcoeff_natCast_add (P : Polynomial ℂ) (n : ℤ) (i : ℕ) :
   congr 1
   omega
 
+/--
+@isnad1 id=eq.1h3v.s6.5e2323b0b492 from=translated src=- shape=b34c5e24 vocab=15adbb3c
+-/
 theorem lcoeff_eq_zero_of_not_mem (P : Polynomial ℂ) (n : ℤ) (j : ℤ)
     (hj : j ∉ Finset.image (fun i : ℕ => (i : ℤ) + n) (Finset.range (P.natDegree + 1))) :
     lcoeff P n j = 0 := by
@@ -37,6 +43,9 @@ theorem lcoeff_eq_zero_of_not_mem (P : Polynomial ℂ) (n : ℤ) (j : ℤ)
     ring
   · rfl
 
+/--
+@isnad1 id=hassum.1h3v.s6.acde1eefdd10 from=translated src=- shape=60d50622 vocab=285aec58
+-/
 theorem hasSum_lcoeff (P : Polynomial ℂ) (n : ℤ) {Y : ℂ} (hY : Y ≠ 0) :
     HasSum (fun j : ℤ => lcoeff P n j * Y ^ j) (P.eval Y * Y ^ n) := by
   classical
@@ -52,12 +61,18 @@ theorem hasSum_lcoeff (P : Polynomial ℂ) (n : ℤ) {Y : ℂ} (hY : Y ≠ 0) :
   rw [lcoeff_natCast_add, zpow_add₀ hY, zpow_natCast]
   ring
 
+/--
+@isnad1 id=summable.0h3v.s5.49a0f0f56c30 from=translated src=- shape=8e6663ee vocab=5abd179f
+-/
 theorem summable_norm_lcoeff (P : Polynomial ℂ) (n : ℤ) (r : ℝ) :
     Summable fun j : ℤ => ‖lcoeff P n j‖ * r ^ j := by
   refine summable_of_ne_finset_zero
     (s := Finset.image (fun i : ℕ => (i : ℤ) + n) (Finset.range (P.natDegree + 1))) fun j hj => ?_
   rw [lcoeff_eq_zero_of_not_mem P n j hj, norm_zero, zero_mul]
 
+/--
+@isnad1 id=hassum.2h4v.s7.158bd0f155d0 from=translated src=- shape=3b63f887 vocab=568358b5
+-/
 theorem hasSum_conv (c : ℤ → ℂ) (Q : Polynomial ℂ) {Y : ℂ} (hY : Y ≠ 0) {I : ℂ}
     (hc : HasSum (fun ℓ : ℤ => c ℓ * Y ^ ℓ) I) :
     HasSum (fun j : ℤ => (∑ i ∈ Q.support, Q.coeff i * c (j - (i : ℤ))) * Y ^ j)
@@ -82,6 +97,9 @@ theorem hasSum_conv (c : ℤ → ℂ) (Q : Polynomial ℂ) {Y : ℂ} (hY : Y ≠
   refine h.congr_fun fun j => ?_
   rw [Finset.sum_mul]
 
+/--
+@isnad1 id=summable.2h3v.s7.f9648bf21946 from=translated src=- shape=e9fd6887 vocab=3becac63
+-/
 theorem summable_norm_conv (c : ℤ → ℂ) (Q : Polynomial ℂ) {r : ℝ} (hr : 0 < r)
     (hc : Summable fun ℓ : ℤ => ‖c ℓ‖ * r ^ ℓ) :
     Summable fun j : ℤ => ‖∑ i ∈ Q.support, Q.coeff i * c (j - (i : ℤ))‖ * r ^ j := by
@@ -108,6 +126,9 @@ end LaurentCoeffFE
 
 open LaurentCoeffFE in
 
+/--
+@isnad1 id=eq.5h10v.s8.48d0e66c07be from=translated src=- shape=56d4b357 vocab=1ed8555d
+-/
 theorem solution
     {T : Type*} [MeasurableSpace T] (μ : Measure T) (d : T → ℤ) (hd : Measurable d)
     (g : T → ℂ) {a b : ℝ} (ha : 0 ≤ a) (hab : a < b)

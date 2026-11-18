@@ -19,6 +19,9 @@ variable {G : Type*} [MeasurableSpace G] {Y : Type*} [MeasurableSpace Y]
 noncomputable def slice (ρ : Measure (G × Y)) (B : Set Y) : Measure G :=
   (ρ.restrict (univ ×ˢ B)).map Prod.fst
 
+/--
+@isnad1 id=eq.1h5v.s6.70ade560bf2e from=translated src=- shape=729fe13b vocab=8b42d09a
+-/
 theorem slice_apply (ρ : Measure (G × Y)) (B : Set Y) {E : Set G} (hE : MeasurableSet E) :
     slice ρ B E = ρ (E ×ˢ B) := by
   rw [slice, map_apply measurable_fst hE, restrict_apply (measurable_fst hE)]
@@ -34,6 +37,9 @@ variable {Y : Type*} [MeasurableSpace Y]
 
 omit [LocallyCompactSpace G] [SecondCountableTopology G] in
 
+/--
+@isnad1 id=isaddlef.2h4v.s6.10681bbb590e from=translated src=- shape=58dd9ba4 vocab=9689a06b
+-/
 theorem slice_isAddLeftInvariant (ρ : Measure (G × Y)) (B : Set Y) (hB : MeasurableSet B)
     (hinv : ∀ a : G, ρ.map (fun p : G × Y => (a + p.1, p.2)) = ρ) :
     (slice ρ B).IsAddLeftInvariant := by
@@ -52,6 +58,9 @@ theorem slice_isAddLeftInvariant (ρ : Measure (G × Y)) (B : Set Y) (hB : Measu
 
 omit [LocallyCompactSpace G] [SecondCountableTopology G] in
 
+/--
+@isnad1 id=isfinite.1h4v.s6.6fa1fea7957b from=translated src=- shape=d2e6b238 vocab=204e3f8d
+-/
 theorem slice_isFiniteMeasureOnCompacts (ρ : Measure (G × Y)) (B : Set Y)
     (hBfin : ∀ K : Set G, IsCompact K → ρ (K ×ˢ B) < ⊤) :
     IsFiniteMeasureOnCompacts (slice ρ B) := by
@@ -60,6 +69,9 @@ theorem slice_isFiniteMeasureOnCompacts (ρ : Measure (G × Y)) (B : Set Y)
   rw [slice_apply ρ B isClosed_closure.measurableSet]
   exact hBfin (closure K) hK.closure
 
+/--
+@isnad1 id=eq.6h6v.s8.ec9883e002f0 from=translated src=- shape=6ab82bdf vocab=5bd41632
+-/
 theorem slice_eq_smul (μ : Measure G) [μ.IsAddHaarMeasure] (ρ : Measure (G × Y))
     (hinv : ∀ a : G, ρ.map (fun p : G × Y => (a + p.1, p.2)) = ρ)
     (K₀ : Set G) (hK₀m : MeasurableSet K₀) (hK₀pos : μ K₀ ≠ 0) (hK₀top : μ K₀ ≠ ⊤)
@@ -80,6 +92,9 @@ theorem slice_eq_smul (μ : Measure G) [μ.IsAddHaarMeasure] (ρ : Measure (G ×
     rw [hval, ENNReal.mul_div_cancel_right hK₀pos hK₀top]
   rw [huniq', hc']
 
+/--
+@isnad1 id=eq.7h7v.s8.af00a9174b32 from=translated src=- shape=f225b293 vocab=907dda73
+-/
 theorem rect_of_admissible (μ : Measure G) [μ.IsAddHaarMeasure] (ρ : Measure (G × Y))
     (hinv : ∀ a : G, ρ.map (fun p : G × Y => (a + p.1, p.2)) = ρ)
     (K₀ : Set G) (hK₀m : MeasurableSet K₀) (hK₀pos : μ K₀ ≠ 0) (hK₀top : μ K₀ ≠ ⊤)
@@ -91,6 +106,9 @@ theorem rect_of_admissible (μ : Measure G) [μ.IsAddHaarMeasure] (ρ : Measure 
   rw [slice_apply ρ B hE] at h
   rw [h, mul_comm]
 
+/--
+@isnad1 id=ex.2h4v.s7.28ba730b306d from=translated src=- shape=e006c1a1 vocab=d2113ec4
+-/
 theorem exists_eq_prod_of_forall_map_add_left (μ : Measure G) [μ.IsAddHaarMeasure]
     (ρ : Measure (G × Y))
     (hinv : ∀ a : G, ρ.map (fun p : G × Y => (a + p.1, p.2)) = ρ)
@@ -153,6 +171,9 @@ theorem exists_eq_prod_of_forall_map_add_left (μ : Measure G) [μ.IsAddHaarMeas
 
 end FltWs24.InvariantProd
 
+/--
+@isnad1 id=ex.2h4v.s7.f2fefb7178ea from=translated src=- shape=96603d34 vocab=d2113ec4
+-/
 theorem solution
     {G : Type*} [AddGroup G] [TopologicalSpace G] [IsTopologicalAddGroup G]
     [LocallyCompactSpace G] [SecondCountableTopology G] [MeasurableSpace G] [BorelSpace G]

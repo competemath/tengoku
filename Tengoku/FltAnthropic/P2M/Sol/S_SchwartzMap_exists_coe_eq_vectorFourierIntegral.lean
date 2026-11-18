@@ -36,6 +36,9 @@ def piFourierIntegral (f : (d → ℝ) → ℂ) (ξ : d → ℝ) : ℂ :=
 abbrev euclideanToPi : EuclideanSpace ℝ d ≃L[ℝ] (d → ℝ) :=
   PiLp.continuousLinearEquiv 2 ℝ (fun _ : d => ℝ)
 
+/--
+@isnad1 id=eq.0h3v.s7.f4b98f18ac81 from=translated src=- shape=894bad66 vocab=acf8ed33
+-/
 theorem piFourierIntegral_eq_fourier_euclidean (g : (d → ℝ) → ℂ) (ξ : d → ℝ) :
     piFourierIntegral g ξ
       = 𝓕 (fun v : EuclideanSpace ℝ d => g (ofLp v)) (toLp 2 ξ) := by
@@ -52,6 +55,9 @@ theorem piFourierIntegral_eq_fourier_euclidean (g : (d → ℝ) → ℂ) (ξ : d
     ring
   rw [← hinner, mul_comm]
 
+/--
+@isnad1 id=ex.0h2v.s8.d18e3afd4864 from=translated src=- shape=31652309 vocab=f34f8e89
+-/
 theorem exists_schwartz_piFourierIntegral (h : SchwartzMap (d → ℝ) ℂ) :
     ∃ g : SchwartzMap (d → ℝ) ℂ, ∀ ξ, piFourierIntegral (⇑h) ξ = g ξ := by
   let h' : SchwartzMap (EuclideanSpace ℝ d) ℂ :=
@@ -73,6 +79,9 @@ open PiFourier LinearMap
 variable {V : Type*} [NormedAddCommGroup V] [NormedSpace ℝ V] [FiniteDimensional ℝ V]
     [MeasurableSpace V] [BorelSpace V]
 
+/--
+@isnad1 id=eq.1h7v.s9.8b19f0d390d8 from=translated src=- shape=144b9f50 vocab=d7b3a00a
+-/
 theorem vectorFourierIntegral_eq_smul_piFourierIntegral
     (μ : MeasureTheory.Measure V) [μ.IsAddHaarMeasure]
     (B : LinearMap.BilinForm ℝ V) (hB : B.Nondegenerate)
@@ -128,6 +137,9 @@ theorem vectorFourierIntegral_eq_smul_piFourierIntegral
   refine integral_congr_ae (Filter.Eventually.of_forall fun v => ?_)
   simp only [hA', hpair]
 
+/--
+@isnad1 id=ex.1h4v.s8.6a8287f15621 from=translated src=- shape=e1a22b65 vocab=3a0dee3c
+-/
 theorem solution
     (μ : MeasureTheory.Measure V) [μ.IsAddHaarMeasure]
     (B : LinearMap.BilinForm ℝ V) (hB : B.Nondegenerate) (f : SchwartzMap V ℂ) :

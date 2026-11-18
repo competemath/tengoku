@@ -145,6 +145,9 @@ open scoped _root_.P2MW.S_ModularCurve_Period_heckeOperatorHom_preserves_parabol
 
 open _root_.ModularCurve.Period open _root_.P2MW.S_ModularCurve_Period_heckeOperatorHom_preserves_parabolic.ModularCurve.Period open _root_.P2MW.S_ModularCurve_Period_heckeOperatorHom_preserves_parabolic.ModularCurve.Period.SolPreservesParabolic open _root_.HeckeEis
 
+/--
+@isnad1 id=isparabo.1h4v.s15.c1a09c34ccec from=translated src=- shape=bae5c210 vocab=21d526a4
+-/
 theorem solution (N ℓ : ℕ) [NeZero ℓ] (A : Type*) [AddCommGroup A]
     (φ : Additive (Gamma0 N) →+ A) (hφ : IsParabolicHom (Gamma0 N) φ) :
     IsParabolicHom (Gamma0 N) (heckeOperatorHom N ℓ A φ) := by

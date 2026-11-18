@@ -17,11 +17,17 @@ variable {X : Type*} [TopologicalSpace X] [MeasurableSpace X] [OpensMeasurableSp
   [SecondCountableTopology X] (μ : Measure X) [IsFiniteMeasureOnCompacts μ]
   {M P : Type} [NormedAddCommGroup M] [NormedSpace ℝ M] [NormedAddCommGroup P] [NormedSpace ℝ P]
 
+/--
+@isnad1 id=ex.2h3v.s6.3d3889f03855 from=translated src=- shape=b05c8611 vocab=067a7abd
+-/
 theorem exists_bound_of_hasCompactSupport {Y E : Type*} [TopologicalSpace Y] [NormedAddCommGroup E]
     {f : Y → E} (hf : Continuous f) (hfc : HasCompactSupport f) : ∃ B : ℝ, 0 ≤ B ∧ ∀ y, ‖f y‖ ≤ B := by
   obtain ⟨B, hB⟩ := hfc.exists_bound_of_continuous hf
   exact ⟨max B 0, le_max_right _ _, fun y => (hB y).trans (le_max_left _ _)⟩
 
+/--
+@isnad1 id=contdiff.5h9v.s8.c2a2c54e35e4 from=translated src=- shape=ab4c157a vocab=0c9e3dd2
+-/
 theorem contDiff_integral_smul_comp (c : X → M) (hc : Continuous c) (w : X → ℝ) (hw : Continuous w)
     (hwc : HasCompactSupport w) (n : ℕ) :
     ∀ {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E] (Ψ : M × P → E),
@@ -84,6 +90,9 @@ end ParamIntegral
 
 end S30ParamSmooth
 
+/--
+@isnad1 id=contdiff.5h8v.s8.502f2f76fc2d from=translated src=- shape=52a21915 vocab=c90421fc
+-/
 theorem solution
     {X : Type*} [TopologicalSpace X] [MeasurableSpace X] [OpensMeasurableSpace X] [SecondCountableTopology X]
     (μ : Measure X) [IsFiniteMeasureOnCompacts μ]

@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 open MeasureTheory
 
+/--
+@isnad1 id=and.7h5v.s9.c31b6a931c47 from=translated src=- shape=55dba613 vocab=80366732
+-/
 theorem solution
     {Y : Type*} [TopologicalSpace Y] [MeasurableSpace Y] [OpensMeasurableSpace Y] (μ : Measure Y)
     (a : ℝ) (F : ℂ → Y → ℂ)

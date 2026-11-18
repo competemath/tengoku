@@ -17,9 +17,15 @@ open Matrix
 namespace Ws45
 namespace Eis3Lift
 
+/--
+@isnad1 id=eq.0h3v.s9.49a3bcb52d8c from=translated src=- shape=e9ae07d6 vocab=2a174496
+-/
 theorem vecMul_SL_eq (N : ℕ) (a : Fin 2 → ZMod N) (γ : SL(2, ℤ)) :
     a ᵥ* γ = a ᵥ* ((γ : Matrix (Fin 2) (Fin 2) ℤ).map (Int.cast : ℤ → ZMod N)) := rfl
 
+/--
+@isnad1 id=eq.1h3v.s9.a4f57d708a5f from=translated src=- shape=3a615a06 vocab=5f93bec7
+-/
 theorem vecMul_eq_self_of_mem_Gamma1 (N : ℕ) (a₁ : ZMod N) (γ : SL(2, ℤ)) (hγ : γ ∈ CongruenceSubgroup.Gamma1 N) :
     (![0, a₁] : Fin 2 → ZMod N) ᵥ* γ = ![0, a₁] := by
   rw [CongruenceSubgroup.Gamma1_mem] at hγ
@@ -28,6 +34,9 @@ theorem vecMul_eq_self_of_mem_Gamma1 (N : ℕ) (a₁ : ZMod N) (γ : SL(2, ℤ))
   ext i
   fin_cases i <;> simp [Matrix.vecMul, dotProduct, Fin.sum_univ_two, Matrix.map_apply, h11, h10]
 
+/--
+@isnad1 id=eq.0h2v.s9.7a8a57ac403c from=translated src=- shape=b40c622c vocab=8ac8675a
+-/
 theorem vecMul_S (N : ℕ) (a₁ : ZMod N) :
     (![0, a₁] : Fin 2 → ZMod N) ᵥ* ModularGroup.S = ![a₁, 0] := by
   rw [vecMul_SL_eq, ModularGroup.coe_S]
@@ -36,6 +45,9 @@ theorem vecMul_S (N : ℕ) (a₁ : ZMod N) :
 
 end Ws45.Eis3Lift
 
+/--
+@isnad1 id=and.1h3v.s10.f2dd829b5e1f from=translated src=- shape=8e80c5b4 vocab=ce96b855
+-/
 theorem Ws45.Eis3Lift.exists_modularForm_gamma1_coe_eq_eisensteinG_and_slash_S
     (N : ℕ) [NeZero N] (k : ℤ) (hk : 3 ≤ k) (a₁ : ZMod N) :
     (∃ F : ModularForm (CongruenceSubgroup.Gamma1 N : Subgroup (GL (Fin 2) ℝ)) k,
@@ -72,6 +84,9 @@ namespace Eis3
 
 open UpperHalfPlane
 
+/--
+@isnad1 id=eq.0h4v.s9.cb9cceb9dff5 from=translated src=- shape=6359da68 vocab=fef3fdef
+-/
 theorem qExpansion_one_coeff_eq (N : ℕ) [NeZero N] {k : ℤ}
     (E : ModularForm (CongruenceSubgroup.Gamma1 N : Subgroup (GL (Fin 2) ℝ)) k) (n : ℕ) :
     (qExpansion 1 (⇑E : UpperHalfPlane → ℂ)).coeff n = (qExpansion (N : ℝ) (⇑E : UpperHalfPlane → ℂ)).coeff (N * n) := by
@@ -108,6 +123,9 @@ theorem qExpansion_one_coeff_eq (N : ℕ) [NeZero N] {k : ℤ}
   rw [← this, hc]
   simp [Nat.mul_div_cancel_left _ (Nat.pos_of_ne_zero (NeZero.ne N))]
 
+/--
+@isnad1 id=isintegr.0h2v.s6.ca7a8376b2bf from=translated src=- shape=c796c4a4 vocab=be174e94
+-/
 theorem isIntegral_stdAddChar (N : ℕ) [NeZero N] (x : ZMod N) : IsIntegral ℤ (ZMod.stdAddChar x : ℂ) := by
   refine IsIntegral.of_pow (Nat.pos_of_ne_zero (NeZero.ne N)) ?_
   have : (ZMod.stdAddChar x : ℂ) ^ N = 1 := by
@@ -115,9 +133,15 @@ theorem isIntegral_stdAddChar (N : ℕ) [NeZero N] (x : ZMod N) : IsIntegral ℤ
     simp
   rw [this]; exact isIntegral_one
 
+/--
+@isnad1 id=isintegr.0h1v.s3.d2ba69984d55 from=translated src=- shape=e59e6bd7 vocab=40cdf876
+-/
 theorem isIntegral_natCast (m : ℕ) : IsIntegral ℤ (m : ℂ) := by
   simpa using isIntegral_algebraMap (R := ℤ) (A := ℂ) (x := (m : ℤ))
 
+/--
+@isnad1 id=isintegr.0h4v.s9.6a72064d0111 from=translated src=- shape=2c8f482d vocab=7dd7a0c4
+-/
 theorem isIntegral_divisorSum (N : ℕ) [NeZero N] (a : Fin 2 → ZMod N) (n k : ℕ) :
     IsIntegral ℤ (∑ m ∈ n.divisors,
       ((if ((n / m : ℕ) : ZMod N) = a 0 then ZMod.stdAddChar (a 1 * (m : ZMod N)) else 0) +
@@ -133,6 +157,9 @@ theorem isIntegral_divisorSum (N : ℕ) [NeZero N] (a : Fin 2 → ZMod N) (n k :
 
 end Ws45.Eis3
 
+/--
+@isnad1 id=ex.1h1v.s11.22048d428694 from=translated src=- shape=2cdf3bd6 vocab=95668926
+-/
 theorem solution
     (N : ℕ) (hN : 3 ≤ N) :
     ∃ (E : ModularForm (CongruenceSubgroup.Gamma1 N : Subgroup (GL (Fin 2) ℝ)) 3) (a : ℕ),

@@ -41,6 +41,9 @@ end ModularCurve
 
 end
 
+/--
+@isnad1 id=eq.1h6v.s11.80a1983a3a01 from=translated src=- shape=1c0b4535 vocab=06752ff5
+-/
 theorem solution {L : Type*} [CommRing L] (A : Subring L)
     {k : Type*} [Field k] (red : A →+* k) (N : ℕ) [NeZero N]
     (f : modularLocalized N A red) (hf : (f : LaurentSeries L) ∈ integralCoeffs A) :

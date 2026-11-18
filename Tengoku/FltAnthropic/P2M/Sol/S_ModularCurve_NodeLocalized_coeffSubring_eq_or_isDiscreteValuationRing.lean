@@ -21,6 +21,9 @@ namespace CoeffDVR
 
 variable (A : ValuationSubring (AlgebraicClosure ℚ)) (K : IntermediateField ℚ (AlgebraicClosure ℚ))
 
+/--
+@isnad1 id=iff.0h3v.s7.be5241827889 from=translated src=- shape=e55e4e4f vocab=9526ca46
+-/
 theorem mem_coeffSubring {x : AlgebraicClosure ℚ} : x ∈ coeffSubring A K ↔ x ∈ A ∧ x ∈ K :=
   Iff.rfl
 
@@ -34,6 +37,9 @@ def coeffSubringEquiv :
   map_mul' _ _ := rfl
   map_add' _ _ := rfl
 
+/--
+@isnad1 id=mem.1h2v.s6.08de2783b678 from=translated src=- shape=f370470e vocab=13dee352
+-/
 theorem mem_of_isIntegral_int {x : AlgebraicClosure ℚ} (hx : IsIntegral ℤ x) : x ∈ A := by
   have hA : IsIntegral A x := by
     obtain ⟨p, hp, hpx⟩ := hx
@@ -45,6 +51,9 @@ theorem mem_of_isIntegral_int {x : AlgebraicClosure ℚ} (hx : IsIntegral ℤ x)
   rw [← hz]
   exact z.2
 
+/--
+@isnad1 id=mem.0h3v.s11.21a9a810ebcb from=translated src=- shape=52c2ad1a vocab=bb9f47c3
+-/
 theorem algebraMap_ringOfIntegers_mem [NumberField K] (r : NumberField.RingOfIntegers K) :
     algebraMap (NumberField.RingOfIntegers K) K r ∈ A.comap (algebraMap K (AlgebraicClosure ℚ)) := by
   rw [ValuationSubring.mem_comap]
@@ -66,6 +75,9 @@ end NodeLocalized
 end ModularCurve
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_NodeLocalized_coeffSubring_eq_or_isDiscreteValuationRing.ModularCurve _root_.ModularCurve.NodeLocalized _root_.P2MW.S_ModularCurve_NodeLocalized_coeffSubring_eq_or_isDiscreteValuationRing.ModularCurve.NodeLocalized ModularCurve.NodeLocalized.CoeffDVR in
+/--
+@isnad1 id=or.0h2v.s9.8b1c941f21dd from=translated src=- shape=efecd640 vocab=99395073
+-/
 theorem solution
     (A : ValuationSubring (AlgebraicClosure ℚ)) (K : IntermediateField ℚ (AlgebraicClosure ℚ))
     [FiniteDimensional ℚ K] :

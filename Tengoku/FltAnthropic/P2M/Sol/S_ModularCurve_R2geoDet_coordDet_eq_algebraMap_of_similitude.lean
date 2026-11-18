@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 noncomputable section
 
+/--
+@isnad1 id=eq.5h7v.s12.d1c38b284330 from=translated src=- shape=53d093b4 vocab=fc99bb24
+-/
 theorem solution
     (K : Type) [Field K] [CharZero K]
     (A : Type) [CommRing A] [Algebra K A]

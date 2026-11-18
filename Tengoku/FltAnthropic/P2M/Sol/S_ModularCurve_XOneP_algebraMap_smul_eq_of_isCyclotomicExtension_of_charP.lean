@@ -8,6 +8,9 @@ namespace P2MW.S_ModularCurve_XOneP_algebraMap_smul_eq_of_isCyclotomicExtension_
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.4h7v.s10.c7a09d5c7709 from=translated src=- shape=9d99d76f vocab=c2a71998
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime]
     (L : Type) [Field L] [CharZero L] [IsCyclotomicExtension {p} ℚ L]

@@ -17,6 +17,9 @@ open scoped Convolution InnerProductSpace ENNReal
 open MeasureTheory
 set_option autoImplicit false
 
+/--
+@isnad1 id=issymmet.2h4v.s13.3e2220be5d54 from=translated src=- shape=1c71fc3f vocab=68a50cc2
+-/
 theorem solution
     (G : Type*) [MeasurableSpace G] [AddCommGroup G] [TopologicalSpace G]
     [IsTopologicalAddGroup G] [CompactSpace G] [T2Space G] [BorelSpace G]

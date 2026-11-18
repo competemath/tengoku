@@ -18,6 +18,9 @@ variable {W : Type*} [CommRing W] {σ : Type*} [Fintype σ] [DecidableEq σ]
 section Order
 
 omit [Fintype σ] [DecidableEq σ] in
+/--
+@isnad1 id=le.1h6v.s6.6c43bb200e58 from=translated src=- shape=31a50fcb vocab=018378db
+-/
 theorem le_order_finset_sum {ι : Type*} (s : Finset ι) (F : ι → MvPowerSeries σ W) (n : ℕ∞)
     (h : ∀ i ∈ s, n ≤ order (F i)) : n ≤ order (∑ i ∈ s, F i) := by
   classical
@@ -30,6 +33,9 @@ theorem le_order_finset_sum {ι : Type*} (s : Finset ι) (F : ι → MvPowerSeri
 
 omit [Fintype σ] [DecidableEq σ] in
 
+/--
+@isnad1 id=le.3h5v.s7.56c4a8b07f11 from=translated src=- shape=262d229d vocab=aaa2687b
+-/
 theorem le_order_pow_sub_pow {u v : MvPowerSeries σ W} (hu : (1 : ℕ∞) ≤ order u) (hv : (1 : ℕ∞) ≤ order v)
     (huv : (2 : ℕ∞) ≤ order (u - v)) (k : ℕ) : ((k + 1 : ℕ) : ℕ∞) ≤ order (u ^ k - v ^ k) := by
   rcases Nat.eq_zero_or_pos k with rfl | hk
@@ -54,6 +60,9 @@ theorem le_order_pow_sub_pow {u v : MvPowerSeries σ W} (hu : (1 : ℕ∞) ≤ o
 
 omit [Fintype σ] [DecidableEq σ] in
 
+/--
+@isnad1 id=le.3h7v.s8.526927f26237 from=translated src=- shape=66e35539 vocab=5bdf493b
+-/
 theorem le_order_prod_sub_prod {ι : Type*} (t : Finset ι) (A B : ι → MvPowerSeries σ W) (m : ι → ℕ)
     (hA : ∀ i ∈ t, ((m i : ℕ) : ℕ∞) ≤ order (A i)) (hB : ∀ i ∈ t, ((m i : ℕ) : ℕ∞) ≤ order (B i))
     (hAB : ∀ i ∈ t, ((m i + 1 : ℕ) : ℕ∞) ≤ order (A i - B i)) :
@@ -84,6 +93,9 @@ theorem le_order_prod_sub_prod {ι : Type*} (t : Finset ι) (A B : ι → MvPowe
 
 omit [DecidableEq σ] in
 
+/--
+@isnad1 id=eq.0h3v.s8.402942d1e77d from=translated src=- shape=7c7a6dc0 vocab=565793cd
+-/
 theorem prod_X_pow_eq_monomial (d : σ →₀ ℕ) :
     ∏ s, (X s : MvPowerSeries σ W) ^ (d s) = monomial d 1 := by
   classical
@@ -96,6 +108,9 @@ theorem prod_X_pow_eq_monomial (d : σ →₀ ℕ) :
       rw [Finset.prod_insert ha, Finset.sum_insert ha, ih, X_pow_eq, monomial_mul_monomial, one_mul]
   rw [key, Finsupp.univ_sum_single]
 
+/--
+@isnad1 id=le.2h4v.s9.21bf6c67056e from=translated src=- shape=e558c3fc vocab=0e91cf99
+-/
 theorem le_order_prod_pow_sub_monomial (g : σ → MvPowerSeries σ W) (hg0 : ∀ s, constantCoeff (g s) = 0)
     (hg1 : ∀ s, (2 : ℕ∞) ≤ order (g s - X s)) (d : σ →₀ ℕ) :
     ((d.degree + 1 : ℕ) : ℕ∞) ≤ order (∏ s, g s ^ (d s) - monomial d 1) := by
@@ -121,6 +136,9 @@ variable (g : σ → MvPowerSeries σ W) (hg0 : ∀ s, constantCoeff (g s) = 0)
 
 include hg0 hg1 in
 
+/--
+@isnad1 id=eq.3h5v.s9.1987dfb77fff from=translated src=- shape=2ff112aa vocab=589b7c3c
+-/
 theorem coeff_prod_pow (d e : σ →₀ ℕ) (hde : e.degree ≤ d.degree) :
     coeff e (∏ s, g s ^ (d s)) = if e = d then 1 else 0 := by
   have h := le_order_prod_pow_sub_monomial g hg0 hg1 d
@@ -131,6 +149,9 @@ theorem coeff_prod_pow (d e : σ →₀ ℕ) (hde : e.degree ≤ d.degree) :
 
 include hg0 hg1 in
 
+/--
+@isnad1 id=eq.4h6v.s9.fc38f4ac7660 from=translated src=- shape=85bea70d vocab=032220bf
+-/
 theorem coeff_subst_eq_coeff (F : MvPowerSeries σ W) (n : ℕ)
     (hF : ∀ d : σ →₀ ℕ, d.degree < n → coeff d F = 0) (e : σ →₀ ℕ) (he : e.degree ≤ n) :
     coeff e (subst g F) = coeff e F := by
@@ -156,11 +177,17 @@ theorem coeff_subst_eq_coeff (F : MvPowerSeries σ W) (n : ℕ)
 def T (F : MvPowerSeries σ W) : MvPowerSeries σ W := F - subst g F
 
 include hg0 in
+/--
+@isnad1 id=eq.1h5v.s7.0874df772dce from=translated src=- shape=0414be29 vocab=34eff08b
+-/
 theorem T_add (F G : MvPowerSeries σ W) : T g (F + G) = T g F + T g G := by
   simp only [T, subst_add (hasSubst_of_constantCoeff_zero hg0)]
   ring
 
 include hg0 in
+/--
+@isnad1 id=eq.1h6v.s7.e4002c7e1792 from=translated src=- shape=7effa418 vocab=ed85431d
+-/
 theorem T_sum {ι : Type*} (s : Finset ι) (F : ι → MvPowerSeries σ W) :
     T g (∑ i ∈ s, F i) = ∑ i ∈ s, T g (F i) := by
   classical
@@ -172,6 +199,9 @@ theorem T_sum {ι : Type*} (s : Finset ι) (F : ι → MvPowerSeries σ W) :
 
 include hg0 hg1 in
 
+/--
+@isnad1 id=eq.3h6v.s8.9568ab22296a from=translated src=- shape=bf6447ca vocab=99e7ecd4
+-/
 theorem coeff_iterate_T (k : ℕ) : ∀ (G : MvPowerSeries σ W) (e : σ →₀ ℕ), e.degree < k →
     coeff e ((T g)^[k] G) = 0 := by
   induction k with
@@ -183,6 +213,9 @@ theorem coeff_iterate_T (k : ℕ) : ∀ (G : MvPowerSeries σ W) (e : σ →₀ 
 
 include hg0 hg1 in
 
+/--
+@isnad1 id=eq.3h4v.s7.6da36ba7a52a from=translated src=- shape=8e2a40a6 vocab=07b322be
+-/
 theorem subst_injective_aux (F : MvPowerSeries σ W) (hF : subst g F = 0) : F = 0 := by
   have hT : T g F = F := by rw [T, hF, sub_zero]
   ext e
@@ -192,12 +225,18 @@ theorem subst_injective_aux (F : MvPowerSeries σ W) (hF : subst g F = 0) : F = 
 def psi (G : MvPowerSeries σ W) : MvPowerSeries σ W :=
   fun e => ∑ k ∈ Finset.range (e.degree + 1), coeff e ((T g)^[k] G)
 
+/--
+@isnad1 id=eq.0h5v.s9.2443a095b1cb from=translated src=- shape=a5187bc3 vocab=4f10f9cb
+-/
 theorem coeff_psi (G : MvPowerSeries σ W) (e : σ →₀ ℕ) :
     coeff e (psi g G) = ∑ k ∈ Finset.range (e.degree + 1), coeff e ((T g)^[k] G) := rfl
 
 def S (G : MvPowerSeries σ W) (m : ℕ) : MvPowerSeries σ W := ∑ k ∈ Finset.range (m + 1), (T g)^[k] G
 
 include hg0 hg1 in
+/--
+@isnad1 id=eq.3h6v.s9.4fa68905cb3c from=translated src=- shape=0684b05d vocab=486843eb
+-/
 theorem coeff_psi_eq_coeff_S (G : MvPowerSeries σ W) (m : ℕ) (e : σ →₀ ℕ) (he : e.degree ≤ m) :
     coeff e (psi g G) = coeff e (S g G m) := by
   rw [coeff_psi, S, map_sum]
@@ -209,6 +248,9 @@ theorem coeff_psi_eq_coeff_S (G : MvPowerSeries σ W) (m : ℕ) (e : σ →₀ �
 
 include hg0 in
 
+/--
+@isnad1 id=eq.1h5v.s7.5dc1f5542334 from=translated src=- shape=bc9ca5b3 vocab=4606ee67
+-/
 theorem subst_S (G : MvPowerSeries σ W) (m : ℕ) : subst g (S g G m) = G - (T g)^[m + 1] G := by
   have e1 : subst g (S g G m) = S g G m - T g (S g G m) := by rw [T]; ring
   rw [e1, S, T_sum g hg0]
@@ -221,6 +263,9 @@ theorem subst_S (G : MvPowerSeries σ W) (m : ℕ) : subst g (S g G m) = G - (T 
 
 include hg0 hg1 in
 
+/--
+@isnad1 id=eq.2h4v.s7.f741ee6165f0 from=translated src=- shape=6040ced9 vocab=17d6feca
+-/
 theorem subst_psi (G : MvPowerSeries σ W) : subst g (psi g G) = G := by
   ext e
   set m := e.degree with hm
@@ -234,6 +279,9 @@ theorem subst_psi (G : MvPowerSeries σ W) : subst g (psi g G) = G := by
 
 include hg0 hg1 in
 
+/--
+@isnad1 id=bijectiv.2h3v.s8.ffd3df204218 from=translated src=- shape=904f6c00 vocab=a164e3cc
+-/
 theorem bijective_substAlgHom : Function.Bijective (substAlgHom (hasSubst_of_constantCoeff_zero hg0) :
     MvPowerSeries σ W →ₐ[W] MvPowerSeries σ W) := by
   rw [coe_substAlgHom]
@@ -251,6 +299,9 @@ end Unipotent
 section Linear
 
 omit [Fintype σ] [DecidableEq σ] in
+/--
+@isnad1 id=eq.3h5v.s8.72ab154549b5 from=translated src=- shape=bb841811 vocab=83baef77
+-/
 theorem substAlgHom_congr {a b : σ → MvPowerSeries σ W} (ha : HasSubst a) (hb : HasSubst b) (h : a = b)
     (F : MvPowerSeries σ W) : substAlgHom ha F = substAlgHom hb F := by
   subst h
@@ -259,37 +310,61 @@ theorem substAlgHom_congr {a b : σ → MvPowerSeries σ W} (ha : HasSubst a) (h
 def lin (M : Matrix σ σ W) : σ → MvPowerSeries σ W := fun i => ∑ j, M i j • (X j : MvPowerSeries σ W)
 
 omit [DecidableEq σ] in
+/--
+@isnad1 id=eq.0h4v.s6.fbffec0ed491 from=translated src=- shape=98f96a69 vocab=5aca6fa8
+-/
 theorem lin_apply (M : Matrix σ σ W) (i : σ) : lin M i = ∑ j, M i j • (X j : MvPowerSeries σ W) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.90c280898422 from=translated src=- shape=bbf873d5 vocab=38e44ce2
+-/
 theorem constantCoeff_lin (M : Matrix σ σ W) (i : σ) : constantCoeff (lin M i) = 0 := by
   rw [← coeff_zero_eq_constantCoeff_apply, lin_apply, map_sum]
   refine Finset.sum_eq_zero fun j _ => ?_
   rw [coeff_smul, coeff_X, ite_eq_right (Ne.symm (Finsupp.single_ne_zero.mpr one_ne_zero)), mul_zero]
 
+/--
+@isnad1 id=hassubst.0h3v.s4.8fc55fa522a6 from=translated src=- shape=1c88bcee vocab=f278fc3a
+-/
 theorem hasSubst_lin (M : Matrix σ σ W) : HasSubst (lin M) := hasSubst_of_constantCoeff_zero (constantCoeff_lin M)
 
 def φL (M : Matrix σ σ W) : MvPowerSeries σ W →ₐ[W] MvPowerSeries σ W := substAlgHom (hasSubst_lin M)
 
+/--
+@isnad1 id=eq.0h4v.s7.5befdb84abfe from=translated src=- shape=ababea9d vocab=38452e17
+-/
 theorem φL_X (M : Matrix σ σ W) (i : σ) : φL M (X i) = lin M i := by
   rw [φL, substAlgHom_X]
 
+/--
+@isnad1 id=eq.0h5v.s7.8b041baf194e from=translated src=- shape=5ed51973 vocab=668d341f
+-/
 theorem φL_lin (M N : Matrix σ σ W) (i : σ) : φL N (lin M i) = lin (M * N) i := by
   simp only [lin_apply, map_sum, map_smul, φL_X]
   simp only [lin_apply, Finset.smul_sum, smul_smul, Matrix.mul_apply, Finset.sum_smul]
   rw [Finset.sum_comm]
 
+/--
+@isnad1 id=eq.0h5v.s8.3caabfc89cbd from=translated src=- shape=1acedb30 vocab=eef8db2d
+-/
 theorem φL_comp (M N : Matrix σ σ W) (F : MvPowerSeries σ W) : φL N (φL M F) = φL (M * N) F := by
   rw [φL, φL, substAlgHom_comp_substAlgHom_apply]
   refine substAlgHom_congr _ _ ?_ F
   funext i
   exact φL_lin M N i
 
+/--
+@isnad1 id=eq.0h2v.s6.843eecea4316 from=translated src=- shape=fcb16acc vocab=7d1332fd
+-/
 theorem lin_one : lin (1 : Matrix σ σ W) = fun s => (X s : MvPowerSeries σ W) := by
   funext i
   rw [lin_apply]
   simp only [Matrix.one_apply, ite_smul, one_smul, zero_smul]
   rw [Finset.sum_ite_eq Finset.univ i (fun j => (X j : MvPowerSeries σ W)), ite_eq_left (Finset.mem_univ i)]
 
+/--
+@isnad1 id=eq.0h3v.s7.9fd5f5f24c44 from=translated src=- shape=cf5408d8 vocab=309809f2
+-/
 theorem φL_one (F : MvPowerSeries σ W) : φL (1 : Matrix σ σ W) F = F := by
   rw [φL, substAlgHom_congr (hasSubst_lin 1) HasSubst.X lin_one F]
   change (⇑(substAlgHom HasSubst.X)) F = F
@@ -300,6 +375,9 @@ def linEquiv (M : Matrix σ σ W) (hM : IsUnit M.det) : MvPowerSeries σ W ≃�
     (AlgHom.ext fun F => by rw [AlgHom.comp_apply, φL_comp, Matrix.nonsing_inv_mul _ hM, φL_one]; rfl)
     (AlgHom.ext fun F => by rw [AlgHom.comp_apply, φL_comp, Matrix.mul_nonsing_inv _ hM, φL_one]; rfl)
 
+/--
+@isnad1 id=eq.1h4v.s7.c9668b4c0e58 from=translated src=- shape=1c1b66b5 vocab=aecd5650
+-/
 theorem linEquiv_X (M : Matrix σ σ W) (hM : IsUnit M.det) (i : σ) : linEquiv M hM (X i) = lin M i :=
   φL_X M i
 
@@ -308,12 +386,18 @@ end Linear
 section Main
 
 omit [Fintype σ] [DecidableEq σ] in
+/--
+@isnad1 id=ex.1h2v.s7.744e2e49167b from=translated src=- shape=bdf8b0dd vocab=dbf5d1eb
+-/
 theorem exists_single_of_degree_eq_one (d : σ →₀ ℕ) (h : d.degree = 1) : ∃ k, d = Finsupp.single k 1 := by
   have hd : d ∈ {d : σ →₀ ℕ | d.degree = 1} := h
   rw [← Finsupp.range_single_one] at hd
   obtain ⟨k, hk⟩ := hd
   exact ⟨k, hk.symm⟩
 
+/--
+@isnad1 id=ex.2h3v.s9.5a4856d1418d from=translated src=- shape=ced5379f vocab=5cc3ea78
+-/
 theorem exists_algEquiv (f : σ → MvPowerSeries σ W) (h0 : ∀ i, constantCoeff (f i) = 0)
     (h1 : IsUnit (Matrix.det (Matrix.of fun i j : σ => coeff (Finsupp.single j 1) (f i)))) :
     ∃ e : MvPowerSeries σ W ≃ₐ[W] MvPowerSeries σ W, ∀ i, e (X i) = f i := by
@@ -368,6 +452,9 @@ end FormalIFT
 
 end
 
+/--
+@isnad1 id=ex.2h2v.s10.2b8d1d4a2381 from=translated src=- shape=87208842 vocab=16967e71
+-/
 theorem solution
     {W : Type*} [CommRing W] (f : Fin 2 → MvPowerSeries (Fin 2) W)
     (h0 : ∀ i, MvPowerSeries.constantCoeff (f i) = 0)

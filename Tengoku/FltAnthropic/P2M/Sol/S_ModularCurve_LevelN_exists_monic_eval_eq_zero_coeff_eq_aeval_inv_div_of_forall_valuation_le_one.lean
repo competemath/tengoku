@@ -21,6 +21,9 @@ section Val
 variable {k L Γ₀ : Type*} [Field k] [Field L] [Algebra k L]
   [LinearOrderedCommGroupWithZero Γ₀] (v : Valuation L Γ₀)
 
+/--
+@isnad1 id=le.2h6v.s8.f3c0c8fdaf3b from=translated src=- shape=98f78d2b vocab=9e249cc2
+-/
 theorem val_aeval_le_one (hk : ∀ a : k, v (algebraMap k L a) ≤ 1) {T : L} (hT : v T ≤ 1)
     (p : k[X]) : v (aeval T p) ≤ 1 := by
   induction p using Polynomial.induction_on' with
@@ -29,6 +32,9 @@ theorem val_aeval_le_one (hk : ∀ a : k, v (algebraMap k L a) ≤ 1) {T : L} (h
     rw [aeval_monomial, map_mul, map_pow]
     exact mul_le_one' (hk a) (pow_le_one' hT n)
 
+/--
+@isnad1 id=eq.4h6v.s9.591d79dfa30c from=translated src=- shape=607d2361 vocab=46de9aec
+-/
 theorem val_aeval_eq_one (hk : ∀ a : k, v (algebraMap k L a) ≤ 1)
     (hk1 : ∀ a : k, a ≠ 0 → v (algebraMap k L a) = 1) {T : L} (hT : v T < 1)
     {p : k[X]} (hp : p.coeff 0 ≠ 0) : v (aeval T p) = 1 := by
@@ -40,6 +46,9 @@ theorem val_aeval_eq_one (hk : ∀ a : k, v (algebraMap k L a) ≤ 1)
   · rw [hk1 _ hp, map_mul]
     exact mul_lt_one_of_lt_of_le hT (val_aeval_le_one v hk hT.le _)
 
+/--
+@isnad1 id=lt.3h6v.s8.9824857a775b from=translated src=- shape=fee7602e vocab=46de9aec
+-/
 theorem val_aeval_lt_one (hk : ∀ a : k, v (algebraMap k L a) ≤ 1) {T : L} (hT : v T < 1)
     {r : k[X]} (hr : r.coeff 0 = 0) : v (aeval T r) < 1 := by
   have hdecomp : aeval T r = T * aeval T r.divX := by
@@ -54,6 +63,9 @@ section Reduce
 
 variable {k K : Type*} [Field k] [Field K] [Algebra k K]
 
+/--
+@isnad1 id=ex.2h6v.s9.e9eca3e91969 from=translated src=- shape=41adb0bf vocab=42257142
+-/
 theorem exists_aeval_div_aeval_eq (t : K) (ht : t ≠ 0) :
     ∀ (n : ℕ) (p r : k[X]), r.natDegree ≤ n →
       ∃ p' r' : k[X], aeval t p / aeval t r = aeval t p' / aeval t r' ∧
@@ -90,6 +102,9 @@ end Reduce
 
 end N3Prep
 
+/--
+@isnad1 id=ex.3h4v.s12.8b38ae04d63d from=translated src=- shape=af5820ad vocab=a3110a73
+-/
 theorem valinf_draft (M : ℕ) [NeZero M]
     (K : Type*) [Field K] [Algebra ℂ K] [Algebra (ModularCurve.LevelN.ring M) K]
     [IsScalarTower ℂ (ModularCurve.LevelN.ring M) K] [IsFractionRing (ModularCurve.LevelN.ring M) K]
@@ -174,6 +189,9 @@ theorem valinf_draft (M : ℕ) [NeZero M]
     · exact ⟨p, r, hr0, hc₀⟩
   · exact ⟨p, r, hr, hc₀⟩
 
+/--
+@isnad1 id=ex.1h7v.s10.0929f5253723 from=translated src=- shape=ce840f53 vocab=a4fd07be
+-/
 theorem N3Prep.exists_monic_eval_eq_zero_coeff_mem_fixedField
     {F K L : Type*} [Field F] [Field K] [Algebra F K] [Field L] [Algebra F L]
     (H : Subgroup (K ≃ₐ[F] K)) [Finite H] (z : K) (E : K →ₐ[F] L) (S : Subring L)
@@ -209,6 +227,9 @@ theorem N3Prep.exists_monic_eval_eq_zero_coeff_mem_fixedField
     rw [h1, Polynomial.coeff_map]
     exact (Q.coeff i).2
 
+/--
+@isnad1 id=ex.4h5v.s12.a7e6255765fe from=translated src=- shape=46273f52 vocab=e8439d05
+-/
 theorem solution
     (M : ℕ) [NeZero M]
     (K : Type*) [Field K] [Algebra ℂ K] [Algebra (ModularCurve.LevelN.ring M) K]

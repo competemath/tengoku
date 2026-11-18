@@ -8,6 +8,9 @@ namespace P2MW.S_ModularCurve_card_roots_fibrePoly_of_monic
 
 open Polynomial ModularCurve
 
+/--
+@isnad1 id=eq.1h3v.s5.54fc82d40f4f from=translated src=- shape=624d6bd2 vocab=00e2b483
+-/
 theorem solution {K : Type*} [Field K] [IsAlgClosed K]
     {Φ : Polynomial (Polynomial ℤ)} (hΦ : Φ.Monic) (a : K) :
     Multiset.card (fibrePoly Φ a).roots = Φ.natDegree := by

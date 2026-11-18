@@ -18,6 +18,9 @@ open _root_.ModularCurve
 
 def h (x : ℕ × ℕ) : ℕ := (x.2 / Nat.gcd x.1 x.2) * Nat.totient (Nat.gcd x.1 x.2)
 
+/--
+@isnad1 id=eq.0h2v.s5.9754f32350e0 from=translated src=- shape=876234ff vocab=5403c107
+-/
 theorem card_filter_coprime_range_mul (g m : ℕ) :
     ((range (g * m)).filter (fun b => Nat.Coprime g b)).card = m * Nat.totient g := by
   induction m with
@@ -33,6 +36,9 @@ theorem card_filter_coprime_range_mul (g m : ℕ) :
     rw [show g * m + k = k + m * g by ring]
     exact Iff.of_eq (hper k)
 
+/--
+@isnad1 id=eq.0h2v.s4.b02675c6ffc1 from=translated src=- shape=53b8944a vocab=932f3bd5
+-/
 theorem card_fibre (a d : ℕ) :
     ((range d).filter (fun b => Nat.Coprime (Nat.gcd a d) b)).card = h (a, d) := by
   set g := Nat.gcd a d with hg
@@ -47,9 +53,15 @@ theorem card_fibre (a d : ℕ) :
     simp only
     rw [← hg, hm, Nat.mul_div_cancel_left m hgpos]
 
+/--
+@isnad1 id=eq.0h3v.s4.55f1786ae22c from=translated src=- shape=cc47edfb vocab=728c9787
+-/
 theorem gcd_rotate (a b d : ℕ) : Nat.gcd a (Nat.gcd b d) = Nat.gcd (Nat.gcd a d) b := by
   rw [Nat.gcd_comm b d, ← Nat.gcd_assoc]
 
+/--
+@isnad1 id=eq.1h1v.s5.36f801db5bb5 from=translated src=- shape=5b9fc11e vocab=4ce1fc6a
+-/
 theorem card_primCosetReps_eq_sum (N : ℕ) (hN : N ≠ 0) :
     (ModularCurve.primCosetReps N).card = ∑ x ∈ N.divisorsAntidiagonal, h x := by
   classical
@@ -74,6 +86,9 @@ theorem card_primCosetReps_eq_sum (N : ℕ) (hN : N ≠ 0) :
   refine Finset.sum_congr rfl (fun x _ => ?_)
   exact card_fibre x.1 x.2
 
+/--
+@isnad1 id=eq.2h3v.s7.9c399b5d61a8 from=translated src=- shape=b747adfc vocab=d029fcd1
+-/
 theorem sum_divisorsAntidiagonal_mul_of_coprime {f : ℕ × ℕ → ℕ}
     (hf : ∀ a₁ d₁ a₂ d₂ : ℕ, Nat.Coprime (a₁ * d₁) (a₂ * d₂) →
       f (a₁ * a₂, d₁ * d₂) = f (a₁, d₁) * f (a₂, d₂))
@@ -132,6 +147,9 @@ theorem sum_divisorsAntidiagonal_mul_of_coprime {f : ℕ × ℕ → ℕ}
     simp only
     rw [hf a₁ d₁ a₂ d₂ (by rw [h₁, h₂]; exact hmn)]
 
+/--
+@isnad1 id=eq.1h4v.s6.6f1ebc9a02f4 from=translated src=- shape=ebd06128 vocab=6292ba4c
+-/
 theorem h_mul (a₁ d₁ a₂ d₂ : ℕ) (hcop : Nat.Coprime (a₁ * d₁) (a₂ * d₂)) :
     h (a₁ * a₂, d₁ * d₂) = h (a₁, d₁) * h (a₂, d₂) := by
   have ha₁a₂ : Nat.Coprime a₁ a₂ :=
@@ -160,8 +178,14 @@ theorem h_mul (a₁ d₁ a₂ d₂ : ℕ) (hcop : Nat.Coprime (a₁ * d₁) (a�
 def G : ArithmeticFunction ℕ :=
   ⟨fun n => ∑ x ∈ n.divisorsAntidiagonal, h x, by simp⟩
 
+/--
+@isnad1 id=eq.0h1v.s5.24be484da765 from=translated src=- shape=f4026d55 vocab=3751de09
+-/
 theorem G_apply (n : ℕ) : G n = ∑ x ∈ n.divisorsAntidiagonal, h x := rfl
 
+/--
+@isnad1 id=ismultip.0h0v.s2.de0b55cb120a from=translated src=- shape=25b03439 vocab=876ba459
+-/
 theorem isMultiplicative_G : G.IsMultiplicative := by
   refine ⟨?_, ?_⟩
   · rw [G_apply]
@@ -170,6 +194,9 @@ theorem isMultiplicative_G : G.IsMultiplicative := by
     rw [G_apply, G_apply, G_apply]
     exact sum_divisorsAntidiagonal_mul_of_coprime h_mul hmn
 
+/--
+@isnad1 id=eq.3h3v.s6.395866d1b776 from=translated src=- shape=ead3f742 vocab=3cda360e
+-/
 theorem h_prime_pow {p : ℕ} (hp : p.Prime) (i j : ℕ) (hi : 0 < i) (hj : 0 < j) :
     h (p ^ i, p ^ j) + p ^ (j - 1) = p ^ j := by
   simp only [h]
@@ -194,12 +221,21 @@ theorem h_prime_pow {p : ℕ} (hp : p.Prime) (i j : ℕ) (hi : 0 < i) (hj : 0 < 
       _ = p ^ (j - 1) * p := by rw [Nat.sub_add_cancel hp1]
       _ = p ^ j := by rw [← pow_succ]; congr 1; omega
 
+/--
+@isnad1 id=eq.0h1v.s3.750cdd6ab64a from=translated src=- shape=f4c0fc42 vocab=7b3b26e4
+-/
 theorem h_one_left (d : ℕ) : h (1, d) = d := by
   simp [h]
 
+/--
+@isnad1 id=eq.0h1v.s4.892184935bcc from=translated src=- shape=70a1ef76 vocab=7b3b26e4
+-/
 theorem h_one_right (a : ℕ) : h (a, 1) = 1 := by
   simp [h]
 
+/--
+@isnad1 id=eq.3h3v.s6.cb5f67299a8e from=translated src=- shape=652ff5cb vocab=7279ac2a
+-/
 theorem sum_h_prime_pow_partial {p : ℕ} (hp : p.Prime) (k : ℕ) :
     ∀ J : ℕ, 1 ≤ J → J ≤ k → ∑ j ∈ range J, h (p ^ (k - j), p ^ j) = p ^ (J - 1) := by
   intro J hJ1 hJk
@@ -215,6 +251,9 @@ theorem sum_h_prime_pow_partial {p : ℕ} (hp : p.Prime) (k : ℕ) :
       rw [e]
       omega
 
+/--
+@isnad1 id=eq.2h2v.s6.d8778437056c from=translated src=- shape=618850cf vocab=957dffb8
+-/
 theorem G_prime_pow {p : ℕ} (hp : p.Prime) (k : ℕ) (hk : 0 < k) :
     G (p ^ k) = p ^ k + p ^ (k - 1) := by
   rw [G_apply, Nat.sum_divisorsAntidiagonal' (fun a d => h (a, d)), Nat.sum_divisors_prime_pow hp]
@@ -229,8 +268,14 @@ theorem G_prime_pow {p : ℕ} (hp : p.Prime) (k : ℕ) (hk : 0 < k) :
 def sqf : ArithmeticFunction ℕ :=
   ⟨fun n => if Squarefree n then 1 else 0, by simp [not_squarefree_zero]⟩
 
+/--
+@isnad1 id=eq.0h1v.s5.2f7ba6d37602 from=translated src=- shape=b4493b29 vocab=4602c577
+-/
 theorem sqf_apply (n : ℕ) : sqf n = if Squarefree n then 1 else 0 := rfl
 
+/--
+@isnad1 id=ismultip.0h0v.s2.185c967cfef3 from=translated src=- shape=25b03439 vocab=32762882
+-/
 theorem isMultiplicative_sqf : sqf.IsMultiplicative := by
   refine ⟨by simp [sqf_apply], ?_⟩
   intro m n hmn
@@ -240,9 +285,15 @@ theorem isMultiplicative_sqf : sqf.IsMultiplicative := by
 
 def Psi : ArithmeticFunction ℕ := sqf * ArithmeticFunction.id
 
+/--
+@isnad1 id=ismultip.0h0v.s2.670e0aa53267 from=translated src=- shape=25b03439 vocab=254ddd89
+-/
 theorem isMultiplicative_Psi : Psi.IsMultiplicative :=
   isMultiplicative_sqf.mul isMultiplicative_id
 
+/--
+@isnad1 id=eq.0h1v.s4.22efb242b5a1 from=translated src=- shape=5ff49266 vocab=53f79ecf
+-/
 theorem Psi_apply (n : ℕ) : Psi n = ModularCurve.dedekindPsi n := by
   rw [Psi, ArithmeticFunction.mul_apply, ModularCurve.dedekindPsi,
     Nat.sum_divisorsAntidiagonal (fun x y => sqf x * ArithmeticFunction.id y), Finset.sum_filter]
@@ -250,6 +301,9 @@ theorem Psi_apply (n : ℕ) : Psi n = ModularCurve.dedekindPsi n := by
   rw [sqf_apply, ArithmeticFunction.id_apply]
   split_ifs <;> simp
 
+/--
+@isnad1 id=eq.2h2v.s6.c77d981ce534 from=translated src=- shape=618850cf vocab=f065906c
+-/
 theorem Psi_prime_pow {p : ℕ} (hp : p.Prime) (k : ℕ) (hk : 0 < k) :
     Psi (p ^ k) = p ^ k + p ^ (k - 1) := by
   rw [Psi_apply, ModularCurve.dedekindPsi, Finset.sum_filter, Nat.sum_divisors_prime_pow hp]
@@ -277,6 +331,9 @@ theorem Psi_prime_pow {p : ℕ} (hp : p.Prime) (k : ℕ) (hk : 0 < k) :
   rw [h0, h1]
   simp
 
+/--
+@isnad1 id=eq.0h0v.s3.640b07287e1e from=translated src=- shape=836e6cbb vocab=accf8d24
+-/
 theorem G_eq_Psi : G = Psi := by
   rw [ArithmeticFunction.IsMultiplicative.eq_iff_eq_on_prime_powers G isMultiplicative_G Psi isMultiplicative_Psi]
   intro p i hp
@@ -288,6 +345,9 @@ end ModularCurve.PrimCosetCount
 
 open ModularCurve.PrimCosetCount in
 
+/--
+@isnad1 id=eq.1h1v.s4.448a3c73951f from=translated src=- shape=0d930171 vocab=e9ba1ed4
+-/
 theorem solution (N : ℕ) (hN : N ≠ 0) :
     (ModularCurve.primCosetReps N).card = ModularCurve.dedekindPsi N := by
   rw [card_primCosetReps_eq_sum N hN, ← G_apply, G_eq_Psi, Psi_apply]

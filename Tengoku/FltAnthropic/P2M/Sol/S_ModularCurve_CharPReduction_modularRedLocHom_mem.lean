@@ -166,6 +166,9 @@ end ModularCurve
 
 end
 
+/--
+@isnad1 id=mem.0h6v.s10.6bd18538322a from=translated src=- shape=e8e2aa61 vocab=b7aedf7d
+-/
 theorem solution {L : Type*} [CommRing L] (A : Subring L)
     {k : Type*} [Field k] (red : A →+* k) (N : ℕ) [NeZero N]
     (f : modularLocalized N A red) :

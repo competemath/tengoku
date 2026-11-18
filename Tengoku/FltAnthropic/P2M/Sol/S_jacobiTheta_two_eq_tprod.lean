@@ -21,14 +21,23 @@ def qfact (Q : ℂ) (m : ℕ) : ℂ := ∏ i ∈ Finset.range m, (1 - Q ^ (i + 1
 def qbinom (Q : ℂ) (m k : ℕ) : ℂ :=
   if k ≤ m then qfact Q m / (qfact Q k * qfact Q (m - k)) else 0
 
+/--
+@isnad1 id=eq.0h1v.s4.786129bc97df from=translated src=- shape=0e0c2bda vocab=84b377cf
+-/
 @[scoped simp] theorem qfact_zero (Q : ℂ) : qfact Q 0 = 1 := by
   unfold qfact
   exact Finset.prod_range_zero _
 
+/--
+@isnad1 id=eq.0h2v.s6.facaab03faf4 from=translated src=- shape=ab854852 vocab=d0506d1b
+-/
 theorem qfact_succ (Q : ℂ) (m : ℕ) : qfact Q (m + 1) = qfact Q m * (1 - Q ^ (m + 1)) := by
   unfold qfact
   exact Finset.prod_range_succ _ m
 
+/--
+@isnad1 id=ne.1h2v.s6.779cb1f478c7 from=translated src=- shape=6372f60e vocab=a1104b8f
+-/
 theorem one_sub_pow_ne_zero {Q : ℂ} (hQ : ‖Q‖ < 1) (i : ℕ) : 1 - Q ^ (i + 1) ≠ 0 := by
   intro h
   have h1 : Q ^ (i + 1) = 1 := by
@@ -40,24 +49,39 @@ theorem one_sub_pow_ne_zero {Q : ℂ} (hQ : ‖Q‖ < 1) (i : ℕ) : 1 - Q ^ (i 
   rw [h1, norm_one] at h2
   exact lt_irrefl 1 h2
 
+/--
+@isnad1 id=ne.1h2v.s4.a8d6f9216ff4 from=translated src=- shape=4d629d87 vocab=c594990e
+-/
 theorem qfact_ne_zero {Q : ℂ} (hQ : ‖Q‖ < 1) (m : ℕ) : qfact Q m ≠ 0 := by
   unfold qfact
   rw [Finset.prod_ne_zero_iff]
   exact fun i _ => one_sub_pow_ne_zero hQ i
 
+/--
+@isnad1 id=eq.1h2v.s5.8b8214f73d1a from=translated src=- shape=05a1f74b vocab=7b646d8c
+-/
 theorem qbinom_zero_right {Q : ℂ} (hQ : ‖Q‖ < 1) (m : ℕ) : qbinom Q m 0 = 1 := by
   unfold qbinom
   rw [ite_eq_left (Nat.zero_le m), qfact_zero, one_mul, Nat.sub_zero,
     div_self (qfact_ne_zero hQ m)]
 
+/--
+@isnad1 id=eq.1h2v.s4.257122261de4 from=translated src=- shape=b77b69df vocab=7b646d8c
+-/
 theorem qbinom_self {Q : ℂ} (hQ : ‖Q‖ < 1) (m : ℕ) : qbinom Q m m = 1 := by
   unfold qbinom
   rw [ite_eq_left le_rfl, Nat.sub_self, qfact_zero, mul_one, div_self (qfact_ne_zero hQ m)]
 
+/--
+@isnad1 id=eq.1h3v.s4.bb4364f81037 from=translated src=- shape=b51ca55a vocab=f86e2000
+-/
 theorem qbinom_of_gt (Q : ℂ) {m k : ℕ} (h : m < k) : qbinom Q m k = 0 := by
   unfold qbinom
   rw [ite_eq_right (not_le.mpr h)]
 
+/--
+@isnad1 id=eq.1h3v.s6.686634189700 from=translated src=- shape=cc640454 vocab=a2644a0e
+-/
 theorem qbinom_succ_succ {Q : ℂ} (hQ : ‖Q‖ < 1) (m k : ℕ) :
     qbinom Q (m + 1) (k + 1) = qbinom Q m (k + 1) + Q ^ (m - k) * qbinom Q m k := by
   rcases lt_trichotomy k m with hkm | rfl | hkm
@@ -92,6 +116,9 @@ theorem qbinom_succ_succ {Q : ℂ} (hQ : ‖Q‖ < 1) (m k : ℕ) :
     rw [qbinom_of_gt Q (by omega : m < k + 1), qbinom_of_gt Q (by omega : m + 1 < k + 1),
       qbinom_of_gt Q hkm, mul_zero, add_zero]
 
+/--
+@isnad1 id=eq.1h3v.s7.2215fe62168e from=translated src=- shape=275770e1 vocab=0fc6dd8f
+-/
 theorem gauss_q {Q : ℂ} (hQ : ‖Q‖ < 1) (t : ℂ) (m : ℕ) :
     ∏ j ∈ Finset.range m, (1 + t * Q ^ j)
       = ∑ k ∈ Finset.range (m + 1), qbinom Q m k * Q ^ (k * (k - 1) / 2) * t ^ k := by
@@ -166,6 +193,9 @@ private theorem two_dvd_mul_pred (k : ℕ) : 2 ∣ k * (k - 1) := by
     rw [mul_comm]
     exact (Nat.even_mul_succ_self k').two_dvd
 
+/--
+@isnad1 id=eq.3h3v.s8.1dca1e39c55b from=translated src=- shape=83021fbf vocab=58cdb8da
+-/
 theorem finite_jtp {q : ℂ} (hq0 : q ≠ 0) (hq : ‖q‖ < 1) {x : ℂ} (hx : x ≠ 0) (N : ℕ) :
     ∏ j ∈ Finset.range N, ((1 + x * q ^ (2 * j + 1)) * (1 + x⁻¹ * q ^ (2 * j + 1)))
       = ∑ k ∈ Finset.range (2 * N + 1),
@@ -288,10 +318,16 @@ open JTPEngine (qfact)
 
 variable {Q : ℂ}
 
+/--
+@isnad1 id=lt.1h2v.s5.aab2120a2b23 from=translated src=- shape=051c2d59 vocab=cecca3b4
+-/
 theorem norm_pow_succ_lt_one (hQ : ‖Q‖ < 1) (i : ℕ) : ‖Q ^ (i + 1)‖ < 1 := by
   rw [norm_pow]
   exact pow_lt_one₀ (norm_nonneg _) hQ (Nat.succ_ne_zero i)
 
+/--
+@isnad1 id=ne.1h2v.s6.779cb1f478c7 from=translated src=- shape=6372f60e vocab=a1104b8f
+-/
 theorem one_sub_pow_ne_zero (hQ : ‖Q‖ < 1) (i : ℕ) : (1 : ℂ) - Q ^ (i + 1) ≠ 0 := by
   intro h
   have h1 : Q ^ (i + 1) = 1 := (sub_eq_zero.mp h).symm
@@ -299,39 +335,66 @@ theorem one_sub_pow_ne_zero (hQ : ‖Q‖ < 1) (i : ℕ) : (1 : ℂ) - Q ^ (i + 
   rw [h1, norm_one] at h2
   exact lt_irrefl _ h2
 
+/--
+@isnad1 id=summable.1h1v.s5.1dae68461673 from=translated src=- shape=b1d41646 vocab=668d3f04
+-/
 theorem summable_norm_neg_pow (hQ : ‖Q‖ < 1) : Summable fun n : ℕ => ‖-Q ^ (n + 1)‖ := by
   have h : ∀ n : ℕ, ‖-Q ^ (n + 1)‖ = ‖Q‖ ^ n * ‖Q‖ := fun n => by
     rw [norm_neg, norm_pow, pow_succ]
   simp only [h]
   exact (summable_geometric_of_lt_one (norm_nonneg _) hQ).mul_right _
 
+/--
+@isnad1 id=summable.1h1v.s5.1e5eeb5f6743 from=translated src=- shape=0ebfd3cd vocab=8369d81c
+-/
 theorem summable_pow_succ (hQ : ‖Q‖ < 1) : Summable fun n : ℕ => ‖Q‖ ^ (n + 1) := by
   simp only [pow_succ]
   exact (summable_geometric_of_lt_one (norm_nonneg _) hQ).mul_right _
 
+/--
+@isnad1 id=lt.1h2v.s5.393e47dce763 from=translated src=- shape=73177fca vocab=cecca3b4
+-/
 theorem pow_succ_lt_one (hQ : ‖Q‖ < 1) (i : ℕ) : ‖Q‖ ^ (i + 1) < 1 :=
   pow_lt_one₀ (norm_nonneg _) hQ (Nat.succ_ne_zero i)
 
+/--
+@isnad1 id=multipli.1h1v.s6.43f621c6dca2 from=translated src=- shape=7ad8a1df vocab=2dfc912d
+-/
 theorem multipliable_one_sub_pow (hQ : ‖Q‖ < 1) : Multipliable fun n : ℕ => 1 - Q ^ (n + 1) :=
   (multipliable_one_add_of_summable (summable_norm_neg_pow hQ)).congr
     fun _ => (sub_eq_add_neg _ _).symm
 
+/--
+@isnad1 id=tendsto.1h1v.s6.52cbd0f9ac1f from=translated src=- shape=b716e07f vocab=59edf9dc
+-/
 theorem tendsto_qfact (hQ : ‖Q‖ < 1) :
     Tendsto (fun m => qfact Q m) atTop (𝓝 (∏' n : ℕ, (1 - Q ^ (n + 1)))) :=
   (multipliable_one_sub_pow hQ).tendsto_prod_tprod_nat
 
+/--
+@isnad1 id=ne.1h1v.s6.978d53a20145 from=translated src=- shape=567229e5 vocab=08ad4795
+-/
 theorem tprod_one_sub_pow_ne_zero (hQ : ‖Q‖ < 1) : (∏' n : ℕ, (1 - Q ^ (n + 1))) ≠ 0 := by
   have h := tprod_one_add_ne_zero_of_summable (f := fun n : ℕ => -Q ^ (n + 1))
     (fun i => by rw [← sub_eq_add_neg]; exact one_sub_pow_ne_zero hQ i) (summable_norm_neg_pow hQ)
   simpa only [← sub_eq_add_neg] using h
 
+/--
+@isnad1 id=summable.1h1v.s6.76906b83d371 from=translated src=- shape=1c3f3805 vocab=668d3f04
+-/
 theorem summable_norm_neg_pow_real (hQ : ‖Q‖ < 1) : Summable fun n : ℕ => ‖-(‖Q‖ ^ (n + 1))‖ := by
   simpa only [norm_neg, norm_pow, norm_norm] using summable_pow_succ hQ
 
+/--
+@isnad1 id=multipli.1h1v.s6.5acb27e91be7 from=translated src=- shape=0ec9a4a1 vocab=2dfc912d
+-/
 theorem multipliable_pfact (hQ : ‖Q‖ < 1) : Multipliable fun n : ℕ => (1 : ℝ) - ‖Q‖ ^ (n + 1) :=
   (multipliable_one_add_of_summable (summable_norm_neg_pow_real hQ)).congr
     fun _ => (sub_eq_add_neg _ _).symm
 
+/--
+@isnad1 id=lt.1h1v.s6.4361a3d97037 from=translated src=- shape=e0d9abea vocab=08ad4795
+-/
 theorem tprod_pfact_pos (hQ : ‖Q‖ < 1) : 0 < ∏' n : ℕ, ((1 : ℝ) - ‖Q‖ ^ (n + 1)) := by
   have hne : (∏' n : ℕ, ((1 : ℝ) + -(‖Q‖ ^ (n + 1)))) ≠ 0 :=
     tprod_one_add_ne_zero_of_summable (fun i => by
@@ -342,6 +405,9 @@ theorem tprod_pfact_pos (hQ : ‖Q‖ < 1) : 0 < ∏' n : ℕ, ((1 : ℝ) - ‖Q
       Finset.prod_nonneg fun i _ => (sub_pos.mpr (pow_succ_lt_one hQ i)).le
   exact lt_of_le_of_ne hge hne.symm
 
+/--
+@isnad1 id=le.1h2v.s6.39372e65d983 from=translated src=- shape=de1b6f4b vocab=75faa2cb
+-/
 theorem tprod_pfact_le (hQ : ‖Q‖ < 1) (m : ℕ) :
     (∏' n : ℕ, ((1 : ℝ) - ‖Q‖ ^ (n + 1))) ≤ ∏ i ∈ Finset.range m, (1 - ‖Q‖ ^ (i + 1)) := by
   have hanti : Antitone fun m : ℕ => ∏ i ∈ Finset.range m, ((1 : ℝ) - ‖Q‖ ^ (i + 1)) := by
@@ -352,6 +418,9 @@ theorem tprod_pfact_le (hQ : ‖Q‖ < 1) (m : ℕ) :
       (sub_le_self _ (pow_nonneg (norm_nonneg _) _))
   exact hanti.le_of_tendsto (multipliable_pfact hQ).tendsto_prod_tprod_nat m
 
+/--
+@isnad1 id=le.1h2v.s6.56f9edd5e101 from=translated src=- shape=24d44182 vocab=2f788b37
+-/
 theorem le_norm_qfact (hQ : ‖Q‖ < 1) (m : ℕ) :
     (∏' n : ℕ, ((1 : ℝ) - ‖Q‖ ^ (n + 1))) ≤ ‖qfact Q m‖ := by
   refine (tprod_pfact_le hQ m).trans ?_
@@ -360,6 +429,9 @@ theorem le_norm_qfact (hQ : ‖Q‖ < 1) (m : ℕ) :
   have h := norm_sub_norm_le (1 : ℂ) (Q ^ (i + 1))
   rwa [norm_one, norm_pow] at h
 
+/--
+@isnad1 id=le.1h2v.s6.d6e14edccff7 from=translated src=- shape=8a3fca43 vocab=7b2da18e
+-/
 theorem norm_qfact_le (hQ : ‖Q‖ < 1) (m : ℕ) :
     ‖qfact Q m‖ ≤ Real.exp (∑' n : ℕ, ‖Q‖ ^ (n + 1)) := by
   rw [qfact, norm_prod]
@@ -377,6 +449,9 @@ theorem norm_qfact_le (hQ : ‖Q‖ < 1) (m : ℕ) :
 def fam (c : ℕ → ℤ → ℂ) (t : ℤ → ℂ) (N : ℕ) (j : ℤ) : ℂ :=
   if -(N : ℤ) ≤ j ∧ j ≤ N then c N j * t j else 0
 
+/--
+@isnad1 id=eq.0h3v.s6.45926fd76191 from=translated src=- shape=662265ee vocab=909a89ca
+-/
 theorem sum_Icc_eq_tsum_fam (c : ℕ → ℤ → ℂ) (t : ℤ → ℂ) (N : ℕ) :
     ∑ j ∈ Finset.Icc (-(N : ℤ)) N, c N j * t j = ∑' j, fam c t N j := by
   rw [tsum_eq_sum (s := Finset.Icc (-(N : ℤ)) N)]
@@ -387,6 +462,9 @@ theorem sum_Icc_eq_tsum_fam (c : ℕ → ℤ → ℂ) (t : ℤ → ℂ) (N : ℕ
     rw [Finset.mem_Icc] at hj
     rw [fam, ite_eq_right hj]
 
+/--
+@isnad1 id=tendsto.3h3v.s8.6d2656b26c2e from=translated src=- shape=a92d254f vocab=891b7274
+-/
 theorem tendsto_sum_Icc (hQ : ‖Q‖ < 1) {t : ℤ → ℂ} (ht : Summable fun j => ‖t j‖)
     (c : ℕ → ℤ → ℂ)
     (hc : ∀ (N : ℕ) (j : ℤ), -(N : ℤ) ≤ j → j ≤ N →
@@ -440,6 +518,9 @@ theorem tendsto_sum_Icc (hQ : ‖Q‖ < 1) {t : ℤ → ℂ} (ht : Summable fun 
     · rw [fam, ite_eq_right h, norm_zero]
       exact mul_nonneg (div_nonneg hP0 (mul_pos he0 he0).le) (norm_nonneg _)
 
+/--
+@isnad1 id=tendsto.3h3v.s8.290fa9e402c5 from=translated src=- shape=6f2764a2 vocab=6ea3fad9
+-/
 theorem tendsto_sum_range (hQ : ‖Q‖ < 1) {t : ℤ → ℂ} (ht : Summable fun j => ‖t j‖)
     (d : ℕ → ℕ → ℂ)
     (hd : ∀ (N k : ℕ), k ≤ 2 * N → d N k = qfact Q (2 * N) / (qfact Q k * qfact Q (2 * N - k))) :
@@ -660,6 +741,9 @@ end JTPDEngine
 open scoped _root_.P2MW.S_jacobiTheta_two_eq_tprod.JTPEngine
 
 open JTPDEngine Finset Filter Topology in
+/--
+@isnad1 id=eq.1h2v.s8.bc8c5022b52c from=translated src=- shape=cea6a5ea vocab=f123f2cf
+-/
 theorem solution (z τ : ℂ) (hτ : 0 < τ.im) :
     jacobiTheta₂ z τ = ∏' n : ℕ,
       ((1 - Complex.exp (2 * π * I * (n + 1) * τ)) *

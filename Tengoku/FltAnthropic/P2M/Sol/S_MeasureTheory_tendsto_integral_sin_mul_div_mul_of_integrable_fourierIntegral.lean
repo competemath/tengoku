@@ -11,6 +11,9 @@ open MeasureTheory Real Filter Topology FourierTransform Complex
 
 namespace R1Dirichlet
 
+/--
+@isnad1 id=eq.2h2v.s7.0a5eb3ee4b57 from=translated src=- shape=32b4641c vocab=7817d7f7
+-/
 theorem setIntegral_fourierChar_Icc (a t : ℝ) (ha : 0 ≤ a) (ht : t ≠ 0) :
     ∫ u in Set.Icc (-a) a, ((𝐞 (-(t * u)) : Circle) : ℂ) =
       ((Real.sin (2 * π * a * t) / (π * t) : ℝ) : ℂ) := by
@@ -46,6 +49,9 @@ theorem setIntegral_fourierChar_Icc (a t : ℝ) (ha : 0 ≤ a) (ht : t ≠ 0) :
   push_cast
   field_simp
 
+/--
+@isnad1 id=eq.1h2v.s8.38a0a8123ab5 from=translated src=- shape=1ad8b1ed vocab=f9c3acda
+-/
 theorem setIntegral_fourier_Icc_eq (h : ℝ → ℂ) (hh : Integrable h) (a : ℝ) :
     ∫ u in Set.Icc (-a) a, 𝓕 h u =
       ∫ t, h t * ∫ u in Set.Icc (-a) a, ((𝐞 (-(t * u)) : Circle) : ℂ) := by
@@ -83,6 +89,9 @@ theorem setIntegral_fourier_Icc_eq (h : ℝ → ℂ) (hh : Integrable h) (a : �
   funext t
   rw [hR t, smul_eq_mul]
 
+/--
+@isnad1 id=eq.2h2v.s7.17215e0ce8e0 from=translated src=- shape=0224090e vocab=36d45f0f
+-/
 theorem setIntegral_fourier_Icc_eq_integral_sin (h : ℝ → ℂ) (hh : Integrable h) (a : ℝ)
     (ha : 0 ≤ a) :
     ∫ u in Set.Icc (-a) a, 𝓕 h u =
@@ -96,12 +105,18 @@ theorem setIntegral_fourier_Icc_eq_integral_sin (h : ℝ → ℂ) (hh : Integrab
   have ht' : t ≠ 0 := ht
   rw [setIntegral_fourierChar_Icc a t ha ht']
 
+/--
+@isnad1 id=eq.3h1v.s7.a1e55bab6fdd from=translated src=- shape=3213abfe vocab=b1699664
+-/
 theorem integral_fourier_eq (h : ℝ → ℂ) (hh : Integrable h) (hFh : Integrable (𝓕 h))
     (h0 : ContinuousAt h 0) : ∫ u, 𝓕 h u = h 0 := by
   have := hh.fourierInv_fourier_eq hFh h0
   rw [Real.fourierInv_eq] at this
   simpa using this
 
+/--
+@isnad1 id=tendsto.3h1v.s7.784240730343 from=translated src=- shape=0841474b vocab=7ad5beb9
+-/
 theorem main (h : ℝ → ℂ) (hh : Integrable h) (hFh : Integrable (𝓕 h)) (h0 : ContinuousAt h 0) :
     Tendsto (fun R : ℝ => ∫ t : ℝ, ((Real.sin (R * t) / t : ℝ) : ℂ) * h t) atTop
       (𝓝 ((π : ℂ) * h 0)) := by
@@ -145,6 +160,9 @@ theorem main (h : ℝ → ℂ) (hh : Integrable h) (hFh : Integrable (𝓕 h)) (
 
 end R1Dirichlet
 
+/--
+@isnad1 id=tendsto.3h1v.s7.784240730343 from=translated src=- shape=0841474b vocab=7ad5beb9
+-/
 theorem solution
     (h : ℝ → ℂ) (hh : MeasureTheory.Integrable h)
     (hFh : MeasureTheory.Integrable (𝓕 h)) (h0 : ContinuousAt h 0) :

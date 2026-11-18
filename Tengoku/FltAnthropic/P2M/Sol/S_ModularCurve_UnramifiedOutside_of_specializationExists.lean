@@ -7,6 +7,9 @@ namespace P2MW.S_ModularCurve_UnramifiedOutside_of_specializationExists
 
 open ModularCurve
 
+/--
+@isnad1 id=unramifi.1h5v.s8.e6d64c435643 from=translated src=- shape=0d3e7f3f vocab=ff2ce1a0
+-/
 theorem solution {K L : Type*} [Field K] [Field L] [Algebra K L] (N p : ℕ) (J : Type*)
     [AddCommGroup J] [Module ModularCurve.HeckeAlg J] [DistribMulAction (L ≃ₐ[K] L) J]
     [SMulCommClass (L ≃ₐ[K] L) ModularCurve.HeckeAlg J]

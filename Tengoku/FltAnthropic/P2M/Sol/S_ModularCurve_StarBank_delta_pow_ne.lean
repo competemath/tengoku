@@ -24,12 +24,18 @@ open _root_.ModularCurve
 local notation "𝓔[" K "]" =>
   HahnSeries.ofPowerSeries ℤ K (PowerSeries.map (Int.castRingHom K) etaProd)
 
+/--
+@isnad1 id=eq.0h3v.s9.e7ea2f5bcbe2 from=translated src=- shape=79cfe7bf vocab=70b23fe5
+-/
 theorem coeff_one_mul {R : Type*} [CommRing R] (φ ψ : PowerSeries R) :
     PowerSeries.coeff 1 (φ * ψ) =
       PowerSeries.coeff 0 φ * PowerSeries.coeff 1 ψ + PowerSeries.coeff 1 φ * PowerSeries.coeff 0 ψ := by
   rw [PowerSeries.coeff_mul, Finset.Nat.sum_antidiagonal_succ, Finset.Nat.antidiagonal_zero,
     Finset.sum_singleton]
 
+/--
+@isnad1 id=eq.0h0v.s6.1a40e294acc6 from=translated src=- shape=972ef9b2 vocab=7f803c97
+-/
 theorem coeff_one_etaProd : PowerSeries.coeff 1 etaProd = -1 := by
   have hmul := PowerSeries.WithPiTopology.multipliable_one_sub_X_pow ℤ
   have ht : Filter.Tendsto
@@ -64,15 +70,24 @@ theorem coeff_one_etaProd : PowerSeries.coeff 1 etaProd = -1 := by
     PowerSeries.coeff_X_pow_mul']
   simp
 
+/--
+@isnad1 id=eq.0h1v.s7.5669883c5d37 from=translated src=- shape=3f75c59f vocab=38a0d7d1
+-/
 theorem constantCoeff_etaProd_map (K : Type*) [CommRing K] :
     PowerSeries.constantCoeff (PowerSeries.map (Int.castRingHom K) etaProd) = 1 := by
   rw [← PowerSeries.coeff_zero_eq_constantCoeff_apply, PowerSeries.coeff_map,
     PowerSeries.coeff_zero_eq_constantCoeff_apply, constantCoeff_etaProd, map_one]
 
+/--
+@isnad1 id=eq.0h1v.s8.4d02314d8525 from=translated src=- shape=ff58e36b vocab=fd0eb0ce
+-/
 theorem coeff_one_etaProd_map (K : Type*) [CommRing K] :
     PowerSeries.coeff 1 (PowerSeries.map (Int.castRingHom K) etaProd) = -1 := by
   rw [PowerSeries.coeff_map, coeff_one_etaProd, map_neg, map_one]
 
+/--
+@isnad1 id=eq.2h3v.s8.c28ef7dad6ec from=translated src=- shape=854e013e vocab=e649733b
+-/
 theorem coeff_one_pow_of_shape {R : Type*} [CommRing R] (e : PowerSeries R)
     (h0 : PowerSeries.constantCoeff e = 1) (h1 : PowerSeries.coeff 1 e = -1) (N : ℕ) :
     PowerSeries.coeff 1 (e ^ N) = -(N : R) := by
@@ -84,6 +99,9 @@ theorem coeff_one_pow_of_shape {R : Type*} [CommRing R] (e : PowerSeries R)
     push_cast
     ring
 
+/--
+@isnad1 id=eq.0h2v.s8.8dd2aca22be2 from=translated src=- shape=de87b79e vocab=1bc6331a
+-/
 theorem coeff_one_etaC_pow (K : Type*) [CommRing K] (N : ℕ) :
     (𝓔[K] ^ N).coeff 1 = -(N : K) := by
   rw [← map_pow]
@@ -93,6 +111,9 @@ theorem coeff_one_etaC_pow (K : Type*) [CommRing K] (N : ℕ) :
   rw [h]
   exact coeff_one_pow_of_shape _ (constantCoeff_etaProd_map K) (coeff_one_etaProd_map K) N
 
+/--
+@isnad1 id=eq.0h4v.s8.e0ed444bd634 from=translated src=- shape=23929d0b vocab=c57ef02a
+-/
 theorem ofPowerSeries_map {R S : Type*} [CommRing R] [CommRing S] (f : R →+* S)
     (u : PowerSeries R) :
     (HahnSeries.ofPowerSeries ℤ R u).map f = HahnSeries.ofPowerSeries ℤ S (PowerSeries.map f u) := by
@@ -104,6 +125,9 @@ theorem ofPowerSeries_map {R S : Type*} [CommRing R] [CommRing S] (f : R →+* S
       PowerSeries.coeff_map]
   · rw [ofPowerSeries_coeff_of_neg _ hk, ofPowerSeries_coeff_of_neg _ hk, map_zero]
 
+/--
+@isnad1 id=eq.0h4v.s8.950266f77b74 from=translated src=- shape=ece44e1c vocab=edc7eb7d
+-/
 theorem map_intCast_pow_char_pow_eq_qExpand (K : Type*) [CommRing K] (ℓ : ℕ) [Fact ℓ.Prime]
     [CharP K ℓ] (s : LaurentSeries ℤ) (c : ℕ) :
     (s.map (Int.castRingHom K)) ^ (ℓ ^ c) = qExpand K (ℓ ^ c) (s.map (Int.castRingHom K)) := by
@@ -117,6 +141,9 @@ theorem map_intCast_pow_char_pow_eq_qExpand (K : Type*) [CommRing K] (ℓ : ℕ)
       _ = qExpand K (ℓ ^ (c + 1)) (s.map (Int.castRingHom K)) := by
           rw [ih, qExpand_qExpand, qExpand_congr (pow_succ' ℓ c).symm]
 
+/--
+@isnad1 id=eq.0h3v.s9.403fd88fba5a from=translated src=- shape=932e1fc8 vocab=1acf1da9
+-/
 theorem etaC_pow_char_pow (K : Type*) [CommRing K] (ℓ : ℕ) [Fact ℓ.Prime] [CharP K ℓ] (c : ℕ) :
     𝓔[K] ^ (ℓ ^ c) = qExpand K (ℓ ^ c) 𝓔[K] := by
   rw [← ofPowerSeries_map]
@@ -127,6 +154,9 @@ end ModularCurve.W1
 namespace ModularCurve export _root_.ModularCurve (qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_single qExpand_one_apply qExpand_congr qExpand_qExpand etaProd constantCoeff_etaProd ofPowerSeries_coeff_of_neg map_intCast_pow_char_eq_qExpand) namespace StarBank end ModularCurve.StarBank
 open scoped _root_.ModularCurve in
 
+/--
+@isnad1 id=ne.2h4v.s10.49aee52a4a1d from=translated src=- shape=55ba98ec vocab=de4f255d
+-/
 theorem ModularCurve.StarBank.etaProd_pow_ne (K : Type*) [CommRing K] {ℓ : ℕ} [Fact ℓ.Prime]
     [CharP K ℓ] (p : ℕ) [NeZero p] (hp : (p : K) ≠ 0) (hp1 : p ≠ 1) (γ : K) :
     HahnSeries.ofPowerSeries ℤ K (PowerSeries.map (Int.castRingHom K) etaProd) ^ (24 * p) ≠
@@ -216,6 +246,9 @@ end
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_StarBank_delta_pow_ne.ModularCurve in
 
+/--
+@isnad1 id=ne.1h4v.s10.e74121beb567 from=translated src=- shape=5d21740c vocab=c65a5a89
+-/
 theorem solution (K : Type*) [CommRing K] {ℓ : ℕ} [Fact ℓ.Prime]
     [CharP K ℓ] {p : ℕ} [Fact p.Prime] (hpℓ : p ≠ ℓ) (γ : K) :
     (HahnSeries.single (1 : ℤ) (1 : K) *

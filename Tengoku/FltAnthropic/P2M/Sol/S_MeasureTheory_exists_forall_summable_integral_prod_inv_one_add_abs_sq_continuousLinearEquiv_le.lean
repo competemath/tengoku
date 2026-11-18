@@ -11,8 +11,14 @@ open MeasureTheory
 
 namespace RF
 
+/--
+@isnad1 id=le.0h1v.s5.67a3a681f711 from=translated src=- shape=c8be483c vocab=f7eec3b5
+-/
 theorem g_nonneg (x : ℝ) : 0 ≤ (1 + |x|)⁻¹ ^ 2 := by positivity
 
+/--
+@isnad1 id=le.0h2v.s7.bc05d33ea707 from=translated src=- shape=8be5f71c vocab=873430eb
+-/
 theorem g_le (x d : ℝ) : (1 + |x|)⁻¹ ^ 2 ≤ (1 + |d|) ^ 2 * (1 + |x + d|)⁻¹ ^ 2 := by
   have hx : 0 < 1 + |x| := by positivity
   have hd : 0 < 1 + |d| := by positivity
@@ -24,6 +30,9 @@ theorem g_le (x d : ℝ) : (1 + |x|)⁻¹ ^ 2 ≤ (1 + |d|) ^ 2 * (1 + |x + d|)�
         apply mul_le_mul_of_nonneg_left _ (by positivity)
         exact pow_le_pow_left₀ (by positivity) h2 2
 
+/--
+@isnad1 id=le.2h4v.s7.83cf181dcdce from=translated src=- shape=614cf323 vocab=9eb3d950
+-/
 theorem prod_g_le {r : ℕ} (D : ℝ) (hD : 0 ≤ D) (ξ d : Fin r → ℝ) (hd : ∀ i, |d i| ≤ D) :
     ∏ i, (1 + |ξ i|)⁻¹ ^ 2 ≤ (1 + D) ^ (2 * r) * ∏ i, (1 + |ξ i + d i|)⁻¹ ^ 2 := by
   calc ∏ i, (1 + |ξ i|)⁻¹ ^ 2 ≤ ∏ i, ((1 + D) ^ 2 * (1 + |ξ i + d i|)⁻¹ ^ 2) := by
@@ -35,18 +44,27 @@ theorem prod_g_le {r : ℕ} (D : ℝ) (hD : 0 ≤ D) (ξ d : Fin r → ℝ) (hd 
     _ = (1 + D) ^ (2 * r) * ∏ i, (1 + |ξ i + d i|)⁻¹ ^ 2 := by
         rw [Finset.prod_mul_distrib, Finset.prod_const, Finset.card_univ, Fintype.card_fin, ← pow_mul]
 
+/--
+@isnad1 id=integrab.0h0v.s6.e7ee010efef3 from=translated src=- shape=1587e3b3 vocab=c2bf1a22
+-/
 theorem integrable_g : Integrable (fun x : ℝ => (1 + |x|)⁻¹ ^ 2) := by
   have h := integrable_one_add_norm (E := ℝ) (μ := volume) (r := 2) (by rw [Module.finrank_self]; norm_num)
   refine h.congr (Filter.Eventually.of_forall fun x => ?_)
   show (1 + ‖x‖) ^ (-(2 : ℝ)) = (1 + |x|)⁻¹ ^ 2
   rw [Real.norm_eq_abs, Real.rpow_neg (by positivity), Real.rpow_two, inv_pow]
 
+/--
+@isnad1 id=integrab.0h1v.s6.b27481533f47 from=translated src=- shape=e6401055 vocab=62bbff84
+-/
 theorem integrable_prod_g (r : ℕ) : Integrable (fun ξ : Fin r → ℝ => ∏ i, (1 + |ξ i|)⁻¹ ^ 2) := by
   have := Integrable.fintype_prod (ι := Fin r) (f := fun _ (x : ℝ) => (1 + |x|)⁻¹ ^ 2) (μ := fun _ => volume)
     (fun _ => integrable_g)
   rw [← volume_pi] at this
   exact this
 
+/--
+@isnad1 id=ex.0h4v.s9.a2a143d23370 from=translated src=- shape=379b06da vocab=f5425d93
+-/
 theorem exists_bound_cube {a b r : ℕ} (S : ((Fin a → ℝ) × (Fin b → ℝ)) ≃L[ℝ] (Fin r → ℝ)) :
     ∃ D : ℝ, 0 ≤ D ∧ ∀ u : Fin a → ℝ, (∀ j, u j ∈ Set.Icc (0 : ℝ) 1) → ∀ i, |S (u, 0) i| ≤ D := by
   have hK : IsCompact (Set.univ.pi fun _ : Fin a => Set.Icc (0 : ℝ) 1) := isCompact_univ_pi fun _ => isCompact_Icc
@@ -68,16 +86,28 @@ open scoped ENNReal
 
 def cube (a : ℕ) : Set (Fin a → ℝ) := Set.univ.pi fun _ => Set.Ico (0 : ℝ) 1
 
+/--
+@isnad1 id=measurab.0h1v.s4.2ba082c72a99 from=translated src=- shape=fe6f4f64 vocab=7f4107bc
+-/
 theorem measurableSet_cube (a : ℕ) : MeasurableSet (cube a) :=
   MeasurableSet.univ_pi fun _ => measurableSet_Ico
 
+/--
+@isnad1 id=eq.0h1v.s6.46a980449840 from=translated src=- shape=529c28aa vocab=52460e7e
+-/
 theorem volume_cube (a : ℕ) : volume (cube a) = 1 := by
   rw [cube, volume_pi, Measure.pi_pi]
   simp [Real.volume_Ico]
 
+/--
+@isnad1 id=iff.0h2v.s5.8b70ea967c50 from=translated src=- shape=71389e33 vocab=2091e043
+-/
 theorem mem_cube {a : ℕ} (u : Fin a → ℝ) : u ∈ cube a ↔ ∀ j, u j ∈ Set.Ico (0 : ℝ) 1 := by
   simp [cube, Set.mem_univ_pi]
 
+/--
+@isnad1 id=eq.0h3v.s7.8daba8823e9a from=translated src=- shape=626bcef3 vocab=adb68e8a
+-/
 theorem setLIntegral_cube_comp_add {a : ℕ} (h : (Fin a → ℝ) → ℝ≥0∞) (v : Fin a → ℝ) :
     ∫⁻ u in cube a, h (v + u) = ∫⁻ x in (fun x => x - v) ⁻¹' cube a, h x := by
   have hC' : MeasurableSet ((fun x : Fin a → ℝ => x - v) ⁻¹' cube a) :=
@@ -99,6 +129,9 @@ theorem setLIntegral_cube_comp_add {a : ℕ} (h : (Fin a → ℝ) → ℝ≥0∞
         lintegral_add_left_eq_self (((fun x : Fin a → ℝ => x - v) ⁻¹' cube a).indicator h) v
     _ = ∫⁻ x in (fun x => x - v) ⁻¹' cube a, h x := lintegral_indicator hC' _
 
+/--
+@isnad1 id=le.0h3v.s7.47e7e7f4f4b9 from=translated src=- shape=5631551d vocab=14e91b91
+-/
 theorem tsum_setLIntegral_cube_le {a : ℕ} (h : (Fin a → ℝ) → ℝ≥0∞) (ψ : Fin a → ℝ) :
     ∑' κ : Fin a → ℤ, ∫⁻ u in cube a, h ((fun j => (κ j : ℝ) + ψ j) + u) ≤ ∫⁻ x, h x := by
   set s : (Fin a → ℤ) → Set (Fin a → ℝ) := fun κ => (fun x => x - (fun j => (κ j : ℝ) + ψ j)) ⁻¹' cube a
@@ -122,6 +155,9 @@ theorem tsum_setLIntegral_cube_le {a : ℕ} (h : (Fin a → ℝ) → ℝ≥0∞)
     _ = ∫⁻ x in ⋃ κ, s κ, h x := (lintegral_iUnion hmeas hdisj h).symm
     _ ≤ ∫⁻ x, h x := setLIntegral_le_lintegral _ _
 
+/--
+@isnad1 id=ex.0h4v.s9.c708a93ed4f3 from=translated src=- shape=59a9e842 vocab=35e3c96d
+-/
 theorem exists_lintegral_comp_eq_mul {a b r : ℕ} (S : ((Fin a → ℝ) × (Fin b → ℝ)) ≃L[ℝ] (Fin r → ℝ)) :
     ∃ c : ℝ≥0∞, c ≠ ⊤ ∧ ∀ H : (Fin r → ℝ) → ℝ≥0∞,
       ∫⁻ p, H (S p) ∂volume = c * ∫⁻ ξ, H ξ ∂volume := by
@@ -149,6 +185,9 @@ namespace RF
 
 open scoped ENNReal
 
+/--
+@isnad1 id=measurab.0h5v.s9.06044730d948 from=translated src=- shape=885901b9 vocab=741c1c04
+-/
 theorem measurable_kernel {a b r : ℕ} (S : ((Fin a → ℝ) × (Fin b → ℝ)) ≃L[ℝ] (Fin r → ℝ)) (t : Fin r → ℝ) :
     Measurable fun p : (Fin a → ℝ) × (Fin b → ℝ) => ∏ i, (1 + |S p i - t i|)⁻¹ ^ 2 := by
   refine Finset.measurable_prod _ fun i _ => ?_
@@ -156,6 +195,9 @@ theorem measurable_kernel {a b r : ℕ} (S : ((Fin a → ℝ) × (Fin b → ℝ)
     ((continuous_apply i).comp S.continuous).sub continuous_const
   exact ((hc.measurable.abs.const_add 1).inv).pow_const 2
 
+/--
+@isnad1 id=ex.0h4v.s11.9ecdcc9e2038 from=translated src=- shape=6ed20a06 vocab=428c0af5
+-/
 theorem main {a b r : ℕ} (S : ((Fin a → ℝ) × (Fin b → ℝ)) ≃L[ℝ] (Fin r → ℝ)) :
     ∃ K : ℝ, ∀ (ψ : Fin a → ℝ) (t : Fin r → ℝ),
       (∀ κ : Fin a → ℤ, Integrable fun η : Fin b → ℝ =>
@@ -251,6 +293,9 @@ theorem main {a b r : ℕ} (S : ((Fin a → ℝ) × (Fin b → ℝ)) ≃L[ℝ] (
 
 end RF
 
+/--
+@isnad1 id=ex.0h4v.s11.9ecdcc9e2038 from=translated src=- shape=6ed20a06 vocab=428c0af5
+-/
 theorem solution
     (a b r : ℕ) (S : ((Fin a → ℝ) × (Fin b → ℝ)) ≃L[ℝ] (Fin r → ℝ)) :
     ∃ K : ℝ, ∀ (ψ : Fin a → ℝ) (t : Fin r → ℝ),

@@ -15,6 +15,9 @@ namespace S17Lift
 
 variable {L : Type*} [Field L]
 
+/--
+@isnad1 id=dvd.2h3v.s7.c28daf6b3097 from=translated src=- shape=a8ad5184 vocab=fb50f1a1
+-/
 theorem one_sub_dvd_natCast_of_pow_eq_one {R : Type*} [CommRing R] [IsDomain R]
     {η : R} {n : ℕ} (hη : η ^ n = 1) (hη1 : η ≠ 1) : (1 - η) ∣ (n : R) := by
 
@@ -30,6 +33,9 @@ theorem one_sub_dvd_natCast_of_pow_eq_one {R : Type*} [CommRing R] [IsDomain R]
 end S17Lift
 
 open S17Lift in
+/--
+@isnad1 id=ex.1h5v.s11.38405aa6658f from=translated src=- shape=4d544b83 vocab=2dc86d89
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime] (A : ValuationSubring (AlgebraicClosure ℚ))
     (k : Type*) [Field k] [CharP k q] (red : A →+* k)

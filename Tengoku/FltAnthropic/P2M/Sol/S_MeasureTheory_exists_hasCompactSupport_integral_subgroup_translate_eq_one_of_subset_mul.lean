@@ -20,6 +20,9 @@ section Average
 
 variable (T : Subgroup G) [MeasurableSpace T] [BorelSpace T] (τ : Measure T)
 
+/--
+@isnad1 id=isclosed.1h3v.s7.53722408ab21 from=translated src=- shape=4a6b6e2a vocab=3c296878
+-/
 theorem isClosedEmbedding_val_mul (hT : IsClosed (T : Set G)) (x : G) : IsClosedEmbedding fun t : T => (t : G) * x :=
   (Homeomorph.mulRight x).isClosedEmbedding.comp hT.isClosedEmbedding_subtypeVal
 
@@ -27,6 +30,9 @@ noncomputable def avg (ψ : G → ℝ) (x : G) : ℝ := ∫ t : T, ψ ((t : G) *
 
 variable {T τ}
 
+/--
+@isnad1 id=eq.0h6v.s7.53134c81bb50 from=translated src=- shape=b613e5fd vocab=f7614a52
+-/
 theorem avg_mul [τ.IsMulRightInvariant] (ψ : G → ℝ) (t₀ : T) (x : G) :
     avg T τ ψ ((t₀ : G) * x) = avg T τ ψ x := by
   unfold avg
@@ -35,9 +41,15 @@ theorem avg_mul [τ.IsMulRightInvariant] (ψ : G → ℝ) (t₀ : T) (x : G) :
     simp only [Subgroup.coe_mul, mul_assoc]
   rw [this, integral_mul_right_eq_self (fun s : T => ψ ((s : G) * x)) t₀]
 
+/--
+@isnad1 id=le.1h5v.s7.c0dcfc5a703c from=translated src=- shape=b57281ab vocab=1739960b
+-/
 theorem avg_nonneg {ψ : G → ℝ} (hψ : ∀ x, 0 ≤ ψ x) (x : G) : 0 ≤ avg T τ ψ x :=
   integral_nonneg fun _ => hψ _
 
+/--
+@isnad1 id=lt.5h5v.s8.d8a7d21d8071 from=translated src=- shape=154f201f vocab=7b2d057a
+-/
 theorem avg_pos [LocallyCompactSpace G] (hT : IsClosed (T : Set G)) [τ.IsOpenPosMeasure]
     [IsFiniteMeasureOnCompacts τ] {ψ : G → ℝ} (hψc : Continuous ψ)
     (hψs : HasCompactSupport ψ) (hψ : ∀ x, 0 ≤ ψ x) {x : G} (hx : ψ x ≠ 0) : 0 < avg T τ ψ x := by
@@ -47,6 +59,9 @@ theorem avg_pos [LocallyCompactSpace G] (hT : IsClosed (T : Set G)) [τ.IsOpenPo
   · exact hψs.comp_isClosedEmbedding (isClosedEmbedding_val_mul T hT x)
   · simpa using hx
 
+/--
+@isnad1 id=continuo.3h4v.s7.e034b77abf5a from=translated src=- shape=d9ff6c9d vocab=3355c2f0
+-/
 theorem continuous_avg [LocallyCompactSpace G] [SecondCountableTopology G] (hT : IsClosed (T : Set G))
     [IsLocallyFiniteMeasure τ] {ψ : G → ℝ} (hψc : Continuous ψ) (hψs : HasCompactSupport ψ) :
     Continuous (avg T τ ψ) := by
@@ -78,6 +93,9 @@ theorem continuous_avg [LocallyCompactSpace G] [SecondCountableTopology G] (hT :
 
 end Average
 
+/--
+@isnad1 id=ex.3h5v.s8.6c56c57f42c9 from=translated src=- shape=051ce943 vocab=7ba72d65
+-/
 theorem main [LocallyCompactSpace G] [SecondCountableTopology G] [MeasurableSpace G] [BorelSpace G]
     (T : Subgroup G) (hT : IsClosed (T : Set G)) [MeasurableSpace T] [BorelSpace T]
     (τ : Measure T) [τ.IsHaarMeasure] [τ.IsMulRightInvariant]
@@ -111,6 +129,9 @@ theorem main [LocallyCompactSpace G] [SecondCountableTopology G] [MeasurableSpac
 
 end P2mBruhatSection
 
+/--
+@isnad1 id=ex.3h5v.s8.6c56c57f42c9 from=translated src=- shape=051ce943 vocab=7ba72d65
+-/
 theorem solution
     {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [LocallyCompactSpace G]
     [SecondCountableTopology G] [MeasurableSpace G] [BorelSpace G]

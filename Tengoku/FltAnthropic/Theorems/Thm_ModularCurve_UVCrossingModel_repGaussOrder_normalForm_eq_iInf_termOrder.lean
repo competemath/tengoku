@@ -14,6 +14,9 @@ universe u
 
 open ModularCurve ModularCurve.UVCrossingModel IsLocalRing
 
+/--
+@isnad1 id=eq.2h5v.s7.65f409116680 from=translated src=- shape=1daa7f33 vocab=bee27d1a
+-/
 theorem ModularCurve.UVCrossingModel.repGaussOrder_normalForm_eq_iInf_termOrder
     {W : Type u} [CommRing W] (v : W → ℕ∞) (hv0 : v 0 = ⊤) (E t : ℕ) (ab : PowerSeries W × PowerSeries W)
     (hb : PowerSeries.constantCoeff ab.2 = 0) :

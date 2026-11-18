@@ -29,6 +29,9 @@ def cusp (x : SL(2, ℤ) ⧸ Γ) : Cu Γ := Quotient.mk (orbitRel (zpowers Modul
 
 def wd (x : SL(2, ℤ) ⧸ Γ) : ℕ := Function.minimalPeriod (fun y => ModularGroup.T • y) x
 
+/--
+@isnad1 id=mem.0h2v.s9.1803caaeb1f3 from=translated src=- shape=6a3f5e92 vocab=6b402a6c
+-/
 theorem gen_mem (g : SL(2, ℤ)) : g⁻¹ * ModularGroup.T ^ wd Γ (g : SL(2, ℤ) ⧸ Γ) * g ∈ Γ := by
   have h0 : ModularGroup.T ^ wd Γ (g : SL(2, ℤ) ⧸ Γ) • (g : SL(2, ℤ) ⧸ Γ) = (g : SL(2, ℤ) ⧸ Γ) :=
     (MulAction.pow_smul_eq_iff_minimalPeriod_dvd).mpr dvd_rfl
@@ -40,11 +43,17 @@ theorem gen_mem (g : SL(2, ℤ)) : g⁻¹ * ModularGroup.T ^ wd Γ (g : SL(2, �
 
 def rep (c : Cu Γ) : SL(2, ℤ) := Quotient.out (Quotient.out c)
 
+/--
+@isnad1 id=eq.0h2v.s7.b3f4b9772a91 from=translated src=- shape=2a04f715 vocab=baf58fc9
+-/
 theorem cusp_rep (c : Cu Γ) : cusp Γ (rep Γ c : SL(2, ℤ) ⧸ Γ) = c := by
   rw [rep, QuotientGroup.out_eq', cusp]; exact Quotient.out_eq c
 
 def genOf (c : Cu Γ) : Γ := ⟨_, gen_mem Γ (rep Γ c)⟩
 
+/--
+@isnad1 id=eq.0h2v.s8.3f907f522f7a from=translated src=- shape=40ad3e3e vocab=052e9df6
+-/
 theorem trace_genOf (c : Cu Γ) :
     ((genOf Γ c : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).trace = 2 := by
   show (((rep Γ c)⁻¹ * ModularGroup.T ^ wd Γ (rep Γ c : SL(2, ℤ) ⧸ Γ) * rep Γ c : SL(2, ℤ)) :
@@ -59,6 +68,9 @@ def ev : (Additive Γ →+ K) →ₗ[K] (Cu Γ → K) where
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
+/--
+@isnad1 id=le.0h2v.s14.63172285b41f from=translated src=- shape=d3380d8a vocab=c9b9a639
+-/
 theorem parabolicHoms_le_ker : parabolicHoms K Γ K ≤ LinearMap.ker (ev Γ K) := by
   intro φ hφ
   rw [LinearMap.mem_ker]
@@ -70,6 +82,9 @@ def sumL [Fintype (Cu Γ)] : (Cu Γ → K) →ₗ[K] K where
   map_add' _ _ := by simp [Finset.sum_add_distrib]
   map_smul' _ _ := by simp [Finset.mul_sum]
 
+/--
+@isnad1 id=le.1h2v.s12.fb445203bbdf from=translated src=- shape=a1d80551 vocab=26af11f3
+-/
 theorem ker_sumL_le_range (hneg : (-1 : SL(2, ℤ)) ∈ Γ) [Fintype (Cu Γ)] :
     LinearMap.ker (sumL Γ K) ≤ LinearMap.range (ev Γ K) := by
   intro v hv
@@ -83,6 +98,9 @@ theorem ker_sumL_le_range (hneg : (-1 : SL(2, ℤ)) ∈ Γ) [Fintype (Cu Γ)] :
   have key := hφ (rep Γ c) (gen_mem Γ (rep Γ c))
   exact key.trans (congrArg v (cusp_rep Γ c))
 
+/--
+@isnad1 id=eq.0h2v.s9.6dfdfc4557a5 from=translated src=- shape=5bd41422 vocab=af7410a3
+-/
 theorem finrank_ker_sumL_add_one [Fintype (Cu Γ)] :
     Module.finrank K (LinearMap.ker (sumL Γ K)) + 1 = Fintype.card (Cu Γ) := by
   classical
@@ -95,6 +113,9 @@ theorem finrank_ker_sumL_add_one [Fintype (Cu Γ)] :
   rw [h1, Module.finrank_fintype_fun_eq_card] at h2
   omega
 
+/--
+@isnad1 id=finite.0h2v.s11.ef7a91e115f8 from=translated src=- shape=8de4a19f vocab=41535741
+-/
 theorem moduleFinite_hom : Module.Finite K (Additive Γ →+ K) := by
   classical
   haveI : Group.FG SL(2, ℤ) := ⟨⟨{ModularGroup.S, ModularGroup.T}, by
@@ -118,6 +139,9 @@ theorem moduleFinite_hom : Module.Finite K (Additive Γ →+ K) := by
     | inv x _ hx => rw [ofMul_inv, map_neg, map_neg, hx]
   exact AddMonoidHom.ext fun x => key (Additive.toMul x)
 
+/--
+@isnad1 id=le.1h2v.s14.05c7ebb30a57 from=translated src=- shape=28558644 vocab=f5578c47
+-/
 theorem main (hneg : (-1 : SL(2, ℤ)) ∈ Γ) :
     Module.finrank K (parabolicHoms K Γ K) + Nat.card (Cu Γ)
       ≤ Module.finrank K (Additive Γ →+ K) + 1 := by
@@ -136,6 +160,9 @@ theorem main (hneg : (-1 : SL(2, ℤ)) ∈ Γ) :
 
 end BassSerreCuspDim
 
+/--
+@isnad1 id=le.1h2v.s14.0fe4f4e8730e from=translated src=- shape=e80e5c6c vocab=fcd76851
+-/
 theorem solution (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.FiniteIndex]
     (hneg : (-1 : Matrix.SpecialLinearGroup (Fin 2) ℤ) ∈ Γ) (K : Type) [Field K] :
     Module.finrank K (ModularCurve.Period.parabolicHoms K Γ K)

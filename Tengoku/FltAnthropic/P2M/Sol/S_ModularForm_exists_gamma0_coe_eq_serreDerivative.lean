@@ -396,6 +396,9 @@ end Assembly
 
 end E34S
 
+/--
+@isnad1 id=ex.0h3v.s10.2829bf52f640 from=translated src=- shape=2f105c72 vocab=c357a9fb
+-/
 theorem solution (N' : ℕ) [NeZero N'] (k : ℤ) (f : ModularForm (CongruenceSubgroup.Gamma0 N') k) :
     ∃ g : ModularForm (CongruenceSubgroup.Gamma0 N') (k + 2),
       ⇑g = Derivative.serreDerivative (k : ℂ) ⇑f :=

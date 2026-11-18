@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open MeasureTheory
 
+/--
+@isnad1 id=lt.1h4v.s7.71714e74240f from=translated src=- shape=f557aa63 vocab=1bb6353d
+-/
 theorem solution
     {G : Type*} [Group G] [MeasurableSpace G] [MeasurableMul G] (μ : Measure G) [μ.IsMulRightInvariant]
     (s : Set G) (hs : μ s < ⊤) (T : Finset G) :

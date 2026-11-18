@@ -10,6 +10,9 @@ set_option autoImplicit false
 open MeasureTheory
 open scoped ENNReal
 
+/--
+@isnad1 id=and.5h5v.s9.1bfe006b397d from=translated src=- shape=4ecf09c9 vocab=7e6fc73a
+-/
 theorem solution
     {X : Type*} [MeasurableSpace X] (μ : Measure X) (s : Set X) (hsm : MeasurableSet s) (hs : μ s ≠ ⊤)
     (V : Submodule ℂ (X → ℂ))

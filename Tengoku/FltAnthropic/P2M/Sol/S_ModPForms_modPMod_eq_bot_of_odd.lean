@@ -14,6 +14,9 @@ namespace OddWeight
 open _root_.ModPForms
 open scoped MatrixGroups
 
+/--
+@isnad1 id=mem.0h1v.s9.828119a50823 from=translated src=- shape=1a42b456 vocab=6d52720b
+-/
 theorem neg_one_mem_Gamma0 (N : ℕ) :
     (-1 : GL (Fin 2) ℝ) ∈ ((CongruenceSubgroup.Gamma0 N : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)) := by
   refine ⟨-1, ?_, ?_⟩
@@ -21,6 +24,9 @@ theorem neg_one_mem_Gamma0 (N : ℕ) :
   · ext i j
     simp [Matrix.SpecialLinearGroup.coe_int_neg]
 
+/--
+@isnad1 id=eq.1h3v.s9.eae7f22d5fde from=translated src=- shape=7d4e36f4 vocab=b1d9ab52
+-/
 theorem modularForm_eq_zero_of_odd (N : ℕ) (k : ℤ) (hk : Odd k)
     (f : ModularForm (CongruenceSubgroup.Gamma0 N) k) : f = 0 := by
   ext z
@@ -31,10 +37,16 @@ theorem modularForm_eq_zero_of_odd (N : ℕ) (k : ℤ) (hk : Odd k)
   rw [zero_apply]
   exact (mul_eq_zero.mp h2).resolve_left two_ne_zero
 
+/--
+@isnad1 id=eq.0h1v.s4.9e3d1f4150c0 from=translated src=- shape=12c22aa8 vocab=e85eca0f
+-/
 theorem qCoeff_zero (n : ℕ) : ModularFormClass.qCoeff (0 : UpperHalfPlane → ℂ) n = 0 := by
   show (UpperHalfPlane.qExpansion 1 (0 : UpperHalfPlane → ℂ)).coeff n = 0
   rw [UpperHalfPlane.qExpansion_zero]; simp
 
+/--
+@isnad1 id=eq.1h3v.s7.3ef32c6afcf9 from=translated src=- shape=1efb8ffe vocab=ab33d3c6
+-/
 theorem modPMod_eq_bot_of_odd (N : ℕ) (k : ℤ) (hk : Odd k) (F : Type) [Field F] :
     ModPForms.modPMod N k F = ⊥ := by
   rw [ModPForms.modPMod, Submodule.span_eq_bot]
@@ -48,6 +60,9 @@ theorem modPMod_eq_bot_of_odd (N : ℕ) (k : ℤ) (hk : Odd k) (F : Type) [Field
 
 end ModPForms.OddWeight
 
+/--
+@isnad1 id=eq.1h3v.s7.3ef32c6afcf9 from=translated src=- shape=1efb8ffe vocab=ab33d3c6
+-/
 theorem solution (N : ℕ) (k : ℤ) (hk : Odd k) (F : Type) [Field F] :
     ModPForms.modPMod N k F = ⊥ :=
   ModPForms.OddWeight.modPMod_eq_bot_of_odd N k hk F

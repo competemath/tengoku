@@ -295,6 +295,9 @@ end GroupLevel
 
 end HaarProductSplitting
 
+/--
+@isnad1 id=ex.0h6v.s8.14ff32d2f4a2 from=translated src=- shape=abd891d7 vocab=41727ff5
+-/
 theorem solution
     {G : Type u₁} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [MeasurableSpace G] [BorelSpace G]
     {G₁ : Type u₂} [Group G₁] [TopologicalSpace G₁] [IsTopologicalGroup G₁] [LocallyCompactSpace G₁]

@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open MeasureTheory
 
+/--
+@isnad1 id=eq.3h4v.s7.aa5cd265ac3f from=translated src=- shape=f8c0fc5e vocab=7e36e85c
+-/
 theorem solution
     {G : Type*} [AddGroup G] [MeasurableSpace G] [MeasurableAdd G] (μ : Measure G) [μ.IsAddLeftInvariant]
     (H H' : AddSubgroup G) (hle : H ≤ H') (hH : MeasurableSet (H : Set G)) (hfin : H.relIndex H' ≠ 0) :

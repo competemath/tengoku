@@ -26,6 +26,9 @@ def HasIntegrableProfile (σ : ℝ) (b : ℝ → E) : Prop :=
 def charIntegral (a : ℝ → E) (u : ℝ) : E :=
   ∫ t : ℝ, Complex.exp (((t * u : ℝ) : ℂ) * Complex.I) • a t
 
+/--
+@isnad1 id=eq.0h3v.s6.10ad8be61107 from=translated src=- shape=617c386e vocab=c87e7d45
+-/
 theorem cpow_exp_eq (σ u t : ℝ) :
     ((Real.exp u : ℝ) : ℂ) ^ ((σ : ℂ) + (t : ℂ) * Complex.I)
       = ((Real.exp (σ * u) : ℝ) : ℂ) * Complex.exp (((t * u : ℝ) : ℂ) * Complex.I) := by
@@ -34,6 +37,9 @@ theorem cpow_exp_eq (σ u t : ℝ) :
     Real.log_exp, mul_add, Complex.exp_add, Complex.ofReal_exp, Complex.ofReal_mul, Complex.ofReal_mul]
   congr 1 <;> (congr 1; ring)
 
+/--
+@isnad1 id=eq.0h2v.s5.9ed246625d73 from=translated src=- shape=99324c3f vocab=557e91ae
+-/
 theorem cpow_exp_eq_zero (u t : ℝ) :
     ((Real.exp u : ℝ) : ℂ) ^ ((t : ℂ) * Complex.I) = Complex.exp (((t * u : ℝ) : ℂ) * Complex.I) := by
   have hpos : (0 : ℝ) < Real.exp u := Real.exp_pos u
@@ -43,6 +49,9 @@ theorem cpow_exp_eq_zero (u t : ℝ) :
   push_cast
   ring
 
+/--
+@isnad1 id=eq.0h4v.s6.8724a54f427b from=translated src=- shape=81a3faa0 vocab=9fc7a0dd
+-/
 theorem lineProfile_exp (σ : ℝ) (a : ℝ → E) (u : ℝ) :
     lineProfile σ a (Real.exp u) = ((Real.exp (σ * u) : ℝ) : ℂ) • charIntegral a u := by
   unfold lineProfile charIntegral
@@ -51,6 +60,9 @@ theorem lineProfile_exp (σ : ℝ) (a : ℝ → E) (u : ℝ) :
   funext t
   rw [cpow_exp_eq, mul_smul]
 
+/--
+@isnad1 id=eq.0h3v.s6.69fab16d46cf from=translated src=- shape=7e1ef826 vocab=e721074f
+-/
 theorem charIntegral_two_pi_mul (a : ℝ → E) (w : ℝ) : charIntegral a (2 * π * w) = 𝓕⁻ a w := by
   rw [fourierInv_eq']
   unfold charIntegral
@@ -60,11 +72,17 @@ theorem charIntegral_two_pi_mul (a : ℝ → E) (w : ℝ) : charIntegral a (2 * 
     ring
   simp_rw [h]
 
+/--
+@isnad1 id=eq.0h2v.s6.ec548b13f2fe from=translated src=- shape=7dcf48d5 vocab=2453f55c
+-/
 theorem charIntegral_eq_integral_mul (b : ℝ → ℂ) (u : ℝ) :
     charIntegral b u = ∫ t : ℝ, Complex.exp (((t * u : ℝ) : ℂ) * Complex.I) * b t := by
   unfold charIntegral
   simp_rw [smul_eq_mul]
 
+/--
+@isnad1 id=integrab.1h3v.s6.86db63e2adb1 from=translated src=- shape=730451cf vocab=05d20db0
+-/
 theorem HasIntegrableProfile.integrable_fourierInv {σ : ℝ} {b : ℝ → E}
     (hbp : HasIntegrableProfile σ b) : Integrable (𝓕⁻ b) := by
   have h2π : (2 : ℝ) * π ≠ 0 := by positivity
@@ -94,6 +112,9 @@ theorem HasIntegrableProfile.integrable_fourierInv {σ : ℝ} {b : ℝ → E}
   have h3 : Integrable (fun w : ℝ => charIntegral b (2 * π * w)) := h1.comp_mul_left' h2π
   simpa only [charIntegral_two_pi_mul] using h3
 
+/--
+@isnad1 id=eq.3h2v.s8.523308510a17 from=translated src=- shape=51423591 vocab=88be186d
+-/
 theorem main (a : ℝ → ℂ) (ha : Integrable a) (hac : Continuous a)
     (hap : IntegrableOn (fun y : ℝ => ((y ^ (-(0 : ℝ)) / y : ℝ) : ℂ) *
         ∫ t : ℝ, (y : ℂ) ^ (((0 : ℝ) : ℂ) + (t : ℂ) * Complex.I) * a t) (Set.Ioi 0))
@@ -163,6 +184,9 @@ end
 open MeasureTheory
 open scoped ComplexConjugate
 
+/--
+@isnad1 id=eq.3h2v.s8.523308510a17 from=translated src=- shape=51423591 vocab=88be186d
+-/
 theorem solution
     (a : ℝ → ℂ) (_ha : Integrable a) (_hac : Continuous a)
     (_hap : IntegrableOn (fun y : ℝ => ((y ^ (-(0 : ℝ)) / y : ℝ) : ℂ) *

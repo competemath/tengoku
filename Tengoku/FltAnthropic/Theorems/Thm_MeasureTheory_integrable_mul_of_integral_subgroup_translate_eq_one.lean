@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open MeasureTheory
 
+/--
+@isnad1 id=integrab.5h6v.s8.4b25c705efa7 from=translated src=- shape=13780019 vocab=5bc2da78
+-/
 theorem MeasureTheory.integrable_mul_of_integral_subgroup_translate_eq_one
     {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [LocallyCompactSpace G]
     [SecondCountableTopology G] [MeasurableSpace G] [BorelSpace G]

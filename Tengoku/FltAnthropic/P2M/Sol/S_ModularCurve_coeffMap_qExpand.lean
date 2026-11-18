@@ -8,6 +8,9 @@ namespace P2MW.S_ModularCurve_coeffMap_qExpand
 
 open ModularCurve IntermediateField HahnSeries
 
+/--
+@isnad1 id=eq.0h5v.s9.58a3cfbe3ba5 from=translated src=- shape=0f099109 vocab=6d87040a
+-/
 theorem solution {R S : Type*} [CommRing R] [CommRing S] (f : R →+* S) (n : ℕ) [NeZero n] (x : LaurentSeries R) : ModularCurve.coeffMap f (ModularCurve.qExpand R n x) = ModularCurve.qExpand S n (ModularCurve.coeffMap f x) :=
   by
   ext k

@@ -15,6 +15,9 @@ open scoped MatrixGroups ModularForm OnePoint
 
 namespace ModularCurve
 
+/--
+@isnad1 id=eq.0h2v.s9.1fe8b3730698 from=translated src=- shape=4bfcdb6a vocab=02b489b3
+-/
 theorem E4_cube_div_discriminant_smul' (γ : SL(2, ℤ)) (τ : ℍ) :
     ModularForm.E₄ (γ • τ) ^ 3 / ModularForm.discriminant (γ • τ)
       = ModularForm.E₄ τ ^ 3 / ModularForm.discriminant τ := by
@@ -37,5 +40,8 @@ end ModularCurve
 
 end
 
+/--
+@isnad1 id=eq.0h2v.s9.1fe8b3730698 from=translated src=- shape=4bfcdb6a vocab=02b489b3
+-/
 theorem solution (γ : Matrix.SpecialLinearGroup (Fin 2) ℤ) (τ : UpperHalfPlane) : ModularForm.E₄ (γ • τ) ^ 3 / ModularForm.discriminant (γ • τ) = ModularForm.E₄ τ ^ 3 / ModularForm.discriminant τ :=
   ModularCurve.E4_cube_div_discriminant_smul' γ τ

@@ -9,6 +9,9 @@ set_option autoImplicit false
 open CongruenceSubgroup
 open scoped MatrixGroups
 
+/--
+@isnad1 id=fg.0h1v.s8.bd16c0e622bc from=translated src=- shape=f3606c04 vocab=3ffbef6d
+-/
 theorem ModularCurve.Period.fg_gamma0 (N : ℕ) [NeZero N] : Group.FG (Gamma0 N) := by
   classical
   haveI : Group.FG SL(2, ℤ) := ⟨⟨{ModularGroup.S, ModularGroup.T}, by
@@ -16,6 +19,9 @@ theorem ModularCurve.Period.fg_gamma0 (N : ℕ) [NeZero N] : Group.FG (Gamma0 N)
     exact SpecialLinearGroup.SL2Z_generators⟩⟩
   exact Subgroup.fg_of_index_ne_zero _
 
+/--
+@isnad1 id=finite.0h1v.s11.b48af637ba79 from=translated src=- shape=a4777fc9 vocab=9da8be45
+-/
 theorem solution (N : ℕ) [NeZero N] :
     Module.Finite ℂ (Additive (CongruenceSubgroup.Gamma0 N) →+ ℂ) := by
   classical

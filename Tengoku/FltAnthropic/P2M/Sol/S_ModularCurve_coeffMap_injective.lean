@@ -7,6 +7,9 @@ namespace P2MW.S_ModularCurve_coeffMap_injective
 
 open ModularCurve IntermediateField HahnSeries
 
+/--
+@isnad1 id=injectiv.1h3v.s7.f8ff7cd7cc54 from=translated src=- shape=1aeb3f0b vocab=4399a17a
+-/
 theorem solution {R S : Type*} [CommRing R] [CommRing S] {f : R →+* S} (hf : Function.Injective f) : Function.Injective (ModularCurve.coeffMap f) :=
   fun x y hxy => by
   ext k

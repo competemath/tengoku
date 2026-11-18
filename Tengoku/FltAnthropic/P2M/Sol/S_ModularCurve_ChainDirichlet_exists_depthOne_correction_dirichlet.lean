@@ -14,17 +14,32 @@ def chainRec (r : ℕ → ℤ) (t : ℤ) : ℕ → ℤ
   | 1 => t
   | (d + 2) => 2 * chainRec r t (d + 1) - chainRec r t d - r (d + 1)
 
+/--
+@isnad1 id=eq.0h2v.s4.2ed59c612b81 from=translated src=- shape=528031ea vocab=34a4f0ec
+-/
 theorem chainRec_zero (r : ℕ → ℤ) (t : ℤ) : chainRec r t 0 = 0 := rfl
+/--
+@isnad1 id=eq.0h2v.s4.40284cbaff67 from=translated src=- shape=4a809523 vocab=34a4f0ec
+-/
 theorem chainRec_one (r : ℕ → ℤ) (t : ℤ) : chainRec r t 1 = t := rfl
+/--
+@isnad1 id=eq.0h3v.s6.39f15d87a8c2 from=translated src=- shape=6d6deb1b vocab=a764a009
+-/
 theorem chainRec_succ_succ (r : ℕ → ℤ) (t : ℤ) (d : ℕ) :
     chainRec r t (d + 2) = 2 * chainRec r t (d + 1) - chainRec r t d - r (d + 1) := rfl
 
+/--
+@isnad1 id=eq.1h3v.s6.bee8c76f40b9 from=translated src=- shape=ee0c8fe3 vocab=df05f0ab
+-/
 theorem chainRec_laplace (r : ℕ → ℤ) (t : ℤ) (d : ℕ) (hd : 1 ≤ d) :
     chainRec r t (d - 1) - 2 * chainRec r t d + chainRec r t (d + 1) = - r d := by
   obtain ⟨e, rfl⟩ : ∃ e, d = e + 1 := ⟨d - 1, by omega⟩
   rw [Nat.add_sub_cancel, show e + 1 + 1 = e + 2 from rfl, chainRec_succ_succ]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s5.b6dcf874ffc1 from=translated src=- shape=425a6353 vocab=a7cbedc5
+-/
 theorem chainRec_eq (r : ℕ → ℤ) (t : ℤ) (d : ℕ) : chainRec r t d = d * t + chainRec r 0 d := by
   induction d using Nat.twoStepInduction with
   | zero => simp [chainRec_zero]
@@ -36,6 +51,9 @@ theorem chainRec_eq (r : ℕ → ℤ) (t : ℤ) (d : ℕ) : chainRec r t d = d *
 
 def corr (r : ℕ → ℤ) (ν : ℤ) : ℕ → ℤ := fun d => if d = 1 then r d - ν else r d
 
+/--
+@isnad1 id=eq.0h3v.s5.57cb5d66c0f2 from=translated src=- shape=5448c533 vocab=4cb391bd
+-/
 theorem chainRec_corr (r : ℕ → ℤ) (ν : ℤ) (d : ℕ) :
     chainRec (corr r ν) 0 d = chainRec r 0 d + ((d - 1 : ℕ) : ℤ) * ν := by
   induction d using Nat.twoStepInduction with
@@ -54,6 +72,9 @@ theorem chainRec_corr (r : ℕ → ℤ) (ν : ℤ) (d : ℕ) :
       rw [h1, h2, h3]
       ring
 
+/--
+@isnad1 id=eq.1h2v.s5.408491fc5120 from=translated src=- shape=48c0db7e vocab=c38440ab
+-/
 theorem chainRec_corr_self_eq_zero (r : ℕ → ℤ) (n : ℕ) (hn : 1 ≤ n) :
     chainRec (corr r (chainRec r 0 n)) (-(chainRec r 0 n)) n = 0 := by
   rw [chainRec_eq, chainRec_corr]
@@ -64,6 +85,9 @@ end ModularCurve.ChainDirichlet
 
 open ModularCurve.ChainDirichlet in
 
+/--
+@isnad1 id=ex.1h3v.s7.2527cd17f30c from=translated src=- shape=8b843df6 vocab=65bc3136
+-/
 theorem solution {ι : Type*} [Finite ι] (n : ι → ℕ) (hn : ∀ i, 1 ≤ n i)
     (r : ι → ℕ → ℤ) :
     ∃ (ν : ι → ℤ) (c : ι → ℕ → ℤ),

@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open MeasureTheory
 
+/--
+@isnad1 id=ex.6h6v.s9.0028765aa542 from=translated src=- shape=d027906d vocab=022586cf
+-/
 theorem solution
     {V : Type*} [NormedAddCommGroup V] [NormedSpace ℝ V] [FiniteDimensional ℝ V]
     [MeasurableSpace V] [BorelSpace V]

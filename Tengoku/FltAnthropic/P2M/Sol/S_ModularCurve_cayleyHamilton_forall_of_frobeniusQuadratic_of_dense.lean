@@ -29,10 +29,16 @@ abbrev heckeTorsionCarrier : Type _ := Submodule.torsionBySet HeckeAlg J (𝔪 :
 
 variable {𝔪}
 
+/--
+@isnad1 id=eq.2h4v.s8.f73805a1d5df from=translated src=- shape=eff70291 vocab=3a72b427
+-/
 lemma smul_eq_zero_of_mem_heckeTorsion {x : J} (hx : x ∈ heckeTorsion J 𝔪) {t : HeckeAlg}
     (ht : t ∈ 𝔪) : t • x = 0 :=
   (mem_heckeTorsion_iff (J := J) 𝔪 x).mp hx t ht
 
+/--
+@isnad1 id=eq.2h5v.s10.4ffc6dd45f37 from=translated src=- shape=2c85bfeb vocab=cfc316f7
+-/
 theorem smul_congr_of_mem_heckeTorsion {x : J} (hx : x ∈ heckeTorsion J 𝔪)
     {t t' : HeckeAlg} (h : Ideal.Quotient.mk 𝔪 t = Ideal.Quotient.mk 𝔪 t') :
     t • x = t' • x := by
@@ -72,6 +78,9 @@ variable {K L : Type*} [Field K] [Field L] [Algebra K L]
 variable (N p : ℕ) {J : Type*} [AddCommGroup J] [Module HeckeAlg J]
   [DistribMulAction (L ≃ₐ[K] L) J] [SMulCommClass (L ≃ₐ[K] L) HeckeAlg J]
 
+/--
+@isnad1 id=ex.2h4v.s8.7f777a476a5a from=translated src=- shape=4fba1742 vocab=d38f331d
+-/
 theorem exists_pow_smul_eq_zero_of_mem_heckeTorsion {𝔪 : Ideal HeckeAlg}
     (hp : ((p : HeckeAlg)) ∈ 𝔪) {x : J} (hx : x ∈ heckeTorsion J 𝔪) :
     ∃ n : ℕ, p ^ n • x = 0 := by
@@ -80,6 +89,9 @@ theorem exists_pow_smul_eq_zero_of_mem_heckeTorsion {𝔪 : Ideal HeckeAlg}
   rw [pow_one, ← Nat.cast_smul_eq_nsmul HeckeAlg p x]
   exact h0
 
+/--
+@isnad1 id=eq.11h13v.s11.dd51aeeb42a4 from=translated src=- shape=7b1807a5 vocab=292d0b5f
+-/
 theorem cayleyHamilton_of_frobeniusQuadratic {𝔪 : Ideal HeckeAlg}
     (hES3 : FrobeniusQuadratic (K := K) (L := L) N p J)
     (hp : ((p : HeckeAlg)) ∈ 𝔪)
@@ -114,6 +126,9 @@ section Dictionary
 variable {G : Type*} [Group G] {J : Type*} [AddCommGroup J] [Module HeckeAlg J]
   [DistribMulAction G J] [SMulCommClass G HeckeAlg J] {𝔪 : Ideal HeckeAlg}
 
+/--
+@isnad1 id=eq.2h8v.s14.e80302aae92a from=translated src=- shape=96ebc6db vocab=3071ba65
+-/
 theorem coe_heckeTorsionRep_quadRel_apply (ρ : G → Matrix (Fin 2) (Fin 2) (HeckeAlg ⧸ 𝔪))
     (σ : G) (x : heckeTorsionCarrier (J := J) 𝔪) {t d : HeckeAlg}
     (ht : Ideal.Quotient.mk 𝔪 t = (ρ σ).trace) (hd : Ideal.Quotient.mk 𝔪 d = (ρ σ).det) :
@@ -136,6 +151,9 @@ theorem coe_heckeTorsionRep_quadRel_apply (ρ : G → Matrix (Fin 2) (Fin 2) (He
     rw [← hd, Submodule.torsionBySet.mk_smul, SetLike.val_smul]
   rw [hterm1, hterm2, hterm3]
 
+/--
+@isnad1 id=iff.0h5v.s14.09981a5c26f9 from=translated src=- shape=fb4ad8a8 vocab=16169243
+-/
 theorem heckeTorsionRep_quadRel_iff_cayleyHamilton
     (ρ : G → Matrix (Fin 2) (Fin 2) (HeckeAlg ⧸ 𝔪)) (σ : G) :
     (heckeTorsionRep (J := J) (𝔪 := 𝔪) σ * heckeTorsionRep (J := J) (𝔪 := 𝔪) σ
@@ -171,6 +189,9 @@ section KernelSeam
 variable {G : Type*} [Group G] {J : Type*} [AddCommGroup J] [Module HeckeAlg J]
   [DistribMulAction G J] [SMulCommClass G HeckeAlg J] {𝔪 : Ideal HeckeAlg}
 
+/--
+@isnad1 id=eq.0h3v.s10.c928a7ee905f from=translated src=- shape=3a58c2fe vocab=f22f4982
+-/
 theorem fixingSubgroup_heckeTorsion_eq_heckeTorsionRep_ker :
     fixingSubgroup G (heckeTorsion J 𝔪 : Set J)
       = (heckeTorsionRep (J := J) (𝔪 := 𝔪)).ker := by
@@ -194,6 +215,9 @@ variable {J : Type*} [AddCommGroup J] [Module HeckeAlg J]
   [DistribMulAction (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) J]
   [SMulCommClass (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) HeckeAlg J]
 
+/--
+@isnad1 id=eq.8h10v.s13.aba7aae244f2 from=translated src=- shape=e85f9b64 vocab=21671ecd
+-/
 theorem cayleyHamilton_forall_of_frobeniusQuadratic_of_dense_aux
     (N p : ℕ) (𝔪 : Ideal HeckeAlg) (hp : ((p : HeckeAlg)) ∈ 𝔪)
     (ρ : (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) →*
@@ -243,6 +267,9 @@ end
 end ModularCurve
 open scoped _root_.P2MW.S_ModularCurve_cayleyHamilton_forall_of_frobeniusQuadratic_of_dense.ModularCurve
 
+/--
+@isnad1 id=eq.8h10v.s13.aba7aae244f2 from=translated src=- shape=e85f9b64 vocab=21671ecd
+-/
 theorem solution {J : Type*} [AddCommGroup J]
     [Module ModularCurve.HeckeAlg J] [DistribMulAction (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) J]
     [SMulCommClass (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) ModularCurve.HeckeAlg J]

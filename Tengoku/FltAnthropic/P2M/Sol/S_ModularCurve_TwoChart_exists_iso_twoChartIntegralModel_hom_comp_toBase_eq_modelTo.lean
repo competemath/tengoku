@@ -15,6 +15,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=ex.0h3v.s8.7d65d9445e6b from=translated src=- shape=6c91f509 vocab=aa4e8980
+-/
 theorem solution
     (A : Type u) [CommRing A] (K : Type u) [Field K] [Algebra A K] (j : K) [Fact (j ≠ 0)] :
     ∃ e : ModularCurve.TwoChartModel A K j ≅ AlgebraicCurve.TwoChartIntegralModel A K j,

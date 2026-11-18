@@ -33,6 +33,9 @@ private def hahnMapRingHom {R S : Type*} [CommRing R] [CommRing S] (f : R →+* 
 private theorem hahnMapRingHom_apply {R S : Type*} [CommRing R] [CommRing S] (f : R →+* S)
     (x : LaurentSeries R) : hahnMapRingHom f x = x.map f := rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.e0ed444bd634 from=translated src=- shape=23929d0b vocab=c57ef02a
+-/
 theorem ofPowerSeries_map {R S : Type*} [CommRing R] [CommRing S] (f : R →+* S)
     (u : PowerSeries R) :
     (HahnSeries.ofPowerSeries ℤ R u).map f = HahnSeries.ofPowerSeries ℤ S (PowerSeries.map f u) := by
@@ -95,6 +98,9 @@ private theorem eisenstein4_map_of_240 {K : Type*} [CommRing K] (h240 : (240 : K
       simp only [eq_intCast]; exact_mod_cast h240
     rw [map_mul, h240Z, zero_mul]
 
+/--
+@isnad1 id=eq.1h1v.s7.f15213dce425 from=translated src=- shape=0d670603 vocab=b3805843
+-/
 theorem jqModC_mul_Dseries_of_240 {K : Type*} [CommRing K] (h240 : (240 : K) = 0) :
     ModularCurve.jqModC K * Dseries K = 1 := by
   have heis := eisenstein4_map_of_240 h240
@@ -195,6 +201,9 @@ private theorem ModularCurve.StarBank.starK (K : Type*) [Field K] {ℓ : ℕ} [F
 
 open HahnSeries PowerSeries _root_.ModularCurve _root_.P2MW.S_ModularCurve_StarBank_starK.ModularCurve in
 
+/--
+@isnad1 id=ex.1h2v.s11.933d1239cc6c from=translated src=- shape=3dc10a3e vocab=3389c3bb
+-/
 theorem solution (K : Type*) [Field K] {ℓ : ℕ} [Fact ℓ.Prime] [CharP K ℓ]
     (hHasse : 5 ≤ ℓ → ∃ (T : PowerSeries ℤ) (G : Polynomial ℤ),
         (∀ m, 1 ≤ m → (ℓ : ℤ) ∣ T.coeff m) ∧ ¬ (ℓ : ℤ) ∣ PowerSeries.constantCoeff T

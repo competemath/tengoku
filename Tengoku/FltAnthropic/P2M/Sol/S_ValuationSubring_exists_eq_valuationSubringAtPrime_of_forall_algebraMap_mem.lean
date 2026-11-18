@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open IsDedekindDomain
 
+/--
+@isnad1 id=ex.2h3v.s8.f4fb827e8181 from=translated src=- shape=e505169e vocab=172371ba
+-/
 theorem solution
     {R K : Type*} [CommRing R] [IsDedekindDomain R] [Field K] [Algebra R K] [IsFractionRing R K]
     (V : ValuationSubring K) (hRV : ∀ r : R, algebraMap R K r ∈ V) (hV : V ≠ ⊤) :

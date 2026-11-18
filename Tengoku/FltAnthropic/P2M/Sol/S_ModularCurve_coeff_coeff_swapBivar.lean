@@ -7,12 +7,18 @@ namespace P2MW.S_ModularCurve_coeff_coeff_swapBivar
 
 open ModularCurve Polynomial
 
+/--
+@isnad1 id=eq.0h2v.s9.233f73fc15a1 from=translated src=- shape=a5e7611f vocab=97823734
+-/
 theorem swapBivar_monomial (n : ℕ) (c : Polynomial ℤ) :
     swapBivar (Polynomial.monomial n c) = swapInner c * Polynomial.C Polynomial.X ^ n := by
   show (Polynomial.eval₂RingHom swapInner (Polynomial.C Polynomial.X))
       (Polynomial.monomial n c) = _
   rw [Polynomial.coe_eval₂RingHom, Polynomial.eval₂_monomial]
 
+/--
+@isnad1 id=eq.0h2v.s7.a7ee70e9e463 from=translated src=- shape=6c9a6325 vocab=e1560782
+-/
 theorem coeff_swapInner (c : Polynomial ℤ) (j : ℕ) :
     (swapInner c).coeff j = Polynomial.C (c.coeff j) := by
   show ((Polynomial.aeval (R := ℤ)
@@ -28,6 +34,9 @@ theorem coeff_swapInner (c : Polynomial ℤ) (j : ℕ) :
       · subst h; simp
       · simp [h, Ne.symm h]
 
+/--
+@isnad1 id=eq.0h3v.s7.302a0c7bfc7b from=translated src=- shape=f8b7e949 vocab=8592fd60
+-/
 theorem solution (Φ : Polynomial (Polynomial ℤ)) (i j : ℕ) :
     ((swapBivar Φ).coeff j).coeff i = (Φ.coeff i).coeff j := by
   induction Φ using Polynomial.induction_on' with

@@ -13,6 +13,9 @@ universe u
 
 open ModularCurve
 
+/--
+@isnad1 id=ex.0h4v.s8.dbee85256a13 from=translated src=- shape=ae551fbf vocab=8a1d5d9e
+-/
 theorem solution
     {A : Type u} [CommRing A] {D : LevelModuliDatum.{u} A} (P P' : LevelModuliPackageAbs A D) :
     ∃ e : P.B₀ ≃ₐ[A] P'.B₀, D.map (e : P.B₀ →ₐ[A] P'.B₀) P.univ = P'.univ := by

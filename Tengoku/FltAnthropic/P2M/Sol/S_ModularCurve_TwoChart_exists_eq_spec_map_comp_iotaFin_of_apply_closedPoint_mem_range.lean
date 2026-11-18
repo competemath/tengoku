@@ -12,6 +12,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 universe u
 
+/--
+@isnad1 id=ex.1h5v.s10.187be884aee3 from=translated src=- shape=cc40bff9 vocab=b85ce4bf
+-/
 theorem solution
     (A : Type u) [CommRing A] (K : Type u) [Field K] [Algebra A K] (j : K) [Fact (j ≠ 0)]
     (O : Type u) [CommRing O] [IsLocalRing O]

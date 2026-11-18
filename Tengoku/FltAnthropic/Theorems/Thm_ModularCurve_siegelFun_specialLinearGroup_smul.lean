@@ -6,6 +6,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_ModularCurve_siegelFun_specialLinearGroup_
 
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `Theorems/Thm_ModularCurve_siegelFun_specialLinearGroup_smul.lean`: wrote out 1 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_exact_reverting`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 open ModularCurve
+/--
+@isnad1 id=ex.0h2v.s9.c27beedbdf9e from=translated src=- shape=0923d4b7 vocab=fe649354
+-/
 theorem ModularCurve.siegelFun_specialLinearGroup_smul (N : ℕ)
     (α : Matrix.SpecialLinearGroup (Fin 2) ℤ) :
     ∃ μ : ℂ, μ ^ 12 = 1 ∧ ∀ (r s : ℤ) (τ : UpperHalfPlane),

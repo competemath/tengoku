@@ -147,6 +147,9 @@ private theorem phiProd_def {K : Type*} [Field K] (ℓ : ℕ)
     (conj : Fin (ℓ + 1) → LaurentSeries K) :
     phiProd ℓ conj = ∏ i : Fin (ℓ + 1), (Polynomial.X - Polynomial.C (conj i)) := rfl
 
+/--
+@isnad1 id=tpoleord.1h5v.s9.2e8ebfabb6a7 from=translated src=- shape=5263d009 vocab=aaae1ce7
+-/
 theorem tPoleOrderLE_coeff_prod_X_sub_C_card {K : Type*} [Field K] {ι : Type*}
     (s : Finset ι) (a : ι → LaurentSeries K) (ha : ∀ i ∈ s, TPoleOrderLE (a i) 1) :
     ∀ k : ℕ, TPoleOrderLE ((∏ i ∈ s, (Polynomial.X - Polynomial.C (a i))).coeff k)
@@ -188,6 +191,9 @@ theorem tPoleOrderLE_coeff_prod_X_sub_C_card {K : Type*} [Field K] {ι : Type*}
             simp only [Polynomial.natDegree_X_sub_C, ← Finset.card_eq_sum_ones]
             omega
 
+/--
+@isnad1 id=tpoleord.4h6v.s9.6a9810ec9dea from=translated src=- shape=2ccc7d7c vocab=848ecdaa
+-/
 theorem tPoleOrderLE_phiProd_coeff_of_ne_zero {K : Type*} [Field K] {ℓ : ℕ}
     [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ} {J : LaurentSeries K}
     {conj : Fin (ℓ + 1) → LaurentSeries K} (hconj0 : conj 0 = qExpand K (ℓ * ℓ) J)
@@ -213,6 +219,9 @@ theorem tPoleOrderLE_phiProd_coeff_of_ne_zero {K : Type*} [Field K] {ℓ : ℕ}
   ·
     exact ((tPoleOrderLE_conj_zero hconj0 hJ).mul (hR (k + 1))).mono (by omega)
 
+/--
+@isnad1 id=jsimplep.0h1v.s7.014cd2a160d9 from=translated src=- shape=4510e609 vocab=18cd294f
+-/
 theorem jSimplePole_jqK_carrier {K : Type*} [Field K] [Algebra ℚ K] :
     JSimplePole (coeffEmb K jq) :=
   fun _ hm => coeff_coeffEmb_jq_of_lt K hm
@@ -230,6 +239,9 @@ end
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_tPoleOrderLE_phiProd_conj_of_ne_zero.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_tPoleOrderLE_phiProd_conj_of_ne_zero.ModularCurve.PhiGen in
 
+/--
+@isnad1 id=tpoleord.1h4v.s6.842079489649 from=translated src=- shape=bce6892d vocab=0ea4e850
+-/
 theorem solution {K : Type*} [Field K] [Algebra ℚ K] (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] (ζ : Kˣ) (k : ℕ) (hk : k ≠ 0) : TPoleOrderLE ((phiProd ℓ (conj ℓ ζ)).coeff k) (ℓ * ℓ + ℓ - 1) :=
   ModularCurve.PhiGen.tPoleOrderLE_phiProd_conj_of_ne_zero ℓ ζ k hk
 

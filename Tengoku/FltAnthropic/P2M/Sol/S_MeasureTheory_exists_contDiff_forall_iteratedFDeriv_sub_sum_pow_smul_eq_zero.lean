@@ -26,6 +26,9 @@ def pv {m : ℕ} (b : Fin m → Bool) (u : Fin m → E) : Fin m → E × ℝ :=
 def sv (m : ℕ) {j : ℕ} (u : Fin j → E) : Fin m → E × ℝ :=
   fun i => if h : (i : ℕ) < j then ((u ⟨i, h⟩, 0) : E × ℝ) else ρ̂
 
+/--
+@isnad1 id=eq.0h4v.s6.7f364a66ad74 from=translated src=- shape=d4604292 vocab=4a6167ba
+-/
 theorem sv_eq_append {j l : ℕ} (u : Fin j → E) :
     sv (j + l) u = Fin.append (fun i => ((u i, 0) : E × ℝ)) (fun _ : Fin l => ρ̂) := by
   funext i
@@ -64,13 +67,22 @@ theorem eq_of_forall_pv {m : ℕ} (M₁ M₂ : ContinuousMultilinearMap ℝ (fun
 def liftPerm {n : ℕ} (e : Equiv.Perm (Fin n)) : Equiv.Perm (Fin (n + 1)) :=
   Equiv.Perm.decomposeFin.symm (0, e)
 
+/--
+@isnad1 id=eq.0h2v.s7.3fccb169aef0 from=translated src=- shape=c9c1a9cd vocab=f1213a95
+-/
 @[scoped simp] theorem liftPerm_zero {n : ℕ} (e : Equiv.Perm (Fin n)) : liftPerm e 0 = 0 := by
   simp [liftPerm]
 
+/--
+@isnad1 id=eq.0h3v.s7.02ab0b40aaf4 from=translated src=- shape=bb4e08c5 vocab=b5b10083
+-/
 @[scoped simp] theorem liftPerm_succ {n : ℕ} (e : Equiv.Perm (Fin n)) (k : Fin n) :
     liftPerm e k.succ = (e k).succ := by
   simp [liftPerm]
 
+/--
+@isnad1 id=eq.0h5v.s8.29ecb6e8ec4f from=translated src=- shape=410cc453 vocab=c2171d03
+-/
 theorem cons_comp_liftPerm {n : ℕ} {α : Type} (a : α) (w : Fin n → α) (τ : Equiv.Perm (Fin n)) :
     (Fin.cons a w : Fin (n + 1) → α) ∘ liftPerm τ = Fin.cons a (w ∘ τ) := by
   funext i
@@ -78,18 +90,27 @@ theorem cons_comp_liftPerm {n : ℕ} {α : Type} (a : α) (w : Fin n → α) (τ
   · simp
   · simp
 
+/--
+@isnad1 id=eq.1h6v.s9.aa5860b66285 from=translated src=- shape=e4bfb15a vocab=c398f266
+-/
 theorem symm_apply_snoc {m : ℕ} {M : ContinuousMultilinearMap ℝ (fun _ : Fin (m + 1) => E × ℝ) F}
     (hM : Symm M) (w : Fin m → E × ℝ) (a : E × ℝ) :
     M (Fin.snoc w a) = M (Fin.cons a w) := by
   rw [Fin.snoc_eq_cons_rotate]
   exact hM (finRotate (m + 1)) (Fin.cons a w)
 
+/--
+@isnad1 id=symm.1h5v.s10.7164908173a3 from=translated src=- shape=8dbd7f77 vocab=778ff3ac
+-/
 theorem symm_curryLeft {m : ℕ} {M : ContinuousMultilinearMap ℝ (fun _ : Fin (m + 1) => E × ℝ) F}
     (hM : Symm M) (a : E × ℝ) : Symm (M.curryLeft a) := by
   intro τ w
   rw [ContinuousMultilinearMap.curryLeft_apply, ContinuousMultilinearMap.curryLeft_apply,
     ← cons_comp_liftPerm, hM]
 
+/--
+@isnad1 id=eq.0h4v.s7.b5fb4caf8732 from=translated src=- shape=e539103e vocab=769ae223
+-/
 theorem pv_eq_snoc {m : ℕ} (b : Fin (m + 1) → Bool) (u : Fin (m + 1) → E) :
     pv b u = Fin.snoc (pv (b ∘ Fin.castSucc) (u ∘ Fin.castSucc))
       (if b (Fin.last m) then ρ̂ else ((u (Fin.last m), 0) : E × ℝ)) := by
@@ -98,6 +119,9 @@ theorem pv_eq_snoc {m : ℕ} (b : Fin (m + 1) → Bool) (u : Fin (m + 1) → E) 
   · rw [Fin.snoc_last]; rfl
   · rw [Fin.snoc_castSucc]; rfl
 
+/--
+@isnad1 id=eq.1h5v.s7.b20bacf60177 from=translated src=- shape=d99b234b vocab=6c75e07a
+-/
 theorem cons_sv {m j : ℕ} (hj : j ≤ m) (x : E) (u : Fin j → E) :
     Fin.cons ((x, 0) : E × ℝ) (sv m u) = sv (m + 1) (Fin.cons x u : Fin (j + 1) → E) := by
   funext i
@@ -110,6 +134,9 @@ theorem cons_sv {m j : ℕ} (hj : j ≤ m) (x : E) (u : Fin j → E) :
       congr 2
     · rw [dite_eq_right hk, dite_eq_right (by omega)]
 
+/--
+@isnad1 id=eq.1h4v.s6.f931d703c8b0 from=translated src=- shape=0faf149c vocab=6e26610e
+-/
 theorem snoc_sv {m j : ℕ} (hj : j ≤ m) (u : Fin j → E) :
     Fin.snoc (sv m u) ρ̂ = sv (m + 1) u := by
   funext i
@@ -165,12 +192,18 @@ noncomputable def chi : ContDiffBump (0 : ℝ) := ⟨1, 2, one_pos, one_lt_two�
 noncomputable def T (k : ℕ) (a : E → F) : E × ℝ → F :=
   fun p => ((chi : ℝ → ℝ) p.2 * (p.2 ^ k / (k.factorial : ℝ))) • a p.1
 
+/--
+@isnad1 id=contdiff.1h4v.s7.73ccfe286ab6 from=translated src=- shape=0f0e3658 vocab=03066898
+-/
 theorem T_contDiff (k : ℕ) {a : E → F} (ha : ContDiff ℝ (⊤ : ℕ∞) a) :
     ContDiff ℝ (⊤ : ℕ∞) (T k a) := by
   unfold T
   refine ContDiff.smul ?_ (ha.comp contDiff_fst)
   exact ((chi.contDiff).comp contDiff_snd).mul ((contDiff_snd.pow k).div_const _)
 
+/--
+@isnad1 id=hascompa.2h5v.s7.1c5cd87d31a7 from=translated src=- shape=31b1e239 vocab=531a12fb
+-/
 theorem T_hasCompactSupport (k : ℕ) {a : E → F} {C : Set E} (hC : IsCompact C)
     (hsupp : ∀ e, e ∉ C → a e = 0) : HasCompactSupport (T k a) := by
 
@@ -189,9 +222,15 @@ theorem T_hasCompactSupport (k : ℕ) {a : E → F} {C : Set E} (hC : IsCompact 
 noncomputable def S (ε : ℝ) : E × ℝ →L[ℝ] E × ℝ :=
   (ContinuousLinearMap.fst ℝ E ℝ).prod (ε⁻¹ • ContinuousLinearMap.snd ℝ E ℝ)
 
+/--
+@isnad1 id=eq.0h3v.s8.58f688314e82 from=translated src=- shape=31c540c6 vocab=ba1dfde3
+-/
 theorem S_apply (ε : ℝ) (p : E × ℝ) : S ε p = (p.1, ε⁻¹ * p.2) := by
   simp [S]
 
+/--
+@isnad1 id=le.2h2v.s8.12f73b0f2f2a from=translated src=- shape=c8b559fa vocab=4837d239
+-/
 theorem norm_S_le {ε : ℝ} (hε : 0 < ε) (hε1 : ε ≤ 1) : ‖(S ε : E × ℝ →L[ℝ] E × ℝ)‖ ≤ ε⁻¹ := by
   have hε' : 1 ≤ ε⁻¹ := one_le_inv_iff₀.mpr ⟨hε, hε1⟩
   refine ContinuousLinearMap.opNorm_le_bound _ (inv_nonneg.mpr hε.le) (fun p => ?_)
@@ -204,6 +243,9 @@ theorem norm_S_le {ε : ℝ} (hε : 0 < ε) (hε1 : ε ≤ 1) : ‖(S ε : E × 
 
 noncomputable def term (k : ℕ) (ε : ℝ) (a : E → F) : E × ℝ → F := fun p => ε ^ k • T k a (S ε p)
 
+/--
+@isnad1 id=eq.1h6v.s7.b15d41f575ee from=translated src=- shape=e39d2926 vocab=00008e10
+-/
 theorem term_eq (k : ℕ) {ε : ℝ} (hε : 0 < ε) (a : E → F) (p : E × ℝ) :
     term k ε a p = ((chi : ℝ → ℝ) (p.2 / ε) * (p.2 ^ k / (k.factorial : ℝ))) • a p.1 := by
   unfold term T
@@ -214,10 +256,16 @@ theorem term_eq (k : ℕ) {ε : ℝ} (hε : 0 < ε) (a : E → F) (p : E × ℝ)
   rw [inv_mul_eq_div, div_pow]
   field_simp
 
+/--
+@isnad1 id=contdiff.1h5v.s7.2b6daa3eba46 from=translated src=- shape=fb43b877 vocab=e0605b47
+-/
 theorem term_contDiff (k : ℕ) (ε : ℝ) {a : E → F} (ha : ContDiff ℝ (⊤ : ℕ∞) a) :
     ContDiff ℝ (⊤ : ℕ∞) (term k ε a) :=
   contDiff_const.smul ((T_contDiff k ha).comp (S ε : E × ℝ →L[ℝ] E × ℝ).contDiff)
 
+/--
+@isnad1 id=eq.0h2v.s6.05580ad35b44 from=translated src=- shape=42224f8b vocab=7912b08f
+-/
 theorem iteratedDeriv_monomial (k l : ℕ) :
     iteratedDeriv l (fun r : ℝ => r ^ k / (k.factorial : ℝ)) 0 = if l = k then 1 else 0 := by
   have h : (fun r : ℝ => r ^ k / (k.factorial : ℝ)) = fun r => ((k.factorial : ℝ)⁻¹) * (fun r : ℝ => r ^ k) r := by
@@ -229,6 +277,9 @@ theorem iteratedDeriv_monomial (k l : ℕ) :
       inv_mul_cancel₀ (by exact_mod_cast Nat.factorial_ne_zero _)]
   · rw [ite_eq_right hgt.ne', Nat.descFactorial_eq_zero_iff_lt.mpr hgt]; simp
 
+/--
+@isnad1 id=le.4h8v.s9.6a55702c9a1b from=translated src=- shape=cf9f8764 vocab=1f2f4ad9
+-/
 theorem norm_iteratedFDeriv_term_le (k j : ℕ) {ε : ℝ} (hε : 0 < ε) (hε1 : ε ≤ 1) {a : E → F}
     (ha : ContDiff ℝ (⊤ : ℕ∞) a) {N : ℝ} (hN : ∀ q : E × ℝ, ‖iteratedFDeriv ℝ j (T k a) q‖ ≤ N) (p : E × ℝ) :
     ‖iteratedFDeriv ℝ j (term k ε a) p‖ ≤ ε ^ k * (ε⁻¹) ^ j * N := by
@@ -252,6 +303,9 @@ theorem norm_iteratedFDeriv_term_le (k j : ℕ) {ε : ℝ} (hε : 0 < ε) (hε1 
         · exact norm_S_le hε hε1
     _ = ε ^ k * (ε⁻¹) ^ j * N := by ring
 
+/--
+@isnad1 id=eventual.1h6v.s7.abcf55b07b13 from=translated src=- shape=6c6e61f6 vocab=6c951891
+-/
 theorem term_eventuallyEq (k : ℕ) {ε : ℝ} (hε : 0 < ε) (a : E → F) (e : E) :
     term k ε a =ᶠ[𝓝 ((e, 0) : E × ℝ)] fun p => (p.2 ^ k / (k.factorial : ℝ)) • a p.1 := by
   have ho : IsOpen {p : E × ℝ | |p.2| < ε} := isOpen_lt (continuous_abs.comp continuous_snd) continuous_const
@@ -266,6 +320,9 @@ theorem term_eventuallyEq (k : ℕ) {ε : ℝ} (hε : 0 < ε) (a : E → F) (e :
     exact le_of_lt hp
   rw [h1, one_mul]
 
+/--
+@isnad1 id=eq.2h6v.s9.a1be10287d19 from=translated src=- shape=fbbfe1c5 vocab=53e2066b
+-/
 theorem iteratedFDeriv_monomial_eq_zero (k m : ℕ) (hmk : m < k) {a : E → F} (ha : ContDiff ℝ (⊤ : ℕ∞) a) (e : E) :
     iteratedFDeriv ℝ m (fun p : E × ℝ => (p.2 ^ k / (k.factorial : ℝ)) • a p.1) (e, 0) = 0 := by
   have hP : ContDiff ℝ (⊤ : ℕ∞) (fun p : E × ℝ => (p.2 ^ k / (k.factorial : ℝ)) • a p.1) :=
@@ -288,6 +345,9 @@ end Borel44
 open scoped _root_.P2MW.S_MeasureTheory_exists_contDiff_forall_iteratedFDeriv_sub_sum_pow_smul_eq_zero.TaylorFlat
 
 open Borel44 in
+/--
+@isnad1 id=ex.3h4v.s9.44df096dc721 from=translated src=- shape=1b7e703f vocab=ed1f2f23
+-/
 theorem solution
     {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
     {F : Type} [NormedAddCommGroup F] [NormedSpace ℝ F] [CompleteSpace F]

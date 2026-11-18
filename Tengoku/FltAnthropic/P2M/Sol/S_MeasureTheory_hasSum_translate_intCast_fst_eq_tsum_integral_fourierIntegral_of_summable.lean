@@ -23,15 +23,27 @@ variable {d : Type*} [Fintype d]
 
 def cube (k : d → ℤ) : Set (d → ℝ) := Set.pi Set.univ (fun i => Set.Ico (k i : ℝ) (k i + 1))
 
+/--
+@isnad1 id=iff.0h3v.s5.1358d5f90b57 from=translated src=- shape=91f40d9a vocab=b86f754c
+-/
 theorem mem_cube_iff (k : d → ℤ) (w : d → ℝ) : w ∈ cube k ↔ ∀ i, ⌊w i⌋ = k i := by
   simp only [cube, Set.mem_univ_pi, Set.mem_Ico, Int.floor_eq_iff]
 
+/--
+@isnad1 id=mem.0h2v.s5.5220b5c5fc4d from=translated src=- shape=29485dc1 vocab=73a6094e
+-/
 theorem mem_cube_floor (w : d → ℝ) : w ∈ cube (fun i => ⌊w i⌋) :=
   (mem_cube_iff _ w).2 fun _ => rfl
 
+/--
+@isnad1 id=measurab.0h2v.s4.9ea79d85a252 from=translated src=- shape=e6b9a5b7 vocab=545e7cce
+-/
 theorem measurableSet_cube (k : d → ℤ) : MeasurableSet (cube k) :=
   MeasurableSet.univ_pi fun _ => measurableSet_Ico
 
+/--
+@isnad1 id=pairwise.0h1v.s6.b05bacdd1ef1 from=translated src=- shape=75ef16c1 vocab=db9c0639
+-/
 theorem pairwise_disjoint_cube : Pairwise (Function.onFun Disjoint (cube (d := d))) := by
   intro k k' hkk'
   rw [Function.onFun, Set.disjoint_left]
@@ -40,30 +52,48 @@ theorem pairwise_disjoint_cube : Pairwise (Function.onFun Disjoint (cube (d := d
   funext i
   rw [← (mem_cube_iff k w).1 hw i, (mem_cube_iff k' w).1 hw' i]
 
+/--
+@isnad1 id=eq.0h1v.s4.ebd98f1f2646 from=translated src=- shape=87a0a88c vocab=90ae8580
+-/
 theorem iUnion_cube : (⋃ k : d → ℤ, cube k) = Set.univ :=
   Set.eq_univ_of_forall fun w => Set.mem_iUnion.2 ⟨_, mem_cube_floor w⟩
 
+/--
+@isnad1 id=eq.0h2v.s6.4543b5f509cf from=translated src=- shape=83f60e71 vocab=b7de006b
+-/
 theorem volume_cube (k : d → ℤ) : volume (cube k) = 1 := by
   rw [cube, volume_pi, Measure.pi_pi]
   simp [Real.volume_Ico]
 
+/--
+@isnad1 id=eqon.0h3v.s5.65e6e6018cb2 from=translated src=- shape=152bc392 vocab=be41a0bd
+-/
 theorem eqOn_cube (M : (d → ℤ) → ℝ) (k : d → ℤ) :
     Set.EqOn (fun w : d → ℝ => M (fun i => ⌊w i⌋)) (fun _ => M k) (cube k) := by
   intro w hw
   have : (fun i => ⌊w i⌋) = k := funext ((mem_cube_iff k w).1 hw)
   simp only [this]
 
+/--
+@isnad1 id=integrab.0h3v.s6.38265a528ef0 from=translated src=- shape=187b9f4c vocab=5c2af7c6
+-/
 theorem integrableOn_cube (M : (d → ℤ) → ℝ) (k : d → ℤ) :
     IntegrableOn (fun w : d → ℝ => M (fun i => ⌊w i⌋)) (cube k) := by
   refine IntegrableOn.congr_fun ?_ (eqOn_cube M k).symm (measurableSet_cube k)
   refine integrableOn_const ?_
   rw [volume_cube]; exact ENNReal.one_ne_top
 
+/--
+@isnad1 id=eq.0h3v.s6.d72fa1a18d79 from=translated src=- shape=1b1553d3 vocab=66e1276a
+-/
 theorem setIntegral_cube (M : (d → ℤ) → ℝ) (k : d → ℤ) :
     ∫ w in cube k, M (fun i => ⌊w i⌋) = M k := by
   rw [setIntegral_congr_fun (measurableSet_cube k) (eqOn_cube M k), setIntegral_const]
   simp [measureReal_def, volume_cube]
 
+/--
+@isnad1 id=eq.0h3v.s6.49f517315275 from=translated src=- shape=fe421bdc vocab=88d564b6
+-/
 theorem setIntegral_norm_cube (M : (d → ℤ) → ℝ) (k : d → ℤ) :
     ∫ w in cube k, ‖M (fun i => ⌊w i⌋)‖ = ‖M k‖ := by
   have h : Set.EqOn (fun w : d → ℝ => ‖M (fun i => ⌊w i⌋)‖) (fun _ => ‖M k‖) (cube k) := fun w hw => by
@@ -76,6 +106,9 @@ end CubeDecomp
 namespace MeasureTheory export _root_.MeasureTheory (Measure setIntegral_congr_fun MeasurePreserving hasSum_integral_iUnion continuousAt_of_dominated setIntegral_const IntegrableOn Measure.prod volume_pi Measure.pi_pi integrableOn_const continuous_of_dominated IntegrableOn.congr_fun Measure.prod.instIsAddHaarMeasure measureReal_def MeasurePreserving.integral_comp' norm_integral_le_integral_norm integrableOn_univ Integrable integrable_comp integral_prod_symm integral_const_mul setIntegral_univ integrableOn_iUnion_of_summable_integral_norm) end MeasureTheory
 open scoped _root_.MeasureTheory in
 open CubeDecomp in
+/--
+@isnad1 id=and.1h2v.s7.ad284b025c72 from=translated src=- shape=a4d554d3 vocab=d47bbe0e
+-/
 theorem MeasureTheory.integrable_comp_intFloor_and_integral_eq_tsum
     {d : Type*} [Fintype d] (M : (d → ℤ) → ℝ) (hM : Summable M) :
     Integrable (fun w : d → ℝ => M (fun i => ⌊w i⌋)) ∧
@@ -101,19 +134,31 @@ variable {a b : ℕ}
 
 def ιZ (κ : Fin a → ℤ) : Fin a → ℝ := fun i => (κ i : ℝ)
 
+/--
+@isnad1 id=isaddhaa.0h2v.s7.e35e3b48b9c5 from=translated src=- shape=459498a9 vocab=a6f941f5
+-/
 scoped instance instHaarProd : (volume : Measure ((Fin a → ℝ) × (Fin b → ℝ))).IsAddHaarMeasure :=
   MeasureTheory.Measure.prod.instIsAddHaarMeasure _ _
 
+/--
+@isnad1 id=isaddhaa.0h2v.s7.643a61d41b37 from=translated src=- shape=eb263f47 vocab=eac2bb86
+-/
 scoped instance instHaarProd' :
     ((volume : Measure (Fin a → ℝ)).prod (volume : Measure (Fin b → ℝ))).IsAddHaarMeasure :=
   MeasureTheory.Measure.prod.instIsAddHaarMeasure _ _
 
+/--
+@isnad1 id=eq.0h1v.s5.14c1b886053d from=translated src=- shape=497ea19e vocab=c517f9b3
+-/
 lemma norm_cexp_neg_mul_I (t : ℝ) :
     ‖Complex.exp (-(2 * Real.pi * Complex.I * (t : ℂ)))‖ = 1 := by
   have : -(2 * Real.pi * Complex.I * (t : ℂ)) = ((-(2 * Real.pi * t) : ℝ) : ℂ) * Complex.I := by
     push_cast; ring
   rw [this, Complex.norm_exp_ofReal_mul_I]
 
+/--
+@isnad1 id=eq.0h1v.s5.b4eb1706e19e from=translated src=- shape=0adbaac0 vocab=5c423e91
+-/
 lemma norm_cexp_mul_I (t : ℝ) :
     ‖Complex.exp (2 * Real.pi * Complex.I * (t : ℂ))‖ = 1 := by
   have : (2 * Real.pi * Complex.I * (t : ℂ)) = (((2 * Real.pi * t) : ℝ) : ℂ) * Complex.I := by
@@ -134,6 +179,9 @@ def pF (f : (Fin a → ℝ) × (Fin b → ℝ) → ℂ) (κ : Fin a → ℤ) (z 
 def slice (f : (Fin a → ℝ) × (Fin b → ℝ) → ℂ) (hfc : Continuous f) (z : Fin b → ℝ) : C(Fin a → ℝ, ℂ) :=
   ⟨fun w => f (w, z), hfc.comp (continuous_id.prodMk continuous_const)⟩
 
+/--
+@isnad1 id=continuo.1h4v.s7.b9db5760e849 from=translated src=- shape=d92c9bcb vocab=aae91d3f
+-/
 lemma continuous_fhatF (f : (Fin a → ℝ) × (Fin b → ℝ) → ℂ) (hfi : Integrable f) (κ : Fin a → ℤ) :
     Continuous (fhatF f κ) := by
   unfold fhatF
@@ -146,6 +194,9 @@ lemma continuous_fhatF (f : (Fin a → ℝ) × (Fin b → ℝ) → ℂ) (hfi : I
   · refine Filter.Eventually.of_forall fun p => ?_
     fun_prop
 
+/--
+@isnad1 id=summable.2h5v.s9.826fd6656ffa from=translated src=- shape=f4f44665 vocab=d0978c01
+-/
 lemma hnorm_slice (f : (Fin a → ℝ) × (Fin b → ℝ) → ℂ) (hfc : Continuous f) (hloc : LocDom f)
     (z : Fin b → ℝ) (K : Compacts (Fin a → ℝ)) :
     Summable fun n : Fin a → ℤ => ‖((slice f hfc z).comp (ContinuousMap.addRight (fun i => (n i : ℝ)))).restrict K‖ := by
@@ -173,6 +224,9 @@ lemma hnorm_slice (f : (Fin a → ℝ) × (Fin b → ℝ) → ℂ) (hfc : Contin
   rw [h2]
   exact h1.trans (Finset.single_le_sum (fun x _ => hMnn x n) hxt)
 
+/--
+@isnad1 id=continuo.2h4v.s7.65077df117e5 from=translated src=- shape=01c227f0 vocab=56831b6d
+-/
 lemma continuous_pF (f : (Fin a → ℝ) × (Fin b → ℝ) → ℂ) (hfc : Continuous f) (hloc : LocDom f) (κ : Fin a → ℤ) :
     Continuous (pF f κ) := by
   classical
@@ -221,6 +275,9 @@ lemma continuous_pF (f : (Fin a → ℝ) × (Fin b → ℝ) → ℂ) (hfc : Cont
       (show Continuous (fun z : Fin b → ℝ =>
         Complex.exp (-(2 * Real.pi * Complex.I * ((∑ i, (κ i : ℝ) * w i : ℝ) : ℂ))) * f (w, z)) by fun_prop).continuousAt
 
+/--
+@isnad1 id=integrab.1h4v.s7.be11ac65ca1b from=translated src=- shape=77605441 vocab=87490581
+-/
 lemma integrable_pF (f : (Fin a → ℝ) × (Fin b → ℝ) → ℂ) (hfi : Integrable f) (κ : Fin a → ℤ) :
     Integrable (pF f κ) := by
   set G : (Fin a → ℝ) × (Fin b → ℝ) → ℂ := fun p =>
@@ -233,6 +290,9 @@ lemma integrable_pF (f : (Fin a → ℝ) × (Fin b → ℝ) → ℂ) (hfi : Inte
   have := hGint.integral_prod_right
   exact this
 
+/--
+@isnad1 id=eq.1h5v.s8.bcffa8004d88 from=translated src=- shape=a9561fcd vocab=ebc3e805
+-/
 lemma integral_cexp_mul_pF (f : (Fin a → ℝ) × (Fin b → ℝ) → ℂ) (hfi : Integrable f) (κ : Fin a → ℤ) (η : Fin b → ℝ) :
     ∫ z : Fin b → ℝ, Complex.exp (-(2 * Real.pi * Complex.I * ((∑ j, η j * z j : ℝ) : ℂ))) * pF f κ z =
       fhatF f κ η := by
@@ -257,11 +317,17 @@ lemma integral_cexp_mul_pF (f : (Fin a → ℝ) × (Fin b → ℝ) → ℂ) (hfi
   push_cast
   ring
 
+/--
+@isnad1 id=eq.0h3v.s7.dfa97fc5b600 from=translated src=- shape=4ff88788 vocab=ec4d56c3
+-/
 lemma inner_eq_sum (v w : EuclideanSpace ℝ (Fin b)) :
     ⟪v, w⟫_ℝ = ∑ j, (WithLp.ofLp v) j * (WithLp.ofLp w) j := by
   rw [PiLp.inner_apply]
   simp [mul_comm]
 
+/--
+@isnad1 id=eq.4h5v.s8.70468563fea5 from=translated src=- shape=5642ce01 vocab=0c3c1ac4
+-/
 lemma pF_eq_integral (f : (Fin a → ℝ) × (Fin b → ℝ) → ℂ) (hfc : Continuous f) (hfi : Integrable f)
     (hloc : LocDom f) (κ : Fin a → ℤ) (hint : Integrable (fhatF f κ)) (z : Fin b → ℝ) :
     pF f κ z = ∫ η : Fin b → ℝ, fhatF f κ η *
@@ -316,6 +382,9 @@ lemma pF_eq_integral (f : (Fin a → ℝ) × (Fin b → ℝ) → ℂ) (hfc : Con
   push_cast
   ring
 
+/--
+@isnad1 id=and.6h4v.s10.91be9fd55341 from=translated src=- shape=fa9aa721 vocab=d56a689b
+-/
 theorem main (f : (Fin a → ℝ) × (Fin b → ℝ) → ℂ) (hfc : Continuous f) (hfi : Integrable f) (hloc : LocDom f)
     (fhat : (Fin a → ℤ) → (Fin b → ℝ) → ℂ)
     (hfhat : ∀ (κ : Fin a → ℤ) (η : Fin b → ℝ), fhat κ η =
@@ -397,6 +466,9 @@ open scoped _root_.P2MW.S_MeasureTheory_hasSum_translate_intCast_fst_eq_tsum_int
 end
 open scoped _root_.P2MW.S_MeasureTheory_hasSum_translate_intCast_fst_eq_tsum_integral_fourierIntegral_of_summable.PoissonSummableSol
 
+/--
+@isnad1 id=and.6h4v.s10.855c3147003e from=translated src=- shape=bf55f6d6 vocab=426b4902
+-/
 theorem solution
     (a b : ℕ) (f : (Fin a → ℝ) × (Fin b → ℝ) → ℂ) (hfc : Continuous f) (hfi : MeasureTheory.Integrable f)
     (hloc : ∀ y : (Fin a → ℝ) × (Fin b → ℝ), ∃ V ∈ nhds y, ∃ M : (Fin a → ℤ) → ℝ, Summable M ∧

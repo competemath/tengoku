@@ -20,6 +20,9 @@ open ModularCurve ModularCurve.UVCrossingModel
 
 variable {W : Type*} [CommRing W]
 
+/--
+@isnad1 id=eq.0h6v.s6.c2cae49c94d4 from=translated src=- shape=67653e35 vocab=cbab7eab
+-/
 theorem termOrder_eq (v : W → ℕ∞) (E t : ℕ) (ab : PowerSeries W × PowerSeries W) (n : ℤ) :
     termOrder v E t ab n = v (nfCoeff ab n) + ((n.toNat * t + (-n).toNat * (E - t) : ℕ) : ℕ∞) := by
   cases n with
@@ -30,6 +33,9 @@ theorem termOrder_eq (v : W → ℕ∞) (E t : ℕ) (ab : PowerSeries W × Power
       show v (nfCoeff ab (Int.negSucc j)) + ((annulusWeight E t (Finsupp.single 1 (j + 1)) : ℕ) : ℕ∞) = _
       simp [annulusWeight]
 
+/--
+@isnad1 id=iff.0h6v.s5.eacd3eb3b8ef from=translated src=- shape=8f06d5a7 vocab=89188c48
+-/
 theorem termOrder_ne_top_iff (v : W → ℕ∞) (E t : ℕ) (ab : PowerSeries W × PowerSeries W) (n : ℤ) :
     termOrder v E t ab n ≠ ⊤ ↔ v (nfCoeff ab n) ≠ ⊤ := by
   rw [termOrder_eq]
@@ -37,6 +43,9 @@ theorem termOrder_ne_top_iff (v : W → ℕ∞) (E t : ℕ) (ab : PowerSeries W 
   · intro h h'; exact h (by rw [h', top_add])
   · intro h; exact WithTop.add_ne_top.mpr ⟨h, ENat.natCast_ne_top _⟩
 
+/--
+@isnad1 id=eq.2h7v.s6.d7f6565203b5 from=translated src=- shape=82ab8c7c vocab=c4414f94
+-/
 theorem termOrder_step (v : W → ℕ∞) (E : ℕ) {t t' : ℕ} (htt' : t ≤ t') (ht'E : t' ≤ E)
     (ab : PowerSeries W × PowerSeries W) (n : ℤ) :
     termOrder v E t' ab n + (((-n).toNat * (t' - t) : ℕ) : ℕ∞) =
@@ -51,6 +60,9 @@ theorem termOrder_step (v : W → ℕ∞) (E : ℕ) {t t' : ℕ} (htt' : t ≤ t
   push_cast
   ring
 
+/--
+@isnad1 id=iff.2h6v.s7.e0b3ce021e95 from=translated src=- shape=880f7013 vocab=a7e4f256
+-/
 theorem mem_dominantIndices_iff (v : W → ℕ∞) (hv0 : v 0 = ⊤) (E t : ℕ) (ab : PowerSeries W × PowerSeries W)
     (hb : PowerSeries.constantCoeff ab.2 = 0) (n : ℤ) :
     n ∈ dominantIndices v E t ab ↔ ∀ k, termOrder v E t ab n ≤ termOrder v E t ab k := by
@@ -60,12 +72,18 @@ theorem mem_dominantIndices_iff (v : W → ℕ∞) (hv0 : v 0 = ⊤) (E t : ℕ)
   · intro h k; rw [h]; exact iInf_le _ k
   · intro h; exact le_antisymm (le_iInf h) (iInf_le _ n)
 
+/--
+@isnad1 id=nonempty.2h5v.s7.b435c8eec916 from=translated src=- shape=82d9f8dd vocab=ebae49c1
+-/
 theorem dominantIndices_nonempty (v : W → ℕ∞) (hv0 : v 0 = ⊤) (E t : ℕ) (ab : PowerSeries W × PowerSeries W)
     (hb : PowerSeries.constantCoeff ab.2 = 0) : (dominantIndices v E t ab).Nonempty := by
   obtain ⟨n, hn⟩ := ENat.exists_eq_iInf (fun k => termOrder v E t ab k)
   refine ⟨n, (mem_dominantIndices_iff v hv0 E t ab hb n).mpr fun k => ?_⟩
   rw [hn]; exact iInf_le _ k
 
+/--
+@isnad1 id=ne.4h6v.s7.4bf7a4fdf3ea from=translated src=- shape=83b47598 vocab=6366196b
+-/
 theorem ne_top_of_mem (v : W → ℕ∞) (hv0 : v 0 = ⊤) (E t : ℕ) (ab : PowerSeries W × PowerSeries W)
     (hb : PowerSeries.constantCoeff ab.2 = 0) (hne : ∃ n : ℤ, v (nfCoeff ab n) ≠ ⊤)
     {n : ℤ} (hn : n ∈ dominantIndices v E t ab) : v (nfCoeff ab n) ≠ ⊤ := by
@@ -74,6 +92,9 @@ theorem ne_top_of_mem (v : W → ℕ∞) (hv0 : v 0 = ⊤) (E t : ℕ) (ab : Pow
   have := (mem_dominantIndices_iff v hv0 E t ab hb n).mp hn k
   exact ne_top_of_le_ne_top hk this
 
+/--
+@isnad1 id=bddbelow.4h5v.s7.15bef49cdb84 from=translated src=- shape=face2d76 vocab=8ae0aede
+-/
 theorem bddBelow_dominantIndices (v : W → ℕ∞) (hv0 : v 0 = ⊤) (E t : ℕ) (ht : t < E)
     (ab : PowerSeries W × PowerSeries W) (hb : PowerSeries.constantCoeff ab.2 = 0)
     (hne : ∃ n : ℤ, v (nfCoeff ab n) ≠ ⊤) : BddBelow (dominantIndices v E t ab) := by
@@ -88,6 +109,9 @@ theorem bddBelow_dominantIndices (v : W → ℕ∞) (hv0 : v 0 = ⊤) (E t : ℕ
   have h1 : (-n).toNat ≤ (-n).toNat * (E - t) := Nat.le_mul_of_pos_right _ (by omega)
   omega
 
+/--
+@isnad1 id=bddabove.4h5v.s7.6f82d8ef0af6 from=translated src=- shape=dee44d93 vocab=8cb4b381
+-/
 theorem bddAbove_dominantIndices (v : W → ℕ∞) (hv0 : v 0 = ⊤) (E t : ℕ) (ht : 0 < t)
     (ab : PowerSeries W × PowerSeries W) (hb : PowerSeries.constantCoeff ab.2 = 0)
     (hne : ∃ n : ℤ, v (nfCoeff ab n) ≠ ⊤) : BddAbove (dominantIndices v E t ab) := by
@@ -102,18 +126,27 @@ theorem bddAbove_dominantIndices (v : W → ℕ∞) (hv0 : v 0 = ⊤) (E t : ℕ
   have h1 : n.toNat ≤ n.toNat * t := Nat.le_mul_of_pos_right _ ht
   omega
 
+/--
+@isnad1 id=mem.4h5v.s7.c265fe9a9e77 from=translated src=- shape=da324d08 vocab=aaa6fc36
+-/
 theorem sInf_mem (v : W → ℕ∞) (hv0 : v 0 = ⊤) (E t : ℕ) (ht : t < E)
     (ab : PowerSeries W × PowerSeries W) (hb : PowerSeries.constantCoeff ab.2 = 0)
     (hne : ∃ n : ℤ, v (nfCoeff ab n) ≠ ⊤) :
     sInf (dominantIndices v E t ab) ∈ dominantIndices v E t ab :=
   Int.csInf_mem (dominantIndices_nonempty v hv0 E t ab hb) (bddBelow_dominantIndices v hv0 E t ht ab hb hne)
 
+/--
+@isnad1 id=mem.4h5v.s7.90433e58b8b4 from=translated src=- shape=9f4d9894 vocab=f90312f5
+-/
 theorem sSup_mem (v : W → ℕ∞) (hv0 : v 0 = ⊤) (E t : ℕ) (ht : 0 < t)
     (ab : PowerSeries W × PowerSeries W) (hb : PowerSeries.constantCoeff ab.2 = 0)
     (hne : ∃ n : ℤ, v (nfCoeff ab n) ≠ ⊤) :
     sSup (dominantIndices v E t ab) ∈ dominantIndices v E t ab :=
   Int.csSup_mem (dominantIndices_nonempty v hv0 E t ab hb) (bddAbove_dominantIndices v hv0 E t ht ab hb hne)
 
+/--
+@isnad1 id=le.7h8v.s7.3df118b6fda6 from=translated src=- shape=daf7daca vocab=85f333dd
+-/
 theorem le_of_mem_of_mem (v : W → ℕ∞) (hv0 : v 0 = ⊤) (E : ℕ) {t t' : ℕ} (htt' : t < t') (ht'E : t' ≤ E)
     (ab : PowerSeries W × PowerSeries W) (hb : PowerSeries.constantCoeff ab.2 = 0)
     (hne : ∃ n : ℤ, v (nfCoeff ab n) ≠ ⊤)
@@ -150,6 +183,9 @@ theorem le_of_mem_of_mem (v : W → ℕ∞) (hv0 : v 0 = ⊤) (E : ℕ) {t t' : 
   have := Nat.le_of_mul_le_mul_right key'' hdpos
   omega
 
+/--
+@isnad1 id=eq.6h5v.s7.b9df9b80575f from=translated src=- shape=b7678298 vocab=e6c5f59b
+-/
 theorem sSup_eq_sInf_pred (v : W → ℕ∞) (hv0 : v 0 = ⊤) (E : ℕ) {S : ℕ} (hS1 : 1 ≤ S) (hSE : S ≤ E)
     (ab : PowerSeries W × PowerSeries W) (hb : PowerSeries.constantCoeff ab.2 = 0)
     (hne : ∃ n : ℤ, v (nfCoeff ab n) ≠ ⊤)
@@ -160,6 +196,9 @@ theorem sSup_eq_sInf_pred (v : W → ℕ∞) (hv0 : v 0 = ⊤) (E : ℕ) {S : �
   exact le_of_mem_of_mem v hv0 E (by omega) hSE ab hb hne
     (sInf_mem v hv0 E (S - 1) (by omega) ab hb hne) hk
 
+/--
+@isnad1 id=mem.6h6v.s8.450b9269c03a from=translated src=- shape=b9ceb2ef vocab=bb646f39
+-/
 theorem sInf_mem_succ_of_dvd (v : W → ℕ∞) (hv0 : v 0 = ⊤) (E r : ℕ) (hr : 1 ≤ r) (S : ℕ) (hS : S + 1 ≤ r * E)
     (ab : PowerSeries W × PowerSeries W) (hb : PowerSeries.constantCoeff ab.2 = 0)
     (hne : ∃ n : ℤ, v (nfCoeff ab n) ≠ ⊤)
@@ -251,6 +290,9 @@ theorem sInf_mem_succ_of_dvd (v : W → ℕ∞) (hv0 : v 0 = ⊤) (E r : ℕ) (h
   have q2 := congrArg (fun z : ℤ => z * ((S : ℤ) + 1)) em
   linarith [hY, q1, q2]
 
+/--
+@isnad1 id=ex.4h4v.s8.1ec971d98208 from=translated src=- shape=c1cf70b2 vocab=ee2458a7
+-/
 theorem main (v : W → ℕ∞) (hv0 : v 0 = ⊤) (E : ℕ) (hE : 1 ≤ E)
     (ab : PowerSeries W × PowerSeries W) (hb : PowerSeries.constantCoeff ab.2 = 0)
     (hne : ∃ n : ℤ, v (nfCoeff ab n) ≠ ⊤) :
@@ -316,6 +358,9 @@ theorem main (v : W → ℕ∞) (hv0 : v 0 = ⊤) (E : ℕ) (hE : 1 ≤ E)
 end AnnulusNoKink
 
 open ModularCurve ModularCurve.UVCrossingModel IsLocalRing in
+/--
+@isnad1 id=ex.4h4v.s8.1ec971d98208 from=translated src=- shape=c1cf70b2 vocab=ee2458a7
+-/
 theorem solution
     {W : Type u} [CommRing W] (v : W → ℕ∞) (hv0 : v 0 = ⊤) (E : ℕ) (hE : 1 ≤ E)
     (ab : PowerSeries W × PowerSeries W) (hb : PowerSeries.constantCoeff ab.2 = 0)

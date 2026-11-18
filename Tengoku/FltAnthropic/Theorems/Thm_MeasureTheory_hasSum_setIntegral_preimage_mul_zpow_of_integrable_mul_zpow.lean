@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open MeasureTheory
 
+/--
+@isnad1 id=and.3h5v.s8.5df4686409d5 from=translated src=- shape=336929ca vocab=617fa596
+-/
 theorem MeasureTheory.hasSum_setIntegral_preimage_mul_zpow_of_integrable_mul_zpow
     {Ω : Type*} [MeasurableSpace Ω] (ρ : Measure Ω) (E : Ω → ℤ) (hE : Measurable E)
     (G : Ω → ℂ) {r : ℝ} (hr : 0 < r)

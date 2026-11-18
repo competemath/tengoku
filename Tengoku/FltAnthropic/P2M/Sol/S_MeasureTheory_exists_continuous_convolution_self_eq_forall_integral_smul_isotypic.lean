@@ -23,6 +23,9 @@ theorem eq_of_isMulLeftInvariant_of_isProbabilityMeasure {G : Type*} [Group G] [
     exact_mod_cast h1.symm
   rw [h, hc, one_smul]
 
+/--
+@isnad1 id=ismulrig.0h2v.s5.2977480d35fe from=translated src=- shape=e8948725 vocab=d690f502
+-/
 theorem isMulRightInvariant_of_isHaarMeasure_of_isProbabilityMeasure {G : Type*} [Group G] [TopologicalSpace G]
     [IsTopologicalGroup G] [CompactSpace G] [MeasurableSpace G] [BorelSpace G] (μ : Measure G)
     [μ.IsHaarMeasure] [IsProbabilityMeasure μ] : μ.IsMulRightInvariant := by
@@ -31,6 +34,9 @@ theorem isMulRightInvariant_of_isHaarMeasure_of_isProbabilityMeasure {G : Type*}
     Measure.isProbabilityMeasure_map (measurable_mul_const g).aemeasurable
   exact eq_of_isMulLeftInvariant_of_isProbabilityMeasure (μ.map (· * g)) μ
 
+/--
+@isnad1 id=and.0h3v.s9.e6e0d0ce0f31 from=translated src=- shape=85d10dba vocab=760c5dfb
+-/
 theorem coeffSpan_stable {K : Type*} [Monoid K] {n : ℕ} (ρ : K →* Matrix (Fin n) (Fin n) ℂ) :
     (∀ a ∈ Submodule.span ℂ (Set.range fun p : Fin n × Fin n => fun κ : K => ρ κ p.1 p.2), ∀ t : K,
         (fun κ => a (κ * t)) ∈ Submodule.span ℂ (Set.range fun p : Fin n × Fin n => fun κ : K => ρ κ p.1 p.2)) ∧
@@ -69,6 +75,9 @@ theorem coeffSpan_stable {K : Type*} [Monoid K] {n : ℕ} (ρ : K →* Matrix (F
     · intro a b _ _ ha hb; exact V.add_mem ha hb
     · intro c a _ ha; exact V.smul_mem c ha
 
+/--
+@isnad1 id=ex.1h4v.s9.447ec1e71302 from=translated src=- shape=3b33b43b vocab=56b21adf
+-/
 theorem exists_gram_reproducer {K : Type*} [TopologicalSpace K] [CompactSpace K]
     [MeasurableSpace K] [BorelSpace K] (μ : Measure K) [IsFiniteMeasure μ] [μ.IsOpenPosMeasure]
     (V : Submodule ℂ (K → ℂ)) [FiniteDimensional ℂ ↥V] (hVcont : ∀ a ∈ V, Continuous a) (κ₀ : K) :
@@ -203,6 +212,9 @@ theorem exists_gram_reproducer {K : Type*} [TopologicalSpace K] [CompactSpace K]
       rw [this]
       exact (hintk k).const_mul _
 
+/--
+@isnad1 id=and.5h4v.s9.798aaa078aee from=translated src=- shape=fea501e6 vocab=c64b88ef
+-/
 theorem conj_invariant_and_inv_eq_conj_of_reproducer {K : Type*} [Group K] [TopologicalSpace K]
     [IsTopologicalGroup K] [CompactSpace K] [MeasurableSpace K] [BorelSpace K]
     (μ : Measure K) [IsFiniteMeasure μ] [μ.IsOpenPosMeasure] [μ.IsMulLeftInvariant] [μ.IsMulRightInvariant]
@@ -305,6 +317,9 @@ theorem conj_invariant_and_inv_eq_conj_of_reproducer {K : Type*} [Group K] [Topo
       simp only [map_mul, Complex.conj_conj, inv_mul_cancel_right, mul_comm]
     rw [h2, integral_mul_right_eq_self (μ := μ) (fun x => e x * conj (e (x * s))) s⁻¹, star]
 
+/--
+@isnad1 id=ex.1h4v.s9.ab22128d64eb from=translated src=- shape=87b19203 vocab=805d21e3
+-/
 theorem eside {K : Type*} [Group K] [TopologicalSpace K] [IsTopologicalGroup K] [CompactSpace K] [T2Space K]
     [MeasurableSpace K] [BorelSpace K] (μ : Measure K) [μ.IsHaarMeasure] [IsProbabilityMeasure μ]
     {n : ℕ} (ρ : K →* Matrix (Fin n) (Fin n) ℂ) (hρ : Continuous ρ) :
@@ -364,10 +379,16 @@ variable {K : Type*} [Group K] [TopologicalSpace K] [IsTopologicalGroup K] [Comp
   {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] [CompleteSpace E]
   {n : ℕ}
 
+/--
+@isnad1 id=integrab.1h4v.s6.8984348c188c from=translated src=- shape=7f905ab2 vocab=3775c1bf
+-/
 theorem integrable_of_continuous' (μ : Measure K) [IsFiniteMeasureOnCompacts μ]
     {F : Type*} [NormedAddCommGroup F] (f : K → F) (hf : Continuous f) : Integrable f μ :=
   hf.integrable_of_hasCompactSupport (HasCompactSupport.of_compactSpace _)
 
+/--
+@isnad1 id=continuo.1h5v.s8.14099017e0b1 from=translated src=- shape=c808babe vocab=3d86ca4a
+-/
 theorem continuous_inv_apply (ρ : K →* Matrix (Fin n) (Fin n) ℂ) (hρ : Continuous ρ) (j i : Fin n) :
     Continuous fun k : K => (ρ k⁻¹) j i :=
   (hρ.comp continuous_inv).matrix_elem j i
@@ -382,11 +403,17 @@ noncomputable def avgMap (μ : Measure K) (ρ : K →* Matrix (Fin n) (Fin n) �
     ((LinearMap.proj i).comp (LinearMap.proj j : (Fin n → Fin n → ℂ) →ₗ[ℂ] (Fin n → ℂ))).smulRight
       (avgVec μ ρ π w j i)
 
+/--
+@isnad1 id=eq.0h8v.s9.8c6938c90ade from=translated src=- shape=6b445c5a vocab=bf11331a
+-/
 theorem avgMap_apply (μ : Measure K) (ρ : K →* Matrix (Fin n) (Fin n) ℂ)
     (π : K →* (E →L[ℂ] E)) (w : E) (x : Fin n → Fin n → ℂ) :
     avgMap μ ρ π w x = ∑ j, ∑ i, x j i • avgVec μ ρ π w j i := by
   simp [avgMap, LinearMap.sum_apply, LinearMap.smulRight_apply]
 
+/--
+@isnad1 id=eq.2h10v.s11.498b2af146e3 from=translated src=- shape=50187ae1 vocab=a8d4d9c5
+-/
 theorem apply_avgVec (μ : Measure K) [IsFiniteMeasureOnCompacts μ] [μ.IsMulLeftInvariant]
     (ρ : K →* Matrix (Fin n) (Fin n) ℂ) (hρ : Continuous ρ)
     (π : K →* (E →L[ℂ] E)) (w : E) (hπc : Continuous fun k => π k w) (g : K) (j l : Fin n) :
@@ -419,6 +446,9 @@ theorem apply_avgVec (μ : Measure K) [IsFiniteMeasureOnCompacts μ] [μ.IsMulLe
   refine Finset.sum_congr rfl fun i _ => ?_
   exact integral_smul _ _
 
+/--
+@isnad1 id=eq.2h9v.s11.29a170d7111c from=translated src=- shape=f1755643 vocab=eab6c768
+-/
 theorem avgMap_mulVec (μ : Measure K) [IsFiniteMeasureOnCompacts μ] [μ.IsMulLeftInvariant]
     (ρ : K →* Matrix (Fin n) (Fin n) ℂ) (hρ : Continuous ρ)
     (π : K →* (E →L[ℂ] E)) (w : E) (hπc : Continuous fun k => π k w) (g : K)
@@ -433,6 +463,9 @@ theorem avgMap_mulVec (μ : Measure K) [IsFiniteMeasureOnCompacts μ] [μ.IsMulL
   refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun l _ => ?_
   rw [mul_comm]
 
+/--
+@isnad1 id=eq.2h8v.s11.72c02d87951c from=translated src=- shape=5d568256 vocab=bb5905ed
+-/
 theorem integral_coeff_smul_eq_avgMap (μ : Measure K) [IsFiniteMeasureOnCompacts μ]
     (ρ : K →* Matrix (Fin n) (Fin n) ℂ) (hρ : Continuous ρ)
     (π : K →* (E →L[ℂ] E)) (v : E) (hπc : Continuous fun k => π k v)
@@ -453,6 +486,9 @@ theorem integral_coeff_smul_eq_avgMap (μ : Measure K) [IsFiniteMeasureOnCompact
   refine integral_congr_ae (Filter.Eventually.of_forall fun k => ?_)
   simp only [smul_smul]
 
+/--
+@isnad1 id=eq.3h7v.s9.c6c627c96327 from=translated src=- shape=48a5d1cb vocab=5b8ceed0
+-/
 theorem integral_smul_mulVec_eq_self (μ : Measure K) [IsFiniteMeasureOnCompacts μ]
     (ρ : K →* Matrix (Fin n) (Fin n) ℂ) (hρ : Continuous ρ)
     (e : K → ℂ) (he : Continuous e)
@@ -499,6 +535,9 @@ variable {K : Type*} [Group K] [TopologicalSpace K] [IsTopologicalGroup K] [Comp
 
 include hρ hπc in
 
+/--
+@isnad1 id=ex.2h8v.s12.b8fe2167a243 from=translated src=- shape=5b5f165d vocab=bec3fb51
+-/
 theorem exists_equivariant_range (c : Fin n → Fin n → ℂ) (v : H) :
     ∃ T : (Fin n → (Fin n → ℂ)) →L[ℂ] H,
       (∀ (g : K) (x : Fin n → (Fin n → ℂ)), T (fun i => (ρ g).mulVec (x i)) = π g (T x)) ∧
@@ -512,6 +551,9 @@ theorem exists_equivariant_range (c : Fin n → Fin n → ℂ) (v : H) :
 
 include hρ in
 
+/--
+@isnad1 id=eq.4h10v.s11.7cd89cefa36c from=translated src=- shape=2b012690 vocab=ee15815e
+-/
 theorem integral_smul_apply_eq_of_equivariant (e : K → ℂ) (he : Continuous e)
     (horth : ∀ i j, ∫ k, e k * (ρ k) i j ∂μ = if i = j then 1 else 0)
     {m : ℕ} (T : (Fin m → (Fin n → ℂ)) →L[ℂ] H)
@@ -530,6 +572,9 @@ theorem integral_smul_apply_eq_of_equivariant (e : K → ℂ) (he : Continuous e
 
 end exports
 
+/--
+@isnad1 id=ex.3h8v.s12.bf10b53f7081 from=translated src=- shape=736c56eb vocab=214cbdbb
+-/
 theorem hSide_range
     {K : Type*} [Group K] [TopologicalSpace K] [IsTopologicalGroup K] [CompactSpace K] [T2Space K]
     [MeasurableSpace K] [BorelSpace K] (μ : Measure K) [μ.IsHaarMeasure] [IsProbabilityMeasure μ]
@@ -544,6 +589,9 @@ theorem hSide_range
         LinearMap.range (T : (Fin n → (Fin n → ℂ)) →ₗ[ℂ] H) :=
   exists_equivariant_range μ ρ hρ H π hπc c v
 
+/--
+@isnad1 id=eq.6h10v.s12.77fedbcad248 from=translated src=- shape=3888b651 vocab=d486c58a
+-/
 theorem hSide_reproduce
     {K : Type*} [Group K] [TopologicalSpace K] [IsTopologicalGroup K] [CompactSpace K] [T2Space K]
     [MeasurableSpace K] [BorelSpace K] (μ : Measure K) [μ.IsHaarMeasure] [IsProbabilityMeasure μ]
@@ -561,6 +609,9 @@ theorem hSide_reproduce
 
 end Ws50CharIdem
 
+/--
+@isnad1 id=ex.1h4v.s13.4be44a9a982b from=translated src=- shape=c3323850 vocab=70c6f206
+-/
 theorem solution
     {K : Type*} [Group K] [TopologicalSpace K] [IsTopologicalGroup K] [CompactSpace K] [T2Space K]
     [MeasurableSpace K] [BorelSpace K] (μ : Measure K) [μ.IsHaarMeasure] [IsProbabilityMeasure μ]

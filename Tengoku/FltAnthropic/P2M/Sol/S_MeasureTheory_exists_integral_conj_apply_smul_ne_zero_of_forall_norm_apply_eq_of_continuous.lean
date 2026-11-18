@@ -28,11 +28,17 @@ noncomputable def kronRep {n m : ℕ} (ρ : K →* Matrix (Fin n) (Fin n) ℂ) (
     exact (Matrix.submatrix_mul_equiv _ _ _ _ _).symm
 
 omit [TopologicalSpace K] in
+/--
+@isnad1 id=eq.0h10v.s9.336c1a08057b from=translated src=- shape=ee91d147 vocab=7a01ba34
+-/
 theorem kronRep_apply {n m : ℕ} (ρ : K →* Matrix (Fin n) (Fin n) ℂ) (ρ' : K →* Matrix (Fin m) (Fin m) ℂ)
     (k : K) (i j : Fin n) (i' j' : Fin m) :
     kronRep ρ ρ' k (finProdFinEquiv (i, i')) (finProdFinEquiv (j, j')) = ρ k i j * ρ' k i' j' := by
   simp [kronRep, Matrix.reindex_apply, Matrix.submatrix_apply, Matrix.kroneckerMap_apply]
 
+/--
+@isnad1 id=continuo.2h5v.s9.0dac95470b23 from=translated src=- shape=7ea2d06b vocab=26354f05
+-/
 theorem continuous_kronRep {n m : ℕ} {ρ : K →* Matrix (Fin n) (Fin n) ℂ} {ρ' : K →* Matrix (Fin m) (Fin m) ℂ}
     (hρ : Continuous ρ) (hρ' : Continuous ρ') : Continuous (kronRep ρ ρ') := by
   refine continuous_matrix fun a b => ?_
@@ -44,9 +50,15 @@ noncomputable def conjRep {n : ℕ} (ρ : K →* Matrix (Fin n) (Fin n) ℂ) : K
   (RingHom.mapMatrix (starRingEnd ℂ)).toMonoidHom.comp ρ
 
 omit [TopologicalSpace K] in
+/--
+@isnad1 id=eq.0h6v.s7.394d80436d93 from=translated src=- shape=c4e8d2ee vocab=4500c294
+-/
 theorem conjRep_apply {n : ℕ} (ρ : K →* Matrix (Fin n) (Fin n) ℂ) (k : K) (i j : Fin n) :
     conjRep ρ k i j = conj (ρ k i j) := rfl
 
+/--
+@isnad1 id=continuo.1h3v.s8.b158f47e8bd7 from=translated src=- shape=a0b04cfb vocab=2edae3a9
+-/
 theorem continuous_conjRep {n : ℕ} {ρ : K →* Matrix (Fin n) (Fin n) ℂ} (hρ : Continuous ρ) :
     Continuous (conjRep ρ) := by
   refine continuous_matrix fun i j => ?_
@@ -55,6 +67,9 @@ theorem continuous_conjRep {n : ℕ} {ρ : K →* Matrix (Fin n) (Fin n) ℂ} (h
 
 omit [TopologicalSpace K] in
 
+/--
+@isnad1 id=eq.1h5v.s8.a5821e49266e from=translated src=- shape=7f193156 vocab=a5728a77
+-/
 theorem apply_inv_mul_eq_one_of_apply_eq {n : ℕ} (ρ : K →* Matrix (Fin n) (Fin n) ℂ) {k k' : K}
     (h : ρ k = ρ k') : ρ (k'⁻¹ * k) = 1 := by
   rw [map_mul, h, ← map_mul, inv_mul_cancel, map_one]
@@ -73,19 +88,31 @@ variable {K}
 noncomputable def coeffFn {n : ℕ} (ρ : K →* Matrix (Fin n) (Fin n) ℂ) (hρ : Continuous ρ) (i j : Fin n) : C(K, ℂ) :=
   ⟨fun k => ρ k i j, hρ.matrix_elem i j⟩
 
+/--
+@isnad1 id=mem.1h5v.s7.d25b62ba17f5 from=translated src=- shape=8df5cc38 vocab=bc0f7921
+-/
 theorem coeffFn_mem {n : ℕ} (ρ : K →* Matrix (Fin n) (Fin n) ℂ) (hρ : Continuous ρ) (i j : Fin n) :
     coeffFn ρ hρ i j ∈ coeffSet K :=
   ⟨n, ρ, i, j, hρ, fun _ => rfl⟩
 
+/--
+@isnad1 id=mem.0h1v.s6.0bd1a672f255 from=translated src=- shape=6faa8ffc vocab=bc979d3f
+-/
 theorem one_mem_coeffSet : (1 : C(K, ℂ)) ∈ coeffSet K :=
   ⟨1, 1, 0, 0, continuous_const, fun k => by simp⟩
 
+/--
+@isnad1 id=mem.2h3v.s8.1f529bc7bcd4 from=translated src=- shape=b80e4d20 vocab=3f5d6a9f
+-/
 theorem mul_mem_coeffSet {f g : C(K, ℂ)} (hf : f ∈ coeffSet K) (hg : g ∈ coeffSet K) : f * g ∈ coeffSet K := by
   obtain ⟨n, ρ, i, j, hρ, hfρ⟩ := hf
   obtain ⟨m, ρ', i', j', hρ', hgρ⟩ := hg
   refine ⟨n * m, kronRep ρ ρ', finProdFinEquiv (i, i'), finProdFinEquiv (j, j'), continuous_kronRep hρ hρ', fun k => ?_⟩
   rw [ContinuousMap.mul_apply, hfρ, hgρ, kronRep_apply]
 
+/--
+@isnad1 id=mem.1h2v.s7.2ae70ff0cb0d from=translated src=- shape=8d511b75 vocab=fd5fa291
+-/
 theorem star_mem_coeffSet {f : C(K, ℂ)} (hf : f ∈ coeffSet K) : star f ∈ coeffSet K := by
   obtain ⟨n, ρ, i, j, hρ, hfρ⟩ := hf
   refine ⟨n, conjRep ρ, i, j, continuous_conjRep hρ, fun k => ?_⟩
@@ -121,11 +148,17 @@ noncomputable def coeffStarSubalgebra : StarSubalgebra ℂ C(K, ℂ) where
       show star (c • x) ∈ Submodule.span ℂ (coeffSet K)
       rw [star_smul]; exact Submodule.smul_mem _ _ hx
 
+/--
+@isnad1 id=iff.0h2v.s9.2bef22151624 from=translated src=- shape=1a52d199 vocab=60d010d5
+-/
 theorem mem_coeffStarSubalgebra_iff (f : C(K, ℂ)) :
     f ∈ coeffStarSubalgebra K ↔ f ∈ Submodule.span ℂ (coeffSet K) := Iff.rfl
 
 variable {K}
 
+/--
+@isnad1 id=separate.1h1v.s8.73176bfc7389 from=translated src=- shape=a524260e vocab=87472509
+-/
 theorem coeffStarSubalgebra_separatesPoints
     (hsep : ∀ k : K, k ≠ 1 → ∃ (n : ℕ) (ρ : K →* Matrix (Fin n) (Fin n) ℂ), Continuous ρ ∧ ρ k ≠ 1) :
     (coeffStarSubalgebra K).SeparatesPoints := by
@@ -144,6 +177,9 @@ end Algebra
 end PWProof
 
 open PWProof in
+/--
+@isnad1 id=ex.4h5v.s11.87d4d3ea0372 from=translated src=- shape=7db11919 vocab=3e9763b0
+-/
 theorem solution
     {K : Type*} [Group K] [TopologicalSpace K] [IsTopologicalGroup K] [CompactSpace K] [T2Space K]
     [MeasurableSpace K] [BorelSpace K] (μ : Measure K) [μ.IsHaarMeasure] [IsProbabilityMeasure μ]

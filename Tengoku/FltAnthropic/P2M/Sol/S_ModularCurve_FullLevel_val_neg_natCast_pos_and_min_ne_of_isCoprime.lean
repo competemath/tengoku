@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 namespace ArithAux
 
+/--
+@isnad1 id=and.8h4v.s7.7794fba85b27 from=translated src=- shape=c60eac9b vocab=8a7381dc
+-/
 theorem skeleton (n q J₁ J₂ : ℕ) (hn : n % 2 = 1) (h3 : 3 * q ≤ n) (hq : 0 < q) (hJ₁ : J₁ = n - q)
     (hJ₂pos : 0 < J₂) (hJ₂lt : J₂ < n) (hJ₂q : J₂ ≠ q) (hJ₂nq : J₂ ≠ n - q) :
     0 < J₁ ∧ J₁ < n ∧ 0 < J₂ ∧ J₂ < n ∧ 2 * J₁ ≠ n ∧ 2 * J₂ ≠ n ∧ min J₁ (n - J₁) ≠ min J₂ (n - J₂) := by
@@ -18,6 +21,9 @@ theorem skeleton (n q J₁ J₂ : ℕ) (hn : n % 2 = 1) (h3 : 3 * q ≤ n) (hq :
 
 end ArithAux
 
+/--
+@isnad1 id=and.4h3v.s11.76d55074354e from=translated src=- shape=6d2bbf07 vocab=0747264d
+-/
 theorem solution
     (q ℓ : ℕ) [Fact q.Prime] [Fact ℓ.Prime] (hq : 5 ≤ q) (hℓ3 : 3 ≤ ℓ) (hℓq : ℓ ≠ q) (g : ℤ) (hg : IsCoprime g q) :
     0 < (-(q : ZMod (q * ℓ))).val ∧ (-(q : ZMod (q * ℓ))).val < q * ℓ ∧

@@ -9,6 +9,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_ModularCurve_UVCrossingModel_exists_powMap
 set_option autoImplicit false
 
 open ModularCurve ModularCurve.UVCrossingModel
+/--
+@isnad1 id=ex.1h3v.s11.7d11d179037b from=translated src=- shape=9e0b454d vocab=0ebc64dc
+-/
 theorem ModularCurve.UVCrossingModel.exists_powMap_injective
     {W : Type*} [CommRing W] (π : W) (e : ℕ) (he : e ≠ 0) :
     ∃ θ : UVCrossingModel W (π ^ e) →ₐ[W] UVCrossingModel W π,

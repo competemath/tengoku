@@ -13,6 +13,9 @@ namespace R5
 
 variable {𝕜 : Type*} [NontriviallyNormedField 𝕜] {ι : Type*}
 
+/--
+@isnad1 id=ex.2h5v.s7.dc39fe4f1c15 from=translated src=- shape=4ff02136 vocab=549079c1
+-/
 theorem exists_neg_of_prod_neg
     {s : Finset ι} {f : ι → 𝕜 → 𝕜} {x : 𝕜}
     (hf : ∀ i ∈ s, MeromorphicAt (f i) x)
@@ -25,6 +28,9 @@ theorem exists_neg_of_prod_neg
   rw [meromorphicOrderAt_prod hf] at hprod
   exact absurd (lt_of_le_of_lt hsum hprod) (lt_irrefl _)
 
+/--
+@isnad1 id=ex.3h6v.s7.5c387bf4ad9b from=translated src=- shape=efec1110 vocab=200da796
+-/
 theorem exists_neg_of_prod_eventuallyEq
     {s : Finset ι} {f : ι → 𝕜 → 𝕜} {g : 𝕜 → 𝕜} {x : 𝕜}
     (hf : ∀ i ∈ s, MeromorphicAt (f i) x)
@@ -41,6 +47,9 @@ end R5
 
 open Filter Topology in
 
+/--
+@isnad1 id=ex.6h7v.s8.2ee7a8d29be4 from=translated src=- shape=3ffeac16 vocab=39d2408a
+-/
 theorem R5.single
     {𝕜 : Type*} [NontriviallyNormedField 𝕜] {ι : Type*}
     {s : Finset ι} {f : ι → 𝕜 → 𝕜} {p h : 𝕜 → 𝕜} {x : 𝕜}
@@ -61,6 +70,9 @@ theorem R5.single
   exact hpole
 
 open Filter Topology in
+/--
+@isnad1 id=ex.6h9v.s8.6fcc69ba3590 from=translated src=- shape=1e7ed733 vocab=39d2408a
+-/
 theorem solution
     {𝕜 : Type*} [NontriviallyNormedField 𝕜] {ι κ : Type*}
     {s : Finset ι} {t : Finset κ} {f : ι → 𝕜 → 𝕜} {p : 𝕜 → 𝕜} {h : κ → 𝕜 → 𝕜} {x : 𝕜}

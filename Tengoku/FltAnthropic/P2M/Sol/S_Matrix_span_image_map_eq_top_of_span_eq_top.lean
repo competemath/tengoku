@@ -7,6 +7,9 @@ namespace P2MW.S_Matrix_span_image_map_eq_top_of_span_eq_top
 
 open IsLocalRing
 
+/--
+@isnad1 id=eq.1h5v.s9.f73379ae809a from=translated src=- shape=6b4c498d vocab=20332812
+-/
 theorem solution
     {n : Type*} [Fintype n] [DecidableEq n]
     {k : Type*} [Field k] {K : Type*} [Field K] (f : k →+* K)

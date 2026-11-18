@@ -16,6 +16,9 @@ open _root_.Matrix
 
 variable {R : Type*} [CommRing R]
 
+/--
+@isnad1 id=eq.2h2v.s8.4896c0c4e09f from=translated src=- shape=03a23345 vocab=49be1baf
+-/
 theorem pow_five_aux (g : Matrix (Fin 2) (Fin 2) R) (hdet : g.det = 1)
     (ht : g.trace ^ 2 + g.trace - 1 = 0) : g ^ 5 = 1 := by
   nontriviality R
@@ -40,6 +43,9 @@ theorem pow_five_aux (g : Matrix (Fin 2) (Fin 2) R) (hdet : g.det = 1)
 
 end Matrix
 
+/--
+@isnad1 id=eq.2h2v.s8.4896c0c4e09f from=translated src=- shape=03a23345 vocab=49be1baf
+-/
 theorem solution {R : Type*} [CommRing R] (g : Matrix (Fin 2) (Fin 2) R) (hdet : g.det = 1) (ht : g.trace ^ 2 + g.trace - 1 = 0) : g ^ 5 = 1 :=
   Matrix.pow_five_aux g hdet ht
 

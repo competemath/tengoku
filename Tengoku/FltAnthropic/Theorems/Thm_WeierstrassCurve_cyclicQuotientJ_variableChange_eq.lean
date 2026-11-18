@@ -11,6 +11,9 @@ open WeierstrassCurve
 
 universe u in
 
+/--
+@isnad1 id=eq.2h6v.s9.e4db48d0a5cd from=translated src=- shape=6b548aa7 vocab=97c7f486
+-/
 theorem WeierstrassCurve.cyclicQuotientJ_variableChange_eq
     {L : Type u} [Field L] [DecidableEq L] (C : VariableChange L) (E : WeierstrassCurve L)
     (H : AddSubgroup E.toAffine.Point) (H' : AddSubgroup (C • E).toAffine.Point)

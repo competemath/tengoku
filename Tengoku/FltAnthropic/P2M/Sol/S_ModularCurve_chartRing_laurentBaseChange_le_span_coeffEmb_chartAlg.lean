@@ -669,6 +669,9 @@ private theorem singleton_jb_inv_eq :
 
 end CC2B01K1R3
 
+/--
+@isnad1 id=and.1h4v.s18.e0736efa536f from=translated src=- shape=a364649e vocab=525edc1d
+-/
 theorem solution
     (F₀ : IntermediateField ℚ (LaurentSeries ℚ)) (p : ℕ) (j : ↥F₀) [Fact (j ≠ 0)]
     (jb : ↥(laurentBaseChange (AlgebraicClosure ℚ) F₀))

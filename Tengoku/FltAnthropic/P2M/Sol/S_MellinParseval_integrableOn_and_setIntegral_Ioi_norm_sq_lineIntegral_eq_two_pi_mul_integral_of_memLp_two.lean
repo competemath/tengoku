@@ -16,6 +16,9 @@ variable {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℝ V] [FiniteDim
   [MeasurableSpace V] [BorelSpace V]
   {F : Type*} [NormedAddCommGroup F] [InnerProductSpace ℂ F] [CompleteSpace F]
 
+/--
+@isnad1 id=eventual.2h3v.s10.9bafab75a8bb from=translated src=- shape=0e359b2d vocab=a7fdf636
+-/
 theorem coeFn_fourier_toLp_ae_eq (f : V → F) (hf : Integrable f) (hf2 : MemLp f 2 volume) :
     ((𝓕 (hf2.toLp f) : Lp F 2 (volume : Measure V)) : V → F) =ᵐ[volume] 𝓕 f := by
   set u : Lp F 2 (volume : Measure V) := hf2.toLp f with hu
@@ -53,6 +56,9 @@ theorem coeFn_fourier_toLp_ae_eq (f : V → F) (hf : Integrable f) (hf2 : MemLp 
   simp only [hGcoe, Complex.coe_smul] at h4
   exact h4
 
+/--
+@isnad1 id=and.2h3v.s8.13d08d20c112 from=translated src=- shape=11b00f49 vocab=bcb4a0dc
+-/
 theorem memLp_two_fourier_and_integral_norm_sq_eq (f : V → F) (hf : Integrable f)
     (hf2 : MemLp f 2 volume) :
     MemLp (𝓕 f) 2 volume ∧ ∫ ξ, ‖𝓕 f ξ‖ ^ 2 = ∫ x, ‖f x‖ ^ 2 := by
@@ -79,6 +85,9 @@ theorem memLp_two_fourier_and_integral_norm_sq_eq (f : V → F) (hf : Integrable
         filter_upwards [hf2.coeFn_toLp] with x hx
         rw [hx]
 
+/--
+@isnad1 id=and.2h3v.s8.763bc9a7f187 from=translated src=- shape=11b00f49 vocab=a13ad0d1
+-/
 theorem memLp_two_fourierInv_and_integral_norm_sq_eq (f : V → F) (hf : Integrable f)
     (hf2 : MemLp f 2 volume) :
     MemLp (𝓕⁻ f) 2 volume ∧ ∫ ξ, ‖𝓕⁻ f ξ‖ ^ 2 = ∫ x, ‖f x‖ ^ 2 := by
@@ -100,6 +109,9 @@ noncomputable def lineProfile (σ : ℝ) (a : ℝ → ℂ) (y : ℝ) : ℂ :=
 noncomputable def charIntegral (a : ℝ → ℂ) (u : ℝ) : ℂ :=
   ∫ t : ℝ, Complex.exp (((t * u : ℝ) : ℂ) * Complex.I) * a t
 
+/--
+@isnad1 id=eq.0h3v.s6.10ad8be61107 from=translated src=- shape=617c386e vocab=c87e7d45
+-/
 theorem cpow_exp_eq (σ u t : ℝ) :
     ((Real.exp u : ℝ) : ℂ) ^ ((σ : ℂ) + (t : ℂ) * Complex.I)
       = ((Real.exp (σ * u) : ℝ) : ℂ) * Complex.exp (((t * u : ℝ) : ℂ) * Complex.I) := by
@@ -108,6 +120,9 @@ theorem cpow_exp_eq (σ u t : ℝ) :
     Real.log_exp, mul_add, Complex.exp_add, Complex.ofReal_exp, Complex.ofReal_mul, Complex.ofReal_mul]
   congr 1 <;> (congr 1; ring)
 
+/--
+@isnad1 id=eq.0h3v.s5.217e7db7740e from=translated src=- shape=401de007 vocab=9e557ebf
+-/
 theorem lineProfile_exp (σ : ℝ) (a : ℝ → ℂ) (u : ℝ) :
     lineProfile σ a (Real.exp u) = ((Real.exp (σ * u) : ℝ) : ℂ) * charIntegral a u := by
   unfold lineProfile charIntegral
@@ -116,6 +131,9 @@ theorem lineProfile_exp (σ : ℝ) (a : ℝ → ℂ) (u : ℝ) :
   funext t
   rw [cpow_exp_eq, mul_assoc]
 
+/--
+@isnad1 id=eq.0h2v.s5.13716c438b42 from=translated src=- shape=009cfa76 vocab=08ebda01
+-/
 theorem charIntegral_two_pi_mul (a : ℝ → ℂ) (w : ℝ) : charIntegral a (2 * π * w) = 𝓕⁻ a w := by
   rw [Real.fourierInv_eq']
   unfold charIntegral
@@ -125,6 +143,9 @@ theorem charIntegral_two_pi_mul (a : ℝ → ℂ) (w : ℝ) : charIntegral a (2 
     ring
   simp_rw [h, smul_eq_mul]
 
+/--
+@isnad1 id=eq.0h3v.s6.edcd5b6da746 from=translated src=- shape=a6b8f389 vocab=de3c61ee
+-/
 theorem collapse (σ : ℝ) (a : ℝ → ℂ) (u : ℝ) :
     |Real.exp u| • ((Real.exp u ^ (-(2 * σ)) / Real.exp u) * ‖lineProfile σ a (Real.exp u)‖ ^ 2)
       = ‖charIntegral a u‖ ^ 2 := by
@@ -138,6 +159,9 @@ theorem collapse (σ : ℝ) (a : ℝ → ℂ) (u : ℝ) :
     ring
   linear_combination (‖charIntegral a u‖ ^ 2) * hs
 
+/--
+@isnad1 id=and.2h2v.s8.2e5559c127e6 from=translated src=- shape=694ec76f vocab=d6bfc647
+-/
 theorem integrableOn_and_setIntegral (σ : ℝ) (a : ℝ → ℂ) (ha : Integrable a) (ha2 : MemLp a 2) :
     IntegrableOn (fun y : ℝ => (y ^ (-(2 * σ)) / y) * ‖lineProfile σ a y‖ ^ 2) (Set.Ioi 0) ∧
     ∫ y in Set.Ioi (0 : ℝ), (y ^ (-(2 * σ)) / y) * ‖lineProfile σ a y‖ ^ 2
@@ -176,6 +200,9 @@ end MellinPlancherel
 
 open MeasureTheory
 
+/--
+@isnad1 id=and.2h2v.s8.6b1471549eeb from=translated src=- shape=4832f28c vocab=4f07d2fe
+-/
 theorem solution
     (σ : ℝ) (a : ℝ → ℂ) (_ha : Integrable a) (_ha2 : MemLp a 2) :
     IntegrableOn (fun y : ℝ => (y ^ (-(2 * σ)) / y) *

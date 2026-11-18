@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_ModularCurve_XOneP_exists_intCast_sub_mem_
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.3h5v.s8.3a752880c8ba from=translated src=- shape=275802b5 vocab=4ae2b72a
+-/
 theorem ModularCurve.XOneP.exists_intCast_sub_mem_maximalIdeal_of_isCyclotomicExtension
     (p : ℕ) [Fact p.Prime]
     (L : Type) [Field L] [CharZero L] [IsCyclotomicExtension {p} ℚ L]

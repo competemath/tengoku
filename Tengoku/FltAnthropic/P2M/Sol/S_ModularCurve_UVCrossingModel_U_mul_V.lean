@@ -7,6 +7,9 @@ namespace P2MW.S_ModularCurve_UVCrossingModel_U_mul_V
 
 open ModularCurve ModularCurve.UVCrossingModel
 
+/--
+@isnad1 id=eq.0h2v.s6.200f11cba866 from=translated src=- shape=45e1a3e1 vocab=66deb2ad
+-/
 theorem solution {W : Type*} [CommRing W] (π : W) :
     U π * V π = const π π :=
   by

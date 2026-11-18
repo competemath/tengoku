@@ -10,6 +10,9 @@ set_option autoImplicit false
 open MeasureTheory Set Filter Topology
 open scoped NNReal ENNReal
 
+/--
+@isnad1 id=ex.2h4v.s8.b8e2df677623 from=translated src=- shape=9c16d223 vocab=2e1a243b
+-/
 theorem solution
     {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
     [MeasurableSpace E] [BorelSpace E] (μ : Measure E) [μ.IsAddHaarMeasure]

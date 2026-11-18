@@ -14,6 +14,9 @@ noncomputable def antider (s : ℂ) : ℕ → ℝ → ℂ
   | 0, u => -Complex.exp (-s * u) / s
   | N + 1, u => -((u : ℂ) ^ (N + 1) * Complex.exp (-s * u)) / s + ((N + 1 : ℂ) / s) * antider s N u
 
+/--
+@isnad1 id=hasderiv.0h2v.s6.b1a3777e3be8 from=translated src=- shape=9071566c vocab=8a998b00
+-/
 lemma hasDerivAt_exp_neg_mul (s : ℂ) (u : ℝ) :
     HasDerivAt (fun x : ℝ => Complex.exp (-s * x)) (-s * Complex.exp (-s * u)) u := by
   have h1 : HasDerivAt (fun z : ℂ => Complex.exp (-s * z)) (Complex.exp (-s * u) * (-s)) (u : ℂ) := by
@@ -23,6 +26,9 @@ lemma hasDerivAt_exp_neg_mul (s : ℂ) (u : ℝ) :
   have h2 := h1.comp_ofReal
   simpa [mul_comm] using h2
 
+/--
+@isnad1 id=hasderiv.0h3v.s7.965dd631e49c from=translated src=- shape=b4686cb5 vocab=7567ba4c
+-/
 lemma hasDerivAt_pow_mul_exp (s : ℂ) (N : ℕ) (u : ℝ) :
     HasDerivAt (fun x : ℝ => (x : ℂ) ^ (N + 1) * Complex.exp (-s * x))
       (((N + 1 : ℕ) : ℂ) * (u : ℂ) ^ N * Complex.exp (-s * u) +
@@ -33,6 +39,9 @@ lemma hasDerivAt_pow_mul_exp (s : ℂ) (N : ℕ) (u : ℝ) :
     simpa using h1.comp_ofReal
   exact hp.mul (hasDerivAt_exp_neg_mul s u)
 
+/--
+@isnad1 id=hasderiv.1h3v.s6.7aa3ff761ebc from=translated src=- shape=0626bc04 vocab=e6480544
+-/
 lemma hasDerivAt_antider (s : ℂ) (hs : s ≠ 0) :
     ∀ N : ℕ, ∀ u : ℝ, HasDerivAt (antider s N) ((u : ℂ) ^ N * Complex.exp (-s * u)) u := by
   intro N
@@ -56,6 +65,9 @@ lemma hasDerivAt_antider (s : ℂ) (hs : s ≠ 0) :
     field_simp
     ring
 
+/--
+@isnad1 id=eq.1h2v.s6.96f2206935ae from=translated src=- shape=478869f9 vocab=4d8cfbd9
+-/
 lemma antider_zero (s : ℂ) (hs : s ≠ 0) :
     ∀ N : ℕ, antider s N 0 = -((N.factorial : ℂ) / s ^ (N + 1)) := by
   intro N
@@ -68,6 +80,9 @@ lemma antider_zero (s : ℂ) (hs : s ≠ 0) :
     push_cast [Nat.factorial_succ]
     ring
 
+/--
+@isnad1 id=tendsto.1h2v.s6.827fc2fcaedf from=translated src=- shape=79a06e36 vocab=d80cef5f
+-/
 lemma tendsto_pow_mul_exp_neg_mul (s : ℂ) (hs : 0 < s.re) (N : ℕ) :
     Tendsto (fun u : ℝ => (u : ℂ) ^ N * Complex.exp (-s * u)) atTop (𝓝 0) := by
   rw [tendsto_zero_iff_norm_tendsto_zero]
@@ -85,6 +100,9 @@ lemma tendsto_pow_mul_exp_neg_mul (s : ℂ) (hs : 0 < s.re) (N : ℕ) :
   have hsn : s.re ^ N ≠ 0 := pow_ne_zero _ hs.ne'
   field_simp
 
+/--
+@isnad1 id=tendsto.1h2v.s5.e6d5d0467e01 from=translated src=- shape=29c54472 vocab=a7a4e9d1
+-/
 lemma tendsto_antider (s : ℂ) (hs : 0 < s.re) :
     ∀ N : ℕ, Tendsto (antider s N) atTop (𝓝 0) := by
   intro N
@@ -102,12 +120,18 @@ lemma tendsto_antider (s : ℂ) (hs : 0 < s.re) :
     refine (tendsto_congr ?_).mp h
     intro u; simp [antider]
 
+/--
+@isnad1 id=eq.1h3v.s6.1dcdbcb03b3c from=translated src=- shape=fa56f467 vocab=2e3b48a5
+-/
 lemma norm_pow_mul_exp (s : ℂ) (N : ℕ) (u : ℝ) (hu : 0 ≤ u) :
     ‖(u : ℂ) ^ N * Complex.exp (-s * u)‖ = u ^ N * Real.exp (-s.re * u) := by
   rw [norm_mul, Complex.norm_exp, norm_pow, Complex.norm_real, Real.norm_of_nonneg hu]
   congr 2
   simp [Complex.mul_re]
 
+/--
+@isnad1 id=integrab.1h2v.s6.3af2edb5310d from=translated src=- shape=685851e7 vocab=83a2dc79
+-/
 lemma integrableOn_pow_mul_exp (s : ℂ) (hs : 0 < s.re) (N : ℕ) :
     IntegrableOn (fun u : ℝ => (u : ℂ) ^ N * Complex.exp (-s * u)) (Ioi 0) := by
   have hreal : IntegrableOn (fun x : ℝ => x ^ (N : ℝ) * Real.exp (-s.re * x ^ (1 : ℝ))) (Ioi 0) :=
@@ -121,6 +145,9 @@ lemma integrableOn_pow_mul_exp (s : ℂ) (hs : 0 < s.re) (N : ℕ) :
   intro u hu
   rw [norm_pow_mul_exp s N u (le_of_lt hu), Real.rpow_natCast, Real.rpow_one]
 
+/--
+@isnad1 id=eq.1h2v.s7.0910f792f84e from=translated src=- shape=5283561b vocab=47abcf55
+-/
 theorem integral_pow_mul_exp (s : ℂ) (hs : 0 < s.re) (N : ℕ) :
     ∫ u in Ioi (0 : ℝ), (u : ℂ) ^ N * Complex.exp (-s * u) = (N.factorial : ℂ) / s ^ (N + 1) := by
   have hs0 : s ≠ 0 := by
@@ -146,9 +173,15 @@ noncomputable def supp (d : Fin n → Fin J → ℂ) : Finset (Fin n × Fin J) :
 noncomputable def Gfun (e : Fin n → ℂ) (d : Fin n → Fin J → ℂ) (r : ℝ) (u : ℝ) : ℂ :=
   ∑ p ∈ supp d, bcoef d p * (u : ℂ) ^ (p.2 : ℕ) * Complex.exp (-(u : ℂ) * wexp e r p)
 
+/--
+@isnad1 id=iff.0h4v.s6.7d1e3483e4a7 from=translated src=- shape=464cf4d4 vocab=ee2cd619
+-/
 lemma mem_supp {d : Fin n → Fin J → ℂ} {p : Fin n × Fin J} : p ∈ supp d ↔ d p.1 p.2 ≠ 0 := by
   simp [supp]
 
+/--
+@isnad1 id=eq.0h2v.s5.a30fff8b07b4 from=translated src=- shape=7b5f0c96 vocab=b20e35e6
+-/
 lemma ofReal_exp_neg_cpow (u : ℝ) (z : ℂ) :
     ((Real.exp (-u) : ℝ) : ℂ) ^ z = Complex.exp (-(u : ℂ) * z) := by
   rw [Complex.ofReal_exp, Complex.cpow_def_of_ne_zero (Complex.exp_ne_zero _), Complex.log_exp]
@@ -156,6 +189,9 @@ lemma ofReal_exp_neg_cpow (u : ℝ) (z : ℂ) :
   · simp [Real.pi_pos]
   · simp [Real.pi_pos.le]
 
+/--
+@isnad1 id=eq.0h6v.s5.bcfd87c0d09b from=translated src=- shape=3733d2a7 vocab=0b694d06
+-/
 lemma mfun_exp_neg (e : Fin n → ℂ) (d : Fin n → Fin J → ℂ) (r : ℝ) (u : ℝ) :
     mfun e d (Real.exp (-u)) = Complex.exp (-(u : ℂ) * r) * Gfun e d r u := by
   unfold mfun Gfun
@@ -178,6 +214,9 @@ lemma mfun_exp_neg (e : Fin n → ℂ) (d : Fin n → Fin J → ℂ) (r : ℝ) (
     apply hp
     simp [bcoef, h0]
 
+/--
+@isnad1 id=eq.0h6v.s6.4e85aedcfeb4 from=translated src=- shape=e45b7751 vocab=edfb8173
+-/
 lemma norm_mfun_exp_neg (e : Fin n → ℂ) (d : Fin n → Fin J → ℂ) (r : ℝ) (u : ℝ) :
     ‖mfun e d (Real.exp (-u))‖ = Real.exp (-r * u) * ‖Gfun e d r u‖ := by
   rw [mfun_exp_neg e d r u, norm_mul, Complex.norm_exp]
@@ -185,6 +224,9 @@ lemma norm_mfun_exp_neg (e : Fin n → ℂ) (d : Fin n → Fin J → ℂ) (r : �
   simp [Complex.mul_re]
   ring
 
+/--
+@isnad1 id=eq.0h0v.s5.c8aa98584110 from=translated src=- shape=19aec220 vocab=bf17cede
+-/
 lemma image_exp_neg_Ioi : (fun u : ℝ => Real.exp (-u)) '' Ioi 0 = Ioo 0 1 := by
   ext y
   constructor
@@ -198,9 +240,15 @@ lemma image_exp_neg_Ioi : (fun u : ℝ => Real.exp (-u)) '' Ioi 0 = Ioo 0 1 := b
       simp only [mem_Ioi]; linarith
     · simp [Real.exp_log hy0]
 
+/--
+@isnad1 id=eq.0h1v.s6.ebc70afee077 from=translated src=- shape=9b2bd0e9 vocab=fafc5168
+-/
 lemma nnnorm_sq_eq_ofReal (z : ℂ) : (‖z‖₊ : ℝ≥0∞) ^ 2 = ENNReal.ofReal (‖z‖ ^ 2) := by
   rw [ENNReal.ofReal_pow (norm_nonneg _), ← enorm_eq_nnnorm, ← ofReal_norm]
 
+/--
+@isnad1 id=eq.0h6v.s7.445639785fec from=translated src=- shape=a1f770f7 vocab=74c7843a
+-/
 lemma lintegral_change (e : Fin n → ℂ) (d : Fin n → Fin J → ℂ) (r σ : ℝ) :
     ∫⁻ y in Ioc (0 : ℝ) 1, (‖mfun e d y‖₊ : ℝ≥0∞) ^ 2 * ENNReal.ofReal (y ^ (σ - 3)) =
       ∫⁻ u in Ioi (0 : ℝ), ENNReal.ofReal (‖Gfun e d r u‖ ^ 2 * Real.exp (-(σ - 2 + 2 * r) * u)) := by
@@ -246,14 +294,23 @@ noncomputable def crossVal (e : Fin n → ℂ) (d : Fin n → Fin J → ℂ) (r 
 noncomputable def Ssum (e : Fin n → ℂ) (d : Fin n → Fin J → ℂ) (r δ : ℝ) : ℂ :=
   ∑ p ∈ supp d, ∑ q ∈ supp d, crossVal e d r δ p q
 
+/--
+@isnad1 id=eq.0h7v.s6.3f32bc7d899d from=translated src=- shape=59387437 vocab=0bf1f811
+-/
 lemma rate_re (e : Fin n → ℂ) (r δ : ℝ) (p q : Fin n × Fin J) :
     (rate e r δ p q).re = (wexp e r p).re + (wexp e r q).re + δ := by
   simp [rate]
 
+/--
+@isnad1 id=eq.0h7v.s5.0842d32abbb3 from=translated src=- shape=d21f2b16 vocab=fa89710c
+-/
 lemma rate_im (e : Fin n → ℂ) (r δ : ℝ) (p q : Fin n × Fin J) :
     (rate e r δ p q).im = (wexp e r p).im - (wexp e r q).im := by
   simp [rate]; ring
 
+/--
+@isnad1 id=eq.0h7v.s6.05385b848506 from=translated src=- shape=213a4dd6 vocab=acc4699f
+-/
 lemma normSq_G_mul_exp (e : Fin n → ℂ) (d : Fin n → Fin J → ℂ) (r δ u : ℝ) :
     ‖Gfun e d r u‖ ^ 2 * Real.exp (-δ * u) =
       (∑ p ∈ supp d, ∑ q ∈ supp d, crossFun e d r δ p q u).re := by
@@ -279,22 +336,34 @@ lemma normSq_G_mul_exp (e : Fin n → ℂ) (d : Fin n → Fin J → ℂ) (r δ u
   rw [mul_comm (Gfun e d r u * conj (Gfun e d r u)) _, Complex.re_ofReal_mul]
   ring
 
+/--
+@isnad1 id=lt.3h7v.s6.e8579db21019 from=translated src=- shape=ac9bea6f vocab=4959d74d
+-/
 lemma rate_re_pos (e : Fin n → ℂ) (r δ : ℝ) (hδ : 0 < δ) (p q : Fin n × Fin J)
     (hp : 0 ≤ (wexp e r p).re) (hq : 0 ≤ (wexp e r q).re) : 0 < (rate e r δ p q).re := by
   rw [rate_re]; linarith
 
+/--
+@isnad1 id=integrab.3h8v.s7.100667608021 from=translated src=- shape=2ddf7a77 vocab=662ac5e7
+-/
 lemma integrableOn_crossFun (e : Fin n → ℂ) (d : Fin n → Fin J → ℂ) (r δ : ℝ) (hδ : 0 < δ)
     (p q : Fin n × Fin J) (hp : 0 ≤ (wexp e r p).re) (hq : 0 ≤ (wexp e r q).re) :
     IntegrableOn (crossFun e d r δ p q) (Ioi 0) := by
   unfold crossFun
   exact (integrableOn_pow_mul_exp _ (rate_re_pos e r δ hδ p q hp hq) _).const_mul _
 
+/--
+@isnad1 id=eq.3h8v.s7.37aa97117e8a from=translated src=- shape=16771fb2 vocab=1266c017
+-/
 lemma integral_crossFun (e : Fin n → ℂ) (d : Fin n → Fin J → ℂ) (r δ : ℝ) (hδ : 0 < δ)
     (p q : Fin n × Fin J) (hp : 0 ≤ (wexp e r p).re) (hq : 0 ≤ (wexp e r q).re) :
     ∫ u in Ioi (0 : ℝ), crossFun e d r δ p q u = crossVal e d r δ p q := by
   unfold crossFun crossVal
   rw [integral_const_mul, integral_pow_mul_exp _ (rate_re_pos e r δ hδ p q hp hq)]
 
+/--
+@isnad1 id=eq.2h6v.s7.bb3396281dcc from=translated src=- shape=796cfac7 vocab=bcf56b09
+-/
 lemma lintegral_G_eq (e : Fin n → ℂ) (d : Fin n → Fin J → ℂ) (r δ : ℝ) (hδ : 0 < δ)
     (hw : ∀ p ∈ supp d, 0 ≤ (wexp e r p).re) :
     ∫⁻ u in Ioi (0 : ℝ), ENNReal.ofReal (‖Gfun e d r u‖ ^ 2 * Real.exp (-δ * u)) =
@@ -335,6 +404,9 @@ noncomputable def Kb (e : Fin n → ℂ) (d : Fin n → Fin J → ℂ) (r : ℝ)
       else if p.1 ≠ q.1 then 1 / |(wexp e r p).im - (wexp e r q).im| ^ (tdeg p q + 1)
       else 1)
 
+/--
+@isnad1 id=le.0h7v.s5.b122972e1c8a from=translated src=- shape=302b1e54 vocab=6a7cddeb
+-/
 lemma Kb_nonneg (e : Fin n → ℂ) (d : Fin n → Fin J → ℂ) (r : ℝ) (p q : Fin n × Fin J) :
     0 ≤ Kb e d r p q := by
   unfold Kb
@@ -346,23 +418,35 @@ noncomputable def diagBonus (e : Fin n → ℂ) (d : Fin n → Fin J → ℂ) (r
   if p = q then (if p ∈ topSet e d r jstar then
     ‖bcoef d p‖ ^ 2 * (2 * jstar).factorial / δ ^ (2 * jstar + 1) else 0) else 0
 
+/--
+@isnad1 id=eq.0h8v.s7.9dc744b63641 from=translated src=- shape=31675b6c vocab=d08a0889
+-/
 lemma norm_crossVal (e : Fin n → ℂ) (d : Fin n → Fin J → ℂ) (r δ : ℝ) (p q : Fin n × Fin J) :
     ‖crossVal e d r δ p q‖ =
       ‖bcoef d p‖ * ‖bcoef d q‖ * ((tdeg p q).factorial / ‖rate e r δ p q‖ ^ (tdeg p q + 1)) := by
   unfold crossVal
   rw [norm_mul, norm_mul, Complex.norm_conj, norm_div, norm_pow, Complex.norm_natCast]
 
+/--
+@isnad1 id=le.0h1v.s3.15da575e4cc5 from=translated src=- shape=0432c7f2 vocab=83742e21
+-/
 lemma re_ge_neg_norm (z : ℂ) : -‖z‖ ≤ z.re := by
   have := Complex.abs_re_le_norm z
   rw [abs_le] at this
   exact this.1
 
+/--
+@isnad1 id=ne.1h4v.s6.de0fb59eee81 from=translated src=- shape=735eece3 vocab=4537f80e
+-/
 lemma bcoef_ne_zero_of_mem_supp {d : Fin n → Fin J → ℂ} {p : Fin n × Fin J} (hp : p ∈ supp d) :
     bcoef d p ≠ 0 := by
   rw [mem_supp] at hp
   unfold bcoef
   exact mul_ne_zero hp (pow_ne_zero _ (by norm_num))
 
+/--
+@isnad1 id=le.7h9v.s8.517732d91447 from=translated src=- shape=18375113 vocab=7fa3cd55
+-/
 lemma crossVal_re_ge (e : Fin n → ℂ) (he : Function.Injective e) (d : Fin n → Fin J → ℂ) (r : ℝ)
     (jstar : ℕ) (hw : ∀ p ∈ supp d, 0 ≤ (wexp e r p).re)
     (hj : ∀ p ∈ supp d, (wexp e r p).re = 0 → (p.2 : ℕ) ≤ jstar)
@@ -494,6 +578,9 @@ lemma crossVal_re_ge (e : Fin n → ℂ) (he : Function.Injective e) (d : Fin n 
           exact pow_le_pow_of_le_one hδ.le hδ1 hle
         linarith
 
+/--
+@isnad1 id=le.5h7v.s8.c76232c65c61 from=translated src=- shape=5cf46be5 vocab=c21f42cd
+-/
 lemma Ssum_re_ge (e : Fin n → ℂ) (he : Function.Injective e) (d : Fin n → Fin J → ℂ) (r : ℝ)
     (jstar : ℕ) (hw : ∀ p ∈ supp d, 0 ≤ (wexp e r p).re)
     (hj : ∀ p ∈ supp d, (wexp e r p).re = 0 → (p.2 : ℕ) ≤ jstar)
@@ -527,6 +614,9 @@ lemma Ssum_re_ge (e : Fin n → ℂ) (he : Function.Injective e) (d : Fin n → 
     exact Finset.filter_subset _ _
   rw [hfilt]
 
+/--
+@isnad1 id=ex.4h6v.s8.3aff3a4d7a69 from=translated src=- shape=64f502ba vocab=7f8d0d06
+-/
 lemma Ssum_re_lower (e : Fin n → ℂ) (he : Function.Injective e) (d : Fin n → Fin J → ℂ) (r : ℝ)
     (jstar : ℕ) (hw : ∀ p ∈ supp d, 0 ≤ (wexp e r p).re)
     (hj : ∀ p ∈ supp d, (wexp e r p).re = 0 → (p.2 : ℕ) ≤ jstar)
@@ -579,10 +669,16 @@ lemma Ssum_re_lower (e : Fin n → ℂ) (he : Function.Injective e) (d : Fin n �
 noncomputable def Lms (e : Fin n → ℂ) (d : Fin n → Fin J → ℂ) (σ : ℝ) : ℝ≥0∞ :=
   ∫⁻ y in Ioc (0 : ℝ) 1, (‖mfun e d y‖₊ : ℝ≥0∞) ^ 2 * ENNReal.ofReal (y ^ (σ - 3))
 
+/--
+@isnad1 id=eq.0h6v.s7.35de7e4e05ba from=translated src=- shape=4871e689 vocab=d0c9323f
+-/
 lemma Lms_eq (e : Fin n → ℂ) (d : Fin n → Fin J → ℂ) (r σ : ℝ) :
     Lms e d σ = ∫⁻ u in Ioi (0 : ℝ), ENNReal.ofReal (‖Gfun e d r u‖ ^ 2 * Real.exp (-(σ - 2 + 2 * r) * u)) :=
   lintegral_change e d r σ
 
+/--
+@isnad1 id=le.1h7v.s7.974542ae9d07 from=translated src=- shape=6cccb316 vocab=3b24ef4e
+-/
 lemma lintegral_G_mono (e : Fin n → ℂ) (d : Fin n → Fin J → ℂ) (r : ℝ) {δ δ' : ℝ} (h : δ' ≤ δ) :
     ∫⁻ u in Ioi (0 : ℝ), ENNReal.ofReal (‖Gfun e d r u‖ ^ 2 * Real.exp (-δ * u)) ≤
       ∫⁻ u in Ioi (0 : ℝ), ENNReal.ofReal (‖Gfun e d r u‖ ^ 2 * Real.exp (-δ' * u)) := by
@@ -592,6 +688,9 @@ lemma lintegral_G_mono (e : Fin n → ℂ) (d : Fin n → Fin J → ℂ) (r : �
   have : 0 ≤ u := le_of_lt hu
   nlinarith
 
+/--
+@isnad1 id=eq.3h6v.s7.c180c29bffd6 from=translated src=- shape=9d4ef302 vocab=bca0e90f
+-/
 theorem main (n J : ℕ) (e : Fin n → ℂ) (he : Function.Injective e) (d : Fin n → Fin J → ℂ)
     (hM : ∃ C : ℝ, ∀ ε : ℝ, 0 < ε → ∃ σ : ℝ, 1 < σ ∧ σ < 1 + ε ∧
       ENNReal.ofReal (σ - 1) * Lms e d σ ≤ ENNReal.ofReal C) :
@@ -726,6 +825,9 @@ theorem main (n J : ℕ) (e : Fin n → ℂ) (he : Function.Injective e) (d : Fi
 
 end KcMeanSquare
 
+/--
+@isnad1 id=eq.3h6v.s8.1b660d02b09f from=translated src=- shape=f009017a vocab=f38df196
+-/
 theorem solution
     (n J : ℕ) (e : Fin n → ℂ) (he : Function.Injective e) (d : Fin n → Fin J → ℂ)
     (hM : ∃ C : ℝ, ∀ ε : ℝ, 0 < ε → ∃ σ : ℝ, 1 < σ ∧ σ < 1 + ε ∧

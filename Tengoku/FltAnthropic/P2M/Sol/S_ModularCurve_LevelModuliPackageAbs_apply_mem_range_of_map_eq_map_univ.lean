@@ -13,6 +13,9 @@ universe u
 
 open ModularCurve
 
+/--
+@isnad1 id=mem.1h9v.s8.5330de01501f from=translated src=- shape=a6db5b2b vocab=3741b0f1
+-/
 theorem solution
     {A : Type u} [CommRing A] {D : LevelModuliDatum.{u} A} (P : LevelModuliPackageAbs A D)
     (K : Type u) [CommRing K] [Algebra A K] (R₀ : Type u) [CommRing R₀] [Algebra A R₀]

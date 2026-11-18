@@ -19,6 +19,9 @@ open _root_.MeasureTheory
 variable {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [LocallyCompactSpace G]
   [SecondCountableTopology G] [MeasurableSpace G] [BorelSpace G]
 
+/--
+@isnad1 id=eq.8h8v.s9.428e5ecc4abb from=translated src=- shape=8eed9e89 vocab=b991c1db
+-/
 theorem integral_mul_mul_eq_of_continuous_weight
     (T : Subgroup G) (hT : IsClosed (T : Set G)) [MeasurableSpace T] [BorelSpace T]
     (μ : Measure G) [μ.IsHaarMeasure] (τ : Measure T) [τ.IsHaarMeasure] [τ.IsInvInvariant]
@@ -109,6 +112,9 @@ theorem integral_mul_mul_eq_of_continuous_weight
   rw [h1, h2]
   exact key
 
+/--
+@isnad1 id=integrab.7h7v.s9.0604b8a1420c from=translated src=- shape=987c0ce3 vocab=f75ba5cb
+-/
 theorem integrable_mul_mul_of_continuous_weight
     (T : Subgroup G) (hT : IsClosed (T : Set G)) [MeasurableSpace T] [BorelSpace T]
     (μ : Measure G) [μ.IsHaarMeasure] (τ : Measure T) [τ.IsHaarMeasure] [τ.IsInvInvariant]
@@ -186,6 +192,9 @@ theorem integrable_mul_mul_of_continuous_weight
 end MeasureTheory.WeightedSection
 
 open _root_.MeasureTheory _root_.P2MW.S_MeasureTheory_integrable_and_integral_mul_mul_eq_of_integral_subgroup_translate_eq_one_of_continuous.MeasureTheory MeasureTheory.WeightedSection in
+/--
+@isnad1 id=and.8h8v.s9.3fe21de40348 from=translated src=- shape=9fa7c9bc vocab=f75ba5cb
+-/
 theorem solution
     {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [LocallyCompactSpace G]
     [SecondCountableTopology G] [MeasurableSpace G] [BorelSpace G]

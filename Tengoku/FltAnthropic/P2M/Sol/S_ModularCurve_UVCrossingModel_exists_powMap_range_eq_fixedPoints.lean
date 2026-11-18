@@ -13,6 +13,9 @@ set_option autoImplicit false
 
 open ModularCurve ModularCurve.UVCrossingModel
 
+/--
+@isnad1 id=ex.5h5v.s12.4c57c384a6b9 from=translated src=- shape=63fed005 vocab=9b8a4881
+-/
 theorem solution
     {W : Type*} [CommRing W] (π : W) [IsPrecomplete (Ideal.span {π}) W]
     (hsep : ∀ x : W, (∀ n : ℕ, π ^ n ∣ x) → x = 0) (e : ℕ) (he : e ≠ 0)

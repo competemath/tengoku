@@ -36,10 +36,16 @@ def laurentMap (f : R →+* S) : LaurentSeries R →+* LaurentSeries S where
     rw [HahnSeries.coeff_add, HahnSeries.coeff_add, map_add]
     rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.8211dd66fd1b from=translated src=- shape=91225d07 vocab=9c9b5a21
+-/
 @[scoped simp]
 theorem laurentMap_coeff (f : R →+* S) (x : LaurentSeries R) (k : ℤ) :
     (laurentMap f x).coeff k = f (x.coeff k) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.fac6a959dc1f from=translated src=- shape=d658a659 vocab=0e374cab
+-/
 @[scoped simp]
 theorem laurentMap_single (f : R →+* S) (k : ℤ) (r : R) :
     laurentMap f (HahnSeries.single k r) = HahnSeries.single k (f r) := by
@@ -47,6 +53,9 @@ theorem laurentMap_single (f : R →+* S) (k : ℤ) (r : R) :
   rw [laurentMap_coeff, HahnSeries.coeff_single, HahnSeries.coeff_single, apply_ite f,
     map_zero]
 
+/--
+@isnad1 id=eq.0h4v.s9.1891b64b7bb5 from=translated src=- shape=3c04b3c9 vocab=2d292cd5
+-/
 theorem laurentMap_ofPowerSeries (f : R →+* S) (p : PowerSeries R) :
     laurentMap f (HahnSeries.ofPowerSeries ℤ R p) =
       HahnSeries.ofPowerSeries ℤ S (p.map f) := by
@@ -64,6 +73,9 @@ section ExpandSeam
 
 variable {R : Type*} [CommRing R] (p : ℕ) [NeZero p]
 
+/--
+@isnad1 id=eq.0h3v.s9.ba8346bf58b6 from=translated src=- shape=d05b2b85 vocab=9f6a54b0
+-/
 theorem qExpand_ofPowerSeries_eq_expand (u : PowerSeries R) :
     qExpand R p (HahnSeries.ofPowerSeries ℤ R u)
       = HahnSeries.ofPowerSeries ℤ R (PowerSeries.expand p (NeZero.ne p) u) := by
@@ -93,6 +105,9 @@ section KeyLemma
 
 variable {R : Type*} [CommRing R] (p : ℕ) [Fact p.Prime] [CharP R p]
 
+/--
+@isnad1 id=eq.0h3v.s9.07f41309174b from=translated src=- shape=0abe97e2 vocab=ae8807bb
+-/
 theorem pow_char_single_one_eq (n : ℤ) :
     (HahnSeries.single n (1 : R)) ^ p
       = laurentMap (frobenius R p) (qExpand R p (HahnSeries.single n (1 : R))) := by
@@ -101,6 +116,9 @@ theorem pow_char_single_one_eq (n : ℤ) :
     show frobenius R p 1 = 1 from (frobenius R p).map_one,
     show (p • n : ℤ) = (p : ℤ) * n from nsmul_eq_mul p n]
 
+/--
+@isnad1 id=eq.0h3v.s9.85531f95c50c from=translated src=- shape=580d5fd2 vocab=23e5ddee
+-/
 theorem pow_char_ofPowerSeries_eq (u : PowerSeries R) :
     (HahnSeries.ofPowerSeries ℤ R u) ^ p
       = laurentMap (frobenius R p)
@@ -110,6 +128,9 @@ theorem pow_char_ofPowerSeries_eq (u : PowerSeries R) :
   congr 1
   exact (MvPowerSeries.map_frobenius_expand p (NeZero.ne p) (f := u)).symm
 
+/--
+@isnad1 id=eq.0h3v.s8.d8fc76fb0a75 from=translated src=- shape=b71fdaa4 vocab=40d69aca
+-/
 theorem pow_char_eq_laurentMap_frobenius_qExpand (s : LaurentSeries R) :
     s ^ p = laurentMap (frobenius R p) (qExpand R p s) := by
   conv_lhs => rw [← LaurentSeries.single_order_mul_powerSeriesPart s]
@@ -118,6 +139,9 @@ theorem pow_char_eq_laurentMap_frobenius_qExpand (s : LaurentSeries R) :
   congr 1
   exact pow_char_ofPowerSeries_eq p s.powerSeriesPart
 
+/--
+@isnad1 id=eq.1h3v.s8.46a0b38a648b from=translated src=- shape=d2cdd794 vocab=bed9d157
+-/
 theorem pow_char_eq_qExpand_of_coeff_fixed (s : LaurentSeries R)
     (hfix : ∀ k : ℤ, (s.coeff k) ^ p = s.coeff k) :
     s ^ p = qExpand R p s := by
@@ -135,6 +159,9 @@ section IntCastImage
 
 variable {K : Type*} [CommRing K] (ℓ : ℕ) [Fact ℓ.Prime] [CharP K ℓ]
 
+/--
+@isnad1 id=eq.0h3v.s6.7d005f69d2d4 from=translated src=- shape=ee45e01a vocab=e02f7174
+-/
 theorem intCast_pow_char_eq (n : ℤ) : ((n : K) : K) ^ ℓ = (n : K) := by
   haveI : ExpChar K ℓ := ExpChar.prime (Fact.out : ℓ.Prime)
   have h : (frobenius K ℓ).comp (Int.castRingHom K) = Int.castRingHom K :=
@@ -144,6 +171,9 @@ theorem intCast_pow_char_eq (n : ℤ) : ((n : K) : K) ^ ℓ = (n : K) := by
     _ = Int.castRingHom K n := by rw [h]
     _ = (n : K) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.66b26e24328e from=translated src=- shape=f1bcaaf0 vocab=da85adea
+-/
 theorem pow_char_laurentMap_intCast_eq_qExpand (sInt : LaurentSeries ℤ) :
     (laurentMap (Int.castRingHom K) sInt) ^ ℓ
       = qExpand K ℓ (laurentMap (Int.castRingHom K) sInt) :=
@@ -162,6 +192,9 @@ end
 open scoped _root_.P2MW.S_ModularCurve_map_intCast_pow_char_eq_qExpand.ModularCurve.CharL _root_.P2MW.S_ModularCurve_map_intCast_pow_char_eq_qExpand.ModularCurve
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_map_intCast_pow_char_eq_qExpand.ModularCurve in
+/--
+@isnad1 id=eq.0h3v.s8.f058eecd2745 from=translated src=- shape=7057f90e vocab=edc7eb7d
+-/
 theorem solution {K : Type*} [CommRing K] (ℓ : ℕ) [Fact ℓ.Prime] [CharP K ℓ]
     (s : LaurentSeries ℤ) :
     (s.map (Int.castRingHom K)) ^ ℓ = qExpand K ℓ (s.map (Int.castRingHom K)) :=

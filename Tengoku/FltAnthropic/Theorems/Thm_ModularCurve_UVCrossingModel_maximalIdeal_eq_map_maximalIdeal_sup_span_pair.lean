@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open ModularCurve ModularCurve.UVCrossingModel
 
+/--
+@isnad1 id=eq.1h2v.s8.96f36e5e87ac from=translated src=- shape=738d0110 vocab=a68d2d5e
+-/
 theorem ModularCurve.UVCrossingModel.maximalIdeal_eq_map_maximalIdeal_sup_span_pair
     {W : Type*} [CommRing W] [IsLocalRing W] {π : W} (hπu : ¬IsUnit π) [IsLocalRing (UVCrossingModel W π)] :
     IsLocalRing.maximalIdeal (UVCrossingModel W π) =

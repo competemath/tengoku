@@ -26,6 +26,9 @@ universe u v
 namespace AdmissibleChain export _root_.MazurAdmissible.AdmissibleChain (tag hmono step n hact htop hbot hcard) end AdmissibleChain
 open scoped _root_.MazurAdmissible.AdmissibleChain in
 
+/--
+@isnad1 id=ex.1h7v.s11.b95c0a1175f4 from=translated src=- shape=93296187 vocab=d223db70
+-/
 theorem AdmissibleChain.exists_map_addEquiv_aux
     {M : Type u} [AddCommGroup M] {M' : Type v} [AddCommGroup M']
     {p : ℕ} {Φ : OpenAction M} {Φ' : OpenAction M'} (e : M ≃+ M')
@@ -64,6 +67,9 @@ theorem AdmissibleChain.exists_map_addEquiv_aux
 end MazurAdmissible
 
 open _root_.MazurAdmissible _root_.P2MW.S_MazurAdmissible_AdmissibleChain_exists_map_addEquiv.MazurAdmissible in
+/--
+@isnad1 id=ex.1h7v.s11.b95c0a1175f4 from=translated src=- shape=93296187 vocab=d223db70
+-/
 theorem solution
     {M : Type*} [AddCommGroup M] {M' : Type*} [AddCommGroup M']
     {p : ℕ} {Φ : OpenAction M} {Φ' : OpenAction M'} (e : M ≃+ M')

@@ -23,6 +23,9 @@ section Algebra
 
 variable {M : Type*} [Ring M] [Algebra ℝ M] [FiniteDimensional ℝ M]
 
+/--
+@isnad1 id=isunit.1h2v.s8.d7aafebe2c11 from=translated src=- shape=4ddf112c vocab=5c7be201
+-/
 theorem isUnit_of_isUnit_lmul {x : M} (h : IsUnit (Algebra.lmul ℝ M x)) : IsUnit x := by
   obtain ⟨u, hu⟩ := h
 
@@ -52,6 +55,9 @@ theorem isUnit_of_isUnit_lmul {x : M} (h : IsUnit (Algebra.lmul ℝ M x)) : IsUn
     _ = T (x * 1) := by rw [one_mul, mul_one]
     _ = 1 := hTL 1
 
+/--
+@isnad1 id=iff.0h2v.s6.b7d507434374 from=translated src=- shape=6ae7c196 vocab=e98513d5
+-/
 theorem isUnit_iff_norm_ne_zero (x : M) : IsUnit x ↔ Algebra.norm ℝ x ≠ 0 := by
   constructor
   · intro hx h0
@@ -65,6 +71,9 @@ theorem isUnit_iff_norm_ne_zero (x : M) : IsUnit x ↔ Algebra.norm ℝ x ≠ 0 
       rw [← Algebra.norm_apply]; exact isUnit_iff_ne_zero.2 h
     exact isUnit_of_isUnit_lmul ((LinearMap.isUnit_iff_isUnit_det _).2 h')
 
+/--
+@isnad1 id=finite.0h2v.s6.ed681ceddfb4 from=translated src=- shape=39a41092 vocab=03dfc1e6
+-/
 theorem finite_setOf_not_isUnit_add (Y : M) : {t : ℝ | ¬ IsUnit (t • (1 : M) + Y)}.Finite := by
   have hfin : (spectrum ℝ (Algebra.lmul ℝ M (-Y))).Finite := Module.End.finite_spectrum _
   refine hfin.subset fun t ht => ?_
@@ -84,12 +93,21 @@ def coordHomeo {ι : Type*} [Finite ι] (b : Module.Basis ι ℝ M) : M ≃ₜ (
   continuous_toFun := b.equivFun.toLinearMap.continuous_of_finiteDimensional
   continuous_invFun := b.equivFun.symm.toLinearMap.continuous_of_finiteDimensional
 
+/--
+@isnad1 id=secondco.0h1v.s6.7a06422e47e3 from=translated src=- shape=a3d5008e vocab=d7fe9481
+-/
 scoped instance (priority := 100) secondCountable_of_finiteDimensional : SecondCountableTopology M :=
   (coordHomeo (Module.finBasis ℝ M)).secondCountableTopology
 
+/--
+@isnad1 id=polishsp.0h1v.s6.0786c0112830 from=translated src=- shape=a3d5008e vocab=96528318
+-/
 theorem polishSpace_of_finiteDimensional : PolishSpace M :=
   (coordHomeo (Module.finBasis ℝ M)).isClosedEmbedding.polishSpace
 
+/--
+@isnad1 id=continuo.0h1v.s7.ba801110348c from=translated src=- shape=afbafed3 vocab=8c15fa5d
+-/
 theorem continuous_norm : Continuous (Algebra.norm ℝ : M → ℝ) := by
   classical
   set b := Module.finBasis ℝ M
@@ -100,6 +118,9 @@ theorem continuous_norm : Continuous (Algebra.norm ℝ : M → ℝ) := by
     (Algebra.leftMulMatrix b).toLinearMap.continuous_of_finiteDimensional
   exact hc.matrix_det
 
+/--
+@isnad1 id=isclosed.0h1v.s6.00a8da45c002 from=translated src=- shape=ad088132 vocab=7668f38c
+-/
 theorem isClosed_setOf_not_isUnit : IsClosed {x : M | ¬ IsUnit x} := by
   have : {x : M | ¬ IsUnit x} = (Algebra.norm ℝ : M → ℝ) ⁻¹' {0} := by
     ext x
@@ -120,19 +141,34 @@ variable {M : Type*} [Ring M] [Algebra ℝ M] [FiniteDimensional ℝ M]
 
 def ψ : (Fin n → ℝ) →ₗ[ℝ] M := Fintype.linearCombination ℝ e
 
+/--
+@isnad1 id=eq.0h4v.s7.6deff0ae4b1c from=translated src=- shape=28318f7a vocab=c335c7fe
+-/
 theorem ψ_apply (c : Fin n → ℝ) : ψ e c = ∑ i, c i • e i := rfl
 
+/--
+@isnad1 id=continuo.0h3v.s7.907314ce120d from=translated src=- shape=da735e95 vocab=d0b1392d
+-/
 theorem continuous_ψ : Continuous (ψ e) := by
   have : (ψ e : (Fin n → ℝ) → M) = fun c => ∑ i, c i • e i := funext (ψ_apply e)
   rw [this]
   exact continuous_finsetSum _ fun i _ => (continuous_apply i).smul continuous_const
 
+/--
+@isnad1 id=measurab.0h3v.s7.019fd34431b2 from=translated src=- shape=da735e95 vocab=ddbb8d9d
+-/
 theorem measurable_ψ : Measurable (ψ e) := (continuous_ψ e).measurable
 
 include hli in
+/--
+@isnad1 id=injectiv.1h3v.s7.4cedda5d3727 from=translated src=- shape=c67f03d8 vocab=d56ce57e
+-/
 theorem injective_ψ : Function.Injective (ψ e) := hli.fintypeLinearCombination_injective
 
 include hsp in
+/--
+@isnad1 id=eq.1h4v.s9.9c5b48e41caa from=translated src=- shape=dfbfc0cf vocab=0d0dee4d
+-/
 theorem range_ψ : Set.range (ψ e) = (A : Set M) := by
   have h := Fintype.range_linearCombination ℝ e
   have h' : (LinearMap.range (ψ e) : Set M) = (Submodule.span ℝ (Set.range e) : Set M) := by
@@ -142,12 +178,18 @@ theorem range_ψ : Set.range (ψ e) = (A : Set M) := by
   rfl
 
 include hsp in
+/--
+@isnad1 id=mem.1h5v.s9.fde0221d84c0 from=translated src=- shape=28d08259 vocab=373139c1
+-/
 theorem ψ_mem (c : Fin n → ℝ) : ψ e c ∈ A := by
   have : ψ e c ∈ Set.range (ψ e) := ⟨c, rfl⟩
   rw [range_ψ A e hsp] at this
   exact this
 
 include hsp in
+/--
+@isnad1 id=mem.1h5v.s8.a63f770ff200 from=translated src=- shape=7ed44870 vocab=7dc54319
+-/
 theorem mem_e (i : Fin n) : e i ∈ A := by
   have : e i ∈ (Submodule.span ℝ (Set.range e) : Set M) := Submodule.subset_span ⟨i, rfl⟩
   rw [hsp] at this
@@ -173,19 +215,31 @@ def bA : Module.Basis (Fin n) ℝ A :=
       rw [this]
       exact Submodule.sum_mem _ fun i _ => Submodule.smul_mem _ _ (Submodule.subset_span ⟨i, rfl⟩))
 
+/--
+@isnad1 id=eq.2h5v.s9.5cdbbe176492 from=translated src=- shape=637f0631 vocab=3f68e047
+-/
 theorem bA_apply (i : Fin n) : ((bA A e hli hsp i : A) : M) = e i := by
   rw [bA, Module.Basis.mk_apply]
 
+/--
+@isnad1 id=eq.2h5v.s10.358e62d22b77 from=translated src=- shape=9d140d76 vocab=9386e2fa
+-/
 theorem coe_equivFun_symm (c : Fin n → ℝ) : (((bA A e hli hsp).equivFun.symm c : A) : M) = ψ e c := by
   rw [Module.Basis.equivFun_symm_apply, ψ_apply, AddSubmonoidClass.coe_finsetSum]
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [Subalgebra.coe_smul, bA_apply]
 
+/--
+@isnad1 id=eq.2h5v.s10.2c1057618e30 from=translated src=- shape=aff4f0b8 vocab=8afde7c7
+-/
 theorem equivFun_ψ (c : Fin n → ℝ) : (bA A e hli hsp).equivFun ⟨ψ e c, ψ_mem A e hsp c⟩ = c := by
   have : (⟨ψ e c, ψ_mem A e hsp c⟩ : A) = (bA A e hli hsp).equivFun.symm c :=
     Subtype.ext (coe_equivFun_symm A e hli hsp c).symm
   rw [this, LinearEquiv.apply_symm_apply]
 
+/--
+@isnad1 id=eq.1h6v.s8.34a3b8c13b20 from=translated src=- shape=491f8622 vocab=f49e4095
+-/
 theorem ψ_mulVec_of_left {g : M} {P : Matrix (Fin n) (Fin n) ℝ} (hP : ∀ j, g * e j = ∑ i, P i j • e i)
     (c : Fin n → ℝ) : ψ e (Matrix.mulVec P c) = g * ψ e c := by
   simp only [ψ_apply, Matrix.mulVec, dotProduct]
@@ -195,6 +249,9 @@ theorem ψ_mulVec_of_left {g : M} {P : Matrix (Fin n) (Fin n) ℝ} (hP : ∀ j, 
     _ = ∑ j, c j • (g * e j) := by simp only [hP]
     _ = g * ∑ j, c j • e j := by simp only [Finset.mul_sum, mul_smul_comm]
 
+/--
+@isnad1 id=eq.1h6v.s8.db9b6c647166 from=translated src=- shape=898c2ba6 vocab=f49e4095
+-/
 theorem ψ_mulVec_of_right {g : M} {Q : Matrix (Fin n) (Fin n) ℝ} (hQ : ∀ j, e j * g = ∑ i, Q i j • e i)
     (c : Fin n → ℝ) : ψ e (Matrix.mulVec Q c) = ψ e c * g := by
   simp only [ψ_apply, Matrix.mulVec, dotProduct]
@@ -215,6 +272,9 @@ variable {M : Type*} [Ring M] [Algebra ℝ M] [FiniteDimensional ℝ M]
 
 def dens : M → ℝ≥0∞ := fun x => (ENNReal.ofReal |χ x|)⁻¹
 
+/--
+@isnad1 id=measurab.1h2v.s7.bb2565ef6f86 from=translated src=- shape=2548e685 vocab=db2b7f4e
+-/
 theorem measurable_dens (hχ : Continuous χ) : Measurable (dens χ) := by
   have h1 : Measurable fun x : M => ENNReal.ofReal |χ x| :=
     ENNReal.measurable_ofReal.comp ((continuous_abs.comp hχ).measurable)
@@ -222,26 +282,41 @@ theorem measurable_dens (hχ : Continuous χ) : Measurable (dens χ) := by
 
 def ν : Measure M := (Measure.map (ψ e) volume).withDensity (dens χ)
 
+/--
+@isnad1 id=eq.2h5v.s8.5040a09aa24d from=translated src=- shape=11e18f12 vocab=57a04fbc
+-/
 theorem ν_apply (hχ : Continuous χ) {S : Set M} (hS : MeasurableSet S) :
     ν e χ S = ∫⁻ c in (ψ e) ⁻¹' S, dens χ (ψ e c) ∂volume := by
   rw [ν, withDensity_apply _ hS, setLIntegral_map hS (measurable_dens χ hχ) (measurable_ψ e)]
 
+/--
+@isnad1 id=lt.0h3v.s6.eee3ed38d47e from=translated src=- shape=2ca423b6 vocab=864f2a40
+-/
 theorem dens_pos (x : M) : 0 < dens χ x := by
   simp only [dens, ENNReal.inv_pos]
   exact ENNReal.ofReal_ne_top
 
+/--
+@isnad1 id=eq.1h4v.s7.22ca434cec6f from=translated src=- shape=b62c2173 vocab=d0e2dc7b
+-/
 theorem dens_mul_of_ne_zero {g : M} (hg : χ g ≠ 0) (x : M) :
     dens χ (g * x) = (ENNReal.ofReal |χ g|)⁻¹ * dens χ x := by
   simp only [dens]
   rw [map_mul, abs_mul, ENNReal.ofReal_mul (abs_nonneg _),
     ENNReal.mul_inv (Or.inl ((ENNReal.ofReal_pos.2 (abs_pos.2 hg)).ne')) (Or.inl ENNReal.ofReal_ne_top)]
 
+/--
+@isnad1 id=eq.1h4v.s7.951953bd9dd6 from=translated src=- shape=e4f36be0 vocab=d0e2dc7b
+-/
 theorem dens_mul_of_ne_zero' {g : M} (hg : χ g ≠ 0) (x : M) :
     dens χ (x * g) = (ENNReal.ofReal |χ g|)⁻¹ * dens χ x := by
   simp only [dens]
   rw [map_mul, abs_mul, ENNReal.ofReal_mul (abs_nonneg _),
     ENNReal.mul_inv (Or.inr ENNReal.ofReal_ne_top) (Or.inr ((ENNReal.ofReal_pos.2 (abs_pos.2 hg)).ne')), mul_comm]
 
+/--
+@isnad1 id=eq.6h7v.s11.4824ecda6579 from=translated src=- shape=30189fc2 vocab=86457b32
+-/
 theorem ν_preimage_eq (hχ : Continuous χ) (φ : M → M) (hφ : Measurable φ) (Λ : (Fin n → ℝ) →ₗ[ℝ] (Fin n → ℝ))
     (hdet : LinearMap.det Λ ≠ 0) (hΛ : ∀ c, ψ e (Λ c) = φ (ψ e c))
     (hdens : ∀ x, dens χ (φ x) = (ENNReal.ofReal |LinearMap.det Λ|)⁻¹ * dens χ x)
@@ -283,12 +358,18 @@ theorem ν_preimage_eq (hχ : Continuous χ) (φ : M → M) (hφ : Measurable φ
 
 variable (A : Subalgebra ℝ M) (Γ : Subgroup Mˣ) (hΓ : ∀ g : Mˣ, g ∈ Γ ↔ (g : M) ∈ A)
 
+/--
+@isnad1 id=ne.0h3v.s7.528ac5660d9b from=translated src=- shape=bc680227 vocab=c6419b80
+-/
 theorem chi_ne_zero (g : Mˣ) : χ g ≠ 0 := by
   intro h
   have : χ ((g : M) * (g⁻¹ : Mˣ)) = 1 := by rw [Units.mul_inv, map_one]
   rw [map_mul, h, zero_mul] at this
   exact zero_ne_one this
 
+/--
+@isnad1 id=eq.6h8v.s9.d7c9cb55d90f from=translated src=- shape=1dff0cfa vocab=d16774f8
+-/
 theorem ν_preimage_mul_left (hχ : Continuous χ)
     (hli : LinearIndependent ℝ e) (hsp : Submodule.span ℝ (Set.range e) = Subalgebra.toSubmodule A)
     (hleft : ∀ g : Mˣ, g ∈ Γ → ∃ P : Matrix (Fin n) (Fin n) ℝ,
@@ -307,6 +388,9 @@ theorem ν_preimage_mul_left (hχ : Continuous χ)
   · rw [LinearMap.det_toLin', hl]
     exact dens_mul_of_ne_zero χ hχg x
 
+/--
+@isnad1 id=eq.6h8v.s9.0e5771e424a8 from=translated src=- shape=f369f15f vocab=d16774f8
+-/
 theorem ν_preimage_mul_right (hχ : Continuous χ)
     (hli : LinearIndependent ℝ e) (hsp : Submodule.span ℝ (Set.range e) = Subalgebra.toSubmodule A)
     (hright : ∀ g : Mˣ, g ∈ Γ → ∃ Q : Matrix (Fin n) (Fin n) ℝ,
@@ -333,6 +417,9 @@ variable {M : Type*} [Ring M] [Algebra ℝ M] [FiniteDimensional ℝ M]
   [TopologicalSpace M] [IsTopologicalRing M] [ContinuousSMul ℝ M] [T2Space M]
   [MeasurableSpace M] [BorelSpace M]
 
+/--
+@isnad1 id=eq.1h3v.s9.c9ae08031b7e from=translated src=- shape=fa1f2543 vocab=92045e3d
+-/
 theorem prod_null_of_smul_one {m : ℕ} (θ : (ℝ × (Fin m → ℝ)) →ₗ[ℝ] M) (hθ : ∀ t : ℝ, θ (t, 0) = t • (1 : M)) :
     ((volume : Measure ℝ).prod (volume : Measure (Fin m → ℝ))) {p | ¬ IsUnit (θ p)} = 0 := by
   have hθc : Continuous θ := θ.continuous_of_finiteDimensional
@@ -359,6 +446,9 @@ theorem prod_null_of_smul_one {m : ℕ} (θ : (ℝ × (Fin m → ℝ)) →ₗ[�
 
 variable {n : ℕ} (e : Fin n → M) (A : Subalgebra ℝ M)
 
+/--
+@isnad1 id=eq.2h4v.s9.3b3abc735841 from=translated src=- shape=ed453526 vocab=6dbd229d
+-/
 theorem volume_setOf_not_isUnit_ψ
     (hli : LinearIndependent ℝ e) (hsp : Submodule.span ℝ (Set.range e) = Subalgebra.toSubmodule A) :
     (volume : Measure (Fin n → ℝ)) {c | ¬ IsUnit (ψ e c)} = 0 := by
@@ -480,44 +570,77 @@ variable {M : Type*} [Ring M] [Algebra ℝ M] [FiniteDimensional ℝ M]
   {n : ℕ} (e : Fin n → M) (χ : M →* ℝ)
 
 scoped instance (priority := 10000) instMeasurableSpaceΓ : MeasurableSpace Γ := borel Γ
+/--
+@isnad1 id=borelspa.0h2v.s7.1b15050a7a7b from=translated src=- shape=69f462b5 vocab=6980ff6e
+-/
 scoped instance instBorelSpaceΓ : BorelSpace Γ := ⟨rfl⟩
 
+/--
+@isnad1 id=polishsp.0h1v.s6.97939bc735e1 from=translated src=- shape=055a3bbd vocab=fab122d3
+-/
 theorem polishSpace_units : PolishSpace Mˣ := by
   haveI : PolishSpace M := polishSpace_of_finiteDimensional
   haveI : PolishSpace Mᵐᵒᵖ := MulOpposite.opHomeomorph.symm.isClosedEmbedding.polishSpace
   exact Units.isClosedEmbedding_embedProduct.polishSpace
 
+/--
+@isnad1 id=isclosed.0h2v.s6.635b8da8bf6e from=translated src=- shape=59ec0cb3 vocab=802ef44d
+-/
 theorem isClosed_A : IsClosed ((A : Set M)) :=
   (Subalgebra.toSubmodule A).closed_of_finiteDimensional
 
+/--
+@isnad1 id=isclosed.1h3v.s8.18f119319c15 from=translated src=- shape=9b235603 vocab=4277bdfe
+-/
 theorem isClosed_Γ (hΓ : ∀ g : Mˣ, g ∈ Γ ↔ (g : M) ∈ A) : IsClosed ((Γ : Set Mˣ)) := by
   have : (Γ : Set Mˣ) = ((↑) : Mˣ → M) ⁻¹' (A : Set M) := by
     ext g; exact hΓ g
   rw [this]
   exact (isClosed_A A).preimage Units.continuous_val
 
+/--
+@isnad1 id=polishsp.1h3v.s8.fe9b15cd0a78 from=translated src=- shape=9cb6326b vocab=703ca127
+-/
 theorem polishSpace_Γ (hΓ : ∀ g : Mˣ, g ∈ Γ ↔ (g : M) ∈ A) : PolishSpace Γ := by
   haveI := polishSpace_units (M := M)
   exact (isClosed_Γ A Γ hΓ).polishSpace
 
+/--
+@isnad1 id=secondco.0h1v.s6.52ad1145f899 from=translated src=- shape=0623b21a vocab=bd0226e8
+-/
 scoped instance secondCountable_units : SecondCountableTopology Mˣ := by
   haveI : SecondCountableTopology Mᵐᵒᵖ := MulOpposite.opHomeomorph.symm.secondCountableTopology
   exact Units.isEmbedding_embedProduct.secondCountableTopology
 
+/--
+@isnad1 id=secondco.0h2v.s7.986c2cfc7f2a from=translated src=- shape=d2fba10a vocab=029af15e
+-/
 scoped instance secondCountable_Γ : SecondCountableTopology Γ :=
   (Topology.IsInducing.subtypeVal).secondCountableTopology
 
 def incl : Γ → M := fun t => ((t : Mˣ) : M)
 
+/--
+@isnad1 id=continuo.0h2v.s8.34d3e0d50fac from=translated src=- shape=749238ad vocab=865f84d8
+-/
 theorem continuous_incl : Continuous (incl Γ) := Units.continuous_val.comp continuous_subtype_val
 
+/--
+@isnad1 id=injectiv.0h2v.s7.54299b88d773 from=translated src=- shape=749238ad vocab=6aa7a616
+-/
 theorem injective_incl : Function.Injective (incl Γ) := fun s t h =>
   Subtype.ext (Units.ext h)
 
+/--
+@isnad1 id=measurab.1h3v.s8.b95ac7549958 from=translated src=- shape=1ab593e1 vocab=78be903f
+-/
 theorem measurableEmbedding_incl (hΓ : ∀ g : Mˣ, g ∈ Γ ↔ (g : M) ∈ A) : MeasurableEmbedding (incl Γ) := by
   haveI := polishSpace_Γ A Γ hΓ
   exact (continuous_incl Γ).measurableEmbedding (injective_incl Γ)
 
+/--
+@isnad1 id=eq.1h3v.s8.cf4e91da838b from=translated src=- shape=6744fe0b vocab=732ed207
+-/
 theorem range_incl (hΓ : ∀ g : Mˣ, g ∈ Γ ↔ (g : M) ∈ A) :
     Set.range (incl Γ) = (A : Set M) \ {x | ¬ IsUnit x} := by
   ext x
@@ -530,9 +653,15 @@ theorem range_incl (hΓ : ∀ g : Mˣ, g ∈ Γ ↔ (g : M) ∈ A) :
 
 def τ : Measure Γ := Measure.comap (incl Γ) (ν e χ)
 
+/--
+@isnad1 id=eq.1h7v.s9.98b310316f50 from=translated src=- shape=8671b7ee vocab=ecdd4107
+-/
 theorem τ_apply (hΓ : ∀ g : Mˣ, g ∈ Γ ↔ (g : M) ∈ A) (S : Set Γ) : τ Γ e χ S = ν e χ (incl Γ '' S) :=
   (measurableEmbedding_incl A Γ hΓ).comap_apply _ S
 
+/--
+@isnad1 id=eq.2h5v.s8.46ee6607b2c9 from=translated src=- shape=a3182760 vocab=da2bfdd4
+-/
 theorem ν_nonunits (hli : LinearIndependent ℝ e) (hsp : Submodule.span ℝ (Set.range e) = Subalgebra.toSubmodule A) :
     ν e χ ((A : Set M) ∩ {x | ¬ IsUnit x}) = 0 := by
   have hmeas : MeasurableSet ((A : Set M) ∩ {x | ¬ IsUnit x}) :=
@@ -544,6 +673,9 @@ theorem ν_nonunits (hli : LinearIndependent ℝ e) (hsp : Submodule.span ℝ (S
     exact measure_mono_null this (volume_setOf_not_isUnit_ψ e A hli hsp)
   rw [Measure.restrict_eq_zero.2 h0, lintegral_zero_measure]
 
+/--
+@isnad1 id=eq.1h5v.s8.28363a9dddbe from=translated src=- shape=eaa9c67e vocab=95e8b5b5
+-/
 theorem ν_compl_A (hsp : Submodule.span ℝ (Set.range e) = Subalgebra.toSubmodule A) : ν e χ ((A : Set M)ᶜ) = 0 := by
   rw [ν, withDensity_apply _ (isClosed_A A).measurableSet.compl]
   have h0 : (Measure.map (ψ e) volume) ((A : Set M)ᶜ) = 0 := by
@@ -555,6 +687,9 @@ theorem ν_compl_A (hsp : Submodule.span ℝ (Set.range e) = Subalgebra.toSubmod
     rw [this, measure_empty]
   rw [Measure.restrict_eq_zero.2 h0, lintegral_zero_measure]
 
+/--
+@isnad1 id=eq.3h6v.s9.b75898f24f31 from=translated src=- shape=187dc8c9 vocab=7dbb74b7
+-/
 theorem ν_compl_range (hΓ : ∀ g : Mˣ, g ∈ Γ ↔ (g : M) ∈ A)
     (hli : LinearIndependent ℝ e) (hsp : Submodule.span ℝ (Set.range e) = Subalgebra.toSubmodule A) :
     ν e χ ((Set.range (incl Γ))ᶜ) = 0 := by
@@ -569,6 +704,9 @@ theorem ν_compl_range (hΓ : ∀ g : Mˣ, g ∈ Γ ↔ (g : M) ∈ A)
   rw [measure_union_null_iff]
   exact ⟨ν_compl_A A e χ hsp, ν_nonunits A e χ hli hsp⟩
 
+/--
+@isnad1 id=eq.3h6v.s9.bdc6b5938f17 from=translated src=- shape=61576436 vocab=2c60473e
+-/
 theorem map_τ (hΓ : ∀ g : Mˣ, g ∈ Γ ↔ (g : M) ∈ A)
     (hli : LinearIndependent ℝ e) (hsp : Submodule.span ℝ (Set.range e) = Subalgebra.toSubmodule A) :
     Measure.map (incl Γ) (τ Γ e χ) = ν e χ := by
@@ -577,6 +715,9 @@ theorem map_τ (hΓ : ∀ g : Mˣ, g ∈ Γ ↔ (g : M) ∈ A)
     rw [ae_iff]
     exact ν_compl_range A Γ e χ hΓ hli hsp)
 
+/--
+@isnad1 id=ismullef.5h6v.s9.7fea4970451e from=translated src=- shape=d6306d8d vocab=7fa586a8
+-/
 theorem τ_isMulLeftInvariant (hΓ : ∀ g : Mˣ, g ∈ Γ ↔ (g : M) ∈ A) (hχ : Continuous χ)
     (hli : LinearIndependent ℝ e) (hsp : Submodule.span ℝ (Set.range e) = Subalgebra.toSubmodule A)
     (hleft : ∀ g : Mˣ, g ∈ Γ → ∃ P : Matrix (Fin n) (Fin n) ℝ,
@@ -599,6 +740,9 @@ theorem τ_isMulLeftInvariant (hΓ : ∀ g : Mˣ, g ∈ Γ ↔ (g : M) ∈ A) (h
   rw [himg]
   exact ν_preimage_mul_left e χ A Γ hχ hli hsp hleft t.2 ((measurableEmbedding_incl A Γ hΓ).measurableSet_image' hS)
 
+/--
+@isnad1 id=ismulrig.5h6v.s9.247aeee1ea66 from=translated src=- shape=f30389a5 vocab=3d40b4cc
+-/
 theorem τ_isMulRightInvariant (hΓ : ∀ g : Mˣ, g ∈ Γ ↔ (g : M) ∈ A) (hχ : Continuous χ)
     (hli : LinearIndependent ℝ e) (hsp : Submodule.span ℝ (Set.range e) = Subalgebra.toSubmodule A)
     (hright : ∀ g : Mˣ, g ∈ Γ → ∃ Q : Matrix (Fin n) (Fin n) ℝ,
@@ -621,6 +765,9 @@ theorem τ_isMulRightInvariant (hΓ : ∀ g : Mˣ, g ∈ Γ ↔ (g : M) ∈ A) (
   rw [himg]
   exact ν_preimage_mul_right e χ A Γ hχ hli hsp hright t.2 ((measurableEmbedding_incl A Γ hΓ).measurableSet_image' hS)
 
+/--
+@isnad1 id=isclosed.2h4v.s9.262cf2e729ec from=translated src=- shape=b7ec7994 vocab=eb8668de
+-/
 theorem isClosedEmbedding_ψ (hli : LinearIndependent ℝ e)
     (hsp : Submodule.span ℝ (Set.range e) = Subalgebra.toSubmodule A) : IsClosedEmbedding (ψ e) := by
   have hcont : Continuous (ψ e) := continuous_ψ e
@@ -646,6 +793,9 @@ theorem isClosedEmbedding_ψ (hli : LinearIndependent ℝ e)
   rw [h1]
   exact ((isClosed_A A).isClosedEmbedding_subtypeVal).isClosedMap _ (hF.preimage hφ)
 
+/--
+@isnad1 id=lt.5h7v.s10.789f0ad06351 from=translated src=- shape=211fd1c6 vocab=a0267dba
+-/
 theorem τ_lt_top_of_isCompact (hΓ : ∀ g : Mˣ, g ∈ Γ ↔ (g : M) ∈ A) (hχ : Continuous χ)
     (hli : LinearIndependent ℝ e) (hsp : Submodule.span ℝ (Set.range e) = Subalgebra.toSubmodule A)
     {C : Set Γ} (hC : IsCompact C) : τ Γ e χ C < ⊤ := by
@@ -674,6 +824,9 @@ theorem τ_lt_top_of_isCompact (hΓ : ∀ g : Mˣ, g ∈ Γ ↔ (g : M) ∈ A) (
   rw [Measure.map_apply (measurable_ψ e) hCM.measurableSet]
   exact ((isClosedEmbedding_ψ A e hli hsp).isCompact_preimage hCM).measure_lt_top
 
+/--
+@isnad1 id=ne.7h7v.s10.8b9cddf21a83 from=translated src=- shape=6fe6474d vocab=ed46f8c7
+-/
 theorem τ_pos_of_isOpen (hΓ : ∀ g : Mˣ, g ∈ Γ ↔ (g : M) ∈ A) (hχ : Continuous χ)
     (hli : LinearIndependent ℝ e) (hsp : Submodule.span ℝ (Set.range e) = Subalgebra.toSubmodule A)
     (hleft : ∀ g : Mˣ, g ∈ Γ → ∃ P : Matrix (Fin n) (Fin n) ℝ,
@@ -721,6 +874,9 @@ theorem τ_pos_of_isOpen (hΓ : ∀ g : Mˣ, g ∈ Γ ↔ (g : M) ∈ A) (hχ : 
   rw [hall] at h2
   exact hvol h2
 
+/--
+@isnad1 id=ishaarme.6h6v.s10.54e1416a27d6 from=translated src=- shape=48ed434b vocab=541ce9c0
+-/
 theorem isHaarMeasure_τ (hΓ : ∀ g : Mˣ, g ∈ Γ ↔ (g : M) ∈ A) (hχ : Continuous χ)
     (hli : LinearIndependent ℝ e) (hsp : Submodule.span ℝ (Set.range e) = Subalgebra.toSubmodule A)
     (hleft : ∀ g : Mˣ, g ∈ Γ → ∃ P : Matrix (Fin n) (Fin n) ℝ,
@@ -742,6 +898,9 @@ end
 open scoped _root_.P2MW.S_MeasureTheory_Measure_exists_isHaarMeasure_subgroup_units_map_val_eq_withDensity_of_abs_det_eq.MeasureTheory _root_.P2MW.S_MeasureTheory_Measure_exists_isHaarMeasure_subgroup_units_map_val_eq_withDensity_of_abs_det_eq.MeasureTheory.UnitGroupHaar
 
 open _root_.MeasureTheory _root_.P2MW.S_MeasureTheory_Measure_exists_isHaarMeasure_subgroup_units_map_val_eq_withDensity_of_abs_det_eq.MeasureTheory MeasureTheory.UnitGroupHaar in
+/--
+@isnad1 id=ex.6h6v.s11.ea81375d33dd from=translated src=- shape=2658f653 vocab=4d975df0
+-/
 theorem solution
     {M : Type*} [Ring M] [Algebra ℝ M] [FiniteDimensional ℝ M]
     [TopologicalSpace M] [IsTopologicalRing M] [ContinuousSMul ℝ M] [T2Space M]

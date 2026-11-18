@@ -402,6 +402,9 @@ private theorem derivRow : DerivRow := fun _f hper hhol hbdd =>
 end E34S
 
 open E34S in
+/--
+@isnad1 id=mem.3h5v.s8.c56f6219c208 from=translated src=- shape=4f1642dc vocab=f0e65c4c
+-/
 theorem solution (p : ℕ) (hp : p.Prime) (hp5 : 5 ≤ p) (N' : ℕ) [NeZero N'] (k : ℤ)
     (F : Type) [Field F] [CharP F p] (φ : PowerSeries F) (hφ : φ ∈ modPMod N' k F) :
     thetaPS φ ∈ modPMod N' (k + ((p : ℤ) + 1)) F :=

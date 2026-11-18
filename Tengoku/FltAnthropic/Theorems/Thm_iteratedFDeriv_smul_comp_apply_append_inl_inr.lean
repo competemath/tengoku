@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_iteratedFDeriv_smul_comp_apply_append_inl_
 namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.2h9v.s9.1b570ea55939 from=translated src=- shape=099d8823 vocab=8fc46397
+-/
 theorem _root_.Tengoku.FltAnthropic.iteratedFDeriv_smul_comp_apply_append_inl_inr
     {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {F : Type} [NormedAddCommGroup F] [NormedSpace ℝ F]

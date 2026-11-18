@@ -20,10 +20,16 @@ namespace Realized
 
 variable {h : ℝ} {F : ℍ → ℂ} {c : ℕ → ℂ}
 
+/--
+@isnad1 id=lt.1h2v.s4.66e1842663ee from=translated src=- shape=4f8cc68a vocab=6bddaf06
+-/
 lemma norm_qParam_lt_one_of_pos (hh : 0 < h) (τ : ℍ) : ‖𝕢 h (τ : ℂ)‖ < 1 := by
   rw [Periodic.norm_qParam, Real.exp_lt_one_iff, neg_mul, coe_im, neg_mul, neg_div, neg_lt_zero]
   exact div_pos (by positivity [τ.im_pos]) hh
 
+/--
+@isnad1 id=hassum.4h4v.s7.90b7e2ce5768 from=translated src=- shape=d171886d vocab=fa8ece86
+-/
 lemma hasSum_cuspFunction_punctured (hh : 0 < h)
     (hF : ∀ τ : ℍ, HasSum (fun m : ℕ => c m * 𝕢 h (τ : ℂ) ^ m) (F τ)) {q : ℂ} (hq : ‖q‖ < 1)
     (hq1 : q ≠ 0) : HasSum (fun m : ℕ => c m * q ^ m) (cuspFunction h F q) := by
@@ -36,6 +42,9 @@ lemma hasSum_cuspFunction_punctured (hh : 0 < h)
   rw [h3, ← h4]
   exact hF τ
 
+/--
+@isnad1 id=hasfpowe.2h3v.s7.6136bf69597d from=translated src=- shape=5ab8b080 vocab=5554f41f
+-/
 lemma hasFPowerSeriesOnBall_update (hh : 0 < h)
     (hF : ∀ τ : ℍ, HasSum (fun m : ℕ => c m * 𝕢 h (τ : ℂ) ^ m) (F τ)) :
     HasFPowerSeriesOnBall (update (cuspFunction h F) 0 (c 0)) (.ofScalars ℂ c) 0 1 := by
@@ -59,6 +68,9 @@ lemma hasFPowerSeriesOnBall_update (hh : 0 < h)
 
 def discFun (h : ℝ) (F : ℍ → ℂ) (c : ℕ → ℂ) : ℂ → ℂ := update (cuspFunction h F) 0 (c 0)
 
+/--
+@isnad1 id=hassum.3h4v.s7.4a019cc43923 from=translated src=- shape=df0900a8 vocab=24a943e6
+-/
 lemma hasSum_discFun (hh : 0 < h) (hF : ∀ τ : ℍ, HasSum (fun m : ℕ => c m * 𝕢 h (τ : ℂ) ^ m) (F τ))
     {q : ℂ} (hq : ‖q‖ < 1) : HasSum (fun m : ℕ => c m * q ^ m) (discFun h F c q) := by
   have hy : q ∈ Metric.eball (0 : ℂ) 1 := by
@@ -67,24 +79,39 @@ lemma hasSum_discFun (hh : 0 < h) (hF : ∀ τ : ℍ, HasSum (fun m : ℕ => c m
   rw [zero_add] at h
   simpa [discFun, mul_comm] using h
 
+/--
+@isnad1 id=eq.2h4v.s6.c9e04d8d8c69 from=translated src=- shape=7ddb5566 vocab=d884ee37
+-/
 lemma apply_eq_discFun (hh : 0 < h) (hF : ∀ τ : ℍ, HasSum (fun m : ℕ => c m * 𝕢 h (τ : ℂ) ^ m) (F τ))
     (τ : ℍ) : F τ = discFun h F c (𝕢 h (τ : ℂ)) :=
   (hF τ).unique (hasSum_discFun hh hF (norm_qParam_lt_one_of_pos hh τ))
 
+/--
+@isnad1 id=differen.2h3v.s7.28d3b9b57f19 from=translated src=- shape=1d000111 vocab=06b9a25a
+-/
 lemma differentiableOn_discFun (hh : 0 < h)
     (hF : ∀ τ : ℍ, HasSum (fun m : ℕ => c m * 𝕢 h (τ : ℂ) ^ m) (F τ)) :
     DifferentiableOn ℂ (discFun h F c) (Metric.ball 0 1) := by
   have h1 := (hasFPowerSeriesOnBall_update hh hF).differentiableOn
   rwa [← ENNReal.coe_one, Metric.eball_coe, NNReal.coe_one] at h1
 
+/--
+@isnad1 id=continuo.3h4v.s6.61ce9db4d87c from=translated src=- shape=379b69a1 vocab=e333305c
+-/
 lemma continuousAt_discFun (hh : 0 < h)
     (hF : ∀ τ : ℍ, HasSum (fun m : ℕ => c m * 𝕢 h (τ : ℂ) ^ m) (F τ)) {q : ℂ} (hq : ‖q‖ < 1) :
     ContinuousAt (discFun h F c) q :=
   ((differentiableOn_discFun hh hF).differentiableAt
     (Metric.isOpen_ball.mem_nhds (by simpa using hq))).continuousAt
 
+/--
+@isnad1 id=eq.0h3v.s4.0bcd63392554 from=translated src=- shape=1e3f4c5f vocab=a56edf84
+-/
 lemma discFun_zero : discFun h F c 0 = c 0 := by simp [discFun]
 
+/--
+@isnad1 id=mdiffere.2h3v.s7.08495e7a3234 from=translated src=- shape=6ae28dc9 vocab=7b866695
+-/
 theorem mdifferentiable (hh : 0 < h)
     (hF : ∀ τ : ℍ, HasSum (fun m : ℕ => c m * 𝕢 h (τ : ℂ) ^ m) (F τ)) :
     MDifferentiable (modelWithCornersSelf ℂ ℂ) (modelWithCornersSelf ℂ ℂ) F := by
@@ -100,6 +127,9 @@ theorem mdifferentiable (hh : 0 < h)
   refine h1.congr fun z hz => ?_
   simp only [Function.comp_apply, apply_eq_discFun hh hF, ofComplex_apply_of_im_pos hz]
 
+/--
+@isnad1 id=tendsto.2h3v.s6.3f31f7bef95d from=translated src=- shape=30bdf4ce vocab=8fb7c62d
+-/
 theorem tendsto_atImInfty (hh : 0 < h)
     (hF : ∀ τ : ℍ, HasSum (fun m : ℕ => c m * 𝕢 h (τ : ℂ) ^ m) (F τ)) :
     Tendsto F atImInfty (𝓝 (c 0)) := by
@@ -108,11 +138,17 @@ theorem tendsto_atImInfty (hh : 0 < h)
   rw [discFun_zero] at h1
   exact h1.congr fun τ => (apply_eq_discFun hh hF τ).symm
 
+/--
+@isnad1 id=isbounde.2h3v.s6.2cf9217f82d9 from=translated src=- shape=b242f1e2 vocab=bcdae71f
+-/
 theorem isBoundedAtImInfty (hh : 0 < h)
     (hF : ∀ τ : ℍ, HasSum (fun m : ℕ => c m * 𝕢 h (τ : ℂ) ^ m) (F τ)) :
     IsBoundedAtImInfty F :=
   (tendsto_atImInfty hh hF).isBigO_one ℝ
 
+/--
+@isnad1 id=eq.3h4v.s7.5ad8f3f83046 from=translated src=- shape=ef755aab vocab=a32911fb
+-/
 theorem coeff_unique {d : ℕ → ℂ} (hh : 0 < h)
     (hF : ∀ τ : ℍ, HasSum (fun m : ℕ => c m * 𝕢 h (τ : ℂ) ^ m) (F τ))
     (hF' : ∀ τ : ℍ, HasSum (fun m : ℕ => d m * 𝕢 h (τ : ℂ) ^ m) (F τ)) : c = d := by
@@ -139,6 +175,9 @@ end Realized
 end ModularCurve
 
 open ModularCurve in
+/--
+@isnad1 id=eq.3h3v.s8.6daeabb8ad5a from=translated src=- shape=e468de73 vocab=e4d59e39
+-/
 theorem solution {F : UpperHalfPlane → ℂ} {c : ℕ → ℂ} (hF : ∀ τ : UpperHalfPlane, HasSum (fun m : ℕ => c m * Function.Periodic.qParam 1 (τ : ℂ) ^ m) (F τ)) (hinv : ∀ (γ : Matrix.SpecialLinearGroup (Fin 2) ℤ) (τ : UpperHalfPlane), F (γ • τ) = F τ) {m : ℕ} (hm : m ≠ 0) : c m = 0 := by
   have hslash : ∀ γ : SL(2, ℤ), F ∣[(0 : ℤ)] γ = F := fun γ => by
     funext τ

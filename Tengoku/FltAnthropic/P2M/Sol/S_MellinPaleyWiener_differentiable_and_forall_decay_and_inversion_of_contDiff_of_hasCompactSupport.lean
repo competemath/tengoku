@@ -15,21 +15,39 @@ namespace MPW
 
 noncomputable def g (h : ℝ → ℂ) (σ : ℝ) : ℝ → ℂ := fun u => h u * cexp ((σ : ℂ) * (u : ℂ))
 
+/--
+@isnad1 id=eq.0h3v.s5.07962fd75e8b from=translated src=- shape=6ce7c938 vocab=33fd558b
+-/
 theorem g_apply (h : ℝ → ℂ) (σ u : ℝ) : g h σ u = h u * cexp ((σ : ℂ) * (u : ℂ)) := rfl
 
+/--
+@isnad1 id=contdiff.0h1v.s5.93560ce6e900 from=translated src=- shape=1b7aa9dd vocab=3bde3b5c
+-/
 theorem contDiff_cexp_mul (σ : ℝ) : ContDiff ℝ (⊤ : ℕ∞) (fun u : ℝ => cexp ((σ : ℂ) * (u : ℂ))) :=
   (contDiff_const.mul Complex.ofRealCLM.contDiff).cexp
 
+/--
+@isnad1 id=contdiff.1h2v.s6.643639c61fa9 from=translated src=- shape=cc52a6fb vocab=230e23b8
+-/
 theorem g_contDiff {h : ℝ → ℂ} (hh : ContDiff ℝ (⊤ : ℕ∞) h) (σ : ℝ) : ContDiff ℝ (⊤ : ℕ∞) (g h σ) :=
   hh.mul (contDiff_cexp_mul σ)
 
+/--
+@isnad1 id=hascompa.1h2v.s4.2b5275f01523 from=translated src=- shape=4535375a vocab=1fcb0d2c
+-/
 theorem g_hasCompactSupport {h : ℝ → ℂ} (hhc : HasCompactSupport h) (σ : ℝ) : HasCompactSupport (g h σ) :=
   hhc.mul_right
 
+/--
+@isnad1 id=integrab.2h2v.s6.6517b85b3bea from=translated src=- shape=f2d149f8 vocab=f6c877b1
+-/
 theorem g_integrable {h : ℝ → ℂ} (hh : ContDiff ℝ (⊤ : ℕ∞) h) (hhc : HasCompactSupport h) (σ : ℝ) :
     Integrable (g h σ) :=
   (g_contDiff hh σ).continuous.integrable_of_hasCompactSupport (g_hasCompactSupport hhc σ)
 
+/--
+@isnad1 id=eq.0h3v.s6.67bdb42017d4 from=translated src=- shape=0f60d648 vocab=0ff7a1e9
+-/
 theorem M_eq_fourier (h : ℝ → ℂ) (σ t : ℝ) :
     (∫ u : ℝ, h u * cexp (((σ : ℂ) + (t : ℂ) * I) * (u : ℂ))) = 𝓕 (g h σ) (-t / (2 * π)) := by
   rw [Real.fourier_eq']
@@ -47,12 +65,18 @@ end MPW
 
 namespace MPW
 
+/--
+@isnad1 id=hasderiv.0h2v.s6.83f5b44dd6c9 from=translated src=- shape=e6f99904 vocab=a4119832
+-/
 theorem hasDerivAt_cexp_mul (σ : ℂ) (u : ℝ) :
     HasDerivAt (fun u : ℝ => cexp (σ * (u : ℂ))) (σ * cexp (σ * (u : ℂ))) u := by
   have h1 : HasDerivAt (fun u : ℝ => σ * (u : ℂ)) (σ * 1) u := (hasDerivAt_id u).ofReal_comp.const_mul σ
   have h2 := h1.cexp
   simpa [mul_comm] using h2
 
+/--
+@isnad1 id=eq.0h3v.s6.69e24177ce90 from=translated src=- shape=2b987d14 vocab=6c547ac1
+-/
 theorem iteratedDeriv_const_mul_cexp (c σ : ℂ) :
     ∀ m : ℕ, iteratedDeriv m (fun u : ℝ => c * cexp (σ * (u : ℂ))) = fun u : ℝ => c * σ ^ m * cexp (σ * (u : ℂ)) := by
   intro m
@@ -64,12 +88,18 @@ theorem iteratedDeriv_const_mul_cexp (c σ : ℂ) :
     have h := ((hasDerivAt_cexp_mul σ u).const_mul (c * σ ^ m)).deriv
     rw [h]; ring
 
+/--
+@isnad1 id=eq.0h2v.s6.502e06e6daac from=translated src=- shape=74f3e2b7 vocab=6c547ac1
+-/
 theorem iteratedDeriv_cexp (σ : ℂ) (m : ℕ) :
     iteratedDeriv m (fun u : ℝ => cexp (σ * (u : ℂ))) = fun u : ℝ => σ ^ m * cexp (σ * (u : ℂ)) := by
   have h := iteratedDeriv_const_mul_cexp 1 σ m
   simp only [one_mul] at h
   exact h
 
+/--
+@isnad1 id=hascompa.1h2v.s5.12b8ef01796f from=translated src=- shape=b5c6ff98 vocab=36bb0168
+-/
 theorem hasCompactSupport_iteratedDeriv {f : ℝ → ℂ} (hf : HasCompactSupport f) :
     ∀ k : ℕ, HasCompactSupport (iteratedDeriv k f) := by
   intro k
@@ -77,18 +107,27 @@ theorem hasCompactSupport_iteratedDeriv {f : ℝ → ℂ} (hf : HasCompactSuppor
   | zero => simpa using hf
   | succ k ih => rw [iteratedDeriv_succ]; exact ih.deriv
 
+/--
+@isnad1 id=le.0h2v.s5.44e175afff4a from=translated src=- shape=64213644 vocab=73a0240f
+-/
 theorem tsupport_iteratedDeriv_subset (f : ℝ → ℂ) : ∀ k : ℕ, tsupport (iteratedDeriv k f) ⊆ tsupport f := by
   intro k
   induction k with
   | zero => simp
   | succ k ih => rw [iteratedDeriv_succ]; exact tsupport_deriv_subset.trans ih
 
+/--
+@isnad1 id=le.0h2v.s5.e5a270e1f3c0 from=translated src=- shape=5e0e1cfb vocab=00cfe28f
+-/
 theorem tsupport_g_subset (h : ℝ → ℂ) (σ : ℝ) : tsupport (g h σ) ⊆ tsupport h := by
   refine closure_mono ?_
   intro u hu
   simp only [Function.mem_support, ne_eq, g_apply, mul_eq_zero, not_or] at hu ⊢
   exact hu.1
 
+/--
+@isnad1 id=ex.2h3v.s6.9ecc091381ec from=translated src=- shape=0bc06b37 vocab=2c346684
+-/
 theorem exists_bound_iteratedDeriv_g {h : ℝ → ℂ} (hh : ContDiff ℝ (⊤ : ℕ∞) h) (hhc : HasCompactSupport h)
     (k : ℕ) (σ₀ : ℝ) :
     ∃ B : ℝ, 0 ≤ B ∧ ∀ σ : ℝ, |σ| ≤ σ₀ → ∀ u : ℝ, ‖iteratedDeriv k (g h σ) u‖ ≤ B := by
@@ -137,11 +176,17 @@ end MPW
 
 namespace MPW
 
+/--
+@isnad1 id=integrab.2h3v.s6.9293bbf631a7 from=translated src=- shape=9eed714f vocab=755285eb
+-/
 theorem integrable_iteratedDeriv_g {h : ℝ → ℂ} (hh : ContDiff ℝ (⊤ : ℕ∞) h) (hhc : HasCompactSupport h)
     (σ : ℝ) (k : ℕ) : Integrable (iteratedDeriv k (g h σ)) :=
   ((g_contDiff hh σ).continuous_iteratedDeriv k (by exact_mod_cast le_top)).integrable_of_hasCompactSupport
     (hasCompactSupport_iteratedDeriv (g_hasCompactSupport hhc σ) k)
 
+/--
+@isnad1 id=ex.2h3v.s7.4647664d4062 from=translated src=- shape=993b276b vocab=284286c4
+-/
 theorem exists_l1_bound {h : ℝ → ℂ} (hh : ContDiff ℝ (⊤ : ℕ∞) h) (hhc : HasCompactSupport h)
     (k : ℕ) (σ₀ : ℝ) :
     ∃ L : ℝ, 0 ≤ L ∧ ∀ σ : ℝ, |σ| ≤ σ₀ → (∫ u : ℝ, ‖iteratedDeriv k (g h σ) u‖) ≤ L := by
@@ -158,6 +203,9 @@ theorem exists_l1_bound {h : ℝ → ℂ} (hh : ContDiff ℝ (⊤ : ℕ∞) h) (
   refine le_trans ?_ h1
   exact Real.le_norm_self _
 
+/--
+@isnad1 id=le.0h2v.s6.ad349ae0ecc8 from=translated src=- shape=4ed7f2b0 vocab=1cf4a785
+-/
 theorem norm_fourier_le (f : ℝ → ℂ) (x : ℝ) : ‖𝓕 f x‖ ≤ ∫ u : ℝ, ‖f u‖ := by
   rw [Real.fourier_eq']
   refine (norm_integral_le_integral_norm _).trans (le_of_eq ?_)
@@ -165,6 +213,9 @@ theorem norm_fourier_le (f : ℝ → ℂ) (x : ℝ) : ‖𝓕 f x‖ ≤ ∫ u :
   show ‖cexp (↑(-2 * π * inner ℝ u x) * I) • f u‖ = ‖f u‖
   rw [norm_smul, Complex.norm_exp_ofReal_mul_I, one_mul]
 
+/--
+@isnad1 id=eq.2h4v.s7.105ecaa70118 from=translated src=- shape=f92cad20 vocab=d3b86d3c
+-/
 theorem pow_mul_norm_M_eq {h : ℝ → ℂ} (hh : ContDiff ℝ (⊤ : ℕ∞) h) (hhc : HasCompactSupport h)
     (σ t : ℝ) (n : ℕ) :
     |t| ^ n * ‖∫ u : ℝ, h u * cexp (((σ : ℂ) + (t : ℂ) * I) * (u : ℂ))‖ =
@@ -182,6 +233,9 @@ end MPW
 
 namespace MPW
 
+/--
+@isnad1 id=le.0h2v.s6.213e68c1c84d from=translated src=- shape=f74e2590 vocab=50773ea0
+-/
 theorem one_add_pow_le (t : ℝ) (n : ℕ) : (1 + |t|) ^ n ≤ 2 ^ n * (1 + |t| ^ n) := by
   have h0 : 0 ≤ |t| ^ n := pow_nonneg (abs_nonneg t) n
   by_cases ht : |t| ≤ 1
@@ -192,6 +246,9 @@ theorem one_add_pow_le (t : ℝ) (n : ℕ) : (1 + |t|) ^ n ≤ 2 ^ n * (1 + |t| 
       _ = 2 ^ n * |t| ^ n := mul_pow 2 |t| n
       _ ≤ 2 ^ n * (1 + |t| ^ n) := mul_le_mul_of_nonneg_left (by linarith) (by positivity)
 
+/--
+@isnad1 id=ex.2h3v.s7.8dd28bcc0b1d from=translated src=- shape=3172d229 vocab=72337280
+-/
 theorem decay {h : ℝ → ℂ} (hh : ContDiff ℝ (⊤ : ℕ∞) h) (hhc : HasCompactSupport h) (n : ℕ) (σ₀ : ℝ) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ σ' : ℝ, |σ'| ≤ σ₀ → ∀ t : ℝ,
       (1 + |t|) ^ n * ‖∫ u : ℝ, h u * cexp (((σ' : ℂ) + (t : ℂ) * I) * (u : ℂ))‖ ≤ C := by
@@ -214,6 +271,9 @@ theorem decay {h : ℝ → ℂ} (hh : ContDiff ℝ (⊤ : ℕ∞) h) (hhc : HasC
           |t| ^ n * ‖∫ u : ℝ, h u * cexp (((σ : ℂ) + (t : ℂ) * I) * (u : ℂ))‖) := by ring
     _ ≤ 2 ^ n * (L₀ + Ln) := mul_le_mul_of_nonneg_left (add_le_add hM0 hMn) (by positivity)
 
+/--
+@isnad1 id=differen.2h1v.s7.8d4e49a06cc9 from=translated src=- shape=26ce69d8 vocab=68db01fd
+-/
 theorem differentiable_M {h : ℝ → ℂ} (hh : ContDiff ℝ (⊤ : ℕ∞) h) (hhc : HasCompactSupport h) :
     Differentiable ℂ (fun s : ℂ => ∫ u : ℝ, h u * cexp (s * (u : ℂ))) := by
   have h1 := Complex.differentiableOn_integral_of_continuousOn_of_forall_differentiableOn
@@ -226,11 +286,17 @@ theorem differentiable_M {h : ℝ → ℂ} (hh : ContDiff ℝ (⊤ : ℕ∞) h) 
     (fun u => ((differentiable_const (h u)).mul ((differentiable_id.mul_const (u : ℂ)).cexp)).differentiableOn)
   exact differentiableOn_univ.1 h1
 
+/--
+@isnad1 id=continuo.2h2v.s6.524f73168729 from=translated src=- shape=6fc1c6ff vocab=02dec45b
+-/
 theorem continuous_fourier_g {h : ℝ → ℂ} (hh : ContDiff ℝ (⊤ : ℕ∞) h) (hhc : HasCompactSupport h) (σ : ℝ) :
     Continuous (𝓕 (g h σ)) :=
   VectorFourier.fourierIntegral_continuous Real.continuous_fourierChar (by exact continuous_inner)
     (g_integrable hh hhc σ)
 
+/--
+@isnad1 id=integrab.2h2v.s6.949413cc975d from=translated src=- shape=29d0da81 vocab=e8158902
+-/
 theorem integrable_fourier_g {h : ℝ → ℂ} (hh : ContDiff ℝ (⊤ : ℕ∞) h) (hhc : HasCompactSupport h) (σ : ℝ) :
     Integrable (𝓕 (g h σ)) := by
   obtain ⟨C, hC0, hC⟩ := decay hh hhc 2 |σ|
@@ -255,6 +321,9 @@ theorem integrable_fourier_g {h : ℝ → ℂ} (hh : ContDiff ℝ (⊤ : ℕ∞)
     nlinarith [abs_nonneg w]
   linarith
 
+/--
+@isnad1 id=eq.2h3v.s7.8f64871bea4b from=translated src=- shape=7dcf1a62 vocab=8d70b02a
+-/
 theorem inversion {h : ℝ → ℂ} (hh : ContDiff ℝ (⊤ : ℕ∞) h) (hhc : HasCompactSupport h) (σ u : ℝ) :
     h u = (((2 * Real.pi)⁻¹ : ℝ) : ℂ) *
       ∫ t : ℝ, (∫ v : ℝ, h v * cexp (((σ : ℂ) + (t : ℂ) * I) * (v : ℂ))) *
@@ -306,6 +375,9 @@ theorem inversion {h : ℝ → ℂ} (hh : ContDiff ℝ (⊤ : ℕ∞) h) (hhc : 
 
 end MPW
 
+/--
+@isnad1 id=and.2h1v.s8.b4d66d1aeac4 from=translated src=- shape=c1e75e1b vocab=2a85af8e
+-/
 theorem solution
     (h : ℝ → ℂ) (_hh : ContDiff ℝ (⊤ : ℕ∞) h) (_hhc : HasCompactSupport h) :
     Differentiable ℂ (fun s : ℂ => ∫ u : ℝ, h u * Complex.exp (s * (u : ℂ))) ∧

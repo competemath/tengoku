@@ -13,6 +13,9 @@ open MeasureTheory
 
 namespace LaurentTransport
 
+/--
+@isnad1 id=hassum.2h4v.s7.158bd0f155d0 from=translated src=- shape=3b63f887 vocab=568358b5
+-/
 theorem hasSum_conv (c : ℤ → ℂ) (Q : Polynomial ℂ) {Y : ℂ} (hY : Y ≠ 0) {I : ℂ}
     (hc : HasSum (fun ℓ : ℤ => c ℓ * Y ^ ℓ) I) :
     HasSum (fun j : ℤ => (∑ i ∈ Q.support, Q.coeff i * c (j - (i : ℤ))) * Y ^ j)
@@ -36,6 +39,9 @@ theorem hasSum_conv (c : ℤ → ℂ) (Q : Polynomial ℂ) {Y : ℂ} (hY : Y ≠
   refine h.congr_fun fun j => ?_
   rw [Finset.sum_mul]
 
+/--
+@isnad1 id=summable.2h3v.s7.f9648bf21946 from=translated src=- shape=e9fd6887 vocab=3becac63
+-/
 theorem summable_norm_conv (c : ℤ → ℂ) (Q : Polynomial ℂ) {r : ℝ} (hr : 0 < r)
     (hc : Summable fun ℓ : ℤ => ‖c ℓ‖ * r ^ ℓ) :
     Summable fun j : ℤ => ‖∑ i ∈ Q.support, Q.coeff i * c (j - (i : ℤ))‖ * r ^ j := by
@@ -69,14 +75,23 @@ noncomputable def convCoeff (μ : Measure T) (E : X × T → ℤ) (G : X × T �
     (x : X) (j : ℤ) : ℂ :=
   ∑ i ∈ Q.support, Q.coeff i * shellCoeff μ E G x (j - (i : ℤ))
 
+/--
+@isnad1 id=measurab.1h4v.s5.ad0e0219b58e from=translated src=- shape=a9f064a7 vocab=86dbdb16
+-/
 theorem measurableSet_shell {E : X × T → ℤ} (hE : Measurable E) (ℓ : ℤ) :
     MeasurableSet (E ⁻¹' {ℓ}) :=
   hE (measurableSet_singleton ℓ)
 
+/--
+@isnad1 id=measurab.1h5v.s5.ffb891475717 from=translated src=- shape=03887f7f vocab=6c00341c
+-/
 theorem measurableSet_fibreShell {E : X × T → ℤ} (hE : Measurable E) (x : X) (ℓ : ℤ) :
     MeasurableSet ((fun t => E (x, t)) ⁻¹' {ℓ}) :=
   (hE.comp measurable_prodMk_left) (measurableSet_singleton ℓ)
 
+/--
+@isnad1 id=integrab.3h8v.s7.6b2f978d1664 from=translated src=- shape=a7771fe6 vocab=0fd0e884
+-/
 theorem integrable_indicator_shell (m : Measure X) (μ : Measure T)
     {E : X × T → ℤ} (hE : Measurable E) (G : X × T → ℂ) {r : ℝ} (hr : 0 < r)
     (hG : Integrable (fun p => G p * (r : ℂ) ^ E p) (m.prod μ)) (ℓ : ℤ) :
@@ -91,6 +106,9 @@ theorem integrable_indicator_shell (m : Measure X) (μ : Measure T)
       (by exact_mod_cast hr.ne' : (r : ℂ) ≠ 0), add_neg_cancel, zpow_zero, mul_one]
   · rw [Set.indicator_of_notMem hp, Set.indicator_of_notMem hp, zero_mul]
 
+/--
+@isnad1 id=eq.1h7v.s6.a9e9f115b74a from=translated src=- shape=15e6b6e2 vocab=7783cd68
+-/
 theorem integral_indicator_shell_fibre (μ : Measure T) {E : X × T → ℤ} (hE : Measurable E)
     (G : X × T → ℂ) (x : X) (ℓ : ℤ) :
     ∫ t, (E ⁻¹' {ℓ}).indicator G (x, t) ∂μ = shellCoeff μ E G x ℓ := by
@@ -105,6 +123,9 @@ theorem integral_indicator_shell_fibre (μ : Measure T) {E : X × T → ℤ} (hE
 
 end Fibre
 
+/--
+@isnad1 id=and.3h8v.s8.2cb75e798dce from=translated src=- shape=ac2384c0 vocab=0633ec5e
+-/
 theorem one_sided
     {X T : Type*} [MeasurableSpace X] [MeasurableSpace T]
     (m : Measure X) (μ : Measure T) [SFinite m] [SFinite μ]
@@ -156,6 +177,9 @@ theorem one_sided
 noncomputable def lcoeff (P : Polynomial ℂ) (n : ℤ) (j : ℤ) : ℂ :=
   if n ≤ j then P.coeff (j - n).toNat else 0
 
+/--
+@isnad1 id=eq.0h5v.s6.fc97e95db502 from=translated src=- shape=2a5c0f41 vocab=3607ecee
+-/
 theorem lcoeff_smul_add (C : ℂ) (P : Polynomial ℂ) (n k j : ℤ) :
     lcoeff (C • P) (n + k) j = C * lcoeff P n (j - k) := by
   simp only [lcoeff, Polynomial.coeff_smul, smul_eq_mul]
@@ -169,6 +193,9 @@ end LaurentTransport
 
 open LaurentTransport in
 
+/--
+@isnad1 id=ex.7h18v.s10.6fa804058be2 from=translated src=- shape=b299f185 vocab=ec5909a1
+-/
 theorem solution
     {X T₁ T₂ : Type*} [MeasurableSpace X] [MeasurableSpace T₁] [MeasurableSpace T₂]
     (m : Measure X) (μ₁ : Measure T₁) (μ₂ : Measure T₂) [SFinite m] [SFinite μ₁] [SFinite μ₂]

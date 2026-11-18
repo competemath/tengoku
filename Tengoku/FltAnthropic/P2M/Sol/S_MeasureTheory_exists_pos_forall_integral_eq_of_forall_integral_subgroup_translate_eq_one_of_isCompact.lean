@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open MeasureTheory
 
+/--
+@isnad1 id=ex.3h5v.s9.3e22eb2bc7fe from=translated src=- shape=26b196e3 vocab=722b1465
+-/
 theorem solution
     {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [LocallyCompactSpace G]
     [SecondCountableTopology G] [MeasurableSpace G] [BorelSpace G]

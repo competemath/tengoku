@@ -16,13 +16,22 @@ variable {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [NormedAddComm
 def liftPerm {n : ℕ} (e : Equiv.Perm (Fin n)) : Equiv.Perm (Fin (n + 1)) :=
   Equiv.Perm.decomposeFin.symm (0, e)
 
+/--
+@isnad1 id=eq.0h2v.s7.9e49875e3fcb from=translated src=- shape=c9c1a9cd vocab=b8092e9f
+-/
 @[scoped simp] theorem liftPerm_zero {n : ℕ} (e : Equiv.Perm (Fin n)) : liftPerm e 0 = 0 := by
   simp [liftPerm]
 
+/--
+@isnad1 id=eq.0h3v.s7.a85a49a30f71 from=translated src=- shape=bb4e08c5 vocab=2d238df5
+-/
 @[scoped simp] theorem liftPerm_succ {n : ℕ} (e : Equiv.Perm (Fin n)) (k : Fin n) :
     liftPerm e k.succ = (e k).succ := by
   simp [liftPerm]
 
+/--
+@isnad1 id=eq.0h3v.s8.3a8da0f0311e from=translated src=- shape=241b0c9f vocab=0e1c4507
+-/
 theorem decomposeFin_symm_eq {n : ℕ} (p : Fin (n + 1)) (e : Equiv.Perm (Fin n)) :
     Equiv.Perm.decomposeFin.symm (p, e) = Equiv.swap 0 p * liftPerm e := by
   ext i
@@ -30,6 +39,9 @@ theorem decomposeFin_symm_eq {n : ℕ} (p : Fin (n + 1)) (e : Equiv.Perm (Fin n)
   · simp [liftPerm]
   · rw [Equiv.Perm.decomposeFin_symm_apply_succ, Equiv.Perm.coe_mul, comp_apply, liftPerm_succ]
 
+/--
+@isnad1 id=eq.0h2v.s7.e294c9bc12b9 from=translated src=- shape=9ee29a5e vocab=9706883f
+-/
 theorem swap_one_succ_succ_eq_liftPerm {n : ℕ} (q : Fin (n + 1)) :
     (Equiv.swap (1 : Fin (n + 2)) q.succ) = liftPerm (Equiv.swap 0 q) := by
   refine Equiv.ext fun i => ?_
@@ -47,10 +59,16 @@ def P (s : Set E) (n : ℕ) : Prop :=
   ∀ (f : E → F), ContDiffOn ℝ n f s → ∀ x ∈ s, ∀ (σ : Equiv.Perm (Fin n)) (v : Fin n → E),
     iteratedFDerivWithin ℝ n f s x (v ∘ σ) = iteratedFDerivWithin ℝ n f s x v
 
+/--
+@isnad1 id=p.1h4v.s5.faceb38d9113 from=translated src=- shape=39c024b3 vocab=369960d9
+-/
 theorem P_of_subsingleton {s : Set E} {n : ℕ} (h : Subsingleton (Equiv.Perm (Fin n))) : P (F := F) s n := by
   intro f hf x hx σ v
   rw [Subsingleton.elim σ 1, Equiv.Perm.coe_one, comp_id]
 
+/--
+@isnad1 id=p.3h4v.s7.1a1a17b23c0c from=translated src=- shape=d0b31b16 vocab=42ac8afc
+-/
 theorem P_step {s : Set E} (hs : Convex ℝ s) (hs' : (interior s).Nonempty) (n : ℕ)
     (ih : P (F := F) s (n + 1)) : P (F := F) s (n + 2) := by
   have hU : UniqueDiffOn ℝ s := uniqueDiffOn_convex hs hs'
@@ -139,6 +157,9 @@ theorem P_step {s : Set E} (hs : Convex ℝ s) (hs' : (interior s).Nonempty) (n 
   rw [decomposeFin_symm_eq]
   exact hmul _ _ (hswap0 p) (hlift e) v
 
+/--
+@isnad1 id=p.2h4v.s7.2a2d78a43fbb from=translated src=- shape=13d5c676 vocab=cd24d398
+-/
 theorem P_all {s : Set E} (hs : Convex ℝ s) (hs' : (interior s).Nonempty) : ∀ n, P (F := F) s n := by
   intro n
   induction n with
@@ -151,6 +172,9 @@ theorem P_all {s : Set E} (hs : Convex ℝ s) (hs' : (interior s).Nonempty) : �
 end SymmWithin
 open scoped _root_.P2MW.S_iteratedFDerivWithin_comp_equivPerm_of_contDiffOn_of_convex.SymmWithin
 
+/--
+@isnad1 id=eq.4h8v.s9.57693dd35aaf from=translated src=- shape=1190ee80 vocab=c0e8aacc
+-/
 theorem solution
     {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {F : Type} [NormedAddCommGroup F] [NormedSpace ℝ F]

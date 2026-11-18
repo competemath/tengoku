@@ -13,6 +13,9 @@ namespace KernelUniq
 
 variable {X : Type*} [MeasurableSpace X]
 
+/--
+@isnad1 id=eq.4h5v.s8.b1736e56e0ff from=translated src=- shape=7132edf6 vocab=737c22c4
+-/
 theorem setIntegral_restrict_eq_zero (μ : Measure X) [SFinite μ] (k : X × X → ℂ)
     (S : Set X) (hS : MeasurableSet S)
     (hint : IntegrableOn k (S ×ˢ S) (μ.prod μ))
@@ -44,6 +47,9 @@ theorem setIntegral_restrict_eq_zero (μ : Measure X) [SFinite μ] (k : X × X �
       rw [integral_iUnion hT hdisj hi.integrableOn]
       simp [ih]
 
+/--
+@isnad1 id=eventual.5h4v.s8.e29920551677 from=translated src=- shape=032e0f6b vocab=4f553f78
+-/
 theorem main (μ : Measure X) [SFinite μ]
     (k : X × X → ℂ)
     (S : ℕ → Set X) (hS : ∀ n, MeasurableSet (S n)) (hmono : Monotone S)
@@ -73,6 +79,9 @@ theorem main (μ : Measure X) [SFinite μ]
 
 end KernelUniq
 
+/--
+@isnad1 id=eventual.5h4v.s8.e29920551677 from=translated src=- shape=032e0f6b vocab=4f553f78
+-/
 theorem solution
     {X : Type*} [MeasurableSpace X] (μ : Measure X) [SFinite μ]
     (k : X × X → ℂ)

@@ -15,16 +15,25 @@ namespace CE
 variable {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [MeasurableSpace G] [BorelSpace G]
   [LocallyCompactSpace G] [T2Space G]
 
+/--
+@isnad1 id=absolute.0h3v.s6.71ddb6f76e46 from=translated src=- shape=b31d7ea7 vocab=b56c823b
+-/
 theorem map_mul_right_absolutelyContinuous (μ : Measure G) [μ.IsHaarMeasure] [μ.Regular] (h : G) :
     (μ.map (· * h)) ≪ μ := by
   haveI : (μ.map (· * h)).Regular := Measure.Regular.map (Homeomorph.mulRight h)
   rw [Measure.isMulLeftInvariant_eq_smul_of_regular (μ.map (· * h)) μ]
   exact Measure.smul_absolutelyContinuous
 
+/--
+@isnad1 id=aestrong.1h4v.s6.d762c2910901 from=translated src=- shape=f70f8922 vocab=5df06ac2
+-/
 theorem aesm_comp_mul_right (μ : Measure G) [μ.IsHaarMeasure] [μ.Regular] {f : G → ℂ}
     (hf : AEStronglyMeasurable f μ) (h : G) : AEStronglyMeasurable (fun g => f (g * h)) μ :=
   (hf.mono_ac (map_mul_right_absolutelyContinuous μ h)).comp_measurable (measurable_mul_const h)
 
+/--
+@isnad1 id=aestrong.3h6v.s8.836622d24099 from=translated src=- shape=cb7ff9b2 vocab=83b62f8c
+-/
 theorem main (μ : Measure G) [μ.IsHaarMeasure] [μ.Regular]
     {n : ℕ} (ψ : Fin n → (G →* ℂ)) (hψ : Function.Injective ψ) (c : Fin n → ℂ) (hc : ∀ i, c i ≠ 0)
     (h : AEStronglyMeasurable (fun g => ∑ i, c i * ψ i g) μ) (i : Fin n) :
@@ -76,6 +85,9 @@ theorem main (μ : Measure G) [μ.IsHaarMeasure] [μ.Regular]
 end WsF.CE
 
 open MeasureTheory _root_.Measure _root_.MeasureTheory.Measure in
+/--
+@isnad1 id=aestrong.3h6v.s8.836622d24099 from=translated src=- shape=cb7ff9b2 vocab=83b62f8c
+-/
 theorem solution
     {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [MeasurableSpace G] [BorelSpace G]
     [LocallyCompactSpace G] [T2Space G]

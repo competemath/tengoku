@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=ex.2h5v.s9.45d39c8c2010 from=translated src=- shape=c26e19b9 vocab=e9c1e5a7
+-/
 theorem solution
     {A : Type u} [CommRing A] {D : ModularCurve.LevelModuliDatum.{u} A} (P : ModularCurve.LevelModuliPackageAbs A D)
     (ρ ρ' : D.ProblemAut)

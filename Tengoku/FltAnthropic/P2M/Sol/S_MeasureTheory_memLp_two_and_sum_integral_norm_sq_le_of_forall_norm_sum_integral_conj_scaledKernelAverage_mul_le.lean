@@ -23,6 +23,9 @@ open Set
 
 def avgW (ρ : ℝ → ℝ) (u : ℝ → ℂ) (δ t : ℝ) : ℂ := ∫ w, u (t - δ * w) * (ρ w : ℂ)
 
+/--
+@isnad1 id=eq.1h4v.s6.29105914b92a from=translated src=- shape=d1e3cace vocab=d918f75d
+-/
 theorem avgX_eq_avgW (ρ : ℝ → ℝ) (u : ℝ → ℂ) {δ : ℝ} (hδ : 0 < δ) (t : ℝ) :
     (∫ x : ℝ, u x * ((δ⁻¹ * ρ ((t - x) / δ) : ℝ) : ℂ)) = avgW ρ u δ t := by
   have hδ0 : δ ≠ 0 := hδ.ne'
@@ -47,6 +50,9 @@ theorem avgX_eq_avgW (ρ : ℝ → ℝ) (u : ℝ → ℂ) {δ : ℝ} (hδ : 0 < 
   rw [hf] at h6
   exact h6.symm
 
+/--
+@isnad1 id=le.7h7v.s8.0cca42446e5c from=translated src=- shape=3bf2244b vocab=245edfc8
+-/
 theorem norm_avgW_le (ρ : ℝ → ℝ) (hρi : Integrable ρ) (m : ℕ) (hρm : Integrable (fun w : ℝ => |w| ^ m * ρ w))
     (u : ℝ → ℂ) (B R : ℝ) (hR : 0 ≤ R) (hB : ∀ x, ‖u x‖ ≤ B) (hsupp : ∀ x, R < |x| → u x = 0)
     {δ : ℝ} (hδ : 0 < δ) (hδ1 : δ ≤ 1) (t : ℝ) :
@@ -124,6 +130,9 @@ theorem norm_avgW_le (ρ : ℝ → ℝ) (hρi : Integrable ρ) (m : ℕ) (hρm :
           mul_le_mul (mul_le_mul_of_nonneg_left (by linarith) hB0) hcmp' (by positivity) (by positivity)
       _ = B * ((∫ w, |ρ w|) + ∫ w, |w| ^ m * |ρ w|) * (R + 2) ^ m / (1 + |t|) ^ m := by ring
 
+/--
+@isnad1 id=tendsto.6h4v.s7.48c66b624fac from=translated src=- shape=96fbfabc vocab=d9cbbdb1
+-/
 theorem tendsto_avgW (ρ : ℝ → ℝ) (hρ : Measurable ρ) (hρi : Integrable ρ) (hρ1 : ∫ w, ρ w = 1)
     (u : ℝ → ℂ) (hu : Measurable u) (B : ℝ) (hB : ∀ x, ‖u x‖ ≤ B) (t : ℝ) (hct : ContinuousAt u t) :
     Filter.Tendsto (fun δ : ℝ => avgW ρ u δ t) (𝓝[>] 0) (𝓝 (u t)) := by
@@ -146,6 +155,9 @@ theorem tendsto_avgW (ρ : ℝ → ℝ) (hρ : Measurable ρ) (hρi : Integrable
       exact this.mono_left nhdsWithin_le_nhds
     exact (hct.tendsto.comp h1).mul tendsto_const_nhds
 
+/--
+@isnad1 id=measurab.2h3v.s5.18e111a19e1d from=translated src=- shape=a00d8880 vocab=94532716
+-/
 theorem measurable_avgW (ρ : ℝ → ℝ) (hρ : Measurable ρ) (u : ℝ → ℂ) (hu : Measurable u) (δ : ℝ) :
     Measurable (fun t => avgW ρ u δ t) := by
   have hm : Measurable (fun p : ℝ × ℝ => u (p.1 - δ * p.2) * (ρ p.2 : ℂ)) :=
@@ -153,6 +165,9 @@ theorem measurable_avgW (ρ : ℝ → ℝ) (hρ : Measurable ρ) (u : ℝ → �
       (Complex.measurable_ofReal.comp (hρ.comp measurable_snd))
   exact (hm.stronglyMeasurable.integral_prod_right' (ν := volume)).measurable
 
+/--
+@isnad1 id=le.0h1v.s6.ec18d6e8cf6d from=translated src=- shape=0c9b87d8 vocab=d10adf55
+-/
 theorem one_add_sq_le (t : ℝ) : 1 + t ^ 2 ≤ (1 + |t|) ^ 2 := by
   rw [← sq_abs t]; nlinarith [abs_nonneg t]
 
@@ -160,6 +175,9 @@ end Ws48.DL2
 
 end
 
+/--
+@isnad1 id=and.6h4v.s9.3245121c48c3 from=translated src=- shape=e9d8b85a vocab=9b8adbfa
+-/
 theorem solution
     {ι : Type} [Fintype ι] (Θ : ι → ℝ → ℂ) (hΘ : ∀ i, Continuous (Θ i))
     (hΘg : ∀ i, ∃ (A : ℝ) (k : ℕ), ∀ t, ‖Θ i t‖ ≤ A * (1 + |t|) ^ k)

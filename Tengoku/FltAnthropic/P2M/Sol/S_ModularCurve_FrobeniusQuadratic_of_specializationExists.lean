@@ -7,6 +7,9 @@ namespace P2MW.S_ModularCurve_FrobeniusQuadratic_of_specializationExists
 
 open ModularCurve
 
+/--
+@isnad1 id=frobeniu.1h5v.s8.5e7c5a8508e7 from=translated src=- shape=0d3e7f3f vocab=bc82eee3
+-/
 theorem solution {K L : Type*} [Field K] [Field L] [Algebra K L] (N p : ℕ) (J : Type*)
     [AddCommGroup J] [Module ModularCurve.HeckeAlg J] [DistribMulAction (L ≃ₐ[K] L) J]
     [SMulCommClass (L ≃ₐ[K] L) ModularCurve.HeckeAlg J]

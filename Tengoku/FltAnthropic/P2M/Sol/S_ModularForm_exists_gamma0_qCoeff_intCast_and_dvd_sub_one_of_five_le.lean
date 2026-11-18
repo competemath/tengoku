@@ -192,6 +192,9 @@ end PartB
 end E34SM2
 open scoped _root_.P2MW.S_ModularForm_exists_gamma0_qCoeff_intCast_and_dvd_sub_one_of_five_le.E34SM2
 
+/--
+@isnad1 id=ex.2h2v.s9.0c78b5815ba6 from=translated src=- shape=e6177bfd vocab=289dea50
+-/
 theorem solution (p : ℕ) (hp : p.Prime) (hp5 : 5 ≤ p) (N' : ℕ) [NeZero N'] :
     ∃ (A : ModularForm (CongruenceSubgroup.Gamma0 N') ((p : ℤ) - 1)) (b : ℕ → ℤ),
       (∀ n, ModularFormClass.qCoeff A n = (b n : ℂ)) ∧ (p : ℤ) ∣ b 0 - 1 ∧ ∀ n, 0 < n → (p : ℤ) ∣ b n:=

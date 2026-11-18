@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_ModularCurve_SiegelUnit_sum_levelBernoulli
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.0h3v.s8.510233f96498 from=translated src=- shape=e53561b4 vocab=0fff5314
+-/
 theorem ModularCurve.SiegelUnit.sum_levelBernoulliWeight_add_mul (N : ℕ) [NeZero N] (p r : ℤ) :
     ∑ s : ZMod N,
         (6 * ((((p : ZMod N) + s * (r : ZMod N)).val : ℕ) : ℤ) ^ 2

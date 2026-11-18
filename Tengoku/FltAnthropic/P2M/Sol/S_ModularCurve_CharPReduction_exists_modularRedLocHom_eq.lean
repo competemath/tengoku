@@ -228,6 +228,9 @@ open scoped _root_.P2MW.S_ModularCurve_CharPReduction_exists_modularRedLocHom_eq
 end
 open scoped _root_.P2MW.S_ModularCurve_CharPReduction_exists_modularRedLocHom_eq.ModularCurve.CharpSD2 _root_.P2MW.S_ModularCurve_CharPReduction_exists_modularRedLocHom_eq.ModularCurve
 
+/--
+@isnad1 id=ex.2h6v.s11.796e54269b1a from=translated src=- shape=f9534fed vocab=53274319
+-/
 theorem solution {L : Type*} [Field L] (A : Subring L)
     {k : Type*} [Field k] (red : A →+* k) (N : ℕ) [NeZero N]
     (hred : Function.Surjective red)

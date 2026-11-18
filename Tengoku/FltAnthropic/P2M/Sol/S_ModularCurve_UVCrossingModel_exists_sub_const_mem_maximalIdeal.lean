@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open ModularCurve ModularCurve.UVCrossingModel
 
+/--
+@isnad1 id=ex.1h3v.s8.9a87d3f90355 from=translated src=- shape=c1005983 vocab=e2699795
+-/
 theorem solution
     {W : Type*} [CommRing W] [IsLocalRing W] {π : W} (hπu : ¬IsUnit π) [IsLocalRing (UVCrossingModel W π)]
     (x : UVCrossingModel W π) :

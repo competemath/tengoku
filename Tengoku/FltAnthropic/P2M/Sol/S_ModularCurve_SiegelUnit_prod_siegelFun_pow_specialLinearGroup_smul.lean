@@ -20,16 +20,28 @@ open Complex
 
 variable (N : ℕ) [NeZero N]
 
+/--
+@isnad1 id=ne.0h1v.s4.f60c7fd6440e from=translated src=- shape=07b313d4 vocab=5536c8a9
+-/
 theorem natCast_ne_zero : (N : ℂ) ≠ 0 := by exact_mod_cast NeZero.ne N
 
 noncomputable def dS (r : ℤ) : ℂ := Complex.exp (Real.pi * Complex.I * ((r : ℂ) - (N : ℂ)) / (N : ℂ))
 
 noncomputable def dR (s : ℤ) : ℂ := -Complex.exp (-(Real.pi * Complex.I * (s : ℂ) / (N : ℂ)))
 
+/--
+@isnad1 id=ne.0h2v.s4.f985265a9b7c from=translated src=- shape=cc1e0f2d vocab=970e6c26
+-/
 theorem dS_ne_zero (r : ℤ) : dS N r ≠ 0 := Complex.exp_ne_zero _
 
+/--
+@isnad1 id=ne.0h2v.s4.503622332b06 from=translated src=- shape=cc1e0f2d vocab=25830ccf
+-/
 theorem dR_ne_zero (s : ℤ) : dR N s ≠ 0 := neg_ne_zero.mpr (Complex.exp_ne_zero _)
 
+/--
+@isnad1 id=eq.0h2v.s5.48a13a730385 from=translated src=- shape=d9d32544 vocab=123a7ac1
+-/
 theorem dS_pow (r : ℤ) : dS N r ^ (2 * N) = 1 := by
   rw [dS, ← Complex.exp_nat_mul]
   have h : ((2 * N : ℕ) : ℂ) * (Real.pi * Complex.I * ((r : ℂ) - (N : ℂ)) / (N : ℂ)) =
@@ -40,6 +52,9 @@ theorem dS_pow (r : ℤ) : dS N r ^ (2 * N) = 1 := by
   rw [h]
   exact Complex.exp_int_mul_two_pi_mul_I _
 
+/--
+@isnad1 id=eq.0h2v.s5.3b170d5e350f from=translated src=- shape=d9d32544 vocab=9dd21997
+-/
 theorem dR_pow (s : ℤ) : dR N s ^ (2 * N) = 1 := by
   rw [dR, neg_pow, show (-1 : ℂ) ^ (2 * N) = 1 from (even_two_mul N).neg_one_pow, one_mul, ← Complex.exp_nat_mul]
   have h : ((2 * N : ℕ) : ℂ) * (-(Real.pi * Complex.I * (s : ℂ) / (N : ℂ))) = ((-s : ℤ) : ℂ) * (2 * Real.pi * Complex.I) := by
@@ -49,6 +64,9 @@ theorem dR_pow (s : ℤ) : dR N s ^ (2 * N) = 1 := by
   rw [h]
   exact Complex.exp_int_mul_two_pi_mul_I _
 
+/--
+@isnad1 id=eq.0h5v.s6.701932c1f14b from=translated src=- shape=5abbd8a2 vocab=da14ed27
+-/
 theorem siegelFun_add_nat_mul_snd (r s : ℤ) (z : ℂ) :
     ∀ k : ℕ, siegelFun N r (s + k * N) z = dS N r ^ k * siegelFun N r s z
   | 0 => by simp
@@ -58,6 +76,9 @@ theorem siegelFun_add_nat_mul_snd (r s : ℤ) (z : ℂ) :
         siegelFun_add_nat_mul_snd r s z k, pow_succ, dS]
       ring
 
+/--
+@isnad1 id=eq.0h5v.s6.46819d0eff0c from=translated src=- shape=a2b78cb0 vocab=da14ed27
+-/
 theorem siegelFun_add_int_mul_snd (r s : ℤ) (z : ℂ) (k : ℤ) :
     siegelFun N r (s + k * N) z = dS N r ^ k * siegelFun N r s z := by
   obtain ⟨n, rfl | rfl⟩ := Int.eq_nat_or_neg k
@@ -66,6 +87,9 @@ theorem siegelFun_add_int_mul_snd (r s : ℤ) (z : ℂ) (k : ℤ) :
     rw [show s + -(n : ℤ) * N + (n : ℤ) * N = s by ring] at h
     rw [zpow_neg, zpow_natCast, h, ← mul_assoc, inv_mul_cancel₀ (pow_ne_zero _ (dS_ne_zero N r)), one_mul]
 
+/--
+@isnad1 id=eq.0h5v.s6.9d74ff7a3f41 from=translated src=- shape=73c9cf12 vocab=27400dc3
+-/
 theorem siegelFun_add_nat_mul_fst (r s : ℤ) (τ : UpperHalfPlane) :
     ∀ k : ℕ, siegelFun N (r + k * N) s (τ : ℂ) = dR N s ^ k * siegelFun N r s (τ : ℂ)
   | 0 => by simp
@@ -75,6 +99,9 @@ theorem siegelFun_add_nat_mul_fst (r s : ℤ) (τ : UpperHalfPlane) :
         siegelFun_add_nat_mul_fst r s τ k, pow_succ, dR]
       ring
 
+/--
+@isnad1 id=eq.0h5v.s6.82efe0c80638 from=translated src=- shape=3464e2ac vocab=27400dc3
+-/
 theorem siegelFun_add_int_mul_fst (r s : ℤ) (τ : UpperHalfPlane) (k : ℤ) :
     siegelFun N (r + k * N) s (τ : ℂ) = dR N s ^ k * siegelFun N r s (τ : ℂ) := by
   obtain ⟨n, rfl | rfl⟩ := Int.eq_nat_or_neg k
@@ -83,8 +110,14 @@ theorem siegelFun_add_int_mul_fst (r s : ℤ) (τ : UpperHalfPlane) (k : ℤ) :
     rw [show r + -(n : ℤ) * N + (n : ℤ) * N = r by ring] at h
     rw [zpow_neg, zpow_natCast, h, ← mul_assoc, inv_mul_cancel₀ (pow_ne_zero _ (dR_ne_zero N s)), one_mul]
 
+/--
+@isnad1 id=eq.0h2v.s5.e694286187a1 from=translated src=- shape=21c78f44 vocab=39e8a620
+-/
 theorem intCast_zmod_val (a : ℤ) : (((a : ZMod N).val : ℕ) : ℤ) = a % N := ZMod.val_intCast a
 
+/--
+@isnad1 id=ex.0h4v.s6.3607ab8ca64f from=translated src=- shape=c3512c02 vocab=dd3d0c83
+-/
 theorem exists_siegelFun_eq_mul_reduced (a b : ℤ) (τ : UpperHalfPlane) :
     ∃ ζ : ℂ, ζ ^ (2 * N) = 1 ∧
       siegelFun N a b (τ : ℂ) = ζ * siegelFun N (((a : ZMod N).val : ℕ) : ℤ) (((b : ZMod N).val : ℕ) : ℤ) (τ : ℂ) := by
@@ -104,6 +137,9 @@ theorem exists_siegelFun_eq_mul_reduced (a b : ℤ) (τ : UpperHalfPlane) :
   · rw [h1, h2]
     ring
 
+/--
+@isnad1 id=eq.2h4v.s7.2382b13a3e76 from=translated src=- shape=b7ad7c12 vocab=9e4840bf
+-/
 theorem pow_twelve_mul_eq_one {μ ζ : ℂ} (hμ : μ ^ 12 = 1) (hζ : ζ ^ (2 * N) = 1) (m : ℕ) :
     (μ * ζ) ^ (12 * N * m) = 1 := by
   rw [mul_pow, show 12 * N * m = 12 * (N * m) by ring, pow_mul, hμ, one_pow, one_mul,
@@ -112,6 +148,9 @@ theorem pow_twelve_mul_eq_one {μ ζ : ℂ} (hμ : μ ^ 12 = 1) (hζ : ζ ^ (2 *
 end SiegelTransport
 
 open SiegelTransport in
+/--
+@isnad1 id=and.0h2v.s10.d261ecfacd7e from=translated src=- shape=dcea81c3 vocab=dec110da
+-/
 theorem solution (N : ℕ) [NeZero N]
     (e : ZMod N → ZMod N → ℕ) :
     (∀ (β : Matrix.SpecialLinearGroup (Fin 2) ℤ) (τ : UpperHalfPlane),

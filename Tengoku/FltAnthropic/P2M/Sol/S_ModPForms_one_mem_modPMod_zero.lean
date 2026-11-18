@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open UpperHalfPlane
 
+/--
+@isnad1 id=mem.0h2v.s7.17a389daf305 from=translated src=- shape=67b3da54 vocab=20efbf06
+-/
 theorem solution (N : ℕ) (F : Type) [Field F] :
     (1 : PowerSeries F) ∈ ModPForms.modPMod N 0 F := by
   unfold ModPForms.modPMod

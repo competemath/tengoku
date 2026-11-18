@@ -17,28 +17,49 @@ variable {W : Type*} [CommRing W]
 
 noncomputable def ij (a b : ℕ) : Fin 2 →₀ ℕ := Finsupp.single 0 a + Finsupp.single 1 b
 
+/--
+@isnad1 id=eq.0h2v.s5.c6e24e767bf5 from=translated src=- shape=d13958d8 vocab=d26fff1e
+-/
 @[scoped simp] theorem ij_zero (a b : ℕ) : ij a b 0 = a := by simp [ij]
+/--
+@isnad1 id=eq.0h2v.s5.8a1fd77549e7 from=translated src=- shape=63341c4e vocab=d26fff1e
+-/
 @[scoped simp] theorem ij_one (a b : ℕ) : ij a b 1 = b := by simp [ij]
 
 theorem eq_ij (d : Fin 2 →₀ ℕ) : d = ij (d 0) (d 1) := by
   ext i; fin_cases i <;> simp
 
+/--
+@isnad1 id=eq.0h3v.s6.2076bf553648 from=translated src=- shape=5245253a vocab=59d521b8
+-/
 theorem smul_ij (e a b : ℕ) : e • ij a b = ij (e * a) (e * b) := by
   ext i; fin_cases i <;> simp [ij]
 
+/--
+@isnad1 id=iff.0h4v.s5.362c1e01a936 from=translated src=- shape=71ada6db vocab=f5cd1170
+-/
 theorem ij_le_ij_iff {a b a' b' : ℕ} : ij a b ≤ ij a' b' ↔ a ≤ a' ∧ b ≤ b' := by
   constructor
   · intro h; exact ⟨by simpa using h 0, by simpa using h 1⟩
   · rintro ⟨ha, hb⟩ i; fin_cases i <;> simpa
 
+/--
+@isnad1 id=eq.0h4v.s6.b2c310baf7a3 from=translated src=- shape=614071e8 vocab=62ccf869
+-/
 theorem ij_sub_ij (a b a' b' : ℕ) : ij a b - ij a' b' = ij (a - a') (b - b') := by
   ext i; fin_cases i <;> simp [ij]
 
 noncomputable def crossing (c : W) : MvPowerSeries (Fin 2) W := X 0 * X 1 - C c
 
+/--
+@isnad1 id=eq.0h1v.s8.e9bb50cd8471 from=translated src=- shape=800fcc21 vocab=01d581a2
+-/
 theorem X_mul_X_eq : (X 0 * X 1 : MvPowerSeries (Fin 2) W) = monomial (ij 1 1) 1 := by
   rw [X_def, X_def, monomial_mul_monomial, one_mul]; rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.da8b689bcefa from=translated src=- shape=7e006f61 vocab=0878d5c1
+-/
 theorem coeff_crossing_mul (c : W) (G : MvPowerSeries (Fin 2) W) (a b : ℕ) :
     coeff (ij a b) (crossing c * G)
       = (if 1 ≤ a ∧ 1 ≤ b then coeff (ij (a - 1) (b - 1)) G else 0) - c * coeff (ij a b) G := by
@@ -118,6 +139,9 @@ open scoped _root_.P2MW.S_ModularCurve_UVCrossingModel_exists_powMap_injective.G
 
 open ModularCurve ModularCurve.UVCrossingModel
 
+/--
+@isnad1 id=ex.1h3v.s11.7d11d179037b from=translated src=- shape=9e0b454d vocab=0ebc64dc
+-/
 theorem solution
     {W : Type*} [CommRing W] (π : W) (e : ℕ) (he : e ≠ 0) :
     ∃ θ : UVCrossingModel W (π ^ e) →ₐ[W] UVCrossingModel W π,

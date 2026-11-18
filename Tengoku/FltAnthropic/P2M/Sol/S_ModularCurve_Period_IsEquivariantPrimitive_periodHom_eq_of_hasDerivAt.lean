@@ -21,6 +21,9 @@ export _root_.ModularCurve (Period.IsEquivariantPrimitive)
 namespace PeriodHomWellDefined
 open _root_.ModularCurve
 
+/--
+@isnad1 id=eq.1h3v.s6.a0003da88ee5 from=translated src=- shape=8e7b93cf vocab=d548af94
+-/
 theorem apply_eq_apply_of_hasDerivAt_zero {D : ℂ → ℂ}
     (hD : ∀ τ : ℍ, HasDerivAt D 0 ↑τ) (z w : ℍ) : D ↑z = D ↑w := by
   have hmem : ∀ σ : ℍ, (↑σ : ℂ) ∈ {c : ℂ | 0 < c.im} := fun σ => σ.2
@@ -33,6 +36,9 @@ theorem apply_eq_apply_of_hasDerivAt_zero {D : ℂ → ℂ}
   ext1
   simp
 
+/--
+@isnad1 id=ex.2h3v.s6.32efbb4bc85d from=translated src=- shape=18f99f65 vocab=cdcf632b
+-/
 theorem sub_eq_const_of_forall_hasDerivAt {F G : ℂ → ℂ} {f : ℍ → ℂ}
     (hF : ∀ τ : ℍ, HasDerivAt F (f τ) ↑τ) (hG : ∀ τ : ℍ, HasDerivAt G (f τ) ↑τ) :
     ∃ c : ℂ, ∀ τ : ℍ, F ↑τ - G ↑τ = c := by
@@ -42,6 +48,9 @@ theorem sub_eq_const_of_forall_hasDerivAt {F G : ℂ → ℂ} {f : ℍ → ℂ}
 
 variable {Γ : Subgroup SL(2, ℤ)} {F : ℍ → ℂ}
 
+/--
+@isnad1 id=eq.3h5v.s8.4191fe4da86c from=translated src=- shape=ae5df60f vocab=e26a3a24
+-/
 theorem period_congr {F' : ℍ → ℂ} (hF : IsEquivariantPrimitive Γ F)
     (hF' : IsEquivariantPrimitive Γ F') (c : ℂ) (h : ∀ z, F z - F' z = c) (γ : Γ) :
     hF.period γ = hF'.period γ := by
@@ -53,6 +62,9 @@ theorem period_congr {F' : ℍ → ℂ} (hF : IsEquivariantPrimitive Γ F)
 end ModularCurve.PeriodHomWellDefined
 
 open ModularCurve.PeriodHomWellDefined in
+/--
+@isnad1 id=eq.4h4v.s10.5d35e79cbb14 from=translated src=- shape=6f19ad45 vocab=477a7d6f
+-/
 theorem solution {Γ : Subgroup SL(2, ℤ)}
     {F G : UpperHalfPlane → ℂ} {f : UpperHalfPlane → ℂ}
     (hF : ModularCurve.Period.IsEquivariantPrimitive Γ F)

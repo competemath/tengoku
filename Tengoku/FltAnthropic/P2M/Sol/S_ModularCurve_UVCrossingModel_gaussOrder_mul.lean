@@ -21,6 +21,9 @@ variable {W : Type*} [CommRing W] (I : Ideal W)
 
 def psum (c : ℕ → W) (π : W) (k N : ℕ) : W := ∑ m ∈ range N, c (k + m) * π ^ m
 
+/--
+@isnad1 id=eq.0h5v.s6.65172248ba76 from=translated src=- shape=8822f1ea vocab=e19fbcad
+-/
 theorem psum_succ (c : ℕ → W) (π : W) (k N : ℕ) :
     psum c π k (N + 1) = c k + π * psum c π (k + 1) N := by
   unfold psum
@@ -30,6 +33,9 @@ theorem psum_succ (c : ℕ → W) (π : W) (k N : ℕ) :
   rw [pow_succ, show k + (m + 1) = k + 1 + m by omega]
   ring
 
+/--
+@isnad1 id=mem.2h7v.s7.ec378ef3c9e9 from=translated src=- shape=6f2b64e0 vocab=6d741619
+-/
 theorem psum_sub_psum_mem (c : ℕ → W) (π : W) (hπ : π ∈ I) (k : ℕ) {M N : ℕ} (hMN : M ≤ N) :
     psum c π k N - psum c π k M ∈ I ^ M := by
   unfold psum
@@ -38,6 +44,9 @@ theorem psum_sub_psum_mem (c : ℕ → W) (π : W) (hπ : π ∈ I) (k : ℕ) {M
   rw [Finset.mem_Ico] at hm
   exact Ideal.mul_mem_left _ _ (Ideal.pow_le_pow_right hm.1 (Ideal.pow_mem_pow hπ m))
 
+/--
+@isnad1 id=ex.1h4v.s7.b60e4daf1d73 from=translated src=- shape=52c850ea vocab=fab8ae04
+-/
 theorem exists_diag_sum [IsAdicComplete I W] (c : ℕ → W) (π : W) (hπ : π ∈ I) :
     ∃ h : ℕ → W, ∀ k, h k = c k + π * h (k + 1) := by
 
@@ -89,13 +98,22 @@ variable {W : Type*} [CommRing W]
 
 noncomputable abbrev ij (i j : ℕ) : Fin 2 →₀ ℕ := Finsupp.single 0 i + Finsupp.single 1 j
 
+/--
+@isnad1 id=eq.0h2v.s5.ad79a3e50bb2 from=translated src=- shape=d13958d8 vocab=3a5fca06
+-/
 theorem ij_apply_zero (i j : ℕ) : ij i j 0 = i := by simp [ij]
+/--
+@isnad1 id=eq.0h2v.s5.8ae850975b46 from=translated src=- shape=63341c4e vocab=3a5fca06
+-/
 theorem ij_apply_one (i j : ℕ) : ij i j 1 = j := by simp [ij]
 
 theorem eq_ij (d : Fin 2 →₀ ℕ) : d = ij (d 0) (d 1) := by
   ext k
   fin_cases k <;> simp [ij]
 
+/--
+@isnad1 id=ex.1h4v.s7.304a1c5e2c6b from=translated src=- shape=e0bfc66e vocab=fab8ae04
+-/
 theorem exists_coherent {I : Ideal W} [IsAdicComplete I W] (c : ℕ → ℕ → W) (π : W) (hπ : π ∈ I) :
     ∃ H : ℕ → ℕ → W, ∀ i j, H i j = c i j + π * H (i + 1) (j + 1) := by
   have hex : ∀ i j : ℕ, ∃ h : ℕ → W, ∀ k, h k = c (i + k) (j + k) + π * h (k + 1) :=
@@ -108,6 +126,9 @@ theorem exists_coherent {I : Ideal W} [IsAdicComplete I W] (c : ℕ → ℕ → 
   rw [Nat.sub_add_cancel (Nat.min_le_left i j), Nat.sub_add_cancel (Nat.min_le_right i j)] at h1
   exact h1
 
+/--
+@isnad1 id=eq.0h3v.s10.6cf2437021aa from=translated src=- shape=d5324a87 vocab=4bab6a0e
+-/
 theorem coeff_X_mul_X_mul (G : MvPowerSeries (Fin 2) W) (d : Fin 2 →₀ ℕ) :
     MvPowerSeries.coeff d ((MvPowerSeries.X 0 : MvPowerSeries (Fin 2) W) * MvPowerSeries.X 1 * G) =
       if 1 ≤ d 0 ∧ 1 ≤ d 1 then MvPowerSeries.coeff (ij (d 0 - 1) (d 1 - 1)) G else 0 := by
@@ -126,6 +147,9 @@ theorem coeff_X_mul_X_mul (G : MvPowerSeries (Fin 2) W) (d : Fin 2 →₀ ℕ) :
     simp [ij]
   · rw [ite_eq_right (fun h' => h (hle.1 h')), ite_eq_right h]
 
+/--
+@isnad1 id=and.4h7v.s9.ca177cfd207d from=translated src=- shape=5b09f573 vocab=0f6de8b5
+-/
 theorem normalForm_unique (ϖ : W) [IsAdicComplete (Ideal.span {ϖ}) W] (e : ℕ) (he : 1 ≤ e)
     (a b a' b' : PowerSeries W) (hb : PowerSeries.constantCoeff b = 0) (hb' : PowerSeries.constantCoeff b' = 0)
     (h : mk (ϖ ^ e) (inU a + inV b) = mk (ϖ ^ e) (inU a' + inV b')) : a = a' ∧ b = b' := by
@@ -193,6 +217,9 @@ open ModularCurve ModularCurve.UVCrossingModel Finset
 
 variable {W : Type*} [CommRing W]
 
+/--
+@isnad1 id=le.1h7v.s6.9dfbfed02d5d from=translated src=- shape=78f5f9e5 vocab=4fbcfb03
+-/
 theorem le_map_sum_add (v : AddValuation W ℕ∞) {ι : Type*} (s : Finset ι) (a : ι → W) (n w : ℕ∞)
     (h : ∀ k ∈ s, n ≤ v (a k) + w) : n ≤ v (∑ k ∈ s, a k) + w := by
   classical
@@ -206,11 +233,17 @@ theorem le_map_sum_add (v : AddValuation W ℕ∞) {ι : Type*} (s : Finset ι) 
             rw [← min_add_add_right]; exact le_min h1 h2
         _ ≤ v (a x + ∑ k ∈ s, a k) + w := add_le_add (v.map_add _ _) le_rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.c2114b320695 from=translated src=- shape=767d51f7 vocab=37f1c1df
+-/
 theorem annulusWeight_add (e t : ℕ) (p q : Fin 2 →₀ ℕ) :
     annulusWeight e t (p + q) = annulusWeight e t p + annulusWeight e t q := by
   simp only [annulusWeight, Finsupp.add_apply]
   ring
 
+/--
+@isnad1 id=le.0h6v.s7.206d414c26c6 from=translated src=- shape=2386cdd1 vocab=37cdc208
+-/
 theorem repGaussOrder_add_le_mul (v : AddValuation W ℕ∞) (e t : ℕ) (F G : MvPowerSeries (Fin 2) W) :
     repGaussOrder v e t F + repGaussOrder v e t G ≤ repGaussOrder v e t (F * G) := by
   classical
@@ -229,11 +262,17 @@ theorem repGaussOrder_add_le_mul (v : AddValuation W ℕ∞) (e t : ℕ) (F G : 
           rw [v.map_mul, ← hpq, annulusWeight_add, Nat.cast_add]
           simp only [add_assoc, add_left_comm, add_comm]
 
+/--
+@isnad1 id=eq.0h6v.s9.f494f943e066 from=translated src=- shape=d1f6d338 vocab=1207ea15
+-/
 theorem gaussOrder_eq_iSup_subtype (v : W → ℕ∞) (π : W) (e t : ℕ) (x : UVCrossingModel W π) :
     gaussOrder v π e t x = ⨆ F : {F : MvPowerSeries (Fin 2) W // mk π F = x}, repGaussOrder v e t F.1 := by
   rw [gaussOrder]
   exact iSup_subtype'
 
+/--
+@isnad1 id=le.0h7v.s7.0f7081d95a15 from=translated src=- shape=965dca89 vocab=f58c9cc9
+-/
 theorem gaussOrder_add_le_gaussOrder_mul (v : AddValuation W ℕ∞) (π : W) (e t : ℕ)
     (x y : UVCrossingModel W π) :
     gaussOrder v π e t x + gaussOrder v π e t y ≤ gaussOrder v π e t (x * y) := by
@@ -256,6 +295,9 @@ open ModularCurve ModularCurve.UVCrossingModel Finset
 
 variable {W : Type*} [CommRing W]
 
+/--
+@isnad1 id=ex.1h4v.s10.a1f298275999 from=translated src=- shape=c1837bed vocab=9d681ff8
+-/
 theorem exists_normalForm_rec (ϖ : W) [IsAdicComplete (Ideal.span {ϖ}) W] (e : ℕ) (he : 1 ≤ e)
     (F : MvPowerSeries (Fin 2) W) :
     ∃ H : ℕ → ℕ → W, (∀ i j, H i j = MvPowerSeries.coeff (ij i j) F + ϖ ^ e * H (i + 1) (j + 1)) ∧
@@ -305,6 +347,9 @@ theorem exists_normalForm_rec (ϖ : W) [IsAdicComplete (Ideal.span {ϖ}) W] (e :
       Nat.sub_add_cancel (by omega), hrec]
     ring
 
+/--
+@isnad1 id=eq.1h7v.s7.4e2545d0d8e9 from=translated src=- shape=62e33cbe vocab=2d1d8501
+-/
 theorem rec_iterate {H c : ℕ → ℕ → W} {π : W} (hH : ∀ i j, H i j = c i j + π * H (i + 1) (j + 1))
     (i j N : ℕ) :
     H i j = (∑ k ∈ range N, c (i + k) (j + k) * π ^ k) + π ^ N * H (i + N) (j + N) := by
@@ -323,18 +368,27 @@ open ModularCurve ModularCurve.UVCrossingModel Finset AnnulusNF AnnulusG1
 
 variable {W : Type*} [CommRing W]
 
+/--
+@isnad1 id=eq.1h4v.s5.89f609d9f74b from=translated src=- shape=d625cd63 vocab=db562ee2
+-/
 theorem annulusWeight_diag_U (e t : ℕ) (ht : t ≤ e) (i k : ℕ) :
     annulusWeight e t (ij (i + k) k) = i * t + k * e := by
   simp only [annulusWeight, ij_apply_zero, ij_apply_one]
   have : k * (e - t) + k * t = k * e := by rw [← mul_add, Nat.sub_add_cancel ht]
   nlinarith [this]
 
+/--
+@isnad1 id=eq.1h4v.s5.2399191acea1 from=translated src=- shape=f7ab9609 vocab=e9786892
+-/
 theorem annulusWeight_diag_V (e t : ℕ) (ht : t ≤ e) (j k : ℕ) :
     annulusWeight e t (ij k (j + k)) = j * (e - t) + k * e := by
   simp only [annulusWeight, ij_apply_zero, ij_apply_one]
   have : k * (e - t) + k * t = k * e := by rw [← mul_add, Nat.sub_add_cancel ht]
   nlinarith [this]
 
+/--
+@isnad1 id=le.3h9v.s8.de04a5b729fe from=translated src=- shape=e677fcac vocab=7f075560
+-/
 theorem min_le_v_H_U (v : AddValuation W ℕ∞) (π : W) (e t : ℕ) (ht : t ≤ e) (hπ : ((e : ℕ) : ℕ∞) ≤ v π)
     (F : MvPowerSeries (Fin 2) W) {H : ℕ → ℕ → W}
     (hH : ∀ i j, H i j = MvPowerSeries.coeff (ij i j) F + π * H (i + 1) (j + 1)) (N i : ℕ) :
@@ -372,6 +426,9 @@ theorem min_le_v_H_U (v : AddValuation W ℕ∞) (π : W) (e t : ℕ) (ht : t �
           ((i * t : ℕ) : ℕ∞) := (min_add_add_right _ _ _)
     _ ≤ _ := add_le_add (v.map_add _ _) le_rfl
 
+/--
+@isnad1 id=le.3h9v.s8.99584c8dea5c from=translated src=- shape=848bf924 vocab=1cf8abcf
+-/
 theorem min_le_v_H_V (v : AddValuation W ℕ∞) (π : W) (e t : ℕ) (ht : t ≤ e) (hπ : ((e : ℕ) : ℕ∞) ≤ v π)
     (F : MvPowerSeries (Fin 2) W) {H : ℕ → ℕ → W}
     (hH : ∀ i j, H i j = MvPowerSeries.coeff (ij i j) F + π * H (i + 1) (j + 1)) (N j : ℕ) :
@@ -407,6 +464,9 @@ theorem min_le_v_H_V (v : AddValuation W ℕ∞) (π : W) (e t : ℕ) (ht : t �
           ((j * (e - t) : ℕ) : ℕ∞) := (min_add_add_right _ _ _)
     _ ≤ _ := add_le_add (v.map_add _ _) le_rfl
 
+/--
+@isnad1 id=le.2h3v.s5.9c12a4722827 from=translated src=- shape=adf376a2 vocab=0250bc8d
+-/
 theorem le_of_forall_min_le {ρ X : ℕ∞} {e : ℕ} (he : 1 ≤ e)
     (h : ∀ N : ℕ, min ρ ((N * e : ℕ) : ℕ∞) ≤ X) : ρ ≤ X := by
   rw [← ENat.forall_natCast_le_iff_le]
@@ -414,6 +474,9 @@ theorem le_of_forall_min_le {ρ X : ℕ∞} {e : ℕ} (he : 1 ≤ e)
   have h1 : (a : ℕ∞) ≤ ((a * e : ℕ) : ℕ∞) := by exact_mod_cast Nat.le_mul_of_pos_right a he
   exact le_trans (le_min ha h1) (h a)
 
+/--
+@isnad1 id=le.4h7v.s9.3552ef03c05e from=translated src=- shape=bca1087f vocab=59b5bf39
+-/
 theorem repGaussOrder_le_normalForm (v : AddValuation W ℕ∞) (π : W) (e t : ℕ) (he : 1 ≤ e) (ht : t ≤ e)
     (hπ : ((e : ℕ) : ℕ∞) ≤ v π) (F : MvPowerSeries (Fin 2) W) {H : ℕ → ℕ → W}
     (hH : ∀ i j, H i j = MvPowerSeries.coeff (ij i j) F + π * H (i + 1) (j + 1)) :
@@ -454,6 +517,9 @@ open ModularCurve ModularCurve.UVCrossingModel Finset AnnulusNF AnnulusG1
 
 variable {W : Type*} [CommRing W]
 
+/--
+@isnad1 id=ex.2h5v.s9.5ec291fef17c from=translated src=- shape=a2f1e65f vocab=9c3b2ee2
+-/
 theorem exists_normalForm_gaussOrder_eq (v : AddValuation W ℕ∞) (ϖ : W) [IsAdicComplete (Ideal.span {ϖ}) W]
     (e : ℕ) (he : 1 ≤ e) (hπ : ((e : ℕ) : ℕ∞) ≤ v (ϖ ^ e)) (x : UVCrossingModel W (ϖ ^ e)) :
     ∃ ab : PowerSeries W × PowerSeries W,
@@ -488,9 +554,15 @@ variable {W : Type*} [CommRing W]
 
 def lam (d : Fin 2 →₀ ℕ) : ℤ := (d 0 : ℤ) - (d 1 : ℤ)
 
+/--
+@isnad1 id=eq.0h2v.s6.192d36a47f18 from=translated src=- shape=d840fe2f vocab=5163a7a2
+-/
 theorem lam_add (d d' : Fin 2 →₀ ℕ) : lam (d + d') = lam d + lam d' := by
   simp only [lam, Finsupp.add_apply, Nat.cast_add]; ring
 
+/--
+@isnad1 id=eq.0h2v.s4.cf5328a5f11e from=translated src=- shape=f0d326e7 vocab=ce7f8e97
+-/
 theorem lam_ij (i j : ℕ) : lam (ij i j) = (i : ℤ) - (j : ℤ) := by
   simp only [lam, ij_apply_zero, ij_apply_one]
 
@@ -501,6 +573,9 @@ theorem eq_of_axis_of_lam_eq {d d' : Fin 2 →₀ ℕ} (hd : d 0 = 0 ∨ d 1 = 0
   have h1 : d 1 = d' 1 := by omega
   rw [eq_ij d, eq_ij d', h0, h1]
 
+/--
+@isnad1 id=eq.1h5v.s5.15e008d69283 from=translated src=- shape=6dd03cb4 vocab=db562ee2
+-/
 theorem annulusWeight_ij_add_diag (e t : ℕ) (ht : t ≤ e) (i j k : ℕ) :
     annulusWeight e t (ij (i + k) (j + k)) = annulusWeight e t (ij i j) + k * e := by
   simp only [annulusWeight, ij_apply_zero, ij_apply_one]
@@ -508,6 +583,9 @@ theorem annulusWeight_ij_add_diag (e t : ℕ) (ht : t ≤ e) (i j k : ℕ) :
   calc (i + k) * t + (j + k) * (e - t) = i * t + j * (e - t) + (k * t + k * (e - t)) := by ring
     _ = i * t + j * (e - t) + k * e := by rw [hk]
 
+/--
+@isnad1 id=eq.1h4v.s8.4a88d12af835 from=translated src=- shape=8dd56b19 vocab=c81cbc2c
+-/
 theorem coeff_normalForm_axis (H : ℕ → ℕ → W) (i j : ℕ) (h : i = 0 ∨ j = 0) :
     MvPowerSeries.coeff (ij i j) (inU (PowerSeries.mk fun i => H i 0) +
       inV (PowerSeries.mk fun j => if j = 0 then 0 else H 0 j)) = H i j := by
@@ -519,10 +597,16 @@ theorem coeff_normalForm_axis (H : ℕ → ℕ → W) (i j : ℕ) (h : i = 0 ∨
     · simp [hj]
   · simp
 
+/--
+@isnad1 id=eq.2h4v.s8.2266f3e09c55 from=translated src=- shape=ac8852a5 vocab=b8815d9c
+-/
 theorem coeff_nf_off_axis (a b : PowerSeries W) (d : Fin 2 →₀ ℕ) (h0 : d 0 ≠ 0) (h1 : d 1 ≠ 0) :
     MvPowerSeries.coeff d (inU a + inV b) = 0 := by
   rw [map_add, coeff_inU, coeff_inV, ite_eq_right h1, ite_eq_right h0, add_zero]
 
+/--
+@isnad1 id=le.3h6v.s7.0b6f975aae2c from=translated src=- shape=28136db7 vocab=b393b604
+-/
 theorem isolate (v : AddValuation W ℕ∞) {T R : W} {μ w : ℕ∞} (hμ : μ ≠ ⊤) (hT : v T + w = μ)
     (hR : μ + 1 ≤ v R + w) : v (T + R) + w ≤ μ := by
   by_contra h
@@ -537,6 +621,9 @@ theorem isolate (v : AddValuation W ℕ∞) {T R : W} {μ w : ℕ∞} (hμ : μ 
   rw [hT] at h2
   exact absurd ((ENat.lt_add_one_iff hμ).mpr le_rfl) (not_lt.mpr h2)
 
+/--
+@isnad1 id=eq.3h12v.s10.7ab2696cc076 from=translated src=- shape=1280c780 vocab=b2ef0700
+-/
 theorem term_order (v : AddValuation W ℕ∞) (π : W) (e t : ℕ) (ht : t ≤ e) (hπ : v π = (e : ℕ∞))
     (Fx Fy : MvPowerSeries (Fin 2) W) (i j k : ℕ) (d₁ d₂ : Fin 2 →₀ ℕ)
     (h : d₁ + d₂ = ij (i + k) (j + k)) :
@@ -557,6 +644,9 @@ theorem term_order (v : AddValuation W ℕ∞) (π : W) (e t : ℕ) (ht : t ≤ 
     _ = A + B + (((annulusWeight e t d₁ : ℕ) : ℕ∞) + ((annulusWeight e t d₂ : ℕ) : ℕ∞)) := by rw [hw']
     _ = _ := by ring
 
+/--
+@isnad1 id=ex.3h6v.s10.2d514cab4a45 from=translated src=- shape=be684b6d vocab=3d5f997c
+-/
 theorem exists_extreme_dominant (v : AddValuation W ℕ∞) (e t : ℕ) (hte : t < e)
     (F : MvPowerSeries (Fin 2) W)
     (hF : ∀ d : Fin 2 →₀ ℕ, d 0 ≠ 0 → d 1 ≠ 0 → MvPowerSeries.coeff d F = 0) (m : ℕ)
@@ -601,6 +691,9 @@ theorem exists_extreme_dominant (v : AddValuation W ℕ∞) (e t : ℕ) (hte : t
   rw [hdxS]
   exact csInf_le hSbdd ⟨d, hd, rfl⟩
 
+/--
+@isnad1 id=le.5h8v.s10.7a044e066925 from=translated src=- shape=b94eb220 vocab=9e7ec933
+-/
 theorem repGaussOrder_normalForm_mul_le (v : AddValuation W ℕ∞) (π : W) (e t : ℕ) (hte : t < e)
     (hπ : v π = (e : ℕ∞)) (Fx Fy : MvPowerSeries (Fin 2) W)
     (hx : ∀ d : Fin 2 →₀ ℕ, d 0 ≠ 0 → d 1 ≠ 0 → MvPowerSeries.coeff d Fx = 0)
@@ -722,6 +815,9 @@ theorem repGaussOrder_normalForm_mul_le (v : AddValuation W ℕ∞) (π : W) (e 
   have hfin : (m : ℕ∞) + n ≠ ⊤ := by rw [← Nat.cast_add]; exact ENat.natCast_ne_top _
   exact isolate v hfin hspecial hrest
 
+/--
+@isnad1 id=le.2h7v.s8.b572ba67aeaf from=translated src=- shape=05b44186 vocab=cee304b1
+-/
 theorem gaussOrder_mul_le_of_lt (v : AddValuation W ℕ∞) (ϖ : W) [IsAdicComplete (Ideal.span {ϖ}) W]
     (e t : ℕ) (hte : t < e) (hϖ : v ϖ = 1) (x y : UVCrossingModel W (ϖ ^ e)) :
     gaussOrder v (ϖ ^ e) e t (x * y) ≤ gaussOrder v (ϖ ^ e) e t x + gaussOrder v (ϖ ^ e) e t y := by
@@ -742,6 +838,9 @@ theorem gaussOrder_mul_le_of_lt (v : AddValuation W ℕ∞) (ϖ : W) [IsAdicComp
   exact repGaussOrder_normalForm_mul_le v (ϖ ^ e) e t hte hπ _ _
     (coeff_nf_off_axis a b) (coeff_nf_off_axis a' b') hH
 
+/--
+@isnad1 id=eq.1h5v.s8.3dc4f79e201f from=translated src=- shape=c5765b39 vocab=ba63e2e2
+-/
 theorem repGaussOrder_uvSwap (v : W → ℕ∞) (e t : ℕ) (ht : t ≤ e) (F : MvPowerSeries (Fin 2) W) :
     repGaussOrder v e t (uvSwapEquiv F) = repGaussOrder v e (e - t) F := by
   classical
@@ -763,6 +862,9 @@ theorem repGaussOrder_uvSwap (v : W → ℕ∞) (e t : ℕ) (ht : t ≤ e) (F : 
     rw [Nat.sub_sub_self ht]; ring
   rw [hc, hw]
 
+/--
+@isnad1 id=eq.1h6v.s8.f8764d584fc4 from=translated src=- shape=2ab082b3 vocab=91034743
+-/
 theorem gaussOrder_crossingSwap (v : W → ℕ∞) (π : W) (e t : ℕ) (ht : t ≤ e) (x : UVCrossingModel W π) :
     gaussOrder v π e t (crossingSwap π x) = gaussOrder v π e (e - t) x := by
   apply le_antisymm
@@ -783,6 +885,9 @@ theorem gaussOrder_crossingSwap (v : W → ℕ∞) (π : W) (e t : ℕ) (ht : t 
       _ ≤ gaussOrder v π e t (mk π (uvSwapEquiv F)) := repGaussOrder_le_gaussOrder v π e t _
       _ = gaussOrder v π e t (crossingSwap π x) := by rw [← crossingSwap_mk, hF]
 
+/--
+@isnad1 id=le.3h7v.s8.0f5b31d77df0 from=translated src=- shape=b120a578 vocab=f2272413
+-/
 theorem gaussOrder_mul_le (v : AddValuation W ℕ∞) (ϖ : W) [IsAdicComplete (Ideal.span {ϖ}) W]
     (e t : ℕ) (he : 1 ≤ e) (ht : t ≤ e) (hϖ : v ϖ = 1) (x y : UVCrossingModel W (ϖ ^ e)) :
     gaussOrder v (ϖ ^ e) e t (x * y) ≤ gaussOrder v (ϖ ^ e) e t x + gaussOrder v (ϖ ^ e) e t y := by
@@ -795,11 +900,17 @@ theorem gaussOrder_mul_le (v : AddValuation W ℕ∞) (ϖ : W) [IsAdicComplete (
       Nat.sub_zero] at key
     exact key
 
+/--
+@isnad1 id=eq.3h7v.s8.684c32da2157 from=translated src=- shape=778b1400 vocab=f2272413
+-/
 theorem gaussOrder_mul' (v : AddValuation W ℕ∞) (ϖ : W) [IsAdicComplete (Ideal.span {ϖ}) W]
     (e t : ℕ) (he : 1 ≤ e) (ht : t ≤ e) (hϖ : v ϖ = 1) (x y : UVCrossingModel W (ϖ ^ e)) :
     gaussOrder v (ϖ ^ e) e t (x * y) = gaussOrder v (ϖ ^ e) e t x + gaussOrder v (ϖ ^ e) e t y :=
   le_antisymm (gaussOrder_mul_le v ϖ e t he ht hϖ x y) (gaussOrder_add_le_gaussOrder_mul v _ e t x y)
 
+/--
+@isnad1 id=eq.3h6v.s8.b3bce050c5c5 from=translated src=- shape=5df5f529 vocab=abc93c1d
+-/
 theorem gaussOrder_mul
     {W : Type*} [CommRing W] [IsDomain W] [IsDiscreteValuationRing W]
     [IsAdicComplete (IsLocalRing.maximalIdeal W) W]
@@ -817,6 +928,9 @@ theorem gaussOrder_mul
 end AnnulusG1eq
 
 open ModularCurve ModularCurve.UVCrossingModel in
+/--
+@isnad1 id=eq.3h6v.s8.b3bce050c5c5 from=translated src=- shape=5df5f529 vocab=abc93c1d
+-/
 theorem solution
     {W : Type u} [CommRing W] [IsDomain W] [IsDiscreteValuationRing W]
     [IsAdicComplete (IsLocalRing.maximalIdeal W) W]

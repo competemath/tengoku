@@ -34,6 +34,9 @@ end Furniture
 end E34S
 
 open E34S in
+/--
+@isnad1 id=le.2h4v.s8.ec595d412be8 from=translated src=- shape=3788eeb0 vocab=30885e70
+-/
 theorem solution (p : ℕ) (hp : p.Prime) (hp5 : 5 ≤ p) (N' : ℕ) [NeZero N'] (k : ℤ)
     (F : Type) [Field F] [CharP F p] :
     modPMod N' k F ≤ modPMod N' (k + ((p : ℤ) - 1)) F := by

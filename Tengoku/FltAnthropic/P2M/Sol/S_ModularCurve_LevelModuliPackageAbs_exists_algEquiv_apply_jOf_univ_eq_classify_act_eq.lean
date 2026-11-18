@@ -9,6 +9,9 @@ namespace P2MW.S_ModularCurve_LevelModuliPackageAbs_exists_algEquiv_apply_jOf_un
 set_option autoImplicit false
 open ModularCurve
 
+/--
+@isnad1 id=ex.2h5v.s9.a79a345528a6 from=translated src=- shape=f684adc0 vocab=679d1c9f
+-/
 theorem solution
     (A : Type) [CommRing A] (D : ModularCurve.LevelModuliDatum A) (P₀ : LevelModuliPackageAbs A D)
     (σ σ' : D.ProblemAut)

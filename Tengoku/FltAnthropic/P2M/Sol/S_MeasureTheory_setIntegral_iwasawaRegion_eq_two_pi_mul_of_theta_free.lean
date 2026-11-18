@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open MeasureTheory
 
+/--
+@isnad1 id=eq.2h2v.s9.c392a242e13d from=translated src=- shape=e609989e vocab=58569ece
+-/
 theorem solution
     (F : ℝ × ℝ × ℝ × ℝ → ℂ) (G : ℝ → ℝ → ℝ → ℂ)
     (hFG : ∀ x y₁ y₂ θ : ℝ, y₁ ≠ 0 → 0 < y₂ → F (x, y₁, y₂, θ) = G x y₁ y₂)

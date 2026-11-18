@@ -12,6 +12,9 @@ set_option autoImplicit false
 open MeasureTheory Topology Filter
 open scoped ENNReal
 
+/--
+@isnad1 id=ex.2h4v.s8.581f127d599f from=translated src=- shape=5f98c2f9 vocab=ae7a2546
+-/
 theorem solution
     {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [LocallyCompactSpace G] [T2Space G]
     [SecondCountableTopology G] [MeasurableSpace G] [BorelSpace G]

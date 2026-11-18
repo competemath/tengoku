@@ -23,16 +23,28 @@ local notation "Qb" => AlgebraicClosure ℚ
 section RedLemmas
 variable {A : ValuationSubring Qb} {k : Type*} [Field k]
 
+/--
+@isnad1 id=iff.0h3v.s7.be5241827889 from=translated src=- shape=e55e4e4f vocab=9526ca46
+-/
 theorem mem_coeffSubring_iff' (K : IntermediateField ℚ Qb) {x : Qb} :
     x ∈ coeffSubring A K ↔ x ∈ A ∧ x ∈ K := Iff.rfl
 
+/--
+@isnad1 id=eq.0h5v.s10.0fc936016119 from=translated src=- shape=facb45c8 vocab=ff7ab826
+-/
 theorem redRestrict_apply (red : A →+* k) (K : IntermediateField ℚ Qb) (d : ↥(coeffSubring A K)) :
     redRestrict red K d = red ⟨(d : Qb), d.2.1⟩ := rfl
 
+/--
+@isnad1 id=eq.1h6v.s11.8a6d58b8e232 from=translated src=- shape=fa75ac21 vocab=70bc0d57
+-/
 theorem redRestrict_inclusion (red : A →+* k) {K K' : IntermediateField ℚ Qb}
     (hle : coeffSubring A K ≤ coeffSubring A K') (d : ↥(coeffSubring A K)) :
     redRestrict red K' (Subring.inclusion hle d) = redRestrict red K d := rfl
 
+/--
+@isnad1 id=eq.1h5v.s10.caaad09c417d from=translated src=- shape=22284851 vocab=b0b677f4
+-/
 theorem red_eq_zero_of_mem_maximalIdeal (red : A →+* k) (q : ℕ) [Fact q.Prime] [CharP k q] (τ : A)
     (hτ : τ ∈ IsLocalRing.maximalIdeal A) : red τ = 0 := by
   have hq : ((q : ℕ) : AlgebraicClosure ℚ) ∈ A := natCast_mem A q
@@ -51,10 +63,16 @@ theorem red_eq_zero_of_mem_maximalIdeal (red : A →+* k) (q : ℕ) [Fact q.Prim
   exact ValuationSubring.map_eq_zero_of_valuation_lt_one_of_charP A q hA red τ
     ((ValuationSubring.valuation_lt_one_iff A τ).mp hτ)
 
+/--
+@isnad1 id=eq.1h5v.s9.2a00af0bf6d7 from=translated src=- shape=237b83a8 vocab=ec30c469
+-/
 theorem red_eq_zero_of_not_isUnit (red : A →+* k) (q : ℕ) [Fact q.Prime] [CharP k q] (τ : A)
     (hτ : ¬ IsUnit τ) : red τ = 0 :=
   red_eq_zero_of_mem_maximalIdeal red q τ ((IsLocalRing.mem_maximalIdeal _).mpr hτ)
 
+/--
+@isnad1 id=iff.0h6v.s10.45aec08e9f3e from=translated src=- shape=f670312e vocab=23c7bee3
+-/
 theorem isUnit_coeffSubring_iff (red : A →+* k) (K : IntermediateField ℚ Qb) (q : ℕ) [Fact q.Prime] [CharP k q]
     (c : ↥(coeffSubring A K)) : IsUnit c ↔ redRestrict red K c ≠ 0 := by
   constructor
@@ -85,9 +103,15 @@ theorem isUnit_coeffSubring_iff (red : A →+* k) (K : IntermediateField ℚ Qb)
       rw [this, map_zero]
     exact isUnit_iff_exists_inv.mpr ⟨⟨_, hinvmem⟩, Subtype.ext (mul_inv_cancel₀ hc0)⟩
 
+/--
+@isnad1 id=mem.1h2v.s6.8e1bd347a649 from=translated src=- shape=5ae155a0 vocab=47ebd528
+-/
 theorem inv_mem_of_not_mem {y : Qb} (hyA : y ∉ A) : y⁻¹ ∈ A :=
   (A.mem_or_inv_mem y).resolve_left hyA
 
+/--
+@isnad1 id=eq.1h5v.s9.50189977ca15 from=translated src=- shape=2567119e vocab=eab84e37
+-/
 theorem red_inv_eq_zero_of_not_mem (red : A →+* k) (q : ℕ) [Fact q.Prime] [CharP k q] {y : Qb}
     (hyA : y ∉ A) : red ⟨y⁻¹, inv_mem_of_not_mem hyA⟩ = 0 := by
   apply red_eq_zero_of_not_isUnit red q
@@ -105,11 +129,17 @@ end RedLemmas
 section Zeta
 variable {A : ValuationSubring Qb}
 
+/--
+@isnad1 id=ex.0h0v.s7.79d70ee61be7 from=translated src=- shape=21902fff vocab=1817e9f9
+-/
 theorem exists_zeta : ∃ ζ : Qb, ζ ^ 2 + ζ + 1 = 0 := by
   have hdeg : (X ^ 2 + X + 1 : Qb[X]).degree = 2 := by compute_degree!
   obtain ⟨ζ, hζ⟩ := IsAlgClosed.exists_root (X ^ 2 + X + 1 : Qb[X]) (by rw [hdeg]; norm_num)
   exact ⟨ζ, by simpa using hζ⟩
 
+/--
+@isnad1 id=mem.1h2v.s7.23b6848ec379 from=translated src=- shape=4e89424c vocab=1bfb7fb7
+-/
 theorem zeta_mem {ζ : Qb} (hζ : ζ ^ 2 + ζ + 1 = 0) : ζ ∈ A := by
   rcases A.mem_or_inv_mem ζ with h | h
   · exact h
@@ -118,10 +148,16 @@ theorem zeta_mem {ζ : Qb} (hζ : ζ ^ 2 + ζ + 1 = 0) : ζ ∈ A := by
     have : ζ = (ζ⁻¹) ^ 2 := by rw [hinv]; linear_combination (-ζ * (ζ - 1)) * hζ
     rw [this]; exact pow_mem h 2
 
+/--
+@isnad1 id=isintegr.1h1v.s7.5a9c5b77e760 from=translated src=- shape=6e46339d vocab=bfe4edb9
+-/
 theorem isIntegral_zeta {ζ : Qb} (hζ : ζ ^ 2 + ζ + 1 = 0) : IsIntegral ℚ ζ := by
   refine ⟨X ^ 2 + X + 1, by monicity!, ?_⟩
   simpa using hζ
 
+/--
+@isnad1 id=ex.2h3v.s10.d83541851d03 from=translated src=- shape=d61e77ae vocab=c3627765
+-/
 theorem exists_add_mul_of_mem_adjoin (K : IntermediateField ℚ Qb) {ζ : Qb} (hζ : ζ ^ 2 + ζ + 1 = 0)
     {x : Qb} (hx : x ∈ IntermediateField.adjoin K ({ζ} : Set Qb)) :
     ∃ c₀ c₁ : Qb, c₀ ∈ K ∧ c₁ ∈ K ∧ x = c₀ + ζ * c₁ := by
@@ -149,6 +185,9 @@ end Zeta
 section Descent
 variable {A : ValuationSubring Qb} {k : Type*} [Field k]
 
+/--
+@isnad1 id=false.4h6v.s11.c3d03b605833 from=translated src=- shape=e6aec1c9 vocab=f08bf7e2
+-/
 theorem red_ne_red_zeta (red : A →+* k) (K : IntermediateField ℚ Qb)
     (hirr : ∀ c : ↥(coeffSubring A K), redRestrict red K (c ^ 2 + c + 1) ≠ 0)
     {ζ : Qb} (hζA : ζ ∈ A) (hζ : ζ ^ 2 + ζ + 1 = 0) (d : ↥(coeffSubring A K))
@@ -160,6 +199,9 @@ theorem red_ne_red_zeta (red : A →+* k) (K : IntermediateField ℚ Qb)
   rw [map_add, map_add, map_pow, map_one, hd]
   exact h
 
+/--
+@isnad1 id=and.6h8v.s11.9d8c30565e45 from=translated src=- shape=4e61da28 vocab=e651c246
+-/
 theorem mem_of_add_zeta_mul_mem (red : A →+* k) (q : ℕ) [Fact q.Prime] [CharP k q] (K : IntermediateField ℚ Qb)
     (hirr : ∀ c : ↥(coeffSubring A K), redRestrict red K (c ^ 2 + c + 1) ≠ 0)
     {ζ : Qb} (hζA : ζ ∈ A) (hζ : ζ ^ 2 + ζ + 1 = 0)
@@ -209,6 +251,9 @@ end ModularCurve
 end
 
 open ModularCurve.CycCoeffExt in
+/--
+@isnad1 id=ex.2h6v.s13.76556aaa3f5d from=translated src=- shape=89ba0b41 vocab=0528b647
+-/
 theorem solution
     {q : ℕ} [Fact q.Prime] {A : ValuationSubring (AlgebraicClosure ℚ)}
     {k : Type*} [Field k] [CharP k q] (red : A →+* k)

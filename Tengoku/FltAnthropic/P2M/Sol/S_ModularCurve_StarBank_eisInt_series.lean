@@ -17,6 +17,9 @@ open Finset
 namespace ModularCurve
 namespace W1
 
+/--
+@isnad1 id=not.1h1v.s5.8bbdcb471b56 from=translated src=- shape=27e1186b vocab=1da16793
+-/
 theorem eisInt_not_dvd_den_shift {ℓ : ℕ} [Fact ℓ.Prime] (hℓ5 : 5 ≤ ℓ) :
     ¬ ℓ ∣ (bernoulli (ℓ - 1) + 1 / (ℓ : ℚ)).den := by
   have hℓp : ℓ.Prime := Fact.out
@@ -59,6 +62,9 @@ theorem eisInt_not_dvd_den_shift {ℓ : ℕ} [Fact ℓ.Prime] (hℓ5 : 5 ≤ ℓ
 
 end ModularCurve.W1
 
+/--
+@isnad1 id=dvd.1h1v.s5.e8e288c22cfa from=translated src=- shape=d7ce7c75 vocab=0f52a813
+-/
 theorem ModularCurve.StarBank.eisInt_dvd_den {ℓ : ℕ} [Fact ℓ.Prime] (hℓ5 : 5 ≤ ℓ) :
     ℓ ∣ (bernoulli (ℓ - 1)).den := by
   have hℓp : ℓ.Prime := Fact.out
@@ -72,6 +78,9 @@ theorem ModularCurve.StarBank.eisInt_dvd_den {ℓ : ℕ} [Fact ℓ.Prime] (hℓ5
     exact h
   exact ((hℓp.dvd_mul).mp hdvd).resolve_left hshift
 
+/--
+@isnad1 id=ne.1h1v.s5.2de1f91e8175 from=translated src=- shape=db2dc15a vocab=c1960bd2
+-/
 theorem ModularCurve.StarBank.eisInt_bernoulli_ne_zero
     {ℓ : ℕ} [Fact ℓ.Prime] (hℓ5 : 5 ≤ ℓ) : bernoulli (ℓ - 1) ≠ 0 := by
   intro h
@@ -79,6 +88,9 @@ theorem ModularCurve.StarBank.eisInt_bernoulli_ne_zero
   rw [h, Rat.den_zero] at this
   exact (Nat.Prime.one_lt (Fact.out : ℓ.Prime)).ne' (Nat.dvd_one.mp this)
 
+/--
+@isnad1 id=ex.2h2v.s9.f5c55c1a4199 from=translated src=- shape=e7268d69 vocab=a74868bc
+-/
 theorem ModularCurve.StarBank.eisInt_coeff {ℓ : ℕ} [Fact ℓ.Prime] (hℓ5 : 5 ≤ ℓ)
     (hk : 3 ≤ ℓ - 1) (m : ℕ) :
     ∃ z : ℤ, ((bernoulli (ℓ - 1)).num : ℂ)
@@ -138,6 +150,9 @@ private theorem ModularCurve.StarBank.eisInt_series {ℓ : ℕ} [Fact ℓ.Prime]
 open scoped ArithmeticFunction.sigma
 open Finset in
 
+/--
+@isnad1 id=ex.2h1v.s9.c009c02d9370 from=translated src=- shape=8f0f9829 vocab=9034d49f
+-/
 theorem solution {ℓ : ℕ} [Fact ℓ.Prime] (hℓ5 : 5 ≤ ℓ)
     (hk : 3 ≤ ℓ - 1) :
     ∃ T : PowerSeries ℤ,

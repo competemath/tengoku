@@ -10,6 +10,9 @@ set_option autoImplicit false
 open MeasureTheory
 open scoped ENNReal
 
+/--
+@isnad1 id=eq.7h7v.s8.9d165ace1f3c from=translated src=- shape=bfb0d07d vocab=ed1e9c6c
+-/
 theorem solution
     {Q : Type*} [MeasurableSpace Q] (ν : Measure Q) (T : Q ≃ᵐ Q)
     (κ : ℝ≥0∞) (hκ₀ : κ ≠ 0) (hκ : κ ≠ ∞)

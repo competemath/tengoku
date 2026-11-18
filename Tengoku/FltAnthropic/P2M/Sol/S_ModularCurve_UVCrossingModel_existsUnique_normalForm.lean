@@ -17,6 +17,9 @@ variable {W : Type*} [CommRing W] (I : Ideal W)
 
 def psum (c : ℕ → W) (π : W) (k N : ℕ) : W := ∑ m ∈ range N, c (k + m) * π ^ m
 
+/--
+@isnad1 id=eq.0h5v.s6.1694fe52d92e from=translated src=- shape=8822f1ea vocab=bef91a88
+-/
 theorem psum_succ (c : ℕ → W) (π : W) (k N : ℕ) :
     psum c π k (N + 1) = c k + π * psum c π (k + 1) N := by
   unfold psum
@@ -26,6 +29,9 @@ theorem psum_succ (c : ℕ → W) (π : W) (k N : ℕ) :
   rw [pow_succ, show k + (m + 1) = k + 1 + m by omega]
   ring
 
+/--
+@isnad1 id=mem.2h7v.s7.29737efc602e from=translated src=- shape=6f2b64e0 vocab=ab50d3e4
+-/
 theorem psum_sub_psum_mem (c : ℕ → W) (π : W) (hπ : π ∈ I) (k : ℕ) {M N : ℕ} (hMN : M ≤ N) :
     psum c π k N - psum c π k M ∈ I ^ M := by
   unfold psum
@@ -34,6 +40,9 @@ theorem psum_sub_psum_mem (c : ℕ → W) (π : W) (hπ : π ∈ I) (k : ℕ) {M
   rw [Finset.mem_Ico] at hm
   exact Ideal.mul_mem_left _ _ (Ideal.pow_le_pow_right hm.1 (Ideal.pow_mem_pow hπ m))
 
+/--
+@isnad1 id=ex.1h4v.s7.b60e4daf1d73 from=translated src=- shape=52c850ea vocab=fab8ae04
+-/
 theorem exists_diag_sum [IsAdicComplete I W] (c : ℕ → W) (π : W) (hπ : π ∈ I) :
     ∃ h : ℕ → W, ∀ k, h k = c k + π * h (k + 1) := by
 
@@ -85,13 +94,22 @@ variable {W : Type*} [CommRing W]
 
 noncomputable abbrev ij (i j : ℕ) : Fin 2 →₀ ℕ := Finsupp.single 0 i + Finsupp.single 1 j
 
+/--
+@isnad1 id=eq.0h2v.s5.d7d44e74b8e1 from=translated src=- shape=d13958d8 vocab=dd418e0b
+-/
 theorem ij_apply_zero (i j : ℕ) : ij i j 0 = i := by simp [ij]
+/--
+@isnad1 id=eq.0h2v.s5.8e12da322e48 from=translated src=- shape=63341c4e vocab=dd418e0b
+-/
 theorem ij_apply_one (i j : ℕ) : ij i j 1 = j := by simp [ij]
 
 theorem eq_ij (d : Fin 2 →₀ ℕ) : d = ij (d 0) (d 1) := by
   ext k
   fin_cases k <;> simp [ij]
 
+/--
+@isnad1 id=ex.1h4v.s7.304a1c5e2c6b from=translated src=- shape=e0bfc66e vocab=fab8ae04
+-/
 theorem exists_coherent {I : Ideal W} [IsAdicComplete I W] (c : ℕ → ℕ → W) (π : W) (hπ : π ∈ I) :
     ∃ H : ℕ → ℕ → W, ∀ i j, H i j = c i j + π * H (i + 1) (j + 1) := by
   have hex : ∀ i j : ℕ, ∃ h : ℕ → W, ∀ k, h k = c (i + k) (j + k) + π * h (k + 1) :=
@@ -104,6 +122,9 @@ theorem exists_coherent {I : Ideal W} [IsAdicComplete I W] (c : ℕ → ℕ → 
   rw [Nat.sub_add_cancel (Nat.min_le_left i j), Nat.sub_add_cancel (Nat.min_le_right i j)] at h1
   exact h1
 
+/--
+@isnad1 id=eq.0h3v.s10.f88aaa611ec3 from=translated src=- shape=d5324a87 vocab=76a1271b
+-/
 theorem coeff_X_mul_X_mul (G : MvPowerSeries (Fin 2) W) (d : Fin 2 →₀ ℕ) :
     MvPowerSeries.coeff d ((MvPowerSeries.X 0 : MvPowerSeries (Fin 2) W) * MvPowerSeries.X 1 * G) =
       if 1 ≤ d 0 ∧ 1 ≤ d 1 then MvPowerSeries.coeff (ij (d 0 - 1) (d 1 - 1)) G else 0 := by
@@ -122,6 +143,9 @@ theorem coeff_X_mul_X_mul (G : MvPowerSeries (Fin 2) W) (d : Fin 2 →₀ ℕ) :
     simp [ij]
   · rw [ite_eq_right (fun h' => h (hle.1 h')), ite_eq_right h]
 
+/--
+@isnad1 id=ex.1h4v.s9.35a8080e5e38 from=translated src=- shape=4814c8e2 vocab=ddc34ed7
+-/
 theorem exists_normalForm (ϖ : W) [IsAdicComplete (Ideal.span {ϖ}) W] (e : ℕ) (he : 1 ≤ e)
     (x : UVCrossingModel W (ϖ ^ e)) :
     ∃ ab : PowerSeries W × PowerSeries W,
@@ -176,6 +200,9 @@ theorem exists_normalForm (ϖ : W) [IsAdicComplete (Ideal.span {ϖ}) W] (e : ℕ
       Nat.sub_add_cancel (by omega), hrec]
     ring
 
+/--
+@isnad1 id=and.4h7v.s9.ca177cfd207d from=translated src=- shape=5b09f573 vocab=0f6de8b5
+-/
 theorem normalForm_unique (ϖ : W) [IsAdicComplete (Ideal.span {ϖ}) W] (e : ℕ) (he : 1 ≤ e)
     (a b a' b' : PowerSeries W) (hb : PowerSeries.constantCoeff b = 0) (hb' : PowerSeries.constantCoeff b' = 0)
     (h : mk (ϖ ^ e) (inU a + inV b) = mk (ϖ ^ e) (inU a' + inV b')) : a = a' ∧ b = b' := by
@@ -235,6 +262,9 @@ theorem normalForm_unique (ϖ : W) [IsAdicComplete (Ideal.span {ϖ}) W] (e : ℕ
         ite_eq_right (Nat.pos_iff_ne_zero.mp hj), zero_add] at h
       exact sub_eq_zero.mp h
 
+/--
+@isnad1 id=existsun.1h4v.s9.b47666b33d25 from=translated src=- shape=4814c8e2 vocab=f5f006d9
+-/
 theorem existsUnique_normalForm (ϖ : W) [IsAdicComplete (Ideal.span {ϖ}) W] (e : ℕ) (he : 1 ≤ e)
     (x : UVCrossingModel W (ϖ ^ e)) :
     ∃! ab : PowerSeries W × PowerSeries W,
@@ -248,6 +278,9 @@ theorem existsUnique_normalForm (ϖ : W) [IsAdicComplete (Ideal.span {ϖ}) W] (e
 end AnnulusNF
 
 open ModularCurve ModularCurve.UVCrossingModel in
+/--
+@isnad1 id=existsun.1h4v.s9.b47666b33d25 from=translated src=- shape=4814c8e2 vocab=f5f006d9
+-/
 theorem solution {W : Type*} [CommRing W] (ϖ : W) [IsAdicComplete (Ideal.span {ϖ}) W] (e : ℕ) (he : 1 ≤ e)
     (x : UVCrossingModel W (ϖ ^ e)) :
     ∃! ab : PowerSeries W × PowerSeries W,

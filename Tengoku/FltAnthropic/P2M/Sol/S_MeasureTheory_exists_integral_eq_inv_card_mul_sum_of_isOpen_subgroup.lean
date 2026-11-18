@@ -10,6 +10,9 @@ set_option autoImplicit false
 open MeasureTheory
 open scoped BigOperators
 
+/--
+@isnad1 id=ex.1h3v.s8.9ae0a5bbcce7 from=translated src=- shape=dd404298 vocab=24b3195c
+-/
 theorem solution
     {K : Type*} [Group K] [TopologicalSpace K] [IsTopologicalGroup K] [CompactSpace K]
     [MeasurableSpace K] [BorelSpace K] (μ : Measure K) [μ.IsHaarMeasure] [IsProbabilityMeasure μ]

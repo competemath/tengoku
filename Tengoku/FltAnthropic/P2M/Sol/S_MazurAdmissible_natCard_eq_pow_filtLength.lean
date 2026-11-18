@@ -14,6 +14,9 @@ noncomputable section
 
 open MazurAdmissible
 
+/--
+@isnad1 id=eq.1h4v.s5.9977c5ef3dce from=translated src=- shape=f0cb2074 vocab=04bac093
+-/
 theorem solution
     {M : Type*} [AddCommGroup M] {q : ℕ} (hq : q.Prime) {Φ : OpenAction M}
     (c : AdmissibleChain q Φ) : Nat.card M = q ^ filtLength c := by

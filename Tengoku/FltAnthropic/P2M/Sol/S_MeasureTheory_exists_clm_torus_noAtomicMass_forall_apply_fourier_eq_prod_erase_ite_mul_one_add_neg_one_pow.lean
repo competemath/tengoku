@@ -18,9 +18,15 @@ noncomputable abbrev P (d : ℕ) : Measure (Fin d → AddCircle (1 : ℝ)) := Me
 scoped instance (d : ℕ) : IsProbabilityMeasure (P d) := by
   unfold P; infer_instance
 
+/--
+@isnad1 id=eq.0h1v.s7.916761da2a70 from=translated src=- shape=ccf0761e vocab=c9d7c128
+-/
 theorem haar_eq_volume (s : Set (AddCircle (1 : ℝ))) : P1 s = volume s := by
   rw [AddCircle.volume_eq_smul_haarAddCircle, ENNReal.ofReal_one, one_smul]
 
+/--
+@isnad1 id=le.0h2v.s7.3d47ec82cca6 from=translated src=- shape=4e31ac3e vocab=20cf6863
+-/
 theorem haar_ball_le (x : AddCircle (1 : ℝ)) (r : ℝ) :
     P1 (Metric.ball x r) ≤ ENNReal.ofReal (2 * r) := by
   calc P1 (Metric.ball x r) ≤ P1 (Metric.closedBall x r) := measure_mono Metric.ball_subset_closedBall
@@ -28,6 +34,9 @@ theorem haar_ball_le (x : AddCircle (1 : ℝ)) (r : ℝ) :
     _ = ENNReal.ofReal (min 1 (2 * r)) := AddCircle.volume_closedBall (T := 1) r
     _ ≤ ENNReal.ofReal (2 * r) := ENNReal.ofReal_le_ofReal (min_le_right _ _)
 
+/--
+@isnad1 id=eq.0h1v.s7.6f5aaf0cfe5f from=translated src=- shape=636cea72 vocab=6a2a8852
+-/
 theorem integral_fourier_haar (n : ℤ) :
     ∫ x : AddCircle (1 : ℝ), fourier n x ∂P1 = if n = 0 then (1 : ℂ) else 0 := by
   split_ifs with hn
@@ -37,11 +46,17 @@ theorem integral_fourier_haar (n : ℤ) :
       (fourier_add_half_inv_index hn one_pos)
     simpa using h
 
+/--
+@isnad1 id=integrab.0h2v.s8.597b101d4f1f from=translated src=- shape=2cf4e778 vocab=a372d861
+-/
 theorem integrable_continuousMap (d : ℕ) (g : C((Fin d → AddCircle (1 : ℝ)), ℂ)) :
     Integrable g (P d) :=
   g.continuous.integrable_of_hasCompactSupport
     (IsCompact.of_isClosed_subset isCompact_univ (isClosed_tsupport _) (Set.subset_univ _))
 
+/--
+@isnad1 id=le.0h3v.s7.0fe43bf12d60 from=translated src=- shape=00237b68 vocab=669ffd4b
+-/
 theorem pi_univ_le (d : ℕ) (U : Fin d → Set (AddCircle (1 : ℝ))) (i₀ : Fin d) :
     P d (Set.pi Set.univ U) ≤ P1 (U i₀) := by
   rw [Measure.pi_pi]
@@ -55,6 +70,9 @@ theorem pi_univ_le (d : ℕ) (U : Fin d → Set (AddCircle (1 : ℝ))) (i₀ : F
 def setCoord (d : ℕ) (p : Fin d) (a : AddCircle (1 : ℝ)) (θ : Fin d → AddCircle (1 : ℝ)) :
     Fin d → AddCircle (1 : ℝ) := fun i => if i = p then a else θ i
 
+/--
+@isnad1 id=continuo.0h3v.s6.e02a7c1d4fcb from=translated src=- shape=fc53a68c vocab=d6ecc4ed
+-/
 theorem continuous_setCoord (d : ℕ) (p : Fin d) (a : AddCircle (1 : ℝ)) : Continuous (setCoord d p a) := by
   refine continuous_pi fun i => ?_
   by_cases h : i = p
@@ -64,6 +82,9 @@ theorem continuous_setCoord (d : ℕ) (p : Fin d) (a : AddCircle (1 : ℝ)) : Co
 noncomputable def preSet (d : ℕ) (p : Fin d) (a : AddCircle (1 : ℝ)) (g : C((Fin d → AddCircle (1 : ℝ)), ℂ)) :
     C((Fin d → AddCircle (1 : ℝ)), ℂ) := g.comp ⟨setCoord d p a, continuous_setCoord d p a⟩
 
+/--
+@isnad1 id=integrab.0h4v.s8.ceac4daaa83b from=translated src=- shape=8df5aa93 vocab=694dce3d
+-/
 theorem integrable_comp_setCoord (d : ℕ) (p : Fin d) (a : AddCircle (1 : ℝ))
     (g : C((Fin d → AddCircle (1 : ℝ)), ℂ)) : Integrable (fun θ => g (setCoord d p a θ)) (P d) :=
   integrable_continuousMap d (preSet d p a g)
@@ -93,9 +114,15 @@ noncomputable def μE (d : ℕ) (p : Fin d) (q : ℕ) : C((Fin d → AddCircle (
               (norm_add_le _ _).trans (add_le_add (g.norm_coe_le_norm _) (g.norm_coe_le_norm _)))
         _ = 2 * ‖g‖ := by rw [probReal_univ, mul_one, two_mul])
 
+/--
+@isnad1 id=eq.0h4v.s10.718118641e12 from=translated src=- shape=6e5aaf53 vocab=03d87cf5
+-/
 theorem μE_apply (d : ℕ) (p : Fin d) (q : ℕ) (g : C((Fin d → AddCircle (1 : ℝ)), ℂ)) :
     μE d p q g = ∫ θ, (g (setCoord d p 0 θ) + g (setCoord d p (halfPt q) θ)) ∂(P d) := rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.440f32308b20 from=translated src=- shape=dc7527f5 vocab=1527a6d9
+-/
 theorem neg_one_zpow_eq_pow_natAbs (k : ℤ) : (-1 : ℂ) ^ k = (-1 : ℂ) ^ k.natAbs := by
   rcases Int.natAbs_eq k with h | h
   · conv_lhs => rw [h]
@@ -104,6 +131,9 @@ theorem neg_one_zpow_eq_pow_natAbs (k : ℤ) : (-1 : ℂ) ^ k = (-1 : ℂ) ^ k.n
     rw [zpow_neg, zpow_natCast]
     exact inv_eq_of_mul_eq_one_right (by rw [← pow_add, ← two_mul, pow_mul, neg_one_sq, one_pow])
 
+/--
+@isnad1 id=eq.0h2v.s7.e3128a4251be from=translated src=- shape=c6ff0efc vocab=65c05780
+-/
 theorem fourier_halfPt (n : ℤ) (q : ℕ) : fourier n (halfPt q) = (-1 : ℂ) ^ (q * n.natAbs) := by
   rw [halfPt, fourier_coe_apply]
   have : (2 * Real.pi * Complex.I * n * (((q : ℝ) / 2 : ℝ) : ℂ) / (1 : ℝ) : ℂ) =
@@ -117,6 +147,9 @@ end TorusEdgeAux
 open scoped _root_.P2MW.S_MeasureTheory_exists_clm_torus_noAtomicMass_forall_apply_fourier_eq_prod_erase_ite_mul_one_add_neg_one_pow.TorusEdgeAux
 
 open TorusEdgeAux in
+/--
+@isnad1 id=ex.1h3v.s11.f6984fc9b9c4 from=translated src=- shape=e796e9ab vocab=842f4afb
+-/
 theorem solution
     (d : ℕ) (hd : 2 ≤ d) (p : Fin d) (q : ℕ) :
     ∃ μ : C((Fin d → AddCircle (1 : ℝ)), ℂ) →L[ℂ] ℂ,

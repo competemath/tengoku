@@ -26,22 +26,34 @@ noncomputable def dG (G : E × β → ℂ) (p : E × β) : E →L[ℝ] ℂ :=
   (fderiv ℝ G p).comp (ContinuousLinearMap.inl ℝ E β)
 
 omit [FiniteDimensional ℝ E] [FiniteDimensional ℝ β] [MeasurableSpace β] [BorelSpace β] in
+/--
+@isnad1 id=contdiff.1h3v.s8.60bcac49ce39 from=translated src=- shape=75fa7393 vocab=f57ec5f7
+-/
 theorem contDiff_dG {G : E × β → ℂ} (hG : ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) G) :
     ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) (dG G) :=
   ((contDiff_infty_iff_fderiv.1 hG).2).clm_comp contDiff_const
 
 omit [FiniteDimensional ℝ E] [FiniteDimensional ℝ β] [MeasurableSpace β] [BorelSpace β] in
+/--
+@isnad1 id=hascompa.1h3v.s7.a92ba397606a from=translated src=- shape=8387d1eb vocab=0f1208b2
+-/
 theorem hasCompactSupport_dG {G : E × β → ℂ} (hGc : HasCompactSupport G) : HasCompactSupport (dG G) := by
   have h1 : HasCompactSupport (fderiv ℝ G) := hGc.fderiv ℝ
   exact h1.comp_left (g := fun L : E × β →L[ℝ] ℂ => L.comp (ContinuousLinearMap.inl ℝ E β)) (by simp)
 
 omit [FiniteDimensional ℝ E] [FiniteDimensional ℝ β] [MeasurableSpace β] [BorelSpace β] in
+/--
+@isnad1 id=hasfderi.1h5v.s7.62c345484568 from=translated src=- shape=bc7d23bf vocab=ade5df3e
+-/
 theorem hasFDerivAt_G {G : E × β → ℂ} (hG : ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) G) (x : E) (b : β) :
     HasFDerivAt (fun x : E => G (x, b)) (dG G (x, b)) x := by
   have hd : HasFDerivAt G (fderiv ℝ G (x, b)) (x, b) :=
     (hG.differentiable (by simp)).differentiableAt.hasFDerivAt
   exact hd.comp x (hasFDerivAt_prodMk_left x b)
 
+/--
+@isnad1 id=ex.2h3v.s6.3d3889f03855 from=translated src=- shape=b05c8611 vocab=067a7abd
+-/
 theorem exists_bound {X Y : Type*} [TopologicalSpace X] [NormedAddCommGroup Y] {f : X → Y}
     (hc : Continuous f) (hs : HasCompactSupport f) : ∃ M : ℝ, 0 ≤ M ∧ ∀ x, ‖f x‖ ≤ M := by
   obtain ⟨M, hM⟩ := hs.exists_bound_of_continuous hc
@@ -49,6 +61,9 @@ theorem exists_bound {X Y : Type*} [TopologicalSpace X] [NormedAddCommGroup Y] {
 
 include hπ hh hA hμA hhA hh0 in
 
+/--
+@isnad1 id=and.8h12v.s9.c46939347b59 from=translated src=- shape=12b12c86 vocab=178f7169
+-/
 theorem integrable_smul {Y : Type} [NormedAddCommGroup Y] [NormedSpace ℝ Y] [NormedSpace ℂ Y]
     [SecondCountableTopology Y]
     {Φ : E × β → Y} (hΦc : Continuous Φ) {M : ℝ} (hM : ∀ p, ‖Φ p‖ ≤ M) (x : E) :
@@ -70,6 +85,9 @@ theorem integrable_smul {Y : Type} [NormedAddCommGroup Y] [NormedSpace ℝ Y] [N
 
 include hπ hh hA hμA hhA hh0 in
 
+/--
+@isnad1 id=hasfderi.8h10v.s9.220b270f3c98 from=translated src=- shape=1140d9a0 vocab=e3997ece
+-/
 theorem hasFDerivAt_integral {G : E × β → ℂ} (hG : ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) G)
     (hGc : HasCompactSupport G) (x₀ : E) :
     HasFDerivAt (fun x : E => ∫ a, h a * G (x, π a) ∂μ) (∫ a, h a • dG G (x₀, π a) ∂μ) x₀ := by
@@ -89,6 +107,9 @@ theorem hasFDerivAt_integral {G : E × β → ℂ} (hG : ContDiff ℝ ((⊤ : �
   exact (hasFDerivAt_G hG x (π a)).const_smul (h a)
 
 include hπ hh hA hμA hhA hh0 in
+/--
+@isnad1 id=contdiff.8h10v.s8.398893844f96 from=translated src=- shape=e9ae514c vocab=867b7b91
+-/
 theorem contDiff_nat : ∀ (n : ℕ) (G : E × β → ℂ), ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) G → HasCompactSupport G →
     ContDiff ℝ (n : WithTop ℕ∞) (fun x : E => ∫ a, h a * G (x, π a) ∂μ) := by
   intro n
@@ -120,6 +141,9 @@ theorem contDiff_nat : ∀ (n : ℕ) (G : E × β → ℂ), ContDiff ℝ ((⊤ :
 
 end L1C9
 
+/--
+@isnad1 id=and.8h9v.s8.57fbe4259340 from=translated src=- shape=b43671c2 vocab=da54f196
+-/
 theorem solution
     {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
     {β : Type} [NormedAddCommGroup β] [NormedSpace ℝ β] [FiniteDimensional ℝ β]

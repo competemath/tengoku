@@ -21,16 +21,25 @@ variable {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
   [MeasurableSpace G] [BorelSpace G]
   (T : Subgroup G) [MeasurableSpace T] [BorelSpace T]
 
+/--
+@isnad1 id=measurab.0h2v.s7.eac4338474ad from=translated src=- shape=511804b6 vocab=ee203608
+-/
 theorem measurable_subgroup_mul [SecondCountableTopology G] :
     Measurable fun p : G × T => ((p.2 : G) * p.1) := by
   have hc : Continuous fun p : G × T => ((p.2 : G) * p.1) :=
     (continuous_subtype_val.comp continuous_snd).mul continuous_fst
   exact hc.measurable
 
+/--
+@isnad1 id=measurab.1h3v.s7.56e469971cd8 from=translated src=- shape=e0da0d7b vocab=2a3c0341
+-/
 theorem measurable_comp_subgroup_mul [SecondCountableTopology G] {w : G → ℝ} (hw : Measurable w) :
     Measurable fun p : G × T => w ((p.2 : G) * p.1) :=
   hw.comp (measurable_subgroup_mul T)
 
+/--
+@isnad1 id=measurab.1h4v.s7.e5c577b4a2df from=translated src=- shape=070fb997 vocab=e7ba8a7f
+-/
 theorem measurable_fibre {w : G → ℝ} (hw : Measurable w) (x : G) :
     Measurable fun t : T => w ((t : G) * x) :=
   hw.comp ((continuous_subtype_val.mul continuous_const).measurable)
@@ -44,6 +53,9 @@ variable {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [Loca
   (T : Subgroup G) [MeasurableSpace T] [BorelSpace T]
   (μ : Measure G) (τ : Measure T)
 
+/--
+@isnad1 id=eq.3h5v.s8.2616db0aeb43 from=translated src=- shape=c813bbc9 vocab=2eb240d5
+-/
 theorem lintegral_fibre_eq_one {w : G → ℝ} (hw0 : ∀ x, 0 ≤ w x) (hw : Measurable w) {x : G}
     (h : ∫ t : T, w ((t : G) * x) ∂τ = 1) :
     ∫⁻ t : T, ENNReal.ofReal (w ((t : G) * x)) ∂τ = 1 := by
@@ -54,13 +66,22 @@ theorem lintegral_fibre_eq_one {w : G → ℝ} (hw0 : ∀ x, 0 ≤ w x) (hw : Me
 variable [μ.IsHaarMeasure] [τ.IsHaarMeasure] [τ.IsInvInvariant] (hT : IsClosed (T : Set G))
 include hT
 
+/--
+@isnad1 id=sigmacom.1h2v.s7.2486e32b7d4b from=translated src=- shape=b1b5f180 vocab=fed070fc
+-/
 theorem sigmaCompactSpace_subgroup : SigmaCompactSpace T :=
   hT.isClosedEmbedding_subtypeVal.sigmaCompactSpace
 
+/--
+@isnad1 id=sfinite.1h3v.s7.083d651d0aed from=translated src=- shape=62332dce vocab=13d47b8d
+-/
 theorem sFinite_tau : SFinite τ := by
   haveI := sigmaCompactSpace_subgroup T hT
   infer_instance
 
+/--
+@isnad1 id=lt.8h7v.s9.965e2a5d34e3 from=translated src=- shape=eb8c5556 vocab=c972bf5f
+-/
 theorem lintegral_enorm_mul_lt_top (F : G → ℂ) (hFm : Measurable F) {C : ℝ} (hFb : ∀ x, ‖F x‖ ≤ C)
     (hFT : ∀ (t : T) (x : G), F ((t : G) * x) = F x)
     (w : G → ℝ) (hw0 : ∀ x, 0 ≤ w x) (hwm : Measurable w) (hwc : HasCompactSupport w)
@@ -177,6 +198,9 @@ theorem lintegral_enorm_mul_lt_top (F : G → ℂ) (hFm : Measurable F) {C : ℝ
 
 omit [μ.IsHaarMeasure] [τ.IsHaarMeasure] [τ.IsInvInvariant] hT in
 
+/--
+@isnad1 id=eq.2h6v.s7.64feb8ffe1a4 from=translated src=- shape=f11429e9 vocab=3f999f54
+-/
 theorem enorm_integrand (F : G → ℂ) (w₁ w₂ : G → ℝ) (hw₁ : ∀ x, 0 ≤ w₁ x) (hw₂ : ∀ x, 0 ≤ w₂ x)
     (x y : G) :
     ‖F x * (w₁ x : ℂ) * (w₂ y : ℂ)‖ₑ = ‖F x‖ₑ * ENNReal.ofReal (w₁ x) * ENNReal.ofReal (w₂ y) := by
@@ -187,6 +211,9 @@ theorem enorm_integrand (F : G → ℂ) (w₁ w₂ : G → ℝ) (hw₁ : ∀ x, 
   rw [enorm_mul, enorm_mul, h1, h2]
 
 omit [μ.IsHaarMeasure] [τ.IsHaarMeasure] [τ.IsInvInvariant] hT in
+/--
+@isnad1 id=measurab.3h5v.s8.6098cd953aa0 from=translated src=- shape=ac26c9ee vocab=b4186e85
+-/
 theorem measurable_integrand (F : G → ℂ) (hFm : Measurable F) (w₁ w₂ : G → ℝ)
     (hw₁ : Measurable w₁) (hw₂ : Measurable w₂) :
     Measurable (Function.uncurry fun (x : G) (t : T) =>
@@ -195,6 +222,9 @@ theorem measurable_integrand (F : G → ℂ) (hFm : Measurable F) (w₁ w₂ : G
     (Complex.measurable_ofReal.comp (hw₁.comp measurable_fst))).mul
     (Complex.measurable_ofReal.comp (measurable_comp_subgroup_mul T hw₂))
 
+/--
+@isnad1 id=integrab.8h7v.s9.079a49dd4be6 from=translated src=- shape=58d9ac5e vocab=96649b92
+-/
 theorem integrable_integrand (F : G → ℂ) (hFm : Measurable F)
     (w₁ w₂ : G → ℝ) (hw₁0 : ∀ x, 0 ≤ w₁ x) (hw₁m : Measurable w₁)
     (hfin : ∫⁻ x, ‖F x‖ₑ * ENNReal.ofReal (w₁ x) ∂μ < ∞)
@@ -221,6 +251,9 @@ theorem integrable_integrand (F : G → ℂ) (hFm : Measurable F)
         · rw [lintegral_fibre_eq_one T τ hw₂0 hw₂m (hw₂1 x hF), mul_one]
     _ < ∞ := hfin
 
+/--
+@isnad1 id=eq.8h7v.s9.0b2d7f7a59e0 from=translated src=- shape=66e28c81 vocab=3b1151cf
+-/
 theorem integral_eq_integral_integral (F : G → ℂ) (hFm : Measurable F)
     (w₁ w₂ : G → ℝ) (hw₁0 : ∀ x, 0 ≤ w₁ x) (hw₁m : Measurable w₁)
     (hfin : ∫⁻ x, ‖F x‖ₑ * ENNReal.ofReal (w₁ x) ∂μ < ∞)
@@ -258,6 +291,9 @@ variable {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [Loca
   [μ.IsHaarMeasure] [τ.IsHaarMeasure] [τ.IsInvInvariant] (hT : IsClosed (T : Set G))
 include hT
 
+/--
+@isnad1 id=integrab.8h7v.s9.4574cf55560d from=translated src=- shape=189fa8c1 vocab=96649b92
+-/
 theorem integrable_integrand₂ (F : G → ℂ) (hFm : Measurable F)
     (w₁ w₂ : G → ℝ) (hw₁0 : ∀ x, 0 ≤ w₁ x) (hw₁m : Measurable w₁)
     (hfin : ∫⁻ x, ‖F x‖ₑ * ENNReal.ofReal (w₁ x) ∂μ < ∞)
@@ -303,6 +339,9 @@ theorem integrable_integrand₂ (F : G → ℂ) (hFm : Measurable F)
         · rw [lintegral_fibre_eq_one T τ hw₂0 hw₂m (hw₂1 x hF), mul_one]
     _ < ∞ := hfin
 
+/--
+@isnad1 id=eq.8h7v.s9.04b10a61cda7 from=translated src=- shape=0165ac97 vocab=3b1151cf
+-/
 theorem unfold_steps (F : G → ℂ) (hFm : Measurable F)
     (wS W : G → ℝ) (hwS0 : ∀ x, 0 ≤ wS x) (hwSm : Measurable wS)
     (hfin : ∫⁻ x, ‖F x‖ₑ * ENNReal.ofReal (wS x) ∂μ < ∞)
@@ -340,6 +379,9 @@ section Fibre
 variable {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [LocallyCompactSpace G]
   [SecondCountableTopology G] [MeasurableSpace G] [BorelSpace G]
 
+/--
+@isnad1 id=eq.14h9v.s10.782189d97f67 from=translated src=- shape=12df211b vocab=3b332e71
+-/
 theorem fibre_eq
     (T : Subgroup G) (hT : IsClosed (T : Set G)) [MeasurableSpace T] [BorelSpace T]
     (S : Subgroup G) (hS : IsClosed (S : Set G)) (hST : S ≤ T) [MeasurableSpace S] [BorelSpace S]
@@ -419,6 +461,9 @@ end Fibre
 end P2mUnfoldE
 
 namespace P2mUnfoldE
+/--
+@isnad1 id=eq.18h10v.s10.d0aef10642d0 from=translated src=- shape=24e72a20 vocab=3b332e71
+-/
 theorem main
     {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [LocallyCompactSpace G]
     [SecondCountableTopology G] [MeasurableSpace G] [BorelSpace G]
@@ -445,6 +490,9 @@ theorem main
 
 end P2mUnfoldE
 
+/--
+@isnad1 id=eq.18h10v.s10.d0aef10642d0 from=translated src=- shape=24e72a20 vocab=3b332e71
+-/
 theorem solution
     {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [LocallyCompactSpace G]
     [SecondCountableTopology G] [MeasurableSpace G] [BorelSpace G]

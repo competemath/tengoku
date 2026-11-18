@@ -11,6 +11,9 @@ set_option autoImplicit false
 open MeasureTheory
 open scoped FourierTransform
 
+/--
+@isnad1 id=eventual.3h4v.s7.598b2eb5e31c from=translated src=- shape=83a4250e vocab=35a00f84
+-/
 theorem VectorFourier.ae_eq_zero_of_integrable_of_forall_fourierIntegral_eq_zero
     {V : Type*} [NormedAddCommGroup V] [NormedSpace ℝ V] [FiniteDimensional ℝ V]
     [MeasurableSpace V] [BorelSpace V]

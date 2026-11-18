@@ -42,6 +42,9 @@ section Unique
 
 variable {P₀ B κ : Type*} [CommRing P₀] [CommRing B] [Field κ] [Algebra P₀ B]
 
+/--
+@isnad1 id=eq.5h7v.s9.5952f5dc6594 from=translated src=- shape=620b2aba vocab=717d7cec
+-/
 theorem prime_over_eq_ker [Algebra.IsIntegral P₀ B] (π : B →+* κ) (𝔭₀ : Ideal P₀)
     (hK : (RingHom.ker π).comap (algebraMap P₀ B) = 𝔭₀)
     (R : Subring B) (halg : ∀ p : P₀, algebraMap P₀ B p ∈ R)
@@ -96,6 +99,9 @@ theorem prime_over_eq_ker [Algebra.IsIntegral P₀ B] (π : B →+* κ) (𝔭₀
   rw [hP, hK] at hlt
   exact lt_irrefl _ hlt
 
+/--
+@isnad1 id=le.2h5v.s9.8480bd87121d from=translated src=- shape=1ceabe8d vocab=33011586
+-/
 theorem ker_le_map [Algebra.HasGoingDown P₀ B] (π : B →+* κ) (𝔭₀ : Ideal P₀) [𝔭₀.IsPrime]
     (hunique : ∀ P : Ideal B, P.IsPrime → P.comap (algebraMap P₀ B) = 𝔭₀ → P = RingHom.ker π)
     (hrad : ∀ (b : B) (n : ℕ), 0 < n → b ^ n ∈ 𝔭₀.map (algebraMap P₀ B) →
@@ -129,6 +135,9 @@ end CharpS10bB
 
 end
 
+/--
+@isnad1 id=eq.5h6v.s10.6e21ddc1d2c4 from=translated src=- shape=abf047f8 vocab=35966917
+-/
 theorem solution
     {P₀ : Type*} [CommRing P₀] {B : Type*} [CommRing B] [Algebra P₀ B]
     [Algebra.IsIntegral P₀ B] [Algebra.HasGoingDown P₀ B]

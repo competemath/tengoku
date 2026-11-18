@@ -87,20 +87,38 @@ open AnnulusNF AnnulusStepA
 
 variable {W : Type u} [CommRing W]
 
+/--
+@isnad1 id=eq.0h3v.s7.e7124ba40cee from=translated src=- shape=27129757 vocab=c933f4b8
+-/
 @[scoped simp] theorem nfCoeff_negSucc (ab : PowerSeries W × PowerSeries W) (j : ℕ) :
     nfCoeff ab (Int.negSucc j) = PowerSeries.coeff (j + 1) ab.2 := rfl
+/--
+@isnad1 id=eq.0h3v.s7.8e4884a50e49 from=translated src=- shape=caef8e0a vocab=17dc28c5
+-/
 @[scoped simp] theorem nfCoeff_natCast (ab : PowerSeries W × PowerSeries W) (i : ℕ) :
     nfCoeff ab (i : ℤ) = PowerSeries.coeff i ab.1 := rfl
 omit [CommRing W] in
+/--
+@isnad1 id=eq.0h1v.s5.317cd36f8ff1 from=translated src=- shape=f4fd4301 vocab=affde172
+-/
 @[scoped simp] theorem nfExponent_negSucc (j : ℕ) : nfExponent (Int.negSucc j) = Finsupp.single 1 (j + 1) := rfl
 omit [CommRing W] in
+/--
+@isnad1 id=eq.0h1v.s5.444c3287447f from=translated src=- shape=1d30f6b6 vocab=10583364
+-/
 @[scoped simp] theorem nfExponent_natCast (i : ℕ) : nfExponent (i : ℤ) = Finsupp.single 0 i := rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.355f16b05c21 from=translated src=- shape=15a28eac vocab=0019873e
+-/
 theorem coeff_inU_add_inV (a b : PowerSeries W) (d : Fin 2 →₀ ℕ) :
     MvPowerSeries.coeff d (inU a + inV b) =
       (if d 1 = 0 then PowerSeries.coeff (d 0) a else 0) + (if d 0 = 0 then PowerSeries.coeff (d 1) b else 0) := by
   rw [map_add, coeff_inU, coeff_inV]
 
+/--
+@isnad1 id=eq.1h3v.s8.aaff859067e9 from=translated src=- shape=2db4564d vocab=2c23582e
+-/
 theorem coeff_nfExponent (ab : PowerSeries W × PowerSeries W) (hb : PowerSeries.constantCoeff ab.2 = 0) (n : ℤ) :
     MvPowerSeries.coeff (nfExponent n) (inU ab.1 + inV ab.2) = nfCoeff ab n := by
   cases n with
@@ -114,6 +132,9 @@ theorem coeff_nfExponent (ab : PowerSeries W × PowerSeries W) (hb : PowerSeries
     rw [nfExponent_negSucc, nfCoeff_negSucc, coeff_inU_add_inV]
     simp [Finsupp.single_apply]
 
+/--
+@isnad1 id=eq.2h5v.s7.65f409116680 from=translated src=- shape=1daa7f33 vocab=bee27d1a
+-/
 theorem repGaussOrder_normalForm_eq_iInf_termOrder
     (v : W → ℕ∞) (hv0 : v 0 = ⊤) (E t : ℕ) (ab : PowerSeries W × PowerSeries W)
     (hb : PowerSeries.constantCoeff ab.2 = 0) :
@@ -148,6 +169,9 @@ variable [IsDomain W] [IsDiscreteValuationRing W]
 noncomputable abbrev vq (W : Type u) [CommRing W] [IsDomain W] [IsDiscreteValuationRing W] (q : ℕ) : W → ℕ∞ :=
   fun w => (q : ℕ∞) * IsDiscreteValuationRing.addVal W w
 
+/--
+@isnad1 id=eq.1h2v.s5.f64fc8733d7c from=translated src=- shape=3c251591 vocab=c34322e3
+-/
 theorem vq_zero (q : ℕ) (hq : 1 ≤ q) : vq W q 0 = ⊤ := by
   simp only [vq, AddValuation.map_zero]
   exact WithTop.mul_top (Nat.cast_ne_zero.mpr (by omega))
@@ -168,6 +192,9 @@ open scoped _root_.P2MW.S_ModularCurve_UVCrossingModel_repGaussOrder_normalForm_
 
 open ModularCurve ModularCurve.UVCrossingModel IsLocalRing
 
+/--
+@isnad1 id=eq.2h5v.s7.65f409116680 from=translated src=- shape=1daa7f33 vocab=bee27d1a
+-/
 theorem solution
     {W : Type u} [CommRing W] (v : W → ℕ∞) (hv0 : v 0 = ⊤) (E t : ℕ) (ab : PowerSeries W × PowerSeries W)
     (hb : PowerSeries.constantCoeff ab.2 = 0) :

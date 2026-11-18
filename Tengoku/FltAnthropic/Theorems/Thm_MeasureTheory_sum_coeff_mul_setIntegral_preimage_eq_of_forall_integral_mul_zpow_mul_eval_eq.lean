@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open MeasureTheory
 
+/--
+@isnad1 id=eq.5h10v.s8.48d0e66c07be from=translated src=- shape=56d4b357 vocab=1ed8555d
+-/
 theorem MeasureTheory.sum_coeff_mul_setIntegral_preimage_eq_of_forall_integral_mul_zpow_mul_eval_eq
     {T : Type*} [MeasurableSpace T] (μ : Measure T) (d : T → ℤ) (hd : Measurable d)
     (g : T → ℂ) {a b : ℝ} (ha : 0 ≤ a) (hab : a < b)

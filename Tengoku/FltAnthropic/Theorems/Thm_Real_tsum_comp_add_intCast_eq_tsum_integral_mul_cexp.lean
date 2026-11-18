@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open MeasureTheory TopologicalSpace
 
+/--
+@isnad1 id=eq.2h3v.s10.efaac8a1c780 from=translated src=- shape=51aa7c0f vocab=21261e72
+-/
 theorem Real.tsum_comp_add_intCast_eq_tsum_integral_mul_cexp
     {d : Type*} [Fintype d] (f : C(d → ℝ, ℂ))
     (h_norm : ∀ K : Compacts (d → ℝ),

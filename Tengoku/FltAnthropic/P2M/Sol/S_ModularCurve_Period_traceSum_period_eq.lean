@@ -14,6 +14,9 @@ open scoped MatrixGroups
 
 open ModularCurve.Period
 
+/--
+@isnad1 id=eq.1h4v.s11.8d2ad92acd5f from=translated src=- shape=5b378bbc vocab=1c485861
+-/
 theorem solution :
     ∀ {Γ Δ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)}
       {F : UpperHalfPlane → ℂ} [inst : Fintype (↥Γ ⧸ Δ.subgroupOf Γ)]

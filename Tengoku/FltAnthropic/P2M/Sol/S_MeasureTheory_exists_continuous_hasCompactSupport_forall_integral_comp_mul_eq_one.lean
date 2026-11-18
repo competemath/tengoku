@@ -16,6 +16,9 @@ noncomputable def fibreIntegral [MeasurableSpace H] (τ : Measure H) (ι : H →
   ∫ h, g (ι h * x) ∂τ
 
 omit [TopologicalSpace G] [TopologicalSpace H] in
+/--
+@isnad1 id=eq.0h7v.s7.f8d5e13952bd from=translated src=- shape=f24603ee vocab=dc82c858
+-/
 theorem fibreIntegral_mul_left [MeasurableSpace H] [MeasurableMul H] (τ : Measure H)
     [τ.IsMulRightInvariant] (ι : H →* G) (g : G → ℝ) (h₀ : H) (x : G) :
     fibreIntegral τ ι g (ι h₀ * x) = fibreIntegral τ ι g x := by
@@ -26,10 +29,16 @@ theorem fibreIntegral_mul_left [MeasurableSpace H] [MeasurableMul H] (τ : Measu
   rw [hfun]
   exact integral_mul_right_eq_self (fun s => g (ι s * x)) h₀
 
+/--
+@isnad1 id=continuo.2h5v.s7.027c67a34327 from=translated src=- shape=17f57f9c vocab=15dab7d2
+-/
 theorem continuous_shifted [ContinuousMul G] {ι : H →* G} (hι : Continuous ι) {g : G → ℝ}
     (hg : Continuous g) (x : G) : Continuous fun h => g (ι h * x) :=
   hg.comp (hι.mul continuous_const)
 
+/--
+@isnad1 id=hascompa.2h5v.s7.68be5476a669 from=translated src=- shape=399f7320 vocab=6c05ecd6
+-/
 theorem hasCompactSupport_shifted [ContinuousMul G] [T2Space G] [T2Space H] {ι : H →* G} (hι : IsClosedEmbedding ι)
     {g : G → ℝ} (hgc : HasCompactSupport g) (x : G) : HasCompactSupport fun h => g (ι h * x) := by
   refine HasCompactSupport.intro
@@ -37,6 +46,9 @@ theorem hasCompactSupport_shifted [ContinuousMul G] [T2Space G] [T2Space H] {ι 
   by_contra h
   exact ht ⟨ι t * x, subset_tsupport g h, by simp⟩
 
+/--
+@isnad1 id=continuo.3h5v.s7.45dda4dc858b from=translated src=- shape=a3da589f vocab=260e82ab
+-/
 theorem continuous_fibreIntegral [IsTopologicalGroup G] [LocallyCompactSpace G] [T2Space G]
     [MeasurableSpace H] [BorelSpace H] (τ : Measure H) [IsFiniteMeasureOnCompacts τ]
     {ι : H →* G} (hι : IsClosedEmbedding ι) {g : G → ℝ} (hg : Continuous g) (hgc : HasCompactSupport g) :
@@ -53,6 +65,9 @@ theorem continuous_fibreIntegral [IsTopologicalGroup G] [LocallyCompactSpace G] 
       exact hh ⟨ι h * p, subset_tsupport g hne, p⁻¹, Set.inv_mem_inv.mpr hp, by simp⟩
   exact hcont.continuousAt hNx₀
 
+/--
+@isnad1 id=lt.5h6v.s8.17c2dc5283ce from=translated src=- shape=118dea84 vocab=6bbacbb5
+-/
 theorem fibreIntegral_pos [ContinuousMul G] [T2Space G] [T2Space H] [MeasurableSpace H] [BorelSpace H]
     (τ : Measure H) [τ.IsOpenPosMeasure] [IsFiniteMeasureOnCompacts τ] {ι : H →* G} (hι : IsClosedEmbedding ι)
     {g : G → ℝ} (hg : Continuous g) (hgc : HasCompactSupport g) (hg0 : ∀ y, 0 ≤ g y) {x : G}
@@ -69,6 +84,9 @@ set_option autoImplicit false
 
 open MeasureTheory
 
+/--
+@isnad1 id=ex.2h5v.s8.f883cc75cefa from=translated src=- shape=4a33f5ba vocab=e10fb155
+-/
 theorem solution
     {G H : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [LocallyCompactSpace G] [T2Space G]
     [Group H] [TopologicalSpace H] [IsTopologicalGroup H] [LocallyCompactSpace H] [T2Space H]

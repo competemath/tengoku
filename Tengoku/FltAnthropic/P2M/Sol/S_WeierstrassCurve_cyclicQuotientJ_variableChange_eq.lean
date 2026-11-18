@@ -19,25 +19,43 @@ noncomputable def vcInvHom (W : WeierstrassCurve L) : W.toAffine.Point →+ (C �
   map_zero' := rfl
   map_add' := Point.vcInvFun_add C W
 
+/--
+@isnad1 id=eq.0h4v.s8.4997ec19574d from=translated src=- shape=4735f3e8 vocab=d373206b
+-/
 theorem vcFun_vcInvHom (W : WeierstrassCurve L) (P : W.toAffine.Point) :
     Point.vcFun C W (vcInvHom C W P) = P := Point.vcFun_rightInverse P
 
+/--
+@isnad1 id=eq.0h4v.s8.e70e9e7c96d9 from=translated src=- shape=0b0e1831 vocab=d373206b
+-/
 theorem vcInvHom_vcFun (W : WeierstrassCurve L) (P : (C • W).toAffine.Point) :
     vcInvHom C W (Point.vcFun C W P) = P := Point.vcFun_leftInverse P
 
+/--
+@isnad1 id=injectiv.0h3v.s8.65a0fb34978b from=translated src=- shape=054fa54b vocab=540cd62f
+-/
 theorem vcInvHom_injective (W : WeierstrassCurve L) : Function.Injective (vcInvHom C W) :=
   Function.LeftInverse.injective (g := Point.vcFun C W) (vcFun_vcInvHom C W)
 
+/--
+@isnad1 id=iff.0h4v.s8.bc7d3dee69c6 from=translated src=- shape=83914c05 vocab=9775b045
+-/
 theorem vcInvHom_ne_zero (W : WeierstrassCurve L) {P : W.toAffine.Point} :
     vcInvHom C W P ≠ 0 ↔ P ≠ 0 := by
   rw [Ne, Ne, ← map_zero (vcInvHom C W), (vcInvHom_injective C W).eq_iff]
 
+/--
+@isnad1 id=eq.1h4v.s8.3f154843aaa1 from=translated src=- shape=1703f598 vocab=58873802
+-/
 theorem fst_coordsOrZero_vcInvHom (W : WeierstrassCurve L) {P : W.toAffine.Point} (hP : P ≠ 0) :
     (vcInvHom C W P).coordsOrZero.1 = vcXInv C P.coordsOrZero.1 := by
   rcases P with _ | ⟨x, y, h⟩
   · exact absurd rfl hP
   · rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.d8acee053bba from=translated src=- shape=5e1659d3 vocab=593fb22c
+-/
 theorem kernelXSet_vc (W : WeierstrassCurve L) (H : AddSubgroup W.toAffine.Point) (ℓ : ℕ) :
     (C • W).kernelXSet (H.map (vcInvHom C W)) ℓ = vcXInv C '' W.kernelXSet H ℓ := by
   ext x'
@@ -53,6 +71,9 @@ theorem kernelXSet_vc (W : WeierstrassCurve L) (H : AddSubgroup W.toAffine.Point
       fst_coordsOrZero_vcInvHom C W hne⟩
     rw [← map_nsmul, hsm, map_zero]
 
+/--
+@isnad1 id=eq.0h5v.s7.51531fd1f0d6 from=translated src=- shape=5e1659d3 vocab=b3ad85d4
+-/
 theorem coKernelXSet_vc (W : WeierstrassCurve L) (H : AddSubgroup W.toAffine.Point) (ℓ : ℕ) :
     (C • W).coKernelXSet (H.map (vcInvHom C W)) ℓ = vcXInv C '' W.coKernelXSet H ℓ := by
   ext x'
@@ -69,35 +90,53 @@ theorem coKernelXSet_vc (W : WeierstrassCurve L) (H : AddSubgroup W.toAffine.Poi
     rw [map_nsmul, h, map_zero]
 
 omit [DecidableEq L] in
+/--
+@isnad1 id=eq.0h4v.s7.49eda46186bf from=translated src=- shape=8c92602a vocab=1c05dc0f
+-/
 theorem xVeluT_vc (W : WeierstrassCurve L) (x : L) :
     (C • W).xVeluT (vcXInv C x) = ((C.u⁻¹ : Lˣ) : L) ^ 4 * W.xVeluT x := by
   simp only [xVeluT, vcXInv, variableChange_b₂, variableChange_b₄]
   ring
 
 omit [DecidableEq L] in
+/--
+@isnad1 id=eq.0h4v.s7.6f155a34799f from=translated src=- shape=8c92602a vocab=f724afde
+-/
 theorem xVeluU_vc (W : WeierstrassCurve L) (x : L) :
     (C • W).xVeluU (vcXInv C x) = ((C.u⁻¹ : Lˣ) : L) ^ 6 * W.xVeluU x := by
   simp only [xVeluU, vcXInv, variableChange_b₂, variableChange_b₄, variableChange_b₆]
   ring
 
 omit [DecidableEq L] in
+/--
+@isnad1 id=eq.0h4v.s7.08b03370de76 from=translated src=- shape=81d3d4d9 vocab=ed152bb4
+-/
 theorem xVeluW_vc (W : WeierstrassCurve L) (x : L) :
     (C • W).xVeluW (vcXInv C x) = ((C.u⁻¹ : Lˣ) : L) ^ 6 * (W.xVeluW x - C.r * W.xVeluT x) := by
   rw [xVeluW, xVeluW, xVeluU_vc, xVeluT_vc, vcXInv]
   ring
 
 omit [DecidableEq L] in
+/--
+@isnad1 id=eq.1h3v.s6.78bdeb8680bb from=translated src=- shape=6bc0d6f7 vocab=8b65eb04
+-/
 theorem xVeluG_eq (W : WeierstrassCurve L) (h2 : (2 : L) ≠ 0) (x : L) : W.xVeluG x = W.xVeluT x / 2 := by
   rw [xVeluG, twoTorsionY, veluGx, xVeluT, b₂, b₄]
   field_simp
   ring
 
 omit [DecidableEq L] in
+/--
+@isnad1 id=eq.1h4v.s7.cddc28e6a5fa from=translated src=- shape=c7d36f48 vocab=976660ab
+-/
 theorem xVeluG_vc (W : WeierstrassCurve L) (h2 : (2 : L) ≠ 0) (x : L) :
     (C • W).xVeluG (vcXInv C x) = ((C.u⁻¹ : Lˣ) : L) ^ 4 * W.xVeluG x := by
   rw [xVeluG_eq (C • W) h2, xVeluG_eq W h2, xVeluT_vc, mul_div_assoc]
 
 omit [DecidableEq L] in
+/--
+@isnad1 id=eq.0h4v.s5.ae258f936ff2 from=translated src=- shape=79a9884c vocab=3a707d8b
+-/
 theorem absSum_image_vc (X : Set L) (g : L → L) :
     absSum (vcXInv C '' X) g = absSum X (fun x => g (vcXInv C x)) := by
   have hinj : Set.InjOn (vcXInv C) X := fun a _ b _ h => by
@@ -108,6 +147,9 @@ theorem absSum_image_vc (X : Set L) (g : L → L) :
     rw [absSum, ite_eq_right hX', absSum, ite_eq_right hX]
 
 omit [DecidableEq L] in
+/--
+@isnad1 id=eq.0h4v.s6.64b7feb2e1de from=translated src=- shape=9ae25565 vocab=f7f203ca
+-/
 theorem absSum_mul (X : Set L) (c : L) (g : L → L) :
     absSum X (fun x => c * g x) = c * absSum X g := by
   by_cases hX : X.Finite
@@ -115,6 +157,9 @@ theorem absSum_mul (X : Set L) (c : L) (g : L → L) :
   · rw [absSum_of_infinite hX, absSum_of_infinite hX, mul_zero]
 
 omit [DecidableEq L] in
+/--
+@isnad1 id=eq.0h4v.s6.e0ceb4dd18fa from=translated src=- shape=31c87ca5 vocab=319599e5
+-/
 theorem absSum_sub (X : Set L) (g h : L → L) :
     absSum X (fun x => g x - h x) = absSum X g - absSum X h := by
   by_cases hX : X.Finite
@@ -122,10 +167,16 @@ theorem absSum_sub (X : Set L) (g h : L → L) :
   · rw [absSum_of_infinite hX, absSum_of_infinite hX, absSum_of_infinite hX, sub_zero]
 
 omit [DecidableEq L] in
+/--
+@isnad1 id=eq.1h4v.s5.4632d2107cf4 from=translated src=- shape=cb0f234b vocab=1ed430dc
+-/
 theorem absSum_congr (X : Set L) {g h : L → L} (hgh : ∀ x, g x = h x) : absSum X g = absSum X h := by
   rw [show g = h from funext hgh]
 
 omit [DecidableEq L] in
+/--
+@isnad1 id=eq.0h4v.s6.e4c4f6d4403c from=translated src=- shape=41a3ffa4 vocab=cbc7119f
+-/
 theorem xVeluCurve_vc (W : WeierstrassCurve L) (X : Set L) :
     (C • W).xVeluCurve (vcXInv C '' X) = C • (W.xVeluCurve X) := by
   have hT : absSum (vcXInv C '' X) (C • W).xVeluT = ((C.u⁻¹ : Lˣ) : L) ^ 4 * absSum X W.xVeluT := by
@@ -145,6 +196,9 @@ theorem xVeluCurve_vc (W : WeierstrassCurve L) (X : Set L) :
     ring
 
 omit [DecidableEq L] in
+/--
+@isnad1 id=eq.1h4v.s6.38d082d0d217 from=translated src=- shape=ce77e172 vocab=c904abee
+-/
 theorem twoVeluCurve_vc (W : WeierstrassCurve L) (h2 : (2 : L) ≠ 0) (X : Set L) :
     (C • W).twoVeluCurve (vcXInv C '' X) = C • (W.twoVeluCurve X) := by
   have hG : absSum (vcXInv C '' X) (C • W).xVeluG = ((C.u⁻¹ : Lˣ) : L) ^ 4 * absSum X W.xVeluG := by
@@ -167,6 +221,9 @@ theorem twoVeluCurve_vc (W : WeierstrassCurve L) (h2 : (2 : L) ≠ 0) (X : Set L
     ring
 
 omit [DecidableEq L] in
+/--
+@isnad1 id=eq.0h5v.s6.02263631c780 from=translated src=- shape=d27bd4f6 vocab=d1560ebc
+-/
 theorem xVeluX_vc (W : WeierstrassCurve L) (X : Set L) (x : L) :
     (C • W).xVeluX (vcXInv C '' X) (vcXInv C x) = vcXInv C (W.xVeluX X x) := by
   rw [xVeluX, xVeluX, absSum_image_vc]
@@ -189,6 +246,9 @@ theorem xVeluX_vc (W : WeierstrassCurve L) (X : Set L) (x : L) :
   ring
 
 omit [DecidableEq L] in
+/--
+@isnad1 id=eq.1h5v.s6.a3994ff9f196 from=translated src=- shape=0e588cf9 vocab=d5cc3603
+-/
 theorem twoVeluX_vc (W : WeierstrassCurve L) (h2 : (2 : L) ≠ 0) (X : Set L) (x : L) :
     (C • W).twoVeluX (vcXInv C '' X) (vcXInv C x) = vcXInv C (W.twoVeluX X x) := by
   rw [twoVeluX, twoVeluX, absSum_image_vc]
@@ -209,6 +269,9 @@ theorem twoVeluX_vc (W : WeierstrassCurve L) (h2 : (2 : L) ≠ 0) (X : Set L) (x
   simp only [vcXInv]
   ring
 
+/--
+@isnad1 id=eq.1h5v.s8.dbe6ab47a189 from=translated src=- shape=6343d95b vocab=6c6a723b
+-/
 theorem stepCurve_vc (W : WeierstrassCurve L) (H : AddSubgroup W.toAffine.Point) (ℓ : ℕ)
     (h2 : ℓ = 2 → (2 : L) ≠ 0) :
     (C • W).stepCurve (H.map (vcInvHom C W)) ℓ = C • (W.stepCurve H ℓ) := by
@@ -217,6 +280,9 @@ theorem stepCurve_vc (W : WeierstrassCurve L) (H : AddSubgroup W.toAffine.Point)
     rw [stepCurve_two, stepCurve_two, kernelXSet_vc, twoVeluCurve_vc C W (h2 rfl)]
   · rw [stepCurve_of_ne_two _ _ hℓ, stepCurve_of_ne_two _ _ hℓ, kernelXSet_vc, xVeluCurve_vc]
 
+/--
+@isnad1 id=eq.1h6v.s8.041ecf508a6c from=translated src=- shape=4e6e6039 vocab=94038e0c
+-/
 theorem stepX_vc (W : WeierstrassCurve L) (H : AddSubgroup W.toAffine.Point) (ℓ : ℕ)
     (h2 : ℓ = 2 → (2 : L) ≠ 0) (x : L) :
     (C • W).stepX (H.map (vcInvHom C W)) ℓ (vcXInv C x) = vcXInv C (W.stepX H ℓ x) := by
@@ -225,6 +291,9 @@ theorem stepX_vc (W : WeierstrassCurve L) (H : AddSubgroup W.toAffine.Point) (�
     rw [stepX_two, stepX_two, kernelXSet_vc, twoVeluX_vc C W (h2 rfl)]
   · rw [stepX_of_ne_two _ _ hℓ, stepX_of_ne_two _ _ hℓ, kernelXSet_vc, xVeluX_vc]
 
+/--
+@isnad1 id=eq.0h4v.s8.c6c355de3eb4 from=translated src=- shape=251b4701 vocab=77aa5c39
+-/
 theorem subgroupOfX_vc (V : WeierstrassCurve L) (Y : Set L) :
     subgroupOfX (C • V) (vcXInv C '' Y) = (subgroupOfX V Y).map (vcInvHom C V) := by
   rw [subgroupOfX, subgroupOfX, AddMonoidHom.map_closure]
@@ -250,11 +319,17 @@ theorem subgroupOfX_vc (V : WeierstrassCurve L) (Y : Set L) :
 noncomputable def vcState (s : CQJState L) : CQJState L :=
   ⟨⟨C • s.1.1, s.1.2.map (vcInvHom C s.1.1)⟩, s.2⟩
 
+/--
+@isnad1 id=eq.2h5v.s7.0fa39f3cc36c from=translated src=- shape=19721559 vocab=a91756ad
+-/
 theorem sigma_eq_of_eq {V₁ V₂ : WeierstrassCurve L} (h : V₁ = V₂) {Y₁ Y₂ : Set L} (hY : Y₁ = Y₂) :
     (⟨V₁, subgroupOfX V₁ Y₁⟩ : Σ V : WeierstrassCurve L, AddSubgroup V.toAffine.Point) =
       ⟨V₂, subgroupOfX V₂ Y₂⟩ := by
   subst h hY; rfl
 
+/--
+@isnad1 id=eq.1h3v.s6.12da008bd434 from=translated src=- shape=58cf254d vocab=7ea69bc8
+-/
 theorem cqjStep_vcState (s : CQJState L) (h2 : s.2.minFac = 2 → (2 : L) ≠ 0) :
     cqjStep (vcState C s) = vcState C (cqjStep s) := by
   obtain ⟨⟨V, H⟩, n⟩ := s
@@ -267,9 +342,15 @@ theorem cqjStep_vcState (s : CQJState L) (h2 : s.2.minFac = 2 → (2 : L) ≠ 0)
   rw [coKernelXSet_vc, Set.image_image, Set.image_image]
   exact Set.image_congr fun x _ => stepX_vc C V H _ h2 x
 
+/--
+@isnad1 id=dvd.0h2v.s6.2a1714ed1946 from=translated src=- shape=9d2de3b6 vocab=ab36d913
+-/
 theorem cqjStep_snd_dvd (s : CQJState L) : (cqjStep s).2 ∣ s.2 :=
   Nat.div_dvd_of_dvd (Nat.minFac_dvd _)
 
+/--
+@isnad1 id=eq.2h5v.s7.c6338d22687f from=translated src=- shape=cc1f2846 vocab=a22d6434
+-/
 theorem iterate_cqjStep_vcState {N : ℕ} (hN2 : 2 ∣ N → (2 : L) ≠ 0) (k : ℕ) (s : CQJState L)
     (hs : s.2 ∣ N) : cqjStep^[k] (vcState C s) = vcState C (cqjStep^[k] s) := by
   induction k generalizing s with
@@ -280,6 +361,9 @@ theorem iterate_cqjStep_vcState {N : ℕ} (hN2 : 2 ∣ N → (2 : L) ≠ 0) (k :
     · intro h
       exact hN2 ((h ▸ Nat.minFac_dvd s.2).trans hs)
 
+/--
+@isnad1 id=eq.1h5v.s8.649268fbab84 from=translated src=- shape=dd452aea vocab=73e09336
+-/
 theorem cyclicQuotientJ_vc (W : WeierstrassCurve L) (H : AddSubgroup W.toAffine.Point) (N : ℕ)
     (hN2 : 2 ∣ N → (2 : L) ≠ 0) :
     (C • W).cyclicQuotientJ (H.map (vcInvHom C W)) N = W.cyclicQuotientJ H N := by
@@ -295,6 +379,9 @@ end P2MKcCQJvc
 
 open P2MKcCQJvc in
 universe u in
+/--
+@isnad1 id=eq.2h6v.s9.e4db48d0a5cd from=translated src=- shape=6b548aa7 vocab=97c7f486
+-/
 theorem solution
     {L : Type u} [Field L] [DecidableEq L] (C : VariableChange L) (E : WeierstrassCurve L)
     (H : AddSubgroup E.toAffine.Point) (H' : AddSubgroup (C • E).toAffine.Point)

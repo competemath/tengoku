@@ -14,16 +14,25 @@ namespace ModularCurve
 export _root_.ModularCurve (degreeOn degreeOn_apply characterLattice)
 open _root_.ModularCurve
 
+/--
+@isnad1 id=eq.0h3v.s6.21e35c2ea53b from=translated src=- shape=44e6e43d vocab=ba68ecc2
+-/
 theorem dzl_degreeOn_single {S : Type*} [Fintype S] [DecidableEq S] (s : S) (n : ℤ) :
     degreeOn S (Pi.single s n) = n := by
   simp [degreeOn_apply]
 
+/--
+@isnad1 id=surjecti.0h2v.s6.7735463a1e74 from=translated src=- shape=219ebdaf vocab=a3a77251
+-/
 theorem dzl_degreeOn_surjective {S : Type*} [Fintype S] (s₀ : S) :
     Function.Surjective (degreeOn S) := by
   classical
   intro n
   exact ⟨Pi.single s₀ n, dzl_degreeOn_single s₀ n⟩
 
+/--
+@isnad1 id=eq.0h2v.s8.729fa44fb674 from=translated src=- shape=05e9455a vocab=7b3bca2c
+-/
 theorem dzl_finrank_eq_of_nonempty {S : Type*} [Fintype S] (s₀ : S) :
     Module.finrank ℤ (characterLattice S) = Fintype.card S - 1 := by
 
@@ -37,6 +46,9 @@ theorem dzl_finrank_eq_of_nonempty {S : Type*} [Fintype S] (s₀ : S) :
 
 end ModularCurve
 
+/--
+@isnad1 id=and.0h1v.s9.6665f603b59c from=translated src=- shape=78e25c1a vocab=ebd76cdd
+-/
 theorem solution (S : Type*) [Fintype S] :
     Module.Free ℤ (ModularCurve.characterLattice S) ∧
       Module.finrank ℤ (ModularCurve.characterLattice S) = Fintype.card S - 1 := by

@@ -18,9 +18,15 @@ noncomputable abbrev P (d : ℕ) : Measure (Fin d → AddCircle (1 : ℝ)) := Me
 scoped instance (d : ℕ) : IsProbabilityMeasure (P d) := by
   unfold P; infer_instance
 
+/--
+@isnad1 id=eq.0h1v.s7.f231d1c4b57c from=translated src=- shape=ccf0761e vocab=36afb821
+-/
 theorem haar_eq_volume (s : Set (AddCircle (1 : ℝ))) : P1 s = volume s := by
   rw [AddCircle.volume_eq_smul_haarAddCircle, ENNReal.ofReal_one, one_smul]
 
+/--
+@isnad1 id=le.0h2v.s7.b0309f6810b8 from=translated src=- shape=4e31ac3e vocab=fa86ab50
+-/
 theorem haar_ball_le (x : AddCircle (1 : ℝ)) (r : ℝ) :
     P1 (Metric.ball x r) ≤ ENNReal.ofReal (2 * r) := by
   calc P1 (Metric.ball x r) ≤ P1 (Metric.closedBall x r) := measure_mono Metric.ball_subset_closedBall
@@ -28,6 +34,9 @@ theorem haar_ball_le (x : AddCircle (1 : ℝ)) (r : ℝ) :
     _ = ENNReal.ofReal (min 1 (2 * r)) := AddCircle.volume_closedBall (T := 1) r
     _ ≤ ENNReal.ofReal (2 * r) := ENNReal.ofReal_le_ofReal (min_le_right _ _)
 
+/--
+@isnad1 id=eq.0h1v.s7.46e0ade229c9 from=translated src=- shape=636cea72 vocab=3981b32b
+-/
 theorem integral_fourier_haar (n : ℤ) :
     ∫ x : AddCircle (1 : ℝ), fourier n x ∂P1 = if n = 0 then (1 : ℂ) else 0 := by
   split_ifs with hn
@@ -37,6 +46,9 @@ theorem integral_fourier_haar (n : ℤ) :
       (fourier_add_half_inv_index hn one_pos)
     simpa using h
 
+/--
+@isnad1 id=integrab.0h2v.s8.2c68ac684017 from=translated src=- shape=2cf4e778 vocab=54ee5853
+-/
 theorem integrable_continuousMap (d : ℕ) (g : C((Fin d → AddCircle (1 : ℝ)), ℂ)) :
     Integrable g (P d) :=
   g.continuous.integrable_of_hasCompactSupport
@@ -57,12 +69,18 @@ noncomputable def μP (d : ℕ) : C((Fin d → AddCircle (1 : ℝ)), ℂ) →L[�
             norm_integral_le_of_norm_le_const (Filter.Eventually.of_forall fun θ => g.norm_coe_le_norm θ)
         _ = ‖g‖ := by rw [probReal_univ, mul_one])
 
+/--
+@isnad1 id=eq.0h2v.s10.363ee4135f2e from=translated src=- shape=c32281ec vocab=42460597
+-/
 theorem μP_apply (d : ℕ) (g : C((Fin d → AddCircle (1 : ℝ)), ℂ)) : μP d g = ∫ θ, g θ ∂(P d) := rfl
 
 end TorusUnifAux
 open scoped _root_.P2MW.S_MeasureTheory_exists_clm_torus_noAtomicMass_forall_apply_fourier_eq_prod_ite_eq_zero.TorusUnifAux
 
 open TorusUnifAux in
+/--
+@isnad1 id=ex.1h1v.s11.2bea8be5bc01 from=translated src=- shape=1e8b3a92 vocab=13559687
+-/
 theorem solution
     (d : ℕ) (hd : 1 ≤ d) :
     ∃ μ : C((Fin d → AddCircle (1 : ℝ)), ℂ) →L[ℂ] ℂ,

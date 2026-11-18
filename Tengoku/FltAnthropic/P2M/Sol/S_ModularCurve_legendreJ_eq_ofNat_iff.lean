@@ -12,6 +12,9 @@ namespace ModularCurve
 export _root_.ModularCurve (legendreJ)
 open _root_.ModularCurve
 
+/--
+@isnad1 id=iff.3h2v.s7.8bbd22c05a7d from=translated src=- shape=643d3ece vocab=710c55ef
+-/
 theorem legendreJ_eq_ofNat_iff' {K : Type*} [Field K] (h2 : (2 : K) ≠ 0)
     {t : K} (ht0 : t ≠ 0) (ht1 : t ≠ 1) :
     legendreJ t = 1728 ↔ t = -1 ∨ t = 2 ∨ t = 2⁻¹ := by
@@ -42,6 +45,9 @@ end ModularCurve
 
 open _root_.ModularCurve open _root_.P2MW.S_ModularCurve_legendreJ_eq_ofNat_iff.ModularCurve
 
+/--
+@isnad1 id=iff.3h2v.s7.8bbd22c05a7d from=translated src=- shape=643d3ece vocab=710c55ef
+-/
 theorem solution {K : Type*} [Field K] (h2 : (2 : K) ≠ 0)
     {t : K} (ht0 : t ≠ 0) (ht1 : t ≠ 1) :
     legendreJ t = 1728 ↔ t = -1 ∨ t = 2 ∨ t = 2⁻¹ :=

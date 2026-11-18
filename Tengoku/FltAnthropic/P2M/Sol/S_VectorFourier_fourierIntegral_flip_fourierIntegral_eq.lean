@@ -36,6 +36,9 @@ def piFourierIntegral (f : (d → ℝ) → ℂ) (ξ : d → ℝ) : ℂ :=
 abbrev euclideanToPi : EuclideanSpace ℝ d ≃L[ℝ] (d → ℝ) :=
   PiLp.continuousLinearEquiv 2 ℝ (fun _ : d => ℝ)
 
+/--
+@isnad1 id=eq.0h3v.s7.a8cce627935c from=translated src=- shape=894bad66 vocab=fcd4900a
+-/
 theorem piFourierIntegral_eq_fourier_euclidean (g : (d → ℝ) → ℂ) (ξ : d → ℝ) :
     piFourierIntegral g ξ
       = 𝓕 (fun v : EuclideanSpace ℝ d => g (ofLp v)) (toLp 2 ξ) := by
@@ -52,6 +55,9 @@ theorem piFourierIntegral_eq_fourier_euclidean (g : (d → ℝ) → ℂ) (ξ : d
     ring
   rw [← hinner, mul_comm]
 
+/--
+@isnad1 id=ex.0h2v.s8.09bfa99090b7 from=translated src=- shape=31652309 vocab=c1504672
+-/
 theorem exists_schwartz_piFourierIntegral (h : SchwartzMap (d → ℝ) ℂ) :
     ∃ g : SchwartzMap (d → ℝ) ℂ, ∀ ξ, piFourierIntegral (⇑h) ξ = g ξ := by
   let h' : SchwartzMap (EuclideanSpace ℝ d) ℂ :=
@@ -64,6 +70,9 @@ theorem exists_schwartz_piFourierIntegral (h : SchwartzMap (d → ℝ) ℂ) :
   simp only [g, g', h', SchwartzMap.compCLMOfContinuousLinearEquiv_apply, Function.comp_apply]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.8a4cd8d6dd7f from=translated src=- shape=611784b5 vocab=4383359a
+-/
 theorem piFourierIntegral_piFourierIntegral (h : SchwartzMap (d → ℝ) ℂ) (u : d → ℝ) :
     piFourierIntegral (piFourierIntegral (⇑h)) u = h (-u) := by
   let h' : SchwartzMap (EuclideanSpace ℝ d) ℂ :=
@@ -93,6 +102,9 @@ open PiFourier LinearMap
 variable {V : Type*} [NormedAddCommGroup V] [NormedSpace ℝ V] [FiniteDimensional ℝ V]
     [MeasurableSpace V] [BorelSpace V]
 
+/--
+@isnad1 id=eq.1h7v.s9.f4710914ad2e from=translated src=- shape=144b9f50 vocab=be494241
+-/
 theorem vectorFourierIntegral_eq_smul_piFourierIntegral
     (μ : MeasureTheory.Measure V) [μ.IsAddHaarMeasure]
     (B : LinearMap.BilinForm ℝ V) (hB : B.Nondegenerate)
@@ -148,6 +160,9 @@ theorem vectorFourierIntegral_eq_smul_piFourierIntegral
   refine integral_congr_ae (Filter.Eventually.of_forall fun v => ?_)
   simp only [hA', hpair]
 
+/--
+@isnad1 id=eq.1h7v.s9.5a812f41fc0d from=translated src=- shape=b778b534 vocab=b00aed64
+-/
 theorem solution
     (μ : MeasureTheory.Measure V) [μ.IsAddHaarMeasure]
     (B : LinearMap.BilinForm ℝ V) (hB : B.Nondegenerate)

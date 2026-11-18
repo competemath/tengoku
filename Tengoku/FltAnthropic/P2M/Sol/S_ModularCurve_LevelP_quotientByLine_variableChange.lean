@@ -25,6 +25,9 @@ open _root_.WeierstrassCurve open _root_.Polynomial open _root_.ModularCurve.Lev
 
 variable {A : Type u} [CommRing A] (W : WeierstrassCurve A) (C : VariableChange A)
 
+/--
+@isnad1 id=eq.2h5v.s8.2676ce3f88ab from=translated src=- shape=a55e8d57 vocab=c7b467b4
+-/
 theorem smulX_variableChange {a : ℤ} (ha : a ≠ 0) {x : A} (h : IsUnit ((W.ΨSq a).eval x)) :
     smulX (C • W) a (((C.u⁻¹ : Aˣ) : A) ^ 2 * (x - C.r)) =
       ((C.u⁻¹ : Aˣ) : A) ^ 2 * (smulX W a x - C.r) := by
@@ -50,6 +53,9 @@ theorem smulX_variableChange {a : ℤ} (ha : a ≠ 0) {x : A} (h : IsUnit ((W.Ψ
     (((C.u⁻¹ : Aˣ) : A) ^ 2 * ((W.Φ a).eval x - C.r * (w : A)) * ((w⁻¹ : Aˣ) : A)) * hum
       - (((C.u⁻¹ : Aˣ) : A) ^ 2 * C.r) * hw1
 
+/--
+@isnad1 id=eq.1h5v.s8.2c223804513e from=translated src=- shape=db586569 vocab=b02899f5
+-/
 theorem veluTLine_variableChange (p : ℕ) {x : A}
     (h : ∀ a ∈ Finset.Icc 1 ((p - 1) / 2), IsUnit ((W.ΨSq a).eval x)) :
     veluTLine (C • W) p (((C.u⁻¹ : Aˣ) : A) ^ 2 * (x - C.r)) =
@@ -62,6 +68,9 @@ theorem veluTLine_variableChange (p : ℕ) {x : A}
     WeierstrassCurve.variableChange_b₄]
   ring
 
+/--
+@isnad1 id=eq.1h5v.s8.6a94e7613d59 from=translated src=- shape=6ba4383c vocab=95a68f3c
+-/
 theorem veluWLine_variableChange (p : ℕ) {x : A}
     (h : ∀ a ∈ Finset.Icc 1 ((p - 1) / 2), IsUnit ((W.ΨSq a).eval x)) :
     veluWLine (C • W) p (((C.u⁻¹ : Aˣ) : A) ^ 2 * (x - C.r)) =
@@ -81,6 +90,9 @@ end ModularCurve.LevelP.VC
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_LevelP_quotientByLine_variableChange.ModularCurve _root_.ModularCurve.LevelP _root_.P2MW.S_ModularCurve_LevelP_quotientByLine_variableChange.ModularCurve.LevelP WeierstrassCurve in
 
+/--
+@isnad1 id=eq.1h5v.s7.a485a3f3c8e1 from=translated src=- shape=f8ff9be2 vocab=2fbf7b27
+-/
 theorem solution
     {A : Type u} [CommRing A] (W : WeierstrassCurve A) (p : ℕ) (C : WeierstrassCurve.VariableChange A)
     {x : A} (h : ∀ a ∈ Finset.Icc 1 ((p - 1) / 2), IsUnit ((W.ΨSq a).eval x)) :

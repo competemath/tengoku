@@ -16,6 +16,9 @@ variable {F : Type*} [Field F]
 
 local notation "M₂" => Matrix (Fin 2) (Fin 2) F
 
+/--
+@isnad1 id=ex.3h6v.s9.8e79d794a142 from=translated src=- shape=1b541cff vocab=e67658e7
+-/
 theorem exists_smul_of_mul_eq_zero (e f : M₂) (hef : e * f = 0) {w' : Fin 2 → F} (hf : f *ᵥ w' ≠ 0)
     {w : Fin 2 → F} (hv : e *ᵥ w ≠ 0) (u : Fin 2 → F) :
     ∃ a : F, e *ᵥ u = a • (e *ᵥ w) := by
@@ -40,6 +43,9 @@ theorem exists_smul_of_mul_eq_zero (e f : M₂) (hef : e * f = 0) {w' : Fin 2 �
   refine ⟨c₁ * c₀⁻¹, ?_⟩
   rw [← hc₁', ← hc₀', smul_smul, mul_assoc, inv_mul_cancel₀ hc₀0, mul_one]
 
+/--
+@isnad1 id=eq.3h3v.s10.2736c1bd0e04 from=translated src=- shape=6fbe64d2 vocab=dfc9cb50
+-/
 theorem span_range_eq_top {G : Type*} [Group G] (h2 : (2 : F) ≠ 0)
     (ρ : G →* M₂)
     (hodd : ∃ c : G, ρ c * ρ c = 1 ∧ (ρ c).det = -1)
@@ -197,6 +203,9 @@ theorem span_range_eq_top {G : Type*} [Group G] (h2 : (2 : F) ≠ 0)
 
 end BridgeSpanOdd
 
+/--
+@isnad1 id=eq.3h5v.s10.7c7895732e67 from=translated src=- shape=211001a6 vocab=e9ed3979
+-/
 theorem solution
     {G : Type*} [Group G] {F : Type*} [Field F] (h2 : (2 : F) ≠ 0)
     (ρ : G →* Matrix (Fin 2) (Fin 2) F)

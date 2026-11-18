@@ -11,6 +11,9 @@ set_option autoImplicit false
 open MeasureTheory Filter
 open scoped ENNReal Topology
 
+/--
+@isnad1 id=tendsto.7h7v.s7.169aff17ba52 from=translated src=- shape=c3a51f8b vocab=06e0fbaa
+-/
 theorem solution
     {α ι : Type*} [MeasurableSpace α] {μ : Measure α} {l : Filter ι} [l.IsCountablyGenerated]
     (F G : ι → α → ℝ≥0∞) (g : α → ℝ≥0∞)

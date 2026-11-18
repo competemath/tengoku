@@ -11,6 +11,9 @@ set_option autoImplicit false
 open Real Complex
 open scoped Nat
 
+/--
+@isnad1 id=eq.1h4v.s10.dc9e590c2270 from=translated src=- shape=53ad328d vocab=c401067b
+-/
 theorem EisensteinSeries.qExpansion_eisensteinG_coeff (N : ℕ) [NeZero N] (k : ℕ) (hk : 3 ≤ k)
     (a : Fin 2 → ZMod N) (n : ℕ) :
     (UpperHalfPlane.qExpansion N (EisensteinSeries.eisensteinG N k a)).coeff n =

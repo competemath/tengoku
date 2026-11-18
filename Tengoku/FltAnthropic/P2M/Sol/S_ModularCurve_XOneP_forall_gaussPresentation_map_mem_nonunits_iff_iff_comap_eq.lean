@@ -13,10 +13,16 @@ open _root_.ValuationSubring
 
 variable {K K' : Type*} [Field K] [Field K']
 
+/--
+@isnad1 id=iff.0h5v.s7.aa570e54e898 from=translated src=- shape=22f02e90 vocab=dc9359c5
+-/
 theorem map_mem_nonunits_iff (V : ValuationSubring K') (ι : K →+* K') (f : K) :
     ι f ∈ V.nonunits ↔ f ∈ (V.comap ι).nonunits := by
   rw [mem_nonunits_iff_or, mem_nonunits_iff_or, mem_comap, map_inv₀, map_eq_zero_iff ι ι.injective]
 
+/--
+@isnad1 id=iff.1h6v.s7.fffea48021ef from=translated src=- shape=3b2e3c0a vocab=dc9359c5
+-/
 theorem forall_mem_map_mem_nonunits_iff_iff_comap_eq (V : ValuationSubring K') (ι : K →+* K')
     (W₀ W₁ : ValuationSubring K) (hV : V.comap ι = W₀ ∨ V.comap ι = W₁) :
     (∀ f : K, f ∈ W₀ → (ι f ∈ V.nonunits ↔ f ∈ W₀.nonunits)) ↔ V.comap ι = W₀ := by
@@ -52,6 +58,9 @@ theorem forall_mem_map_mem_nonunits_iff_iff_comap_eq (V : ValuationSubring K') (
 
 end ValuationSubring
 
+/--
+@isnad1 id=iff.3h8v.s14.27166f3e00b2 from=translated src=- shape=03c9eb18 vocab=3f8ea441
+-/
 theorem solution
     (A : Type*) [CommRing A] [IsLocalRing A] (L : Type*) [Field L] [Algebra A L]
     (K : IntermediateField L (LaurentSeries L))

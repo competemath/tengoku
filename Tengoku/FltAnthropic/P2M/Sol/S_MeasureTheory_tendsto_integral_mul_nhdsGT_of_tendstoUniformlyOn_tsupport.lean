@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open MeasureTheory Filter
 
+/--
+@isnad1 id=tendsto.7h5v.s8.fa887d0cfcac from=translated src=- shape=ca3dd68e vocab=a088f942
+-/
 theorem solution
     {X : Type*} [TopologicalSpace X] [MeasurableSpace X] [OpensMeasurableSpace X]
     (μ : Measure X) [IsFiniteMeasureOnCompacts μ]

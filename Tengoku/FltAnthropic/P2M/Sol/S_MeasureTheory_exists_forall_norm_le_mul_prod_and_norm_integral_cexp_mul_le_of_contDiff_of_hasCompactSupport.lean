@@ -11,6 +11,9 @@ open MeasureTheory
 
 open FourierTransform
 
+/--
+@isnad1 id=ex.2h2v.s8.844a714f45bb from=translated src=- shape=2cb3631b vocab=a2d888a8
+-/
 theorem solution
     {r : ℕ} (Ψ : (Fin r → ℝ) → ℂ) (hΨ : ContDiff ℝ (⊤ : ℕ∞) Ψ) (hΨc : HasCompactSupport Ψ) :
     ∃ C : ℝ, 0 ≤ C ∧ Continuous Ψ ∧ Integrable Ψ ∧

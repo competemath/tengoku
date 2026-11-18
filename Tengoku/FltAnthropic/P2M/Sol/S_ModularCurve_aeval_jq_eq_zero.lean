@@ -9,6 +9,9 @@ open ModularCurve IntermediateField
 
 noncomputable section
 
+/--
+@isnad1 id=eq.1h1v.s8.6b8dab7994a0 from=translated src=- shape=143b12b7 vocab=14c21f1e
+-/
 theorem solution {p : Polynomial ℚ} (hp : Polynomial.aeval jq p = 0) : p = 0 :=by
   by_contra hp0
   set n := p.natDegree with hn

@@ -88,6 +88,9 @@ end
 open scoped _root_.P2MW.S_ModularCurve_coeffMap_pow_char_eq_qExpand_of_frobenius.ModularCurve
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_coeffMap_pow_char_eq_qExpand_of_frobenius.ModularCurve in
+/--
+@isnad1 id=eq.1h6v.s9.7b878569a5f4 from=translated src=- shape=ec8e5288 vocab=8efba16d
+-/
 theorem solution {A k : Type*} [CommRing A] [CommRing k] (ℓ : ℕ) [Fact ℓ.Prime]
     [CharP k ℓ] (red : A →+* k) (τ : A →+* A) (hτ : ∀ a : A, red (τ a) ^ ℓ = red a)
     (x : LaurentSeries A) :

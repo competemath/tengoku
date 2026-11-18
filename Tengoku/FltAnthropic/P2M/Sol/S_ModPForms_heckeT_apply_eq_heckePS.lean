@@ -9,6 +9,9 @@ namespace P2MW.S_ModPForms_heckeT_apply_eq_heckePS
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.1h4v.s8.3d934e2fa19d from=translated src=- shape=cbf96b62 vocab=8cf35334
+-/
 theorem solution (F : Type) [Field F] (k : ℕ) (hk : 1 ≤ k) (ℓ : ℕ) (φ : PowerSeries F) :
     PowerSeries.heckeT ℓ k φ = ModPForms.heckePS (k : ℤ) ℓ φ := by
   ext n

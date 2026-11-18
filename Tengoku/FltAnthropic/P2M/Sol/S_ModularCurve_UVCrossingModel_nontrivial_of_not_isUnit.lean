@@ -7,6 +7,9 @@ namespace P2MW.S_ModularCurve_UVCrossingModel_nontrivial_of_not_isUnit
 
 open ModularCurve ModularCurve.UVCrossingModel
 
+/--
+@isnad1 id=nontrivi.1h2v.s4.affda5efc023 from=translated src=- shape=8dc0986f vocab=be43379f
+-/
 theorem solution {W : Type*} [CommRing W] {π : W} (hπ : ¬IsUnit π) :
     Nontrivial (UVCrossingModel W π) :=
   by

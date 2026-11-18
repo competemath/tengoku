@@ -67,14 +67,23 @@ def fam (s : ZMod N) : ZMod N → ℚ := fun r : ZMod N =>
   ((6 * (((s * r).val : ℕ) : ℤ) ^ 2 - 6 * (N : ℤ) * (((s * r).val : ℕ) : ℤ) + (N : ℤ) ^ 2 : ℤ) : ℚ)
 
 omit [NeZero N] in
+/--
+@isnad1 id=eq.0h3v.s5.ab30ac1d7d04 from=translated src=- shape=2e31a381 vocab=6a10a7b7
+-/
 theorem fam_apply (s r : ZMod N) : fam N s r = ((wt N (s * r).val : ℤ) : ℚ) := rfl
 
 variable {N}
 
 omit [NeZero N] in
+/--
+@isnad1 id=eq.1h2v.s4.505d62a5bca1 from=translated src=- shape=9cd96027 vocab=04784122
+-/
 theorem wt_sub (t : ℕ) (ht : t ≤ N) : wt N (N - t) = wt N t := by
   unfold wt; push_cast [Nat.cast_sub ht]; ring
 
+/--
+@isnad1 id=eq.0h3v.s5.642cea1d637b from=translated src=- shape=3dc92769 vocab=fbd28c85
+-/
 theorem fam_neg (s r : ZMod N) : fam N s (-r) = fam N s r := by
   rw [fam_apply, fam_apply, mul_neg, ZMod.neg_val]
   split_ifs with h
@@ -84,9 +93,15 @@ theorem fam_neg (s r : ZMod N) : fam N s (-r) = fam N s r := by
 noncomputable def T : (ZMod N → ℚ) →ₗ[ℚ] (ZMod N → ℚ) :=
   ∑ s : ZMod N, (LinearMap.proj s : (ZMod N → ℚ) →ₗ[ℚ] ℚ).smulRight (fam N s)
 
+/--
+@isnad1 id=eq.0h3v.s7.02fc45b19408 from=translated src=- shape=97ab91b6 vocab=c7c8d93f
+-/
 theorem T_apply (c : ZMod N → ℚ) (r : ZMod N) : T c r = ∑ s : ZMod N, c s * fam N s r := by
   simp [T, LinearMap.sum_apply, LinearMap.smulRight_apply, Finset.sum_apply, smul_eq_mul]
 
+/--
+@isnad1 id=eq.0h3v.s8.43daf2b8e232 from=translated src=- shape=76651312 vocab=f3443346
+-/
 theorem T_neg (c : ZMod N → ℚ) (r : ZMod N) : T c (-r) = T c r := by
   simp only [T_apply, fam_neg]
 

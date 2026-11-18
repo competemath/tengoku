@@ -14,6 +14,9 @@ open scoped Polynomial.Bivariate
 
 namespace CharpS10bB
 
+/--
+@isnad1 id=eq.2h6v.s7.ee0388b69c87 from=translated src=- shape=15fe3222 vocab=481c0167
+-/
 theorem eval₂_reflect_inv {R K : Type*} [CommRing R] [Field K] (f : R →+* K) {x : K} (hx : x ≠ 0)
     (D : ℕ) (a : R[X]) (ha : a.natDegree ≤ D) :
     eval₂ f x⁻¹ (reflect D a) = eval₂ f x a * x⁻¹ ^ D := by
@@ -30,6 +33,9 @@ theorem eval₂_reflect_inv {R K : Type*} [CommRing R] [Field K] (f : R →+* K)
         rw [mul_assoc, ← mul_pow, mul_inv_cancel₀ hx, one_pow, mul_one]
     _ = eval₂ f x a * x⁻¹ ^ D := by rw [h']
 
+/--
+@isnad1 id=ex.4h7v.s8.1d4b098b6705 from=translated src=- shape=e2babee5 vocab=28739508
+-/
 theorem exists_monic_eval₂_inv_mul_inv_pow_eq_zero {R K : Type*} [CommRing R] [Nontrivial R]
     [Field K] (f : R →+* K) (P : R[X][Y]) (hP : P.Monic) (m : ℕ)
     (hdeg : ∀ i < P.natDegree, (P.coeff i).natDegree ≤ m * (P.natDegree - i))
@@ -91,6 +97,9 @@ theorem exists_monic_eval₂_inv_mul_inv_pow_eq_zero {R K : Type*} [CommRing R] 
 
 end CharpS10bB
 
+/--
+@isnad1 id=ex.4h7v.s8.1d4b098b6705 from=translated src=- shape=e2babee5 vocab=28739508
+-/
 theorem solution {R K : Type*} [CommRing R] [Nontrivial R]
     [Field K] (f : R →+* K) (P : R[X][Y]) (hP : P.Monic) (m : ℕ)
     (hdeg : ∀ i < P.natDegree, (P.coeff i).natDegree ≤ m * (P.natDegree - i))

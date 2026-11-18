@@ -19,6 +19,9 @@ namespace Abstract
 
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
 
+/--
+@isnad1 id=eq.0h4v.s8.d7395e13650a from=translated src=- shape=89fa4c28 vocab=e263c3bf
+-/
 theorem norm_sq_sum_smul_eq_re {J : Type*} [Fintype J] (c : J → ℂ) (v : J → E) :
     ‖∑ j, c j • v j‖ ^ 2 = RCLike.re (∑ j, ∑ j', conj (c j) * c j' * ⟪v j, v j'⟫_ℂ) := by
   rw [@norm_sq_eq_re_inner ℂ, sum_inner]
@@ -42,6 +45,9 @@ namespace Mixed
 variable {X : Type*} [MeasurableSpace X] {ρ : Measure X}
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
 
+/--
+@isnad1 id=integrab.2h4v.s7.4f72e76d3843 from=translated src=- shape=3bf2f503 vocab=afadf5ae
+-/
 theorem integrable_mul_conj (a b : X → ℂ) (ha : MemLp a 2 ρ) (hb : MemLp b 2 ρ) :
     Integrable (fun x => a x * conj (b x)) ρ := by
   have ha' := (memLp_two_iff_integrable_sq_norm ha.1).1 ha
@@ -53,6 +59,9 @@ theorem integrable_mul_conj (a b : X → ℂ) (ha : MemLp a 2 ρ) (hb : MemLp b 
     ha.1.mul (Complex.continuous_conj.comp_aestronglyMeasurable hb.1)
   exact Integrable.mono' ((ha'.add hb').div_const 2) hm (Filter.Eventually.of_forall hpt)
 
+/--
+@isnad1 id=and.2h7v.s9.082ef1de8d4c from=translated src=- shape=3bc65d80 vocab=ad77f8bb
+-/
 theorem integrable_and_integral_norm_sq_sum_smul {J : Type*} [Fintype J] [DecidableEq J]
     (φ : J → X → ℂ) (hφ : ∀ j, MemLp (φ j) 2 ρ) (v : J → E) (s : J → ℝ)
     (horth : ∀ j j', ∫ x, φ j x * conj (φ j' x) ∂ρ = if j = j' then ((s j : ℝ) : ℂ) else 0) :
@@ -101,6 +110,9 @@ end
 open MeasureTheory
 open scoped ComplexConjugate
 
+/--
+@isnad1 id=and.2h7v.s9.082ef1de8d4c from=translated src=- shape=3bc65d80 vocab=ad77f8bb
+-/
 theorem solution
     {X : Type*} [MeasurableSpace X] (ρ : Measure X)
     {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]

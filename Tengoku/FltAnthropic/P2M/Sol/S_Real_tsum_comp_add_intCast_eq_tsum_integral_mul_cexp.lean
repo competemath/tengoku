@@ -19,16 +19,28 @@ variable {d : Type*} [Fintype d]
 
 def ιZ (n : d → ℤ) : d → ℝ := fun i => (n i : ℝ)
 
+/--
+@isnad1 id=eq.0h3v.s4.01df2b4062d7 from=translated src=- shape=b084d0d7 vocab=ff3cee3d
+-/
 @[scoped simp] lemma ιZ_apply (n : d → ℤ) (i : d) : ιZ n i = (n i : ℝ) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.b4a595573e70 from=translated src=- shape=488f121e vocab=532114cb
+-/
 lemma ιZ_add (m n : d → ℤ) : ιZ (m + n) = ιZ m + ιZ n := by
   funext i; simp [ιZ]
 
 def proj (y : d → ℝ) : UnitAddTorus d := fun i => ((y i : ℝ) : UnitAddCircle)
 
+/--
+@isnad1 id=eq.0h1v.s5.1205f44cf96a from=translated src=- shape=dfc4e370 vocab=89500304
+-/
 lemma proj_eq_piMap : (proj : (d → ℝ) → UnitAddTorus d) =
     Pi.map (fun _ : d => (QuotientAddGroup.mk : ℝ → UnitAddCircle)) := rfl
 
+/--
+@isnad1 id=isquotie.0h1v.s5.ebf0248d2263 from=translated src=- shape=ea26f425 vocab=d4b05a7f
+-/
 lemma isQuotientMap_proj : IsQuotientMap (proj : (d → ℝ) → UnitAddTorus d) := by
   rw [proj_eq_piMap]
   exact (IsOpenQuotientMap.piMap fun _ => QuotientAddGroup.isOpenQuotientMap_mk).isQuotientMap
@@ -37,15 +49,24 @@ def ech (m : d → ℤ) (y : d → ℝ) : ℂ := Complex.exp (2 * Real.pi * Comp
 
 def echN (m : d → ℤ) (y : d → ℝ) : ℂ := Complex.exp (-(2 * Real.pi * Complex.I * ((∑ i, (m i : ℝ) * y i : ℝ) : ℂ)))
 
+/--
+@isnad1 id=eq.0h3v.s4.587ce56cac53 from=translated src=- shape=0bf20fa7 vocab=392f3c39
+-/
 lemma norm_echN (m : d → ℤ) (y : d → ℝ) : ‖echN m y‖ = 1 := by
   unfold echN
   have : -(2 * Real.pi * Complex.I * (((∑ i, (m i : ℝ) * y i : ℝ)) : ℂ)) =
       ((-(2 * Real.pi * (∑ i, (m i : ℝ) * y i)) : ℝ) : ℂ) * Complex.I := by push_cast; ring
   rw [this, Complex.norm_exp_ofReal_mul_I]
 
+/--
+@isnad1 id=continuo.0h2v.s5.667175d922e0 from=translated src=- shape=09c6cce6 vocab=63bb93e0
+-/
 lemma continuous_echN (m : d → ℤ) : Continuous (echN m : (d → ℝ) → ℂ) := by
   unfold echN; fun_prop
 
+/--
+@isnad1 id=eq.0h4v.s5.dba487cb05ac from=translated src=- shape=8249715a vocab=7642e978
+-/
 lemma echN_add_ιZ (m n : d → ℤ) (y : d → ℝ) : echN m (y + ιZ n) = echN m y := by
   unfold echN
   have hsum : (∑ i, (m i : ℝ) * (y + ιZ n) i) = (∑ i, (m i : ℝ) * y i) + ((∑ i, m i * n i : ℤ) : ℝ) := by
@@ -60,6 +81,9 @@ lemma echN_add_ιZ (m n : d → ℤ) (y : d → ℝ) : echN m (y + ιZ n) = echN
     push_cast; ring
   rw [h2, Complex.exp_add, Complex.exp_int_mul_two_pi_mul_I, mul_one]
 
+/--
+@isnad1 id=eq.0h3v.s6.43624eb256fb from=translated src=- shape=6a58ac66 vocab=27b47fe3
+-/
 lemma mFourier_proj (m : d → ℤ) (y : d → ℝ) : UnitAddTorus.mFourier m (proj y) = ech m y := by
   simp only [UnitAddTorus.mFourier, proj, ContinuousMap.coe_mk, fourier_coe_apply, ech]
   rw [← Complex.exp_sum]
@@ -69,6 +93,9 @@ lemma mFourier_proj (m : d → ℤ) (y : d → ℝ) : UnitAddTorus.mFourier m (p
   refine Finset.sum_congr rfl fun i _ => ?_
   ring
 
+/--
+@isnad1 id=eq.0h3v.s7.df884ec0ea0d from=translated src=- shape=9ade19ff vocab=65c89acc
+-/
 lemma mFourier_neg_proj (m : d → ℤ) (y : d → ℝ) : UnitAddTorus.mFourier (-m) (proj y) = echN m y := by
   rw [mFourier_proj]
   unfold ech echN
@@ -79,18 +106,30 @@ lemma mFourier_neg_proj (m : d → ℤ) (y : d → ℝ) : UnitAddTorus.mFourier 
 
 def cubeI (n : d → ℤ) : Set (d → ℝ) := {y | ∀ i, y i ∈ Ioc (n i : ℝ) (n i + 1)}
 
+/--
+@isnad1 id=eq.0h2v.s5.3449f057dfa5 from=translated src=- shape=6d95f9d2 vocab=15f9e846
+-/
 lemma cubeI_eq_pi (n : d → ℤ) : cubeI n = Set.pi Set.univ (fun i => Ioc (n i : ℝ) (n i + 1)) := by
   ext y; simp [cubeI]
 
+/--
+@isnad1 id=iff.0h3v.s5.98fd180f8a5b from=translated src=- shape=95e0daba vocab=79179560
+-/
 lemma mem_cubeI_iff (n : d → ℤ) (y : d → ℝ) : y ∈ cubeI n ↔ ∀ i, ⌈y i⌉ = n i + 1 := by
   simp only [cubeI, mem_ofPred_eq, mem_Ioc, Int.ceil_eq_iff]
   refine forall_congr' fun i => ?_
   push_cast
   constructor <;> intro h <;> constructor <;> linarith [h.1, h.2]
 
+/--
+@isnad1 id=measurab.0h2v.s4.8a1a064e7f1c from=translated src=- shape=e6b9a5b7 vocab=61289b84
+-/
 lemma measurableSet_cubeI (n : d → ℤ) : MeasurableSet (cubeI n) := by
   rw [cubeI_eq_pi]; exact MeasurableSet.univ_pi fun _ => measurableSet_Ioc
 
+/--
+@isnad1 id=pairwise.0h1v.s6.f6410bf0dbef from=translated src=- shape=75ef16c1 vocab=955aa022
+-/
 lemma pairwise_disjoint_cubeI : Pairwise (Function.onFun Disjoint (cubeI (d := d))) := by
   intro k k' hkk'
   rw [Function.onFun, Set.disjoint_left]
@@ -101,14 +140,23 @@ lemma pairwise_disjoint_cubeI : Pairwise (Function.onFun Disjoint (cubeI (d := d
   have h2 := (mem_cubeI_iff k' w).1 hw' i
   omega
 
+/--
+@isnad1 id=eq.0h1v.s4.e32aa60bd76a from=translated src=- shape=87a0a88c vocab=3cff5d1d
+-/
 lemma iUnion_cubeI : (⋃ n : d → ℤ, cubeI n) = Set.univ := by
   refine Set.eq_univ_of_forall fun w => Set.mem_iUnion.2 ⟨fun i => ⌈w i⌉ - 1, ?_⟩
   rw [mem_cubeI_iff]; intro i; ring
 
+/--
+@isnad1 id=eq.0h2v.s6.659232e08946 from=translated src=- shape=83f60e71 vocab=f12d2781
+-/
 lemma volume_cubeI (n : d → ℤ) : volume (cubeI n) = 1 := by
   rw [cubeI_eq_pi, volume_pi, Measure.pi_pi]
   simp [Real.volume_Ioc]
 
+/--
+@isnad1 id=eq.0h2v.s6.4237de62c546 from=translated src=- shape=1b8ce8d7 vocab=76adeedd
+-/
 lemma preimage_cubeI (n : d → ℤ) : (fun y : d → ℝ => y + ιZ n) ⁻¹' cubeI n = cubeI 0 := by
   ext y
   simp only [mem_preimage, cubeI, mem_ofPred_eq, Pi.add_apply, ιZ_apply, mem_Ioc, Pi.zero_apply, Int.cast_zero,
@@ -116,6 +164,9 @@ lemma preimage_cubeI (n : d → ℤ) : (fun y : d → ℝ => y + ιZ n) ⁻¹' c
   refine forall_congr' fun i => ?_
   constructor <;> intro h <;> constructor <;> linarith [h.1, h.2]
 
+/--
+@isnad1 id=eq.2h3v.s9.a4afad907f17 from=translated src=- shape=ea49578c vocab=ffeb8e79
+-/
 theorem main (f : C(d → ℝ, ℂ))
     (h_norm : ∀ K : Compacts (d → ℝ),
       Summable fun n : d → ℤ => ‖(f.comp (ContinuousMap.addRight (fun i => (n i : ℝ)))).restrict K‖)
@@ -270,6 +321,9 @@ end
 open scoped _root_.P2MW.S_Real_tsum_comp_add_intCast_eq_tsum_integral_mul_cexp.PoissonPiSol
 
 open PoissonPiSol in
+/--
+@isnad1 id=eq.2h3v.s10.efaac8a1c780 from=translated src=- shape=51aa7c0f vocab=21261e72
+-/
 theorem solution
     {d : Type*} [Fintype d] (f : C(d → ℝ, ℂ))
     (h_norm : ∀ K : TopologicalSpace.Compacts (d → ℝ),

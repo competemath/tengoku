@@ -17,6 +17,9 @@ set_option autoImplicit false
 open MeasureTheory
 open scoped FourierTransform SchwartzMap
 
+/--
+@isnad1 id=eventual.3h4v.s7.598b2eb5e31c from=translated src=- shape=83a4250e vocab=35a00f84
+-/
 theorem solution
     {V : Type*} [NormedAddCommGroup V] [NormedSpace ℝ V] [FiniteDimensional ℝ V]
     [MeasurableSpace V] [BorelSpace V]

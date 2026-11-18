@@ -15,6 +15,9 @@ namespace ModularCurve
 export _root_.ModularCurve (legendreJ jWidth legendreJ_eq_zero_iff legendreJ_eq_ofNat_iff)
 open _root_.ModularCurve
 
+/--
+@isnad1 id=eq.6h2v.s9.c0b9e0aafa93 from=translated src=- shape=8b8fef0b vocab=66866383
+-/
 theorem card_orbit_eq_six' {K : Type*} [Field K] [DecidableEq K] {t : K} (ht0 : t ≠ 0)
     (ht1 : t ≠ 1) (hA : t ≠ -1) (hB : t ≠ 2) (hC : t ≠ 2⁻¹) (hD : t ^ 2 - t + 1 ≠ 0) :
     ({t, 1 - t, t⁻¹, 1 - t⁻¹, (1 - t)⁻¹, 1 - (1 - t)⁻¹} : Finset K).card = 6 := by
@@ -53,6 +56,9 @@ theorem card_orbit_eq_six' {K : Type*} [Field K] [DecidableEq K] {t : K} (ht0 : 
   rw [Finset.card_insert_of_notMem n1, Finset.card_insert_of_notMem n2,
     Finset.card_insert_of_notMem n3, Finset.card_insert_of_notMem n4, Finset.card_pair d56]
 
+/--
+@isnad1 id=eq.2h2v.s8.9bc6b2c7626e from=translated src=- shape=f91442b0 vocab=2618113b
+-/
 theorem card_orbit_eq_two' {K : Type*} [Field K] [DecidableEq K] (h3 : (3 : K) ≠ 0) {t : K}
     (hD : t ^ 2 - t + 1 = 0) :
     ({t, 1 - t, t⁻¹, 1 - t⁻¹, (1 - t)⁻¹, 1 - (1 - t)⁻¹} : Finset K).card = 2 := by
@@ -66,6 +72,9 @@ theorem card_orbit_eq_two' {K : Type*} [Field K] [DecidableEq K] (h3 : (3 : K) �
     tauto
   rw [this, Finset.card_pair d12]
 
+/--
+@isnad1 id=eq.3h2v.s7.fd6d4ced6a65 from=translated src=- shape=62659e12 vocab=cb36ddc2
+-/
 theorem card_eq_three_of_forall_mem_iff' {K : Type*} [Field K] [DecidableEq K] (h2 : (2 : K) ≠ 0)
     (h3 : (3 : K) ≠ 0) (l : Finset K) (hl : ∀ x, x ∈ l ↔ x = -1 ∨ x = 2 ∨ x = 2⁻¹) :
     l.card = 3 := by
@@ -81,6 +90,9 @@ theorem card_eq_three_of_forall_mem_iff' {K : Type*} [Field K] [DecidableEq K] (
   rw [this, Finset.card_insert_of_notMem, Finset.card_pair n23]
   simp only [Finset.mem_insert, Finset.mem_singleton, not_or]; exact ⟨n12, n13⟩
 
+/--
+@isnad1 id=eq.3h2v.s8.7b3d1691bb64 from=translated src=- shape=938f9d33 vocab=1f7d5946
+-/
 theorem card_orbit_eq_three' {K : Type*} [Field K] [DecidableEq K] (h2 : (2 : K) ≠ 0)
     (h3 : (3 : K) ≠ 0) {t : K} (hT : t = -1 ∨ t = 2 ∨ t = 2⁻¹) :
     ({t, 1 - t, t⁻¹, 1 - t⁻¹, (1 - t)⁻¹, 1 - (1 - t)⁻¹} : Finset K).card = 3 := by
@@ -99,6 +111,9 @@ theorem card_orbit_eq_three' {K : Type*} [Field K] [DecidableEq K] (h2 : (2 : K)
   · rw [eh, inv_inv, g1]
     simp only [Finset.mem_insert, Finset.mem_singleton]; tauto
 
+/--
+@isnad1 id=eq.4h2v.s8.860c039febf4 from=translated src=- shape=45eb84c3 vocab=d170aabc
+-/
 theorem card_orbit_mul_jWidth' {K : Type*} [Field K] [DecidableEq K] (h2 : (2 : K) ≠ 0)
     (h3 : (3 : K) ≠ 0) {t : K} (ht0 : t ≠ 0) (ht1 : t ≠ 1) :
     ({t, 1 - t, t⁻¹, 1 - t⁻¹, (1 - t)⁻¹, 1 - (1 - t)⁻¹} : Finset K).card * jWidth (legendreJ t)
@@ -120,6 +135,9 @@ end ModularCurve
 
 open _root_.ModularCurve open _root_.P2MW.S_ModularCurve_card_orbit_mul_jWidth.ModularCurve
 
+/--
+@isnad1 id=eq.4h2v.s8.860c039febf4 from=translated src=- shape=45eb84c3 vocab=d170aabc
+-/
 theorem solution {K : Type*} [Field K] [DecidableEq K] (h2 : (2 : K) ≠ 0)
     (h3 : (3 : K) ≠ 0) {t : K} (ht0 : t ≠ 0) (ht1 : t ≠ 1) :
     ({t, 1 - t, t⁻¹, 1 - t⁻¹, (1 - t)⁻¹, 1 - (1 - t)⁻¹} : Finset K).card * jWidth (legendreJ t)

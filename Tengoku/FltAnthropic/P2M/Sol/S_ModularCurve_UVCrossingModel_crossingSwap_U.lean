@@ -7,6 +7,9 @@ namespace P2MW.S_ModularCurve_UVCrossingModel_crossingSwap_U
 
 open ModularCurve ModularCurve.UVCrossingModel
 
+/--
+@isnad1 id=eq.0h2v.s8.33db5f0236ff from=translated src=- shape=124d16d6 vocab=ef9ab85a
+-/
 theorem solution {W : Type*} [CommRing W] (π : W) :
     crossingSwap π (U π) = V π :=
   by

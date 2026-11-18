@@ -18,22 +18,43 @@ noncomputable def g₀ : ContDiffBump (0 : ℝ) := ⟨1, 2, one_pos, one_lt_two�
 
 noncomputable def g (x : ℝ) : ℂ := ((g₀ : ℝ → ℝ) x : ℂ)
 
+/--
+@isnad1 id=contdiff.0h0v.s5.6ffae8d912ca from=translated src=- shape=352d7a74 vocab=b5a71102
+-/
 lemma g_contDiff : ContDiff ℝ ∞ g := Complex.ofRealCLM.contDiff.comp g₀.contDiff
 
+/--
+@isnad1 id=continuo.0h0v.s4.279dab065916 from=translated src=- shape=54c8eceb vocab=1c31b387
+-/
 lemma g_continuous : Continuous g := g_contDiff.continuous
 
+/--
+@isnad1 id=hascompa.0h0v.s3.88b82722b736 from=translated src=- shape=54c8eceb vocab=f8621e64
+-/
 lemma g_hasCompactSupport : HasCompactSupport g :=
   g₀.hasCompactSupport.comp_left (g := fun r : ℝ => (r : ℂ)) Complex.ofReal_zero
 
+/--
+@isnad1 id=eq.0h0v.s3.90a115278a9a from=translated src=- shape=1ac31801 vocab=53ea8dc5
+-/
 lemma g_zero : g 0 = 1 := by
   unfold g
   rw [g₀.one_of_mem_closedBall (Metric.mem_closedBall_self g₀.rIn_pos.le)]
   simp
 
+/--
+@isnad1 id=eq.0h1v.s5.68857dad53b4 from=translated src=- shape=f68c6383 vocab=6408e787
+-/
 lemma conj_g (x : ℝ) : conj (g x) = g x := by unfold g; exact Complex.conj_ofReal _
 
+/--
+@isnad1 id=integrab.0h0v.s5.ea5f2a26ed39 from=translated src=- shape=c57f8401 vocab=6463ee00
+-/
 lemma g_integrable : Integrable g := g_continuous.integrable_of_hasCompactSupport g_hasCompactSupport
 
+/--
+@isnad1 id=hascompa.0h1v.s4.05527aa2d573 from=translated src=- shape=9e39cfad vocab=29ffe08b
+-/
 lemma iteratedDeriv_g_hasCompactSupport (n : ℕ) : HasCompactSupport (iteratedDeriv n g) := by
   have h := (g_hasCompactSupport.iteratedFDeriv (𝕜 := ℝ) n).comp_left
     (g := fun L : ContinuousMultilinearMap ℝ (fun _ : Fin n => ℝ) ℂ => L fun _ => 1) (by simp)
@@ -42,6 +63,9 @@ lemma iteratedDeriv_g_hasCompactSupport (n : ℕ) : HasCompactSupport (iteratedD
     funext x; rw [iteratedDeriv_eq_iteratedFDeriv]; rfl
   rw [this]; exact h
 
+/--
+@isnad1 id=integrab.0h1v.s5.91c42225d0c4 from=translated src=- shape=3e90c28e vocab=46f00958
+-/
 lemma iteratedDeriv_g_integrable (n : ℕ) : Integrable (iteratedDeriv n g) :=
   (g_contDiff.continuous_iteratedDeriv n (by exact_mod_cast le_top)).integrable_of_hasCompactSupport
     (iteratedDeriv_g_hasCompactSupport n)
@@ -50,11 +74,20 @@ noncomputable def Φ : ℝ → ℂ := 𝓕 g
 
 noncomputable def ρ (t : ℝ) : ℝ := (Φ t).re
 
+/--
+@isnad1 id=continuo.0h0v.s4.24ee3c2e5aa6 from=translated src=- shape=54c8eceb vocab=0cda2846
+-/
 lemma Φ_continuous : Continuous Φ :=
   VectorFourier.fourierIntegral_continuous Real.continuous_fourierChar (innerSL ℝ).continuous₂ g_integrable
 
+/--
+@isnad1 id=continuo.0h0v.s3.73b9ac410274 from=translated src=- shape=e3d48bcb vocab=958ff3ed
+-/
 lemma ρ_continuous : Continuous ρ := Complex.continuous_re.comp Φ_continuous
 
+/--
+@isnad1 id=ex.0h1v.s5.2608c3b5e2e6 from=translated src=- shape=eca7c75d vocab=f32493bf
+-/
 lemma Φ_decay (n : ℕ) : ∃ C : ℝ, 0 ≤ C ∧ ∀ w : ℝ, |w| ^ n * ‖Φ w‖ ≤ C := by
   have key := Real.fourier_iteratedDeriv (N := (⊤ : ℕ∞)) (n := n) g_contDiff
     (fun k _ => iteratedDeriv_g_integrable k) le_top
@@ -69,6 +102,9 @@ lemma Φ_decay (n : ℕ) : ∃ C : ℝ, 0 ≤ C ∧ ∀ w : ℝ, |w| ^ n * ‖Φ
   calc |w| ^ n * ‖Φ w‖ * (2 * Real.pi) ^ n = (2 * Real.pi * |w|) ^ n * ‖𝓕 g w‖ := by rw [Φ]; ring
     _ ≤ L := h1
 
+/--
+@isnad1 id=ex.0h1v.s6.9fb83e5da3f8 from=translated src=- shape=7bd46aa0 vocab=1cb6f591
+-/
 lemma Φ_decay₂ (n : ℕ) : ∃ C : ℝ, 0 ≤ C ∧ ∀ w : ℝ, |w| ^ n * ‖Φ w‖ ≤ C * (1 + w ^ 2)⁻¹ := by
   obtain ⟨C₀, hC₀, h₀⟩ := Φ_decay n
   obtain ⟨C₂, hC₂, h₂⟩ := Φ_decay (n + 2)
@@ -79,22 +115,34 @@ lemma Φ_decay₂ (n : ℕ) : ∃ C : ℝ, 0 ≤ C ∧ ∀ w : ℝ, |w| ^ n * �
   rw [e] at this
   nlinarith [h₀ w, norm_nonneg (Φ w), pow_nonneg (abs_nonneg w) n]
 
+/--
+@isnad1 id=integrab.0h1v.s5.1e850e313ef4 from=translated src=- shape=b0117740 vocab=8376f977
+-/
 lemma integrable_pow_mul_norm_Φ (n : ℕ) : Integrable (fun t : ℝ => |t| ^ n * ‖Φ t‖) := by
   obtain ⟨C, hC, h⟩ := Φ_decay₂ n
   refine ((integrable_inv_one_add_sq).const_mul C).mono' ?_ (ae_of_all _ fun t => ?_)
   · exact ((continuous_abs.pow n).mul Φ_continuous.norm).aestronglyMeasurable
   · rw [Real.norm_of_nonneg (by positivity)]; exact h t
 
+/--
+@isnad1 id=integrab.0h0v.s5.66b382ef485d from=translated src=- shape=c57f8401 vocab=2d6ee5ff
+-/
 lemma Φ_integrable : Integrable Φ := by
   refine (integrable_pow_mul_norm_Φ 0).mono' Φ_continuous.aestronglyMeasurable (ae_of_all _ fun t => ?_)
   simp
 
+/--
+@isnad1 id=integrab.0h1v.s5.1880303b6293 from=translated src=- shape=121683b3 vocab=9950a642
+-/
 lemma ρ_moment (n : ℕ) : Integrable (fun t : ℝ => |t| ^ n * ρ t) := by
   refine (integrable_pow_mul_norm_Φ n).mono' ((continuous_abs.pow n).mul ρ_continuous).aestronglyMeasurable
     (ae_of_all _ fun t => ?_)
   rw [norm_mul, Real.norm_of_nonneg (by positivity), Real.norm_eq_abs]
   exact mul_le_mul_of_nonneg_left (Complex.abs_re_le_norm _) (by positivity)
 
+/--
+@isnad1 id=eq.0h0v.s5.873dd846485f from=translated src=- shape=f0e61117 vocab=b3cba564
+-/
 lemma integral_ρ : ∫ t : ℝ, ρ t = 1 := by
   have h1 : ∫ t : ℝ, ρ t = (∫ t : ℝ, Φ t).re := by
     unfold ρ
@@ -110,20 +158,38 @@ lemma integral_ρ : ∫ t : ℝ, ρ t = 1 := by
 noncomputable def Gs (δ : ℝ) (z : ℝ) : ℂ :=
   (g ((δ / (2 * Real.pi)) * z) + g ((-(δ / (2 * Real.pi))) * z)) / 2
 
+/--
+@isnad1 id=hascompa.1h1v.s5.aa1c87bf82b1 from=translated src=- shape=4bd99e0f vocab=202015e9
+-/
 lemma hasCompactSupport_g_comp (c : ℝ) (hc : c ≠ 0) : HasCompactSupport (fun z : ℝ => g (c * z)) :=
   g_hasCompactSupport.comp_homeomorph (Homeomorph.mulLeft₀ c hc)
 
+/--
+@isnad1 id=continuo.0h1v.s5.c8a874e8e08e from=translated src=- shape=43976749 vocab=89f70dd2
+-/
 lemma continuous_g_comp (c : ℝ) : Continuous (fun z : ℝ => g (c * z)) :=
   g_continuous.comp (continuous_const.mul continuous_id)
 
+/--
+@isnad1 id=contdiff.0h1v.s5.33fe140b69db from=translated src=- shape=7c59f4db vocab=dcab993c
+-/
 lemma contDiff_g_comp (c : ℝ) : ContDiff ℝ ∞ (fun z : ℝ => g (c * z)) :=
   g_contDiff.comp (contDiff_const.mul contDiff_id)
 
+/--
+@isnad1 id=contdiff.0h1v.s5.ade32f55b811 from=translated src=- shape=ba16b31b vocab=464a6588
+-/
 lemma Gs_contDiff (δ : ℝ) : ContDiff ℝ ∞ (Gs δ) :=
   ((contDiff_g_comp _).add (contDiff_g_comp _)).div_const _
 
+/--
+@isnad1 id=continuo.0h1v.s4.a8d5ee11a593 from=translated src=- shape=9bb0b988 vocab=f9292330
+-/
 lemma Gs_continuous (δ : ℝ) : Continuous (Gs δ) := (Gs_contDiff δ).continuous
 
+/--
+@isnad1 id=hascompa.1h1v.s4.c00cdfdeb9b1 from=translated src=- shape=b8038e13 vocab=12dd036a
+-/
 lemma Gs_hasCompactSupport (δ : ℝ) (hδ : 0 < δ) : HasCompactSupport (Gs δ) := by
   have h1 := hasCompactSupport_g_comp (δ / (2 * Real.pi)) (by positivity)
   have h2 := hasCompactSupport_g_comp (-(δ / (2 * Real.pi))) (by
@@ -135,14 +201,23 @@ lemma Gs_hasCompactSupport (δ : ℝ) (hδ : 0 < δ) : HasCompactSupport (Gs δ)
     intro h; apply hz; rw [show (g (δ / (2 * Real.pi) * z) + g (-(δ / (2 * Real.pi)) * z)) = 0 by
       simpa using h]; simp)
 
+/--
+@isnad1 id=integrab.1h1v.s5.06e016659750 from=translated src=- shape=b07cb5a9 vocab=ac26ee42
+-/
 lemma Gs_integrable (δ : ℝ) (hδ : 0 < δ) : Integrable (Gs δ) :=
   (Gs_continuous δ).integrable_of_hasCompactSupport (Gs_hasCompactSupport δ hδ)
 
+/--
+@isnad1 id=eq.0h1v.s6.9cd44cc45386 from=translated src=- shape=65b44418 vocab=32283693
+-/
 lemma Φ_eq (w : ℝ) : Φ w = ∫ v : ℝ, Complex.exp (((-2 * Real.pi * v * w : ℝ) : ℂ) * Complex.I) * g v := by
   unfold Φ
   rw [Real.fourier_real_eq_integral_exp_smul]
   simp only [smul_eq_mul]
 
+/--
+@isnad1 id=eq.0h1v.s6.1d330c36cb02 from=translated src=- shape=0f22fb1b vocab=8ae00bef
+-/
 lemma conj_Φ_eq (w : ℝ) : conj (Φ w) = ∫ v : ℝ, Complex.exp (((2 * Real.pi * v * w : ℝ) : ℂ) * Complex.I) * g v := by
   rw [Φ_eq, ← integral_conj]
   refine integral_congr_ae (ae_of_all _ fun v => ?_)
@@ -152,6 +227,9 @@ lemma conj_Φ_eq (w : ℝ) : conj (Φ w) = ∫ v : ℝ, Complex.exp (((2 * Real.
   simp only [map_mul, Complex.conj_ofReal, Complex.conj_I]
   push_cast; ring
 
+/--
+@isnad1 id=eq.1h2v.s6.111698bcfa86 from=translated src=- shape=35e34dd7 vocab=08a29d62
+-/
 lemma integral_subst (c : ℝ) (hc : c ≠ 0) (F : ℝ → ℂ) :
     ∫ v : ℝ, F v = |c| * ∫ z : ℝ, F (c * z) := by
   have := Measure.integral_comp_mul_left F c
@@ -160,6 +238,9 @@ lemma integral_subst (c : ℝ) (hc : c ≠ 0) (F : ℝ → ℂ) :
     push_cast; field_simp [abs_ne_zero.mpr hc]]
   rw [one_mul]
 
+/--
+@isnad1 id=eq.1h2v.s6.04f7948d18e9 from=translated src=- shape=51a63c35 vocab=af7d4a39
+-/
 lemma kernel_identity (δ : ℝ) (hδ : 0 < δ) (s : ℝ) :
     ((δ⁻¹ * ρ (s / δ) : ℝ) : ℂ) =
       ((2 * Real.pi)⁻¹ : ℝ) * ∫ z : ℝ, Gs δ z * Complex.exp ((s : ℂ) * Complex.I * (z : ℂ)) := by
@@ -210,10 +291,16 @@ lemma kernel_identity (δ : ℝ) (hδ : 0 < δ) (s : ℝ) :
   push_cast
   field_simp
 
+/--
+@isnad1 id=eq.0h2v.s5.bfa659ca7932 from=translated src=- shape=6352d428 vocab=d6b61dc0
+-/
 lemma norm_cexp_mul_I_mul (a z : ℝ) : ‖Complex.exp ((a : ℂ) * Complex.I * (z : ℂ))‖ = 1 := by
   rw [show (a : ℂ) * Complex.I * (z : ℂ) = ((a * z : ℝ) : ℂ) * Complex.I by push_cast; ring,
     Complex.norm_exp_ofReal_mul_I]
 
+/--
+@isnad1 id=integrab.3h4v.s6.1c366789d14c from=translated src=- shape=8dcd4a33 vocab=d050ac61
+-/
 lemma integrable_pow_mul_norm_of_bdd {u : ℝ → ℂ} (hu : Measurable u) {R B : ℝ}
     (hR : ∀ x, R < |x| → u x = 0) (hB : ∀ x, ‖u x‖ ≤ B) (n : ℕ) :
     Integrable (fun x : ℝ => ‖x‖ ^ n * ‖u x‖) := by
@@ -238,6 +325,9 @@ lemma integrable_pow_mul_norm_of_bdd {u : ℝ → ℂ} (hu : Measurable u) {R B 
 
 end BK9
 
+/--
+@isnad1 id=ex.0h0v.s8.459714ad6a1d from=translated src=- shape=60d98d46 vocab=1cb2020d
+-/
 theorem solution :
     ∃ ρ : ℝ → ℝ, Measurable ρ ∧ (∀ n : ℕ, Integrable (fun t : ℝ => |t| ^ n * ρ t)) ∧ (∫ t : ℝ, ρ t = 1) ∧
       ∀ (u : ℝ → ℂ), Measurable u → (∃ R : ℝ, ∀ x, R < |x| → u x = 0) → (∃ B : ℝ, ∀ x, ‖u x‖ ≤ B) →

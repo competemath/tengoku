@@ -17,8 +17,14 @@ variable {X : Type*} [MeasurableSpace X] (μ : Measure X) {n : ℕ} (b : Fin n �
 
 noncomputable def q (a : Fin n → ℂ) : ℝ := ∫ x, ‖∑ j, a j * b j x‖ ^ 2 ∂μ
 
+/--
+@isnad1 id=le.0h5v.s5.0ed8aa65d9eb from=translated src=- shape=72b86c78 vocab=ec1f7fbc
+-/
 theorem q_nonneg (a : Fin n → ℂ) : 0 ≤ q μ b a := integral_nonneg fun _ => by positivity
 
+/--
+@isnad1 id=eq.0h6v.s6.336dbc185411 from=translated src=- shape=69bd8e3f vocab=4c79ad35
+-/
 theorem q_smul (c : ℂ) (a : Fin n → ℂ) : q μ b (c • a) = ‖c‖ ^ 2 * q μ b a := by
   unfold q
   rw [← integral_const_mul]
@@ -27,9 +33,15 @@ theorem q_smul (c : ℂ) (a : Fin n → ℂ) : q μ b (c • a) = ‖c‖ ^ 2 * 
     rw [Finset.mul_sum]; refine Finset.sum_congr rfl fun j _ => ?_; simp [Pi.smul_apply, mul_assoc]
   rw [this, norm_mul, mul_pow]
 
+/--
+@isnad1 id=eq.0h1v.s6.b3e111fc3c25 from=translated src=- shape=0a60bfce vocab=799257d2
+-/
 theorem norm_sq_eq_re_mul_conj (z : ℂ) : (‖z‖ ^ 2 : ℝ) = (z * conj z).re := by
   rw [Complex.mul_conj, Complex.ofReal_re, Complex.normSq_eq_norm_sq]
 
+/--
+@isnad1 id=eq.1h5v.s8.548e26b41133 from=translated src=- shape=d8f5875e vocab=93082efc
+-/
 theorem q_eq_re_sum (hint : ∀ i j : Fin n, Integrable (fun x => b i x * conj (b j x)) μ) (a : Fin n → ℂ) :
     q μ b a = (∑ i, ∑ j, a i * conj (a j) * ∫ x, b i x * conj (b j x) ∂μ).re := by
   unfold q
@@ -55,6 +67,9 @@ theorem q_eq_re_sum (hint : ∀ i j : Fin n, Integrable (fun x => b i x * conj (
   refine Finset.sum_congr rfl fun j _ => ?_
   exact integral_const_mul _ _
 
+/--
+@isnad1 id=continuo.1h4v.s7.7e67ac50b670 from=translated src=- shape=bf2631fb vocab=d6ffbb0c
+-/
 theorem continuous_q (hint : ∀ i j : Fin n, Integrable (fun x => b i x * conj (b j x)) μ) : Continuous (q μ b) := by
   have : q μ b = fun a => (∑ i, ∑ j, a i * conj (a j) * ∫ x, b i x * conj (b j x) ∂μ).re :=
     funext fun a => q_eq_re_sum μ b hint a
@@ -63,6 +78,9 @@ theorem continuous_q (hint : ∀ i j : Fin n, Integrable (fun x => b i x * conj 
   refine continuous_finsetSum _ fun i _ => continuous_finsetSum _ fun j _ => ?_
   exact (((continuous_apply i).mul (Complex.continuous_conj.comp (continuous_apply j))).mul continuous_const)
 
+/--
+@isnad1 id=ex.2h4v.s8.7a1c882ee44a from=translated src=- shape=b633f190 vocab=ea71dd61
+-/
 theorem main (hint : ∀ i j : Fin n, Integrable (fun x => b i x * conj (b j x)) μ)
     (hdef : ∀ a : Fin n → ℂ, (∫ x, ‖∑ j, a j * b j x‖ ^ 2 ∂μ) = 0 → a = 0) :
     ∃ C : ℝ, 0 < C ∧ ∀ (a : Fin n → ℂ) (i : Fin n), ‖a i‖ ^ 2 ≤ C * ∫ x, ‖∑ j, a j * b j x‖ ^ 2 ∂μ := by
@@ -108,6 +126,9 @@ theorem main (hint : ∀ i j : Fin n, Integrable (fun x => b i x * conj (b j x))
 
 end Ws31.NormEquiv
 
+/--
+@isnad1 id=ex.2h4v.s8.7a1c882ee44a from=translated src=- shape=b633f190 vocab=ea71dd61
+-/
 theorem solution
     {X : Type*} [MeasurableSpace X] (μ : Measure X) {n : ℕ} (b : Fin n → X → ℂ)
     (hint : ∀ i j : Fin n, Integrable (fun x => b i x * conj (b j x)) μ)

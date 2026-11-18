@@ -14,6 +14,9 @@ namespace LeibSep
 variable {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E]
   {F : Type} [NormedAddCommGroup F] [NormedSpace ℝ F]
 
+/--
+@isnad1 id=eq.2h8v.s9.3fe5584ff3d6 from=translated src=- shape=f6caa693 vocab=a7492a55
+-/
 theorem base (φ : ℝ → ℝ) (hφ : ContDiff ℝ (⊤ : ℕ∞) φ) (A : E → F) (hA : ContDiff ℝ (⊤ : ℕ∞) A)
     (j : ℕ) (e : E) (ρ : ℝ) (u : Fin j → E) :
     iteratedFDeriv ℝ j (fun p : E × ℝ => φ p.2 • A p.1) (e, ρ) (fun i => ((u i, 0) : E × ℝ)) =
@@ -40,6 +43,9 @@ theorem base (φ : ℝ → ℝ) (hφ : ContDiff ℝ (⊤ : ℕ∞) φ) (A : E �
         rw [iteratedFDeriv_const_smul_apply' (hA.contDiffAt.of_le (by exact_mod_cast le_top))]
         rfl
 
+/--
+@isnad1 id=eq.2h5v.s9.13751afdbd72 from=translated src=- shape=8f49940c vocab=4f240626
+-/
 theorem fderiv_apply_inr (φ : ℝ → ℝ) (hφ : ContDiff ℝ (⊤ : ℕ∞) φ) (A : E → F) (hA : ContDiff ℝ (⊤ : ℕ∞) A)
     (y : E × ℝ) :
     fderiv ℝ (fun p : E × ℝ => φ p.2 • A p.1) y ((0 : E), (1 : ℝ)) = deriv φ y.2 • A y.1 := by
@@ -60,6 +66,9 @@ theorem fderiv_apply_inr (φ : ℝ → ℝ) (hφ : ContDiff ℝ (⊤ : ℕ∞) �
     simp [fderiv_apply_one_eq_deriv]
   rw [h1, h2, smul_zero, zero_add]
 
+/--
+@isnad1 id=eq.2h9v.s9.1b570ea55939 from=translated src=- shape=099d8823 vocab=8fc46397
+-/
 theorem main (φ : ℝ → ℝ) (hφ : ContDiff ℝ (⊤ : ℕ∞) φ) (A : E → F) (hA : ContDiff ℝ (⊤ : ℕ∞) A)
     (j l : ℕ) (e : E) (ρ : ℝ) (u : Fin j → E) :
     iteratedFDeriv ℝ (j + l) (fun p : E × ℝ => φ p.2 • A p.1) (e, ρ)
@@ -110,6 +119,9 @@ theorem main (φ : ℝ → ℝ) (hφ : ContDiff ℝ (⊤ : ℕ∞) φ) (A : E �
 
 end LeibSep
 
+/--
+@isnad1 id=eq.2h9v.s9.1b570ea55939 from=translated src=- shape=099d8823 vocab=8fc46397
+-/
 theorem solution
     {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {F : Type} [NormedAddCommGroup F] [NormedSpace ℝ F]

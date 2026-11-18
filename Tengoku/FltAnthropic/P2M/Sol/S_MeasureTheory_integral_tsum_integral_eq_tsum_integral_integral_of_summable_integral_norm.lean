@@ -16,6 +16,9 @@ namespace Interchange21
 
 open Filter Topology ENNReal
 
+/--
+@isnad1 id=integrab.2h5v.s7.95c3a15f501e from=translated src=- shape=79f33f10 vocab=5feccae3
+-/
 theorem integrable_tsum_of_summable_integral_norm {α : Type*} {m : MeasurableSpace α} {μ : Measure α}
     {ι : Type*} [Countable ι] {F : ι → α → ℂ}
     (hF_int : ∀ i : ι, Integrable (F i) μ) (hF_sum : Summable fun i => ∫ a, ‖F i a‖ ∂μ) :
@@ -36,6 +39,9 @@ theorem integrable_tsum_of_summable_integral_norm {α : Type*} {m : MeasurableSp
 
 end Interchange21
 
+/--
+@isnad1 id=and.2h6v.s9.dff2de3365bd from=translated src=- shape=d7d9b7bd vocab=04c851a7
+-/
 theorem solution
     {X Y ι : Type*} [MeasurableSpace X] [MeasurableSpace Y]
     (μ : Measure X) (ν : Measure Y) [SFinite μ] [SFinite ν] [Countable ι]

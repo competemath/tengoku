@@ -16,6 +16,9 @@ noncomputable section
 
 namespace IntBesselProof
 
+/--
+@isnad1 id=and.3h6v.s9.734ae807c108 from=translated src=- shape=5e705a81 vocab=a787e49a
+-/
 theorem integral_mul_conj_of_orthonormal {X : Type*} [MeasurableSpace X] (μ : Measure X) {n : ℕ}
     (e : Fin n → X → ℂ) (hint : ∀ i j, Integrable (fun x => e i x * conj (e j x)) μ)
     (hon : ∀ i j, ∫ x, e i x * conj (e j x) ∂μ = if i = j then 1 else 0)
@@ -49,6 +52,9 @@ theorem integral_mul_conj_of_orthonormal {X : Type*} [MeasurableSpace X] (μ : M
 end IntBesselProof
 
 open IntBesselProof in
+/--
+@isnad1 id=le.4h7v.s9.79b4ca8269e2 from=translated src=- shape=a1956f4a vocab=9218fc2c
+-/
 theorem solution
     {X : Type*} [MeasurableSpace X] (μ : Measure X) {n m : ℕ}
     (e : Fin n → X → ℂ) (f : Fin m → X → ℂ)

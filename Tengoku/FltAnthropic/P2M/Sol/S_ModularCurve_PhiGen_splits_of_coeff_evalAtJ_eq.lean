@@ -40,6 +40,9 @@ end
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_splits_of_coeff_evalAtJ_eq.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_splits_of_coeff_evalAtJ_eq.ModularCurve.PhiGen in
 
+/--
+@isnad1 id=eq.2h5v.s8.a5e40e4bb36a from=translated src=- shape=2e250326 vocab=09cfe3a7
+-/
 theorem solution {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] (ζ : Kˣ) {c : ℕ → LaurentSeries ℚ} (hc : PhiGenDescends ℓ ζ c) (data : ModularPolynomialData ℓ) (hcoeff : ∀ k, evalAtJ (data.Φ.coeff k) = c k) : data.Φ.map (((coeffEmb K).comp (qExpand ℚ ℓ)).comp evalAtJ) = phiProd ℓ (conj ℓ ζ) :=
   ModularCurve.PhiGen.splits_of_coeff_evalAtJ_eq ζ hc data hcoeff
 

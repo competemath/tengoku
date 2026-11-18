@@ -12,10 +12,16 @@ open scoped ComplexConjugate
 
 namespace L2ErrAux
 
+/--
+@isnad1 id=le.0h2v.s6.41a71490f265 from=translated src=- shape=69ece9f2 vocab=e6247f5a
+-/
 theorem aux_norm_add_sq_le (a b : ℂ) : ‖a + b‖ ^ 2 ≤ 2 * (‖a‖ ^ 2 + ‖b‖ ^ 2) := by
   nlinarith [mul_nonneg (norm_nonneg (a + b)) (sub_nonneg.2 (norm_add_le a b)),
     mul_self_nonneg (‖a‖ + ‖b‖ - ‖a + b‖), sq_nonneg (‖a‖ - ‖b‖), norm_nonneg a, norm_nonneg b]
 
+/--
+@isnad1 id=integrab.1h1v.s7.c20f639e9573 from=translated src=- shape=0e9341f2 vocab=09b63d49
+-/
 theorem aux_integrable_norm_sq {f : ℝ → ℂ} (hf : MemLp f 2 volume) :
     Integrable (fun x => ‖f x‖ ^ 2) volume :=
   (memLp_two_iff_integrable_sq_norm hf.aestronglyMeasurable).1 hf
@@ -23,6 +29,9 @@ theorem aux_integrable_norm_sq {f : ℝ → ℂ} (hf : MemLp f 2 volume) :
 end L2ErrAux
 
 open L2ErrAux in
+/--
+@isnad1 id=and.5h10v.s9.6781af82327f from=translated src=- shape=3e77fd65 vocab=ee50008f
+-/
 theorem solution
     {n m : ℕ} (κ τ₁ τ₂ : ℝ)
     (T F d : Fin n → ℝ → ℂ) (d' : Fin m → ℝ → ℂ) (B : Fin n → Fin m → ℝ → ℂ)

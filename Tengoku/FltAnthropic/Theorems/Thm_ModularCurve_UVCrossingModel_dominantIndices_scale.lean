@@ -14,6 +14,9 @@ universe u
 
 open ModularCurve ModularCurve.UVCrossingModel IsLocalRing
 
+/--
+@isnad1 id=eq.1h6v.s6.9b97c2358bd7 from=translated src=- shape=f9830ce7 vocab=5c93494d
+-/
 theorem ModularCurve.UVCrossingModel.dominantIndices_scale
     {W : Type u} [CommRing W] (v : W → ℕ∞) (E t q : ℕ) (hq : 1 ≤ q) (ab : PowerSeries W × PowerSeries W) :
     dominantIndices (fun w => (q : ℕ∞) * v w) (q * E) (q * t) ab = dominantIndices v E t ab := by exact @_root_.P2MW.S_ModularCurve_UVCrossingModel_dominantIndices_scale.solution W _ v E t q hq ab

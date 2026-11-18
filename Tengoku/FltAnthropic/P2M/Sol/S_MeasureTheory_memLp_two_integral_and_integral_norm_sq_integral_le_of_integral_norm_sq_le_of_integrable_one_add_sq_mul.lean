@@ -13,13 +13,22 @@ open scoped ENNReal
 
 namespace L2PacketBoundAux
 
+/--
+@isnad1 id=eq.0h1v.s5.6008cc511a62 from=translated src=- shape=9892137c vocab=328c3fb8
+-/
 theorem rpow_half_sq (x : ℝ≥0∞) : (x ^ (1 / 2 : ℝ)) ^ 2 = x := by
   rw [← ENNReal.rpow_natCast, ← ENNReal.rpow_mul]
   norm_num
 
+/--
+@isnad1 id=measurab.0h0v.s5.f6d6d8830cbd from=translated src=- shape=86ac2264 vocab=e97c9408
+-/
 theorem measurable_weight : Measurable (fun t : ℝ => ENNReal.ofReal (1 + t ^ 2)) :=
   ENNReal.measurable_ofReal.comp (continuous_const.add (continuous_id.pow 2)).measurable
 
+/--
+@isnad1 id=le.1h1v.s7.ca49579c61f6 from=translated src=- shape=02aa1a93 vocab=9d867e84
+-/
 theorem enorm_integral_sq_le (φ : ℝ → ℂ) (hφ : AEStronglyMeasurable φ volume) :
     ‖∫ t, φ t‖ₑ ^ 2 ≤ ENNReal.ofReal Real.pi * ∫⁻ t, ENNReal.ofReal (1 + t ^ 2) * ‖φ t‖ₑ ^ 2 := by
   have hw0 : ∀ t : ℝ, ENNReal.ofReal (1 + t ^ 2) ≠ 0 := fun t =>
@@ -67,6 +76,9 @@ theorem enorm_integral_sq_le (φ : ℝ → ℂ) (hφ : AEStronglyMeasurable φ v
 end L2PacketBoundAux
 
 open L2PacketBoundAux in
+/--
+@isnad1 id=and.4h4v.s9.63241df9b3a7 from=translated src=- shape=d3ea5494 vocab=d6d52ee7
+-/
 theorem solution
     {X : Type*} [MeasurableSpace X] (μ : Measure X) [SFinite μ]
     (G : ℝ × X → ℂ) (_hG : AEStronglyMeasurable G ((volume : Measure ℝ).prod μ))

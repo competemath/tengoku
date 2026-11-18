@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_ModularCurve_SiegelUnit_sum_totient_mul_le
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.1h2v.s7.dac9bb8be961 from=translated src=- shape=9db2bc5c vocab=e75f43a1
+-/
 theorem ModularCurve.SiegelUnit.sum_totient_mul_levelBernoulliWeight_dilate_eq_zero (N : ℕ) [NeZero N]
     (s : ZMod N) (hs : s ≠ 0) :
     ∑ r : ZMod N,

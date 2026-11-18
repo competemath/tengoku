@@ -6,6 +6,9 @@ import Tengoku.FltAnthropic.Theorems.Thm_MeasureTheory_exists_div_le_of_le_setAv
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_MeasureTheory_exists_mem_le_of_setAverage_chain.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 namespace P2MW.S_MeasureTheory_exists_mem_le_of_setAverage_chain
 
+/--
+@isnad1 id=ex.13h11v.s9.b28c50787bc4 from=translated src=- shape=aa0b7497 vocab=de5b6267
+-/
 theorem solution {α : Type*} [MeasurableSpace α]
     {μ : MeasureTheory.Measure α} {ψ : α → ℝ} {G : ℕ → Set α} {B : ℕ → α → Set α} {L : ℕ}
     {A₀ κ θ : ℝ} (hθ : 0 < θ) (hθ1 : θ ≤ 1) (hκ : 0 ≤ κ)

@@ -7,6 +7,9 @@ namespace P2MW.S_MeasureTheory_exists_div_le_of_le_setAverage_of_nonpos
 
 open Real MeasureTheory Metric
 
+/--
+@isnad1 id=ex.9h7v.s7.766800e9dd14 from=translated src=- shape=64c6a70d vocab=b8982c5e
+-/
 theorem solution {α : Type*} [MeasurableSpace α]
     {μ : MeasureTheory.Measure α} {s E : Set α} {ψ : α → ℝ} {A θ : ℝ}
     (hsm : MeasurableSet s) (hψ : MeasureTheory.IntegrableOn ψ s μ) (hψ0 : ∀ x ∈ s, ψ x ≤ 0)

@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Complex_differentiableOn_integral_of_conti
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=differen.5h5v.s8.5ea2160876ca from=translated src=- shape=e4ce6b8a vocab=c4cda6e6
+-/
 theorem Complex.differentiableOn_integral_of_continuousOn_of_forall_differentiableOn
     {Y : Type*} [TopologicalSpace Y] [MeasurableSpace Y] [OpensMeasurableSpace Y]
     (ν : MeasureTheory.Measure Y) [MeasureTheory.IsFiniteMeasureOnCompacts ν]

@@ -9,6 +9,9 @@ namespace P2MW.S_ModPForms_ofPowerSeries_thetaPS_eq_thetaL_ofPowerSeries
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.0h2v.s9.e7a5f3f746d2 from=translated src=- shape=0ae63863 vocab=ad056c72
+-/
 theorem solution
     (K : Type) [Field K] (φ : PowerSeries K) :
     HahnSeries.ofPowerSeries ℤ K (ModPForms.thetaPS φ) =

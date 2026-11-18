@@ -29,13 +29,22 @@ def sprod (N : ℕ) (r s : ℤ) (τ : ℂ) : ℂ :=
   (1 - qa N r s τ) * ∏' n : ℕ, ((1 - qq τ ^ (n + 1) * qa N r s τ) *
     (1 - qq τ ^ (n + 1) * (qa N r s τ)⁻¹))
 
+/--
+@isnad1 id=eq.0h4v.s5.17cf1395fe06 from=translated src=- shape=6b4addea vocab=4c2e7b79
+-/
 theorem siegelFun_eq (N : ℕ) (r s : ℤ) (τ : ℂ) :
     ModularCurve.siegelFun N r s τ = pref N r s τ * sprod N r s τ := by
   unfold ModularCurve.siegelFun pref sprod qq qa; simp only [mul_assoc]
 
+/--
+@isnad1 id=eq.0h3v.s4.152aee1f1c10 from=translated src=- shape=e59f7ef4 vocab=51dfd744
+-/
 theorem siegelFun_level_zero (r s : ℤ) (τ : ℂ) : ModularCurve.siegelFun 0 r s τ = 0 := by
   simp [ModularCurve.siegelFun]
 
+/--
+@isnad1 id=lt.1h1v.s4.a903b5544002 from=translated src=- shape=57faaa14 vocab=2cd68681
+-/
 theorem norm_qq_lt_one {τ : ℂ} (hτ : 0 < τ.im) : ‖qq τ‖ < 1 := by
   unfold qq
   rw [Complex.norm_exp]
@@ -45,10 +54,19 @@ theorem norm_qq_lt_one {τ : ℂ} (hτ : 0 < τ.im) : ‖qq τ‖ < 1 := by
   have := Real.pi_pos
   nlinarith
 
+/--
+@isnad1 id=ne.0h1v.s3.cf2fb1de0140 from=translated src=- shape=b14ee516 vocab=ae1329b0
+-/
 theorem qq_ne_zero (τ : ℂ) : qq τ ≠ 0 := Complex.exp_ne_zero _
 
+/--
+@isnad1 id=ne.0h4v.s4.37390b1b4ff4 from=translated src=- shape=d5cf3520 vocab=2f4bc774
+-/
 theorem qa_ne_zero (N : ℕ) (r s : ℤ) (τ : ℂ) : qa N r s τ ≠ 0 := Complex.exp_ne_zero _
 
+/--
+@isnad1 id=multipli.1h3v.s6.0f0a42d99f48 from=translated src=- shape=5e5b2675 vocab=b137e65d
+-/
 theorem multipliable_one_sub_pow_mul {q : ℂ} (hq : ‖q‖ < 1) (c : ℂ) (k : ℕ) :
     Multipliable fun n : ℕ => 1 - q ^ (n + k) * c := by
   have hs : Summable fun n : ℕ => ‖-(q ^ (n + k) * c)‖ := by
@@ -58,6 +76,9 @@ theorem multipliable_one_sub_pow_mul {q : ℂ} (hq : ‖q‖ < 1) (c : ℂ) (k :
     ring
   simpa [sub_eq_add_neg] using multipliable_one_add_of_summable hs
 
+/--
+@isnad1 id=eq.1h4v.s5.a1311217c8a5 from=translated src=- shape=e0f2aa27 vocab=9024a728
+-/
 theorem qa_add_level (N : ℕ) (hN : N ≠ 0) (r s : ℤ) (z : ℂ) :
     qa N r (s + N) z = qa N r s z := by
   unfold qa
@@ -67,6 +88,9 @@ theorem qa_add_level (N : ℕ) (hN : N ≠ 0) (r s : ℤ) (z : ℂ) :
       = 2 * π * I * ((r : ℂ) * z + (s : ℂ)) / (N : ℂ) + 2 * π * I by field_simp; ring,
     Complex.exp_add, Complex.exp_two_pi_mul_I, mul_one]
 
+/--
+@isnad1 id=eq.1h4v.s6.98ee7d2a7709 from=translated src=- shape=46bc5b45 vocab=ce131231
+-/
 theorem pref_add_level (N : ℕ) (hN : N ≠ 0) (r s : ℤ) (z : ℂ) :
     pref N r (s + N) z = cexp (π * I * ((r : ℂ) - (N : ℂ)) / (N : ℂ)) * pref N r s z := by
   unfold pref
@@ -78,11 +102,17 @@ theorem pref_add_level (N : ℕ) (hN : N ≠ 0) (r s : ℤ) (z : ℂ) :
   field_simp
   ring
 
+/--
+@isnad1 id=eq.1h4v.s5.4364cfd4d361 from=translated src=- shape=e0f2aa27 vocab=1a789170
+-/
 theorem sprod_add_level (N : ℕ) (hN : N ≠ 0) (r s : ℤ) (z : ℂ) :
     sprod N r (s + N) z = sprod N r s z := by
   unfold sprod
   simp only [qa_add_level N hN]
 
+/--
+@isnad1 id=eq.1h4v.s5.42418a839bcc from=translated src=- shape=6fa23a67 vocab=2b6052aa
+-/
 theorem qa_add_level_left (N : ℕ) (hN : N ≠ 0) (r s : ℤ) (z : ℂ) :
     qa N (r + N) s z = qq z * qa N r s z := by
   unfold qa qq
@@ -93,6 +123,9 @@ theorem qa_add_level_left (N : ℕ) (hN : N ≠ 0) (r s : ℤ) (z : ℂ) :
   field_simp
   ring
 
+/--
+@isnad1 id=eq.1h4v.s6.c8a370fd6d44 from=translated src=- shape=f2bf2307 vocab=019b6bbb
+-/
 theorem pref_add_level_left (N : ℕ) (hN : N ≠ 0) (r s : ℤ) (z : ℂ) :
     pref N (r + N) s z = pref N r s z * (qa N r s z * cexp (-(π * I * (s : ℂ) / (N : ℂ)))) := by
   unfold pref qa
@@ -105,6 +138,9 @@ theorem pref_add_level_left (N : ℕ) (hN : N ≠ 0) (r s : ℤ) (z : ℂ) :
   field_simp
   ring
 
+/--
+@isnad1 id=eq.2h4v.s6.fcaa6ddb518e from=translated src=- shape=df14d033 vocab=d108fca2
+-/
 theorem sprod_add_level_left (N : ℕ) (hN : N ≠ 0) (r s : ℤ) {τ : ℂ} (hτ : 0 < τ.im) :
     sprod N (r + N) s τ = -(qa N r s τ)⁻¹ * sprod N r s τ := by
   have hq := norm_qq_lt_one hτ
@@ -140,6 +176,9 @@ end SiegelPerE96
 
 open SiegelPerE96 in
 
+/--
+@isnad1 id=and.0h3v.s7.f35b595dcaa8 from=translated src=- shape=8d28570f vocab=ca4c1968
+-/
 theorem solution (N : ℕ) (r s : ℤ) :
     (∀ z : ℂ, siegelFun N r (s + N) z =
         Complex.exp (Real.pi * Complex.I * ((r : ℂ) - (N : ℂ)) / (N : ℂ)) * siegelFun N r s z) ∧

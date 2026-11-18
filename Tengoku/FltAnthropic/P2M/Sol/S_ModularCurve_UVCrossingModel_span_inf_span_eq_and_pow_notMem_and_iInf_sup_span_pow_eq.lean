@@ -118,6 +118,9 @@ private theorem exists_eq_C_mul_add_X_mul_X_mul (π : W) (f : MvPowerSeries (Fin
 end ALGProof
 
 open ALGProof MvPowerSeries in
+/--
+@isnad1 id=and.2h3v.s12.1c0621e38a6d from=translated src=- shape=3619f087 vocab=6811671d
+-/
 theorem solution
     {W : Type*} [CommRing W] [IsDomain W] [IsDiscreteValuationRing W]
     (π : W) (hπ : Irreducible π) (E : ℕ) (hE : 1 ≤ E) :

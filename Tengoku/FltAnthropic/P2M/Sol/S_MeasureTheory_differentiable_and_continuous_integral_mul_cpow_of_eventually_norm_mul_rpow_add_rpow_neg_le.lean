@@ -13,6 +13,9 @@ open MeasureTheory Complex Filter Topology Real
 
 namespace ParametricMellin
 
+/--
+@isnad1 id=le.2h3v.s6.50872543a594 from=translated src=- shape=c7fb9566 vocab=ef355314
+-/
 theorem rpow_le_rpow_add_rpow_neg {y : ℝ} (hy : 0 < y) {t M : ℝ} (ht : |t| ≤ M) :
     y ^ t ≤ y ^ M + y ^ (-M) := by
   have h1 : t ≤ M := (le_abs_self t).trans ht
@@ -22,6 +25,9 @@ theorem rpow_le_rpow_add_rpow_neg {y : ℝ} (hy : 0 < y) {t M : ℝ} (ht : |t| �
   · exact le_add_of_nonneg_of_le (Real.rpow_nonneg hy.le _)
       (Real.rpow_le_rpow_of_exponent_ge hy h.le h2)
 
+/--
+@isnad1 id=le.1h1v.s5.223838980a41 from=translated src=- shape=35b48cfc vocab=f22e44b2
+-/
 theorem abs_log_le_add_inv {y : ℝ} (hy : 0 < y) : |Real.log y| ≤ y + y⁻¹ := by
   rw [abs_le]
   constructor
@@ -33,10 +39,16 @@ theorem abs_log_le_add_inv {y : ℝ} (hy : 0 < y) : |Real.log y| ≤ y + y⁻¹ 
     have : 0 ≤ y⁻¹ := inv_nonneg.2 hy.le
     linarith
 
+/--
+@isnad1 id=eq.1h2v.s6.475e3955a77b from=translated src=- shape=d3bf2753 vocab=323cadae
+-/
 theorem rpow_mul_add_inv {y : ℝ} (hy : 0 < y) (t : ℝ) :
     y ^ t * (y + y⁻¹) = y ^ (t + 1) + y ^ (t - 1) := by
   rw [mul_add, Real.rpow_add hy, Real.rpow_one, Real.rpow_sub hy, Real.rpow_one, div_eq_mul_inv]
 
+/--
+@isnad1 id=le.2h3v.s6.de8bd506ec83 from=translated src=- shape=0bd96282 vocab=295205a1
+-/
 theorem rpow_mul_abs_log_le {y : ℝ} (hy : 0 < y) {t M : ℝ} (ht : |t| + 1 ≤ M) :
     y ^ t * |Real.log y| ≤ 2 * (y ^ M + y ^ (-M)) := by
   have h0 : 0 ≤ y ^ t := Real.rpow_nonneg hy.le _
@@ -56,18 +68,30 @@ theorem rpow_mul_abs_log_le {y : ℝ} (hy : 0 < y) {t M : ℝ} (ht : |t| + 1 ≤
 variable {X : Type*} [MeasurableSpace X] (m : Measure X) (N : X → ℝ)
 
 omit [MeasurableSpace X] in
+/--
+@isnad1 id=eq.1h5v.s6.6243e765fce8 from=translated src=- shape=1f6b4dec vocab=d7a2dde0
+-/
 theorem norm_mul_cpow {x : X} (hx : 0 < N x) (c : ℂ) (s : ℂ) :
     ‖c * ((N x : ℝ) : ℂ) ^ s‖ = ‖c‖ * N x ^ s.re := by
   rw [norm_mul, Complex.norm_cpow_eq_rpow_re_of_pos hx]
 
+/--
+@isnad1 id=aestrong.1h4v.s5.554d1739e86a from=translated src=- shape=2be00f9b vocab=ea015afb
+-/
 theorem aestronglyMeasurable_cpow (hN : AEMeasurable N m) (c : ℂ) :
     AEStronglyMeasurable (fun x => ((N x : ℝ) : ℂ) ^ c) m :=
   ((Complex.measurable_ofReal.comp_aemeasurable hN).pow_const c).aestronglyMeasurable
 
+/--
+@isnad1 id=aestrong.2h5v.s6.b68964a73236 from=translated src=- shape=09dc5bc0 vocab=0cd7f078
+-/
 theorem aestronglyMeasurable_integrand {g : X → ℂ} (hg : AEStronglyMeasurable g m) (hN : AEMeasurable N m)
     (s : ℂ) : AEStronglyMeasurable (fun x => g x * ((N x : ℝ) : ℂ) ^ s) m :=
   hg.mul (aestronglyMeasurable_cpow m N hN _)
 
+/--
+@isnad1 id=aestrong.2h5v.s6.fa57ab56eb52 from=translated src=- shape=fe46c222 vocab=481ddf38
+-/
 theorem aestronglyMeasurable_deriv_integrand {g : X → ℂ} (hg : AEStronglyMeasurable g m) (hN : AEMeasurable N m)
     (s : ℂ) :
     AEStronglyMeasurable (fun x => g x * (((N x : ℝ) : ℂ) ^ s * ((Real.log (N x) : ℝ) : ℂ))) m := by
@@ -75,17 +99,26 @@ theorem aestronglyMeasurable_deriv_integrand {g : X → ℂ} (hg : AEStronglyMea
   exact (Complex.measurable_ofReal.comp_aemeasurable
     (Real.measurable_log.comp_aemeasurable hN)).aestronglyMeasurable
 
+/--
+@isnad1 id=aestrong.2h5v.s6.a66b9950f767 from=translated src=- shape=2e933cc3 vocab=f44ae822
+-/
 theorem aestronglyMeasurable_majorant {g : X → ℂ} (hg : AEStronglyMeasurable g m) (hN : AEMeasurable N m)
     (M : ℝ) : AEStronglyMeasurable (fun x => ‖g x‖ * (N x ^ M + N x ^ (-M))) m := by
   refine (hg.norm.aemeasurable.mul ((hN.pow_const M).add (hN.pow_const (-M)))).aestronglyMeasurable
 
 omit [MeasurableSpace X] in
+/--
+@isnad1 id=le.2h6v.s6.b993f5be48c1 from=translated src=- shape=58e97be8 vocab=5cb712f9
+-/
 theorem norm_integrand_le {x : X} (hx : 0 < N x) (c : ℂ) {s : ℂ} {M : ℝ} (hs : |s.re| ≤ M) :
     ‖c * ((N x : ℝ) : ℂ) ^ s‖ ≤ ‖c‖ * (N x ^ M + N x ^ (-M)) := by
   rw [norm_mul_cpow N hx]
   exact mul_le_mul_of_nonneg_left (rpow_le_rpow_add_rpow_neg hx hs) (norm_nonneg _)
 
 omit [MeasurableSpace X] in
+/--
+@isnad1 id=le.2h6v.s7.efcdde3d960b from=translated src=- shape=2c8c3f2f vocab=f1984edb
+-/
 theorem norm_deriv_integrand_le {x : X} (hx : 0 < N x) (c : ℂ) {s : ℂ} {M : ℝ} (hs : |s.re| + 1 ≤ M) :
     ‖c * (((N x : ℝ) : ℂ) ^ s * ((Real.log (N x) : ℝ) : ℂ))‖ ≤ 2 * (‖c‖ * (N x ^ M + N x ^ (-M))) := by
   rw [norm_mul, norm_mul, Complex.norm_cpow_eq_rpow_re_of_pos hx, Complex.norm_real, Real.norm_eq_abs]
@@ -95,6 +128,9 @@ theorem norm_deriv_integrand_le {x : X} (hx : 0 < N x) (c : ℂ) {s : ℂ} {M : 
     _ = 2 * (‖c‖ * (N x ^ M + N x ^ (-M))) := by ring
 
 omit [MeasurableSpace X] in
+/--
+@isnad1 id=le.1h5v.s6.174dc270105c from=translated src=- shape=964d50a8 vocab=a06fea74
+-/
 theorem majorant_nonneg {x : X} (hx : 0 < N x) (c : ℂ) (M : ℝ) : 0 ≤ ‖c‖ * (N x ^ M + N x ^ (-M)) :=
   mul_nonneg (norm_nonneg _) (add_nonneg (Real.rpow_nonneg hx.le _) (Real.rpow_nonneg hx.le _))
 
@@ -105,6 +141,9 @@ variable (hN : AEMeasurable N m) (hNpos : ∀ x, 0 < N x) {g : X → ℂ} (hg : 
 
 include hN hNpos hg
 
+/--
+@isnad1 id=integrab.5h6v.s7.f80307612ec9 from=translated src=- shape=53ceabd3 vocab=88df2785
+-/
 theorem integrable_majorant_of_le {M : ℝ} {bound : X → ℝ} (hb : Integrable bound m)
     (hle : ∀ᵐ x ∂m, ‖g x‖ * (N x ^ M + N x ^ (-M)) ≤ bound x) :
     Integrable (fun x => ‖g x‖ * (N x ^ M + N x ^ (-M))) m := by
@@ -113,6 +152,9 @@ theorem integrable_majorant_of_le {M : ℝ} {bound : X → ℝ} (hb : Integrable
   rw [Real.norm_eq_abs, abs_of_nonneg (majorant_nonneg N (hNpos x) (g x) M)]
   exact hx
 
+/--
+@isnad1 id=integrab.5h6v.s7.e635dbb4f4b6 from=translated src=- shape=5d7cb426 vocab=164980c6
+-/
 theorem integrable_integrand {M : ℝ} (hmom : Integrable (fun x => ‖g x‖ * (N x ^ M + N x ^ (-M))) m)
     {s : ℂ} (hs : |s.re| ≤ M) : Integrable (fun x => g x * ((N x : ℝ) : ℂ) ^ s) m := by
   refine hmom.mono' (aestronglyMeasurable_integrand m N hg hN s) ?_
@@ -120,11 +162,17 @@ theorem integrable_integrand {M : ℝ} (hmom : Integrable (fun x => ‖g x‖ * 
 
 omit hN hg in
 
+/--
+@isnad1 id=le.3h6v.s7.408c590c4044 from=translated src=- shape=b2ae6672 vocab=9ffb1e14
+-/
 theorem norm_integral_le {M : ℝ} (hmom : Integrable (fun x => ‖g x‖ * (N x ^ M + N x ^ (-M))) m)
     {s : ℂ} (hs : |s.re| ≤ M) :
     ‖∫ x, g x * ((N x : ℝ) : ℂ) ^ s ∂m‖ ≤ ∫ x, ‖g x‖ * (N x ^ M + N x ^ (-M)) ∂m :=
   norm_integral_le_of_norm_le hmom (Filter.Eventually.of_forall fun x => norm_integrand_le N (hNpos x) (g x) hs)
 
+/--
+@isnad1 id=hasderiv.5h6v.s8.ba4a4917b361 from=translated src=- shape=a4b32121 vocab=9ba775fa
+-/
 theorem hasDerivAt_integral {s₀ : ℂ} {M : ℝ} (hM : |s₀.re| + 2 ≤ M)
     (hmom : Integrable (fun x => ‖g x‖ * (N x ^ M + N x ^ (-M))) m) :
     HasDerivAt (fun s : ℂ => ∫ x, g x * ((N x : ℝ) : ℂ) ^ s ∂m)
@@ -165,6 +213,9 @@ theorem hasDerivAt_integral {s₀ : ℂ} {M : ℝ} (hM : |s₀.re| + 2 ≤ M)
 
 end OneFunction
 
+/--
+@isnad1 id=and.5h5v.s9.48fa49b6b7cc from=translated src=- shape=238a39c0 vocab=950fa0fb
+-/
 theorem main
     {P : Type*} [TopologicalSpace P] [FirstCountableTopology P]
     (hN : AEMeasurable N m) (hNpos : ∀ x, 0 < N x)
@@ -217,6 +268,9 @@ theorem main
 
 end ParametricMellin
 
+/--
+@isnad1 id=and.5h5v.s9.02009f240b1a from=translated src=- shape=1a701012 vocab=950fa0fb
+-/
 theorem solution
     {X : Type*} [MeasurableSpace X] (m : MeasureTheory.Measure X)
     {P : Type*} [TopologicalSpace P] [FirstCountableTopology P]

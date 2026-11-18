@@ -7,6 +7,9 @@ namespace P2MW.S_Matrix_span_eq_top_of_map_span_eq_top
 
 open IsLocalRing
 
+/--
+@isnad1 id=mem.1h4v.s9.688c39277833 from=translated src=- shape=5ba11879 vocab=6b73b50b
+-/
 theorem w2aux_mem_smul_top
     {n : Type*} [Fintype n] [DecidableEq n] {A : Type*} [CommRing A]
     {I : Ideal A} {M : Matrix n n A} (hM : ∀ i j, M i j ∈ I) :
@@ -17,6 +20,9 @@ theorem w2aux_mem_smul_top
     rw [Matrix.smul_single, smul_eq_mul, mul_one]]
   exact Submodule.smul_mem_smul (hM i j) Submodule.mem_top
 
+/--
+@isnad1 id=ex.2h6v.s9.a6bab2e4ed89 from=translated src=- shape=b1692924 vocab=7b71b84e
+-/
 theorem w2aux_exists_map_eq
     {n : Type*} {A : Type*} [CommRing A] {k : Type*} [Field k]
     (π : A →+* k) (hπ : Function.Surjective π)
@@ -41,6 +47,9 @@ theorem w2aux_exists_map_eq
     ext i j
     simp [Matrix.map_apply]
 
+/--
+@isnad1 id=eq.2h5v.s9.efdafbab6854 from=translated src=- shape=4d482236 vocab=6fe3e001
+-/
 theorem solution
     {n : Type*} [Fintype n] [DecidableEq n] {A : Type*} [CommRing A] [IsLocalRing A]
     {k : Type*} [Field k] (π : A →+* k) (hπ : Function.Surjective π) {S : Set (Matrix n n A)}

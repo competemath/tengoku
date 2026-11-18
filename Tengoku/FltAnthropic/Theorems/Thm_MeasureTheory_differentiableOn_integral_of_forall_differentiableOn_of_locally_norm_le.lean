@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open MeasureTheory
 
+/--
+@isnad1 id=differen.4h4v.s8.0364d6f061ad from=translated src=- shape=81b3fa59 vocab=6bde5231
+-/
 theorem MeasureTheory.differentiableOn_integral_of_forall_differentiableOn_of_locally_norm_le
     {Y : Type*} [MeasurableSpace Y] (ν : Measure Y)
     {U : Set ℂ} (hU : IsOpen U) (F : ℂ → Y → ℂ)

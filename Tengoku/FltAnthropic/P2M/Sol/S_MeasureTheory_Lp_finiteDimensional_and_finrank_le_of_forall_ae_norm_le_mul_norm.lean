@@ -14,6 +14,9 @@ namespace GodementAux
 
 variable {X : Type*} [MeasurableSpace X] {μ : Measure X} {𝕜 : Type*} [RCLike 𝕜]
 
+/--
+@isnad1 id=eventual.0h7v.s10.3affceaa9be4 from=translated src=- shape=c8225c4e vocab=1c405895
+-/
 theorem coeFn_finset_sum {ι : Type*} {p : ℝ≥0∞} (s : Finset ι) (f : ι → Lp 𝕜 p μ) :
     (((∑ i ∈ s, f i : Lp 𝕜 p μ) : X → 𝕜)) =ᵐ[μ] fun x => ∑ i ∈ s, (f i : X → 𝕜) x := by
   classical
@@ -27,6 +30,9 @@ theorem coeFn_finset_sum {ι : Type*} {p : ℝ≥0∞} (s : Finset ι) (f : ι �
     filter_upwards [Lp.coeFn_add (f a) (∑ i ∈ s, f i), ih] with x hx hix
     rw [hx, Pi.add_apply, hix]
 
+/--
+@isnad1 id=eq.0h4v.s10.8c9ff1b8e985 from=translated src=- shape=255aaf50 vocab=adb3b9f8
+-/
 theorem norm_sq_eq_integral (φ : Lp 𝕜 2 μ) : ‖φ‖ ^ 2 = ∫ x, ‖(φ : X → 𝕜) x‖ ^ 2 ∂μ := by
   rw [← @inner_self_eq_norm_sq 𝕜, L2.inner_def]
   simp_rw [inner_self_eq_norm_sq_to_K]
@@ -34,9 +40,15 @@ theorem norm_sq_eq_integral (φ : Lp 𝕜 2 μ) : ‖φ‖ ^ 2 = ∫ x, ‖(φ :
     funext a; push_cast; rfl
   rw [this, integral_ofReal, RCLike.ofReal_re]
 
+/--
+@isnad1 id=integrab.0h4v.s9.f3de794a16f5 from=translated src=- shape=0c092bf1 vocab=a4a670c9
+-/
 theorem integrable_norm_sq (φ : Lp 𝕜 2 μ) : Integrable (fun x => ‖(φ : X → 𝕜) x‖ ^ 2) μ :=
   (memLp_two_iff_integrable_sq_norm (Lp.memLp φ).1).mp (Lp.memLp φ)
 
+/--
+@isnad1 id=le.2h6v.s14.206327b7d41c from=translated src=- shape=414e6420 vocab=18412350
+-/
 theorem card_le_of_orthonormal [IsFiniteMeasure μ] (C : ℝ) {m : ℕ} (e : Fin m → Lp 𝕜 2 μ) (he : Orthonormal 𝕜 e)
     (hb : ∀ c : Fin m → 𝕜, ∀ᵐ x ∂μ, ‖((∑ i, c i • e i : Lp 𝕜 2 μ) : X → 𝕜) x‖ ≤ C * ‖∑ i, c i • e i‖) :
     (m : ℝ) ≤ C ^ 2 * (μ Set.univ).toReal := by
@@ -112,6 +124,9 @@ end GodementAux
 
 open GodementAux in
 
+/--
+@isnad1 id=and.1h5v.s13.6be46ee92950 from=translated src=- shape=d633ed70 vocab=72f38418
+-/
 theorem solution
     {X : Type*} [MeasurableSpace X] {μ : Measure X} [IsFiniteMeasure μ] {𝕜 : Type*} [RCLike 𝕜]
     (V : Submodule 𝕜 (Lp 𝕜 2 μ)) (C : ℝ)

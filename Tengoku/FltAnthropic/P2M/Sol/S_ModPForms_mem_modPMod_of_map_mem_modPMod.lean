@@ -16,14 +16,23 @@ variable {K L : Type} [Field K] [Field L]
 noncomputable def coeffwise (r : L →+ K) (φ : PowerSeries L) : PowerSeries K :=
   PowerSeries.mk fun n => r (PowerSeries.coeff n φ)
 
+/--
+@isnad1 id=eq.0h5v.s9.ee106c085cee from=translated src=- shape=bf0ce310 vocab=f6a49011
+-/
 @[scoped simp] theorem coeff_coeffwise (r : L →+ K) (φ : PowerSeries L) (n : ℕ) :
     PowerSeries.coeff n (coeffwise r φ) = r (PowerSeries.coeff n φ) := by
   rw [coeffwise, PowerSeries.coeff_mk]
 
+/--
+@isnad1 id=eq.0h5v.s6.0ba7b99a83e4 from=translated src=- shape=73b35a09 vocab=e685b2e4
+-/
 theorem coeffwise_add (r : L →+ K) (φ ψ : PowerSeries L) :
     coeffwise r (φ + ψ) = coeffwise r φ + coeffwise r ψ := by
   ext n; simp
 
+/--
+@isnad1 id=eq.0h3v.s6.ac3a16ac7d5c from=translated src=- shape=752c7038 vocab=d65c1951
+-/
 theorem coeffwise_zero (r : L →+ K) : coeffwise r (0 : PowerSeries L) = 0 := by
   ext n; simp
 
@@ -32,6 +41,9 @@ open scoped _root_.P2MW.S_ModPForms_mem_modPMod_of_map_mem_modPMod.FltWs24 _root
 open scoped _root_.P2MW.S_ModPForms_mem_modPMod_of_map_mem_modPMod.FltWs24
 
 open FltWs24.Descent in
+/--
+@isnad1 id=mem.1h6v.s8.4089dd03641d from=translated src=- shape=c8d11c8d vocab=167ee3c2
+-/
 theorem solution
     (N : ℕ) (k : ℤ) (K L : Type) [Field K] [Field L] (i : K →+* L)
     (ψ : PowerSeries K) (h : PowerSeries.map i ψ ∈ ModPForms.modPMod N k L) :
