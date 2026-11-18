@@ -13,6 +13,9 @@ open Polynomial
 
 variable {A : Type} [CommRing A] [IsDomain A]
 
+/--
+@isnad1 id=isunit.2h3v.s6.a96bf99e7b00 from=translated src=- shape=e7f7c6c0 vocab=09c0e61b
+-/
 theorem isUnit_one_sub {ℓ : ℕ} [hℓ : Fact ℓ.Prime] (hℓA : IsUnit ((ℓ : ℕ) : A))
     {ν : A} (hν : IsPrimitiveRoot ν ℓ) : IsUnit (1 - ν) := by
   have hpos : 0 < ℓ := hℓ.out.pos
@@ -23,6 +26,9 @@ theorem isUnit_one_sub {ℓ : ℕ} [hℓ : Fact ℓ.Prime] (hℓA : IsUnit ((ℓ
   have hprod : IsUnit (∏ μ ∈ primitiveRoots ℓ A, ((1 : A) - μ)) := by rw [h1]; exact hℓA
   exact isUnit_of_dvd_unit (Finset.dvd_prod_of_mem (fun μ => (1 : A) - μ) hmem) hprod
 
+/--
+@isnad1 id=isunit.4h4v.s6.f039c844ee8e from=translated src=- shape=4ff873e6 vocab=09c0e61b
+-/
 theorem isUnit_sub {ℓ : ℕ} [hℓ : Fact ℓ.Prime] (hℓA : IsUnit ((ℓ : ℕ) : A))
     {a μ : A} (ha : IsPrimitiveRoot a ℓ) (hμ : IsPrimitiveRoot μ ℓ) (h : μ ≠ a) : IsUnit (μ - a) := by
   have hpos : 0 < ℓ := hℓ.out.pos
@@ -52,6 +58,9 @@ open CrtSplitAux
 
 open Polynomial Classical in
 
+/--
+@isnad1 id=iscompl.5h5v.s9.76482624759c from=translated src=- shape=ee19f7b5 vocab=d4b1d8d3
+-/
 theorem solution
     (A : Type) [CommRing A] [IsDomain A] (B : Type) [CommRing B] [Algebra A B]
     (ℓ : ℕ) [Fact ℓ.Prime] (hℓA : IsUnit ((ℓ : ℕ) : A)) (hω : ∃ ω : A, IsPrimitiveRoot ω ℓ)

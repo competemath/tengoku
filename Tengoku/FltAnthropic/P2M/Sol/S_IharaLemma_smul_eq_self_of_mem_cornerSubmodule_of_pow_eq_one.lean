@@ -40,6 +40,9 @@ theorem eq_one_of_pow_eq_one {R : Type} [CommRing R] [IsLocalRing R] (x : R) (n 
 end CohL2.CornerTriv
 
 open CohL2.CornerTriv in
+/--
+@isnad1 id=eq.4h7v.s8.8737be969459 from=translated src=- shape=4b6eb512 vocab=194912bd
+-/
 theorem solution
     {B M : Type} [CommRing B] [AddCommGroup M] [Module B M]
     (S : IharaLemma.IdempotentSplitting B) (i : Fin S.n) (t : B) (n : ℕ)

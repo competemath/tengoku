@@ -11,6 +11,9 @@ open scoped NNReal TensorProduct
 open Coalgebra HopfAlgebra
 
 open scoped _root_.TensorProduct _root_.Coalgebra.TensorProduct in
+/--
+@isnad1 id=eq.5h11v.s14.a899aa17b212 from=translated src=- shape=b777be5b vocab=95530e9b
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] (hp2 : p ≠ 2)
     (s : AlgebraicClosure ℚ_[p]) (hs0 : s ≠ 0)

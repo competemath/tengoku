@@ -26,6 +26,9 @@ abbrev Q : Type v := H ⧸ J K
 
 def π : H →ₐ[k] Q K := Ideal.Quotient.mkₐ k (J K)
 
+/--
+@isnad1 id=eq.1h4v.s9.ac3316de5e7f from=translated src=- shape=ccb05c07 vocab=fc125d09
+-/
 theorem π_eq_algebraMap_counit_of_mem {x : H} (hx : x ∈ K) :
     π K x = algebraMap k (Q K) (Coalgebra.counit (R := k) x) := by
   have hmem : x - algebraMap k H (Coalgebra.counit (R := k) x) ∈ J K := by
@@ -46,8 +49,14 @@ noncomputable def mapK : H ⊗[k] H →ₗ[k] H ⊗[↥K] H :=
       (fun x y₁ y₂ => TensorProduct.tmul_add x y₁ y₂)
       (fun c x y => by show x ⊗ₜ[↥K] (c • y) = c • (x ⊗ₜ[↥K] y); exact TensorProduct.tmul_smul c x y))
 
+/--
+@isnad1 id=eq.0h5v.s12.9d61b75b9dda from=translated src=- shape=b943edb7 vocab=0688c595
+-/
 @[scoped simp] theorem mapK_tmul (x y : H) : mapK K (x ⊗ₜ[k] y) = x ⊗ₜ[↥K] y := rfl
 
+/--
+@isnad1 id=eq.0h5v.s13.0049202edbe8 from=translated src=- shape=e5f6660b vocab=08fd46cd
+-/
 theorem mapK_mul (s t : H ⊗[k] H) : mapK K (s * t) = mapK K s * mapK K t := by
   induction s using TensorProduct.induction_on with
   | zero => simp
@@ -68,12 +77,18 @@ noncomputable def Sₐ : H →ₐ[k] H :=
 noncomputable def ψ₀ : H →ₐ[k] H ⊗[↥K] H :=
   (mapKₐ K).comp ((Algebra.TensorProduct.map (Sₐ (k := k) (H := H)) (AlgHom.id k H)).comp (Bialgebra.comulAlgHom k H))
 
+/--
+@isnad1 id=eq.0h4v.s13.61cb2752f63b from=translated src=- shape=72846537 vocab=85d5a4f0
+-/
 theorem ψ₀_apply (c : H) :
     ψ₀ K c = mapK K ((HopfAlgebra.antipode k).rTensor H (Coalgebra.comul (R := k) c)) := by
   simp only [ψ₀, AlgHom.comp_apply, Bialgebra.comulAlgHom_apply]
   show mapK K (Algebra.TensorProduct.map (Sₐ (k := k)) (AlgHom.id k H) (Coalgebra.comul c)) = _
   congr 1
 
+/--
+@isnad1 id=eq.3h4v.s12.6c6349664770 from=translated src=- shape=45dc84ad vocab=fffdc0ad
+-/
 theorem ψ₀_eq_zero_of_mem {a : H} (ha : a ∈ K) (hε : Coalgebra.counit (R := k) a = 0)
     (hΔ : ∀ x ∈ K, Coalgebra.comul (R := k) x ∈
       Submodule.span k {t : H ⊗[k] H | ∃ a ∈ K, ∃ b ∈ K, t = a ⊗ₜ[k] b}) :
@@ -103,8 +118,14 @@ abbrev C : Type v := H ⊗[k] Q K
 
 noncomputable def θ : H ⊗[k] H →ₐ[k] C K := Algebra.TensorProduct.map (AlgHom.id k H) (π K)
 
+/--
+@isnad1 id=eq.0h5v.s10.ecbc0b61810b from=translated src=- shape=1bbe0ef8 vocab=0185ca9a
+-/
 @[scoped simp] theorem θ_tmul (x y : H) : θ K (x ⊗ₜ[k] y) = x ⊗ₜ[k] π K y := rfl
 
+/--
+@isnad1 id=eq.1h4v.s12.9537c32d2674 from=translated src=- shape=ed25422b vocab=eceece8d
+-/
 theorem θ_eq_of_mem_span (t : H ⊗[k] H)
     (ht : t ∈ Submodule.span k {t : H ⊗[k] H | ∃ a ∈ K, ∃ b ∈ K, t = a ⊗ₜ[k] b}) :
     θ K t = (TensorProduct.rid k H ((Coalgebra.counit (R := k) (A := H)).lTensor H t)) ⊗ₜ[k] (1 : Q K) := by
@@ -119,6 +140,9 @@ theorem θ_eq_of_mem_span (t : H ⊗[k] H)
   | smul c t _ ht => simp [map_smul, ht, TensorProduct.smul_tmul']
 
 include hΔ in
+/--
+@isnad1 id=eq.2h4v.s12.162a270c98de from=translated src=- shape=9991ceee vocab=1145cdec
+-/
 theorem θ_comul_of_mem {a : H} (ha : a ∈ K) : θ K (Coalgebra.comul (R := k) a) = a ⊗ₜ[k] (1 : Q K) := by
   rw [θ_eq_of_mem_span K _ (hΔ a ha), Coalgebra.lTensor_counit_comul, TensorProduct.rid_tmul, one_smul]
 
@@ -132,6 +156,9 @@ noncomputable def g : H →ₐ[↥K] C K :=
 noncomputable def β : H ⊗[↥K] H →ₐ[H] C K :=
   Algebra.TensorProduct.lift (Algebra.ofId H (C K)) (g K hΔ) (fun _ _ => Commute.all _ _)
 
+/--
+@isnad1 id=eq.1h5v.s13.b4653e91ba08 from=translated src=- shape=d871cd0d vocab=a26cf6a6
+-/
 theorem β_tmul (x y : H) : β K hΔ (x ⊗ₜ[↥K] y) = (x ⊗ₜ[k] (1 : Q K)) * θ K (Coalgebra.comul (R := k) y) := by
   rw [β, Algebra.TensorProduct.lift_tmul]
   rfl
@@ -144,17 +171,26 @@ noncomputable def ψ : Q K →ₐ[k] H ⊗[↥K] H :=
       exact ψ₀_eq_zero_of_mem K hxK hxε hΔ
     exact hle ha)
 
+/--
+@isnad1 id=eq.1h4v.s13.9cb8bc60baae from=translated src=- shape=70db2a89 vocab=325c5c09
+-/
 theorem ψ_π (c : H) : ψ K hΔ (π K c) = ψ₀ K c := rfl
 
 noncomputable def δ : C K →ₐ[H] H ⊗[↥K] H :=
   Algebra.TensorProduct.lift (Algebra.ofId H (H ⊗[↥K] H)) (ψ K hΔ) (fun _ _ => Commute.all _ _)
 
+/--
+@isnad1 id=eq.1h5v.s13.12c153cb56b6 from=translated src=- shape=cef5a786 vocab=dcf0cf99
+-/
 theorem δ_tmul (x c : H) : δ K hΔ (x ⊗ₜ[k] π K c) = x • ψ₀ K c := by
   rw [δ, Algebra.TensorProduct.lift_tmul, ψ_π, Algebra.ofId_apply]
   exact (Algebra.smul_def x (ψ₀ K c)).symm
 
 omit [HopfAlgebra k H] in
 
+/--
+@isnad1 id=eq.0h3v.s12.8ed58af4b9e3 from=translated src=- shape=0559203b vocab=6fde7a56
+-/
 theorem assoc_symm_lTensor_rTensor_assoc [AddCommGroup H] [Module k H] (f : H →ₗ[k] H) :
     (TensorProduct.assoc k H H H).symm.toLinearMap ∘ₗ (f.rTensor H).lTensor H ∘ₗ
       (TensorProduct.assoc k H H H).toLinearMap = (f.lTensor H).rTensor H := by
@@ -162,6 +198,9 @@ theorem assoc_symm_lTensor_rTensor_assoc [AddCommGroup H] [Module k H] (f : H �
   intro x y z
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s14.22fa2af6e86a from=translated src=- shape=eff1d0c5 vocab=5ba502c3
+-/
 theorem smul_mapK (x : H) (s : H ⊗[k] H) :
     x • mapK K s = mapK K ((LinearMap.mul' k H).rTensor H ((TensorProduct.assoc k H H H).symm (x ⊗ₜ[k] s))) := by
   induction s using TensorProduct.induction_on with
@@ -171,6 +210,9 @@ theorem smul_mapK (x : H) (s : H ⊗[k] H) :
     rw [TensorProduct.smul_tmul', smul_eq_mul]
   | add s t hs ht => simp only [map_add, smul_add, hs, ht, TensorProduct.tmul_add]
 
+/--
+@isnad1 id=eq.1h4v.s15.a1cd6eea78ae from=translated src=- shape=2753c0d8 vocab=4f492e09
+-/
 theorem δ_θ (t : H ⊗[k] H) :
     δ K hΔ (θ K t) = mapK K ((LinearMap.mul' k H).rTensor H ((TensorProduct.assoc k H H H).symm
       ((((HopfAlgebra.antipode k).rTensor H) ∘ₗ Coalgebra.comul).lTensor H t))) := by
@@ -181,6 +223,9 @@ theorem δ_θ (t : H ⊗[k] H) :
     rfl
   | add s t hs ht => simp only [map_add, hs, ht]
 
+/--
+@isnad1 id=eq.0h3v.s14.8ee1b0ca0b99 from=translated src=- shape=41170630 vocab=2520e9d3
+-/
 theorem sweedler₁ (h : H) :
     (LinearMap.mul' k H).rTensor H ((TensorProduct.assoc k H H H).symm
       ((((HopfAlgebra.antipode k).rTensor H) ∘ₗ Coalgebra.comul).lTensor H (Coalgebra.comul (R := k) h)))
@@ -195,9 +240,15 @@ theorem sweedler₁ (h : H) :
     LinearMap.rTensor_comp, LinearMap.comp_apply, Coalgebra.rTensor_counit_comul]
   simp
 
+/--
+@isnad1 id=eq.1h4v.s13.08307319b781 from=translated src=- shape=da54b4d6 vocab=321ba0b5
+-/
 theorem δ_β_includeRight (h : H) : δ K hΔ (β K hΔ ((1 : H) ⊗ₜ[↥K] h)) = (1 : H) ⊗ₜ[↥K] h := by
   rw [β_tmul, show ((1 : H) ⊗ₜ[k] (1 : Q K)) = 1 from rfl, one_mul, δ_θ, sweedler₁, mapK_tmul]
 
+/--
+@isnad1 id=eq.0h3v.s14.da569c3171cc from=translated src=- shape=4fff4a69 vocab=369de4fe
+-/
 theorem sweedler₂ (c : H) :
     (LinearMap.mul' k H).rTensor H ((TensorProduct.assoc k H H H).symm
       ((Coalgebra.comul (R := k)).lTensor H (((HopfAlgebra.antipode k).rTensor H) (Coalgebra.comul (R := k) c))))
@@ -226,9 +277,15 @@ theorem sweedler₂ (c : H) :
     LinearMap.rTensor_comp, LinearMap.comp_apply, Coalgebra.rTensor_counit_comul]
   simp
 
+/--
+@isnad1 id=eq.1h5v.s13.2f2dc2ed12aa from=translated src=- shape=49406b63 vocab=5a822709
+-/
 theorem β_mapK (x y : H) : β K hΔ (mapK K (x ⊗ₜ[k] y)) = (x ⊗ₜ[k] (1 : Q K)) * θ K (Coalgebra.comul (R := k) y) := by
   rw [mapK_tmul, β_tmul]
 
+/--
+@isnad1 id=eq.1h4v.s13.e548565991a9 from=translated src=- shape=b286abaa vocab=e8cc5ccf
+-/
 theorem β_ψ₀ (c : H) : β K hΔ (ψ₀ K c) = (1 : H) ⊗ₜ[k] π K c := by
   rw [ψ₀_apply]
 
@@ -252,9 +309,15 @@ theorem β_ψ₀ (c : H) : β K hΔ (ψ₀ K c) = (1 : H) ⊗ₜ[k] π K c := by
     | add s t hs ht => simp only [map_add, hs, ht]
   rw [hgen, sweedler₂, θ_tmul]
 
+/--
+@isnad1 id=eq.1h4v.s13.1ec08bf6e0af from=translated src=- shape=f8f4c460 vocab=6d1eb463
+-/
 theorem β_δ_includeRight (c : H) : β K hΔ (δ K hΔ ((1 : H) ⊗ₜ[k] π K c)) = (1 : H) ⊗ₜ[k] π K c := by
   rw [δ_tmul, one_smul, β_ψ₀]
 
+/--
+@isnad1 id=eq.1h3v.s13.4e4e04cda2fd from=translated src=- shape=81996313 vocab=3473ec5e
+-/
 theorem δ_comp_β : (δ K hΔ).comp (β K hΔ) = AlgHom.id H (H ⊗[↥K] H) := by
   apply Algebra.TensorProduct.ext
   · ext
@@ -262,6 +325,9 @@ theorem δ_comp_β : (δ K hΔ).comp (β K hΔ) = AlgHom.id H (H ⊗[↥K] H) :=
     intro h
     simpa using δ_β_includeRight K hΔ h
 
+/--
+@isnad1 id=eq.1h3v.s12.0bb9b097ab61 from=translated src=- shape=40ef727c vocab=3473ec5e
+-/
 theorem β_comp_δ : (β K hΔ).comp (δ K hΔ) = AlgHom.id H (C K) := by
   apply Algebra.TensorProduct.ext
   · ext
@@ -296,6 +362,9 @@ noncomputable abbrev Kbar : Subalgebra k (Q K') := K.map (π K')
 noncomputable abbrev ιbar : H ⊗[k] ↥(Kbar K' K) →ₐ[k] C K' :=
   Algebra.TensorProduct.map (AlgHom.id k H) (Kbar K' K).val
 
+/--
+@isnad1 id=injectiv.0h4v.s13.89fa966af2d9 from=translated src=- shape=3253508b vocab=2834a50a
+-/
 theorem ιbar_injective : Function.Injective (ιbar K' K) := by
   have : Function.Injective ((Kbar K' K).val.toLinearMap.lTensor H) :=
     Module.Flat.lTensor_preserves_injective_linearMap _ Subtype.val_injective
@@ -305,10 +374,16 @@ theorem ιbar_injective : Function.Injective (ιbar K' K) := by
 noncomputable def c : H ⊗[↥K'] ↥K →ₐ[k] C K' :=
   ((β K' hΔ').restrictScalars k).comp ((idIncl K' K).restrictScalars k)
 
+/--
+@isnad1 id=eq.1h6v.s14.ee984d5b8e96 from=translated src=- shape=7d0b5a0b vocab=e00513bb
+-/
 theorem c_tmul (h : H) (a : ↥K) : c K' K hΔ' (h ⊗ₜ[↥K'] a) = (h ⊗ₜ[k] (1 : Q K')) * θ K' (Coalgebra.comul (R := k) (a : H)) := by
   simp only [c, AlgHom.comp_apply, AlgHom.restrictScalars_apply, Algebra.TensorProduct.map_tmul, AlgHom.id_apply]
   exact β_tmul K' hΔ' h _
 
+/--
+@isnad1 id=mem.1h5v.s13.d766b15b8170 from=translated src=- shape=8d7329a1 vocab=213c934d
+-/
 theorem θ_mem_range_of_mem_span (t : H ⊗[k] H)
     (ht : t ∈ Submodule.span k {t : H ⊗[k] H | ∃ a ∈ K, ∃ b ∈ K, t = a ⊗ₜ[k] b}) :
     θ K' t ∈ (ιbar K' K).range := by
@@ -323,6 +398,9 @@ theorem θ_mem_range_of_mem_span (t : H ⊗[k] H)
 
 include hΔ in
 
+/--
+@isnad1 id=le.2h4v.s13.7636222aa051 from=translated src=- shape=c7a098f1 vocab=cdffea68
+-/
 theorem range_c_le : (c K' K hΔ').range ≤ (ιbar K' K).range := by
   rintro _ ⟨t, rfl⟩
   show c K' K hΔ' t ∈ _
@@ -338,6 +416,9 @@ theorem range_c_le : (c K' K hΔ').range ≤ (ιbar K' K).range := by
 
 include hΔ in
 
+/--
+@isnad1 id=le.2h4v.s13.f4fbcd835663 from=translated src=- shape=aabd9c80 vocab=cdffea68
+-/
 theorem le_range_c : (ιbar K' K).range ≤ (c K' K hΔ').range := by
   rw [Algebra.TensorProduct.map_range]
   apply sup_le
@@ -370,9 +451,15 @@ theorem le_range_c : (ιbar K' K).range ≤ (c K' K hΔ').range := by
     rw [hs, ← ψ₀_apply, β_ψ₀]
 
 include hΔ in
+/--
+@isnad1 id=eq.2h4v.s13.685c0010d74c from=translated src=- shape=43a19a1f vocab=4b6a9f27
+-/
 theorem range_c_eq : (c K' K hΔ').range = (ιbar K' K).range :=
   le_antisymm (range_c_le K' K hΔ' hΔ) (le_range_c K' K hΔ' hΔ)
 
+/--
+@isnad1 id=nontrivi.0h3v.s6.1c8bb887a133 from=translated src=- shape=0ce3dfc9 vocab=876b2537
+-/
 theorem nontrivial_Q : Nontrivial (Q K') := by
   refine ⟨⟨0, 1, fun h01 => ?_⟩⟩
   have h1 : J K' = ⊤ := Ideal.Quotient.zero_eq_one_iff.mp h01
@@ -404,6 +491,9 @@ noncomputable def e₂ [Module.Flat (↥K') H] : (H ⊗[↥K'] ↥K) ≃ₐ[k] (
     ((Subalgebra.equivOfEq _ _ (range_c_eq K' K hΔ' hΔ)).trans
       (AlgEquiv.ofInjective (ιbar K' K) (ιbar_injective K' K)).symm)
 
+/--
+@isnad1 id=eq.2h5v.s15.0ffb095d68f7 from=translated src=- shape=8b44b4e4 vocab=201f0836
+-/
 theorem ιbar_e₂ [Module.Flat (↥K') H] (s : H ⊗[↥K'] ↥K) :
     ιbar K' K (e₂ K' K hΔ' hΔ s) = c K' K hΔ' s := by
   simp only [e₂, AlgEquiv.trans_apply]
@@ -416,6 +506,9 @@ theorem ιbar_e₂ [Module.Flat (↥K') H] (s : H ⊗[↥K'] ↥K) :
   rw [h1]
   rfl
 
+/--
+@isnad1 id=eq.2h4v.s15.82979f83d1de from=translated src=- shape=a750b1c3 vocab=05e96d73
+-/
 theorem idIncl_eq [Module.Flat (↥K') H] :
     (idIncl K' K).toRingHom = ((βEquiv K' hΔ').symm.toRingEquiv.toRingHom.comp (ιbar K' K).toRingHom).comp
       (e₂ K' K hΔ' hΔ).toRingEquiv.toRingHom := by
@@ -425,16 +518,25 @@ theorem idIncl_eq [Module.Flat (↥K') H] :
   rw [ιbar_e₂, AlgEquiv.eq_symm_apply]
   rfl
 
+/--
+@isnad1 id=faithful.1h5v.s7.2b93b5844326 from=translated src=- shape=3409187a vocab=508e47b5
+-/
 theorem respectsIso_left {R S T : Type v} [CommRing R] [CommRing S] [CommRing T] (f : R →+* S) (e : S ≃+* T)
     (hf : f.FaithfullyFlat) : (e.toRingHom.comp f).FaithfullyFlat :=
   RingHom.FaithfullyFlat.respectsIso.1 f e hf
 
+/--
+@isnad1 id=faithful.1h5v.s7.2c566da91dc0 from=translated src=- shape=89aa432e vocab=508e47b5
+-/
 theorem respectsIso_right {R S T : Type v} [CommRing R] [CommRing S] [CommRing T] (f : S →+* T) (e : R ≃+* S)
     (hf : f.FaithfullyFlat) : (f.comp e.toRingHom).FaithfullyFlat :=
   RingHom.FaithfullyFlat.respectsIso.2 f e hf
 
 set_option maxHeartbeats 1600000 in
 
+/--
+@isnad1 id=faithful.0h4v.s12.77b0b1f3f675 from=translated src=- shape=3d25ca5f vocab=bef66092
+-/
 theorem ff_map_val_id (L : Subalgebra k (Q K')) [Module.Free ↥L (Q K')] :
     (Algebra.TensorProduct.map L.val (AlgHom.id k H) : ↥L ⊗[k] H →ₐ[k] Q K' ⊗[k] H).toRingHom.FaithfullyFlat := by
   haveI : Nontrivial (Q K') := nontrivial_Q K'
@@ -460,6 +562,9 @@ theorem ff_map_val_id (L : Subalgebra k (Q K')) [Module.Free ↥L (Q K')] :
     rfl
   | add x y hx hy => simp only [map_add, hx, hy]
 
+/--
+@isnad1 id=faithful.0h4v.s12.d642e2dbe3de from=translated src=- shape=741cbc96 vocab=e89e11f4
+-/
 theorem ff_ιbar [Module.Free ↥(Kbar K' K) (Q K')] : (ιbar K' K).toRingHom.FaithfullyFlat := by
   have h := ff_map_val_id K' (Kbar K' K)
   have h2 := respectsIso_right _ (Algebra.TensorProduct.comm k H ↥(Kbar K' K)).toRingEquiv
@@ -474,6 +579,9 @@ theorem ff_ιbar [Module.Free ↥(Kbar K' K) (Q K')] : (ιbar K' K).toRingHom.Fa
 
 include hΔ' hΔ in
 
+/--
+@isnad1 id=faithful.2h4v.s14.d219ffdda899 from=translated src=- shape=ae5f6620 vocab=c642d5e3
+-/
 theorem ff_idIncl [Module.Flat (↥K') H] [Module.Free ↥(Kbar K' K) (Q K')] :
     (idIncl K' K).toRingHom.FaithfullyFlat := by
   rw [idIncl_eq K' K hΔ' hΔ]
@@ -481,6 +589,9 @@ theorem ff_idIncl [Module.Flat (↥K') H] [Module.Free ↥(Kbar K' K) (Q K')] :
 
 include hΔ' hΔ in
 
+/--
+@isnad1 id=faithful.2h4v.s14.61d19d444463 from=translated src=- shape=510501c4 vocab=32e24a0d
+-/
 theorem ff_inclId [Module.Flat (↥K') H] [Module.Free ↥(Kbar K' K) (Q K')] :
     (Algebra.TensorProduct.map (inclKH K' K) (AlgHom.id (↥K') H)).toRingHom.FaithfullyFlat := by
   have h := ff_idIncl K' K hΔ' hΔ
@@ -498,6 +609,9 @@ end S17Sq
 open scoped _root_.P2MW.S_HopfAlgebra_faithfullyFlat_map_toAlgHom_tensor_of_free_map_of_ker_eq_span.S17Torsor
 
 open S17Torsor S17Sq in
+/--
+@isnad1 id=faithful.4h6v.s14.9635cf18c7ca from=translated src=- shape=bff81b2a vocab=b864c87e
+-/
 theorem solution
     {k : Type u} [Field k] {H : Type v} [CommRing H] [HopfAlgebra k H]
     (K' K : Subalgebra k H) [Algebra ↥K' ↥K] [IsScalarTower ↥K' ↥K H]

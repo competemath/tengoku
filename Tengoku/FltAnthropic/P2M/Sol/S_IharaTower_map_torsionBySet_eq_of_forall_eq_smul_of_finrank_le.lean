@@ -50,6 +50,9 @@ variable {M' : Type} [AddCommGroup M'] [Module 𝒪 M'] [Module.Finite 𝒪 M'] 
 
 omit [Module.Finite 𝒪 M] [Module.Finite 𝒪 M'] in
 
+/--
+@isnad1 id=injectiv.2h5v.s8.ed9ac815e2bc from=translated src=- shape=b44c147d vocab=298d24a1
+-/
 theorem injective_of_residual (i : M →ₗ[𝒪] M') {ϖ : 𝒪} (hϖ : Irreducible ϖ)
     (hres : ∀ (v : M) (x : M'), i v = ϖ • x → ∃ v₁ : M, v = ϖ • v₁) :
     Function.Injective i := by
@@ -71,6 +74,9 @@ def IsSaturated (A : Submodule 𝒪 M) : Prop := ∀ (a : 𝒪), a ≠ 0 → ∀
 
 omit [Module.Finite 𝒪 M] [Module.Free 𝒪 M] in
 
+/--
+@isnad1 id=issatura.2h4v.s7.061eda33aad4 from=translated src=- shape=49b97718 vocab=3574bf42
+-/
 theorem isSaturated_of_uniformizer (A : Submodule 𝒪 M) {ϖ : 𝒪} (hϖ : Irreducible ϖ)
     (h : ∀ m : M, ϖ • m ∈ A → m ∈ A) : IsSaturated A := by
   intro a ha m ham
@@ -88,6 +94,9 @@ theorem isSaturated_of_uniformizer (A : Submodule 𝒪 M) {ϖ : 𝒪} (hϖ : Irr
 
 omit [Module.Finite 𝒪 M] [Module.Free 𝒪 M] [Module.Finite 𝒪 M'] in
 
+/--
+@isnad1 id=issatura.3h6v.s8.1f219db6973d from=translated src=- shape=0c9693ee vocab=8a34f79d
+-/
 theorem isSaturated_map (i : M →ₗ[𝒪] M') {ϖ : 𝒪} (hϖ : Irreducible ϖ)
     (hres : ∀ (v : M) (x : M'), i v = ϖ • x → ∃ v₁ : M, v = ϖ • v₁)
     (A : Submodule 𝒪 M) (hA : IsSaturated A) : IsSaturated (A.map i) := by
@@ -132,6 +141,9 @@ end Modules
 end K1CutIhara
 
 open K1CutIhara in
+/--
+@isnad1 id=and.4h9v.s11.25d67e0ff26e from=translated src=- shape=972dad10 vocab=39471e20
+-/
 theorem solution
     {𝒪 : Type} [CommRing 𝒪] [IsDomain 𝒪] [IsDiscreteValuationRing 𝒪]
     {T : Type} [CommRing T] [Algebra 𝒪 T] {T' : Type} [CommRing T'] [Algebra 𝒪 T']

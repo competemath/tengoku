@@ -10,6 +10,9 @@ set_option maxHeartbeats 1600000
 open IntermediateField
 open Polynomial
 
+/--
+@isnad1 id=eq.2h4v.s9.b6e558c93c83 from=translated src=- shape=985befe6 vocab=1dc6b03d
+-/
 theorem solution {F E : Type} [Field F] [Field E] [Algebra F E] [IsAlgClosed E] [CharZero F] (m : ℕ) (hm : 0 < m) (ζ₀ : E)
     (hζ₀ : IsPrimitiveRoot ζ₀ m) :
     Module.finrank F (IntermediateField.adjoin F {ζ : E | ζ ^ m = 1})

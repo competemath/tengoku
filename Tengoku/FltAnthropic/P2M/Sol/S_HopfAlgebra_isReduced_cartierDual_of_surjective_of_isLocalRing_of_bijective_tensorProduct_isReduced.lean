@@ -30,6 +30,9 @@ theorem eq_zero_or_eq_one_of_isIdempotentElem_of_isLocalRing {L : Type*} [CommRi
     have := congrArg (fun y => y * (↑u⁻¹ : L)) h0
     simpa [mul_assoc, hu.symm] using this
 
+/--
+@isnad1 id=eq.2h6v.s9.8b2203515fa5 from=translated src=- shape=af568e07 vocab=6a7f104b
+-/
 theorem algHom_apply_eq_algebraMap_counit
     {K : Type*} [Field K] {E : Type*} [CommRing E] [Bialgebra K E] [Module.Finite K E] [IsReduced E]
     {L : Type*} [Ring L] [Algebra K L]
@@ -78,6 +81,9 @@ section IncludeLeft
 
 variable (R : Type*) [CommRing R] (A B : Type*) [CommRing A] [CommRing B] [Bialgebra R A] [Bialgebra R B]
 
+/--
+@isnad1 id=eq.0h4v.s14.3807183593f8 from=translated src=- shape=65593549 vocab=8f829cd8
+-/
 theorem map_includeLeft_includeLeft_eq (z : A ⊗[R] A) :
     Algebra.TensorProduct.map (Algebra.TensorProduct.includeLeft : A →ₐ[R] A ⊗[R] B)
         (Algebra.TensorProduct.includeLeft : A →ₐ[R] A ⊗[R] B) z =
@@ -107,6 +113,9 @@ open scoped _root_.P2MW.S_HopfAlgebra_isReduced_cartierDual_of_surjective_of_isL
 
 set_option maxHeartbeats 6400000 in
 set_option synthInstance.maxHeartbeats 1600000 in
+/--
+@isnad1 id=isreduce.5h7v.s12.2f4bff574480 from=translated src=- shape=58b91263 vocab=6a0584a8
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime]
     (C : Type) [CommRing C] [HopfAlgebra (ZMod p) C] [Coalgebra.IsCocomm (ZMod p) C]

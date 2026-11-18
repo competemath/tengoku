@@ -8,6 +8,9 @@ namespace P2MW.S_Ideal_card_quotient_pow_hilbertSamuel_linear_of_moduleFinite
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.1h3v.s8.c9997238b7c9 from=translated src=- shape=3f36ab39 vocab=e6af78b2
+-/
 theorem solution
     (R : Type*) [CommRing R] [Module.Finite ℤ R]
     (I : Ideal R) (q : ℕ) [Fact q.Prime] (hqI : (q : R) ∈ I) :

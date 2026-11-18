@@ -14,6 +14,9 @@ universe u v
 
 open Polynomial
 
+/--
+@isnad1 id=not.2h4v.s6.36090defd1b1 from=translated src=- shape=dc7a6b77 vocab=0d6af3f0
+-/
 theorem solution
     (K : Type u) [Field K] (L : Type v) [Field L] [Algebra K L] (y : L) (hy : Transcendental K y)
     (n : ℕ) (hn : 2 ≤ n) :

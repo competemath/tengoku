@@ -10,6 +10,9 @@ set_option maxHeartbeats 1600000
 open IntermediateField
 open Polynomial
 
+/--
+@isnad1 id=and.1h3v.s13.7c9f83fa6754 from=translated src=- shape=3801cd81 vocab=335aa0a6
+-/
 theorem solution (q : ℕ) [Fact q.Prime]
     (K : IntermediateField ℚ_[q] (PadicAlgCl q)) [FiniteDimensional ℚ_[q] K] (N : ℕ) (hN : 0 < N) :
     FiniteDimensional K (IntermediateField.adjoin K {ζ : PadicAlgCl q | ζ ^ (q ^ N - 1) = 1}) ∧ Normal K (IntermediateField.adjoin K {ζ : PadicAlgCl q | ζ ^ (q ^ N - 1) = 1}) := by

@@ -12,6 +12,9 @@ open scoped TensorProduct
 
 namespace S17S52
 
+/--
+@isnad1 id=injectiv.0h3v.s7.e0ed60311d47 from=translated src=- shape=c654b0e4 vocab=2f2ac0e0
+-/
 theorem one_tmul_injective (R : Type) [CommRing R] (K : Type) [Field K] [Algebra R K] [IsFractionRing R K]
     {M : Type*} [AddCommGroup M] [Module R M] [Module.Flat R M] :
     Function.Injective (fun m : M => (1 : K) ⊗ₜ[R] m) := by
@@ -23,6 +26,9 @@ theorem one_tmul_injective (R : Type) [CommRing R] (K : Type) [Field K] [Algebra
   exact (Module.Flat.rTensor_preserves_injective_linearMap _ hRK).comp
     (TensorProduct.lid R M).symm.injective
 
+/--
+@isnad1 id=ex.2h3v.s7.5579b0cfe3c7 from=translated src=- shape=d65e268b vocab=70a2c0eb
+-/
 theorem exists_eq_unit_mul_pow_generator (R : Type) [CommRing R] [IsDomain R] [IsPrincipalIdealRing R] [IsLocalRing R]
     (π : R) (hπ : IsLocalRing.maximalIdeal R = Ideal.span {π}) (s : R) (hs : s ≠ 0) :
     ∃ (n : ℕ) (u : Rˣ), s = u * π ^ n := by
@@ -44,6 +50,9 @@ theorem exists_eq_unit_mul_pow_generator (R : Type) [CommRing R] [IsDomain R] [I
     obtain ⟨n, u, rfl⟩ := IsDiscreteValuationRing.eq_unit_mul_pow_irreducible hs hirr
     exact ⟨n, u, rfl⟩
 
+/--
+@isnad1 id=ex.7h7v.s11.7830fbff1eb2 from=translated src=- shape=604aff83 vocab=afe04878
+-/
 theorem exists_finset_span_mul_orbit
     (R : Type) [CommRing R] [IsDomain R] [IsPrincipalIdealRing R] [IsLocalRing R]
     (K : Type) [Field K] [Algebra R K] [IsFractionRing R K]
@@ -115,6 +124,9 @@ theorem exists_finset_span_mul_orbit
     refine Submodule.sum_mem _ fun g hg => Submodule.smul_mem _ _ (Submodule.subset_span ?_)
     exact Finset.mem_coe.mpr (Finset.mem_image.mpr ⟨g, hg, rfl⟩)
 
+/--
+@isnad1 id=ex.7h7v.s11.2090c0132296 from=translated src=- shape=10c728b8 vocab=20718413
+-/
 theorem exists_inv_uniformizer_mem_and_finset
     (R : Type) [CommRing R] [IsDomain R] [IsPrincipalIdealRing R] [IsLocalRing R]
     (K : Type) [Field K] [Algebra R K] [IsFractionRing R K]
@@ -273,6 +285,9 @@ theorem exists_inv_uniformizer_mem_and_finset
 end S17S52
 
 open S17S52 in
+/--
+@isnad1 id=finitety.12h8v.s12.7130d9e0435f from=translated src=- shape=c7226557 vocab=6bd46a8d
+-/
 theorem solution
     (R : Type) [CommRing R] [IsDomain R] [IsPrincipalIdealRing R] [IsLocalRing R]
     (K : Type) [Field K] [Algebra R K] [IsFractionRing R K] [CharZero K]

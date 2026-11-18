@@ -45,6 +45,9 @@ end Torsion
 
 section TorusTrick
 
+/--
+@isnad1 id=ex.1h1v.s6.d51fb438cbeb from=translated src=- shape=2ee1bb19 vocab=61886800
+-/
 theorem exists_coprime_gcd_sq_sub_one_dvd (M : ℕ) (hM : M ≠ 0) :
     ∃ t : ℕ, 1 ≤ t ∧ t.Coprime M ∧ (t ^ 2 - 1).gcd M ∣ 24 := by
   obtain ⟨k, m, hm, rfl⟩ := Nat.exists_eq_two_pow_mul_odd hM
@@ -92,6 +95,9 @@ theorem exists_coprime_gcd_sq_sub_one_dvd (M : ℕ) (hM : M ≠ 0) :
 
 variable {A : Type*} [AddCommGroup A]
 
+/--
+@isnad1 id=eq.3h3v.s9.5d8d376245ee from=translated src=- shape=80c75641 vocab=9b5238e0
+-/
 theorem addMonoidHom_zmod_eq_zero_of_units {M : ℕ} [NeZero M] (h2 : ∀ a : A, a + a = 0 → a = 0)
     (h3 : ∀ a : A, a + a + a = 0 → a = 0) (f : ZMod M →+ A)
     (hf : ∀ (t : (ZMod M)ˣ) (b : ZMod M), f (((t : ZMod M) ^ 2 - 1) * b) = 0) : f = 0 := by
@@ -134,38 +140,71 @@ def vElt (c : R) : SL(2, R) :=
 def hElt (t : Rˣ) : SL(2, R) :=
   ⟨!![((t⁻¹ : Rˣ) : R), 0; 0, (t : R)], by rw [Matrix.det_fin_two_of]; simp⟩
 
+/--
+@isnad1 id=eq.0h2v.s8.ccd2c1577f45 from=translated src=- shape=3783ae51 vocab=018e1897
+-/
 @[scoped simp] theorem uElt_coe (b : R) : (uElt b : Matrix (Fin 2) (Fin 2) R) = !![1, b; 0, 1] := rfl
+/--
+@isnad1 id=eq.0h2v.s8.b1e46b4a53a8 from=translated src=- shape=0d2d5694 vocab=57f84d8e
+-/
 @[scoped simp] theorem vElt_coe (c : R) : (vElt c : Matrix (Fin 2) (Fin 2) R) = !![1, 0; c, 1] := rfl
+/--
+@isnad1 id=eq.0h2v.s8.59b3bc5cb734 from=translated src=- shape=56ef08e6 vocab=c2a5c2c0
+-/
 @[scoped simp] theorem hElt_coe (t : Rˣ) :
     (hElt t : Matrix (Fin 2) (Fin 2) R) = !![((t⁻¹ : Rˣ) : R), 0; 0, (t : R)] := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.cc488ee6dbf5 from=translated src=- shape=b68454b1 vocab=8c92ba2d
+-/
 theorem uElt_add (b b' : R) : uElt (b + b') = uElt b * uElt b' := by
   ext i j
   fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two, add_comm]
 
+/--
+@isnad1 id=eq.0h3v.s7.8c415e717112 from=translated src=- shape=b68454b1 vocab=f06ed666
+-/
 theorem vElt_add (c c' : R) : vElt (c + c') = vElt c * vElt c' := by
   ext i j
   fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.0h1v.s6.50fed48a8e9a from=translated src=- shape=82a407f1 vocab=761ad967
+-/
 theorem uElt_zero : uElt (0 : R) = 1 := by
   ext i j
   fin_cases i <;> fin_cases j <;> simp
 
+/--
+@isnad1 id=eq.0h1v.s6.a9d8700ae4c3 from=translated src=- shape=82a407f1 vocab=e9765d1a
+-/
 theorem vElt_zero : vElt (0 : R) = 1 := by
   ext i j
   fin_cases i <;> fin_cases j <;> simp
 
+/--
+@isnad1 id=eq.0h3v.s7.56df56a33874 from=translated src=- shape=9244596d vocab=e36d9b74
+-/
 theorem hElt_mul (s t : Rˣ) : hElt (s * t) = hElt s * hElt t := by
   ext i j
   fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two, mul_comm]
 
+/--
+@isnad1 id=eq.0h1v.s6.000f46647c4d from=translated src=- shape=11d4ec53 vocab=a0f62797
+-/
 theorem hElt_one : hElt (1 : Rˣ) = 1 := by
   ext i j
   fin_cases i <;> fin_cases j <;> simp
 
+/--
+@isnad1 id=eq.0h2v.s6.7af184e260fd from=translated src=- shape=72b35f4d vocab=dd9b1565
+-/
 theorem hElt_inv (t : Rˣ) : (hElt t)⁻¹ = hElt t⁻¹ :=
   inv_eq_of_mul_eq_one_right (by rw [← hElt_mul, mul_inv_cancel, hElt_one])
 
+/--
+@isnad1 id=eq.0h3v.s8.e6395ec0ec89 from=translated src=- shape=261496f4 vocab=a0827ca2
+-/
 theorem hElt_inv_mul_uElt_mul_hElt (t : Rˣ) (b : R) :
     (hElt t)⁻¹ * uElt b * hElt t = uElt ((t : R) ^ 2 * b) := by
   have h1 : (t : R) * ((t⁻¹ : Rˣ) : R) = 1 := Units.mul_inv t
@@ -181,6 +220,9 @@ theorem hElt_inv_mul_uElt_mul_hElt (t : Rˣ) (b : R) :
   · linear_combination
   · linear_combination h1
 
+/--
+@isnad1 id=eq.0h3v.s8.e0f854e4c649 from=translated src=- shape=adfdec04 vocab=942b28db
+-/
 theorem hElt_mul_vElt_mul_hElt_inv (t : Rˣ) (c : R) :
     hElt t * vElt c * (hElt t)⁻¹ = vElt ((t : R) ^ 2 * c) := by
   have h1 : (t : R) * ((t⁻¹ : Rˣ) : R) = 1 := Units.mul_inv t
@@ -196,6 +238,9 @@ theorem hElt_mul_vElt_mul_hElt_inv (t : Rˣ) (c : R) :
   · linear_combination
   · linear_combination h1
 
+/--
+@isnad1 id=eq.1h4v.s9.cd0488ba40dc from=translated src=- shape=5a92d8c8 vocab=1ab11b90
+-/
 theorem uElt_mul_vElt (b c : R) (t : Rˣ) (ht : (t : R) = 1 + b * c) :
     uElt b * vElt c = vElt (c * ((t⁻¹ : Rˣ) : R)) * hElt t⁻¹ * uElt (b * ((t⁻¹ : Rˣ) : R)) := by
   have htinv : (t : R) * ((t⁻¹ : Rˣ) : R) = 1 := Units.mul_inv t
@@ -238,6 +283,9 @@ end Elementary
 
 section StableRange
 
+/--
+@isnad1 id=ex.3h6v.s8.ac2d902383f7 from=translated src=- shape=b5640d88 vocab=4300a4f7
+-/
 theorem exists_isUnit_add_mul_of_ringEquiv_prod {R S T : Type*} [CommRing R] [CommRing S]
     [CommRing T] (e : R ≃+* S × T)
     (hS : ∀ a c : S, IsCoprime a c → ∃ x : S, IsUnit (a + x * c))
@@ -257,6 +305,9 @@ theorem exists_isUnit_add_mul_of_ringEquiv_prod {R S T : Type*} [CommRing R] [Co
     exact IsUnit.of_mul_eq_one (y₁, y₂) (Prod.ext hy₁ hy₂)
   simpa using hunit.map e.symm
 
+/--
+@isnad1 id=ex.3h4v.s8.1b5a50b30ded from=translated src=- shape=bfce174a vocab=5c6313db
+-/
 theorem exists_isUnit_add_mul_primePow {p n : ℕ} (hp : p.Prime) (hn : 0 < n) (a c : ZMod (p ^ n))
     (hac : IsCoprime a c) : ∃ x : ZMod (p ^ n), IsUnit (a + x * c) := by
   by_cases ha : IsUnit a
@@ -285,6 +336,9 @@ theorem exists_isUnit_add_mul_primePow {p n : ℕ} (hp : p.Prime) (hn : 0 < n) (
     rw [mul_assoc, hw, mul_one, add_sub_cancel]
     exact isUnit_one
 
+/--
+@isnad1 id=ex.2h3v.s6.f2f3e40ed8ed from=translated src=- shape=8e2bfbe7 vocab=021da366
+-/
 theorem exists_isUnit_add_mul_zmod {M : ℕ} (hM : M ≠ 0) (a c : ZMod M) (hac : IsCoprime a c) :
     ∃ x : ZMod M, IsUnit (a + x * c) := by
   induction M using Nat.recOnPosPrimePosCoprime with
@@ -310,19 +364,40 @@ def vG (c : ZMod M) : Gamma0Fin N M :=
 def hG (t : (ZMod M)ˣ) : Gamma0Fin N M :=
   ⟨hElt t, by rw [mem_Gamma0Fin, hElt_coe]; exact ⟨0, by simp⟩⟩
 
+/--
+@isnad1 id=eq.0h3v.s8.9be3a2fcfcaf from=translated src=- shape=bf5ac8f7 vocab=066b212b
+-/
 @[scoped simp] theorem uG_coe (b : ZMod M) : ((uG N M b : Gamma0Fin N M) : SL(2, ZMod M)) = uElt b := rfl
+/--
+@isnad1 id=eq.0h3v.s8.34a1e2464169 from=translated src=- shape=666f9a33 vocab=db12b341
+-/
 @[scoped simp] theorem vG_coe (c : ZMod M) :
     ((vG N M c : Gamma0Fin N M) : SL(2, ZMod M)) = vElt ((N : ZMod M) * c) := rfl
+/--
+@isnad1 id=eq.0h3v.s8.dc4e2e638728 from=translated src=- shape=fb2c0554 vocab=6a6a570e
+-/
 @[scoped simp] theorem hG_coe (t : (ZMod M)ˣ) : ((hG N M t : Gamma0Fin N M) : SL(2, ZMod M)) = hElt t := rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.ea3155fe7b76 from=translated src=- shape=39625988 vocab=bb04ac40
+-/
 theorem uG_add (b b' : ZMod M) : uG N M (b + b') = uG N M b * uG N M b' :=
   Subtype.ext (uElt_add b b')
 
+/--
+@isnad1 id=eq.0h2v.s9.bcd561e5bd50 from=translated src=- shape=d6206f7d vocab=520aa12b
+-/
 theorem uG_zero : uG N M 0 = 1 := Subtype.ext uElt_zero
 
+/--
+@isnad1 id=eq.0h4v.s10.2b6e3bb092ae from=translated src=- shape=39625988 vocab=aa1c1088
+-/
 theorem vG_add (c c' : ZMod M) : vG N M (c + c') = vG N M c * vG N M c' :=
   Subtype.ext (by rw [Subgroup.coe_mul, vG_coe, vG_coe, vG_coe, mul_add, vElt_add])
 
+/--
+@isnad1 id=eq.0h2v.s9.a455a5194850 from=translated src=- shape=d6206f7d vocab=125c358e
+-/
 theorem vG_zero : vG N M 0 = 1 := Subtype.ext (by rw [vG_coe, mul_zero, vElt_zero]; rfl)
 
 def hGHom : (ZMod M)ˣ →* Gamma0Fin N M where
@@ -330,17 +405,29 @@ def hGHom : (ZMod M)ˣ →* Gamma0Fin N M where
   map_one' := Subtype.ext hElt_one
   map_mul' s t := Subtype.ext (hElt_mul s t)
 
+/--
+@isnad1 id=eq.0h3v.s11.41c6c5b8a4c5 from=translated src=- shape=4c6fe884 vocab=f9b33c68
+-/
 @[scoped simp] theorem hGHom_apply (t : (ZMod M)ˣ) : hGHom N M t = hG N M t := rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.7fcd7bedb4c9 from=translated src=- shape=1a4d685e vocab=1d005ddf
+-/
 theorem hG_inv (t : (ZMod M)ˣ) : (hG N M t)⁻¹ = hG N M t⁻¹ := by
   rw [← hGHom_apply, ← map_inv, hGHom_apply]
 
+/--
+@isnad1 id=eq.0h4v.s11.392cecd793da from=translated src=- shape=390225a7 vocab=f70abcde
+-/
 theorem hG_inv_mul_uG_mul_hG (t : (ZMod M)ˣ) (b : ZMod M) :
     (hG N M t)⁻¹ * uG N M b * hG N M t = uG N M ((t : ZMod M) ^ 2 * b) :=
   Subtype.ext (by
     rw [Subgroup.coe_mul, Subgroup.coe_mul, Subgroup.coe_inv, hG_coe, uG_coe, uG_coe]
     exact hElt_inv_mul_uElt_mul_hElt t b)
 
+/--
+@isnad1 id=eq.0h4v.s11.5183d58d7474 from=translated src=- shape=0b65a13e vocab=0664fe5b
+-/
 theorem hG_mul_vG_mul_hG_inv (t : (ZMod M)ˣ) (c : ZMod M) :
     hG N M t * vG N M c * (hG N M t)⁻¹ = vG N M ((t : ZMod M) ^ 2 * c) :=
   Subtype.ext (by
@@ -348,6 +435,9 @@ theorem hG_mul_vG_mul_hG_inv (t : (ZMod M)ˣ) (c : ZMod M) :
       mul_left_comm]
     exact hElt_mul_vElt_mul_hElt_inv t _)
 
+/--
+@isnad1 id=eq.1h4v.s11.0fa4e01c759c from=translated src=- shape=16adb600 vocab=387ff1ee
+-/
 theorem uG_mul_vG_one (k : ZMod M) (t : (ZMod M)ˣ) (ht : (t : ZMod M) = 1 + k * N) :
     uG N M k * vG N M 1 = vG N M ((t⁻¹ : (ZMod M)ˣ) : ZMod M) * hG N M t⁻¹ *
       uG N M (k * ((t⁻¹ : (ZMod M)ˣ) : ZMod M)) :=
@@ -366,6 +456,9 @@ variable {N M : ℕ} [NeZero M] (hNM : N ∣ M) {A : Type*} [AddCommGroup A]
 
 include h2 h3
 
+/--
+@isnad1 id=eq.2h5v.s12.284e87d0ce2c from=translated src=- shape=dd0699bf vocab=0f36a0ba
+-/
 theorem map_uG_eq_one (b : ZMod M) : Φ (uG N M b) = 1 := by
   let f : ZMod M →+ A :=
     { toFun := fun b => Multiplicative.toAdd (Φ (uG N M b))
@@ -382,6 +475,9 @@ theorem map_uG_eq_one (b : ZMod M) : Φ (uG N M b) = 1 := by
   have : f b = 0 := by rw [h0]; rfl
   exact toAdd_eq_zero.mp this
 
+/--
+@isnad1 id=eq.2h5v.s12.81cb47866229 from=translated src=- shape=dd0699bf vocab=179f438e
+-/
 theorem map_vG_eq_one (c : ZMod M) : Φ (vG N M c) = 1 := by
   let f : ZMod M →+ A :=
     { toFun := fun c => Multiplicative.toAdd (Φ (vG N M c))
@@ -398,6 +494,9 @@ theorem map_vG_eq_one (c : ZMod M) : Φ (vG N M c) = 1 := by
   have : f c = 0 := by rw [h0]; rfl
   exact toAdd_eq_zero.mp this
 
+/--
+@isnad1 id=eq.4h5v.s12.e89cc2794d78 from=translated src=- shape=b45d2a80 vocab=470eff10
+-/
 theorem map_hG_eq_one_of_cast_eq_one (t : (ZMod M)ˣ)
     (ht : ZMod.castHom hNM (ZMod N) (t : ZMod M) = 1) : Φ (hG N M t) = 1 := by
 
@@ -414,6 +513,9 @@ theorem map_hG_eq_one_of_cast_eq_one (t : (ZMod M)ˣ)
   exact inv_eq_one.mp hsteinberg.symm
 
 omit [NeZero M] h2 h3 in
+/--
+@isnad1 id=eq.0h4v.s11.785ac8604228 from=translated src=- shape=fb0783b9 vocab=e29edadc
+-/
 theorem uG_mul_apply_zero_zero (x : ZMod M) (g : Gamma0Fin N M) :
     ((uG N M x * g : Gamma0Fin N M) : SL(2, ZMod M)) 0 0 =
       (g : SL(2, ZMod M)) 0 0 + x * (g : SL(2, ZMod M)) 1 0 := by
@@ -421,17 +523,26 @@ theorem uG_mul_apply_zero_zero (x : ZMod M) (g : Gamma0Fin N M) :
   simp [Matrix.mul_apply, Fin.sum_univ_two]
 
 omit [NeZero M] h2 h3 in
+/--
+@isnad1 id=eq.0h4v.s10.14f860e84a8f from=translated src=- shape=fe2e07c1 vocab=0484b290
+-/
 theorem uG_mul_apply_one_zero (x : ZMod M) (g : Gamma0Fin N M) :
     ((uG N M x * g : Gamma0Fin N M) : SL(2, ZMod M)) 1 0 = (g : SL(2, ZMod M)) 1 0 := by
   rw [Subgroup.coe_mul, uG_coe, Matrix.SpecialLinearGroup.coe_mul]
   simp [Matrix.mul_apply, Fin.sum_univ_two]
 
 omit [NeZero M] h2 h3 in
+/--
+@isnad1 id=eq.0h4v.s10.b614a2a2aaff from=translated src=- shape=fe2e07c1 vocab=0484b290
+-/
 theorem uG_mul_apply_one_one (x : ZMod M) (g : Gamma0Fin N M) :
     ((uG N M x * g : Gamma0Fin N M) : SL(2, ZMod M)) 1 1 = (g : SL(2, ZMod M)) 1 1 := by
   rw [Subgroup.coe_mul, uG_coe, Matrix.SpecialLinearGroup.coe_mul]
   simp [Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.3h6v.s12.718aa5580eea from=translated src=- shape=5219454d vocab=8278d0e3
+-/
 theorem map_eq_map_hG_of_isUnit (g : Gamma0Fin N M) (a : (ZMod M)ˣ)
     (ha : (g : SL(2, ZMod M)) 0 0 = a) : Φ g = Φ (hG N M a⁻¹) := by
   obtain ⟨r, hr⟩ := g.2
@@ -443,6 +554,9 @@ theorem map_eq_map_hG_of_isUnit (g : Gamma0Fin N M) (a : (ZMod M)ˣ)
     exact hbruhat
   rw [hG', map_mul, map_mul, map_uG_eq_one h2 h3, map_vG_eq_one h2 h3, one_mul, mul_one]
 
+/--
+@isnad1 id=ex.3h4v.s12.56a19e82fa2d from=translated src=- shape=c5d30086 vocab=fa3a30f6
+-/
 theorem gamma0Fin_hom_factor :
     ∃ χ : (ZMod N)ˣ →* Multiplicative A, Φ = χ.comp (gamma0FinUnitsChar N M hNM) := by
   have hM : M ≠ 0 := NeZero.ne M
@@ -497,6 +611,9 @@ end Ihara.SolKillFin
 open scoped _root_.P2MW.S_Ihara_gamma0Fin_hom_factor.Ihara _root_.P2MW.S_Ihara_gamma0Fin_hom_factor.Ihara.SolKillFin
 open scoped _root_.P2MW.S_Ihara_gamma0Fin_hom_factor.Ihara
 
+/--
+@isnad1 id=ex.3h4v.s12.56a19e82fa2d from=translated src=- shape=c5d30086 vocab=fa3a30f6
+-/
 theorem solution {N M : ℕ} [NeZero M] (hNM : N ∣ M) {A : Type*} [AddCommGroup A]
     (h2 : ∀ a : A, a + a = 0 → a = 0) (h3 : ∀ a : A, a + a + a = 0 → a = 0)
     (Φ : Ihara.Gamma0Fin N M →* Multiplicative A) :

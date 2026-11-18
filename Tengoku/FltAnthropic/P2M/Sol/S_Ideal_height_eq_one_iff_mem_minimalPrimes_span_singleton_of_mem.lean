@@ -5,6 +5,9 @@ import Tengoku
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_Ideal_height_eq_one_iff_mem_minimalPrimes_span_singleton_of_mem.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 namespace P2MW.S_Ideal_height_eq_one_iff_mem_minimalPrimes_span_singleton_of_mem
 
+/--
+@isnad1 id=iff.2h3v.s7.0cd1f3f1718c from=translated src=- shape=54895d18 vocab=b5915b51
+-/
 theorem solution
     {R : Type*} [CommRing R] [IsDomain R] [IsNoetherianRing R]
     {x : R} (hx : x ≠ 0) (P : Ideal R) [P.IsPrime] (hxP : x ∈ P) :

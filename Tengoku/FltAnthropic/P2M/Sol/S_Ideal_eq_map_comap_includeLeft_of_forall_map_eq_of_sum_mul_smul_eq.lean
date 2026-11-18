@@ -93,6 +93,9 @@ private theorem eq_sum_mul_Tr [DecidableEq Γ] {n : ℕ} (x y : Fin n → W')
 end GaloisIdealDescent
 
 open GaloisIdealDescent in
+/--
+@isnad1 id=eq.3h8v.s10.f7424df23a2b from=translated src=- shape=a620db25 vocab=c329aabf
+-/
 theorem solution
     {W W' : Type*} [CommRing W] [CommRing W'] [Algebra W W']
     {Γ : Type*} [Group Γ] [Fintype Γ] [DecidableEq Γ] [MulSemiringAction Γ W'] [SMulCommClass Γ W W']

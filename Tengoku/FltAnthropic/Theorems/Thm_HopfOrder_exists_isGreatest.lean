@@ -13,6 +13,9 @@ universe u v w
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=ex.5h4v.s14.1fc9069cf4d0 from=translated src=- shape=06a327ae vocab=34bd3c92
+-/
 theorem HopfOrder.exists_isGreatest
     {R : Type*} [CommRing R] [IsDomain R] [IsIntegrallyClosed R] [IsNoetherianRing R]
     {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]

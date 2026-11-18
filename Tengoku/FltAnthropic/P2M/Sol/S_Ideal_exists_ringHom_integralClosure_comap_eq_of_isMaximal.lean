@@ -19,6 +19,9 @@ namespace P2MW.S_Ideal_exists_ringHom_integralClosure_comap_eq_of_isMaximal
 
 open Ideal
 
+/--
+@isnad1 id=ex.2h2v.s9.5c4b3920c191 from=translated src=- shape=c7f1a74b vocab=c7f7270c
+-/
 theorem FrobChareqEngine.engine1a
     {T : Type*} [CommRing T] [Module.Finite ℤ T]
     (𝔓 : Ideal T) (h𝔓 : 𝔓.IsPrime) (hint : ∀ n : ℤ, (n : T) ∈ 𝔓 → n = 0) :
@@ -81,6 +84,9 @@ theorem FrobChareqEngine.engine1a
     show φ (Ideal.Quotient.mk 𝔓 t) = 0
     rw [h, map_zero]
 
+/--
+@isnad1 id=ex.1h2v.s9.5c4439ead63f from=translated src=- shape=5fd9063a vocab=54907d3e
+-/
 theorem solution {T : Type*} [CommRing T] [IsAddTorsionFree T] [Module.Finite ℤ T] (𝔪 : Ideal T) (h𝔪 : 𝔪.IsMaximal) : ∃ (f : T →+* integralClosure ℤ ℂ) (𝔐 : Ideal (integralClosure ℤ ℂ)), 𝔐.IsMaximal ∧ 𝔐.comap f = 𝔪 := by
   classical
   haveI := h𝔪

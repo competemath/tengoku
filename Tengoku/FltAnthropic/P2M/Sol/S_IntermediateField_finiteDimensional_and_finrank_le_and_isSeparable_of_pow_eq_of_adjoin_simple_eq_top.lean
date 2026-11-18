@@ -8,6 +8,9 @@ namespace P2MW.S_IntermediateField_finiteDimensional_and_finrank_le_and_isSepara
 set_option autoImplicit false
 set_option maxHeartbeats 800000
 
+/--
+@isnad1 id=and.4h5v.s8.2325be24e32b from=translated src=- shape=5096facd vocab=4933d6cd
+-/
 theorem solution
     {F E : Type*} [Field F] [Field E] [Algebra F E]
     (n : ℕ) (hn : (n : F) ≠ 0) (a : E) (b : F) (hb : b ≠ 0) (hab : a ^ n = algebraMap F E b)

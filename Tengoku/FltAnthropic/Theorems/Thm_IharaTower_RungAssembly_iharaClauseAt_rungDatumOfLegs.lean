@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open IharaTower in
 
+/--
+@isnad1 id=iharacla.2h12v.s10.c18f724f5ef7 from=translated src=- shape=1c9b3386 vocab=0c5bbb45
+-/
 theorem IharaTower.RungAssembly.iharaClauseAt_rungDatumOfLegs
     {𝒪 : Type} [CommRing 𝒪]
     {T : Type} [CommRing T] [Algebra 𝒪 T] {T' : Type} [CommRing T'] [Algebra 𝒪 T']

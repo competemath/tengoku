@@ -18,6 +18,9 @@ namespace TakE
 
 variable {k : Type u} [Field k]
 
+/--
+@isnad1 id=isopen.0h3v.s7.69d1ee168e46 from=translated src=- shape=14a1c4b6 vocab=7484ea50
+-/
 theorem isOpen_range_comap (K : Type v) [CommRing K] [Algebra k K] [Algebra.FiniteType k K]
     (H : Type w) [CommRing H] [Algebra k H] [Algebra.FiniteType k H] [Algebra K H] [IsScalarTower k K H]
     [Module.Flat K H] : IsOpen (Set.range (PrimeSpectrum.comap (algebraMap K H))) := by
@@ -27,6 +30,9 @@ theorem isOpen_range_comap (K : Type v) [CommRing K] [Algebra k K] [Algebra.Fini
   haveI : Algebra.HasGoingDown K H := Algebra.HasGoingDown.of_flat
   exact (PrimeSpectrum.isOpenMap_comap_of_hasGoingDown_of_finitePresentation (R := K) (S := H)).isOpen_range
 
+/--
+@isnad1 id=eq.1h4v.s8.02b83d2dac77 from=translated src=- shape=c1f4112d vocab=3488dafe
+-/
 theorem algHom_eq_of_ker_eq {A : Type*} [CommRing A] [Algebra k A] (z z' : A →ₐ[k] k)
     (h : RingHom.ker z = RingHom.ker z') : z = z' := by
   apply AlgHom.ext
@@ -35,6 +41,9 @@ theorem algHom_eq_of_ker_eq {A : Type*} [CommRing A] [Algebra k A] (z z' : A →
   rw [h, RingHom.mem_ker, map_sub, AlgHom.commutes] at hx
   exact (sub_eq_zero.mp hx).symm
 
+/--
+@isnad1 id=nonempty.0h2v.s6.0b5a1c3e3935 from=translated src=- shape=15c20087 vocab=249f3b0c
+-/
 theorem exists_algHom_of_finiteType [IsAlgClosed k] {A : Type*} [CommRing A] [Algebra k A]
     [Algebra.FiniteType k A] [Nontrivial A] : Nonempty (A →ₐ[k] k) := by
   obtain ⟨M, hM⟩ := Ideal.exists_maximal A
@@ -47,6 +56,9 @@ theorem exists_algHom_of_finiteType [IsAlgClosed k] {A : Type*} [CommRing A] [Al
   let e : (A ⧸ M) ≃ₐ[k] k := (AlgEquiv.ofBijective (Algebra.ofId k (A ⧸ M)) hbij).symm
   exact ⟨e.toAlgHom.comp (Ideal.Quotient.mkₐ k M)⟩
 
+/--
+@isnad1 id=iff.0h4v.s8.990076acaa17 from=translated src=- shape=296428e2 vocab=4acb92ab
+-/
 theorem mem_range_comap_iff_exists_lift [IsAlgClosed k] (K : Type v) [CommRing K] [Algebra k K]
     (H : Type w) [CommRing H] [Algebra k H] [Algebra.FiniteType k H] [Algebra K H] [IsScalarTower k K H]
     (z : K →ₐ[k] k) :
@@ -78,6 +90,9 @@ theorem mem_range_comap_iff_exists_lift [IsAlgClosed k] (K : Type v) [CommRing K
     ext x
     simp [PrimeSpectrum.comap_asIdeal, Ideal.mem_comap, RingHom.mem_ker]
 
+/--
+@isnad1 id=faithful.1h2v.s6.9a8a96cb0774 from=translated src=- shape=0b72218c vocab=6e9aea8f
+-/
 theorem faithfullyFlat_of_range_eq_univ (K : Type v) [CommRing K] (H : Type w) [CommRing H] [Algebra K H]
     [Module.Flat K H] (h : Set.range (PrimeSpectrum.comap (algebraMap K H)) = Set.univ) :
     Module.FaithfullyFlat K H :=
@@ -96,12 +111,18 @@ noncomputable def antipodeAlgHom : K →ₐ[k] K :=
   AlgHom.ofLinearMap (HopfAlgebra.antipode k (A := K)) HopfAlgebra.antipode_one
     (fun a b => by rw [HopfAlgebra.antipode_mul_antidistrib, mul_comm])
 
+/--
+@isnad1 id=eq.0h3v.s9.533ae48a6a58 from=translated src=- shape=31de17bd vocab=5e303242
+-/
 theorem antipodeAlgHom_apply (a : K) : antipodeAlgHom (k := k) K a = HopfAlgebra.antipode k a := rfl
 
 noncomputable def transl (g : K →ₐ[k] k) : K →ₐ[k] K :=
   (Algebra.TensorProduct.lid k K).toAlgHom.comp
     ((Algebra.TensorProduct.map g (AlgHom.id k K)).comp (Bialgebra.comulAlgHom k K))
 
+/--
+@isnad1 id=eq.0h4v.s12.3d965807688e from=translated src=- shape=e7d5799e vocab=1581842b
+-/
 theorem transl_spec (g : K →ₐ[k] k) (h : K) :
     transl K g h = Algebra.TensorProduct.lid k K (Algebra.TensorProduct.map g (AlgHom.id k K) (Coalgebra.comul h)) :=
   rfl
@@ -109,6 +130,9 @@ theorem transl_spec (g : K →ₐ[k] k) (h : K) :
 variable {K}
 variable {A : Type w} [CommRing A] [Algebra k A]
 
+/--
+@isnad1 id=eq.0h5v.s9.cacb19003e3a from=translated src=- shape=9cb3c68f vocab=2d60c8ea
+-/
 theorem comp_transl (g : K →ₐ[k] k) (x : K →ₐ[k] A) :
     x.comp (transl K g) = WithConv.ofConv (WithConv.toConv ((Algebra.ofId k A).comp g) * WithConv.toConv x) := by
   apply AlgHom.ext
@@ -121,6 +145,9 @@ theorem comp_transl (g : K →ₐ[k] k) (x : K →ₐ[k] A) :
         map_smul, AlgHom.id_apply, AlgHom.comp_apply, Algebra.ofId_apply, Algebra.smul_def]
   | add y z hy hz => rw [map_add, map_add, map_add, hy, hz, map_add]
 
+/--
+@isnad1 id=eq.0h4v.s9.33b0d56b1f4a from=translated src=- shape=e38eef1c vocab=3d30b8c2
+-/
 theorem comp_antipode_mul_self (x : K →ₐ[k] A) :
     WithConv.toConv (x.comp (antipodeAlgHom K)) * WithConv.toConv x = 1 := by
   apply WithConv.ofConv_injective
@@ -136,6 +163,9 @@ theorem comp_antipode_mul_self (x : K →ₐ[k] A) :
     | add y z hy hz => rw [map_add, hy, hz, map_add, map_add, map_add]
   rw [h, HopfAlgebra.mul_antipode_rTensor_comul_apply, AlgHom.commutes]
 
+/--
+@isnad1 id=eq.0h4v.s9.1aa3793cd986 from=translated src=- shape=11a44ea8 vocab=3d30b8c2
+-/
 theorem mul_comp_antipode_self (x : K →ₐ[k] A) :
     WithConv.toConv x * WithConv.toConv (x.comp (antipodeAlgHom K)) = 1 := by
   apply WithConv.ofConv_injective
@@ -153,6 +183,9 @@ theorem mul_comp_antipode_self (x : K →ₐ[k] A) :
 
 def pt (z : K →ₐ[k] k) : PrimeSpectrum K := ⟨RingHom.ker z.toRingHom, RingHom.ker_isPrime _⟩
 
+/--
+@isnad1 id=eq.0h4v.s8.c1d7e109b1c5 from=translated src=- shape=5e9cb51f vocab=d009c9fa
+-/
 theorem comap_pt (β : K →ₐ[k] K) (z : K →ₐ[k] k) :
     PrimeSpectrum.comap β.toRingHom (pt z) = pt (z.comp β) := by
   ext x
@@ -160,6 +193,9 @@ theorem comap_pt (β : K →ₐ[k] K) (z : K →ₐ[k] k) :
 
 end Points
 
+/--
+@isnad1 id=ex.1h3v.s7.4701ffe7d3b8 from=translated src=- shape=fad35926 vocab=d7b7cbc8
+-/
 theorem exists_pt_eq [IsAlgClosed k] (K : Type v) [CommRing K] [HopfAlgebra k K] [Algebra.FiniteType k K]
     (Q : PrimeSpectrum K) (hQ : Q.asIdeal.IsMaximal) : ∃ z : K →ₐ[k] k, pt z = Q := by
   haveI := hQ
@@ -175,6 +211,9 @@ theorem exists_pt_eq [IsAlgClosed k] (K : Type v) [CommRing K] [HopfAlgebra k K]
   show y (Ideal.Quotient.mk Q.asIdeal x) = 0
   rw [Ideal.Quotient.eq_zero_iff_mem.mpr hx, map_zero]
 
+/--
+@isnad1 id=ex.2h2v.s6.8487e36c1f80 from=translated src=- shape=8216c730 vocab=9e3f2f98
+-/
 theorem exists_isMaximal_mem (K : Type v) [CommRing K] [IsJacobsonRing K] (W : Set (PrimeSpectrum K))
     (hW : IsOpen W) (hne : W.Nonempty) : ∃ P ∈ W, P.asIdeal.IsMaximal := by
   have h := JacobsonSpace.closure_inter_closedPoints_eq_closure (X := PrimeSpectrum K) hW.isLocallyClosed
@@ -186,6 +225,9 @@ theorem exists_isMaximal_mem (K : Type v) [CommRing K] [IsJacobsonRing K] (W : S
   obtain ⟨P, hPW, hPc⟩ := hne'
   exact ⟨P, hPW, (PrimeSpectrum.isClosed_singleton_iff_isMaximal P).mp (mem_closedPoints_iff.mp hPc)⟩
 
+/--
+@isnad1 id=faithful.3h3v.s12.594e27669aa6 from=translated src=- shape=10a41b73 vocab=738d6164
+-/
 theorem main [IsAlgClosed k]
     (K : Type v) [CommRing K] [HopfAlgebra k K] [Algebra.FiniteType k K]
     (H : Type w) [CommRing H] [HopfAlgebra k H] [Algebra.FiniteType k H]
@@ -278,6 +320,9 @@ theorem main [IsAlgClosed k]
 
 end TakE
 
+/--
+@isnad1 id=faithful.3h3v.s12.594e27669aa6 from=translated src=- shape=10a41b73 vocab=738d6164
+-/
 theorem solution
     {k : Type u} [Field k] [IsAlgClosed k]
     (K : Type v) [CommRing K] [HopfAlgebra k K] [Algebra.FiniteType k K]

@@ -10,6 +10,9 @@ set_option maxHeartbeats 800000
 
 universe u
 
+/--
+@isnad1 id=ex.3h2v.s6.c604d47192b0 from=translated src=- shape=7e4d832c vocab=919a0c68
+-/
 theorem solution
     {W : Type*} [CommRing W] [IsLocalRing W] [IsAdicComplete (IsLocalRing.maximalIdeal W) W]
     (n : ℕ) (hn : 0 < n) (hnW : IsUnit (n : W))

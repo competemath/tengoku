@@ -18,6 +18,9 @@ namespace E1b
 
 open IsLocalRing
 
+/--
+@isnad1 id=ex.1h4v.s8.9302d921cc43 from=translated src=- shape=8406a259 vocab=13089a8b
+-/
 theorem exists_pow_mem_map_pow {𝒪 : Type} [CommRing 𝒪] [IsLocalRing 𝒪]
     {R : Type} [CommRing R] [IsLocalRing R] [Algebra 𝒪 R] [Module.Finite 𝒪 R]
     (x : R) (hx : x ∈ maximalIdeal R) (k : ℕ) :
@@ -34,6 +37,9 @@ theorem exists_pow_mem_map_pow {𝒪 : Type} [CommRing 𝒪] [IsLocalRing 𝒪]
   rw [pow_mul, Ideal.map_pow]
   exact Ideal.pow_mem_pow (hN (Ideal.pow_mem_pow hx N)) k
 
+/--
+@isnad1 id=mem.1h6v.s8.bf30ec2cb93b from=translated src=- shape=5d7c0652 vocab=41d52154
+-/
 theorem smul_mem_of_mem_map {𝒪 : Type} [CommRing 𝒪] {R : Type} [CommRing R] [Algebra 𝒪 R]
     {M : Type} [AddCommGroup M] [Module R M] [Module 𝒪 M] [IsScalarTower 𝒪 R M]
     (J : Ideal 𝒪) (y : R) (hy : y ∈ J.map (algebraMap 𝒪 R)) (m : M) :
@@ -52,6 +58,9 @@ theorem smul_mem_of_mem_map {𝒪 : Type} [CommRing 𝒪] {R : Type} [CommRing R
 end CohL2.E1b
 
 open CohL2.E1b IharaLemma in
+/--
+@isnad1 id=ex.1h7v.s9.83d17d5b6f15 from=translated src=- shape=04c72f6a vocab=42a3b58a
+-/
 theorem solution
     {𝒪 : Type} [CommRing 𝒪] [IsLocalRing 𝒪] {B : Type} [CommRing B] [Algebra 𝒪 B] [Module.Finite 𝒪 B]
     (S : IdempotentSplitting B) (i : Fin S.n) (b : B) (hb : b ∈ S.𝔪 i)

@@ -33,6 +33,9 @@ private theorem ValuationSubring.liesOverPrime_smul_NC {A : ValuationSubring (Al
   rw [ValuationSubring.mem_pointwise_smul_iff_inv_smul_mem, AlgEquiv.smul_def, map_inv₀, map_natCast]
   exact hA
 
+/--
+@isnad1 id=isunrami.1h2v.s8.4ae91bb814a4 from=translated src=- shape=ef26fe78 vocab=0c9ee451
+-/
 theorem solution
     {S : Finset Nat.Primes} {F : IntermediateField ℚ (AlgebraicClosure ℚ)}
     (hF : F.IsUnramifiedOutside S) :

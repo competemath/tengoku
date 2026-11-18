@@ -18,16 +18,25 @@ namespace WELV2p
 
 variable (p : ℕ) [Fact p.Prime]
 
+/--
+@isnad1 id=le.0h3v.s7.9d7f6113c1cf from=translated src=- shape=c52a6de2 vocab=7474007c
+-/
 theorem nnnorm_sub_le_max' (x y : PadicAlgCl p) : ‖x - y‖₊ ≤ max ‖x‖₊ ‖y‖₊ := by
   rw [sub_eq_add_neg, ← nnnorm_neg y]
   exact IsUltrametricDist.nnnorm_add_le_max x (-y)
 
+/--
+@isnad1 id=eq.2h3v.s7.f7d509abc546 from=translated src=- shape=1563c0c2 vocab=14389f70
+-/
 theorem nnnorm_eq_one_of_pow_eq_one' {ξ : PadicAlgCl p} {N : ℕ} (hξ : ξ ^ N = 1) (hN0 : N ≠ 0) :
     ‖ξ‖₊ = 1 := by
   have h : ‖ξ‖ ^ N = 1 := by rw [← norm_pow, hξ, norm_one]
   have := (pow_eq_one_iff_of_nonneg (norm_nonneg ξ) hN0).mp h
   rwa [← coe_nnnorm, NNReal.coe_eq_one] at this
 
+/--
+@isnad1 id=eq.1h2v.s6.bbf6ba1533a2 from=translated src=- shape=212a547c vocab=c71727b3
+-/
 theorem nnnorm_natCast_eq_one {N : ℕ} (hN : ¬ p ∣ N) : ‖(N : PadicAlgCl p)‖₊ = 1 := by
   have hp : p.Prime := Fact.out
   rw [← NNReal.coe_inj, coe_nnnorm, NNReal.coe_one, ← map_natCast (algebraMap ℚ_[p] (PadicAlgCl p)) N,
@@ -72,6 +81,9 @@ theorem eq_one_of_pow_eq_one_of_nnnorm_sub_one_lt {N : ℕ} (hN : ¬ p ∣ N) {�
   rw [← hsum, hgeom, nnnorm_zero] at key
   exact zero_ne_one key
 
+/--
+@isnad1 id=mem.0h2v.s10.193afb3abc79 from=translated src=- shape=780a9f9a vocab=e50e52a4
+-/
 theorem mem_decompositionSubgroup (σ : PadicAlgCl p ≃ₐ[ℚ_[p]] PadicAlgCl p) :
     σ ∈ (padicIntegers p).decompositionSubgroup ℚ_[p] := by
   rw [MulAction.mem_stabilizer_iff]
@@ -80,6 +92,9 @@ theorem mem_decompositionSubgroup (σ : PadicAlgCl p ≃ₐ[ℚ_[p]] PadicAlgCl 
   rw [ValuationSubring.mem_pointwise_smul_iff_inv_smul_mem, AlgEquiv.smul_def,
     mem_padicIntegers_iff, mem_padicIntegers_iff, nnnorm_padicAlgCl_algEquiv]
 
+/--
+@isnad1 id=iff.0h2v.s10.60594d840a7f from=translated src=- shape=45b1a8b9 vocab=d6c57b91
+-/
 theorem mem_inertiaSubgroupIn_iff (σ : PadicAlgCl p ≃ₐ[ℚ_[p]] PadicAlgCl p) :
     σ ∈ (padicIntegers p).inertiaSubgroupIn ℚ_[p] ↔
       ∀ a : padicIntegers p, ‖σ (a : PadicAlgCl p) - a‖₊ < 1 := by
@@ -109,6 +124,9 @@ theorem mem_inertiaSubgroupIn_iff (σ : PadicAlgCl p ≃ₐ[ℚ_[p]] PadicAlgCl 
         (Valued.v : Valuation (PadicAlgCl p) NNReal)).lt_one_iff_lt_one]
     exact h a
 
+/--
+@isnad1 id=iff.0h2v.s10.415fac825757 from=translated src=- shape=926622ac vocab=8e79c246
+-/
 theorem mem_maximalIdeal_iff_nnnorm_lt (x : padicIntegers p) :
     x ∈ IsLocalRing.maximalIdeal (padicIntegers p) ↔ ‖(x : PadicAlgCl p)‖₊ < 1 := by
   rw [ValuationSubring.valuation_lt_one_iff,
@@ -116,6 +134,9 @@ theorem mem_maximalIdeal_iff_nnnorm_lt (x : padicIntegers p) :
       (Valued.v : Valuation (PadicAlgCl p) NNReal)).lt_one_iff_lt_one]
   rfl
 
+/--
+@isnad1 id=iff.0h3v.s11.9d0b44ebc9cb from=translated src=- shape=f34924e1 vocab=63993b5a
+-/
 theorem residue_eq_residue_iff (x y : padicIntegers p) :
     IsLocalRing.residue (padicIntegers p) x = IsLocalRing.residue (padicIntegers p) y ↔
       ‖(x : PadicAlgCl p) - y‖₊ < 1 := by
@@ -129,6 +150,9 @@ theorem residue_eq_residue_iff (x y : padicIntegers p) :
       rw [mem_maximalIdeal_iff_nnnorm_lt]; exact h
     exact Ideal.Quotient.eq.mpr h'
 
+/--
+@isnad1 id=charp.0h1v.s8.6224404c83bb from=translated src=- shape=c57a9e66 vocab=2956b1c4
+-/
 theorem charP_residueField : CharP (IsLocalRing.ResidueField (padicIntegers p)) p := by
   have hp : p.Prime := Fact.out
   refine (CharP.charP_iff_prime_eq_zero hp).mpr ?_
@@ -148,6 +172,9 @@ theorem charP_residueField : CharP (IsLocalRing.ResidueField (padicIntegers p)) 
     ← NNReal.coe_lt_coe, coe_nnnorm, PadicAlgCl.norm_extends]
   exact Padic.norm_p_lt_one
 
+/--
+@isnad1 id=ex.1h2v.s7.82e31842e69c from=translated src=- shape=08575a0e vocab=8cf547fa
+-/
 theorem exists_nnnorm_pow_sub_one_lt (a : PadicAlgCl p) (ha : ‖a‖₊ = 1) :
     ∃ M : ℕ, ¬ p ∣ M ∧ ‖a ^ M - 1‖₊ < 1 := by
   classical
@@ -218,6 +245,9 @@ theorem exists_nnnorm_pow_sub_one_lt (a : PadicAlgCl p) (ha : ‖a‖₊ = 1) :
   rw [← (IsLocalRing.residue (padicIntegers p)).map_one, residue_eq_residue_iff] at hb1
   exact hb1
 
+/--
+@isnad1 id=ex.1h2v.s8.4d930e8eb6ea from=translated src=- shape=9fb7b703 vocab=8cf547fa
+-/
 theorem exists_rootOfUnity_coprime_nnnorm_sub_lt (a : PadicAlgCl p) (ha : ‖a‖₊ = 1) :
     ∃ η : PadicAlgCl p, (∃ N : ℕ, ¬ p ∣ N ∧ η ^ N = 1) ∧ ‖a - η‖₊ < 1 := by
   classical
@@ -274,6 +304,9 @@ theorem exists_rootOfUnity_coprime_nnnorm_sub_lt (a : PadicAlgCl p) (ha : ‖a�
 
 end WELV2p
 
+/--
+@isnad1 id=eq.0h1v.s8.4fd7e1778e54 from=translated src=- shape=d03450b5 vocab=227c0e3a
+-/
 theorem solution (p : ℕ) [Fact p.Prime] :
     (IntermediateField.adjoin ℚ_[p] {ζ : PadicAlgCl p | ∃ N : ℕ, ¬ p ∣ N ∧ ζ ^ N = 1}).fixingSubgroup
       = (padicIntegers p).inertiaSubgroupIn ℚ_[p] := by

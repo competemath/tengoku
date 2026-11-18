@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=isprime.2h4v.s8.01f846670a69 from=translated src=- shape=92bb0f23 vocab=30e5cef1
+-/
 theorem solution
     {R : Type*} [CommRing R] {A : Type*} [CommRing A] [Algebra R A] {κ : Type*} [Field κ] [Algebra R κ]
     (ϖ : R) (hker : RingHom.ker (algebraMap R κ) = Ideal.span {ϖ}) (hmax : (Ideal.span {ϖ} : Ideal R).IsMaximal)

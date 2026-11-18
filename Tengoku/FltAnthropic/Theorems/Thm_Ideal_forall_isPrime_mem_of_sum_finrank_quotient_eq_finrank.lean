@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Ideal_forall_isPrime_mem_of_sum_finrank_qu
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=mem.3h4v.s8.133d6403f44e from=translated src=- shape=a5c24346 vocab=94ea02d1
+-/
 theorem Ideal.forall_isPrime_mem_of_sum_finrank_quotient_eq_finrank
     (F R : Type) [Field F] [CommRing R] [Algebra F R] [Module.Finite F R] [IsReduced R]
     (S : Finset (Ideal R)) (hS : ∀ 𝔭 ∈ S, 𝔭.IsPrime)

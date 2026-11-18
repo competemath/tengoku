@@ -7,6 +7,9 @@ namespace P2MW.S_Ideal_exists_not_mem_and_forall_mul_eq_zero_of_le_sq_of_le
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.2h3v.s8.e46350cd5941 from=translated src=- shape=fa7df402 vocab=bb375f05
+-/
 theorem solution
     {B : Type} [CommRing B] [IsNoetherianRing B] (I : Ideal B) (hI : I ≤ I ^ 2)
     (P : Ideal B) [P.IsPrime] (hIP : I ≤ P) :

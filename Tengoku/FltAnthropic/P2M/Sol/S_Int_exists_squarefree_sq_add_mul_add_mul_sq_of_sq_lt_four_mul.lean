@@ -8,6 +8,9 @@ namespace P2MW.S_Int_exists_squarefree_sq_add_mul_add_mul_sq_of_sq_lt_four_mul
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.1h2v.s7.965917ea4740 from=translated src=- shape=90ccac58 vocab=9409af18
+-/
 theorem solution (t n : ℤ) (h : t ^ 2 < 4 * n) :
     ∃ a b : ℤ, b ≠ 0 ∧ Squarefree (a ^ 2 + t * a * b + n * b ^ 2).toNat ∧
       2 ≤ (a ^ 2 + t * a * b + n * b ^ 2).toNat := by

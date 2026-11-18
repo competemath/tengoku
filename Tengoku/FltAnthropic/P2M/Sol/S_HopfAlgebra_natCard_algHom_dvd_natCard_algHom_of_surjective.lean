@@ -8,6 +8,9 @@ namespace P2MW.S_HopfAlgebra_natCard_algHom_dvd_natCard_algHom_of_surjective
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=dvd.1h5v.s10.acd49bc0f57e from=translated src=- shape=b7a5d03b vocab=a2af8a7d
+-/
 theorem solution
     (R : Type) [CommRing R] (K : Type) [CommRing K] [Algebra R K]
     (H : Type) [CommRing H] [HopfAlgebra R H]

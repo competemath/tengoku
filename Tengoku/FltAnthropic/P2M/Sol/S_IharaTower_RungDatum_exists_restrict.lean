@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open IharaTower
 
+/--
+@isnad1 id=ex.3h12v.s11.4db523a96428 from=translated src=- shape=c245b912 vocab=7a1c5478
+-/
 theorem solution {𝒪 : Type} [CommRing 𝒪]
     {T₀ Tₐ T₁ : Type} [CommRing T₀] [CommRing Tₐ] [CommRing T₁] [Algebra 𝒪 T₀] [Algebra 𝒪 Tₐ] [Algebra 𝒪 T₁]
     {M₀ Mₐ M₁ : Type} [AddCommGroup M₀] [AddCommGroup Mₐ] [AddCommGroup M₁]

@@ -22,6 +22,9 @@ variable {𝔽 : Type u} [Field 𝔽] {k : Type u} [Field k] [Algebra 𝔽 k]
   {Ω : Type u} [Field Ω] [Algebra k Ω] [Algebra 𝔽 Ω] [IsScalarTower 𝔽 k Ω]
   (ρ : κ →ₐ[𝔽] Ω)
 
+/--
+@isnad1 id=mem.0h6v.s9.27004e58f68d from=translated src=- shape=c163633b vocab=0de602f0
+-/
 theorem rho_mem_adjoin (c : ↥(IntermediateField.adjoin 𝔽 ({algebraMap 𝔽[X] κ Polynomial.X} : Set κ))) :
     ρ (c : κ) ∈ IntermediateField.adjoin k ({ρ (algebraMap 𝔽[X] κ Polynomial.X)} : Set Ω) := by
   have h1 : ρ (c : κ) ∈ (IntermediateField.adjoin 𝔽 ({algebraMap 𝔽[X] κ Polynomial.X} : Set κ)).map ρ := ⟨c, c.2, rfl⟩
@@ -30,6 +33,9 @@ theorem rho_mem_adjoin (c : ↥(IntermediateField.adjoin 𝔽 ({algebraMap 𝔽[
     ({ρ (algebraMap 𝔽[X] κ Polynomial.X)} : Set Ω)).restrictScalars 𝔽)).mpr
       (by simpa using IntermediateField.mem_adjoin_simple_self k (ρ (algebraMap 𝔽[X] κ Polynomial.X))) h1
 
+/--
+@isnad1 id=le.1h7v.s13.c337f4b7aebe from=translated src=- shape=8d513f3c vocab=12c8cab6
+-/
 theorem finrank_le_card
     (hfin : FiniteDimensional ↥(IntermediateField.adjoin 𝔽 ({algebraMap 𝔽[X] κ Polynomial.X} : Set κ)) κ)
     {ιy : Type*} [Fintype ιy]
@@ -120,6 +126,9 @@ end DBResdeg
 
 open DBResdeg in
 
+/--
+@isnad1 id=le.2h5v.s13.3fb43428e87a from=translated src=- shape=dc6ca7bc vocab=a78dbedb
+-/
 theorem solution
     (𝔽 : Type u) [Field 𝔽] (k : Type u) [Field k] [Algebra 𝔽 k]
     (κ : Type u) [Field κ] [Algebra 𝔽 κ] [Algebra 𝔽[X] κ] [IsScalarTower 𝔽 𝔽[X] κ]

@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=mem.4h6v.s11.9dd2f263e7f1 from=translated src=- shape=5279e94e vocab=4dbc104b
+-/
 theorem HopfOrder.mem_of_forall_mem_dual_apply_mem_range
     {R : Type*} [CommRing R] [IsDomain R] [IsPrincipalIdealRing R]
     {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]

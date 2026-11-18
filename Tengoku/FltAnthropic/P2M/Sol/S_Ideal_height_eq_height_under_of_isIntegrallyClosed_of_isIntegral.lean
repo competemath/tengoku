@@ -21,6 +21,9 @@ theorem eq_of_le_of_under_eq {P B : Type*} [CommRing P] [CommRing B] [Algebra P 
     (Algebra.IsIntegral.isIntegral (R := P) x)
   exact absurd (lt_of_lt_of_le this hu) (lt_irrefl _)
 
+/--
+@isnad1 id=eq.0h3v.s6.3a2a87265dac from=translated src=- shape=205d9ff3 vocab=36b86e27
+-/
 theorem height_eq_height_under (P B : Type*) [CommRing P] [IsDomain P] [IsNoetherianRing P]
     [IsIntegrallyClosed P] [CommRing B] [IsDomain B] [IsNoetherianRing B] [Algebra P B]
     [FaithfulSMul P B] [Algebra.IsIntegral P B] (q : Ideal B) [q.IsPrime] :
@@ -56,6 +59,9 @@ theorem height_eq_height_under (P B : Type*) [CommRing P] [IsDomain P] [IsNoethe
   exact absurd (hQ'eq ▸ hQ'lt) (lt_irrefl _)
 
 end HeightAux
+/--
+@isnad1 id=eq.0h3v.s6.fe4bf842394e from=translated src=- shape=205d9ff3 vocab=36b86e27
+-/
 theorem solution
     (P B : Type u) [CommRing P] [IsDomain P] [IsNoetherianRing P] [IsIntegrallyClosed P]
     [CommRing B] [IsDomain B] [IsNoetherianRing B] [Algebra P B] [FaithfulSMul P B]

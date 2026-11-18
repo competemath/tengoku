@@ -8,6 +8,9 @@ namespace P2MW.S_IntermediateField_cofinal_comp_fixingSubgroupEquiv_symm
 set_option autoImplicit false
 set_option maxHeartbeats 1600000
 
+/--
+@isnad1 id=and.2h4v.s14.b3dcf6fb30cc from=translated src=- shape=bcd54b12 vocab=c6cafd8f
+-/
 theorem solution
     {K Ω : Type} [Field K] [Field Ω] [Algebra K Ω]
     (L : IntermediateField K Ω) [FiniteDimensional K L]

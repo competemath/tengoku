@@ -20,18 +20,30 @@ include hadd hmul
 def addHom : L →+ L := AddMonoidHom.mk' D hadd
 
 omit hmul in
+/--
+@isnad1 id=eq.1h3v.s7.016eafc3f807 from=translated src=- shape=1fd55361 vocab=73a442d6
+-/
 theorem addHom_apply (x : L) : addHom D hadd x = D x := rfl
 
 omit hmul in
+/--
+@isnad1 id=eq.1h2v.s6.7b2273a29e0a from=translated src=- shape=514771b9 vocab=fe483021
+-/
 theorem map_zero' : D 0 = 0 := (addHom D hadd).map_zero
 
 omit hadd in
+/--
+@isnad1 id=eq.1h2v.s7.bbcc8cce409e from=translated src=- shape=f56247c2 vocab=8f4da391
+-/
 theorem map_one' : D 1 = 0 := by
   have h := hmul 1 1
   rw [one_mul, one_mul] at h
   linear_combination -h
 
 omit hadd in
+/--
+@isnad1 id=eq.1h4v.s7.af5a96a3e66e from=translated src=- shape=8f521945 vocab=66608009
+-/
 theorem map_pow' (a : L) (n : ℕ) : D (a ^ (n + 1)) = ((n + 1 : ℕ) : L) * a ^ n * D a := by
   induction n with
   | zero => simp
@@ -40,11 +52,17 @@ theorem map_pow' (a : L) (n : ℕ) : D (a ^ (n + 1)) = ((n + 1 : ℕ) : L) * a ^
     push_cast
     ring
 
+/--
+@isnad1 id=eq.2h4v.s8.ac09c47c376c from=translated src=- shape=60352313 vocab=135f908b
+-/
 theorem map_pow'' (a : L) (n : ℕ) : D (a ^ n) = (n : L) * a ^ (n - 1) * D a := by
   cases n with
   | zero => rw [pow_zero, map_one' D hmul]; simp
   | succ k => rw [map_pow' D hmul, Nat.add_sub_cancel]
 
+/--
+@isnad1 id=eq.3h3v.s8.0d965979efdc from=translated src=- shape=6d55dd3d vocab=0b2bd111
+-/
 theorem map_inv' (a : L) (ha : a ≠ 0) : D a⁻¹ = -(a⁻¹ ^ 2) * D a := by
   have h := hmul a a⁻¹
   rw [mul_inv_cancel₀ ha, map_one' D hmul] at h
@@ -53,6 +71,9 @@ theorem map_inv' (a : L) (ha : a ≠ 0) : D a⁻¹ = -(a⁻¹ ^ 2) * D a := by
     _ = a⁻¹ * -(a⁻¹ * D a) := by rw [h']
     _ = -(a⁻¹ ^ 2) * D a := by ring
 
+/--
+@isnad1 id=eq.2h5v.s8.43c23082bab7 from=translated src=- shape=ef30801e vocab=92778461
+-/
 theorem apply_sum_mul_pow (c : ℕ → L) (x : L) (n : ℕ) :
     D (∑ i ∈ Finset.range n, c i * x ^ i) =
       ∑ i ∈ Finset.range n, x ^ i * D (c i) + (∑ i ∈ Finset.range n, c i * i * x ^ (i - 1)) * D x := by
@@ -61,6 +82,9 @@ theorem apply_sum_mul_pow (c : ℕ → L) (x : L) (n : ℕ) :
   rw [addHom_apply, hmul, map_pow'' D hadd hmul]
   ring
 
+/--
+@isnad1 id=mem.4h5v.s9.eab801806a30 from=translated src=- shape=fc19fa5f vocab=78852ff4
+-/
 theorem apply_gen_mem (F : IntermediateField K L) (hF : ∀ x : L, x ∈ F → D x ∈ F)
     (α : L) (hα : IsSeparable F α) : D α ∈ IntermediateField.adjoin F ({α} : Set L) := by
   set E := IntermediateField.adjoin F ({α} : Set L) with hE
@@ -97,6 +121,9 @@ theorem apply_gen_mem (F : IntermediateField K L) (hF : ∀ x : L, x ∈ F → D
     exact sum_mem fun i _ => mul_mem (mul_mem (IntermediateField.algebraMap_mem E ⟨c i, hcF i⟩)
       (by exact_mod_cast natCast_mem E i)) (pow_mem hαE _)
 
+/--
+@isnad1 id=mem.5h6v.s9.ad432692daa6 from=translated src=- shape=6e3b274f vocab=78852ff4
+-/
 theorem main (F : IntermediateField K L) (hF : ∀ x : L, x ∈ F → D x ∈ F)
     (α : L) (hα : IsSeparable F α) (x : L) (hx : x ∈ IntermediateField.adjoin F ({α} : Set L)) :
     D x ∈ IntermediateField.adjoin F ({α} : Set L) := by
@@ -123,6 +150,9 @@ end Calculus
 
 end DerivStable
 
+/--
+@isnad1 id=mem.5h6v.s9.ad432692daa6 from=translated src=- shape=6e3b274f vocab=78852ff4
+-/
 theorem solution {K L : Type*} [Field K] [Field L] [Algebra K L]
     (D : L → L) (hadd : ∀ a b : L, D (a + b) = D a + D b) (hmul : ∀ a b : L, D (a * b) = a * D b + b * D a)
     (F : IntermediateField K L) (hF : ∀ x : L, x ∈ F → D x ∈ F)

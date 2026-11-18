@@ -20,6 +20,9 @@ noncomputable section
 
 namespace CARTDEngine
 
+/--
+@isnad1 id=eq.3h3v.s6.add82f7ef9a0 from=translated src=- shape=b00a3828 vocab=afa5a645
+-/
 theorem htf_flat {R : Type*} [CommRing R] [Algebra ℤ R] (hfl : Module.Flat ℤ R) :
     ∀ s : ℤ, s ≠ 0 → ∀ y : R, (s : R) * y = 0 → y = 0 := by
   have hflat : @Module.Flat ℤ R _ _ (AddCommGroup.toIntModule R) := by
@@ -33,6 +36,9 @@ theorem htf_flat {R : Type*} [CommRing R] [Algebra ℤ R] (hfl : Module.Flat ℤ
 
 attribute [local instance] MvPolynomial.algebraMvPolynomial
 
+/--
+@isnad1 id=isnilpot.2h2v.s8.01b83887d0f4 from=translated src=- shape=e25da240 vocab=bffeaa6f
+-/
 theorem isNilpotent_of_forall_ringHom_apply_eq_zero
     {R : Type*} [CommRing R] [Algebra ℤ R] [hft : Algebra.FiniteType ℤ R]
     (htf : ∀ s : ℤ, s ≠ 0 → ∀ y : R, (s : R) * y = 0 → y = 0)
@@ -86,6 +92,9 @@ theorem isNilpotent_of_forall_ringHom_apply_eq_zero
   rw [map_mul, map_pow, hP, hC, mul_comm] at h0
   exact ⟨k, htf s0 (nonZeroDivisors.ne_zero hs0) _ h0⟩
 
+/--
+@isnad1 id=injectiv.1h1v.s8.92c452afd569 from=translated src=- shape=686875bc vocab=dcff94fa
+-/
 theorem includeRight_injective {R : Type*} [CommRing R] [Algebra ℤ R]
     (hfl : Module.Flat ℤ R) :
     Function.Injective (Algebra.TensorProduct.includeRight (R := ℤ) (A := ℚ) (B := R)) := by
@@ -111,6 +120,9 @@ theorem includeRight_injective {R : Type*} [CommRing R] [Algebra ℤ R]
 
 end CARTDEngine
 
+/--
+@isnad1 id=nonempty.1h1v.s7.99a6a711af20 from=translated src=- shape=6846839c vocab=4af576a9
+-/
 theorem solution
     (R : Type) [CommRing R] [HopfAlgebra ℤ R] [Module.Flat ℤ R] [Algebra.FiniteType ℤ R]
     (huniq : ∀ f g : R →+* AlgebraicClosure ℚ, f = g) :

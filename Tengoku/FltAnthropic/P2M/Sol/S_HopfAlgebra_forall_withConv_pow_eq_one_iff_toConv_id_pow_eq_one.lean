@@ -15,6 +15,9 @@ open _root_.HopfAlgebra
 
 variable {R : Type u} [CommRing R] {H : Type v} [CommRing H] [HopfAlgebra R H]
 
+/--
+@isnad1 id=eq.0h6v.s11.bfb998b684a2 from=translated src=- shape=e19f98b8 vocab=83457216
+-/
 theorem lmul'_comp_map_comp {T : Type w} [CommRing T] [Algebra R T]
     (g : H →ₐ[R] T) (a b : H →ₐ[R] H) :
     (Algebra.TensorProduct.lmul' R).comp (Algebra.TensorProduct.map (g.comp a) (g.comp b)) =
@@ -24,6 +27,9 @@ theorem lmul'_comp_map_comp {T : Type w} [CommRing T] [Algebra R T]
   intro x y
   simp [Algebra.TensorProduct.lmul'_apply_tmul]
 
+/--
+@isnad1 id=eq.0h6v.s10.e5cc2cfe199e from=translated src=- shape=593bd67d vocab=fc409bcf
+-/
 theorem toConv_comp_pow {T : Type w} [CommRing T] [Algebra R T]
     (g : H →ₐ[R] T) (u : WithConv (H →ₐ[R] H)) (k : ℕ) :
     (WithConv.toConv (g.comp u.ofConv)) ^ k = WithConv.toConv (g.comp (u ^ k).ofConv) := by
@@ -49,6 +55,9 @@ theorem toConv_comp_pow {T : Type w} [CommRing T] [Algebra R T]
 end HopfAlgebra.UniversalPoint
 
 open HopfAlgebra.UniversalPoint in
+/--
+@isnad1 id=iff.0h3v.s10.abc4404baf8d from=translated src=- shape=5418e1c0 vocab=673a3915
+-/
 theorem solution
     {R : Type u} [CommRing R] {H : Type v} [CommRing H] [HopfAlgebra R H] (m : ℕ) :
     (∀ (T : Type v) [CommRing T] [Algebra R T] (f : WithConv (H →ₐ[R] T)), f ^ m = 1) ↔

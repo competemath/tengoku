@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 namespace U1a_8
 
+/--
+@isnad1 id=ex.1h2v.s7.20b83655d1c9 from=translated src=- shape=29b5a3de vocab=e67a7f92
+-/
 theorem exists_shift (t n : ℤ) (htn : t ^ 2 < 4 * n) :
     ∃ k : ℤ, 0 < k * k - t * k + n ∧ ¬ IsSquare (k * k - t * k + n) ∧ (t - 2 * k) ^ 2 < 4 * (k * k - t * k + n) := by
   set D : ℤ := 4 * n - t ^ 2 with hD
@@ -27,6 +30,9 @@ theorem exists_shift (t n : ℤ) (htn : t ^ 2 < 4 * n) :
 
 end U1a_8
 
+/--
+@isnad1 id=ex.1h2v.s7.2965d2c9ce92 from=translated src=- shape=46e8ad5e vocab=e67a7f92
+-/
 theorem solution
     (t n : ℤ) (htn : t ^ 2 < 4 * n) :
     ∃ k : ℤ, 0 < k ^ 2 - t * k + n ∧ ¬ IsSquare (k ^ 2 - t * k + n) := by

@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u v
 
+/--
+@isnad1 id=and.3h3v.s8.58749b70cf1b from=translated src=- shape=d91cbec8 vocab=f766689d
+-/
 theorem solution
     (K : Type u) [Field K] (Ω : Type v) [Field Ω] [Algebra K Ω] [IsAlgClosure K Ω]
     (S : Set Ω) (hS : S.Finite) (hsep : ∀ x ∈ S, IsSeparable K x)

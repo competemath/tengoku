@@ -7,6 +7,9 @@ namespace P2MW.S_Ideal_snd_apply_eq_zero_of_mem_minimalPrimes_of_isMaximal
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.3h6v.s9.b383e771d35a from=translated src=- shape=f6469e0d vocab=77737a78
+-/
 theorem solution
     (L : Type) [Field L] [CharZero L] (R : Type) [CommRing R] [Algebra L R] [IsReduced R]
     (𝔭 : Ideal R) (h𝔭 : 𝔭 ∈ (⊥ : Ideal R).minimalPrimes) (h𝔭' : 𝔭.IsMaximal)

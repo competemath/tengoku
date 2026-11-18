@@ -11,6 +11,9 @@ universe u v
 
 open scoped TensorProduct in
 
+/--
+@isnad1 id=faithful.2h3v.s12.69928d745982 from=translated src=- shape=2f667fbd vocab=96ac7fdd
+-/
 theorem HopfAlgebra.faithfullyFlat_subalgebra_of_comul_mem_span_of_antipode_mem
     {k : Type u} [Field k] {H : Type v} [CommRing H] [HopfAlgebra k H] [Algebra.FiniteType k H]
     (K : Subalgebra k H)

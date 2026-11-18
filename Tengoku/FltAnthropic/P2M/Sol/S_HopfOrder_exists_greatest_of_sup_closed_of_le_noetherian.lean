@@ -12,6 +12,9 @@ universe u v w
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=ex.2h5v.s8.e1661100cc92 from=translated src=- shape=fa5db8d7 vocab=afb86380
+-/
 theorem solution
     {R : Type u} [CommRing R] {A : Type w} [CommRing A] [Algebra R A]
     (P : Subalgebra R A → Prop) (hsup : ∀ S S', P S → P S' → P (S ⊔ S'))

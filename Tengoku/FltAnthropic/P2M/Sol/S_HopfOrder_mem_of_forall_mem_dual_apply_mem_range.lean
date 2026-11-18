@@ -21,9 +21,18 @@ variable {A : Type*} [CommRing A] [HopfAlgebra K A] [Algebra R A] [IsScalarTower
 variable [Module.Finite K A] [Coalgebra.IsCocomm K A]
 variable [Algebra R (CartierDual K A)] [IsScalarTower R K (CartierDual K A)]
 
+/--
+@isnad1 id=eq.0h5v.s9.22837abf8735 from=translated src=- shape=03625dd4 vocab=27dde2ac
+-/
 theorem add_apply' (φ ψ : CartierDual K A) (a : A) : (φ + ψ) a = φ a + ψ a := rfl
+/--
+@isnad1 id=eq.0h3v.s9.0d98a6ecd3f0 from=translated src=- shape=c286e80d vocab=74453711
+-/
 theorem zero_apply' (a : A) : (0 : CartierDual K A) a = 0 := rfl
 
+/--
+@isnad1 id=mem.2h7v.s14.30d88ad4996c from=translated src=- shape=540b4a23 vocab=f0084419
+-/
 theorem dualDistrib_tensorSqHom_mem (S : Subalgebra R A) (φ ψ : CartierDual K A)
     (hφ : ∀ b ∈ S, φ b ∈ (algebraMap R K).range) (hψ : ∀ b ∈ S, ψ b ∈ (algebraMap R K).range)
     (z : ↥S ⊗[R] ↥S) :
@@ -81,6 +90,9 @@ noncomputable def basisA (S : Subalgebra R A) [Module.Finite R ↥S]
   haveI := HopfOrder.moduleFlat_of_finite (K := K) S
   (Algebra.TensorProduct.basis K b).map (HopfOrder.baseChangeEquiv S hspan).toLinearEquiv
 
+/--
+@isnad1 id=eq.1h7v.s10.110df3c39f3b from=translated src=- shape=3401a8f1 vocab=a04678e5
+-/
 theorem basisA_apply (S : Subalgebra R A) [Module.Finite R ↥S]
     (hspan : Submodule.span K (S : Set A) = ⊤) {ι : Type*} (b : Module.Basis ι R ↥S) (i : ι) :
     basisA S hspan b i = (b i : A) := by
@@ -89,6 +101,9 @@ theorem basisA_apply (S : Subalgebra R A) [Module.Finite R ↥S]
   show HopfOrder.baseChangeEquiv S hspan ((1 : K) ⊗ₜ[R] b i) = _
   rw [HopfOrder.baseChangeEquiv_tmul, one_smul]
 
+/--
+@isnad1 id=eq.1h8v.s11.c30931e85940 from=translated src=- shape=9044686b vocab=6b49d99d
+-/
 theorem basisA_repr_coe (S : Subalgebra R A) [Module.Finite R ↥S]
     (hspan : Submodule.span K (S : Set A) = ⊤) {ι : Type*} [Finite ι] (b : Module.Basis ι R ↥S) (s : ↥S) (i : ι) :
     (basisA S hspan b).repr (s : A) i = algebraMap R K (b.repr s i) := by
@@ -109,6 +124,9 @@ theorem basisA_repr_coe (S : Subalgebra R A) [Module.Finite R ↥S]
   have := LinearMap.congr_fun hfg s
   simpa [f, g] using this
 
+/--
+@isnad1 id=mem.2h7v.s10.77e0f0570e72 from=translated src=- shape=d528e84f vocab=a52dbdb2
+-/
 theorem mem_of_forall_repr_mem (S : Subalgebra R A) [Module.Finite R ↥S]
     (hspan : Submodule.span K (S : Set A) = ⊤) {ι : Type*} [Fintype ι] (b : Module.Basis ι R ↥S) (a : A)
     (h : ∀ i, (basisA S hspan b).repr a i ∈ (algebraMap R K).range) : a ∈ S := by
@@ -128,11 +146,17 @@ noncomputable def basisD (S : Subalgebra R A) [Module.Finite R ↥S]
     Module.Basis ι K (CartierDual K A) :=
   ((basisA S hspan b).dualBasis).map (CartierDual.ofDual K A)
 
+/--
+@isnad1 id=eq.1h8v.s11.5ea6b760bfe8 from=translated src=- shape=bfdf68be vocab=a6a59d4b
+-/
 theorem basisD_apply_apply (S : Subalgebra R A) [Module.Finite R ↥S]
     (hspan : Submodule.span K (S : Set A) = ⊤) {ι : Type*} [Finite ι] [DecidableEq ι] (b : Module.Basis ι R ↥S) (i : ι) (a : A) :
     basisD S hspan b i a = (basisA S hspan b).repr a i := by
   rw [basisD, Module.Basis.map_apply, CartierDual.ofDual_apply, Module.Basis.dualBasis_apply]
 
+/--
+@isnad1 id=mem.2h8v.s11.1db79d6cb06d from=translated src=- shape=2bb4f2e7 vocab=2bd318e9
+-/
 theorem basisD_mem (S : Subalgebra R A) [Module.Finite R ↥S]
     (hspan : Submodule.span K (S : Set A) = ⊤) {ι : Type*} [Finite ι] [DecidableEq ι] (b : Module.Basis ι R ↥S) (i : ι) :
     ∀ s ∈ S, basisD S hspan b i s ∈ (algebraMap R K).range := by
@@ -173,6 +197,9 @@ variable {A : Type*} [CommRing A] [HopfAlgebra K A] [Algebra R A] [IsScalarTower
 variable [Module.Finite K A] [Coalgebra.IsCocomm K A]
 variable [Algebra R (CartierDual K A)] [IsScalarTower R K (CartierDual K A)]
 
+/--
+@isnad1 id=mem.4h6v.s11.9dd2f263e7f1 from=translated src=- shape=5279e94e vocab=4dbc104b
+-/
 theorem childIII (S : Subalgebra R A)
     (hfin : Module.Finite R ↥S) (hspan : Submodule.span K (S : Set A) = ⊤)
     (S' : Subalgebra R (CartierDual K A))
@@ -191,6 +218,9 @@ end Packaging
 
 end S17Dual
 
+/--
+@isnad1 id=mem.4h6v.s11.9dd2f263e7f1 from=translated src=- shape=5279e94e vocab=4dbc104b
+-/
 theorem solution
     {R : Type*} [CommRing R] [IsDomain R] [IsPrincipalIdealRing R]
     {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]

@@ -11,6 +11,9 @@ open scoped TensorProduct
 
 universe u v w
 
+/--
+@isnad1 id=faithful.4h5v.s9.df5220d95a74 from=translated src=- shape=ea633eb1 vocab=a03719ce
+-/
 theorem Subalgebra.faithfullyFlat_of_directed_of_forall_faithfullyFlat
     {k : Type u} [Field k] {H : Type v} [CommRing H] [Algebra k H] (K : Subalgebra k H)
     {ι : Type w} [Nonempty ι] (F : ι → Subalgebra k H) (hdir : Directed (· ≤ ·) F)

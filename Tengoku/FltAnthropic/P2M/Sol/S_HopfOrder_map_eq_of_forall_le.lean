@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=eq.6h5v.s14.825453d107eb from=translated src=- shape=ab103d80 vocab=dcb0ed7e
+-/
 theorem solution
     {R : Type*} [CommRing R] [IsDomain R] [IsPrincipalIdealRing R]
     {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]

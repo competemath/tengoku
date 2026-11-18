@@ -118,6 +118,9 @@ end CompleteDVR
 end DvrMax
 
 open DvrMax in
+/--
+@isnad1 id=ex.1h2v.s7.06877e799d24 from=translated src=- shape=ca81b6c3 vocab=61503ac4
+-/
 theorem solution
     {𝓞 : Type u} [CommRing 𝓞] (p : ℕ) (hp : (p : 𝓞) ∈ nonZeroDivisors 𝓞)
     [(Ideal.span {(p : 𝓞)}).IsMaximal] [IsAdicComplete (Ideal.span {(p : 𝓞)}) 𝓞] :

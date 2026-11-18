@@ -9,6 +9,9 @@ namespace P2MW.S_HopfAlgebra_exists_withConv_equiv_padic_of_withConv_equiv_algeb
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.3h4v.s13.914926c745cc from=translated src=- shape=1bd1bdde vocab=8459b1de
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime]
     (A : Type) [CommRing A] [HopfAlgebra ℚ A] (hAfin : Module.Finite ℚ A)

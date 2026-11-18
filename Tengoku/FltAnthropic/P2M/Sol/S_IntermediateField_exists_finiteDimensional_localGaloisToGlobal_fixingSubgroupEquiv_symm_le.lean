@@ -12,6 +12,9 @@ set_option maxHeartbeats 1600000
 open CategoryTheory
 
 open IntermediateField in
+/--
+@isnad1 id=ex.0h3v.s15.a345b7224832 from=translated src=- shape=9772bfd5 vocab=7fc90ca3
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime]
     (K : IntermediateField ℚ_[q] (PadicAlgCl q)) [FiniteDimensional ℚ_[q] K]

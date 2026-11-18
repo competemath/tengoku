@@ -16,11 +16,17 @@ namespace TameKernel
 section Core
 variable {B : Type u} [CommRing B] {G : Type v} [Group G] [MulSemiringAction G B]
 
+/--
+@isnad1 id=mem.2h5v.s7.48d0ab0f2fc2 from=translated src=- shape=55e5eea4 vocab=db64b554
+-/
 theorem smul_mem_of_mem_inertia (𝔓 : Ideal B) {σ : G} (hσ : σ ∈ 𝔓.inertia G) {z : B} (hz : z ∈ 𝔓) : σ • z ∈ 𝔓 := by
   have h : σ • z - z ∈ 𝔓 := hσ z
   have : σ • z = (σ • z - z) + z := by ring
   rw [this]; exact 𝔓.add_mem h hz
 
+/--
+@isnad1 id=mem.2h5v.s8.c284607e1cf9 from=translated src=- shape=3a7baf2b vocab=cac09bc3
+-/
 theorem smul_mem_sq_of_mem_inertia (𝔓 : Ideal B) {σ : G} (hσ : σ ∈ 𝔓.inertia G) {z : B} (hz : z ∈ 𝔓 ^ 2) :
     σ • z ∈ 𝔓 ^ 2 := by
 
@@ -33,6 +39,9 @@ theorem smul_mem_sq_of_mem_inertia (𝔓 : Ideal B) {σ : G} (hσ : σ ∈ 𝔓.
     rw [Ideal.map_pow]; exact Ideal.pow_right_mono hmap 2
   exact h2 (Ideal.mem_map_of_mem f hz)
 
+/--
+@isnad1 id=mem.3h5v.s8.a8b9704d3c45 from=translated src=- shape=03fc7848 vocab=bddda5d5
+-/
 theorem pow_sub_pow_mem_sq (𝔓 : Ideal B) {a b : B} (hab : a - b ∈ 𝔓) {N : ℕ} (hN : (N : B) ∈ 𝔓) (hN0 : N ≠ 0) :
     a ^ N - b ^ N ∈ 𝔓 ^ 2 := by
   set m := a - b with hm
@@ -56,6 +65,9 @@ theorem pow_sub_pow_mem_sq (𝔓 : Ideal B) {a b : B} (hab : a - b ∈ 𝔓) {N 
       exact Ideal.mul_mem_right _ _ (Ideal.pow_mem_pow hab 2)
     exact Ideal.mul_mem_right _ _ (Ideal.mul_mem_left _ _ this)
 
+/--
+@isnad1 id=mem.4h6v.s9.32ba9be9ce19 from=translated src=- shape=7c900547 vocab=d63f60d2
+-/
 theorem smul_sub_mem_sq_of_mem_inertia (𝔓 : Ideal B) [𝔓.IsMaximal] [Finite (B ⧸ 𝔓)]
     {ϖ : B} (hϖP : ϖ ∈ 𝔓) (hϖ : ∀ x ∈ 𝔓, ∃ y : B, x - ϖ * y ∈ 𝔓 ^ 2)
     {σ : G} (hσ : σ ∈ 𝔓.inertia G) (hσϖ : σ • ϖ - ϖ ∈ 𝔓 ^ 2) (x : B) :
@@ -101,20 +113,32 @@ variable {B : Type u} [CommRing B] {G : Type v} [Group G] [MulSemiringAction G B
 variable (𝔓 : Ideal B) [𝔓.IsMaximal]
 variable {ϖ : B}
 
+/--
+@isnad1 id=ex.3h5v.s9.ff3bf562d6cd from=translated src=- shape=14c155d4 vocab=0159ffe0
+-/
 theorem exists_tameCoeff (hϖP : ϖ ∈ 𝔓) (hgen : ∀ x ∈ 𝔓, ∃ y : B, x - ϖ * y ∈ 𝔓 ^ 2) {σ : G} (hσ : σ ∈ 𝔓.inertia G) : ∃ t : B, σ • ϖ - ϖ * t ∈ 𝔓 ^ 2 :=
   hgen (σ • ϖ) (smul_mem_of_mem_inertia 𝔓 hσ hϖP)
 
 noncomputable def tameCoeff (hϖP : ϖ ∈ 𝔓) (hgen : ∀ x ∈ 𝔓, ∃ y : B, x - ϖ * y ∈ 𝔓 ^ 2) {σ : G} (hσ : σ ∈ 𝔓.inertia G) : B := (exists_tameCoeff 𝔓 hϖP hgen hσ).choose
 
+/--
+@isnad1 id=mem.3h5v.s9.cb21d594ce26 from=translated src=- shape=c373a2bb vocab=4b1f274a
+-/
 theorem tameCoeff_spec (hϖP : ϖ ∈ 𝔓) (hgen : ∀ x ∈ 𝔓, ∃ y : B, x - ϖ * y ∈ 𝔓 ^ 2) {σ : G} (hσ : σ ∈ 𝔓.inertia G) : σ • ϖ - ϖ * tameCoeff 𝔓 hϖP hgen hσ ∈ 𝔓 ^ 2 :=
   (exists_tameCoeff 𝔓 hϖP hgen hσ).choose_spec
 
+/--
+@isnad1 id=mem.3h6v.s9.5ac5d50a70bf from=translated src=- shape=66681869 vocab=377380f6
+-/
 theorem tameCoeff_unique (hreg : ∀ c : B, c * ϖ ∈ 𝔓 ^ 2 → c ∈ 𝔓) {z t t' : B} (ht : z - ϖ * t ∈ 𝔓 ^ 2) (ht' : z - ϖ * t' ∈ 𝔓 ^ 2) : t - t' ∈ 𝔓 := by
   apply hreg
   have : (t - t') * ϖ = (z - ϖ * t') - (z - ϖ * t) := by ring
   rw [this]
   exact (𝔓 ^ 2).sub_mem ht' ht
 
+/--
+@isnad1 id=not.4h5v.s9.fd1cce3e3b7f from=translated src=- shape=77fbe550 vocab=e203b480
+-/
 theorem tameCoeff_not_mem (hϖP : ϖ ∈ 𝔓) (hgen : ∀ x ∈ 𝔓, ∃ y : B, x - ϖ * y ∈ 𝔓 ^ 2)
     (hreg : ∀ c : B, c * ϖ ∈ 𝔓 ^ 2 → c ∈ 𝔓) {σ : G} (hσ : σ ∈ 𝔓.inertia G) : tameCoeff 𝔓 hϖP hgen hσ ∉ 𝔓 := by
   intro ht
@@ -137,6 +161,9 @@ noncomputable def tameCharFun (hϖP : ϖ ∈ 𝔓) (hgen : ∀ x ∈ 𝔓, ∃ y
   Units.mk0 (Ideal.Quotient.mk 𝔓 (tameCoeff 𝔓 hϖP hgen σ.2))
     (by rw [Ne, Ideal.Quotient.eq_zero_iff_mem]; exact tameCoeff_not_mem 𝔓 hϖP hgen hreg σ.2)
 
+/--
+@isnad1 id=eq.3h5v.s9.3584c57e5244 from=translated src=- shape=54af1813 vocab=4f4e0f79
+-/
 theorem val_tameCharFun (hϖP : ϖ ∈ 𝔓) (hgen : ∀ x ∈ 𝔓, ∃ y : B, x - ϖ * y ∈ 𝔓 ^ 2)
     (hreg : ∀ c : B, c * ϖ ∈ 𝔓 ^ 2 → c ∈ 𝔓) (σ : 𝔓.inertia G) :
     ((tameCharFun 𝔓 hϖP hgen hreg σ : (B ⧸ 𝔓)ˣ) : B ⧸ 𝔓) = Ideal.Quotient.mk 𝔓 (tameCoeff 𝔓 hϖP hgen σ.2) := rfl
@@ -181,9 +208,15 @@ noncomputable def tameChar (hϖP : ϖ ∈ 𝔓) (hgen : ∀ x ∈ 𝔓, ∃ y : 
 variable (hϖP : ϖ ∈ 𝔓) (hgen : ∀ x ∈ 𝔓, ∃ y : B, x - ϖ * y ∈ 𝔓 ^ 2)
   (hreg : ∀ c : B, c * ϖ ∈ 𝔓 ^ 2 → c ∈ 𝔓)
 
+/--
+@isnad1 id=eq.3h5v.s10.354174c1e8bd from=translated src=- shape=c4d861df vocab=c7214fe0
+-/
 theorem tameChar_apply (σ : 𝔓.inertia G) :
     ((tameChar (G := G) 𝔓 hϖP hgen hreg σ : (B ⧸ 𝔓)ˣ) : B ⧸ 𝔓) = Ideal.Quotient.mk 𝔓 (tameCoeff 𝔓 hϖP hgen σ.2) := rfl
 
+/--
+@isnad1 id=iff.3h5v.s10.c5914e19edb6 from=translated src=- shape=79fccec3 vocab=c86d24cc
+-/
 theorem tameChar_eq_one_iff (σ : 𝔓.inertia G) :
     tameChar 𝔓 hϖP hgen hreg σ = 1 ↔ (σ : G) • ϖ - ϖ ∈ 𝔓 ^ 2 := by
   rw [← Units.val_eq_one, tameChar_apply, ← map_one (Ideal.Quotient.mk 𝔓), Ideal.Quotient.eq]
@@ -198,11 +231,17 @@ theorem tameChar_eq_one_iff (σ : 𝔓.inertia G) :
   · intro h
     exact tameCoeff_unique 𝔓 hreg (tameCoeff_spec 𝔓 hϖP hgen σ.2) (by rwa [mul_one])
 
+/--
+@isnad1 id=iff.3h5v.s10.a9264c678ae4 from=translated src=- shape=ed31d2fe vocab=4b0cd59a
+-/
 theorem tameChar_eq_one_iff_forall [Finite (B ⧸ 𝔓)] (σ : 𝔓.inertia G) :
     tameChar 𝔓 hϖP hgen hreg σ = 1 ↔ ∀ x : B, (σ : G) • x - x ∈ 𝔓 ^ 2 := by
   rw [tameChar_eq_one_iff]
   exact ⟨fun h x => smul_sub_mem_sq_of_mem_inertia 𝔓 hϖP hgen σ.2 h x, fun h => h ϖ⟩
 
+/--
+@isnad1 id=iscyclic.3h4v.s10.eb8e8378e2a3 from=translated src=- shape=594c637e vocab=7029c948
+-/
 theorem isCyclic_range_tameChar [Finite (B ⧸ 𝔓)] : IsCyclic (tameChar (G := G) 𝔓 hϖP hgen hreg).range := by
   letI : Field (B ⧸ 𝔓) := Ideal.Quotient.field 𝔓
   exact isCyclic_of_injective_ringHom ((Units.coeHom (B ⧸ 𝔓)).comp (tameChar (G := G) 𝔓 hϖP hgen hreg).range.subtype)
@@ -220,6 +259,9 @@ section FrobeniusRelation
 variable {B : Type u} [CommRing B] {G : Type v} [Group G] [MulSemiringAction G B]
 variable (𝔓 : Ideal B)
 
+/--
+@isnad1 id=ex.3h4v.s12.5045802db7f8 from=translated src=- shape=290c71ad vocab=d264f356
+-/
 theorem exists_tameChar [𝔓.IsMaximal] [Finite (B ⧸ 𝔓)] {ϖ : B} (hϖP : ϖ ∈ 𝔓)
     (hgen : ∀ x ∈ 𝔓, ∃ y : B, x - ϖ * y ∈ 𝔓 ^ 2) (hreg : ∀ c : B, c * ϖ ∈ 𝔓 ^ 2 → c ∈ 𝔓) :
     ∃ θ : 𝔓.inertia G →* (B ⧸ 𝔓)ˣ,
@@ -245,6 +287,9 @@ end FrobeniusRelation
 end GaloisRep.TameKernel
 
 open GaloisRep.TameKernel in
+/--
+@isnad1 id=ex.3h4v.s12.5045802db7f8 from=translated src=- shape=290c71ad vocab=d264f356
+-/
 theorem solution {B : Type u} [CommRing B] {G : Type v} [Group G]
     [MulSemiringAction G B] (𝔓 : Ideal B) [𝔓.IsMaximal] [Finite (B ⧸ 𝔓)] {ϖ : B} (hϖP : ϖ ∈ 𝔓)
     (hgen : ∀ x ∈ 𝔓, ∃ y : B, x - ϖ * y ∈ 𝔓 ^ 2) (hreg : ∀ c : B, c * ϖ ∈ 𝔓 ^ 2 → c ∈ 𝔓) :

@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open IsLocalRing
 
+/--
+@isnad1 id=eq.5h7v.s10.280c8d53d89f from=translated src=- shape=b9f12ff5 vocab=da8c5df7
+-/
 theorem solution
     {R S F : Type*} [CommRing R] [IsDedekindDomain R] [CommRing S] [IsDedekindDomain S] [Field F]
     [Algebra R S] [Module.IsTorsionFree R S] [Algebra S F] [IsFractionRing S F]

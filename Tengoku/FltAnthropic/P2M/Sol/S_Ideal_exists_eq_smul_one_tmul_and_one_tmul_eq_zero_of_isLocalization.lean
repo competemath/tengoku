@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open MvPolynomial TensorProduct
 
+/--
+@isnad1 id=and.3h8v.s12.7b78da82e206 from=translated src=- shape=353ceeef vocab=343d005c
+-/
 theorem solution
     (R : Type) [CommRing R] {n : ℕ} (M : Submonoid (MvPolynomial (Fin n) R))
     (P : Type) [CommRing P] [Algebra (MvPolynomial (Fin n) R) P] [IsLocalization M P]

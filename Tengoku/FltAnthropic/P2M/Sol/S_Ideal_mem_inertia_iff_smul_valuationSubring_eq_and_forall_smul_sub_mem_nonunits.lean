@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open scoped Pointwise
 
+/--
+@isnad1 id=iff.5h7v.s10.ee8623286291 from=translated src=- shape=a7fc272f vocab=85efe57c
+-/
 theorem solution
     {B : Type*} [CommRing B] {F : Type*} [Field F] {G : Type*} [Group G]
     [MulSemiringAction G B] [MulSemiringAction G F]

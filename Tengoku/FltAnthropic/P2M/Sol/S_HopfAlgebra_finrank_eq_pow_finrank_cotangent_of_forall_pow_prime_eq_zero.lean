@@ -26,8 +26,14 @@ abbrev augIdeal (k : Type u) [Field k] (A : Type v) [CommRing A] [Bialgebra k A]
 
 local notation "I" => augIdeal k A
 
+/--
+@isnad1 id=iff.0h3v.s8.8598d565bf47 from=translated src=- shape=8617e384 vocab=c44d1320
+-/
 theorem mem_augIdeal_iff (a : A) : a ∈ I ↔ ε a = 0 := RingHom.mem_ker
 
+/--
+@isnad1 id=mem.0h3v.s8.60e8e29e78d5 from=translated src=- shape=6231f197 vocab=18097997
+-/
 theorem sub_smul_one_mem (a : A) : a - ε a • (1 : A) ∈ I := by
   rw [mem_augIdeal_iff, map_sub, map_smul, Bialgebra.counit_one, smul_eq_mul, mul_one, sub_self]
 
@@ -39,6 +45,9 @@ namespace IsTangent
 
 variable {t : A →ₗ[k] k}
 
+/--
+@isnad1 id=eq.1h5v.s10.e40d6f19a7e4 from=translated src=- shape=2f64706a vocab=bc98043b
+-/
 theorem map_mul (ht : IsTangent t) (u v : A) : t (u * v) = ε u * t v + ε v * t u := by
   have hu := sub_smul_one_mem (k := k) u
   have hv := sub_smul_one_mem (k := k) v
@@ -60,18 +69,27 @@ variable (t : A →ₗ[k] k)
 noncomputable def der : A →ₗ[k] A :=
   (TensorProduct.rid k A).toLinearMap ∘ₗ LinearMap.lTensor A t ∘ₗ Coalgebra.comul
 
+/--
+@isnad1 id=eq.0h6v.s9.4929dc7e014f from=translated src=- shape=eba726bf vocab=91c74dff
+-/
 theorem der_eq_sum {a : A} {ι𝓡 : Type*} (𝓡 : Coalgebra.Repr k a ι𝓡) :
     der t a = ∑ i ∈ 𝓡.index, t (𝓡.right i) • 𝓡.left i := by
   simp only [der, LinearMap.comp_apply, ← 𝓡.eq, map_sum, LinearMap.lTensor_tmul,
     LinearEquiv.coe_toLinearMap, TensorProduct.rid_tmul]
 
 omit [Field k] in
+/--
+@isnad1 id=eq.0h5v.s9.61404f29b928 from=translated src=- shape=f914b5f3 vocab=3cc1d5e9
+-/
 theorem sum_counit_right_smul_left {k : Type u} [CommRing k] [Bialgebra k A] {a : A}
     {ι𝓡 : Type*} (𝓡 : Coalgebra.Repr k a ι𝓡) :
     ∑ i ∈ 𝓡.index, Coalgebra.counit (R := k) (𝓡.right i) • 𝓡.left i = a := by
   have h := congrArg (TensorProduct.rid k A) (Coalgebra.sum_tmul_counit_eq (R := k) 𝓡)
   simpa only [map_sum, TensorProduct.rid_tmul, one_smul] using h
 
+/--
+@isnad1 id=eq.0h4v.s9.b607bf1a2d15 from=translated src=- shape=0f4f07ea vocab=9bd17b42
+-/
 theorem counit_der (a : A) : ε (der t a) = t a := by
   let 𝓡 := Coalgebra.Repr.arbitrary k a
   rw [der_eq_sum t 𝓡, map_sum]
@@ -84,6 +102,9 @@ theorem counit_der (a : A) : ε (der t a) = t a := by
 
 variable {t}
 
+/--
+@isnad1 id=eq.1h5v.s9.3f8cd43b58c4 from=translated src=- shape=7c17f31c vocab=caa252f6
+-/
 theorem der_mul (ht : IsTangent t) (a b : A) : der t (a * b) = a * der t b + b * der t a := by
   let 𝓐 := Coalgebra.Repr.arbitrary k a
   let 𝓑 := Coalgebra.Repr.arbitrary k b
@@ -117,12 +138,18 @@ theorem der_mul (ht : IsTangent t) (a b : A) : der t (a * b) = a * der t b + b *
     rw [smul_mul_smul_comm, mul_comm (𝓐.left j)]
   rw [h1, h2, sum_counit_right_smul_left 𝓐, sum_counit_right_smul_left 𝓑]
 
+/--
+@isnad1 id=eq.1h3v.s8.2a716a0f6bbb from=translated src=- shape=a7cfe661 vocab=db8c3667
+-/
 theorem der_one (ht : IsTangent t) : der t (1 : A) = 0 := by
   have h := der_mul ht (1 : A) 1
   simp only [mul_one, one_mul] at h
 
   linear_combination -h
 
+/--
+@isnad1 id=eq.1h5v.s9.cea2dd7275d6 from=translated src=- shape=1c3b8d6a vocab=99175c8d
+-/
 theorem der_pow (ht : IsTangent t) (y : A) (n : ℕ) :
     der t (y ^ n) = (n : A) * y ^ (n - 1) * der t y := by
   induction n with
@@ -134,6 +161,9 @@ theorem der_pow (ht : IsTangent t) (y : A) (n : ℕ) :
     · rw [Nat.add_sub_cancel, pow_succ]
       ring
 
+/--
+@isnad1 id=eq.1h6v.s9.62a151a61b61 from=translated src=- shape=2d00b3cc vocab=e48360f5
+-/
 theorem der_prod (ht : IsTangent t) {ι : Type*} [DecidableEq ι] (s : Finset ι) (f : ι → A) :
     der t (∏ j ∈ s, f j) = ∑ j ∈ s, (∏ l ∈ s.erase j, f l) * der t (f j) := by
   induction s using Finset.induction_on with
@@ -147,10 +177,16 @@ theorem der_prod (ht : IsTangent t) {ι : Type*} [DecidableEq ι] (s : Finset ι
     rw [Finset.erase_insert_of_ne hij, Finset.prod_insert (fun h => hi (Finset.mem_of_mem_erase h)),
       mul_assoc]
 
+/--
+@isnad1 id=mem.0h4v.s9.0539babfa5ea from=translated src=- shape=865c3b88 vocab=d9d630fe
+-/
 theorem der_sub_smul_one_mem (a : A) : der t a - t a • (1 : A) ∈ I := by
   have := sub_smul_one_mem (k := k) (der t a)
   rwa [counit_der] at this
 
+/--
+@isnad1 id=mem.2h5v.s9.3effb7815aa6 from=translated src=- shape=412de60c vocab=9cba39d9
+-/
 theorem der_mem_pow (ht : IsTangent t) :
     ∀ (m : ℕ) {a : A}, a ∈ I ^ (m + 1) → der t a ∈ I ^ m := by
   intro m
@@ -182,6 +218,9 @@ noncomputable def mono (x : Fin r → A) (ν : Fin r → ℕ) : A := ∏ j, x j 
 
 def deg (ν : Fin r → ℕ) : ℕ := ∑ j, ν j
 
+/--
+@isnad1 id=mem.1h6v.s7.20070a833b8f from=translated src=- shape=59db1720 vocab=17dbaed4
+-/
 theorem prod_pow_mem_pow (hx : ∀ i, x i ∈ I) (s : Finset (Fin r)) (ν : Fin r → ℕ) :
     ∏ j ∈ s, x j ^ ν j ∈ I ^ (∑ j ∈ s, ν j) := by
   induction s using Finset.induction_on with
@@ -190,11 +229,17 @@ theorem prod_pow_mem_pow (hx : ∀ i, x i ∈ I) (s : Finset (Fin r)) (ν : Fin 
     rw [Finset.prod_insert hi, Finset.sum_insert hi, pow_add]
     exact Ideal.mul_mem_mul (Ideal.pow_mem_pow (hx i) _) ih
 
+/--
+@isnad1 id=mem.1h5v.s7.87441b80de35 from=translated src=- shape=bf4b9962 vocab=8e9110d2
+-/
 theorem mono_mem_pow (hx : ∀ i, x i ∈ I) (ν : Fin r → ℕ) : mono x ν ∈ I ^ deg ν :=
   prod_pow_mem_pow hx _ ν
 
 def lower (ν : Fin r → ℕ) (i : Fin r) : Fin r → ℕ := Function.update ν i (ν i - 1)
 
+/--
+@isnad1 id=eq.0h4v.s5.0d4f63587422 from=translated src=- shape=20df45a1 vocab=104ae897
+-/
 theorem lower_apply (ν : Fin r → ℕ) (i j : Fin r) :
     lower ν i j = if j = i then ν i - 1 else ν j := by
   unfold lower
@@ -202,6 +247,9 @@ theorem lower_apply (ν : Fin r → ℕ) (i j : Fin r) :
   · subst h; simp
   · simp [h]
 
+/--
+@isnad1 id=mem.1h7v.s8.a7a08dbdfce9 from=translated src=- shape=1ce5d2ed vocab=42587d47
+-/
 theorem der_mono_sub_mem (h : IsSystem x τ) (ν : Fin r → ℕ) (i : Fin r) :
     der (τ i) (mono x ν) - (ν i : A) * mono x (lower ν i) ∈ I ^ deg ν := by
   classical
@@ -280,6 +328,9 @@ theorem der_mono_sub_mem (h : IsSystem x τ) (ν : Fin r → ℕ) (i : Fin r) :
   rw [e]
   exact Ideal.add_mem _ hmain hrest
 
+/--
+@isnad1 id=eq.1h5v.s6.f2943d1c9a00 from=translated src=- shape=a1e6178a vocab=5cd53821
+-/
 theorem mono_eq_mul_lower (ν : Fin r → ℕ) (i : Fin r) (hi : ν i ≠ 0) :
     mono x ν = x i * mono x (lower ν i) := by
   unfold mono
@@ -293,6 +344,9 @@ theorem mono_eq_mul_lower (ν : Fin r → ℕ) (i : Fin r) (hi : ν i ≠ 0) :
 
 def nat {p : ℕ} (ν : Fin r → Fin p) : Fin r → ℕ := fun j => (ν j : ℕ)
 
+/--
+@isnad1 id=eq.0h4v.s4.881ad9f381e4 from=translated src=- shape=f738129e vocab=b2f1b8cd
+-/
 @[scoped simp] theorem nat_apply {p : ℕ} (ν : Fin r → Fin p) (j : Fin r) : nat ν j = (ν j : ℕ) := rfl
 
 variable {p : ℕ}
@@ -303,6 +357,9 @@ def lowerF (ν : Fin r → Fin p) (i : Fin r) : Fin r → Fin p :=
 def raiseF (μ : Fin r → Fin p) (i : Fin r) (h : (μ i : ℕ) + 1 < p) : Fin r → Fin p :=
   Function.update μ i ⟨(μ i : ℕ) + 1, h⟩
 
+/--
+@isnad1 id=eq.0h5v.s5.8ef8bc3ee960 from=translated src=- shape=818b330d vocab=49446bd0
+-/
 theorem lowerF_apply (ν : Fin r → Fin p) (i j : Fin r) :
     (lowerF ν i j : ℕ) = if j = i then (ν i : ℕ) - 1 else (ν j : ℕ) := by
   unfold lowerF
@@ -310,6 +367,9 @@ theorem lowerF_apply (ν : Fin r → Fin p) (i j : Fin r) :
   · subst h; simp
   · simp [h]
 
+/--
+@isnad1 id=eq.1h5v.s6.db5ed3576720 from=translated src=- shape=41633605 vocab=37e6fa8e
+-/
 theorem raiseF_apply (μ : Fin r → Fin p) (i j : Fin r) (h : (μ i : ℕ) + 1 < p) :
     (raiseF μ i h j : ℕ) = if j = i then (μ i : ℕ) + 1 else (μ j : ℕ) := by
   unfold raiseF
@@ -317,10 +377,16 @@ theorem raiseF_apply (μ : Fin r → Fin p) (i j : Fin r) (h : (μ i : ℕ) + 1 
   · subst hj; simp
   · simp [hj]
 
+/--
+@isnad1 id=eq.0h4v.s5.59ddfed49c39 from=translated src=- shape=9589d5c4 vocab=a51f53a7
+-/
 theorem nat_lowerF (ν : Fin r → Fin p) (i : Fin r) : nat (lowerF ν i) = lower (nat ν) i := by
   funext j
   rw [nat_apply, lowerF_apply, lower_apply, nat_apply, nat_apply]
 
+/--
+@isnad1 id=eq.1h4v.s5.5d598c042a17 from=translated src=- shape=c9d01ee4 vocab=8f5d7ad6
+-/
 theorem lower_nat_raiseF (μ : Fin r → Fin p) (i : Fin r) (h : (μ i : ℕ) + 1 < p) :
     lower (nat (raiseF μ i h)) i = nat μ := by
   funext j
@@ -329,6 +395,9 @@ theorem lower_nat_raiseF (μ : Fin r → Fin p) (i : Fin r) (h : (μ i : ℕ) + 
   · subst hj; simp
   · rw [ite_eq_right hj, raiseF_apply, ite_eq_right hj]
 
+/--
+@isnad1 id=eq.2h4v.s6.c2861b9b9d56 from=translated src=- shape=0d2aa34e vocab=79ca5bb9
+-/
 theorem raiseF_lowerF (ν : Fin r → Fin p) (i : Fin r) (hi : (ν i : ℕ) ≠ 0)
     (h : (lowerF ν i i : ℕ) + 1 < p) : raiseF (lowerF ν i) i h = ν := by
   funext j
@@ -338,6 +407,9 @@ theorem raiseF_lowerF (ν : Fin r → Fin p) (i : Fin r) (hi : (ν i : ℕ) ≠ 
   · subst hj; rw [ite_eq_left rfl]; omega
   · rw [ite_eq_right hj, lowerF_apply, ite_eq_right hj]
 
+/--
+@isnad1 id=eq.1h4v.s5.e583ced153d5 from=translated src=- shape=08dbf613 vocab=79ca5bb9
+-/
 theorem lowerF_raiseF (μ : Fin r → Fin p) (i : Fin r) (h : (μ i : ℕ) + 1 < p) :
     lowerF (raiseF μ i h) i = μ := by
   funext j
@@ -347,6 +419,9 @@ theorem lowerF_raiseF (μ : Fin r → Fin p) (i : Fin r) (h : (μ i : ℕ) + 1 <
   · subst hj; rw [ite_eq_left rfl]; omega
   · rw [ite_eq_right hj, raiseF_apply, ite_eq_right hj]
 
+/--
+@isnad1 id=eq.1h4v.s5.5555460330c1 from=translated src=- shape=76659863 vocab=a89429cd
+-/
 theorem deg_nat_lowerF (ν : Fin r → Fin p) (i : Fin r) (hi : (ν i : ℕ) ≠ 0) :
     deg (nat (lowerF ν i)) + 1 = deg (nat ν) := by
   unfold deg
@@ -357,6 +432,9 @@ theorem deg_nat_lowerF (ν : Fin r → Fin p) (i : Fin r) (hi : (ν i : ℕ) ≠
   rw [h1, nat_apply, lowerF_apply, ite_eq_left rfl, nat_apply]
   omega
 
+/--
+@isnad1 id=ex.1h3v.s5.b15cb6bce43a from=translated src=- shape=9561f175 vocab=201c8520
+-/
 theorem exists_ne_zero_of_deg_ne_zero (ν : Fin r → Fin p) (h : deg (nat ν) ≠ 0) :
     ∃ i, (ν i : ℕ) ≠ 0 := by
   by_contra hne
@@ -376,6 +454,9 @@ def Q (x : Fin r → A) (p : ℕ) (d : ℕ) : Prop :=
     (∑ ν ∈ Finset.univ.filter (fun ν => deg (nat ν) = d), c ν • mono x (nat ν)) ∈ I ^ (d + 1) →
     ∀ ν : Fin r → Fin p, deg (nat ν) = d → c ν = 0
 
+/--
+@isnad1 id=q.0h5v.s5.5845aff4a47f from=translated src=- shape=5be11a20 vocab=a1deac23
+-/
 theorem Q_zero : Q (k := k) (A := A) x p 0 := by
   intro c hc ν hν
 
@@ -393,6 +474,9 @@ theorem Q_zero : Q (k := k) (A := A) x p 0 := by
   rw [hmono, mem_augIdeal_iff, map_smul, Bialgebra.counit_one, smul_eq_mul, mul_one] at hc
   exact hc
 
+/--
+@isnad1 id=q.2h7v.s7.13fcb2c33fa5 from=translated src=- shape=634548ce vocab=8f47778f
+-/
 theorem Q_succ [CharP k p] (h : IsSystem x τ) (d : ℕ) (IH : Q (k := k) x p d) : Q (k := k) x p (d + 1) := by
   classical
   intro c hc ν hν
@@ -489,11 +573,17 @@ theorem Q_succ [CharP k p] (h : IsSystem x τ) (d : ℕ) (IH : Q (k := k) x p d)
     omega
   exact (mul_eq_zero.1 hc').resolve_right hunit
 
+/--
+@isnad1 id=q.1h7v.s7.a074a8d0fb2a from=translated src=- shape=7eca4063 vocab=131a3d53
+-/
 theorem Q_all [CharP k p] (h : IsSystem x τ) (d : ℕ) : Q (k := k) x p d := by
   induction d with
   | zero => exact Q_zero
   | succ d ih => exact Q_succ h d ih
 
+/--
+@isnad1 id=linearin.1h6v.s7.f7c1fb82ac65 from=translated src=- shape=d2ebf255 vocab=2475f2bb
+-/
 theorem linearIndependent_mono [CharP k p] (h : IsSystem x τ) :
     LinearIndependent k (fun ν : Fin r → Fin p => mono x (nat ν)) := by
   classical
@@ -535,9 +625,15 @@ theorem linearIndependent_mono [CharP k p] (h : IsSystem x τ) :
 noncomputable def W (x : Fin r → A) (p : ℕ) : Submodule k A :=
   Submodule.span k (Set.range fun ν : Fin r → Fin p => mono x (nat ν))
 
+/--
+@isnad1 id=mem.0h6v.s7.af3a96657751 from=translated src=- shape=4064e57e vocab=fcf43549
+-/
 theorem mono_mem_W (ν : Fin r → Fin p) : mono x (nat ν) ∈ W (k := k) x p :=
   Submodule.subset_span ⟨ν, rfl⟩
 
+/--
+@isnad1 id=mem.2h7v.s8.ffd64be2e7bf from=translated src=- shape=0f06ac31 vocab=95ffd04e
+-/
 theorem mul_mem_W (hxp : ∀ i, x i ^ p = 0) (i : Fin r) {w : A} (hw : w ∈ W (k := k) x p) :
     x i * w ∈ W (k := k) x p := by
   induction hw using Submodule.span_induction with
@@ -560,12 +656,18 @@ theorem mul_mem_W (hxp : ∀ i, x i ^ p = 0) (i : Fin r) {w : A} (hw : w ∈ W (
   | add a b _ _ ha hb => rw [mul_add]; exact Submodule.add_mem _ ha hb
   | smul c a _ ha => rw [mul_smul_comm]; exact Submodule.smul_mem _ c ha
 
+/--
+@isnad1 id=mem.0h5v.s7.4271cd0cddc7 from=translated src=- shape=5b25d7c3 vocab=5fe64e38
+-/
 theorem one_mem_W [NeZero p] : (1 : A) ∈ W (k := k) x p := by
   have e : mono x (nat (fun _ : Fin r => (0 : Fin p))) = 1 := by
     unfold mono
     exact Finset.prod_eq_one fun j _ => by rw [nat_apply, Fin.val_zero, pow_zero]
   rw [← e]; exact mono_mem_W _
 
+/--
+@isnad1 id=mem.3h7v.s9.ec5ca19b8e4d from=translated src=- shape=5d9d20e4 vocab=bafe1b5b
+-/
 theorem pow_le_W_sup [NeZero p] (hxp : ∀ i, x i ^ p = 0)
     (hgen : ∀ u ∈ I, ∃ c : Fin r → k, u - ∑ i, c i • x i ∈ I ^ 2) :
     ∀ (m : ℕ) {a : A}, a ∈ I ^ m → a ∈ W (k := k) x p ⊔ (I ^ (m + 1)).restrictScalars k := by
@@ -603,6 +705,9 @@ theorem pow_le_W_sup [NeZero p] (hxp : ∀ i, x i ^ p = 0)
     · rw [pow_succ']
       exact Ideal.mul_mem_mul hu hz
 
+/--
+@isnad1 id=eq.3h6v.s9.e6c8ee173ea6 from=translated src=- shape=2123737f vocab=3918a010
+-/
 theorem W_eq_top [NeZero p] (hxp : ∀ i, x i ^ p = 0)
     (hgen : ∀ u ∈ I, ∃ c : Fin r → k, u - ∑ i, c i • x i ∈ I ^ 2)
     {N : ℕ} (hN : I ^ N = ⊥) : W (k := k) x p = ⊤ := by
@@ -646,13 +751,22 @@ noncomputable def toCot : ↥(I) →ₗ[k] (I).Cotangent := (I).toCotangent.rest
 
 variable {k A}
 
+/--
+@isnad1 id=eq.0h3v.s10.107fc03d3080 from=translated src=- shape=9b449d38 vocab=cd389fc5
+-/
 theorem toCot_apply (u : ↥(I)) : toCot k A u = (I).toCotangent u := rfl
 
+/--
+@isnad1 id=eq.1h3v.s9.0a8f75492ed7 from=translated src=- shape=bcbff6f1 vocab=60f9a9d3
+-/
 theorem proj_apply_of_mem {a : A} (ha : a ∈ I) : proj k A a = ⟨a, ha⟩ := by
   ext
   change a - ε a • (1 : A) = a
   rw [(mem_augIdeal_iff a).1 ha, zero_smul, sub_zero]
 
+/--
+@isnad1 id=issystem.2h5v.s10.e38c1ed7a71c from=translated src=- shape=39ce8764 vocab=6e5be172
+-/
 theorem isSystem_of_basis {r : ℕ} (b : Module.Basis (Fin r) k (I).Cotangent)
     (x : Fin r → A) (hxI : ∀ i, x i ∈ I) (hxb : ∀ i, (I).toCotangent ⟨x i, hxI i⟩ = b i) :
     IsSystem x (fun i => (b.coord i) ∘ₗ toCot k A ∘ₗ proj k A) := by
@@ -676,6 +790,9 @@ theorem isSystem_of_basis {r : ℕ} (b : Module.Basis (Fin r) k (I).Cotangent)
     · subst h; simp
     · rw [ite_eq_right (Ne.symm h), ite_eq_right h]
 
+/--
+@isnad1 id=ex.3h6v.s10.315eef6640bb from=translated src=- shape=4226455a vocab=dd13bef4
+-/
 theorem exists_sub_sum_mem_sq {r : ℕ} (b : Module.Basis (Fin r) k (I).Cotangent)
     (x : Fin r → A) (hxI : ∀ i, x i ∈ I) (hxb : ∀ i, (I).toCotangent ⟨x i, hxI i⟩ = b i)
     (u : A) (hu : u ∈ I) : ∃ c : Fin r → k, u - ∑ i, c i • x i ∈ I ^ 2 := by
@@ -692,6 +809,9 @@ theorem exists_sub_sum_mem_sq {r : ℕ} (b : Module.Basis (Fin r) k (I).Cotangen
 
 end Construction
 
+/--
+@isnad1 id=eq.1h3v.s9.adf1e3e41a43 from=translated src=- shape=c648f121 vocab=70d7aa46
+-/
 theorem finrank_eq (p : ℕ) [Fact p.Prime] [CharP k p] [Module.Finite k A]
     (hA : ∀ a : A, ε a = 0 → a ^ p = 0) :
     Module.finrank k A = p ^ Module.finrank k (I).Cotangent := by
@@ -734,6 +854,9 @@ open scoped _root_.P2MW.S_HopfAlgebra_finrank_eq_pow_finrank_cotangent_of_forall
 
 universe u v in
 
+/--
+@isnad1 id=eq.1h3v.s9.4827fe4647ff from=translated src=- shape=4c910483 vocab=64fd561a
+-/
 theorem solution
     (k : Type u) [Field k] (p : ℕ) [Fact p.Prime] [CharP k p]
     (A : Type v) [CommRing A] [Bialgebra k A] [Module.Finite k A]

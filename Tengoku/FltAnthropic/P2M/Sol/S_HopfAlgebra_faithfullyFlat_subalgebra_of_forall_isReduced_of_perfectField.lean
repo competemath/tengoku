@@ -35,11 +35,17 @@ noncomputable def cancelIso (N : Type*) [AddCommGroup N] [Module R N] :
   (TensorProduct.AlgebraTensorModule.cancelBaseChange R S S (S ⊗[R] M) N).trans
     (TensorProduct.AlgebraTensorModule.assoc R R S S M N)
 
+/--
+@isnad1 id=eq.0h8v.s11.bd4b773283a0 from=translated src=- shape=4d3f7278 vocab=513f5f0f
+-/
 theorem cancelIso_tmul {N : Type*} [AddCommGroup N] [Module R N] (s s' : S) (m : M) (n : N) :
     cancelIso R S M N ((s ⊗ₜ[R] m) ⊗ₜ[S] (s' ⊗ₜ[R] n)) = (s' * s) ⊗ₜ[R] (m ⊗ₜ[R] n) := by
   simp [cancelIso, TensorProduct.AlgebraTensorModule.cancelBaseChange_tmul,
     TensorProduct.AlgebraTensorModule.assoc_tmul, TensorProduct.smul_tmul', smul_eq_mul]
 
+/--
+@isnad1 id=eq.0h7v.s13.a76d27e2efc2 from=translated src=- shape=d56cfa88 vocab=1c6929e1
+-/
 theorem cancelIso_naturality {N : Type*} [AddCommGroup N] [Module R N] {N' : Type*} [AddCommGroup N'] [Module R N']
     (f : N →ₗ[R] N') (z : (S ⊗[R] M) ⊗[S] (S ⊗[R] N)) :
     cancelIso R S M N' (((f.baseChange S).lTensor (S ⊗[R] M)) z)
@@ -59,6 +65,9 @@ theorem cancelIso_naturality {N : Type*} [AddCommGroup N] [Module R N] {N' : Typ
               rw [LinearMap.lTensor_tmul, LinearMap.baseChange_tmul, cancelIso_tmul, cancelIso_tmul,
                 LinearMap.lTensor_tmul, LinearMap.lTensor_tmul]
 
+/--
+@isnad1 id=faithful.0h3v.s7.0dbdc21b5a75 from=translated src=- shape=4a51c80b vocab=f7def5da
+-/
 theorem faithfullyFlat_of_faithfullyFlat_baseChange [Module.FaithfullyFlat R S]
     [Module.FaithfullyFlat S (S ⊗[R] M)] : Module.FaithfullyFlat R M := by
   rw [Module.FaithfullyFlat.iff_flat_and_proper_ideal]
@@ -118,6 +127,9 @@ end S17Ta
 
 namespace S17Td
 
+/--
+@isnad1 id=codescen.0h0v.s4.1b274f5aee8f from=translated src=- shape=b2c949c9 vocab=07d31693
+-/
 theorem codescendsAlong_faithfullyFlat :
     RingHom.CodescendsAlong (fun {R S} [CommRing R] [CommRing S] => RingHom.FaithfullyFlat (R := R) (S := S))
       (fun {R S} [CommRing R] [CommRing S] => RingHom.FaithfullyFlat (R := R) (S := S)) := by
@@ -131,6 +143,9 @@ end S17Td
 set_option maxHeartbeats 6400000 in
 set_option synthInstance.maxHeartbeats 1600000 in
 open S17Td in
+/--
+@isnad1 id=faithful.4h4v.s13.faea8b3e514f from=translated src=- shape=42637607 vocab=929d5af4
+-/
 theorem solution
     {k : Type u} [Field k] [PerfectField k] (p : ℕ) [Fact p.Prime] [CharP k p]
     {H : Type v} [CommRing H] [HopfAlgebra k H] [Algebra.FiniteType k H]

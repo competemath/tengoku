@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open IharaTower IharaTower.RungAssembly
 
+/--
+@isnad1 id=eq.1h13v.s9.3e68a4f13083 from=translated src=- shape=968affd5 vocab=d1c4d2a4
+-/
 theorem solution {𝒪 : Type} [CommRing 𝒪]
     {T : Type} [CommRing T] [Algebra 𝒪 T] {T' : Type} [CommRing T'] [Algebra 𝒪 T']
     {M : Type} [AddCommGroup M] [Module T M] [Module 𝒪 M] [IsScalarTower 𝒪 T M]

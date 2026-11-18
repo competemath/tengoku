@@ -15,6 +15,9 @@ namespace FlatColon
 
 variable {R S : Type*} [CommRing R] [CommRing S] [Algebra R S]
 
+/--
+@isnad1 id=mem.0h4v.s11.e4ae86ea6c9c from=translated src=- shape=d33f48ea vocab=12ab585f
+-/
 theorem rid_lTensor_subtype_mem (K : Ideal R) (y : S ⊗[R] K) :
     TensorProduct.rid R S (LinearMap.lTensor S K.subtype y) ∈ K.map (algebraMap R S) := by
   induction y using TensorProduct.induction_on with
@@ -24,6 +27,9 @@ theorem rid_lTensor_subtype_mem (K : Ideal R) (y : S ⊗[R] K) :
       exact Ideal.mul_mem_right _ _ (Ideal.mem_map_of_mem _ k.2)
   | add x y hx hy => rw [map_add, map_add]; exact add_mem hx hy
 
+/--
+@isnad1 id=mem.1h5v.s9.6d5cb26a0d41 from=translated src=- shape=f045a62e vocab=760d2c87
+-/
 theorem mem_map_ker_of_tmul_eq_zero [Module.Flat R S] {N : Type*} [AddCommGroup N] [Module R N]
     (g : R →ₗ[R] N) (s : S) (hs : s ⊗ₜ[R] (g 1) = (0 : S ⊗[R] N)) :
     s ∈ Ideal.map (algebraMap R S) (LinearMap.ker g) := by
@@ -38,6 +44,9 @@ theorem mem_map_ker_of_tmul_eq_zero [Module.Flat R S] {N : Type*} [AddCommGroup 
   rw [hs1, ← hy]
   exact rid_lTensor_subtype_mem _ y
 
+/--
+@isnad1 id=eq.1h4v.s9.15ce0cf85e43 from=translated src=- shape=933f905a vocab=935ae23f
+-/
 theorem tmul_mk_one_eq_zero (I : Ideal R) (t : S) (ht : t ∈ I.map (algebraMap R S)) :
     t ⊗ₜ[R] (Ideal.Quotient.mk I 1) = (0 : S ⊗[R] (R ⧸ I)) := by
   apply (TensorProduct.tensorQuotEquivQuotSMul S I).injective
@@ -48,6 +57,9 @@ theorem tmul_mk_one_eq_zero (I : Ideal R) (t : S) (ht : t ∈ I.map (algebraMap 
   rw [h1, one_smul, Submodule.Quotient.mk_eq_zero, Ideal.smul_top_eq_map]
   exact ht
 
+/--
+@isnad1 id=eq.0h4v.s8.f081c85a0fb7 from=translated src=- shape=88192068 vocab=6ad3c3ac
+-/
 theorem map_colon_singleton [Module.Flat R S] (I : Ideal R) (x : R) :
     (Submodule.colon I {x}).map (algebraMap R S)
       = Submodule.colon (I.map (algebraMap R S)) {algebraMap R S x} := by
@@ -71,6 +83,9 @@ theorem map_colon_singleton [Module.Flat R S] (I : Ideal R) (x : R) :
     rw [h1, ← TensorProduct.smul_tmul, Algebra.smul_def, mul_comm]
     exact tmul_mk_one_eq_zero I _ hs
 
+/--
+@isnad1 id=eq.0h4v.s8.c4e9460c6515 from=translated src=- shape=6159098b vocab=4572f4b8
+-/
 theorem map_inf [Module.Flat R S] (K₁ K₂ : Ideal R) :
     (K₁ ⊓ K₂).map (algebraMap R S) = K₁.map (algebraMap R S) ⊓ K₂.map (algebraMap R S) := by
   apply le_antisymm (Ideal.map_inf_le _)
@@ -88,6 +103,9 @@ theorem map_inf [Module.Flat R S] (K₁ K₂ : Ideal R) :
     exact ⟨tmul_mk_one_eq_zero K₁ s hs.1, tmul_mk_one_eq_zero K₂ s hs.2⟩
   exact (LinearEquiv.map_eq_zero_iff _).mp key
 
+/--
+@isnad1 id=eq.0h2v.s6.b4047e6aa400 from=translated src=- shape=b1dc82cf vocab=61c99354
+-/
 theorem colon_empty (I : Ideal R) : Submodule.colon I (∅ : Set R) = ⊤ := by
   rw [eq_top_iff]
   intro r _
@@ -95,6 +113,9 @@ theorem colon_empty (I : Ideal R) : Submodule.colon I (∅ : Set R) = ⊤ := by
   intro s hs
   exact absurd hs (Set.notMem_empty s)
 
+/--
+@isnad1 id=eq.0h4v.s8.62423b7b0c89 from=translated src=- shape=2082627e vocab=bec42a32
+-/
 theorem map_colon_finset [Module.Flat R S] [DecidableEq R] (I : Ideal R) (T : Finset R) :
     (Submodule.colon I (T : Set R)).map (algebraMap R S)
       = Submodule.colon (I.map (algebraMap R S)) (algebraMap R S '' (T : Set R)) := by
@@ -105,6 +126,9 @@ theorem map_colon_finset [Module.Flat R S] [DecidableEq R] (I : Ideal R) (T : Fi
       rw [Finset.coe_insert, Set.image_insert_eq, Set.insert_eq, Set.insert_eq, Submodule.colon_union,
         Submodule.colon_union, map_inf, map_colon_singleton, ih]
 
+/--
+@isnad1 id=eq.0h3v.s6.417f67bd1aef from=translated src=- shape=17ca357b vocab=66a7559d
+-/
 theorem colon_span (I : Ideal R) (s : Set R) :
     Submodule.colon I (Ideal.span s : Set R) = Submodule.colon I s := by
   ext r
@@ -126,6 +150,9 @@ theorem colon_span (I : Ideal R) (s : Set R) :
 
 end FlatColon
 
+/--
+@isnad1 id=eq.1h4v.s8.9fd065ce3016 from=translated src=- shape=5a0a023f vocab=507698f4
+-/
 theorem solution
     {R S : Type*} [CommRing R] [CommRing S] [Algebra R S] [Module.Flat R S]
     (I J : Ideal R) (hJ : J.FG) :

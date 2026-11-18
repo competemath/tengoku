@@ -7,6 +7,9 @@ namespace P2MW.S_Ideal_exists_span_range_eq_top_of_forall_isMaximal_exists_notMe
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.1h2v.s7.2a2d05cb7a0a from=translated src=- shape=19569fad vocab=ef5482e4
+-/
 theorem solution
     {B : Type} [CommRing B] (P : B → Prop)
     (h : ∀ 𝔪 : Ideal B, 𝔪.IsMaximal → ∃ s : B, s ∉ 𝔪 ∧ P s) :

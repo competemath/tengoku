@@ -32,11 +32,17 @@ section DimensionDrop
 
 variable {R : Type u} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
 
+/--
+@isnad1 id=eq.0h1v.s6.668de94136fb from=translated src=- shape=ce5804ae vocab=6ff9f50b
+-/
 theorem annihilator_self_eq_bot (R : Type u) [CommRing R] : Module.annihilator R R = ⊥ := by
   rw [eq_bot_iff]
   intro r hr
   simpa using Module.mem_annihilator.mp hr 1
 
+/--
+@isnad1 id=eq.2h2v.s9.396364e93204 from=translated src=- shape=4867e970 vocab=1eb1da5a
+-/
 theorem ringKrullDim_quotSMulTop_succ_eq_of_forall_notMem_minimalPrimes
     {x : R} (hx : x ∈ maximalIdeal R) (hxmin : ∀ p ∈ minimalPrimes R, x ∉ p) :
     ringKrullDim (QuotSMulTop x R) + 1 = ringKrullDim R := by
@@ -47,6 +53,9 @@ theorem ringKrullDim_quotSMulTop_succ_eq_of_forall_notMem_minimalPrimes
   refine hxmin p ?_
   rwa [annihilator_self_eq_bot] at hp
 
+/--
+@isnad1 id=eq.2h2v.s7.cf6cfcd8d902 from=translated src=- shape=e213f437 vocab=7421f17c
+-/
 theorem ringKrullDim_quotient_span_singleton_succ_eq_of_forall_notMem_minimalPrimes
     {x : R} (hx : x ∈ maximalIdeal R) (hxmin : ∀ p ∈ minimalPrimes R, x ∉ p) :
     ringKrullDim (R ⧸ Ideal.span {x}) + 1 = ringKrullDim R := by
@@ -75,6 +84,9 @@ end W2RLR
 
 open IsLocalRing
 
+/--
+@isnad1 id=eq.2h2v.s7.cf6cfcd8d902 from=translated src=- shape=e213f437 vocab=7421f17c
+-/
 theorem solution
     {R : Type*} [CommRing R] [IsLocalRing R] [IsNoetherianRing R] {x : R}
     (hx : x ∈ maximalIdeal R) (hxmin : ∀ p ∈ minimalPrimes R, x ∉ p) :

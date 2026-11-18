@@ -10,6 +10,9 @@ set_option autoImplicit false
 open scoped Pointwise
 
 attribute [local instance] Ideal.Quotient.field in
+/--
+@isnad1 id=issepara.2h5v.s8.4968130895a5 from=translated src=- shape=0d72cb32 vocab=9c65d03f
+-/
 theorem solution
     {R S : Type*} [CommRing R] [IsDedekindDomain R] [CommRing S] [IsDedekindDomain S]
     [Algebra R S] [Module.Finite R S] [Module.IsTorsionFree R S]

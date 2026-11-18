@@ -12,6 +12,9 @@ open scoped TensorProduct
 
 universe v
 
+/--
+@isnad1 id=ex.0h3v.s16.a35c4ecbc38d from=translated src=- shape=6f4740cf vocab=3f635073
+-/
 theorem Deformation.DieudonneModule.exists_addEquiv_prod_apply_eq_map_of_tensorProduct
     (p : ℕ) [Fact p.Prime]
     (B₁ B₂ : Type v) [CommRing B₁] [CommRing B₂] [Bialgebra (ZMod p) B₁] [Bialgebra (ZMod p) B₂] :

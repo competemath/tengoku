@@ -11,6 +11,9 @@ open Polynomial
 
 namespace F12Sol
 
+/--
+@isnad1 id=eq.5h5v.s7.d8cf6953e617 from=translated src=- shape=15bd8693 vocab=e09114c9
+-/
 theorem root_unique {R : Type*} [CommRing R] [IsDomain R] (I : Ideal R) (hI : I ≠ ⊤) (N : ℕ) (hN : (N : R) ∈ I)
     {a b : R} (ha : a ^ N = a) (hb : b ^ N = b) (hab : a - b ∈ I) : a = b := by
   classical
@@ -39,6 +42,9 @@ theorem root_unique {R : Type*} [CommRing R] [IsDomain R] (I : Ideal R) (hI : I 
     exact hgI
   · exact sub_eq_zero.mp h2
 
+/--
+@isnad1 id=eq.1h5v.s8.a1190bfa5c8f from=translated src=- shape=18edfba1 vocab=1e4082d7
+-/
 theorem zpow_apply_of_apply_eq {𝒪 : Type*} [CommRing 𝒪] {R : Type*} [CommRing R] [Algebra 𝒪 R] (g : R ≃ₐ[𝒪] R) {x : R}
     (hx : g x = x) (m : ℤ) : (g ^ m) x = x := by
   have hnat : ∀ k : ℕ, (g ^ k) x = x := by
@@ -53,6 +59,9 @@ theorem zpow_apply_of_apply_eq {𝒪 : Type*} [CommRing 𝒪] {R : Type*} [CommR
 
 end F12Sol
 
+/--
+@isnad1 id=dvd.8h9v.s10.111a4b595bfe from=translated src=- shape=5ab5b151 vocab=28c4b877
+-/
 theorem solution
     {r : ℕ} [Fact r.Prime]
     {𝒪 : Type} [CommRing 𝒪] (π : 𝒪)

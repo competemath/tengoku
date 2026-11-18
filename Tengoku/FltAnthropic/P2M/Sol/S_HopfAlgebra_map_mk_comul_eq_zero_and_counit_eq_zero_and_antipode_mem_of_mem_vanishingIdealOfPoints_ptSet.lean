@@ -18,6 +18,9 @@ open WithConv
 variable {F : Type*} [Field F] {A : Type*} [CommRing A] [HopfAlgebra F A]
 variable {L : Type*} [Field L] [Algebra F L]
 
+/--
+@isnad1 id=eq.2h5v.s14.2326254f35a3 from=translated src=- shape=465f79b6 vocab=9d8d94c3
+-/
 theorem comul_clause (S : Submonoid (WithConv (A →ₐ[F] L)))
     (hsep : ∀ x : TensorProduct F (pointQuot S) (pointQuot S),
       (∀ (ν ν' : A →ₐ[F] L) (hν : ν ∈ ptSet S) (hν' : ν' ∈ ptSet S),
@@ -48,6 +51,9 @@ theorem comul_clause (S : Submonoid (WithConv (A →ₐ[F] L)))
   rw [AlgHom.convMul_def] at h0
   simpa [Bialgebra.comulAlgHom_apply] using h0
 
+/--
+@isnad1 id=eq.1h5v.s9.d1b2a5648900 from=translated src=- shape=2d12e17c vocab=4603d29c
+-/
 theorem counit_clause (S : Submonoid (WithConv (A →ₐ[F] L)))
     (a : A) (ha : a ∈ vanishingIdealOfPoints (ptSet S)) :
     Coalgebra.counit (R := F) a = 0 := by
@@ -59,6 +65,9 @@ theorem counit_clause (S : Submonoid (WithConv (A →ₐ[F] L)))
   rw [h1] at h0
   exact (algebraMap F L).injective (by rw [h0, map_zero])
 
+/--
+@isnad1 id=mem.2h5v.s10.fa60bc604697 from=translated src=- shape=c5bbeb78 vocab=4a16c193
+-/
 theorem antipode_clause (S : Submonoid (WithConv (A →ₐ[F] L)))
     (hinv : ∀ ν ∈ ptSet S, ∃ ν' ∈ ptSet S,
       ν'.toLinearMap = ν.toLinearMap ∘ₗ HopfAlgebraStruct.antipode (R := F))
@@ -75,6 +84,9 @@ theorem antipode_clause (S : Submonoid (WithConv (A →ₐ[F] L)))
 end PointIdeal
 end HopfAlgebra
 
+/--
+@isnad1 id=and.2h4v.s15.35e9b3dbab0e from=translated src=- shape=7292013a vocab=153ec33d
+-/
 theorem solution
     {F : Type*} [Field F] {A : Type*} [CommRing A] [HopfAlgebra F A]
     {L : Type*} [Field L] [Algebra F L]

@@ -14,6 +14,9 @@ open scoped TensorProduct
 
 open HopfAlgebra in
 
+/--
+@isnad1 id=isreduce.0h3v.s11.e2cfd9717dd9 from=translated src=- shape=13267d04 vocab=25ec6b38
+-/
 theorem solution
     (R : Type) [CommRing R] (L : Type) [Field L] [Algebra R L]
     (Γ : Type) [AddCommGroup Γ] [Fintype Γ] [DecidableEq Γ] :

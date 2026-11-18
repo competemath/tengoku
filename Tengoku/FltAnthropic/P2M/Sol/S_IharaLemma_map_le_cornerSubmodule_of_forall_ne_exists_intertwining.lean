@@ -18,6 +18,9 @@ variable {𝒪 : Type} [CommRing 𝒪] {B' : Type} [CommRing B'] [Algebra 𝒪 B
 variable {V : Type} [AddCommGroup V] [Module 𝒪 V]
 variable {V' : Type} [AddCommGroup V'] [Module 𝒪 V'] [Module B' V'] [IsScalarTower 𝒪 B' V']
 
+/--
+@isnad1 id=mem.1h6v.s9.923da3d4e873 from=translated src=- shape=aa09673b vocab=08eb1f1d
+-/
 theorem smul_mem_ideal_smul_top (J : Ideal 𝒪) (t : B') {v' : V'}
     (h : v' ∈ (J • ⊤ : Submodule 𝒪 V')) : t • v' ∈ (J • ⊤ : Submodule 𝒪 V') := by
   refine Submodule.smul_induction_on h ?_ ?_
@@ -27,6 +30,9 @@ theorem smul_mem_ideal_smul_top (J : Ideal 𝒪) (t : B') {v' : V'}
   · intro x y hx hy
     rw [smul_add]; exact Submodule.add_mem _ hx hy
 
+/--
+@isnad1 id=eq.1h9v.s10.181b05112f4f from=translated src=- shape=610ad506 vocab=9d775426
+-/
 theorem map_pow_apply (f : V →ₗ[𝒪] V') (g : V →ₗ[𝒪] V) (b' : B')
     (hfg : ∀ v : V, f (g v) = b' • f v) (n : ℕ) (v : V) : f ((g ^ n) v) = (b' ^ n) • f v := by
   induction n generalizing v with
@@ -34,6 +40,9 @@ theorem map_pow_apply (f : V →ₗ[𝒪] V') (g : V →ₗ[𝒪] V) (b' : B')
   | succ n ih =>
     rw [pow_succ, Module.End.mul_apply, ih (g v), hfg, smul_smul, ← pow_succ]
 
+/--
+@isnad1 id=eq.1h5v.s6.1bced86f9be0 from=translated src=- shape=1697fb31 vocab=99545b96
+-/
 theorem pow_mul_eq_of_mul_mul_eq {u b e : B'} (h : u * b * e = e) (n : ℕ) :
     u ^ n * b ^ n * e = e := by
   induction n with
@@ -45,6 +54,9 @@ theorem pow_mul_eq_of_mul_mul_eq {u b e : B'} (h : u * b * e = e) (n : ℕ) :
 end CohL2.E1
 
 open CohL2.E1 IharaLemma in
+/--
+@isnad1 id=mem.3h10v.s10.aa6f45aaecea from=translated src=- shape=20e112b1 vocab=9bb063fd
+-/
 theorem solution
     {𝒪 : Type} [CommRing 𝒪] {B' : Type} [CommRing B'] [Algebra 𝒪 B']
     {V : Type} [AddCommGroup V] [Module 𝒪 V]

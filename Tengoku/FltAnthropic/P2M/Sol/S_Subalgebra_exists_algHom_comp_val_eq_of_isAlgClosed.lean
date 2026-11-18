@@ -9,6 +9,9 @@ set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 800000
 set_option maxHeartbeats 3200000
 
+/--
+@isnad1 id=ex.0h5v.s8.310b2409e91e from=translated src=- shape=04099456 vocab=8bd7e921
+-/
 theorem solution {R : Type*} [CommRing R] {A : Type*} [CommRing A] [Algebra R A] [Module.Finite R A]
     (S : Subalgebra R A) (k : Type*) [Field k] [IsAlgClosed k] [Algebra R k] (φ : ↥S →ₐ[R] k) :
     ∃ ψ : A →ₐ[R] k, ψ.comp S.val = φ := by

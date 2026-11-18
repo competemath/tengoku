@@ -11,6 +11,9 @@ open scoped TensorProduct
 
 universe u v
 
+/--
+@isnad1 id=ex.2h3v.s14.3c89dfe62d79 from=translated src=- shape=1758b1ae vocab=97154245
+-/
 theorem HopfAlgebra.exists_hopfAlgebra_surjective_ker_eq_span_of_comul_mem_span_of_antipode_mem
     {k : Type u} [Field k] {H : Type v} [CommRing H] [HopfAlgebra k H]
     (K' : Subalgebra k H)

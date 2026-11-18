@@ -12,6 +12,9 @@ universe u v
 
 open IntermediateField
 
+/--
+@isnad1 id=ex.1h4v.s12.f224572760fc from=translated src=- shape=f13a1b53 vocab=5111456a
+-/
 theorem solution
     {K : Type u} {Ω : Type v} [Field K] [Field Ω] [Algebra K Ω] [Algebra.IsAlgebraic K Ω]
     (r : (Ω ≃ₐ[K] Ω) →* (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ))

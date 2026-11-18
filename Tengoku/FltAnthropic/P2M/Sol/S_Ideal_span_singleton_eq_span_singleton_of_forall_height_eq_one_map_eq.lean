@@ -15,6 +15,9 @@ open Ideal
 section HeightOne
 variable {A : Type u} [CommRing A] [IsDomain A] [IsNoetherianRing A]
 
+/--
+@isnad1 id=eq.1h2v.s6.8aa0055ddf1b from=translated src=- shape=478c0af0 vocab=4e5a2101
+-/
 theorem height_span_singleton_eq_one {p : A} (hp0 : p ≠ 0) [hP : (Ideal.span {p}).IsPrime] :
     (Ideal.span {p}).height = 1 := by
   apply le_antisymm
@@ -22,6 +25,9 @@ theorem height_span_singleton_eq_one {p : A} (hp0 : p ≠ 0) [hP : (Ideal.span {
       (by rw [Ideal.minimalPrimes_eq_subsingleton_self]; exact Set.mem_singleton _)
   · exact Ideal.one_le_height_span_singleton_of_mem_nonZeroDivisors (mem_nonZeroDivisors_of_ne_zero hp0)
 
+/--
+@isnad1 id=uniquefa.1h1v.s6.88091fa2f202 from=translated src=- shape=c88e48e6 vocab=ec7c9c3b
+-/
 theorem ufm_of_height_one_principal
     (hprin : ∀ P : Ideal A, P.IsPrime → P.height = 1 → Submodule.IsPrincipal P) :
     UniqueFactorizationMonoid A := by
@@ -54,6 +60,9 @@ end HeightOne
 section Local
 variable {A : Type u} [CommRing A] [IsDomain A]
 
+/--
+@isnad1 id=iff.1h4v.s10.0517046e6112 from=translated src=- shape=b3ca0675 vocab=1e331f62
+-/
 theorem pow_dvd_iff_algebraMap_mem {p : A} (hp : Prime p) [hP : (Ideal.span {p}).IsPrime] (g : A) (k : ℕ) :
     p ^ k ∣ g ↔ algebraMap A (Localization.AtPrime (Ideal.span {p})) g ∈
       Ideal.map (algebraMap A (Localization.AtPrime (Ideal.span {p}))) (Ideal.span {p ^ k}) := by
@@ -70,6 +79,9 @@ theorem pow_dvd_iff_algebraMap_mem {p : A} (hp : Prime p) [hP : (Ideal.span {p})
     have hps : ¬ p ∣ s := fun hd => hs (Ideal.mem_span_singleton.mpr hd)
     exact hp.pow_dvd_of_dvd_mul_right k hps hdvd
 
+/--
+@isnad1 id=iff.2h5v.s10.e93ec8391951 from=translated src=- shape=6999ba9d vocab=3027ff09
+-/
 theorem pow_dvd_iff_of_map_eq {p : A} (hp : Prime p) [hP : (Ideal.span {p}).IsPrime] {g t : A}
     (h : Ideal.map (algebraMap A (Localization.AtPrime (Ideal.span {p}))) (Ideal.span {g}) =
       Ideal.map (algebraMap A (Localization.AtPrime (Ideal.span {p}))) (Ideal.span {t})) (k : ℕ) :
@@ -84,6 +96,9 @@ end Local
 section Count
 variable {A : Type u} [CommRing A] [IsDomain A] [UniqueFactorizationMonoid A]
 
+/--
+@isnad1 id=eq.3h3v.s7.3b70ee734955 from=translated src=- shape=23f67ca9 vocab=fdeba3a9
+-/
 theorem span_eq_of_forall_prime_pow_dvd_iff {g t : A} (hg : g ≠ 0) (ht : t ≠ 0)
     (h : ∀ p : A, Prime p → ∀ k : ℕ, p ^ k ∣ g ↔ p ^ k ∣ t) : Ideal.span ({g} : Set A) = Ideal.span {t} := by
   classical
@@ -107,6 +122,9 @@ end Count
 
 end CmpCore
 
+/--
+@isnad1 id=eq.4h3v.s9.5666fdad3ac3 from=translated src=- shape=17c0d0b7 vocab=bb0242a1
+-/
 theorem solution
     {A : Type u} [CommRing A] [IsDomain A] [IsNoetherianRing A]
     (hprin : ∀ P : Ideal A, P.IsPrime → P.height = 1 → Submodule.IsPrincipal P)

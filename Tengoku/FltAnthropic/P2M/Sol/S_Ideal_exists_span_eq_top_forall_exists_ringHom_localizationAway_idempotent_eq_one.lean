@@ -19,6 +19,9 @@ theorem eq_one_of_idem_unit {R : Type*} [CommRing R] {e : R} (he : IsIdempotentE
 end CoverRefine29
 
 open CoverRefine29 in
+/--
+@isnad1 id=ex.4h5v.s10.0df054baad4a from=translated src=- shape=78c8474d vocab=207270d5
+-/
 theorem solution
     {S : Type} [CommRing S] {m : ℕ} (r : Fin m → S) (hr : Ideal.span (Set.range r) = ⊤)
     (k : Fin m → ℕ) (ε : ∀ a : Fin m, Fin (k a) → Localization.Away (r a))

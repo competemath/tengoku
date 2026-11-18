@@ -9,6 +9,9 @@ set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 3200000
 
+/--
+@isnad1 id=ex.1h3v.s11.a1f017f75cba from=translated src=- shape=0bd644e8 vocab=28e3f9f3
+-/
 theorem solution
     (k₀ : IntermediateField ℚ (AlgebraicClosure ℚ)) (q : ℕ) [NeZero q]
     (ξ : ↥k₀) (hξ : IsPrimitiveRoot ξ q) :

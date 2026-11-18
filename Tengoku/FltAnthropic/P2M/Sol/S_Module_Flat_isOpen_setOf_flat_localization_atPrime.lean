@@ -26,9 +26,15 @@ variable {Y' Y : Type*} [AddCommGroup Y'] [Module A Y'] [AddCommGroup Y] [Module
 
 def K : Submodule B (B ⊗[A] Y') := LinearMap.ker (AlgebraTensorModule.lTensor B B f)
 
+/--
+@isnad1 id=iff.0h6v.s10.2f019e82f37a from=translated src=- shape=c7ed5e83 vocab=972da109
+-/
 lemma mem_K (k : B ⊗[A] Y') : k ∈ K f ↔ LinearMap.lTensor B f k = 0 := by
   simp [K, LinearMap.mem_ker]
 
+/--
+@isnad1 id=iff.0h7v.s10.164d0cab15ac from=translated src=- shape=35afd1be vocab=37079c27
+-/
 theorem injective_lTensor_iff :
     Function.Injective (LinearMap.lTensor Bs f) ↔ ∀ k ∈ K (B := B) f, ∃ s ∈ S, s • k = 0 := by
   let g : B →ₗ[B] Bs := Algebra.linearMap B Bs
@@ -64,6 +70,9 @@ theorem injective_lTensor_iff :
     rw [Submonoid.smul_def, Submonoid.coe_mul, mul_smul]
     exact hs''
 
+/--
+@isnad1 id=iff.0h5v.s10.e6120d0d4ec8 from=translated src=- shape=e1a8c683 vocab=fc2efac2
+-/
 lemma injective_rTensor_iff : Function.Injective (LinearMap.rTensor Bs f) ↔
     Function.Injective (LinearMap.lTensor Bs f) := by
   have : LinearMap.rTensor Bs f =
@@ -84,18 +93,27 @@ def Tors (Q : PrimeSpectrum B) {Y' Y : Type*} [AddCommGroup Y'] [Module A Y'] [A
     [Module A Y] (f : Y' →ₗ[A] Y) : Prop :=
   ∀ k ∈ K (B := B) f, ∃ s ∈ Q.asIdeal.primeCompl, s • k = 0
 
+/--
+@isnad1 id=tors.2h7v.s7.2dd37f0a6663 from=translated src=- shape=fbe7f896 vocab=c657e730
+-/
 lemma Tors.mono {Q Q' : PrimeSpectrum B} (h : Q'.asIdeal ≤ Q.asIdeal) {Y' Y : Type*}
     [AddCommGroup Y'] [Module A Y'] [AddCommGroup Y] [Module A Y] {f : Y' →ₗ[A] Y}
     (hQ : Tors Q f) : Tors Q' f := fun k hk => by
   obtain ⟨s, hs, hsk⟩ := hQ k hk
   exact ⟨s, fun h' => hs (h h'), hsk⟩
 
+/--
+@isnad1 id=tors.1h6v.s8.4e1cbec00514 from=translated src=- shape=d39eb58a vocab=6f450184
+-/
 theorem tors_of_flat (Q : PrimeSpectrum B) [Module.Flat A (Localization.AtPrime Q.asIdeal)]
     {Y' Y : Type*} [AddCommGroup Y'] [Module A Y'] [AddCommGroup Y] [Module A Y]
     (f : Y' →ₗ[A] Y) (hf : Function.Injective f) : Tors Q f :=
   (injective_lTensor_iff Q.asIdeal.primeCompl (Localization.AtPrime Q.asIdeal) f).mp
     (Module.Flat.lTensor_preserves_injective_linearMap f hf)
 
+/--
+@isnad1 id=flat.2h4v.s8.b0be7a2d7630 from=translated src=- shape=762b21a6 vocab=93caed72
+-/
 theorem flat_of_tors [IsNoetherianRing A] [IsNoetherianRing B] (Q : PrimeSpectrum B)
     (p : Ideal A) (hp : Q.asIdeal.comap (algebraMap A B) = p)
     (hQ : Tors (A := A) (Y' := ↥p) (Y := A) Q p.subtype) :
@@ -110,6 +128,9 @@ theorem flat_of_tors [IsNoetherianRing A] [IsNoetherianRing B] (Q : PrimeSpectru
   rw [Ideal.under] at h
   rw [h, hp]
 
+/--
+@isnad1 id=flat.1h4v.s8.220cfbc3148c from=translated src=- shape=49a88983 vocab=99e84a23
+-/
 theorem flat_of_le [IsNoetherianRing A] [IsNoetherianRing B] {Q Q' : PrimeSpectrum B}
     (h : Q'.asIdeal ≤ Q.asIdeal) [Module.Flat A (Localization.AtPrime Q.asIdeal)] :
     Module.Flat A (Localization.AtPrime Q'.asIdeal) :=
@@ -123,6 +144,9 @@ section Nagata
 
 variable {B : Type*} [CommRing B] [IsNoetherianRing B]
 
+/--
+@isnad1 id=isopen.2h2v.s8.2e384666ba2e from=translated src=- shape=4142bbfa vocab=a51129a9
+-/
 theorem isOpen_of_nagata (U : Set (PrimeSpectrum B))
     (hgen : ∀ Q Q' : PrimeSpectrum B, Q'.asIdeal ≤ Q.asIdeal → Q ∈ U → Q' ∈ U)
     (hnbhd : ∀ Q ∈ U, ∃ g : B, g ∉ Q.asIdeal ∧
@@ -188,6 +212,9 @@ section Fibre
 
 variable {A B : Type*} [CommRing A] [CommRing B] [Algebra A B]
 
+/--
+@isnad1 id=ex.2h4v.s8.43abd724f3e1 from=translated src=- shape=f52a9e0a vocab=3b84ac5c
+-/
 theorem exists_uniform_killer {N : Type*} [AddCommGroup N] [Module B N] (S : Submonoid B)
     (K : Submodule B N) (hK : K.FG) (h : ∀ k ∈ K, ∃ s ∈ S, s • k = 0) :
     ∃ s ∈ S, ∀ k ∈ K, s • k = 0 := by
@@ -215,6 +242,9 @@ local notation "F" => (A ⧸ p) ⊗[A] Localization.Away (algebraMap A B a)
 
 set_option maxHeartbeats 6400000 in
 
+/--
+@isnad1 id=flat.1h4v.s13.ef855914fc0c from=translated src=- shape=f3fe4251 vocab=7e5c3874
+-/
 theorem flat_fibre_away
     (hflat : Module.Flat (A ⧸ p) (Localization (Submonoid.powers
       (algebraMap (A ⧸ p) ((A ⧸ p) ⊗[A] B) (Ideal.Quotient.mk p a))))) :
@@ -315,6 +345,9 @@ theorem flat_fibre_away
 
 set_option maxHeartbeats 3200000 in
 
+/--
+@isnad1 id=injectiv.0h5v.s13.c9e1e4c78f28 from=translated src=- shape=c440aa78 vocab=cbb25fbe
+-/
 theorem injective_lTensor_away (X : Ideal (A ⧸ p)) [Module.Flat (A ⧸ p) F] :
     Function.Injective (LinearMap.lTensor Ba (X.subtype.restrictScalars A)) := by
   rw [← injective_rTensor_iff Ba]
@@ -356,6 +389,9 @@ variable [IsNoetherianRing A] [Algebra.FiniteType A B]
 
 set_option maxHeartbeats 6400000 in
 
+/--
+@isnad1 id=ex.0h3v.s9.c8bce79f908f from=translated src=- shape=76b3fd9d vocab=63148394
+-/
 theorem fibre_step (Q : PrimeSpectrum B) [Module.Flat A (Localization.AtPrime Q.asIdeal)] :
     ∃ g : B, g ∉ Q.asIdeal ∧ ∀ Q' : PrimeSpectrum B, Q.asIdeal ≤ Q'.asIdeal → g ∉ Q'.asIdeal →
       Module.Flat A (Localization.AtPrime Q'.asIdeal) := by
@@ -442,6 +478,9 @@ end Step
 
 end Fibre
 
+/--
+@isnad1 id=isopen.0h2v.s7.63bb61c587b1 from=translated src=- shape=f9c76ce4 vocab=60b04b2c
+-/
 theorem isOpen_flatLocus {A B : Type*} [CommRing A] [CommRing B] [Algebra A B] [IsNoetherianRing A]
     [Algebra.FiniteType A B] :
     IsOpen {Q : PrimeSpectrum B | Module.Flat A (Localization.AtPrime Q.asIdeal)} := by
@@ -456,6 +495,9 @@ end OpenFlatLocus
 
 end
 
+/--
+@isnad1 id=isopen.0h2v.s7.63bb61c587b1 from=translated src=- shape=f9c76ce4 vocab=60b04b2c
+-/
 theorem solution {A B : Type*} [CommRing A] [CommRing B] [Algebra A B] [IsNoetherianRing A]
     [Algebra.FiniteType A B] :
     IsOpen {Q : PrimeSpectrum B | Module.Flat A (Localization.AtPrime Q.asIdeal)} :=

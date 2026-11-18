@@ -45,6 +45,9 @@ private theorem aux_isIntegral_of_splits {O' L : Type} [CommRing O'] [Field L] [
   rw [← eval_map]
   exact h2
 
+/--
+@isnad1 id=ex.0h1v.s9.d6a0d697dd25 from=translated src=- shape=be353b4f vocab=d16d56a9
+-/
 theorem solution (O' : Type) [CommRing O'] [IsDomain O'] [IsLocalRing O'] :
     ∃ (O'' : Type) (_ : CommRing O'') (_ : IsDomain O'') (_ : IsLocalRing O'') (j : O' →+* O'')
       (_ : IsLocalHom j) (_ : Function.Injective j),

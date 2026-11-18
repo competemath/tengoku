@@ -23,14 +23,23 @@ section Basic
 
 variable {M N : Type*} [AddCommGroup M] [Module A M] [AddCommGroup N] [Module A N]
 
+/--
+@isnad1 id=kt.1h4v.s5.02868a74db4c from=translated src=- shape=d32f4b9a vocab=b7cbb80c
+-/
 lemma KT.mul_right {a : A} (c : A) (h : KT a M) : KT (a * c) M := fun I k hk => by
   obtain ⟨n, hn⟩ := h I k hk
   exact ⟨n, by rw [mul_pow, mul_comm, mul_smul, hn, smul_zero]⟩
 
+/--
+@isnad1 id=kt.1h4v.s5.1df80e2ed0bf from=translated src=- shape=94700c06 vocab=ffb96c56
+-/
 lemma KT.of_pow {a : A} {m : ℕ} (h : KT (a ^ m) M) : KT a M := fun I k hk => by
   obtain ⟨n, hn⟩ := h I k hk
   exact ⟨m * n, by rw [pow_mul, hn]⟩
 
+/--
+@isnad1 id=kt.1h5v.s6.7bad553491e2 from=translated src=- shape=3b8db7d3 vocab=e7aea06f
+-/
 lemma KT.of_linearEquiv {a : A} (e : M ≃ₗ[A] N) (h : KT a M) : KT a N := fun I k hk => by
   have hk' : LinearMap.lTensor M I.subtype (LinearMap.rTensor I e.symm.toLinearMap k) = 0 := by
     rw [← LinearMap.comp_apply, LinearMap.lTensor_comp_rTensor, ← LinearMap.rTensor_comp_lTensor,
@@ -42,6 +51,9 @@ lemma KT.of_linearEquiv {a : A} (e : M ≃ₗ[A] N) (h : KT a M) : KT a N := fun
     simp
   rw [this, ← map_smul, hn, map_zero]
 
+/--
+@isnad1 id=kt.0h3v.s5.59b0b9d369df from=translated src=- shape=de800f26 vocab=41a62470
+-/
 lemma KT.of_flat (a : A) [Module.Flat A M] : KT a M := fun I k hk =>
   ⟨0, by
     have := Module.Flat.lTensor_preserves_injective_linearMap (M := M) I.subtype
@@ -49,6 +61,9 @@ lemma KT.of_flat (a : A) [Module.Flat A M] : KT a M := fun I k hk =>
     rw [pow_zero, one_smul]
     exact this (by rw [hk, map_zero])⟩
 
+/--
+@isnad1 id=eq.1h5v.s8.9afc2864b2e3 from=translated src=- shape=6e2e104a vocab=b7b13d05
+-/
 lemma smul_tensor_eq_zero {a : A} (h : ∀ m : M, a • m = 0) {P : Type*} [AddCommGroup P]
     [Module A P] (k : M ⊗[A] P) : a • k = 0 := by
   induction k using TensorProduct.induction_on with
@@ -56,6 +71,9 @@ lemma smul_tensor_eq_zero {a : A} (h : ∀ m : M, a • m = 0) {P : Type*} [AddC
   | tmul m x => rw [TensorProduct.smul_tmul', h, TensorProduct.zero_tmul]
   | add x y hx hy => rw [smul_add, hx, hy, add_zero]
 
+/--
+@isnad1 id=kt.1h3v.s6.421092c7e38a from=translated src=- shape=74902efe vocab=f2bcb726
+-/
 lemma KT.of_smul_eq_zero {a : A} (h : ∀ m : M, a • m = 0) : KT a M := fun I k _ =>
   ⟨1, by rw [pow_one]; exact smul_tensor_eq_zero h k⟩
 
@@ -66,6 +84,9 @@ section Extension
 variable {M₁ M₂ M₃ : Type*} [AddCommGroup M₁] [Module A M₁] [AddCommGroup M₂] [Module A M₂]
   [AddCommGroup M₃] [Module A M₃]
 
+/--
+@isnad1 id=eq.0h5v.s10.26364387ed37 from=translated src=- shape=facee435 vocab=fb8f1f54
+-/
 lemma rid_rTensor (ι : M₁ →ₗ[A] M₂) (z : M₁ ⊗[A] A) :
     TensorProduct.rid A M₂ (LinearMap.rTensor A ι z) = ι (TensorProduct.rid A M₁ z) := by
   induction z using TensorProduct.induction_on with
@@ -73,6 +94,9 @@ lemma rid_rTensor (ι : M₁ →ₗ[A] M₂) (z : M₁ ⊗[A] A) :
   | tmul m r => simp
   | add u v hu hv => simp only [map_add, hu, hv]
 
+/--
+@isnad1 id=injectiv.1h4v.s9.23065ce9d25a from=translated src=- shape=2f7def83 vocab=9842ee26
+-/
 lemma rTensor_injective_of_injective (ι : M₁ →ₗ[A] M₂) (hι : Function.Injective ι) :
     Function.Injective (LinearMap.rTensor A ι) := by
   intro x y hxy
@@ -80,6 +104,9 @@ lemma rTensor_injective_of_injective (ι : M₁ →ₗ[A] M₂) (hι : Function.
   rw [rid_rTensor, rid_rTensor] at h
   exact (TensorProduct.rid A M₁).injective (hι h)
 
+/--
+@isnad1 id=kt.5h8v.s8.05e054d24865 from=translated src=- shape=f8325350 vocab=fc38f0fc
+-/
 theorem KT.extension {a₁ a₃ : A} (ι : M₁ →ₗ[A] M₂) (π : M₂ →ₗ[A] M₃)
     (hι : Function.Injective ι) (hex : Function.Exact ι π) (hπ : Function.Surjective π)
     (h₁ : KT a₁ M₁) (h₃ : KT a₃ M₃) : KT (a₁ * a₃) M₂ := by
@@ -110,6 +137,9 @@ section Union
 
 variable {M : Type*} [AddCommGroup M] [Module A M]
 
+/--
+@isnad1 id=kt.3h5v.s8.efd04deb07c0 from=translated src=- shape=c45596c5 vocab=ec7fd261
+-/
 theorem KT.of_directed_cover {ι' : Type*} [Nonempty ι'] (N : ι' → Submodule A M)
     (hdir : Directed (· ≤ ·) N) (hcov : ∀ m : M, ∃ i, m ∈ N i) {a : A}
     (h : ∀ i, KT a (N i)) : KT a M := by
@@ -146,6 +176,9 @@ section Base
 
 variable [IsDomain A] {M : Type*} [AddCommGroup M] [Module A M] [Module.Finite A M]
 
+/--
+@isnad1 id=ex.0h2v.s6.618df2908916 from=translated src=- shape=c0a99b91 vocab=8ef2f2fa
+-/
 theorem base_case : ∃ a : A, a ≠ 0 ∧ KT a M := by
   classical
   obtain ⟨G, hG⟩ := Module.Finite.fg_top (R := A) (M := M)
@@ -193,15 +226,30 @@ def filt : ℕ → Submodule R M
   | 0 => M'
   | i + 1 => filt i ⊔ M'.map (f ^ (i + 1))
 
+/--
+@isnad1 id=eq.0h4v.s6.dad824734fb2 from=translated src=- shape=44f287ff vocab=8530c5cb
+-/
 @[scoped simp] lemma filt_zero : filt f M' 0 = M' := rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.ce4cefb3580a from=translated src=- shape=473dcef7 vocab=857ebcbc
+-/
 lemma filt_succ (i : ℕ) : filt f M' (i + 1) = filt f M' i ⊔ M'.map (f ^ (i + 1)) := rfl
 
+/--
+@isnad1 id=le.0h5v.s7.f89f402e03d8 from=translated src=- shape=5aa5ac13 vocab=8c42614c
+-/
 lemma filt_le_succ (i : ℕ) : filt f M' i ≤ filt f M' (i + 1) := by
   rw [filt_succ]; exact le_sup_left
 
+/--
+@isnad1 id=monotone.0h4v.s6.7f5cc0a2acc0 from=translated src=- shape=28a1d935 vocab=bd07287b
+-/
 lemma filt_mono : Monotone (filt f M') := monotone_nat_of_le_succ (filt_le_succ f M')
 
+/--
+@isnad1 id=le.0h5v.s7.4cfd07f10266 from=translated src=- shape=db59e814 vocab=ffedab59
+-/
 lemma map_filt_le (i : ℕ) : (filt f M' i).map f ≤ filt f M' (i + 1) := by
   induction i with
   | zero =>
@@ -215,6 +263,9 @@ lemma map_filt_le (i : ℕ) : (filt f M' i).map f ≤ filt f M' (i + 1) := by
     rw [this]
     exact le_sup_right
 
+/--
+@isnad1 id=mem.1h7v.s8.74b7d7ce9bc4 from=translated src=- shape=d00f21eb vocab=8ce6043a
+-/
 lemma pow_apply_mem_filt {i : ℕ} {x : M} (hx : x ∈ filt f M' i) (j : ℕ) :
     (f ^ j) x ∈ filt f M' (i + j) := by
   induction j with
@@ -223,13 +274,22 @@ lemma pow_apply_mem_filt {i : ℕ} {x : M} (hx : x ∈ filt f M' i) (j : ℕ) :
     rw [pow_succ', Module.End.mul_apply, ← add_assoc]
     exact map_filt_le f M' _ (Submodule.mem_map_of_mem ih)
 
+/--
+@isnad1 id=mem.0h6v.s8.f66c5e934ea1 from=translated src=- shape=c37f7f19 vocab=c51b69b5
+-/
 lemma pow_apply_mem_filt' (m : M') (j : ℕ) : (f ^ j) (m : M) ∈ filt f M' j := by
   simpa using pow_apply_mem_filt f M' (i := 0) m.2 j
 
 def K (i : ℕ) : Submodule R M' := ((filt f M' i).comap (f ^ (i + 1))).comap M'.subtype
 
+/--
+@isnad1 id=iff.0h6v.s9.0e00b1038f1f from=translated src=- shape=cf615f1b vocab=823d0209
+-/
 lemma mem_K (i : ℕ) (m : M') : m ∈ K f M' i ↔ (f ^ (i + 1)) (m : M) ∈ filt f M' i := Iff.rfl
 
+/--
+@isnad1 id=monotone.0h4v.s8.1f8843640811 from=translated src=- shape=64e0ed8a vocab=7cb0ab5d
+-/
 lemma K_mono : Monotone (K f M') := by
   refine monotone_nat_of_le_succ fun i m hm => ?_
   rw [mem_K] at hm ⊢
@@ -243,15 +303,24 @@ def toGr (i : ℕ) : M' →ₗ[R] Gr f M' i :=
     (LinearMap.codRestrict (filt f M' (i + 1)) ((f ^ (i + 1)) ∘ₗ M'.subtype)
       (fun m => pow_apply_mem_filt' f M' m (i + 1)))
 
+/--
+@isnad1 id=eq.0h6v.s11.7427614fd587 from=translated src=- shape=af44c3bf vocab=625ed47c
+-/
 lemma toGr_apply (i : ℕ) (m : M') :
     toGr f M' i m = Submodule.Quotient.mk ⟨(f ^ (i + 1)) (m : M), pow_apply_mem_filt' f M' m (i + 1)⟩ :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.faab9c86914e from=translated src=- shape=0b36e68d vocab=1fc917ae
+-/
 lemma ker_toGr (i : ℕ) : LinearMap.ker (toGr f M' i) = K f M' i := by
   ext m
   rw [LinearMap.mem_ker, toGr_apply, Submodule.Quotient.mk_eq_zero, Submodule.mem_comap, mem_K]
   rfl
 
+/--
+@isnad1 id=surjecti.0h5v.s10.bd027147f37d from=translated src=- shape=9e7564d4 vocab=9d06064c
+-/
 lemma toGr_surjective (i : ℕ) : Function.Surjective (toGr f M' i) := by
   intro q
   obtain ⟨⟨x, hx⟩, rfl⟩ := Submodule.mkQ_surjective _ q
@@ -270,6 +339,9 @@ section WithBase
 
 variable [Algebra A R] [Module A M] [IsScalarTower A R M]
 
+/--
+@isnad1 id=kt.2h7v.s10.4bb72f26a45c from=translated src=- shape=21cc1b43 vocab=cb8c64cf
+-/
 theorem KT_filt_succ {a : A} (i : ℕ) (ih : KT a (filt f M' i)) (hGr : KT a (Gr f M' i)) :
     KT a (filt f M' (i + 1)) := by
   let ι : ↥(filt f M' i) →ₗ[A] ↥(filt f M' (i + 1)) :=
@@ -307,6 +379,9 @@ variable {B' : Type*} [CommRing B'] [Algebra A B'] [IsNoetherianRing B'] [IsDoma
 open Polynomial in
 set_option maxHeartbeats 6400000 in
 
+/--
+@isnad1 id=ex.1h3v.s9.a686797bbe36 from=translated src=- shape=8d4b256c vocab=ee9a21c9
+-/
 theorem poly_step
     (IH : ∀ (N : Type uM) [AddCommGroup N] [Module A N] [Module B' N] [IsScalarTower A B' N]
       [Module.Finite B' N], ∃ a : A, a ≠ 0 ∧ KT a N)
@@ -401,6 +476,9 @@ universe uM
 
 variable [IsDomain A] [IsNoetherianRing A]
 
+/--
+@isnad1 id=finite.2h4v.s8.5e989774297b from=translated src=- shape=8686dcd0 vocab=fa0e9d19
+-/
 lemma finite_of_surjective_ringHom {R S : Type*} [CommRing R] [CommRing S] (φ : R →+* S)
     (hφ : Function.Surjective φ) (M : Type*) [AddCommGroup M] [Module S M] [Module R M]
     (hsmul : ∀ (r : R) (m : M), r • m = φ r • m) [Module.Finite S M] : Module.Finite R M := by
@@ -419,6 +497,9 @@ lemma finite_of_surjective_ringHom {R S : Type*} [CommRing R] [CommRing S] (φ :
     exact Submodule.smul_mem _ r hx
 
 set_option maxHeartbeats 3200000 in
+/--
+@isnad1 id=ex.0h3v.s8.564a74865759 from=translated src=- shape=64356598 vocab=2cdce2cf
+-/
 theorem mvPolynomial_case (n : ℕ) :
     ∀ (M : Type uM) [AddCommGroup M] [Module A M] [Module (MvPolynomial (Fin n) A) M]
       [IsScalarTower A (MvPolynomial (Fin n) A) M] [Module.Finite (MvPolynomial (Fin n) A) M],
@@ -449,6 +530,9 @@ theorem mvPolynomial_case (n : ℕ) :
     haveI : IsNoetherianRing P := MvPolynomial.isNoetherianRing
     exact poly_step (B' := P) (fun N _ _ _ _ _ => ih N) M
 
+/--
+@isnad1 id=ex.0h3v.s7.62bcfeb10cbb from=translated src=- shape=84638d95 vocab=c3069d05
+-/
 theorem finiteType_case {B : Type*} [CommRing B] [Algebra A B] [Algebra.FiniteType A B]
     (M : Type uM) [AddCommGroup M] [Module A M] [Module B M] [IsScalarTower A B M]
     [Module.Finite B M] : ∃ a : A, a ≠ 0 ∧ KT a M := by
@@ -468,6 +552,9 @@ section Convert
 
 variable {M M' : Type*} [AddCommGroup M] [Module A M] [AddCommGroup M'] [Module A M']
 
+/--
+@isnad1 id=flat.1h5v.s11.d2fdcd1db709 from=translated src=- shape=4043263b vocab=a8046113
+-/
 theorem flat_of_isLocalizedModule (S : Submonoid A) (g : M →ₗ[A] M') [IsLocalizedModule S g]
     (h : ∀ (I : Ideal A) (k : M ⊗[A] I), LinearMap.lTensor M I.subtype k = 0 → ∃ s ∈ S, s • k = 0) :
     Module.Flat A M' := by
@@ -497,6 +584,9 @@ theorem flat_of_isLocalizedModule (S : Submonoid A) (g : M →ₗ[A] M') [IsLoca
 
 variable {B : Type*} [CommRing B] [Algebra A B] [Module B M] [IsScalarTower A B M]
 
+/--
+@isnad1 id=islocali.0h4v.s13.e9680fcef7d8 from=translated src=- shape=2a464e9d vocab=d3e89783
+-/
 theorem isLocalizedModule_powers (a : A) :
     IsLocalizedModule (Submonoid.powers a)
       ((TensorProduct.mk B (Localization (Submonoid.powers (algebraMap A B a))) M 1).restrictScalars A) := by
@@ -534,6 +624,9 @@ theorem isLocalizedModule_powers (a : A) :
 
 end Convert
 
+/--
+@isnad1 id=ex.0h3v.s10.607a05d5f5ef from=translated src=- shape=f2b2e8ad vocab=8a366edc
+-/
 theorem genericFlatness {A B M : Type*} [CommRing A] [IsDomain A] [IsNoetherianRing A] [CommRing B]
     [Algebra A B] [Algebra.FiniteType A B] [AddCommGroup M] [Module A M] [Module B M]
     [IsScalarTower A B M] [Module.Finite B M] :
@@ -556,6 +649,9 @@ open scoped _root_.P2MW.S_Module_Flat_exists_ne_zero_flat_localization_tensorPro
 
 open TensorProduct in
 
+/--
+@isnad1 id=ex.0h3v.s10.607a05d5f5ef from=translated src=- shape=f2b2e8ad vocab=8a366edc
+-/
 theorem solution
     {A B M : Type*} [CommRing A] [IsDomain A] [IsNoetherianRing A] [CommRing B] [Algebra A B]
     [Algebra.FiniteType A B] [AddCommGroup M] [Module A M] [Module B M] [IsScalarTower A B M]

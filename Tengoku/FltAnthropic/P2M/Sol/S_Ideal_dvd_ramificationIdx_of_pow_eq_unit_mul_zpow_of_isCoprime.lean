@@ -9,6 +9,9 @@ set_option autoImplicit false
 set_option maxHeartbeats 800000
 
 open IsDedekindDomain in
+/--
+@isnad1 id=dvd.5h9v.s8.054970b34232 from=translated src=- shape=1a4a87fe vocab=907f635a
+-/
 theorem solution
     {O : Type*} [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
     {R : Type*} [CommRing R] [IsDedekindDomain R] [Algebra O R]

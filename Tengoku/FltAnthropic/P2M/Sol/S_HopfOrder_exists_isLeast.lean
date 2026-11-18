@@ -16,6 +16,9 @@ set_option synthInstance.maxHeartbeats 1600000
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=ex.5h4v.s14.ca05f182c038 from=translated src=- shape=231dbe79 vocab=60ee45cd
+-/
 theorem solution
     {R : Type*} [CommRing R] [IsDomain R] [IsPrincipalIdealRing R]
     {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K] [CharZero K]

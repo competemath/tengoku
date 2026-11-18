@@ -13,6 +13,9 @@ open TensorProduct
 
 namespace UE1Aux
 
+/--
+@isnad1 id=eq.0h8v.s10.dd8913c3e839 from=translated src=- shape=27289860 vocab=53099c8e
+-/
 theorem sq {R : Type u} [CommRing R] {X Y X' Y' : Type u}
     [AddCommGroup X] [Module R X] [AddCommGroup Y] [Module R Y]
     [AddCommGroup X'] [Module R X'] [AddCommGroup Y'] [Module R Y']
@@ -21,6 +24,9 @@ theorem sq {R : Type u} [CommRing R] {X Y X' Y' : Type u}
   rw [← LinearMap.comp_apply, ← LinearMap.comp_apply, LinearMap.lTensor_comp_rTensor,
     LinearMap.rTensor_comp_lTensor]
 
+/--
+@isnad1 id=injectiv.6h11v.s10.e73d1135817e from=translated src=- shape=e0c3a1a6 vocab=0f30c3cc
+-/
 theorem chase {R : Type u} [CommRing R] {N M P A K F : Type u}
     [AddCommGroup N] [Module R N] [AddCommGroup M] [Module R M] [AddCommGroup P] [Module R P]
     [AddCommGroup A] [Module R A] [AddCommGroup K] [Module R K] [AddCommGroup F] [Module R F]
@@ -57,6 +63,9 @@ theorem chase {R : Type u} [CommRing R] {N M P A K F : Type u}
 
 end UE1Aux
 
+/--
+@isnad1 id=injectiv.3h7v.s9.35d9f73f4472 from=translated src=- shape=3d6c0c64 vocab=0f30c3cc
+-/
 theorem solution
     {R : Type u} [CommRing R] {N M P : Type u}
     [AddCommGroup N] [Module R N] [AddCommGroup M] [Module R M] [AddCommGroup P] [Module R P]

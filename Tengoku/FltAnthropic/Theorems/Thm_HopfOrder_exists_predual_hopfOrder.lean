@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=ex.5h4v.s15.5e28a4ad0b8d from=translated src=- shape=669df74a vocab=f539cb74
+-/
 theorem HopfOrder.exists_predual_hopfOrder
     {R : Type*} [CommRing R] [IsDomain R] [IsPrincipalIdealRing R]
     {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]

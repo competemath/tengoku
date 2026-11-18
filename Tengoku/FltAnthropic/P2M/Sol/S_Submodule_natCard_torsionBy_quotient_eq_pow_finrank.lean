@@ -20,12 +20,18 @@ variable {V : Type v} [AddCommGroup V] [Module K V]
 noncomputable def divN (n : ℕ) : V →+ V :=
   DistribSMul.toAddMonoidHom V ((n : K)⁻¹)
 
+/--
+@isnad1 id=eq.1h4v.s7.714ed8822607 from=translated src=- shape=cfb18e15 vocab=bb24c16a
+-/
 theorem natCast_smul_divN {n : ℕ} (hn : n ≠ 0) (v : V) :
     (n : ℤ) • divN (K := K) n v = v := by
   have hK : (n : K) ≠ 0 := by exact_mod_cast hn
   simp only [divN, DistribSMul.toAddMonoidHom_apply]
   rw [natCast_zsmul, ← Nat.cast_smul_eq_nsmul K, smul_smul, mul_inv_cancel₀ hK, one_smul]
 
+/--
+@isnad1 id=eq.1h4v.s7.a4f6a47a4b81 from=translated src=- shape=e1531113 vocab=bb24c16a
+-/
 theorem divN_natCast_smul {n : ℕ} (hn : n ≠ 0) (v : V) :
     divN (K := K) n ((n : ℤ) • v) = v := by
   have hK : (n : K) ≠ 0 := by exact_mod_cast hn
@@ -53,10 +59,16 @@ noncomputable def latticeDivQuot {n : ℕ} (hn : n ≠ 0) :
       Submodule.Quotient.mk (m • divN (K := K) n (a : V))
     rw [Submodule.coe_smul, map_zsmul]
 
+/--
+@isnad1 id=eq.1h5v.s11.d97e8f548467 from=translated src=- shape=98929606 vocab=4e07ac93
+-/
 theorem coe_latticeDivQuot {n : ℕ} (hn : n ≠ 0) (w : L) :
     ((latticeDivQuot (K := K) L hn w : torsionBy ℤ (V ⧸ L) (n : ℤ)) : V ⧸ L)
       = Submodule.Quotient.mk (divN (K := K) n (w : V)) := rfl
 
+/--
+@isnad1 id=surjecti.1h4v.s11.c8539348227a from=translated src=- shape=a1c9d749 vocab=ab307a6b
+-/
 theorem latticeDivQuot_surjective {n : ℕ} (hn : n ≠ 0) :
     Function.Surjective (latticeDivQuot (K := K) L hn) := by
   rintro ⟨x, hx⟩
@@ -71,6 +83,9 @@ theorem latticeDivQuot_surjective {n : ℕ} (hn : n ≠ 0) :
       = Submodule.Quotient.mk v
   rw [divN_natCast_smul (K := K) hn]
 
+/--
+@isnad1 id=eq.1h4v.s11.174bce8ba5e0 from=translated src=- shape=4f3a84e1 vocab=ff875b6d
+-/
 theorem ker_latticeDivQuot {n : ℕ} (hn : n ≠ 0) :
     LinearMap.ker (latticeDivQuot (K := K) L hn)
       = LinearMap.range (LinearMap.lsmul ℤ L (n : ℤ)) := by
@@ -100,6 +115,9 @@ noncomputable def latticeQuotTorsionEquiv {n : ℕ} (hn : n ≠ 0) :
 
 end Submodule.LatticeQuotientTorsion
 
+/--
+@isnad1 id=eq.1h4v.s9.1e516c0a670b from=translated src=- shape=4fc86ae3 vocab=d8fe247d
+-/
 theorem solution
     {K : Type*} [DivisionRing K] [CharZero K]
     {V : Type*} [AddCommGroup V] [Module K V]

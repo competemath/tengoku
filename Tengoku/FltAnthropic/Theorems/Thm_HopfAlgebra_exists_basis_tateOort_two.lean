@@ -6,6 +6,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_HopfAlgebra_exists_basis_tateOort_two
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `Theorems/Thm_HopfAlgebra_exists_basis_tateOort_two.lean`: wrote out 1 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_exact_reverting`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 
 universe u v
+/--
+@isnad1 id=ex.1h2v.s12.2924c9b74997 from=translated src=- shape=5a28cca0 vocab=5457276b
+-/
 theorem HopfAlgebra.exists_basis_tateOort_two {R : Type u} [CommRing R] {H : Type v} [CommRing H] [HopfAlgebra R H]
     [Module.Finite R H] [Module.Free R H] (hrank : Module.finrank R H = 2) :
     ∃ (e : Module.Basis (Fin 2) R H) (a b : R),

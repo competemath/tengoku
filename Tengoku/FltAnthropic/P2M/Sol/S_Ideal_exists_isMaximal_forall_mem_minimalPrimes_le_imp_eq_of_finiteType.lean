@@ -13,6 +13,9 @@ open IsLocalRing
 
 namespace PointChoice
 
+/--
+@isnad1 id=isjacobs.0h1v.s3.4325e8d6abcd from=translated src=- shape=c6850a32 vocab=a31f8423
+-/
 theorem isJacobsonRing_of_field (K : Type u) [Field K] : IsJacobsonRing K := by
   rw [isJacobsonRing_iff_prime_eq]
   intro P hP
@@ -24,6 +27,9 @@ theorem isJacobsonRing_of_field (K : Type u) [Field K] : IsJacobsonRing K := by
   refine le_antisymm ?_ Ideal.le_jacobson
   exact sInf_le ⟨le_rfl, Ideal.bot_isMaximal⟩
 
+/--
+@isnad1 id=mem.2h5v.s8.153cf287a032 from=translated src=- shape=633bfeb1 vocab=7382a229
+-/
 theorem mem_of_forall_isMaximal_mem
     {R : Type u} [CommRing R] {A : Type v} [CommRing A] [Algebra R A] [Algebra.FiniteType R A]
     (𝔪₀ : Ideal R) [𝔪₀.IsMaximal] (𝔮 : Ideal A) [𝔮.IsPrime] (h𝔮 : Ideal.map (algebraMap R A) 𝔪₀ ≤ 𝔮)
@@ -60,6 +66,9 @@ theorem mem_of_forall_isMaximal_mem
 end PointChoice
 
 open PointChoice in
+/--
+@isnad1 id=ex.4h5v.s8.2e6a9b8d772a from=translated src=- shape=7ff3e1d3 vocab=2a85dad2
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsNoetherianRing R]
     {A : Type v} [CommRing A] [Algebra R A] [Algebra.FiniteType R A]

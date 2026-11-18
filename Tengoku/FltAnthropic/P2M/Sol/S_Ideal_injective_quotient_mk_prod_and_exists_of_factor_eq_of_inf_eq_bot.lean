@@ -7,6 +7,9 @@ namespace P2MW.S_Ideal_injective_quotient_mk_prod_and_exists_of_factor_eq_of_inf
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=and.1h3v.s11.535536881153 from=translated src=- shape=9c845f1a vocab=5f275b99
+-/
 theorem solution
     (A : Type) [CommRing A] (I₁ I₂ : Ideal A) (h : I₁ ⊓ I₂ = ⊥) :
     Function.Injective (fun a : A => (Ideal.Quotient.mk I₁ a, Ideal.Quotient.mk I₂ a)) ∧

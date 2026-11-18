@@ -12,6 +12,9 @@ universe u v
 
 namespace S17OTgen
 
+/--
+@isnad1 id=or.2h2v.s9.09101c2c41eb from=translated src=- shape=b65b0325 vocab=750556fd
+-/
 theorem main
     {R : Type u} [CommRing R] (h2 : Irreducible (2 : R))
     (H : Type v) [CommRing H] [HopfAlgebra R H] [Module.Finite R H] [Module.Free R H]
@@ -182,6 +185,9 @@ theorem main
 
 end S17OTgen
 
+/--
+@isnad1 id=or.2h2v.s9.09101c2c41eb from=translated src=- shape=b65b0325 vocab=750556fd
+-/
 theorem solution
     {R : Type u} [CommRing R] (h2 : Irreducible (2 : R))
     (H : Type v) [CommRing H] [HopfAlgebra R H] [Module.Finite R H] [Module.Free R H]

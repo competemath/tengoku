@@ -22,6 +22,9 @@ def DescentCondition (I : Ideal B) : Prop :=
   I.map (Algebra.TensorProduct.includeLeftRingHom : B →+* B ⊗[A] B) =
     I.map ((Algebra.TensorProduct.includeRight : B →ₐ[A] B ⊗[A] B) : B →+* B ⊗[A] B)
 
+/--
+@isnad1 id=eq.1h4v.s7.df7dfc02a30e from=translated src=- shape=7f34b0f8 vocab=43a65aae
+-/
 theorem map_comap_eq_self_of_descentCondition_of_section (σ : B →ₐ[A] A) (I : Ideal B)
     (hI : DescentCondition (A := A) I) :
     (I.comap (algebraMap A B)).map (algebraMap A B) = I := by
@@ -72,6 +75,9 @@ open _root_.Ideal
 
 variable {A B : Type u} [CommRing A] [CommRing B] [Algebra A B]
 
+/--
+@isnad1 id=eq.0h3v.s10.3bb159ebbc4f from=translated src=- shape=4d78ea98 vocab=d03fbfa7
+-/
 theorem comap_includeLeft_map_includeRight [Module.Flat A B] (I : Ideal B) :
     (I.map ((Algebra.TensorProduct.includeRight : B →ₐ[A] B ⊗[A] B) : B →+* B ⊗[A] B)).comap
         (Algebra.TensorProduct.includeLeftRingHom : B →+* B ⊗[A] B) =
@@ -121,6 +127,9 @@ theorem comap_includeLeft_map_includeRight [Module.Flat A B] (I : Ideal B) :
     rw [this]
     exact Ideal.mem_map_of_mem _ ha
 
+/--
+@isnad1 id=eq.1h3v.s7.25c3c4f30762 from=translated src=- shape=3f2d1879 vocab=b6b92010
+-/
 theorem map_comap_eq_self_of_descentCondition [Module.FaithfullyFlat A B] (I : Ideal B)
     (hI : DescentCondition (A := A) I) :
     (I.comap (algebraMap A B)).map (algebraMap A B) = I := by
@@ -167,6 +176,9 @@ theorem map_comap_eq_self_of_descentCondition [Module.FaithfullyFlat A B] (I : I
 
 end Ideal
 
+/--
+@isnad1 id=eq.1h3v.s10.62d2dcf0372e from=translated src=- shape=8018e05b vocab=41d2937d
+-/
 theorem solution
     {A B : Type u} [CommRing A] [CommRing B] [Algebra A B] [Module.FaithfullyFlat A B]
     (I : Ideal B)

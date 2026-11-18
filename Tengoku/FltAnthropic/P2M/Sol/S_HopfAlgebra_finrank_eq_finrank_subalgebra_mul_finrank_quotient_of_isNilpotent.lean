@@ -29,10 +29,16 @@ variable {k : Type u} [Field k] {H : Type v} [CommRing H] [HopfAlgebra k H] [Mod
 variable (hH : ∀ x : H, Coalgebra.counit (R := k) x = 0 → IsNilpotent x)
 variable (S : Subalgebra k H)
 
+/--
+@isnad1 id=eq.0h3v.s9.57c4e2db9d56 from=translated src=- shape=9e6ea946 vocab=2feb42fa
+-/
 theorem counit_algebraMap (c : k) : Coalgebra.counit (R := k) (algebraMap k H c) = c := by
   rw [Algebra.algebraMap_eq_smul_one, map_smul, Bialgebra.counit_one, smul_eq_mul, mul_one]
 
 include k in
+/--
+@isnad1 id=nontrivi.0h2v.s6.d4881d839cea from=translated src=- shape=18f8e485 vocab=2d07fd81
+-/
 theorem nontrivial_H : Nontrivial H :=
   ⟨⟨0, 1, fun h => zero_ne_one (by
     have := congrArg (Coalgebra.counit (R := k) (A := H)) h
@@ -40,12 +46,21 @@ theorem nontrivial_H : Nontrivial H :=
 
 def εS : ↥S →ₐ[k] k := (Bialgebra.counitAlgHom k H).comp S.val
 
+/--
+@isnad1 id=eq.0h4v.s10.ef24435a657d from=translated src=- shape=7c340b9d vocab=d9bf26cd
+-/
 theorem εS_apply (x : ↥S) : εS S x = Coalgebra.counit (R := k) (x : H) := rfl
 
 def mS : Ideal ↥S := RingHom.ker (εS S)
 
+/--
+@isnad1 id=iff.0h4v.s11.4e2254f6f7e8 from=translated src=- shape=37210751 vocab=e8125fcb
+-/
 theorem mem_mS {x : ↥S} : x ∈ mS S ↔ Coalgebra.counit (R := k) (x : H) = 0 := RingHom.mem_ker
 
+/--
+@isnad1 id=eq.0h3v.s11.aae55988c699 from=translated src=- shape=b7e3e258 vocab=2fc74d18
+-/
 theorem map_mS_eq :
     (mS S).map (algebraMap (↥S) H) =
       Ideal.span {x : H | x ∈ S ∧ Coalgebra.counit (R := k) x = 0} := by
@@ -60,6 +75,9 @@ theorem map_mS_eq :
 
 include hH in
 
+/--
+@isnad1 id=islocalr.1h3v.s9.e91db2b9855f from=translated src=- shape=aa2aa910 vocab=8ad21b60
+-/
 theorem isLocalRing_S : IsLocalRing ↥S := by
   haveI : Nontrivial H := nontrivial_H (k := k)
   haveI : Nontrivial ↥S := ⟨⟨0, 1, fun h => zero_ne_one (congrArg Subtype.val h : ((0 : ↥S) : H) = 1)⟩⟩
@@ -77,6 +95,9 @@ theorem isLocalRing_S : IsLocalRing ↥S := by
     have := hn.isUnit_add_left_of_commute hu (Commute.all _ _)
     rwa [add_sub_cancel] at this
 
+/--
+@isnad1 id=eq.0h5v.s11.02c559a94422 from=translated src=- shape=6a8c4fc4 vocab=9e7a94ae
+-/
 theorem finrank_quotient_eq_card {ι : Type*} [Fintype ι] (b : Module.Basis ι (↥S) H) :
     Module.finrank k (H ⧸ Ideal.span {x : H | x ∈ S ∧ Coalgebra.counit (R := k) x = 0}) =
       Fintype.card ι := by
@@ -128,6 +149,9 @@ theorem finrank_quotient_eq_card {ι : Type*} [Fintype ι] (b : Module.Basis ι 
 
 include hH in
 
+/--
+@isnad1 id=eq.3h3v.s12.4e2853bc92e7 from=translated src=- shape=54fc6e8c vocab=e07427c8
+-/
 theorem main
     (hΔ : ∀ x ∈ S, Coalgebra.comul (R := k) x ∈
       Submodule.span k {t : H ⊗[k] H | ∃ a ∈ S, ∃ b ∈ S, t = a ⊗ₜ[k] b})
@@ -147,6 +171,9 @@ theorem main
 
 end HopfAlgebra.OrderMultiplicativity
 
+/--
+@isnad1 id=eq.3h3v.s12.4e2853bc92e7 from=translated src=- shape=54fc6e8c vocab=e07427c8
+-/
 theorem solution
     (k : Type u) [Field k] (H : Type v) [CommRing H] [HopfAlgebra k H] [Module.Finite k H]
     (hH : ∀ x : H, Coalgebra.counit (R := k) x = 0 → IsNilpotent x)

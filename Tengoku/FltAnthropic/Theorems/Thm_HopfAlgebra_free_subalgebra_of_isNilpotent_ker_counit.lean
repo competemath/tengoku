@@ -11,6 +11,9 @@ open scoped TensorProduct
 
 universe u v w
 
+/--
+@isnad1 id=free.3h3v.s12.9cc5589d79fe from=translated src=- shape=3e35346b vocab=52c2b234
+-/
 theorem HopfAlgebra.free_subalgebra_of_isNilpotent_ker_counit
     {k : Type u} [Field k] {H : Type v} [CommRing H] [HopfAlgebra k H]
     (K : Subalgebra k H)

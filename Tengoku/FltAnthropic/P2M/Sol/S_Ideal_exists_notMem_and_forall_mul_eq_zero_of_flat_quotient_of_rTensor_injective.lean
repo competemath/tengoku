@@ -14,6 +14,9 @@ open TensorProduct
 
 namespace K63A2a
 
+/--
+@isnad1 id=ex.2h4v.s7.94841faae3c0 from=translated src=- shape=a3e99925 vocab=cdd60578
+-/
 theorem exists_ne_zero_and_smul_eq_zero {D K N : Type u} [CommRing D] [IsDomain D] [Field K] [Algebra D K]
     (hinj : Function.Injective (algebraMap D K)) [AddCommGroup N] [Module D N]
     (h : Subsingleton (K ⊗[D] N)) (n : N) : ∃ d : D, d ≠ 0 ∧ d • n = 0 := by
@@ -34,6 +37,9 @@ theorem exists_ne_zero_and_smul_eq_zero {D K N : Type u} [CommRing D] [IsDomain 
 
 end K63A2a
 
+/--
+@isnad1 id=ex.3h5v.s11.605ef54b21f2 from=translated src=- shape=8c9baac8 vocab=a69e5fab
+-/
 theorem solution
     {R A K : Type u} [CommRing R] [CommRing A] [Algebra R A] [Field K] [Algebra R K]
     (J : Ideal A) (hJ : J.FG) [Module.Flat R (A ⧸ J)]

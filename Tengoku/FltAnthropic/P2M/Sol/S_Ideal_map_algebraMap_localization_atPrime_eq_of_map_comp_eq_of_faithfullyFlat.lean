@@ -7,6 +7,9 @@ namespace P2MW.S_Ideal_map_algebraMap_localization_atPrime_eq_of_map_comp_eq_of_
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.2h6v.s10.376771c911f4 from=translated src=- shape=bd14cfcb vocab=a2e224af
+-/
 theorem solution
     {R S : Type} [CommRing R] [CommRing S] (𝔭 : Ideal R) [𝔭.IsPrime]
     (ψ : Localization.AtPrime 𝔭 →+* S)

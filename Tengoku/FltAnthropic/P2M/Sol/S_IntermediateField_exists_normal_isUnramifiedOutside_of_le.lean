@@ -12,6 +12,9 @@ namespace P2MW.S_IntermediateField_exists_normal_isUnramifiedOutside_of_le
 set_option autoImplicit false
 open CategoryTheory Module groupCohomology ExtCitation
 
+/--
+@isnad1 id=ex.1h2v.s8.089a9e3f11ff from=translated src=- shape=589c7cf1 vocab=2cbcfde2
+-/
 theorem solution
     (S : Finset Nat.Primes) (F : IntermediateField ℚ (AlgebraicClosure ℚ)) (hF : F.IsUnramifiedOutside S) :
     ∃ L : IntermediateField ℚ (AlgebraicClosure ℚ), F ≤ L ∧ L.IsUnramifiedOutside S ∧ Normal ℚ L := by

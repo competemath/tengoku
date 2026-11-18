@@ -15,14 +15,23 @@ variable {R : Type*} [CommRing R] (I : Ideal R) (X : Type*) [AddCommGroup X] [Mo
 
 abbrev F (m : ℕ) : Submodule R X := I ^ m • (⊤ : Submodule R X)
 
+/--
+@isnad1 id=eq.0h3v.s6.f349abdeed53 from=translated src=- shape=c526b4f1 vocab=ad426938
+-/
 theorem F_zero : F I X 0 = ⊤ := by
   show I ^ 0 • (⊤ : Submodule R X) = ⊤
   rw [pow_zero, Ideal.one_eq_top, Submodule.top_smul]
 
+/--
+@isnad1 id=eq.0h4v.s7.d6c5e2601972 from=translated src=- shape=1ef07ef3 vocab=ed768075
+-/
 theorem F_succ (m : ℕ) : F I X (m + 1) = I • F I X m := by
   show I ^ (m + 1) • (⊤ : Submodule R X) = I • (I ^ m • ⊤)
   rw [pow_succ', Submodule.mul_smul]
 
+/--
+@isnad1 id=antitone.0h3v.s6.285b8e51dd3b from=translated src=- shape=874b3736 vocab=847d2d26
+-/
 theorem F_antitone : Antitone (fun m => F I X m) := by
   intro m n hmn
   exact Submodule.smul_mono_left (Ideal.pow_le_pow_right hmn)
@@ -32,12 +41,18 @@ variable [IsNoetherianRing R] (q : ℕ) (hRq : Finite (R ⧸ Ideal.span {(q : R)
 
 omit [IsNoetherianRing R] in
 include hRq hqI in
+/--
+@isnad1 id=finite.2h3v.s6.614faa794ac4 from=translated src=- shape=786b3cdb vocab=1c530b59
+-/
 theorem finite_quotient_ideal : Finite (R ⧸ I) := by
   have hle : Ideal.span {(q : R)} ≤ I := by rw [Ideal.span_le]; simpa using hqI
   exact Finite.of_surjective (Ideal.Quotient.factor hle) (Ideal.Quotient.factor_surjective hle)
 
 include hRq hqI in
 
+/--
+@isnad1 id=finite.2h5v.s7.59c0fe9f1c0b from=translated src=- shape=56f65840 vocab=14536a81
+-/
 theorem finite_quotient_F (m : ℕ) : Finite (X ⧸ F I X m) := by
   haveI : Finite (R ⧸ I) := finite_quotient_ideal I q hRq hqI
   induction m with
@@ -50,6 +65,9 @@ theorem finite_quotient_F (m : ℕ) : Finite (X ⧸ F I X m) := by
     exact Submodule.finite_quotient_smul I (IsNoetherian.noetherian _)
 
 include hRq hqI in
+/--
+@isnad1 id=ne.2h5v.s7.855588b1f537 from=translated src=- shape=0cb3bca8 vocab=055d3800
+-/
 theorem index_F_ne_zero (m : ℕ) : (F I X m).toAddSubgroup.index ≠ 0 := by
   have hfin : Finite (X ⧸ (F I X m).toAddSubgroup) := finite_quotient_F I X q hRq hqI m
   rw [AddSubgroup.index_eq_card]
@@ -57,11 +75,17 @@ theorem index_F_ne_zero (m : ℕ) : (F I X m).toAddSubgroup.index ≠ 0 := by
 
 omit [IsNoetherianRing R] [Module.Finite R X] in
 
+/--
+@isnad1 id=eq.0h3v.s6.266414725985 from=translated src=- shape=cec25e64 vocab=306acb23
+-/
 theorem natCard_quotient_eq_index (N : Submodule R X) : Nat.card (X ⧸ N) = N.toAddSubgroup.index := by
   rw [AddSubgroup.index_eq_card]; rfl
 
 omit [IsNoetherianRing R] [Module.Finite R X] in
 
+/--
+@isnad1 id=eq.0h4v.s7.3512db17aa5e from=translated src=- shape=9882d281 vocab=ec053eb7
+-/
 theorem index_F_succ (m : ℕ) :
     (F I X (m + 1)).toAddSubgroup.index
       = (F I X (m + 1)).toAddSubgroup.relIndex (F I X m).toAddSubgroup * (F I X m).toAddSubgroup.index := by
@@ -81,6 +105,9 @@ abbrev K (n : ℕ) : AddSubgroup ↥(F I X n).toAddSubgroup :=
 
 abbrev Mg (n : ℕ) : Type _ := ↥(F I X n).toAddSubgroup ⧸ K I X n
 
+/--
+@isnad1 id=eq.0h4v.s6.081c3ac08d5a from=translated src=- shape=a1ff9351 vocab=627c26bd
+-/
 theorem relIndex_eq_card (n : ℕ) :
     (F I X (n + 1)).toAddSubgroup.relIndex (F I X n).toAddSubgroup = Nat.card (Mg I X n) := by
   rw [AddSubgroup.relIndex, AddSubgroup.index_eq_card]
@@ -89,6 +116,9 @@ variable (q : ℕ) (hqI : (q : R) ∈ I)
 
 include hqI in
 
+/--
+@isnad1 id=eq.1h6v.s8.8614bd1eb91f from=translated src=- shape=93a17ddd vocab=0cc098e0
+-/
 theorem q_smul_eq_zero (n : ℕ) (y : Mg I X n) : q • y = 0 := by
   induction y using QuotientAddGroup.induction_on with
   | H x =>
@@ -111,6 +141,9 @@ noncomputable def d (n : ℕ) : ℕ :=
 variable [Fact q.Prime] [IsNoetherianRing R] (hRq : Finite (R ⧸ Ideal.span {(q : R)})) [Module.Finite R X]
 
 include hqI hRq in
+/--
+@isnad1 id=finite.2h5v.s7.352f424d12b7 from=translated src=- shape=4ff604e6 vocab=f94e4de9
+-/
 theorem finite_Mg (n : ℕ) : Finite (Mg I X n) := by
   have hfin : Finite (X ⧸ (F I X (n + 1)).toAddSubgroup) := finite_quotient_F I X q hRq hqI (n + 1)
   have hne : (F I X (n + 1)).toAddSubgroup.index ≠ 0 := index_F_ne_zero I X q hRq hqI (n + 1)
@@ -121,6 +154,9 @@ theorem finite_Mg (n : ℕ) : Finite (Mg I X n) := by
 
 include hqI hRq in
 
+/--
+@isnad1 id=eq.2h5v.s7.bb45e760e9d1 from=translated src=- shape=d7d3b37e vocab=bee4ffce
+-/
 theorem card_Mg (n : ℕ) : Nat.card (Mg I X n) = q ^ d I X q hqI n := by
   letI := zmodModule I X q hqI n
   haveI := finite_Mg I X q hqI hRq n
@@ -130,6 +166,9 @@ theorem card_Mg (n : ℕ) : Nat.card (Mg I X n) = q ^ d I X q hqI n := by
 
 include hqI hRq in
 
+/--
+@isnad1 id=eq.2h5v.s7.4ddaef27b111 from=translated src=- shape=7090e60c vocab=6c90b6f3
+-/
 theorem index_F_eq (m : ℕ) :
     (F I X m).toAddSubgroup.index = q ^ (∑ k ∈ Finset.range m, d I X q hqI k) := by
   induction m with
@@ -140,10 +179,16 @@ theorem index_F_eq (m : ℕ) :
     rw [index_F_succ, relIndex_eq_card, card_Mg I X q hqI hRq, ih, Finset.sum_range_succ, pow_add, mul_comm]
 
 include hqI hRq in
+/--
+@isnad1 id=eq.2h5v.s7.b1550f928772 from=translated src=- shape=ace5c908 vocab=2c019f4a
+-/
 theorem natCard_quotient_F_eq (m : ℕ) :
     Nat.card (X ⧸ F I X m) = q ^ (∑ k ∈ Finset.range m, d I X q hqI k) := by
   rw [natCard_quotient_eq_index, index_F_eq I X q hqI hRq]
 
+/--
+@isnad1 id=ex.1h3v.s6.50546fab74a8 from=translated src=- shape=40da656b vocab=02f13830
+-/
 theorem sandwich_of_eventually_const (dd : ℕ → ℕ) (e n₀ : ℕ) (h : ∀ n, n₀ ≤ n → dd n = e) :
     ∃ C : ℕ, ∀ m : ℕ, (∑ k ∈ Finset.range m, dd k) ≤ m * e + C ∧ m * e ≤ (∑ k ∈ Finset.range m, dd k) + C := by
   refine ⟨(∑ k ∈ Finset.range n₀, dd k) + n₀ * e, fun m => ?_⟩
@@ -175,14 +220,26 @@ namespace P2MHilbertSamuel
 
 def Δ (g : ℕ → ℤ) : ℕ → ℤ := fun n => g (n + 1) - g n
 
+/--
+@isnad1 id=eq.0h2v.s5.ca0423a02d94 from=translated src=- shape=6f8ff08b vocab=a8d92232
+-/
 theorem Δ_apply (g : ℕ → ℤ) (n : ℕ) : Δ g n = g (n + 1) - g n := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.e6331796e5a0 from=translated src=- shape=a91df714 vocab=3e64e5f3
+-/
 theorem Δ_sub (g₁ g₂ : ℕ → ℤ) : Δ (g₁ - g₂) = Δ g₁ - Δ g₂ := by
   funext n; simp only [Δ, Pi.sub_apply]; ring
 
+/--
+@isnad1 id=eq.0h1v.s5.f53979e3871c from=translated src=- shape=ecf696ea vocab=5f18bac5
+-/
 theorem Δ_neg (g : ℕ → ℤ) : Δ (-g) = -Δ g := by
   funext n; simp only [Δ, Pi.neg_apply]; ring
 
+/--
+@isnad1 id=eq.0h3v.s6.1f10a1e812ff from=translated src=- shape=1ca4cc32 vocab=0d46d1ce
+-/
 theorem iterΔ_sub (k : ℕ) (g₁ g₂ : ℕ → ℤ) : Δ^[k] (g₁ - g₂) = Δ^[k] g₁ - Δ^[k] g₂ := by
   induction k with
   | zero => rfl
@@ -190,11 +247,17 @@ theorem iterΔ_sub (k : ℕ) (g₁ g₂ : ℕ → ℤ) : Δ^[k] (g₁ - g₂) = 
     rw [Function.iterate_succ_apply', Function.iterate_succ_apply', Function.iterate_succ_apply', ih,
       Δ_sub]
 
+/--
+@isnad1 id=eq.0h2v.s5.ce3dd279ff3f from=translated src=- shape=79187880 vocab=1fb0cf7c
+-/
 theorem iterΔ_neg (k : ℕ) (g : ℕ → ℤ) : Δ^[k] (-g) = -Δ^[k] g := by
   induction k with
   | zero => rfl
   | succ k ih => rw [Function.iterate_succ_apply', Function.iterate_succ_apply', ih, Δ_neg]
 
+/--
+@isnad1 id=le.1h3v.s5.33dce8d090de from=translated src=- shape=5d683742 vocab=dcd34835
+-/
 theorem le_of_one_le_Δ (g : ℕ → ℤ) (N : ℕ) (h : ∀ n, N ≤ n → 1 ≤ Δ g n) (k : ℕ) :
     g N + k ≤ g (N + k) := by
   induction k with
@@ -205,6 +268,9 @@ theorem le_of_one_le_Δ (g : ℕ → ℤ) (N : ℕ) (h : ∀ n, N ≤ n → 1 �
     have e : N + (k + 1) = N + k + 1 := rfl
     rw [e]; push_cast; linarith
 
+/--
+@isnad1 id=ex.1h2v.s5.cc609d82acca from=translated src=- shape=d6e1973a vocab=a33a793c
+-/
 theorem eventually_le_of_one_le_Δ (g : ℕ → ℤ) (hg : ∃ N, ∀ n, N ≤ n → 1 ≤ Δ g n) (B : ℤ) :
     ∃ N, ∀ n, N ≤ n → B ≤ g n := by
   obtain ⟨N, hN⟩ := hg
@@ -217,6 +283,9 @@ theorem eventually_le_of_one_le_Δ (g : ℕ → ℤ) (hg : ∃ N, ∀ n, N ≤ n
     exact_mod_cast (show (B - g N).toNat ≤ n - N by omega)
   linarith
 
+/--
+@isnad1 id=ex.1h2v.s6.32558b295906 from=translated src=- shape=47ce6c0c vocab=aa825e38
+-/
 theorem eventually_one_le_Δ_of_iter (g : ℕ → ℤ) (j : ℕ)
     (h : ∃ N, ∀ n, N ≤ n → 1 ≤ Δ^[j + 1] g n) : ∃ N, ∀ n, N ≤ n → 1 ≤ Δ g n := by
   induction j with
@@ -227,6 +296,9 @@ theorem eventually_one_le_Δ_of_iter (g : ℕ → ℤ) (j : ℕ)
       simpa only [Function.iterate_succ_apply'] using h
     exact eventually_le_of_one_le_Δ _ h' 1
 
+/--
+@isnad1 id=ex.1h1v.s5.d8dcf1be0b7a from=translated src=- shape=e4cf51cb vocab=a33a793c
+-/
 theorem eventually_const_of_Δ_eq_zero (g : ℕ → ℤ) (h : ∃ N, ∀ n, N ≤ n → Δ g n = 0) :
     ∃ c : ℤ, ∃ N : ℕ, ∀ n, N ≤ n → g n = c := by
   obtain ⟨N, hN⟩ := h
@@ -241,6 +313,9 @@ theorem eventually_const_of_Δ_eq_zero (g : ℕ → ℤ) (h : ∃ N, ∀ n, N �
     have e : N + (k + 1) = N + k + 1 := rfl
     rw [e]; linarith [ih]
 
+/--
+@isnad1 id=ex.3h3v.s6.48f243520533 from=translated src=- shape=0004bde3 vocab=cbfe64e5
+-/
 theorem eventually_const_of_iterΔ_eq_zero (h : ℕ → ℤ) (c : ℕ) (h0 : ∀ n, 0 ≤ h n)
     (hsum : ∀ m : ℕ, (∑ k ∈ Finset.range m, h k) ≤ c * m)
     (s : ℕ) (hs : ∃ N, ∀ n, N ≤ n → Δ^[s] h n = 0) :
@@ -307,9 +382,15 @@ universe u
 
 noncomputable def lc (q : ℕ) (V : Type*) : ℤ := (Nat.log q (Nat.card V) : ℤ)
 
+/--
+@isnad1 id=eq.2h3v.s5.55d3d3606b6c from=translated src=- shape=542cee2f vocab=dbe6c6b9
+-/
 theorem lc_eq {q : ℕ} (hq : 1 < q) {V : Type*} {k : ℕ} (h : Nat.card V = q ^ k) : lc q V = k := by
   simp [lc, h, Nat.log_pow hq]
 
+/--
+@isnad1 id=and.3h4v.s6.ea4ef273d73f from=translated src=- shape=bd107a68 vocab=c4451730
+-/
 theorem lc_of_card_mul {q : ℕ} (hq : q.Prime) {M A B : Type*} (hM : ∃ k, Nat.card M = q ^ k)
     (h : Nat.card M = Nat.card A * Nat.card B) :
     (∃ k, Nat.card A = q ^ k) ∧ (∃ k, Nat.card B = q ^ k) ∧ lc q M = lc q A + lc q B := by
@@ -328,6 +409,9 @@ def consFam {A : Type*} [CommRing A] (V : ℕ → Type u) [∀ n, AddCommGroup (
   | 0 => W₀
   | m + 1 => W m
 
+/--
+@isnad1 id=ex.4h5v.s11.642eaaa81f84 from=translated src=- shape=8cdd6618 vocab=dd240edd
+-/
 theorem hilbertSerre (A : Type*) [CommRing A] (q : ℕ) (hq : q.Prime) (s : ℕ) :
     ∀ (V : ℕ → Type u) [∀ n, AddCommGroup (V n)] [∀ n, Module A (V n)] [∀ n, Finite (V n)]
       (f : Fin s → ∀ n, V n →ₗ[A] V (n + 1)),
@@ -490,6 +574,9 @@ def mulF {x : R} (hx : x ∈ I) (n : ℕ) : ↥(F I X n) →ₗ[R] ↥(F I X (n 
   (LinearMap.lsmul R X x).restrict fun y hy => by
     rw [F_succ]; exact Submodule.smul_mem_smul hx hy
 
+/--
+@isnad1 id=eq.1h6v.s9.2efc770999a6 from=translated src=- shape=cfe0c4f5 vocab=cb6534e5
+-/
 theorem mulF_coe {x : R} (hx : x ∈ I) (n : ℕ) (y : ↥(F I X n)) :
     ((mulF I X hx n y : ↥(F I X (n + 1))) : X) = x • (y : X) := rfl
 
@@ -499,9 +586,15 @@ def grMul {x : R} (hx : x ∈ I) (n : ℕ) : Gr I X n →ₗ[R] Gr I X (n + 1) :
     rw [mulF_coe, F_succ]
     exact Submodule.smul_mem_smul hx hy
 
+/--
+@isnad1 id=eq.1h6v.s11.7bdf5abef9f9 from=translated src=- shape=0dd2666b vocab=4ef09e2f
+-/
 theorem grMul_mk {x : R} (hx : x ∈ I) (n : ℕ) (y : ↥(F I X n)) :
     grMul I X hx n (Submodule.Quotient.mk y) = Submodule.Quotient.mk (mulF I X hx n y) := rfl
 
+/--
+@isnad1 id=eq.2h7v.s12.8eaf38644d7f from=translated src=- shape=a9ae9516 vocab=88f8f921
+-/
 theorem grMul_comm {x y : R} (hx : x ∈ I) (hy : y ∈ I) (n : ℕ) (z : Gr I X n) :
     grMul I X hx (n + 1) (grMul I X hy n z) = grMul I X hy (n + 1) (grMul I X hx n z) := by
   obtain ⟨z, rfl⟩ := Submodule.Quotient.mk_surjective _ z
@@ -511,8 +604,14 @@ theorem grMul_comm {x y : R} (hx : x ∈ I) (hy : y ∈ I) (n : ℕ) (z : Gr I X
   simp only [mulF_coe]
   exact smul_comm x y (z : X)
 
+/--
+@isnad1 id=eq.0h4v.s5.c65fd7a8ddb8 from=translated src=- shape=d41ef7bd vocab=dd530248
+-/
 theorem card_Gr_eq (n : ℕ) : Nat.card (Gr I X n) = Nat.card (Mg I X n) := rfl
 
+/--
+@isnad1 id=surjecti.0h4v.s10.2b05f80f65c2 from=translated src=- shape=32fa2152 vocab=30b2f052
+-/
 theorem grMul_surjective_principal (r : R) (n : ℕ) :
     Function.Surjective (grMul (Ideal.span {r}) X (Ideal.mem_span_singleton_self r) n) := by
   intro c
@@ -528,6 +627,9 @@ theorem grMul_surjective_principal (r : R) (n : ℕ) :
 def liftSub (n : ℕ) (W : Submodule R (Gr I X n)) : Submodule R X :=
   (W.comap (Fsub I X n).mkQ).map (F I X n).subtype
 
+/--
+@isnad1 id=iff.0h6v.s11.40a744e13b26 from=translated src=- shape=157beb59 vocab=e404eb75
+-/
 theorem mem_liftSub_iff (n : ℕ) (W : Submodule R (Gr I X n)) (z : ↥(F I X n)) :
     (z : X) ∈ liftSub I X n W ↔ (Fsub I X n).mkQ z ∈ W := by
   constructor
@@ -536,15 +638,24 @@ theorem mem_liftSub_iff (n : ℕ) (W : Submodule R (Gr I X n)) (z : ↥(F I X n)
     rw [← this]; exact hz'
   · intro h; exact ⟨z, h, rfl⟩
 
+/--
+@isnad1 id=le.0h5v.s8.163abddb818b from=translated src=- shape=75d732cf vocab=59c0af73
+-/
 theorem liftSub_le (n : ℕ) (W : Submodule R (Gr I X n)) : liftSub I X n W ≤ F I X n := by
   rintro _ ⟨y, -, rfl⟩; exact y.2
 
+/--
+@isnad1 id=le.0h5v.s8.8082d99d2071 from=translated src=- shape=38d50eb4 vocab=bdbe8754
+-/
 theorem le_liftSub (n : ℕ) (W : Submodule R (Gr I X n)) : F I X (n + 1) ≤ liftSub I X n W := by
   intro z hz
   have hz' : z ∈ F I X n := F_antitone I X (Nat.le_succ n) hz
   have h0 : (Fsub I X n).mkQ ⟨z, hz'⟩ = 0 := (Submodule.Quotient.mk_eq_zero (Fsub I X n)).2 hz
   exact (mem_liftSub_iff I X n W ⟨z, hz'⟩).2 (by rw [h0]; exact zero_mem _)
 
+/--
+@isnad1 id=le.3h8v.s11.5e79fc288ec7 from=translated src=- shape=05ab09e1 vocab=878666d2
+-/
 theorem smul_liftSub_le {s : ℕ} (x : Fin s → R) (hxI : Ideal.span (Set.range x) = I) (hx : ∀ i, x i ∈ I)
     (n : ℕ) (W : Submodule R (Gr I X n)) (T : Submodule R (Gr I X (n + 1)))
     (h : ∀ i, W.map (grMul I X (hx i) n) ≤ T) : I • liftSub I X n W ≤ liftSub I X (n + 1) T := by
@@ -561,6 +672,9 @@ theorem smul_liftSub_le {s : ℕ} (x : Fin s → R) (hxI : Ideal.span (Set.range
   · intro a b _ _ ha hb; rw [add_smul]; exact add_mem ha hb
   · intro a b _ hb; rw [smul_eq_mul, mul_smul]; exact Submodule.smul_mem _ a hb
 
+/--
+@isnad1 id=ex.3h6v.s12.98504c2c95bb from=translated src=- shape=a8d9cc3b vocab=f4a92b1f
+-/
 theorem noeth_Gr [IsNoetherianRing R] [Module.Finite R X] {s : ℕ} (x : Fin s → R)
     (hxI : Ideal.span (Set.range x) = I) (hx : ∀ i, x i ∈ I)
     (W : ∀ n, Submodule R (Gr I X n))
@@ -586,6 +700,9 @@ variable (q : ℕ) [Fact q.Prime] [IsNoetherianRing R] (hRq : Finite (R ⧸ Idea
   (hqI : (q : R) ∈ I) [Module.Finite R X]
 
 include hRq hqI in
+/--
+@isnad1 id=finite.2h5v.s7.9b912355c51c from=translated src=- shape=47f96f51 vocab=eba5848e
+-/
 theorem finite_Gr (n : ℕ) : Finite (Gr I X n) := by
   haveI : Finite (X ⧸ F I X (n + 1)) := finite_quotient_F I X q hRq hqI (n + 1)
   refine Finite.of_injective ((Fsub I X n).mapQ (F I X (n + 1)) (F I X n).subtype le_rfl) ?_
@@ -599,6 +716,9 @@ theorem finite_Gr (n : ℕ) : Finite (Gr I X n) := by
 
 include hRq in
 
+/--
+@isnad1 id=le.1h4v.s7.ac978ee55e4b from=translated src=- shape=bc0d47ab vocab=82369bdf
+-/
 theorem d_principal_le (k : ℕ) :
     d (Ideal.span {(q : R)}) X q (Ideal.mem_span_singleton_self _) k
       ≤ d (Ideal.span {(q : R)}) X q (Ideal.mem_span_singleton_self _) 0 := by
@@ -618,6 +738,9 @@ theorem d_principal_le (k : ℕ) :
 
 include hRq hqI in
 
+/--
+@isnad1 id=le.2h5v.s7.adbbad1f3904 from=translated src=- shape=23c43bb5 vocab=334becdf
+-/
 theorem sum_d_le (m : ℕ) :
     (∑ k ∈ Finset.range m, d I X q hqI k)
       ≤ m * d (Ideal.span {(q : R)}) X q (Ideal.mem_span_singleton_self _) 0 := by
@@ -641,6 +764,9 @@ theorem sum_d_le (m : ℕ) :
 
 include hRq in
 
+/--
+@isnad1 id=ex.2h4v.s7.ec1621aacb88 from=translated src=- shape=f4502fcc vocab=0150f528
+-/
 theorem d_eventually_const : ∃ e N : ℕ, ∀ n, N ≤ n → d I X q hqI n = e := by
   have hq : q.Prime := Fact.out
   obtain ⟨s, x, hxI⟩ := Submodule.fg_iff_exists_fin_generating_family.1 (IsNoetherian.noetherian I)
@@ -665,6 +791,9 @@ end assembly
 
 end P2MHilbertSamuel
 
+/--
+@isnad1 id=ex.2h4v.s9.d4f2b05063f1 from=translated src=- shape=79765b18 vocab=beeb6af0
+-/
 theorem solution
     (R : Type*) [CommRing R] [IsNoetherianRing R] (q : ℕ) [Fact q.Prime]
     (hRq : Finite (R ⧸ Ideal.span {(q : R)}))

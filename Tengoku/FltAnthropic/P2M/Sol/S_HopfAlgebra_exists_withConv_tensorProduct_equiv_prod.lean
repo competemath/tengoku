@@ -75,6 +75,9 @@ end points
 
 end SolB5
 
+/--
+@isnad1 id=ex.0h5v.s14.6127638aa7e9 from=translated src=- shape=0daa3c1e vocab=60a377d6
+-/
 theorem solution
     {R : Type} [CommRing R] {Γ : Type} [Group Γ]
     (H₁ H₂ : Type) [CommRing H₁] [CommRing H₂] [HopfAlgebra R H₁] [HopfAlgebra R H₂]

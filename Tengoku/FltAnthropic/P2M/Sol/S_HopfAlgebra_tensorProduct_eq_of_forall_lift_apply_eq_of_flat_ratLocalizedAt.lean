@@ -10,6 +10,9 @@ namespace P2MW.S_HopfAlgebra_tensorProduct_eq_of_forall_lift_apply_eq_of_flat_ra
 set_option autoImplicit false
 open scoped TensorProduct in
 
+/--
+@isnad1 id=eq.1h4v.s13.fbe13840b80c from=translated src=- shape=aac5a88a vocab=19aa3407
+-/
 theorem solution
     (p : ℕ) (H : Type) [CommRing H] [HopfAlgebra (GaloisRep.ratLocalizedAt p) H]
     [Module.Finite (GaloisRep.ratLocalizedAt p) H] [Module.Flat (GaloisRep.ratLocalizedAt p) H]

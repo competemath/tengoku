@@ -10,6 +10,9 @@ set_option autoImplicit false
 set_option maxHeartbeats 800000
 set_option synthInstance.maxHeartbeats 80000
 
+/--
+@isnad1 id=ex.6h6v.s10.b470aa517e6d from=translated src=- shape=aeab0103 vocab=8dd12077
+-/
 theorem solution
     {Λ : Type} [AddCommGroup Λ]
     {R T : Type} [CommRing R] [CommRing T] [Algebra R T]

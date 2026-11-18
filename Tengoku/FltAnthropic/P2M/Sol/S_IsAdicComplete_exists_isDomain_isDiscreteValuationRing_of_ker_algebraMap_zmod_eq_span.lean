@@ -131,6 +131,9 @@ end CompleteDVR
 end ObaseDVR
 
 open ObaseDVR in
+/--
+@isnad1 id=ex.2h2v.s8.ca727e62c5e5 from=translated src=- shape=7c2bcb0d vocab=a2562b33
+-/
 theorem solution
     {𝓞 : Type u} [CommRing 𝓞] (p : ℕ) [Fact p.Prime] (hp : (p : 𝓞) ∈ nonZeroDivisors 𝓞)
     [Algebra 𝓞 (ZMod p)] (hker : RingHom.ker (algebraMap 𝓞 (ZMod p)) = Ideal.span {(p : 𝓞)})

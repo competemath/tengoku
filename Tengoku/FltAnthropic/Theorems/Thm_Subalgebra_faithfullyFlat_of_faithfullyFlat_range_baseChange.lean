@@ -11,6 +11,9 @@ open scoped TensorProduct
 
 universe u v w
 
+/--
+@isnad1 id=faithful.1h4v.s11.008e0d06502a from=translated src=- shape=0f044a99 vocab=5a1582d4
+-/
 theorem Subalgebra.faithfullyFlat_of_faithfullyFlat_range_baseChange
     {k : Type u} [Field k] {H : Type v} [CommRing H] [Algebra k H] (K : Subalgebra k H)
     (k' : Type w) [Field k'] [Algebra k k']

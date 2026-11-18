@@ -8,6 +8,9 @@ namespace P2MW.S_IharaLemma_square_localized
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.5h23v.s11.e0a561c7499e from=translated src=- shape=4b8739a5 vocab=5f8ff8b4
+-/
 theorem solution {R : Type*} [CommRing R] (S : Submonoid R) {V Vk V' Vk' L L' Lk Lk' : Type*}
     [AddCommGroup V] [Module R V] [AddCommGroup Vk] [Module R Vk]
     [AddCommGroup V'] [Module R V'] [AddCommGroup Vk'] [Module R Vk']

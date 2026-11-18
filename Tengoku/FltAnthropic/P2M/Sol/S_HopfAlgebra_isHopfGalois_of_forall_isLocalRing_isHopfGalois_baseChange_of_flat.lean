@@ -22,6 +22,9 @@ namespace LocalDescent
 
 variable {R : Type} [CommRing R]
 
+/--
+@isnad1 id=subsingl.1h2v.s7.86e89d4cc4fb from=translated src=- shape=2d539ac1 vocab=16d95e39
+-/
 theorem subsingleton_of_forall_flat_local (Q : Type) [AddCommGroup Q] [Module R Q]
     (h : ∀ (p : Ideal R), p.IsMaximal →
       ∃ (R₁ : Type) (_ : CommRing R₁) (_ : Algebra R R₁) (_ : Module.Flat R R₁) (_ : IsLocalRing R₁),
@@ -83,6 +86,9 @@ namespace LocalDescent
 
 variable {R : Type} [CommRing R]
 
+/--
+@isnad1 id=mem.1h4v.s9.28e189dad76d from=translated src=- shape=ff47d76f vocab=8d2d2f71
+-/
 theorem mem_of_forall_flat_local_one_tmul_mem {H : Type} [CommRing H] [Algebra R H] (J : Ideal H) (x : H)
     (h : ∀ (p : Ideal R), p.IsMaximal →
       ∃ (R₁ : Type) (_ : CommRing R₁) (_ : Algebra R R₁) (_ : Module.Flat R R₁) (_ : IsLocalRing R₁),
@@ -146,9 +152,15 @@ noncomputable def augPart : ↥(hopfKer qc) →ₗ[R] H :=
   (hopfKer qc).val.toLinearMap -
     (Algebra.linearMap R H).comp ((Coalgebra.counit (R := R) (A := H)).comp (hopfKer qc).val.toLinearMap)
 
+/--
+@isnad1 id=eq.0h5v.s11.b464dc80a402 from=translated src=- shape=20d10b9d vocab=11c6fe42
+-/
 theorem augPart_apply (b : ↥(hopfKer qc)) :
     augPart qc b = (b : H) - algebraMap R H (Coalgebra.counit (R := R) (b : H)) := rfl
 
+/--
+@isnad1 id=mem.0h5v.s11.915629a74b50 from=translated src=- shape=355c058e vocab=4aa8549c
+-/
 theorem augPart_mem (b : ↥(hopfKer qc)) :
     augPart qc b ∈ Ideal.span {a : H | a ∈ hopfKer qc ∧ Coalgebra.counit (R := R) a = 0} := by
   apply Ideal.subset_span
@@ -157,6 +169,9 @@ theorem augPart_mem (b : ↥(hopfKer qc)) :
     exact (hopfKer qc).sub_mem b.2 ((hopfKer qc).algebraMap_mem _)
   · rw [augPart_apply, map_sub, Bialgebra.counit_algebraMap, sub_self]
 
+/--
+@isnad1 id=eq.0h5v.s14.f6fea3870889 from=translated src=- shape=48fdb2c0 vocab=022a41a3
+-/
 theorem baseChange_val_eq_linearMap :
     ((hopfKer qc).val.toLinearMap.baseChange K) =
       ((augPart qc).baseChange K) +
@@ -172,6 +187,9 @@ theorem baseChange_val_eq_linearMap :
   rw [Algebra.algebraMap_self, RingHom.id_apply, TensorProduct.smul_tmul, Algebra.smul_def, mul_one,
     sub_add_cancel]
 
+/--
+@isnad1 id=eq.0h6v.s14.7a266aac2f87 from=translated src=- shape=9acd330e vocab=f22ebc75
+-/
 theorem baseChange_val_eq (t : K ⊗[R] ↥(hopfKer qc)) :
     ((hopfKer qc).val.toLinearMap.baseChange K) t =
       ((augPart qc).baseChange K) t +
@@ -179,6 +197,9 @@ theorem baseChange_val_eq (t : K ⊗[R] ↥(hopfKer qc)) :
   have := LinearMap.congr_fun (baseChange_val_eq_linearMap K qc) t
   simpa only [LinearMap.add_apply, LinearMap.comp_apply, Algebra.linearMap_apply] using this
 
+/--
+@isnad1 id=le.0h5v.s12.2f441a2eb63f from=translated src=- shape=93c93a47 vocab=7043dbff
+-/
 theorem span_augHopfKer_baseChange_le_map_includeRight [Module.Flat R K] :
     Ideal.span {a : K ⊗[R] H |
         a ∈ hopfKer (Bialgebra.TensorProduct.map (BialgHom.id K K) qc : K ⊗[R] H →ₐc[K] K ⊗[R] H') ∧
@@ -216,6 +237,9 @@ end HopfAlgebra
 namespace HopfAlgebra export _root_.HopfAlgebra (mk hopfKer IsHopfGalois isHopfGalois_iff_ker_le_span_of_surjective hopfKer_baseChange_toSubmodule_eq_range_baseChange) namespace LocalDescent end HopfAlgebra.LocalDescent
 open scoped _root_.HopfAlgebra in
 
+/--
+@isnad1 id=ishopfga.2h4v.s10.8cb887cf826c from=translated src=- shape=47d2230e vocab=37416a90
+-/
 theorem HopfAlgebra.LocalDescent.isHopfGalois_of_forall_flat_local
     (R : Type) [CommRing R]
     (H : Type) [CommRing H] [HopfAlgebra R H] [Module.Flat R H]
@@ -253,6 +277,9 @@ theorem HopfAlgebra.LocalDescent.isHopfGalois_of_forall_flat_local
     rw [hqc₁_tmul, hx0, TensorProduct.tmul_zero]
   exact HopfAlgebra.span_augHopfKer_baseChange_le_map_includeRight R₁ qc (hker₁ hx₁)
 
+/--
+@isnad1 id=ishopfga.2h4v.s10.8cb887cf826c from=translated src=- shape=47d2230e vocab=37416a90
+-/
 theorem solution
     (R : Type) [CommRing R]
     (H : Type) [CommRing H] [HopfAlgebra R H] [Module.Flat R H]

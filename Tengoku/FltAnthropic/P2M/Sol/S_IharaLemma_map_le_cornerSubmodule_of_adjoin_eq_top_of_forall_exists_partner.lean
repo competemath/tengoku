@@ -17,6 +17,9 @@ namespace Link1
 
 open IsLocalRing IharaLemma
 
+/--
+@isnad1 id=mem.1h4v.s7.61e5308d08dd from=translated src=- shape=6c3d26ce vocab=fee8bc16
+-/
 theorem algebraMap_mem_of_mem_maximalIdeal {𝒪 : Type} [CommRing 𝒪] [IsLocalRing 𝒪]
     {B : Type} [CommRing B] [Algebra 𝒪 B] [Module.Finite 𝒪 B]
     (J : Ideal B) [hJ : J.IsMaximal] {a : 𝒪} (ha : a ∈ maximalIdeal 𝒪) : algebraMap 𝒪 B a ∈ J := by
@@ -71,6 +74,9 @@ theorem eq_of_forall_gen_sub_mem {𝒪 : Type} [CommRing 𝒪] [IsLocalRing 𝒪
   have heq : S.𝔪 i = S.𝔪 j := ((S.isMaximal i).eq_of_le (S.isMaximal j).ne_top hle)
   exact S.𝔪_injective heq
 
+/--
+@isnad1 id=mem.4h12v.s10.a574dc1be044 from=translated src=- shape=3a48bf6f vocab=363c2efa
+-/
 theorem corner_transport {𝒪 : Type} [CommRing 𝒪] [IsLocalRing 𝒪]
     {B B' : Type} [CommRing B] [CommRing B'] [Algebra 𝒪 B] [Algebra 𝒪 B']
     [Module.Finite 𝒪 B] [Module.Finite 𝒪 B']
@@ -125,6 +131,9 @@ theorem corner_transport {𝒪 : Type} [CommRing 𝒪] [IsLocalRing 𝒪]
 
 end CohL2.Link1
 
+/--
+@isnad1 id=mem.4h12v.s10.a574dc1be044 from=translated src=- shape=3a48bf6f vocab=363c2efa
+-/
 theorem solution
     {𝒪 : Type} [CommRing 𝒪] [IsLocalRing 𝒪]
     {B B' : Type} [CommRing B] [CommRing B'] [Algebra 𝒪 B] [Algebra 𝒪 B']

@@ -11,6 +11,9 @@ open scoped TensorProduct
 
 universe u v
 
+/--
+@isnad1 id=faithful.4h6v.s14.9635cf18c7ca from=translated src=- shape=bff81b2a vocab=b864c87e
+-/
 theorem HopfAlgebra.faithfullyFlat_map_toAlgHom_tensor_of_free_map_of_ker_eq_span
     {k : Type u} [Field k] {H : Type v} [CommRing H] [HopfAlgebra k H]
     (K' K : Subalgebra k H) [Algebra ↥K' ↥K] [IsScalarTower ↥K' ↥K H]

@@ -14,6 +14,9 @@ set_option autoImplicit false
 
 open IsLocalRing IharaLemma
 
+/--
+@isnad1 id=mem.4h8v.s10.ce3a39c7cc4a from=translated src=- shape=be48858e vocab=7f7760fe
+-/
 theorem solution
     {𝒪 : Type} [CommRing 𝒪] [IsLocalRing 𝒪]
     {B : Type} [CommRing B] [Algebra 𝒪 B]

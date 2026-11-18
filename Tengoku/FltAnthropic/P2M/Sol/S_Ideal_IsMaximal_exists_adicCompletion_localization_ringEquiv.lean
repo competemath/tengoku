@@ -15,12 +15,18 @@ open Ideal Ideal.Quotient AdicCompletion
 
 variable {R S : Type*} [CommRing R] [CommRing S] (I : Ideal R) (J : Ideal S)
 
+/--
+@isnad1 id=eq.1h5v.s11.b28f3d5ba92d from=translated src=- shape=576c93d7 vocab=a954745f
+-/
 theorem factorPow_evalₐ {m n : ℕ} (hle : m ≤ n) (x : AdicCompletion I R) :
     Ideal.Quotient.factorPow I hle (AdicCompletion.evalₐ I n x) = AdicCompletion.evalₐ I m x := by
   obtain ⟨a, rfl⟩ := AdicCompletion.mk_surjective I R x
   rw [AdicCompletion.evalₐ_mk, AdicCompletion.evalₐ_mk, Ideal.Quotient.factor_mk]
   exact AdicCompletion.Ideal.mk_eq_mk I hle a
 
+/--
+@isnad1 id=ex.1h5v.s13.cceb2759c71f from=translated src=- shape=62262bed vocab=fd7e1250
+-/
 theorem exists_ringEquiv (e : ∀ n : ℕ, R ⧸ I ^ n ≃+* S ⧸ J ^ n)
     (he : ∀ {m n : ℕ} (hle : m ≤ n) (x : R ⧸ I ^ n),
       e m (Ideal.Quotient.factorPow I hle x) = Ideal.Quotient.factorPow J hle (e n x)) :
@@ -56,6 +62,9 @@ theorem exists_ringEquiv (e : ∀ n : ℕ, R ⧸ I ^ n ≃+* S ⧸ J ^ n)
     intro n
     rw [RingHom.comp_apply, hG, hF, RingEquiv.symm_apply_apply, RingHom.id_apply]
 
+/--
+@isnad1 id=eq.2h8v.s13.5dc357ea7f28 from=translated src=- shape=d2dc66f9 vocab=74e9abf8
+-/
 theorem apply_of_eq_of (e : ∀ n : ℕ, R ⧸ I ^ n ≃+* S ⧸ J ^ n) (E : AdicCompletion I R ≃+* AdicCompletion J S)
     (hE : ∀ (n : ℕ) (x : AdicCompletion I R), AdicCompletion.evalₐ J n (E x) = e n (AdicCompletion.evalₐ I n x))
     (θ : R → S) (hθ : ∀ (n : ℕ) (r : R), e n (Ideal.Quotient.mk (I ^ n) r) = Ideal.Quotient.mk (J ^ n) (θ r)) (r : R) :
@@ -67,6 +76,9 @@ theorem apply_of_eq_of (e : ∀ n : ℕ, R ⧸ I ^ n ≃+* S ⧸ J ^ n) (E : Adi
 end AdicIso
 
 open AdicIso in
+/--
+@isnad1 id=ex.0h2v.s12.a15022e3332d from=translated src=- shape=4fe8a8dc vocab=ad5e9356
+-/
 theorem solution
     {C : Type u} [CommRing C] (𝔪 : Ideal C) [𝔪.IsMaximal] :
     ∃ e : AdicCompletion (IsLocalRing.maximalIdeal (Localization.AtPrime 𝔪)) (Localization.AtPrime 𝔪) ≃+*

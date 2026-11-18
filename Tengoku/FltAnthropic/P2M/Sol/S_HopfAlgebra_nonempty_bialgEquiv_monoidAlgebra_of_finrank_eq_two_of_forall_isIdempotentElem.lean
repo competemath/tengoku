@@ -12,6 +12,9 @@ universe u v
 
 namespace S17N1conn
 
+/--
+@isnad1 id=nonempty.3h2v.s9.f667eb1c36ff from=translated src=- shape=728650ef vocab=5971695b
+-/
 theorem main
     {R : Type u} [CommRing R] (h2 : Irreducible (2 : R))
     (H : Type v) [CommRing H] [HopfAlgebra R H] [Module.Finite R H] [Module.Free R H]
@@ -42,6 +45,9 @@ theorem main
 
 end S17N1conn
 
+/--
+@isnad1 id=nonempty.3h2v.s9.f667eb1c36ff from=translated src=- shape=728650ef vocab=5971695b
+-/
 theorem solution
     {R : Type u} [CommRing R] (h2 : Irreducible (2 : R))
     (H : Type v) [CommRing H] [HopfAlgebra R H] [Module.Finite R H] [Module.Free R H]

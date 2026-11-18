@@ -17,6 +17,9 @@ section LinAlg
 
 variable {k : Type u} [Field k] {V : Type v} [AddCommGroup V] [Module k V]
 
+/--
+@isnad1 id=ex.5h5v.s9.e60e831463b5 from=translated src=- shape=f35264ee vocab=0775e612
+-/
 theorem exists_common_eigenvector [IsAlgClosed k]
     (S : Set (Module.End k V)) (hS : ∀ f ∈ S, ∀ g ∈ S, Commute f g) :
     ∀ (n : ℕ) (p : Submodule k V), FiniteDimensional k p → Module.finrank k p = n → p ≠ ⊥ →
@@ -68,6 +71,9 @@ theorem exists_common_eigenvector [IsAlgClosed k]
     obtain ⟨v, hv, hv0, hev⟩ := ih _ hlt p' inferInstance rfl hp'ne hstab'
     exact ⟨v, hp'le hv, hv0, hev⟩
 
+/--
+@isnad1 id=eq.1h4v.s9.0a6eaca1bc13 from=translated src=- shape=d1fb1423 vocab=8d73e3a8
+-/
 theorem tmul_eq_zero_of_forall_lTensor {M : Type v} {N : Type w} [AddCommGroup M] [Module k M]
     [AddCommGroup N] [Module k N] (t : M ⊗[k] N)
     (h : ∀ ξ : N →ₗ[k] k, LinearMap.lTensor M ξ t = 0) : t = 0 := by
@@ -99,20 +105,32 @@ noncomputable def rho (ξ : H →ₗ[k] k) : H →ₗ[k] H :=
 
 variable {k H}
 
+/--
+@isnad1 id=eq.0h4v.s12.4d77c3644cf9 from=translated src=- shape=0815f980 vocab=5a6eb557
+-/
 theorem rho_apply (ξ : H →ₗ[k] k) (a : H) :
     rho k H ξ a = TensorProduct.rid k H (LinearMap.lTensor H ξ (Coalgebra.comul a)) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.7c8280f1b994 from=translated src=- shape=eba726bf vocab=6949c3bf
+-/
 theorem rho_apply_repr (ξ : H →ₗ[k] k) {a : H} {ι𝓡 : Type*} (𝓡 : Coalgebra.Repr k a ι𝓡) :
     rho k H ξ a = ∑ i ∈ 𝓡.index, ξ (𝓡.right i) • 𝓡.left i := by
   rw [rho_apply, ← 𝓡.eq]
   simp only [map_sum, LinearMap.lTensor_tmul, TensorProduct.rid_tmul]
 
+/--
+@isnad1 id=eq.0h3v.s9.0a06e620ed5f from=translated src=- shape=4a30643d vocab=77756c08
+-/
 theorem rho_counit (a : H) : rho k H (Coalgebra.counit) a = a := by
   rw [rho_apply_repr _ (ℛ k a)]
   have h := sum_tmul_counit_eq (R := k) (ℛ k a)
   have := congrArg (TensorProduct.rid k H) h
   simpa only [map_sum, TensorProduct.rid_tmul, one_smul] using this
 
+/--
+@isnad1 id=eq.0h2v.s9.89cdaeeec828 from=translated src=- shape=784a4933 vocab=6366e5ee
+-/
 theorem rho_convOne : rho k H (1 : WithConv (H →ₗ[k] k)).ofConv = LinearMap.id := by
   ext a
   rw [LinearMap.convOne_def]
@@ -121,6 +139,9 @@ theorem rho_convOne : rho k H (1 : WithConv (H →ₗ[k] k)).ofConv = LinearMap.
     ext x; simp
   rw [this, rho_counit]
 
+/--
+@isnad1 id=eq.0h4v.s10.a58b526559b8 from=translated src=- shape=3d1133cb vocab=ffa97ddc
+-/
 theorem rho_convMul (ξ ξ' : WithConv (H →ₗ[k] k)) :
     rho k H (ξ * ξ').ofConv = rho k H ξ.ofConv ∘ₗ rho k H ξ'.ofConv := by
   ext a
@@ -161,6 +182,9 @@ noncomputable def rhoHom : WithConv (H →ₗ[k] k) →* Module.End k H where
     rw [Module.End.mul_eq_comp]
     exact rho_convMul ξ ξ'
 
+/--
+@isnad1 id=eq.0h4v.s10.98cd41afbd77 from=translated src=- shape=0f4f07ea vocab=77756c08
+-/
 theorem counit_rho (ξ : H →ₗ[k] k) (a : H) : Coalgebra.counit (rho k H ξ a) = ξ a := by
   rw [rho_apply_repr _ (ℛ k a), map_sum]
   simp only [map_smul, smul_eq_mul]
@@ -175,13 +199,22 @@ theorem counit_rho (ξ : H →ₗ[k] k) (a : H) : Coalgebra.counit (rho k H ξ a
 noncomputable def orbit (a : H) : Submodule k H :=
   Submodule.span k (Set.range fun ξ : H →ₗ[k] k => rho k H ξ a)
 
+/--
+@isnad1 id=mem.0h4v.s9.625e0cd6be6d from=translated src=- shape=a3be138b vocab=587adb8b
+-/
 theorem rho_mem_orbit_gen (ξ : H →ₗ[k] k) (a : H) : rho k H ξ a ∈ orbit (k := k) a :=
   Submodule.subset_span ⟨ξ, rfl⟩
 
+/--
+@isnad1 id=mem.0h3v.s7.3fdef6a288a6 from=translated src=- shape=063f27e1 vocab=846867be
+-/
 theorem self_mem_orbit (a : H) : a ∈ orbit (k := k) a := by
   have := rho_mem_orbit_gen (k := k) (Coalgebra.counit) a
   rwa [rho_counit] at this
 
+/--
+@isnad1 id=le.0h5v.s10.d490a31f3f77 from=translated src=- shape=11637a11 vocab=24313062
+-/
 theorem orbit_le_span (a : H) {ι𝓡 : Type*} (𝓡 : Coalgebra.Repr k a ι𝓡) :
     orbit (k := k) a ≤ Submodule.span k (𝓡.left '' (𝓡.index : Set 𝓡.ι)) := by
   refine Submodule.span_le.mpr ?_
@@ -191,6 +224,9 @@ theorem orbit_le_span (a : H) {ι𝓡 : Type*} (𝓡 : Coalgebra.Repr k a ι𝓡
   refine Submodule.sum_mem _ fun i hi => Submodule.smul_mem _ _ (Submodule.subset_span ?_)
   exact ⟨i, hi, rfl⟩
 
+/--
+@isnad1 id=finitedi.0h3v.s8.3af4b283e273 from=translated src=- shape=fdab8ac5 vocab=d03d95ef
+-/
 scoped instance orbit_finiteDimensional (a : H) : FiniteDimensional k (orbit (k := k) a) := by
   let 𝓡 := ℛ k a
   have hfin : (𝓡.left '' (𝓡.index : Set 𝓡.ι)).Finite := (Finset.finite_toSet _).image _
@@ -198,6 +234,9 @@ scoped instance orbit_finiteDimensional (a : H) : FiniteDimensional k (orbit (k 
     FiniteDimensional.span_of_finite k hfin
   exact Submodule.finiteDimensional_of_le (orbit_le_span a 𝓡)
 
+/--
+@isnad1 id=mem.1h5v.s9.a1ca92f3e653 from=translated src=- shape=fc9eccad vocab=587adb8b
+-/
 theorem rho_mem_orbit (ξ : H →ₗ[k] k) {a v : H} (hv : v ∈ orbit (k := k) a) :
     rho k H ξ v ∈ orbit (k := k) a := by
   induction hv using Submodule.span_induction with
@@ -211,6 +250,9 @@ theorem rho_mem_orbit (ξ : H →ₗ[k] k) {a v : H} (hv : v ∈ orbit (k := k) 
   | add x y _ _ hx hy => rw [map_add]; exact Submodule.add_mem _ hx hy
   | smul c x _ hx => rw [map_smul]; exact Submodule.smul_mem _ c hx
 
+/--
+@isnad1 id=ex.2h3v.s10.4d2cd19eb792 from=translated src=- shape=c8823dc7 vocab=c9fbc18e
+-/
 theorem exists_isGroupLikeElem_of_common_eigenvector {w : H} (hw : w ≠ 0)
     (hev : ∀ ξ : H →ₗ[k] k, ∃ c : k, rho k H ξ w = c • w) :
     ∃ b : H, IsGroupLikeElem k b ∧ ∀ ξ : H →ₗ[k] k, rho k H ξ w = ξ b • w := by
@@ -254,6 +296,9 @@ theorem exists_isGroupLikeElem_of_common_eigenvector {w : H} (hw : w ≠ 0)
   simp only [LinearMap.rTensor_tmul, TensorProduct.lid_tmul, hθ, one_smul, map_zero] at h4
   exact (sub_eq_zero.mp h4)
 
+/--
+@isnad1 id=eq.3h4v.s10.dd25664db7d4 from=translated src=- shape=e3eca6fe vocab=ee17cace
+-/
 theorem main [IsAlgClosed k] [Coalgebra.IsCocomm k H]
     (φ : WithConv (H →ₐ[k] k)) (m : ℕ) (hm : (m : k) ≠ 0) (hφ : φ ^ m = 1)
     (h1 : ∀ g : H, IsGroupLikeElem k g → φ g = 1) : φ = 1 := by
@@ -367,6 +412,9 @@ end P2mAffineTorsionUnip
 open scoped _root_.P2MW.S_HopfAlgebra_withConv_algHom_eq_one_of_pow_eq_one_of_forall_isGroupLikeElem.P2mAffineTorsionUnip
 
 open P2mAffineTorsionUnip in
+/--
+@isnad1 id=eq.3h4v.s10.33cdb5978b19 from=translated src=- shape=6df46169 vocab=ee17cace
+-/
 theorem solution
     (k : Type u) [Field k] [IsAlgClosed k] (H : Type v) [CommRing H] [HopfAlgebra k H]
     [Coalgebra.IsCocomm k H]

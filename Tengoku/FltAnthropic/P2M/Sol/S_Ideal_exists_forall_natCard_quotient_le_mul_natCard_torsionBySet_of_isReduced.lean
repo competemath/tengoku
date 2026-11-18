@@ -23,10 +23,16 @@ variable (B : Type*) [CommRing B] [Module.Finite ℤ B] [Module.Free ℤ B]
 abbrev jQ : B →ₐ[ℤ] ℚ ⊗[ℤ] B := Algebra.TensorProduct.includeRight
 
 omit [Module.Finite ℤ B] in
+/--
+@isnad1 id=injectiv.0h1v.s7.d4e6d980b62a from=translated src=- shape=d6e7f8aa vocab=0ec030ba
+-/
 theorem jQ_injective : Function.Injective (jQ B) :=
   Algebra.TensorProduct.includeRight_injective (algebraMap ℤ ℚ).injective_int
 
 omit [Module.Finite ℤ B] [Module.Free ℤ B] in
+/--
+@isnad1 id=isreduce.0h1v.s7.7a57dc07ee94 from=translated src=- shape=21eea9f1 vocab=667922d5
+-/
 theorem isReduced_tensor [IsReduced B] : IsReduced (ℚ ⊗[ℤ] B) := by
   letI : Algebra B (ℚ ⊗[ℤ] B) := Algebra.TensorProduct.rightAlgebra
   haveI : IsLocalization (Algebra.algebraMapSubmonoid B (nonZeroDivisors ℤ)) (ℚ ⊗[ℤ] B) :=
@@ -34,6 +40,9 @@ theorem isReduced_tensor [IsReduced B] : IsReduced (ℚ ⊗[ℤ] B) := by
   exact isReduced_localizationPreserves (Algebra.algebraMapSubmonoid B (nonZeroDivisors ℤ))
     (ℚ ⊗[ℤ] B) (inferInstance : IsReduced B)
 
+/--
+@isnad1 id=ex.0h1v.s7.c68d3689d5c7 from=translated src=- shape=40e12468 vocab=164d4267
+-/
 theorem exists_ratForm [IsReduced B] :
     ∃ l : B →ₗ[ℤ] ℚ, ∀ x : B, (∀ y : B, l (x * y) = 0) → x = 0 := by
   haveI := isReduced_tensor B
@@ -54,6 +63,9 @@ theorem exists_ratForm [IsReduced B] :
     rw [h, mul_zero]
   | add z z' hz hz' => rw [mul_add, map_add, hz, hz', add_zero]
 
+/--
+@isnad1 id=ex.0h2v.s5.a6d25d948ebe from=translated src=- shape=dd288dbf vocab=70d2ec0b
+-/
 theorem exists_int_eq_mul {ι : Type*} [Fintype ι] [DecidableEq ι] (v : ι → ℚ) :
     ∃ (D : ℕ) (z : ι → ℤ), D ≠ 0 ∧ ∀ i, (z i : ℚ) = (D : ℚ) * v i := by
   refine ⟨∏ i, (v i).den, fun i => (∏ j ∈ Finset.univ.erase i, ((v j).den : ℤ)) * (v i).num,
@@ -62,6 +74,9 @@ theorem exists_int_eq_mul {ι : Type*} [Fintype ι] [DecidableEq ι] (v : ι →
   push_cast
   rw [mul_assoc, Rat.den_mul_eq_num]
 
+/--
+@isnad1 id=ex.0h1v.s7.9b619c06577e from=translated src=- shape=483cc06d vocab=4008232d
+-/
 theorem exists_intForm [IsReduced B] :
     ∃ l : B →ₗ[ℤ] ℤ, ∀ x : B, (∀ y : B, l (x * y) = 0) → x = 0 := by
   classical
@@ -94,8 +109,14 @@ variable {B : Type*} [CommRing B] {r : ℕ} (b : Module.Basis (Fin r) ℤ B) (l�
 
 def gram : Matrix (Fin r) (Fin r) ℤ := Matrix.of fun i j => l₀ (b i * b j)
 
+/--
+@isnad1 id=eq.0h6v.s7.174efbca0328 from=translated src=- shape=2f8eda6d vocab=3a45ab17
+-/
 theorem gram_apply (i j : Fin r) : gram b l₀ i j = l₀ (b i * b j) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.4ea63131a07b from=translated src=- shape=efa52c52 vocab=39f9c6fb
+-/
 theorem l₀_mul_basis (x : B) (j : Fin r) :
     l₀ (x * b j) = Matrix.vecMul (⇑(b.repr x)) (gram b l₀) j := by
   conv_lhs => rw [← b.sum_repr x]
@@ -104,6 +125,9 @@ theorem l₀_mul_basis (x : B) (j : Fin r) :
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [smul_mul_assoc, map_zsmul, smul_eq_mul]
 
+/--
+@isnad1 id=eq.0h6v.s9.09dc1679b007 from=translated src=- shape=b93fd695 vocab=0e1d3c75
+-/
 theorem l₀_mul (x y : B) :
     l₀ (x * y) = ∑ j, b.repr y j * Matrix.vecMul (⇑(b.repr x)) (gram b l₀) j := by
   conv_lhs => rw [← b.sum_repr y]
@@ -114,6 +138,9 @@ theorem l₀_mul (x y : B) :
 variable (hl₀ : ∀ x : B, (∀ y : B, l₀ (x * y) = 0) → x = 0)
 include hl₀
 
+/--
+@isnad1 id=ne.1h4v.s7.74775e4cd03b from=translated src=- shape=0caafdb4 vocab=55ccde6c
+-/
 theorem det_gram_ne_zero : (gram b l₀).det ≠ 0 := by
   classical
   intro hdet
@@ -134,6 +161,9 @@ theorem det_gram_ne_zero : (gram b l₀).det ≠ 0 := by
 
 omit hl₀ in
 
+/--
+@isnad1 id=mem.1h6v.s8.f2076ceb6fe3 from=translated src=- shape=d57011e7 vocab=c8f9ef3c
+-/
 theorem natAbs_det_mul_mem (n : ℕ) (z : B) (hz : ∀ y : B, (n : ℤ) ∣ l₀ (z * y)) :
     ((gram b l₀).det.natAbs : B) * z ∈ Ideal.span {(n : B)} := by
   classical
@@ -177,6 +207,9 @@ variable (B : Type*) [CommRing B] [Module.Finite ℤ B] [Module.Free ℤ B]
 
 omit [Module.Free ℤ B] in
 
+/--
+@isnad1 id=finite.1h2v.s6.5a03aff7977a from=translated src=- shape=06621bff vocab=526572b2
+-/
 theorem finite_quotient_span (n : ℕ) (hn : n ≠ 0) : Finite (B ⧸ Ideal.span {(n : B)}) := by
   haveI : AddGroup.FG B := Module.Finite.iff_addGroup_fg.mp inferInstance
   haveI : AddGroup.FG (B ⧸ Ideal.span {(n : B)}) :=
@@ -198,6 +231,9 @@ variable (n : ℕ) (J : Ideal B)
 abbrev N₀ : AddSubgroup B := (Ideal.span {(n : B)}).toAddSubgroup
 
 omit [Module.Finite ℤ B] [Module.Free ℤ B] in
+/--
+@isnad1 id=iff.0h3v.s6.386797ff4a7f from=translated src=- shape=5f789834 vocab=42924d6d
+-/
 theorem mem_N₀ {x : B} : x ∈ N₀ B n ↔ ∃ a : B, a * n = x := by
   change x ∈ Ideal.span {(n : B)} ↔ _
   exact Ideal.mem_span_singleton'
@@ -233,15 +269,27 @@ def E : AddSubgroup B where
     exact Submodule.neg_mem _ hx
 
 omit [Module.Finite ℤ B] [Module.Free ℤ B] in
+/--
+@isnad1 id=iff.0h5v.s7.83a89bbb9de1 from=translated src=- shape=82eed258 vocab=b5601b2d
+-/
 theorem mem_P {x : B} : x ∈ P B l₀ n J ↔ ∀ j ∈ J, (n : ℤ) ∣ l₀ (x * j) := Iff.rfl
 
 omit [Module.Finite ℤ B] [Module.Free ℤ B] in
+/--
+@isnad1 id=iff.0h4v.s7.d5bcabce73b3 from=translated src=- shape=5d334f59 vocab=b2fc4441
+-/
 theorem mem_Q {x : B} : x ∈ Q B n J ↔ ∀ j ∈ J, j * x ∈ Ideal.span {(n : B)} := Iff.rfl
 
 omit [Module.Finite ℤ B] [Module.Free ℤ B] in
+/--
+@isnad1 id=iff.0h4v.s7.915135264bc7 from=translated src=- shape=33532862 vocab=207188e9
+-/
 theorem mem_E {x : B} : x ∈ E B e n ↔ (e : B) * x ∈ Ideal.span {(n : B)} := Iff.rfl
 
 omit [Module.Finite ℤ B] [Module.Free ℤ B] in
+/--
+@isnad1 id=le.0h4v.s6.c5eccb4067ae from=translated src=- shape=f5414c02 vocab=2fffbc03
+-/
 theorem N₀_le_P : N₀ B n ≤ P B l₀ n J := by
   intro x hx
   rw [mem_P]
@@ -253,12 +301,18 @@ theorem N₀_le_P : N₀ B n ≤ P B l₀ n J := by
   rw [this, map_zsmul, smul_eq_mul]
 
 omit [Module.Finite ℤ B] [Module.Free ℤ B] in
+/--
+@isnad1 id=le.0h3v.s5.fa26814e05ec from=translated src=- shape=4566abb7 vocab=946e04bf
+-/
 theorem N₀_le_E : N₀ B n ≤ E B e n := by
   intro x hx
   rw [mem_E]
   exact Ideal.mul_mem_left _ _ hx
 
 omit [Module.Finite ℤ B] [Module.Free ℤ B] in
+/--
+@isnad1 id=le.1h3v.s7.2aa5e6af764e from=translated src=- shape=2e015869 vocab=2fafc566
+-/
 theorem N₀_le_J (hnJ : (n : B) ∈ J) : N₀ B n ≤ J.toAddSubgroup := by
   intro x hx
   obtain ⟨a, rfl⟩ := (mem_N₀ B n).mp hx
@@ -268,6 +322,9 @@ variable (hn : n ≠ 0)
 include hn
 
 omit [Module.Free ℤ B] in
+/--
+@isnad1 id=ne.1h2v.s5.b063324a8e3d from=translated src=- shape=5af49247 vocab=5db984e1
+-/
 theorem index_N₀_ne_zero : (N₀ B n).index ≠ 0 := by
   haveI := finite_quotient_span B n hn
   have : (N₀ B n).index = Nat.card (B ⧸ Ideal.span {(n : B)}) := rfl
@@ -275,6 +332,9 @@ theorem index_N₀_ne_zero : (N₀ B n).index ≠ 0 := by
   exact Nat.card_pos.ne'
 
 omit [Module.Free ℤ B] in
+/--
+@isnad1 id=ne.2h3v.s6.d4af24b55470 from=translated src=- shape=f74f0777 vocab=68cba516
+-/
 theorem relIndex_N₀_ne_zero {K : AddSubgroup B} (hK : N₀ B n ≤ K) : (N₀ B n).relIndex K ≠ 0 := by
   intro h
   apply index_N₀_ne_zero B n hn
@@ -291,6 +351,9 @@ def toCirc : ℤ →+ AddCircle (1 : ℚ) where
     rfl
 
 omit [Module.Finite ℤ B] [Module.Free ℤ B] in
+/--
+@isnad1 id=iff.1h2v.s8.33dbcad0f03a from=translated src=- shape=58a74859 vocab=258aeb68
+-/
 theorem toCirc_eq_zero_iff (k : ℤ) : toCirc n k = 0 ↔ (n : ℤ) ∣ k := by
   change (((k : ℚ) / n : ℚ) : AddCircle (1 : ℚ)) = 0 ↔ _
   rw [AddCircle.coe_eq_zero_iff]
@@ -319,10 +382,16 @@ def pairJ : B →+ (↥J.toAddSubgroup →+ AddCircle (1 : ℚ)) where
   map_add' x y := by ext j; simp [add_mul]
 
 omit [Module.Finite ℤ B] [Module.Free ℤ B] hn in
+/--
+@isnad1 id=eq.0h6v.s12.23d5370c0606 from=translated src=- shape=485a3495 vocab=6acf87a8
+-/
 theorem pairJ_apply (x : B) (j : ↥J.toAddSubgroup) :
     pairJ B l₀ n J x j = toCirc n (l₀ (x * j)) := rfl
 
 omit [Module.Finite ℤ B] [Module.Free ℤ B] in
+/--
+@isnad1 id=eq.1h4v.s11.e7ac4c5e67b9 from=translated src=- shape=f2df08a3 vocab=37f2b913
+-/
 theorem ker_pairJ : (pairJ B l₀ n J).ker = P B l₀ n J := by
   ext x
   rw [AddMonoidHom.mem_ker, mem_P]
@@ -346,6 +415,9 @@ def H₀ : AddSubgroup (↥J.toAddSubgroup →+ AddCircle (1 : ℚ)) where
   neg_mem' := fun {f} hf j hj => by rw [AddMonoidHom.neg_apply, hf j hj, neg_zero]
 
 omit [Module.Finite ℤ B] [Module.Free ℤ B] in
+/--
+@isnad1 id=le.1h4v.s12.af8661dd9c06 from=translated src=- shape=1206a9c3 vocab=31472572
+-/
 theorem range_pairJ_le : (pairJ B l₀ n J).range ≤ H₀ B n J := by
   rintro _ ⟨x, rfl⟩ j hj
   rw [pairJ_apply, toCirc_eq_zero_iff n hn]
@@ -367,6 +439,9 @@ def descend (f : ↥(H₀ B n J)) : CharacterModule (↥J.toAddSubgroup ⧸ Jn B
     (fun j hj => f.2 j (AddSubgroup.mem_addSubgroupOf.mp hj))
 
 omit [Module.Finite ℤ B] [Module.Free ℤ B] hn in
+/--
+@isnad1 id=injectiv.0h3v.s12.6d0a41d9bb36 from=translated src=- shape=f0553e91 vocab=438bfaf5
+-/
 theorem descend_injective : Function.Injective (descend B n J) := by
   intro f g h
   apply Subtype.ext
@@ -379,12 +454,18 @@ variable (hnJ : (n : B) ∈ J)
 include hnJ
 
 omit [Module.Free ℤ B] in
+/--
+@isnad1 id=finite.2h3v.s8.d78acb80f711 from=translated src=- shape=9e6daf6c vocab=fa141dc3
+-/
 theorem finite_JmodN : Finite (↥J.toAddSubgroup ⧸ Jn B n J) := by
   have h : (Jn B n J).index ≠ 0 := relIndex_N₀_ne_zero B n hn (N₀_le_J B n J hnJ)
   haveI : (Jn B n J).FiniteIndex := ⟨h⟩
   exact AddSubgroup.finite_quotient_of_finiteIndex
 
 omit [Module.Free ℤ B] in
+/--
+@isnad1 id=finite.2h3v.s8.a67e6546af8e from=translated src=- shape=b2b47165 vocab=41361ec2
+-/
 theorem finite_char : Finite (CharacterModule (↥J.toAddSubgroup ⧸ Jn B n J)) := by
   haveI := finite_JmodN B n J hn hnJ
   apply Nat.finite_of_card_ne_zero
@@ -393,6 +474,9 @@ theorem finite_char : Finite (CharacterModule (↥J.toAddSubgroup ⧸ Jn B n J))
 
 omit [Module.Free ℤ B] in
 
+/--
+@isnad1 id=le.2h4v.s7.fa24951107e0 from=translated src=- shape=c5f0e1f3 vocab=261b533c
+-/
 theorem index_J_le : J.toAddSubgroup.index ≤ (N₀ B n).relIndex (P B l₀ n J) := by
   haveI := finite_char B n J hn hnJ
   haveI := finite_JmodN B n J hn hnJ
@@ -428,6 +512,9 @@ abbrev mkN : B →+ B ⧸ Ideal.span {(n : B)} :=
   (Ideal.Quotient.mk (Ideal.span {(n : B)})).toAddMonoidHom
 
 omit [Module.Finite ℤ B] [Module.Free ℤ B] hn in
+/--
+@isnad1 id=eq.0h2v.s7.3aedf70bb8e9 from=translated src=- shape=7ea46bd9 vocab=4e5b7aa8
+-/
 theorem ker_mkN : (mkN B n).ker = N₀ B n := by
   ext x
   rw [AddMonoidHom.mem_ker]
@@ -439,9 +526,15 @@ abbrev ψ : ↥(P B l₀ n J) →+ B ⧸ Ideal.span {(n : B)} :=
   (mkN B n).comp ((AddMonoidHom.mulLeft (e : B)).comp (P B l₀ n J).subtype)
 
 omit [Module.Finite ℤ B] [Module.Free ℤ B] hn in
+/--
+@isnad1 id=eq.0h6v.s10.774e62c0f721 from=translated src=- shape=271be674 vocab=1b3d56a2
+-/
 theorem ψ_apply (x : ↥(P B l₀ n J)) : ψ B l₀ e n J x = mkN B n ((e : B) * x) := rfl
 
 omit [Module.Finite ℤ B] [Module.Free ℤ B] hn in
+/--
+@isnad1 id=eq.0h5v.s8.a070f9ca826a from=translated src=- shape=32348c10 vocab=2ee8ef58
+-/
 theorem ker_ψ : (ψ B l₀ e n J).ker = ((E B e n) ⊓ P B l₀ n J).addSubgroupOf (P B l₀ n J) := by
   ext x
   rw [AddMonoidHom.mem_ker, ψ_apply, AddSubgroup.mem_addSubgroupOf, AddSubgroup.mem_inf, mem_E]
@@ -451,6 +544,9 @@ theorem ker_ψ : (ψ B l₀ e n J).ker = ((E B e n) ⊓ P B l₀ n J).addSubgrou
 
 include hkey in
 omit [Module.Finite ℤ B] [Module.Free ℤ B] hn in
+/--
+@isnad1 id=le.1h5v.s10.0a4da5694cef from=translated src=- shape=77665111 vocab=916c9ede
+-/
 theorem range_ψ_le : (ψ B l₀ e n J).range ≤ (Q B n J).map (mkN B n) := by
   rintro _ ⟨x, rfl⟩
   refine ⟨(e : B) * x, ?_, rfl⟩
@@ -467,6 +563,9 @@ theorem range_ψ_le : (ψ B l₀ e n J).range ≤ (Q B n J).map (mkN B n) := by
 
 include hkey in
 omit [Module.Free ℤ B] in
+/--
+@isnad1 id=le.2h5v.s8.3caf71e95994 from=translated src=- shape=58947c10 vocab=74c1cd2e
+-/
 theorem relIndex_P_le :
     (N₀ B n).relIndex (P B l₀ n J) ≤ (N₀ B n).relIndex (E B e n) * (N₀ B n).relIndex (Q B n J) := by
   haveI := finite_quotient_span B n hn
@@ -507,13 +606,22 @@ def θ : ↥(E B e n) →+ (ℚ ⊗[ℤ] B) ⧸ LQ B where
     simp only [AddSubgroup.coe_add, map_add, smul_add]
 
 omit [Module.Finite ℤ B] [Module.Free ℤ B] hn in
+/--
+@isnad1 id=eq.0h4v.s12.ae87604e6dd8 from=translated src=- shape=a81507e9 vocab=e6557097
+-/
 theorem θ_apply (x : ↥(E B e n)) : θ B e n x = (LQ B).mkQ (((n : ℚ)⁻¹) • jQ B x) := rfl
 
 omit [Module.Finite ℤ B] [Module.Free ℤ B] hn in
+/--
+@isnad1 id=eq.0h3v.s9.87b6adf1a47e from=translated src=- shape=5dd1aa15 vocab=5c874476
+-/
 theorem jQ_mul_natCast (a : B) : jQ B (a * (n : B)) = (n : ℚ) • jQ B a := by
   rw [map_mul, map_natCast, mul_comm, ← nsmul_eq_mul, Nat.cast_smul_eq_nsmul]
 
 omit [Module.Finite ℤ B] in
+/--
+@isnad1 id=le.1h3v.s9.9c562bf65c80 from=translated src=- shape=738e5a5a vocab=c0993ab2
+-/
 theorem ker_θ_le : (θ B e n).ker ≤ (N₀ B n).addSubgroupOf (E B e n) := by
   intro x hx
   rw [AddMonoidHom.mem_ker, θ_apply, Submodule.mkQ_apply, Submodule.Quotient.mk_eq_zero] at hx
@@ -525,6 +633,9 @@ theorem ker_θ_le : (θ B e n).ker ≤ (N₀ B n).addSubgroupOf (E B e n) := by
   rw [jQ_mul_natCast, ha, smul_inv_smul₀ hn']
 
 omit [Module.Finite ℤ B] [Module.Free ℤ B] in
+/--
+@isnad1 id=le.1h3v.s11.e2076beb77c7 from=translated src=- shape=2496dcdb vocab=ba19cf2d
+-/
 theorem range_θ_le :
     (θ B e n).range ≤ (Submodule.torsionBy ℤ ((ℚ ⊗[ℤ] B) ⧸ LQ B) (e : ℕ)).toAddSubgroup := by
   rintro _ ⟨x, rfl⟩
@@ -541,6 +652,9 @@ theorem range_θ_le :
   change jQ B a = _
   rw [h1, ← ha, jQ_mul_natCast, inv_smul_smul₀ hn']
 
+/--
+@isnad1 id=le.2h3v.s10.6ab6b7a5e6a5 from=translated src=- shape=ea76ca07 vocab=edffa0f8
+-/
 theorem relIndex_E_le (he : e ≠ 0) :
     (N₀ B n).relIndex (E B e n) ≤ e ^ Module.finrank ℤ ↥(LQ B) := by
   have hcard := Submodule.natCard_torsionBy_quotient_eq_pow_finrank (K := ℚ) (LQ B) e he
@@ -568,6 +682,9 @@ theorem relIndex_E_le (he : e ≠ 0) :
     _ = e ^ Module.finrank ℤ ↥(LQ B) := hcard
 
 omit [Module.Finite ℤ B] [Module.Free ℤ B] hn in
+/--
+@isnad1 id=eq.0h3v.s9.902d89e04181 from=translated src=- shape=976e1c0e vocab=f0527a0d
+-/
 theorem relIndex_Q_eq :
     (N₀ B n).relIndex (Q B n J) =
       Nat.card ↥(Submodule.torsionBySet B (B ⧸ Ideal.span {(n : B)}) (J : Set B)) := by
@@ -591,6 +708,9 @@ theorem relIndex_Q_eq :
 
 end Count
 
+/--
+@isnad1 id=ex.0h1v.s9.7f7ec2a9bf0d from=translated src=- shape=482f415e vocab=fe83e965
+-/
 theorem main (B : Type*) [CommRing B] [IsReduced B] [Module.Finite ℤ B] [Module.Free ℤ B] :
     ∃ c : ℕ, 0 < c ∧ ∀ (n : ℕ), n ≠ 0 → ∀ J : Ideal B, (n : B) ∈ J →
       Nat.card (B ⧸ J) ≤
@@ -620,6 +740,9 @@ open scoped _root_.P2MW.S_Ideal_exists_forall_natCard_quotient_le_mul_natCard_to
 end
 open scoped _root_.P2MW.S_Ideal_exists_forall_natCard_quotient_le_mul_natCard_torsionBySet_of_isReduced.P2MGorDefect
 
+/--
+@isnad1 id=ex.0h1v.s9.7f7ec2a9bf0d from=translated src=- shape=482f415e vocab=fe83e965
+-/
 theorem solution
     (B : Type*) [CommRing B] [IsReduced B] [Module.Finite ℤ B] [Module.Free ℤ B] :
     ∃ c : ℕ, 0 < c ∧ ∀ (n : ℕ), n ≠ 0 → ∀ J : Ideal B, (n : B) ∈ J →

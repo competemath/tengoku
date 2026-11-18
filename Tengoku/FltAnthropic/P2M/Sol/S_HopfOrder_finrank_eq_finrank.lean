@@ -7,6 +7,9 @@ namespace P2MW.S_HopfOrder_finrank_eq_finrank
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=eq.2h4v.s9.282aba335da5 from=translated src=- shape=9f33c1e0 vocab=f370a0f4
+-/
 theorem solution
     {R : Type*} [CommRing R] [IsDomain R] [IsPrincipalIdealRing R]
     {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]

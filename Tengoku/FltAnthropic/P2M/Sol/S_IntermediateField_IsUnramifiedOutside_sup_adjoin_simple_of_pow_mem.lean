@@ -10,6 +10,9 @@ namespace P2MW.S_IntermediateField_IsUnramifiedOutside_sup_adjoin_simple_of_pow_
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=isalgebr.0h0v.s4.92f995461263 from=translated src=- shape=3905abf2 vocab=c7f7e443
+-/
 local instance isAlgebraicQbar_kf : Algebra.IsAlgebraic ℚ (AlgebraicClosure ℚ) := AlgebraicClosure.isAlgebraic ℚ
 
 namespace P2MKfield
@@ -20,11 +23,17 @@ open scoped Pointwise
 local notation "ℚb" => (AlgebraicClosure ℚ)
 local notation "Γ" => (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ)
 
+/--
+@isnad1 id=lt.2h3v.s9.aff8a4a5d092 from=translated src=- shape=fd7f633b vocab=6f70aa79
+-/
 lemma val_mul_lt_one (A : ValuationSubring ℚb) {x y : ℚb} (hx : A.valuation x ≤ 1) (hy : A.valuation y < 1) :
     A.valuation (x * y) < 1 := by
   rw [map_mul]
   exact (mul_le_of_le_one_left' hx).trans_lt hy
 
+/--
+@isnad1 id=not.4h3v.s5.521076dc67d2 from=translated src=- shape=0bd09633 vocab=4b51afe1
+-/
 lemma not_liesOverPrime_of_ne (A : ValuationSubring ℚb) {q q' : ℕ} (hq : q.Prime) (hq' : q'.Prime) (hne : q ≠ q')
     (h : A.LiesOverPrime q) : ¬ A.LiesOverPrime q' := by
   intro h'
@@ -36,6 +45,9 @@ lemma not_liesOverPrime_of_ne (A : ValuationSubring ℚb) {q q' : ℕ} (hq : q.P
   rw [hab', map_one] at hlt
   exact lt_irrefl _ hlt
 
+/--
+@isnad1 id=lt.2h3v.s10.d76f57c5c44a from=translated src=- shape=fb576714 vocab=9daca162
+-/
 lemma val_sub_lt_one_of_mem_inertia (A : ValuationSubring ℚb) {σ : Γ} (hσ : σ ∈ A.inertiaSubgroupIn ℚ) {a : ℚb}
     (ha : a ∈ A) : A.valuation (σ a - a) < 1 := by
   obtain ⟨τ, hτ, rfl⟩ := Subgroup.mem_map.1 hσ
@@ -46,6 +58,9 @@ lemma val_sub_lt_one_of_mem_inertia (A : ValuationSubring ℚb) {σ : Γ} (hσ :
   have h1' : τ • (⟨a, ha⟩ : A) - ⟨a, ha⟩ ∈ IsLocalRing.maximalIdeal A := Ideal.Quotient.eq.1 h1
   exact (A.coe_mem_nonunits_iff).2 h1'
 
+/--
+@isnad1 id=mem.2h3v.s9.32316ea2495f from=translated src=- shape=e9faf60d vocab=1ca53eb9
+-/
 lemma smul_mem_of_mem_inertia (A : ValuationSubring ℚb) {σ : Γ} (hσ : σ ∈ A.inertiaSubgroupIn ℚ) {a : ℚb} (ha : a ∈ A) :
     σ a ∈ A := by
   obtain ⟨τ, _, rfl⟩ := Subgroup.mem_map.1 hσ
@@ -54,6 +69,9 @@ lemma smul_mem_of_mem_inertia (A : ValuationSubring ℚb) {σ : Γ} (hσ : σ �
   rw [hτA] at this
   exact this
 
+/--
+@isnad1 id=mem.1h2v.s9.01c57a41bceb from=translated src=- shape=1dc54419 vocab=afbeeac8
+-/
 lemma mem_fixingSubgroup_adjoin_of_apply_eq {σ : Γ} {α : ℚb} (h : σ α = α) :
     σ ∈ (IntermediateField.adjoin ℚ {α}).fixingSubgroup := by
   rw [IntermediateField.mem_fixingSubgroup_iff]
@@ -69,6 +87,9 @@ lemma mem_fixingSubgroup_adjoin_of_apply_eq {σ : Γ} {α : ℚb} (h : σ α = �
 end P2MKfield
 
 open P2MKfield in
+/--
+@isnad1 id=isunrami.5h4v.s9.5613c38d34c3 from=translated src=- shape=58eecd64 vocab=f9520813
+-/
 theorem solution
     (S : Finset Nat.Primes) {p : ℕ} (hp : p.Prime) (hpS : (⟨p, hp⟩ : Nat.Primes) ∈ S)
     {F : IntermediateField ℚ (AlgebraicClosure ℚ)} (hF : F.IsUnramifiedOutside S)

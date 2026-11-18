@@ -11,6 +11,9 @@ open scoped TensorProduct
 
 universe u v w
 
+/--
+@isnad1 id=faithful.3h3v.s12.62edaec858f0 from=translated src=- shape=3f0300d4 vocab=5c12bf4a
+-/
 theorem HopfAlgebra.faithfullyFlat_subalgebra_of_isReduced_of_fg_of_isAlgClosed
     {k : Type u} [Field k] [IsAlgClosed k] {H : Type v} [CommRing H] [HopfAlgebra k H] [Algebra.FiniteType k H]
     (K : Subalgebra k H)

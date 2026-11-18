@@ -49,33 +49,57 @@ variable {G : Type*} [Group G] {L : Type*} [AddCommGroup L] [Module ℂ L]
 
 namespace Setup
 
+/--
+@isnad1 id=eq.2h6v.s7.65e1db7ebd96 from=translated src=- shape=2802fc74 vocab=693dcbf3
+-/
 theorem ι_add {f g : L} (hf : f ∈ X.S) (hg : g ∈ X.S) : X.ι (f + g) = X.ι f + X.ι g := by
   simpa using X.hι 1 1 f g hf hg
 
+/--
+@isnad1 id=eq.2h6v.s7.e3d42d5fb5a0 from=translated src=- shape=2802fc74 vocab=71e4e07f
+-/
 theorem ι_sub {f g : L} (hf : f ∈ X.S) (hg : g ∈ X.S) : X.ι (f - g) = X.ι f - X.ι g := by
   have h := X.hι 1 (-1) f g hf hg
   simp only [one_smul, neg_smul, one_smul] at h
   rw [sub_eq_add_neg, h, sub_eq_add_neg]
 
+/--
+@isnad1 id=eq.1h6v.s7.e918e7f062fc from=translated src=- shape=285fad14 vocab=0124a29e
+-/
 theorem ι_smul (a : ℂ) {f : L} (hf : f ∈ X.S) : X.ι (a • f) = a • X.ι f := by
   have h := X.hι a 0 f f hf hf
   simpa using h
 
+/--
+@isnad1 id=eq.0h4v.s6.f792d5ada4ee from=translated src=- shape=34afde3f vocab=d26a818a
+-/
 theorem ι_zero : X.ι 0 = 0 := by
   have h := X.hι 0 0 0 0 X.S.zero_mem X.S.zero_mem
   simpa using h
 
+/--
+@isnad1 id=eq.2h6v.s7.901f79aa5d1d from=translated src=- shape=50b95cf6 vocab=644e614f
+-/
 theorem E_sub {f g : L} (hf : f ∈ X.S) (hg : g ∈ X.S) : X.E (f - g) = X.E f - X.E g := by
   have h := X.hE 1 (-1) f g hf hg
   simp only [one_smul, neg_smul, one_smul] at h
   rw [sub_eq_add_neg, h, sub_eq_add_neg]
 
+/--
+@isnad1 id=eq.0h7v.s9.80761ec5a86d from=translated src=- shape=cbbb89a9 vocab=f7732a32
+-/
 theorem ρ_mul_apply (x y : G) (f : L) : X.ρ (x * y) f = X.ρ x (X.ρ y f) := by
   rw [map_mul]; rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.6d837f82d337 from=translated src=- shape=baee8af6 vocab=5d836506
+-/
 theorem ρ_inv_apply (x : G) (f : L) : X.ρ x (X.ρ x⁻¹ f) = f := by
   rw [← ρ_mul_apply, mul_inv_cancel, map_one]; rfl
 
+/--
+@isnad1 id=eq.1h6v.s8.dbd2cefb1d56 from=translated src=- shape=818cbe1a vocab=0be865f2
+-/
 theorem norm_ι_ρ (x : G) {f : L} (hf : f ∈ X.S) :
     ‖X.ι (X.ρ x f)‖ = Real.sqrt (X.c x) * ‖X.ι f‖ := by
   have h := X.hρ x f hf
@@ -83,6 +107,9 @@ theorem norm_ι_ρ (x : G) {f : L} (hf : f ∈ X.S) :
     rw [Real.sqrt_sq (norm_nonneg _)]
   rw [h1, h, Real.sqrt_mul (X.hc x).le, Real.sqrt_sq (norm_nonneg _)]
 
+/--
+@isnad1 id=eq.2h7v.s9.923c535eb6fe from=translated src=- shape=5d0c0eda vocab=f08b10a1
+-/
 theorem inner_ι_ρ (x : G) {f g : L} (hf : f ∈ X.S) (hg : g ∈ X.S) :
     ⟪X.ι (X.ρ x f), X.ι (X.ρ x g)⟫_ℂ = (X.c x : ℂ) * ⟪X.ι f, X.ι g⟫_ℂ := by
   have key : ∀ (a : ℂ), ‖X.ι (X.ρ x f) + a • X.ι (X.ρ x g)‖ ^ 2
@@ -118,13 +145,22 @@ theorem inner_ι_ρ (x : G) {f g : L} (hf : f ∈ X.S) (hg : g ∈ X.S) :
 
 def V (ψ : L) : Submodule ℂ L := Submodule.span ℂ (Set.range fun x : G => X.ρ x ψ)
 
+/--
+@isnad1 id=mem.0h6v.s8.1b44ba50b385 from=translated src=- shape=0ab07fb6 vocab=e00cd083
+-/
 theorem ρ_mem_V (x : G) (ψ : L) : X.ρ x ψ ∈ X.V ψ := Submodule.subset_span ⟨x, rfl⟩
 
+/--
+@isnad1 id=le.1h5v.s7.cec88104bae3 from=translated src=- shape=9005513b vocab=0b4f2728
+-/
 theorem V_le_S {ψ : L} (hψ : ψ ∈ X.S) : X.V ψ ≤ X.S := by
   refine Submodule.span_le.mpr ?_
   rintro _ ⟨x, rfl⟩
   exact X.hS x ψ hψ
 
+/--
+@isnad1 id=mem.1h7v.s8.7af7b6fbdc64 from=translated src=- shape=9b29f724 vocab=e00cd083
+-/
 theorem ρ_mem_V_of_mem (y : G) {ψ v : L} (hv : v ∈ X.V ψ) : X.ρ y v ∈ X.V ψ := by
   induction hv using Submodule.span_induction with
   | mem w hw =>
@@ -137,8 +173,14 @@ theorem ρ_mem_V_of_mem (y : G) {ψ v : L} (hv : v ∈ X.V ψ) : X.ρ y v ∈ X.
 
 def Approx (ψ : L) : Prop := ∀ ε : ℝ, 0 < ε → ∃ v ∈ X.V X.φ, ‖X.ι ψ - X.ι v‖ < ε
 
+/--
+@isnad1 id=approx.0h4v.s5.aeb0ce4993c8 from=translated src=- shape=3f80a6ed vocab=a56d9c47
+-/
 theorem approx_φ' : X.Approx X.φ' := X.hspan
 
+/--
+@isnad1 id=approx.2h6v.s8.d69348b3d384 from=translated src=- shape=4f406d6c vocab=4cd90ad2
+-/
 theorem approx_ρ (y : G) {ψ : L} (hψ : ψ ∈ X.S) (h : X.Approx ψ) : X.Approx (X.ρ y ψ) := by
   intro ε hε
   have hs : 0 < Real.sqrt (X.c y) := Real.sqrt_pos.mpr (X.hc y)
@@ -149,6 +191,9 @@ theorem approx_ρ (y : G) {ψ : L} (hψ : ψ ∈ X.S) (h : X.Approx ψ) : X.Appr
     X.ι_sub hψ hvS]
   rwa [lt_div_iff₀ hs, mul_comm] at hlt
 
+/--
+@isnad1 id=approx.4h6v.s7.90e18b692de6 from=translated src=- shape=2936db5a vocab=e5a0f45e
+-/
 theorem approx_add {ψ₁ ψ₂ : L} (h₁S : ψ₁ ∈ X.S) (h₂S : ψ₂ ∈ X.S) (h₁ : X.Approx ψ₁)
     (h₂ : X.Approx ψ₂) : X.Approx (ψ₁ + ψ₂) := by
   intro ε hε
@@ -164,6 +209,9 @@ theorem approx_add {ψ₁ ψ₂ : L} (h₁S : ψ₁ ∈ X.S) (h₂S : ψ₂ ∈ 
     _ < ε / 2 + ε / 2 := add_lt_add hlt₁ hlt₂
     _ = ε := by ring
 
+/--
+@isnad1 id=approx.2h6v.s7.b499bb7c4f44 from=translated src=- shape=5f03da99 vocab=73bcea85
+-/
 theorem approx_smul (a : ℂ) {ψ : L} (hψS : ψ ∈ X.S) (h : X.Approx ψ) : X.Approx (a • ψ) := by
   intro ε hε
   have hpos : 0 < ‖a‖ + 1 := by positivity
@@ -176,15 +224,24 @@ theorem approx_smul (a : ℂ) {ψ : L} (hψS : ψ ∈ X.S) (h : X.Approx ψ) : X
     _ < (‖a‖ + 1) * (ε / (‖a‖ + 1)) := mul_lt_mul_of_pos_left hlt hpos
     _ = ε := mul_div_cancel₀ ε hpos.ne'
 
+/--
+@isnad1 id=approx.0h4v.s6.28f10e618cf5 from=translated src=- shape=08079866 vocab=d5488544
+-/
 theorem approx_zero : X.Approx 0 := by
   intro ε hε
   exact ⟨0, Submodule.zero_mem _, by simpa [X.ι_zero] using hε⟩
 
+/--
+@isnad1 id=approx.4h6v.s7.f514eb969e5a from=translated src=- shape=2936db5a vocab=d7e33b10
+-/
 theorem approx_sub {ψ₁ ψ₂ : L} (h₁S : ψ₁ ∈ X.S) (h₂S : ψ₂ ∈ X.S) (h₁ : X.Approx ψ₁)
     (h₂ : X.Approx ψ₂) : X.Approx (ψ₁ - ψ₂) := by
   rw [sub_eq_add_neg, ← neg_one_smul ℂ ψ₂]
   exact X.approx_add h₁S (X.S.smul_mem _ h₂S) h₁ (X.approx_smul _ h₂S h₂)
 
+/--
+@isnad1 id=approx.1h5v.s6.4987789cc660 from=translated src=- shape=df8aad29 vocab=d049584e
+-/
 theorem approx_of_mem_V' {w : L} (hw : w ∈ X.V X.φ') : X.Approx w := by
   induction hw using Submodule.span_induction with
   | mem u hu =>
@@ -195,49 +252,94 @@ theorem approx_of_mem_V' {w : L} (hw : w ∈ X.V X.φ') : X.Approx w := by
     exact X.approx_add (X.V_le_S X.hφ' hu) (X.V_le_S X.hφ' hu') ihu ihu'
   | smul a u hu ihu => exact X.approx_smul a (X.V_le_S X.hφ' hu) ihu
 
+/--
+@isnad1 id=approx.1h5v.s6.501efc55694b from=translated src=- shape=e2c90d6f vocab=841238c2
+-/
 theorem approx_of_mem_W {w : L} (hw : w ∈ X.W) : X.Approx w := X.approx_of_mem_V' (X.hWφ' hw)
 
 def d (w : X.W) : ℝ := ‖X.ι X.φ' - X.ι (w : L)‖
 
 def δ : ℝ := ⨅ w : X.W, X.d w
 
+/--
+@isnad1 id=le.0h5v.s6.4cfadeefc453 from=translated src=- shape=8afc2367 vocab=1e90f732
+-/
 theorem d_nonneg (w : X.W) : 0 ≤ X.d w := norm_nonneg _
 
+/--
+@isnad1 id=bddbelow.0h4v.s6.263d57bbf81d from=translated src=- shape=0e429959 vocab=f90976c3
+-/
 theorem bddBelow_d : BddBelow (Set.range X.d) := ⟨0, by rintro _ ⟨w, rfl⟩; exact X.d_nonneg w⟩
 
 scoped instance : Nonempty X.W := ⟨0⟩
 
+/--
+@isnad1 id=le.0h5v.s6.945a96079ded from=translated src=- shape=ac1965a1 vocab=d51e7a09
+-/
 theorem δ_le (w : X.W) : X.δ ≤ X.d w := ciInf_le X.bddBelow_d w
 
+/--
+@isnad1 id=le.0h4v.s5.f51321dc1b33 from=translated src=- shape=cc028c5d vocab=791481ee
+-/
 theorem δ_nonneg : 0 ≤ X.δ := le_ciInf fun w => X.d_nonneg w
 
+/--
+@isnad1 id=ex.1h5v.s7.09cdc9d96d32 from=translated src=- shape=15cf9396 vocab=a728e149
+-/
 theorem exists_d_lt (η : ℝ) (hη : 0 < η) : ∃ w : X.W, X.d w < X.δ + η :=
   exists_lt_of_ciInf_lt (by show iInf X.d < iInf X.d + η; linarith)
 
+/--
+@isnad1 id=le.1h5v.s7.b8e83ee4da71 from=translated src=- shape=1ee6feec vocab=5903f733
+-/
 theorem δ_le_of_mem {w : L} (hw : w ∈ X.W) : X.δ ≤ ‖X.ι X.φ' - X.ι w‖ := X.δ_le ⟨w, hw⟩
 
 def wseq (n : ℕ) : X.W := (X.exists_d_lt (1 / ((n : ℝ) + 1)) (by positivity)).choose
 
+/--
+@isnad1 id=lt.0h5v.s6.25ecc742040e from=translated src=- shape=7b48ff3c vocab=25f36aa1
+-/
 theorem d_wseq_lt (n : ℕ) : X.d (X.wseq n) < X.δ + 1 / ((n : ℝ) + 1) :=
   (X.exists_d_lt (1 / ((n : ℝ) + 1)) (by positivity)).choose_spec
 
 def ψ (n : ℕ) : L := X.φ' - (X.wseq n : L)
 
+/--
+@isnad1 id=mem.0h5v.s7.abb687f9e33d from=translated src=- shape=3589c9f9 vocab=be5e07d6
+-/
 theorem wseq_mem (n : ℕ) : (X.wseq n : L) ∈ X.W := (X.wseq n).2
 
+/--
+@isnad1 id=mem.0h5v.s7.0c6c13c07774 from=translated src=- shape=34b55dbe vocab=9c25c1d4
+-/
 theorem wseq_memS (n : ℕ) : (X.wseq n : L) ∈ X.S := X.hWS (X.wseq_mem n)
 
+/--
+@isnad1 id=mem.0h5v.s6.45b2631a3b8d from=translated src=- shape=23c7dede vocab=cab52bce
+-/
 theorem ψ_memS (n : ℕ) : X.ψ n ∈ X.S := X.S.sub_mem X.hφ' (X.wseq_memS n)
 
+/--
+@isnad1 id=eq.0h5v.s7.006be349c71b from=translated src=- shape=f485019d vocab=9dae946d
+-/
 theorem ι_ψ (n : ℕ) : X.ι (X.ψ n) = X.ι X.φ' - X.ι (X.wseq n : L) :=
   X.ι_sub X.hφ' (X.wseq_memS n)
 
+/--
+@isnad1 id=eq.0h5v.s6.2fda7129a60d from=translated src=- shape=54988262 vocab=4576a2c1
+-/
 theorem norm_ι_ψ (n : ℕ) : ‖X.ι (X.ψ n)‖ = X.d (X.wseq n) := by rw [X.ι_ψ]; rfl
 
 def K₀ : ℝ := 2 * X.δ + 1
 
+/--
+@isnad1 id=lt.0h4v.s5.bd60a964863e from=translated src=- shape=cc028c5d vocab=20d40876
+-/
 theorem K₀_pos : 0 < X.K₀ := by have := X.δ_nonneg; unfold K₀; linarith
 
+/--
+@isnad1 id=le.0h5v.s7.194134592790 from=translated src=- shape=960032d5 vocab=69893bda
+-/
 theorem sq_norm_ι_ψ_sub_le (n : ℕ) :
     ‖X.ι (X.ψ n)‖ ^ 2 - X.δ ^ 2 ≤ X.K₀ / ((n : ℝ) + 1) := by
   rw [X.norm_ι_ψ]
@@ -257,6 +359,9 @@ theorem sq_norm_ι_ψ_sub_le (n : ℕ) :
         linarith
     _ = X.K₀ / ((n : ℝ) + 1) := by unfold K₀; ring
 
+/--
+@isnad1 id=le.0h5v.s6.50da62ca5548 from=translated src=- shape=2e7a2818 vocab=09777e53
+-/
 theorem norm_ι_ψ_le (n : ℕ) : ‖X.ι (X.ψ n)‖ ≤ X.δ + 1 := by
   rw [X.norm_ι_ψ]
   have h1 := X.d_wseq_lt n
@@ -265,9 +370,15 @@ theorem norm_ι_ψ_le (n : ℕ) : ‖X.ι (X.ψ n)‖ ≤ X.δ + 1 := by
     rw [div_le_one hn]; linarith [(Nat.cast_nonneg n : (0 : ℝ) ≤ n)]
   linarith
 
+/--
+@isnad1 id=le.0h5v.s6.a92499e30119 from=translated src=- shape=3f26640f vocab=92c36aa1
+-/
 theorem δ_le_norm_ι_ψ (n : ℕ) : X.δ ≤ ‖X.ι (X.ψ n)‖ := by
   rw [X.norm_ι_ψ]; exact X.δ_le _
 
+/--
+@isnad1 id=le.2h4v.s8.de0ded6951c5 from=translated src=- shape=ccab5cf6 vocab=6f9e7eb1
+-/
 theorem norm_inner_sq_le_of_forall {a b : H} {δ : ℝ} (hδ : 0 ≤ δ)
     (h : ∀ t : ℂ, δ ≤ ‖a - t • b‖) : ‖⟪b, a⟫_ℂ‖ ^ 2 ≤ (‖a‖ ^ 2 - δ ^ 2) * ‖b‖ ^ 2 := by
   by_cases hb : b = 0
@@ -298,6 +409,9 @@ theorem norm_inner_sq_le_of_forall {a b : H} {δ : ℝ} (hδ : 0 ≤ δ)
   rw [div_le_iff₀ hb2] at h2
   rwa [norm_inner_symm]
 
+/--
+@isnad1 id=le.1h6v.s8.005db796b42f from=translated src=- shape=53b87d2a vocab=ac539ed5
+-/
 theorem norm_inner_ψ_sq_le (n : ℕ) {w : L} (hw : w ∈ X.W) :
     ‖⟪X.ι w, X.ι (X.ψ n)⟫_ℂ‖ ^ 2 ≤ X.K₀ / ((n : ℝ) + 1) * ‖X.ι w‖ ^ 2 := by
   have hwS : w ∈ X.S := X.hWS hw
@@ -316,11 +430,20 @@ theorem norm_inner_ψ_sq_le (n : ℕ) {w : L} (hw : w ∈ X.W) :
 
 def r (n : ℕ) : ℝ := Real.sqrt (X.K₀ / ((n : ℝ) + 1))
 
+/--
+@isnad1 id=le.0h5v.s5.e354e195fe64 from=translated src=- shape=8ca16f17 vocab=b4dbb71c
+-/
 theorem r_nonneg (n : ℕ) : 0 ≤ X.r n := Real.sqrt_nonneg _
 
+/--
+@isnad1 id=eq.0h5v.s6.6722e957f3af from=translated src=- shape=ef82dfd5 vocab=fc7bf4b5
+-/
 theorem r_sq (n : ℕ) : X.r n ^ 2 = X.K₀ / ((n : ℝ) + 1) :=
   Real.sq_sqrt (div_nonneg X.K₀_pos.le (by positivity))
 
+/--
+@isnad1 id=le.1h6v.s8.fcf8e6f1ccbc from=translated src=- shape=4d7854b8 vocab=51d81c4f
+-/
 theorem norm_inner_ψ_le (n : ℕ) {w : L} (hw : w ∈ X.W) :
     ‖⟪X.ι w, X.ι (X.ψ n)⟫_ℂ‖ ≤ X.r n * ‖X.ι w‖ := by
   have h := X.norm_inner_ψ_sq_le n hw
@@ -328,6 +451,9 @@ theorem norm_inner_ψ_le (n : ℕ) {w : L} (hw : w ∈ X.W) :
   exact (pow_le_pow_iff_left₀ (norm_nonneg _) (mul_nonneg (X.r_nonneg n) (norm_nonneg _))
     two_ne_zero).mp h
 
+/--
+@isnad1 id=le.0h6v.s7.63670c488918 from=translated src=- shape=8bfb5a63 vocab=21c90891
+-/
 theorem norm_ι_ψ_sub_sq_le (n m : ℕ) :
     ‖X.ι (X.ψ n) - X.ι (X.ψ m)‖ ^ 2 ≤ 2 * (X.K₀ / ((n : ℝ) + 1)) + 2 * (X.K₀ / ((m : ℝ) + 1)) := by
   have hpar := parallelogram_law_with_norm ℂ (X.ι (X.ψ n)) (X.ι (X.ψ m))
@@ -352,12 +478,18 @@ theorem norm_ι_ψ_sub_sq_le (n m : ℕ) :
   have h2 := X.sq_norm_ι_ψ_sub_le m
   nlinarith [hpar, hge2, h1, h2, sq_nonneg ‖X.ι (X.ψ n) - X.ι (X.ψ m)‖]
 
+/--
+@isnad1 id=mem.0h6v.s8.dba85628382c from=translated src=- shape=c844feee vocab=4a20b80c
+-/
 theorem E_ρ_ψ_mem (g : G) (n : ℕ) : X.E (X.ρ g (X.ψ n)) ∈ X.W := by
   have h : X.ρ g (X.ψ n) = X.ρ g X.φ' - X.ρ g (X.wseq n : L) := by
     unfold ψ; rw [map_sub]
   rw [h, X.E_sub (X.hS g _ X.hφ') (X.hS g _ (X.wseq_memS n))]
   exact X.W.sub_mem (X.hEφ' g) (X.hWE _ (X.hWρ g _ (X.wseq_mem n)))
 
+/--
+@isnad1 id=le.0h6v.s8.c48fdbf9f498 from=translated src=- shape=1d9625c1 vocab=00abe7c3
+-/
 theorem norm_ι_E_ρ_ψ_le (g : G) (n : ℕ) :
     ‖X.ι (X.E (X.ρ g (X.ψ n)))‖ ≤ X.c g * Real.sqrt (X.c g⁻¹) * X.r n := by
   set u := X.E (X.ρ g (X.ψ n)) with hu
@@ -392,6 +524,9 @@ theorem norm_ι_E_ρ_ψ_le (g : G) (n : ℕ) :
 
 def Small (v : L) : Prop := ∃ C : ℝ, ∀ n : ℕ, ‖⟪X.ι v, X.ι (X.ψ n)⟫_ℂ‖ ≤ C * X.r n
 
+/--
+@isnad1 id=small.0h5v.s8.751dff1f7ceb from=translated src=- shape=6299ea65 vocab=9cb00750
+-/
 theorem small_ρ_φ (x : G) : X.Small (X.ρ x X.φ) := by
   refine ⟨X.c x * ‖X.ι X.φ‖ * (X.c x⁻¹ * Real.sqrt (X.c x⁻¹⁻¹)), fun n => ?_⟩
   have hψS := X.ψ_memS n
@@ -416,8 +551,14 @@ theorem small_ρ_φ (x : G) : X.Small (X.ρ x X.φ) := by
         exact mul_le_mul_of_nonneg_right h3 (norm_nonneg _)
     _ = X.c x * ‖X.ι X.φ‖ * (X.c x⁻¹ * Real.sqrt (X.c x⁻¹⁻¹)) * X.r n := by ring
 
+/--
+@isnad1 id=small.0h4v.s6.0acc7e6d76b0 from=translated src=- shape=08079866 vocab=a648056b
+-/
 theorem small_zero : X.Small 0 := ⟨0, fun n => by simp [X.ι_zero]⟩
 
+/--
+@isnad1 id=small.4h6v.s7.a2f3214435bd from=translated src=- shape=2936db5a vocab=e03b6dbb
+-/
 theorem small_add {v₁ v₂ : L} (h₁S : v₁ ∈ X.S) (h₂S : v₂ ∈ X.S) (h₁ : X.Small v₁)
     (h₂ : X.Small v₂) : X.Small (v₁ + v₂) := by
   obtain ⟨C₁, hC₁⟩ := h₁
@@ -429,12 +570,18 @@ theorem small_add {v₁ v₂ : L} (h₁S : v₁ ∈ X.S) (h₂S : v₂ ∈ X.S) 
     _ ≤ C₁ * X.r n + C₂ * X.r n := add_le_add (hC₁ n) (hC₂ n)
     _ = (C₁ + C₂) * X.r n := by ring
 
+/--
+@isnad1 id=small.2h6v.s7.9b7ca87a645b from=translated src=- shape=5f03da99 vocab=9018c234
+-/
 theorem small_smul (a : ℂ) {v : L} (hvS : v ∈ X.S) (h : X.Small v) : X.Small (a • v) := by
   obtain ⟨C, hC⟩ := h
   refine ⟨‖a‖ * C, fun n => ?_⟩
   rw [X.ι_smul a hvS, inner_smul_left, norm_mul, RCLike.norm_conj, mul_assoc]
   exact mul_le_mul_of_nonneg_left (hC n) (norm_nonneg _)
 
+/--
+@isnad1 id=small.1h5v.s6.c2e0831930c3 from=translated src=- shape=df8aad29 vocab=38a1d653
+-/
 theorem small_of_mem_V {v : L} (hv : v ∈ X.V X.φ) : X.Small v := by
   induction hv using Submodule.span_induction with
   | mem u hu =>
@@ -445,6 +592,9 @@ theorem small_of_mem_V {v : L} (hv : v ∈ X.V X.φ) : X.Small v := by
     exact X.small_add (X.V_le_S X.hφ hu) (X.V_le_S X.hφ hu') ihu ihu'
   | smul a u hu ihu => exact X.small_smul a (X.V_le_S X.hφ hu) ihu
 
+/--
+@isnad1 id=ex.1h5v.s6.b0725fa8c664 from=translated src=- shape=aab752b5 vocab=eeaeb1df
+-/
 theorem exists_r_le (η : ℝ) (hη : 0 < η) : ∃ N : ℕ, ∀ n, N ≤ n → X.r n ≤ η := by
   obtain ⟨N, hN⟩ := exists_nat_gt (X.K₀ / η ^ 2)
   refine ⟨N, fun n hn => ?_⟩
@@ -460,6 +610,9 @@ theorem exists_r_le (η : ℝ) (hη : 0 < η) : ∃ N : ℕ, ∀ n, N ≤ n → 
   calc Real.sqrt (X.K₀ / ((n : ℝ) + 1)) ≤ Real.sqrt (η ^ 2) := Real.sqrt_le_sqrt hle
     _ = η := Real.sqrt_sq hη.le
 
+/--
+@isnad1 id=le.1h5v.s7.4488546008c3 from=translated src=- shape=b8759a8d vocab=2fc49cfa
+-/
 theorem δ_sq_le (η : ℝ) (hη : 0 < η) : X.δ ^ 2 ≤ (2 * (X.δ + 1) + 1) * η := by
 
   obtain ⟨N₁, hN₁⟩ := X.exists_r_le (η / 2) (by positivity)
@@ -522,6 +675,9 @@ theorem δ_sq_le (η : ℝ) (hη : 0 < η) : X.δ ^ 2 ≤ (2 * (X.δ + 1) + 1) *
     _ ≤ (X.δ + 1) * η + (X.δ + 1) * η + η := by gcongr
     _ = (2 * (X.δ + 1) + 1) * η := by ring
 
+/--
+@isnad1 id=eq.0h4v.s5.fe701e907140 from=translated src=- shape=2b53867d vocab=cc2bee56
+-/
 theorem δ_eq_zero : X.δ = 0 := by
   have hδ := X.δ_nonneg
   by_contra hne
@@ -536,6 +692,9 @@ theorem δ_eq_zero : X.δ = 0 := by
   have : 0 < X.δ ^ 2 := by positivity
   linarith
 
+/--
+@isnad1 id=ex.1h5v.s7.3ab4a06c63a8 from=translated src=- shape=335828ec vocab=ded5bb27
+-/
 theorem main (ε : ℝ) (hε : 0 < ε) : ∃ w ∈ X.W, ‖X.ι X.φ' - X.ι w‖ < ε := by
   obtain ⟨w, hw⟩ := X.exists_d_lt ε hε
   rw [X.δ_eq_zero, zero_add] at hw
@@ -551,6 +710,9 @@ end
 open scoped _root_.P2MW.S_InnerProductSpace_exists_mem_norm_sub_lt_of_exists_mem_span_orbit_of_average.CyclicLevelAverageEngine.Setup _root_.P2MW.S_InnerProductSpace_exists_mem_norm_sub_lt_of_exists_mem_span_orbit_of_average.CyclicLevelAverageEngine
 
 open CyclicLevelAverageEngine in
+/--
+@isnad1 id=ex.15h15v.s11.b6808e3efdd4 from=translated src=- shape=f5ecc6c2 vocab=a5b96ed8
+-/
 theorem solution
     {G : Type*} [Group G] {L : Type*} [AddCommGroup L] [Module ℂ L]
     {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ H]

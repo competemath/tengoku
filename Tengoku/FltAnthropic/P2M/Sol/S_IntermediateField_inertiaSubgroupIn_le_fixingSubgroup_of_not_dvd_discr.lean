@@ -18,6 +18,9 @@ namespace MuInert
 
 variable {K L : Type*} [Field K] [Field L] [Algebra K L]
 
+/--
+@isnad1 id=iff.0h4v.s11.0e4d1916fd39 from=translated src=- shape=bbb94643 vocab=e0fced4a
+-/
 lemma mem_inertiaSubgroupIn_iff {A : ValuationSubring L} {σ : L ≃ₐ[K] L} :
     σ ∈ A.inertiaSubgroupIn K ↔
       ∃ h : σ ∈ A.decompositionSubgroup K,
@@ -28,6 +31,9 @@ lemma mem_inertiaSubgroupIn_iff {A : ValuationSubring L} {σ : L ≃ₐ[K] L} :
   · rintro ⟨h, hI⟩
     exact ⟨⟨σ, h⟩, hI, rfl⟩
 
+/--
+@isnad1 id=mem.2h5v.s8.62f98b6e3556 from=translated src=- shape=bc099e4a vocab=66631ead
+-/
 theorem apply_sub_self_mem_nonunits {A : ValuationSubring L}
     {σ : L ≃ₐ[K] L} (hσ : σ ∈ A.inertiaSubgroupIn K) {x : L} (hx : x ∈ A) :
     σ x - x ∈ A.nonunits := by
@@ -50,6 +56,9 @@ theorem apply_sub_self_mem_nonunits {A : ValuationSubring L}
   have := (ValuationSubring.coe_mem_nonunits_iff (A := A)).mpr hmem
   rwa [hcoe] at this
 
+/--
+@isnad1 id=mem.2h4v.s7.0ac9bfa5e5f5 from=translated src=- shape=9639b463 vocab=f70636bf
+-/
 theorem mul_mem_nonunits {A : ValuationSubring L} {a b : L} (ha : a ∈ A.nonunits) (hb : b ∈ A) :
     a * b ∈ A.nonunits := by
   have ha' : a ∈ A := A.nonunits_subset ha
@@ -61,6 +70,9 @@ theorem mul_mem_nonunits {A : ValuationSubring L} {a b : L} (ha : a ∈ A.nonuni
 
 end MuInert
 
+/--
+@isnad1 id=mem.1h2v.s6.08de2783b678 from=translated src=- shape=f370470e vocab=13dee352
+-/
 theorem mem_of_isIntegral (P : ValuationSubring (AlgebraicClosure ℚ)) {x : AlgebraicClosure ℚ}
     (hx : IsIntegral ℤ x) : x ∈ P := by
 
@@ -77,6 +89,9 @@ theorem mem_of_isIntegral (P : ValuationSubring (AlgebraicClosure ℚ)) {x : Alg
   exact y.2
 
 open MuInert in
+/--
+@isnad1 id=le.3h3v.s10.daace3fe855d from=translated src=- shape=fbf3f651 vocab=18ed9dda
+-/
 theorem inertia_le_fixingSubgroup
     (F : IntermediateField ℚ (AlgebraicClosure ℚ)) [hFd : FiniteDimensional ℚ F]
     (q : ℕ) (hq : q.Prime)
@@ -186,6 +201,9 @@ theorem inertia_le_fixingSubgroup
 
 end S15.Bridge
 
+/--
+@isnad1 id=le.3h3v.s10.daace3fe855d from=translated src=- shape=fbf3f651 vocab=18ed9dda
+-/
 theorem solution
     (F : IntermediateField ℚ (AlgebraicClosure ℚ)) [FiniteDimensional ℚ F]
     (q : ℕ) (hq : q.Prime)

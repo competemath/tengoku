@@ -30,6 +30,9 @@ theorem eq_zero_of_forall_pow_mul_eq_zero {A' : Type u} [CommRing A'] {N : ℕ} 
 
 end IdealCutAux
 
+/--
+@isnad1 id=ex.2h7v.s10.24389237b04b from=translated src=- shape=a5a17aa9 vocab=b5e98dcb
+-/
 theorem IdealCutAux.finite_case
     (A : Type u) [CommRing A]
     (P : ∀ (A' : Type u) [CommRing A'], (A →+* A') → Prop)
@@ -152,6 +155,9 @@ theorem IdealCutAux.finite_case
     rw [← desc k, Ideal.map_map, hχ, ← Ideal.map_map, hIφ, Ideal.map_bot]
 
 open IdealCutAux in
+/--
+@isnad1 id=ex.2h7v.s10.63e061493006 from=translated src=- shape=8db913be vocab=f38ec8b5
+-/
 theorem solution
     (A : Type u) [CommRing A]
     (P : ∀ (A' : Type u) [CommRing A'], (A →+* A') → Prop)

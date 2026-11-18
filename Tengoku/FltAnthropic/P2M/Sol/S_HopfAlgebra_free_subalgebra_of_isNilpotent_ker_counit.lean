@@ -21,9 +21,15 @@ abbrev augK : Ideal ↥K := RingHom.ker ((Bialgebra.counitAlgHom k H).comp K.val
 
 abbrev JH : Ideal H := Ideal.span {x : H | x ∈ K ∧ Coalgebra.counit (R := k) x = 0}
 
+/--
+@isnad1 id=iff.0h4v.s11.33a1c9923a54 from=translated src=- shape=579091ee vocab=baa8af8b
+-/
 theorem mem_augK_iff (x : ↥K) : x ∈ augK K ↔ Coalgebra.counit (R := k) (x : H) = 0 := by
   rw [RingHom.mem_ker]; rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.0ff886aad4fd from=translated src=- shape=9d50c95b vocab=926372dd
+-/
 theorem JH_eq_map : JH K = Ideal.map (algebraMap ↥K H) (augK K) := by
   apply le_antisymm
   · rw [Ideal.span_le]
@@ -33,14 +39,23 @@ theorem JH_eq_map : JH K = Ideal.map (algebraMap ↥K H) (augK K) := by
     intro x hx
     exact Ideal.subset_span ⟨x.2, (mem_augK_iff K x).mp hx⟩
 
+/--
+@isnad1 id=eq.0h3v.s11.9ad9fcc20343 from=translated src=- shape=cf4f7da7 vocab=d53c059d
+-/
 theorem restrictScalars_JH : (JH K).restrictScalars ↥K = augK K • (⊤ : Submodule ↥K H) := by
   rw [Ideal.smul_top_eq_map, ← JH_eq_map]
 
+/--
+@isnad1 id=ex.1h3v.s10.1d6e6217ea11 from=translated src=- shape=79c9c69b vocab=97705d89
+-/
 theorem JH_pow_eq_bot (hnil : IsNilpotent (augK K)) : ∃ n : ℕ, JH K ^ n = ⊥ := by
   obtain ⟨n, hn⟩ := hnil
   refine ⟨n, ?_⟩
   rw [JH_eq_map, ← Ideal.map_pow, hn, Submodule.zero_eq_bot, Ideal.map_bot]
 
+/--
+@isnad1 id=eq.0h4v.s10.20756fc2bf1e from=translated src=- shape=5c532d88 vocab=ed40bdaa
+-/
 theorem mk_coe_eq (x : ↥K) :
     Ideal.Quotient.mk (JH K) (x : H) = algebraMap k (H ⧸ JH K) (Coalgebra.counit (R := k) (x : H)) := by
   rw [IsScalarTower.algebraMap_apply k H (H ⧸ JH K), Ideal.Quotient.algebraMap_eq, ← sub_eq_zero, ← map_sub,
@@ -49,6 +64,9 @@ theorem mk_coe_eq (x : ↥K) :
   · exact Subalgebra.sub_mem _ x.2 (Subalgebra.algebraMap_mem _ _)
   · rw [map_sub, Bialgebra.counit_algebraMap, sub_self]
 
+/--
+@isnad1 id=eq.0h5v.s10.86e24bf96dab from=translated src=- shape=aabff8c4 vocab=8fe27501
+-/
 theorem coe_smul_quot (x : ↥K) (q : H ⧸ JH K) : x • q = Coalgebra.counit (R := k) (x : H) • q := by
   rw [Algebra.smul_def, Algebra.smul_def]
   congr 1
@@ -77,6 +95,9 @@ variable {ι : Type*} (e : ι → H)
 
 noncomputable abbrev Λ : (ι →₀ ↥K) →ₗ[↥K] H := Finsupp.linearCombination ↥K e
 
+/--
+@isnad1 id=eq.2h6v.s12.6c3abef96560 from=translated src=- shape=ce91c93f vocab=1a907967
+-/
 theorem range_Λ_eq_top (hnil : IsNilpotent (augK K)) (b : Module.Basis ι k (H ⧸ JH K))
     (he : ∀ i, Ideal.Quotient.mk (JH K) (e i) = b i) : LinearMap.range (Λ K e) = ⊤ := by
   classical
@@ -107,6 +128,9 @@ theorem range_Λ_eq_top (hnil : IsNilpotent (augK K)) (b : Module.Basis ι k (H 
 noncomputable abbrev Λ' : (ι →₀ H) →ₗ[H] (H ⊗[↥K] H) :=
   Finsupp.linearCombination H (fun i => (1 : H) ⊗ₜ[↥K] e i)
 
+/--
+@isnad1 id=surjecti.1h5v.s12.ecb529402d8e from=translated src=- shape=087b1444 vocab=a58e9f90
+-/
 theorem Λ'_surjective (hΛ : LinearMap.range (Λ K e) = ⊤) : Function.Surjective (Λ' K e) := by
   rw [← LinearMap.range_eq_top, eq_top_iff]
   rintro z -
@@ -129,6 +153,9 @@ theorem Λ'_surjective (hΛ : LinearMap.range (Λ K e) = ⊤) : Function.Surject
       rw [this]
       exact Submodule.smul_mem _ _ (LinearMap.mem_range.mpr ⟨Finsupp.single i 1, by simp [Finsupp.linearCombination_single]⟩)
 
+/--
+@isnad1 id=eq.0h5v.s10.4a800b321e38 from=translated src=- shape=b1bce95d vocab=e147eaf4
+-/
 theorem mk_smul (x : ↥K) (h : H) :
     Ideal.Quotient.mk (JH K) (x • h) = Coalgebra.counit (R := k) (x : H) • Ideal.Quotient.mk (JH K) h := by
   rw [Algebra.smul_def, map_mul, Algebra.smul_def]
@@ -148,10 +175,16 @@ noncomputable def θ : H ⊗[↥K] H →ₗ[↥K] (H ⧸ JH K) ⊗[k] (H ⧸ JH 
         refine ((TensorProduct.smul_tmul' x _ _).trans ?_).symm
         rw [coe_smul_quot, TensorProduct.smul_tmul']))
 
+/--
+@isnad1 id=eq.0h5v.s13.35a35e29c4ea from=translated src=- shape=608337a9 vocab=e6925298
+-/
 theorem θ_tmul (h h' : H) :
     θ K (h ⊗ₜ[↥K] h') = Ideal.Quotient.mk (JH K) h ⊗ₜ[k] Ideal.Quotient.mk (JH K) h' :=
   TensorProduct.lift.tmul _ _
 
+/--
+@isnad1 id=mem.2h8v.s12.edcfcf34761f from=translated src=- shape=789dc08f vocab=facb03e8
+-/
 theorem apply_mem_JH_of_Λ'_eq_zero (b : Module.Basis ι k (H ⧸ JH K))
     (he : ∀ i, Ideal.Quotient.mk (JH K) (e i) = b i) (m : ι →₀ H) (hm : Λ' K e m = 0) (i : ι) :
     m i ∈ JH K := by
@@ -179,6 +212,9 @@ theorem apply_mem_JH_of_Λ'_eq_zero (b : Module.Basis ι k (H ⧸ JH K))
   rw [Finsupp.mapRange_apply, Finsupp.zero_apply] at this
   exact Ideal.Quotient.eq_zero_iff_mem.mp this
 
+/--
+@isnad1 id=eq.3h6v.s12.5daecc86f94d from=translated src=- shape=c8f7a60e vocab=07a11183
+-/
 theorem ker_Λ'_eq_bot
     (hΔ : ∀ x ∈ K, Coalgebra.comul (R := k) x ∈
       Submodule.span k {t : H ⊗[k] H | ∃ a ∈ K, ∃ b ∈ K, t = a ⊗ₜ[k] b})
@@ -233,6 +269,9 @@ theorem ker_Λ'_eq_bot
   rw [hn, Submodule.bot_smul] at this
   exact le_bot_iff.mp this
 
+/--
+@isnad1 id=injectiv.3h6v.s13.304e876f9fa2 from=translated src=- shape=769eebc3 vocab=84bf2fd6
+-/
 theorem Λ_injective
     (hΔ : ∀ x ∈ K, Coalgebra.comul (R := k) x ∈
       Submodule.span k {t : H ⊗[k] H | ∃ a ∈ K, ∃ b ∈ K, t = a ⊗ₜ[k] b})
@@ -261,6 +300,9 @@ end Core
 end S17Nil
 
 open S17Nil in
+/--
+@isnad1 id=free.3h3v.s12.9cc5589d79fe from=translated src=- shape=3e35346b vocab=52c2b234
+-/
 theorem solution
     {k : Type u} [Field k] {H : Type v} [CommRing H] [HopfAlgebra k H]
     (K : Subalgebra k H)

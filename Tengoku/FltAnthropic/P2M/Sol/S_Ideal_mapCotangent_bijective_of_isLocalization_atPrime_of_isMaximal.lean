@@ -11,6 +11,9 @@ open IsLocalRing
 
 universe u
 
+/--
+@isnad1 id=bijectiv.1h3v.s8.b6cbfece49e7 from=translated src=- shape=f309794e vocab=2e125e60
+-/
 theorem solution
     {A : Type u} [CommRing A] (𝔪 : Ideal A) [𝔪.IsMaximal]
     (B : Type u) [CommRing B] [IsLocalRing B] [Algebra A B] [IsLocalization.AtPrime B 𝔪]

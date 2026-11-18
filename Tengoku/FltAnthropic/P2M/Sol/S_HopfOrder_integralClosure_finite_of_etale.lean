@@ -12,6 +12,9 @@ universe u v w
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=finite.0h3v.s8.4b0bd7b13eec from=translated src=- shape=343ee5c9 vocab=a5e067b1
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsDomain R] [IsIntegrallyClosed R] [IsNoetherianRing R]
     {K : Type v} [Field K] [Algebra R K] [IsFractionRing R K]

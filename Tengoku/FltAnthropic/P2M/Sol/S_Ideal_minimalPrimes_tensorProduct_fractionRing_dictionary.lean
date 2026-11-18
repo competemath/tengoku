@@ -14,6 +14,9 @@ open Algebra.TensorProduct
 
 attribute [local instance] Algebra.TensorProduct.rightAlgebra in
 
+/--
+@isnad1 id=and.1h3v.s10.2bdc4c9b7c55 from=translated src=- shape=3b769794 vocab=01d2f0b7
+-/
 theorem parts12 {S B F : Type} [CommRing S] [IsDomain S] [CommRing B] [Algebra S B]
     [Algebra.IsIntegral S B] [CommRing F] [Algebra S F] [IsFractionRing S F]
     (hdom : ∀ 𝔭 ∈ (⊥ : Ideal B).minimalPrimes, Ideal.comap (algebraMap S B) 𝔭 = ⊥) :
@@ -73,6 +76,9 @@ theorem parts12 {S B F : Type} [CommRing S] [IsDomain S] [CommRing B] [Algebra S
       rw [← hc]
       exact (IsLocalization.map_under M (F ⊗[S] B) 𝔓').symm
 
+/--
+@isnad1 id=ex.0h4v.s10.9ac9b8c2ddb6 from=translated src=- shape=7a4fa98f vocab=98664c6f
+-/
 theorem part3 {S B F : Type} [CommRing S] [CommRing B] [Algebra S B] [CommRing F] [Algebra S F]
     (e : B ≃ₐ[S] B) :
     ∃ ee : F ⊗[S] B ≃ₐ[F] F ⊗[S] B, ∀ b : B,
@@ -81,6 +87,9 @@ theorem part3 {S B F : Type} [CommRing S] [CommRing B] [Algebra S B] [CommRing F
     rw [Algebra.TensorProduct.congr_apply, includeRight_apply, includeRight_apply, map_tmul]
     rfl⟩
 
+/--
+@isnad1 id=and.2h3v.s17.9db076f1e0c9 from=translated src=- shape=9134baa1 vocab=18bd6966
+-/
 theorem main
     (A B : Type) [CommRing A] [CommRing B] [Algebra A B] (j₀ : B)
     [IsDomain ↥(Algebra.adjoin A ({j₀} : Set B))]
@@ -116,6 +125,9 @@ theorem main
 
 end DICT42
 
+/--
+@isnad1 id=and.2h3v.s17.9db076f1e0c9 from=translated src=- shape=9134baa1 vocab=18bd6966
+-/
 theorem solution
     (A B : Type) [CommRing A] [CommRing B] [Algebra A B] (j₀ : B)
     [IsDomain ↥(Algebra.adjoin A ({j₀} : Set B))]

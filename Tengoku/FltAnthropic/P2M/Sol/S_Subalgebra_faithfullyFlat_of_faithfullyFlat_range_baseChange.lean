@@ -27,11 +27,17 @@ noncomputable def cancelIso (N : Type*) [AddCommGroup N] [Module R N] :
   (TensorProduct.AlgebraTensorModule.cancelBaseChange R S S (S ⊗[R] M) N).trans
     (TensorProduct.AlgebraTensorModule.assoc R R S S M N)
 
+/--
+@isnad1 id=eq.0h8v.s11.21c9dd1316f6 from=translated src=- shape=4d3f7278 vocab=1641f16b
+-/
 theorem cancelIso_tmul {N : Type*} [AddCommGroup N] [Module R N] (s s' : S) (m : M) (n : N) :
     cancelIso R S M N ((s ⊗ₜ[R] m) ⊗ₜ[S] (s' ⊗ₜ[R] n)) = (s' * s) ⊗ₜ[R] (m ⊗ₜ[R] n) := by
   simp [cancelIso, TensorProduct.AlgebraTensorModule.cancelBaseChange_tmul,
     TensorProduct.AlgebraTensorModule.assoc_tmul, TensorProduct.smul_tmul', smul_eq_mul]
 
+/--
+@isnad1 id=eq.0h7v.s13.dafa6bd4b1f6 from=translated src=- shape=d56cfa88 vocab=6b75ea70
+-/
 theorem cancelIso_naturality {N : Type*} [AddCommGroup N] [Module R N] {N' : Type*} [AddCommGroup N'] [Module R N']
     (f : N →ₗ[R] N') (z : (S ⊗[R] M) ⊗[S] (S ⊗[R] N)) :
     cancelIso R S M N' (((f.baseChange S).lTensor (S ⊗[R] M)) z)
@@ -51,6 +57,9 @@ theorem cancelIso_naturality {N : Type*} [AddCommGroup N] [Module R N] {N' : Typ
               rw [LinearMap.lTensor_tmul, LinearMap.baseChange_tmul, cancelIso_tmul, cancelIso_tmul,
                 LinearMap.lTensor_tmul, LinearMap.lTensor_tmul]
 
+/--
+@isnad1 id=faithful.0h3v.s7.0dbdc21b5a75 from=translated src=- shape=4a51c80b vocab=f7def5da
+-/
 theorem faithfullyFlat_of_faithfullyFlat_baseChange [Module.FaithfullyFlat R S]
     [Module.FaithfullyFlat S (S ⊗[R] M)] : Module.FaithfullyFlat R M := by
   rw [Module.FaithfullyFlat.iff_flat_and_proper_ideal]
@@ -119,15 +128,24 @@ noncomputable abbrev φ : k' ⊗[k] ↥K →ₐ[k'] k' ⊗[k] H := Algebra.Tenso
 
 noncomputable abbrev K' : Subalgebra k' (k' ⊗[k] H) := (φ K k').range
 
+/--
+@isnad1 id=eq.0h6v.s10.5cd5b4ac4c31 from=translated src=- shape=43a7776a vocab=f2149100
+-/
 theorem φ_tmul (c : k') (x : ↥K) : φ K k' (c ⊗ₜ[k] x) = c ⊗ₜ[k] (x : H) := by
   rw [Algebra.TensorProduct.map_tmul]; rfl
 
+/--
+@isnad1 id=mem.1h6v.s9.3c96368244f1 from=translated src=- shape=c3d34b74 vocab=03544ff4
+-/
 theorem tmul_mem (c : k') {y : H} (hy : y ∈ K) : c ⊗ₜ[k] y ∈ K' K k' :=
   ⟨c ⊗ₜ[k] ⟨y, hy⟩, φ_tmul K k' c ⟨y, hy⟩⟩
 
 noncomputable def ι : ↥K →ₐ[k] ↥(K' K k') :=
   (((φ K k').rangeRestrict).restrictScalars k).comp Algebra.TensorProduct.includeRight
 
+/--
+@isnad1 id=eq.0h5v.s11.4a1b5b16f140 from=translated src=- shape=941e0854 vocab=3f210812
+-/
 theorem ι_apply_coe (x : ↥K) : ((ι K k' x : ↥(K' K k')) : k' ⊗[k] H) = (1 : k') ⊗ₜ[k] (x : H) := by
   show φ K k' ((1 : k') ⊗ₜ[k] x) = _
   exact φ_tmul K k' 1 x
@@ -138,6 +156,9 @@ end S17Ta
 
 set_option maxHeartbeats 16000000 in
 open S17Ta in
+/--
+@isnad1 id=faithful.1h4v.s11.008e0d06502a from=translated src=- shape=0f044a99 vocab=5a1582d4
+-/
 theorem solution
     {k : Type u} [Field k] {H : Type v} [CommRing H] [Algebra k H] (K : Subalgebra k H)
     (k' : Type w) [Field k'] [Algebra k k']

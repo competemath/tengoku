@@ -7,6 +7,9 @@ namespace P2MW.S_Ideal_finite_setOf_height_eq_one_and_mem
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=finite.1h2v.s7.8b4f3058a0f8 from=translated src=- shape=737d9665 vocab=0fd97f24
+-/
 theorem solution
     {R : Type*} [CommRing R] [IsDomain R] [IsNoetherianRing R] {b : R} (hb : b ≠ 0) :
     {p : Ideal R | p.IsPrime ∧ p.height = 1 ∧ b ∈ p}.Finite := by

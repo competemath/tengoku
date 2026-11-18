@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open Polynomial
 
+/--
+@isnad1 id=ex.3h5v.s11.aec2c897678d from=translated src=- shape=ef1d4b24 vocab=f60e0c43
+-/
 theorem solution
     {F E : Type} [Field F] [Field E] [Algebra F E] (halg : Algebra.IsAlgebraic F E)
     (k₀ : IntermediateField F E) (τ : E ≃ₐ[F] E) (hk₀ : ∀ x : E, x ∈ k₀ → τ x ∈ k₀)

@@ -113,6 +113,9 @@ end IharaLemmaSol
 
 open IharaLemma
 
+/--
+@isnad1 id=eq.7h9v.s11.2d46e39ab3c7 from=translated src=- shape=3fe92916 vocab=7e318cf0
+-/
 theorem solution {𝒪 : Type} [CommRing 𝒪] {B : Type}
     [CommRing B] [Algebra 𝒪 B] {W : Type} [AddCommGroup W] [Module B W] [Module 𝒪 W]
     [IsScalarTower 𝒪 B W] [IsDomain 𝒪] [IsDiscreteValuationRing 𝒪]

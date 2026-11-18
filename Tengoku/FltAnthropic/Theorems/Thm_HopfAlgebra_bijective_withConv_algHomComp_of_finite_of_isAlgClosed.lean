@@ -5,6 +5,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_HopfAlgebra_bijective_withConv_algHomComp_
 
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `Theorems/Thm_HopfAlgebra_bijective_withConv_algHomComp_of_finite_of_isAlgClosed.lean`: wrote out 1 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_exact_reverting`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 
+/--
+@isnad1 id=and.1h5v.s10.d48fdf2ddfaa from=translated src=- shape=e5fc1166 vocab=07ae02f5
+-/
 theorem HopfAlgebra.bijective_withConv_algHomComp_of_finite_of_isAlgClosed
     (K : Type) [Field K]
     (L₁ : Type) [Field L₁] [Algebra K L₁] [IsAlgClosed L₁]

@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 namespace KeyPrinc
 
+/--
+@isnad1 id=ex.0h4v.s7.822387e443d3 from=translated src=- shape=2d650b3d vocab=5d2c7270
+-/
 theorem exists_mem_map_eq_span_singleton
     {R : Type*} [CommRing R] {S : Type*} [CommRing S] [IsDomain S] [IsDiscreteValuationRing S]
     (f : R →+* S) (P : Ideal R) :
@@ -45,6 +48,9 @@ theorem exists_mem_map_eq_span_singleton
 
 end KeyPrinc
 
+/--
+@isnad1 id=isprinci.3h5v.s8.4d5e19b4fc3d from=translated src=- shape=923b6f53 vocab=0f795401
+-/
 theorem solution
     {R : Type*} [CommRing R] [IsNoetherianRing R] [IsLocalRing R]
     {S : Type*} [CommRing S] [IsDomain S] [IsDiscreteValuationRing S]

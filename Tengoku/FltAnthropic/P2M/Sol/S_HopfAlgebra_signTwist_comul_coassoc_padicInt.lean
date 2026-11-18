@@ -11,6 +11,9 @@ namespace P2MW.S_HopfAlgebra_signTwist_comul_coassoc_padicInt
 open scoped TensorProduct
 
 set_option maxHeartbeats 9600000 in
+/--
+@isnad1 id=other.3h3v.s14.71833480f621 from=translated src=- shape=ad234876 vocab=f70e387d
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] (hp2 : p ≠ 2)
     (d₀ : ℤ_[p]) (hd₀ : IsUnit d₀)

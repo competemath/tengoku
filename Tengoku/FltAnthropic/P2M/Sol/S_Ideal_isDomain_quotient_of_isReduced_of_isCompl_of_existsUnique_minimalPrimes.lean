@@ -7,6 +7,9 @@ namespace P2MW.S_Ideal_isDomain_quotient_of_isReduced_of_isCompl_of_existsUnique
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=isdomain.2h3v.s8.06b698650286 from=translated src=- shape=551dad26 vocab=0b112dce
+-/
 theorem solution
     (R : Type) [CommRing R] [IsReduced R] (I J : Ideal R) (hIJ : IsCompl I J)
     [Nontrivial (R ⧸ I)]

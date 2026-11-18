@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_HopfAlgebra_finrank_eq_pow_finrank_cotange
 
 universe u v
 
+/--
+@isnad1 id=eq.1h3v.s9.4827fe4647ff from=translated src=- shape=4c910483 vocab=64fd561a
+-/
 theorem HopfAlgebra.finrank_eq_pow_finrank_cotangent_of_forall_pow_prime_eq_zero
     (k : Type u) [Field k] (p : ℕ) [Fact p.Prime] [CharP k p]
     (A : Type v) [CommRing A] [Bialgebra k A] [Module.Finite k A]

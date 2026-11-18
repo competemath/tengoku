@@ -10,6 +10,9 @@ universe u v
 set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 3200000
 
+/--
+@isnad1 id=ex.1h3v.s10.18cbe155845c from=translated src=- shape=54dbe0cb vocab=38cfe930
+-/
 theorem solution
     (K : Type u) [Field K] (L : Type v) [Field L] [Algebra K L] (x : L) (hx : Transcendental K x) :
     ∃ e : ↥(IntermediateField.adjoin K ({x} : Set L)) ≃ₐ[K] RatFunc K,

@@ -5,6 +5,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Submodule_natCard_quotient_pow_smul_top_li
 
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `Theorems/Thm_Submodule_natCard_quotient_pow_smul_top_linear_of_finite_quotient.lean`: wrote out 1 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_exact_reverting`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 
+/--
+@isnad1 id=ex.2h4v.s9.d4f2b05063f1 from=translated src=- shape=79765b18 vocab=beeb6af0
+-/
 theorem Submodule.natCard_quotient_pow_smul_top_linear_of_finite_quotient
     (R : Type*) [CommRing R] [IsNoetherianRing R] (q : ℕ) [Fact q.Prime]
     (hRq : Finite (R ⧸ Ideal.span {(q : R)}))

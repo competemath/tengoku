@@ -11,6 +11,9 @@ open scoped TensorProduct
 
 universe u v
 
+/--
+@isnad1 id=ex.3h4v.s13.1f3e1206f513 from=translated src=- shape=85b68e0d vocab=714ada6f
+-/
 theorem solution
     {k : Type u} [Field k] [PerfectField k] (p : ℕ) [Fact p.Prime] [CharP k p]
     {H : Type v} [CommRing H] [HopfAlgebra k H]

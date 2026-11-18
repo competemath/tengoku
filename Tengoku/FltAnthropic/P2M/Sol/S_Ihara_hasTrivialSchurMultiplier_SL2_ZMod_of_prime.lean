@@ -40,6 +40,9 @@ open Polynomial
 variable {F : Type*} [Field F] (f : F[X]) (R : Matrix (Fin 2) (Fin 2) F)
   (hR : Polynomial.aeval R f = 0)
 
+/--
+@isnad1 id=finite.1h2v.s6.0d94bb8b9aba from=translated src=- shape=79594864 vocab=3b9777c5
+-/
 theorem finite_adjoinRoot [Finite F] (hf0 : f ≠ 0) : Finite (AdjoinRoot f) := by
   haveI : Module.Finite F (AdjoinRoot f) := (AdjoinRoot.powerBasis hf0).finite
   exact Module.finite_of_finite F

@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Module_flat_of_comap_maximalIdeal_rTensor_
 
 open TensorProduct
 
+/--
+@isnad1 id=flat.2h4v.s10.6c9cba36e3af from=translated src=- shape=786a631b vocab=95060862
+-/
 theorem Module.flat_of_comap_maximalIdeal_rTensor_injective
     {R S M : Type*} [CommRing R] [CommRing S] [Algebra R S]
     [IsNoetherianRing R] [IsNoetherianRing S] [IsLocalRing S]

@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=ex.1h2v.s7.25c087380d10 from=translated src=- shape=b9367d8b vocab=b5995f50
+-/
 theorem solution
     {B : Type u} [CommRing B] (P : B → Prop)
     (hloc : ∀ 𝔭 : Ideal B, 𝔭.IsPrime → ∃ f : B, f ∉ 𝔭 ∧ P f) :

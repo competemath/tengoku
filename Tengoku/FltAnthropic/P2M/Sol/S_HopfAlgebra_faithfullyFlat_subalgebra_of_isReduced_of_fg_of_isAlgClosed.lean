@@ -28,8 +28,14 @@ abbrev ι : ↥K →ₗ[k] H := K.val.toLinearMap
 
 abbrev ι₂ : ↥K ⊗[k] ↥K →ₗ[k] H ⊗[k] H := TensorProduct.map (ι K) (ι K)
 
+/--
+@isnad1 id=injectiv.0h3v.s10.27fec22a3e9d from=translated src=- shape=f607a18c vocab=83e1aa72
+-/
 theorem ι_injective : Function.Injective (ι K) := Subtype.val_injective
 
+/--
+@isnad1 id=injectiv.2h7v.s9.bd5030f71566 from=translated src=- shape=32659a36 vocab=ef7fb3b7
+-/
 theorem map_injective_of_injective {M N P Q : Type*} [AddCommGroup M] [AddCommGroup N] [AddCommGroup P]
     [AddCommGroup Q] [Module k M] [Module k N] [Module k P] [Module k Q]
     (f : M →ₗ[k] P) (g : N →ₗ[k] Q) (hf : Function.Injective f) (hg : Function.Injective g) :
@@ -38,9 +44,15 @@ theorem map_injective_of_injective {M N P Q : Type*} [AddCommGroup M] [AddCommGr
   exact (Module.Flat.rTensor_preserves_injective_linearMap f hf).comp
     (Module.Flat.lTensor_preserves_injective_linearMap g hg)
 
+/--
+@isnad1 id=injectiv.0h3v.s13.a42b03698d92 from=translated src=- shape=85c70542 vocab=b249b9be
+-/
 theorem ι₂_injective : Function.Injective (ι₂ K) :=
   map_injective_of_injective _ _ (ι_injective K) (ι_injective K)
 
+/--
+@isnad1 id=le.0h3v.s12.a11a7549c735 from=translated src=- shape=7bc65089 vocab=c7cf34ec
+-/
 theorem span_le_range_ι₂ :
     Submodule.span k {t : H ⊗[k] H | ∃ a ∈ K, ∃ b ∈ K, t = a ⊗ₜ[k] b} ≤ LinearMap.range (ι₂ K) := by
   rw [Submodule.span_le]
@@ -52,6 +64,9 @@ variable (hΔ : ∀ x ∈ K, Coalgebra.comul (R := k) x ∈
   Submodule.span k {t : H ⊗[k] H | ∃ a ∈ K, ∃ b ∈ K, t = a ⊗ₜ[k] b})
 include hΔ
 
+/--
+@isnad1 id=mem.1h4v.s13.e7ad4079b5f3 from=translated src=- shape=30804190 vocab=63906fcb
+-/
 theorem comul_mem_range (x : ↥K) : Coalgebra.comul (R := k) (x : H) ∈ LinearMap.range (ι₂ K) :=
   span_le_range_ι₂ K (hΔ x x.2)
 
@@ -59,6 +74,9 @@ noncomputable def comulLin : ↥K →ₗ[k] ↥K ⊗[k] ↥K :=
   (LinearEquiv.ofInjective (ι₂ K) (ι₂_injective K)).symm.toLinearMap ∘ₗ
     LinearMap.codRestrict (LinearMap.range (ι₂ K)) (Coalgebra.comul ∘ₗ ι K) (comul_mem_range K hΔ)
 
+/--
+@isnad1 id=eq.1h4v.s14.e05528a624f6 from=translated src=- shape=81ced728 vocab=ffe9e80f
+-/
 @[scoped simp] theorem ι₂_comulLin (x : ↥K) : ι₂ K (comulLin K hΔ x) = Coalgebra.comul (R := k) (x : H) := by
   simp only [comulLin, LinearMap.coe_comp, LinearEquiv.coe_coe, Function.comp_apply]
   rw [← LinearEquiv.ofInjective_apply (ι₂ K) (h := ι₂_injective K), LinearEquiv.apply_symm_apply]
@@ -68,8 +86,14 @@ end comul
 
 def counitLin : ↥K →ₗ[k] k := Coalgebra.counit ∘ₗ ι K
 
+/--
+@isnad1 id=eq.0h4v.s11.89af1e7a541a from=translated src=- shape=592f6665 vocab=e13f5718
+-/
 @[scoped simp] theorem counitLin_apply (x : ↥K) : counitLin K x = Coalgebra.counit (R := k) (x : H) := rfl
 
+/--
+@isnad1 id=eq.1h6v.s16.0f7c7d8eb027 from=translated src=- shape=bfc2ecfe vocab=3dec4867
+-/
 theorem map_ι₂_ι_rTensor {f : ↥K →ₗ[k] ↥K ⊗[k] ↥K} {F : H →ₗ[k] H ⊗[k] H}
     (hfF : ∀ x, ι₂ K (f x) = F (x : H)) (z : ↥K ⊗[k] ↥K) :
     TensorProduct.map (ι₂ K) (ι K) (LinearMap.rTensor (↥K) f z) = LinearMap.rTensor H F (ι₂ K z) := by
@@ -78,6 +102,9 @@ theorem map_ι₂_ι_rTensor {f : ↥K →ₗ[k] ↥K ⊗[k] ↥K} {F : H →ₗ
   | tmul a b => simp only [LinearMap.rTensor_tmul, LinearMap.lTensor_tmul, TensorProduct.map_tmul, hfF]; rfl
   | add a b ha hb => simp only [map_add, ha, hb]
 
+/--
+@isnad1 id=eq.1h6v.s16.81697d41c818 from=translated src=- shape=207e6d6d vocab=e1899310
+-/
 theorem map_ι_ι₂_lTensor {f : ↥K →ₗ[k] ↥K ⊗[k] ↥K} {F : H →ₗ[k] H ⊗[k] H}
     (hfF : ∀ x, ι₂ K (f x) = F (x : H)) (z : ↥K ⊗[k] ↥K) :
     TensorProduct.map (ι K) (ι₂ K) (LinearMap.lTensor (↥K) f z) = LinearMap.lTensor H F (ι₂ K z) := by
@@ -87,6 +114,9 @@ theorem map_ι_ι₂_lTensor {f : ↥K →ₗ[k] ↥K ⊗[k] ↥K} {F : H →ₗ
   | add a b ha hb => simp only [map_add, ha, hb]
 
 set_option maxHeartbeats 1600000 in
+/--
+@isnad1 id=eq.0h4v.s17.6bbea7e86c36 from=translated src=- shape=9d4729e5 vocab=90e44445
+-/
 theorem map_ι_ι₂_assoc (w : (↥K ⊗[k] ↥K) ⊗[k] ↥K) :
     TensorProduct.map (ι K) (ι₂ K) (TensorProduct.assoc k _ _ _ w) =
       TensorProduct.assoc k H H H (TensorProduct.map (ι₂ K) (ι K) w) := by
@@ -99,9 +129,15 @@ theorem map_ι_ι₂_assoc (w : (↥K ⊗[k] ↥K) ⊗[k] ↥K) :
     | add a b ha hb => simp only [TensorProduct.add_tmul, map_add, ha, hb]
   | add a b ha hb => simp only [map_add, ha, hb]
 
+/--
+@isnad1 id=injectiv.0h3v.s15.e35596b40107 from=translated src=- shape=2d07608e vocab=a3826ad5
+-/
 theorem ι₃_injective : Function.Injective (TensorProduct.map (ι K) (ι₂ K)) :=
   map_injective_of_injective _ _ (ι_injective K) (ι₂_injective K)
 
+/--
+@isnad1 id=eq.0h4v.s14.fd4cb19617e8 from=translated src=- shape=d0b2fabc vocab=c62c7833
+-/
 theorem lTensor_ι_rTensor_counit (z : ↥K ⊗[k] ↥K) :
     LinearMap.lTensor k (ι K) (LinearMap.rTensor (↥K) (counitLin K) z) =
       LinearMap.rTensor H Coalgebra.counit (ι₂ K z) := by
@@ -110,6 +146,9 @@ theorem lTensor_ι_rTensor_counit (z : ↥K ⊗[k] ↥K) :
   | tmul a b => simp only [LinearMap.rTensor_tmul, LinearMap.lTensor_tmul, TensorProduct.map_tmul, counitLin_apply]; rfl
   | add a b ha hb => simp only [map_add, ha, hb]
 
+/--
+@isnad1 id=eq.0h4v.s14.8b573a142354 from=translated src=- shape=9774647a vocab=c62c7833
+-/
 theorem rTensor_ι_lTensor_counit (z : ↥K ⊗[k] ↥K) :
     LinearMap.rTensor k (ι K) (LinearMap.lTensor (↥K) (counitLin K) z) =
       LinearMap.lTensor H Coalgebra.counit (ι₂ K z) := by
@@ -158,16 +197,25 @@ set_option maxHeartbeats 1600000 in
 
 end structures
 
+/--
+@isnad1 id=eq.0h3v.s12.e982bf6f9424 from=translated src=- shape=ad9057c4 vocab=1ed4ffc9
+-/
 theorem ι₂_eq_toLinearMap :
     ι₂ K = (Algebra.TensorProduct.map K.val K.val).toLinearMap := by
   apply TensorProduct.ext'
   intro a b
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s14.30f1881647a6 from=translated src=- shape=e2054e22 vocab=d17ac3ae
+-/
 theorem ι₂_mul (z w : ↥K ⊗[k] ↥K) : ι₂ K (z * w) = ι₂ K z * ι₂ K w := by
   rw [ι₂_eq_toLinearMap]
   exact map_mul (Algebra.TensorProduct.map K.val K.val) z w
 
+/--
+@isnad1 id=eq.0h3v.s13.b0e7eb4c2a07 from=translated src=- shape=bc5b47f1 vocab=f875f8d6
+-/
 theorem ι₂_one : ι₂ K 1 = 1 := by
   rw [ι₂_eq_toLinearMap]
   exact map_one (Algebra.TensorProduct.map K.val K.val)
@@ -176,10 +224,16 @@ section structures2
 variable (hΔ : ∀ x ∈ K, Coalgebra.comul (R := k) x ∈
   Submodule.span k {t : H ⊗[k] H | ∃ a ∈ K, ∃ b ∈ K, t = a ⊗ₜ[k] b})
 
+/--
+@isnad1 id=eq.1h5v.s15.c03d460655c9 from=translated src=- shape=cedbf4ef vocab=71d41be8
+-/
 theorem comulLin_mul (a b : ↥K) : comulLin K hΔ (a * b) = comulLin K hΔ a * comulLin K hΔ b := by
   apply ι₂_injective K
   rw [ι₂_mul, ι₂_comulLin, ι₂_comulLin, ι₂_comulLin, Subalgebra.coe_mul, Bialgebra.comul_mul]
 
+/--
+@isnad1 id=eq.1h3v.s13.9896e22d3089 from=translated src=- shape=2d8d6cac vocab=eac0a56f
+-/
 theorem comulLin_one : comulLin K hΔ 1 = 1 := by
   apply ι₂_injective K
   rw [ι₂_comulLin, ι₂_one, Subalgebra.coe_one, Bialgebra.comul_one]
@@ -203,6 +257,9 @@ variable (hS : ∀ x ∈ K, HopfAlgebra.antipode k x ∈ K)
 def antipodeLin : ↥K →ₗ[k] ↥K :=
   LinearMap.codRestrict K.toSubmodule ((HopfAlgebra.antipode k).comp (ι K)) (fun x => hS x x.2)
 
+/--
+@isnad1 id=eq.1h4v.s15.14eb3b9f1f53 from=translated src=- shape=166160aa vocab=9730438d
+-/
 theorem ι_mul'_rTensor (z : ↥K ⊗[k] ↥K) :
     ι K (LinearMap.mul' k ↥K (LinearMap.rTensor (↥K) (antipodeLin K hS) z)) =
       LinearMap.mul' k H (LinearMap.rTensor H (HopfAlgebra.antipode k) (ι₂ K z)) := by
@@ -213,6 +270,9 @@ theorem ι_mul'_rTensor (z : ↥K ⊗[k] ↥K) :
     rfl
   | add a b ha hb => simp only [map_add, ha, hb]
 
+/--
+@isnad1 id=eq.1h4v.s15.81ca387617cd from=translated src=- shape=166160aa vocab=a1580d8e
+-/
 theorem ι_mul'_lTensor (z : ↥K ⊗[k] ↥K) :
     ι K (LinearMap.mul' k ↥K (LinearMap.lTensor (↥K) (antipodeLin K hS) z)) =
       LinearMap.mul' k H (LinearMap.lTensor H (HopfAlgebra.antipode k) (ι₂ K z)) := by
@@ -243,6 +303,9 @@ set_option maxHeartbeats 1600000 in
       rw [ι_mul'_lTensor, ι₂_comulLin, HopfAlgebra.mul_antipode_lTensor_comul_apply, counitLin_apply]
       rfl }
 
+/--
+@isnad1 id=eq.2h4v.s15.c66f15e7e364 from=translated src=- shape=66866284 vocab=48638699
+-/
 theorem val_comul (x : ↥K) :
     letI := hopfAlgebra K hΔ hS
     Coalgebra.comul (R := k) (x : H) =
@@ -253,6 +316,9 @@ theorem val_comul (x : ↥K) :
   rw [← ι₂_comulLin K hΔ x]
   rfl
 
+/--
+@isnad1 id=eq.2h4v.s13.b178ddec82eb from=translated src=- shape=180ebd80 vocab=3e5c56f8
+-/
 theorem val_counit (x : ↥K) :
     letI := hopfAlgebra K hΔ hS
     Coalgebra.counit (R := k) (x : H) = Coalgebra.counit (R := k) x := rfl
@@ -264,6 +330,9 @@ open scoped _root_.P2MW.S_HopfAlgebra_faithfullyFlat_subalgebra_of_isReduced_of_
 
 namespace S17Red
 
+/--
+@isnad1 id=flat.3h6v.s9.0da5ab8b79f7 from=translated src=- shape=27740aaf vocab=4c57f631
+-/
 theorem flat_transport {A B : Type*} [CommRing A] [CommRing B] [Algebra A B]
     (σ : A ≃+* A) (e : B ≃+* B) (hcompat : ∀ a, e (algebraMap A B a) = algebraMap A B (σ a))
     (P Q : Ideal B) [P.IsPrime] [Q.IsPrime] (hQP : ∀ x, x ∈ Q ↔ e x ∈ P)
@@ -299,6 +368,9 @@ theorem flat_transport {A B : Type*} [CommRing A] [CommRing B] [Algebra A B]
   exact RingHom.Flat.comp (RingHom.Flat.of_bijective σ.bijective)
     (RingHom.Flat.comp hflatP (RingHom.Flat.of_bijective eLoc.symm.bijective))
 
+/--
+@isnad1 id=ex.1h2v.s8.94e3d8c1d9a4 from=translated src=- shape=745903cb vocab=87ca8dd7
+-/
 theorem exists_flat_localization_atPrime_of_isReduced_of_injective
     (K : Type v) [CommRing K] [IsReduced K]
     (H : Type w) [CommRing H] [Nontrivial H] [Algebra K H] (hinj : Function.Injective (algebraMap K H)) :
@@ -333,6 +405,9 @@ theorem exists_flat_localization_atPrime_of_isReduced_of_injective
 
 variable {k : Type u} [Field k] {H : Type v} [CommRing H] [HopfAlgebra k H]
 
+/--
+@isnad1 id=ex.0h3v.s8.81a8f2ff7529 from=translated src=- shape=149c57da vocab=768450de
+-/
 theorem exists_algHom_ker_eq [IsAlgClosed k] [Algebra.FiniteType k H] (M : Ideal H) [hM : M.IsMaximal] :
     ∃ x : H →ₐ[k] k, RingHom.ker x = M := by
   letI : Field (H ⧸ M) := Ideal.Quotient.field M
@@ -351,6 +426,9 @@ noncomputable def τ (g : H →ₐ[k] k) : H →ₐ[k] H :=
   (Algebra.TensorProduct.lid k H).toAlgHom.comp
     ((Algebra.TensorProduct.map g (AlgHom.id k H)).comp (Bialgebra.comulAlgHom k H))
 
+/--
+@isnad1 id=eq.0h4v.s12.696a62677db0 from=translated src=- shape=e7d5799e vocab=d2332c34
+-/
 theorem τ_spec (g : H →ₐ[k] k) (h : H) :
     τ g h = Algebra.TensorProduct.lid k H (Algebra.TensorProduct.map g (AlgHom.id k H) (Coalgebra.comul h)) := rfl
 
@@ -360,6 +438,9 @@ open scoped _root_.P2MW.S_HopfAlgebra_faithfullyFlat_subalgebra_of_isReduced_of_
 set_option maxHeartbeats 1600000 in
 attribute [-instance] Subalgebra.moduleLeft in
 open S17Red in
+/--
+@isnad1 id=faithful.3h3v.s12.30edde5963d7 from=translated src=- shape=3f0300d4 vocab=5c12bf4a
+-/
 theorem solution
     {k : Type u} [Field k] [IsAlgClosed k] {H : Type v} [CommRing H] [HopfAlgebra k H] [Algebra.FiniteType k H]
     (K : Subalgebra k H)

@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=eq.3h5v.s11.cff5314ec80b from=translated src=- shape=64e0dc1a vocab=cd950512
+-/
 theorem solution
     (A : Type) [CommRing A] [IsDomain A] (L : Type) [Field L] [Algebra A L] [IsFractionRing A L]
     (B : Type) [CommRing B] [Algebra A B] [Module.Flat A B] (x : B)

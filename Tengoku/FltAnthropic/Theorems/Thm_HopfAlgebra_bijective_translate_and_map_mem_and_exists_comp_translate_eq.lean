@@ -11,6 +11,9 @@ open scoped TensorProduct
 
 universe u v w
 
+/--
+@isnad1 id=and.1h3v.s13.f655cd5214cc from=translated src=- shape=3d3da1fd vocab=9d5adaef
+-/
 theorem HopfAlgebra.bijective_translate_and_map_mem_and_exists_comp_translate_eq
     {k : Type u} [Field k] {H : Type v} [CommRing H] [HopfAlgebra k H]
     (τ : (H →ₐ[k] k) → (H →ₐ[k] H))

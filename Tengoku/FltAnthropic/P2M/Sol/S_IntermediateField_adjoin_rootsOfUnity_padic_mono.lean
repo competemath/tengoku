@@ -9,6 +9,9 @@ set_option autoImplicit false
 set_option maxHeartbeats 1600000
 open IntermediateField
 
+/--
+@isnad1 id=le.1h4v.s11.64d78f62a10a from=translated src=- shape=48edc70f vocab=95013f12
+-/
 theorem solution (q : ℕ) [Fact q.Prime]
     (K : IntermediateField ℚ_[q] (PadicAlgCl q)) {N N' : ℕ} (h : N ∣ N') :
     IntermediateField.adjoin K {ζ : PadicAlgCl q | ζ ^ (q ^ N - 1) = 1} ≤

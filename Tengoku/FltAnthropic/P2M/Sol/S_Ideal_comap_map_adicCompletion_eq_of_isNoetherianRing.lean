@@ -7,6 +7,9 @@ namespace P2MW.S_Ideal_comap_map_adicCompletion_eq_of_isNoetherianRing
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=faithful.0h1v.s6.85028dee5ad7 from=translated src=- shape=d7071ce9 vocab=eca1334a
+-/
 theorem Ws34.faithfullyFlat_adicCompletion_maximalIdeal (S : Type*) [CommRing S] [IsNoetherianRing S]
     [IsLocalRing S] : Module.FaithfullyFlat S (AdicCompletion (IsLocalRing.maximalIdeal S) S) := by
   rw [Module.FaithfullyFlat.iff_flat_and_ideal_smul_eq_top]
@@ -30,6 +33,9 @@ theorem Ws34.faithfullyFlat_adicCompletion_maximalIdeal (S : Type*) [CommRing S]
     rw [pow_one]; exact (IsLocalRing.maximalIdeal.isMaximal S).ne_top
   exact (Ideal.Quotient.zero_ne_one_iff.mpr hne1) h0.symm
 
+/--
+@isnad1 id=eq.0h2v.s9.0c2beee20e0e from=translated src=- shape=ee2cda4e vocab=03932625
+-/
 theorem solution
     {S : Type*} [CommRing S] [IsNoetherianRing S] [IsLocalRing S] (𝔞 : Ideal S) :
     (𝔞.map (algebraMap S (AdicCompletion (IsLocalRing.maximalIdeal S) S))).comap

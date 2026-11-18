@@ -13,6 +13,9 @@ open Polynomial
 
 variable {A₀ R : Type} [CommRing A₀] [CommRing R] [Algebra A₀ R]
 
+/--
+@isnad1 id=eq.6h8v.s8.7a78e81f18b1 from=translated src=- shape=d97ef6ec vocab=6da0e139
+-/
 theorem pin_unique {ℓ : ℕ} {ω : A₀}
     (hωu : ∀ i j : ℕ, i < ℓ → j < ℓ → i ≠ j → IsUnit (ω ^ i - ω ^ j))
     (ξ : R) {I : Ideal R} (hI : I ≠ ⊤) {i j : ℕ} (hi : i < ℓ) (hj : j < ℓ)
@@ -24,6 +27,9 @@ theorem pin_unique {ℓ : ℕ} {ω : A₀}
     rwa [sub_sub_sub_cancel_left, ← map_sub] at this
   exact I.eq_top_of_isUnit_mem hmem ((hωu i j hi hj hij).map _)
 
+/--
+@isnad1 id=ex.4h6v.s8.458faa33ab6b from=translated src=- shape=f1721c83 vocab=4b496cd0
+-/
 theorem exists_pin_mem (ℓ : ℕ) [Fact ℓ.Prime] (hℓ : IsUnit ((ℓ : ℕ) : A₀)) (ω : A₀) (hω : IsPrimitiveRoot ω ℓ)
     (hωu : ∀ i j : ℕ, i < ℓ → j < ℓ → i ≠ j → IsUnit (ω ^ i - ω ^ j))
     (ξ : R) (hξ : Polynomial.aeval ξ (Polynomial.cyclotomic ℓ A₀) = 0)
@@ -70,6 +76,9 @@ theorem exists_pin_mem (ℓ : ℕ) [Fact ℓ.Prime] (hℓ : IsUnit ((ℓ : ℕ) 
 end IdemSplit
 
 open IdemSplit in
+/--
+@isnad1 id=and.4h5v.s10.844d99f03956 from=translated src=- shape=6ed42cd8 vocab=3bb622c0
+-/
 theorem solution
     (A₀ R : Type) [CommRing A₀] [CommRing R] [Algebra A₀ R]
     (ℓ : ℕ) [Fact ℓ.Prime] (hℓ : IsUnit ((ℓ : ℕ) : A₀)) (ω : A₀) (hω : IsPrimitiveRoot ω ℓ)

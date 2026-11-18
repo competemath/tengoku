@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_HopfAlgebra_signTwist_galois_of_formula_of
 
 open scoped NNReal
 open scoped TensorProduct in
+/--
+@isnad1 id=and.6h12v.s14.3c0b53265afc from=translated src=- shape=d63fb745 vocab=b2351954
+-/
 theorem HopfAlgebra.signTwist_galois_of_formula_of_linearEquiv_padicInt
     (p : ℕ) [Fact p.Prime] (hp2 : p ≠ 2)
     (d : ℚ_[p]) (s : AlgebraicClosure ℚ_[p]) (hs0 : s ≠ 0)

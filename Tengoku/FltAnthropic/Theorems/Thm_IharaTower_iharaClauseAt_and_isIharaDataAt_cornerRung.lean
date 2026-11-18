@@ -10,6 +10,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_IharaTower_iharaClauseAt_and_isIharaDataAt
 set_option autoImplicit false
 open IharaLemma IharaTower.RungAssembly in
 
+/--
+@isnad1 id=and.5h17v.s13.a38ce4c7556e from=translated src=- shape=0510a549 vocab=3b7d2d33
+-/
 theorem IharaTower.iharaClauseAt_and_isIharaDataAt_cornerRung
     {𝒪 : Type} [CommRing 𝒪] [IsDomain 𝒪] [IsDiscreteValuationRing 𝒪]
     {V V' : Type} [AddCommGroup V] [Module 𝒪 V] [AddCommGroup V'] [Module 𝒪 V']

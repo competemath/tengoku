@@ -11,6 +11,9 @@ open Polynomial
 
 namespace DrinformAux
 
+/--
+@isnad1 id=and.2h6v.s8.e17031d0ad05 from=translated src=- shape=08fdf574 vocab=4cd0215b
+-/
 lemma prod_sub_prod_mem_pow {R : Type*} [CommRing R] {ι : Type*} [DecidableEq ι] (s : Finset ι) (I : Ideal R)
     (P L : ι → R) (hL : ∀ i ∈ s, L i ∈ I) (hPL : ∀ i ∈ s, P i - L i ∈ I ^ 2) :
     (∏ i ∈ s, P i) - (∏ i ∈ s, L i) ∈ I ^ (s.card + 1) ∧ (∏ i ∈ s, L i) ∈ I ^ s.card := by
@@ -41,6 +44,9 @@ section Universal
 
 variable (q : ℕ) [hq : Fact q.Prime]
 
+/--
+@isnad1 id=eq.0h1v.s11.5f454ee23b4d from=translated src=- shape=f6b6f6ec vocab=11afa1c2
+-/
 lemma prod_X_add_C_mul :
     ∏ c : ZMod q, ((X : Polynomial (Polynomial (ZMod q))) + C (C c * X)) =
       X ^ q - C ((X : Polynomial (ZMod q)) ^ (q - 1)) * X := by
@@ -91,6 +97,9 @@ lemma prod_X_add_C_mul :
           rw [Finset.prod_eq_multiset_prod]; rfl
     _ = p := hprod
 
+/--
+@isnad1 id=eq.0h5v.s7.183a3ee8ae70 from=translated src=- shape=7705c987 vocab=7207ed8a
+-/
 lemma prod_add_mul_eq {B : Type*} [CommRing B] (ψ : ZMod q →+* B) (a b : B) :
     ∏ c : ZMod q, (a + ψ c * b) = a ^ q - b ^ (q - 1) * a := by
   have h := congrArg (eval₂RingHom (eval₂RingHom ψ b) a) (prod_X_add_C_mul q)
@@ -102,6 +111,9 @@ end Universal
 end DrinformAux
 
 open DrinformAux in
+/--
+@isnad1 id=mem.4h6v.s9.2a0351b0057c from=translated src=- shape=a396df83 vocab=7df3e896
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime]
     (R : Type) [CommRing R] (𝔪 : Ideal R) (hq : ((q : ℕ) : R) ∈ 𝔪 ^ (q + 2))

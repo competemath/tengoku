@@ -12,6 +12,9 @@ set_option autoImplicit false
 namespace CohL2
 namespace E3
 
+/--
+@isnad1 id=eq.1h5v.s6.1bced86f9be0 from=translated src=- shape=1697fb31 vocab=99545b96
+-/
 theorem pow_mul_eq_of_mul_mul_eq {B' : Type} [CommRing B'] {u b e : B'} (h : u * b * e = e) (n : ℕ) :
     u ^ n * b ^ n * e = e := by
   induction n with
@@ -20,6 +23,9 @@ theorem pow_mul_eq_of_mul_mul_eq {B' : Type} [CommRing B'] {u b e : B'} (h : u *
     calc u ^ (n + 1) * b ^ (n + 1) * e = u ^ n * b ^ n * (u * b * e) := by ring
       _ = e := by rw [h, ih]
 
+/--
+@isnad1 id=eq.1h9v.s9.073b58a837fd from=translated src=- shape=a34e8bdd vocab=5f37b6c4
+-/
 theorem map_pow_smul {𝒪 : Type} [CommRing 𝒪] {B' : Type} [CommRing B']
     {V : Type} [AddCommGroup V] [Module 𝒪 V]
     {V' : Type} [AddCommGroup V'] [Module 𝒪 V'] [Module B' V']
@@ -32,6 +38,9 @@ theorem map_pow_smul {𝒪 : Type} [CommRing 𝒪] {B' : Type} [CommRing B']
 end CohL2.E3
 
 open CohL2.E3 IharaLemma in
+/--
+@isnad1 id=eq.5h11v.s10.6464938d6553 from=translated src=- shape=47f4b013 vocab=9bb063fd
+-/
 theorem solution
     {𝒪 : Type} [CommRing 𝒪] {B' : Type} [CommRing B'] [Algebra 𝒪 B']
     {V : Type} [AddCommGroup V] [Module 𝒪 V]

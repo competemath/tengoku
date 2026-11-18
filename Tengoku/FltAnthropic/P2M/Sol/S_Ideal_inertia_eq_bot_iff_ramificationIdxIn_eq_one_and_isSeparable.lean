@@ -18,6 +18,9 @@ variable {A B : Type*} [CommRing A] [IsDedekindDomain A] [CommRing B] [IsDedekin
   (G : Type*) [Group G] [Finite G] [MulSemiringAction G B] [IsGaloisGroup G A B]
   {p : Ideal A} (P : Ideal B)
 
+/--
+@isnad1 id=eq.1h5v.s8.31dbcc787aad from=translated src=- shape=969a2df9 vocab=95444b4f
+-/
 theorem ramificationIdxIn_mul_inertiaDegIn_eq_card_stabilizer (hpb : p ≠ ⊥) [p.IsMaximal]
     [P.IsMaximal] [P.LiesOver p] :
     p.ramificationIdxIn B * p.inertiaDegIn B = Nat.card (MulAction.stabilizer G P) := by
@@ -30,6 +33,9 @@ theorem ramificationIdxIn_mul_inertiaDegIn_eq_card_stabilizer (hpb : p ≠ ⊥) 
 
 omit [IsDedekindDomain A] [IsDedekindDomain B] [Module.Finite A B] [Module.IsTorsionFree A B] in
 
+/--
+@isnad1 id=eq.0h5v.s8.9c6a70147694 from=translated src=- shape=a762717a vocab=22e28146
+-/
 theorem card_stabilizer_eq_card_inertia_mul_card_aut [p.IsMaximal] [P.IsMaximal] [P.LiesOver p] :
     Nat.card (MulAction.stabilizer G P) =
       Nat.card (P.inertia G) * Nat.card ((B ⧸ P) ≃ₐ[A ⧸ p] (B ⧸ P)) := by
@@ -40,6 +46,9 @@ theorem card_stabilizer_eq_card_inertia_mul_card_aut [p.IsMaximal] [P.IsMaximal]
       (Ideal.inertia_le_stabilizer (M := G) P)).toEquiv, mul_comm]
   exact Subgroup.card_eq_card_quotient_mul_card_subgroup _
 
+/--
+@isnad1 id=iff.1h5v.s8.ad1dbc52f27c from=translated src=- shape=b0bd5fb3 vocab=677caa15
+-/
 theorem inertia_eq_bot_iff (hpb : p ≠ ⊥) [p.IsMaximal] [P.IsMaximal] [P.LiesOver p] :
     P.inertia G = ⊥ ↔ p.ramificationIdxIn B = 1 ∧ Algebra.IsSeparable (A ⧸ p) (B ⧸ P) := by
   have hef := ramificationIdxIn_mul_inertiaDegIn_eq_card_stabilizer G P hpb
@@ -80,6 +89,9 @@ theorem inertia_eq_bot_iff (hpb : p ≠ ⊥) [p.IsMaximal] [P.IsMaximal] [P.Lies
 
 end P2mInertiaTrivial
 
+/--
+@isnad1 id=iff.1h5v.s8.7d910553d6b2 from=translated src=- shape=0302ef79 vocab=677caa15
+-/
 theorem solution
     {A B : Type*} [CommRing A] [IsDedekindDomain A] [CommRing B] [IsDedekindDomain B]
     [Algebra A B] [Module.Finite A B] [Module.IsTorsionFree A B]

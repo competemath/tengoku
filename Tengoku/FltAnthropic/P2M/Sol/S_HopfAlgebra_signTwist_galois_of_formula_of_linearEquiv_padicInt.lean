@@ -44,6 +44,9 @@ private theorem convMul_comp_antipode_left (φ : A →ₐ[R] L) :
 end
 
 open scoped _root_.TensorProduct _root_.Coalgebra.TensorProduct in
+/--
+@isnad1 id=and.6h12v.s14.3c0b53265afc from=translated src=- shape=d63fb745 vocab=b2351954
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] (hp2 : p ≠ 2)
     (d : ℚ_[p]) (s : AlgebraicClosure ℚ_[p]) (hs0 : s ≠ 0)

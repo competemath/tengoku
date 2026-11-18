@@ -7,6 +7,9 @@ namespace P2MW.S_IntermediateField_exists_mulEquiv_fixedField_apply_eq
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.0h3v.s12.d47d7747e00c from=translated src=- shape=fca5eab9 vocab=98ffc961
+-/
 theorem solution
     (E F : Type) [Field E] [Field F] [Algebra E F] [FiniteDimensional E F] [IsGalois E F] (H : Subgroup (F ≃ₐ[E] F)) :
     ∃ Θ : ↥H ≃* (F ≃ₐ[↥(IntermediateField.fixedField H)] F), ∀ (s : ↥H) (y : F), Θ s y = (s : F ≃ₐ[E] F) y := by

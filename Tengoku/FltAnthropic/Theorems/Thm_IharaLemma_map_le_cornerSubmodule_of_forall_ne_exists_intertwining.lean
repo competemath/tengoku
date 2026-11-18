@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open IharaLemma
 
+/--
+@isnad1 id=mem.3h10v.s10.aa6f45aaecea from=translated src=- shape=20e112b1 vocab=9bb063fd
+-/
 theorem IharaLemma.map_le_cornerSubmodule_of_forall_ne_exists_intertwining
     {𝒪 : Type} [CommRing 𝒪] {B' : Type} [CommRing B'] [Algebra 𝒪 B']
     {V : Type} [AddCommGroup V] [Module 𝒪 V]

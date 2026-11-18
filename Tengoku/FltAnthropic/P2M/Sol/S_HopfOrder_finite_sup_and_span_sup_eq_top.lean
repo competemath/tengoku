@@ -12,6 +12,9 @@ universe u v w
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=and.1h5v.s10.1bcdd39a4536 from=translated src=- shape=17467f92 vocab=828818b9
+-/
 theorem solution
     {R : Type u} [CommRing R] {K : Type v} [Field K] [Algebra R K]
     {A : Type w} [CommRing A] [HopfAlgebra K A] [Algebra R A] [IsScalarTower R K A] {S S' : Subalgebra R A}

@@ -191,6 +191,9 @@ end SolW1a
 
 open Subgroup in
 
+/--
+@isnad1 id=eq.5h6v.s10.e49d372877b7 from=translated src=- shape=e7b1d225 vocab=720b133b
+-/
 theorem solution {G : Type*} [Group G] {a b : G}
     {t : ℕ} (hconj : b * a * b⁻¹ = a⁻¹) (hsq : b ^ 2 = a ^ t) (hord : orderOf a = 2 * t)
     {E : Type*} [Group E] (π : E →* closure ({a, b} : Set G)) (hπ : Function.Surjective π)

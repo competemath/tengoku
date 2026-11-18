@@ -16,6 +16,9 @@ export _root_.Ideal (height Quotient.eq_zero_iff_mem Quotient.mkₐ isDomain Quo
 namespace HeightOneOfIndependentResidues
 open _root_.Ideal
 
+/--
+@isnad1 id=algebrai.1h5v.s9.250159196158 from=translated src=- shape=f5f97734 vocab=2bf47267
+-/
 theorem algebraicIndependent_mk (k : Type u) [Field k] {A : Type v} [CommRing A] [Algebra k A]
     (p : Ideal A) {d : ℕ} (f : Fin d → A)
     (hind : ∀ Q : MvPolynomial (Fin d) k, MvPolynomial.aeval f Q ∈ p → Q = 0) :
@@ -37,6 +40,9 @@ theorem algebraicIndependent_mk (k : Type u) [Field k] {A : Type v} [CommRing A]
     rw [map_sub, map_sub, this, sub_self]
   exact sub_eq_zero.mp (hind _ h2)
 
+/--
+@isnad1 id=le.1h4v.s6.f4d962ccc700 from=translated src=- shape=e7d8ef0a vocab=8746e1e9
+-/
 theorem natCast_le_ringKrullDim_of_algebraicIndependent (k : Type u) [Field k] {B : Type v} [CommRing B]
     [IsDomain B] [Algebra k B] [Algebra.FiniteType k B] {d : ℕ} {x : Fin d → B}
     (hx : AlgebraicIndependent k x) : ((d : ℕ) : WithBot ℕ∞) ≤ ringKrullDim B := by
@@ -50,6 +56,9 @@ theorem natCast_le_ringKrullDim_of_algebraicIndependent (k : Type u) [Field k] {
   rw [h1]
   exact_mod_cast h3
 
+/--
+@isnad1 id=eq.3h3v.s6.1c3aa4be51c5 from=translated src=- shape=36bcec53 vocab=2ced7486
+-/
 theorem enat_eq_one_of_add_eq_of_le {h : ℕ∞} {x : WithBot ℕ∞} {d : ℕ}
     (hsum : (h : WithBot ℕ∞) + x = ((d + 1 : ℕ) : WithBot ℕ∞)) (hle : ((d : ℕ) : WithBot ℕ∞) ≤ x)
     (hne : h ≠ 0) : h = 1 := by
@@ -90,6 +99,9 @@ theorem enat_eq_one_of_add_eq_of_le {h : ℕ∞} {x : WithBot ℕ∞} {d : ℕ}
 end Ideal.HeightOneOfIndependentResidues
 
 open Ideal.HeightOneOfIndependentResidues in
+/--
+@isnad1 id=eq.3h5v.s8.849e39595aa1 from=translated src=- shape=5f25a6be vocab=d58c4b7e
+-/
 theorem solution
     (k : Type u) [Field k] {A : Type v} [CommRing A] [IsDomain A] [Algebra k A]
     [Algebra.FiniteType k A]

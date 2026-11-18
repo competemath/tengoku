@@ -29,9 +29,15 @@ noncomputable def augPart : ↥(hopfKer qc) →ₗ[R] H :=
   (hopfKer qc).val.toLinearMap -
     (Algebra.linearMap R H).comp ((Coalgebra.counit (R := R) (A := H)).comp (hopfKer qc).val.toLinearMap)
 
+/--
+@isnad1 id=eq.0h5v.s11.6140b313efad from=translated src=- shape=20d10b9d vocab=9de039aa
+-/
 theorem augPart_apply (b : ↥(hopfKer qc)) :
     augPart qc b = (b : H) - algebraMap R H (Coalgebra.counit (R := R) (b : H)) := rfl
 
+/--
+@isnad1 id=mem.0h5v.s11.ab703e905a29 from=translated src=- shape=355c058e vocab=5b07db8b
+-/
 theorem augPart_mem (b : ↥(hopfKer qc)) :
     augPart qc b ∈ Ideal.span {a : H | a ∈ hopfKer qc ∧ Coalgebra.counit (R := R) a = 0} := by
   apply Ideal.subset_span
@@ -40,6 +46,9 @@ theorem augPart_mem (b : ↥(hopfKer qc)) :
     exact (hopfKer qc).sub_mem b.2 ((hopfKer qc).algebraMap_mem _)
   · rw [augPart_apply, map_sub, Bialgebra.counit_algebraMap, sub_self]
 
+/--
+@isnad1 id=eq.0h5v.s14.1b6674ef8f49 from=translated src=- shape=48fdb2c0 vocab=54f780c1
+-/
 theorem baseChange_val_eq_linearMap :
     ((hopfKer qc).val.toLinearMap.baseChange K) =
       ((augPart qc).baseChange K) +
@@ -55,6 +64,9 @@ theorem baseChange_val_eq_linearMap :
   rw [Algebra.algebraMap_self, RingHom.id_apply, TensorProduct.smul_tmul, Algebra.smul_def, mul_one,
     sub_add_cancel]
 
+/--
+@isnad1 id=eq.0h6v.s14.08e993c8cd78 from=translated src=- shape=9acd330e vocab=ace17926
+-/
 theorem baseChange_val_eq (t : K ⊗[R] ↥(hopfKer qc)) :
     ((hopfKer qc).val.toLinearMap.baseChange K) t =
       ((augPart qc).baseChange K) t +
@@ -62,6 +74,9 @@ theorem baseChange_val_eq (t : K ⊗[R] ↥(hopfKer qc)) :
   have := LinearMap.congr_fun (baseChange_val_eq_linearMap K qc) t
   simpa only [LinearMap.add_apply, LinearMap.comp_apply, Algebra.linearMap_apply] using this
 
+/--
+@isnad1 id=le.0h5v.s12.2f441a2eb63f from=translated src=- shape=93c93a47 vocab=7043dbff
+-/
 theorem span_augHopfKer_baseChange_le_map_includeRight [Module.Flat R K] :
     Ideal.span {a : K ⊗[R] H |
         a ∈ hopfKer (Bialgebra.TensorProduct.map (BialgHom.id K K) qc : K ⊗[R] H →ₐc[K] K ⊗[R] H') ∧
@@ -107,11 +122,20 @@ variable {R : Type u} [CommRing R] {H : Type v} [CommRing H] [HopfAlgebra R H]
 
 noncomputable def augHom : ↥(hopfKer qc) →ₐ[R] R := (Bialgebra.counitAlgHom R H).comp (hopfKer qc).val
 
+/--
+@isnad1 id=eq.0h5v.s11.b680443ab0c6 from=translated src=- shape=1af556e7 vocab=08f3bddd
+-/
 theorem augHom_apply (b : ↥(hopfKer qc)) : augHom qc b = Coalgebra.counit (R := R) (b : H) := rfl
 
+/--
+@isnad1 id=surjecti.0h4v.s10.f7274b167116 from=translated src=- shape=9e608445 vocab=35ba8090
+-/
 theorem augHom_surjective : Function.Surjective (augHom qc) := fun r =>
   ⟨algebraMap R _ r, by rw [augHom_apply]; exact Bialgebra.counit_algebraMap r⟩
 
+/--
+@isnad1 id=eq.0h4v.s12.c0db28f8f11b from=translated src=- shape=80692fcf vocab=f307f2ee
+-/
 theorem span_aug_eq_map_ker :
     Ideal.span {a : H | a ∈ hopfKer qc ∧ Coalgebra.counit (R := R) a = 0} =
       (RingHom.ker (augHom qc)).map (algebraMap ↥(hopfKer qc) H) := by
@@ -124,6 +148,9 @@ theorem span_aug_eq_map_ker :
     intro b hb
     exact Ideal.subset_span ⟨b.2, hb⟩
 
+/--
+@isnad1 id=flat.0h4v.s11.6fe92dee101d from=translated src=- shape=8fbb1061 vocab=58d15915
+-/
 theorem flat_quot_span_aug [Module.Flat ↥(hopfKer qc) H] :
     Module.Flat R (H ⧸ Ideal.span {a : H | a ∈ hopfKer qc ∧ Coalgebra.counit (R := R) a = 0}) := by
   let I : Ideal ↥(hopfKer qc) := RingHom.ker (augHom qc)
@@ -143,6 +170,9 @@ theorem flat_quot_span_aug [Module.Flat ↥(hopfKer qc) H] :
   rw [hJ]
   exact Module.Flat.of_linearEquiv e₃
 
+/--
+@isnad1 id=mem.2h6v.s10.fe6540c8782e from=translated src=- shape=8e859e24 vocab=fd200fbd
+-/
 theorem mem_span_aug_of_smul_mem [IsDomain R] [Module.Flat ↥(hopfKer qc) H] {d : R} (hd : d ≠ 0) {x : H}
     (h : d • x ∈ Ideal.span {a : H | a ∈ hopfKer qc ∧ Coalgebra.counit (R := R) a = 0}) :
     x ∈ Ideal.span {a : H | a ∈ hopfKer qc ∧ Coalgebra.counit (R := R) a = 0} := by
@@ -165,6 +195,9 @@ namespace GalDescent
 
 variable {R : Type u} [CommRing R] {H : Type v} [CommRing H] [HopfAlgebra R H]
 
+/--
+@isnad1 id=ex.1h5v.s10.1c7f5430d11c from=translated src=- shape=1b793632 vocab=b0df420a
+-/
 theorem exists_smul_mem_of_one_tmul_mem_map_includeRight [IsDomain R] [Module.Flat R H]
     (K : Type u) [CommRing K] [Algebra R K] [IsFractionRing R K]
     (J : Ideal H) {x : H}
@@ -200,6 +233,9 @@ end HopfAlgebra
 namespace HopfAlgebra export _root_.HopfAlgebra (mk hopfKer IsHopfGalois isHopfGalois_iff_ker_le_span_of_surjective hopfKer_baseChange_toSubmodule_eq_range_baseChange) namespace GalDescent end HopfAlgebra.GalDescent
 open scoped _root_.HopfAlgebra in
 
+/--
+@isnad1 id=ishopfga.2h5v.s11.5c9460e6421f from=translated src=- shape=a9195f2a vocab=80e2a2d3
+-/
 theorem HopfAlgebra.GalDescent.isHopfGalois_of_baseChange
     {R : Type u} [CommRing R] [IsDomain R] (K : Type u) [Field K] [Algebra R K] [IsFractionRing R K]
     {H : Type v} [CommRing H] [HopfAlgebra R H] [Module.Flat R H]
@@ -238,6 +274,9 @@ theorem HopfAlgebra.GalDescent.isHopfGalois_of_baseChange
   obtain ⟨d, hd, hdx⟩ := HopfAlgebra.GalDescent.exists_smul_mem_of_one_tmul_mem_map_includeRight K _ h2
   exact HopfAlgebra.mem_span_aug_of_smul_mem qc hd hdx
 
+/--
+@isnad1 id=ishopfga.2h5v.s11.5c9460e6421f from=translated src=- shape=a9195f2a vocab=80e2a2d3
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsDomain R] (K : Type u) [Field K] [Algebra R K] [IsFractionRing R K]
     {H : Type v} [CommRing H] [HopfAlgebra R H] [Module.Flat R H]

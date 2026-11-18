@@ -19,6 +19,9 @@ namespace P2MW.S_Ideal_exists_ringHom_integralClosure_ker_eq
 
 open Ideal
 
+/--
+@isnad1 id=ex.2h2v.s9.5c4b3920c191 from=translated src=- shape=c7f1a74b vocab=c7f7270c
+-/
 theorem solution {T : Type*} [CommRing T] [Module.Finite ℤ T] (𝔓 : Ideal T) (h𝔓 : 𝔓.IsPrime) (hint : ∀ n : ℤ, (n : T) ∈ 𝔓 → n = 0) : ∃ f : T →+* integralClosure ℤ ℂ, RingHom.ker f = 𝔓 := by
   classical
   haveI := h𝔓

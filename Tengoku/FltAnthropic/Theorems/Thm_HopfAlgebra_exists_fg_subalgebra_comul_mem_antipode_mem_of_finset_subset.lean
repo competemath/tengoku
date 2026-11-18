@@ -13,6 +13,9 @@ open scoped TensorProduct
 
 universe u v w
 
+/--
+@isnad1 id=ex.3h4v.s13.545b8eae56a1 from=translated src=- shape=1a43edc0 vocab=7146de91
+-/
 theorem HopfAlgebra.exists_fg_subalgebra_comul_mem_antipode_mem_of_finset_subset
     {k : Type u} [Field k] {H : Type v} [CommRing H] [HopfAlgebra k H]
     (K : Subalgebra k H)

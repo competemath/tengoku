@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open scoped Pointwise
 
+/--
+@isnad1 id=and.5h7v.s9.abb1cdbda78c from=translated src=- shape=7cea2754 vocab=33695af8
+-/
 theorem solution
     {A B : Type*} [CommRing A] [CommRing B] [Algebra A B]
     (G : Type*) [Group G] [Finite G] [MulSemiringAction G B] [SMulCommClass G A B] [Algebra.IsInvariant A B G]

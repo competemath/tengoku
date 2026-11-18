@@ -11,6 +11,9 @@ universe u
 
 open TensorProduct
 
+/--
+@isnad1 id=injectiv.3h7v.s9.35d9f73f4472 from=translated src=- shape=3d6c0c64 vocab=0f30c3cc
+-/
 theorem Module.Flat.lTensor_injective_of_exact_of_surjective_of_flat
     {R : Type u} [CommRing R] {N M P : Type u}
     [AddCommGroup N] [Module R N] [AddCommGroup M] [Module R M] [AddCommGroup P] [Module R P]

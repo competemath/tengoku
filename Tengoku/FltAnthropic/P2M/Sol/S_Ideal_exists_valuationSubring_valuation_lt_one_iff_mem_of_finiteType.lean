@@ -18,6 +18,9 @@ export _root_.Ideal (height Quotient.eq_zero_iff_mem mul_mem_right Quotient.mk�
 namespace PrimeDivisorCentre
 open _root_.Ideal
 
+/--
+@isnad1 id=ex.0h3v.s8.9e82e931a344 from=translated src=- shape=bf7d8f22 vocab=46058e21
+-/
 theorem exists_valuationSubring_centre {B : Type*} [CommRing B] [IsDomain B] {K : Type*} [Field K]
     [Algebra B K] [IsFractionRing B K] (Q : Ideal B) [Q.IsPrime] :
     ∃ V : ValuationSubring K, (∀ b : B, algebraMap B K b ∈ V) ∧
@@ -76,6 +79,9 @@ theorem eq_of_one_add_eq_natCast_succ {x : WithBot ℕ∞} {d : ℕ}
       have hm : m = d := by omega
       subst hm; rfl
 
+/--
+@isnad1 id=ex.0h2v.s6.eaec38b12e76 from=translated src=- shape=e7faac41 vocab=c092babf
+-/
 theorem exists_ringKrullDim_eq_natCast (k : Type u) [Field k] (A : Type v) [CommRing A]
     [IsDomain A] [Algebra k A] [Algebra.FiniteType k A] :
     ∃ n : ℕ, ringKrullDim A = (n : WithBot ℕ∞) := by
@@ -86,6 +92,9 @@ theorem exists_ringKrullDim_eq_natCast (k : Type u) [Field k] (A : Type v) [Comm
   rw [h, hn]
   simp
 
+/--
+@isnad1 id=eq.1h3v.s6.8f2fb757b2a8 from=translated src=- shape=c1bbbf9e vocab=02511ccd
+-/
 theorem trdeg_eq_natCast_of_ringKrullDim_eq (k : Type u) [Field k] (A : Type v) [CommRing A]
     [IsDomain A] [Algebra k A] [Algebra.FiniteType k A] {n : ℕ}
     (h : ringKrullDim A = (n : WithBot ℕ∞)) : Algebra.trdeg k A = n := by
@@ -97,6 +106,9 @@ theorem trdeg_eq_natCast_of_ringKrullDim_eq (k : Type u) [Field k] (A : Type v) 
     exact_mod_cast this.symm
   exact (Cardinal.toENat_eq_natCast).mp h2
 
+/--
+@isnad1 id=ex.1h3v.s6.7bd7cc53c67a from=translated src=- shape=da42519f vocab=f4c350e3
+-/
 theorem exists_algebraicIndependent_of_ringKrullDim_eq (k : Type u) [Field k] (C : Type v)
     [CommRing C] [IsDomain C] [Algebra k C] [Algebra.FiniteType k C] {d : ℕ}
     (h : ringKrullDim C = (d : WithBot ℕ∞)) :
@@ -124,6 +136,9 @@ variable (k : Type u) [Field k] {A : Type v} [CommRing A] [IsDomain A] [Algebra 
   [Algebra.FiniteType k A]
   (K : Type w) [Field K] [Algebra A K] [IsFractionRing A K] [Algebra k K] [IsScalarTower k A K]
 
+/--
+@isnad1 id=ex.1h4v.s10.a063dc239f57 from=translated src=- shape=d8f59919 vocab=311fe5d6
+-/
 theorem main (p : Ideal A) [hp : p.IsPrime] (hp0 : p ≠ ⊥) :
     ∃ (O : ValuationSubring K) (d : ℕ) (f : Fin d → K),
       O ≠ ⊤ ∧ (∀ a : A, algebraMap A K a ∈ O) ∧
@@ -311,6 +326,9 @@ end Ideal.PrimeDivisorCentre
 
 open Ideal.PrimeDivisorCentre in
 
+/--
+@isnad1 id=ex.1h4v.s10.a063dc239f57 from=translated src=- shape=d8f59919 vocab=311fe5d6
+-/
 theorem solution
     (k : Type u) [Field k] {A : Type v} [CommRing A] [IsDomain A] [Algebra k A]
     [Algebra.FiniteType k A]

@@ -7,6 +7,9 @@ namespace P2MW.S_Ideal_isReduced_quotient_span_singleton_of_forall_mem_associate
 
 open IsLocalRing
 
+/--
+@isnad1 id=isreduce.1h2v.s9.4eda6707a183 from=translated src=- shape=4e0fc94a vocab=f519c36c
+-/
 theorem solution
     {A : Type*} [CommRing A] [IsNoetherianRing A] (x : A)
     (h : ∀ (P : Ideal A) [P.IsPrime], P ∈ associatedPrimes A (A ⧸ Ideal.span {x}) →

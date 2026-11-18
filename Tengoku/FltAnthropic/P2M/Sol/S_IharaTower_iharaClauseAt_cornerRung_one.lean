@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open IharaLemma IharaTower IharaTower.RungAssembly in
 
+/--
+@isnad1 id=and.7h17v.s14.aea4ee4386c2 from=translated src=- shape=13bf3d5b vocab=10dee473
+-/
 theorem solution
     {𝒪 : Type} [CommRing 𝒪] [IsDomain 𝒪] [IsDiscreteValuationRing 𝒪]
     {V V' : Type} [AddCommGroup V] [Module 𝒪 V] [AddCommGroup V'] [Module 𝒪 V']

@@ -13,6 +13,9 @@ namespace WeilPairingDEGN
 
 variable {K L : Type*} [Field K] [Field L] [Algebra K L]
 
+/--
+@isnad1 id=eq.2h6v.s8.aae1c6b06fd1 from=translated src=- shape=44d177a6 vocab=35545822
+-/
 lemma algHom_ext_of_adjoin_eq_top {L' : Type*} [Field L'] [Algebra K L'] {S : Set L}
     (hS : adjoin K S = ⊤) {f g : L →ₐ[K] L'} (h : ∀ s ∈ S, f s = g s) : f = g := by
   have hle : adjoin K S ≤ (⊤ : IntermediateField K L) := le_top
@@ -32,6 +35,9 @@ lemma eq_top_of_forall_mem {B : Type*} [Field B] [Algebra K B] [Algebra B L] [Is
   rw [IntermediateField.restrictScalars_top, eq_top_iff, ← hS, adjoin_le_iff]
   exact h
 
+/--
+@isnad1 id=and.10h11v.s12.fd94b0d74c36 from=translated src=- shape=656696a3 vocab=284f948f
+-/
 theorem finrank_fieldRange_le (X Y : L) (hgen : adjoin K {X, Y} = ⊤) (A B : L)
     (hA : A ∈ K⟮X⟯) (hB : B ∈ K⟮X⟯) (hY : Y ^ 2 + A * Y + B = 0) (μ ι : L →ₐ[K] L)
     (hιX : ι X = X) (hιY : ι Y ^ 2 + A * ι Y + B = 0) (hιμ : ι (μ Y) ≠ μ Y) (Φ Ψ : K[X])
@@ -146,5 +152,8 @@ theorem finrank_fieldRange_le (X Y : L) (hgen : adjoin K {X, Y} = ⊤) (A B : L)
 
 end WeilPairingDEGN
 
+/--
+@isnad1 id=and.10h11v.s12.fd94b0d74c36 from=translated src=- shape=656696a3 vocab=284f948f
+-/
 theorem solution {K L : Type*} [Field K] [Field L] [Algebra K L] (X Y : L) (hgen : IntermediateField.adjoin K {X, Y} = ⊤) (A B : L) (hA : A ∈ IntermediateField.adjoin K {X}) (hB : B ∈ IntermediateField.adjoin K {X}) (hY : Y ^ 2 + A * Y + B = 0) (μ ι : L →ₐ[K] L) (hιX : ι X = X) (hιY : ι Y ^ 2 + A * ι Y + B = 0) (hιμ : ι (μ Y) ≠ μ Y) (Φ Ψ : Polynomial K) {d : ℕ} (hd : 0 < d) (hroot : Polynomial.aeval X Φ = μ X * Polynomial.aeval X Ψ) (hdeg : ∀ (M : IntermediateField K L) (c : M), (Φ.map (algebraMap K M) - Polynomial.C c * Ψ.map (algebraMap K M)).natDegree = d) : FiniteDimensional μ.fieldRange L ∧ Module.finrank μ.fieldRange L ≤ d :=
   WeilPairingDEGN.finrank_fieldRange_le X Y hgen A B hA hB hY μ ι hιX hιY hιμ Φ Ψ hd hroot hdeg

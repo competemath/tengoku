@@ -15,11 +15,17 @@ variable {k : Type*} [Field k]
   {A : Type*} [CommRing A] [Bialgebra k A] [Coalgebra.IsCocomm k A] [Module.Finite k A]
   {B : Type*} [CommRing B] [Bialgebra k B] [Coalgebra.IsCocomm k B] [Module.Finite k B]
 
+/--
+@isnad1 id=nontrivi.0h2v.s4.6563b59ef9ff from=translated src=- shape=c221ff1f vocab=ff342a40
+-/
 lemma nontrivial_of_bialgebra (K : Type*) [Field K] (C : Type*) [CommRing C] [Bialgebra K C] :
     Nontrivial C :=
   ⟨⟨0, 1, fun h => zero_ne_one (α := K)
     (by simpa using congrArg (Coalgebra.counit (R := K) (A := C)) h)⟩⟩
 
+/--
+@isnad1 id=islocalr.2h4v.s9.c346c89d1366 from=translated src=- shape=9b28df22 vocab=11ab020c
+-/
 theorem isLocalRing_of_surjective (π : A →ₐc[k] B) (hπ : Function.Surjective π)
     (hA : IsLocalRing (CartierDual k A)) : IsLocalRing (CartierDual k B) := by
   haveI := hA
@@ -68,6 +74,9 @@ end UnipotentSubgroup
 
 universe u v w
 
+/--
+@isnad1 id=islocalr.2h4v.s9.c346c89d1366 from=translated src=- shape=9b28df22 vocab=11ab020c
+-/
 theorem solution
     (k : Type u) [Field k]
     (A : Type v) [CommRing A] [Bialgebra k A] [Coalgebra.IsCocomm k A] [Module.Finite k A]

@@ -17,16 +17,25 @@ theorem eq_zero_of_pow_eq_mul_of_pow_mul_eq_zero [IsReduced S] {a x t : S} {n m 
   refine ⟨m + n, ?_⟩
   rw [pow_add, hn, ← mul_assoc, hm, zero_mul]
 
+/--
+@isnad1 id=eq.1h4v.s7.6dd00df385f6 from=translated src=- shape=ce149ba7 vocab=9f679299
+-/
 theorem mul_eq_zero_of_pow_mul_mul_eq_zero [IsReduced S] {a s : S} {m : ℕ}
     (hm : (a * s) ^ m * a = 0) : a * s = 0 := by
   apply IsNilpotent.eq_zero
   refine ⟨m + 1, ?_⟩
   rw [pow_succ, ← mul_assoc, hm, zero_mul]
 
+/--
+@isnad1 id=iff.0h3v.s6.5e4beb58307d from=translated src=- shape=a92704f2 vocab=1e3c3d9f
+-/
 theorem mem_annihilator_span_singleton_iff (a r : S) :
     r ∈ (Ideal.span {a} : Submodule S S).annihilator ↔ r * a = 0 := by
   rw [Submodule.mem_annihilator_span_singleton, smul_eq_mul]
 
+/--
+@isnad1 id=and.0h2v.s8.2abc400d5d4c from=translated src=- shape=bf6d3cd8 vocab=f487bb27
+-/
 theorem radical_span_inf_radical_annihilator_eq_bot [IsReduced S] (a : S) :
     (Ideal.span {a}).radical ⊓ ((Ideal.span {a} : Submodule S S).annihilator).radical = ⊥ ∧
     ∀ s : S, a * s ∈ ((Ideal.span {a} : Submodule S S).annihilator).radical →
@@ -48,6 +57,9 @@ theorem radical_span_inf_radical_annihilator_eq_bot [IsReduced S] (a : S) :
 
 end Ws23MilnorSplit
 
+/--
+@isnad1 id=and.0h2v.s8.68ca275b8ef8 from=translated src=- shape=3e232b6f vocab=f487bb27
+-/
 theorem solution
     {S : Type} [CommRing S] [IsReduced S] (a : S) :
     (Ideal.span {a}).radical ⊓ ((Ideal.span {a}).annihilator).radical = ⊥ ∧

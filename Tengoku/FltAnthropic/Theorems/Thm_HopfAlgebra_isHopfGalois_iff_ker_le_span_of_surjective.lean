@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_HopfAlgebra_isHopfGalois_iff_ker_le_span_o
 
 universe u v w
 
+/--
+@isnad1 id=iff.1h4v.s10.97af6823a5ae from=translated src=- shape=f6590657 vocab=8a4f3508
+-/
 theorem HopfAlgebra.isHopfGalois_iff_ker_le_span_of_surjective {R : Type u} [CommRing R]
     {A : Type v} [CommRing A] [HopfAlgebra R A] [Module.Flat R A]
     {B : Type w} [CommRing B] [Bialgebra R B] (π : A →ₐc[R] B) (hπ : Function.Surjective π) :

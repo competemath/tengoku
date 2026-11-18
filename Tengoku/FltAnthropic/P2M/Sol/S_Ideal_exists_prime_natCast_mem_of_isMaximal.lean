@@ -19,6 +19,9 @@ namespace P2MW.S_Ideal_exists_prime_natCast_mem_of_isMaximal
 
 open Ideal
 
+/--
+@isnad1 id=ex.1h2v.s6.93e53f2b7818 from=translated src=- shape=ed427fc3 vocab=630836da
+-/
 theorem solution {T : Type*} [CommRing T] [Module.Finite ℤ T] (𝔪 : Ideal T) (h𝔪 : 𝔪.IsMaximal) : ∃ p : ℕ, p.Prime ∧ (p : T) ∈ 𝔪 := by
   classical
   haveI := h𝔪

@@ -26,6 +26,9 @@ noncomputable def shear : A ⊗[R] A →ₐ[R] A ⊗[R] A :=
   Algebra.TensorProduct.lift (Algebra.TensorProduct.includeLeft : A →ₐ[R] A ⊗[R] A)
     (Bialgebra.comulAlgHom R A) (fun _ _ => Commute.all _ _)
 
+/--
+@isnad1 id=eq.0h4v.s11.f199fd62f49c from=translated src=- shape=0b558100 vocab=4e3a8699
+-/
 @[scoped simp] theorem shear_tmul (a b : A) :
     shear (R := R) (a ⊗ₜ[R] b) = (a ⊗ₜ[R] (1 : A)) * comul b :=
   Algebra.TensorProduct.lift_tmul _ _ _ a b
@@ -34,6 +37,9 @@ noncomputable def phi : A ⊗[R] (A ⊗[R] A) →ₗ[R] A ⊗[R] A :=
   (LinearMap.mul' R A ∘ₗ (antipode R (A := A)).rTensor A).rTensor A
     ∘ₗ (TensorProduct.assoc R A A A).symm.toLinearMap
 
+/--
+@isnad1 id=eq.0h5v.s12.3a16095860f8 from=translated src=- shape=24ecc6ce vocab=91882d96
+-/
 @[scoped simp] theorem phi_tmul (a b c : A) :
     phi (R := R) (a ⊗ₜ[R] (b ⊗ₜ[R] c)) = (antipode R a * b) ⊗ₜ[R] c := by
   simp [phi]
@@ -42,10 +48,16 @@ noncomputable def phi' : A ⊗[R] (A ⊗[R] A) →ₗ[R] A ⊗[R] A :=
   (LinearMap.mul' R A ∘ₗ (antipode R (A := A)).lTensor A).rTensor A
     ∘ₗ (TensorProduct.assoc R A A A).symm.toLinearMap
 
+/--
+@isnad1 id=eq.0h5v.s12.8f03ad316ad4 from=translated src=- shape=18d89ee8 vocab=75394deb
+-/
 @[scoped simp] theorem phi'_tmul (a b c : A) :
     phi' (R := R) (a ⊗ₜ[R] (b ⊗ₜ[R] c)) = (a * antipode R b) ⊗ₜ[R] c := by
   simp [phi']
 
+/--
+@isnad1 id=eq.0h3v.s12.9a9f2d9118b4 from=translated src=- shape=13c8bb14 vocab=be0e6e31
+-/
 theorem shear_rTensor_antipode_comul (x : A) :
     shear (R := R) ((antipode R (A := A)).rTensor A (comul x)) = (1 : A) ⊗ₜ[R] x := by
   let 𝓡 := ℛ R x
@@ -69,6 +81,9 @@ theorem shear_rTensor_antipode_comul (x : A) :
     rw [sum_counit_smul]
   rw [lhs, ← key, rhs]
 
+/--
+@isnad1 id=eq.0h5v.s12.0eb0183e66c1 from=translated src=- shape=4e8c6f93 vocab=3390ea50
+-/
 theorem sum_tmul_one_mul_rTensor_antipode_comul (x : A) {ι𝓡 : Type*} (𝓡 : Coalgebra.Repr R x ι𝓡) :
     ∑ i ∈ 𝓡.index, (𝓡.left i ⊗ₜ[R] (1 : A)) * (antipode R (A := A)).rTensor A (comul (𝓡.right i))
       = (1 : A) ⊗ₜ[R] x := by
@@ -95,10 +110,16 @@ noncomputable def shearInv : A ⊗[R] A →ₗ[R] A ⊗[R] A :=
     TensorProduct.map (Algebra.TensorProduct.includeLeft : A →ₐ[R] A ⊗[R] A).toLinearMap
       ((antipode R (A := A)).rTensor A ∘ₗ comul)
 
+/--
+@isnad1 id=eq.0h4v.s12.52ed458de905 from=translated src=- shape=9dcfddb9 vocab=ddcbeed2
+-/
 @[scoped simp] theorem shearInv_tmul (a b : A) :
     shearInv (R := R) (a ⊗ₜ[R] b) = (a ⊗ₜ[R] (1 : A)) * (antipode R (A := A)).rTensor A (comul b) := by
   simp [shearInv]
 
+/--
+@isnad1 id=eq.0h3v.s11.268d58595eb1 from=translated src=- shape=23ba5cad vocab=12064f6b
+-/
 theorem shear_shearInv (z : A ⊗[R] A) : shear (R := R) (shearInv z) = z := by
   induction z with
   | zero => simp
@@ -107,6 +128,9 @@ theorem shear_shearInv (z : A ⊗[R] A) : shear (R := R) (shearInv z) = z := by
     rw [shearInv_tmul, map_mul, shear_rTensor_antipode_comul, shear_tmul, Bialgebra.comul_one, mul_one,
       Algebra.TensorProduct.tmul_mul_tmul, one_mul, mul_one]
 
+/--
+@isnad1 id=eq.0h4v.s12.f2ae523c3694 from=translated src=- shape=73f27563 vocab=226fff73
+-/
 theorem shearInv_includeLeft_mul (a : A) (t : A ⊗[R] A) :
     shearInv (R := R) ((a ⊗ₜ[R] (1 : A)) * t) = (a ⊗ₜ[R] (1 : A)) * shearInv t := by
   induction t with
@@ -116,6 +140,9 @@ theorem shearInv_includeLeft_mul (a : A) (t : A ⊗[R] A) :
     rw [Algebra.TensorProduct.tmul_mul_tmul, one_mul, shearInv_tmul, shearInv_tmul, ← mul_assoc,
       Algebra.TensorProduct.tmul_mul_tmul, one_mul]
 
+/--
+@isnad1 id=eq.0h3v.s11.e8b512074b9f from=translated src=- shape=affd9b4f vocab=12064f6b
+-/
 theorem shearInv_shear (z : A ⊗[R] A) : shearInv (R := R) (shear z) = z := by
   induction z with
   | zero => simp
@@ -127,6 +154,9 @@ theorem shearInv_shear (z : A ⊗[R] A) : shearInv (R := R) (shear z) = z := by
     simp_rw [shearInv_tmul]
     rw [sum_tmul_one_mul_rTensor_antipode_comul b 𝓡, Algebra.TensorProduct.tmul_mul_tmul, one_mul, mul_one]
 
+/--
+@isnad1 id=bijectiv.0h2v.s10.1c72f1124d4e from=translated src=- shape=96a19a55 vocab=f10b59de
+-/
 theorem shear_bijective : Function.Bijective (shear (R := R) (A := A)) :=
   ⟨fun x y h => by simpa [shearInv_shear] using congrArg (shearInv (R := R)) h,
    fun z => ⟨shearInv z, shear_shearInv z⟩⟩
@@ -140,11 +170,17 @@ variable {B : Type w} [CommRing B] [Bialgebra R B] (π : A →ₐc[R] B)
 
 def augSet : Set A := {a : A | a ∈ hopfKer π ∧ counit (R := R) a = 0}
 
+/--
+@isnad1 id=mem.1h5v.s9.6e17c48159ee from=translated src=- shape=61c416a7 vocab=20e1bd16
+-/
 theorem sub_algebraMap_counit_mem_augSet {k : A} (hk : k ∈ hopfKer π) :
     k - algebraMap R A (counit (R := R) k) ∈ augSet π := by
   refine ⟨Subalgebra.sub_mem _ hk (Subalgebra.algebraMap_mem _ _), ?_⟩
   simp [Bialgebra.counit_algebraMap]
 
+/--
+@isnad1 id=eq.0h5v.s12.416c3b1de1fd from=translated src=- shape=71715cc2 vocab=449ef5d2
+-/
 theorem coaction_eq_map (a : A) :
     coaction π a = TensorProduct.map LinearMap.id (π : A →ₐc[R] B).toLinearMap (comul (R := R) a) := by
   rw [coaction_apply]
@@ -153,12 +189,18 @@ theorem coaction_eq_map (a : A) :
   | add x y hx hy => simp only [map_add, hx, hy]
   | tmul x y => simp [Algebra.TensorProduct.map_tmul]; rfl
 
+/--
+@isnad1 id=eq.0h7v.s11.0dca6f4a417d from=translated src=- shape=86cc7951 vocab=8bc1478c
+-/
 theorem coaction_repr {a : A} {ι𝓡 : Type*} (𝓡 : Coalgebra.Repr R a ι𝓡) :
     coaction π a = ∑ i ∈ 𝓡.index, 𝓡.left i ⊗ₜ[R] π (𝓡.right i) := by
   rw [coaction_eq_map, ← 𝓡.eq, map_sum]
   simp only [TensorProduct.map_tmul, LinearMap.id_apply]
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s12.eb890d30891d from=translated src=- shape=7a921998 vocab=d0b7492b
+-/
 theorem canMap_eq (z : A ⊗[R] A) :
     canMap π z = Algebra.TensorProduct.map (AlgHom.id R A) (π : A →ₐ[R] B) (shear z) := by
   induction z with
@@ -168,6 +210,9 @@ theorem canMap_eq (z : A ⊗[R] A) :
     rw [canMap_tmul, shear_tmul, map_mul, Algebra.TensorProduct.map_tmul, map_one, AlgHom.id_apply,
       coaction_apply]
 
+/--
+@isnad1 id=surjecti.1h4v.s11.4920b9c7eeb4 from=translated src=- shape=edcfc0b9 vocab=7448b86f
+-/
 theorem canMap_surjective (hπ : Function.Surjective π) : Function.Surjective (canMap π) := by
   intro y
   have hlin : ∀ t : A ⊗[R] A, (π : A →ₐc[R] B).toLinearMap.lTensor A t
@@ -181,6 +226,9 @@ theorem canMap_surjective (hπ : Function.Surjective π) : Function.Surjective (
   obtain ⟨z, rfl⟩ := shear_bijective.2 t
   exact ⟨z, by rw [canMap_eq, hlin]⟩
 
+/--
+@isnad1 id=le.1h4v.s9.3290dd90362b from=translated src=- shape=8ca77403 vocab=61048e0c
+-/
 theorem ker_le_span_augSet_of_isHopfGalois (h : IsHopfGalois π) :
     RingHom.ker (π : A →ₐ[R] B) ≤ Ideal.span (augSet π) := by
   intro x hx
@@ -215,6 +263,9 @@ theorem ker_le_span_augSet_of_isHopfGalois (h : IsHopfGalois π) :
     | smul r y _ hy => rw [map_smul]; exact Submodule.smul_of_tower_mem J r hy
   simpa [hΛz] using hΛspan z hzspan
 
+/--
+@isnad1 id=mem.1h6v.s12.80e76c691ee0 from=translated src=- shape=36f44ead vocab=7d444327
+-/
 theorem mul_mem_span_balancingRelations (t : A ⊗[R] A) {y : A ⊗[R] A}
     (hy : y ∈ Submodule.span R (balancingRelations π)) :
     t * y ∈ Submodule.span R (balancingRelations π) := by
@@ -232,6 +283,9 @@ theorem mul_mem_span_balancingRelations (t : A ⊗[R] A) {y : A ⊗[R] A}
   | add x y _ _ hx hy => rw [mul_add]; exact Submodule.add_mem _ hx hy
   | smul r y _ hy => rw [mul_smul_comm]; exact Submodule.smul_mem _ r hy
 
+/--
+@isnad1 id=eq.0h4v.s11.56bfec071698 from=translated src=- shape=94dac832 vocab=1fa8b5d1
+-/
 theorem restrictScalars_ideal_span_balancingRelations :
     (Ideal.span (balancingRelations π)).restrictScalars R = Submodule.span R (balancingRelations π) := by
   apply le_antisymm
@@ -247,8 +301,14 @@ theorem restrictScalars_ideal_span_balancingRelations :
 noncomputable def rhoSub : A →ₗ[R] A ⊗[R] B :=
   (coaction π).toLinearMap - (Algebra.TensorProduct.includeLeft : A →ₐ[R] A ⊗[R] B).toLinearMap
 
+/--
+@isnad1 id=eq.0h5v.s11.7dc50b25cfff from=translated src=- shape=103be86b vocab=aa22d961
+-/
 theorem rhoSub_apply (a : A) : rhoSub π a = coaction π a - a ⊗ₜ[R] 1 := rfl
 
+/--
+@isnad1 id=exact.0h4v.s11.6ea086cdd055 from=translated src=- shape=9bb963c1 vocab=d5442312
+-/
 theorem exact_val_rhoSub : Function.Exact (hopfKer π).val.toLinearMap (rhoSub π) := by
   intro a
   constructor
@@ -260,6 +320,9 @@ theorem exact_val_rhoSub : Function.Exact (hopfKer π).val.toLinearMap (rhoSub �
     rw [mem_hopfKer_iff] at this
     simp [rhoSub_apply, this]
 
+/--
+@isnad1 id=eq.1h5v.s14.95c739ece6c9 from=translated src=- shape=346cd338 vocab=436c2e36
+-/
 theorem lTensor_coaction_comul {a : A} (ha : a ∈ hopfKer π) :
     (coaction π).toLinearMap.lTensor A (comul (R := R) a)
       = (TensorProduct.assoc R A A B) (comul (R := R) a ⊗ₜ[R] (1 : B)) := by
@@ -287,6 +350,9 @@ theorem lTensor_coaction_comul {a : A} (ha : a ∈ hopfKer π) :
     rw [TensorProduct.assoc_tmul]; rfl
   rw [lhs, ← key, rhs, coaction_eq_of_mem π ha, LinearMap.rTensor_tmul]
 
+/--
+@isnad1 id=eq.1h5v.s12.d9e80ab2a8c4 from=translated src=- shape=4d669cca vocab=a5a4f7e2
+-/
 theorem lTensor_rhoSub_comul {a : A} (ha : a ∈ hopfKer π) :
     (rhoSub π).lTensor A (comul (R := R) a) = 0 := by
   rw [rhoSub, LinearMap.lTensor_sub, LinearMap.sub_apply, lTensor_coaction_comul π ha, sub_eq_zero]
@@ -295,6 +361,9 @@ theorem lTensor_rhoSub_comul {a : A} (ha : a ∈ hopfKer π) :
   | add x y hx hy => simp only [TensorProduct.add_tmul, map_add, hx, hy]
   | tmul x y => simp
 
+/--
+@isnad1 id=mem.1h5v.s12.9a712ec4bb7d from=translated src=- shape=4ae44336 vocab=fd796c93
+-/
 theorem comul_mem_range_lTensor_val [Module.Flat R A] {k : A} (hk : k ∈ hopfKer π) :
     comul (R := R) k ∈ LinearMap.range ((hopfKer π).val.toLinearMap.lTensor A) := by
   have hex := Module.Flat.lTensor_exact A (exact_val_rhoSub π)
@@ -302,6 +371,9 @@ theorem comul_mem_range_lTensor_val [Module.Flat R A] {k : A} (hk : k ∈ hopfKe
   rw [← hex, LinearMap.mem_ker]
   exact lTensor_rhoSub_comul π hk
 
+/--
+@isnad1 id=mem.1h5v.s11.373b73bd5380 from=translated src=- shape=b9b8f239 vocab=3ec652af
+-/
 theorem one_tmul_mem_map_shear_of_mem_augSet [Module.Flat R A] {k : A} (hk : k ∈ augSet π) :
     (1 : A) ⊗ₜ[R] k ∈ (Ideal.span (balancingRelations π)).map (shear (R := R) (A := A)) := by
   set SpI : Ideal (A ⊗[R] A) := Ideal.span (balancingRelations π)
@@ -334,6 +406,9 @@ theorem one_tmul_mem_map_shear_of_mem_augSet [Module.Flat R A] {k : A} (hk : k �
   rw [hw, mul_antipode_rTensor_comul_apply, hk.2, map_zero, TensorProduct.zero_tmul, sub_zero] at h1
   exact h1
 
+/--
+@isnad1 id=ishopfga.2h4v.s10.7c5283bf1d4f from=translated src=- shape=cc76c8bd vocab=4868c707
+-/
 theorem isHopfGalois_of_ker_le_span_augSet [Module.Flat R A] (hπ : Function.Surjective π)
     (hle : RingHom.ker (π : A →ₐ[R] B) ≤ Ideal.span (augSet π)) : IsHopfGalois π := by
   refine ⟨canMap_surjective π hπ, fun z hz => ?_⟩
@@ -390,6 +465,9 @@ end HopfAlgebra.GaloisCriterion
 open scoped _root_.P2MW.S_HopfAlgebra_isHopfGalois_iff_ker_le_span_of_surjective.HopfAlgebra _root_.P2MW.S_HopfAlgebra_isHopfGalois_iff_ker_le_span_of_surjective.HopfAlgebra.GaloisCriterion
 open scoped _root_.P2MW.S_HopfAlgebra_isHopfGalois_iff_ker_le_span_of_surjective.HopfAlgebra
 
+/--
+@isnad1 id=iff.1h4v.s10.97af6823a5ae from=translated src=- shape=f6590657 vocab=8a4f3508
+-/
 theorem solution {R : Type u} [CommRing R]
     {A : Type v} [CommRing A] [HopfAlgebra R A] [Module.Flat R A]
     {B : Type w} [CommRing B] [Bialgebra R B] (π : A →ₐc[R] B) (hπ : Function.Surjective π) :

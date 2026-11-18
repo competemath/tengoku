@@ -11,6 +11,9 @@ set_option maxHeartbeats 800000
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=eq.5h11v.s13.3ed29730751c from=translated src=- shape=eadee9ed vocab=a2e1241e
+-/
 theorem solution
     {R : Type*} [CommRing R] [IsDomain R] [IsPrincipalIdealRing R]
     {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]

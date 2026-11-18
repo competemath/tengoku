@@ -22,18 +22,27 @@ noncomputable def tensorSqHom (S : Subalgebra R A) : (S ⊗[R] S) →ₐ[R] (A �
     (((Algebra.TensorProduct.includeLeft : A →ₐ[K] A ⊗[K] A).restrictScalars R).comp S.val)
     (((Algebra.TensorProduct.includeRight : A →ₐ[K] A ⊗[K] A).restrictScalars R).comp S.val)
 
+/--
+@isnad1 id=eq.0h6v.s11.3d87f62e619c from=translated src=- shape=3ae37434 vocab=6d1f2a0b
+-/
 @[scoped simp]
 lemma tensorSqHom_tmul (S : Subalgebra R A) (t t' : S) :
     tensorSqHom (K := K) S (t ⊗ₜ[R] t') = (t : A) ⊗ₜ[K] (t' : A) := by
   simp [tensorSqHom, Algebra.TensorProduct.productMap_apply_tmul,
     Algebra.TensorProduct.tmul_mul_tmul]
 
+/--
+@isnad1 id=eq.0h7v.s12.bcebb1595e5c from=translated src=- shape=d89d49de vocab=54f4d6cd
+-/
 lemma tensorSqHom_sum_smul_tmul (S : Subalgebra R A) {n : ℕ} (s : Fin n → S)
     (r : Fin n × Fin n → R) :
     tensorSqHom (K := K) S (∑ q, r q • (s q.1 ⊗ₜ[R] s q.2))
       = ∑ q, r q • ((s q.1 : A) ⊗ₜ[K] (s q.2 : A)) := by
   simp only [map_sum, map_smul, tensorSqHom_tmul]
 
+/--
+@isnad1 id=eq.0h8v.s16.7cd3949b5269 from=translated src=- shape=c3fc7c61 vocab=7181bd5e
+-/
 lemma map_val_tensorSqHom_sum_smul_tmul (S : Subalgebra R A) (A₁ : Subalgebra K A) {n : ℕ}
     (γ : Fin n → ↥(S.comap ((A₁.val : ↥A₁ →ₐ[K] A).restrictScalars R)))
     (r : Fin n × Fin n → R) :
@@ -57,10 +66,16 @@ variable {R : Type*} [CommRing R] [IsDomain R]
     {A : Type*} [CommRing A] [Algebra K A] [Algebra R A] [IsScalarTower R K A]
 
 omit [IsDomain R] in
+/--
+@isnad1 id=ne.1h3v.s7.383084727f27 from=translated src=- shape=eeb2472a vocab=91268b7b
+-/
 lemma algebraMap_ne_zero {r : R} (hr : r ≠ 0) : algebraMap R K r ≠ 0 := fun h =>
   hr ((injective_iff_map_eq_zero (algebraMap R K)).mp (IsFractionRing.injective R K) r h)
 
 include K in
+/--
+@isnad1 id=istorsio.0h3v.s7.098c089c4127 from=translated src=- shape=d847f79c vocab=894c0bef
+-/
 lemma isTorsionFree : Module.IsTorsionFree R A := by
   refine Module.IsTorsionFree.mk fun r hr => ?_
   have hr0 : r ≠ 0 := hr.left.ne_zero
@@ -71,6 +86,9 @@ lemma isTorsionFree : Module.IsTorsionFree R A := by
   exact smul_right_injective A hK hab'
 
 include K in
+/--
+@isnad1 id=free.0h4v.s8.b12aea676fc8 from=translated src=- shape=def4cb40 vocab=b8081f06
+-/
 lemma free_of_finite [IsPrincipalIdealRing R] (S : Subalgebra R A) [Module.Finite R S] :
     Module.Free R S := by
   haveI : Module.IsTorsionFree R A := isTorsionFree (R := R) (K := K) (A := A)
@@ -79,10 +97,16 @@ lemma free_of_finite [IsPrincipalIdealRing R] (S : Subalgebra R A) [Module.Finit
   exact Module.free_of_finite_type_torsion_free'
 
 omit [IsDomain R] [IsFractionRing R K] in
+/--
+@isnad1 id=mem.1h6v.s8.4bb9b97a9164 from=translated src=- shape=2a6e4b65 vocab=a7c86bd3
+-/
 lemma algebraMap_smul_mem (S : Subalgebra R A) (r : R) {z : A} (hz : z ∈ S) :
     algebraMap R K r • z ∈ S := by
   rw [IsScalarTower.algebraMap_smul]; exact S.smul_mem hz r
 
+/--
+@isnad1 id=ex.1h5v.s8.b3764e8af7bd from=translated src=- shape=f67c58bd vocab=e795e162
+-/
 lemma exists_nonzero_smul_mem (S : Subalgebra R A) (hspan : Submodule.span K (S : Set A) = ⊤) (a : A) :
     ∃ r : R, r ≠ 0 ∧ algebraMap R K r • a ∈ S := by
   have ha : a ∈ Submodule.span K (S : Set A) := hspan ▸ Submodule.mem_top
@@ -131,12 +155,18 @@ noncomputable def basisK {ι : Type*} (S : Subalgebra R A) (b : Module.Basis ι 
       exact Submodule.span_le_restrictScalars R K _ h2)
 
 omit [IsDomain R] in
+/--
+@isnad1 id=eq.1h7v.s9.3566ae484b03 from=translated src=- shape=b7ab4886 vocab=5d8cde3a
+-/
 @[scoped simp] lemma basisK_apply {ι : Type*} (S : Subalgebra R A) (b : Module.Basis ι R S)
     (hspan : Submodule.span K (S : Set A) = ⊤) (i : ι) : basisK S b hspan i = ((b i : S) : A) :=
   Module.Basis.mk_apply _ _ i
 
 omit [IsDomain R] in
 
+/--
+@isnad1 id=eq.1h8v.s10.2ad5e3d754f7 from=translated src=- shape=a2eccdb5 vocab=dcff8313
+-/
 lemma basisK_repr_coe {ι : Type*} (S : Subalgebra R A) (b : Module.Basis ι R S)
     (hspan : Submodule.span K (S : Set A) = ⊤) (s : S) (i : ι) :
     (basisK S b hspan).repr (s : A) i = algebraMap R K (b.repr s i) := by
@@ -153,6 +183,9 @@ lemma basisK_repr_coe {ι : Type*} (S : Subalgebra R A) (b : Module.Basis ι R S
     split_ifs <;> simp
   exact congrArg (fun φ : S →ₗ[R] K => φ s) h
 
+/--
+@isnad1 id=eq.4h10v.s11.67626eacbf96 from=translated src=- shape=450364de vocab=93e6cf66
+-/
 lemma basisK_repr_eq_zero_of_mem {ι : Type*} (S : Subalgebra R A) (b : Module.Basis ι R S)
     (hspan : Submodule.span K (S : Set A) = ⊤) (V : Submodule K A) (T : Set ι)
     (hV : ∀ s : S, (s : A) ∈ V → ∀ i, i ∉ T → b.repr s i = 0)
@@ -166,6 +199,9 @@ lemma basisK_repr_eq_zero_of_mem {ι : Type*} (S : Subalgebra R A) (b : Module.B
   rw [map_smul, Finsupp.smul_apply, smul_eq_mul, mul_eq_zero] at h2
   exact h2.resolve_left (algebraMap_ne_zero (K := K) hr)
 
+/--
+@isnad1 id=ex.0h5v.s11.f4f34d4663fe from=translated src=- shape=6f0c1762 vocab=9335faa8
+-/
 lemma exists_adapted_basis [IsPrincipalIdealRing R] (S : Subalgebra R A) [Module.Finite R S]
     (V : Submodule K A) :
     ∃ (m n : ℕ) (b : Module.Basis (Fin m) R S) (f : Fin n ↪ Fin m),
@@ -192,6 +228,9 @@ lemma exists_adapted_basis [IsPrincipalIdealRing R] (S : Subalgebra R A) [Module
 
 omit [IsDomain R] [IsFractionRing R K] in
 
+/--
+@isnad1 id=eq.2h9v.s11.4d0e5c474af6 from=translated src=- shape=730edbac vocab=d95c1ab9
+-/
 lemma tensor_repr_eq_zero {ι : Type*} {M : Type*} [AddCommGroup M] [Module K M]
     (B : Module.Basis ι K A) (g : M →ₗ[K] A) (T : Set ι)
     (hg : ∀ m : M, ∀ i, i ∉ T → B.repr (g m) i = 0)
@@ -234,6 +273,9 @@ lemma eq_sum_of_repr_eq_zero {M : Type*} [AddCommGroup M] [Module R M] {m n : �
 
 omit [IsDomain R] in
 
+/--
+@isnad1 id=eq.1h8v.s13.3b0fbf2c1535 from=translated src=- shape=c2b6984a vocab=dd2114f4
+-/
 lemma repr_tensorSqHom {ι : Type*} (S : Subalgebra R A) (b : Module.Basis ι R S)
     (hspan : Submodule.span K (S : Set A) = ⊤) (t : S ⊗[R] S) (p : ι × ι) :
     ((basisK S b hspan).tensorProduct (basisK S b hspan)).repr (tensorSqHom (K := K) S t) p
@@ -256,6 +298,9 @@ namespace HopfOrder
 namespace KerHopf
 open HopfOrder.Aux HopfOrder.KerAux
 
+/--
+@isnad1 id=mem.3h7v.s17.d2fd413c4768 from=translated src=- shape=de716452 vocab=b585f666
+-/
 theorem comul_mem_range_comap
     {R : Type*} [CommRing R] [IsDomain R] [IsPrincipalIdealRing R]
     {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]
@@ -326,6 +371,9 @@ open scoped _root_.P2MW.S_HopfOrder_isHopfOrder_comap_hopfKer.HopfOrder _root_.P
 open scoped _root_.P2MW.S_HopfOrder_isHopfOrder_comap_hopfKer.HopfOrder _root_.P2MW.S_HopfOrder_isHopfOrder_comap_hopfKer.HopfOrder.Aux
 
 open HopfOrder.Aux HopfOrder.KerAux in
+/--
+@isnad1 id=and.5h6v.s17.f3979162b682 from=translated src=- shape=01c065e6 vocab=1f5ee2e8
+-/
 theorem solution
     {R : Type*} [CommRing R] [IsDomain R] [IsPrincipalIdealRing R]
     {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]

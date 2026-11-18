@@ -18,6 +18,9 @@ open _root_.HopfAlgebra
 
 open IsLocalRing
 
+/--
+@isnad1 id=islocalr.2h3v.s8.478c2ef82836 from=translated src=- shape=92605fa2 vocab=b2aefad3
+-/
 theorem isLocalRing_of_retraction {R : Type u} [CommRing R] [IsLocalRing R]
     {S : Type v} [CommRing S] [Algebra R S] [Algebra.IsIntegral R S]
     (ev : S →+ R) (hev : ∀ r : R, ev (algebraMap R S r) = r)
@@ -69,6 +72,9 @@ section Main
 
 variable {R : Type u} [CommRing R] (p : ℕ) {H : Type v} [CommRing H] [HopfAlgebra R H]
 
+/--
+@isnad1 id=eq.1h6v.s12.0934399f5a62 from=translated src=- shape=45aa9c67 vocab=bda86323
+-/
 theorem mk_pow_apply_pow_eq (t : H →ₐc[R] H)
     (hF : ∀ a : H, (p : H) ∣ t a ^ p - a ^ (p ^ 2)) (k : ℕ) (a : H) :
     Ideal.Quotient.mk (Ideal.span {(p : H)}) ((t ^ k) a) ^ p =
@@ -100,6 +106,9 @@ end Main
 end HopfAlgebra.LocalLocalCriterion
 
 open HopfAlgebra.LocalLocalCriterion in
+/--
+@isnad1 id=and.4h4v.s12.a250a5b32fdc from=translated src=- shape=f9766e29 vocab=be824125
+-/
 theorem solution
     {R : Type*} [CommRing R] [IsLocalRing R] (p : ℕ) [Fact p.Prime]
     (hp : (p : R) ∈ IsLocalRing.maximalIdeal R)

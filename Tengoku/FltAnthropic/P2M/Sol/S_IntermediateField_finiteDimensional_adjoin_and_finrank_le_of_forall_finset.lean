@@ -8,6 +8,9 @@ namespace P2MW.S_IntermediateField_finiteDimensional_adjoin_and_finrank_le_of_fo
 set_option autoImplicit false
 
 open IntermediateField in
+/--
+@isnad1 id=and.1h4v.s10.9f9db7b3193a from=translated src=- shape=7ebc16b5 vocab=1fd672b1
+-/
 theorem solution
     {F : Type*} [Field F] {E : Type*} [Field E] [Algebra F E] (S : Set E) (n : ℕ)
     (hS : ∀ s : Finset E, (↑s : Set E) ⊆ S →

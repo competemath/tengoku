@@ -36,6 +36,9 @@ theorem KumS.eq_one_of_pow_eq_one_of_valuation_sub_one_lt {L : Type} [Field L] (
   · exact sub_eq_zero.1 h
   · exact absurd h hu
 
+/--
+@isnad1 id=lt.2h5v.s8.c4ee8c983b98 from=translated src=- shape=f4be73de vocab=9d489254
+-/
 theorem KumS.valuation_sub_lt_one_of_mem_inertia {L : Type} [Field L] {K : Type} [Field K] [Algebra K L]
     (A : ValuationSubring L) (σ : L ≃ₐ[K] L) (hσ : σ ∈ A.inertiaSubgroupIn K) (a : L) (ha : a ∈ A) :
     A.valuation (σ a - a) < 1 := by
@@ -52,6 +55,9 @@ theorem KumS.valuation_sub_lt_one_of_mem_inertia {L : Type} [Field L] {K : Type}
   rw [ValuationSubring.mem_nonunits_iff] at this
   exact this
 
+/--
+@isnad1 id=isunrami.5h5v.s8.9a0bf702e734 from=translated src=- shape=e6a27039 vocab=d4140eb7
+-/
 theorem solution
     (S : Finset Nat.Primes) (p : Nat.Primes) (hp : p ∈ S)
     (F : IntermediateField ℚ (AlgebraicClosure ℚ)) (hF : F.IsUnramifiedOutside S)

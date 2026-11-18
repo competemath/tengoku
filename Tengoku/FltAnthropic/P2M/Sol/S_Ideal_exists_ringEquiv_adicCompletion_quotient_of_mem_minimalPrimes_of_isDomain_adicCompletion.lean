@@ -8,6 +8,9 @@ namespace P2MW.S_Ideal_exists_ringEquiv_adicCompletion_quotient_of_mem_minimalPr
 set_option autoImplicit false
 set_option maxHeartbeats 3200000
 
+/--
+@isnad1 id=eq.1h5v.s11.b28f3d5ba92d from=translated src=- shape=576c93d7 vocab=a954745f
+-/
 theorem evalA_factorPow {R : Type*} [CommRing R] (I : Ideal R) {m n : ℕ} (hle : m ≤ n) (z : AdicCompletion I R) :
     Ideal.Quotient.factorPow I hle (AdicCompletion.evalₐ I n z) = AdicCompletion.evalₐ I m z := by
   have hn : (I ^ n • ⊤ : Ideal R) ≤ I ^ n := le_of_eq (Ideal.mul_top _)
@@ -24,6 +27,9 @@ theorem evalA_factorPow {R : Type*} [CommRing R] (I : Ideal R) {m n : ℕ} (hle 
   rw [Ideal.Quotient.factor_mk, Ideal.Quotient.factor_mk]
   simp [Ideal.Quotient.factorPow, Ideal.Quotient.factor_mk]
 
+/--
+@isnad1 id=ex.3h3v.s13.938b5c5f96b9 from=translated src=- shape=6caecc49 vocab=ffbb26e0
+-/
 theorem solution
     (S : Type) [CommRing S] [IsNoetherianRing S]
     (𝔮 : Ideal S) (h𝔮 : 𝔮 ∈ minimalPrimes S)

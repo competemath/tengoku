@@ -9,6 +9,9 @@ namespace P2MW.S_IharaLemma_injective_of_ker_le_torsion
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=injectiv.3h11v.s9.2098e50edcdd from=translated src=- shape=933c68ed vocab=f709314d
+-/
 theorem solution {R : Type*} [CommRing R] (S : Submonoid R)
     {V W V' W' : Type*} [AddCommGroup V] [Module R V] [AddCommGroup W] [Module R W]
     [AddCommGroup V'] [Module R V'] [AddCommGroup W'] [Module R W']

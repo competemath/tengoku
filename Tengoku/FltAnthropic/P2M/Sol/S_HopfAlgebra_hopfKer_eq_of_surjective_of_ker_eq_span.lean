@@ -40,6 +40,9 @@ private theorem exists_algebraMap_eq_of_tmul_one_eq_one_tmul
 end K6bBody
 
 open K6bBody in
+/--
+@isnad1 id=eq.4h5v.s12.f54e40fb945d from=translated src=- shape=9885b85e vocab=8a3a47f9
+-/
 theorem solution
     {k : Type u} [Field k] {H : Type v} [CommRing H] [HopfAlgebra k H] [Algebra.FiniteType k H]
     (K : Subalgebra k H)

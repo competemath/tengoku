@@ -12,6 +12,9 @@ open Polynomial
 namespace GaussPencil
 namespace Mu
 
+/--
+@isnad1 id=eq.0h5v.s9.618d4d4ecc16 from=translated src=- shape=c2112e46 vocab=a44e337e
+-/
 theorem finrank_map_algEquiv {F L L' : Type*} [Field F] [Field L] [Field L'] [Algebra F L] [Algebra F L']
     (e : L ≃ₐ[F] L') (S : IntermediateField F L) :
     Module.finrank ↥(S.map (e : L →ₐ[F] L')) L' = Module.finrank ↥S L := by
@@ -19,18 +22,27 @@ theorem finrank_map_algEquiv {F L L' : Type*} [Field F] [Field L] [Field L'] [Al
   ext x
   rfl
 
+/--
+@isnad1 id=eq.1h2v.s11.cbd78e9d110f from=translated src=- shape=412815a1 vocab=36815364
+-/
 theorem finrank_adjoin_algebraMap_ratFunc (K : Type*) [Field K] (p : K[X]) (hp : 0 < p.natDegree) :
     Module.finrank ↥(IntermediateField.adjoin K ({algebraMap K[X] (RatFunc K) p} : Set (RatFunc K))) (RatFunc K)
       = p.natDegree := by
   rw [RatFunc.finrank_eq_max_natDegree, RatFunc.num_algebraMap, RatFunc.denom_algebraMap, natDegree_one,
     max_eq_left (Nat.zero_le _)]
 
+/--
+@isnad1 id=eq.0h4v.s9.506f1888f6af from=translated src=- shape=ef86d9e6 vocab=8a6258e4
+-/
 theorem algEquiv_algebraMap {K L : Type*} [Field K] [Field L] [Algebra K L] (e : RatFunc K ≃ₐ[K] L) (p : K[X]) :
     e (algebraMap K[X] (RatFunc K) p) = aeval (e RatFunc.X) p := by
   rw [aeval_algHom_apply, RatFunc.aeval_X_left_eq_algebraMap]
 
 end GaussPencil.Mu
 
+/--
+@isnad1 id=eq.3h4v.s10.51aee35466b8 from=translated src=- shape=5a75eb5b vocab=235916f0
+-/
 theorem solution
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     (s : L) (hs : Transcendental K s) (hgen : IntermediateField.adjoin K ({s} : Set L) = ⊤)

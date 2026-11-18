@@ -361,6 +361,9 @@ private theorem finrank_quot_eq {ι : Type*} (ψ : ι → (B →ₐc[k] B))
 end L2OP
 open scoped _root_.P2MW.S_HopfAlgebra_finrank_primitives_quot_iSup_map_eq_finrank_iInf_ker_mapCotangent_cartierDual.PRIMCOUNT
 
+/--
+@isnad1 id=eq.1h4v.s16.30d38c876499 from=translated src=- shape=5d8ec10e vocab=00d93321
+-/
 theorem solution
     (k : Type) [Field k] (B : Type) [CommRing B] [HopfAlgebra k B] [Coalgebra.IsCocomm k B]
     [Module.Finite k B] {ι : Type} (ψ : ι → (B →ₐc[k] B))

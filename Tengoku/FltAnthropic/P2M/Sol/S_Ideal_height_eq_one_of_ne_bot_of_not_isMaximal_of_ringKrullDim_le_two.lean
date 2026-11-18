@@ -8,6 +8,9 @@ namespace P2MW.S_Ideal_height_eq_one_of_ne_bot_of_not_isMaximal_of_ringKrullDim_
 set_option autoImplicit false
 set_option maxHeartbeats 800000
 
+/--
+@isnad1 id=eq.3h2v.s6.9a920d10505b from=translated src=- shape=ce83f74b vocab=649d6efe
+-/
 theorem solution
     {R : Type*} [CommRing R] [IsDomain R] [IsNoetherianRing R]
     (hdim : ringKrullDim R ≤ 2) (P : Ideal R) [P.IsPrime] (hP0 : P ≠ ⊥) (hPm : ¬ P.IsMaximal) :

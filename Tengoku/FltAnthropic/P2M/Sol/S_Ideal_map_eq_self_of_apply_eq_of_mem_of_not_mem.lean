@@ -7,6 +7,9 @@ namespace P2MW.S_Ideal_map_eq_self_of_apply_eq_of_mem_of_not_mem
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=and.5h5v.s10.e9e07e362ede from=translated src=- shape=5f11005f vocab=6b838be6
+-/
 theorem solution
     {S : Type*} [CommRing S] (γ : S ≃+* S) {P₁ P₂ : Ideal S}
     (h₁ : P₁.map (γ : S →+* S) = P₁ ∨ P₁.map (γ : S →+* S) = P₂)

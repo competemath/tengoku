@@ -11,6 +11,9 @@ open scoped TensorProduct
 
 universe u v w
 
+/--
+@isnad1 id=faithful.4h4v.s13.faea8b3e514f from=translated src=- shape=42637607 vocab=929d5af4
+-/
 theorem HopfAlgebra.faithfullyFlat_subalgebra_of_forall_isReduced_of_perfectField
     {k : Type u} [Field k] [PerfectField k] (p : ℕ) [Fact p.Prime] [CharP k p]
     {H : Type v} [CommRing H] [HopfAlgebra k H] [Algebra.FiniteType k H]

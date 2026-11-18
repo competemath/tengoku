@@ -12,6 +12,9 @@ universe u v w
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=le.0h3v.s7.ce3701b654d5 from=translated src=- shape=cdc3b500 vocab=ba532c6e
+-/
 theorem solution
     {R : Type u} [CommRing R] {A : Type w} [CommRing A] [Algebra R A]
     (S : Subalgebra R A) [Module.Finite R S] : S ≤ integralClosure R A := by

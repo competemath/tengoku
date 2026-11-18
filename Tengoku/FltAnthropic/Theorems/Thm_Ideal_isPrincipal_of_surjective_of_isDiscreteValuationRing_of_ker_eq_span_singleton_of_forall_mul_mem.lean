@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Ideal_isPrincipal_of_surjective_of_isDiscr
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=isprinci.3h5v.s8.4d5e19b4fc3d from=translated src=- shape=923b6f53 vocab=0f795401
+-/
 theorem Ideal.isPrincipal_of_surjective_of_isDiscreteValuationRing_of_ker_eq_span_singleton_of_forall_mul_mem
     {R : Type*} [CommRing R] [IsNoetherianRing R] [IsLocalRing R]
     {S : Type*} [CommRing S] [IsDomain S] [IsDiscreteValuationRing S]

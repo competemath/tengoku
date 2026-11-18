@@ -13,8 +13,14 @@ set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 1600000
 open CategoryTheory Module groupCohomology ExtCitation
 
+/--
+@isnad1 id=isalgebr.0h0v.s4.92f995461263 from=translated src=- shape=3905abf2 vocab=c7f7e443
+-/
 local instance S25CYCLEV.isAlgebraicQbar : Algebra.IsAlgebraic ℚ (AlgebraicClosure ℚ) := AlgebraicClosure.isAlgebraic ℚ
 
+/--
+@isnad1 id=isunrami.2h4v.s6.ca13b5bb5776 from=translated src=- shape=2a637a17 vocab=e967b6e0
+-/
 theorem solution
     {p : ℕ} [Fact p.Prime] (S : Finset Nat.Primes) (hpS : pPrime p ∈ S) (k : ℕ)
     (ζ : AlgebraicClosure ℚ) (hζ : IsPrimitiveRoot ζ (p ^ (k + 1))) :

@@ -64,6 +64,9 @@ end
 end HopfAlgebra
 open scoped _root_.P2MW.S_HopfAlgebra_isUnit_withConv_algHom.HopfAlgebra
 
+/--
+@isnad1 id=isunit.0h4v.s7.abf4d526d423 from=translated src=- shape=56cb87e0 vocab=6c63fbc7
+-/
 theorem solution
     {R : Type*} [CommSemiring R] {A : Type*} [CommSemiring A] [HopfAlgebra R A]
     {L : Type*} [CommSemiring L] [Algebra R L]

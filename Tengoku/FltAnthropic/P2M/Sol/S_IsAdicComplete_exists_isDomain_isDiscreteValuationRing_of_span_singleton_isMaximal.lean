@@ -118,6 +118,9 @@ end CompleteDVR
 end DvrOfComplete
 
 open DvrOfComplete in
+/--
+@isnad1 id=ex.1h2v.s7.3589466ade91 from=translated src=- shape=4bb00717 vocab=15f775bf
+-/
 theorem solution
     {𝓞 : Type u} [CommRing 𝓞] (ϖ : 𝓞) (hp : ϖ ∈ nonZeroDivisors 𝓞)
     [(Ideal.span {ϖ}).IsMaximal] [IsAdicComplete (Ideal.span {ϖ}) 𝓞] :

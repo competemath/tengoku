@@ -7,6 +7,9 @@ namespace P2MW.S_Ideal_exists_mem_forall_not_mem_of_forall_not_le
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.2h3v.s8.104908d1c3a9 from=translated src=- shape=e7f92953 vocab=88fb117e
+-/
 theorem solution
     {R : Type*} [CommRing R] (J : Ideal R) (S : Finset (Ideal R))
     (hS : ∀ P ∈ S, P.IsPrime) (h : ∀ P ∈ S, ¬ J ≤ P) :

@@ -43,6 +43,9 @@ private lemma exists_ltSeries_comap_eq_last {R S : Type*} [CommRing R] [CommRing
     simp only [RelSeries.last_snoc]
     exact PrimeSpectrum.ext hQcomap
 
+/--
+@isnad1 id=le.1h2v.s6.b44ee6c1ba20 from=translated src=- shape=e3a90ee3 vocab=1a19cc10
+-/
 theorem ringKrullDim_le_of_isIntegral_of_injective {R S : Type*} [CommRing R] [CommRing S]
     [Algebra R S] [Algebra.IsIntegral R S] (hinj : Function.Injective (algebraMap R S)) :
     ringKrullDim R ≤ ringKrullDim S := by
@@ -52,6 +55,9 @@ theorem ringKrullDim_le_of_isIntegral_of_injective {R S : Type*} [CommRing R] [C
   rw [← hlen]
   exact Order.LTSeries.length_le_krullDim L
 
+/--
+@isnad1 id=le.0h3v.s6.d098b73d1303 from=translated src=- shape=ba1464a0 vocab=41475a79
+-/
 theorem ringKrullDim_localization_le {R S : Type*} [CommRing R] [CommRing S] [Algebra R S]
     (M : Submonoid R) [IsLocalization M S] : ringKrullDim S ≤ ringKrullDim R := by
   refine Order.krullDim_le_of_strictMono (PrimeSpectrum.comap (algebraMap R S)) ?_
@@ -59,6 +65,9 @@ theorem ringKrullDim_localization_le {R S : Type*} [CommRing R] [CommRing S] [Al
   intro a b hab
   exact Ideal.comap_mono hab
 
+/--
+@isnad1 id=ex.2h2v.s5.21167f14be57 from=translated src=- shape=63d15831 vocab=cfca679f
+-/
 lemma exists_nat_eq {x : WithBot ℕ∞} {n : ℕ} (h0 : 0 ≤ x) (h : x ≤ n) : ∃ a : ℕ, x = a := by
   induction x using WithBot.recBotCoe with
   | bot => exact absurd h0 (by simp)
@@ -76,6 +85,9 @@ variable (k : Type u) [Field k] {R : Type v} {C : Type w} [CommRing R] [IsDomain
   [Algebra.FiniteType k R] [CommRing C] [IsDomain C] [Algebra k C] [Algebra R C]
   [IsScalarTower k R C] [Algebra.FiniteType R C]
 
+/--
+@isnad1 id=ex.0h2v.s5.68fe29be6620 from=translated src=- shape=e7faac41 vocab=89f13c98
+-/
 theorem exists_ringKrullDim_eq_natCast (A : Type*) [CommRing A]
     [Nontrivial A] [Algebra k A] [Algebra.FiniteType k A] : ∃ n : ℕ, ringKrullDim A = n := by
   obtain ⟨s, g, hinj, hfin⟩ := exists_finite_inj_algHom_of_fg k A
@@ -100,6 +112,9 @@ include k in
 set_option backward.isDefEq.respectTransparency false in
 set_option maxHeartbeats 6400000 in
 
+/--
+@isnad1 id=le.3h6v.s8.da2dcfe1e60a from=translated src=- shape=993d4ec9 vocab=bfaea1a1
+-/
 theorem ringKrullDim_localization_add_le
     {d : ℕ} (z : Fin d → C) (hz : AlgebraicIndependent R z) (r : R) (hr : r ≠ 0)
     (hint : ∀ c : C, ∃ n : ℕ, IsIntegral (Algebra.adjoin R (Set.range z)) (r ^ n • c)) :
@@ -261,6 +276,9 @@ theorem ringKrullDim_localization_add_le
 include k in
 set_option backward.isDefEq.respectTransparency false in
 
+/--
+@isnad1 id=le.5h8v.s9.437717e063af from=translated src=- shape=77e79ff3 vocab=0ef3a6c3
+-/
 theorem main {d : ℕ} (z : Fin d → C) (hz : AlgebraicIndependent R z) (r : R) (hr : r ≠ 0)
     (hint : ∀ c : C, ∃ n : ℕ, IsIntegral (Algebra.adjoin R (Set.range z)) (r ^ n • c))
     (p : Ideal R) [p.IsMaximal] (hrp : r ∉ p)
@@ -347,6 +365,9 @@ end Main
 
 end P2mFibDim
 
+/--
+@isnad1 id=le.5h8v.s9.437717e063af from=translated src=- shape=77e79ff3 vocab=0ef3a6c3
+-/
 theorem solution
     (k : Type u) [Field k] {R : Type v} {C : Type w} [CommRing R] [IsDomain R] [Algebra k R]
     [Algebra.FiniteType k R] [CommRing C] [IsDomain C] [Algebra k C] [Algebra R C]

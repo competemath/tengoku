@@ -16,6 +16,9 @@ open scoped TensorProduct
 
 namespace S17PointsKilled
 
+/--
+@isnad1 id=eq.0h5v.s9.950b9d093ed4 from=translated src=- shape=277e88ae vocab=98a8cf5e
+-/
 theorem comp_convOne {R : Type} [CommRing R] {H : Type} [CommRing H] [HopfAlgebra R H]
     {A B : Type} [CommRing A] [Algebra R A] [CommRing B] [Algebra R B] (h : A →ₐ[R] B) :
     h.comp (1 : WithConv (H →ₐ[R] A)).ofConv = (1 : WithConv (H →ₐ[R] B)).ofConv := by
@@ -25,6 +28,9 @@ theorem comp_convOne {R : Type} [CommRing R] {H : Type} [CommRing H] [HopfAlgebr
   change h ((1 : WithConv (H →ₐ[R] A)) x) = (1 : WithConv (H →ₐ[R] B)) x
   rw [AlgHom.convOne_apply, AlgHom.convOne_apply, AlgHom.commutes]
 
+/--
+@isnad1 id=eq.0h7v.s9.0f8a505d1afa from=translated src=- shape=f53a059c vocab=fc409bcf
+-/
 theorem comp_convPow {R : Type} [CommRing R] {H : Type} [CommRing H] [HopfAlgebra R H]
     {A B : Type} [CommRing A] [Algebra R A] [CommRing B] [Algebra R B] (h : A →ₐ[R] B)
     (f : WithConv (H →ₐ[R] A)) (n : ℕ) :
@@ -105,6 +111,9 @@ end S17PointsKilled
 
 open S17PointsKilled in
 
+/--
+@isnad1 id=eq.2h6v.s10.304fd921265e from=translated src=- shape=5b0e0d6b vocab=f8c39214
+-/
 theorem solution
     (R : Type) [CommRing R] [IsDomain R] (H : Type) [CommRing H] [HopfAlgebra R H]
     [Module.Finite R H] [Module.Flat R H]

@@ -15,6 +15,9 @@ open Polynomial
 
 namespace DrinformAux
 
+/--
+@isnad1 id=and.2h6v.s8.e17031d0ad05 from=translated src=- shape=08fdf574 vocab=4cd0215b
+-/
 lemma prod_sub_prod_mem_pow {R : Type*} [CommRing R] {ι : Type*} [DecidableEq ι] (s : Finset ι) (I : Ideal R)
     (P L : ι → R) (hL : ∀ i ∈ s, L i ∈ I) (hPL : ∀ i ∈ s, P i - L i ∈ I ^ 2) :
     (∏ i ∈ s, P i) - (∏ i ∈ s, L i) ∈ I ^ (s.card + 1) ∧ (∏ i ∈ s, L i) ∈ I ^ s.card := by
@@ -45,6 +48,9 @@ section Universal
 
 variable (q : ℕ) [hq : Fact q.Prime]
 
+/--
+@isnad1 id=eq.0h1v.s11.5f454ee23b4d from=translated src=- shape=f6b6f6ec vocab=11afa1c2
+-/
 lemma prod_X_add_C_mul :
     ∏ c : ZMod q, ((X : Polynomial (Polynomial (ZMod q))) + C (C c * X)) =
       X ^ q - C ((X : Polynomial (ZMod q)) ^ (q - 1)) * X := by
@@ -95,6 +101,9 @@ lemma prod_X_add_C_mul :
           rw [Finset.prod_eq_multiset_prod]; rfl
     _ = p := hprod
 
+/--
+@isnad1 id=eq.0h5v.s7.183a3ee8ae70 from=translated src=- shape=7705c987 vocab=7207ed8a
+-/
 lemma prod_add_mul_eq {B : Type*} [CommRing B] (ψ : ZMod q →+* B) (a b : B) :
     ∏ c : ZMod q, (a + ψ c * b) = a ^ q - b ^ (q - 1) * a := by
   have h := congrArg (eval₂RingHom (eval₂RingHom ψ b) a) (prod_X_add_C_mul q)
@@ -119,6 +128,9 @@ noncomputable def drinP : MvPolynomial (Fin 2) ℤ :=
   MvPolynomial.X 0 * ∏ c : ZMod q, (MvPolynomial.X 1 + MvPolynomial.C (((c.val : ℕ) : ℤ)) * MvPolynomial.X 0) -
     (MvPolynomial.X 0 * MvPolynomial.X 1 ^ q - MvPolynomial.X 0 ^ q * MvPolynomial.X 1)
 
+/--
+@isnad1 id=ishomoge.0h1v.s4.bfa3fe446f68 from=translated src=- shape=3480e470 vocab=961f66bc
+-/
 theorem drinP_isHomogeneous : (drinP q).IsHomogeneous (q + 1) := by
   have hq0 : q ≠ 0 := hq.out.ne_zero
   have hX0 : (MvPolynomial.X 0 : MvPolynomial (Fin 2) ℤ).IsHomogeneous 1 := MvPolynomial.isHomogeneous_X _ _
@@ -139,6 +151,9 @@ theorem drinP_isHomogeneous : (drinP q).IsHomogeneous (q + 1) := by
   · have := hX0.mul (hX1.pow q); rwa [one_mul, add_comm] at this
   · have := (hX0.pow q).mul hX1; rwa [one_mul] at this
 
+/--
+@isnad1 id=eq.0h1v.s8.eefc932754a5 from=translated src=- shape=2df3a16d vocab=096b2821
+-/
 theorem map_drinP_eq_zero : MvPolynomial.map (Int.castRingHom (ZMod q)) (drinP q) = 0 := by
   have hq0 : q ≠ 0 := hq.out.ne_zero
   have key := DrinformAux.prod_add_mul_eq q (algebraMap (ZMod q) (MvPolynomial (Fin 2) (ZMod q)))
@@ -156,11 +171,17 @@ theorem map_drinP_eq_zero : MvPolynomial.map (Int.castRingHom (ZMod q)) (drinP q
   rw [key, ← pow_sub_one_mul hq0 (MvPolynomial.X 0 : MvPolynomial (Fin 2) (ZMod q))]
   ring
 
+/--
+@isnad1 id=dvd.0h2v.s5.933e141bacd4 from=translated src=- shape=3a5670ab vocab=152269cc
+-/
 theorem dvd_coeff_drinP (m : Fin 2 →₀ ℕ) : (q : ℤ) ∣ MvPolynomial.coeff m (drinP q) := by
   have h := congrArg (MvPolynomial.coeff m) (map_drinP_eq_zero q)
   rw [MvPolynomial.coeff_map, MvPolynomial.coeff_zero] at h
   exact (ZMod.intCast_zmod_eq_zero_iff_dvd _ q).mp h
 
+/--
+@isnad1 id=mem.4h6v.s9.6356bcd9efd3 from=translated src=- shape=ef4ad16e vocab=7df3e896
+-/
 theorem mul_prod_sub_drinfeldForm_mem_pow
     (R : Type) [CommRing R] (𝔪 : Ideal R) (hqm : ((q : ℕ) : R) ∈ 𝔪)
     (x₀ x₁ : R) (hx₀ : x₀ ∈ 𝔪) (hx₁ : x₁ ∈ 𝔪)
@@ -204,6 +225,9 @@ end DrinP
 
 end SSFGallq
 
+/--
+@isnad1 id=mem.4h6v.s9.6356bcd9efd3 from=translated src=- shape=ef4ad16e vocab=7df3e896
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime]
     (R : Type) [CommRing R] (𝔪 : Ideal R) (hq : ((q : ℕ) : R) ∈ 𝔪)

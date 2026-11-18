@@ -8,6 +8,9 @@ namespace P2MW.S_IharaLemma_resKer_localized
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.3h12v.s9.c9ff3e6034fa from=translated src=- shape=0aa41bf2 vocab=97cb0cc5
+-/
 theorem solution {R : Type*} [CommRing R] (S : Submonoid R) {V Vk V' Vk' : Type*}
     [AddCommGroup V] [Module R V] [AddCommGroup Vk] [Module R Vk]
     [AddCommGroup V'] [Module R V'] [AddCommGroup Vk'] [Module R Vk']

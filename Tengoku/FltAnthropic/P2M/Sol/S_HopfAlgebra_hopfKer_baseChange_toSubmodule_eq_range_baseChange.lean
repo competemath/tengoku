@@ -14,6 +14,9 @@ set_option autoImplicit false
 
 namespace S1A
 
+/--
+@isnad1 id=eq.0h5v.s14.67768d7528bf from=translated src=- shape=ff8ed9a2 vocab=1ec54bef
+-/
 theorem main
     {R : Type u} [CommRing R] (R₁ : Type u) [CommRing R₁] [Algebra R R₁] [Module.Flat R R₁]
     {H : Type v} [CommRing H] [HopfAlgebra R H]
@@ -117,6 +120,9 @@ theorem main
 
 end S1A
 
+/--
+@isnad1 id=eq.0h5v.s14.67768d7528bf from=translated src=- shape=ff8ed9a2 vocab=1ec54bef
+-/
 theorem solution
     {R : Type u} [CommRing R] (R₁ : Type u) [CommRing R₁] [Algebra R R₁] [Module.Flat R R₁]
     {H : Type v} [CommRing H] [HopfAlgebra R H]

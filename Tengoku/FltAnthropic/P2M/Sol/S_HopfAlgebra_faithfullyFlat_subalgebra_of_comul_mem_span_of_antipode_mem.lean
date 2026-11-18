@@ -29,6 +29,9 @@ abbrev ΔStable {k : Type*} [Field k] {H : Type*} [CommRing H] [HopfAlgebra k H]
 abbrev SStable {k : Type*} [Field k] {H : Type*} [CommRing H] [HopfAlgebra k H] (K : Subalgebra k H) : Prop :=
   ∀ x ∈ K, HopfAlgebra.antipode k x ∈ K
 
+/--
+@isnad1 id=faithful.2h3v.s8.d852e26014e5 from=translated src=- shape=c7afcd84 vocab=06f0112b
+-/
 theorem algClosed_case {k : Type u} [Field k] [IsAlgClosed k] {H : Type v} [CommRing H] [HopfAlgebra k H]
     [Algebra.FiniteType k H] (K : Subalgebra k H) (hΔ : ΔStable K) (hS : SStable K) :
     Module.FaithfullyFlat ↥K H := by
@@ -80,6 +83,9 @@ theorem algClosed_case {k : Type u} [Field k] [IsAlgClosed k] {H : Type v} [Comm
     obtain ⟨i, hi⟩ := hex {x} (by simpa using hx)
     exact ⟨i, hi (by simp)⟩
 
+/--
+@isnad1 id=and.2h4v.s12.2b353d165735 from=translated src=- shape=12b1832a vocab=088ddb55
+-/
 theorem stable_range {k : Type u} [Field k] {H : Type v} [CommRing H] [HopfAlgebra k H]
     (K : Subalgebra k H) (hΔ : ΔStable K) (hS : SStable K) (k' : Type w) [Field k'] [Algebra k k'] :
     ΔStable ((Algebra.TensorProduct.map (AlgHom.id k' k') K.val).range) ∧
@@ -124,6 +130,9 @@ theorem stable_range {k : Type u} [Field k] {H : Type v} [CommRing H] [HopfAlgeb
 end S17Head
 
 open S17Head in
+/--
+@isnad1 id=faithful.2h3v.s12.69928d745982 from=translated src=- shape=2f667fbd vocab=96ac7fdd
+-/
 theorem solution
     {k : Type u} [Field k] {H : Type v} [CommRing H] [HopfAlgebra k H] [Algebra.FiniteType k H]
     (K : Subalgebra k H)

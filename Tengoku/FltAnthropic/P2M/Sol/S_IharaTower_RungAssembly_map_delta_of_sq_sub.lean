@@ -7,6 +7,9 @@ namespace P2MW.S_IharaTower_RungAssembly_map_delta_of_sq_sub
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.6h11v.s9.99fedca57f60 from=translated src=- shape=88809283 vocab=8bf11d4a
+-/
 theorem solution {𝒪 : Type} [CommRing 𝒪] {T : Type} [CommRing T] [Algebra 𝒪 T]
     (πT : T →ₐ[𝒪] 𝒪) (a t Δ : T) (p nu nl nq n1 : ℕ)
     (hnu : nu = 1) (hnl : nl = 1) (hnq : nq = p + 1) (hn1 : n1 = p + 1)

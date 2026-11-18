@@ -9,6 +9,9 @@ set_option autoImplicit false
 set_option maxHeartbeats 1600000
 open IntermediateField
 
+/--
+@isnad1 id=eq.0h4v.s15.2c61c543acb3 from=translated src=- shape=4aefd948 vocab=8b2bcf2d
+-/
 theorem solution (q : ℕ) [Fact q.Prime]
     (K : IntermediateField ℚ_[q] (PadicAlgCl q)) [FiniteDimensional ℚ_[q] K]
     (L : IntermediateField K (PadicAlgCl q)) [FiniteDimensional K L] (w : L) :

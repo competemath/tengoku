@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open IharaLemma
 
+/--
+@isnad1 id=ex.1h7v.s9.83d17d5b6f15 from=translated src=- shape=04c72f6a vocab=42a3b58a
+-/
 theorem IharaLemma.exists_pow_smul_corner_mem_maximalIdeal_smul
     {𝒪 : Type} [CommRing 𝒪] [IsLocalRing 𝒪] {B : Type} [CommRing B] [Algebra 𝒪 B] [Module.Finite 𝒪 B]
     (S : IdempotentSplitting B) (i : Fin S.n) (b : B) (hb : b ∈ S.𝔪 i)

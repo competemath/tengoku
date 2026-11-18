@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=eq.0h4v.s7.87935f71d2e6 from=translated src=- shape=20aec0c2 vocab=7c9b6ffb
+-/
 theorem solution
     (k A B : Type u) [Field k] [CommRing A] [IsDomain A] [Algebra k A] [Algebra.FiniteType k A]
     [CommRing B] [IsDomain B] [Algebra k B] [Algebra.FiniteType k B]

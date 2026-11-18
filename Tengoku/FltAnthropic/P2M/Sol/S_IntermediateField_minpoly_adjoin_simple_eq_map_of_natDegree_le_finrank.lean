@@ -15,6 +15,9 @@ end MinpolyOfConjugates
 namespace IntermediateField export _root_.IntermediateField (toAlgebra val AdjoinSimple.gen algHomAdjoinIntegralEquiv_symm_apply_gen ext algHomAdjoinIntegralEquiv equivOfEq adjoin.finrank adjoin adjoin_simple_adjoin_simple map_map restrictScalars mem_adjoin_simple_self subset_adjoin map) end IntermediateField
 open scoped _root_.IntermediateField in
 
+/--
+@isnad1 id=eq.3h5v.s11.26a8e92af57d from=translated src=- shape=ad7aa941 vocab=50b556bb
+-/
 theorem solution
     {L F : Type*} [Field L] [Field F] [Algebra L F]
     (x y : F) (P : Polynomial (Polynomial ℤ)) (hP : P.Monic)

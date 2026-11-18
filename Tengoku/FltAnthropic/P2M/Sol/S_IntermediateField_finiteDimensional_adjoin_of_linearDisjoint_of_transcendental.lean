@@ -21,6 +21,9 @@ open scoped IntermediateField.algebraAdjoinAdjoin
 variable {K₀ L F₀ F : Type*} [Field K₀] [Field L] [Field F₀] [Field F]
   [Algebra K₀ F₀] [Algebra L F] [Algebra F₀ F]
 
+/--
+@isnad1 id=linearin.2h6v.s8.0b17504af8b6 from=translated src=- shape=7add40f1 vocab=ea66324d
+-/
 theorem linearIndependent_pow_mul {ι : Type*} [Fintype ι] {x : F₀} (hx : Transcendental K₀ x)
     {y : ι → F₀} (hy : LinearIndependent K₀⟮x⟯ y) (d : ℕ) :
     LinearIndependent K₀ (fun q : ι × Fin d => x ^ (q.2 : ℕ) * y q.1) := by
@@ -61,6 +64,9 @@ theorem linearIndependent_pow_mul {ι : Type*} [Fintype ι] {x : F₀} (hx : Tra
     · intro h; exact absurd (Finset.mem_univ k) h
   rw [← hcoeff, hPi, coeff_zero]
 
+/--
+@isnad1 id=finitedi.3h6v.s9.f2196a29913a from=translated src=- shape=ad166130 vocab=f2a58b65
+-/
 theorem finiteDimensional_adjoin_of_linearIndependent
     (hld : ∀ (n : ℕ) (b : Fin n → F₀), LinearIndependent K₀ b →
       LinearIndependent L (fun i => algebraMap F₀ F (b i)))
@@ -130,6 +136,9 @@ end R1AF8LD
 
 end
 
+/--
+@isnad1 id=finitedi.2h5v.s9.5d693e5745a3 from=translated src=- shape=8e3eb3ff vocab=f2a58b65
+-/
 theorem solution
     {K₀ L F₀ F : Type*} [Field K₀] [Field L] [Field F₀] [Field F]
     [Algebra K₀ F₀] [Algebra L F] [Algebra F₀ F]

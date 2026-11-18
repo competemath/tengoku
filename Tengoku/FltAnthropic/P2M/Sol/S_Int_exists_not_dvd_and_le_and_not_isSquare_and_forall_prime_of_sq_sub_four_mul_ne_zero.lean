@@ -14,15 +14,27 @@ open _root_.Int
 
 def g (t q a : ℤ) : ℤ := a ^ 2 + t * a + q
 
+/--
+@isnad1 id=eq.0h4v.s5.232e1e7ec81c from=translated src=- shape=bb77e9c9 vocab=187ef770
+-/
 theorem g_sub (t q a r : ℤ) : g t q a - g t q r = (a - r) * (a + r + t) := by
   unfold g; ring
 
+/--
+@isnad1 id=eq.0h3v.s6.db562eb6eae2 from=translated src=- shape=c2a97394 vocab=899d0dcb
+-/
 theorem four_mul_g (t q a : ℤ) : 4 * g t q a = (2 * a + t) ^ 2 - (t ^ 2 - 4 * q) := by
   unfold g; ring
 
+/--
+@isnad1 id=dvd.1h5v.s5.d5902c538fdd from=translated src=- shape=ae53cf50 vocab=6ebea48f
+-/
 theorem dvd_g_sub_of_dvd_sub {n t q a r : ℤ} (h : n ∣ a - r) : n ∣ g t q a - g t q r := by
   rw [g_sub]; exact Dvd.dvd.mul_right h _
 
+/--
+@isnad1 id=not.2h2v.s6.cfcd2f19239a from=translated src=- shape=44da88aa vocab=da152bdf
+-/
 theorem not_isSquare_of_sq_lt_of_lt_sq {N : ℤ} {u : ℕ} (h1 : (u : ℤ) ^ 2 < N)
     (h2 : N < ((u : ℤ) + 1) ^ 2) : ¬ IsSquare N := by
   rintro ⟨r, hr⟩
@@ -32,10 +44,16 @@ theorem not_isSquare_of_sq_lt_of_lt_sq {N : ℤ} {u : ℕ} (h1 : (u : ℤ) ^ 2 <
   have h2' : r.natAbs ^ 2 < (u + 1) ^ 2 := by exact_mod_cast h2
   exact Nat.not_exists_sq' h1' h2' ⟨r.natAbs, rfl⟩
 
+/--
+@isnad1 id=not.1h1v.s4.284b8754560e from=translated src=- shape=ae1c359c vocab=64a2cfae
+-/
 theorem not_isSquare_of_four_mul {N : ℤ} (h : ¬ IsSquare (4 * N)) : ¬ IsSquare N := by
   rintro ⟨r, hr⟩
   exact h ⟨2 * r, by rw [hr]; ring⟩
 
+/--
+@isnad1 id=dvd.1h1v.s5.17fc6257113a from=translated src=- shape=cf35612b vocab=a14728fb
+-/
 theorem two_dvd_of_four_dvd_sq {t : ℤ} (h : (4 : ℤ) ∣ t ^ 2) : (2 : ℤ) ∣ t := by
   rcases Int.even_or_odd t with ht | ht
   · exact even_iff_two_dvd.mp ht
@@ -46,6 +64,9 @@ theorem two_dvd_of_four_dvd_sq {t : ℤ} (h : (4 : ℤ) ∣ t ^ 2) : (2 : ℤ) �
 
 def rOdd (t : ℤ) (ℓ : ℕ) : ℤ := if (ℓ : ℤ) ∣ t then 1 else 0
 
+/--
+@isnad1 id=not.2h2v.s5.1001fadce1ce from=translated src=- shape=03fddffd vocab=921540c1
+-/
 theorem not_dvd_two_mul_rOdd_add {t : ℤ} {ℓ : ℕ} (hℓ : ℓ.Prime) (hℓ2 : ℓ ≠ 2) :
     ¬ (ℓ : ℤ) ∣ 2 * rOdd t ℓ + t := by
   unfold rOdd
@@ -63,6 +84,9 @@ theorem not_dvd_two_mul_rOdd_add {t : ℤ} {ℓ : ℕ} (hℓ : ℓ.Prime) (hℓ2
 
 def rFour (q : ℤ) : ℤ := if (2 : ℤ) ∣ q then 1 else 0
 
+/--
+@isnad1 id=not.1h2v.s4.4ada1d6406e6 from=translated src=- shape=facee91d vocab=fe48ddc9
+-/
 theorem not_two_dvd_g_rFour {t q : ℤ} (ht : (2 : ℤ) ∣ t) : ¬ (2 : ℤ) ∣ g t q (rFour q) := by
   unfold rFour g
   split_ifs with h
@@ -81,6 +105,9 @@ def ef (ℓ : ℕ) : ℕ := if ℓ = 2 then 2 else 1
 def primeSet (D : ℤ) (p : ℕ) : Finset ℕ :=
   insert p (insert 2 ((D.natAbs.primeFactors).filter (fun ℓ => ℓ ≠ p ∧ ℓ ≠ 2)))
 
+/--
+@isnad1 id=prime.2h3v.s4.879e8cd85c3c from=translated src=- shape=a73d3c11 vocab=3df800c0
+-/
 theorem prime_of_mem_primeSet {D : ℤ} {p : ℕ} (hp : p.Prime) {ℓ : ℕ} (h : ℓ ∈ primeSet D p) :
     ℓ.Prime := by
   unfold primeSet at h
@@ -90,6 +117,9 @@ theorem prime_of_mem_primeSet {D : ℤ} {p : ℕ} (hp : p.Prime) {ℓ : ℕ} (h 
   · exact Nat.prime_two
   · exact (Nat.mem_primeFactors.mp h).1
 
+/--
+@isnad1 id=mem.3h3v.s5.d592c7bb7541 from=translated src=- shape=f41606ac vocab=ac8d548a
+-/
 theorem mem_primeSet_of_dvd {D : ℤ} (hD : D ≠ 0) {p ℓ : ℕ} (hℓ : ℓ.Prime) (hdvd : (ℓ : ℤ) ∣ D) :
     ℓ ∈ primeSet D p := by
   unfold primeSet
@@ -104,6 +134,9 @@ theorem mem_primeSet_of_dvd {D : ℤ} (hD : D ≠ 0) {p ℓ : ℕ} (hℓ : ℓ.P
   have := Int.natAbs_dvd_natAbs.mpr hdvd
   rwa [Int.natAbs_natCast] at this
 
+/--
+@isnad1 id=ex.1h5v.s6.d2ddc4dc1153 from=translated src=- shape=efd4cb5c vocab=182f72e8
+-/
 theorem exists_forall_dvd_sub_xf (t q : ℤ) (D : ℤ) (p : ℕ) (hp : p.Prime) (a₀ : ℤ) :
     ∃ y : ℤ, ∀ ℓ ∈ primeSet D p, ((ℓ : ℤ) ^ ef ℓ) ∣ y - xf t q p a₀ ℓ := by
   classical
@@ -133,6 +166,9 @@ section Verify
 
 variable {t q : ℤ} {p : ℕ} {a₀ a : ℤ}
 
+/--
+@isnad1 id=not.2h5v.s5.709491af15cb from=translated src=- shape=fc30ab0b vocab=90ac8ee8
+-/
 theorem not_dvd_g (ha₀ : ¬ (p : ℤ) ∣ g t q a₀) (h : (p : ℤ) ∣ a - a₀) : ¬ (p : ℤ) ∣ g t q a := by
   intro h2
   apply ha₀
@@ -140,6 +176,9 @@ theorem not_dvd_g (ha₀ : ¬ (p : ℤ) ∣ g t q a₀) (h : (p : ℤ) ∣ a - a
   have := dvd_sub h2 h3
   simpa using this
 
+/--
+@isnad1 id=false.7h6v.s7.eb217f18e201 from=translated src=- shape=6e77e424 vocab=c0b0835e
+-/
 theorem primitive (hp : p.Prime) (hD : t ^ 2 - 4 * q ≠ 0)
     (hpg : ¬ (p : ℤ) ∣ g t q a)
     (hcong : ∀ ℓ ∈ primeSet (t ^ 2 - 4 * q) p, ((ℓ : ℤ) ^ ef ℓ) ∣ a - xf t q p a₀ ℓ)
@@ -192,6 +231,9 @@ theorem primitive (hp : p.Prime) (hD : t ^ 2 - 4 * q ≠ 0)
 
 end Verify
 
+/--
+@isnad1 id=and.2h3v.s7.048bcf4c53a3 from=translated src=- shape=c10891ea vocab=2df3efba
+-/
 theorem two_le_and_not_isSquare {t q a : ℤ} (hD : t ^ 2 - 4 * q ≠ 0)
     (hu : |t ^ 2 - 4 * q| + 2 ≤ 2 * a + t) : 2 ≤ g t q a ∧ ¬ IsSquare (g t q a) := by
   set D := t ^ 2 - 4 * q with hDdef
@@ -225,6 +267,9 @@ theorem two_le_and_not_isSquare {t q a : ℤ} (hD : t ^ 2 - 4 * q ≠ 0)
       · rw [hn]; nlinarith
       · rw [hn]; nlinarith
 
+/--
+@isnad1 id=ex.3h4v.s8.defc09f8bb87 from=translated src=- shape=1f15cebc vocab=87cd4830
+-/
 theorem main (t q : ℤ) (hD : t ^ 2 - 4 * q ≠ 0) (p : ℕ) (hp : p.Prime) (a₀ : ℤ)
     (ha₀ : ¬ (p : ℤ) ∣ a₀ ^ 2 + t * a₀ + q) :
     ∃ a : ℤ, ¬ (p : ℤ) ∣ a ^ 2 + t * a + q ∧ 2 ≤ a ^ 2 + t * a + q ∧
@@ -285,6 +330,9 @@ theorem main (t q : ℤ) (hD : t ^ 2 - 4 * q ≠ 0) (p : ℕ) (hp : p.Prime) (a�
 
 end Int.DeuringNormalisation
 
+/--
+@isnad1 id=ex.2h3v.s8.75abd6e2d110 from=translated src=- shape=c7192fae vocab=a35a90f5
+-/
 theorem solution (t q : ℤ) (hD : t ^ 2 - 4 * q ≠ 0) (p : ℕ) [Fact p.Prime] (h : ∃ a₀ : ℤ, ¬ (p : ℤ) ∣ a₀ ^ 2 + t * a₀ + q) : ∃ a : ℤ, ¬ (p : ℤ) ∣ a ^ 2 + t * a + q ∧ 2 ≤ a ^ 2 + t * a + q ∧ ¬ IsSquare (a ^ 2 + t * a + q) ∧ ∀ ℓ : ℕ, ℓ.Prime → (ℓ : ℤ) ∣ 2 * a + t → ¬ (ℓ : ℤ) ^ 2 ∣ a ^ 2 + t * a + q := by
   obtain ⟨a₀, ha₀⟩ := h
   exact Int.DeuringNormalisation.main t q hD p (Fact.out) a₀ ha₀

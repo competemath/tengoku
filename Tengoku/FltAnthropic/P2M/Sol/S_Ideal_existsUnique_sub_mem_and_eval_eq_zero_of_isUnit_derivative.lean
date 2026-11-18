@@ -13,10 +13,16 @@ namespace P2MHI
 
 variable {W : Type*} [CommRing W] (I : Ideal W)
 
+/--
+@isnad1 id=iff.0h5v.s8.03dd5da8e05d from=translated src=- shape=834ce8f4 vocab=06f1776e
+-/
 theorem smod_iff (n : ℕ) (x y : W) :
     x ≡ y [SMOD (I ^ n • ⊤ : Submodule W W)] ↔ x - y ∈ I ^ n := by
   rw [SModEq.sub_mem, smul_eq_mul, Ideal.mul_top]
 
+/--
+@isnad1 id=isunit.2h4v.s6.6580db665f54 from=translated src=- shape=ce51285e vocab=ec3c2110
+-/
 theorem isUnit_add_of_mem [IsAdicComplete I W] {v a : W} (hv : IsUnit v) (ha : a ∈ I) : IsUnit (v + a) := by
   have hj := IsAdicComplete.le_jacobson_bot I ha
   rw [Ideal.mem_jacobson_bot] at hj
@@ -39,8 +45,14 @@ def seq : ℕ → W
 
 variable {G y₀ u}
 
+/--
+@isnad1 id=eq.0h5v.s6.26ccc193851e from=translated src=- shape=2546db81 vocab=8dcd35cd
+-/
 theorem seq_succ (k : ℕ) : seq G y₀ u (k + 1) = seq G y₀ u k - u * G.eval (seq G y₀ u k) := rfl
 
+/--
+@isnad1 id=and.2h6v.s9.193095d55ba8 from=translated src=- shape=0ad51a40 vocab=69ea6532
+-/
 theorem seq_spec (hu : (Polynomial.derivative G).eval y₀ * u = 1) (hG : G.eval y₀ ∈ I) :
     ∀ k, seq G y₀ u k - y₀ ∈ I ∧ G.eval (seq G y₀ u k) ∈ I ^ (k + 1) := by
   intro k
@@ -72,11 +84,17 @@ theorem seq_spec (hu : (Polynomial.derivative G).eval y₀ * u = 1) (hG : G.eval
         rw [this, pow_succ]
         exact Ideal.mul_mem_left _ _ (Ideal.mul_mem_mul h2 (Ideal.pow_le_self (Nat.succ_ne_zero k) h2))
 
+/--
+@isnad1 id=mem.2h6v.s8.1afddaec474c from=translated src=- shape=0f2db42e vocab=69ea6532
+-/
 theorem seq_succ_sub_mem (hu : (Polynomial.derivative G).eval y₀ * u = 1) (hG : G.eval y₀ ∈ I) (k : ℕ) :
     seq G y₀ u (k + 1) - seq G y₀ u k ∈ I ^ (k + 1) := by
   rw [seq_succ, sub_sub_cancel_left]
   exact (I ^ (k + 1)).neg_mem (Ideal.mul_mem_left _ _ ((seq_spec I hu hG k).2))
 
+/--
+@isnad1 id=mem.3h7v.s8.11325772338a from=translated src=- shape=3b78f1f3 vocab=518ff366
+-/
 theorem seq_cauchy (hu : (Polynomial.derivative G).eval y₀ * u = 1) (hG : G.eval y₀ ∈ I) {m n : ℕ} (hmn : m ≤ n) :
     seq G y₀ u n - seq G y₀ u m ∈ I ^ m := by
   induction n, hmn using Nat.le_induction with
@@ -88,6 +106,9 @@ theorem seq_cauchy (hu : (Polynomial.derivative G).eval y₀ * u = 1) (hG : G.ev
 
 end Newton
 
+/--
+@isnad1 id=existsun.2h4v.s8.cd6862564c9a from=translated src=- shape=d58be892 vocab=32f98edb
+-/
 theorem main [IsAdicComplete I W] (G : Polynomial W) (y₀ : W) (hG : G.eval y₀ ∈ I)
     (hG' : IsUnit ((Polynomial.derivative G).eval y₀)) :
     ∃! y : W, y - y₀ ∈ I ∧ G.eval y = 0 := by
@@ -141,6 +162,9 @@ theorem main [IsAdicComplete I W] (G : Polynomial W) (y₀ : W) (hG : G.eval y�
 
 end P2MHI
 
+/--
+@isnad1 id=existsun.2h4v.s8.cd6862564c9a from=translated src=- shape=d58be892 vocab=32f98edb
+-/
 theorem solution
     {W : Type*} [CommRing W] (I : Ideal W) [IsAdicComplete I W]
     (G : Polynomial W) (y₀ : W) (hG : G.eval y₀ ∈ I)

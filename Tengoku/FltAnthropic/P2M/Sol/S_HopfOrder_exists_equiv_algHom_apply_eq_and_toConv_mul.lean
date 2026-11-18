@@ -30,6 +30,9 @@ noncomputable def res (f : A →ₐ[K] L) : ↥S →ₐ[R] ↥P :=
   ((f.restrictScalars R).comp S.val).codRestrict P
     (fun x => hP _ ((Algebra.IsIntegral.isIntegral (R := R) x).map ((f.restrictScalars R).comp S.val)))
 
+/--
+@isnad1 id=eq.1h8v.s10.a8271e01bb2f from=translated src=- shape=11be6796 vocab=f61289d7
+-/
 @[scoped simp] theorem coe_res_apply (f : A →ₐ[K] L) (x : ↥S) : ((res S P hP f x : ↥P) : L) = f (x : A) := rfl
 
 private noncomputable def _root_.HopfOrder.Points.ext (hspan : Submodule.span K (S : Set A) = ⊤) (g : ↥S →ₐ[R] ↥P) : A →ₐ[K] L :=
@@ -38,6 +41,9 @@ private noncomputable def _root_.HopfOrder.Points.ext (hspan : Submodule.span K 
     ((baseChangeEquiv S hspan).symm : A →ₐ[K] K ⊗[R] ↥S)
 
 export _root_.HopfOrder.Points (ext)
+/--
+@isnad1 id=eq.1h9v.s11.e1a4f8d899e9 from=translated src=- shape=1eee506b vocab=9fdf30cc
+-/
 theorem ext_baseChangeEquiv_tmul (hspan : Submodule.span K (S : Set A) = ⊤) (g : ↥S →ₐ[R] ↥P)
     (k : K) (s : ↥S) :
     haveI := moduleFlat_of_finite (K := K) S
@@ -46,12 +52,18 @@ theorem ext_baseChangeEquiv_tmul (hspan : Submodule.span K (S : Set A) = ⊤) (g
   simp only [ext, AlgHom.comp_apply, AlgEquiv.coe_toAlgHom, AlgEquiv.symm_apply_apply,
     AlgHom.liftEquiv_tmul, Subalgebra.coe_val]
 
+/--
+@isnad1 id=eq.1h8v.s10.6bdabf5a05fa from=translated src=- shape=ba6cbf1a vocab=5201d3e4
+-/
 theorem ext_coe (hspan : Submodule.span K (S : Set A) = ⊤) (g : ↥S →ₐ[R] ↥P) (s : ↥S) :
     ext S P hspan g (s : A) = ((g s : ↥P) : L) := by
   haveI := moduleFlat_of_finite (K := K) S
   have h := ext_baseChangeEquiv_tmul S P hspan g 1 s
   rwa [baseChangeEquiv_tmul, one_smul, one_smul] at h
 
+/--
+@isnad1 id=eq.2h7v.s10.7a60cb56a4e8 from=translated src=- shape=a5a41d37 vocab=3f769984
+-/
 theorem res_ext (hspan : Submodule.span K (S : Set A) = ⊤) (g : ↥S →ₐ[R] ↥P) :
     res S P hP (ext S P hspan g) = g := by
   apply AlgHom.ext
@@ -59,6 +71,9 @@ theorem res_ext (hspan : Submodule.span K (S : Set A) = ⊤) (g : ↥S →ₐ[R]
   apply Subtype.ext
   rw [coe_res_apply, ext_coe]
 
+/--
+@isnad1 id=eq.2h7v.s9.54f24d754274 from=translated src=- shape=ab9f5600 vocab=3f769984
+-/
 theorem ext_res (hspan : Submodule.span K (S : Set A) = ⊤) (f : A →ₐ[K] L) :
     ext S P hspan (res S P hP f) = f := by
   haveI := moduleFlat_of_finite (K := K) S
@@ -77,6 +92,9 @@ noncomputable def equiv (hspan : Submodule.span K (S : Set A) = ⊤) : (A →ₐ
   left_inv := ext_res S P hP hspan
   right_inv := res_ext S P hP hspan
 
+/--
+@isnad1 id=eq.1h9v.s12.8bb92e0096ab from=translated src=- shape=6cb168cb vocab=2e4636ac
+-/
 theorem val_lift_res_res (f g : A →ₐ[K] L) (z : ↥S ⊗[R] ↥S) :
     ((Algebra.TensorProduct.lift (res S P hP f) (res S P hP g) (fun _ _ => Commute.all _ _) z : ↥P) : L)
       = Algebra.TensorProduct.lift f g (fun _ _ => Commute.all _ _) (tensorSqHom S z) := by
@@ -94,6 +112,9 @@ variable (hcomul : ∀ x ∈ S, Coalgebra.comul (R := K) x ∈
     (hanti : ∀ x ∈ S, HopfAlgebra.antipode K (A := A) x ∈ S)
     (hcounit : ∀ x ∈ S, Coalgebra.counit (R := K) (A := A) x ∈ (algebraMap R K).range)
 
+/--
+@isnad1 id=eq.4h8v.s13.61783d5d9acc from=translated src=- shape=c93e2f6e vocab=e38eb774
+-/
 theorem res_mul (f g : A →ₐ[K] L) :
     letI := HopfOrder.hopfAlgebraOfFinite S hcomul hcounit hanti
     toConv (res S P hP (ofConv (toConv f * toConv g))) = toConv (res S P hP f) * toConv (res S P hP g) := by
@@ -109,6 +130,9 @@ theorem res_mul (f g : A →ₐ[K] L) :
   change _ = ((Algebra.TensorProduct.lift (res S P hP f) (res S P hP g) _ (comulS hcomul x) : ↥P) : L)
   rw [val_lift_res_res, tensorSqHom_comulS]
 
+/--
+@isnad1 id=eq.4h6v.s13.129fc575be22 from=translated src=- shape=d2f8a14a vocab=1862666b
+-/
 theorem res_one :
     letI := HopfOrder.hopfAlgebraOfFinite S hcomul hcounit hanti
     toConv (res S P hP (ofConv (1 : WithConv (A →ₐ[K] L)))) = 1 := by
@@ -128,6 +152,9 @@ open scoped _root_.P2MW.S_HopfOrder_exists_equiv_algHom_apply_eq_and_toConv_mul.
 end HopfOrder
 open scoped _root_.P2MW.S_HopfOrder_exists_equiv_algHom_apply_eq_and_toConv_mul.HopfOrder.Points _root_.P2MW.S_HopfOrder_exists_equiv_algHom_apply_eq_and_toConv_mul.HopfOrder
 
+/--
+@isnad1 id=ex.5h6v.s14.a1684175b723 from=translated src=- shape=9ade7be3 vocab=741ddc66
+-/
 theorem solution
     {R : Type*} [CommRing R] [IsDomain R] [IsPrincipalIdealRing R]
     {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]

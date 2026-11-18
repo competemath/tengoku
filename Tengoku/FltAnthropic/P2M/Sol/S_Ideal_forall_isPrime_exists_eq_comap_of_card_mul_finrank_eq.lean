@@ -8,6 +8,9 @@ namespace P2MW.S_Ideal_forall_isPrime_exists_eq_comap_of_card_mul_finrank_eq
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.4h6v.s9.8c93349a5984 from=translated src=- shape=cb9342e2 vocab=9e19c48e
+-/
 theorem solution
     (F R : Type) [Field F] [CommRing R] [Algebra F R] [Module.Finite F R] [IsReduced R]
     (𝔭₀ : Ideal R) (h𝔭₀ : 𝔭₀.IsPrime)

@@ -10,6 +10,9 @@ open scoped TensorProduct
 
 universe u v w
 
+/--
+@isnad1 id=eq.0h5v.s14.67768d7528bf from=translated src=- shape=ff8ed9a2 vocab=1ec54bef
+-/
 theorem HopfAlgebra.hopfKer_baseChange_toSubmodule_eq_range_baseChange
     {R : Type u} [CommRing R] (R₁ : Type u) [CommRing R₁] [Algebra R R₁] [Module.Flat R R₁]
     {H : Type v} [CommRing H] [HopfAlgebra R H]

@@ -8,6 +8,9 @@ namespace P2MW.S_Ideal_exists_eq_span_singleton_and_mem_nonZeroDivisors_of_foral
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.9h10v.s10.49f6a62145da from=translated src=- shape=2ea4f5c1 vocab=980e21c9
+-/
 theorem solution
     {R : Type*} [CommRing R] [IsNoetherianRing R] [IsLocalRing R]
     {S₁ : Type*} [CommRing S₁] [IsDomain S₁] [IsDiscreteValuationRing S₁]

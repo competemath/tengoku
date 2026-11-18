@@ -21,6 +21,9 @@ variable {H : Type v} [CommRing H] [HopfAlgebra R H]
 noncomputable abbrev bc (u : H →ₐ[R] H) : R' ⊗[R] H →ₐ[R'] R' ⊗[R] H :=
   Algebra.TensorProduct.map (AlgHom.id R' R') u
 
+/--
+@isnad1 id=eq.0h7v.s12.70e3d97efef8 from=translated src=- shape=509e16c2 vocab=555936f3
+-/
 theorem convMul_bc_tmul (u v : WithConv (H →ₐ[R] H)) (s : R') (h : H) :
     (WithConv.toConv (bc R' u.ofConv) * WithConv.toConv (bc R' v.ofConv)).ofConv (s ⊗ₜ[R] h) =
       s ⊗ₜ[R] (u * v).ofConv h := by
@@ -38,6 +41,9 @@ theorem convMul_bc_tmul (u v : WithConv (H →ₐ[R] H)) (s : R') (h : H) :
     Algebra.TensorProduct.lift_tmul]
   simp [bc, Algebra.TensorProduct.tmul_mul_tmul]
 
+/--
+@isnad1 id=eq.0h5v.s12.1ba13a35c49b from=translated src=- shape=418a0d85 vocab=c96b5ae2
+-/
 theorem convMul_bc (u v : WithConv (H →ₐ[R] H)) :
     WithConv.toConv (bc R' u.ofConv) * WithConv.toConv (bc R' v.ofConv) =
       WithConv.toConv (bc R' (u * v).ofConv) := by
@@ -50,6 +56,9 @@ theorem convMul_bc (u v : WithConv (H →ₐ[R] H)) :
   rw [convMul_bc_tmul]
   simp [bc]
 
+/--
+@isnad1 id=eq.0h3v.s11.b85c5193a43a from=translated src=- shape=6f869944 vocab=c8c28101
+-/
 theorem convOne_bc :
     (1 : WithConv (R' ⊗[R] H →ₐ[R'] R' ⊗[R] H)) =
       WithConv.toConv (bc R' (1 : WithConv (H →ₐ[R] H)).ofConv) := by
@@ -65,6 +74,9 @@ theorem convOne_bc :
   rw [Algebra.TensorProduct.algebraMap_apply, Algebra.algebraMap_self, RingHom.id_apply,
     TensorProduct.smul_tmul, Algebra.algebraMap_eq_smul_one]
 
+/--
+@isnad1 id=eq.0h5v.s11.ac5f73282079 from=translated src=- shape=f782a70b vocab=d1935c20
+-/
 theorem pow_bc (u : WithConv (H →ₐ[R] H)) (k : ℕ) :
     (WithConv.toConv (bc R' u.ofConv)) ^ k = WithConv.toConv (bc R' (u ^ k).ofConv) := by
   induction k with
@@ -75,6 +87,9 @@ end HopfAlgebra.UniversalPointBC
 
 open scoped TensorProduct in
 open HopfAlgebra.UniversalPointBC in
+/--
+@isnad1 id=eq.1h4v.s12.448fb65ac63b from=translated src=- shape=1df9023e vocab=fe8d521e
+-/
 theorem solution
     {R : Type u} [CommRing R] (R' : Type w) [CommRing R'] [Algebra R R']
     {H : Type v} [CommRing H] [HopfAlgebra R H] (m : ℕ)

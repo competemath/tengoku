@@ -27,6 +27,9 @@ def monoid : Submonoid L where
   one_mem' := h1
 
 include h1 hmul in
+/--
+@isnad1 id=eq.2h3v.s9.f08fe6c31342 from=translated src=- shape=67c0f888 vocab=e77f8eb7
+-/
 theorem adjoin_toSubmodule : Subalgebra.toSubmodule (Algebra.adjoin K G) = Submodule.span K G := by
   rw [Algebra.adjoin_eq_span]
   congr 1
@@ -36,16 +39,28 @@ def Φ₁ : (G →₀ K) →ₗ[K] L := Finsupp.linearCombination K (fun x : G =
 
 def Φ₂ (θ : L → L') : (G →₀ K) →ₗ[K] L' := Finsupp.linearCombination K (fun x : G => θ x)
 
+/--
+@isnad1 id=eq.0h3v.s7.1b0ddfcadeba from=translated src=- shape=17dfb146 vocab=1201587e
+-/
 theorem range_Φ₁ : LinearMap.range (Φ₁ (K := K) G) = Submodule.span K G := by
   rw [Φ₁, Finsupp.range_linearCombination, Subtype.range_coe]
 
 variable {G}
 
+/--
+@isnad1 id=eq.0h4v.s8.b04697674889 from=translated src=- shape=8d7a7faf vocab=0721071b
+-/
 theorem Φ₁_apply (l : G →₀ K) : Φ₁ G l = l.sum fun x r => r • (x : L) := Finsupp.linearCombination_apply _ _
 
+/--
+@isnad1 id=eq.0h6v.s8.76717a5119e8 from=translated src=- shape=420f9afe vocab=ac93cab3
+-/
 theorem Φ₂_apply (θ : L → L') (l : G →₀ K) : Φ₂ (K := K) G θ l = l.sum fun x r => r • θ x :=
   Finsupp.linearCombination_apply _ _
 
+/--
+@isnad1 id=le.1h5v.s9.5a6c4479888c from=translated src=- shape=147cdd6d vocab=e7bd7b5f
+-/
 theorem ker_le (θ : L → L')
     (hlin : ∀ c : L →₀ K, (↑c.support : Set L) ⊆ G →
       (c.sum fun x r => r • x) = 0 → (c.sum fun x r => r • θ x) = 0) :
@@ -75,6 +90,9 @@ def ψ (θ : L → L') (hker : LinearMap.ker (Φ₁ (K := K) G) ≤ LinearMap.ke
   q.comp e
 
 set_option maxHeartbeats 4000000 in
+/--
+@isnad1 id=eq.2h6v.s11.8661bc8b7489 from=translated src=- shape=7dc7466d vocab=c5bab9e5
+-/
 theorem ψ_apply (θ : L → L') (hker : LinearMap.ker (Φ₁ (K := K) G) ≤ LinearMap.ker (Φ₂ (K := K) G θ))
     (l : G →₀ K) (h : Φ₁ G l ∈ LinearMap.range (Φ₁ (K := K) G)) :
     ψ θ hker ⟨Φ₁ G l, h⟩ = Φ₂ G θ l := by
@@ -87,6 +105,9 @@ section Main
 
 variable (K)
 
+/--
+@isnad1 id=ex.8h7v.s11.5ebddc2b58db from=translated src=- shape=ab92d341 vocab=8d470278
+-/
 theorem main {L L' : Type*} [Field L] [Algebra K L] [Field L'] [Algebra K L']
     (G : Set L) (h1 : (1 : L) ∈ G) (hmul : ∀ x ∈ G, ∀ y ∈ G, x * y ∈ G)
     (θ : L → L') (hθ : ∀ x ∈ G, ∀ y ∈ G, θ (x * y) = θ x * θ y)
@@ -248,6 +269,9 @@ end Main
 
 end AdjoinExt
 
+/--
+@isnad1 id=ex.8h7v.s11.affe4c0af3f4 from=translated src=- shape=ace3fe14 vocab=8d470278
+-/
 theorem solution
     (K : Type*) {L L' : Type*} [Field K] [Field L] [Algebra K L] [Field L'] [Algebra K L']
     (G : Set L) (h1 : (1 : L) ∈ G) (hmul : ∀ x ∈ G, ∀ y ∈ G, x * y ∈ G)

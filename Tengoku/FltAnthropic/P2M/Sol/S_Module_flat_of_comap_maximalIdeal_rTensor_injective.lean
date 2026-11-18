@@ -31,6 +31,9 @@ section KernelTransfer
 
 variable {R : Type u} [CommRing R] {M : Type v} [AddCommGroup M] [Module R M]
 
+/--
+@isnad1 id=injectiv.7h13v.s10.d56a611cdfe6 from=translated src=- shape=df6279db vocab=312c6a77
+-/
 theorem lTensor_injective_of_cover
     {N₁ N₂ G L K : Type*} [AddCommGroup N₁] [AddCommGroup N₂] [Module R N₁] [Module R N₂]
     [AddCommGroup G] [AddCommGroup L] [Module R G] [Module R L] [AddCommGroup K] [Module R K]
@@ -61,10 +64,16 @@ def cover (N₂ : Type*) [AddCommGroup N₂] [Module R N₂] :
     FreeCover R N₂ →ₗ[R] N₂ :=
   Finsupp.linearCombination R (id : N₂ → N₂) ∘ₗ (FreeCover.equiv R N₂).toLinearMap
 
+/--
+@isnad1 id=surjecti.0h2v.s7.028a0b40b106 from=translated src=- shape=be245711 vocab=e6227b61
+-/
 theorem cover_surjective (N₂ : Type*) [AddCommGroup N₂] [Module R N₂] :
     Function.Surjective (cover (R := R) N₂) :=
   (Finsupp.linearCombination_id_surjective R N₂).comp (FreeCover.equiv R N₂).surjective
 
+/--
+@isnad1 id=injectiv.2h5v.s12.2a845285c49f from=translated src=- shape=5830110e vocab=214670d0
+-/
 theorem lTensor_injective_of_comap_cover
     {N₁ N₂ : Type*} [AddCommGroup N₁] [AddCommGroup N₂] [Module R N₁] [Module R N₂]
     (f : N₁ →ₗ[R] N₂) (hf : Function.Injective f)
@@ -116,6 +125,9 @@ theorem lTensor_injective_of_comap_cover
     have : v g = 0 := g.2
     simp [this]
 
+/--
+@isnad1 id=injectiv.1h4v.s13.04e434f4e2b3 from=translated src=- shape=1f3ce2fa vocab=1cd47e38
+-/
 theorem lTensor_mapRange_injective (I : Ideal R)
     (hI : Function.Injective (I.subtype.lTensor M)) (ι : Type*) :
     Function.Injective
@@ -147,6 +159,9 @@ def TorVanish (N : Type u) [AddCommGroup N] [Module R N] : Prop :=
     Function.Injective f → Function.Surjective g → Function.Exact f g →
     Function.Injective (f.lTensor M)
 
+/--
+@isnad1 id=torvanis.3h4v.s11.01b1e79abafe from=translated src=- shape=c2692b0a vocab=2d3a25c3
+-/
 theorem torVanish_of_torsion (I : Ideal R)
     (hsplit : ∀ ⦃Q₁ Q₂ : Type u⦄ [AddCommGroup Q₁] [AddCommGroup Q₂] [Module R Q₁]
       [Module R Q₂] (g : Q₁ →ₗ[R] Q₂), Function.Injective g →
@@ -249,6 +264,9 @@ theorem torVanish_of_torsion (I : Ideal R)
   have h4 : w = 0 := lTensor_mapRange_injective I hI N₂ (by rw [h3', map_zero])
   rw [← hw, h4, map_zero]
 
+/--
+@isnad1 id=torvanis.5h7v.s8.cc62711d471f from=translated src=- shape=ceb948fa vocab=50417871
+-/
 theorem torVanish_of_extension {N' N N'' : Type u} [AddCommGroup N'] [AddCommGroup N]
     [AddCommGroup N''] [Module R N'] [Module R N] [Module R N'']
     (ι : N' →ₗ[R] N) (π : N →ₗ[R] N'') (hι : Function.Injective ι)
@@ -324,6 +342,9 @@ theorem torVanish_of_extension {N' N N'' : Type u} [AddCommGroup N'] [AddCommGro
   rw [this, LinearMap.lTensor_comp]
   exact hL'.comp hL
 
+/--
+@isnad1 id=torvanis.0h3v.s5.2d42f9e07b29 from=translated src=- shape=d347cd2c vocab=cc5648c5
+-/
 theorem torVanish_of_subsingleton {N : Type u} [AddCommGroup N] [Module R N]
     [Subsingleton N] : TorVanish R M N := by
   intro N₁ N₂ _ _ _ _ f g hf hg hfg
@@ -337,6 +358,9 @@ theorem torVanish_of_subsingleton {N : Type u} [AddCommGroup N] [Module R N]
   rw [this]
   exact (e.lTensor M).injective
 
+/--
+@isnad1 id=torvanis.3h5v.s11.aafd194efcba from=translated src=- shape=5ec30422 vocab=83fad5ba
+-/
 theorem torVanish_of_torsion_pow (I : Ideal R)
     (hsplit : ∀ ⦃Q₁ Q₂ : Type u⦄ [AddCommGroup Q₁] [AddCommGroup Q₂] [Module R Q₁]
       [Module R Q₂] (g : Q₁ →ₗ[R] Q₂), Function.Injective g →
@@ -387,6 +411,9 @@ section Tail
 
 variable {R : Type u} [CommRing R] {M : Type v} [AddCommGroup M] [Module R M]
 
+/--
+@isnad1 id=mem.2h5v.s12.80c1c09b4054 from=translated src=- shape=e7536c99 vocab=3dbc34a2
+-/
 theorem ker_le_range_of_torVanish (𝔞 J : Ideal R)
     (h : TorVanish R M (R ⧸ (𝔞 ⊔ J))) (x : M ⊗[R] 𝔞) (hx : (𝔞.subtype.lTensor M) x = 0) :
     x ∈ LinearMap.range ((Submodule.inclusion (inf_le_left : 𝔞 ⊓ J ≤ 𝔞)).lTensor M) := by
@@ -440,6 +467,9 @@ theorem ker_le_range_of_torVanish (𝔞 J : Ideal R)
     ext; rfl
   rw [← h2, LinearMap.lTensor_comp, LinearMap.comp_apply, hζ, h1]
 
+/--
+@isnad1 id=le.2h5v.s12.877e8d713802 from=translated src=- shape=90da5ee8 vocab=747bb9a8
+-/
 theorem range_lTensor_inclusion_le_smul (𝔞 J 𝔟 : Ideal R) (h𝔟 : 𝔟 ≤ J * 𝔞) (hle : 𝔟 ≤ 𝔞) :
     LinearMap.range ((Submodule.inclusion hle).lTensor M) ≤
       (J • ⊤ : Submodule R (M ⊗[R] 𝔞)) := by
@@ -474,6 +504,9 @@ theorem range_lTensor_inclusion_le_smul (𝔞 J 𝔟 : Ideal R) (h𝔟 : 𝔟 �
 
 variable {S : Type*} [CommRing S] [Algebra R S] [Module S M] [IsScalarTower R S M]
 
+/--
+@isnad1 id=finite.0h4v.s9.cc142fefd107 from=translated src=- shape=967dc6ff vocab=3d1a6026
+-/
 theorem finite_lTensor_ideal [IsNoetherianRing R] [Module.Finite S M] (𝔞 : Ideal R) :
     Module.Finite S (M ⊗[R] 𝔞) := by
   classical
@@ -508,6 +541,9 @@ theorem finite_lTensor_ideal [IsNoetherianRing R] [Module.Finite S M] (𝔞 : Id
       exact Submodule.smul_mem _ _ ihm
   | add x y hx hy => exact Submodule.add_mem _ hx hy
 
+/--
+@isnad1 id=flat.2h4v.s8.378da4f47bc5 from=translated src=- shape=08956c63 vocab=afb61458
+-/
 theorem flat_of_torVanish_pow [IsNoetherianRing R] [IsNoetherianRing S] [Module.Finite S M]
     (I : Ideal R) (hIS : I.map (algebraMap R S) ≤ (⊥ : Ideal S).jacobson)
     (hTV : ∀ (n : ℕ) (N : Type u) [AddCommGroup N] [Module R N],
@@ -581,6 +617,9 @@ section Split
 variable {R : Type u} [CommRing R] {M : Type v} [AddCommGroup M] [Module R M]
 variable {S : Type*} [CommRing S] [Algebra R S] [Module S M] [IsScalarTower R S M]
 
+/--
+@isnad1 id=islocali.1h4v.s8.561eb83c3535 from=translated src=- shape=7241beac vocab=f0c81f54
+-/
 theorem isLocalizedModule_id_of_units (T : Submonoid R)
     (hT : ∀ t : T, IsUnit (algebraMap R S t)) :
     IsLocalizedModule T (LinearMap.id : M →ₗ[R] M) where
@@ -603,6 +642,9 @@ theorem isLocalizedModule_id_of_units (T : Submonoid R)
   surj y := ⟨(y, 1), by simp⟩
   exists_of_eq h := ⟨1, by simpa using h⟩
 
+/--
+@isnad1 id=istorsio.1h3v.s9.98904adbf1d0 from=translated src=- shape=964da574 vocab=57018ec0
+-/
 theorem isTorsionBySet_baseChange (p : Ideal R) [p.IsPrime] {Q : Type*} [AddCommGroup Q]
     [Module R Q] (hQ : Module.IsTorsionBySet R Q p) :
     Module.IsTorsionBySet (Localization.AtPrime p) (Localization.AtPrime p ⊗[R] Q)
@@ -624,6 +666,9 @@ theorem isTorsionBySet_baseChange (p : Ideal R) [p.IsPrime] {Q : Type*} [AddComm
     change _ • y = (0 : Localization.AtPrime p ⊗[R] Q) at hy
     rw [hx, hy, add_zero]
 
+/--
+@isnad1 id=injectiv.3h7v.s9.1fc99e224d1d from=translated src=- shape=f4aac3c1 vocab=86c4b68e
+-/
 theorem lTensor_injective_of_torsion (p : Ideal R) [p.IsPrime]
     (hunit : ∀ t : p.primeCompl, IsUnit (algebraMap R S t))
     {Q₁ Q₂ : Type*} [AddCommGroup Q₁] [AddCommGroup Q₂] [Module R Q₁] [Module R Q₂]
@@ -674,6 +719,9 @@ theorem lTensor_injective_of_torsion (p : Ideal R) [p.IsPrime]
 end Split
 open scoped _root_.P2MW.S_Module_flat_of_comap_maximalIdeal_rTensor_injective.LocalFlatnessCriterionAtPrime.FreeCover
 
+/--
+@isnad1 id=flat.1h3v.s11.ae260f0f64fc from=translated src=- shape=405a82e9 vocab=b36450e4
+-/
 theorem flat_of_comap_maximalIdeal_lTensor_injective
     {R : Type u} {S : Type*} {M : Type v} [CommRing R] [CommRing S] [Algebra R S]
     [IsNoetherianRing R] [IsNoetherianRing S] [IsLocalRing S]
@@ -702,6 +750,9 @@ open scoped _root_.P2MW.S_Module_flat_of_comap_maximalIdeal_rTensor_injective.Lo
 end
 open scoped _root_.P2MW.S_Module_flat_of_comap_maximalIdeal_rTensor_injective.LocalFlatnessCriterionAtPrime.FreeCover _root_.P2MW.S_Module_flat_of_comap_maximalIdeal_rTensor_injective.LocalFlatnessCriterionAtPrime
 
+/--
+@isnad1 id=flat.2h4v.s10.6c9cba36e3af from=translated src=- shape=786a631b vocab=95060862
+-/
 theorem solution
     {R S M : Type*} [CommRing R] [CommRing S] [Algebra R S]
     [IsNoetherianRing R] [IsNoetherianRing S] [IsLocalRing S]

@@ -14,7 +14,13 @@ noncomputable section
 namespace K2Seam3
 namespace SqfreeSieve
 
+/--
+@isnad1 id=fact.0h0v.s2.2cde8ffc8dda from=translated src=- shape=8d7dbbf6 vocab=c1c9ca6d
+-/
 scoped instance fact_prime_two : Fact (Nat.Prime 2) := ⟨by norm_num⟩
+/--
+@isnad1 id=fact.0h0v.s2.fdf266938498 from=translated src=- shape=8d7dbbf6 vocab=c1c9ca6d
+-/
 scoped instance fact_prime_three : Fact (Nat.Prime 3) := ⟨by norm_num⟩
 
 abbrev KwExistsSqfreeSqAdd : Prop :=
@@ -24,6 +30,9 @@ section Sieve
 
 open _root_.Finset open _root_.Nat open _root_.Finset.Nat open _root_.Real open _root_.Filter
 
+/--
+@isnad1 id=dvd.3h3v.s6.1e14b7d2fa95 from=translated src=- shape=fe249235 vocab=41707f43
+-/
 lemma kw_psq_dvd_of_not_dvd {p : ℕ} (hp : p.Prime) {a b : ℤ}
     (ha : ¬ (p : ℤ) ∣ a) (hab : (p : ℤ)^2 ∣ a * b) : (p : ℤ)^2 ∣ b := by
   have hpZ : Prime (p : ℤ) := Nat.prime_iff_prime_int.mp hp
@@ -36,6 +45,9 @@ lemma kw_psq_dvd_of_not_dvd {p : ℕ} (hp : p.Prime) {a b : ℤ}
   obtain ⟨d, rfl⟩ := (hpZ.dvd_mul.mp hpac).resolve_left ha
   exact ⟨d, by ring⟩
 
+/--
+@isnad1 id=or.5h4v.s7.711efbee2eaf from=translated src=- shape=9c189e6a vocab=ca404681
+-/
 lemma kw_sqAdd_pm_congr {p D : ℕ} (hp : p.Prime) (hp2 : p ≠ 2) (hpD : ¬ p ∣ D)
     {x y : ℤ} (hx : (p : ℤ)^2 ∣ x^2 + D) (hy : (p : ℤ)^2 ∣ y^2 + D) :
     (p : ℤ)^2 ∣ (x - y) ∨ (p : ℤ)^2 ∣ (x + y) := by
@@ -60,6 +72,9 @@ lemma kw_sqAdd_pm_congr {p D : ℕ} (hp : p.Prime) (hp2 : p ≠ 2) (hpD : ¬ p �
     · exact Or.inl (kw_psq_dvd_of_not_dvd hp hxpy (by rwa [mul_comm] at hdiff))
   · exact Or.inr (kw_psq_dvd_of_not_dvd hp hxmy hdiff)
 
+/--
+@isnad1 id=le.3h3v.s8.c767b3bb23ba from=translated src=- shape=d96998de vocab=8320e68f
+-/
 lemma kw_perPrime_count {D K p : ℕ} (hp : p.Prime) (hp3 : 3 ≤ p)
     (hpD : ¬ p ∣ D) :
     ((Finset.range K).filter (fun k => p^2 ∣ (2*D*k + D + 1)^2 + D)).card
@@ -138,6 +153,9 @@ lemma kw_perPrime_count {D K p : ℕ} (hp : p.Prime) (hp3 : 3 ≤ p)
     _ = 2 * (K / p^2 + 1) := by
         rw [Finset.card_product, Finset.card_range, Finset.card_univ, Fintype.card_bool]
 
+/--
+@isnad1 id=not.0h2v.s6.51295a46e0a6 from=translated src=- shape=b08b86ae vocab=0eadfadb
+-/
 lemma kw_four_not_dvd_f (D k : ℕ) : ¬ (4 : ℕ) ∣ ((2*D*k + D + 1)^2 + D) := by
   have hexp : (2*D*k + D + 1)^2 + D = 4*(D^2*k^2 + D^2*k + D*k) + (D^2 + 3*D + 1) := by ring
   intro h; rw [hexp] at h
@@ -147,6 +165,9 @@ lemma kw_four_not_dvd_f (D k : ℕ) : ¬ (4 : ℕ) ∣ ((2*D*k + D + 1)^2 + D) :
     push_cast at this; linear_combination this
   exact (by decide : ∀ d : ZMod 4, d^2 + 3*d + 1 ≠ 0) _ hZ
 
+/--
+@isnad1 id=not.2h3v.s6.de5719ddb893 from=translated src=- shape=75035ca6 vocab=2643bb4c
+-/
 lemma kw_primeDvdD_not_dvd_f {D p : ℕ} (k : ℕ) (hp : p.Prime) (hpD : p ∣ D) :
     ¬ p ∣ ((2*D*k + D + 1)^2 + D) := by
   haveI := Fact.mk hp
@@ -157,6 +178,9 @@ lemma kw_primeDvdD_not_dvd_f {D p : ℕ} (k : ℕ) (hp : p.Prime) (hpD : p ∣ D
   rw [hDZ] at hZ; ring_nf at hZ
   exact one_ne_zero hZ
 
+/--
+@isnad1 id=kwexists.0h0v.s0.ee26832727b8 from=translated src=- shape=45709ebd vocab=ee268327
+-/
 theorem kw_existsSqfreeSqAdd_proved : KwExistsSqfreeSqAdd := by
   intro D hD
   set f : ℕ → ℕ := fun k => (2*D*k + D + 1)^2 + D with hf_def
@@ -304,6 +328,9 @@ open scoped _root_.P2MW.S_Nat_exists_squarefree_sq_add.K2Seam3
 end
 open scoped _root_.P2MW.S_Nat_exists_squarefree_sq_add.K2Seam3 _root_.P2MW.S_Nat_exists_squarefree_sq_add.K2Seam3.SqfreeSieve
 
+/--
+@isnad1 id=ex.1h1v.s5.5fbfc844d28e from=translated src=- shape=b20f0f5d vocab=97b8a9eb
+-/
 theorem solution (D : ℕ) (hD : 1 ≤ D) :
     ∃ c : ℕ, 1 ≤ c ∧ Squarefree (c ^ 2 + D) :=
   K2Seam3.SqfreeSieve.kw_existsSqfreeSqAdd_proved D hD

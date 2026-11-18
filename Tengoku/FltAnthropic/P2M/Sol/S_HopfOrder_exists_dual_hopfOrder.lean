@@ -21,9 +21,18 @@ variable {A : Type*} [CommRing A] [HopfAlgebra K A] [Algebra R A] [IsScalarTower
 variable [Module.Finite K A] [Coalgebra.IsCocomm K A]
 variable [Algebra R (CartierDual K A)] [IsScalarTower R K (CartierDual K A)]
 
+/--
+@isnad1 id=eq.0h5v.s9.22837abf8735 from=translated src=- shape=03625dd4 vocab=27dde2ac
+-/
 theorem add_apply' (φ ψ : CartierDual K A) (a : A) : (φ + ψ) a = φ a + ψ a := rfl
+/--
+@isnad1 id=eq.0h3v.s9.0d98a6ecd3f0 from=translated src=- shape=c286e80d vocab=74453711
+-/
 theorem zero_apply' (a : A) : (0 : CartierDual K A) a = 0 := rfl
 
+/--
+@isnad1 id=mem.2h7v.s14.30d88ad4996c from=translated src=- shape=540b4a23 vocab=f0084419
+-/
 theorem dualDistrib_tensorSqHom_mem (S : Subalgebra R A) (φ ψ : CartierDual K A)
     (hφ : ∀ b ∈ S, φ b ∈ (algebraMap R K).range) (hψ : ∀ b ∈ S, ψ b ∈ (algebraMap R K).range)
     (z : ↥S ⊗[R] ↥S) :
@@ -68,6 +77,9 @@ def dualOrder (S : Subalgebra R A)
     rw [IsScalarTower.algebraMap_apply R K (CartierDual K A), CartierDual.algebraMap_apply]
     exact mul_mem (hcounit b hb) ⟨r, rfl⟩
 
+/--
+@isnad1 id=iff.2h5v.s13.64c12ce8f878 from=translated src=- shape=44d0efa2 vocab=fe2183eb
+-/
 theorem mem_dualOrder_iff (S : Subalgebra R A)
     (hcomul : ∀ x ∈ S, Coalgebra.comul (R := K) x ∈
       (Algebra.TensorProduct.productMap
@@ -89,6 +101,9 @@ noncomputable def basisA (S : Subalgebra R A) [Module.Finite R ↥S]
   haveI := HopfOrder.moduleFlat_of_finite (K := K) S
   (Algebra.TensorProduct.basis K b).map (HopfOrder.baseChangeEquiv S hspan).toLinearEquiv
 
+/--
+@isnad1 id=eq.1h7v.s10.050452906545 from=translated src=- shape=3401a8f1 vocab=f15d8e9b
+-/
 theorem basisA_apply (S : Subalgebra R A) [Module.Finite R ↥S]
     (hspan : Submodule.span K (S : Set A) = ⊤) {ι : Type*} (b : Module.Basis ι R ↥S) (i : ι) :
     basisA S hspan b i = (b i : A) := by
@@ -97,6 +112,9 @@ theorem basisA_apply (S : Subalgebra R A) [Module.Finite R ↥S]
   show HopfOrder.baseChangeEquiv S hspan ((1 : K) ⊗ₜ[R] b i) = _
   rw [HopfOrder.baseChangeEquiv_tmul, one_smul]
 
+/--
+@isnad1 id=eq.1h8v.s11.33679d7aec2e from=translated src=- shape=9044686b vocab=5e030444
+-/
 theorem basisA_repr_coe (S : Subalgebra R A) [Module.Finite R ↥S]
     (hspan : Submodule.span K (S : Set A) = ⊤) {ι : Type*} [Finite ι] (b : Module.Basis ι R ↥S) (s : ↥S) (i : ι) :
     (basisA S hspan b).repr (s : A) i = algebraMap R K (b.repr s i) := by
@@ -125,11 +143,17 @@ noncomputable def basisD (S : Subalgebra R A) [Module.Finite R ↥S]
     Module.Basis ι K (CartierDual K A) :=
   ((basisA S hspan b).dualBasis).map (CartierDual.ofDual K A)
 
+/--
+@isnad1 id=eq.1h8v.s11.27ed2428be25 from=translated src=- shape=bfdf68be vocab=bed25492
+-/
 theorem basisD_apply_apply (S : Subalgebra R A) [Module.Finite R ↥S]
     (hspan : Submodule.span K (S : Set A) = ⊤) {ι : Type*} [Finite ι] [DecidableEq ι] (b : Module.Basis ι R ↥S) (i : ι) (a : A) :
     basisD S hspan b i a = (basisA S hspan b).repr a i := by
   rw [basisD, Module.Basis.map_apply, CartierDual.ofDual_apply, Module.Basis.dualBasis_apply]
 
+/--
+@isnad1 id=eq.1h8v.s11.83c96dc9b9b3 from=translated src=- shape=b7205b63 vocab=c8f78f16
+-/
 theorem basisD_repr (S : Subalgebra R A) [Module.Finite R ↥S]
     (hspan : Submodule.span K (S : Set A) = ⊤) {ι : Type*} [Finite ι] [DecidableEq ι] (b : Module.Basis ι R ↥S)
     (φ : CartierDual K A) (i : ι) :
@@ -137,6 +161,9 @@ theorem basisD_repr (S : Subalgebra R A) [Module.Finite R ↥S]
   rw [basisD, Module.Basis.map_repr, LinearEquiv.trans_apply, Module.Basis.dualBasis_repr, basisA_apply]
   rfl
 
+/--
+@isnad1 id=mem.2h8v.s11.476464e41888 from=translated src=- shape=2bb4f2e7 vocab=a8da10db
+-/
 theorem basisD_mem (S : Subalgebra R A) [Module.Finite R ↥S]
     (hspan : Submodule.span K (S : Set A) = ⊤) {ι : Type*} [Finite ι] [DecidableEq ι] (b : Module.Basis ι R ↥S) (i : ι) :
     ∀ s ∈ S, basisD S hspan b i s ∈ (algebraMap R K).range := by
@@ -145,6 +172,9 @@ theorem basisD_mem (S : Subalgebra R A) [Module.Finite R ↥S]
   have := basisA_repr_coe S hspan b ⟨s, hs⟩ i
   exact ⟨_, this.symm⟩
 
+/--
+@isnad1 id=mem.2h7v.s11.3e920f69bd2f from=translated src=- shape=582271c9 vocab=2f6bc814
+-/
 theorem mem_span_basisD (S : Subalgebra R A) [Module.Finite R ↥S]
     (hspan : Submodule.span K (S : Set A) = ⊤) {ι : Type*} [Fintype ι] [DecidableEq ι] (b : Module.Basis ι R ↥S)
     (φ : CartierDual K A) (hφ : ∀ s ∈ S, φ s ∈ (algebraMap R K).range) :
@@ -174,6 +204,9 @@ variable (S : Subalgebra R A) (hfin : Module.Finite R ↥S) (hspan : Submodule.s
     (hanti : ∀ x ∈ S, HopfAlgebra.antipode K (A := A) x ∈ S)
     (hcounit : ∀ x ∈ S, Coalgebra.counit (R := K) (A := A) x ∈ (algebraMap R K).range)
 
+/--
+@isnad1 id=eq.3h6v.s13.5ae44c925a48 from=translated src=- shape=6ce61476 vocab=a289a86d
+-/
 theorem toSubmodule_dualOrder_eq [Module.Finite R ↥S] {ι : Type*} [Fintype ι] [DecidableEq ι] (b : Module.Basis ι R ↥S) :
     Subalgebra.toSubmodule (dualOrder S hcomul hcounit) = Submodule.span R (Set.range (basisD S hspan b)) := by
   apply le_antisymm
@@ -184,6 +217,9 @@ theorem toSubmodule_dualOrder_eq [Module.Finite R ↥S] {ι : Type*} [Fintype ι
     exact basisD_mem S hspan _ i
 
 include hfin hspan in
+/--
+@isnad1 id=finite.4h4v.s13.7624856994e4 from=translated src=- shape=8e1c2b1d vocab=8124b127
+-/
 theorem finite_dualOrder : Module.Finite R ↥(dualOrder S hcomul hcounit) := by
   classical
   haveI := hfin
@@ -194,6 +230,9 @@ theorem finite_dualOrder : Module.Finite R ↥(dualOrder S hcomul hcounit) := by
   exact Module.Finite.iff_fg.mpr hfg
 
 include hfin hspan in
+/--
+@isnad1 id=eq.4h4v.s13.f7319418371a from=translated src=- shape=dc9c0eac vocab=8124b127
+-/
 theorem span_dualOrder : Submodule.span K ((dualOrder S hcomul hcounit : Subalgebra R (CartierDual K A)) :
     Set (CartierDual K A)) = ⊤ := by
   classical
@@ -203,6 +242,9 @@ theorem span_dualOrder : Submodule.span K ((dualOrder S hcomul hcounit : Subalge
   exact (basisD S hspan (Module.Free.chooseBasis R ↥S)).span_eq.ge.trans
     (Submodule.span_mono (by rintro _ ⟨i, rfl⟩; exact basisD_mem S hspan _ i))
 
+/--
+@isnad1 id=mem.3h5v.s13.311bb103f521 from=translated src=- shape=b9b849da vocab=72e13557
+-/
 theorem counit_dualOrder : ∀ φ ∈ dualOrder S hcomul hcounit,
     Coalgebra.counit (R := K) (A := CartierDual K A) φ ∈ (algebraMap R K).range := by
   intro φ hφ
@@ -210,12 +252,18 @@ theorem counit_dualOrder : ∀ φ ∈ dualOrder S hcomul hcounit,
   exact hφ 1 S.one_mem
 
 include hanti in
+/--
+@isnad1 id=mem.4h5v.s13.e4ee2904ff1c from=translated src=- shape=a0e3279c vocab=5e49d1d1
+-/
 theorem antipode_dualOrder : ∀ φ ∈ dualOrder S hcomul hcounit,
     HopfAlgebra.antipode K (A := CartierDual K A) φ ∈ dualOrder S hcomul hcounit := by
   intro φ hφ b hb
   rw [CartierDual.antipode_apply]
   exact hφ _ (hanti b hb)
 
+/--
+@isnad1 id=eq.1h9v.s14.eff696498dce from=translated src=- shape=4851a5cb vocab=6cd2460a
+-/
 theorem tensor_repr_eq_pairing {ι : Type*} [Fintype ι] [DecidableEq ι] [Module.Finite R ↥S] (b : Module.Basis ι R ↥S)
     (w : CartierDual K A ⊗[K] CartierDual K A) (i j : ι) :
     ((basisD S hspan b).tensorProduct (basisD S hspan b)).repr w (i, j) =
@@ -231,6 +279,9 @@ theorem tensor_repr_eq_pairing {ι : Type*} [Fintype ι] [DecidableEq ι] [Modul
       exact mul_comm _ _
 
 include hfin hspan in
+/--
+@isnad1 id=mem.5h5v.s15.9b2e5af3f5d0 from=translated src=- shape=7feed181 vocab=8124b127
+-/
 theorem comul_dualOrder : ∀ φ ∈ dualOrder S hcomul hcounit, Coalgebra.comul (R := K) φ ∈
     (Algebra.TensorProduct.productMap
       (((Algebra.TensorProduct.includeLeft : CartierDual K A →ₐ[K] CartierDual K A ⊗[K] CartierDual K A).restrictScalars R).comp
@@ -280,6 +331,9 @@ variable {A : Type*} [CommRing A] [HopfAlgebra K A] [Algebra R A] [IsScalarTower
 variable [Module.Finite K A] [Coalgebra.IsCocomm K A]
 variable [Algebra R (CartierDual K A)] [IsScalarTower R K (CartierDual K A)]
 
+/--
+@isnad1 id=ex.5h4v.s15.3fdbbacd11e9 from=translated src=- shape=11be0b23 vocab=f539cb74
+-/
 theorem childI (S : Subalgebra R A)
     (hfin : Module.Finite R ↥S) (hspan : Submodule.span K (S : Set A) = ⊤)
     (hcomul : ∀ x ∈ S, Coalgebra.comul (R := K) x ∈
@@ -305,6 +359,9 @@ end Packaging
 
 end S17Dual
 
+/--
+@isnad1 id=ex.5h4v.s15.3fdbbacd11e9 from=translated src=- shape=11be0b23 vocab=f539cb74
+-/
 theorem solution
     {R : Type*} [CommRing R] [IsDomain R] [IsPrincipalIdealRing R]
     {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]

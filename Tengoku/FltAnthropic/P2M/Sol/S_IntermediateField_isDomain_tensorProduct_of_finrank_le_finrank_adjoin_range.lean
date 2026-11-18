@@ -22,6 +22,9 @@ variable {𝔽 : Type u} [Field 𝔽] {k : Type u} [Field k] [Algebra 𝔽 k]
   {Ω : Type u} [Field Ω] [Algebra k Ω] [Algebra 𝔽 Ω] [IsScalarTower 𝔽 k Ω]
   (ρ : κ →ₐ[𝔽] Ω)
 
+/--
+@isnad1 id=mem.0h6v.s9.27004e58f68d from=translated src=- shape=c163633b vocab=0de602f0
+-/
 theorem rho_mem_adjoin (c : ↥(IntermediateField.adjoin 𝔽 ({algebraMap 𝔽[X] κ Polynomial.X} : Set κ))) :
     ρ (c : κ) ∈ IntermediateField.adjoin k ({ρ (algebraMap 𝔽[X] κ Polynomial.X)} : Set Ω) := by
   have h1 : ρ (c : κ) ∈ (IntermediateField.adjoin 𝔽 ({algebraMap 𝔽[X] κ Polynomial.X} : Set κ)).map ρ := ⟨c, c.2, rfl⟩
@@ -30,6 +33,9 @@ theorem rho_mem_adjoin (c : ↥(IntermediateField.adjoin 𝔽 ({algebraMap 𝔽[
     ({ρ (algebraMap 𝔽[X] κ Polynomial.X)} : Set Ω)).restrictScalars 𝔽)).mpr
       (by simpa using IntermediateField.mem_adjoin_simple_self k (ρ (algebraMap 𝔽[X] κ Polynomial.X))) h1
 
+/--
+@isnad1 id=linearin.1h3v.s6.2b8d4df30425 from=translated src=- shape=ac4cdec8 vocab=e8e04318
+-/
 theorem linearIndependent_pow_of_transcendental {t : Ω} (htr : Transcendental k t) :
     LinearIndependent k (fun n : ℕ => t ^ n) := by
   rw [linearIndependent_iff]
@@ -45,6 +51,9 @@ theorem linearIndependent_pow_of_transcendental {t : Ω} (htr : Transcendental k
   have := hinj (a₁ := Polynomial.ofFinsupp (.ofCoeff l)) (a₂ := 0) (by rw [h0, map_zero])
   exact AddMonoidAlgebra.ofCoeff_eq_zero.mp (Polynomial.ofFinsupp_eq_zero.mp this)
 
+/--
+@isnad1 id=linearin.2h6v.s8.7c313b07ab61 from=translated src=- shape=3f2c3b9b vocab=6b4e11d5
+-/
 theorem linearIndependent_adjoin_of_transcendental {t : Ω} (htr : Transcendental k t)
     {ιa : Type*} {a : ιa → k} (ha : LinearIndependent 𝔽 a) :
     LinearIndependent ↥(Algebra.adjoin 𝔽 ({t} : Set Ω)) (fun i => algebraMap k Ω (a i)) := by
@@ -86,6 +95,9 @@ theorem linearIndependent_adjoin_of_transcendental {t : Ω} (htr : Transcendenta
   apply Subtype.ext
   simp only [← hP i, hPi, map_zero, ZeroMemClass.coe_zero]
 
+/--
+@isnad1 id=linearin.1h7v.s12.37784ba6f024 from=translated src=- shape=f4129f12 vocab=e013f80b
+-/
 theorem linearIndependent_rho_of_transcendental
     (htr : Transcendental k (ρ (algebraMap 𝔽[X] κ Polynomial.X)))
     {ιe : Type*} (e : Module.Basis ιe 𝔽 ↥(IntermediateField.adjoin 𝔽 ({algebraMap 𝔽[X] κ Polynomial.X} : Set κ))) :
@@ -128,6 +140,9 @@ theorem linearIndependent_rho_of_transcendental
       (fun _ _ => by simp_rw [Algebra.smul_def]; rfl)
   exact hk
 
+/--
+@isnad1 id=linearin.3h7v.s14.c52035e3e92e from=translated src=- shape=baf28730 vocab=d829b9b8
+-/
 theorem linearIndependent_rho_basis
     (hfin : FiniteDimensional ↥(IntermediateField.adjoin 𝔽 ({algebraMap 𝔽[X] κ Polynomial.X} : Set κ)) κ)
     (htr : Transcendental k (ρ (algebraMap 𝔽[X] κ Polynomial.X)))
@@ -223,6 +238,9 @@ theorem linearIndependent_rho_basis
   have hind : LinearIndependent ↥Kt yM := linearIndependent_of_top_le_span_of_card_eq_finrank hspan hcard
   exact hind.map' (IntermediateField.extendScalars hKtE).val.toLinearMap (LinearMap.ker_eq_bot.mpr hval)
 
+/--
+@isnad1 id=linearin.3h9v.s14.74d0f9377758 from=translated src=- shape=e1d5a6d3 vocab=1d8e18a9
+-/
 theorem linearIndependent_smulTower
     (hfin : FiniteDimensional ↥(IntermediateField.adjoin 𝔽 ({algebraMap 𝔽[X] κ Polynomial.X} : Set κ)) κ)
     (htr : Transcendental k (ρ (algebraMap 𝔽[X] κ Polynomial.X)))
@@ -251,6 +269,9 @@ end DBTensor
 
 open DBTensor in
 
+/--
+@isnad1 id=isdomain.3h5v.s13.c27ba0bc4985 from=translated src=- shape=3ceda866 vocab=d8c703d1
+-/
 theorem solution
     (𝔽 : Type u) [Field 𝔽] (k : Type u) [Field k] [Algebra 𝔽 k]
     (κ : Type u) [Field κ] [Algebra 𝔽 κ] [Algebra 𝔽[X] κ] [IsScalarTower 𝔽 𝔽[X] κ]

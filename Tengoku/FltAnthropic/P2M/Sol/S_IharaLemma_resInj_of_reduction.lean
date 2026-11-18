@@ -8,6 +8,9 @@ namespace P2MW.S_IharaLemma_resInj_of_reduction
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.5h12v.s10.915fb06b151e from=translated src=- shape=dd9df179 vocab=825d759f
+-/
 theorem solution {R : Type*} [CommRing R] {V L Vk Lk : Type*}
     [AddCommGroup V] [Module R V] [AddCommGroup L] [Module R L]
     [AddCommGroup Vk] [Module R Vk] [AddCommGroup Lk] [Module R Lk]

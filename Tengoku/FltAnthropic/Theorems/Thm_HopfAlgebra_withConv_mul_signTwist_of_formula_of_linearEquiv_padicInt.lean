@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_HopfAlgebra_withConv_mul_signTwist_of_form
 
 open scoped NNReal
 open scoped TensorProduct in
+/--
+@isnad1 id=eq.5h11v.s14.a899aa17b212 from=translated src=- shape=b777be5b vocab=95530e9b
+-/
 theorem HopfAlgebra.withConv_mul_signTwist_of_formula_of_linearEquiv_padicInt
     (p : ℕ) [Fact p.Prime] (hp2 : p ≠ 2)
     (s : AlgebraicClosure ℚ_[p]) (hs0 : s ≠ 0)

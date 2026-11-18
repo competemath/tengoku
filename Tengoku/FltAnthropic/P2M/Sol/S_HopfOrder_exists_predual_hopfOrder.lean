@@ -21,9 +21,18 @@ variable {A : Type*} [CommRing A] [HopfAlgebra K A] [Algebra R A] [IsScalarTower
 variable [Module.Finite K A] [Coalgebra.IsCocomm K A]
 variable [Algebra R (CartierDual K A)] [IsScalarTower R K (CartierDual K A)]
 
+/--
+@isnad1 id=eq.0h5v.s9.22837abf8735 from=translated src=- shape=03625dd4 vocab=27dde2ac
+-/
 theorem add_apply' (φ ψ : CartierDual K A) (a : A) : (φ + ψ) a = φ a + ψ a := rfl
+/--
+@isnad1 id=eq.0h3v.s9.0d98a6ecd3f0 from=translated src=- shape=c286e80d vocab=74453711
+-/
 theorem zero_apply' (a : A) : (0 : CartierDual K A) a = 0 := rfl
 
+/--
+@isnad1 id=mem.2h7v.s14.30d88ad4996c from=translated src=- shape=540b4a23 vocab=f0084419
+-/
 theorem dualDistrib_tensorSqHom_mem (S : Subalgebra R A) (φ ψ : CartierDual K A)
     (hφ : ∀ b ∈ S, φ b ∈ (algebraMap R K).range) (hψ : ∀ b ∈ S, ψ b ∈ (algebraMap R K).range)
     (z : ↥S ⊗[R] ↥S) :
@@ -81,6 +90,9 @@ noncomputable def basisA (S : Subalgebra R A) [Module.Finite R ↥S]
   haveI := HopfOrder.moduleFlat_of_finite (K := K) S
   (Algebra.TensorProduct.basis K b).map (HopfOrder.baseChangeEquiv S hspan).toLinearEquiv
 
+/--
+@isnad1 id=eq.1h7v.s10.0f6ae8b2eb54 from=translated src=- shape=3401a8f1 vocab=6acd4369
+-/
 theorem basisA_apply (S : Subalgebra R A) [Module.Finite R ↥S]
     (hspan : Submodule.span K (S : Set A) = ⊤) {ι : Type*} (b : Module.Basis ι R ↥S) (i : ι) :
     basisA S hspan b i = (b i : A) := by
@@ -89,6 +101,9 @@ theorem basisA_apply (S : Subalgebra R A) [Module.Finite R ↥S]
   show HopfOrder.baseChangeEquiv S hspan ((1 : K) ⊗ₜ[R] b i) = _
   rw [HopfOrder.baseChangeEquiv_tmul, one_smul]
 
+/--
+@isnad1 id=eq.1h8v.s11.01c8903065f0 from=translated src=- shape=9044686b vocab=8dc93974
+-/
 theorem basisA_repr_coe (S : Subalgebra R A) [Module.Finite R ↥S]
     (hspan : Submodule.span K (S : Set A) = ⊤) {ι : Type*} [Finite ι] (b : Module.Basis ι R ↥S) (s : ↥S) (i : ι) :
     (basisA S hspan b).repr (s : A) i = algebraMap R K (b.repr s i) := by
@@ -148,6 +163,9 @@ variable {A : Type*} [CommRing A] [HopfAlgebra K A] [Algebra R A] [IsScalarTower
 variable [Module.Finite K A] [Coalgebra.IsCocomm K A]
 variable [Algebra R (CartierDual K A)] [IsScalarTower R K (CartierDual K A)]
 
+/--
+@isnad1 id=mem.2h7v.s15.9d4215fc5e6e from=translated src=- shape=1fc66224 vocab=63940e7a
+-/
 theorem dualDistrib_map_tensorSqHom_mem (T : Subalgebra R (CartierDual K A)) (a c : A)
     (ha : ∀ φ ∈ T, φ a ∈ (algebraMap R K).range) (hc : ∀ φ ∈ T, φ c ∈ (algebraMap R K).range)
     (z : ↥T ⊗[R] ↥T) :
@@ -193,6 +211,9 @@ def predualOrder (T : Subalgebra R (CartierDual K A))
       ← CartierDual.counit_apply]
     exact mul_mem ⟨r, rfl⟩ (hcounit φ hφ)
 
+/--
+@isnad1 id=iff.2h5v.s15.71d7fe9063db from=translated src=- shape=46d6d372 vocab=4cc7f167
+-/
 theorem mem_predualOrder_iff (T : Subalgebra R (CartierDual K A))
     (hcomul : ∀ x ∈ T, Coalgebra.comul (R := K) x ∈
       (Algebra.TensorProduct.productMap
@@ -216,6 +237,9 @@ noncomputable def basisP (T : Subalgebra R (CartierDual K A)) [Module.Finite R �
     (β : Module.Basis ι R ↥T) : Module.Basis ι K A :=
   (((basisA T hspan β).map (CartierDual.toDual K A)).dualBasis).map (Module.evalEquiv K A).symm
 
+/--
+@isnad1 id=eq.1h8v.s13.1783a8a2bbc9 from=translated src=- shape=5dcaa187 vocab=30d268f5
+-/
 theorem apply_basisP (T : Subalgebra R (CartierDual K A)) [Module.Finite R ↥T]
     (hspan : Submodule.span K (T : Set (CartierDual K A)) = ⊤) {ι : Type*} [Finite ι] [DecidableEq ι]
     (β : Module.Basis ι R ↥T) (φ : CartierDual K A) (i : ι) :
@@ -227,6 +251,9 @@ theorem apply_basisP (T : Subalgebra R (CartierDual K A)) [Module.Finite R ↥T]
   rw [h, Module.Basis.dualBasis_apply, Module.Basis.map_repr, LinearEquiv.trans_apply,
     LinearEquiv.symm_apply_apply]
 
+/--
+@isnad1 id=eq.1h8v.s13.5de9f6d566b8 from=translated src=- shape=5e14347f vocab=a471a99b
+-/
 theorem basisP_repr (T : Subalgebra R (CartierDual K A)) [Module.Finite R ↥T]
     (hspan : Submodule.span K (T : Set (CartierDual K A)) = ⊤) {ι : Type*} [Fintype ι] [DecidableEq ι]
     (β : Module.Basis ι R ↥T) (a : A) (i : ι) :
@@ -246,6 +273,9 @@ theorem basisP_repr (T : Subalgebra R (CartierDual K A)) [Module.Finite R ↥T]
     · simp [h, Ne.symm h]
   simp only [hδ, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
 
+/--
+@isnad1 id=mem.2h8v.s12.d60c0311b55f from=translated src=- shape=51ad03f1 vocab=abad2aa9
+-/
 theorem basisP_mem (T : Subalgebra R (CartierDual K A)) [Module.Finite R ↥T]
     (hspan : Submodule.span K (T : Set (CartierDual K A)) = ⊤) {ι : Type*} [Finite ι] [DecidableEq ι]
     (β : Module.Basis ι R ↥T) (i : ι) :
@@ -254,6 +284,9 @@ theorem basisP_mem (T : Subalgebra R (CartierDual K A)) [Module.Finite R ↥T]
   rw [apply_basisP, basisA_repr_coe T hspan β ⟨φ, hφ⟩ i]
   exact ⟨_, rfl⟩
 
+/--
+@isnad1 id=mem.2h7v.s12.acb96aed9542 from=translated src=- shape=bb63921a vocab=9dc7778e
+-/
 theorem mem_span_basisP (T : Subalgebra R (CartierDual K A)) [Module.Finite R ↥T]
     (hspan : Submodule.span K (T : Set (CartierDual K A)) = ⊤) {ι : Type*} [Fintype ι] [DecidableEq ι]
     (β : Module.Basis ι R ↥T) (a : A) (ha : ∀ φ ∈ T, φ a ∈ (algebraMap R K).range) :
@@ -284,6 +317,9 @@ variable (T : Subalgebra R (CartierDual K A)) (hfin : Module.Finite R ↥T)
     (hanti : ∀ x ∈ T, HopfAlgebra.antipode K (A := CartierDual K A) x ∈ T)
     (hcounit : ∀ x ∈ T, Coalgebra.counit (R := K) (A := CartierDual K A) x ∈ (algebraMap R K).range)
 
+/--
+@isnad1 id=eq.3h6v.s15.11f85b6cf86f from=translated src=- shape=8b9f9dd5 vocab=388fc6cd
+-/
 theorem toSubmodule_predualOrder_eq [Module.Finite R ↥T] {ι : Type*} [Fintype ι] [DecidableEq ι]
     (β : Module.Basis ι R ↥T) :
     Subalgebra.toSubmodule (predualOrder T hcomul hcounit) = Submodule.span R (Set.range (basisP T hspan β)) := by
@@ -295,6 +331,9 @@ theorem toSubmodule_predualOrder_eq [Module.Finite R ↥T] {ι : Type*} [Fintype
     exact basisP_mem T hspan β i
 
 include hfin hspan in
+/--
+@isnad1 id=finite.4h4v.s15.a78e1ad6d69f from=translated src=- shape=83bef5b2 vocab=0f3f0309
+-/
 theorem finite_predualOrder : Module.Finite R ↥(predualOrder T hcomul hcounit) := by
   classical
   haveI := hfin
@@ -305,6 +344,9 @@ theorem finite_predualOrder : Module.Finite R ↥(predualOrder T hcomul hcounit)
   exact Module.Finite.iff_fg.mpr hfg
 
 include hfin hspan in
+/--
+@isnad1 id=eq.4h4v.s15.65b856be19bc from=translated src=- shape=5892394a vocab=0f3f0309
+-/
 theorem span_predualOrder : Submodule.span K ((predualOrder T hcomul hcounit : Subalgebra R A) : Set A) = ⊤ := by
   classical
   haveI := hfin
@@ -313,6 +355,9 @@ theorem span_predualOrder : Submodule.span K ((predualOrder T hcomul hcounit : S
   exact (basisP T hspan (Module.Free.chooseBasis R ↥T)).span_eq.ge.trans
     (Submodule.span_mono (by rintro _ ⟨i, rfl⟩; exact basisP_mem T hspan _ i))
 
+/--
+@isnad1 id=mem.3h5v.s15.982c6e7d8c5d from=translated src=- shape=0bc3b43d vocab=81cc72eb
+-/
 theorem counit_predualOrder : ∀ a ∈ predualOrder T hcomul hcounit,
     Coalgebra.counit (R := K) (A := A) a ∈ (algebraMap R K).range := by
   intro a ha
@@ -320,12 +365,18 @@ theorem counit_predualOrder : ∀ a ∈ predualOrder T hcomul hcounit,
   exact ha 1 T.one_mem
 
 include hanti in
+/--
+@isnad1 id=mem.4h5v.s15.97d3dae65bbf from=translated src=- shape=9729b8a7 vocab=76fea3b7
+-/
 theorem antipode_predualOrder : ∀ a ∈ predualOrder T hcomul hcounit,
     HopfAlgebra.antipode K (A := A) a ∈ predualOrder T hcomul hcounit := by
   intro a ha φ hφ
   rw [← CartierDual.antipode_apply]
   exact ha _ (hanti φ hφ)
 
+/--
+@isnad1 id=eq.1h9v.s14.9cd09a1062f7 from=translated src=- shape=271d2268 vocab=29916bd1
+-/
 theorem tensorP_repr_eq_pairing {ι : Type*} [Fintype ι] [DecidableEq ι] [Module.Finite R ↥T] (β : Module.Basis ι R ↥T)
     (w : A ⊗[K] A) (i j : ι) :
     ((basisP T hspan β).tensorProduct (basisP T hspan β)).repr w (i, j) =
@@ -340,6 +391,9 @@ theorem tensorP_repr_eq_pairing {ι : Type*} [Fintype ι] [DecidableEq ι] [Modu
       exact mul_comm _ _
 
 include hfin hspan in
+/--
+@isnad1 id=mem.5h5v.s15.c7fe6cab1e29 from=translated src=- shape=e1cbe51b vocab=0f3f0309
+-/
 theorem comul_predualOrder : ∀ a ∈ predualOrder T hcomul hcounit, Coalgebra.comul (R := K) a ∈
     (Algebra.TensorProduct.productMap
           (((Algebra.TensorProduct.includeLeft : A →ₐ[K] A ⊗[K] A).restrictScalars R).comp (predualOrder T hcomul hcounit).val)
@@ -385,6 +439,9 @@ variable {A : Type*} [CommRing A] [HopfAlgebra K A] [Algebra R A] [IsScalarTower
 variable [Module.Finite K A] [Coalgebra.IsCocomm K A]
 variable [Algebra R (CartierDual K A)] [IsScalarTower R K (CartierDual K A)]
 
+/--
+@isnad1 id=ex.5h4v.s15.5e28a4ad0b8d from=translated src=- shape=669df74a vocab=f539cb74
+-/
 theorem childII (T : Subalgebra R (CartierDual K A))
     (hfin : Module.Finite R ↥T) (hspan : Submodule.span K (T : Set (CartierDual K A)) = ⊤)
     (hcomul : ∀ x ∈ T, Coalgebra.comul (R := K) x ∈
@@ -410,6 +467,9 @@ end Packaging
 
 end S17Dual
 
+/--
+@isnad1 id=ex.5h4v.s15.5e28a4ad0b8d from=translated src=- shape=669df74a vocab=f539cb74
+-/
 theorem solution
     {R : Type*} [CommRing R] [IsDomain R] [IsPrincipalIdealRing R]
     {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]

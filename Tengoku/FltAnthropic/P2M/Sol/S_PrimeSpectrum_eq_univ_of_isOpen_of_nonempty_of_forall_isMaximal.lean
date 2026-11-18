@@ -11,6 +11,9 @@ open scoped TensorProduct
 
 universe u v w
 
+/--
+@isnad1 id=eq.3h2v.s7.ac36604f004d from=translated src=- shape=0f9b4489 vocab=eb24ddd8
+-/
 theorem solution
     {A : Type u} [CommRing A] [IsJacobsonRing A]
     (U : Set (PrimeSpectrum A)) (hU : IsOpen U) (hne : U.Nonempty)

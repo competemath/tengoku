@@ -7,6 +7,9 @@ namespace P2MW.S_Ideal_exists_finset_span_eq_top_of_forall_prime_exists_not_mem
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.1h2v.s7.19e3c044427d from=translated src=- shape=2a2d1df2 vocab=c6e8234f
+-/
 theorem solution
     {S : Type} [CommRing S] (P : S → Prop)
     (h : ∀ 𝔭 : PrimeSpectrum S, ∃ g : S, g ∉ 𝔭.asIdeal ∧ P g) :

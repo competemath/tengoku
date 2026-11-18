@@ -7,6 +7,9 @@ namespace P2MW.S_IsAddCyclic_ncard_setOf_nsmul_eq_zero_and_ne_zero_of_prime_dvd_
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.4h3v.s6.1a4a703c1131 from=translated src=- shape=50097718 vocab=99ecb1ca
+-/
 theorem solution
     (D : Type) [AddCommGroup D] [IsAddCyclic D] (m : ℕ) (hm : Nat.card D = m) (hm0 : m ≠ 0)
     (ℓ : ℕ) (hℓ : ℓ.Prime) (hℓm : ℓ ∣ m) :

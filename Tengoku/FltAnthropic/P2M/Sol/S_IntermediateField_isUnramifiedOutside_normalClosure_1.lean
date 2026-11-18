@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open IntermediateField in
 
+/--
+@isnad1 id=and.1h2v.s12.e7598440a6e1 from=translated src=- shape=5d59c262 vocab=f9651fad
+-/
 theorem solution
     (S : Finset Nat.Primes) (F : IntermediateField ℚ (AlgebraicClosure ℚ))
     (hF : F.IsUnramifiedOutside S) :

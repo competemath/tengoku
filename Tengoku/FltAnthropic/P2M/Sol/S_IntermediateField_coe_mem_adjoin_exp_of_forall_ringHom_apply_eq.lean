@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open IntermediateField
 
+/--
+@isnad1 id=mem.2h3v.s11.0bcf0bcd2707 from=translated src=- shape=e2822b9b vocab=ea4e1963
+-/
 theorem solution
     (N p : ℕ) [NeZero N] (hp : p ∣ N)
     (z : ↥(IntermediateField.adjoin ℚ ({Complex.exp (2 * (Real.pi : ℂ) * Complex.I / (N : ℂ))} : Set ℂ)))

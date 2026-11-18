@@ -10,6 +10,9 @@ namespace P2MW.S_IharaLemma_exists_isCompl_orthogonal_of_isIdempotentElem_of_sel
 set_option autoImplicit false
 
 open IharaLemma in
+/--
+@isnad1 id=ex.2h6v.s13.154e70aefc77 from=translated src=- shape=9278429d vocab=a25917ac
+-/
 theorem solution
     {𝒪 : Type} [CommRing 𝒪] {B' : Type} [CommRing B'] [Algebra 𝒪 B']
     {V' : Type} [AddCommGroup V'] [Module 𝒪 V'] [Module B' V'] [IsScalarTower 𝒪 B' V']

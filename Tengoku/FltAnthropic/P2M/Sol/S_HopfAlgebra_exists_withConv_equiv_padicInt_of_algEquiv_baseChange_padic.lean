@@ -10,6 +10,9 @@ namespace P2MW.S_HopfAlgebra_exists_withConv_equiv_padicInt_of_algEquiv_baseChan
 set_option maxHeartbeats 8000000
 open TensorProduct
 
+/--
+@isnad1 id=ex.3h6v.s15.7e96fce4c163 from=translated src=- shape=c947ed20 vocab=02ea6b4c
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime]
     {M : Type} [AddCommGroup M]

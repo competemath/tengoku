@@ -7,6 +7,9 @@ namespace P2MW.S_IsAddCyclic_of_squarefree_natCard
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=isaddcyc.1h1v.s4.8576d34e8e7b from=translated src=- shape=d0464c46 vocab=7e415527
+-/
 theorem solution
     {A : Type*} [AddCommGroup A] (hA : Squarefree (Nat.card A)) : IsAddCyclic A := by
   haveI : Finite A := Nat.finite_of_card_ne_zero hA.ne_zero

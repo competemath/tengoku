@@ -27,11 +27,17 @@ variable (π : A →ₐc[R] B)
 noncomputable def redEps : (T ⊗[R] A) ⊗[T] (T ⊗[R] B) ≃ₐ[T] T ⊗[R] (A ⊗[R] B) :=
   (Algebra.TensorProduct.cancelBaseChange R T T (T ⊗[R] A) B).trans (Algebra.TensorProduct.assoc R R T T A B)
 
+/--
+@isnad1 id=eq.0h8v.s12.b687029d9687 from=translated src=- shape=672b46f0 vocab=ada32ac4
+-/
 theorem redEps_tmul (t₁ t₂ : T) (a : A) (b : B) :
     redEps T ((t₁ ⊗ₜ[R] a) ⊗ₜ[T] (t₂ ⊗ₜ[R] b)) = (t₂ * t₁) ⊗ₜ[R] (a ⊗ₜ[R] b) := by
   rw [redEps, AlgEquiv.trans_apply, Algebra.TensorProduct.cancelBaseChange_tmul, TensorProduct.smul_tmul',
     smul_eq_mul, Algebra.TensorProduct.assoc_tmul]
 
+/--
+@isnad1 id=eq.0h7v.s11.2d1dd7afab02 from=translated src=- shape=26cdaa46 vocab=cef97db9
+-/
 theorem bc_tmul (t : T) (a : A) :
     ((Bialgebra.TensorProduct.map (BialgHom.id T T) π : T ⊗[R] A →ₐc[T] T ⊗[R] B) : T ⊗[R] A →ₐ[T] T ⊗[R] B)
       (t ⊗ₜ[R] a) = t ⊗ₜ[R] π a := by
@@ -39,6 +45,9 @@ theorem bc_tmul (t : T) (a : A) :
   rw [Bialgebra.TensorProduct.map_tmul]
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s15.9947c3320740 from=translated src=- shape=6dc49af2 vocab=23f4bb07
+-/
 theorem redEps_map_tttc (t : T) (c : A ⊗[R] A) :
     redEps T (Algebra.TensorProduct.map (AlgHom.id T (T ⊗[R] A))
         ((Bialgebra.TensorProduct.map (BialgHom.id T T) π : T ⊗[R] A →ₐc[T] T ⊗[R] B) :
@@ -56,15 +65,24 @@ theorem redEps_map_tttc (t : T) (c : A ⊗[R] A) :
   | add x y hx hy =>
       simp only [TensorProduct.tmul_add, map_add, hx, hy]
 
+/--
+@isnad1 id=eq.0h6v.s14.ce2e2c249c42 from=translated src=- shape=fc418034 vocab=13ec071e
+-/
 theorem redEps_coaction_one_tmul (x : A) :
     redEps T (coaction (Bialgebra.TensorProduct.map (BialgHom.id T T) π : T ⊗[R] A →ₐc[T] T ⊗[R] B)
       ((1 : T) ⊗ₜ[R] x)) = (1 : T) ⊗ₜ[R] coaction π x := by
   rw [coaction_apply, TensorProduct.comul_tmul, CommSemiring.comul_apply, redEps_map_tttc, coaction_apply]
 
+/--
+@isnad1 id=eq.0h5v.s12.cc19c368b079 from=translated src=- shape=89c85fa7 vocab=341730e7
+-/
 theorem redEps_one_tmul_tmul_one (x : A) :
     redEps T ((((1 : T) ⊗ₜ[R] x) : T ⊗[R] A) ⊗ₜ[T] (1 : T ⊗[R] B)) = (1 : T) ⊗ₜ[R] (x ⊗ₜ[R] (1 : B)) := by
   rw [Algebra.TensorProduct.one_def, redEps_tmul, mul_one]
 
+/--
+@isnad1 id=iff.1h6v.s12.99123db65ceb from=translated src=- shape=e66d7ac2 vocab=1f6a6086
+-/
 theorem mem_hopfKer_iff_one_tmul_mem_hopfKer_baseChange'
     (hinj : Function.Injective
       (Algebra.TensorProduct.includeRight : A ⊗[R] B →ₐ[R] T ⊗[R] (A ⊗[R] B)))
@@ -84,6 +102,9 @@ end REDcore
 
 end HopfAlgebra
 
+/--
+@isnad1 id=iff.0h6v.s11.7ea901ec8d01 from=translated src=- shape=4cda1dc6 vocab=4b9e3144
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsDomain R] (K : Type u) [Field K] [Algebra R K] [IsFractionRing R K]
     {H : Type v} [CommRing H] [HopfAlgebra R H] [Module.Flat R H]

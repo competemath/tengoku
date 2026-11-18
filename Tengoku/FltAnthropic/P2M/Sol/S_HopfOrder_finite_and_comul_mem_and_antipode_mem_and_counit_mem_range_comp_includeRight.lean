@@ -22,12 +22,18 @@ noncomputable def tensorSqHom (S : Subalgebra R A) : (S ⊗[R] S) →ₐ[R] (A �
     (((Algebra.TensorProduct.includeLeft : A →ₐ[K] A ⊗[K] A).restrictScalars R).comp S.val)
     (((Algebra.TensorProduct.includeRight : A →ₐ[K] A ⊗[K] A).restrictScalars R).comp S.val)
 
+/--
+@isnad1 id=eq.0h6v.s11.344b0b0e5e4e from=translated src=- shape=a3af098c vocab=a8255462
+-/
 @[scoped simp]
 lemma tensorSqHom_tmul (S : Subalgebra R A) (t t' : S) :
     tensorSqHom S (t ⊗ₜ[R] t') = (t : A) ⊗ₜ[K] (t' : A) := by
   simp [tensorSqHom, Algebra.TensorProduct.productMap_apply_tmul,
     Algebra.TensorProduct.tmul_mul_tmul]
 
+/--
+@isnad1 id=mem.2h6v.s11.600a66917b69 from=translated src=- shape=b2a196db vocab=498a3d09
+-/
 lemma tmul_mem_range_tensorSqHom {S : Subalgebra R A} {x y : A} (hx : x ∈ S) (hy : y ∈ S) :
     x ⊗ₜ[K] y ∈ (tensorSqHom S).range :=
   ((tensorSqHom S).mem_range).mpr ⟨(⟨x, hx⟩ : S) ⊗ₜ[R] (⟨y, hy⟩ : S), by rw [tensorSqHom_tmul]⟩
@@ -47,6 +53,9 @@ variable {H' : Type w'} [CommRing H'] [HopfAlgebra R H']
 
 open TensorProduct in
 
+/--
+@isnad1 id=eq.0h5v.s10.94ca500e13e5 from=translated src=- shape=d2f11a98 vocab=c9cbbe96
+-/
 theorem map_antipode (φ : H →ₐc[R] H') (x : H) :
     φ (HopfAlgebra.antipode R x) = HopfAlgebra.antipode R (φ x) := by
   classical
@@ -108,6 +117,9 @@ open scoped _root_.P2MW.S_HopfOrder_finite_and_comul_mem_and_antipode_mem_and_co
 open HopfOrder.Aux HopfOrder.AntipodeCompat in
 open scoped TensorProduct in
 
+/--
+@isnad1 id=other.0h5v.s13.ec276a16ad26 from=translated src=- shape=ffa7829f vocab=19ce56f2
+-/
 theorem solution
     {R : Type u} [CommRing R] {F : Type v} [Field F] [Algebra R F]
     {H : Type w} [CommRing H] [HopfAlgebra R H] [Module.Finite R H]

@@ -10,6 +10,9 @@ set_option maxHeartbeats 1600000
 open IntermediateField
 open Polynomial
 
+/--
+@isnad1 id=ex.4h5v.s12.d186e7e92b80 from=translated src=- shape=50602e7b vocab=c13f9098
+-/
 theorem solution {F E : Type} [Field F] [Field E] [Algebra F E] (m : ℕ) (hm : 0 < m) (ζ₀ : E) (hζ₀ : IsPrimitiveRoot ζ₀ m)
     (a : ℕ) (ha : a.Coprime m) (hroot : Polynomial.aeval (ζ₀ ^ a) (minpoly F ζ₀) = 0) :
     ∃ φ : (IntermediateField.adjoin F {ζ : E | ζ ^ m = 1}) ≃ₐ[F] (IntermediateField.adjoin F {ζ : E | ζ ^ m = 1}),

@@ -7,6 +7,9 @@ namespace P2MW.S_Ideal_IsMaximal_of_isPrime_of_ne_bot_of_isIntegral_adjoin_singl
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ismaxima.3h4v.s8.6f87340e5f11 from=translated src=- shape=71f70700 vocab=881758f6
+-/
 theorem solution
     (R : Type) [CommRing R] (D : Type) [CommRing D] [IsDomain D] [Algebra R D]
     (hR : ∀ r : R, algebraMap R D r = 0 ∨ IsUnit (algebraMap R D r))

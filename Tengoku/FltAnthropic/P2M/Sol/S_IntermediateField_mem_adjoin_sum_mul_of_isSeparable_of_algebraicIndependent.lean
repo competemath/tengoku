@@ -16,6 +16,9 @@ section Transport
 variable {R₁ R₂ L L' : Type*} [Field R₁] [Field R₂] [Field L] [Field L']
   [Algebra R₁ L] [Algebra R₂ L']
 
+/--
+@isnad1 id=issepara.2h7v.s9.f8d476035119 from=translated src=- shape=b2f9a3e4 vocab=21151552
+-/
 theorem isSeparable_transport (e : R₁ ≃+* R₂) (σ : L →+* L')
     (he : ∀ r, algebraMap R₂ L' (e r) = σ (algebraMap R₁ L r)) {y : L}
     (h : IsSeparable R₁ y) : IsSeparable R₂ (σ y) := by
@@ -34,6 +37,9 @@ section TransportSub
 
 variable {k L : Type*} [Field k] [Field L] [Algebra k L]
 
+/--
+@isnad1 id=issepara.2h5v.s8.655d4cbdd758 from=translated src=- shape=cb79a776 vocab=c9b0731e
+-/
 theorem isSeparable_of_le {E₁ E₂ : IntermediateField k L} (h : E₁ ≤ E₂) {y : L}
     (hy : IsSeparable E₁ y) : IsSeparable E₂ y := by
   have hp : (minpoly E₁ y).Separable := hy
@@ -46,6 +52,9 @@ theorem isSeparable_of_le {E₁ E₂ : IntermediateField k L} (h : E₁ ≤ E₂
     rw [hcomp, ← aeval_def, minpoly.aeval]
   exact hmap.of_dvd (minpoly.dvd E₂ y hroot)
 
+/--
+@isnad1 id=transcen.2h5v.s8.6d8d40466c61 from=translated src=- shape=08bfdbb6 vocab=df154159
+-/
 theorem transcendental_of_le' {E₁ E₂ : IntermediateField k L} (h : E₁ ≤ E₂) {t : L}
     (ht : Transcendental E₂ t) : Transcendental E₁ t := by
   rintro ⟨p, hp0, hp⟩
@@ -58,6 +67,9 @@ theorem transcendental_of_le' {E₁ E₂ : IntermediateField k L} (h : E₁ ≤ 
       ext r; rfl
     rw [hcomp, ← aeval_def, hp]
 
+/--
+@isnad1 id=eq.0h4v.s7.6934bc38384c from=translated src=- shape=c6d8f0be vocab=9d143943
+-/
 theorem restrictScalars_adjoin_eq (K : Type*) [Field K] [Algebra k K] [Algebra K L]
     [IsScalarTower k K L] (S : Set L) :
     (IntermediateField.adjoin K S).restrictScalars k =
@@ -76,6 +88,9 @@ theorem restrictScalars_adjoin_eq (K : Type*) [Field K] [Algebra k K] [Algebra K
 
 end TransportSub
 
+/--
+@isnad1 id=separabl.2h3v.s6.6d4aea2a4f1f from=translated src=- shape=1de39705 vocab=72e58c13
+-/
 theorem separable_scaleRoots {K : Type*} [Field K] {p : K[X]} (hp : p.Separable) {c : K}
     (hc : c ≠ 0) : (p.scaleRoots c).Separable := by
   let E := AlgebraicClosure K
@@ -96,6 +111,9 @@ variable {F M L : Type*} [Field F] [Field M] [Field L] [Algebra F L] [Algebra M 
 
 open IntermediateField in
 
+/--
+@isnad1 id=mem.5h6v.s9.1e8c5f7aa752 from=translated src=- shape=0e53fc39 vocab=ab5a40d3
+-/
 theorem mem_adjoin_simple_of_isSeparable_of_transcendental [Infinite F]
     (φ : F →+* M) (hφ : ∀ a, algebraMap M L (φ a) = algebraMap F L a)
     (hsc : ∀ m : M, IsSeparable F (algebraMap M L m) → ∃ a, φ a = m)
@@ -325,13 +343,22 @@ variable {k L : Type*} [Field k] [Field L] [Algebra k L]
 def SepClosedIn (F M : IntermediateField k L) : Prop :=
   ∀ y : L, y ∈ M → IsSeparable F y → y ∈ F
 
+/--
+@isnad1 id=sepclose.2h5v.s6.c4a354eb7171 from=translated src=- shape=da3f9da3 vocab=232b650e
+-/
 theorem SepClosedIn.mono_right {F M M' : IntermediateField k L} (h : SepClosedIn F M)
     (hM : M' ≤ M) : SepClosedIn F M' := fun y hy hs => h y (hM hy) hs
 
+/--
+@isnad1 id=eq.0h4v.s6.06a557901feb from=translated src=- shape=681250e2 vocab=d96ee2a6
+-/
 theorem adjoin_coe_adjoin_union (S T : Set L) :
     adjoin k ((adjoin k S : Set L) ∪ T) = adjoin k (S ∪ T) := by
   rw [← restrictScalars_adjoin, adjoin_adjoin_left]
 
+/--
+@isnad1 id=sepclose.3h5v.s8.7cf979eeb098 from=translated src=- shape=e4a652f6 vocab=13b88530
+-/
 theorem SepClosedIn.adjoin_transcendental [Infinite k] {F M : IntermediateField k L}
     (hFM : F ≤ M) (h : SepClosedIn F M) {t : L} (ht : Transcendental M t) :
     SepClosedIn ((adjoin F {t}).restrictScalars k) ((adjoin M {t}).restrictScalars k) := by
@@ -347,6 +374,9 @@ theorem SepClosedIn.adjoin_transcendental [Infinite k] {F M : IntermediateField 
   have hsep' : IsSeparable (adjoin F {t}) y := hsep
   exact mem_adjoin_simple_of_isSeparable_of_transcendental φ hφ hsc ht hy' hsep'
 
+/--
+@isnad1 id=sepclose.3h5v.s7.d71e09738067 from=translated src=- shape=adf88c8d vocab=e55decf6
+-/
 theorem SepClosedIn.adjoin_transcendental' [Infinite k] {S T : Set L}
     (hST : S ⊆ T) (h : SepClosedIn (adjoin k S) (adjoin k T)) {t : L}
     (ht : Transcendental (adjoin k T) t) :
@@ -354,6 +384,9 @@ theorem SepClosedIn.adjoin_transcendental' [Infinite k] {S T : Set L}
   have := h.adjoin_transcendental (adjoin.mono k _ _ hST) ht
   rwa [adjoin_adjoin_left, adjoin_adjoin_left] at this
 
+/--
+@isnad1 id=issepara.1h3v.s8.9cd5edb60dea from=translated src=- shape=f925efd1 vocab=ff87af9c
+-/
 theorem isSeparable_of_isSeparable_bot {y : L} (h : IsSeparable (⊥ : IntermediateField k L) y) :
     IsSeparable k y := by
   have := isSeparable_transport (L := L) (L' := L) (botEquiv k L).toRingEquiv (RingHom.id L)
@@ -370,6 +403,9 @@ section Permanence
 
 variable [Infinite k] (K : Type*) [Field K] [Algebra k K] [Algebra K L] [IsScalarTower k K L]
 
+/--
+@isnad1 id=sepclose.2h6v.s8.b5d1adb52d4a from=translated src=- shape=7928a6b1 vocab=d4b3d4e6
+-/
 theorem sepClosedIn_adjoin_image
     (hsc : ∀ θ : K, IsSeparable k θ → θ ∈ (⊥ : IntermediateField k K))
     {ι : Type*} (x : ι → L) (hx : AlgebraicIndependent K x) (s : Finset ι) :
@@ -406,6 +442,9 @@ theorem sepClosedIn_adjoin_image
     rw [Finset.coe_insert, Set.image_insert_eq, ← Set.union_singleton, ← Set.union_assoc]
     exact this
 
+/--
+@isnad1 id=sepclose.2h5v.s8.08e5b3a3c622 from=translated src=- shape=be41a544 vocab=d49f86da
+-/
 theorem sepClosedIn_adjoin_range
     (hsc : ∀ θ : K, IsSeparable k θ → θ ∈ (⊥ : IntermediateField k K))
     {ι : Type*} [Fintype ι] (x : ι → L) (hx : AlgebraicIndependent K x) :
@@ -421,6 +460,9 @@ variable {F E : Type*} [Field F] [Field E] [Algebra F E]
 
 open scoped IntermediateField.algebraAdjoinAdjoin in
 
+/--
+@isnad1 id=linearin.2h5v.s11.c6f4570afd61 from=translated src=- shape=a0520659 vocab=675c40c7
+-/
 theorem linearIndependent_powerBasis_over_adjoin {ι : Type*} {x : ι → E}
     (hx : AlgebraicIndependent F x) {α : E} (hα : IsIntegral F α) :
     LinearIndependent (adjoin F (Set.range x))
@@ -474,6 +516,9 @@ theorem linearIndependent_powerBasis_over_adjoin {ι : Type*} {x : ι → E}
   have : g i = hx.aevalEquiv (P i) := by simp [P]
   rw [this, hPzero i hi, map_zero]
 
+/--
+@isnad1 id=ex.1h2v.s8.b41beb234c80 from=translated src=- shape=2db5e48d vocab=a96420dc
+-/
 theorem exists_bound_finrank_adjoin_of_fg (hfg : (⊤ : IntermediateField F E).FG) :
     ∃ N : ℕ, ∀ α : E, IsIntegral F α → Module.finrank F F⟮α⟯ ≤ N := by
   classical
@@ -498,6 +543,9 @@ theorem exists_bound_finrank_adjoin_of_fg (hfg : (⊤ : IntermediateField F E).F
   rw [(adjoin.powerBasis hα).finrank]
   exact this
 
+/--
+@isnad1 id=ex.1h2v.s7.e683ea7dd563 from=translated src=- shape=6eafdce0 vocab=a6fc8e5a
+-/
 theorem exists_isSeparable_forall_mem_adjoin_of_fg (hfg : (⊤ : IntermediateField F E).FG) :
     ∃ γ : E, IsSeparable F γ ∧ ∀ θ : E, IsSeparable F θ → θ ∈ F⟮γ⟯ := by
   classical
@@ -534,6 +582,9 @@ theorem exists_isSeparable_forall_mem_adjoin_of_fg (hfg : (⊤ : IntermediateFie
   rw [heq, hβE]
   exact subset_adjoin F _ (by simp)
 
+/--
+@isnad1 id=ex.2h4v.s7.7c0bfbc5583f from=translated src=- shape=20402fe3 vocab=34fa5a2c
+-/
 theorem exists_ne_adjoin_simple_eq {α : Type*} [Infinite α]
     (hfg : (⊤ : IntermediateField F E).FG) (θ : α → E) (hθ : ∀ a, IsSeparable F (θ a)) :
     ∃ a₁ a₂, a₁ ≠ a₂ ∧ F⟮θ a₁⟯ = F⟮θ a₂⟯ := by
@@ -560,6 +611,9 @@ section Bookkeeping
 
 variable {K : Type*} [Field K] [Algebra k K] [Algebra K L] [IsScalarTower k K L]
 
+/--
+@isnad1 id=eq.2h8v.s8.59d5ff86e529 from=translated src=- shape=de9c64e7 vocab=3b0c9aa5
+-/
 theorem map_adjoin_range_union_singleton {ι : Type*} (σ : L ≃ₐ[k] L) (x : ι → L) (b : ι → k)
     (hσx : ∀ i, σ (x i) = x i + algebraMap k L (b i)) (ξ ξ' : L) (hσξ : σ ξ = ξ') :
     (adjoin k (Set.range x ∪ {ξ})).map (σ : L →ₐ[k] L) = adjoin k (Set.range x ∪ {ξ'}) := by
@@ -587,6 +641,9 @@ theorem map_adjoin_range_union_singleton {ι : Type*} (σ : L ≃ₐ[k] L) (x : 
       rw [← hσξ]
       exact subset_adjoin k _ ⟨ξ, Or.inr rfl, rfl⟩
 
+/--
+@isnad1 id=fg.3h5v.s10.5ab4b6fa75f7 from=translated src=- shape=57bf01f7 vocab=d3d11011
+-/
 theorem fg_top_of_adjoin_eq_top (hfg : (⊤ : IntermediateField k K).FG) {S : Set L}
     (htop : adjoin k (Set.range (algebraMap K L) ∪ S) = ⊤) (E : IntermediateField k L)
     (hS : S ⊆ E) : (⊤ : IntermediateField E L).FG := by
@@ -608,6 +665,9 @@ theorem fg_top_of_adjoin_eq_top (hfg : (⊤ : IntermediateField k K).FG) {S : Se
     exact hw
   · exact subset_adjoin k _ (Or.inl (hS hz))
 
+/--
+@isnad1 id=and.3h7v.s8.d33017028700 from=translated src=- shape=4a0df3d9 vocab=9dd3911a
+-/
 theorem mem_of_two_shifts (N : IntermediateField k L) {ξ δ : L} {a₁ a₂ : k} (hne : a₁ ≠ a₂)
     (h₁ : ξ + algebraMap k L a₁ * δ ∈ N) (h₂ : ξ + algebraMap k L a₂ * δ ∈ N) :
     ξ ∈ N ∧ δ ∈ N := by
@@ -639,6 +699,9 @@ noncomputable def tau (b : Fin (n + 1) → K) :
     (by ext i : 1; simp)
     (by ext i : 1; simp)
 
+/--
+@isnad1 id=eq.0h4v.s10.1bda751cb1a9 from=translated src=- shape=40572581 vocab=17bb4344
+-/
 @[scoped simp] theorem tau_X (b : Fin (n + 1) → K) (i : Fin (n + 1)) :
     tau K n b (MvPolynomial.X i) = MvPolynomial.X i + MvPolynomial.C (b i) := by
   simp [tau]
@@ -648,21 +711,33 @@ noncomputable def sigma (b : Fin (n + 1) → K) :
   (IsFractionRing.algEquivOfAlgEquiv (K := FractionRing (MvPolynomial (Fin (n + 1)) K))
     (L := FractionRing (MvPolynomial (Fin (n + 1)) K)) (tau K n b)).restrictScalars k
 
+/--
+@isnad1 id=eq.0h5v.s13.4adf4e8a5cde from=translated src=- shape=74558721 vocab=58bf0501
+-/
 theorem sigma_algebraMap (b : Fin (n + 1) → K) (p : MvPolynomial (Fin (n + 1)) K) :
     sigma k K n b (algebraMap _ _ p) = algebraMap _ _ (tau K n b p) := by
   simp [sigma]
 
+/--
+@isnad1 id=eq.0h5v.s13.1d81ca7b4666 from=translated src=- shape=f231fbdc vocab=6c677996
+-/
 theorem sigma_X (b : Fin (n + 1) → K) (i : Fin (n + 1)) :
     sigma k K n b (algebraMap _ _ (MvPolynomial.X i : MvPolynomial (Fin (n + 1)) K)) =
       algebraMap _ _ (MvPolynomial.X i : MvPolynomial (Fin (n + 1)) K) + algebraMap K _ (b i) := by
   rw [sigma_algebraMap, tau_X, map_add]
   congr 1
 
+/--
+@isnad1 id=eq.0h5v.s13.28f4906ea745 from=translated src=- shape=01000b45 vocab=10129d47
+-/
 theorem sigma_algebraMap_K (b : Fin (n + 1) → K) (g : K) :
     sigma k K n b (algebraMap K _ g) = algebraMap K _ g := by
   change (IsFractionRing.algEquivOfAlgEquiv _ : _ ≃ₐ[K] _) _ = _
   exact AlgEquiv.commutes _ g
 
+/--
+@isnad1 id=eq.0h3v.s13.bf24abcfb72b from=translated src=- shape=be57a7d8 vocab=7ec9936c
+-/
 theorem adjoin_range_union_range_X_eq_top :
     adjoin k (Set.range (algebraMap K (FractionRing (MvPolynomial (Fin (n + 1)) K))) ∪
       Set.range (fun i => algebraMap (MvPolynomial (Fin (n + 1)) K)
@@ -691,6 +766,9 @@ section ChangeVar
 
 variable {k Ω : Type*} [Field k] [Field Ω] [Algebra k Ω] {n : ℕ}
 
+/--
+@isnad1 id=transcen.2h8v.s9.e9f9b91e89dd from=translated src=- shape=3ed0b315 vocab=314093c0
+-/
 theorem transcendental_shift (x : Fin (n + 1) → Ω) (ξ δ : Ω)
     (hind : AlgebraicIndependent k (Fin.snoc (Fin.snoc x ξ) δ)) {a₁ a₂ : k} (hne : a₁ ≠ a₂) :
     Transcendental (adjoin k (Set.range x ∪ {ξ + algebraMap k Ω a₁ * δ}))
@@ -789,6 +867,9 @@ variable {k : Type u} {K : Type v} [Field k] [Field K] [Algebra k K]
 
 local notation3 "Ωf[" K' ", " m "]" => FractionRing (MvPolynomial (Fin (m + 1)) K')
 
+/--
+@isnad1 id=transcen.2h5v.s9.72c1e07697a6 from=translated src=- shape=dce2c0c7 vocab=71c237c2
+-/
 theorem transcendental_restrictScalars_adjoin {L : Type*} [Field L] [Algebra k L]
     {E : IntermediateField k L} {θ t : L} (hθ : IsIntegral E θ)
     (ht : Transcendental E t) : Transcendental ((adjoin E {θ}).restrictScalars k) t := by
@@ -801,6 +882,9 @@ theorem transcendental_restrictScalars_adjoin {L : Type*} [Field L] [Algebra k L
 
 variable [Infinite k]
 
+/--
+@isnad1 id=mem.5h7v.s15.940a2fc2ad74 from=translated src=- shape=6ecffa18 vocab=2cfe2e9b
+-/
 theorem fieldBertini
     (hfg : (⊤ : IntermediateField k K).FG)
     (hsc : ∀ θ : K, IsSeparable k θ → θ ∈ (⊥ : IntermediateField k K))
@@ -939,6 +1023,9 @@ open scoped _root_.P2MW.S_IntermediateField_mem_adjoin_sum_mul_of_isSeparable_of
 
 universe u v
 
+/--
+@isnad1 id=mem.5h7v.s15.a619f5061983 from=translated src=- shape=e1f40614 vocab=2cfe2e9b
+-/
 theorem solution
     {k : Type u} {K : Type v} [Field k] [Infinite k] [Field K] [Algebra k K]
     (hfg : (⊤ : IntermediateField k K).FG)

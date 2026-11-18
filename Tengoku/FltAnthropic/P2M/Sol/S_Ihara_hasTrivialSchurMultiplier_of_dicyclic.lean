@@ -8,6 +8,9 @@ namespace P2MW.S_Ihara_hasTrivialSchurMultiplier_of_dicyclic
 
 open scoped commutatorElement
 
+/--
+@isnad1 id=hastrivi.4h4v.s7.dbae2d7bed7a from=translated src=- shape=19e2dfb6 vocab=11808d86
+-/
 theorem solution
     {G : Type*} [Group G] (x y : G) (m : ℕ)
     (hx : orderOf x = 2 * m) (hy : y ^ 2 = x ^ m) (hconj : y * x * y⁻¹ = x⁻¹)

@@ -11,6 +11,9 @@ open scoped Pointwise
 
 namespace Ws14Port
 
+/--
+@isnad1 id=mem.2h4v.s9.19891139960a from=translated src=- shape=1b2ea64d vocab=a9a3a7d2
+-/
 theorem mem_inertiaSubgroupIn_of_valuation_sub_lt_one {K L : Type*} [Field K] [Field L] [Algebra K L]
     (A : ValuationSubring L) {σ : L ≃ₐ[K] L} (hσA : σ • A = A)
     (h : ∀ a ∈ A, A.valuation (σ a - a) < 1) :
@@ -27,6 +30,9 @@ theorem mem_inertiaSubgroupIn_of_valuation_sub_lt_one {K L : Type*} [Field K] [F
 
 end Ws14Port
 
+/--
+@isnad1 id=mem.1h5v.s10.d877c43007e3 from=translated src=- shape=c03abd15 vocab=bc99be52
+-/
 theorem solution {K L : Type*} [Field K] [Field L] [Algebra K L]
     (A : ValuationSubring L) (g : L ≃ₐ[K] L) {σ : L ≃ₐ[K] L} (hσ : σ ∈ (g • A).inertiaSubgroupIn K) :
     g⁻¹ * σ * g ∈ A.inertiaSubgroupIn K := by

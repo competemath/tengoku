@@ -9,6 +9,9 @@ namespace P2MW.S_HopfAlgebra_exists_withConv_equiv_rootsOfUnity_of_comul_gens_qu
 set_option maxHeartbeats 16000000
 
 open scoped TensorProduct in
+/--
+@isnad1 id=ex.8h7v.s14.6a3e571764e3 from=translated src=- shape=f969add5 vocab=1eabc9ac
+-/
 theorem solution
     (K : Type) [Field K] [CharZero K] (c : K) (hc : c ≠ 0) (hnsq : ¬ IsSquare c)
     (n : ℕ) [Fact n.Prime]

@@ -21,6 +21,9 @@ set_option synthInstance.maxHeartbeats 80000
 
 namespace OrdConn
 
+/--
+@isnad1 id=ex.0h2v.s6.cb5fceb42773 from=translated src=- shape=054989e3 vocab=72707f9b
+-/
 theorem exists_mul_mul_eq_self {E : Type*} [CommRing E] [IsArtinianRing E] [IsReduced E] (x : E) :
     ∃ t : E, x * x * t = x := by
   classical
@@ -61,6 +64,9 @@ theorem eq_zero_or_eq_one_of_isIdempotentElem {R : Type*} [CommRing R] [IsLocalR
     have := congrArg (fun y => 1 - y) this
     simpa using this
 
+/--
+@isnad1 id=eq.0h6v.s8.041a656c0ed2 from=translated src=- shape=60108f33 vocab=4d9f07d0
+-/
 theorem algHom_apply_eq_algebraMap {k : Type*} [Field k] {E : Type*} [CommRing E] [Algebra k E]
     [Module.Finite k E] [IsReduced E] {C : Type*} [CommRing C] [Algebra k C] [Module.Finite k C]
     [IsLocalRing C] (χ : C →ₐ[k] k) (ψ : E →ₐ[k] C) (e : E) :
@@ -105,6 +111,9 @@ theorem algHom_apply_eq_algebraMap {k : Type*} [Field k] {E : Type*} [CommRing E
 
 end OrdConn
 
+/--
+@isnad1 id=isreduce.9h8v.s14.0af8a26d2c86 from=translated src=- shape=bd419fe4 vocab=2324d38c
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] {B : Type v} [CommRing B] [HopfAlgebra (ZMod p) B]
     [Coalgebra.IsCocomm (ZMod p) B] [Module.Finite (ZMod p) B]

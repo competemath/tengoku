@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=ex.5h4v.s15.3fdbbacd11e9 from=translated src=- shape=11be0b23 vocab=f539cb74
+-/
 theorem HopfOrder.exists_dual_hopfOrder
     {R : Type*} [CommRing R] [IsDomain R] [IsPrincipalIdealRing R]
     {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]

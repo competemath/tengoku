@@ -10,12 +10,18 @@ open scoped commutatorElement
 
 namespace IharaSylowReduction
 
+/--
+@isnad1 id=eq.1h4v.s6.6be72125f565 from=translated src=- shape=0b182860 vocab=026821e1
+-/
 theorem commutatorElement_mul_central_left {E : Type*} [Group E] {z : E}
     (hz : z ∈ Subgroup.center E) (a b : E) : ⁅a * z, b⁆ = ⁅a, b⁆ := by
   have hc : ∀ g : E, g * z = z * g := fun g => Subgroup.mem_center_iff.mp hz g
   rw [commutatorElement_def, commutatorElement_def, mul_inv_rev, mul_assoc a z b, ← hc b]
   group
 
+/--
+@isnad1 id=eq.1h4v.s6.5238a9f5986e from=translated src=- shape=cea83d5f vocab=026821e1
+-/
 theorem commutatorElement_mul_central_right {E : Type*} [Group E] {z : E}
     (hz : z ∈ Subgroup.center E) (a b : E) : ⁅a, b * z⁆ = ⁅a, b⁆ := by
   have hc : ∀ g : E, g * z = z * g := fun g => Subgroup.mem_center_iff.mp hz g
@@ -23,6 +29,9 @@ theorem commutatorElement_mul_central_right {E : Type*} [Group E] {z : E}
     mul_assoc b z a⁻¹, ← hc a⁻¹]
   group
 
+/--
+@isnad1 id=finite.3h3v.s7.fe2418539eea from=translated src=- shape=0a7741f7 vocab=8d51dcc4
+-/
 theorem finite_of_stem {E G : Type*} [Group E] [Group G] [Finite G] (π : E →* G)
     (hπ : Function.Surjective π) (hcent : π.ker ≤ Subgroup.center E)
     (hcomm : π.ker ≤ commutator E) : Finite E := by
@@ -51,6 +60,9 @@ theorem finite_of_stem {E G : Type*} [Group E] [Group G] [Finite G] (π : E →*
   haveI : Finite (E ⧸ π.ker) := Subgroup.finite_quotient_of_finiteIndex
   exact Finite.of_subgroup_quotient π.ker
 
+/--
+@isnad1 id=mem.3h3v.s8.2f8ce5237d4d from=translated src=- shape=871c00ce vocab=afaba2ea
+-/
 theorem central_pow_index_mem_commutator {E : Type*} [Group E]
     (H : Subgroup E) [H.FiniteIndex] {x : E}
     (hcent : x ∈ Subgroup.center E) (hxH : x ∈ H) (hxcomm : x ∈ commutator E) :
@@ -133,6 +145,9 @@ theorem eq_one_of_mem_sylow_of_mem_ker {G : Type u} [Group G] [Finite G]
 end IharaSylowReduction
 
 open IharaSylowReduction in
+/--
+@isnad1 id=hastrivi.1h1v.s5.cfaeede2ad63 from=translated src=- shape=c2f81e91 vocab=20c368a4
+-/
 theorem solution
     {G : Type*} [Group G] [Finite G]
     (h : ∀ (p : ℕ) [Fact p.Prime] (P : Sylow p G),

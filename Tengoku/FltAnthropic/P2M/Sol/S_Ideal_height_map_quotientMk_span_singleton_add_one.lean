@@ -12,6 +12,9 @@ universe u
 
 open IsLocalRing
 
+/--
+@isnad1 id=eq.2h3v.s9.a6bf7c9307fa from=translated src=- shape=fe7b10ec vocab=af0a1339
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsNoetherianRing R] (p : Ideal R) [p.IsPrime] {x : R} (hx : x ∈ p)
     (hxmin : ∀ q ∈ minimalPrimes R, q ≤ p → x ∉ q) :
