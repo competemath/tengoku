@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_HopfAlgebra_forall_withConv_pow_eq_one_of_
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.2h6v.s10.304fd921265e from=translated src=- shape=5b0e0d6b vocab=f8c39214
+-/
 theorem HopfAlgebra.forall_withConv_pow_eq_one_of_forall_algHom_pow_eq_one_of_isAlgClosed
     (R : Type) [CommRing R] [IsDomain R] (H : Type) [CommRing H] [HopfAlgebra R H]
     [Module.Finite R H] [Module.Flat R H]

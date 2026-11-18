@@ -16,6 +16,9 @@ export _root_.ValuationSubring (comap subtype ext mem_nonunits_iff mk ValueGroup
 namespace DVRkit
 open _root_.ValuationSubring
 
+/--
+@isnad1 id=ex.2h3v.s6.30307ecd42d7 from=translated src=- shape=07250d1d vocab=6b2349d5
+-/
 theorem exists_nat_sub_mul_den_eq {r : ℕ} (hr : 0 < r) (q : ℚ) (hcop : (q.den).Coprime r) (N : ℕ) :
     ∃ a : ℕ, a < r ^ N ∧ ∃ w : ℤ, ((q - a) * q.den : ℚ) = (r : ℚ) ^ N * w := by
   have hcopN : (q.den).Coprime (r ^ N) := Nat.Coprime.pow_right N hcop
@@ -50,6 +53,9 @@ section B
 
 variable (A : ValuationSubring (AlgebraicClosure ℚ)) {r : ℕ}
 
+/--
+@isnad1 id=eq.0h2v.s11.d7ce1a366342 from=translated src=- shape=894f39ac vocab=f7bbbe49
+-/
 theorem v_coe (x : AlgebraicClosure ℚ) : Valued.v (x : A.valuation.Completion) = A.valuation x := by
   rw [show (x : A.valuation.Completion) =
       (((WithVal.equiv A.valuation).symm x : WithVal A.valuation) : A.valuation.Completion) from rfl,
@@ -60,23 +66,44 @@ noncomputable def coeHom : AlgebraicClosure ℚ →+* A.valuation.Completion :=
   (UniformSpace.Completion.coeRingHom : WithVal A.valuation →+* A.valuation.Completion).comp
     (WithVal.equiv A.valuation).symm.toRingHom
 
+/--
+@isnad1 id=eq.0h2v.s10.c57404a35c7e from=translated src=- shape=83ff4f38 vocab=6cf11d55
+-/
 theorem coeHom_apply (x : AlgebraicClosure ℚ) : coeHom A x = (x : A.valuation.Completion) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s10.b78051c39196 from=translated src=- shape=bf51c2d8 vocab=01f21390
+-/
 theorem coe_ratCast' (q : ℚ) : ((q : AlgebraicClosure ℚ) : A.valuation.Completion) = (q : A.valuation.Completion) := by
   rw [← coeHom_apply, map_ratCast]
 
+/--
+@isnad1 id=eq.0h2v.s10.7e9b9884e3b5 from=translated src=- shape=2b461f8a vocab=32508014
+-/
 theorem v_ratCast (q : ℚ) : Valued.v (q : A.valuation.Completion) = A.valuation (q : AlgebraicClosure ℚ) := by
   rw [← coe_ratCast', v_coe]
 
+/--
+@isnad1 id=eq.0h2v.s10.16bfccc0c938 from=translated src=- shape=d0d86291 vocab=e8ed199e
+-/
 theorem v_natCast (n : ℕ) : Valued.v (n : A.valuation.Completion) = A.valuation (n : AlgebraicClosure ℚ) := by
   rw [← Rat.cast_natCast, v_ratCast, Rat.cast_natCast]
 
+/--
+@isnad1 id=le.0h2v.s8.10f4e2851cb8 from=translated src=- shape=96f08dce vocab=935cc5a4
+-/
 theorem vA_natCast_le_one (n : ℕ) : A.valuation (n : AlgebraicClosure ℚ) ≤ 1 :=
   (A.valuation_le_one_iff _).mpr (natCast_mem A n)
 
+/--
+@isnad1 id=le.0h2v.s8.9ba93b9641b1 from=translated src=- shape=96f08dce vocab=1ce7aa5c
+-/
 theorem vA_intCast_le_one (n : ℤ) : A.valuation (n : AlgebraicClosure ℚ) ≤ 1 :=
   (A.valuation_le_one_iff _).mpr (intCast_mem A n)
 
+/--
+@isnad1 id=eq.2h3v.s7.930e09324715 from=translated src=- shape=fa117d21 vocab=6db8262e
+-/
 theorem vA_natCast_eq_one_of_coprime (hA : A.LiesOverPrime r) {d : ℕ} (hd : d.Coprime r) :
     A.valuation (d : AlgebraicClosure ℚ) = 1 := by
   refine le_antisymm (vA_natCast_le_one A d) (not_lt.mp fun hlt => ?_)
@@ -91,6 +118,9 @@ theorem vA_natCast_eq_one_of_coprime (hA : A.LiesOverPrime r) {d : ℕ} (hd : d.
   rw [h1, map_one] at hv
   exact lt_irrefl _ hv
 
+/--
+@isnad1 id=coprime.3h3v.s8.9683bdf15e64 from=translated src=- shape=049de089 vocab=5175bffc
+-/
 theorem den_coprime_of_vA_le_one (hr : r.Prime) (hA : A.LiesOverPrime r) {q : ℚ}
     (hq : A.valuation (q : AlgebraicClosure ℚ) ≤ 1) : (q.den).Coprime r := by
   rw [Nat.Coprime, Nat.gcd_comm, ← Nat.Coprime, hr.coprime_iff_not_dvd]
@@ -130,16 +160,25 @@ section L
 
 variable (A : ValuationSubring (AlgebraicClosure ℚ)) {r : ℕ}
 
+/--
+@isnad1 id=eq.3h3v.s7.8f3c9bbcde09 from=translated src=- shape=de68acfd vocab=8f325696
+-/
 theorem vA_natCast_eq_one_of_not_dvd (hr : r.Prime) (hA : A.LiesOverPrime r) {d : ℕ} (hd : ¬ r ∣ d) :
     A.valuation (d : AlgebraicClosure ℚ) = 1 :=
   vA_natCast_eq_one_of_coprime A hA ((Nat.Prime.coprime_iff_not_dvd hr).mpr hd).symm
 
+/--
+@isnad1 id=ex.3h3v.s8.fd6f5e2e0f18 from=translated src=- shape=6bc851ee vocab=b1932c0c
+-/
 theorem vA_natCast_eq_zpow (hr : r.Prime) (hA : A.LiesOverPrime r) {n : ℕ} (hn : n ≠ 0) :
     ∃ e : ℕ, A.valuation (n : AlgebraicClosure ℚ) = A.valuation (r : AlgebraicClosure ℚ) ^ e := by
   obtain ⟨e, n', hnd, rfl⟩ := Nat.exists_eq_pow_mul_and_not_dvd hn r hr.ne_one
   refine ⟨e, ?_⟩
   rw [Nat.cast_mul, Nat.cast_pow, map_mul, map_pow, vA_natCast_eq_one_of_not_dvd A hr hA hnd, mul_one]
 
+/--
+@isnad1 id=ex.3h3v.s8.a022b40e4729 from=translated src=- shape=846573f7 vocab=3ba72eb4
+-/
 theorem vA_ratCast_eq_zpow (hr : r.Prime) (hA : A.LiesOverPrime r) {q : ℚ} (hq : q ≠ 0) :
     ∃ n : ℤ, A.valuation (q : AlgebraicClosure ℚ) = A.valuation (r : AlgebraicClosure ℚ) ^ n := by
   have hnum0 : q.num.natAbs ≠ 0 := by simpa using (Rat.num_ne_zero.mpr hq)
@@ -155,6 +194,9 @@ theorem vA_ratCast_eq_zpow (hr : r.Prime) (hA : A.LiesOverPrime r) {q : ℚ} (hq
   have hvr0 : A.valuation (r : AlgebraicClosure ℚ) ≠ 0 := (map_ne_zero _).mpr (by exact_mod_cast hr.ne_zero)
   rw [Rat.cast_def, map_div₀, hvnum, hb, zpow_sub₀ hvr0, zpow_natCast, zpow_natCast]
 
+/--
+@isnad1 id=ex.2h2v.s12.99fc9595ea9f from=translated src=- shape=99029845 vocab=6a7deb03
+-/
 theorem exists_rat_v_eq {x : A.valuation.Completion} (hx : x ∈ ratClosure A) (hx0 : x ≠ 0) :
     ∃ q : ℚ, Valued.v (q : A.valuation.Completion) = Valued.v x := by
 
@@ -172,6 +214,9 @@ theorem exists_rat_v_eq {x : A.valuation.Completion} (hx : x ∈ ratClosure A) (
   rw [show (q : A.valuation.Completion) = y from hq]
   exact le_antisymm h1 h2
 
+/--
+@isnad1 id=ex.4h3v.s12.6c2675f82aa7 from=translated src=- shape=b7ae5120 vocab=5d46200d
+-/
 theorem v_eq_zpow_of_mem_ratClosure (hr : r.Prime) (hA : A.LiesOverPrime r) {x : A.valuation.Completion}
     (hx : x ∈ ratClosure A) (hx0 : x ≠ 0) :
     ∃ n : ℤ, Valued.v x = Valued.v ((r : A.valuation.Completion)) ^ n := by
@@ -183,6 +228,9 @@ theorem v_eq_zpow_of_mem_ratClosure (hr : r.Prime) (hA : A.LiesOverPrime r) {x :
   obtain ⟨n, hn⟩ := vA_ratCast_eq_zpow A hr hA hq0
   exact ⟨n, by rw [← hq, v_ratCast, hn, v_natCast]⟩
 
+/--
+@isnad1 id=le.4h3v.s12.7235d01d2f6b from=translated src=- shape=f6ac19f6 vocab=8eae9eca
+-/
 theorem v_le_v_natCast_of_lt_one (hr : r.Prime) (hA : A.LiesOverPrime r) {x : A.valuation.Completion}
     (hx : x ∈ ratClosure A) (hx1 : Valued.v x < 1) :
     Valued.v x ≤ Valued.v ((r : A.valuation.Completion)) := by
@@ -212,15 +260,27 @@ noncomputable def vK : Valuation (↥(ratClosure A)) A.ValueGroup := Valued.v.co
 
 noncomputable def O : ValuationSubring ↥(ratClosure A) := (vK A).valuationSubring
 
+/--
+@isnad1 id=eq.0h2v.s13.180948bd5dc0 from=translated src=- shape=805a39c1 vocab=26226672
+-/
 theorem vK_apply (x : ↥(ratClosure A)) : vK A x = Valued.v (x : A.valuation.Completion) := rfl
 
+/--
+@isnad1 id=integers.0h1v.s13.3cf13d0ea7a3 from=translated src=- shape=e9b3445d vocab=5dc19df3
+-/
 theorem integers : (vK A).Integers ↥(O A) :=
   { hom_inj := Subtype.val_injective
     map_le_one := fun x => (Valuation.mem_valuationSubring_iff _ _).mp x.2
     exists_of_le_one := fun x hx => ⟨⟨x, (Valuation.mem_valuationSubring_iff _ _).mpr hx⟩, rfl⟩ }
 
+/--
+@isnad1 id=eq.0h2v.s16.cdcbc861b323 from=translated src=- shape=86312964 vocab=8d864338
+-/
 theorem algebraMap_O_apply (x : ↥(O A)) : algebraMap (↥(O A)) (↥(ratClosure A)) x = (x : ↥(ratClosure A)) := rfl
 
+/--
+@isnad1 id=mem.2h2v.s12.5bc836e8d19f from=translated src=- shape=579f7a4d vocab=37ec674e
+-/
 theorem natCast_mem_O (hr : r.Prime) (hA : A.LiesOverPrime r) :
     (⟨(r : A.valuation.Completion), natCast_mem_ratClosure A r⟩ : ↥(ratClosure A)) ∈ O A := by
   rw [O, Valuation.mem_valuationSubring_iff, vK_apply, v_natCast]
@@ -229,15 +289,27 @@ theorem natCast_mem_O (hr : r.Prime) (hA : A.LiesOverPrime r) :
 noncomputable def varpi (hr : r.Prime) (hA : A.LiesOverPrime r) : ↥(O A) :=
   ⟨⟨(r : A.valuation.Completion), natCast_mem_ratClosure A r⟩, natCast_mem_O A hr hA⟩
 
+/--
+@isnad1 id=eq.2h2v.s16.872e404619da from=translated src=- shape=b63fdc56 vocab=73cb8c6e
+-/
 theorem v_varpi (hr : r.Prime) (hA : A.LiesOverPrime r) :
     vK A (algebraMap (↥(O A)) (↥(ratClosure A)) (varpi A hr hA)) = Valued.v ((r : A.valuation.Completion)) := rfl
 
+/--
+@isnad1 id=lt.2h2v.s10.2c1c7c483db1 from=translated src=- shape=460cc8e7 vocab=3e2eaef9
+-/
 theorem v_natCast_lt_one (hr : r.Prime) (hA : A.LiesOverPrime r) : Valued.v ((r : A.valuation.Completion)) < 1 := by
   rw [v_natCast]; exact A.mem_nonunits_iff.mp hA
 
+/--
+@isnad1 id=lt.1h2v.s10.05e26902d92c from=translated src=- shape=1090c9ae vocab=cca003e5
+-/
 theorem v_natCast_pos (hr : r.Prime) : 0 < Valued.v ((r : A.valuation.Completion)) := by
   rw [v_natCast]; exact zero_lt_iff.mpr ((map_ne_zero _).mpr (by exact_mod_cast hr.ne_zero))
 
+/--
+@isnad1 id=ex.3h3v.s17.aa1c06e27120 from=translated src=- shape=ee0d4617 vocab=bae2aba1
+-/
 theorem exists_v_eq_pow (hr : r.Prime) (hA : A.LiesOverPrime r) (x : ↥(O A)) (hx0 : x ≠ 0) :
     ∃ n : ℕ, vK A (algebraMap (↥(O A)) (↥(ratClosure A)) x) = Valued.v ((r : A.valuation.Completion)) ^ n := by
   have hxC0 : ((x : ↥(ratClosure A)) : A.valuation.Completion) ≠ 0 := by
@@ -252,6 +324,9 @@ theorem exists_v_eq_pow (hr : r.Prime) (hA : A.LiesOverPrime r) (x : ↥(O A)) (
   refine ⟨n.toNat, ?_⟩
   rw [algebraMap_O_apply, vK_apply, hn, ← zpow_natCast, Int.toNat_of_nonneg hn0]
 
+/--
+@isnad1 id=irreduci.2h2v.s14.6d1eb0f6599c from=translated src=- shape=926f1fb6 vocab=47a7c89c
+-/
 theorem irreducible_varpi (hr : r.Prime) (hA : A.LiesOverPrime r) : Irreducible (varpi A hr hA) := by
   have hv := integers A
   have hvr1 := v_natCast_lt_one A hr hA
@@ -279,6 +354,9 @@ theorem irreducible_varpi (hr : r.Prime) (hA : A.LiesOverPrime r) : Irreducible 
       rwa [le_mul_iff_one_le_left hvrpos] at this
     exact absurd hvr1 (not_lt.mpr h1)
 
+/--
+@isnad1 id=isdiscre.2h2v.s13.d616dc35a8ae from=translated src=- shape=c08fcc64 vocab=39be9bce
+-/
 theorem isDiscreteValuationRing_O (hr : r.Prime) (hA : A.LiesOverPrime r) : IsDiscreteValuationRing ↥(O A) := by
   have hv := integers A
   refine IsDiscreteValuationRing.ofHasUnitMulPowIrreducibleFactorization ⟨varpi A hr hA, irreducible_varpi A hr hA, ?_⟩
@@ -289,6 +367,9 @@ theorem isDiscreteValuationRing_O (hr : r.Prime) (hA : A.LiesOverPrime r) : IsDi
     rw [hn, map_pow, map_pow, v_varpi]
   exact ⟨n, associated_of_dvd_dvd (Valuation.Integers.dvd_of_le hv h1.le) (Valuation.Integers.dvd_of_le hv h1.ge)⟩
 
+/--
+@isnad1 id=ex.2h3v.s16.ef095a01dba7 from=translated src=- shape=4c724ac7 vocab=9fd071a0
+-/
 theorem exists_nat_lt_varpi_dvd_sub (hr : r.Prime) (hA : A.LiesOverPrime r) (x : ↥(O A)) :
     ∃ a : ℕ, a < r ∧ varpi A hr hA ∣ ((a : ℕ) : ↥(O A)) - x := by
   have hv := integers A
@@ -369,6 +450,9 @@ theorem eq_of_varpi_dvd_sub (hr : r.Prime) (hA : A.LiesOverPrime r) {a b : ℕ} 
   rw [h1] at hle
   exact absurd (v_natCast_lt_one A hr hA) (not_lt.mpr hle)
 
+/--
+@isnad1 id=bijectiv.2h2v.s20.7dce0e0a772c from=translated src=- shape=dba3d83e vocab=e652fcb7
+-/
 theorem bijective_quotient (hr : r.Prime) (hA : A.LiesOverPrime r) :
     Function.Bijective (fun a : Fin r => Ideal.Quotient.mk (Ideal.span {varpi A hr hA}) (((a : ℕ) : ↥(O A)))) := by
   constructor
@@ -388,6 +472,9 @@ end ValuationSubring.DVRkit
 
 open ValuationSubring.DVRkit in
 
+/--
+@isnad1 id=and.1h2v.s18.8810864910b5 from=translated src=- shape=ba0cd517 vocab=05cd1f8a
+-/
 theorem solution
     (r : ℕ) [Fact r.Prime] (A : ValuationSubring (AlgebraicClosure ℚ)) (hA : A.LiesOverPrime r) :
     (⟨(r : A.valuation.Completion), natCast_mem_ratClosure A r⟩ : ↥(ratClosure A)) ∈ (Valued.v.comap (ratClosure A).subtype).valuationSubring ∧

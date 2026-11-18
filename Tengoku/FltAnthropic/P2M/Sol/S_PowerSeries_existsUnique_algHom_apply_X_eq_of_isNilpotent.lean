@@ -12,6 +12,9 @@ set_option autoImplicit false
 namespace EvalNilpAux
 open PowerSeries
 
+/--
+@isnad1 id=eq.0h2v.s7.9240b2b91ea1 from=translated src=- shape=33d9fa95 vocab=2ddfcddf
+-/
 theorem coe_eq_aeval_X {A : Type} [CommRing A] (p : Polynomial A) :
     (p : PowerSeries A) = Polynomial.aeval (PowerSeries.X : PowerSeries A) p := by
   induction p using Polynomial.induction_on' with
@@ -22,10 +25,16 @@ theorem coe_eq_aeval_X {A : Type} [CommRing A] (p : Polynomial A) :
     rw [PowerSeries.coeff_monomial, show (algebraMap A (PowerSeries A)) a = PowerSeries.C a from rfl,
       PowerSeries.coeff_C_mul_X_pow]
 
+/--
+@isnad1 id=eq.0h4v.s8.54f1ff6396c7 from=translated src=- shape=c113e5e9 vocab=17e0f005
+-/
 theorem apply_coe {A : Type} [CommRing A] {T : Type} [CommRing T] [Algebra A T]
     (φ : PowerSeries A →ₐ[A] T) (p : Polynomial A) : φ (p : PowerSeries A) = Polynomial.aeval (φ PowerSeries.X) p := by
   rw [coe_eq_aeval_X, ← Polynomial.aeval_algHom_apply]
 
+/--
+@isnad1 id=eq.1h5v.s8.aea9e8b3e75c from=translated src=- shape=05790c7e vocab=15dbec7a
+-/
 theorem aeval_eq_sum_of_pow_eq_zero {A : Type} [CommRing A] {T : Type} [CommRing T] [Algebra A T]
     (t : T) (N : ℕ) (hN : t ^ N = 0) (p : Polynomial A) :
     Polynomial.aeval t p = ∑ i ∈ Finset.range N, algebraMap A T (p.coeff i) * t ^ i := by
@@ -42,6 +51,9 @@ theorem aeval_eq_sum_of_pow_eq_zero {A : Type} [CommRing A] {T : Type} [CommRing
   rw [hsub]
   exact Finset.sum_congr rfl (fun i _ => Algebra.smul_def _ _)
 
+/--
+@isnad1 id=eq.2h6v.s9.aa00af6476d8 from=translated src=- shape=bd91a5d2 vocab=77863707
+-/
 theorem formula {A : Type} [CommRing A] {T : Type} [CommRing T] [Algebra A T]
     (φ : PowerSeries A →ₐ[A] T) (t : T) (hφ : φ PowerSeries.X = t) (N : ℕ) (hN : t ^ N = 0) (f : PowerSeries A) :
     φ f = ∑ i ∈ Finset.range N, algebraMap A T (PowerSeries.coeff i f) * t ^ i := by
@@ -53,6 +65,9 @@ theorem formula {A : Type} [CommRing A] {T : Type} [CommRing T] [Algebra A T]
 
 end EvalNilpAux
 
+/--
+@isnad1 id=and.1h3v.s9.e32ef0576c9f from=translated src=- shape=231b1a54 vocab=a4531e6f
+-/
 theorem solution
     {A : Type} [CommRing A] {T : Type} [CommRing T] [Algebra A T] (t : T) (ht : IsNilpotent t) :
     (∃! φ : PowerSeries A →ₐ[A] T, φ PowerSeries.X = t) ∧

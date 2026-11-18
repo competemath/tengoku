@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_LT_LatticeTree_fixedVertexSet_eq_setOf_exi
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.4h7v.s10.f273457fb53a from=translated src=- shape=03d3ca7a vocab=989ef18d
+-/
 theorem LT.LatticeTree.fixedVertexSet_eq_setOf_exists_isWithin_one_of_coe_eq_one_add_smul_of_isUnit_det
     (R K : Type) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [Field K] [Algebra R K]
     [IsFractionRing R K] (ϖ : R) (hϖ : Irreducible ϖ)

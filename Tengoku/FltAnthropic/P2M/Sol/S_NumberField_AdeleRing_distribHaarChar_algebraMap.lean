@@ -16,6 +16,9 @@ open scoped NNReal ENNReal
 namespace FltWs24
 namespace AdelicModulusOneChar
 
+/--
+@isnad1 id=eq.1h3v.s7.00265c4e7568 from=translated src=- shape=dd786dec vocab=5630defd
+-/
 theorem addHaarScalarFactor_eq_one_of_integral_eq {G : Type*} [AddCommGroup G] [TopologicalSpace G]
     [IsTopologicalAddGroup G] [LocallyCompactSpace G] [MeasurableSpace G] [BorelSpace G]
     (μ' μ : Measure G) [μ.IsAddHaarMeasure] [IsFiniteMeasureOnCompacts μ'] [μ'.IsAddLeftInvariant]
@@ -37,6 +40,9 @@ variable (F : Type) [Field F] [NumberField F]
 
 local notation "𝔸" => AdeleRing (𝓞 F) F
 
+/--
+@isnad1 id=eq.0h2v.s11.6f8253c2900f from=translated src=- shape=ad9cd3ee vocab=05e0d30e
+-/
 theorem distribHaarChar_algebraMap_impl [MeasurableSpace 𝔸] [BorelSpace 𝔸] (a : Fˣ) :
     distribHaarChar 𝔸 (Units.map (algebraMap F 𝔸).toMonoidHom a) = 1 := by
   set u : 𝔸ˣ := Units.map (algebraMap F 𝔸).toMonoidHom a with hu
@@ -65,6 +71,9 @@ end FltWs24.AdelicModulusOneChar
 
 open NumberField
 
+/--
+@isnad1 id=eq.0h2v.s11.6f8253c2900f from=translated src=- shape=ad9cd3ee vocab=05e0d30e
+-/
 theorem solution (F : Type) [Field F] [NumberField F]
     [MeasurableSpace (AdeleRing (𝓞 F) F)] [BorelSpace (AdeleRing (𝓞 F) F)] (a : Fˣ) :
     MeasureTheory.distribHaarChar (AdeleRing (𝓞 F) F)

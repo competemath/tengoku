@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_QuaternionAlgebra_IsOrder_exists_basis_spa
 
 open scoped Quaternion
 
+/--
+@isnad1 id=ex.1h3v.s9.99f74119139a from=translated src=- shape=0191eec5 vocab=6df6e10c
+-/
 theorem QuaternionAlgebra.IsOrder.exists_basis_span_eq {a b : ℚ} {Λ : Submodule ℤ ℍ[ℚ, a, b]}
     (hΛ : QuaternionAlgebra.IsOrder Λ) :
     ∃ B : Module.Basis (Fin 4) ℚ ℍ[ℚ, a, b], (∀ i, B i ∈ Λ) ∧ Submodule.span ℤ (Set.range B) = Λ := by exact @_root_.P2MW.S_QuaternionAlgebra_IsOrder_exists_basis_span_eq.solution a b Λ hΛ

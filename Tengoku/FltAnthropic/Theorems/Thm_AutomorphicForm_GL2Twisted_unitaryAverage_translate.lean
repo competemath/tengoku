@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open AutomorphicForm.GL2Twisted
 
+/--
+@isnad1 id=eq.3h3v.s10.b5b7dfac90ce from=translated src=- shape=abe821dd vocab=33008b24
+-/
 theorem AutomorphicForm.GL2Twisted.unitaryAverage_translate (F : GL (Fin 2) ℂ → ℂ) (hF : Continuous F)
     (k₀ k₁ : GL (Fin 2) ℂ)
     (h₀ : star (k₀ : Matrix (Fin 2) (Fin 2) ℂ) * (k₀ : Matrix (Fin 2) (Fin 2) ℂ) = 1)

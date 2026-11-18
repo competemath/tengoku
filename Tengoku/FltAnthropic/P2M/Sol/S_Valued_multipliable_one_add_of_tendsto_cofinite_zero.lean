@@ -43,6 +43,9 @@ private theorem valuation_prod_one_add_le {Γ : Type*} [LinearOrderedCommGroupWi
         intro i _ _
         exact le_max_left _ _
 
+/--
+@isnad1 id=multipli.1h4v.s7.796fa828040c from=translated src=- shape=5d10ffd4 vocab=86db749d
+-/
 theorem multipliable_aux [CompleteSpace K] {ι : Type*} (f : ι → K)
     (hf : Tendsto f cofinite (𝓝 0)) : Multipliable (fun i => 1 + f i) := by
   classical
@@ -104,6 +107,9 @@ theorem multipliable_aux [CompleteSpace K] {ι : Type*} (f : ι → K)
 
 end ValuedProdAux
 
+/--
+@isnad1 id=multipli.1h4v.s7.796fa828040c from=translated src=- shape=5d10ffd4 vocab=86db749d
+-/
 theorem solution
     {K : Type*} [Field K] {Γ₀ : Type*} [LinearOrderedCommGroupWithZero Γ₀] [Valued K Γ₀] [CompleteSpace K]
     {ι : Type*} (f : ι → K) (hf : Tendsto f cofinite (𝓝 0)) :

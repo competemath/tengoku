@@ -122,6 +122,9 @@ private theorem exists_natCast_mul_isIntegral (z : AlgebraicClosure ℚ) :
 
 end AbsLogBound
 
+/--
+@isnad1 id=ex.0h1v.s11.ce69dd615546 from=translated src=- shape=ccefc396 vocab=656963a1
+-/
 theorem solution (z : AlgebraicClosure ℚ) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ (L : IntermediateField ℚ (AlgebraicClosure ℚ)) [NumberField ↥L]
       (ν : NumberField.FinitePlace ↥L) (p : ℕ), p.Prime → ν (p : ↥L) < 1 →

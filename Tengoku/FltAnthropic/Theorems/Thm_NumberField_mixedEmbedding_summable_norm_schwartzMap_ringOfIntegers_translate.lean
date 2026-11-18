@@ -10,6 +10,9 @@ open NumberField NumberField.mixedEmbedding
 open scoped SchwartzMap Classical
 
 noncomputable section
+/--
+@isnad1 id=summable.0h3v.s11.318c15f943d2 from=translated src=- shape=ca620796 vocab=27ec9667
+-/
 theorem NumberField.mixedEmbedding.summable_norm_schwartzMap_ringOfIntegers_translate
     (F : Type*) [Field F] [NumberField F]
     (g : 𝓢(NumberField.mixedEmbedding.mixedSpace F, ℂ))

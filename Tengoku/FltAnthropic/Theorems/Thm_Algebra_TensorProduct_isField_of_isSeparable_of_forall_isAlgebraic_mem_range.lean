@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=isfield.1h3v.s7.18b132b2d8db from=translated src=- shape=d597839f vocab=278b10fc
+-/
 theorem Algebra.TensorProduct.isField_of_isSeparable_of_forall_isAlgebraic_mem_range
     (k F K : Type*) [Field k] [Field F] [Field K] [Algebra k F] [Algebra k K]
     [Algebra.IsSeparable k K]

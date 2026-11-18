@@ -13,6 +13,9 @@ set_option autoImplicit false
 open Complex Real UpperHalfPlane
 open scoped Manifold MatrixGroups ModularForm
 
+/--
+@isnad1 id=and.2h4v.s12.b25d3fd7af7b from=translated src=- shape=f5e40870 vocab=84c9c13c
+-/
 theorem WLight.qExpansion_sigmaTransport_package (N : ℕ) [NeZero N]
     (K : IntermediateField ℚ ℂ) (φ : ↥K →+* ℂ) (hφK : ∀ z : ↥K, φ z ∈ K)
     (T : (ℍ → ℂ) → (ℍ → ℂ) → Prop)

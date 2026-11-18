@@ -14,6 +14,9 @@ open scoped SchwartzMap Classical
 
 noncomputable section
 
+/--
+@isnad1 id=summable.1h2v.s8.b41efe1823f8 from=translated src=- shape=99b39fb5 vocab=592401a8
+-/
 theorem solution
     {F : Type*} [Field F] [NumberField F]
     {f : AdeleRing (𝓞 F) F → ℂ} (hf : f ∈ pureTensorSet F) :

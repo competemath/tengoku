@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=iff.1h4v.s9.28a22e28e859 from=translated src=- shape=44ba15a0 vocab=d03a974b
+-/
 theorem AffineDilatation.mem_subalgebra_iff_exists_mem_pow
     {A : Type u} [CommRing A] (I : Ideal A) (a : A) (ha : a ∈ I) (x : Localization.Away a) :
     x ∈ AffineDilatation.subalgebra I a ↔

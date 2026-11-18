@@ -11,6 +11,9 @@ open scoped TensorProduct
 
 universe u
 
+/--
+@isnad1 id=islocalr.0h3v.s7.30897b72eb4f from=translated src=- shape=054c1ea0 vocab=cf9137b0
+-/
 theorem IsLocalRing.tensorProduct_of_moduleFinite_of_isAlgClosed_residueField
     (R : Type u) [CommRing R] [IsLocalRing R] [IsAlgClosed (IsLocalRing.ResidueField R)]
     (A : Type u) [CommRing A] [Algebra R A] [Module.Finite R A] [IsLocalRing A]

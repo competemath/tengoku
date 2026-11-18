@@ -8,5 +8,8 @@ import Tengoku.FltAnthropic.P2M.Sol.S_QuaternionAlgebra_IsOrder_finrank_eq_four
 
 open scoped Quaternion
 
+/--
+@isnad1 id=eq.1h3v.s9.3da52c4c1d94 from=translated src=- shape=db225be1 vocab=2b5516fe
+-/
 theorem QuaternionAlgebra.IsOrder.finrank_eq_four {a b : ℚ} {Λ : Submodule ℤ ℍ[ℚ, a, b]}
     (hΛ : QuaternionAlgebra.IsOrder Λ) : Module.finrank ℤ Λ = 4 := by exact @_root_.P2MW.S_QuaternionAlgebra_IsOrder_finrank_eq_four.solution a b Λ hΛ

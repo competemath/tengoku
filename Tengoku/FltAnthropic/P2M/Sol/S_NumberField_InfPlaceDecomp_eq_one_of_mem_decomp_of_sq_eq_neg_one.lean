@@ -12,6 +12,9 @@ set_option synthInstance.maxHeartbeats 1600000
 open NumberField
 open scoped NumberField.InfPlaceDecomp
 
+/--
+@isnad1 id=eq.2h5v.s9.9eb51a156e47 from=translated src=- shape=134afc1c vocab=03625b3c
+-/
 theorem solution
     (E K : Type) [Field E] [NumberField E] [Field K] [NumberField K] [Algebra E K] [IsGalois E K]
     (i : E) (hi : i ^ 2 = -1)

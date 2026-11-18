@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_DirichletCharacter_exists_pow_two_pow_eq_o
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.1h1v.s9.6234a1fcaf93 from=translated src=- shape=12b19da9 vocab=b21d325e
+-/
 theorem DirichletCharacter.exists_pow_two_pow_eq_one_and_isPrimitive_and_odd_sum
     (ℓ : ℕ) [Fact ℓ.Prime] (hℓ : ℓ ≠ 2) :
     ∃ (n : ℕ) (χ : DirichletCharacter ℂ ℓ), 0 < n ∧

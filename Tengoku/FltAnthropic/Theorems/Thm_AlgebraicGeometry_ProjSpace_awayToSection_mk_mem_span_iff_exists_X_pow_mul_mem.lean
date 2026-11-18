@@ -10,6 +10,9 @@ set_option autoImplicit false
 open MvPolynomial CategoryTheory CategoryTheory.Limits AlgebraicGeometry AlgebraicGeometry.HilbertFunctor
 attribute [local instance] MvPolynomial.gradedAlgebra
 
+/--
+@isnad1 id=iff.1h6v.s17.ce9e92cd1ae9 from=translated src=- shape=64ecda23 vocab=6b5c720c
+-/
 theorem AlgebraicGeometry.ProjSpace.awayToSection_mk_mem_span_iff_exists_X_pow_mul_mem
     (n : ℕ) (A : Type) [CommRing A] (I : Ideal (MvPolynomial (Fin (n + 1)) A))
     (i : Fin (n + 1)) (d : ℕ) (F : MvPolynomial (Fin (n + 1)) A) (hF : F.IsHomogeneous d) :

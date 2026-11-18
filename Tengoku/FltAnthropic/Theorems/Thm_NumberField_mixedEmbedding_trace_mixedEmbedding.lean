@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_NumberField_mixedEmbedding_trace_mixedEmbe
 
 open NumberField NumberField.mixedEmbedding
 open scoped Classical
+/--
+@isnad1 id=eq.0h2v.s10.72301e1a6f98 from=translated src=- shape=f225a747 vocab=70edd9bb
+-/
 theorem NumberField.mixedEmbedding.trace_mixedEmbedding
     (K : Type*) [Field K] [NumberField K] (x : K) :
     Algebra.trace ℝ (mixedSpace K) (mixedEmbedding K x) = (Algebra.trace ℚ K x : ℝ) := by exact @_root_.P2MW.S_NumberField_mixedEmbedding_trace_mixedEmbedding.solution K _ _ x

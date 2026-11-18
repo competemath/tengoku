@@ -11,11 +11,17 @@ namespace S17DW
 
 variable {R : Type*} [CommRing R] {p : ℕ} [hp : Fact p.Prime]
 
+/--
+@isnad1 id=eq.0h4v.s7.f4e6302d3020 from=translated src=- shape=c1cfd4c2 vocab=8aa0e8ce
+-/
 theorem ghost_eq_sum (k : ℕ) (x : WittVector p R) :
     WittVector.ghostComponent k x =
       ∑ i ∈ Finset.range (k + 1), (p : R) ^ i * x.coeff i ^ p ^ (k - i) := by
   rw [WittVector.ghostComponent_apply, aeval_wittPolynomial]
 
+/--
+@isnad1 id=eq.3h6v.s8.d5644fda2949 from=translated src=- shape=71c95789 vocab=af2eae1d
+-/
 theorem coeff_eq_of_ghost_eq (hpR : (p : R) ∈ nonZeroDivisors R) (n : ℕ) (x y : WittVector p R)
     (h : ∀ k < n, WittVector.ghostComponent k x = WittVector.ghostComponent k y) :
     ∀ k < n, x.coeff k = y.coeff k := by
@@ -37,6 +43,9 @@ end S17DW
 
 universe u
 
+/--
+@isnad1 id=eq.3h6v.s8.d5644fda2949 from=translated src=- shape=71c95789 vocab=af2eae1d
+-/
 theorem solution
     {R : Type u} [CommRing R] (p : ℕ) [Fact p.Prime] (hp : (p : R) ∈ nonZeroDivisors R)
     (n : ℕ) (x y : WittVector p R)

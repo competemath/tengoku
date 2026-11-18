@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=eq.3h6v.s8.d5644fda2949 from=translated src=- shape=71c95789 vocab=af2eae1d
+-/
 theorem WittVector.coeff_eq_coeff_of_forall_ghostComponent_eq
     {R : Type u} [CommRing R] (p : ℕ) [Fact p.Prime] (hp : (p : R) ∈ nonZeroDivisors R)
     (n : ℕ) (x y : WittVector p R)

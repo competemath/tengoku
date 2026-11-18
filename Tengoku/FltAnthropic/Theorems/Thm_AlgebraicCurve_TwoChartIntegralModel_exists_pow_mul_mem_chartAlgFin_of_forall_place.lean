@@ -17,6 +17,9 @@ universe u
 
 open IsLocalRing AlgebraicCurve AlgebraicCurve.TwoChartIntegralModel
 
+/--
+@isnad1 id=ex.3h6v.s9.4a8352eb1d7a from=translated src=- shape=c1215b3f vocab=443bd0d7
+-/
 theorem AlgebraicCurve.TwoChartIntegralModel.exists_pow_mul_mem_chartAlgFin_of_forall_place
     (R : Type u) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     (ϖ : R) (hϖ : maximalIdeal R = Ideal.span {ϖ})

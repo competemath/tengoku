@@ -13,6 +13,9 @@ def UnitSelect (R : Type*) [CommRing R] : Prop :=
   ∀ (n : ℕ) (t c : Fin n → R), ∑ i, c i * t i = 1 →
     ∃ (e : Fin n → R) (w : R), CompleteOrthogonalIdempotents e ∧ (∑ i, e i * t i) * w = 1
 
+/--
+@isnad1 id=complete.0h3v.s5.e044edd33e53 from=translated src=- shape=26d6b62f vocab=495b3523
+-/
 theorem completeOrthogonalIdempotents_single {R : Type*} [CommRing R] {n : ℕ} (i₀ : Fin n) :
     CompleteOrthogonalIdempotents (Pi.single (M := fun _ : Fin n => R) i₀ 1) := by
   refine ⟨⟨fun i => ?_, fun i j hij => ?_⟩, ?_⟩
@@ -26,6 +29,9 @@ theorem completeOrthogonalIdempotents_single {R : Type*} [CommRing R] {n : ℕ} 
     · rw [Pi.single_eq_of_ne hi, zero_mul]
   · exact Fintype.sum_pi_single' i₀ 1
 
+/--
+@isnad1 id=unitsele.0h1v.s4.67aeb699b679 from=translated src=- shape=c612a321 vocab=185c55d8
+-/
 theorem unitSelect_of_isLocalRing (R : Type*) [CommRing R] [IsLocalRing R] : UnitSelect R := by
   intro n t c h
   classical
@@ -48,6 +54,9 @@ theorem unitSelect_of_isLocalRing (R : Type*) [CommRing R] [IsLocalRing R] : Uni
   rw [hsum]
   exact hi₀.mul_val_inv
 
+/--
+@isnad1 id=unitsele.1h2v.s5.1a840bad8038 from=translated src=- shape=277a5259 vocab=839b1c32
+-/
 theorem unitSelect_pi {ι : Type*} (R : ι → Type*) [∀ k, CommRing (R k)]
     (h : ∀ k, UnitSelect (R k)) : UnitSelect (∀ k, R k) := by
   intro n t c hsum
@@ -68,6 +77,9 @@ theorem unitSelect_pi {ι : Type*} (R : ι → Type*) [∀ k, CommRing (R k)]
     simp only [Pi.mul_apply, Finset.sum_apply, Pi.one_apply]
     exact hw k
 
+/--
+@isnad1 id=unitsele.2h2v.s4.511fc435eb01 from=translated src=- shape=ab93cd92 vocab=faa8b61e
+-/
 theorem unitSelect_prod (R S : Type*) [CommRing R] [CommRing S]
     (hR : UnitSelect R) (hS : UnitSelect S) : UnitSelect (R × S) := by
   intro n t c hsum
@@ -95,6 +107,9 @@ variable {ι : Type*} {R : ι → Type*} [∀ i, CommRing (R i)]
 variable {S : ι → Type*} [∀ i, SetLike (S i) (R i)] [∀ i, SubringClass (S i) (R i)]
 variable {B : ∀ i, S i}
 
+/--
+@isnad1 id=unitsele.2h4v.s7.4c8a2d50d51a from=translated src=- shape=5f9e36f5 vocab=ede64336
+-/
 theorem unitSelect_restrictedProduct
     (hR : ∀ i, UnitSelect (R i)) (hB : ∀ i, UnitSelect (B i)) :
     UnitSelect (Πʳ i, [R i, B i]) := by
@@ -161,19 +176,31 @@ variable (K : Type*) [Field K] [NumberField K]
 
 omit [NumberField K] in
 
+/--
+@isnad1 id=unitsele.0h1v.s3.8f5147cc0520 from=translated src=- shape=1666ae32 vocab=a116b40a
+-/
 theorem unitSelect_infiniteAdeleRing : UnitSelect (InfiniteAdeleRing K) :=
   unitSelect_pi (fun v : InfinitePlace K => v.Completion) fun _ => unitSelect_of_isLocalRing _
 
+/--
+@isnad1 id=unitsele.0h1v.s5.e811a9bab03b from=translated src=- shape=5a2b787c vocab=2c3962f8
+-/
 theorem unitSelect_finiteAdeleRing : UnitSelect (FiniteAdeleRing (𝓞 K) K) :=
   unitSelect_restrictedProduct (R := fun v : HeightOneSpectrum (𝓞 K) => v.adicCompletion K)
     (B := fun v : HeightOneSpectrum (𝓞 K) => v.adicCompletionIntegers K)
     (fun _ => unitSelect_of_isLocalRing _) (fun _ => unitSelect_of_isLocalRing _)
 
+/--
+@isnad1 id=unitsele.0h1v.s5.d591848d459d from=translated src=- shape=5a2b787c vocab=4c6b49bb
+-/
 theorem unitSelect_adeleRing : UnitSelect (AdeleRing (𝓞 K) K) :=
   unitSelect_prod _ _ (unitSelect_infiniteAdeleRing K) (unitSelect_finiteAdeleRing K)
 
 end Adelic
 
+/--
+@isnad1 id=ex.2h3v.s7.c803556e02ce from=translated src=- shape=80630cef vocab=d65dfe85
+-/
 theorem main {R : Type*} [CommRing R] (hR : UnitSelect R) {ι : Type*} [Fintype ι] (t : ι → R)
     (h : Ideal.span (Set.range t) = ⊤) :
     ∃ e : ι → R, CompleteOrthogonalIdempotents e ∧ IsUnit (∑ i, e i * t i) := by
@@ -195,6 +222,9 @@ theorem main {R : Type*} [CommRing R] (hR : UnitSelect R) {ι : Type*} [Fintype 
 end R4H90U
 
 open NumberField in
+/--
+@isnad1 id=ex.1h3v.s9.4106413e05f8 from=translated src=- shape=789d35c0 vocab=32e39ea6
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K] (ι : Type) [Fintype ι] (t : ι → AdeleRing (𝓞 K) K)
     (h : Ideal.span (Set.range t) = ⊤) :

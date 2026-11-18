@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open scoped Topology
 
+/--
+@isnad1 id=eq.2h5v.s7.8ac23d8bc353 from=translated src=- shape=a1c9fc78 vocab=451544cf
+-/
 theorem Valued.v_tprod_eq_finsetProd_of_forall_not_mem_v_eq_one
     {K : Type*} [Field K] {Γ₀ : Type*} [LinearOrderedCommGroupWithZero Γ₀] [Valued K Γ₀]
     {ι : Type*} (f : ι → K) (hf : Multipliable f)

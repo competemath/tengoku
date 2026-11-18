@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.Definitions.Def_WeierstrassCurve_VeluOrderTwo
 namespace P2MW.S_WeierstrassCurve_veluQuotient2_cFour
 
 open WeierstrassCurve in
+/--
+@isnad1 id=eq.0h4v.s6.b788b202ec14 from=translated src=- shape=afb2baaf vocab=6ea48263
+-/
 theorem solution {R : Type*} [CommRing R] (W : WeierstrassCurve R) (x₀ y₀ : R) :
     (W.veluQuotient2 x₀ y₀).c₄ = W.c₄ + 240 * W.veluGx x₀ y₀ := by
   have hb₄ : (W.veluQuotient2 x₀ y₀).b₄ = W.b₄ - 10 * W.veluGx x₀ y₀ := by

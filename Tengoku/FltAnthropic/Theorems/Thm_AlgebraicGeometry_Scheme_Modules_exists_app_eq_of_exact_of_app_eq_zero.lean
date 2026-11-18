@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry Opposite TopologicalSpace
 
+/--
+@isnad1 id=ex.2h4v.s12.f60eff1020e2 from=translated src=- shape=525834a1 vocab=70d657c4
+-/
 theorem AlgebraicGeometry.Scheme.Modules.exists_app_eq_of_exact_of_app_eq_zero
     {X : Scheme.{u}} (S : ShortComplex X.Modules) (hS : S.Exact) [Mono S.f]
     (U : X.Opens) (m : Γ(S.X₂, U)) (hm : S.g.app U m = 0) :

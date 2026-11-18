@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open scoped Manifold ContDiff Topology
 
+/--
+@isnad1 id=or.3h3v.s8.6ea4583e2ce4 from=translated src=- shape=fb3e8eda vocab=4ac0850a
+-/
 theorem Manifold.forall_eq_zero_or_forall_eventually_ne_zero_of_analyticAt_extChartAt_of_isConnected
     {M : Type*} [TopologicalSpace M] [ChartedSpace ℂ M] [IsManifold 𝓘(ℂ, ℂ) ω M] [T2Space M]
     {W : Set M} (hW : IsOpen W) (hWc : IsConnected W) (g : M → ℂ)

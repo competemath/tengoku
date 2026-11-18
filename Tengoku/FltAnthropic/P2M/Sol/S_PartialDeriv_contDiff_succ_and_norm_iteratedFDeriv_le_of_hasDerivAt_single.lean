@@ -19,14 +19,23 @@ abbrev ev {n : ℕ} (j : Fin n) : Fin n → ℝ := Pi.single j 1
 
 def trunc {n : ℕ} (h : Fin n → ℝ) (k : ℕ) : Fin n → ℝ := fun i => if (i : ℕ) < k then h i else 0
 
+/--
+@isnad1 id=eq.0h2v.s5.87f34bbf3fd1 from=translated src=- shape=baff65c4 vocab=e16aca3a
+-/
 theorem trunc_zero {n : ℕ} (h : Fin n → ℝ) : trunc h 0 = 0 := by
   funext i
   simp [trunc]
 
+/--
+@isnad1 id=eq.0h2v.s4.8b3fe79a1474 from=translated src=- shape=f2f6f2fc vocab=e16aca3a
+-/
 theorem trunc_self {n : ℕ} (h : Fin n → ℝ) : trunc h n = h := by
   funext i
   simp [trunc, i.isLt]
 
+/--
+@isnad1 id=eq.0h3v.s6.ab7f4bb21d8a from=translated src=- shape=45fc751b vocab=3114406c
+-/
 theorem trunc_succ {n : ℕ} (h : Fin n → ℝ) (j : Fin n) : trunc h ((j : ℕ) + 1) = trunc h j + h j • ev j := by
   funext i
   simp only [trunc, Pi.add_apply, Pi.smul_apply, Pi.single_apply, smul_eq_mul]
@@ -38,6 +47,9 @@ theorem trunc_succ {n : ℕ} (h : Fin n → ℝ) (j : Fin n) : trunc h ((j : ℕ
     · rw [ite_eq_left (by omega), ite_eq_left hlt, ite_eq_right hij, mul_zero, add_zero]
     · rw [ite_eq_right (by omega), ite_eq_right hlt, ite_eq_right hij, mul_zero, add_zero]
 
+/--
+@isnad1 id=le.1h4v.s7.f457fc868769 from=translated src=- shape=b6ea50e4 vocab=3e3f5c94
+-/
 theorem norm_trunc_add_smul_le {n : ℕ} (h : Fin n → ℝ) (j : Fin n) (s : ℝ) (hs : |s| ≤ |h j|) :
     ‖trunc h j + s • ev j‖ ≤ ‖h‖ := by
   rw [pi_norm_le_iff_of_nonneg (norm_nonneg h)]
@@ -62,6 +74,9 @@ section Line
 
 variable {n : ℕ} {f : (Fin n → ℝ) → ℂ} {g : Fin n → (Fin n → ℝ) → ℂ}
 
+/--
+@isnad1 id=hasderiv.1h6v.s8.0df6fe80e1ea from=translated src=- shape=4d7db0d3 vocab=4e7a2aef
+-/
 theorem hasDerivAt_line
     (hfg : ∀ (t : Fin n → ℝ) (j : Fin n),
       HasDerivAt (fun s : ℝ => f (t + s • (Pi.single j (1 : ℝ) : Fin n → ℝ))) (g j t) 0)
@@ -77,6 +92,9 @@ theorem hasDerivAt_line
     rw [sub_self]; exact h0
   exact h0'.comp_sub_const s s
 
+/--
+@isnad1 id=le.2h7v.s8.00da13ee3b79 from=translated src=- shape=5e55a6a4 vocab=1ca49e4d
+-/
 theorem norm_sub_sub_smul_le
     (hfg : ∀ (t : Fin n → ℝ) (j : Fin n),
       HasDerivAt (fun s : ℝ => f (t + s • (Pi.single j (1 : ℝ) : Fin n → ℝ))) (g j t) 0)
@@ -99,6 +117,9 @@ theorem norm_sub_sub_smul_le
   rw [← hφeq]
   simpa [Real.norm_eq_abs] using hmv
 
+/--
+@isnad1 id=hasfderi.2h4v.s9.5e7d806a8bd2 from=translated src=- shape=d4947569 vocab=9db76e2a
+-/
 theorem hasFDerivAt_of_partials (hgc : ∀ j, Continuous (g j))
     (hfg : ∀ (t : Fin n → ℝ) (j : Fin n),
       HasDerivAt (fun s : ℝ => f (t + s • (Pi.single j (1 : ℝ) : Fin n → ℝ))) (g j t) 0)
@@ -162,10 +183,16 @@ variable {n : ℕ}
 def A (j : Fin n) : ℂ →L[ℝ] ((Fin n → ℝ) →L[ℝ] ℂ) :=
   ContinuousLinearMap.smulRightL ℝ (Fin n → ℝ) ℂ (ContinuousLinearMap.proj j : (Fin n → ℝ) →L[ℝ] ℝ)
 
+/--
+@isnad1 id=eq.0h3v.s10.45c71739cc6c from=translated src=- shape=b7d4dba0 vocab=8af637ed
+-/
 theorem A_apply (j : Fin n) (c : ℂ) :
     A j c = (ContinuousLinearMap.proj j : (Fin n → ℝ) →L[ℝ] ℝ).smulRight c :=
   rfl
 
+/--
+@isnad1 id=le.0h2v.s9.dde9a894fe86 from=translated src=- shape=45794a70 vocab=b6d3976c
+-/
 theorem norm_A_le (j : Fin n) : ‖A j‖ ≤ 1 := by
   refine ContinuousLinearMap.opNorm_le_bound _ zero_le_one fun c => ?_
   rw [one_mul, A_apply]
@@ -175,15 +202,24 @@ theorem norm_A_le (j : Fin n) : ‖A j‖ ≤ 1 := by
 
 variable {g : Fin n → (Fin n → ℝ) → ℂ}
 
+/--
+@isnad1 id=eq.0h3v.s10.badb1fdd995a from=translated src=- shape=fb14285c vocab=e479817f
+-/
 theorem sum_smulRight_eq (t : Fin n → ℝ) :
     (∑ j, (ContinuousLinearMap.proj j : (Fin n → ℝ) →L[ℝ] ℝ).smulRight (g j t)) = ∑ j, A j (g j t) :=
   rfl
 
+/--
+@isnad1 id=contdiff.1h3v.s9.3ba1e7f1d30d from=translated src=- shape=04b9055c vocab=2e0fb738
+-/
 theorem contDiff_sum_A {m : ℕ} (hg : ∀ j, ContDiff ℝ m (g j)) :
     ContDiff ℝ m (fun t => ∑ j, (ContinuousLinearMap.proj j : (Fin n → ℝ) →L[ℝ] ℝ).smulRight (g j t)) := by
   simp only [sum_smulRight_eq]
   exact ContDiff.sum fun j _ => (A j).contDiff.comp (hg j)
 
+/--
+@isnad1 id=le.2h5v.s11.a65ed3f7f42f from=translated src=- shape=1d26b4ab vocab=77b29f88
+-/
 theorem norm_iteratedFDeriv_sum_A_le {m : ℕ} (hg : ∀ j, ContDiff ℝ m (g j)) {k : ℕ} (hk : k ≤ m)
     (t : Fin n → ℝ) :
     ‖iteratedFDeriv ℝ k (fun t => ∑ j, A j (g j t)) t‖ ≤ ∑ j, ‖iteratedFDeriv ℝ k (g j) t‖ := by
@@ -213,6 +249,9 @@ end KcPartialDeriv
 end
 
 open KcPartialDeriv in
+/--
+@isnad1 id=and.2h4v.s10.4ae44c06e8c1 from=translated src=- shape=5e11e3fe vocab=df1298bf
+-/
 theorem solution
     (n m : ℕ) (f : (Fin n → ℝ) → ℂ) (g : Fin n → (Fin n → ℝ) → ℂ)
     (hg : ∀ j, ContDiff ℝ m (g j))

@@ -8,6 +8,9 @@ namespace P2MW.S_NumberField_AdelicBox_exists_denom_of_hasCompactSupport
 open NumberField NumberField.AdelicBox IsDedekindDomain IsDedekindDomain.HeightOneSpectrum
 open scoped Classical
 
+/--
+@isnad1 id=ex.1h2v.s8.f121e2c95328 from=translated src=- shape=2e232f16 vocab=ed15b3a6
+-/
 theorem solution
     {F : Type*} [Field F] [NumberField F]
     {h : FiniteAdeleRing (𝓞 F) F → ℂ} (hcs : HasCompactSupport h) :

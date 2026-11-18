@@ -19,6 +19,9 @@ open NumberField.AdelicLevel
 
 variable (F : Type) [Field F] [NumberField F] (v : HeightOneSpectrum (𝓞 F))
 
+/--
+@isnad1 id=eq.0h3v.s9.a4a1906794d3 from=translated src=- shape=a4dda7eb vocab=a537da66
+-/
 theorem valued_invUnif_pow (k : ℕ) :
     Valued.v ((((uniformizerUnit F v)⁻¹ : (v.adicCompletion F)ˣ) : v.adicCompletion F) ^ k) =
       WithZero.exp (k : ℤ) := by
@@ -27,6 +30,9 @@ theorem valued_invUnif_pow (k : ℕ) :
 
 end Ws1.F3
 
+/--
+@isnad1 id=and.3h4v.s12.ef288ce7fc61 from=translated src=- shape=47cc3074 vocab=fe07e15d
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F]
     (v : HeightOneSpectrum (𝓞 F))

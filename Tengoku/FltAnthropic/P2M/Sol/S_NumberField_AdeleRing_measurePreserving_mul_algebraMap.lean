@@ -22,10 +22,16 @@ local notation "𝔸" => AdeleRing (𝓞 F) F
 noncomputable def principalUnit (a : F) (ha : a ≠ 0) : 𝔸ˣ :=
   Units.map (algebraMap F 𝔸 : F →+* 𝔸).toMonoidHom (Units.mk0 a ha)
 
+/--
+@isnad1 id=eq.1h2v.s10.8ed4f4e2fdc9 from=translated src=- shape=6f07ae79 vocab=26c34fe5
+-/
 theorem mul_eq_coe_mulLeft (a : F) (ha : a ≠ 0) :
     (fun x => algebraMap F 𝔸 a * x) = ⇑(ContinuousAddEquiv.mulLeft (principalUnit F a ha)) :=
   rfl
 
+/--
+@isnad1 id=countabl.0h1v.s8.fa58d571fff2 from=translated src=- shape=cae77a92 vocab=b4f98e5c
+-/
 theorem countable_principalSubgroup : Countable (AdeleRing.principalSubgroup (𝓞 F) F) := by
   haveI : Countable F := (Module.finBasis ℚ F).equivFun.injective.countable
   refine Function.Surjective.countable
@@ -33,6 +39,9 @@ theorem countable_principalSubgroup : Countable (AdeleRing.principalSubgroup (�
   rintro ⟨x, k, rfl⟩
   exact ⟨k, rfl⟩
 
+/--
+@isnad1 id=eq.2h3v.s12.de4882828590 from=translated src=- shape=3eaf9137 vocab=618b17df
+-/
 theorem addHaarScalarFactor_map_mulLeft [MeasurableSpace 𝔸] [BorelSpace 𝔸]
     (μ : Measure 𝔸) [μ.IsAddHaarMeasure] (a : F) (ha : a ≠ 0)
     (hFD : IsAddFundamentalDomain (AdeleRing.principalSubgroup (𝓞 F) F)
@@ -65,6 +74,9 @@ theorem addHaarScalarFactor_map_mulLeft [MeasurableSpace 𝔸] [BorelSpace 𝔸]
     rw [← ENNReal.mul_left_inj h0 htop, one_mul]; exact key.symm
   exact_mod_cast h1
 
+/--
+@isnad1 id=measurep.2h3v.s11.1148b27e5054 from=translated src=- shape=c3944cc4 vocab=39facb28
+-/
 theorem measurePreserving_mul [MeasurableSpace 𝔸] [BorelSpace 𝔸]
     (μ : Measure 𝔸) [μ.IsAddHaarMeasure] [μ.Regular] (a : F) (ha : a ≠ 0)
     (hFD : IsAddFundamentalDomain (AdeleRing.principalSubgroup (𝓞 F) F)
@@ -83,6 +95,9 @@ end FltWs24.AdelicModulusOne
 
 open NumberField
 
+/--
+@isnad1 id=measurep.1h3v.s9.f4207ed3a9e2 from=translated src=- shape=5790a6fe vocab=de107b3b
+-/
 theorem solution (F : Type) [Field F] [NumberField F]
     [MeasurableSpace (AdeleRing (𝓞 F) F)] [BorelSpace (AdeleRing (𝓞 F) F)]
     (μ : MeasureTheory.Measure (AdeleRing (𝓞 F) F)) [μ.IsAddHaarMeasure] [μ.Regular]

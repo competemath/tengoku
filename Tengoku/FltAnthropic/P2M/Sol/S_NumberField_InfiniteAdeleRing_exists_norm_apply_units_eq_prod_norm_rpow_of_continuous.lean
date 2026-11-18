@@ -65,6 +65,9 @@ theorem eq_one_of_norm_eq_one {E : Type*} [NormedField E] [ProperSpace E]
   rw [hinv, inv_le_one₀ (hpos u)] at h2
   exact le_antisymm h1 h2
 
+/--
+@isnad1 id=ex.3h2v.s8.6b37bd7b1924 from=translated src=- shape=af03e4bc vocab=130938da
+-/
 theorem exists_rpow_rclike {𝕂 : Type*} [RCLike 𝕂] [ProperSpace 𝕂] (g : 𝕂ˣ → ℝ) (hg : Continuous g)
     (hmul : ∀ a b, g (a * b) = g a * g b) (hpos : ∀ a, 0 < g a) :
     ∃ σ : ℝ, ∀ u : 𝕂ˣ, g u = ‖(u : 𝕂)‖ ^ σ := by
@@ -108,6 +111,9 @@ theorem exists_rpow_rclike {𝕂 : Type*} [RCLike 𝕂] [ProperSpace 𝕂] (g : 
     rw [← hmul, inv_mul_cancel_right]
   rw [hu, h1 _ hs, one_mul, ← Real.exp_log (hpos (e _)), hlin, Real.rpow_def_of_pos ht]
 
+/--
+@isnad1 id=ex.4h4v.s9.1ffdae718fef from=translated src=- shape=8ddd89d0 vocab=01302e1a
+-/
 theorem exists_rpow_of_ringEquiv {E 𝕂 : Type*} [NormedField E] [RCLike 𝕂] [ProperSpace 𝕂]
     (φ : E ≃+* 𝕂) (hφ : ∀ x : E, ‖φ x‖ = ‖x‖)
     (g : Eˣ → ℝ) (hg : Continuous g) (hmul : ∀ a b, g (a * b) = g a * g b) (hpos : ∀ a, 0 < g a) :
@@ -127,6 +133,9 @@ theorem exists_rpow_of_ringEquiv {E 𝕂 : Type*} [NormedField E] [RCLike 𝕂] 
   rw [this]
   simp [hφ]
 
+/--
+@isnad1 id=ex.3h3v.s9.8b93632c48f6 from=translated src=- shape=efb363d9 vocab=1a9ad48d
+-/
 theorem exists_rpow_infinitePlace {K : Type*} [Field K] [NumberField K] (w : InfinitePlace K)
     (g : (w.Completion)ˣ → ℝ) (hg : Continuous g) (hmul : ∀ a b, g (a * b) = g a * g b)
     (hpos : ∀ a, 0 < g a) :
@@ -146,6 +155,9 @@ theorem exists_rpow_infinitePlace {K : Type*} [Field K] [NumberField K] (w : Inf
 end HurTb
 
 open HurTb in
+/--
+@isnad1 id=ex.1h2v.s9.aa0510aac19a from=translated src=- shape=d9e67afc vocab=6b932840
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K]
     (χ : (InfiniteAdeleRing K)ˣ →* ℂˣ) (hχ : Continuous fun y : (InfiniteAdeleRing K)ˣ => ((χ y : ℂˣ) : ℂ)) :

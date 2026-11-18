@@ -11,6 +11,9 @@ set_option autoImplicit false
 open NumberField IsDedekindDomain
 open scoped Pointwise
 
+/--
+@isnad1 id=ex.2h4v.s9.0682c0cbfcd3 from=translated src=- shape=0de873df vocab=9a3634d8
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K))
     (n : ℕ) (hn : 0 < n) (R : ℝ) (hR : 0 < R) :

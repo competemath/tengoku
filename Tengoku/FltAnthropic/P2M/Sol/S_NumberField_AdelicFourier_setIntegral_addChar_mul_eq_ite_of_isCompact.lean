@@ -30,6 +30,9 @@ variable {F : Type} [Field F] [NumberField F]
 
 omit [BorelSpace (FiniteAdeleRing (𝓞 F) F)] in
 
+/--
+@isnad1 id=eq.1h5v.s10.b678d5dd4a37 from=translated src=- shape=ffd71044 vocab=d7e8ad24
+-/
 theorem setIntegral_comp_add_left_eq [MeasurableAdd (FiniteAdeleRing (𝓞 F) F)]
     (g : FiniteAdeleRing (𝓞 F) F → ℂ)
     {c : FiniteAdeleRing (𝓞 F) F} (hc : c ∈ K) :
@@ -44,6 +47,9 @@ theorem setIntegral_comp_add_left_eq [MeasurableAdd (FiniteAdeleRing (𝓞 F) F)
     (measurableEmbedding_addLeft c) g (K : Set (FiniteAdeleRing (𝓞 F) F))
   rwa [hpre] at h
 
+/--
+@isnad1 id=eq.2h6v.s11.5f5e125106a6 from=translated src=- shape=0a3755ba vocab=d05f47d2
+-/
 theorem char_mul_setIntegral_eq (hKm : MeasurableSet (K : Set (FiniteAdeleRing (𝓞 F) F)))
     (ξ : FiniteAdeleRing (𝓞 F) F) {c : FiniteAdeleRing (𝓞 F) F} (hc : c ∈ K) :
     ψf (ξ * c) * ∫ z in (K : Set (FiniteAdeleRing (𝓞 F) F)), ψf (ξ * z) ∂ν
@@ -57,6 +63,9 @@ theorem char_mul_setIntegral_eq (hKm : MeasurableSet (K : Set (FiniteAdeleRing (
     _ = ∫ z in (K : Set (FiniteAdeleRing (𝓞 F) F)), ψf (ξ * z) ∂ν :=
         setIntegral_comp_add_left_eq ν K (fun z => ψf (ξ * z)) hc
 
+/--
+@isnad1 id=eq.1h5v.s11.cf0685d8f3b3 from=translated src=- shape=34bb12fc vocab=6dc4a855
+-/
 theorem setIntegral_addChar_mul_eq_ite (hK : IsCompact (K : Set (FiniteAdeleRing (𝓞 F) F)))
     (ξ : FiniteAdeleRing (𝓞 F) F) :
     ∫ z in (K : Set (FiniteAdeleRing (𝓞 F) F)), ψf (ξ * z) ∂ν
@@ -84,6 +93,9 @@ end
 open _root_.NumberField open _root_.P2MW.S_NumberField_AdelicFourier_setIntegral_addChar_mul_eq_ite_of_isCompact.NumberField open _root_.NumberField.AdelicFourier open _root_.P2MW.S_NumberField_AdelicFourier_setIntegral_addChar_mul_eq_ite_of_isCompact.NumberField.AdelicFourier open _root_.NumberField.AdelicBox open _root_.AutomorphicForm open _root_.IsDedekindDomain open _root_.MeasureTheory
 open scoped Classical FourierTransform nonZeroDivisors
 
+/--
+@isnad1 id=eq.1h5v.s11.cf0685d8f3b3 from=translated src=- shape=34bb12fc vocab=6dc4a855
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F]
     [MeasurableSpace (FiniteAdeleRing (𝓞 F) F)] [BorelSpace (FiniteAdeleRing (𝓞 F) F)]

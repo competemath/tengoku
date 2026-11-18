@@ -12,6 +12,9 @@ open MvPowerSeries
 
 universe u
 
+/--
+@isnad1 id=eq.4h8v.s10.559afdbba7b2 from=translated src=- shape=de1f442d vocab=836f1f6b
+-/
 theorem Tengoku.FltAnthropic.MvFormalGroup.coeff_subst_iterate_sum_single_eq_constantCoeff_invariantDerivation_iterate
     {𝓞 : Type u} [CommRing 𝓞] {d : ℕ} (F : MvFormalGroup d 𝓞)
     (G : (n : ℕ) → Fin d → MvPowerSeries (Fin n × Fin d) 𝓞)

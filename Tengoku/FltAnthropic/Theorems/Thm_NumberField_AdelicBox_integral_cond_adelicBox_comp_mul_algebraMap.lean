@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_NumberField_AdelicBox_integral_cond_adelic
 
 open NumberField
 attribute [local instance] NumberField.AdelicHaar.adeleBorel
+/--
+@isnad1 id=eq.2h4v.s10.5cf33f968de5 from=translated src=- shape=1227e77d vocab=f03575ee
+-/
 theorem NumberField.AdelicBox.integral_cond_adelicBox_comp_mul_algebraMap
     (F : Type) [Field F] [NumberField F]
     {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E]

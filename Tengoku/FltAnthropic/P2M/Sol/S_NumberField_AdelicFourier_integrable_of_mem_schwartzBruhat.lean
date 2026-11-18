@@ -45,17 +45,29 @@ open scoped Classical
 
 def mixedCell : Set E∞ := closure (ZSpan.fundamentalDomain (mixedEmbedding.latticeBasis F))
 
+/--
+@isnad1 id=iscompac.0h1v.s7.81e9ff2b8e74 from=translated src=- shape=4b0f8f6d vocab=54ddd8e2
+-/
 theorem isCompact_mixedCell : IsCompact (mixedCell F) :=
   (ZSpan.fundamentalDomain_isBounded (mixedEmbedding.latticeBasis F)).isCompact_closure
 
+/--
+@isnad1 id=isclosed.0h1v.s7.e0075535a068 from=translated src=- shape=4b0f8f6d vocab=7ae1c6f3
+-/
 theorem isClosed_mixedCell : IsClosed (mixedCell F) := isClosed_closure
 
+/--
+@isnad1 id=ex.0h1v.s7.0761ccc77479 from=translated src=- shape=6279aa6a vocab=d99a15fc
+-/
 theorem exists_norm_le_of_mem_mixedCell : ∃ R : ℝ, 0 ≤ R ∧ ∀ q ∈ mixedCell F, ‖q‖ ≤ R := by
   obtain ⟨R, hR⟩ := isBounded_iff_forall_norm_le.mp (isCompact_mixedCell F).isBounded
   exact ⟨max R 0, le_max_right _ _, fun q hq => (hR q hq).trans (le_max_left _ _)⟩
 
 def archCell : Set (InfiniteAdeleRing F) := ringEquiv_mixedSpace F ⁻¹' mixedCell F
 
+/--
+@isnad1 id=iscompac.0h1v.s4.8dff9d5f120c from=translated src=- shape=4b0f8f6d vocab=a5331362
+-/
 theorem isCompact_archCell : IsCompact (archCell F) := by
   obtain ⟨R, -, hR⟩ := exists_norm_le_of_mem_mixedCell F
   haveI : ∀ v : InfinitePlace F, ProperSpace v.Completion := fun v => AdelicBox.properSpace_completion F v
@@ -78,6 +90,9 @@ variable {F}
 
 def cell0 (K : Set (FiniteAdeleRing (𝓞 F) F)) : Set 𝔸 := {x | x.1 ∈ archCell F ∧ x.2 ∈ K}
 
+/--
+@isnad1 id=iscompac.1h2v.s6.f20c5c21db45 from=translated src=- shape=cdae98a3 vocab=a771b05d
+-/
 theorem isCompact_cell0 {K : Set (FiniteAdeleRing (𝓞 F) F)} (hK : IsCompact K) : IsCompact (cell0 K) := by
   have : IsCompact (archCell F ×ˢ K) := (isCompact_archCell F).prod hK
   exact this
@@ -86,9 +101,15 @@ def cellShift (l : E∞) : 𝔸 := ((ringEquiv_mixedSpace F).symm l, (0 : Finite
 
 def cell (K : Set (FiniteAdeleRing (𝓞 F) F)) (l : E∞) : Set 𝔸 := (fun z : 𝔸 => -cellShift l + z) ⁻¹' cell0 K
 
+/--
+@isnad1 id=iscompac.1h3v.s6.db5db07a2267 from=translated src=- shape=54119334 vocab=7d11ba48
+-/
 theorem isCompact_cell {K : Set (FiniteAdeleRing (𝓞 F) F)} (hK : IsCompact K) (l : E∞) : IsCompact (cell K l) :=
   (Homeomorph.addLeft (-cellShift l)).isCompact_preimage.mpr (isCompact_cell0 hK)
 
+/--
+@isnad1 id=iff.0h4v.s10.b569208fd760 from=translated src=- shape=3d0b194e vocab=0185c784
+-/
 theorem mem_cell_iff {K : Set (FiniteAdeleRing (𝓞 F) F)} {l : E∞} {x : 𝔸} :
     x ∈ cell K l ↔ ringEquiv_mixedSpace F x.1 - l ∈ mixedCell F ∧ x.2 ∈ K := by
   show (-cellShift l + x).1 ∈ archCell F ∧ (-cellShift l + x).2 ∈ K ↔ _
@@ -98,6 +119,9 @@ theorem mem_cell_iff {K : Set (FiniteAdeleRing (𝓞 F) F)} {l : E∞} {x : 𝔸
   simp only [archCell, Set.mem_preimage, map_add, map_neg, RingEquiv.apply_symm_apply]
   rw [neg_add_eq_sub]
 
+/--
+@isnad1 id=mem.1h3v.s12.9148ebd4badf from=translated src=- shape=4fbfe248 vocab=01ef3548
+-/
 theorem mem_cell_floor {K : Set (FiniteAdeleRing (𝓞 F) F)} {x : 𝔸} (hx : x.2 ∈ K) :
     x ∈ cell K (ZSpan.floor (mixedEmbedding.latticeBasis F) (ringEquiv_mixedSpace F x.1) : E∞) := by
   rw [mem_cell_iff]
@@ -105,6 +129,9 @@ theorem mem_cell_floor {K : Set (FiniteAdeleRing (𝓞 F) F)} {x : 𝔸} (hx : x
   rw [← ZSpan.fract_apply]
   exact ZSpan.fract_mem_fundamentalDomain _ _
 
+/--
+@isnad1 id=eq.0h4v.s8.4be0254658dc from=translated src=- shape=34f34cc4 vocab=36da01e9
+-/
 theorem measure_cell [MeasurableSpace 𝔸] [BorelSpace 𝔸] (μ : Measure 𝔸) [μ.IsAddLeftInvariant]
     (K : Set (FiniteAdeleRing (𝓞 F) F)) (l : E∞) : μ (cell K l) = μ (cell0 K) :=
   measure_preimage_add μ _ _
@@ -117,6 +144,9 @@ variable {F}
 
 open scoped Classical in
 
+/--
+@isnad1 id=integrab.2h4v.s11.96596cd737cb from=translated src=- shape=2a5dcfaa vocab=9778b2f1
+-/
 theorem integrable_pureTensor [MeasurableSpace 𝔸] [BorelSpace 𝔸] (μ : Measure 𝔸) [μ.IsAddHaarMeasure]
     (g : 𝓢(E∞, ℂ)) (h : FiniteAdeleRing (𝓞 F) F → ℂ) (hlc : IsLocallyConstant h) (hcs : HasCompactSupport h) :
     Integrable (fun x : 𝔸 => g (ringEquiv_mixedSpace F x.1) * h x.2) μ := by
@@ -209,6 +239,9 @@ theorem integrable_pureTensor [MeasurableSpace 𝔸] [BorelSpace 𝔸] (μ : Mea
 
 end PureTensor
 
+/--
+@isnad1 id=integrab.1h3v.s9.5071a93148e7 from=translated src=- shape=45029dd0 vocab=ecbf2911
+-/
 theorem integrable_of_mem_schwartzBruhat_impl [MeasurableSpace 𝔸] [BorelSpace 𝔸]
     (μ : Measure 𝔸) [μ.IsAddHaarMeasure] {f : 𝔸 → ℂ} (hf : f ∈ schwartzBruhat F) :
     Integrable f μ := by
@@ -227,6 +260,9 @@ end
 
 open _root_.NumberField open _root_.P2MW.S_NumberField_AdelicFourier_integrable_of_mem_schwartzBruhat.NumberField open _root_.NumberField.AdelicFourier open _root_.P2MW.S_NumberField_AdelicFourier_integrable_of_mem_schwartzBruhat.NumberField.AdelicFourier
 
+/--
+@isnad1 id=integrab.1h3v.s9.5071a93148e7 from=translated src=- shape=45029dd0 vocab=ecbf2911
+-/
 theorem solution (F : Type) [Field F] [NumberField F]
     [MeasurableSpace (AdeleRing (𝓞 F) F)] [BorelSpace (AdeleRing (𝓞 F) F)]
     (μ : MeasureTheory.Measure (AdeleRing (𝓞 F) F)) [μ.IsAddHaarMeasure] {f : AdeleRing (𝓞 F) F → ℂ} (hf : f ∈ schwartzBruhat F) :

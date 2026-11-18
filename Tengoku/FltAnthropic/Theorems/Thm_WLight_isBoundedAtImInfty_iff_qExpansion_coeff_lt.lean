@@ -13,6 +13,9 @@ set_option autoImplicit false
 open Complex Real UpperHalfPlane
 open scoped Manifold MatrixGroups ModularForm
 
+/--
+@isnad1 id=iff.3h3v.s8.6d70d7110adf from=translated src=- shape=be90a6cc vocab=91f4000a
+-/
 theorem WLight.isBoundedAtImInfty_iff_qExpansion_coeff_lt (N : ℕ) [NeZero N] {F : ℍ → ℂ} {M : ℕ}
     (hFhol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) F)
     (hFper : Function.Periodic (F ∘ UpperHalfPlane.ofComplex) N)

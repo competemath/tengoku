@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open NumberField NumberField.InfinitePlace NumberField.InfinitePlace.Completion
 
+/--
+@isnad1 id=ex.1h3v.s10.3c40992901f9 from=translated src=- shape=fbb2da1a vocab=38946801
+-/
 theorem NumberField.InfinitePlace.Completion.exists_forall_apply_eq_cpow_of_extensionEmbedding_eq_of_continuous
     (F : Type) [Field F] (w : InfinitePlace F)
     (χ : (w.Completion)ˣ →* ℂˣ)

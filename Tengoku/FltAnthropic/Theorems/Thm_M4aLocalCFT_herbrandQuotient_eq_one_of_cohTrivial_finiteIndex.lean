@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_M4aLocalCFT_herbrandQuotient_eq_one_of_coh
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=and.6h4v.s10.54debb404b6c from=translated src=- shape=8bb69444 vocab=28d1688e
+-/
 theorem M4aLocalCFT.herbrandQuotient_eq_one_of_cohTrivial_finiteIndex
     {M : Type*} [CommGroup M] (D N : M →* M)
     (hDN : ∀ x, D (N x) = 1) (hND : ∀ x, N (D x) = 1)

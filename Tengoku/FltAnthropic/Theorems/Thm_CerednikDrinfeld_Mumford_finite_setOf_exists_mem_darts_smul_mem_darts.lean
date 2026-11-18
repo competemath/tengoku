@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open CerednikDrinfeld.Mumford MulAction
 
+/--
+@isnad1 id=finite.1h9v.s7.ed62bf21349b from=translated src=- shape=12e7d576 vocab=d4169622
+-/
 theorem CerednikDrinfeld.Mumford.finite_setOf_exists_mem_darts_smul_mem_darts
     {G : Type} [Group G] {W : Type} [MulAction G W] (𝒯 : SimpleGraph W) [GraphAction G 𝒯]
     (hfin : ∀ w : W, Finite (stabilizer G w))

@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open scoped MatrixGroups
 
+/--
+@isnad1 id=linearin.2h5v.s19.a5a61a7d4f35 from=translated src=- shape=4921ceb8 vocab=43b39558
+-/
 theorem HeckeEis.linearIndependent_coeffH1par_map_rat_complex (n : ℕ) (Γ : Subgroup SL(2, ℤ))
     (Ψ : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℚ n).comp Γ.subtype) →+ HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp Γ.subtype))
     (hΨ : ∀ z : ↥(HeckeEis.coeffParabolicCocycles ((HeckeEis.binaryFormRepSL ℚ n).comp Γ.subtype)),

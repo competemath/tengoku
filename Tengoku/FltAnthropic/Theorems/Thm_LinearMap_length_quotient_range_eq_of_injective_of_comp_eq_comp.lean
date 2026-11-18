@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_LinearMap_length_quotient_range_eq_of_inje
 
 universe u
 
+/--
+@isnad1 id=eq.3h5v.s11.2dfd0d69f3dc from=translated src=- shape=401acdd5 vocab=35cc7e81
+-/
 theorem LinearMap.length_quotient_range_eq_of_injective_of_comp_eq_comp
     {A : Type u} [CommRing A] [IsDomain A] [IsDiscreteValuationRing A] {r : ℕ}
     (F₁ F₂ φ : (Fin r → A) →ₗ[A] (Fin r → A))

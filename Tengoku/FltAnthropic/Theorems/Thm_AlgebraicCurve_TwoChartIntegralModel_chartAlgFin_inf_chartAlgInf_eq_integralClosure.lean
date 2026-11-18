@@ -14,6 +14,9 @@ open AlgebraicCurve.TwoChartIntegralModel
 set_option synthInstance.maxHeartbeats 400000
 set_option maxHeartbeats 800000
 
+/--
+@isnad1 id=eq.0h3v.s7.9d7bb59b5a30 from=translated src=- shape=4b8657a4 vocab=c35d35ec
+-/
 theorem AlgebraicCurve.TwoChartIntegralModel.chartAlgFin_inf_chartAlgInf_eq_integralClosure
     (R : Type u) [CommRing R] (F : Type u) [Field F] [Algebra R F] (j : F) [Fact (j ≠ 0)] :
     (chartAlgFin R F j) ⊓ (chartAlgInf R F j) = integralClosure R F := by exact @_root_.P2MW.S_AlgebraicCurve_TwoChartIntegralModel_chartAlgFin_inf_chartAlgInf_eq_integralClosure.solution R _ F _ _ j _

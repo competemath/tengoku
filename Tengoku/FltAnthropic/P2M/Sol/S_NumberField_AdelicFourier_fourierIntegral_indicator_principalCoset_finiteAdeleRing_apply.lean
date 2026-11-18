@@ -30,6 +30,9 @@ variable {F : Type} [Field F] [NumberField F]
 
 omit [MeasurableSpace (FiniteAdeleRing (𝓞 F) F)] [BorelSpace (FiniteAdeleRing (𝓞 F) F)] in
 
+/--
+@isnad1 id=iff.0h3v.s9.4281ba2792f4 from=translated src=- shape=37473a9c vocab=fb03a12f
+-/
 theorem addChar_neg_eq_one_iff (x : FiniteAdeleRing (𝓞 F) F) : ψf (-x) = 1 ↔ ψf x = 1 := by
   have key : ψf (-x) * ψf x = 1 := by
     rw [← AddChar.map_add_eq_mul, neg_add_cancel, AddChar.map_zero_eq_one]
@@ -41,6 +44,9 @@ theorem addChar_neg_eq_one_iff (x : FiniteAdeleRing (𝓞 F) F) : ψf (-x) = 1 �
     rw [h, mul_one] at key
     exact key
 
+/--
+@isnad1 id=eq.0h5v.s9.a24fb1cd6e43 from=translated src=- shape=1df3ccf2 vocab=6612e1a4
+-/
 theorem setIntegral_image_add_left (g : FiniteAdeleRing (𝓞 F) F → ℂ)
     (c : FiniteAdeleRing (𝓞 F) F) (B : Set (FiniteAdeleRing (𝓞 F) F)) :
     ∫ v in (fun b => c + b) '' B, g v ∂ν = ∫ b in B, g (c + b) ∂ν := by
@@ -49,6 +55,9 @@ theorem setIntegral_image_add_left (g : FiniteAdeleRing (𝓞 F) F → ℂ)
   rw [Set.preimage_image_eq B (add_right_injective c)] at h
   exact h.symm
 
+/--
+@isnad1 id=eq.3h5v.s11.3ce6444a3a53 from=translated src=- shape=c0e0c8ad vocab=46154fce
+-/
 theorem setIntegral_addChar_eq_ite {B : Set (FiniteAdeleRing (𝓞 F) F)} (hBm : MeasurableSet B)
     (hadd : ∀ ⦃x y⦄, x ∈ B → y ∈ B → x + y ∈ B) (hneg : ∀ ⦃x⦄, x ∈ B → -x ∈ B)
     (ξ : FiniteAdeleRing (𝓞 F) F) :
@@ -81,6 +90,9 @@ theorem setIntegral_addChar_eq_ite {B : Set (FiniteAdeleRing (𝓞 F) F)} (hBm :
       rw [hkey, one_mul]
     exact mul_right_cancel₀ hI h1
 
+/--
+@isnad1 id=eq.0h6v.s11.979a0a016f10 from=translated src=- shape=79f1b8d1 vocab=60ec32a2
+-/
 theorem fourierIntegral_indicator_coset (c a w : FiniteAdeleRing (𝓞 F) F) :
     fourierIntegral ψf ν
         (((fun z => c + a * z) '' integralFiniteAdeles (𝓞 F) F).indicator 1) w
@@ -164,6 +176,9 @@ open _root_.NumberField open _root_.P2MW.S_NumberField_AdelicFourier_fourierInte
 open scoped Classical FourierTransform nonZeroDivisors
 
 open scoped Classical in
+/--
+@isnad1 id=eq.2h6v.s12.8e765e4c7d33 from=translated src=- shape=38abc4c7 vocab=4d010f76
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F]
     [MeasurableSpace (FiniteAdeleRing (𝓞 F) F)] [BorelSpace (FiniteAdeleRing (𝓞 F) F)]

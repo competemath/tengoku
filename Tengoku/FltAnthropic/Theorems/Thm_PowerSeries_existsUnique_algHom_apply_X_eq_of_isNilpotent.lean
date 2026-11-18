@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_PowerSeries_existsUnique_algHom_apply_X_eq
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=and.1h3v.s9.e32ef0576c9f from=translated src=- shape=231b1a54 vocab=a4531e6f
+-/
 theorem PowerSeries.existsUnique_algHom_apply_X_eq_of_isNilpotent
     {A : Type} [CommRing A] {T : Type} [CommRing T] [Algebra A T] (t : T) (ht : IsNilpotent t) :
     (∃! φ : PowerSeries A →ₐ[A] T, φ PowerSeries.X = t) ∧

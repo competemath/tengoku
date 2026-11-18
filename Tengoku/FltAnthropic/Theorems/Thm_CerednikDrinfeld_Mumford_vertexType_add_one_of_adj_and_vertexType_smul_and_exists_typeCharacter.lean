@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open CerednikDrinfeld.Mumford
 
+/--
+@isnad1 id=and.2h4v.s9.c9476bd7da40 from=translated src=- shape=9e9d555d vocab=df541fb2
+-/
 theorem CerednikDrinfeld.Mumford.vertexType_add_one_of_adj_and_vertexType_smul_and_exists_typeCharacter
     (G : Type) [Group G] {W : Type} [MulAction G W] (𝒯 : SimpleGraph W) [GraphAction G 𝒯]
     (hc : 𝒯.Connected) (hb : 𝒯.Colorable 2) (w₀ : W) :

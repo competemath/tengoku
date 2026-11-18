@@ -13,6 +13,9 @@ universe u v w
 open IsLocalRing
 open scoped TensorProduct
 
+/--
+@isnad1 id=ex.0h4v.s10.1d10fc6fe9e7 from=translated src=- shape=9527601b vocab=d4e96c70
+-/
 theorem Tengoku.FltAnthropic.CartierDual.exists_isIdempotentElem_eq_sum_single_of_coalgHom_addMonoidAlgebra
     {S : Type u} [CommRing S] {B : Type v} [CommRing B] [Bialgebra S B] [Module.Finite S B] [Module.Free S B]
     (M : Type w) [Fintype M] [DecidableEq M]

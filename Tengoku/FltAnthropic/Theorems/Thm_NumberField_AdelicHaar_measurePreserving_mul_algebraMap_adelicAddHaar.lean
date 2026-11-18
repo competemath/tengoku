@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_NumberField_AdelicHaar_measurePreserving_m
 
 open NumberField
 attribute [local instance] NumberField.AdelicHaar.adeleBorel
+/--
+@isnad1 id=measurep.1h2v.s9.b29f7ea99808 from=translated src=- shape=0049ab5a vocab=937ef54f
+-/
 theorem NumberField.AdelicHaar.measurePreserving_mul_algebraMap_adelicAddHaar
     (F : Type) [Field F] [NumberField F] (a : F) (ha : a ≠ 0) :
     MeasureTheory.MeasurePreserving (fun x => algebraMap F (AdeleRing (𝓞 F) F) a * x)

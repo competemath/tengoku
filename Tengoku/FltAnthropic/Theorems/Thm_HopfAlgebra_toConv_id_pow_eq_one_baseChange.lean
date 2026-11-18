@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_HopfAlgebra_toConv_id_pow_eq_one_baseChang
 
 universe u v w
 
+/--
+@isnad1 id=eq.1h4v.s12.448fb65ac63b from=translated src=- shape=1df9023e vocab=fe8d521e
+-/
 theorem HopfAlgebra.toConv_id_pow_eq_one_baseChange
     {R : Type u} [CommRing R] (R' : Type w) [CommRing R'] [Algebra R R']
     {H : Type v} [CommRing H] [HopfAlgebra R H] (m : ℕ)

@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=ex.2h4v.s14.abe064abd086 from=translated src=- shape=0e47d551 vocab=a45d150d
+-/
 theorem Tengoku.FltAnthropic.CartierDual.exists_subalgebra_eq_annihilator_vanishingIdealOfPoints
     (F : Type) [Field F] (A : Type) [CommRing A] [HopfAlgebra F A] [Module.Finite F A]
     (L : Type) [Field L] [Algebra F L]

@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open Filter Topology
 
+/--
+@isnad1 id=multipli.1h4v.s7.796fa828040c from=translated src=- shape=5d10ffd4 vocab=86db749d
+-/
 theorem Valued.multipliable_one_add_of_tendsto_cofinite_zero
     {K : Type*} [Field K] {Γ₀ : Type*} [LinearOrderedCommGroupWithZero Γ₀] [Valued K Γ₀] [CompleteSpace K]
     {ι : Type*} (f : ι → K) (hf : Tendsto f cofinite (𝓝 0)) :

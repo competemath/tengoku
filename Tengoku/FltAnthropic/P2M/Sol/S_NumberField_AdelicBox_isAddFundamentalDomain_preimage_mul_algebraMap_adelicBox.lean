@@ -18,6 +18,9 @@ variable (F : Type) [Field F] [NumberField F]
 
 local notation "𝔸" => AdeleRing (𝓞 F) F
 
+/--
+@isnad1 id=isaddfun.1h3v.s11.e1cdf35a34c6 from=translated src=- shape=27364ffc vocab=e36f7c4c
+-/
 theorem isAddFundamentalDomain_preimage_mul [MeasurableSpace 𝔸] [BorelSpace 𝔸]
     (μ : Measure 𝔸) (a : F) (ha : a ≠ 0) :
     IsAddFundamentalDomain (AdeleRing.principalSubgroup (𝓞 F) F)
@@ -47,6 +50,9 @@ end FltWs24.AdelicModulusOne
 
 open NumberField
 
+/--
+@isnad1 id=isaddfun.1h3v.s11.e1cdf35a34c6 from=translated src=- shape=27364ffc vocab=e36f7c4c
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F]
     [MeasurableSpace (AdeleRing (𝓞 F) F)] [BorelSpace (AdeleRing (𝓞 F) F)]

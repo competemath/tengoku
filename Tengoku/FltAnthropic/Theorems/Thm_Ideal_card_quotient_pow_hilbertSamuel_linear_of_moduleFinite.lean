@@ -5,6 +5,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Ideal_card_quotient_pow_hilbertSamuel_line
 
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `Theorems/Thm_Ideal_card_quotient_pow_hilbertSamuel_linear_of_moduleFinite.lean`: wrote out 1 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_exact_reverting`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 
+/--
+@isnad1 id=ex.1h3v.s8.c9997238b7c9 from=translated src=- shape=3f36ab39 vocab=e6af78b2
+-/
 theorem Ideal.card_quotient_pow_hilbertSamuel_linear_of_moduleFinite
     (R : Type*) [CommRing R] [Module.Finite ℤ R]
     (I : Ideal R) (q : ℕ) [Fact q.Prime] (hqI : (q : R) ∈ I) :

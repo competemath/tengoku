@@ -13,6 +13,9 @@ open scoped NumberField.InfPlaceDecomp
 namespace P2mS26A1
 open NumberField.InfPlaceDecomp
 
+/--
+@isnad1 id=isconj.1h4v.s10.12089faa4240 from=translated src=- shape=79c7f6f3 vocab=f0bbbb59
+-/
 theorem isConj_embedding_of_ne_one {E K : Type*} [Field E] [Field K] [Algebra E K] {w : InfinitePlace K}
     (σ : decomp E K w) (hσ : σ ≠ 1) : ComplexEmbedding.IsConj w.embedding (σ : K ≃ₐ[E] K) := by
   have h : (σ : K ≃ₐ[E] K) ∈ MulAction.stabilizer (K ≃ₐ[E] K) (InfinitePlace.mk w.embedding) := by
@@ -21,6 +24,9 @@ theorem isConj_embedding_of_ne_one {E K : Type*} [Field E] [Field K] [Algebra E 
   · exact absurd (Subtype.ext h1) hσ
   · exact h2
 
+/--
+@isnad1 id=eq.1h5v.s12.25ce84056db4 from=translated src=- shape=839fe152 vocab=2c8a12ef
+-/
 theorem extensionEmbedding_smul_coe {E K : Type*} [Field E] [Field K] [Algebra E K] {w : InfinitePlace K}
     (σ : decomp E K w) (hσ : σ ≠ 1) (y : WithAbs w.1) :
     InfinitePlace.Completion.extensionEmbedding w (σ • (y : w.Completion)) =
@@ -34,6 +40,9 @@ end P2mS26A1
 
 open P2mS26A1 NumberField.InfPlaceDecomp in
 
+/--
+@isnad1 id=eq.1h5v.s11.c7b9b78acd32 from=translated src=- shape=3bdae7f0 vocab=a65b0501
+-/
 theorem solution (E K : Type*) [Field E] [Field K] [Algebra E K]
     (w : InfinitePlace K) (σ : NumberField.InfPlaceDecomp.decomp E K w) (hσ : σ ≠ 1) (x : w.Completion) :
     InfinitePlace.Completion.extensionEmbedding w (σ • x) =

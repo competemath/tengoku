@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=and.2h8v.s10.3440ded361c9 from=translated src=- shape=f80a9652 vocab=56a4041b
+-/
 theorem Tengoku.FltAnthropic.MvFormalGroup.subst_nthSeries_eq_of_map_eq_and_exists_hom_of_ker_pow_eq_bot
     {R S : Type u} [CommRing R] [CommRing S] (π : R →+* S) (μ : ℕ)
     (hI : RingHom.ker π ^ (μ + 1) = ⊥) (p n : ℕ) (hp : (p : R) ^ n = 0)

@@ -11,20 +11,32 @@ namespace RedHomAux
 
 variable {A : Type} [CommRing A] {R : Type} [CommRing R]
 
+/--
+@isnad1 id=eq.0h5v.s9.6fb0a5baaced from=translated src=- shape=3cb72272 vocab=e626103a
+-/
 theorem emb_mul (φ : A →+* R) (x y : PowerSeries A) :
     HahnSeries.ofPowerSeries ℤ R ((x * y).map φ) =
       HahnSeries.ofPowerSeries ℤ R (x.map φ) * HahnSeries.ofPowerSeries ℤ R (y.map φ) := by
   rw [map_mul, map_mul]
 
+/--
+@isnad1 id=eq.0h5v.s9.7ebc4d28678f from=translated src=- shape=3cb72272 vocab=749d758b
+-/
 theorem emb_add (φ : A →+* R) (x y : PowerSeries A) :
     HahnSeries.ofPowerSeries ℤ R ((x + y).map φ) =
       HahnSeries.ofPowerSeries ℤ R (x.map φ) + HahnSeries.ofPowerSeries ℤ R (y.map φ) := by
   rw [map_add, map_add]
 
+/--
+@isnad1 id=eq.2h5v.s9.3647d60d5c76 from=translated src=- shape=3d661b11 vocab=a73c4d83
+-/
 theorem emb_injective {φ : A →+* R} (hφ : Function.Injective φ) {x y : PowerSeries A}
     (h : HahnSeries.ofPowerSeries ℤ R (x.map φ) = HahnSeries.ofPowerSeries ℤ R (y.map φ)) : x = y :=
   PowerSeries.map_injective φ hφ (HahnSeries.ofPowerSeries_injective h)
 
+/--
+@isnad1 id=ne.1h4v.s8.b09bbc8c2181 from=translated src=- shape=87f9bb76 vocab=b86f7e21
+-/
 theorem emb_ne_zero [IsDomain R] (φ : A →+* R) {x : PowerSeries A} (hx : x.map φ ≠ 0) :
     HahnSeries.ofPowerSeries ℤ R (x.map φ) ≠ 0 :=
   fun h => hx (HahnSeries.ofPowerSeries_injective (by rw [h, map_zero]))
@@ -32,6 +44,9 @@ theorem emb_ne_zero [IsDomain R] (φ : A →+* R) {x : PowerSeries A} (hx : x.ma
 end RedHomAux
 
 open RedHomAux in
+/--
+@isnad1 id=ex.2h4v.s16.a901e46a2e15 from=translated src=- shape=7e0383d5 vocab=b9b60a68
+-/
 theorem solution
     (L : Type) [Field L] (K : IntermediateField L (LaurentSeries L))
     (A : Type) [CommRing A] [IsDomain A] [IsDiscreteValuationRing A] [Algebra A L] [IsFractionRing A L]

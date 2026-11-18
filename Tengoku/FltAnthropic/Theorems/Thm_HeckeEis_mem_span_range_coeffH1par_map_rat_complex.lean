@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open scoped MatrixGroups
 
+/--
+@isnad1 id=mem.1h4v.s19.7c21f54bc2ae from=translated src=- shape=abfb5dea vocab=5bb16670
+-/
 theorem HeckeEis.mem_span_range_coeffH1par_map_rat_complex (n : ℕ) (Γ : Subgroup SL(2, ℤ)) [Group.FG Γ]
     (Ψ : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℚ n).comp Γ.subtype) →+ HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp Γ.subtype))
     (hΨ : ∀ z : ↥(HeckeEis.coeffParabolicCocycles ((HeckeEis.binaryFormRepSL ℚ n).comp Γ.subtype)),

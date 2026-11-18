@@ -13,6 +13,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=injectiv.0h3v.s5.9845ff16d5b7 from=translated src=- shape=159933fd vocab=e60ecd3a
+-/
 theorem AlgebraicGeometry.Scheme.IdealSheafData.comap_injective_of_flat_of_surjective
     {X Y : Scheme.{u}} (π : Y ⟶ X) [Flat π] [Surjective π] :
     Function.Injective fun I : X.IdealSheafData => I.comap π := by exact @_root_.P2MW.S_AlgebraicGeometry_Scheme_IdealSheafData_comap_injective_of_flat_of_surjective.solution X Y π _ _

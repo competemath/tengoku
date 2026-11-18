@@ -25,6 +25,9 @@ namespace WCOTTameH
 
 variable {L : Type} [Field L]
 
+/--
+@isnad1 id=iff.1h3v.s7.4abdf0b8fbf3 from=translated src=- shape=6d6529dd vocab=fea54516
+-/
 theorem isUnit_iff_inv_mem (P : ValuationSubring L) (y : P) (hy : (y : L) ≠ 0) :
     IsUnit y ↔ (y : L)⁻¹ ∈ P := by
   constructor
@@ -37,6 +40,9 @@ theorem isUnit_iff_inv_mem (P : ValuationSubring L) (y : P) (hy : (y : L) ≠ 0)
   · intro h
     exact IsUnit.of_mul_eq_one ⟨(y : L)⁻¹, h⟩ (Subtype.ext (mul_inv_cancel₀ hy))
 
+/--
+@isnad1 id=iff.0h3v.s8.6bc28f56315e from=translated src=- shape=e07305e9 vocab=cea38d90
+-/
 theorem mem_maximalIdeal_iff (P : ValuationSubring L) (y : P) :
     y ∈ IsLocalRing.maximalIdeal P ↔ (y : L) = 0 ∨ (y : L)⁻¹ ∉ P := by
   rw [IsLocalRing.mem_maximalIdeal, mem_nonunits_iff]
@@ -47,6 +53,9 @@ theorem mem_maximalIdeal_iff (P : ValuationSubring L) (y : P) :
 
 variable {K : Type} [Field K] [Algebra K L]
 
+/--
+@isnad1 id=iff.2h5v.s10.994ef4996499 from=translated src=- shape=2fedd131 vocab=468a7629
+-/
 theorem mem_maximalIdeal_iff_map (P : ValuationSubring L)
     (hstab : ∀ (σ : L ≃ₐ[K] L) (x : L), x ∈ P → σ x ∈ P) (σ : L ≃ₐ[K] L) (y : L) (hy : y ∈ P) :
     (⟨y, hy⟩ : P) ∈ IsLocalRing.maximalIdeal P ↔ (⟨σ y, hstab σ y hy⟩ : P) ∈ IsLocalRing.maximalIdeal P := by
@@ -62,6 +71,9 @@ theorem mem_maximalIdeal_iff_map (P : ValuationSubring L)
     have := hstab σ.symm _ h
     rwa [AlgEquiv.symm_apply_apply] at this
 
+/--
+@isnad1 id=ex.5h6v.s11.d5874bc19da6 from=translated src=- shape=53ef1bf5 vocab=b1850ec6
+-/
 theorem hensel_of_stable [IsAlgClosed L] [IsGalois K L] (P : ValuationSubring L)
     (hstab : ∀ (σ : L ≃ₐ[K] L) (x : L), x ∈ P → σ x ∈ P) (R : ValuationSubring K)
     (hR : ∀ k : K, k ∈ R ↔ algebraMap K L k ∈ P) (f : R[X]) (hf : f.Monic) (a₀ : R)
@@ -222,6 +234,9 @@ theorem hensel_of_stable [IsAlgClosed L] [IsGalois K L] (P : ValuationSubring L)
     rw [IsLocalRing.mem_maximalIdeal, mem_nonunits_iff] at hm
     exact hm (hu.map ψ)
 
+/--
+@isnad1 id=henselia.1h3v.s7.6dea6a38ee2f from=translated src=- shape=e7192acf vocab=cf4711c0
+-/
 theorem henselianLocalRing_comap [IsAlgClosed L] [IsGalois K L] (P : ValuationSubring L)
     (hstab : ∀ (σ : L ≃ₐ[K] L) (x : L), x ∈ P → σ x ∈ P) :
     HenselianLocalRing (P.comap (algebraMap K L)) where
@@ -232,6 +247,9 @@ end WCOTTameH
 
 namespace WCOTTameV
 
+/--
+@isnad1 id=ex.3h4v.s7.df3686dc9a5c from=translated src=- shape=bb54f027 vocab=89d0b1de
+-/
 theorem exists_pow_eq_of_pow_sub_mem {R : Type} [CommRing R] [HenselianLocalRing R] (n : ℕ)
     (hn : IsUnit (n : R)) (u z : R) (hu : IsUnit u) (hz : z ^ n - u ∈ IsLocalRing.maximalIdeal R) :
     ∃ v : R, v ^ n = u ∧ v - z ∈ IsLocalRing.maximalIdeal R := by
@@ -269,6 +287,9 @@ namespace WCOTTameVrat
 
 variable {L : Type} [Field L]
 
+/--
+@isnad1 id=eq.2h4v.s9.74527573eac8 from=translated src=- shape=01220fff vocab=1d634196
+-/
 theorem valuation_natCast_eq_one (P : ValuationSubring L) (q : ℕ)
     (hq : ((q : ℕ) : P) ∈ IsLocalRing.maximalIdeal P) (n : ℕ) (hn : Nat.Coprime n q) :
     P.valuation (n : L) = 1 := by
@@ -282,6 +303,9 @@ theorem valuation_natCast_eq_one (P : ValuationSubring L) (q : ℕ)
   have := (P.valuation_eq_one_iff _).mp hunit
   simpa using this
 
+/--
+@isnad1 id=ex.3h4v.s9.f91ed844905f from=translated src=- shape=8641e483 vocab=471f2735
+-/
 theorem valuation_intCast (P : ValuationSubring L) (q : ℕ) (hqp : q.Prime)
     (hq : ((q : ℕ) : P) ∈ IsLocalRing.maximalIdeal P) (z : ℤ) (hz : z ≠ 0) :
     ∃ e : ℕ, P.valuation (z : L) = P.valuation (q : L) ^ e := by
@@ -298,6 +322,9 @@ theorem valuation_intCast (P : ValuationSubring L) (q : ℕ) (hqp : q.Prime)
       rw [Int.cast_neg, Valuation.map_neg, Int.cast_natCast]
   rw [hzabs, habs', map_mul, map_pow, valuation_natCast_eq_one P q hq n' hn', mul_one]
 
+/--
+@isnad1 id=ex.3h4v.s9.560a6fefff98 from=translated src=- shape=b2d7e069 vocab=9dd37c74
+-/
 theorem valuation_ratCast [CharZero L] (P : ValuationSubring L) (q : ℕ) (hqp : q.Prime)
     (hq : ((q : ℕ) : P) ∈ IsLocalRing.maximalIdeal P) (c : ℚ) (hc : c ≠ 0) :
     ∃ m : ℤ, P.valuation (c : L) = P.valuation (q : L) ^ m := by
@@ -310,6 +337,9 @@ theorem valuation_ratCast [CharZero L] (P : ValuationSubring L) (q : ℕ) (hqp :
   have : P.valuation ((c.den : ℕ) : L) = P.valuation (q : L) ^ e₂ := by simpa using h₂
   rw [this, zpow_sub₀ hq0, zpow_natCast, zpow_natCast]
 
+/--
+@isnad1 id=ex.4h4v.s9.f028ca7e0990 from=translated src=- shape=774a1b32 vocab=b7498164
+-/
 theorem exists_valuation_pow_eq [CharZero L] (P : ValuationSubring L) (q : ℕ) (hqp : q.Prime)
     (hq : ((q : ℕ) : P) ∈ IsLocalRing.maximalIdeal P) (x : L) (hx : x ≠ 0) (halg : IsAlgebraic ℚ x) :
     ∃ n : ℕ, 0 < n ∧ ∃ m : ℤ, P.valuation x ^ n = P.valuation (q : L) ^ m := by
@@ -395,6 +425,9 @@ theorem eq_one_of_pow_eq_one (u : Γ₀) {k : ℕ} (hk : k ≠ 0) (h : u ^ k = 1
 
 variable {K : Type} [Field K]
 
+/--
+@isnad1 id=ex.5h6v.s8.fd7288b0d3e6 from=translated src=- shape=4fc17625 vocab=bcd1d045
+-/
 theorem exists_valuation_eq_pow (v : Valuation K Γ₀) (p : ℕ) (hp : p.Prime) (q : K) (hq : q ≠ 0)
     (hroot : ∀ k : ℕ, ∃ r : K, r ^ (p ^ k) = q) (a : K) (ha : a ≠ 0)
     (hrat : ∃ n : ℕ, 0 < n ∧ ∃ m : ℤ, v a ^ n = v q ^ m) :
@@ -441,6 +474,9 @@ namespace WCOTTameJd
 
 variable {K L : Type} [Field K] [Field L] [Algebra K L]
 
+/--
+@isnad1 id=ex.9h6v.s11.3c83ed167306 from=translated src=- shape=8c5a8a76 vocab=bbe508cc
+-/
 theorem exists_pow_eq [IsAlgClosed L] [IsGalois K L] [CharZero L] (P : ValuationSubring L)
     (hstab : ∀ (σ : L ≃ₐ[K] L) (x : L), x ∈ P → σ x ∈ P)
     (p q : ℕ) (hp : p.Prime) (hqp : q.Prime) (hpq : p ≠ q)
@@ -498,6 +534,9 @@ theorem exists_pow_eq [IsAlgClosed L] [IsGalois K L] [CharZero L] (P : Valuation
 
 end WCOTTameJd
 
+/--
+@isnad1 id=ex.9h6v.s11.3c83ed167306 from=translated src=- shape=8c5a8a76 vocab=bbe508cc
+-/
 theorem solution
     {K L : Type} [Field K] [Field L] [Algebra K L] [IsAlgClosed L] [IsGalois K L] [CharZero L]
     (P : ValuationSubring L) (hstab : ∀ (σ : L ≃ₐ[K] L) (x : L), x ∈ P → σ x ∈ P)

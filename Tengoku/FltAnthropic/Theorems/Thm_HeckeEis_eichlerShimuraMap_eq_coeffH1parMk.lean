@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 open scoped MatrixGroups ModularForm
 
+/--
+@isnad1 id=eq.3h4v.s17.72a0087106aa from=translated src=- shape=addaf67e vocab=11e6bdc4
+-/
 theorem HeckeEis.eichlerShimuraMap_eq_coeffH1parMk (n N : ℕ) (f : UpperHalfPlane → ℂ)
     {F : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)}
     (hEI : HeckeEis.IsEichlerIntegral n f F)

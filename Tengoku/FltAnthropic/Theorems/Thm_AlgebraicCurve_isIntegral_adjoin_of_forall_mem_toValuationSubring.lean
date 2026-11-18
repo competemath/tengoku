@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_AlgebraicCurve_isIntegral_adjoin_of_forall
 set_option autoImplicit false
 
 open AlgebraicCurve
+/--
+@isnad1 id=isintegr.1h5v.s9.6acfec76a970 from=translated src=- shape=953e7a8f vocab=12283a83
+-/
 theorem AlgebraicCurve.isIntegral_adjoin_of_forall_mem_toValuationSubring
     {K F : Type*} [Field K] [Field F] [Algebra K F] (x : F)
     [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F]

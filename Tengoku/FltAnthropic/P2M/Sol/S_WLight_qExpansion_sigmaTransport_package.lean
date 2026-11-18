@@ -638,6 +638,9 @@ end IdentityTransport
 end WLight
 
 open WLight in
+/--
+@isnad1 id=and.2h4v.s12.b25d3fd7af7b from=translated src=- shape=f5e40870 vocab=84c9c13c
+-/
 theorem solution (N : ℕ) [NeZero N]
     (K : IntermediateField ℚ ℂ) (φ : ↥K →+* ℂ) (hφK : ∀ z : ↥K, φ z ∈ K)
     (T : (ℍ → ℂ) → (ℍ → ℂ) → Prop)

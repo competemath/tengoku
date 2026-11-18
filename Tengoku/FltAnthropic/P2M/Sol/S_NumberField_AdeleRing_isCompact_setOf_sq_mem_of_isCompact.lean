@@ -11,6 +11,9 @@ open NumberField Topology Filter Set
 
 namespace SqProper9
 
+/--
+@isnad1 id=iscompac.1h2v.s6.7f3c6b56dbc1 from=translated src=- shape=9e320e99 vocab=472e19a7
+-/
 theorem normedField_isCompact_sq_preimage {F : Type*} [NormedField F] [ProperSpace F] (D : Set F)
     (hD : IsCompact D) : IsCompact {a : F | a ^ 2 ∈ D} := by
   obtain ⟨M, hM⟩ := (isBounded_iff_forall_norm_le.mp hD.isBounded)
@@ -25,6 +28,9 @@ theorem normedField_isCompact_sq_preimage {F : Type*} [NormedField F] [ProperSpa
   have h3 : M < ‖a‖ := lt_of_le_of_lt (le_max_right _ _) h
   nlinarith
 
+/--
+@isnad1 id=iscompac.2h3v.s7.8a21af5f91db from=translated src=- shape=7013984e vocab=623ea185
+-/
 theorem pi_isCompact_sq_preimage {ι : Type*} {X : ι → Type*} [∀ i, Monoid (X i)] [∀ i, TopologicalSpace (X i)]
     [∀ i, ContinuousMul (X i)] [∀ i, T2Space (X i)]
     (h : ∀ i (D : Set (X i)), IsCompact D → IsCompact {a : X i | a ^ 2 ∈ D})
@@ -35,6 +41,9 @@ theorem pi_isCompact_sq_preimage {ι : Type*} {X : ι → Type*} [∀ i, Monoid 
   simp only [mem_univ_pi, mem_ofPred_eq, mem_image]
   exact fun i => ⟨x ^ 2, hx, rfl⟩
 
+/--
+@isnad1 id=iscompac.3h3v.s7.46b6b09dd588 from=translated src=- shape=6b2af38e vocab=5008eef2
+-/
 theorem prod_isCompact_sq_preimage {X Y : Type*} [Monoid X] [Monoid Y] [TopologicalSpace X] [TopologicalSpace Y]
     [ContinuousMul X] [ContinuousMul Y] [T2Space X] [T2Space Y]
     (hX : ∀ D : Set X, IsCompact D → IsCompact {a : X | a ^ 2 ∈ D})
@@ -47,6 +56,9 @@ theorem prod_isCompact_sq_preimage {X Y : Type*} [Monoid X] [Monoid Y] [Topologi
 
 open scoped RestrictedProduct
 
+/--
+@isnad1 id=iscompac.5h5v.s9.988de2acc175 from=translated src=- shape=368efd7e vocab=ed0e83f5
+-/
 theorem restrictedProduct_isCompact_sq_preimage {ι : Type*} {R : ι → Type*} [∀ i, Monoid (R i)]
     [∀ i, TopologicalSpace (R i)] [∀ i, ContinuousMul (R i)] [∀ i, T2Space (R i)]
     {S : ι → Type*} [∀ i, SetLike (S i) (R i)] [∀ i, SubmonoidClass (S i) (R i)] {B : ∀ i, S i}
@@ -125,6 +137,9 @@ variable (K : Type) [Field K] [NumberField K]
 open IsDedekindDomain
 
 omit [NumberField K] in
+/--
+@isnad1 id=iscompac.1h2v.s6.b6de20355c0b from=translated src=- shape=407dc6fe vocab=7b68e151
+-/
 theorem infiniteAdeleRing_isCompact_sq_preimage (D : Set (InfiniteAdeleRing K)) (hD : IsCompact D) :
     IsCompact {a : InfiniteAdeleRing K | a ^ 2 ∈ D} :=
   pi_isCompact_sq_preimage (X := fun v : InfinitePlace K => v.Completion)
@@ -135,6 +150,9 @@ theorem infiniteAdeleRing_isCompact_sq_preimage (D : Set (InfiniteAdeleRing K)) 
           (isCompact_closedBall _ _)⟩
       exact normedField_isCompact_sq_preimage D hD) D hD
 
+/--
+@isnad1 id=iscompac.1h2v.s8.20f45151e3a6 from=translated src=- shape=656b9ff8 vocab=e11d4e94
+-/
 theorem finiteAdeleRing_isCompact_sq_preimage (D : Set (FiniteAdeleRing (𝓞 K) K)) (hD : IsCompact D) :
     IsCompact {a : FiniteAdeleRing (𝓞 K) K | a ^ 2 ∈ D} := by
   refine restrictedProduct_isCompact_sq_preimage (R := fun v : HeightOneSpectrum (𝓞 K) => v.adicCompletion K)
@@ -151,6 +169,9 @@ theorem finiteAdeleRing_isCompact_sq_preimage (D : Set (FiniteAdeleRing (𝓞 K)
   by_contra h'
   exact absurd ha (not_le.mpr (one_lt_mul_of_lt_of_le' (not_le.mp h') (not_le.mp h').le))
 
+/--
+@isnad1 id=iscompac.1h2v.s8.0a4c3cab6fb0 from=translated src=- shape=656b9ff8 vocab=aed0bcc4
+-/
 theorem adeleRing_isCompact_sq_preimage (D : Set (AdeleRing (𝓞 K) K)) (hD : IsCompact D) :
     IsCompact {a : AdeleRing (𝓞 K) K | a ^ 2 ∈ D} :=
   prod_isCompact_sq_preimage (infiniteAdeleRing_isCompact_sq_preimage K) (finiteAdeleRing_isCompact_sq_preimage K) D hD
@@ -158,6 +179,9 @@ theorem adeleRing_isCompact_sq_preimage (D : Set (AdeleRing (𝓞 K) K)) (hD : I
 end SqProper9
 
 open SqProper9 in
+/--
+@isnad1 id=iscompac.1h2v.s10.0f988e5145bc from=translated src=- shape=8266c5e9 vocab=7ed01b52
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K]
     (C : Set (AdeleRing (𝓞 K) K)ˣ) (hC : IsCompact C) :

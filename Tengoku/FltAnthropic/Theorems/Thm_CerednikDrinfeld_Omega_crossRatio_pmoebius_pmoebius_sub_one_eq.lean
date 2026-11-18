@@ -10,6 +10,9 @@ set_option autoImplicit false
 open scoped MatrixGroups
 open CerednikDrinfeld.Omega
 
+/--
+@isnad1 id=eq.4h7v.s12.8297e1dea71a from=translated src=- shape=0add43aa vocab=42f9bbe2
+-/
 theorem CerednikDrinfeld.Omega.crossRatio_pmoebius_pmoebius_sub_one_eq
     {K₀ : Type*} [Field K₀] {K : Type*} [Field K] [Algebra K₀ K] [DecidableEq K]
     (g : GL (Fin 2) K₀) {a b : K} (z z₀ : K)

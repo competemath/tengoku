@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_CerednikDrinfeld_Omega_gaussNorm_add_eq_ma
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.4h6v.s10.6cb2db891cea from=translated src=- shape=9fe9fc00 vocab=4b315266
+-/
 theorem CerednikDrinfeld.Omega.gaussNorm_add_eq_max_of_separated_poles
     (K : Type) [Field K] {Γ₀ : Type} [LinearOrderedCommGroupWithZero Γ₀] [Valued K Γ₀] [IsAlgClosed K]
     (PA QA PB QB : Polynomial K) (hQA : QA ≠ 0) (hQB : QB ≠ 0) (hdeg : PA.degree < QA.degree)

@@ -9,6 +9,9 @@ namespace P2MW.S_NumberField_InfPlaceDecomp_card_over_mul_card_decomp_above
 set_option autoImplicit false
 open IsDedekindDomain NumberField
 
+/--
+@isnad1 id=eq.0h3v.s8.db4cc61ca040 from=translated src=- shape=56c76b65 vocab=670fa684
+-/
 theorem solution (E K : Type) [Field E] [NumberField E] [Field K] [NumberField K]
     [Algebra E K] [IsGalois E K] (v : InfinitePlace E) :
     Nat.card {w : InfinitePlace K // w.comap (algebraMap E K) = v} *

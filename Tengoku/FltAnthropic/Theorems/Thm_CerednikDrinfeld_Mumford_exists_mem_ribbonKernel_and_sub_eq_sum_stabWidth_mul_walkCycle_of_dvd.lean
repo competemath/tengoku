@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open CerednikDrinfeld CerednikDrinfeld.Mumford MulAction
 
+/--
+@isnad1 id=ex.8h10v.s12.b2a840445234 from=translated src=- shape=db7ea866 vocab=52be88c9
+-/
 theorem CerednikDrinfeld.Mumford.exists_mem_ribbonKernel_and_sub_eq_sum_stabWidth_mul_walkCycle_of_dvd
     {G : Type} [Group G] {W : Type} [MulAction G W] (𝒯 : SimpleGraph W) [GraphAction G 𝒯]
     (hfin : ∀ w : W, Finite (MulAction.stabilizer G w))

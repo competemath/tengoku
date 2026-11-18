@@ -192,6 +192,9 @@ end
 
 open AdelicBoxCount NumberField IsDedekindDomain in
 
+/--
+@isnad1 id=ex.1h2v.s10.59f677964ecf from=translated src=- shape=838df741 vocab=d92cdeea
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K]
     {B : Set (IsDedekindDomain.FiniteAdeleRing (𝓞 K) K)} (hB : IsCompact B) :

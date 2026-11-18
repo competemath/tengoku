@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_HopfAlgebra_exists_signTwist_withConv_mulE
 
 open scoped NNReal
 open scoped TensorProduct in
+/--
+@isnad1 id=ex.15h9v.s15.89cc0302cc4d from=translated src=- shape=de9393e9 vocab=e7d11a05
+-/
 theorem HopfAlgebra.exists_signTwist_withConv_mulEquiv_of_linearEquiv_padicInt
     (p : ℕ) [Fact p.Prime] (hp2 : p ≠ 2)
     (d : ℚ_[p]) (hd : ‖d‖₊ = 1) (hd_nsq : ¬ IsSquare d)

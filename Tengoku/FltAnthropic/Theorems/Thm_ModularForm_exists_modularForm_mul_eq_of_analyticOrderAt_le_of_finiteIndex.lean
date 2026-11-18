@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_ModularForm_exists_modularForm_mul_eq_of_a
 
 open scoped MatrixGroups ModularForm
 
+/--
+@isnad1 id=ex.4h6v.s12.eee6595ea014 from=translated src=- shape=bdaaefc9 vocab=3c77d2ef
+-/
 theorem ModularForm.exists_modularForm_mul_eq_of_analyticOrderAt_le_of_finiteIndex
     (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.FiniteIndex] {a b : ℤ} (c : ℤ) (habc : b + c = a)
     (Φ : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) a) (Ψ : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) b) (hΨ : Ψ ≠ 0)

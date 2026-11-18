@@ -10,5 +10,8 @@ set_option autoImplicit false
 universe u v
 
 open IsLocalRing
+/--
+@isnad1 id=isadicco.1h2v.s6.b0847a08ba76 from=translated src=- shape=dc8fba2f vocab=83598597
+-/
 theorem IsAdicComplete.of_isNilpotent {R : Type u} [CommRing R] {I : Ideal R} (hI : IsNilpotent I) :
     IsAdicComplete I R := by exact @_root_.P2MW.S_IsAdicComplete_of_isNilpotent.solution R _ I hI

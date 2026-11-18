@@ -26,6 +26,9 @@ def subalg {Λ : Submodule ℤ ℍ[ℚ, a, b]} (hΛ : QuaternionAlgebra.IsOrder 
     rw [show algebraMap ℤ ℍ[ℚ, a, b] n = (n : ℤ) • (1 : ℍ[ℚ, a, b]) by rw [zsmul_one]; rfl]
     exact Λ.smul_mem n hΛ.one_mem
 
+/--
+@isnad1 id=eq.0h3v.s8.a1bef9419863 from=translated src=- shape=be0fae85 vocab=dec5f505
+-/
 theorem aeval_charQuad (x : ℍ[ℚ, a, b]) :
     aeval x (X ^ 2 - C (QuaternionAlgebra.trd x) * X + C (QuaternionAlgebra.nrd x) : ℚ[X]) = 0 := by
   simp only [map_add, map_sub, map_mul, aeval_X, aeval_C, map_pow]
@@ -38,6 +41,9 @@ theorem aeval_charQuad (x : ℍ[ℚ, a, b]) :
   rw [hc, hc', ← h1, ← h2, add_mul]
   abel
 
+/--
+@isnad1 id=and.2h4v.s8.f1d4021b5237 from=translated src=- shape=49dd830f vocab=7a40478e
+-/
 theorem main {Λ : Submodule ℤ ℍ[ℚ, a, b]} (hΛ : QuaternionAlgebra.IsOrder Λ) {x : ℍ[ℚ, a, b]} (hx : x ∈ Λ) :
     (∃ n : ℤ, (n : ℚ) = QuaternionAlgebra.nrd x) ∧ ∃ t : ℤ, (t : ℚ) = QuaternionAlgebra.trd x := by
   set t := QuaternionAlgebra.trd x
@@ -105,6 +111,9 @@ theorem main {Λ : Submodule ℤ ℍ[ℚ, a, b]} (hΛ : QuaternionAlgebra.IsOrde
 
 end IntChi
 
+/--
+@isnad1 id=and.2h4v.s8.f1d4021b5237 from=translated src=- shape=49dd830f vocab=7a40478e
+-/
 theorem solution
     {a b : ℚ} {Λ : Submodule ℤ ℍ[ℚ, a, b]} (hΛ : QuaternionAlgebra.IsOrder Λ)
     {x : ℍ[ℚ, a, b]} (hx : x ∈ Λ) :

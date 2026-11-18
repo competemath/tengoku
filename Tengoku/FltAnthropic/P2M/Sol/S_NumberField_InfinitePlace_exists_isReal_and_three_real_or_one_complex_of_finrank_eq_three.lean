@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open NumberField
 
+/--
+@isnad1 id=ex.1h1v.s7.b1120c76913c from=translated src=- shape=3ad3baca vocab=c50d18af
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K] (hdeg : Module.finrank ℚ K = 3) :
     ∃ (w₀ : InfinitePlace K) (h₀ : w₀.IsReal),

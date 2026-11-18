@@ -11,6 +11,9 @@ open _root_.WeierstrassCurve
 
 variable {R : Type*} [CommRing R]
 
+/--
+@isnad1 id=eq.0h2v.s7.954ae55b44f6 from=translated src=- shape=d014e47f vocab=f632ef5a
+-/
 theorem negVariableChange_smul (W : WeierstrassCurve R) :
     (⟨-1, 0, -W.a₁, -W.a₃⟩ : VariableChange R) • W = W := by
   ext
@@ -24,6 +27,9 @@ end WeierstrassCurve
 
 open _root_.WeierstrassCurve open _root_.P2MW.S_WeierstrassCurve_variableChange_smul_eq_self_iff_of_c4_ne_zero_of_c6_ne_zero.WeierstrassCurve
 
+/--
+@isnad1 id=iff.4h3v.s8.9651786d105e from=translated src=- shape=f020ecbc vocab=f9417824
+-/
 theorem solution {F : Type*} [Field F]
     (h2 : (2 : F) ≠ 0) (h3 : (3 : F) ≠ 0) (E : WeierstrassCurve F)
     (hc₄ : E.c₄ ≠ 0) (hc₆ : E.c₆ ≠ 0) (C : VariableChange F) :

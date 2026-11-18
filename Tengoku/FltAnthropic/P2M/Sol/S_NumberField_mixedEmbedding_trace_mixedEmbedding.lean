@@ -10,6 +10,9 @@ set_option autoImplicit false
 open NumberField NumberField.mixedEmbedding Module
 open scoped Classical
 
+/--
+@isnad1 id=eq.0h2v.s10.72301e1a6f98 from=translated src=- shape=f225a747 vocab=70edd9bb
+-/
 theorem solution
     (K : Type*) [Field K] [NumberField K] (x : K) :
     Algebra.trace ℝ (mixedSpace K) (mixedEmbedding K x) = (Algebra.trace ℚ K x : ℝ) := by

@@ -11,6 +11,9 @@ universe u
 
 open Polynomial IsLocalRing in
 
+/--
+@isnad1 id=ex.1h2v.s10.5c95491867cc from=translated src=- shape=4b9e66e7 vocab=a527b13a
+-/
 theorem AdjoinRoot.exists_isLocalRing_faithfullyFlat_residueField_algEquiv_of_irreducible_map
     (R : Type u) [CommRing R] [IsLocalRing R]
     (f : R[X]) (hfm : f.Monic) [Fact (Irreducible (f.map (residue R)))] :

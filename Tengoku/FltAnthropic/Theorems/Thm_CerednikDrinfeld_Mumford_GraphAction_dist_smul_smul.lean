@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_CerednikDrinfeld_Mumford_GraphAction_dist_
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.0h6v.s6.0871c1b42c6d from=translated src=- shape=22af7d4c vocab=495b09f7
+-/
 theorem CerednikDrinfeld.Mumford.GraphAction.dist_smul_smul
     {G : Type} [Group G] {W : Type} [MulAction G W] (𝒯 : SimpleGraph W)
     [CerednikDrinfeld.Mumford.GraphAction G 𝒯] (g : G) (x y : W) :

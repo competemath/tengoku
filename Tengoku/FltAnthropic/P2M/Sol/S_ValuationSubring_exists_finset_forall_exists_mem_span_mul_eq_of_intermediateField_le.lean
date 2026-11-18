@@ -14,6 +14,9 @@ section Trace
 
 variable {k L : Type*} [Field k] [Field L] [Algebra k L]
 
+/--
+@isnad1 id=mem.2h4v.s7.ab5712cfa296 from=translated src=- shape=49bfd616 vocab=88293c0a
+-/
 theorem mem_valuationSubring_of_isIntegral {E : Type*} [Field E] {S : Type*} [CommRing S] [Algebra S E]
     (V : ValuationSubring E) (hS : ∀ s : S, algebraMap S E s ∈ V) {z : E}
     (hz : IsIntegral S z) : z ∈ V := by
@@ -28,6 +31,9 @@ theorem mem_valuationSubring_of_isIntegral {E : Type*} [Field E] {S : Type*} [Co
   rw [← hw]
   exact w.2
 
+/--
+@isnad1 id=ex.5h8v.s11.57f308270504 from=translated src=- shape=94a61d2c vocab=cc093fb0
+-/
 theorem exists_finset_forall_eq_div [CharZero k] (A : ValuationSubring L)
     (K₀ K' : IntermediateField k L) [FiniteDimensional k ↥K₀] [FiniteDimensional k ↥K'] (hK : K₀ ≤ K')
     (C : Subring L) (hCK₀ : ∀ c : L, c ∈ C ↔ c ∈ A ∧ c ∈ K₀) [IsDomain ↥C] [IsDiscreteValuationRing ↥C]
@@ -190,6 +196,9 @@ end Trace
 
 end ValuationTraceGeneratorsSol
 
+/--
+@isnad1 id=ex.5h8v.s11.57f308270504 from=translated src=- shape=94a61d2c vocab=cc093fb0
+-/
 theorem solution
     {k L : Type*} [Field k] [Field L] [Algebra k L] [CharZero k] (A : ValuationSubring L)
     (K₀ K' : IntermediateField k L) [FiniteDimensional k ↥K₀] [FiniteDimensional k ↥K'] (hK : K₀ ≤ K')

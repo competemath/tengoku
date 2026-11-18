@@ -11,6 +11,9 @@ open MvPowerSeries
 
 universe u v
 
+/--
+@isnad1 id=mem.3h8v.s9.72790a0a2504 from=translated src=- shape=706e4aba vocab=54000d23
+-/
 theorem Tengoku.FltAnthropic.MvFormalGroup.adicEval_add_sub_adicEval_sub_sum_mul_mem_span_sq
     {R : Type u} [CommRing R] {S : Type v} [CommRing S] [Algebra R S]
     (J : Ideal S) [IsAdicComplete J S] {d : ℕ}

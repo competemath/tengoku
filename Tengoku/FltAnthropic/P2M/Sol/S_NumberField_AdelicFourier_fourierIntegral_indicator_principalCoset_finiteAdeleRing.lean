@@ -15,6 +15,9 @@ open scoped Classical FourierTransform nonZeroDivisors
 noncomputable section
 
 open scoped Classical in
+/--
+@isnad1 id=eq.2h6v.s12.5f0fc99d36b7 from=translated src=- shape=aea383c6 vocab=4d010f76
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F]
     [MeasurableSpace (FiniteAdeleRing (𝓞 F) F)] [BorelSpace (FiniteAdeleRing (𝓞 F) F)]

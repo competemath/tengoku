@@ -26,12 +26,18 @@ def posLift (r : ℝ) : w.Completion :=
   if hw : w.IsReal then (ringEquivRealOfIsReal hw).symm r
   else (ringEquivComplexOfIsComplex (not_isReal_iff_isComplex.mp hw)).symm r
 
+/--
+@isnad1 id=eq.0h3v.s6.77d3ef5589aa from=translated src=- shape=2689c96d vocab=938d2271
+-/
 theorem extensionEmbedding_posLift (r : ℝ) : extensionEmbedding w (posLift w r) = (r : ℂ) := by
   unfold posLift
   split_ifs with hw
   · rw [← extensionEmbeddingOfIsReal_apply hw, ← ringEquivRealOfIsReal_apply hw, RingEquiv.apply_symm_apply]
   · rw [← ringEquivComplexOfIsComplex_apply (not_isReal_iff_isComplex.mp hw), RingEquiv.apply_symm_apply]
 
+/--
+@isnad1 id=continuo.0h2v.s5.602c4e64ab59 from=translated src=- shape=ada3b6e4 vocab=a32d5250
+-/
 theorem continuous_posLift : Continuous (posLift w) := by
   unfold posLift
   split_ifs with hw
@@ -39,14 +45,23 @@ theorem continuous_posLift : Continuous (posLift w) := by
   · exact (isometryEquivComplexOfIsComplex (not_isReal_iff_isComplex.mp hw)).symm.continuous.comp
       Complex.continuous_ofReal
 
+/--
+@isnad1 id=eq.0h4v.s6.8da722e6a183 from=translated src=- shape=86a01b02 vocab=bd3c4d23
+-/
 theorem posLift_mul (a b : ℝ) : posLift w (a * b) = posLift w a * posLift w b := by
   apply (extensionEmbedding w).injective
   rw [map_mul, extensionEmbedding_posLift, extensionEmbedding_posLift, extensionEmbedding_posLift, Complex.ofReal_mul]
 
+/--
+@isnad1 id=eq.0h2v.s6.6d2bad4dfe78 from=translated src=- shape=2bc9fad4 vocab=ea16c2e1
+-/
 theorem posLift_one : posLift w 1 = 1 := by
   apply (extensionEmbedding w).injective
   rw [extensionEmbedding_posLift, map_one, Complex.ofReal_one]
 
+/--
+@isnad1 id=ne.1h3v.s6.406fa6953de4 from=translated src=- shape=af1e8163 vocab=ea16c2e1
+-/
 theorem posLift_ne_zero {r : ℝ} (hr : r ≠ 0) : posLift w r ≠ 0 := by
   intro h
   have := extensionEmbedding_posLift w r
@@ -61,21 +76,36 @@ theorem eq_posLift_of_extensionEmbedding_eq {x : w.Completion} {r : ℝ} (h : ex
 def expUnit (t : ℝ) : (w.Completion)ˣ :=
   Units.mk0 (posLift w (Real.exp t)) (posLift_ne_zero w (Real.exp_pos t).ne')
 
+/--
+@isnad1 id=eq.0h3v.s5.a1de9ee6dc80 from=translated src=- shape=43368e1c vocab=02bd3231
+-/
 theorem expUnit_val (t : ℝ) : ((expUnit w t : (w.Completion)ˣ) : w.Completion) = posLift w (Real.exp t) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.e736f3d60a75 from=translated src=- shape=632bba84 vocab=2c61c19e
+-/
 theorem expUnit_add (s t : ℝ) : expUnit w (s + t) = expUnit w s * expUnit w t := by
   apply Units.ext
   rw [Units.val_mul, expUnit_val, expUnit_val, expUnit_val, Real.exp_add, posLift_mul]
 
+/--
+@isnad1 id=eq.0h2v.s7.3dd0153ba23b from=translated src=- shape=f04bb258 vocab=e6746aca
+-/
 theorem expUnit_zero : expUnit w 0 = 1 := by
   apply Units.ext
   rw [expUnit_val, Real.exp_zero, posLift_one, Units.val_one]
 
+/--
+@isnad1 id=eq.0h3v.s7.d66554daa96d from=translated src=- shape=cea47f91 vocab=9f781e53
+-/
 theorem expUnit_inv_val (t : ℝ) :
     (((expUnit w t)⁻¹ : (w.Completion)ˣ) : w.Completion) = posLift w (Real.exp (-t)) := by
   have h : expUnit w t * expUnit w (-t) = 1 := by rw [← expUnit_add, add_neg_cancel, expUnit_zero]
   rw [← expUnit_val, ← inv_eq_of_mul_eq_one_right h]
 
+/--
+@isnad1 id=continuo.0h2v.s6.bd7bfd0086ba from=translated src=- shape=d6de7ab3 vocab=8b8fdcfc
+-/
 theorem continuous_expUnit : Continuous (expUnit w) := by
   rw [Units.continuous_iff]
   refine ⟨?_, ?_⟩
@@ -94,6 +124,9 @@ theorem eq_mul_of_continuous_additive (m : ℝ → ℝ) (hm : ∀ a b, m (a + b)
 
 variable {w}
 
+/--
+@isnad1 id=ex.1h3v.s10.3c40992901f9 from=translated src=- shape=fbb2da1a vocab=38946801
+-/
 theorem main (χ : (w.Completion)ˣ →* ℂˣ)
     (hχc : Continuous fun x : (w.Completion)ˣ => ((χ x : ℂˣ) : ℂ)) :
     ∃ s : ℂ,
@@ -174,6 +207,9 @@ end
 
 open NumberField NumberField.InfinitePlace NumberField.InfinitePlace.Completion
 
+/--
+@isnad1 id=ex.1h3v.s10.3c40992901f9 from=translated src=- shape=fbb2da1a vocab=38946801
+-/
 theorem solution
     (F : Type) [Field F] (w : InfinitePlace F)
     (χ : (w.Completion)ˣ →* ℂˣ)

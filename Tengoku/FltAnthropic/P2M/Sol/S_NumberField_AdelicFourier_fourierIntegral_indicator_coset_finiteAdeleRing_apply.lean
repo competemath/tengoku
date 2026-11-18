@@ -16,6 +16,9 @@ open MeasureTheory NumberField.AdelicFourier
 
 open scoped Classical in
 
+/--
+@isnad1 id=eq.3h7v.s9.718cae23c85b from=translated src=- shape=9cedd4f3 vocab=fcbe1b09
+-/
 theorem fourierIntegral_indicator_coset_of_isCompact
     {K : Type*} [CommRing K] [TopologicalSpace K] [IsTopologicalRing K] [T2Space K]
     [MeasurableSpace K] [BorelSpace K] (μ : Measure K) [μ.IsAddLeftInvariant]
@@ -110,6 +113,9 @@ end Ws23.Alpha
 open NumberField NumberField.AdelicFourier NumberField.AdelicBox IsDedekindDomain MeasureTheory
 
 open scoped Classical in
+/--
+@isnad1 id=eq.1h6v.s11.df7ba82bf8d2 from=translated src=- shape=1648441d vocab=0505b691
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F]
     [MeasurableSpace (FiniteAdeleRing (𝓞 F) F)] [BorelSpace (FiniteAdeleRing (𝓞 F) F)]

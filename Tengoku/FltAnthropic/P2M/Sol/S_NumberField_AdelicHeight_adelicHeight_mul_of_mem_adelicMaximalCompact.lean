@@ -16,6 +16,9 @@ section Local
 
 variable {K : Type*} [NormedField K] [IsUltrametricDist K]
 
+/--
+@isnad1 id=le.1h3v.s7.2da5154b0d2f from=translated src=- shape=944067d2 vocab=1b1cab7c
+-/
 theorem rowMaxNorm_mul_le (M k : Matrix (Fin 2) (Fin 2) K) (hk : ∀ i j, ‖k i j‖ ≤ 1) :
     rowMaxNorm (M * k) ≤ rowMaxNorm M := by
   have h : ∀ j, ‖(M * k) 1 j‖ ≤ rowMaxNorm M := by
@@ -29,10 +32,16 @@ theorem rowMaxNorm_mul_le (M k : Matrix (Fin 2) (Fin 2) K) (hk : ∀ i j, ‖k i
   exact max_le (h 0) (h 1)
 
 omit [IsUltrametricDist K] in
+/--
+@isnad1 id=eq.0h3v.s9.b78be0e58aef from=translated src=- shape=5a325dd3 vocab=095946d9
+-/
 theorem coe_mul' (g k : GL (Fin 2) K) :
     ((g * k : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) = (g : Matrix (Fin 2) (Fin 2) K) * (k : Matrix (Fin 2) (Fin 2) K) :=
   rfl
 
+/--
+@isnad1 id=eq.2h3v.s9.cee4f5303373 from=translated src=- shape=ee6a763a vocab=2bcb61bd
+-/
 theorem rowMaxNorm_mul_eq (g k : GL (Fin 2) K)
     (hk : ∀ i j, ‖(k : Matrix (Fin 2) (Fin 2) K) i j‖ ≤ 1)
     (hk' : ∀ i j, ‖((k⁻¹ : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) i j‖ ≤ 1) :
@@ -43,6 +52,9 @@ theorem rowMaxNorm_mul_eq (g k : GL (Fin 2) K)
       ((k⁻¹ : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) hk'
     rwa [← coe_mul', mul_inv_cancel_right] at h
 
+/--
+@isnad1 id=eq.2h2v.s8.43ac2bd41ef6 from=translated src=- shape=4ac9601d vocab=93ea93ab
+-/
 theorem norm_det_eq_one (k : GL (Fin 2) K)
     (hk : ∀ i j, ‖(k : Matrix (Fin 2) (Fin 2) K) i j‖ ≤ 1)
     (hk' : ∀ i j, ‖((k⁻¹ : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) i j‖ ≤ 1) :
@@ -59,6 +71,9 @@ theorem norm_det_eq_one (k : GL (Fin 2) K)
   rw [hprod] at this
   exact lt_irrefl _ this
 
+/--
+@isnad1 id=eq.2h3v.s9.38407645de1a from=translated src=- shape=cb6a5714 vocab=2806211b
+-/
 theorem finLocalHeight_mul_eq (g k : GL (Fin 2) K)
     (hk : ∀ i j, ‖(k : Matrix (Fin 2) (Fin 2) K) i j‖ ≤ 1)
     (hk' : ∀ i j, ‖((k⁻¹ : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) i j‖ ≤ 1) :
@@ -68,6 +83,9 @@ theorem finLocalHeight_mul_eq (g k : GL (Fin 2) K)
 
 end Local
 
+/--
+@isnad1 id=eq.1h3v.s10.7d106710923e from=translated src=- shape=ca01d2ba vocab=a631130a
+-/
 theorem finHeight_mul_eq (F : Type) [Field F] [NumberField F]
     (g k : GL (Fin 2) (FiniteAdeleRing (𝓞 F) F)) (hk : k ∈ finiteIntegralGL2 (𝓞 F) F) :
     finHeight F (g * k) = finHeight F g := by
@@ -83,6 +101,9 @@ theorem finHeight_mul_eq (F : Type) [Field F] [NumberField F]
 
 end HTKSol
 
+/--
+@isnad1 id=eq.1h3v.s9.cfaf5a91c36d from=translated src=- shape=09ded790 vocab=f8409b30
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F]
     (g : AdelicGL2 (𝓞 F) F) (k : AdelicGL2 (𝓞 F) F) (hk : k ∈ AutomorphicForm.adelicMaximalCompact F) :

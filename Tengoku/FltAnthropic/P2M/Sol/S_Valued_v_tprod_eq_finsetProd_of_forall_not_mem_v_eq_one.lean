@@ -10,6 +10,9 @@ set_option autoImplicit false
 open scoped Topology
 open Filter
 
+/--
+@isnad1 id=eq.2h5v.s7.8ac23d8bc353 from=translated src=- shape=a1c9fc78 vocab=451544cf
+-/
 theorem solution
     {K : Type*} [Field K] {Γ₀ : Type*} [LinearOrderedCommGroupWithZero Γ₀] [Valued K Γ₀]
     {ι : Type*} (f : ι → K) (hf : Multipliable f)

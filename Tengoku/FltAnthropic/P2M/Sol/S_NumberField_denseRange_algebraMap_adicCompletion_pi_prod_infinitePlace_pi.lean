@@ -12,12 +12,18 @@ namespace P2mS26B6b
 
 open NumberField IsDedekindDomain
 
+/--
+@isnad1 id=eq.0h3v.s8.b1c61ad2afb4 from=translated src=- shape=738d584c vocab=57c93890
+-/
 theorem norm_algebraMap_completion {K : Type*} [Field K] (w : InfinitePlace K) (x : K) :
     ‖algebraMap K w.Completion x‖ = w x := by
   rw [show algebraMap K w.Completion x = (((WithAbs.equiv w.1).symm x : WithAbs w.1) : w.Completion) from rfl,
     NumberField.InfinitePlace.Completion.norm_coe]
   simp
 
+/--
+@isnad1 id=denseran.0h2v.s8.e697903918b9 from=translated src=- shape=dea6aec9 vocab=6f1b6a36
+-/
 theorem denseRange_algebraMap_completion {K : Type*} [Field K] (w : InfinitePlace K) :
     DenseRange (algebraMap K w.Completion) := by
   have h := UniformSpace.Completion.denseRange_coe (α := WithAbs w.1)
@@ -25,10 +31,16 @@ theorem denseRange_algebraMap_completion {K : Type*} [Field K] (w : InfinitePlac
     (h.comp (WithAbs.equiv w.1).symm.surjective.denseRange (UniformSpace.Completion.continuous_coe _))
     (NumberField.InfinitePlace.Completion.continuous_ofCompletion w)
 
+/--
+@isnad1 id=denseran.0h2v.s8.d9cc4053f982 from=translated src=- shape=782a2962 vocab=8bd8ba8b
+-/
 theorem denseRange_algebraMap_adicCompletion {K : Type*} [Field K] [NumberField K]
     (v : HeightOneSpectrum (𝓞 K)) : DenseRange (algebraMap K (v.adicCompletion K)) := by
   exact IsDedekindDomain.HeightOneSpectrum.denseRange_algebraMap (K := K) (v := v)
 
+/--
+@isnad1 id=and.0h2v.s11.4d343e4660db from=translated src=- shape=839aad31 vocab=3ec50f2b
+-/
 theorem isNontrivial_and_pairwise_not_isEquiv {K : Type*} [Field K] [NumberField K]
     (S : Finset (HeightOneSpectrum (𝓞 K))) :
     (∀ i, (Sum.elim (fun v : S => NumberField.place (algebraMap K (v.1.adicCompletion K)))
@@ -93,6 +105,9 @@ theorem isNontrivial_and_pairwise_not_isEquiv {K : Type*} [Field K] [NumberField
 
 end P2mS26B6b
 
+/--
+@isnad1 id=denseran.0h2v.s11.3200932e52fa from=translated src=- shape=94b57a21 vocab=c45695fd
+-/
 theorem solution {K : Type*} [Field K] [NumberField K]
     (S : Finset (IsDedekindDomain.HeightOneSpectrum (NumberField.RingOfIntegers K))) :
     DenseRange (fun x : K =>

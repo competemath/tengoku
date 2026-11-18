@@ -10,6 +10,9 @@ set_option autoImplicit false
 open MeasureTheory
 open scoped ENNReal
 
+/--
+@isnad1 id=ex.1h7v.s10.81faacb2db0e from=translated src=- shape=e688103f vocab=c47a3659
+-/
 theorem MeasureTheory.Measure.exists_haar_eq_smul_map_mul_prod_of_homeomorph
     {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [T2Space G] [LocallyCompactSpace G]
     [SecondCountableTopology G] [MeasurableSpace G] [BorelSpace G]

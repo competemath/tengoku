@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_LT_LatticeTree_Vertex_isWithin_add_of_isWi
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=iswithin.3h8v.s7.92a3ca957f12 from=translated src=- shape=e42fbc22 vocab=94084d32
+-/
 theorem LT.LatticeTree.Vertex.isWithin_add_of_isWithin_of_isWithin
     (R K : Type) [CommRing R] [Field K] [Algebra R K]
     [IsFractionRing R K] (ϖ : R) (hϖ : Irreducible ϖ)

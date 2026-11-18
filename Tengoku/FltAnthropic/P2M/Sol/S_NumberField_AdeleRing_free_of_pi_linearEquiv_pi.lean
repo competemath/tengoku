@@ -27,6 +27,9 @@ section Local
 
 variable {R : Type*} [CommRing R]
 
+/--
+@isnad1 id=ex.1h3v.s8.2c0b2f16372d from=translated src=- shape=d3f65e4d vocab=1fee9053
+-/
 theorem exists_splitting_of_isLocalRing [IsLocalRing R] {N : ℕ}
     (ε : Matrix (Fin N) (Fin N) R) (hε : ε * ε = ε) :
     ∃ (r : ℕ) (A : Matrix (Fin r) (Fin N) R) (B : Matrix (Fin N) (Fin r) R),
@@ -69,11 +72,17 @@ theorem exists_splitting_of_isLocalRing [IsLocalRing R] {N : ℕ}
       simp
     rw [this, LinearMap.id_comp, hsp]
 
+/--
+@isnad1 id=eq.2h6v.s7.6973f947eaf0 from=translated src=- shape=86d0666a vocab=ffbb808f
+-/
 theorem trace_eq_of_splitting {ι : Type*} [Fintype ι] [DecidableEq ι] {r : ℕ}
     {ε : Matrix ι ι R} {A : Matrix (Fin r) ι R} {B : Matrix ι (Fin r) R}
     (hAB : A * B = 1) (hBA : B * A = ε) : ε.trace = r := by
   rw [← hBA, Matrix.trace_mul_comm, hAB, Matrix.trace_one, Fintype.card_fin]
 
+/--
+@isnad1 id=splitsid.0h1v.s4.a994c84ee843 from=translated src=- shape=affebb5f vocab=670d0efc
+-/
 theorem splitsIdem_of_isLocalRing (R : Type*) [CommRing R] [IsLocalRing R] [CharZero R] :
     SplitsIdem R := by
   intro N m n hn ε A' B' hε hA'B' hB'A'
@@ -97,6 +106,9 @@ section Transfer
 
 variable {R S : Type*} [CommRing R] [CommRing S]
 
+/--
+@isnad1 id=and.3h9v.s10.0cf09227ac21 from=translated src=- shape=c98f3e5d vocab=7c43e84b
+-/
 theorem hyps_map (φ : R →+* S) {N m n : ℕ} {ε : Matrix (Fin N) (Fin N) R}
     {A' : Matrix (Fin (m * n)) (Fin N × Fin n) R} {B' : Matrix (Fin N × Fin n) (Fin (m * n)) R}
     (hε : ε * ε = ε) (hA'B' : A' * B' = 1)
@@ -112,11 +124,17 @@ end Transfer
 
 section Pi
 
+/--
+@isnad1 id=eq.1h6v.s8.445f75a872db from=translated src=- shape=4defc84f vocab=f16c73d6
+-/
 theorem matrix_eq_of_map_eval_eq {ι : Type*} {R : ι → Type*} [∀ i, CommRing (R i)]
     {α β : Type*} {M M' : Matrix α β (∀ i, R i)}
     (h : ∀ i, M.map (Pi.evalRingHom R i) = M'.map (Pi.evalRingHom R i)) : M = M' :=
   Matrix.ext fun a b => funext fun i => congrFun (congrFun (h i) a) b
 
+/--
+@isnad1 id=splitsid.1h2v.s5.8c9522b64985 from=translated src=- shape=277a5259 vocab=146b5794
+-/
 theorem splitsIdem_pi {ι : Type*} (R : ι → Type*) [∀ i, CommRing (R i)]
     (h : ∀ i, SplitsIdem (R i)) : SplitsIdem (∀ i, R i) := by
   intro N m n hn ε A' B' hε hA'B' hB'A'
@@ -136,12 +154,18 @@ theorem splitsIdem_pi {ι : Type*} (R : ι → Type*) [∀ i, CommRing (R i)]
   · refine matrix_eq_of_map_eval_eq fun i => ?_
     rw [Matrix.map_mul, hA, hB, hBA]
 
+/--
+@isnad1 id=eq.2h6v.s8.87fe5eebc653 from=translated src=- shape=7e75764a vocab=61ffd54a
+-/
 theorem matrix_eq_of_map_fst_snd_eq {R S : Type*} [CommRing R] [CommRing S]
     {α β : Type*} {M M' : Matrix α β (R × S)}
     (h₁ : M.map (RingHom.fst R S) = M'.map (RingHom.fst R S))
     (h₂ : M.map (RingHom.snd R S) = M'.map (RingHom.snd R S)) : M = M' :=
   Matrix.ext fun a b => Prod.ext (congrFun (congrFun h₁ a) b) (congrFun (congrFun h₂ a) b)
 
+/--
+@isnad1 id=splitsid.2h2v.s4.11f8a67e9cdf from=translated src=- shape=ab93cd92 vocab=03e4b8f5
+-/
 theorem splitsIdem_prod (R S : Type*) [CommRing R] [CommRing S]
     (hR : SplitsIdem R) (hS : SplitsIdem S) : SplitsIdem (R × S) := by
   intro N m n hn ε A' B' hε hA'B' hB'A'
@@ -176,16 +200,25 @@ variable {ι : Type*} {R : ι → Type*} [∀ i, CommRing (R i)]
 variable {S : ι → Type*} [∀ i, SetLike (S i) (R i)] [∀ i, SubringClass (S i) (R i)]
 variable {B : ∀ i, S i}
 
+/--
+@isnad1 id=ex.1h8v.s8.fdbdadc91c11 from=translated src=- shape=31707ac3 vocab=dbb369f7
+-/
 theorem exists_map_subtype_eq {α β : Type*} (i : ι) (M : Matrix α β (R i))
     (hM : ∀ a b, M a b ∈ B i) :
     ∃ M₀ : Matrix α β (B i), M₀.map (SubringClass.subtype (B i)) = M :=
   ⟨Matrix.of fun a b => ⟨M a b, hM a b⟩, by ext a b; rfl⟩
 
+/--
+@isnad1 id=eq.1h8v.s9.44f0f180c238 from=translated src=- shape=d9d7e912 vocab=6bfcb189
+-/
 theorem matrix_eq_of_map_evalRingHom_eq {α β : Type*} {M M' : Matrix α β (Πʳ i, [R i, B i])}
     (h : ∀ i, M.map (RestrictedProduct.evalRingHom R i) =
       M'.map (RestrictedProduct.evalRingHom R i)) : M = M' :=
   Matrix.ext fun a b => RestrictedProduct.ext _ _ fun i => congrFun (congrFun (h i) a) b
 
+/--
+@isnad1 id=splitsid.2h4v.s7.0cb4aaa827c1 from=translated src=- shape=5f9e36f5 vocab=7e0018a3
+-/
 theorem splitsIdem_restrictedProduct
     (hR : ∀ i, SplitsIdem (R i)) (hB : ∀ i, SplitsIdem (B i)) :
     SplitsIdem (Πʳ i, [R i, B i]) := by
@@ -256,6 +289,9 @@ section Reduction
 
 variable {R : Type*} [CommRing R]
 
+/--
+@isnad1 id=free.2h5v.s7.92197c7f732a from=translated src=- shape=b8d815df vocab=68d95beb
+-/
 theorem free_of_splitsIdem (hR : SplitsIdem R) {m n : ℕ} (hn : 0 < n)
     {P : Type*} [AddCommGroup P] [Module R P]
     (f : (Fin n → P) ≃ₗ[R] (Fin (m * n) → R)) : Module.Free R P := by
@@ -344,22 +380,37 @@ open IsDedekindDomain
 
 variable (F : Type*) [Field F] [NumberField F]
 
+/--
+@isnad1 id=charzero.0h2v.s5.fa4c636d83bf from=translated src=- shape=d025193f vocab=1f41ca04
+-/
 theorem charZero_completion (v : InfinitePlace F) : CharZero v.Completion :=
   charZero_of_injective_algebraMap (algebraMap F v.Completion).injective
 
+/--
+@isnad1 id=charzero.0h2v.s6.b81a89437d1f from=translated src=- shape=082f7236 vocab=eca81c23
+-/
 theorem charZero_adicCompletion (v : HeightOneSpectrum (𝓞 F)) : CharZero (v.adicCompletion F) :=
   charZero_of_injective_algebraMap (algebraMap F (v.adicCompletion F)).injective
 
+/--
+@isnad1 id=charzero.0h2v.s9.2095a434080b from=translated src=- shape=700d3d0e vocab=bc0bbfaf
+-/
 theorem charZero_adicCompletionIntegers (v : HeightOneSpectrum (𝓞 F)) :
     CharZero (v.adicCompletionIntegers F) :=
   haveI := charZero_adicCompletion F v
   (v.adicCompletionIntegers F).subtype.charZero
 
+/--
+@isnad1 id=splitsid.0h1v.s4.0abbe4b721a7 from=translated src=- shape=9499e9bc vocab=fed1c06d
+-/
 theorem splitsIdem_infiniteAdeleRing : SplitsIdem (InfiniteAdeleRing F) :=
   splitsIdem_pi (fun v : InfinitePlace F => v.Completion) fun v =>
     haveI := charZero_completion F v
     splitsIdem_of_isLocalRing _
 
+/--
+@isnad1 id=splitsid.0h1v.s5.29a448fe5b0f from=translated src=- shape=5a2b787c vocab=b0678067
+-/
 theorem splitsIdem_finiteAdeleRing : SplitsIdem (FiniteAdeleRing (𝓞 F) F) :=
   splitsIdem_restrictedProduct (R := fun v : HeightOneSpectrum (𝓞 F) => v.adicCompletion F)
     (B := fun v : HeightOneSpectrum (𝓞 F) => v.adicCompletionIntegers F)
@@ -370,6 +421,9 @@ theorem splitsIdem_finiteAdeleRing : SplitsIdem (FiniteAdeleRing (𝓞 F) F) :=
       haveI := charZero_adicCompletionIntegers F v
       splitsIdem_of_isLocalRing _)
 
+/--
+@isnad1 id=splitsid.0h1v.s5.383d8082f671 from=translated src=- shape=5a2b787c vocab=10a8611c
+-/
 theorem splitsIdem_adeleRing : SplitsIdem (AdeleRing (𝓞 F) F) :=
   splitsIdem_prod _ _ (splitsIdem_infiniteAdeleRing F) (splitsIdem_finiteAdeleRing F)
 
@@ -377,6 +431,9 @@ end Adelic
 
 end R4H2F
 
+/--
+@isnad1 id=free.1h5v.s9.7c4967a160df from=translated src=- shape=da9d3fbd vocab=715cf0af
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F] (m n : ℕ) (hn : 0 < n)
     (P : Type) [AddCommGroup P] [Module (AdeleRing (𝓞 F) F) P]

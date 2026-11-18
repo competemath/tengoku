@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_HopfAlgebra_signTwist_antipode_mul_comul_p
 
 open scoped TensorProduct
 open scoped TensorProduct in
+/--
+@isnad1 id=other.3h3v.s14.ef6623a59725 from=translated src=- shape=4216be81 vocab=95fd3684
+-/
 theorem HopfAlgebra.signTwist_antipode_mul_comul_padicInt
     (p : ℕ) [Fact p.Prime] (hp2 : p ≠ 2)
     (d₀ : ℤ_[p]) (hd₀ : IsUnit d₀)

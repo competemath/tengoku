@@ -10,6 +10,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_NumberField_AdelicFourier_setIntegral_addC
 
 open NumberField NumberField.AdelicFourier NumberField.AdelicBox AutomorphicForm IsDedekindDomain MeasureTheory
 open scoped Classical FourierTransform nonZeroDivisors
+/--
+@isnad1 id=eq.1h5v.s11.cf0685d8f3b3 from=translated src=- shape=34bb12fc vocab=6dc4a855
+-/
 theorem NumberField.AdelicFourier.setIntegral_addChar_mul_eq_ite_of_isCompact
     (F : Type) [Field F] [NumberField F]
     [MeasurableSpace (FiniteAdeleRing (𝓞 F) F)] [BorelSpace (FiniteAdeleRing (𝓞 F) F)]

@@ -8,6 +8,9 @@ namespace P2MW.S_QuaternionAlgebra_nrd_mul
 open scoped Quaternion
 open QuaternionAlgebra
 
+/--
+@isnad1 id=eq.0h5v.s7.8d55e3ed23a4 from=translated src=- shape=6f03d6b0 vocab=73df06f5
+-/
 theorem solution {R : Type*} [CommRing R] {a b : R}
     (x y : ℍ[R, a, b]) : nrd (x * y) = nrd x * nrd y := by
   obtain ⟨x₀, x₁, x₂, x₃⟩ := x

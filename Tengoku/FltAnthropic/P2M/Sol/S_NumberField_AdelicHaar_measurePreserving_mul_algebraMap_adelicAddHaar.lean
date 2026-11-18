@@ -13,6 +13,9 @@ open NumberField MeasureTheory MeasureTheory.Measure
 
 attribute [local instance] NumberField.AdelicHaar.adeleBorel
 
+/--
+@isnad1 id=regular.0h1v.s6.6f36bbc5e44a from=translated src=- shape=70adf9d7 vocab=731dc103
+-/
 theorem FltWs24.regular_adelicAddHaar (F : Type) [Field F] [NumberField F] :
     (AdelicHaar.adelicAddHaar (𝓞 F) F).Regular := by
   haveI := AdelicHaar.borelSpace_adeleBorel (𝓞 F) F
@@ -21,6 +24,9 @@ theorem FltWs24.regular_adelicAddHaar (F : Type) [Field F] [NumberField F] :
     | (unfold AdelicHaar.adelicAddHaar Measure.addHaar; infer_instance)
     | (delta NumberField.AdelicHaar.adelicAddHaar; unfold Measure.addHaar; infer_instance)
 
+/--
+@isnad1 id=measurep.1h2v.s9.b29f7ea99808 from=translated src=- shape=0049ab5a vocab=937ef54f
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F] (a : F) (ha : a ≠ 0) :
     MeasureTheory.MeasurePreserving (fun x => algebraMap F (AdeleRing (𝓞 F) F) a * x)

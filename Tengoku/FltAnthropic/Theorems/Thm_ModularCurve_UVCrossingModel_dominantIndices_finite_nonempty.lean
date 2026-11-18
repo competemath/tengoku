@@ -14,6 +14,9 @@ universe u
 
 open ModularCurve ModularCurve.UVCrossingModel IsLocalRing
 
+/--
+@isnad1 id=and.8h7v.s9.8d99035bc68d from=translated src=- shape=2cfee03e vocab=7f0811bb
+-/
 theorem ModularCurve.UVCrossingModel.dominantIndices_finite_nonempty
     {W : Type u} [CommRing W] [IsDomain W] [IsDiscreteValuationRing W] [IsAdicComplete (maximalIdeal W) W]
     (ϖ : W) (hϖ : Irreducible ϖ) (e : ℕ) (he : 1 ≤ e) (q : ℕ) (hq : 1 ≤ q)

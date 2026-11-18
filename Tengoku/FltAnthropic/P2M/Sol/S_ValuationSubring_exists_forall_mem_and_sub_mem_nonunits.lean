@@ -12,6 +12,9 @@ open _root_.ValuationSubring
 
 open IsLocalRing
 
+/--
+@isnad1 id=eq.1h4v.s5.bc057ee54dff from=translated src=- shape=e0f134bb vocab=5ae4cdd6
+-/
 theorem pow_eq_self_of_orderOf_dvd {M : Type*} [Monoid M] (u : M) {D : ℕ}
     (hD : orderOf u ∣ D) (N : ℕ) : u ^ (1 + N * D) = u := by
   have h1 : u ^ D = 1 := orderOf_dvd_iff_pow_eq_one.mp hD
@@ -30,6 +33,9 @@ theorem eq_of_pow_eq_pow_of_not_isOfFinOrder {κ : Type*} [Field κ] {u : κ} (h
   · omega
   · exact absurd (isOfFinOrder_iff_pow_eq_one.mpr ⟨c, hpos, hc⟩) hfin
 
+/--
+@isnad1 id=ex.1h3v.s8.4750b58bf53c from=translated src=- shape=1904712d vocab=5f407fed
+-/
 theorem exists_exponent {ι : Type*} [Fintype ι] (κ : ι → Type*) [∀ j, Field (κ j)]
     (u : ∀ j, κ j) (hu : ∀ j, u j ≠ 0) :
     ∃ m : ℕ, 2 ≤ m ∧ ∀ j, 1 - u j + u j ^ m ≠ 0 := by
@@ -78,6 +84,9 @@ theorem exists_exponent {ι : Type*} [Fintype ι] (κ : ι → Type*) [∀ j, Fi
 
 variable {K : Type*} [Field K] {ι : Type*}
 
+/--
+@isnad1 id=ex.0h4v.s7.4015fc94a8aa from=translated src=- shape=3220e226 vocab=7c9f6260
+-/
 theorem exists_mul_mem_forall [Fintype ι] (R : ι → ValuationSubring K) (x : K) :
     ∃ t : K, (∀ j, t ∈ R j) ∧ (∀ j, t * x ∈ R j) ∧
       (∀ j, x ∈ R j → (R j).valuation t = 1) := by
@@ -165,6 +174,9 @@ theorem exists_mul_mem_forall [Fintype ι] (R : ι → ValuationSubring K) (x : 
 
 def inter (R : ι → ValuationSubring K) : Subring K := ⨅ j, (R j).toSubring
 
+/--
+@isnad1 id=iff.0h4v.s6.37bd0e1e4b1d from=translated src=- shape=5719cc25 vocab=cc619800
+-/
 theorem mem_inter {R : ι → ValuationSubring K} {z : K} : z ∈ inter R ↔ ∀ j, z ∈ R j := by
   simp [inter, Subring.mem_iInf]
 
@@ -183,13 +195,22 @@ def centre (R : ι → ValuationSubring K) (j : ι) : Ideal (inter R) where
           exact ((R j).valuation_le_one_iff _).mpr (mem_inter.mp c.2 j)
       _ < 1 := by rwa [one_mul]
 
+/--
+@isnad1 id=iff.0h5v.s9.712d6393bd49 from=translated src=- shape=42fd1adc vocab=03170580
+-/
 theorem mem_centre {R : ι → ValuationSubring K} {j : ι} {b : inter R} :
     b ∈ centre R j ↔ (R j).valuation (b : K) < 1 := Iff.rfl
 
+/--
+@isnad1 id=eq.1h5v.s9.a7b111c0dc91 from=translated src=- shape=f50fcbd1 vocab=d1759e4e
+-/
 theorem valuation_eq_one_of_not_mem_centre {R : ι → ValuationSubring K} {j : ι} {b : inter R}
     (hb : b ∉ centre R j) : (R j).valuation (b : K) = 1 :=
   le_antisymm (((R j).valuation_le_one_iff _).mpr (mem_inter.mp b.2 j)) (not_lt.mp hb)
 
+/--
+@isnad1 id=isprime.0h4v.s7.3cdd4b70357c from=translated src=- shape=6cab338a vocab=e69e358d
+-/
 theorem centre_isPrime (R : ι → ValuationSubring K) (j : ι) : (centre R j).IsPrime := by
   refine ⟨?_, ?_⟩
   · rw [Ideal.ne_top_iff_one]
@@ -207,6 +228,9 @@ theorem centre_isPrime (R : ι → ValuationSubring K) (j : ι) : (centre R j).I
     rw [this] at hab'
     exact lt_irrefl _ hab'
 
+/--
+@isnad1 id=isunit.1h5v.s9.7af66b27940a from=translated src=- shape=81e16be8 vocab=705943b8
+-/
 theorem isUnit_of_forall_not_mem_centre {R : ι → ValuationSubring K} (i : ι) {b : inter R}
     (hb : ∀ j, b ∉ centre R j) : IsUnit b := by
   have hv : ∀ j, (R j).valuation (b : K) = 1 := fun j => valuation_eq_one_of_not_mem_centre (hb j)
@@ -220,6 +244,9 @@ theorem isUnit_of_forall_not_mem_centre {R : ι → ValuationSubring K} (i : ι)
     rw [← (R j).valuation_le_one_iff, map_inv₀, hv j, inv_one]
   exact IsUnit.of_mul_eq_one ⟨(b : K)⁻¹, hinv⟩ (Subtype.ext (mul_inv_cancel₀ hb0))
 
+/--
+@isnad1 id=ex.1h5v.s10.5e257035758d from=translated src=- shape=0d1eef7d vocab=5c4778e4
+-/
 theorem exists_le_centre [Fintype ι] {R : ι → ValuationSubring K} (i : ι) {J : Ideal (inter R)}
     (hJ : J ≠ ⊤) : ∃ j, J ≤ centre R j := by
   classical
@@ -233,6 +260,9 @@ theorem exists_le_centre [Fintype ι] {R : ι → ValuationSubring K} (i : ι) {
   obtain ⟨j, -, hj⟩ := (Ideal.subset_union_prime i i (fun j _ _ _ => centre_isPrime R j)).mp hsub
   exact ⟨j, hj⟩
 
+/--
+@isnad1 id=le.1h5v.s9.78424aff192e from=translated src=- shape=598304b0 vocab=6bba2fde
+-/
 theorem le_of_centre_le_centre [Fintype ι] {R : ι → ValuationSubring K} {i j : ι}
     (h : centre R i ≤ centre R j) : R j ≤ R i := by
   intro x hx
@@ -251,6 +281,9 @@ theorem le_of_centre_le_centre [Fintype ι] {R : ι → ValuationSubring K} {i j
   rw [this]
   exact (R i).mul_mem _ _ htinv (htxB i)
 
+/--
+@isnad1 id=iscoprim.2h5v.s8.e022bde65fb3 from=translated src=- shape=e9521cdd vocab=f9bacb48
+-/
 theorem isCoprime_centre [Fintype ι] {R : ι → ValuationSubring K}
     (hR : ∀ i j, R i ≤ R j → i = j) {i j : ι} (hij : i ≠ j) :
     IsCoprime (centre R i) (centre R j) := by
@@ -261,6 +294,9 @@ theorem isCoprime_centre [Fintype ι] {R : ι → ValuationSubring K}
   have hjl : R l ≤ R j := le_of_centre_le_centre (le_sup_right.trans hl)
   exact hij ((hR l i hil).symm.trans (hR l j hjl))
 
+/--
+@isnad1 id=ex.2h5v.s8.cd35583b38d9 from=translated src=- shape=92764c18 vocab=e994e41f
+-/
 theorem exists_mem_inter_sub_lt [Fintype ι] {R : ι → ValuationSubring K}
     (hR : ∀ i j, R i ≤ R j → i = j) (i : ι) {a : K} (ha : a ∈ R i) :
     ∃ c ∈ inter R, (R i).valuation (c - a) < 1 := by
@@ -295,6 +331,9 @@ theorem exists_mem_inter_sub_lt [Fintype ι] {R : ι → ValuationSubring K}
     rw [mem_centre] at this
     exact absurd hti this.ne
 
+/--
+@isnad1 id=ex.2h4v.s7.76b224ffe7a8 from=translated src=- shape=a837a798 vocab=1545113f
+-/
 theorem exists_forall_mem_and_sub_mem_nonunits' [Finite ι] (R : ι → ValuationSubring K)
     (hR : ∀ i j, R i ≤ R j → i = j) (a : ι → K) (ha : ∀ i, a i ∈ R i) :
     ∃ z : K, ∀ i, z ∈ R i ∧ z - a i ∈ (R i).nonunits := by
@@ -313,6 +352,9 @@ theorem exists_forall_mem_and_sub_mem_nonunits' [Finite ι] (R : ι → Valuatio
 end ValuationSubring.W7XK3A
 
 open ValuationSubring.W7XK3A in
+/--
+@isnad1 id=ex.2h4v.s7.76b224ffe7a8 from=translated src=- shape=a837a798 vocab=1545113f
+-/
 theorem solution
     {K : Type*} [Field K] {ι : Type*} [Finite ι] (R : ι → ValuationSubring K)
     (hR : ∀ i j, R i ≤ R j → i = j) (a : ι → K) (ha : ∀ i, a i ∈ R i) :

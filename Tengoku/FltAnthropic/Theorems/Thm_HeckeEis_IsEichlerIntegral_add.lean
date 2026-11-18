@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 open scoped MatrixGroups ModularForm
 
+/--
+@isnad1 id=iseichle.2h5v.s10.c59cfdcb37bc from=translated src=- shape=b1377e6f vocab=3cd50508
+-/
 theorem HeckeEis.IsEichlerIntegral.add {n : ℕ} {f g : UpperHalfPlane → ℂ} {F G : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)}
     (hF : HeckeEis.IsEichlerIntegral n f F) (hG : HeckeEis.IsEichlerIntegral n g G) :
     HeckeEis.IsEichlerIntegral n (f + g) (F + G) := by exact @_root_.P2MW.S_HeckeEis_IsEichlerIntegral_add.solution n f g F G hF hG

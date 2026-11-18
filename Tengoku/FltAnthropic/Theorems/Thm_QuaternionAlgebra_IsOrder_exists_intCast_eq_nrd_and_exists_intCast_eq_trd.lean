@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open scoped Quaternion
 
+/--
+@isnad1 id=and.2h4v.s8.f1d4021b5237 from=translated src=- shape=49dd830f vocab=7a40478e
+-/
 theorem QuaternionAlgebra.IsOrder.exists_intCast_eq_nrd_and_exists_intCast_eq_trd
     {a b : ℚ} {Λ : Submodule ℤ ℍ[ℚ, a, b]} (hΛ : QuaternionAlgebra.IsOrder Λ)
     {x : ℍ[ℚ, a, b]} (hx : x ∈ Λ) :

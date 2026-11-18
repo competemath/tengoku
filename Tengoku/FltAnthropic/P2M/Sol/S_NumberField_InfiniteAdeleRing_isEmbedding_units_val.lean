@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open NumberField
 
+/--
+@isnad1 id=isembedd.0h1v.s6.8a91586f5032 from=translated src=- shape=1e799a07 vocab=a0e3b115
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K] :
     Topology.IsEmbedding (Units.val : (InfiniteAdeleRing K)ˣ → InfiniteAdeleRing K)  := by

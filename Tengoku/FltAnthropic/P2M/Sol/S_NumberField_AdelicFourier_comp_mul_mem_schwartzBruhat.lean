@@ -44,6 +44,9 @@ def mulLeftHomeomorph {A : Type*} [CommRing A] [TopologicalSpace A] [ContinuousM
 
 variable (F : Type) [Field F] [NumberField F]
 
+/--
+@isnad1 id=mem.1h3v.s8.54595e640c9e from=translated src=- shape=15ebecdd vocab=ea936c07
+-/
 theorem comp_mul_mem_pureTensorSet_impl (y : (AdeleRing (𝓞 F) F)ˣ)
     {f : AdeleRing (𝓞 F) F → ℂ} (hf : f ∈ pureTensorSet F) :
     (fun x ↦ f (↑y * x)) ∈ pureTensorSet F := by
@@ -78,6 +81,9 @@ theorem comp_mul_mem_pureTensorSet_impl (y : (AdeleRing (𝓞 F) F)ˣ)
     = g' (InfiniteAdeleRing.ringEquiv_mixedSpace F x.1) * h (d * x.2)
   rw [h1, h2, map_mul, hg']
 
+/--
+@isnad1 id=mem.1h3v.s9.8f143eef89da from=translated src=- shape=bc55aafa vocab=7054c6b1
+-/
 theorem comp_mul_mem_schwartzBruhat_impl (y : (AdeleRing (𝓞 F) F)ˣ)
     {f : AdeleRing (𝓞 F) F → ℂ} (hf : f ∈ schwartzBruhat F) :
     (fun x ↦ f (↑y * x)) ∈ schwartzBruhat F := by
@@ -97,6 +103,9 @@ end
 
 open _root_.NumberField open _root_.P2MW.S_NumberField_AdelicFourier_comp_mul_mem_schwartzBruhat.NumberField open _root_.NumberField.AdelicFourier open _root_.P2MW.S_NumberField_AdelicFourier_comp_mul_mem_schwartzBruhat.NumberField.AdelicFourier
 
+/--
+@isnad1 id=mem.1h3v.s9.8f143eef89da from=translated src=- shape=bc55aafa vocab=7054c6b1
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F] (y : (AdeleRing (𝓞 F) F)ˣ)
     {f : AdeleRing (𝓞 F) F → ℂ} (hf : f ∈ schwartzBruhat F) :

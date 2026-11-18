@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open scoped BigOperators
 
+/--
+@isnad1 id=iff.0h5v.s10.bed9c1792b16 from=translated src=- shape=2b314c24 vocab=2b7f8b1f
+-/
 theorem ModularCurve.mem_laurentBaseChange_iff_exists_eq_sum_smul_coeffEmb
     (L : Type) [Field L] [CharZero L]
     {ι : Type} [Fintype ι] (b : Module.Basis ι ℚ L)

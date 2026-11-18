@@ -38,6 +38,9 @@ def dBox (d : 𝓞 F) : Set (FiniteAdeleRing (𝓞 F) F) :=
   (fun z : FiniteAdeleRing (𝓞 F) F ↦ algebraMap F (FiniteAdeleRing (𝓞 F) F) (d : F) * z) ''
     integralFiniteAdeles (𝓞 F) F
 
+/--
+@isnad1 id=mem.2h3v.s8.82ca31d3b7fd from=translated src=- shape=e4d16b89 vocab=1eecb234
+-/
 theorem add_mem' {z w : FiniteAdeleRing (𝓞 F) F} (hz : z ∈ integralFiniteAdeles (𝓞 F) F)
     (hw : w ∈ integralFiniteAdeles (𝓞 F) F) : z + w ∈ integralFiniteAdeles (𝓞 F) F := fun v =>
   add_mem (hz v) (hw v)

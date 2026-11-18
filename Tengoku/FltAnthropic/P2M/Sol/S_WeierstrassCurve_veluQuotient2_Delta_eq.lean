@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.Definitions.Def_WeierstrassCurve_VeluOrderTwo
 namespace P2MW.S_WeierstrassCurve_veluQuotient2_Delta_eq
 
 open WeierstrassCurve WeierstrassCurve.Affine in
+/--
+@isnad1 id=eq.2h4v.s6.a2a58eb22ea6 from=translated src=- shape=bc9627e7 vocab=3ef8c129
+-/
 theorem solution {R : Type*} [CommRing R] {W : WeierstrassCurve R} {x₀ y₀ : R}
     (hQ : W.toAffine.Equation x₀ y₀) (hgy : W.veluGy x₀ y₀ = 0) :
     (W.veluQuotient2 x₀ y₀).Δ = W.veluGx x₀ y₀ * W.velu2QuadDisc x₀ ^ 2 := by

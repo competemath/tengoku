@@ -23,49 +23,82 @@ def dBox (d : 𝓞 F) : Set (FiniteAdeleRing (𝓞 F) F) :=
   (fun z : FiniteAdeleRing (𝓞 F) F ↦ algebraMap F (FiniteAdeleRing (𝓞 F) F) (d : F) * z) ''
     integralFiniteAdeles (𝓞 F) F
 
+/--
+@isnad1 id=eq.0h3v.s9.8a9adaea50fa from=translated src=- shape=b9226900 vocab=94a50a30
+-/
 theorem algebraMap_integer_apply (a : 𝓞 F) (v : HeightOneSpectrum (𝓞 F)) :
     (algebraMap F (FiniteAdeleRing (𝓞 F) F) (a : F)) v
       = algebraMap F (v.adicCompletion F) (algebraMap (𝓞 F) F a) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.0d1b48394122 from=translated src=- shape=df00fba1 vocab=3a86ff45
+-/
 theorem valued_algebraMap_integer (a : 𝓞 F) (v : HeightOneSpectrum (𝓞 F)) :
     Valued.v ((algebraMap F (FiniteAdeleRing (𝓞 F) F) (a : F)) v) = v.intValuation a := by
   rw [algebraMap_integer_apply, show algebraMap F (v.adicCompletion F) (algebraMap (𝓞 F) F a)
         = ((algebraMap (𝓞 F) F a : F) : v.adicCompletion F) from rfl,
     HeightOneSpectrum.valuedAdicCompletion_eq_valuation', HeightOneSpectrum.valuation_of_algebraMap]
 
+/--
+@isnad1 id=eq.0h4v.s8.e8b51b37fa08 from=translated src=- shape=4ed4d2b4 vocab=7387c9d1
+-/
 theorem mul_apply' (x y : FiniteAdeleRing (𝓞 F) F) (v : HeightOneSpectrum (𝓞 F)) :
     (x * y) v = x v * y v := rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.5688e4aefb6f from=translated src=- shape=4ed4d2b4 vocab=4ec63df4
+-/
 theorem sub_apply' (x y : FiniteAdeleRing (𝓞 F) F) (v : HeightOneSpectrum (𝓞 F)) :
     (x - y) v = x v - y v := rfl
 
+/--
+@isnad1 id=mem.0h2v.s8.b80b9d9fe371 from=translated src=- shape=ca189419 vocab=25980abb
+-/
 theorem algebraMap_integer_mem (a : 𝓞 F) :
     algebraMap F (FiniteAdeleRing (𝓞 F) F) (a : F) ∈ integralFiniteAdeles (𝓞 F) F := fun v =>
   algebraMap_mem_adicCompletionIntegers (𝓞 F) F v a
 
+/--
+@isnad1 id=mem.1h3v.s9.80f39704fe2c from=translated src=- shape=dd8b2bc5 vocab=0a575a35
+-/
 theorem mul_integer_mem (a : 𝓞 F) {z : FiniteAdeleRing (𝓞 F) F} (hz : z ∈ integralFiniteAdeles (𝓞 F) F) :
     algebraMap F (FiniteAdeleRing (𝓞 F) F) (a : F) * z ∈ integralFiniteAdeles (𝓞 F) F := fun v =>
   mul_mem (algebraMap_mem_adicCompletionIntegers (𝓞 F) F v a) (hz v)
 
+/--
+@isnad1 id=mem.2h3v.s8.82ca31d3b7fd from=translated src=- shape=e4d16b89 vocab=1eecb234
+-/
 theorem add_mem' {z w : FiniteAdeleRing (𝓞 F) F} (hz : z ∈ integralFiniteAdeles (𝓞 F) F)
     (hw : w ∈ integralFiniteAdeles (𝓞 F) F) : z + w ∈ integralFiniteAdeles (𝓞 F) F := fun v =>
   add_mem (hz v) (hw v)
 
+/--
+@isnad1 id=mem.2h3v.s8.052a193a4c55 from=translated src=- shape=e4d16b89 vocab=523a7a7c
+-/
 theorem sub_mem' {z w : FiniteAdeleRing (𝓞 F) F} (hz : z ∈ integralFiniteAdeles (𝓞 F) F)
     (hw : w ∈ integralFiniteAdeles (𝓞 F) F) : z - w ∈ integralFiniteAdeles (𝓞 F) F := fun v =>
   sub_mem (hz v) (hw v)
 
+/--
+@isnad1 id=mem.2h4v.s8.bed37472b70c from=translated src=- shape=4e4c91d8 vocab=0148c5b6
+-/
 theorem dBox_sub_mem {d : 𝓞 F} {y y' : FiniteAdeleRing (𝓞 F) F} (hy : y ∈ dBox F d) (hy' : y' ∈ dBox F d) :
     y - y' ∈ dBox F d := by
   obtain ⟨w, hw, rfl⟩ := hy
   obtain ⟨w', hw', rfl⟩ := hy'
   exact ⟨w - w', sub_mem' F hw hw', by simp only [mul_sub]⟩
 
+/--
+@isnad1 id=iscompac.0h2v.s5.febad9f0d9b0 from=translated src=- shape=92e82c84 vocab=4e75cda7
+-/
 theorem isCompact_dBox (d : 𝓞 F) : IsCompact (dBox F d) :=
   (isCompact_integralFiniteAdeles F).image (continuous_const.mul continuous_id)
 
 variable {F}
 
+/--
+@isnad1 id=ex.2h3v.s9.f6376b1e04bd from=translated src=- shape=f83c10ba vocab=87f1605a
+-/
 theorem exists_sub_mem_dBox {d : 𝓞 F} (hd : d ≠ 0) {z : FiniteAdeleRing (𝓞 F) F}
     (hz : z ∈ integralFiniteAdeles (𝓞 F) F) :
     ∃ a : 𝓞 F, z - algebraMap F (FiniteAdeleRing (𝓞 F) F) (a : F) ∈ dBox F d := by
@@ -93,6 +126,9 @@ theorem exists_sub_mem_dBox {d : 𝓞 F} (hd : d ≠ 0) {z : FiniteAdeleRing (�
       * (z - algebraMap F (FiniteAdeleRing (𝓞 F) F) (a : F))) = z - algebraMap F (FiniteAdeleRing (𝓞 F) F) (a : F)
     rw [← mul_assoc, ← map_mul, mul_inv_cancel₀ hd', map_one, one_mul]
 
+/--
+@isnad1 id=mem.2h4v.s9.47c6e16ef1f6 from=translated src=- shape=414d3c0f vocab=1dba3919
+-/
 theorem sub_mem_span_of_sub_mem_dBox {d a a' : 𝓞 F} (hd : d ≠ 0)
     (h : algebraMap F (FiniteAdeleRing (𝓞 F) F) (a : F) - algebraMap F (FiniteAdeleRing (𝓞 F) F) (a' : F)
       ∈ dBox F d) : a - a' ∈ Ideal.span {d} := by
@@ -132,12 +168,18 @@ open IsDedekindDomain MeasureTheory
 
 variable {F : Type} [Field F] [NumberField F]
 
+/--
+@isnad1 id=eq.0h3v.s9.4eba62a8070d from=translated src=- shape=bce134cb vocab=71094b30
+-/
 theorem image_coset_eq (d : 𝓞 F) (x : FiniteAdeleRing (𝓞 F) F) :
     (fun z : FiniteAdeleRing (𝓞 F) F ↦ x + algebraMap F (FiniteAdeleRing (𝓞 F) F) (d : F) * z) ''
         integralFiniteAdeles (𝓞 F) F
       = (fun y : FiniteAdeleRing (𝓞 F) F ↦ x + y) '' dBox F d := by
   rw [dBox, Set.image_image]
 
+/--
+@isnad1 id=eq.0h4v.s8.b2e28b3ca5af from=translated src=- shape=2928c5f6 vocab=76561227
+-/
 theorem measure_image_add_left [MeasurableSpace (FiniteAdeleRing (𝓞 F) F)]
     [BorelSpace (FiniteAdeleRing (𝓞 F) F)]
     (ν : Measure (FiniteAdeleRing (𝓞 F) F)) [ν.IsAddHaarMeasure]
@@ -145,6 +187,9 @@ theorem measure_image_add_left [MeasurableSpace (FiniteAdeleRing (𝓞 F) F)]
     ν ((fun y ↦ x + y) '' s) = ν s := by
   rw [Set.image_add_left, measure_preimage_add]
 
+/--
+@isnad1 id=eq.1h4v.s10.5a56350175df from=translated src=- shape=f981bad9 vocab=d893246a
+-/
 theorem main [MeasurableSpace (FiniteAdeleRing (𝓞 F) F)] [BorelSpace (FiniteAdeleRing (𝓞 F) F)]
     (ν : Measure (FiniteAdeleRing (𝓞 F) F)) [ν.IsAddHaarMeasure]
     (d : 𝓞 F) (hd : d ≠ 0) (k : F) :
@@ -220,6 +265,9 @@ theorem main [MeasurableSpace (FiniteAdeleRing (𝓞 F) F)] [BorelSpace (FiniteA
 
 end LatIdx
 
+/--
+@isnad1 id=eq.1h4v.s10.5a56350175df from=translated src=- shape=f981bad9 vocab=d893246a
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F]
     [MeasurableSpace (FiniteAdeleRing (𝓞 F) F)] [BorelSpace (FiniteAdeleRing (𝓞 F) F)]

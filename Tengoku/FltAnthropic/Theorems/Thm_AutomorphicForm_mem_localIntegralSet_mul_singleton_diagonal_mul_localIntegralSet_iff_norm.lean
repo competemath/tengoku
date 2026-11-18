@@ -10,6 +10,9 @@ set_option autoImplicit false
 open NumberField IsDedekindDomain
 open scoped Pointwise
 
+/--
+@isnad1 id=iff.4h7v.s11.cbb5a09b5856 from=translated src=- shape=327f0960 vocab=81de5b84
+-/
 theorem AutomorphicForm.mem_localIntegralSet_mul_singleton_diagonal_mul_localIntegralSet_iff_norm
     (K : Type) [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K))
     (π : v.adicCompletion K) (hπ0 : π ≠ 0) (hπ1 : ‖π‖ ≤ 1) (m₁ m₂ : ℤ) (hm : m₂ ≤ m₁)

@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open AutomorphicForm.GL2Twisted Polynomial
 
+/--
+@isnad1 id=eq.3h3v.s8.da21f4aa8fce from=translated src=- shape=9b31cda2 vocab=d05f85d2
+-/
 theorem
 AutomorphicForm.GL2Twisted.ellipticFibreTerm_pairing_eq_splitFibreTerm_pairing
     (k : ℕ) (hk : 2 ≤ k) (r T : ℝ) (hr : 0 < r) (hT : 2 * r ≤ T) :

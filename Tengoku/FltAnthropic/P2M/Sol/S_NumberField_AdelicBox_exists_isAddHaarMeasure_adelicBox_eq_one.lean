@@ -11,6 +11,9 @@ open MeasureTheory NumberField IsDedekindDomain
 
 namespace P2mSolAdelicBoxHaarOne
 
+/--
+@isnad1 id=ex.0h1v.s8.d876dc7eecdb from=translated src=- shape=4bf26f6e vocab=dff3d3aa
+-/
 theorem main (K : Type) [Field K] [NumberField K]
     [inst : MeasurableSpace (AdeleRing (𝓞 K) K)] [BorelSpace (AdeleRing (𝓞 K) K)] :
     ∃ μK : Measure (AdeleRing (𝓞 K) K), μK.IsAddHaarMeasure ∧ μK (NumberField.AdelicBox.adelicBox K) = 1 := by
@@ -29,6 +32,9 @@ theorem main (K : Type) [Field K] [NumberField K]
 
 end P2mSolAdelicBoxHaarOne
 
+/--
+@isnad1 id=ex.0h1v.s8.d876dc7eecdb from=translated src=- shape=4bf26f6e vocab=dff3d3aa
+-/
 theorem solution (K : Type) [Field K] [NumberField K]
     [MeasurableSpace (AdeleRing (𝓞 K) K)] [BorelSpace (AdeleRing (𝓞 K) K)] :
     ∃ μK : Measure (AdeleRing (𝓞 K) K), μK.IsAddHaarMeasure ∧ μK (NumberField.AdelicBox.adelicBox K) = 1 :=

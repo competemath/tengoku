@@ -8,6 +8,9 @@ namespace P2MW.S_NumberField_AdelicFourier_comp_add_right_mem_pureTensorSet
 open NumberField NumberField.AdelicFourier
 open scoped SchwartzMap Classical
 
+/--
+@isnad1 id=mem.1h3v.s8.956fee3e0b3e from=translated src=- shape=079aad32 vocab=d6d248ca
+-/
 theorem solution
     {F : Type*} [Field F] [NumberField F] (y : AdeleRing (𝓞 F) F)
     {f : AdeleRing (𝓞 F) F → ℂ} (hf : f ∈ pureTensorSet F) :

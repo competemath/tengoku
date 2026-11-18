@@ -12,6 +12,9 @@ open ModularCurve
 
 universe u v
 
+/--
+@isnad1 id=linearin.1h3v.s8.d9b23f10e3eb from=translated src=- shape=f8baaa62 vocab=ea0d9171
+-/
 theorem ModularCurve.linearIndependent_coeffEmb_of_linearIndependent
     (L : Type u) [Field L] [CharZero L]
     {ι : Type v} {v : ι → LaurentSeries ℚ} (hv : LinearIndependent ℚ v) :

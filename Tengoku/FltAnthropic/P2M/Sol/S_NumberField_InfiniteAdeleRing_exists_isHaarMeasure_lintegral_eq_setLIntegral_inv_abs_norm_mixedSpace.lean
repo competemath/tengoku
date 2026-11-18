@@ -27,6 +27,9 @@ section Topology
 
 variable (K : Type) [Field K] [NumberField K]
 
+/--
+@isnad1 id=continuo.0h1v.s9.642de5dcaacc from=translated src=- shape=cc48130c vocab=77be1d0f
+-/
 theorem continuous_ringEquiv :
     Continuous (ringEquiv_mixedSpace K : InfiniteAdeleRing K → mixedSpace K) := by
   have h : (ringEquiv_mixedSpace K : InfiniteAdeleRing K → mixedSpace K) =
@@ -41,6 +44,9 @@ theorem continuous_ringEquiv :
   · exact (InfinitePlace.Completion.isometry_extensionEmbedding w.1).continuous.comp
       (continuous_apply w.1)
 
+/--
+@isnad1 id=eq.1h3v.s10.02e54764e70d from=translated src=- shape=afe3bae4 vocab=cc567b30
+-/
 theorem ringEquiv_symm_apply_of_isReal (y : mixedSpace K) (v : InfinitePlace K) (hv : v.IsReal) :
     (ringEquiv_mixedSpace K).symm y v =
       (InfinitePlace.Completion.ringEquivRealOfIsReal hv).symm (y.1 ⟨v, hv⟩) := by
@@ -49,6 +55,9 @@ theorem ringEquiv_symm_apply_of_isReal (y : mixedSpace K) (v : InfinitePlace K) 
     congrArg (fun z : mixedSpace K => z.1 ⟨v, hv⟩) ((ringEquiv_mixedSpace K).apply_symm_apply y)
   rw [← h, RingEquiv.symm_apply_apply]
 
+/--
+@isnad1 id=eq.1h3v.s10.856d55feb432 from=translated src=- shape=3d90294d vocab=c4eef5df
+-/
 theorem ringEquiv_symm_apply_of_isComplex (y : mixedSpace K) (v : InfinitePlace K)
     (hv : v.IsComplex) :
     (ringEquiv_mixedSpace K).symm y v =
@@ -58,6 +67,9 @@ theorem ringEquiv_symm_apply_of_isComplex (y : mixedSpace K) (v : InfinitePlace 
     congrArg (fun z : mixedSpace K => z.2 ⟨v, hv⟩) ((ringEquiv_mixedSpace K).apply_symm_apply y)
   rw [← h, RingEquiv.symm_apply_apply]
 
+/--
+@isnad1 id=continuo.0h1v.s10.c3339443b7e2 from=translated src=- shape=b80b6ec1 vocab=9e94e4ed
+-/
 theorem continuous_ringEquiv_symm :
     Continuous ((ringEquiv_mixedSpace K).symm : mixedSpace K → InfiniteAdeleRing K) := by
   refine continuous_pi fun v => ?_
@@ -81,10 +93,16 @@ def homeo : InfiniteAdeleRing K ≃ₜ mixedSpace K :=
     continuous_toFun := continuous_ringEquiv K
     continuous_invFun := continuous_ringEquiv_symm K }
 
+/--
+@isnad1 id=secondco.0h1v.s4.11b682986c67 from=translated src=- shape=76d92355 vocab=40d19a62
+-/
 theorem secondCountableTopology_infiniteAdeleRing :
     SecondCountableTopology (InfiniteAdeleRing K) :=
   (homeo K).secondCountableTopology
 
+/--
+@isnad1 id=secondco.0h2v.s6.42a03d7d91f8 from=translated src=- shape=c7cf369d vocab=b09ea4ad
+-/
 theorem secondCountableTopology_gl (n : Type) [Fintype n] [DecidableEq n]
     (R : Type) [CommRing R] [TopologicalSpace R] [IsTopologicalRing R] [SecondCountableTopology R] :
     SecondCountableTopology (GL n R) := by
@@ -94,6 +112,9 @@ theorem secondCountableTopology_gl (n : Type) [Fintype n] [DecidableEq n]
     MulOpposite.opHomeomorph.symm.isEmbedding.secondCountableTopology
   exact Units.isEmbedding_embedProduct.secondCountableTopology
 
+/--
+@isnad1 id=locallyc.0h2v.s6.8657bb3f6d9b from=translated src=- shape=0f1d0dd1 vocab=e0f32188
+-/
 theorem locallyCompactSpace_gl (n : Type) [Fintype n] [DecidableEq n]
     (R : Type) [CommRing R] [TopologicalSpace R] [IsTopologicalRing R] [LocallyCompactSpace R]
     [T2Space R] : LocallyCompactSpace (GL n R) := by
@@ -109,27 +130,48 @@ section MeasE
 
 variable (n : Type) [Fintype n] (K : Type) [Field K] [NumberField K]
 
+/--
+@isnad1 id=borelspa.0h2v.s8.c824aebe8aad from=translated src=- shape=f52ae622 vocab=db0f7ee9
+-/
 theorem borelSpace_pi_mixedSpace : BorelSpace (n → mixedSpace K) := Pi.borelSpace
 
+/--
+@isnad1 id=borelspa.0h2v.s8.6f9c325fb28a from=translated src=- shape=f17ef014 vocab=db0f7ee9
+-/
 theorem borelSpace_E : BorelSpace (n → n → mixedSpace K) := by
   haveI : BorelSpace (n → mixedSpace K) := borelSpace_pi_mixedSpace n K
   exact Pi.borelSpace
 
+/--
+@isnad1 id=sigmafin.0h2v.s8.f566df99c86e from=translated src=- shape=795998ad vocab=e3bd855d
+-/
 theorem sigmaFinite_volume_pi_mixedSpace : SigmaFinite (volume : Measure (n → mixedSpace K)) :=
   Measure.pi.sigmaFinite (ι := n) (α := fun _ => mixedSpace K) (fun _ => volume)
 
+/--
+@isnad1 id=measurab.0h1v.s7.4982c8dd2ec3 from=translated src=- shape=76d92355 vocab=dab2d758
+-/
 theorem measurableAdd_mixedSpace : MeasurableAdd (mixedSpace K) := inferInstance
 
+/--
+@isnad1 id=isaddhaa.0h2v.s9.8be980306877 from=translated src=- shape=c26325a7 vocab=b1224daf
+-/
 theorem isAddHaarMeasure_volume_pi_mixedSpace :
     (volume : Measure (n → mixedSpace K)).IsAddHaarMeasure := by
   haveI : BorelSpace (n → mixedSpace K) := borelSpace_pi_mixedSpace n K
   exact @Measure.pi.isAddHaarMeasure n (fun _ => mixedSpace K) _ _ (fun _ => volume) _ _ _ _
     (fun _ => measurableAdd_mixedSpace K)
 
+/--
+@isnad1 id=sigmafin.0h2v.s8.86bda37b9fbd from=translated src=- shape=9938656f vocab=e3bd855d
+-/
 theorem sigmaFinite_volume_E : SigmaFinite (volume : Measure (n → n → mixedSpace K)) := by
   haveI := sigmaFinite_volume_pi_mixedSpace n K
   exact Measure.pi.sigmaFinite (ι := n) (α := fun _ => n → mixedSpace K) (fun _ => volume)
 
+/--
+@isnad1 id=isaddhaa.0h2v.s9.cd3fea3d2501 from=translated src=- shape=d539a7de vocab=b1224daf
+-/
 theorem isAddHaarMeasure_volume_E : (volume : Measure (n → n → mixedSpace K)).IsAddHaarMeasure := by
   haveI : BorelSpace (n → mixedSpace K) := borelSpace_pi_mixedSpace n K
   haveI : BorelSpace (n → n → mixedSpace K) := borelSpace_E n K
@@ -163,16 +205,28 @@ def Tlin (x : Matrix n n (mixedSpace K)) : (n → n → mixedSpace K) →ₗ[ℝ
 
 variable {n K}
 
+/--
+@isnad1 id=iff.0h3v.s8.7077c99a084e from=translated src=- shape=8957e379 vocab=7279af26
+-/
 theorem mem_Uset {e : n → n → mixedSpace K} : e ∈ Uset n K ↔ IsUnit (Matrix.of e) := Iff.rfl
 
+/--
+@isnad1 id=eq.0h4v.s11.93afb69b1288 from=translated src=- shape=f0cdd356 vocab=5e876413
+-/
 theorem Tlin_apply (x : Matrix n n (mixedSpace K)) (e : n → n → mixedSpace K) :
     Tlin n K x e = Matrix.of.symm (x * Matrix.of e) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s13.3e78fcdff718 from=translated src=- shape=79e62ef6 vocab=4846a72b
+-/
 theorem det_Tlin (x : Matrix n n (mixedSpace K)) :
     LinearMap.det (Tlin n K x) = Algebra.norm ℝ x := by
   rw [Algebra.norm_apply]
   exact LinearMap.det_conj _ _
 
+/--
+@isnad1 id=iff.0h3v.s9.c7045d27750e from=translated src=- shape=6b519966 vocab=7e31a184
+-/
 theorem norm_ne_zero_iff (x : Matrix n n (mixedSpace K)) : Algebra.norm ℝ x ≠ 0 ↔ IsUnit x := by
   constructor
   · intro h
@@ -184,6 +238,9 @@ theorem norm_ne_zero_iff (x : Matrix n n (mixedSpace K)) : Algebra.norm ℝ x �
   · intro h
     exact (h.map (Algebra.norm ℝ)).ne_zero
 
+/--
+@isnad1 id=continuo.0h2v.s9.12b8bdcc6e50 from=translated src=- shape=e87772f8 vocab=0344c0e1
+-/
 theorem continuous_norm :
     Continuous (Algebra.norm ℝ : Matrix n n (mixedSpace K) → ℝ) := by
   let b := Module.finBasis ℝ (Matrix n n (mixedSpace K))
@@ -192,33 +249,57 @@ theorem continuous_norm :
   rw [this]
   exact ((Algebra.leftMulMatrix b).toLinearMap.continuous_of_finiteDimensional).matrix_det
 
+/--
+@isnad1 id=continuo.0h2v.s8.06d267a35eca from=translated src=- shape=26127e77 vocab=8a62e5bf
+-/
 theorem continuous_of : Continuous (fun e : n → n → mixedSpace K => Matrix.of e) :=
   continuous_matrix fun i j => (continuous_apply j).comp (continuous_apply i)
 
+/--
+@isnad1 id=continuo.0h2v.s10.007e9e504a0f from=translated src=- shape=07b58007 vocab=9e0c85ef
+-/
 theorem continuous_norm_of :
     Continuous (fun e : n → n → mixedSpace K => Algebra.norm ℝ (Matrix.of e)) :=
   continuous_norm.comp continuous_of
 
+/--
+@isnad1 id=isopen.0h2v.s7.677ae987a560 from=translated src=- shape=be3a9669 vocab=c2ed5ca9
+-/
 theorem isOpen_Uset : IsOpen (Uset n K) := by
   have : Uset n K = (fun e : n → n → mixedSpace K => Algebra.norm ℝ (Matrix.of e)) ⁻¹' {0}ᶜ := by
     ext e; simp only [mem_Uset, mem_preimage, mem_compl_iff, mem_singleton_iff, ← norm_ne_zero_iff]
   rw [this]
   exact isOpen_compl_singleton.preimage continuous_norm_of
 
+/--
+@isnad1 id=eq.1h3v.s6.aafc1691c200 from=translated src=- shape=e42c7734 vocab=6432d2e0
+-/
 theorem dens_eq_zero_of_not_mem {e : n → n → mixedSpace K} (he : e ∉ Uset n K) : dens n K e = 0 := by
   have : Algebra.norm ℝ (Matrix.of e) = 0 := by
     by_contra h; exact he ((norm_ne_zero_iff _).mp h)
   simp [dens, this]
 
+/--
+@isnad1 id=lt.1h3v.s6.f1d27f84b0a3 from=translated src=- shape=581eceff vocab=f2dca64b
+-/
 theorem dens_pos {e : n → n → mixedSpace K} (he : e ∈ Uset n K) : 0 < dens n K e := by
   have h : Algebra.norm ℝ (Matrix.of e) ≠ 0 := (norm_ne_zero_iff _).mpr he
   exact ENNReal.ofReal_pos.2 (inv_pos.2 (abs_pos.2 h))
 
+/--
+@isnad1 id=iff.0h3v.s6.7bfbcc214b63 from=translated src=- shape=05de5a1f vocab=6432d2e0
+-/
 theorem dens_ne_zero_iff {e : n → n → mixedSpace K} : dens n K e ≠ 0 ↔ e ∈ Uset n K :=
   ⟨fun h => by by_contra h'; exact h (dens_eq_zero_of_not_mem h'), fun h => (dens_pos h).ne'⟩
 
+/--
+@isnad1 id=lt.0h3v.s5.ae0a0bb0e628 from=translated src=- shape=c31170b2 vocab=8dcf14a9
+-/
 theorem dens_lt_top (e : n → n → mixedSpace K) : dens n K e < ⊤ := ENNReal.ofReal_lt_top
 
+/--
+@isnad1 id=continuo.0h2v.s7.cf0efc2757f2 from=translated src=- shape=da33bdb5 vocab=38c749ec
+-/
 theorem continuousOn_dens : ContinuousOn (dens n K) (Uset n K) := by
   intro e he
   have h : Algebra.norm ℝ (Matrix.of e) ≠ 0 := (norm_ne_zero_iff _).mpr he
@@ -226,58 +307,97 @@ theorem continuousOn_dens : ContinuousOn (dens n K) (Uset n K) := by
     ((continuous_abs.comp continuous_norm_of).continuousAt).inv₀ (abs_pos.2 h).ne'
   exact (ENNReal.continuous_ofReal.continuousAt.comp h1).continuousWithinAt
 
+/--
+@isnad1 id=measurab.0h2v.s8.5364c65bd9c6 from=translated src=- shape=ba271922 vocab=dbf5d511
+-/
 theorem measurable_dens [BorelSpace (n → n → mixedSpace K)] : Measurable (dens n K) :=
   ENNReal.measurable_ofReal.comp ((continuous_abs.comp continuous_norm_of).measurable.inv)
 
+/--
+@isnad1 id=eq.0h4v.s11.3fba2203915b from=translated src=- shape=a833b0ee vocab=63080fbc
+-/
 theorem dens_Tlin (x : Matrix n n (mixedSpace K)) (e : n → n → mixedSpace K) :
     dens n K (Tlin n K x e) = ENNReal.ofReal |Algebra.norm ℝ x|⁻¹ * dens n K e := by
   simp only [dens, Tlin_apply, Equiv.apply_symm_apply, map_mul, abs_mul, mul_inv]
   rw [ENNReal.ofReal_mul (inv_nonneg.2 (abs_nonneg _))]
 
+/--
+@isnad1 id=eq.0h3v.s10.1ba496e418ad from=translated src=- shape=cb696421 vocab=a1eed4eb
+-/
 theorem of_Phi (g : GL n (InfiniteAdeleRing K)) :
     Matrix.of (Phi n K g) =
       (ringEquiv_mixedSpace K).mapMatrix (g : Matrix n n (InfiniteAdeleRing K)) :=
   Matrix.ext fun _ _ => rfl
 
+/--
+@isnad1 id=mem.0h3v.s6.d11afac527e0 from=translated src=- shape=c0f7ef2a vocab=96e56a92
+-/
 theorem Phi_mem (g : GL n (InfiniteAdeleRing K)) : Phi n K g ∈ Uset n K := by
   rw [mem_Uset, of_Phi]; exact (Units.isUnit g).map _
 
+/--
+@isnad1 id=eq.1h3v.s11.745cd1495c8d from=translated src=- shape=903afc32 vocab=56945adf
+-/
 theorem Psi_val {e : n → n → mixedSpace K} (h : IsUnit (Matrix.of e)) :
     ((Psi n K e : GL n (InfiniteAdeleRing K)) : Matrix n n (InfiniteAdeleRing K)) =
       (ringEquiv_mixedSpace K).symm.mapMatrix (Matrix.of e) := by
   simp only [Psi, dite_eq_left h, IsUnit.unit_spec]
 
+/--
+@isnad1 id=eq.1h3v.s7.65868dae4119 from=translated src=- shape=b1b9cde5 vocab=489bc541
+-/
 theorem Psi_of_not_mem {e : n → n → mixedSpace K} (h : e ∉ Uset n K) : Psi n K e = 1 := by
   simp only [Psi, dite_eq_right (show ¬ IsUnit (Matrix.of e) from h)]
 
+/--
+@isnad1 id=eq.0h3v.s11.3a86419823f9 from=translated src=- shape=0debed00 vocab=9c9c54b0
+-/
 theorem symm_mapMatrix_mapMatrix (M : Matrix n n (InfiniteAdeleRing K)) :
     (ringEquiv_mixedSpace K).symm.mapMatrix ((ringEquiv_mixedSpace K).mapMatrix M) = M :=
   Matrix.ext fun _ _ => (ringEquiv_mixedSpace K).symm_apply_apply _
 
+/--
+@isnad1 id=eq.0h3v.s6.a98a448cf5bd from=translated src=- shape=dd33c4b2 vocab=83c235c9
+-/
 theorem Psi_Phi (g : GL n (InfiniteAdeleRing K)) : Psi n K (Phi n K g) = g := by
   apply Units.ext
   rw [Psi_val (Phi_mem g), of_Phi, symm_mapMatrix_mapMatrix]
 
+/--
+@isnad1 id=eq.1h3v.s6.4d2fcfb5c8e2 from=translated src=- shape=64cb5989 vocab=7a524057
+-/
 theorem Phi_Psi {e : n → n → mixedSpace K} (he : e ∈ Uset n K) : Phi n K (Psi n K e) = e := by
   funext i j
   simp only [Phi, Psi_val he, RingEquiv.mapMatrix_apply, Matrix.map_apply, Matrix.of_apply,
     RingEquiv.apply_symm_apply]
 
+/--
+@isnad1 id=continuo.0h2v.s7.45c7370ac511 from=translated src=- shape=8176791e vocab=435d95fe
+-/
 theorem continuous_Phi : Continuous (Phi n K) :=
   continuous_pi fun i => continuous_pi fun j =>
     (continuous_ringEquiv K).comp (Units.continuous_val.matrix_elem i j)
 
+/--
+@isnad1 id=eq.1h3v.s11.d1d5135a532c from=translated src=- shape=e30b220c vocab=3ea9c380
+-/
 theorem Psi_inv_val {e : n → n → mixedSpace K} (h : IsUnit (Matrix.of e)) :
     (((Psi n K e)⁻¹ : GL n (InfiniteAdeleRing K)) : Matrix n n (InfiniteAdeleRing K)) =
       (ringEquiv_mixedSpace K).symm.mapMatrix ((Matrix.of e)⁻¹) := by
   apply Units.inv_eq_of_mul_eq_one_right
   rw [Psi_val h, ← map_mul, Matrix.mul_nonsing_inv _ ((Matrix.isUnit_iff_isUnit_det _).mp h), map_one]
 
+/--
+@isnad1 id=continuo.1h2v.s8.70735ca5689f from=translated src=- shape=7eff348b vocab=c17d99e3
+-/
 theorem continuousAt_ringInverse_of_isUnit {x : mixedSpace K} (hx : IsUnit x) :
     ContinuousAt Ring.inverse x := by
   obtain ⟨u, rfl⟩ := hx
   exact NormedRing.inverse_continuousAt u
 
+/--
+@isnad1 id=continuo.0h2v.s7.de288e17aeed from=translated src=- shape=92fe15ea vocab=fb938a64
+-/
 theorem continuousOn_Psi : ContinuousOn (Psi n K) (Uset n K) := by
   rw [continuousOn_iff_continuous_domRestrict]
   refine Units.continuous_iff.mpr ⟨?_, ?_⟩
@@ -302,6 +422,9 @@ theorem continuousOn_Psi : ContinuousOn (Psi n K) (Uset n K) := by
     exact ContinuousAt.comp (f := fun e : Uset n K => Matrix.of (e : n → n → mixedSpace K))
       (continuousAt_matrix_inv _ (continuousAt_ringInverse_of_isUnit hdet)) h2
 
+/--
+@isnad1 id=eq.0h2v.s7.5b426a0c40cb from=translated src=- shape=a953908e vocab=cf2a3d91
+-/
 theorem Psi_eq_piecewise :
     Psi n K = (Uset n K).piecewise (Psi n K) (fun _ => 1) := by
   funext e
@@ -309,12 +432,18 @@ theorem Psi_eq_piecewise :
   · rw [Set.piecewise_eq_of_mem _ _ _ he]
   · rw [Set.piecewise_eq_of_notMem _ _ _ he, Psi_of_not_mem he]
 
+/--
+@isnad1 id=measurab.0h2v.s9.6004d7fbb931 from=translated src=- shape=4295d6fc vocab=a7936d4e
+-/
 theorem measurable_Psi [BorelSpace (n → n → mixedSpace K)]
     [MeasurableSpace (GL n (InfiniteAdeleRing K))] [BorelSpace (GL n (InfiniteAdeleRing K))] :
     Measurable (Psi n K) := by
   rw [Psi_eq_piecewise]
   exact continuousOn_Psi.measurable_piecewise continuousOn_const (isOpen_Uset.measurableSet)
 
+/--
+@isnad1 id=eq.1h4v.s11.4a1de9138bb7 from=translated src=- shape=17c7b903 vocab=2c19c5e2
+-/
 theorem mul_Psi_eq {e : n → n → mixedSpace K} (he : e ∈ Uset n K) (g : GL n (InfiniteAdeleRing K)) :
     g * Psi n K e = Psi n K (Tlin n K (Matrix.of (Phi n K g)) e) := by
   have hu : IsUnit (Matrix.of (Tlin n K (Matrix.of (Phi n K g)) e)) := by
@@ -336,6 +465,9 @@ variable {n K}
 
 attribute [local instance] borelSpace_E
 
+/--
+@isnad1 id=eq.0h2v.s8.15b06c9e3134 from=translated src=- shape=d5c66cb6 vocab=9c22e0c0
+-/
 theorem nu_compl_Uset : nu n K (Uset n K)ᶜ = 0 := by
   rw [nu, withDensity_apply_eq_zero measurable_dens]
   have : {x | dens n K x ≠ 0} ∩ (Uset n K)ᶜ = ∅ := by
@@ -344,13 +476,22 @@ theorem nu_compl_Uset : nu n K (Uset n K)ᶜ = 0 := by
       mem_empty_iff_false]
   rw [this, measure_empty]
 
+/--
+@isnad1 id=eventual.0h2v.s8.31848e3b59d1 from=translated src=- shape=207466e9 vocab=296e74ce
+-/
 theorem ae_mem_Uset : ∀ᵐ e ∂(nu n K), e ∈ Uset n K := by
   rw [ae_iff, ← compl_ofPred]
   exact nu_compl_Uset
 
+/--
+@isnad1 id=continuo.0h3v.s11.13269d0b9aee from=translated src=- shape=065902d1 vocab=96182b6c
+-/
 theorem continuous_Tlin (x : Matrix n n (mixedSpace K)) : Continuous (Tlin n K x) :=
   LinearMap.continuous_of_finiteDimensional _
 
+/--
+@isnad1 id=eq.1h3v.s11.c93e713912bc from=translated src=- shape=6e7f45fc vocab=433dcf0e
+-/
 theorem map_Tlin_nu (x : Matrix n n (mixedSpace K)) (hx : IsUnit x) :
     (nu n K).map (Tlin n K x) = nu n K := by
   haveI := isAddHaarMeasure_volume_E n K
@@ -394,6 +535,9 @@ variable (n K) in
 
 def mu : Measure (GL n (InfiniteAdeleRing K)) := (nu n K).map (Psi n K)
 
+/--
+@isnad1 id=ismullef.0h2v.s7.6030cdda2365 from=translated src=- shape=13b6e31b vocab=3943d51f
+-/
 theorem isMulLeftInvariant_mu : (mu n K).IsMulLeftInvariant := by
   refine ⟨fun g => ?_⟩
   have hΨ : Measurable (Psi n K) := measurable_Psi
@@ -406,10 +550,16 @@ theorem isMulLeftInvariant_mu : (mu n K).IsMulLeftInvariant := by
     Measure.map_congr hae, ← Measure.map_map hΨ (continuous_Tlin _).measurable,
     map_Tlin_nu _ (Phi_mem g)]
 
+/--
+@isnad1 id=eq.1h3v.s9.0f8e93d468c8 from=translated src=- shape=473f0592 vocab=a523cb3a
+-/
 theorem mu_apply {A : Set (GL n (InfiniteAdeleRing K))} (hA : MeasurableSet A) :
     mu n K A = nu n K (Psi n K ⁻¹' A) := by
   rw [mu, Measure.map_apply measurable_Psi hA]
 
+/--
+@isnad1 id=eq.1h3v.s9.58ef0113cd09 from=translated src=- shape=bf38ad7c vocab=48b2d447
+-/
 theorem lintegral_mu {f : GL n (InfiniteAdeleRing K) → ℝ≥0∞} (hf : Measurable f) :
     ∫⁻ g, f g ∂(mu n K) = ∫⁻ e in Uset n K, f (Psi n K e) * dens n K e ∂volume := by
   have hg : Measurable fun a => f (Psi n K a) := hf.comp measurable_Psi
@@ -422,6 +572,9 @@ theorem lintegral_mu {f : GL n (InfiniteAdeleRing K) → ℝ≥0∞} (hf : Measu
   · rw [indicator_of_mem he, Pi.mul_apply, mul_comm]
   · rw [indicator_of_notMem he, Pi.mul_apply, dens_eq_zero_of_not_mem he, zero_mul]
 
+/--
+@isnad1 id=and.0h2v.s8.2dd8b6acfa2e from=translated src=- shape=bc1c6d28 vocab=5c81bfe4
+-/
 theorem isHaarMeasure_and_regular_mu : (mu n K).IsHaarMeasure ∧ (mu n K).Regular := by
   haveI := isAddHaarMeasure_volume_E n K
   haveI := sigmaFinite_volume_E n K
@@ -497,6 +650,9 @@ end InfiniteAdeleRingHaarDensity
 
 open InfiniteAdeleRingHaarDensity in
 
+/--
+@isnad1 id=other.0h2v.s12.09dbcd884e12 from=translated src=- shape=761eb1cc vocab=9349b3a6
+-/
 theorem solution
     (n : Type) [Fintype n] [DecidableEq n] (K : Type) [Field K] [NumberField K]
     [MeasurableSpace (GL n (InfiniteAdeleRing K))] [BorelSpace (GL n (InfiniteAdeleRing K))] :

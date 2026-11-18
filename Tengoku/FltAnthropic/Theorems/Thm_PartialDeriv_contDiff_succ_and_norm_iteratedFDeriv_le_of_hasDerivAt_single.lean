@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_PartialDeriv_contDiff_succ_and_norm_iterat
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=and.2h4v.s10.4ae44c06e8c1 from=translated src=- shape=5e11e3fe vocab=df1298bf
+-/
 theorem PartialDeriv.contDiff_succ_and_norm_iteratedFDeriv_le_of_hasDerivAt_single
     (n m : ℕ) (f : (Fin n → ℝ) → ℂ) (g : Fin n → (Fin n → ℝ) → ℂ)
     (hg : ∀ j, ContDiff ℝ m (g j))

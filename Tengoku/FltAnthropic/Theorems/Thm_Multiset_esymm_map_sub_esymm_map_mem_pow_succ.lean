@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Multiset_esymm_map_sub_esymm_map_mem_pow_s
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=mem.2h7v.s8.8193a5aebe6e from=translated src=- shape=39b952a8 vocab=ee6ace69
+-/
 theorem Multiset.esymm_map_sub_esymm_map_mem_pow_succ
     (A : Type) [CommRing A] (I : Ideal A) (ι : Type) (s : Finset ι) (y z : ι → A)
     (hz : ∀ i ∈ s, z i ∈ I) (hyz : ∀ i ∈ s, y i - z i ∈ I ^ 2) (k : ℕ) :

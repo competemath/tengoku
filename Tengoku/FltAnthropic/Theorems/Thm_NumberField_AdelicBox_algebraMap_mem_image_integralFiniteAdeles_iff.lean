@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_NumberField_AdelicBox_algebraMap_mem_image
 
 open NumberField NumberField.AdelicBox IsDedekindDomain
 open scoped nonZeroDivisors
+/--
+@isnad1 id=iff.1h4v.s10.cfff958cd5a5 from=translated src=- shape=d98557ff vocab=801045c6
+-/
 theorem NumberField.AdelicBox.algebraMap_mem_image_integralFiniteAdeles_iff
     (F : Type) [Field F] [NumberField F] (d : 𝓞 F) (hd : d ≠ 0) (k ξ : F) :
     algebraMap F (FiniteAdeleRing (𝓞 F) F) ξ ∈

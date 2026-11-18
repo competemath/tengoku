@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open NumberField
 
+/--
+@isnad1 id=and.0h2v.s8.3d4762742027 from=translated src=- shape=47c43b14 vocab=83cce637
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K] (x : K) :
     (∀ v : InfinitePlace K, ‖algebraMap K (InfiniteAdeleRing K) x v‖ = v x) ∧

@@ -13,6 +13,9 @@ open MvPowerSeries
 
 universe u v
 
+/--
+@isnad1 id=eq.5h7v.s14.4d11a2b6f21b from=translated src=- shape=36843cb4 vocab=d7c23652
+-/
 theorem Tengoku.FltAnthropic.MvFormalGroup.cartierDual_eq_of_forall_apply_tmul_eq_of_map_mul
     {𝓞 : Type u} [CommRing 𝓞] (p : ℕ) [Fact p.Prime] [Algebra 𝓞 (ZMod p)]
     {d : ℕ} (R : Type v) [CommRing R] [HopfAlgebra 𝓞 R] [Module.Free 𝓞 R] [Module.Finite 𝓞 R]

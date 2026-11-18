@@ -11,6 +11,9 @@ universe u
 
 open TensorProduct
 
+/--
+@isnad1 id=ex.2h4v.s10.a77796e7dc7c from=translated src=- shape=e44e329b vocab=e7576d4f
+-/
 theorem Module.exists_forall_isUnit_rankAtStalk_baseChange_eq_finrank_residueField_tensor
     {R : Type u} [CommRing R] [IsNoetherianRing R]
     (M : Type u) [AddCommGroup M] [Module R M] [Module.Finite R M]

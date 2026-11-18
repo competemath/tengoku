@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open scoped Quaternion
 
+/--
+@isnad1 id=ex.1h3v.s9.99f74119139a from=translated src=- shape=0191eec5 vocab=6df6e10c
+-/
 theorem solution {a b : ℚ} {Λ : Submodule ℤ ℍ[ℚ, a, b]}
     (hΛ : QuaternionAlgebra.IsOrder Λ) :
     ∃ B : Module.Basis (Fin 4) ℚ ℍ[ℚ, a, b], (∀ i, B i ∈ Λ) ∧ Submodule.span ℤ (Set.range B) = Λ := by

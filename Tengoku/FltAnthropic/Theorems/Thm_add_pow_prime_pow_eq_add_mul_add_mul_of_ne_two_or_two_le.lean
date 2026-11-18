@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_add_pow_prime_pow_eq_add_mul_add_mul_of_ne
 namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
 universe u
 
+/--
+@isnad1 id=ex.2h6v.s8.1569aa47556e from=translated src=- shape=5775e048 vocab=9f5f6576
+-/
 theorem _root_.Tengoku.FltAnthropic.add_pow_prime_pow_eq_add_mul_add_mul_of_ne_two_or_two_le
     {A : Type u} [CommRing A] (p : ℕ) [Fact p.Prime] (n r : ℕ) (hr : 1 ≤ r) (h2 : p ≠ 2 ∨ 2 ≤ r)
     (u v : A) :

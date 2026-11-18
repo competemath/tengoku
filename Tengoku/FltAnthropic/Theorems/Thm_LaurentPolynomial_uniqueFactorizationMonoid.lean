@@ -11,6 +11,9 @@ open LaurentPolynomial
 
 universe u
 
+/--
+@isnad1 id=uniquefa.0h1v.s5.2b7c9772725d from=translated src=- shape=7f51ae2a vocab=bae67215
+-/
 theorem LaurentPolynomial.uniqueFactorizationMonoid
     (R : Type u) [CommRing R] [IsDomain R] [UniqueFactorizationMonoid R] :
     UniqueFactorizationMonoid R[T;T⁻¹] := by exact @_root_.P2MW.S_LaurentPolynomial_uniqueFactorizationMonoid.solution R _ _ _

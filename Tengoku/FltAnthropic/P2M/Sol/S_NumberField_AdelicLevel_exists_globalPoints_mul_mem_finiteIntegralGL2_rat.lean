@@ -37,27 +37,45 @@ def lowerUnipGL2 (x : S) : GL (Fin 2) S where
     fin_cases i <;> fin_cases j <;>
       simp [Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.0h2v.s8.4dee4d80b10a from=translated src=- shape=ca907116 vocab=5ec4bdb8
+-/
 @[scoped simp] theorem lowerUnipGL2_coe (x : S) :
     (lowerUnipGL2 x : Matrix (Fin 2) (Fin 2) S) = !![1, 0; x, 1] := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.a8d0870d0ee1 from=translated src=- shape=4fb0e637 vocab=735be91a
+-/
 theorem lowerUnipGL2_inv (x : S) : (lowerUnipGL2 x)⁻¹ = lowerUnipGL2 (-x) :=
   Units.ext rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.d24fd74a1f32 from=translated src=- shape=4fb0e637 vocab=420e4e4a
+-/
 theorem unipotentGL2_inv (x : S) : (unipotentGL2 x)⁻¹ = unipotentGL2 (-x) :=
   Units.ext rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.a8ce55b7f27c from=translated src=- shape=b68454b1 vocab=e5e3bbe3
+-/
 theorem lowerUnipGL2_add (x y : S) :
     lowerUnipGL2 (x + y) = lowerUnipGL2 x * lowerUnipGL2 y := by
   ext i j
   fin_cases i <;> fin_cases j <;>
     simp [Matrix.mul_apply, Fin.sum_univ_two, Units.val_mul]
 
+/--
+@isnad1 id=eq.0h4v.s9.f4839fca9c91 from=translated src=- shape=2966b797 vocab=9e44b653
+-/
 theorem map_lowerUnipGL2 {T : Type*} [CommRing T] (f : S →+* T) (x : S) :
     GeneralLinearGroup.map f (lowerUnipGL2 x) = lowerUnipGL2 (f x) := by
   ext i j
   fin_cases i <;> fin_cases j <;>
     simp [lowerUnipGL2, GeneralLinearGroup.map, RingHom.mapMatrix_apply, Matrix.map_apply]
 
+/--
+@isnad1 id=eq.0h4v.s9.c0182bee56eb from=translated src=- shape=2966b797 vocab=ee8f939e
+-/
 theorem map_unipotentGL2 {T : Type*} [CommRing T] (f : S →+* T) (x : S) :
     GeneralLinearGroup.map f (unipotentGL2 x) = unipotentGL2 (f x) := by
   ext i j
@@ -76,21 +94,33 @@ def diagTorusGL2 (u : Sˣ) : GL (Fin 2) S where
     fin_cases i <;> fin_cases j <;>
       simp [Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.0h2v.s8.bef5765e8dd2 from=translated src=- shape=22dbcb67 vocab=1e641e52
+-/
 @[scoped simp] theorem diagTorusGL2_coe (u : Sˣ) :
     (diagTorusGL2 u : Matrix (Fin 2) (Fin 2) S) = !![1, 0; 0, (u : S)] := rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.aaadc2dff844 from=translated src=- shape=9244596d vocab=8b8eaf62
+-/
 theorem diagTorusGL2_mul (u w : Sˣ) :
     diagTorusGL2 (u * w) = diagTorusGL2 u * diagTorusGL2 w := by
   ext i j
   fin_cases i <;> fin_cases j <;>
     simp [Matrix.mul_apply, Fin.sum_univ_two, Units.val_mul]
 
+/--
+@isnad1 id=eq.0h4v.s9.b50c7d8f8aa0 from=translated src=- shape=306852bf vocab=97785edf
+-/
 theorem map_diagTorusGL2 {T : Type*} [CommRing T] (f : S →+* T) (u : Sˣ) :
     GeneralLinearGroup.map f (diagTorusGL2 u) = diagTorusGL2 (Units.map (f : S →* T) u) := by
   ext i j
   fin_cases i <;> fin_cases j <;>
     simp [diagTorusGL2, GeneralLinearGroup.map, RingHom.mapMatrix_apply, Matrix.map_apply]
 
+/--
+@isnad1 id=eq.1h6v.s9.0c1f127ab467 from=translated src=- shape=98cc4a09 vocab=8167f5f8
+-/
 theorem conj_unipotent_entry {u w : Matrix (Fin 2) (Fin 2) S} (h : u * w = 1) (b : S)
     (i j : Fin 2) :
     (u * !![1, b; 0, 1] * w) i j
@@ -100,6 +130,9 @@ theorem conj_unipotent_entry {u w : Matrix (Fin 2) (Fin 2) S} (h : u * w = 1) (b
     ring
   rw [hcalc, h]
 
+/--
+@isnad1 id=eq.1h6v.s9.91f56d2e0118 from=translated src=- shape=62badf99 vocab=8167f5f8
+-/
 theorem conj_lowerUnip_entry {u w : Matrix (Fin 2) (Fin 2) S} (h : u * w = 1) (b : S)
     (i j : Fin 2) :
     (u * !![1, 0; b, 1] * w) i j
@@ -109,6 +142,9 @@ theorem conj_lowerUnip_entry {u w : Matrix (Fin 2) (Fin 2) S} (h : u * w = 1) (b
     ring
   rw [hcalc, h]
 
+/--
+@isnad1 id=eq.4h6v.s10.40834ffaae10 from=translated src=- shape=75e7c8bd vocab=3dd927ed
+-/
 theorem gauss_factorization (M : Matrix (Fin 2) (Fin 2) S) (c ci δ δi : S)
     (hc : M 1 0 = c) (hci : c * ci = 1) (hδ : M.det = δ) (hδi : δ * δi = 1) :
     !![1, (M 0 0 - 1) * ci; 0, 1] * !![1, 0; c, 1]
@@ -133,22 +169,37 @@ end ElementaryMatrices
 variable (R K : Type*) [CommRing R] [IsDedekindDomain R] [Field K] [Algebra R K]
   [IsFractionRing R K]
 
+/--
+@isnad1 id=eq.0h4v.s8.3b97aeadc35b from=translated src=- shape=342c46a5 vocab=09eb73f0
+-/
 theorem algebraMap_finiteAdeleRing_apply (x : K) (v : HeightOneSpectrum R) :
     (algebraMap K (FiniteAdeleRing R K) x) v = algebraMap K (v.adicCompletion K) x := rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.81cc5be78968 from=translated src=- shape=058dce1e vocab=21315934
+-/
 theorem valued_algebraMap_finiteAdeleRing_apply (k : K) (v : HeightOneSpectrum R) :
     Valued.v ((algebraMap K (FiniteAdeleRing R K) k) v) = v.valuation K k := by
   rw [show (algebraMap K (FiniteAdeleRing R K) k) v = ((k : K) : v.adicCompletion K) from rfl]
   exact valuedAdicCompletion_eq_valuation' v k
 
+/--
+@isnad1 id=mem.0h3v.s7.4f2d4b2701c7 from=translated src=- shape=5a178422 vocab=0f50db8b
+-/
 theorem one_apply_mem (v : HeightOneSpectrum R) :
     (1 : FiniteAdeleRing R K) v ∈ v.adicCompletionIntegers K := by
   rw [coe_one_apply]; exact one_mem _
 
+/--
+@isnad1 id=mem.0h3v.s7.371bcbad194c from=translated src=- shape=5a178422 vocab=0f50db8b
+-/
 theorem zero_apply_mem (v : HeightOneSpectrum R) :
     (0 : FiniteAdeleRing R K) v ∈ v.adicCompletionIntegers K := by
   rw [coe_zero_apply]; exact zero_mem _
 
+/--
+@isnad1 id=mem.0h5v.s8.1b9dcbe4acdf from=translated src=- shape=218719ec vocab=7a096c59
+-/
 theorem one_matrix_apply_mem (i j : Fin 2) (v : HeightOneSpectrum R) :
     (1 : Matrix (Fin 2) (Fin 2) (FiniteAdeleRing R K)) i j v ∈ v.adicCompletionIntegers K := by
   by_cases h : i = j
@@ -158,6 +209,9 @@ theorem one_matrix_apply_mem (i j : Fin 2) (v : HeightOneSpectrum R) :
   · rw [Matrix.one_apply_ne h]
     exact zero_apply_mem R K v
 
+/--
+@isnad1 id=mem.1h3v.s9.53abf106b12a from=translated src=- shape=fda7e726 vocab=b4af54a6
+-/
 theorem lowerUnipGL2_mem {a : FiniteAdeleRing R K}
     (ha : ∀ v : HeightOneSpectrum R, a v ∈ v.adicCompletionIntegers K) :
     lowerUnipGL2 a ∈ finiteIntegralGL2 R K := by
@@ -178,6 +232,9 @@ theorem lowerUnipGL2_mem {a : FiniteAdeleRing R K}
       exact neg_mem (ha v)
     · exact one_apply_mem R K v
 
+/--
+@isnad1 id=mem.2h3v.s10.4cb08f92392d from=translated src=- shape=b788c900 vocab=dda22a0b
+-/
 theorem diagTorusGL2_mem {u : (FiniteAdeleRing R K)ˣ}
     (hu : ∀ v : HeightOneSpectrum R, (u : FiniteAdeleRing R K) v ∈ v.adicCompletionIntegers K)
     (hu' : ∀ v : HeightOneSpectrum R,
@@ -198,6 +255,9 @@ theorem diagTorusGL2_mem {u : (FiniteAdeleRing R K)ˣ}
     · exact zero_apply_mem R K v
     · exact hu' v
 
+/--
+@isnad1 id=ex.1h4v.s9.b9709a39f8f3 from=translated src=- shape=ef388c98 vocab=a68c5653
+-/
 theorem exists_sub_algebraMap_eq_mul_integral (a : FiniteAdeleRing R K) (d : K)
     (hd : d ≠ 0) :
     ∃ q : K, ∀ v : HeightOneSpectrum R,
@@ -229,6 +289,9 @@ theorem exists_sub_algebraMap_eq_mul_integral (a : FiniteAdeleRing R K) (d : K)
     _ = algebraMap K (v.adicCompletion K) d
           * (a' v - algebraMap K (v.adicCompletion K) (-k)) := by ring
 
+/--
+@isnad1 id=ex.0h3v.s8.e8b3bd4f2c4a from=translated src=- shape=5184e4bf vocab=6cc26f40
+-/
 theorem exists_common_denominator (γ : GL (Fin 2) K) :
     ∃ d : R, d ≠ 0 ∧ ∀ i j k l : Fin 2,
       ∃ n : R, algebraMap R K d
@@ -257,9 +320,15 @@ theorem exists_common_denominator (γ : GL (Fin 2) K) :
 abbrev ratGL (γ : GL (Fin 2) K) : GL (Fin 2) (FiniteAdeleRing R K) :=
   GeneralLinearGroup.map (algebraMap K (FiniteAdeleRing R K)) γ
 
+/--
+@isnad1 id=eq.0h4v.s9.6b4552c1ca2a from=translated src=- shape=f9075be7 vocab=18a05b25
+-/
 theorem ratGL_mul (γ γ' : GL (Fin 2) K) : ratGL R K (γ * γ') = ratGL R K γ * ratGL R K γ' :=
   map_mul _ _ _
 
+/--
+@isnad1 id=eq.0h3v.s9.061fcc248921 from=translated src=- shape=d4efa877 vocab=c1f80420
+-/
 theorem ratGL_inv_mul_val (γ : GL (Fin 2) K) :
     (((ratGL R K γ)⁻¹ : GL (Fin 2) (FiniteAdeleRing R K)) :
         Matrix (Fin 2) (Fin 2) (FiniteAdeleRing R K))
@@ -267,12 +336,18 @@ theorem ratGL_inv_mul_val (γ : GL (Fin 2) K) :
         Matrix (Fin 2) (Fin 2) (FiniteAdeleRing R K)) = 1 := by
   rw [← Units.val_mul, inv_mul_cancel, Units.val_one]
 
+/--
+@isnad1 id=eq.0h5v.s8.fabd58f99463 from=translated src=- shape=fbcdea1e vocab=b75e6291
+-/
 theorem ratGL_val_apply (γ : GL (Fin 2) K) (i j : Fin 2) :
     ((ratGL R K γ : GL (Fin 2) (FiniteAdeleRing R K)) :
         Matrix (Fin 2) (Fin 2) (FiniteAdeleRing R K)) i j
       = algebraMap K (FiniteAdeleRing R K) ((γ : Matrix (Fin 2) (Fin 2) K) i j) :=
   GeneralLinearGroup.map_apply (algebraMap K (FiniteAdeleRing R K)) i j γ
 
+/--
+@isnad1 id=eq.0h5v.s9.c5378e7ddfab from=translated src=- shape=ee40638e vocab=3eec21ed
+-/
 theorem ratGL_inv_val_apply (γ : GL (Fin 2) K) (i j : Fin 2) :
     (((ratGL R K γ)⁻¹ : GL (Fin 2) (FiniteAdeleRing R K)) :
         Matrix (Fin 2) (Fin 2) (FiniteAdeleRing R K)) i j
@@ -282,6 +357,9 @@ theorem ratGL_inv_val_apply (γ : GL (Fin 2) K) (i j : Fin 2) :
     (map_inv (GeneralLinearGroup.map (algebraMap K (FiniteAdeleRing R K))) γ).symm]
   exact GeneralLinearGroup.map_apply (algebraMap K (FiniteAdeleRing R K)) i j γ⁻¹
 
+/--
+@isnad1 id=mem.3h11v.s10.614eef666c9b from=translated src=- shape=42e56d20 vocab=5cabdc31
+-/
 theorem conj_entry_mem (γ : GL (Fin 2) K) (d : R)
     (hd : ∀ i j k l : Fin 2, ∃ n : R, algebraMap R K d
           * (((γ⁻¹ : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) i j
@@ -337,6 +415,9 @@ theorem conj_entry_mem (γ : GL (Fin 2) K) (d : R)
               * ((γ : Matrix (Fin 2) (Fin 2) K) q j))))) from by ring, hkey]
     exact neg_mem hint
 
+/--
+@isnad1 id=ex.0h4v.s10.e2d852322e17 from=translated src=- shape=3c604486 vocab=89354a8c
+-/
 theorem exists_conj_unipotent_mem (γ : GL (Fin 2) K) (a : FiniteAdeleRing R K) :
     ∃ q : K,
       (ratGL R K γ)⁻¹ * unipotentGL2 (a - algebraMap K (FiniteAdeleRing R K) q) * ratGL R K γ
@@ -379,6 +460,9 @@ theorem exists_conj_unipotent_mem (γ : GL (Fin 2) K) (a : FiniteAdeleRing R K) 
     rw [hinvval, conj_unipotent_entry hAB (-b) i j]
     exact conj_entry_mem R K γ d hd b hbv (-b) (Or.inr rfl) i 0 1 j v
 
+/--
+@isnad1 id=ex.0h4v.s10.972999d3e0ad from=translated src=- shape=3c604486 vocab=ec589290
+-/
 theorem exists_conj_lowerUnip_mem (γ : GL (Fin 2) K) (a : FiniteAdeleRing R K) :
     ∃ q : K,
       (ratGL R K γ)⁻¹ * lowerUnipGL2 (a - algebraMap K (FiniteAdeleRing R K) q) * ratGL R K γ
@@ -421,6 +505,9 @@ theorem exists_conj_lowerUnip_mem (γ : GL (Fin 2) K) (a : FiniteAdeleRing R K) 
     rw [hinvval, conj_lowerUnip_entry hAB (-b) i j]
     exact conj_entry_mem R K γ d hd b hbv (-b) (Or.inr rfl) i 1 0 j v
 
+/--
+@isnad1 id=ex.1h5v.s11.1329026f970e from=translated src=- shape=fe931b05 vocab=f1f21743
+-/
 theorem absorb_unipotent_left {X : GL (Fin 2) (FiniteAdeleRing R K)} {γ : GL (Fin 2) K}
     (hX : (ratGL R K γ)⁻¹ * X ∈ finiteIntegralGL2 R K) (a : FiniteAdeleRing R K) :
     ∃ q : K, (ratGL R K (unipotentGL2 q * γ))⁻¹ * (unipotentGL2 a * X)
@@ -441,6 +528,9 @@ theorem absorb_unipotent_left {X : GL (Fin 2) (FiniteAdeleRing R K)} {γ : GL (F
   rw [key]
   exact mul_mem hq hX
 
+/--
+@isnad1 id=ex.1h5v.s11.818a37444bc5 from=translated src=- shape=fe931b05 vocab=ce7c9aa8
+-/
 theorem absorb_lowerUnip_left {X : GL (Fin 2) (FiniteAdeleRing R K)} {γ : GL (Fin 2) K}
     (hX : (ratGL R K γ)⁻¹ * X ∈ finiteIntegralGL2 R K) (a : FiniteAdeleRing R K) :
     ∃ q : K, (ratGL R K (lowerUnipGL2 q * γ))⁻¹ * (lowerUnipGL2 a * X)
@@ -461,6 +551,9 @@ theorem absorb_lowerUnip_left {X : GL (Fin 2) (FiniteAdeleRing R K)} {γ : GL (F
   rw [key]
   exact mul_mem hq hX
 
+/--
+@isnad1 id=eq.0h4v.s9.c9e24e553e6f from=translated src=- shape=79fb7996 vocab=7ff5422a
+-/
 theorem mul_lowerUnip_apply_one_zero (g : GL (Fin 2) (FiniteAdeleRing R K))
     (t : FiniteAdeleRing R K) :
     ((g * lowerUnipGL2 t : GL (Fin 2) (FiniteAdeleRing R K)) :
@@ -470,10 +563,16 @@ theorem mul_lowerUnip_apply_one_zero (g : GL (Fin 2) (FiniteAdeleRing R K))
   rw [Units.val_mul, lowerUnipGL2_coe]
   simp [Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.0h4v.s9.2bc0058e0c95 from=translated src=- shape=b6d52667 vocab=def3c810
+-/
 theorem det_apply (M : Matrix (Fin 2) (Fin 2) (FiniteAdeleRing R K)) (v : HeightOneSpectrum R) :
     M.det v = M 0 0 v * M 1 1 v - M 0 1 v * M 1 0 v := by
   rw [Matrix.det_fin_two]; rfl
 
+/--
+@isnad1 id=ex.0h3v.s9.0e44f5aba30e from=translated src=- shape=fab08b7d vocab=70e9fcdf
+-/
 theorem exists_lowerUnip_translate_isUnit (g : GL (Fin 2) (FiniteAdeleRing R K)) :
     ∃ t : FiniteAdeleRing R K, (∀ v : HeightOneSpectrum R, t v ∈ v.adicCompletionIntegers K) ∧
       IsUnit ((g : Matrix (Fin 2) (Fin 2) (FiniteAdeleRing R K)) 1 0
@@ -647,11 +746,17 @@ def detUnit (g : GL (Fin 2) (FiniteAdeleRing R K)) : (FiniteAdeleRing R K)ˣ whe
   inv_val := by
     rw [← Matrix.det_mul, ← Units.val_mul, inv_mul_cancel, Units.val_one, Matrix.det_one]
 
+/--
+@isnad1 id=eq.0h3v.s8.d7cff3adf46d from=translated src=- shape=9224e97a vocab=39fe8860
+-/
 @[scoped simp] theorem detUnit_coe (g : GL (Fin 2) (FiniteAdeleRing R K)) :
     (detUnit R K g : FiniteAdeleRing R K)
       = ((g : GL (Fin 2) (FiniteAdeleRing R K)) :
           Matrix (Fin 2) (Fin 2) (FiniteAdeleRing R K)).det := rfl
 
+/--
+@isnad1 id=ex.0h3v.s10.0464e658cbe9 from=translated src=- shape=25e5868b vocab=61e84422
+-/
 theorem exists_gauss_decomposition (g : GL (Fin 2) (FiniteAdeleRing R K)) :
     ∃ (t : FiniteAdeleRing R K) (x z : FiniteAdeleRing R K) (cu : (FiniteAdeleRing R K)ˣ),
       (∀ v : HeightOneSpectrum R, t v ∈ v.adicCompletionIntegers K) ∧
@@ -703,6 +808,9 @@ theorem exists_gauss_decomposition (g : GL (Fin 2) (FiniteAdeleRing R K)) :
 
 omit [IsFractionRing R K] in
 
+/--
+@isnad1 id=ex.0h2v.s7.622712a624c6 from=translated src=- shape=b46c2b56 vocab=107607e6
+-/
 theorem exists_primeGenerator [IsPrincipalIdealRing R] (v : HeightOneSpectrum R) :
     ∃ π : R, π ≠ 0 ∧ v.intValuation π = WithZero.exp (-1 : ℤ) ∧
       ∀ w : HeightOneSpectrum R, w ≠ v → w.intValuation π = 1 := by
@@ -722,6 +830,9 @@ theorem exists_primeGenerator [IsPrincipalIdealRing R] (v : HeightOneSpectrum R)
     exact hmem
   exact (HeightOneSpectrum.ext (v.isMaximal.eq_of_le w.isPrime.ne_top hle)).symm
 
+/--
+@isnad1 id=ex.0h3v.s10.81335b7b3abf from=translated src=- shape=fce99eef vocab=0ff370e8
+-/
 theorem finiteIdele_exists_global_profile [IsPrincipalIdealRing R]
     (δ : (FiniteAdeleRing R K)ˣ) :
     ∃ α : Kˣ,
@@ -782,6 +893,9 @@ theorem finiteIdele_exists_global_profile [IsPrincipalIdealRing R]
       valued_algebraMap_finiteAdeleRing_apply, Units.val_mk0, hval v]
     exact le_of_eq (by rw [← Valuation.map_mul, hprod, Valuation.map_one])
 
+/--
+@isnad1 id=ex.1h3v.s11.36a818ea4a2b from=translated src=- shape=da11958d vocab=dd6772c9
+-/
 theorem exists_ratGL_inv_mul_mem_of_finiteIdele
     (hcn : ∀ δ : (FiniteAdeleRing R K)ˣ, ∃ α : Kˣ,
       (∀ v : HeightOneSpectrum R,
@@ -839,6 +953,9 @@ theorem exists_ratGL_inv_mul_mem_of_finiteIdele
   rw [hg]
   exact hq₃
 
+/--
+@isnad1 id=ex.0h3v.s10.2eff58af9bf6 from=translated src=- shape=222d340f vocab=9684619b
+-/
 theorem exists_map_mul_mem_finiteIntegralGL2 [IsPrincipalIdealRing R]
     (g : GL (Fin 2) (FiniteAdeleRing R K)) :
     ∃ γ : GL (Fin 2) K,
@@ -850,6 +967,9 @@ theorem exists_map_mul_mem_finiteIntegralGL2 [IsPrincipalIdealRing R]
   rw [map_inv]
   exact hγ
 
+/--
+@isnad1 id=eq.0h3v.s11.1726507112b0 from=translated src=- shape=5bad82c8 vocab=1c79d744
+-/
 theorem glFin_globalPoints (γ : GL (Fin 2) K) :
     glFin R K (globalPoints R K γ)
       = GeneralLinearGroup.map (algebraMap K (FiniteAdeleRing R K)) γ := by
@@ -864,6 +984,9 @@ open scoped _root_.P2MW.S_NumberField_AdelicLevel_exists_globalPoints_mul_mem_fi
 end
 open scoped _root_.P2MW.S_NumberField_AdelicLevel_exists_globalPoints_mul_mem_finiteIntegralGL2_rat.NumberField _root_.P2MW.S_NumberField_AdelicLevel_exists_globalPoints_mul_mem_finiteIntegralGL2_rat.NumberField.AdelicLevel _root_.P2MW.S_NumberField_AdelicLevel_exists_globalPoints_mul_mem_finiteIntegralGL2_rat.NumberField.AdelicLevel.GL2StrongApproxW8M
 
+/--
+@isnad1 id=ex.0h1v.s11.5be219d820c3 from=translated src=- shape=d0112108 vocab=bee67002
+-/
 theorem solution
     (g : Matrix.GeneralLinearGroup (Fin 2)
       (IsDedekindDomain.FiniteAdeleRing (NumberField.RingOfIntegers ℚ) ℚ)) :

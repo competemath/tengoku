@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open scoped Quaternion
 
+/--
+@isnad1 id=eq.1h3v.s9.3da52c4c1d94 from=translated src=- shape=db225be1 vocab=2b5516fe
+-/
 theorem solution {a b : ℚ} {Λ : Submodule ℤ ℍ[ℚ, a, b]}
     (hΛ : QuaternionAlgebra.IsOrder Λ) : Module.finrank ℤ Λ = 4 := by
   haveI : Submodule.IsLattice ℚ Λ := ⟨hΛ.fg, hΛ.spanTop⟩

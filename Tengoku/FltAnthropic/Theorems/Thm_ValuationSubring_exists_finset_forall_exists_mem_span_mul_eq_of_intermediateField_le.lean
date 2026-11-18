@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_ValuationSubring_exists_finset_forall_exis
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.5h8v.s11.57f308270504 from=translated src=- shape=94a61d2c vocab=cc093fb0
+-/
 theorem ValuationSubring.exists_finset_forall_exists_mem_span_mul_eq_of_intermediateField_le
     {k L : Type*} [Field k] [Field L] [Algebra k L] [CharZero k] (A : ValuationSubring L)
     (K₀ K' : IntermediateField k L) [FiniteDimensional k ↥K₀] [FiniteDimensional k ↥K'] (hK : K₀ ≤ K')

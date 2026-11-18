@@ -50,9 +50,15 @@ def adeleEvalAt (v : HeightOneSpectrum R) : AdeleRing R K →+* v.adicCompletion
 def ideleEvalAt (v : HeightOneSpectrum R) : IdeleGroup R K →* (v.adicCompletion K)ˣ :=
   Units.map (adeleEvalAt R K v).toMonoidHom
 
+/--
+@isnad1 id=eq.0h4v.s9.57f81436a8d5 from=translated src=- shape=2efadfe2 vocab=a02f52f5
+-/
 @[scoped simp] lemma ideleEvalAt_val (v : HeightOneSpectrum R) (x : IdeleGroup R K) :
     (ideleEvalAt R K v x : v.adicCompletion K) = (x : AdeleRing R K).2 v := rfl
 
+/--
+@isnad1 id=ne.0h4v.s9.2d0a0fb99a1f from=translated src=- shape=ff6f452d vocab=adf6df25
+-/
 lemma valued_ideleEvalAt_ne_zero (v : HeightOneSpectrum R) (x : IdeleGroup R K) :
     (Valued.v ((ideleEvalAt R K v x : v.adicCompletion K))) ≠ 0 := by
   simp only [ne_eq, map_eq_zero]
@@ -61,22 +67,34 @@ lemma valued_ideleEvalAt_ne_zero (v : HeightOneSpectrum R) (x : IdeleGroup R K) 
 def ideleExponentAt (v : HeightOneSpectrum R) (x : IdeleGroup R K) : ℤ :=
   -log (Valued.v ((ideleEvalAt R K v x : v.adicCompletion K)))
 
+/--
+@isnad1 id=eq.0h3v.s6.09893566f27b from=translated src=- shape=710d4b92 vocab=26baa381
+-/
 @[scoped simp] lemma ideleExponentAt_one (v : HeightOneSpectrum R) :
     ideleExponentAt R K v 1 = 0 := by
   simp [ideleExponentAt]
 
+/--
+@isnad1 id=eq.0h5v.s7.93e82d8e8878 from=translated src=- shape=2c6e19a9 vocab=388336a6
+-/
 lemma ideleExponentAt_mul (v : HeightOneSpectrum R) (x y : IdeleGroup R K) :
     ideleExponentAt R K v (x * y) = ideleExponentAt R K v x + ideleExponentAt R K v y := by
   simp only [ideleExponentAt, map_mul, Units.val_mul]
   rw [log_mul (valued_ideleEvalAt_ne_zero R K v x) (valued_ideleEvalAt_ne_zero R K v y)]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s7.b6d677a45b27 from=translated src=- shape=7540b0e7 vocab=affe442c
+-/
 lemma ideleExponentAt_inv (v : HeightOneSpectrum R) (x : IdeleGroup R K) :
     ideleExponentAt R K v x⁻¹ = -ideleExponentAt R K v x := by
   have h := ideleExponentAt_mul R K v x x⁻¹
   rw [mul_inv_cancel, ideleExponentAt_one] at h
   omega
 
+/--
+@isnad1 id=iff.0h4v.s9.2be1a8f3b45b from=translated src=- shape=b7a634fa vocab=be596d44
+-/
 lemma ideleExponentAt_eq_zero_iff (v : HeightOneSpectrum R) (x : IdeleGroup R K) :
     ideleExponentAt R K v x = 0 ↔
       Valued.v ((ideleEvalAt R K v x : v.adicCompletion K)) = 1 := by
@@ -101,6 +119,9 @@ private lemma eq_one_of_mul_eq_one_of_le_one {a b : ℤᵐ⁰} (hab : a * b = 1)
   rw [hb1, mul_one] at hab
   exact hab
 
+/--
+@isnad1 id=eq.2h4v.s9.49e3a29995fb from=translated src=- shape=381e9757 vocab=928f36c4
+-/
 theorem ideleExponentAt_eq_zero_of_integral {v : HeightOneSpectrum R} {x : IdeleGroup R K}
     (hx : Valued.v ((x : AdeleRing R K).2 v) ≤ 1)
     (hxi : Valued.v (((x⁻¹ : IdeleGroup R K) : AdeleRing R K).2 v) ≤ 1) :
@@ -115,6 +136,9 @@ theorem ideleExponentAt_eq_zero_of_integral {v : HeightOneSpectrum R} {x : Idele
     rwa [Valuation.map_mul, Valuation.map_one] at h2
   exact eq_one_of_mul_eq_one_of_le_one hmul hx hxi
 
+/--
+@isnad1 id=finite.0h3v.s6.34bc0f5044ad from=translated src=- shape=7554f6f8 vocab=96aff3a8
+-/
 theorem finite_mulSupport_ideleExponentAt (x : IdeleGroup R K) :
     {v : HeightOneSpectrum R | ideleExponentAt R K v x ≠ 0}.Finite := by
   have hx : ∀ᶠ v in Filter.cofinite,
@@ -140,14 +164,23 @@ section AssociatedIdeal
 
 omit [IsDedekindDomain R] in
 
+/--
+@isnad1 id=ne.0h3v.s7.91876d4f14b8 from=translated src=- shape=7a4f3ed4 vocab=1de97356
+-/
 lemma coeIdeal_asIdeal_ne_zero (v : HeightOneSpectrum R) :
     (v.asIdeal : FractionalIdeal R⁰ K) ≠ 0 :=
   FractionalIdeal.coeIdeal_ne_zero.mpr v.ne_bot
 
+/--
+@isnad1 id=ne.0h4v.s8.0c4dc98a5a29 from=translated src=- shape=15df2819 vocab=57deea1a
+-/
 lemma zpow_asIdeal_ne_zero (v : HeightOneSpectrum R) (n : ℤ) :
     (v.asIdeal : FractionalIdeal R⁰ K) ^ n ≠ 0 :=
   zpow_ne_zero n (coeIdeal_asIdeal_ne_zero R K v)
 
+/--
+@isnad1 id=le.0h3v.s8.7214921c568a from=translated src=- shape=78f4f7b3 vocab=c86bb5d9
+-/
 lemma mulSupport_zpow_subset (e : HeightOneSpectrum R → ℤ) :
     (Function.mulSupport fun v => (v.asIdeal : FractionalIdeal R⁰ K) ^ (e v)) ⊆
       {v | e v ≠ 0} := by
@@ -160,6 +193,9 @@ lemma mulSupport_zpow_subset (e : HeightOneSpectrum R → ℤ) :
 def associatedFractionalIdeal (x : IdeleGroup R K) : FractionalIdeal R⁰ K :=
   ∏ᶠ v : HeightOneSpectrum R, (v.asIdeal : FractionalIdeal R⁰ K) ^ (ideleExponentAt R K v x)
 
+/--
+@isnad1 id=ne.0h3v.s7.8a9e3e5dbfeb from=translated src=- shape=3738b5ee vocab=c701f4d3
+-/
 lemma associatedFractionalIdeal_ne_zero (x : IdeleGroup R K) :
     associatedFractionalIdeal R K x ≠ 0 := by
   rw [associatedFractionalIdeal, finprod_eq_prod_of_mulSupport_subset _
@@ -167,11 +203,17 @@ lemma associatedFractionalIdeal_ne_zero (x : IdeleGroup R K) :
     (by simpa using mulSupport_zpow_subset R K _)]
   exact Finset.prod_ne_zero_iff.mpr fun v _ => zpow_asIdeal_ne_zero R K v _
 
+/--
+@isnad1 id=eq.0h4v.s6.62b0cbe496b7 from=translated src=- shape=07fdd696 vocab=3d4c1bce
+-/
 theorem count_associatedFractionalIdeal (v : HeightOneSpectrum R) (x : IdeleGroup R K) :
     FractionalIdeal.count K v (associatedFractionalIdeal R K x) = ideleExponentAt R K v x :=
   FractionalIdeal.count_finprod K v _ (Filter.eventually_cofinite.mpr
     (by simpa using finite_mulSupport_ideleExponentAt R K x))
 
+/--
+@isnad1 id=eq.0h4v.s8.cf66dcd73876 from=translated src=- shape=2f92da08 vocab=61e3d026
+-/
 theorem associatedFractionalIdeal_mul (x y : IdeleGroup R K) :
     associatedFractionalIdeal R K (x * y) =
       associatedFractionalIdeal R K x * associatedFractionalIdeal R K y := by
@@ -204,10 +246,16 @@ def contentHom : IdeleGroup R K →* ClassGroup R where
     congr 1
     exact Units.ext (by simpa using associatedFractionalIdeal_mul R K x y)
 
+/--
+@isnad1 id=eq.0h3v.s9.2242a6928386 from=translated src=- shape=aa386e29 vocab=587f94e5
+-/
 @[scoped simp] lemma contentHom_apply (x : IdeleGroup R K) :
     contentHom R K x = ClassGroup.mk K (Units.mk0 (associatedFractionalIdeal R K x)
       (associatedFractionalIdeal_ne_zero R K x)) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.7d80561d5ecc from=translated src=- shape=d18e8f6d vocab=ce6fbd6c
+-/
 theorem count_spanSingleton_eq_neg_log_valuation (v : HeightOneSpectrum R) (u : Kˣ) :
     FractionalIdeal.count K v (FractionalIdeal.spanSingleton R⁰ (u : K)) =
       -log (v.valuation K (u : K)) := by
@@ -238,6 +286,9 @@ theorem count_spanSingleton_eq_neg_log_valuation (v : HeightOneSpectrum R) (u : 
   rw [show ((Multiplicative.ofAdd _ : Multiplicative ℤ) : ℤᵐ⁰) = exp _ from rfl, log_exp]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s9.0e4728560e46 from=translated src=- shape=3590b480 vocab=c887cf94
+-/
 theorem ideleExponentAt_principal (v : HeightOneSpectrum R) (u : Kˣ) :
     ideleExponentAt R K v
       (Units.map (algebraMap K (AdeleRing R K) : K →* AdeleRing R K) u) =
@@ -257,6 +308,9 @@ def unramifiedIdeles : Subgroup (IdeleGroup R K) where
   mul_mem' hx hy v := by rw [ideleExponentAt_mul, hx v, hy v, add_zero]
   inv_mem' hx v := by rw [ideleExponentAt_inv, hx v, neg_zero]
 
+/--
+@isnad1 id=iff.0h3v.s8.0ad1ddd30dde from=translated src=- shape=bf0bee93 vocab=0d06687f
+-/
 @[scoped simp] lemma mem_unramifiedIdeles_iff (x : IdeleGroup R K) :
     x ∈ unramifiedIdeles R K ↔ ∀ v : HeightOneSpectrum R, ideleExponentAt R K v x = 0 :=
   Iff.rfl
@@ -267,6 +321,9 @@ def unramifiedIdelesOutside (T : Set (HeightOneSpectrum R)) : Subgroup (IdeleGro
   mul_mem' hx hy v hv := by rw [ideleExponentAt_mul, hx v hv, hy v hv, add_zero]
   inv_mem' hx v hv := by rw [ideleExponentAt_inv, hx v hv, neg_zero]
 
+/--
+@isnad1 id=le.0h2v.s9.616979d3196a from=translated src=- shape=44ca00f9 vocab=df1f31b8
+-/
 theorem ker_le_unramifiedIdeles_sup_principal :
     MonoidHom.ker (contentHom R K) ≤ unramifiedIdeles R K ⊔ principalIdeles R K := by
   intro x hx
@@ -329,9 +386,15 @@ open Matrix ClassFieldAxiom M4aP1R.ClassFieldAxiom
 
 noncomputable section
 
+/--
+@isnad1 id=subsingl.0h0v.s3.7aab95c73678 from=translated src=- shape=ed5d6145 vocab=bc5855a6
+-/
 theorem subsingleton_classGroup_ringOfIntegers_rat : Subsingleton (ClassGroup (𝓞 ℚ)) :=
   Fintype.card_le_one_iff_subsingleton.mp (le_of_eq Rat.classNumber_eq)
 
+/--
+@isnad1 id=mem.1h2v.s9.397ca2823c8a from=translated src=- shape=1bb0fed4 vocab=cf8618ab
+-/
 theorem snd_mem_adicCompletionIntegers_of_mem_unramifiedIdeles
     {j : IdeleGroup (𝓞 ℚ) ℚ} (hj : j ∈ unramifiedIdeles (𝓞 ℚ) ℚ)
     (v : HeightOneSpectrum (𝓞 ℚ)) :
@@ -341,6 +404,9 @@ theorem snd_mem_adicCompletionIntegers_of_mem_unramifiedIdeles
   rw [ideleEvalAt_val] at h1
   exact (mem_adicCompletionIntegers (𝓞 ℚ) ℚ v).mpr h1.le
 
+/--
+@isnad1 id=ex.0h1v.s10.bc17992b6ecf from=translated src=- shape=1c2401d2 vocab=d940ffac
+-/
 theorem exists_unramified_mul_principal_finiteIdele_rat
     (δ : (FiniteAdeleRing (𝓞 ℚ) ℚ)ˣ) :
     ∃ j ∈ unramifiedIdeles (𝓞 ℚ) ℚ, ∃ q : ℚˣ,
@@ -401,6 +467,9 @@ theorem exists_unramified_mul_principal_finiteIdele_rat
       _ = (((j⁻¹ : IdeleGroup (𝓞 ℚ) ℚ) : AdeleRing (𝓞 ℚ) ℚ).2 : FiniteAdeleRing (𝓞 ℚ) ℚ)
             * algebraMap ℚ (FiniteAdeleRing (𝓞 ℚ) ℚ) ((q⁻¹ : ℚˣ) : ℚ) := by rw [h4]
 
+/--
+@isnad1 id=ex.0h1v.s10.8db05822766b from=translated src=- shape=f2bf237b vocab=f3917d1f
+-/
 theorem finiteIdeleClassNumberOne_rat_impl (δ : (FiniteAdeleRing (𝓞 ℚ) ℚ)ˣ) :
     ∃ α : ℚˣ,
       (∀ v : HeightOneSpectrum (𝓞 ℚ),
@@ -437,6 +506,9 @@ open scoped _root_.P2MW.S_NumberField_AdelicLevel_finiteIdeleClassNumberOne_rat.
 end M4aP1R
 open scoped _root_.P2MW.S_NumberField_AdelicLevel_finiteIdeleClassNumberOne_rat.M4aP1R.ClassFieldAxiom _root_.P2MW.S_NumberField_AdelicLevel_finiteIdeleClassNumberOne_rat.M4aP1R
 
+/--
+@isnad1 id=ex.0h1v.s10.8db05822766b from=translated src=- shape=f2bf237b vocab=f3917d1f
+-/
 theorem solution
     (δ : (IsDedekindDomain.FiniteAdeleRing (NumberField.RingOfIntegers ℚ) ℚ)ˣ) :
     ∃ α : ℚˣ,

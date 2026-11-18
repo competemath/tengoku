@@ -21,12 +21,18 @@ section Local
 
 variable {K : Type*} [NormedField K]
 
+/--
+@isnad1 id=eq.0h3v.s9.b78be0e58aef from=translated src=- shape=5a325dd3 vocab=095946d9
+-/
 theorem gl_coe_mul (γ g : GL (Fin 2) K) :
     ((γ * g : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K)
       = (γ : Matrix (Fin 2) (Fin 2) K) * (g : Matrix (Fin 2) (Fin 2) K) := rfl
 
 variable [IsUltrametricDist K]
 
+/--
+@isnad1 id=le.1h3v.s8.9d197e49c908 from=translated src=- shape=7b4ad1a8 vocab=f0485b71
+-/
 theorem rowMaxNorm_mul_le (g k : GL (Fin 2) K)
     (hk : ∀ i j, ‖(k : Matrix (Fin 2) (Fin 2) K) i j‖ ≤ 1) :
     rowMaxNorm ((g * k : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K)
@@ -43,6 +49,9 @@ theorem rowMaxNorm_mul_le (g k : GL (Fin 2) K)
       exact (mul_le_of_le_one_right (norm_nonneg _) (hk 1 j)).trans (le_max_right _ _)
   exact max_le (hentry 0) (hentry 1)
 
+/--
+@isnad1 id=eq.2h3v.s9.cee4f5303373 from=translated src=- shape=ee6a763a vocab=2bcb61bd
+-/
 theorem rowMaxNorm_mul_integral (g k : GL (Fin 2) K)
     (hk : ∀ i j, ‖(k : Matrix (Fin 2) (Fin 2) K) i j‖ ≤ 1)
     (hk' : ∀ i j, ‖((k⁻¹ : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) i j‖ ≤ 1) :
@@ -52,6 +61,9 @@ theorem rowMaxNorm_mul_integral (g k : GL (Fin 2) K)
   have h := rowMaxNorm_mul_le (g * k) k⁻¹ hk'
   rwa [mul_inv_cancel_right] at h
 
+/--
+@isnad1 id=eq.2h2v.s8.43ac2bd41ef6 from=translated src=- shape=4ac9601d vocab=93ea93ab
+-/
 theorem norm_det_eq_one_of_integral (k : GL (Fin 2) K)
     (hk : ∀ i j, ‖(k : Matrix (Fin 2) (Fin 2) K) i j‖ ≤ 1)
     (hk' : ∀ i j, ‖((k⁻¹ : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) i j‖ ≤ 1) :
@@ -69,6 +81,9 @@ theorem norm_det_eq_one_of_integral (k : GL (Fin 2) K)
   rw [hprod] at this
   exact lt_irrefl _ this
 
+/--
+@isnad1 id=eq.2h3v.s9.38407645de1a from=translated src=- shape=cb6a5714 vocab=2806211b
+-/
 theorem finLocalHeight_mul_integral (g k : GL (Fin 2) K)
     (hk : ∀ i j, ‖(k : Matrix (Fin 2) (Fin 2) K) i j‖ ≤ 1)
     (hk' : ∀ i j, ‖((k⁻¹ : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) i j‖ ≤ 1) :
@@ -81,6 +96,9 @@ end Local
 
 section Adelic
 
+/--
+@isnad1 id=eq.2h3v.s12.b6bfe6d9882e from=translated src=- shape=1ba7ac89 vocab=a9a25ba6
+-/
 theorem finHeight_mul_integral {F : Type} [Field F] [NumberField F]
     (g k : GL (Fin 2) (FiniteAdeleRing (𝓞 F) F))
     (hk : ∀ (v : HeightOneSpectrum (𝓞 F)) (i j : Fin 2),
@@ -95,6 +113,9 @@ theorem finHeight_mul_integral {F : Type} [Field F] [NumberField F]
   rw [← map_inv]
   exact hk' v i j
 
+/--
+@isnad1 id=and.1h2v.s12.f1024e9a0b85 from=translated src=- shape=3953726e vocab=42a0a591
+-/
 theorem norm_finComponent_le_one_of_mem (F : Type) [Field F] [NumberField F]
     {k : GL (Fin 2) (FiniteAdeleRing (𝓞 F) F)} (hk : k ∈ finiteIntegralGL2 (𝓞 F) F) :
     (∀ (v : HeightOneSpectrum (𝓞 F)) (i j : Fin 2),
@@ -108,6 +129,9 @@ theorem norm_finComponent_le_one_of_mem (F : Type) [Field F] [NumberField F]
   · rw [finComponent_apply]
     exact norm_le_one_of_mem_adicCompletionIntegers (hk.2 i j v)
 
+/--
+@isnad1 id=eq.1h3v.s10.7d106710923e from=translated src=- shape=ca01d2ba vocab=a631130a
+-/
 theorem finHeight_mul_of_mem (F : Type) [Field F] [NumberField F]
     (g : GL (Fin 2) (FiniteAdeleRing (𝓞 F) F))
     {k : GL (Fin 2) (FiniteAdeleRing (𝓞 F) F)} (hk : k ∈ finiteIntegralGL2 (𝓞 F) F) :
@@ -115,10 +139,16 @@ theorem finHeight_mul_of_mem (F : Type) [Field F] [NumberField F]
   finHeight_mul_integral g k (norm_finComponent_le_one_of_mem F hk).1
     (norm_finComponent_le_one_of_mem F hk).2
 
+/--
+@isnad1 id=isopen.0h1v.s9.07c027263ee4 from=translated src=- shape=2f4d45f7 vocab=15ec4e25
+-/
 theorem isOpen_finiteIntegralGL2 (F : Type) [Field F] [NumberField F] :
     IsOpen (finiteIntegralGL2 (𝓞 F) F : Set (GL (Fin 2) (FiniteAdeleRing (𝓞 F) F))) :=
   isOpen_finiteLevelZero (𝓞 F) F top_ne_bot
 
+/--
+@isnad1 id=islocall.0h1v.s8.066a855e8823 from=translated src=- shape=96b16265 vocab=5e4a526c
+-/
 theorem isLocallyConstant_finHeight (F : Type) [Field F] [NumberField F] :
     IsLocallyConstant (finHeight F) := by
   rw [IsLocallyConstant.iff_exists_open]
@@ -131,9 +161,15 @@ theorem isLocallyConstant_finHeight (F : Type) [Field F] [NumberField F] :
   · have h := finHeight_mul_of_mem F g₀ (k := g₀⁻¹ * g) hg
     rwa [mul_inv_cancel_left] at h
 
+/--
+@isnad1 id=continuo.0h1v.s8.94ad827308ae from=translated src=- shape=96b16265 vocab=c9ed7cfe
+-/
 theorem continuous_finHeight (F : Type) [Field F] [NumberField F] : Continuous (finHeight F) :=
   (isLocallyConstant_finHeight F).continuous
 
+/--
+@isnad1 id=continuo.0h1v.s7.7eda43131717 from=translated src=- shape=df608a4b vocab=457f2148
+-/
 theorem continuous_adelicHeight_impl (F : Type) [Field F] [NumberField F] :
     Continuous (adelicHeight F) := by
   unfold adelicHeight
@@ -144,6 +180,9 @@ end Adelic
 
 end P6B.RFCSol
 
+/--
+@isnad1 id=continuo.0h1v.s7.7eda43131717 from=translated src=- shape=df608a4b vocab=457f2148
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F] : Continuous (adelicHeight F) :=
   P6B.RFCSol.continuous_adelicHeight_impl F

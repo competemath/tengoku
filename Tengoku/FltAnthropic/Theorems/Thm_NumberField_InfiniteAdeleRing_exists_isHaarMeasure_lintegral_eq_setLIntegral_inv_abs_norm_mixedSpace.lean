@@ -11,6 +11,9 @@ set_option autoImplicit false
 open MeasureTheory NumberField NumberField.InfiniteAdeleRing NumberField.mixedEmbedding
 open scoped Classical ENNReal
 
+/--
+@isnad1 id=other.0h2v.s12.09dbcd884e12 from=translated src=- shape=761eb1cc vocab=9349b3a6
+-/
 theorem NumberField.InfiniteAdeleRing.exists_isHaarMeasure_lintegral_eq_setLIntegral_inv_abs_norm_mixedSpace
     (n : Type) [Fintype n] [DecidableEq n] (K : Type) [Field K] [NumberField K]
     [MeasurableSpace (GL n (InfiniteAdeleRing K))] [BorelSpace (GL n (InfiniteAdeleRing K))] :

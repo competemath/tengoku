@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open CerednikDrinfeld CerednikDrinfeld.Mumford
 
+/--
+@isnad1 id=fg.4h3v.s6.444f202335d9 from=translated src=- shape=8b4ad550 vocab=ab5831df
+-/
 theorem CerednikDrinfeld.Mumford.fg_of_finite_stabilizer_of_finite_quotVert_of_finite_quotEdge
     {G : Type} [Group G] {W : Type} [MulAction G W] (𝒯 : SimpleGraph W) [GraphAction G 𝒯]
     (hconn : 𝒯.Connected)

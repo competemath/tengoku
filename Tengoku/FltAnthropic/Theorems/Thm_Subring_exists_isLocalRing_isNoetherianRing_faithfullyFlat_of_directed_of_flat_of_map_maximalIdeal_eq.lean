@@ -11,6 +11,9 @@ universe u v
 
 open IsLocalRing
 
+/--
+@isnad1 id=ex.4h3v.s10.9f7adf8f1fd2 from=translated src=- shape=bc7f1e30 vocab=40856d42
+-/
 theorem Subring.exists_isLocalRing_isNoetherianRing_faithfullyFlat_of_directed_of_flat_of_map_maximalIdeal_eq
     (A : Type u) [CommRing A] {ι : Type v} [Preorder ι] [Nonempty ι] [IsDirected ι (· ≤ ·)]
     (S : ι → Subring A) (hS : Monotone S) (hcov : ∀ x : A, ∃ i, x ∈ S i)

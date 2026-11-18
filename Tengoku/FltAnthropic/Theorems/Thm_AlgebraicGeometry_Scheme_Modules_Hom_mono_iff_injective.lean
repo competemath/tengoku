@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry Opposite TopologicalSpace
 
+/--
+@isnad1 id=iff.0h4v.s10.2d5d032cae3c from=translated src=- shape=4f288d8e vocab=e4c19cba
+-/
 theorem AlgebraicGeometry.Scheme.Modules.Hom.mono_iff_injective
     {X : Scheme.{u}} {M N : X.Modules} (φ : M ⟶ N) :
     Mono φ ↔ ∀ U : X.Opens, Function.Injective (φ.app U) := by exact @_root_.P2MW.S_AlgebraicGeometry_Scheme_Modules_Hom_mono_iff_injective.solution X M N φ

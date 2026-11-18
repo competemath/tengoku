@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_MvPowerSeries_smul_eq_smul_of_forall_coeff
 set_option autoImplicit false
 
 universe u w
+/--
+@isnad1 id=eq.2h6v.s9.36b50534142f from=translated src=- shape=8cfe8781 vocab=76db39d1
+-/
 theorem MvPowerSeries.smul_eq_smul_of_forall_coeff_sub_mem_of_forall_mul_eq_zero
     {R : Type u} [CommRing R] {τ : Type w} (M : Ideal R) (j : R) (hj : ∀ m ∈ M, m * j = 0)
     (g g' : MvPowerSeries τ R) (h : ∀ n, MvPowerSeries.coeff n g - MvPowerSeries.coeff n g' ∈ M) :

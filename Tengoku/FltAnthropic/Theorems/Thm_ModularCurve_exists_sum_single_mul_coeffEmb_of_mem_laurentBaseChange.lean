@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_ModularCurve_exists_sum_single_mul_coeffEm
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.1h3v.s10.9a4503b7b174 from=translated src=- shape=84c69ee2 vocab=b1b52dbc
+-/
 theorem ModularCurve.exists_sum_single_mul_coeffEmb_of_mem_laurentBaseChange
     (L : Type) [Field L] [CharZero L] [FiniteDimensional ℚ L]
     (F₀ : IntermediateField ℚ (LaurentSeries ℚ))

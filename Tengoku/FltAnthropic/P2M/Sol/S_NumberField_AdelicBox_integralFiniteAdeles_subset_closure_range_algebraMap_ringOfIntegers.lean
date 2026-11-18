@@ -10,6 +10,9 @@ open scoped Classical nonZeroDivisors Topology
 
 noncomputable section
 
+/--
+@isnad1 id=le.0h1v.s8.6d972100f3b1 from=translated src=- shape=ad071a5b vocab=46683e72
+-/
 theorem solution (F : Type) [Field F] [NumberField F] :
     integralFiniteAdeles (𝓞 F) F
       ⊆ closure (Set.range (algebraMap (𝓞 F) (FiniteAdeleRing (𝓞 F) F))) := by

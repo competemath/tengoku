@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open CerednikDrinfeld.Mumford MulAction
 
+/--
+@isnad1 id=eq.3h12v.s11.439a39ff0114 from=translated src=- shape=38467929 vocab=f35dc29a
+-/
 theorem CerednikDrinfeld.Mumford.finsum_walkOverlap_map_smulHom_eq_sum_stabWidth_mul_walkCycle_mul_walkCycle
     {G : Type} [Group G] {W : Type} [DecidableEq W] [MulAction G W] (𝒯 : SimpleGraph W) [GraphAction G 𝒯]
     (hfin : ∀ w : W, Finite (stabilizer G w))

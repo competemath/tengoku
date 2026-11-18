@@ -16,6 +16,9 @@ namespace C5F2
 
 variable (F : Type) [Field F] [NumberField F]
 
+/--
+@isnad1 id=islocall.1h4v.s5.1d6ac8044d70 from=translated src=- shape=f31dbcd4 vocab=f466ac7c
+-/
 theorem isLocallyConstant_finset_prod {X ι : Type*} [TopologicalSpace X] (T : Finset ι) (g : ι → X → ℂ)
     (hg : ∀ i ∈ T, IsLocallyConstant (g i)) : IsLocallyConstant (fun x => ∏ i ∈ T, g i x) := by
   classical
@@ -32,12 +35,18 @@ theorem isLocallyConstant_finset_prod {X ι : Type*} [TopologicalSpace X] (T : F
 def box (S : Finset (HeightOneSpectrum (𝓞 F))) : Set (FiniteAdeleRing (𝓞 F) F) :=
   {x | ∀ v : HeightOneSpectrum (𝓞 F), v ∉ S → x v ∈ v.adicCompletionIntegers F}
 
+/--
+@isnad1 id=isopen.0h2v.s5.0a6078ccec83 from=translated src=- shape=07a0e020 vocab=49497628
+-/
 theorem isOpen_box (S : Finset (HeightOneSpectrum (𝓞 F))) : IsOpen (box F S) :=
   RestrictedProduct.isOpen_forall_imp_mem
     (R := fun v : HeightOneSpectrum (𝓞 F) => v.adicCompletion F)
     (A := fun v : HeightOneSpectrum (𝓞 F) => (v.adicCompletionIntegers F : Set (v.adicCompletion F)))
     (fun _ => Valued.isOpen_valuationSubring _)
 
+/--
+@isnad1 id=isclosed.0h2v.s5.a54e011ae197 from=translated src=- shape=07a0e020 vocab=899d184e
+-/
 theorem isClosed_box (S : Finset (HeightOneSpectrum (𝓞 F))) : IsClosed (box F S) := by
   have : box F S = ⋂ v : HeightOneSpectrum (𝓞 F), ⋂ (_ : v ∉ S),
       (fun x : FiniteAdeleRing (𝓞 F) F => x v) ⁻¹' (v.adicCompletionIntegers F : Set (v.adicCompletion F)) := by
@@ -48,6 +57,9 @@ theorem isClosed_box (S : Finset (HeightOneSpectrum (𝓞 F))) : IsClosed (box F
 
 open scoped Classical in
 
+/--
+@isnad1 id=islocall.0h2v.s9.9992f4cd888f from=translated src=- shape=d05f42c1 vocab=22b8b5b2
+-/
 theorem isLocallyConstant_ite_box (S : Finset (HeightOneSpectrum (𝓞 F))) :
     IsLocallyConstant (fun x : FiniteAdeleRing (𝓞 F) F =>
       (if ∀ v : HeightOneSpectrum (𝓞 F), v ∉ S → x v ∈ v.adicCompletionIntegers F then (1 : ℂ) else 0)) := by
@@ -61,6 +73,9 @@ theorem isLocallyConstant_ite_box (S : Finset (HeightOneSpectrum (𝓞 F))) :
     have hx'' : ¬ ∀ v : HeightOneSpectrum (𝓞 F), v ∉ S → x' v ∈ v.adicCompletionIntegers F := hx'
     rw [ite_eq_right hx'', ite_eq_right hx]
 
+/--
+@isnad1 id=iscompac.1h3v.s9.e5a05a1b29f0 from=translated src=- shape=acc5b532 vocab=1a0a80b1
+-/
 theorem isCompact_box_of (S : Finset (HeightOneSpectrum (𝓞 F))) (C : (v : HeightOneSpectrum (𝓞 F)) → Set (v.adicCompletion F))
     (hC : ∀ v ∈ S, IsCompact (C v)) :
     IsCompact {x : FiniteAdeleRing (𝓞 F) F |
@@ -126,6 +141,9 @@ theorem isCompact_box_of (S : Finset (HeightOneSpectrum (𝓞 F))) (C : (v : Hei
   exact hs.image (RestrictedProduct.continuous_inclusion hT)
 
 open scoped Classical in
+/--
+@isnad1 id=and.2h3v.s10.0cba40b21aa6 from=translated src=- shape=57b3cfec vocab=1f4174b1
+-/
 theorem main (S : Finset (HeightOneSpectrum (𝓞 F)))
     (h : (v : HeightOneSpectrum (𝓞 F)) → v.adicCompletion F → ℂ)
     (hlc : ∀ v ∈ S, IsLocallyConstant (h v)) (hcs : ∀ v ∈ S, HasCompactSupport (h v)) :
@@ -152,6 +170,9 @@ end C5F2
 end
 
 open scoped Classical in
+/--
+@isnad1 id=and.2h3v.s10.0cba40b21aa6 from=translated src=- shape=57b3cfec vocab=1f4174b1
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F]
     (S : Finset (HeightOneSpectrum (𝓞 F)))

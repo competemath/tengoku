@@ -18,6 +18,9 @@ open _root_.WeierstrassCurve.Affine.Point open _root_.WeierstrassCurve.Affine op
 
 variable {F : Type*} [Field F] [DecidableEq F]
 
+/--
+@isnad1 id=eq.0h2v.s7.e0b5c68bccd6 from=translated src=- shape=4f356614 vocab=bed5a380
+-/
 theorem negVariableChange_smul' (W : WeierstrassCurve F) :
     (⟨-1, 0, -W.a₁, -W.a₃⟩ : VariableChange F) • W = W := by
   ext
@@ -31,6 +34,9 @@ end WeierstrassCurve.Affine.Point
 
 open _root_.WeierstrassCurve open _root_.P2MW.S_WeierstrassCurve_Affine_Point_vcInvFun_neg_heq_neg.WeierstrassCurve open _root_.WeierstrassCurve.Affine open _root_.P2MW.S_WeierstrassCurve_Affine_Point_vcInvFun_neg_heq_neg.WeierstrassCurve.Affine open _root_.WeierstrassCurve.Affine.Point open _root_.P2MW.S_WeierstrassCurve_Affine_Point_vcInvFun_neg_heq_neg.WeierstrassCurve.Affine.Point
 
+/--
+@isnad1 id=heq.0h3v.s8.1782a8961eda from=translated src=- shape=0acd8f44 vocab=09e261f8
+-/
 theorem solution {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F) (P : W.toAffine.Point) :
     HEq (vcInvFun (⟨-1, 0, -W.a₁, -W.a₃⟩ : VariableChange F) W.toAffine P) (-P) := by
   have hW : ((⟨-1, 0, -W.a₁, -W.a₃⟩ : VariableChange F) • W).toAffine = W.toAffine := negVariableChange_smul' W

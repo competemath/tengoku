@@ -11,6 +11,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Deformation_DieudonneModule_exists_mem_fon
 
 universe u v w
 
+/--
+@isnad1 id=ex.4h5v.s13.d93c8e5458f8 from=translated src=- shape=7f3f413d vocab=85da975b
+-/
 theorem Deformation.DieudonneModule.exists_mem_fontaineHodge_verschiebung_eq_of_frobenius_eq_zero
     {𝓞 : Type u} [CommRing 𝓞] (p : ℕ) [Fact p.Prime] (hp : (p : 𝓞) ∈ nonZeroDivisors 𝓞)
     {k : Type v} [CommRing k] [CharP k p] [Algebra 𝓞 k]

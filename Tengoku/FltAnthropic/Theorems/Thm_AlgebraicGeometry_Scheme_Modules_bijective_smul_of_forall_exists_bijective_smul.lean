@@ -9,6 +9,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=bijectiv.1h4v.s13.1247b3426bd5 from=translated src=- shape=75a66e17 vocab=3f6d59d1
+-/
 theorem AlgebraicGeometry.Scheme.Modules.bijective_smul_of_forall_exists_bijective_smul
     {X : Scheme.{u}} (M : X.Modules) (σ : Γ(M, ⊤)) (V : X.Opens)
     (h : ∀ x ∈ V, ∃ U : X.Opens, x ∈ U ∧ ∀ W : X.Opens, W ≤ U →

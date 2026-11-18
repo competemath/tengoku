@@ -13,6 +13,9 @@ open scoped RestrictedProduct
 
 namespace BoxIdeleK9
 
+/--
+@isnad1 id=iscompac.3h6v.s8.f89d7c75fd8e from=translated src=- shape=12e785c8 vocab=fc73b7fe
+-/
 theorem restrictedProduct_isCompact_box {ι : Type*} {R : ι → Type*} [∀ i, TopologicalSpace (R i)]
     {S : ι → Type*} [∀ i, SetLike (S i) (R i)] {B : ∀ i, S i}
     (T : Set ι) (hT : T.Finite) (F : ∀ i, Set (R i)) (hF : ∀ i, IsCompact (F i))
@@ -54,6 +57,9 @@ theorem restrictedProduct_isCompact_box {ι : Type*} {R : ι → Type*} [∀ i, 
 
 variable (K : Type) [Field K] [NumberField K]
 
+/--
+@isnad1 id=iscompac.1h3v.s9.e5a05a1b29f0 from=translated src=- shape=acc5b532 vocab=1a0a80b1
+-/
 theorem isCompact_finBox (S : Finset (HeightOneSpectrum (𝓞 K)))
     (G : ∀ v : HeightOneSpectrum (𝓞 K), Set (v.adicCompletion K)) (hG : ∀ v ∈ S, IsCompact (G v)) :
     IsCompact {a : FiniteAdeleRing (𝓞 K) K |
@@ -90,10 +96,16 @@ theorem isCompact_finBox (S : Finset (HeightOneSpectrum (𝓞 K)))
   rw [e]
   exact hbox
 
+/--
+@isnad1 id=iscompac.2h3v.s8.08d38a70ae5f from=translated src=- shape=a56c6951 vocab=23ad2655
+-/
 theorem isCompact_inv_image (v : HeightOneSpectrum (𝓞 K)) (C : Set (v.adicCompletion K)) (hC : IsCompact C)
     (h0 : (0 : v.adicCompletion K) ∉ C) : IsCompact ((fun x : v.adicCompletion K => x⁻¹) '' C) :=
   hC.image_of_continuousOn (continuousOn_inv₀.mono fun x hx h => h0 (by rw [Set.mem_singleton_iff] at h; exact h ▸ hx))
 
+/--
+@isnad1 id=eq.0h3v.s9.0e62459bb3db from=translated src=- shape=a7b1e6b2 vocab=ab6e2b22
+-/
 theorem inv_snd_apply (z : (AdeleRing (𝓞 K) K)ˣ) (v : HeightOneSpectrum (𝓞 K)) :
     ((↑z⁻¹ : AdeleRing (𝓞 K) K).2 : FiniteAdeleRing (𝓞 K) K) v = ((((z : AdeleRing (𝓞 K) K).2 : FiniteAdeleRing (𝓞 K) K) v))⁻¹ := by
   have h : (((z : AdeleRing (𝓞 K) K).2 : FiniteAdeleRing (𝓞 K) K) v) * (((↑z⁻¹ : AdeleRing (𝓞 K) K).2 : FiniteAdeleRing (𝓞 K) K) v) = 1 := by
@@ -104,6 +116,9 @@ theorem inv_snd_apply (z : (AdeleRing (𝓞 K) K)ˣ) (v : HeightOneSpectrum (�
 end BoxIdeleK9
 
 open BoxIdeleK9 in
+/--
+@isnad1 id=iscompac.3h4v.s11.8eea05cbf7db from=translated src=- shape=a23ac43f vocab=dd4065aa
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K]
     (S : Finset (HeightOneSpectrum (𝓞 K)))

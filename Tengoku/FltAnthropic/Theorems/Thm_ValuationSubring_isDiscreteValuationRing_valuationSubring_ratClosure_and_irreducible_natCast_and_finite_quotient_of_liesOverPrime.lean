@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open ValuationSubring
 
+/--
+@isnad1 id=and.1h2v.s18.8810864910b5 from=translated src=- shape=ba0cd517 vocab=05cd1f8a
+-/
 theorem ValuationSubring.isDiscreteValuationRing_valuationSubring_ratClosure_and_irreducible_natCast_and_finite_quotient_of_liesOverPrime
     (r : ℕ) [Fact r.Prime] (A : ValuationSubring (AlgebraicClosure ℚ)) (hA : A.LiesOverPrime r) :
     (⟨(r : A.valuation.Completion), natCast_mem_ratClosure A r⟩ : ↥(ratClosure A)) ∈ (Valued.v.comap (ratClosure A).subtype).valuationSubring ∧

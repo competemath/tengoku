@@ -10,6 +10,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_HeckeEis_isEigensystemH1_of_isEigensystemH
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=iseigens.5h13v.s15.de09b2b2b0d9 from=translated src=- shape=d03a7827 vocab=ba950fde
+-/
 theorem HeckeEis.isEigensystemH1_of_isEigensystemH1_of_isBaseChange
     (N : ℕ) {K₀ K : Type} [Field K₀] [Field K] (i : K₀ →+* K) (S₀ : Set ℕ)
     {V₀ V : Type} [AddCommGroup V₀] [Module K₀ V₀] [AddCommGroup V] [Module K V]

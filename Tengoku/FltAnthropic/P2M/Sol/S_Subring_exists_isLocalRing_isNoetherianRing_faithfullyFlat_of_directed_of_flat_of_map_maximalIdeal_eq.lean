@@ -15,10 +15,16 @@ section Criterion
 
 variable {A : Type*} [CommRing A]
 
+/--
+@isnad1 id=mem.1h5v.s7.fdfb63f46735 from=translated src=- shape=23a05142 vocab=cfba644d
+-/
 lemma eval_mem_span_pow_of_isHomogeneous {σ : Type*} (t : σ → A) {F : MvPolynomial σ A} {n : ℕ}
     (hF : F.IsHomogeneous n) : eval t F ∈ Ideal.span (Set.range t) ^ n :=
   (Ideal.mem_span_pow_iff_exists_isHomogeneous t _).2 ⟨F, hF, rfl⟩
 
+/--
+@isnad1 id=mem.3h6v.s9.38c540da5975 from=translated src=- shape=dd4730a6 vocab=bf4c7919
+-/
 lemma eval_mem_pow_succ_of_map_eq_zero {σ : Type*} (t : σ → A) (𝔪 : Ideal A)
     (h𝔪 : Ideal.span (Set.range t) = 𝔪) {F : MvPolynomial σ A} {n : ℕ}
     (hF : F.IsHomogeneous n) (h0 : MvPolynomial.map (Ideal.Quotient.mk 𝔪) F = 0) :
@@ -37,12 +43,18 @@ lemma eval_mem_pow_succ_of_map_eq_zero {σ : Type*} (t : σ → A) (𝔪 : Ideal
   rw [this, map_mul, eval_C, pow_succ']
   exact Ideal.mul_mem_mul hc hmon
 
+/--
+@isnad1 id=ishomoge.1h6v.s7.d9d540d4eb10 from=translated src=- shape=4cf30384 vocab=71974f42
+-/
 lemma isHomogeneous_map {σ S : Type*} [CommRing S] (f : A →+* S) {F : MvPolynomial σ A} {n : ℕ}
     (hF : F.IsHomogeneous n) : (MvPolynomial.map f F).IsHomogeneous n := by
   intro d hd
   rw [coeff_map] at hd
   exact hF fun h => hd (by rw [h, map_zero])
 
+/--
+@isnad1 id=ex.1h5v.s8.536ae23fccce from=translated src=- shape=08aa6a12 vocab=882a565f
+-/
 lemma exists_isHomogeneous_map_eq {σ : Type*} (𝔪 : Ideal A) {n : ℕ}
     (Q : MvPolynomial σ (A ⧸ 𝔪)) (hQ : Q.IsHomogeneous n) :
     ∃ P : MvPolynomial σ A, P.IsHomogeneous n ∧
@@ -64,11 +76,17 @@ variable {R σ : Type*} [CommRing R]
 
 attribute [local instance] MvPolynomial.gradedAlgebra
 
+/--
+@isnad1 id=eq.0h4v.s12.4a82725a70e9 from=translated src=- shape=134e5d01 vocab=296eca33
+-/
 lemma coe_decompose_eq_homogeneousComponent (φ : MvPolynomial σ R) (n : ℕ) :
     ((DirectSum.decompose (homogeneousSubmodule σ R) φ n : homogeneousSubmodule σ R n) :
       MvPolynomial σ R) = homogeneousComponent n φ :=
   decomposition.decompose'_apply φ n
 
+/--
+@isnad1 id=eq.1h6v.s9.85016b97a953 from=translated src=- shape=39c78bfd vocab=997f3566
+-/
 lemma homogeneousComponent_mul_left {c : MvPolynomial σ R} {i : ℕ} (hc : c.IsHomogeneous i)
     (Q : MvPolynomial σ R) (n : ℕ) :
     homogeneousComponent n (c * Q) =
@@ -78,6 +96,9 @@ lemma homogeneousComponent_mul_left {c : MvPolynomial σ R} {i : ℕ} (hc : c.Is
     (show c ∈ homogeneousSubmodule σ R i from hc)
   rwa [coe_decompose_eq_homogeneousComponent, coe_decompose_eq_homogeneousComponent] at h
 
+/--
+@isnad1 id=eq.1h6v.s9.d63ad2ee8051 from=translated src=- shape=1e29416b vocab=997f3566
+-/
 lemma homogeneousComponent_mul_right (c : MvPolynomial σ R) {F : MvPolynomial σ R} {d : ℕ}
     (hF : F.IsHomogeneous d) (n : ℕ) :
     homogeneousComponent n (c * F) =
@@ -98,9 +119,15 @@ def InitProp (Q : MvPolynomial σ (A ⧸ 𝔪)) : Prop :=
 
 variable {𝔪 t I}
 
+/--
+@isnad1 id=initprop.0h5v.s7.a7daec85230f from=translated src=- shape=633dc48b vocab=beafcce3
+-/
 lemma InitProp.zero : InitProp 𝔪 t I 0 := fun n =>
   ⟨0, isHomogeneous_zero _ _ _, by simp, by simp⟩
 
+/--
+@isnad1 id=initprop.2h7v.s7.2fe061272e07 from=translated src=- shape=a9e18538 vocab=ecfa1520
+-/
 lemma InitProp.add {Q₁ Q₂ : MvPolynomial σ (A ⧸ 𝔪)} (h₁ : InitProp 𝔪 t I Q₁)
     (h₂ : InitProp 𝔪 t I Q₂) : InitProp 𝔪 t I (Q₁ + Q₂) := by
   intro n
@@ -109,6 +136,9 @@ lemma InitProp.add {Q₁ Q₂ : MvPolynomial σ (A ⧸ 𝔪)} (h₁ : InitProp �
   exact ⟨P₁ + P₂, hP₁.add hP₂, by rw [map_add, map_add, hm₁, hm₂],
     by rw [map_add]; exact Submodule.add_mem _ he₁ he₂⟩
 
+/--
+@isnad1 id=initprop.3h8v.s7.66dd64d11190 from=translated src=- shape=28a6777c vocab=c130adb8
+-/
 lemma InitProp.mul_of_isHomogeneous (h𝔪 : Ideal.span (Set.range t) = 𝔪)
     {c : MvPolynomial σ (A ⧸ 𝔪)} {i : ℕ} (hc : c.IsHomogeneous i)
     {Q : MvPolynomial σ (A ⧸ 𝔪)} (hQ : InitProp 𝔪 t I Q) : InitProp 𝔪 t I (c * Q) := by
@@ -133,6 +163,9 @@ lemma InitProp.mul_of_isHomogeneous (h𝔪 : Ideal.span (Set.range t) = 𝔪)
       omega
   · exact ⟨0, isHomogeneous_zero _ _ _, by simp, by simp⟩
 
+/--
+@isnad1 id=initprop.2h7v.s7.c0d6d2b440f9 from=translated src=- shape=84a918ff vocab=0bbf7c53
+-/
 lemma InitProp.mul (h𝔪 : Ideal.span (Set.range t) = 𝔪) (c : MvPolynomial σ (A ⧸ 𝔪))
     {Q : MvPolynomial σ (A ⧸ 𝔪)} (hQ : InitProp 𝔪 t I Q) : InitProp 𝔪 t I (c * Q) := by
   rw [← sum_homogeneousComponent c, Finset.sum_mul]
@@ -147,6 +180,9 @@ def initIdeal (h𝔪 : Ideal.span (Set.range t) = 𝔪) : Ideal (MvPolynomial σ
   zero_mem' := InitProp.zero
   smul_mem' c _ hQ := InitProp.mul h𝔪 c hQ
 
+/--
+@isnad1 id=mem.3h7v.s9.0420dcb72406 from=translated src=- shape=d41c1992 vocab=07204cd4
+-/
 lemma map_mem_initIdeal (h𝔪 : Ideal.span (Set.range t) = 𝔪) {G : MvPolynomial σ A} {m : ℕ}
     (hG : G.IsHomogeneous m) (hev : eval t G ∈ I ⊔ 𝔪 ^ (m + 1)) :
     MvPolynomial.map (Ideal.Quotient.mk 𝔪) G ∈ initIdeal 𝔪 t I h𝔪 := by
@@ -159,6 +195,9 @@ lemma map_mem_initIdeal (h𝔪 : Ideal.span (Set.range t) = 𝔪) {G : MvPolynom
     exact ⟨G, hG, by rw [ite_eq_left rfl], hev⟩
   · exact ⟨0, isHomogeneous_zero _ _ _, by rw [ite_eq_right hnm, map_zero], by simp⟩
 
+/--
+@isnad1 id=mem.2h7v.s10.6a1d83b4bf2f from=translated src=- shape=a80afe98 vocab=d1bcb9c7
+-/
 lemma homogeneousComponent_mem_initIdeal (h𝔪 : Ideal.span (Set.range t) = 𝔪)
     {Q : MvPolynomial σ (A ⧸ 𝔪)} (hQ : Q ∈ initIdeal 𝔪 t I h𝔪) (m : ℕ) :
     homogeneousComponent m Q ∈ initIdeal 𝔪 t I h𝔪 := by
@@ -170,6 +209,9 @@ lemma homogeneousComponent_mem_initIdeal (h𝔪 : Ideal.span (Set.range t) = �
     exact hQ n
   · exact ⟨0, isHomogeneous_zero _ _ _, by rw [ite_eq_right hnm, map_zero], by simp⟩
 
+/--
+@isnad1 id=ex.1h3v.s8.a2ee9cb47898 from=translated src=- shape=718c0338 vocab=657c4417
+-/
 theorem exists_fg_le_and_forall_le_sup_pow (𝔪 : Ideal A) (h𝔪 : 𝔪.FG)
     [IsNoetherianRing (A ⧸ 𝔪)] (I : Ideal A) :
     ∃ J : Ideal A, J ≤ I ∧ J.FG ∧ ∀ m : ℕ, I ≤ J ⊔ 𝔪 ^ m := by
@@ -287,6 +329,9 @@ theorem exists_fg_le_and_forall_le_sup_pow (𝔪 : Ideal A) (h𝔪 : 𝔪.FG)
     rw [← hjw]
     exact Submodule.add_mem _ (Submodule.mem_sup_left hj) hwmem
 
+/--
+@isnad1 id=isnoethe.2h2v.s7.efe297871aed from=translated src=- shape=8011264e vocab=e87fda98
+-/
 theorem isNoetherianRing_of_fg_of_forall_fg_iInf_sup_pow_le (𝔪 : Ideal A) (h𝔪 : 𝔪.FG)
     [IsNoetherianRing (A ⧸ 𝔪)]
     (hclosed : ∀ J : Ideal A, J.FG → ⨅ n : ℕ, J ⊔ 𝔪 ^ n ≤ J) : IsNoetherianRing A := by
@@ -303,6 +348,9 @@ section FlatUnion
 
 open TensorProduct
 
+/--
+@isnad1 id=flat.3h4v.s8.6ab030c99662 from=translated src=- shape=5049c33f vocab=840c506a
+-/
 theorem flat_of_directed_of_forall_flat {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
     {κ : Type*} [Nonempty κ] (T : κ → Submodule R M)
     (hdir : ∀ a b, ∃ c, T a ≤ T c ∧ T b ≤ T c) (hcov : ∀ x, ∃ a, x ∈ T a)
@@ -358,6 +406,9 @@ def towerSubmodule {i j : ι} (h : i ≤ j) : Submodule (S i) A where
   zero_mem' := (S j).zero_mem
   smul_mem' r _ ha := (S j).mul_mem (hS h r.2) ha
 
+/--
+@isnad1 id=flat.3h5v.s10.0b6e35567cca from=translated src=- shape=34ccfcdb vocab=7ef39795
+-/
 lemma flat_towerSubmodule {i j : ι} (h : i ≤ j) (hflat : (Subring.inclusion (hS h)).Flat) :
     Module.Flat (S i) (towerSubmodule S hS h) := by
   letI : Algebra (S i) (S j) := (Subring.inclusion (hS h)).toAlgebra
@@ -371,6 +422,9 @@ lemma flat_towerSubmodule {i j : ι} (h : i ≤ j) (hflat : (Subring.inclusion (
       right_inv := fun _ => rfl }
   exact Module.Flat.of_linearEquiv e
 
+/--
+@isnad1 id=flat.3h4v.s8.553dd6264b2a from=translated src=- shape=ae0e3b99 vocab=6981f0c7
+-/
 theorem flat_of_tower [IsDirected ι (· ≤ ·)] (hcov : ∀ x : A, ∃ i, x ∈ S i)
     (hflat : ∀ ⦃i j : ι⦄ (h : i ≤ j), (Subring.inclusion (hS h)).Flat) (i : ι) :
     Module.Flat (S i) A := by
@@ -389,6 +443,9 @@ theorem flat_of_tower [IsDirected ι (· ≤ ·)] (hcov : ∀ x : A, ∃ i, x �
 
 variable [∀ i, IsLocalRing (S i)]
 
+/--
+@isnad1 id=iff.3h5v.s10.d5c3e1b11b43 from=translated src=- shape=ff2576cd vocab=136a47fd
+-/
 lemma isUnit_coe_iff [IsDirected ι (· ≤ ·)] (hcov : ∀ x : A, ∃ i, x ∈ S i)
     (hle : ∀ ⦃i j : ι⦄ (h : i ≤ j),
       Ideal.map (Subring.inclusion (hS h)) (maximalIdeal (S i)) ≤ maximalIdeal (S j))
@@ -404,6 +461,9 @@ lemma isUnit_coe_iff [IsDirected ι (· ≤ ·)] (hcov : ∀ x : A, ∃ i, x ∈
 
 omit [Preorder ι] in
 
+/--
+@isnad1 id=islocalr.1h3v.s7.b84009d3d2e8 from=translated src=- shape=d14769be vocab=0cb197df
+-/
 lemma isLocalRing [Nonempty ι] (S : ι → Subring A) [∀ i, IsLocalRing (S i)]
     (hcov : ∀ x : A, ∃ i, x ∈ S i) : IsLocalRing A := by
   obtain ⟨i₀⟩ := ‹Nonempty ι›
@@ -414,6 +474,9 @@ lemma isLocalRing [Nonempty ι] (S : ι → Subring A) [∀ i, IsLocalRing (S i)
   · exact Or.inl (h.map (S j).subtype)
   · exact Or.inr (by simpa using h.map (S j).subtype)
 
+/--
+@isnad1 id=eq.3h4v.s10.3ae2a78ab38a from=translated src=- shape=35c8b9da vocab=e94febfa
+-/
 lemma map_maximalIdeal_eq [IsDirected ι (· ≤ ·)] (hcov : ∀ x : A, ∃ i, x ∈ S i) [IsLocalRing A]
     (hmax : ∀ ⦃i j : ι⦄ (h : i ≤ j),
       Ideal.map (Subring.inclusion (hS h)) (maximalIdeal (S i)) = maximalIdeal (S j)) (i : ι) :
@@ -441,6 +504,9 @@ lemma map_maximalIdeal_eq [IsDirected ι (· ≤ ·)] (hcov : ∀ x : A, ∃ i, 
     rw [this]
     exact Ideal.mem_map_of_mem (algebraMap (S j) A) hmem
 
+/--
+@isnad1 id=le.5h4v.s10.b3c206b59844 from=translated src=- shape=29321e31 vocab=4664aae2
+-/
 lemma iInf_sup_pow_le [Nonempty ι] [IsDirected ι (· ≤ ·)] (hcov : ∀ x : A, ∃ i, x ∈ S i)
     [IsLocalRing A] [∀ i, IsNoetherianRing (S i)]
     (hflat : ∀ ⦃i j : ι⦄ (h : i ≤ j), (Subring.inclusion (hS h)).Flat)
@@ -495,6 +561,9 @@ lemma iInf_sup_pow_le [Nonempty ι] [IsDirected ι (· ≤ ·)] (hcov : ∀ x : 
   rw [this, ← hJmap]
   exact Ideal.mem_map_of_mem _ hxJj
 
+/--
+@isnad1 id=ex.4h3v.s10.d7567b6381cb from=translated src=- shape=b6dab871 vocab=40856d42
+-/
 theorem main [Nonempty ι] [IsDirected ι (· ≤ ·)] (hcov : ∀ x : A, ∃ i, x ∈ S i)
     [∀ i, IsNoetherianRing (S i)]
     (hflat : ∀ ⦃i j : ι⦄ (h : i ≤ j), (Subring.inclusion (hS h)).Flat)
@@ -530,6 +599,9 @@ end P2mTowerNoetherian
 universe u v
 
 open IsLocalRing in
+/--
+@isnad1 id=ex.4h3v.s10.9f7adf8f1fd2 from=translated src=- shape=bc7f1e30 vocab=40856d42
+-/
 theorem solution
     (A : Type u) [CommRing A] {ι : Type v} [Preorder ι] [Nonempty ι] [IsDirected ι (· ≤ ·)]
     (S : ι → Subring A) (hS : Monotone S) (hcov : ∀ x : A, ∃ i, x ∈ S i)

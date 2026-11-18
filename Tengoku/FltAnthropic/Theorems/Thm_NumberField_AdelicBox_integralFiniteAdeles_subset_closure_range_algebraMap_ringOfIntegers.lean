@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_NumberField_AdelicBox_integralFiniteAdeles
 
 open NumberField NumberField.AdelicBox IsDedekindDomain
 open scoped Classical nonZeroDivisors
+/--
+@isnad1 id=le.0h1v.s8.6d972100f3b1 from=translated src=- shape=ad071a5b vocab=46683e72
+-/
 theorem NumberField.AdelicBox.integralFiniteAdeles_subset_closure_range_algebraMap_ringOfIntegers
     (F : Type) [Field F] [NumberField F] :
     integralFiniteAdeles (𝓞 F) F

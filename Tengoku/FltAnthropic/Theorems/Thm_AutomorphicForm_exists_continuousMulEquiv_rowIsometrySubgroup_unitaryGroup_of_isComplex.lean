@@ -12,6 +12,9 @@ set_option autoImplicit false
 open NumberField NumberField.InfinitePlace NumberField.InfinitePlace.Completion
 open AutomorphicForm AutomorphicForm.WindowedSiegel
 
+/--
+@isnad1 id=ex.1h2v.s13.4373fc78ca40 from=translated src=- shape=03915d8a vocab=7e3661f6
+-/
 theorem AutomorphicForm.exists_continuousMulEquiv_rowIsometrySubgroup_unitaryGroup_of_isComplex
     (F : Type) [Field F] (w : InfinitePlace F) (_hw : w.IsComplex) :
     ∃ e : ↥(rowIsometrySubgroup w.Completion) ≃ₜ* ↥(Matrix.unitaryGroup (Fin 2) ℂ),

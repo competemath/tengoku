@@ -68,6 +68,9 @@ private theorem four_mul_choose_two (n : ℕ) (hn : 1 ≤ n) :
 end PowerEstTwo
 
 open PowerEstTwo in
+/--
+@isnad1 id=ex.1h4v.s8.3310651f377b from=translated src=- shape=397204ec vocab=dde3f2c6
+-/
 theorem solution
     {A : Type u} [CommRing A] (n : ℕ) (hn : 1 ≤ n) (u v : A) :
     ∃ w : A, (u + 2 * v) ^ (2 ^ n) =

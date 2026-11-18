@@ -9,6 +9,9 @@ set_option autoImplicit false
 set_option maxHeartbeats 800000
 open NumberField
 
+/--
+@isnad1 id=eq.2h5v.s12.469c972f4039 from=translated src=- shape=ff647a35 vocab=0421cb13
+-/
 theorem solution
     (E C : Type) [Field E] [NumberField E] [Field C] [NumberField C] [Algebra E C] [IsGalois E C]
     (M : Subgroup (C ≃ₐ[E] C))

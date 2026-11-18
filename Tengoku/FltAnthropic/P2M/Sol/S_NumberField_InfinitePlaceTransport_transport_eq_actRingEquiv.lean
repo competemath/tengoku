@@ -9,6 +9,9 @@ namespace P2MW.S_NumberField_InfinitePlaceTransport_transport_eq_actRingEquiv
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.1h4v.s10.8280e1f35dff from=translated src=- shape=41afa053 vocab=a72f9d1c
+-/
 theorem solution (E K : Type*) [Field E] [Field K] [Algebra E K]
     (w : NumberField.InfinitePlace K) (σ : NumberField.InfPlaceDecomp.decomp E K w) (h : (σ : K ≃ₐ[E] K) • w = w) :
     NumberField.InfinitePlaceTransport.transport (σ : K ≃ₐ[E] K) h = NumberField.InfPlaceDecomp.actRingEquiv σ :=

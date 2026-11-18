@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open NumberField NumberField.InfinitePlace AutomorphicForm
 
+/--
+@isnad1 id=eq.3h6v.s12.af9385dd5ea5 from=translated src=- shape=72dc9d14 vocab=e062a482
+-/
 theorem AutomorphicForm.fderiv_apply_mul_archRealLiftAt_eq_of_isArchSmoothAt
     (F : Type) [Field F] [NumberField F] {w : InfinitePlace F} (hw : w.IsReal)
     (φ : AdelicGL2 (𝓞 F) F → ℂ) (hφ : IsArchSmoothAt hw φ)

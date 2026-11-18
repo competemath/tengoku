@@ -16,9 +16,15 @@ noncomputable def bump {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [H
     ContDiffBump c :=
   ⟨ε / 4, ε / 2, by positivity, by linarith⟩
 
+/--
+@isnad1 id=eq.1h3v.s6.640518a5a9f1 from=translated src=- shape=3e051bdf vocab=4ef50f3a
+-/
 theorem bump_rOut {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [HasContDiffBump E] (c : E) (ε : ℝ) (hε : 0 < ε) :
     (bump c ε hε).rOut = ε / 2 := rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.277bc15fea42 from=translated src=- shape=6cdcac96 vocab=3fafb8e2
+-/
 theorem zero_of_not_mem_closedBall {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [HasContDiffBump E] {c : E}
     (f : ContDiffBump c) {x : E} (hx : x ∉ Metric.closedBall c f.rOut) : (f : E → ℝ) x = 0 := by
   have : x ∉ Function.support (f : E → ℝ) := by
@@ -26,11 +32,17 @@ theorem zero_of_not_mem_closedBall {E : Type*} [NormedAddCommGroup E] [NormedSpa
     exact fun h => hx (Metric.ball_subset_closedBall h)
   simpa [Function.mem_support] using this
 
+/--
+@isnad1 id=lt.0h3v.s5.cfa78b3f1884 from=translated src=- shape=593f4765 vocab=43de95f3
+-/
 theorem bump_pos_center {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [HasContDiffBump E] {c : E}
     (f : ContDiffBump c) : 0 < (f : E → ℝ) c := by
   rw [f.one_of_mem_closedBall (Metric.mem_closedBall_self f.rIn_pos.le)]
   exact one_pos
 
+/--
+@isnad1 id=le.2h5v.s6.0c4acc8dd724 from=translated src=- shape=9be8e605 vocab=65e37393
+-/
 theorem tsupport_comp_subset_ball {X E : Type*} [MetricSpace X] [NormedAddCommGroup E] [NormedSpace ℝ E] [HasContDiffBump E]
     {e : X → E} (he : Isometry e) (t : X) (ε : ℝ) (hε : 0 < ε) :
     tsupport (fun y => (((bump (e t) ε hε : E → ℝ) (e y) : ℝ) : ℂ)) ⊆ Metric.ball t ε := by
@@ -48,6 +60,9 @@ end F1Bump
 
 open F1Bump in
 open scoped Classical in
+/--
+@isnad1 id=ex.2h3v.s11.6f681444ac2e from=translated src=- shape=4261a2cf vocab=b3893501
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F]
     (t : (w : InfinitePlace F) → w.Completion)

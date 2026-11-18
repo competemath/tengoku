@@ -11,6 +11,9 @@ set_option autoImplicit false
 open NumberField NumberField.AdelicBox IsDedekindDomain
 open scoped nonZeroDivisors
 
+/--
+@isnad1 id=and.1h3v.s10.87a7729f91a0 from=translated src=- shape=ad077c1c vocab=318752d5
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F] (d : 𝓞 F) (hd : d ≠ 0) (k : F) :
     IsLocallyConstant (((fun z : FiniteAdeleRing (𝓞 F) F ↦ algebraMap F (FiniteAdeleRing (𝓞 F) F) k

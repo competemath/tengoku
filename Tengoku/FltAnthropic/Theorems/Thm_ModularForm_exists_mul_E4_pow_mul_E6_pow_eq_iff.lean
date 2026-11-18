@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open scoped Manifold MatrixGroups ModularForm
 
+/--
+@isnad1 id=iff.2h6v.s11.f1d37f774fda from=translated src=- shape=30e06457 vocab=aa21d0b7
+-/
 theorem ModularForm.exists_mul_E4_pow_mul_E6_pow_eq_iff (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex]
     (k : ℤ) (a b m : ℕ) (hk : k + 4 * a + 6 * b = 12 * m)
     (F : UpperHalfPlane → ℂ) (hF : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) F) :

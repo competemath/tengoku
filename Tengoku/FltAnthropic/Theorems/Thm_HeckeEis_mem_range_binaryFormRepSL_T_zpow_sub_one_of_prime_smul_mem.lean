@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open scoped MatrixGroups
 
+/--
+@isnad1 id=mem.4h4v.s14.ba6af366356f from=translated src=- shape=0ee54e53 vocab=21800f9f
+-/
 theorem HeckeEis.mem_range_binaryFormRepSL_T_zpow_sub_one_of_prime_smul_mem (n : ℕ) {p : ℕ} (hp : p.Prime) (hn : n < p)
     {h : ℤ} (hph : ¬ (p : ℤ) ∣ h) (v : ↥(HeckeEis.BinaryForm ℤ n))
     (hv : (p : ℤ) • v ∈ LinearMap.range (HeckeEis.binaryFormRepSL ℤ n (ModularGroup.T ^ h) - 1)) :

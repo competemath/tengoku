@@ -8,6 +8,9 @@ namespace P2MW.S_NumberField_InfinitePlaceTransport_transport_one
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.1h3v.s9.184c0ea934be from=translated src=- shape=4456c27e vocab=dd31fc61
+-/
 theorem solution (E K : Type*) [Field E] [Field K] [Algebra E K]
     (w : NumberField.InfinitePlace K) (h : (1 : K ≃ₐ[E] K) • w = w) :
     NumberField.InfinitePlaceTransport.transport (1 : K ≃ₐ[E] K) h = RingEquiv.refl w.Completion := by

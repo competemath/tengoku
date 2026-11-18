@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u₁ u₂ u₃
 
+/--
+@isnad1 id=ex.0h6v.s8.14ff32d2f4a2 from=translated src=- shape=abd891d7 vocab=41727ff5
+-/
 theorem MeasureTheory.Measure.exists_isHaarMeasure_map_continuousMulEquiv_eq_prod
     {G : Type u₁} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [MeasurableSpace G] [BorelSpace G]
     {G₁ : Type u₂} [Group G₁] [TopologicalSpace G₁] [IsTopologicalGroup G₁] [LocallyCompactSpace G₁]

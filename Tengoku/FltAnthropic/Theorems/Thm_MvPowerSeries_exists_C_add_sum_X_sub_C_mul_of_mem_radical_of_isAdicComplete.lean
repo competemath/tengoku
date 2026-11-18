@@ -9,6 +9,9 @@ open MvPowerSeries
 
 universe u
 
+/--
+@isnad1 id=ex.1h5v.s8.108e588f4374 from=translated src=- shape=cc39a70f vocab=c927743f
+-/
 theorem MvPowerSeries.exists_C_add_sum_X_sub_C_mul_of_mem_radical_of_isAdicComplete
     {E : Type u} [CommRing E] (J : Ideal E) [IsAdicComplete J E]
     {d : ℕ} (b : Fin d → E) (hb : ∀ i, b i ∈ J.radical) (c : MvPowerSeries (Fin d) E) :

@@ -9,6 +9,9 @@ attribute [-simp] LocalNewvector.unitValuation_apply LocalNewvector.valChar_appl
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=mem.9h5v.s12.3bf7fd8040a1 from=translated src=- shape=0c5a9f12 vocab=8f65ba85
+-/
 theorem LocalNewvector.indicator_borelCell_mem_of_integralBorelInvariant_of_rightTranslate_stable
     (p : ℕ) [Fact p.Prime] (S : Submodule ℂ (GL (Fin 2) ℚ_[p] → ℂ))
     (hS : ∀ (h : GL (Fin 2) ℚ_[p]), ∀ F ∈ S, (fun g => F (g * h)) ∈ S)

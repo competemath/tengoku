@@ -11,6 +11,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Deformation_DieudonneModule_exists_ker_ver
 namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.0h3v.s15.dd366544d57a from=translated src=- shape=b10e4a7a vocab=5a4eaa08
+-/
 theorem Deformation.DieudonneModule.exists_ker_verschiebung_addEquiv_primitives_apply_of_eq_and_apply_map
     (k : Type*) [Field k] (p : ℕ) [Fact p.Prime] [CharP k p]
     (A : Type*) [CommRing A] [HopfAlgebra k A] :

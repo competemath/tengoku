@@ -11,6 +11,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_NumberField_AdelicFourier_fourierIntegral_
 open NumberField NumberField.AdelicFourier NumberField.AdelicBox AutomorphicForm IsDedekindDomain MeasureTheory
 open scoped Classical FourierTransform nonZeroDivisors
 open scoped Classical in
+/--
+@isnad1 id=eq.2h6v.s12.8e765e4c7d33 from=translated src=- shape=38abc4c7 vocab=4d010f76
+-/
 theorem NumberField.AdelicFourier.fourierIntegral_indicator_principalCoset_finiteAdeleRing_apply
     (F : Type) [Field F] [NumberField F]
     [MeasurableSpace (FiniteAdeleRing (𝓞 F) F)] [BorelSpace (FiniteAdeleRing (𝓞 F) F)]

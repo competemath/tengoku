@@ -43,6 +43,9 @@ section LatticeSum
 
 open scoped Classical in
 
+/--
+@isnad1 id=ex.0h3v.s10.9db811047d5b from=translated src=- shape=4fc07add vocab=74770d1c
+-/
 theorem exists_one_add_norm_pow_mul_norm_le (g : 𝓢(mixedEmbedding.mixedSpace F, ℂ)) (k : ℕ) :
     ∃ C : ℝ, ∀ y : mixedEmbedding.mixedSpace F, (1 + ‖y‖) ^ k * ‖g y‖ ≤ C := by
   refine ⟨2 ^ k * (Finset.Iic (k, 0)).sup (fun m => SchwartzMap.seminorm ℝ m.1 m.2) g, fun y => ?_⟩
@@ -52,6 +55,9 @@ theorem exists_one_add_norm_pow_mul_norm_le (g : 𝓢(mixedEmbedding.mixedSpace 
 
 open scoped Classical in
 
+/--
+@isnad1 id=summable.0h3v.s12.b8e51b620852 from=translated src=- shape=b6d2061a vocab=a44de595
+-/
 theorem summable_norm_apply_add_integerLattice (g : 𝓢(mixedEmbedding.mixedSpace F, ℂ))
     (z : mixedEmbedding.mixedSpace F) :
     Summable fun l : mixedEmbedding.integerLattice F => ‖g (z + (l : mixedEmbedding.mixedSpace F))‖ := by
@@ -87,9 +93,15 @@ def toIntegerLattice (o : 𝓞 F) : mixedEmbedding.integerLattice F :=
   ⟨mixedEmbedding F (o : F), LinearMap.mem_range.mpr ⟨o, rfl⟩⟩
 
 omit [NumberField F] in
+/--
+@isnad1 id=eq.0h2v.s9.fd8b58ee7149 from=translated src=- shape=0912eb97 vocab=4babccf5
+-/
 theorem coe_toIntegerLattice (o : 𝓞 F) :
     (toIntegerLattice F o : mixedEmbedding.mixedSpace F) = mixedEmbedding F (o : F) := rfl
 
+/--
+@isnad1 id=injectiv.0h1v.s9.db36e7c34a0c from=translated src=- shape=313b0f7a vocab=e36b1b1a
+-/
 theorem toIntegerLattice_injective : Function.Injective (toIntegerLattice F) := by
   intro a b h
   have h' : mixedEmbedding F (a : F) = mixedEmbedding F (b : F) := congrArg Subtype.val h
@@ -97,6 +109,9 @@ theorem toIntegerLattice_injective : Function.Injective (toIntegerLattice F) := 
 
 open scoped Classical in
 
+/--
+@isnad1 id=summable.0h3v.s11.7c0bf6619b5b from=translated src=- shape=4683e823 vocab=27ec9667
+-/
 theorem summable_norm_apply_add_mixedEmbedding (g : 𝓢(mixedEmbedding.mixedSpace F, ℂ))
     (z : mixedEmbedding.mixedSpace F) :
     Summable fun o : 𝓞 F => ‖g (z + mixedEmbedding F (o : F))‖ := by
@@ -111,10 +126,16 @@ section PureTensor
 
 variable {F}
 
+/--
+@isnad1 id=mem.0h1v.s7.139e47b6fa83 from=translated src=- shape=62dc9b7e vocab=9b03104f
+-/
 theorem zero_mem_integralFiniteAdeles' :
     (0 : FiniteAdeleRing (𝓞 F) F) ∈ AdelicBox.integralFiniteAdeles (𝓞 F) F :=
   fun v => (v.adicCompletionIntegers F).zero_mem
 
+/--
+@isnad1 id=mem.2h3v.s8.052a193a4c55 from=translated src=- shape=e4d16b89 vocab=523a7a7c
+-/
 theorem sub_mem_integralFiniteAdeles {a b : FiniteAdeleRing (𝓞 F) F}
     (ha : a ∈ AdelicBox.integralFiniteAdeles (𝓞 F) F) (hb : b ∈ AdelicBox.integralFiniteAdeles (𝓞 F) F) :
     a - b ∈ AdelicBox.integralFiniteAdeles (𝓞 F) F :=
@@ -124,6 +145,9 @@ variable (F)
 
 open scoped Classical in
 
+/--
+@isnad1 id=summable.2h4v.s11.01e16ff63672 from=translated src=- shape=b028a730 vocab=21ba8ba2
+-/
 theorem summable_translate_pureTensor (g : 𝓢(mixedEmbedding.mixedSpace F, ℂ))
     (h : FiniteAdeleRing (𝓞 F) F → ℂ) (hlc : IsLocallyConstant h) (hcs : HasCompactSupport h) (x : 𝔸) :
     Summable fun ξ : F => g (ringEquiv_mixedSpace F (x + ι ξ).1) * h (x + ι ξ).2 := by
@@ -210,6 +234,9 @@ theorem summable_translate_pureTensor (g : 𝓢(mixedEmbedding.mixedSpace F, ℂ
 
 end PureTensor
 
+/--
+@isnad1 id=summable.1h3v.s9.89efccb59000 from=translated src=- shape=163671b5 vocab=0cd31b5b
+-/
 theorem summable_translate_of_mem_schwartzBruhat_impl {f : 𝔸 → ℂ} (hf : f ∈ schwartzBruhat F) (x : 𝔸) :
     Summable fun ξ : F => f (x + ι ξ) := by
   revert x
@@ -230,6 +257,9 @@ end
 
 open _root_.NumberField open _root_.P2MW.S_NumberField_AdelicFourier_summable_translate_of_mem_schwartzBruhat.NumberField open _root_.NumberField.AdelicFourier open _root_.P2MW.S_NumberField_AdelicFourier_summable_translate_of_mem_schwartzBruhat.NumberField.AdelicFourier
 
+/--
+@isnad1 id=summable.1h3v.s9.89efccb59000 from=translated src=- shape=163671b5 vocab=0cd31b5b
+-/
 theorem solution (F : Type) [Field F] [NumberField F]
     {f : AdeleRing (𝓞 F) F → ℂ} (hf : f ∈ schwartzBruhat F) (x : AdeleRing (𝓞 F) F) :
     Summable fun ξ : F => f (x + algebraMap F (AdeleRing (𝓞 F) F) ξ) := by

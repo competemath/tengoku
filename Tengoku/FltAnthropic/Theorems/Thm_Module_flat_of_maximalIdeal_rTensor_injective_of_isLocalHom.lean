@@ -11,6 +11,9 @@ open TensorProduct IsLocalRing
 
 universe u
 
+/--
+@isnad1 id=flat.1h3v.s11.4dfd1c4e19f8 from=translated src=- shape=26abc2b0 vocab=f1316dfa
+-/
 theorem Module.flat_of_maximalIdeal_rTensor_injective_of_isLocalHom
     {A B : Type u} [CommRing A] [CommRing B] [IsNoetherianRing A] [IsNoetherianRing B] [IsLocalRing A] [IsLocalRing B]
     [Algebra A B] [IsLocalHom (algebraMap A B)]

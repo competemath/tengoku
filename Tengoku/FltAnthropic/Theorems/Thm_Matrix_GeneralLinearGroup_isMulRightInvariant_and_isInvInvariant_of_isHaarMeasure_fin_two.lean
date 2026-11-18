@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open MeasureTheory
 
+/--
+@isnad1 id=and.0h2v.s9.aa4380bed702 from=translated src=- shape=07490018 vocab=58776766
+-/
 theorem Matrix.GeneralLinearGroup.isMulRightInvariant_and_isInvInvariant_of_isHaarMeasure_fin_two
     {F : Type*} [Field F] [TopologicalSpace F] [IsTopologicalRing F]
     [LocallyCompactSpace (GL (Fin 2) F)] [SecondCountableTopology (GL (Fin 2) F)]

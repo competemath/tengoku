@@ -13,6 +13,9 @@ set_option autoImplicit false
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=eq.0h9v.s11.a8f7fab7117d from=translated src=- shape=42f23914 vocab=4371e0da
+-/
 theorem Module.End.finrank_iInf_maxGenEigenspace_map_tensorProduct_eq_mul
     (F : Type) [Field F]
     (V W : Type) [AddCommGroup V] [Module F V] [FiniteDimensional F V]

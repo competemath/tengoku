@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory AlgebraicGeometry
 
+/--
+@isnad1 id=le.0h4v.s6.f4c5b326ecdf from=translated src=- shape=3f259e46 vocab=89e4dcbc
+-/
 theorem AlgebraicGeometry.SmoothOfRelativeDimension.topologicalKrullDim_le
     {K : Type u} [Field K] {X : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of K)) (n : ℕ)
     [SmoothOfRelativeDimension n f] :

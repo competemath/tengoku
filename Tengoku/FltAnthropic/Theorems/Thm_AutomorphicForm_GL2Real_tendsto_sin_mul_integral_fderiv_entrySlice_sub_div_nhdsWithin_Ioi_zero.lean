@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open MeasureTheory AutomorphicForm AutomorphicForm.GL2Real
 
+/--
+@isnad1 id=tendsto.3h4v.s12.769e25c1efe9 from=translated src=- shape=9d26ac4a vocab=7e209aa3
+-/
 theorem AutomorphicForm.GL2Real.tendsto_sin_mul_integral_fderiv_entrySlice_sub_div_nhdsWithin_Ioi_zero
     (P : Type) [NormedAddCommGroup P] [NormedSpace ℝ P] (Φ : (Fin 2 → Fin 2 → ℝ) × P → ℂ)
     (hΦs : ContDiff ℝ (⊤ : ℕ∞) Φ) (hΦc : HasCompactSupport Φ) (p : P) (r : ℝ) (hr : 0 < r) :

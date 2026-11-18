@@ -11,6 +11,9 @@ namespace Ideal
 export _root_.Ideal (map_le_iff_le_comap Quotient.eq_zero_iff_mem comap_mono primeCompl mem_bot comap_lt_comap_of_integral_mem_sdiff comap_isMaximal_of_surjective IsMaximal Quotient.mk mul_mem_left map mk_ker Quotient.lift_mk exists_le_maximal mem_sup_left FG ext IsPrime mem_map_of_mem Quotient.lift comap_map_of_surjective mem_comap comap eq_top_iff_one mem_map_iff_of_surjective Quotient.mk_surjective exists_le_prime_disjoint)
 open _root_.Ideal
 
+/--
+@isnad1 id=ex.2h3v.s7.9f8cb2bad241 from=translated src=- shape=444253d0 vocab=5c8a8949
+-/
 theorem exists_not_mem_mul_pow_eq_zero_of_mem_minimalPrimes
     {R : Type*} [CommRing R] {P : Ideal R} (hP : P ∈ minimalPrimes R) {p : R} (hp : p ∈ P) :
     ∃ t ∉ P, ∃ n : ℕ, t * p ^ n = 0 := by
@@ -33,6 +36,9 @@ theorem exists_not_mem_mul_pow_eq_zero_of_mem_minimalPrimes
   obtain ⟨⟨t, ht⟩, htp⟩ := hn
   exact ⟨t, ht, n, htp⟩
 
+/--
+@isnad1 id=ne.2h3v.s8.e4abb6a62db2 from=translated src=- shape=878584b9 vocab=cb2ed327
+-/
 theorem sup_ne_top_of_mem_minimalPrimes_of_forall_mem
     {R : Type*} [CommRing R] (I : Ideal R) {P : Ideal R} (hP : P ∈ minimalPrimes R)
     (hγ : ∀ t : R, (∃ i ∈ I, (1 + i) * t = 0) → t ∈ P) :
@@ -57,6 +63,9 @@ end Ideal
 namespace Module export _root_.Module (Injective support mem_annihilator annihilator mk Finite.of_injective End) end Module
 open scoped _root_.Module in
 
+/--
+@isnad1 id=isoffina.3h5v.s9.2deb4fe9536c from=translated src=- shape=1b7d74a2 vocab=ee9a9493
+-/
 theorem Module.isOfFinAddOrder_of_forall_isMaximal_exists_isOfFinAddOrder_smul
     {R J M : Type*} [CommRing R] [AddCommGroup J] [Module R J] [AddCommGroup M] [Module R M]
     (hfin : Module.Finite ℤ (R ⧸ Module.annihilator R J))
@@ -180,6 +189,9 @@ theorem Module.isOfFinAddOrder_of_forall_isMaximal_exists_isOfFinAddOrder_smul
 namespace Module export _root_.Module (Injective support mem_annihilator annihilator mk Finite.of_injective End) namespace Finite export _root_.Module.Finite (of_finite trans map of_injective quotient) end Module.Finite
 open scoped _root_.Module _root_.Module.Finite in
 
+/--
+@isnad1 id=finite.3h4v.s10.d2ad7978572f from=translated src=- shape=01e89068 vocab=35e209a2
+-/
 theorem Module.Finite.int_quotient_annihilator_of_subalgebra_fg
     {R J : Type*} [CommRing R] [AddCommGroup J] [Module R J]
     (ρ : R →+* Module.End ℤ J) (hρ : ∀ (t : R) (x : J), t • x = ρ t x)
@@ -219,6 +231,9 @@ theorem Module.Finite.int_quotient_annihilator_of_subalgebra_fg
 namespace Submodule export _root_.Submodule (inclusion smul_mem' mk mem_bot torsion Quotient.mk mem_map_of_mem mem_comap mem_top smul_mem_smul zero one mem_annihilator Quotient.mk_surjective map Quotient.mk_smul mem_sup annihilator Quotient.mk_eq_zero module mk_eq_zero FG ext add comap comap_mono mem_sup_left map_le_iff_le_comap) namespace Quotient export _root_.Submodule.Quotient (mk module mk_surjective mk_smul mk_eq_zero) end Submodule.Quotient
 open scoped _root_.Submodule _root_.Submodule.Quotient in
 
+/--
+@isnad1 id=isoffina.3h5v.s10.2c36fe555996 from=translated src=- shape=9464d418 vocab=20953463
+-/
 theorem Submodule.Quotient.isOfFinAddOrder_of_forall_isMaximal
     {R J : Type*} [CommRing R] [AddCommGroup J] [Module R J]
     (hfin : Module.Finite ℤ (R ⧸ Module.annihilator R J))
@@ -233,6 +248,9 @@ theorem Submodule.Quotient.isOfFinAddOrder_of_forall_isMaximal
       exact Submodule.smul_mem_smul (hγ t ht) Submodule.mem_top)
     z hz
 
+/--
+@isnad1 id=isoffina.5h7v.s11.c89b17f1bd0e from=translated src=- shape=9ee6e1c8 vocab=ced9c95e
+-/
 theorem solution
     {R J : Type*} [CommRing R] [AddCommGroup J] [Module R J]
     (ρ : R →+* Module.End ℤ J) (hρ : ∀ (t : R) (x : J), t • x = ρ t x)

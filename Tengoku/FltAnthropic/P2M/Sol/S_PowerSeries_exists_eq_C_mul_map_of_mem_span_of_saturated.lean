@@ -18,6 +18,9 @@ open _root_.PowerSeries
 
 open _root_.PowerSeries open _root_.P2MW.S_PowerSeries_exists_eq_C_mul_map_of_mem_span_of_saturated.PowerSeries
 
+/--
+@isnad1 id=linearin.1h6v.s7.9d2fd406b184 from=translated src=- shape=8a9f8abb vocab=e0cd3b79
+-/
 theorem linearIndependent_comp_ringHom {𝔽 k σ : Type*} [Field 𝔽] [Field k] (φ : 𝔽 →+* k) :
     ∀ (r : ℕ) (v : Fin r → σ → 𝔽), LinearIndependent 𝔽 v →
       LinearIndependent k (fun i => (φ ∘ v i : σ → k)) := by
@@ -97,13 +100,22 @@ theorem linearIndependent_comp_ringHom {𝔽 k σ : Type*} [Field 𝔽] [Field k
 
 noncomputable def cvec (R : Type*) [CommRing R] (p : PowerSeries ℤ) : ℕ → R := fun j => ((coeff j p : ℤ) : R)
 
+/--
+@isnad1 id=eq.0h3v.s6.87695e1a3b26 from=translated src=- shape=657ef151 vocab=a2fd3028
+-/
 theorem cvec_apply (R : Type*) [CommRing R] (p : PowerSeries ℤ) (j : ℕ) :
     cvec R p j = ((coeff j p : ℤ) : R) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.6bb5c1a51a52 from=translated src=- shape=3b619fa6 vocab=e941b1b0
+-/
 theorem coeff_map_intCast (R : Type*) [CommRing R] (p : PowerSeries ℤ) (j : ℕ) :
     coeff j (p.map (Int.castRingHom R)) = cvec R p j := by
   rw [coeff_map, eq_intCast]; rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.862d9d937594 from=translated src=- shape=19417967 vocab=64e41c9b
+-/
 theorem coeff_sum_smul_map {R : Type*} [CommRing R] {ι : Type*} (s : Finset ι) (e : ι → R)
     (p : ι → PowerSeries ℤ) (j : ℕ) :
     coeff j (∑ i ∈ s, e i • (p i).map (Int.castRingHom R)) = ∑ i ∈ s, e i * cvec R (p i) j := by
@@ -111,6 +123,9 @@ theorem coeff_sum_smul_map {R : Type*} [CommRing R] {ι : Type*} (s : Finset ι)
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [map_smul, coeff_map_intCast, smul_eq_mul]
 
+/--
+@isnad1 id=eq.0h7v.s8.fa071f0786b6 from=translated src=- shape=c07ffc99 vocab=f4e9544a
+-/
 theorem map_sum_smul_map {A R : Type*} [CommRing A] [CommRing R] (ψ : A →+* R) {ι : Type*}
     (s : Finset ι) (e : ι → A) (b : ι → PowerSeries ℤ) :
     (∑ j ∈ s, e j • (b j).map (Int.castRingHom A)).map ψ =
@@ -121,6 +136,9 @@ theorem map_sum_smul_map {A R : Type*} [CommRing A] [CommRing R] (ψ : A →+* R
   rw [coeff_map, coeff_smul, coeff_smul, coeff_map_intCast, coeff_map_intCast, smul_eq_mul,
     smul_eq_mul, map_mul, cvec_apply, cvec_apply, map_intCast]
 
+/--
+@isnad1 id=ex.3h4v.s12.88c54a7c2906 from=translated src=- shape=89fef5d6 vocab=107012af
+-/
 theorem main
     {L : Type*} [Field L] (A : ValuationSubring L)
     (N : AddSubgroup (PowerSeries ℤ))
@@ -415,6 +433,9 @@ theorem main
 
 end PowerSeries.SaturationLemma
 
+/--
+@isnad1 id=ex.3h4v.s12.88c54a7c2906 from=translated src=- shape=89fef5d6 vocab=107012af
+-/
 theorem solution
     {L : Type*} [Field L] (A : ValuationSubring L)
     (N : AddSubgroup (PowerSeries ℤ))

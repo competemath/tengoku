@@ -11,6 +11,9 @@ universe u
 
 open TensorProduct
 
+/--
+@isnad1 id=le.4h5v.s13.e66cc018f8cd from=translated src=- shape=e2f9d5e0 vocab=58180a17
+-/
 theorem Module.Flat.ker_le_range_of_forall_isMaximal_ker_baseChange_quotient_le_range
     {R : Type u} [CommRing R] [IsNoetherianRing R]
     (C : ℕ → Type u) [∀ i, AddCommGroup (C i)] [∀ i, Module R (C i)] [∀ i, Module.Flat R (C i)]

@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open AlgebraicCurve IsLocalRing
 
+/--
+@isnad1 id=and.8h10v.s12.b7f6a8328ed4 from=translated src=- shape=9c6f4d42 vocab=983efcd4
+-/
 theorem AlgebraicCurve.RegularProlongation.forall_ord_residue_pos_of_maximalIdeal_le_map_sup_span
     {L : Type*} [Field L] (A : ValuationSubring L) {F : Type*} [Field F] [Algebra L F]
     {Fbar : Type*} [Field Fbar] [Algebra (ResidueField A) Fbar]

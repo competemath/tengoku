@@ -11,6 +11,9 @@ open NumberField
 
 open NumberField in
 
+/--
+@isnad1 id=ex.1h4v.s8.33850dc48b73 from=translated src=- shape=daec7d52 vocab=251398f7
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K] [IsTotallyComplex K] (w : InfinitePlace K) (u : (w.Completion)ˣ) (n : ℕ) (hn : 0 < n) :
     ∃ v : (w.Completion)ˣ, v ^ n = u := by

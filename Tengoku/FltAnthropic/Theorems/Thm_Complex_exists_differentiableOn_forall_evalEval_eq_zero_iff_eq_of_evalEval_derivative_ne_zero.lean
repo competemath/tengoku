@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open Topology Polynomial
 
+/--
+@isnad1 id=ex.2h3v.s9.b225e64faa52 from=translated src=- shape=49604967 vocab=38c51a60
+-/
 theorem Complex.exists_differentiableOn_forall_evalEval_eq_zero_iff_eq_of_evalEval_derivative_ne_zero
     (F : Polynomial (Polynomial ℂ)) (z₀ w₀ : ℂ)
     (h₀ : F.evalEval z₀ w₀ = 0) (hd : (Polynomial.derivative F).evalEval z₀ w₀ ≠ 0) :

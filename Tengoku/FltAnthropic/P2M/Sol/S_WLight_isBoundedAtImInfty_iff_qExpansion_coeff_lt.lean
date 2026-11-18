@@ -18,9 +18,15 @@ section CuspCriterion
 
 variable {N : ℕ}
 
+/--
+@isnad1 id=isbounde.0h0v.s8.a443ea96338b from=translated src=- shape=451f6dce vocab=263ed9cb
+-/
 lemma isBoundedAtImInfty_discriminant : IsBoundedAtImInfty (⇑CuspForm.discriminant : ℍ → ℂ) :=
   (CuspFormClass.zero_at_infty CuspForm.discriminant).boundedAtFilter
 
+/--
+@isnad1 id=isbounde.0h1v.s8.f33768f72c2c from=translated src=- shape=06c18666 vocab=65b1bbd9
+-/
 lemma isBoundedAtImInfty_discPow (n : ℕ) :
     IsBoundedAtImInfty (⇑CuspForm.discriminant ^ n : ℍ → ℂ) := by
   induction n with
@@ -32,13 +38,22 @@ lemma isBoundedAtImInfty_discPow (n : ℕ) :
 def discPowForm (m : ℕ) : ModularForm 𝒮ℒ (12 * m) :=
   ModularForm.mcast (by ring) ((CuspForm.toModularFormₗ CuspForm.discriminant).pow m)
 
+/--
+@isnad1 id=eq.0h1v.s9.2f5646ba3b04 from=translated src=- shape=87e9d799 vocab=a4a269c4
+-/
 lemma discPowForm_coe (m : ℕ) : ⇑(discPowForm m) = ⇑CuspForm.discriminant ^ m := by
   funext z
   simp [discPowForm, ModularForm.coe_mcast, ModularForm.coe_pow,
     CuspForm.toModularFormₗ_apply]
 
+/--
+@isnad1 id=periodic.0h1v.s5.307a22a71491 from=translated src=- shape=ebc4bdb0 vocab=3e5782a9
+-/
 lemma periodic_one_fn (c : ℝ) : Function.Periodic ((1 : ℍ → ℂ) ∘ ofComplex) c := fun _ => rfl
 
+/--
+@isnad1 id=periodic.0h2v.s8.2e4b03ac59fe from=translated src=- shape=2278e424 vocab=4046b8a1
+-/
 lemma periodic_discPow_comp_ofComplex (k : ℕ) (N : ℕ) :
     Function.Periodic ((⇑CuspForm.discriminant ^ k : ℍ → ℂ) ∘ ofComplex) N := by
   have h1 : Function.Periodic (⇑CuspForm.discriminant ∘ ofComplex) 1 :=
@@ -55,15 +70,24 @@ lemma periodic_discPow_comp_ofComplex (k : ℕ) (N : ℕ) :
       exact hx
   simpa using hk.nat_mul N
 
+/--
+@isnad1 id=mdiffere.0h1v.s8.daa6b50887c3 from=translated src=- shape=28a1ef6d vocab=a57ebf8f
+-/
 lemma mdiff_discPow (k : ℕ) :
     MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (⇑CuspForm.discriminant ^ k : ℍ → ℂ) := by
   rw [← discPowForm_coe]
   exact (discPowForm k).holo'
 
+/--
+@isnad1 id=mdiffere.1h2v.s9.6eac709d05ea from=translated src=- shape=3c3d77be vocab=9ed14d55
+-/
 lemma mdiff_mul_discPow {f : ℍ → ℂ} (hf : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) f) (m : ℕ) :
     MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (f * ⇑CuspForm.discriminant ^ m : ℍ → ℂ) :=
   hf.mul (mdiff_discPow m)
 
+/--
+@isnad1 id=analytic.3h2v.s7.2cd82fc8dc71 from=translated src=- shape=59ef79a2 vocab=19da8d4b
+-/
 lemma analyticAt_cuspFunction_zero_of [NeZero N] {g : ℍ → ℂ}
     (hhol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) g)
     (hper : Function.Periodic (g ∘ ofComplex) N) (hbd : IsBoundedAtImInfty g) :
@@ -71,6 +95,9 @@ lemma analyticAt_cuspFunction_zero_of [NeZero N] {g : ℍ → ℂ}
   analyticAt_cuspFunction_zero
     (by exact_mod_cast Nat.pos_of_ne_zero (NeZero.ne N)) hper hhol hbd
 
+/--
+@isnad1 id=eq.0h1v.s8.f0c5acc49384 from=translated src=- shape=15c04e4c vocab=e522a9b5
+-/
 lemma qExpansion_one_discPowForm (k : ℕ) :
     qExpansion 1 (discPowForm k) = (qExpansion 1 ModularForm.discriminant) ^ k := by
   rw [discPowForm, ModularForm.qExpansion_mcast,
@@ -82,23 +109,35 @@ lemma qExpansion_one_discPowForm (k : ℕ) :
     exact congrFun CuspForm.coe_discriminant z
   rw [hco]
 
+/--
+@isnad1 id=eq.0h1v.s8.437bc416d1e1 from=translated src=- shape=b2ac6171 vocab=410d4c90
+-/
 lemma qExpansion_one_discPow (k : ℕ) :
     qExpansion 1 (⇑CuspForm.discriminant ^ k : ℍ → ℂ) =
       (qExpansion 1 ModularForm.discriminant) ^ k := by
   rw [← discPowForm_coe]
   exact qExpansion_one_discPowForm k
 
+/--
+@isnad1 id=eq.2h3v.s7.55ac418b75be from=translated src=- shape=31a908b9 vocab=f8303012
+-/
 lemma coeff_pow_eq_zero_of_lt {D : PowerSeries ℂ} (hD0 : D.coeff 0 = 0) {k n : ℕ}
     (hn : n < k) : (D ^ k).coeff n = 0 := by
   have hX : (PowerSeries.X : PowerSeries ℂ) ∣ D :=
     PowerSeries.X_dvd_iff.mpr (by rwa [← PowerSeries.coeff_zero_eq_constantCoeff])
   exact PowerSeries.X_pow_dvd_iff.mp (pow_dvd_pow_of_dvd hX k) n hn
 
+/--
+@isnad1 id=eq.0h0v.s6.5e05fa10df7a from=translated src=- shape=ae8fa524 vocab=db8d97ee
+-/
 lemma discriminant_qExpansion_coeff_zero :
     (qExpansion 1 ModularForm.discriminant).coeff 0 = 0 :=
   CuspFormClass.qExpansion_coeff_zero CuspForm.discriminant one_pos
     one_mem_strictPeriods_SL
 
+/--
+@isnad1 id=eq.1h2v.s5.eef4706f04bb from=translated src=- shape=55d416ad vocab=ff4ad4eb
+-/
 lemma qParam_one_eq_pow {N : ℕ} (hN : N ≠ 0) (τ : ℂ) :
     Function.Periodic.qParam 1 τ = Function.Periodic.qParam N τ ^ N := by
   have : (N : ℂ) ≠ 0 := by exact_mod_cast hN
@@ -107,6 +146,9 @@ lemma qParam_one_eq_pow {N : ℕ} (hN : N ≠ 0) (τ : ℂ) :
   congr 1
   field_simp
 
+/--
+@isnad1 id=eq.4h3v.s8.30500c81409c from=translated src=- shape=5e5984d4 vocab=ddb4bc45
+-/
 theorem qExpansion_coeff_width (f : ℍ → ℂ) {N : ℕ} (hN : N ≠ 0)
     (hper : Function.Periodic (f ∘ ofComplex) 1) (hhol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) f)
     (hbd : IsBoundedAtImInfty f) (n : ℕ) :
@@ -135,6 +177,9 @@ theorem qExpansion_coeff_width (f : ℍ → ℂ) {N : ℕ} (hN : N ≠ 0)
 
 open Asymptotics in
 
+/--
+@isnad1 id=isbigo.5h3v.s8.8607adad7397 from=translated src=- shape=f9fec9c7 vocab=d007e462
+-/
 theorem isBigO_qParam_pow_of_qExpansion_coeff_eq_zero {h : ℝ} (hh : 0 < h) {f : ℍ → ℂ}
     (hfper : Periodic (f ∘ ofComplex) h) (hfhol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) f)
     (hfbdd : IsBoundedAtImInfty f)
@@ -162,6 +207,9 @@ theorem isBigO_qParam_pow_of_qExpansion_coeff_eq_zero {h : ℝ} (hh : 0 < h) {f 
 
 open Asymptotics ModularForm in
 
+/--
+@isnad1 id=isbigo.1h2v.s6.cff030e5b51c from=translated src=- shape=d110e423 vocab=e5a63f7d
+-/
 theorem qParam_pow_isBigO_discPow {N : ℕ} (hN : N ≠ 0) (k : ℕ) :
     (fun τ : ℍ ↦ (Periodic.qParam (N : ℝ) (τ : ℂ)) ^ (N * k)) =O[atImInfty]
       (fun τ ↦ (ModularForm.discriminant τ : ℂ) ^ k) := by
@@ -175,6 +223,9 @@ theorem qParam_pow_isBigO_discPow {N : ℕ} (hN : N ≠ 0) (k : ℕ) :
 open ModularForm in
 set_option maxHeartbeats 1600000 in
 
+/--
+@isnad1 id=eq.1h3v.s8.245a01f1717d from=translated src=- shape=2d8a5bf5 vocab=78b23c58
+-/
 lemma qExpansion_discPow_coeff_eq_zero_of_lt [NeZero N] (k : ℕ) {j : ℕ} (hj : j < N * k) :
     (qExpansion N (⇑CuspForm.discriminant ^ k : ℍ → ℂ)).coeff j = 0 := by
   have hper : Function.Periodic
@@ -190,6 +241,9 @@ lemma qExpansion_discPow_coeff_eq_zero_of_lt [NeZero N] (k : ℕ) {j : ℕ} (hj 
 
 open Asymptotics ModularForm in
 
+/--
+@isnad1 id=isbounde.5h3v.s10.febb5dbe5fc4 from=translated src=- shape=79e92887 vocab=3b00eff6
+-/
 theorem isBoundedAtImInfty_of_coeff_lt {N : ℕ} (hN : N ≠ 0) {F : ℍ → ℂ} {M : ℕ}
     (hfhol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (F * ⇑CuspForm.discriminant ^ M))
     (hfper : Periodic ((F * ⇑CuspForm.discriminant ^ M) ∘ ofComplex) N)
@@ -222,6 +276,9 @@ theorem isBoundedAtImInfty_of_coeff_lt {N : ℕ} (hN : N ≠ 0) {F : ℍ → ℂ
 
 open ModularForm in
 
+/--
+@isnad1 id=eq.4h4v.s9.5618081fa8ad from=translated src=- shape=c51feabf vocab=68d3f826
+-/
 theorem qExpansion_coeff_eq_zero_of_isBoundedAtImInfty [NeZero N] {F : ℍ → ℂ} {M : ℕ}
     (hFhol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) F)
     (hFper : Function.Periodic (F ∘ ofComplex) N)
@@ -246,6 +303,9 @@ open Complex Real UpperHalfPlane
 open scoped Manifold MatrixGroups ModularForm
 
 open WLightBdd in
+/--
+@isnad1 id=iff.3h3v.s8.6d70d7110adf from=translated src=- shape=be90a6cc vocab=91f4000a
+-/
 theorem solution (N : ℕ) [NeZero N] {F : ℍ → ℂ} {M : ℕ}
     (hFhol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) F)
     (hFper : Function.Periodic (F ∘ UpperHalfPlane.ofComplex) N)

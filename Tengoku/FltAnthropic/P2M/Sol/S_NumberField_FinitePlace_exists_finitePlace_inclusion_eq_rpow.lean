@@ -95,6 +95,9 @@ private theorem exists_finitePlace_eq_rpow (ν : FinitePlace K) :
 
 end DescPowerLaw
 
+/--
+@isnad1 id=ex.1h3v.s11.e86a7755f22d from=translated src=- shape=d6c9bb39 vocab=9f34d77a
+-/
 theorem solution
     {L L' : IntermediateField ℚ (AlgebraicClosure ℚ)} [NumberField ↥L] [NumberField ↥L'] (h : L ≤ L')
     (ν : NumberField.FinitePlace ↥L) :

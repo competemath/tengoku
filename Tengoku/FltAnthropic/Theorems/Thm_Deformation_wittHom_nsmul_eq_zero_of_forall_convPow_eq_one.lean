@@ -9,6 +9,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Deformation_wittHom_nsmul_eq_zero_of_foral
 
 universe u v
 
+/--
+@isnad1 id=eq.1h6v.s10.a8f0c8524711 from=translated src=- shape=92121737 vocab=ee188c32
+-/
 theorem Deformation.wittHom_nsmul_eq_zero_of_forall_convPow_eq_one
     {R : Type u} [CommRing R] {p : ℕ} [Fact p.Prime] {n : ℕ}
     {A : Type v} [CommRing A] [Bialgebra R A] (m : ℕ)

@@ -74,6 +74,9 @@ private theorem pow_dvd_pow_mul_choose (p : ℕ) (hp : p.Prime) (n r m : ℕ) (h
 end PowerEst
 
 open PowerEst in
+/--
+@isnad1 id=ex.2h6v.s8.1569aa47556e from=translated src=- shape=5775e048 vocab=9f5f6576
+-/
 theorem solution
     {A : Type u} [CommRing A] (p : ℕ) [Fact p.Prime] (n r : ℕ) (hr : 1 ≤ r) (h2 : p ≠ 2 ∨ 2 ≤ r)
     (u v : A) :

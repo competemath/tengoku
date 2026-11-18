@@ -28,6 +28,9 @@ variable (F : Type) [Field F] [NumberField F]
 local notation "𝔸" => AdeleRing (𝓞 F) F
 local notation "ι" => algebraMap F (AdeleRing (𝓞 F) F)
 
+/--
+@isnad1 id=ex.1h2v.s8.9bff8bf2cfa9 from=translated src=- shape=615191c9 vocab=8441111a
+-/
 theorem exists_norm_apply_le_of_isGlobalAddChar {ψ : AddChar 𝔸 ℂ} (hψ : IsGlobalAddChar F ψ) :
     ∃ M : ℝ, ∀ x : 𝔸, ‖ψ x‖ ≤ M := by
   obtain ⟨C, hC, hsub⟩ := AdelicBox.exists_isCompact_adelicBox_subset F
@@ -39,6 +42,9 @@ theorem exists_norm_apply_le_of_isGlobalAddChar {ψ : AddChar 𝔸 ℂ} (hψ : I
   rw [← hkx]
   exact hM _ (hsub hk)
 
+/--
+@isnad1 id=le.1h4v.s9.1c084250afbf from=translated src=- shape=0c05f4fd vocab=29bfbaf2
+-/
 theorem norm_apply_le_one_of_bounded {ψ : AddChar 𝔸 ℂ} {M : ℝ} (hM : ∀ x : 𝔸, ‖ψ x‖ ≤ M)
     (x : 𝔸) : ‖ψ x‖ ≤ 1 := by
   by_contra h
@@ -49,6 +55,9 @@ theorem norm_apply_le_one_of_bounded {ψ : AddChar 𝔸 ℂ} {M : ℝ} (hM : ∀
   obtain ⟨n, hn⟩ := ((tendsto_pow_atTop_atTop_of_one_lt h1).eventually (eventually_gt_atTop M)).exists
   exact absurd (hpow n) (not_le.mpr hn)
 
+/--
+@isnad1 id=eq.1h3v.s8.e18c1b0e6e7f from=translated src=- shape=13f080de vocab=10f789ce
+-/
 theorem norm_apply_eq_one_of_isGlobalAddChar_impl {ψ : AddChar 𝔸 ℂ} (hψ : IsGlobalAddChar F ψ) (x : 𝔸) :
     ‖ψ x‖ = 1 := by
   obtain ⟨M, hM⟩ := exists_norm_apply_le_of_isGlobalAddChar F hψ
@@ -71,6 +80,9 @@ def toCircleAddChar {ψ : AddChar 𝔸 ℂ} (hψ : IsGlobalAddChar F ψ) : AddCh
     simp only [AddChar.map_add_eq_mul]
     rfl
 
+/--
+@isnad1 id=ex.1h2v.s8.19d1f026df5f from=translated src=- shape=0f9213e8 vocab=9fea46a5
+-/
 theorem exists_compAddChar_eq_of_isGlobalAddChar_impl {ψ : AddChar 𝔸 ℂ} (hψ : IsGlobalAddChar F ψ) :
     ∃ e : AddChar 𝔸 Circle, Circle.coeHom.compAddChar e = ψ :=
   ⟨toCircleAddChar F hψ, by ext x; rfl⟩
@@ -81,6 +93,9 @@ end
 
 open _root_.NumberField open _root_.P2MW.S_NumberField_AdelicFourier_norm_apply_eq_one_of_isGlobalAddChar.NumberField open _root_.AutomorphicForm
 
+/--
+@isnad1 id=eq.1h3v.s8.e18c1b0e6e7f from=translated src=- shape=13f080de vocab=10f789ce
+-/
 theorem solution (F : Type) [Field F] [NumberField F]
     {ψ : AddChar (AdeleRing (𝓞 F) F) ℂ} (hψ : IsGlobalAddChar F ψ) (x : AdeleRing (𝓞 F) F) :
     ‖ψ x‖ = 1 := by

@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_MvPolynomial_exists_finset_sum_mul_eq_of_i
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.3h5v.s9.a619ec4b02e6 from=translated src=- shape=c66e13f0 vocab=5021c9e3
+-/
 theorem MvPolynomial.exists_finset_sum_mul_eq_of_isHomogeneous_of_mem_span
     {σ A : Type} [CommRing A] (J₀ : Set (MvPolynomial σ A))
     (hJ₀ : ∀ G ∈ J₀, ∃ e : ℕ, G.IsHomogeneous e)

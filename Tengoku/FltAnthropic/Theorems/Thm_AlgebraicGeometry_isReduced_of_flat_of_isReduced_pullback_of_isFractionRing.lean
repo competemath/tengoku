@@ -11,6 +11,9 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 universe u
 
+/--
+@isnad1 id=isreduce.0h4v.s6.a6bb5484a7b0 from=translated src=- shape=8df6b58c vocab=6ca5177f
+-/
 theorem AlgebraicGeometry.isReduced_of_flat_of_isReduced_pullback_of_isFractionRing
     {R : Type u} [CommRing R] [IsDomain R] (K : Type u) [CommRing K] [Algebra R K] [IsFractionRing R K]
     {X : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of R)) [Flat f]

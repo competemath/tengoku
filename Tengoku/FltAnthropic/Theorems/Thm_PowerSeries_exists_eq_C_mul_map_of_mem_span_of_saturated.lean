@@ -5,6 +5,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_PowerSeries_exists_eq_C_mul_map_of_mem_spa
 
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `Theorems/Thm_PowerSeries_exists_eq_C_mul_map_of_mem_span_of_saturated.lean`: wrote out 1 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_exact_reverting`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 
+/--
+@isnad1 id=ex.3h4v.s12.88c54a7c2906 from=translated src=- shape=89fef5d6 vocab=107012af
+-/
 theorem PowerSeries.exists_eq_C_mul_map_of_mem_span_of_saturated
     {L : Type*} [Field L] (A : ValuationSubring L)
     (N : AddSubgroup (PowerSeries ℤ))

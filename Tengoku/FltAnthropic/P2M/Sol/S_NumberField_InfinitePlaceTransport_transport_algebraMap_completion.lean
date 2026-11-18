@@ -9,6 +9,9 @@ namespace P2MW.S_NumberField_InfinitePlaceTransport_transport_algebraMap_complet
 set_option autoImplicit false
 open scoped NumberField.LiesOver
 
+/--
+@isnad1 id=eq.1h7v.s10.c650f1922af4 from=translated src=- shape=fdba5b79 vocab=8b64708f
+-/
 theorem solution (K L : Type*) [Field K] [Field L] [Algebra K L]
     (σ : L ≃ₐ[K] L) (v : NumberField.InfinitePlace K) {w w' : NumberField.InfinitePlace L}
     [w.1.LiesOver v.1] [w'.1.LiesOver v.1] (h : σ • w = w') (y : v.Completion) :

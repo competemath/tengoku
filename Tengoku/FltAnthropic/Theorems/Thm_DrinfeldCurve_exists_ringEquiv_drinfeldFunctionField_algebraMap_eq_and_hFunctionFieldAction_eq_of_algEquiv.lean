@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open DrinfeldCurve
 
+/--
+@isnad1 id=ex.0h4v.s15.9a36cd5e68aa from=translated src=- shape=f2fceda4 vocab=333688fe
+-/
 theorem DrinfeldCurve.exists_ringEquiv_drinfeldFunctionField_algebraMap_eq_and_hFunctionFieldAction_eq_of_algEquiv
     (q : ℕ) [Fact q.Prime]
     (k : Type) [Field k] [Algebra (GaloisField q 2) k] [IsDomain (DrinfeldCurve.CoordRing q k)]

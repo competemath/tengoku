@@ -12,6 +12,9 @@ export _root_.ValuationSubring (subtype algebraMap_apply ext zero_mem valuation_
 namespace A36FE
 open _root_.ValuationSubring
 
+/--
+@isnad1 id=eq.0h4v.s8.dfeddfdb67c9 from=translated src=- shape=a9a04e0e vocab=7ca384c9
+-/
 theorem aeval_eq_linearCombination {K B : Type*} [CommRing K] [Ring B] [Algebra K B]
     (x : B) (p : Polynomial K) :
     Polynomial.aeval x p = Finsupp.linearCombination K (fun j : ℕ => x ^ j) p.toFinsupp.coeff := by
@@ -20,6 +23,9 @@ theorem aeval_eq_linearCombination {K B : Type*} [CommRing K] [Ring B] [Algebra 
     Polynomial.support_ofFinsupp, Polynomial.coeff_ofFinsupp, Finsupp.linearCombination_apply,
     Finsupp.sum, Algebra.smul_def]
 
+/--
+@isnad1 id=linearin.1h3v.s6.8b3426672f2a from=translated src=- shape=7eacda1d vocab=c7f13679
+-/
 theorem linearIndependent_pow_of_transcendental {K B : Type*} [Field K] [Ring B] [Algebra K B]
     {x : B} (hx : Transcendental K x) : LinearIndependent K (fun j : ℕ => x ^ j) := by
   rw [linearIndependent_iff]
@@ -40,6 +46,9 @@ variable {L : Type*} [Field L] {A : ValuationSubring L}
 
 include hker in
 
+/--
+@isnad1 id=eq.2h5v.s9.2354c9f17d8d from=translated src=- shape=2da1f595 vocab=621a8a65
+-/
 theorem valuation_eq_one_of_residue_ne_zero (x : O) (hx : ρ x ≠ 0) :
     O.valuation (x : F) = 1 := by
   have hu : IsUnit x := by
@@ -49,6 +58,9 @@ theorem valuation_eq_one_of_residue_ne_zero (x : O) (hx : ρ x ≠ 0) :
 
 include hker in
 
+/--
+@isnad1 id=ne.2h5v.s9.8d91c6095e30 from=translated src=- shape=5c7a1705 vocab=621a8a65
+-/
 theorem residue_ne_zero_of_valuation_eq_one (x : O) (hx : O.valuation (x : F) = 1) :
     ρ x ≠ 0 := by
   have hu : IsUnit x := (O.valuation_eq_one_iff x).mpr hx
@@ -56,6 +68,9 @@ theorem residue_ne_zero_of_valuation_eq_one (x : O) (hx : O.valuation (x : F) = 
   exact hu
 
 include hO in
+/--
+@isnad1 id=mem.3h6v.s8.6dee98f537d9 from=translated src=- shape=4541c8a2 vocab=d14ab94a
+-/
 theorem algebraMap_mem_of_valuation_le {x y : L} (hy : y ≠ 0)
     (hle : O.valuation (algebraMap L F x) ≤ O.valuation (algebraMap L F y)) :
     y⁻¹ * x ∈ A := by
@@ -69,6 +84,9 @@ theorem algebraMap_mem_of_valuation_le {x y : L} (hy : y ≠ 0)
 
 include hO hker hρ htr in
 
+/--
+@isnad1 id=ex.6h8v.s11.9ccb5c443c42 from=translated src=- shape=d36a5bda vocab=cdac8dda
+-/
 theorem exists_valuation_aeval_eq (r : L[X]) (hr : r ≠ 0) :
     ∃ d : L, d ≠ 0 ∧ O.valuation (aeval f r) = O.valuation (algebraMap L F d) := by
   classical
@@ -135,6 +153,9 @@ theorem exists_valuation_aeval_eq (r : L[X]) (hr : r ≠ 0) :
 
 include hO hker hρ htr in
 
+/--
+@isnad1 id=ex.7h8v.s11.82591a6421db from=translated src=- shape=4bdc5feb vocab=c4aa0adf
+-/
 theorem exists_valuation_eq_of_mem_adjoin {y : F}
     (hy : y ∈ IntermediateField.adjoin L ({f} : Set F)) (hy0 : y ≠ 0) :
     ∃ d : L, d ≠ 0 ∧ O.valuation y = O.valuation (algebraMap L F d) := by
@@ -153,6 +174,9 @@ theorem exists_valuation_eq_of_mem_adjoin {y : F}
 
 include hO hker hρ htr in
 
+/--
+@isnad1 id=ex.12h12v.s11.8a7e0f0328a8 from=translated src=- shape=fb2fef11 vocab=8dac56a0
+-/
 theorem exists_smul_of_valuation_eq [IsAlgClosed L] {h : F} (hh : h ≠ 0) {i j : ℕ} (hij : i < j)
     {ci cj : F} (hci : ci ∈ IntermediateField.adjoin L ({f} : Set F))
     (hcj : cj ∈ IntermediateField.adjoin L ({f} : Set F)) (hci0 : ci ≠ 0) (hcj0 : cj ≠ 0)
@@ -190,6 +214,9 @@ theorem exists_smul_of_valuation_eq [IsAlgClosed L] {h : F} (hh : h ≠ 0) {i j 
 
 include hO hker hρ htr in
 
+/--
+@isnad1 id=ex.6h8v.s11.3476e1178935 from=translated src=- shape=4e7fc2c3 vocab=3795f674
+-/
 theorem exists_smul_mem [IsAlgClosed L]
     [Algebra.IsAlgebraic (IntermediateField.adjoin L ({f} : Set F)) F]
     (h : F) (hh : h ≠ 0) :
@@ -249,6 +276,9 @@ theorem exists_smul_mem [IsAlgClosed L]
 
 end ValuationSubring.A36FE
 
+/--
+@isnad1 id=ex.6h8v.s11.33c43d53f904 from=translated src=- shape=38fdc5ad vocab=3795f674
+-/
 theorem solution
     {L : Type*} [Field L] [IsAlgClosed L] (A : ValuationSubring L)
     {F : Type*} [Field F] [Algebra L F]

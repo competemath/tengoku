@@ -11,6 +11,9 @@ set_option autoImplicit false
 open CongruenceSubgroup
 open scoped MatrixGroups
 
+/--
+@isnad1 id=ex.2h2v.s11.6db068092a42 from=translated src=- shape=77d35b4f vocab=2a0e9df0
+-/
 theorem ModularForm.exists_weightOne_eisenstein_qCoeff_eq_of_isPrimitive_of_odd
     (L : ℕ) [NeZero L] (χ : DirichletCharacter ℂ L) (hχ : χ.IsPrimitive) (hodd : χ.Odd) :
     ∃ E : ModularForm (Gamma1 L) 1,

@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=isreduce.1h3v.s11.538e84ac98e3 from=translated src=- shape=3920f256 vocab=49dbe378
+-/
 theorem HopfAlgebra.isReduced_cartierDual_of_isReduced_cartierDual_baseChange
     (K : Type) [Field K] (A : Type) [CommRing A] [HopfAlgebra K A] [Coalgebra.IsCocomm K A]
     [Module.Finite K A] [Module.Free K A]

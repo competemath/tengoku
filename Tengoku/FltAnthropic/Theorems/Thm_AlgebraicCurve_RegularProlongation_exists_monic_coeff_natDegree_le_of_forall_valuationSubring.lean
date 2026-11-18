@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_AlgebraicCurve_RegularProlongation_exists_
 
 open AlgebraicCurve
 
+/--
+@isnad1 id=ex.4h8v.s11.10faf29cdafc from=translated src=- shape=778ee32c vocab=2f11f04c
+-/
 theorem AlgebraicCurve.RegularProlongation.exists_monic_coeff_natDegree_le_of_forall_valuationSubring
     {L : Type*} [Field L] (A : ValuationSubring L)
     {F : Type*} [Field F] [Algebra L F]

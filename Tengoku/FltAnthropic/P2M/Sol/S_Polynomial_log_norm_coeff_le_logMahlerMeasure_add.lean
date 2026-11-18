@@ -8,6 +8,9 @@ namespace P2MW.S_Polynomial_log_norm_coeff_le_logMahlerMeasure_add
 namespace Polynomial export _root_.Polynomial (logMahlerMeasure_eq_log_MahlerMeasure coeff natDegree logMahlerMeasure mahlerMeasure_pos_of_ne_zero le_natDegree_of_ne_zero mahlerMeasure norm_coeff_le_choose_mul_mahlerMeasure) end Polynomial
 open scoped _root_.Polynomial in
 
+/--
+@isnad1 id=le.1h2v.s6.711d04a98caa from=translated src=- shape=403ce99b vocab=7562ca7e
+-/
 theorem Polynomial.log_norm_coeff_le_logMahlerMeasure_add' {p : Polynomial ℂ} {k : ℕ}
     (hk : p.coeff k ≠ 0) :
     Real.log ‖p.coeff k‖ ≤ p.logMahlerMeasure + p.natDegree * Real.log 2 := by
@@ -27,6 +30,9 @@ theorem Polynomial.log_norm_coeff_le_logMahlerMeasure_add' {p : Polynomial ℂ} 
         exact Real.log_le_log hchoose (by exact_mod_cast Nat.choose_le_two_pow _ _)
     _ = _ := add_comm _ _
 
+/--
+@isnad1 id=le.1h2v.s6.711d04a98caa from=translated src=- shape=403ce99b vocab=7562ca7e
+-/
 theorem solution {p : Polynomial ℂ} {k : ℕ} (hk : p.coeff k ≠ 0) :
     Real.log ‖p.coeff k‖ ≤ p.logMahlerMeasure + p.natDegree * Real.log 2 :=
   Polynomial.log_norm_coeff_le_logMahlerMeasure_add' hk

@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_AlgebraicCurve_ConstantReduction_placeMap_
 
 open AlgebraicCurve
 
+/--
+@isnad1 id=surjecti.0h5v.s7.4a6612b99da7 from=translated src=- shape=6f9d7a67 vocab=9ade9097
+-/
 theorem AlgebraicCurve.ConstantReduction.placeMap_surjective
     {L : Type*} [Field L] {A : ValuationSubring L} {F : Type*} [Field F] [Algebra L F]
     {Fbar : Type*} [Field Fbar] [Algebra (IsLocalRing.ResidueField A) Fbar]

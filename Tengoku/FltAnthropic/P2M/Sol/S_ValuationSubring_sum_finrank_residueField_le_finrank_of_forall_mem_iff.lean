@@ -13,33 +13,54 @@ section valuationSubring
 
 variable {F : Type*} [Field F]
 
+/--
+@isnad1 id=lt.1h3v.s7.3f664d1ba3cf from=translated src=- shape=05222f21 vocab=2ba80163
+-/
 theorem one_lt_valuation_of_not_mem (O : ValuationSubring F) {z : F} (hz : z ∉ O) :
     1 < O.valuation z := by
   rw [← not_le, O.valuation_le_one_iff]; exact hz
 
+/--
+@isnad1 id=ne.1h3v.s5.0713e937ad45 from=translated src=- shape=2843598a vocab=e66774e2
+-/
 theorem ne_zero_of_not_mem (O : ValuationSubring F) {z : F} (hz : z ∉ O) : z ≠ 0 := by
   rintro rfl; exact hz (zero_mem O)
 
+/--
+@isnad1 id=iff.1h3v.s9.7d8770d56d0e from=translated src=- shape=92ff6275 vocab=b7583127
+-/
 theorem residue_mk_eq_zero_iff (O : ValuationSubring F) {x : F} (hx : x ∈ O) :
     residue O ⟨x, hx⟩ = 0 ↔ O.valuation x < 1 := by
   rw [residue_eq_zero_iff, ValuationSubring.valuation_lt_one_iff]
 
+/--
+@isnad1 id=iff.2h4v.s10.5391756e98e2 from=translated src=- shape=7c6f1afd vocab=b982291e
+-/
 theorem residue_mk_eq_residue_mk_iff (O : ValuationSubring F) {x y : F} (hx : x ∈ O)
     (hy : y ∈ O) : residue O ⟨x, hx⟩ = residue O ⟨y, hy⟩ ↔ O.valuation (x - y) < 1 := by
   rw [← sub_eq_zero, ← map_sub]
   exact residue_mk_eq_zero_iff O (sub_mem hx hy)
 
+/--
+@isnad1 id=eq.2h3v.s9.d3bcc5388802 from=translated src=- shape=403b3338 vocab=2cc2ce64
+-/
 theorem valuation_eq_one_of_residue_ne_zero (O : ValuationSubring F) {x : F} (hx : x ∈ O)
     (h : residue O ⟨x, hx⟩ ≠ 0) : O.valuation x = 1 := by
   rcases O.valuation_lt_one_or_eq_one ⟨x, hx⟩ with h1 | h1
   · exact absurd ((residue_mk_eq_zero_iff O hx).mpr h1) h
   · exact h1
 
+/--
+@isnad1 id=mem.1h3v.s7.01732e788e94 from=translated src=- shape=68c28859 vocab=04a694b0
+-/
 theorem inv_mem_of_one_le (O : ValuationSubring F) {u : F} (hu : 1 ≤ O.valuation u) :
     u⁻¹ ∈ O := by
   rw [← O.valuation_le_one_iff, map_inv₀]
   exact inv_le_one_of_one_le₀ hu
 
+/--
+@isnad1 id=and.1h3v.s9.0e236ecde2c0 from=translated src=- shape=e114d8c9 vocab=a7c2aace
+-/
 theorem inv_sub_one (O : ValuationSubring F) {u : F} (h1 : O.valuation (u - 1) < 1) :
     O.valuation u = 1 ∧ u⁻¹ ∈ O ∧ O.valuation (u⁻¹ - 1) < 1 := by
   have hu : O.valuation u = 1 := by
@@ -56,6 +77,9 @@ theorem inv_sub_one (O : ValuationSubring F) {u : F} (h1 : O.valuation (u - 1) <
   rw [this, Valuation.map_neg, map_mul, map_inv₀, hu, inv_one, one_mul]
   exact h1
 
+/--
+@isnad1 id=and.1h5v.s8.aef0003745c8 from=translated src=- shape=2a065d46 vocab=c7852e3d
+-/
 theorem prod_sub_one (O : ValuationSubring F) {ι : Type*} (s : Finset ι) (f : ι → F)
     (hf : ∀ l ∈ s, f l ∈ O ∧ O.valuation (f l - 1) < 1) :
     (∏ l ∈ s, f l) ∈ O ∧ O.valuation (∏ l ∈ s, f l - 1) < 1 := by
@@ -76,10 +100,16 @@ theorem prod_sub_one (O : ValuationSubring F) {ι : Type*} (s : Finset ι) (f : 
           gcongr; exact (O.valuation_le_one_iff _).mpr hamem
       _ < 1 := by rwa [one_mul]
 
+/--
+@isnad1 id=mem.1h4v.s6.9991fa58dca2 from=translated src=- shape=52db99bb vocab=be55f384
+-/
 theorem geom_mem (O : ValuationSubring F) {z : F} (hz : z ∈ O) (m : ℕ) :
     (∑ k ∈ Finset.range m, z ^ k) ∈ O :=
   sum_mem fun k _ => pow_mem hz k
 
+/--
+@isnad1 id=eq.1h4v.s10.c9daf5fdf0d4 from=translated src=- shape=a910981b vocab=dd14a934
+-/
 theorem residue_geom (O : ValuationSubring F) {z : F} (hz : z ∈ O) (m : ℕ) :
     residue O ⟨∑ k ∈ Finset.range m, z ^ k, geom_mem O hz m⟩ =
       ∑ k ∈ Finset.range m, (residue O ⟨z, hz⟩) ^ k := by
@@ -91,6 +121,9 @@ theorem residue_geom (O : ValuationSubring F) {z : F} (hz : z ∈ O) (m : ℕ) :
   rw [this, map_sum]
   exact Finset.sum_congr rfl fun k _ => map_pow _ _ _
 
+/--
+@isnad1 id=lt.3h4v.s8.4e443ebc2039 from=translated src=- shape=555d691f vocab=3e3dad08
+-/
 theorem valuation_geom_sub_one_lt (O : ValuationSubring F) {z : F} (hz : z ∈ O)
     (hv : O.valuation z < 1) {m : ℕ} (hm : 1 ≤ m) :
     O.valuation ((∑ k ∈ Finset.range m, z ^ k) - 1) < 1 := by
@@ -103,6 +136,9 @@ theorem valuation_geom_sub_one_lt (O : ValuationSubring F) {z : F} (hz : z ∈ O
         gcongr; exact (O.valuation_le_one_iff _).mpr (geom_mem O hz n)
     _ < 1 := by rwa [mul_one]
 
+/--
+@isnad1 id=and.2h4v.s8.81a3d7260e98 from=translated src=- shape=82acdad5 vocab=6e9faa46
+-/
 theorem valuation_le_valuation_geom (O : ValuationSubring F) {z : F} (hz : z ∉ O) {m : ℕ}
     (hm : 2 ≤ m) :
     (∑ k ∈ Finset.range m, z ^ k) ≠ 0 ∧
@@ -126,6 +162,9 @@ theorem valuation_le_valuation_geom (O : ValuationSubring F) {z : F} (hz : z ∉
     calc O.valuation z = O.valuation z * 1 := (mul_one _).symm
       _ ≤ O.valuation z * O.valuation z ^ n := by gcongr; exact one_le_pow₀ h1.le
 
+/--
+@isnad1 id=ne.1h3v.s7.a481640db533 from=translated src=- shape=d4a3b7eb vocab=03ca698e
+-/
 theorem geom_sum_ne_zero_of_not_dvd {K : Type*} [Field K] (a : K) [Decidable (a = 1)] {m : ℕ}
     (h : ¬ ((if a = 1 then ringChar K else orderOf a) ∣ m)) :
     (∑ k ∈ Finset.range m, a ^ k) ≠ 0 := by
@@ -139,6 +178,9 @@ theorem geom_sum_ne_zero_of_not_dvd {K : Type*} [Field K] (a : K) [Decidable (a 
     rw [hs, zero_mul, eq_comm, sub_eq_zero] at hgeom
     exact orderOf_dvd_of_pow_eq_one hgeom
 
+/--
+@isnad1 id=ne.0h2v.s6.f1c852c4c6c2 from=translated src=- shape=d04afc6e vocab=f2230682
+-/
 theorem badMod_ne_one {K : Type*} [Field K] (a : K) [Decidable (a = 1)] :
     (if a = 1 then ringChar K else orderOf a) ≠ 1 := by
   split_ifs with ha
@@ -148,6 +190,9 @@ theorem badMod_ne_one {K : Type*} [Field K] (a : K) [Decidable (a = 1)] :
     exact one_ne_zero h
   · rwa [Ne, orderOf_eq_one_iff]
 
+/--
+@isnad1 id=ex.0h3v.s7.1f53e91029fb from=translated src=- shape=29feed82 vocab=96e42e36
+-/
 theorem exists_geom_sum_ne_zero {ι : Type*} [Fintype ι] (κ : ι → Type*) [∀ i, Field (κ i)]
     (a : ∀ i, κ i) : ∃ m : ℕ, 2 ≤ m ∧ ∀ i, (∑ k ∈ Finset.range m, a i ^ k) ≠ 0 := by
   classical
@@ -168,6 +213,9 @@ theorem exists_geom_sum_ne_zero {ι : Type*} [Fintype ι] (κ : ι → Type*) [�
     have h1 : d i ∣ 1 := (Nat.dvd_add_right hdM).mp hdvd
     exact badMod_ne_one (a i) (Nat.dvd_one.mp h1)
 
+/--
+@isnad1 id=ex.2h3v.s7.fe2cbe7f95ff from=translated src=- shape=1770d115 vocab=fb5818f3
+-/
 theorem exists_mem_lt_one_not_mem (O₁ O₂ : ValuationSubring F) (h₁₂ : ¬ O₁ ≤ O₂)
     (h₂₁ : ¬ O₂ ≤ O₁) : ∃ t ∈ O₁, O₁.valuation t < 1 ∧ t ∉ O₂ := by
   by_contra H
@@ -191,6 +239,9 @@ theorem exists_mem_lt_one_not_mem (O₁ O₂ : ValuationSubring F) (h₁₂ : ¬
   rw [this]
   exact mul_mem ht hw₂
 
+/--
+@isnad1 id=ex.2h5v.s9.a9e1c07da7e6 from=translated src=- shape=d8288f2c vocab=abb9a5ab
+-/
 theorem exists_lift {ι : Type*} [Fintype ι] (O' : ι → ValuationSubring F)
     (hinc : ∀ i l, i ≠ l → ¬ O' i ≤ O' l) (j : ι) {y : F} (hy : y ∈ O' j) :
     ∃ r : F, (∀ i, r ∈ O' i) ∧ (O' j).valuation (r - y) < 1 ∧
@@ -401,6 +452,9 @@ section linearAlgebra
 
 variable {E F : Type*} [Field E] [Field F] [Algebra E F]
 
+/--
+@isnad1 id=and.2h6v.s10.e670b1dca2ee from=translated src=- shape=500357a9 vocab=d93dd378
+-/
 theorem finite_and_finrank_le [FiniteDimensional E F] (O : ValuationSubring E)
     {V : Type*} [AddCommGroup V] [Module (ResidueField O) V] (S : Set F) (ψ : F → V)
     (hψ : ∀ (s : Finset V) (c : V → O) (y : V → F), (∀ v ∈ s, y v ∈ S) →
@@ -469,6 +523,9 @@ theorem finite_and_finrank_le [FiniteDimensional E F] (O : ValuationSubring E)
 
 end linearAlgebra
 
+/--
+@isnad1 id=and.3h5v.s11.b6303eca8f15 from=translated src=- shape=d32eaf05 vocab=8244359e
+-/
 theorem result {E F : Type*} [Field E] [Field F] [Algebra E F] [FiniteDimensional E F]
     (O : ValuationSubring E) {ι : Type*} [Fintype ι] (O' : ι → ValuationSubring F)
     (hinj : Function.Injective O')
@@ -548,6 +605,9 @@ theorem result {E F : Type*} [Field E] [Field F] [Algebra E F] [FiniteDimensiona
 
 end EsbLeGen
 
+/--
+@isnad1 id=and.3h5v.s11.b6303eca8f15 from=translated src=- shape=d32eaf05 vocab=8244359e
+-/
 theorem solution
     {E F : Type*} [Field E] [Field F] [Algebra E F]
     [FiniteDimensional E F]

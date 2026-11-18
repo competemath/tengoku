@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_ValuationSubring_exists_ringHom_laurentSer
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.2h4v.s16.a901e46a2e15 from=translated src=- shape=7e0383d5 vocab=b9b60a68
+-/
 theorem ValuationSubring.exists_ringHom_laurentSeries_residueField_of_forall_mem_iff_exists_powerSeries
     (L : Type) [Field L] (K : IntermediateField L (LaurentSeries L))
     (A : Type) [CommRing A] [IsDomain A] [IsDiscreteValuationRing A] [Algebra A L] [IsFractionRing A L]

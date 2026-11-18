@@ -41,6 +41,9 @@ def mulLeftHomeomorph {A : Type*} [CommRing A] [TopologicalSpace A] [ContinuousM
 
 variable (F : Type) [Field F] [NumberField F]
 
+/--
+@isnad1 id=mem.2h3v.s9.257d680b28be from=translated src=- shape=195536b8 vocab=15e433bd
+-/
 theorem dil_impl {a : F} (ha : a ≠ 0)
     {f : AdeleRing (𝓞 F) F → ℂ} (hf : f ∈ pureTensorSet F) :
     (fun x ↦ f (algebraMap F (AdeleRing (𝓞 F) F) a * x)) ∈ pureTensorSet F := by
@@ -80,6 +83,9 @@ end
 open _root_.NumberField open _root_.P2MW.S_NumberField_AdelicFourier_comp_mul_algebraMap_mem_pureTensorSet.NumberField open _root_.NumberField.AdelicFourier open _root_.P2MW.S_NumberField_AdelicFourier_comp_mul_algebraMap_mem_pureTensorSet.NumberField.AdelicFourier open _root_.IsDedekindDomain
 open scoped Classical
 
+/--
+@isnad1 id=mem.2h3v.s9.257d680b28be from=translated src=- shape=195536b8 vocab=15e433bd
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F] {a : F} (ha : a ≠ 0)
     {f : AdeleRing (𝓞 F) F → ℂ} (hf : f ∈ pureTensorSet F) :

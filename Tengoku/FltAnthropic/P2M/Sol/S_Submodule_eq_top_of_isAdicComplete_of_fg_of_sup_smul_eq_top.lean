@@ -6,6 +6,9 @@ import Tengoku
 namespace P2MW.S_Submodule_eq_top_of_isAdicComplete_of_fg_of_sup_smul_eq_top
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.2h4v.s8.a5074b62b156 from=translated src=- shape=a0903e03 vocab=e92ab727
+-/
 theorem solution
     {A M : Type*} [CommRing A] [AddCommGroup M] [Module A M]
     (I : Ideal A) [IsAdicComplete I A] [IsHausdorff I M]

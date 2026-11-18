@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open IsLocalRing Polynomial
 
+/--
+@isnad1 id=ex.2h3v.s12.5dda82c0e96b from=translated src=- shape=62601ac8 vocab=267e556d
+-/
 theorem DrinfeldCurve.LocalChart.exists_prod_prod_X_sub_C_eq_moore_add_C_C_mul
     (q : ℕ) [Fact q.Prime] (W : Type) [CommRing W] [IsLocalRing W]
     (π : W) (hπ : maximalIdeal W = Ideal.span {π}) (hq : (q : W) ∈ maximalIdeal W) :

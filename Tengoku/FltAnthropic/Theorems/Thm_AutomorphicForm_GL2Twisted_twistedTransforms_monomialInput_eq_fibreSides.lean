@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open AutomorphicForm.GL2Twisted
 
+/--
+@isnad1 id=and.6h7v.s7.3cfa570ad6cb from=translated src=- shape=c89d92a5 vocab=72e8ec06
+-/
 theorem
 AutomorphicForm.GL2Twisted.twistedTransforms_monomialInput_eq_fibreSides
     (i l : ℕ) (c : ℝ → ℂ) (hc : Continuous c) (hcs : HasCompactSupport c) (a₁ a₂ r θ : ℝ)
