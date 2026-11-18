@@ -1,0 +1,44 @@
+import Tengoku
+import Tengoku.FltAnthropic.Definitions.Def_LocalRing_PrincipalUnits
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_IsLocalRing_map_ringEquiv_mem_principalUnits_iff.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_IsLocalRing_map_ringEquiv_mem_principalUnits_iff
+
+set_option autoImplicit false
+open IsLocalRing
+
+open IsLocalRing in
+/--
+@isnad1 id=iff.0h4v.s9.384414fff435 from=translated src=- shape=457e10b7 vocab=3074ae0c
+-/
+theorem solution {R : Type*} [CommRing R] [IsLocalRing R]
+    (σ : R ≃+* R) {k : ℕ} {u : Rˣ} :
+    Units.map (σ : R →* R) u ∈ principalUnits R k ↔ u ∈ principalUnits R k := by
+
+  have hmap : ∀ (τ : R ≃+* R) {y : R}, y ∈ maximalIdeal R ^ k → τ y ∈ maximalIdeal R ^ k := by
+    intro τ y hy
+    have hle : Ideal.map (τ : R →+* R) (maximalIdeal R) ≤ maximalIdeal R := by
+      rw [Ideal.map_le_iff_le_comap]
+      intro z hz
+      rw [Ideal.mem_comap, mem_maximalIdeal, mem_nonunits_iff]
+      rw [mem_maximalIdeal, mem_nonunits_iff] at hz
+      intro hu
+      exact hz (by simpa using hu.map (τ.symm : R →+* R))
+    have h1 : τ y ∈ Ideal.map (τ : R →+* R) (maximalIdeal R ^ k) := Ideal.mem_map_of_mem _ hy
+    rw [Ideal.map_pow] at h1
+    exact Ideal.pow_right_mono hle k h1
+  have hval : ∀ (τ : R ≃+* R) (w : Rˣ), ((Units.map (τ : R →* R) w : Rˣ) : R) - 1 = τ ((w : R) - 1) := by
+    intro τ w
+    rw [Units.coe_map, MonoidHom.coe_coe, map_sub, map_one]
+  constructor
+  · intro h
+    rw [mem_principalUnits_iff] at h ⊢
+    rw [hval] at h
+    have h2 := hmap σ.symm h
+    rwa [RingEquiv.symm_apply_apply] at h2
+  · intro h
+    rw [mem_principalUnits_iff] at h ⊢
+    rw [hval]
+    exact hmap σ h

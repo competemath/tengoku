@@ -1,0 +1,40 @@
+import Tengoku
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_IsDiscreteValuationRing_exists_pow_mul_mem_range.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_IsDiscreteValuationRing_exists_pow_mul_mem_range
+
+set_option autoImplicit false
+
+/--
+@isnad1 id=ex.2h4v.s8.54582c4c9a8a from=translated src=- shape=5ca4d38b vocab=2fa6cefb
+-/
+theorem solution
+    {R : Type*} [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
+    (K : Type*) [Field K] [Algebra R K] [IsFractionRing R K]
+    (t : R) (ht : t ≠ 0) (ht' : t ∈ IsLocalRing.maximalIdeal R) (x : K) :
+    ∃ N : ℕ, ∃ r : R, algebraMap R K r = algebraMap R K t ^ N * x := by
+  obtain ⟨ϖ, hϖ⟩ := IsDiscreteValuationRing.exists_irreducible R
+  obtain ⟨a, b, hb, rfl⟩ := IsFractionRing.div_surjective (A := R) x
+  have hb0 : b ≠ 0 := nonZeroDivisors.ne_zero hb
+  obtain ⟨m, hm⟩ := IsDiscreteValuationRing.associated_pow_irreducible hb0 hϖ
+  obtain ⟨n, hn⟩ := IsDiscreteValuationRing.associated_pow_irreducible ht hϖ
+  have hn1 : n ≠ 0 := by
+    rintro rfl
+    rw [pow_zero] at hn
+    exact (IsLocalRing.mem_maximalIdeal _).mp ht' (hn.symm.isUnit isUnit_one)
+  have hdvd : b ∣ t ^ m := by
+    have h1 : b ∣ ϖ ^ m := hm.dvd
+    have h2 : ϖ ^ m ∣ ϖ ^ (n * m) :=
+      pow_dvd_pow ϖ (Nat.le_mul_of_pos_left m (Nat.pos_of_ne_zero hn1))
+    have h3 : ϖ ^ (n * m) ∣ t ^ m := by
+      rw [pow_mul]
+      exact pow_dvd_pow_of_dvd hn.symm.dvd m
+    exact h1.trans (h2.trans h3)
+  obtain ⟨c, hc⟩ := hdvd
+  refine ⟨m, c * a, ?_⟩
+  have hbK : algebraMap R K b ≠ 0 :=
+    (map_ne_zero_iff _ (IsFractionRing.injective R K)).mpr hb0
+  rw [← map_pow, hc, map_mul, map_mul]
+  field_simp

@@ -1,0 +1,123 @@
+import Tengoku
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_IsLocalRing_exists_ringEquiv_adicCompletion_maximalIdeal_comp_algebraMap_of_ringEquiv.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_IsLocalRing_exists_ringEquiv_adicCompletion_maximalIdeal_comp_algebraMap_of_ringEquiv
+
+set_option autoImplicit false
+
+namespace LIsoAux
+
+open IsLocalRing
+
+variable {R S : Type*} [CommRing R] [CommRing S] [IsLocalRing R] [IsLocalRing S]
+
+/--
+@isnad1 id=eq.0h3v.s8.6e726a233b7f from=translated src=- shape=0f0234bc vocab=291323ef
+-/
+theorem map_maximalIdeal (e : R ≃+* S) : (maximalIdeal R).map (e : R →+* S) = maximalIdeal S := by
+  haveI : ((maximalIdeal R).map e).IsMaximal := Ideal.map_isMaximal_of_equiv e
+  exact IsLocalRing.eq_maximalIdeal this
+
+/--
+@isnad1 id=eq.0h4v.s8.c689d8651fd6 from=translated src=- shape=b06dbfe7 vocab=2eb6c846
+-/
+theorem map_maximalIdeal_pow (e : R ≃+* S) (n : ℕ) :
+    maximalIdeal S ^ n = ((maximalIdeal R) ^ n).map (e : R →+* S) := by
+  rw [Ideal.map_pow, map_maximalIdeal]
+
+def quotEquiv (e : R ≃+* S) (n : ℕ) : R ⧸ maximalIdeal R ^ n ≃+* S ⧸ maximalIdeal S ^ n :=
+  Ideal.quotientEquiv (maximalIdeal R ^ n) (maximalIdeal S ^ n) e (map_maximalIdeal_pow e n)
+
+/--
+@isnad1 id=eq.0h5v.s12.d632ba7b1a88 from=translated src=- shape=577d5808 vocab=68c9c6ad
+-/
+theorem quotEquiv_mk (e : R ≃+* S) (n : ℕ) (x : R) :
+    quotEquiv e n (Ideal.Quotient.mk _ x) = Ideal.Quotient.mk _ (e x) :=
+  Ideal.quotientEquiv_mk _ _ _ _ x
+
+/--
+@isnad1 id=eq.1h5v.s11.0d357205bf1b from=translated src=- shape=5f959bc1 vocab=040bd8c6
+-/
+theorem factorPow_evalₐ (I : Ideal R) {m n : ℕ} (hle : m ≤ n) (x : AdicCompletion I R) :
+    Ideal.Quotient.factorPow I hle (AdicCompletion.evalₐ I n x) = AdicCompletion.evalₐ I m x := by
+  obtain ⟨y, rfl⟩ := AdicCompletion.mk_surjective I R x
+  rw [AdicCompletion.evalₐ_mk, AdicCompletion.evalₐ_mk]
+  simp only [Ideal.Quotient.factorPow, Ideal.Quotient.factor_mk]
+  exact AdicCompletion.Ideal.mk_eq_mk I hle y
+
+noncomputable def fam (e : R ≃+* S) (n : ℕ) : AdicCompletion (maximalIdeal R) R →+* S ⧸ maximalIdeal S ^ n :=
+  ((quotEquiv e n).toRingHom).comp (AdicCompletion.evalₐ (maximalIdeal R) n).toRingHom
+
+/--
+@isnad1 id=eq.1h5v.s10.694ff984eae0 from=translated src=- shape=7b3c00ae vocab=73ddca8e
+-/
+theorem fam_compat (e : R ≃+* S) : ∀ {m n : ℕ} (hle : m ≤ n),
+    (Ideal.Quotient.factorPow (maximalIdeal S) hle).comp (fam e n) = fam e m := by
+      intro m n hle
+      simp only [fam]
+      apply RingHom.ext
+      intro x
+      simp only [RingHom.coe_comp, Function.comp_apply, AlgHom.toRingHom_eq_coe, AlgHom.coe_toRingHom,
+        RingEquiv.toRingHom_eq_coe, RingHom.coe_coe]
+      rw [← factorPow_evalₐ (maximalIdeal R) hle x]
+      obtain ⟨y, hy⟩ := Ideal.Quotient.mk_surjective (AdicCompletion.evalₐ (maximalIdeal R) n x)
+      rw [← hy]
+      simp only [Ideal.Quotient.factorPow, Ideal.Quotient.factor_mk, quotEquiv_mk]
+
+noncomputable def complMap (e : R ≃+* S) :
+    AdicCompletion (maximalIdeal R) R →+* AdicCompletion (maximalIdeal S) S :=
+  AdicCompletion.liftRingHom (maximalIdeal S) (fam e) (fam_compat e)
+
+/--
+@isnad1 id=eq.0h5v.s12.6238b597e42f from=translated src=- shape=b1357265 vocab=dcf066a2
+-/
+theorem evalₐ_complMap (e : R ≃+* S) (n : ℕ) (x : AdicCompletion (maximalIdeal R) R) :
+    AdicCompletion.evalₐ (maximalIdeal S) n (complMap e x) =
+      quotEquiv e n (AdicCompletion.evalₐ (maximalIdeal R) n x) := by
+  show AdicCompletion.evalₐ (maximalIdeal S) n (AdicCompletion.liftRingHom (maximalIdeal S) (fam e) (fam_compat e) x) = _
+  rw [AdicCompletion.evalₐ_liftRingHom (maximalIdeal S) (fam e) (fam_compat e) n x]
+  rfl
+
+/--
+@isnad1 id=eq.0h4v.s10.2565ee272ee7 from=translated src=- shape=77cca7bd vocab=25fa1a39
+-/
+theorem complMap_symm_complMap (e : R ≃+* S) (x : AdicCompletion (maximalIdeal R) R) :
+    complMap e.symm (complMap e x) = x := by
+  apply AdicCompletion.ext_evalₐ
+  intro n
+  rw [evalₐ_complMap, evalₐ_complMap]
+  obtain ⟨y, hy⟩ := Ideal.Quotient.mk_surjective (AdicCompletion.evalₐ (maximalIdeal R) n x)
+  rw [← hy, quotEquiv_mk, quotEquiv_mk, RingEquiv.symm_apply_apply]
+
+/--
+@isnad1 id=eq.0h4v.s10.f8ac27004509 from=translated src=- shape=99a01fbe vocab=8558b7fa
+-/
+theorem complMap_of (e : R ≃+* S) (r : R) :
+    complMap e (AdicCompletion.of (maximalIdeal R) R r) = AdicCompletion.of (maximalIdeal S) S (e r) := by
+  apply AdicCompletion.ext_evalₐ
+  intro n
+  rw [evalₐ_complMap, AdicCompletion.evalₐ_of, AdicCompletion.evalₐ_of, quotEquiv_mk]
+
+end LIsoAux
+
+open LIsoAux in
+/--
+@isnad1 id=ex.0h3v.s10.1650c24900e1 from=translated src=- shape=e409bacf vocab=2aee2604
+-/
+theorem solution
+    {R S : Type*} [CommRing R] [CommRing S] [IsLocalRing R] [IsLocalRing S] (e : R ≃+* S) :
+    ∃ ê : AdicCompletion (IsLocalRing.maximalIdeal R) R ≃+* AdicCompletion (IsLocalRing.maximalIdeal S) S,
+      ∀ r : R, ê (algebraMap R (AdicCompletion (IsLocalRing.maximalIdeal R) R) r) =
+        algebraMap S (AdicCompletion (IsLocalRing.maximalIdeal S) S) (e r) := by
+  refine ⟨RingEquiv.ofRingHom (complMap e) (complMap e.symm) ?_ ?_, ?_⟩
+  · apply RingHom.ext; intro x
+    have := complMap_symm_complMap e.symm x
+    rw [RingEquiv.symm_symm] at this
+    exact this
+  · apply RingHom.ext; intro x
+    exact complMap_symm_complMap e x
+  · intro r
+    show complMap e (AdicCompletion.of (IsLocalRing.maximalIdeal R) R r) = AdicCompletion.of (IsLocalRing.maximalIdeal S) S (e r)
+    exact complMap_of e r

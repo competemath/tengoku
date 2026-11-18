@@ -1,0 +1,16 @@
+import Tengoku
+import Tengoku.FltAnthropic.P2M.Sol.S_IsArtinianRing_finite_of_isLocalRing_of_finite_residueField
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `Theorems/Thm_IsArtinianRing_finite_of_isLocalRing_of_finite_residueField.lean`: wrote out 1 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_exact_reverting`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+
+set_option autoImplicit false
+
+open IsLocalRing
+
+/--
+@isnad1 id=finite.0h1v.s4.f2974cb575c3 from=translated src=- shape=a084f232 vocab=725246ad
+-/
+theorem IsArtinianRing.finite_of_isLocalRing_of_finite_residueField
+    (C : Type) [CommRing C] [IsLocalRing C] [IsArtinianRing C] [Finite (ResidueField C)] : Finite C := by exact @_root_.P2MW.S_IsArtinianRing_finite_of_isLocalRing_of_finite_residueField.solution C _ _ _ _

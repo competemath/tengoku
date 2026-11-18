@@ -1,0 +1,20 @@
+import Tengoku
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_IsLocalRing_isUnit_natCast_guardPrime_sub_one_of_charP_three.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_IsLocalRing_isUnit_natCast_guardPrime_sub_one_of_charP_three
+
+set_option autoImplicit false
+
+/--
+@isnad1 id=isunit.2h2v.s6.6b6194be8cf1 from=translated src=- shape=d99ca16a vocab=0be62b97
+-/
+theorem solution
+    (R : Type*) [CommRing R] [IsLocalRing R] [CharP (IsLocalRing.ResidueField R) 3]
+    (ℓg : ℕ) (hℓg : ℓg.Prime) (hℓg12 : ℓg % 12 = 11) :
+    IsUnit ((ℓg - 1 : ℕ) : R) := by
+  rw [← IsLocalRing.residue_ne_zero_iff_isUnit, map_natCast]
+  intro h
+  have hd := (CharP.cast_eq_zero_iff (IsLocalRing.ResidueField R) 3 _).mp h
+  omega

@@ -1,0 +1,42 @@
+import Tengoku
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku repair: removed `#print axioms solution` (it only prints; the queue checks the axioms of every declaration). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_IsLocalRing_surjective_of_isAdicComplete_of_maximalIdeal_le_map_sup_sq.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_IsLocalRing_surjective_of_isAdicComplete_of_maximalIdeal_le_map_sup_sq
+
+set_option autoImplicit false
+
+/--
+@isnad1 id=surjecti.3h3v.s9.dfb520df898d from=translated src=- shape=61d69418 vocab=06801631
+-/
+theorem solution
+    {R S : Type} [CommRing R] [CommRing S] [IsLocalRing R] [IsLocalRing S] [IsNoetherianRing S]
+    [IsAdicComplete (IsLocalRing.maximalIdeal R) R] [IsAdicComplete (IsLocalRing.maximalIdeal S) S]
+    (f : R →+* S) (hloc : ∀ r ∈ IsLocalRing.maximalIdeal R, f r ∈ IsLocalRing.maximalIdeal S)
+    (hres : ∀ s : S, ∃ r : R, s - f r ∈ IsLocalRing.maximalIdeal S)
+    (hcot : IsLocalRing.maximalIdeal S ≤
+      (IsLocalRing.maximalIdeal R).map f ⊔ IsLocalRing.maximalIdeal S ^ 2) :
+    Function.Surjective f := by
+  classical
+  have hmap_le : (IsLocalRing.maximalIdeal R).map f ≤ IsLocalRing.maximalIdeal S := by
+    rw [Ideal.map_le_iff_le_comap]
+    intro r hr
+    exact hloc r hr
+  have heq : IsLocalRing.maximalIdeal S = (IsLocalRing.maximalIdeal R).map f := by
+    refine le_antisymm ?_ hmap_le
+    apply Submodule.le_of_le_smul_of_le_jacobson_bot (I := IsLocalRing.maximalIdeal S)
+      (IsNoetherian.noetherian _) (IsLocalRing.maximalIdeal_le_jacobson _)
+    rw [Ideal.smul_eq_mul, ← pow_two]
+    exact hcot
+  haveI : IsHausdorff ((IsLocalRing.maximalIdeal R).map f) S := by rw [← heq]; infer_instance
+  apply surjective_of_mk_map_comp_surjective (I := IsLocalRing.maximalIdeal R) f
+  intro y
+  obtain ⟨s, rfl⟩ := Ideal.Quotient.mk_surjective y
+  obtain ⟨r, hr⟩ := hres s
+  refine ⟨r, ?_⟩
+  rw [RingHom.comp_apply, eq_comm, Ideal.Quotient.mk_eq_mk_iff_sub_mem, ← heq]
+  exact hr
+

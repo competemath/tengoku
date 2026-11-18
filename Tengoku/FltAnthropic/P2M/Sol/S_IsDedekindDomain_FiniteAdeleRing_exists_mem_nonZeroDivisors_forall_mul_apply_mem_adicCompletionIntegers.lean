@@ -1,0 +1,56 @@
+import Tengoku
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_IsDedekindDomain_FiniteAdeleRing_exists_mem_nonZeroDivisors_forall_mul_apply_mem_adicCompletionIntegers.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_IsDedekindDomain_FiniteAdeleRing_exists_mem_nonZeroDivisors_forall_mul_apply_mem_adicCompletionIntegers
+
+open IsDedekindDomain IsDedekindDomain.HeightOneSpectrum
+
+open scoped algebraMap in
+
+/--
+@isnad1 id=ex.0h3v.s8.04ce0e1b7380 from=translated src=- shape=2725a6f7 vocab=81292ba9
+-/
+theorem s2_exists_nonZeroDivisor_coe_mul_mem_adicCompletionIntegers
+    {A : Type*} (K : Type*) [CommRing A] [IsDedekindDomain A] [Field K] [Algebra A K]
+    [IsFractionRing A K] (a : FiniteAdeleRing A K) :
+    ∃ d ∈ nonZeroDivisors A, ∀ v : HeightOneSpectrum A,
+      (d : v.adicCompletion K) * a v ∈ v.adicCompletionIntegers K := by
+  classical
+
+  have hbad : {v : HeightOneSpectrum A | a v ∉ v.adicCompletionIntegers K}.Finite :=
+    Filter.eventually_cofinite.mp a.2
+
+  choose b hb hba using fun v : HeightOneSpectrum A ↦
+    adicCompletion.mul_nonZeroDivisor_mem_adicCompletionIntegers v (a v)
+
+  refine ⟨∏ v ∈ hbad.toFinset, b v, prod_mem fun v _ ↦ hb v, fun v ↦ ?_⟩
+  by_cases hv : a v ∈ v.adicCompletionIntegers K
+  ·
+    exact mul_mem (coe_mem_adicCompletionIntegers v _) hv
+  ·
+    have hvmem : v ∈ hbad.toFinset := hbad.mem_toFinset.mpr hv
+    rw [← Finset.prod_erase_mul _ _ hvmem, algebraMap.coe_mul, mul_assoc]
+    exact mul_mem (coe_mem_adicCompletionIntegers v _) (by rw [mul_comm]; exact hba v)
+
+/--
+@isnad1 id=eq.0h4v.s9.a063cf16e57d from=translated src=- shape=de802aea vocab=d0f8b103
+-/
+theorem s2_algebraMap_adicCompletion_eq {A : Type*} (K : Type*) [CommRing A] [IsDedekindDomain A]
+    [Field K] [Algebra A K] [IsFractionRing A K] (v : HeightOneSpectrum A) (d : A) :
+    algebraMap A (v.adicCompletion K) d = algebraMap K (v.adicCompletion K) (algebraMap A K d) :=
+  IsScalarTower.algebraMap_apply A K (v.adicCompletion K) d
+
+/--
+@isnad1 id=ex.0h3v.s9.adf46b5e502e from=translated src=- shape=a117178a vocab=c1f81f93
+-/
+theorem solution
+    {A : Type*} (K : Type*) [CommRing A] [IsDedekindDomain A] [Field K] [Algebra A K] [IsFractionRing A K]
+    (a : IsDedekindDomain.FiniteAdeleRing A K) :
+    ∃ d ∈ nonZeroDivisors A, ∀ v : IsDedekindDomain.HeightOneSpectrum A,
+      algebraMap K (v.adicCompletion K) (algebraMap A K d) * a v ∈ v.adicCompletionIntegers K := by
+  obtain ⟨d, hd, h⟩ := s2_exists_nonZeroDivisor_coe_mul_mem_adicCompletionIntegers K a
+  refine ⟨d, hd, fun v => ?_⟩
+  rw [← s2_algebraMap_adicCompletion_eq K v d]
+  exact h v

@@ -1,0 +1,101 @@
+import Tengoku.Seed.RingTheory.MvPowerSeries.Inverse
+import Tengoku.Seed.RingTheory.AdicCompletion.Noetherian
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_IsLocalRing_isAdicComplete_map_maximalIdeal_quotient.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_IsLocalRing_isAdicComplete_map_maximalIdeal_quotient
+
+set_option autoImplicit false
+
+universe u v w
+
+namespace M4cP4PS
+
+open IsLocalRing
+
+section
+
+variable {R : Type u} {S : Type v} [CommRing R] [CommRing S]
+
+/--
+@isnad1 id=iff.0h5v.s8.03dd5da8e05d from=translated src=- shape=834ce8f4 vocab=06f1776e
+-/
+theorem smodEq_pow_smul_top_iff (I : Ideal R) (n : ℕ) (x y : R) :
+    x ≡ y [SMOD (I ^ n • ⊤ : Submodule R R)] ↔ x - y ∈ I ^ n := by
+  rw [SModEq.sub_mem, smul_eq_mul, Ideal.mul_top]
+
+/--
+@isnad1 id=isadicco.1h4v.s7.73e3c7044732 from=translated src=- shape=bde95586 vocab=25523771
+-/
+theorem isAdicComplete_map_of_surjective [IsNoetherianRing R] (I : Ideal R)
+    [IsAdicComplete I R] (f : R →+* S)
+    (hf : Function.Surjective f) : IsAdicComplete (I.map f) S := by
+  have hI : I ≤ (⊥ : Ideal R).jacobson := IsAdicComplete.le_jacobson_bot I
+  haveI : IsNoetherianRing S := isNoetherianRing_of_surjective R S f hf
+
+  have hJ : I.map f ≤ (⊥ : Ideal S).jacobson := by
+    intro x hx
+    rw [Ideal.mem_map_iff_of_surjective f hf] at hx
+    obtain ⟨a, ha, rfl⟩ := hx
+    rw [Ideal.mem_jacobson_bot]
+    intro y
+    obtain ⟨b, rfl⟩ := hf y
+    have hu := Ideal.mem_jacobson_bot.mp (hI ha) b
+    simpa using hu.map f
+  haveI hH : IsHausdorff (I.map f) S := IsHausdorff.of_le_jacobson _ _ hJ
+
+  have hP : IsPrecomplete (I.map f) S := by
+    refine ⟨fun g hg => ?_⟩
+
+    have hdiff : ∀ n, ∃ d : R, d ∈ I ^ n ∧ f d = g (n + 1) - g n := by
+      intro n
+      have h := (smodEq_pow_smul_top_iff _ _ _ _).mp (hg (Nat.le_succ n)).symm
+      rw [← Ideal.map_pow, Ideal.mem_map_iff_of_surjective f hf] at h
+      exact h
+    choose d hdI hdf using hdiff
+    obtain ⟨r₀, hr₀⟩ := hf (g 0)
+
+    let r : ℕ → R := fun n => Nat.rec r₀ (fun k acc => acc + d k) n
+    have hr_succ : ∀ n, r (n + 1) = r n + d n := fun n => rfl
+    have hfr : ∀ n, f (r n) = g n := by
+      intro n
+      induction n with
+      | zero => exact hr₀
+      | succ k ih => rw [hr_succ, map_add, ih, hdf]; ring
+    have hcauchy : ∀ m n, m ≤ n → r n - r m ∈ I ^ m := by
+      intro m n hmn
+      induction n, hmn using Nat.le_induction with
+      | base => simp
+      | succ k hmk ih =>
+        rw [hr_succ, show r k + d k - r m = (r k - r m) + d k by ring]
+        exact Ideal.add_mem _ ih (Ideal.pow_le_pow_right hmk (hdI k))
+    obtain ⟨L, hL⟩ := IsPrecomplete.prec (inferInstance : IsPrecomplete I R) (f := r)
+      (fun {m n} hmn => by
+        rw [smodEq_pow_smul_top_iff]
+        have := hcauchy m n hmn
+        rwa [← neg_sub, Ideal.neg_mem_iff])
+    refine ⟨f L, fun n => ?_⟩
+    rw [smodEq_pow_smul_top_iff, ← hfr n, ← map_sub, ← Ideal.map_pow]
+    exact Ideal.mem_map_of_mem _ ((smodEq_pow_smul_top_iff _ _ _ _).mp (hL n))
+  exact ⟨⟩
+
+/--
+@isnad1 id=isadicco.0h2v.s8.d32783b816bc from=translated src=- shape=f2c96680 vocab=fd92bcdd
+-/
+theorem isAdicComplete_map_maximalIdeal_quotient [IsLocalRing R] [IsNoetherianRing R]
+    [IsAdicComplete (maximalIdeal R) R] (J : Ideal R) :
+    IsAdicComplete ((maximalIdeal R).map (Ideal.Quotient.mk J)) (R ⧸ J) :=
+  isAdicComplete_map_of_surjective _ _ Ideal.Quotient.mk_surjective
+
+end
+
+end M4cP4PS
+
+/--
+@isnad1 id=isadicco.0h2v.s8.d32783b816bc from=translated src=- shape=f2c96680 vocab=fd92bcdd
+-/
+theorem solution {R : Type u} [CommRing R] [IsLocalRing R]
+    [IsNoetherianRing R] [IsAdicComplete (IsLocalRing.maximalIdeal R) R] (J : Ideal R) :
+    IsAdicComplete ((IsLocalRing.maximalIdeal R).map (Ideal.Quotient.mk J)) (R ⧸ J) :=
+  M4cP4PS.isAdicComplete_map_maximalIdeal_quotient J
