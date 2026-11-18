@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "7c15f280c98b08d41e3a8fa4a6b7b54537a65c075ee231ccee1b802cc3c9b54f",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "tusnady-lean",
+ "lint_mode": "proposed",
+ "modules": 48,
+ "part": 1,
+ "theorems": 459
+}
