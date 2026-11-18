@@ -146,6 +146,7 @@ import Tengoku.Imoshortlist
 import Tengoku.NavierStokesEuler
 import Tengoku.PalomarQseriesRowFactorization
 import Tengoku.Formalbook
+import Tengoku.EgzFormalProof
 import Tengoku.MiyaokaMoriCharzero
 import Tengoku.GrothendieckRiemannRoch
 import Tengoku.Automatatheory

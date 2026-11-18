@@ -1,0 +1,13 @@
+{
+ "bundle_sha256": "520e45ffba6c90e0407e2dbf5332c376d3e4545827bb203d480bc243dd44c723",
+ "factory_changes": {
+  "inert lines removed": 1,
+  "modules changed": 1
+ },
+ "gate2_unjudged": [],
+ "library": "egz-formal-proof",
+ "lint_mode": "proposed",
+ "modules": 162,
+ "part": 1,
+ "theorems": 1434
+}

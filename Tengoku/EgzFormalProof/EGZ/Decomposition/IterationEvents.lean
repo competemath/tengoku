@@ -1,0 +1,180 @@
+import Tengoku.EgzFormalProof.EGZ.Decomposition.NodeMassMapLevels
+import Tengoku.EgzFormalProof.EGZ.Decomposition.Parameters
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# States and progress certificates for the decomposition iteration
+
+States are minimal and reduced, with a positive constant coordinate radius.
+An event records an unsatisfied conclusion. Its color orders completeness
+and face events by the represented level, with gap cleanup last.
+-/
+
+namespace EGZ.FlagDecomposition
+
+variable {p d : ℕ} [NeZero p] [Fact p.Prime] {f : FpCoord p d → ℕ}
+
+omit [Fact p.Prime] in
+/--
+@isnad1 id=isrealiz.0h5v.s7.0088838ec06f from=translated src=- shape=b6cf3048 vocab=a1e86581
+-/
+theorem isRealizedFace_top (Φ : FlagDecomposition p d f) (x : Φ.flag.Node) :
+    Φ.IsRealizedFace x ⊤ := by
+  intro q hq
+  exact Φ.flag.transition_mem (Φ.faceIndex_le x ⊤) hq
+
+/-- A node equality transports its face without choosing coordinates.-/
+def faceAtNode (Φ : FlagDecomposition p d f) {x y : Φ.flag.Node}
+    (Γ : (Φ.flag.polytope x).Face) (h : y = x) : (Φ.flag.polytope y).Face := by
+  subst y
+  exact Γ
+
+omit [Fact p.Prime] in
+/--
+@isnad1 id=eq.0h6v.s6.fa89fa2fd4c0 from=translated src=- shape=7d1e9e6b vocab=d81d4c46
+-/
+@[simp]
+theorem faceAtNode_rfl (Φ : FlagDecomposition p d f) {x : Φ.flag.Node}
+    (Γ : (Φ.flag.polytope x).Face) : Φ.faceAtNode Γ rfl = Γ := rfl
+
+namespace Iteration
+
+structure State (p d : ℕ) [NeZero p] (f : FpCoord p d → ℕ) where
+  decomposition : FlagDecomposition p d f
+  radius : ℕ
+  radius_pos : 1 ≤ radius
+  minimal : decomposition.IsMinimal
+  reduced : decomposition.IsReduced
+  bounded : decomposition.IsKBounded (fun _ ↦ radius)
+
+namespace State
+
+variable (s : State p d f)
+
+def GapCondition (δ : ℝ) : Prop :=
+  ∀ x, δ ^ 3 * (s.radius : ℝ)⁻¹ ^ d * (natMass f : ℝ) ≤
+    (s.decomposition.gap x : ℝ)
+
+def Finished (ε δ : ℝ) (g : ℕ → ℕ) : Prop :=
+  s.GapCondition δ ∧ s.decomposition.IsComplete (fun _ ↦ g s.radius) ε δ
+
+inductive Event
+  | gap
+  | face (x : s.decomposition.flag.Node) (Γ : (s.decomposition.flag.polytope x).Face)
+  | complete (x : s.decomposition.flag.Node)
+
+namespace Event
+
+variable {s}
+
+def Valid (ε δ : ℝ) (g : ℕ → ℕ) : s.Event → Prop
+  | .gap => ¬ s.GapCondition δ
+  | .face x Γ => s.decomposition.IsLargeFace ε x Γ ∧ ¬ s.decomposition.IsRealizedFace x Γ
+  | .complete x => s.decomposition.IsLargeElement ε x ∧
+      ¬ s.decomposition.IsCompleteElement x (g s.radius) δ
+
+noncomputable def cutoff : s.Event → ℕ
+  | .gap => (d + 1) ^ 2
+  | .face x _ => s.decomposition.level x
+  | .complete x => s.decomposition.level x
+
+noncomputable def color : s.Event → ℕ
+  | .gap => 2 * (d + 1) ^ 2
+  | .face x _ => 2 * s.decomposition.level x + 1
+  | .complete x => 2 * s.decomposition.level x
+
+/--
+@isnad1 id=lt.0h5v.s6.89cf0bc08a7b from=translated src=- shape=9951de0a vocab=6e502941
+-/
+theorem color_lt (E : s.Event) : E.color < 2 * (d + 1) ^ 2 + 1 := by
+  cases E with
+  | gap => exact Nat.lt_succ_self _
+  | face x Γ =>
+    have h : s.decomposition.level x < (d + 1) ^ 2 := s.decomposition.representation.level_lt x
+    dsimp [color]
+    omega
+  | complete x =>
+    have h : s.decomposition.level x < (d + 1) ^ 2 := s.decomposition.representation.level_lt x
+    dsimp [color]
+    omega
+
+/--
+@isnad1 id=le.1h6v.s6.5880fd36a441 from=translated src=- shape=4b209c8e vocab=9d30bb27
+-/
+theorem cutoff_ge_of_color_ge (E : s.Event) {L : ℕ} (h : 2 * L ≤ E.color) :
+    L ≤ E.cutoff := by
+  cases E <;> dsimp [color, cutoff] at * <;> omega
+
+/--
+@isnad1 id=le.0h5v.s6.6f4ad54daa49 from=translated src=- shape=16592b19 vocab=b4c22db2
+-/
+theorem cutoff_le_square (E : s.Event) : E.cutoff ≤ (d + 1) ^ 2 := by
+  cases E with
+  | gap => exact le_rfl
+  | face x Γ => exact (s.decomposition.representation.level_lt x).le
+  | complete x => exact (s.decomposition.representation.level_lt x).le
+
+end Event
+
+/--
+@isnad1 id=ex.1h7v.s6.a6cf08f42ff2 from=translated src=- shape=9b272421 vocab=8813e57d
+-/
+theorem exists_valid_event (ε δ : ℝ) (g : ℕ → ℕ) (h : ¬ s.Finished ε δ g) :
+    ∃ E : s.Event, E.Valid ε δ g := by
+  classical
+  by_cases hgap : s.GapCondition δ
+  · by_cases hc : ∀ x, s.decomposition.IsLargeElement ε x →
+        s.decomposition.IsCompleteElement x (g s.radius) δ
+    · have hf : ¬ ∀ x (Γ : (s.decomposition.flag.polytope x).Face),
+          s.decomposition.IsLargeFace ε x Γ → s.decomposition.IsRealizedFace x Γ := by
+        intro hf
+        exact h ⟨hgap, s.minimal, s.reduced, hc, hf⟩
+      push Not at hf
+      obtain ⟨x, Γ, hΓ, hn⟩ := hf
+      exact ⟨.face x Γ, hΓ, hn⟩
+    · push Not at hc
+      obtain ⟨x, hx, hn⟩ := hc
+      exact ⟨.complete x, hx, hn⟩
+  · exact ⟨.gap, hgap⟩
+
+end State
+
+variable {s t : State p d f}
+
+/-- A face event has a surviving node at the same level where its selected
+face has become realized. Completeness events kill the selected low-level
+lineage. Gap events establish the gap condition at the current scale.-/
+def Resolves (S : SubdivisionMap s.decomposition t.decomposition) (δ : ℝ) : s.Event → Prop
+  | .gap => t.GapCondition δ
+  | .face x Γ => ∃ y : t.decomposition.flag.Node,
+      ∃ h : S.node y = x,
+      t.decomposition.level y = s.decomposition.level x ∧
+      ∀ hne : ((t.decomposition.flag.polytope y).carrier ∩
+          S.fibre y ⁻¹' (s.decomposition.faceAtNode Γ h).carrier).Nonempty,
+        t.decomposition.IsRealizedFace y
+          (S.face y (s.decomposition.faceAtNode Γ h) hne)
+  | .complete x => ∀ y : t.decomposition.flag.Node,
+      t.decomposition.level y ≤ s.decomposition.level x → S.node y ≠ x
+
+/-- Everything used by the termination argument is certified by a concrete
+normalized operation. Stable mass transport is required only below the
+event's cutoff.-/
+structure Progress (s t : State p d f) (ε δ : ℝ) (g : ℕ → ℕ) where
+  event : s.Event
+  valid : event.Valid ε δ g
+  subdivision : SubdivisionMap s.decomposition t.decomposition
+  level_parent : ∀ y, s.decomposition.level (subdivision.node y) ≤ t.decomposition.level y
+  stable : ∀ y, t.decomposition.level y ≤ event.cutoff →
+    StableNodeMap s.decomposition t.decomposition (subdivision.node y) y
+  stable_real : ∀ y h, (stable y h).coord.real = subdivision.fibre y
+  parent_injective : Set.InjOn subdivision.node {y | t.decomposition.level y ≤ event.cutoff}
+  resolves : Resolves subdivision δ event
+  radius_le : s.radius ≤ t.radius
+  card_le : Fintype.card t.decomposition.flag.Node ≤ 2 * Fintype.card s.decomposition.flag.Node
+  mass_le : t.decomposition.retainedMass ≤ s.decomposition.retainedMass
+  mass_loss_le : (s.decomposition.retainedMass : ℝ) - t.decomposition.retainedMass ≤
+    (ε * δ ^ 2 + (3 : ℝ) ^ (d + 1) * δ) * s.decomposition.retainedMass
+
+end Iteration
+end EGZ.FlagDecomposition
