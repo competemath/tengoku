@@ -1,0 +1,118 @@
+import Tengoku
+import Tengoku.FltAnthropic.Definitions.Def_ModularCurve_UVCrossingModel
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_ModularCurve_UVCrossingModel_maximalIdeal_eq_map_maximalIdeal_sup_span_pair.lean`: wrote out 3 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_export`, 2 `p2m_open`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_ModularCurve_UVCrossingModel_maximalIdeal_eq_map_maximalIdeal_sup_span_pair
+
+set_option autoImplicit false
+
+open _root_.IsLocalRing open _root_.ModularCurve open _root_.ModularCurve.UVCrossingModel
+
+namespace ModularCurve
+export _root_.ModularCurve (uvCrossingIdeal UVCrossingModel UVCrossingModel.mk UVCrossingModel.constHom UVCrossingModel.constHom_apply)
+open _root_.ModularCurve
+namespace Ws30MaxGen
+
+/--
+@isnad1 id=mem.1h2v.s8.b9dbf9637ebc from=translated src=- shape=e073ff1c vocab=e3ce9f79
+-/
+theorem mem_span_X_of_constantCoeff_eq_zero {W : Type*} [CommRing W] (g : MvPowerSeries (Fin 2) W)
+    (hg : MvPowerSeries.constantCoeff g = 0) :
+    g ∈ Ideal.span {(MvPowerSeries.X 0 : MvPowerSeries (Fin 2) W), MvPowerSeries.X 1} := by
+  classical
+
+  let g' : MvPowerSeries (Fin 2) W := fun m => if m 0 = 0 then g m else 0
+  have h0 : (MvPowerSeries.X 0 : MvPowerSeries (Fin 2) W) ∣ g - g' := by
+    rw [MvPowerSeries.X_dvd_iff]
+    intro m hm
+    show g m - g' m = 0
+    simp only [g', hm, ite_true, sub_self]
+  have h1 : (MvPowerSeries.X 1 : MvPowerSeries (Fin 2) W) ∣ g' := by
+    rw [MvPowerSeries.X_dvd_iff]
+    intro m hm
+    show (if m 0 = 0 then g m else 0) = 0
+    split_ifs with hm0
+    · have : m = 0 := by
+        ext i; fin_cases i
+        · exact hm0
+        · exact hm
+      subst this
+      exact hg
+    · rfl
+  obtain ⟨A, hA⟩ := h0
+  obtain ⟨B, hB⟩ := h1
+  have : g = MvPowerSeries.X 0 * A + MvPowerSeries.X 1 * B := by rw [← hA, ← hB]; ring
+  rw [this]
+  exact Ideal.add_mem _ (Ideal.mul_mem_right _ _ (Ideal.subset_span (by simp)))
+    (Ideal.mul_mem_right _ _ (Ideal.subset_span (by simp)))
+
+variable {W : Type*} [CommRing W] [IsLocalRing W] (π : W)
+
+/--
+@isnad1 id=eq.1h2v.s8.96f36e5e87ac from=translated src=- shape=738d0110 vocab=a68d2d5e
+-/
+theorem maximalIdeal_eq (hπu : ¬ IsUnit π) [IsLocalRing (UVCrossingModel W π)] :
+    maximalIdeal (UVCrossingModel W π) =
+      (maximalIdeal W).map (UVCrossingModel.constHom π) ⊔ Ideal.span {U π, V π} := by
+
+  have hker : ∀ f ∈ uvCrossingIdeal W π, ((residue W).comp MvPowerSeries.constantCoeff) f = 0 := by
+    intro f hf
+    obtain ⟨b, rfl⟩ := Ideal.mem_span_singleton'.mp hf
+    have hP : MvPowerSeries.constantCoeff (MvPowerSeries.X 0 * MvPowerSeries.X 1 - MvPowerSeries.C π :
+        MvPowerSeries (Fin 2) W) = -π := by
+      rw [map_sub, map_mul, MvPowerSeries.constantCoeff_X, zero_mul, MvPowerSeries.constantCoeff_C, zero_sub]
+    rw [RingHom.comp_apply, map_mul, hP, map_mul, map_neg, (residue_eq_zero_iff π).mpr
+      ((mem_maximalIdeal π).mpr hπu), neg_zero, mul_zero]
+  set ρ : UVCrossingModel W π →+* ResidueField W := Ideal.Quotient.lift _ _ hker with hρ
+  have hρmk : ∀ f, ρ (UVCrossingModel.mk π f) = residue W (MvPowerSeries.constantCoeff f) := fun f => by
+    rw [hρ]; exact Ideal.Quotient.lift_mk _ _ _
+  have hsurj : Function.Surjective ρ := by
+    intro r
+    obtain ⟨w, rfl⟩ := residue_surjective r
+    exact ⟨const π w, by rw [const, hρmk, MvPowerSeries.constantCoeff_C]⟩
+  have hmax : (RingHom.ker ρ).IsMaximal := RingHom.ker_isMaximal_of_surjective ρ hsurj
+  rw [← eq_maximalIdeal hmax]
+  apply le_antisymm
+  · intro z hz
+    rw [RingHom.mem_ker] at hz
+    obtain ⟨f, rfl⟩ := mk_surjective π z
+    rw [hρmk, residue_eq_zero_iff] at hz
+
+    have hsplit : UVCrossingModel.mk π f =
+        UVCrossingModel.constHom π (MvPowerSeries.constantCoeff f) +
+          UVCrossingModel.mk π (f - MvPowerSeries.C (MvPowerSeries.constantCoeff f)) := by
+      rw [UVCrossingModel.constHom_apply, const, ← map_add]; congr 1; ring
+    rw [hsplit]
+    refine Ideal.add_mem _ (Ideal.mem_sup_left (Ideal.mem_map_of_mem _ hz)) (Ideal.mem_sup_right ?_)
+    have hmem := mem_span_X_of_constantCoeff_eq_zero (f - MvPowerSeries.C (MvPowerSeries.constantCoeff f))
+      (by rw [map_sub, MvPowerSeries.constantCoeff_C, sub_self])
+    have himg := Ideal.mem_map_of_mem (UVCrossingModel.mk π) hmem
+    rw [Ideal.map_span, Set.image_pair] at himg
+    exact himg
+  · refine sup_le ?_ ?_
+    · rw [Ideal.map_le_iff_le_comap]
+      intro w hw
+      rw [Ideal.mem_comap, RingHom.mem_ker, UVCrossingModel.constHom_apply, const, hρmk, MvPowerSeries.constantCoeff_C,
+        residue_eq_zero_iff]
+      exact hw
+    · rw [Ideal.span_le, Set.pair_subset_iff]
+      refine ⟨?_, ?_⟩
+      · show ρ (U π) = 0
+        rw [U, hρmk, MvPowerSeries.constantCoeff_X, map_zero]
+      · show ρ (V π) = 0
+        rw [V, hρmk, MvPowerSeries.constantCoeff_X, map_zero]
+
+end Ws30MaxGen
+end ModularCurve
+
+open _root_.ModularCurve _root_.P2MW.S_ModularCurve_UVCrossingModel_maximalIdeal_eq_map_maximalIdeal_sup_span_pair.ModularCurve ModularCurve.UVCrossingModel in
+/--
+@isnad1 id=eq.1h2v.s8.96f36e5e87ac from=translated src=- shape=738d0110 vocab=a68d2d5e
+-/
+theorem solution
+    {W : Type*} [CommRing W] [IsLocalRing W] {π : W} (hπu : ¬IsUnit π) [IsLocalRing (UVCrossingModel W π)] :
+    IsLocalRing.maximalIdeal (UVCrossingModel W π) =
+      (IsLocalRing.maximalIdeal W).map (UVCrossingModel.constHom π) ⊔ Ideal.span {U π, V π} :=
+  ModularCurve.Ws30MaxGen.maximalIdeal_eq π hπu

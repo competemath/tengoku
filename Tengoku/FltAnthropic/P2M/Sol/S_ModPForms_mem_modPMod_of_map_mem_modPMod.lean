@@ -1,0 +1,95 @@
+import Tengoku
+import Tengoku.FltAnthropic.Definitions.Def_CuspForm_ModPForms
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_ModPForms_mem_modPMod_of_map_mem_modPMod.lean`: wrote out 2 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 2 `p2m_reactivate`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_ModPForms_mem_modPMod_of_map_mem_modPMod
+
+set_option autoImplicit false
+
+namespace FltWs24
+namespace Descent
+
+variable {K L : Type} [Field K] [Field L]
+
+noncomputable def coeffwise (r : L →+ K) (φ : PowerSeries L) : PowerSeries K :=
+  PowerSeries.mk fun n => r (PowerSeries.coeff n φ)
+
+/--
+@isnad1 id=eq.0h5v.s9.ee106c085cee from=translated src=- shape=bf0ce310 vocab=f6a49011
+-/
+@[scoped simp] theorem coeff_coeffwise (r : L →+ K) (φ : PowerSeries L) (n : ℕ) :
+    PowerSeries.coeff n (coeffwise r φ) = r (PowerSeries.coeff n φ) := by
+  rw [coeffwise, PowerSeries.coeff_mk]
+
+/--
+@isnad1 id=eq.0h5v.s6.0ba7b99a83e4 from=translated src=- shape=73b35a09 vocab=e685b2e4
+-/
+theorem coeffwise_add (r : L →+ K) (φ ψ : PowerSeries L) :
+    coeffwise r (φ + ψ) = coeffwise r φ + coeffwise r ψ := by
+  ext n; simp
+
+/--
+@isnad1 id=eq.0h3v.s6.ac3a16ac7d5c from=translated src=- shape=752c7038 vocab=d65c1951
+-/
+theorem coeffwise_zero (r : L →+ K) : coeffwise r (0 : PowerSeries L) = 0 := by
+  ext n; simp
+
+end FltWs24.Descent
+open scoped _root_.P2MW.S_ModPForms_mem_modPMod_of_map_mem_modPMod.FltWs24 _root_.P2MW.S_ModPForms_mem_modPMod_of_map_mem_modPMod.FltWs24.Descent
+open scoped _root_.P2MW.S_ModPForms_mem_modPMod_of_map_mem_modPMod.FltWs24
+
+open FltWs24.Descent in
+/--
+@isnad1 id=mem.1h6v.s8.4089dd03641d from=translated src=- shape=c8d11c8d vocab=167ee3c2
+-/
+theorem solution
+    (N : ℕ) (k : ℤ) (K L : Type) [Field K] [Field L] (i : K →+* L)
+    (ψ : PowerSeries K) (h : PowerSeries.map i ψ ∈ ModPForms.modPMod N k L) :
+    ψ ∈ ModPForms.modPMod N k K := by
+
+  letI : Algebra K L := i.toAlgebra
+  have hi : ∀ c : K, algebraMap K L c = i c := fun _ => rfl
+  obtain ⟨r, hr⟩ := LinearMap.exists_leftInverse_of_injective (Algebra.linearMap K L)
+    (LinearMap.ker_eq_bot.mpr (by
+      intro a b hab
+      exact i.injective hab))
+  have hri : ∀ c : K, r (i c) = c := fun c => by
+    have := LinearMap.congr_fun hr c
+    simpa [hi] using this
+
+  have hRmap : ∀ (μ : L) (v : PowerSeries K), coeffwise r.toAddMonoidHom (μ • PowerSeries.map i v) = r μ • v := by
+    intro μ v
+    ext n
+    rw [coeff_coeffwise, LinearMap.toAddMonoidHom_coe, map_smul, PowerSeries.coeff_map, smul_eq_mul, map_smul, smul_eq_mul,
+      show μ * i (PowerSeries.coeff n v) = (PowerSeries.coeff n v) • μ by
+        rw [Algebra.smul_def, hi, mul_comm],
+      map_smul, smul_eq_mul, mul_comm]
+
+  have key : ∀ φ ∈ ModPForms.modPMod N k L, ∀ μ : L, coeffwise r.toAddMonoidHom (μ • φ) ∈ ModPForms.modPMod N k K := by
+    intro φ hφ
+    unfold ModPForms.modPMod at hφ ⊢
+    induction hφ using Submodule.span_induction with
+    | mem x hx =>
+      intro μ
+      obtain ⟨f, a, ha, rfl⟩ := hx
+      have hv : (PowerSeries.mk fun n => ((a n : ℤ) : L)) =
+          PowerSeries.map i (PowerSeries.mk fun n => ((a n : ℤ) : K)) := by
+        ext n
+        rw [PowerSeries.coeff_map, PowerSeries.coeff_mk, PowerSeries.coeff_mk, map_intCast]
+      rw [hv, hRmap]
+      exact Submodule.smul_mem _ _ (Submodule.subset_span ⟨f, a, ha, rfl⟩)
+    | zero => intro μ; rw [smul_zero, coeffwise_zero]; exact Submodule.zero_mem _
+    | add x y _ _ hx hy =>
+      intro μ
+      rw [smul_add, coeffwise_add]
+      exact Submodule.add_mem _ (hx μ) (hy μ)
+    | smul ν x _ hx => intro μ; rw [smul_smul]; exact hx (μ * ν)
+
+  have h1 := key _ h 1
+  rw [one_smul] at h1
+  have hRψ : coeffwise r.toAddMonoidHom (PowerSeries.map i ψ) = ψ := by
+    ext n
+    rw [coeff_coeffwise, LinearMap.toAddMonoidHom_coe, PowerSeries.coeff_map, hri]
+  rwa [hRψ] at h1

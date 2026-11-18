@@ -1,0 +1,185 @@
+import Tengoku
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_iteratedFDerivWithin_comp_equivPerm_of_contDiffOn_of_convex.lean`: wrote out 1 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_reactivate`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_iteratedFDerivWithin_comp_equivPerm_of_contDiffOn_of_convex
+
+set_option autoImplicit false
+
+open Set Fin Function
+
+namespace SymmWithin
+
+variable {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [NormedAddCommGroup F] [NormedSpace ℝ F]
+
+def liftPerm {n : ℕ} (e : Equiv.Perm (Fin n)) : Equiv.Perm (Fin (n + 1)) :=
+  Equiv.Perm.decomposeFin.symm (0, e)
+
+/--
+@isnad1 id=eq.0h2v.s7.9e49875e3fcb from=translated src=- shape=c9c1a9cd vocab=b8092e9f
+-/
+@[scoped simp] theorem liftPerm_zero {n : ℕ} (e : Equiv.Perm (Fin n)) : liftPerm e 0 = 0 := by
+  simp [liftPerm]
+
+/--
+@isnad1 id=eq.0h3v.s7.a85a49a30f71 from=translated src=- shape=bb4e08c5 vocab=2d238df5
+-/
+@[scoped simp] theorem liftPerm_succ {n : ℕ} (e : Equiv.Perm (Fin n)) (k : Fin n) :
+    liftPerm e k.succ = (e k).succ := by
+  simp [liftPerm]
+
+/--
+@isnad1 id=eq.0h3v.s8.3a8da0f0311e from=translated src=- shape=241b0c9f vocab=0e1c4507
+-/
+theorem decomposeFin_symm_eq {n : ℕ} (p : Fin (n + 1)) (e : Equiv.Perm (Fin n)) :
+    Equiv.Perm.decomposeFin.symm (p, e) = Equiv.swap 0 p * liftPerm e := by
+  ext i
+  refine Fin.cases ?_ (fun k => ?_) i
+  · simp [liftPerm]
+  · rw [Equiv.Perm.decomposeFin_symm_apply_succ, Equiv.Perm.coe_mul, comp_apply, liftPerm_succ]
+
+/--
+@isnad1 id=eq.0h2v.s7.e294c9bc12b9 from=translated src=- shape=9ee29a5e vocab=9706883f
+-/
+theorem swap_one_succ_succ_eq_liftPerm {n : ℕ} (q : Fin (n + 1)) :
+    (Equiv.swap (1 : Fin (n + 2)) q.succ) = liftPerm (Equiv.swap 0 q) := by
+  refine Equiv.ext fun i => ?_
+  refine Fin.cases ?_ (fun k => ?_) i
+  · rw [liftPerm_zero, Equiv.swap_apply_of_ne_of_ne (by simp) (Fin.succ_ne_zero q).symm]
+  · rw [liftPerm_succ, ← Fin.succ_zero_eq_one]
+    by_cases h0 : k = 0
+    · subst h0; simp
+    · by_cases hq : k = q
+      · subst hq; simp
+      · rw [Equiv.swap_apply_of_ne_of_ne ((Fin.succ_injective _).ne h0) ((Fin.succ_injective _).ne hq),
+          Equiv.swap_apply_of_ne_of_ne h0 hq]
+
+def P (s : Set E) (n : ℕ) : Prop :=
+  ∀ (f : E → F), ContDiffOn ℝ n f s → ∀ x ∈ s, ∀ (σ : Equiv.Perm (Fin n)) (v : Fin n → E),
+    iteratedFDerivWithin ℝ n f s x (v ∘ σ) = iteratedFDerivWithin ℝ n f s x v
+
+/--
+@isnad1 id=p.1h4v.s5.faceb38d9113 from=translated src=- shape=39c024b3 vocab=369960d9
+-/
+theorem P_of_subsingleton {s : Set E} {n : ℕ} (h : Subsingleton (Equiv.Perm (Fin n))) : P (F := F) s n := by
+  intro f hf x hx σ v
+  rw [Subsingleton.elim σ 1, Equiv.Perm.coe_one, comp_id]
+
+/--
+@isnad1 id=p.3h4v.s7.1a1a17b23c0c from=translated src=- shape=d0b31b16 vocab=42ac8afc
+-/
+theorem P_step {s : Set E} (hs : Convex ℝ s) (hs' : (interior s).Nonempty) (n : ℕ)
+    (ih : P (F := F) s (n + 1)) : P (F := F) s (n + 2) := by
+  have hU : UniqueDiffOn ℝ s := uniqueDiffOn_convex hs hs'
+  intro f hf x hx
+
+  have hmul : ∀ σ τ : Equiv.Perm (Fin (n + 2)),
+      (∀ v : Fin (n + 2) → E, iteratedFDerivWithin ℝ (n + 2) f s x (v ∘ σ) = iteratedFDerivWithin ℝ (n + 2) f s x v) →
+      (∀ v : Fin (n + 2) → E, iteratedFDerivWithin ℝ (n + 2) f s x (v ∘ τ) = iteratedFDerivWithin ℝ (n + 2) f s x v) →
+      ∀ v : Fin (n + 2) → E, iteratedFDerivWithin ℝ (n + 2) f s x (v ∘ ⇑(σ * τ)) =
+        iteratedFDerivWithin ℝ (n + 2) f s x v := by
+    intro σ τ hσ hτ v
+    rw [Equiv.Perm.coe_mul, ← comp_assoc, hτ (v ∘ σ), hσ v]
+
+  have hlift : ∀ (e : Equiv.Perm (Fin (n + 1))) (v : Fin (n + 2) → E),
+      iteratedFDerivWithin ℝ (n + 2) f s x (v ∘ liftPerm e) = iteratedFDerivWithin ℝ (n + 2) f s x v := by
+    intro e v
+    have hf' : ContDiffOn ℝ (n + 1 : ℕ) f s := hf.of_le (by exact_mod_cast Nat.le_succ _)
+    let L := (ContinuousMultilinearMap.domDomCongrₗᵢ ℝ E F e).toContinuousLinearEquiv
+    have hL : ∀ (M : ContinuousMultilinearMap ℝ (fun _ : Fin (n + 1) => E) F) (w : Fin (n + 1) → E),
+        L M w = M (w ∘ e) := fun M w => rfl
+    have heq : EqOn (L ∘ iteratedFDerivWithin ℝ (n + 1) f s) (iteratedFDerivWithin ℝ (n + 1) f s) s := by
+      intro y hy
+      ext w
+      show L (iteratedFDerivWithin ℝ (n + 1) f s y) w = _
+      rw [hL]
+      exact ih f hf' y hy e w
+    rw [iteratedFDerivWithin_succ_apply_left, iteratedFDerivWithin_succ_apply_left]
+    have h0 : (v ∘ liftPerm e) 0 = v 0 := by simp
+    have ht : tail (v ∘ liftPerm e) = tail v ∘ e := by
+      funext k; simp [tail]
+    rw [h0, ht, ← hL]
+    calc L (fderivWithin ℝ (iteratedFDerivWithin ℝ (n + 1) f s) s x (v 0)) (tail v)
+        = (fderivWithin ℝ (⇑L ∘ iteratedFDerivWithin ℝ (n + 1) f s) s x (v 0)) (tail v) := by
+          rw [L.comp_fderivWithin (hU x hx)]; rfl
+      _ = (fderivWithin ℝ (iteratedFDerivWithin ℝ (n + 1) f s) s x (v 0)) (tail v) := by
+          rw [fderivWithin_congr' heq hx]
+
+  have hswap01 : ∀ v : Fin (n + 2) → E,
+      iteratedFDerivWithin ℝ (n + 2) f s x (v ∘ Equiv.swap 0 1) = iteratedFDerivWithin ℝ (n + 2) f s x v := by
+    intro v
+    set g := iteratedFDerivWithin ℝ n f s with hg
+    have hg2 : ContDiffWithinAt ℝ 2 g s x :=
+      (hf x hx).iteratedFDerivWithin_right hU (by exact_mod_cast (by omega : 2 + n ≤ n + 2)) hx
+    have hsymm : IsSymmSndFDerivWithinAt ℝ g s x := by
+      refine hg2.isSymmSndFDerivWithinAt (by simp) hU ?_ hx
+      rw [hs.closure_interior_eq_closure_of_nonempty_interior hs']
+      exact subset_closure hx
+    have key : ∀ m : Fin (n + 2) → E, iteratedFDerivWithin ℝ (n + 2) f s x m =
+        (fderivWithin ℝ (fderivWithin ℝ g s) s x (m 0) (m 1)) (tail (tail m)) := by
+      intro m
+      rw [iteratedFDerivWithin_succ_apply_left]
+      have h1 : iteratedFDerivWithin ℝ (n + 1) f s =
+          (continuousMultilinearCurryLeftEquiv ℝ (fun _ : Fin (n + 1) => E) F).symm.toContinuousLinearEquiv ∘
+            fderivWithin ℝ g s := iteratedFDerivWithin_succ_eq_comp_left
+      have h2 := (continuousMultilinearCurryLeftEquiv ℝ (fun _ : Fin (n + 1) => E) F).symm.toContinuousLinearEquiv
+        |>.comp_fderivWithin (hU x hx) (f := fderivWithin ℝ g s)
+      rw [h1, h2]
+      rfl
+    rw [key, key, hsymm.eq]
+    congr 1
+
+  have hswap0 : ∀ (p : Fin (n + 2)) (v : Fin (n + 2) → E),
+      iteratedFDerivWithin ℝ (n + 2) f s x (v ∘ Equiv.swap 0 p) = iteratedFDerivWithin ℝ (n + 2) f s x v := by
+    intro p
+    refine Fin.cases ?_ (fun q => ?_) p
+    · intro v; rw [Equiv.swap_self]; rfl
+    · refine Fin.cases ?_ (fun r => ?_) q
+      · exact hswap01
+      ·
+        have hne01 : (0 : Fin (n + 2)) ≠ 1 := by simp
+        have hne0p : (0 : Fin (n + 2)) ≠ r.succ.succ := (Fin.succ_ne_zero _).symm
+        have hdec : Equiv.swap (0 : Fin (n + 2)) r.succ.succ =
+            Equiv.swap 1 r.succ.succ * Equiv.swap 0 1 * Equiv.swap 1 r.succ.succ := by
+          rw [Equiv.swap_mul_swap_mul_swap hne01 hne0p, Equiv.swap_comm]
+        have h1p : ∀ v : Fin (n + 2) → E,
+            iteratedFDerivWithin ℝ (n + 2) f s x (v ∘ Equiv.swap 1 r.succ.succ) =
+              iteratedFDerivWithin ℝ (n + 2) f s x v := by
+          intro v
+          rw [swap_one_succ_succ_eq_liftPerm]
+          exact hlift _ v
+        rw [hdec]
+        exact hmul _ _ (hmul _ _ h1p hswap01) h1p
+
+  intro σ v
+  obtain ⟨⟨p, e⟩, rfl⟩ := Equiv.Perm.decomposeFin.symm.surjective σ
+  rw [decomposeFin_symm_eq]
+  exact hmul _ _ (hswap0 p) (hlift e) v
+
+/--
+@isnad1 id=p.2h4v.s7.2a2d78a43fbb from=translated src=- shape=13d5c676 vocab=cd24d398
+-/
+theorem P_all {s : Set E} (hs : Convex ℝ s) (hs' : (interior s).Nonempty) : ∀ n, P (F := F) s n := by
+  intro n
+  induction n with
+  | zero => exact P_of_subsingleton ⟨fun a b => Equiv.ext fun i => i.elim0⟩
+  | succ n ih =>
+    cases n with
+    | zero => exact P_of_subsingleton ⟨fun a b => Equiv.ext fun i => Subsingleton.elim (α := Fin 1) _ _⟩
+    | succ k => exact P_step hs hs' k ih
+
+end SymmWithin
+open scoped _root_.P2MW.S_iteratedFDerivWithin_comp_equivPerm_of_contDiffOn_of_convex.SymmWithin
+
+/--
+@isnad1 id=eq.4h8v.s9.57693dd35aaf from=translated src=- shape=1190ee80 vocab=c0e8aacc
+-/
+theorem solution
+    {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E]
+    {F : Type} [NormedAddCommGroup F] [NormedSpace ℝ F]
+    {s : Set E} (hs : Convex ℝ s) (hs' : (interior s).Nonempty)
+    {n : ℕ} {f : E → F} (hf : ContDiffOn ℝ n f s) {x : E} (hx : x ∈ s)
+    (σ : Equiv.Perm (Fin n)) (v : Fin n → E) :
+    iteratedFDerivWithin ℝ n f s x (v ∘ σ) = iteratedFDerivWithin ℝ n f s x v :=
+  SymmWithin.P_all hs hs' n f hf x hx σ v

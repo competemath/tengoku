@@ -1,0 +1,32 @@
+import Tengoku
+import Tengoku.FltAnthropic.Definitions.Def_CuspForm_ModPForms
+import Tengoku.FltAnthropic.Definitions.Def_ModularCurve_QExpansionDiff
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_ModPForms_ofPowerSeries_thetaPS_eq_thetaL_ofPowerSeries.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_ModPForms_ofPowerSeries_thetaPS_eq_thetaL_ofPowerSeries
+
+set_option autoImplicit false
+
+/--
+@isnad1 id=eq.0h2v.s9.e7a5f3f746d2 from=translated src=- shape=0ae63863 vocab=ad056c72
+-/
+theorem solution
+    (K : Type) [Field K] (φ : PowerSeries K) :
+    HahnSeries.ofPowerSeries ℤ K (ModPForms.thetaPS φ) =
+      ModularCurve.thetaL K (HahnSeries.ofPowerSeries ℤ K φ) := by
+  ext n
+  rw [ModularCurve.thetaL_apply, LaurentSeries.derivative_apply, ← sub_add_cancel n 1,
+    HahnSeries.coeff_single_mul_add, LaurentSeries.hasseDeriv_coeff, Nat.cast_one, sub_add_cancel, one_mul,
+    Ring.choose_one_right]
+  change ((ModPForms.thetaPS φ : PowerSeries K) : LaurentSeries K).coeff n =
+    n • ((φ : PowerSeries K) : LaurentSeries K).coeff n
+  rw [PowerSeries.coeff_coe, PowerSeries.coeff_coe]
+  split_ifs with hn
+  · rw [smul_zero]
+  · rw [ModPForms.thetaPS, PowerSeries.coeff_mk, zsmul_eq_mul]
+    congr 1
+    have h1 : ((n.natAbs : ℤ) : K) = ((n : ℤ) : K) := by rw [Int.natAbs_of_nonneg (not_lt.mp hn)]
+    rw [Int.cast_natCast] at h1
+    exact h1

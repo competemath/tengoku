@@ -1,0 +1,98 @@
+import Tengoku
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_MeasureTheory_volume_setOf_mvPolynomial_eval_eq_zero.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_MeasureTheory_volume_setOf_mvPolynomial_eval_eq_zero
+
+set_option autoImplicit false
+
+open MeasureTheory
+
+namespace NullsetMvPolynomialSol
+
+open MvPolynomial
+
+/--
+@isnad1 id=measurab.0h2v.s6.f27ad6736ce9 from=translated src=- shape=012f5c00 vocab=da2acf51
+-/
+theorem measurableSet_zeroSet {n : ℕ} (p : MvPolynomial (Fin n) ℝ) :
+    MeasurableSet {x : Fin n → ℝ | MvPolynomial.eval x p = 0} :=
+  (isClosed_eq (MvPolynomial.continuous_eval p) continuous_const).measurableSet
+
+/--
+@isnad1 id=eq.1h1v.s6.76d2c47d9ac8 from=translated src=- shape=e511563b vocab=93478ac4
+-/
+theorem volume_setOf_polynomial_eval_eq_zero (P : Polynomial ℝ) (hP : P ≠ 0) :
+    volume {a : ℝ | Polynomial.eval a P = 0} = 0 :=
+  (Polynomial.finite_setOfPred_isRoot hP).measure_zero volume
+
+/--
+@isnad1 id=eq.1h2v.s7.149316e03b63 from=translated src=- shape=aaf0048a vocab=66491bc2
+-/
+theorem main : ∀ (n : ℕ) (p : MvPolynomial (Fin n) ℝ), p ≠ 0 →
+    volume {x : Fin n → ℝ | MvPolynomial.eval x p = 0} = 0
+  | 0, p, hp => by
+    have hset : {x : Fin 0 → ℝ | MvPolynomial.eval x p = 0} = ∅ := by
+      ext x
+      simp only [Set.mem_ofPred_eq, Set.mem_empty_iff_false, iff_false]
+      rw [p.eq_C_of_isEmpty] at hp ⊢
+      simpa [C_ne_zero] using hp
+    rw [hset, measure_empty]
+  | n + 1, p, hp => by
+
+    set P : Polynomial (MvPolynomial (Fin n) ℝ) := finSuccEquiv ℝ n p with hPdef
+    have hP0 : P ≠ 0 := EmbeddingLike.map_ne_zero_iff.2 hp
+    set q : MvPolynomial (Fin n) ℝ := P.leadingCoeff with hqdef
+    have hq0 : q ≠ 0 := by simpa [q] using hP0
+
+    have ih : volume {y : Fin n → ℝ | MvPolynomial.eval y q = 0} = 0 := main n q hq0
+
+    let e := MeasurableEquiv.piFinSuccAbove (fun _ : Fin (n + 1) => ℝ) 0
+    have he : MeasurePreserving e volume volume :=
+      volume_preserving_piFinSuccAbove (fun _ : Fin (n + 1) => ℝ) 0
+    set S : Set (Fin (n + 1) → ℝ) := {x | MvPolynomial.eval x p = 0} with hSdef
+    have hS : MeasurableSet S := measurableSet_zeroSet p
+    set T : Set (ℝ × (Fin n → ℝ)) := e.symm ⁻¹' S with hTdef
+    have hT : MeasurableSet T := hS.preimage e.symm.measurable
+    have hST : S = e ⁻¹' T := by
+      ext x
+      simp [T, Set.mem_preimage, e.symm_apply_apply]
+    have hsymm : ∀ (a : ℝ) (y : Fin n → ℝ), e.symm (a, y) = Fin.cons a y := by
+      intro a y
+      simp [e, MeasurableEquiv.piFinSuccAbove_symm_apply, Fin.insertNthEquiv,
+        Fin.insertNth_zero']
+    rw [hST, he.measure_preimage hT.nullMeasurableSet, Measure.volume_eq_prod,
+      Measure.prod_apply_symm hT]
+
+    have hae : (fun y : Fin n → ℝ => volume ((fun a : ℝ => (a, y)) ⁻¹' T)) =ᵐ[volume]
+        fun _ => 0 := by
+      have hq_ae : ∀ᵐ y : Fin n → ℝ ∂volume, y ∉ {y : Fin n → ℝ | MvPolynomial.eval y q = 0} :=
+        measure_eq_zero_iff_ae_notMem.1 ih
+      filter_upwards [hq_ae] with y hy
+      replace hy : ¬ MvPolynomial.eval y q = 0 := hy
+
+      set Q : Polynomial ℝ := Polynomial.map (MvPolynomial.eval y) P with hQdef
+      have hQ0 : Q ≠ 0 := by
+        intro hQ
+        apply hy
+        have h1 : Q.coeff P.natDegree = MvPolynomial.eval y q := by
+          rw [hQdef, Polynomial.coeff_map, Polynomial.coeff_natDegree]
+        rw [← h1, hQ, Polynomial.coeff_zero]
+      have hslice : (fun a : ℝ => (a, y)) ⁻¹' T = {a : ℝ | Polynomial.eval a Q = 0} := by
+        ext a
+        simp only [Set.mem_preimage, T, S, Set.mem_ofPred_eq, hsymm a y]
+        rw [MvPolynomial.eval_eq_eval_mv_eval']
+      rw [hslice]
+      exact volume_setOf_polynomial_eval_eq_zero Q hQ0
+    rw [lintegral_congr_ae hae, lintegral_zero]
+
+end NullsetMvPolynomialSol
+
+/--
+@isnad1 id=eq.1h2v.s7.149316e03b63 from=translated src=- shape=aaf0048a vocab=66491bc2
+-/
+theorem solution
+    {n : ℕ} (p : MvPolynomial (Fin n) ℝ) (hp : p ≠ 0) :
+    volume {x : Fin n → ℝ | MvPolynomial.eval x p = 0} = 0 :=
+  NullsetMvPolynomialSol.main n p hp

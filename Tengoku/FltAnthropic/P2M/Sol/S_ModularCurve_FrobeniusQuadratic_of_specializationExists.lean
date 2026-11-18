@@ -1,0 +1,34 @@
+import Tengoku.FltAnthropic.Definitions.Def_HeckeGalois_EichlerShimura
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_ModularCurve_FrobeniusQuadratic_of_specializationExists.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_ModularCurve_FrobeniusQuadratic_of_specializationExists
+
+open ModularCurve
+
+/--
+@isnad1 id=frobeniu.1h5v.s8.5e7c5a8508e7 from=translated src=- shape=0d3e7f3f vocab=bc82eee3
+-/
+theorem solution {K L : Type*} [Field K] [Field L] [Algebra K L] (N p : ℕ) (J : Type*)
+    [AddCommGroup J] [Module ModularCurve.HeckeAlg J] [DistribMulAction (L ≃ₐ[K] L) J]
+    [SMulCommClass (L ≃ₐ[K] L) ModularCurve.HeckeAlg J]
+    (h : ModularCurve.SpecializationExists (K := K) (L := L) N p J) :
+    ModularCurve.FrobeniusQuadratic (K := K) (L := L) N p J := by
+  intro ℓ hℓ hℓN A hA σ hσ x hx
+  obtain ⟨J', _, _, sp, F, hsp, hES⟩ := h ℓ hℓ hℓN A hA
+  have htor : ∃ n : ℕ, p ^ n • (σ • σ • x - heckeGen ⟨ℓ, hℓ⟩ • (σ • x) + ℓ • x) = 0 := by
+    obtain ⟨n, hn⟩ := hx
+    refine ⟨n, ?_⟩
+    have h1 : p ^ n • (σ • σ • x) = 0 := by
+      rw [smul_comm, smul_comm (p ^ n), hn, smul_zero, smul_zero]
+    have h2 : p ^ n • (heckeGen ⟨ℓ, hℓ⟩ • (σ • x)) = 0 := by
+      rw [smul_comm, smul_comm (p ^ n), hn, smul_zero, smul_zero]
+    have h3 : p ^ n • ((ℓ : ℕ) • x) = 0 := by
+      rw [smul_comm, hn, smul_zero]
+    rw [smul_add, smul_sub, h1, h2, h3, sub_zero, add_zero]
+  have hker : sp (σ • σ • x - heckeGen ⟨ℓ, hℓ⟩ • (σ • x) + ℓ • x) = 0 := by
+    rw [map_add, map_sub, hsp.frobenius_comm σ hσ, hsp.frobenius_comm σ hσ,
+      hsp.hecke_comm, hsp.frobenius_comm σ hσ, map_nsmul]
+    exact hES (sp x)
+  exact hsp.injective_torsion _ htor hker
