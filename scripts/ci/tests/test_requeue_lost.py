@@ -32,18 +32,18 @@ STEPS_OK = [{"conclusion": "success"}] * 20 + [
     {"conclusion": "skipped"},
 ]  # as the real job: nothing failed, the job just ended
 BRANCHES = {
-    885: "gh-readonly-queue/main/pr-885-ea0f51fcc6e0bb3f3d0e5a3b0b2c0c9e2d8f7a61",
-    910: "gh-readonly-queue/main/pr-910-bb7797b81ac03d72721e86e38f8a717e02ef94a1",
+    885: "gh-readonly-queue/main/pr-885-ea0f51fc",
+    910: "gh-readonly-queue/main/pr-910-bb7797b8",
 }
 
 
 class Fake:
     """gh, by what it is asked: the jobs of the run, the annotations, the PR, its timeline, the queue entry, and what is written"""
 
-    def __init__(self, job=None, notes=None, state="OPEN", labels=(), removals=1, entries=(None,)):
+    def __init__(self, job=None, notes=None, state="OPEN", labels=(), removals=1, entries=(None,), commit_time="2026-11-18T09:17:00Z"):
         self.job = job if job is not None else {"id": 77, "name": "queue-build", "conclusion": "failure", "steps": STEPS_OK}
         self.notes = notes if notes is not None else [NOTICE, REAL_ANNOTATION]
-        self.state, self.labels, self.removals = state, labels, removals
+        self.state, self.labels, self.removals, self.commit_time = state, labels, removals, commit_time
         self.entries = list(entries)  # the answers to "is the PR in the queue?", one per look; the last repeats
         self.writes = []  # (arguments, token)
         self.sleeps = 0
@@ -55,7 +55,16 @@ class Fake:
         if "/annotations" in a:
             return json.dumps(self.notes)
         if args[:2] == ["pr", "view"]:
-            return json.dumps({"state": self.state, "labels": [{"name": x} for x in self.labels]})
+            return json.dumps(
+                {
+                    "state": self.state,
+                    "labels": [{"name": x} for x in self.labels],
+                    "headRefOid": "8801e3ce",
+                    "commits": [{"committedDate": "2026-11-17T20:00:00Z"}, {"committedDate": self.commit_time}],
+                }
+            )
+        if "/actions/runs/" in a and "/jobs" not in a:
+            return "2026-11-18T10:00:20Z\n"
         if "/timeline" in a:
             return "\n".join(["2026-11-18T05:42:38Z"] * self.removals)
         if args[:2] == ["api", "graphql"]:
@@ -119,7 +128,7 @@ class Requeue(unittest.TestCase):
         rc, said = f.run()
         self.assertEqual(rc, 0)
         self.assertEqual(f.sleeps, 2)
-        self.assertEqual(f.merges(), [(["pr", "merge", "910", "-R", REPO, "--auto"], "bot-token")])
+        self.assertEqual(f.merges(), [(["pr", "merge", "910", "-R", REPO, "--auto", "--match-head-commit", "8801e3ce"], "bot-token")])
         self.assertTrue(any(a[:2] == ["pr", "comment"] and t == "bot-token" for a, t in f.writes))
         self.assertIn("re-queued", said[-1])
 
@@ -141,6 +150,56 @@ class Requeue(unittest.TestCase):
         f = Fake(removals=rl.MAX_REMOVALS)
         f.run()
         self.assertEqual(len(f.merges()), 1)
+
+    def test_a_commit_newer_than_the_group_is_never_requeued(self):
+        """gitar on #915: a push during the dying build or the wait takes the PR out of the queue; the new head was never built and nobody queued it"""
+        for when in ("2026-11-18T10:00:21Z", "2026-11-18T11:30:00Z", ""):
+            f = Fake(commit_time=when)
+            f.run()
+            self.assertEqual(f.writes, [], when)
+        f = Fake(commit_time="2026-11-18T10:00:20Z")  # not newer than the group's run: queued
+        f.run()
+        self.assertEqual(len(f.merges()), 1)
+
+    def test_the_removals_are_counted_after_the_queue_let_go(self):
+        """gitar on #915: read before the wait loop, the queue's own removal event is often not in the timeline yet, and the cap is off by one"""
+        order = []
+
+        class Late(Fake):
+            def gh(self, args, token=None):
+                a = " ".join(args)
+                if "/timeline" in a:
+                    order.append("timeline")
+                if args[:2] == ["api", "graphql"]:
+                    order.append("queue look")
+                return super().gh(args, token)
+
+        f = Late(entries=({"id": "E"}, None))
+        f.run()
+        self.assertEqual(order, ["queue look", "queue look", "timeline"])
+
+    def test_mutant_the_removals_counted_before_the_wait(self):
+        src = inspect.getsource(rl.main)
+        a = src.index("    timeline = gh(")
+        b = src.index("    if not bot_token:")
+        block = src[a:b]
+        mutated = src.replace(block, "").replace("    owner, name = repo.split", block + "    owner, name = repo.split", 1)
+        ns = dict(vars(rl))
+        exec(mutated, ns)
+        order = []
+
+        class Spy(Fake):
+            def gh(self, args, token=None):
+                a = " ".join(args)
+                if "/timeline" in a:
+                    order.append("timeline")
+                if args[:2] == ["api", "graphql"]:
+                    order.append("queue look")
+                return super().gh(args, token)
+
+        f = Spy(entries=({"id": "E"}, None))
+        ns["main"]("1", BRANCHES[910], REPO, "t", gh=f.gh, sleep=lambda s: None, say=lambda s: None)
+        self.assertEqual(order[0], "timeline")  # the mutant counts first; the real main counts last (test above)
 
     def test_still_in_the_queue_after_the_wait_does_nothing(self):
         f = Fake(entries=({"id": "E"},))
@@ -164,8 +223,8 @@ class Requeue(unittest.TestCase):
 
     def test_every_real_case_group_is_recognised(self):
         for b in (
-            "gh-readonly-queue/main/pr-897-8a628b99838e8e19adcab5c881da57" + "0123456",
-            "gh-readonly-queue/main/pr-907-f1a829d03b1e09b1096bab0d0439c056ac8e82b4",
+            "gh-readonly-queue/main/pr-897-8a628b99",
+            "gh-readonly-queue/main/pr-907-f1a829d0",
         ):
             self.assertIsNotNone(rl.group_pr(b))
 
@@ -191,7 +250,7 @@ class Requeue(unittest.TestCase):
 
     def test_the_merge_never_uses_the_jobs_token(self):
         src = inspect.getsource(rl.main)
-        self.assertIn('gh(["pr", "merge", str(pr), "-R", repo, "--auto"], bot_token)', src)
+        self.assertIn('gh(["pr", "merge", str(pr), "-R", repo, "--auto", "--match-head-commit", head], bot_token)', src)
 
 
 if __name__ == "__main__":

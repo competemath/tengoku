@@ -9,8 +9,9 @@ dropped from the queue with nothing for its author to fix. The part is clean; on
 This runs from `requeue-lost.yml` (a workflow_run of queue-gate, main's copy). The facts about the failed run come from the API and are data. It
 re-queues only when ALL of this holds: the group is one PR's (`gh-readonly-queue/main/pr-N-<sha>`), the `queue-build` job failed with no failing
 step AND its annotation says the runner lost communication, the PR is open and not labelled `ejected` (a real failure is explained and labelled by
-`queue_comment.py`), and the queue has removed it at most MAX_REMOVALS times (a build that keeps dying is for a person). The re-queue is
-`gh pr merge --auto` with the bot's token, as `rearm.yml` does: an entry the job token starts does not start the queue's own workflows."""
+`queue_comment.py`), no commit of the PR is newer than the group's run (a newer head was never built; `--match-head-commit` pins the re-queue to the head
+seen here), and the queue has removed it at most MAX_REMOVALS times, counted after it let go of the entry (a build that keeps dying is for a person). The
+re-queue is `gh pr merge --auto` with the bot's token, as `rearm.yml` does: an entry the job token starts does not start the queue's own workflows."""
 
 from __future__ import annotations
 
@@ -65,28 +66,16 @@ def main(run_id: str, branch: str, repo: str, bot_token: str, gh=sh, sleep=time.
     if not lost_runner(build[0], notes):
         say(f"#{pr}: the build did not lose its runner; its failure is explained on the PR")
         return 0
-    info = json.loads(gh(["pr", "view", str(pr), "-R", repo, "--json", "state,labels"]))
+    info = json.loads(gh(["pr", "view", str(pr), "-R", repo, "--json", "state,labels,headRefOid,commits"]))
     if info["state"] != "OPEN" or "ejected" in [x["name"] for x in info["labels"]]:
         say(f"#{pr}: not open, or labelled ejected: left alone")
         return 0
-    removals = len(
-        [
-            x
-            for x in gh(
-                [
-                    "api",
-                    "--paginate",
-                    f"repos/{repo}/issues/{pr}/timeline",
-                    "--jq",
-                    '.[] | select(.event == "removed_from_merge_queue") | .created_at',
-                ]
-            ).split()
-            if x
-        ]
-    )
-    if removals > MAX_REMOVALS:
-        say(f"#{pr}: the queue has removed it {removals} times; left to a person")
+    started = gh(["api", f"repos/{repo}/actions/runs/{run_id}", "--jq", ".run_started_at"]).strip()
+    last_commit = (info.get("commits") or [{}])[-1].get("committedDate", "")
+    if not started or not last_commit or last_commit > started:  # ISO times of one format compare as text; a missing time is not a guess
+        say(f"#{pr}: a commit ({last_commit or 'unknown time'}) is not older than the group's run ({started or 'unknown'}): left alone")
         return 0
+    head = info["headRefOid"]
     owner, name = repo.split("/")
     query = f'{{repository(owner:"{owner}",name:"{name}"){{pullRequest(number:{pr}){{mergeQueueEntry{{id}}}}}}}}'
     for _ in range(WAIT_TRIES):  # the queue takes the entry out a moment after the verdict
@@ -97,10 +86,23 @@ def main(run_id: str, branch: str, repo: str, bot_token: str, gh=sh, sleep=time.
     else:
         say(f"#{pr}: still in the queue after the wait; nothing to do")
         return 0
+    timeline = gh(
+        [
+            "api",
+            "--paginate",
+            f"repos/{repo}/issues/{pr}/timeline",
+            "--jq",
+            '.[] | select(.event == "removed_from_merge_queue") | .created_at',
+        ]
+    )
+    removals = len([x for x in timeline.split() if x])  # counted now: the queue's removal event is in the timeline once the entry is gone
+    if removals > MAX_REMOVALS:
+        say(f"#{pr}: the queue has removed it {removals} times; left to a person")
+        return 0
     if not bot_token:
         say(f"#{pr}: lost its runner ({removals} removals); no TENGOKU_BOT_TOKEN, so it is NOT re-queued (press Merge when ready)")
         return 0
-    gh(["pr", "merge", str(pr), "-R", repo, "--auto"], bot_token)
+    gh(["pr", "merge", str(pr), "-R", repo, "--auto", "--match-head-commit", head], bot_token)
     body = (
         f"**Back in the merge queue — the build lost its runner, not your change.** GitHub's hosted runner lost contact with the server during this PR's "
         f"queue build (run {run_id}), so nothing was compiled or judged. It is queued again by itself (removal {removals} of {MAX_REMOVALS} allowed)."
