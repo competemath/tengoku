@@ -24,7 +24,9 @@ variable {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensi
   [MeasurableSpace F] [BorelSpace F]
 
 /-- **Sard's theorem, low-dimensional regime.** The image of any set by a `C¹` map to a space
-of larger dimension is null.-/
+of larger dimension is null.
+@isnad1 id=eq.2h5v.s7.4727863e2052 from=translated src=- shape=e61798be vocab=9bc77851
+-/
 theorem measure_image_eq_zero_of_finrank_lt (μ : Measure F) [μ.IsAddHaarMeasure]
     {f : E → F} (hf : ContDiff ℝ 1 f) (s : Set E) (hEF : finrank ℝ E < finrank ℝ F) :
     μ (f '' s) = 0 := by

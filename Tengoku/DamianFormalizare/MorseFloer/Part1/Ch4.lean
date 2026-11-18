@@ -152,14 +152,22 @@ noncomputable def cyclesAt (ind : Crit → ℕ) (cnt : Crit → Crit → R) :
   | 0 => ⊤
   | (k + 1) => cycles ind cnt k
 
+/--
+@isnad1 id=eq.0h4v.s8.44d29f273cff from=translated src=- shape=eeb3f516 vocab=dce3f3e8
+-/
 @[simp] theorem cyclesAt_zero (ind : Crit → ℕ) (cnt : Crit → Crit → R) :
     cyclesAt ind cnt 0 = ⊤ := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.e641dcfcb6b8 from=translated src=- shape=f3e3a754 vocab=5109629d
+-/
 @[simp] theorem cyclesAt_succ (ind : Crit → ℕ) (cnt : Crit → Crit → R) (k : ℕ) :
     cyclesAt ind cnt (k + 1) = cycles ind cnt k := rfl
 
 /-- `Im ∂ₖ₊₁ ⊆ Ker ∂ₖ` in every degree, so the quotient below is the book's
-`Hₖ = Ker ∂ₖ / Im ∂ₖ₊₁`.-/
+`Hₖ = Ker ∂ₖ / Im ∂ₖ₊₁`.
+@isnad1 id=le.1h5v.s8.6268311c80e6 from=translated src=- shape=96a7776d vocab=c9b8393d
+-/
 theorem boundaries_le_cyclesAt (h : BrokenPairs ind cnt) (k : ℕ) :
     boundaries ind cnt k ≤ cyclesAt ind cnt k := by
   cases k with
@@ -182,6 +190,9 @@ variable {K : Type*} [Field K] {Crit : Type*} [Fintype Crit]
 /-- `cₖ(f)`: the number of critical points of index `k` (§4.4).-/
 def numCrit (ind : Crit → ℕ) (k : ℕ) : ℕ := Fintype.card (CritSet ind k)
 
+/--
+@isnad1 id=eq.0h4v.s6.ca5978f8ee4d from=translated src=- shape=f070e73b vocab=4db758d0
+-/
 theorem finrank_chains (ind : Crit → ℕ) (k : ℕ) :
     Module.finrank K (Chains K ind k) = numCrit ind k :=
   Module.finrank_fintype_fun_eq_card K
@@ -195,7 +206,9 @@ noncomputable def betti (ind : Crit → ℕ) (cnt : Crit → Crit → K) (k : �
 noncomputable def bdim (ind : Crit → ℕ) (cnt : Crit → Crit → K) (k : ℕ) : ℕ :=
   Module.finrank K (boundaries ind cnt k)
 
-/-- `dim Hₖ + dim Bₖ = dim Zₖ`: the defining property of the quotient.-/
+/-- `dim Hₖ + dim Bₖ = dim Zₖ`: the defining property of the quotient.
+@isnad1 id=eq.1h5v.s8.fac6d2751f20 from=translated src=- shape=ab91d2bc vocab=2f219275
+-/
 theorem betti_add_bdim (h : BrokenPairs ind cnt) (k : ℕ) :
     betti ind cnt k + bdim ind cnt k = Module.finrank K (cyclesAt ind cnt k) := by
   have h2 : Module.finrank K (boundariesIn ind cnt k) = bdim ind cnt k :=
@@ -207,7 +220,9 @@ theorem betti_add_bdim (h : BrokenPairs ind cnt) (k : ℕ) :
 
 /-- **Rank–nullity for `∂ₖ : Cₖ₊₁ → Cₖ`**: `dim Bₖ + dim Zₖ₊₁ = cₖ₊₁`.  This is
 the "kernel–image theorem" the book invokes in Remark 4.4.2, and the reason for
-working over a field.-/
+working over a field.
+@isnad1 id=eq.0h5v.s9.dad891325893 from=translated src=- shape=daa2656e vocab=2d139d69
+-/
 theorem bdim_add_finrank_cyclesAt (ind : Crit → ℕ) (cnt : Crit → Crit → K) (k : ℕ) :
     bdim ind cnt k + Module.finrank K (cyclesAt ind cnt (k + 1)) = numCrit ind (k + 1) := by
   have h : Module.finrank K (LinearMap.range (dLin ind cnt k))
@@ -217,14 +232,18 @@ theorem bdim_add_finrank_cyclesAt (ind : Crit → ℕ) (cnt : Crit → Crit → 
   rw [finrank_chains] at h
   exact h
 
-/-- `c₀ = β₀ + dim B₀`.-/
+/-- `c₀ = β₀ + dim B₀`.
+@isnad1 id=eq.1h4v.s6.b4a27bc140d0 from=translated src=- shape=eee100c2 vocab=83802828
+-/
 theorem numCrit_zero_eq (h : BrokenPairs ind cnt) :
     numCrit ind 0 = betti ind cnt 0 + bdim ind cnt 0 := by
   have h1 := betti_add_bdim h 0
   rw [cyclesAt_zero, finrank_top, finrank_chains] at h1
   omega
 
-/-- `cₖ₊₁ = dim Bₖ + (βₖ₊₁ + dim Bₖ₊₁)`.-/
+/-- `cₖ₊₁ = dim Bₖ + (βₖ₊₁ + dim Bₖ₊₁)`.
+@isnad1 id=eq.1h5v.s6.ce20239c49ed from=translated src=- shape=d732c87e vocab=83802828
+-/
 theorem numCrit_succ_eq (h : BrokenPairs ind cnt) (k : ℕ) :
     numCrit ind (k + 1) = bdim ind cnt k + (betti ind cnt (k + 1) + bdim ind cnt (k + 1)) := by
   have h1 := betti_add_bdim h (k + 1)
@@ -232,12 +251,16 @@ theorem numCrit_succ_eq (h : BrokenPairs ind cnt) (k : ℕ) :
   omega
 
 omit [Fintype Crit] in
-/-- Above the top index there are no critical points.-/
+/-- Above the top index there are no critical points.
+@isnad1 id=isempty.2h4v.s4.211a3dc0ecbb from=translated src=- shape=45f3f6cb vocab=0e380169
+-/
 theorem isEmpty_critSet {f : Crit → ℕ} {n m : ℕ} (hf : ∀ c, f c ≤ n) (hm : n < m) :
     IsEmpty (CritSet f m) :=
   ⟨fun c => by have h1 := hf c.1; have h2 := c.2; omega⟩
 
-/-- If there is no critical point of index `k + 1` then `∂ₖ = 0`.-/
+/-- If there is no critical point of index `k + 1` then `∂ₖ = 0`.
+@isnad1 id=eq.1h5v.s5.7ff9fc50e717 from=translated src=- shape=802911fb vocab=dfaa34bc
+-/
 theorem bdim_eq_zero_of_isEmpty {k : ℕ} (hE : IsEmpty (CritSet ind (k + 1))) :
     bdim ind cnt k = 0 := by
   have h0 : dLin ind cnt k = 0 := by
@@ -247,7 +270,9 @@ theorem bdim_eq_zero_of_isEmpty {k : ℕ} (hE : IsEmpty (CritSet ind (k + 1))) :
   show Module.finrank K (LinearMap.range (dLin ind cnt k)) = 0
   rw [h0, LinearMap.range_zero, finrank_bot]
 
-/-- The total number of critical points is the sum of the `cₖ`.-/
+/-- The total number of critical points is the sum of the `cₖ`.
+@isnad1 id=eq.1h3v.s5.efb02dc0ef4d from=translated src=- shape=a19b05c9 vocab=7f9d87d0
+-/
 theorem card_eq_sum_numCrit {N : ℕ} (hN : ∀ c, ind c ≤ N) :
     Fintype.card Crit = ∑ k ∈ Finset.range (N + 1), numCrit ind k := by
   rw [← Finset.card_univ,
@@ -255,7 +280,9 @@ theorem card_eq_sum_numCrit {N : ℕ} (hN : ∀ c, ind c ≤ N) :
       (fun c _ => Finset.mem_range.mpr (Nat.lt_succ_of_le (hN c)))]
   exact Finset.sum_congr rfl fun k _ => (Fintype.card_subtype _).symm
 
-/-- A complex with vanishing differential has `βₖ = cₖ`.-/
+/-- A complex with vanishing differential has `βₖ = cₖ`.
+@isnad1 id=eq.0h4v.s5.bb87ae2cdab1 from=translated src=- shape=050116d7 vocab=378c7500
+-/
 theorem betti_of_count_zero (ind : Crit → ℕ) (k : ℕ) :
     betti ind (fun _ _ => (0 : K)) k = numCrit ind k := by
   have hb : bdim ind (fun _ _ => (0 : K)) k = 0 := by
@@ -292,7 +319,9 @@ the two complexes, which is Proposition 4.2.1. -/
 section Sums
 
 /-- A sum over the critical points of index `m` is the sum over all critical
-points of the function extended by zero.-/
+points of the function extended by zero.
+@isnad1 id=eq.0h5v.s6.fc51527fa44d from=translated src=- shape=f81dff2e vocab=13db3b13
+-/
 theorem sum_critSet_eq {Crit : Type*} [Fintype Crit] {M : Type*} [AddCommMonoid M]
     (ind : Crit → ℕ) (m : ℕ) (f : Crit → M) :
     ∑ c : CritSet ind m, f c.1 = ∑ c : Crit, if ind c = m then f c else 0 := by
@@ -301,7 +330,9 @@ theorem sum_critSet_eq {Crit : Type*} [Fintype Crit] {M : Type*} [AddCommMonoid 
     Finset.sum_subtype _ (fun x => by simp) f
   rw [← h1, Finset.sum_filter]
 
-/-- `cₖ(f)`, the number of critical points of index `k`, as a sum of indicators.-/
+/-- `cₖ(f)`, the number of critical points of index `k`, as a sum of indicators.
+@isnad1 id=eq.0h3v.s5.15d0dd538f1b from=translated src=- shape=25a3a585 vocab=88b835a0
+-/
 theorem numCrit_eq_sum {Crit : Type*} [Fintype Crit] (ind : Crit → ℕ) (m : ℕ) :
     numCrit ind m = ∑ c : Crit, if ind c = m then 1 else 0 := by
   have h := sum_critSet_eq ind m (fun _ => (1 : ℕ))
@@ -361,6 +392,9 @@ def totalD (ind : Crit → ℕ) (cnt : Crit → Crit → K) : Matrix Crit Crit K
   Matrix.of fun b a => if ind a = ind b + 1 then cnt a b else 0
 
 omit [Fintype Crit] in
+/--
+@isnad1 id=eq.0h6v.s6.f4b3404c4085 from=translated src=- shape=7de430e7 vocab=ee66a38d
+-/
 theorem totalD_apply (ind : Crit → ℕ) (cnt : Crit → Crit → K) (b a : Crit) :
     totalD ind cnt b a = if ind a = ind b + 1 then cnt a b else 0 := rfl
 
@@ -383,25 +417,40 @@ def resChains (ind : Crit → ℕ) (k : ℕ) : (Crit → K) →ₗ[K] Chains K i
   LinearMap.funLeft K K Subtype.val
 
 omit [Fintype Crit] in
+/--
+@isnad1 id=eq.1h6v.s8.1b1edf3ece04 from=translated src=- shape=a3ee0f2b vocab=3add4563
+-/
 theorem extChains_apply_of_eq {ind : Crit → ℕ} {k : ℕ} (x : Chains K ind k) {c : Crit}
     (h : ind c = k) : extChains ind k x c = x ⟨c, h⟩ := dite_eq_left h
 
 omit [Fintype Crit] in
+/--
+@isnad1 id=eq.1h6v.s8.3fa8ef841487 from=translated src=- shape=5dd2802f vocab=5e1ac2a2
+-/
 theorem extChains_apply_of_ne {ind : Crit → ℕ} {k : ℕ} (x : Chains K ind k) {c : Crit}
     (h : ind c ≠ k) : extChains ind k x c = 0 := dite_eq_right h
 
 omit [Fintype Crit] in
+/--
+@isnad1 id=eq.0h5v.s9.bff54a59496c from=translated src=- shape=969ed7f5 vocab=06c0d3b7
+-/
 theorem resChains_extChains (ind : Crit → ℕ) (k : ℕ) (x : Chains K ind k) :
     resChains ind k (extChains ind k x) = x := by
   funext c
   exact extChains_apply_of_eq x c.2
 
 omit [Fintype Crit] in
+/--
+@isnad1 id=injectiv.0h4v.s8.b020c6e00d33 from=translated src=- shape=83eb246a vocab=20b66dfc
+-/
 theorem extChains_injective (ind : Crit → ℕ) (k : ℕ) :
     Function.Injective (extChains (K := K) ind k) :=
   Function.LeftInverse.injective (resChains_extChains ind k)
 
 omit [Fintype Crit] in
+/--
+@isnad1 id=eq.0h6v.s9.bba5bd47a091 from=translated src=- shape=3af6bd0e vocab=a79aa682
+-/
 theorem extChains_resChains_apply (ind : Crit → ℕ) (k : ℕ) (x : Crit → K) (c : Crit) :
     extChains ind k (resChains ind k x) c = if ind c = k then x c else 0 := by
   by_cases h : ind c = k
@@ -409,7 +458,9 @@ theorem extChains_resChains_apply (ind : Crit → ℕ) (k : ℕ) (x : Crit → K
     rfl
   · rw [extChains_apply_of_ne _ h, ite_eq_right h]
 
-/-- Reading the total differential in degree `k` gives back `∂ₖ`.-/
+/-- Reading the total differential in degree `k` gives back `∂ₖ`.
+@isnad1 id=eq.0h6v.s10.489a9baf8a71 from=translated src=- shape=49ca5ee6 vocab=004394da
+-/
 theorem resChains_totalD_mulVec (ind : Crit → ℕ) (cnt : Crit → Crit → K) (k : ℕ)
     (w : Crit → K) :
     resChains ind k (totalD ind cnt *ᵥ w) = dLin ind cnt k (resChains ind (k + 1) w) := by
@@ -423,7 +474,9 @@ theorem resChains_totalD_mulVec (ind : Crit → ℕ) (cnt : Crit → Crit → K)
   · rw [ite_eq_left (by omega), ite_eq_left ha, mul_comm]
   · rw [ite_eq_right (by omega), ite_eq_right ha, zero_mul]
 
-/-- The total differential kills everything of degree `0`.-/
+/-- The total differential kills everything of degree `0`.
+@isnad1 id=eq.0h5v.s8.8f75245e1729 from=translated src=- shape=7250f8b3 vocab=322c62b8
+-/
 theorem totalD_mulVec_extChains_zero (ind : Crit → ℕ) (cnt : Crit → Crit → K)
     (x : Chains K ind 0) : totalD ind cnt *ᵥ extChains ind 0 x = 0 := by
   funext b
@@ -434,7 +487,9 @@ theorem totalD_mulVec_extChains_zero (ind : Crit → ℕ) (cnt : Crit → Crit �
   · rw [extChains_apply_of_ne x (show ind a ≠ 0 by omega), mul_zero]
   · rw [ite_eq_right ha, zero_mul]
 
-/-- On chains of degree `k + 1` the total differential is `∂ₖ`.-/
+/-- On chains of degree `k + 1` the total differential is `∂ₖ`.
+@isnad1 id=eq.0h6v.s10.21577ff05293 from=translated src=- shape=3787a03d vocab=63e3c862
+-/
 theorem totalD_mulVec_extChains (ind : Crit → ℕ) (cnt : Crit → Crit → K) (k : ℕ)
     (x : Chains K ind (k + 1)) :
     totalD ind cnt *ᵥ extChains ind (k + 1) x = extChains ind k (dLin ind cnt k x) := by
@@ -452,7 +507,9 @@ theorem totalD_mulVec_extChains (ind : Crit → ℕ) (cnt : Crit → Crit → K)
     · rw [extChains_apply_of_ne x (show ind a ≠ k + 1 by omega), mul_zero]
     · rw [ite_eq_right ha, zero_mul]
 
-/-- `BrokenPairs` says exactly that the total differential squares to zero.-/
+/-- `BrokenPairs` says exactly that the total differential squares to zero.
+@isnad1 id=eq.1h4v.s6.6bd2a3988289 from=translated src=- shape=6a09d6ca vocab=86ba884c
+-/
 theorem totalD_mul_self {ind : Crit → ℕ} {cnt : Crit → Crit → K} (h : BrokenPairs ind cnt) :
     totalD ind cnt * totalD ind cnt = 0 := by
   ext b a
@@ -473,7 +530,9 @@ theorem totalD_mul_self {ind : Crit → ℕ} {cnt : Crit → Crit → K} (h : Br
     · rw [ite_eq_right hc, zero_mul]
 
 /-- A chain is a cycle exactly when the total differential kills its extension
-by zero; in degree `0` both conditions always hold.-/
+by zero; in degree `0` both conditions always hold.
+@isnad1 id=iff.0h6v.s9.d91b4b6fb8d3 from=translated src=- shape=a1f269e3 vocab=9ffdecd2
+-/
 theorem mem_cyclesAt_iff (ind : Crit → ℕ) (cnt : Crit → Crit → K) (k : ℕ)
     (x : Chains K ind k) :
     x ∈ cyclesAt ind cnt k ↔ totalD ind cnt *ᵥ extChains ind k x = 0 := by
@@ -491,7 +550,9 @@ theorem mem_cyclesAt_iff (ind : Crit → ℕ) (cnt : Crit → Crit → K) (k : �
         exact extChains_injective ind k (by rw [hx, map_zero])
 
 omit [Fintype Crit] in
-/-- A graded matrix commutes with taking the degree `k` part.-/
+/-- A graded matrix commutes with taking the degree `k` part.
+@isnad1 id=eq.1h8v.s10.9a619f964178 from=translated src=- shape=94f3bf0c vocab=d1ad7014
+-/
 theorem extChains_resChains_mulVec {CH : Type*} [Fintype CH] (ind : Crit → ℕ)
     (indH : CH → ℕ) (I : Matrix Crit CH K) (hI : ∀ c e, I c e ≠ 0 → ind c = indH e)
     (k : ℕ) (y : CH → K) :
@@ -527,7 +588,9 @@ onto a based graded vector space with zero differential: a degree-preserving `I`
 into the cycles, a `P` killing the boundaries with `P ∘ I = 1`, and a homotopy
 `Hm` with `I ∘ P = 1 + (∂ Hm + Hm ∂)`.  Then `βₖ` is the number of generators of
 degree `k`.  Proof: every cycle `z` equals `I P z − ∂(Hm z)`, so in each degree
-the cycles are the direct sum of the image of `I` and the boundaries.-/
+the cycles are the direct sum of the image of `I` and the boundaries.
+@isnad1 id=eq.6h10v.s9.579c51a12fbe from=translated src=- shape=5cabf7f5 vocab=e2b459c8
+-/
 theorem betti_eq_numCrit_of_retract [DecidableEq Crit] {ind : Crit → ℕ} {cnt : Crit → Crit → K}
     (h : BrokenPairs ind cnt) {CH : Type*} [Fintype CH] [DecidableEq CH] (indH : CH → ℕ)
     (I : Matrix Crit CH K) (P : Matrix CH Crit K) (Hm : Matrix Crit Crit K)
@@ -601,7 +664,9 @@ theorem betti_eq_numCrit_of_retract [DecidableEq Crit] {ind : Crit → ℕ} {cnt
 
 /-- Over a field every matrix has a generalised inverse: some `G` with
 `A G A = A`.  Take a right inverse of `A` onto its range, composed with a
-projection of the target onto that range.-/
+projection of the target onto that range.
+@isnad1 id=ex.0h4v.s6.f67bb76e835c from=translated src=- shape=95bf9028 vocab=dd3297f7
+-/
 theorem exists_mul_mul_eq_self {m n : Type*} [Fintype m] [Fintype n] [DecidableEq m]
     [DecidableEq n] (A : Matrix m n K) : ∃ G : Matrix n m K, A * G * A = A := by
   obtain ⟨s, hs⟩ := LinearMap.exists_rightInverse_of_surjective (Matrix.toLin' A).rangeRestrict
@@ -634,7 +699,9 @@ indexes a basis of the `Uₖ`, `I` is the inclusion of that basis, `P` takes the
 coordinates of the projection onto `Cₖ` (along `Bₖ`) of the degree `k` part of
 `πZ x`, and `Hm = −G (πZ − I P)` is the homotopy.  The identity
 `I P = 1 + ∂ Hm + Hm ∂` holds because `πZ − I P` takes values in the
-boundaries, on which `∂ G` is the identity.-/
+boundaries, on which `∂ G` is the identity.
+@isnad1 id=ex.1h4v.s9.b4213e7e832d from=translated src=- shape=abf4e772 vocab=7c259934
+-/
 theorem exists_retract [DecidableEq Crit] {ind : Crit → ℕ} {cnt : Crit → Crit → K}
     (h : BrokenPairs ind cnt) :
     ∃ (CH : Type) (_ : Fintype CH) (_ : DecidableEq CH) (indH : CH → ℕ)
@@ -887,7 +954,9 @@ def prodCount (cnt₁ : Crit₁ → Crit₁ → K) (cnt₂ : Crit₂ → Crit₂
 omit [Fintype Crit₁] [Fintype Crit₂] in
 /-- The coefficient of `∂_{C⊗D}` between two basis elements: `∂ ⊗ 1 + 1 ⊗ ∂`
 counts a connection in the second factor when the first is unchanged, and one in
-the first factor when the second is unchanged.-/
+the first factor when the second is unchanged.
+@isnad1 id=eq.0h9v.s7.77ee18a7f388 from=translated src=- shape=401845d3 vocab=efb1161d
+-/
 theorem prodCount_apply (cnt₁ : Crit₁ → Crit₁ → K) (cnt₂ : Crit₂ → Crit₂ → K)
     (a₁ b₁ : Crit₁) (a₂ b₂ : Crit₂) :
     prodCount cnt₁ cnt₂ (a₁, a₂) (b₁, b₂)
@@ -896,7 +965,9 @@ theorem prodCount_apply (cnt₁ : Crit₁ → Crit₁ → K) (cnt₂ : Crit₂ �
 /-- The same for the product complex: a sum over the critical points of `C ⊗ D`
 of total degree `m` is a double sum over the two factors, restricted to the
 pairs of degrees adding up to `m`.  This is the statement that
-`(C ⊗ D)ₘ = ⨁_{i+j=m} Cᵢ ⊗ Dⱼ` (§15.1.a), read on the canonical bases.-/
+`(C ⊗ D)ₘ = ⨁_{i+j=m} Cᵢ ⊗ Dⱼ` (§15.1.a), read on the canonical bases.
+@isnad1 id=eq.0h7v.s7.c86b107a6965 from=translated src=- shape=5adc69e8 vocab=49b4bfbb
+-/
 theorem sum_critSet_prod {Crit₁ Crit₂ : Type*} [Fintype Crit₁] [Fintype Crit₂]
     {M : Type*} [AddCommMonoid M] (ind₁ : Crit₁ → ℕ) (ind₂ : Crit₂ → ℕ) (m : ℕ)
     (f : Crit₁ × Crit₂ → M) :
@@ -915,7 +986,9 @@ over `Z/2`.
 
 Proved: expanding `∂∂` gives four terms.  The two "square" terms vanish because
 `∂` does in each factor; the two cross terms are *equal*, so they cancel exactly
-when `2 = 0`, which is the book's footnote about `Z/2`.-/
+when `2 = 0`, which is the book's footnote about `Z/2`.
+@isnad1 id=brokenpa.3h7v.s6.77cbcd409bfd from=translated src=- shape=a8a6b7e3 vocab=341aed29
+-/
 theorem brokenPairs_prod {ind₁ : Crit₁ → ℕ} {ind₂ : Crit₂ → ℕ}
     {cnt₁ : Crit₁ → Crit₁ → K} {cnt₂ : Crit₂ → Crit₂ → K}
     (h₁ : BrokenPairs ind₁ cnt₁) (h₂ : BrokenPairs ind₂ cnt₂) (h2 : (2 : K) = 0) :
@@ -1052,7 +1125,9 @@ theorem brokenPairs_prod {ind₁ : Crit₁ → ℕ} {ind₂ : Crit₂ → ℕ}
 
 /-- **The graded vector space underlying the product complex**: the degree `k`
 part of `C ⊗ D` has dimension `Σ_{i+j=k} dim Cᵢ · dim Dⱼ`, which is
-`(C ⊗ D)ₖ = ⨁_{i+j=k} Cᵢ ⊗ Dⱼ` counted on the canonical bases.-/
+`(C ⊗ D)ₖ = ⨁_{i+j=k} Cᵢ ⊗ Dⱼ` counted on the canonical bases.
+@isnad1 id=eq.0h5v.s6.a16227e1646d from=translated src=- shape=1f2a798b vocab=c262986b
+-/
 theorem numCrit_prodIndex {Crit₁ Crit₂ : Type*} [Fintype Crit₁] [Fintype Crit₂]
     (ind₁ : Crit₁ → ℕ) (ind₂ : Crit₂ → ℕ) (k : ℕ) :
     numCrit (prodIndex ind₁ ind₂) k
@@ -1081,7 +1156,9 @@ theorem numCrit_prodIndex {Crit₁ Crit₂ : Type*} [Fintype Crit₁] [Fintype C
 
 omit [Fintype Crit₁] [Fintype Crit₂] in
 /-- The total differential of the product complex is `∂ ⊗ 1 + 1 ⊗ ∂`, as a
-Kronecker product of matrices.-/
+Kronecker product of matrices.
+@isnad1 id=eq.0h7v.s8.c5be4f073e7d from=translated src=- shape=d364676e vocab=1130b165
+-/
 theorem totalD_prod (ind₁ : Crit₁ → ℕ) (ind₂ : Crit₂ → ℕ) (cnt₁ : Crit₁ → Crit₁ → K)
     (cnt₂ : Crit₂ → Crit₂ → K) :
     totalD (prodIndex ind₁ ind₂) (prodCount cnt₁ cnt₂)
@@ -1116,7 +1193,9 @@ theorem totalD_prod (ind₁ : Crit₁ → ℕ) (ind₂ : Crit₂ → ℕ) (cnt�
 /-- **Künneth for retractions.**  Retractions of two complexes onto `H₁` and `H₂`
 tensor to a retraction of the product complex onto `H₁ ⊗ H₂`, with homotopy
 `Hm₁ ⊗ 1 + (I₁ P₁) ⊗ Hm₂`.  The two cross terms `Hm₁ ⊗ ∂₂` cancel because
-`2 = 0`, exactly as in `brokenPairs_prod`.-/
+`2 = 0`, exactly as in `brokenPairs_prod`.
+@isnad1 id=eq.12h18v.s10.3e7304c64b3f from=translated src=- shape=dd3ecc9a vocab=df95df9a
+-/
 theorem betti_prod_of_retract {ind₁ : Crit₁ → ℕ} {ind₂ : Crit₂ → ℕ}
     {cnt₁ : Crit₁ → Crit₁ → K} {cnt₂ : Crit₂ → Crit₂ → K}
     (hB : BrokenPairs (prodIndex ind₁ ind₂) (prodCount cnt₁ cnt₂)) (h2 : (2 : K) = 0)
@@ -1189,7 +1268,9 @@ whose dimensions are its Betti numbers (`exists_retract`,
 a retraction of the product complex (`betti_prod_of_retract`, where `2 = 0`
 cancels the cross terms exactly as in `brokenPairs_prod`), and the dimension
 count `numCrit_prodIndex` finishes.  This replaces the book's inductive
-splitting argument, which changes basis and so does not fit the based model.-/
+splitting argument, which changes basis and so does not fit the based model.
+@isnad1 id=eq.3h8v.s7.0ab7e24f733c from=translated src=- shape=76f9e6b3 vocab=06d6dc0e
+-/
 theorem betti_prod {ind₁ : Crit₁ → ℕ} {ind₂ : Crit₂ → ℕ}
     {cnt₁ : Crit₁ → Crit₁ → K} {cnt₂ : Crit₂ → Crit₂ → K}
     (h₁ : BrokenPairs ind₁ cnt₁) (h₂ : BrokenPairs ind₂ cnt₂) (h2 : (2 : K) = 0) (k : ℕ) :
@@ -1227,6 +1308,9 @@ def diffMatrix (ind : Crit → ℕ) (cnt : Crit → Crit → K) (k : ℕ) :
     Matrix (CritSet ind k) (CritSet ind (k + 1)) K :=
   Matrix.of fun b a => cnt a.1 b.1
 
+/--
+@isnad1 id=eq.0h5v.s8.d6fc95fd8cc3 from=translated src=- shape=7b6f9c66 vocab=3c5c51c8
+-/
 theorem dLin_eq_mulVecLin (ind : Crit → ℕ) (cnt : Crit → Crit → K) (k : ℕ) :
     dLin ind cnt k = (diffMatrix ind cnt k).mulVecLin := by
   refine LinearMap.ext fun x => funext fun b => ?_
@@ -1234,6 +1318,9 @@ theorem dLin_eq_mulVecLin (ind : Crit → ℕ) (cnt : Crit → Crit → K) (k : 
   simp only [Matrix.mulVecLin_apply, Matrix.mulVec, dotProduct, diffMatrix, Matrix.of_apply]
   exact Finset.sum_congr rfl fun a _ => mul_comm _ _
 
+/--
+@isnad1 id=eq.0h5v.s6.030bea28f431 from=translated src=- shape=80429abc vocab=ac547c77
+-/
 theorem bdim_eq_rank (ind : Crit → ℕ) (cnt : Crit → Crit → K) (k : ℕ) :
     bdim ind cnt k = (diffMatrix ind cnt k).rank := by
   show Module.finrank K (LinearMap.range (dLin ind cnt k)) = _
@@ -1252,14 +1339,18 @@ def dualCritEquiv (hn : ∀ c, ind c + ind' c = n) {k j : ℕ} (hkj : k + j = n)
     CritSet ind' j ≃ CritSet ind k :=
   Equiv.subtypeEquivRight fun c => by have := hn c; omega
 
-/-- `−f` has as many critical points of index `n − k` as `f` has of index `k`.-/
+/-- `−f` has as many critical points of index `n − k` as `f` has of index `k`.
+@isnad1 id=eq.2h6v.s5.8eb32ba6dcb0 from=translated src=- shape=1ecc8c82 vocab=418561e6
+-/
 theorem numCrit_dual (hn : ∀ c, ind c + ind' c = n) {k j : ℕ} (hkj : k + j = n) :
     numCrit ind' j = numCrit ind k :=
   Fintype.card_congr (dualCritEquiv hn hkj)
 
 /-- The differential of the dual complex is the transpose of the differential of
 the original one, so it has the same rank.  This is where Poincaré duality
-actually happens; the linear algebra is `Matrix.rank_transpose`.-/
+actually happens; the linear algebra is `Matrix.rank_transpose`.
+@isnad1 id=eq.2h8v.s6.9f66852f4657 from=translated src=- shape=ddb02a78 vocab=1353f28a
+-/
 theorem bdim_dual (hn : ∀ c, ind c + ind' c = n) {k j : ℕ} (hkj : k + j + 1 = n) :
     bdim ind' (dualCount cnt) j = bdim ind cnt k := by
   rw [bdim_eq_rank, bdim_eq_rank,
@@ -1277,7 +1368,9 @@ Remark 1.3.3) and `dualCount cnt` is the transposed count function, i.e. the
 complex of `−f`; the conclusion is `β_{n−k}(−f) = βₖ(f)`.  The proof is the one
 the book indicates: the two complexes have the same numbers of generators in
 dual degrees and their differentials are transposes of each other, hence have
-equal ranks, and the Betti numbers are determined by those data.-/
+equal ranks, and the Betti numbers are determined by those data.
+@isnad1 id=eq.4h8v.s6.b15301c5e0dc from=translated src=- shape=989ec5f6 vocab=f9688d85
+-/
 theorem betti_dual (h : BrokenPairs ind cnt) (h' : BrokenPairs ind' (dualCount cnt))
     (hn : ∀ c, ind c + ind' c = n) {k j : ℕ} (hkj : k + j = n) :
     betti ind' (dualCount cnt) j = betti ind cnt k := by
@@ -1324,7 +1417,9 @@ theorem betti_dual (h : BrokenPairs ind cnt) (h' : BrokenPairs ind' (dualCount c
           omega
 
 /-- Over `ℤ` the free rank of `Zₖ / Bₖ` is `rank Zₖ − rank Bₖ` (rank–nullity holds over a
-domain).-/
+domain).
+@isnad1 id=eq.1h4v.s12.6d4bb555c80b from=translated src=- shape=c22a129b vocab=54bc2e75
+-/
 theorem finrank_int_quot_add {ind : Crit → ℕ} {cntZ : Crit → Crit → ℤ}
     (h : BrokenPairs ind cntZ) (k : ℕ) :
     Module.finrank ℤ (cyclesAt ind cntZ k ⧸ boundariesIn ind cntZ k)
@@ -1336,7 +1431,9 @@ theorem finrank_int_quot_add {ind : Crit → ℕ} {cntZ : Crit → Crit → ℤ}
   rw [← h2]
   exact Submodule.finrank_quotient_add_finrank _
 
-/-- Rank–nullity over `ℤ` for `∂ₖ : Cₖ₊₁ → Cₖ`.-/
+/-- Rank–nullity over `ℤ` for `∂ₖ : Cₖ₊₁ → Cₖ`.
+@isnad1 id=eq.0h4v.s11.145fc66a940f from=translated src=- shape=f7fc365b vocab=753de109
+-/
 theorem finrank_int_range_add (ind : Crit → ℕ) (cntZ : Crit → Crit → ℤ) (k : ℕ) :
     Module.finrank ℤ (LinearMap.range (dLin ind cntZ k))
       + Module.finrank ℤ (cyclesAt ind cntZ (k + 1)) = numCrit ind (k + 1) := by
@@ -1345,13 +1442,17 @@ theorem finrank_int_range_add (ind : Crit → ℕ) (cntZ : Crit → Crit → ℤ
     Module.finrank_fintype_fun_eq_card] at h1
   exact h1
 
-/-- Every chain of degree `0` is a cycle, so `rank Z₀ = c₀`.-/
+/-- Every chain of degree `0` is a cycle, so `rank Z₀ = c₀`.
+@isnad1 id=eq.0h3v.s9.8db4dfd01759 from=translated src=- shape=faefae77 vocab=0a3502a3
+-/
 theorem finrank_int_cyclesAt_zero (ind : Crit → ℕ) (cntZ : Crit → Crit → ℤ) :
     Module.finrank ℤ (cyclesAt ind cntZ 0) = numCrit ind 0 := by
   rw [cyclesAt_zero, finrank_top]
   exact Module.finrank_fintype_fun_eq_card ℤ
 
-/-- Rank–nullity over `ℤ` for an integer matrix.-/
+/-- Rank–nullity over `ℤ` for an integer matrix.
+@isnad1 id=eq.0h3v.s9.abdaabc77788 from=translated src=- shape=67c16a9b vocab=328a3d97
+-/
 theorem int_rank_add_finrank_ker {m n : Type*} [Fintype m] [Fintype n] (A : Matrix m n ℤ) :
     A.rank + Module.finrank ℤ (LinearMap.ker A.mulVecLin) = Fintype.card n := by
   have h1 := Submodule.finrank_quotient_add_finrank (LinearMap.ker A.mulVecLin)
@@ -1359,7 +1460,9 @@ theorem int_rank_add_finrank_ker {m n : Type*} [Fintype m] [Fintype n] (A : Matr
     Module.finrank_fintype_fun_eq_card] at h1
   exact h1
 
-/-- Over `ℤ`, `Aᵀ A x = 0` forces `A x = 0`: pair with `x` to get `‖A x‖² = 0`.-/
+/-- Over `ℤ`, `Aᵀ A x = 0` forces `A x = 0`: pair with `x` to get `‖A x‖² = 0`.
+@isnad1 id=eq.0h3v.s7.5177c60c6208 from=translated src=- shape=dd00da29 vocab=630ec971
+-/
 theorem int_ker_transpose_mul_self {m n : Type*} [Fintype m] [Fintype n] (A : Matrix m n ℤ) :
     LinearMap.ker (Aᵀ * A).mulVecLin = LinearMap.ker A.mulVecLin := by
   ext x
@@ -1372,7 +1475,9 @@ theorem int_ker_transpose_mul_self {m n : Type*} [Fintype m] [Fintype n] (A : Ma
   · intro h
     rw [h, Matrix.mulVec_zero]
 
-/-- `Aᵀ A` and `A` have the same kernel, hence the same rank.-/
+/-- `Aᵀ A` and `A` have the same kernel, hence the same rank.
+@isnad1 id=eq.0h3v.s5.749e559b3dd4 from=translated src=- shape=a6be3b98 vocab=a24ad484
+-/
 theorem int_rank_transpose_mul_self {m n : Type*} [Fintype m] [Fintype n] (A : Matrix m n ℤ) :
     (Aᵀ * A).rank = A.rank := by
   have h1 := int_rank_add_finrank_ker (Aᵀ * A)
@@ -1382,7 +1487,9 @@ theorem int_rank_transpose_mul_self {m n : Type*} [Fintype m] [Fintype n] (A : M
 
 /-- **An integer matrix and its transpose have the same rank.**  Mathlib proves
 `Matrix.rank_transpose` over a field; over `ℤ` the argument through `Aᵀ A`
-(whose kernel is that of `A`, `ℤ` being ordered) still applies.-/
+(whose kernel is that of `A`, `ℤ` being ordered) still applies.
+@isnad1 id=eq.0h3v.s5.067a272a29f8 from=translated src=- shape=35d5d449 vocab=95209264
+-/
 theorem int_rank_transpose {m n : Type*} [Fintype m] [Fintype n] (A : Matrix m n ℤ) :
     Aᵀ.rank = A.rank := by
   apply le_antisymm
@@ -1393,7 +1500,9 @@ theorem int_rank_transpose {m n : Type*} [Fintype m] [Fintype n] (A : Matrix m n
     rw [int_rank_transpose_mul_self A] at h
     exact h
 
-/-- The integral differential is multiplication by the count matrix.-/
+/-- The integral differential is multiplication by the count matrix.
+@isnad1 id=eq.0h4v.s9.0536413a6971 from=translated src=- shape=5320aab4 vocab=03b64009
+-/
 theorem dLin_eq_mulVecLin_int (ind : Crit → ℕ) (cntZ : Crit → Crit → ℤ) (k : ℕ) :
     dLin ind cntZ k
       = (Matrix.of fun (b : CritSet ind k) (a : CritSet ind (k + 1)) => cntZ a.1 b.1).mulVecLin := by
@@ -1403,7 +1512,9 @@ theorem dLin_eq_mulVecLin_int (ind : Crit → ℕ) (cntZ : Crit → Crit → ℤ
   exact Finset.sum_congr rfl fun a _ => mul_comm _ _
 
 /-- The integral analogue of `bdim_dual`: the differential of the dual complex
-is a transpose, hence has the same rank, by `int_rank_transpose`.-/
+is a transpose, hence has the same rank, by `int_rank_transpose`.
+@isnad1 id=eq.2h7v.s11.826aff719aff from=translated src=- shape=5bc169c7 vocab=6ac5658b
+-/
 theorem finrank_range_dLin_dual_int {ind ind' : Crit → ℕ} {cntZ : Crit → Crit → ℤ} {n : ℕ}
     (hn : ∀ c, ind c + ind' c = n) {k j : ℕ} (hkj : k + j + 1 = n) :
     Module.finrank ℤ (LinearMap.range (dLin ind' (fun a b => cntZ b a) j))
@@ -1436,7 +1547,9 @@ Proved by the bookkeeping of `betti_dual`, run over `ℤ`.  Ranks over a domain
 are additive (`finrank_int_quot_add`, `finrank_int_range_add`), so the free rank
 of `Zₖ / Bₖ` is `cₖ − rank ∂ₖ₋₁ − rank ∂ₖ`; the dual complex has the same `cₖ`
 in dual degrees and transposed differentials, and an integer matrix has the rank
-of its transpose (`int_rank_transpose`).-/
+of its transpose (`int_rank_transpose`).
+@isnad1 id=eq.4h7v.s12.8e8771fc86cb from=translated src=- shape=5026c618 vocab=42e17a05
+-/
 theorem finrank_homology_dual_int {cntZ : Crit → Crit → ℤ}
     (h : BrokenPairs ind cntZ) (h' : BrokenPairs ind' (fun a b => cntZ b a))
     (hn : ∀ c, ind c + ind' c = n) {k j : ℕ} (hkj : k + j = n) :
@@ -1502,7 +1615,9 @@ variable {K : Type*} [Field K] {Crit : Type*} [Fintype Crit]
   {ind : Crit → ℕ} {cnt : Crit → Crit → K}
 
 /-- **Proposition 4.4.3 (the Morse inequalities).**  A Morse function has at
-least `βₖ` critical points of index `k`.-/
+least `βₖ` critical points of index `k`.
+@isnad1 id=le.1h5v.s5.1b01025aa824 from=translated src=- shape=8e5247a8 vocab=b4c1ef88
+-/
 theorem betti_le_numCrit (h : BrokenPairs ind cnt) (k : ℕ) :
     betti ind cnt k ≤ numCrit ind k := by
   cases k with
@@ -1510,7 +1625,9 @@ theorem betti_le_numCrit (h : BrokenPairs ind cnt) (k : ℕ) :
   | succ k => have := numCrit_succ_eq h (ind := ind) (cnt := cnt) k; omega
 
 /-- The telescoping identity behind Corollary 4.4.1 and Remark 4.4.2:
-`Σ_{k ≤ N} (−1)ᵏ cₖ = Σ_{k ≤ N} (−1)ᵏ βₖ + (−1)ᴺ dim B_N`.-/
+`Σ_{k ≤ N} (−1)ᵏ cₖ = Σ_{k ≤ N} (−1)ᵏ βₖ + (−1)ᴺ dim B_N`.
+@isnad1 id=eq.1h5v.s7.bd50421935d6 from=translated src=- shape=ea802328 vocab=6461f1a4
+-/
 theorem sum_alt_numCrit (h : BrokenPairs ind cnt) (N : ℕ) :
     ∑ k ∈ Finset.range (N + 1), (-1 : ℤ) ^ k * (numCrit ind k : ℤ)
       = (∑ k ∈ Finset.range (N + 1), (-1 : ℤ) ^ k * (betti ind cnt k : ℤ))
@@ -1531,7 +1648,9 @@ theorem sum_alt_numCrit (h : BrokenPairs ind cnt) (N : ℕ) :
         Finset.sum_range_succ (f := fun k => (-1 : ℤ) ^ k * (betti ind cnt k : ℤ)), ih, hB']
       ring
 
-/-- The same telescoping without signs: `Σ cₖ = Σ βₖ + 2 Σ_{k<N} dim Bₖ + dim B_N`.-/
+/-- The same telescoping without signs: `Σ cₖ = Σ βₖ + 2 Σ_{k<N} dim Bₖ + dim B_N`.
+@isnad1 id=eq.1h5v.s7.da92f4c23f8b from=translated src=- shape=f31ec565 vocab=97538de6
+-/
 theorem sum_numCrit_eq (h : BrokenPairs ind cnt) (N : ℕ) :
     ∑ k ∈ Finset.range (N + 1), numCrit ind k
       = (∑ k ∈ Finset.range (N + 1), betti ind cnt k)
@@ -1558,7 +1677,9 @@ noncomputable def eulerChar (ind : Crit → ℕ) (cnt : Crit → Crit → K) (N 
 
 /-- **Remark 4.4.2.**  The Euler characteristic is the alternating sum of the
 numbers of critical points of a Morse function; in particular that alternating
-sum does not depend on the function.-/
+sum does not depend on the function.
+@isnad1 id=eq.2h5v.s6.6f786cda65e0 from=translated src=- shape=7d63b8a2 vocab=a279778f
+-/
 theorem eulerChar_eq_alt_sum_numCrit (h : BrokenPairs ind cnt) {N : ℕ} (hN : ∀ c, ind c ≤ N) :
     ∑ k ∈ Finset.range (N + 1), (-1 : ℤ) ^ k * (numCrit ind k : ℤ) = eulerChar ind cnt N := by
   rw [eulerChar, sum_alt_numCrit h N,
@@ -1567,7 +1688,9 @@ theorem eulerChar_eq_alt_sum_numCrit (h : BrokenPairs ind cnt) {N : ℕ} (hN : �
 
 /-- **Corollary 4.4.1.**  The number of critical points of a Morse function,
 taken modulo `2`, depends only on the homology — hence only on the manifold and
-not on the function.-/
+not on the function.
+@isnad1 id=modeq.2h5v.s6.11b1715feee4 from=translated src=- shape=84515abc vocab=58dacb17
+-/
 theorem card_crit_modEq (h : BrokenPairs ind cnt) {N : ℕ} (hN : ∀ c, ind c ≤ N) :
     Nat.ModEq 2 (Fintype.card Crit) (∑ k ∈ Finset.range (N + 1), betti ind cnt k) := by
   have hcard := card_eq_sum_numCrit (ind := ind) hN
@@ -1578,14 +1701,18 @@ theorem card_crit_modEq (h : BrokenPairs ind cnt) {N : ℕ} (hN : ∀ c, ind c �
   omega
 
 /-- **Proposition 4.4.3, total form.**  A Morse function on `V` has at least
-`Σ βₖ` critical points.-/
+`Σ βₖ` critical points.
+@isnad1 id=le.2h5v.s6.96c0b6743452 from=translated src=- shape=4b27a205 vocab=420d4dbf
+-/
 theorem sum_betti_le_card (h : BrokenPairs ind cnt) {N : ℕ} (hN : ∀ c, ind c ≤ N) :
     (∑ k ∈ Finset.range (N + 1), betti ind cnt k) ≤ Fintype.card Crit := by
   have hcard := card_eq_sum_numCrit (ind := ind) hN
   have hsum := sum_numCrit_eq h N
   omega
 
-/-- An alternating sum with the exponents counted downwards.-/
+/-- An alternating sum with the exponents counted downwards.
+@isnad1 id=eq.0h2v.s7.070aca1c470a from=translated src=- shape=cd38d58c vocab=cc77a847
+-/
 theorem sum_neg_one_pow_sub (x : ℕ → ℕ) (m : ℕ) :
     ∑ k ∈ Finset.range (m + 1), (-1 : ℤ) ^ (m - k) * (x k : ℤ)
       = (-1 : ℤ) ^ m * ∑ k ∈ Finset.range (m + 1), (-1 : ℤ) ^ k * (x k : ℤ) := by
@@ -1603,7 +1730,9 @@ theorem sum_neg_one_pow_sub (x : ℕ → ℕ) (m : ℕ) :
 /-- **The strong Morse inequalities.**  For every `m`,
 `βₘ − βₘ₋₁ + ⋯ ≤ cₘ − cₘ₋₁ + ⋯`; the difference of the two sides is
 `dim Bₘ ≥ 0`.  Taking `m` above the top index turns the inequality into the
-equality of Euler characteristics.-/
+equality of Euler characteristics.
+@isnad1 id=le.1h5v.s7.46e5279f0a76 from=translated src=- shape=da2de968 vocab=aff304a2
+-/
 theorem strong_morse_inequality (h : BrokenPairs ind cnt) (m : ℕ) :
     ∑ k ∈ Finset.range (m + 1), (-1 : ℤ) ^ (m - k) * (betti ind cnt k : ℤ)
       ≤ ∑ k ∈ Finset.range (m + 1), (-1 : ℤ) ^ (m - k) * (numCrit ind k : ℤ) := by
@@ -1627,7 +1756,9 @@ noncomputable def poincarePoly (ind : Crit → ℕ) (cnt : Crit → Crit → K) 
   ∑ k ∈ Finset.range (N + 1), Polynomial.C (betti ind cnt k : ℤ) * Polynomial.X ^ k
 
 /-- `P_V(−1) = χ(V)`: the relation between the Poincaré polynomial and the Euler
-characteristic (§4.4).-/
+characteristic (§4.4).
+@isnad1 id=eq.0h5v.s5.c33c27eff047 from=translated src=- shape=ab59251e vocab=9358eb5f
+-/
 theorem poincarePoly_eval_neg_one (ind : Crit → ℕ) (cnt : Crit → Crit → K) (N : ℕ) :
     (poincarePoly ind cnt N).eval (-1) = eulerChar ind cnt N := by
   simp only [poincarePoly, eulerChar, Polynomial.eval_finsetSum, Polynomial.eval_mul,
@@ -1637,7 +1768,9 @@ theorem poincarePoly_eval_neg_one (ind : Crit → ℕ) (cnt : Crit → Crit → 
 /-- **Remark 4.4.7.**  The Euler characteristic of a closed manifold of odd
 dimension vanishes: by Poincaré duality the terms of the alternating sum cancel
 in pairs.  Stated with the duality of the Betti numbers as a hypothesis, which
-is what `betti_dual` provides.-/
+is what `betti_dual` provides.
+@isnad1 id=eq.2h5v.s6.4d4e1d839c21 from=translated src=- shape=900b6823 vocab=f9c6f12d
+-/
 theorem eulerChar_eq_zero_of_odd {n : ℕ} (hodd : Odd n)
     (hdual : ∀ k ≤ n, betti ind cnt k = betti ind cnt (n - k)) :
     eulerChar ind cnt n = 0 := by
@@ -1700,7 +1833,9 @@ def sumCount (cnt₁ : Crit₁ → Crit₁ → K) (cnt₂ : Crit₂ → Crit₂ 
   | _, _ => 0
 
 omit [Fintype Crit₁] [Fintype Crit₂] in
-/-- The total differential of a disjoint union is block diagonal.-/
+/-- The total differential of a disjoint union is block diagonal.
+@isnad1 id=eq.0h7v.s6.6e205d1098d5 from=translated src=- shape=223a7864 vocab=0aa9a7f7
+-/
 theorem totalD_sum (ind₁ : Crit₁ → ℕ) (ind₂ : Crit₂ → ℕ) (cnt₁ : Crit₁ → Crit₁ → K)
     (cnt₂ : Crit₂ → Crit₂ → K) :
     totalD (Sum.elim ind₁ ind₂) (sumCount cnt₁ cnt₂)
@@ -1715,7 +1850,9 @@ theorem totalD_sum (ind₁ : Crit₁ → ℕ) (ind₂ : Crit₂ → ℕ) (cnt₁
     exact ite_self _
   · rfl
 
-/-- The critical points of a disjoint union of index `k` are those of either piece.-/
+/-- The critical points of a disjoint union of index `k` are those of either piece.
+@isnad1 id=eq.0h5v.s5.0ce864af74a6 from=translated src=- shape=98cc325a vocab=4772c461
+-/
 theorem numCrit_sum {α β : Type*} [Fintype α] [Fintype β] (f : α → ℕ) (g : β → ℕ) (k : ℕ) :
     numCrit (Sum.elim f g) k = numCrit f k + numCrit g k := by
   rw [numCrit_eq_sum, numCrit_eq_sum, numCrit_eq_sum, Fintype.sum_sum_type]
@@ -1729,7 +1866,9 @@ number of connected components.)
 Proved: the total differential of the union is block diagonal (`totalD_sum`),
 so the block sum of retractions of the two pieces (`exists_retract`) is a
 retraction of the union, and `betti_eq_numCrit_of_retract` together with
-`numCrit_sum` gives the formula.-/
+`numCrit_sum` gives the formula.
+@isnad1 id=eq.3h8v.s7.83e2c3021985 from=translated src=- shape=a8d4374e vocab=54dbed17
+-/
 theorem betti_sumComplex {ind₁ : Crit₁ → ℕ} {ind₂ : Crit₂ → ℕ}
     {cnt₁ : Crit₁ → Crit₁ → K} {cnt₂ : Crit₂ → Crit₂ → K}
     (h₁ : BrokenPairs ind₁ cnt₁) (h₂ : BrokenPairs ind₂ cnt₂)
@@ -1815,14 +1954,18 @@ kept alongside. -/
 /-- The norm on the line `EuclideanSpace ℝ (Fin 1)` is the absolute value of the
 single coordinate.  This is what identifies the one-dimensional closed unit ball
 with the interval `[−1, 1]`, and it is the only computation the base case
-`brouwer_fixedPoint_dim_one` needs beyond the intermediate value theorem.-/
+`brouwer_fixedPoint_dim_one` needs beyond the intermediate value theorem.
+@isnad1 id=eq.0h1v.s7.41601d763cf7 from=translated src=- shape=c56f84b5 vocab=eaf2c7c2
+-/
 theorem norm_eq_abs_coord (x : EuclideanSpace ℝ (Fin 1)) : ‖x‖ = |x 0| := by
   rw [EuclideanSpace.norm_eq, Fin.sum_univ_one, Real.norm_eq_abs, sq_abs,
     Real.sqrt_sq_eq_abs]
 
 /-- **Brouwer's fixed point theorem, base case `n = 0`.**  Proved in full.
 `EuclideanSpace ℝ (Fin 0)` has exactly one point, so the closed unit ball is
-`{0}` and every self-map fixes the origin.-/
+`{0}` and every self-map fixes the origin.
+@isnad1 id=ex.2h1v.s9.032c159b3912 from=translated src=- shape=a7081460 vocab=7c376682
+-/
 theorem brouwer_fixedPoint_dim_zero
     (f : EuclideanSpace ℝ (Fin 0) → EuclideanSpace ℝ (Fin 0))
     (_hf : ContinuousOn f (Metric.closedBall 0 1))
@@ -1841,7 +1984,9 @@ under the isometric parametrisation `t ↦ (t)`, by `norm_eq_abs_coord`.  Transp
 produces a zero of `g`, which is a fixed point of `f`.
 
 Kept as the elementary case; `brouwer_fixedPoint` below covers every
-dimension.-/
+dimension.
+@isnad1 id=ex.2h1v.s9.98ac24f3d681 from=translated src=- shape=a7081460 vocab=7c376682
+-/
 theorem brouwer_fixedPoint_dim_one
     (f : EuclideanSpace ℝ (Fin 1) → EuclideanSpace ℝ (Fin 1))
     (hf : ContinuousOn f (Metric.closedBall 0 1))
@@ -1893,7 +2038,9 @@ Proved in every dimension: this restates `MorseFloer.brouwer_fixed_point` from
 of variables formula along the homotopy `id + t (r − id)`, and smoothing by
 partitions of unity) is described in that file and in the note above.  It is
 also `Chapter2.brouwer`; Chapter 4 imports the Brouwer file directly because
-`Part1/Ch3.lean`, and hence this file, does not import Chapter 2.-/
+`Part1/Ch3.lean`, and hence this file, does not import Chapter 2.
+@isnad1 id=ex.2h2v.s9.f5cbc4e1bf8a from=translated src=- shape=1bafc94e vocab=7c376682
+-/
 theorem brouwer_fixedPoint {n : ℕ}
     (f : EuclideanSpace ℝ (Fin n) → EuclideanSpace ℝ (Fin n))
     (hf : ContinuousOn f (Metric.closedBall 0 1))
@@ -1908,7 +2055,9 @@ Deduced from `brouwer_fixedPoint` (the book argues the other way, homologically:
 the identity of `HM_{n−1}(Sⁿ⁻¹) = Z/2` through `HM_{n−1}(Dⁿ) = 0`).  Suppose `r`
 fixed the sphere pointwise.  Then `x ↦ −r x` maps the ball into the sphere,
 hence into the ball, and has a fixed point `x = −r x`; this `x` has norm `1`, so
-`r x = x`, whence `x = −x` and `x = 0`, which does not lie on the sphere.-/
+`r x = x`, whence `x = −x` and `x = 0`, which does not lie on the sphere.
+@isnad1 id=ex.2h2v.s10.8bae27e86000 from=translated src=- shape=dc9e1185 vocab=fb16d762
+-/
 theorem no_retraction_closedBall {n : ℕ}
     (r : EuclideanSpace ℝ (Fin (n + 1)) → EuclideanSpace ℝ (Fin (n + 1)))
     (hr : ContinuousOn r (Metric.closedBall 0 1))
@@ -1962,9 +2111,15 @@ def projIndex (n : ℕ) : Fin (n + 1) → ℕ := fun i => (i : ℕ)
 /-- The mod `2` count function of that Morse function: it vanishes (§4.8.c).-/
 def projCount (n : ℕ) : Fin (n + 1) → Fin (n + 1) → ZMod 2 := fun _ _ => 0
 
+/--
+@isnad1 id=brokenpa.0h1v.s5.6ec18f4aa207 from=translated src=- shape=e2200c9a vocab=3512dbf2
+-/
 theorem projCount_brokenPairs (n : ℕ) : BrokenPairs (projIndex n) (projCount n) :=
   brokenPairs_zero (projIndex n)
 
+/--
+@isnad1 id=eq.1h2v.s5.990e03cfa582 from=translated src=- shape=9d71e914 vocab=08291d4c
+-/
 theorem numCrit_projIndex (n k : ℕ) (hk : k ≤ n) : numCrit (projIndex n) k = 1 := by
   have : Unique (CritSet (projIndex n) k) := by
     refine ⟨⟨⟨⟨k, by omega⟩, rfl⟩⟩, ?_⟩
@@ -1972,7 +2127,9 @@ theorem numCrit_projIndex (n k : ℕ) (hk : k ≤ n) : numCrit (projIndex n) k =
     rfl
   exact Fintype.card_unique
 
-/-- **Theorem 4.8.2.**  `HMₖ(Pⁿ(ℝ); Z/2) ≅ Z/2` for `0 ≤ k ≤ n`.-/
+/-- **Theorem 4.8.2.**  `HMₖ(Pⁿ(ℝ); Z/2) ≅ Z/2` for `0 ≤ k ≤ n`.
+@isnad1 id=eq.1h2v.s6.f8f492dc10c1 from=translated src=- shape=e366edeb vocab=5e18cece
+-/
 theorem betti_proj (n k : ℕ) (hk : k ≤ n) : betti (projIndex n) (projCount n) k = 1 := by
   have hz : projCount n = fun _ _ => (0 : ZMod 2) := rfl
   rw [hz, betti_of_count_zero (projIndex n) k, numCrit_projIndex n k hk]
@@ -1985,29 +2142,42 @@ maximum and, all its counts being even, a vanishing mod `2` differential
 `0`, and Example 4.4.4 follows: a Morse function on `T²` has at least four
 critical points. -/
 
+/--
+@isnad1 id=eq.0h0v.s5.837ba3f9548f from=translated src=- shape=fa418d61 vocab=cb6c7763
+-/
 theorem betti_torus_zero : betti Chapter3.torusIndex Chapter3.torusCount 0 = 1 := by
   have hz : Chapter3.torusCount = fun _ _ => (0 : ZMod 2) := rfl
   rw [hz, betti_of_count_zero Chapter3.torusIndex 0]
   decide
 
+/--
+@isnad1 id=eq.0h0v.s5.5c47a4226c57 from=translated src=- shape=fa418d61 vocab=cb6c7763
+-/
 theorem betti_torus_one : betti Chapter3.torusIndex Chapter3.torusCount 1 = 2 := by
   have hz : Chapter3.torusCount = fun _ _ => (0 : ZMod 2) := rfl
   rw [hz, betti_of_count_zero Chapter3.torusIndex 1]
   decide
 
+/--
+@isnad1 id=eq.0h0v.s5.b4dd00fd7241 from=translated src=- shape=fa418d61 vocab=cb6c7763
+-/
 theorem betti_torus_two : betti Chapter3.torusIndex Chapter3.torusCount 2 = 1 := by
   have hz : Chapter3.torusCount = fun _ _ => (0 : ZMod 2) := rfl
   rw [hz, betti_of_count_zero Chapter3.torusIndex 2]
   decide
 
 /-- **Example 4.4.4.**  The Betti numbers of `T²` sum to `4`, so by Proposition
-4.4.3 a Morse function on the torus has at least four critical points.-/
+4.4.3 a Morse function on the torus has at least four critical points.
+@isnad1 id=eq.0h0v.s5.cb9121e87f6f from=translated src=- shape=ba323d4d vocab=51a65c14
+-/
 theorem sum_betti_torus :
     (∑ k ∈ Finset.range 3, betti Chapter3.torusIndex Chapter3.torusCount k) = 4 := by
   rw [Finset.sum_range_succ, Finset.sum_range_succ, Finset.sum_range_one,
     betti_torus_zero, betti_torus_one, betti_torus_two]
 
-/-- The Euler characteristic of the torus is `0`.-/
+/-- The Euler characteristic of the torus is `0`.
+@isnad1 id=eq.0h0v.s5.069320a9c760 from=translated src=- shape=f3e87cdd vocab=348912a5
+-/
 theorem eulerChar_torus : eulerChar Chapter3.torusIndex Chapter3.torusCount 2 = 0 := by
   rw [eulerChar, Finset.sum_range_succ, Finset.sum_range_succ, Finset.sum_range_one,
     betti_torus_zero, betti_torus_one, betti_torus_two]
@@ -2030,7 +2200,9 @@ labelling by `±1, …, ±n` that is antipodal on the boundary has an edge whose
 two ends carry opposite labels, by a parity count in the style of Freund and
 Todd.  Labelling by the largest coordinate of a zero-free map that is odd on the
 boundary of the cube then contradicts uniform continuity for fine grids, and the
-cube is carried onto a hemisphere by a map that is odd on its boundary.-/
+cube is carried onto a hemisphere by a map that is odd on its boundary.
+@isnad1 id=not.0h1v.s10.8cfe62efa6e4 from=translated src=- shape=eda94cd1 vocab=bbc4a15a
+-/
 theorem borsuk_ulam (n : ℕ) :
     ¬ ∃ φ : EuclideanSpace ℝ (Fin (n + 1)) → EuclideanSpace ℝ (Fin n),
         ContinuousOn φ (Metric.sphere 0 1) ∧
@@ -2040,7 +2212,9 @@ theorem borsuk_ulam (n : ℕ) :
 
 /-- **Corollary 4.8.4.**  A continuous odd map `Sⁿ → ℝⁿ` vanishes somewhere: if
 it did not, dividing by its norm would produce a map forbidden by Theorem
-4.8.3.-/
+4.8.3.
+@isnad1 id=ex.2h2v.s10.e69b64ccd82d from=translated src=- shape=b5dd7c84 vocab=f5ac474c
+-/
 theorem borsuk_ulam_of_odd (n : ℕ)
     (ψ : EuclideanSpace ℝ (Fin (n + 1)) → EuclideanSpace ℝ (Fin n))
     (hcont : ContinuousOn ψ (Metric.sphere 0 1))
@@ -2069,7 +2243,9 @@ theorem borsuk_ulam_of_odd (n : ℕ)
 
 /-- **Corollary 4.8.5 (the temperature–pressure theorem).**  Every continuous
 map `Sⁿ → ℝⁿ` takes the same value at some pair of antipodal points; apply
-Corollary 4.8.4 to `x ↦ ψ x − ψ(−x)`.-/
+Corollary 4.8.4 to `x ↦ ψ x − ψ(−x)`.
+@isnad1 id=ex.1h2v.s10.c621a8ad00d0 from=translated src=- shape=238b3528 vocab=f5ac474c
+-/
 theorem exists_eq_antipode (n : ℕ)
     (ψ : EuclideanSpace ℝ (Fin (n + 1)) → EuclideanSpace ℝ (Fin n))
     (hcont : ContinuousOn ψ (Metric.sphere 0 1)) :
@@ -2100,7 +2276,9 @@ set is `0`.  The map `x ↦ (d(x, F₀), …, d(x, Fₙ₋₁))` then takes equa
 some antipodal pair `x, −x`.  For a closed nonempty set, `d(x, F) = 0` means
 `x ∈ F`, so for `i < n` the point `x` lies in `Fᵢ` exactly when `−x` does.
 Either `x` lies in some such `Fᵢ`, and so does `−x`; or neither `x` nor `−x`
-lies in any of them, and both lie in the last set `Fₙ`.-/
+lies in any of them, and both lie in the last set `Fₙ`.
+@isnad1 id=ex.2h2v.s10.29ccaaea2860 from=translated src=- shape=86f6fefa vocab=010a0e31
+-/
 theorem exists_antipodal_pair_of_closed_cover (n : ℕ)
     (F : Fin (n + 1) → Set (EuclideanSpace ℝ (Fin (n + 1))))
     (hclosed : ∀ i, IsClosed (F i))

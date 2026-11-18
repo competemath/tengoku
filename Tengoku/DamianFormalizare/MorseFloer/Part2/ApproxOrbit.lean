@@ -39,7 +39,9 @@ namespace ApproxOrbit
 /-! ## Sequences along which an integrable function is small -/
 
 /-- An integrable nonnegative function on the line is small somewhere beyond any
-given point; otherwise a positive constant would be integrable on a half-line.-/
+given point; otherwise a positive constant would be integrable on a half-line.
+@isnad1 id=ex.2h1v.s6.d1b835e8c523 from=translated src=- shape=fc1734e0 vocab=7e0cc15e
+-/
 theorem exists_seq_atTop {g : ℝ → ℝ} (hg : Integrable g) (h0 : ∀ s, 0 ≤ g s) :
     ∃ s : ℕ → ℝ, Tendsto s atTop atTop ∧ Tendsto (fun k => g (s k)) atTop (𝓝 0) := by
   have key : ∀ k : ℕ, ∃ s : ℝ, (k : ℝ) < s ∧ g s < 1 / ((k : ℝ) + 1) := by
@@ -62,7 +64,9 @@ theorem exists_seq_atTop {g : ℝ → ℝ} (hg : Integrable g) (h0 : ∀ s, 0 �
   exact squeeze_zero (fun k => h0 _) (fun k => (hs2 k).le)
     tendsto_one_div_add_atTop_nhds_zero_nat
 
-/-- The same towards `-∞`.-/
+/-- The same towards `-∞`.
+@isnad1 id=ex.2h1v.s6.e54029da2b3b from=translated src=- shape=97444343 vocab=f5685f8f
+-/
 theorem exists_seq_atBot {g : ℝ → ℝ} (hg : Integrable g) (h0 : ∀ s, 0 ≤ g s) :
     ∃ s : ℕ → ℝ, Tendsto s atTop atBot ∧ Tendsto (fun k => g (s k)) atTop (𝓝 0) := by
   have key : ∀ k : ℕ, ∃ s : ℝ, s < -(k : ℝ) ∧ g s < 1 / ((k : ℝ) + 1) := by
@@ -87,7 +91,9 @@ theorem exists_seq_atBot {g : ℝ → ℝ} (hg : Integrable g) (h0 : ∀ s, 0 �
     tendsto_one_div_add_atTop_nhds_zero_nat
 
 /-- **The integral of an integrable function over a moving window of fixed length tends to
-zero** at both ends of the line.-/
+zero** at both ends of the line.
+@isnad1 id=and.1h1v.s7.16ac3fa2fdf7 from=translated src=- shape=c808301a vocab=fcb8a47d
+-/
 theorem tendsto_window {g : ℝ → ℝ} (hg : Integrable g) :
     Tendsto (fun a : ℝ => ∫ s in (a - 1 / 2)..(a + 1 / 2), g s) atTop (𝓝 0) ∧
       Tendsto (fun a : ℝ => ∫ s in (a - 1 / 2)..(a + 1 / 2), g s) atBot (𝓝 0) := by
@@ -121,7 +127,9 @@ theorem tendsto_window {g : ℝ → ℝ} (hg : Integrable g) :
     linarith
 
 /-- `c · x/(c+1) < x`: the elementary inequality behind every "choose the parameter so that
-this term is below a third of `η`".-/
+this term is below a third of `η`".
+@isnad1 id=lt.2h2v.s5.ab671c80979a from=translated src=- shape=924b11dc vocab=b1824736
+-/
 theorem mul_div_add_one_lt {c x : ℝ} (hc : 0 ≤ c) (hx : 0 < x) : c * (x / (c + 1)) < x := by
   rw [← mul_div_assoc, div_lt_iff₀ (by positivity)]
   nlinarith
@@ -129,7 +137,9 @@ theorem mul_div_add_one_lt {c x : ℝ} (hc : 0 ≤ c) (hx : 0 < x) : c * (x / (c
 /-! ## Antitone functions converging along a sequence -/
 
 /-- An antitone function which converges along a sequence going to `+∞` converges
-at `+∞`, to the same limit.-/
+at `+∞`, to the same limit.
+@isnad1 id=tendsto.3h3v.s6.05fbf4710321 from=translated src=- shape=447cbbf5 vocab=ab2f1bed
+-/
 theorem tendsto_atTop_of_antitone_of_seq {f : ℝ → ℝ} (hf : Antitone f) {s : ℕ → ℝ} {a : ℝ}
     (hs : Tendsto s atTop atTop) (hfs : Tendsto (fun k => f (s k)) atTop (𝓝 a)) :
     Tendsto f atTop (𝓝 a) := by
@@ -143,7 +153,9 @@ theorem tendsto_atTop_of_antitone_of_seq {f : ℝ → ℝ} (hf : Antitone f) {s 
   rw [tendsto_nhds_unique hfs h2]
   exact h1
 
-/-- The same at `-∞`.-/
+/-- The same at `-∞`.
+@isnad1 id=tendsto.3h3v.s6.c0affbd78c32 from=translated src=- shape=cab2831d vocab=c89759b8
+-/
 theorem tendsto_atBot_of_antitone_of_seq {f : ℝ → ℝ} (hf : Antitone f) {s : ℕ → ℝ} {a : ℝ}
     (hs : Tendsto s atTop atBot) (hfs : Tendsto (fun k => f (s k)) atTop (𝓝 a)) :
     Tendsto f atBot (𝓝 a) := by
@@ -159,7 +171,9 @@ theorem tendsto_atBot_of_antitone_of_seq {f : ℝ → ℝ} (hf : Antitone f) {s 
 
 /-! ## The sup norm against the Euclidean one -/
 
-/-- The sup norm of a vector is at most its Euclidean norm.-/
+/-- The sup norm of a vector is at most its Euclidean norm.
+@isnad1 id=le.0h2v.s5.93c5b005024a from=translated src=- shape=22b2b58c vocab=080ada82
+-/
 theorem norm_le_sqrt_dotProduct {ι : Type*} [Fintype ι] (v : ι → ℝ) :
     ‖v‖ ≤ Real.sqrt (v ⬝ᵥ v) := by
   refine (pi_norm_le_iff_of_nonneg (Real.sqrt_nonneg _)).2 fun i => ?_
@@ -172,7 +186,9 @@ theorem norm_le_sqrt_dotProduct {ι : Type*} [Fintype ι] (v : ι → ℝ) :
     _ ≤ v ⬝ᵥ v := h
 
 /-- The arithmetic–geometric form in which an `L²` bound yields an `L¹` bound without the
-Cauchy–Schwarz inequality: `‖v‖ ≤ δ/2 + |v|²/(2δ)`.-/
+Cauchy–Schwarz inequality: `‖v‖ ≤ δ/2 + |v|²/(2δ)`.
+@isnad1 id=le.1h3v.s6.5a12490c8a21 from=translated src=- shape=c1b38532 vocab=3f2532f2
+-/
 theorem norm_le_add_dotProduct {ι : Type*} [Fintype ι] (v : ι → ℝ) {δ : ℝ} (hδ : 0 < δ) :
     ‖v‖ ≤ δ / 2 + (v ⬝ᵥ v) / (2 * δ) := by
   have hq : 0 ≤ v ⬝ᵥ v := Finset.sum_nonneg fun j _ => mul_self_nonneg (v j)
@@ -190,7 +206,9 @@ theorem norm_le_add_dotProduct {ι : Type*} [Fintype ι] (v : ι → ℝ) {δ : 
 
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
-/-- The derivative of a `1`-periodic function is `1`-periodic.-/
+/-- The derivative of a `1`-periodic function is `1`-periodic.
+@isnad1 id=periodic.2h3v.s6.3df8444933fe from=translated src=- shape=609c13f7 vocab=51a9f807
+-/
 theorem periodic_deriv {f f' : ℝ → E} (hf : ∀ t, HasDerivAt f (f' t) t)
     (hper : Function.Periodic f 1) : Function.Periodic f' 1 := by
   intro t
@@ -199,7 +217,9 @@ theorem periodic_deriv {f f' : ℝ → E} (hf : ∀ t, HasDerivAt f (f' t) t)
   rw [h2] at h1
   exact h1.unique (hf t)
 
-/-- A `1`-periodic function takes at `t` the value it takes at the fractional part.-/
+/-- A `1`-periodic function takes at `t` the value it takes at the fractional part.
+@isnad1 id=eq.1h3v.s5.a47a996653b4 from=translated src=- shape=261cae36 vocab=bb585496
+-/
 theorem periodic_eq_fract {α : Type*} {f : ℝ → α} (hper : Function.Periodic f 1) (t : ℝ) :
     f t = f (Int.fract t) := by
   have h := hper.sub_int_mul_eq (x := t) ⌊t⌋
@@ -207,7 +227,9 @@ theorem periodic_eq_fract {α : Type*} {f : ℝ → α} (hper : Function.Periodi
   exact h.symm
 
 /-- The integral of a nonnegative `1`-periodic function over an interval of length at
-most `1` is at most its integral over a period.-/
+most `1` is at most its integral over a period.
+@isnad1 id=le.5h3v.s7.b9cd916ae220 from=translated src=- shape=375be4ad vocab=3776f566
+-/
 theorem integral_le_of_periodic {e : ℝ → ℝ} (hc : Continuous e) (h0 : ∀ t, 0 ≤ e t)
     (hper : Function.Periodic e 1) {a t : ℝ} (hat : a ≤ t) (hta : t ≤ a + 1) :
     ∫ τ in a..t, e τ ≤ ∫ τ in (0:ℝ)..1, e τ := by
@@ -227,7 +249,9 @@ variable [CompleteSpace E]
 errors whose `L¹` norms over `[0, 1]` are `η_f` and `η_g`, then on `[0, 1]` they stay within
 `(‖f 0 - g 0‖ + 2 (η_f + η_g)) e^K` of one another.  Grönwall's inequality is applied not to
 `f - g`, whose derivative is controlled only in `L¹`, but to `f - g` minus the integral of the
-difference of the errors, whose derivative is `X_t(f) - X_t(g)` exactly.-/
+difference of the errors, whose derivative is `X_t(f) - X_t(g)` exactly.
+@isnad1 id=le.7h8v.s9.ab6326e57cd3 from=translated src=- shape=d20300dc vocab=cc60b701
+-/
 theorem norm_sub_le_of_approx {X : ℝ → E → E} {K : ℝ} (hK : 0 < K)
     (hXlip : ∀ t a b, ‖X t a - X t b‖ ≤ K * ‖a - b‖)
     {f g f' g' : ℝ → E} (hf : ∀ t, HasDerivAt f (f' t) t) (hg : ∀ t, HasDerivAt g (g' t) t)
@@ -314,7 +338,9 @@ theorem norm_sub_le_of_approx {X : ℝ → E → E} {K : ℝ} (hK : 0 < K)
 time-dependent vector field, continuous, bounded, uniformly Lipschitz in the point and
 `1`-periodic in time.  If the `1`-periodic `C¹` loops `y k` solve `ẋ = X_t(x)` up to errors
 tending to `0` in `L¹` over a period, and their starting points converge, then they converge
-at every time, and the limit is a `1`-periodic orbit of `X`.-/
+at every time, and the limit is a `1`-periodic orbit of `X`.
+@isnad1 id=ex.9h7v.s8.ebc9f7acfe57 from=translated src=- shape=47baf300 vocab=c4aa81bc
+-/
 theorem exists_orbit_of_approx {X : ℝ → E → E} {K M : ℝ}
     (hXc : Continuous fun q : ℝ × E => X q.1 q.2)
     (hXlip : ∀ t a b, ‖X t a - X t b‖ ≤ K * ‖a - b‖)

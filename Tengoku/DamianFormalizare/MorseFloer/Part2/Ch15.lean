@@ -130,7 +130,9 @@ and `BrokenPairs ind cnt` is exactly the condition `∂ ∘ ∂ = 0` (Chapter 3'
 section Sums
 
 /-- A sum over the critical points of index `m` is the sum over all critical
-points of the function extended by zero.-/
+points of the function extended by zero.
+@isnad1 id=eq.0h5v.s6.fc51527fa44d from=translated src=- shape=f81dff2e vocab=13db3b13
+-/
 theorem sum_critSet_eq {Crit : Type*} [Fintype Crit] {M : Type*} [AddCommMonoid M]
     (ind : Crit → ℕ) (m : ℕ) (f : Crit → M) :
     ∑ c : CritSet ind m, f c.1 = ∑ c : Crit, if ind c = m then f c else 0 := by
@@ -139,7 +141,9 @@ theorem sum_critSet_eq {Crit : Type*} [Fintype Crit] {M : Type*} [AddCommMonoid 
     Finset.sum_subtype _ (fun x => by simp) f
   rw [← h1, Finset.sum_filter]
 
-/-- `cₖ(f)`, the number of critical points of index `k`, as a sum of indicators.-/
+/-- `cₖ(f)`, the number of critical points of index `k`, as a sum of indicators.
+@isnad1 id=eq.0h3v.s5.15d0dd538f1b from=translated src=- shape=25a3a585 vocab=88b835a0
+-/
 theorem numCrit_eq_sum {Crit : Type*} [Fintype Crit] (ind : Crit → ℕ) (m : ℕ) :
     numCrit ind m = ∑ c : Crit, if ind c = m then 1 else 0 := by
   have h := sum_critSet_eq ind m (fun _ => (1 : ℕ))
@@ -151,7 +155,9 @@ theorem numCrit_eq_sum {Crit : Type*} [Fintype Crit] (ind : Crit → ℕ) (m : �
 /-- The same for the product complex: a sum over the critical points of `C ⊗ D`
 of total degree `m` is a double sum over the two factors, restricted to the
 pairs of degrees adding up to `m`.  This is the statement that
-`(C ⊗ D)ₘ = ⨁_{i+j=m} Cᵢ ⊗ Dⱼ` (§15.1.a), read on the canonical bases.-/
+`(C ⊗ D)ₘ = ⨁_{i+j=m} Cᵢ ⊗ Dⱼ` (§15.1.a), read on the canonical bases.
+@isnad1 id=eq.0h7v.s7.c86b107a6965 from=translated src=- shape=5adc69e8 vocab=49b4bfbb
+-/
 theorem sum_critSet_prod {Crit₁ Crit₂ : Type*} [Fintype Crit₁] [Fintype Crit₂]
     {M : Type*} [AddCommMonoid M] (ind₁ : Crit₁ → ℕ) (ind₂ : Crit₂ → ℕ) (m : ℕ)
     (f : Crit₁ × Crit₂ → M) :
@@ -179,7 +185,9 @@ the tensor product complex has dimension `Σ_{i+j=k} dim Cᵢ · dim Dⱼ`, whic
 the content of `(C ⊗ D)ₖ = ⨁_{i+j=k} Cᵢ ⊗ Dⱼ`.
 
 The proof now lives in Chapter 4 as `Chapter4.numCrit_prodIndex`, where the
-Künneth formula uses it, and this is an alias for it.-/
+Künneth formula uses it, and this is an alias for it.
+@isnad1 id=eq.0h5v.s6.a16227e1646d from=translated src=- shape=1f2a798b vocab=c262986b
+-/
 theorem numCrit_prodIndex {Crit₁ Crit₂ : Type*} [Fintype Crit₁] [Fintype Crit₂]
     (ind₁ : Crit₁ → ℕ) (ind₂ : Crit₂ → ℕ) (k : ℕ) :
     numCrit (prodIndex ind₁ ind₂) k
@@ -187,7 +195,9 @@ theorem numCrit_prodIndex {Crit₁ Crit₂ : Type*} [Fintype Crit₁] [Fintype C
   Chapter4.numCrit_prodIndex ind₁ ind₂ k
 
 omit [DecidableEq Crit₁] [DecidableEq Crit₂] in
-/-- **First bullet of the proof of Proposition 15.1.1**: `C ⊗ 0 = 0`.-/
+/-- **First bullet of the proof of Proposition 15.1.1**: `C ⊗ 0 = 0`.
+@isnad1 id=eq.0h5v.s5.93e1614670a0 from=translated src=- shape=37b72d06 vocab=6972f94c
+-/
 theorem numCrit_prodIndex_of_isEmpty [IsEmpty Crit₂] (ind₁ : Crit₁ → ℕ) (ind₂ : Crit₂ → ℕ)
     (k : ℕ) : numCrit (prodIndex ind₁ ind₂) k = 0 := by
   have h : IsEmpty (CritSet (prodIndex ind₁ ind₂) k) := ⟨fun c => IsEmpty.false c.1.2⟩
@@ -196,7 +206,9 @@ theorem numCrit_prodIndex_of_isEmpty [IsEmpty Crit₂] (ind₁ : Crit₁ → ℕ
 omit [Fintype Crit₁] [Fintype Crit₂] in
 /-- The coefficient of `∂_{C⊗D}` between two basis elements: `∂ ⊗ 1 + 1 ⊗ ∂`
 counts a connection in the second factor when the first is unchanged, and one in
-the first factor when the second is unchanged.-/
+the first factor when the second is unchanged.
+@isnad1 id=eq.0h9v.s7.77ee18a7f388 from=translated src=- shape=401845d3 vocab=efb1161d
+-/
 theorem prodCount_apply (cnt₁ : Crit₁ → Crit₁ → K) (cnt₂ : Crit₂ → Crit₂ → K)
     (a₁ b₁ : Crit₁) (a₂ b₂ : Crit₂) :
     prodCount cnt₁ cnt₂ (a₁, a₂) (b₁, b₂)
@@ -211,7 +223,9 @@ cancel exactly when `2 = 0` in the coefficient field.  That is why the book work
 over `Z/2`; over another field one has to insert the Koszul signs.
 
 The proof now lives in Chapter 4 as `brokenPairs_prod` — it was moved there so
-that chapter no longer has to assume it — and this is an alias for it.-/
+that chapter no longer has to assume it — and this is an alias for it.
+@isnad1 id=brokenpa.3h7v.s6.77cbcd409bfd from=translated src=- shape=a8a6b7e3 vocab=341aed29
+-/
 theorem tensor_brokenPairs {ind₁ : Crit₁ → ℕ} {ind₂ : Crit₂ → ℕ}
     {cnt₁ : Crit₁ → Crit₁ → K} {cnt₂ : Crit₂ → Crit₂ → K}
     (h₁ : BrokenPairs ind₁ cnt₁) (h₂ : BrokenPairs ind₂ cnt₂) (h2 : (2 : K) = 0) :
@@ -229,7 +243,9 @@ variable {K : Type*} [Field K] {Crit₁ Crit₂ : Type*} [Fintype Crit₁] [Fint
 
 omit [Fintype Crit₁] [Fintype Crit₂] in
 /-- A complex with vanishing differential tensored with another such has
-vanishing differential.-/
+vanishing differential.
+@isnad1 id=eq.0h3v.s6.cad59a57a91f from=translated src=- shape=9f9c767c vocab=0dfb8d4b
+-/
 theorem prodCount_zero :
     prodCount (fun _ _ => (0 : K)) (fun _ _ => (0 : K))
       = fun (_ _ : Crit₁ × Crit₂) => (0 : K) := by
@@ -243,7 +259,9 @@ reduces to the dimension count `numCrit_prodIndex`.
 
 This covers every example computed in the book, since the mod `2` differential
 of the round sphere, of the torus, of `ℂPⁿ` and of `Pⁿ(ℝ)` vanishes; in
-particular it gives Corollary 4.2.3 for `T² = S¹ × S¹`.-/
+particular it gives Corollary 4.2.3 for `T² = S¹ × S¹`.
+@isnad1 id=eq.0h6v.s7.024be548e06e from=translated src=- shape=3a4c2d47 vocab=50f3ffc4
+-/
 theorem betti_prod_of_count_zero (ind₁ : Crit₁ → ℕ) (ind₂ : Crit₂ → ℕ) (k : ℕ) :
     betti (prodIndex ind₁ ind₂) (prodCount (fun _ _ => (0 : K)) (fun _ _ => (0 : K))) k
       = ∑ i ∈ Finset.range (k + 1),
@@ -270,7 +288,9 @@ retractions is a retraction of `C ⊗ D`, and the dimension count
 `numCrit_prodIndex` concludes.
 
 Compare `betti_prod_of_count_zero` above, the case where both differentials
-vanish and no retraction is needed.-/
+vanish and no retraction is needed.
+@isnad1 id=eq.3h8v.s7.0ab7e24f733c from=translated src=- shape=76f9e6b3 vocab=06d6dc0e
+-/
 theorem betti_tensor {ind₁ : Crit₁ → ℕ} {ind₂ : Crit₂ → ℕ}
     {cnt₁ : Crit₁ → Crit₁ → K} {cnt₂ : Crit₂ → Crit₂ → K}
     (h₁ : BrokenPairs ind₁ cnt₁) (h₂ : BrokenPairs ind₂ cnt₂) (h2 : (2 : K) = 0) (k : ℕ) :
@@ -294,13 +314,17 @@ variable {K V W : Type*} [Field K] [AddCommGroup V] [Module K V] [AddCommGroup W
 
 /-- **Remark 15.1.2.**  Over a field the kernel of a linear map is a direct
 summand: this is the step of the proof of Proposition 15.1.1 that fails over a
-ring, and with it the Künneth formula for integral homology.-/
+ring, and with it the Künneth formula for integral homology.
+@isnad1 id=ex.0h4v.s7.da586fa3a394 from=translated src=- shape=5e9ff459 vocab=011aa45b
+-/
 theorem exists_isCompl_ker (f : V →ₗ[K] W) : ∃ S : Submodule K V, IsCompl (LinearMap.ker f) S :=
   Submodule.exists_isCompl _
 
 /-- The complement supplied by `exists_isCompl_ker` is mapped isomorphically onto
 the image: `∂` is injective on it.  This is what turns the two-term complex
-`0 → D'ⱼ → Im ∂ → 0` of the book's proof into an acyclic complex.-/
+`0 → D'ⱼ → Im ∂ → 0` of the book's proof into an acyclic complex.
+@isnad1 id=injectiv.1h5v.s9.2fa07d5c9abc from=translated src=- shape=d431e299 vocab=97296f2b
+-/
 theorem injective_domRestrict_of_isCompl (f : V →ₗ[K] W) {S : Submodule K V}
     (h : IsCompl (LinearMap.ker f) S) : Function.Injective (f.domRestrict S) := by
   rw [← LinearMap.ker_eq_bot, LinearMap.ker_eq_bot']
@@ -339,7 +363,9 @@ noncomputable def connecting (hS : S.ShortExact) (k : ℕ) :
   hS.δ (k + 1) k rfl
 
 /-- **§15.1.b, the "direct verification".**  A short exact sequence of complexes
-induces, in each degree, an exact sequence `Hₖ(A) → Hₖ(B) → Hₖ(C)`.-/
+induces, in each degree, an exact sequence `Hₖ(A) → Hₖ(B) → Hₖ(C)`.
+@isnad1 id=exact.1h3v.s10.0e7721db5944 from=translated src=- shape=77df236e vocab=1508a18e
+-/
 theorem homologySequence_exact₂ (hS : S.ShortExact) (k : ℕ) :
     (ShortComplex.mk (HomologicalComplex.homologyMap S.f k) (HomologicalComplex.homologyMap S.g k)
       (by rw [← HomologicalComplex.homologyMap_comp, S.zero,
@@ -347,7 +373,9 @@ theorem homologySequence_exact₂ (hS : S.ShortExact) (k : ℕ) :
   hS.homology_exact₂ k
 
 /-- **§15.1.b, exactness at `Hₖ(A)`**: the long exact sequence is exact at
-`Hₖ₊₁(C) → Hₖ(A) → Hₖ(B)`, which measures the failure of `i⋆` to be injective.-/
+`Hₖ₊₁(C) → Hₖ(A) → Hₖ(B)`, which measures the failure of `i⋆` to be injective.
+@isnad1 id=exact.1h3v.s9.89d29d84f92d from=translated src=- shape=bf6ba33d vocab=e05c1671
+-/
 theorem homologySequence_exact₁ (hS : S.ShortExact) (k : ℕ) :
     (ShortComplex.mk (connecting hS k) (HomologicalComplex.homologyMap S.f k)
       (ShortComplex.ShortExact.δ_comp hS (k + 1) k rfl)).Exact :=
@@ -355,7 +383,9 @@ theorem homologySequence_exact₁ (hS : S.ShortExact) (k : ℕ) :
 
 /-- **§15.1.b, exactness at `Hₖ₊₁(C)`**: the long exact sequence is exact at
 `Hₖ₊₁(B) → Hₖ₊₁(C) → Hₖ(A)`, which measures the failure of `j⋆` to be
-surjective.-/
+surjective.
+@isnad1 id=exact.1h3v.s9.fb19bf5209c3 from=translated src=- shape=717e8a20 vocab=869222a2
+-/
 theorem homologySequence_exact₃ (hS : S.ShortExact) (k : ℕ) :
     (ShortComplex.mk (HomologicalComplex.homologyMap S.g (k + 1)) (connecting hS k)
       (ShortComplex.ShortExact.comp_δ hS (k + 1) k rfl)).Exact :=
@@ -377,7 +407,9 @@ commuting with the differentials — and a cycle `c` of `C` in degree `k + 2`:
 
 The class of `a` is then `∂[c]`; the remaining verifications (independence of the
 choices, exactness) are the ones §15.1.b calls analogous and direct, and are
-supplied by Mathlib through `connecting` above.-/
+supplied by Mathlib through `connecting` above.
+@isnad1 id=ex.7h11v.s12.8e90ec03710f from=translated src=- shape=b6e1f032 vocab=c5b7cb0d
+-/
 theorem exists_connecting {R : Type*} [Ring R] {A B C : ℕ → Type*}
     [∀ k, AddCommGroup (A k)] [∀ k, Module R (A k)]
     [∀ k, AddCommGroup (B k)] [∀ k, Module R (B k)]
@@ -424,7 +456,9 @@ section Chern
 
 /-- **§15.2.**  The maximal exterior power of a vector space of dimension `n` is
 `1`-dimensional.  Fibrewise, this is why `Λⁿ E` is a *line* bundle, so that the
-Euler class defining `c₁(E) = e(Λⁿ E)` makes sense.-/
+Euler class defining `c₁(E) = e(Λⁿ E)` makes sense.
+@isnad1 id=eq.1h3v.s10.68f963b223c3 from=translated src=- shape=7b9fe420 vocab=42d6d2cc
+-/
 theorem finrank_exteriorPower_top {K V : Type*} [Field K] [AddCommGroup V] [Module K V]
     [FiniteDimensional K V] {n : ℕ} (hn : Module.finrank K V = n) :
     Module.finrank K (⋀[K]^n V) = 1 := by

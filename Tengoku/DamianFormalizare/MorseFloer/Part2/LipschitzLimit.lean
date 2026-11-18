@@ -27,6 +27,9 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimension
 /-- The rational points of the plane.-/
 noncomputable def emb (q : ℚ × ℚ) : ℝ × ℝ := ((q.1 : ℝ), (q.2 : ℝ))
 
+/--
+@isnad1 id=ex.1h2v.s5.8ab97ad99ff7 from=translated src=- shape=76f4a684 vocab=c2e378f4
+-/
 theorem exists_emb_near (p : ℝ × ℝ) {δ : ℝ} (hδ : 0 < δ) : ∃ q : ℚ × ℚ, ‖p - emb q‖ < δ := by
   obtain ⟨a, ha⟩ := exists_rat_near p.1 hδ
   obtain ⟨b, hb⟩ := exists_rat_near p.2 hδ
@@ -35,7 +38,9 @@ theorem exists_emb_near (p : ℝ × ℝ) {δ : ℝ} (hδ : 0 < δ) : ∃ q : ℚ
   rw [e, Prod.norm_def, Real.norm_eq_abs, Real.norm_eq_abs]
   exact max_lt ha hb
 
-/-- **Equi-Lipschitz sequences have locally uniformly convergent subsequences.**-/
+/-- **Equi-Lipschitz sequences have locally uniformly convergent subsequences.**
+@isnad1 id=ex.3h4v.s8.819b06e3ebbf from=translated src=- shape=d76d84f1 vocab=41f5a9a6
+-/
 theorem exists_subseq_tendstoUniformlyOn {f : ℕ → ℝ × ℝ → E} {L R : ℝ} (hL : 0 ≤ L)
     (hlip : ∀ n p q, ‖f n p - f n q‖ ≤ L * ‖p - q‖) (hbd : ∀ n, ‖f n 0‖ ≤ R) :
     ∃ (φ : ℕ → ℕ) (v : ℝ × ℝ → E), StrictMono φ ∧ (∀ p q, ‖v p - v q‖ ≤ L * ‖p - q‖) ∧

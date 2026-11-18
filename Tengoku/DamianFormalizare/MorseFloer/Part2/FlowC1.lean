@@ -49,7 +49,9 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E
 
 omit [CompleteSpace E] in
 /-- Two solutions of `ẋ = f(x)` on an open interval which agree at one point of
-it agree on the interval, for a globally Lipschitz `f`.-/
+it agree on the interval, for a globally Lipschitz `f`.
+@isnad1 id=eqon.5h8v.s7.f5a9a6b00a71 from=translated src=- shape=0d562b26 vocab=f98e5896
+-/
 theorem eqOn_Ioo {f : E → E} {K : ℝ≥0} (hf : LipschitzWith K f) {a b t₀ : ℝ}
     (ht₀ : t₀ ∈ Ioo a b) {α β : ℝ → E} (hα : ∀ t ∈ Ioo a b, HasDerivAt α (f (α t)) t)
     (hβ : ∀ t ∈ Ioo a b, HasDerivAt β (f (β t)) t) (h : α t₀ = β t₀) : EqOn α β (Ioo a b) :=
@@ -71,7 +73,9 @@ theorem eq_of_global {f : E → E} {K : ℝ≥0} (hf : LipschitzWith K f) {α β
 /-- **Picard–Lindelöf with a uniform existence time.**  A `K`-Lipschitz field,
 `K ≥ 1`, has a solution on `(−1/2K, 1/2K)` through every point: on the ball of
 radius `a = 2‖f x‖/2K + 1` about `x` the field is bounded by `‖f x‖ + K a`, and
-`(‖f x‖ + K a)/2K ≤ a`.-/
+`(‖f x‖ + K a)/2K ≤ a`.
+@isnad1 id=ex.2h4v.s7.d0d5a8bb1afe from=translated src=- shape=66f4e63a vocab=cd2e4e57
+-/
 theorem exists_local {f : E → E} {K : ℝ≥0} (hf : LipschitzWith K f) (hK : 1 ≤ K) (x : E) :
     ∃ α : ℝ → E, α 0 = x ∧
       ∀ t ∈ Ioo (-(1 / (2 * (K : ℝ)))) (1 / (2 * (K : ℝ))), HasDerivAt α (f (α t)) t := by
@@ -109,7 +113,9 @@ theorem exists_local {f : E → E} {K : ℝ≥0} (hf : LipschitzWith K f) (hK : 
 omit [CompleteSpace E] in
 /-- **Gluing.**  A solution `α` on `(a, b)` and a solution `β` on `(c, d)`, with
 `a ≤ c < b ≤ d`, which agree at a point `t₁` of the overlap `(c, b)`, glue to a
-solution on `(a, d)` which is `α` on `(a, b)` and `β` on `(c, d)`.-/
+solution on `(a, d)` which is `α` on `(a, b)` and `β` on `(c, d)`.
+@isnad1 id=ex.7h10v.s8.785413856246 from=translated src=- shape=9fc063f6 vocab=32fa021b
+-/
 theorem glue {f : E → E} {K : ℝ≥0} (hf : LipschitzWith K f) {a b c d t₁ : ℝ}
     (hac : a ≤ c) (hbd : b ≤ d) (ht₁ : t₁ ∈ Ioo c b)
     {α β : ℝ → E} (hα : ∀ t ∈ Ioo a b, HasDerivAt α (f (α t)) t)
@@ -148,7 +154,9 @@ theorem glue {f : E → E} {K : ℝ≥0} (hf : LipschitzWith K f) {a b c d t₁ 
     exact (hβ t hmem).congr_of_eventuallyEq hev
 
 /-- Solutions on the intervals `(−(T + nT/2), T + nT/2)`, `T = 1/2K`, by
-induction: each step glues a local solution at the two ends.-/
+induction: each step glues a local solution at the two ends.
+@isnad1 id=ex.2h5v.s8.62c1c6606fc8 from=translated src=- shape=e67f3aa4 vocab=c0aefa5e
+-/
 theorem exists_Ioo_of_nat {f : E → E} {K : ℝ≥0} (hf : LipschitzWith K f) (hK : 1 ≤ K) (x : E)
     (n : ℕ) : ∃ α : ℝ → E, α 0 = x ∧
       ∀ t ∈ Ioo (-(1 / (2 * (K : ℝ)) + n * (1 / (2 * (K : ℝ)) / 2)))
@@ -193,7 +201,9 @@ theorem exists_Ioo_of_nat {f : E → E} {K : ℝ≥0} (hf : LipschitzWith K f) (
       rw [h1, h2]
       exact ht
 
-/-- **Global existence** for a globally Lipschitz field.-/
+/-- **Global existence** for a globally Lipschitz field.
+@isnad1 id=ex.2h4v.s6.faee581d58ad from=translated src=- shape=71ec11ba vocab=5bab5f40
+-/
 theorem exists_global {f : E → E} {K : ℝ≥0} (hf : LipschitzWith K f) (hK : 1 ≤ K) (x : E) :
     ∃ γ : ℝ → E, γ 0 = x ∧ ∀ t, HasDerivAt γ (f (γ t)) t := by
   choose α hα0 hα using exists_Ioo_of_nat hf hK x
@@ -225,7 +235,9 @@ theorem exists_global {f : E → E} {K : ℝ≥0} (hf : LipschitzWith K f) (hK :
   exact (hα (N t) t (hmem t)).congr_of_eventuallyEq hev
 
 /-- **The global flow** of a globally Lipschitz field, with the group law
-`φ (s + t) = φ s ∘ φ t`, which is uniqueness applied to the translated curve.-/
+`φ (s + t) = φ s ∘ φ t`, which is uniqueness applied to the translated curve.
+@isnad1 id=ex.2h3v.s7.78745a99a3e2 from=translated src=- shape=471d2daf vocab=3d324d3e
+-/
 theorem exists_flow_of_lipschitz {f : E → E} {K : ℝ≥0} (hf : LipschitzWith K f) (hK : 1 ≤ K) :
     ∃ φ : ℝ → E → E, (∀ x, φ 0 x = x) ∧ (∀ t x, HasDerivAt (fun s => φ s x) (f (φ t x)) t) ∧
       ∀ s t x, φ (s + t) x = φ s (φ t x) := by
@@ -238,7 +250,9 @@ theorem exists_flow_of_lipschitz {f : E → E} {K : ℝ≥0} (hf : LipschitzWith
 /-! ### Differentiability for short times -/
 
 omit [CompleteSpace E] in
-/-- A bound on the Grönwall function, for `K ≥ 1`, `ε ≥ 0` and `t ≥ 0`.-/
+/-- A bound on the Grönwall function, for `K ≥ 1`, `ε ≥ 0` and `t ≥ 0`.
+@isnad1 id=le.3h3v.s6.2b091acf8ce8 from=translated src=- shape=51626778 vocab=67f3fb84
+-/
 theorem gronwallBound_zero_le {K ε t : ℝ} (hK : 1 ≤ K) (hε : 0 ≤ ε) (ht : 0 ≤ t) :
     gronwallBound 0 K ε t ≤ ε * Real.exp (K * t) := by
   rw [gronwallBound_of_K_ne_0 (by linarith)]
@@ -251,7 +265,9 @@ theorem gronwallBound_zero_le {K ε t : ℝ} (hK : 1 ≤ K) (hε : 0 ≤ ε) (ht
 
 omit [NormedSpace ℝ E] [CompleteSpace E] in
 /-- A continuous map is uniformly continuous on a neighbourhood of a compact set
-(Lebesgue's number lemma).-/
+(Lebesgue's number lemma).
+@isnad1 id=ex.3h5v.s7.858c04d4f037 from=translated src=- shape=839f0ccc vocab=df77e0c5
+-/
 theorem exists_forall_norm_sub_lt_of_isCompact {F : Type*} [NormedAddCommGroup F] {g : E → F}
     (hg : Continuous g) {C : Set E} (hC : IsCompact C) {ε : ℝ} (hε : 0 < ε) :
     ∃ δ > 0, ∀ z ∈ C, ∀ y, dist y z < δ → ‖g y - g z‖ < ε := by
@@ -268,7 +284,9 @@ theorem exists_forall_norm_sub_lt_of_isCompact {F : Type*} [NormedAddCommGroup F
     _ < ε := by linarith
 
 omit [CompleteSpace E] in
-/-- The first-order expansion of a `C¹` map is uniform along a compact set.-/
+/-- The first-order expansion of a `C¹` map is uniform along a compact set.
+@isnad1 id=ex.3h4v.s8.8dcf397e8aba from=translated src=- shape=8ab01800 vocab=6d5bc24e
+-/
 theorem exists_forall_norm_sub_le_of_isCompact {f : E → E} (hf : ContDiff ℝ 1 f) {C : Set E}
     (hC : IsCompact C) {ε : ℝ} (hε : 0 < ε) :
     ∃ δ > 0, ∀ z ∈ C, ∀ y, dist y z < δ →
@@ -284,7 +302,9 @@ theorem exists_forall_norm_sub_le_of_isCompact {f : E → E} (hf : ContDiff ℝ 
 field with flow `φ`, and `T = 1/2K`: at every `x` there is `D : ℝ → (E →L E)`
 with `D 0 = Id`, solving the variational equation `D' = Df(φ t x) ∘ D` on
 `[0, T]`, bounded by `e^{1/2}` there, and such that `D t` is the differential of
-`φ t` at `x`.-/
+`φ t` at `x`.
+@isnad1 id=ex.5h5v.s10.68b28844e6a8 from=translated src=- shape=e395c2c6 vocab=720f53cc
+-/
 theorem exists_fderiv_flow {f : E → E} {K : ℝ≥0} (hf : ContDiff ℝ 1 f) (hK : LipschitzWith K f)
     (hK1 : 1 ≤ K) {φ : ℝ → E → E} (hφ0 : ∀ x, φ 0 x = x)
     (hφd : ∀ t x, HasDerivAt (fun s => φ s x) (f (φ t x)) t) (x : E) :
@@ -421,7 +441,9 @@ theorem exists_fderiv_flow {f : E → E} {K : ℝ≥0} (hf : ContDiff ℝ 1 f) (
   simpa [hz, hw] using hgr3
 
 /-- **The flow is `C¹` for short times**, and the differential at time `0` moves
-with velocity `Df`: `∂ₜ Dφₜ(x)|_{t=0⁺} = Df(x)`.-/
+with velocity `Df`: `∂ₜ Dφₜ(x)|_{t=0⁺} = Df(x)`.
+@isnad1 id=and.5h4v.s9.5623886bf090 from=translated src=- shape=35d85b15 vocab=a5713663
+-/
 theorem contDiff_flow_of_mem {f : E → E} {K : ℝ≥0} (hf : ContDiff ℝ 1 f) (hK : LipschitzWith K f)
     (hK1 : 1 ≤ K) {φ : ℝ → E → E} (hφ0 : ∀ x, φ 0 x = x)
     (hφd : ∀ t x, HasDerivAt (fun s => φ s x) (f (φ t x)) t) :
@@ -513,7 +535,9 @@ theorem contDiff_flow_of_mem {f : E → E} {K : ℝ≥0} (hf : ContDiff ℝ 1 f)
 /-! ### All times -/
 
 omit [CompleteSpace E] in
-/-- The flow of `−f` is the time-reversed flow of `f`.-/
+/-- The flow of `−f` is the time-reversed flow of `f`.
+@isnad1 id=eq.5h7v.s7.7dcbbdd9314f from=translated src=- shape=6da61371 vocab=59f1fa6b
+-/
 theorem flow_neg_eq {f : E → E} {K : ℝ≥0} (hK : LipschitzWith K f) {φ φ' : ℝ → E → E}
     (hφ0 : ∀ x, φ 0 x = x) (hφd : ∀ t x, HasDerivAt (fun s => φ s x) (f (φ t x)) t)
     (hφ'0 : ∀ x, φ' 0 x = x) (hφ'd : ∀ t x, HasDerivAt (fun s => φ' s x) (-f (φ' t x)) t)
@@ -529,7 +553,9 @@ theorem flow_neg_eq {f : E → E} {K : ℝ≥0} (hK : LipschitzWith K f) {φ φ'
 /-- **The `C¹` flow of a globally Lipschitz `C¹` vector field.**  There is a
 map `φ : ℝ → E → E` with `φ 0 = id`, `∂ₜ φ t x = f (φ t x)`, the group law
 `φ (s + t) = φ s ∘ φ t`, each `φ t` of class `C¹`, and the differential
-`Dφ t (x)` solving the variational equation `∂ₜ Dφ t (x) = Df(φ t x) ∘ Dφ t (x)`.-/
+`Dφ t (x)` solving the variational equation `∂ₜ Dφ t (x) = Df(φ t x) ∘ Dφ t (x)`.
+@isnad1 id=ex.2h3v.s9.450b9a534bf8 from=translated src=- shape=3a5dbc65 vocab=c94001a1
+-/
 theorem exists_flow {f : E → E} {K : ℝ≥0} (hf : ContDiff ℝ 1 f) (hK : LipschitzWith K f) :
     ∃ φ : ℝ → E → E, (∀ x, φ 0 x = x) ∧ (∀ t x, HasDerivAt (fun s => φ s x) (f (φ t x)) t) ∧
       (∀ s t x, φ (s + t) x = φ s (φ t x)) ∧ (∀ t, ContDiff ℝ 1 (φ t)) ∧

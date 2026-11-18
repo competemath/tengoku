@@ -130,7 +130,9 @@ differentiable with `‖d²f‖ ≤ C`, the first differential is `C`-Lipschitz:
 
 This is exactly the assertion the book says implies both Lemma 9.4.8 and Lemma
 9.4.16.  The second differential is `MorseFloer.sndFDeriv` of
-`MorseFloer/Basic.lean`.-/
+`MorseFloer/Basic.lean`.
+@isnad1 id=le.5h7v.s10.496890afb81b from=translated src=- shape=a6a47f20 vocab=6e60e06c
+-/
 theorem norm_fderiv_sub_le_of_norm_sndFDeriv_le {f : E → F} {s : Set E} {C : ℝ}
     (hs : Convex ℝ s) (hf : ∀ x ∈ s, HasFDerivAt (fderiv ℝ f) (sndFDeriv f x) x)
     (hC : ∀ x ∈ s, ‖sndFDeriv f x‖ ≤ C) {x y : E} (hx : x ∈ s) (hy : y ∈ s) :
@@ -140,7 +142,9 @@ theorem norm_fderiv_sub_le_of_norm_sndFDeriv_le {f : E → F} {s : Set E} {C : �
 
 /-- **Remark 13.2.1**, in the shape of the conclusion of Lemma 9.4.8: a bound on
 the second differential on the ball `B(0,r)` gives
-`‖df_Z − df_0‖ ≤ C ‖Z‖`.-/
+`‖df_Z − df_0‖ ≤ C ‖Z‖`.
+@isnad1 id=le.3h6v.s10.ecc7041e8dc3 from=translated src=- shape=327fbadb vocab=765bd680
+-/
 theorem norm_fderiv_sub_fderiv_zero_le {f : E → F} {r C : ℝ}
     (hf : ∀ x ∈ closedBall (0 : E) r, HasFDerivAt (fderiv ℝ f) (sndFDeriv f x) x)
     (hC : ∀ x ∈ closedBall (0 : E) r, ‖sndFDeriv f x‖ ≤ C)
@@ -157,7 +161,9 @@ transformation rule `d²(ψ∘φ)(h,k) = d²ψ(dφ h, dφ k) + dψ(d²φ(h,k))` 
 identity behind every formula of §§13.4–13.5.
 
 It is `MorseFloer.sndFDeriv_comp`, proved in `MorseFloer/Basic.lean`; this is
-its restatement in the notation of this chapter.-/
+its restatement in the notation of this chapter.
+@isnad1 id=eq.2h8v.s11.634d93529c66 from=translated src=- shape=66f0357b vocab=494a9abb
+-/
 theorem sndFDeriv_comp_floer {ψ : F → G} {φ : E → F} {x : E}
     (hψ : ContDiffAt ℝ 2 ψ (φ x)) (hφ : ContDiffAt ℝ 2 φ x) (h k : E) :
     sndFDeriv (ψ ∘ φ) x h k
@@ -171,7 +177,9 @@ composition is bounded by `‖d²ψ‖ ‖dφ‖² + ‖dψ‖ ‖d²φ‖`.
 Together with `norm_fderiv_sub_le_of_norm_sndFDeriv_le` this is what makes
 Remark 13.2.1 usable for a composite operator: a bound on the second
 differentials of the three factors of `p_ρ ∘ (Id, F̃_ρ) ∘ i_ρ` bounds the second
-differential of `F_ρ`.-/
+differential of `F_ρ`.
+@isnad1 id=le.2h8v.s11.4496425b03ea from=translated src=- shape=1e43692c vocab=39598898
+-/
 theorem norm_sndFDeriv_comp_le {ψ : F → G} {φ : E → F} {x : E}
     (hψ : ContDiffAt ℝ 2 ψ (φ x)) (hφ : ContDiffAt ℝ 2 φ x) (h k : E) :
     ‖sndFDeriv (ψ ∘ φ) x h k‖
@@ -228,7 +236,9 @@ variable {E N : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensi
 
 omit [NormedSpace ℝ N] in
 /-- Step (1) of the proof of Lemma 13.2.3: a continuous map on `W × B(0,r)` has
-bounded image, because that set is compact.-/
+bounded image, because that set is compact.
+@isnad1 id=ex.1h5v.s7.7143a3122438 from=translated src=- shape=6c54228d vocab=ffd5afb7
+-/
 theorem exists_bound_of_compactSpace {A : P × E → N} (hA : Continuous A) (r : ℝ) :
     ∃ C > 0, ∀ p : P, ∀ X ∈ closedBall (0 : E) r, ‖A (p, X)‖ ≤ C := by
   obtain ⟨C, hC⟩ :=
@@ -238,7 +248,9 @@ theorem exists_bound_of_compactSpace {A : P × E → N} (hA : Continuous A) (r :
   exact (hC (p, X) ⟨Set.mem_univ p, hX⟩).trans (le_max_left _ _)
 
 /-- Step (2) of the proof of Lemma 13.2.3: the mean value inequality along the
-segment `[0, X]`, with the derivative bounded uniformly over the compact base.-/
+segment `[0, X]`, with the derivative bounded uniformly over the compact base.
+@isnad1 id=ex.3h6v.s8.2562406863cb from=translated src=- shape=922b424c vocab=ed165beb
+-/
 theorem exists_lip_of_compactSpace {A : P × E → N} {A' : P × E → (E →L[ℝ] N)}
     (hA' : Continuous A')
     (hderiv : ∀ (p : P) (X : E), HasFDerivAt (fun Y => A (p, Y)) (A' (p, X)) X)
@@ -261,7 +273,9 @@ point and in `X ∈ B(0,r₁)`, with
 * `‖A(p,X) v₂ − A(p,0) v₁‖ ≤ C (‖X‖ ‖v₁‖ + ‖v₂ − v₁‖)`.
 
 The second is obtained, as in the book, by splitting
-`A(p,X)v₂ − A(p,0)v₁ = A(p,X)(v₂ − v₁) + (A(p,X) − A(p,0))v₁`.-/
+`A(p,X)v₂ − A(p,0)v₁ = A(p,X)(v₂ − v₁) + (A(p,X) − A(p,0))v₁`.
+@isnad1 id=ex.4h6v.s10.d2b047f8906b from=translated src=- shape=f2138ca1 vocab=df626ee7
+-/
 theorem exists_const_linear {F' : Type*} [NormedAddCommGroup F'] [NormedSpace ℝ F']
     {A : P × E → (E →L[ℝ] F')} {A' : P × E → (E →L[ℝ] E →L[ℝ] F')}
     (hA : Continuous A) (hA' : Continuous A')
@@ -301,7 +315,9 @@ theorem exists_const_linear {F' : Type*} [NormedAddCommGroup F'] [NormedSpace �
 * `‖B(p,X) v Y₂ − B(p,0) v Y₁‖ ≤ C (‖X‖ ‖v‖ ‖Y₁‖ + ‖v‖ ‖Y₂ − Y₁‖)`.
 
 The book says "one proceeds as in (1)"; here that is literal — this is
-`exists_const_linear` with target space `E →L[ℝ] F'`.-/
+`exists_const_linear` with target space `E →L[ℝ] F'`.
+@isnad1 id=ex.4h6v.s12.5203af44ac67 from=translated src=- shape=8abab530 vocab=df626ee7
+-/
 theorem exists_const_bilinear {F' : Type*} [NormedAddCommGroup F'] [NormedSpace ℝ F']
     {B : P × E → (E →L[ℝ] E →L[ℝ] F')} {B' : P × E → (E →L[ℝ] E →L[ℝ] E →L[ℝ] F')}
     (hB : Continuous B) (hB' : Continuous B')
@@ -352,7 +368,9 @@ variable {G H H' K : Type*} [NormedAddCommGroup G] [NormedSpace ℝ G]
   [NormedAddCommGroup K] [NormedSpace ℝ K]
 
 /-- The mean value estimate used twice in §13.4 and once in §13.5: hypotheses (1)
-and (2) of Lemma 13.4.1 give `‖φ Z − φ 0‖ ≤ (k₁‖Z‖ + k₂)‖Z‖`.-/
+and (2) of Lemma 13.4.1 give `‖φ Z − φ 0‖ ≤ (k₁‖Z‖ + k₂)‖Z‖`.
+@isnad1 id=le.5h7v.s10.a5ea3b889f10 from=translated src=- shape=954cb45d vocab=bd83bf39
+-/
 theorem norm_sub_le_of_fderiv_estimates {φ : G → H} {r₀ k₁ k₂ : ℝ}
     (hφ : Differentiable ℝ φ)
     (h1 : ∀ Z ∈ closedBall (0 : G) r₀, ‖fderiv ℝ φ Z - fderiv ℝ φ 0‖ ≤ k₁ * ‖Z‖)
@@ -389,7 +407,9 @@ which is the whole point: in §13.4 the operators depend on the gluing parameter
 The proof is the book's: split
 `d(ψφ)_Z v − d(ψφ)_0 v = (dψ_{φZ} − dψ_{φ0})(dφ_Z v) + dψ_{φ0}((dφ_Z − dφ_0)v)`,
 estimate `‖φ Z − φ 0‖` by the mean value inequality and `‖dφ_Z‖` by
-`k₁‖Z‖ + k₂`.-/
+`k₁‖Z‖ + k₂`.
+@isnad1 id=le.11h11v.s11.966b40c0a4a8 from=translated src=- shape=055eb842 vocab=71943260
+-/
 theorem norm_fderiv_comp_sub_le {φ : G → H} {ψ : H → K} {r₀ k₁ k₂ k₃ k₄ : ℝ}
     (hφ : Differentiable ℝ φ) (hψ : Differentiable ℝ ψ)
     (h1 : ∀ Z ∈ closedBall (0 : G) r₀, ‖fderiv ℝ φ Z - fderiv ℝ φ 0‖ ≤ k₁ * ‖Z‖)
@@ -465,7 +485,9 @@ The book applies Lemma 13.4.1 first to `(φ, ψ) = (i_ρ, Id × F̃_ρ)` and the
 `(ψ ∘ φ, χ) = ((Id × F̃_ρ) ∘ i_ρ, p_ρ)`; the hypothesis (1) of the second
 application is the conclusion of the first, and its hypothesis (2) is
 `‖d(ψ∘φ)_0‖ ≤ ‖dψ_{φ0}‖ ‖dφ_0‖ ≤ k₄k₂`.  That bookkeeping is what is proved
-here.-/
+here.
+@isnad1 id=le.16h15v.s12.630f647f1360 from=translated src=- shape=371998a9 vocab=71943260
+-/
 theorem norm_fderiv_comp₃_sub_le {φ : G → H} {ψ : H → H'} {χ : H' → K}
     {r₀ k₁ k₂ k₃ k₄ k₅ k₆ : ℝ}
     (hφ : Differentiable ℝ φ) (hψ : Differentiable ℝ ψ) (hχ : Differentiable ℝ χ)
@@ -517,7 +539,9 @@ differential of `(x,y) ↦ B x y` is globally Lipschitz with constant `2‖B‖`
 `‖d(B)_z − d(B)_w‖ ≤ 2‖B‖ ‖z − w‖`.
 
 In particular hypothesis (3) of Lemma 13.4.1 holds for such a map with
-`k₃ = 2‖B‖`, which is exactly what Lemma 13.4.2 asserts about `p_ρ`.-/
+`k₃ = 2‖B‖`, which is exactly what Lemma 13.4.2 asserts about `p_ρ`.
+@isnad1 id=le.0h6v.s11.f0d6e897ba3f from=translated src=- shape=49081188 vocab=1f6249f6
+-/
 theorem norm_fderiv_bilinear_sub_le (B : H₁ →L[ℝ] H₂ →L[ℝ] K) (z w : H₁ × H₂) :
     ‖fderiv ℝ (fun q : H₁ × H₂ => B q.1 q.2) z
       - fderiv ℝ (fun q : H₁ × H₂ => B q.1 q.2) w‖ ≤ 2 * ‖B‖ * ‖z - w‖ := by
@@ -568,14 +592,18 @@ the book's `(dΦ_ρ)_z`.-/
 noncomputable def spaceDeriv (Φ : ℝ × G → H) (ρ : ℝ) (z : G) : G →L[ℝ] H :=
   (fderiv ℝ Φ (ρ, z)).comp (ContinuousLinearMap.inr ℝ ℝ G)
 
-/-- A continuous linear map on `ℝ × G` splits into its two partial pieces.-/
+/-- A continuous linear map on `ℝ × G` splits into its two partial pieces.
+@isnad1 id=eq.0h5v.s9.2b459e1bd33b from=translated src=- shape=3535a14b vocab=8af8d236
+-/
 theorem apply_split (A : ℝ × G →L[ℝ] H) (a : ℝ) (v : G) :
     A (a, v) = a • A (1, 0) + A (0, v) := by
   have hsplit : ((a : ℝ), v) = a • ((1 : ℝ), (0 : G)) + ((0 : ℝ), v) := by
     simp
   rw [hsplit, map_add, map_smul]
 
-/-- The parameter derivative really is the derivative of `r ↦ Φ (r, z)`.-/
+/-- The parameter derivative really is the derivative of `r ↦ Φ (r, z)`.
+@isnad1 id=hasderiv.1h5v.s7.95110da55ff6 from=translated src=- shape=f6e3b12c vocab=cac7abc9
+-/
 theorem hasDerivAt_parDeriv {Φ : ℝ × G → H} {ρ : ℝ} {z : G}
     (hΦ : DifferentiableAt ℝ Φ (ρ, z)) :
     HasDerivAt (fun r => Φ (r, z)) (parDeriv Φ ρ z) ρ := by
@@ -585,7 +613,9 @@ theorem hasDerivAt_parDeriv {Φ : ℝ × G → H} {ρ : ℝ} {z : G}
 
 /-- **The chain rule in the parameter**, the identity the proof of Lemma 13.5.1
 opens with:
-`∂/∂ρ (ψ_ρ (φ_ρ z)) = (∂ψ/∂ρ)(φ_ρ z) + (dψ_ρ)_{φ_ρ z}(∂φ/∂ρ (z))`.-/
+`∂/∂ρ (ψ_ρ (φ_ρ z)) = (∂ψ/∂ρ)(φ_ρ z) + (dψ_ρ)_{φ_ρ z}(∂φ/∂ρ (z))`.
+@isnad1 id=hasderiv.2h7v.s8.ef4a08382b8f from=translated src=- shape=678445a6 vocab=fd6e7ffc
+-/
 theorem hasDerivAt_comp_param {Φ : ℝ × G → H} {Ψ : ℝ × H → K} {ρ : ℝ} {z : G}
     (hΨ : DifferentiableAt ℝ Ψ (ρ, Φ (ρ, z))) (hΦ : DifferentiableAt ℝ Φ (ρ, z)) :
     HasDerivAt (fun r => Ψ (r, Φ (r, z)))
@@ -616,7 +646,9 @@ constant `M = (k₁r₀ + k₂)(k₆ + k₃(k₅r₀ + k₇)) + k₄k₅`, indep
 The proof is the book's: expand the parameter derivative of the composite with
 `hasDerivAt_comp_param`, split the difference into three terms, and estimate
 them by hypotheses (3), (1) and (4) of Lemma 13.4.1 together with the mean value
-bound `‖Φ(ρ,z) − Φ(ρ,0)‖ ≤ (k₁r₀ + k₂)‖z‖`.-/
+bound `‖Φ(ρ,z) − Φ(ρ,0)‖ ≤ (k₁r₀ + k₂)‖z‖`.
+@isnad1 id=le.17h15v.s11.e470a3214b0f from=translated src=- shape=d35958b0 vocab=fd609644
+-/
 theorem norm_parDeriv_comp_sub_le {Φ : ℝ × G → H} {Ψ : ℝ × H → K}
     {ρ r₀ k₁ k₂ k₃ k₄ k₅ k₆ k₇ : ℝ}
     (hΦ : ∀ z : G, DifferentiableAt ℝ Φ (ρ, z))
@@ -712,7 +744,9 @@ ball `B(0,r)` — which is the conclusion of Lemma 9.4.8 — then the nonlinear 
 The book gets the sharper constant `K/2` by writing `N(Y) = ∫₀¹ (dN)_{σY}(Y) dσ`
 and keeping the factor `σ`; the mean value inequality used here discards it.
 The bilinear shape `‖Y‖ · ‖Y‖` is the point, and it is what the proof of Lemma
-9.6.15 uses.-/
+9.6.15 uses.
+@isnad1 id=le.4h6v.s10.da2be506d7da from=translated src=- shape=3bc5f5dc vocab=703cb6c8
+-/
 theorem norm_taylor_remainder_le {f : G → H} {r K : ℝ}
     (hf : ∀ x ∈ closedBall (0 : G) r, DifferentiableAt ℝ f x)
     (hK : ∀ x ∈ closedBall (0 : G) r, ‖fderiv ℝ f x - fderiv ℝ f 0‖ ≤ K * ‖x‖)
@@ -736,7 +770,9 @@ with `c < 1` rearranges to `a ≤ b / (1 − c)`.
 
 In the book `a = ‖Y_n‖_{W^{1,p}}`, `c = C₁₀ ‖Y_n‖_∞` and
 `b = (C₁+C₃)‖χ_n‖_{W^{1,p}} + C₈‖Y_n‖_∞ + C₉‖F(0)‖_{L^p}`, giving the displayed
-form of the lemma.-/
+form of the lemma.
+@isnad1 id=le.2h3v.s6.d08ad8f7e095 from=translated src=- shape=574bf348 vocab=1b82c742
+-/
 theorem le_div_one_sub_of_le_add_mul {a b c : ℝ} (hc : c < 1) (h : a ≤ b + c * a) :
     a ≤ b / (1 - c) := by
   have h1 : (0 : ℝ) < 1 - c := by linarith
@@ -764,7 +800,9 @@ variable {G H K : Type*} [NormedAddCommGroup G] [NormedSpace ℝ G]
 
 /-- The mean value inequality along the segment `[b,a]`, the step
 `‖χ(a) − χ(b)‖ ≤ sup_{r∈[0,1]} ‖(dχ)_{ra+(1−r)b}‖ ‖a − b‖` of the proof of
-Lemma 13.8.2.-/
+Lemma 13.8.2.
+@isnad1 id=le.2h6v.s8.a85c606937a8 from=translated src=- shape=c73a9e15 vocab=fa83848e
+-/
 theorem norm_comp_sub_le_of_fderiv_le {χ : H → K} {a b : H} {Λ : ℝ}
     (hχ : ∀ x ∈ segment ℝ b a, DifferentiableAt ℝ χ x)
     (hΛ : ∀ x ∈ segment ℝ b a, ‖fderiv ℝ χ x‖ ≤ Λ) :
@@ -778,7 +816,9 @@ at most `M ‖z‖`, and the outer map `χ` has differential bounded by `Λ` on 
 segment joining `ψ 0` to `ψ z`, then `‖χ(ψ z) − χ(ψ 0)‖ ≤ Λ M ‖z‖`.
 
 In §13.8, `ψ` is `(Id, V_ρ) ∘ i_ρ`, whose Lipschitz bound at `0` is Lemma
-13.8.1, and `χ` is `p_ρ`.-/
+13.8.1, and `χ` is `p_ρ`.
+@isnad1 id=le.4h8v.s9.0c18e0f940be from=translated src=- shape=bf896bbf vocab=fa83848e
+-/
 theorem norm_comp₂_sub_le_of_lipschitz {ψ : G → H} {χ : H → K} {M Λ : ℝ} {z : G}
     (hM : ‖ψ z - ψ 0‖ ≤ M * ‖z‖)
     (hχ : ∀ x ∈ segment ℝ (ψ 0) (ψ z), DifferentiableAt ℝ χ x)

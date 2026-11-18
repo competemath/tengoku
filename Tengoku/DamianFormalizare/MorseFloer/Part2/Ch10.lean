@@ -195,11 +195,17 @@ def critShift (h : ∀ c, indM c = indF c + n) (k m : ℕ) (hm : m = k + n) :
   right_inv _ := rfl
 
 omit [Fintype Crit] in
+/--
+@isnad1 id=eq.2h7v.s7.9067535c39b8 from=translated src=- shape=fdee6cf1 vocab=c8ee75c4
+-/
 @[simp]
 theorem critShift_val (h : ∀ c, indM c = indF c + n) (k m : ℕ) (hm : m = k + n)
     (b : Chapter3.CritSet indM m) : (critShift h k m hm b).1 = b.1 := rfl
 
 omit [Fintype Crit] in
+/--
+@isnad1 id=eq.2h7v.s7.2a948ce18c09 from=translated src=- shape=6b3a622d vocab=eaa4cecc
+-/
 @[simp]
 theorem critShift_symm_val (h : ∀ c, indM c = indF c + n) (k m : ℕ) (hm : m = k + n)
     (a : Chapter3.CritSet indF k) : ((critShift h k m hm).symm a).1 = a.1 := rfl
@@ -217,6 +223,9 @@ def chainShift (h : ∀ c, indM c = indF c + n) (k m : ℕ) (hm : m = k + n) :
   right_inv y := by funext b; simp
 
 omit [Fintype Crit] in
+/--
+@isnad1 id=eq.2h9v.s9.2ce9663de5b2 from=translated src=- shape=1d804492 vocab=f883bf54
+-/
 @[simp]
 theorem chainShift_apply (h : ∀ c, indM c = indF c + n) (k m : ℕ) (hm : m = k + n)
     (x : Chapter3.Chains R indF k) (b : Chapter3.CritSet indM m) :
@@ -225,7 +234,9 @@ theorem chainShift_apply (h : ∀ c, indM c = indF c + n) (k m : ℕ) (hm : m = 
 /-- **The shift intertwines the two differentials.**  This is the content of
 Theorem 10.1.1 once the two geometric inputs are granted: the Floer differential
 in degree `k` is the Morse differential in degree `k + n`, read through the
-identification of the bases.  Complete proof.-/
+identification of the bases.  Complete proof.
+@isnad1 id=eq.2h9v.s11.9f5d237db144 from=translated src=- shape=78824645 vocab=726e57c9
+-/
 theorem chainShift_dLin (h : ∀ c, indM c = indF c + n) (hc : cntF = cntM) (k : ℕ)
     (x : Chapter3.Chains R indF (k + 1)) :
     chainShift h k (k + n) rfl (Chapter3.dLin indF cntF k x)
@@ -241,7 +252,9 @@ theorem chainShift_dLin (h : ∀ c, indM c = indF c + n) (hc : cntF = cntM) (k :
 /-- **The broken-trajectory hypothesis transports along the shift.**  If the
 Floer counts satisfy it, so do the Morse counts: below degree `n` there is no
 critical point of that Morse index at all, and in degree `j + n` the sum is the
-Floer sum in degree `j` reindexed.-/
+Floer sum in degree `j` reindexed.
+@isnad1 id=brokenpa.3h7v.s6.51ed5c2fd6e1 from=translated src=- shape=cd3f53c9 vocab=1e99383d
+-/
 theorem brokenPairs_shift (h : ∀ c, indM c = indF c + n) (hc : cntF = cntM)
     (hF : Chapter3.BrokenPairs indF cntF) : Chapter3.BrokenPairs indM cntM := by
   intro k a b
@@ -254,7 +267,9 @@ theorem brokenPairs_shift (h : ∀ c, indM c = indF c + n) (hc : cntF = cntM)
     refine Eq.trans ?_ key
     exact Fintype.sum_equiv (critShift h (j + 1) (j + n + 1) (by omega)) _ _ fun _ => rfl
 
-/-- Cycles correspond to cycles under the shift.-/
+/-- Cycles correspond to cycles under the shift.
+@isnad1 id=iff.2h9v.s11.06f168fe9b4c from=translated src=- shape=0363eb53 vocab=58597d79
+-/
 theorem chainShift_mem_cycles_iff (h : ∀ c, indM c = indF c + n) (hc : cntF = cntM) (k : ℕ)
     (y : Chapter3.Chains R indM (k + n + 1)) :
     (chainShift h (k + 1) (k + n + 1) (by omega)).symm y ∈ Chapter3.cycles indF cntF k
@@ -271,7 +286,9 @@ theorem chainShift_mem_cycles_iff (h : ∀ c, indM c = indF c + n) (hc : cntF = 
     refine (chainShift h k (k + n) rfl).map_eq_zero_iff.mp ?_
     rw [key, hy]
 
-/-- Boundaries correspond to boundaries under the shift.-/
+/-- Boundaries correspond to boundaries under the shift.
+@isnad1 id=iff.2h9v.s10.033f872e195a from=translated src=- shape=1a6b1e89 vocab=e31805f0
+-/
 theorem chainShift_mem_boundaries_iff (h : ∀ c, indM c = indF c + n) (hc : cntF = cntM)
     (k : ℕ) (y : Chapter3.Chains R indM (k + n)) :
     (chainShift h k (k + n) rfl).symm y ∈ Chapter3.boundaries indF cntF k
@@ -288,7 +305,9 @@ theorem chainShift_mem_boundaries_iff (h : ∀ c, indM c = indF c + n) (hc : cnt
       LinearEquiv.apply_symm_apply]
 
 /-- **Theorem 10.1.1, the cycle half.**  The isomorphism of chain groups carries
-the cycles of the Floer complex onto the cycles of the Morse complex.-/
+the cycles of the Floer complex onto the cycles of the Morse complex.
+@isnad1 id=eq.2h8v.s9.858e59b2ceb9 from=translated src=- shape=8fc9cbeb vocab=5a5ef8e8
+-/
 theorem chainShift_cycles (h : ∀ c, indM c = indF c + n) (hc : cntF = cntM) (k : ℕ) :
     (Chapter3.cycles indF cntF k).map
         (chainShift h (k + 1) (k + n + 1) (by omega)).toLinearMap
@@ -297,7 +316,9 @@ theorem chainShift_cycles (h : ∀ c, indM c = indF c + n) (hc : cntF = cntM) (k
   simp only [Submodule.mem_map_equiv]
   exact chainShift_mem_cycles_iff h hc k y
 
-/-- **Theorem 10.1.1, the boundary half.**-/
+/-- **Theorem 10.1.1, the boundary half.**
+@isnad1 id=eq.2h8v.s9.2d76fcb965f7 from=translated src=- shape=f8937e91 vocab=979720cc
+-/
 theorem chainShift_boundaries (h : ∀ c, indM c = indF c + n) (hc : cntF = cntM) (k : ℕ) :
     (Chapter3.boundaries indF cntF k).map (chainShift h k (k + n) rfl).toLinearMap
       = Chapter3.boundaries indM cntM (k + n) := by
@@ -307,7 +328,9 @@ theorem chainShift_boundaries (h : ∀ c, indM c = indF c + n) (hc : cntF = cntM
 
 /-- **Theorem 10.1.1 with no shift of gradings.**  If the Floer and Morse data
 agree on the nose, the two complexes are literally the same object of
-`ChainComplex (ModuleCat R) ℕ`.-/
+`ChainComplex (ModuleCat R) ℕ`.
+@isnad1 id=eq.4h6v.s6.421ec98808c6 from=translated src=- shape=c8615eda vocab=ec59e364
+-/
 theorem floerComplex_eq_morseComplex (hind : indF = indM) (hcnt : cntF = cntM)
     {hF : Chapter3.BrokenPairs indF cntF} {hM : Chapter3.BrokenPairs indM cntM} :
     Chapter3.morseComplex hF = Chapter3.morseComplex hM := by
@@ -315,7 +338,9 @@ theorem floerComplex_eq_morseComplex (hind : indF = indM) (hcnt : cntF = cntM)
   subst hcnt
   rfl
 
-/-- **Theorem 10.1.1, the conclusion.**  Floer homology is Morse homology.-/
+/-- **Theorem 10.1.1, the conclusion.**  Floer homology is Morse homology.
+@isnad1 id=eq.4h7v.s6.3217ff9b2ddc from=translated src=- shape=4c31d57b vocab=5f4f2ba6
+-/
 theorem floerHomology_eq_morseHomology (hind : indF = indM) (hcnt : cntF = cntM)
     {hF : Chapter3.BrokenPairs indF cntF} {hM : Chapter3.BrokenPairs indM cntM} (k : ℕ) :
     Chapter3.morseHomology hF k = Chapter3.morseHomology hM k := by
@@ -359,7 +384,9 @@ def IsFredholmOfIndex (Lu : W →L[ℝ] L2) (ix iy : ℕ) : Prop :=
 
 Complete proof: Theorem 10.1.3 gives `ind L_u = Ind(x) − Ind(y)`, Chapter 8
 gives `ind (dF)_u = μ(x) − μ(y)`, and the two gradings differ by the constant
-`n` (Proposition 7.2.1).-/
+`n` (Proposition 7.2.1).
+@isnad1 id=eq.4h11v.s7.060eaf601040 from=translated src=- shape=c50dd8b8 vocab=56eb298f
+-/
 theorem cor_10_1_4 {Lu : W →L[ℝ] L2} {dFu : W' →L[ℝ] L2'} {ix iy μx μy n : ℕ}
     (hL : IsFredholmOfIndex Lu ix iy) (hF : IsFredholmOfIndex dFu μx μy)
     (hx : ix = μx + n) (hy : iy = μy + n) :
@@ -373,7 +400,9 @@ Fredholm operator `(dF)_u` is surjective.
 Proved at the level of dimensions, which is exactly the book's argument:
 Proposition 10.1.7 makes the two kernels equal, Corollary 10.1.4 makes the two
 indices equal, hence the two cokernels have the same dimension; and `L_u` is
-surjective by Theorem 10.1.5, because the field is Morse–Smale.-/
+surjective by Theorem 10.1.5, because the field is Morse–Smale.
+@isnad1 id=eq.3h6v.s10.a34763b7c467 from=translated src=- shape=17d9b530 vocab=4a8257f2
+-/
 theorem cor_10_1_8 (Lu : W →L[ℝ] L2) (dFu : W' →L[ℝ] L2')
     (hker : Module.finrank ℝ (LinearMap.ker (Lu : W →ₗ[ℝ] L2))
       = Module.finrank ℝ (LinearMap.ker (dFu : W' →ₗ[ℝ] L2')))
@@ -401,7 +430,9 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 /-- **Remark 10.1.6.**  Written pointwise: if the `t`-derivative vanishes, the
 Floer equation `a + J b + g = 0` reduces to the gradient equation `a + g = 0`.
 The same identity, applied to a solution `Y` of `dY/ds + S(s)Y = 0`, gives the
-inclusion `Ker L_u ⊆ Ker (dF)_u` of §10.4.a.-/
+inclusion `Ker L_u ⊆ Ker (dF)_u` of §10.4.a.
+@isnad1 id=iff.1h5v.s8.e2ee4337aee6 from=translated src=- shape=a9dd6306 vocab=90645f7a
+-/
 theorem floer_eq_gradient_of_t_independent (J : E →L[ℝ] E) (a b g : E) (hb : b = 0) :
     a + J b + g = 0 ↔ a + g = 0 := by
   rw [hb, map_zero, add_zero]
@@ -444,7 +475,9 @@ def linOp (A : ℝ → E →L[ℝ] E) (Y Y' : ℝ → E) : ℝ → E := fun s =>
 def adjOp (Aadj : ℝ → E →L[ℝ] E) (Z Z' : ℝ → E) : ℝ → E := fun s => -Z' s + Aadj s (Z s)
 
 /-- **The Leibniz rule `L_u(αY) = (dα/ds)Y + α L_u Y`** used in the cut-off
-argument of Proposition 10.2.3.  Complete proof.-/
+argument of Proposition 10.2.3.  Complete proof.
+@isnad1 id=eq.0h7v.s9.4acdb3815323 from=translated src=- shape=e78f806e vocab=86e85f08
+-/
 theorem linOp_smul (A : ℝ → E →L[ℝ] E) (Y Y' : ℝ → E) (α α' : ℝ → ℝ) (s : ℝ) :
     linOp A (fun t => α t • Y t) (fun t => α' t • Y t + α t • Y' t) s
       = α' s • Y s + α s • linOp A Y Y' s := by
@@ -515,7 +548,9 @@ theorem eq_exp_of_hasDerivAt_neg_mul {y : ℝ → ℝ} {lam : ℝ}
 
 /-- **Exponential decay at `−∞`.**  For `s ≤ 0` the solution satisfies
 `|y(s)| = |y(0)|e^{λ|s|}`; when `λ < 0` this decays exponentially as
-`s → −∞`.-/
+`s → −∞`.
+@isnad1 id=eq.2h3v.s6.4e8576190a48 from=translated src=- shape=4fa1f5e5 vocab=1e3d651b
+-/
 theorem abs_eq_exp_decay_atBot {y : ℝ → ℝ} {lam : ℝ}
     (hy : ∀ s, HasDerivAt y (-(lam * y s)) s) {s : ℝ} (hs : s ≤ 0) :
     |y s| = |y 0| * Real.exp (lam * |s|) := by
@@ -594,7 +629,9 @@ private theorem norm_smul_sq (c : ℝ) (v : E) : ‖c • v‖ ^ 2 = c ^ 2 * ‖
 `(a, b)` of real vectors, multiplication by `iu` is `(a, b) ↦ (−u b, u a)`, and
 the estimate `‖(iu + B)v‖² ≥ (u² + C₀²)‖v‖²` becomes the inequality proved here.
 The cross terms cancel exactly because `B` is symmetric — which it is, being a
-Hessian.  Complete proof.-/
+Hessian.  Complete proof.
+@isnad1 id=le.3h6v.s10.b31b344248cb from=translated src=- shape=370cfcea vocab=1439aeb7
+-/
 theorem inner_estimate_of_symm {B : E →L[ℝ] E} (hB : ∀ v w, ⟪B v, w⟫ = ⟪v, B w⟫)
     {C₀ : ℝ} (hC₀ : ∀ v, C₀ * ‖v‖ ≤ ‖B v‖) (hC₀0 : 0 ≤ C₀) (u : ℝ) (a b : E) :
     (u ^ 2 + C₀ ^ 2) * (‖a‖ ^ 2 + ‖b‖ ^ 2) ≤ ‖B a - u • b‖ ^ 2 + ‖B b + u • a‖ ^ 2 := by
@@ -618,7 +655,9 @@ theorem inner_estimate_of_symm {B : E →L[ℝ] E} (hB : ∀ v w, ⟪B v, w⟫ =
 
 /-- **The scalar step of Lemma 10.2.4**: with `C₁ = max(1, C₀^{-2})` one has
 `1 + u² ≤ C₁(C₀² + u²)` for every `u`, which is what turns the estimate on the
-symbol into the `W^{1,2}` estimate.  Complete proof.-/
+symbol into the `W^{1,2}` estimate.  Complete proof.
+@isnad1 id=le.1h2v.s7.fc143d233b9a from=translated src=- shape=cd7b2c84 vocab=206798e9
+-/
 theorem one_add_sq_le_max_mul {C₀ : ℝ} (hC₀ : 0 < C₀) (u : ℝ) :
     1 + u ^ 2 ≤ max 1 (1 / C₀ ^ 2) * (C₀ ^ 2 + u ^ 2) := by
   have hsq : (0 : ℝ) < C₀ ^ 2 := pow_pos hC₀ 2
@@ -637,7 +676,9 @@ previous lemmas: for a symmetric `B` bounded below by `C₀ > 0` and
 `(1 + u²)‖Ŷ(iu)‖² ≤ C₁‖Ẑ(iu)‖²`,   `Ẑ = (iu + B)Ŷ`.
 
 Integrating in `u` and applying Plancherel is Lemma 10.2.4.  Complete proof of
-the symbol estimate.-/
+the symbol estimate.
+@isnad1 id=le.3h6v.s10.c5e5916031b5 from=translated src=- shape=65008ffb vocab=8051feca
+-/
 theorem lemma_10_2_4_symbol {B : E →L[ℝ] E} (hB : ∀ v w, ⟪B v, w⟫ = ⟪v, B w⟫)
     {C₀ : ℝ} (hC₀pos : 0 < C₀) (hC₀ : ∀ v, C₀ * ‖v‖ ≤ ‖B v‖) (u : ℝ) (a b : E) :
     (1 + u ^ 2) * (‖a‖ ^ 2 + ‖b‖ ^ 2)
@@ -667,7 +708,9 @@ noncomputable def l2SqOn (Z : ℝ → E) (T : ℝ) : ℝ := ∫ s in Set.Icc (-T
 /-- The derivative of a differentiable map `ℝ → E` is strongly measurable, as the
 pointwise limit of the continuous difference quotients `n (Y(s + 1/n) − Y(s))`.
 (Mathlib's `stronglyMeasurable_deriv` asks for completeness of `E`, which is not
-assumed in this section.)-/
+assumed in this section.)
+@isnad1 id=strongly.1h3v.s6.c05e105707e2 from=translated src=- shape=d1c9c607 vocab=4ff9dfe4
+-/
 theorem stronglyMeasurable_of_hasDerivAt {Y Y' : ℝ → E} (hY : ∀ s, HasDerivAt Y (Y' s) s) :
     StronglyMeasurable Y' := by
   have hYc : Continuous Y := continuous_iff_continuousAt.2 fun s => (hY s).continuousAt
@@ -686,14 +729,18 @@ theorem stronglyMeasurable_of_hasDerivAt {Y Y' : ℝ → E} (hY : ∀ s, HasDeri
 
 omit [InnerProductSpace ℝ E] in
 /-- A function `ℝ → E` whose squared norm is dominated by an integrable function is
-square-integrable.-/
+square-integrable.
+@isnad1 id=integrab.3h3v.s7.7084e6a3bfa8 from=translated src=- shape=c698f82e vocab=5f22424f
+-/
 theorem integrable_sq_norm_of_le {f : ℝ → E} {g : ℝ → ℝ} (hf : AEStronglyMeasurable f volume)
     (hg : Integrable g) (h : ∀ s, ‖f s‖ ^ 2 ≤ g s) : Integrable fun s => ‖f s‖ ^ 2 :=
   hg.mono' (hf.norm.pow 2) (Filter.Eventually.of_forall fun s => by
     rw [Real.norm_of_nonneg (by positivity)]; exact h s)
 
 omit [InnerProductSpace ℝ E] in
-/-- The same for a sum of two squared norms.-/
+/-- The same for a sum of two squared norms.
+@isnad1 id=integrab.4h4v.s7.0178a76b80f9 from=translated src=- shape=677a7431 vocab=3ab35063
+-/
 theorem integrable_add_sq_norm_of_le {f f' : ℝ → E} {g : ℝ → ℝ}
     (hf : AEStronglyMeasurable f volume) (hf' : AEStronglyMeasurable f' volume)
     (hg : Integrable g) (h : ∀ s, ‖f s‖ ^ 2 + ‖f' s‖ ^ 2 ≤ g s) :
@@ -702,12 +749,18 @@ theorem integrable_add_sq_norm_of_le {f f' : ℝ → E} {g : ℝ → ℝ}
     rw [Real.norm_of_nonneg (by positivity)]; exact h s)
 
 omit [InnerProductSpace ℝ E] in
+/--
+@isnad1 id=le.0h3v.s6.dbeaee891c07 from=translated src=- shape=192ebb28 vocab=0cd0e9c0
+-/
 theorem norm_add_sq_le_two (a b : E) : ‖a + b‖ ^ 2 ≤ 2 * (‖a‖ ^ 2 + ‖b‖ ^ 2) := by
   have h := norm_add_le a b
   have h2 : ‖a + b‖ ^ 2 ≤ (‖a‖ + ‖b‖) ^ 2 := pow_le_pow_left₀ (norm_nonneg _) h 2
   nlinarith [sq_nonneg (‖a‖ - ‖b‖)]
 
 omit [InnerProductSpace ℝ E] in
+/--
+@isnad1 id=le.0h4v.s7.7ad4e170a5b8 from=translated src=- shape=e486b15a vocab=0cd0e9c0
+-/
 theorem norm_add3_sq_le (a b c : E) : ‖a + b + c‖ ^ 2 ≤ 3 * (‖a‖ ^ 2 + ‖b‖ ^ 2 + ‖c‖ ^ 2) := by
   have h1 := norm_add_le (a + b) c
   have h2 := norm_add_le a b
@@ -715,6 +768,9 @@ theorem norm_add3_sq_le (a b c : E) : ‖a + b + c‖ ^ 2 ≤ 3 * (‖a‖ ^ 2 +
   have h4 : ‖a + b + c‖ ^ 2 ≤ (‖a‖ + ‖b‖ + ‖c‖) ^ 2 := pow_le_pow_left₀ (norm_nonneg _) h3 2
   nlinarith [sq_nonneg (‖a‖ - ‖b‖), sq_nonneg (‖b‖ - ‖c‖), sq_nonneg (‖a‖ - ‖c‖)]
 
+/--
+@isnad1 id=le.2h2v.s5.89638037d61c from=translated src=- shape=e44816be vocab=c24bb1bf
+-/
 theorem sqrt_add_le_sqrt_add_sqrt {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) :
     Real.sqrt (a + b) ≤ Real.sqrt a + Real.sqrt b := by
   rw [Real.sqrt_le_iff]
@@ -723,7 +779,9 @@ theorem sqrt_add_le_sqrt_add_sqrt {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) :
 
 /-- An integrable function on `ℝ` which has a limit at `+∞` has limit `0`:
 otherwise it is bounded below in absolute value on some `(R, ∞)`, which has
-infinite measure.-/
+infinite measure.
+@isnad1 id=eq.2h2v.s5.cda37aaeb048 from=translated src=- shape=c62f2282 vocab=09f74dfc
+-/
 theorem limit_eq_zero_of_integrable_atTop {g : ℝ → ℝ} (hg : Integrable g) {m : ℝ}
     (h : Tendsto g atTop (𝓝 m)) : m = 0 := by
   by_contra hm
@@ -746,7 +804,9 @@ theorem limit_eq_zero_of_integrable_atTop {g : ℝ → ℝ} (hg : Integrable g) 
     exact hpos.ne' h0
   · exact (lt_irrefl _ h0).elim
 
-/-- The same at `−∞`.-/
+/-- The same at `−∞`.
+@isnad1 id=eq.2h2v.s5.6ce0ab316819 from=translated src=- shape=c62f2282 vocab=b7150638
+-/
 theorem limit_eq_zero_of_integrable_atBot {g : ℝ → ℝ} (hg : Integrable g) {m : ℝ}
     (h : Tendsto g atBot (𝓝 m)) : m = 0 := by
   by_contra hm
@@ -770,7 +830,9 @@ theorem limit_eq_zero_of_integrable_atBot {g : ℝ → ℝ} (hg : Integrable g) 
   · exact (lt_irrefl _ h0).elim
 
 /-- The elementary inequality `½‖x‖² − ‖y‖² ≤ ‖x + y‖²`, obtained as in the book
-by expanding `‖x + 2y‖² ≥ 0`.  Complete proof.-/
+by expanding `‖x + 2y‖² ≥ 0`.  Complete proof.
+@isnad1 id=le.0h3v.s7.12f73f4c79ab from=translated src=- shape=3950b7be vocab=069227dd
+-/
 theorem half_normSq_sub_le (x y : E) : (1 : ℝ) / 2 * ‖x‖ ^ 2 - ‖y‖ ^ 2 ≤ ‖x + y‖ ^ 2 := by
   have e1 : ‖x + y‖ ^ 2 = ‖x‖ ^ 2 + 2 * ⟪x, y⟫ + ‖y‖ ^ 2 := norm_add_sq_real x y
   have e2 : ‖x + (2 : ℝ) • y‖ ^ 2
@@ -786,7 +848,9 @@ theorem half_normSq_sub_le (x y : E) : (1 : ℝ) / 2 * ‖x‖ ^ 2 - ‖y‖ ^ 2
 
 `‖Y‖² + ‖dY/ds‖² ≤ (2 + 2C²)(‖Y‖² + ‖L_u Y‖²)`.
 
-Complete proof, from the inequality above with `x = dY/ds` and `y = A(s)Y`.-/
+Complete proof, from the inequality above with `x = dY/ds` and `y = A(s)Y`.
+@isnad1 id=le.1h6v.s8.733aa76a74b1 from=translated src=- shape=904049e1 vocab=a1463b6f
+-/
 theorem lemma_10_2_5_pointwise {A : ℝ → E →L[ℝ] E} {C : ℝ}
     (hA : ∀ s v, ‖A s v‖ ≤ C * ‖v‖) (Y Y' : ℝ → E) (s : ℝ) :
     ‖Y s‖ ^ 2 + ‖Y' s‖ ^ 2 ≤ (2 + 2 * C ^ 2) * (‖Y s‖ ^ 2 + ‖linOp A Y Y' s‖ ^ 2) := by
@@ -800,7 +864,9 @@ theorem lemma_10_2_5_pointwise {A : ℝ → E →L[ℝ] E} {C : ℝ}
   have hn2 : (0 : ℝ) ≤ ‖linOp A Y Y' s‖ ^ 2 := sq_nonneg _
   nlinarith [mul_nonneg hCsq hn2, mul_nonneg hCsq hn1]
 
-/-- A pointwise bound integrates.-/
+/-- A pointwise bound integrates.
+@isnad1 id=le.3h5v.s7.189c5e40f149 from=translated src=- shape=6b49e0c6 vocab=87c5e1ad
+-/
 theorem integral_le_of_pointwise {α : Type*} [MeasurableSpace α] {μ : Measure α}
     {f g : α → ℝ} (C : ℝ) (hf : Integrable f μ) (hg : Integrable g μ)
     (h : ∀ x, f x ≤ C * g x) : ∫ x, f x ∂μ ≤ C * ∫ x, g x ∂μ := by
@@ -812,7 +878,9 @@ theorem integral_le_of_pointwise {α : Type*} [MeasurableSpace α] {μ : Measure
 `∫(‖Y‖² + ‖dY/ds‖²) ≤ C₃ ∫(‖Y‖² + ‖L_u Y‖²)`,
 
 with `C₃ = 2 + 2C²`.  Complete proof; the measure is arbitrary, so the Lebesgue
-measure restricted to `[−M, M]` gives the book's statement.-/
+measure restricted to `[−M, M]` gives the book's statement.
+@isnad1 id=le.3h6v.s9.93610904f9e6 from=translated src=- shape=ff574660 vocab=5700b9a3
+-/
 theorem lemma_10_2_5 {A : ℝ → E →L[ℝ] E} {C : ℝ}
     (hA : ∀ s v, ‖A s v‖ ≤ C * ‖v‖) (Y Y' : ℝ → E) (μ : Measure ℝ)
     (h1 : Integrable (fun s => ‖Y s‖ ^ 2 + ‖Y' s‖ ^ 2) μ)
@@ -831,11 +899,17 @@ once the error `(A − By)β₊Y` is absorbed (`end_piece_estimate`); `β₀Y` i
 controlled by Lemma 10.2.5 (`middle_piece_estimate`); and the pieces are
 reassembled with `‖a + b + c‖² ≤ 3(‖a‖² + ‖b‖² + ‖c‖²)`. -/
 
+/--
+@isnad1 id=le.2h3v.s7.d3e8a418f8fe from=translated src=- shape=52430a13 vocab=6a8ab860
+-/
 theorem norm_smul_sq_le_of_le_one {c : ℝ} (h0 : 0 ≤ c) (h1 : c ≤ 1) (v : E) :
     ‖c • v‖ ^ 2 ≤ ‖v‖ ^ 2 := by
   rw [norm_smul, Real.norm_eq_abs, abs_of_nonneg h0, mul_pow]
   exact mul_le_of_le_one_left (sq_nonneg _) (pow_le_one₀ h0 h1)
 
+/--
+@isnad1 id=le.3h6v.s8.75a90a934ca6 from=translated src=- shape=d2aff7e3 vocab=132c7779
+-/
 theorem norm_smul_add_smul_sq_le {c c' D : ℝ} (h0 : 0 ≤ c) (h1 : c ≤ 1) (hD : |c'| ≤ D)
     (v w : E) : ‖c' • v + c • w‖ ^ 2 ≤ 2 * (D ^ 2 * ‖v‖ ^ 2 + ‖w‖ ^ 2) := by
   refine (norm_add_sq_le_two _ _).trans ?_
@@ -846,6 +920,9 @@ theorem norm_smul_add_smul_sq_le {c c' D : ℝ} (h0 : 0 ≤ c) (h1 : c ≤ 1) (h
   nlinarith [mul_le_mul_of_nonneg_right h3 (sq_nonneg ‖v‖),
     mul_le_mul_of_nonneg_right h4 (sq_nonneg ‖w‖)]
 
+/--
+@isnad1 id=le.2h6v.s7.e02ac2d9f4ac from=translated src=- shape=0706d89c vocab=80b50d84
+-/
 theorem norm_deriv_smul_sq_le {β' : ℝ → ℝ} {D T : ℝ} (hβ'le : ∀ s, |β' s| ≤ D)
     (hβ'zero : ∀ s, s ∉ Set.Icc (-T) T → β' s = 0) (Y : ℝ → E) (s : ℝ) :
     ‖β' s • Y s‖ ^ 2 ≤ D ^ 2 * (Set.Icc (-T) T).indicator (fun s => ‖Y s‖ ^ 2) s := by
@@ -854,7 +931,9 @@ theorem norm_deriv_smul_sq_le {β' : ℝ → ℝ} {D T : ℝ} (hβ'le : ∀ s, |
     exact mul_le_mul_of_nonneg_right (pow_le_pow_left₀ (abs_nonneg _) (hβ'le s) 2) (sq_nonneg _)
   · rw [Set.indicator_of_notMem hs, hβ'zero s hs, zero_smul, norm_zero]; simp
 
-/-- The pair `(βY, β'Y + βY')` is again `W^{1,2}` data.-/
+/-- The pair `(βY, β'Y + βY')` is again `W^{1,2}` data.
+@isnad1 id=integrab.7h6v.s9.07b6b1c85826 from=translated src=- shape=1aa0c28b vocab=3aa78feb
+-/
 theorem piece_integrable {β β' : ℝ → ℝ} {D : ℝ} (hβd : ∀ s, HasDerivAt β (β' s) s)
     (hβ'c : Continuous β') (hβ0 : ∀ s, 0 ≤ β s) (hβ1 : ∀ s, β s ≤ 1)
     (hβ'le : ∀ s, |β' s| ≤ D) {Y Y' : ℝ → E} (hY : ∀ s, HasDerivAt Y (Y' s) s)
@@ -874,7 +953,9 @@ theorem piece_integrable {β β' : ℝ → ℝ} {D : ℝ} (hβd : ∀ s, HasDeri
 
 /-- The estimate for an end piece `βY`: on the support of `β` the operator `A(s)`
 is within `ε` of the constant `B`, for which Lemma 10.2.4 holds with constant
-`C₁`, and `3 C₁ ε² ≤ 1/2` lets the error term be absorbed.-/
+`C₁`, and `3 C₁ ε² ≤ 1/2` lets the error term be absorbed.
+@isnad1 id=le.13h11v.s10.8b17c05fdcf7 from=translated src=- shape=f5104f94 vocab=753b76a3
+-/
 theorem end_piece_estimate {A : ℝ → E →L[ℝ] E} {B : E →L[ℝ] E} {C₁ ε D T : ℝ}
     (hC₁ : 0 < C₁)
     (h124 : ∀ Z Z' : ℝ → E, (∀ s, HasDerivAt Z (Z' s) s) →
@@ -966,7 +1047,9 @@ theorem end_piece_estimate {A : ℝ → E →L[ℝ] E} {B : E →L[ℝ] E} {C₁
   linarith
 
 /-- The estimate for the middle piece `βY`, supported in `[−T, T]`, from
-Lemma 10.2.5.-/
+Lemma 10.2.5.
+@isnad1 id=le.12h9v.s10.6ac48024e321 from=translated src=- shape=3b57e5ae vocab=141b10ca
+-/
 theorem middle_piece_estimate {A : ℝ → E →L[ℝ] E} {CA D T : ℝ} (hAc : Continuous A)
     (hA : ∀ s v, ‖A s v‖ ≤ CA * ‖v‖)
     {β β' : ℝ → ℝ} (hβd : ∀ s, HasDerivAt β (β' s) s) (hβ'c : Continuous β')
@@ -1050,7 +1133,9 @@ A finite-dimensional kernel has a closed complement `E₁` (Hahn–Banach), on w
 `L_u` is injective with the same range.  A range of finite codimension is then
 closed, by the open mapping theorem applied to `E₁ × G → L²` for a
 finite-dimensional complement `G` of the range, and `L_u : E₁ → range` is
-invertible by the open mapping theorem again.-/
+invertible by the open mapping theorem again.
+@isnad1 id=isfredho.3h6v.s9.f41f7cdbd76f from=translated src=- shape=1823ccdd vocab=ecaa4691
+-/
 theorem prop_10_2_2 {W L2 T : Type*} [NormedAddCommGroup W] [NormedSpace ℝ W] [CompleteSpace W]
     [NormedAddCommGroup L2] [NormedSpace ℝ L2] [CompleteSpace L2]
     [NormedAddCommGroup T] [NormedSpace ℝ T]
@@ -1166,7 +1251,9 @@ variable {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℝ V] [FiniteDim
 `dim(U ∩ S) − dim (U + S)^⊥ = dim U + dim S − dim V`.
 
 Complete proof, from the formula for the dimensions of a sum and an intersection
-and from the dimension of an orthogonal complement.-/
+and from the dimension of an orthogonal complement.
+@isnad1 id=eq.0h3v.s10.888ff00e5bed from=translated src=- shape=c2166c92 vocab=1c9a2e42
+-/
 theorem finrank_index_eq (U S : Submodule ℝ V) :
     (Module.finrank ℝ (U ⊓ S : Submodule ℝ V) : ℤ)
         - (Module.finrank ℝ ((U ⊔ S)ᗮ : Submodule ℝ V) : ℤ)
@@ -1181,7 +1268,9 @@ theorem finrank_index_eq (U S : Submodule ℝ V) :
 Proved from the dimension count, granted the geometric dictionary: `U` is the
 tangent space to the unstable manifold of `x`, of dimension `Ind(x)`; `S` is the
 tangent space to the stable manifold of `y`, of dimension `n − Ind(y)`; the
-kernel of `L_u` is `U ∩ S` and the kernel of `L*_u` is `(U + S)^⊥`.-/
+kernel of `L_u` is `U ∩ S` and the kernel of `L*_u` is `(U + S)^⊥`.
+@isnad1 id=eq.4h6v.s10.bd94addb4049 from=translated src=- shape=f9655fd3 vocab=37488b0c
+-/
 theorem prop_10_2_8 (U S : Submodule ℝ V) {ix iy n : ℕ}
     (hU : Module.finrank ℝ U = ix) (hS : Module.finrank ℝ S = n - iy)
     (hV : Module.finrank ℝ V = n) (hiy : iy ≤ n) :
@@ -1208,7 +1297,9 @@ variable {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℝ V] [FiniteDim
 /-- **Theorem 10.1.5, the linear-algebra content.**  The orthogonal complement of
 a subspace vanishes exactly when the subspace is everything; applied to
 `U + S = T W^u(x) + T W^s(y)`, the vanishing of `Ker L*_u = (U + S)^⊥` is the
-Smale transversality condition.  Complete proof.-/
+Smale transversality condition.  Complete proof.
+@isnad1 id=iff.0h3v.s9.b75df85e05b0 from=translated src=- shape=16bbadf1 vocab=0db550ab
+-/
 theorem orthogonal_sup_eq_bot_iff (U S : Submodule ℝ V) :
     (U ⊔ S)ᗮ = ⊥ ↔ U ⊔ S = ⊤ := by
   constructor
@@ -1225,7 +1316,9 @@ if all the operators `L_u` are onto.
 Stated as an equivalence of two conditions indexed by the pairs of critical
 points, connected by the dictionary of §10.2.d: for each pair the cokernel of
 `L_u` is `(U + S)^⊥`, so surjectivity is its vanishing, and transversality is
-`U + S = ⊤`.  Complete proof.-/
+`U + S = ⊤`.  Complete proof.
+@isnad1 id=iff.0h4v.s9.332f31759e80 from=translated src=- shape=5e6d0ab6 vocab=0db550ab
+-/
 theorem thm_10_1_5 {ι : Type*} (U S : ι → Submodule ℝ V) :
     (∀ i, U i ⊔ S i = ⊤) ↔ ∀ i, (U i ⊔ S i)ᗮ = ⊥ :=
   ⟨fun h i => (orthogonal_sup_eq_bot_iff _ _).mpr (h i),
@@ -1249,7 +1342,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 `⟪U, S V⟫ = ‖V‖²`, which is nonzero as soon as `V` is.  This is the book's
 conclusion; what is not formalized is the construction of such an `S` inside the
 space of anti-`ℂ`-linear symmetric matrices, which needs the complex structure of
-Chapter 5 in a form Mathlib does not carry.-/
+Chapter 5 in a form Mathlib does not carry.
+@isnad1 id=eq.2h4v.s9.568cdf818d70 from=translated src=- shape=ab34a91f vocab=b5a09a89
+-/
 theorem inner_eq_normSq_of_symm {S : E →L[ℝ] E} (hS : ∀ v w, ⟪S v, w⟫ = ⟪v, S w⟫)
     {U V : E} (hUV : S U = V) : ⟪U, S V⟫ = ‖V‖ ^ 2 := by
   rw [← hS U V, hUV, real_inner_self_eq_norm_sq]
@@ -1270,7 +1365,9 @@ section Convergence
 
 variable {E : Type*} [NormedAddCommGroup E]
 
-/-- The integer parts `⌊r N_k⌋ / N_k` converge to `r` when `N_k → ∞`.-/
+/-- The integer parts `⌊r N_k⌋ / N_k` converge to `r` when `N_k → ∞`.
+@isnad1 id=tendsto.2h2v.s6.33be6ef17bda from=translated src=- shape=d24ff041 vocab=b698cd40
+-/
 theorem tendsto_floor_div {N : ℕ → ℝ} (hNpos : ∀ k, 0 < N k) (hN : Tendsto N atTop atTop)
     (r : ℝ) : Tendsto (fun k => (⌊r * N k⌋ : ℝ) / N k) atTop (𝓝 r) := by
   have hinv : Tendsto (fun k => (N k)⁻¹) atTop (𝓝 (0 : ℝ)) := hN.inv_tendsto_atTop
@@ -1340,7 +1437,9 @@ Two hypotheses were missing from an earlier statement and are needed:
 and the mean-zero hypothesis says nothing; and the integrability of `‖f'‖^p`,
 without which the right-hand side is `0` for a function such as
 `t ↦ t² sin(1/t²)`, which is differentiable at every point of `[0, 1]` but whose
-derivative is not integrable.-/
+derivative is not integrable.
+@isnad1 id=le.4h4v.s8.6477192a1a21 from=translated src=- shape=66dab39f vocab=5cf185b4
+-/
 theorem lemma_10_4_1 [CompleteSpace E] {p : ℝ} (hp : 1 ≤ p) (f f' : ℝ → E)
     (hf : ∀ t ∈ Set.Icc (0 : ℝ) 1, HasDerivAt f (f' t) t)
     (hf' : IntervalIntegrable (fun t => ‖f' t‖ ^ p) volume 0 1)

@@ -35,7 +35,9 @@ variable {m : Type*} [Fintype m] [DecidableEq m]
 
 /-! ### Continuity of coefficients -/
 
-/-- The coefficients of a finite product are continuous when those of the factors are.-/
+/-- The coefficients of a finite product are continuous when those of the factors are.
+@isnad1 id=continuo.1h5v.s6.4017175c67ab from=translated src=- shape=cafd117a vocab=71a920a3
+-/
 theorem continuous_coeff_finset_prod {α ι : Type*} [TopologicalSpace α] (s : Finset ι)
     (Q : α → ι → ℂ[X]) (hQ : ∀ i ∈ s, ∀ k, Continuous fun x => (Q x i).coeff k) (k : ℕ) :
     Continuous fun x => (∏ i ∈ s, Q x i).coeff k := by
@@ -53,7 +55,9 @@ theorem continuous_coeff_finset_prod {α ι : Type*} [TopologicalSpace α] (s : 
     exact continuous_finsetSum _ fun p _ => (hQ i (Finset.mem_insert_self i s) p.1).mul
       (ih (fun j hj k => hQ j (Finset.mem_insert_of_mem hj) k) p.2)
 
-/-- The coefficients of `X - C (x i)` are continuous in `x`.-/
+/-- The coefficients of `X - C (x i)` are continuous in `x`.
+@isnad1 id=continuo.0h3v.s6.314c3a428c1b from=translated src=- shape=a3eeaf43 vocab=47ecee2b
+-/
 theorem continuous_coeff_X_sub_C {ι : Type*} (i : ι) (k : ℕ) :
     Continuous fun x : ι → ℂ => (X - C (x i)).coeff k := by
   have e : (fun x : ι → ℂ => (X - C (x i)).coeff k)
@@ -65,7 +69,9 @@ theorem continuous_coeff_X_sub_C {ι : Type*} (i : ι) (k : ℕ) :
   · exact continuous_apply i
   · exact continuous_const
 
-/-- The coefficients of `∏ i ∈ I, (X - C (x i))` are continuous in `x`.-/
+/-- The coefficients of `∏ i ∈ I, (X - C (x i))` are continuous in `x`.
+@isnad1 id=continuo.0h3v.s7.225cf70c3b50 from=translated src=- shape=1849d52a vocab=56d17543
+-/
 theorem continuous_coeff_prod_X_sub_C {ι : Type*} (I : Finset ι) (k : ℕ) :
     Continuous fun x : ι → ℂ => (∏ i ∈ I, (X - C (x i))).coeff k := by
   classical
@@ -81,7 +87,9 @@ theorem continuous_coeff_prod_X_sub_C {ι : Type*} (I : Finset ι) (k : ℕ) :
     rw [e]
     exact continuous_finsetSum _ fun p _ => (continuous_coeff_X_sub_C i p.1).mul (ih p.2)
 
-/-- **The coefficients of the characteristic polynomial are continuous in the matrix.**-/
+/-- **The coefficients of the characteristic polynomial are continuous in the matrix.**
+@isnad1 id=continuo.0h2v.s6.f03a6199e503 from=translated src=- shape=1e4f5b71 vocab=2031335c
+-/
 theorem continuous_charpoly_coeff (k : ℕ) :
     Continuous fun A : Matrix m m ℂ => A.charpoly.coeff k := by
   classical
@@ -124,18 +132,30 @@ noncomputable def fPoly (A : Matrix m m ℂ) : ℂ[X] := ((inside c r A).map fun
 /-- The complementary factor.-/
 noncomputable def gPoly (A : Matrix m m ℂ) : ℂ[X] := ((outside c r A).map fun z => X - C z).prod
 
+/--
+@isnad1 id=eq.0h4v.s5.4e523a62038d from=translated src=- shape=4af02e98 vocab=14a5ca73
+-/
 theorem fPoly_mul_gPoly (A : Matrix m m ℂ) : fPoly c r A * gPoly c r A = A.charpoly := by
   rw [fPoly, gPoly, ← Multiset.prod_add, ← Multiset.map_add, inside, outside,
     Multiset.filter_add_not]
   exact prod_multiset_X_sub_C_of_monic_of_roots_card_eq (charpoly_monic A)
     IsAlgClosed.card_roots_eq_natDegree
 
+/--
+@isnad1 id=monic.0h4v.s4.98d4299736c0 from=translated src=- shape=b2de123e vocab=0b288e42
+-/
 theorem monic_fPoly (A : Matrix m m ℂ) : (fPoly c r A).Monic :=
   monic_multiset_prod_of_monic _ _ fun z _ => monic_X_sub_C z
 
+/--
+@isnad1 id=monic.0h4v.s4.f2b324a0a8d6 from=translated src=- shape=b2de123e vocab=37b1ad27
+-/
 theorem monic_gPoly (A : Matrix m m ℂ) : (gPoly c r A).Monic :=
   monic_multiset_prod_of_monic _ _ fun z _ => monic_X_sub_C z
 
+/--
+@isnad1 id=eq.0h1v.s6.fe1342a1a5ee from=translated src=- shape=8507811f vocab=9853aac8
+-/
 theorem natDegree_prod_X_sub_C (s : Multiset ℂ) :
     ((s.map fun z => X - C z).prod).natDegree = Multiset.card s := by
   have hmon : ∀ q ∈ s.map fun z => X - C z, Monic q := fun q hq => by
@@ -144,23 +164,37 @@ theorem natDegree_prod_X_sub_C (s : Multiset ℂ) :
   refine (natDegree_multiset_prod_of_monic _ hmon).trans ?_
   simp [Multiset.map_map]
 
+/--
+@isnad1 id=eq.0h4v.s5.1654cce2f11e from=translated src=- shape=ec8a4c3c vocab=b92db572
+-/
 theorem natDegree_fPoly (A : Matrix m m ℂ) :
     (fPoly c r A).natDegree = Multiset.card (inside c r A) :=
   natDegree_prod_X_sub_C _
 
+/--
+@isnad1 id=eq.0h4v.s5.f1bc20e7703e from=translated src=- shape=ec8a4c3c vocab=18fe87fb
+-/
 theorem natDegree_gPoly (A : Matrix m m ℂ) :
     (gPoly c r A).natDegree = Multiset.card (outside c r A) :=
   natDegree_prod_X_sub_C _
 
+/--
+@isnad1 id=le.0h4v.s5.daa308abcad1 from=translated src=- shape=56b1d3d7 vocab=7b8b9c40
+-/
 theorem card_inside_le (A : Matrix m m ℂ) : Multiset.card (inside c r A) ≤ Fintype.card m := by
   rw [← charpoly_natDegree_eq_dim A, ← IsAlgClosed.card_roots_eq_natDegree]
   exact Multiset.card_le_card (Multiset.filter_le _ _)
 
+/--
+@isnad1 id=le.0h4v.s5.c12eb3c4c9bc from=translated src=- shape=56b1d3d7 vocab=c4a2ca57
+-/
 theorem card_outside_le (A : Matrix m m ℂ) : Multiset.card (outside c r A) ≤ Fintype.card m := by
   rw [← charpoly_natDegree_eq_dim A, ← IsAlgClosed.card_roots_eq_natDegree]
   exact Multiset.card_le_card (Multiset.filter_le _ _)
 
-/-- The two factors are coprime: they have no common root.-/
+/-- The two factors are coprime: they have no common root.
+@isnad1 id=iscoprim.0h4v.s5.f41685ce4c1f from=translated src=- shape=c02388e1 vocab=904c83bd
+-/
 theorem isCoprime_fPoly_gPoly (A : Matrix m m ℂ) : IsCoprime (fPoly c r A) (gPoly c r A) := by
   classical
   rw [fPoly, gPoly, Finset.prod_multiset_map_count, Finset.prod_multiset_map_count]
@@ -172,6 +206,9 @@ theorem isCoprime_fPoly_gPoly (A : Matrix m m ℂ) : IsCoprime (fPoly c r A) (gP
   rw [Multiset.mem_toFinset, outside, Multiset.mem_filter] at hw
   exact hw.2 (hzw ▸ hz.2)
 
+/--
+@isnad1 id=eq.0h4v.s8.437328ad862d from=translated src=- shape=945cf0b2 vocab=f2d33ffb
+-/
 theorem aeval_fPoly_mul_gPoly (A : Matrix m m ℂ) :
     aeval A (fPoly c r A) * aeval A (gPoly c r A) = 0 := by
   rw [← map_mul, fPoly_mul_gPoly, aeval_self_charpoly]
@@ -179,7 +216,9 @@ theorem aeval_fPoly_mul_gPoly (A : Matrix m m ℂ) :
 /-! ### Continuity of the two factors -/
 
 /-- The product over the eigenvalues satisfying a predicate, read through an enumeration of the
-eigenvalues.-/
+eigenvalues.
+@isnad1 id=eq.0h3v.s7.a96466318add from=translated src=- shape=108cb45b vocab=2fc77f3d
+-/
 theorem filterProd_eq_prod {n : ℕ} (Pred : ℂ → Prop) [DecidablePred Pred] (x : Fin n → ℂ) :
     (((Finset.univ.val.map x).filter Pred).map fun z => X - C z).prod
       = ∏ i ∈ Finset.univ.filter (fun i => Pred (x i)), (X - C (x i)) := by
@@ -187,7 +226,9 @@ theorem filterProd_eq_prod {n : ℕ} (Pred : ℂ → Prop) [DecidablePred Pred] 
   rfl
 
 /-- A root of a polynomial whose coefficients are within `1` of those of `p` is bounded in terms
-of `p` alone.-/
+of `p` alone.
+@isnad1 id=le.4h4v.s6.50aa7fb66687 from=translated src=- shape=130fc02e vocab=c44098e0
+-/
 theorem norm_root_le_of_coeff_close {n : ℕ} {p q : ℂ[X]} (hq : q.Monic) (hqn : q.natDegree = n)
     (hclose : ∀ i, ‖q.coeff i - p.coeff i‖ ≤ 1) {z : ℂ} (hz : q.IsRoot z) :
     ‖z‖ ≤ max 1 (∑ i ∈ Finset.range n, (‖p.coeff i‖ + 1)) := by
@@ -200,7 +241,9 @@ theorem norm_root_le_of_coeff_close {n : ℕ} {p q : ℂ[X]} (hq : q.Monic) (hqn
 
 /-- **The coefficients of the factor selected by a stable predicate are continuous.**  If the
 predicate does not change within `ε₀` of any eigenvalue of `A₀`, the coefficients of the
-product of `X - z` over the eigenvalues `z` satisfying it are continuous at `A₀`.-/
+product of `X - z` over the eigenvalues `z` satisfying it are continuous at `A₀`.
+@isnad1 id=continuo.2h5v.s7.68820aa49caa from=translated src=- shape=98caba7e vocab=a9100622
+-/
 theorem continuousAt_coeff_filterProd (Pred : ℂ → Prop) [DecidablePred Pred]
     (A₀ : Matrix m m ℂ) {ε₀ : ℝ} (hε₀ : 0 < ε₀)
     (hstab : ∀ z ∈ A₀.charpoly.roots, ∀ w : ℂ, dist w z < ε₀ → (Pred w ↔ Pred z)) (k : ℕ) :
@@ -279,7 +322,9 @@ theorem continuousAt_coeff_filterProd (Pred : ℂ → Prop) [DecidablePred Pred]
   rw [dist_eq_norm] at this
   exact this.trans_lt hΦab
 
-/-- The separation of the eigenvalues of `A₀` from the circle.-/
+/-- The separation of the eigenvalues of `A₀` from the circle.
+@isnad1 id=ex.1h4v.s6.ad72e817cb04 from=translated src=- shape=c3659fd2 vocab=69a0ff80
+-/
 theorem exists_circle_separation (A₀ : Matrix m m ℂ)
     (hcirc : ∀ z ∈ A₀.charpoly.roots, dist z c ≠ r) :
     ∃ ε₀ : ℝ, 0 < ε₀ ∧ ∀ z ∈ A₀.charpoly.roots, ε₀ ≤ |dist z c - r| := by
@@ -291,7 +336,9 @@ theorem exists_circle_separation (A₀ : Matrix m m ℂ)
   refine ⟨|dist z₀ c - r|, abs_pos.2 (sub_ne_zero.2 (hcirc z₀ (Multiset.mem_toFinset.1 hz₀))),
     fun z hz => hmin z (Multiset.mem_toFinset.2 hz)⟩
 
-/-- Inside the disc is a stable predicate away from the circle.-/
+/-- Inside the disc is a stable predicate away from the circle.
+@isnad1 id=iff.2h5v.s6.2596e489f15b from=translated src=- shape=32b621fa vocab=ffcbea30
+-/
 theorem stable_inside {ε₀ : ℝ} {z w : ℂ} (hz : ε₀ ≤ |dist z c - r|) (hw : dist w z < ε₀) :
     dist w c < r ↔ dist z c < r := by
   have h1 := dist_triangle w z c
@@ -303,6 +350,9 @@ theorem stable_inside {ε₀ : ℝ} {z w : ℂ} (hz : ε₀ ≤ |dist z c - r|) 
   · rw [abs_of_nonneg (by linarith)] at hz
     exact ⟨fun h' => absurd h' (by linarith), fun h' => absurd h' (not_lt.2 h)⟩
 
+/--
+@isnad1 id=continuo.1h5v.s6.973bf34e394f from=translated src=- shape=9e6b3cd4 vocab=c5de1e0d
+-/
 theorem continuousAt_coeff_fPoly (A₀ : Matrix m m ℂ)
     (hcirc : ∀ z ∈ A₀.charpoly.roots, dist z c ≠ r) (k : ℕ) :
     ContinuousAt (fun A => (fPoly c r A).coeff k) A₀ := by
@@ -310,6 +360,9 @@ theorem continuousAt_coeff_fPoly (A₀ : Matrix m m ℂ)
   exact continuousAt_coeff_filterProd (fun z => dist z c < r) A₀ hε₀
     (fun z hz w hw => stable_inside c r (hsep z hz) hw) k
 
+/--
+@isnad1 id=continuo.1h5v.s6.b10ce169ce0a from=translated src=- shape=9e6b3cd4 vocab=190c2e62
+-/
 theorem continuousAt_coeff_gPoly (A₀ : Matrix m m ℂ)
     (hcirc : ∀ z ∈ A₀.charpoly.roots, dist z c ≠ r) (k : ℕ) :
     ContinuousAt (fun A => (gPoly c r A).coeff k) A₀ := by
@@ -323,13 +376,22 @@ section Algebra
 
 variable (A : Matrix m m ℂ)
 
+/--
+@isnad1 id=eq.0h4v.s9.533ee67bd6d0 from=translated src=- shape=e2afed42 vocab=b054258c
+-/
 theorem aeval_comm (p q : ℂ[X]) : aeval A p * aeval A q = aeval A q * aeval A p := by
   rw [← map_mul, ← map_mul, mul_comm]
 
+/--
+@isnad1 id=eq.0h3v.s8.6cd3e9abba97 from=translated src=- shape=966e4068 vocab=b054258c
+-/
 theorem mul_aeval_comm (q : ℂ[X]) : A * aeval A q = aeval A q * A := by
   have := aeval_comm A X q
   rwa [aeval_X] at this
 
+/--
+@isnad1 id=eq.2h3v.s7.ad83d893c0cd from=translated src=- shape=ade10e16 vocab=343ee56c
+-/
 theorem inv_comm_of_comm {B R : Matrix m m ℂ} (hR : IsUnit R.det) (h : B * R = R * B) :
     B * R⁻¹ = R⁻¹ * B := by
   calc B * R⁻¹ = R⁻¹ * (R * B) * R⁻¹ := by
@@ -340,7 +402,9 @@ theorem inv_comm_of_comm {B R : Matrix m m ℂ} (hR : IsUnit R.det) (h : B * R =
 
 /-- **The projector attached to a Bézout-like relation.**  If `f g` vanishes at `A` and
 `R = u f + v g` is invertible at `A`, then `P = v g R⁻¹` is a projector commuting with `A`,
-killed by `f`, with `g` killing `1 - P`; it fixes `ker f(A)` and kills `ker g(A)`.-/
+killed by `f`, with `g` killing `1 - P`; it fixes `ker f(A)` and kills `ker g(A)`.
+@isnad1 id=and.2h6v.s12.f0754fadaf69 from=translated src=- shape=e859f306 vocab=c3d62fa3
+-/
 theorem proj_spec {u v f g : ℂ[X]} (hfg : aeval A (f * g) = 0)
     (hR : IsUnit (aeval A (u * f + v * g)).det) :
     aeval A (v * g) * (aeval A (u * f + v * g))⁻¹ * (aeval A (v * g) * (aeval A (u * f + v * g))⁻¹)
@@ -398,6 +462,9 @@ noncomputable def projOf (u₀ v₀ : ℂ[X]) (A : Matrix m m ℂ) : Matrix m m 
 
 /-! ### Continuity of the matrix-valued pieces -/
 
+/--
+@isnad1 id=continuo.2h4v.s8.ac2d140c7842 from=translated src=- shape=9cdf056a vocab=4692c661
+-/
 theorem continuousAt_aeval_of_coeff {q : Matrix m m ℂ → ℂ[X]} {N : ℕ} (A₀ : Matrix m m ℂ)
     (hdeg : ∀ A, (q A).natDegree < N) (hcoef : ∀ k, ContinuousAt (fun A => (q A).coeff k) A₀) :
     ContinuousAt (fun A => aeval A (q A)) A₀ := by
@@ -407,6 +474,9 @@ theorem continuousAt_aeval_of_coeff {q : Matrix m m ℂ → ℂ[X]} {N : ℕ} (A
   rw [e]
   exact tendsto_finsetSum _ fun i _ => (hcoef i).smul (continuous_pow i).continuousAt
 
+/--
+@isnad1 id=continuo.1h4v.s7.68b6773877f2 from=translated src=- shape=74f47e94 vocab=2b88b348
+-/
 theorem continuousAt_aeval_fPoly (A₀ : Matrix m m ℂ)
     (hcirc : ∀ z ∈ A₀.charpoly.roots, dist z c ≠ r) :
     ContinuousAt (fun A => aeval A (fPoly c r A)) A₀ :=
@@ -414,6 +484,9 @@ theorem continuousAt_aeval_fPoly (A₀ : Matrix m m ℂ)
     (fun A => by rw [natDegree_fPoly]; exact Nat.lt_succ_of_le (card_inside_le c r A))
     (continuousAt_coeff_fPoly c r A₀ hcirc)
 
+/--
+@isnad1 id=continuo.1h4v.s7.ddf73a7a7cc6 from=translated src=- shape=74f47e94 vocab=0ab303e6
+-/
 theorem continuousAt_aeval_gPoly (A₀ : Matrix m m ℂ)
     (hcirc : ∀ z ∈ A₀.charpoly.roots, dist z c ≠ r) :
     ContinuousAt (fun A => aeval A (gPoly c r A)) A₀ :=
@@ -421,6 +494,9 @@ theorem continuousAt_aeval_gPoly (A₀ : Matrix m m ℂ)
     (fun A => by rw [natDegree_gPoly]; exact Nat.lt_succ_of_le (card_outside_le c r A))
     (continuousAt_coeff_gPoly c r A₀ hcirc)
 
+/--
+@isnad1 id=continuo.1h6v.s8.add35e39621d from=translated src=- shape=6b2c9f8a vocab=bdf772fe
+-/
 theorem continuousAt_R (u₀ v₀ : ℂ[X]) (A₀ : Matrix m m ℂ)
     (hcirc : ∀ z ∈ A₀.charpoly.roots, dist z c ≠ r) :
     ContinuousAt (fun A => aeval A (u₀ * fPoly c r A + v₀ * gPoly c r A)) A₀ := by
@@ -433,6 +509,9 @@ theorem continuousAt_R (u₀ v₀ : ℂ[X]) (A₀ : Matrix m m ℂ)
     ((Polynomial.continuous_aeval (p := v₀)).continuousAt.mul
       (continuousAt_aeval_gPoly c r A₀ hcirc))
 
+/--
+@isnad1 id=continuo.2h3v.s7.9a36b0e6921b from=translated src=- shape=b2d52e49 vocab=d063b5af
+-/
 theorem continuousAt_inv_of_det {R : Matrix m m ℂ → Matrix m m ℂ} {A₀ : Matrix m m ℂ}
     (hR : ContinuousAt R A₀) (hdet : (R A₀).det ≠ 0) : ContinuousAt (fun A => (R A)⁻¹) A₀ := by
   have e : (fun A => (R A)⁻¹) = fun A => (R A).det⁻¹ • (R A).adjugate :=
@@ -441,6 +520,9 @@ theorem continuousAt_inv_of_det {R : Matrix m m ℂ → Matrix m m ℂ} {A₀ : 
   exact (((continuous_id.matrix_det).continuousAt.comp hR).inv₀ hdet).smul
     ((continuous_id.matrix_adjugate).continuousAt.comp hR)
 
+/--
+@isnad1 id=continuo.2h6v.s8.abfa80a8d58f from=translated src=- shape=eef0a706 vocab=77ad201a
+-/
 theorem continuousAt_projOf (u₀ v₀ : ℂ[X]) (A₀ : Matrix m m ℂ)
     (hcirc : ∀ z ∈ A₀.charpoly.roots, dist z c ≠ r)
     (hdet : (aeval A₀ (u₀ * fPoly c r A₀ + v₀ * gPoly c r A₀)).det ≠ 0) :
@@ -458,13 +540,18 @@ theorem continuousAt_projOf (u₀ v₀ : ℂ[X]) (A₀ : Matrix m m ℂ)
 
 /-! ### The neighbourhood -/
 
+/--
+@isnad1 id=eq.0h3v.s5.627173e49f2b from=translated src=- shape=e3787296 vocab=ee18a403
+-/
 theorem card_filter_map {n : ℕ} (Pred : ℂ → Prop) [DecidablePred Pred] (x : Fin n → ℂ) :
     Multiset.card ((Finset.univ.val.map x).filter Pred)
       = (Finset.univ.filter fun i => Pred (x i)).card := by
   rw [Multiset.filter_map, Multiset.card_map, Finset.card_def, Finset.filter_val]
   rfl
 
-/-- **Near `A₀` no eigenvalue crosses the circle, and the number inside is constant.**-/
+/-- **Near `A₀` no eigenvalue crosses the circle, and the number inside is constant.**
+@isnad1 id=eventual.1h4v.s7.04e67ef04e8c from=translated src=- shape=12977546 vocab=8705f9f1
+-/
 theorem eventually_circle (A₀ : Matrix m m ℂ)
     (hcirc : ∀ z ∈ A₀.charpoly.roots, dist z c ≠ r) :
     ∀ᶠ A in 𝓝 A₀, (∀ z ∈ A.charpoly.roots, dist z c ≠ r) ∧
@@ -516,7 +603,9 @@ circle of radius `r` about `c`, there are a neighbourhood `U` of `A₀` and a co
 `P : U → Matrix` such that for every `A ∈ U`, `P A` is a projector commuting with `A`, whose
 range is `ker f_A(A)` — the sum of the generalised eigenspaces for the eigenvalues in the disc
 — and whose kernel is `ker g_A(A)`; and the number of eigenvalues in the disc, with
-multiplicity, is that of `A₀`.-/
+multiplicity, is that of `A₀`.
+@isnad1 id=ex.1h4v.s10.dc4ba06b8134 from=translated src=- shape=4b74b504 vocab=1dede46d
+-/
 theorem exists_continuous_projector (A₀ : Matrix m m ℂ)
     (hcirc : ∀ z ∈ A₀.charpoly.roots, dist z c ≠ r) :
     ∃ (U : Set (Matrix m m ℂ)) (P : Matrix m m ℂ → Matrix m m ℂ), U ∈ 𝓝 A₀ ∧

@@ -142,6 +142,9 @@ def dLin {R : Type*} [CommRing R] {Crit : Type*} [Fintype Crit] (ind : Crit → 
     funext b
     simp [Finset.mul_sum, mul_assoc]
 
+/--
+@isnad1 id=eq.0h7v.s9.e1c100930dc9 from=translated src=- shape=840dac06 vocab=8bc11606
+-/
 @[simp]
 theorem dLin_apply {R : Type*} [CommRing R] {Crit : Type*} [Fintype Crit] (ind : Crit → ℕ)
     (cnt : Crit → Crit → R) (k : ℕ) (x : Chains R ind (k + 1)) (b : CritSet ind k) :
@@ -167,7 +170,9 @@ def BrokenPairs {R : Type*} [CommRing R] {Crit : Type*} [Fintype Crit] (ind : Cr
 
 Expanding the composite, the coefficient of `b` in `∂∂a` is
 `Σ_c cnt a c · cnt c b`, which vanishes by `BrokenPairs`.  This is a complete
-proof: only the geometric input is assumed.-/
+proof: only the geometric input is assumed.
+@isnad1 id=eq.1h5v.s10.314ea341772f from=translated src=- shape=b8cfc272 vocab=325f06a6
+-/
 theorem dLin_comp_dLin {R : Type*} [CommRing R] {Crit : Type*} [Fintype Crit]
     {ind : Crit → ℕ} {cnt : Crit → Crit → R} (h : BrokenPairs ind cnt) (k : ℕ) :
     (dLin ind cnt k).comp (dLin ind cnt (k + 1)) = 0 := by
@@ -197,10 +202,16 @@ noncomputable def morseComplex {R : Type*} [CommRing R] {Crit : Type*} [Fintype 
       simp only [ModuleCat.hom_comp, ModuleCat.hom_ofHom, ModuleCat.hom_zero]
       exact dLin_comp_dLin h k))
 
+/--
+@isnad1 id=eq.1h5v.s7.e5402d04a2bc from=translated src=- shape=cc9caff4 vocab=1a9d2b51
+-/
 theorem morseComplex_X {R : Type*} [CommRing R] {Crit : Type*} [Fintype Crit]
     {ind : Crit → ℕ} {cnt : Crit → Crit → R} (h : BrokenPairs ind cnt) (k : ℕ) :
     (morseComplex h).X k = ModuleCat.of R (Chains R ind k) := rfl
 
+/--
+@isnad1 id=eq.1h5v.s8.ca09e92fba60 from=translated src=- shape=fc95b358 vocab=818b8db0
+-/
 theorem morseComplex_d {R : Type*} [CommRing R] {Crit : Type*} [Fintype Crit]
     {ind : Crit → ℕ} {cnt : Crit → Crit → R} (h : BrokenPairs ind cnt) (k : ℕ) :
     (morseComplex h).d (k + 1) k = ModuleCat.ofHom (dLin ind cnt k) :=
@@ -229,25 +240,33 @@ noncomputable def boundaries {R : Type*} [CommRing R] {Crit : Type*} [Fintype Cr
   LinearMap.range (dLin ind cnt k)
 
 /-- `Im ∂ₖ₊₂ ⊆ Ker ∂ₖ₊₁`, so that the book's quotient `Hₖ = Ker ∂ₖ / Im ∂ₖ₊₁`
-(§3.1.b) is defined in every degree.-/
+(§3.1.b) is defined in every degree.
+@isnad1 id=le.1h5v.s9.af8ad01e9e26 from=translated src=- shape=1e1ba30d vocab=4f2a2428
+-/
 theorem boundaries_le_cycles {R : Type*} [CommRing R] {Crit : Type*} [Fintype Crit]
     {ind : Crit → ℕ} {cnt : Crit → Crit → R} (h : BrokenPairs ind cnt) (k : ℕ) :
     boundaries ind cnt (k + 1) ≤ cycles ind cnt k :=
   LinearMap.range_le_ker_iff.mpr (dLin_comp_dLin h k)
 
-/-- The differential attached to a count function that vanishes identically.-/
+/-- The differential attached to a count function that vanishes identically.
+@isnad1 id=eq.0h4v.s9.8a56971265a2 from=translated src=- shape=b908ba7a vocab=9ccdf9ac
+-/
 theorem dLin_zero {R : Type*} [CommRing R] {Crit : Type*} [Fintype Crit] (ind : Crit → ℕ)
     (k : ℕ) : dLin ind (fun _ _ => (0 : R)) k = 0 := by
   ext x b
   simp
 
-/-- A vanishing count function satisfies the broken-trajectory hypothesis.-/
+/-- A vanishing count function satisfies the broken-trajectory hypothesis.
+@isnad1 id=brokenpa.0h3v.s5.0b4b582fa7ea from=translated src=- shape=1e8e16de vocab=e5bd149e
+-/
 theorem brokenPairs_zero {R : Type*} [CommRing R] {Crit : Type*} [Fintype Crit]
     (ind : Crit → ℕ) : BrokenPairs ind (fun _ _ => (0 : R)) := by
   intro k a b
   simp
 
-/-- With a vanishing differential every chain is a cycle.-/
+/-- With a vanishing differential every chain is a cycle.
+@isnad1 id=eq.0h4v.s8.6111d3ec6a86 from=translated src=- shape=de8aaffb vocab=25687bfc
+-/
 theorem cycles_zero {R : Type*} [CommRing R] {Crit : Type*} [Fintype Crit] (ind : Crit → ℕ)
     (k : ℕ) : cycles ind (fun _ _ => (0 : R)) k = ⊤ := by
   show LinearMap.ker (dLin ind (fun _ _ => (0 : R)) k) = ⊤
@@ -255,7 +274,9 @@ theorem cycles_zero {R : Type*} [CommRing R] {Crit : Type*} [Fintype Crit] (ind 
   exact LinearMap.ker_zero
 
 /-- With a vanishing differential the only boundary is `0`, so the homology is
-the whole of `Cₖ`.-/
+the whole of `Cₖ`.
+@isnad1 id=eq.0h4v.s7.0fba12e622af from=translated src=- shape=0b20938a vocab=e3541110
+-/
 theorem boundaries_zero {R : Type*} [CommRing R] {Crit : Type*} [Fintype Crit] (ind : Crit → ℕ)
     (k : ℕ) : boundaries ind (fun _ _ => (0 : R)) k = ⊥ := by
   show LinearMap.range (dLin ind (fun _ _ => (0 : R)) k) = ⊥
@@ -275,7 +296,9 @@ broken-trajectory hypothesis is preserved by any ring morphism. -/
 
 section Coefficients
 
-/-- The broken-trajectory hypothesis is preserved by change of coefficients.-/
+/-- The broken-trajectory hypothesis is preserved by change of coefficients.
+@isnad1 id=brokenpa.1h6v.s6.24f1f33ee658 from=translated src=- shape=8ad03f64 vocab=e5d80f40
+-/
 theorem BrokenPairs.map {R R' : Type*} [CommRing R] [CommRing R'] {Crit : Type*} [Fintype Crit]
     {ind : Crit → ℕ} {cnt : Crit → Crit → R} (h : BrokenPairs ind cnt) (φ : R →+* R') :
     BrokenPairs ind fun a b => φ (cnt a b) := by
@@ -289,7 +312,9 @@ theorem BrokenPairs.map {R R' : Type*} [CommRing R] [CommRing R'] {Crit : Type*}
 
 /-- **§3.3.**  The mod `2` complex of §3.1 is the reduction of the integral
 complex: if the signed counts `Nₓ` satisfy the broken-trajectory hypothesis over
-`ℤ`, their reductions `nₓ` satisfy it over `Z/2`.-/
+`ℤ`, their reductions `nₓ` satisfy it over `Z/2`.
+@isnad1 id=brokenpa.1h3v.s6.fd05609ea352 from=translated src=- shape=e441b096 vocab=ea7dab15
+-/
 theorem BrokenPairs.intCast {Crit : Type*} [Fintype Crit] {ind : Crit → ℕ}
     {cnt : Crit → Crit → ℤ} (h : BrokenPairs ind cnt) :
     BrokenPairs ind fun a b => ((cnt a b : ℤ) : ZMod 2) :=
@@ -315,17 +340,24 @@ def torusIndex : Fin 4 → ℕ := ![0, 1, 1, 2]
 twice, so all counts vanish modulo `2` (§3.1.c).-/
 def torusCount : Fin 4 → Fin 4 → ZMod 2 := fun _ _ => 0
 
+/--
+@isnad1 id=brokenpa.0h0v.s4.b9fea60f8df0 from=translated src=- shape=22628b9e vocab=35bb7f46
+-/
 theorem torus_brokenPairs : BrokenPairs torusIndex torusCount :=
   brokenPairs_zero torusIndex
 
 /-- The torus complex has zero differential, so every chain is a cycle (here in
-degree `k + 1`; in degree `0` there is nothing to check).-/
+degree `k + 1`; in degree `0` there is nothing to check).
+@isnad1 id=eq.0h1v.s9.68cfea99f910 from=translated src=- shape=bfc329e5 vocab=7672b000
+-/
 theorem torus_cycles (k : ℕ) : cycles torusIndex torusCount k = ⊤ :=
   cycles_zero torusIndex k
 
 /-- Dually no nonzero chain is a boundary, so the homology of the torus complex
 is the whole of `Cₖ` in each degree: `Z/2` for `k = 0` and `k = 2`, and
-`Z/2 ⊕ Z/2` for `k = 1`, which is the mod `2` homology of `T²`.-/
+`Z/2 ⊕ Z/2` for `k = 1`, which is the mod `2` homology of `T²`.
+@isnad1 id=eq.0h1v.s9.d461dd35ee95 from=translated src=- shape=d199aacd vocab=48c7e10c
+-/
 theorem torus_boundaries (k : ℕ) : boundaries torusIndex torusCount k = ⊥ :=
   boundaries_zero torusIndex k
 
@@ -364,13 +396,18 @@ def coneDiff (d₀ : ∀ k, C (k + 1) →ₗ[R] C k) (d₁ : ∀ k, D (k + 1) �
     ((Φ (k + 1)).comp (LinearMap.fst R (C (k + 1)) (D (k + 2)))
       + (d₁ (k + 1)).comp (LinearMap.snd R (C (k + 1)) (D (k + 2))))
 
+/--
+@isnad1 id=eq.0h8v.s11.18866bc1b165 from=translated src=- shape=2f358099 vocab=ee94799d
+-/
 @[simp]
 theorem coneDiff_apply (d₀ : ∀ k, C (k + 1) →ₗ[R] C k) (d₁ : ∀ k, D (k + 1) →ₗ[R] D k)
     (Φ : ∀ k, C k →ₗ[R] D k) (k : ℕ) (p : C (k + 1) × D (k + 2)) :
     coneDiff d₀ d₁ Φ k p = (d₀ k p.1, Φ (k + 1) p.1 + d₁ (k + 1) p.2) := rfl
 
 /-- **Step 1 of Theorem 3.4.2.**  If the triangular differential squares to
-zero, its off-diagonal component is a chain map: `Φ ∘ ∂₀ + ∂₁ ∘ Φ = 0`.-/
+zero, its off-diagonal component is a chain map: `Φ ∘ ∂₀ + ∂₁ ∘ Φ = 0`.
+@isnad1 id=eq.1h8v.s12.934d8892d747 from=translated src=- shape=97ee981f vocab=f36fa2b0
+-/
 theorem chainMap_of_coneDiff_comp {d₀ : ∀ k, C (k + 1) →ₗ[R] C k}
     {d₁ : ∀ k, D (k + 1) →ₗ[R] D k} {Φ : ∀ k, C k →ₗ[R] D k}
     (h : ∀ k, (coneDiff d₀ d₁ Φ k).comp (coneDiff d₀ d₁ Φ (k + 1)) = 0) (k : ℕ)
@@ -391,7 +428,9 @@ theorem eq_of_add_eq_zero_two {M : Type*} [AddCommGroup M] [Module (ZMod 2) M] {
     _ = y := by rw [h, zero_add]
 
 /-- **Step 1 of Theorem 3.4.2, mod `2`.**  Over `Z/2` the conclusion takes the
-book's form `Φ ∘ ∂₀ = ∂₁ ∘ Φ`.-/
+book's form `Φ ∘ ∂₀ = ∂₁ ∘ Φ`.
+@isnad1 id=eq.1h7v.s12.e7cb9de55def from=translated src=- shape=9022eb25 vocab=8feec510
+-/
 theorem chainMap_of_coneDiff_comp_two {C D : ℕ → Type*}
     [∀ k, AddCommGroup (C k)] [∀ k, Module (ZMod 2) (C k)]
     [∀ k, AddCommGroup (D k)] [∀ k, Module (ZMod 2) (D k)]
@@ -404,7 +443,9 @@ theorem chainMap_of_coneDiff_comp_two {C D : ℕ → Type*}
 
 /-- **Step 3 of Theorem 3.4.2.**  Two maps differing by a chain homotopy,
 `u - v = ∂' ∘ S + T ∘ ∂`, send a cycle to two chains differing by a boundary,
-hence induce the same map on homology.-/
+hence induce the same map on homology.
+@isnad1 id=mem.2h12v.s10.6ec14881e4df from=translated src=- shape=280938e6 vocab=3c223a98
+-/
 theorem sub_mem_range_of_chainHomotopy {R : Type*} [CommRing R]
     {A A' B B' : Type*} [AddCommGroup A] [Module R A] [AddCommGroup A'] [Module R A']
     [AddCommGroup B] [Module R B] [AddCommGroup B'] [Module R B']
@@ -447,10 +488,15 @@ def modelField (p : E × F) : E × F := ((2 : ℝ) • p.1, (-2 : ℝ) • p.2)
 def modelFlow (s : ℝ) (p : E × F) : E × F :=
   (Real.exp (2 * s) • p.1, Real.exp (-(2 * s)) • p.2)
 
+/--
+@isnad1 id=eq.0h3v.s5.da023d2adff9 from=translated src=- shape=b7973c3c vocab=04be7000
+-/
 theorem modelFlow_zero (p : E × F) : modelFlow 0 p = p := by
   simp [modelFlow]
 
-/-- The flow property `φ_{s+t} = φₛ ∘ φₜ`.-/
+/-- The flow property `φ_{s+t} = φₛ ∘ φₜ`.
+@isnad1 id=eq.0h5v.s6.26ff7aec27fa from=translated src=- shape=d5a3bbec vocab=dd5cf9bf
+-/
 theorem modelFlow_add (s t : ℝ) (p : E × F) :
     modelFlow (s + t) p = modelFlow s (modelFlow t p) := by
   simp only [modelFlow, smul_smul, ← Real.exp_add, Prod.mk.injEq]
@@ -462,7 +508,9 @@ private theorem norm_smul_sq {G : Type*} [NormedAddCommGroup G] [NormedSpace ℝ
     {c : ℝ} (hc : 0 < c) (v : G) : ‖c • v‖ ^ 2 = c ^ 2 * ‖v‖ ^ 2 := by
   rw [norm_smul, Real.norm_eq_abs, abs_of_pos hc, mul_pow]
 
-/-- The model function read along the flow.-/
+/-- The model function read along the flow.
+@isnad1 id=eq.0h4v.s7.817a08be26a4 from=translated src=- shape=f2c12121 vocab=1f6e7d64
+-/
 theorem modelFun_modelFlow (s : ℝ) (p : E × F) :
     modelFun (modelFlow s p)
       = -(Real.exp (4 * s) * ‖p.1‖ ^ 2) + Real.exp (-(4 * s)) * ‖p.2‖ ^ 2 := by
@@ -482,7 +530,9 @@ theorem modelFun_modelFlow (s : ℝ) (p : E × F) :
 
 omit [NormedSpace ℝ E] [NormedSpace ℝ F] in
 /-- **`X` is a pseudo-gradient**: away from the critical point `f` decreases
-strictly along the flow, since its derivative there is negative.-/
+strictly along the flow, since its derivative there is negative.
+@isnad1 id=lt.1h4v.s7.ce2a40532d89 from=translated src=- shape=0c0c5a3b vocab=d71ce945
+-/
 theorem deriv_modelFun_modelFlow_neg {p : E × F} (hp : p ≠ 0) (s : ℝ) :
     -(Real.exp (4 * s) * 4 * ‖p.1‖ ^ 2) + Real.exp (-(4 * s)) * -4 * ‖p.2‖ ^ 2 < 0 := by
   have e1 : (0 : ℝ) < Real.exp (4 * s) := Real.exp_pos _
@@ -508,7 +558,9 @@ def modelTransition (p : E × F) : E × F :=
 
 /-- **Lemma 3.2.11.**  The embedding of `∂⁺U - S⁺` into `∂⁻U - S⁻` defined by
 the flow of `X` is `Φ(x⁻,x⁺) = (‖x⁺‖/‖x⁻‖ · x⁻, ‖x⁻‖/‖x⁺‖ · x⁺)`: integrating
-`X` shows that `Φ(p)` is the point `φₛ(p)` for `s = ½ log(‖x⁺‖/‖x⁻‖)`.-/
+`X` shows that `Φ(p)` is the point `φₛ(p)` for `s = ½ log(‖x⁺‖/‖x⁻‖)`.
+@isnad1 id=eq.2h3v.s7.dbc10275ee3e from=translated src=- shape=cceb9e83 vocab=434f1fdd
+-/
 theorem modelFlow_log_eq_modelTransition {p : E × F} (h1 : p.1 ≠ 0) (h2 : p.2 ≠ 0) :
     modelFlow (Real.log (‖p.2‖ / ‖p.1‖) / 2) p = modelTransition p := by
   have hr : (0 : ℝ) < ‖p.2‖ / ‖p.1‖ := div_pos (norm_pos_iff.mpr h2) (norm_pos_iff.mpr h1)
@@ -521,7 +573,9 @@ theorem modelFlow_log_eq_modelTransition {p : E × F} (h1 : p.1 ≠ 0) (h2 : p.2
 
 omit [NormedSpace ℝ E] [NormedSpace ℝ F] in
 /-- The time at which the flow realises `Φ` is positive: on `∂⁺U` one has
-`‖x⁻‖ < ‖x⁺‖`, so `Φ(p)` is reached in the future (§3.2.c).-/
+`‖x⁻‖ < ‖x⁺‖`, so `Φ(p)` is reached in the future (§3.2.c).
+@isnad1 id=lt.2h3v.s6.3f557215b3e3 from=translated src=- shape=0b8b2d89 vocab=c23d7a1e
+-/
 theorem modelFlow_log_time_pos {p : E × F} (h1 : p.1 ≠ 0) (hlt : ‖p.1‖ < ‖p.2‖) :
     0 < Real.log (‖p.2‖ / ‖p.1‖) / 2 := by
   have h1' : (0 : ℝ) < ‖p.1‖ := norm_pos_iff.mpr h1
@@ -529,7 +583,9 @@ theorem modelFlow_log_time_pos {p : E × F} (h1 : p.1 ≠ 0) (hlt : ‖p.1‖ < 
   exact div_pos (Real.log_pos hone) (by norm_num)
 
 /-- `Φ` exchanges the two ends of the Morse chart: it maps the level `f = ε` to
-the level `f = -ε` (§3.2.c).-/
+the level `f = -ε` (§3.2.c).
+@isnad1 id=eq.2h3v.s6.ad2958b8b6b3 from=translated src=- shape=9177d551 vocab=5b3f1b1e
+-/
 theorem modelFun_modelTransition {p : E × F} (h1 : p.1 ≠ 0) (h2 : p.2 ≠ 0) :
     modelFun (modelTransition p) = -modelFun p := by
   have h1' : (0 : ℝ) < ‖p.1‖ := norm_pos_iff.mpr h1

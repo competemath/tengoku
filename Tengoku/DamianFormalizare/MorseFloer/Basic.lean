@@ -51,11 +51,16 @@ chart used; see `sndFDeriv_comp` for how it transforms and
 noncomputable def sndFDeriv (f : E → F) (x : E) : E →L[ℝ] E →L[ℝ] F :=
   fderiv ℝ (fderiv ℝ f) x
 
+/--
+@isnad1 id=eq.0h4v.s9.00d0c3a30c23 from=translated src=- shape=83366147 vocab=e2409752
+-/
 theorem sndFDeriv_def (f : E → F) (x : E) :
     sndFDeriv f x = fderiv ℝ (fderiv ℝ f) x := rfl
 
 /-- The second differential is symmetric on a `C²` function: this is the
-computation `X·(Y·f) − Y·(X·f) = [X,Y]·f` of §1.1.a, in a chart.-/
+computation `X·(Y·f) − Y·(X·f) = [X,Y]·f` of §1.1.a, in a chart.
+@isnad1 id=eq.1h6v.s10.1ed53e52d7ad from=translated src=- shape=703c5bd8 vocab=f1d5b23e
+-/
 theorem sndFDeriv_symm {f : E → F} {x : E} (hf : ContDiffAt ℝ 2 f x) (v w : E) :
     sndFDeriv f x v w = sndFDeriv f x w v :=
   hf.isSymmSndFDerivAt (by simp [minSmoothness_of_isRCLikeNormedField]) v w
@@ -67,7 +72,9 @@ For a change of chart `φ` and a function `f`,
 
 The first term is tensorial; the second — the correction term — lies in the
 image of `df`, which is why the second differential is *not* chart-independent
-in general.-/
+in general.
+@isnad1 id=eq.2h8v.s11.634d93529c66 from=translated src=- shape=66f0357b vocab=494a9abb
+-/
 theorem sndFDeriv_comp {f : F → G} {φ : E → F} {x : E}
     (hf : ContDiffAt ℝ 2 f (φ x)) (hφ : ContDiffAt ℝ 2 φ x) (h k : E) :
     sndFDeriv (f ∘ φ) x h k
@@ -103,7 +110,9 @@ theorem sndFDeriv_comp {f : F → G} {φ : E → F} {x : E}
 /-- **Tensoriality at a critical point.**  If `df` vanishes at `φ x` the
 correction term of `sndFDeriv_comp` disappears, so the second differential
 transforms as an honest bilinear form: this is what makes the Hessian of a
-function on a manifold well defined *at its critical points* (§1.1.a).-/
+function on a manifold well defined *at its critical points* (§1.1.a).
+@isnad1 id=eq.3h8v.s11.4f6c5e986fe6 from=translated src=- shape=557d6562 vocab=ac1adbf7
+-/
 theorem sndFDeriv_comp_of_critical {f : F → G} {φ : E → F} {x : E}
     (hf : ContDiffAt ℝ 2 f (φ x)) (hφ : ContDiffAt ℝ 2 φ x)
     (hcrit : fderiv ℝ f (φ x) = 0) (h k : E) :
@@ -126,6 +135,9 @@ noncomputable def toBilinForm (B : E →L[ℝ] E →L[ℝ] ℝ) : LinearMap.Bili
   map_add' v w := by ext u; simp
   map_smul' c v := by ext u; simp
 
+/--
+@isnad1 id=eq.0h4v.s10.0f74034c7464 from=translated src=- shape=9454b0da vocab=9a412d5b
+-/
 @[simp]
 theorem toBilinForm_apply (B : E →L[ℝ] E →L[ℝ] ℝ) (v w : E) :
     toBilinForm B v w = B v w := rfl
@@ -136,6 +148,9 @@ defining a *nondegenerate critical point* (§1.1.a).-/
 def IsNondegenerate (B : E →L[ℝ] E →L[ℝ] ℝ) : Prop :=
   ∀ v : E, (∀ w : E, B v w = 0) → v = 0
 
+/--
+@isnad1 id=iff.0h2v.s9.653c1cb44dfa from=translated src=- shape=c4a084f6 vocab=85eb5c88
+-/
 theorem isNondegenerate_iff_injective (B : E →L[ℝ] E →L[ℝ] ℝ) :
     IsNondegenerate B ↔ Function.Injective B := by
   constructor
@@ -154,6 +169,9 @@ theorem isNondegenerate_iff_injective (B : E →L[ℝ] E →L[ℝ] ℝ) :
 noncomputable def toQuadraticForm (B : E →L[ℝ] E →L[ℝ] ℝ) : QuadraticForm ℝ E :=
   (toBilinForm B).toQuadraticMap
 
+/--
+@isnad1 id=eq.0h3v.s9.da6490ceea29 from=translated src=- shape=f1ea628a vocab=ed361e24
+-/
 @[simp]
 theorem toQuadraticForm_apply (B : E →L[ℝ] E →L[ℝ] ℝ) (v : E) :
     toQuadraticForm B v = B v v := rfl
@@ -167,7 +185,9 @@ noncomputable def index (B : E →L[ℝ] E →L[ℝ] ℝ) : ℕ :=
   sigNeg (toQuadraticForm B)
 
 /-- The index is an invariant of the equivalence class of the form, so it does
-not depend on the coordinates used to compute it.-/
+not depend on the coordinates used to compute it.
+@isnad1 id=eq.1h4v.s9.8ac3c1ff6cbb from=translated src=- shape=142d2cbd vocab=10842839
+-/
 theorem index_eq_of_equivalent {F : Type*} [NormedAddCommGroup F] [NormedSpace ℝ F]
     (B : E →L[ℝ] E →L[ℝ] ℝ) (C : F →L[ℝ] F →L[ℝ] ℝ)
     (h : (toQuadraticForm B).Equivalent (toQuadraticForm C)) :
@@ -215,6 +235,9 @@ Morse lemma's normal form (§1.3.a).-/
 noncomputable def morseIndex (f : M → ℝ) (x : M) : ℕ :=
   index (hessian I f x)
 
+/--
+@isnad1 id=isnondeg.2h6v.s6.814fecde7af9 from=translated src=- shape=75653d3b vocab=52fa6298
+-/
 theorem IsMorseFunction.nondegenerateCriticalPoint {f : M → ℝ}
     (hf : IsMorseFunction I f) {x : M} (hx : IsCriticalPoint I f x) :
     IsNondegenerateCriticalPoint I f x :=

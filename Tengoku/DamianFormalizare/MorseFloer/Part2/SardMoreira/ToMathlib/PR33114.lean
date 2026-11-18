@@ -67,35 +67,62 @@ def equiv (X : Type*) (α : ℝ) (hr₀ : 0 < α) (hr₁ : α ≤ 1) : WithRPowD
   left_inv _ := rfl
   right_inv _ := rfl
 
+/--
+@isnad1 id=eq.2h2v.s5.da52089a38ab from=translated src=- shape=96db0149 vocab=640992f9
+-/
 @[simp]
 theorem val_comp_mk : (val : WithRPowDist X α hα₀ hα₁ → X) ∘ mk = id := rfl
 
+/--
+@isnad1 id=eq.2h2v.s6.ec341c48e451 from=translated src=- shape=07a70046 vocab=640992f9
+-/
 @[simp]
 theorem mk_comp_val : (mk : X → WithRPowDist X α hα₀ hα₁) ∘ val = id := rfl
 
+/--
+@isnad1 id=eq.2h3v.s5.b0bb80352f9b from=translated src=- shape=9885a9d9 vocab=ede55639
+-/
 theorem image_mk_eq_preimage (s : Set X) :
     (mk '' s : Set (WithRPowDist X α hα₀ hα₁)) = val ⁻¹' s :=
   (equiv X α hα₀ hα₁).symm.image_eq_preimage_symm _
 
+/--
+@isnad1 id=eq.2h3v.s5.f91543b0a4bb from=translated src=- shape=57381654 vocab=ede55639
+-/
 theorem image_val_eq_preimage (s : Set (WithRPowDist X α hα₀ hα₁)) :
     val '' s = mk ⁻¹' s :=
   (equiv X α hα₀ hα₁).image_eq_preimage_symm _
 
+/--
+@isnad1 id=eq.2h3v.s6.cddb592c7e76 from=translated src=- shape=2a8a8c25 vocab=b2dcbc93
+-/
 @[simp]
 theorem image_mk_image_val (s : Set (WithRPowDist X α hα₀ hα₁)) :
     mk '' (val '' s) = s :=
   (equiv X α hα₀ hα₁).symm_image_image _
 
+/--
+@isnad1 id=eq.2h3v.s5.e20cdb5139fe from=translated src=- shape=65960054 vocab=b2dcbc93
+-/
 @[simp]
 theorem image_val_image_mk (s : Set X) : val '' (mk '' s : Set (WithRPowDist X α hα₀ hα₁)) = s :=
   (equiv X α hα₀ hα₁).image_symm_image _
 
+/--
+@isnad1 id=surjecti.2h2v.s5.fa36a36ae686 from=translated src=- shape=af2885cf vocab=69532ea8
+-/
 theorem surjective_val : Surjective (val : WithRPowDist X α hα₀ hα₁ → X) :=
   equiv _ _ _ _ |>.surjective
 
+/--
+@isnad1 id=surjecti.2h2v.s5.5497aaa797a2 from=translated src=- shape=dc08934d vocab=dbc36064
+-/
 theorem surjective_mk : Surjective (mk :  X → WithRPowDist X α hα₀ hα₁) :=
   equiv _ _ _ _ |>.symm |>.surjective
 
+/--
+@isnad1 id=injectiv.2h2v.s5.c8e7d6fd79ec from=translated src=- shape=dc08934d vocab=7a249cb2
+-/
 theorem injective_mk : Injective (mk : X → WithRPowDist X α hα₀ hα₁) := by
   simp [Injective]
 
@@ -112,10 +139,16 @@ variable [TopologicalSpace X]
 /-- The topological space structure on `WithRPowDist X α _ _` is induced from the original space.-/
 instance : TopologicalSpace (WithRPowDist X α hα₀ hα₁) := .induced WithRPowDist.val ‹_›
 
+/--
+@isnad1 id=continuo.2h2v.s5.180162fa6b14 from=translated src=- shape=e48e4955 vocab=08c8055b
+-/
 @[fun_prop]
 theorem continuous_val : Continuous (val : WithRPowDist X α hα₀ hα₁ → X) :=
   continuous_induced_dom
 
+/--
+@isnad1 id=continuo.2h2v.s5.57983fb6e144 from=translated src=- shape=ec6931a8 vocab=f5861d7b
+-/
 @[fun_prop]
 theorem continuous_mk : Continuous (mk : X → WithRPowDist X α hα₀ hα₁) :=
   continuous_induced_rng.2 continuous_id
@@ -153,21 +186,33 @@ instance : Bornology (WithRPowDist X α hα₀ hα₁) := .induced val
 
 open Bornology
 
+/--
+@isnad1 id=iff.2h3v.s6.cb4f0c45cb0d from=translated src=- shape=002437fa vocab=b06b2a2a
+-/
 @[simp]
 theorem isBounded_image_val_iff {s : Set (WithRPowDist X α hα₀ hα₁)} :
     IsBounded (val '' s) ↔ IsBounded s :=
   isBounded_induced.symm
 
+/--
+@isnad1 id=iff.2h3v.s6.0c7a9ec47b0d from=translated src=- shape=90c467f8 vocab=781e5fc5
+-/
 @[simp]
 theorem isBounded_preimage_mk_iff {s : Set (WithRPowDist X α hα₀ hα₁)} :
     IsBounded (mk ⁻¹' s) ↔ IsBounded s := by
   rw [← image_val_eq_preimage, isBounded_image_val_iff]
 
+/--
+@isnad1 id=iff.2h3v.s5.f9781f2e7baa from=translated src=- shape=c4fbb332 vocab=34dc7397
+-/
 @[simp]
 theorem isBounded_image_mk_iff {s : Set X} :
     IsBounded (mk '' s : Set (WithRPowDist X α hα₀ hα₁)) ↔ IsBounded s := by
   rw [← isBounded_image_val_iff, image_val_image_mk]
 
+/--
+@isnad1 id=iff.2h3v.s5.a9287f05a9d0 from=translated src=- shape=178c48c8 vocab=2cd2a570
+-/
 @[simp]
 theorem isBounded_preimage_val_iff {s : Set X} :
     IsBounded (val ⁻¹' s : Set (WithRPowDist X α hα₀ hα₁)) ↔ IsBounded s := by
@@ -188,9 +233,15 @@ variable [UniformSpace X]
 instance : UniformSpace (WithRPowDist X α hα₀ hα₁) :=
   UniformSpace.comap WithRPowDist.val ‹_›
 
+/--
+@isnad1 id=uniformc.2h2v.s5.9f21a57e66dd from=translated src=- shape=e48e4955 vocab=b9b468ea
+-/
 theorem uniformContinuous_val : UniformContinuous (val : WithRPowDist X α hα₀ hα₁ → X) :=
   uniformContinuous_comap
 
+/--
+@isnad1 id=uniformc.2h2v.s5.685afcc82347 from=translated src=- shape=ec6931a8 vocab=c776bf88
+-/
 theorem uniformContinuous_mk : UniformContinuous (mk : X → WithRPowDist X α hα₀ hα₁) :=
   uniformContinuous_comap' uniformContinuous_id
 
@@ -221,12 +272,21 @@ variable [EDist X]
 instance : EDist (WithRPowDist X α hα₀ hα₁) where
   edist x y := edist x.val y.val ^ α
 
+/--
+@isnad1 id=eq.2h4v.s6.b3702608d063 from=translated src=- shape=c3694e2d vocab=6c87797d
+-/
 theorem edist_def (x y : WithRPowDist X α hα₀ hα₁) : edist x y = edist x.val y.val ^ α := rfl
 
+/--
+@isnad1 id=eq.2h4v.s6.5bc6df30e3b5 from=translated src=- shape=85019651 vocab=7c058252
+-/
 @[simp]
 theorem edist_mk_mk (x y : X) : edist (mk x : WithRPowDist X α hα₀ hα₁) (mk y) = edist x y ^ α :=
   rfl
 
+/--
+@isnad1 id=eq.2h4v.s6.3d953885ff61 from=translated src=- shape=20f92c74 vocab=c3cfa593
+-/
 @[simp]
 theorem edist_val_val (x y : WithRPowDist X α hα₀ hα₁) : edist x.val y.val = edist x y ^ α⁻¹ := by
   rw [edist_def, ENNReal.rpow_rpow_inv hα₀.ne']
@@ -253,39 +313,60 @@ instance : PseudoEMetricSpace (WithRPowDist X α hα₀ hα₁) where
       rw [ENNReal.rpow_rpow_inv hα₀.ne']
     simp (disch := positivity) [uniformity_comap, H.eq_biInf, ENNReal.rpow_lt_rpow_iff]
 
+/--
+@isnad1 id=eq.2h4v.s6.adb033b6ae7e from=translated src=- shape=5cb4f1cb vocab=deca590d
+-/
 @[simp]
 theorem preimage_val_emetricBall (x : X) (r : ℝ≥0∞) :
     val ⁻¹' eball x r = eball (mk x : WithRPowDist X α hα₀ hα₁) (r ^ α) := by
   ext ⟨y⟩
   simp (disch := positivity) [ENNReal.rpow_lt_rpow_iff]
 
+/--
+@isnad1 id=eq.2h4v.s6.bfb707e8744f from=translated src=- shape=54c0422d vocab=aac97fd1
+-/
 @[simp]
 theorem image_mk_emetricBall (x : X) (r : ℝ≥0∞) :
     mk '' eball x r = eball (mk x : WithRPowDist X α hα₀ hα₁) (r ^ α) := by
   rw [image_mk_eq_preimage, preimage_val_emetricBall]
 
+/--
+@isnad1 id=eq.2h4v.s6.49bb5deef0de from=translated src=- shape=6ad8f1f2 vocab=805d9837
+-/
 @[simp]
 theorem preimage_mk_emetricBall (x : WithRPowDist X α hα₀ hα₁) (d : ℝ≥0∞) :
     mk ⁻¹' eball x d = eball x.val (d ^ α⁻¹) := by
   apply injective_mk.image_injective
   rw [image_mk_emetricBall, Set.image_preimage_eq _ surjective_mk, ENNReal.rpow_inv_rpow hα₀.ne']
 
+/--
+@isnad1 id=eq.2h4v.s6.ecb14b5ea00c from=translated src=- shape=d46ddcdf vocab=8359ee58
+-/
 @[simp]
 theorem image_val_emetricBall (x : WithRPowDist X α hα₀ hα₁) (d : ℝ≥0∞) :
     val '' eball x d = eball x.val (d ^ α⁻¹) := by
   rw [image_val_eq_preimage, preimage_mk_emetricBall]
 
+/--
+@isnad1 id=eq.2h4v.s6.0f4c181757dc from=translated src=- shape=5cb4f1cb vocab=e6994b1d
+-/
 @[simp]
 theorem preimage_val_emetricClosedBall (x : X) (r : ℝ≥0∞) :
     val ⁻¹' closedEBall x r = closedEBall (mk x : WithRPowDist X α hα₀ hα₁) (r ^ α) := by
   ext ⟨y⟩
   simp (disch := positivity) [ENNReal.rpow_le_rpow_iff]
 
+/--
+@isnad1 id=eq.2h4v.s6.072e0a829685 from=translated src=- shape=54c0422d vocab=7b5b7342
+-/
 @[simp]
 theorem image_mk_emetricClosedBall (x : X) (r : ℝ≥0∞) :
     mk '' closedEBall x r = closedEBall (mk x : WithRPowDist X α hα₀ hα₁) (r ^ α) := by
   rw [image_mk_eq_preimage, preimage_val_emetricClosedBall]
 
+/--
+@isnad1 id=eq.2h4v.s6.641664c76dc7 from=translated src=- shape=6ad8f1f2 vocab=002b10b6
+-/
 @[simp]
 theorem preimage_mk_emetricClosedBall (x : WithRPowDist X α hα₀ hα₁) (d : ℝ≥0∞) :
     mk ⁻¹' closedEBall x d = closedEBall x.val (d ^ α⁻¹) := by
@@ -293,27 +374,42 @@ theorem preimage_mk_emetricClosedBall (x : WithRPowDist X α hα₀ hα₁) (d :
   rw [image_mk_emetricClosedBall, Set.image_preimage_eq _ surjective_mk,
     ENNReal.rpow_inv_rpow hα₀.ne']
 
+/--
+@isnad1 id=eq.2h4v.s6.d05c3fe5bfdd from=translated src=- shape=d46ddcdf vocab=879b27be
+-/
 @[simp]
 theorem image_val_emetricClosedBall (x : WithRPowDist X α hα₀ hα₁) (d : ℝ≥0∞) :
     val '' closedEBall x d = closedEBall x.val (d ^ α⁻¹) := by
   rw [image_val_eq_preimage, preimage_mk_emetricClosedBall]
 
+/--
+@isnad1 id=eq.2h3v.s6.289362023611 from=translated src=- shape=9c60df2d vocab=126ec48f
+-/
 @[simp]
 theorem ediam_image_val (s : Set (WithRPowDist X α hα₀ hα₁)) : ediam (val '' s) = ediam s ^ α⁻¹ := by
   refine eq_of_forall_ge_iff fun c ↦ ?_
   simp [ediam_le_iff, ENNReal.rpow_inv_le_iff hα₀]
 
+/--
+@isnad1 id=eq.2h3v.s6.3eb41aa69e1a from=translated src=- shape=50c0b03d vocab=823fca11
+-/
 @[simp]
 theorem ediam_preimage_mk (s : Set (WithRPowDist X α hα₀ hα₁)) :
     ediam (mk ⁻¹' s) = ediam s ^ α⁻¹ := by
   rw [← image_val_eq_preimage, ediam_image_val]
 
+/--
+@isnad1 id=eq.2h3v.s6.e48ae243f4e8 from=translated src=- shape=e79e5397 vocab=b27dcf26
+-/
 @[simp]
 theorem ediam_preimage_val (s : Set X) :
     ediam (val ⁻¹' s : Set (WithRPowDist X α hα₀ hα₁)) = ediam s ^ α := by
   rw [← ENNReal.rpow_inv_rpow hα₀.ne' (ediam _), ← ediam_preimage_mk,
     ← Set.preimage_comp, val_comp_mk, Set.preimage_id]
 
+/--
+@isnad1 id=eq.2h3v.s6.ec62c5486845 from=translated src=- shape=5ca060d7 vocab=65798bb0
+-/
 @[simp]
 theorem ediam_image_mk (s : Set X) :
     ediam (mk '' s : Set (WithRPowDist X α hα₀ hα₁)) = ediam s ^ α := by
@@ -336,6 +432,9 @@ If the original space is a (pseudo) metric space, then so is `WithRPowDist X α 
 instance [Dist X] : Dist (WithRPowDist X α hα₀ hα₁) where
   dist x y := dist x.val y.val ^ α
 
+/--
+@isnad1 id=eq.2h4v.s6.0bb437fbbb02 from=translated src=- shape=76ae6062 vocab=65a8e0b5
+-/
 @[simp]
 theorem dist_mk_mk [Dist X] (x y : X) :
     dist (mk x : WithRPowDist X α hα₀ hα₁) (mk y) = dist x y ^ α :=
@@ -366,22 +465,34 @@ instance : PseudoMetricSpace (WithRPowDist X α hα₀ hα₁) :=
 
 open Metric
 
+/--
+@isnad1 id=eq.2h4v.s6.41e228522af5 from=translated src=- shape=a5ea4e11 vocab=75378ce0
+-/
 @[simp]
 theorem dist_val_val (x y : WithRPowDist X α hα₀ hα₁) : dist x.val y.val = dist x y ^ α⁻¹ := by
   cases x; cases y
   rw [dist_mk_mk, Real.rpow_rpow_inv dist_nonneg hα₀.ne']
 
+/--
+@isnad1 id=eq.3h4v.s6.13eb5f192577 from=translated src=- shape=f22dfde6 vocab=3204616c
+-/
 @[simp]
 theorem preimage_val_ball (x : X) {r : ℝ} (hr : 0 ≤ r) :
     val ⁻¹' ball x r = ball (mk x : WithRPowDist X α hα₀ hα₁) (r ^ α) := by
   ext ⟨y⟩
   simp (disch := positivity) [Real.rpow_lt_rpow_iff]
 
+/--
+@isnad1 id=eq.3h4v.s6.e8dfaa4afbde from=translated src=- shape=5cfc5483 vocab=e96f0e72
+-/
 @[simp]
 theorem image_mk_ball (x : X) {r : ℝ} (hr : 0 ≤ r) :
     mk '' ball x r = ball (mk x : WithRPowDist X α hα₀ hα₁) (r ^ α) := by
   rw [image_mk_eq_preimage, preimage_val_ball x hr]
 
+/--
+@isnad1 id=eq.3h4v.s6.0a9336a9d312 from=translated src=- shape=baf5f71b vocab=cb518d95
+-/
 @[simp]
 theorem preimage_mk_ball (x : WithRPowDist X α hα₀ hα₁) {r : ℝ} (hr : 0 ≤ r) :
     mk ⁻¹' ball x r = ball x.val (r ^ α⁻¹) := by
@@ -389,22 +500,34 @@ theorem preimage_mk_ball (x : WithRPowDist X α hα₀ hα₁) {r : ℝ} (hr : 0
   rw [image_mk_ball _ (by positivity), Set.image_preimage_eq _ surjective_mk,
     Real.rpow_inv_rpow hr hα₀.ne']
 
+/--
+@isnad1 id=eq.3h4v.s6.3250d9f61b8e from=translated src=- shape=1a38f153 vocab=bbf3be2b
+-/
 @[simp]
 theorem image_val_ball (x : WithRPowDist X α hα₀ hα₁) {r : ℝ} (hr : 0 ≤ r) :
     val '' ball x r = ball x.val (r ^ α⁻¹) := by
   rw [image_val_eq_preimage, preimage_mk_ball _ hr]
 
+/--
+@isnad1 id=eq.3h4v.s6.13b1b873ee35 from=translated src=- shape=f22dfde6 vocab=1dc709e0
+-/
 @[simp]
 theorem preimage_val_closedBall (x : X) {r : ℝ} (hr : 0 ≤ r) :
     val ⁻¹' closedBall x r = closedBall (mk x : WithRPowDist X α hα₀ hα₁) (r ^ α) := by
   ext ⟨y⟩
   simp (disch := positivity) [Real.rpow_le_rpow_iff]
 
+/--
+@isnad1 id=eq.3h4v.s6.7f09aedc38ef from=translated src=- shape=5cfc5483 vocab=68abfefe
+-/
 @[simp]
 theorem image_mk_closedBall (x : X) {r : ℝ} (hr : 0 ≤ r) :
     mk '' closedBall x r = closedBall (mk x : WithRPowDist X α hα₀ hα₁) (r ^ α) := by
   rw [image_mk_eq_preimage, preimage_val_closedBall x hr]
 
+/--
+@isnad1 id=eq.3h4v.s6.39b7797febf6 from=translated src=- shape=baf5f71b vocab=2966acac
+-/
 @[simp]
 theorem preimage_mk_closedBall (x : WithRPowDist X α hα₀ hα₁) {r : ℝ} (hr : 0 ≤ r) :
     mk ⁻¹' closedBall x r = closedBall x.val (r ^ α⁻¹) := by
@@ -412,6 +535,9 @@ theorem preimage_mk_closedBall (x : WithRPowDist X α hα₀ hα₁) {r : ℝ} (
   rw [image_mk_closedBall _ (by positivity), Set.image_preimage_eq _ surjective_mk,
     Real.rpow_inv_rpow hr hα₀.ne']
 
+/--
+@isnad1 id=eq.3h4v.s6.61dc88944754 from=translated src=- shape=1a38f153 vocab=27a4d450
+-/
 @[simp]
 theorem image_val_closedBall (x : WithRPowDist X α hα₀ hα₁) {r : ℝ} (hr : 0 ≤ r) :
     val '' closedBall x r = closedBall x.val (r ^ α⁻¹) := by

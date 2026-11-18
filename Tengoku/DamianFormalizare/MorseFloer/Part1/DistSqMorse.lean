@@ -68,6 +68,9 @@ variable {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 /-- The real inner product, as a continuous bilinear map.-/
 noncomputable def innerR : F →L[ℝ] F →L[ℝ] ℝ := innerSL ℝ
 
+/--
+@isnad1 id=eq.0h3v.s9.cecadb620c83 from=translated src=- shape=44bb5c95 vocab=d61ca7b8
+-/
 @[simp] theorem innerR_apply (v w : F) : innerR v w = ⟪v, w⟫ := rfl
 
 /-- `coL A w` is the linear form `b ↦ ⟪w, A b⟫`; it vanishes exactly when `w` is
@@ -75,19 +78,29 @@ orthogonal to the range of `A`.-/
 noncomputable def coL : (E →L[ℝ] F) →L[ℝ] F →L[ℝ] E →L[ℝ] ℝ :=
   ((compL ℝ F (F →L[ℝ] ℝ) (E →L[ℝ] ℝ)).flip innerR).comp (compL ℝ E F ℝ).flip
 
+/--
+@isnad1 id=eq.0h5v.s11.c9ca7723552f from=translated src=- shape=3ed5ed46 vocab=4faa3753
+-/
 @[simp] theorem coL_apply (A : E →L[ℝ] F) (w : F) (b : E) : coL A w b = ⟪w, A b⟫ := rfl
 
 /-- The Gram form `(a, b) ↦ ⟪A a, A b⟫` of a linear map `A`.-/
 noncomputable def gram (A : E →L[ℝ] F) : E →L[ℝ] E →L[ℝ] ℝ := (coL A).comp A
 
+/--
+@isnad1 id=eq.0h5v.s9.a00a2beeaba9 from=translated src=- shape=0870ac3a vocab=7430122a
+-/
 theorem gram_apply (A : E →L[ℝ] F) (a b : E) : gram A a b = ⟪A a, A b⟫ := rfl
 
-/-- A finite-dimensional space and its (continuous) dual have the same dimension.-/
+/-- A finite-dimensional space and its (continuous) dual have the same dimension.
+@isnad1 id=eq.0h1v.s7.9f2adf85914a from=translated src=- shape=16919c84 vocab=712cd6c3
+-/
 theorem finrank_dual_eq [FiniteDimensional ℝ E] : finrank ℝ (E →L[ℝ] ℝ) = finrank ℝ E := by
   rw [← (LinearMap.toContinuousLinearMap (𝕜 := ℝ) (E := E) (F' := ℝ)).finrank_eq]
   exact Subspace.dual_finrank_eq
 
-/-- The Gram form of an injective map is injective, as a map from `E` to its dual.-/
+/-- The Gram form of an injective map is injective, as a map from `E` to its dual.
+@isnad1 id=injectiv.1h3v.s9.e7818bc55ba8 from=translated src=- shape=664dc909 vocab=a3bba0d7
+-/
 theorem gram_injective {A : E →L[ℝ] F} (hA : Function.Injective A) :
     Function.Injective (gram A) := by
   intro a a' h
@@ -98,7 +111,9 @@ theorem gram_injective {A : E →L[ℝ] F} (hA : Function.Injective A) :
   rw [map_sub, sub_eq_zero] at h3
   exact hA h3
 
-/-- The Gram form of an injective map is invertible, as a map from `E` to its dual.-/
+/-- The Gram form of an injective map is invertible, as a map from `E` to its dual.
+@isnad1 id=isinvert.1h3v.s8.ae83a38fb181 from=translated src=- shape=2e0a5b60 vocab=a976f869
+-/
 theorem gram_isInvertible [FiniteDimensional ℝ E] {A : E →L[ℝ] F}
     (hA : Function.Injective A) : (gram A).IsInvertible := by
   have hinj := gram_injective hA
@@ -114,26 +129,38 @@ is a smooth function of `A` near every injective `A`.-/
 noncomputable def proj (A : E →L[ℝ] F) : F →L[ℝ] F :=
   ContinuousLinearMap.id ℝ F - A.comp ((gram A).inverse.comp (coL A))
 
+/--
+@isnad1 id=eq.0h4v.s12.c8e14ce9abcd from=translated src=- shape=e1a4f2fb vocab=febf2ed5
+-/
 theorem proj_apply (A : E →L[ℝ] F) (w : F) :
     proj A w = w - A ((gram A).inverse (coL A w)) := rfl
 
-/-- `proj A w` is orthogonal to the range of `A`.-/
+/-- `proj A w` is orthogonal to the range of `A`.
+@isnad1 id=eq.1h4v.s11.071589f0265f from=translated src=- shape=e2b647c6 vocab=5e53ac68
+-/
 theorem coL_proj [FiniteDimensional ℝ E] {A : E →L[ℝ] F} (hA : Function.Injective A)
     (w : F) : coL A (proj A w) = 0 := by
   have h : coL A (A ((gram A).inverse (coL A w))) = coL A w :=
     (gram_isInvertible hA).self_apply_inverse (coL A w)
   rw [proj_apply, map_sub, h, sub_self]
 
+/--
+@isnad1 id=eq.1h5v.s9.6afc547940ed from=translated src=- shape=b733f77b vocab=94daf21f
+-/
 theorem inner_proj [FiniteDimensional ℝ E] {A : E →L[ℝ] F} (hA : Function.Injective A)
     (w : F) (b : E) : ⟪proj A w, A b⟫ = 0 := by
   rw [← coL_apply, coL_proj hA, zero_apply]
 
-/-- `proj A` fixes the vectors orthogonal to the range of `A`.-/
+/-- `proj A` fixes the vectors orthogonal to the range of `A`.
+@isnad1 id=eq.1h4v.s11.0c75a1d3831f from=translated src=- shape=a304c148 vocab=9f7c3a1f
+-/
 theorem proj_of_coL_eq_zero {A : E →L[ℝ] F} {w : F} (h : coL A w = 0) : proj A w = w := by
   rw [proj_apply, h, map_zero, map_zero, sub_zero]
 
 /-- The projection `proj A` depends smoothly on `A` near an injective `A`: it is built from
-`A` by compositions and one inversion, of the Gram form, which is invertible there.-/
+`A` by compositions and one inversion, of the Gram form, which is invertible there.
+@isnad1 id=contdiff.1h4v.s9.97621272768c from=translated src=- shape=21f6359e vocab=64458946
+-/
 theorem contDiffAt_proj [FiniteDimensional ℝ E] {A : E →L[ℝ] F} (hA : Function.Injective A)
     {n : WithTop ℕ∞} : ContDiffAt ℝ n proj A := by
   obtain ⟨e, he⟩ := gram_isInvertible hA
@@ -152,7 +179,9 @@ theorem contDiffAt_proj [FiniteDimensional ℝ E] {A : E →L[ℝ] F} (hA : Func
   exact contDiffAt_const.sub h2
 
 /-- Near an injective `A₀`, the projection attached to `A` maps the normal space of `A₀`
-onto that of `A`.-/
+onto that of `A`.
+@isnad1 id=ex.4h5v.s12.be3ce31b883d from=translated src=- shape=fb38d4ed vocab=c783a648
+-/
 theorem exists_proj_eq [FiniteDimensional ℝ E] [FiniteDimensional ℝ F] {A A₀ : E →L[ℝ] F}
     (hA : Function.Injective A) (hA₀ : Function.Injective A₀)
     (hclose : ‖proj A - proj A₀‖ < 1) {ν : F} (hν : coL A ν = 0) :
@@ -208,7 +237,9 @@ variable {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
   [NormedAddCommGroup F] [InnerProductSpace ℝ F]
 
 /-- The differential of `v ↦ ‖g v - p‖²`, obtained from the bilinearity of the inner
-product.-/
+product.
+@isnad1 id=hasfderi.1h5v.s14.d93cb9ec89d1 from=translated src=- shape=355165db vocab=6c183f59
+-/
 theorem hasFDerivAt_normSq_sub {g : E → F} {p : F} {v : E} (hg : DifferentiableAt ℝ g v) :
     HasFDerivAt (fun y => ‖g y - p‖ ^ 2)
       (innerR.precompR E (g v - p) (fderiv ℝ g v) +
@@ -221,7 +252,9 @@ theorem hasFDerivAt_normSq_sub {g : E → F} {p : F} {v : E} (hg : Differentiabl
   rw [heq]
   exact h
 
-/-- The differential of `v ↦ ‖g v - p‖²` is `b ↦ 2⟪g v - p, dg_v b⟫`.-/
+/-- The differential of `v ↦ ‖g v - p‖²` is `b ↦ 2⟪g v - p, dg_v b⟫`.
+@isnad1 id=eq.1h6v.s9.e10b2a0c0a3c from=translated src=- shape=f023e299 vocab=16571a39
+-/
 theorem fderiv_normSq_sub_apply {g : E → F} {p : F} {v : E} (hg : DifferentiableAt ℝ g v)
     (b : E) : fderiv ℝ (fun y => ‖g y - p‖ ^ 2) v b = 2 * ⟪g v - p, fderiv ℝ g v b⟫ := by
   rw [(hasFDerivAt_normSq_sub hg).fderiv]
@@ -230,7 +263,9 @@ theorem fderiv_normSq_sub_apply {g : E → F} {p : F} {v : E} (hg : Differentiab
   ring
 
 /-- At a critical point `u` of `‖g - p‖²`, the vector `g u - p` is orthogonal to the image
-of `dg_u`.-/
+of `dg_u`.
+@isnad1 id=eq.2h6v.s9.9a75ea60e82e from=translated src=- shape=9cb53ef9 vocab=dd45a5dd
+-/
 theorem inner_eq_zero_of_fderiv_normSq {g : E → F} {p : F} {u : E}
     (hg : DifferentiableAt ℝ g u) (h : fderiv ℝ (fun y => ‖g y - p‖ ^ 2) u = 0) (b : E) :
     ⟪g u - p, fderiv ℝ g u b⟫ = 0 := by
@@ -242,7 +277,9 @@ theorem inner_eq_zero_of_fderiv_normSq {g : E → F} {p : F} {u : E}
 differentiable family of points with `q u = p`, such that `g v - q v` stays orthogonal to
 the image of `dg_v`, then the second differential of `‖g - p‖²` at `u` is
 `(a, b) ↦ 2 ⟪dq_u a, dg_u b⟫`.  This is the identity that ties degeneracy of the Hessian
-to non-injectivity of the endpoint map.-/
+to non-injectivity of the endpoint map.
+@isnad1 id=eq.4h8v.s10.97efddd1c91d from=translated src=- shape=0adfdd51 vocab=06a4c936
+-/
 theorem sndFDeriv_normSq_eq {g q : E → F} {u : E} {p : F} (hg : ContDiffAt ℝ 2 g u)
     (hq : DifferentiableAt ℝ q u) (hqu : q u = p)
     (horth : ∀ᶠ v in 𝓝 u, ∀ b, ⟪g v - q v, fderiv ℝ g v b⟫ = 0) (a b : E) :
@@ -277,7 +314,9 @@ section Sard
 variable {F : Type*} [NormedAddCommGroup F] [NormedSpace ℝ F] [FiniteDimensional ℝ F]
 
 /-- For an endomorphism of a finite-dimensional space, vanishing determinant is failure of
-surjectivity.-/
+surjectivity.
+@isnad1 id=iff.0h2v.s7.77fb2c664db6 from=translated src=- shape=2414bc66 vocab=2ca834d6
+-/
 theorem det_eq_zero_iff_not_surjective (A : F →L[ℝ] F) :
     A.det = 0 ↔ ¬ Function.Surjective A := by
   rw [ContinuousLinearMap.det, LinearMap.det_eq_zero_iff_ker_ne_bot, ne_eq,
@@ -286,7 +325,9 @@ theorem det_eq_zero_iff_not_surjective (A : F →L[ℝ] F) :
 
 /-- **Sard's theorem between spaces of equal dimension**, for a map that need only be
 differentiable at the points of the set considered.  Mathlib's Jacobian lemma transported
-along a linear isomorphism, as in `Chapter14.sard_of_finrank_eq`.-/
+along a linear isomorphism, as in `Chapter14.sard_of_finrank_eq`.
+@isnad1 id=eq.3h5v.s8.80348b8091ac from=translated src=- shape=89760006 vocab=e28c1a34
+-/
 theorem measure_image_null [MeasurableSpace F] [BorelSpace F] {X : Type*}
     [NormedAddCommGroup X] [NormedSpace ℝ X] [FiniteDimensional ℝ X] (μ : Measure F) [μ.IsAddHaarMeasure]
     {Φ : X → F} {s : Set X} (hd : ∀ z ∈ s, DifferentiableAt ℝ Φ z)
@@ -319,7 +360,9 @@ variable {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensi
 
 /-- **The local statement.**  Near any point `u₀` of an open set on which `g` is `C²` with
 injective differential, almost every `p` has the property that every critical point of
-`‖g - p‖²` is nondegenerate.-/
+`‖g - p‖²` is nondegenerate.
+@isnad1 id=ex.4h6v.s10.e588a8818e29 from=translated src=- shape=81c5077d vocab=38abde6c
+-/
 theorem exists_nhds_ae_nondegenerate (μ : Measure F) [μ.IsAddHaarMeasure] {g : E → F}
     {U : Set E} (hU : IsOpen U) (hg : ContDiffOn ℝ 2 g U)
     (hinj : ∀ u ∈ U, Function.Injective (fderiv ℝ g u)) {u₀ : E} (hu₀ : u₀ ∈ U) :
@@ -418,7 +461,9 @@ theorem exists_nhds_ae_nondegenerate (μ : Measure F) [μ.IsAddHaarMeasure] {g :
 
 /-- **The statement on an open set.**  If `g` is `C²` with injective differential on an
 open set `U`, then for almost every `p`, every critical point of `‖g - p‖²` in `U` is
-nondegenerate.  A countable union of the local statements: `E` is second countable.-/
+nondegenerate.  A countable union of the local statements: `E` is second countable.
+@isnad1 id=eventual.3h5v.s9.66d986f3254a from=translated src=- shape=cc3fe963 vocab=bb899cbd
+-/
 theorem ae_nondegenerate_of_isOpen (μ : Measure F) [μ.IsAddHaarMeasure] {g : E → F}
     {U : Set E} (hU : IsOpen U) (hg : ContDiffOn ℝ 2 g U)
     (hinj : ∀ u ∈ U, Function.Injective (fderiv ℝ g u)) :
@@ -447,7 +492,9 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
   {M : Type*} [TopologicalSpace M] [ChartedSpace E M]
 
 /-- A change of coordinates between two charts of the maximal atlas of a boundaryless
-manifold is `Cⁿ` near every point of its (open) domain, with invertible differential.-/
+manifold is `Cⁿ` near every point of its (open) domain, with invertible differential.
+@isnad1 id=and.4h6v.s9.5dc5db5b0332 from=translated src=- shape=8fc4379d vocab=786a1e1d
+-/
 theorem coordChange_facts {n : WithTop ℕ∞} [IsManifold 𝓘(ℝ, E) n M] (hn : n ≠ 0)
     {e e' : OpenPartialHomeomorph M E} (he : e ∈ maximalAtlas 𝓘(ℝ, E) n M)
     (he' : e' ∈ maximalAtlas 𝓘(ℝ, E) n M) {x : E}
@@ -465,7 +512,9 @@ theorem coordChange_facts {n : WithTop ℕ∞} [IsManifold 𝓘(ℝ, E) n M] (hn
 /-- **Transfer of nondegeneracy from a chart.**  If `y` lies in the domain of the chart at
 `x₀`, the Hessian of `f` at a critical point `y` (computed in the preferred chart at `y`)
 is nondegenerate as soon as the second differential of `f` read in the chart at `x₀` is.
-This is `sndFDeriv_comp_of_critical` applied to the change of coordinates.-/
+This is `sndFDeriv_comp_of_critical` applied to the change of coordinates.
+@isnad1 id=isnondeg.5h5v.s9.75605e74edac from=translated src=- shape=8e4b532b vocab=76f9f059
+-/
 theorem isNondegenerate_hessian_of_chart [IsManifold 𝓘(ℝ, E) ω M] {f : M → ℝ} {x₀ y : M}
     (hy : y ∈ (extChartAt 𝓘(ℝ, E) x₀).source) (hf : MDifferentiableAt 𝓘(ℝ, E) 𝓘(ℝ) f y)
     (hh : ContDiffAt ℝ 2 (f ∘ (extChartAt 𝓘(ℝ, E) x₀).symm) (extChartAt 𝓘(ℝ, E) x₀ y))
@@ -537,7 +586,9 @@ theorem isNondegenerate_hessian_of_chart [IsManifold 𝓘(ℝ, E) ω M] {f : M �
     exact ha b
   exact hτinv.injective (h2.trans (map_zero _).symm)
 
-/-- A smooth map read in a chart is smooth on the chart's target.-/
+/-- A smooth map read in a chart is smooth on the chart's target.
+@isnad1 id=contdiff.1h5v.s7.883c8ea131a4 from=translated src=- shape=bad8a8bf vocab=6a764447
+-/
 theorem contDiffOn_comp_extChartAt_symm {F : Type*} [NormedAddCommGroup F] [NormedSpace ℝ F]
     [IsManifold 𝓘(ℝ, E) ω M] {ι : M → F} (hι : ContMDiff 𝓘(ℝ, E) 𝓘(ℝ, F) ω ι) (x₀ : M) :
     ContDiffOn ℝ ω (ι ∘ (extChartAt 𝓘(ℝ, E) x₀).symm) (extChartAt 𝓘(ℝ, E) x₀).target :=
@@ -545,7 +596,9 @@ theorem contDiffOn_comp_extChartAt_symm {F : Type*} [NormedAddCommGroup F] [Norm
 
 /-- **An immersion has injective differential**, read in any chart of the source.  Mathlib
 defines immersions through a local normal form `u ↦ (u, 0)`; this recovers injectivity of
-the differential from it, through the change of coordinates to the normal-form chart.-/
+the differential from it, through the change of coordinates to the normal-form chart.
+@isnad1 id=injectiv.3h6v.s9.212be4293731 from=translated src=- shape=cd1199b9 vocab=c129cb66
+-/
 theorem injective_fderiv_of_isImmersion {F : Type*} [NormedAddCommGroup F] [NormedSpace ℝ F]
     [IsManifold 𝓘(ℝ, E) ω M] {ι : M → F} (hι : Manifold.IsImmersion 𝓘(ℝ, E) 𝓘(ℝ, F) ω ι)
     (x₀ : M) {u : E} (hu : u ∈ (extChartAt 𝓘(ℝ, E) x₀).target)
@@ -602,7 +655,9 @@ theorem injective_fderiv_of_isImmersion {F : Type*} [NormedAddCommGroup F] [Norm
 variable [FiniteDimensional ℝ E]
 
 /-- **Proposition 1.2.1, for a smooth embedding into a Euclidean space.**  For almost
-every `p`, the squared distance to `p` is a Morse function on `M`.-/
+every `p`, the squared distance to `p` is a Morse function on `M`.
+@isnad1 id=eventual.1h5v.s8.a4eedcc81c4a from=translated src=- shape=a6f70eb9 vocab=a1a60f30
+-/
 theorem ae_isMorseFunction_of_isSmoothEmbedding {F : Type*} [NormedAddCommGroup F]
     [InnerProductSpace ℝ F] [FiniteDimensional ℝ F] [MeasurableSpace F] [BorelSpace F]
     (μ : Measure F) [μ.IsAddHaarMeasure] [IsManifold 𝓘(ℝ, E) ω M]
@@ -643,7 +698,9 @@ end Charts
 end DistSqMorse
 
 /-- **Proposition 1.2.1.**  For almost every `p ∈ ℝⁿ`, the squared distance
-`x ↦ ‖ι x − p‖²` on a smoothly embedded manifold `V ⊆ ℝⁿ` is a Morse function.-/
+`x ↦ ‖ι x − p‖²` on a smoothly embedded manifold `V ⊆ ℝⁿ` is a Morse function.
+@isnad1 id=eventual.1h4v.s10.99d6c95541b3 from=translated src=- shape=528a74fb vocab=59d4d73a
+-/
 theorem ae_isMorseFunction_distSq_general {d n : ℕ}
     {V : Type*} [TopologicalSpace V] [ChartedSpace (EuclideanSpace ℝ (Fin d)) V]
     [IsManifold (𝓡 d) ω V] (ι : V → EuclideanSpace ℝ (Fin n))

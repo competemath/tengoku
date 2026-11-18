@@ -57,7 +57,9 @@ the velocity prescribed by `v` read in the extended chart at `x₀` (the vector
 `v` at the point `(extChartAt I x₀).symm (g t)`, transported into that chart by
 the tangent coordinate change), and let `g t` lie in the interior of the chart's
 target. Then the pulled-back curve `(extChartAt I x₀).symm ∘ g` is tangent to `v`
-at `t`.-/
+at `t`.
+@isnad1 id=hasmfder.2h8v.s9.9ee04d6472b8 from=translated src=- shape=3aaaf90e vocab=86dc7201
+-/
 theorem hasMFDerivAt_extChartAt_symm_comp [IsManifold I 1 M]
     {v : (x : M) → TangentSpace I x} {x₀ : M} {g : ℝ → E} {t : ℝ}
     (hg : HasDerivAt g (tangentCoordChange I ((extChartAt I x₀).symm (g t)) x₀
@@ -90,7 +92,9 @@ manifold modelled on a finite-dimensional space, every point `x₀` has an open
 neighbourhood `U` and a time `ρ > 0` carrying a map `β : ℝ → M → M` such that,
 for `x ∈ U`, the curve `t ↦ β t x` starts at `x` and is an integral curve of `v`
 on `(-ρ, ρ)`, and `(t, x) ↦ β t x` is continuous on `(-ρ, ρ) × U`. It is the
-Picard–Lindelöf flow of the coordinate expression of `v` in the chart at `x₀`.-/
+Picard–Lindelöf flow of the coordinate expression of `v` in the chart at `x₀`.
+@isnad1 id=ex.1h6v.s8.a3e9287a9376 from=translated src=- shape=d0688bfd vocab=28b6055b
+-/
 theorem exists_localFlow [IsManifold I 1 M] [BoundarylessManifold I M]
     {v : (x : M) → TangentSpace I x}
     (hv : ContMDiff I I.tangent 1 (fun x ↦ (⟨x, v x⟩ : TangentBundle I M))) (x₀ : M) :
@@ -158,7 +162,9 @@ theorem exists_localFlow [IsManifold I 1 M] [BoundarylessManifold I M]
 /-- **The flow of a `C¹` vector field on a compact boundaryless manifold.**  There
 is a map `Φ : ℝ → M → M`, jointly continuous, with `Φ 0 = id`, every
 `t ↦ Φ t x` an integral curve of `v`, and the group law
-`Φ (s + t) = Φ s ∘ Φ t`.-/
+`Φ (s + t) = Φ s ∘ Φ t`.
+@isnad1 id=ex.1h5v.s8.a7c5fc5c4240 from=translated src=- shape=479fc047 vocab=a2908628
+-/
 theorem exists_flow [IsManifold I 1 M] [T2Space M] [CompactSpace M]
     [BoundarylessManifold I M] {v : (x : M) → TangentSpace I x}
     (hv : ContMDiff I I.tangent 1 (fun x ↦ (⟨x, v x⟩ : TangentBundle I M))) :

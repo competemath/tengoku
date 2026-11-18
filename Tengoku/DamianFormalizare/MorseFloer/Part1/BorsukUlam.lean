@@ -78,29 +78,50 @@ def CLE (x y : ℤ) : Prop := x = y ∨ (y % 2 = 1 ∧ (x = y + 1 ∨ x = y - 1)
 
 instance : DecidableRel CLE := fun _ _ => by unfold CLE; infer_instance
 
+/--
+@isnad1 id=cle.0h1v.s2.1c49518d935a from=translated src=- shape=b3bac8d8 vocab=056e1fc2
+-/
 theorem CLE.refl (x : ℤ) : CLE x x := Or.inl rfl
 
+/--
+@isnad1 id=cle.2h3v.s4.25d175f3f2de from=translated src=- shape=0bc0c4a6 vocab=056e1fc2
+-/
 theorem CLE.trans {x y z : ℤ} (h1 : CLE x y) (h2 : CLE y z) : CLE x z := by
   unfold CLE at *; omega
 
 theorem CLE.eq_of_odd {x y : ℤ} (h : CLE x y) (hx : x % 2 = 1) : x = y := by
   unfold CLE at *; omega
 
+/--
+@isnad1 id=eq.2h2v.s5.2f25210f88c6 from=translated src=- shape=312c4c3a vocab=aa4953f1
+-/
 theorem CLE.odd {x y : ℤ} (h : CLE x y) (hx : x % 2 = 1) : y % 2 = 1 := by
   unfold CLE at *; omega
 
+/--
+@isnad1 id=iff.1h2v.s5.b302ff8d2f36 from=translated src=- shape=6cbdb741 vocab=aa4953f1
+-/
 theorem CLE.ne_iff {x y : ℤ} (h : CLE x y) : x ≠ y ↔ (y % 2 = 1 ∧ ¬ x % 2 = 1) := by
   unfold CLE at *; omega
 
+/--
+@isnad1 id=and.2h2v.s5.8bb06d7524ee from=translated src=- shape=a8b406ed vocab=2a8f27f5
+-/
 theorem CLE.sign {x y : ℤ} (h : CLE x y) (hx : x ≠ 0) : y ≠ 0 ∧ (0 < x ↔ 0 < y) := by
   unfold CLE at *; omega
 
 theorem CLE.eq_of_even_right {x y : ℤ} (h : CLE x y) (hy : ¬ y % 2 = 1) : x = y := by
   unfold CLE at *; omega
 
+/--
+@isnad1 id=and.1h2v.s5.7359b68702e1 from=translated src=- shape=5694b013 vocab=943884d3
+-/
 theorem CLE.abs_sub {x y : ℤ} (h : CLE x y) : x - y ≤ 1 ∧ y - x ≤ 1 := by
   unfold CLE at *; omega
 
+/--
+@isnad1 id=iff.0h2v.s4.c66177994f8d from=translated src=- shape=f84893bf vocab=45fe47a5
+-/
 theorem cle_neg_iff {x y : ℤ} : CLE (-x) (-y) ↔ CLE x y := by
   unfold CLE; omega
 
@@ -112,11 +133,20 @@ def FLE (a b : Fin n → ℤ) : Prop := ∀ i, CLE (a i) (b i)
 
 instance : DecidableRel (FLE (n := n)) := fun _ _ => by unfold FLE; infer_instance
 
+/--
+@isnad1 id=fle.0h2v.s3.e670f5396bf6 from=translated src=- shape=0ae1597d vocab=02603bad
+-/
 theorem FLE.refl (a : Fin n → ℤ) : FLE a a := fun _ => CLE.refl _
 
+/--
+@isnad1 id=fle.2h4v.s4.7e8b05b30741 from=translated src=- shape=fdb2573b vocab=02603bad
+-/
 theorem FLE.trans {a b c : Fin n → ℤ} (h1 : FLE a b) (h2 : FLE b c) : FLE a c :=
   fun i => (h1 i).trans (h2 i)
 
+/--
+@isnad1 id=iff.0h3v.s5.b68ed8787454 from=translated src=- shape=bfb6b42e vocab=33717348
+-/
 theorem fle_neg_iff {a b : Fin n → ℤ} : FLE (-a) (-b) ↔ FLE a b := by
   simp only [FLE, Pi.neg_apply, cle_neg_iff]
 
@@ -144,12 +174,18 @@ abbrev Label (n : ℕ) := Fin n × Bool
 /-- The opposite label.-/
 def opp (ℓ : Label n) : Label n := (ℓ.1, !ℓ.2)
 
+/--
+@isnad1 id=eq.0h2v.s3.615f851ae2d3 from=translated src=- shape=6ddf6d3e vocab=052d4884
+-/
 @[simp] theorem opp_opp (ℓ : Label n) : opp (opp ℓ) = ℓ := by
   simp [opp]
 
 /-- The sign vector of a face, as a set of signed labels.-/
 def sgnSet (c : Fin n → ℤ) : Finset (Label n) := (supp c).image fun i => (i, decide (0 < c i))
 
+/--
+@isnad1 id=iff.0h3v.s6.18e7314c9263 from=translated src=- shape=8aa2c0b3 vocab=7011f3ec
+-/
 theorem mem_sgnSet {c : Fin n → ℤ} {ℓ : Label n} :
     ℓ ∈ sgnSet c ↔ c ℓ.1 ≠ 0 ∧ ℓ.2 = decide (0 < c ℓ.1) := by
   obtain ⟨i, b⟩ := ℓ
@@ -160,35 +196,56 @@ theorem mem_sgnSet {c : Fin n → ℤ} {ℓ : Label n} :
   · rintro ⟨hi, hb⟩
     exact ⟨i, hi, rfl, hb.symm⟩
 
+/--
+@isnad1 id=eq.0h2v.s4.2a993e04eab8 from=translated src=- shape=6444bc46 vocab=09187a25
+-/
 theorem card_sgnSet (c : Fin n → ℤ) : #(sgnSet c) = #(supp c) := by
   apply card_image_of_injective
   intro i j h
   exact (Prod.mk.inj h).1
 
+/--
+@isnad1 id=le.0h2v.s4.370303a0fae1 from=translated src=- shape=23d593a3 vocab=287048ef
+-/
 theorem oddSet_subset_supp (c : Fin n → ℤ) : oddSet c ⊆ supp c := by
   intro i hi
   simp only [oddSet, supp, mem_filter, mem_univ, true_and] at hi ⊢
   omega
 
+/--
+@isnad1 id=le.0h2v.s4.f45fe4f50f20 from=translated src=- shape=4b971022 vocab=07c2fc34
+-/
 theorem dim_le_card_sgnSet (c : Fin n → ℤ) : dim c ≤ #(sgnSet c) := by
   rw [card_sgnSet]; exact card_le_card (oddSet_subset_supp c)
 
+/--
+@isnad1 id=le.1h3v.s5.0de24c379db1 from=translated src=- shape=9e18d763 vocab=b3eea5fa
+-/
 theorem FLE.oddSet_subset {a b : Fin n → ℤ} (h : FLE a b) : oddSet a ⊆ oddSet b := by
   intro i hi
   simp only [oddSet, mem_filter, mem_univ, true_and] at hi ⊢
   exact (h i).odd hi
 
+/--
+@isnad1 id=eq.1h3v.s5.ad38ab7e259d from=translated src=- shape=7d300c6c vocab=e8dfdb79
+-/
 theorem FLE.diffSet_eq {a b : Fin n → ℤ} (h : FLE a b) : diffSet a b = oddSet b \ oddSet a := by
   ext i
   simp only [diffSet, oddSet, mem_filter, mem_univ, true_and, mem_sdiff]
   exact (h i).ne_iff
 
+/--
+@isnad1 id=eq.1h3v.s5.469098ad39e1 from=translated src=- shape=b927d725 vocab=451f6298
+-/
 theorem FLE.card_diffSet {a b : Fin n → ℤ} (h : FLE a b) : #(diffSet a b) + dim a = dim b := by
   rw [h.diffSet_eq, card_sdiff_of_subset h.oddSet_subset]
   have := card_le_card h.oddSet_subset
   unfold dim
   omega
 
+/--
+@isnad1 id=le.1h3v.s4.aaf8610110c1 from=translated src=- shape=c78721d7 vocab=a2285c41
+-/
 theorem FLE.dim_le {a b : Fin n → ℤ} (h : FLE a b) : dim a ≤ dim b := by
   have := h.card_diffSet; omega
 
@@ -201,6 +258,9 @@ theorem FLE.eq_of_dim_eq {a b : Fin n → ℤ} (h : FLE a b) (hd : dim a = dim b
   rw [h2] at this
   exact absurd this (notMem_empty i)
 
+/--
+@isnad1 id=le.1h3v.s5.a346ff8a67ca from=translated src=- shape=9fbbc21f vocab=c07c8d76
+-/
 theorem FLE.sgnSet_subset {a b : Fin n → ℤ} (h : FLE a b) : sgnSet a ⊆ sgnSet b := by
   intro ℓ hℓ
   rw [mem_sgnSet] at hℓ ⊢
@@ -210,8 +270,14 @@ theorem FLE.sgnSet_subset {a b : Fin n → ℤ} (h : FLE a b) : sgnSet a ⊆ sgn
   rw [h2]
   exact decide_eq_decide.mpr h4
 
+/--
+@isnad1 id=comparab.1h3v.s4.4ae52b4178c6 from=translated src=- shape=3fc92832 vocab=dc855a23
+-/
 theorem Comparable.symm {a b : Fin n → ℤ} (h : Comparable a b) : Comparable b a := Or.symm h
 
+/--
+@isnad1 id=fle.2h3v.s4.c694100a62cf from=translated src=- shape=756e6cb1 vocab=296834b2
+-/
 theorem Comparable.fle_of_dim_le {a b : Fin n → ℤ} (h : Comparable a b) (hd : dim a ≤ dim b) :
     FLE a b := by
   rcases h with h | h
@@ -227,13 +293,18 @@ theorem Comparable.eq_of_dim_eq {a b : Fin n → ℤ} (h : Comparable a b) (hd :
   · exact h.eq_of_dim_eq hd
   · exact (h.eq_of_dim_eq hd.symm).symm
 
-/-- In a face `b` covering `a`, exactly one coordinate changes.-/
+/-- In a face `b` covering `a`, exactly one coordinate changes.
+@isnad1 id=ex.2h3v.s5.08dec869804e from=translated src=- shape=2c8d30de vocab=b671ddee
+-/
 theorem FLE.exists_diff_one {a b : Fin n → ℤ} (h : FLE a b) (hd : dim b = dim a + 1) :
     ∃ k, diffSet a b = {k} := by
   apply card_eq_one.mp
   have := h.card_diffSet
   omega
 
+/--
+@isnad1 id=eq.0h3v.s4.efa5158d7233 from=translated src=- shape=d94ee7bd vocab=c3956f19
+-/
 theorem diffSet_comm (a b : Fin n → ℤ) : diffSet a b = diffSet b a := by
   ext i
   simp only [diffSet, mem_filter, mem_univ, true_and, ne_comm]
@@ -267,6 +338,9 @@ noncomputable def grid : Finset (Fin n → ℤ) :=
 
 variable {m}
 
+/--
+@isnad1 id=iff.0h3v.s5.8c925bff1cb0 from=translated src=- shape=10e11c60 vocab=75bd0904
+-/
 theorem mem_grid {c : Fin n → ℤ} : c ∈ grid m ↔ InGrid m c := by
   simp only [grid, Fintype.mem_piFinset, mem_Icc, InGrid]
 
@@ -286,6 +360,9 @@ variable (m) in
 noncomputable def nodes : Finset (Finset (Fin n → ℤ)) :=
   (grid (n := n) m).powerset.filter (IsNode m)
 
+/--
+@isnad1 id=iff.0h3v.s5.1bd0d682ee5b from=translated src=- shape=a2058dee vocab=e9fa81c3
+-/
 theorem mem_nodes {σ : Finset (Fin n → ℤ)} : σ ∈ nodes m ↔ IsNode m σ := by
   simp only [nodes, mem_filter, mem_powerset, and_iff_right_iff_imp]
   intro h c hc
@@ -294,15 +371,27 @@ theorem mem_nodes {σ : Finset (Fin n → ℤ)} : σ ∈ nodes m ↔ IsNode m σ
 /-- The sign vector of a chain: the union of the sign vectors of its faces.-/
 def sgnS (σ : Finset (Fin n → ℤ)) : Finset (Label n) := σ.biUnion sgnSet
 
+/--
+@isnad1 id=le.1h3v.s5.8f868a6b567d from=translated src=- shape=31cc288c vocab=b468563d
+-/
 theorem sgnSet_subset_sgnS {σ : Finset (Fin n → ℤ)} {c : Fin n → ℤ} (hc : c ∈ σ) :
     sgnSet c ⊆ sgnS σ := subset_biUnion_of_mem sgnSet hc
 
+/--
+@isnad1 id=le.1h3v.s5.204142cd00e5 from=translated src=- shape=78039187 vocab=d7d20dc5
+-/
 theorem sgnS_mono {ρ τ : Finset (Fin n → ℤ)} (h : ρ ⊆ τ) : sgnS ρ ⊆ sgnS τ :=
   biUnion_subset_biUnion_of_subset_left _ h
 
+/--
+@isnad1 id=eq.0h3v.s6.8d7b36569122 from=translated src=- shape=b501af27 vocab=55e9fe98
+-/
 theorem sgnS_insert (G : Fin n → ℤ) (ρ : Finset (Fin n → ℤ)) :
     sgnS (insert G ρ) = sgnSet G ∪ sgnS ρ := biUnion_insert
 
+/--
+@isnad1 id=eq.2h3v.s6.c4c17447b16f from=translated src=- shape=8c9dfc77 vocab=740a8069
+-/
 theorem sgnS_eq_of_top {σ : Finset (Fin n → ℤ)} {T : Fin n → ℤ} (hT : T ∈ σ)
     (htop : ∀ c ∈ σ, FLE c T) : sgnS σ = sgnSet T := by
   apply Subset.antisymm _ (sgnSet_subset_sgnS hT)
@@ -310,42 +399,66 @@ theorem sgnS_eq_of_top {σ : Finset (Fin n → ℤ)} {T : Fin n → ℤ} (hT : T
   obtain ⟨c, hc, hℓc⟩ := mem_biUnion.mp hℓ
   exact (htop c hc).sgnSet_subset hℓc
 
+/--
+@isnad1 id=ischainf.2h3v.s5.ba0723cde951 from=translated src=- shape=7565c217 vocab=51d613a8
+-/
 theorem IsChainF.subset {σ τ : Finset (Fin n → ℤ)} (h : IsChainF σ) (hτ : τ ⊆ σ) : IsChainF τ :=
   fun a ha b hb => h a (hτ ha) b (hτ hb)
 
+/--
+@isnad1 id=fle.4h4v.s6.07394f92a75d from=translated src=- shape=52be1d08 vocab=14e02c02
+-/
 theorem IsChainF.fle_of_dim_le {σ : Finset (Fin n → ℤ)} (h : IsChainF σ) {a b : Fin n → ℤ}
     (ha : a ∈ σ) (hb : b ∈ σ) (hd : dim a ≤ dim b) : FLE a b :=
   (h a ha b hb).fle_of_dim_le hd
 
+/--
+@isnad1 id=injon.1h2v.s5.6207b9dde363 from=translated src=- shape=441f87d1 vocab=4d7e6e01
+-/
 theorem IsChainF.injOn_dim {σ : Finset (Fin n → ℤ)} (h : IsChainF σ) :
     Set.InjOn dim (σ : Set (Fin n → ℤ)) :=
   fun a ha b hb hd => (h a ha b hb).eq_of_dim_eq hd
 
+/--
+@isnad1 id=le.1h3v.s5.451afa29e389 from=translated src=- shape=d692c0c6 vocab=8768da5a
+-/
 theorem dim_le_card_sgnS {σ : Finset (Fin n → ℤ)} {c : Fin n → ℤ} (hc : c ∈ σ) :
     dim c ≤ #(sgnS σ) :=
   (dim_le_card_sgnSet c).trans (card_le_card (sgnSet_subset_sgnS hc))
 
+/--
+@isnad1 id=eq.1h2v.s5.96a99052c720 from=translated src=- shape=83b90c90 vocab=785adc60
+-/
 theorem IsChainF.card_image_dim {σ : Finset (Fin n → ℤ)} (h : IsChainF σ) :
     #(σ.image dim) = #σ := card_image_iff.mpr h.injOn_dim
 
+/--
+@isnad1 id=le.0h2v.s5.f37ef3cde7c9 from=translated src=- shape=ebbcecfc vocab=fcaa170f
+-/
 theorem image_dim_subset (σ : Finset (Fin n → ℤ)) :
     σ.image dim ⊆ range (#(sgnS σ) + 1) := by
   intro k hk
   obtain ⟨c, hc, rfl⟩ := mem_image.mp hk
   exact mem_range.mpr (Nat.lt_succ_of_le (dim_le_card_sgnS hc))
 
-/-- A chain has at most one more face than its sign vector has entries.-/
+/-- A chain has at most one more face than its sign vector has entries.
+@isnad1 id=le.1h2v.s5.c3275fdce704 from=translated src=- shape=4ed6bcbf vocab=2b7b57c8
+-/
 theorem IsChainF.card_le {σ : Finset (Fin n → ℤ)} (h : IsChainF σ) : #σ ≤ #(sgnS σ) + 1 := by
   rw [← h.card_image_dim]
   simpa using card_le_card (image_dim_subset σ)
 
-/-- If a face has as many interval coordinates as nonzero ones, the two sets coincide.-/
+/-- If a face has as many interval coordinates as nonzero ones, the two sets coincide.
+@isnad1 id=eq.1h2v.s4.80253f097b06 from=translated src=- shape=e15abf0f vocab=e21f2e31
+-/
 theorem supp_eq_oddSet {T : Fin n → ℤ} (h : #(sgnSet T) ≤ dim T) : supp T = oddSet T := by
   rw [card_sgnSet] at h
   exact (eq_of_subset_of_card_le (oddSet_subset_supp T) h).symm
 
 /-- A *full* chain (one more face than sign entries) contains a face of each dimension
-`0, …, r`, and its top face has all its nonzero coordinates odd.-/
+`0, …, r`, and its top face has all its nonzero coordinates odd.
+@isnad1 id=and.2h2v.s7.576dcd21ddc5 from=translated src=- shape=6fd9fc24 vocab=4a1bd02f
+-/
 theorem IsChainF.full {σ : Finset (Fin n → ℤ)} (h : IsChainF σ) (hf : #σ = #(sgnS σ) + 1) :
     σ.image dim = range (#(sgnS σ) + 1) ∧ ∃ T ∈ σ, dim T = #(sgnS σ) ∧
       (∀ c ∈ σ, FLE c T) ∧ sgnS σ = sgnSet T ∧ supp T = oddSet T := by
@@ -359,7 +472,9 @@ theorem IsChainF.full {σ : Finset (Fin n → ℤ)} (h : IsChainF σ) (hf : #σ 
   have hS := sgnS_eq_of_top hT htop
   exact ⟨T, hT, hdT, htop, hS, supp_eq_oddSet (by rw [← hS, hdT])⟩
 
-/-- A *tight* chain (as many faces as sign entries) misses exactly one dimension `d`.-/
+/-- A *tight* chain (as many faces as sign entries) misses exactly one dimension `d`.
+@isnad1 id=ex.2h2v.s6.b7df94ecc12f from=translated src=- shape=398ff712 vocab=59a10fb1
+-/
 theorem IsChainF.tight {σ : Finset (Fin n → ℤ)} (h : IsChainF σ) (ht : #σ = #(sgnS σ)) :
     ∃ d ≤ #(sgnS σ), σ.image dim = (range (#(sgnS σ) + 1)).erase d := by
   have hsub := image_dim_subset σ
@@ -380,6 +495,9 @@ theorem IsChainF.tight {σ : Finset (Fin n → ℤ)} (h : IsChainF σ) (ht : #σ
     rw [hd, mem_singleton] at this
     exact hkd this
 
+/--
+@isnad1 id=ex.1h3v.s6.9c6508e6b59e from=translated src=- shape=c17cd9b5 vocab=c2f44a39
+-/
 theorem exists_mem_dim {σ : Finset (Fin n → ℤ)} {k : ℕ} (hk : k ∈ σ.image dim) :
     ∃ A ∈ σ, dim A = k := by
   simpa using hk
@@ -394,7 +512,9 @@ variable {α β : Type*} [DecidableEq α] [DecidableEq β]
 
 /-- Let `f` label the `r + 1` points of `A` so that the labels cover a set `S` of size
 `r`. The points whose removal still leaves `S` covered are exactly one if a label
-outside `S` occurs, and exactly two (the two points sharing a label) otherwise.-/
+outside `S` occurs, and exactly two (the two points sharing a label) otherwise.
+@isnad1 id=eq.2h5v.s7.bf0d111de877 from=translated src=- shape=4914ee0e vocab=755911b3
+-/
 theorem card_removable (A : Finset α) (f : α → β) (S : Finset β)
     (hcard : #A = #S + 1) (hS : S ⊆ A.image f) :
     #(A.filter fun v => S ⊆ (A.erase v).image f) = if A.image f = S then 2 else 1 := by
@@ -484,7 +604,9 @@ theorem card_removable (A : Finset α) (f : α → β) (S : Finset β)
     rw [heq, card_singleton]
 
 /-- No point is removable when the labels do not cover `S`, or when there are too few
-points.-/
+points.
+@isnad1 id=eq.2h5v.s7.0b00fcfe7bff from=translated src=- shape=15959b5b vocab=0b0539b2
+-/
 theorem removable_eq_empty (A : Finset α) (f : α → β) (S : Finset β)
     (h : ¬ (#A = #S + 1 ∧ S ⊆ A.image f)) (hle : #A ≤ #S + 1) :
     A.filter (fun v => S ⊆ (A.erase v).image f) = ∅ := by
@@ -530,12 +652,17 @@ def IsB (σ : Finset (Fin n → ℤ)) : Prop := #σ = #(sgnS σ) ∧ σ.image la
 
 instance (σ : Finset (Fin n → ℤ)) : Decidable (IsB m lab σ) := by unfold IsB; infer_instance
 
+/--
+@isnad1 id=iff.0h2v.s5.eeb4c1b6b956 from=translated src=- shape=ddf4fe2b vocab=dd8a4f75
+-/
 theorem sgnSet_eq_empty_iff {c : Fin n → ℤ} : sgnSet c = ∅ ↔ c = 0 := by
   rw [sgnSet, image_eq_empty, supp, filter_eq_empty_iff]
   simp only [mem_univ, ne_eq, not_not, true_implies]
   exact ⟨fun h => funext h, fun h i => by simp [h]⟩
 
-/-- The number of doors of `τ` from below, modulo `2`.-/
+/-- The number of doors of `τ` from below, modulo `2`.
+@isnad1 id=eq.1h4v.s8.31b7978147b9 from=translated src=- shape=109fd142 vocab=b307712b
+-/
 theorem card_down {τ : Finset (Fin n → ℤ)} (hτ : IsNode m τ) :
     (#((nodes m).filter fun ρ => Door lab ρ τ) : ZMod 2) =
       (if IsA lab τ then 1 else 0) + (if τ = {0} then 1 else 0) := by
@@ -620,7 +747,9 @@ theorem card_down {τ : Finset (Fin n → ℤ)} (hτ : IsNode m τ) :
       rw [ite_eq_right hA]
       simp
 
-/-- What a door says about the larger chain.-/
+/-- What a door says about the larger chain.
+@isnad1 id=ex.2h5v.s7.f80872d77a69 from=translated src=- shape=087cf5e1 vocab=ec5b0c7e
+-/
 theorem door_facts {ρ τ : Finset (Fin n → ℤ)} (hτ : IsNode m τ) (hd : Door lab ρ τ) :
     ∃ a ∉ ρ, τ = insert a ρ ∧ #ρ ≤ #(sgnS τ) ∧ sgnS ρ ⊆ sgnS τ ∧ sgnS τ ⊆ ρ.image lab := by
   obtain ⟨hsub, hcard, hS⟩ := hd
@@ -636,7 +765,9 @@ section Full
 
 variable {m : ℕ} (lab : (Fin n → ℤ) → Label n)
 
-/-- Two faces of a chain never carry opposite labels, if no comparable pair does.-/
+/-- Two faces of a chain never carry opposite labels, if no comparable pair does.
+@isnad1 id=ne.4h6v.s7.06f10559ea0e from=translated src=- shape=3070c189 vocab=b343a3fe
+-/
 theorem no_flip_in_chain
     (hno : ∀ a b, InGrid m a → InGrid m b → FLE a b → lab a ≠ opp (lab b))
     {ρ : Finset (Fin n → ℤ)} (hρ : IsNode m ρ) {x y : Fin n → ℤ} (hx : x ∈ ρ) (hy : y ∈ ρ) :
@@ -649,7 +780,9 @@ theorem no_flip_in_chain
 
 /-- **The upward count at a full chain.** A full chain with an extra label `ℓ` has exactly
 one door upward: the face of its top obtained by opening coordinate `ℓ.1` in the
-direction `ℓ.2`. Otherwise it has none.-/
+direction `ℓ.2`. Otherwise it has none.
+@isnad1 id=eq.4h4v.s7.fa80e8cecacb from=translated src=- shape=69d03686 vocab=4fa5af3f
+-/
 theorem card_up_full (hm : 1 ≤ m)
     (hno : ∀ a b, InGrid m a → InGrid m b → FLE a b → lab a ≠ opp (lab b))
     {ρ : Finset (Fin n → ℤ)} (hρ : IsNode m ρ) (hf : #ρ = #(sgnS ρ) + 1) :
@@ -812,11 +945,16 @@ variable (m) in
 noncomputable def comp (ρ : Finset (Fin n → ℤ)) : Finset (Fin n → ℤ) :=
   (grid m).filter fun G => G ∉ ρ ∧ (∀ c ∈ ρ, Comparable c G) ∧ sgnSet G ⊆ sgnS ρ
 
+/--
+@isnad1 id=iff.0h4v.s7.3caca0a199a3 from=translated src=- shape=97e2d5ca vocab=cd3ebc9f
+-/
 theorem mem_comp {ρ : Finset (Fin n → ℤ)} {G : Fin n → ℤ} :
     G ∈ comp m ρ ↔ InGrid m G ∧ G ∉ ρ ∧ (∀ c ∈ ρ, Comparable c G) ∧ sgnSet G ⊆ sgnS ρ := by
   rw [comp, mem_filter, mem_grid]
 
-/-- Chains one face larger with the same sign vector correspond to completing faces.-/
+/-- Chains one face larger with the same sign vector correspond to completing faces.
+@isnad1 id=eq.1h3v.s8.23335e639820 from=translated src=- shape=3a6e1411 vocab=ae34387a
+-/
 theorem card_up_eq_card_comp {ρ : Finset (Fin n → ℤ)} (hρ : IsNode m ρ) :
     #((nodes m).filter fun τ => ρ ⊆ τ ∧ #τ = #ρ + 1 ∧ sgnS τ ⊆ sgnS ρ) = #(comp m ρ) := by
   symm
@@ -850,7 +988,9 @@ theorem card_up_eq_card_comp {ρ : Finset (Fin n → ℤ)} (hρ : IsNode m ρ) :
       fun c hc => hτn.2.2 c (mem_insert_of_mem hc) a (mem_insert_self a ρ),
       (sgnSet_subset_sgnS (mem_insert_self a ρ)).trans hS⟩, rfl⟩
 
-/-- A completing face has the missing dimension.-/
+/-- A completing face has the missing dimension.
+@isnad1 id=eq.2h5v.s6.0a158f9b711f from=translated src=- shape=6ee1a221 vocab=d2de3f37
+-/
 theorem dim_of_mem_comp {ρ : Finset (Fin n → ℤ)} {d : ℕ}
     (hd : ρ.image dim = (range (#(sgnS ρ) + 1)).erase d) {G : Fin n → ℤ}
     (hG : G ∈ comp m ρ) : dim G = d := by
@@ -861,7 +1001,9 @@ theorem dim_of_mem_comp {ρ : Finset (Fin n → ℤ)} {d : ℕ}
   obtain ⟨c, hc, hdc⟩ := exists_mem_dim hmem
   exact hGρ ((hcomp c hc).eq_of_dim_eq hdc ▸ hc)
 
-/-- A face of a chain of full dimension in its orthant face is not a boundary face.-/
+/-- A face of a chain of full dimension in its orthant face is not a boundary face.
+@isnad1 id=not.3h4v.s6.01f7b99131e8 from=translated src=- shape=634e6bb1 vocab=7b61b108
+-/
 theorem not_isBdry_of_top (hm : 1 ≤ m) {ρ : Finset (Fin n → ℤ)} {T : Fin n → ℤ} (hT : T ∈ ρ)
     (hdT : dim T = #(sgnS ρ)) : ¬ IsBdry m T := by
   have hsupp : supp T = oddSet T := supp_eq_oddSet (hdT ▸ card_le_card (sgnSet_subset_sgnS hT))
@@ -871,11 +1013,17 @@ theorem not_isBdry_of_top (hm : 1 ≤ m) {ρ : Finset (Fin n → ℤ)} {T : Fin 
   simp only [oddSet, mem_filter, mem_univ, true_and] at this
   omega
 
+/--
+@isnad1 id=ex.3h4v.s6.af584da90b06 from=translated src=- shape=755a2b7c vocab=fad0ecc5
+-/
 theorem mem_image_dim_of_ne {ρ : Finset (Fin n → ℤ)} {d k : ℕ}
     (hd : ρ.image dim = (range (#(sgnS ρ) + 1)).erase d) (hk : k ≤ #(sgnS ρ)) (hkd : k ≠ d) :
     ∃ A ∈ ρ, dim A = k :=
   exists_mem_dim (by rw [hd, mem_erase, mem_range]; omega)
 
+/--
+@isnad1 id=and.2h4v.s6.8aa5260749d0 from=translated src=- shape=b5770a1a vocab=fad0ecc5
+-/
 theorem dim_ne_of_mem {ρ : Finset (Fin n → ℤ)} {d : ℕ}
     (hd : ρ.image dim = (range (#(sgnS ρ) + 1)).erase d) {c : Fin n → ℤ} (hc : c ∈ ρ) :
     dim c ≠ d ∧ dim c ≤ #(sgnS ρ) := by
@@ -886,7 +1034,9 @@ theorem dim_ne_of_mem {ρ : Finset (Fin n → ℤ)} {d : ℕ}
 /-- **Missing top face.** When the missing dimension is the top one, the completions
 open the unique nonzero even coordinate `j` of the top face one step in either
 direction, and only one step fits exactly when that coordinate is `±2m`, that is,
-when the chain lies in the boundary.-/
+when the chain lies in the boundary.
+@isnad1 id=eq.4h3v.s7.285de9782eb4 from=translated src=- shape=9074c0a2 vocab=16bf554a
+-/
 theorem card_comp_top (hm : 1 ≤ m) {ρ : Finset (Fin n → ℤ)} (hρ : IsNode m ρ)
     (hr : 1 ≤ #(sgnS ρ))
     (hd : ρ.image dim = (range (#(sgnS ρ) + 1)).erase (#(sgnS ρ))) :
@@ -986,7 +1136,9 @@ theorem card_comp_top (hm : 1 ≤ m) {ρ : Finset (Fin n → ℤ)} (hρ : IsNode
     decide
 
 /-- **Missing vertex.** When the missing dimension is `0`, the two completions are the
-two endpoints of the edge at the bottom of the chain.-/
+two endpoints of the edge at the bottom of the chain.
+@isnad1 id=and.4h3v.s6.6f3a528adf33 from=translated src=- shape=a2c1031b vocab=97fedc65
+-/
 theorem card_comp_bottom (hm : 1 ≤ m) {ρ : Finset (Fin n → ℤ)} (hρ : IsNode m ρ)
     (hr : 1 ≤ #(sgnS ρ)) (hd : ρ.image dim = (range (#(sgnS ρ) + 1)).erase 0) :
     #(comp m ρ) = 2 ∧ ¬ Bdry m ρ := by
@@ -1048,7 +1200,9 @@ theorem card_comp_bottom (hm : 1 ≤ m) {ρ : Finset (Fin n → ℤ)} (hρ : IsN
 
 /-- **Missing middle face.** When the missing dimension `d` lies strictly between `0` and
 the top, the completions are the two faces between the faces of dimensions `d - 1`
-and `d + 1` (the diamond property).-/
+and `d + 1` (the diamond property).
+@isnad1 id=and.5h4v.s6.b271f5570d79 from=translated src=- shape=b3ad190e vocab=549c6f3e
+-/
 theorem card_comp_middle (hm : 1 ≤ m) {ρ : Finset (Fin n → ℤ)} (hρ : IsNode m ρ) {d : ℕ}
     (hd0 : 0 < d) (hdr : d < #(sgnS ρ))
     (hd : ρ.image dim = (range (#(sgnS ρ) + 1)).erase d) :
@@ -1136,7 +1290,9 @@ theorem card_comp_middle (hm : 1 ≤ m) {ρ : Finset (Fin n → ℤ)} (hρ : IsN
   exact hAi this.symm
 
 /-- **The upward count at a tight chain**, modulo `2`: it is odd exactly for boundary
-chains.-/
+chains.
+@isnad1 id=eq.3h3v.s8.6c5be34616e2 from=translated src=- shape=620ddffd vocab=47cd67dd
+-/
 theorem card_up_tight (hm : 1 ≤ m) {ρ : Finset (Fin n → ℤ)} (hρ : IsNode m ρ)
     (ht : #ρ = #(sgnS ρ)) :
     (#((nodes m).filter fun τ => ρ ⊆ τ ∧ #τ = #ρ + 1 ∧ sgnS τ ⊆ sgnS ρ) : ZMod 2) =
@@ -1163,7 +1319,9 @@ section Tucker
 
 variable {m : ℕ} (lab : (Fin n → ℤ) → Label n)
 
-/-- The upward count at any chain, modulo `2`.-/
+/-- The upward count at any chain, modulo `2`.
+@isnad1 id=eq.3h4v.s8.63ce64d6872d from=translated src=- shape=af2de3f8 vocab=c97a2e04
+-/
 theorem card_up (hm : 1 ≤ m)
     (hno : ∀ a b, InGrid m a → InGrid m b → FLE a b → lab a ≠ opp (lab b))
     {ρ : Finset (Fin n → ℤ)} (hρ : IsNode m ρ) :
@@ -1205,6 +1363,9 @@ theorem card_up (hm : 1 ≤ m)
         obtain ⟨a, -, rfl, -, hSS, hSτ⟩ := door_facts lab (mem_nodes.mp hτ) hd
         exact himg (eq_of_subset_of_card_le (hSS.trans hSτ) (by omega)).symm
 
+/--
+@isnad1 id=eq.0h2v.s5.21ce3fa5b08f from=translated src=- shape=0d213801 vocab=3118beb7
+-/
 theorem sgnSet_neg (c : Fin n → ℤ) : sgnSet (-c) = (sgnSet c).image opp := by
   ext ⟨i, b⟩
   rw [mem_image]
@@ -1229,16 +1390,24 @@ theorem sgnSet_neg (c : Fin n → ℤ) : sgnSet (-c) = (sgnSet c).image opp := b
     simp only [Pi.neg_apply, Left.neg_pos_iff]
     cases hc : decide (c j < 0) <;> cases hc' : decide (0 < c j) <;> simp_all <;> omega
 
+/--
+@isnad1 id=eq.0h2v.s6.945a8ad63468 from=translated src=- shape=fe323b6c vocab=264ef81d
+-/
 theorem sgnS_neg (ρ : Finset (Fin n → ℤ)) :
     sgnS (ρ.image fun c => -c) = (sgnS ρ).image opp := by
   rw [sgnS, sgnS, image_biUnion, biUnion_image]
   simp only [sgnSet_neg]
 
+/--
+@isnad1 id=injectiv.0h1v.s3.ed8b9f9f8cd4 from=translated src=- shape=2f9cf4fe vocab=c89297fa
+-/
 theorem opp_injective : Function.Injective (opp : Label n → Label n) := fun a b h => by
   rw [← opp_opp a, h, opp_opp]
 
 /-- The antipodal map on chains maps tight boundary chains labelled by their sign vector
-to chains of the same kind, and moves each of them.-/
+to chains of the same kind, and moves each of them.
+@isnad1 id=and.4h4v.s8.2ca867ab6b0e from=translated src=- shape=899f60e9 vocab=addef447
+-/
 theorem isB_neg (hm : 1 ≤ m)
     (hanti : ∀ c, InGrid m c → IsBdry m c → lab (-c) = opp (lab c))
     {ρ : Finset (Fin n → ℤ)} (hρ : IsNode m ρ) (hB : IsB m lab ρ) :
@@ -1277,7 +1446,9 @@ theorem isB_neg (hm : 1 ≤ m)
     · have := h' i; simp only [Pi.neg_apply] at this; unfold CLE at this; omega
 
 /-- There is an even number of tight boundary chains labelled by their sign vector: the
-antipodal map pairs them off.-/
+antipodal map pairs them off.
+@isnad1 id=eq.2h3v.s7.e183ee581ae1 from=translated src=- shape=b5ffb61b vocab=f57cdfc5
+-/
 theorem card_isB_even (hm : 1 ≤ m)
     (hanti : ∀ c, InGrid m c → IsBdry m c → lab (-c) = opp (lab c)) :
     (#((nodes m).filter (IsB m lab)) : ZMod 2) = 0 := by
@@ -1298,7 +1469,9 @@ theorem card_isB_even (hm : 1 ≤ m)
 /-- **Tucker's lemma on the barycentric subdivision of the cubical grid.** Let `lab`
 assign a signed label `±1, …, ±n` to every face of the grid `[-m, m]ⁿ`, antipodally on
 the boundary. Then two comparable faces (two vertices of one simplex of the
-barycentric subdivision) carry opposite labels.-/
+barycentric subdivision) carry opposite labels.
+@isnad1 id=ex.2h3v.s6.622fa1c16c8f from=translated src=- shape=dc3d5945 vocab=7ac5935a
+-/
 theorem tucker (hm : 1 ≤ m)
     (hanti : ∀ c, InGrid m c → IsBdry m c → lab (-c) = opp (lab c)) :
     ∃ a b, InGrid m a ∧ InGrid m b ∧ FLE a b ∧ lab a = opp (lab b) := by
@@ -1334,7 +1507,9 @@ end Tucker
 
 section Cube
 
-/-- For the sup norm, a coordinate of largest absolute value realises the norm.-/
+/-- For the sup norm, a coordinate of largest absolute value realises the norm.
+@isnad1 id=eq.1h3v.s6.d5ef7c12cd36 from=translated src=- shape=68f0c49a vocab=5b1e3859
+-/
 theorem norm_eq_abs_of_max {n : ℕ} {v : Fin n → ℝ} {i : Fin n} (h : ∀ j, |v j| ≤ |v i|) :
     ‖v‖ = |v i| := by
   apply le_antisymm
@@ -1347,11 +1522,16 @@ built from it antipodal.-/
 noncomputable def maxIdx {k : ℕ} (a : Fin (k + 1) → ℝ) : Fin (k + 1) :=
   Classical.choose (Finite.exists_max a)
 
+/--
+@isnad1 id=le.0h3v.s5.ee7bb6762085 from=translated src=- shape=02da73c0 vocab=4f3a8d19
+-/
 theorem le_maxIdx {k : ℕ} (a : Fin (k + 1) → ℝ) (j : Fin (k + 1)) : a j ≤ a (maxIdx a) :=
   Classical.choose_spec (Finite.exists_max a) j
 
 /-- Two reals of absolute value at least `δ` whose distance is less than `δ` have the same
-sign.-/
+sign.
+@isnad1 id=iff.3h3v.s6.1f48e78297b6 from=translated src=- shape=30e78d43 vocab=1681bced
+-/
 theorem pos_iff_of_close {δ u w : ℝ} (hu : δ ≤ |u|) (hw : δ ≤ |w|) (huw : |u - w| < δ) :
     (0 < u ↔ 0 < w) := by
   rw [abs_lt] at huw
@@ -1371,7 +1551,9 @@ If it did not, `‖F‖ ≥ δ > 0` on the cube. Label each face `c` of a fine g
 coordinate where `|F|` is largest at the barycentre of `c`, with the sign of `F` there;
 oddness makes the labelling antipodal on the boundary. Tucker's lemma gives two
 comparable faces with opposite labels. Their barycentres are close, but `F` has
-coordinates `≥ δ` and `≤ -δ` there, which uniform continuity forbids.-/
+coordinates `≥ δ` and `≤ -δ` there, which uniform continuity forbids.
+@isnad1 id=ex.2h2v.s8.d6b2217c7076 from=translated src=- shape=7c5f7ad8 vocab=7bc2fcbf
+-/
 theorem cube_zero {n : ℕ} (F : (Fin n → ℝ) → (Fin n → ℝ))
     (hF : ContinuousOn F (Metric.closedBall 0 1))
     (hodd : ∀ x ∈ Metric.sphere (0 : Fin n → ℝ) 1, F (-x) = -F x) :
@@ -1481,6 +1663,9 @@ boundary of the cube its last coordinate vanishes.-/
 noncomputable def lift (y : Fin n → ℝ) : EuclideanSpace ℝ (Fin (n + 1)) :=
   WithLp.toLp 2 (fun i : Fin (n + 1) => if h : (i : ℕ) < n then y ⟨i, h⟩ else 1 - ‖y‖)
 
+/--
+@isnad1 id=continuo.0h1v.s6.ba67635f8148 from=translated src=- shape=bd3ca6be vocab=01d57707
+-/
 theorem continuous_lift : Continuous (lift (n := n)) := by
   apply (PiLp.continuous_toLp 2 _).comp
   apply continuous_pi
@@ -1489,6 +1674,9 @@ theorem continuous_lift : Continuous (lift (n := n)) := by
   · simp only [h, dite_eq_left]; exact continuous_apply _
   · simp only [h, dite_eq_right, not_false_eq_true]; exact continuous_const.sub continuous_norm
 
+/--
+@isnad1 id=ne.0h2v.s7.ec6ee8b92499 from=translated src=- shape=c524fbae vocab=5d044b93
+-/
 theorem lift_ne_zero (y : Fin n → ℝ) : lift y ≠ 0 := by
   intro h
   have hy : y = 0 := by
@@ -1498,6 +1686,9 @@ theorem lift_ne_zero (y : Fin n → ℝ) : lift y ≠ 0 := by
   have := congrArg (fun v : EuclideanSpace ℝ (Fin (n + 1)) => v (Fin.last n)) h
   simp [lift, hy] at this
 
+/--
+@isnad1 id=eq.1h2v.s8.a8cc2de71703 from=translated src=- shape=21f75018 vocab=c6d32061
+-/
 theorem lift_neg {y : Fin n → ℝ} (hy : ‖y‖ = 1) : lift (-y) = -lift y := by
   apply PiLp.ext
   intro i
@@ -1515,7 +1706,9 @@ open BorsukUlam in
 Precomposing such a map with `y ↦ (y, 1 - ‖y‖) / ‖(y, 1 - ‖y‖)‖`, which sends the cube
 `[-1, 1]ⁿ` into `Sⁿ` and is odd on the boundary of the cube, would give a map on the cube,
 odd on its boundary, with values on the unit sphere, hence without zero. This
-contradicts `cube_zero`.-/
+contradicts `cube_zero`.
+@isnad1 id=not.0h1v.s10.8cfe62efa6e4 from=translated src=- shape=eda94cd1 vocab=bbc4a15a
+-/
 theorem borsuk_ulam_general (n : ℕ) :
     ¬ ∃ φ : EuclideanSpace ℝ (Fin (n + 1)) → EuclideanSpace ℝ (Fin n),
         ContinuousOn φ (Metric.sphere 0 1) ∧

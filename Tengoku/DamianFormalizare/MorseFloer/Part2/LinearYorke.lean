@@ -42,7 +42,9 @@ namespace LinearYorke
 
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
-/-- An orthogonal matrix acts isometrically on Euclidean space.-/
+/-- An orthogonal matrix acts isometrically on Euclidean space.
+@isnad1 id=eq.1h3v.s12.d9719b897639 from=translated src=- shape=1ad1a559 vocab=6c6c46d6
+-/
 theorem norm_toEuclideanCLM_apply_of_transpose_mul {Q : Matrix n n ℝ} (hQ : Qᵀ * Q = 1)
     (w : EuclideanSpace ℝ n) : ‖Matrix.toEuclideanCLM (𝕜 := ℝ) Q w‖ = ‖w‖ := by
   have hstar : star (Matrix.toEuclideanCLM (𝕜 := ℝ) Q) * Matrix.toEuclideanCLM (𝕜 := ℝ) Q
@@ -57,7 +59,9 @@ theorem norm_toEuclideanCLM_apply_of_transpose_mul {Q : Matrix n n ℝ} (hQ : Q�
 
 /-- For a real symmetric matrix `S` all of whose eigenvalues satisfy `|λ| < r`, the
 Euclidean operator norm of `S` is bounded by some `M < r`: expanding along an
-orthonormal eigenbasis, `‖Sw‖² = ∑ λ_i² ⟪e_i, w⟫² ≤ (max |λ_i|)² ‖w‖²`.-/
+orthonormal eigenbasis, `‖Sw‖² = ∑ λ_i² ⟪e_i, w⟫² ≤ (max |λ_i|)² ‖w‖²`.
+@isnad1 id=ex.3h3v.s12.b89b79185a16 from=translated src=- shape=fc528ce5 vocab=f24ff8e2
+-/
 theorem exists_norm_toEuclideanCLM_apply_le {S : Matrix n n ℝ} (hS : Sᵀ = S) {r : ℝ}
     (hr0 : 0 < r) (hr : ∀ c : ℝ, (S - c • 1).det = 0 → |c| < r) :
     ∃ M : ℝ≥0, (M : ℝ) < r ∧ ∀ w : EuclideanSpace ℝ n,
@@ -115,11 +119,15 @@ theorem exists_norm_toEuclideanCLM_apply_le {S : Matrix n n ℝ} (hS : Sᵀ = S)
     exact (pow_le_pow_iff_left₀ (norm_nonneg _) (by positivity) two_ne_zero).mp hsq
 
 /-- Found once here, where the search is cheap: under
-`backward.isDefEq.respectTransparency false` it times out.-/
+`backward.isDefEq.respectTransparency false` it times out.
+@isnad1 id=continuo.0h1v.s6.aa1564baf8a4 from=translated src=- shape=06c8270e vocab=2883fc95
+-/
 instance instContinuousSMulEuclidean : ContinuousSMul ℝ (EuclideanSpace ℝ n) := inferInstance
 
 set_option backward.isDefEq.respectTransparency false in
-/-- The orbit `t ↦ exp(tA) w` of the linear field `x ↦ Ax` solves `x' = A x`.-/
+/-- The orbit `t ↦ exp(tA) w` of the linear field `x ↦ Ax` solves `x' = A x`.
+@isnad1 id=hasderiv.0h4v.s13.b003cecd92f7 from=translated src=- shape=e296f652 vocab=7597d5bc
+-/
 theorem hasDerivAt_exp_smul_apply (A : Matrix n n ℝ) (w : EuclideanSpace ℝ n) (t : ℝ) :
     HasDerivAt (fun s : ℝ => Matrix.toEuclideanCLM (𝕜 := ℝ) (NormedSpace.exp (s • A)) w)
       (Matrix.toEuclideanCLM (𝕜 := ℝ) A
@@ -141,7 +149,9 @@ eigenvalue `1`.
 
 Proof by Yorke's theorem: a fixed vector `v ≠ 0` of `exp A` gives the
 `1`-periodic orbit `t ↦ exp(tA) v` of the `‖A‖`-Lipschitz field `x ↦ Ax`, which
-must be constant, so `Av = 0` and `v = 0`.-/
+must be constant, so `Av = 0` and `v = 0`.
+@isnad1 id=ne.2h2v.s12.8499f1ce03e6 from=translated src=- shape=b1f1d860 vocab=1a235157
+-/
 theorem det_exp_sub_one_ne_zero {A : Matrix n n ℝ} (hA : A.det ≠ 0)
     (hnorm : ‖Matrix.toEuclideanCLM (𝕜 := ℝ) A‖ < 2 * Real.pi) :
     (NormedSpace.exp A - 1).det ≠ 0 := by

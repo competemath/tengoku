@@ -66,14 +66,26 @@ namespace CauchyPompeiu
 /-- `circ θ = e^{iθ}`.-/
 noncomputable def circ (θ : ℝ) : ℂ := Complex.exp (θ * Complex.I)
 
+/--
+@isnad1 id=eq.0h1v.s3.3829f2fa06ba from=translated src=- shape=0cfb200e vocab=fb66b6b4
+-/
 theorem norm_circ (θ : ℝ) : ‖circ θ‖ = 1 := by
   simp [circ]
 
+/--
+@isnad1 id=ne.0h1v.s3.73be4d8b9696 from=translated src=- shape=a311c14d vocab=36092ca0
+-/
 theorem circ_ne_zero (θ : ℝ) : circ θ ≠ 0 := Complex.exp_ne_zero _
 
+/--
+@isnad1 id=continuo.0h0v.s4.2be1d55d2e3e from=translated src=- shape=54c8eceb vocab=0869eb7c
+-/
 theorem continuous_circ : Continuous circ := by
   unfold circ; fun_prop
 
+/--
+@isnad1 id=hasderiv.0h1v.s6.2cef01517a1c from=translated src=- shape=21af953b vocab=495e3bc6
+-/
 theorem hasDerivAt_circ (θ : ℝ) : HasDerivAt circ (Complex.I * circ θ) θ := by
   have h1 : HasDerivAt (fun θ : ℝ => (θ : ℂ) * Complex.I) Complex.I θ := by
     simpa using (Complex.ofRealCLM.hasDerivAt (x := θ)).mul_const Complex.I
@@ -81,13 +93,21 @@ theorem hasDerivAt_circ (θ : ℝ) : HasDerivAt circ (Complex.I * circ θ) θ :=
   rw [mul_comm] at h2
   exact h2
 
+/--
+@isnad1 id=eq.0h0v.s3.89884bec1a3b from=translated src=- shape=f7285ee8 vocab=b4f4b530
+-/
 theorem circ_pi : circ π = -1 := by
   simp [circ, Complex.exp_mul_I]
 
+/--
+@isnad1 id=eq.0h0v.s4.55eb985519e8 from=translated src=- shape=169cf99b vocab=c63bcb80
+-/
 theorem circ_neg_pi : circ (-π) = -1 := by
   simp [circ]
 
-/-- Polar coordinates in `ℂ` in terms of `circ`.-/
+/-- Polar coordinates in `ℂ` in terms of `circ`.
+@isnad1 id=eq.0h2v.s6.65be44bf79a4 from=translated src=- shape=71c6426c vocab=178c4676
+-/
 theorem polarCoord_symm_eq (r θ : ℝ) : Complex.polarCoord.symm (r, θ) = r * circ θ := by
   rw [Complex.polarCoord_symm_apply, circ, Complex.exp_mul_I, ← Complex.ofReal_cos,
     ← Complex.ofReal_sin]
@@ -99,12 +119,18 @@ which the weak equation is written in `Part2/Ch12.lean` and `Part2/Weyl.lean`.-/
 noncomputable def dbar (w : ℂ → ℂ) (ζ : ℂ) : ℂ :=
   fderiv ℝ w ζ 1 + Complex.I * fderiv ℝ w ζ Complex.I
 
+/--
+@isnad1 id=continuo.1h1v.s6.9f267c10e4e8 from=translated src=- shape=9052cce5 vocab=26905073
+-/
 theorem continuous_dbar {w : ℂ → ℂ} (hw : ContDiff ℝ 1 w) : Continuous (dbar w) := by
   have h : Continuous (fderiv ℝ w) := hw.continuous_fderiv one_ne_zero
   unfold dbar
   exact (h.clm_apply continuous_const).add
     (continuous_const.mul (h.clm_apply continuous_const))
 
+/--
+@isnad1 id=hascompa.1h1v.s5.53271ac2ae8e from=translated src=- shape=7861e8ca vocab=13cff14d
+-/
 theorem hasCompactSupport_dbar {w : ℂ → ℂ} (hc : HasCompactSupport w) :
     HasCompactSupport (dbar w) := by
   have h : HasCompactSupport (fderiv ℝ w) := hc.fderiv (𝕜 := ℝ)
@@ -114,7 +140,9 @@ theorem hasCompactSupport_dbar {w : ℂ → ℂ} (hc : HasCompactSupport w) :
   simp [dbar, h0]
 
 /-- The algebraic identity behind the polar form of `dbar`: for a real-linear `L` and an
-angle `θ`, `(L 1 + i L i) e^{-iθ} = L (e^{iθ}) + i L (i e^{iθ})`.-/
+angle `θ`, `(L 1 + i L i) e^{-iθ} = L (e^{iθ}) + i L (i e^{iθ})`.
+@isnad1 id=eq.0h2v.s9.18df267c3321 from=translated src=- shape=182fabf2 vocab=5fd27423
+-/
 theorem dbar_circ_eq (L : ℂ →L[ℝ] ℂ) (θ : ℝ) :
     (L 1 + Complex.I * L Complex.I) * (circ θ)⁻¹
       = L (circ θ) + Complex.I * L (Complex.I * circ θ) := by
@@ -153,6 +181,9 @@ variable {w : ℂ → ℂ} {z : ℂ}
 /-- `polarFn w z r θ = w (z - r e^{iθ})`.-/
 noncomputable def polarFn (w : ℂ → ℂ) (z : ℂ) (r θ : ℝ) : ℂ := w (z - r * circ θ)
 
+/--
+@isnad1 id=continuo.1h2v.s6.2d332d81da7a from=translated src=- shape=4976ddf4 vocab=08d2a309
+-/
 theorem continuous_polarFn (hw : Continuous w) (z : ℂ) :
     Continuous fun p : ℝ × ℝ => polarFn w z p.1 p.2 := by
   unfold polarFn
@@ -162,7 +193,9 @@ theorem continuous_polarFn (hw : Continuous w) (z : ℂ) :
     exact continuous_const.sub (h1.mul (continuous_circ.comp continuous_snd))
   exact hw.comp this
 
-/-- The `r`-derivative of `w (z - r e^{iθ})`.-/
+/-- The `r`-derivative of `w (z - r e^{iθ})`.
+@isnad1 id=hasderiv.1h4v.s9.5fbd529aa82a from=translated src=- shape=8c34adfc vocab=3dcf6232
+-/
 theorem hasDerivAt_polarFn_fst (hw : Differentiable ℝ w) (z : ℂ) (r θ : ℝ) :
     HasDerivAt (fun r : ℝ => polarFn w z r θ)
       (-(fderiv ℝ w (z - r * circ θ) (circ θ))) r := by
@@ -174,7 +207,9 @@ theorem hasDerivAt_polarFn_fst (hw : Differentiable ℝ w) (z : ℂ) (r θ : ℝ
   rw [map_neg] at h2
   exact h2
 
-/-- The `θ`-derivative of `w (z - r e^{iθ})`.-/
+/-- The `θ`-derivative of `w (z - r e^{iθ})`.
+@isnad1 id=hasderiv.1h4v.s9.a962b3c5fd28 from=translated src=- shape=97e52c8a vocab=1956caa7
+-/
 theorem hasDerivAt_polarFn_snd (hw : Differentiable ℝ w) (z : ℂ) (r θ : ℝ) :
     HasDerivAt (fun θ : ℝ => polarFn w z r θ)
       (-(fderiv ℝ w (z - r * circ θ) (Complex.I * (r : ℂ) * circ θ))) θ := by
@@ -188,7 +223,9 @@ theorem hasDerivAt_polarFn_snd (hw : Differentiable ℝ w) (z : ℂ) (r θ : ℝ
 
 /-- **The polar form of the Cauchy–Riemann operator.**  Along the ray of angle `θ`,
 `(∂w/∂x + i ∂w/∂y)(z - r e^{iθ}) e^{-iθ}` is `-(∂/∂r) - (i/r)(∂/∂θ)` applied to
-`w (z - r e^{iθ})`.-/
+`w (z - r e^{iθ})`.
+@isnad1 id=eq.2h4v.s9.68ed8d28d9d3 from=translated src=- shape=5fd89b50 vocab=8fd0edcb
+-/
 theorem dbar_polar_eq (_hw : Differentiable ℝ w) (z : ℂ) {r : ℝ} (hr : r ≠ 0) (θ : ℝ) :
     dbar w (z - r * circ θ) * (circ θ)⁻¹
       = -(-(fderiv ℝ w (z - r * circ θ) (circ θ)))
@@ -210,16 +247,24 @@ theorem dbar_polar_eq (_hw : Differentiable ℝ w) (z : ℂ) {r : ℝ} (hr : r �
 noncomputable def polarDbar (w : ℂ → ℂ) (z : ℂ) (p : ℝ × ℝ) : ℂ :=
   dbar w (z - p.1 * circ p.2) * (circ p.2)⁻¹
 
+/--
+@isnad1 id=continuo.0h1v.s5.93d6283de87a from=translated src=- shape=2a34eca2 vocab=e7b25a34
+-/
 theorem continuous_shift (z : ℂ) : Continuous fun p : ℝ × ℝ => z - (p.1 : ℂ) * circ p.2 := by
   have h1 : Continuous fun p : ℝ × ℝ => ((p.1 : ℝ) : ℂ) :=
     Complex.continuous_ofReal.comp continuous_fst
   exact continuous_const.sub (h1.mul (continuous_circ.comp continuous_snd))
 
+/--
+@isnad1 id=continuo.1h2v.s6.9e46c8b63d0a from=translated src=- shape=c284758b vocab=3a04dce4
+-/
 theorem continuous_polarDbar (hw : ContDiff ℝ 1 w) (z : ℂ) : Continuous (polarDbar w z) :=
   ((continuous_dbar hw).comp (continuous_shift z)).mul
     (((continuous_circ.comp continuous_snd)).inv₀ fun p => circ_ne_zero p.2)
 
-/-- A radius outside which both `w` and `∂w/∂x + i ∂w/∂y` vanish.-/
+/-- A radius outside which both `w` and `∂w/∂x + i ∂w/∂y` vanish.
+@isnad1 id=ex.1h1v.s9.c0862dc00f41 from=translated src=- shape=3d2e806e vocab=8404cd72
+-/
 theorem exists_radius (hc : HasCompactSupport w) :
     ∃ R : ℝ, 0 < R ∧ ∀ ζ : ℂ, R ≤ ‖ζ‖ → w ζ = 0 ∧ fderiv ℝ w ζ = 0 := by
   obtain ⟨R₁, h₁⟩ := (IsCompact.isBounded hc).subset_closedBall (0 : ℂ)
@@ -236,6 +281,9 @@ theorem exists_radius (hc : HasCompactSupport w) :
     have h4 : R₂ ≤ max 1 (max R₁ R₂) := le_trans (le_max_right _ _) (le_max_right _ _)
     linarith
 
+/--
+@isnad1 id=le.1h3v.s5.8a3d0d16813e from=translated src=- shape=35a83a39 vocab=2b516f28
+-/
 theorem norm_shift_ge {z : ℂ} (r θ : ℝ) (hr : 0 ≤ r) : r - ‖z‖ ≤ ‖z - (r : ℂ) * circ θ‖ := by
   have h1 : ‖(r : ℂ) * circ θ‖ = r := by
     rw [norm_mul, norm_circ, mul_one, Complex.norm_real, Real.norm_eq_abs, abs_of_nonneg hr]
@@ -243,7 +291,9 @@ theorem norm_shift_ge {z : ℂ} (r θ : ℝ) (hr : 0 ≤ r) : r - ‖z‖ ≤ �
   rw [h1] at h2
   rwa [norm_sub_rev]
 
-/-- Passage to polar coordinates centred at `z`.-/
+/-- Passage to polar coordinates centred at `z`.
+@isnad1 id=eq.0h2v.s7.f2f7c87431e2 from=translated src=- shape=2b1b8be3 vocab=8fd426c4
+-/
 theorem integral_dbar_div_eq_polar (z : ℂ) :
     ∫ ξ : ℂ, dbar w (z - ξ) / ξ = ∫ p in Ioi (0 : ℝ) ×ˢ Ioo (-π) π, polarDbar w z p := by
   rw [← Complex.integral_comp_polarCoord_symm fun ξ => dbar w (z - ξ) / ξ, polarCoord_target]
@@ -255,7 +305,9 @@ theorem integral_dbar_div_eq_polar (z : ℂ) :
   field_simp
 
 /-- The polar integrand is integrable: it is continuous, bounded, and vanishes for large
-radius.-/
+radius.
+@isnad1 id=integrab.2h2v.s7.1e1d79641543 from=translated src=- shape=75ba9070 vocab=80d89fc2
+-/
 theorem integrableOn_polarDbar (hw : ContDiff ℝ 1 w) (hc : HasCompactSupport w) (z : ℂ) :
     IntegrableOn (polarDbar w z) (Ioi (0 : ℝ) ×ˢ Ioo (-π) π) := by
   obtain ⟨R, hR0, hR⟩ := exists_radius hc
@@ -291,7 +343,9 @@ theorem integrableOn_polarDbar (hw : ContDiff ℝ 1 w) (hc : HasCompactSupport w
   exact hbound p hp
 
 /-- The angular integral: the `∂/∂θ` term integrates to zero over a full turn, leaving the
-radial derivative.-/
+radial derivative.
+@isnad1 id=eq.2h3v.s9.6c5f3f47ba78 from=translated src=- shape=28b8ebea vocab=d7234dda
+-/
 theorem integral_theta_polarDbar (hw : ContDiff ℝ 1 w) (z : ℂ) {r : ℝ} (hr : 0 < r) :
     ∫ θ in Ioo (-π) π, polarDbar w z (r, θ)
       = ∫ θ in Ioo (-π) π, fderiv ℝ w (z - (r : ℂ) * circ θ) (circ θ) := by
@@ -332,7 +386,9 @@ theorem integral_theta_polarDbar (hw : ContDiff ℝ 1 w) (z : ℂ) {r : ℝ} (hr
       (((hc2.const_mul _).integrableOn_Icc (a := -π) (b := π)).mono_set Ioo_subset_Icc_self),
     integral_const_mul, hzero, mul_zero, add_zero]
 
-/-- **The Cauchy–Pompeiu formula for compactly supported functions.**-/
+/-- **The Cauchy–Pompeiu formula for compactly supported functions.**
+@isnad1 id=eq.2h2v.s7.ce99a2b8e27d from=translated src=- shape=73b1af42 vocab=7e172e7b
+-/
 theorem integral_dbar_div_eq (hw : ContDiff ℝ 1 w) (hc : HasCompactSupport w) (z : ℂ) :
     ∫ ξ : ℂ, dbar w (z - ξ) / ξ = (2 * π : ℝ) • w z := by
   have hdiff : Differentiable ℝ w := hw.differentiable one_ne_zero
@@ -441,7 +497,9 @@ theorem integral_dbar_div_eq (hw : ContDiff ℝ 1 w) (hc : HasCompactSupport w) 
 /-! ### The Cauchy transform -/
 
 /-- `ξ ↦ ‖ξ‖⁻¹` is integrable on every ball of `ℂ`: in polar coordinates the singularity is
-exactly cancelled by the area element `r dr dθ`.-/
+exactly cancelled by the area element `r dr dθ`.
+@isnad1 id=integrab.0h1v.s6.c7058d6b651c from=translated src=- shape=82cf57a6 vocab=912a81a6
+-/
 theorem integrableOn_inv_norm_ball {R : ℝ} :
     IntegrableOn (fun ξ : ℂ => ‖ξ‖⁻¹) (ball (0 : ℂ) R) := by
   refine ⟨(measurable_norm.inv).aestronglyMeasurable.restrict, ?_⟩
@@ -478,7 +536,9 @@ theorem integrableOn_inv_norm_ball {R : ℝ} :
         exact ENNReal.mul_lt_top ENNReal.ofReal_lt_top ENNReal.ofReal_lt_top
 
 /-- The integrand of the Cauchy transform is integrable, for continuous data with compact
-support and values in any normed space over `ℂ`.-/
+support and values in any normed space over `ℂ`.
+@isnad1 id=integrab.2h3v.s7.660b57384552 from=translated src=- shape=ce7e10c8 vocab=586b016a
+-/
 theorem integrable_inv_smul {G : Type*} [NormedAddCommGroup G] [NormedSpace ℂ G]
     {g : ℂ → G} (hgc : Continuous g) (hgs : HasCompactSupport g) (z : ℂ) :
     Integrable fun ξ : ℂ => (ξ⁻¹ : ℂ) • g (z - ξ) := by
@@ -516,10 +576,15 @@ theorem integrable_inv_smul {G : Type*} [NormedAddCommGroup G] [NormedSpace ℂ 
 noncomputable def cauchyTransform (f : ℂ → ℂ) (z : ℂ) : ℂ :=
   (2 * π : ℝ)⁻¹ • ∫ ξ : ℂ, (ξ⁻¹ : ℂ) • f (z - ξ)
 
+/--
+@isnad1 id=ne.0h0v.s4.93fe445ec0fd from=translated src=- shape=f1614c97 vocab=10feabc6
+-/
 theorem two_pi_ne_zero : (2 * π : ℝ) ≠ 0 := by positivity
 
 /-- The Cauchy transform inverts the Cauchy–Riemann operator on compactly supported `C¹`
-functions: `T (∂w/∂x + i ∂w/∂y) = w`.  This is `integral_dbar_div_eq` restated.-/
+functions: `T (∂w/∂x + i ∂w/∂y) = w`.  This is `integral_dbar_div_eq` restated.
+@isnad1 id=eq.2h1v.s6.0ddc578a6bfa from=translated src=- shape=f90684e5 vocab=349c3fbd
+-/
 theorem cauchyTransform_dbar (hw : ContDiff ℝ 1 w) (hc : HasCompactSupport w) :
     cauchyTransform (dbar w) = w := by
   funext z
@@ -531,7 +596,9 @@ theorem cauchyTransform_dbar (hw : ContDiff ℝ 1 w) (hc : HasCompactSupport w) 
 
 /-- **The Cauchy transform is differentiable, and the derivative falls on the data.**  The
 kernel does not depend on the point, so differentiating under the integral sign is legitimate:
-the dominating function is the Riesz kernel on a fixed disc.-/
+the dominating function is the Riesz kernel on a fixed disc.
+@isnad1 id=hasfderi.2h2v.s10.f1b6b9635c33 from=translated src=- shape=8938a079 vocab=6327cebe
+-/
 theorem hasFDerivAt_cauchyTransform (hf : ContDiff ℝ 1 f) (hc : HasCompactSupport f) (z : ℂ) :
     HasFDerivAt (cauchyTransform f)
       ((2 * π : ℝ)⁻¹ • ∫ ξ : ℂ, (ξ⁻¹ : ℂ) • fderiv ℝ f (z - ξ)) z := by
@@ -587,7 +654,9 @@ theorem hasFDerivAt_cauchyTransform (hf : ContDiff ℝ 1 f) (hc : HasCompactSupp
       exact h1.const_smul (ξ⁻¹ : ℂ)
   exact hmain.const_smul ((2 * π : ℝ)⁻¹)
 
-/-- Each directional derivative of the data, against the Cauchy kernel, is integrable.-/
+/-- Each directional derivative of the data, against the Cauchy kernel, is integrable.
+@isnad1 id=integrab.2h3v.s9.ffffdf08954c from=translated src=- shape=8c8c2628 vocab=0863d8e1
+-/
 theorem integrable_inv_mul_fderiv_apply (hf : ContDiff ℝ 1 f) (hc : HasCompactSupport f)
     (z v : ℂ) : Integrable fun ξ : ℂ => (ξ⁻¹ : ℂ) * fderiv ℝ f (z - ξ) v := by
   have hfd : Continuous (fderiv ℝ f) := hf.continuous_fderiv one_ne_zero
@@ -597,7 +666,9 @@ theorem integrable_inv_mul_fderiv_apply (hf : ContDiff ℝ 1 f) (hc : HasCompact
   simpa [smul_eq_mul] using h
 
 /-- **The derivative of the Cauchy transform in any direction**, as an integral against the
-Cauchy kernel of the derivative of the data.-/
+Cauchy kernel of the derivative of the data.
+@isnad1 id=eq.2h3v.s9.3a2a7ae4b2af from=translated src=- shape=0edddf21 vocab=7c29a33e
+-/
 theorem fderiv_cauchyTransform_apply (hf : ContDiff ℝ 1 f) (hc : HasCompactSupport f) (z v : ℂ) :
     fderiv ℝ (cauchyTransform f) z v
       = (2 * π : ℝ)⁻¹ • ∫ ξ : ℂ, (ξ⁻¹ : ℂ) * fderiv ℝ f (z - ξ) v := by
@@ -612,7 +683,9 @@ theorem fderiv_cauchyTransform_apply (hf : ContDiff ℝ 1 f) (hc : HasCompactSup
   rw [(hasFDerivAt_cauchyTransform hf hc z).fderiv, smul_apply, hv]
 
 /-- **The Cauchy transform solves the inhomogeneous equation.**  For compactly supported `C¹`
-data, `∂(T f)/∂x + i ∂(T f)/∂y = f`.-/
+data, `∂(T f)/∂x + i ∂(T f)/∂y = f`.
+@isnad1 id=eq.2h2v.s6.0e7b56d80f14 from=translated src=- shape=cf6da95f vocab=349c3fbd
+-/
 theorem dbar_cauchyTransform (hf : ContDiff ℝ 1 f) (hc : HasCompactSupport f) (z : ℂ) :
     dbar (cauchyTransform f) z = f z := by
   have hint1 := integrable_inv_mul_fderiv_apply hf hc z 1
@@ -641,12 +714,18 @@ theorem dbar_cauchyTransform (hf : ContDiff ℝ 1 f) (hc : HasCompactSupport f) 
 noncomputable def dz (w : ℂ → ℂ) (ζ : ℂ) : ℂ :=
   fderiv ℝ w ζ 1 - Complex.I * fderiv ℝ w ζ Complex.I
 
+/--
+@isnad1 id=continuo.1h1v.s6.68f5e3a3d414 from=translated src=- shape=9052cce5 vocab=d0c21349
+-/
 theorem continuous_dz {w : ℂ → ℂ} (hw : ContDiff ℝ 1 w) : Continuous (dz w) := by
   have h : Continuous (fderiv ℝ w) := hw.continuous_fderiv one_ne_zero
   unfold dz
   exact (h.clm_apply continuous_const).sub
     (continuous_const.mul (h.clm_apply continuous_const))
 
+/--
+@isnad1 id=hascompa.1h1v.s5.02f0ab506d44 from=translated src=- shape=7861e8ca vocab=24985a11
+-/
 theorem hasCompactSupport_dz {w : ℂ → ℂ} (hc : HasCompactSupport w) :
     HasCompactSupport (dz w) := by
   have h : HasCompactSupport (fderiv ℝ w) := hc.fderiv (𝕜 := ℝ)
@@ -656,7 +735,9 @@ theorem hasCompactSupport_dz {w : ℂ → ℂ} (hc : HasCompactSupport w) :
   simp [dz, h0]
 
 /-- The algebraic identity behind the polar form of `dz`: for a real-linear `L` and an angle
-`θ`, `(L 1 - i L i) e^{iθ} = L (e^{iθ}) - i L (i e^{iθ})`.-/
+`θ`, `(L 1 - i L i) e^{iθ} = L (e^{iθ}) - i L (i e^{iθ})`.
+@isnad1 id=eq.0h2v.s9.cfbaf419eb23 from=translated src=- shape=10c19846 vocab=96df0dd5
+-/
 theorem dz_circ_eq (L : ℂ →L[ℝ] ℂ) (θ : ℝ) :
     (L 1 - Complex.I * L Complex.I) * circ θ
       = L (circ θ) - Complex.I * L (Complex.I * circ θ) := by
@@ -680,7 +761,9 @@ theorem dz_circ_eq (L : ℂ →L[ℝ] ℂ) (θ : ℝ) :
   rw [h1, h2, hc, Complex.ofReal_neg]
   linear_combination (-(Real.sin θ : ℂ) * L Complex.I) * Complex.I_sq
 
-/-- **The other derivative of the Cauchy transform also falls on the data.**-/
+/-- **The other derivative of the Cauchy transform also falls on the data.**
+@isnad1 id=eq.2h2v.s6.04dbb954b0ab from=translated src=- shape=a947d288 vocab=154c4f5a
+-/
 theorem dz_cauchyTransform (hf : ContDiff ℝ 1 f) (hc : HasCompactSupport f) (z : ℂ) :
     dz (cauchyTransform f) z = cauchyTransform (dz f) z := by
   have hint1 := integrable_inv_mul_fderiv_apply hf hc z 1
@@ -712,7 +795,9 @@ definition.  The Hölder *estimate* for the operator, the Calderón–Zygmund st
 /-- **The Riesz kernel is locally integrable in the plane below the critical exponent.**  In
 polar coordinates `‖ξ‖ ^ (-a)` becomes `r ^ (1 - a)`, which is integrable at the origin exactly
 when `a < 2`.  For `a = 2 - α` with `α > 0` this is what makes the regularised Beurling integral
-converge.-/
+converge.
+@isnad1 id=integrab.1h2v.s6.0e3f4993f234 from=translated src=- shape=a1ede60c vocab=206a5291
+-/
 theorem integrableOn_rpow_neg_ball {a R : ℝ} (ha : a < 2) :
     IntegrableOn (fun ξ : ℂ => ‖ξ‖ ^ (-a)) (ball (0 : ℂ) R) := by
   rcases le_or_gt R 0 with hR | hR
@@ -770,7 +855,9 @@ theorem integrableOn_rpow_neg_ball {a R : ℝ} (ha : a < 2) :
           ((measurable_const.indicator measurableSet_Ioo).aemeasurable)
     _ < ⊤ := ENNReal.mul_lt_top hrad hang
 
-/-- The Riesz kernel centred at an arbitrary point, by translation invariance.-/
+/-- The Riesz kernel centred at an arbitrary point, by translation invariance.
+@isnad1 id=integrab.1h3v.s6.67b42b83c366 from=translated src=- shape=216fe4a5 vocab=ea484d42
+-/
 theorem integrableOn_rpow_neg_ball' {a R : ℝ} (ha : a < 2) (z : ℂ) :
     IntegrableOn (fun ζ : ℂ => ‖ζ - z‖ ^ (-a)) (ball z R) := by
   have hpre : (fun x : ℂ => x - z) ⁻¹' ball (0 : ℂ) R = ball z R := by
@@ -783,7 +870,9 @@ theorem integrableOn_rpow_neg_ball' {a R : ℝ} (ha : a < 2) (z : ℂ) :
 /-- **Above the critical exponent the Riesz kernel is integrable away from the origin.**  In
 polar coordinates `‖ξ‖ ^ (-b)` becomes `r ^ (1 - b)`, which is integrable at infinity exactly
 when `b > 2`.  This is the tail estimate behind the Calderón–Zygmund argument, where the
-difference of two kernels decays one power faster than each of them.-/
+difference of two kernels decays one power faster than each of them.
+@isnad1 id=integrab.2h2v.s6.800e8aa12e66 from=translated src=- shape=2983a187 vocab=f2cd116f
+-/
 theorem integrableOn_rpow_neg_compl_ball {b R : ℝ} (hb : 2 < b) (hR : 0 < R) :
     IntegrableOn (fun ξ : ℂ => ‖ξ‖ ^ (-b)) (ball (0 : ℂ) R)ᶜ := by
   refine ⟨(by fun_prop : Measurable fun ξ : ℂ => ‖ξ‖ ^ (-b)).aestronglyMeasurable.restrict, ?_⟩
@@ -842,7 +931,9 @@ theorem integrableOn_rpow_neg_compl_ball {b R : ℝ} (hb : 2 < b) (hR : 0 < R) :
     _ < ⊤ := ENNReal.mul_lt_top hrad hang
 
 /-- **The mass of the Riesz kernel on a disc scales with the radius**, by the dilation
-`x ↦ R • x` of the plane: the area picks up `R²` and the kernel `R^(-a)`.-/
+`x ↦ R • x` of the plane: the area picks up `R²` and the kernel `R^(-a)`.
+@isnad1 id=eq.1h2v.s7.aae2e08fc62d from=translated src=- shape=7de32b4c vocab=6777f0d3
+-/
 theorem integral_rpow_neg_ball (a : ℝ) {R : ℝ} (hR : 0 < R) :
     (∫ ξ in ball (0 : ℂ) R, ‖ξ‖ ^ (-a))
       = R ^ (2 - a) * ∫ ξ in ball (0 : ℂ) 1, ‖ξ‖ ^ (-a) := by
@@ -871,7 +962,9 @@ theorem integral_rpow_neg_ball (a : ℝ) {R : ℝ} (hR : 0 < R) :
   rw [← key, h2]
   ring
 
-/-- The same scaling for the mass of the Riesz kernel outside a disc.-/
+/-- The same scaling for the mass of the Riesz kernel outside a disc.
+@isnad1 id=eq.1h2v.s7.3e2da3464329 from=translated src=- shape=eaf1cf40 vocab=2a71ac66
+-/
 theorem integral_rpow_neg_compl_ball (a : ℝ) {R : ℝ} (hR : 0 < R) :
     (∫ ξ in (ball (0 : ℂ) R)ᶜ, ‖ξ‖ ^ (-a))
       = R ^ (2 - a) * ∫ ξ in (ball (0 : ℂ) 1)ᶜ, ‖ξ‖ ^ (-a) := by
@@ -909,7 +1002,9 @@ far from it the kernel is harmless.  The splitting radius is fixed to `1`.-/
 noncomputable def beurling (f : ℂ → ℂ) (z : ℂ) : ℂ :=
   (∫ ζ in ball z 1, (f ζ - f z) / (z - ζ) ^ 2) + ∫ ζ in (ball z 1)ᶜ, f ζ / (z - ζ) ^ 2
 
-/-- A Hölder constant is nonnegative.-/
+/-- A Hölder constant is nonnegative.
+@isnad1 id=le.1h3v.s6.1c0e71024738 from=translated src=- shape=6449ac48 vocab=e639628e
+-/
 theorem holder_const_nonneg {f : ℂ → ℂ} {C α : ℝ}
     (hf : ∀ ξ η : ℂ, ‖f ξ - f η‖ ≤ C * ‖ξ - η‖ ^ α) : 0 ≤ C := by
   have h := hf 1 0
@@ -919,7 +1014,9 @@ theorem holder_const_nonneg {f : ℂ → ℂ} {C α : ℝ}
 
 /-- **The regularised integrand is dominated by a Riesz kernel below the critical exponent.**
 Subtracting the value at the centre turns the non-integrable `‖ζ - z‖⁻²` into
-`‖ζ - z‖^{α-2}`, and `α > 0` puts that below the threshold.-/
+`‖ζ - z‖^{α-2}`, and `α > 0` puts that below the threshold.
+@isnad1 id=le.1h5v.s7.716b011f17c2 from=translated src=- shape=3569600f vocab=7893921d
+-/
 theorem norm_beurling_integrand_le {f : ℂ → ℂ} {C α : ℝ}
     (hf : ∀ ξ η : ℂ, ‖f ξ - f η‖ ≤ C * ‖ξ - η‖ ^ α) (z ζ : ℂ) :
     ‖(f ζ - f z) / (z - ζ) ^ 2‖ ≤ C * ‖ζ - z‖ ^ (-(2 - α)) := by
@@ -941,7 +1038,9 @@ theorem norm_beurling_integrand_le {f : ℂ → ℂ} {C α : ℝ}
           push_cast
           ring
 
-/-- **The regularised integral converges absolutely.**-/
+/-- **The regularised integral converges absolutely.**
+@isnad1 id=integrab.3h5v.s7.9f92402d7a77 from=translated src=- shape=5df71b9e vocab=7601c971
+-/
 theorem integrableOn_beurling_near {f : ℂ → ℂ} (hfc : Continuous f) {C α : ℝ} (hα : 0 < α)
     (hf : ∀ ξ η : ℂ, ‖f ξ - f η‖ ≤ C * ‖ξ - η‖ ^ α) (z : ℂ) {ρ : ℝ} :
     IntegrableOn (fun ζ : ℂ => (f ζ - f z) / (z - ζ) ^ 2) (ball z ρ) := by
@@ -951,7 +1050,9 @@ theorem integrableOn_beurling_near {f : ℂ → ℂ} (hfc : Continuous f) {C α 
       ((measurable_const.sub measurable_id).pow_const 2))).aestronglyMeasurable
   · exact Eventually.of_forall fun ζ => norm_beurling_integrand_le hf z ζ
 
-/-- Far from the pole the Beurling integrand is dominated by `f` itself.-/
+/-- Far from the pole the Beurling integrand is dominated by `f` itself.
+@isnad1 id=integrab.3h3v.s7.9e801aad0bea from=translated src=- shape=cfdb6742 vocab=12de0a46
+-/
 theorem integrableOn_beurling_far {f : ℂ → ℂ} (hfc : Continuous f) (hfs : HasCompactSupport f)
     (z : ℂ) {ρ : ℝ} (hρ : 0 < ρ) :
     IntegrableOn (fun ζ : ℂ => f ζ / (z - ζ) ^ 2) (ball z ρ)ᶜ := by
@@ -976,13 +1077,18 @@ below.-/
 noncomputable def rotI : ℂ ≃ₗᵢ[ℝ] ℂ :=
   rotation ⟨Complex.I, mem_sphere_zero_iff_norm.mpr Complex.norm_I⟩
 
+/--
+@isnad1 id=eq.0h1v.s8.e7086cb77346 from=translated src=- shape=b6f8c219 vocab=459b0b67
+-/
 @[simp]
 theorem rotI_apply (ξ : ℂ) : rotI ξ = Complex.I * ξ := rfl
 
 /-- **The Beurling kernel integrates to zero on every set invariant under the quarter turn.**
 Rotating by `i` fixes the set and preserves the measure, while `(iξ)² = -ξ²` flips the sign of
 the integrand; an integral equal to its own negative vanishes.  No integrability is needed:
-where the integral fails to converge both sides are zero by convention.-/
+where the integral fails to converge both sides are zero by convention.
+@isnad1 id=eq.1h1v.s6.ed0826b42f9e from=translated src=- shape=3d558f4d vocab=e86885b4
+-/
 theorem setIntegral_inv_sq_eq_zero {s : Set ℂ} (hs : (fun ξ : ℂ => Complex.I * ξ) ⁻¹' s = s) :
     ∫ ξ in s, (ξ ^ 2)⁻¹ = 0 := by
   have key := (rotI.measurePreserving).setIntegral_preimage_emb
@@ -994,7 +1100,9 @@ theorem setIntegral_inv_sq_eq_zero {s : Set ℂ} (hs : (fun ξ : ℂ => Complex.
   simp only [h2, integral_neg] at key
   linear_combination -key / 2
 
-/-- Annuli centred at the origin are invariant under the quarter turn.-/
+/-- Annuli centred at the origin are invariant under the quarter turn.
+@isnad1 id=eq.0h2v.s6.343f5b0d90cb from=translated src=- shape=f49da75c vocab=d954a0d6
+-/
 theorem preimage_mulI_annulus (r₁ r₂ : ℝ) :
     (fun ξ : ℂ => Complex.I * ξ) ⁻¹' (ball (0 : ℂ) r₂ \ ball 0 r₁)
       = ball (0 : ℂ) r₂ \ ball 0 r₁ := by
@@ -1002,7 +1110,9 @@ theorem preimage_mulI_annulus (r₁ r₂ : ℝ) :
 
 /-- **The Beurling kernel has zero mean on every annulus centred at its pole.**  This is the
 cancellation behind the principal value: it is why the singular integral may be cut off at any
-radius, and why subtracting the constant `f z` near the pole costs nothing.-/
+radius, and why subtracting the constant `f z` near the pole costs nothing.
+@isnad1 id=eq.0h3v.s6.31e39679dfe6 from=translated src=- shape=95b18617 vocab=b7ed2921
+-/
 theorem setIntegral_beurling_kernel_annulus (z : ℂ) (r₁ r₂ : ℝ) :
     ∫ ζ in ball z r₂ \ ball z r₁, ((z - ζ) ^ 2)⁻¹ = 0 := by
   have hpre : (fun ξ : ℂ => z + ξ) ⁻¹' (ball z r₂ \ ball z r₁) = ball (0 : ℂ) r₂ \ ball 0 r₁ := by
@@ -1019,12 +1129,17 @@ theorem setIntegral_beurling_kernel_annulus (z : ℂ) (r₁ r₂ : ℝ) :
 noncomputable def beurlingWith (f : ℂ → ℂ) (z : ℂ) (ρ : ℝ) : ℂ :=
   (∫ ζ in ball z ρ, (f ζ - f z) / (z - ζ) ^ 2) + ∫ ζ in (ball z ρ)ᶜ, f ζ / (z - ζ) ^ 2
 
+/--
+@isnad1 id=eq.0h2v.s4.4f54d36592ad from=translated src=- shape=ebff8e90 vocab=6f92855f
+-/
 theorem beurling_eq_beurlingWith_one (f : ℂ → ℂ) (z : ℂ) : beurling f z = beurlingWith f z 1 :=
   rfl
 
 /-- Enlarging the cut-off radius changes neither piece by more than it changes the other: what
 moves from the far integral to the near one is the same integral over the annulus, because the
-constant `f z` subtracted there integrates to zero against the kernel.-/
+constant `f z` subtracted there integrates to zero against the kernel.
+@isnad1 id=eq.6h6v.s7.f92d5aa2e3ab from=translated src=- shape=18b40310 vocab=8a7cfb27
+-/
 theorem beurlingWith_eq_of_le {f : ℂ → ℂ} (hfc : Continuous f) (hfs : HasCompactSupport f)
     {C α : ℝ} (hα : 0 < α) (hf : ∀ ξ η : ℂ, ‖f ξ - f η‖ ≤ C * ‖ξ - η‖ ^ α) (z : ℂ)
     {r R : ℝ} (hr : 0 < r) (hrR : r ≤ R) :
@@ -1078,7 +1193,9 @@ theorem beurlingWith_eq_of_le {f : ℂ → ℂ} (hfc : Continuous f) (hfs : HasC
 
 /-- **The cut-off radius is immaterial**: for Hölder data with compact support the two-piece
 expression is the same for every positive radius, so the Beurling transform is well defined as
-a principal value.-/
+a principal value.
+@isnad1 id=eq.5h5v.s7.a4a5ed15db48 from=translated src=- shape=4972e438 vocab=75761934
+-/
 theorem beurlingWith_eq {f : ℂ → ℂ} (hfc : Continuous f) (hfs : HasCompactSupport f)
     {C α : ℝ} (hα : 0 < α) (hf : ∀ ξ η : ℂ, ‖f ξ - f η‖ ≤ C * ‖ξ - η‖ ^ α) (z : ℂ)
     {ρ : ℝ} (hρ : 0 < ρ) : beurlingWith f z ρ = beurling f z := by
@@ -1090,7 +1207,9 @@ theorem beurlingWith_eq {f : ℂ → ℂ} (hfc : Continuous f) (hfs : HasCompact
 /-- **The Beurling transform of a compactly supported Hölder function is bounded.**  The near
 integral is dominated by the mass of the Riesz kernel on the unit disc, which does not depend
 on the centre, and the far one by the `L¹` norm of `f`; neither bound involves the point, so
-the transform is bounded on the whole plane.-/
+the transform is bounded on the whole plane.
+@isnad1 id=le.4h4v.s8.9416c2267e16 from=translated src=- shape=859eb53f vocab=72b7b280
+-/
 theorem norm_beurling_le {f : ℂ → ℂ} (hfc : Continuous f) (hfs : HasCompactSupport f)
     {C α : ℝ} (hα : 0 < α) (hf : ∀ ξ η : ℂ, ‖f ξ - f η‖ ≤ C * ‖ξ - η‖ ^ α) (z : ℂ) :
     ‖beurling f z‖ ≤ C * (∫ ξ in ball (0 : ℂ) 1, ‖ξ‖ ^ (-(2 - α))) + ∫ ζ : ℂ, ‖f ζ‖ := by
@@ -1141,7 +1260,9 @@ comparable.
 -/
 
 /-- **The regularised integral near the pole is small at small radius.**  Its size is the mass
-of the Riesz kernel on the disc, which scales like `ρ^α`.-/
+of the Riesz kernel on the disc, which scales like `ρ^α`.
+@isnad1 id=le.4h5v.s8.d825c017ef87 from=translated src=- shape=a041ddeb vocab=c775fcba
+-/
 theorem norm_integral_beurling_near_le {f : ℂ → ℂ} (hfc : Continuous f) {C α : ℝ} (hα : 0 < α)
     (hf : ∀ ξ η : ℂ, ‖f ξ - f η‖ ≤ C * ‖ξ - η‖ ^ α) (z : ℂ) {ρ : ℝ} (hρ : 0 < ρ) :
     ‖∫ ζ in ball z ρ, (f ζ - f z) / (z - ζ) ^ 2‖
@@ -1168,7 +1289,9 @@ theorem norm_integral_beurling_near_le {f : ℂ → ℂ} (hfc : Continuous f) {C
   rw [hexp] at hmono
   exact le_trans hmono (le_of_eq (by ring))
 
-/-- An elementary inequality, the arithmetic behind the Hörmander condition below.-/
+/-- An elementary inequality, the arithmetic behind the Hörmander condition below.
+@isnad1 id=le.4h4v.s7.92df6ba40347 from=translated src=- shape=aec721a0 vocab=0014576e
+-/
 theorem kernel_sub_aux {a b d m : ℝ} (ha : 0 < a) (hab : a ≤ 2 * b) (hd : 0 ≤ d)
     (hm : m ≤ a + b) : d * m / (a ^ 2 * b ^ 2) ≤ 10 * d * (a ^ 3)⁻¹ := by
   have hb : 0 < b := by linarith
@@ -1183,7 +1306,9 @@ theorem kernel_sub_aux {a b d m : ℝ} (ha : 0 < a) (hab : a ≤ 2 * b) (hd : 0 
 /-- **The Beurling kernel obeys a Hörmander condition.**  Twice as far from the pole as the two
 poles are from each other, moving the pole by `d` changes the kernel by `O(d ‖ζ - z₁‖⁻³)`: one
 power better than the kernel itself, which is what makes the far parts of two nearby Beurling
-integrals comparable.-/
+integrals comparable.
+@isnad1 id=le.1h3v.s7.1418d3075daa from=translated src=- shape=3f4e0d11 vocab=1ecf41cb
+-/
 theorem norm_kernel_sub_le {z₁ z₂ ζ : ℂ} (h : 2 * ‖z₁ - z₂‖ ≤ ‖ζ - z₁‖) :
     ‖((z₁ - ζ) ^ 2)⁻¹ - ((z₂ - ζ) ^ 2)⁻¹‖ ≤ 10 * ‖z₁ - z₂‖ * ‖ζ - z₁‖ ^ (-3 : ℝ) := by
   rcases eq_or_ne z₁ ζ with rfl | hu
@@ -1226,7 +1351,9 @@ theorem norm_kernel_sub_le {z₁ z₂ ζ : ℂ} (h : 2 * ‖z₁ - z₂‖ ≤ �
       norm_sub_rev z₁ ζ, norm_sub_rev z₂ ζ]
     exact kernel_sub_aux ha hab (norm_nonneg _) hm
 
-/-- The far integrand is dominated by `f` itself, with the gain of the cut-off radius.-/
+/-- The far integrand is dominated by `f` itself, with the gain of the cut-off radius.
+@isnad1 id=le.2h4v.s6.d40afa88a731 from=translated src=- shape=d0f93cf4 vocab=7a2f7d43
+-/
 theorem norm_beurling_far_integrand_le {f : ℂ → ℂ} {z ζ : ℂ} {ρ : ℝ} (hρ : 0 < ρ)
     (hζ : ζ ∈ (ball z ρ)ᶜ) : ‖f ζ / (z - ζ) ^ 2‖ ≤ (ρ ^ 2)⁻¹ * ‖f ζ‖ := by
   have h1 : ρ ≤ ‖z - ζ‖ := by
@@ -1237,7 +1364,9 @@ theorem norm_beurling_far_integrand_le {f : ℂ → ℂ} {z ζ : ℂ} {ρ : ℝ}
   exact div_le_div_of_nonneg_left (norm_nonneg _) (pow_pos hρ 2) h2
 
 /-- **The far part of the Beurling transform is controlled by the `L¹` norm**, with a gain of
-two powers of the cut-off radius.-/
+two powers of the cut-off radius.
+@isnad1 id=le.3h3v.s7.a5d5664c005c from=translated src=- shape=346d98bf vocab=e55f6747
+-/
 theorem norm_integral_beurling_far_le {f : ℂ → ℂ} (hfc : Continuous f)
     (hfs : HasCompactSupport f) (z : ℂ) {ρ : ℝ} (hρ : 0 < ρ) :
     ‖∫ ζ in (ball z ρ)ᶜ, f ζ / (z - ζ) ^ 2‖ ≤ (ρ ^ 2)⁻¹ * ∫ ζ : ℂ, ‖f ζ‖ := by
@@ -1256,7 +1385,9 @@ theorem norm_integral_beurling_far_le {f : ℂ → ℂ} (hfc : Continuous f)
   refine mul_le_mul_of_nonneg_left ?_ (by positivity)
   exact setIntegral_le_integral hI (Eventually.of_forall fun ζ => norm_nonneg _)
 
-/-- The Beurling transform is additive in its argument, where both terms are admissible.-/
+/-- The Beurling transform is additive in its argument, where both terms are admissible.
+@isnad1 id=eq.7h6v.s8.55704feb6052 from=translated src=- shape=becfd0d8 vocab=8ab1f540
+-/
 theorem beurling_sub {f g : ℂ → ℂ} (hfc : Continuous f) (hfs : HasCompactSupport f)
     {Cf α : ℝ} (hα : 0 < α) (hf : ∀ ξ η : ℂ, ‖f ξ - f η‖ ≤ Cf * ‖ξ - η‖ ^ α)
     (hgc : Continuous g) (hgs : HasCompactSupport g) {Cg : ℝ}
@@ -1280,7 +1411,9 @@ theorem beurling_sub {f g : ℂ → ℂ} (hfc : Continuous f) (hfs : HasCompactS
   rw [h1, h2]
   ring
 
-/-- **The Beurling transform commutes with translations.**-/
+/-- **The Beurling transform commutes with translations.**
+@isnad1 id=eq.0h3v.s5.8b950da2740d from=translated src=- shape=be977d45 vocab=3c5e0c2f
+-/
 theorem beurling_comp_add (f : ℂ → ℂ) (z τ : ℂ) :
     beurling (fun w => f (w + τ)) z = beurling f (z + τ) := by
   have hpre : (fun w : ℂ => w + τ) ⁻¹' ball (z + τ) 1 = ball z 1 := by
@@ -1307,7 +1440,9 @@ theorem beurling_comp_add (f : ℂ → ℂ) (z τ : ℂ) :
 argument turns the difference of the transform at two points into the transform of the
 difference `f - f(· + τ)`, which is small in the supremum norm while keeping the Hölder
 constant; splitting that transform at an arbitrary radius balances the Hölder size of the near
-part against the `L¹` size of the far one.-/
+part against the `L¹` size of the far one.
+@isnad1 id=le.5h6v.s8.757334e580ef from=translated src=- shape=3f26fb38 vocab=d409c28f
+-/
 theorem norm_beurling_sub_le {f : ℂ → ℂ} (hfc : Continuous f) (hfs : HasCompactSupport f)
     {C α : ℝ} (hα : 0 < α) (hf : ∀ ξ η : ℂ, ‖f ξ - f η‖ ≤ C * ‖ξ - η‖ ^ α) (z₁ z₂ : ℂ)
     {ρ : ℝ} (hρ : 0 < ρ) :
@@ -1351,7 +1486,9 @@ theorem norm_beurling_sub_le {f : ℂ → ℂ} (hfc : Continuous f) (hfs : HasCo
   · exact norm_integral_beurling_far_le hhc hhs z₁ hρ
 
 /-- **The `L¹` size of the increment of a compactly supported Hölder function.**  It is as small
-as the Hölder modulus of the shift, over a support that grows only by the size of the shift.-/
+as the Hölder modulus of the shift, over a support that grows only by the size of the shift.
+@isnad1 id=le.3h5v.s7.c76a4a2ce514 from=translated src=- shape=1a1c07dd vocab=78cd7deb
+-/
 theorem integral_norm_sub_translate_le {f : ℂ → ℂ} {C α : ℝ}
     (hf : ∀ ξ η : ℂ, ‖f ξ - f η‖ ≤ C * ‖ξ - η‖ ^ α) {M : ℝ} (hM : 0 ≤ M)
     (hsupp : ∀ ζ : ℂ, M ≤ ‖ζ‖ → f ζ = 0) (τ : ℂ) :
@@ -1388,7 +1525,9 @@ theorem integral_norm_sub_translate_le {f : ℂ → ℂ} {C α : ℝ}
 /-- **Hölder continuity of the Beurling transform, with a loss in the exponent.**  Balancing the
 cut-off radius in the two-parameter estimate against the increment of `f` gives the exponent
 `α²/(α+2)`, which is positive but smaller than the sharp `α` of the Calderón–Zygmund theory.
-Positivity is what an elliptic bootstrap needs: each round still gains a full derivative.-/
+Positivity is what an elliptic bootstrap needs: each round still gains a full derivative.
+@isnad1 id=le.7h6v.s8.d838e9aca5e3 from=translated src=- shape=533ad20b vocab=78aa3be9
+-/
 theorem norm_beurling_sub_le_rpow {f : ℂ → ℂ} (hfc : Continuous f) (hfs : HasCompactSupport f)
     {C α : ℝ} (hα : 0 < α) (hf : ∀ ξ η : ℂ, ‖f ξ - f η‖ ≤ C * ‖ξ - η‖ ^ α)
     {M : ℝ} (hM : 0 ≤ M) (hsupp : ∀ ζ : ℂ, M ≤ ‖ζ‖ → f ζ = 0) {z₁ z₂ : ℂ}
@@ -1456,7 +1595,9 @@ midpoint of the two poles exchanges the two truncated kernels, and reverses the 
 difference, exactly as the quarter turn did on an annulus.
 -/
 
-/-- The Riesz kernel at an arbitrary centre is integrable outside a disc around it.-/
+/-- The Riesz kernel at an arbitrary centre is integrable outside a disc around it.
+@isnad1 id=integrab.2h3v.s6.5e432abdef33 from=translated src=- shape=60c694c9 vocab=2f6eabcd
+-/
 theorem integrableOn_rpow_neg_compl_ball' {b R : ℝ} (hb : 2 < b) (hR : 0 < R) (z : ℂ) :
     IntegrableOn (fun ζ : ℂ => ‖ζ - z‖ ^ (-b)) (ball z R)ᶜ := by
   have hpre : (fun x : ℂ => x - z) ⁻¹' (ball (0 : ℂ) R)ᶜ = (ball z R)ᶜ := by
@@ -1466,7 +1607,9 @@ theorem integrableOn_rpow_neg_compl_ball' {b R : ℝ} (hb : 2 < b) (hR : 0 < R) 
     (s := (ball (0 : ℂ) R)ᶜ)).2 (integrableOn_rpow_neg_compl_ball hb hR)
   rwa [hpre] at h
 
-/-- The mass of the Riesz kernel outside a disc, at an arbitrary centre.-/
+/-- The mass of the Riesz kernel outside a disc, at an arbitrary centre.
+@isnad1 id=eq.1h3v.s7.6488fefef184 from=translated src=- shape=9fc6df59 vocab=2a71ac66
+-/
 theorem integral_rpow_neg_compl_ball' (a : ℝ) {R : ℝ} (hR : 0 < R) (z : ℂ) :
     (∫ ζ in (ball z R)ᶜ, ‖ζ - z‖ ^ (-a))
       = R ^ (2 - a) * ∫ ξ in (ball (0 : ℂ) 1)ᶜ, ‖ξ‖ ^ (-a) := by
@@ -1486,10 +1629,15 @@ theorem integral_rpow_neg_compl_ball' (a : ℝ) {R : ℝ} (hR : 0 < R) (z : ℂ)
 noncomputable def truncKernel (z : ℂ) (ρ : ℝ) (ζ : ℂ) : ℂ :=
   (ball z ρ)ᶜ.indicator (fun ζ => ((z - ζ) ^ 2)⁻¹) ζ
 
+/--
+@isnad1 id=measurab.0h2v.s3.3849ef223136 from=translated src=- shape=39a012a0 vocab=c21daa9d
+-/
 theorem measurable_truncKernel (z : ℂ) (ρ : ℝ) : Measurable (truncKernel z ρ) :=
   Measurable.indicator (by fun_prop) measurableSet_ball.compl
 
-/-- The truncated kernel is bounded by the inverse square of the cut-off radius.-/
+/-- The truncated kernel is bounded by the inverse square of the cut-off radius.
+@isnad1 id=le.1h3v.s5.087052e0e8f4 from=translated src=- shape=e42202fd vocab=ce719615
+-/
 theorem norm_truncKernel_le {z : ℂ} {ρ : ℝ} (hρ : 0 < ρ) (ζ : ℂ) :
     ‖truncKernel z ρ ζ‖ ≤ (ρ ^ 2)⁻¹ := by
   unfold truncKernel
@@ -1503,14 +1651,18 @@ theorem norm_truncKernel_le {z : ℂ} {ρ : ℝ} (hρ : 0 < ρ) (ζ : ℂ) :
   · rw [indicator_of_notMem h, norm_zero]
     positivity
 
-/-- Away from both poles the truncation is invisible.-/
+/-- Away from both poles the truncation is invisible.
+@isnad1 id=eq.2h4v.s7.be495e172ffb from=translated src=- shape=734e741e vocab=4c067250
+-/
 theorem truncKernel_sub_eq_of_far {z₁ z₂ ζ : ℂ} {ρ : ℝ} (h₁ : ρ ≤ ‖ζ - z₁‖) (h₂ : ρ ≤ ‖ζ - z₂‖) :
     truncKernel z₁ ρ ζ - truncKernel z₂ ρ ζ = ((z₁ - ζ) ^ 2)⁻¹ - ((z₂ - ζ) ^ 2)⁻¹ := by
   unfold truncKernel
   rw [indicator_of_mem (by rw [mem_compl_iff, mem_ball, dist_eq_norm, not_lt]; exact h₁),
     indicator_of_mem (by rw [mem_compl_iff, mem_ball, dist_eq_norm, not_lt]; exact h₂)]
 
-/-- The reflection through the midpoint exchanges the two cut-off discs.-/
+/-- The reflection through the midpoint exchanges the two cut-off discs.
+@isnad1 id=iff.0h4v.s6.b0602a41517f from=translated src=- shape=67b7fc5b vocab=ab76c0ae
+-/
 theorem mem_compl_ball_reflect (z₁ z₂ : ℂ) (ρ : ℝ) (ζ : ℂ) :
     z₁ + z₂ - ζ ∈ (ball z₁ ρ)ᶜ ↔ ζ ∈ (ball z₂ ρ)ᶜ := by
   simp only [mem_compl_iff, mem_ball, dist_eq_norm, not_lt]
@@ -1518,7 +1670,9 @@ theorem mem_compl_ball_reflect (z₁ z₂ : ℂ) (ρ : ℝ) (ζ : ℂ) :
   rw [he, norm_neg]
 
 /-- **The reflection through the midpoint exchanges the two truncated kernels.**  The kernel is
-even, so reflecting the pole through the midpoint turns one into the other.-/
+even, so reflecting the pole through the midpoint turns one into the other.
+@isnad1 id=eq.0h4v.s5.5a5afdfd9d88 from=translated src=- shape=94286205 vocab=e078c182
+-/
 theorem truncKernel_reflect (z₁ z₂ : ℂ) (ρ : ℝ) (ζ : ℂ) :
     truncKernel z₁ ρ (z₁ + z₂ - ζ) = truncKernel z₂ ρ ζ := by
   unfold truncKernel
@@ -1532,7 +1686,9 @@ theorem truncKernel_reflect (z₁ z₂ : ℂ) (ρ : ℝ) (ζ : ℂ) :
 /-- **The difference of two truncated Beurling kernels integrates to zero over the plane.**
 The reflection through the midpoint of the two poles preserves Lebesgue measure and exchanges
 the two kernels, so the difference is its own negative.  This is the cancellation that makes
-the two far parts comparable at the sharp Hölder exponent.-/
+the two far parts comparable at the sharp Hölder exponent.
+@isnad1 id=eq.0h3v.s5.b0bba765a0c3 from=translated src=- shape=aab31e65 vocab=f17f87fe
+-/
 theorem integral_truncKernel_sub_eq_zero (z₁ z₂ : ℂ) (ρ : ℝ) :
     ∫ ζ : ℂ, (truncKernel z₁ ρ ζ - truncKernel z₂ ρ ζ) = 0 := by
   have he : (fun x : ℂ => z₁ + z₂ - x) = fun x : ℂ => (z₁ + z₂) + (-x) := by funext x; ring
@@ -1559,7 +1715,9 @@ theorem integral_truncKernel_sub_eq_zero (z₁ z₂ : ℂ) (ρ : ℝ) :
   simp only [hpt, integral_neg] at key
   linear_combination -key / 2
 
-/-- The far part of the Beurling transform, written with the truncated kernel.-/
+/-- The far part of the Beurling transform, written with the truncated kernel.
+@isnad1 id=eq.0h3v.s7.f54685b9c708 from=translated src=- shape=ffbd1207 vocab=930f3598
+-/
 theorem integral_beurling_far_eq (f : ℂ → ℂ) (z : ℂ) (ρ : ℝ) :
     (∫ ζ in (ball z ρ)ᶜ, f ζ / (z - ζ) ^ 2) = ∫ ζ : ℂ, f ζ * truncKernel z ρ ζ := by
   rw [← integral_indicator measurableSet_ball.compl]
@@ -1571,7 +1729,9 @@ theorem integral_beurling_far_eq (f : ℂ → ℂ) (z : ℂ) (ρ : ℝ) :
   · rw [indicator_of_notMem h, indicator_of_notMem h, mul_zero]
 
 /-- **The difference of two truncated kernels is integrable over the plane**: it is bounded
-near the poles and decays like `‖ζ‖⁻³` at infinity, by the Hörmander condition.-/
+near the poles and decays like `‖ζ‖⁻³` at infinity, by the Hörmander condition.
+@isnad1 id=integrab.2h3v.s6.e91df0925294 from=translated src=- shape=0a1c77b8 vocab=7f68210f
+-/
 theorem integrable_truncKernel_sub {z₁ z₂ : ℂ} {ρ : ℝ} (hρ : 0 < ρ)
     (hd : 2 * ‖z₁ - z₂‖ ≤ ρ) :
     Integrable (fun ζ : ℂ => truncKernel z₁ ρ ζ - truncKernel z₂ ρ ζ) := by
@@ -1606,7 +1766,9 @@ theorem integrable_truncKernel_sub {z₁ z₂ : ℂ} {ρ : ℝ} (hρ : 0 < ρ)
   exact hin.union hout
 
 /-- Near the poles the regularised integrand is bounded: the factor `f ζ - f z₁` is `O(d^α)`
-there and the kernels are `O(d⁻²)`.-/
+there and the kernels are `O(d⁻²)`.
+@isnad1 id=le.4h6v.s8.39e1a96f2d00 from=translated src=- shape=f2eec6d1 vocab=88f076af
+-/
 theorem norm_prod_truncKernel_le_inner {f : ℂ → ℂ} {C α : ℝ} (hα : 0 < α)
     (hf : ∀ ξ η : ℂ, ‖f ξ - f η‖ ≤ C * ‖ξ - η‖ ^ α) {z₁ z₂ : ℂ} (hd0 : 0 < ‖z₁ - z₂‖)
     {ζ : ℂ} (hζ : ζ ∈ ball z₁ (3 * ‖z₁ - z₂‖)) :
@@ -1631,7 +1793,9 @@ theorem norm_prod_truncKernel_le_inner {f : ℂ → ℂ} {C α : ℝ} (hα : 0 <
     (mul_nonneg hC0 (Real.rpow_nonneg (by linarith) _))
 
 /-- Far from the poles the regularised integrand decays like the Riesz kernel of exponent
-`3 - α`, by the Hörmander condition.-/
+`3 - α`, by the Hörmander condition.
+@isnad1 id=le.3h6v.s8.436fdc62366d from=translated src=- shape=376a152c vocab=307a0f2a
+-/
 theorem norm_prod_truncKernel_le_outer {f : ℂ → ℂ} {C α : ℝ}
     (hf : ∀ ξ η : ℂ, ‖f ξ - f η‖ ≤ C * ‖ξ - η‖ ^ α) {z₁ z₂ : ℂ} (hd0 : 0 < ‖z₁ - z₂‖)
     {ζ : ℂ} (hζ : ζ ∈ (ball z₁ (3 * ‖z₁ - z₂‖))ᶜ) :
@@ -1660,7 +1824,9 @@ theorem norm_prod_truncKernel_le_outer {f : ℂ → ℂ} {C α : ℝ}
         congr 2
         ring
 
-/-- The regularised integrand of the far comparison is integrable over the plane.-/
+/-- The regularised integrand of the far comparison is integrable over the plane.
+@isnad1 id=integrab.5h5v.s8.33a546884707 from=translated src=- shape=b0d4c76c vocab=2bea4c42
+-/
 theorem integrable_prod_truncKernel_sub {f : ℂ → ℂ} (hfc : Continuous f) {C α : ℝ}
     (hα : 0 < α) (hα1 : α < 1) (hf : ∀ ξ η : ℂ, ‖f ξ - f η‖ ≤ C * ‖ξ - η‖ ^ α)
     {z₁ z₂ : ℂ} (hd0 : 0 < ‖z₁ - z₂‖) :
@@ -1688,7 +1854,9 @@ theorem integrable_prod_truncKernel_sub {f : ℂ → ℂ} (hfc : Continuous f) {
   rw [← integrableOn_univ, ← union_compl_self (ball z₁ (3 * ‖z₁ - z₂‖))]
   exact hin.union hout
 
-/-- The near contribution to the far comparison, at the sharp Hölder rate.-/
+/-- The near contribution to the far comparison, at the sharp Hölder rate.
+@isnad1 id=le.4h5v.s8.cd6186b4bb62 from=translated src=- shape=ebe576c1 vocab=e6bab281
+-/
 theorem norm_integral_prod_inner_le {f : ℂ → ℂ} {C α : ℝ} (hα : 0 < α) (hα1 : α < 1)
     (hf : ∀ ξ η : ℂ, ‖f ξ - f η‖ ≤ C * ‖ξ - η‖ ^ α) {z₁ z₂ : ℂ} (hd0 : 0 < ‖z₁ - z₂‖) :
     ‖∫ ζ in ball z₁ (3 * ‖z₁ - z₂‖), (f ζ - f z₁)
@@ -1727,7 +1895,9 @@ theorem norm_integral_prod_inner_le {f : ℂ → ℂ} {C α : ℝ} (hα : 0 < α
           (mul_le_mul_of_nonneg_left (mul_le_mul_of_nonneg_right hd3 hdα) hC0) (by positivity)
     _ ≤ 14 * π * C * ‖z₁ - z₂‖ ^ α := by linarith
 
-/-- The far contribution to the far comparison, at the sharp Hölder rate.-/
+/-- The far contribution to the far comparison, at the sharp Hölder rate.
+@isnad1 id=le.5h5v.s8.d4d0aba1cc90 from=translated src=- shape=d69645d2 vocab=6fa9e7bb
+-/
 theorem norm_integral_prod_outer_le {f : ℂ → ℂ} (hfc : Continuous f) {C α : ℝ} (hα : 0 < α)
     (hα1 : α < 1) (hf : ∀ ξ η : ℂ, ‖f ξ - f η‖ ≤ C * ‖ξ - η‖ ^ α) {z₁ z₂ : ℂ}
     (hd0 : 0 < ‖z₁ - z₂‖) :
@@ -1780,7 +1950,9 @@ theorem norm_integral_prod_outer_le {f : ℂ → ℂ} (hfc : Continuous f) {C α
         mul_le_mul_of_nonneg_right (mul_le_mul_of_nonneg_left h3 hcoef) hdα
     _ = 10 * (∫ ξ in (ball (0 : ℂ) 1)ᶜ, ‖ξ‖ ^ (-(3 - α))) * C * ‖z₁ - z₂‖ ^ α := by ring
 
-/-- The far integrand, written with the truncated kernel.-/
+/-- The far integrand, written with the truncated kernel.
+@isnad1 id=eq.0h3v.s6.6f4974eb14f8 from=translated src=- shape=410f1ead vocab=a89ce48e
+-/
 theorem mul_truncKernel_eq_indicator (f : ℂ → ℂ) (z : ℂ) (ρ : ℝ) :
     (fun ζ : ℂ => f ζ * truncKernel z ρ ζ)
       = (ball z ρ)ᶜ.indicator (fun ζ => f ζ / (z - ζ) ^ 2) := by
@@ -1790,6 +1962,9 @@ theorem mul_truncKernel_eq_indicator (f : ℂ → ℂ) (z : ℂ) (ρ : ℝ) :
   · rw [indicator_of_mem h, indicator_of_mem h, div_eq_mul_inv]
   · rw [indicator_of_notMem h, indicator_of_notMem h, mul_zero]
 
+/--
+@isnad1 id=integrab.3h3v.s7.bb3c0fbbc328 from=translated src=- shape=d7976546 vocab=13fca63c
+-/
 theorem integrable_mul_truncKernel {f : ℂ → ℂ} (hfc : Continuous f) (hfs : HasCompactSupport f)
     (z : ℂ) {ρ : ℝ} (hρ : 0 < ρ) : Integrable fun ζ : ℂ => f ζ * truncKernel z ρ ζ := by
   rw [mul_truncKernel_eq_indicator]
@@ -1803,7 +1978,9 @@ the regularised kernel is integrable.  The two far parts are compared against ea
 through the truncated kernels: subtracting the constant `f z₁` costs nothing, since the
 difference of the two truncated kernels integrates to zero over the plane, and what remains is
 bounded near the poles by the area of a disc of radius `3d` and far from them by the Hörmander
-condition, which gains the power that makes the tail converge.-/
+condition, which gains the power that makes the tail converge.
+@isnad1 id=le.5h5v.s8.42aab1372336 from=translated src=- shape=c1dd9291 vocab=9ae12a4c
+-/
 theorem norm_beurling_sub_le_holder {f : ℂ → ℂ} (hfc : Continuous f) (hfs : HasCompactSupport f)
     {C α : ℝ} (hα : 0 < α) (hα1 : α < 1) (hf : ∀ ξ η : ℂ, ‖f ξ - f η‖ ≤ C * ‖ξ - η‖ ^ α)
     (z₁ z₂ : ℂ) :
@@ -1903,7 +2080,9 @@ between them is proved in polar coordinates centred at the pole.  This section r
 Beurling transform as a radial integral of the angular average of `f` against `e^{-2iθ}`.
 -/
 
-/-- Reflection through a point preserves Lebesgue measure on the plane.-/
+/-- Reflection through a point preserves Lebesgue measure on the plane.
+@isnad1 id=measurep.0h1v.s5.6c582fb0a912 from=translated src=- shape=fcb563e5 vocab=23097813
+-/
 theorem measurePreserving_const_sub (c : ℂ) :
     MeasurePreserving (fun x : ℂ => c - x) volume volume := by
   have he : (fun x : ℂ => c - x) = fun x : ℂ => c + (-x) := by funext x; ring
@@ -1914,12 +2093,17 @@ theorem measurePreserving_const_sub (c : ℂ) :
   rw [he]
   exact h2.comp h1
 
+/--
+@isnad1 id=measurab.0h1v.s4.2046ebed4961 from=translated src=- shape=ee701071 vocab=6efa7c4a
+-/
 theorem measurableEmbedding_const_sub (c : ℂ) : MeasurableEmbedding (fun x : ℂ => c - x) := by
   have he : (fun x : ℂ => c - x) = fun x : ℂ => c + (-x) := by funext x; ring
   rw [he]
   exact ((MeasurableEquiv.neg ℂ).trans (MeasurableEquiv.addLeft c)).measurableEmbedding
 
-/-- Polar coordinates for an integral over a disc centred at the origin.-/
+/-- Polar coordinates for an integral over a disc centred at the origin.
+@isnad1 id=eq.0h2v.s7.65df7bb419d0 from=translated src=- shape=ea17d85d vocab=b30e23b9
+-/
 theorem integral_ball_polar (g : ℂ → ℂ) (R : ℝ) :
     (∫ ξ in ball (0 : ℂ) R, g ξ)
       = ∫ p in Ioo (0 : ℝ) R ×ˢ Ioo (-π) π, (p.1 : ℂ) * g ((p.1 : ℂ) * circ p.2) := by
@@ -1950,7 +2134,9 @@ theorem integral_ball_polar (g : ℂ → ℂ) (R : ℝ) :
   rw [indicator_of_mem (by rw [mem_ball, dist_zero_right, hnorm]; exact hr.2),
     Complex.real_smul, polarCoord_symm_eq]
 
-/-- The derivative of `e^{-2iθ}`.-/
+/-- The derivative of `e^{-2iθ}`.
+@isnad1 id=hasderiv.0h1v.s7.b4f03431a8bf from=translated src=- shape=86fadda1 vocab=9fb06dd0
+-/
 theorem hasDerivAt_circ_sq_inv (θ : ℝ) :
     HasDerivAt (fun θ : ℝ => ((circ θ) ^ 2)⁻¹) (-2 * Complex.I * ((circ θ) ^ 2)⁻¹) θ := by
   have hne : circ θ ≠ 0 := circ_ne_zero θ
@@ -1965,7 +2151,9 @@ theorem hasDerivAt_circ_sq_inv (θ : ℝ) :
   rwa [heq] at h3
 
 /-- **The Beurling kernel has vanishing angular average**: `∫ e^{-2iθ} dθ = 0` over a full
-turn.  This is the same cancellation as on an annulus, in polar form.-/
+turn.  This is the same cancellation as on an annulus, in polar form.
+@isnad1 id=eq.0h0v.s5.9df0c37de8bf from=translated src=- shape=1e16e80d vocab=2cc35055
+-/
 theorem integral_circ_sq_inv_eq_zero : (∫ θ in (-π : ℝ)..π, ((circ θ) ^ 2)⁻¹) = 0 := by
   have hcont : Continuous fun θ : ℝ => ((circ θ) ^ 2)⁻¹ :=
     (continuous_circ.pow 2).inv₀ fun θ => pow_ne_zero 2 (circ_ne_zero θ)
@@ -1988,6 +2176,9 @@ theorem integral_circ_sq_inv_eq_zero : (∫ θ in (-π : ℝ)..π, ((circ θ) ^ 
 noncomputable def angBeurling (f : ℂ → ℂ) (z : ℂ) (r : ℝ) : ℂ :=
   ∫ θ in (-π : ℝ)..π, f (z - r * circ θ) * ((circ θ) ^ 2)⁻¹
 
+/--
+@isnad1 id=eq.1h3v.s5.5755bcd80c78 from=translated src=- shape=e4e25352 vocab=2b516f28
+-/
 theorem norm_shift_eq (z : ℂ) {r : ℝ} (hr : 0 ≤ r) (θ : ℝ) :
     ‖z - (r : ℂ) * circ θ - z‖ = r := by
   have h : z - (r : ℂ) * circ θ - z = -((r : ℂ) * circ θ) := by ring
@@ -1996,7 +2187,9 @@ theorem norm_shift_eq (z : ℂ) {r : ℝ} (hr : 0 ≤ r) (θ : ℝ) :
 
 /-- **The Beurling transform in polar coordinates.**  For Lipschitz data with compact support
 it is the radial integral of the angular average against `e^{-2iθ}`, the singularity at the
-origin being tamed by that average, which vanishes to first order.-/
+origin being tamed by that average, which vanishes to first order.
+@isnad1 id=eq.3h3v.s7.b84b1619653f from=translated src=- shape=d3ce3e26 vocab=123c6e3c
+-/
 theorem beurling_eq_polar {f : ℂ → ℂ} (hfc : Continuous f) (hfs : HasCompactSupport f)
     {C : ℝ} (hf : ∀ ξ η : ℂ, ‖f ξ - f η‖ ≤ C * ‖ξ - η‖) (z : ℂ) :
     beurling f z = ∫ r in Ioi (0 : ℝ), angBeurling f z r / r := by
@@ -2126,7 +2319,9 @@ the fundamental theorem of calculus and contributes nothing, because the angular
 the kernel vanishes, while the angular part produces exactly the singular integral.
 -/
 
-/-- **The polar form of the operator `∂/∂x - i ∂/∂y`.**-/
+/-- **The polar form of the operator `∂/∂x - i ∂/∂y`.**
+@isnad1 id=eq.2h4v.s9.ee38ac0b1e67 from=translated src=- shape=fada7d6e vocab=66f940f0
+-/
 theorem dz_polar_eq (_hw : Differentiable ℝ w) (z : ℂ) {r : ℝ} (hr : r ≠ 0) (θ : ℝ) :
     dz w (z - r * circ θ) * circ θ
       = fderiv ℝ w (z - r * circ θ) (circ θ)
@@ -2144,11 +2339,16 @@ theorem dz_polar_eq (_hw : Differentiable ℝ w) (z : ℂ) {r : ℝ} (hr : r ≠
 noncomputable def polarDz (w : ℂ → ℂ) (z : ℂ) (p : ℝ × ℝ) : ℂ :=
   dz w (z - p.1 * circ p.2) * (circ p.2)⁻¹
 
+/--
+@isnad1 id=continuo.1h2v.s6.a1e41995f8da from=translated src=- shape=c284758b vocab=091cda7f
+-/
 theorem continuous_polarDz (hw : ContDiff ℝ 1 w) (z : ℂ) : Continuous (polarDz w z) :=
   ((continuous_dz hw).comp (continuous_shift z)).mul
     ((continuous_circ.comp continuous_snd).inv₀ fun p => circ_ne_zero p.2)
 
-/-- Passage to polar coordinates centred at `z`.-/
+/-- Passage to polar coordinates centred at `z`.
+@isnad1 id=eq.0h2v.s7.7778c30b50a1 from=translated src=- shape=2b1b8be3 vocab=94370ad1
+-/
 theorem integral_dz_div_eq_polar (z : ℂ) :
     ∫ ξ : ℂ, dz w (z - ξ) / ξ = ∫ p in Ioi (0 : ℝ) ×ˢ Ioo (-π) π, polarDz w z p := by
   rw [← Complex.integral_comp_polarCoord_symm fun ξ => dz w (z - ξ) / ξ, polarCoord_target]
@@ -2159,6 +2359,9 @@ theorem integral_dz_div_eq_polar (z : ℂ) :
   simp only [polarDz, polarCoord_symm_eq, Complex.real_smul]
   field_simp
 
+/--
+@isnad1 id=integrab.2h2v.s7.176888d6ea58 from=translated src=- shape=75ba9070 vocab=f0646e47
+-/
 theorem integrableOn_polarDz (hw : ContDiff ℝ 1 w) (hc : HasCompactSupport w) (z : ℂ) :
     IntegrableOn (polarDz w z) (Ioi (0 : ℝ) ×ˢ Ioo (-π) π) := by
   obtain ⟨R, hR0, hR⟩ := exists_radius hc
@@ -2193,6 +2396,9 @@ theorem integrableOn_polarDz (hw : ContDiff ℝ 1 w) (hc : HasCompactSupport w) 
   filter_upwards [ae_restrict_mem (measurableSet_Ioi.prod measurableSet_Ioo)] with p hp
   exact hbound p hp
 
+/--
+@isnad1 id=continuo.1h2v.s5.c3b5b1d2b3fd from=translated src=- shape=43280575 vocab=a1d36ad1
+-/
 theorem continuous_angBeurling (hw : Continuous w) (z : ℂ) : Continuous (angBeurling w z) := by
   have huncurry : Continuous (Function.uncurry fun (x : ℝ) (θ : ℝ) =>
       w (z - (x : ℂ) * circ θ) * ((circ θ) ^ 2)⁻¹) := by
@@ -2201,7 +2407,9 @@ theorem continuous_angBeurling (hw : Continuous w) (z : ℂ) : Continuous (angBe
   exact intervalIntegral.continuous_parametric_intervalIntegral_of_continuous' huncurry _ _
 
 /-- **The angular average is differentiable in the radius**, by differentiating under the
-integral sign.-/
+integral sign.
+@isnad1 id=hasderiv.2h3v.s9.ddb8e57493cd from=translated src=- shape=a816c8a7 vocab=c90afb49
+-/
 theorem hasDerivAt_angBeurling (hw : ContDiff ℝ 1 w) (hc : HasCompactSupport w) (z : ℂ) (r : ℝ) :
     HasDerivAt (angBeurling w z)
       (∫ θ in (-π : ℝ)..π,
@@ -2247,7 +2455,9 @@ theorem hasDerivAt_angBeurling (hw : ContDiff ℝ 1 w) (hc : HasCompactSupport w
 
 /-- **The angular integral of the singular integrand.**  Integrating by parts in the angle
 turns the angular derivative into the angular average, which is the Beurling transform's
-integrand; what is left is the radial derivative.-/
+integrand; what is left is the radial derivative.
+@isnad1 id=eq.2h3v.s9.303177b6e1c8 from=translated src=- shape=039d078b vocab=29e76304
+-/
 theorem integral_theta_polarDz (hw : ContDiff ℝ 1 w) (z : ℂ) {r : ℝ} (hr : 0 < r) :
     (∫ θ in Ioo (-π) π, polarDz w z (r, θ))
       = (∫ θ in Ioo (-π) π, fderiv ℝ w (z - (r : ℂ) * circ θ) (circ θ) * ((circ θ) ^ 2)⁻¹)
@@ -2342,7 +2552,9 @@ theorem integral_theta_polarDz (hw : ContDiff ℝ 1 w) (z : ℂ) {r : ℝ} (hr :
 /-- **The singular integral of the `z`-derivative.**  In polar coordinates the radial part
 telescopes to zero, because the angular average of `f` vanishes both at the centre, where the
 kernel has zero mean, and far away, where `f` does; what survives is the angular part, which is
-twice the Beurling transform.-/
+twice the Beurling transform.
+@isnad1 id=eq.2h2v.s7.2f919efe870b from=translated src=- shape=83697fcc vocab=f232fc96
+-/
 theorem integral_dz_div_eq (hw : ContDiff ℝ 1 w) (hc : HasCompactSupport w) (z : ℂ) :
     ∫ ξ : ℂ, dz w (z - ξ) / ξ = -2 * ∫ r in Ioi (0 : ℝ), angBeurling w z r / r := by
   have hdiff : Differentiable ℝ w := hw.differentiable one_ne_zero
@@ -2493,7 +2705,9 @@ theorem integral_dz_div_eq (hw : ContDiff ℝ 1 w) (hc : HasCompactSupport w) (z
 supported `C¹` data, `∂(T f)/∂x - i ∂(T f)/∂y = -(1/π) B f`, where `B` is the principal-value
 integral of `f` against `(z - ζ)⁻²`.  Together with `∂(T f)/∂x + i ∂(T f)/∂y = f`, this
 determines the full derivative of the solution operator, and turns the Calderón–Zygmund
-estimate for `B` into a Hölder estimate for that operator.-/
+estimate for `B` into a Hölder estimate for that operator.
+@isnad1 id=eq.2h2v.s6.677a7d680e7d from=translated src=- shape=f3e593d2 vocab=a56f4471
+-/
 theorem dz_cauchyTransform_eq_beurling (hf : ContDiff ℝ 1 f) (hc : HasCompactSupport f) (z : ℂ) :
     dz (cauchyTransform f) z = -(π⁻¹ : ℝ) • beurling f z := by
   have hdiff : Differentiable ℝ f := hf.differentiable one_ne_zero

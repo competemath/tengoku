@@ -45,7 +45,9 @@ namespace Calibrated
 
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
 
-/-- An injective endomorphism of a finite-dimensional space is a unit of `E →L[ℝ] E`.-/
+/-- An injective endomorphism of a finite-dimensional space is a unit of `E →L[ℝ] E`.
+@isnad1 id=isunit.1h2v.s8.8a79789f15a6 from=translated src=- shape=93ca1498 vocab=f22d318b
+-/
 theorem isUnit_of_injective {f : E →L[ℝ] E} (hf : Injective f) : IsUnit f := by
   have hs : Surjective (f : E →ₗ[ℝ] E) := LinearMap.injective_iff_surjective.mp hf
   let e := LinearEquiv.ofBijective (f : E →ₗ[ℝ] E) ⟨hf, hs⟩
@@ -61,26 +63,41 @@ theorem isUnit_of_injective {f : E →L[ℝ] E} (hf : Injective f) : IsUnit f :=
     exact h
 
 omit [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=eq.1h3v.s9.858bcf24bdf4 from=translated src=- shape=564fde43 vocab=530f61f1
+-/
 theorem mul_inverse_apply {f : E →L[ℝ] E} (hf : IsUnit f) (v : E) :
     f (Ring.inverse f v) = v := by
   rw [← mul_apply_eq_comp, Ring.mul_inverse_cancel f hf,
     one_apply_eq_self]
 
 omit [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=eq.1h3v.s9.e9c4cff32472 from=translated src=- shape=8345d503 vocab=530f61f1
+-/
 theorem inverse_mul_apply {f : E →L[ℝ] E} (hf : IsUnit f) (v : E) :
     Ring.inverse f (f v) = v := by
   rw [← mul_apply_eq_comp, Ring.inverse_mul_cancel f hf,
     one_apply_eq_self]
 
 omit [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=injectiv.1h2v.s8.dafcf66bd4d6 from=translated src=- shape=940b39a1 vocab=5308998e
+-/
 theorem injective_of_isUnit {f : E →L[ℝ] E} (hf : IsUnit f) : Injective f := fun x y h => by
   rw [← inverse_mul_apply hf x, h, inverse_mul_apply hf y]
 
 omit [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=eq.0h3v.s9.8af88ac4d7fe from=translated src=- shape=928935ac vocab=9dccf36e
+-/
 theorem one_sub_apply (S : E →L[ℝ] E) (a : E) : (1 - S) a = a - S a := by
   rw [_root_.sub_apply, one_apply_eq_self]
 
 omit [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=eq.0h3v.s9.d9c7f60fdf91 from=translated src=- shape=928935ac vocab=90645f7a
+-/
 theorem one_add_apply (S : E →L[ℝ] E) (a : E) : (1 + S) a = a + S a := by
   rw [_root_.add_apply, one_apply_eq_self]
 
@@ -105,11 +122,16 @@ noncomputable def Ψ (J : E →L[ℝ] E) : E →L[ℝ] E := Ring.inverse (J + j)
 variable {ω j}
 
 omit [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=eq.0h2v.s8.e01db6ad2440 from=translated src=- shape=8a0e5478 vocab=1c9570ae
+-/
 theorem Φ_zero : Φ j 0 = j := by
   simp only [Φ, add_zero, sub_zero, Ring.inverse_one, mul_one]
 
 omit [FiniteDimensional ℝ E] in
-/-- On a vector written as `(1 − S) a`, the inverse Cayley transform is `j (1 + S) a`.-/
+/-- On a vector written as `(1 − S) a`, the inverse Cayley transform is `j (1 + S) a`.
+@isnad1 id=eq.1h4v.s10.6e78377e315c from=translated src=- shape=9f4b741d vocab=8b41caf8
+-/
 theorem Φ_apply_one_sub {S : E →L[ℝ] E} (hU : IsUnit (1 - S)) (a : E) :
     Φ j S ((1 - S) a) = j ((1 + S) a) := by
   simp only [Φ, mul_apply_eq_comp, inverse_mul_apply hU]
@@ -120,7 +142,9 @@ section Forward
 
 variable {S : E →L[ℝ] E}
 
-/-- An element of `B` has no fixed vector, so `1 − S` is invertible.-/
+/-- An element of `B` has no fixed vector, so `1 − S` is invertible.
+@isnad1 id=isunit.1h4v.s9.986b5d08c8fa from=translated src=- shape=07d3bbd9 vocab=d7105b31
+-/
 theorem isUnit_one_sub (hS : InB ω j S) : IsUnit (1 - S) := by
   refine isUnit_of_injective ((injective_iff_map_eq_zero (1 - S)).mpr fun a ha => ?_)
   rw [one_sub_apply, sub_eq_zero] at ha
@@ -130,7 +154,9 @@ theorem isUnit_one_sub (hS : InB ω j S) : IsUnit (1 - S) := by
   exact lt_irrefl _ h2
 
 omit [FiniteDimensional ℝ E] in
-/-- An element of `B` is antisymmetric for `ω`.-/
+/-- An element of `B` is antisymmetric for `ω`.
+@isnad1 id=eq.2h6v.s10.cbd938142cfa from=translated src=- shape=b83cae03 vocab=2688f23a
+-/
 theorem antisymm (hj : IsCal ω j) (hS : InB ω j S) (a b : E) :
     ω a (S b) + ω (S a) b = 0 := by
   have hb : b = j (-(j b)) := by rw [map_neg, hj.1, neg_neg]
@@ -142,10 +168,15 @@ theorem antisymm (hj : IsCal ω j) (hS : InB ω j S) (a b : E) :
   rw [h1, h2, map_neg, add_neg_cancel]
 
 omit [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=eq.1h5v.s10.572079b94ef2 from=translated src=- shape=bb62fd73 vocab=a071feac
+-/
 theorem j_one_add (hS : InB ω j S) (a : E) : j ((1 + S) a) = (1 - S) (j a) := by
   rw [one_add_apply, one_sub_apply, map_add, hS.1, sub_eq_add_neg]
 
-/-- **The inverse Cayley transform lands in the calibrated endomorphisms.**-/
+/-- **The inverse Cayley transform lands in the calibrated endomorphisms.**
+@isnad1 id=iscal.2h4v.s7.81451548a0cb from=translated src=- shape=d727b1d5 vocab=a9e515ba
+-/
 theorem isCal_Φ (hj : IsCal ω j) (hS : InB ω j S) : IsCal ω (Φ j S) := by
   have hU := isUnit_one_sub hS
   have hv : ∀ v, ∃ a, v = (1 - S) a := fun v =>
@@ -172,7 +203,9 @@ theorem isCal_Φ (hj : IsCal ω j) (hS : InB ω j S) : IsCal ω (Φ j S) := by
     linarith
 
 omit [FiniteDimensional ℝ E] in
-/-- `B` is star-shaped about `0`.-/
+/-- `B` is star-shaped about `0`.
+@isnad1 id=inb.4h5v.s8.d2b4939f0a8c from=translated src=- shape=f1eee00a vocab=b177c506
+-/
 theorem inB_smul (hj : IsCal ω j) (hS : InB ω j S) {c : ℝ} (hc0 : 0 ≤ c) (hc1 : c ≤ 1) :
     InB ω j (c • S) := by
   refine ⟨fun v => ?_, fun v w => ?_, fun u hu => ?_⟩
@@ -196,7 +229,9 @@ section Backward
 
 variable {J : E →L[ℝ] E}
 
-/-- For calibrated `J` and `j`, `J + j` is invertible.-/
+/-- For calibrated `J` and `j`, `J + j` is invertible.
+@isnad1 id=isunit.2h4v.s9.60b56e0aa72a from=translated src=- shape=548a9362 vocab=4954452f
+-/
 theorem isUnit_add (hj : IsCal ω j) (hJ : IsCal ω J) : IsUnit (J + j) := by
   refine isUnit_of_injective ((injective_iff_map_eq_zero (J + j)).mpr fun v hv => ?_)
   rw [_root_.add_apply, add_eq_zero_iff_eq_neg] at hv
@@ -206,13 +241,17 @@ theorem isUnit_add (hj : IsCal ω j) (hJ : IsCal ω J) : IsUnit (J + j) := by
   rw [hv, map_neg] at h1
   linarith
 
-/-- The defining equation of the Cayley transform, `(J + j) (Ψ J v) = (J − j) v`.-/
+/-- The defining equation of the Cayley transform, `(J + j) (Ψ J v) = (J − j) v`.
+@isnad1 id=eq.2h5v.s9.7d5743646410 from=translated src=- shape=57c464af vocab=4877d3d0
+-/
 theorem add_apply_Ψ (hj : IsCal ω j) (hJ : IsCal ω J) (v : E) :
     (J + j) (Ψ j J v) = J v - j v := by
   rw [Ψ, mul_apply_eq_comp, mul_inverse_apply (isUnit_add hj hJ),
     _root_.sub_apply]
 
-/-- `J (1 − S) = j (1 + S)` for `S = Ψ J`.-/
+/-- `J (1 − S) = j (1 + S)` for `S = Ψ J`.
+@isnad1 id=eq.2h5v.s10.1198946b4ff2 from=translated src=- shape=8d9a30e3 vocab=4877d3d0
+-/
 theorem apply_one_sub_Ψ (hj : IsCal ω j) (hJ : IsCal ω J) (a : E) :
     J ((1 - Ψ j J) a) = j ((1 + Ψ j J) a) := by
   have h := add_apply_Ψ hj hJ a
@@ -220,6 +259,9 @@ theorem apply_one_sub_Ψ (hj : IsCal ω j) (hJ : IsCal ω J) (a : E) :
   rw [one_sub_apply, one_add_apply, map_sub, map_add, ← h]
   abel
 
+/--
+@isnad1 id=isunit.2h4v.s9.2a560e67c25b from=translated src=- shape=7ed9aecb vocab=5b8bc7f8
+-/
 theorem isUnit_one_sub_Ψ (hj : IsCal ω j) (hJ : IsCal ω J) : IsUnit (1 - Ψ j J) := by
   refine isUnit_of_injective ((injective_iff_map_eq_zero _).mpr fun a ha => ?_)
   have hR := apply_one_sub_Ψ hj hJ a
@@ -234,7 +276,9 @@ theorem isUnit_one_sub_Ψ (hj : IsCal ω j) (hJ : IsCal ω J) : IsUnit (1 - Ψ j
   have h3 : (2 : ℝ) • a = 0 := by rw [two_smul]; exact h2
   exact (smul_eq_zero.mp h3).resolve_left two_ne_zero
 
-/-- **The Cayley transform is inverted by `Φ`.**-/
+/-- **The Cayley transform is inverted by `Φ`.**
+@isnad1 id=eq.2h4v.s7.6ac9b2215ca4 from=translated src=- shape=88be47ee vocab=ad6815fb
+-/
 theorem Φ_Ψ (hj : IsCal ω j) (hJ : IsCal ω J) : Φ j (Ψ j J) = J := by
   have hU := isUnit_one_sub_Ψ hj hJ
   ext v
@@ -242,7 +286,9 @@ theorem Φ_Ψ (hj : IsCal ω j) (hJ : IsCal ω J) : Φ j (Ψ j J) = J := by
     ⟨Ring.inverse (1 - Ψ j J) v, (mul_inverse_apply hU v).symm⟩
   rw [Φ_apply_one_sub hU, apply_one_sub_Ψ hj hJ]
 
-/-- **The Cayley transform lands in `B`.**-/
+/-- **The Cayley transform lands in `B`.**
+@isnad1 id=inb.2h4v.s7.8ea1017ef7b3 from=translated src=- shape=78ee0c29 vocab=c9ca1d56
+-/
 theorem Ψ_inB (hj : IsCal ω j) (hJ : IsCal ω J) : InB ω j (Ψ j J) := by
   have hU := isUnit_add hj hJ
   have hUinj : Injective (J + j) := injective_of_isUnit hU
@@ -278,6 +324,9 @@ end Backward
 
 /-! ## Continuity and the contraction -/
 
+/--
+@isnad1 id=continuo.2h4v.s8.425bc5fc7aed from=translated src=- shape=5ba2d6f4 vocab=77fa27c2
+-/
 theorem continuousAt_Ψ (hj : IsCal ω j) {J : E →L[ℝ] E} (hJ : IsCal ω J) :
     ContinuousAt (Ψ j) J := by
   obtain ⟨u, hu⟩ := isUnit_add hj hJ
@@ -286,6 +335,9 @@ theorem continuousAt_Ψ (hj : IsCal ω j) {J : E →L[ℝ] E} (hJ : IsCal ω J) 
       (continuous_id.add continuous_const).continuousAt hu.symm
   exact h1.mul (continuous_id.sub continuous_const).continuousAt
 
+/--
+@isnad1 id=continuo.1h4v.s8.a9446f0b7023 from=translated src=- shape=3f437950 vocab=0968abb2
+-/
 theorem continuousAt_Φ {S : E →L[ℝ] E} (hS : InB ω j S) : ContinuousAt (Φ j) S := by
   obtain ⟨u, hu⟩ := isUnit_one_sub hS
   have h1 : ContinuousAt (fun K : E →L[ℝ] E => Ring.inverse (1 - K)) S :=
@@ -298,7 +350,9 @@ calibrated by `ω` is contractible.  The predicate `P` is any predicate equivale
 calibration, so that the statement applies verbatim to `IsCalibrated` of Chapter 5.
 
 The contraction is `(t, J) ↦ Φ ((1 − t) • Ψ J)`, where `Ψ` is the Cayley transform
-based at `j` and `Φ` its inverse.-/
+based at `j` and `Φ` its inverse.
+@isnad1 id=contract.1h5v.s11.cc8c9eb6d71d from=translated src=- shape=ae53157f vocab=7775b137
+-/
 theorem contractibleSpace (ω : BilinForm ℝ E) (P : (E →L[ℝ] E) → Prop)
     (hP : ∀ J, P J ↔ (∀ v, J (J v) = -v) ∧ (∀ v w, ω (J v) (J w) = ω v w) ∧
       ∀ v, v ≠ 0 → 0 < ω v (J v))

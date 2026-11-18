@@ -31,7 +31,9 @@ open Polynomial Filter Topology Metric Set
 namespace MorseFloer
 namespace RootsContinuity
 
-/-- A multiset of cardinality `n` is the image of `Fin n`.-/
+/-- A multiset of cardinality `n` is the image of `Fin n`.
+@isnad1 id=ex.1h3v.s5.d2a2cba4e938 from=translated src=- shape=a1b93b33 vocab=4dcd136b
+-/
 theorem exists_fin_map {α : Type*} (s : Multiset α) {n : ℕ} (hn : Multiset.card s = n) :
     ∃ f : Fin n → α, s = Finset.univ.val.map f := by
   have hl : s.toList.length = n := by rw [Multiset.length_toList, hn]
@@ -42,7 +44,9 @@ theorem exists_fin_map {α : Type*} (s : Multiset α) {n : ℕ} (hn : Multiset.c
     exact List.ofFn_get _
   rw [this, Multiset.coe_toList]
 
-/-- **Cauchy's bound.**  A root of a monic polynomial is bounded by `max 1 (∑ ‖coeff‖)`.-/
+/-- **Cauchy's bound.**  A root of a monic polynomial is bounded by `max 1 (∑ ‖coeff‖)`.
+@isnad1 id=le.2h2v.s5.4b50a7a84af6 from=translated src=- shape=401654a4 vocab=4852054b
+-/
 theorem norm_root_le {q : ℂ[X]} (hq : q.Monic) {z : ℂ} (hz : q.IsRoot z) :
     ‖z‖ ≤ max 1 (∑ i ∈ Finset.range q.natDegree, ‖q.coeff i‖) := by
   rcases le_or_gt ‖z‖ 1 with h | h
@@ -76,7 +80,9 @@ theorem norm_root_le {q : ℂ[X]} (hq : q.Monic) {z : ℂ} (hz : q.IsRoot z) :
   rw [e, mul_comm (∑ i ∈ Finset.range q.natDegree, ‖q.coeff i‖)] at hn
   exact le_of_mul_le_mul_left hn hpos
 
-/-- The coefficients of `∏ (X - C (a i))` are continuous functions of `a`.-/
+/-- The coefficients of `∏ (X - C (a i))` are continuous functions of `a`.
+@isnad1 id=continuo.0h2v.s7.79e1b8d53271 from=translated src=- shape=8d1a2d35 vocab=80e9fcbd
+-/
 theorem continuous_coeff_prod (n : ℕ) (j : ℕ) :
     Continuous fun a : Fin n → ℂ => (∏ i, (X - C (a i))).coeff j := by
   induction n generalizing j with
@@ -108,7 +114,9 @@ theorem continuous_coeff_prod (n : ℕ) (j : ℕ) :
       rw [e1]
       exact ((ih j).comp hsucc).sub (((ih (j + 1)).comp hsucc).mul (continuous_apply 0))
 
-/-- `∏ (X - C (a i))` as the product over the multiset of the `a i`.-/
+/-- `∏ (X - C (a i))` as the product over the multiset of the `a i`.
+@isnad1 id=eq.0h2v.s7.9693eb994784 from=translated src=- shape=5d38ad74 vocab=1aaf5ec8
+-/
 theorem prod_X_sub_C_eq (n : ℕ) (a : Fin n → ℂ) :
     ∏ i, (X - C (a i)) = ((Finset.univ.val.map a).map fun z => X - C z).prod := by
   rw [Multiset.map_map, Finset.prod_eq_multiset_prod]
@@ -117,7 +125,9 @@ theorem prod_X_sub_C_eq (n : ℕ) (a : Fin n → ℂ) :
 /-- **The roots depend continuously on the coefficients**, counted with multiplicity.
 
 No hypothesis on `p` is needed: if there is any monic `q` of degree `n` close to `p`, then `p`
-is itself monic of degree `n`, and the proof shows this along the way.-/
+is itself monic of degree `n`, and the proof shows this along the way.
+@isnad1 id=ex.1h3v.s7.3615ab2b58f1 from=translated src=- shape=8558305e vocab=c7b58cd4
+-/
 theorem exists_delta_roots_close {n : ℕ} {p : ℂ[X]} {ε : ℝ} (hε : 0 < ε) :
     ∃ δ : ℝ, 0 < δ ∧ ∀ q : ℂ[X], q.Monic → q.natDegree = n →
       (∀ i, ‖q.coeff i - p.coeff i‖ < δ) →

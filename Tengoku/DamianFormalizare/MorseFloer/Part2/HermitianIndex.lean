@@ -39,20 +39,35 @@ namespace IsHermForm
 variable {G : (m → ℂ) → (m → ℂ) → ℂ} (hG : IsHermForm G)
 include hG
 
+/--
+@isnad1 id=eq.1h5v.s6.30edc3b03296 from=translated src=- shape=be7259ed vocab=a4de4a5c
+-/
 theorem add_right (x y z : m → ℂ) : G x (y + z) = G x y + G x z := by
   rw [hG.conj_symm, hG.add_left, map_add, ← hG.conj_symm, ← hG.conj_symm]
 
+/--
+@isnad1 id=eq.1h5v.s6.293baee89925 from=translated src=- shape=f7ba94d4 vocab=6556c41f
+-/
 theorem smul_right (a : ℂ) (x y : m → ℂ) : G x (a • y) = starRingEnd ℂ a * G x y := by
   rw [hG.conj_symm, hG.smul_left, map_mul, ← hG.conj_symm]
 
+/--
+@isnad1 id=eq.1h3v.s5.155a43c9db11 from=translated src=- shape=c8b9a7ed vocab=e126b20b
+-/
 theorem zero_left (y : m → ℂ) : G 0 y = 0 := by
   have := hG.add_left 0 0 y
   rw [add_zero] at this
   linear_combination -this
 
+/--
+@isnad1 id=eq.1h3v.s5.c054937ce604 from=translated src=- shape=6b327c96 vocab=e126b20b
+-/
 theorem zero_right (x : m → ℂ) : G x 0 = 0 := by
   rw [hG.conj_symm, hG.zero_left, map_zero]
 
+/--
+@isnad1 id=eq.1h7v.s6.8200bb4c10fa from=translated src=- shape=605c910e vocab=a5240ce0
+-/
 theorem sum_left {ι : Type*} (s : Finset ι) (c : ι → ℂ) (v : ι → (m → ℂ)) (y : m → ℂ) :
     G (∑ i ∈ s, c i • v i) y = ∑ i ∈ s, c i * G (v i) y := by
   classical
@@ -60,6 +75,9 @@ theorem sum_left {ι : Type*} (s : Finset ι) (c : ι → ℂ) (v : ι → (m �
   | empty => simp [hG.zero_left]
   | insert i s hi ih => rw [Finset.sum_insert hi, Finset.sum_insert hi, hG.add_left, hG.smul_left, ih]
 
+/--
+@isnad1 id=eq.1h7v.s7.76bbca46f285 from=translated src=- shape=d8ce055e vocab=9fb28924
+-/
 theorem sum_right {ι : Type*} (s : Finset ι) (c : ι → ℂ) (v : ι → (m → ℂ)) (x : m → ℂ) :
     G x (∑ i ∈ s, c i • v i) = ∑ i ∈ s, starRingEnd ℂ (c i) * G x (v i) := by
   classical
@@ -68,7 +86,9 @@ theorem sum_right {ι : Type*} (s : Finset ι) (c : ι → ℂ) (v : ι → (m �
   | insert i s hi ih =>
     rw [Finset.sum_insert hi, Finset.sum_insert hi, hG.add_right, hG.smul_right, ih]
 
-/-- `G x x` is real.-/
+/-- `G x x` is real.
+@isnad1 id=eq.1h3v.s5.81a4d7b3f35f from=translated src=- shape=a906da6d vocab=cf9f3ba8
+-/
 theorem im_self (x : m → ℂ) : (G x x).im = 0 := by
   have := hG.conj_symm x x
   have h := congrArg Complex.im this
@@ -96,6 +116,9 @@ noncomputable def posIndex (G : (m → ℂ) → (m → ℂ) → ℂ) (V : Submod
       exact absurd ((Submodule.mem_bot ℂ).1 hx) hx0⟩
 
 open scoped Classical in
+/--
+@isnad1 id=le.2h4v.s8.418a98a1d278 from=translated src=- shape=7a6a85ae vocab=ec17c4c4
+-/
 theorem le_posIndex {G : (m → ℂ) → (m → ℂ) → ℂ} {V W : Submodule ℂ (m → ℂ)} (hW : W ≤ V)
     (hpos : PosDefOn G W) : finrank ℂ W ≤ posIndex G V := by
   unfold posIndex
@@ -105,6 +128,9 @@ theorem le_posIndex {G : (m → ℂ) → (m → ℂ) → ℂ} {V W : Submodule �
 
 open scoped Classical in
 omit [Fintype m] in
+/--
+@isnad1 id=ex.0h3v.s8.0aff48f906d5 from=translated src=- shape=5d8843c7 vocab=7360313c
+-/
 theorem exists_posIndex (G : (m → ℂ) → (m → ℂ) → ℂ) (V : Submodule ℂ (m → ℂ)) :
     ∃ W : Submodule ℂ (m → ℂ), W ≤ V ∧ finrank ℂ W = posIndex G V ∧ PosDefOn G W := by
   have h : posIndex G V ∈ (Finset.range (finrank ℂ V + 1)).filter fun r =>
@@ -114,6 +140,9 @@ theorem exists_posIndex (G : (m → ℂ) → (m → ℂ) → ℂ) (V : Submodule
   rw [Finset.mem_filter] at h
   exact h.2
 
+/--
+@isnad1 id=le.0h3v.s7.c9fd950006bb from=translated src=- shape=d8b80fc4 vocab=2cffce7b
+-/
 theorem posIndex_le_finrank (G : (m → ℂ) → (m → ℂ) → ℂ) (V : Submodule ℂ (m → ℂ)) :
     posIndex G V ≤ finrank ℂ V := by
   obtain ⟨W, hWV, hWr, -⟩ := exists_posIndex G V
@@ -121,7 +150,9 @@ theorem posIndex_le_finrank (G : (m → ℂ) → (m → ℂ) → ℂ) (V : Submo
   exact Submodule.finrank_mono hWV
 
 /-- **Sylvester's bound.**  The index plus the dimension of a nonpositive subspace of `V` is at
-most the dimension of `V`.-/
+most the dimension of `V`.
+@isnad1 id=le.2h4v.s9.74b4a233c2ab from=translated src=- shape=cb5b3e53 vocab=b7f9a5ff
+-/
 theorem posIndex_add_finrank_le {G : (m → ℂ) → (m → ℂ) → ℂ} {V U : Submodule ℂ (m → ℂ)}
     (hU : U ≤ V) (hnonpos : ∀ x ∈ U, (G x x).re ≤ 0) :
     posIndex G V + finrank ℂ U ≤ finrank ℂ V := by
@@ -151,6 +182,9 @@ noncomputable def gram (G : (m → ℂ) → (m → ℂ) → ℂ) {k : ℕ} (b : 
   Matrix.of fun i j => G (b j) (b i)
 
 omit [Fintype m] in
+/--
+@isnad1 id=ishermit.1h4v.s5.71572884e8ca from=translated src=- shape=e5ab104b vocab=53df9ad3
+-/
 theorem isHermitian_gram {G : (m → ℂ) → (m → ℂ) → ℂ} (hG : IsHermForm G) {k : ℕ}
     (b : Fin k → (m → ℂ)) : (gram G b).IsHermitian := by
   ext i j
@@ -158,6 +192,9 @@ theorem isHermitian_gram {G : (m → ℂ) → (m → ℂ) → ℂ} (hG : IsHermF
     ← hG.conj_symm]
 
 omit [Fintype m] in
+/--
+@isnad1 id=eq.1h6v.s6.0deabf08e3a0 from=translated src=- shape=632ea096 vocab=f621ff3d
+-/
 theorem gram_mulVec {G : (m → ℂ) → (m → ℂ) → ℂ} (hG : IsHermForm G) {k : ℕ}
     (b : Fin k → (m → ℂ)) (x : Fin k → ℂ) (i : Fin k) :
     (gram G b *ᵥ x) i = G (∑ j, x j • b j) (b i) := by
@@ -166,7 +203,9 @@ theorem gram_mulVec {G : (m → ℂ) → (m → ℂ) → ℂ} (hG : IsHermForm G
   rw [gram, Matrix.of_apply, mul_comm]
 
 omit [Fintype m] in
-/-- `G` on two combinations of the family, through the Gram matrix.-/
+/-- `G` on two combinations of the family, through the Gram matrix.
+@isnad1 id=eq.1h6v.s7.ae93756462c9 from=translated src=- shape=7837edd7 vocab=9c8ba9aa
+-/
 theorem gram_form {G : (m → ℂ) → (m → ℂ) → ℂ} (hG : IsHermForm G) {k : ℕ}
     (b : Fin k → (m → ℂ)) (x y : Fin k → ℂ) :
     G (∑ j, x j • b j) (∑ j, y j • b j) = star y ⬝ᵥ (gram G b *ᵥ x) := by
@@ -178,7 +217,9 @@ theorem gram_form {G : (m → ℂ) → (m → ℂ) → ℂ} (hG : IsHermForm G) 
 the orthonormal eigenvector basis of the Hermitian Gram matrix produces a linearly independent
 family `f` spanning `V` on which `G` is diagonal, with real diagonal entries `d j` — the
 eigenvalues of the Gram matrix, which are also the roots of its characteristic polynomial and
-whose product is its determinant.-/
+whose product is its determinant.
+@isnad1 id=ex.3h5v.s8.f8638cd68a77 from=translated src=- shape=3ed9bdc5 vocab=af703f45
+-/
 theorem exists_eigen_family {G : (m → ℂ) → (m → ℂ) → ℂ} (hG : IsHermForm G)
     {V : Submodule ℂ (m → ℂ)} {k : ℕ} {b : Fin k → (m → ℂ)} (hb : LinearIndependent ℂ b)
     (hspan : Submodule.span ℂ (Set.range b) = V) :
@@ -255,7 +296,9 @@ theorem exists_eigen_family {G : (m → ℂ) → (m → ℂ) → ℂ} (hG : IsHe
     Fintype.card_fin]
 
 omit [Fintype m] in
-/-- A vector of the span of a subfamily, as a combination with coefficients supported on it.-/
+/-- A vector of the span of a subfamily, as a combination with coefficients supported on it.
+@isnad1 id=ex.1h5v.s8.0e8fa840e3cc from=translated src=- shape=968cdf3d vocab=fa7aad74
+-/
 theorem exists_coeff_of_mem_span_subtype {k : ℕ} {f : Fin k → (m → ℂ)} (T : Finset (Fin k))
     {x : m → ℂ} (hx : x ∈ Submodule.span ℂ (Set.range fun j : {j // j ∈ T} => f j)) :
     ∃ c : Fin k → ℂ, (∀ j, j ∉ T → c j = 0) ∧ ∑ j, c j • f j = x := by
@@ -274,7 +317,9 @@ theorem exists_coeff_of_mem_span_subtype {k : ℕ} {f : Fin k → (m → ℂ)} (
 
 /-- **The index of a diagonalised form.**  If `G` is diagonal on a linearly independent family
 `f` spanning `V`, with diagonal `d`, its positive index on `V` is the number of positive
-`d j`.-/
+`d j`.
+@isnad1 id=eq.3h6v.s8.8fc2a5bd1b2a from=translated src=- shape=840922de vocab=10fd8b2a
+-/
 theorem posIndex_eq_card_of_family {G : (m → ℂ) → (m → ℂ) → ℂ}
     {V : Submodule ℂ (m → ℂ)} {k : ℕ} {f : Fin k → (m → ℂ)} {d : Fin k → ℝ}
     (hf : LinearIndependent ℂ f) (hspan : Submodule.span ℂ (Set.range f) = V)
@@ -339,7 +384,9 @@ theorem posIndex_eq_card_of_family {G : (m → ℂ) → (m → ℂ) → ℂ}
   omega
 
 /-- The nonpositive part of a diagonalised form: a subspace of `V` on which `G ≤ 0`, of
-dimension `finrank V - posIndex`.-/
+dimension `finrank V - posIndex`.
+@isnad1 id=ex.3h6v.s9.eb94543a0725 from=translated src=- shape=f3008e35 vocab=5e5fd340
+-/
 theorem exists_nonpos_of_family {G : (m → ℂ) → (m → ℂ) → ℂ}
     {V : Submodule ℂ (m → ℂ)} {k : ℕ} {f : Fin k → (m → ℂ)} {d : Fin k → ℝ}
     (hf : LinearIndependent ℂ f) (hspan : Submodule.span ℂ (Set.range f) = V)
@@ -373,7 +420,9 @@ theorem exists_nonpos_of_family {G : (m → ℂ) → (m → ℂ) → ℂ}
 
 /-- **Sylvester's law of inertia for Hermitian forms.**  For a linearly independent family `b`
 spanning `V`, the positive index of `G` on `V` is the number of positive eigenvalues of the Gram
-matrix, i.e. the number of roots of its characteristic polynomial with positive real part.-/
+matrix, i.e. the number of roots of its characteristic polynomial with positive real part.
+@isnad1 id=eq.3h5v.s7.e1d7e23022f5 from=translated src=- shape=075dd602 vocab=e84d1797
+-/
 theorem posIndex_eq_countP {G : (m → ℂ) → (m → ℂ) → ℂ} (hG : IsHermForm G)
     {V : Submodule ℂ (m → ℂ)} {k : ℕ} {b : Fin k → (m → ℂ)} (hb : LinearIndependent ℂ b)
     (hspan : Submodule.span ℂ (Set.range b) = V) :
@@ -384,7 +433,9 @@ theorem posIndex_eq_countP {G : (m → ℂ) → (m → ℂ) → ℂ} (hG : IsHer
     Finset.filter_val]
   congr 1
 
-/-- Every subspace is spanned by a linearly independent family indexed by `Fin (finrank)`.-/
+/-- Every subspace is spanned by a linearly independent family indexed by `Fin (finrank)`.
+@isnad1 id=ex.0h2v.s9.7038865032fe from=translated src=- shape=c053fc47 vocab=ad922314
+-/
 theorem exists_basis_family (V : Submodule ℂ (m → ℂ)) :
     ∃ e : Fin (finrank ℂ V) → (m → ℂ), LinearIndependent ℂ e ∧ Submodule.span ℂ (Set.range e) = V := by
   refine ⟨fun i => (Module.finBasis ℂ V i : m → ℂ), ?_, ?_⟩
@@ -394,7 +445,9 @@ theorem exists_basis_family (V : Submodule ℂ (m → ℂ)) :
       Submodule.range_subtype]
 
 omit [Fintype m] in
-/-- If `G` is nondegenerate on `V`, the Gram matrix of a basis of `V` is invertible.-/
+/-- If `G` is nondegenerate on `V`, the Gram matrix of a basis of `V` is invertible.
+@isnad1 id=ne.4h5v.s8.d80e6ecc14ea from=translated src=- shape=a15b4bda vocab=ff6b8d34
+-/
 theorem det_gram_ne_zero {G : (m → ℂ) → (m → ℂ) → ℂ} (hG : IsHermForm G)
     {V : Submodule ℂ (m → ℂ)} {k : ℕ} {b : Fin k → (m → ℂ)} (hb : LinearIndependent ℂ b)
     (hspan : Submodule.span ℂ (Set.range b) = V)
@@ -410,7 +463,9 @@ theorem det_gram_ne_zero {G : (m → ℂ) → (m → ℂ) → ℂ} (hG : IsHermF
       rw [gram_form hG, hx, dotProduct_zero]
   exact hx0 (funext (Fintype.linearIndependent_iff.1 hb x hv))
 
-/-- A subspace of `V` on which `G ≤ 0`, of dimension `finrank V - posIndex`.-/
+/-- A subspace of `V` on which `G ≤ 0`, of dimension `finrank V - posIndex`.
+@isnad1 id=ex.1h3v.s9.738d9136ef85 from=translated src=- shape=438d798c vocab=e891456c
+-/
 theorem exists_nonpos_subspace {G : (m → ℂ) → (m → ℂ) → ℂ} (hG : IsHermForm G)
     (V : Submodule ℂ (m → ℂ)) :
     ∃ N : Submodule ℂ (m → ℂ), N ≤ V ∧ finrank ℂ N + posIndex G V = finrank ℂ V ∧
@@ -420,6 +475,9 @@ theorem exists_nonpos_subspace {G : (m → ℂ) → (m → ℂ) → ℂ} (hG : I
   exact exists_nonpos_of_family hf hfspan hre
 
 omit [Fintype m] in
+/--
+@isnad1 id=ishermfo.1h2v.s5.d93f4c72eee2 from=translated src=- shape=5c7f7377 vocab=72eac10e
+-/
 theorem IsHermForm.neg {G : (m → ℂ) → (m → ℂ) → ℂ} (hG : IsHermForm G) :
     IsHermForm fun x y => -G x y where
   add_left x y z := by rw [hG.add_left]; ring
@@ -427,7 +485,9 @@ theorem IsHermForm.neg {G : (m → ℂ) → (m → ℂ) → ℂ} (hG : IsHermFor
   conj_symm x y := by rw [map_neg, ← hG.conj_symm]
 
 /-- **Sylvester's law, the nondegenerate case.**  When `G` is nondegenerate on `V`, the
-positive index of `G` and that of `-G` add up to the dimension of `V`.-/
+positive index of `G` and that of `-G` add up to the dimension of `V`.
+@isnad1 id=eq.2h3v.s8.8788f35a8ff5 from=translated src=- shape=e1ef1ad6 vocab=d6fda86b
+-/
 theorem posIndex_add_posIndex_neg {G : (m → ℂ) → (m → ℂ) → ℂ} (hG : IsHermForm G)
     {V : Submodule ℂ (m → ℂ)} (hnd : ∀ v ∈ V, (∀ w ∈ V, G v w = 0) → v = 0) :
     posIndex G V + posIndex (fun x y => -G x y) V = finrank ℂ V := by
@@ -457,7 +517,9 @@ theorem posIndex_add_posIndex_neg {G : (m → ℂ) → (m → ℂ) → ℂ} (hG 
   rw [h', h, Finset.card_univ, Fintype.card_fin]
 
 /-- **A hyperbolic space.**  If `G` is nondegenerate on `V` and vanishes on the diagonal of a
-subspace `I` of half the dimension, the positive index of `G` on `V` is `finrank I`.-/
+subspace `I` of half the dimension, the positive index of `G` on `V` is `finrank I`.
+@isnad1 id=eq.5h4v.s9.059d6511c886 from=translated src=- shape=3469db52 vocab=cc1402bd
+-/
 theorem posIndex_eq_of_isotropic {G : (m → ℂ) → (m → ℂ) → ℂ} (hG : IsHermForm G)
     {V I : Submodule ℂ (m → ℂ)} (hI : I ≤ V) (hnd : ∀ v ∈ V, (∀ w ∈ V, G v w = 0) → v = 0)
     (hiso : ∀ x ∈ I, (G x x).re = 0) (hdim : 2 * finrank ℂ I = finrank ℂ V) :
@@ -470,7 +532,9 @@ theorem posIndex_eq_of_isotropic {G : (m → ℂ) → (m → ℂ) → ℂ} (hG :
   omega
 
 /-- **Additivity on orthogonal sums.**  If `V ⊓ W = ⊥` and `G(v, w) = 0` for `v ∈ V`, `w ∈ W`,
-the positive index of `G` on `V ⊔ W` is the sum of those on `V` and on `W`.-/
+the positive index of `G` on `V ⊔ W` is the sum of those on `V` and on `W`.
+@isnad1 id=eq.3h4v.s8.3b94a2a15f74 from=translated src=- shape=232d4328 vocab=d9fad814
+-/
 theorem posIndex_sup {G : (m → ℂ) → (m → ℂ) → ℂ} (hG : IsHermForm G)
     {V W : Submodule ℂ (m → ℂ)} (hVW : V ⊓ W = ⊥) (horth : ∀ v ∈ V, ∀ w ∈ W, G v w = 0) :
     posIndex G (V ⊔ W) = posIndex G V + posIndex G W := by

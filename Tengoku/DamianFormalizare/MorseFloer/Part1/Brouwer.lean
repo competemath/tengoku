@@ -75,7 +75,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [FiniteDim
 
 /-- For an operator `A` on a finite-dimensional space, `t ↦ det (1 + t A)` is a
 polynomial in `t` of degree at most `dim E`. It is read off the matrix of `A` in
-a basis, as `det (X • M + 1)` over `ℝ[X]`.-/
+a basis, as `det (X • M + 1)` over `ℝ[X]`.
+@isnad1 id=ex.0h2v.s9.8b430ab81c5a from=translated src=- shape=dd08c953 vocab=a7847938
+-/
 theorem exists_poly_det (A : E →L[ℝ] E) :
     ∃ p : ℝ[X], p.natDegree ≤ Module.finrank ℝ E ∧
       ∀ t : ℝ, p.eval t = (ContinuousLinearMap.id ℝ E + t • A).det := by
@@ -97,7 +99,9 @@ theorem exists_poly_det (A : E →L[ℝ] E) :
 
 /-- An operator within distance `1` of the identity has positive determinant.
 It is injective, so `s ↦ det (1 + s A)` has no zero on `[0, 1]`, and the
-intermediate value theorem gives the sign, since the value at `s = 0` is `1`.-/
+intermediate value theorem gives the sign, since the value at `s = 0` is `1`.
+@isnad1 id=lt.1h2v.s9.979f4b2a0445 from=translated src=- shape=47d8851b vocab=1d5a8cb8
+-/
 theorem det_id_add_pos {A : E →L[ℝ] E} (hA : ‖A‖ < 1) :
     0 < (ContinuousLinearMap.id ℝ E + A).det := by
   set g : ℝ → ℝ := fun s => (ContinuousLinearMap.id ℝ E + s • A).det
@@ -132,7 +136,9 @@ theorem det_id_add_pos {A : E →L[ℝ] E} (hA : ‖A‖ < 1) :
 polynomial of degree `≤ dim E`, so Lagrange interpolation at `dim E + 1` nodes
 in `[0, ε)` expresses its value at `1` as a fixed combination of its values at
 the nodes, with weights summing to `1`. Integrating that identity gives the
-result.-/
+result.
+@isnad1 id=eq.4h6v.s10.53d1a775a403 from=translated src=- shape=a8d1b7f5 vocab=5930b590
+-/
 theorem integral_det_eq_of_forall_small [MeasurableSpace E] [BorelSpace E] {μ : Measure E}
     [IsFiniteMeasureOnCompacts μ] {s : Set E} (hs : IsCompact s)
     {A : E → E →L[ℝ] E} (hA : ContinuousOn A s) {c ε : ℝ} (hε : 0 < ε)
@@ -192,7 +198,9 @@ theorem integral_det_eq_of_forall_small [MeasurableSpace E] [BorelSpace E] {μ :
 
 omit [FiniteDimensional ℝ E] in
 /-- Radial projection onto the unit sphere moves a point outside the ball
-closer to every point of the ball.-/
+closer to every point of the ball.
+@isnad1 id=le.2h3v.s7.cab66628e94c from=translated src=- shape=090e9258 vocab=577b8f9e
+-/
 theorem norm_sub_normalize_le {x y : E} (hx : ‖x‖ ≤ 1) (hy : 1 < ‖y‖) :
     ‖x - ‖y‖⁻¹ • y‖ ≤ ‖x - y‖ := by
   have hρ : 0 < ‖y‖ := by linarith
@@ -209,7 +217,9 @@ theorem norm_sub_normalize_le {x y : E} (hx : ‖x‖ ≤ 1) (hy : 1 < ‖y‖) 
 omit [FiniteDimensional ℝ E] in
 /-- A map that is `L`-Lipschitz on the closed unit ball and vanishes on the unit
 sphere stays `L`-Lipschitz on the whole space once extended by zero outside the
-ball.-/
+ball.
+@isnad1 id=le.3h5v.s8.39abd1336858 from=translated src=- shape=2a2576f1 vocab=f33a6f96
+-/
 theorem norm_indicator_sub_le {v : E → E} {L : ℝ} (hL : 0 ≤ L)
     (hv : ∀ x ∈ closedBall (0 : E) 1, ∀ y ∈ closedBall (0 : E) 1, ‖v x - v y‖ ≤ L * ‖x - y‖)
     (h0 : ∀ x ∈ sphere (0 : E) 1, v x = 0) (x y : E) :
@@ -247,7 +257,9 @@ and suppose that `r` maps `D` into the sphere and fixes the sphere. Then for
 The homotopy `fₜ = id + t (r - id)` is a bijection of `D` onto itself. It agrees
 on `D` with a global bijection that is the identity off `D`, obtained from the
 zero extension of `r - id` and the Banach fixed point theorem. Its Jacobian is
-positive, so the change of variables formula gives the identity.-/
+positive, so the change of variables formula gives the identity.
+@isnad1 id=eq.8h6v.s11.69297d3e2639 from=translated src=- shape=6d265b2c vocab=717a50c2
+-/
 theorem integral_det_homotopy_eq [MeasurableSpace E] [BorelSpace E] (μ : Measure E)
     [μ.IsAddHaarMeasure] {r : E → E} {r' : E → E →L[ℝ] E}
     (hr : ∀ x ∈ closedBall (0 : E) 1, HasFDerivAt r (r' x) x)
@@ -357,7 +369,9 @@ theorem integral_det_homotopy_eq [MeasurableSpace E] [BorelSpace E] (μ : Measur
 
 /-- If `‖r‖ = 1` near `x`, then the derivative of `r` at `x` is singular. The
 derivative of `‖r‖²` is `2 ⟪r x, r' ·⟫`, which vanishes, so `r x ≠ 0` is not in
-the range of `r'`.-/
+the range of `r'`.
+@isnad1 id=eq.2h4v.s7.07c307c80b5f from=translated src=- shape=2e835983 vocab=6d5101a7
+-/
 theorem det_eq_zero_of_eventually_norm_eq_one {r : E → E} {x : E} {r' : E →L[ℝ] E}
     (hr : HasFDerivAt r r' x) (hloc : ∀ᶠ y in nhds x, ‖r y‖ = 1) :
     r'.det = 0 := by
@@ -384,7 +398,9 @@ The integral of the Jacobian determinant of `r` over the ball would equal the
 volume of the ball (`integral_det_homotopy_eq`, extended to `t = 1` by
 `integral_det_eq_of_forall_small`), yet it vanishes because the Jacobian is
 singular at every interior point (`det_eq_zero_of_eventually_norm_eq_one`) and
-the sphere is null.-/
+the sphere is null.
+@isnad1 id=false.5h3v.s7.65c7540600c0 from=translated src=- shape=c875e75f vocab=3bd31fba
+-/
 theorem no_C1_retraction {U : Set E} (hU : IsOpen U) (hDU : closedBall (0 : E) 1 ⊆ U)
     {r : E → E} (hr : ContDiffOn ℝ 1 r U) (hmaps : MapsTo r (closedBall 0 1) (sphere 0 1))
     (hfix : ∀ x ∈ sphere (0 : E) 1, r x = x) : False := by
@@ -433,7 +449,9 @@ theorem no_C1_retraction {U : Set E} (hU : IsOpen U) (hDU : closedBall (0 : E) 1
 /-- A map continuous on a closed set `K` of a finite-dimensional space is
 uniformly approximated on `K`, to any precision `ε > 0`, by a `C¹` map on the
 whole space. A smooth partition of unity glues the locally constant choices
-`ϕ x`, and membership in the convex sets `ball (ϕ y) ε` survives the gluing.-/
+`ϕ x`, and membership in the convex sets `ball (ϕ y) ε` survives the gluing.
+@isnad1 id=ex.3h4v.s7.c6823599d6a5 from=translated src=- shape=affc7c37 vocab=a6a54ac8
+-/
 theorem exists_contDiff_approx {K : Set E} (hK : IsClosed K) {ϕ : E → E}
     (hϕ : ContinuousOn ϕ K) {ε : ℝ} (hε : 0 < ε) :
     ∃ g : E → E, ContDiff ℝ 1 g ∧ ∀ x ∈ K, ‖g x - ϕ x‖ < ε := by
@@ -465,7 +483,9 @@ theorem exists_contDiff_approx {K : Set E} (hK : IsClosed K) {ϕ : E → E}
 
 /-- The algebra behind the ray construction. If `τ` is the larger root of
 `a τ² + 2 b τ + (X - 1) = 0`, written through `s² = b² + a (1 - X)`, then
-`X + 2 τ b + τ² a = 1`.-/
+`X + 2 τ b + τ² a = 1`.
+@isnad1 id=eq.3h5v.s7.959487f078d2 from=translated src=- shape=dd2ef345 vocab=7d7e4cc9
+-/
 theorem ray_algebra {a b X s τ : ℝ} (ha : a ≠ 0) (hs : s ^ 2 = b ^ 2 + a * (1 - X))
     (hτ : a * τ = -b + s) : X + 2 * τ * b + τ ^ 2 * a = 1 := by
   have h2 : a * (X + 2 * τ * b + τ ^ 2 * a - 1) = 0 := by
@@ -481,7 +501,9 @@ sphere. Let `u = x - q x`. Then `r x = x + τ(x) u` with
 from `q x` through `x` meets the sphere. On the ball the discriminant is positive
 (on the sphere it is `⟪x,u⟫² > 0`, since `⟪x, q x⟫ = 1` would force `q x = x`)
 and `u ≠ 0`, so both conditions hold on an open neighbourhood, where `r` is `C¹`.
-On the sphere the larger root is `0`, so `r` fixes the sphere.-/
+On the sphere the larger root is `0`, so `r` fixes the sphere.
+@isnad1 id=ex.3h2v.s8.b5cb0807e8cc from=translated src=- shape=decdb44b vocab=a83290ce
+-/
 theorem exists_C1_retraction {q : E → E} (hq : ContDiff ℝ 1 q)
     (hqD : MapsTo q (closedBall 0 1) (closedBall 0 1))
     (hne : ∀ x ∈ closedBall (0 : E) 1, q x ≠ x) :
@@ -565,7 +587,9 @@ theorem exists_C1_retraction {q : E → E} (hq : ContDiff ℝ 1 q)
 finite-dimensional real inner product space. If `ϕ` had no fixed point, a `C¹`
 map close to `(1 - δ/3) ϕ` would also have none (`δ` being the minimal
 displacement of `ϕ`). The ray construction would turn it into a `C¹` retraction
-of the ball onto the sphere, which `no_C1_retraction` forbids.-/
+of the ball onto the sphere, which `no_C1_retraction` forbids.
+@isnad1 id=ex.2h2v.s7.5adcbca1458e from=translated src=- shape=f4601fbf vocab=cce4c508
+-/
 theorem brouwer_fixed_point_of_innerProductSpace {ϕ : E → E}
     (hcont : ContinuousOn ϕ (closedBall (0 : E) 1))
     (hmaps : MapsTo ϕ (closedBall 0 1) (closedBall 0 1)) :
@@ -617,7 +641,9 @@ theorem brouwer_fixed_point_of_innerProductSpace {ϕ : E → E}
 finite-dimensional real inner product space. A continuous map of the closed
 ball into the sphere moves some point of the sphere. Otherwise `-r` would be a
 fixed-point-free self-map of the ball: a fixed point `x = -r x` lies on the
-sphere, where `r x = x` forces `x = 0`.-/
+sphere, where `r x = x` forces `x = 0`.
+@isnad1 id=ex.2h2v.s7.f690f10dc135 from=translated src=- shape=11bb37c5 vocab=e6021786
+-/
 theorem no_retraction_of_innerProductSpace {r : E → E}
     (hr : ContinuousOn r (closedBall (0 : E) 1))
     (hmaps : MapsTo r (closedBall 0 1) (sphere 0 1)) :
@@ -644,7 +670,9 @@ end Brouwer
 /-- **Brouwer's fixed point theorem** (Theorem 2.3.3 of the book, reproved in
 §4.8.b). Every continuous self-map of the closed unit ball of `ℝⁿ` has a fixed
 point, in every dimension `n`. The proof is the analytic one sketched in the
-module docstring and does not go through homology.-/
+module docstring and does not go through homology.
+@isnad1 id=ex.2h2v.s9.f5cbc4e1bf8a from=translated src=- shape=1bafc94e vocab=7c376682
+-/
 theorem brouwer_fixed_point {n : ℕ} (ϕ : EuclideanSpace ℝ (Fin n) → EuclideanSpace ℝ (Fin n))
     (hcont : ContinuousOn ϕ (Metric.closedBall 0 1))
     (hmaps : Set.MapsTo ϕ (Metric.closedBall 0 1) (Metric.closedBall 0 1)) :
@@ -653,7 +681,9 @@ theorem brouwer_fixed_point {n : ℕ} (ϕ : EuclideanSpace ℝ (Fin n) → Eucli
 
 /-- **No retraction of the ball onto its boundary** (§4.8.b). In every dimension,
 a continuous map of the closed unit ball of `ℝⁿ` into the unit sphere moves some
-point of the sphere.-/
+point of the sphere.
+@isnad1 id=ex.2h2v.s9.aa3d3f40488c from=translated src=- shape=bdcef5aa vocab=4e4ccd65
+-/
 theorem no_retraction {n : ℕ} (r : EuclideanSpace ℝ (Fin n) → EuclideanSpace ℝ (Fin n))
     (hr : ContinuousOn r (Metric.closedBall 0 1))
     (hmaps : Set.MapsTo r (Metric.closedBall 0 1) (Metric.sphere 0 1)) :

@@ -79,7 +79,9 @@ theorem eq_zero_of_integral_eq_zero {f : ℝ → ℝ} (hf : Continuous f)
   exact hIcc ht
 
 /-- **Wirtinger's inequality** on `[0, 1]`, complex-valued: for a `C¹` function
-`f` with `f 1 = f 0` and mean zero, `∫₀¹ |f|² ≤ (1 / 4π²) ∫₀¹ |f'|²`.-/
+`f` with `f 1 = f 0` and mean zero, `∫₀¹ |f|² ≤ (1 / 4π²) ∫₀¹ |f'|²`.
+@isnad1 id=le.4h2v.s8.eb91e44ba115 from=translated src=- shape=ff6b624f vocab=a1ec9b22
+-/
 theorem complex {f f' : ℝ → ℂ} (hf : ∀ x, HasDerivAt f (f' x) x) (hf'c : Continuous f')
     (hper : f 1 = f 0) (hmean : ∫ x in (0:ℝ)..1, f x = 0) :
     ∫ x in (0:ℝ)..1, ‖f x‖ ^ 2 ≤ (1 / (4 * π ^ 2)) * ∫ x in (0:ℝ)..1, ‖f' x‖ ^ 2 := by
@@ -125,7 +127,9 @@ variable {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℝ V] [FiniteDim
 /-- **Wirtinger's inequality** for a `C¹` map `y : ℝ → V` into a finite-dimensional
 real inner product space, with `y 1 = y 0` and mean zero:
 `∫₀¹ ‖y‖² ≤ (1 / 4π²) ∫₀¹ ‖y'‖²`.  Proved coordinatewise along an orthonormal
-basis from the complex-valued case.-/
+basis from the complex-valued case.
+@isnad1 id=le.4h3v.s8.ff51c4084aae from=translated src=- shape=3c5e1be0 vocab=2c8226a1
+-/
 theorem inner_space {y y' : ℝ → V} (hy : ∀ t, HasDerivAt y (y' t) t) (hy'c : Continuous y')
     (hper : y 1 = y 0) (hmean : ∫ t in (0:ℝ)..1, y t = 0) :
     ∫ t in (0:ℝ)..1, ‖y t‖ ^ 2 ≤ (1 / (4 * π ^ 2)) * ∫ t in (0:ℝ)..1, ‖y' t‖ ^ 2 := by
@@ -171,7 +175,9 @@ theorem inner_space {y y' : ℝ → V} (hy : ∀ t, HasDerivAt y (y' t) t) (hy'c
 
 /-- **Yorke's theorem.**  If `X` is `K`-Lipschitz on a finite-dimensional real
 inner product space with `K < 2π`, then every `1`-periodic solution of
-`ẋ = X(x)` is constant.-/
+`ẋ = X(x)` is constant.
+@isnad1 id=eq.4h5v.s7.99186e79e8d3 from=translated src=- shape=8e00e88e vocab=a78b2d7b
+-/
 theorem yorke {X : V → V} {K : ℝ≥0} (hX : LipschitzWith K X) (hK : (K : ℝ) < 2 * π)
     {x : ℝ → V} (hx : ∀ t, HasDerivAt x (X (x t)) t) (hper : Periodic x 1) (t : ℝ) :
     x t = x 0 := by

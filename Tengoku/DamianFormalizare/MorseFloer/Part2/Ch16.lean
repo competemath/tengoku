@@ -118,7 +118,9 @@ noncomputable def fredholmIndex (u : E →L[𝕜] F) : ℤ :=
 This is rank–nullity together with the dimension of a quotient, and it is the
 check that `fredholmIndex` is the right notion: the index is insensitive to the
 operator, which is why it is a deformation invariant in general (Theorem
-16.2.9) and why it can be computed by degeneration in Chapter 8.-/
+16.2.9) and why it can be computed by degeneration in Chapter 8.
+@isnad1 id=eq.0h4v.s8.01fffcda4b01 from=translated src=- shape=940d571f vocab=92a21116
+-/
 theorem fredholmIndex_of_finiteDimensional [FiniteDimensional 𝕜 E] [FiniteDimensional 𝕜 F]
     (u : E →L[𝕜] F) :
     fredholmIndex u = (Module.finrank 𝕜 E : ℤ) - (Module.finrank 𝕜 F : ℤ) := by
@@ -129,7 +131,9 @@ theorem fredholmIndex_of_finiteDimensional [FiniteDimensional 𝕜 E] [FiniteDim
   omega
 
 /-- **An invertible operator has index zero**: its kernel and its cokernel both
-vanish.-/
+vanish.
+@isnad1 id=eq.1h4v.s8.387255b9bae2 from=translated src=- shape=c6efeeee vocab=c83b2306
+-/
 theorem fredholmIndex_eq_zero_of_bijective {u : E →L[𝕜] F} (hu : Function.Bijective u) :
     fredholmIndex u = 0 := by
   have hr : LinearMap.range (u : E →ₗ[𝕜] F) = ⊤ := LinearMap.range_eq_top.mpr hu.2
@@ -160,7 +164,9 @@ a kernel and a quotient, and the decompositions that a proof of a stability
 theorem of §16.2.b may prefer to manipulate.  Get a package for a Fredholm
 operator from `ContinuousLinearMap.IsFredholm.nonempty_fredholmPackage`
 (which additionally needs `𝕜` to be complete), or build one by hand when the
-decomposition is known.-/
+decomposition is known.
+@isnad1 id=eq.0h5v.s9.657b27a057d8 from=translated src=- shape=1fd9ca2c vocab=fb4241c3
+-/
 theorem fredholmIndex_eq_of_fredholmPackage {u : E →L[𝕜] F}
     (pkg : ContinuousLinearMap.FredholmPackage u) :
     fredholmIndex u
@@ -195,7 +201,9 @@ four applications of rank–nullity, to the four maps
 * the projection `Z ⧸ range (b ∘ a) → Z ⧸ range b`, which is onto with kernel `T`.
 
 Writing the four identities down and eliminating `dim (ker b ⊓ range a)`,
-`dim S` and `dim T` gives the result.-/
+`dim S` and `dim T` gives the result.
+@isnad1 id=eq.0h6v.s11.7aedaadde17a from=translated src=- shape=9d05f4b9 vocab=99cbe616
+-/
 theorem finrank_ker_sub_finrank_coker_comp {X Y Z : Type*}
     [AddCommGroup X] [Module 𝕜 X] [AddCommGroup Y] [Module 𝕜 Y] [AddCommGroup Z] [Module 𝕜 Z]
     (a : X →ₗ[𝕜] Y) (b : Y →ₗ[𝕜] Z)
@@ -322,7 +330,9 @@ identities
   `dim W = dim (W ⊓ range (1 + n)) + dim ker (1 + n)`,
   `dim W = dim (X ⧸ range (1 + n)) + dim (W ⊓ range (1 + n))`,
 
-whose difference is the claim.-/
+whose difference is the claim.
+@isnad1 id=eq.0h3v.s11.844a37cdce17 from=translated src=- shape=08b7f441 vocab=fab4078b
+-/
 theorem finrank_ker_eq_finrank_coker_one_add {X : Type*} [AddCommGroup X] [Module 𝕜 X]
     (n : X →ₗ[𝕜] X) [FiniteDimensional 𝕜 ↥(LinearMap.range n)] :
     Module.finrank 𝕜 (LinearMap.ker (LinearMap.id + n))
@@ -390,7 +400,9 @@ theorem finrank_ker_eq_finrank_coker_one_add {X : Type*} [AddCommGroup X] [Modul
 
 This is the case of Proposition 16.2.7 that the proof of Theorem 16.2.9 needs,
 and the only case that is elementary: for `N` merely compact the statement is
-Riesz theory.-/
+Riesz theory.
+@isnad1 id=eq.1h3v.s9.7fbeecf7a145 from=translated src=- shape=b7a1b326 vocab=821dd64c
+-/
 theorem fredholmIndex_eq_zero_of_one_add {N : E →L[𝕜] E}
     (hN : ((N : E →ₗ[𝕜] E)).HasNoetherianRange) : fredholmIndex (1 + N) = 0 := by
   have : IsNoetherian 𝕜 ↥(LinearMap.range (N : E →ₗ[𝕜] E)) := hN
@@ -405,7 +417,9 @@ of it, and of each other.
 
 Recall that `≈` here is equality modulo linear maps with noetherian (over a field:
 finite-dimensional) range.  The proof is the usual one-line argument
-`p ≈ p(mq) = (pm)q ≈ q`.-/
+`p ≈ p(mq) = (pm)q ≈ q`.
+@isnad1 id=isquasii.0h8v.s9.c0bcc967512d from=translated src=- shape=d1968058 vocab=77b911d6
+-/
 theorem isQuasiInverse_of_left_of_right {X Y : Type*} [AddCommGroup X] [Module 𝕜 X]
     [AddCommGroup Y] [Module 𝕜 Y] {m : X →ₗ[𝕜] Y} {p q : Y →ₗ[𝕜] X}
     (hp : p ∘ₗ m ≈ LinearMap.id) (hq : m ∘ₗ q ≈ LinearMap.id) :
@@ -419,7 +433,9 @@ theorem isQuasiInverse_of_left_of_right {X Y : Type*} [AddCommGroup X] [Module �
   exact ⟨hp, Setoid.trans (LinearMap.FiniteRangeSetoid.equiv_comp_left hpq) hq⟩
 
 /-- If `a ∘L b` is the identity plus an operator with noetherian range, then `a ∘ b`
-is the identity modulo such operators — that is, `a` is a left quasi-inverse of `b`.-/
+is the identity modulo such operators — that is, `a` is a left quasi-inverse of `b`.
+@isnad1 id=equiv.2h6v.s10.712f4ec46d32 from=translated src=- shape=ba3d5478 vocab=18dc0992
+-/
 theorem equiv_id_of_comp_eq_one_add {X Y : Type*} [NormedAddCommGroup X] [NormedSpace 𝕜 X]
     [NormedAddCommGroup Y] [NormedSpace 𝕜 Y] {a : Y →L[𝕜] X} {b : X →L[𝕜] Y} {k : X →L[𝕜] X}
     (hk : ((k : X →ₗ[𝕜] X)).HasNoetherianRange) (hab : a ∘L b = 1 + k) :
@@ -430,7 +446,9 @@ theorem equiv_id_of_comp_eq_one_add {X Y : Type*} [NormedAddCommGroup X] [Normed
   rw [LinearMap.FiniteRangeSetoid.equiv_iff_hasNoetherianRange, h2, h3]
   exact hk
 
-/-- Two-sided inverses are quasi-inverses.-/
+/-- Two-sided inverses are quasi-inverses.
+@isnad1 id=isquasii.2h5v.s10.62b1a638041f from=translated src=- shape=e3ed9fd9 vocab=21c4a9f8
+-/
 theorem isQuasiInverse_of_comp_eq_one {X Y : Type*} [NormedAddCommGroup X] [NormedSpace 𝕜 X]
     [NormedAddCommGroup Y] [NormedSpace 𝕜 Y] {p : X →L[𝕜] Y} {q : Y →L[𝕜] X}
     (h1 : q ∘L p = 1) (h2 : p ∘L q = 1) : q.IsQuasiInverse p := by
@@ -460,7 +478,9 @@ whose error term still has finite range; so `(1 + vδ)⁻¹ v` is a *left*
 quasi-inverse of `u + δ`.  Symmetrically `1 + δv` is invertible on `F` and
 `v (1 + δv)⁻¹` is a right quasi-inverse.  A left and a right quasi-inverse of the
 same map agree modulo finite range (`isQuasiInverse_of_left_of_right`), so either
-one is a genuine quasi-inverse.-/
+one is a genuine quasi-inverse.
+@isnad1 id=ex.2h6v.s12.378d0bc7fd6c from=translated src=- shape=7c2017a4 vocab=9531e442
+-/
 theorem exists_isQuasiInverse_add_of_norm_lt [CompleteSpace E] [CompleteSpace F]
     {u : E →L[𝕜] F} {v : F →L[𝕜] E} (h : v.IsQuasiInverse u)
     {δ : E →L[𝕜] F} (hδ : ‖v‖ * ‖δ‖ < 1) :
@@ -539,7 +559,9 @@ theorem exists_isQuasiInverse_add_of_norm_lt [CompleteSpace E] [CompleteSpace F]
 This is `exists_isQuasiInverse_add_of_norm_lt` together with Mathlib's
 `ContinuousLinearMap.IsFredholm.of_isQuasiInverse`.  The latter is what forces the
 hypothesis that `𝕜` is complete: over an incomplete field, Mathlib cannot
-produce the complemented kernel that its definition of `IsFredholm` requires.-/
+produce the complemented kernel that its definition of `IsFredholm` requires.
+@isnad1 id=eventual.1h4v.s9.acf91ef2134e from=translated src=- shape=107bb77a vocab=7326940e
+-/
 theorem eventually_isFredholm [CompleteSpace 𝕜] [CompleteSpace E] [CompleteSpace F]
     {u : E →L[𝕜] F} (hu : ContinuousLinearMap.IsFredholm u) :
     ∀ᶠ w in 𝓝 u, ContinuousLinearMap.IsFredholm w := by
@@ -567,7 +589,9 @@ the usual six-term exact sequence.
 `IsFredholm.exists_isQuasiInverse` and `IsFredholm.of_isQuasiInverse` — assumes
 it throughout: a finite-dimensional subspace of a normed space is complemented
 only over a complete field.  It costs nothing in practice, since Part II works
-over `ℝ`.-/
+over `ℝ`.
+@isnad1 id=and.2h6v.s9.db9044923244 from=translated src=- shape=294ca47c vocab=76ad29c0
+-/
 theorem fredholmIndex_comp {G : Type*} [NormedAddCommGroup G] [NormedSpace 𝕜 G]
     [CompleteSpace 𝕜] [CompleteSpace E] [CompleteSpace F] [CompleteSpace G]
     {u : E →L[𝕜] F} {v : F →L[𝕜] G}
@@ -594,7 +618,9 @@ then `q ∘ u` is the identity plus a finite-rank operator, so it has index `0`;
 additivity then forces `ind q = − ind u`.
 
 This is the step that turns the openness of the Fredholm property into the local
-constancy of the index.-/
+constancy of the index.
+@isnad1 id=eq.3h5v.s9.7cad247b8bb1 from=translated src=- shape=aaf85470 vocab=7b1805a2
+-/
 theorem fredholmIndex_add_eq_zero_of_isQuasiInverse [CompleteSpace 𝕜] [CompleteSpace E]
     [CompleteSpace F] {u : E →L[𝕜] F} {q : F →L[𝕜] E} (h : q.IsQuasiInverse u)
     (hq : ContinuousLinearMap.IsFredholm q) (hu : ContinuousLinearMap.IsFredholm u) :
@@ -619,7 +645,9 @@ where `p` is the inverse of `1 + q(w − u)` given by the Neumann series; in
 particular `w` is Fredholm.  Now apply `fredholmIndex_add_eq_zero_of_isQuasiInverse`
 twice, to `(q, u)` and to `(p ∘ q, w)`, and note that `ind (p ∘ q) = ind q`
 because `p` is invertible.  The two relations `ind q + ind u = 0` and
-`ind q + ind w = 0` give `ind w = ind u`.-/
+`ind q + ind w = 0` give `ind w = ind u`.
+@isnad1 id=eventual.1h4v.s9.6dcd088a4768 from=translated src=- shape=a741ba41 vocab=5251ead5
+-/
 theorem fredholmIndex_locally_constant [CompleteSpace 𝕜] [CompleteSpace E] [CompleteSpace F]
     {u : E →L[𝕜] F} (hu : ContinuousLinearMap.IsFredholm u) :
     ∀ᶠ v in 𝓝 u, ContinuousLinearMap.IsFredholm v ∧ fredholmIndex v = fredholmIndex u := by
@@ -657,7 +685,9 @@ finite-dimensional range changes neither the Fredholm property nor the index.
 A quasi-inverse `q` of `u` is again a quasi-inverse of `u + k`, because
 `q(u + k) − 1 = (qu − 1) + qk` and `(u + k)q − 1 = (uq − 1) + kq` both still have
 finite-dimensional range; `fredholmIndex_add_eq_zero_of_isQuasiInverse` then
-computes both indices as `−ind q`.-/
+computes both indices as `−ind q`.
+@isnad1 id=and.2h5v.s10.5dea993185d4 from=translated src=- shape=e3ab6790 vocab=41399eec
+-/
 theorem isFredholm_add_and_fredholmIndex_eq_of_hasNoetherianRange [CompleteSpace 𝕜]
     [CompleteSpace E] [CompleteSpace F] {u k : E →L[𝕜] F}
     (hu : ContinuousLinearMap.IsFredholm u)
@@ -742,7 +772,9 @@ open scoped LinearMap.FiniteRangeSetoid
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
 /-- An operator with finite-dimensional range is compact: it factors through a
-finite-dimensional, hence locally compact, space.-/
+finite-dimensional, hence locally compact, space.
+@isnad1 id=iscompac.1h3v.s8.0efba065ec59 from=translated src=- shape=3816a802 vocab=3c4e3c74
+-/
 theorem isCompactOperator_of_hasNoetherianRange {F : Type*} [NormedAddCommGroup F]
     [NormedSpace ℝ F] {f : E →L[ℝ] F} (hf : (f : E →ₗ[ℝ] F).HasNoetherianRange) :
     IsCompactOperator f := by
@@ -757,7 +789,9 @@ variable [CompleteSpace E]
 
 omit [CompleteSpace E] in
 /-- The kernel of `1 + c` is finite-dimensional for `c` compact: on it, `c` is
-`−Id`, so the identity of the kernel is a compact operator.-/
+`−Id`, so the identity of the kernel is a compact operator.
+@isnad1 id=finitedi.1h2v.s10.8a7df7b51620 from=translated src=- shape=9bec55c4 vocab=03bb4cdd
+-/
 theorem finiteDimensional_ker_one_add_of_isCompactOperator {c : E →L[ℝ] E}
     (hc : IsCompactOperator c) :
     FiniteDimensional ℝ (LinearMap.ker ((1 + c : E →L[ℝ] E) : E →ₗ[ℝ] E)) := by
@@ -789,7 +823,9 @@ theorem finiteDimensional_ker_one_add_of_isCompactOperator {c : E →L[ℝ] E}
   exact FiniteDimensional.of_isCompactOperator_id hid
 
 omit [CompleteSpace E] in
-/-- The kernel of `1 + c` has a closed complement.-/
+/-- The kernel of `1 + c` has a closed complement.
+@isnad1 id=ex.1h2v.s9.56a9b4c1e1e8 from=translated src=- shape=b62928e9 vocab=d382244c
+-/
 theorem exists_isTopCompl_ker_one_add_of_isCompactOperator {c : E →L[ℝ] E}
     (hc : IsCompactOperator c) :
     ∃ M : Submodule ℝ E, Submodule.IsTopCompl (LinearMap.ker ((1 + c : E →L[ℝ] E) : E →ₗ[ℝ] E)) M := by
@@ -797,7 +833,9 @@ theorem exists_isTopCompl_ker_one_add_of_isCompactOperator {c : E →L[ℝ] E}
   exact (Submodule.ClosedComplemented.of_finiteDimensional _).exists_isTopCompl
 
 omit [CompleteSpace E] in
-/-- `1 + c` is bounded below on a closed complement of its kernel.-/
+/-- `1 + c` is bounded below on a closed complement of its kernel.
+@isnad1 id=ex.2h3v.s10.43402c2fc4e0 from=translated src=- shape=06f5b14d vocab=7540eb39
+-/
 theorem exists_norm_le_of_isTopCompl_ker_one_add {c : E →L[ℝ] E} (hc : IsCompactOperator c)
     {M : Submodule ℝ E}
     (hM : Submodule.IsTopCompl (LinearMap.ker ((1 + c : E →L[ℝ] E) : E →ₗ[ℝ] E)) M) :
@@ -859,7 +897,9 @@ theorem exists_norm_le_of_isTopCompl_ker_one_add {c : E →L[ℝ] E} (hc : IsCom
   exact zero_ne_one hanorm
 
 /-- The range of `1 + c` is closed: it is the image of a closed complement of
-the kernel, on which `1 + c` is bounded below.-/
+the kernel, on which `1 + c` is bounded below.
+@isnad1 id=isclosed.1h2v.s9.3ff9d5394f6b from=translated src=- shape=75537bf2 vocab=cbdf0960
+-/
 theorem isClosed_range_one_add_of_isCompactOperator {c : E →L[ℝ] E}
     (hc : IsCompactOperator c) :
     IsClosed ((LinearMap.range ((1 + c : E →L[ℝ] E) : E →ₗ[ℝ] E) : Submodule ℝ E) : Set E) := by
@@ -893,7 +933,9 @@ theorem isClosed_range_one_add_of_isCompactOperator {c : E →L[ℝ] E}
 alternative enters: an injective finite-rank correction of `1 + c` would be
 surjective, so its range `R + h(N)` would be all of `E`, making `E ⧸ R` a
 quotient of the finite-dimensional kernel `N`; such a correction exists as soon
-as `E ⧸ R` is infinite-dimensional.-/
+as `E ⧸ R` is infinite-dimensional.
+@isnad1 id=finitedi.1h2v.s10.ad1a7f149302 from=translated src=- shape=8f923703 vocab=3e0a3c76
+-/
 theorem finiteDimensional_coker_one_add_of_isCompactOperator {c : E →L[ℝ] E}
     (hc : IsCompactOperator c) :
     FiniteDimensional ℝ (E ⧸ LinearMap.range ((1 + c : E →L[ℝ] E) : E →ₗ[ℝ] E)) := by
@@ -985,7 +1027,9 @@ theorem finiteDimensional_coker_one_add_of_isCompactOperator {c : E →L[ℝ] E}
     exact hinf (Module.Finite.of_surjective (R.mkQ ∘ₗ h) hsurj')
 
 /-- **Riesz–Schauder.**  For a compact operator `c` on a Banach space, `1 + c`
-is Fredholm.-/
+is Fredholm.
+@isnad1 id=isfredho.1h2v.s9.cf098697635d from=translated src=- shape=2608ff9e vocab=c4abe930
+-/
 theorem isFredholm_one_add_of_isCompactOperator {c : E →L[ℝ] E} (hc : IsCompactOperator c) :
     ContinuousLinearMap.IsFredholm (1 + c) := by
   set T : E →L[ℝ] E := 1 + c with hT
@@ -1026,7 +1070,9 @@ theorem isFredholm_one_add_of_isCompactOperator {c : E →L[ℝ] E} (hc : IsComp
 
 /-- **Riesz–Schauder**, the index.  `ind (1 + c) = 0` for `c` compact: the
 index of `1 + t c` is locally constant in `t` (Theorem 16.2.9), hence constant
-on the connected `ℝ`, and it vanishes at `t = 0`.-/
+on the connected `ℝ`, and it vanishes at `t = 0`.
+@isnad1 id=eq.1h2v.s9.7fc828b0a7fc from=translated src=- shape=cbb51ddc vocab=d27baf4f
+-/
 theorem fredholmIndex_one_add_of_isCompactOperator {c : E →L[ℝ] E} (hc : IsCompactOperator c) :
     fredholmIndex (1 + c) = 0 := by
   have hF : ∀ t : ℝ, ContinuousLinearMap.IsFredholm (1 + t • c) := fun t =>
@@ -1063,7 +1109,9 @@ give the left quasi-inverse `p₁ q` and the right quasi-inverse `q p₂` of
 (`ind q + ind (u + k) = ind (q(u + k)) = 0 = ind q + ind u`) gives the index.
 
 Stated over `ℝ`, where Part II works: see the section header for where the
-field enters.-/
+field enters.
+@isnad1 id=and.2h4v.s9.167f99accec5 from=translated src=- shape=e800da12 vocab=3dd33044
+-/
 theorem fredholmIndex_add_compact {F : Type*} [NormedAddCommGroup F] [NormedSpace ℝ F]
     [CompleteSpace F] {u : E →L[ℝ] F} {k : E →L[ℝ] F}
     (hu : ContinuousLinearMap.IsFredholm u) (hk : IsCompactOperator k) :

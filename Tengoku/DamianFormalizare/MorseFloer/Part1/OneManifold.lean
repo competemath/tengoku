@@ -72,7 +72,9 @@ namespace OneManifold
 /-! ### The real line -/
 
 /-- Starting from a point `t` of an open set `A ⊆ ℝ` and moving right towards a
-point `y ∉ A`, one reaches a first point `d` outside `A`.-/
+point `y ∉ A`, one reaches a first point `d` outside `A`.
+@isnad1 id=ex.4h3v.s6.013be02b6780 from=translated src=- shape=1bb7894c vocab=ad96128d
+-/
 theorem exists_right_end {A : Set ℝ} (hA : IsOpen A) {t y : ℝ} (ht : t ∈ A) (hty : t ≤ y)
     (hy : y ∉ A) : ∃ d, t < d ∧ d ≤ y ∧ Ico t d ⊆ A ∧ d ∉ A := by
   have hK : IsClosed (Icc t y ∩ Aᶜ) := isClosed_Icc.inter hA.isClosed_compl
@@ -86,7 +88,9 @@ theorem exists_right_end {A : Set ℝ} (hA : IsOpen A) {t y : ℝ} (ht : t ∈ A
   exact absurd (csInf_le hbdd ⟨⟨hz.1, hz.2.le.trans h2⟩, hzA⟩) (not_le.2 hz.2)
 
 /-- Starting from a point `t` of an open set `A ⊆ ℝ` and moving left towards a
-point `x ∉ A`, one reaches a first point `c` outside `A`.-/
+point `x ∉ A`, one reaches a first point `c` outside `A`.
+@isnad1 id=ex.4h3v.s6.1f7f43786ecd from=translated src=- shape=37921e12 vocab=04a94787
+-/
 theorem exists_left_end {A : Set ℝ} (hA : IsOpen A) {t x : ℝ} (ht : t ∈ A) (hxt : x ≤ t)
     (hx : x ∉ A) : ∃ c, x ≤ c ∧ c < t ∧ Ioc c t ⊆ A ∧ c ∉ A := by
   have hK : IsClosed (Icc x t ∩ Aᶜ) := isClosed_Icc.inter hA.isClosed_compl
@@ -100,7 +104,9 @@ theorem exists_left_end {A : Set ℝ} (hA : IsOpen A) {t x : ℝ} (ht : t ∈ A)
   exact absurd (le_csSup hbdd ⟨⟨h1.trans hz.1.le, hz.2⟩, hzA⟩) (not_le.2 hz.1)
 
 /-- A continuous injective real function on an interval is strictly monotone
-or strictly antitone.-/
+or strictly antitone.
+@isnad1 id=or.3h2v.s5.0cfe9e5dc4d8 from=translated src=- shape=c6872b7d vocab=a168a968
+-/
 theorem strictMonoOn_or_strictAntiOn {I : Set ℝ} [I.OrdConnected] (hne : I.Nonempty)
     {τ : ℝ → ℝ} (hc : ContinuousOn τ I) (hi : InjOn τ I) :
     StrictMonoOn τ I ∨ StrictAntiOn τ I := by
@@ -109,7 +115,9 @@ theorem strictMonoOn_or_strictAntiOn {I : Set ℝ} [I.OrdConnected] (hne : I.Non
     strictAntiOn_iff_strictAnti.mpr
 
 /-- Intermediate values: a continuous function on a preconnected set that is
-unbounded above takes every value above any value it takes.-/
+unbounded above takes every value above any value it takes.
+@isnad1 id=le.4h3v.s6.cdbec2a5edc0 from=translated src=- shape=6bc931d2 vocab=67c4ccc7
+-/
 theorem Ici_subset_image {I : Set ℝ} (hI : IsPreconnected I) {τ : ℝ → ℝ}
     (hτ : ContinuousOn τ I) {t : ℝ} (ht : t ∈ I) (hub : ¬ BddAbove (τ '' I)) :
     Ici (τ t) ⊆ τ '' I := by
@@ -118,7 +126,9 @@ theorem Ici_subset_image {I : Set ℝ} (hI : IsPreconnected I) {τ : ℝ → ℝ
   exact (hI.image τ hτ).Icc_subset ⟨t, ht, rfl⟩ ⟨t', ht', rfl⟩ ⟨hs, hlt.le⟩
 
 /-- Intermediate values: a continuous function on a preconnected set that is
-unbounded below takes every value below any value it takes.-/
+unbounded below takes every value below any value it takes.
+@isnad1 id=le.4h3v.s6.0ac6dd787726 from=translated src=- shape=6bc931d2 vocab=38131760
+-/
 theorem Iic_subset_image {I : Set ℝ} (hI : IsPreconnected I) {τ : ℝ → ℝ}
     (hτ : ContinuousOn τ I) {t : ℝ} (ht : t ∈ I) (hlb : ¬ BddBelow (τ '' I)) :
     Iic (τ t) ⊆ τ '' I := by
@@ -126,17 +136,23 @@ theorem Iic_subset_image {I : Set ℝ} (hI : IsPreconnected I) {τ : ℝ → ℝ
   obtain ⟨_, ⟨t', ht', rfl⟩, hlt⟩ := not_bddBelow_iff.1 hlb s
   exact (hI.image τ hτ).Icc_subset ⟨t', ht', rfl⟩ ⟨t, ht, rfl⟩ ⟨hlt.le, hs⟩
 
-/-- An unbounded set of reals that is bounded above is unbounded below.-/
+/-- An unbounded set of reals that is bounded above is unbounded below.
+@isnad1 id=not.2h1v.s4.bb7b85e7970c from=translated src=- shape=6fdf4d1c vocab=a0fb9e18
+-/
 theorem not_bddBelow_of_not_isBounded {S : Set ℝ} (h : ¬ IsBounded S) (hb : BddAbove S) :
     ¬ BddBelow S :=
   fun h' => h (isBounded_iff_bddBelow_bddAbove.2 ⟨h', hb⟩)
 
-/-- An unbounded set of reals that is bounded below is unbounded above.-/
+/-- An unbounded set of reals that is bounded below is unbounded above.
+@isnad1 id=not.2h1v.s4.a6998dd9781d from=translated src=- shape=6fdf4d1c vocab=a0fb9e18
+-/
 theorem not_bddAbove_of_not_isBounded {S : Set ℝ} (h : ¬ IsBounded S) (hb : BddBelow S) :
     ¬ BddAbove S :=
   fun h' => h (isBounded_iff_bddBelow_bddAbove.2 ⟨hb, h'⟩)
 
-/-- A neighbourhood of a real number contains a closed interval around it.-/
+/-- A neighbourhood of a real number contains a closed interval around it.
+@isnad1 id=ex.1h2v.s5.5837997bb71f from=translated src=- shape=39777f5a vocab=63872459
+-/
 theorem exists_Icc_subset_of_mem_nhds {s : Set ℝ} {x : ℝ} (hs : s ∈ 𝓝 x) :
     ∃ a b, a < x ∧ x < b ∧ Icc a b ⊆ s := by
   obtain ⟨a, b, ⟨ha, hb⟩, hsub⟩ := mem_nhds_iff_exists_Ioo_subset.1 hs
@@ -153,7 +169,9 @@ def LocallyArc (V : Type*) [TopologicalSpace V] : Prop :=
   ∀ x : V, ∃ δ : ℝ → V, IsOpenEmbedding δ ∧ x ∈ range δ
 
 /-- The transition map `δ⁻¹ ∘ γ` from an arc (or any continuous map) `γ` to an
-arc `δ`, defined and continuous where `γ` meets the image of `δ`.-/
+arc `δ`, defined and continuous where `γ` meets the image of `δ`.
+@isnad1 id=ex.2h3v.s6.1fd5d6217e11 from=translated src=- shape=c816fc9a vocab=261686b8
+-/
 theorem exists_transition {γ δ : ℝ → V} (hγ : Continuous γ) (hδ : IsOpenEmbedding δ) :
     ∃ τ : ℝ → ℝ, (∀ t, γ t ∈ range δ → δ (τ t) = γ t) ∧
       ContinuousOn τ (γ ⁻¹' range δ) := by
@@ -165,7 +183,9 @@ theorem exists_transition {γ δ : ℝ → V} (hγ : Continuous γ) (hδ : IsOpe
   exact ht
 
 omit [TopologicalSpace V] in
-/-- A transition map is injective where it is defined.-/
+/-- A transition map is injective where it is defined.
+@isnad1 id=injon.2h4v.s5.09af354738be from=translated src=- shape=aee02668 vocab=f939b0d1
+-/
 theorem transition_injOn {γ δ : ℝ → V} (hγ : Injective γ) {τ : ℝ → ℝ}
     (hτ : ∀ t, γ t ∈ range δ → δ (τ t) = γ t) : InjOn τ (γ ⁻¹' range δ) := by
   intro t ht t' ht' h
@@ -173,14 +193,18 @@ theorem transition_injOn {γ δ : ℝ → V} (hγ : Injective γ) {τ : ℝ → 
   rw [← hτ t ht, ← hτ t' ht', h]
 
 omit [TopologicalSpace V] in
-/-- If `γ t = δ s` then `t` lies in the domain of the transition map and `τ t = s`.-/
+/-- If `γ t = δ s` then `t` lies in the domain of the transition map and `τ t = s`.
+@isnad1 id=and.3h6v.s6.971fc6753a02 from=translated src=- shape=818b3cb2 vocab=a27846b8
+-/
 theorem transition_eq {γ δ : ℝ → V} (hδ : Injective δ) {τ : ℝ → ℝ}
     (hτ : ∀ t, γ t ∈ range δ → δ (τ t) = γ t) {t s : ℝ} (h : γ t = δ s) :
     γ t ∈ range δ ∧ τ t = s :=
   ⟨⟨s, h.symm⟩, hδ (by rw [hτ t ⟨s, h.symm⟩, h])⟩
 
 omit [TopologicalSpace V] in
-/-- Reversing the parametrisation does not change the image.-/
+/-- Reversing the parametrisation does not change the image.
+@isnad1 id=eq.0h2v.s4.3137ce5ad913 from=translated src=- shape=0e3a9218 vocab=7eed7c20
+-/
 theorem range_comp_neg (f : ℝ → V) : range (fun t => f (-t)) = range f := by
   ext x
   constructor
@@ -189,7 +213,9 @@ theorem range_comp_neg (f : ℝ → V) : range (fun t => f (-t)) = range f := by
   · rintro ⟨t, rfl⟩
     exact ⟨-t, by simp⟩
 
-/-- Reversing the parametrisation of an arc gives an arc.-/
+/-- Reversing the parametrisation of an arc gives an arc.
+@isnad1 id=isopenem.1h2v.s5.b341608a22fc from=translated src=- shape=e9abbde0 vocab=73035473
+-/
 theorem isOpenEmbedding_comp_neg {f : ℝ → V} (hf : IsOpenEmbedding f) :
     IsOpenEmbedding (fun t => f (-t)) :=
   hf.comp (Homeomorph.neg ℝ).isOpenEmbedding
@@ -197,7 +223,9 @@ theorem isOpenEmbedding_comp_neg {f : ℝ → V} (hf : IsOpenEmbedding f) :
 /-- **The Hausdorff step.** Let `τ` be a transition map from `γ` to `δ` on a set
 `S`, and let `c` be a limit point of `S` at which `γ` does not meet the image
 of `δ`. Then `τ` is unbounded on `S`. Otherwise `τ` would have a cluster value
-`L` at `c`, and `γ c` and `δ L` would both be limits of `γ` along `S`.-/
+`L` at `c`, and `γ c` and `δ L` would both be limits of `γ` along `S`.
+@isnad1 id=not.5h6v.s6.f74504626473 from=translated src=- shape=67a41d5f vocab=3c4a27a8
+-/
 theorem not_isBounded_image [T2Space V] {γ δ : ℝ → V} (hγ : Continuous γ) (hδ : Continuous δ)
     {τ : ℝ → ℝ} {S : Set ℝ} (hτ : ∀ t ∈ S, δ (τ t) = γ t) {c : ℝ} (hc : c ∈ closure S)
     (hcA : γ c ∉ range δ) : ¬ IsBounded (τ '' S) := by
@@ -219,7 +247,9 @@ theorem not_isBounded_image [T2Space V] {γ δ : ℝ → V} (hγ : Continuous γ
 /-! ### Invariance of domain on the line -/
 
 /-- **Invariance of domain in dimension one.** A continuous injective map from
-the line to a space covered by arcs is open.-/
+the line to a space covered by arcs is open.
+@isnad1 id=isopenma.3h2v.s5.5243345ed3aa from=translated src=- shape=58b0f2a2 vocab=03ea7989
+-/
 theorem isOpenMap_of_injective (hloc : LocallyArc V) {f : ℝ → V} (hf : Continuous f)
     (hinj : Injective f) : IsOpenMap f := by
   rw [isOpenMap_iff_nhds_le]
@@ -252,7 +282,9 @@ theorem isOpenMap_of_injective (hloc : LocallyArc V) {f : ℝ → V} (hf : Conti
   rw [hfg t ht]
   exact (hsub ht).1
 
-/-- The line itself is covered by arcs.-/
+/-- The line itself is covered by arcs.
+@isnad1 id=locallya.0h0v.s2.33f8ffd8ddd6 from=translated src=- shape=49959d42 vocab=fb03253c
+-/
 theorem locallyArc_real : LocallyArc ℝ :=
   fun x => ⟨id, IsOpenEmbedding.id, x, rfl⟩
 
@@ -262,7 +294,9 @@ theorem locallyArc_real : LocallyArc ℝ :=
 that the part of `γ` after `t₀` lies on `δ` after `s₀`, that the part of `δ`
 before `s₀` lies on `γ` before `t₀`, and that `γ` before `t₀` never meets `δ`
 after `s₀`. Then following `γ` up to `t₀` and `δ` from `s₀` on is an arc whose
-image is the union of the two.-/
+image is the union of the two.
+@isnad1 id=ex.7h5v.s7.c7cbf20a5756 from=translated src=- shape=b52724a7 vocab=8d90733c
+-/
 theorem glue_arc (hloc : LocallyArc V) {γ δ : ℝ → V} (hγ : IsOpenEmbedding γ)
     (hδ : IsOpenEmbedding δ) {t₀ s₀ : ℝ} (h0 : γ t₀ = δ s₀)
     (hγδ : ∀ t, t₀ < t → ∃ s, s₀ < s ∧ δ s = γ t)
@@ -327,7 +361,9 @@ theorem glue_arc (hloc : LocallyArc V) {γ δ : ℝ → V} (hγ : IsOpenEmbeddin
 that `δ` outside `[s₀, s₁]` lies on `γ([t₁, t₀])`, and that the open pieces
 `γ((t₁, t₀))` and `δ((s₀, s₁))` are disjoint. Then `γ` on `[t₁, t₀]` followed by
 `δ` on `[s₀, s₁]` is a simple loop through all of `U ∪ W`, and in a connected
-Hausdorff space this makes the whole space a circle.-/
+Hausdorff space this makes the whole space a circle.
+@isnad1 id=nonempty.9h7v.s7.71290fcfd009 from=translated src=- shape=bf063aa6 vocab=354ecbb8
+-/
 theorem glue_circle [T2Space V] [ConnectedSpace V] {γ δ : ℝ → V} (hγ : IsOpenEmbedding γ)
     (hδ : IsOpenEmbedding δ) {t₁ t₀ s₀ s₁ : ℝ} (ht : t₁ < t₀) (hs : s₀ < s₁)
     (h0 : γ t₀ = δ s₀) (h1 : γ t₁ = δ s₁)
@@ -444,7 +480,9 @@ theorem glue_circle [T2Space V] [ConnectedSpace V] {γ δ : ℝ → V} (hγ : Is
 domain `A = γ⁻¹(im δ)` of the transition map sees a whole ray of `A`, to its
 left or to its right. A bounded interval `(c, d)` of `A` with `c, d ∉ A` would
 be mapped by the monotone transition map onto all of `ℝ` (it is unbounded at
-both ends by the Hausdorff step), putting the image of `δ` inside that of `γ`.-/
+both ends by the Hausdorff step), putting the image of `δ` inside that of `γ`.
+@isnad1 id=or.6h5v.s7.3a1b722960e5 from=translated src=- shape=739cdae4 vocab=1aee1e2b
+-/
 theorem Iic_or_Ici_subset [T2Space V] {γ δ : ℝ → V} (hγ : IsOpenEmbedding γ)
     (hδ : IsOpenEmbedding δ) {τ : ℝ → ℝ} (hτ : ∀ t, γ t ∈ range δ → δ (τ t) = γ t)
     (hτc : ContinuousOn τ (γ ⁻¹' range δ)) (hWU : ¬ range δ ⊆ range γ) {t : ℝ}
@@ -496,7 +534,9 @@ theorem Iic_or_Ici_subset [T2Space V] {γ δ : ℝ → V} (hγ : IsOpenEmbedding
 
 /-- **Two arcs, normalised.** Suppose the domain of the transition map `τ`
 contains the ray `(c, ∞)`, but not `c`, and `τ` increases there. Then the union
-of the two images is an arc, or the whole space is a circle.-/
+of the two images is an arc, or the whole space is a circle.
+@isnad1 id=or.9h5v.s7.9a864ca729be from=translated src=- shape=82e1f75e vocab=4170ad36
+-/
 theorem two_arcs_core [T2Space V] [ConnectedSpace V] (hloc : LocallyArc V) {γ δ : ℝ → V}
     (hγ : IsOpenEmbedding γ) (hδ : IsOpenEmbedding δ) {τ : ℝ → ℝ}
     (hτ : ∀ t, γ t ∈ range δ → δ (τ t) = γ t) (hτc : ContinuousOn τ (γ ⁻¹' range δ))
@@ -609,7 +649,9 @@ theorem two_arcs_core [T2Space V] [ConnectedSpace V] (hloc : LocallyArc V) {γ �
 
 /-- **Two arcs, half normalised.** As `two_arcs`, when the domain of the
 transition map contains a ray `[t₀, ∞)`. Reflecting `δ` makes the transition
-map increasing, reducing to `two_arcs_core`.-/
+map increasing, reducing to `two_arcs_core`.
+@isnad1 id=or.8h5v.s7.fa8ef4e2a16f from=translated src=- shape=7a536ee0 vocab=959a412f
+-/
 theorem two_arcs_of_Ici [T2Space V] [ConnectedSpace V] (hloc : LocallyArc V) {γ δ : ℝ → V}
     (hγ : IsOpenEmbedding γ) (hδ : IsOpenEmbedding δ) {τ : ℝ → ℝ}
     (hτ : ∀ t, γ t ∈ range δ → δ (τ t) = γ t) (hτc : ContinuousOn τ (γ ⁻¹' range δ))
@@ -638,7 +680,9 @@ theorem two_arcs_of_Ici [T2Space V] [ConnectedSpace V] (hloc : LocallyArc V) {γ
 
 /-- **Two arcs.** If the images of two arcs meet and neither contains the
 other, then their union is the image of an arc, or the whole (connected,
-Hausdorff) space is a circle.-/
+Hausdorff) space is a circle.
+@isnad1 id=or.6h3v.s7.5e068b297a5e from=translated src=- shape=8d41a6ea vocab=81d98918
+-/
 theorem two_arcs [T2Space V] [ConnectedSpace V] (hloc : LocallyArc V) {γ δ : ℝ → V}
     (hγ : IsOpenEmbedding γ) (hδ : IsOpenEmbedding δ) (hne : (range γ ∩ range δ).Nonempty)
     (hWU : ¬ range δ ⊆ range γ) (hUW : ¬ range γ ⊆ range δ) :
@@ -657,7 +701,9 @@ theorem two_arcs [T2Space V] [ConnectedSpace V] (hloc : LocallyArc V) {γ δ : �
 
 /-! ### The induction on a finite cover by arcs -/
 
-/-- An arc in a compact space is never onto: `ℝ` is not compact.-/
+/-- An arc in a compact space is never onto: `ℝ` is not compact.
+@isnad1 id=ne.1h2v.s5.ae9e99ac2601 from=translated src=- shape=e4fe9c09 vocab=03544a17
+-/
 theorem range_ne_univ [CompactSpace V] {γ : ℝ → V} (hγ : IsOpenEmbedding γ) :
     range γ ≠ univ := by
   intro h
@@ -666,7 +712,9 @@ theorem range_ne_univ [CompactSpace V] {γ : ℝ → V} (hγ : IsOpenEmbedding �
     exact isCompact_univ
   exact noncompact_univ ℝ this
 
-/-- **Compact connected Hausdorff spaces covered by arcs are circles.**-/
+/-- **Compact connected Hausdorff spaces covered by arcs are circles.**
+@isnad1 id=nonempty.1h1v.s4.3ec10ae28d83 from=translated src=- shape=d792a758 vocab=658cbea9
+-/
 theorem circle_of_locallyArc [T2Space V] [CompactSpace V] [ConnectedSpace V]
     (hloc : LocallyArc V) : Nonempty (V ≃ₜ Circle) := by
   classical
@@ -714,7 +762,9 @@ theorem circle_of_locallyArc [T2Space V] [CompactSpace V] [ConnectedSpace V]
 /-! ### Charts give arcs -/
 
 /-- A point in the source of a real-valued chart lies on an arc: pull back a
-small open interval around its image.-/
+small open interval around its image.
+@isnad1 id=ex.1h3v.s6.94783b31ad9b from=translated src=- shape=23feb7ce vocab=3b65bb98
+-/
 theorem exists_arc_of_openPartialHomeomorph (e : OpenPartialHomeomorph V ℝ) {x : V}
     (hx : x ∈ e.source) : ∃ γ : ℝ → V, IsOpenEmbedding γ ∧ x ∈ range γ := by
   obtain ⟨r, hr, hsub⟩ := Metric.isOpen_iff.1 e.open_target (e x) (e.map_source hx)
@@ -757,7 +807,9 @@ noncomputable def euclideanOneHomeomorph : EuclideanSpace ℝ (Fin 1) ≃ₜ ℝ
   (EuclideanSpace.equiv (Fin 1) ℝ).toHomeomorph.trans (Homeomorph.funUnique (Fin 1) ℝ)
 
 /-- A topological manifold modelled on `EuclideanSpace ℝ (Fin 1)` is covered by
-arcs.-/
+arcs.
+@isnad1 id=locallya.0h1v.s5.3bd5546d9bff from=translated src=- shape=6620c25a vocab=4c485ec7
+-/
 theorem locallyArc_of_chartedSpace [ChartedSpace (EuclideanSpace ℝ (Fin 1)) V] :
     LocallyArc V := by
   intro x
@@ -778,7 +830,9 @@ noncomputable def circleHomeomorphSphere :
 
 /-- **Classification of compact connected one-manifolds, topological form.** A
 compact connected Hausdorff space with an atlas of charts to
-`EuclideanSpace ℝ (Fin 1)` is homeomorphic to the unit circle of `ℝ²`.-/
+`EuclideanSpace ℝ (Fin 1)` is homeomorphic to the unit circle of `ℝ²`.
+@isnad1 id=nonempty.0h1v.s9.7da9f789e174 from=translated src=- shape=3a4d3806 vocab=a0bbc7ab
+-/
 theorem nonempty_homeomorph_sphere_of_chartedSpace [T2Space V] [CompactSpace V]
     [ConnectedSpace V] [ChartedSpace (EuclideanSpace ℝ (Fin 1)) V] :
     Nonempty (V ≃ₜ Metric.sphere (0 : EuclideanSpace ℝ (Fin 2)) 1) :=
@@ -788,7 +842,9 @@ theorem nonempty_homeomorph_sphere_of_chartedSpace [T2Space V] [CompactSpace V]
 /-- **Theorem 2.3.2, closed case, up to homeomorphism.** A compact connected
 Hausdorff smooth one-manifold is homeomorphic to the unit circle of `ℝ²`. The
 statement is exactly that of `Chapter2.classification_dim_one`. The smooth
-structure is not used: this is `nonempty_homeomorph_sphere_of_chartedSpace`.-/
+structure is not used: this is `nonempty_homeomorph_sphere_of_chartedSpace`.
+@isnad1 id=nonempty.0h1v.s9.86b6893ee8c1 from=translated src=- shape=74af6757 vocab=be892308
+-/
 theorem classification_dim_one_general {V : Type*} [TopologicalSpace V] [T2Space V]
     [CompactSpace V] [ConnectedSpace V] [ChartedSpace (EuclideanSpace ℝ (Fin 1)) V]
     [IsManifold (𝓡 1) ω V] :

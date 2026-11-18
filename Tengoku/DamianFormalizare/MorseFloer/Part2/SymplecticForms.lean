@@ -70,6 +70,9 @@ noncomputable def stdFormC (l : Type*) [DecidableEq l] [Fintype l] :
     BilinForm ℂ ((l ⊕ l) → ℂ) :=
   Matrix.toBilin' (-(Matrix.J l ℂ))
 
+/--
+@isnad1 id=eq.0h3v.s9.543f8d818a96 from=translated src=- shape=8cd34457 vocab=aec59142
+-/
 theorem stdFormC_apply (X Y : (l ⊕ l) → ℂ) :
     stdFormC l X Y = X ⬝ᵥ (-(Matrix.J l ℂ)) *ᵥ Y :=
   Matrix.toBilin'_apply' _ _ _
@@ -78,11 +81,16 @@ theorem stdFormC_apply (X Y : (l ⊕ l) → ℂ) :
 noncomputable def conjVec (X : (l ⊕ l) → ℂ) : (l ⊕ l) → ℂ := fun i => (starRingEnd ℂ) (X i)
 
 omit [DecidableEq l] [Fintype l] in
+/--
+@isnad1 id=eq.0h2v.s4.2c76b2410342 from=translated src=- shape=3bb90e3b vocab=e930ad8c
+-/
 @[simp] theorem conjVec_conjVec (X : (l ⊕ l) → ℂ) : conjVec (conjVec X) = X := by
   funext i
   simp [conjVec]
 
-/-- `ω` is skew-symmetric on `ℂ²ⁿ`.-/
+/-- `ω` is skew-symmetric on `ℂ²ⁿ`.
+@isnad1 id=eq.0h3v.s9.037c00739e09 from=translated src=- shape=42276ffb vocab=12565700
+-/
 theorem stdFormC_skew (X Y : (l ⊕ l) → ℂ) : stdFormC l X Y = -stdFormC l Y X := by
   have hT : (-(Matrix.J l ℂ))ᵀ = -(-(Matrix.J l ℂ)) := by
     rw [Matrix.transpose_neg, Matrix.J_transpose]
@@ -90,7 +98,9 @@ theorem stdFormC_skew (X Y : (l ⊕ l) → ℂ) : stdFormC l X Y = -stdFormC l Y
   nth_rewrite 1 [Matrix.dotProduct_mulVec]
   rw [← Matrix.mulVec_transpose, hT, Matrix.neg_mulVec, neg_dotProduct, dotProduct_comm]
 
-/-- `ω` has real coefficients, so it commutes with complex conjugation.-/
+/-- `ω` has real coefficients, so it commutes with complex conjugation.
+@isnad1 id=eq.0h3v.s10.dbcc1339c511 from=translated src=- shape=4786ef19 vocab=ad04ed1e
+-/
 theorem stdFormC_conjVec (X Y : (l ⊕ l) → ℂ) :
     stdFormC l (conjVec X) (conjVec Y) = (starRingEnd ℂ) (stdFormC l X Y) := by
   have hJ : (Matrix.J l ℂ).map (starRingEnd ℂ) = Matrix.J l ℂ := by simp
@@ -119,12 +129,16 @@ noncomputable def BForm (X Y : (l ⊕ l) → ℂ) : ℝ := (stdFormC l X (conjVe
 /-- The quadratic form `Q(X) = B(X, X) = Im ω(X, X̄)` of §7.3.a.-/
 noncomputable def QForm (X : (l ⊕ l) → ℂ) : ℝ := BForm X X
 
-/-- **Lemma 7.3.1** (additivity in the first slot).-/
+/-- **Lemma 7.3.1** (additivity in the first slot).
+@isnad1 id=eq.0h4v.s6.8e30e066e8a0 from=translated src=- shape=03e7365d vocab=4e2d88a5
+-/
 theorem BForm_add_left (X Y Z : (l ⊕ l) → ℂ) :
     BForm (X + Y) Z = BForm X Z + BForm Y Z := by
   simp [BForm, Complex.add_im]
 
-/-- **Lemma 7.3.1** (real homogeneity in the first slot).-/
+/-- **Lemma 7.3.1** (real homogeneity in the first slot).
+@isnad1 id=eq.0h4v.s6.64c504b5ca19 from=translated src=- shape=2b509c98 vocab=b6525cb1
+-/
 theorem BForm_smul_left (r : ℝ) (X Y : (l ⊕ l) → ℂ) :
     BForm ((r : ℂ) • X) Y = r * BForm X Y := by
   have hb : stdFormC l ((r : ℂ) • X) (conjVec Y) = (r : ℂ) * stdFormC l X (conjVec Y) := by
@@ -132,7 +146,9 @@ theorem BForm_smul_left (r : ℝ) (X Y : (l ⊕ l) → ℂ) :
   show (stdFormC l ((r : ℂ) • X) (conjVec Y)).im = r * (stdFormC l X (conjVec Y)).im
   rw [hb, Complex.im_ofReal_mul]
 
-/-- **Lemma 7.3.1** (`B` is symmetric).-/
+/-- **Lemma 7.3.1** (`B` is symmetric).
+@isnad1 id=eq.0h3v.s5.7656feb68100 from=translated src=- shape=d72b80de vocab=8bb01444
+-/
 theorem BForm_symm (X Y : (l ⊕ l) → ℂ) : BForm Y X = BForm X Y := by
   have h2 : stdFormC l (conjVec X) Y = (starRingEnd ℂ) (stdFormC l X (conjVec Y)) := by
     conv_lhs => rw [← conjVec_conjVec Y]
@@ -141,7 +157,9 @@ theorem BForm_symm (X Y : (l ⊕ l) → ℂ) : BForm Y X = BForm X Y := by
   rw [stdFormC_skew Y (conjVec X), h2]
   simp
 
-/-- **Lemma 7.3.1** (`B(X̄, Ȳ) = −B(X, Y)`).-/
+/-- **Lemma 7.3.1** (`B(X̄, Ȳ) = −B(X, Y)`).
+@isnad1 id=eq.0h3v.s5.f610995ed552 from=translated src=- shape=435dc65d vocab=77da1b09
+-/
 theorem BForm_conjVec (X Y : (l ⊕ l) → ℂ) :
     BForm (conjVec X) (conjVec Y) = -BForm X Y := by
   have h2 : stdFormC l (conjVec X) Y = (starRingEnd ℂ) (stdFormC l X (conjVec Y)) := by
@@ -152,7 +170,9 @@ theorem BForm_conjVec (X Y : (l ⊕ l) → ℂ) :
   simp
 
 /-- **Lemma 7.3.1** (`B(iX, iY) = B(X, Y)`; this is why the subspaces on which
-`Q` is definite are complex subspaces).-/
+`Q` is definite are complex subspaces).
+@isnad1 id=eq.0h3v.s6.cd7bf41a22b2 from=translated src=- shape=fb492e65 vocab=a8bc2d7c
+-/
 theorem BForm_smul_I (X Y : (l ⊕ l) → ℂ) :
     BForm (Complex.I • X) (Complex.I • Y) = BForm X Y := by
   have hc : conjVec (Complex.I • Y) = (-Complex.I) • conjVec Y := by
@@ -166,7 +186,9 @@ theorem BForm_smul_I (X Y : (l ⊕ l) → ℂ) :
       = (stdFormC l X (conjVec Y)).im
   rw [hc, hb]
 
-/-- `ω` is nondegenerate on `ℂ²ⁿ` (the complexification of Example 5.1.2).-/
+/-- `ω` is nondegenerate on `ℂ²ⁿ` (the complexification of Example 5.1.2).
+@isnad1 id=nondegen.0h1v.s5.5140afcf036d from=translated src=- shape=bfede5fe vocab=06834833
+-/
 theorem stdFormC_nondegenerate : (stdFormC l).Nondegenerate := by
   have hJ : IsUnit (Matrix.J l ℂ) :=
     (Matrix.isUnit_iff_isUnit_det _).mpr (Matrix.isUnit_det_J l ℂ)
@@ -182,7 +204,9 @@ theorem stdFormC_nondegenerate : (stdFormC l).Nondegenerate := by
     exact hY w
 
 /-- **Lemma 7.3.1** (`B` is nondegenerate).  If `Im ω(X, Ȳ) = 0` for every `Y`,
-then, replacing `Y` by `iY`, also the real part vanishes, so `X = 0`.-/
+then, replacing `Y` by `iY`, also the real part vanishes, so `X = 0`.
+@isnad1 id=eq.1h2v.s6.f7c4aa4227c4 from=translated src=- shape=0634727a vocab=8bb01444
+-/
 theorem BForm_eq_zero_of_forall {X : (l ⊕ l) → ℂ} (hX : ∀ Y, BForm X Y = 0) : X = 0 := by
   refine (stdFormC_nondegenerate (l := l)).1 X ?_
   intro Z

@@ -37,7 +37,9 @@ open Chapter7 SymplecticEigen SpectralProjector EigenDecomp HermitianIndex
 /-- **The number of eigenvalues in a region cannot jump.**  If the matrix `Γ x` depends
 continuously on `x`, and the predicate `Pred` is constant on an `ε₀`-neighbourhood of each
 eigenvalue of `Γ x₀`, then the number of eigenvalues of `Γ x` satisfying `Pred`, counted with
-multiplicity, equals that of `Γ x₀` for `x` near `x₀`.-/
+multiplicity, equals that of `Γ x₀` for `x` near `x₀`.
+@isnad1 id=eventual.3h6v.s7.b28ef9bc66e4 from=translated src=- shape=cd571256 vocab=e8fd235e
+-/
 theorem eventually_countP_roots_charpoly {X : Type*} [TopologicalSpace X] {n : Type*}
     [Fintype n] [DecidableEq n] (Pred : ℂ → Prop) [DecidablePred Pred]
     {Γ : X → Matrix n n ℂ} {x₀ : X} (hΓ : ContinuousAt Γ x₀) {ε₀ : ℝ} (hε₀ : 0 < ε₀)
@@ -76,7 +78,9 @@ theorem eventually_countP_roots_charpoly {X : Type*} [TopologicalSpace X] {n : T
   exact hstab (b i) (hbmem i) (a i) (by rw [dist_eq_norm]; exact hab i)
 
 /-- For an invertible Hermitian matrix, the half-plane `Re > 0` is stable around every
-eigenvalue: they are real and nonzero.-/
+eigenvalue: they are real and nonzero.
+@isnad1 id=ex.2h2v.s7.7a726f031647 from=translated src=- shape=e59ef790 vocab=cd5c75f7
+-/
 theorem exists_stab_re {n : Type*} [Fintype n] [DecidableEq n] {Γ : Matrix n n ℂ}
     (hΓ : Γ.IsHermitian) (hdet : Γ.det ≠ 0) :
     ∃ ε₀ : ℝ, 0 < ε₀ ∧ ∀ z ∈ Γ.charpoly.roots, ∀ w : ℂ, dist w z < ε₀ → (0 < w.re ↔ 0 < z.re) := by
@@ -126,9 +130,15 @@ variable {l : Type*} [DecidableEq l] [Fintype l]
 §7.3.a.-/
 noncomputable def GForm (X Y : (l ⊕ l) → ℂ) : ℂ := -Complex.I * HForm X Y
 
+/--
+@isnad1 id=eq.0h3v.s6.95736ee63c83 from=translated src=- shape=1f1b06a6 vocab=a737ab22
+-/
 theorem HForm_conj (X Y : (l ⊕ l) → ℂ) : starRingEnd ℂ (HForm X Y) = -HForm Y X := by
   rw [HForm, HForm, ← stdFormC_conjVec, conjVec_conjVec, stdFormC_skew]
 
+/--
+@isnad1 id=ishermfo.0h1v.s4.5f6ace2943b4 from=translated src=- shape=574ff201 vocab=77c8aaa0
+-/
 theorem isHermForm_GForm : IsHermForm (GForm (l := l)) where
   add_left X Y Z := by rw [GForm, GForm, GForm, HForm_add_left]; ring
   smul_left a X Y := by rw [GForm, GForm, HForm_smul_left]; ring
@@ -136,7 +146,9 @@ theorem isHermForm_GForm : IsHermForm (GForm (l := l)) where
     rw [GForm, GForm, map_mul, map_neg, Complex.conj_I, HForm_conj]
     ring
 
-/-- The diagonal of `G` is `Q(X) = Im ω(X, X̄)`.-/
+/-- The diagonal of `G` is `Q(X) = Im ω(X, X̄)`.
+@isnad1 id=eq.0h2v.s4.d7e95d10be1f from=translated src=- shape=90ca2bb3 vocab=b8479b57
+-/
 theorem GForm_self_re (X : (l ⊕ l) → ℂ) : (GForm X X).re = BForm X X := by
   have h := congrArg Complex.re (HForm_conj X X)
   rw [Complex.conj_re, Complex.neg_re] at h
@@ -145,12 +157,21 @@ theorem GForm_self_re (X : (l ⊕ l) → ℂ) : (GForm X X).re = BForm X X := by
   linarith
 
 omit [DecidableEq l] [Fintype l] in
+/--
+@isnad1 id=eq.0h2v.s5.afe67f21d70a from=translated src=- shape=84350e23 vocab=e0ed9edd
+-/
 theorem conjVec_eq_star (Y : (l ⊕ l) → ℂ) : conjVec Y = star Y := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.ed544de892c6 from=translated src=- shape=c58da838 vocab=8a57804e
+-/
 theorem GForm_eq (X Y : (l ⊕ l) → ℂ) :
     GForm X Y = -Complex.I * (X ⬝ᵥ (-(Matrix.J l ℂ)) *ᵥ star Y) := by
   rw [GForm, HForm, stdFormC_apply, conjVec_eq_star]
 
+/--
+@isnad1 id=continuo.0h1v.s7.2fe2382f2702 from=translated src=- shape=be5b2542 vocab=1b2b144b
+-/
 theorem continuous_GForm :
     Continuous fun p : ((l ⊕ l) → ℂ) × ((l ⊕ l) → ℂ) => GForm p.1 p.2 := by
   have e : (fun p : ((l ⊕ l) → ℂ) × ((l ⊕ l) → ℂ) => GForm p.1 p.2)
@@ -164,6 +185,9 @@ theorem continuous_GForm :
       p.1 ⬝ᵥ (-(Matrix.J l ℂ)) *ᵥ star p.2 := continuous_fst.dotProduct h2
   exact continuous_const.mul h3
 
+/--
+@isnad1 id=continuo.2h5v.s7.0557e6fa06ae from=translated src=- shape=3dba04d2 vocab=d6d7ca6c
+-/
 theorem continuousAt_gForm {X : Type*} [TopologicalSpace X] {f g : X → ((l ⊕ l) → ℂ)} {x : X}
     (hf : ContinuousAt f x) (hg : ContinuousAt g x) :
     ContinuousAt (fun x => GForm (f x) (g x)) x := by
@@ -178,6 +202,9 @@ theorem continuousAt_gForm {X : Type*} [TopologicalSpace X] {f g : X → ((l ⊕
     (continuous_fst.dotProduct continuous_snd).continuousAt.comp (hf.prodMk h2)
   exact continuousAt_const.mul h3
 
+/--
+@isnad1 id=iff.0h3v.s5.402ea2a9f17e from=translated src=- shape=a94c4f06 vocab=0c2321a8
+-/
 theorem GForm_eq_zero_iff (X Y : (l ⊕ l) → ℂ) : GForm X Y = 0 ↔ HForm X Y = 0 := by
   rw [GForm, mul_eq_zero, neg_eq_zero]
   simp [Complex.I_ne_zero]
@@ -194,13 +221,18 @@ noncomputable abbrev discSpace (A : Matrix (l ⊕ l) (l ⊕ l) ℂ) : Submodule 
 noncomputable abbrev outSpace (A : Matrix (l ⊕ l) (l ⊕ l) ℂ) : Submodule ℂ ((l ⊕ l) → ℂ) :=
   kerAeval A (gPoly c r A)
 
+/--
+@isnad1 id=eq.0h4v.s8.13bb16f938df from=translated src=- shape=d208cf91 vocab=712ce57a
+-/
 theorem discSpace_sup_outSpace (A : Matrix (l ⊕ l) (l ⊕ l) ℂ) :
     discSpace c r A ⊔ outSpace c r A = ⊤ :=
   kerAeval_fS_sup_not (fun z => dist z c < r) A
 
 /-- **Local constancy of the signature.**  If `A₀` has no eigenvalue on the circle `|z - c| = r`
 and `G` is nondegenerate on `V_{A₀}`, the positive index of `G` on `V_A` is constant for `A`
-near `A₀`.-/
+near `A₀`.
+@isnad1 id=eventual.2h4v.s8.ca774e4cde70 from=translated src=- shape=78e10813 vocab=caf0b32b
+-/
 theorem eventually_posIndex_eq (A₀ : Matrix (l ⊕ l) (l ⊕ l) ℂ)
     (hcirc : ∀ z ∈ A₀.charpoly.roots, dist z c ≠ r)
     (hnd : ∀ v ∈ discSpace c r A₀, (∀ w ∈ discSpace c r A₀, GForm v w = 0) → v = 0) :

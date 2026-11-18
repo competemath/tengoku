@@ -40,36 +40,66 @@ def cpx (A : Matrix (l ⊕ l) (l ⊕ l) ℝ) : Matrix (l ⊕ l) (l ⊕ l) ℂ :=
 /-- The sesquilinear form `H(X, Y) = ω(X, Ȳ)`, whose imaginary part is `B`.-/
 noncomputable def HForm (X Y : (l ⊕ l) → ℂ) : ℂ := stdFormC l X (conjVec Y)
 
+/--
+@isnad1 id=eq.0h3v.s5.b6bf640e3c6c from=translated src=- shape=2aada262 vocab=5cdda095
+-/
 theorem BForm_eq_im (X Y : (l ⊕ l) → ℂ) : BForm X Y = (HForm X Y).im := rfl
 
 omit [DecidableEq l] [Fintype l] in
+/--
+@isnad1 id=eq.0h3v.s6.7cfe84fefb6a from=translated src=- shape=773efe28 vocab=a345d1c9
+-/
 theorem conjVec_add (X Y : (l ⊕ l) → ℂ) : conjVec (X + Y) = conjVec X + conjVec Y := by
   funext i; simp [conjVec]
 
 omit [DecidableEq l] [Fintype l] in
+/--
+@isnad1 id=eq.0h3v.s6.46e2fb9bc02a from=translated src=- shape=470eef84 vocab=ea275c7c
+-/
 theorem conjVec_smul (a : ℂ) (X : (l ⊕ l) → ℂ) :
     conjVec (a • X) = (starRingEnd ℂ a) • conjVec X := by
   funext i; simp [conjVec]
 
 omit [DecidableEq l] [Fintype l] in
+/--
+@isnad1 id=eq.0h1v.s6.f1ba2ac5c5f8 from=translated src=- shape=d1e59cda vocab=e930ad8c
+-/
 theorem conjVec_zero : conjVec (0 : (l ⊕ l) → ℂ) = 0 := by
   funext i; simp [conjVec]
 
+/--
+@isnad1 id=eq.0h4v.s6.69b4727b9d4e from=translated src=- shape=8d876963 vocab=2d0a8d78
+-/
 theorem HForm_add_left (X Y Z : (l ⊕ l) → ℂ) : HForm (X + Y) Z = HForm X Z + HForm Y Z := by
   simp [HForm]
 
+/--
+@isnad1 id=eq.0h4v.s6.fad15a02a6b1 from=translated src=- shape=d2474dd0 vocab=2d0a8d78
+-/
 theorem HForm_add_right (X Y Z : (l ⊕ l) → ℂ) : HForm X (Y + Z) = HForm X Y + HForm X Z := by
   simp [HForm, conjVec_add]
 
+/--
+@isnad1 id=eq.0h4v.s6.f0929c1e35bf from=translated src=- shape=68bba991 vocab=07906b1b
+-/
 theorem HForm_smul_left (a : ℂ) (X Y : (l ⊕ l) → ℂ) : HForm (a • X) Y = a * HForm X Y := by
   simp [HForm]
 
+/--
+@isnad1 id=eq.0h4v.s6.5abf98e03f8e from=translated src=- shape=4bbd5ff4 vocab=8f3623ea
+-/
 theorem HForm_smul_right (a : ℂ) (X Y : (l ⊕ l) → ℂ) :
     HForm X (a • Y) = starRingEnd ℂ a * HForm X Y := by
   simp [HForm, conjVec_smul]
 
+/--
+@isnad1 id=eq.0h2v.s5.677b3f3e3b0a from=translated src=- shape=76f978f5 vocab=d78aaaf0
+-/
 theorem HForm_zero_left (Y : (l ⊕ l) → ℂ) : HForm 0 Y = 0 := by simp [HForm]
 
+/--
+@isnad1 id=eq.0h2v.s5.06dba72a1509 from=translated src=- shape=77a89d3f vocab=d78aaaf0
+-/
 theorem HForm_zero_right (X : (l ⊕ l) → ℂ) : HForm X 0 = 0 := by simp [HForm, conjVec_zero]
 
 /-- `H` is nondegenerate: `ω` is, and conjugation is a bijection.-/
@@ -81,12 +111,18 @@ theorem eq_zero_of_forall_HForm_eq_zero {X : (l ⊕ l) → ℂ} (h : ∀ Y, HFor
 /-! ### Symplectic matrices preserve `H` -/
 
 omit [Fintype l] in
+/--
+@isnad1 id=eq.0h1v.s5.5dc5ad4b6593 from=translated src=- shape=6381a997 vocab=6a9ad87b
+-/
 theorem J_map : (Matrix.J l ℝ).map Complex.ofRealHom = Matrix.J l ℂ := by
   ext i j
   rcases i with i | i <;> rcases j with j | j <;>
     simp [Matrix.J, Matrix.one_apply, Matrix.map_apply]
   split_ifs <;> simp
 
+/--
+@isnad1 id=eq.1h2v.s8.a2c28e4a7f2b from=translated src=- shape=c481417a vocab=68071039
+-/
 theorem cpx_symplectic {A : Matrix (l ⊕ l) (l ⊕ l) ℝ} (hA : A ∈ Matrix.symplecticGroup l ℝ) :
     (cpx A)ᵀ * Matrix.J l ℂ * cpx A = Matrix.J l ℂ := by
   have h := SymplecticGroup.mem_iff'.1 hA
@@ -99,6 +135,9 @@ theorem cpx_symplectic {A : Matrix (l ⊕ l) (l ⊕ l) ℝ} (hA : A ∈ Matrix.s
   rw [ht] at h'
   exact h'
 
+/--
+@isnad1 id=eq.1h4v.s10.a63e3c1665c3 from=translated src=- shape=4302e0df vocab=7c6ea508
+-/
 theorem stdFormC_cpx {A : Matrix (l ⊕ l) (l ⊕ l) ℝ} (hA : A ∈ Matrix.symplecticGroup l ℝ)
     (X Y : (l ⊕ l) → ℂ) : stdFormC l (cpx A *ᵥ X) (cpx A *ᵥ Y) = stdFormC l X Y := by
   have hM : (cpx A)ᵀ * (-(Matrix.J l ℂ)) * cpx A = -(Matrix.J l ℂ) := by
@@ -108,6 +147,9 @@ theorem stdFormC_cpx {A : Matrix (l ⊕ l) (l ⊕ l) ℝ} (hA : A ∈ Matrix.sym
     ← Matrix.dotProduct_mulVec]
 
 omit [DecidableEq l] in
+/--
+@isnad1 id=eq.0h3v.s6.47a5d01e5e8c from=translated src=- shape=f5a229bc vocab=9f570d4c
+-/
 theorem conjVec_cpx_mulVec (A : Matrix (l ⊕ l) (l ⊕ l) ℝ) (Y : (l ⊕ l) → ℂ) :
     conjVec (cpx A *ᵥ Y) = cpx A *ᵥ conjVec Y := by
   funext i
@@ -118,7 +160,9 @@ theorem conjVec_cpx_mulVec (A : Matrix (l ⊕ l) (l ⊕ l) ℝ) (Y : (l ⊕ l) �
   rw [hmap] at h
   exact h
 
-/-- **A symplectic matrix preserves `H`.**-/
+/-- **A symplectic matrix preserves `H`.**
+@isnad1 id=eq.1h4v.s8.15fd3430eb2e from=translated src=- shape=065f91d9 vocab=71938adc
+-/
 theorem HForm_cpx {A : Matrix (l ⊕ l) (l ⊕ l) ℝ} (hA : A ∈ Matrix.symplecticGroup l ℝ)
     (X Y : (l ⊕ l) → ℂ) : HForm (cpx A *ᵥ X) (cpx A *ᵥ Y) = HForm X Y := by
   rw [HForm, conjVec_cpx_mulVec, stdFormC_cpx hA]
@@ -130,22 +174,33 @@ theorem HForm_cpx {A : Matrix (l ⊕ l) (l ⊕ l) ℝ} (hA : A ∈ Matrix.symple
 def InGen (M : Matrix (l ⊕ l) (l ⊕ l) ℂ) (μ : ℂ) (k : ℕ) (X : (l ⊕ l) → ℂ) : Prop :=
   ((M - μ • 1) ^ k) *ᵥ X = 0
 
+/--
+@isnad1 id=iff.0h4v.s6.266ae0100f29 from=translated src=- shape=1cf9a542 vocab=67275694
+-/
 theorem inGen_zero_iff {M : Matrix (l ⊕ l) (l ⊕ l) ℂ} {μ : ℂ} {X : (l ⊕ l) → ℂ} :
     InGen M μ 0 X ↔ X = 0 := by
   simp [InGen]
 
+/--
+@isnad1 id=ingen.1h5v.s7.f7c322ef27b7 from=translated src=- shape=62b4db7a vocab=1e2d1758
+-/
 theorem InGen.succ {M : Matrix (l ⊕ l) (l ⊕ l) ℂ} {μ : ℂ} {k : ℕ} {X : (l ⊕ l) → ℂ}
     (h : InGen M μ (k + 1) X) : InGen M μ k ((M - μ • 1) *ᵥ X) := by
   unfold InGen at *
   rw [Matrix.mulVec_mulVec, ← pow_succ]
   exact h
 
+/--
+@isnad1 id=eq.0h4v.s8.1aeb5b025968 from=translated src=- shape=31238e0e vocab=8b615670
+-/
 theorem mulVec_eq_smul_add (M : Matrix (l ⊕ l) (l ⊕ l) ℂ) (μ : ℂ) (X : (l ⊕ l) → ℂ) :
     M *ᵥ X = μ • X + (M - μ • 1) *ᵥ X := by
   rw [Matrix.sub_mulVec, Matrix.smul_mulVec, Matrix.one_mulVec]
   abel
 
-/-- Membership in Mathlib's maximal generalised eigenspace, in matrix terms.-/
+/-- Membership in Mathlib's maximal generalised eigenspace, in matrix terms.
+@isnad1 id=iff.0h4v.s10.530c246af936 from=translated src=- shape=e9d8d931 vocab=77886e74
+-/
 theorem mem_maxGenEigenspace_iff (M : Matrix (l ⊕ l) (l ⊕ l) ℂ) (μ : ℂ) (X : (l ⊕ l) → ℂ) :
     X ∈ Module.End.maxGenEigenspace (Matrix.toLin' M) μ ↔ ∃ k, InGen M μ k X := by
   rw [Module.End.mem_maxGenEigenspace]
@@ -161,7 +216,9 @@ theorem mem_maxGenEigenspace_iff (M : Matrix (l ⊕ l) (l ⊕ l) ℂ) (μ : ℂ)
 
 /-! ### Lemma 7.3.3 and its consequences -/
 
-/-- **Lemma 7.3.3.**  If `M` preserves `H`, then `E_μ ⊥_H E_ν` whenever `μ ν̄ ≠ 1`.-/
+/-- **Lemma 7.3.3.**  If `M` preserves `H`, then `E_μ ⊥_H E_ν` whenever `μ ν̄ ≠ 1`.
+@isnad1 id=eq.4h8v.s7.eef640cf1cec from=translated src=- shape=e56dcf01 vocab=aa394745
+-/
 theorem HForm_eq_zero_of_inGen {M : Matrix (l ⊕ l) (l ⊕ l) ℂ}
     (hM : ∀ X Y, HForm (M *ᵥ X) (M *ᵥ Y) = HForm X Y) {μ ν : ℂ}
     (hμν : μ * starRingEnd ℂ ν ≠ 1) :
@@ -193,7 +250,9 @@ theorem HForm_eq_zero_of_inGen {M : Matrix (l ⊕ l) (l ⊕ l) ℂ}
       · exact absurd (sub_eq_zero.1 h) hμν
       · exact h
 
-/-- **Corollary 7.3.4**, first half: `E_μ` is `H`-isotropic when `|μ| ≠ 1`.-/
+/-- **Corollary 7.3.4**, first half: `E_μ` is `H`-isotropic when `|μ| ≠ 1`.
+@isnad1 id=eq.4h7v.s7.56a14345a066 from=translated src=- shape=0377eb4d vocab=aa394745
+-/
 theorem HForm_eq_zero_of_inGen_self {M : Matrix (l ⊕ l) (l ⊕ l) ℂ}
     (hM : ∀ X Y, HForm (M *ᵥ X) (M *ᵥ Y) = HForm X Y) {μ : ℂ} (hμ : μ * starRingEnd ℂ μ ≠ 1)
     {k m : ℕ} {X Y : (l ⊕ l) → ℂ} (hX : InGen M μ k X) (hY : InGen M μ m Y) : HForm X Y = 0 :=

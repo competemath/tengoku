@@ -44,19 +44,31 @@ variable {m : Type*} [Fintype m] [DecidableEq m]
 noncomputable def fS (Pred : ℂ → Prop) [DecidablePred Pred] (M : Matrix m m ℂ) : ℂ[X] :=
   ((M.charpoly.roots.filter Pred).map fun z => X - C z).prod
 
+/--
+@isnad1 id=eq.0h4v.s6.94bdc97a2ae8 from=translated src=- shape=8426780e vocab=797f3ded
+-/
 theorem fPoly_eq_fS (c : ℂ) (r : ℝ) (M : Matrix m m ℂ) :
     SpectralProjector.fPoly c r M = fS (fun z => dist z c < r) M := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.4c380863fa14 from=translated src=- shape=9dabf4f9 vocab=b9589081
+-/
 theorem gPoly_eq_fS (c : ℂ) (r : ℝ) (M : Matrix m m ℂ) :
     SpectralProjector.gPoly c r M = fS (fun z => ¬dist z c < r) M := rfl
 
 variable (Pred : ℂ → Prop) [DecidablePred Pred]
 
+/--
+@isnad1 id=eq.0h3v.s6.7134daf1f403 from=translated src=- shape=d412b78c vocab=e9eb242f
+-/
 theorem fS_mul_fS_not (M : Matrix m m ℂ) : fS Pred M * fS (fun z => ¬Pred z) M = M.charpoly := by
   rw [fS, fS, ← Multiset.prod_add, ← Multiset.map_add, Multiset.filter_add_not]
   exact prod_multiset_X_sub_C_of_monic_of_roots_card_eq (charpoly_monic M)
     IsAlgClosed.card_roots_eq_natDegree
 
+/--
+@isnad1 id=iscoprim.0h3v.s5.05a1abf2fb88 from=translated src=- shape=eba97114 vocab=09037e33
+-/
 theorem isCoprime_fS_fS_not (M : Matrix m m ℂ) : IsCoprime (fS Pred M) (fS (fun z => ¬Pred z) M) := by
   classical
   rw [fS, fS, Finset.prod_multiset_map_count, Finset.prod_multiset_map_count]
@@ -69,6 +81,9 @@ theorem isCoprime_fS_fS_not (M : Matrix m m ℂ) : IsCoprime (fS Pred M) (fS (fu
 
 /-! ### Transport to the endomorphism `toLin' M` -/
 
+/--
+@isnad1 id=eq.0h3v.s11.e46b68d29373 from=translated src=- shape=ac27d33c vocab=681ef073
+-/
 theorem aeval_toLin' (M : Matrix m m ℂ) (p : ℂ[X]) :
     aeval (Matrix.toLin' M) p = Matrix.toLin' (aeval M p) := by
   induction p using Polynomial.induction_on' with
@@ -77,6 +92,9 @@ theorem aeval_toLin' (M : Matrix m m ℂ) (p : ℂ[X]) :
     rw [aeval_monomial, aeval_monomial, ← Algebra.smul_def, ← Algebra.smul_def, map_smul,
       Matrix.toLin'_pow]
 
+/--
+@isnad1 id=eq.0h2v.s11.45fcb9e40d2a from=translated src=- shape=324ebe2f vocab=d21a1553
+-/
 theorem aeval_toLin'_charpoly (M : Matrix m m ℂ) : aeval (Matrix.toLin' M) M.charpoly = 0 := by
   rw [aeval_toLin', aeval_self_charpoly, map_zero]
 
@@ -88,10 +106,16 @@ noncomputable abbrev E (M : Matrix m m ℂ) (μ : ℂ) : Submodule ℂ (m → �
 noncomputable abbrev kerAeval (M : Matrix m m ℂ) (p : ℂ[X]) : Submodule ℂ (m → ℂ) :=
   LinearMap.ker (aeval (Matrix.toLin' M) p)
 
+/--
+@isnad1 id=iff.0h4v.s8.6fd43f7d071a from=translated src=- shape=68a08714 vocab=2eddacbc
+-/
 theorem mem_kerAeval {M : Matrix m m ℂ} {p : ℂ[X]} {v : m → ℂ} :
     v ∈ kerAeval M p ↔ aeval M p *ᵥ v = 0 := by
   rw [LinearMap.mem_ker, aeval_toLin', Matrix.toLin'_apply]
 
+/--
+@isnad1 id=eq.0h3v.s11.7dc2e16f4f49 from=translated src=- shape=dd8862bc vocab=2a4e50fa
+-/
 theorem aeval_X_sub_C (M : Matrix m m ℂ) (μ : ℂ) :
     aeval (Matrix.toLin' M) (X - C μ) = Matrix.toLin' M - μ • 1 := by
   rw [map_sub, aeval_X, aeval_C, Algebra.algebraMap_eq_smul_one]
@@ -109,7 +133,9 @@ theorem eq_zero_of_aeval_coprime {M : Matrix m m ℂ} {r : ℂ[X]} {μ : ℂ} {k
     Module.End.one_apply, hr, hk, map_zero, add_zero] at h
   exact h.symm
 
-/-- `∏ (X - z)` over a multiset, with the power of `X - μ` split off.-/
+/-- `∏ (X - z)` over a multiset, with the power of `X - μ` split off.
+@isnad1 id=eq.0h2v.s8.e6adc0f22451 from=translated src=- shape=d8745ae4 vocab=28513651
+-/
 theorem prod_X_sub_C_eq_pow_mul (s : Multiset ℂ) (μ : ℂ) :
     (s.map fun z => X - C z).prod
       = (X - C μ) ^ s.count μ * ((s.filter fun z => ¬z = μ).map fun z => X - C z).prod := by
@@ -117,6 +143,9 @@ theorem prod_X_sub_C_eq_pow_mul (s : Multiset ℂ) (μ : ℂ) :
   rw [Multiset.map_add, Multiset.prod_add, Multiset.filter_eq', Multiset.map_replicate,
     Multiset.prod_replicate]
 
+/--
+@isnad1 id=iscoprim.0h3v.s7.201d89cd158b from=translated src=- shape=2015ec80 vocab=54ea8e37
+-/
 theorem isCoprime_prod_X_sub_C_filter_ne (s : Multiset ℂ) (μ : ℂ) (k : ℕ) :
     IsCoprime (((s.filter fun z => ¬z = μ).map fun z => X - C z).prod) ((X - C μ) ^ k) := by
   classical
@@ -129,7 +158,9 @@ theorem isCoprime_prod_X_sub_C_filter_ne (s : Multiset ℂ) (μ : ℂ) (k : ℕ)
   exact hz.2 h
 
 /-- **A generalised eigenvector is killed by `(M - μ)^c`, `c` the multiplicity of `μ`.**  In
-particular `E_μ = 0` when `μ` is not an eigenvalue.-/
+particular `E_μ = 0` when `μ` is not an eigenvalue.
+@isnad1 id=eq.1h4v.s11.f092eae1d994 from=translated src=- shape=30b3296b vocab=b694f0a2
+-/
 theorem pow_count_mulVec_eq_zero {M : Matrix m m ℂ} {μ : ℂ} {v : m → ℂ} (hv : v ∈ E M μ) :
     aeval (Matrix.toLin' M) ((X - C μ) ^ M.charpoly.roots.count μ) v = 0 := by
   rw [Module.End.mem_maxGenEigenspace] at hv
@@ -155,6 +186,9 @@ theorem pow_count_mulVec_eq_zero {M : Matrix m m ℂ} {μ : ℂ} {v : m → ℂ}
     rw [hk', map_zero]
   exact eq_zero_of_aeval_coprime hcop hY1 hY2
 
+/--
+@isnad1 id=le.0h5v.s7.18d63319b2d1 from=translated src=- shape=c046c674 vocab=29969b8e
+-/
 theorem E_le_kerAeval_fS {M : Matrix m m ℂ} {μ : ℂ} (hμ : Pred μ) :
     E M μ ≤ kerAeval M (fS Pred M) := by
   intro v hv
@@ -164,6 +198,9 @@ theorem E_le_kerAeval_fS {M : Matrix m m ℂ} {μ : ℂ} (hμ : Pred μ) :
   rw [LinearMap.mem_ker, fS, prod_X_sub_C_eq_pow_mul _ μ, hcount, mul_comm, map_mul,
     Module.End.mul_apply, h, map_zero]
 
+/--
+@isnad1 id=eq.1h3v.s6.6e1efa8c34f9 from=translated src=- shape=3b78c3c4 vocab=746694c4
+-/
 theorem E_eq_bot_of_not_mem_roots {M : Matrix m m ℂ} {μ : ℂ} (hμ : μ ∉ M.charpoly.roots) :
     E M μ = ⊥ := by
   rw [eq_bot_iff]
@@ -174,6 +211,9 @@ theorem E_eq_bot_of_not_mem_roots {M : Matrix m m ℂ} {μ : ℂ} (hμ : μ ∉ 
 
 /-! ### The kernel of a product of coprime factors -/
 
+/--
+@isnad1 id=le.0h4v.s8.140f4d30e902 from=translated src=- shape=cc16cf2b vocab=283a5a4a
+-/
 theorem kerAeval_prod_le_iSup (M : Matrix m m ℂ) (t : Finset ℂ) (n : ℂ → ℕ) :
     kerAeval M (∏ z ∈ t, (X - C z) ^ n z) ≤ ⨆ z ∈ t, E M z := by
   classical
@@ -203,7 +243,9 @@ theorem kerAeval_prod_le_iSup (M : Matrix m m ℂ) (t : Finset ℂ) (n : ℂ →
     · refine ih.trans (iSup₂_mono' fun w hw => ⟨w, Finset.mem_insert_of_mem hw, le_rfl⟩)
 
 /-- **The kernel of `f_Pred(M)` is the sum of the generalised eigenspaces for the eigenvalues
-satisfying `Pred`.**-/
+satisfying `Pred`.**
+@isnad1 id=eq.0h3v.s8.91785ca6faf7 from=translated src=- shape=9a024194 vocab=b40ed92d
+-/
 theorem kerAeval_fS_eq_iSup (M : Matrix m m ℂ) :
     kerAeval M (fS Pred M) = ⨆ (μ : ℂ) (_ : Pred μ), E M μ := by
   classical
@@ -216,7 +258,9 @@ theorem kerAeval_fS_eq_iSup (M : Matrix m m ℂ) :
   rw [Multiset.mem_toFinset, Multiset.mem_filter] at hz
   exact hz.2
 
-/-- The two complementary kernels span everything.-/
+/-- The two complementary kernels span everything.
+@isnad1 id=eq.0h3v.s7.5fd022ca5ddb from=translated src=- shape=1d4fbf1d vocab=daf1f172
+-/
 theorem kerAeval_fS_sup_not (M : Matrix m m ℂ) :
     kerAeval M (fS Pred M) ⊔ kerAeval M (fS (fun z => ¬Pred z) M) = ⊤ := by
   rw [kerAeval, kerAeval, sup_ker_aeval_eq_ker_aeval_mul_of_coprime _ (isCoprime_fS_fS_not Pred M),
@@ -231,7 +275,9 @@ section Symplectic
 variable {l : Type*} [DecidableEq l] [Fintype l]
 open SymplecticEigen Chapter7
 
-/-- Membership in `E_μ` in the elementary terms of `Part2/SymplecticEigen.lean`.-/
+/-- Membership in `E_μ` in the elementary terms of `Part2/SymplecticEigen.lean`.
+@isnad1 id=iff.0h4v.s7.89f9944b34e4 from=translated src=- shape=6c0ef6b6 vocab=eb281187
+-/
 theorem mem_E_iff (M : Matrix (l ⊕ l) (l ⊕ l) ℂ) (μ : ℂ) (v : (l ⊕ l) → ℂ) :
     v ∈ E M μ ↔ ∃ k, InGen M μ k v :=
   mem_maxGenEigenspace_iff M μ v
@@ -239,7 +285,9 @@ theorem mem_E_iff (M : Matrix (l ⊕ l) (l ⊕ l) ℂ) (μ : ℂ) (v : (l ⊕ l)
 variable (Pred : ℂ → Prop) [DecidablePred Pred]
 
 /-- **The two kernels are `H`-orthogonal** when `Pred` is stable under `μ ↦ 1/μ̄` on the
-eigenvalues: Lemma 7.3.3 spread over the two sums.-/
+eigenvalues: Lemma 7.3.3 spread over the two sums.
+@isnad1 id=eq.3h6v.s9.bd4b987ee107 from=translated src=- shape=ffd98de7 vocab=52af8c1f
+-/
 theorem HForm_eq_zero_of_mem_kerAeval {M : Matrix (l ⊕ l) (l ⊕ l) ℂ}
     (hM : ∀ X Y, HForm (M *ᵥ X) (M *ᵥ Y) = HForm X Y)
     (hclosed : ∀ μ ∈ M.charpoly.roots, Pred μ → Pred (starRingEnd ℂ μ)⁻¹)

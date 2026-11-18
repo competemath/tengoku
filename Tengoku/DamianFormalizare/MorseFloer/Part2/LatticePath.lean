@@ -28,7 +28,9 @@ namespace LatticePath
 
 variable {ι : Type*} [Fintype ι]
 
-/-- Every point is within distance `1` of a lattice point.-/
+/-- Every point is within distance `1` of a lattice point.
+@isnad1 id=ex.0h2v.s6.efa3c36e1431 from=translated src=- shape=6d19d061 vocab=4c410bb9
+-/
 theorem exists_lattice_near (q : ι → ℝ) : ∃ k : ι → ℤ, ‖q - fun i => (k i : ℝ)‖ ≤ 1 := by
   refine ⟨fun i => ⌊q i⌋, ?_⟩
   rw [pi_norm_le_iff_of_nonneg zero_le_one]
@@ -37,7 +39,9 @@ theorem exists_lattice_near (q : ι → ℝ) : ∃ k : ι → ℤ, ‖q - fun i 
   rw [Int.self_sub_floor, Real.norm_eq_abs, abs_of_nonneg (Int.fract_nonneg _)]
   exact (Int.fract_lt_one _).le
 
-/-- A finite set in a metric space is uniformly discrete.-/
+/-- A finite set in a metric space is uniformly discrete.
+@isnad1 id=ex.1h2v.s6.3b92dd772380 from=translated src=- shape=bce7f0e9 vocab=e887113d
+-/
 theorem exists_pos_of_finite {α : Type*} [MetricSpace α] {S : Set α} (hS : S.Finite) :
     ∃ ε : ℝ, 0 < ε ∧ ∀ a ∈ S, ∀ b ∈ S, dist a b < ε → a = b := by
   classical
@@ -63,7 +67,9 @@ theorem exists_pos_of_finite {α : Type*} [MetricSpace α] {S : Set α} (hS : S.
 
 variable {E' : Type*} [NormedAddCommGroup E']
 
-/-- **Where `F` is small, a zero is near.**-/
+/-- **Where `F` is small, a zero is near.**
+@isnad1 id=ex.3h4v.s7.4cb684510d85 from=translated src=- shape=40fee402 vocab=3787c211
+-/
 theorem exists_near_zero {F : (ι → ℝ) → E'} (hF : Continuous F)
     (hlat : ∀ (k : ι → ℤ) (q : ι → ℝ), F (q + fun i => (k i : ℝ)) = F q) {δ : ℝ} (hδ : 0 < δ) :
     ∃ δ' : ℝ, 0 < δ' ∧ ∀ q, ‖F q‖ < δ' → ∃ p, F p = 0 ∧ dist q p < δ := by
@@ -100,7 +106,9 @@ theorem exists_near_zero {F : (ι → ℝ) → E'} (hF : Continuous F)
   have := ge_of_tendsto' hlim hle
   linarith
 
-/-- **The zeros are uniformly separated.**-/
+/-- **The zeros are uniformly separated.**
+@isnad1 id=ex.2h3v.s7.29c0eae6d0ef from=translated src=- shape=dc2b1213 vocab=d84405e6
+-/
 theorem exists_separation {F : (ι → ℝ) → E'}
     (hlat : ∀ (k : ι → ℤ) (q : ι → ℝ), F (q + fun i => (k i : ℝ)) = F q)
     (hfin : ∀ K : Set (ι → ℝ), IsCompact K → (K ∩ {p | F p = 0}).Finite) :
@@ -134,7 +142,9 @@ theorem exists_separation {F : (ι → ℝ) → E'}
   have := hsep _ h1 _ h2 (by rw [hdist]; exact lt_of_lt_of_le hd' (min_le_left _ _))
   exact sub_left_injective this
 
-/-- **A path along which `F` tends to zero converges to a zero of `F`.**-/
+/-- **A path along which `F` tends to zero converges to a zero of `F`.**
+@isnad1 id=ex.5h4v.s8.8436ce056506 from=translated src=- shape=f9d4c69c vocab=6103f037
+-/
 theorem tendsto_of_tendsto_zero {F : (ι → ℝ) → E'} (hF : Continuous F)
     (hlat : ∀ (k : ι → ℤ) (q : ι → ℝ), F (q + fun i => (k i : ℝ)) = F q)
     (hfin : ∀ K : Set (ι → ℝ), IsCompact K → (K ∩ {p | F p = 0}).Finite)
