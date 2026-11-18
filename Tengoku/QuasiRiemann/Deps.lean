@@ -1,0 +1,1 @@
+-- QuasiRiemann: a factory bundle (data/intake/quasi-riemann). This file only marks the library for Tengoku/All.lean.
