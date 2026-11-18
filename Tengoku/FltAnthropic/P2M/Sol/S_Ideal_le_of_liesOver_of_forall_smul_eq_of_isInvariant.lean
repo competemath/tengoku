@@ -1,0 +1,33 @@
+import Tengoku
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_Ideal_le_of_liesOver_of_forall_smul_eq_of_isInvariant.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_Ideal_le_of_liesOver_of_forall_smul_eq_of_isInvariant
+
+set_option autoImplicit false
+
+open scoped Pointwise
+
+/--
+@isnad1 id=and.5h7v.s9.abb1cdbda78c from=translated src=- shape=7cea2754 vocab=33695af8
+-/
+theorem solution
+    {A B : Type*} [CommRing A] [CommRing B] [Algebra A B]
+    (G : Type*) [Group G] [Finite G] [MulSemiringAction G B] [SMulCommClass G A B] [Algebra.IsInvariant A B G]
+    (𝔭₀ 𝔭₁ : Ideal B) [𝔭₀.IsPrime] [𝔭₁.IsPrime]
+    (h₀ : ∀ g : G, g • 𝔭₀ = 𝔭₀) (h₁ : ∀ g : G, g • 𝔭₁ = 𝔭₁)
+    (y : Ideal A) [y.IsPrime] (hy₀ : 𝔭₀.under A ≤ y) (hy₁ : 𝔭₁.under A ≤ y)
+    (Q : Ideal B) [Q.IsPrime] (hQ : Q.under A = y) :
+    𝔭₀ ≤ Q ∧ 𝔭₁ ≤ Q := by
+  haveI : Algebra.IsIntegral A B := Algebra.IsInvariant.isIntegral A B G
+
+  have key : ∀ (𝔭 : Ideal B) [𝔭.IsPrime], (∀ g : G, g • 𝔭 = 𝔭) → 𝔭.under A ≤ y → 𝔭 ≤ Q := by
+    intro 𝔭 _ hstab hle
+    obtain ⟨Q', hQ'𝔭, hQ'prime, hQ'y⟩ := Ideal.exists_ideal_over_prime_of_isIntegral y 𝔭 hle
+    haveI := hQ'prime
+
+    obtain ⟨g, hg⟩ := Algebra.IsInvariant.exists_smul_of_under_eq A B G Q' Q (by rw [Ideal.under_def, Ideal.under_def, hQ'y, ← hQ, Ideal.under_def])
+    rw [hg, ← hstab g]
+    exact Ideal.pointwise_smul_le_pointwise_smul_iff.mpr hQ'𝔭
+  exact ⟨key 𝔭₀ h₀ hy₀, key 𝔭₁ h₁ hy₁⟩

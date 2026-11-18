@@ -1,0 +1,70 @@
+import Tengoku
+import Tengoku.FltAnthropic.Theorems.Thm_HopfOrder_comul_mem_range_sup
+import Tengoku.FltAnthropic.Theorems.Thm_HopfOrder_antipode_mem_sup
+import Tengoku.FltAnthropic.Theorems.Thm_HopfOrder_counit_mem_range_sup
+import Tengoku.FltAnthropic.Theorems.Thm_HopfOrder_finite_sup_and_span_sup_eq_top
+import Tengoku.FltAnthropic.Theorems.Thm_HopfOrder_le_integralClosure_of_finite
+import Tengoku.FltAnthropic.Theorems.Thm_HopfOrder_exists_greatest_of_sup_closed_of_le_noetherian
+import Tengoku.FltAnthropic.Theorems.Thm_HopfOrder_integralClosure_finite_of_etale
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_HopfOrder_exists_isGreatest.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_HopfOrder_exists_isGreatest
+
+set_option autoImplicit false
+
+open scoped TensorProduct
+
+/--
+@isnad1 id=ex.5h4v.s14.1fc9069cf4d0 from=translated src=- shape=06a327ae vocab=34bd3c92
+-/
+theorem solution
+    {R : Type*} [CommRing R] [IsDomain R] [IsIntegrallyClosed R] [IsNoetherianRing R]
+    {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]
+    {A : Type*} [CommRing A] [HopfAlgebra K A] [Algebra R A] [IsScalarTower R K A] [Algebra.Etale K A]
+    (S : Subalgebra R A)
+    (hfin : Module.Finite R ↥S) (hspan : Submodule.span K (S : Set A) = ⊤)
+    (hcomul : ∀ x ∈ S, Coalgebra.comul (R := K) x ∈
+        (Algebra.TensorProduct.productMap
+          (((Algebra.TensorProduct.includeLeft : A →ₐ[K] A ⊗[K] A).restrictScalars R).comp S.val)
+          (((Algebra.TensorProduct.includeRight : A →ₐ[K] A ⊗[K] A).restrictScalars R).comp S.val)).range)
+    (hanti : ∀ x ∈ S, HopfAlgebra.antipode K (A := A) x ∈ S)
+    (hcounit : ∀ x ∈ S, Coalgebra.counit (R := K) (A := A) x ∈ (algebraMap R K).range) :
+    ∃ Smax : Subalgebra R A, (Module.Finite R ↥Smax ∧ Submodule.span K (Smax : Set A) = ⊤ ∧
+        (∀ x ∈ Smax, Coalgebra.comul (R := K) x ∈
+          (Algebra.TensorProduct.productMap
+            (((Algebra.TensorProduct.includeLeft : A →ₐ[K] A ⊗[K] A).restrictScalars R).comp Smax.val)
+            (((Algebra.TensorProduct.includeRight : A →ₐ[K] A ⊗[K] A).restrictScalars R).comp Smax.val)).range) ∧
+        (∀ x ∈ Smax, HopfAlgebra.antipode K (A := A) x ∈ Smax) ∧
+        (∀ x ∈ Smax, Coalgebra.counit (R := K) (A := A) x ∈ (algebraMap R K).range)) ∧
+      ∀ T : Subalgebra R A, (Module.Finite R ↥T ∧ Submodule.span K (T : Set A) = ⊤ ∧
+        (∀ x ∈ T, Coalgebra.comul (R := K) x ∈
+          (Algebra.TensorProduct.productMap
+            (((Algebra.TensorProduct.includeLeft : A →ₐ[K] A ⊗[K] A).restrictScalars R).comp T.val)
+            (((Algebra.TensorProduct.includeRight : A →ₐ[K] A ⊗[K] A).restrictScalars R).comp T.val)).range) ∧
+        (∀ x ∈ T, HopfAlgebra.antipode K (A := A) x ∈ T) ∧
+        (∀ x ∈ T, Coalgebra.counit (R := K) (A := A) x ∈ (algebraMap R K).range)) → T ≤ Smax := by
+  haveI : Module.Finite R ↥(integralClosure R A) := HopfOrder.integralClosure_finite_of_etale (K := K)
+  obtain ⟨Smax, hPmax, hmax⟩ := HopfOrder.exists_greatest_of_sup_closed_of_le_noetherian
+    (fun T : Subalgebra R A => Module.Finite R ↥T ∧ Submodule.span K (T : Set A) = ⊤ ∧
+        (∀ x ∈ T, Coalgebra.comul (R := K) x ∈
+          (Algebra.TensorProduct.productMap
+            (((Algebra.TensorProduct.includeLeft : A →ₐ[K] A ⊗[K] A).restrictScalars R).comp T.val)
+            (((Algebra.TensorProduct.includeRight : A →ₐ[K] A ⊗[K] A).restrictScalars R).comp T.val)).range) ∧
+        (∀ x ∈ T, HopfAlgebra.antipode K (A := A) x ∈ T) ∧
+        (∀ x ∈ T, Coalgebra.counit (R := K) (A := A) x ∈ (algebraMap R K).range))
+    (fun T T' hT hT' => by
+      obtain ⟨hf, hs, hc, ha, hu⟩ := hT
+      obtain ⟨hf', hs', hc', ha', hu'⟩ := hT'
+      haveI : Module.Finite R ↥T := hf
+      haveI : Module.Finite R ↥T' := hf'
+      obtain ⟨h1, h2⟩ := HopfOrder.finite_sup_and_span_sup_eq_top (K := K) (S := T) (S' := T') hs
+      exact ⟨h1, h2, HopfOrder.comul_mem_range_sup hc hc', HopfOrder.antipode_mem_sup ha ha',
+        HopfOrder.counit_mem_range_sup hu hu'⟩)
+    (integralClosure R A)
+    (fun T hT => by
+      haveI : Module.Finite R ↥T := hT.1
+      exact HopfOrder.le_integralClosure_of_finite T)
+    ⟨S, hfin, hspan, hcomul, hanti, hcounit⟩
+  exact ⟨Smax, hPmax, hmax⟩
