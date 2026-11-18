@@ -1,0 +1,22 @@
+import Tengoku
+import Tengoku.FltAnthropic.P2M.Sol.S_BostonLenstraRibet_exists_embedding_of_irreducible_of_odd
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `Theorems/Thm_BostonLenstraRibet_exists_embedding_of_irreducible_of_odd.lean`: wrote out 1 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_exact_reverting`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+
+/--
+@isnad1 id=ex.7h6v.s12.261a74077a8a from=translated src=- shape=edc4b7e7 vocab=11041bca
+-/
+theorem BostonLenstraRibet.exists_embedding_of_irreducible_of_odd {k : Type*} [Field k] {G : Type*} [Group G]
+    {V : Type*} [AddCommGroup V] [Module k V]
+    {ρV : Representation k G V} {ρ : G → Matrix (Fin 2) (Fin 2) k}
+    (hρ : ∀ σ τ : G, ρ (σ * τ) = ρ σ * ρ τ)
+    (hCH : ∀ σ : G, ρV σ * ρV σ - (ρ σ).trace • ρV σ
+      + (ρ σ).det • (1 : Module.End k V) = 0)
+    (hirr : ∀ W : Submodule k (Fin 2 → k),
+      (∀ g, ∀ v ∈ W, (ρ g).mulVec v ∈ W) → W = ⊥ ∨ W = ⊤)
+    {c : G} (hc2 : ρ c * ρ c = 1) (hcdet : (ρ c).det = -1) (h2 : (2 : k) ≠ 0)
+    (hV : ∃ v : V, v ≠ 0) :
+    ∃ φ : (Fin 2 → k) →ₗ[k] V, Function.Injective φ ∧
+      ∀ (σ : G) (v : Fin 2 → k), φ ((ρ σ).mulVec v) = ρV σ (φ v) := by exact @_root_.P2MW.S_BostonLenstraRibet_exists_embedding_of_irreducible_of_odd.solution k _ G _ V _ _ ρV ρ hρ hCH hirr c hc2 hcdet h2 hV

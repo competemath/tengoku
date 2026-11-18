@@ -1,0 +1,98 @@
+import Tengoku.Seed.NumberTheory.ModularForms.QExpansion
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_ModularCurve_qParam_coeff_unique.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_ModularCurve_qParam_coeff_unique
+
+set_option autoImplicit false
+
+noncomputable section
+
+open UpperHalfPlane Complex Filter Topology Function
+open scoped MatrixGroups ModularForm
+
+local notation "𝕢" => Function.Periodic.qParam
+
+namespace ModularCurve
+
+namespace Realized
+
+variable {h : ℝ} {F : ℍ → ℂ} {c : ℕ → ℂ}
+
+/--
+@isnad1 id=hassum.4h4v.s7.90b7e2ce5768 from=translated src=- shape=d171886d vocab=fa8ece86
+-/
+lemma hasSum_cuspFunction_punctured (hh : 0 < h)
+    (hF : ∀ τ : ℍ, HasSum (fun m : ℕ => c m * 𝕢 h (τ : ℂ) ^ m) (F τ)) {q : ℂ} (hq : ‖q‖ < 1)
+    (hq1 : q ≠ 0) : HasSum (fun m : ℕ => c m * q ^ m) (cuspFunction h F q) := by
+  have h1 := Periodic.im_invQParam_pos_of_norm_lt_one hh hq hq1
+  let τ : ℍ := ⟨Periodic.invQParam h q, h1⟩
+  have h2 := Periodic.cuspFunction_eq_of_nonzero h (F ∘ ofComplex) hq1
+  have h3 : cuspFunction h F q = F τ := by
+    simpa [τ, cuspFunction, UpperHalfPlane.ofComplex_apply_of_im_pos h1] using h2
+  have h4 : 𝕢 h (τ : ℂ) = q := Periodic.qParam_right_inv hh.ne' hq1
+  rw [h3, ← h4]
+  exact hF τ
+
+/--
+@isnad1 id=hasfpowe.2h3v.s7.6136bf69597d from=translated src=- shape=5ab8b080 vocab=5554f41f
+-/
+lemma hasFPowerSeriesOnBall_update (hh : 0 < h)
+    (hF : ∀ τ : ℍ, HasSum (fun m : ℕ => c m * 𝕢 h (τ : ℂ) ^ m) (F τ)) :
+    HasFPowerSeriesOnBall (update (cuspFunction h F) 0 (c 0)) (.ofScalars ℂ c) 0 1 := by
+  constructor
+  · refine le_of_forall_lt_imp_le_of_dense fun r hr ↦ ?_
+    rcases eq_or_ne r 0 with rfl | hr'
+    · simp
+    · lift r to NNReal using hr.ne_top
+      letI : FiniteDimensional ℝ ℂ := basisOneI.finiteDimensional_of_finite
+      apply FormalMultilinearSeries.le_radius_of_summable
+      simpa [norm_mul, mul_comm] using
+        (hasSum_cuspFunction_punctured hh hF (q := r) (by simpa using hr)
+          (mod_cast hr')).summable.norm
+  · simp
+  · intro y hy
+    rw [zero_add]
+    rw [← ENNReal.coe_one, Metric.eball_coe, NNReal.coe_one, mem_ball_zero_iff] at hy
+    rcases eq_or_ne y 0 with rfl | hy'
+    · simpa +contextual [zero_pow_eq] using hasSum_ite_eq 0 (c 0)
+    · simpa [update_of_ne hy', mul_comm] using hasSum_cuspFunction_punctured hh hF hy hy'
+
+def discFun (h : ℝ) (F : ℍ → ℂ) (c : ℕ → ℂ) : ℂ → ℂ := update (cuspFunction h F) 0 (c 0)
+
+/--
+@isnad1 id=eq.3h4v.s7.5ad8f3f83046 from=translated src=- shape=ef755aab vocab=a32911fb
+-/
+theorem coeff_unique {d : ℕ → ℂ} (hh : 0 < h)
+    (hF : ∀ τ : ℍ, HasSum (fun m : ℕ => c m * 𝕢 h (τ : ℂ) ^ m) (F τ))
+    (hF' : ∀ τ : ℍ, HasSum (fun m : ℕ => d m * 𝕢 h (τ : ℂ) ^ m) (F τ)) : c = d := by
+  have hc := hasFPowerSeriesOnBall_update hh hF
+  have hd := hasFPowerSeriesOnBall_update hh hF'
+
+  have hlim : ∀ {e : ℕ → ℂ}, HasFPowerSeriesOnBall (update (cuspFunction h F) 0 (e 0)) (.ofScalars ℂ e) 0 1 →
+      Tendsto (cuspFunction h F) (𝓝[≠] 0) (𝓝 (e 0)) := by
+    intro e he
+    have h1 : Tendsto (update (cuspFunction h F) 0 (e 0)) (𝓝[≠] 0) (𝓝 (e 0)) := by
+      have := he.hasFPowerSeriesAt.continuousAt.tendsto
+      rw [update_self] at this
+      exact this.mono_left nhdsWithin_le_nhds
+    refine h1.congr' ?_
+    filter_upwards [self_mem_nhdsWithin] with z hz using update_of_ne hz ..
+  have h0 : c 0 = d 0 := tendsto_nhds_unique (hlim hc) (hlim hd)
+  have hd' : HasFPowerSeriesOnBall (update (cuspFunction h F) 0 (c 0)) (.ofScalars ℂ d) 0 1 := h0 ▸ hd
+  have heq := hc.hasFPowerSeriesAt.eq_formalMultilinearSeries hd'.hasFPowerSeriesAt
+  funext m
+  simpa using congr_arg (FormalMultilinearSeries.coeff · m) heq
+
+end Realized
+
+end ModularCurve
+
+/--
+@isnad1 id=eq.3h4v.s7.1ac9df41babd from=translated src=- shape=208aec71 vocab=a32911fb
+-/
+theorem solution (h : ℝ) (hh : 0 < h) (F : UpperHalfPlane → ℂ) (c d : ℕ → ℂ) (hc : ∀ τ : UpperHalfPlane, HasSum (fun m : ℕ => c m * Function.Periodic.qParam h (τ : ℂ) ^ m) (F τ)) (hd : ∀ τ : UpperHalfPlane, HasSum (fun m : ℕ => d m * Function.Periodic.qParam h (τ : ℂ) ^ m) (F τ)) : c = d :=
+  ModularCurve.Realized.coeff_unique hh hc hd
+
+end

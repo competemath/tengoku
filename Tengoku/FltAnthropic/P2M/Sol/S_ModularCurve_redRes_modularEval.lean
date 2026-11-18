@@ -1,0 +1,148 @@
+import Tengoku
+import Tengoku.FltAnthropic.Definitions.Def_ModularCurve_NodeLocalized
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_ModularCurve_redRes_modularEval.lean`: wrote out 6 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_export`, 3 `p2m_open`, 2 `p2m_reactivate`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_ModularCurve_redRes_modularEval
+
+set_option autoImplicit false
+
+open _root_.ModularCurve open _root_.ModularCurve.NodeLocalized open _root_.ModularCurve.CharPReduction
+
+namespace ModularCurve
+export _root_.ModularCurve (NodeLocalized.modularEval CharPReduction.redRes CharPReduction.modularRing CharPReduction.modularRing_le_integralCoeffs algebraMap_laurentSeries_eq_single jqModC jqNModC jqModC_eq_map_intCast qExpand_coeff_mul qExpand_coeff_of_not_dvd)
+open _root_.ModularCurve
+namespace RedEval
+open _root_.ModularCurve.CharPReduction
+
+section Eval
+variable (N : ℕ) [NeZero N] {L : Type*} [Field L] (A : Subring L) {k : Type*} [Field k] (red : A →+* k)
+
+/--
+@isnad1 id=mem.0h4v.s9.8e9f698d72e7 from=translated src=- shape=ba2b260e vocab=e29b4d9b
+-/
+theorem modularEval_mem_modularRing (p : MvPolynomial (Fin 2) A) :
+    modularEval N A p ∈ modularRing N A := by
+  induction p using MvPolynomial.induction_on with
+  | C c =>
+    rw [modularEval, MvPolynomial.eval₂Hom_C]
+    exact constSeries_mem_modularRing N A c
+  | add p q hp hq => rw [map_add]; exact add_mem hp hq
+  | mul_X p i hp =>
+    rw [map_mul]
+    refine mul_mem hp ?_
+    rw [modularEval, MvPolynomial.eval₂Hom_X']
+    fin_cases i
+    · exact jqModC_mem_modularRing N A
+    · exact jqNModC_mem_modularRing N A
+
+noncomputable def modularEvalRing : MvPolynomial (Fin 2) A →+* modularRing N A :=
+  (modularEval N A).codRestrict _ (modularEval_mem_modularRing N A)
+
+/--
+@isnad1 id=eq.0h4v.s11.69502621c10f from=translated src=- shape=f021d56a vocab=4a06503b
+-/
+@[scoped simp] theorem coe_modularEvalRing (p : MvPolynomial (Fin 2) A) :
+    (modularEvalRing N A p : LaurentSeries L) = modularEval N A p := rfl
+
+noncomputable def modularEvalRed : MvPolynomial (Fin 2) A →+* LaurentSeries k :=
+  MvPolynomial.eval₂Hom ((algebraMap k (LaurentSeries k)).comp red) ![jqModC k, jqNModC k N]
+
+/--
+@isnad1 id=eq.2h6v.s10.7ef3db75a6b8 from=translated src=- shape=7118c6c9 vocab=311ceadd
+-/
+theorem red_mk_eq {x : L} (hx : x ∈ A) (y : A) (h : x = (y : L)) : red ⟨x, hx⟩ = red y := by
+  subst h; rfl
+
+/--
+@isnad1 id=eq.0h5v.s11.4ead57a475e8 from=translated src=- shape=bb81f64c vocab=87965206
+-/
+theorem coeffRed_constSeries (c : A) :
+    coeffRed A red ⟨constSeries A c, constSeries_mem_integralCoeffs A c⟩ = algebraMap k (LaurentSeries k) (red c) := by
+  have hc : ∀ n : ℤ, (constSeries A c).coeff n = if n = 0 then (c : L) else 0 := fun n => by
+    show ((algebraMap L (LaurentSeries L)) (c : L)).coeff n = _
+    rw [algebraMap_laurentSeries_eq_single, HahnSeries.coeff_single]
+    split_ifs <;> rfl
+  ext n
+  rw [coeffRed_coeff, algebraMap_laurentSeries_eq_single, HahnSeries.coeff_single]
+  by_cases h : n = 0
+  · subst h
+    rw [ite_eq_left rfl]
+    exact red_mk_eq A red _ c (by rw [show (↑(⟨constSeries A c, constSeries_mem_integralCoeffs A c⟩ : integralCoeffs A) : LaurentSeries L) = constSeries A c from rfl, hc, ite_eq_left rfl])
+  · rw [ite_eq_right h]
+    rw [red_mk_eq A red _ 0 (by rw [show (↑(⟨constSeries A c, constSeries_mem_integralCoeffs A c⟩ : integralCoeffs A) : LaurentSeries L) = constSeries A c from rfl, hc, ite_eq_right h, ZeroMemClass.coe_zero])]
+    exact map_zero red
+
+/--
+@isnad1 id=eq.0h4v.s10.3b818e7cc7e9 from=translated src=- shape=52f0202e vocab=266a10d8
+-/
+theorem coeffRed_jqModC :
+    coeffRed A red ⟨jqModC L, jqModC_mem_integralCoeffs A⟩ = jqModC k := by
+  ext n
+  rw [coeffRed_coeff]
+  rw [red_mk_eq A red _ (((jqModC ℤ).coeff n : ℤ) : A) (by
+      show (jqModC L).coeff n = (((((jqModC ℤ).coeff n : ℤ) : A)) : L)
+      rw [jqModC_eq_map_intCast (K := L), HahnSeries.map_coeff]; simp)]
+  rw [map_intCast, jqModC_eq_map_intCast (K := k), HahnSeries.map_coeff]
+  simp
+
+/--
+@isnad1 id=eq.0h5v.s10.0ab161bfbce7 from=translated src=- shape=70c79e90 vocab=6f0ca92e
+-/
+theorem coeffRed_jqNModC :
+    coeffRed A red ⟨jqNModC L N, jqNModC_mem_integralCoeffs N A⟩ = jqNModC k N := by
+  ext n
+  rw [coeffRed_coeff]
+  by_cases h : (N : ℤ) ∣ n
+  · obtain ⟨m, rfl⟩ := h
+    rw [red_mk_eq A red _ (((jqModC ℤ).coeff m : ℤ) : A) (by
+        show (jqNModC L N).coeff (N * m) = (((((jqModC ℤ).coeff m : ℤ) : A)) : L)
+        rw [jqNModC, qExpand_coeff_mul, jqModC_eq_map_intCast (K := L), HahnSeries.map_coeff]; simp)]
+    rw [map_intCast, jqNModC, qExpand_coeff_mul, jqModC_eq_map_intCast (K := k), HahnSeries.map_coeff]
+    simp
+  · rw [red_mk_eq A red _ 0 (by
+        show (jqNModC L N).coeff n = ((0 : A) : L)
+        rw [jqNModC, qExpand_coeff_of_not_dvd _ _ h, ZeroMemClass.coe_zero])]
+    rw [map_zero, jqNModC, qExpand_coeff_of_not_dvd _ _ h]
+
+/--
+@isnad1 id=eq.0h6v.s12.483ff18c227d from=translated src=- shape=cd1a6af7 vocab=87e0e62a
+-/
+theorem redRes_modularEvalRing (p : MvPolynomial (Fin 2) A) :
+    redRes A red (modularRing N A) (modularRing_le_integralCoeffs N A) (modularEvalRing N A p)
+      = modularEvalRed N A red p := by
+  have key : (redRes A red (modularRing N A) (modularRing_le_integralCoeffs N A)).comp (modularEvalRing N A)
+      = modularEvalRed N A red := by
+    refine MvPolynomial.ringHom_ext (fun c => ?_) (fun i => ?_)
+    · rw [RingHom.comp_apply, redRes_apply, modularEvalRed, MvPolynomial.eval₂Hom_C, RingHom.comp_apply,
+        ← coeffRed_constSeries A red c]
+      exact congrArg _ (Subtype.ext (by rw [coe_modularEvalRing, modularEval, MvPolynomial.eval₂Hom_C]))
+    · rw [RingHom.comp_apply, redRes_apply, modularEvalRed, MvPolynomial.eval₂Hom_X']
+      fin_cases i
+      · rw [← coeffRed_jqModC A red (L := L)]
+        exact congrArg _ (Subtype.ext (by rw [coe_modularEvalRing, modularEval, MvPolynomial.eval₂Hom_X']; rfl))
+      · rw [← coeffRed_jqNModC N A red (L := L)]
+        exact congrArg _ (Subtype.ext (by rw [coe_modularEvalRing, modularEval, MvPolynomial.eval₂Hom_X']; rfl))
+  exact RingHom.congr_fun key p
+
+end Eval
+end RedEval
+open scoped _root_.P2MW.S_ModularCurve_redRes_modularEval.ModularCurve.RedEval
+end ModularCurve
+open scoped _root_.P2MW.S_ModularCurve_redRes_modularEval.ModularCurve.RedEval _root_.P2MW.S_ModularCurve_redRes_modularEval.ModularCurve
+
+/--
+@isnad1 id=eq.1h6v.s12.c3c66d200f39 from=translated src=- shape=e6e7430b vocab=3aafa292
+-/
+theorem solution (N : ℕ) [NeZero N] {L : Type*} [Field L] (A : Subring L)
+    {k : Type*} [Field k] (red : A →+* k) (p : MvPolynomial (Fin 2) A)
+    (hp : NodeLocalized.modularEval N A p ∈ CharPReduction.modularRing N A) :
+    CharPReduction.redRes A red (CharPReduction.modularRing N A) (CharPReduction.modularRing_le_integralCoeffs N A)
+        ⟨NodeLocalized.modularEval N A p, hp⟩
+      = MvPolynomial.eval₂Hom ((algebraMap k (LaurentSeries k)).comp red) ![jqModC k, jqNModC k N] p := by
+  have h := ModularCurve.RedEval.redRes_modularEvalRing N A red p
+  have e : (⟨NodeLocalized.modularEval N A p, hp⟩ : ↥(CharPReduction.modularRing N A)) = ModularCurve.RedEval.modularEvalRing N A p :=
+    Subtype.ext rfl
+  rw [e, h]
+  rfl
