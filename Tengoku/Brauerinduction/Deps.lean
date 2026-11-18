@@ -1,0 +1,1 @@
+-- Brauerinduction: a factory bundle (data/intake/brauerinduction). This file only marks the library for Tengoku/All.lean.

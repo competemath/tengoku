@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "7bc71c42da10301022ae1cc84dd4d6ccb706cc3b143b65461e71abc7fb9eec57",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "brauerinduction",
+ "lint_mode": "proposed",
+ "modules": 73,
+ "part": 1,
+ "theorems": 517
+}
