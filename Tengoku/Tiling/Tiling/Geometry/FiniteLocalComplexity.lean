@@ -16,6 +16,9 @@ open scoped Pointwise
 
 namespace Tiling.Polygonal
 
+/--
+@isnad1 id=finite.2h3v.s6.ea2419e82eb3 from=translated src=- shape=dbb5c058 vocab=d4dab536
+-/
 theorem locallyFinite_of_finite_differences
     {V : Type*} [NormedAddCommGroup V] {T : Set V}
     (hT : ∀ B : Set V, IsBounded B → ((T - T) ∩ B).Finite) (B : Set V) (hB : IsBounded B) :
@@ -33,6 +36,9 @@ theorem locallyFinite_of_finite_differences
   · rw [Set.not_nonempty_iff_eq_empty.mp hnonempty, Set.empty_inter]
     exact Set.finite_empty
 
+/--
+@isnad1 id=iff.0h2v.s5.eedc9c9e1a2a from=translated src=- shape=548fe74f vocab=e0da8a96
+-/
 theorem hasFLC_iff_finite_differences_on_bounded
     {V : Type*} [NormedAddCommGroup V] {T : Set V} :
     HasFLC T ↔ ∀ B : Set V, IsBounded B → ((T - T) ∩ B).Finite := by

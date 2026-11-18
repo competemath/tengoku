@@ -47,14 +47,23 @@ def vertexAccepted (input : TableInput) (p : PointLabel) : Bool :=
 def vertexLabels (input : TableInput) : List PointLabel :=
   (pairs (2 * input.1)).filter (vertexAccepted input)
 
+/--
+@isnad1 id=iff.0h2v.s6.c3195735b19e from=translated src=- shape=7ed32966 vocab=56229d10
+-/
 theorem mem_vertexLabels {input : TableInput} {p : PointLabel} :
     p ∈ vertexLabels input ↔
       p.1 < 2 * input.1 ∧ p.2 < 2 * input.1 ∧ vertexAccepted input p = true := by
   simp [vertexLabels, mem_pairs, and_assoc]
 
+/--
+@isnad1 id=nodup.0h1v.s2.5ec4191b3078 from=translated src=- shape=1a6c1393 vocab=6a8d8597
+-/
 theorem vertexLabels_nodup (input : TableInput) : (vertexLabels input).Nodup :=
   (pairs_nodup (2 * input.1)).filter (vertexAccepted input)
 
+/--
+@isnad1 id=primrec.7h8v.s6.36ae3279eeac from=translated src=- shape=b3d33b6d vocab=f767055c
+-/
 theorem sideCovered_comp {α : Type*} [Primcodable α]
     {n : α → ℕ} {h : α → List Bool} {v neg : α → Bool} {a b i : α → ℕ}
     (hn : Primrec n) (hh : Primrec h) (hv : Primrec v) (hneg : Primrec neg)
@@ -66,6 +75,9 @@ theorem sideCovered_comp {α : Type*} [Primcodable α]
     ((Primrec.dom_bool₂ Bool.and).comp
       (compare_comp hn hh hv ha hi) (strictLevel_comp hn hh hv hi hb))
 
+/--
+@isnad1 id=primrec.0h0v.s7.f71fdb920335 from=translated src=- shape=4e66ff14 vocab=0e4db3cc
+-/
 theorem quadrantRectangle_primrec :
     Primrec (fun x : (TableInput × PointLabel × Bool × Bool) × ℕ =>
       quadrantRectangle x.1.1 x.1.2.1 x.1.2.2.1 x.1.2.2.2 x.2) := by
@@ -88,6 +100,9 @@ theorem quadrantRectangle_primrec :
     (sideCovered_comp hn hh (Primrec.const false) hw ha hb (Primrec.fst.comp hp))
     (sideCovered_comp hn hh (Primrec.const true) hs ha hb (Primrec.snd.comp hp))
 
+/--
+@isnad1 id=primrec.4h5v.s6.94796bc54e9e from=translated src=- shape=b6b5e359 vocab=a80950ff
+-/
 theorem quadrantOccupiedBool_comp {α : Type*} [Primcodable α]
     {input : α → TableInput} {p : α → PointLabel} {west south : α → Bool}
     (hi : Primrec input) (hp : Primrec p) (hw : Primrec west) (hs : Primrec south) :
@@ -97,6 +112,9 @@ theorem quadrantOccupiedBool_comp {α : Type*} [Primcodable α]
       (((hi.comp Primrec.fst).pair ((hp.comp Primrec.fst).pair
         ((hw.comp Primrec.fst).pair (hs.comp Primrec.fst)))).pair Primrec.snd))
 
+/--
+@isnad1 id=primrec.0h0v.s4.71803b9ace86 from=translated src=- shape=93eefbde vocab=afd4f0c1
+-/
 theorem vertexFlag_primrec : Primrec₂ vertexFlag := by
   have hq (w s : Bool) :
       Primrec (fun x : TableInput × PointLabel => quadrantOccupiedBool x.1 x.2 w s) :=
@@ -109,6 +127,9 @@ theorem vertexFlag_primrec : Primrec₂ vertexFlag := by
       ((Primrec.dom_bool₂ Bool.xor).comp (hq true false) (hq false false))
       ((Primrec.dom_bool₂ Bool.xor).comp (hq true true) (hq false true)))
 
+/--
+@isnad1 id=primrec.0h0v.s4.8263882e316d from=translated src=- shape=93eefbde vocab=41224fc7
+-/
 theorem vertexAccepted_primrec : Primrec₂ vertexAccepted := by
   have hn : Primrec (fun x : TableInput × PointLabel => 2 * x.1.1) :=
     Primrec.nat_mul.comp (Primrec.const 2) (Primrec.fst.comp Primrec.fst)

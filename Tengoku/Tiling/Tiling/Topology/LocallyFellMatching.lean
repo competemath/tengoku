@@ -15,6 +15,9 @@ noncomputable section
 
 namespace Tiling.Topology
 
+/--
+@isnad1 id=eventual.3h4v.s6.48c7a8d29e4a from=translated src=- shape=a6ef7c3e vocab=9b5d3dda
+-/
 theorem locallyFellConverges_eventually_exists_mem_ball
     {A : ℕ → Set Plane} {L : Set Plane} (hconv : LocallyFellConverges A L)
     {x : Plane} (hx : x ∈ L) {ε : ℝ} (hε : 0 < ε) :
@@ -38,6 +41,9 @@ theorem locallyFellConverges_eventually_exists_mem_ball
   refine ⟨y, ?_, Metric.mem_ball.mp hy⟩
   simpa [fellCompactification] using hwQ
 
+/--
+@isnad1 id=eventual.3h3v.s7.9286551ab6f6 from=translated src=- shape=2c07a7f4 vocab=8ceac261
+-/
 theorem locallyFellConverges_eventually_disjoint_compact
     {A : ℕ → Set Plane} {L C : Set Plane} (hconv : LocallyFellConverges A L)
     (hC : IsCompact C) (hLC : Disjoint L C) :
@@ -67,6 +73,9 @@ theorem locallyFellConverges_eventually_disjoint_compact
     simp [fellCompactification, hxA]
   exact hn hxQ ⟨x, hxC, rfl⟩
 
+/--
+@isnad1 id=iff.0h2v.s7.205659e31a87 from=translated src=- shape=41432291 vocab=e262d898
+-/
 theorem locallyFell_iff_hit_miss (S : ℕ → Set Plane) (L : Set Plane) :
     LocallyFellConverges S L ↔
       (∀ n, IsClosed (S n)) ∧ IsClosed L ∧
@@ -145,6 +154,9 @@ theorem locallyFell_iff_hit_miss (S : ℕ → Set Plane) (L : Set Plane) :
     apply hBN
     exact ⟨hsubset, hhits⟩
 
+/--
+@isnad1 id=mem.3h4v.s6.386b7fa23480 from=translated src=- shape=e25104ec vocab=30813569
+-/
 theorem mem_of_locallyFellConverges_of_tendsto_mem
     {A : ℕ → Set Plane} {L : Set Plane} (hconv : LocallyFellConverges A L)
     {zseq : ℕ → Plane} {z : Plane} (hzmem : ∀ n, zseq n ∈ A n)
@@ -187,6 +199,9 @@ private theorem isDiscrete_of_uniformlySeparated
   · rintro (rfl : y = x)
     exact ⟨Metric.mem_ball_self hδ, hx⟩
 
+/--
+@isnad1 id=iff.5h3v.s8.b9be6c59c4bd from=translated src=- shape=7f6e2bba vocab=6a6939bf
+-/
 theorem locallyFell_matchingPoints
     {δ : ℝ} (hδ : 0 < δ) {S : ℕ → Set Plane} {L : Set Plane}
     (hclosedS : ∀ n, IsClosed (S n)) (hclosedL : IsClosed L)
@@ -359,6 +374,9 @@ theorem locallyFell_matchingPoints
     apply hBN
     exact ⟨hnsubset, hnhit⟩
 
+/--
+@isnad1 id=ex.3h2v.s7.a7534ade3ad7 from=translated src=- shape=b42e3a1d vocab=66a16855
+-/
 theorem exists_locallyFellConvergent_subsequence
     (δ : ℝ) (hδ : 0 < δ) (S : ℕ → Set Plane)
     (hclosed : ∀ n, IsClosed (S n))
@@ -469,6 +487,9 @@ theorem exists_locallyFellConvergent_subsequence
   change Filter.Tendsto (Kseq ∘ phi) Filter.atTop (nhds K)
   exact hlim
 
+/--
+@isnad1 id=locallyf.2h4v.s6.c30469bf9c99 from=translated src=- shape=518f8893 vocab=4adc17bc
+-/
 theorem locallyFell_translate
     {S : ℕ → Set Plane} {L : Set Plane} (hconv : LocallyFellConverges S L)
     {g : ℕ → Plane} {u : Plane} (hg : Tendsto g atTop (𝓝 u)) :
@@ -587,6 +608,9 @@ private theorem locallyFell_linearImage_forward
     rcases hzImage with ⟨y, hyS, rfl⟩
     exact Set.disjoint_left.mp havoid hyS hzC
 
+/--
+@isnad1 id=iff.0h3v.s9.31285a17d044 from=translated src=- shape=a90ef9ce vocab=7ffa3997
+-/
 theorem locallyFell_linearImage_iff (A : Plane ≃L[ℝ] Plane)
     (S : ℕ → Set Plane) (L : Set Plane) :
     LocallyFellConverges (fun n => A '' S n) (A '' L) ↔
@@ -598,6 +622,9 @@ theorem locallyFell_linearImage_iff (A : Plane ≃L[ℝ] Plane)
     simpa [Function.comp_def, Set.image_image] using hback
   · exact locallyFell_linearImage_forward A S L
 
+/--
+@isnad1 id=hasflc.2h3v.s5.707d7bcdd522 from=translated src=- shape=adb8b64c vocab=0e46588c
+-/
 theorem _root_.Tiling.Polygonal.HasFLC.locallyFell_limit_of_translates
     {S L : Set Plane} {u : ℕ → Plane} (hS : Tiling.Polygonal.HasFLC S)
     (hconv : LocallyFellConverges (fun n => u n +ᵥ S) L) :

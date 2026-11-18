@@ -17,7 +17,9 @@ noncomputable section
 
 namespace Tiling.AxisParallel.Topology
 
-/-- A point of a local Fell limit is eventually approximated in every positive ball.-/
+/-- A point of a local Fell limit is eventually approximated in every positive ball.
+@isnad1 id=eventual.3h4v.s6.183e7d2f6315 from=translated src=- shape=a6ef7c3e vocab=99e02653
+-/
 theorem locallyFellConverges_eventually_exists_mem_ball
     {A : ℕ → Set Tiling.Plane} {L : Set Tiling.Plane}
     (hconv : Tiling.AxisParallel.Topology.LocallyFellConverges A L)
@@ -45,7 +47,9 @@ theorem locallyFellConverges_eventually_exists_mem_ball
     Tiling.Topology.fellCompactification] using hwQ
 
 /-- A compact set disjoint from a local Fell limit is eventually disjoint from the converging
-sequence.-/
+sequence.
+@isnad1 id=eventual.3h3v.s7.09a5b4386a3e from=translated src=- shape=2c07a7f4 vocab=3067a331
+-/
 theorem locallyFellConverges_eventually_disjoint_compact
     {A : ℕ → Set Tiling.Plane} {L C : Set Tiling.Plane}
     (hconv : Tiling.AxisParallel.Topology.LocallyFellConverges A L)
@@ -79,7 +83,9 @@ theorem locallyFellConverges_eventually_disjoint_compact
   exact hn hxQ ⟨x, hxC, rfl⟩
 
 /-- A convergent sequence of marked points in locally Fell-convergent closed sets has its limit
-in the limiting closed set.-/
+in the limiting closed set.
+@isnad1 id=mem.3h4v.s6.e5eadbb639d8 from=translated src=- shape=e25104ec vocab=a5914b9c
+-/
 theorem mem_of_locallyFellConverges_of_tendsto_mem
     {A : ℕ → Set Tiling.Plane} {L : Set Tiling.Plane}
     (hconv : Tiling.AxisParallel.Topology.LocallyFellConverges A L)
@@ -105,7 +111,9 @@ theorem mem_of_locallyFellConverges_of_tendsto_mem
   obtain ⟨n, hn, hzn⟩ := (hdisjoint.and hzC).exists
   exact Set.disjoint_left.1 hn (hzmem n) hzn
 
-/-- Positive uniform separation makes a Plane set discrete.-/
+/-- Positive uniform separation makes a Plane set discrete.
+@isnad1 id=isdiscre.2h2v.s5.b73ae31d1fed from=translated src=- shape=a26346dd vocab=5312f2d1
+-/
 theorem isDiscrete_of_uniformlySeparated
     {delta : ℝ} (hdelta : 0 < delta) {S : Set Tiling.Plane}
     (hS : Tiling.AxisParallel.Topology.IsUniformlySeparated delta S) :
@@ -126,7 +134,9 @@ theorem isDiscrete_of_uniformlySeparated
     exact ⟨Metric.mem_ball_self hdelta, hx⟩
 
 /-- On uniformly separated closed sets, local Fell convergence is equivalent to eventual unique
-matching in every compact window.-/
+matching in every compact window.
+@isnad1 id=iff.5h3v.s8.17125e0e66fa from=translated src=- shape=7f6e2bba vocab=2daa6124
+-/
 theorem locallyFell_matchingPoints
     {delta : ℝ} (hdelta : 0 < delta)
     {S : ℕ → Set Tiling.Plane} {L : Set Tiling.Plane}

@@ -54,6 +54,9 @@ def IsInvariantAlong (D : Set Plane) (δ : Submodule ℝ Plane) : Prop :=
 def RelativeDense (S : Set Plane) : Prop :=
   ∃ ρ : ℝ, 0 < ρ ∧ ∀ z : Plane, ∃ s ∈ S, dist z s < ρ
 
+/--
+@isnad1 id=iff.1h2v.s5.91c7bf8ff8fd from=translated src=- shape=82ccce5d vocab=732acb1d
+-/
 theorem hasPatchFLC_iff_hasFLC
     {E : Type*} [NormedAddCommGroup E] [ProperSpace E] {S : Set E}
     (hlocal : ∀ Q : Set E, Bornology.IsBounded Q → (S ∩ Q).Finite) :
@@ -92,6 +95,9 @@ theorem hasPatchFLC_iff_hasFLC
     exact Metric.closedBall_subset_closedBall (by
       dsimp [R']; linarith [le_max_left R 0]) (hR hxQ)
 
+/--
+@isnad1 id=hasflc.1h3v.s5.63bd80fdb3b1 from=translated src=- shape=c60547ff vocab=abbf73cc
+-/
 theorem HasFLC.vadd
     {E : Type*} [NormedAddCommGroup E] [ProperSpace E]
     {S : Set E} (hS : HasFLC S) (u : E) : HasFLC (u +ᵥ S) := by
@@ -118,6 +124,9 @@ theorem HasFLC.vadd
     rw [hdif]
     exact hS.2
 
+/--
+@isnad1 id=hasflc.2h3v.s4.76c7d849ae22 from=translated src=- shape=9ba8899d vocab=a231b968
+-/
 theorem HasFLC.mono
     {E : Type*} [NormedAddCommGroup E] {S T : Set E}
     (hT : HasFLC T) (hST : S ⊆ T) : HasFLC S := by
@@ -125,6 +134,9 @@ theorem HasFLC.mono
   intro R hR
   exact (hT.2 R hR).subset (Set.inter_subset_inter_left _ (Set.sub_subset_sub hST hST))
 
+/--
+@isnad1 id=finite.2h3v.s5.fa96e32645ad from=translated src=- shape=42b8b4fa vocab=e0da8a96
+-/
 theorem HasFLC.differences_locallyFinite
     {E : Type*} [NormedAddCommGroup E]
     {S : Set E} (hS : HasFLC S) :
@@ -164,6 +176,9 @@ private theorem finite_inter_add_finset
   rw [Set.mem_vadd_set_iff_neg_vadd_mem]
   simpa [vadd_eq_add] using hxaQ
 
+/--
+@isnad1 id=hasflc.1h3v.s5.f95771ce4dd0 from=translated src=- shape=1da6c0e0 vocab=aae0d34d
+-/
 theorem HasFLC.add_finset
     {E : Type*} [NormedAddCommGroup E] [ProperSpace E]
     {S : Set E} (hS : HasFLC S) (F : Finset E) :
@@ -184,6 +199,9 @@ theorem HasFLC.add_finset
       Metric.isBounded_closedBall).subset
   exact inter_subset_inter_left _ hsubset
 
+/--
+@isnad1 id=ex.1h2v.s5.9c926d01b305 from=translated src=- shape=50e568fc vocab=8460da3c
+-/
 theorem HasFLC.uniformlyDiscrete
     {E : Type*} [NormedAddCommGroup E] [ProperSpace E]
     {S : Set E} (hS : HasFLC S) :
@@ -213,6 +231,9 @@ theorem HasFLC.uniformlyDiscrete
     exact hdist_lt.trans_le (min_le_left _ _)
   exact (hball hdball) hdD
 
+/--
+@isnad1 id=linearin.4h5v.s9.285050182ba5 from=translated src=- shape=8836e0e0 vocab=57950562
+-/
 theorem rankTwo_of_flcCoset_and_independentRationalImages
     {P V : Set Plane} {lambda gamma : Plane} (hP : HasFLC P) (hV : V.Finite)
     (f : Plane →ₗ[ℚ] Plane) (hfind : LinearIndependent ℚ ![f lambda, f gamma])
@@ -321,6 +342,9 @@ theorem rankTwo_of_flcCoset_and_independentRationalImages
     exact (lt_div_iff₀ hnormlambda).mp hz.2
   exact (not_lt_of_ge (hsep hxQ hvQ hxne)) hdist
 
+/--
+@isnad1 id=ex.0h1v.s5.cc00457df250 from=translated src=- shape=585d00d3 vocab=08858d10
+-/
 theorem planarLattice_boundedCosetRepresentative (L : PlanarLattice) :
     ∃ R : ℝ, 0 < R ∧ ∀ x : Plane,
       ∃ g ∈ L.toAddSubgroup, ‖x - g‖ ≤ R := by
@@ -366,7 +390,9 @@ theorem planarLattice_boundedCosetRepresentative (L : PlanarLattice) :
       exact mul_le_of_le_one_left (norm_nonneg _) habs
     _ ≤ R := by dsimp [R]; linarith
 
-/-- Root-authorized Part-II reusable seam; exact frozen candidate type, not yet proved.-/
+/-- Root-authorized Part-II reusable seam; exact frozen candidate type, not yet proved.
+@isnad1 id=ex.9h4v.s7.db86c0fb076b from=translated src=- shape=50085b47 vocab=06625909
+-/
 theorem periodicOpen_inclusion_commensurable :
 ∀ (A B : Set ℝ) (β γ : ℝ), IsOpen A → A.Nonempty → IsOpen B →
     B ≠ Set.univ → A ⊆ B → 0 < β → 0 < γ →
@@ -439,6 +465,9 @@ theorem periodicOpen_inclusion_commensurable :
     exact hyB
   exact hBproper hBuniv
 
+/--
+@isnad1 id=eq.4h2v.s6.a7a738015908 from=translated src=- shape=35b2b3c1 vocab=5eea840d
+-/
 theorem periodicRegularOpen_translatedContainment :
 ∀ (D : Set Plane), IsOpen D → interior (closure D) = D → IsLatticePeriodic D →
     ∀ a : Plane, a +ᵥ D ⊆ D → a +ᵥ D = D

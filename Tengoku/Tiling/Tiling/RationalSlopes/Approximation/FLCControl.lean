@@ -19,6 +19,9 @@ namespace Tiling.RationalSlopes.Approximation
 def RationalMesh (d : ℕ) : Set Plane :=
   {z | ∃ p q : ℤ, z = Complex.mk ((p : ℝ) / d) ((q : ℝ) / d)}
 
+/--
+@isnad1 id=ex.3h2v.s6.5470309d6a33 from=translated src=- shape=fe94d30f vocab=dd5bb0d5
+-/
 theorem boundedSteps_generate :
   ∀ Y : Set Plane, Tiling.Polygonal.HasFLC Y → RelativeDense Y →
     ∀ y₀ ∈ Y, ∃ steps : Finset Plane, (steps : Set Plane) ⊆ Y - Y ∧
@@ -142,6 +145,9 @@ theorem boundedSteps_generate :
       simp [p]
     rwa [hpNatLast, hpNatZero] at hsum
 
+/--
+@isnad1 id=ex.0h2v.s6.750ab1ffe325 from=translated src=- shape=365df71e vocab=9dd2fa68
+-/
 theorem commonMesh_of_finiteZGeneration :
   ∀ (steps : Finset Plane) (φ : ℝ →ₗ[ℚ] ℚ), ∃ d : ℕ, 0 < d ∧
     deformPoint φ '' (AddSubgroup.closure (steps : Set Plane) : Set Plane) ⊆ RationalMesh d := by
@@ -196,6 +202,9 @@ theorem commonMesh_of_finiteZGeneration :
         exact mesh.neg_mem iha
   exact hclosed x hx
 
+/--
+@isnad1 id=ex.3h3v.s6.6fa30b90557b from=translated src=- shape=e07e0e5f vocab=1e16614e
+-/
 theorem flcApproximation_commonMesh :
   ∀ (T : Set Plane) (V : Finset Plane), 0 ∈ T →
     Tiling.Polygonal.HasFLC T → RelativeDense T →
@@ -412,6 +421,9 @@ private theorem globalRelativeError_of_segmentDensity
         have := mul_le_mul_of_nonneg_left hηle hNnonneg
         nlinarith [mul_le_mul_of_nonneg_left hcountMul hc.le]
 
+/--
+@isnad1 id=ex.4h2v.s7.43cd943ba5ac from=translated src=- shape=e5fb66f9 vocab=1097d1f7
+-/
 theorem approximation_globalRelativeError :
   ∀ Y : Set Plane, Tiling.Polygonal.HasFLC Y → RelativeDense Y →
     ∀ c : ℝ, 0 < c → c < 1 → ∃ F : Finset ℝ, ∃ ε : ℝ, 0 < ε ∧
@@ -454,6 +466,9 @@ private theorem boundedDifference_mem {Y : Set Plane} {M : ℝ}
   apply hfinite.mem_toFinset.mpr
   exact ⟨⟨a, ha, b, hb, rfl⟩, by simpa [Metric.mem_closedBall, dist_eq_norm] using hab.le⟩
 
+/--
+@isnad1 id=ex.4h4v.s8.b0b0f6e9136e from=translated src=- shape=7cad7d1b vocab=9c86bd03
+-/
 theorem approximation_boundedMetricAndRelationControl :
   ∀ Y : Set Plane, Tiling.Polygonal.HasFLC Y → RelativeDense Y →
     ∀ (M η : ℝ) (normals : Finset RationalNormal), 0 < M → 0 < η →
@@ -512,7 +527,9 @@ theorem approximation_boundedMetricAndRelationControl :
     rw [← deformPoint_sub, rationalNormal_commutes]
     exact hreflect φ hφ2 _ hz
 
-/-- Exact bounded scalar-displacement reflection needed by both period/gap lifting branches.-/
+/-- Exact bounded scalar-displacement reflection needed by both period/gap lifting branches.
+@isnad1 id=ex.3h2v.s8.efa27754dd31 from=translated src=- shape=79449a96 vocab=ad03519e
+-/
 theorem approximation_reflectsBoundedDisplacement :
   ∀ Y : Set Plane, Tiling.Polygonal.HasFLC Y → RelativeDense Y →
     ∀ M : ℝ, 0 < M → ∃ F : Finset ℝ, ∃ ε : ℝ, 0 < ε ∧
@@ -607,6 +624,9 @@ private theorem hasFLC_image_of_coarseBound
       nlinarith
     · simpa [map_sub] using hzEq
 
+/--
+@isnad1 id=ex.2h1v.s6.ed1f5b25c6ab from=translated src=- shape=7b06df2b vocab=ee0818d0
+-/
 theorem approximation_preservesFLC :
   ∀ Y : Set Plane, Tiling.Polygonal.HasFLC Y → RelativeDense Y →
     ∃ F : Finset ℝ, ∃ ε : ℝ, 0 < ε ∧
@@ -624,7 +644,9 @@ theorem approximation_preservesFLC :
     deformation_lowerBound φ a b (1 / 2) (hglobal φ hφ a ha b hb)
 
 /-- The global vector relative-error estimate yields image density by an elementary
-Lipschitz-perturbation recurrence; no carrier periods or ambient extension theorem is used.-/
+Lipschitz-perturbation recurrence; no carrier periods or ambient extension theorem is used.
+@isnad1 id=ex.2h1v.s7.719dd896a200 from=translated src=- shape=e7db9a12 vocab=f0954679
+-/
 theorem approximation_uniformImageDensity :
   ∀ Y : Set Plane, Tiling.Polygonal.HasFLC Y → RelativeDense Y →
     ∃ F : Finset ℝ, ∃ ε ρ : ℝ, 0 < ε ∧ 0 < ρ ∧
@@ -697,7 +719,9 @@ theorem approximation_uniformImageDensity :
   linarith
 
 /-- Centres relatively dense on one rational affine line need their own bounded-gap proof;
-they do not satisfy plane RelativeDense. The finite decoration is just algebraic here.-/
+they do not satisfy plane RelativeDense. The finite decoration is just algebraic here.
+@isnad1 id=ex.6h5v.s8.b8c2c59e3163 from=translated src=- shape=592565df vocab=239a8c4f
+-/
 theorem approximation_lineRelativeError :
   ∀ (T : Set Plane) (W : Finset Plane) (n : RationalNormal) (a : Plane),
     W.Nonempty → Tiling.Polygonal.HasFLC T →

@@ -308,13 +308,18 @@ noncomputable def rectangleDiagonalTriangulation (a b : Plane)
       (Set.pairwise_pair_of_symm.mpr fun _ ↦ diagonal_triangles_aedisjoint a b)
   · simpa [t₁, t₂, Set.sUnion_pair] using (rectangle_eq_union_triangles a b).symm
 
+/--
+@isnad1 id=eq.2h2v.s8.846f4d6b472a from=translated src=- shape=98975260 vocab=c1a1ec3b
+-/
 @[simp] theorem rectangleDiagonalTriangulation_pieces (a b : Plane)
     (hre : a.re ≠ b.re) (him : a.im ≠ b.im) :
     (rectangleDiagonalTriangulation a b hre him).pieces =
       {convexHull ℝ {a, a.re + b.im * Complex.I, b},
         convexHull ℝ {a, b.re + a.im * Complex.I, b}} := rfl
 
-/-- Every axis-parallel rectangle is polygonal.-/
+/-- Every axis-parallel rectangle is polygonal.
+@isnad1 id=ispolygo.1h1v.s3.7eaf38f87f3a from=translated src=- shape=4c88451a vocab=9bc68b6b
+-/
 theorem IsRectangle.isPolygonal {s : Set Plane} (hs : IsRectangle s) : IsPolygonal s := by
   obtain ⟨a, b, hre, him, rfl⟩ := hs
   exact ⟨rectangleDiagonalTriangulation a b hre him⟩

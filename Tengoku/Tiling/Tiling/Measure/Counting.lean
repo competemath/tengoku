@@ -29,7 +29,9 @@ noncomputable section
 noncomputable instance instMeasureSpaceInt : MeasureSpace ℤ :=
   ⟨Measure.count⟩
 
-/-- A finite product of counting measures is counting measure on the product.-/
+/-- A finite product of counting measures is counting measure on the product.
+@isnad1 id=eq.0h2v.s6.de0eb0e26d65 from=translated src=- shape=765549a8 vocab=e84eef7d
+-/
 theorem Measure.pi_count {ι : Type*} [Fintype ι] {α : ι → Type*}
     [∀ i, MeasurableSpace (α i)] [∀ i, MeasurableSingletonClass (α i)]
     [∀ i, Countable (α i)] :
@@ -40,7 +42,9 @@ theorem Measure.pi_count {ι : Type*} [Fintype ι] {α : ι → Type*}
   rw [Measure.pi_singleton]
   simp
 
-/-- The product `volume` on the integer lattice `Fin n → ℤ` is counting measure.-/
+/-- The product `volume` on the integer lattice `Fin n → ℤ` is counting measure.
+@isnad1 id=eq.0h1v.s6.963cbc5c6d40 from=translated src=- shape=66ec5d80 vocab=67ddb308
+-/
 theorem volume_piFin_int_eq_count (n : ℕ) :
     (volume : Measure (Fin n → ℤ)) = Measure.count := by
   change Measure.pi (fun _ : Fin n ↦ (Measure.count : Measure ℤ)) = Measure.count

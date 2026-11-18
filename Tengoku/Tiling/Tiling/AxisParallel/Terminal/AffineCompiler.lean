@@ -238,6 +238,9 @@ private theorem evalClosedDNFProgram_evaluate {C : RegionCode}
       cases h : evalClosedClause O clause <;>
         simp [h, ih, evalClosedDNF, OracleProgram.evaluate]
 
+/--
+@isnad1 id=eq.0h3v.s5.bc689cf3a9c9 from=translated src=- shape=fedc66a0 vocab=2f3feb71
+-/
 theorem decideFormulaProgram_evaluate {C : RegionCode}
     (O : Oracle C) (f : Formula C 0 0) :
     OracleProgram.evaluate O.answer (decideFormulaProgram f) =

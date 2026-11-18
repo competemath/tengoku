@@ -524,7 +524,9 @@ private lemma finiteExtension_surjective (s : Finset ℝ) (f : ↑s → ℝ)
       rw [finiteExtension]
       simp [hs]
 
-/-- A finite strictly increasing assignment extends by affine interpolation and slope-one rays.-/
+/-- A finite strictly increasing assignment extends by affine interpolation and slope-one rays.
+@isnad1 id=ex.1h2v.s6.6aab2bcdc2b0 from=translated src=- shape=b8a29265 vocab=44246b43
+-/
 theorem exists_slopeOnePiecewiseAffineExtension
     (s : Finset ℝ) (f : ↑s → ℝ) (hf : StrictMono f) :
     ∃ h : ℝ → ℝ,
@@ -536,7 +538,9 @@ theorem exists_slopeOnePiecewiseAffineExtension
   · exact finiteExtension_left s f
   · exact finiteExtension_right s f
 
-/-- A finite strictly increasing real assignment extends to an increasing homeomorphism.-/
+/-- A finite strictly increasing real assignment extends to an increasing homeomorphism.
+@isnad1 id=ex.1h2v.s7.6336612a318f from=translated src=- shape=810dfb28 vocab=5f236fe9
+-/
 theorem exists_strictMonoHomeomorph_extension
     (s : Finset ℝ) (f : ↑s → ℝ) (hf : StrictMono f) :
     ∃ h : ℝ ≃ₜ ℝ, StrictMono h ∧ ∀ x : ↑s, h x = f x := by
@@ -568,6 +572,9 @@ private def periodicAffineInterpolationSpec : Prop :=
       (∀ j : ℤ, H (x j) = y j) ∧
       (∀ z : ℝ, H (z + p) = H z + q)
 
+/--
+@isnad1 id=eq.1h5v.s6.0351214c4175 from=translated src=- shape=fbbda907 vocab=ffb564d8
+-/
 theorem periodic_shift_iterate {f : ℤ → ℝ} {n : ℕ} {p : ℝ}
     (hshift : ∀ j : ℤ, f (j + Int.ofNat n) = f j + p)
     (q j : ℤ) : f (j + q * Int.ofNat n) = f j + (q : ℝ) * p := by
@@ -849,7 +856,9 @@ private theorem periodicAffineInterpolation_proof :
 
 /-- Periodic affine interpolation of two strictly increasing, cofinal, periodically indexed
 real sequences.  This is the reusable lower-layer contract extracted from the band deformation
-proof.-/
+proof.
+@isnad1 id=ex.9h5v.s8.13162d20295e from=translated src=- shape=cbef3cbe vocab=78f8cf5d
+-/
 theorem exists_periodic_strictMonoHomeomorph_extension
     (n : ℕ) (p q : ℝ) (x y : ℤ → ℝ)
     (hn : 0 < n) (hp : 0 < p) (hq : 0 < q)

@@ -36,6 +36,9 @@ noncomputable def totalSearch (valid : α → Bool) (bounded : α → ℕ → Op
 
 /- Every totalized successful result comes from a bounded query. -/
 omit [Primcodable α] in
+/--
+@isnad1 id=mem.2h4v.s5.bca2fa6debad from=translated src=- shape=fb2afad4 vocab=6c91d1e4
+-/
 theorem totalSearch_mem_rfindOpt (valid : α → Bool) (bounded : α → ℕ → Option Bool)
     (halts : BoundedSearchHalts valid bounded) (a : α) (hv : valid a = true) :
     totalSearch valid bounded halts a ∈ Nat.rfindOpt (bounded a) := by
@@ -43,13 +46,17 @@ theorem totalSearch_mem_rfindOpt (valid : α → Bool) (bounded : α → ℕ →
   exact Part.get_mem _
 
 omit [Primcodable α] in
-/-- On a valid input, the chosen result is witnessed by a bounded stage.-/
+/-- On a valid input, the chosen result is witnessed by a bounded stage.
+@isnad1 id=ex.2h4v.s5.891fbc3e93e1 from=translated src=- shape=ee07db71 vocab=d8df9946
+-/
 theorem totalSearch_sound (valid : α → Bool) (bounded : α → ℕ → Option Bool)
     (halts : BoundedSearchHalts valid bounded) (a : α) (hv : valid a = true) :
     ∃ n, totalSearch valid bounded halts a ∈ bounded a n :=
   Nat.rfindOpt_spec (totalSearch_mem_rfindOpt valid bounded halts a hv)
 
-/-- Bounded totalization preserves the computability of the validity test and oracle.-/
+/-- Bounded totalization preserves the computability of the validity test and oracle.
+@isnad1 id=computab.3h3v.s5.c7e4f90fa279 from=translated src=- shape=cf6cecaa vocab=61a8af2d
+-/
 theorem computable_totalSearch (valid : α → Bool) (bounded : α → ℕ → Option Bool)
     (hvalid : Computable valid) (hbounded : Computable₂ bounded)
     (halts : BoundedSearchHalts valid bounded) :

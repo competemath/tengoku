@@ -301,7 +301,9 @@ private theorem directions_eq_of_aedisjoint
 almost-everywhere disjoint have one common nonzero translation-invariance direction.
 
 This isolates the global planar classification and common-direction argument from all tiling and
-local-finiteness bookkeeping.-/
+local-finiteness bookkeeping.
+@isnad1 id=ex.4h2v.s7.5e18b3a0e820 from=translated src=- shape=d23647a4 vocab=71577ad8
+-/
 theorem exists_common_stabilizer_direction {ι : Type*} (s : ι → Set Plane)
     (hne : ∀ i, (s i).Nonempty)
     (hregular : ∀ i, closure (interior (s i)) = s i)
@@ -403,12 +405,18 @@ noncomputable def shiftedPlacement (v : Plane) (shift : A.Plate → ℝ) (i : A.
     Placement Plane P :=
   (i.1.1 + shift (A.vertexGraph.connectedComponentMk i) • v, i.1.2)
 
+/--
+@isnad1 id=eq.0h5v.s6.c4f25562db2c from=translated src=- shape=1fe88a9b vocab=bad1c22e
+-/
 @[simp]
 theorem shiftedPlacement_translation (v : Plane) (shift : A.Plate → ℝ) (i : A.placements) :
     (A.shiftedPlacement v shift i).1 =
       i.1.1 + shift (A.vertexGraph.connectedComponentMk i) • v :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.8b87b20807ab from=translated src=- shape=3e698bb4 vocab=fe416d21
+-/
 @[simp]
 theorem shiftedPlacement_label (v : Plane) (shift : A.Plate → ℝ) (i : A.placements) :
     (A.shiftedPlacement v shift i).2 = i.1.2 :=
@@ -419,11 +427,17 @@ noncomputable def shiftComponents (v : Plane) (shift : A.Plate → ℝ) :
     PolygonalProtoTiling P :=
   A.withPlacements (Set.range (A.shiftedPlacement v shift))
 
+/--
+@isnad1 id=eq.0h4v.s4.c03af2e756f0 from=translated src=- shape=117217a0 vocab=335ccb11
+-/
 @[simp]
 theorem shiftComponents_prototiles (v : Plane) (shift : A.Plate → ℝ) :
     (A.shiftComponents v shift).prototiles = A.prototiles :=
   rfl
 
+/--
+@isnad1 id=iff.0h5v.s6.a21903f33f6c from=translated src=- shape=3f685849 vocab=cfde4314
+-/
 @[simp]
 theorem mem_shiftComponents_placements_iff {v : Plane} {shift : A.Plate → ℝ}
     {i : Placement Plane P} :
@@ -436,18 +450,25 @@ noncomputable def shiftedVertex (v : Plane) (shift : A.Plate → ℝ) (i : A.pla
     (A.shiftComponents v shift).placements :=
   ⟨A.shiftedPlacement v shift i, ⟨i, rfl⟩⟩
 
+/--
+@isnad1 id=eq.0h5v.s6.4af560ec928e from=translated src=- shape=97fe8dd5 vocab=e9a195da
+-/
 @[simp]
 theorem shiftedVertex_val (v : Plane) (shift : A.Plate → ℝ) (i : A.placements) :
     (A.shiftedVertex v shift i).1 = A.shiftedPlacement v shift i :=
   rfl
 
-/-- Every shifted placement vertex comes from an original placement.-/
+/-- Every shifted placement vertex comes from an original placement.
+@isnad1 id=surjecti.0h4v.s5.057ff6af329c from=translated src=- shape=04525340 vocab=e05eebc2
+-/
 theorem shiftedVertex_surjective (v : Plane) (shift : A.Plate → ℝ) :
     Function.Surjective (A.shiftedVertex v shift) := by
   rintro ⟨_, i, rfl⟩
   exact ⟨i, rfl⟩
 
-/-- The support of a shifted placement is the corresponding translate of the old support.-/
+/-- The support of a shifted placement is the corresponding translate of the old support.
+@isnad1 id=eq.0h5v.s7.a4bbc9fb75f7 from=translated src=- shape=9934f054 vocab=69bc3e42
+-/
 theorem placedTile_shiftedPlacement (v : Plane) (shift : A.Plate → ℝ)
     (i : A.placements) :
     placedTile A.prototiles (A.shiftedPlacement v shift i) =
@@ -456,7 +477,9 @@ theorem placedTile_shiftedPlacement (v : Plane) (shift : A.Plate → ℝ)
   simp only [placedTile, shiftedPlacement]
   rw [vadd_vadd, add_comm]
 
-/-- Shifting a placement translates its placed vertex set by the same vector.-/
+/-- Shifting a placement translates its placed vertex set by the same vector.
+@isnad1 id=eq.0h5v.s6.1a7593b2ef2e from=translated src=- shape=42035024 vocab=16cfac80
+-/
 theorem placedVertexSet_shiftedVertex (v : Plane) (shift : A.Plate → ℝ)
     (i : A.placements) :
     (A.shiftComponents v shift).placedVertexSet (A.shiftedVertex v shift i) =
@@ -464,7 +487,9 @@ theorem placedVertexSet_shiftedVertex (v : Plane) (shift : A.Plate → ℝ)
   simp only [placedVertexSet, shiftComponents_prototiles, shiftedVertex_val, shiftedPlacement]
   rw [vadd_vadd, add_comm]
 
-/-- A component shift cannot identify two placements from the same old plate.-/
+/-- A component shift cannot identify two placements from the same old plate.
+@isnad1 id=eq.2h6v.s6.0e5f0048da23 from=translated src=- shape=0c74bdbe vocab=1e6fada7
+-/
 theorem shiftedVertex_injective_of_component_eq (v : Plane) (shift : A.Plate → ℝ)
     {i j : A.placements}
     (hcomponent : A.vertexGraph.connectedComponentMk i =
@@ -499,7 +524,9 @@ noncomputable def shiftedVertexHom (v : Plane) (shift : A.Plate → ℝ) :
       · simpa only [mem_vadd_set_iff_neg_vadd_mem, neg_vadd_vadd] using hxi
       · simpa only [mem_vadd_set_iff_neg_vadd_mem, neg_vadd_vadd] using hxj
 
-/-- Assigning zero displacement to every plate leaves the placement set unchanged.-/
+/-- Assigning zero displacement to every plate leaves the placement set unchanged.
+@isnad1 id=eq.0h3v.s5.70b92efa02e8 from=translated src=- shape=41c4624d vocab=41071475
+-/
 @[simp]
 theorem shiftComponents_zero_placements (v : Plane) :
     (A.shiftComponents v 0).placements = A.placements := by
@@ -520,7 +547,9 @@ namespace IsSlidingDirection
 
 variable {A} {v : Plane}
 
-/-- The carrier-invariance field, exposed as a pointwise set equality.-/
+/-- The carrier-invariance field, exposed as a pointwise set equality.
+@isnad1 id=eq.1h5v.s6.05a463c6b1d9 from=translated src=- shape=71c7a0eb vocab=c3e51c8a
+-/
 theorem vadd_plateCarrier (hv : A.IsSlidingDirection v) (C : A.Plate) (r : ℝ) :
     r • v +ᵥ A.plateCarrier C = A.plateCarrier C :=
   AddAction.mem_stabilizer_iff.mp (hv.invariant C r)
@@ -533,7 +562,9 @@ private theorem vadd_subset_vadd {s t : Set Plane} (a : Plane) (hst : s ⊆ t) :
   simpa only [mem_vadd_set_iff_neg_vadd_mem] using hst
     (by simpa only [mem_vadd_set_iff_neg_vadd_mem] using hx)
 
-/-- Independently shifting invariant plate carriers preserves the tiling.-/
+/-- Independently shifting invariant plate carriers preserves the tiling.
+@isnad1 id=istiling.2h4v.s5.986918b0ea19 from=translated src=- shape=1b62cb4e vocab=ab893761
+-/
 theorem IsSlidingDirection.isTiling_shiftComponents {v : Plane}
     (hv : A.IsSlidingDirection v) (hA : IsTiling A.prototiles A.placements)
     (shift : A.Plate → ℝ) :
@@ -578,7 +609,9 @@ theorem IsSlidingDirection.isTiling_shiftComponents {v : Plane}
     rw [hcomponent, mem_vadd_set_iff_neg_vadd_mem]
     exact hxj
 
-/-- The zero component shift preserves any tiling, independently of the chosen direction.-/
+/-- The zero component shift preserves any tiling, independently of the chosen direction.
+@isnad1 id=istiling.1h3v.s6.8496deb15d4a from=translated src=- shape=9c7bda5e vocab=3879dd74
+-/
 theorem isTiling_shiftComponents_zero
     (hA : IsTiling A.prototiles A.placements) (v : Plane) :
     IsTiling (A.shiftComponents v 0).prototiles (A.shiftComponents v 0).placements := by
@@ -588,7 +621,9 @@ theorem isTiling_shiftComponents_zero
 /-- **Tiling components have a common sliding direction.**  A tiling by a finite polygonal
 family has a nonzero direction along which every plate carrier is invariant.
 
-This is the structural finite-family extension of Lemma 2.5 in arXiv:2408.02151.-/
+This is the structural finite-family extension of Lemma 2.5 in arXiv:2408.02151.
+@isnad1 id=ex.1h2v.s5.4e5b79c41eaa from=translated src=- shape=273c7ed0 vocab=711c4ffa
+-/
 theorem exists_isSlidingDirection [Finite P]
     (hA : IsTiling A.prototiles A.placements) :
     ∃ v : Plane, A.IsSlidingDirection v := by
@@ -600,7 +635,9 @@ theorem exists_isSlidingDirection [Finite P]
   exact ⟨v, ⟨hv, hinvariant⟩⟩
 
 /-- For a tiling by a finite polygonal family, there is a nonzero common direction such that every
-map from plates to real shifts preserves the tiling.-/
+map from plates to real shifts preserves the tiling.
+@isnad1 id=ex.1h2v.s6.90231cb8c47b from=translated src=- shape=a38bb28f vocab=1e141e41
+-/
 theorem exists_sliding_direction [Finite P]
     (hA : IsTiling A.prototiles A.placements) :
     ∃ v : Plane, v ≠ 0 ∧ ∀ shift : A.Plate → ℝ,

@@ -30,6 +30,9 @@ def encodedCell (input : TableInput) (c : Cell) : Cell :=
 def packedRegion (input : TableInput) : PackedRegion :=
   (vertexLabels input, (coarseCells input).map (encodedCell input))
 
+/--
+@isnad1 id=and.1h3v.s6.a610957ebf04 from=translated src=- shape=c6367a95 vocab=f2a24969
+-/
 theorem firstVertex_spec {input : TableInput} {vertical : Bool} {i : ℕ}
     (hi : usedLevel input vertical i = true) :
     firstVertex input vertical i < (vertexLabels input).length ∧

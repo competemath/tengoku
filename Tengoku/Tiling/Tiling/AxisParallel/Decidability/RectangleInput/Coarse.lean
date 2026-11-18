@@ -40,20 +40,32 @@ def coarseAccepted (input : TableInput) (c : Cell) : Bool :=
 def coarseCells (input : TableInput) : List Cell :=
   (candidates (2 * input.1)).filter (coarseAccepted input)
 
+/--
+@isnad1 id=iff.0h3v.s5.41d2ba046533 from=translated src=- shape=64cc05b7 vocab=6c9c093a
+-/
 theorem usedLevel_eq_true {input : TableInput} {vertical : Bool} {i : ℕ} :
     usedLevel input vertical i = true ↔
       ∃ p ∈ vertexLabels input, (bif vertical then p.2 else p.1) = i := by
   simp [usedLevel, List.any_eq_true]
 
+/--
+@isnad1 id=nodup.0h1v.s2.3dbd4fa53bc1 from=translated src=- shape=1a6c1393 vocab=3ef79f25
+-/
 theorem coarseCells_nodup (input : TableInput) : (coarseCells input).Nodup :=
   (candidates_nodup (2 * input.1)).filter (coarseAccepted input)
 
+/--
+@isnad1 id=iff.0h2v.s7.a97c81ce05cc from=translated src=- shape=370f12ff vocab=4fe8b1f8
+-/
 theorem mem_coarseCells {input : TableInput} {c : Cell} :
     c ∈ coarseCells input ↔
       (c.1.1 < 2 * input.1 ∧ c.1.2 < 2 * input.1 ∧
         c.2.1 < 2 * input.1 ∧ c.2.2 < 2 * input.1) ∧ coarseAccepted input c = true := by
   simp [coarseCells, mem_candidates]
 
+/--
+@isnad1 id=primrec.0h0v.s6.bba9cbe9869f from=translated src=- shape=87e29431 vocab=d0b5ae86
+-/
 theorem cellContained_primrec :
     Primrec (fun x : TableInput × Cell × Cell => cellContained x.1 x.2.1 x.2.2) := by
   have hn : Primrec (fun x : TableInput × Cell × Cell => 2 * x.1.1) :=

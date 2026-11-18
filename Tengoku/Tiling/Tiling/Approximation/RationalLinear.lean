@@ -107,6 +107,9 @@ private theorem finiteSignOfError (φ : ℝ →ₗ[ℚ] ℚ) (x : ℝ)
     have himage : 0 < (φ x : ℝ) := by linarith
     rw [Real.sign_of_pos himage, Real.sign_of_pos hx]
 
+/--
+@isnad1 id=ex.1h2v.s6.f160adf98d8e from=translated src=- shape=49a43783 vocab=93d34946
+-/
 theorem exists_finiteApproximation :
   ∀ (F : Finset ℝ) (ε : ℝ), 0 < ε →
     ∃ φ : ℝ →ₗ[ℚ] ℚ, IsFiniteApproximation F ε φ := by
@@ -164,6 +167,9 @@ theorem exists_finiteApproximation :
         simp only [finiteBasisWeight, Finset.sum_mul]
       _ < ε := hmul
 
+/--
+@isnad1 id=isfinite.3h5v.s6.2d0b8df27e56 from=translated src=- shape=6f9f8ea1 vocab=960e4466
+-/
 theorem finiteApproximation_strengthen :
   ∀ (F G : Finset ℝ) (ε δ : ℝ) (φ : ℝ →ₗ[ℚ] ℚ),
     F ⊆ G → δ ≤ ε → IsFiniteApproximation G δ φ → IsFiniteApproximation F ε φ := by
@@ -172,6 +178,9 @@ theorem finiteApproximation_strengthen :
   intro x hx
   exact lt_of_lt_of_le (hφ.2 x (hFG hx)) hδε
 
+/--
+@isnad1 id=ex.0h1v.s8.66d084dee9e1 from=translated src=- shape=7190b910 vocab=d3d09f56
+-/
 theorem finiteApproximation_signAndEquality :
   ∀ Z : Finset ℝ, ∃ F : Finset ℝ, ∃ ε : ℝ, 0 < ε ∧
     ∀ φ : ℝ →ₗ[ℚ] ℚ, IsFiniteApproximation F ε φ →
@@ -202,6 +211,9 @@ theorem finiteApproximation_signAndEquality :
   · rintro rfl
     rfl
 
+/--
+@isnad1 id=ex.0h1v.s5.da0ab227bea8 from=translated src=- shape=8017c2e3 vocab=9d13ed1b
+-/
 theorem finiteRational_denominator :
   ∀ Q : Finset ℚ, ∃ d : ℕ, 0 < d ∧
     ∀ q ∈ Q, ∃ p : ℤ, (q : ℝ) = (p : ℝ) / d := by
@@ -227,6 +239,9 @@ theorem finiteRational_denominator :
       push_cast
       field_simp
 
+/--
+@isnad1 id=eq.0h3v.s7.756c84e738fc from=translated src=- shape=9e69b2de vocab=0da40071
+-/
 theorem rationalNormal_commutes :
   ∀ (φ : ℝ →ₗ[ℚ] ℚ) (n : RationalNormal) (z : Plane),
     normalEval n (deformPoint φ z) = (φ (normalEval n z) : ℝ) := by
@@ -243,6 +258,9 @@ theorem rationalNormal_commutes :
           ring
     _ = (φ (normalEval n z) : ℝ) := rfl
 
+/--
+@isnad1 id=mem.1h4v.s8.5c4a6f2ece8e from=translated src=- shape=59e8b16a vocab=a14c53e3
+-/
 theorem rationalDirection_preservesCoset :
   ∀ (φ : ℝ →ₗ[ℚ] ℚ) (n : RationalNormal) (z w : Plane),
     z - w ∈ normalDirection n → deformPoint φ z - deformPoint φ w ∈ normalDirection n := by

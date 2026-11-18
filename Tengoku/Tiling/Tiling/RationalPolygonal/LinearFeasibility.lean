@@ -196,7 +196,9 @@ private theorem midpoint_lt {l u : ℚ} (h : l < u) : (l + u) / 2 < u := by
   linarith
 
 /-- A value returned by `chooseBetween` lies strictly above every lower bound and strictly below
-every upper bound.-/
+every upper bound.
+@isnad1 id=and.1h3v.s5.b23e78ba3979 from=translated src=- shape=73bd2ff9 vocab=f4b4172e
+-/
 theorem chooseBetween_sound {ls us : List ℚ} {x : ℚ}
     (h : chooseBetween ls us = some x) :
     (∀ l ∈ ls, l < x) ∧ (∀ u ∈ us, x < u) := by
@@ -241,7 +243,9 @@ theorem chooseBetween_sound {ls us : List ℚ} {x : ℚ}
               exact lt_of_lt_of_le (midpoint_lt hlu) huv
           · simp [hmax, hmin, hlu] at h
 
-/-- If one rational already lies between all supplied bounds, `chooseBetween` returns a witness.-/
+/-- If one rational already lies between all supplied bounds, `chooseBetween` returns a witness.
+@isnad1 id=ex.2h3v.s5.180817143f25 from=translated src=- shape=a0a8b798 vocab=f4b4172e
+-/
 theorem chooseBetween_complete {ls us : List ℚ} {z : ℚ}
     (hlower : ∀ l ∈ ls, l < z) (hupper : ∀ u ∈ us, z < u) :
     ∃ x, chooseBetween ls us = some x := by
@@ -260,7 +264,9 @@ theorem chooseBetween_complete {ls us : List ℚ} {z : ℚ}
           have hlu : l < u := lt_trans (hlower l hlmem) (hupper u humem)
           simp [hlu]
 
-/-- Every witness returned by the one-variable solver satisfies the entire input system.-/
+/-- Every witness returned by the one-variable solver satisfies the entire input system.
+@isnad1 id=satisfie.1h2v.s4.eff743bc0e3f from=translated src=- shape=b7c9ebe2 vocab=51b976e9
+-/
 theorem solve1D_sound {qs : List StrictInequality1} {x : ℚ}
     (h : solve1D qs = some x) : SatisfiesAll1 qs x := by
   unfold solve1D at h
@@ -269,7 +275,9 @@ theorem solve1D_sound {qs : List StrictInequality1} {x : ℚ}
     exact satisfiesAll1_iff_bounds.mpr ⟨hlower, hupper, ‹qs.all constantValid›⟩
   · contradiction
 
-/-- Every feasible one-variable system makes `solve1D` return a rational witness.-/
+/-- Every feasible one-variable system makes `solve1D` return a rational witness.
+@isnad1 id=ex.1h1v.s4.5c290eb69e32 from=translated src=- shape=0471e0b0 vocab=51b976e9
+-/
 theorem solve1D_complete {qs : List StrictInequality1}
     (h : ∃ x, SatisfiesAll1 qs x) : ∃ x, solve1D qs = some x := by
   obtain ⟨z, hz⟩ := h
@@ -277,7 +285,9 @@ theorem solve1D_complete {qs : List StrictInequality1}
   obtain ⟨x, hx⟩ := chooseBetween_complete hlower hupper
   exact ⟨x, by simp [solve1D, hconstant, hx]⟩
 
-/-- The one-variable solver returns some value exactly when its input system is feasible.-/
+/-- The one-variable solver returns some value exactly when its input system is feasible.
+@isnad1 id=iff.0h1v.s4.51fe1c1d3d79 from=translated src=- shape=65aa8685 vocab=51b976e9
+-/
 theorem solve1D_isSome_iff {qs : List StrictInequality1} :
     (∃ x, solve1D qs = some x) ↔ ∃ x, SatisfiesAll1 qs x :=
   ⟨fun ⟨x, hx⟩ => ⟨x, solve1D_sound hx⟩, solve1D_complete⟩
@@ -384,7 +394,9 @@ private theorem mem_zeroY_iff {qs : List StrictInequality} {q : StrictInequality
   simp [zeroY]
 
 /-- The eliminated system holds at `x` exactly when all `y`-independent constraints hold and
-every lower vertical bound lies strictly below every upper vertical bound.-/
+every lower vertical bound lies strictly below every upper vertical bound.
+@isnad1 id=iff.0h2v.s6.d5b9fd98b939 from=translated src=- shape=840996d3 vocab=a1c354c8
+-/
 theorem eliminateY_spec {qs : List StrictInequality} {x : ℚ} :
     SatisfiesAll1 (eliminateY qs) x ↔
       (∀ q ∈ qs, q.b = 0 → q.a * x < q.c) ∧
@@ -462,7 +474,9 @@ private theorem eliminateY_of_satisfiesAll {qs : List StrictInequality} {x y : �
       ((satisfies_of_pos hbu x y).mp (h u hu))
 
 /-- If `x` satisfies the eliminated system, every value returned by `solveY` completes it to a
-witness of the original two-variable system.-/
+witness of the original two-variable system.
+@isnad1 id=satisfie.2h3v.s4.8b726437111e from=translated src=- shape=3c92b1ba vocab=31554b11
+-/
 theorem solveY_sound {qs : List StrictInequality} {x y : ℚ}
     (hx : SatisfiesAll1 (eliminateY qs) x) (hy : solveY qs x = some y) :
     SatisfiesAll qs (x, y) := by
@@ -478,7 +492,9 @@ theorem solveY_sound {qs : List StrictInequality} {x y : ℚ}
     apply hupper (verticalBound q x)
     exact mem_yUpperBounds_iff.mpr ⟨q, hq, hb, rfl⟩
 
-/-- For every `x` satisfying the eliminated system, `solveY` returns a value.-/
+/-- For every `x` satisfying the eliminated system, `solveY` returns a value.
+@isnad1 id=ex.1h2v.s4.2dee25e4f6f1 from=translated src=- shape=86df26b7 vocab=fda0d809
+-/
 theorem solveY_complete {qs : List StrictInequality} {x : ℚ}
     (hx : SatisfiesAll1 (eliminateY qs) x) : ∃ y, solveY qs x = some y := by
   obtain ⟨_hzero, hpairs⟩ := eliminateY_spec.mp hx
@@ -489,7 +505,9 @@ theorem solveY_complete {qs : List StrictInequality} {x : ℚ}
   exact hpairs ql hql qu hqu hbl hbu
 
 /-- Fourier--Motzkin elimination is exact: the eliminated constraints hold at `x` if and only if
-some rational `y` completes `x` to a solution of the original system.-/
+some rational `y` completes `x` to a solution of the original system.
+@isnad1 id=iff.0h2v.s4.bcc713460ffd from=translated src=- shape=4972734b vocab=0dce5fce
+-/
 theorem exists_y_satisfiesAll_iff_eliminateY {qs : List StrictInequality} {x : ℚ} :
     (∃ y, SatisfiesAll qs (x, y)) ↔ SatisfiesAll1 (eliminateY qs) x := by
   constructor
@@ -498,7 +516,9 @@ theorem exists_y_satisfiesAll_iff_eliminateY {qs : List StrictInequality} {x : �
     obtain ⟨y, hy⟩ := solveY_complete hx
     exact ⟨y, solveY_sound hx hy⟩
 
-/-- Every pair returned by the two-variable solver satisfies every input inequality.-/
+/-- Every pair returned by the two-variable solver satisfies every input inequality.
+@isnad1 id=satisfie.1h2v.s4.c97329eb4002 from=translated src=- shape=fac49b55 vocab=3e455c1a
+-/
 theorem solve_sound {qs : List StrictInequality} {p : ℚ × ℚ}
     (h : solve qs = some p) : SatisfiesAll qs p := by
   unfold solve at h
@@ -517,7 +537,9 @@ theorem solve_sound {qs : List StrictInequality} {p : ℚ × ℚ}
           subst p
           exact solveY_sound (solve1D_sound hx) hy
 
-/-- Every feasible two-variable system makes `solve` return a rational witness pair.-/
+/-- Every feasible two-variable system makes `solve` return a rational witness pair.
+@isnad1 id=ex.1h1v.s5.d94cca234d6a from=translated src=- shape=8bdf234e vocab=3e455c1a
+-/
 theorem solve_complete {qs : List StrictInequality}
     (h : ∃ p, SatisfiesAll qs p) : ∃ p, solve qs = some p := by
   obtain ⟨⟨x, y⟩, hxy⟩ := h
@@ -527,17 +549,23 @@ theorem solve_complete {qs : List StrictInequality}
   obtain ⟨y', hy'⟩ := solveY_complete hx'sat
   exact ⟨(x', y'), by simp [solve, hx', hy']⟩
 
-/-- The verified solver returns a witness exactly when the strict system is feasible.-/
+/-- The verified solver returns a witness exactly when the strict system is feasible.
+@isnad1 id=iff.0h1v.s5.b43b3fb951d3 from=translated src=- shape=01962bd7 vocab=3e455c1a
+-/
 theorem solve_isSome_iff {qs : List StrictInequality} :
     (∃ p, solve qs = some p) ↔ ∃ p, SatisfiesAll qs p :=
   ⟨fun ⟨p, hp⟩ => ⟨p, solve_sound hp⟩, solve_complete⟩
 
-/-- Boolean feasibility is true exactly for systems having a rational witness.-/
+/-- Boolean feasibility is true exactly for systems having a rational witness.
+@isnad1 id=iff.0h1v.s4.aaac7cd59e5b from=translated src=- shape=bf07e9ff vocab=7b844e5d
+-/
 theorem isFeasible_eq_true_iff {qs : List StrictInequality} :
     isFeasible qs = true ↔ ∃ p, SatisfiesAll qs p := by
   rw [isFeasible, Option.isSome_iff_exists, solve_isSome_iff]
 
-/-- Failure of the witness solver is equivalent to infeasibility.-/
+/-- Failure of the witness solver is equivalent to infeasibility.
+@isnad1 id=iff.0h1v.s4.5e2224aef019 from=translated src=- shape=f5e8a689 vocab=c96e235b
+-/
 theorem solve_eq_none_iff {qs : List StrictInequality} :
     solve qs = none ↔ ¬∃ p, SatisfiesAll qs p := by
   constructor

@@ -23,7 +23,9 @@ universe u v
 
 variable {X : Type u} {ι : Type v} [TopologicalSpace X] {f : ι → Set X}
 
-/-- A locally finite union of regular-closed sets is regular closed.-/
+/-- A locally finite union of regular-closed sets is regular closed.
+@isnad1 id=eq.2h3v.s5.09efda888b26 from=translated src=- shape=7f0eafa5 vocab=516445a4
+-/
 theorem closure_interior_iUnion_eq (hlocal : LocallyFinite f)
     (hregular : ∀ i, closure (interior (f i)) = f i) :
     closure (interior (⋃ i, f i)) = ⋃ i, f i := by
@@ -49,7 +51,9 @@ variable {X : Type u} {ι : Type v}
 def intersectionGraph (s : ι → Set X) : SimpleGraph ι :=
   SimpleGraph.fromRel fun i j ↦ (s i ∩ s j).Nonempty
 
-/-- Adjacency in an intersection graph is distinctness together with nonempty intersection.-/
+/-- Adjacency in an intersection graph is distinctness together with nonempty intersection.
+@isnad1 id=iff.0h5v.s5.e89951b617b3 from=translated src=- shape=42aab4a7 vocab=1080bbff
+-/
 @[simp]
 theorem intersectionGraph_adj (s : ι → Set X) (i j : ι) :
     (intersectionGraph s).Adj i j ↔ i ≠ j ∧ (s i ∩ s j).Nonempty := by
@@ -64,7 +68,9 @@ theorem intersectionGraph_adj (s : ι → Set X) (i j : ι) :
 variable [TopologicalSpace X]
 
 /-- The intersection graph of a locally finite family of nonempty closed sets covering a connected
-space is connected.-/
+space is connected.
+@isnad1 id=connecte.4h3v.s5.b4c67d4b8324 from=translated src=- shape=7fd347ed vocab=4eacc559
+-/
 theorem connected_intersectionGraph [ConnectedSpace X]
     (s : ι → Set X) (hs : _root_.LocallyFinite s)
     (hsc : ∀ i, IsClosed (s i)) (hsn : ∀ i, (s i).Nonempty)

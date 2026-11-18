@@ -131,7 +131,9 @@ private theorem locallyFinite_placedTile_of_uniform_geometry [Finite P]
   rw [Set.mem_iUnion]
   exact ⟨i.1.2, rfl, hi⟩
 
-/-- Placed supports in a packing by a finite polygonal family form a locally finite family.-/
+/-- Placed supports in a packing by a finite polygonal family form a locally finite family.
+@isnad1 id=locallyf.1h2v.s6.6dfedd7651ee from=translated src=- shape=af4caaf4 vocab=44c10454
+-/
 theorem locallyFinite_placedTile [Finite P]
     (hpacking : IsPacking A.prototiles A.placements) :
     LocallyFinite fun i : A.placements ↦ placedTile A.prototiles i.1 := by
@@ -145,19 +147,25 @@ theorem locallyFinite_placedTile [Finite P]
   exact A.locallyFinite_placedTile_of_uniform_geometry hpacking center radius bound
     hradius hball hbound
 
-/-- Every placed polygonal support is closed.-/
+/-- Every placed polygonal support is closed.
+@isnad1 id=isclosed.0h3v.s5.e5130c34af7f from=translated src=- shape=a682b97d vocab=0d88bbb2
+-/
 theorem isClosed_placedTile (i : Placement Plane P) :
     IsClosed (placedTile A.prototiles i) := by
   rw [placedTile]
   simpa only [Homeomorph.coe_addLeft, ← vadd_eq_add, Set.image_vadd] using
     ((Homeomorph.addLeft i.1).isClosed_image.mpr (A.isPolygonal i.2).isClosed)
 
-/-- Every placed polygonal support is the closure of its interior.-/
+/-- Every placed polygonal support is the closure of its interior.
+@isnad1 id=eq.0h3v.s6.77a9d7fcc0f7 from=translated src=- shape=0c93bcb0 vocab=b346300f
+-/
 theorem closure_interior_placedTile (i : Placement Plane P) :
     closure (interior (placedTile A.prototiles i)) = placedTile A.prototiles i := by
   rw [placedTile, interior_vadd, closure_vadd, (A.isPolygonal i.2).closure_interior]
 
-/-- The interiors of two distinct placed supports in a packing are disjoint.-/
+/-- The interiors of two distinct placed supports in a packing are disjoint.
+@isnad1 id=disjoint.2h4v.s7.4ae4771d3efa from=translated src=- shape=e69e8858 vocab=704e4ac1
+-/
 theorem interior_placedTile_disjoint
     (hpacking : IsPacking A.prototiles A.placements)
     {i j : A.placements} (hij : i ≠ j) :
@@ -173,7 +181,9 @@ theorem interior_placedTile_disjoint
     (Set.inter_subset_inter interior_subset interior_subset)
     (hpacking i.2 j.2 fun h ↦ hij (Subtype.ext h)))
 
-/-- The carrier of any placement subfamily is closed.-/
+/-- The carrier of any placement subfamily is closed.
+@isnad1 id=isclosed.1h3v.s5.9a3a94098f31 from=translated src=- shape=3b65363c vocab=e7858cab
+-/
 theorem placementCarrier_isClosed [Finite P]
     (hpacking : IsPacking A.prototiles A.placements) (S : Set A.placements) :
     IsClosed (A.placementCarrier S) := by
@@ -181,7 +191,9 @@ theorem placementCarrier_isClosed [Finite P]
   exact ((A.locallyFinite_placedTile hpacking).comp_injective
     Subtype.val_injective).isClosed_iUnion fun i ↦ A.isClosed_placedTile i.1.1
 
-/-- The carrier of any placement subfamily is the closure of its interior.-/
+/-- The carrier of any placement subfamily is the closure of its interior.
+@isnad1 id=eq.1h3v.s6.aaa54e1bfdfc from=translated src=- shape=a498b291 vocab=fc97ad8c
+-/
 theorem placementCarrier_closure_interior [Finite P]
     (hpacking : IsPacking A.prototiles A.placements) (S : Set A.placements) :
     closure (interior (A.placementCarrier S)) = A.placementCarrier S := by
@@ -190,7 +202,9 @@ theorem placementCarrier_closure_interior [Finite P]
     Subtype.val_injective).closure_interior_iUnion_eq fun i ↦
       A.closure_interior_placedTile i.1.1
 
-/-- An almost-everywhere polygonal tiling covers the plane exactly by its closed supports.-/
+/-- An almost-everywhere polygonal tiling covers the plane exactly by its closed supports.
+@isnad1 id=eq.1h2v.s6.32757fa4170f from=translated src=- shape=3b04129f vocab=95ae2550
+-/
 theorem iUnion_placedTile_eq_univ [Finite P]
     (hA : IsTiling A.prototiles A.placements) :
     (⋃ i : A.placements, placedTile A.prototiles i.1) = Set.univ := by
@@ -206,7 +220,9 @@ theorem iUnion_placedTile_eq_univ [Finite P]
   change (x ∈ U) = (x ∈ (Set.univ : Set Plane))
   simp [hx]
 
-/-- Plate carriers themselves form a locally finite family.-/
+/-- Plate carriers themselves form a locally finite family.
+@isnad1 id=locallyf.1h2v.s5.2ed1dc03459c from=translated src=- shape=7e45f867 vocab=a6df2b72
+-/
 theorem locallyFinite_plateCarrier [Finite P]
     (hpacking : IsPacking A.prototiles A.placements) :
     LocallyFinite fun C : A.Plate ↦ A.plateCarrier C := by
@@ -218,19 +234,25 @@ theorem locallyFinite_plateCarrier [Finite P]
   obtain ⟨i, hiC, hyi⟩ := A.mem_plateCarrier_iff.mp hyC
   exact ⟨i, ⟨y, hyi, hyt⟩, hiC⟩
 
-/-- Every plate carrier is closed in a finite-family packing.-/
+/-- Every plate carrier is closed in a finite-family packing.
+@isnad1 id=isclosed.1h3v.s5.81d4b08b8548 from=translated src=- shape=590cabe1 vocab=20596cb1
+-/
 theorem plateCarrier_isClosed [Finite P]
     (hpacking : IsPacking A.prototiles A.placements) (C : A.Plate) :
     IsClosed (A.plateCarrier C) :=
   A.placementCarrier_isClosed hpacking C
 
-/-- Every plate carrier is the closure of its interior in a finite-family packing.-/
+/-- Every plate carrier is the closure of its interior in a finite-family packing.
+@isnad1 id=eq.1h3v.s6.70ccc2fee9c6 from=translated src=- shape=efa58fe6 vocab=2518d9cc
+-/
 theorem plateCarrier_closure_interior [Finite P]
     (hpacking : IsPacking A.prototiles A.placements) (C : A.Plate) :
     closure (interior (A.plateCarrier C)) = A.plateCarrier C :=
   A.placementCarrier_closure_interior hpacking C
 
-/-- Plate carriers cover the plane exactly.-/
+/-- Plate carriers cover the plane exactly.
+@isnad1 id=eq.1h2v.s5.80ccb173af77 from=translated src=- shape=afdf1d29 vocab=84e60e13
+-/
 theorem iUnion_plateCarrier_eq_univ [Finite P]
     (hA : IsTiling A.prototiles A.placements) :
     (⋃ C : A.Plate, A.plateCarrier C) = Set.univ := by
@@ -247,7 +269,9 @@ theorem iUnion_plateCarrier_eq_univ [Finite P]
     exact ⟨A.vertexGraph.connectedComponentMk i,
       A.placedTile_subset_plateCarrier i hxi⟩
 
-/-- Carriers of disjoint placement subfamilies are almost-everywhere disjoint.-/
+/-- Carriers of disjoint placement subfamilies are almost-everywhere disjoint.
+@isnad1 id=aedisjoi.2h4v.s7.1d7510daba3c from=translated src=- shape=a5d47fa1 vocab=ece24b86
+-/
 theorem placementCarrier_aedisjoint (hA : IsTiling A.prototiles A.placements)
     {S R : Set A.placements} (hSR : Disjoint S R) :
     AEDisjoint volume (A.placementCarrier S) (A.placementCarrier R) := by
@@ -262,7 +286,9 @@ theorem placementCarrier_aedisjoint (hA : IsTiling A.prototiles A.placements)
   have hsub : (i.1 : A.placements) = j.1 := Subtype.ext hij
   simpa only [hsub] using j.2
 
-/-- Carriers of different plates are almost-everywhere disjoint.-/
+/-- Carriers of different plates are almost-everywhere disjoint.
+@isnad1 id=aedisjoi.2h4v.s6.b1a49ca8f11b from=translated src=- shape=ca9dfc58 vocab=ccf9f29b
+-/
 theorem plateCarrier_aedisjoint (hA : IsTiling A.prototiles A.placements)
     {C D : A.Plate} (hCD : C ≠ D) :
     AEDisjoint volume (A.plateCarrier C) (A.plateCarrier D) := by
@@ -499,7 +525,9 @@ private theorem frontier_eventuallyEq_of_eventuallyEq_of_isClosed
       exact Eq.mpr hy hyt
     · exact fun hysint ↦ hyint ((hynhds.mem_interior_iff).1 hysint)
 
-/-- A placement-subfamily carrier and its complement carrier have the same frontier.-/
+/-- A placement-subfamily carrier and its complement carrier have the same frontier.
+@isnad1 id=eq.1h3v.s6.eecf05ea3de0 from=translated src=- shape=64db2075 vocab=a54b653b
+-/
 theorem frontier_placementCarrier_compl [Finite P]
     (hA : IsTiling A.prototiles A.placements) (S : Set A.placements) :
     frontier (A.placementCarrier S) = frontier (A.placementCarrier Sᶜ) := by
@@ -545,24 +573,32 @@ theorem frontier_placementCarrier_compl [Finite P]
     (A.placementCarrier_isClosed hA.isPacking Sᶜ).closure_eq,
     hCcompl, hDcompl, hCregular, hDregular, inter_comm]
 
-/-- A placed support is polygonal.-/
+/-- A placed support is polygonal.
+@isnad1 id=ispolygo.0h3v.s4.e7dce79b2bcf from=translated src=- shape=74545ad6 vocab=54a01056
+-/
 theorem isPolygonal_placedTile (i : Placement Plane P) :
     IsPolygonal (placedTile A.prototiles i) := by
   simpa [placedTile] using (A.isPolygonal i.2).vadd i.1
 
-/-- The intrinsic vertices of a placed support are its translated support vertices.-/
+/-- The intrinsic vertices of a placed support are its translated support vertices.
+@isnad1 id=eq.0h3v.s5.bfda8948c43d from=translated src=- shape=d3e8de62 vocab=33700a2f
+-/
 theorem vertexSet_placedTile (i : Placement Plane P) :
     vertexSet (placedTile A.prototiles i) =
       i.1 +ᵥ vertexSet (A.prototiles i.2).support := by
   simp [placedTile, vertexSet_vadd]
 
-/-- Subtype-facing form of `vertexSet_placedTile`.-/
+/-- Subtype-facing form of `vertexSet_placedTile`.
+@isnad1 id=eq.0h3v.s5.2993817dbf6e from=translated src=- shape=dc846726 vocab=f31d9d1a
+-/
 @[simp]
 theorem vertexSet_placedTile' (i : A.placements) :
     vertexSet (placedTile A.prototiles i.1) = A.placedVertexSet i := by
   simp only [A.vertexSet_placedTile i.1, placedVertexSet]
 
-/-- A placed support is locally straight at every frontier point outside its placed vertex set.-/
+/-- A placed support is locally straight at every frontier point outside its placed vertex set.
+@isnad1 id=boundary.2h4v.s7.e039f543be66 from=translated src=- shape=a1b0d164 vocab=5f0e7c80
+-/
 theorem placedTile_boundaryLocallyStraightAt_of_not_mem_placedVertexSet
     (i : A.placements) {x : Plane} (hx : x ∈ frontier (placedTile A.prototiles i.1))
     (hxv : x ∉ A.placedVertexSet i) :
@@ -571,7 +607,9 @@ theorem placedTile_boundaryLocallyStraightAt_of_not_mem_placedVertexSet
   simpa only [A.vertexSet_placedTile'] using hxv
 
 /-- If each tile boundary is locally straight away from its vertices, a proper boundary point of
-a placement-subfamily carrier contains a vertex of one of its tiles.-/
+a placement-subfamily carrier contains a vertex of one of its tiles.
+@isnad1 id=ex.4h4v.s7.13a52d173bd8 from=translated src=- shape=1be9c7f7 vocab=9579eee3
+-/
 theorem exists_vertex_of_local_tile_geometry [Finite P]
     (hlocal : ∀ (i : A.placements) {y : Plane},
       y ∈ frontier (placedTile A.prototiles i.1) →
@@ -662,7 +700,9 @@ theorem exists_vertex_of_local_tile_geometry [Finite P]
   exact find_vertex S hx hproper
 
 /-- A proper boundary point of a placement-subfamily carrier contains a vertex of one of its
-tiles.-/
+tiles.
+@isnad1 id=ex.3h4v.s6.3365316a9759 from=translated src=- shape=c4758de9 vocab=93dbb9cf
+-/
 theorem exists_vertex_of_not_boundaryLocallyStraightAt [Finite P]
     (hpacking : IsPacking A.prototiles A.placements) (S : Set A.placements) {x : Plane}
     (hx : x ∈ frontier (A.placementCarrier S))
@@ -677,7 +717,9 @@ theorem exists_vertex_of_not_boundaryLocallyStraightAt [Finite P]
 /-- If each tile boundary is locally straight away from its vertices, a proper boundary point of
 a placement-subfamily carrier supplies a common vertex on both sides.
 
-This is the local planar-combinatorial input to the plate argument.-/
+This is the local planar-combinatorial input to the plate argument.
+@isnad1 id=ex.4h4v.s8.e2978efe16b8 from=translated src=- shape=a3f6feb4 vocab=4db90df4
+-/
 theorem exists_vertices_across_of_local_tile_geometry [Finite P]
     (hlocal : ∀ (i : A.placements) {y : Plane},
       y ∈ frontier (placedTile A.prototiles i.1) →
@@ -705,7 +747,9 @@ theorem exists_vertices_across_of_local_tile_geometry [Finite P]
   exact ⟨i, j, hiS, hjS, hxi, hxj⟩
 
 /-- At a proper boundary point of a placement-subfamily carrier, incident tiles from both sides
-supply a common intrinsic vertex.-/
+supply a common intrinsic vertex.
+@isnad1 id=ex.3h4v.s7.0d2d4e8adf74 from=translated src=- shape=31c236dc vocab=6caa8895
+-/
 theorem exists_vertices_across_of_not_boundaryLocallyStraightAt [Finite P]
     (hA : IsTiling A.prototiles A.placements) (S : Set A.placements) {x : Plane}
     (hx : x ∈ frontier (A.placementCarrier S))
@@ -718,7 +762,9 @@ theorem exists_vertices_across_of_not_boundaryLocallyStraightAt [Finite P]
         i hxfrontier hxvertex)
     hA S hx hproper
 
-/-- Every point of a plate-carrier frontier is locally straight.-/
+/-- Every point of a plate-carrier frontier is locally straight.
+@isnad1 id=boundary.2h4v.s6.7ae4aa1b6867 from=translated src=- shape=09968233 vocab=37b764f1
+-/
 theorem plateCarrier_boundaryLocallyStraightAt [Finite P]
     (hA : IsTiling A.prototiles A.placements) (C : A.Plate) {x : Plane}
     (hx : x ∈ frontier (A.plateCarrier C)) :

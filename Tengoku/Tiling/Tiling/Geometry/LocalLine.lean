@@ -53,47 +53,76 @@ def positiveHalfPlane (a v : Plane) : Set Plane :=
 def negativeHalfPlane (a v : Plane) : Set Plane :=
   {z | planarCross v z ≤ planarCross v a}
 
+/--
+@isnad1 id=iff.0h3v.s4.1bdd54854a18 from=translated src=- shape=fb64ba9f vocab=40a4adba
+-/
 @[simp] theorem mem_positiveSide {a v z : Plane} :
     z ∈ positiveSide a v ↔ 0 < signedSide a v z := by
   change planarCross v a < planarCross v z ↔ 0 < planarCross v z - planarCross v a
   constructor <;> intro h <;> linarith
 
+/--
+@isnad1 id=iff.0h3v.s4.07757143bb5a from=translated src=- shape=d67131b0 vocab=1f57d1ba
+-/
 @[simp] theorem mem_negativeSide {a v z : Plane} :
     z ∈ negativeSide a v ↔ signedSide a v z < 0 := by
   change planarCross v z < planarCross v a ↔ planarCross v z - planarCross v a < 0
   constructor <;> intro h <;> linarith
 
+/--
+@isnad1 id=iff.0h3v.s4.8bf04ba694fd from=translated src=- shape=fb64ba9f vocab=8c323b3e
+-/
 @[simp] theorem mem_positiveHalfPlane {a v z : Plane} :
     z ∈ positiveHalfPlane a v ↔ 0 ≤ signedSide a v z := by
   change planarCross v a ≤ planarCross v z ↔ 0 ≤ planarCross v z - planarCross v a
   constructor <;> intro h <;> linarith
 
+/--
+@isnad1 id=iff.0h3v.s4.b8564d662775 from=translated src=- shape=d67131b0 vocab=0bb271e8
+-/
 @[simp] theorem mem_negativeHalfPlane {a v z : Plane} :
     z ∈ negativeHalfPlane a v ↔ signedSide a v z ≤ 0 := by
   change planarCross v z ≤ planarCross v a ↔ planarCross v z - planarCross v a ≤ 0
   constructor <;> intro h <;> linarith
 
+/--
+@isnad1 id=iff.0h3v.s4.dcf67d72ece2 from=translated src=- shape=d67131b0 vocab=80586804
+-/
 @[simp] theorem mem_affineLine {a v z : Plane} :
     z ∈ affineLine a v ↔ signedSide a v z = 0 :=
   Iff.rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.38f852b1fcad from=translated src=- shape=52ed7545 vocab=03f655bf
+-/
 @[simp] theorem signedSide_self (a v : Plane) : signedSide a v a = 0 := by
   simp [signedSide, planarCross]
 
+/--
+@isnad1 id=eq.0h3v.s6.f9f6ea77b3cd from=translated src=- shape=7181b892 vocab=5301859c
+-/
 theorem signedSide_vadd_smul (a v : Plane) (r : ℝ) :
     signedSide a v (a + r • v) = 0 := by
   simp [signedSide, planarCross]
   ring
 
+/--
+@isnad1 id=mem.0h2v.s3.01f803bb110e from=translated src=- shape=e75ebf4c vocab=e8a845bd
+-/
 theorem mem_affineLine_self (a v : Plane) : a ∈ affineLine a v := by
   simp [affineLine]
 
+/--
+@isnad1 id=mem.0h3v.s6.f8db360f8e7f from=translated src=- shape=a2d8f087 vocab=04b3466a
+-/
 theorem vadd_smul_mem_affineLine (a v : Plane) (r : ℝ) :
     a + r • v ∈ affineLine a v := by
   change signedSide a v (a + r • v) = 0
   exact signedSide_vadd_smul a v r
 
-/-- Parameterization of a nondegenerate affine line by its tangent coordinate.-/
+/-- Parameterization of a nondegenerate affine line by its tangent coordinate.
+@isnad1 id=iff.1h3v.s6.d0b3ec86abaa from=translated src=- shape=a68fc07d vocab=04b3466a
+-/
 theorem mem_affineLine_iff_exists_smul {a v z : Plane} (hv : v ≠ 0) :
     z ∈ affineLine a v ↔ ∃ t : ℝ, z = a + t • v := by
   constructor
@@ -128,6 +157,9 @@ theorem mem_affineLine_iff_exists_smul {a v z : Plane} (hv : v ≠ 0) :
   · rintro ⟨t, rfl⟩
     exact vadd_smul_mem_affineLine a v t
 
+/--
+@isnad1 id=eq.1h2v.s6.6bdd940e2579 from=translated src=- shape=3205b4a9 vocab=8e74ae5d
+-/
 theorem affineLine_eq_range (a : Plane) {v : Plane} (hv : v ≠ 0) :
     affineLine a v = Set.range fun t : ℝ ↦ a + t • v := by
   ext z
@@ -139,7 +171,9 @@ theorem affineLine_eq_range (a : Plane) {v : Plane} (hv : v ≠ 0) :
     exact ⟨t, ht.symm⟩
 
 /-- Turn an abstract one-dimensional affine subspace through `a` into the explicit oriented-line
-representation used in this file.  The chosen orientation is intentionally unspecified.-/
+representation used in this file.  The chosen orientation is intentionally unspecified.
+@isnad1 id=ex.2h2v.s9.4f2ff42fa7f9 from=translated src=- shape=a660f283 vocab=08127a71
+-/
 theorem AffineSubspace.exists_affineLine_eq {L : AffineSubspace ℝ Plane} {a : Plane}
     (ha : a ∈ L) (hdim : Module.finrank ℝ L.direction = 1) :
     ∃ v : Plane, v ≠ 0 ∧ (L : Set Plane) = affineLine a v := by
@@ -174,7 +208,9 @@ theorem AffineSubspace.exists_affineLine_eq {L : AffineSubspace ℝ Plane} {a : 
       (Submodule.mem_span_singleton_self v)) ha
 
 /-- Extract an explicit oriented line and a metric ball from an eventually-local description by
-an abstract one-dimensional affine subspace.-/
+an abstract one-dimensional affine subspace.
+@isnad1 id=ex.3h3v.s10.f1961c7948a3 from=translated src=- shape=b159ff3f vocab=cd8b63d9
+-/
 theorem AffineSubspace.exists_ball_frontier_iff_affineLine
     {s : Set Plane} {L : AffineSubspace ℝ Plane} {a : Plane}
     (ha : a ∈ L) (hdim : Module.finrank ℝ L.direction = 1)
@@ -187,26 +223,47 @@ theorem AffineSubspace.exists_ball_frontier_iff_affineLine
   obtain ⟨r, hr, hball⟩ := Metric.eventually_nhds_iff.1 hlocal'
   exact ⟨v, hv, r, hr, hball⟩
 
+/--
+@isnad1 id=continuo.0h2v.s4.75149e5b3d45 from=translated src=- shape=30e1f344 vocab=61c5b8e7
+-/
 theorem continuous_signedSide (a v : Plane) : Continuous (signedSide a v) := by
   unfold signedSide planarCross
   fun_prop
 
+/--
+@isnad1 id=continuo.0h1v.s4.09e90553ce85 from=translated src=- shape=9bb0b988 vocab=3164f240
+-/
 theorem continuous_planarCross (v : Plane) : Continuous (planarCross v) := by
   unfold planarCross
   fun_prop
 
+/--
+@isnad1 id=isclosed.0h2v.s4.0c55ecd388ce from=translated src=- shape=80310a19 vocab=9a881b4d
+-/
 theorem isClosed_affineLine (a v : Plane) : IsClosed (affineLine a v) := by
   exact isClosed_eq (continuous_signedSide a v) continuous_const
 
+/--
+@isnad1 id=isopen.0h2v.s4.cdca32af83c1 from=translated src=- shape=80310a19 vocab=69bc7751
+-/
 theorem isOpen_positiveSide (a v : Plane) : IsOpen (positiveSide a v) := by
   exact isOpen_lt continuous_const (continuous_planarCross v)
 
+/--
+@isnad1 id=isopen.0h2v.s4.8b1a82a10bfd from=translated src=- shape=80310a19 vocab=ad74b4fd
+-/
 theorem isOpen_negativeSide (a v : Plane) : IsOpen (negativeSide a v) := by
   exact isOpen_lt (continuous_planarCross v) continuous_const
 
+/--
+@isnad1 id=isclosed.0h2v.s4.1b3b87304c90 from=translated src=- shape=80310a19 vocab=6841daec
+-/
 theorem isClosed_positiveHalfPlane (a v : Plane) : IsClosed (positiveHalfPlane a v) := by
   exact isClosed_le continuous_const (continuous_planarCross v)
 
+/--
+@isnad1 id=isclosed.0h2v.s4.6b1cd5c7747b from=translated src=- shape=80310a19 vocab=fa5af61b
+-/
 theorem isClosed_negativeHalfPlane (a v : Plane) : IsClosed (negativeHalfPlane a v) := by
   exact isClosed_le (continuous_planarCross v) continuous_const
 
@@ -226,12 +283,17 @@ def planarCrossLinear (v : Plane) : Plane →ₗ[ℝ] ℝ where
 def planarCrossCLM (v : Plane) : Plane →L[ℝ] ℝ :=
   { planarCrossLinear v with cont := continuous_planarCross v }
 
+/--
+@isnad1 id=eq.0h2v.s7.72e86d6e83c8 from=translated src=- shape=e7daf357 vocab=67a42ed9
+-/
 @[simp] theorem planarCrossCLM_apply (v z : Plane) :
     planarCrossCLM v z = planarCross v z :=
   rfl
 
 /-- A one-dimensional affine subspace in the plane is a level set of a continuous linear
-functional.  This form is convenient for convexity and same-side arguments.-/
+functional.  This form is convenient for convexity and same-side arguments.
+@isnad1 id=ex.2h2v.s10.ed9e91535a08 from=translated src=- shape=970e62c1 vocab=1a7b90e9
+-/
 theorem AffineSubspace.exists_levelSet_coordinate
     (L : AffineSubspace ℝ Plane) (a : Plane) (ha : a ∈ L)
     (hdim : Module.finrank ℝ L.direction = 1) :
@@ -242,70 +304,113 @@ theorem AffineSubspace.exists_levelSet_coordinate
   rw [hL]
   simp only [mem_affineLine, signedSide, sub_eq_zero]
 
+/--
+@isnad1 id=convex.0h2v.s5.6f5275ebdb74 from=translated src=- shape=6d0f5cfd vocab=9181b70b
+-/
 theorem convex_positiveSide (a v : Plane) : Convex ℝ (positiveSide a v) := by
   simpa [positiveSide, planarCrossLinear] using
     convex_halfSpace_gt (planarCrossLinear v).isLinear (planarCross v a)
 
+/--
+@isnad1 id=convex.0h2v.s5.abcab6d4ab63 from=translated src=- shape=6d0f5cfd vocab=97e0a5b4
+-/
 theorem convex_negativeSide (a v : Plane) : Convex ℝ (negativeSide a v) := by
   simpa [negativeSide, planarCrossLinear] using
     convex_halfSpace_lt (planarCrossLinear v).isLinear (planarCross v a)
 
+/--
+@isnad1 id=convex.0h2v.s5.9c4c768159c6 from=translated src=- shape=6d0f5cfd vocab=57934629
+-/
 theorem convex_positiveHalfPlane (a v : Plane) : Convex ℝ (positiveHalfPlane a v) := by
   simpa [positiveHalfPlane, planarCrossLinear] using
     convex_halfSpace_ge (planarCrossLinear v).isLinear (planarCross v a)
 
+/--
+@isnad1 id=convex.0h2v.s5.ceb6895a0879 from=translated src=- shape=6d0f5cfd vocab=748a2447
+-/
 theorem convex_negativeHalfPlane (a v : Plane) : Convex ℝ (negativeHalfPlane a v) := by
   simpa [negativeHalfPlane, planarCrossLinear] using
     convex_halfSpace_le (planarCrossLinear v).isLinear (planarCross v a)
 
+/--
+@isnad1 id=isprecon.0h3v.s5.433a51c44790 from=translated src=- shape=6265ff38 vocab=279109ce
+-/
 theorem isPreconnected_ball_inter_positiveSide (a v : Plane) (r : ℝ) :
     IsPreconnected (ball a r ∩ positiveSide a v) :=
   ((convex_ball a r).inter (convex_positiveSide a v)).isPreconnected
 
+/--
+@isnad1 id=isprecon.0h3v.s5.7d82fc8692b7 from=translated src=- shape=6265ff38 vocab=d5695d21
+-/
 theorem isPreconnected_ball_inter_negativeSide (a v : Plane) (r : ℝ) :
     IsPreconnected (ball a r ∩ negativeSide a v) :=
   ((convex_ball a r).inter (convex_negativeSide a v)).isPreconnected
 
+/--
+@isnad1 id=eq.0h2v.s5.36c372d6d403 from=translated src=- shape=17d0b6a0 vocab=2fb1984d
+-/
 @[simp] theorem signedSide_add_mul_I (a v : Plane) :
     signedSide a v (a + v * Complex.I) = Complex.normSq v := by
   simp [signedSide, planarCross, Complex.normSq_apply]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s6.366f104c3d06 from=translated src=- shape=4a383366 vocab=af781452
+-/
 theorem signedSide_add_smul_mul_I (a v : Plane) (t : ℝ) :
     signedSide a v (a + t • (v * Complex.I)) = t * Complex.normSq v := by
   simp [signedSide, planarCross, Complex.normSq_apply]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s5.49e7e2c798f6 from=translated src=- shape=25e122b1 vocab=c631d9e3
+-/
 @[simp] theorem signedSide_sub_mul_I (a v : Plane) :
     signedSide a v (a - v * Complex.I) = -Complex.normSq v := by
   simp [signedSide, planarCross, Complex.normSq_apply]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s6.906c288eda70 from=translated src=- shape=9a2deee0 vocab=865ba14a
+-/
 theorem signedSide_sub_smul_mul_I (a v : Plane) (t : ℝ) :
     signedSide a v (a - t • (v * Complex.I)) = -(t * Complex.normSq v) := by
   simp [signedSide, planarCross, Complex.normSq_apply]
   ring
 
+/--
+@isnad1 id=nonempty.1h2v.s4.2e00ee7eec94 from=translated src=- shape=c62756c3 vocab=db2de25b
+-/
 theorem positiveSide_nonempty (a : Plane) {v : Plane} (hv : v ≠ 0) :
     (positiveSide a v).Nonempty := by
   refine ⟨a + v * Complex.I, mem_positiveSide.2 ?_⟩
   simpa using Complex.normSq_pos.2 hv
 
+/--
+@isnad1 id=nonempty.1h2v.s4.601fd4b8ed09 from=translated src=- shape=c62756c3 vocab=ba615e89
+-/
 theorem negativeSide_nonempty (a : Plane) {v : Plane} (hv : v ≠ 0) :
     (negativeSide a v).Nonempty := by
   refine ⟨a - v * Complex.I, mem_negativeSide.2 ?_⟩
   simpa using neg_neg_of_pos (Complex.normSq_pos.2 hv)
 
-/-- Each of the two components of the complement of a nondegenerate affine line is connected.-/
+/-- Each of the two components of the complement of a nondegenerate affine line is connected.
+@isnad1 id=isconnec.1h2v.s5.16f379fec2ae from=translated src=- shape=c62756c3 vocab=7c874f6f
+-/
 theorem isConnected_positiveSide (a : Plane) {v : Plane} (hv : v ≠ 0) :
     IsConnected (positiveSide a v) :=
   (convex_positiveSide a v).isConnected (positiveSide_nonempty a hv)
 
-/-- Each of the two components of the complement of a nondegenerate affine line is connected.-/
+/-- Each of the two components of the complement of a nondegenerate affine line is connected.
+@isnad1 id=isconnec.1h2v.s5.57da875ae1c5 from=translated src=- shape=c62756c3 vocab=1f3a75e0
+-/
 theorem isConnected_negativeSide (a : Plane) {v : Plane} (hv : v ≠ 0) :
     IsConnected (negativeSide a v) :=
   (convex_negativeSide a v).isConnected (negativeSide_nonempty a hv)
 
+/--
+@isnad1 id=eq.0h2v.s4.cf48ce4476f6 from=translated src=- shape=994a7c09 vocab=d294959d
+-/
 theorem positiveHalfPlane_eq_positiveSide_union_line (a v : Plane) :
     positiveHalfPlane a v = positiveSide a v ∪ affineLine a v := by
   ext z
@@ -319,6 +424,9 @@ theorem positiveHalfPlane_eq_positiveSide_union_line (a v : Plane) :
     · exact h.le
     · exact h.ge
 
+/--
+@isnad1 id=eq.0h2v.s4.5e60d3189665 from=translated src=- shape=994a7c09 vocab=d12f429d
+-/
 theorem negativeHalfPlane_eq_negativeSide_union_line (a v : Plane) :
     negativeHalfPlane a v = negativeSide a v ∪ affineLine a v := by
   ext z
@@ -326,11 +434,17 @@ theorem negativeHalfPlane_eq_negativeSide_union_line (a v : Plane) :
   exact (le_iff_lt_or_eq :
     signedSide a v z ≤ 0 ↔ signedSide a v z < 0 ∨ signedSide a v z = 0)
 
+/--
+@isnad1 id=eq.0h2v.s4.228ddad02c19 from=translated src=- shape=362c910a vocab=ccb12e8d
+-/
 @[simp] theorem compl_positiveHalfPlane (a v : Plane) :
     (positiveHalfPlane a v)ᶜ = negativeSide a v := by
   ext z
   simp [mem_positiveHalfPlane, mem_negativeSide]
 
+/--
+@isnad1 id=eq.0h2v.s4.5b360c6454b2 from=translated src=- shape=362c910a vocab=af971d8d
+-/
 @[simp] theorem compl_negativeHalfPlane (a v : Plane) :
     (negativeHalfPlane a v)ᶜ = positiveSide a v := by
   ext z
@@ -338,7 +452,9 @@ theorem negativeHalfPlane_eq_negativeSide_union_line (a v : Plane) :
 
 /-- A preconnected region avoiding a frontier lies entirely on one side of the membership
 partition.  The strengthened conclusion uses interiors, which is usually what local boundary
-arguments need.-/
+arguments need.
+@isnad1 id=or.2h3v.s6.75d4043a97f6 from=translated src=- shape=52f41d07 vocab=83e27fdb
+-/
 theorem IsPreconnected.subset_interior_or_subset_interior_compl_of_disjoint_frontier
     {X : Type*} [TopologicalSpace X] {c s : Set X} (hc : IsPreconnected c)
     (hdisj : Disjoint c (frontier s)) :
@@ -350,7 +466,9 @@ theorem IsPreconnected.subset_interior_or_subset_interior_compl_of_disjoint_fron
     exact Set.mem_compl (Set.disjoint_left.1 hdisj hx)
 
 /-- Membership at one point determines membership throughout a connected frontier-free region.
-This is the pointwise form of the preceding partition lemma.-/
+This is the pointwise form of the preceding partition lemma.
+@isnad1 id=le.4h4v.s6.30d35232b31e from=translated src=- shape=ad28cfbe vocab=f8efffa1
+-/
 theorem IsPreconnected.subset_interior_of_disjoint_frontier_of_mem
     {X : Type*} [TopologicalSpace X] {c s : Set X} (hc : IsPreconnected c)
     (hdisj : Disjoint c (frontier s)) {x : X} (hxc : x ∈ c) (hxs : x ∈ s) :
@@ -362,7 +480,9 @@ theorem IsPreconnected.subset_interior_of_disjoint_frontier_of_mem
 
 /-- A regular-closed set with locally level-set boundary occupies opposite open half-planes on
 its interior and exterior sides.  This coordinate-free formulation is convenient when a caller
-already has a continuous linear coordinate for its affine line.-/
+already has a continuous linear coordinate for its affine line.
+@isnad1 id=other.4h4v.s10.94864a73f667 from=translated src=- shape=2b7c020a vocab=1c327d22
+-/
 theorem local_levelSet_dichotomy (psi : Plane →L[ℝ] ℝ)
     {s : Set Plane} {x : Plane} {r : ℝ} (hr : 0 < r)
     (hregular : closure (interior s) = s) (hx : x ∈ frontier s)
@@ -440,7 +560,9 @@ theorem local_levelSet_dichotomy (psi : Plane →L[ℝ] ℝ)
 /-- The local closed-half-plane alternative, stated for the explicit line API above.
 
 `hregular` is the regular-closed hypothesis.  `hfrontier` says that, throughout the ball, the
-frontier of `s` is exactly the line.  No global assumption on `s` is required.-/
+frontier of `s` is exactly the line.  No global assumption on `s` is required.
+@isnad1 id=or.4h4v.s7.d3ece5866aaa from=translated src=- shape=60a084c9 vocab=7eb6f680
+-/
 theorem local_eq_closedHalfPlane
     {s : Set Plane} {a v : Plane} {r : ℝ} (_hv : v ≠ 0) (hr : 0 < r)
     (hregular : closure (interior s) = s)
@@ -525,7 +647,9 @@ theorem local_eq_closedHalfPlane
         (hposOut ⟨hzBall, mem_positiveSide.2 hzPos⟩)
 
 /-- Consumer-facing form of `local_eq_closedHalfPlane` for an abstract affine line specified only
-locally.  This is the shape produced directly by polygonal local-straightness arguments.-/
+locally.  This is the shape produced directly by polygonal local-straightness arguments.
+@isnad1 id=ex.4h3v.s10.edd7489bcab0 from=translated src=- shape=e95c981d vocab=4a70b3c0
+-/
 theorem exists_local_eq_closedHalfPlane_of_affineSubspace
     {s : Set Plane} {L : AffineSubspace ℝ Plane} {a : Plane}
     (hregular : closure (interior s) = s) (ha : a ∈ L)

@@ -345,7 +345,9 @@ private theorem IsTriangle.boundaryGerm {t : Set Plane} (ht : IsTriangle t) {x :
       intro hyi
       exact (hyinterior.mp hyi).ne' hyzero
 
-/-- A nondegenerate triangle has nonempty interior.-/
+/-- A nondegenerate triangle has nonempty interior.
+@isnad1 id=nonempty.1h1v.s4.fe71d36fbe9a from=translated src=- shape=a62af213 vocab=69faacfe
+-/
 theorem IsTriangle.interior_nonempty {s : Set Plane} (hs : IsTriangle s) :
     (interior s).Nonempty := by
   obtain ⟨a, b, c, harea, rfl⟩ := hs
@@ -359,12 +361,16 @@ theorem IsTriangle.interior_nonempty {s : Set Plane} (hs : IsTriangle s) :
     (affineIndependent_of_twiceSignedArea_ne_zero a b c harea)).mpr
   simp [Complex.finrank_real_complex]
 
-/-- A triangle is compact.-/
+/-- A triangle is compact.
+@isnad1 id=iscompac.1h1v.s4.43a3a8a75a5b from=translated src=- shape=f3db9897 vocab=65785533
+-/
 theorem IsTriangle.isCompact {s : Set Plane} (hs : IsTriangle s) : IsCompact s := by
   obtain ⟨a, b, c, _, rfl⟩ := hs
   exact Set.toFinite {a, b, c} |>.isCompact_convexHull ℝ
 
-/-- A nondegenerate triangle is the closure of its interior.-/
+/-- A nondegenerate triangle is the closure of its interior.
+@isnad1 id=eq.1h1v.s5.5685665d7e4c from=translated src=- shape=46d47fcc vocab=322c62ed
+-/
 theorem IsTriangle.closure_interior {s : Set Plane} (hs : IsTriangle s) :
     closure (interior s) = s := by
   obtain ⟨a, b, c, harea, rfl⟩ := hs
@@ -373,23 +379,31 @@ theorem IsTriangle.closure_interior {s : Set Plane} (hs : IsTriangle s) :
       (IsTriangle.interior_nonempty ⟨a, b, c, harea, rfl⟩) |>.trans
         ((Set.toFinite {a, b, c}).isCompact_convexHull ℝ).isClosed.closure_eq
 
-/-- A polygonal set is compact.-/
+/-- A polygonal set is compact.
+@isnad1 id=iscompac.1h1v.s4.5bf525052f1d from=translated src=- shape=f3db9897 vocab=0f88620e
+-/
 theorem IsPolygonal.isCompact {s : Set Plane} (hs : IsPolygonal s) : IsCompact s := by
   obtain ⟨triangulation⟩ := hs
   rw [← triangulation.sUnion_eq]
   exact triangulation.pieces.finite_toSet.isCompact_sUnion fun t ht ↦
     (triangulation.isTriangle t ht).isCompact
 
-/-- A polygonal set is closed.-/
+/-- A polygonal set is closed.
+@isnad1 id=isclosed.1h1v.s4.4c066ca5945f from=translated src=- shape=f3db9897 vocab=3232a6b6
+-/
 theorem IsPolygonal.isClosed {s : Set Plane} (hs : IsPolygonal s) : IsClosed s :=
   hs.isCompact.isClosed
 
-/-- A polygonal set is bounded.-/
+/-- A polygonal set is bounded.
+@isnad1 id=isbounde.1h1v.s4.db6c8eda8ad5 from=translated src=- shape=f3db9897 vocab=78e7830a
+-/
 theorem IsPolygonal.isBounded {s : Set Plane} (hs : IsPolygonal s) :
     Bornology.IsBounded s :=
   hs.isCompact.isBounded
 
-/-- A polygonal set is the closure of its interior.-/
+/-- A polygonal set is the closure of its interior.
+@isnad1 id=eq.1h1v.s5.33a797fd8200 from=translated src=- shape=46d47fcc vocab=1e2df6da
+-/
 theorem IsPolygonal.closure_interior {s : Set Plane} (hs : IsPolygonal s) :
     closure (interior s) = s := by
   obtain ⟨triangulation⟩ := hs
@@ -412,7 +426,9 @@ private theorem frontier_sUnion_subset_biUnion (F : Finset (Set Plane)) :
         (Set.union_subset_union inter_subset_left inter_subset_right).trans <|
           Set.union_subset_union Subset.rfl ih
 
-/-- The frontier of a polygonal set has zero planar volume.-/
+/-- The frontier of a polygonal set has zero planar volume.
+@isnad1 id=eq.1h1v.s6.84f5da2ee137 from=translated src=- shape=6e9e3da5 vocab=c4d022db
+-/
 theorem IsPolygonal.volume_frontier {s : Set Plane} (hs : IsPolygonal s) :
     volume (frontier s) = 0 := by
   obtain ⟨triangulation⟩ := hs
@@ -423,12 +439,16 @@ theorem IsPolygonal.volume_frontier {s : Set Plane} (hs : IsPolygonal s) :
   obtain ⟨a, b, c, _, rfl⟩ := triangulation.isTriangle t ht
   exact (convex_convexHull ℝ ({a, b, c} : Set Plane)).addHaar_frontier volume
 
-/-- A polygonal set and its interior agree almost everywhere.-/
+/-- A polygonal set and its interior agree almost everywhere.
+@isnad1 id=eventual.1h1v.s5.c2308892c28a from=translated src=- shape=c4253f55 vocab=ea5ac811
+-/
 theorem IsPolygonal.interior_ae_eq {s : Set Plane} (hs : IsPolygonal s) :
     interior s =ᵐ[volume] s :=
   interior_ae_eq_of_null_frontier hs.volume_frontier
 
-/-- A nonempty polygonal set has nonempty interior.-/
+/-- A nonempty polygonal set has nonempty interior.
+@isnad1 id=nonempty.2h1v.s4.2a6bbdc736cc from=translated src=- shape=5e05d0ee vocab=7e86f921
+-/
 theorem IsPolygonal.interior_nonempty {s : Set Plane} (hs : IsPolygonal s)
     (hne : s.Nonempty) : (interior s).Nonempty := by
   apply Set.nonempty_iff_ne_empty.mpr
@@ -436,7 +456,9 @@ theorem IsPolygonal.interior_nonempty {s : Set Plane} (hs : IsPolygonal s)
   apply hne.ne_empty
   rw [← hs.closure_interior, hinter, closure_empty]
 
-/-- A nonempty polygonal set has positive planar volume.-/
+/-- A nonempty polygonal set has positive planar volume.
+@isnad1 id=lt.2h1v.s5.9eac5dee3a95 from=translated src=- shape=dfbbb81c vocab=3ad54d66
+-/
 theorem IsPolygonal.volume_pos {s : Set Plane} (hs : IsPolygonal s)
     (hne : s.Nonempty) : 0 < volume s :=
   (isOpen_interior.measure_pos volume (hs.interior_nonempty hne)).trans_le
@@ -447,7 +469,9 @@ private theorem IsTriangle.extremePoints_finite {s : Set Plane} (hs : IsTriangle
   obtain ⟨a, b, c, _, rfl⟩ := hs
   exact (Set.toFinite {a, b, c}).subset extremePoints_convexHull_subset
 
-/-- The triangulation-independent vertex set of a polygonal set is finite.-/
+/-- The triangulation-independent vertex set of a polygonal set is finite.
+@isnad1 id=finite.1h1v.s3.a6890b34d9a6 from=translated src=- shape=314ae98c vocab=d647d559
+-/
 theorem IsPolygonal.vertexSet_finite {s : Set Plane} (hs : IsPolygonal s) :
     (vertexSet s).Finite := by
   obtain ⟨triangulation⟩ := hs
@@ -457,7 +481,9 @@ theorem IsPolygonal.vertexSet_finite {s : Set Plane} (hs : IsPolygonal s) :
   obtain ⟨t, ht, hxt⟩ := hx triangulation
   exact mem_biUnion ht hxt
 
-/-- Translating a triangle preserves nondegeneracy and triangularity.-/
+/-- Translating a triangle preserves nondegeneracy and triangularity.
+@isnad1 id=istriang.1h2v.s4.e82de6fa2023 from=translated src=- shape=386d081b vocab=bae40d24
+-/
 theorem IsTriangle.vadd {s : Set Plane} (hs : IsTriangle s) (a : Plane) :
     IsTriangle (a +ᵥ s) := by
   obtain ⟨p, q, r, harea, rfl⟩ := hs
@@ -479,7 +505,9 @@ theorem IsTriangle.vadd {s : Set Plane} (hs : IsTriangle s) (a : Plane) :
       · right; right; rw [h]; abel
 
 /-- Translating two almost-everywhere disjoint planar sets by the same vector preserves
-almost-everywhere disjointness.-/
+almost-everywhere disjointness.
+@isnad1 id=aedisjoi.1h3v.s6.bb8edec2536d from=translated src=- shape=6817dae6 vocab=db8abd4e
+-/
 theorem aedisjoint_vadd {s t : Set Plane} (a : Plane)
     (h : AEDisjoint volume s t) : AEDisjoint volume (a +ᵥ s) (a +ᵥ t) := by
   rw [AEDisjoint]
@@ -534,13 +562,17 @@ noncomputable def Triangulation.vadd {s : Set Plane} (T : Triangulation s) (a : 
       · simp only [Finset.mem_coe, Finset.mem_image]
         exact ⟨u, hu, rfl⟩
 
-/-- Translating a polygonal set preserves polygonality.-/
+/-- Translating a polygonal set preserves polygonality.
+@isnad1 id=ispolygo.1h2v.s4.f198545443a5 from=translated src=- shape=386d081b vocab=f35cbb49
+-/
 theorem IsPolygonal.vadd {s : Set Plane} (hs : IsPolygonal s) (a : Plane) :
     IsPolygonal (a +ᵥ s) := by
   obtain ⟨T⟩ := hs
   exact ⟨T.vadd a⟩
 
-/-- Nonzero real dilation preserves nondegenerate triangularity.-/
+/-- Nonzero real dilation preserves nondegenerate triangularity.
+@isnad1 id=istriang.2h2v.s6.18fe9d2b1d83 from=translated src=- shape=71bd43ec vocab=68306476
+-/
 theorem IsTriangle.smul {s : Set Plane} (hs : IsTriangle s) (r : ℝ) (hr : r ≠ 0) :
     IsTriangle (r • s) := by
   obtain ⟨a, b, c, harea, rfl⟩ := hs
@@ -562,7 +594,9 @@ theorem IsTriangle.smul {s : Set Plane} (hs : IsTriangle s) (r : ℝ) (hr : r �
       · exact ⟨b, by simp, rfl⟩
       · exact ⟨c, by simp, rfl⟩
 
-/-- Nonzero real dilation preserves almost-everywhere disjointness in the plane.-/
+/-- Nonzero real dilation preserves almost-everywhere disjointness in the plane.
+@isnad1 id=aedisjoi.2h3v.s7.a025b600a12c from=translated src=- shape=ad869aa3 vocab=fb8b3d29
+-/
 theorem aedisjoint_smul {s t : Set Plane} (r : ℝ) (hr : r ≠ 0)
     (h : AEDisjoint volume s t) : AEDisjoint volume (r • s) (r • t) := by
   rw [AEDisjoint]
@@ -616,7 +650,9 @@ noncomputable def Triangulation.smul {s : Set Plane} (T : Triangulation s)
       · simp only [Finset.mem_coe, Finset.mem_image]
         exact ⟨u, hu, rfl⟩
 
-/-- Nonzero real dilation preserves polygonality.-/
+/-- Nonzero real dilation preserves polygonality.
+@isnad1 id=ispolygo.2h2v.s6.73a9ec3e74ca from=translated src=- shape=71bd43ec vocab=a6c508cf
+-/
 theorem IsPolygonal.smul {s : Set Plane} (hs : IsPolygonal s) (r : ℝ) (hr : r ≠ 0) :
     IsPolygonal (r • s) := by
   obtain ⟨T⟩ := hs
@@ -675,7 +711,9 @@ private theorem Triangulation.cast_pieces {s t : Set Plane} (h : s = t)
   subst t
   rfl
 
-/-- Intrinsic polygon vertices commute with translation.-/
+/-- Intrinsic polygon vertices commute with translation.
+@isnad1 id=eq.0h2v.s5.6f33c192fc5e from=translated src=- shape=0c9b44ae vocab=fcdeed38
+-/
 theorem vertexSet_vadd (a : Plane) (s : Set Plane) :
     vertexSet (a +ᵥ s) = a +ᵥ vertexSet s := by
   ext x
@@ -720,7 +758,9 @@ theorem vertexSet_vadd (a : Plane) (s : Set Plane) :
     rw [← extremePoints_vadd] at hxtranslated
     simpa only [vadd_vadd, add_neg_cancel, zero_vadd] using hxtranslated
 
-/-- Intrinsic polygon vertices commute with nonzero real dilation.-/
+/-- Intrinsic polygon vertices commute with nonzero real dilation.
+@isnad1 id=eq.1h2v.s6.bdd897a5fc76 from=translated src=- shape=4f6df828 vocab=3f5e6046
+-/
 theorem vertexSet_smul (r : ℝ) (hr : r ≠ 0) (s : Set Plane) :
     vertexSet (r • s) = r • vertexSet s := by
   ext x
@@ -773,7 +813,9 @@ theorem vertexSet_smul (r : ℝ) (hr : r ≠ 0) (s : Set Plane) :
 /-- Away from a triangulation-independent vertex, a polygonal frontier is locally straight.
 
 This is the computational-geometry bridge between the universal triangulation definition of
-`vertexSet` and the intrinsic proper boundary vertices used in the sliding argument.-/
+`vertexSet` and the intrinsic proper boundary vertices used in the sliding argument.
+@isnad1 id=boundary.3h2v.s5.25025dd2e48c from=translated src=- shape=3c972cf7 vocab=824cc1d8
+-/
 theorem IsPolygonal.boundaryLocallyStraightAt_of_not_mem_vertexSet
     {s : Set Plane} (hs : IsPolygonal s) {x : Plane} (hx : x ∈ frontier s)
     (hxv : x ∉ vertexSet s) : BoundaryLocallyStraightAt s x := by
@@ -972,7 +1014,9 @@ private theorem IsPolygonal.exists_vertex_along_vertical_ray
     (isPreconnected_connectedComponentIn.Icc_subset hzeroJ hbJ ht)
 
 /-- A locally straight polygonal frontier contained in a vertical line coincides locally with
-that line.-/
+that line.
+@isnad1 id=ex.4h2v.s7.023e118a52ad from=translated src=- shape=a4381b8e vocab=709e998e
+-/
 theorem IsPolygonal.exists_ball_frontier_iff_verticalLine_of_subset
     {D : Set Plane} (hD : IsPolygonal D) {p : Plane}
     (hp : p ∈ frontier D) (hpnotvertex : p ∉ vertexSet D)
@@ -1021,7 +1065,9 @@ theorem IsPolygonal.exists_ball_frontier_iff_verticalLine_of_subset
     · simp [hvim]
 
 /-- A vertical local boundary germ of a compact polygonal set extends to a nondegenerate open
-boundary segment whose endpoints are intrinsic polygonal vertices.-/
+boundary segment whose endpoints are intrinsic polygonal vertices.
+@isnad1 id=ex.3h2v.s7.856272842b20 from=translated src=- shape=44e189ef vocab=70a0f19d
+-/
 theorem IsPolygonal.exists_intrinsic_vertical_edge_of_germ
     {D : Set Tiling.Plane} (hD : Tiling.IsPolygonal D) {p : Tiling.Plane}
     (hp : p ∈ frontier D)
@@ -1126,7 +1172,9 @@ private theorem frontier_sUnion_finset_subset (F : Finset (Set Plane)) :
         exact ⟨t, Finset.mem_insert_of_mem htF, hzt⟩
 
 /-- The boundary of an axis-parallel set is contained in finitely many vertical and horizontal
-coordinate lines.-/
+coordinate lines.
+@isnad1 id=ex.1h1v.s6.d4f564a949ac from=translated src=- shape=1f6ff090 vocab=4d0e47aa
+-/
 theorem IsAxisParallel.exists_finite_boundary_axisLines {D : Set Plane}
     (hD : IsAxisParallel D) :
     ∃ V H : Finset ℝ, ∀ z ∈ frontier D, z.re ∈ V ∨ z.im ∈ H := by
@@ -1185,7 +1233,9 @@ theorem IsAxisParallel.exists_finite_boundary_axisLines {D : Set Plane}
 namespace IsAxisParallel
 
 /-- Near any point, the frontier of a finite union of axis-parallel rectangles lies in the
-coordinate cross through that point.-/
+coordinate cross through that point.
+@isnad1 id=ex.1h2v.s6.0ae286fc559e from=translated src=- shape=ae984a27 vocab=9141a83b
+-/
 theorem localBoundaryCross {D : Set Plane} (hD : Tiling.IsAxisParallel D) (x : Plane) :
     ∃ r > 0, ∀ z ∈ Metric.ball x r, z ∈ frontier D →
       z.re = x.re ∨ z.im = x.im := by
@@ -1286,7 +1336,9 @@ private theorem re_eq_of_mem_openSegment_vertical
   rw [hab]
   ring
 
-/-- Perpendicular nondegenerate boundary segments can meet only at an intrinsic vertex.-/
+/-- Perpendicular nondegenerate boundary segments can meet only at an intrinsic vertex.
+@isnad1 id=mem.9h6v.s8.788dc3f542fb from=translated src=- shape=f60c14e7 vocab=d9a7f572
+-/
 theorem IsPolygonal.mem_vertexSet_of_perpendicular_openSegments
     {D : Set Plane} (hD : IsPolygonal D) {c d p v w : Tiling.Plane}
     (hcd : c ≠ d) (hcdIm : c.im = d.im)
@@ -1433,6 +1485,9 @@ private theorem vadd_rectangle (a p q : Plane) :
     Complex.mem_reProdIm, vadd_eq_add, Complex.add_re, Complex.add_im,
     Complex.neg_re, Complex.neg_im, sub_mem_uIcc_iff_add]
 
+/--
+@isnad1 id=isrectan.1h2v.s4.95c2df964db4 from=translated src=- shape=386d081b vocab=056984c5
+-/
 theorem IsRectangle.vadd {s : Set Plane}
     (hs : Tiling.IsRectangle s) (a : Plane) :
     Tiling.IsRectangle (a +ᵥ s) := by
@@ -1489,6 +1544,9 @@ namespace Tiling
 def interiorComponents (s : Set Plane) : Set (Set Plane) :=
   {O | ∃ x ∈ interior s, O = connectedComponentIn (interior s) x}
 
+/--
+@isnad1 id=and.1h2v.s6.2f0d8c285827 from=translated src=- shape=a062c90b vocab=016b054e
+-/
 theorem interiorComponent_basic {s O : Set Plane}
     (hO : O ∈ interiorComponents s) :
     IsOpen O ∧ IsConnected O ∧ O ⊆ interior s := by
@@ -1496,6 +1554,9 @@ theorem interiorComponent_basic {s O : Set Plane}
   exact ⟨isOpen_interior.connectedComponentIn,
     isConnected_connectedComponentIn_iff.mpr hx, connectedComponentIn_subset _ _⟩
 
+/--
+@isnad1 id=eq.1h2v.s5.abf9121c79aa from=translated src=- shape=a581f0cc vocab=f3f4f518
+-/
 theorem interiorComponent_closure_inter_interior_eq {s O : Set Plane}
     (hO : O ∈ interiorComponents s) :
     closure O ∩ interior s = O := by
@@ -1509,6 +1570,9 @@ theorem interiorComponent_closure_inter_interior_eq {s O : Set Plane}
     exact ⟨⟨y, hys⟩, hm ⟨y, hys⟩ hy, rfl⟩
   · exact fun y hy ↦ ⟨subset_closure hy, connectedComponentIn_subset _ _ hy⟩
 
+/--
+@isnad1 id=ex.1h3v.s7.e06ac7057343 from=translated src=- shape=bece02bc vocab=1dce2963
+-/
 theorem Triangulation.interiorComponent_subfamily {s O : Set Plane}
     (T : Triangulation s) (hO : O ∈ interiorComponents s) :
     ∃ F : Finset (Set Plane), F ⊆ T.pieces ∧
@@ -1587,6 +1651,9 @@ private theorem component_piece_injection {s : Set Plane} (T : Triangulation s) 
   exact hOy.trans ((connectedComponentIn_eq hxo).trans
     (connectedComponentIn_eq hxp).symm) |>.trans hPz.symm
 
+/--
+@isnad1 id=finite.1h1v.s3.2bc0e6217577 from=translated src=- shape=dea89685 vocab=4916e250
+-/
 theorem IsPolygonal.interiorComponents_finite {s : Set Plane} (hs : IsPolygonal s) :
     (interiorComponents s).Finite := by
   obtain ⟨T⟩ := hs
@@ -1594,11 +1661,17 @@ theorem IsPolygonal.interiorComponents_finite {s : Set Plane} (hs : IsPolygonal 
   have : Finite ↥(interiorComponents s) := Finite.of_injective f hf
   exact Set.toFinite _
 
+/--
+@isnad1 id=le.0h2v.s4.443af257aa06 from=translated src=- shape=6eafad96 vocab=7fd9e399
+-/
 theorem Triangulation.interiorComponents_card_le {s : Set Plane} (T : Triangulation s) :
     Nat.card ↥(interiorComponents s) ≤ T.pieces.card := by
   obtain ⟨f, hf⟩ := component_piece_injection T
   simpa using Nat.card_le_card_of_injective f hf
 
+/--
+@isnad1 id=ispolygo.2h2v.s5.68a8acc33644 from=translated src=- shape=5766db46 vocab=a93b2b72
+-/
 theorem IsPolygonal.interiorComponent_closure_isPolygonal {s O : Set Plane}
     (hs : IsPolygonal s) (hO : O ∈ interiorComponents s) :
     IsPolygonal (closure O) := by
@@ -1610,6 +1683,9 @@ theorem IsPolygonal.interiorComponent_closure_isPolygonal {s O : Set Plane}
     pairwiseAEDisjoint := T.pairwiseAEDisjoint.mono hFT
     sUnion_eq := hF.symm }⟩
 
+/--
+@isnad1 id=and.2h2v.s7.2e17bd5784c6 from=translated src=- shape=b345ceab vocab=65905f57
+-/
 theorem IsPolygonal.interiorComponent_closure_compact_positive {s O : Set Plane}
     (hs : IsPolygonal s) (hO : O ∈ interiorComponents s) :
     IsCompact (closure O) ∧ 0 < volume (closure O) ∧
@@ -1618,6 +1694,9 @@ theorem IsPolygonal.interiorComponent_closure_compact_positive {s O : Set Plane}
   have hne := (interiorComponent_basic hO).2.1.nonempty.mono subset_closure
   exact ⟨hC.isCompact, hC.volume_pos hne, hC.isCompact.measure_ne_top⟩
 
+/--
+@isnad1 id=eq.2h2v.s5.e84ba60dc48f from=translated src=- shape=283e9a12 vocab=c3256b67
+-/
 theorem IsPolygonal.interiorComponent_interior_closure_eq {s O : Set Plane}
     (hs : IsPolygonal s) (hO : O ∈ interiorComponents s) :
     interior (closure O) = O := by
@@ -1629,6 +1708,9 @@ theorem IsPolygonal.interiorComponent_interior_closure_eq {s O : Set Plane}
     exact ⟨interior_subset hx, interior_mono hCs hx⟩
   · exact interior_maximal subset_closure ho
 
+/--
+@isnad1 id=eq.1h1v.s5.70d19012f32c from=translated src=- shape=bb301971 vocab=94a15337
+-/
 theorem IsPolygonal.iUnion_closure_interiorComponents {s : Set Plane}
     (hs : IsPolygonal s) :
     (⋃ O ∈ interiorComponents s, closure O) = s := by
@@ -1643,6 +1725,9 @@ theorem IsPolygonal.iUnion_closure_interiorComponents {s : Set Plane}
   rw [← (hs.interiorComponents_finite.closure_biUnion fun O ↦ O), hu,
     hs.closure_interior]
 
+/--
+@isnad1 id=eq.2h2v.s6.a5685f9bab96 from=translated src=- shape=eb9b960c vocab=9b697d45
+-/
 theorem IsPolygonal.interiorComponent_frontier_eq {s O : Set Plane}
     (hs : IsPolygonal s) (hO : O ∈ interiorComponents s) :
     frontier O = frontier (closure O) := by
@@ -1650,6 +1735,9 @@ theorem IsPolygonal.interiorComponent_frontier_eq {s O : Set Plane}
     hs.interiorComponent_interior_closure_eq hO,
     (interiorComponent_basic hO).1.interior_eq]
 
+/--
+@isnad1 id=le.2h2v.s6.b3c2b27c7432 from=translated src=- shape=3b9bbc65 vocab=0cc9e308
+-/
 theorem IsPolygonal.interiorComponent_frontier_subset {s O : Set Plane}
     (hs : IsPolygonal s) (hO : O ∈ interiorComponents s) :
     frontier (closure O) ⊆ frontier s := by
@@ -1663,6 +1751,9 @@ theorem IsPolygonal.interiorComponent_frontier_subset {s O : Set Plane}
   rw [← interiorComponent_closure_inter_interior_eq hO]
   exact ⟨hx, hxi⟩
 
+/--
+@isnad1 id=pairwise.0h1v.s5.23a7fbcb7435 from=translated src=- shape=d759136e vocab=0b03d1b7
+-/
 theorem interiorComponents_pairwiseDisjoint (s : Set Plane) :
     (interiorComponents s).Pairwise (fun O P => Disjoint O P) := by
   rintro O ⟨x, hx, rfl⟩ P ⟨y, hy, rfl⟩ hne
@@ -1670,6 +1761,9 @@ theorem interiorComponents_pairwiseDisjoint (s : Set Plane) :
   intro z hzO hzP
   exact hne ((connectedComponentIn_eq hzO).trans (connectedComponentIn_eq hzP).symm)
 
+/--
+@isnad1 id=pairwise.1h1v.s6.c3889322b6d6 from=translated src=- shape=6621c898 vocab=7821efb4
+-/
 theorem IsPolygonal.interiorComponentClosures_pairwiseAEDisjoint {s : Set Plane}
     (hs : IsPolygonal s) :
     (interiorComponents s).Pairwise
@@ -1924,6 +2018,9 @@ private theorem IsPolygonal.frontier_subset_closure_diff_finite_rsPrivate
   · exact hwc (interior_subset (hi hwB))
   · exact (interior_subset (hc huB)) (interior_subset hui)
 
+/--
+@isnad1 id=ex.1h1v.s8.b8e6dcd02c91 from=translated src=- shape=89ded841 vocab=ee27f7d2
+-/
 theorem IsPolygonal.exists_finite_intrinsic_boundarySegments {s : Set Plane}
     (hs : IsPolygonal s) :
     ∃ F : Finset (Plane × Plane),
@@ -1966,7 +2063,9 @@ theorem IsPolygonal.exists_finite_intrinsic_boundarySegments {s : Set Plane}
     obtain ⟨e, he, hpseg⟩ := Set.mem_iUnion₂.mp hp
     exact (hF e he).2.2.2 hpseg
 
-/-- A transverse coordinate completes any nonzero real linear functional on the plane.-/
+/-- A transverse coordinate completes any nonzero real linear functional on the plane.
+@isnad1 id=ex.1h1v.s9.3e1a8c06b54f from=translated src=- shape=3f896004 vocab=79c2c325
+-/
 theorem exists_transverse_linearFunctional
     (f : Plane →ₗ[ℝ] ℝ) (hf : f ≠ 0) :
     ∃ g : Plane →ₗ[ℝ] ℝ,
@@ -2019,7 +2118,9 @@ theorem exists_transverse_linearFunctional
     exact sub_eq_zero.mp hzero
   exact Complex.ext hre him
 
-/-- Lexicographic linear minimizers are extreme without requiring convexity of the set.-/
+/-- Lexicographic linear minimizers are extreme without requiring convexity of the set.
+@isnad1 id=mem.4h4v.s10.de01454afef1 from=translated src=- shape=6f111067 vocab=ee47f6a0
+-/
 theorem mem_extremePoints_of_lexicographicMin
     {C : Set Plane} {v : Plane} (hv : v ∈ C)
     (f g : Plane →ₗ[ℝ] ℝ)
@@ -2084,6 +2185,9 @@ theorem mem_extremePoints_of_lexicographicMin
   have hzv : z = v := hfg (Prod.ext hfz.symm hgz.symm)
   exact hyv
 
+/--
+@isnad1 id=ex.3h3v.s9.17ea33ada222 from=translated src=- shape=5f3bcf0f vocab=8f38b597
+-/
 theorem IsPolygonal.exists_interiorComponent_min_vertex {s O : Set Plane}
     (hs : IsPolygonal s) (hO : O ∈ interiorComponents s)
     (f : Plane →ₗ[ℝ] ℝ) (hf : f ≠ 0) :
@@ -2148,6 +2252,9 @@ theorem IsPolygonal.exists_interiorComponent_min_vertex {s O : Set Plane}
     linarith [mul_neg_of_pos_of_neg he hw]
   exact hbound.trans_lt hless
 
+/--
+@isnad1 id=ex.3h3v.s9.22a6a2ee6a54 from=translated src=- shape=faec240f vocab=8f38b597
+-/
 theorem IsPolygonal.exists_interiorComponent_max_vertex {s O : Set Plane}
     (hs : IsPolygonal s) (hO : O ∈ interiorComponents s)
     (f : Plane →ₗ[ℝ] ℝ) (hf : f ≠ 0) :
@@ -2167,6 +2274,9 @@ end Tiling
 /-! Independently reviewed supplemental lemmas (outside frozen362). -/
 namespace Tiling
 
+/--
+@isnad1 id=ex.2h3v.s7.90a82d699e16 from=translated src=- shape=42be6137 vocab=7ce36078
+-/
 theorem IsPolygonal.lineSection_finiteClosedIntervals {s : Set Plane} (hs : IsPolygonal s)
     (k u : Plane) (hu : u ≠ 0) :
     ∃ (n : ℕ) (a b : Fin n → ℝ), (∀ i, a i ≤ b i) ∧
@@ -2221,6 +2331,9 @@ theorem IsPolygonal.lineSection_finiteClosedIntervals {s : Set Plane} (hs : IsPo
     rw [← hf, ← F.sUnion_eq]
     exact Set.mem_sUnion.mpr ⟨(e i).1.1, (e i).1.2, hri⟩
 
+/--
+@isnad1 id=finite.4h4v.s9.ca3bbb2a8d21 from=translated src=- shape=12faf9bb vocab=2c36acc8
+-/
 theorem IsPolygonal.noncriticalSection_frontier_finite
     {s : Set Plane} (hs : IsPolygonal s) (ℓ : Plane →L[ℝ] ℝ) (k u : Plane)
     (hu : u ≠ 0) (hℓu : ℓ u = 0)

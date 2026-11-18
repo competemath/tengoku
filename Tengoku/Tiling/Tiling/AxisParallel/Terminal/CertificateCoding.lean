@@ -131,11 +131,17 @@ private theorem rawPositiveStage_complete (c : RawPositiveCode) :
     ∃ n, rawPositiveStage n = some c :=
   stageCode_surjective _ c
 
+/--
+@isnad1 id=ex.1h1v.s4.4e254d5936ce from=translated src=- shape=153c5deb vocab=ad28884c
+-/
 theorem wellFormedNegativeStage_complete (c : RawNegativeCode)
     (hc : c.wellFormed = true) : ∃ n, wellFormedNegativeStage n = some c := by
   obtain ⟨n, hn⟩ := rawNegativeStage_complete c
   exact ⟨n, by simp [wellFormedNegativeStage, hn, hc]⟩
 
+/--
+@isnad1 id=ex.1h1v.s4.5aa81178a7b7 from=translated src=- shape=153c5deb vocab=43609c12
+-/
 theorem wellFormedPositiveStage_complete (c : RawPositiveCode)
     (hc : c.wellFormed = true) : ∃ n, wellFormedPositiveStage n = some c := by
   obtain ⟨n, hn⟩ := rawPositiveStage_complete c

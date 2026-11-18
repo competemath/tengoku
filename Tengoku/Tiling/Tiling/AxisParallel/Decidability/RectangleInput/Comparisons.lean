@@ -38,6 +38,9 @@ def compare (n : ℕ) (history : List Bool) (vertical : Bool) (i j : ℕ) : Bool
 def comparisonHistory (n : ℕ) (answer : Query → Bool) : List Bool :=
   (comparisonQueries n).map answer
 
+/--
+@isnad1 id=eq.2h4v.s5.f13eb519688f from=translated src=- shape=751f1b8b vocab=138a7bb3
+-/
 theorem comparisonQuery_index {n i j : ℕ} (hi : i < n) (hj : j < n)
     (vertical : Bool) :
     comparisonQuery n (comparisonIndex n vertical i j) =
@@ -50,6 +53,9 @@ theorem comparisonQuery_index {n i j : ℕ} (hi : i < n) (hj : j < n)
   cases vertical <;> simp [comparisonQuery, comparisonIndex, axis,
     Nat.add_div, hdiv, hmod]
 
+/--
+@isnad1 id=lt.2h4v.s5.736021d4406d from=translated src=- shape=ecfb7220 vocab=737d31ff
+-/
 theorem comparisonIndex_lt {n i j : ℕ} (hi : i < n) (hj : j < n)
     (vertical : Bool) : comparisonIndex n vertical i j < 2 * (n * n) := by
   have hrow : i * n + j < n * n := by
@@ -59,14 +65,23 @@ theorem comparisonIndex_lt {n i j : ℕ} (hi : i < n) (hj : j < n)
       _ ≤ n * n := Nat.mul_le_mul_right n hi
   cases vertical <;> simp only [comparisonIndex, Bool.cond_false, Bool.cond_true] <;> omega
 
+/--
+@isnad1 id=eq.0h1v.s4.471d52a5cc27 from=translated src=- shape=9d8552a2 vocab=fc119166
+-/
 theorem comparisonQueries_length (n : ℕ) :
     (comparisonQueries n).length = 2 * (n * n) := by
   simp [comparisonQueries]
 
+/--
+@isnad1 id=eq.0h2v.s5.25093d855c67 from=translated src=- shape=cf194092 vocab=0d23d8ca
+-/
 theorem comparisonHistory_length (n : ℕ) (answer : Query → Bool) :
     (comparisonHistory n answer).length = 2 * (n * n) := by
   simp [comparisonHistory, comparisonQueries]
 
+/--
+@isnad1 id=eq.2h5v.s6.c0ddca724cb5 from=translated src=- shape=a65b6ed2 vocab=0f466cda
+-/
 theorem compare_history {n i j : ℕ} (hi : i < n) (hj : j < n)
     (vertical : Bool) (answer : Query → Bool) :
     compare n (comparisonHistory n answer) vertical i j =
@@ -77,6 +92,9 @@ theorem compare_history {n i j : ℕ} (hi : i < n) (hj : j < n)
   simp only [List.getElem_map, List.getElem_range, Function.comp_apply]
   rw [comparisonQuery_index hi hj]
 
+/--
+@isnad1 id=iff.3h6v.s6.426b0b7f8cd0 from=translated src=- shape=d0b247fb vocab=86131e1f
+-/
 theorem compare_history_correct {n i j : ℕ} {V : List Plane}
     {answer : Query → Bool} (hanswer : CorrectOracle V answer)
     (hi : i < n) (hj : j < n) (vertical : Bool) :
@@ -90,6 +108,9 @@ theorem compare_history_correct {n i j : ℕ} {V : List Plane}
 private theorem axis_primrec : Primrec axis := by
   exact Primrec.dom_bool _
 
+/--
+@isnad1 id=primrec.0h0v.s6.5253d95e1c3e from=translated src=- shape=9a7a4a3e vocab=9ec54f6a
+-/
 theorem comparisonIndex_primrec :
     Primrec (fun x : ℕ × Bool × ℕ × ℕ =>
       comparisonIndex x.1 x.2.1 x.2.2.1 x.2.2.2) := by
@@ -101,6 +122,9 @@ theorem comparisonIndex_primrec :
         (Primrec.snd.comp (Primrec.snd.comp Primrec.snd))))
     (Primrec.cond (Primrec.fst.comp Primrec.snd) (Primrec.const 1) (Primrec.const 0))
 
+/--
+@isnad1 id=primrec.0h0v.s5.f51b177bc363 from=translated src=- shape=4ce37f0a vocab=62ea5973
+-/
 theorem comparisonQuery_primrec : Primrec₂ comparisonQuery := by
   have hhalf : Primrec (fun x : ℕ × ℕ => x.2 / 2) :=
     Primrec.nat_div.comp Primrec.snd (Primrec.const 2)
@@ -113,11 +137,17 @@ theorem comparisonQuery_primrec : Primrec₂ comparisonQuery := by
       (Primrec.list_cons.comp (Primrec.nat_mod.comp hhalf Primrec.fst)
         (Primrec.const [])))
 
+/--
+@isnad1 id=primrec.0h0v.s5.0e10158e617d from=translated src=- shape=4b736592 vocab=429c05ac
+-/
 theorem comparisonQueries_primrec : Primrec comparisonQueries :=
   Primrec.list_map
     (Primrec.list_range.comp (Primrec.nat_mul.comp (Primrec.const 2)
       (Primrec.nat_mul.comp Primrec.id Primrec.id))) comparisonQuery_primrec
 
+/--
+@isnad1 id=primrec.0h0v.s7.20641399fa32 from=translated src=- shape=716e5197 vocab=4291887f
+-/
 theorem compare_primrec :
     Primrec (fun x : (ℕ × List Bool) × Bool × ℕ × ℕ =>
       compare x.1.1 x.1.2 x.2.1 x.2.2.1 x.2.2.2) := by

@@ -67,7 +67,9 @@ private theorem carrierContactGraph_connected [Finite P]
     A.plateCarrier_nonempty
     (A.iUnion_plateCarrier_eq_univ hA)
 
-/-- A tiling with more than one plate has two distinct plate carriers with a common point.-/
+/-- A tiling with more than one plate has two distinct plate carriers with a common point.
+@isnad1 id=ex.2h2v.s6.87700eecff2f from=translated src=- shape=561ce2f8 vocab=9953c64a
+-/
 theorem exists_distinct_plate_carrier_contact [Finite P]
     (hA : IsTiling A.prototiles A.placements)
     (hplates : ¬Subsingleton A.Plate) :
@@ -94,7 +96,9 @@ private theorem not_mem_interior_left_of_mem_right_of_aedisjoint
 
 /-- A boundary line shared by two invariant plate carriers contains a placed vertex of the first
 plate at parameter at least one along the sliding direction.  The proof takes the tiles covering a
-compact line interval and finds the endpoint of the corresponding carrier component.-/
+compact line interval and finds the endpoint of the corresponding carrier component.
+@isnad1 id=ex.5h6v.s8.3e65083cb29e from=translated src=- shape=e9cc73ff vocab=d0083220
+-/
 theorem exists_placedVertex_on_invariant_contact_line [Finite P] {v : Plane}
     (hA : IsTiling A.prototiles A.placements) (hv : A.IsSlidingDirection v)
     {C D : A.Plate} (hCD : C ≠ D) {x : Plane}
@@ -424,7 +428,9 @@ private theorem connected_shiftedGraph_of_realized_connected {v : Plane}
       same_old_plate ((rep_mem _).trans rfl)
 
 /-- **Merge components by sliding.**  A sliding-direction certificate admits a component shift
-whose placement graph is connected.-/
+whose placement graph is connected.
+@isnad1 id=ex.2h3v.s6.aaf5c60f992a from=translated src=- shape=ddd5d23a vocab=4c3af921
+-/
 theorem IsSlidingDirection.exists_connected_component_shift [Finite P] {v : Plane}
     (hv : A.IsSlidingDirection v) (hA : IsTiling A.prototiles A.placements) :
     ∃ shift : A.Plate → ℝ,
@@ -436,7 +442,9 @@ theorem IsSlidingDirection.exists_connected_component_shift [Finite P] {v : Plan
   exact ⟨shift, IsSlidingDirection.isTiling_shiftComponents A hv hA shift,
     A.connected_shiftedGraph_of_realized_connected shift hrealized⟩
 
-/-- A connected component shift, retaining its reusable sliding-direction certificate.-/
+/-- A connected component shift, retaining its reusable sliding-direction certificate.
+@isnad1 id=ex.1h2v.s6.cb4b3be102fa from=translated src=- shape=61edef5e vocab=4c3af921
+-/
 theorem exists_connected_shift [Finite P]
     (hA : IsTiling A.prototiles A.placements) :
     ∃ (v : Plane) (_hv : A.IsSlidingDirection v) (shift : A.Plate → ℝ),
@@ -449,7 +457,9 @@ theorem exists_connected_shift [Finite P]
   exact ⟨v, hv, shift, htiling, hconnected⟩
 
 /-- A finite polygonal prototile family which admits a tiling admits one whose vertex-contact graph
-is connected.-/
+is connected.
+@isnad1 id=ex.1h2v.s6.82048ac30ead from=translated src=- shape=9f315983 vocab=0d3347dc
+-/
 theorem exists_connected_tiling [Finite P]
     (hA : IsTiling A.prototiles A.placements) :
     ∃ S : ProtoTiling Plane P,

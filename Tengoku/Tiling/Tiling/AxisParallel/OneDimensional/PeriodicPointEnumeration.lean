@@ -46,6 +46,9 @@ private theorem periodic_mem_of_vadd_eq {S : Set ℝ} {a : ℝ}
     rw [h] at hx'
     simpa [add_comm] using hx'
 
+/--
+@isnad1 id=nonempty.4h2v.s6.2b309992e263 from=translated src=- shape=bf5c1b17 vocab=b4d5ec90
+-/
 theorem periodicIntEnumeration_exists
     (E : Set ℝ) (p : ℝ) (hp : 0 < p) (hE : E.Nonempty)
     (hlocal : ∀ Q : Set ℝ, Bornology.IsBounded Q → (E ∩ Q).Finite)

@@ -63,40 +63,67 @@ def candidates (n : ℕ) : List Cell :=
 def cells (input : TableInput) : List Cell :=
   (candidates (2 * input.1)).filter (accepted input)
 
+/--
+@isnad1 id=iff.0h2v.s4.4a68269e1f23 from=translated src=- shape=98e5e68c vocab=fd1faa8e
+-/
 theorem allBelow_eq_true {n : ℕ} {p : ℕ → Bool} :
     allBelow n p = true ↔ ∀ i < n, p i = true := by
   simp [allBelow, List.all_eq_true]
 
+/--
+@isnad1 id=iff.0h2v.s4.887320310a7a from=translated src=- shape=9f80e8c1 vocab=13354c18
+-/
 theorem anyBelow_eq_true {n : ℕ} {p : ℕ → Bool} :
     anyBelow n p = true ↔ ∃ i < n, p i = true := by
   simp [anyBelow, List.any_eq_true]
 
+/--
+@isnad1 id=iff.0h2v.s5.4bf920fff072 from=translated src=- shape=aa57646c vocab=e6e3057c
+-/
 theorem mem_pairs {n : ℕ} {p : ℕ × ℕ} :
     p ∈ pairs n ↔ p.1 < n ∧ p.2 < n := by
   rcases p with ⟨a, b⟩
   simp [pairs]
 
+/--
+@isnad1 id=iff.0h2v.s6.6d4926857eba from=translated src=- shape=75442452 vocab=e5f9fc5b
+-/
 theorem mem_candidates {n : ℕ} {c : Cell} :
     c ∈ candidates n ↔
       c.1.1 < n ∧ c.1.2 < n ∧ c.2.1 < n ∧ c.2.2 < n := by
   rcases c with ⟨⟨a, b⟩, ⟨d, e⟩⟩
   simp [candidates, mem_pairs, and_assoc]
 
+/--
+@isnad1 id=iff.0h2v.s7.34bd996ceb5c from=translated src=- shape=370f12ff vocab=19df57f4
+-/
 theorem mem_cells {input : TableInput} {c : Cell} :
     c ∈ cells input ↔
       (c.1.1 < 2 * input.1 ∧ c.1.2 < 2 * input.1 ∧
         c.2.1 < 2 * input.1 ∧ c.2.2 < 2 * input.1) ∧ accepted input c = true := by
   simp [cells, mem_candidates]
 
+/--
+@isnad1 id=nodup.0h1v.s3.86107d5041b9 from=translated src=- shape=56d5f4a3 vocab=169f7d11
+-/
 theorem pairs_nodup (n : ℕ) : (pairs n).Nodup :=
   List.nodup_range.product List.nodup_range
 
+/--
+@isnad1 id=nodup.0h1v.s2.f30b261aa37c from=translated src=- shape=1a6c1393 vocab=e1b83aec
+-/
 theorem candidates_nodup (n : ℕ) : (candidates n).Nodup :=
   (pairs_nodup n).product (pairs_nodup n)
 
+/--
+@isnad1 id=nodup.0h1v.s2.151dd5b232f0 from=translated src=- shape=1a6c1393 vocab=b3e6afde
+-/
 theorem cells_nodup (input : TableInput) : (cells input).Nodup :=
   (candidates_nodup (2 * input.1)).filter (accepted input)
 
+/--
+@isnad1 id=primrec.5h6v.s6.383c3814ccc8 from=translated src=- shape=a9b2a801 vocab=164d2b30
+-/
 theorem compare_comp {α : Type*} [Primcodable α]
     {n : α → ℕ} {h : α → List Bool} {v : α → Bool} {i j : α → ℕ}
     (hn : Primrec n) (hh : Primrec h) (hv : Primrec v)
@@ -104,6 +131,9 @@ theorem compare_comp {α : Type*} [Primcodable α]
     Primrec (fun x => compare (n x) (h x) (v x) (i x) (j x)) :=
   compare_primrec.comp ((hn.pair hh).pair (hv.pair (hi.pair hj)))
 
+/--
+@isnad1 id=primrec.2h3v.s5.2fa8e998bfae from=translated src=- shape=9a875055 vocab=f6a05266
+-/
 theorem allBelow_primrec {α : Type*} [Primcodable α]
     {n : α → ℕ} {p : α → ℕ → Bool} (hn : Primrec n) (hp : Primrec₂ p) :
     Primrec (fun x => allBelow (n x) (p x)) := by
@@ -117,6 +147,9 @@ theorem allBelow_primrec {α : Type*} [Primcodable α]
   | nil => rfl
   | cons a as ih => simp [ih]
 
+/--
+@isnad1 id=primrec.2h3v.s5.a595f4bf3620 from=translated src=- shape=9a875055 vocab=41259cb8
+-/
 theorem anyBelow_primrec {α : Type*} [Primcodable α]
     {n : α → ℕ} {p : α → ℕ → Bool} (hn : Primrec n) (hp : Primrec₂ p) :
     Primrec (fun x => anyBelow (n x) (p x)) := by
@@ -130,6 +163,9 @@ theorem anyBelow_primrec {α : Type*} [Primcodable α]
   | nil => rfl
   | cons a as ih => simp [ih]
 
+/--
+@isnad1 id=primrec.2h4v.s5.81820c6d34fa from=translated src=- shape=5500203e vocab=285f267d
+-/
 theorem listAny_comp {α β : Type*} [Primcodable α] [Primcodable β]
     {xs : α → List β} {p : α → β → Bool} (hxs : Primrec xs) (hp : Primrec₂ p) :
     Primrec (fun x => (xs x).any (p x)) := by
@@ -142,6 +178,9 @@ theorem listAny_comp {α β : Type*} [Primcodable α] [Primcodable β]
   | nil => rfl
   | cons a as ih => simp [ih]
 
+/--
+@isnad1 id=primrec.5h6v.s6.7be47e4e2304 from=translated src=- shape=a9b2a801 vocab=78b2fc50
+-/
 theorem equalLevel_comp {α : Type*} [Primcodable α]
     {n : α → ℕ} {h : α → List Bool} {v : α → Bool} {i j : α → ℕ}
     (hn : Primrec n) (hh : Primrec h) (hv : Primrec v)
@@ -150,6 +189,9 @@ theorem equalLevel_comp {α : Type*} [Primcodable α]
   (Primrec.dom_bool₂ Bool.and).comp
     (compare_comp hn hh hv hi hj) (compare_comp hn hh hv hj hi)
 
+/--
+@isnad1 id=primrec.5h6v.s6.2a8bfc5ee751 from=translated src=- shape=a9b2a801 vocab=1a4f3e20
+-/
 theorem strictLevel_comp {α : Type*} [Primcodable α]
     {n : α → ℕ} {h : α → List Bool} {v : α → Bool} {i j : α → ℕ}
     (hn : Primrec n) (hh : Primrec h) (hv : Primrec v)
@@ -157,6 +199,9 @@ theorem strictLevel_comp {α : Type*} [Primcodable α]
     Primrec (fun x => strictLevel (n x) (h x) (v x) (i x) (j x)) :=
   (Primrec.dom_bool Bool.not).comp (compare_comp hn hh hv hj hi)
 
+/--
+@isnad1 id=primrec.4h5v.s6.6864d5560cad from=translated src=- shape=1534813a vocab=1612179d
+-/
 theorem canonicalLevel_comp {α : Type*} [Primcodable α]
     {n : α → ℕ} {h : α → List Bool} {v : α → Bool} {i : α → ℕ}
     (hn : Primrec n) (hh : Primrec h) (hv : Primrec v) (hi : Primrec i) :
@@ -165,6 +210,9 @@ theorem canonicalLevel_comp {α : Type*} [Primcodable α]
     (equalLevel_comp (hn.comp Primrec.fst) (hh.comp Primrec.fst)
       (hv.comp Primrec.fst) (hi.comp Primrec.fst) Primrec.snd))
 
+/--
+@isnad1 id=primrec.5h6v.s6.c85838f914b5 from=translated src=- shape=a9b2a801 vocab=96547b79
+-/
 theorem adjacentLevels_comp {α : Type*} [Primcodable α]
     {n : α → ℕ} {h : α → List Bool} {v : α → Bool} {i j : α → ℕ}
     (hn : Primrec n) (hh : Primrec h) (hv : Primrec v)
@@ -207,6 +255,9 @@ private theorem rectangleCovers_primrec :
     (compare_comp hn hh (Primrec.const true)
       (Primrec.snd.comp (Primrec.snd.comp hc)) hb)
 
+/--
+@isnad1 id=primrec.0h0v.s5.9dc5216ce2f8 from=translated src=- shape=93eefbde vocab=20a7502c
+-/
 theorem accepted_primrec : Primrec₂ accepted := by
   have hn : Primrec (fun x : TableInput × Cell => 2 * x.1.1) :=
     Primrec.nat_mul.comp (Primrec.const 2) (Primrec.fst.comp Primrec.fst)
@@ -225,11 +276,17 @@ theorem accepted_primrec : Primrec₂ accepted := by
         (Primrec.fst.comp (Primrec.snd.comp Primrec.snd))
         (Primrec.snd.comp (Primrec.snd.comp Primrec.snd)))) hocc
 
+/--
+@isnad1 id=primrec.0h0v.s4.e03e8660a7e6 from=translated src=- shape=e47fa004 vocab=46a19b58
+-/
 theorem pairs_primrec : Primrec pairs :=
   Primrec.list_flatMap Primrec.list_range
     (Primrec.list_map (Primrec.list_range.comp Primrec.fst)
       (Primrec.pair (Primrec.snd.comp Primrec.fst) Primrec.snd))
 
+/--
+@isnad1 id=primrec.0h0v.s5.57000d3ff8fb from=translated src=- shape=4b736592 vocab=698aa2d3
+-/
 theorem candidates_primrec : Primrec candidates :=
   Primrec.list_flatMap pairs_primrec
     (Primrec.list_map (pairs_primrec.comp Primrec.fst)
