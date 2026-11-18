@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "90168fb7fa0f514bbdf7f5cc00153068e8aa6347a8aad34437e8c288b31b9356",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "damian-formalizare",
+ "lint_mode": "proposed",
+ "modules": 33,
+ "part": 1,
+ "theorems": 689
+}
