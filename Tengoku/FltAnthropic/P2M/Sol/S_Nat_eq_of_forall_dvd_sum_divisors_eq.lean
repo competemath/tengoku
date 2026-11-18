@@ -1,0 +1,32 @@
+import Tengoku
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_Nat_eq_of_forall_dvd_sum_divisors_eq.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_Nat_eq_of_forall_dvd_sum_divisors_eq
+
+set_option autoImplicit false
+universe u v
+open Polynomial Module
+open scoped DirectSum
+
+/--
+@isnad1 id=eq.3h4v.s6.dee9edb1e78b from=translated src=- shape=8aa1ae25 vocab=50d684e5
+-/
+theorem solution {n : ℕ} (hn : 0 < n) (m m' : ℕ → ℕ)
+    (h : ∀ e, e ∣ n → ∑ d ∈ e.divisors, m d = ∑ d ∈ e.divisors, m' d) :
+    ∀ d, d ∣ n → m d = m' d := by
+  intro d
+  induction d using Nat.strong_induction_on with
+  | _ d ih =>
+    intro hd
+    have hdpos : 0 < d := Nat.pos_of_dvd_of_pos hd hn
+    have key := h d hd
+    rw [← Nat.insert_self_properDivisors hdpos.ne', Finset.sum_insert Nat.self_notMem_properDivisors,
+      Finset.sum_insert Nat.self_notMem_properDivisors] at key
+    have hproper : ∑ i ∈ d.properDivisors, m i = ∑ i ∈ d.properDivisors, m' i := by
+      refine Finset.sum_congr rfl fun i hi => ?_
+      rw [Nat.mem_properDivisors] at hi
+      exact ih i hi.2 (hi.1.trans hd)
+    rw [hproper] at key
+    exact Nat.add_right_cancel key

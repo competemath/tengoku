@@ -1,0 +1,97 @@
+import Tengoku
+import Tengoku.FltAnthropic.Theorems.Thm_IsBaseChange_exists_dual_comp_eq_algebraMap_and_sum_smul_eq
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_Module_sum_dual_apply_eq_natCast_of_rankAtStalk_eq.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_Module_sum_dual_apply_eq_natCast_of_rankAtStalk_eq
+
+set_option autoImplicit false
+
+universe u v
+
+open scoped BigOperators
+
+namespace Ws23TR
+
+section DualFamily
+
+variable {A : Type*} [CommRing A] {M : Type*} [AddCommGroup M] [Module A M]
+  {n : ℕ} (x : Fin n → M) (φ : Fin n → (M →ₗ[A] A))
+
+def combo : (Fin n → A) →ₗ[A] M := ∑ i, (LinearMap.proj i).smulRight (x i)
+
+/--
+@isnad1 id=eq.0h5v.s8.e1e0053fbfc1 from=translated src=- shape=34f3b280 vocab=61e6c891
+-/
+theorem combo_apply (c : Fin n → A) : combo x c = ∑ i, c i • x i := by
+  simp [combo, LinearMap.sum_apply, LinearMap.smulRight_apply]
+
+/--
+@isnad1 id=eq.1h6v.s9.7f778e59d215 from=translated src=- shape=c6c3cb63 vocab=41758449
+-/
+theorem combo_pi (hxφ : ∀ m : M, ∑ i, φ i m • x i = m) (m : M) : combo x (LinearMap.pi φ m) = m := by
+  rw [combo_apply]
+  simpa only [LinearMap.pi_apply] using hxφ m
+
+/--
+@isnad1 id=finite.1h5v.s8.3a4a5f830408 from=translated src=- shape=97eff413 vocab=02c1f492
+-/
+theorem finite_of_dualFamily (hxφ : ∀ m : M, ∑ i, φ i m • x i = m) : Module.Finite A M :=
+  Module.Finite.of_surjective (combo x) fun m => ⟨LinearMap.pi φ m, combo_pi x φ hxφ m⟩
+
+/--
+@isnad1 id=projecti.1h5v.s8.0affda6b2381 from=translated src=- shape=97eff413 vocab=80dbd3d3
+-/
+theorem projective_of_dualFamily (hxφ : ∀ m : M, ∑ i, φ i m • x i = m) : Module.Projective A M :=
+  Module.Projective.of_split (LinearMap.pi φ) (combo x) (LinearMap.ext fun m => combo_pi x φ hxφ m)
+
+/--
+@isnad1 id=eq.1h5v.s8.0db7c090d463 from=translated src=- shape=9ecebf35 vocab=136db3b4
+-/
+theorem sum_dual_apply_eq_finrank [Module.Free A M] [Module.Finite A M]
+    (hxφ : ∀ m : M, ∑ i, φ i m • x i = m) :
+    ∑ i, φ i (x i) = (Module.finrank A M : A) := by
+  have hid : (LinearMap.id : M →ₗ[A] M) = ∑ i, (φ i).smulRight (x i) := by
+    ext m
+    simp only [LinearMap.id_apply, LinearMap.coe_sum, Finset.sum_apply, LinearMap.smulRight_apply]
+    exact (hxφ m).symm
+  have h := LinearMap.trace_id A M
+  rw [hid, map_sum] at h
+  simpa only [LinearMap.trace_smulRight] using h
+
+end DualFamily
+
+end Ws23TR
+
+/--
+@isnad1 id=eq.2h6v.s8.67a8dd33f897 from=translated src=- shape=2c52aa8d vocab=ae5dffbd
+-/
+theorem solution
+    {A : Type u} [CommRing A] {M : Type v} [AddCommGroup M] [Module A M]
+    {n : ℕ} (x : Fin n → M) (φ : Fin n → (M →ₗ[A] A)) (hxφ : ∀ m : M, ∑ i, φ i m • x i = m)
+    (d : ℕ) (hd : ∀ p : PrimeSpectrum A, Module.rankAtStalk M p = d) :
+    ∑ i, φ i (x i) = (d : A) := by
+  rw [← sub_eq_zero]
+  apply eq_zero_of_localization
+  intro J hJ
+  rw [map_sub, map_natCast, sub_eq_zero, map_sum]
+  have hbc : IsBaseChange (Localization.AtPrime J) (LocalizedModule.mkLinearMap J.primeCompl M) :=
+    IsLocalizedModule.isBaseChange J.primeCompl (Localization.AtPrime J) (LocalizedModule.mkLinearMap J.primeCompl M)
+  obtain ⟨φ', h1, h2⟩ :=
+    IsBaseChange.exists_dual_comp_eq_algebraMap_and_sum_smul_eq
+      (LocalizedModule.mkLinearMap J.primeCompl M) hbc x φ hxφ
+  haveI : Module.Finite (Localization.AtPrime J) (LocalizedModule J.primeCompl M) :=
+    Ws23TR.finite_of_dualFamily _ φ' h2
+  haveI : Module.Projective (Localization.AtPrime J) (LocalizedModule J.primeCompl M) :=
+    Ws23TR.projective_of_dualFamily _ φ' h2
+  haveI : Module.Free (Localization.AtPrime J) (LocalizedModule J.primeCompl M) :=
+    Module.free_of_flat_of_isLocalRing
+  have hrank : Module.finrank (Localization.AtPrime J) (LocalizedModule J.primeCompl M) = d := by
+    have := hd ⟨J, hJ.isPrime⟩
+    rwa [Module.rankAtStalk] at this
+  calc ∑ i, algebraMap A (Localization.AtPrime J) (φ i (x i))
+      = ∑ i, φ' i (LocalizedModule.mkLinearMap J.primeCompl M (x i)) := by simp_rw [h1]
+    _ = (Module.finrank (Localization.AtPrime J) (LocalizedModule J.primeCompl M) : Localization.AtPrime J) :=
+        Ws23TR.sum_dual_apply_eq_finrank _ φ' h2
+    _ = (d : Localization.AtPrime J) := by rw [hrank]
