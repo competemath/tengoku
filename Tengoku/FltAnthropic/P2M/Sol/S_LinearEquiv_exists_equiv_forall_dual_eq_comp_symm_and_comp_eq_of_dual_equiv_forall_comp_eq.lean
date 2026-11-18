@@ -1,0 +1,62 @@
+import Tengoku
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_LinearEquiv_exists_equiv_forall_dual_eq_comp_symm_and_comp_eq_of_dual_equiv_forall_comp_eq.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_LinearEquiv_exists_equiv_forall_dual_eq_comp_symm_and_comp_eq_of_dual_equiv_forall_comp_eq
+
+set_option autoImplicit false
+
+open scoped TensorProduct
+
+/--
+@isnad1 id=ex.1h8v.s12.22cb19ea11fe from=translated src=- shape=74dafd2d vocab=3a81a649
+-/
+theorem solution
+    (R : Type*) [CommRing R] (k : Type*) [CommRing k] [Algebra R k]
+    (Ω : Type*) [AddCommGroup Ω] [Module R Ω] [Module.Finite R Ω] [Module.Free R Ω]
+    (S : Type*) [AddCommGroup S] [Module R S] [Module.Finite R S] [Module.Free R S]
+    {ι : Type*} (a : ι → (Ω →ₗ[R] Ω)) (s : ι → (S →ₗ[R] S))
+    (τ : Module.Dual R Ω ≃ₗ[R] Module.Dual R S)
+    (hτ : ∀ (t : ι) (D : Module.Dual R Ω), τ (D ∘ₗ a t) = (τ D) ∘ₗ s t) :
+    ∃ θ : Ω ≃ₗ[R] S,
+      (∀ D : Module.Dual R Ω, τ D = D ∘ₗ (θ.symm : S →ₗ[R] Ω)) ∧
+      (∀ t : ι, (θ : Ω →ₗ[R] S) ∘ₗ a t = s t ∘ₗ (θ : Ω →ₗ[R] S)) ∧
+      ∃ Ξ : k ⊗[R] Ω ≃ₗ[k] k ⊗[R] S,
+        (∀ (c : k) (x : Ω), Ξ (c ⊗ₜ x) = c ⊗ₜ θ x) ∧
+        ∀ t : ι, (Ξ : k ⊗[R] Ω →ₗ[k] k ⊗[R] S) ∘ₗ (a t).baseChange k =
+          (s t).baseChange k ∘ₗ (Ξ : k ⊗[R] Ω →ₗ[k] k ⊗[R] S) := by
+  classical
+
+  let ψ : S ≃ₗ[R] Ω :=
+    (Module.evalEquiv R S).trans (τ.dualMap.trans (Module.evalEquiv R Ω).symm)
+  have hψ : ∀ (D : Module.Dual R Ω) (y : S), D (ψ y) = τ D y := by
+    intro D y
+    simp [ψ, Module.apply_evalEquiv_symm_apply, LinearEquiv.dualMap_apply, Module.Dual.eval_apply]
+
+  have key : ∀ (t : ι) (y : S), a t (ψ y) = ψ (s t y) := by
+    intro t y
+    apply (Module.evalEquiv R Ω).injective
+    ext D
+    simp only [Module.evalEquiv_apply, Module.Dual.eval_apply]
+    calc D (a t (ψ y)) = (D ∘ₗ a t) (ψ y) := rfl
+      _ = τ (D ∘ₗ a t) y := hψ _ _
+      _ = (τ D ∘ₗ s t) y := by rw [hτ]
+      _ = τ D (s t y) := rfl
+      _ = D (ψ (s t y)) := (hψ _ _).symm
+  have hcomp : ∀ t : ι, (ψ.symm : Ω →ₗ[R] S) ∘ₗ a t = s t ∘ₗ (ψ.symm : Ω →ₗ[R] S) := by
+    intro t
+    ext x
+    simp only [LinearMap.coe_comp, LinearEquiv.coe_coe, Function.comp_apply]
+    obtain ⟨y, rfl⟩ : ∃ y, ψ y = x := ⟨ψ.symm x, by simp⟩
+    rw [key t y]
+    simp
+  refine ⟨ψ.symm, ?_, hcomp, ?_⟩
+  · intro D
+    ext y
+    simp [hψ]
+  · refine ⟨ψ.symm.baseChange R k Ω S, ?_, ?_⟩
+    · intro c x
+      simp [LinearEquiv.baseChange_tmul]
+    · intro t
+      rw [LinearEquiv.coe_baseChange, ← LinearMap.baseChange_comp, ← LinearMap.baseChange_comp, hcomp t]
