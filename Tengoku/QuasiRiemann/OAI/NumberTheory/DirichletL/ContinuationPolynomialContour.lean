@@ -13,14 +13,23 @@ namespace SevenEighths.Continuation
 def polynomialGaussian (n : ℕ) (y : ℝ) : ℝ :=
   (1+|y|^n)*Real.exp (-(y^2))
 
+/--
+@isnad1 id=le.0h2v.s4.ed7b93e83f56 from=translated src=- shape=787c1379 vocab=4d1844c9
+-/
 theorem polynomialGaussian_nonneg (n : ℕ) (y : ℝ) : 0 ≤ polynomialGaussian n y := by
   unfold polynomialGaussian
   positivity
 
+/--
+@isnad1 id=eq.0h2v.s3.a1b814a3a2a1 from=translated src=- shape=5a76020b vocab=62c5f0df
+-/
 theorem polynomialGaussian_even (n : ℕ) (y : ℝ) :
     polynomialGaussian n (-y) = polynomialGaussian n y := by
   simp [polynomialGaussian]
 
+/--
+@isnad1 id=tendsto.0h1v.s4.3f7b5cbf9085 from=translated src=- shape=d082a43e vocab=98de6b63
+-/
 theorem polynomialGaussian_tendsto (n : ℕ) :
     Tendsto (polynomialGaussian n) atTop (𝓝 0) := by
   have hp := tendsto_rpow_abs_mul_exp_neg_mul_sq_cocompact
@@ -32,6 +41,9 @@ theorem polynomialGaussian_tendsto (n : ℕ) :
   change Tendsto (fun y : ℝ => (1+|y|^n)*Real.exp (-(y^2))) atTop (𝓝 0)
   simpa [Real.rpow_natCast, add_mul] using hg.add hp'
 
+/--
+@isnad1 id=eq.6h5v.s8.fdc2d2151c77 from=translated src=- shape=b409f7d1 vocab=1ec63980
+-/
 theorem vertical_integral_eq_of_even_envelope (F : ℂ → ℂ) {a b C : ℝ}
     (E : ℝ → ℝ) (hE : Integrable E) (heven : ∀ y, E (-y)=E y)
     (hlim : Tendsto E atTop (𝓝 0)) (hab : a ≤ b)

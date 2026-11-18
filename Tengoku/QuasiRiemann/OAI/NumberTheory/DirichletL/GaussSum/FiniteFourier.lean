@@ -20,6 +20,9 @@ open scoped Classical
 open AddChar MulChar
 variable {F : Type*} [Field F] [Fintype F]
 
+/--
+@isnad1 id=eq.1h4v.s8.07440adb650f from=translated src=- shape=9656b8bf vocab=ea278f65
+-/
 theorem gauss_transform (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
     (hχ : χ ≠ 1) (h : F) :
     (∑ x : F, χ x * ψ (h * x)) =
@@ -34,6 +37,9 @@ theorem gauss_transform (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
     simp only [gaussSum, AddChar.mulShift_apply] at hshift
     simpa only [hu.unit_spec, ite_eq_right hh, inv_apply_eq_inv' χ h, gaussSum] using hshift
 
+/--
+@isnad1 id=eq.1h5v.s9.46ecfca164f2 from=translated src=- shape=4c946cd8 vocab=992e874b
+-/
 theorem product_gauss_transform
     {ι : Type*} [Fintype ι]
     (E : ι → Type*) [∀ i, Field (E i)] [∀ i, Fintype (E i)]
@@ -59,6 +65,9 @@ open scoped Classical
 
 variable (n : ℕ) (χ : MulChar (ZMod n) ℂ)
 
+/--
+@isnad1 id=eq.1h3v.s8.3ebec50951e6 from=translated src=- shape=a871c213 vocab=bd2b5d46
+-/
 theorem inverse_as_row_and_label (hχ : χ ^ 6 = 1) (e : ℕ) :
     (χ (e : ZMod n))⁻¹ = χ (e : ZMod n) * (χ (e : ZMod n)) ^ 4 := by
   by_cases he : IsUnit (e : ZMod n)
@@ -73,6 +82,9 @@ theorem inverse_as_row_and_label (hχ : χ ^ 6 = 1) (e : ℕ) :
   · have hz : χ (e : ZMod n) = 0 := MulChar.map_nonunit χ he
     simp [hz]
 
+/--
+@isnad1 id=eq.1h8v.s9.c36bf3753092 from=translated src=- shape=7a77d56c vocab=bd2b5d46
+-/
 theorem child_row_label_identity (hχ : χ ^ 6 = 1)
     (d e k J C v : ℕ) :
     (χ (e : ZMod n))⁻¹ * χ (d : ZMod n) * χ (k : ZMod n) *
@@ -85,6 +97,9 @@ theorem child_row_label_identity (hχ : χ ^ 6 = 1)
 
 def mask (n m : ℕ) : ℂ := if n.Coprime m then 1 else 0
 
+/--
+@isnad1 id=eq.0h3v.s5.0317b1ee2446 from=translated src=- shape=50a03441 vocab=89221f45
+-/
 theorem mask_mul (n a b : ℕ) :
     mask n (a * b) = mask n a * mask n b := by
   classical
@@ -104,6 +119,9 @@ theorem mask_mul (n a b : ℕ) :
     · rw [ite_eq_right hab, ite_eq_right hnb]
       simp
 
+/--
+@isnad1 id=eq.0h3v.s7.a7e6491226aa from=translated src=- shape=62cb2f5f vocab=489bddff
+-/
 theorem mask_absorb_char (e : ℕ) :
     mask n e * χ (e : ZMod n) = χ (e : ZMod n) := by
   by_cases he : n.Coprime e
@@ -114,6 +132,9 @@ theorem mask_absorb_char (e : ℕ) :
     have hz : χ (e : ZMod n) = 0 := MulChar.map_nonunit χ hnu
     simp [mask, he, hz]
 
+/--
+@isnad1 id=eq.0h3v.s7.6b5cbf7ad93c from=translated src=- shape=780788cf vocab=bb97e6b2
+-/
 theorem mask_absorb_inv_char (e : ℕ) :
     mask n e * (χ (e : ZMod n))⁻¹ = (χ (e : ZMod n))⁻¹ := by
   by_cases he : n.Coprime e
@@ -124,6 +145,9 @@ theorem mask_absorb_inv_char (e : ℕ) :
     have hz : χ (e : ZMod n) = 0 := MulChar.map_nonunit χ hnu
     simp [mask, he, hz]
 
+/--
+@isnad1 id=eq.2h12v.s9.3da0175cbaa8 from=translated src=- shape=8efe1aaa vocab=f0513aea
+-/
 theorem child_row_label_with_mask (hχ : χ ^ 6 = 1)
     (b0 t g e r d k J C v : ℕ) (hg : g = e * r) :
     mask n (b0 * t) * mask n g *
@@ -152,6 +176,9 @@ theorem child_row_label_with_mask (hχ : χ ^ 6 = 1)
       _ = _ := by rw [mask_absorb_inv_char n χ e]; ring
   rw [mul_assoc, hprior, child_row_label_identity n χ hχ d e k J C v]
 
+/--
+@isnad1 id=eq.2h13v.s9.df081359dff4 from=translated src=- shape=8f14217d vocab=16d8e344
+-/
 theorem sum_child_row_label_with_mask
     (S : Finset ℕ) (χ : (n : ℕ) → MulChar (ZMod n) ℂ)
     (hχ : ∀ n, χ n ^ 6 = 1) (a : ℕ → ℂ)
@@ -189,6 +216,9 @@ def totalExp₁ (parityBit ε₁ ε₂ : Bool) : ℕ :=
 def totalExp₂ (parityBit ε₁ ε₂ : Bool) : ℕ :=
   4 * bit ε₂ + cExp₂ parityBit ε₁ ε₂ + EExp parityBit ε₁ ε₂
 
+/--
+@isnad1 id=and.0h3v.s6.06df3ce90cb8 from=translated src=- shape=5271f71e vocab=0c11bdec
+-/
 theorem exponent_table (parityBit ε₁ ε₂ : Bool) :
     totalExp₁ parityBit ε₁ ε₂ % 6 = (if retained parityBit ε₁ ε₂ then 4 else 0) ∧
     totalExp₂ parityBit ε₁ ε₂ % 6 = (if retained parityBit ε₁ ε₂ then 4 else 0) := by
@@ -226,6 +256,9 @@ def newFactor (parityBit ε₁ ε₂ : Bool)
     (n p : ℕ) (χ : MulChar (ZMod n) ℂ) : ℂ :=
   if retained parityBit ε₁ ε₂ then (χ (p : ZMod n)) ^ 4 else mask n p
 
+/--
+@isnad1 id=eq.1h7v.s8.7e32851b5fb7 from=translated src=- shape=7b6b8761 vocab=ebf32dfb
+-/
 theorem first_local_identity (side parityBit ε₁ ε₂ : Bool)
     (n p : ℕ) (χ : MulChar (ZMod n) ℂ) (hχ : χ ^ 6 = 1) :
     oldFactor side parityBit ε₁ ε₂ n p χ = newFactor parityBit ε₁ ε₂ n p χ := by
@@ -277,6 +310,9 @@ private theorem mask_prod (n : ℕ) (S : Finset ℕ) :
       simp [hp, ih]
       exact (mask_mul n p (∏ p ∈ S, p)).symm
 
+/--
+@isnad1 id=eq.1h7v.s8.45da3761f6a1 from=translated src=- shape=b51c7a6e vocab=a3a9ae67
+-/
 theorem first_prime_product_identity
     (side : Bool) (P : Finset ℕ)
     (parityBit ε₁ ε₂ : ℕ → Bool)
@@ -299,6 +335,9 @@ theorem first_prime_product_identity
     _ = _ := by
           rw [char_prod_four, mask_prod]
 
+/--
+@isnad1 id=eq.2h6v.s7.c72379d839a6 from=translated src=- shape=8c3cd10e vocab=0d6b720c
+-/
 theorem mask_redundant_overlap
     (n J B₀ b₀ m : ℕ) (χ : MulChar (ZMod n) ℂ)
     (hB : B₀ ∣ b₀) (hb : b₀ ∣ (B₀ * J) ^ m) :
@@ -320,6 +359,9 @@ theorem mask_redundant_overlap
     have hz : χ (J : ZMod n) = 0 := MulChar.map_nonunit χ hnu
     simp [hz]
 
+/--
+@isnad1 id=eq.3h9v.s9.9436306a95bf from=translated src=- shape=ccdaafe9 vocab=b0493ece
+-/
 theorem first_prime_product_with_b0
     (side : Bool) (P : Finset ℕ)
     (parityBit ε₁ ε₂ : ℕ → Bool)
@@ -334,6 +376,9 @@ theorem first_prime_product_with_b0
   rw [first_prime_product_identity side P parityBit ε₁ ε₂ n χ hχ]
   exact mask_redundant_overlap n _ _ b₀ m χ hB hb
 
+/--
+@isnad1 id=eq.1h8v.s9.cc98ec7d43d1 from=translated src=- shape=c51440ee vocab=611895a7
+-/
 theorem sum_first_prime_product_identity
     (S P : Finset ℕ) (side : Bool)
     (parityBit ε₁ ε₂ : ℕ → Bool)
@@ -348,6 +393,9 @@ theorem sum_first_prime_product_identity
   intro n hn
   rw [first_prime_product_identity side P parityBit ε₁ ε₂ n (χ n) (hχ n)]
 
+/--
+@isnad1 id=eq.3h10v.s9.2bfd79dd73ab from=translated src=- shape=2fed2cf1 vocab=240cb3e5
+-/
 theorem sum_first_prime_product_with_b0
     (S P : Finset ℕ) (side : Bool)
     (parityBit ε₁ ε₂ : ℕ → Bool)
@@ -448,6 +496,9 @@ private noncomputable def cubicResidueChar (ρ : R →+* F) (ζ : R)
       (cubic_roots_equiv ρ ζ hζ hζF).symm.toMonoidHom.comp
         (euler_to_roots m hq)
 
+/--
+@isnad1 id=eq.3h6v.s8.391ebbe1d368 from=translated src=- shape=ad498085 vocab=3fddc67a
+-/
 theorem cubicResidueChar_reduce_unit (ρ : R →+* F) (ζ : R)
     (hζ : IsPrimitiveRoot ζ 3) (hζF : IsPrimitiveRoot (ρ ζ) 3)
     (m : ℕ) (hq : Fintype.card F - 1 = m * 3) (u : Fˣ) :
@@ -464,6 +515,9 @@ theorem cubicResidueChar_reduce_unit (ρ : R →+* F) (ζ : R)
     (u : F) ^ m at he'
   exact he'
 
+/--
+@isnad1 id=eq.3h5v.s8.67caff5a524c from=translated src=- shape=121d3b43 vocab=0cba38b5
+-/
 theorem cubicResidueChar_pow_three (ρ : R →+* F) (ζ : R)
     (hζ : IsPrimitiveRoot ζ 3) (hζF : IsPrimitiveRoot (ρ ζ) 3)
     (m : ℕ) (hq : Fintype.card F - 1 = m * 3) :
@@ -503,11 +557,17 @@ noncomputable instance quotientFintype (P : Ideal O) [P.IsMaximal] :
 noncomputable instance quotientField (P : Ideal O) [P.IsMaximal] :
     Field (O ⧸ P) := Ideal.Quotient.field P
 
+/--
+@isnad1 id=isprimit.0h0v.s4.f91c50fddda0 from=translated src=- shape=aeae7466 vocab=36a4ba58
+-/
 theorem omega_primitive : IsPrimitiveRoot omega 3 := by
   exact (IsCyclotomicExtension.zeta_spec 3 ℚ K).toInteger_isPrimitiveRoot
 
 def traceLambda : O := 1 + 2 * omega
 
+/--
+@isnad1 id=eq.0h0v.s5.d620a60611d7 from=translated src=- shape=f091aeb4 vocab=8cc01c00
+-/
 theorem traceLambda_eq_unit_mul_lambda : traceLambda = -omega * lambda := by
   have hrel : omega ^ 2 + omega + 1 = 0 := by
     simpa only [IsCyclotomicExtension.Rat.Three.coe_eta, omega] using
@@ -516,18 +576,30 @@ theorem traceLambda_eq_unit_mul_lambda : traceLambda = -omega * lambda := by
   dsimp [traceLambda, lambda]
   linear_combination hrel
 
+/--
+@isnad1 id=isunit.0h0v.s5.1c622f5712ea from=translated src=- shape=be2594e7 vocab=c3cbac50
+-/
 theorem neg_omega_isUnit : IsUnit (-omega) :=
   (omega_primitive.isUnit (by decide)).neg
 
+/--
+@isnad1 id=iff.0h1v.s7.13ce69275281 from=translated src=- shape=709598af vocab=ef68d8c6
+-/
 theorem traceLambda_mem_iff (P : Ideal O) : traceLambda ∈ P ↔ lambda ∈ P := by
   rw [traceLambda_eq_unit_mul_lambda, mul_comm]
   exact P.mul_unit_mem_iff_mem neg_omega_isUnit
 
+/--
+@isnad1 id=iff.0h1v.s6.eb285e3e1c6d from=translated src=- shape=3eb1ad42 vocab=f7962e57
+-/
 theorem traceLambda_sq_dvd_iff (x : O) :
     traceLambda ^ 2 ∣ x ↔ lambda ^ 2 ∣ x := by
   rw [traceLambda_eq_unit_mul_lambda, mul_pow]
   exact (neg_omega_isUnit.pow 2).mul_left_dvd
 
+/--
+@isnad1 id=isprimit.1h1v.s9.51d1d0f504ca from=translated src=- shape=a9a690d3 vocab=30e23e5d
+-/
 theorem omega_reduced_primitive (P : Ideal O) [P.IsMaximal]
     (hgood : lambda ∉ P) :
     IsPrimitiveRoot (Ideal.Quotient.mk P omega) 3 := by
@@ -552,6 +624,9 @@ theorem omega_reduced_primitive (P : Ideal O) [P.IsMaximal]
       _ = (ρ omega) ^ 3 := by ring
       _ = 1 := hpow
 
+/--
+@isnad1 id=dvd.1h1v.s7.7191d85c7d06 from=translated src=- shape=acea02b8 vocab=06ba2a67
+-/
 theorem card_sub_one_div_three (P : Ideal O) [P.IsMaximal]
     (hgood : lambda ∉ P) :
     3 ∣ Nat.card (O ⧸ P) - 1 := by
@@ -577,6 +652,9 @@ noncomputable def cubicChar (P : Ideal O) [P.IsMaximal]
   exact ActualCubicChar.cubicResidueChar (Ideal.Quotient.mk P) omega
     omega_primitive (omega_reduced_primitive P hgood) m hq
 
+/--
+@isnad1 id=eq.1h2v.s10.1ea11b4a1a66 from=translated src=- shape=0144bd7d vocab=a60eed30
+-/
 theorem cubicChar_reduce (P : Ideal O) [P.IsMaximal]
     (hgood : lambda ∉ P) (x : O ⧸ P) :
     (Ideal.Quotient.mk P) (cubicChar P hgood x) =
@@ -607,6 +685,9 @@ theorem cubicChar_reduce (P : Ideal O) [P.IsMaximal]
       (Ideal.Quotient.mk P) omega omega_primitive
       (omega_reduced_primitive P hgood) m hq u
 
+/--
+@isnad1 id=eq.1h1v.s10.2a4d0f8480b2 from=translated src=- shape=71edff3b vocab=e897eab2
+-/
 theorem cubicChar_pow_three (P : Ideal O) [P.IsMaximal]
     (hgood : lambda ∉ P) : cubicChar P hgood ^ 3 = 1 := by
   classical
@@ -622,6 +703,9 @@ theorem cubicChar_pow_three (P : Ideal O) [P.IsMaximal]
     (Ideal.Quotient.mk P) omega omega_primitive
     (omega_reduced_primitive P hgood) m hq
 
+/--
+@isnad1 id=ne.1h1v.s8.a2a4c085885e from=translated src=- shape=5264c0b1 vocab=1a429f10
+-/
 theorem cubicChar_ne_one (P : Ideal O) [P.IsMaximal]
     (hgood : lambda ∉ P) : cubicChar P hgood ≠ 1 := by
   classical
@@ -647,6 +731,9 @@ theorem cubicChar_ne_one (P : Ideal O) [P.IsMaximal]
   have hle := Nat.le_of_dvd hm hdvd
   omega
 
+/--
+@isnad1 id=eq.1h1v.s9.aa88adc8c8ad from=translated src=- shape=515a6597 vocab=535189d7
+-/
 theorem cubicChar_order (P : Ideal O) [P.IsMaximal]
     (hgood : lambda ∉ P) : orderOf (cubicChar P hgood) = 3 := by
   have hdvd : orderOf (cubicChar P hgood) ∣ 3 :=
@@ -655,6 +742,9 @@ theorem cubicChar_order (P : Ideal O) [P.IsMaximal]
   · exact False.elim ((cubicChar_ne_one P hgood) (orderOf_eq_one_iff.mp h1))
   · exact h3
 
+/--
+@isnad1 id=ex.1h1v.s8.919be675810b from=translated src=- shape=3c75ad3d vocab=ac439e5b
+-/
 theorem cubicJacobi_primary (P : Ideal O) [P.IsMaximal]
     (hgood : lambda ∉ P) :
     ∃ z ∈ Algebra.adjoin ℤ {omega},
@@ -669,6 +759,9 @@ theorem cubicJacobi_primary (P : Ideal O) [P.IsMaximal]
       (by simpa only [Nat.card_eq_fintype_card] using card_sub_one_div_three P hgood)
       omega_primitive)
 
+/--
+@isnad1 id=mem.1h1v.s8.c38feed6bd5e from=translated src=- shape=ff586c73 vocab=92c91b59
+-/
 theorem cubicJacobi_mem_prime (P : Ideal O) [P.IsMaximal]
     (hgood : lambda ∉ P) :
     jacobiSum (cubicChar P hgood) (cubicChar P hgood) ∈ P := by
@@ -688,6 +781,9 @@ theorem cubicJacobi_mem_prime (P : Ideal O) [P.IsMaximal]
   simp only [Nat.card_eq_fintype_card]
   exact ActualCubicChar.euler_jacobi_sum_zero m hm
 
+/--
+@isnad1 id=eq.1h1v.s9.15a3e3ffe593 from=translated src=- shape=90b9654e vocab=d88f364f
+-/
 theorem cubicJacobi_product (P : Ideal O) [P.IsMaximal]
     (hgood : lambda ∉ P) :
     jacobiSum (cubicChar P hgood) (cubicChar P hgood) *
@@ -733,6 +829,9 @@ private noncomputable def conjK : K ≃ₐ[ℚ] K :=
 noncomputable def conjO : O ≃+* O :=
   RingOfIntegers.mapRingEquiv conjK.toRingEquiv
 
+/--
+@isnad1 id=eq.0h0v.s8.1a087273d8be from=translated src=- shape=1bccbf1c vocab=efc48f8a
+-/
 theorem conjO_omega : conjO omega = omega ^ 2 := by
   apply RingOfIntegers.coe_injective
   change conjK (IsCyclotomicExtension.zeta 3 ℚ K) =
@@ -748,6 +847,9 @@ private theorem conjO_cubic_root (x : O) (hx : x ^ 3 = 1) :
   simp only [← pow_mul]
   rw [Nat.mul_comm]
 
+/--
+@isnad1 id=eq.1h2v.s10.6da40c4a0b4d from=translated src=- shape=22ef5aec vocab=41b6b18a
+-/
 theorem cubicChar_conj_eq_inv (P : Ideal O) [P.IsMaximal]
     (hgood : lambda ∉ P) (x : O ⧸ P) :
     conjO (cubicChar P hgood x) = (cubicChar P hgood)⁻¹ x := by
@@ -766,6 +868,9 @@ theorem cubicChar_conj_eq_inv (P : Ideal O) [P.IsMaximal]
       exact MulChar.one_apply (isUnit_iff_ne_zero.mpr hx)
     exact conjO_cubic_root (χ x) hχ3
 
+/--
+@isnad1 id=eq.1h1v.s9.4064c17f4de3 from=translated src=- shape=483ff4d2 vocab=014925d4
+-/
 theorem cubicJacobi_conj (P : Ideal O) [P.IsMaximal]
     (hgood : lambda ∉ P) :
     conjO (jacobiSum (cubicChar P hgood) (cubicChar P hgood)) =
@@ -775,6 +880,9 @@ theorem cubicJacobi_conj (P : Ideal O) [P.IsMaximal]
   simp_rw [map_mul, cubicChar_conj_eq_inv P hgood]
   rfl
 
+/--
+@isnad1 id=eq.1h1v.s9.96025088a9e9 from=translated src=- shape=ae02b866 vocab=bf775c9f
+-/
 theorem cubicJacobi_mul_conj (P : Ideal O) [P.IsMaximal]
     (hgood : lambda ∉ P) :
     jacobiSum (cubicChar P hgood) (cubicChar P hgood) *
@@ -792,6 +900,9 @@ private noncomputable def quadraticCharO (P : Ideal O) [P.IsMaximal] :
   letI : Fintype (O ⧸ P) := Fintype.ofFinite _
   exact (quadraticChar (O ⧸ P)).ringHomComp (Int.castRingHom O)
 
+/--
+@isnad1 id=eq.0h1v.s10.834af3c35875 from=translated src=- shape=05c5527e vocab=e7018822
+-/
 theorem quadraticCharO_sq (P : Ideal O) [P.IsMaximal] :
     quadraticCharO P ^ 2 = 1 := by
   classical
@@ -804,6 +915,9 @@ noncomputable def sexticChar (P : Ideal O) [P.IsMaximal]
     (hgood : lambda ∉ P) : MulChar (O ⧸ P) O :=
   cubicChar P hgood ^ 2 * quadraticCharO P
 
+/--
+@isnad1 id=and.1h1v.s11.f6d40d7e6a2b from=translated src=- shape=b8d9b578 vocab=86f6cc42
+-/
 theorem sexticChar_powers (P : Ideal O) [P.IsMaximal]
     (hgood : lambda ∉ P) :
     sexticChar P hgood ^ 2 = cubicChar P hgood ∧
@@ -828,6 +942,9 @@ theorem sexticChar_powers (P : Ideal O) [P.IsMaximal]
     (c ^ 2 * q) ^ 6 = ((c ^ 2 * q) ^ 3) ^ 2 := by group
     _ = 1 := by rw [hthree, hq]
 
+/--
+@isnad1 id=not.0h0v.s5.4604e1c051a5 from=translated src=- shape=b77b284c vocab=026b0e34
+-/
 theorem lambda_not_dvd_two : ¬ lambda ∣ (2 : O) := by
   let : Fact (Nat.Prime 3) := ⟨Nat.prime_three⟩
   have hprime : Prime lambda :=
@@ -899,6 +1016,9 @@ private theorem norm_eq_mul_conjK (p : O) :
   rw [galois_univ_pair, Finset.prod_pair conjK_ne_refl.symm] at h
   simpa using h
 
+/--
+@isnad1 id=eq.0h1v.s8.db5b8c5aaa0c from=translated src=- shape=075aa398 vocab=412d73a6
+-/
 theorem norm_int_eq_mul_conjO (p : O) :
     ((Algebra.norm ℤ p : ℤ) : O) = p * conjO p := by
   apply NumberField.RingOfIntegers.coe_injective
@@ -933,6 +1053,9 @@ private theorem generator_mul_conj_eq_sign_card (P : Ideal O) [P.IsMaximal]
     have heq : Algebra.norm ℤ p = -(Nat.card (O ⧸ P) : ℤ) := add_eq_zero_iff_eq_neg.mp hneg
     simp [← norm_int_eq_mul_conjO p, heq]
 
+/--
+@isnad1 id=ex.2h2v.s8.425ded2b8750 from=translated src=- shape=a83dedff vocab=3d9c3b50
+-/
 theorem cubicJacobi_unit_multiple_of_principal (P : Ideal O) [P.IsMaximal]
     (hgood : lambda ∉ P) (p : O) (hP : P = Ideal.span {p}) :
     ∃ u : Oˣ, jacobiSum (cubicChar P hgood) (cubicChar P hgood) = p * u := by
@@ -974,6 +1097,9 @@ theorem cubicJacobi_unit_multiple_of_principal (P : Ideal O) [P.IsMaximal]
   refine ⟨hvunit.unit, ?_⟩
   simpa only [hvunit.unit_spec] using hv
 
+/--
+@isnad1 id=eq.3h2v.s8.63e14e18287e from=translated src=- shape=ca5f3e84 vocab=de8d6975
+-/
 theorem cubicJacobi_eq_neg_primary_generator_of_principal (P : Ideal O) [P.IsMaximal]
     (hgood : lambda ∉ P) (p : O) (hP : P = Ideal.span {p})
     (hprimary : lambda ^ 2 ∣ p - 1) :
@@ -1005,6 +1131,9 @@ theorem cubicJacobi_eq_neg_primary_generator_of_principal (P : Ideal O) [P.IsMax
   · rw [hneg] at hJu
     simpa only [Units.val_neg, Units.val_one, mul_neg, mul_one] using hJu
 
+/--
+@isnad1 id=eq.1h1v.s7.a3e234f643f4 from=translated src=- shape=3789c607 vocab=b74ae676
+-/
 theorem cubicJacobi_generates_prime (P : Ideal O) [P.IsMaximal]
     (hgood : lambda ∉ P) :
     P = Ideal.span {jacobiSum (cubicChar P hgood) (cubicChar P hgood)} := by
@@ -1036,6 +1165,9 @@ theorem cubicJacobi_generates_prime (P : Ideal O) [P.IsMaximal]
   change P = Ideal.span {J}
   rw [hQ, hQtop, ← Ideal.one_eq_top, mul_one]
 
+/--
+@isnad1 id=ex.1h1v.s8.832bb2059046 from=translated src=- shape=c7898bc6 vocab=de8d6975
+-/
 theorem cubicJacobi_exists_primary_generator (P : Ideal O) [P.IsMaximal]
     (hgood : lambda ∉ P) :
     ∃ p : O, P = Ideal.span {p} ∧ lambda ^ 2 ∣ p - 1 ∧
@@ -1050,6 +1182,9 @@ theorem cubicJacobi_exists_primary_generator (P : Ideal O) [P.IsMaximal]
     rw [hJ]
     ring
 
+/--
+@isnad1 id=eq.5h5v.s9.1463687ca8e8 from=translated src=- shape=e1cb0706 vocab=9d6c1f88
+-/
 theorem cubicGauss_cube {E : Type*} [Field E] (ι : O →+* E)
     (hι : Function.Injective ι) (P : Ideal O) [P.IsMaximal]
     (hgood : lambda ∉ P) (p : O) (hP : P = Ideal.span {p})
@@ -1115,9 +1250,15 @@ private noncomputable def complexEmbedding : K →ₐ[ℚ] ℂ :=
 noncomputable def ringComplex : O →+* ℂ :=
   complexEmbedding.toRingHom.comp (algebraMap O K)
 
+/--
+@isnad1 id=injectiv.0h0v.s5.eb29cc9a574e from=translated src=- shape=f51e303a vocab=92272b5f
+-/
 theorem ringComplex_injective : Function.Injective ringComplex :=
   complexEmbedding.injective.comp NumberField.RingOfIntegers.coe_injective
 
+/--
+@isnad1 id=eq.3h2v.s9.77e37871e7b5 from=translated src=- shape=0df029f2 vocab=8ec25ab5
+-/
 theorem primary_generator_mul_conj_eq_card (P : Ideal O) [P.IsMaximal]
     (hgood : lambda ∉ P) (p : O) (hP : P = Ideal.span {p})
     (hprimary : lambda ^ 2 ∣ p - 1) :
@@ -1127,6 +1268,9 @@ theorem primary_generator_mul_conj_eq_card (P : Ideal O) [P.IsMaximal]
     map_neg] at h
   simpa only [neg_mul_neg] using h
 
+/--
+@isnad1 id=ne.1h1v.s8.e30d3b0e62f2 from=translated src=- shape=4725e8a4 vocab=263cce5a
+-/
 theorem quadraticCharO_ne_one (P : Ideal O) [P.IsMaximal]
     (hchar : ringChar (O ⧸ P) ≠ 2) : quadraticCharO P ≠ 1 := by
   classical
@@ -1136,6 +1280,9 @@ theorem quadraticCharO_ne_one (P : Ideal O) [P.IsMaximal]
   exact (MulChar.ringHomComp_ne_one_iff
     (Int.cast_injective (α := O))).2 (quadraticChar_ne_one hchar)
 
+/--
+@isnad1 id=eq.2h1v.s9.eb8cdf8dd2cd from=translated src=- shape=0b6ce455 vocab=ed238c5a
+-/
 theorem sexticChar_order (P : Ideal O) [P.IsMaximal]
     (hgood : lambda ∉ P) (hchar : ringChar (O ⧸ P) ≠ 2) :
     orderOf (sexticChar P hgood) = 6 := by
@@ -1172,6 +1319,9 @@ theorem sexticChar_order (P : Ideal O) [P.IsMaximal]
     norm_num [he] at hdiv
   omega
 
+/--
+@isnad1 id=eq.2h2v.s10.750b62b5c309 from=translated src=- shape=ee37758f vocab=7b76ddfd
+-/
 theorem sexticChar_reduce_unit (P : Ideal O) [P.IsMaximal]
     (hgood : lambda ∉ P) (hchar : ringChar (O ⧸ P) ≠ 2)
     (u : (O ⧸ P)ˣ) :
@@ -1219,6 +1369,9 @@ theorem sexticChar_reduce_unit (P : Ideal O) [P.IsMaximal]
         _ = (u : O ⧸ P) ^ m := by rw [hfermat, mul_one])
   all_goals norm_num
 
+/--
+@isnad1 id=ne.1h1v.s7.3dc513bbaf54 from=translated src=- shape=8c28efee vocab=ecf1e2b7
+-/
 theorem quotient_char_ne_two_of_two_not_mem (P : Ideal O) [P.IsMaximal]
     (h2 : (2 : O) ∉ P) : ringChar (O ⧸ P) ≠ 2 := by
   let : Field (O ⧸ P) := Ideal.Quotient.field P

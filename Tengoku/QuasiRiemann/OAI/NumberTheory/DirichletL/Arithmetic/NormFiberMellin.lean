@@ -32,6 +32,9 @@ open MulChar AddChar
 
 namespace ShortDraftLocal
 
+/--
+@isnad1 id=not.2h3v.s8.b4cb41c7bee3 from=translated src=- shape=5145d330 vocab=5de50057
+-/
 theorem no_quadratic_scalar {F : Type*} [Field F] [Fintype F]
     (χ : MulChar F ℂ) (hχ : χ ≠ χ ^ 3) (c : ℂ) (hc : c ≠ 0) :
     ¬ ∃ d : ℂ, ∀ x : F, c * χ x = d * (χ ^ 3) x := by
@@ -62,6 +65,9 @@ noncomputable def baseChangeWeight {q : ℕ}
     (χ : DirichletCharacter ℂ q) (I : Ideal O) : ℂ :=
   (UniqueFactorizationMonoid.moebius I : ℂ) * χ (Ideal.absNorm I)
 
+/--
+@isnad1 id=eq.1h3v.s8.8306d4ac1850 from=translated src=- shape=e2691cb0 vocab=db820b61
+-/
 theorem baseChangeWeight_prime {q : ℕ} (χ : DirichletCharacter ℂ q)
     (P : Ideal O) (hP : Prime P) :
     baseChangeWeight χ P = -χ (Ideal.absNorm P) := by
@@ -71,6 +77,9 @@ theorem baseChangeWeight_prime {q : ℕ} (χ : DirichletCharacter ℂ q)
 noncomputable def invCharAF {q : ℕ} (χ : DirichletCharacter ℂ q) : ArithmeticFunction ℂ :=
   (toArithmeticFunction (χ ·)).pmul (ArithmeticFunction.moebius : ArithmeticFunction ℂ)
 
+/--
+@isnad1 id=eq.1h3v.s6.9b2b082b5e5e from=translated src=- shape=598d45ad vocab=2436a5e1
+-/
 theorem invCharAF_apply {q : ℕ} (χ : DirichletCharacter ℂ q)
     {n : ℕ} (hn : n ≠ 0) :
     invCharAF χ n = χ n * (ArithmeticFunction.moebius n : ℂ) := by
@@ -88,11 +97,17 @@ noncomputable def pairAF {q r : ℕ} (χ : DirichletCharacter ℂ q)
     (ψ : DirichletCharacter ℂ r) : ArithmeticFunction ℂ :=
   invCharAF χ * invCharAF ψ
 
+/--
+@isnad1 id=ismultip.0h4v.s5.7a37f784684d from=translated src=- shape=d645fa72 vocab=5bb3e160
+-/
 theorem pairAF_mult {q r : ℕ} (χ : DirichletCharacter ℂ q)
     (ψ : DirichletCharacter ℂ r) :
     (pairAF χ ψ).IsMultiplicative :=
   (invCharAF_mult χ).mul (invCharAF_mult ψ)
 
+/--
+@isnad1 id=eq.0h5v.s5.d1b24069b6e0 from=translated src=- shape=b1b8930a vocab=a5b39ebc
+-/
 theorem pairAF_eq_pairInverseCoeff {q r : ℕ}
     (χ : DirichletCharacter ℂ q) (ψ : DirichletCharacter ℂ r)
     (n : ℕ) : pairAF χ ψ n = pairInverseCoeff χ ψ n := by
@@ -102,6 +117,9 @@ theorem pairAF_eq_pairInverseCoeff {q r : ℕ}
     (fun {k} hk => invCharAF_apply χ hk)
     (fun {k} hk => invCharAF_apply ψ hk))
 
+/--
+@isnad1 id=eq.3h6v.s7.d53dda8fdd19 from=translated src=- shape=72366753 vocab=1ab97ce3
+-/
 theorem normFiber_eq_pair_of_prime_powers
     {q r : ℕ} (χ : DirichletCharacter ℂ q) (ψ : DirichletCharacter ℂ r)
     (weight : Ideal O → ℂ)
@@ -121,6 +139,9 @@ theorem normFiber_eq_pair_of_prime_powers
     _ = pairAF χ ψ n := h
     _ = pairInverseCoeff χ ψ n := pairAF_eq_pairInverseCoeff χ ψ n
 
+/--
+@isnad1 id=eq.1h5v.s7.ce9f85283e14 from=translated src=- shape=a1eb089f vocab=7774854e
+-/
 theorem pairAF_prime {q r : ℕ} (χ : DirichletCharacter ℂ q)
     (ψ : DirichletCharacter ℂ r) {p : ℕ} (hp : p.Prime) :
     pairAF χ ψ p = -(χ p + ψ p) := by
@@ -140,6 +161,9 @@ theorem pairAF_prime {q r : ℕ} (χ : DirichletCharacter ℂ q)
   rw [Finset.sum_insert hnot, Finset.sum_singleton]
   simp [Nat.div_one, Nat.div_self hp.pos, h1χ, h1ψ, hpχ, hpψ]
 
+/--
+@isnad1 id=eq.1h5v.s7.1ec940047bb4 from=translated src=- shape=db9c7664 vocab=37d84821
+-/
 theorem pairAF_prime_sq {q r : ℕ} (χ : DirichletCharacter ℂ q)
     (ψ : DirichletCharacter ℂ r) {p : ℕ} (hp : p.Prime) :
     pairAF χ ψ (p ^ 2) = χ p * ψ p := by
@@ -185,6 +209,9 @@ theorem pairAF_prime_sq {q r : ℕ} (χ : DirichletCharacter ℂ q)
   have hdivp : p ^ 2 / p = p := by simp [pow_two, hp.pos]
   simp [Nat.div_one, hdivp, h1χ,  hpχ, hpψ, hp2χ, hp2ψ]
 
+/--
+@isnad1 id=eq.0h0v.s6.b5bbdead876a from=translated src=- shape=6604b44b vocab=324c73f6
+-/
 theorem chiMinusThree_two : chiMinusThree (2 : ℕ) = -1 := by
   have h3 : ringChar (ZMod 3) ≠ 2 := by rw [ZMod.ringChar_zmod_n]; decide
   have h2 : (2 : ZMod 3) ≠ 0 := by decide
@@ -193,6 +220,9 @@ theorem chiMinusThree_two : chiMinusThree (2 : ℕ) = -1 := by
   rw [quadraticChar_eq_pow_of_char_ne_two h3 h2]
   simp [h21]
 
+/--
+@isnad1 id=ne.0h0v.s6.61c526627954 from=translated src=- shape=3cd55e50 vocab=8364addd
+-/
 theorem chiMinusThree_ne_one : chiMinusThree ≠ 1 := by
   intro h
   have hh := congrArg (fun ξ : DirichletCharacter ℂ 3 => ξ (2 : ℕ)) h
@@ -202,6 +232,9 @@ theorem chiMinusThree_ne_one : chiMinusThree ≠ 1 := by
   rw [MulChar.one_apply hunit] at hh
   norm_num at hh
 
+/--
+@isnad1 id=not.0h2v.s11.487730a675df from=translated src=- shape=fa913ebd vocab=7976ea49
+-/
 theorem not_both_principal {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) :
     ¬ ((χ.changeLevel (Nat.dvd_mul_right q 3) = 1) ∧
@@ -226,11 +259,17 @@ noncomputable def normFiberExpSum (weight : Ideal O → ℂ) (t : ℝ) : ℂ :=
 noncomputable def normFiberMellin (weight : Ideal O → ℂ) (s : ℂ) : ℂ :=
   mellin (fun D : ℝ => normFiberExpSum weight D⁻¹) (-s) / Complex.Gamma s
 
+/--
+@isnad1 id=eq.0h4v.s5.a785c9582c59 from=translated src=- shape=e4a78152 vocab=8157eba5
+-/
 theorem pairInverseCoeff_zero
     {q r : ℕ} (χ : DirichletCharacter ℂ q) (ψ : DirichletCharacter ℂ r) :
     pairInverseCoeff χ ψ 0 = 0 := by
   simp [pairInverseCoeff]
 
+/--
+@isnad1 id=lseriess.1h5v.s5.cc691236db1e from=translated src=- shape=ae28ede6 vocab=ff7f53ef
+-/
 theorem pairInverseCoeff_LSeriesSummable
     {q r : ℕ} [NeZero q] [NeZero r]
     (χ : DirichletCharacter ℂ q) (ψ : DirichletCharacter ℂ r)
@@ -258,6 +297,9 @@ private theorem mobius_char_coeff_norm_le_one
     (norm_nonneg ((ArithmeticFunction.moebius n : ℂ))),
     mul_nonneg (sub_nonneg.mpr hμ) (norm_nonneg (χ n))]
 
+/--
+@isnad1 id=le.0h5v.s5.a9066b178d80 from=translated src=- shape=03b289b6 vocab=e1d087cd
+-/
 theorem pairInverseCoeff_norm_le
     {q r : ℕ} [NeZero q] [NeZero r]
     (χ : DirichletCharacter ℂ q) (ψ : DirichletCharacter ℂ r)
@@ -287,6 +329,9 @@ theorem pairInverseCoeff_norm_le
     _ = (n.divisorsAntidiagonal.card : ℝ) := by simp
     _ ≤ n := hcard
 
+/--
+@isnad1 id=le.2h6v.s6.011ece63c505 from=translated src=- shape=f40cad67 vocab=d9ae44fb
+-/
 theorem normFiberCoeff_norm_le
     {q r : ℕ} [NeZero q] [NeZero r]
     (χ : DirichletCharacter ℂ q) (ψ : DirichletCharacter ℂ r)
@@ -300,6 +345,9 @@ theorem normFiberCoeff_norm_le
   · rw [hcoeff n hn]
     exact pairInverseCoeff_norm_le χ ψ n
 
+/--
+@isnad1 id=summable.3h6v.s7.e50716a69473 from=translated src=- shape=9cd8276c vocab=16fe7170
+-/
 theorem normFiberExpSum_summable
     {q r : ℕ} [NeZero q] [NeZero r]
     (χ : DirichletCharacter ℂ q) (ψ : DirichletCharacter ℂ r)
@@ -321,6 +369,9 @@ theorem normFiberExpSum_summable
   exact mul_le_mul_of_nonneg_right
     (normFiberCoeff_norm_le χ ψ weight hcoeff ha0 n) (Real.exp_pos _).le
 
+/--
+@isnad1 id=continuo.2h5v.s7.23b7b88c7839 from=translated src=- shape=a5164018 vocab=79fa5bbb
+-/
 theorem normFiberExpSum_continuousOn_pos
     {q r : ℕ} [NeZero q] [NeZero r]
     (χ : DirichletCharacter ℂ q) (ψ : DirichletCharacter ℂ r)
@@ -367,6 +418,9 @@ theorem normFiberExpSum_continuousOn_pos
     exact continuousOn_tsum hcontTerm hexp hbound
   exact (hcontHalf.continuousAt (Ici_mem_nhds heps0t)).continuousWithinAt
 
+/--
+@isnad1 id=locallyi.2h5v.s7.9bf447b4e075 from=translated src=- shape=3f86976c vocab=caaffc99
+-/
 theorem normFiberExpSum_inv_locallyIntegrableOn_pos
     {q r : ℕ} [NeZero q] [NeZero r]
     (χ : DirichletCharacter ℂ q) (ψ : DirichletCharacter ℂ r)
@@ -385,6 +439,9 @@ theorem normFiberExpSum_inv_locallyIntegrableOn_pos
     exact inv_pos.mpr (show 0 < D from hD)
   exact hcont.locallyIntegrableOn measurableSet_Ioi
 
+/--
+@isnad1 id=le.3h6v.s7.9b0c391bd8e1 from=translated src=- shape=48d7b129 vocab=06708a32
+-/
 theorem normFiberExpSum_norm_le_exp
     {q r : ℕ} [NeZero q] [NeZero r]
     (χ : DirichletCharacter ℂ q) (ψ : DirichletCharacter ℂ r)
@@ -442,6 +499,9 @@ theorem normFiberExpSum_norm_le_exp
     _ = (∑' n : ℕ, (n : ℝ) * Real.exp (-(n : ℝ) / 2)) *
         Real.exp (-t / 2) := by rw [tsum_mul_right]
 
+/--
+@isnad1 id=isbigo.2h6v.s7.c24614a86d36 from=translated src=- shape=85209a54 vocab=194dc29a
+-/
 theorem normFiberExpSum_flat_at_zero
     {q r : ℕ} [NeZero q] [NeZero r]
     (χ : DirichletCharacter ℂ q) (ψ : DirichletCharacter ℂ r)
@@ -478,6 +538,9 @@ theorem normFiberExpSum_flat_at_zero
   rw [← Real.rpow_neg_eq_inv_rpow]
   simp
 
+/--
+@isnad1 id=eq.4h6v.s7.f26d7f3690e1 from=translated src=- shape=56eefc09 vocab=f393581c
+-/
 theorem normFiberExpSum_mellin
     {q r : ℕ} [NeZero q] [NeZero r]
     (χ : DirichletCharacter ℂ q) (ψ : DirichletCharacter ℂ r)
@@ -496,6 +559,9 @@ theorem normFiberExpSum_mellin
   · exact (LSeriesSummable_congr s (fun {n} hn => hcoeff n hn)).mpr
       (pairInverseCoeff_LSeriesSummable χ ψ s hs)
 
+/--
+@isnad1 id=analytic.4h2v.s7.8cdf2654b4b5 from=translated src=- shape=a1306d95 vocab=b52ea6c9
+-/
 theorem normFiberMellin_analytic
     (weight : Ideal O → ℂ) (σ : ℝ) (hσpos : 0 < σ)
     (hlocal : LocallyIntegrableOn
@@ -525,6 +591,9 @@ theorem normFiberMellin_analytic
     exact Complex.Gamma_ne_zero_of_re_pos (lt_trans hσpos hs)
   exact hM.div hGamma hGamma0
 
+/--
+@isnad1 id=eq.4h6v.s7.b4e98e1cd89b from=translated src=- shape=bb62cad8 vocab=75c8c16f
+-/
 theorem normFiberMellin_eq_LSeries
     {q r : ℕ} [NeZero q] [NeZero r]
     (χ : DirichletCharacter ℂ q) (ψ : DirichletCharacter ℂ r)
@@ -539,6 +608,9 @@ theorem normFiberMellin_eq_LSeries
   exact mul_div_cancel_left₀ _
     (Complex.Gamma_ne_zero_of_re_pos (lt_trans zero_lt_one hs))
 
+/--
+@isnad1 id=and.11h7v.s8.601a216b2146 from=translated src=- shape=756cc0ff vocab=de3038c0
+-/
 theorem pair_zero_free_of_normFiber_exp_power_bound
     {q r : ℕ} [NeZero q] [NeZero r]
     (χ : DirichletCharacter ℂ q) (ψ : DirichletCharacter ℂ r)
@@ -564,6 +636,9 @@ theorem pair_zero_free_of_normFiber_exp_power_bound
     (fun s hs => normFiberMellin_eq_LSeries χ ψ weight hcoeff ha0 hexp s hs)
     ρ hρ
 
+/--
+@isnad1 id=analytic.4h6v.s7.32b72cce46bb from=translated src=- shape=0e5c3b83 vocab=968c5f5e
+-/
 theorem normFiberMellin_analytic_of_coeff
     {q r : ℕ} [NeZero q] [NeZero r]
     (χ : DirichletCharacter ℂ q) (ψ : DirichletCharacter ℂ r)
@@ -578,6 +653,9 @@ theorem normFiberMellin_analytic_of_coeff
     (normFiberExpSum_inv_locallyIntegrableOn_pos χ ψ weight hcoeff ha0)
     htop (normFiberExpSum_flat_at_zero χ ψ weight hcoeff ha0)
 
+/--
+@isnad1 id=eq.3h6v.s6.7044ac9901a4 from=translated src=- shape=eec7422a vocab=eba30afb
+-/
 theorem normFiberMellin_eq_LSeries_of_coeff
     {q r : ℕ} [NeZero q] [NeZero r]
     (χ : DirichletCharacter ℂ q) (ψ : DirichletCharacter ℂ r)
@@ -589,6 +667,9 @@ theorem normFiberMellin_eq_LSeries_of_coeff
   normFiberMellin_eq_LSeries χ ψ weight hcoeff ha0
     (normFiberExpSum_summable χ ψ weight hcoeff ha0) s hs
 
+/--
+@isnad1 id=and.8h7v.s8.cd2e68a51028 from=translated src=- shape=dac435f1 vocab=aae68b9a
+-/
 theorem pair_zero_free_of_normFiber_exp_power_bound_only
     {q r : ℕ} [NeZero q] [NeZero r]
     (χ : DirichletCharacter ℂ q) (ψ : DirichletCharacter ℂ r)
@@ -607,6 +688,9 @@ theorem pair_zero_free_of_normFiber_exp_power_bound_only
     (fun s hs => normFiberMellin_eq_LSeries_of_coeff χ ψ weight hcoeff ha0 s hs)
     ρ hρ
 
+/--
+@isnad1 id=and.8h6v.s8.48d19bac6dc1 from=translated src=- shape=be3a3dd7 vocab=aae68b9a
+-/
 theorem pair_zero_free_of_normFiber_exp_power_bound_principal_left
     {q r : ℕ} [NeZero q] [NeZero r]
     (ψ : DirichletCharacter ℂ r) (hψ : ψ ≠ 1)
@@ -627,6 +711,9 @@ theorem pair_zero_free_of_normFiber_exp_power_bound_principal_left
     (fun s hs => normFiberMellin_eq_LSeries_of_coeff 1 ψ weight hcoeff ha0 s hs)
     ρ hρ hρone
 
+/--
+@isnad1 id=and.8h6v.s8.ca36fa2578eb from=translated src=- shape=be88b3d7 vocab=aae68b9a
+-/
 theorem pair_zero_free_of_normFiber_exp_power_bound_principal_right
     {q r : ℕ} [NeZero q] [NeZero r]
     (χ : DirichletCharacter ℂ q) (hχ : χ ≠ 1)

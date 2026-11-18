@@ -7,6 +7,9 @@ namespace OAI
 noncomputable section
 namespace SevenEighths.Parameters
 
+/--
+@isnad1 id=ex.1h1v.s9.42785f0fa460 from=translated src=- shape=86963286 vocab=f24d7210
+-/
 theorem exists_central_budget (Δ : ℝ) (hΔ : 0<Δ) :
     ∃ t : ℝ,0<t ∧ t<Δ/4 ∧ t≤1/100000000 ∧
       (0:ℝ)<1/200 ∧ (1/200:ℝ)<1/100 ∧

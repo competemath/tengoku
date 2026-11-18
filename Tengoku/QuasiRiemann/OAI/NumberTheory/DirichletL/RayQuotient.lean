@@ -15,10 +15,16 @@ variable {A : Type*} [CommRing A] (M : Ideal A) [Finite (A ⧸ M)]
 abbrev Characters := characters H
 abbrev classNumber := Nat.card ((A ⧸ M)ˣ ⧸ H)
 
+/--
+@isnad1 id=lt.0h3v.s6.656eec23c1b0 from=translated src=- shape=8521d144 vocab=e19e8d23
+-/
 theorem classNumber_pos : 0 < classNumber M H := ray_card_pos H
 
 include hH
 
+/--
+@isnad1 id=unitinva.1h4v.s10.fcac10b5f16e from=translated src=- shape=dc16b49f vocab=c56a1672
+-/
 theorem character_unitInvariant (χ : Characters M H) :
     IdealCharacter.UnitInvariant M χ := by
   intro u
@@ -29,10 +35,16 @@ def toFullRay : Characters M H →* rayCharacters M where
   map_one' := Subtype.ext rfl
   map_mul' _ _ := Subtype.ext rfl
 
+/--
+@isnad1 id=injectiv.1h3v.s13.8eb06cfd1936 from=translated src=- shape=e10bf27f vocab=0c6e2f6c
+-/
 theorem toFullRay_injective : Function.Injective (toFullRay M H hH) := by
   intro χ ψ heq
   exact Subtype.ext (congrArg (fun ρ : rayCharacters M => (ρ : MulChar (A ⧸ M) ℂ)) heq)
 
+/--
+@isnad1 id=iff.1h4v.s14.08cbee70bc84 from=translated src=- shape=b6924bdb vocab=d61e7c8b
+-/
 @[simp] theorem toFullRay_eq_one (χ : Characters M H) :
     toFullRay M H hH χ = 1 ↔ χ = 1 := by
   rw [← map_one (toFullRay M H hH)]
@@ -48,6 +60,9 @@ def identityClass : Set (Ideal A) :=
     inUnitSubgroup H (Ideal.Quotient.mk M a)}
 
 omit [Finite (A ⧸ M)] in
+/--
+@isnad1 id=iff.2h4v.s9.f89d9a75af6a from=translated src=- shape=8b860b7b vocab=9e2aa2a8
+-/
 theorem identityClass_iff_generator {I : Ideal A} (hI : I ≠ ⊥) :
     I ∈ identityClass M H ↔
       inUnitSubgroup H (Ideal.Quotient.mk M (Submodule.IsPrincipal.generator I)) := by
@@ -70,15 +85,24 @@ theorem identityClass_iff_generator {I : Ideal A} (hI : I ≠ ⊥) :
   · intro h
     exact ⟨hI, _, Ideal.span_singleton_generator I, h⟩
 
+/--
+@isnad1 id=le.1h5v.s10.349393357170 from=translated src=- shape=048a5446 vocab=63ab5374
+-/
 theorem norm_idealCharacter_le_one (χ : Characters M H) (I : Ideal A) :
     ‖idealCharacter M H hH χ I‖ ≤ 1 :=
   IdealCharacter.norm_ofResidue_le_one M χ _ I
 
+/--
+@isnad1 id=eq.1h4v.s10.b156ef389639 from=translated src=- shape=a503a2b5 vocab=1f953d67
+-/
 theorem idealCharacter_one (I : Ideal A) :
     idealCharacter M H hH 1 I =
       if I = ⊥ then 0 else if IsCoprime I M then 1 else 0 :=
   IdealCharacter.ofResidue_one M I
 
+/--
+@isnad1 id=eq.1h4v.s11.ac494498de92 from=translated src=- shape=b501526c vocab=b6676ebc
+-/
 theorem sum_idealCharacters (I : Ideal A) :
     ∑ χ : Characters M H, idealCharacter M H hH χ I =
       if I ∈ identityClass M H then (classNumber M H : ℂ) else 0 := by

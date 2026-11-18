@@ -18,11 +18,17 @@ noncomputable section
 def decayConstant (α : ℝ) : ℝ :=
   (2 : ℝ)^α / ((2 : ℝ)^α - 1) + (1 - (2 : ℝ)^(α - 3))⁻¹
 
+/--
+@isnad1 id=eq.0h2v.s6.01dbcde2e3b2 from=translated src=- shape=63359c54 vocab=153abcb8
+-/
 lemma dyadic_rpow (α : ℝ) (j : ℕ) :
     ((2 : ℝ)^j)^α = ((2 : ℝ)^α)^j := by
   rw [← Real.rpow_natCast_mul (by norm_num), mul_comm,
     Real.rpow_mul_natCast (by norm_num)]
 
+/--
+@isnad1 id=le.1h3v.s7.70a4f531bdee from=translated src=- shape=e26addf9 vocab=5c9d27ef
+-/
 lemma decay_le_low (t α : ℝ) (ht : 0 < t) (j : ℕ) :
     ((2 : ℝ)^j)^α / (1 + t * (2 : ℝ)^j)^3 ≤ ((2 : ℝ)^α)^j := by
   rw [← dyadic_rpow]
@@ -30,6 +36,9 @@ lemma decay_le_low (t α : ℝ) (ht : 0 < t) (j : ℕ) :
     have : 0 ≤ t * (2 : ℝ)^j := by positivity
     linarith))
 
+/--
+@isnad1 id=le.1h3v.s7.3e674d484dee from=translated src=- shape=fbea5ad8 vocab=2fba42a9
+-/
 lemma decay_le_high (t α : ℝ) (ht : 0 < t) (j : ℕ) :
     ((2 : ℝ)^j)^α / (1 + t * (2 : ℝ)^j)^3 ≤
       t^(-3 : ℝ) * ((2 : ℝ)^(α - 3))^j := by
@@ -43,6 +52,9 @@ lemma decay_le_high (t α : ℝ) (ht : 0 < t) (j : ℕ) :
       simp only [Real.rpow_ofNat]
       ring
 
+/--
+@isnad1 id=summable.2h2v.s7.1818a119f3a7 from=translated src=- shape=71b7416f vocab=1a5ff329
+-/
 lemma decay_summable (t α : ℝ) (ht : 0 < t) (hα : α < 3) :
     Summable (fun j : ℕ => ((2 : ℝ)^j)^α / (1 + t * (2 : ℝ)^j)^3) := by
   have hr : (2 : ℝ)^(α - 3) < 1 := by
@@ -50,6 +62,9 @@ lemma decay_summable (t α : ℝ) (ht : 0 < t) (hα : α < 3) :
   exact ((summable_geometric_of_lt_one (by positivity) hr).mul_left (t^(-3 : ℝ))).of_nonneg_of_le
     (fun j => by positivity) (decay_le_high t α ht)
 
+/--
+@isnad1 id=lt.2h1v.s5.f3f8e898b06d from=translated src=- shape=05b24c01 vocab=0131129d
+-/
 lemma decayConstant_pos (α : ℝ) (hα : 0 < α) (hα3 : α < 3) :
     0 < decayConstant α := by
   have hq : 1 < (2 : ℝ)^α := Real.one_lt_rpow (by norm_num) hα
@@ -58,11 +73,17 @@ lemma decayConstant_pos (α : ℝ) (hα : 0 < α) (hα3 : α < 3) :
   unfold decayConstant
   positivity
 
+/--
+@isnad1 id=le.1h2v.s6.53a71c1aa88b from=translated src=- shape=df1f2a9d vocab=5604d48c
+-/
 lemma geometric_prefix_le (q : ℝ) (hq : 1 < q) (k : ℕ) :
     (∑ j ∈ Finset.range k, q^j) ≤ q^k / (q - 1) := by
   rw [geom_sum_eq (ne_of_gt hq)]
   exact div_le_div_of_nonneg_right (by linarith) (by linarith)
 
+/--
+@isnad1 id=le.2h3v.s8.071b4f6abbdf from=translated src=- shape=23bc1113 vocab=5e18396e
+-/
 lemma decay_tail_le (t α : ℝ) (ht : 0 < t) (hα3 : α < 3) (k : ℕ) :
     (∑' j : ℕ, ((2 : ℝ)^(j+k))^α / (1 + t * (2 : ℝ)^(j+k))^3) ≤
       t^(-3 : ℝ) * ((2 : ℝ)^(α-3))^k * (1 - (2 : ℝ)^(α-3))⁻¹ := by
@@ -80,6 +101,9 @@ lemma decay_tail_le (t α : ℝ) (ht : 0 < t) (hα3 : α < 3) (k : ℕ) :
       rw [tsum_mul_left, tsum_mul_right, tsum_geometric_of_lt_one hr0 hr]
       ring
 
+/--
+@isnad1 id=le.3h2v.s7.a8b00972eb6c from=translated src=- shape=dda4c54c vocab=c5a25668
+-/
 theorem dyadic_decay_bound (t α : ℝ) (ht : 0 < t) (hα : 0 < α) (hα3 : α < 3) :
     (∑' j : ℕ, ((2 : ℝ)^j)^α / (1 + t * (2 : ℝ)^j)^3) ≤
       decayConstant α * t^(-α) := by
@@ -137,6 +161,9 @@ theorem dyadic_decay_bound (t α : ℝ) (ht : 0 < t) (hα : 0 < α) (hα3 : α <
     unfold decayConstant
     nlinarith
 
+/--
+@isnad1 id=eq.2h3v.s7.841f614301b2 from=translated src=- shape=24f61258 vocab=f5a5ee51
+-/
 lemma poisson_scale_identity (M N α : ℝ) (hM : 0 < M) (hN : 0 < N) :
     M/N * (M/N^2)^(-α) = M^(1-α) * N^(2*α-1) := by
   rw [Real.div_rpow hM.le (sq_nonneg N), Real.rpow_neg hM.le,
@@ -146,6 +173,9 @@ lemma poisson_scale_identity (M N α : ℝ) (hM : 0 < M) (hN : 0 < N) :
   norm_num
   ring
 
+/--
+@isnad1 id=eq.2h4v.s7.a6fd29c4b185 from=translated src=- shape=ec86d7b6 vocab=f583fefd
+-/
 lemma poisson_small_power_identity (M N δ β : ℝ) (hM : 0 < M) (hN : 0 < N) :
     N^δ * (M/N) * (M/N^2)^(-(β+δ)) =
       N^(3*δ)*M^(-δ)*M^(1-β)*N^(2*β-1) := by
@@ -157,6 +187,9 @@ lemma poisson_small_power_identity (M N δ β : ℝ) (hM : 0 < M) (hN : 0 < N) :
       congr 1 <;> congr 1 <;> ring
     _ = _ := by rw [Real.rpow_add hM, Real.rpow_add hN]; ring
 
+/--
+@isnad1 id=le.4h4v.s6.8068145752c7 from=translated src=- shape=0d01304b vocab=d2911d5d
+-/
 lemma descent_factor_le_one (e d u v : ℝ) (he : 1 ≤ e) (hed : e ≤ d)
     (hv : v ≤ 0) (huv : u+v ≤ 0) : e^u*d^v ≤ 1 := by
   have hd : 1 ≤ d := he.trans hed
@@ -170,6 +203,9 @@ lemma descent_factor_le_one (e d u v : ℝ) (he : 1 ≤ e) (hed : e ≤ d)
       (Real.rpow_le_one_of_one_le_of_nonpos hd hv) (by positivity) (by norm_num)).trans_eq
       (one_mul 1)
 
+/--
+@isnad1 id=le.6h6v.s7.599f1caa0c74 from=translated src=- shape=fa0e3460 vocab=28e8c356
+-/
 lemma monomial_descendant_le (M N e d u v : ℝ) (hM : 0 < M) (hN : 0 < N)
     (he : 1 ≤ e) (hed : e ≤ d) (hv : 0 ≤ v) (huv : 0 ≤ u+v) :
     (M/e)^u*(N/d)^v ≤ M^u*N^v := by
@@ -184,6 +220,9 @@ lemma monomial_descendant_le (M N e d u v : ℝ) (hM : 0 < M) (hN : 0 < N)
     _ ≤ (M^u*N^v)*1 := mul_le_mul_of_nonneg_left hg (by positivity)
     _ = _ := mul_one _
 
+/--
+@isnad1 id=eq.2h3v.s7.13c158ad5d2c from=translated src=- shape=ab8935bc vocab=f583fefd
+-/
 lemma mixed_monomial_identity (M N δ : ℝ) (hM : 0 < M) (hN : 0 < N) :
     N^(3*δ)*M^(-δ)*(M*N)^(2/3 : ℝ) =
       M^(2/3-δ)*N^(2/3+3*δ) := by
@@ -194,6 +233,9 @@ lemma mixed_monomial_identity (M N δ : ℝ) (hM : 0 < M) (hN : 0 < N) :
       rw [← Real.rpow_add hM, ← Real.rpow_add hN]
       congr 1 <;> congr 1 <;> ring
 
+/--
+@isnad1 id=eq.2h4v.s7.10ab209ea04a from=translated src=- shape=f3ab41b7 vocab=3dbfa697
+-/
 lemma secondary_monomial_identity (M N δ ξ : ℝ) (hM : 0 < M) (hN : 0 < N) :
     N^(3*δ)*M^(-δ)*M^(1-ξ)*N^(2*ξ-1) =
       M^(1-ξ-δ)*N^(2*ξ-1+3*δ) := by
@@ -203,6 +245,9 @@ lemma secondary_monomial_identity (M N δ ξ : ℝ) (hM : 0 < M) (hN : 0 < N) :
       rw [← Real.rpow_add hM, ← Real.rpow_add hN]
       congr 1 <;> congr 1 <;> ring
 
+/--
+@isnad1 id=le.5h5v.s8.41ecb51a95d3 from=translated src=- shape=a804c518 vocab=47d3fe9b
+-/
 lemma mixed_descendant_le (M N e d δ : ℝ) (hM : 0 < M) (hN : 0 < N)
     (he : 1 ≤ e) (hed : e ≤ d) (hδ : 0 ≤ δ) :
     (N/d)^(3*δ)*(M/e)^(-δ)*((M/e)*(N/d))^(2/3 : ℝ) ≤
@@ -214,6 +259,9 @@ lemma mixed_descendant_le (M N e d δ : ℝ) (hM : 0 < M) (hN : 0 < N)
   exact monomial_descendant_le M N e d (2/3-δ) (2/3+3*δ) hM hN he hed
     (by linarith) (by linarith)
 
+/--
+@isnad1 id=le.6h6v.s8.ce6818d91012 from=translated src=- shape=44789833 vocab=b465e59e
+-/
 lemma secondary_descendant_le (M N e d δ ξ : ℝ) (hM : 0 < M) (hN : 0 < N)
     (he : 1 ≤ e) (hed : e ≤ d) (hδ : 0 ≤ δ) (hξ : 1 ≤ ξ) :
     (N/d)^(3*δ)*(M/e)^(-δ)*(M/e)^(1-ξ)*(N/d)^(2*ξ-1) ≤
@@ -225,6 +273,9 @@ lemma secondary_descendant_le (M N e d δ ξ : ℝ) (hM : 0 < M) (hN : 0 < N)
   exact monomial_descendant_le M N e d (1-ξ-δ) (2*ξ-1+3*δ) hM hN he hed
     (by linarith) (by linarith)
 
+/--
+@isnad1 id=le.8h8v.s9.0d9165ed1b5d from=translated src=- shape=39a29732 vocab=2fba42a9
+-/
 theorem poisson_envelope_descendant_le (M N e d δ ξ P Q : ℝ)
     (hM : 0 < M) (hN : 0 < N) (he : 1 ≤ e) (hed : e ≤ d)
     (hδ : 0 ≤ δ) (hξ : 1 ≤ ξ) (hP : 0 ≤ P) (hQ : 0 ≤ Q) :

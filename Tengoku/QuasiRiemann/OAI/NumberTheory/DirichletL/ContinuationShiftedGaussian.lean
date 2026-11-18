@@ -8,6 +8,9 @@ noncomputable section
 open MeasureTheory Set Filter Complex
 namespace SevenEighths.Continuation
 
+/--
+@isnad1 id=le.0h2v.s7.07672671857c from=translated src=- shape=c76b2e2f vocab=50773ea0
+-/
 lemma shifted_height_two (t q : ℝ) :
     (3+|t|)^2≤2*(3+|q|)^2*(1+|t+q|^2) := by
   have ht : |t|≤|t+q|+|q| := by

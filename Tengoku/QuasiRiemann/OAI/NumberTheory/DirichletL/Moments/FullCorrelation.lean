@@ -23,6 +23,9 @@ def scaledResidue (d a m : A) (hm : m = d * a) :
     rw [hm, ← mul_sub, hz]
     ring)
 
+/--
+@isnad1 id=eq.1h5v.s9.67593dd13f7e from=translated src=- shape=d6ca287c vocab=15d2260a
+-/
 @[simp] theorem scaledResidue_mk (d a m : A) (hm : m = d * a) (x : A) :
     scaledResidue d a m hm (Ideal.Quotient.mk (Ideal.span {d}) x) =
       Ideal.Quotient.mk (Ideal.span {m}) (a * x) := rfl
@@ -35,6 +38,9 @@ def fullModulusCorrelation (u v : A)
     (scaledResidue v u (u * v) (mul_comm u v)) χu χv
     (Ideal.Quotient.mk (Ideal.span {u * v}) j)
 
+/--
+@isnad1 id=iff.0h6v.s10.12e3abdeca18 from=translated src=- shape=fc51be56 vocab=74a31b2b
+-/
 theorem scaledResidue_congruence (u v x y j : A) :
     scaledResidue u v (u * v) rfl (Ideal.Quotient.mk (Ideal.span {u}) x) -
       scaledResidue v u (u * v) (mul_comm u v)
@@ -44,6 +50,9 @@ theorem scaledResidue_congruence (u v x y j : A) :
   rw [scaledResidue_mk, scaledResidue_mk, ← map_sub, Ideal.Quotient.eq]
   exact Ideal.mem_span_singleton
 
+/--
+@isnad1 id=eq.1h7v.s11.fedded73cd72 from=translated src=- shape=b7e62104 vocab=dd5ff58a
+-/
 theorem fullModulusCorrelation_fourier (u v : A)
     [Fintype (A ⧸ Ideal.span {u})] [Fintype (A ⧸ Ideal.span {v})]
     [Fintype (A ⧸ Ideal.span {u * v})]
@@ -57,6 +66,9 @@ theorem fullModulusCorrelation_fourier (u v : A)
       (Fintype.card (A ⧸ Ideal.span {u * v}) : ℂ) * fullModulusCorrelation u v χu χv j :=
   fullCorrelation_fourier ψ hψ _ _ χu χv _
 
+/--
+@isnad1 id=dvd.3h7v.s7.f9fad7c84be1 from=translated src=- shape=30774a06 vocab=10d9e1fd
+-/
 theorem common_divisor_frequency {u v d x y j : A}
     (hdu : d ∣ u) (hdv : d ∣ v) (hcong : u * v ∣ v * x - u * y - j) : d ∣ j := by
   have hleft : d ∣ v * x - u * y := dvd_sub (hdv.trans (dvd_mul_right v x))
@@ -65,6 +77,9 @@ theorem common_divisor_frequency {u v d x y j : A}
   have hdiff := dvd_sub hleft (hprod.trans hcong)
   convert hdiff using 1 ; ring
 
+/--
+@isnad1 id=eq.3h7v.s8.285fa87e2e99 from=translated src=- shape=9db6bfd7 vocab=cb8d67a0
+-/
 theorem fullModulusCorrelation_eq_zero_of_common_not_dvd (u v d j : A)
     [Fintype (A ⧸ Ideal.span {u})] [Fintype (A ⧸ Ideal.span {v})]
     (χu : MulChar (A ⧸ Ideal.span {u}) ℂ)
@@ -85,6 +100,9 @@ theorem fullModulusCorrelation_eq_zero_of_common_not_dvd (u v d j : A)
     exact hdj (common_divisor_frequency hdu hdv ((scaledResidue_congruence u v a b j).mp h))
   exact ite_eq_right hn
 
+/--
+@isnad1 id=dvd.2h4v.s8.a0cd8161c93c from=translated src=- shape=9e6a4f1a vocab=f9b8f1f5
+-/
 theorem dvd_of_unit_residue_mul {u x v : A}
     (hx : IsUnit (Ideal.Quotient.mk (Ideal.span {u}) x)) (hdiv : u ∣ v * x) : u ∣ v := by
   apply Ideal.mem_span_singleton.mp
@@ -95,6 +113,9 @@ theorem dvd_of_unit_residue_mul {u x v : A}
     exact Ideal.Quotient.eq_zero_iff_mem.mpr (Ideal.mem_span_singleton.mpr hdiv)
   exact hx.mul_right_injective (by simpa only [mul_comm, mul_zero, zero_mul] using hm)
 
+/--
+@isnad1 id=and.3h5v.s9.837bef408b56 from=translated src=- shape=1e5f7e49 vocab=bfa2c39f
+-/
 theorem zero_frequency_units_force_divides {u v x y : A}
     (hx : IsUnit (Ideal.Quotient.mk (Ideal.span {u}) x))
     (hy : IsUnit (Ideal.Quotient.mk (Ideal.span {v}) y))
@@ -107,6 +128,9 @@ theorem zero_frequency_units_force_divides {u v x y : A}
     convert h using 1 ; ring
   exact ⟨dvd_of_unit_residue_mul hx hu, dvd_of_unit_residue_mul hy hv⟩
 
+/--
+@isnad1 id=eq.1h5v.s8.7fc983f9f2eb from=translated src=- shape=9699f9b2 vocab=533d4f8e
+-/
 theorem fullModulusCorrelation_zero_frequency_off_diagonal (u v : A)
     [Fintype (A ⧸ Ideal.span {u})] [Fintype (A ⧸ Ideal.span {v})]
     (χu : MulChar (A ⧸ Ideal.span {u}) ℂ)
@@ -150,6 +174,9 @@ theorem fullModulusCorrelation_zero_frequency_off_diagonal (u v : A)
 
 variable [IsDomain A]
 
+/--
+@isnad1 id=injectiv.2h4v.s6.9ac98020a273 from=translated src=- shape=2edece57 vocab=3ec3b1f2
+-/
 theorem scaledResidue_injective (d a m : A) (hm : m = d * a) (ha : a ≠ 0) :
     Function.Injective (scaledResidue d a m hm) := by
   intro x y
@@ -162,6 +189,9 @@ theorem scaledResidue_injective (d a m : A) (hm : m = d * a) (ha : a ≠ 0) :
   rw [hm, ← mul_sub, mul_comm d a] at hd
   exact (mul_dvd_mul_iff_left ha).mp hd
 
+/--
+@isnad1 id=eq.1h3v.s8.422146b9d852 from=translated src=- shape=d0b4316d vocab=d0383946
+-/
 theorem fullModulusCorrelation_zero_frequency_diagonal (u : A) (hu : u ≠ 0)
     [Fintype (A ⧸ Ideal.span {u})] (χ : MulChar (A ⧸ Ideal.span {u}) ℂ) :
     fullModulusCorrelation u u χ χ 0 =

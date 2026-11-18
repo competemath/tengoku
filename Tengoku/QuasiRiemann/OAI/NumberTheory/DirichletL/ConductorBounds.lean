@@ -17,10 +17,16 @@ section QuotientBounds
 
 variable {R : Type*} [CommRing R]
 
+/--
+@isnad1 id=le.1h3v.s6.7520ce810f0b from=translated src=- shape=baebfd17 vocab=038cb50a
+-/
 theorem quotient_card_le_of_le {I J : Ideal R} [Finite (R ⧸ J)] (hJI : J ≤ I) :
     Nat.card (R ⧸ I) ≤ Nat.card (R ⧸ J) :=
   Nat.card_le_card_of_surjective _ (Ideal.Quotient.factor_surjective hJI)
 
+/--
+@isnad1 id=le.0h3v.s7.256d9256be45 from=translated src=- shape=1b328f8e vocab=53546bde
+-/
 theorem quotient_inf_card_le_mul (I J : Ideal R) [Finite (R ⧸ I)] [Finite (R ⧸ J)] :
     Nat.card (R ⧸ I ⊓ J) ≤ Nat.card (R ⧸ I) * Nat.card (R ⧸ J) := by
   let f : R ⧸ I ⊓ J →+* (R ⧸ I) × (R ⧸ J) :=
@@ -40,10 +46,16 @@ noncomputable def quotientComapEquiv (M : Ideal R) (I : Ideal (R ⧸ M)) :
     ⟨Ideal.quotientMap_injective,
       Ideal.quotientMap_surjective Ideal.Quotient.mk_surjective⟩
 
+/--
+@isnad1 id=eq.0h4v.s12.34bd53ac4553 from=translated src=- shape=28e19cde vocab=d15608ae
+-/
 theorem quotientComapEquiv_mk (M : Ideal R) (I : Ideal (R ⧸ M)) (a : R) :
     quotientComapEquiv M I (Ideal.Quotient.mk _ a) =
       Ideal.Quotient.mk I (Ideal.Quotient.mk M a) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.2082536269f3 from=translated src=- shape=5e51de92 vocab=460d325b
+-/
 theorem quotient_comap_card (M : Ideal R) (I : Ideal (R ⧸ M)) :
     Nat.card (R ⧸ I.comap (Ideal.Quotient.mk M)) = Nat.card ((R ⧸ M) ⧸ I) :=
   Nat.card_congr (quotientComapEquiv M I).toEquiv
@@ -54,6 +66,9 @@ section FiniteRing
 
 variable {R : Type*} [CommRing R] [Finite R]
 
+/--
+@isnad1 id=isprimit.2h4v.s8.da233c3a12c0 from=translated src=- shape=a9ce226c vocab=6c681d97
+-/
 theorem primitive_of_maximal_descent (χ : MulChar R ℂ) (I : Ideal R)
     (φ : MulChar (R ⧸ I) ℂ)
     (hφ : φ.toUnitHom.comp (quotientUnits I) = χ.toUnitHom)
@@ -83,6 +98,9 @@ theorem primitive_of_maximal_descent (χ : MulChar R ℂ) (I : Ideal R)
   obtain ⟨r, rfl⟩ := Ideal.Quotient.mk_surjective x
   exact Ideal.Quotient.eq_zero_iff_mem.mpr (hKI hx)
 
+/--
+@isnad1 id=ex.1h3v.s9.12745a26b769 from=translated src=- shape=2d39ebac vocab=700a5547
+-/
 theorem exists_primitive_quotient_above (χ : MulChar R ℂ) (J : Ideal R)
     (hJ : FactorsThroughIdeal χ J) :
     ∃ (I : Ideal R) (φ : MulChar (R ⧸ I) ℂ),
@@ -94,6 +112,9 @@ theorem exists_primitive_quotient_above (χ : MulChar R ℂ) (J : Ideal R)
   obtain ⟨φ, hφ⟩ := hI.1
   exact ⟨I, φ, hJI, hφ, primitive_of_maximal_descent χ I φ hφ hI, hI⟩
 
+/--
+@isnad1 id=ex.1h3v.s9.601751c799cd from=translated src=- shape=9902d0f5 vocab=a27af56f
+-/
 theorem exists_primitive_quotient_above_with_bound_and_mask
     (χ : MulChar R ℂ) (J : Ideal R) (hJ : FactorsThroughIdeal χ J) :
     ∃ (I : Ideal R) (φ : MulChar (R ⧸ I) ℂ),
@@ -106,6 +127,9 @@ theorem exists_primitive_quotient_above_with_bound_and_mask
   exact ⟨I, φ, hJI, hφ, hprimitive, hmaximal, quotient_card_le_of_le hJI,
     factorization_with_source_mask χ I φ hφ⟩
 
+/--
+@isnad1 id=factorst.2h5v.s7.7efd2f8c714a from=translated src=- shape=6289dedc vocab=a2f05e75
+-/
 theorem FactorsThroughIdeal.mul {χ ψ : MulChar R ℂ} {I J : Ideal R}
     (hχ : FactorsThroughIdeal χ I) (hψ : FactorsThroughIdeal ψ J) :
     FactorsThroughIdeal (χ * ψ) (I ⊓ J) := by
@@ -113,6 +137,9 @@ theorem FactorsThroughIdeal.mul {χ ψ : MulChar R ℂ} {I J : Ideal R}
   intro u hu
   rw [MulChar.mul_apply, hχ u hu.1, hψ u hu.2, one_mul]
 
+/--
+@isnad1 id=ex.2h5v.s10.8c22a3be1fda from=translated src=- shape=2e34b4ef vocab=678a23f8
+-/
 theorem exists_primitive_product_quotient_with_bound_and_mask
     (χ ψ : MulChar R ℂ) (I J : Ideal R)
     (hχ : FactorsThroughIdeal χ I) (hψ : FactorsThroughIdeal ψ J) :

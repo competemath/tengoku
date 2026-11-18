@@ -26,6 +26,9 @@ def bezoutPairEquiv (n₁ n₂ a b : R) (hab : a*n₁+b*n₂=1) : R×R≃R×R wh
     · dsimp only
       linear_combination p.2*hab
 
+/--
+@isnad1 id=eq.1h8v.s8.bbad6a03b913 from=translated src=- shape=b1680f65 vocab=28ec07be
+-/
 theorem fullCorrelation_bezout [Fintype R] (n₁ n₂ a b k : R) (hab : a*n₁+b*n₂=1)
     (f g : R→ℂ) :
     fullCorrelation (fun x=>n₂*x) (fun y=>n₁*y) f g k=
@@ -44,6 +47,9 @@ theorem fullCorrelation_bezout [Fintype R] (n₁ n₂ a b k : R) (hab : a*n₁+b
   rw [he,Fintype.sum_prod_type]
   simp only [Finset.sum_ite_eq',Finset.mem_univ,ite_true]
 
+/--
+@isnad1 id=le.3h8v.s7.c7d66b1707d7 from=translated src=- shape=bcd210f8 vocab=ed3a72ae
+-/
 theorem fullCorrelation_bezout_norm [Fintype R] (n₁ n₂ a b k : R) (hab : a*n₁+b*n₂=1)
     (f g : R→ℂ) (hf : ∀x,‖f x‖≤1) (hg : ∀x,‖g x‖≤1) :
     ‖fullCorrelation (fun x=>n₂*x) (fun y=>n₁*y) f g k‖≤(Fintype.card R:ℝ) := by

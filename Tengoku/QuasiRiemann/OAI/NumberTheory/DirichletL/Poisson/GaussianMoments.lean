@@ -20,6 +20,9 @@ open Filter Real Asymptotics
 
 namespace GaussianMoment
 
+/--
+@isnad1 id=le.1h1v.s6.620de176b24c from=translated src=- shape=1b50aec6 vocab=dac704fb
+-/
 theorem x_exp_neg_le (x : ℝ) (_hx : 0 ≤ x) :
     x * Real.exp (-x) ≤ 2 * Real.exp (-(x / 2)) := by
   have hlin : x / 2 ≤ Real.exp (x / 2) := by
@@ -35,6 +38,9 @@ theorem x_exp_neg_le (x : ℝ) (_hx : 0 ≤ x) :
       congr 1
       ring_nf
 
+/--
+@isnad1 id=le.2h2v.s6.9a33e9b8d882 from=translated src=- shape=7a650c0b vocab=206cbf96
+-/
 theorem gaussian_moment_term_bound (q t : ℝ) (hq : 0 ≤ q) (ht : 0 < t) :
     q * Real.exp (-t * q) ≤
       (2 / t) * Real.exp (-(t * q / 2)) := by
@@ -55,6 +61,9 @@ section
 
 open ShortDraftLatticeCount
 
+/--
+@isnad1 id=eq.1h1v.s5.326badeb4e94 from=translated src=- shape=1c3d7548 vocab=a20da9da
+-/
 theorem rational_qNat (r : ℕ) (hr : r ≠ 0) :
     qNat (r : O) = r ^ 2 := by
   calc
@@ -64,6 +73,9 @@ theorem rational_qNat (r : ℕ) (hr : r ≠ 0) :
       rw [Ideal.absNorm_apply, Submodule.cardQuot_apply]
     _ = r ^ 2 := rational_modulus_card r hr
 
+/--
+@isnad1 id=eq.1h2v.s6.d1ff64f139aa from=translated src=- shape=3c0a9dc2 vocab=a20da9da
+-/
 theorem rational_qNat_pow (r k : ℕ) (hr : r ≠ 0) :
     qNat ((r : O) ^ k) = (r ^ 2) ^ k := by
   induction k with
@@ -77,6 +89,9 @@ theorem rational_qNat_pow (r k : ℕ) (hr : r ≠ 0) :
         _ = (r ^ 2) ^ k * (r ^ 2) := by rw [ih, rational_qNat r hr]
         _ = (r ^ 2) ^ (k + 1) := (pow_succ (r ^ 2) k).symm
 
+/--
+@isnad1 id=injectiv.0h0v.s5.7415344d592f from=translated src=- shape=288b2530 vocab=573943a7
+-/
 theorem rational_sixth_injective :
     Function.Injective (fun r : ℕ => (r : O) ^ 6) := by
   intro r s hrs
@@ -84,6 +99,9 @@ theorem rational_sixth_injective :
     simpa only [Nat.cast_pow] using hrs
   exact Nat.pow_left_injective (by decide : 6 ≠ 0) (Nat.cast_injective hcast)
 
+/--
+@isnad1 id=and.3h3v.s7.af8c4fe99849 from=translated src=- shape=51851dd1 vocab=01f5c5b5
+-/
 theorem rational_sixth_norm_interval
     (L r R : ℕ) (hr : r.Prime) (hL : L ≤ r) (hR : r ≤ R) :
     L ^ 12 ≤ qNat ((r : O) ^ 6) ∧
@@ -93,10 +111,16 @@ theorem rational_sixth_norm_interval
   rw [hpow]
   exact ⟨Nat.pow_le_pow_left hL 12, Nat.pow_le_pow_left hR 12⟩
 
+/--
+@isnad1 id=iff.0h1v.s4.e0d84dc7d79f from=translated src=- shape=bd6b3369 vocab=c4d357a2
+-/
 theorem rational_qNat_eq_one_iff (x : O) : qNat x = 1 ↔ IsUnit x := by
   rw [qNat_eq_absNorm_span, Ideal.absNorm_eq_one_iff,
     Ideal.span_singleton_eq_top]
 
+/--
+@isnad1 id=or.1h1v.s8.1a7ebf606748 from=translated src=- shape=8235ba1e vocab=4471c6d0
+-/
 theorem rational_prime_factor_cases (r : ℕ) (hr : r.Prime) :
     (Ideal.span {(r : O)} : Ideal O).IsMaximal ∨
     ∃ a b : O, a ≠ 0 ∧ b ≠ 0 ∧ (r : O) = a * b ∧
@@ -142,6 +166,9 @@ theorem rational_prime_factor_cases (r : ℕ) (hr : r.Prime) :
       PrincipalIdealRing.isMaximal_of_irreducible hpa.irreducible,
       PrincipalIdealRing.isMaximal_of_irreducible hpb.irreducible⟩
 
+/--
+@isnad1 id=eq.3h2v.s7.d33e47455fd3 from=translated src=- shape=79cb827d vocab=28e7cf4b
+-/
 theorem maximal_ideal_eq_span_of_mem
     (Q : Ideal O) (hQ : Q.IsMaximal) (a : O)
     (ha : (Ideal.span {a} : Ideal O).IsMaximal) (hamem : a ∈ Q) :
@@ -150,6 +177,9 @@ theorem maximal_ideal_eq_span_of_mem
     (Ideal.span_singleton_le_iff_mem _).mpr hamem
   exact (ha.eq_of_le hQ.ne_top hle).symm
 
+/--
+@isnad1 id=ex.1h1v.s8.9c82297553dc from=translated src=- shape=7807324a vocab=682788b1
+-/
 theorem rational_prime_ideal_cover (r : ℕ) (hr : r.Prime) :
     ∃ a b : O, a ≠ 0 ∧ b ≠ 0 ∧
       r ≤ qNat a ∧ r ≤ qNat b ∧
@@ -185,6 +215,9 @@ namespace RationalPrimeExtraction
 noncomputable def selected (Y : ℝ) : Finset ℕ :=
   (Finset.Ioc ⌊Y / 3⌋₊ ⌊Y⌋₊).filter Nat.Prime
 
+/--
+@isnad1 id=ex.1h4v.s8.74ecb945b07a from=translated src=- shape=500358e6 vocab=2f450649
+-/
 theorem lower_count_and_extract
     [DecidableEq O] (A : O → ℂ) (rows : Finset O) (E B : ℝ) (hE : 0 ≤ E) :
     ∃ Y₀ : ℝ, ∀ Y : ℝ, Y₀ ≤ Y →
@@ -383,6 +416,9 @@ private theorem inverseForm_real (a b d : ℂ) {R : ℝ} (hR : R ≠ 0) (z : ℤ
     Complex.mul_re, Complex.normSq_apply, pow_two]
   field_simp [hR]
 
+/--
+@isnad1 id=eq.3h5v.s6.135f3e047515 from=translated src=- shape=e048d4cf vocab=a1f1ab83
+-/
 theorem dualGaussian_inverseForm {a b d : ℂ} {R : ℝ}
     (ha : a ≠ 0) (hR : R ≠ 0)
     (hdet : a * d - b ^ 2 = (R : ℂ)) (z : ℤ × ℤ) :
@@ -422,6 +458,9 @@ private theorem dualGaussian_summable {a b d : ℂ} {R : ℝ}
     (inverseForm a b d R) heps hbound).congr
       (fun z => (dualGaussian_inverseForm ha0 hR.ne' hdet z).symm)
 
+/--
+@isnad1 id=eq.4h4v.s7.458af2d0cf9e from=translated src=- shape=f85813ba vocab=665ddfe5
+-/
 theorem binary_gaussian_poisson_real_det {a b d : ℂ} {R : ℝ}
     (ha : 0 < a.re) (hR : 0 < R)
     (hdet : a * d - b ^ 2 = (R : ℂ))
@@ -457,10 +496,16 @@ noncomputable def D (η a b : ℝ) : ℂ :=
   (η : ℂ) + 2 * Complex.I * ((a-b : ℝ) : ℂ) / (q a b : ℂ)
 noncomputable def R (η a b : ℝ) : ℝ := 4 / q a b + 3 * η ^ 2 / 4
 
+/--
+@isnad1 id=and.1h3v.s6.76baeeaab4fd from=translated src=- shape=eb5894f8 vocab=adaeaa6c
+-/
 theorem coefficient_re (η a b : ℝ) (_hq : q a b ≠ 0) :
     (A η a b).re = η ∧ (B η a b).re = -η / 2 ∧ (D η a b).re = η := by
   simp [A, B, D, Complex.div_re, Complex.normSq_apply]
 
+/--
+@isnad1 id=eq.1h3v.s6.a065821245e1 from=translated src=- shape=025e259d vocab=d49452ae
+-/
 theorem oscillatory_determinant (η a b : ℝ) (hq : q a b ≠ 0) :
     A η a b * D η a b - (B η a b) ^ 2 = (R η a b : ℂ) := by
   have hqc : (q a b : ℂ) ≠ 0 := by exact_mod_cast hq
@@ -476,6 +521,9 @@ theorem oscillatory_determinant (η a b : ℝ) (hq : q a b ≠ 0) :
   simp [Complex.I_sq]
   ring
 
+/--
+@isnad1 id=lt.2h3v.s6.a0b584c011b1 from=translated src=- shape=6de6ecc5 vocab=c15751fc
+-/
 theorem real_positive_definite {η a b : ℝ} (hη : 0 < η) (hq : q a b ≠ 0) :
     0 < (A η a b).re * (D η a b).re - (B η a b).re ^ 2 := by
   obtain ⟨hA, hB, hD⟩ := coefficient_re η a b hq

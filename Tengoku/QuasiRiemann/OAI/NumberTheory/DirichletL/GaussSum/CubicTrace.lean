@@ -67,6 +67,9 @@ open scoped BigOperators Classical
 
 namespace ActualEisensteinCubic
 
+/--
+@isnad1 id=ne.2h2v.s10.396e7186efc0 from=translated src=- shape=474d1cb8 vocab=193a4d59
+-/
 theorem cubicChar_reduce_ne_one (P Q : Ideal O) [P.IsMaximal] [Q.IsMaximal]
     (hPgood : lambda ∉ P) (hQgood : lambda ∉ Q) :
     (cubicChar P hPgood).ringHomComp (Ideal.Quotient.mk Q) ≠ 1 := by
@@ -81,6 +84,9 @@ theorem cubicChar_reduce_ne_one (P Q : Ideal O) [P.IsMaximal] [Q.IsMaximal]
   · have h := congrArg (fun χ : MulChar (O ⧸ P) (O ⧸ Q) => χ (u : O ⧸ P)) hred
     simpa only [MulChar.ringHomComp_apply, MulChar.one_apply_coe, map_one] using h
 
+/--
+@isnad1 id=eq.5h5v.s10.99c31a0f7a85 from=translated src=- shape=32f459d7 vocab=90f926cd
+-/
 theorem cubicGauss_cube_of_nontrivial {E : Type*} [Field E] (ι : O →+* E)
     (P : Ideal O) [P.IsMaximal] (hgood : lambda ∉ P)
     (p : O) (hP : P = Ideal.span {p}) (hprimary : lambda ^ 2 ∣ p - 1)
@@ -128,6 +134,9 @@ theorem cubicGauss_cube_of_nontrivial {E : Type*} [Field E] (ι : O →+* E)
     _ = (gaussSum ξ ψ * gaussSum ξ⁻¹ ψ) * jacobiSum ξ ξ := by ring
     _ = -(ι p) * (Nat.card (O ⧸ P) : E) := by rw [hgs, hJ]; ring
 
+/--
+@isnad1 id=eq.5h6v.s10.5e128b958201 from=translated src=- shape=7e1be5c9 vocab=7a67661a
+-/
 theorem cubicGauss_cube_reduce {E : Type*} [Field E]
     (P Q : Ideal O) [P.IsMaximal] [Q.IsMaximal]
     (hPgood : lambda ∉ P) (hQgood : lambda ∉ Q)
@@ -144,6 +153,9 @@ end ActualEisensteinCubic
 
 namespace CubicFrobenius
 
+/--
+@isnad1 id=ne.1h2v.s6.f81c66a87bb6 from=translated src=- shape=cafa40ee vocab=cac46809
+-/
 theorem card_cast_ne_zero (F F' : Type*) [Field F] [Fintype F]
     [Field F'] [Fintype F'] (hchar : ringChar F' ≠ ringChar F) :
     (Fintype.card F : F') ≠ 0 := by
@@ -154,6 +166,9 @@ theorem card_cast_ne_zero (F F' : Type*) [Field F] [Fintype F]
   have hd := (CharP.cast_eq_zero_iff F' (ringChar F') (ringChar F)).mp hz
   exact hchar ((Nat.prime_dvd_prime_iff_eq (CharP.char_is_prime F' _) hp).mp hd)
 
+/--
+@isnad1 id=eq.0h5v.s7.e375320a8361 from=translated src=- shape=02751d4c vocab=19abba68
+-/
 theorem gaussSum_pow_card (F F' E : Type*) [Field F] [Fintype F]
     [Field F'] [Fintype F'] [Field E] [Algebra F' E]
     (χ : MulChar F F') (ψ : AddChar F E) :
@@ -174,6 +189,9 @@ theorem gaussSum_pow_card (F F' E : Type*) [Field F] [Fintype F]
   rw [← map_pow, FiniteField.pow_card, ← AddChar.mulShift_spec']
   rfl
 
+/--
+@isnad1 id=eq.5h7v.s8.719d40f05b78 from=translated src=- shape=c21fb821 vocab=8ad7cc4e
+-/
 theorem gauss_cube_residue_relation (F F' E : Type*) [Field F] [Fintype F]
     [Field F'] [Fintype F'] [Field E] [Algebra F' E]
     (hchar : ringChar F' ≠ ringChar F)
@@ -206,6 +224,9 @@ end CubicFrobenius
 
 namespace ActualEisensteinCubic
 
+/--
+@isnad1 id=eq.5h3v.s10.d51ac39a3cdf from=translated src=- shape=be82ae88 vocab=3df0d6bd
+-/
 theorem cubic_primary_frobenius_relation (P Q : Ideal O) [P.IsMaximal] [Q.IsMaximal]
     (hPgood : lambda ∉ P) (hQgood : lambda ∉ Q)
     (hchar : ringChar (O ⧸ Q) ≠ ringChar (O ⧸ P))
@@ -273,6 +294,9 @@ theorem cubic_primary_frobenius_relation (P Q : Ideal O) [P.IsMaximal] [Q.IsMaxi
   rw [hneg, map_mul, hminus, one_mul] at hprod
   simpa only [Nat.card_eq_fintype_card] using hprod
 
+/--
+@isnad1 id=eq.7h4v.s10.2da44966dce4 from=translated src=- shape=8ad657a6 vocab=4c3e48e5
+-/
 theorem cubic_reciprocity_distinct_residue_char
     (P Q : Ideal O) [P.IsMaximal] [Q.IsMaximal]
     (hPgood : lambda ∉ P) (hQgood : lambda ∉ Q)
@@ -305,11 +329,17 @@ namespace GaussGeneratorTransport
 abbrev O := ActualEisensteinCubic.O
 open ActualEisensteinCubic ConcreteTraceCRT EisensteinSchwartzPoisson FiniteGaussPhase
 
+/--
+@isnad1 id=eq.0h1v.s6.2f0882ddfb9e from=translated src=- shape=ff9469b1 vocab=5d7dcaef
+-/
 theorem norm_eisEmbedding_unit (u : Oˣ) : ‖eisEmbedding (u : O)‖ = 1 := by
   have h := eisEmbedding_norm_sq_eq_absNorm_span (u : O)
   rw [Ideal.span_singleton_eq_top.mpr u.isUnit, Ideal.absNorm_top, Nat.cast_one] at h
   nlinarith [norm_nonneg (eisEmbedding (u : O))]
 
+/--
+@isnad1 id=eq.0h2v.s7.980939fd0ea2 from=translated src=- shape=47297f35 vocab=6f4d46ec
+-/
 @[simp] theorem norm_eisEmbedding_unit_mul (u : Oˣ) (a : O) :
     ‖eisEmbedding ((u : O) * a)‖ = ‖eisEmbedding a‖ := by
   rw [map_mul, norm_mul, norm_eisEmbedding_unit, one_mul]
@@ -325,6 +355,9 @@ def principalNormalizedGauss {ι : Type*} [Fintype ι]
     eisTraceModChar ShortDraftTrace.breveE ConcreteBreveE.breveE_period_coordinates c hc0 r) /
       (‖eisEmbedding c‖ : ℂ)
 
+/--
+@isnad1 id=ex.0h2v.s7.866a0a4d402b from=translated src=- shape=99f97971 vocab=16fa4584
+-/
 theorem exists_modulus_unit {ι : Type*} [Fintype ι] (p : ι → O) :
     ∃ u : Oˣ, finitePrimeModulus (fun i => Ideal.span {p i}) = (u : O) * ∏ i, p i := by
   have hs : Ideal.span {∏ i, p i} =
@@ -336,10 +369,16 @@ theorem exists_modulus_unit {ι : Type*} [Fintype ι] (p : ι → O) :
 def modulusUnit {ι : Type*} [Fintype ι] (p : ι → O) : Oˣ :=
   Classical.choose (exists_modulus_unit p)
 
+/--
+@isnad1 id=eq.0h2v.s6.bc95d0ccdcfc from=translated src=- shape=bbf58ff9 vocab=d242fbad
+-/
 theorem modulusUnit_spec {ι : Type*} [Fintype ι] (p : ι → O) :
     finitePrimeModulus (fun i => Ideal.span {p i}) = (modulusUnit p : O) * ∏ i, p i :=
   Classical.choose_spec (exists_modulus_unit p)
 
+/--
+@isnad1 id=eq.0h2v.s7.6f709db4e881 from=translated src=- shape=a50a33bf vocab=926be327
+-/
 theorem finitePrimeModulus_norm_eq_product {ι : Type*} [Fintype ι] (p : ι → O) :
     ‖eisEmbedding (finitePrimeModulus (fun i => Ideal.span {p i}))‖ =
       ‖eisEmbedding (∏ i, p i)‖ := by

@@ -20,6 +20,9 @@ def signalMellin (f : ℝ → ℂ) (c : ℝ) (s : ℂ) : ℂ :=
 def RapidDecayAtZero (f : ℝ → ℂ) : Prop :=
   ∀ B : ℝ, f =O[𝓝[>] (0 : ℝ)] (fun x : ℝ => x ^ B)
 
+/--
+@isnad1 id=isbigo.1h2v.s5.19ae1175915b from=translated src=- shape=f63a8f9c vocab=7b030813
+-/
 theorem rpow_isBigO_atTop_of_le {a b : ℝ} (h : a ≤ b) :
     (fun x : ℝ => x ^ a) =O[atTop] (fun x : ℝ => x ^ b) := by
   apply Asymptotics.IsBigO.of_bound 1
@@ -28,6 +31,9 @@ theorem rpow_isBigO_atTop_of_le {a b : ℝ} (h : a ≤ b) :
     abs_of_nonneg (Real.rpow_nonneg (by linarith : 0 ≤ x) _)] using
     Real.rpow_le_rpow_of_exponent_le hx h
 
+/--
+@isnad1 id=isbigo.2h4v.s6.746c8fad3edc from=translated src=- shape=815ea390 vocab=9d7ec3c4
+-/
 theorem common_signal_bound (J f : ℝ → ℂ) (a b : ℝ)
     (hJ : J =O[atTop] (fun x : ℝ => x ^ a))
     (herror : (fun x => J x - f x) =O[atTop] (fun x : ℝ => x ^ b)) :
@@ -36,6 +42,9 @@ theorem common_signal_bound (J f : ℝ → ℂ) (a b : ℝ)
   have h₂ := herror.trans (rpow_isBigO_atTop_of_le (le_max_right a b))
   simpa only [sub_sub_cancel] using h₁.sub h₂
 
+/--
+@isnad1 id=isbigo.2h6v.s7.3e531b3b5731 from=translated src=- shape=87c945ac vocab=39e8ade3
+-/
 theorem common_signal_bound_with_margin (J f : ℝ → ℂ) (β ω σ c : ℝ)
     (hJ : J =O[atTop] (fun x : ℝ => x ^ (7 / 8 + c + ω)))
     (herror : (fun x => J x - f x) =O[atTop]
@@ -45,6 +54,9 @@ theorem common_signal_bound_with_margin (J f : ℝ → ℂ) (β ω σ c : ℝ)
   simpa only [Supremum.max_signal_exponents] using
     common_signal_bound J f (7 / 8 + c + ω) (β + c - σ) hJ herror
 
+/--
+@isnad1 id=mellinco.4h4v.s7.fd755cab6a97 from=translated src=- shape=b4080f61 vocab=5f80582c
+-/
 theorem signalMellin_convergent (f : ℝ → ℂ) (a c : ℝ)
     (hlocal : LocallyIntegrableOn f (Set.Ioi 0))
     (htop : f =O[atTop] (fun x : ℝ => x ^ (a + c)))
@@ -58,6 +70,9 @@ theorem signalMellin_convergent (f : ℝ → ℂ) (a c : ℝ)
   · exact hzero _
   · linarith
 
+/--
+@isnad1 id=analytic.3h3v.s7.9a8c7ebd7983 from=translated src=- shape=b495d18f vocab=8e1f7a01
+-/
 theorem signalMellin_analytic (f : ℝ → ℂ) (a c : ℝ)
     (hlocal : LocallyIntegrableOn f (Set.Ioi 0))
     (htop : f =O[atTop] (fun x : ℝ => x ^ (a + c)))
@@ -76,6 +91,9 @@ theorem signalMellin_analytic (f : ℝ → ℂ) (a c : ℝ)
     · linarith
   exact (hd.comp s ((differentiableAt_id.add_const (c : ℂ)).neg)).differentiableWithinAt
 
+/--
+@isnad1 id=eqon.4h5v.s7.39fba0db61ba from=translated src=- shape=4d64f162 vocab=6325cb22
+-/
 theorem product_identity_on_halfPlane (a b : ℝ) (L M W : ℂ → ℂ)
     (hL : AnalyticOnNhd ℂ L {s : ℂ | a < s.re})
     (hM : AnalyticOnNhd ℂ M {s : ℂ | a < s.re})
@@ -91,6 +109,9 @@ theorem product_identity_on_halfPlane (a b : ℝ) (L M W : ℂ → ℂ)
   exact (hL.mul hM).eqOn_of_preconnected_of_eventuallyEq hW
     (convex_halfSpace_re_gt a).isPreconnected hz hev
 
+/--
+@isnad1 id=ne.11h9v.s8.e1abb11b5a58 from=translated src=- shape=fbf6affd vocab=efc21786
+-/
 theorem nonzero_of_regularized_signal (a b c : ℝ)
     (L Lregular R W : ℂ → ℂ) (f : ℝ → ℂ)
     (hL : AnalyticOnNhd ℂ Lregular {s : ℂ | a < s.re})
@@ -112,6 +133,9 @@ theorem nonzero_of_regularized_signal (a b c : ℝ)
   rw [hregular, hz, mul_zero, zero_mul] at hid
   exact (mul_ne_zero hRρ hWρ) hid.symm
 
+/--
+@isnad1 id=ne.1h2v.s5.8cce25f408fd from=translated src=- shape=ba514fb4 vocab=c9cc40ec
+-/
 theorem multiplier_ne_zero {H : ℂ → ℂ} {s : ℂ}
     (h : ‖H s - 1‖ ≤ (1 / 2 : ℝ)) : H s ≠ 0 := by
   intro hz
@@ -121,14 +145,23 @@ theorem multiplier_ne_zero {H : ℂ → ℂ} {s : ℂ}
 def gaussianMultiplier (H : ℂ → ℂ) (s : ℂ) : ℂ :=
   Complex.exp ((s - 5 / 6) ^ 2) * H s
 
+/--
+@isnad1 id=analytic.1h2v.s6.6e99afbae011 from=translated src=- shape=2497700d vocab=19c43edf
+-/
 theorem gaussianMultiplier_analytic {H : ℂ → ℂ} {U : Set ℂ}
     (hH : AnalyticOnNhd ℂ H U) : AnalyticOnNhd ℂ (gaussianMultiplier H) U := by
   exact ((analyticOnNhd_id.sub analyticOnNhd_const).pow 2).cexp.mul hH
 
+/--
+@isnad1 id=ne.1h2v.s5.ed8edc843e07 from=translated src=- shape=e9763dec vocab=f154f8a2
+-/
 theorem gaussianMultiplier_ne_zero {H : ℂ → ℂ} {s : ℂ}
     (hH : ‖H s - 1‖ ≤ (1 / 2 : ℝ)) : gaussianMultiplier H s ≠ 0 :=
   mul_ne_zero (Complex.exp_ne_zero _) (multiplier_ne_zero hH)
 
+/--
+@isnad1 id=ne.13h11v.s9.998f2fd5a526 from=translated src=- shape=47fe9653 vocab=7a2af11b
+-/
 theorem nonzero_of_common_signal (β ω σ c : ℝ) (hω : 0 < ω)
     (L Lregular R H : ℂ → ℂ) (J f : ℝ → ℂ)
     (hL : AnalyticOnNhd ℂ Lregular

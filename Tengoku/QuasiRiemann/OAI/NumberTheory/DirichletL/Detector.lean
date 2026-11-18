@@ -12,6 +12,9 @@ namespace OAI
 
 namespace SevenEighths.Detector
 
+/--
+@isnad1 id=ex.4h5v.s6.cf6518cf57da from=translated src=- shape=cdd1dd27 vocab=554f40e3
+-/
 theorem exists_small_increment (M : ℕ → ℝ) {n : ℕ} (hn : 0 < n)
     {lo hi e : ℝ} (hlo : lo ≤ M 0) (hhi : M n ≤ hi)
     (hwidth : hi - lo ≤ n * e) :
@@ -25,11 +28,17 @@ theorem exists_small_increment (M : ℕ → ℝ) {n : ℕ} (hn : 0 < n)
     Finset.sum_range_sub] at hs
   linarith
 
+/--
+@isnad1 id=and.2h4v.s6.89183bcaa3ef from=translated src=- shape=95e524ef vocab=7435bc9b
+-/
 theorem buffered_bin_of_rounding {x y a e : ℝ}
     (hround : a ≤ x ∧ x < a + e) (hstep : y - x ≤ e) :
     a ≤ x ∧ x < a + e ∧ y < a + 2 * e := by
   exact ⟨hround.1, hround.2, by linarith [hround.2]⟩
 
+/--
+@isnad1 id=ex.2h3v.s6.25623acb7201 from=translated src=- shape=34da7612 vocab=3e81b846
+-/
 theorem exists_grid_rounding {base x e : ℝ} (he : 0 < e) (hx : base ≤ x) :
     ∃ k : ℕ, base + e * k ≤ x ∧ x < base + e * k + e := by
   let k := ⌊(x - base) / e⌋₊
@@ -40,6 +49,9 @@ theorem exists_grid_rounding {base x e : ℝ} (he : 0 < e) (hx : base ≤ x) :
   have hhi' := (div_lt_iff₀ he).mp hhi
   refine ⟨k, ?_, ?_⟩ <;> dsimp [k] <;> nlinarith
 
+/--
+@isnad1 id=ex.4h3v.s8.2ce31d23bb54 from=translated src=- shape=bf383689 vocab=3a4e774d
+-/
 theorem exists_buffered_bin (M : ℕ → ℝ) {n : ℕ} (hn : 0 < n)
     {e : ℝ} (he : 0 < e)
     (hbound : ∀ j ≤ n, (51 / 100 : ℝ) ≤ M j ∧ M j ≤ 1)
@@ -54,6 +66,9 @@ theorem exists_buffered_bin (M : ℕ → ℝ) {n : ℕ} (hn : 0 < n)
   · exact hklo.trans (hbound i hi.le).2
   · linarith
 
+/--
+@isnad1 id=ex.3h5v.s7.2103d925a114 from=translated src=- shape=99257a26 vocab=a2d4f8bc
+-/
 theorem maximal_zero_of_floor_lt {ι : Type*} (L : ι → ℂ → ℂ)
     (zeros : Finset (ι × ℂ)) {floor M : ℝ}
     (hzero : ∀ p ∈ zeros, L p.1 p.2 = 0)
@@ -66,6 +81,9 @@ theorem maximal_zero_of_floor_lt {ι : Type*} (L : ι → ℂ → ℂ)
   · obtain ⟨⟨χ, ρ⟩, hp, heq⟩ := Finset.mem_image.mp h
     exact ⟨χ, ρ, hp, hzero _ hp, heq⟩
 
+/--
+@isnad1 id=and.8h7v.s8.311ec9d9634e from=translated src=- shape=64db7576 vocab=09437fb0
+-/
 theorem simultaneous_saturation {U δ r m ε A B : ℝ}
     (hU : 1 < U) (hδ : (1 / 50 : ℝ) ≤ δ) (hε : 0 ≤ ε)
     (hA : 0 ≤ A) (hB : 0 ≤ B)
@@ -112,10 +130,16 @@ theorem simultaneous_saturation {U δ r m ε A B : ℝ}
     nlinarith
   exact ⟨hlength, hlowerA, hlowerB⟩
 
+/--
+@isnad1 id=le.2h5v.s7.b31293581d7d from=translated src=- shape=44e64a24 vocab=162129a8
+-/
 theorem inverse_length_of_saturation {r m t ε κ : ℝ}
     (hsupport : t - κ ≤ r + m) (hplain : m ≤ 1 / 2 + 75 * ε) :
     t - 1 / 2 - 75 * ε - κ ≤ r := by linarith
 
+/--
+@isnad1 id=and.6h7v.s8.7ac343c9510d from=translated src=- shape=7d7764f4 vocab=74d51702
+-/
 theorem complex_simultaneous_saturation {U δ r m ε : ℝ} {M S : ℂ}
     (hU : 1 < U) (hδ : (1 / 50 : ℝ) ≤ δ) (hε : 0 ≤ ε)
     (hprod : U ^ (δ * (r + m) - ε) ≤ ‖M * S‖ ^ 2)

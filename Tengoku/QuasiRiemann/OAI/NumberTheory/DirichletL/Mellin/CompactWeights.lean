@@ -55,6 +55,9 @@ section
 
 open ConcretePrimeRowBridge ShortDraftHeckeBridge FiniteSFactor
 
+/--
+@isnad1 id=eq.0h3v.s5.46cfa9cce80b from=translated src=- shape=8a74bb4f vocab=2e50936e
+-/
 theorem outsideCoeff_baseChange_zero
     {q : ℕ} (χ : DirichletCharacter ℂ q) (S : Finset (Ideal O)) :
     outsideCoeff S (baseChangeWeight χ) 0 = 0 := by
@@ -75,6 +78,9 @@ theorem outsideCoeff_baseChange_zero
   by_cases hgood : ∀ P ∈ S, ¬P ∣ (⊥ : Ideal O) <;>
     simp [outsideWeight,  hz]
 
+/--
+@isnad1 id=hassum.2h5v.s7.d5bfea994942 from=translated src=- shape=e871c171 vocab=e60de3f0
+-/
 theorem outsideCoeff_compact_hasSum
     {q : ℕ} (χ : DirichletCharacter ℂ q)
     (S : Finset (Ideal O)) (W : ℝ → ℂ) (D : ℝ)
@@ -117,6 +123,9 @@ end
 
 open ConcretePrimeRowBridge ShortDraftHeckeBridge Filter Asymptotics
 
+/--
+@isnad1 id=eq.2h5v.s6.2299c997fe3c from=translated src=- shape=44f1beba vocab=6f130568
+-/
 theorem realCompactOutsideSum_eq_outsideCompactSum
     {q : ℕ} (χ : DirichletCharacter ℂ q)
     (S : Finset (Ideal O)) (W : ℝ → ℂ) (D : ℝ)
@@ -139,18 +148,30 @@ noncomputable def bumpData : ContDiffBump (3 / 2 : ℝ) :=
 
 noncomputable def bump (y : ℝ) : ℝ := bumpData y
 
+/--
+@isnad1 id=contdiff.0h0v.s5.06a994546709 from=translated src=- shape=3cea26be vocab=803f528c
+-/
 theorem bump_smooth : ContDiff ℝ (↑(⊤ : ℕ∞)) bump := by
   change ContDiff ℝ (↑(⊤ : ℕ∞)) (bumpData : ℝ → ℝ)
   exact bumpData.contDiff (n := ⊤)
 
+/--
+@isnad1 id=le.0h1v.s3.6b71fe335158 from=translated src=- shape=8a62b088 vocab=2fb3cbab
+-/
 theorem bump_nonneg (y : ℝ) : 0 ≤ bump y := bumpData.nonneg
 
+/--
+@isnad1 id=eq.0h0v.s5.07ba8674f87d from=translated src=- shape=7ed1bc26 vocab=43b8b92b
+-/
 theorem bump_one : bump (3 / 2 : ℝ) = 1 := by
   change bumpData (3 / 2 : ℝ) = 1
   exact bumpData.one_of_mem_closedBall (by
     simp only [Metric.mem_closedBall, dist_self]
     exact bumpData.rIn_pos.le)
 
+/--
+@isnad1 id=eq.1h1v.s5.1e25c3351f01 from=translated src=- shape=a4527a57 vocab=451c4c03
+-/
 theorem bump_support (y : ℝ) (hy : y ≤ 1 ∨ 2 ≤ y) : bump y = 0 := by
   change bumpData y = 0
   apply bumpData.zero_of_le_dist
@@ -162,11 +183,17 @@ theorem bump_support (y : ℝ) (hy : y ≤ 1 ∨ 2 ≤ y) : bump y = 0 := by
   · rw [abs_of_nonneg (by linarith)]
     linarith
 
+/--
+@isnad1 id=hascompa.0h0v.s3.c7546f3dbf4a from=translated src=- shape=e3d48bcb vocab=84c84e5e
+-/
 theorem bump_compact : HasCompactSupport bump := bumpData.hasCompactSupport
 
 noncomputable def positiveExtension (y : ℝ) : ℝ :=
   1 + (y - 1) * Real.smoothTransition (2 * y - 1)
 
+/--
+@isnad1 id=contdiff.0h0v.s5.131b887e8cb0 from=translated src=- shape=3cea26be vocab=677d54cb
+-/
 theorem positiveExtension_smooth : ContDiff ℝ (↑(⊤ : ℕ∞)) positiveExtension := by
   unfold positiveExtension
   have ht : ContDiff ℝ (↑(⊤ : ℕ∞)) (fun y : ℝ => 2 * y - 1) := by fun_prop
@@ -174,6 +201,9 @@ theorem positiveExtension_smooth : ContDiff ℝ (↑(⊤ : ℕ∞)) positiveExte
     ((contDiff_id.sub contDiff_const).mul
       ((Real.smoothTransition.contDiff (n := ⊤)).comp ht))
 
+/--
+@isnad1 id=lt.0h1v.s3.5c427e28b063 from=translated src=- shape=8a62b088 vocab=cd4e8f96
+-/
 theorem positiveExtension_pos (y : ℝ) : 0 < positiveExtension y := by
   unfold positiveExtension
   by_cases hhalf : y ≤ 1 / 2
@@ -190,6 +220,9 @@ theorem positiveExtension_pos (y : ℝ) : 0 < positiveExtension y := by
         exact (mul_le_mul_of_nonneg_left hle (by linarith)).trans_eq (mul_one _)
       nlinarith
 
+/--
+@isnad1 id=eq.1h1v.s4.4e2f04c935e8 from=translated src=- shape=4d32bca1 vocab=e45d7505
+-/
 theorem positiveExtension_eq (y : ℝ) (hy : 1 ≤ y) :
     positiveExtension y = y := by
   unfold positiveExtension
@@ -199,6 +232,9 @@ theorem positiveExtension_eq (y : ℝ) (hy : 1 ≤ y) :
 noncomputable def weight (ρ : ℂ) (y : ℝ) : ℂ :=
   (bump y : ℂ) * Complex.exp ((Real.log (positiveExtension y) : ℂ) * (-ρ))
 
+/--
+@isnad1 id=contdiff.0h1v.s5.33041e678ec1 from=translated src=- shape=3115fa83 vocab=94616481
+-/
 theorem weight_smooth (ρ : ℂ) :
     ContDiff ℝ (↑(⊤ : ℕ∞)) (weight ρ) := by
   have hb : ContDiff ℝ (↑(⊤ : ℕ∞)) (fun y : ℝ => (bump y : ℂ)) := by
@@ -214,10 +250,16 @@ theorem weight_smooth (ρ : ℂ) :
     (hc.mul contDiff_const).cexp
   exact hb.mul hexp
 
+/--
+@isnad1 id=eq.1h2v.s5.3fc408c02006 from=translated src=- shape=972c04cf vocab=d1cb1788
+-/
 theorem weight_support (ρ : ℂ) (y : ℝ)
     (hy : y ≤ 1 ∨ 2 ≤ y) : weight ρ y = 0 := by
   simp [weight, bump_support y hy]
 
+/--
+@isnad1 id=eq.1h2v.s5.0f1eb17bf619 from=translated src=- shape=af7e6302 vocab=faf58657
+-/
 theorem weight_eq_cpow (ρ : ℂ) (y : ℝ) (hy : 0 < y) :
     weight ρ y = (y : ℂ) ^ (-ρ) * (bump y : ℂ) := by
   by_cases hy1 : y ≤ 1
@@ -229,6 +271,9 @@ theorem weight_eq_cpow (ρ : ℂ) (y : ℝ) (hy : 0 < y) :
     rw [← Complex.ofReal_log hy.le]
     ring
 
+/--
+@isnad1 id=eq.0h1v.s5.2f5ba196d25f from=translated src=- shape=df00d1ec vocab=5fe03a0b
+-/
 theorem weight_mellin_eq_bump (ρ : ℂ) :
     mellin (weight ρ) ρ = mellin (fun y : ℝ => (bump y : ℂ)) 0 := by
   have hpoint : Set.EqOn (weight ρ)
@@ -251,30 +296,51 @@ theorem weight_mellin_eq_bump (ρ : ℂ) :
 noncomputable def weightedBump (y : ℝ) : ℝ :=
   bump y / positiveExtension y
 
+/--
+@isnad1 id=continuo.0h0v.s3.5d808db2f3de from=translated src=- shape=e3d48bcb vocab=f386a889
+-/
 theorem weightedBump_continuous : Continuous weightedBump := by
   exact bump_smooth.continuous.div positiveExtension_smooth.continuous
     (fun y => ne_of_gt (positiveExtension_pos y))
 
+/--
+@isnad1 id=hascompa.0h0v.s3.a3e5d749ace9 from=translated src=- shape=e3d48bcb vocab=08b41b48
+-/
 theorem weightedBump_compact : HasCompactSupport weightedBump := by
   change HasCompactSupport (fun y : ℝ => bump y * (positiveExtension y)⁻¹)
   exact bump_compact.mul_right
 
+/--
+@isnad1 id=le.0h1v.s3.78bf6079e5e6 from=translated src=- shape=8a62b088 vocab=7087d94f
+-/
 theorem weightedBump_nonneg (y : ℝ) : 0 ≤ weightedBump y := by
   exact div_nonneg (bump_nonneg y) (positiveExtension_pos y).le
 
+/--
+@isnad1 id=ne.0h0v.s5.c606a93c33d4 from=translated src=- shape=7ed1bc26 vocab=0efb3b99
+-/
 theorem weightedBump_nonzero : weightedBump (3 / 2 : ℝ) ≠ 0 := by
   simp [weightedBump, bump_one, positiveExtension_eq (3 / 2) (by norm_num)]
 
+/--
+@isnad1 id=lt.0h0v.s5.9c3f2498683c from=translated src=- shape=14ee4510 vocab=37552105
+-/
 theorem weightedBump_integral_pos :
     0 < ∫ y : ℝ, weightedBump y := by
   exact Continuous.integral_pos_of_hasCompactSupport_nonneg_nonzero
     weightedBump_continuous weightedBump_compact weightedBump_nonneg
     weightedBump_nonzero
 
+/--
+@isnad1 id=eq.1h1v.s4.b4c74d00175b from=translated src=- shape=278e0375 vocab=7087d94f
+-/
 theorem weightedBump_eq_zero_of_nonpos (y : ℝ) (hy : y ≤ 0) :
     weightedBump y = 0 := by
   simp [weightedBump, bump_support y (Or.inl (by linarith))]
 
+/--
+@isnad1 id=eq.0h0v.s5.4b4e4987338f from=translated src=- shape=c5447143 vocab=fd383343
+-/
 theorem mellin_bump_zero_eq_integral_weightedBump :
     mellin (fun y : ℝ => (bump y : ℂ)) 0 =
       (∫ y : ℝ, weightedBump y : ℝ) := by
@@ -295,10 +361,16 @@ theorem mellin_bump_zero_eq_integral_weightedBump :
   exact setIntegral_eq_integral_of_forall_compl_eq_zero (fun y hy => by
     exact weightedBump_eq_zero_of_nonpos y (le_of_not_gt hy))
 
+/--
+@isnad1 id=ne.0h1v.s4.2db35c2a59c6 from=translated src=- shape=029ddfbd vocab=0b919374
+-/
 theorem weight_mellin_ne_zero (ρ : ℂ) : mellin (weight ρ) ρ ≠ 0 := by
   rw [weight_mellin_eq_bump, mellin_bump_zero_eq_integral_weightedBump]
   exact Complex.ofReal_ne_zero.mpr weightedBump_integral_pos.ne'
 
+/--
+@isnad1 id=le.1h2v.s4.4fe80e42508f from=translated src=- shape=aeb1bff0 vocab=5741c323
+-/
 theorem weight_norm_le_one (ρ : ℂ) (hρ : 0 ≤ ρ.re) (y : ℝ) :
     ‖weight ρ y‖ ≤ 1 := by
   by_cases hylo : y ≤ 1
@@ -338,6 +410,9 @@ end ActualEisensteinCubic
 
 namespace TwoPassProfiles
 
+/--
+@isnad1 id=eq.7h9v.s8.c53b31914348 from=translated src=- shape=7f3be98d vocab=8e69f003
+-/
 theorem first_poisson_profile
     (K h d f E t c x₁ x₂ : ℝ)
     (hd : d ≠ 0) (hf : f ≠ 0) (hE : E ≠ 0)
@@ -348,6 +423,9 @@ theorem first_poisson_profile
         (d * f ^ 2 * E * t ^ 2 * c * x₁ * x₂) := by
   field_simp
 
+/--
+@isnad1 id=eq.5h7v.s7.8da8c9b77b0e from=translated src=- shape=4ed3d2b9 vocab=8e69f003
+-/
 theorem second_poisson_profile
     (Y k'' d e v n₁ n₂ : ℝ)
     (hd : d ≠ 0) (he : e ≠ 0) (hv : v ≠ 0)
@@ -356,12 +434,18 @@ theorem second_poisson_profile
       Y * (d * e * k'') / (d * e ^ 2 * v ^ 2 * n₁ * n₂) := by
   field_simp
 
+/--
+@isnad1 id=eq.3h4v.s6.602e0b0567dd from=translated src=- shape=fc79e2a0 vocab=525158d4
+-/
 theorem child_column_profile
     (Lᵢ g v n : ℝ)
     (hLᵢ : Lᵢ ≠ 0) (hg : g ≠ 0) (hv : v ≠ 0) :
     (g * v * n) / Lᵢ = n / (Lᵢ / (g * v)) := by
   field_simp
 
+/--
+@isnad1 id=eq.9h9v.s8.650516fde7ad from=translated src=- shape=dc8d3090 vocab=e168d196
+-/
 theorem first_profile_logshape
     (K y d f E t c x₁ x₂ : ℝ)
     (hK : 0 < K) (hy : 0 < y) (hd : 0 < d)
@@ -383,6 +467,9 @@ theorem first_profile_logshape
   rw [Real.log_pow, Real.log_pow]
   ring
 
+/--
+@isnad1 id=eq.7h7v.s8.21ce706815a9 from=translated src=- shape=8b26ce77 vocab=e168d196
+-/
 theorem second_profile_logshape
     (Y k d e v n₁ n₂ : ℝ)
     (hY : 0 < Y) (hk : 0 < k) (hd : 0 < d)
@@ -411,6 +498,9 @@ private noncomputable def firstLogs (K y d f E t c x₁ x₂ : ℝ) : Fin 9 → 
   | 3 => Real.log f | 4 => Real.log E | 5 => Real.log t
   | 6 => Real.log c | 7 => Real.log x₁ | 8 => Real.log x₂
 
+/--
+@isnad1 id=eq.0h9v.s7.4a147ea7c1e9 from=translated src=- shape=5ac6c4df vocab=b0c6c797
+-/
 theorem first_logsum
     (K y d f E t c x₁ x₂ : ℝ) :
     (∑ j : Fin 9, firstCoeff j * firstLogs K y d f E t c x₁ x₂ j) =
@@ -429,6 +519,9 @@ private noncomputable def secondLogs (Y k d e v n₁ n₂ : ℝ) : Fin 7 → ℝ
   | 3 => Real.log e | 4 => Real.log v
   | 5 => Real.log n₁ | 6 => Real.log n₂
 
+/--
+@isnad1 id=eq.0h7v.s7.acfe5ec66b72 from=translated src=- shape=3220b016 vocab=740f714a
+-/
 theorem second_logsum
     (Y k d e v n₁ n₂ : ℝ) :
     (∑ j : Fin 7, secondCoeff j * secondLogs Y k d e v n₁ n₂ j) =
@@ -438,6 +531,9 @@ theorem second_logsum
   simp [Fin.sum_univ_succ, secondCoeff, secondLogs]
   ring
 
+/--
+@isnad1 id=eq.9h9v.s8.7e4a466b639b from=translated src=- shape=a3b3e759 vocab=618d2e81
+-/
 theorem first_profile_exp
     (K y d f E t c x₁ x₂ : ℝ)
     (hK : 0 < K) (hy : 0 < y) (hd : 0 < d)
@@ -450,6 +546,9 @@ theorem first_profile_exp
     hK hy hd hf hE ht hc hx₁ hx₂]
   exact (Real.exp_log (by positivity)).symm
 
+/--
+@isnad1 id=eq.7h7v.s7.c6750f401267 from=translated src=- shape=b9c4a8b4 vocab=0badaab2
+-/
 theorem second_profile_exp
     (Y k d e v n₁ n₂ : ℝ)
     (hY : 0 < Y) (hk : 0 < k) (hd : 0 < d)
@@ -462,6 +561,9 @@ theorem second_profile_exp
     hY hk hd he hv hn₁ hn₂]
   exact (Real.exp_log (by positivity)).symm
 
+/--
+@isnad1 id=eq.18h18v.s9.ae342defa672 from=translated src=- shape=d99b33e4 vocab=618d2e81
+-/
 theorem first_dyadic_profile
     (K₀ y₀ d₀ f₀ E₀ t₀ c₀ x₁₀ x₂₀
       k y d f E t c x₁ x₂ : ℝ)
@@ -482,6 +584,9 @@ theorem first_dyadic_profile
     hk hy hd hf hE ht hc hx₁ hx₂]
   field_simp
 
+/--
+@isnad1 id=eq.14h14v.s8.60f9501ef9f7 from=translated src=- shape=163e609d vocab=0badaab2
+-/
 theorem second_dyadic_profile
     (Y₀ k₀ d₀ e₀ v₀ n₁₀ n₂₀
       y k d e v n₁ n₂ : ℝ)

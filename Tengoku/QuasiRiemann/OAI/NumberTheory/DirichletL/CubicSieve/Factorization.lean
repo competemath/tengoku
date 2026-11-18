@@ -25,6 +25,9 @@ def secondPart (x : M) : M :=
 def cubePart (x : M) : M :=
   ∏ p ∈ (normalizedFactors x).toFinset, p ^ ((normalizedFactors x).count p / 3)
 
+/--
+@isnad1 id=eq.0h1v.s7.4b4d08679899 from=translated src=- shape=6a014fb7 vocab=59bb983a
+-/
 theorem count_mod_three (k : ℕ) :
     k = (if k % 3 = 1 then 1 else 0) +
       2 * (if k % 3 = 2 then 1 else 0) + 3 * (k / 3) := by
@@ -48,14 +51,23 @@ private theorem residual_squarefree (x : M) (r : ℕ) :
       (Multiset.mem_toFinset.mp (Finset.mem_filter.mp hp).1)).squarefree
 
 omit [Subsingleton Mˣ] in
+/--
+@isnad1 id=squarefr.0h2v.s4.650b35cac260 from=translated src=- shape=b16dd116 vocab=2ac35d37
+-/
 theorem firstPart_squarefree (x : M) : Squarefree (firstPart x) :=
   residual_squarefree x 1
 
 omit [Subsingleton Mˣ] in
+/--
+@isnad1 id=squarefr.0h2v.s4.cce4910aef0a from=translated src=- shape=b16dd116 vocab=95898e2c
+-/
 theorem secondPart_squarefree (x : M) : Squarefree (secondPart x) :=
   residual_squarefree x 2
 
 omit [Subsingleton Mˣ] in
+/--
+@isnad1 id=isrelpri.0h2v.s5.96293afa8efc from=translated src=- shape=07bc9fd0 vocab=94380916
+-/
 theorem residual_parts_isRelPrime (x : M) : IsRelPrime (firstPart x) (secondPart x) := by
   unfold firstPart secondPart
   apply IsRelPrime.prod_left
@@ -71,6 +83,9 @@ theorem residual_parts_isRelPrime (x : M) : IsRelPrime (firstPart x) (secondPart
   subst q
   omega
 
+/--
+@isnad1 id=eq.1h2v.s7.bc6b08f97e76 from=translated src=- shape=daaa5c4f vocab=90441026
+-/
 theorem cubic_factorization (x : M) (hx : x ≠ 0) :
     x = firstPart x * secondPart x ^ 2 * cubePart x ^ 3 := by
   have hp : (∏ p ∈ (normalizedFactors x).toFinset,
@@ -92,6 +107,9 @@ theorem cubic_factorization (x : M) (hx : x ≠ 0) :
       simp only [Finset.prod_mul_distrib, Finset.prod_pow]
       simp only [firstPart, secondPart, cubePart, Finset.prod_filter]
 
+/--
+@isnad1 id=injon.0h1v.s6.f030084ca87a from=translated src=- shape=4e44a2b3 vocab=d87de1e8
+-/
 theorem extraction_injective_on_nonzero :
     Set.InjOn (fun x : M => (firstPart x, secondPart x, cubePart x)) {x | x ≠ 0} := by
   intro x hx y hy h

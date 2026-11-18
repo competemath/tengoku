@@ -11,10 +11,16 @@ open scoped BigOperators
 namespace SevenEighths.HeckeTheta
 open EisensteinTheta LatticeSummability
 
+/--
+@isnad1 id=eq.0h2v.s5.03163f51902c from=translated src=- shape=0a8fa396 vocab=e8b426e7
+-/
 @[simp] theorem periodicCoeff_zero {N : ℕ} [NeZero N] (w : Fin N × Fin N → ℂ) :
     periodicCoeff w (0, 0) = w (0, 0) := by
   simp [periodicCoeff, residueEquiv, regroup, Int.divModEquiv, Int.natMod]
 
+/--
+@isnad1 id=le.0h3v.s6.e20cbe3142a9 from=translated src=- shape=8d9f9e6a vocab=e43b8c5d
+-/
 theorem norm_periodicCoeff_le {N : ℕ} [NeZero N] (w : Fin N × Fin N → ℂ)
     (n : ℤ × ℤ) : ‖periodicCoeff w n‖ ≤ ∑ a, ‖w a‖ := by
   unfold periodicCoeff

@@ -11,6 +11,9 @@ open CenteredMomentCorrelation
 variable {A : Type*} [CommRing A] [IsDomain A]
 
 omit [IsDomain A] in
+/--
+@isnad1 id=eq.0h7v.s10.1ffc6d96ffee from=translated src=- shape=30bf4bbb vocab=90e611db
+-/
 lemma fullModulusCorrelation_solutions (C n₁ n₂ k : A)
     [Fintype (ResidueQ (C*n₁))] [Fintype (ResidueQ (C*n₂))]
     (χ : MulChar (ResidueQ (C*n₁)) ℂ) (ψ : MulChar (ResidueQ (C*n₂)) ℂ) :
@@ -26,6 +29,9 @@ lemma fullModulusCorrelation_solutions (C n₁ n₂ k : A)
   rw [←Finset.sum_filter]
   exact Finset.sum_subtype _ (by simp) _
 
+/--
+@isnad1 id=eq.3h9v.s9.8b9b6e825786 from=translated src=- shape=de558e0a vocab=faf39b6b
+-/
 theorem fullModulusCorrelation_parameter (C n₁ n₂ a b k : A) (hC : C≠0) (hn₁ : n₁≠0)
     (hab : a*n₁+b*n₂=1)
     [Fintype (ResidueQ C)] [Fintype (ResidueQ (C*n₁))] [Fintype (ResidueQ (C*n₂))]

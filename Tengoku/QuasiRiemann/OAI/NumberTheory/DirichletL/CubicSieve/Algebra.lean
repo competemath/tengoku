@@ -13,6 +13,9 @@ namespace SevenEighths.CubicSieve
 open scoped BigOperators Classical
 noncomputable section
 
+/--
+@isnad1 id=eq.1h1v.s6.5d7fb56c23e1 from=translated src=- shape=bc834bda vocab=d218fc4e
+-/
 theorem square_eq_star_of_fourth_eq (z : ℂ) (hz : z ^ 4 = z) : z ^ 2 = star z := by
   by_cases h0 : z = 0
   · simp [h0]
@@ -29,17 +32,26 @@ theorem square_eq_star_of_fourth_eq (z : ℂ) (hz : z ^ 4 = z) : z ^ 2 = star z 
 variable {R : Type*} [CommRing R] [Finite Rˣ]
 
 omit [Finite Rˣ] in
+/--
+@isnad1 id=eq.1h2v.s8.5c9fcd44bfe7 from=translated src=- shape=bbbdfe64 vocab=abda4027
+-/
 theorem cubic_inv_eq_square (χ : MulChar R ℂ) (hχ : χ ^ 3 = 1) :
     χ⁻¹ = χ ^ 2 := by
   calc
     χ⁻¹ = χ⁻¹ * χ ^ 3 := by rw [hχ, mul_one]
     _ = χ ^ 2 := by group
 
+/--
+@isnad1 id=eq.1h3v.s8.0314c4756528 from=translated src=- shape=81269775 vocab=5e42d7e3
+-/
 theorem cubic_square_eq_star (χ : MulChar R ℂ) (hχ : χ ^ 3 = 1) (x : R) :
     χ x ^ 2 = star (χ x) := by
   rw [MulChar.star_apply', cubic_inv_eq_square χ hχ, MulChar.pow_apply' _ (by decide)]
 
 omit [Finite Rˣ] in
+/--
+@isnad1 id=eq.1h3v.s8.e30b26858a54 from=translated src=- shape=37dc5269 vocab=2ce7f1f1
+-/
 theorem cubic_fourth_eq (χ : MulChar R ℂ) (hχ : χ ^ 3 = 1) (x : R) :
     χ x ^ 4 = χ x := by
   have h : χ ^ 4 = χ := by
@@ -47,6 +59,9 @@ theorem cubic_fourth_eq (χ : MulChar R ℂ) (hχ : χ ^ 3 = 1) (x : R) :
   rw [← MulChar.pow_apply' χ (by decide : (4 : ℕ) ≠ 0), h]
 
 omit [Finite Rˣ] in
+/--
+@isnad1 id=eq.1h3v.s8.8ac5e2f915d3 from=translated src=- shape=68307739 vocab=9615a3f8
+-/
 theorem cubic_cube_eq_mask (χ : MulChar R ℂ) (hχ : χ ^ 3 = 1) (x : R) :
     χ (x ^ 3) = if IsUnit x then 1 else 0 := by
   classical
@@ -55,6 +70,9 @@ theorem cubic_cube_eq_mask (χ : MulChar R ℂ) (hχ : χ ^ 3 = 1) (x : R) :
   · rw [ite_eq_left hx, MulChar.one_apply hx]
   · rw [ite_eq_right hx, MulChar.map_nonunit _ hx]
 
+/--
+@isnad1 id=eq.1h5v.s9.19fbc49dacad from=translated src=- shape=15204c2e vocab=779d670a
+-/
 theorem cubic_row_decomposition (χ : MulChar R ℂ) (hχ : χ ^ 3 = 1)
     (a b c : R) :
     χ (a * b ^ 2 * c ^ 3) =
@@ -63,6 +81,9 @@ theorem cubic_row_decomposition (χ : MulChar R ℂ) (hχ : χ ^ 3 = 1)
     cubic_cube_eq_mask χ hχ]
 
 omit [Finite Rˣ] in
+/--
+@isnad1 id=le.1h3v.s7.617701c7332e from=translated src=- shape=f04ab8ae vocab=62e71435
+-/
 theorem cubic_norm_le_one (χ : MulChar R ℂ) (hχ : χ ^ 3 = 1) (x : R) :
     ‖χ x‖ ≤ 1 := by
   by_cases hx : IsUnit x
@@ -72,6 +93,9 @@ theorem cubic_norm_le_one (χ : MulChar R ℂ) (hχ : χ ^ 3 = 1) (x : R) :
   · rw [MulChar.map_nonunit _ hx, norm_zero]
     exact zero_le_one
 
+/--
+@isnad1 id=eq.1h10v.s9.9761736cab01 from=translated src=- shape=3ffd69ee vocab=29a1d583
+-/
 theorem row_decomposition_sum {ι M : Type*} [CommMonoid M]
     (S : Finset ι) (coef : ι → ℂ) (ρ : ι → M →* R)
     (χ : ι → MulChar R ℂ) (hχ : ∀ n ∈ S, χ n ^ 3 = 1)
@@ -89,6 +113,9 @@ theorem row_decomposition_sum {ι M : Type*} [CommMonoid M]
   ring
 
 omit [Finite Rˣ] in
+/--
+@isnad1 id=le.1h7v.s8.635469954d3a from=translated src=- shape=dcb7ede7 vocab=1a45a24f
+-/
 theorem extracted_coefficients_energy_le {ι : Type*}
     (S : Finset ι) (coef : ι → ℂ) (χ : ι → MulChar R ℂ)
     (hχ : ∀ n ∈ S, χ n ^ 3 = 1) (b c : ι → R) :

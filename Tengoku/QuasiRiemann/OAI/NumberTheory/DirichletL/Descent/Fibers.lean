@@ -16,10 +16,16 @@ noncomputable section
 def weightedEnergy {ι : Type*} (s : Finset ι) (w : ι → ℝ) (f : ι → ℂ) : ℝ :=
   ∑ i ∈ s, w i * ‖f i‖ ^ 2
 
+/--
+@isnad1 id=le.1h4v.s5.1268101e03ac from=translated src=- shape=18eab5d1 vocab=56477649
+-/
 theorem weightedEnergy_nonneg {ι : Type*} (s : Finset ι) (w : ι → ℝ)
     (f : ι → ℂ) (hw : ∀ i ∈ s, 0 ≤ w i) : 0 ≤ weightedEnergy s w f := by
   exact Finset.sum_nonneg fun i hi => mul_nonneg (hw i hi) (sq_nonneg _)
 
+/--
+@isnad1 id=le.1h5v.s7.16978bf7c790 from=translated src=- shape=67cc289f vocab=e5bcd021
+-/
 theorem weighted_cauchy {ι : Type*} (s : Finset ι) (w : ι → ℝ)
     (f g : ι → ℂ) (hw : ∀ i ∈ s, 0 ≤ w i) :
     ‖∑ i ∈ s, (w i : ℂ) * f i * star (g i)‖ ≤
@@ -49,6 +55,9 @@ theorem weighted_cauchy {ι : Type*} (s : Finset ι) (w : ι → ℝ)
       simpa only [hf, hg] using Real.sum_mul_le_sqrt_mul_sqrt s
         (fun i => Real.sqrt (w i) * ‖f i‖) (fun i => Real.sqrt (w i) * ‖g i‖)
 
+/--
+@isnad1 id=le.3h8v.s7.c18f03700551 from=translated src=- shape=3fa521d5 vocab=de056eee
+-/
 theorem fiber_energy_bound {ι κ : Type*} [DecidableEq κ]
     (s : Finset ι) (t : Finset κ) (p : ι → κ) (w : ι → ℝ)
     (D E : κ → ℝ) (hp : ∀ i ∈ s, p i ∈ t)
@@ -69,6 +78,9 @@ theorem fiber_energy_bound {ι κ : Type*} [DecidableEq κ]
     _ ≤ ∑ j ∈ t, D j * E j :=
       Finset.sum_le_sum fun j hj => mul_le_mul_of_nonneg_right (hD j hj) (hE j hj)
 
+/--
+@isnad1 id=le.2h8v.s6.83c944432b15 from=translated src=- shape=7b87fa67 vocab=d9076612
+-/
 theorem weightedEnergy_fiber_bound {ι κ : Type*} [DecidableEq κ]
     (s : Finset ι) (t : Finset κ) (p : ι → κ) (w : ι → ℝ)
     (D : κ → ℝ) (f : κ → ℂ) (hp : ∀ i ∈ s, p i ∈ t)
@@ -77,6 +89,9 @@ theorem weightedEnergy_fiber_bound {ι κ : Type*} [DecidableEq κ]
   exact fiber_energy_bound s t p w D (fun j => ‖f j‖ ^ 2) hp
     (fun j _ => sq_nonneg _) hD
 
+/--
+@isnad1 id=le.3h9v.s7.1d7addc35b92 from=translated src=- shape=d39b1412 vocab=9498db67
+-/
 theorem weighted_cauchy_fiber {ι κ : Type*} [DecidableEq κ]
     (s : Finset ι) (t : Finset κ) (p : ι → κ) (w : ι → ℝ)
     (D : κ → ℝ) (f g : κ → ℂ) (hp : ∀ i ∈ s, p i ∈ t)
@@ -90,6 +105,9 @@ theorem weighted_cauchy_fiber {ι κ : Type*} [DecidableEq κ]
     (Real.sqrt_le_sqrt (weightedEnergy_fiber_bound s t p w D g hp hD))
     (Real.sqrt_nonneg _) (Real.sqrt_nonneg _)
 
+/--
+@isnad1 id=le.3h8v.s8.3f8aac9e8c6d from=translated src=- shape=cfd047c4 vocab=58e3dd5a
+-/
 theorem finite_expansion_energy {κ ι : Type*} [DecidableEq ι]
     (rows : Finset κ) (terms : Finset ι) (active : κ → Finset ι)
     (w F : κ → ι → ℂ) (C : ℝ)

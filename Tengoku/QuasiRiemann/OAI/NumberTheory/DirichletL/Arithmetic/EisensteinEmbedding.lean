@@ -33,6 +33,9 @@ noncomputable def pb : PowerBasis ℤ O :=
 
 noncomputable def omega3 : ℂ := ((-1 : ℂ) + (Real.sqrt 3 : ℝ) * Complex.I) / 2
 
+/--
+@isnad1 id=eq.0h0v.s5.4d688ebb91ea from=translated src=- shape=a0bb90d3 vocab=a3704d89
+-/
 theorem omega3_sq : omega3 ^ 2 + omega3 + 1 = 0 := by
   have hs : (Real.sqrt 3 : ℝ) ^ 2 = 3 := Real.sq_sqrt (by norm_num)
   have hs' : ((Real.sqrt 3 : ℝ) : ℂ) ^ 2 = 3 := by norm_cast
@@ -44,13 +47,22 @@ theorem omega3_sq : omega3 ^ 2 + omega3 + 1 = 0 := by
   norm_num at hquad
   exact hquad
 
+/--
+@isnad1 id=eq.0h0v.s4.9f9cc8653b32 from=translated src=- shape=36b490a0 vocab=af9bf2ed
+-/
 theorem omega3_im : omega3.im = Real.sqrt 3 / 2 := by
   simp [omega3]
 
+/--
+@isnad1 id=ne.0h0v.s3.089102c63c91 from=translated src=- shape=b0ae1d2b vocab=ef47aba1
+-/
 theorem omega3_im_ne_zero : omega3.im ≠ 0 := by
   rw [omega3_im]
   exact div_ne_zero (ne_of_gt (Real.sqrt_pos.2 (by norm_num))) (by norm_num)
 
+/--
+@isnad1 id=ne.1h1v.s6.e8583da6bd24 from=translated src=- shape=41e92aa4 vocab=7ce7ddaa
+-/
 theorem lam_ne_zero (w : ℂ) (hw : w ^ 2 + w + 1 = 0) :
     1 + 2 * w ≠ 0 := by
   intro h
@@ -58,6 +70,9 @@ theorem lam_ne_zero (w : ℂ) (hw : w ^ 2 + w + 1 = 0) :
   rw [hw'] at hw
   norm_num at hw
 
+/--
+@isnad1 id=eq.0h0v.s7.ac42f222fbe8 from=translated src=- shape=0bbb91dd vocab=73c5d0a6
+-/
 theorem pb_minpoly : minpoly ℤ pb.gen =
     (Polynomial.X : Polynomial ℤ) ^ 2 + Polynomial.X + 1 := by
   have hζ := IsCyclotomicExtension.zeta_spec 3 ℚ K
@@ -79,18 +94,27 @@ noncomputable def embedding (w : ℂ) (hw : w ^ 2 + w + 1 = 0) : O →+* ℂ :=
     rw [pb_minpoly]
     simpa only [map_add, map_pow, map_one, Polynomial.aeval_X] using hw)).toRingHom
 
+/--
+@isnad1 id=eq.1h1v.s7.f7d539c11427 from=translated src=- shape=b7d13d35 vocab=f15e2971
+-/
 theorem embedding_gen (w : ℂ) (hw : w ^ 2 + w + 1 = 0) :
     embedding w hw pb.gen = w := by
   exact pb.lift_gen w (by
     rw [pb_minpoly]
     simpa only [map_add, map_pow, map_one, Polynomial.aeval_X] using hw)
 
+/--
+@isnad1 id=eq.0h0v.s5.1802aa170557 from=translated src=- shape=34bef2d9 vocab=31079fca
+-/
 theorem pb_dim : pb.dim = 2 := by
   have hζ := IsCyclotomicExtension.zeta_spec 3 ℚ K
   have hdim := hζ.integralPowerBasis_dim
   have htot : Nat.totient 3 = 2 := by decide
   simpa only [pb, htot] using hdim
 
+/--
+@isnad1 id=ex.0h1v.s7.f50ee9968883 from=translated src=- shape=a785bac5 vocab=371aa8c5
+-/
 theorem exists_ab (x : O) : ∃ a b : ℤ, x = a + b * pb.gen := by
   let i0 : Fin pb.dim := ⟨0, by rw [pb_dim]; decide⟩
   let i1 : Fin pb.dim := ⟨1, by rw [pb_dim]; decide⟩
@@ -109,12 +133,18 @@ theorem exists_ab (x : O) : ∃ a b : ℤ, x = a + b * pb.gen := by
   simpa only [pb.coe_basis, i0, i1, Fin.val_zero, Fin.val_one,
     pow_zero, pow_one, zsmul_eq_mul, mul_one] using h.symm
 
+/--
+@isnad1 id=eq.1h3v.s7.daf9fa4af710 from=translated src=- shape=f4c37d7c vocab=490bdbbd
+-/
 theorem embedding_apply_ab (w : ℂ) (hw : w ^ 2 + w + 1 = 0)
     (a b : ℤ) :
     embedding w hw (a + b * pb.gen : O) =
       (a : ℂ) + (b : ℂ) * w := by
   simp only [map_add, map_mul, map_intCast, embedding_gen]
 
+/--
+@isnad1 id=injectiv.2h1v.s6.c511525e9c64 from=translated src=- shape=b99aa9ad vocab=2e80a079
+-/
 theorem embedding_injective (w : ℂ) (hw : w ^ 2 + w + 1 = 0)
     (him : w.im ≠ 0) : Function.Injective (embedding w hw) := by
   intro x y hxy
@@ -135,6 +165,9 @@ theorem embedding_injective (w : ℂ) (hw : w ^ 2 + w + 1 = 0)
   have hzero : x - y = 0 := by rw [hrepr, ha, hb]; simp
   exact sub_eq_zero.mp hzero
 
+/--
+@isnad1 id=eq.2h4v.s7.88dc394bb69b from=translated src=- shape=bdab781f vocab=129ca934
+-/
 theorem trace_period_on_ringOfIntegers
     (w : ℂ) (hw : w ^ 2 + w + 1 = 0)
     (ψ : AddChar ℂ ℂ) (lam : ℂ)
@@ -154,17 +187,29 @@ open EisensteinEmbedding IdealGaussCRT
 
 noncomputable def eisEmbedding : O →+* ℂ := embedding omega3 omega3_sq
 
+/--
+@isnad1 id=injectiv.0h0v.s5.b0ffa339b2e9 from=translated src=- shape=f51e303a vocab=90f334a9
+-/
 theorem eisEmbedding_injective : Function.Injective eisEmbedding :=
   embedding_injective omega3 omega3_sq omega3_im_ne_zero
 
+/--
+@isnad1 id=ne.1h1v.s6.2a5e2a0aeb35 from=translated src=- shape=0d99f40f vocab=9fbeb6cc
+-/
 theorem eisEmbedding_ne_zero {a : O} (ha : a ≠ 0) : eisEmbedding a ≠ 0 := by
   intro h
   exact ha (eisEmbedding_injective (by simpa using h))
 
 noncomputable def eisLam : ℂ := 1 + 2 * omega3
 
+/--
+@isnad1 id=ne.0h0v.s3.a1db276d4ade from=translated src=- shape=ffdda526 vocab=7157de52
+-/
 theorem eisLam_ne_zero : eisLam ≠ 0 := lam_ne_zero omega3 omega3_sq
 
+/--
+@isnad1 id=eq.1h2v.s7.f8da2a5e4738 from=translated src=- shape=029d409d vocab=fddeca94
+-/
 theorem eisPeriod (ψ : AddChar ℂ ℂ)
     (hperiod : ∀ a b : ℤ,
       ψ (((a : ℂ) + (b : ℂ) * omega3) / eisLam) = 1) :
@@ -191,6 +236,9 @@ def coordinateSubring : Subring ℂ where
     push_cast
     linear_combination (b : ℂ) * (d : ℂ) * omega3_sq
 
+/--
+@isnad1 id=eq.0h0v.s3.6f31e6188091 from=translated src=- shape=836e6cbb vocab=169a25aa
+-/
 theorem coordinateSubring_eq_traceSubring :
     coordinateSubring = ShortDraftTrace.eisensteinSubring := by
   rfl
@@ -204,11 +252,17 @@ noncomputable def toCoordinateSubring : O →+* coordinateSubring :=
     rw [embedding_apply_ab]
     exact ⟨a, b, rfl⟩)
 
+/--
+@isnad1 id=injectiv.0h0v.s8.576fe59b4d63 from=translated src=- shape=5cb282c0 vocab=234d0d9c
+-/
 theorem toCoordinateSubring_injective : Function.Injective toCoordinateSubring := by
   intro x y h
   apply eisEmbedding_injective
   exact congrArg Subtype.val h
 
+/--
+@isnad1 id=surjecti.0h0v.s8.efea7698ac86 from=translated src=- shape=5cb282c0 vocab=f21bef05
+-/
 theorem toCoordinateSubring_surjective : Function.Surjective toCoordinateSubring := by
   rintro ⟨z, a, b, hz⟩
   refine ⟨(a + b * pb.gen : O), ?_⟩
@@ -240,6 +294,9 @@ noncomputable def eisTraceProdChar
     (eisEmbedding_ne_zero ha) (eisEmbedding_ne_zero hb)
     eisLam_ne_zero (eisPeriod ψ hperiod)
 
+/--
+@isnad1 id=eq.4h5v.s13.4769dbbd4113 from=translated src=- shape=36c8ec67 vocab=9cd55649
+-/
 theorem gauss_sum_actual_O
     (ψ : AddChar ℂ ℂ)
     (hperiod : ∀ c d : ℤ,
@@ -266,12 +323,18 @@ theorem gauss_sum_actual_O
       (eisEmbedding_ne_zero ha) (eisEmbedding_ne_zero hb)
       eisLam_ne_zero (eisPeriod ψ hperiod) χa χb
 
+/--
+@isnad1 id=finite.1h1v.s6.8f4126827bf3 from=translated src=- shape=ab94b661 vocab=a87be635
+-/
 theorem finite_quotient_span {a : O} (ha : a ≠ 0) :
     Finite (O ⧸ Ideal.span {a}) := by
   apply Ring.HasFiniteQuotients.finiteQuotient
   intro h
   exact ha (Ideal.span_singleton_eq_bot.mp h)
 
+/--
+@isnad1 id=finite.2h2v.s7.0f80a012bfab from=translated src=- shape=ae413cd0 vocab=7bbd7690
+-/
 theorem finite_quotient_product {a b : O} (ha : a ≠ 0) (hb : b ≠ 0) :
     Finite (O ⧸ (Ideal.span {a}) * (Ideal.span {b})) := by
   apply Ring.HasFiniteQuotients.finiteQuotient
@@ -286,6 +349,9 @@ namespace ConcreteBreveE
 
 open EisensteinEmbedding ConcreteTraceCRT
 
+/--
+@isnad1 id=eq.0h2v.s6.4f6f44f0706d from=translated src=- shape=81f4b3b7 vocab=0bf6a843
+-/
 theorem breveE_period_coordinates :
     ∀ c d : ℤ,
       ShortDraftTrace.breveE
@@ -296,6 +362,9 @@ theorem breveE_period_coordinates :
       (1 + 2 * ShortDraftTrace.ω₃)) = 1
   exact ShortDraftTrace.breveE_period_lam c d
 
+/--
+@isnad1 id=eq.0h0v.s3.6f31e6188091 from=translated src=- shape=836e6cbb vocab=169a25aa
+-/
 theorem coordinateSubring_eq : coordinateSubring =
     ShortDraftTrace.eisensteinSubring := by
   rfl
@@ -304,6 +373,9 @@ noncomputable def ringOfIntegersEquivShortDraftE :
     O ≃+* ShortDraftTrace.eisensteinSubring :=
   coordinateSubring_eq ▸ ringOfIntegersEquivCoordinateSubring
 
+/--
+@isnad1 id=eq.3h4v.s13.885a1f02f0e3 from=translated src=- shape=60f4b733 vocab=4ff5a1d8
+-/
 theorem gauss_sum_breveE_actual_O
     (a b : O) (ha : a ≠ 0) (hb : b ≠ 0)
     (hcop : IsCoprime (Ideal.span {a}) (Ideal.span {b}))
@@ -332,6 +404,9 @@ end ConcreteBreveE
 
 namespace ActualEisensteinCubic
 
+/--
+@isnad1 id=eq.0h1v.s8.58976ffa0a95 from=translated src=- shape=36f5d961 vocab=183a12f0
+-/
 theorem eisEmbedding_conjO (x : O) :
     ConcreteTraceCRT.eisEmbedding (conjO x) =
       star (ConcreteTraceCRT.eisEmbedding x) := by
@@ -360,6 +435,9 @@ theorem eisEmbedding_conjO (x : O) :
   have hx := congrArg (fun f : O →+* ℂ => f x) hhom
   exact hx
 
+/--
+@isnad1 id=eq.4h3v.s9.52495190bf82 from=translated src=- shape=77860821 vocab=25beac8e
+-/
 theorem cubicGauss_normalized_cube_eis (P : Ideal O) [P.IsMaximal]
     (hgood : lambda ∉ P) (p : O) (hP : P = Ideal.span {p})
     (hprimary : lambda ^ 2 ∣ p - 1)
@@ -397,12 +475,18 @@ noncomputable def canonicalSextic (P : Ideal O) [P.IsMaximal]
     (hgood : lambda ∉ P) : MulChar (O ⧸ P) ℂ :=
   (sexticChar P hgood).ringHomComp ConcreteTraceCRT.eisEmbedding
 
+/--
+@isnad1 id=eq.1h1v.s10.920b1dfb8327 from=translated src=- shape=65c64e5d vocab=36c8fe01
+-/
 theorem canonicalSextic_pow_six (P : Ideal O) [P.IsMaximal]
     (hgood : lambda ∉ P) : canonicalSextic P hgood ^ 6 = 1 := by
   change ((sexticChar P hgood).ringHomComp ConcreteTraceCRT.eisEmbedding) ^ 6 = 1
   rw [MulChar.ringHomComp_pow, (sexticChar_powers P hgood).2.2,
     MulChar.ringHomComp_one]
 
+/--
+@isnad1 id=ne.4h2v.s10.22ee5400f06f from=translated src=- shape=4c9d6c61 vocab=215abf67
+-/
 theorem canonicalSextic_pow_ne_one (P : Ideal O) [P.IsMaximal]
     (hgood : lambda ∉ P) (hchar : ringChar (O ⧸ P) ≠ 2)
     {j : ℕ} (hj0 : j ≠ 0) (hj6 : j < 6) :
@@ -481,6 +565,9 @@ private theorem in_coordinate_lattice_of_two_phases (z : ℂ)
       push_cast
       ring
 
+/--
+@isnad1 id=ne.2h2v.s9.2696bb232d95 from=translated src=- shape=8c93ef56 vocab=5ad62bad
+-/
 theorem eisTraceModChar_breveE_ne_one
     (P : Ideal O) [P.IsMaximal] (p : O)
     (hP : P = Ideal.span {p}) (hp : p ≠ 0) :
@@ -519,6 +606,9 @@ theorem eisTraceModChar_breveE_ne_one
     exact Ideal.span_singleton_eq_top.mpr hunit
   exact (inferInstance : P.IsMaximal).ne_top htop
 
+/--
+@isnad1 id=isprimit.2h2v.s7.595a1b875fa8 from=translated src=- shape=2d1a8b67 vocab=3c9f34e3
+-/
 theorem eisTraceModChar_breveE_primitive
     (P : Ideal O) [P.IsMaximal] (p : O)
     (hP : P = Ideal.span {p}) (hp : p ≠ 0) :

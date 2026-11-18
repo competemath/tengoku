@@ -18,6 +18,9 @@ def localCorrection (V W D Pstar : ℂ) : ℂ :=
 def continuedCorrection (V W D Pstar : ℂ) : ℂ :=
   (1 - V * W + (1 - V) * (1 - W) * Pstar) / (1 - D)
 
+/--
+@isnad1 id=eq.3h4v.s6.bd39e240d24e from=translated src=- shape=deb7c41b vocab=21a57b76
+-/
 theorem continuedCorrection_eq_raw (V W D Pstar : ℂ)
     (hV : 1 - V ≠ 0) (hW : 1 - W ≠ 0) (hD : 1 - D ≠ 0) :
     continuedCorrection V W D Pstar = localCorrection V W D Pstar := by
@@ -28,6 +31,9 @@ theorem continuedCorrection_eq_raw (V W D Pstar : ℂ)
 def compensatedReplacement (V W D Pstar B q : ℂ) : ℂ :=
   ((B - q) * (1 - V) * (1 - W) * Pstar - q * (1 - V * W)) / (1 - D)
 
+/--
+@isnad1 id=eq.3h4v.s7.1f30054064f5 from=translated src=- shape=0b1cd95b vocab=be913555
+-/
 theorem correction_defect (V W D Pstar : ℂ)
     (hV : 1 - V ≠ 0) (hW : 1 - W ≠ 0) (hD : 1 - D ≠ 0) :
     localCorrection V W D Pstar - 1 =
@@ -37,6 +43,9 @@ theorem correction_defect (V W D Pstar : ℂ)
   field_simp
   ring
 
+/--
+@isnad1 id=eq.4h6v.s7.ca35ed8eef9a from=translated src=- shape=fb8a9acf vocab=85541668
+-/
 theorem compensatedReplacement_eq_raw (V W D Pstar B q : ℂ)
     (hV : 1 - V ≠ 0) (hW : 1 - W ≠ 0) (hD : 1 - D ≠ 0)
     (hP : localFactor V W Pstar ≠ 0) :
@@ -48,6 +57,9 @@ theorem compensatedReplacement_eq_raw (V W D Pstar B q : ℂ)
   field_simp
   ring
 
+/--
+@isnad1 id=eq.1h4v.s6.3d958266c3a8 from=translated src=- shape=6f2ed1ea vocab=34a0a88c
+-/
 theorem compensatedReplacement_ramified (V Pstar B q : ℂ) (hV : 1 - V ≠ 0) :
     compensatedReplacement V 0 0 Pstar B q =
       B * (1 - V) * Pstar - q * localCorrection V 0 0 Pstar := by
@@ -55,6 +67,9 @@ theorem compensatedReplacement_ramified (V Pstar B q : ℂ) (hV : 1 - V ≠ 0) :
   field_simp
   ring
 
+/--
+@isnad1 id=eq.5h7v.s8.c64c15bf1522 from=translated src=- shape=cc705277 vocab=fd5be421
+-/
 theorem normalized_cancellation (V W D Pstar B q vInv : ℂ)
     (hV : 1 - V ≠ 0) (hW : 1 - W ≠ 0) (hD : 1 - D ≠ 0)
     (hBD : B * D = vInv) (hvW : vInv * W = q) :
@@ -67,6 +82,9 @@ theorem normalized_cancellation (V W D Pstar B q vInv : ℂ)
   field_simp
   linear_combination -(1 - V) * (1 - W) * hBD + (1 - V) * hvW
 
+/--
+@isnad1 id=eq.1h4v.s7.609847e5528d from=translated src=- shape=a1d59ece vocab=c09d6ac8
+-/
 theorem continuedCorrection_defect (V W D Pstar : ℂ) (hD : 1 - D ≠ 0) :
     continuedCorrection V W D Pstar - 1 =
       (D * (V + W - V * W) - V * W +
@@ -75,6 +93,9 @@ theorem continuedCorrection_defect (V W D Pstar : ℂ) (hD : 1 - D ≠ 0) :
   field_simp
   ring
 
+/--
+@isnad1 id=eq.4h7v.s8.fdf44a8c6435 from=translated src=- shape=3f652db4 vocab=e96d70fe
+-/
 theorem continued_normalized_cancellation (V W D Pstar B q vInv : ℂ)
     (hV : 1 - V ≠ 0) (hD : 1 - D ≠ 0)
     (hBD : B * D = vInv) (hvW : vInv * W = q) :
@@ -87,6 +108,9 @@ theorem continued_normalized_cancellation (V W D Pstar B q vInv : ℂ)
   field_simp
   linear_combination -(1 - V) * (1 - W) * hBD + (1 - V) * hvW
 
+/--
+@isnad1 id=eq.0h4v.s6.30e3b0a4ae03 from=translated src=- shape=a2d151d8 vocab=b15af2b9
+-/
 theorem continued_ramified_compensation (V Pstar B q : ℂ) :
     compensatedReplacement V 0 0 Pstar B q =
       B * (1 - V) * Pstar - q * continuedCorrection V 0 0 Pstar := by

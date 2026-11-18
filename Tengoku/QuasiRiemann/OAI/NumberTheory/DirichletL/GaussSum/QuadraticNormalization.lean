@@ -28,18 +28,30 @@ noncomputable def quadraticGammaO (c : O) (hc : c ≠ 0) : ℂ := by
   exact (∑ x : O ⧸ Ideal.span {c}, ψ (x ^ 2)) /
     (‖eisEmbedding c‖ : ℂ)
 
+/--
+@isnad1 id=eq.0h0v.s2.1c0cc483d726 from=translated src=- shape=583fb3b9 vocab=d6f4c7dd
+-/
 theorem quadraticGammaO_traceLambda :
     quadraticGammaO traceLambda traceLambda_ne_zero =
       quadraticGammaTraceLambda := by rfl
 
+/--
+@isnad1 id=eq.0h0v.s5.3e134d768137 from=translated src=- shape=87ba9b6e vocab=f6de1a3b
+-/
 theorem quadraticGammaO_negTraceLambda :
     quadraticGammaO (-traceLambda) (neg_ne_zero.mpr traceLambda_ne_zero) =
       quadraticGammaNegTraceLambda := by rfl
 
+/--
+@isnad1 id=eq.2h1v.s6.44e534f5b3a5 from=translated src=- shape=271dedcc vocab=9b1453cb
+-/
 theorem quadraticGammaO_rational (m : ℕ) (hm : m ≠ 0)
     (hc : (m : O) ≠ 0) :
     quadraticGammaO (m : O) hc = quadraticGammaRational m hm := by rfl
 
+/--
+@isnad1 id=eq.3h1v.s6.b2b4d8a0cbb3 from=translated src=- shape=939420db vocab=2881d363
+-/
 theorem quadraticGammaO_rational_odd (m : ℕ) (hm : m ≠ 0)
     (hodd : Odd m) (hc : (m : O) ≠ 0) :
     quadraticGammaO (m : O) hc = breveGaussianFourTerms (m : ℤ) 0 := by
@@ -50,6 +62,9 @@ end ActualEisensteinCubic
 
 namespace PowerExtraction
 
+/--
+@isnad1 id=le.6h5v.s8.34b0694d8205 from=translated src=- shape=a1cdc2e9 vocab=5df71cf7
+-/
 theorem from_mean_square_and_prime_rows_with_constant
     (D ε J A C : ℝ) (hD : 1 ≤ D) (hε : 0 ≤ ε)
     (hA : 0 ≤ A) (hC : 1 ≤ C)
@@ -106,6 +121,9 @@ theorem from_mean_square_and_prime_rows_with_constant
   rw [mul_pow, mul_pow, hpow2]
   nlinarith
 
+/--
+@isnad1 id=le.8h10v.s8.7838470bfed0 from=translated src=- shape=75f9c43f vocab=4aa349eb
+-/
 theorem from_finite_sixth_power_rows_with_constant
     {α β : Type*} [DecidableEq α] [DecidableEq β]
     (rows : Finset α) (primes : Finset β) (row : β → α)
@@ -144,6 +162,9 @@ end ActualEisensteinCubic
 
 namespace PowerExtraction
 
+/--
+@isnad1 id=le.2h2v.s7.39ff01001699 from=translated src=- shape=408c4dc4 vocab=ad3e4bb6
+-/
 theorem dyadic_prime_error_bound (D N : ℕ) (hD : 1 ≤ D)
     (hN : (D : ℝ) ^ (11 / 60 : ℝ) / 2 ≤ (N : ℝ)) :
     ((64 * (D / N + 1) : ℕ) : ℝ) ≤
@@ -185,6 +206,9 @@ end PowerExtraction
 namespace ActualEisensteinCubic
 
 open EisensteinEmbedding ConcreteTraceCRT Complex
+/--
+@isnad1 id=and.1h2v.s6.1e3643ef4fe7 from=translated src=- shape=9628627b vocab=c85d5191
+-/
 theorem eisenstein_coord_norm_zero (a b : ℤ)
     (h : a*a-a*b+b*b = 0) : a = 0 ∧ b = 0 := by
   have hs : (a-b)^2 + a^2 + b^2 = 0 := by nlinarith [h]
@@ -194,6 +218,9 @@ theorem eisenstein_coord_norm_zero (a b : ℤ)
     nlinarith [sq_nonneg (a-b), sq_nonneg a]
   constructor <;> nlinarith
 
+/--
+@isnad1 id=other.1h4v.s10.446b5666a1af from=translated src=- shape=d7960318 vocab=d943c93b
+-/
 theorem quadraticTraceModChar_coordinate (a b x y : ℤ)
     (hc : ActualEisensteinCoordinates.eval a b ≠ 0) :
     let c : O := ActualEisensteinCoordinates.eval a b
@@ -220,6 +247,9 @@ end ActualEisensteinCubic
 
 namespace GaussianAbelPartition
 
+/--
+@isnad1 id=eq.1h4v.s7.9af26a44f8db from=translated src=- shape=7e362837 vocab=da81beeb
+-/
 theorem tsum_by_finite_fibers {A B : Type*} [Fintype B]
     (q : A → B) (f : A → ℂ) (hf : Summable f) :
     (∑' a : A, f a) =
@@ -227,6 +257,9 @@ theorem tsum_by_finite_fibers {A B : Type*} [Fintype B]
   have h := (hf.hasSum.tsum_fiberwise q).tsum_eq
   simpa only [tsum_fintype] using h.symm
 
+/--
+@isnad1 id=eq.1h5v.s7.f3ded57cdf90 from=translated src=- shape=1d05316d vocab=2a365985
+-/
 theorem tsum_periodic_weighted_partition {A B : Type*} [Fintype B]
     (q : A → B) (P : B → ℂ) (W : A → ℂ)
     (hf : Summable (fun a => P (q a) * W a)) :
@@ -247,6 +280,9 @@ theorem tsum_periodic_weighted_partition {A B : Type*} [Fintype B]
 
 open ConcreteTraceCRT ConcreteBreveE ActualEisensteinCubic
 
+/--
+@isnad1 id=eq.2h2v.s12.469e25ebf064 from=translated src=- shape=2700fac7 vocab=42e4e46e
+-/
 theorem actual_quadratic_gaussian_partition (c : O) (hc : c ≠ 0)
     (W : O → ℂ)
     (hsum : Summable (fun z : O =>
@@ -320,6 +356,9 @@ noncomputable def fiberEquiv (c : O) (hc : c ≠ 0)
   Equiv.ofBijective (fiberMap c r r0 hr)
     ⟨fiberMap_injective c hc r r0 hr, fiberMap_surjective c r r0 hr⟩
 
+/--
+@isnad1 id=eq.2h4v.s11.edc0a3035674 from=translated src=- shape=83417365 vocab=55bbaf2a
+-/
 theorem fiber_tsum (c : O) (hc : c ≠ 0)
     (r : O ⧸ Ideal.span {c}) (r0 : O)
     (hr : Ideal.Quotient.mk (Ideal.span {c}) r0 = r)
@@ -336,20 +375,32 @@ namespace RankTwoPoisson
 
 open Real
 
+/--
+@isnad1 id=summable.0h1v.s6.fa50312be6e6 from=translated src=- shape=984bb0a6 vocab=e221580e
+-/
 theorem schwartz_int_summable (f : 𝓢(ℝ, ℂ)) :
     Summable (fun n : ℤ => f (n : ℝ)) := by
   exact summable_of_isBigO (Real.summable_abs_int_rpow (show (1 : ℝ) < 2 by norm_num))
     ((f.isBigO_cocompact_rpow (-2)).comp_tendsto Int.tendsto_coe_cofinite)
 
+/--
+@isnad1 id=summable.0h1v.s6.ed6848dc50cb from=translated src=- shape=ab3cb902 vocab=38189bca
+-/
 theorem schwartz_int_norm_summable (f : 𝓢(ℝ, ℂ)) :
     Summable (fun n : ℤ => ‖f (n : ℝ)‖) :=
   (schwartz_int_summable f).norm
 
+/--
+@isnad1 id=eq.0h1v.s8.5d041545f44f from=translated src=- shape=793477b1 vocab=30302ea8
+-/
 theorem schwartz_int_poisson (f : 𝓢(ℝ, ℂ)) :
     (∑' n : ℤ, f (n : ℝ)) = ∑' n : ℤ, (𝓕 f) (n : ℝ) := by
   simpa [fourier_eval_zero] using
     SchwartzMap.tsum_eq_tsum_fourier f 0
 
+/--
+@isnad1 id=eq.0h2v.s9.fcce5b65d166 from=translated src=- shape=5d631823 vocab=56f3671a
+-/
 theorem tensor_poisson (f g : 𝓢(ℝ, ℂ)) :
     (∑' z : ℤ × ℤ, f (z.1 : ℝ) * g (z.2 : ℝ)) =
       ∑' z : ℤ × ℤ, (𝓕 f) (z.1 : ℝ) * (𝓕 g) (z.2 : ℝ) := by
@@ -386,6 +437,9 @@ private theorem cg_poisson {a : ℂ} (ha : 0 < a.re) :
   simpa only [cg, div_eq_mul_inv, neg_mul, mul_assoc] using
     Complex.tsum_exp_neg_mul_int_sq ha
 
+/--
+@isnad1 id=eq.4h2v.s8.e3e3de77733c from=translated src=- shape=14351431 vocab=7f35f0ce
+-/
 theorem diagonal_gaussian_poisson {a b : ℂ}
     (ha : 0 < a.re) (hb : 0 < b.re)
     (hai : 0 < (a⁻¹).re) (hbi : 0 < (b⁻¹).re) :
@@ -404,6 +458,9 @@ theorem diagonal_gaussian_poisson {a b : ℂ}
       rw [← tsum_mul_tsum_of_summable_norm (cg_summable hai).norm (cg_summable hbi).norm]
       ring
 
+/--
+@isnad1 id=summable.1h1v.s6.bfcfd3fda7b9 from=translated src=- shape=05d29572 vocab=fdde6e68
+-/
 theorem real_gauss_summable {t : ℝ} (ht : 0 < t) :
     Summable (fun n : ℤ => Real.exp (-Real.pi * t * (n : ℝ) ^ 2)) := by
   have htc : 0 < (t : ℂ).re := by simpa using ht
@@ -416,11 +473,17 @@ noncomputable def eisQ (z : ℤ × ℤ) : ℝ :=
 noncomputable def eisGauss (t : ℝ) (z : ℤ × ℤ) : ℂ :=
   Complex.exp ((-Real.pi * t * eisQ z : ℝ) : ℂ)
 
+/--
+@isnad1 id=le.0h1v.s6.835b67d608a2 from=translated src=- shape=ad152aca vocab=ebd1cf43
+-/
 theorem eisQ_lower (z : ℤ × ℤ) :
     ((z.1 : ℝ) ^ 2 + (z.2 : ℝ) ^ 2) / 2 ≤ eisQ z := by
   dsimp [eisQ]
   nlinarith [sq_nonneg ((z.1 : ℝ) - (z.2 : ℝ))]
 
+/--
+@isnad1 id=summable.1h1v.s5.684fa677a2a4 from=translated src=- shape=997c4bc7 vocab=0f8cd412
+-/
 theorem eis_gauss_summable {t : ℝ} (ht : 0 < t) :
     Summable (eisGauss t) := by
   have ht2 : 0 < t / 2 := by positivity
@@ -592,6 +655,9 @@ private theorem second_poisson_slice {t : ℝ} (ht : 0 < t) (k : ℤ) :
       rw [← tsum_mul_left]
       exact tsum_congr hterm
 
+/--
+@isnad1 id=eq.1h1v.s7.6bdf96a3201d from=translated src=- shape=3d9b4e87 vocab=83a8a2cb
+-/
 theorem eisenstein_gaussian_poisson_iterated {t : ℝ} (ht : 0 < t) :
     (∑' z : ℤ × ℤ, eisGauss t z) =
       (1 / (t : ℂ) ^ (1 / 2 : ℂ)) *
@@ -655,6 +721,9 @@ private theorem dualTerm_summable {t : ℝ} (ht : 0 < t) :
   change eisGauss (4 / (3 * t)) (z.1, -z.2) = dualTerm t z
   exact (dualTerm_eq_eisGauss ht z.1 z.2).symm
 
+/--
+@isnad1 id=eq.1h1v.s7.05af130be8b9 from=translated src=- shape=158fb63d vocab=75b3503a
+-/
 theorem eisenstein_gaussian_poisson {t : ℝ} (ht : 0 < t) :
     (∑' z : ℤ × ℤ, eisGauss t z) =
       (1 / (t : ℂ) ^ (1 / 2 : ℂ)) *

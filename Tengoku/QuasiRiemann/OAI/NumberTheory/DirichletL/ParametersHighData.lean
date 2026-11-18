@@ -51,6 +51,9 @@ structure HighData (Δ : ℝ) where
   height_choice : ∀J : ℝ,0≤J → ∃τ : ℝ,0<τ ∧ τ<(1/200)/2 ∧
     4*τ<(1/200)*cost ∧ τ<t ∧ 2*τ*(1+J)≤t ∧ τ*(2+4*eps)<t
 
+/--
+@isnad1 id=nonempty.1h1v.s4.a2b5af5a23e8 from=translated src=- shape=c1538fc1 vocab=b0ec6752
+-/
 theorem exists_high_data (Δ : ℝ) (hΔ : 0<Δ) : Nonempty (HighData Δ) := by
   obtain ⟨t,ht,htΔ,ht1,_,_,hgeo,hdtop,ht3,hω,hωΔ,hhigh,hallow⟩ := exists_central_budget Δ hΔ
   obtain ⟨N,hN,ell,rmin,hr,hell,hsum,hbounds,_⟩ :=

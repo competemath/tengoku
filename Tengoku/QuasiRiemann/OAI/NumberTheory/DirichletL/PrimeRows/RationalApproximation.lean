@@ -27,6 +27,9 @@ private theorem cpos : 0 < Real.log 2 / 20 := by
   have h : 0 < Real.log (2 : ℝ) := Real.log_pos (by norm_num)
   positivity
 
+/--
+@isnad1 id=ex.1h1v.s7.30ff0c61d85b from=translated src=- shape=7a2f0283 vocab=1b89a315
+-/
 theorem eventual_log_absorption (ε : ℝ) (hε : 0 < ε) :
     ∃ D₀ : ℝ, ∀ D : ℝ, D₀ ≤ D → 2 ≤ D →
       D ^ ((4 / 45 : ℝ) - ε) ≤
@@ -76,6 +79,9 @@ theorem eventual_log_absorption (ε : ℝ) (hε : 0 < ε) :
               congr 1
               ring_nf
 
+/--
+@isnad1 id=ex.0h1v.s6.c14a68e6ee56 from=translated src=- shape=987f3e1c vocab=57a6a273
+-/
 theorem scale_large_eventually (Y₀ : ℝ) :
     ∃ D₀ : ℝ, ∀ D : ℝ, D₀ ≤ D →
       2 ≤ D ∧ Y₀ ≤ D ^ (4 / 45 : ℝ) := by
@@ -98,6 +104,9 @@ theorem scale_large_eventually (Y₀ : ℝ) :
         Real.rpow_le_rpow (Real.rpow_nonneg hMpos.le _) hpowle (by norm_num)
   exact ⟨hD2, (le_max_right _ _).trans hroot⟩
 
+/--
+@isnad1 id=le.6h5v.s8.683245820905 from=translated src=- shape=a1cdc2e9 vocab=5df71cf7
+-/
 theorem from_rational_prime_rows_with_constant
     (D ε J A C : ℝ) (hD : 1 ≤ D) (hε : 0 ≤ ε)
     (hA : 0 ≤ A) (hC : 1 ≤ C)
@@ -154,6 +163,9 @@ theorem from_rational_prime_rows_with_constant
   rw [mul_pow, mul_pow, hpow2]
   nlinarith
 
+/--
+@isnad1 id=le.2h2v.s7.17121ba36f9f from=translated src=- shape=7fc2ff1d vocab=341180a7
+-/
 theorem rational_row_error_power
     (D r : ℕ) (hD : 1 ≤ D)
     (hrlo : (D : ℝ) ^ (4 / 45 : ℝ) / 3 < (r : ℝ)) :
@@ -202,6 +214,9 @@ open ActualEisensteinCubic RationalPrimeExtraction ShortDraftLatticeCount
 
 namespace RationalPrimeExtraction
 
+/--
+@isnad1 id=ex.1h1v.s7.9128ecd49197 from=translated src=- shape=20deeead vocab=9a056151
+-/
 theorem eventual_count_power (ε : ℝ) (hε : 0 < ε) :
     ∃ D₀ : ℝ, ∀ D : ℕ, D₀ ≤ (D : ℝ) →
       2 ≤ D ∧
@@ -220,6 +235,9 @@ theorem eventual_count_power (ε : ℝ) (hε : 0 < ε) :
   have hprime := hcount ((D : ℝ) ^ (4 / 45 : ℝ)) hY
   exact ⟨hDtwoNat, habs.trans (by simpa only [selected] using hprime)⟩
 
+/--
+@isnad1 id=le.2h2v.s7.0087c5c5823c from=translated src=- shape=82c8351f vocab=0b5f801c
+-/
 theorem selected_row_error_bound (D : ℕ) (hD : 1 ≤ D)
     (r : ℕ) (hr : r ∈ selected ((D : ℝ) ^ (4 / 45 : ℝ))) :
     ((128 * (D / r + 1) : ℕ) : ℝ) ≤
@@ -244,11 +262,17 @@ namespace OscSpecial
 noncomputable def phaseBoundConstant (a b : ℝ) : ℝ :=
   2 * (|a - b| + |a| + |b|) + 1
 
+/--
+@isnad1 id=lt.0h2v.s4.e132c5960f60 from=translated src=- shape=a120b2a8 vocab=a0783bfa
+-/
 theorem phaseBoundConstant_pos (a b : ℝ) :
     0 < phaseBoundConstant a b := by
   unfold phaseBoundConstant
   positivity
 
+/--
+@isnad1 id=le.0h4v.s7.2495beafd656 from=translated src=- shape=2fdecc81 vocab=5b7b43a7
+-/
 theorem quadratic_phase_abs_le (a b k l : ℝ) :
     |(a - b) * k ^ 2 + 2 * a * k * l + b * l ^ 2| ≤
       phaseBoundConstant a b * (k ^ 2 + k * l + l ^ 2) := by
@@ -309,6 +333,9 @@ private theorem breveE_period_div_lam_O (z : O) :
 noncomputable def fixedDualPhase (c y : O) : ℂ :=
   ShortDraftTrace.breveE (eisEmbedding (-(c*y^2)) / eisLam / (4 : ℂ))
 
+/--
+@isnad1 id=eq.0h3v.s6.c1436ea1bf0c from=translated src=- shape=ecd168f9 vocab=33abfc11
+-/
 theorem fixedDualPhase_period_two (c y w : O) :
     fixedDualPhase c (y + 2*w) = fixedDualPhase c y := by
   let d : O := -(c * (y*w+w^2))
@@ -326,6 +353,9 @@ theorem fixedDualPhase_period_two (c y w : O) :
   unfold fixedDualPhase
   rw [harg, AddChar.map_add_eq_mul, breveE_period_div_lam_O, mul_one]
 
+/--
+@isnad1 id=eq.1h3v.s10.25208cc9bdb8 from=translated src=- shape=0abeafc0 vocab=e0da521a
+-/
 theorem fixedDualPhase_eq_of_mod_two (c y z : O)
     (h : Ideal.Quotient.mk (Ideal.span {(2 : O)}) y =
       Ideal.Quotient.mk (Ideal.span {(2 : O)}) z) :
@@ -339,6 +369,9 @@ theorem fixedDualPhase_eq_of_mod_two (c y z : O)
       _ = z+2*w := by rw [hw]
   rw [hy, fixedDualPhase_period_two]
 
+/--
+@isnad1 id=eq.1h2v.s9.ff34edd26150 from=translated src=- shape=e13f23be vocab=ed7d2718
+-/
 theorem fixedDualPhase_weighted_partition (c : O) (W : O → ℂ)
     (hsum : Summable (fun y : O => fixedDualPhase c y * W y)) :
     letI : Finite (O ⧸ Ideal.span {(2 : O)}) :=
@@ -385,6 +418,9 @@ open Filter
 noncomputable def dualScale (η a b : ℝ) : ℝ :=
   η * q a b / (4 * r η a b)
 
+/--
+@isnad1 id=tendsto.1h2v.s6.e4577f55ab7d from=translated src=- shape=37c38b26 vocab=1bb7939a
+-/
 theorem dualScale_tendsto (a b : ℝ) (hq : 0 < q a b) :
     Tendsto (fun η : ℝ => dualScale η a b)
       (𝓝[>] (0 : ℝ)) (𝓝[>] (0 : ℝ)) := by
@@ -409,6 +445,9 @@ theorem dualScale_tendsto (a b : ℝ) (hq : 0 < q a b) :
       positivity
     exact div_pos (mul_pos hη hq) (mul_pos (by norm_num) hr)
 
+/--
+@isnad1 id=tendsto.2h4v.s7.2a4c38f6fa6b from=translated src=- shape=8b2d5c7c vocab=0703c0b8
+-/
 theorem abel_mass_dual_scale (a b : ℝ) (hq : 0 < q a b)
     (F : ℝ → ℂ) (L : ℂ)
     (hF : Tendsto (fun t : ℝ => (t : ℂ) * F t)

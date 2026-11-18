@@ -18,6 +18,9 @@ open scoped Classical
 
 namespace GaussCRT
 
+/--
+@isnad1 id=eq.1h6v.s11.5ad319603f96 from=translated src=- shape=23ac545b vocab=8dadf0db
+-/
 theorem gauss_sum_chinese_product (m n : ℕ)
     [NeZero m] [NeZero n] [NeZero (m * n)] (h : m.Coprime n)
     (χm : MulChar (ZMod m) ℂ) (χn : MulChar (ZMod n) ℂ)
@@ -75,6 +78,9 @@ def rightAddChar (m n : ℕ) (h : m.Coprime n)
     rw [show ((0 : ZMod m), z + w) = (0, z) + (0, w) by ext <;> simp,
       map_add, AddChar.map_add_eq_mul]
 
+/--
+@isnad1 id=eq.1h4v.s10.073c07ac7d5b from=translated src=- shape=47b79b6a vocab=07228edb
+-/
 theorem addChar_crt_factor (m n : ℕ) (h : m.Coprime n)
     (ψ : AddChar (ZMod (m * n)) ℂ) (x : ZMod (m * n)) :
     ψ x =
@@ -90,6 +96,9 @@ theorem addChar_crt_factor (m n : ℕ) (h : m.Coprime n)
           rw [← map_add, hz]
     _ = _ := by rw [AddChar.map_add_eq_mul]; rfl
 
+/--
+@isnad1 id=eq.1h5v.s10.cc8c42e33745 from=translated src=- shape=39f072b9 vocab=e5439214
+-/
 theorem gauss_sum_crt (m n : ℕ)
     [NeZero m] [NeZero n] [NeZero (m * n)] (h : m.Coprime n)
     (χm : MulChar (ZMod m) ℂ) (χn : MulChar (ZMod n) ℂ)
@@ -104,6 +113,9 @@ theorem gauss_sum_crt (m n : ℕ)
     (leftAddChar m n h ψ) (rightAddChar m n h ψ) using 1 ;
       congr 1 ; ext x ; ring
 
+/--
+@isnad1 id=eq.2h4v.s9.75bb3866eaf7 from=translated src=- shape=2ab12cf7 vocab=f804231b
+-/
 theorem crt_left_axis (m n r : ℕ) (h : m.Coprime n)
     [NeZero m] [NeZero n]
     (hr : ((n * r : ℕ) : ZMod m) = 1) (z : ZMod m) :
@@ -125,6 +137,9 @@ theorem crt_left_axis (m n r : ℕ) (h : m.Coprime n)
   · rw [hsnd, ZMod.cast_natCast (by simp : n ∣ m * n) (n * r * z.val)]
     simp [Nat.cast_mul]
 
+/--
+@isnad1 id=eq.2h4v.s7.f3cec4cfbc83 from=translated src=- shape=c0549ebd vocab=6592ec20
+-/
 theorem leftAddChar_std_apply (m n r : ℕ) (h : m.Coprime n)
     [NeZero m] [NeZero n] [NeZero (m * n)]
     (hr : ((n * r : ℕ) : ZMod m) = 1) (z : ZMod m) :
@@ -150,6 +165,9 @@ theorem leftAddChar_std_apply (m n r : ℕ) (h : m.Coprime n)
   simp only [Nat.cast_mul]
   ring
 
+/--
+@isnad1 id=eq.2h4v.s9.5f7577574bbc from=translated src=- shape=bac6f220 vocab=f804231b
+-/
 theorem crt_right_axis (m n r : ℕ) (h : m.Coprime n)
     [NeZero m] [NeZero n]
     (hr : ((m * r : ℕ) : ZMod n) = 1) (z : ZMod n) :
@@ -171,6 +189,9 @@ theorem crt_right_axis (m n r : ℕ) (h : m.Coprime n)
     rw [← Nat.cast_mul (α := ZMod n) m r, hr, one_mul,
       ZMod.natCast_zmod_val]
 
+/--
+@isnad1 id=eq.2h4v.s7.3ffa26e2cfaf from=translated src=- shape=bfd0ef17 vocab=549128ac
+-/
 theorem rightAddChar_std_apply (m n r : ℕ) (h : m.Coprime n)
     [NeZero m] [NeZero n] [NeZero (m * n)]
     (hr : ((m * r : ℕ) : ZMod n) = 1) (z : ZMod n) :
@@ -196,6 +217,9 @@ theorem rightAddChar_std_apply (m n r : ℕ) (h : m.Coprime n)
   simp only [Nat.cast_mul]
   ring
 
+/--
+@isnad1 id=eq.1h4v.s7.89220d18e07e from=translated src=- shape=b10c23da vocab=21321789
+-/
 theorem gauss_shift_cross (m n r : ℕ) [NeZero m]
     (χ : MulChar (ZMod m) ℂ)
     (hr : ((n * r : ℕ) : ZMod m) = 1) :
@@ -222,6 +246,9 @@ theorem gauss_shift_cross (m n r : ℕ) [NeZero m]
             gaussSum χ ((ZMod.stdAddChar (N := m)).mulShift (r : ZMod m))) := by ring
     _ = χ (n : ZMod m) * gaussSum χ (ZMod.stdAddChar (N := m)) := by rw [hshift']
 
+/--
+@isnad1 id=eq.3h6v.s10.5a9434ce4527 from=translated src=- shape=0d1d904d vocab=0b993f9e
+-/
 theorem gauss_sum_crt_standard (m n r s : ℕ)
     [NeZero m] [NeZero n] [NeZero (m * n)]
     (h : m.Coprime n)
@@ -277,6 +304,9 @@ def rightAddChar (e : T ≃+* R × S) (ψ : AddChar T ℂ) : AddChar S ℂ where
     rw [show ((0 : R), z + w) = (0, z) + (0, w) by ext <;> simp,
       map_add, AddChar.map_add_eq_mul]
 
+/--
+@isnad1 id=eq.0h6v.s9.f9da77e2d01f from=translated src=- shape=0064d319 vocab=86d5443d
+-/
 theorem addChar_crt_factor (e : T ≃+* R × S) (ψ : AddChar T ℂ) (x : T) :
     ψ x = leftAddChar e ψ (e x).1 * rightAddChar e ψ (e x).2 := by
   let z := e x
@@ -286,6 +316,9 @@ theorem addChar_crt_factor (e : T ≃+* R × S) (ψ : AddChar T ℂ) (x : T) :
     _ = ψ (e.symm (z.1, 0) + e.symm (0, z.2)) := by rw [← map_add, hz]
     _ = _ := by rw [AddChar.map_add_eq_mul]; rfl
 
+/--
+@isnad1 id=eq.0h7v.s9.c45b9319a861 from=translated src=- shape=c996364f vocab=a23c231a
+-/
 theorem gauss_sum_crt [Fintype T] [Fintype R] [Fintype S]
     (e : T ≃+* R × S) (χR : MulChar R ℂ) (χS : MulChar S ℂ)
     (ψ : AddChar T ℂ) :
@@ -310,6 +343,9 @@ theorem gauss_sum_crt [Fintype T] [Fintype R] [Fintype S]
       intro w hw
       ring
 
+/--
+@isnad1 id=eq.1h6v.s11.fcceee5cfb8b from=translated src=- shape=3f38b4b0 vocab=3dc6b40d
+-/
 theorem gauss_sum_ideal_crt {A : Type*} [CommRing A]
     (I J : Ideal A) (h : IsCoprime I J)
     [Fintype (A ⧸ I * J)] [Fintype (A ⧸ I)] [Fintype (A ⧸ J)]
@@ -346,11 +382,17 @@ noncomputable def quotientAddChar {A : Type*} [CommRing A]
     intro a b
     exact AddChar.map_add_eq_mul ψ a b
 
+/--
+@isnad1 id=eq.1h4v.s8.8ad8a95e70dd from=translated src=- shape=c0d1db7d vocab=e48c3cef
+-/
 @[simp] theorem quotientAddChar_mk {A : Type*} [CommRing A]
     (I : Ideal A) (ψ : AddChar A ℂ)
     (hper : ∀ a : A, a ∈ I → ψ a = 1) (a : A) :
     quotientAddChar I ψ hper (Ideal.Quotient.mk I a) = ψ a := rfl
 
+/--
+@isnad1 id=iscoprim.1h5v.s7.cdd4dae6b454 from=translated src=- shape=31250758 vocab=59e31473
+-/
 theorem principal_coprime_of_bezout {A : Type*} [CommRing A]
     {a b u v : A} (h : u * a + v * b = 1) :
     IsCoprime (Ideal.span {a}) (Ideal.span {b}) := by
@@ -359,6 +401,9 @@ theorem principal_coprime_of_bezout {A : Type*} [CommRing A]
   · exact Ideal.mem_span_singleton.mpr ⟨u, by ring⟩
   · exact Ideal.mem_span_singleton.mpr ⟨v, by ring⟩
 
+/--
+@isnad1 id=ex.1h3v.s7.c2f04b85972e from=translated src=- shape=7d3164e6 vocab=59e31473
+-/
 theorem bezout_of_principal_coprime {A : Type*} [CommRing A]
     {a b : A} (h : IsCoprime (Ideal.span {a}) (Ideal.span {b})) :
     ∃ u v : A, u * a + v * b = 1 := by
@@ -369,6 +414,9 @@ theorem bezout_of_principal_coprime {A : Type*} [CommRing A]
   rw [hu, hv] at hxy
   convert hxy using 1; ring
 
+/--
+@isnad1 id=eq.1h6v.s12.c35f760b30b8 from=translated src=- shape=0a1fb92d vocab=fbc8e621
+-/
 theorem crt_left_inverse_coordinate {A : Type*} [CommRing A]
     {a b u v : A} (hbez : u * a + v * b = 1) (x : A) :
     (Ideal.quotientMulEquivQuotientProd
@@ -403,6 +451,9 @@ theorem crt_left_inverse_coordinate {A : Type*} [CommRing A]
     apply (Ideal.Quotient.eq_zero_iff_mem).mpr
     exact Ideal.mem_span_singleton.mpr ⟨x * v, by ring⟩
 
+/--
+@isnad1 id=eq.1h6v.s12.115fb3f98196 from=translated src=- shape=40ee2262 vocab=fbc8e621
+-/
 theorem crt_right_inverse_coordinate {A : Type*} [CommRing A]
     {a b u v : A} (hbez : u * a + v * b = 1) (y : A) :
     (Ideal.quotientMulEquivQuotientProd
@@ -444,6 +495,9 @@ noncomputable def rawTraceChar {A : Type*} [CommRing A]
   map_add_eq_mul' x y := by
     rw [map_add, add_div, AddChar.map_add_eq_mul]
 
+/--
+@isnad1 id=eq.4h6v.s8.184da2c2eb59 from=translated src=- shape=e1345a84 vocab=f0c27969
+-/
 theorem rawTraceChar_period {A : Type*} [CommRing A]
     (ι : A →+* ℂ) (ψ : AddChar ℂ ℂ) (lam : ℂ) (c : A)
     (hc : ι c ≠ 0) (hlam : lam ≠ 0)
@@ -467,6 +521,9 @@ noncomputable def traceModChar {A : Type*} [CommRing A]
   quotientAddChar (Ideal.span {c}) (rawTraceChar ι ψ lam c)
     (rawTraceChar_period ι ψ lam c hc hlam hbase)
 
+/--
+@isnad1 id=eq.3h6v.s9.cca17af52c93 from=translated src=- shape=d6dbc0a5 vocab=c4eecf23
+-/
 @[simp] theorem traceModChar_mk {A : Type*} [CommRing A]
     (ι : A →+* ℂ) (ψ : AddChar ℂ ℂ) (lam : ℂ) (c : A)
     (hc : ι c ≠ 0) (hlam : lam ≠ 0)
@@ -489,6 +546,9 @@ noncomputable def traceProdChar {A : Type*} [CommRing A]
         (by simpa only [map_mul] using mul_ne_zero ha hb)
         hlam hbase x hx')
 
+/--
+@isnad1 id=eq.4h7v.s10.ce593cd42821 from=translated src=- shape=78f04325 vocab=be62a4d1
+-/
 @[simp] theorem traceProdChar_mk {A : Type*} [CommRing A]
     (ι : A →+* ℂ) (ψ : AddChar ℂ ℂ) (lam : ℂ) (a b : A)
     (ha : ι a ≠ 0) (hb : ι b ≠ 0) (hlam : lam ≠ 0)
@@ -497,6 +557,9 @@ noncomputable def traceProdChar {A : Type*} [CommRing A]
       (Ideal.Quotient.mk ((Ideal.span {a}) * (Ideal.span {b})) x) =
       ψ (ι x / (ι (a * b) * lam)) := rfl
 
+/--
+@isnad1 id=eq.5h8v.s10.03302e8fd95f from=translated src=- shape=a1716da2 vocab=520e3e8c
+-/
 theorem leftAddChar_traceProd {A : Type*} [CommRing A]
     (ι : A →+* ℂ) (ψ : AddChar ℂ ℂ) (lam : ℂ)
     {a b u v : A} (hbez : u * a + v * b = 1)
@@ -525,6 +588,9 @@ theorem leftAddChar_traceProd {A : Type*} [CommRing A]
   simp only [map_mul]
   field_simp
 
+/--
+@isnad1 id=eq.5h8v.s10.db3edc0072e8 from=translated src=- shape=d56a7a3d vocab=832c9081
+-/
 theorem rightAddChar_traceProd {A : Type*} [CommRing A]
     (ι : A →+* ℂ) (ψ : AddChar ℂ ℂ) (lam : ℂ)
     {a b u v : A} (hbez : u * a + v * b = 1)
@@ -553,6 +619,9 @@ theorem rightAddChar_traceProd {A : Type*} [CommRing A]
   simp only [map_mul]
   field_simp
 
+/--
+@isnad1 id=eq.1h5v.s9.e511485b07b5 from=translated src=- shape=9c81b0c8 vocab=f48a3b49
+-/
 theorem bezout_inverse_left {A : Type*} [CommRing A]
     {a b u v : A} (hbez : u * a + v * b = 1) :
     (Ideal.Quotient.mk (Ideal.span {a}) b) *
@@ -566,6 +635,9 @@ theorem bezout_inverse_left {A : Type*} [CommRing A]
     b * v - 1 = b * v - (u * a + v * b) := by rw [hbez]
     _ = a * -u := by ring
 
+/--
+@isnad1 id=eq.1h5v.s9.8adea92214f2 from=translated src=- shape=cec963a9 vocab=f48a3b49
+-/
 theorem bezout_inverse_right {A : Type*} [CommRing A]
     {a b u v : A} (hbez : u * a + v * b = 1) :
     (Ideal.Quotient.mk (Ideal.span {b}) a) *
@@ -579,6 +651,9 @@ theorem bezout_inverse_right {A : Type*} [CommRing A]
     a * u - 1 = a * u - (u * a + v * b) := by rw [hbez]
     _ = b * -v := by ring
 
+/--
+@isnad1 id=eq.1h7v.s10.9dc5594ef939 from=translated src=- shape=38052067 vocab=c59387dd
+-/
 theorem gauss_shift_bezout_left {A : Type*} [CommRing A]
     {a b u v : A} [Fintype (A ⧸ Ideal.span {a})]
     (hbez : u * a + v * b = 1)
@@ -600,6 +675,9 @@ theorem gauss_shift_bezout_left {A : Type*} [CommRing A]
     _ = χ mb * (χ mv * gaussSum χ (ψ.mulShift mv)) := by ring
     _ = χ mb * gaussSum χ ψ := by rw [hshift']
 
+/--
+@isnad1 id=eq.1h7v.s10.d7c0ae882b7b from=translated src=- shape=6576c906 vocab=c59387dd
+-/
 theorem gauss_shift_bezout_right {A : Type*} [CommRing A]
     {a b u v : A} [Fintype (A ⧸ Ideal.span {b})]
     (hbez : u * a + v * b = 1)
@@ -621,6 +699,9 @@ theorem gauss_shift_bezout_right {A : Type*} [CommRing A]
     _ = χ ma * (χ mu * gaussSum χ (ψ.mulShift mu)) := by ring
     _ = χ ma * gaussSum χ ψ := by rw [hshift']
 
+/--
+@isnad1 id=eq.5h10v.s12.3d7190259502 from=translated src=- shape=fe55dea1 vocab=960d6582
+-/
 theorem gauss_sum_trace_crt {A : Type*} [CommRing A]
     (ι : A →+* ℂ) (ψ : AddChar ℂ ℂ) (lam : ℂ)
     {a b u v : A} (hbez : u * a + v * b = 1)
@@ -657,6 +738,9 @@ theorem gauss_sum_trace_crt {A : Type*} [CommRing A]
           gaussSum χb (traceModChar ι ψ lam b hb hlam hbase)) := h
     _ = _ := by ring
 
+/--
+@isnad1 id=eq.5h8v.s12.551070fcd8e0 from=translated src=- shape=b299eadb vocab=d58e6878
+-/
 theorem gauss_sum_trace_crt_of_coprime {A : Type*} [CommRing A]
     (ι : A →+* ℂ) (ψ : AddChar ℂ ℂ) (lam : ℂ)
     (a b : A)

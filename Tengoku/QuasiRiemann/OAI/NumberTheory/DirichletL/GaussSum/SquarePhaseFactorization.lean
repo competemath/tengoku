@@ -71,6 +71,9 @@ open scoped BigOperators
 
 namespace ActualEisensteinCubic
 
+/--
+@isnad1 id=eq.3h2v.s7.4041ab784117 from=translated src=- shape=82ea1530 vocab=6d5c37e3
+-/
 theorem primary_associated_eq (x y : O) (hxy : Associated x y)
     (hx : lambda ^ 2 ∣ x - 1) (hy : lambda ^ 2 ∣ y - 1) : x = y := by
   obtain ⟨u, hu⟩ := hxy
@@ -83,6 +86,9 @@ theorem primary_associated_eq (x y : O) (hxy : Associated x y)
   have huone : (u : O) = 1 := A3_primary_unit_eq_one _ u.isUnit huprimary
   simpa only [huone, mul_one] using hu
 
+/--
+@isnad1 id=dvd.1h1v.s7.c7459cfba987 from=translated src=- shape=fb0045a1 vocab=cde8aa01
+-/
 theorem primary_multiset_prod (s : Multiset O)
     (hs : ∀ x ∈ s, lambda ^ 2 ∣ x - 1) : lambda ^ 2 ∣ s.prod - 1 := by
   induction s using Multiset.induction_on with
@@ -95,6 +101,9 @@ theorem primary_multiset_prod (s : Multiset O)
     rw [heq]
     exact dvd_add (dvd_mul_of_dvd_left ha _) hb
 
+/--
+@isnad1 id=not.2h2v.s8.bf927149f384 from=translated src=- shape=15ec5b82 vocab=8f301fe2
+-/
 theorem primary_maximal_divisor_good (t : O) (ht : lambda ^ 2 ∣ t - 1)
     (P : Ideal O) [P.IsMaximal] (htP : t ∈ P) : lambda ∉ P := by
   intro hlam
@@ -105,6 +114,9 @@ theorem primary_maximal_divisor_good (t : O) (ht : lambda ^ 2 ∣ t - 1)
   exact (Ideal.IsMaximal.ne_top (inferInstance : P.IsMaximal))
     ((Ideal.eq_top_iff_one _).mpr hone)
 
+/--
+@isnad1 id=ex.2h1v.s8.9b22745f3560 from=translated src=- shape=2c15fc77 vocab=3c74666e
+-/
 theorem exists_primary_prime_factorization (t : O) (ht0 : t ≠ 0)
     (ht : lambda ^ 2 ∣ t - 1) :
     ∃ s : Multiset O, s.prod = t ∧
@@ -144,12 +156,18 @@ theorem exists_primary_prime_factorization (t : O) (ht0 : t ≠ 0)
   exact primary_associated_eq _ _ (hsf.trans hft)
     (primary_multiset_prod s (fun r hr => (hs r hr).2)) ht
 
+/--
+@isnad1 id=mem.0h1v.s7.a5feafa470a8 from=translated src=- shape=f27fadd0 vocab=99522188
+-/
 theorem residue_char_mem (P : Ideal O) :
     (ringChar (O ⧸ P) : O) ∈ P := by
   apply Ideal.Quotient.eq_zero_iff_mem.mp
   rw [map_natCast]
   exact CharP.cast_eq_zero (O ⧸ P) (ringChar (O ⧸ P))
 
+/--
+@isnad1 id=or.3h3v.s8.86de82c0ed7d from=translated src=- shape=48e39329 vocab=505583db
+-/
 theorem maximal_eq_or_eq_of_same_residue_char
     (P Q R : Ideal O) [P.IsMaximal] [Q.IsMaximal] [R.IsMaximal]
     (hne : P ≠ Q) (hPQ : ringChar (O ⧸ Q) = ringChar (O ⧸ P))
@@ -165,6 +183,9 @@ theorem maximal_eq_or_eq_of_same_residue_char
   rcases hp with hp | hp <;> rcases hq with hq | hq <;>
     rcases hr with hr | hr <;> simp_all
 
+/--
+@isnad1 id=ne.5h4v.s9.a044fbd565f7 from=translated src=- shape=1c3adca2 vocab=ecf1e2b7
+-/
 theorem prime_divisor_residue_char_ne
     (P Q R : Ideal O) [P.IsMaximal] [Q.IsMaximal] [R.IsMaximal]
     (hne : P ≠ Q) (hPQ : ringChar (O ⧸ Q) = ringChar (O ⧸ P))
@@ -175,6 +196,9 @@ theorem prime_divisor_residue_char_ne
   · exact htP htR
   · exact htQ htR
 
+/--
+@isnad1 id=dvd.0h0v.s6.819d04294951 from=translated src=- shape=f9867af3 vocab=ad4f46a7
+-/
 theorem lambda_sq_dvd_three : lambda ^ 2 ∣ (3 : O) := by
   have hlam : lambda ^ 2 = -3 * omega := by
     change (omega - 1) ^ 2 = -3 * omega
@@ -185,15 +209,24 @@ theorem lambda_sq_dvd_three : lambda ^ 2 ∣ (3 : O) := by
     (3 : O) = 3 * omega ^ 3 := by rw [omega_primitive.pow_eq_one]; ring
     _ = -3 * omega * -omega ^ 2 := by ring
 
+/--
+@isnad1 id=dvd.0h0v.s7.276109585c21 from=translated src=- shape=5dee11b1 vocab=b435d8c0
+-/
 theorem neg_two_primary : lambda ^ 2 ∣ (-2 : O) - 1 := by
   convert dvd_neg.mpr lambda_sq_dvd_three using 1 ; ring
 
+/--
+@isnad1 id=dvd.2h2v.s8.66e709a51422 from=translated src=- shape=8d82fc41 vocab=479ce793
+-/
 theorem neg_add_primary (p q : O)
     (hp : lambda ^ 2 ∣ p - 1) (hq : lambda ^ 2 ∣ q - 1) :
     lambda ^ 2 ∣ -(p + q) - 1 := by
   have hd := dvd_neg.mpr (dvd_add (dvd_add hp hq) lambda_sq_dvd_three)
   convert hd using 1 ; ring
 
+/--
+@isnad1 id=not.2h3v.s7.d7bee7376268 from=translated src=- shape=0ed83ea4 vocab=28e7cf4b
+-/
 theorem prime_generator_not_mem_of_ne (P Q : Ideal O)
     [P.IsMaximal] [Q.IsMaximal] (hne : P ≠ Q)
     (q : O) (hQ : Q = Ideal.span {q}) : q ∉ P := by
@@ -204,6 +237,9 @@ theorem prime_generator_not_mem_of_ne (P Q : Ideal O)
   exact hne (Ideal.IsMaximal.eq_of_le (inferInstance : Q.IsMaximal)
     (Ideal.IsMaximal.ne_top (inferInstance : P.IsMaximal)) hle).symm
 
+/--
+@isnad1 id=eq.8h4v.s10.1e14449c0057 from=translated src=- shape=d693d360 vocab=4c3e48e5
+-/
 theorem cubic_reciprocity_equal_residue_char
     (P Q : Ideal O) [P.IsMaximal] [Q.IsMaximal]
     (hPgood : lambda ∉ P) (hQgood : lambda ∉ Q)
@@ -273,6 +309,9 @@ theorem cubic_reciprocity_equal_residue_char
     ← neg_one_mul (Ideal.Quotient.mk Q p), map_mul, A3_cubicChar_neg_one, one_mul] at htval
   exact htval
 
+/--
+@isnad1 id=eq.6h4v.s10.a164510bc118 from=translated src=- shape=1bf19398 vocab=3105cff5
+-/
 theorem cubic_reciprocity_primary
     (P Q : Ideal O) [P.IsMaximal] [Q.IsMaximal]
     (hPgood : lambda ∉ P) (hQgood : lambda ∉ Q)
@@ -293,6 +332,9 @@ theorem cubic_reciprocity_primary
 
 def cubicTwoIdeal : Ideal O := Ideal.span {(-2 : O)}
 
+/--
+@isnad1 id=ismaxima.0h0v.s4.5358f791b4fb from=translated src=- shape=25b03439 vocab=91cbe112
+-/
 instance cubicTwoIdeal_isMaximal : cubicTwoIdeal.IsMaximal := by
   rcases rational_prime_factor_cases 2 Nat.prime_two with hm |
       ⟨a, b, _, _, _, ha, _, _, _⟩
@@ -303,10 +345,16 @@ instance cubicTwoIdeal_isMaximal : cubicTwoIdeal.IsMaximal := by
     rw [ShortDraftHeckeBridge.norm_p_fiber_inert Nat.prime_two (by decide)] at hin
     exact False.elim hin
 
+/--
+@isnad1 id=not.0h0v.s6.e9a86f190dc3 from=translated src=- shape=eedf340d vocab=e2eeac5d
+-/
 theorem cubicTwoIdeal_good : lambda ∉ cubicTwoIdeal := by
   apply primary_maximal_divisor_good (-2 : O) neg_two_primary
   exact Ideal.subset_span (by simp)
 
+/--
+@isnad1 id=eq.0h0v.s6.4d7659569e85 from=translated src=- shape=2221e9d0 vocab=f249310a
+-/
 theorem cubicTwoIdeal_residue_char : ringChar (O ⧸ cubicTwoIdeal) = 2 := by
   let : Field (O ⧸ cubicTwoIdeal) := Ideal.Quotient.field cubicTwoIdeal
   let : Fintype (O ⧸ cubicTwoIdeal) := Fintype.ofFinite _
@@ -324,6 +372,9 @@ open scoped BigOperators Classical
 
 namespace IdealGaussCRT
 
+/--
+@isnad1 id=eq.0h5v.s8.a4c0cf5ffa4b from=translated src=- shape=ff19ebaf vocab=9139da2f
+-/
 theorem sum_square_phase_finite_crt {ι T : Type*} [Fintype ι]
     (R : ι → Type*) [CommRing T] [∀ i, CommRing (R i)]
     [Fintype T] [∀ i, Fintype (R i)]
@@ -341,6 +392,9 @@ theorem sum_square_phase_finite_crt {ι T : Type*} [Fintype ι]
         (fun x : ∀ i, R i => ∏ i, coordinateAddChar R e ψ i ((x i) ^ 2))
     _ = _ := (Fintype.prod_sum (fun i (x : R i) => coordinateAddChar R e ψ i (x ^ 2))).symm
 
+/--
+@isnad1 id=eq.2h5v.s9.0acccc755b80 from=translated src=- shape=f7e8bf41 vocab=b11de009
+-/
 theorem quadratic_gauss_finite_crt_eq_square_sum {ι T : Type*} [Fintype ι]
     (R : ι → Type*) [CommRing T] [∀ i, Field (R i)]
     [Fintype T] [∀ i, Fintype (R i)]
@@ -365,6 +419,9 @@ namespace QuadraticGaussRay
 abbrev O := ActualEisensteinCubic.O
 open ActualEisensteinCubic ConcreteTraceCRT FiniteGaussPhase ActualEisensteinCoordinates
 
+/--
+@isnad1 id=eq.1h2v.s6.d48c82a08d81 from=translated src=- shape=5eb6ff71 vocab=73a8ff29
+-/
 theorem I_zpow_eq_of_mod_four {a b : ℤ} (h : (a : ZMod 4) = b) :
     Complex.I ^ a = Complex.I ^ b := by
   obtain ⟨k, hk⟩ := (ZMod.intCast_eq_intCast_iff_dvd_sub b a 4).mp h.symm
@@ -372,6 +429,9 @@ theorem I_zpow_eq_of_mod_four {a b : ℤ} (h : (a : ZMod 4) = b) :
   rw [ha, zpow_add₀ Complex.I_ne_zero, zpow_mul]
   norm_num
 
+/--
+@isnad1 id=eq.2h4v.s7.339b1d64f199 from=translated src=- shape=c24dec50 vocab=5adf0527
+-/
 theorem fourTerms_eq_of_mod_four {a b c d : ℤ}
     (ha : (a : ZMod 4) = c) (hb : (b : ZMod 4) = d) :
     breveGaussianFourTerms a b = breveGaussianFourTerms c d := by
@@ -387,6 +447,9 @@ def quadraticRayValue (r : EisensteinEPrimaryPhase.Coord) : ℂ :=
 
 open ActualEisensteinCubic ConcreteTraceCRT FiniteGaussPhase ActualEisensteinCoordinates
 
+/--
+@isnad1 id=eq.0h1v.s9.e4afe9f680cd from=translated src=- shape=e25c2233 vocab=e45835dc
+-/
 theorem fixed_two_mk_eq_residue_lift (c : O) :
     Ideal.Quotient.mk cubicTwoIdeal c =
       Ideal.Quotient.mk cubicTwoIdeal (lift (residue c)) := by
@@ -402,6 +465,9 @@ def fixedGValue (r : EisensteinEPrimaryPhase.Coord) : ℂ :=
   (eisEmbedding (cubicChar cubicTwoIdeal cubicTwoIdeal_good
     (Ideal.Quotient.mk cubicTwoIdeal (lift r))))⁻¹ * quadraticRayValue r
 
+/--
+@isnad1 id=eq.1h2v.s6.f34559c0d365 from=translated src=- shape=d3106531 vocab=bfb2fac4
+-/
 theorem residue_eq_of_four_dvd_sub (c d : O) (h : (4 : O) ∣ c - d) :
     residue c = residue d := by
   obtain ⟨z, hz⟩ := h
@@ -416,6 +482,9 @@ theorem residue_eq_of_four_dvd_sub (c d : O) (h : (4 : O) ∣ c - d) :
   simp only [residue, Int.cast_add, Int.cast_mul, Int.cast_ofNat,
     show (4 : ZMod 4) = 0 by decide, zero_mul, add_zero]
 
+/--
+@isnad1 id=eq.1h2v.s10.ddcf7e23d5ee from=translated src=- shape=3e6b47e0 vocab=a6016e7e
+-/
 theorem residue_eq_of_quotient_four_eq (c d : O)
     (h : Ideal.Quotient.mk (Ideal.span {(4 : O)}) c =
       Ideal.Quotient.mk (Ideal.span {(4 : O)}) d) : residue c = residue d :=
@@ -424,6 +493,9 @@ theorem residue_eq_of_quotient_four_eq (c d : O)
 def residueQuotientFour : (O ⧸ Ideal.span {(4 : O)}) → EisensteinEPrimaryPhase.Coord :=
   Quotient.lift residue (fun c d h => residue_eq_of_quotient_four_eq c d (Quotient.sound h))
 
+/--
+@isnad1 id=eq.0h1v.s9.039f79e3c936 from=translated src=- shape=f472fee0 vocab=6b172ff0
+-/
 @[simp] theorem residueQuotientFour_mk (c : O) :
     residueQuotientFour (Ideal.Quotient.mk (Ideal.span {(4 : O)}) c) = residue c := rfl
 

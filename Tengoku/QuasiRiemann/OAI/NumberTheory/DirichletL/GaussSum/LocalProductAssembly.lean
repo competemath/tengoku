@@ -23,6 +23,9 @@ namespace ActualEisensteinCubic
 open ConcreteTraceCRT
 open scoped ComplexConjugate
 
+/--
+@isnad1 id=eq.1h2v.s9.fd6e7a3d6fc2 from=translated src=- shape=a358eb3c vocab=e0c90f5e
+-/
 theorem canonicalSextic_inverse_eq_conj_on_units (P : Ideal O)
     [P.IsMaximal] (hgood : lambda ∉ P) (u : (O ⧸ P)ˣ) :
     (canonicalSextic P hgood (u : O ⧸ P))⁻¹ =
@@ -38,6 +41,9 @@ end ActualEisensteinCubic
 namespace FourierBridge
 open scoped ContDiff FourierTransform SchwartzMap
 
+/--
+@isnad1 id=eq.8h11v.s9.4115b4e60d00 from=translated src=- shape=eb88c362 vocab=aa7d3efd
+-/
 theorem coupled_double_log_separation
     {ι : Type*} [Fintype ι]
     (W : ι → ℝ → ℂ) (F₁ F₂ V₁ V₂ : ℝ → ℂ)
@@ -114,6 +120,9 @@ end FourierBridge
 
 namespace AnalyticBridge
 
+/--
+@isnad1 id=le.6h8v.s9.768283c26390 from=translated src=- shape=35b8bff3 vocab=4cc54277
+-/
 theorem double_weighted_fourier_minkowski
     {Ω : Type*} (S : Finset Ω)
     (b₁ b₂ : ℝ → ℂ) (φ : Ω → ℝ → ℝ → ℂ)
@@ -166,10 +175,16 @@ end AnalyticBridge
 namespace FourierBridge
 open scoped FourierTransform SchwartzMap
 
+/--
+@isnad1 id=eq.0h2v.s4.c0aadef1bafc from=translated src=- shape=18e50d40 vocab=abcae2c7
+-/
 theorem logPhase_norm (t y : ℝ) : ‖logPhase t y‖ = 1 := by
   simpa [logPhase] using
     Complex.norm_exp_ofReal_mul_I (2 * Real.pi * t * y)
 
+/--
+@isnad1 id=continuo.0h1v.s4.2822c6dfffed from=translated src=- shape=a4c439d3 vocab=b2f2c927
+-/
 theorem logPhase_continuous_left (y : ℝ) :
     Continuous (fun t : ℝ => logPhase t y) := by
   unfold logPhase
@@ -180,6 +195,9 @@ end FourierBridge
 namespace AnalyticBridge
 open scoped FourierTransform SchwartzMap
 
+/--
+@isnad1 id=and.4h6v.s9.42d9227ad6f9 from=translated src=- shape=7b81ecb2 vocab=da73dcf1
+-/
 theorem bounded_separated_double_integrable
     {Ω : Type*} (S : Finset Ω)
     (g₁ g₂ : 𝓢(ℝ, ℂ)) (u v : Ω → ℝ → ℂ)
@@ -249,6 +267,9 @@ end AnalyticBridge
 
 namespace PowerExtraction
 
+/--
+@isnad1 id=le.7h9v.s8.88eabc4eee77 from=translated src=- shape=540fe026 vocab=4aa349eb
+-/
 theorem from_finite_sixth_power_rows
     {α β : Type*} [DecidableEq α] [DecidableEq β]
     (rows : Finset α) (primes : Finset β) (row : β → α)
@@ -329,6 +350,9 @@ private noncomputable def localA5Output (P : Ideal O) [P.IsMaximal]
 
 end
 
+/--
+@isnad1 id=eq.1h2v.s9.5a841639331d from=translated src=- shape=690ce3a1 vocab=c48bd992
+-/
 theorem canonicalSextic_sixth_power_mask (P : Ideal O) [P.IsMaximal]
     (hgood : lambda ∉ P) (a : O) :
     canonicalSextic P hgood (Ideal.Quotient.mk P (a ^ 6)) =
@@ -353,6 +377,9 @@ private def localS (parityBit : Bool) (p : ℕ) : ℕ := if parityBit then p els
 private def localJ2 (parityBit ε₁ ε₂ : Bool) (p : ℕ) : ℕ :=
   if !parityBit && ε₁ && ε₂ then p else 1
 
+/--
+@isnad1 id=eq.0h4v.s6.8b9f3c51e3dd from=translated src=- shape=249a54f2 vocab=e1627f32
+-/
 theorem first_poisson_local_scale_identity
     (parityBit ε₁ ε₂ : Bool) (p : ℕ) :
     localC parityBit ε₁ ε₂ p * localCorrectionE parityBit ε₁ ε₂ p *
@@ -367,6 +394,9 @@ theorem first_poisson_local_scale_identity
       ] <;> ring_nf <;>
       (intro h; exfalso; revert h; decide)
 
+/--
+@isnad1 id=eq.0h4v.s7.1c7b43560a96 from=translated src=- shape=ef9e0183 vocab=bbcbc66d
+-/
 theorem first_poisson_global_scale_identity
     (P : Finset ℕ) (parityBit ε₁ ε₂ : ℕ → Bool) :
     (∏ p ∈ P, localC (parityBit p) (ε₁ p) (ε₂ p) p) *

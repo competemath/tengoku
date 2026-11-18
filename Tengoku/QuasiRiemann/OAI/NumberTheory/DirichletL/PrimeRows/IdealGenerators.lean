@@ -59,6 +59,9 @@ open scoped BigOperators Classical
 
 namespace ConcretePrimeRowBridge
 
+/--
+@isnad1 id=ne.1h1v.s7.5c006ea6e6ee from=translated src=- shape=55591f13 vocab=152ae18b
+-/
 theorem idealGenerator_ne_zero (J : Ideal O) (hJ : J ≠ ⊥) :
     idealGenerator J ≠ 0 := by
   intro h
@@ -66,6 +69,9 @@ theorem idealGenerator_ne_zero (J : Ideal O) (hJ : J ≠ ⊥) :
   rw [← span_idealGenerator J, h]
   simp
 
+/--
+@isnad1 id=eq.1h2v.s8.4478f7413061 from=translated src=- shape=9835b17f vocab=293dbb58
+-/
 theorem tsum_ideal_eq_tsum_generator (J : Ideal O) (hJ : J ≠ ⊥)
     (f : O → ℂ) :
     (∑' u : O, if u ∈ J then f u else 0) =
@@ -96,6 +102,9 @@ end ConcretePrimeRowBridge
 
 namespace ActualEisensteinCubic
 
+/--
+@isnad1 id=eq.1h4v.s8.313d719f96e3 from=translated src=- shape=9cd510aa vocab=c0c5cd46
+-/
 theorem tsum_rowCoprimeMask_subsets
     {ι : Type*} [DecidableEq ι] (P : ι → Ideal O) (S : Finset ι)
     (f : O → ℂ) (hf : Summable f) :
@@ -124,6 +133,9 @@ noncomputable def primeSubsetGenerator {ι : Type*}
     (P : ι → Ideal O) (E : Finset ι) : O :=
   ConcretePrimeRowBridge.idealGenerator (∏ i ∈ E, P i)
 
+/--
+@isnad1 id=ne.0h3v.s6.74456ced5a7b from=translated src=- shape=d39faf73 vocab=9e8eac6d
+-/
 theorem primeSubsetGenerator_ne_zero {ι : Type*}
     (P : ι → Ideal O) [∀ i, (P i).IsMaximal] (E : Finset ι) :
     primeSubsetGenerator P E ≠ 0 := by
@@ -131,6 +143,9 @@ theorem primeSubsetGenerator_ne_zero {ι : Type*}
   change (∏ i ∈ E, P i) ≠ 0
   exact Finset.prod_ne_zero_iff.mpr (fun i _ => NeZero.ne (P i))
 
+/--
+@isnad1 id=eq.2h4v.s8.533802e3dc15 from=translated src=- shape=6b617839 vocab=65ffca5c
+-/
 theorem tsum_rowCoprimeMask_dilations
     {ι : Type*} [DecidableEq ι] (P : ι → Ideal O)
     [∀ i, (P i).IsMaximal] (hinj : Function.Injective P)
@@ -159,6 +174,9 @@ theorem tsum_rowCoprimeMask_dilations
 
 open ConcreteTraceCRT
 
+/--
+@isnad1 id=eq.3h6v.s9.b2eae51753b9 from=translated src=- shape=a2c25e63 vocab=8137ad1a
+-/
 theorem tsum_masked_radial_dilations
     {ι : Type*} [DecidableEq ι] (P : ι → Ideal O)
     [∀ i, (P i).IsMaximal] (hinj : Function.Injective P) (S : Finset ι)
@@ -191,6 +209,9 @@ theorem tsum_masked_radial_dilations
 
 open ConcreteTraceCRT EisensteinSchwartzPoisson
 
+/--
+@isnad1 id=lt.1h4v.s7.29d2985b28cc from=translated src=- shape=702297d4 vocab=f64d1c39
+-/
 theorem primeSubset_reducedScale_pos {α : Type*}
     (P : α → Ideal O) [∀ i, (P i).IsMaximal] (E : Finset α)
     {scale : ℝ} (hscale : 0 < scale) :
@@ -198,6 +219,9 @@ theorem primeSubset_reducedScale_pos {α : Type*}
   exact div_pos hscale (sq_pos_of_pos (norm_pos_iff.mpr
     (eisEmbedding_ne_zero (primeSubsetGenerator_ne_zero P E))))
 
+/--
+@isnad1 id=eq.4h8v.s9.aa02f7113edc from=translated src=- shape=2cab4c75 vocab=ffe9fb0c
+-/
 theorem canonical_masked_radial_dilations
     {α ι : Type*} [DecidableEq α] [Fintype ι]
     (P : α → Ideal O) [∀ i, (P i).IsMaximal]
@@ -218,6 +242,9 @@ theorem canonical_masked_radial_dilations
     (finiteSexticRow_mul Q hgood j) W scale
     (finiteSexticRow_radial_summable Q hcop hgood j W scale hscale)
 
+/--
+@isnad1 id=other.7h8v.s10.c5ea20f22a3e from=translated src=- shape=06676ad2 vocab=5ab35710
+-/
 theorem canonical_masked_radial_poisson
     {α ι : Type*} [DecidableEq α] [Fintype ι]
     (P : α → Ideal O) [∀ i, (P i).IsMaximal]
@@ -250,6 +277,9 @@ theorem canonical_masked_radial_poisson
     (primeSubset_reducedScale_pos P E hscale)]
   ring
 
+/--
+@isnad1 id=other.7h8v.s10.f4d2e37bbedc from=translated src=- shape=8d09dd0b vocab=5ab35710
+-/
 theorem canonical_masked_radial_poisson_collected
     {α ι : Type*} [DecidableEq α] [Fintype ι]
     (P : α → Ideal O) [∀ i, (P i).IsMaximal]
@@ -297,6 +327,9 @@ namespace GeneralPrimitiveTrace
 open Complex EisensteinEmbedding ConcreteTraceCRT
 open scoped ComplexConjugate
 
+/--
+@isnad1 id=ex.1h1v.s5.ebb5486b313c from=translated src=- shape=c204b08b vocab=34672c4d
+-/
 theorem complex_exp_trace_integer {t : ℂ}
     (ht : Complex.exp (2 * Real.pi * Complex.I * t) = 1) :
     ∃ n : ℤ, t = n := by
@@ -311,11 +344,17 @@ theorem complex_exp_trace_integer {t : ℂ}
       simpa only [mul_assoc] using hn
     _ = (2 * Real.pi * Complex.I : ℂ) * n := by ring
 
+/--
+@isnad1 id=ex.1h1v.s6.6f607e0b31d4 from=translated src=- shape=388951c1 vocab=470595e0
+-/
 theorem phase_integer {z : ℂ}
     (hz : ShortDraftTrace.breveE (z / eisLam) = 1) :
     ∃ n : ℤ, z / eisLam + conj (z / eisLam) = n :=
   complex_exp_trace_integer hz
 
+/--
+@isnad1 id=eq.0h0v.s5.fcb423d1d603 from=translated src=- shape=fb18cacd vocab=fdd7d3da
+-/
 theorem omega_conj : conj omega3 = omega3 ^ 2 := by
   have hs : omega3 ^ 2 = -omega3 - 1 := by
     linear_combination omega3_sq
@@ -325,6 +364,9 @@ theorem omega_conj : conj omega3 = omega3 ^ 2 := by
     Complex.conj_ofReal, Complex.conj_I, map_ofNat]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s7.4cf0cb45bf3e from=translated src=- shape=24d817c6 vocab=61fd99ba
+-/
 theorem reconstruction (z : ℂ) :
     z = (z / eisLam + conj (z / eisLam)) +
       (omega3 * z / eisLam + conj (omega3 * z / eisLam)) +
@@ -339,6 +381,9 @@ theorem reconstruction (z : ℂ) :
   field_simp
   linear_combination (conj z) * hquad
 
+/--
+@isnad1 id=mem.2h1v.s7.56082c94d680 from=translated src=- shape=8133a83d vocab=af177a22
+-/
 theorem in_coordinate_lattice_of_two_phases (z : ℂ)
     (hz : ShortDraftTrace.breveE (z / eisLam) = 1)
     (hwz : ShortDraftTrace.breveE (omega3 * z / eisLam) = 1) :
@@ -356,6 +401,9 @@ theorem in_coordinate_lattice_of_two_phases (z : ℂ)
       push_cast
       ring
 
+/--
+@isnad1 id=isprimit.1h1v.s6.44c974462d5c from=translated src=- shape=f2200adb vocab=9f9889a8
+-/
 theorem eisTraceModChar_breveE_primitive (c : ActualEisensteinCubic.O) (hc : c ≠ 0) :
     (eisTraceModChar ShortDraftTrace.breveE
       ConcreteBreveE.breveE_period_coordinates c hc).IsPrimitive := by
@@ -396,6 +444,9 @@ end GeneralPrimitiveTrace
 
 namespace IdealGaussCRT
 
+/--
+@isnad1 id=isprimit.1h6v.s7.9a41e6e734c2 from=translated src=- shape=f2a12775 vocab=e786ba9e
+-/
 theorem coordinateAddChar_isPrimitive {ι T : Type*} [Fintype ι]
     (R : ι → Type*) [CommRing T] [∀ i, CommRing (R i)]
     (e : T ≃+* ∀ i, R i) (ψ : AddChar T ℂ) (hψ : ψ.IsPrimitive) (i : ι) :
@@ -426,6 +477,9 @@ theorem coordinateAddChar_isPrimitive {ι T : Type*} [Fintype ι]
   rw [hprod]
   exact hx
 
+/--
+@isnad1 id=eq.2h6v.s9.721f1ac62b1c from=translated src=- shape=34170614 vocab=bd4b0bad
+-/
 theorem norm_gauss_finite_crt_sq {ι T : Type*} [Fintype ι]
     (R : ι → Type*) [CommRing T] [∀ i, Field (R i)]
     [Fintype T] [∀ i, Fintype (R i)]
@@ -451,6 +505,9 @@ end IdealGaussCRT
 namespace ActualEisensteinCubic
 open ConcreteTraceCRT EisensteinSchwartzPoisson
 
+/--
+@isnad1 id=le.1h4v.s7.91ae9da0430a from=translated src=- shape=fe8ffb14 vocab=33184863
+-/
 theorem finiteSquarefreeRow_norm_le_one
     {ι : Type*} (P : ι → Ideal O) [∀ i, (P i).IsMaximal]
     (hgood : ∀ i, lambda ∉ P i) (S : Finset ι) (u : O) :
@@ -467,6 +524,9 @@ theorem finiteSquarefreeRow_norm_le_one
       _ ≤ 1 := hmask
   nlinarith [norm_nonneg (finiteSquarefreeRow P hgood S u)]
 
+/--
+@isnad1 id=summable.2h6v.s8.18ffa4f387b6 from=translated src=- shape=2070d983 vocab=57728b8e
+-/
 theorem finiteSquarefreeRow_pair_radial_summable
     {ι : Type*} (P : ι → Ideal O) [∀ i, (P i).IsMaximal]
     (hgood : ∀ i, lambda ∉ P i) (S T : Finset ι)
@@ -503,6 +563,9 @@ private theorem norm_sq_finite_row_sum {β : Type*}
   intro m hm
   ring
 
+/--
+@isnad1 id=summable.2h8v.s8.2fa7fa9b0ed4 from=translated src=- shape=fadade61 vocab=17744704
+-/
 theorem finiteSquarefreeRow_smoothed_mean_square_summable
     {ι β : Type*} (P : ι → Ideal O) [∀ i, (P i).IsMaximal]
     (hgood : ∀ i, lambda ∉ P i)
@@ -524,6 +587,9 @@ theorem finiteSquarefreeRow_smoothed_mean_square_summable
   intro m hm
   ring
 
+/--
+@isnad1 id=eq.2h8v.s9.625a2973e67f from=translated src=- shape=83539892 vocab=341c1fce
+-/
 theorem finiteSquarefreeRow_smoothed_mean_square_expand
     {ι β : Type*} (P : ι → Ideal O) [∀ i, (P i).IsMaximal]
     (hgood : ∀ i, lambda ∉ P i)

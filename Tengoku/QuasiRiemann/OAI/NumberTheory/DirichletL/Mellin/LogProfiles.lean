@@ -12,6 +12,9 @@ open scoped Topology
 
 namespace ShortDraftMellin
 
+/--
+@isnad1 id=continuo.0h2v.s5.5398a56a3185 from=translated src=- shape=661e8420 vocab=37eb5d9f
+-/
 theorem mobiusExpSum_continuousOn_pos
     {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) :
     ContinuousOn (mobiusExpSum χ) (Set.Ioi (0 : ℝ)) := by
@@ -64,6 +67,9 @@ theorem mobiusExpSum_continuousOn_pos
     exact continuousOn_tsum hcontTerm hexp hbound
   exact (hcontHalf.continuousAt (Ici_mem_nhds hδt)).continuousWithinAt
 
+/--
+@isnad1 id=continuo.0h2v.s5.471d98b6c8ba from=translated src=- shape=2c5ea37c vocab=b4518fc6
+-/
 theorem mobiusExpSum_inv_continuousOn_pos
     {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) :
     ContinuousOn (fun D : ℝ => mobiusExpSum χ D⁻¹) (Set.Ioi 0) := by
@@ -74,12 +80,18 @@ theorem mobiusExpSum_inv_continuousOn_pos
   intro D hD
   exact inv_pos.mpr (show 0 < D from hD)
 
+/--
+@isnad1 id=locallyi.0h2v.s6.bdcbd1dcc6ec from=translated src=- shape=f7b408d5 vocab=168fb69a
+-/
 theorem mobiusExpSum_inv_locallyIntegrableOn_pos
     {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) :
     LocallyIntegrableOn
       (fun D : ℝ => mobiusExpSum χ D⁻¹) (Set.Ioi 0) :=
   (mobiusExpSum_inv_continuousOn_pos χ).locallyIntegrableOn measurableSet_Ioi
 
+/--
+@isnad1 id=ne.5h4v.s7.50a5a001b490 from=translated src=- shape=63c5b056 vocab=a49c8d94
+-/
 theorem dirichlet_exp_zero_free_of_power_bound_only
     {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) (hχ : χ ≠ 1)
     (σ : ℝ) (hσpos : 0 < σ) (hσ : σ < 1)
@@ -90,6 +102,9 @@ theorem dirichlet_exp_zero_free_of_power_bound_only
     (mobiusExpSum_inv_locallyIntegrableOn_pos χ) htop
     (mobiusExpSum_flat_at_zero χ) ρ hρ
 
+/--
+@isnad1 id=ne.5h3v.s7.f97a3715aa08 from=translated src=- shape=54f88eb3 vocab=a49c8d94
+-/
 theorem principal_dirichlet_exp_zero_free_of_power_bound_only
     (q : ℕ) [NeZero q]
     (σ : ℝ) (hσpos : 0 < σ) (hσ : σ < 1)
@@ -150,6 +165,9 @@ def ExponentialMobiusPowerBound : Prop :=
       (fun D : ℝ => mobiusExpSum χ D⁻¹) =O[atTop]
         (fun D : ℝ => D ^ σ)
 
+/--
+@isnad1 id=dirichle.1h0v.s1.b589980417d6 from=translated src=- shape=1d48f1ac vocab=e7c7b3cf
+-/
 theorem dirichletTarget_of_exponentialMobiusPowerBound
     (hbound : ExponentialMobiusPowerBound) : ShortDraft.DirichletTarget := by
   intro q _ χ s h23 hprincipal
@@ -186,6 +204,9 @@ private theorem sum_chars_zero {a : R} (ha : a ≠ 1) :
   simp only [Finset.mul_sum, ← MulChar.mul_apply]
   exact Fintype.sum_bijective _ (Group.mulLeft_bijective χ) _ _ fun χ' => rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.e15e6ff8b7d6 from=translated src=- shape=75c8d0da vocab=5b5c9c4e
+-/
 theorem sum_chars (a : R) :
     (∑ χ : MulChar R ℂ, χ a) =
       if a = 1 then (Fintype.card Rˣ : ℂ) else 0 := by
@@ -198,6 +219,9 @@ theorem sum_chars (a : R) :
     exact_mod_cast hc
   · exact sum_chars_zero ha
 
+/--
+@isnad1 id=eq.0h3v.s7.424561068261 from=translated src=- shape=f97c4840 vocab=b70829dc
+-/
 theorem unit_char_orthogonal (u v : Rˣ) :
     (∑ χ : MulChar R ℂ, star (χ (u : R)) * χ (v : R)) =
       if u = v then (Fintype.card Rˣ : ℂ) else 0 := by
@@ -211,6 +235,9 @@ theorem unit_char_orthogonal (u v : Rˣ) :
       sum_chars _
     _ = _ := by simp only [Units.val_eq_one, inv_mul_eq_one]
 
+/--
+@isnad1 id=eq.0h2v.s8.48f63882aab3 from=translated src=- shape=f7a9dd87 vocab=c0f8dc94
+-/
 theorem complete_character_plancherel (a : Rˣ → ℂ) :
     (∑ χ : MulChar R ℂ, ‖∑ u : Rˣ, a u * χ (u : R)‖ ^ 2) =
       (Fintype.card Rˣ : ℝ) * ∑ u : Rˣ, ‖a u‖ ^ 2 := by
@@ -283,6 +310,9 @@ private theorem character_norm_le_one (χ : MulChar F ℂ) (u : F) : ‖χ u‖ 
         Complex.norm_eq_one_of_mem_rootsOfUnity (χ.apply_mem_rootsOfUnity v)
     exact h.le
 
+/--
+@isnad1 id=eq.2h3v.s7.3a890ad661db from=translated src=- shape=e8e34204 vocab=f396cc4b
+-/
 theorem primitive_gauss_norm_sq (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
     (hχ : χ ≠ 1) (hψ : ψ.IsPrimitive) :
     ‖gaussSum χ ψ‖ ^ 2 = (Fintype.card F : ℝ) := by
@@ -296,6 +326,9 @@ theorem primitive_gauss_norm_sq (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
   rw [hnorm]
   exact h
 
+/--
+@isnad1 id=eq.1h4v.s7.b5550348aaaa from=translated src=- shape=c10cf33a vocab=9480399c
+-/
 theorem gauss_shift_all (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
     (hχ : χ ≠ 1) (n : F) :
     gaussSum χ (ψ.mulShift n) = χ⁻¹ n * gaussSum χ ψ := by
@@ -308,6 +341,9 @@ theorem gauss_shift_all (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
     rw [← hu]
     exact gaussSum_mulShift_eq χ ψ u
 
+/--
+@isnad1 id=eq.1h4v.s8.902b8205559c from=translated src=- shape=873ff769 vocab=afbc3030
+-/
 theorem character_gauss_expansion (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
     (hχ : χ ≠ 1) (n : F) :
     χ n * gaussSum χ⁻¹ ψ =
@@ -317,6 +353,9 @@ theorem character_gauss_expansion (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
       simpa using (gauss_shift_all χ⁻¹ ψ (by simpa using hχ) n).symm
     _ = _ := by simp [gaussSum, AddChar.mulShift_apply, mul_comm]
 
+/--
+@isnad1 id=le.2h7v.s8.47ff599460aa from=translated src=- shape=b6cccd78 vocab=06525f04
+-/
 theorem character_sum_le_additive_energy {ι : Type*} (I : Finset ι)
     (n : ι → F) (a : ι → ℂ) (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
     (hχ : χ ≠ 1) (hψ : ψ.IsPrimitive) :
@@ -395,9 +434,15 @@ def addCharProd (ψ : AddChar R ℂ) (φ : AddChar S ℂ) : AddChar (R × S) ℂ
     simp only [Prod.fst_add, Prod.snd_add, AddChar.map_add_eq_mul]
     ring
 
+/--
+@isnad1 id=eq.0h5v.s7.6f332b740659 from=translated src=- shape=415df30f vocab=d4584cd2
+-/
 @[simp] theorem mulCharProd_apply (χ : MulChar R ℂ) (η : MulChar S ℂ) (x : R × S) :
     mulCharProd χ η x = χ x.1 * η x.2 := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.a73a789929df from=translated src=- shape=415df30f vocab=0934e9f5
+-/
 @[simp] theorem addCharProd_apply (ψ : AddChar R ℂ) (φ : AddChar S ℂ) (x : R × S) :
     addCharProd ψ φ x = ψ x.1 * φ x.2 := rfl
 
@@ -410,6 +455,9 @@ open scoped ContDiff
 
 namespace FourierBridge
 
+/--
+@isnad1 id=eq.0h2v.s8.91b3132a6955 from=translated src=- shape=75af62ea vocab=ba71f0d5
+-/
 theorem schwartz_log_inversion (g : 𝓢(ℝ, ℂ)) (y : ℝ) :
     g y = ∫ t : ℝ,
       Complex.exp ((↑(2 * Real.pi * inner ℝ t y) * Complex.I)) * (𝓕 g) t := by
@@ -434,6 +482,9 @@ noncomputable def logProfile
     exact hWc.mul_right
   exact hGc.toSchwartzMap hGs
 
+/--
+@isnad1 id=eq.3h5v.s7.80f7a7a0c8f0 from=translated src=- shape=aceb483f vocab=1c8b3ea6
+-/
 theorem logProfile_apply
     (W : ℝ → ℂ) (F : ℝ → ℂ) (R a y : ℝ)
     (hWc : HasCompactSupport W)
@@ -441,6 +492,9 @@ theorem logProfile_apply
     (hFs : ContDiff ℝ ∞ F) :
     logProfile W F R a hWc hWs hFs y = W y * F (R * Real.exp (a * y)) := rfl
 
+/--
+@isnad1 id=eq.3h5v.s8.b52745ed4b5d from=translated src=- shape=aeee63ab vocab=1d8971c2
+-/
 theorem smooth_log_separation
     (W : ℝ → ℂ) (F : ℝ → ℂ) (R a y : ℝ)
     (hWc : HasCompactSupport W)
@@ -452,6 +506,9 @@ theorem smooth_log_separation
   rw [← logProfile_apply W F R a y hWc hWs hFs]
   exact schwartz_log_inversion _ _
 
+/--
+@isnad1 id=le.0h2v.s10.e5f905c36706 from=translated src=- shape=0e417600 vocab=1d589252
+-/
 theorem fourier_coefficient_moment (g : 𝓢(ℝ, ℂ)) (J : ℕ) :
     ∫ t : ℝ, ‖t‖ ^ J * ‖(𝓕 g) t‖ ≤
       (2 ^ (volume : Measure ℝ).integrablePower *
@@ -460,6 +517,9 @@ theorem fourier_coefficient_moment (g : 𝓢(ℝ, ℂ)) (J : ℕ) :
         (SchwartzMap.seminorm ℝ (J + (volume : Measure ℝ).integrablePower) 0) (𝓕 g)) := by
   simpa using SchwartzMap.integral_pow_mul_iteratedFDeriv_le ℝ volume (𝓕 g) J 0
 
+/--
+@isnad1 id=integrab.3h5v.s8.515601f9877d from=translated src=- shape=a1a49c93 vocab=841cb6ac
+-/
 theorem logProfile_coefficient_integrable
     (W F : ℝ → ℂ) (R a : ℝ) (J : ℕ)
     (hWc : HasCompactSupport W)
@@ -469,6 +529,9 @@ theorem logProfile_coefficient_integrable
       ‖(𝓕 (logProfile W F R a hWc hWs hFs)) t‖) volume :=
   (𝓕 (logProfile W F R a hWc hWs hFs)).integrable_pow_mul volume J
 
+/--
+@isnad1 id=le.3h5v.s10.f03b9498de3b from=translated src=- shape=0c0f7af0 vocab=36cd77e4
+-/
 theorem logProfile_coefficient_moment
     (W F : ℝ → ℂ) (R a : ℝ) (J : ℕ)
     (hWc : HasCompactSupport W)
@@ -483,6 +546,9 @@ theorem logProfile_coefficient_moment
           (𝓕 (logProfile W F R a hWc hWs hFs))) :=
   fourier_coefficient_moment _ J
 
+/--
+@isnad1 id=le.8h9v.s8.5059a840f599 from=translated src=- shape=cce4ee36 vocab=d7476091
+-/
 theorem logProfile_pointwise_decay
     (W F : ℝ → ℂ) (R a m CW CF : ℝ) (A : ℕ)
     (hR : 0 ≤ R) (hm : 0 < m) (hm1 : m ≤ 1)
@@ -512,6 +578,9 @@ theorem logProfile_pointwise_decay
       mul_le_mul_of_nonneg_right (hWbound y) (by positivity)
     _ ≤ CW * CF := mul_le_mul_of_nonneg_left hbase hCW
 
+/--
+@isnad1 id=le.11h8v.s9.ff117013a5c1 from=translated src=- shape=702553f8 vocab=53522ce4
+-/
 theorem logProfile_zero_seminorm_decay
     (W F : ℝ → ℂ) (R a m CW CF : ℝ) (A : ℕ)
     (hR : 0 ≤ R) (hm : 0 < m) (hm1 : m ≤ 1)
@@ -544,6 +613,9 @@ theorem logProfile_zero_seminorm_decay
       mul_le_mul_of_nonneg_left hsemi hscale.le
     _ = CW * CF := by field_simp
 
+/--
+@isnad1 id=le.5h5v.s8.796ada829313 from=translated src=- shape=92801250 vocab=0934cd3d
+-/
 theorem exp_argument_derivative_bound
     (R a y H : ℝ) (i : ℕ)
     (hR : 0 ≤ R) (hH : 1 ≤ H)
@@ -567,6 +639,9 @@ theorem exp_argument_derivative_bound
     _ ≤ (1 + R) ^ i * (H ^ i * H ^ i) := by gcongr
     _ = (H ^ 2 * (1 + R)) ^ i := by simp only [mul_pow, pow_two]; ring
 
+/--
+@isnad1 id=le.8h9v.s9.f2c9646aa8f3 from=translated src=- shape=b3dae24d vocab=47d23823
+-/
 theorem coupled_factor_derivative_bound
     (F : ℝ → ℂ) (R a y H CF : ℝ) (A n j : ℕ)
     (hF : ContDiff ℝ ∞ F)
@@ -589,6 +664,9 @@ theorem coupled_factor_derivative_bound
   · intro i hi₁ hi₂
     exact exp_argument_derivative_bound R a y H i hR hH ha hexp hi₁
 
+/--
+@isnad1 id=le.7h8v.s8.4af4a3f94034 from=translated src=- shape=050d33c7 vocab=a77ee42f
+-/
 theorem derivative_scale_absorption
     (R u m H CF : ℝ) (A n j : ℕ)
     (hR : 0 ≤ R) (hm : 0 < m)
@@ -625,6 +703,9 @@ theorem derivative_scale_absorption
     _ ≤ Q := (div_le_iff₀ hden).mpr (by simpa [mul_comm, mul_left_comm, mul_assoc] using hQscale)
     _ = (j.factorial : ℝ) * CF * (H ^ 2) ^ j := rfl
 
+/--
+@isnad1 id=le.11h10v.s9.8c168597d38a from=translated src=- shape=eb6d3a72 vocab=14ecdb9a
+-/
 theorem coupled_factor_uniform_derivative
     (F : ℝ → ℂ) (R a y m H CF : ℝ) (A n j : ℕ)
     (hF : ContDiff ℝ ∞ F)
@@ -647,6 +728,9 @@ theorem coupled_factor_uniform_derivative
     (derivative_scale_absorption R (R * Real.exp (a * y)) m H CF A n j
       hR hm (by linarith) hCF (by positivity) hlower hj)
 
+/--
+@isnad1 id=le.12h11v.s10.c8facfd18599 from=translated src=- shape=cf8a4242 vocab=9e474641
+-/
 theorem logProfile_derivative_decay
     (W F : ℝ → ℂ) (R a m H CW CF : ℝ) (A n : ℕ)
     (hWs : ContDiff ℝ ∞ W) (hFs : ContDiff ℝ ∞ F)
@@ -705,6 +789,9 @@ theorem logProfile_derivative_decay
       have hWbound := hWderiv i hi' y
       gcongr
 
+/--
+@isnad1 id=le.14h12v.s10.653545be3049 from=translated src=- shape=6669b028 vocab=62a0bc80
+-/
 theorem logProfile_uniform_seminorm
     (W F : ℝ → ℂ) (R a m H L CW CF : ℝ) (A n k : ℕ)
     (hWc : HasCompactSupport W)
@@ -788,6 +875,9 @@ theorem logProfile_uniform_seminorm
       mul_le_mul_of_nonneg_left hsemi hscale.le
     _ = L ^ k * C := by field_simp
 
+/--
+@isnad1 id=le.0h2v.s9.604386355340 from=translated src=- shape=36f5c528 vocab=1a5fc1c0
+-/
 theorem fourier_seminorm_from_derivative_integrals
     (g : 𝓢(ℝ, ℂ)) (k : ℕ) :
     (SchwartzMap.seminorm ℝ k 0) (𝓕 g) ≤
@@ -809,6 +899,9 @@ theorem fourier_seminorm_from_derivative_integrals
   intro w
   simpa using hpoint' w
 
+/--
+@isnad1 id=le.3h4v.s10.f26b2b3ea395 from=translated src=- shape=06903b3f vocab=1d589252
+-/
 theorem uniform_fourier_seminorm_transfer
     (g : 𝓢(ℝ, ℂ)) (k : ℕ) (S C : ℝ)
     (hS : 0 ≤ S) (_hC : 0 ≤ C)
@@ -868,6 +961,9 @@ theorem uniform_fourier_seminorm_transfer
         (2 ^ (volume : Measure ℝ).integrablePower *
           ∫ t : ℝ, (1 + ‖t‖) ^ (-(volume : Measure ℝ).integrablePower : ℝ)) * C := rfl
 
+/--
+@isnad1 id=le.3h4v.s10.e7f1a4ce9f45 from=translated src=- shape=31b1759f vocab=1d589252
+-/
 theorem uniform_fourier_coefficient_moment
     (g : 𝓢(ℝ, ℂ)) (J : ℕ) (S C : ℝ)
     (hS : 0 ≤ S) (hC : 0 ≤ C)
@@ -912,6 +1008,9 @@ noncomputable def profileDerivativeConstant (n : ℕ) (H CW CF : ℝ) : ℝ :=
     (n.choose i : ℝ) * CW *
       ((n - i).factorial * CF * (H ^ 2) ^ (n - i))
 
+/--
+@isnad1 id=le.2h4v.s5.bed265859406 from=translated src=- shape=0d609fd4 vocab=10333fd8
+-/
 theorem profileDerivativeConstant_nonneg (n : ℕ) (H CW CF : ℝ)
     (hCW : 0 ≤ CW) (hCF : 0 ≤ CF) :
     0 ≤ profileDerivativeConstant n H CW CF := by
@@ -925,6 +1024,9 @@ noncomputable def profileMomentConstant (K : ℕ) (L H CW CF : ℝ) : ℝ :=
     (1 + L ^ (volume : Measure ℝ).integrablePower) *
       profileDerivativeConstant j H CW CF
 
+/--
+@isnad1 id=le.3h5v.s5.f6798c2505eb from=translated src=- shape=732f25ff vocab=19498e1e
+-/
 theorem profileMomentConstant_nonneg (K : ℕ) (L H CW CF : ℝ)
     (hL : 0 ≤ L) (hCW : 0 ≤ CW) (hCF : 0 ≤ CF) :
     0 ≤ profileMomentConstant K L H CW CF := by
@@ -934,6 +1036,9 @@ theorem profileMomentConstant_nonneg (K : ℕ) (L H CW CF : ℝ)
   exact mul_nonneg (by positivity)
     (profileDerivativeConstant_nonneg j H CW CF hCW hCF)
 
+/--
+@isnad1 id=le.4h6v.s6.59f19ce21d24 from=translated src=- shape=379d0437 vocab=3ae78c01
+-/
 theorem profileMomentConstant_dominates (K j : ℕ) (L H CW CF : ℝ)
     (hL : 0 ≤ L) (hCW : 0 ≤ CW) (hCF : 0 ≤ CF) (hj : j ≤ K) :
     (1 + L ^ (volume : Measure ℝ).integrablePower) *
@@ -950,6 +1055,9 @@ theorem profileMomentConstant_dominates (K j : ℕ) (L H CW CF : ℝ)
       (profileDerivativeConstant_nonneg i H CW CF hCW hCF)
   · exact Finset.mem_range.mpr (Nat.lt_succ_iff.mpr hj)
 
+/--
+@isnad1 id=le.16h13v.s10.d62bd709556b from=translated src=- shape=750ec759 vocab=59120862
+-/
 theorem uniform_logProfile_source_pair
     (W F : ℝ → ℂ) (R a m H L CW CF C : ℝ) (A K n : ℕ)
     (hWc : HasCompactSupport W)
@@ -1029,6 +1137,9 @@ theorem uniform_logProfile_source_pair
     _ = (1 + L ^ p) * D := by ring
     _ ≤ C := by simpa [D, p] using hCbound n hn
 
+/--
+@isnad1 id=le.16h12v.s10.4834afdfdeca from=translated src=- shape=e3c171f4 vocab=eebeb1af
+-/
 theorem uniform_logProfile_coefficient_moment
     (W F : ℝ → ℂ) (R a m H L CW CF C : ℝ) (A J : ℕ)
     (hWc : HasCompactSupport W)
@@ -1069,6 +1180,9 @@ theorem uniform_logProfile_coefficient_moment
     hWc hWs hFs hR hm hm1 hH ha hL hCW hCF hi
     hWderiv hwindow hFdecay hCbound
 
+/--
+@isnad1 id=le.14h11v.s10.960d0dfe71ed from=translated src=- shape=23fa72b9 vocab=1f108c11
+-/
 theorem uniform_logProfile_coefficient_moment_explicit
     (W F : ℝ → ℂ) (R a m H L CW CF : ℝ) (A J : ℕ)
     (hWc : HasCompactSupport W)
@@ -1117,11 +1231,17 @@ noncomputable def coefficientMomentBound (J : ℕ) (C : ℝ) : ℝ :=
   let V : ℝ := 2 ^ p * ∫ t : ℝ, (1 + ‖t‖) ^ (-(p : ℝ))
   V * (V * C + (2 : ℝ) ^ (J + p) * (J + p + 1) * V * C)
 
+/--
+@isnad1 id=le.1h2v.s4.4e3e4eed72b1 from=translated src=- shape=696abc3b vocab=c2e0ac32
+-/
 theorem coefficientMomentBound_nonneg (J : ℕ) (C : ℝ) (hC : 0 ≤ C) :
     0 ≤ coefficientMomentBound J C := by
   unfold coefficientMomentBound
   positivity
 
+/--
+@isnad1 id=le.3h4v.s10.fe7fd2ea8433 from=translated src=- shape=4deca0ee vocab=fba7a4c8
+-/
 theorem uniform_fourier_one_plus_moment
     (g : 𝓢(ℝ, ℂ)) (J : ℕ) (S C : ℝ)
     (hS : 0 ≤ S) (hC : 0 ≤ C)
@@ -1190,14 +1310,23 @@ theorem uniform_fourier_one_plus_moment
 noncomputable def logPhase (t y : ℝ) : ℂ :=
   Complex.exp (((2 * Real.pi * t * y : ℝ) : ℂ) * Complex.I)
 
+/--
+@isnad1 id=eq.0h3v.s5.723752574d83 from=translated src=- shape=50a03441 vocab=24221c6d
+-/
 theorem logPhase_add (t u v : ℝ) :
     logPhase t (u + v) = logPhase t u * logPhase t v := by
   unfold logPhase
   convert Complex.exp_add _ _ using 1 ; push_cast ; ring_nf
 
+/--
+@isnad1 id=eq.0h1v.s4.937b3add7f5d from=translated src=- shape=8fc7241c vocab=3c411d18
+-/
 theorem logPhase_zero (t : ℝ) : logPhase t 0 = 1 := by
   simp [logPhase]
 
+/--
+@isnad1 id=eq.0h4v.s5.fe9d08513b34 from=translated src=- shape=1eed4575 vocab=eb77b084
+-/
 theorem logPhase_sum {ι : Type*} [DecidableEq ι]
     (s : Finset ι) (t : ℝ) (z : ι → ℝ) :
     logPhase t (∑ i ∈ s, z i) = ∏ i ∈ s, logPhase t (z i) := by
@@ -1206,6 +1335,9 @@ theorem logPhase_sum {ι : Type*} [DecidableEq ι]
   | empty => simp [logPhase_zero]
   | @insert i s hi ih => simp [hi, logPhase_add, ih]
 
+/--
+@isnad1 id=eq.3h6v.s7.f930276d4338 from=translated src=- shape=03aa1773 vocab=8e35ce3a
+-/
 theorem coupled_cutoff_active
     {ι : Type*} [Fintype ι]
     (W : ι → ℝ → ℂ) (V : ℝ → ℂ) (a y M : ι → ℝ)
@@ -1234,12 +1366,18 @@ noncomputable def schwartzDerivativeDecayConstant
       ((SchwartzMap.seminorm ℝ 0 i) F +
         (SchwartzMap.seminorm ℝ M i) F)
 
+/--
+@isnad1 id=le.0h3v.s5.a4f4607abd56 from=translated src=- shape=40bbfcd3 vocab=d1cb2c36
+-/
 theorem schwartzDerivativeDecayConstant_nonneg
     (F : 𝓢(ℝ, ℂ)) (M K : ℕ) :
     0 ≤ schwartzDerivativeDecayConstant F M K := by
   unfold schwartzDerivativeDecayConstant
   positivity
 
+/--
+@isnad1 id=le.3h6v.s8.e3d0b5bb3410 from=translated src=- shape=89664621 vocab=8aa81dd7
+-/
 theorem schwartz_derivative_decay_finite
     (F : 𝓢(ℝ, ℂ)) (A K j i : ℕ) (u : ℝ)
     (hj : j ≤ K) (hi : i ≤ j) (hu : 0 ≤ u) :
@@ -1296,6 +1434,9 @@ theorem schwartz_derivative_decay_finite
       mul_le_mul_of_nonneg_left hTsum (by positivity)
     _ = schwartzDerivativeDecayConstant F (A + K) K := rfl
 
+/--
+@isnad1 id=eq.4h7v.s8.48665c1d05b4 from=translated src=- shape=1ff34c0b vocab=aa7d3efd
+-/
 theorem coupled_log_separation
     {ι : Type*} [Fintype ι]
     (W : ι → ℝ → ℂ) (F V : ℝ → ℂ) (R : ℝ)
@@ -1352,6 +1493,9 @@ theorem coupled_log_separation
       simp only [P]
       ring
 
+/--
+@isnad1 id=le.13h10v.s10.dc65f01d2d6d from=translated src=- shape=9fa53c5e vocab=c06254ee
+-/
 theorem coupled_log_coefficient_bound
     (V F : ℝ → ℂ) (R m H L CW CF : ℝ) (A J : ℕ)
     (hVc : HasCompactSupport V)

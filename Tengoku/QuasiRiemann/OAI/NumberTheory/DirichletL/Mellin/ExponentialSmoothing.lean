@@ -13,6 +13,9 @@ namespace AnalyticBridge
 
 variable {Ω : Type*}
 
+/--
+@isnad1 id=le.0h5v.s7.14ac137414dc from=translated src=- shape=0d572c0e vocab=db9753b4
+-/
 theorem weighted_cauchy_sq
     (S : Finset Ω) (w U V : Ω → ℂ) :
     ‖∑ ω ∈ S, w ω * U ω * star (V ω)‖ ^ 2 ≤
@@ -39,6 +42,9 @@ theorem weighted_cauchy_sq
     (convert le_refl ((‖w ω‖ * ‖U ω‖ * ‖V ω‖) ^ 2) using 1 ; ring)
   exact (sq_le_sq₀ (norm_nonneg _) hnonneg).2 htri |>.trans hsq
 
+/--
+@isnad1 id=le.2h8v.s7.cd486cdb7737 from=translated src=- shape=84bc1adb vocab=d6de38ef
+-/
 theorem fiber_mass_bound {Λ : Type*} [DecidableEq Λ]
     (S : Finset Ω) (T : Finset Λ) (label : Ω → Λ)
     (weight : Ω → ℝ) (A : Λ → ℂ) (M : ℝ)
@@ -65,6 +71,9 @@ theorem fiber_mass_bound {Λ : Type*} [DecidableEq Λ]
       exact mul_le_mul_of_nonneg_right (hfiber a ha) (sq_nonneg _)
     _ = M * (∑ a ∈ T, ‖A a‖ ^ 2) := by rw [Finset.mul_sum]
 
+/--
+@isnad1 id=le.5h13v.s8.bd81c0fb2f8b from=translated src=- shape=e443db04 vocab=06c795c4
+-/
 theorem reassembled_bilinear_bound
     {Λ₁ Λ₂ : Type*} [DecidableEq Λ₁] [DecidableEq Λ₂]
     (S : Finset Ω) (T₁ : Finset Λ₁) (T₂ : Finset Λ₂)
@@ -99,6 +108,9 @@ theorem reassembled_bilinear_bound
       have hupp₁ : 0 ≤ M₁ * ∑ a ∈ T₁, ‖A a‖ ^ 2 := by positivity
       exact mul_le_mul hside₁ hside₂ hlow₂ hupp₁
 
+/--
+@isnad1 id=le.2h3v.s6.a71dd72ca834 from=translated src=- shape=2e6e34bc vocab=2dcaba71
+-/
 theorem square_label_count (F : Finset ℕ) (y E : ℕ)
     (hy : y ≠ 0) (hF : ∀ f ∈ F, f ^ 2 * E ∣ y) :
     F.card ≤ y.divisors.card := by
@@ -110,6 +122,9 @@ theorem square_label_count (F : Finset ℕ) (y E : ℕ)
     simpa [pow_two, mul_assoc] using hF f hf
   · exact hy
 
+/--
+@isnad1 id=le.2h2v.s7.89638520d476 from=translated src=- shape=edd1a9d2 vocab=58df1add
+-/
 theorem four_factor_label_count (Q : Finset (ℕ × ℕ × ℕ × ℕ))
     (F : ℕ) (hF : F ≠ 0)
     (hQ : ∀ q ∈ Q, q.1 * q.2.1 * q.2.2.1 * q.2.2.2 = F) :
@@ -167,6 +182,9 @@ private def CRTChoice.coordinates (q : CRTChoice) :
   ((q.J, q.C, q.e, q.v), (q.s, q.J2, q.b1, q.b2),
     (q.A1, q.A2, q.d, q.kpp))
 
+/--
+@isnad1 id=le.7h5v.s7.07835a363a1c from=translated src=- shape=dde592d1 vocab=469900d1
+-/
 theorem b0_count_scale
     (b0 J2 s c B : ℝ)
     (hb0 : 0 ≤ b0) (hJ2 : 0 ≤ J2) (hs : 0 ≤ s)
@@ -193,6 +211,9 @@ private def finalExponent2 (π ε1 ε2 : Bool) : ZMod 6 :=
   let e := localExponent π ε1 ε2
   4 * bit6 ε2 + (if e = 0 then 0 else 1 - e) + bit6 π * (bit6 ε1 + bit6 ε2)
 
+/--
+@isnad1 id=and.0h3v.s8.10318ce6f134 from=translated src=- shape=20598f1b vocab=73a4f6d6
+-/
 theorem local_parity_table (π ε1 ε2 : Bool) :
     finalExponent1 π ε1 ε2 =
         (if π || (ε1 && ε2) then 4 else 0 : ZMod 6) ∧
@@ -200,12 +221,18 @@ theorem local_parity_table (π ε1 ε2 : Bool) :
         (if π || (ε1 && ε2) then 4 else 0 : ZMod 6) := by
   cases π <;> cases ε1 <;> cases ε2 <;> decide
 
+/--
+@isnad1 id=and.1h3v.s6.5b4953c5acae from=translated src=- shape=7688299f vocab=d9b3fca3
+-/
 theorem inactive_conductor_case (π ε1 ε2 : Bool)
     (h : localExponent π ε1 ε2 = 0) :
     π = false ∧ ε1 = ε2 := by
   revert h
   cases π <;> cases ε1 <;> cases ε2 <;> decide
 
+/--
+@isnad1 id=squarefr.8h5v.s6.8424cceaea08 from=translated src=- shape=92bded58 vocab=ecc0d115
+-/
 theorem new_label_squarefree
     (J C g e v : ℕ)
     (hJ : Squarefree J) (hC : Squarefree C)
@@ -236,6 +263,9 @@ open scoped Topology
 
 namespace ExpBound
 
+/--
+@isnad1 id=le.1h1v.s5.e68c730a549f from=translated src=- shape=3ed01409 vocab=ff3fd5be
+-/
 theorem exp_neg_le_half {t : ℝ} (ht : 1 ≤ t) :
     Real.exp (-t) ≤ (1 : ℝ) / 2 := by
   have he : (2 : ℝ) ≤ Real.exp 1 := by
@@ -246,6 +276,9 @@ theorem exp_neg_le_half {t : ℝ} (ht : 1 ≤ t) :
       (one_div_le_one_div_of_le (by norm_num : (0 : ℝ) < 2) he)
   exact (Real.exp_le_exp.mpr (by linarith)).trans hinv
 
+/--
+@isnad1 id=le.4h2v.s7.f041d81991a9 from=translated src=- shape=5bca4bbb vocab=62fa52b5
+-/
 theorem norm_tsum_exp_le_two
     (a : ℕ → ℂ) (ha0 : a 0 = 0)
     (ha : ∀ n, ‖a n‖ ≤ 1)
@@ -300,6 +333,9 @@ end ExpBound
 
 namespace ShortDraftMellin
 
+/--
+@isnad1 id=analytic.3h2v.s7.4317ef305c4f from=translated src=- shape=9d5f950e vocab=6506efc6
+-/
 theorem inverse_mellin_analytic
     (A : ℝ → ℂ) (σ : ℝ)
     (hlocal : LocallyIntegrableOn A (Set.Ioi 0))
@@ -319,6 +355,9 @@ theorem inverse_mellin_analytic
       (by simpa using neg_lt_neg hs) hbot (by linarith)
   exact (hdiff.comp s (differentiableAt_id.neg)).differentiableWithinAt
 
+/--
+@isnad1 id=ne.9h6v.s8.14f53566dff3 from=translated src=- shape=c5c2dbcf vocab=f14fca8c
+-/
 theorem dirichlet_zero_free_of_mellin_bound
     {N : ℕ} [NeZero N] (χ : DirichletCharacter ℂ N) (hχ : χ ≠ 1)
     (σ : ℝ) (hσ : σ < 1)
@@ -357,6 +396,9 @@ theorem dirichlet_zero_free_of_mellin_bound
   rw [hzeroL, zero_mul] at heqρ
   exact hWρ heqρ.symm
 
+/--
+@isnad1 id=eq.4h3v.s7.94e7d1630c22 from=translated src=- shape=f30e4c07 vocab=a88dcf31
+-/
 theorem mellin_of_exponential_smoothing
     (a : ℕ → ℂ) (F : ℝ → ℂ) (s : ℂ)
     (hs : 1 < s.re) (ha0 : a 0 = 0)
@@ -396,6 +438,9 @@ theorem mellin_of_exponential_smoothing
   have heq : mellin F s = Complex.Gamma s * LSeries a s := hM'.unique hseries
   simpa only [mellin_comp_inv, neg_neg] using heq
 
+/--
+@isnad1 id=eq.2h4v.s7.9e786d39dfd2 from=translated src=- shape=3a41c3d9 vocab=a3cf5c91
+-/
 theorem dirichlet_exponential_mellin_identity
     {N : ℕ} [NeZero N] (χ : DirichletCharacter ℂ N)
     (F : ℝ → ℂ)
@@ -423,6 +468,9 @@ theorem dirichlet_exponential_mellin_identity
         (LSeries (χ ·) s * LSeries a s) * Complex.Gamma s := by ring
     _ = Complex.Gamma s := by rw [hprod, one_mul]
 
+/--
+@isnad1 id=summable.1h3v.s7.265b83250653 from=translated src=- shape=e91fb94a vocab=50efa270
+-/
 theorem mobius_char_exp_summable
     {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q)
     (t : ℝ) (ht : 0 < t) :
@@ -455,6 +503,9 @@ noncomputable def mobiusExpSum {q : ℕ} [NeZero q]
   ∑' n : ℕ, χ n * (ArithmeticFunction.moebius n : ℂ) *
     Real.exp (-(n : ℝ) * t)
 
+/--
+@isnad1 id=le.1h3v.s6.91c1fc471248 from=translated src=- shape=773dd54e vocab=b55ec22d
+-/
 theorem mobiusExpSum_norm_le_two
     {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q)
     (t : ℝ) (ht : 1 ≤ t) :
@@ -474,6 +525,9 @@ theorem mobiusExpSum_norm_le_two
     (by simp) hcoeff t ht
     (mobius_char_exp_summable χ t (lt_of_lt_of_le zero_lt_one ht))
 
+/--
+@isnad1 id=isbigo.0h3v.s6.2cc7cf0a6eb6 from=translated src=- shape=bac14321 vocab=cb8560d6
+-/
 theorem mobiusExpSum_flat_at_zero
     {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) (b : ℝ) :
     (fun D : ℝ => mobiusExpSum χ D⁻¹) =O[𝓝[>] (0 : ℝ)]
@@ -497,6 +551,9 @@ theorem mobiusExpSum_flat_at_zero
   rw [← Real.rpow_neg_eq_inv_rpow]
   simp
 
+/--
+@isnad1 id=eq.1h3v.s6.35fb2e852a5b from=translated src=- shape=b3af5c91 vocab=7d07f24a
+-/
 theorem dirichlet_exp_mellin_identity
     {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q)
     (s : ℂ) (hs : 1 < s.re) :
@@ -508,6 +565,9 @@ theorem dirichlet_exp_mellin_identity
     exact (mobius_char_exp_summable χ t ht).hasSum
   · exact hs
 
+/--
+@isnad1 id=analytic.3h2v.s7.c1225bf29584 from=translated src=- shape=8cb26b46 vocab=445327d9
+-/
 theorem inverse_mellin_analytic_of_flat
     (A : ℝ → ℂ) (σ : ℝ)
     (hlocal : LocallyIntegrableOn A (Set.Ioi 0))
@@ -526,6 +586,9 @@ theorem inverse_mellin_analytic_of_flat
       (by simpa using neg_lt_neg hs) hbot (by linarith)
   exact (hdiff.comp s (differentiableAt_id.neg)).differentiableWithinAt
 
+/--
+@isnad1 id=ne.7h4v.s8.6977beeeadc3 from=translated src=- shape=d3843907 vocab=78b2d5d6
+-/
 theorem dirichlet_exp_zero_free_of_power_bound
     {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) (hχ : χ ≠ 1)
     (σ : ℝ) (hσpos : 0 < σ) (hσ : σ < 1)

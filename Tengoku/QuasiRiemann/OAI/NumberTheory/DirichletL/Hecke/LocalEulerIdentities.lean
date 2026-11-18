@@ -36,6 +36,9 @@ open scoped Topology
 
 namespace ShortDraftHeckeBridge
 
+/--
+@isnad1 id=eq.1h1v.s7.8807c960bd97 from=translated src=- shape=7a1a9476 vocab=85a6e7e2
+-/
 theorem chiMinusThree_mod_one (n : ℕ) (h : n % 3 = 1) :
     chiMinusThree n = 1 := by
   have hc : (n : ZMod 3) = 1 := by
@@ -46,6 +49,9 @@ theorem chiMinusThree_mod_one (n : ℕ) (h : n % 3 = 1) :
   rw [hc]
   simp
 
+/--
+@isnad1 id=eq.1h1v.s7.f68c30c83f79 from=translated src=- shape=df8754a4 vocab=3ada5054
+-/
 theorem chiMinusThree_mod_two (n : ℕ) (h : n % 3 = 2) :
     chiMinusThree n = -1 := by
   have hc : (n : ZMod 3) = 2 := by
@@ -57,6 +63,9 @@ theorem chiMinusThree_mod_two (n : ℕ) (h : n % 3 = 2) :
   change chiMinusThree (2 : ℕ) = -1
   exact chiMinusThree_two
 
+/--
+@isnad1 id=eq.1h1v.s7.5cb8a5a740d8 from=translated src=- shape=7a1a9476 vocab=85a6e7e2
+-/
 theorem chiMinusThree_mod_zero (n : ℕ) (h : n % 3 = 0) :
     chiMinusThree n = 0 := by
   have hc : (n : ZMod 3) = 0 := by
@@ -74,6 +83,9 @@ private theorem invCharAF_prime_pow_ge_two {q : ℕ}
     ArithmeticFunction.moebius_apply_prime_pow hp (by omega)]
   simp [show j ≠ 1 by omega]
 
+/--
+@isnad1 id=eq.2h6v.s6.76124b22c426 from=translated src=- shape=3fd8a3de vocab=ac2c6b28
+-/
 theorem pairAF_prime_pow_ge_three {q r : ℕ}
     (χ : DirichletCharacter ℂ q) (ψ : DirichletCharacter ℂ r)
     {p k : ℕ} (hp : p.Prime) (hk : 3 ≤ k) :
@@ -105,6 +117,9 @@ private theorem base_ring_rank_two : Module.finrank ℤ O = 2 := by
     IsCyclotomicExtension.Rat.finrank 3 ActualEisensteinSieve.K]
   decide
 
+/--
+@isnad1 id=eq.3h5v.s8.f23b455fc0a3 from=translated src=- shape=09dd9b73 vocab=67fb9d0f
+-/
 theorem baseChangeWeight_zero_of_norm_prime_pow_ge_three {q p k : ℕ}
     (χ : DirichletCharacter ℂ q) (hp : p.Prime) (hk : 3 ≤ k)
     (I : Ideal O) (hI : Ideal.absNorm I = p ^ k) :
@@ -128,6 +143,9 @@ theorem baseChangeWeight_zero_of_norm_prime_pow_ge_three {q p k : ℕ}
   have hk2 : k ≤ 2 := (Nat.pow_dvd_pow_iff_le_right hp.one_lt).mp hnormdiv
   omega
 
+/--
+@isnad1 id=eq.2h4v.s5.d226c8df07e5 from=translated src=- shape=ca051c89 vocab=aafe1bcb
+-/
 theorem normFiberCoeff_baseChangeWeight_prime_pow_ge_three {q p k : ℕ}
     (χ : DirichletCharacter ℂ q) (hp : p.Prime) (hk : 3 ≤ k) :
     normFiberCoeff (baseChangeWeight χ) (p ^ k) = 0 := by
@@ -138,6 +156,9 @@ theorem normFiberCoeff_baseChangeWeight_prime_pow_ge_three {q p k : ℕ}
   have hnorm : Ideal.absNorm I = p ^ k := by simpa using hI
   exact baseChangeWeight_zero_of_norm_prime_pow_ge_three χ hp hk I hnorm
 
+/--
+@isnad1 id=eq.2h4v.s6.205700271548 from=translated src=- shape=f14a5a9c vocab=fb04a271
+-/
 theorem normFiberCoeff_eq_pairAF_prime_pow_ge_three {q p k : ℕ}
     (χ : DirichletCharacter ℂ q) (hp : p.Prime) (hk : 3 ≤ k) :
     normFiberCoeff (baseChangeWeight χ) (p ^ k) =
@@ -145,6 +166,9 @@ theorem normFiberCoeff_eq_pairAF_prime_pow_ge_three {q p k : ℕ}
   rw [normFiberCoeff_baseChangeWeight_prime_pow_ge_three χ hp hk,
     pairAF_prime_pow_ge_three χ (baseChangeChar χ) hp hk]
 
+/--
+@isnad1 id=eq.2h3v.s6.afdbd5d5f487 from=translated src=- shape=e9cd1375 vocab=843ecb11
+-/
 theorem char_prime_zero_of_dvd_level {q p : ℕ}
     (χ : DirichletCharacter ℂ q) (hp : p.Prime) (hd : p ∣ q) :
     χ p = 0 := by
@@ -155,6 +179,9 @@ theorem char_prime_zero_of_dvd_level {q p : ℕ}
     exact (hp.coprime_iff_not_dvd.mp hn) hd
   simpa using (DirichletCharacter.apply_eq_zero_iff χ (p : ℤ)).mpr hnot
 
+/--
+@isnad1 id=eq.2h3v.s7.b0f0da995ac8 from=translated src=- shape=d788e6a5 vocab=791a8bd7
+-/
 theorem baseChangeChar_prime_zero_of_dvd_q {q p : ℕ}
     (χ : DirichletCharacter ℂ q) (hp : p.Prime) (hd : p ∣ q) :
     baseChangeChar χ p = 0 := by
@@ -205,6 +232,9 @@ private theorem ring_rank_two : Module.finrank ℤ O = 2 := by
     IsCyclotomicExtension.Rat.finrank 3 K]
   decide
 
+/--
+@isnad1 id=eq.2h3v.s9.f494f2762f47 from=translated src=- shape=ed2417a9 vocab=f2dda7a6
+-/
 theorem ideal_eq_factors (I : Ideal O) (m n : ℕ)
     (hcop : m.Coprime n) (hI : Ideal.absNorm I = m * n) :
     I = (I ⊔ Ideal.span {(m : O)}) * (I ⊔ Ideal.span {(n : O)}) := by
@@ -233,6 +263,9 @@ theorem ideal_eq_factors (I : Ideal O) (m n : ℕ)
     exact sup_le (sup_le Ideal.mul_le_left Ideal.mul_le_left)
       (sup_le Ideal.mul_le_right hABle)
 
+/--
+@isnad1 id=and.2h3v.s10.ce10d3ed9eb9 from=translated src=- shape=33123a09 vocab=f2dda7a6
+-/
 theorem ideal_factor_norms (I : Ideal O) (m n : ℕ)
     (hcop : m.Coprime n) (hI : Ideal.absNorm I = m * n) :
     Ideal.absNorm (I ⊔ Ideal.span {(m : O)}) = m ∧
@@ -295,6 +328,9 @@ private theorem ideal_sup_span_norm_right (I J : Ideal O) (m n : ℕ)
   simpa only [mul_comm] using
     ideal_sup_span_norm_left J I n m hcop.symm hJ hI
 
+/--
+@isnad1 id=eq.2h3v.s10.d740637ab6c8 from=translated src=- shape=e86e6e85 vocab=c8a4dd1c
+-/
 theorem weighted_norm_fiber_mul (weight : Ideal O → ℂ)
     (hweight : ∀ I J : Ideal O,
       (Ideal.absNorm I).Coprime (Ideal.absNorm J) →
@@ -356,6 +392,9 @@ end NormFiberMult
 
 namespace ShortDraftHeckeBridge
 
+/--
+@isnad1 id=eq.1h4v.s5.19059e7b8cc3 from=translated src=- shape=856a4809 vocab=9323a0f2
+-/
 theorem baseChange_normFiber_mul {q : ℕ}
     (χ : DirichletCharacter ℂ q) (m n : ℕ) (hcop : m.Coprime n) :
     normFiberCoeff (baseChangeWeight χ) (m * n) =
@@ -364,6 +403,9 @@ theorem baseChange_normFiber_mul {q : ℕ}
   exact NormFiberMult.weighted_norm_fiber_mul (baseChangeWeight χ)
     (fun I J h => baseChangeWeight_mul_of_coprime_norms χ I J h) m n hcop
 
+/--
+@isnad1 id=eq.0h2v.s4.fa029ab3f3d5 from=translated src=- shape=9654c490 vocab=30ba62f2
+-/
 theorem normFiberCoeff_baseChangeWeight_one {q : ℕ}
     (χ : DirichletCharacter ℂ q) :
     normFiberCoeff (baseChangeWeight χ) 1 = 1 := by
@@ -375,6 +417,9 @@ theorem normFiberCoeff_baseChangeWeight_one {q : ℕ}
   rw [hsingle]
   simp [baseChangeWeight, ← Ideal.one_eq_top]
 
+/--
+@isnad1 id=ismultip.0h2v.s4.0f1127be9e6c from=translated src=- shape=de50bb6a vocab=588785e0
+-/
 theorem baseChange_normFiber_isMultiplicative {q : ℕ}
     (χ : DirichletCharacter ℂ q) :
     (toArithmeticFunction (normFiberCoeff (baseChangeWeight χ))).IsMultiplicative := by
@@ -388,6 +433,9 @@ theorem baseChange_normFiber_isMultiplicative {q : ℕ}
     simpa [toArithmeticFunction, hm, hn, mul_ne_zero hm hn] using
       baseChange_normFiber_mul χ m n hcop
 
+/--
+@isnad1 id=eq.1h3v.s8.e4e41d99e8e6 from=translated src=- shape=1ce7c4f3 vocab=dd5d0750
+-/
 theorem baseChangeChar_prime_apply {q p : ℕ}
     (χ : DirichletCharacter ℂ q) (hp : p.Prime) :
     baseChangeChar χ p = χ p * chiMinusThree p := by
@@ -410,6 +458,9 @@ theorem baseChangeChar_prime_apply {q p : ℕ}
   exact baseChangeChar_apply_of_coprime χ p
     (hp.coprime_iff_not_dvd.mpr hnot)
 
+/--
+@isnad1 id=eq.1h3v.s5.6adb56c7308b from=translated src=- shape=5694f46b vocab=4d875e29
+-/
 theorem normFiberCoeff_eq_pairAF_prime {q p : ℕ}
     (χ : DirichletCharacter ℂ q) (hp : p.Prime) :
     normFiberCoeff (baseChangeWeight χ) p =
@@ -434,6 +485,9 @@ theorem normFiberCoeff_eq_pairAF_prime {q p : ℕ}
       baseChangeChar_prime_apply χ hp, chiMinusThree_mod_two p h2]
     ring
 
+/--
+@isnad1 id=eq.1h3v.s6.c6c19eeffcbb from=translated src=- shape=17a0cb79 vocab=4951fe2b
+-/
 theorem normFiberCoeff_eq_pairAF_prime_sq {q p : ℕ}
     (χ : DirichletCharacter ℂ q) (hp : p.Prime) :
     normFiberCoeff (baseChangeWeight χ) (p ^ 2) =
@@ -463,6 +517,9 @@ theorem normFiberCoeff_eq_pairAF_prime_sq {q p : ℕ}
     simp only [map_pow]
     ring
 
+/--
+@isnad1 id=eq.3h3v.s7.82ef70ef09eb from=translated src=- shape=1981fb13 vocab=06b93456
+-/
 theorem normFiberCoeff_eq_pairInverseCoeff_of_local
     {q : ℕ} (χ : DirichletCharacter ℂ q)
     (hprime : ∀ p : ℕ, p.Prime →
@@ -490,6 +547,9 @@ theorem normFiberCoeff_eq_pairInverseCoeff_of_local
   rw [ite_eq_right (pow_ne_zero k hp.ne_zero)]
   exact normFiberCoeff_eq_pairAF_prime_pow_ge_three χ hp hk3
 
+/--
+@isnad1 id=eq.1h3v.s5.2943992abf45 from=translated src=- shape=19beeb5b vocab=aefcd76e
+-/
 theorem normFiberCoeff_baseChange_eq_pairInverseCoeff
     {q : ℕ} (χ : DirichletCharacter ℂ q)
     (n : ℕ) (hn : n ≠ 0) :
@@ -499,6 +559,9 @@ theorem normFiberCoeff_baseChange_eq_pairInverseCoeff
     (fun p hp => normFiberCoeff_eq_pairAF_prime χ hp)
     (fun p hp => normFiberCoeff_eq_pairAF_prime_sq χ hp) n hn
 
+/--
+@isnad1 id=dirichle.1h0v.s6.b430b2931dbc from=translated src=- shape=b944ebd0 vocab=76f0e7a1
+-/
 theorem dirichletTarget_of_normFiber_exp_bound
     (hbound : ∀ (q : ℕ) [NeZero q] (χ : DirichletCharacter ℂ q)
       (ρ : ℂ), (23 / 24 : ℝ) < ρ.re → ρ.re < 1 →
@@ -535,6 +598,9 @@ private theorem summable_add_one_mul_geometric {r : ℝ} (hr0 : 0 ≤ r) (hr1 : 
   simpa only [Nat.choose_one_right, Nat.cast_add, Nat.cast_one] using
     (summable_choose_mul_geometric_of_norm_lt_one (R := ℝ) 1 hr)
 
+/--
+@isnad1 id=le.6h3v.s7.8535e64d60c7 from=translated src=- shape=81ae0115 vocab=6ae52bc0
+-/
 theorem geometric_rpow_moment_bound
     (σ D r : ℝ) (hσ0 : 0 ≤ σ) (hσ1 : σ ≤ 1)
     (hD : 1 ≤ D) (hr0 : 0 ≤ r) (hr1 : r < 1)
@@ -596,6 +662,9 @@ theorem geometric_rpow_moment_bound
 noncomputable def prefixCoeff (a : ℕ → ℂ) (n : ℕ) : ℂ :=
   ∑ k ∈ Finset.range (n + 1), a k
 
+/--
+@isnad1 id=eq.3h2v.s7.3d926d5b8270 from=translated src=- shape=2ba4436d vocab=789ce119
+-/
 theorem tsum_eq_one_sub_mul_tsum_prefix
     (a : ℕ → ℂ) (r : ℝ) (hr0 : 0 ≤ r) (hr1 : r < 1)
     (hf : Summable (fun n : ℕ => a n * (r : ℂ) ^ n)) :
@@ -633,6 +702,9 @@ theorem tsum_eq_one_sub_mul_tsum_prefix
     _ = (1 - (r : ℂ)) * (∑' n : ℕ, prefixCoeff a n * (r : ℂ) ^ n) := by
       rw [hconvEq]
 
+/--
+@isnad1 id=le.1h1v.s6.72b9c853b3c9 from=translated src=- shape=c5e9d730 vocab=e3008c61
+-/
 theorem exp_inv_geometric_gap (D : ℝ) (hD : 1 ≤ D) :
     1 / (D * (1 - Real.exp (-D⁻¹))) ≤ 2 := by
   have hDpos : 0 < D := lt_of_lt_of_le zero_lt_one hD

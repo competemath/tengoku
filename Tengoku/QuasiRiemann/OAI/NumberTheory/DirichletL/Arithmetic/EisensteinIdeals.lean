@@ -36,6 +36,9 @@ private theorem lambda_prime : Prime lambda := by
   let : Fact (Nat.Prime 3) := ⟨Nat.prime_three⟩
   exact (IsCyclotomicExtension.zeta_spec 3 ℚ K).zeta_sub_one_prime'
 
+/--
+@isnad1 id=ismaxima.0h0v.s4.514a9a36e9c3 from=translated src=- shape=25b03439 vocab=39e1cd68
+-/
 theorem lambda_maximal : lambdaIdeal.IsMaximal := by
   have hp : lambdaIdeal.IsPrime :=
     Ideal.isPrime_span_singleton_of_prime lambda_prime
@@ -43,6 +46,9 @@ theorem lambda_maximal : lambdaIdeal.IsMaximal := by
     exact Ideal.span_singleton_eq_bot.not.mpr lambda_prime.ne_zero
   exact hp.isMaximal hne
 
+/--
+@isnad1 id=eq.0h0v.s5.9082f6889557 from=translated src=- shape=2221e9d0 vocab=302630ea
+-/
 theorem lambda_card : Nat.card (O ⧸ lambdaIdeal) = 3 := by
   let : Fact (Nat.Prime 3) := ⟨Nat.prime_three⟩
   rw [lambdaIdeal, lambda, omega,
@@ -90,6 +96,9 @@ private theorem exists_localQuadratic_neg_one (P : Ideal O) [P.IsMaximal]
   change quadraticChar (O ⧸ P) (Ideal.Quotient.mk P x) = -1
   exact ha
 
+/--
+@isnad1 id=eq.1h1v.s8.8d77507fa63a from=translated src=- shape=5815c0a7 vocab=6350e2a9
+-/
 theorem localQuadratic_neg_one (P : Ideal O) [P.IsMaximal]
     (hodd : ringChar (O ⧸ P) ≠ 2) :
     localQuadratic P (-1) = ZMod.χ₄ (Nat.card (O ⧸ P)) := by
@@ -99,6 +108,9 @@ theorem localQuadratic_neg_one (P : Ideal O) [P.IsMaximal]
   change quadraticChar (O ⧸ P) (-1) = ZMod.χ₄ (Nat.card (O ⧸ P))
   simpa only [Nat.card_eq_fintype_card] using quadraticChar_neg_one hodd
 
+/--
+@isnad1 id=eq.1h2v.s6.954240354282 from=translated src=- shape=4bc89bd1 vocab=14fe8cfa
+-/
 theorem localQuadratic_cube_root_one (P : Ideal O) [P.IsMaximal]
     (u : O) (hu : u ^ 3 = 1) : localQuadratic P u = 1 := by
   classical
@@ -134,6 +146,9 @@ private theorem localQuadratic_trichotomy (P : Ideal O) [P.IsMaximal]
 
 private instance : lambdaIdeal.IsMaximal := lambda_maximal
 
+/--
+@isnad1 id=ne.0h0v.s6.355d51503d70 from=translated src=- shape=2221e9d0 vocab=cf9f00be
+-/
 theorem lambda_residue_odd : ringChar (O ⧸ lambdaIdeal) ≠ 2 := by
   classical
   let : Field (O ⧸ lambdaIdeal) := Ideal.Quotient.field lambdaIdeal
@@ -143,6 +158,9 @@ theorem lambda_residue_odd : ringChar (O ⧸ lambdaIdeal) ≠ 2 := by
   rw [← Nat.card_eq_fintype_card, lambda_card] at hcard
   norm_num at hcard
 
+/--
+@isnad1 id=eq.0h0v.s5.74dcae3f3445 from=translated src=- shape=65482e97 vocab=4dc945b2
+-/
 theorem lambdaQuadratic_neg_one : localQuadratic lambdaIdeal (-1) = -1 := by
   rw [localQuadratic_neg_one lambdaIdeal lambda_residue_odd, lambda_card]
   rfl
@@ -184,6 +202,9 @@ private theorem localQuadratic_congr (P : Ideal O) [P.IsMaximal] (x y : O)
     localQuadratic P x = localQuadratic P y := by
   simp only [localQuadratic, h]
 
+/--
+@isnad1 id=eq.0h0v.s3.0c3ab0d6ead5 from=translated src=- shape=b3c4969c vocab=03e8c876
+-/
 theorem lambdaQuadratic_omega : localQuadratic lambdaIdeal omega = 1 := by
   apply (localQuadratic_congr lambdaIdeal omega 1 ?_).trans
     (localQuadratic_one lambdaIdeal)
@@ -204,6 +225,9 @@ private theorem productQuadratic_detects_left
     localQuadratic_congr Q x 1 hQ, ha, localQuadratic_one]
   ring
 
+/--
+@isnad1 id=not.2h2v.s9.deb92664ccb9 from=translated src=- shape=c33b16b5 vocab=8e8ee3de
+-/
 theorem productQuadratic_not_factor_right
     (P Q : Ideal O) [P.IsMaximal] [Q.IsMaximal]
     (hcop : IsCoprime P Q) (hodd : ringChar (O ⧸ P) ≠ 2) :
@@ -223,6 +247,9 @@ theorem productQuadratic_not_factor_right
       _ = 1 := h1.symm
   norm_num at absurd
 
+/--
+@isnad1 id=not.2h2v.s9.e70a8c162e27 from=translated src=- shape=3aa07597 vocab=8e8ee3de
+-/
 theorem productQuadratic_not_factor_left
     (P Q : Ideal O) [P.IsMaximal] [Q.IsMaximal]
     (hcop : IsCoprime P Q) (hodd : ringChar (O ⧸ Q) ≠ 2) :
@@ -236,6 +263,9 @@ theorem productQuadratic_not_factor_left
   rw [mul_comm]
   exact hf x
 
+/--
+@isnad1 id=ex.2h3v.s9.210d25b40184 from=translated src=- shape=facccf13 vocab=406cb7af
+-/
 theorem finiteQuadratic_detects_prime
     {ι : Type*} [Fintype ι] (P : ι → Ideal O)
     [∀ i, (P i).IsMaximal]
@@ -297,6 +327,9 @@ def correctedQuadraticProduct
   if quadraticProduct P (-1) = 1 then quadraticProduct P x
   else quadraticProduct P x * localQuadratic lambdaIdeal x
 
+/--
+@isnad1 id=eq.0h2v.s6.66bd1112ddcd from=translated src=- shape=ab784a8e vocab=b59831c7
+-/
 theorem correctedQuadraticProduct_neg_one
     {ι : Type*} [Fintype ι] (P : ι → Ideal O)
     [∀ i, (P i).IsMaximal] :
@@ -310,6 +343,9 @@ theorem correctedQuadraticProduct_neg_one
   · simp [correctedQuadraticProduct, h]
   · simp [correctedQuadraticProduct, h, lambdaQuadratic_neg_one]
 
+/--
+@isnad1 id=eq.0h2v.s5.f94181f8e1f3 from=translated src=- shape=628a3e80 vocab=b3aab284
+-/
 theorem correctedQuadraticProduct_omega
     {ι : Type*} [Fintype ι] (P : ι → Ideal O)
     [∀ i, (P i).IsMaximal] :
@@ -322,6 +358,9 @@ theorem correctedQuadraticProduct_omega
   · simp [correctedQuadraticProduct, h, hq]
   · simp [correctedQuadraticProduct, h, hq, lambdaQuadratic_omega]
 
+/--
+@isnad1 id=eq.0h2v.s6.a540b25a10d4 from=translated src=- shape=7b1d4073 vocab=c0491579
+-/
 theorem correctedQuadraticProduct_one
     {ι : Type*} [Fintype ι] (P : ι → Ideal O)
     [∀ i, (P i).IsMaximal] :
@@ -331,6 +370,9 @@ theorem correctedQuadraticProduct_one
   · simp [correctedQuadraticProduct, h, quadraticProduct_one,
       localQuadratic_one]
 
+/--
+@isnad1 id=eq.0h4v.s6.b3088a80e728 from=translated src=- shape=4785b8e8 vocab=8cd4a142
+-/
 theorem correctedQuadraticProduct_mul
     {ι : Type*} [Fintype ι] (P : ι → Ideal O)
     [∀ i, (P i).IsMaximal] (x y : O) :
@@ -349,6 +391,9 @@ private def correctedQuadraticHom
   map_one' := correctedQuadraticProduct_one P
   map_mul' := correctedQuadraticProduct_mul P
 
+/--
+@isnad1 id=eq.0h3v.s6.d335f55d342e from=translated src=- shape=6d7b6c10 vocab=0d39c751
+-/
 theorem correctedQuadraticProduct_units
     {ι : Type*} [Fintype ι] (P : ι → Ideal O)
     [∀ i, (P i).IsMaximal] (u : Oˣ) :
@@ -390,6 +435,9 @@ theorem correctedQuadraticProduct_units
     rw [hpow]
     norm_num
 
+/--
+@isnad1 id=eq.1h4v.s12.44812c5ac571 from=translated src=- shape=de34ffe5 vocab=063b1430
+-/
 theorem correctedQuadraticProduct_congr_mod_conductor
     {ι : Type*} [Fintype ι] (P : ι → Ideal O)
     [∀ i, (P i).IsMaximal] (x y : O)
@@ -413,6 +461,9 @@ theorem correctedQuadraticProduct_congr_mod_conductor
   unfold correctedQuadraticProduct
   split_ifs <;> simp [hprod, localQuadratic_congr lambdaIdeal x y hlambda]
 
+/--
+@isnad1 id=eq.1h3v.s8.3f684fac1e8f from=translated src=- shape=7cda693e vocab=5154306b
+-/
 theorem correctedQuadraticProduct_one_of_congruent
     {ι : Type*} [Fintype ι] (P : ι → Ideal O)
     [∀ i, (P i).IsMaximal] (x : O)
@@ -475,6 +526,9 @@ noncomputable def correctedIdealHom
     intro I J
     rw [idealGeneratorClass_mul, map_mul]
 
+/--
+@isnad1 id=eq.0h3v.s8.8cbf8ac2eccd from=translated src=- shape=a46f4303 vocab=f5a7874b
+-/
 theorem correctedIdealHom_span
     {ι : Type*} [Fintype ι] (P : ι → Ideal O)
     [∀ i, (P i).IsMaximal] (x : O) :
@@ -482,6 +536,9 @@ theorem correctedIdealHom_span
       correctedQuadraticProduct P x := by
   simp [correctedIdealHom, idealGeneratorClass_span, correctedAssociatesHom]
 
+/--
+@isnad1 id=not.2h3v.s9.3c5a1e51d482 from=translated src=- shape=22c630d1 vocab=3288bb9b
+-/
 theorem finiteQuadratic_not_factor_without_prime
     {ι : Type*} [Fintype ι] (P : ι → Ideal O)
     [∀ i, (P i).IsMaximal]
@@ -507,6 +564,9 @@ theorem finiteQuadratic_not_factor_without_prime
   have absurd : (-1 : ℤ) = 1 := hx.trans h1.symm
   norm_num at absurd
 
+/--
+@isnad1 id=not.2h3v.s10.7ba782fafe95 from=translated src=- shape=acaa7976 vocab=b56c34fb
+-/
 theorem finiteQuadratic_not_factor_omit_prime_ideal
     {ι : Type*} [Fintype ι] [DecidableEq ι] (P : ι → Ideal O)
     [∀ i, (P i).IsMaximal]
@@ -547,6 +607,9 @@ theorem finiteQuadratic_not_factor_omit_prime_ideal
       _ = 1 := by simpa [s] using h1.symm
   norm_num at absurd
 
+/--
+@isnad1 id=eq.1h4v.s11.025745818b43 from=translated src=- shape=95f14ab1 vocab=153e05b7
+-/
 theorem finiteQuadratic_congr_mod_product
     {ι : Type*} [Fintype ι] (P : ι → Ideal O)
     [∀ i, (P i).IsMaximal] (x y : O)
@@ -568,6 +631,9 @@ private def finiteQuadraticOnQuotient
     (z : O ⧸ Finset.univ.prod P) : ℤ :=
   ∏ j : ι, localQuadratic (P j) (Quotient.out z)
 
+/--
+@isnad1 id=eq.0h3v.s10.d1f07e437418 from=translated src=- shape=80f3accf vocab=33aca247
+-/
 theorem finiteQuadraticOnQuotient_mk
     {ι : Type*} [Fintype ι] (P : ι → Ideal O)
     [∀ i, (P i).IsMaximal] (x : O) :
@@ -579,6 +645,9 @@ theorem finiteQuadraticOnQuotient_mk
   apply finiteQuadratic_congr_mod_product P
   exact Quotient.out_eq _
 
+/--
+@isnad1 id=not.3h4v.s11.a0b79edfef21 from=translated src=- shape=6eefe492 vocab=8ffb931c
+-/
 theorem finiteQuadratic_not_factor_subproduct
     {ι : Type*} [Fintype ι] (P : ι → Ideal O)
     [∀ i, (P i).IsMaximal]
@@ -709,6 +778,9 @@ noncomputable def squarefreeQuotientChar
       simpa using hu.map (squarefreeCRT P hpair).symm.toRingHom
     exact hz hzunit
 
+/--
+@isnad1 id=eq.1h3v.s10.b1f6a1258b4c from=translated src=- shape=efa8c79c vocab=e5ffc5e2
+-/
 theorem squarefreeQuotientChar_mk
     {ι : Type*} [Fintype ι] (P : ι → Ideal O)
     [∀ i, (P i).IsMaximal]
@@ -723,6 +795,9 @@ theorem squarefreeQuotientChar_mk
   intro i _
   rfl
 
+/--
+@isnad1 id=not.3h4v.s11.c89d368c8856 from=translated src=- shape=5383b2a3 vocab=cacb0f2f
+-/
 theorem squarefreeQuotientChar_primitive
     {ι : Type*} [Fintype ι] (P : ι → Ideal O)
     [∀ i, (P i).IsMaximal]
@@ -741,6 +816,9 @@ theorem squarefreeQuotientChar_primitive
   intro x
   simpa only [finiteQuadraticOnQuotient_mk, squarefreeQuotientChar_mk] using hf x
 
+/--
+@isnad1 id=isquadra.1h2v.s8.b5b7d9f8e458 from=translated src=- shape=9b8fa593 vocab=9cc8f2f8
+-/
 theorem squarefreeQuotientChar_isQuadratic
     {ι : Type*} [Fintype ι] (P : ι → Ideal O)
     [∀ i, (P i).IsMaximal]
@@ -754,6 +832,9 @@ theorem squarefreeQuotientChar_isQuadratic
   intro i _
   exact localQuadratic_trichotomy (P i) x
 
+/--
+@isnad1 id=eq.1h2v.s11.d0daa551a590 from=translated src=- shape=6d32b6e7 vocab=ea55adbc
+-/
 theorem squarefreeQuotientChar_order_two
     {ι : Type*} [Fintype ι] (P : ι → Ideal O)
     [∀ i, (P i).IsMaximal]
@@ -761,6 +842,9 @@ theorem squarefreeQuotientChar_order_two
     squarefreeQuotientChar P hpair ^ 2 = 1 :=
   (squarefreeQuotientChar_isQuadratic P hpair).sq_eq_one
 
+/--
+@isnad1 id=not.2h2v.s10.33d1cefd1b0b from=translated src=- shape=f0efd598 vocab=958ad5ca
+-/
 theorem correctedQuadraticProduct_not_factor_without_lambda
     {ι : Type*} [Fintype ι] (P : ι → Ideal O)
     [∀ i, (P i).IsMaximal]
@@ -797,6 +881,9 @@ theorem correctedQuadraticProduct_not_factor_without_lambda
       _ = 1 := (hf 1).symm.trans h1
   norm_num at this
 
+/--
+@isnad1 id=eq.1h1v.s6.dfd92ad1beca from=translated src=- shape=f0955683 vocab=dede327b
+-/
 theorem lambdaQuadratic_sq_one_of_not_mem (x : O)
     (hx : x ∉ lambdaIdeal) :
     localQuadratic lambdaIdeal x ^ 2 = 1 := by
@@ -805,6 +892,9 @@ theorem lambdaQuadratic_sq_one_of_not_mem (x : O)
   · simp [hone]
   · simp [hminus]
 
+/--
+@isnad1 id=eq.2h5v.s8.332a859bbaaa from=translated src=- shape=7bf978fa vocab=a1e74265
+-/
 theorem correctedQuadraticProduct_pair_cancel
     {ι κ : Type*} [Fintype ι] [Fintype κ]
     (P : ι → Ideal O) (Q : κ → Ideal O)
@@ -829,6 +919,9 @@ theorem correctedQuadraticProduct_pair_cancel
       _ = quadraticProduct P x * quadraticProduct Q x := by
         rw [hlamSq, mul_one]
 
+/--
+@isnad1 id=not.4h4v.s11.1547346f50e6 from=translated src=- shape=3fd7c3a7 vocab=ddf3dda4
+-/
 theorem correctedQuadraticProduct_not_factor_without_prime
     {ι : Type*} [Fintype ι] (P : ι → Ideal O)
     [∀ i, (P i).IsMaximal]

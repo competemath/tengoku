@@ -23,6 +23,9 @@ section
 
 open EisensteinEmbedding ConcreteTraceCRT PrimitiveTrace
 
+/--
+@isnad1 id=eq.4h2v.s9.3fd3f2b094f0 from=translated src=- shape=38407af5 vocab=0444b787
+-/
 theorem cubicGauss_normalized_cube_breveE
     (P : Ideal O) [P.IsMaximal]
     (hgood : lambda ∉ P) (p : O) (hP : P = Ideal.span {p})
@@ -50,6 +53,9 @@ noncomputable def breveGamma2 (P : Ideal O) [P.IsMaximal]
       ConcreteBreveE.breveE_period_coordinates p hp) /
       (‖eisEmbedding p‖ : ℂ)
 
+/--
+@isnad1 id=eq.1h1v.s10.389b00b10eb5 from=translated src=- shape=1dfd385e vocab=d442c2f0
+-/
 theorem canonicalSextic_pow_two (P : Ideal O) [P.IsMaximal]
     (hgood : lambda ∉ P) :
     canonicalSextic P hgood ^ 2 =
@@ -57,6 +63,9 @@ theorem canonicalSextic_pow_two (P : Ideal O) [P.IsMaximal]
   change ((sexticChar P hgood).ringHomComp eisEmbedding) ^ 2 = _
   rw [MulChar.ringHomComp_pow, (sexticChar_powers P hgood).1]
 
+/--
+@isnad1 id=eq.4h2v.s8.3d965b44377c from=translated src=- shape=eafbc367 vocab=a9b13972
+-/
 theorem breveGamma2_cube (P : Ideal O) [P.IsMaximal]
     (hgood : lambda ∉ P) (p : O) (hP : P = Ideal.span {p})
     (hp : p ≠ 0) (hprimary : lambda ^ 2 ∣ p - 1) :
@@ -72,6 +81,9 @@ namespace ShortDraftLocal
 
 open AddChar MulChar
 
+/--
+@isnad1 id=eq.0h5v.s9.bcccaedffa64 from=translated src=- shape=e422542c vocab=0bbe7a52
+-/
 theorem general_inversion_gauss {F : Type*} [Field F] [Fintype F] [DecidableEq F]
     (χ : MulChar F ℂ) (ψ : AddChar F ℂ) (j : ℕ) (a : F) :
     (∑ h : Fˣ, (((χ ^ j)⁻¹ * (χ⁻¹) ^ 2) h) *
@@ -96,6 +108,9 @@ theorem general_inversion_gauss {F : Type*} [Field F] [Fintype F] [DecidableEq F
       rw [gaussSum_eq_units_sum]
       simp only [AddChar.mulShift_apply]
 
+/--
+@isnad1 id=eq.2h7v.s11.4171efad33e2 from=translated src=- shape=67d32887 vocab=80b28915
+-/
 theorem sextic_fourier_theta_row_general
     {F : Type*} [Field F] [Fintype F] [DecidableEq F]
     (χ : MulChar F ℂ) (ψ : AddChar F ℂ) (j : ℕ)
@@ -147,6 +162,9 @@ end ActualEisensteinCubic
 
 namespace AnalyticBridge
 
+/--
+@isnad1 id=le.11h8v.s8.db8cb01fa607 from=translated src=- shape=6084fffc vocab=d8b90f1e
+-/
 theorem first_poisson_local_ratio_bound
     (c E A1 A2 s J2 J B : ℝ)
     (_hc : 0 ≤ c) (_hE : 0 ≤ E)
@@ -165,6 +183,9 @@ theorem first_poisson_local_ratio_bound
   rw [hlocal]
   exact hratio.trans (hsJ.trans hJself)
 
+/--
+@isnad1 id=eq.0h4v.s7.0e4fbe6ade2b from=translated src=- shape=d425440b vocab=fbe173da
+-/
 theorem restrict_positive_side_to_weight_support
     {Ω : Type*} (S : Finset Ω) (w : Ω → ℂ) (U : Ω → ℂ) :
     (∑ ω ∈ S with w ω ≠ 0, ‖w ω‖ * ‖U ω‖ ^ 2) =
@@ -175,6 +196,9 @@ theorem restrict_positive_side_to_weight_support
   intro ω hω
   by_cases hw : w ω = 0 <;> simp [hw]
 
+/--
+@isnad1 id=le.4h10v.s8.211eb0790e11 from=translated src=- shape=25626756 vocab=06c795c4
+-/
 theorem weighted_cauchy_ball_enlargement
     {Ω Λ : Type*} [DecidableEq Λ]
     (S : Finset Ω) (T : Finset Λ) (label : Ω → Λ)
@@ -229,6 +253,9 @@ theorem weighted_cauchy_ball_enlargement
   exact reassembled_bilinear_bound S' T T label label w A B M₁ M₂
     hM₁ hmap hmap hfiber' hfiber₂'
 
+/--
+@isnad1 id=le.4h6v.s8.4e52473d1891 from=translated src=- shape=22bc3cb4 vocab=4cc54277
+-/
 theorem weighted_fourier_minkowski
     {Ω : Type*} (S : Finset Ω)
     (b : ℝ → ℂ) (φ : Ω → ℝ → ℂ) (J : ℕ) (H : ℝ)
@@ -264,6 +291,9 @@ theorem weighted_fourier_minkowski
     _ = H * ∫ t : ℝ, (1 + ‖t‖) ^ J * ‖b t‖ := by
       rw [integral_const_mul]
 
+/--
+@isnad1 id=le.6h9v.s8.cec0b213b942 from=translated src=- shape=34f64ebb vocab=4cc54277
+-/
 theorem weighted_fourier_minkowski_with_decay
     {Ω : Type*} (S : Finset Ω)
     (b : ℝ → ℂ) (φ : Ω → ℝ → ℂ)
@@ -290,6 +320,9 @@ theorem weighted_fourier_minkowski_with_decay
       ∫ t : ℝ, (1 + ‖t‖) ^ J * ‖b t‖) := by ring
     _ ≤ H * C := mul_le_mul_of_nonneg_left hcoeff hH
 
+/--
+@isnad1 id=integrab.0h2v.s8.1d2d8a607799 from=translated src=- shape=1fedf12c vocab=0cec1ac4
+-/
 theorem schwartz_fourier_one_plus_integrable
     (g : 𝓢(ℝ, ℂ)) (J : ℕ) :
     Integrable (fun t : ℝ =>
@@ -375,6 +408,9 @@ private theorem square_fiber (χ : MulChar F ℂ)
   congr 1
   exact_mod_cast quadraticChar_card_sqrts hchar y
 
+/--
+@isnad1 id=eq.2h2v.s7.6844aa85a2be from=translated src=- shape=e5d60911 vocab=cc33ad51
+-/
 theorem jacobi_quadratic (χ : MulChar F ℂ)
     (hchar : ringChar F ≠ 2) (hχ : χ ≠ 1) :
     jacobiSum χ ((quadraticChar F).ringHomComp (Int.castRingHom ℂ)) =
@@ -411,6 +447,9 @@ theorem jacobi_quadratic (χ : MulChar F ℂ)
       simp only [ map_mul]
       ring
 
+/--
+@isnad1 id=eq.7h3v.s10.641ce83d70a4 from=translated src=- shape=2114dbab vocab=6f4fd279
+-/
 theorem gauss_sextic_relation (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
     (hchar : ringChar F ≠ 2) (hψ : ψ.IsPrimitive)
     (hχ1 : χ ≠ 1) (hχ2 : χ ^ 2 ≠ 1) (hχ4 : χ ^ 4 ≠ 1)
@@ -477,6 +516,9 @@ theorem gauss_sextic_relation (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
     _ = (χ (4 : F) * g4 * g1) * g2 := by ring
     _ = g3 * g2 ^ 2 := by rw [← hbasic']; ring
 
+/--
+@isnad1 id=eq.9h4v.s10.4603af5e1842 from=translated src=- shape=d5b7ec9c vocab=241e625e
+-/
 theorem normalized_gauss_sextic_relation (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
     (hchar : ringChar F ≠ 2) (hψ : ψ.IsPrimitive)
     (hχ1 : χ ≠ 1) (hχ2 : χ ^ 2 ≠ 1) (hχ4 : χ ^ 4 ≠ 1)

@@ -26,6 +26,9 @@ def parityEquiv : (ℤ × ℤ) ≃ (Fin 2 × (ℤ × ℤ)) :=
 def xShift (a b L : ℝ) (e : Fin 2) : ℝ := (2 * a - b - L * e) / (2 * L)
 def yShift (b L : ℝ) (e : Fin 2) : ℝ := (b + L * e) / (2 * L)
 
+/--
+@isnad1 id=eq.1h6v.s7.1264ffaaee36 from=translated src=- shape=47417475 vocab=b34bd535
+-/
 theorem normForm_parity (a b L : ℝ) (hL : L ≠ 0) (e : Fin 2) (i j : ℤ) :
     normForm (a + L * (i + j)) (b + L * (2 * j + e)) =
       L ^ 2 * (i + xShift a b L e) ^ 2 +
@@ -42,6 +45,9 @@ def parityPair (a b L : ℝ) (hL : 0 < L) (e : Fin 2) : WeakFEPair ℂ :=
   rectangularPair (xShift a b L e) (yShift b L e) (L ^ 2) (3 * L ^ 2)
     (sq_pos_of_pos hL) (mul_pos (by norm_num) (sq_pos_of_pos hL))
 
+/--
+@isnad1 id=hassum.2h4v.s7.e725a11983a9 from=translated src=- shape=38ae6ffd vocab=80da0a12
+-/
 theorem cosetTheta_hasSum (a b L : ℝ) (hL : 0 < L) {t : ℝ} (ht : 0 < t) :
     HasSum (fun n : ℤ × ℤ =>
       (Real.exp (-Real.pi * normForm (a + L * n.1) (b + L * n.2) * t) : ℂ))
@@ -77,21 +83,33 @@ theorem cosetTheta_hasSum (a b L : ℝ) (hL : 0 < L) {t : ℝ} (ht : 0 < t) :
   rw [hFC.tsum_prod, tsum_fintype]
   exact (Finset.sum_congr rfl (fun e _ => (hsum e).tsum_eq)).symm
 
+/--
+@isnad1 id=eq.2h4v.s6.50924577637d from=translated src=- shape=8154544a vocab=3723d3e9
+-/
 theorem cosetTheta_eq_parity_sum (a b L : ℝ) (hL : 0 < L) {t : ℝ} (ht : 0 < t) :
     cosetTheta a b L t = ∑ e : Fin 2, (parityPair a b L hL e).f t :=
   (cosetTheta_hasSum a b L hL ht).tsum_eq
 
+/--
+@isnad1 id=eq.1h4v.s5.2d83b1cd51f3 from=translated src=- shape=92d178a4 vocab=a2e231ef
+-/
 @[simp] theorem parityPair_k (a b L : ℝ) (hL : 0 < L) (e : Fin 2) :
     (parityPair a b L hL e).k = 1 := rectangularPair_k _ _ _ _ _ _
 
 def cosetConstant (a b L : ℝ) (hL : 0 < L) : ℂ :=
   ∑ e : Fin 2, (parityPair a b L hL e).f₀
 
+/--
+@isnad1 id=eq.1h4v.s9.8e8f05f91c72 from=translated src=- shape=edeae6cd vocab=d2e816fe
+-/
 theorem parityPair_f₀ (a b L : ℝ) (hL : 0 < L) (e : Fin 2) :
     (parityPair a b L hL e).f₀ =
       (if (xShift a b L e : UnitAddCircle) = 0 then 1 else 0) *
       (if (yShift b L e : UnitAddCircle) = 0 then 1 else 0) := rfl
 
+/--
+@isnad1 id=eq.5h3v.s6.43f0bafd82b0 from=translated src=- shape=002905c2 vocab=212cd024
+-/
 theorem cosetConstant_eq (a b L : ℝ) (hL : 0 < L)
     (ha₀ : 0 ≤ a) (haL : a < L) (hb₀ : 0 ≤ b) (hbL : b < L) :
     cosetConstant a b L hL = if a = 0 ∧ b = 0 then 1 else 0 := by
@@ -137,6 +155,9 @@ theorem cosetConstant_eq (a b L : ℝ) (hL : 0 < L)
 def completedCoset (a b L : ℝ) (hL : 0 < L) (s : ℂ) : ℂ :=
   ∑ e : Fin 2, (parityPair a b L hL e).Λ s
 
+/--
+@isnad1 id=differen.3h4v.s6.e4da3cdc7198 from=translated src=- shape=eb25c084 vocab=0c09b48f
+-/
 theorem completedCoset_differentiableAt (a b L : ℝ) (hL : 0 < L)
     {s : ℂ} (hs₀ : s ≠ 0) (hs₁ : s ≠ 1) :
     DifferentiableAt ℂ (completedCoset a b L hL) s := by

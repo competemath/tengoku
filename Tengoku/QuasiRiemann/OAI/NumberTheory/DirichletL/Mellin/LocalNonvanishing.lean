@@ -37,6 +37,9 @@ def LocalExponentialMobiusBound : Prop :=
         (fun D : ℝ => ShortDraftMellin.mobiusExpSum χ D⁻¹) =O[atTop]
           (fun D : ℝ => D ^ σ)
 
+/--
+@isnad1 id=dirichle.1h0v.s1.e2266e5d26a4 from=translated src=- shape=1d48f1ac vocab=b9e3abf9
+-/
 theorem dirichletTarget_of_localBound
     (hbound : LocalExponentialMobiusBound) : ShortDraft.DirichletTarget := by
   intro q _ χ ρ h23 hprincipal
@@ -78,6 +81,9 @@ noncomputable def pairInverseCoeff
   (fun n : ℕ => χ n * (ArithmeticFunction.moebius n : ℂ)) ⍟
     (fun n : ℕ => ψ n * (ArithmeticFunction.moebius n : ℂ))
 
+/--
+@isnad1 id=eq.1h6v.s6.0b8b998f76e2 from=translated src=- shape=86158312 vocab=f52d59dd
+-/
 theorem normFiber_LSeries_eq_pair_inverse
     {q r : ℕ} (χ : DirichletCharacter ℂ q) (ψ : DirichletCharacter ℂ r)
     (weight : Ideal O → ℂ)
@@ -86,6 +92,9 @@ theorem normFiber_LSeries_eq_pair_inverse
     LSeries (normFiberCoeff weight) s = LSeries (pairInverseCoeff χ ψ) s := by
   exact LSeries_congr (fun {n} hn => hcoeff n hn) s
 
+/--
+@isnad1 id=eq.1h5v.s6.52389d90cecb from=translated src=- shape=4d8a61c3 vocab=32a5bdc6
+-/
 theorem pair_inverse_euler_identity
     {q r : ℕ} [NeZero q] [NeZero r]
     (χ : DirichletCharacter ℂ q) (ψ : DirichletCharacter ℂ r)
@@ -111,6 +120,9 @@ theorem pair_inverse_euler_identity
       (LSeries (ψ ·) s * LSeries (fun n : ℕ => ψ n * (ArithmeticFunction.moebius n : ℂ)) s) := by ring
     _ = 1 := by rw [hχ, hψ]; ring
 
+/--
+@isnad1 id=and.7h8v.s8.039a51f25f66 from=translated src=- shape=ee156e88 vocab=77f1bda3
+-/
 theorem pair_zero_free_of_normFiber_continuation
     {q r : ℕ} [NeZero q] [NeZero r]
     (χ : DirichletCharacter ℂ q) (ψ : DirichletCharacter ℂ r)
@@ -144,6 +156,9 @@ theorem pair_zero_free_of_normFiber_continuation
       hL hM hW heq ρ hρ one_ne_zero
   exact mul_ne_zero_iff.mp hprod
 
+/--
+@isnad1 id=and.7h7v.s8.72ea2157dc04 from=translated src=- shape=5b4fcdae vocab=77f1bda3
+-/
 theorem pair_zero_free_of_normFiber_continuation_principal_left
     {q r : ℕ} [NeZero q] [NeZero r]
     (ψ : DirichletCharacter ℂ r) (hψ : ψ ≠ 1)
@@ -203,11 +218,17 @@ theorem pair_zero_free_of_normFiber_continuation_principal_left
       one_ne_zero
   exact mul_ne_zero_iff.mp hprod
 
+/--
+@isnad1 id=eq.0h4v.s5.6a3acbe7101f from=translated src=- shape=8331c79a vocab=8157eba5
+-/
 theorem pairInverseCoeff_comm
     {q r : ℕ} (χ : DirichletCharacter ℂ q) (ψ : DirichletCharacter ℂ r) :
     pairInverseCoeff χ ψ = pairInverseCoeff ψ χ := by
   simp only [pairInverseCoeff, LSeries.convolution, mul_comm]
 
+/--
+@isnad1 id=and.7h7v.s8.85a86f2f464f from=translated src=- shape=6523ebf7 vocab=77f1bda3
+-/
 theorem pair_zero_free_of_normFiber_continuation_principal_right
     {q r : ℕ} [NeZero q] [NeZero r]
     (χ : DirichletCharacter ℂ q) (hχ : χ ≠ 1)
@@ -318,6 +339,9 @@ private theorem breveGamma1_mul_star_one (P : Ideal O) [P.IsMaximal]
   rw [← starRingEnd_apply, Complex.mul_conj', hnorm]
   norm_num
 
+/--
+@isnad1 id=other.5h3v.s11.ff25c2226aa3 from=translated src=- shape=ebce1b66 vocab=c04f399a
+-/
 theorem first_poisson_prime_sign_pairing
     (P : Ideal O) [P.IsMaximal]
     (hgood : lambda ∉ P) (hchar : ringChar (O ⧸ P) ≠ 2)
@@ -374,6 +398,9 @@ namespace ShortDraftLocal
 
 variable {F : Type*} [Field F] [Fintype F] [DecidableEq F]
 
+/--
+@isnad1 id=eq.1h4v.s9.d08210e51d79 from=translated src=- shape=75185430 vocab=07fd26ed
+-/
 theorem direct_theta_jtwo_mask (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
     (hψ : ψ ≠ 1) (a : F) :
     (∑ h : Fˣ, ((χ⁻¹) ^ 2 * χ ^ 2) (h : F) *
@@ -391,6 +418,9 @@ theorem direct_theta_jtwo_mask (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
       simp
     _ = _ := additive_unit_sum ψ hψ a
 
+/--
+@isnad1 id=eq.2h6v.s10.fcbb11496599 from=translated src=- shape=2eaf2e8e vocab=5bf063ae
+-/
 theorem direct_theta_jtwo_fourier_row (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
     (hχ₂ : χ ^ 2 ≠ 1) (hψ : ψ ≠ 1)
     (σ : Fˣ) (ε x : F) :
@@ -424,6 +454,9 @@ theorem direct_theta_jtwo_fourier_row (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
   rw [hsum, direct_theta_jtwo_mask χ ψ hψ (ε * x)]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s9.440544831999 from=translated src=- shape=5b57b942 vocab=ad2ac8e3
+-/
 theorem direct_theta_active_zero_inversion (χ : MulChar F ℂ)
     (ψ : AddChar F ℂ) (a : F) :
     (∑ h : Fˣ, (χ ^ 2) (h : F) *
@@ -442,6 +475,9 @@ theorem direct_theta_active_zero_inversion (χ : MulChar F ℂ)
       rw [gaussSum_eq_units_sum]
       simp only [AddChar.mulShift_apply]
 
+/--
+@isnad1 id=eq.1h6v.s10.8be62220a642 from=translated src=- shape=f52f0a18 vocab=ccdde4b0
+-/
 theorem direct_theta_active_zero_fourier_row (χ : MulChar F ℂ)
     (ψ : AddChar F ℂ) (hχ₂ : χ ^ 2 ≠ 1)
     (σ : Fˣ) (ε x : F) :
@@ -473,6 +509,9 @@ theorem direct_theta_active_zero_fourier_row (χ : MulChar F ℂ)
   simp only [inv_inv, map_mul]
   ring
 
+/--
+@isnad1 id=eq.2h6v.s10.dc953a21d58b from=translated src=- shape=221ec27e vocab=ccdde4b0
+-/
 theorem direct_theta_active_zero_full_row (χ : MulChar F ℂ)
     (ψ : AddChar F ℂ) (hχ₂ : χ ^ 2 ≠ 1) (hψ : ψ ≠ 1)
     (σ : Fˣ) (ε x : F) :

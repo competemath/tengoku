@@ -9,6 +9,9 @@ open scoped BigOperators
 
 namespace SevenEighths.Parameters
 
+/--
+@isnad1 id=ex.2h2v.s6.94623782f828 from=translated src=- shape=6c2c2deb vocab=1071137d
+-/
 theorem exists_high_data_fine (Δ:ℝ)(hΔ:0<Δ)(mesh:ℝ→ℝ)
     (hmesh:∀t:ℝ,0<t→0<mesh t):
     ∃D:HighData Δ,∀j,D.ell j≤mesh D.t/200:=by
@@ -77,6 +80,9 @@ theorem exists_high_data_fine (Δ:ℝ)(hΔ:0<Δ)(mesh:ℝ→ℝ)
       _≤(1/200:ℝ)*mesh t:=mul_le_mul_of_nonneg_left (min_le_right _ _) (by norm_num)
       _=mesh t/200:=by ring
 
+/--
+@isnad1 id=and.3h5v.s7.55ffabf3af1a from=translated src=- shape=31721323 vocab=1071137d
+-/
 theorem fine_slot_widths {Δ:ℝ}(D:HighData Δ)(mesh:ℝ→ℝ)
     (hmesh:0<mesh D.t)(hfine:∀j,D.ell j≤mesh D.t/200)
     (d:ℝ)(hd:(1/200:ℝ)≤d)(j:Fin D.N):

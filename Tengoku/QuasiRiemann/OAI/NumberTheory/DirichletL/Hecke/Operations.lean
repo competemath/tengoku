@@ -14,6 +14,9 @@ def Character.product (χ ψ : Character) : Character :=
     (ResidueCharacter.product χ.modulus ψ.modulus χ.residue ψ.residue)
     (ResidueCharacter.product_global_units _ _ _ _ χ.unit_trivial ψ.unit_trivial)
 
+/--
+@isnad1 id=eq.0h3v.s4.103edd460d42 from=translated src=- shape=46c14041 vocab=7903afcd
+-/
 theorem elementCoeff_product (χ ψ : Character) (z : O) :
     elementCoeff (χ.product ψ) z = elementCoeff χ z * elementCoeff ψ z :=
   ResidueCharacter.product_mk _ _ _ _ z
@@ -27,6 +30,9 @@ def Character.inverse (χ : Character) : Character where
   period_pos := χ.period_pos
   period_mem := χ.period_mem
 
+/--
+@isnad1 id=eq.0h2v.s4.e616b7c5606b from=translated src=- shape=6f752268 vocab=e2b9ff2b
+-/
 theorem elementCoeff_inverse (χ : Character) (z : O) :
     elementCoeff χ.inverse z = (elementCoeff χ z)⁻¹ := by
   exact MulChar.inv_apply_eq_inv' _ _
@@ -45,6 +51,9 @@ def Character.power (χ : Character) (n : ℕ) : Character where
   period_pos := χ.period_pos
   period_mem := χ.period_mem
 
+/--
+@isnad1 id=eq.1h3v.s8.f29e50f43d07 from=translated src=- shape=536744ef vocab=b391984e
+-/
 theorem elementCoeff_power_of_unit (χ : Character) (n : ℕ) (z : O)
     (hz : IsUnit (Ideal.Quotient.mk χ.modulus z)) :
     elementCoeff (χ.power n) z = elementCoeff χ z ^ n := by

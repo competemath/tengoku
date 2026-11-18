@@ -11,6 +11,9 @@ namespace SevenEighths.CenteredMomentCorrelation
 noncomputable section
 variable {A B : Type*} [CommRing A] [CommRing B] [Fintype A] [Fintype B]
 
+/--
+@isnad1 id=eq.0h8v.s9.f1d555e69fde from=translated src=- shape=0a269a61 vocab=326b9df9
+-/
 theorem fullCorrelation_ringEquiv (e : A ≃+* B) (u v k : A) (f g : B → ℂ) :
     fullCorrelation (fun x => v * x) (fun y => u * y)
         (fun x => f (e x)) (fun y => g (e y)) k =
@@ -24,6 +27,9 @@ theorem fullCorrelation_ringEquiv (e : A ≃+* B) (u v k : A) (f g : B → ℂ) 
     rw [← map_mul, ← map_mul, ← map_sub, e.injective.eq_iff]
   simp only [RingEquiv.toEquiv_eq_coe, EquivLike.coe_coe, heq]
 
+/--
+@isnad1 id=eq.0h9v.s8.a99db0f057e8 from=translated src=- shape=a75898aa vocab=0208a893
+-/
 theorem fullCorrelation_product (u v k : A × B) (f₁ g₁ : A → ℂ) (f₂ g₂ : B → ℂ) :
     fullCorrelation (fun x => v * x) (fun y => u * y)
         (fun x => f₁ x.1 * f₂ x.2) (fun y => g₁ y.1 * g₂ y.2) k =
@@ -54,6 +60,9 @@ theorem fullCorrelation_product (u v k : A × B) (f₁ g₁ : A → ℂ) (f₂ g
   intro x₂ _
   rw [Finset.mul_sum]
 
+/--
+@isnad1 id=eq.0h7v.s8.1feda676c06a from=translated src=- shape=8f30dc25 vocab=005396c7
+-/
 theorem fullCorrelation_pi {ι : Type*} [Fintype ι] {R : ι → Type*}
     [∀ i, CommRing (R i)] [∀ i, Fintype (R i)]
     (u v k : ∀ i, R i) (f g : ∀ i, R i → ℂ) :
@@ -85,6 +94,9 @@ theorem fullCorrelation_pi {ι : Type*} [Fintype ι] {R : ι → Type*}
     _ = _ := (Fintype.prod_sum (fun i (x : R i) => ∑ y : R i,
       if v i * x - u i * y = k i then f i x * star (g i y) else (0 : ℂ))).symm
 
+/--
+@isnad1 id=other.1h8v.s13.20fb2ece49e6 from=translated src=- shape=c29a0c01 vocab=a963563a
+-/
 theorem fullCorrelation_idealCRT {S ι : Type*} [CommRing S] [Fintype ι]
     (I : ι → Ideal S) (hI : Pairwise (Function.onFun IsCoprime I))
     [Fintype (S ⧸ ⨅ i, I i)] [∀ i, Fintype (S ⧸ I i)]
@@ -115,6 +127,9 @@ def crtCharacter {S ι : Type*} [CommRing S] [Fintype ι] {R : ι → Type*}
     obtain ⟨i, hi⟩ := hsome
     exact Finset.prod_eq_zero (Finset.mem_univ i) ((χ i).map_nonunit hi)
 
+/--
+@isnad1 id=eq.0h6v.s8.df55d50adb66 from=translated src=- shape=dd003450 vocab=1dcd47b1
+-/
 @[simp] theorem crtCharacter_apply {S ι : Type*} [CommRing S] [Fintype ι] {R : ι → Type*}
     [∀ i, CommRing (R i)] (e : S ≃+* (∀ i, R i)) (χ : ∀ i, MulChar (R i) ℂ) (x : S) :
     crtCharacter e χ x = ∏ i, χ i (e x i) := rfl

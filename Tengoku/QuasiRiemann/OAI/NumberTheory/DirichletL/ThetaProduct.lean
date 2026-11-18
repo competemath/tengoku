@@ -11,6 +11,9 @@ open scoped Topology
 
 namespace SevenEighths.ThetaProduct
 
+/--
+@isnad1 id=isbigo.2h5v.s7.5bdd61f99e9d from=translated src=- shape=4fc35c37 vocab=d5f5b152
+-/
 theorem rapid_product_sub (f g : ℝ → ℂ) (a b : ℂ)
     (hf : ∀ r : ℝ, (fun x => f x - a) =O[atTop] (fun x : ℝ => x ^ r))
     (hg : ∀ r : ℝ, (fun x => g x - b) =O[atTop] (fun x : ℝ => x ^ r))
@@ -53,6 +56,9 @@ def product (P Q : WeakFEPair ℂ)
   hf_top := rapid_product_sub P.f Q.f P.f₀ Q.f₀ P.hf_top Q.hf_top
   hg_top := rapid_product_sub P.g Q.g P.g₀ Q.g₀ P.hg_top Q.hg_top
 
+/--
+@isnad1 id=isbigo.2h4v.s6.ec5f932d6643 from=translated src=- shape=1095e9ab vocab=6a9aba19
+-/
 theorem rapid_rescale (f : ℝ → ℂ) (a : ℂ)
     (hf : ∀ r : ℝ, (fun x => f x - a) =O[atTop] (fun x : ℝ => x ^ r))
     {u : ℝ} (hu : 0 < u) (r : ℝ) :
@@ -98,13 +104,22 @@ def shiftedPair (a b : UnitAddCircle) : WeakFEPair ℂ :=
     (Complex.continuous_ofReal.comp_continuousOn (HurwitzZeta.continuousOn_evenKernel b))
     (Complex.continuous_ofReal.comp_continuousOn (HurwitzZeta.continuousOn_cosKernel b))
 
+/--
+@isnad1 id=eq.0h2v.s4.8e70ed7f295c from=translated src=- shape=6a85ccc7 vocab=796cf3f1
+-/
 @[simp] theorem shiftedPair_k (a b : UnitAddCircle) : (shiftedPair a b).k = 1 := by
   norm_num [shiftedPair, product, HurwitzZeta.hurwitzEvenFEPair]
 
+/--
+@isnad1 id=eq.0h3v.s5.7bbe4d7283d8 from=translated src=- shape=9f65cacf vocab=be8d9d61
+-/
 @[simp] theorem shiftedPair_f (a b : UnitAddCircle) (t : ℝ) :
     (shiftedPair a b).f t =
       (HurwitzZeta.evenKernel a t : ℂ) * (HurwitzZeta.evenKernel b t : ℂ) := rfl
 
+/--
+@isnad1 id=differen.2h3v.s6.f7d2461045f8 from=translated src=- shape=b2ea1ec8 vocab=64150308
+-/
 theorem shiftedPair_differentiableAt (a b : UnitAddCircle) {s : ℂ}
     (hs₀ : s ≠ 0) (hs₁ : s ≠ 1) :
     DifferentiableAt ℂ (shiftedPair a b).Λ s := by
@@ -116,12 +131,18 @@ def scaledEvenPair (a : UnitAddCircle) (u : ℝ) (hu : 0 < u) : WeakFEPair ℂ :
     (Complex.continuous_ofReal.comp_continuousOn (HurwitzZeta.continuousOn_evenKernel a))
     (Complex.continuous_ofReal.comp_continuousOn (HurwitzZeta.continuousOn_cosKernel a)) u hu
 
+/--
+@isnad1 id=continuo.1h2v.s5.35e53963f1e0 from=translated src=- shape=708a3b13 vocab=a5622a00
+-/
 theorem scaledEvenPair_f_continuous (a : UnitAddCircle) (u : ℝ) (hu : 0 < u) :
     ContinuousOn (scaledEvenPair a u hu).f (Ioi 0) :=
   (Complex.continuous_ofReal.comp_continuousOn
     (HurwitzZeta.continuousOn_evenKernel a)).comp (by fun_prop)
       (fun x hx => mul_pos hu hx)
 
+/--
+@isnad1 id=continuo.1h2v.s5.32bed5477794 from=translated src=- shape=708a3b13 vocab=9bd23d39
+-/
 theorem scaledEvenPair_g_continuous (a : UnitAddCircle) (u : ℝ) (hu : 0 < u) :
     ContinuousOn (scaledEvenPair a u hu).g (Ioi 0) :=
   (Complex.continuous_ofReal.comp_continuousOn
@@ -134,10 +155,16 @@ def rectangularPair (a b : UnitAddCircle) (u v : ℝ) (hu : 0 < u) (hv : 0 < v) 
     (scaledEvenPair_f_continuous a u hu) (scaledEvenPair_g_continuous a u hu)
     (scaledEvenPair_f_continuous b v hv) (scaledEvenPair_g_continuous b v hv)
 
+/--
+@isnad1 id=eq.2h4v.s5.ee9133602dbd from=translated src=- shape=8f396bc4 vocab=2027f36c
+-/
 @[simp] theorem rectangularPair_k (a b : UnitAddCircle) (u v : ℝ)
     (hu : 0 < u) (hv : 0 < v) : (rectangularPair a b u v hu hv).k = 1 := by
   norm_num [rectangularPair, scaledEvenPair, rescale, product, HurwitzZeta.hurwitzEvenFEPair]
 
+/--
+@isnad1 id=hassum.3h5v.s7.89689e905ea2 from=translated src=- shape=004b7d41 vocab=4ce00711
+-/
 theorem rectangularPair_hasSum (a b u v : ℝ) (hu : 0 < u) (hv : 0 < v)
     {t : ℝ} (ht : 0 < t) :
     HasSum (fun n : ℤ × ℤ =>
@@ -159,6 +186,9 @@ theorem rectangularPair_hasSum (a b u v : ℝ) (hu : 0 < u) (hv : 0 < v)
     HurwitzZeta.hurwitzEvenFEPair, Function.comp_apply, Complex.ofReal_mul] using
     (Complex.hasSum_ofReal.mpr hprod)
 
+/--
+@isnad1 id=differen.4h5v.s7.b5742779597c from=translated src=- shape=33eedd0f vocab=cf9c0f81
+-/
 theorem rectangularPair_differentiableAt (a b : UnitAddCircle) (u v : ℝ)
     (hu : 0 < u) (hv : 0 < v) {s : ℂ} (hs₀ : s ≠ 0) (hs₁ : s ≠ 1) :
     DifferentiableAt ℂ (rectangularPair a b u v hu hv).Λ s := by

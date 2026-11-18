@@ -17,6 +17,9 @@ def markedTableSeries (R V qInv K J : ℂ) (a : ℕ) : ℂ :=
   ∑' r : ℕ, R ^ r *
     ((∑' m : ℕ, (R * (1 - qInv) * V ^ m - K * V ^ (m + a))) + J)
 
+/--
+@isnad1 id=eq.2h6v.s5.5f71350d5100 from=translated src=- shape=ae758b73 vocab=58b802c4
+-/
 theorem marked_table_resummation (R V qInv K J : ℂ) (a : ℕ)
     (hR : ‖R‖ < 1) (hV : ‖V‖ < 1) :
     markedTableSeries R V qInv K J a = markedFactor R V qInv K J a := by
@@ -42,6 +45,9 @@ theorem marked_table_resummation (R V qInv K J : ℂ) (a : ℕ)
   simp only [div_eq_mul_inv]
   ring
 
+/--
+@isnad1 id=eq.2h6v.s7.f94d11ccfd49 from=translated src=- shape=89e0884a vocab=0961d568
+-/
 theorem unramified_marked_error (R V qInv K W D : ℂ)
     (hR : 1 - R ≠ 0) (hV : 1 - V ≠ 0) :
     markedFactor R V qInv K (-D + W * R) 1 + D =

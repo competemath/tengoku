@@ -19,12 +19,18 @@ variable {A : Type*} [CommRing A]
 abbrev UnitInvariant (M : Ideal A) (χ : MulChar (A ⧸ M) ℂ) : Prop :=
   ∀ u : Aˣ, χ (Ideal.Quotient.mk M u) = 1
 
+/--
+@isnad1 id=eq.2h5v.s9.6daf3e1b76a1 from=translated src=- shape=33590ce7 vocab=11310cf6
+-/
 theorem residue_eq_of_associated (M : Ideal A) (χ : MulChar (A ⧸ M) ℂ)
     (hχ : UnitInvariant M χ) {a b : A} (hab : Associated a b) :
     χ (Ideal.Quotient.mk M a) = χ (Ideal.Quotient.mk M b) := by
   obtain ⟨u, rfl⟩ := hab
   rw [map_mul, map_mul, hχ u, mul_one]
 
+/--
+@isnad1 id=iff.0h3v.s7.7eaf77a9f8ef from=translated src=- shape=e510ac00 vocab=f64e161f
+-/
 theorem isUnit_mk_iff_isCoprime (M : Ideal A) (a : A) :
     IsUnit (Ideal.Quotient.mk M a) ↔ IsCoprime (Ideal.span ({a} : Set A)) M := by
   rw [Ideal.isCoprime_iff_sup_eq, Ideal.eq_top_iff_one, Ideal.mem_span_singleton_sup]
@@ -51,9 +57,15 @@ def value (M : Ideal A) (χ : MulChar (A ⧸ M) ℂ) (I : Ideal A) : ℂ :=
   if I = ⊥ then 0 else χ (Ideal.Quotient.mk M (generator I))
 
 omit [IsDomain A] in
+/--
+@isnad1 id=eq.0h3v.s6.0245b71eb493 from=translated src=- shape=fc0fb509 vocab=13bb4e00
+-/
 theorem value_bot (M : Ideal A) (χ : MulChar (A ⧸ M) ℂ) : value M χ ⊥ = 0 := by
   simp only [value, ite_true]
 
+/--
+@isnad1 id=eq.2h4v.s8.33e0d92bed42 from=translated src=- shape=b2c17e1f vocab=9e640e80
+-/
 theorem value_span (M : Ideal A) (χ : MulChar (A ⧸ M) ℂ) (hχ : UnitInvariant M χ)
     {a : A} (ha : a ≠ 0) :
     value M χ (Ideal.span ({a} : Set A)) = χ (Ideal.Quotient.mk M a) := by
@@ -91,14 +103,23 @@ def ofResidue (M : Ideal A) (χ : MulChar (A ⧸ M) ℂ) (hχ : UnitInvariant M 
       _ = value M χ I * value M χ J := by
         rw [← hIa, ← hJb, value_span M χ hχ ha, value_span M χ hχ hb]
 
+/--
+@isnad1 id=eq.1h3v.s7.dd5f5be3a0f9 from=translated src=- shape=700d0f13 vocab=69220931
+-/
 @[simp] theorem ofResidue_bot (M : Ideal A) (χ : MulChar (A ⧸ M) ℂ)
     (hχ : UnitInvariant M χ) : ofResidue M χ hχ ⊥ = 0 := value_bot M χ
 
+/--
+@isnad1 id=eq.2h4v.s8.890847140cd9 from=translated src=- shape=5795d63e vocab=d48c7b0f
+-/
 theorem ofResidue_span (M : Ideal A) (χ : MulChar (A ⧸ M) ℂ) (hχ : UnitInvariant M χ)
     {a : A} (ha : a ≠ 0) :
     ofResidue M χ hχ (Ideal.span ({a} : Set A)) = χ (Ideal.Quotient.mk M a) :=
   value_span M χ hχ ha
 
+/--
+@isnad1 id=eq.3h5v.s9.914564c37e39 from=translated src=- shape=337565a1 vocab=312634bf
+-/
 theorem ofResidue_of_generator (M : Ideal A) (χ : MulChar (A ⧸ M) ℂ)
     (hχ : UnitInvariant M χ) {I : Ideal A} (hI : I ≠ ⊥) {a : A}
     (ha : Ideal.span ({a} : Set A) = I) :
@@ -110,6 +131,9 @@ theorem ofResidue_of_generator (M : Ideal A) (χ : MulChar (A ⧸ M) ℂ)
   rw [← ha, ofResidue_span M χ hχ ha0]
 
 omit [IsDomain A] [IsPrincipalIdealRing A] in
+/--
+@isnad1 id=le.0h4v.s7.9161a8fb8471 from=translated src=- shape=76598438 vocab=c330515f
+-/
 theorem norm_residue_le_one (M : Ideal A) [Finite (A ⧸ M)]
     (χ : MulChar (A ⧸ M) ℂ) (a : A ⧸ M) : ‖χ a‖ ≤ 1 := by
   let : Fintype (A ⧸ M)ˣ := Fintype.ofFinite _
@@ -122,6 +146,9 @@ theorem norm_residue_le_one (M : Ideal A) [Finite (A ⧸ M)]
   · rw [MulChar.map_nonunit χ ha, norm_zero]
     exact zero_le_one
 
+/--
+@isnad1 id=le.1h4v.s7.59a375205d1f from=translated src=- shape=871ee6c0 vocab=b3ce8514
+-/
 theorem norm_ofResidue_le_one (M : Ideal A) [Finite (A ⧸ M)]
     (χ : MulChar (A ⧸ M) ℂ) (hχ : UnitInvariant M χ) (I : Ideal A) :
     ‖ofResidue M χ hχ I‖ ≤ 1 := by
@@ -134,10 +161,16 @@ theorem norm_ofResidue_le_one (M : Ideal A) [Finite (A ⧸ M)]
 
 omit [IsDomain A] [IsPrincipalIdealRing A] in
 
+/--
+@isnad1 id=unitinva.0h2v.s7.26e651db7692 from=translated src=- shape=8efbe3a7 vocab=f6a17ae1
+-/
 theorem one_unitInvariant (M : Ideal A) : UnitInvariant M (1 : MulChar (A ⧸ M) ℂ) := by
   intro u
   exact MulChar.one_apply (u.isUnit.map (Ideal.Quotient.mk M))
 
+/--
+@isnad1 id=eq.0h3v.s8.29112c1c5686 from=translated src=- shape=794c8e49 vocab=b3811136
+-/
 theorem ofResidue_one (M : Ideal A) (I : Ideal A) :
     ofResidue M 1 (one_unitInvariant M) I =
       if I = ⊥ then 0 else if IsCoprime I M then 1 else 0 := by
@@ -156,12 +189,18 @@ theorem ofResidue_one (M : Ideal A) (I : Ideal A) :
     · simp only [hc, ite_false]
       exact MulChar.map_nonunit _ (fun h => hc (hu.mp h))
 
+/--
+@isnad1 id=eq.0h2v.s9.a3738d7f800b from=translated src=- shape=ebe4ac54 vocab=4d756bf2
+-/
 theorem ofResidue_one_top (I : Ideal A) :
     ofResidue (⊤ : Ideal A) 1 (one_unitInvariant ⊤) I = if I = ⊥ then 0 else 1 := by
   rw [ofResidue_one]
   have h : IsCoprime I (⊤ : Ideal A) := Ideal.isCoprime_iff_sup_eq.mpr (sup_top_eq I)
   simp only [h, ite_true]
 
+/--
+@isnad1 id=eq.3h6v.s10.691a00b69637 from=translated src=- shape=b729340b vocab=b809e9d1
+-/
 theorem ofResidue_source_mask (M K : Ideal A)
     (χ : MulChar (A ⧸ M) ℂ) (φ : MulChar (A ⧸ K) ℂ)
     (hχ : UnitInvariant M χ) (hφ : UnitInvariant K φ)
@@ -179,6 +218,9 @@ theorem ofResidue_source_mask (M K : Ideal A)
       Ideal.span_singleton_generator] at h
     simpa only [hcop] using h
 
+/--
+@isnad1 id=eq.3h6v.s10.7e82ff0bb22a from=translated src=- shape=5fa034e5 vocab=d147135e
+-/
 theorem ofResidue_finite_deletion (M K : Ideal A)
     (χ : MulChar (A ⧸ M) ℂ) (φ : MulChar (A ⧸ K) ℂ)
     (hχ : UnitInvariant M χ) (hφ : UnitInvariant K φ)
@@ -193,6 +235,9 @@ theorem ofResidue_finite_deletion (M K : Ideal A)
   · simp only [hI, ite_false]
     split_ifs <;> simp only [one_mul, zero_mul]
 
+/--
+@isnad1 id=eq.2h6v.s9.7ceb51004639 from=translated src=- shape=5ef1c172 vocab=885b1c4a
+-/
 theorem ofResidue_product (M N : Ideal A)
     (χ : MulChar (A ⧸ M) ℂ) (ψ : MulChar (A ⧸ N) ℂ)
     (hχ : UnitInvariant M χ) (hψ : UnitInvariant N ψ) (I : Ideal A) :

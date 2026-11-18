@@ -21,11 +21,17 @@ namespace ShortDraftLatticeCount
 
 def q (x : ℤ × ℤ) : ℤ := x.1 ^ 2 - x.1 * x.2 + x.2 ^ 2
 
+/--
+@isnad1 id=and.2h3v.s7.6d919d788ab6 from=translated src=- shape=3601a455 vocab=35ae5b9f
+-/
 theorem coordinate_squares (a b D : ℤ) (hD : 0 ≤ D)
     (h : a ^ 2 - a * b + b ^ 2 ≤ D) :
     a ^ 2 ≤ 2 * D ∧ b ^ 2 ≤ 2 * D := by
   constructor <;> nlinarith [sq_nonneg (a - 2 * b), sq_nonneg (2 * a - b)]
 
+/--
+@isnad1 id=le.2h3v.s7.d9dfada6e9fa from=translated src=- shape=743901eb vocab=3f2d38fc
+-/
 theorem finite_lattice_count (S : Finset (ℤ × ℤ)) (D R : ℕ)
     (hR : 2 * D < R ^ 2)
     (hS : ∀ x ∈ S, q x ≤ D) :
@@ -55,6 +61,9 @@ theorem finite_lattice_count (S : Finset (ℤ × ℤ)) (D R : ℕ)
     _ = I.card * I.card := Finset.card_product _ _
     _ = (2 * R + 1) ^ 2 := by rw [hI]; ring
 
+/--
+@isnad1 id=le.1h2v.s6.6d5cfab989bb from=translated src=- shape=0f11a410 vocab=fbd9439f
+-/
 theorem finite_lattice_count_linear (S : Finset (ℤ × ℤ)) (D : ℕ)
     (hS : ∀ x ∈ S, q x ≤ D) :
     S.card ≤ 64 * (D + 1) := by
@@ -65,6 +74,9 @@ theorem finite_lattice_count_linear (S : Finset (ℤ × ℤ)) (D : ℕ)
   have hroot : Nat.sqrt (2 * D) ≤ 2 * D := Nat.sqrt_le_self _
   nlinarith
 
+/--
+@isnad1 id=le.1h2v.s5.83bd1f5a91f2 from=translated src=- shape=7864d35a vocab=d02b2cb1
+-/
 theorem actual_eisenstein_count
     (S : Finset ActualEisensteinCoordinates.O) (D : ℕ)
     (hS : ∀ x ∈ S, q (ActualEisensteinCoordinates.coords x) ≤ D) :
@@ -97,6 +109,9 @@ namespace ActualEisensteinCubic
 
 open ShortDraftCusp
 
+/--
+@isnad1 id=eq.1h1v.s9.7d4f71e3308e from=translated src=- shape=956c1128 vocab=fc3eee61
+-/
 theorem A3_cubicChar_neg_one
     (P : Ideal O) [P.IsMaximal] (hgood : lambda ∉ P) :
     cubicChar P hgood (-1 : O ⧸ P) = 1 := by
@@ -116,22 +131,34 @@ namespace ShortDraftCusp
 
 variable {R : Type*} [CommRing R]
 
+/--
+@isnad1 id=iscoprim.1h5v.s6.45f8a8fdbc7a from=translated src=- shape=edaddadc vocab=e685bf3e
+-/
 theorem A3_coprime_a_c (a b c d : R)
     (hdet : a * d - b * c = 1) : IsCoprime a c := by
   refine ⟨d, -b, ?_⟩
   linear_combination hdet
 
+/--
+@isnad1 id=iscoprim.1h5v.s6.2760033e4b17 from=translated src=- shape=7db91887 vocab=e685bf3e
+-/
 theorem A3_coprime_a_b (a b c d : R)
     (hdet : a * d - b * c = 1) : IsCoprime a b := by
   refine ⟨d, -c, ?_⟩
   linear_combination hdet
 
+/--
+@isnad1 id=iscoprim.1h6v.s7.cba26c890f7c from=translated src=- shape=f8c150d0 vocab=e685bf3e
+-/
 theorem A3_ramified_coprime_a_A (a b cprime d u : R)
     (hdet : a * d - b * (u * cprime) = 1) :
     IsCoprime a (a - u * b) := by
   refine ⟨d - cprime, cprime, ?_⟩
   linear_combination hdet
 
+/--
+@isnad1 id=iscoprim.1h5v.s6.48f5f36dcadd from=translated src=- shape=b3cca523 vocab=0f8d071c
+-/
 theorem A3_unramified_coprime_a_minus_b (a b c d : R)
     (hdet : a * d - b * c = 1) : IsCoprime a (-b) := by
   refine ⟨d, c, ?_⟩
@@ -143,11 +170,17 @@ namespace ShortDraftLatticeCount
 
 open ActualEisensteinCoordinates
 
+/--
+@isnad1 id=eq.0h2v.s4.269f33522be6 from=translated src=- shape=139ab35a vocab=a3e06baa
+-/
 theorem coords_eval (a b : ℤ) :
     coords (eval a b) = (a, b) := by
   have h := unique_coordinates (eval_coords (eval a b))
   exact Prod.ext h.1 h.2
 
+/--
+@isnad1 id=eq.0h2v.s5.dca11757ef62 from=translated src=- shape=f32cdb9c vocab=b9882fc6
+-/
 theorem qO_mul (x y : O) :
     q (coords (x * y)) = q (coords x) * q (coords y) := by
   have hxy : x * y = eval
@@ -161,9 +194,15 @@ theorem qO_mul (x y : O) :
   rw [hxy, coords_eval]
   exact ShortDraft.eisenstein_norm_mul (coords x) (coords y)
 
+/--
+@isnad1 id=le.0h1v.s3.1bc788fa299f from=translated src=- shape=25e12683 vocab=1b9c8783
+-/
 theorem qO_nonneg (x : O) : 0 ≤ q (coords x) := by
   exact ShortDraft.eisenstein_norm_nonneg (coords x)
 
+/--
+@isnad1 id=lt.1h1v.s5.8e6f5707c2c5 from=translated src=- shape=0d080633 vocab=ac5c6e37
+-/
 theorem qO_pos {x : O} (hx : x ≠ 0) : 0 < q (coords x) := by
   have hne : q (coords x) ≠ 0 := by
     intro hzero
@@ -177,17 +216,26 @@ theorem qO_pos {x : O} (hx : x ≠ 0) : 0 < q (coords x) := by
 
 def qNat (x : O) : ℕ := (q (coords x)).toNat
 
+/--
+@isnad1 id=eq.0h2v.s5.3a72af5e71b5 from=translated src=- shape=0438c7a3 vocab=f8472d6c
+-/
 theorem qNat_mul (x y : O) : qNat (x * y) = qNat x * qNat y := by
   unfold qNat
   rw [qO_mul]
   exact Int.toNat_mul (qO_nonneg x) (qO_nonneg y)
 
+/--
+@isnad1 id=lt.1h1v.s5.9c6b9f80a6fa from=translated src=- shape=c87724ab vocab=30587fd0
+-/
 theorem qNat_pos {x : O} (hx : x ≠ 0) : 0 < qNat x := by
   unfold qNat
   have hcast := Int.toNat_of_nonneg (qO_nonneg x)
   have hpos := qO_pos hx
   omega
 
+/--
+@isnad1 id=le.2h3v.s6.153cc373bb6c from=translated src=- shape=33e15352 vocab=d019b912
+-/
 theorem finite_multiples_count
     (p : O) (hp : p ≠ 0) (T : Finset O) (D : ℕ)
     (hT : ∀ x ∈ T, qNat (p * x) ≤ D) :
@@ -219,6 +267,9 @@ namespace ShortDraftLatticeCount
 
 open ActualEisensteinCoordinates
 
+/--
+@isnad1 id=le.3h3v.s7.d8c8030c35c8 from=translated src=- shape=0196568a vocab=16ea848b
+-/
 theorem finite_divisible_count
     (p : O) (hp : p ≠ 0) (S : Finset O) (D : ℕ)
     (hdiv : ∀ n ∈ S, p ∣ n)
@@ -276,6 +327,9 @@ private theorem rightAddChar_mulShift {T R S : Type*}
   apply e.injective
   ext <;> simp
 
+/--
+@isnad1 id=eq.2h8v.s11.23e6cb160871 from=translated src=- shape=981a7d60 vocab=2a5e4063
+-/
 theorem gauss_transform_crt {T R S : Type*}
     [CommRing T] [Field R] [Field S]
     [Fintype T] [Fintype R] [Fintype S]
@@ -306,6 +360,9 @@ theorem gauss_transform_crt {T R S : Type*}
   rw [hR', hS'] at hbase
   exact hbase
 
+/--
+@isnad1 id=eq.3h7v.s13.26957135c20b from=translated src=- shape=c44262b0 vocab=3605bf7c
+-/
 theorem gauss_transform_ideal_crt {A : Type*} [CommRing A]
     (I J : Ideal A) (hc : IsCoprime I J)
     [I.IsMaximal] [J.IsMaximal]

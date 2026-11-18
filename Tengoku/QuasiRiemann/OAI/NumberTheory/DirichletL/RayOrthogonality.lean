@@ -18,15 +18,24 @@ def characters (H : Subgroup Rˣ) : Subgroup (MulChar R ℂ) :=
 
 instance (H : Subgroup Rˣ) : Fintype (characters H) := Fintype.ofFinite _
 
+/--
+@isnad1 id=iff.0h3v.s8.ef776876ba0e from=translated src=- shape=b9e1e0cc vocab=a90013de
+-/
 theorem mem_characters_iff (H : Subgroup Rˣ) (χ : MulChar R ℂ) :
     χ ∈ characters H ↔ ∀ u ∈ H, χ u = 1 :=
   MulChar.mem_subgroupOrderIsoSubgroupMulChar_iff
 
+/--
+@isnad1 id=eq.0h2v.s7.152e8d3e3da2 from=translated src=- shape=d010560d vocab=fbd9c645
+-/
 theorem card_characters (H : Subgroup Rˣ) :
     Fintype.card (characters H) = Nat.card (Rˣ ⧸ H) := by
   rw [← Nat.card_eq_fintype_card]
   exact MulChar.card_subgroupOrderIsoSubgroupMulChar
 
+/--
+@isnad1 id=ex.1h3v.s9.a3f1d3cd5421 from=translated src=- shape=eed7999e vocab=6caca8dc
+-/
 theorem exists_character_ne_one (H : Subgroup Rˣ) {u : Rˣ} (hu : u ∉ H) :
     ∃ χ : characters H, (χ : MulChar R ℂ) u ≠ 1 := by
   by_contra hn
@@ -38,6 +47,9 @@ theorem exists_character_ne_one (H : Subgroup Rˣ) {u : Rˣ} (hu : u ∉ H) :
   have hh := (MulChar.mem_subgroupOrderIsoSubgroupMulChar_symm_iff).mpr hall
   simpa only [characters, OrderDual.toDual_ofDual, OrderIso.symm_apply_apply] using hh
 
+/--
+@isnad1 id=eq.0h3v.s9.451c4d55c1bb from=translated src=- shape=35a327dc vocab=03ac26e5
+-/
 theorem sum_characters_unit (H : Subgroup Rˣ) (u : Rˣ) :
     ∑ χ : characters H, (χ : MulChar R ℂ) u =
       if u ∈ H then (Nat.card (Rˣ ⧸ H) : ℂ) else 0 := by
@@ -58,6 +70,9 @@ theorem sum_characters_unit (H : Subgroup Rˣ) (u : Rˣ) :
 def inUnitSubgroup (H : Subgroup Rˣ) (r : R) : Prop :=
   ∃ u : Rˣ, (u : R) = r ∧ u ∈ H
 
+/--
+@isnad1 id=eq.0h3v.s9.2078942851dc from=translated src=- shape=cada3fe4 vocab=ad73d190
+-/
 theorem sum_characters (H : Subgroup Rˣ) (r : R) :
     ∑ χ : characters H, (χ : MulChar R ℂ) r =
       if inUnitSubgroup H r then (Nat.card (Rˣ ⧸ H) : ℂ) else 0 := by
@@ -75,9 +90,15 @@ theorem sum_characters (H : Subgroup Rˣ) (r : R) :
     simp only [hn, ite_false]
     exact Finset.sum_eq_zero fun χ _ ↦ MulChar.map_nonunit χ.val hr
 
+/--
+@isnad1 id=lt.0h2v.s5.eed2ed54c4eb from=translated src=- shape=0a4faf52 vocab=ba35d526
+-/
 theorem ray_card_pos (H : Subgroup Rˣ) : 0 < Nat.card (Rˣ ⧸ H) :=
   Nat.card_pos
 
+/--
+@isnad1 id=eq.0h3v.s9.3c6f837db723 from=translated src=- shape=73349ce2 vocab=124bf09e
+-/
 theorem average_characters (H : Subgroup Rˣ) (r : R) :
     (∑ χ : characters H, (χ : MulChar R ℂ) r) / (Nat.card (Rˣ ⧸ H) : ℂ) =
       if inUnitSubgroup H r then 1 else 0 := by
@@ -96,6 +117,9 @@ def globalUnits : Subgroup (A ⧸ M)ˣ :=
 
 abbrev rayCharacters := characters (globalUnits M)
 
+/--
+@isnad1 id=iff.0h3v.s9.ee91c4361c56 from=translated src=- shape=1656ac58 vocab=85683778
+-/
 theorem mem_rayCharacters_iff (χ : MulChar (A ⧸ M) ℂ) :
     χ ∈ rayCharacters M ↔ IdealCharacter.UnitInvariant M χ := by
   rw [mem_characters_iff]
@@ -110,6 +134,9 @@ def principalResidue (r : A ⧸ M) : Prop :=
   ∃ u : Aˣ, Ideal.Quotient.mk M u = r
 
 omit [Finite (A ⧸ M)] in
+/--
+@isnad1 id=iff.0h3v.s6.7bec4027af0f from=translated src=- shape=82b3d1cc vocab=7a1cca30
+-/
 theorem inUnitSubgroup_globalUnits_iff (r : A ⧸ M) :
     inUnitSubgroup (globalUnits M) r ↔ principalResidue M r := by
   constructor
@@ -120,13 +147,22 @@ theorem inUnitSubgroup_globalUnits_iff (r : A ⧸ M) :
 
 abbrev rayCard : ℕ := Nat.card ((A ⧸ M)ˣ ⧸ globalUnits M)
 
+/--
+@isnad1 id=lt.0h2v.s5.450e59963748 from=translated src=- shape=91e72d9e vocab=ffd1aeb6
+-/
 theorem rayCard_pos : 0 < rayCard M := ray_card_pos _
 
+/--
+@isnad1 id=eq.0h3v.s11.04bafa5999a3 from=translated src=- shape=8581d2c2 vocab=6a9d0578
+-/
 theorem sum_rayCharacters (r : A ⧸ M) :
     ∑ χ : rayCharacters M, (χ : MulChar (A ⧸ M) ℂ) r =
       if principalResidue M r then (rayCard M : ℂ) else 0 := by
   rw [sum_characters, inUnitSubgroup_globalUnits_iff]
 
+/--
+@isnad1 id=eq.0h3v.s11.c2742e6df82e from=translated src=- shape=9b26193d vocab=64d01257
+-/
 theorem average_rayCharacters (r : A ⧸ M) :
     (∑ χ : rayCharacters M, (χ : MulChar (A ⧸ M) ℂ) r) / (rayCard M : ℂ) =
       if principalResidue M r then 1 else 0 := by
@@ -143,6 +179,9 @@ def principalIdeals : Set (Ideal A) :=
     principalResidue M (Ideal.Quotient.mk M a)}
 
 omit [Finite (A ⧸ M)] in
+/--
+@isnad1 id=iff.1h3v.s8.3e7aa833ae4c from=translated src=- shape=c183e445 vocab=23b2a199
+-/
 theorem principalIdeals_iff_generator {I : Ideal A} (hI : I ≠ ⊥) :
     I ∈ principalIdeals M ↔
       principalResidue M (Ideal.Quotient.mk M (Submodule.IsPrincipal.generator I)) := by
@@ -163,6 +202,9 @@ theorem principalIdeals_iff_generator {I : Ideal A} (hI : I ≠ ⊥) :
 
 omit [Finite (A ⧸ M)] [IsPrincipalIdealRing A] in
 
+/--
+@isnad1 id=iff.0h3v.s8.32a0b69ee5eb from=translated src=- shape=41691531 vocab=9163e564
+-/
 theorem principalIdeals_iff_congruent_one (I : Ideal A) :
     I ∈ principalIdeals M ↔ ∃ a : A, a ≠ 0 ∧
       Ideal.span ({a} : Set A) = I ∧ Ideal.Quotient.mk M a = 1 := by
@@ -180,14 +222,23 @@ theorem principalIdeals_iff_congruent_one (I : Ideal A) :
     · exact fun h ↦ ha (Ideal.span_singleton_eq_bot.mp (hI.trans h))
     · simpa only [Units.val_one, map_one] using hq.symm
 
+/--
+@isnad1 id=le.0h4v.s9.a67fb0d0e56f from=translated src=- shape=1ff00f0c vocab=e2988bb7
+-/
 theorem norm_idealCharacter_le_one (χ : rayCharacters M) (I : Ideal A) :
     ‖idealCharacter M χ I‖ ≤ 1 := IdealCharacter.norm_ofResidue_le_one M χ _ I
 
+/--
+@isnad1 id=eq.0h3v.s10.5fcdf29dea2d from=translated src=- shape=5dd95e3b vocab=fb5d0e36
+-/
 theorem idealCharacter_one (I : Ideal A) :
     idealCharacter M 1 I =
       if I = ⊥ then 0 else if IsCoprime I M then 1 else 0 :=
   IdealCharacter.ofResidue_one M I
 
+/--
+@isnad1 id=eq.0h3v.s10.c18773d3fb6c from=translated src=- shape=457158b6 vocab=d4ae76bd
+-/
 theorem sum_idealCharacters (I : Ideal A) :
     ∑ χ : rayCharacters M, idealCharacter M χ I =
       if I ∈ principalIdeals M then (rayCard M : ℂ) else 0 := by
@@ -199,6 +250,9 @@ theorem sum_idealCharacters (I : Ideal A) :
       exact IdealCharacter.ofResidue_of_generator M χ _ hI (Ideal.span_singleton_generator I)
     simp only [heq, sum_rayCharacters, principalIdeals_iff_generator M hI]
 
+/--
+@isnad1 id=eq.0h3v.s10.b8f334f84bf0 from=translated src=- shape=b4a8ecff vocab=083db97c
+-/
 theorem average_idealCharacters (I : Ideal A) :
     (∑ χ : rayCharacters M, idealCharacter M χ I) / (rayCard M : ℂ) =
       if I ∈ principalIdeals M then 1 else 0 := by

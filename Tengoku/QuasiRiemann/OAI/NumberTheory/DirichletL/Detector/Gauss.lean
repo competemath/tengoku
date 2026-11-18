@@ -15,20 +15,32 @@ def frequencyGauss {F : Type*} [Field F] [Fintype F]
     (ξ : MulChar F ℂ) (ψ : AddChar F ℂ) (h : F) : ℂ :=
   ∑ v : F, ξ v * ψ (h * v)
 
+/--
+@isnad1 id=eq.0h4v.s6.b66fe0893f91 from=translated src=- shape=cdfafb0f vocab=8c52330c
+-/
 theorem frequencyGauss_eq_shift {F : Type*} [Field F] [Fintype F]
     (ξ : MulChar F ℂ) (ψ : AddChar F ℂ) (h : F) :
     frequencyGauss ξ ψ h = gaussSum ξ (ψ.mulShift h) := rfl
 
+/--
+@isnad1 id=eq.1h4v.s7.cce48835ca5c from=translated src=- shape=76e14c76 vocab=979e5ce0
+-/
 theorem frequencyGauss_nonzero {F : Type*} [Field F] [Fintype F]
     (ξ : MulChar F ℂ) (ψ : AddChar F ℂ) {h : F} (hh : h ≠ 0) :
     frequencyGauss ξ ψ h = ξ⁻¹ h * gaussSum ξ ψ := by
   exact gaussSum_mulShift_eq ξ ψ (Units.mk0 h hh)
 
+/--
+@isnad1 id=eq.1h3v.s7.a1b0f6591981 from=translated src=- shape=a0397915 vocab=8bf287c2
+-/
 theorem frequencyGauss_zero_nonprincipal {F : Type*} [Field F] [Fintype F]
     (ξ : MulChar F ℂ) (ψ : AddChar F ℂ) (hξ : ξ ≠ 1) :
     frequencyGauss ξ ψ 0 = 0 := by
   simpa [frequencyGauss] using MulChar.sum_eq_zero_of_ne_one hξ
 
+/--
+@isnad1 id=eq.1h4v.s7.68ecf2ff27d0 from=translated src=- shape=58ab63e9 vocab=979e5ce0
+-/
 theorem frequencyGauss_nonprincipal {F : Type*} [Field F] [Fintype F]
     (ξ : MulChar F ℂ) (ψ : AddChar F ℂ) (hξ : ξ ≠ 1) (h : F) :
     frequencyGauss ξ ψ h = ξ⁻¹ h * gaussSum ξ ψ := by
@@ -37,6 +49,9 @@ theorem frequencyGauss_nonprincipal {F : Type*} [Field F] [Fintype F]
     rw [frequencyGauss_zero_nonprincipal ξ ψ hξ, MulChar.map_zero, zero_mul]
   · exact frequencyGauss_nonzero ξ ψ hh
 
+/--
+@isnad1 id=eq.1h3v.s7.35d44f9de0c6 from=translated src=- shape=f79da993 vocab=90539d3e
+-/
 theorem frequencyGauss_principal {F : Type*} [Field F] [Fintype F]
     (ψ : AddChar F ℂ) (hψ : ψ ≠ 1) (h : F) :
     frequencyGauss 1 ψ h = if h = 0 then (Nat.card Fˣ : ℂ) else -1 := by
@@ -49,6 +64,9 @@ theorem frequencyGauss_principal {F : Type*} [Field F] [Fintype F]
       MulChar.one_apply (isUnit_iff_ne_zero.mpr hh), one_mul]
     exact gaussSum_one_left hψ
 
+/--
+@isnad1 id=eq.2h3v.s8.e632dc6fc818 from=translated src=- shape=c1cc500c vocab=b1841976
+-/
 theorem gauss_inverse_pair {F : Type*} [Field F] [Fintype F]
     (χ : MulChar F ℂ) (ψ : AddChar F ℂ) (hχ : χ ≠ 1) (hψ : ψ.IsPrimitive) :
     gaussSum χ ψ * gaussSum χ⁻¹ ψ = χ (-1) * (Fintype.card F : ℂ) := by
@@ -59,6 +77,9 @@ def normalizedGauss {F : Type*} [Field F] [Fintype F]
     (χ : MulChar F ℂ) (ψ : AddChar F ℂ) : ℂ :=
   gaussSum χ ψ / (Real.sqrt (Fintype.card F) : ℂ)
 
+/--
+@isnad1 id=eq.2h3v.s7.fcd0548be616 from=translated src=- shape=38f66490 vocab=4f44f088
+-/
 theorem normalizedGauss_inverse_pair {F : Type*} [Field F] [Fintype F]
     (χ : MulChar F ℂ) (ψ : AddChar F ℂ) (hχ : χ ≠ 1) (hψ : ψ.IsPrimitive) :
     normalizedGauss χ ψ * normalizedGauss χ⁻¹ ψ = χ (-1) := by
@@ -69,6 +90,9 @@ theorem normalizedGauss_inverse_pair {F : Type*} [Field F] [Fintype F]
   rw [div_mul_div_comm, ← pow_two, hs, gauss_inverse_pair χ ψ hχ hψ]
   exact mul_div_cancel_right₀ _ hq
 
+/--
+@isnad1 id=eq.0h5v.s8.aeb8cacd9581 from=translated src=- shape=6f57fc8a vocab=b90b9af9
+-/
 theorem finite_gauss_convolution {F : Type*} [Field F] [Fintype F]
     (χ ξ : MulChar F ℂ) (ψ : AddChar F ℂ) (h : F) :
     (∑ d : F, χ d * frequencyGauss ξ ψ (h - d)) =

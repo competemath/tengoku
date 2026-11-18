@@ -44,6 +44,9 @@ open Filter Asymptotics
 
 namespace FiniteEulerRestoration
 
+/--
+@isnad1 id=isbigo.2h3v.s6.44e46d2cc262 from=translated src=- shape=a7313f20 vocab=6752519b
+-/
 theorem isBigO_power_atTop_div_const {A : ℝ → ℂ} {σ N : ℝ}
     (hN : 0 < N) (hA : A =O[atTop] fun D : ℝ => D ^ σ) :
     (fun D : ℝ => A (D / N)) =O[atTop] (fun D : ℝ => D ^ σ) := by
@@ -61,6 +64,9 @@ theorem isBigO_power_atTop_div_const {A : ℝ → ℂ} {σ N : ℝ}
     ring
   exact hshift.trans hpower
 
+/--
+@isnad1 id=isbigo.2h6v.s6.9d35f0ddf2be from=translated src=- shape=a82334ac vocab=ffe2067d
+-/
 theorem isBigO_finite_Euler_shifts {ι : Type*} (s : Finset ι)
     (A : ℝ → ℂ) (c : ι → ℂ) (N : ι → ℝ) {σ : ℝ}
     (hN : ∀ i ∈ s, 0 < N i)
@@ -76,6 +82,9 @@ theorem isBigO_finite_Euler_shifts {ι : Type*} (s : Finset ι)
     intro D
     simp only [Finset.sum_apply])
 
+/--
+@isnad1 id=eq.1h3v.s6.d216f2f44b2c from=translated src=- shape=509a60e7 vocab=b3a5e4a2
+-/
 theorem tsum_dvd_shift {N : ℕ} (hN : 0 < N)
     (b : ℕ → ℂ) (φ : ℕ → ℂ) :
     (∑' n : ℕ, if N ∣ n then b (n / N) * φ n else 0) =
@@ -106,6 +115,9 @@ theorem tsum_dvd_shift {N : ℕ} (hN : 0 < N)
   · intro x
     exact hindex x.1
 
+/--
+@isnad1 id=eq.4h5v.s8.8a9bae7e5d5c from=translated src=- shape=b56bc314 vocab=fbffea79
+-/
 theorem tsum_restore_one_prime {N : ℕ} (hN : 0 < N)
     (c : ℂ) (a b φ : ℕ → ℂ)
     (hcoeff : ∀ n, a n = b n + if N ∣ n then c * b (n / N) else 0)
@@ -149,6 +161,9 @@ theorem tsum_restore_one_prime {N : ℕ} (hN : 0 < N)
     _ = (∑' n : ℕ, b n * φ n) + c * (∑' m : ℕ, b m * φ (N * m)) := by
       rw [tsum_mul_left, tsum_dvd_shift hN b φ]
 
+/--
+@isnad1 id=eq.4h5v.s8.30fc56ad408f from=translated src=- shape=6e920882 vocab=afe26d9c
+-/
 theorem tsum_restore_one_prime_exp {N : ℕ} (hN : 0 < N)
     (c : ℂ) (a b : ℕ → ℂ) (t : ℝ)
     (hcoeff : ∀ n, a n = b n + if N ∣ n then c * b (n / N) else 0)
@@ -186,6 +201,9 @@ open scoped Topology
 
 namespace CompactMellinBridge
 
+/--
+@isnad1 id=eq.5h4v.s8.e904f408cc76 from=translated src=- shape=30b2f659 vocab=a8e08d4b
+-/
 theorem mellin_weighted_sum
     (a : ℕ → ℂ) (W F : ℝ → ℂ) (s : ℂ)
     (ha0 : a 0 = 0)
@@ -245,6 +263,9 @@ theorem mellin_weighted_sum
     _ = ∑' n : ℕ, mellin W s * LSeries.term a s n := by simp_rw [hterm]
     _ = mellin W s * LSeries a s := hseries
 
+/--
+@isnad1 id=eq.6h8v.s8.3458df3923e8 from=translated src=- shape=3ba4fcf6 vocab=6350c00d
+-/
 theorem normFiber_compact_euler_identity
     {q r : ℕ} [NeZero q] [NeZero r]
     (χ : DirichletCharacter ℂ q) (ψ : DirichletCharacter ℂ r)
@@ -284,6 +305,9 @@ theorem normFiber_compact_euler_identity
           LSeries (ShortDraftHeckeBridge.pairInverseCoeff χ ψ) s) * mellin W s := by ring
     _ = mellin W s := by rw [hEuler]; ring
 
+/--
+@isnad1 id=eq.4h4v.s7.df4fe9d17f19 from=translated src=- shape=aba1066e vocab=04cbf34a
+-/
 theorem weighted_sum_zero_of_large_t
     (a : ℕ → ℂ) (ha0 : a 0 = 0) (W F : ℝ → ℂ)
     (hW : ∀ y : ℝ, 2 ≤ y → W y = 0)
@@ -306,6 +330,9 @@ theorem weighted_sum_zero_of_large_t
     simpa only [hterm] using (hasSum_zero : HasSum (fun _ : ℕ => (0 : ℂ)) 0)
   exact (hF t (lt_of_lt_of_le (by norm_num) ht)).unique hzero
 
+/--
+@isnad1 id=eventual.3h3v.s7.651b54f520f5 from=translated src=- shape=02469f9a vocab=c5b1558e
+-/
 theorem weighted_sum_zero_near_small_D
     (a : ℕ → ℂ) (ha0 : a 0 = 0) (W F : ℝ → ℂ)
     (hW : ∀ y : ℝ, 2 ≤ y → W y = 0)
@@ -322,6 +349,9 @@ theorem weighted_sum_zero_near_small_D
     nlinarith
   exact weighted_sum_zero_of_large_t a ha0 W F hW hF D⁻¹ hinv
 
+/--
+@isnad1 id=analytic.2h2v.s6.9cf718ca0b98 from=translated src=- shape=98283a27 vocab=204d2f78
+-/
 theorem compact_weight_mellin_analytic
     (W : ℝ → ℂ) (hW : ContDiff ℝ (↑(⊤ : ℕ∞)) W)
     (hsupp : ∀ y : ℝ, y ≤ 1 ∨ 2 ≤ y → W y = 0)
@@ -362,6 +392,9 @@ theorem compact_weight_mellin_analytic
   have hM := ShortDraftMellin.inverse_mellin_analytic A σ hlocal htop hzero
   simpa only [A, mellin_comp_inv, neg_neg] using hM
 
+/--
+@isnad1 id=and.14h9v.s9.aee01ef2e20c from=translated src=- shape=8dbb9516 vocab=ee37fa7f
+-/
 theorem pair_zero_free_of_compact_weight_bound
     {q r : ℕ} [NeZero q] [NeZero r]
     (χ : DirichletCharacter ℂ q) (ψ : DirichletCharacter ℂ r)
@@ -432,6 +465,9 @@ theorem pair_zero_free_of_compact_weight_bound
       hL hM hWanalytic heq ρ hρ hWρ
   exact mul_ne_zero_iff.mp hprod
 
+/--
+@isnad1 id=and.8h7v.s8.b46fd7c47885 from=translated src=- shape=5a0fa44b vocab=4eaf3514
+-/
 theorem pair_zero_free_of_weighted_identity_principal_left
     {q r : ℕ} [NeZero q] [NeZero r]
     (ψ : DirichletCharacter ℂ r) (hψ : ψ ≠ 1)
@@ -480,6 +516,9 @@ theorem pair_zero_free_of_weighted_identity_principal_left
       M W hLregular hM hW hregular heqregular ρ hρ hρone hWρ
   exact mul_ne_zero_iff.mp hprod
 
+/--
+@isnad1 id=and.14h8v.s9.f26c4fbbc7e5 from=translated src=- shape=3caa214b vocab=ee37fa7f
+-/
 theorem pair_zero_free_of_compact_weight_bound_principal_left
     {q r : ℕ} [NeZero q] [NeZero r]
     (ψ : DirichletCharacter ℂ r) (hψ : ψ ≠ 1)
@@ -524,6 +563,9 @@ theorem pair_zero_free_of_compact_weight_bound_principal_left
     (fun s => mellin (fun D : ℝ => F D⁻¹) (-s)) (mellin W)
     hM hWanalytic heq ρ hρ hρone hWρ
 
+/--
+@isnad1 id=and.14h8v.s9.24fdfc9cbf43 from=translated src=- shape=9888cad8 vocab=ee37fa7f
+-/
 theorem pair_zero_free_of_compact_weight_bound_principal_right
     {q r : ℕ} [NeZero q] [NeZero r]
     (χ : DirichletCharacter ℂ q) (hχ : χ ≠ 1)
@@ -596,6 +638,9 @@ structure BaseChangeCompactTest
     (fun D : ℝ => D ^ sigma)
   mellin_nonzero : mellin W ρ ≠ 0
 
+/--
+@isnad1 id=dirichle.0h1v.s6.fe772a07cf43 from=translated src=- shape=25d84d4b vocab=23431184
+-/
 theorem dirichletTarget_of_compact_normFiber_tests
     (hTest : ∀ (q : ℕ) [NeZero q] (χ : DirichletCharacter ℂ q)
       (ρ : ℂ), (23 / 24 : ℝ) < ρ.re → ρ.re < 1 →

@@ -33,6 +33,9 @@ def ofResidueMask {S : Type*} [CommRing S] (ρ : M →* R)
     rw [map_mul]
     exact (Commute.all _ _).isUnit_mul_iff
 
+/--
+@isnad1 id=keep.0h6v.s6.d8b0cd554a85 from=translated src=- shape=0920734c vocab=e2c60b98
+-/
 @[simp] theorem ofResidueMask_keep_one {S : Type*} [CommRing S]
     (ρ : M →* R) (χ : MulChar R ℂ) (puncture : M →* S) :
     (ofResidueMask ρ χ puncture).keep 1 := by
@@ -42,6 +45,9 @@ def ofResidueMask {S : Type*} [CommRing S] (ρ : M →* R)
 def MaskedCharacter.value (d : MaskedCharacter M R) (a : M) : ℂ :=
   @ite ℂ (d.keep a) (Classical.propDecidable _) (d.character (d.residue a)) 0
 
+/--
+@isnad1 id=eq.0h5v.s6.67d7d03be834 from=translated src=- shape=319fe69d vocab=80b59c47
+-/
 @[simp] theorem MaskedCharacter.value_mul (d : MaskedCharacter M R) (a b : M) :
     d.value (a * b) = d.value a * d.value b := by
   classical
@@ -51,6 +57,9 @@ def MaskedCharacter.value (d : MaskedCharacter M R) (a : M) : ℂ :=
 def normTwist (N : M →* ℝ≥0) (t : ℝ) (a : M) : ℂ :=
   ((N a : ℝ) : ℂ) ^ (Complex.I * t)
 
+/--
+@isnad1 id=eq.0h5v.s6.ec9c96b1c750 from=translated src=- shape=e8997b87 vocab=7d6722b4
+-/
 @[simp] theorem normTwist_mul (N : M →* ℝ≥0) (t : ℝ) (a b : M) :
     normTwist N t (a * b) = normTwist N t a * normTwist N t b := by
   simp only [normTwist, map_mul, NNReal.coe_mul, Complex.ofReal_mul]
@@ -59,6 +68,9 @@ def normTwist (N : M →* ℝ≥0) (t : ℝ) (a : M) : ℂ :=
 def coefficient (d : MaskedCharacter M R) (N : M →* ℝ≥0) (t : ℝ) (a : M) : ℂ :=
   d.value a * normTwist N t a
 
+/--
+@isnad1 id=eq.0h7v.s6.73a36f3d185c from=translated src=- shape=3d776591 vocab=daf6e5c6
+-/
 @[simp] theorem coefficient_mul (d : MaskedCharacter M R) (N : M →* ℝ≥0)
     (t : ℝ) (a b : M) :
     coefficient d N t (a * b) = coefficient d N t a * coefficient d N t b := by
@@ -74,6 +86,9 @@ def rectangle (N : M →* ℝ≥0) (W₁ W₂ : ℝ → ℂ)
   W₁ ((N a : ℝ) / X₁) * W₂ ((N b : ℝ) / X₂) -
     W₁ ((N a : ℝ) / Y₁) * W₂ ((N b : ℝ) / Y₂)
 
+/--
+@isnad1 id=eq.0h13v.s7.1f9b4941f1a1 from=translated src=- shape=f590d461 vocab=2b10ae7f
+-/
 theorem rectangle_sum_eq (d : MaskedCharacter M R) (N : M →* ℝ≥0) (t : ℝ)
     (s₁ s₂ : Finset M) (W₁ W₂ : ℝ → ℂ) (X₁ X₂ Y₁ Y₂ : ℝ) :
     (∑ a ∈ s₁, ∑ b ∈ s₂,
@@ -88,6 +103,9 @@ theorem rectangle_sum_eq (d : MaskedCharacter M R) (N : M →* ℝ≥0) (t : ℝ
   simp only [coefficient_mul, rectangle]
   ring
 
+/--
+@isnad1 id=eq.0h14v.s7.04b68b20cd8a from=translated src=- shape=b4d85ca6 vocab=2b10ae7f
+-/
 theorem slot_rectangle_sum_eq (d : MaskedCharacter M R) (N : M →* ℝ≥0) (t : ℝ)
     (p : M) (s₁ s₂ : Finset M) (W₁ W₂ : ℝ → ℂ) (X₁ X₂ Y₁ Y₂ : ℝ) :
     (∑ a ∈ s₁, ∑ b ∈ s₂,
@@ -101,6 +119,9 @@ theorem slot_rectangle_sum_eq (d : MaskedCharacter M R) (N : M →* ℝ≥0) (t 
 def volumeTerm (c I : ℂ) (t X : ℝ) : ℂ :=
   c * (X : ℂ) ^ (1 + Complex.I * t) * I
 
+/--
+@isnad1 id=eq.5h8v.s6.2d13cf80a9d1 from=translated src=- shape=839689fc vocab=c31cc612
+-/
 theorem volume_products_eq (c I₁ I₂ : ℂ) (t X₁ X₂ Y₁ Y₂ : ℝ)
     (hX₁ : 0 ≤ X₁) (hX₂ : 0 ≤ X₂) (hY₁ : 0 ≤ Y₁) (hY₂ : 0 ≤ Y₂)
     (hscale : X₁ * X₂ = Y₁ * Y₂) :
@@ -118,6 +139,9 @@ theorem volume_products_eq (c I₁ I₂ : ℂ) (t X₁ X₂ Y₁ Y₂ : ℝ)
       ((X₁ : ℂ) ^ (1 + Complex.I * t) * (X₂ : ℂ) ^ (1 + Complex.I * t)) := by ring
     _ = _ := by rw [hpow]; ring
 
+/--
+@isnad1 id=eq.1h8v.s7.6a0a021d2a5a from=translated src=- shape=98d8707a vocab=1a68e182
+-/
 theorem centered_error_identity (A₁ A₂ B₁ B₂ a₁ a₂ b₁ b₂ : ℂ)
     (hmain : a₁ * a₂ = b₁ * b₂) :
     A₁ * A₂ - B₁ * B₂ =
@@ -125,6 +149,9 @@ theorem centered_error_identity (A₁ A₂ B₁ B₂ a₁ a₂ b₁ b₂ : ℂ)
         (B₁ - b₁) * B₂ - b₁ * (B₂ - b₂) := by
   linear_combination hmain
 
+/--
+@isnad1 id=le.1h8v.s7.7d932e2bd5d9 from=translated src=- shape=442172d7 vocab=cf35a14f
+-/
 theorem norm_centered_le (A₁ A₂ B₁ B₂ a₁ a₂ b₁ b₂ : ℂ)
     (hmain : a₁ * a₂ = b₁ * b₂) :
     ‖A₁ * A₂ - B₁ * B₂‖ ≤
@@ -142,6 +169,9 @@ theorem norm_centered_le (A₁ A₂ B₁ B₂ a₁ a₂ b₁ b₂ : ℂ)
       add_le_add (add_le_add (norm_add_le _ _) le_rfl) le_rfl
     _ = _ := by simp only [norm_mul]
 
+/--
+@isnad1 id=le.10h14v.s8.1ebdca1b296d from=translated src=- shape=5249ecd1 vocab=cf35a14f
+-/
 theorem norm_centered_le_of_approx
     (A₁ A₂ B₁ B₂ a₁ a₂ b₁ b₂ : ℂ)
     (X₁ X₂ Y₁ Y₂ C E : ℝ)
@@ -159,6 +189,9 @@ theorem norm_centered_le_of_approx
   have h := norm_centered_le A₁ A₂ B₁ B₂ a₁ a₂ b₁ b₂ hmain
   nlinarith
 
+/--
+@isnad1 id=le.4h4v.s6.dce5b6559c3d from=translated src=- shape=7aa42592 vocab=8b1f73a6
+-/
 theorem scale_le_product_div {X Y T L : ℝ}
     (hX : 0 ≤ X) (hL : 0 < L) (hY : L ≤ Y) (hprod : X * Y = T) :
     X ≤ T / L := by
@@ -166,6 +199,9 @@ theorem scale_le_product_div {X Y T L : ℝ}
   rw [← hprod]
   exact mul_le_mul_of_nonneg_left hY hX
 
+/--
+@isnad1 id=le.7h6v.s6.51f4d83e81f0 from=translated src=- shape=234b637d vocab=70d00927
+-/
 theorem sum_scales_le {X₁ X₂ Y₁ Y₂ T L : ℝ}
     (hL : 0 < L) (hX₁ : L ≤ X₁) (hX₂ : L ≤ X₂)
     (hY₁ : L ≤ Y₁) (hY₂ : L ≤ Y₂)
@@ -179,6 +215,9 @@ theorem sum_scales_le {X₁ X₂ Y₁ Y₂ T L : ℝ}
     (by simpa only [mul_comm] using hprodY)
   linarith
 
+/--
+@isnad1 id=le.18h16v.s8.e166435305c2 from=translated src=- shape=77716c0a vocab=1a0f6bfa
+-/
 theorem centered_saving_of_approx
     (A₁ A₂ B₁ B₂ a₁ a₂ b₁ b₂ : ℂ)
     (X₁ X₂ Y₁ Y₂ T L C E : ℝ)
@@ -200,6 +239,9 @@ theorem centered_saving_of_approx
     _ ≤ E * C * (4 * (T / L)) := mul_le_mul_of_nonneg_left hs (mul_nonneg hE hC)
     _ = _ := by ring
 
+/--
+@isnad1 id=eq.2h3v.s7.1907884f6282 from=translated src=- shape=0e928edc vocab=2b3104c3
+-/
 theorem extracted_volume_phase (X D t : ℝ) (hX : 0 ≤ X) (hD : 0 < D) :
     (D : ℂ) ^ (Complex.I * t) * ((X / D : ℝ) : ℂ) ^ (1 + Complex.I * t) =
       (X : ℂ) ^ (1 + Complex.I * t) / (D : ℂ) := by
@@ -210,6 +252,9 @@ theorem extracted_volume_phase (X D t : ℝ) (hX : 0 ≤ X) (hD : 0 < D) :
     Complex.cpow_add _ _ hDc, Complex.cpow_one]
   field_simp
 
+/--
+@isnad1 id=eq.2h8v.s7.f03beb8d7b4b from=translated src=- shape=3e57f0cb vocab=9838f148
+-/
 theorem extracted_volume_sum {D : Type*} (s : Finset D) (a : D → ℂ)
     (norm : D → ℝ) (hnorm : ∀ d ∈ s, 0 < norm d)
     (c I : ℂ) (t X : ℝ) (hX : 0 ≤ X) :
@@ -226,6 +271,9 @@ theorem extracted_volume_sum {D : Type*} (s : Finset D) (a : D → ℂ)
         ((X / norm d : ℝ) : ℂ) ^ (1 + Complex.I * t)) := by ring
     _ = _ := by rw [h]; ring
 
+/--
+@isnad1 id=le.6h10v.s7.56797c0c7ab6 from=translated src=- shape=757c5b67 vocab=04cc3902
+-/
 theorem centered_volume_fallback (A₁ A₂ B₁ B₂ : ℂ)
     (X₁ X₂ Y₁ Y₂ T C : ℝ)
     (hA₁ : ‖A₁‖ ≤ C * X₁) (hA₂ : ‖A₂‖ ≤ C * X₂)
@@ -242,6 +290,9 @@ theorem centered_volume_fallback (A₁ A₂ B₁ B₂ : ℂ)
   rw [heY] at hB
   linarith
 
+/--
+@isnad1 id=le.2h5v.s7.92718abccb92 from=translated src=- shape=3f047cfd vocab=f975dfea
+-/
 theorem normalized_centered_saving (D : ℂ) (T L C E : ℝ)
     (hT : 0 < T) (hbound : ‖D‖ ≤ 4 * E * C * (T / L)) :
     ‖(Real.sqrt T : ℂ)⁻¹ * D‖ ≤ 4 * E * C * (Real.sqrt T / L) := by

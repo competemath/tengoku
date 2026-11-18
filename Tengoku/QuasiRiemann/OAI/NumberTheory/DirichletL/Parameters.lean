@@ -11,6 +11,9 @@ namespace OAI
 
 namespace SevenEighths.Parameters
 
+/--
+@isnad1 id=and.2h1v.s8.582db9763df2 from=translated src=- shape=8b8e91e1 vocab=162129a8
+-/
 theorem compensated_geometry {d : ℝ} (_hd0 : 0 ≤ d) (hd1 : d ≤ 1 / 6) :
     (1 / 2 : ℝ) ≤ 5 / 6 - 2 * d ∧
     3 / 16 ≤ 17 / 48 - d ∧
@@ -27,6 +30,9 @@ theorem compensated_geometry {d : ℝ} (_hd0 : 0 ≤ d) (hd1 : d ≤ 1 / 6) :
   · linarith
   · norm_num
 
+/--
+@isnad1 id=ex.3h3v.s6.d4920d8a21f3 from=translated src=- shape=846c37cf vocab=c96aef97
+-/
 theorem exists_height_cutoff {dmin allowance A : ℝ}
     (hd : 0 < dmin) (ha : 0 < allowance) (hA : 0 ≤ A) :
     ∃ τ : ℝ, 0 < τ ∧ τ < dmin / 100 ∧
@@ -42,12 +48,18 @@ theorem exists_height_cutoff {dmin allowance A : ℝ}
   have hp : 0 < dmin * allowance := mul_pos hd ha
   nlinarith
 
+/--
+@isnad1 id=ex.1h3v.s5.306f50c91954 from=translated src=- shape=10e9ae4f vocab=45e814f7
+-/
 theorem exists_tail_order {τ B saving : ℝ} (hτ : 0 < τ) :
     ∃ N : ℕ, B - τ * N < -saving := by
   obtain ⟨N, hN⟩ := exists_nat_gt ((B + saving) / τ)
   have h := (div_lt_iff₀ hτ).mp hN
   exact ⟨N, by nlinarith⟩
 
+/--
+@isnad1 id=le.2h4v.s6.ac5e26c7f8f8 from=translated src=- shape=ebc2da5e vocab=8e70278e
+-/
 theorem cumulative_frequency_bound {ι : Type*} (s : Finset ι)
     (frequency : ι → ℝ) {T : ℝ} (hT : 0 ≤ T)
     (hfreq : ∀ i ∈ s, |frequency i| ≤ T / (4 * s.card)) :

@@ -21,6 +21,9 @@ open ActualEisensteinCubic
 
 namespace OscSpecial
 
+/--
+@isnad1 id=eq.2h3v.s7.7a4c097e344d from=translated src=- shape=863e95cb vocab=d842a473
+-/
 theorem oscillatory_gaussian_poisson {η a b : ℝ}
     (hη : 0 < η) (hq : 0 < q a b) :
     (∑' z : ℤ × ℤ, RankTwoComplex.binaryGaussian (A η a b) (B η a b) (D η a b) z) =
@@ -40,6 +43,9 @@ theorem oscillatory_gaussian_poisson {η a b : ℝ}
 
 noncomputable def r (η a b : ℝ) : ℝ := 1 + 3 * q a b * η ^ 2 / 16
 
+/--
+@isnad1 id=lt.2h3v.s5.ca2d629e21bb from=translated src=- shape=c2c6ddf7 vocab=40a0ab9c
+-/
 theorem r_pos {η a b : ℝ} (hη : 0 < η) (hq : 0 < q a b) :
     0 < r η a b := by
   unfold r
@@ -74,6 +80,9 @@ private theorem inverseForm_explicit {η a b : ℝ} (hη : 0 < η) (hq : 0 < q a
   push_cast
   ring
 
+/--
+@isnad1 id=eq.2h4v.s8.20da5f758c28 from=translated src=- shape=2f42448b vocab=bcbd002c
+-/
 theorem dualGaussian_explicit {η a b : ℝ} (hη : 0 < η) (hq : 0 < q a b)
     (z : ℤ × ℤ) :
     RankTwoComplex.dualGaussian (A η a b) (B η a b) (D η a b) z =
@@ -103,6 +112,9 @@ section
 
 open EisensteinEmbedding ConcreteTraceCRT Complex
 
+/--
+@isnad1 id=eq.0h4v.s7.50807694a6cf from=translated src=- shape=cfe1b9f6 vocab=3e2a3b38
+-/
 theorem dual_quadratic_trace_coeff (a b k l : ℤ) :
     (ActualEisensteinCoordinates.coords
       (ActualEisensteinCoordinates.eval a b *
@@ -129,6 +141,9 @@ private theorem coords_neg_second (z : O) :
   rw [hneg, ShortDraftLatticeCount.coords_eval,
     ShortDraftLatticeCount.coords_eval]
 
+/--
+@isnad1 id=eq.0h5v.s8.a63634d92c14 from=translated src=- shape=f6a2d343 vocab=9cc4072b
+-/
 theorem breveE_dual_quadratic_real_scale
     (r : ℝ) (a b k l : ℤ) :
     ShortDraftTrace.breveE
@@ -162,6 +177,9 @@ end
 
 open EisensteinEmbedding ConcreteTraceCRT Complex
 
+/--
+@isnad1 id=other.1h5v.s10.7c77bcb9738f from=translated src=- shape=7b1311bc vocab=1b71d246
+-/
 theorem actual_oscillatory_binary_coordinate
     (a b m n : ℤ) (hc : ActualEisensteinCoordinates.eval a b ≠ 0)
     (η : ℝ) :
@@ -188,6 +206,9 @@ theorem actual_oscillatory_binary_coordinate
   field_simp [hqC]
   ring
 
+/--
+@isnad1 id=other.1h3v.s10.c5f2a08ddf55 from=translated src=- shape=b5da36f6 vocab=8b65e088
+-/
 theorem actual_oscillatory_sum_eq_binary
     (a b : ℤ) (hc : ActualEisensteinCoordinates.eval a b ≠ 0)
     (η : ℝ) :
@@ -245,6 +266,9 @@ def dualFrequencyEquiv : (ℤ × ℤ) ≃ O where
       (ActualEisensteinCoordinates.coords y).2 = y
     convert ActualEisensteinCoordinates.eval_coords y using 1 ; ring_nf
 
+/--
+@isnad1 id=eq.0h2v.s7.c2c55b4ee2a0 from=translated src=- shape=74b2f34d vocab=a5771e4e
+-/
 theorem dualFrequencyEquiv_norm_sq (k l : ℤ) :
     ‖eisEmbedding (dualFrequencyEquiv (k,l))‖ ^ 2 =
       (((k^2+k*l+l^2 : ℤ) : ℝ)) := by
@@ -252,6 +276,9 @@ theorem dualFrequencyEquiv_norm_sq (k l : ℤ) :
   rw [eisEmbedding_eval_norm_sq]
   ring_nf
 
+/--
+@isnad1 id=eq.0h5v.s8.8a40545fcfd1 from=translated src=- shape=f4378903 vocab=63b407e1
+-/
 theorem dualFrequencyEquiv_trace_phase (r : ℝ) (a b k l : ℤ) :
     ShortDraftTrace.breveE
       (eisEmbedding (-(ActualEisensteinCoordinates.eval a b *
@@ -272,9 +299,15 @@ open Filter
 noncomputable def realGauss (t : ℝ) (z : ℤ × ℤ) : ℝ :=
   Real.exp (-Real.pi * t * RankTwoPoisson.eisQ z)
 
+/--
+@isnad1 id=le.0h2v.s4.97ba6a8293a1 from=translated src=- shape=5c861c0a vocab=cf912e8e
+-/
 theorem realGauss_nonneg (t : ℝ) (z : ℤ × ℤ) :
     0 ≤ realGauss t z := (Real.exp_pos _).le
 
+/--
+@isnad1 id=summable.1h1v.s4.f63d773832cd from=translated src=- shape=286866f6 vocab=e45e2c66
+-/
 theorem realGauss_summable {t : ℝ} (ht : 0 < t) :
     Summable (realGauss t) := by
   have h := (RankTwoPoisson.eis_gauss_summable ht).norm
@@ -284,6 +317,9 @@ theorem realGauss_summable {t : ℝ} (ht : 0 < t) :
   rw [Complex.norm_exp]
   simp
 
+/--
+@isnad1 id=eq.0h2v.s4.3153f9faa182 from=translated src=- shape=18d8efcc vocab=d3e7a3f1
+-/
 theorem realGauss_cast (t : ℝ) (z : ℤ × ℤ) :
     (realGauss t z : ℂ) = RankTwoEisShift.shifted t 0 0 z := by
   dsimp [realGauss, RankTwoPoisson.eisQ,
@@ -298,6 +334,9 @@ namespace ActualEisensteinCubic
 
 open EisensteinEmbedding ConcreteTraceCRT Complex
 
+/--
+@isnad1 id=other.2h5v.s8.644f7aab17c9 from=translated src=- shape=8ceef2f4 vocab=7c5ce53e
+-/
 theorem dual_gaussian_is_actual_trace_phase
     (a b k l : ℤ)
     (hc : ActualEisensteinCoordinates.eval a b ≠ 0)
@@ -331,6 +370,9 @@ theorem dual_gaussian_is_actual_trace_phase
   push_cast
   ring
 
+/--
+@isnad1 id=other.2h3v.s10.8055547155ec from=translated src=- shape=3d5a1813 vocab=82d705bc
+-/
 theorem actual_oscillatory_poisson
     (a b : ℤ) (hc : ActualEisensteinCoordinates.eval a b ≠ 0)
     (η : ℝ) (hη : 0 < η) :
@@ -399,6 +441,9 @@ private theorem sqrt_R_eq {η a b : ℝ} (_hη : 0 < η) (hq : 0 < q a b) :
     rw [show (4 : ℝ) = 2 ^ 2 by norm_num, Real.sqrt_sq (by norm_num : (0 : ℝ) ≤ 2)]
   rw [hs4]
 
+/--
+@isnad1 id=eq.2h3v.s6.51a24ef59bb9 from=translated src=- shape=752635a6 vocab=ddf959d9
+-/
 theorem prefactor_eq_real_sqrt {η a b : ℝ} (hη : 0 < η) (hq : 0 < q a b) :
     (1 / ((R η a b : ℂ) ^ (1 / 2 : ℂ))) =
       ((Real.sqrt (q a b) / (2 * Real.sqrt (r η a b)) : ℝ) : ℂ) := by

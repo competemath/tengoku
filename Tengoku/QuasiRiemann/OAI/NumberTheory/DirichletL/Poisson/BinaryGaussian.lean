@@ -21,6 +21,9 @@ namespace RankTwoComplex
 
 open Real
 
+/--
+@isnad1 id=summable.2h2v.s7.b1ff378bca2f from=translated src=- shape=ad2f773d vocab=d8118325
+-/
 theorem lattice_gaussian_summable_of_re_bound (F : ℤ × ℤ → ℂ)
     {eps : ℝ} (heps : 0 < eps)
     (hbound : ∀ z : ℤ × ℤ,
@@ -164,6 +167,9 @@ private theorem second_poisson_slice {a b d : ℂ}
       rw [← tsum_mul_left]
       exact tsum_congr hterm
 
+/--
+@isnad1 id=eq.5h3v.s8.9909eb851630 from=translated src=- shape=b5df9be6 vocab=b86676a3
+-/
 theorem binary_gaussian_poisson {a b d : ℂ}
     (ha : 0 < a.re) (hδ : 0 < (schur a b d).re)
     (hO : Summable (binaryGaussian a b d))
@@ -223,10 +229,16 @@ open ActualEisensteinCubic ConcreteTraceCRT ConcreteBreveE
 noncomputable def representative (c : O) (r : O ⧸ Ideal.span {c}) : O :=
   Classical.choose (Ideal.Quotient.mk_surjective r)
 
+/--
+@isnad1 id=eq.0h2v.s9.77a3ed61f1c7 from=translated src=- shape=dff41b6e vocab=2c6d6148
+-/
 theorem representative_spec (c : O) (r : O ⧸ Ideal.span {c}) :
     Ideal.Quotient.mk (Ideal.span {c}) (representative c r) = r :=
   Classical.choose_spec (Ideal.Quotient.mk_surjective r)
 
+/--
+@isnad1 id=eq.2h2v.s11.ccbc34c593ef from=translated src=- shape=8eaf988b vocab=b21c86ce
+-/
 theorem actual_quadratic_shifted_partition (c : O) (hc : c ≠ 0)
     (W : O → ℂ)
     (hsum : Summable (fun z : O =>
@@ -371,6 +383,9 @@ private theorem second_poisson_slice {a b d u v : ℂ}
       rw [← tsum_mul_left]
       rfl
 
+/--
+@isnad1 id=eq.5h5v.s8.19938e68e419 from=translated src=- shape=023703ae vocab=37bd9888
+-/
 theorem affine_gaussian_poisson {a b d u v : ℂ}
     (ha : 0 < a.re) (hδ : 0 < (schur a b d).re)
     (hO : Summable (binaryGaussian a b d u v))
@@ -427,6 +442,9 @@ namespace ActualEisensteinCubic
 
 open EisensteinEmbedding ConcreteTraceCRT Complex
 
+/--
+@isnad1 id=eq.0h2v.s6.c28851fba51b from=translated src=- shape=beb26c9e vocab=d9513d23
+-/
 theorem eisEmbedding_eval_norm_sq (x y : ℤ) :
     ‖eisEmbedding (ActualEisensteinCoordinates.eval x y)‖ ^ 2 =
       (x*x-x*y+y*y : ℤ) := by
@@ -444,6 +462,9 @@ theorem eisEmbedding_eval_norm_sq (x y : ℤ) :
   push_cast
   nlinarith
 
+/--
+@isnad1 id=eq.0h6v.s7.ea843e170047 from=translated src=- shape=992a9971 vocab=7afcf051
+-/
 theorem fiber_coordinates (a b x y m n : ℤ) :
     ActualEisensteinCoordinates.eval x y +
       ActualEisensteinCoordinates.eval a b *
@@ -455,6 +476,9 @@ theorem fiber_coordinates (a b x y m n : ℤ) :
   push_cast
   ring
 
+/--
+@isnad1 id=other.0h6v.s8.4339d103c558 from=translated src=- shape=6cf3c0c6 vocab=01d1c51b
+-/
 theorem fiber_quadratic_expansion (a b x y m n : ℤ) :
     let q := a*a-a*b+b*b
     let X := x+a*m-b*n
@@ -467,6 +491,9 @@ theorem fiber_quadratic_expansion (a b x y m n : ℤ) :
   dsimp
   ring
 
+/--
+@isnad1 id=eq.0h6v.s8.c32457a52c19 from=translated src=- shape=ab2fe8e7 vocab=906e72e6
+-/
 theorem eisEmbedding_fiber_norm_sq (a b x y m n : ℤ) :
     ‖eisEmbedding
       (ActualEisensteinCoordinates.eval x y +
@@ -479,6 +506,9 @@ theorem eisEmbedding_fiber_norm_sq (a b x y m n : ℤ) :
   rw [fiber_coordinates, eisEmbedding_eval_norm_sq]
   exact_mod_cast fiber_quadratic_expansion a b x y m n
 
+/--
+@isnad1 id=lt.1h2v.s6.4bb9b078f779 from=translated src=- shape=db59c338 vocab=9687b187
+-/
 theorem coordinate_norm_pos_of_nonzero (a b : ℤ)
     (hc : ActualEisensteinCoordinates.eval a b ≠ 0) :
     0 < a*a-a*b+b*b := by
@@ -514,6 +544,9 @@ noncomputable def dualPhase (k l : ℤ) (x y : ℝ) : ℂ :=
 noncomputable def middlePhase (k n : ℤ) (x y : ℝ) : ℂ :=
   Complex.exp ((((2 * Real.pi * (k : ℝ) * (x - ((n : ℝ) + y) / 2) : ℝ) : ℂ)) * Complex.I)
 
+/--
+@isnad1 id=eq.0h4v.s4.df8ae782a79a from=translated src=- shape=bd1a6281 vocab=536454ff
+-/
 theorem dualPhase_norm (k l : ℤ) (x y : ℝ) :
     ‖dualPhase k l x y‖ = 1 := by
   simp [dualPhase, Complex.norm_exp, Complex.mul_re]

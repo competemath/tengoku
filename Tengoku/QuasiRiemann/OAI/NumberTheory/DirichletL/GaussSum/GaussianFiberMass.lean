@@ -22,6 +22,9 @@ namespace ActualEisensteinCubic
 
 open EisensteinEmbedding ConcreteTraceCRT Complex
 
+/--
+@isnad1 id=eq.0h3v.s7.fe8351e057b0 from=translated src=- shape=d6d98b39 vocab=8ac539f8
+-/
 theorem breveE_real_trace_div (r : ℝ) (u v : ℤ) :
     ShortDraftTrace.breveE
       ((((u : ℂ) + (v : ℂ) * omega3) / eisLam) / (r : ℂ)) =
@@ -40,6 +43,9 @@ theorem breveE_real_trace_div (r : ℝ) (u v : ℤ) :
   congr 1
   ring
 
+/--
+@isnad1 id=eq.0h2v.s7.f5ae497098e0 from=translated src=- shape=d8c9cafc vocab=bdfc4ddb
+-/
 theorem breveE_real_trace_of_O (r : ℝ) (z : O) :
     ShortDraftTrace.breveE (eisEmbedding z / eisLam / (r : ℂ)) =
       Complex.exp (2 * Real.pi * Complex.I *
@@ -58,6 +64,9 @@ private theorem arg_ne_pi_of_re_pos {a : ℂ} (ha : 0 < a.re) : a.arg ≠ Real.p
   have := (Complex.arg_eq_pi_iff.mp h).1
   linarith
 
+/--
+@isnad1 id=eq.2h2v.s7.75f1bd6dcd0e from=translated src=- shape=81d4a2e7 vocab=7618474e
+-/
 theorem cpow_half_product {a : ℂ} {r : ℝ} (ha : 0 < a.re) (hr : 0 < r) :
     a ^ (1 / 2 : ℂ) * (((r : ℂ) / a) ^ (1 / 2 : ℂ)) =
       (r : ℂ) ^ (1 / 2 : ℂ) := by
@@ -78,6 +87,9 @@ theorem cpow_half_product {a : ℂ} {r : ℝ} (ha : 0 < a.re) (hr : 0 < r) :
   rw [Complex.ofReal_log hr.le]
   ring
 
+/--
+@isnad1 id=eq.2h2v.s7.613db68b4c27 from=translated src=- shape=98589c2c vocab=7618474e
+-/
 theorem prefactor_product {a : ℂ} {r : ℝ} (ha : 0 < a.re) (hr : 0 < r) :
     (1 / a ^ (1 / 2 : ℂ)) * (1 / (((r : ℂ) / a) ^ (1 / 2 : ℂ))) =
       1 / ((r : ℂ) ^ (1 / 2 : ℂ)) := by
@@ -88,6 +100,9 @@ end SqrtBranch
 
 namespace PowerExtraction
 
+/--
+@isnad1 id=le.7h6v.s8.1b305b7d808e from=translated src=- shape=4c874bef vocab=5df71cf7
+-/
 theorem from_mean_square_and_prime_rows_with_loss
     (D ε J A C M : ℝ) (hD : 1 ≤ D) (hε : 0 ≤ ε)
     (hA : 0 ≤ A) (hC : 1 ≤ C) (hM : 1 ≤ M)
@@ -175,6 +190,9 @@ namespace ActualEisensteinCubic
 
 open EisensteinEmbedding ConcreteTraceCRT Complex
 
+/--
+@isnad1 id=eq.1h7v.s8.06f1b57090fa from=translated src=- shape=1cb657be vocab=4c7f8110
+-/
 theorem actual_fiber_gaussian_eq_shifted
     (a b x y m n : ℤ)
     (hc : ActualEisensteinCoordinates.eval a b ≠ 0) (η : ℝ) :
@@ -240,6 +258,9 @@ def latticeCoordEquiv : O ≃ ℤ × ℤ where
   left_inv := ActualEisensteinCoordinates.eval_coords
   right_inv z := ShortDraftLatticeCount.coords_eval z.1 z.2
 
+/--
+@isnad1 id=summable.1h1v.s7.3dc09635d274 from=translated src=- shape=bf0cd82c vocab=5e82c89f
+-/
 theorem eis_gaussian_summable {η : ℝ} (hη : 0 < η) :
     Summable (fun z : O => Complex.exp (-(Real.pi : ℂ) * (η : ℂ) *
       (‖eisEmbedding z‖ ^ 2 : ℂ))) := by
@@ -267,6 +288,9 @@ theorem eis_gaussian_summable {η : ℝ} (hη : 0 < η) :
   push_cast
   ring
 
+/--
+@isnad1 id=summable.2h2v.s10.c2e0fd67a827 from=translated src=- shape=5dfdaa10 vocab=c9a10d0b
+-/
 theorem actual_oscillatory_kernel_summable (c : O) (hc : c ≠ 0)
     {η : ℝ} (hη : 0 < η) :
     Summable (fun z : O =>
@@ -288,6 +312,9 @@ end
 end ActualEisensteinCubic
 namespace GaussianPhasePointwise
 
+/--
+@isnad1 id=le.0h2v.s5.52fa916d0aed from=translated src=- shape=e8ad8558 vocab=95df0439
+-/
 theorem exp_imag_diff_le (u v : ℝ) :
     ‖Complex.exp (Complex.I * (u : ℂ)) -
       Complex.exp (Complex.I * (v : ℂ))‖ ≤ |u - v| := by
@@ -304,6 +331,9 @@ theorem exp_imag_diff_le (u v : ℝ) :
   simpa only [Real.norm_eq_abs] using
     (Real.norm_exp_I_mul_ofReal_sub_one_le (x := u - v))
 
+/--
+@isnad1 id=le.1h3v.s7.5320721d2ccd from=translated src=- shape=7ad7d428 vocab=72014df1
+-/
 theorem exp_imag_denominator_error (θ A η : ℝ) (hA : 0 ≤ A) :
     ‖Complex.exp (Complex.I * ((θ / (1 + A * η ^ 2) : ℝ) : ℂ)) -
       Complex.exp (Complex.I * (θ : ℂ))‖ ≤

@@ -36,6 +36,9 @@ open scoped Topology
 
 namespace ShortDraftHeckeBridge
 
+/--
+@isnad1 id=eq.0h2v.s4.a2f8a896b4ba from=translated src=- shape=9654c490 vocab=30ba62f2
+-/
 theorem normFiberCoeff_baseChangeWeight_zero {q : ℕ}
     (χ : DirichletCharacter ℂ q) :
     normFiberCoeff (baseChangeWeight χ) 0 = 0 := by
@@ -59,6 +62,9 @@ noncomputable def baseChangeChar {q : ℕ} (χ : DirichletCharacter ℂ q) :
   χ.changeLevel (Nat.dvd_mul_right q 3) *
     chiMinusThree.changeLevel (Nat.dvd_mul_left 3 q)
 
+/--
+@isnad1 id=ne.1h2v.s7.2fbe6e656189 from=translated src=- shape=a03d63f7 vocab=8059303d
+-/
 theorem baseChangeChar_ne_one_of_one {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) (hχ : χ = 1) :
     baseChangeChar χ ≠ 1 := by
@@ -77,6 +83,9 @@ end ActualEisensteinCubic
 
 namespace ShortDraftHeckeBridge
 
+/--
+@isnad1 id=isrelpri.1h2v.s9.503639f51d37 from=translated src=- shape=1f37d68b vocab=825ac2cf
+-/
 theorem ideals_isRelPrime_of_norms_coprime (I J : Ideal O)
     (h : (Ideal.absNorm I).Coprime (Ideal.absNorm J)) :
     IsRelPrime I J := by
@@ -92,6 +101,9 @@ theorem ideals_isRelPrime_of_norms_coprime (I J : Ideal O)
     b * (Ideal.absNorm J : O),
     J.mul_mem_left b (Ideal.absNorm_mem J), hab⟩
 
+/--
+@isnad1 id=eq.1h4v.s9.866eb4609306 from=translated src=- shape=b5f3b9b7 vocab=164d0a23
+-/
 theorem baseChangeWeight_mul_of_coprime_norms {q : ℕ}
     (χ : DirichletCharacter ℂ q) (I J : Ideal O)
     (h : (Ideal.absNorm I).Coprime (Ideal.absNorm J)) :
@@ -101,6 +113,9 @@ theorem baseChangeWeight_mul_of_coprime_norms {q : ℕ}
   simp only [baseChangeWeight, map_mul, hrel.moebius_mul, Int.cast_mul, Nat.cast_mul]
   ring
 
+/--
+@isnad1 id=eq.1h3v.s8.2e05174fadd5 from=translated src=- shape=db89da36 vocab=690bbdb5
+-/
 theorem baseChangeChar_apply_of_coprime {q : ℕ}
     (χ : DirichletCharacter ℂ q) (n : ℕ)
     (h : n.Coprime (q * 3)) :
@@ -117,10 +132,16 @@ theorem baseChangeChar_apply_of_coprime {q : ℕ}
       (Nat.dvd_mul_left 3 q) hc)
   rw [hχ, hη]
 
+/--
+@isnad1 id=eq.0h0v.s6.0926eb05eaa9 from=translated src=- shape=6aa72273 vocab=63b66b40
+-/
 theorem chiMinusThree_three : chiMinusThree (3 : ℕ) = 0 := by
   simpa using (DirichletCharacter.apply_eq_zero_iff chiMinusThree 3).mpr
     (by simp [Int.isCoprime_iff_nat_coprime])
 
+/--
+@isnad1 id=eq.0h2v.s7.2b6a159086bf from=translated src=- shape=78a95cbd vocab=c1fc6779
+-/
 theorem baseChangeChar_three {q : ℕ} (χ : DirichletCharacter ℂ q) :
     baseChangeChar χ (3 : ℕ) = 0 := by
   simpa using (DirichletCharacter.apply_eq_zero_iff (baseChangeChar χ) 3).mpr
@@ -169,6 +190,9 @@ private theorem not_dvd_three {p : ℕ} (hp : p.Prime) (hneq : p ≠ 3) : ¬ p �
   · exact hp.ne_one h1
   · exact hneq h3
 
+/--
+@isnad1 id=eq.2h1v.s6.d44ff0dd1c17 from=translated src=- shape=5738961f vocab=6a06f0cc
+-/
 theorem split_count_of_mod_one {p : ℕ} (hp : p.Prime) (hmod : p % 3 = 1) :
     ((Ideal.span {(p : ℤ)}).primesOver O).ncard = 2 := by
   let : Fact p.Prime := ⟨hp⟩
@@ -184,6 +208,9 @@ theorem split_count_of_mod_one {p : ℕ} (hp : p.Prime) (hmod : p % 3 = 1) :
     orderOf_mod3_eq_one hmod, gal_card_two] at hmain
   omega
 
+/--
+@isnad1 id=eq.2h1v.s6.94f650225870 from=translated src=- shape=5738961f vocab=6a06f0cc
+-/
 theorem inert_count_of_mod_two {p : ℕ} (hp : p.Prime) (hmod : p % 3 = 2) :
     ((Ideal.span {(p : ℤ)}).primesOver O).ncard = 1 := by
   let : Fact p.Prime := ⟨hp⟩
@@ -199,11 +226,17 @@ theorem inert_count_of_mod_two {p : ℕ} (hp : p.Prime) (hmod : p % 3 = 2) :
     orderOf_mod3_eq_two hmod, gal_card_two] at hmain
   omega
 
+/--
+@isnad1 id=eq.0h0v.s6.6b6004377cc6 from=translated src=- shape=5ba1d7aa vocab=47f75f89
+-/
 theorem ramified_count :
     ((Ideal.span {(3 : ℤ)}).primesOver O).ncard = 1 := by
   let : Fact (Nat.Prime 3) := ⟨by decide⟩
   exact IsCyclotomicExtension.Rat.ncard_primesOver_of_prime 3 K
 
+/--
+@isnad1 id=eq.2h2v.s8.653b3fdd9143 from=translated src=- shape=cf7ba213 vocab=ad5fe7d2
+-/
 theorem absNorm_split {p : ℕ} (hp : p.Prime) (hmod : p % 3 = 1)
     (P : Ideal O) [P.IsPrime] [P.LiesOver (Ideal.span {(p : ℤ)})] :
     Ideal.absNorm P = p := by
@@ -219,6 +252,9 @@ theorem absNorm_split {p : ℕ} (hp : p.Prime) (hmod : p % 3 = 1)
       orderOf_mod3_eq_one hmod]
   rw [← Ideal.pow_inertiaDeg p P, hf, pow_one]
 
+/--
+@isnad1 id=eq.2h2v.s8.9770a2de8f6e from=translated src=- shape=c4336a65 vocab=022e4919
+-/
 theorem absNorm_inert {p : ℕ} (hp : p.Prime) (hmod : p % 3 = 2)
     (P : Ideal O) [P.IsPrime] [P.LiesOver (Ideal.span {(p : ℤ)})] :
     Ideal.absNorm P = p ^ 2 := by
@@ -234,6 +270,9 @@ theorem absNorm_inert {p : ℕ} (hp : p.Prime) (hmod : p % 3 = 2)
       orderOf_mod3_eq_two hmod]
   rw [← Ideal.pow_inertiaDeg p P, hf]
 
+/--
+@isnad1 id=eq.0h1v.s8.208799758659 from=translated src=- shape=ce0c2305 vocab=c9fb348a
+-/
 theorem absNorm_ramified
     (P : Ideal O) [P.IsPrime] [P.LiesOver (Ideal.span {(3 : ℤ)})] :
     Ideal.absNorm P = 3 := by
@@ -245,6 +284,9 @@ theorem absNorm_ramified
     exact hfin
   rw [← Ideal.pow_inertiaDeg 3 P, hf, pow_one]
 
+/--
+@isnad1 id=mem.2h2v.s8.fd991ceac670 from=translated src=- shape=95b1d9c3 vocab=2b177ffc
+-/
 theorem norm_prime_implies_over {p : ℕ} (hp : p.Prime) (I : Ideal O)
     (hI : Ideal.absNorm I = p) :
     I ∈ (Ideal.span {(p : ℤ)}).primesOver O := by
@@ -258,6 +300,9 @@ theorem norm_prime_implies_over {p : ℕ} (hp : p.Prime) (I : Ideal O)
     simpa [hI] using Ideal.span_singleton_absNorm (I := I) (hI ▸ hp)
   exact ⟨hprime, hover⟩
 
+/--
+@isnad1 id=eq.2h1v.s8.82332e6e2367 from=translated src=- shape=c345e443 vocab=b5964920
+-/
 theorem norm_p_fiber_split {p : ℕ} (hp : p.Prime) (hmod : p % 3 = 1) :
     {I : Ideal O | Ideal.absNorm I = p} =
       (Ideal.span {(p : ℤ)}).primesOver O := by
@@ -269,6 +314,9 @@ theorem norm_p_fiber_split {p : ℕ} (hp : p.Prime) (hmod : p % 3 = 1) :
     let : I.LiesOver (Ideal.span {(p : ℤ)}) := hI.2
     exact absNorm_split hp hmod I
 
+/--
+@isnad1 id=eq.2h1v.s8.6ec67735b4d8 from=translated src=- shape=9d2bc9a8 vocab=817b61fc
+-/
 theorem norm_p_fiber_inert {p : ℕ} (hp : p.Prime) (hmod : p % 3 = 2) :
     {I : Ideal O | Ideal.absNorm I = p} = ∅ := by
   ext I
@@ -281,6 +329,9 @@ theorem norm_p_fiber_inert {p : ℕ} (hp : p.Prime) (hmod : p % 3 = 2) :
   have hpge := hp.two_le
   nlinarith
 
+/--
+@isnad1 id=eq.0h0v.s8.0b1efaac893a from=translated src=- shape=69b70d7f vocab=78478c7a
+-/
 theorem norm_three_fiber :
     {I : Ideal O | Ideal.absNorm I = 3} =
       (Ideal.span {(3 : ℤ)}).primesOver O := by
@@ -292,6 +343,9 @@ theorem norm_three_fiber :
     let : I.LiesOver (Ideal.span {(3 : ℤ)}) := hI.2
     exact absNorm_ramified I
 
+/--
+@isnad1 id=eq.2h1v.s8.33b22da23008 from=translated src=- shape=709866b1 vocab=0b2a8901
+-/
 theorem norm_p_sq_fiber_inert {p : ℕ} (hp : p.Prime) (hmod : p % 3 = 2) :
     {I : Ideal O | Ideal.absNorm I = p ^ 2} =
       (Ideal.span {(p : ℤ)}).primesOver O := by
@@ -323,6 +377,9 @@ theorem norm_p_sq_fiber_inert {p : ℕ} (hp : p.Prime) (hmod : p % 3 = 2) :
     let : I.LiesOver (Ideal.span {(p : ℤ)}) := hI.2
     exact absNorm_inert hp hmod I
 
+/--
+@isnad1 id=ex.3h2v.s9.c55df86386bd from=translated src=- shape=ea39c9ef vocab=c98006ae
+-/
 theorem norm_p_sq_split_factors {p : ℕ} (hp : p.Prime) (hmod : p % 3 = 1)
     (I : Ideal O) (hI : Ideal.absNorm I = p ^ 2) :
     ∃ P Q : Ideal O,
@@ -347,6 +404,9 @@ theorem norm_p_sq_split_factors {p : ℕ} (hp : p.Prime) (hmod : p % 3 = 1)
   exact ⟨P, Q, ⟨inferInstance, inferInstance⟩,
     norm_prime_implies_over hp Q hQN, hIQ⟩
 
+/--
+@isnad1 id=eq.0h0v.s9.a2e8d4cc2931 from=translated src=- shape=110d1fd8 vocab=6a62300d
+-/
 theorem norm_nine_fiber_ramified :
     {I : Ideal O | Ideal.absNorm I = 9} =
       {I : Ideal O | ∃ P : Ideal O,
@@ -388,6 +448,9 @@ theorem norm_nine_fiber_ramified :
     rw [map_pow, absNorm_ramified P]
     norm_num
 
+/--
+@isnad1 id=dirichle.2h0v.s7.7cc628aed229 from=translated src=- shape=398a0241 vocab=543e21f0
+-/
 theorem dirichletTarget_of_ideal_base_change
     (hcoeff : ∀ (q : ℕ) [NeZero q] (χ : DirichletCharacter ℂ q)
       (n : ℕ), n ≠ 0 →
@@ -436,6 +499,9 @@ theorem dirichletTarget_of_ideal_base_change
   · exact ShortDraft.dirichlet_target_of_one_le_re q χ ρ
       (le_of_not_gt hρ) hprincipal
 
+/--
+@isnad1 id=eq.2h3v.s5.eab6ab821fe1 from=translated src=- shape=0a2e9f34 vocab=6f3161e6
+-/
 theorem local_inert_p {q : ℕ} (χ : DirichletCharacter ℂ q)
     {p : ℕ} (hp : p.Prime) (hmod : p % 3 = 2) :
     normFiberCoeff (baseChangeWeight χ) p = 0 := by
@@ -443,6 +509,9 @@ theorem local_inert_p {q : ℕ} (χ : DirichletCharacter ℂ q)
   unfold normFiberCoeff
   simp [hf]
 
+/--
+@isnad1 id=eq.2h3v.s6.8cb51aab7ad7 from=translated src=- shape=3a8addaa vocab=237afa7e
+-/
 theorem local_split_p {q : ℕ} (χ : DirichletCharacter ℂ q)
     {p : ℕ} (hp : p.Prime) (hmod : p % 3 = 1) :
     normFiberCoeff (baseChangeWeight χ) p = -(2 : ℂ) * χ p := by
@@ -467,6 +536,9 @@ theorem local_split_p {q : ℕ} (χ : DirichletCharacter ℂ q)
   rw [hsum]
   simp [hcard]
 
+/--
+@isnad1 id=eq.0h2v.s6.17f99f84a516 from=translated src=- shape=75a04623 vocab=887f6f5a
+-/
 theorem local_ramified_three {q : ℕ} (χ : DirichletCharacter ℂ q) :
     normFiberCoeff (baseChangeWeight χ) 3 = -χ 3 := by
   classical
@@ -490,6 +562,9 @@ theorem local_ramified_three {q : ℕ} (χ : DirichletCharacter ℂ q) :
   rw [hsum]
   simp [hcard]
 
+/--
+@isnad1 id=eq.2h3v.s7.43d47ad52ff9 from=translated src=- shape=dc487338 vocab=9064327b
+-/
 theorem local_inert_p_sq {q : ℕ} (χ : DirichletCharacter ℂ q)
     {p : ℕ} (hp : p.Prime) (hmod : p % 3 = 2) :
     normFiberCoeff (baseChangeWeight χ) (p ^ 2) = -χ (p ^ 2) := by
@@ -518,6 +593,9 @@ theorem local_inert_p_sq {q : ℕ} (χ : DirichletCharacter ℂ q)
   rw [hsum]
   simp [hcard]
 
+/--
+@isnad1 id=eq.0h2v.s4.a22dcad779df from=translated src=- shape=9654c490 vocab=30ba62f2
+-/
 theorem local_ramified_nine {q : ℕ} (χ : DirichletCharacter ℂ q) :
     normFiberCoeff (baseChangeWeight χ) 9 = 0 := by
   classical
@@ -556,6 +634,9 @@ private theorem baseChangeWeight_prime_sq_zero {q : ℕ} (χ : DirichletCharacte
   rw [baseChangeWeight, UniqueFactorizationMonoid.moebius_of_not_squarefree hnot]
   simp
 
+/--
+@isnad1 id=eq.2h3v.s7.550e23860ef4 from=translated src=- shape=d7c6916f vocab=e9553691
+-/
 theorem local_split_p_sq {q : ℕ} (χ : DirichletCharacter ℂ q)
     {p : ℕ} (hp : p.Prime) (hmod : p % 3 = 1) :
     normFiberCoeff (baseChangeWeight χ) (p ^ 2) = χ (p ^ 2) := by
@@ -623,6 +704,9 @@ theorem local_split_p_sq {q : ℕ} (χ : DirichletCharacter ℂ q)
         rw [map_mul, hPN, hQN, pow_two]
       simp [hnorm, Nat.cast_pow]
 
+/--
+@isnad1 id=eq.0h2v.s4.fa029ab3f3d5 from=translated src=- shape=9654c490 vocab=30ba62f2
+-/
 theorem local_one {q : ℕ} (χ : DirichletCharacter ℂ q) :
     normFiberCoeff (baseChangeWeight χ) 1 = 1 := by
   classical

@@ -22,36 +22,57 @@ def U (t : R) : Matrix (Fin 2) (Fin 2) R := !![1,t;0,1]
 def L (t : R) : Matrix (Fin 2) (Fin 2) R := !![1,0;t,1]
 def E : Matrix (Fin 2) (Fin 2) R := !![0,-1;1,0]
 
+/--
+@isnad1 id=eq.0h3v.s9.c8fa4b297edf from=translated src=- shape=4f04b9e6 vocab=889ecc2d
+-/
 theorem upper_inversion_lower (u v : R) :
     U u * E * L (-v) = !![u + v, -1; 1, 0] := by
   simp [U,E,L]
 
+/--
+@isnad1 id=eq.0h3v.s7.f3f040c7879a from=translated src=- shape=51db0c8d vocab=99a2e14b
+-/
 theorem lower_add (u v : R) : L u * L v = L (u + v) := by
   simp [L]
 
+/--
+@isnad1 id=eq.1h2v.s9.7250e4faf9a0 from=translated src=- shape=0b56169c vocab=c3efcecf
+-/
 theorem cusp19_matrix (ω : R) (hω : ω ^ 2 + ω + 1 = 0) :
     U ω * E * L (-(ω ^ 2)) = !![-1,-1;1,0] := by
   rw [upper_inversion_lower]
   have hw : ω + ω ^ 2 = -1 := by linear_combination hω
   rw [hw]
 
+/--
+@isnad1 id=eq.0h2v.s7.bfcfa79eb417 from=translated src=- shape=2cead11b vocab=7d1f3ce3
+-/
 theorem cusp10_matrix (ω : R) :
     U (-ω) * E * L (-ω) = E := by
   rw [upper_inversion_lower]
   simp [E]
 
+/--
+@isnad1 id=eq.1h2v.s8.93e6cfa76a02 from=translated src=- shape=88bdd910 vocab=4ab73726
+-/
 theorem ramified_plus_matrix (ω : R) (hω : ω ^ 2 + ω + 1 = 0) :
     L (1 + 2 * ω) = L (2 + 3 * ω) * L (ω ^ 2) := by
   rw [lower_add]
   congr 1
   linear_combination -hω
 
+/--
+@isnad1 id=eq.0h2v.s8.e490fb7db6eb from=translated src=- shape=cfa9e333 vocab=c60511c0
+-/
 theorem ramified_minus_matrix (ω : R) :
     L (-(1 + 2 * ω)) = L (-1 - 3 * ω) * L ω := by
   rw [lower_add]
   congr 1
   ring
 
+/--
+@isnad1 id=eq.4h5v.s8.b2b653d6e67f from=translated src=- shape=d1cb5e53 vocab=2dce38bd
+-/
 theorem principal_case_div_three (a b c d : R)
     (hdet : a * d - b * c = 1)
     (ha : a = 1) (hb : b = 0) (hc : c = 0) :
@@ -63,6 +84,9 @@ theorem principal_case_div_three (a b c d : R)
   subst d
   simp [Matrix.one_fin_two]
 
+/--
+@isnad1 id=eq.4h6v.s9.9b77d901f81c from=translated src=- shape=56b74b35 vocab=2dce38bd
+-/
 theorem principal_case_ramified (a b c d u : R)
     (hdet : a * d - b * c = 1)
     (ha : a = 1) (hb : b = 0) (hc : c = u) :
@@ -74,6 +98,9 @@ theorem principal_case_ramified (a b c d u : R)
   subst d
   simp [Matrix.one_fin_two]
 
+/--
+@isnad1 id=eq.4h6v.s9.0d87dd0be428 from=translated src=- shape=e6e0346d vocab=31731e72
+-/
 theorem principal_case_unramified (a b c d u : R)
     (hdet : a * d - b * c = 1)
     (hc : c = 1) (hd : d = 0) (hu : u = a) :
@@ -90,6 +117,9 @@ end ShortDraftCusp
 namespace ShortDraftConcretePhase
 open ShortDraftTrace
 
+/--
+@isnad1 id=eq.2h4v.s9.43299eeaa0e2 from=translated src=- shape=106425c6 vocab=6c1cd4da
+-/
 theorem concrete_fixed_phase_congr (d a b x : eisensteinSubring)
     (hd : d ≠ 0) (hcong : d ∣ a - b) :
     breveE ((a : ℂ) * (x : ℂ) / ((lamEis : ℂ) * (d : ℂ))) =
@@ -119,6 +149,9 @@ open scoped ComplexConjugate
 
 variable {F : Type*} [Field F] [Fintype F]
 
+/--
+@isnad1 id=eq.2h3v.s7.3e32a674ac20 from=translated src=- shape=14566958 vocab=3d97d36b
+-/
 theorem norm_gaussSum_eq_sqrt_card (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
     (hχ : χ ≠ 1) (hψ : ψ.IsPrimitive) :
     ‖gaussSum χ ψ‖ = Real.sqrt (Fintype.card F) := by
@@ -138,6 +171,9 @@ theorem norm_gaussSum_eq_sqrt_card (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
   have hsqrt := Real.sq_sqrt hcard
   nlinarith [norm_nonneg g, Real.sqrt_nonneg (Fintype.card F)]
 
+/--
+@isnad1 id=eq.2h3v.s7.d1bdfeed37c5 from=translated src=- shape=02faa40c vocab=620d24fc
+-/
 theorem norm_normalized_gaussSum (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
     (hχ : χ ≠ 1) (hψ : ψ.IsPrimitive) :
     ‖((Real.sqrt (Fintype.card F) : ℝ) : ℂ)⁻¹ * gaussSum χ ψ‖ = 1 := by
@@ -158,15 +194,27 @@ abbrev SquareClass := ZMod 2 × ZMod 2
 def R (a b : SquareClass) : ℤ :=
   (-1) ^ (a.1.val * b.2.val + a.2.val * b.1.val + a.2.val * b.2.val)
 
+/--
+@isnad1 id=eq.0h2v.s3.c10bb147b6c8 from=translated src=- shape=ab795eaa vocab=98846e8f
+-/
 theorem R_symmetric (a b : SquareClass) : R a b = R b a := by
   decide +revert
 
+/--
+@isnad1 id=eq.0h3v.s7.289cb78a878d from=translated src=- shape=086cad00 vocab=f7a0c268
+-/
 theorem R_mul_left (a b c : SquareClass) : R (a + b) c = R a c * R b c := by
   decide +revert
 
+/--
+@isnad1 id=eq.0h3v.s7.23ed811035f1 from=translated src=- shape=50a03441 vocab=f7a0c268
+-/
 theorem R_mul_right (a b c : SquareClass) : R a (b + c) = R a b * R a c := by
   decide +revert
 
+/--
+@isnad1 id=eq.0h1v.s5.7bb07acc2c7d from=translated src=- shape=224c46c6 vocab=ade74908
+-/
 theorem R_self (a : SquareClass) : R a a = (-1) ^ (a.2.val) := by
   decide +revert
 
@@ -176,6 +224,9 @@ namespace ShortDraftSextic
 open scoped Classical
 variable {R : Type*} [CommRing R]
 
+/--
+@isnad1 id=eq.1h3v.s8.49b5027ed421 from=translated src=- shape=68307739 vocab=9615a3f8
+-/
 theorem sextic_power_is_unit_mask (χ : MulChar R ℂ)
     (hχ : χ ^ 6 = 1) (u : R) :
     χ (u ^ 6) = if IsUnit u then 1 else 0 := by
@@ -192,6 +243,9 @@ open Finset
 
 variable {F : Type*} [Field F] [Fintype F]
 
+/--
+@isnad1 id=eq.1h2v.s7.2004623e91b5 from=translated src=- shape=eefa411e vocab=2d2c2a07
+-/
 theorem sum_cubic_jacobi_reduction_zero (m : ℕ)
     (hm : 2 * m < Fintype.card F - 1) :
     (∑ x : F, x ^ m * (1 - x) ^ m) = 0 := by
@@ -215,6 +269,9 @@ theorem sum_cubic_jacobi_reduction_zero (m : ℕ)
       ring
     _ = 0 := by rw [FiniteField.sum_pow_lt_card_sub_one F _ he]; ring
 
+/--
+@isnad1 id=eq.2h5v.s8.a4616acf17e6 from=translated src=- shape=e1dd5b91 vocab=f46d7b89
+-/
 theorem jacobiSum_reduction_zero {R : Type*} [CommRing R]
     (χ : MulChar F R) (ρ : R →+* F) (m : ℕ)
     (hχ : ∀ x : F, ρ (χ x) = x ^ m)
@@ -224,6 +281,9 @@ theorem jacobiSum_reduction_zero {R : Type*} [CommRing R]
   simp_rw [map_mul, hχ]
   exact sum_cubic_jacobi_reduction_zero m hm
 
+/--
+@isnad1 id=eq.2h2v.s7.b2a21ce7cad7 from=translated src=- shape=55d12a14 vocab=8045baa4
+-/
 theorem cubic_jacobi_product (χ : MulChar F ℂ)
     (horder : orderOf χ = 3)
     (hchar : ringChar ℂ ≠ ringChar F) :
@@ -240,6 +300,9 @@ theorem cubic_jacobi_product (χ : MulChar F ℂ)
     norm_num at ho
   exact jacobiSum_mul_jacobiSum_inv hchar hχ hχ hχ2
 
+/--
+@isnad1 id=eq.2h3v.s7.19701b44b68f from=translated src=- shape=ab02d1d5 vocab=859b1ec9
+-/
 theorem cubic_gauss_cube (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
     (horder : orderOf χ = 3) (hψ : ψ.IsPrimitive) :
     gaussSum χ ψ ^ 3 = (Fintype.card F : ℂ) * jacobiSum χ χ := by
@@ -265,6 +328,9 @@ theorem cubic_gauss_cube (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
     _ = gaussSum χ ψ * (gaussSum (χ * χ) ψ * jacobiSum χ χ) := by rw [hj]
     _ = (Fintype.card F : ℂ) * jacobiSum χ χ := by rw [← mul_assoc, hg]
 
+/--
+@isnad1 id=eq.2h3v.s7.383b482f6f8a from=translated src=- shape=e134779a vocab=1fa29624
+-/
 theorem normalized_cubic_gauss_cube (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
     (horder : orderOf χ = 3) (hψ : ψ.IsPrimitive) :
     (gaussSum χ ψ / (Real.sqrt (Fintype.card F : ℝ) : ℂ)) ^ 3 =
@@ -288,6 +354,9 @@ namespace ShortDraftQuadraticGauss
 open Finset
 variable {F : Type*} [Field F] [Fintype F] [DecidableEq F]
 
+/--
+@isnad1 id=eq.2h2v.s7.97900ae9cec8 from=translated src=- shape=bfa1b966 vocab=d1f78269
+-/
 theorem quadratic_gauss_as_square_phase (ψ : AddChar F ℂ)
     (hchar : ringChar F ≠ 2) (hψ : ψ ≠ 1) :
     gaussSum ((quadraticChar F).ringHomComp (Int.castRingHom ℂ)) ψ =
@@ -321,6 +390,9 @@ end ShortDraftQuadraticGauss
 namespace ShortDraftQuotientPhase
 variable {A B : Type*} [CommGroup A] [CommGroup B]
 
+/--
+@isnad1 id=eq.6h6v.s8.e63d277b1085 from=translated src=- shape=54e9c9b2 vocab=f27b0277
+-/
 theorem quotient_phase (R : A → A → B) (G : A → B)
     (hRright : ∀ a b c, R a (b * c) = R a b * R a c)
     (hRsym : ∀ a b, R a b = R b a)
@@ -387,20 +459,32 @@ instance : DecidablePred ePrimary := fun x =>
   inferInstanceAs (Decidable ((mul (mul x x) x).1 -
     2 * (mul (mul x x) x).2 = 1))
 
+/--
+@isnad1 id=ex.1h1v.s4.5b1c03bd2dd9 from=translated src=- shape=eca32c26 vocab=78e5eb3d
+-/
 theorem exists_squareclass (x : Coord) (hx : odd x) :
     ∃ (e f : Bit) (u : Coord), odd u ∧ x = mul (rep e f) (mul u u) := by
   decide +revert
 
+/--
+@isnad1 id=and.3h6v.s5.bd2e2ea01dc0 from=translated src=- shape=25c00d0e vocab=78e5eb3d
+-/
 theorem squareclass_bits_unique (e f e' f' : Bit) (u v : Coord)
     (hu : odd u) (hv : odd v)
     (h : mul (rep e f) (mul u u) = mul (rep e' f') (mul v v)) :
     e = e' ∧ f = f' := by
   decide +revert
 
+/--
+@isnad1 id=iff.1h3v.s5.b45a9870c96a from=translated src=- shape=7d08015f vocab=fb78b4fc
+-/
 theorem ePrimary_squareclass (e f : Bit) (u : Coord) (hu : odd u) :
     ePrimary (mul (rep e f) (mul u u)) ↔ e = 0 := by
   decide +revert
 
+/--
+@isnad1 id=eq.1h3v.s7.3b2d99813181 from=translated src=- shape=2c0ca059 vocab=80dfbec8
+-/
 theorem norm_squareclass (e f : Bit) (u : Coord) (hu : odd u) :
     norm (mul (rep e f) (mul u u)) = (if f = 0 then 1 else 3) := by
   decide +revert
@@ -409,13 +493,22 @@ def signBit (x : Coord) : Bit := if ePrimary x then 0 else 1
 def normBit (x : Coord) : Bit := if norm x = 1 then 0 else 1
 def bits (x : Coord) : Bit × Bit := (signBit x, normBit x)
 
+/--
+@isnad1 id=eq.1h3v.s4.d452d9119318 from=translated src=- shape=7a37930a vocab=43ace4c0
+-/
 theorem bits_squareclass (e f : Bit) (u : Coord) (hu : odd u) :
     bits (mul (rep e f) (mul u u)) = (e, f) := by
   decide +revert
 
+/--
+@isnad1 id=odd.2h2v.s3.1ea46ec09543 from=translated src=- shape=03e07a40 vocab=d6eacf25
+-/
 theorem odd_mul (x y : Coord) (hx : odd x) (hy : odd y) : odd (mul x y) := by
   decide +revert
 
+/--
+@isnad1 id=eq.2h2v.s6.ab96f2179567 from=translated src=- shape=7e014355 vocab=2794d5d4
+-/
 theorem bits_mul (x y : Coord) (hx : odd x) (hy : odd y) :
     bits (mul x y) = bits x + bits y := by
   decide +revert
@@ -431,6 +524,9 @@ def phase (a : SquareClass) : ZMod 4 :=
 def reciprocity (a b : SquareClass) : ZMod 4 :=
   2 * ((a.1.val * b.2.val + a.2.val * b.1.val + a.2.val * b.2.val : ℕ) : ZMod 4)
 
+/--
+@isnad1 id=eq.0h2v.s7.3732f5c01cd6 from=translated src=- shape=d1812a6d vocab=10b59f10
+-/
 theorem phase_cocycle (a b : SquareClass) :
     phase (a + b) = phase a + phase b + reciprocity a b := by
   decide +revert
@@ -449,9 +545,15 @@ private def pb : PowerBasis ℤ O := hζ.integralPowerBasis
 private theorem pb_dim : pb.dim = 2 := by
   simp [pb, Nat.totient_prime Nat.prime_three]
 
+/--
+@isnad1 id=eq.0h0v.s5.32485dfd90d2 from=translated src=- shape=72f55bc8 vocab=a7081fd9
+-/
 theorem pb_gen : pb.gen = omega := by
   exact hζ.integralPowerBasis_gen
 
+/--
+@isnad1 id=ex.0h1v.s6.cb16fc0282d0 from=translated src=- shape=6dc9e52d vocab=b4dcbb3b
+-/
 theorem exists_coordinates (x : O) :
     ∃ a b : ℤ, x = (a : O) + (b : O) * omega := by
   let i0 : Fin pb.dim := ⟨0, by rw [pb_dim]; decide⟩
@@ -487,6 +589,9 @@ private theorem eval_basis (a b : ℤ) :
     eval a b = a • pb.basis i0 + b • pb.basis i1 := by
   simp [eval, PowerBasis.basis_eq_pow, i0, i1, pb_gen, mul_comm]
 
+/--
+@isnad1 id=and.1h4v.s4.a67f3c33bf4d from=translated src=- shape=9a65b32b vocab=7652ea8a
+-/
 theorem unique_coordinates {a b c d : ℤ}
     (h : eval a b = eval c d) : a = c ∧ b = d := by
   have h0 := congrArg (fun x : O => (pb.basis.repr x) i0) h
@@ -504,6 +609,9 @@ theorem unique_coordinates {a b c d : ℤ}
 private theorem omega_sq : omega ^ 2 = -omega - 1 := by
   simpa [omega] using IsCyclotomicExtension.Rat.Three.eta_sq hζ
 
+/--
+@isnad1 id=eq.0h0v.s7.70cd23b292e4 from=translated src=- shape=b6b8c803 vocab=11ca212c
+-/
 theorem conventional_lambda_eq_neg_delta_square :
     omega - 1 = -eval 1 2 * omega ^ 2 := by
   have hc : omega ^ 3 = 1 := hζ.toInteger_cube_eq_one
@@ -516,6 +624,9 @@ theorem conventional_lambda_eq_neg_delta_square :
       push_cast
       ring
 
+/--
+@isnad1 id=eq.0h4v.s6.e05cef7dec57 from=translated src=- shape=a81555af vocab=7afcf051
+-/
 theorem eval_mul (a b c d : ℤ) :
     eval a b * eval c d = eval (a*c-b*d) (a*d+b*c-b*d) := by
   simp only [eval]
@@ -528,6 +639,9 @@ theorem eval_mul (a b c d : ℤ) :
           push_cast
           ring
 
+/--
+@isnad1 id=ex.2h4v.s7.039e9270ab1c from=translated src=- shape=6a360584 vocab=7818bddb
+-/
 theorem eval_congr_mod_four {a b c d : ℤ}
     (ha : (a : ZMod 4) = c) (hb : (b : ZMod 4) = d) :
     ∃ z : O, eval a b - eval c d = 4 * z := by
@@ -548,18 +662,27 @@ private theorem exists_pair (x : O) :
 
 def coords (x : O) : ℤ × ℤ := Classical.choose (exists_pair x)
 
+/--
+@isnad1 id=eq.0h1v.s4.31541974a096 from=translated src=- shape=4f67078d vocab=e8605cc9
+-/
 theorem eval_coords (x : O) : eval (coords x).1 (coords x).2 = x :=
   Classical.choose_spec (exists_pair x)
 
 def residue (x : O) : EisensteinEPrimaryPhase.Coord :=
   ((coords x).1, (coords x).2)
 
+/--
+@isnad1 id=eq.0h2v.s6.7d36c5237404 from=translated src=- shape=c9afcbb1 vocab=11e6664e
+-/
 theorem residue_eval (a b : ℤ) :
     residue (eval a b) = ((a : ZMod 4), (b : ZMod 4)) := by
   have h := unique_coordinates (eval_coords (eval a b))
   exact Prod.ext (congrArg (fun n : ℤ => (n : ZMod 4)) h.1)
     (congrArg (fun n : ℤ => (n : ZMod 4)) h.2)
 
+/--
+@isnad1 id=eq.0h2v.s5.470458ae0660 from=translated src=- shape=3887891b vocab=b3285c67
+-/
 theorem residue_mul (x y : O) :
     residue (x*y) = EisensteinEPrimaryPhase.mul (residue x) (residue y) := by
   calc
@@ -569,10 +692,16 @@ theorem residue_mul (x y : O) :
       rw [eval_mul, residue_eval]
       simp [residue, EisensteinEPrimaryPhase.mul]
 
+/--
+@isnad1 id=eq.0h1v.s5.3c173070affe from=translated src=- shape=f01f34bb vocab=64c8edf5
+-/
 theorem residue_pow_two (x : O) :
     residue (x^2) = EisensteinEPrimaryPhase.mul (residue x) (residue x) := by
   simpa [pow_two] using residue_mul x x
 
+/--
+@isnad1 id=ex.1h2v.s6.155c7dec5c33 from=translated src=- shape=7ce25bd0 vocab=e9fde7d5
+-/
 theorem congr_mod_four_of_residue_eq {x y : O}
     (h : residue x = residue y) : ∃ z : O, x-y = 4*z := by
   rw [←eval_coords x, ←eval_coords y]
@@ -583,10 +712,16 @@ theorem congr_mod_four_of_residue_eq {x y : O}
 def lift (v : EisensteinEPrimaryPhase.Coord) : O :=
   eval (v.1.val : ℤ) (v.2.val : ℤ)
 
+/--
+@isnad1 id=eq.0h1v.s3.f72f1f7e5c85 from=translated src=- shape=47dcad53 vocab=536ca8df
+-/
 theorem residue_lift (v : EisensteinEPrimaryPhase.Coord) :
     residue (lift v) = v := by
   simp [lift, residue_eval]
 
+/--
+@isnad1 id=ex.1h1v.s7.08cc761f93bb from=translated src=- shape=51fdafe7 vocab=46e571b9
+-/
 theorem exists_squareclass_mod_four (x : O)
     (hx : EisensteinEPrimaryPhase.odd (residue x)) :
     ∃ (e f : EisensteinEPrimaryPhase.Bit) (u z : O),
@@ -598,6 +733,9 @@ theorem exists_squareclass_mod_four (x : O)
   rw [residue_mul, residue_pow_two, residue_lift, residue_lift]
   exact hclass
 
+/--
+@isnad1 id=iff.1h3v.s6.bedf1beacabd from=translated src=- shape=baf793fc vocab=31b42d6e
+-/
 theorem ePrimary_squareclass_actual
     (e f : EisensteinEPrimaryPhase.Bit) (u : O)
     (hu : EisensteinEPrimaryPhase.odd (residue u)) :
@@ -606,6 +744,9 @@ theorem ePrimary_squareclass_actual
   rw [residue_mul, residue_pow_two, residue_lift]
   exact EisensteinEPrimaryPhase.ePrimary_squareclass e f (residue u) hu
 
+/--
+@isnad1 id=eq.1h3v.s7.bdd767bdce3b from=translated src=- shape=b6ab024e vocab=4ab9a06e
+-/
 theorem norm_squareclass_actual
     (e f : EisensteinEPrimaryPhase.Bit) (u : O)
     (hu : EisensteinEPrimaryPhase.odd (residue u)) :
@@ -631,6 +772,9 @@ private theorem not_odd_cast_zero (v : EisensteinEPrimaryPhase.Coord)
       (ZMod.cast v.2 : ZMod 2) = 0 := by
   decide +revert
 
+/--
+@isnad1 id=iff.0h1v.s5.2bc1692a636d from=translated src=- shape=d7fa98ba vocab=55346b7b
+-/
 theorem odd_residue_iff_not_two_dvd (x : O) :
     EisensteinEPrimaryPhase.odd (residue x) ↔ ¬ (2 : O) ∣ x := by
   constructor
@@ -657,6 +801,9 @@ theorem odd_residue_iff_not_two_dvd (x : O) :
 def rayBits (x : O) : EisensteinEPrimaryPhase.Bit × EisensteinEPrimaryPhase.Bit :=
   EisensteinEPrimaryPhase.bits (residue x)
 
+/--
+@isnad1 id=eq.2h2v.s7.fd9c10551df6 from=translated src=- shape=5f220463 vocab=9587898e
+-/
 theorem rayBits_mul (x y : O)
     (hx : ¬ (2 : O) ∣ x) (hy : ¬ (2 : O) ∣ y) :
     rayBits (x*y) = rayBits x + rayBits y := by
@@ -685,9 +832,15 @@ private theorem rayPhaseBits_mul_right
 
 def rayPhase (x y : O) : ℤ := rayPhaseBits (rayBits x) (rayBits y)
 
+/--
+@isnad1 id=eq.0h2v.s3.48f02badf8fb from=translated src=- shape=ab795eaa vocab=89a3a52a
+-/
 theorem rayPhase_symmetric (x y : O) : rayPhase x y = rayPhase y x :=
   rayPhaseBits_symmetric _ _
 
+/--
+@isnad1 id=eq.2h3v.s7.a74688660033 from=translated src=- shape=3d94bc06 vocab=12114f35
+-/
 theorem rayPhase_mul_left (x y z : O)
     (hx : ¬ (2 : O) ∣ x) (hy : ¬ (2 : O) ∣ y) :
     rayPhase (x*y) z = rayPhase x z * rayPhase y z := by
@@ -695,6 +848,9 @@ theorem rayPhase_mul_left (x y z : O)
   rw [rayBits_mul x y hx hy]
   exact rayPhaseBits_mul_left _ _ _
 
+/--
+@isnad1 id=eq.2h3v.s7.1cbadd0aee01 from=translated src=- shape=d9aa5057 vocab=12114f35
+-/
 theorem rayPhase_mul_right (x y z : O)
     (hy : ¬ (2 : O) ∣ y) (hz : ¬ (2 : O) ∣ z) :
     rayPhase x (y*z) = rayPhase x y * rayPhase x z := by

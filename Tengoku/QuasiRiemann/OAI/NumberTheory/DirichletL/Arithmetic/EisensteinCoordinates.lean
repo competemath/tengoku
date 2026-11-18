@@ -186,6 +186,9 @@ open scoped BigOperators
 
 namespace ShortDraft
 
+/--
+@isnad1 id=isprinci.0h0v.s6.1aca30fcd36d from=translated src=- shape=841f1c06 vocab=9aa81f15
+-/
 theorem eisenstein_ring_pid :
     IsPrincipalIdealRing (NumberField.RingOfIntegers (CyclotomicField 3 ℚ)) := by
   let : IsCyclotomicExtension {3} ℚ (CyclotomicField 3 ℚ) :=
@@ -203,6 +206,9 @@ def eisensteinConj (x : EisensteinCoordinates) : EisensteinCoordinates :=
 def eisensteinNorm (x : EisensteinCoordinates) : ℤ :=
   x.1 ^ 2 - x.1 * x.2 + x.2 ^ 2
 
+/--
+@isnad1 id=eq.0h2v.s4.d8da30e2f5e4 from=translated src=- shape=88b36870 vocab=648540be
+-/
 theorem eisenstein_norm_mul (x y : EisensteinCoordinates) :
     eisensteinNorm (eisensteinMul x y) = eisensteinNorm x * eisensteinNorm y := by
   rcases x with ⟨a, b⟩
@@ -210,23 +216,35 @@ theorem eisenstein_norm_mul (x y : EisensteinCoordinates) :
   dsimp [eisensteinNorm, eisensteinMul]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s3.4daced1d94c9 from=translated src=- shape=8d4cac31 vocab=64cb4020
+-/
 theorem eisenstein_norm_conj (x : EisensteinCoordinates) :
     eisensteinNorm (eisensteinConj x) = eisensteinNorm x := by
   rcases x with ⟨a, b⟩
   dsimp [eisensteinNorm, eisensteinConj]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s4.b6238c7b11a7 from=translated src=- shape=bc04d26c vocab=32c77fb9
+-/
 theorem eisenstein_mul_conj (x : EisensteinCoordinates) :
     eisensteinMul x (eisensteinConj x) = (eisensteinNorm x, 0) := by
   rcases x with ⟨a, b⟩
   apply Prod.ext <;> dsimp [eisensteinNorm, eisensteinConj, eisensteinMul] <;> ring
 
+/--
+@isnad1 id=le.0h1v.s3.ef7f6989db3b from=translated src=- shape=b9369acb vocab=a53ce562
+-/
 theorem eisenstein_norm_nonneg (x : EisensteinCoordinates) :
     0 ≤ eisensteinNorm x := by
   rcases x with ⟨a, b⟩
   dsimp [eisensteinNorm]
   nlinarith [sq_nonneg (2 * a - b), sq_nonneg b]
 
+/--
+@isnad1 id=iff.0h1v.s4.90137f70ad32 from=translated src=- shape=ee7ffebc vocab=ffb06622
+-/
 theorem eisenstein_norm_eq_zero_iff (x : EisensteinCoordinates) :
     eisensteinNorm x = 0 ↔ x = (0, 0) := by
   rcases x with ⟨a, b⟩
@@ -247,12 +265,18 @@ def DirichletTarget : Prop :=
     (23 / 24 : ℝ) < s.re → ¬ (χ = 1 ∧ s = 1) →
       DirichletCharacter.LFunction χ s ≠ 0
 
+/--
+@isnad1 id=ne.2h3v.s6.546db22bd6a7 from=translated src=- shape=565a808f vocab=4d8f04de
+-/
 theorem dirichlet_target_of_one_le_re
     (q : ℕ) [NeZero q] (χ : DirichletCharacter ℂ q) (s : ℂ)
     (hs : 1 ≤ s.re) (hprincipal : ¬ (χ = 1 ∧ s = 1)) :
     DirichletCharacter.LFunction χ s ≠ 0 := by
   exact χ.LFunction_ne_zero_of_one_le_re (not_and_or.mp hprincipal) hs
 
+/--
+@isnad1 id=iff.0h0v.s6.4deed647f50e from=translated src=- shape=b755dc1a vocab=f41d33a1
+-/
 theorem dirichletTarget_iff_open_strip :
     DirichletTarget ↔
       ∀ (q : ℕ) [NeZero q] (χ : DirichletCharacter ℂ q) (s : ℂ),
@@ -268,6 +292,9 @@ theorem dirichletTarget_iff_open_strip :
     · exact h q χ s h23 hs
     · exact dirichlet_target_of_one_le_re q χ s (le_of_not_gt hs) hprincipal
 
+/--
+@isnad1 id=eq.0h1v.s5.e7a7ac01bc87 from=translated src=- shape=a99b4232 vocab=84a741a3
+-/
 theorem cube_index_filter (b : ℕ) :
     (∑ h ∈ b.divisors, (ArithmeticFunction.moebius h : ℤ)) =
       if b = 1 then 1 else 0 := by
@@ -286,6 +313,9 @@ private lemma square_le_two_squares {x y e : ℝ}
   have h₄ := sq_nonneg (y - e)
   nlinarith
 
+/--
+@isnad1 id=le.7h9v.s8.e99e2f0300cc from=translated src=- shape=1b9e9c92 vocab=41f8616d
+-/
 theorem finite_row_extraction {α β : Type*} [DecidableEq α] [DecidableEq β]
     (rows : Finset α) (primes : Finset β) (row : β → α)
     (a : α → ℝ) (a₀ error bound : ℝ)
@@ -317,6 +347,9 @@ theorem finite_row_extraction {α β : Type*} [DecidableEq α] [DecidableEq β]
     Finset.sum_const, nsmul_eq_mul] at hsum
   nlinarith
 
+/--
+@isnad1 id=le.5h9v.s7.e9f1b56e86dc from=translated src=- shape=84b8cd26 vocab=fd2fc4a5
+-/
 theorem complex_row_extraction {α β : Type*} [DecidableEq α] [DecidableEq β]
     (rows : Finset α) (primes : Finset β) (row : β → α)
     (A : α → ℂ) (untwisted : α) (error bound : ℝ)
@@ -337,12 +370,21 @@ theorem complex_row_extraction {α β : Type*} [DecidableEq α] [DecidableEq β]
     _ ≤ ‖A untwisted - A (row p)‖ + ‖A (row p)‖ := norm_add_le _ _
     _ ≤ ‖A (row p)‖ + error := by linarith [happrox p hp]
 
+/--
+@isnad1 id=eq.0h0v.s5.3417b23be74c from=translated src=- shape=54a42274 vocab=cbf878e5
+-/
 theorem mean_square_exponent : (21 / 10 : ℚ) - 11 / 60 = 23 / 12 := by
   norm_num
 
+/--
+@isnad1 id=eq.0h0v.s5.177b972e58b5 from=translated src=- shape=308ac54c vocab=cbf878e5
+-/
 theorem approximation_exponent : (2 : ℚ) - 11 / 30 = 49 / 30 := by
   norm_num
 
+/--
+@isnad1 id=ne.7h5v.s7.7df1451545f1 from=translated src=- shape=10147444 vocab=23620982
+-/
 theorem zero_free_of_analytic_identity
     (σ : ℝ) (hσ : σ < 1) (L M W : ℂ → ℂ)
     (hL : AnalyticOnNhd ℂ L {s | σ < s.re})
@@ -366,6 +408,9 @@ theorem zero_free_of_analytic_identity
   rw [hLρ, zero_mul] at hρeq
   exact hWρ hρeq.symm
 
+/--
+@isnad1 id=ne.9h6v.s8.4527cfe8799f from=translated src=- shape=4e5acd3a vocab=fe580428
+-/
 theorem zero_free_of_regularized_analytic_identity
     (σ : ℝ) (hσ : σ < 1) (L Lregular M W : ℂ → ℂ)
     (hLregular : AnalyticOnNhd ℂ Lregular {s | σ < s.re})
@@ -388,6 +433,9 @@ theorem zero_free_of_regularized_analytic_identity
   rw [hregular ρ hρ hρone] at hLregularρ
   exact (mul_ne_zero_iff.mp hLregularρ).2
 
+/--
+@isnad1 id=and.20h20v.s9.1c7d2dbe5ad0 from=translated src=- shape=19355efb vocab=8e69f003
+-/
 theorem two_poisson_scale_substitution
     (K X F B L A C d t J Y g e ge v Li K' X' F' Δ : ℝ)
     (hK : K ≠ 0) (hB : B ≠ 0) (hF : F ≠ 0)
@@ -410,6 +458,9 @@ theorem two_poisson_scale_substitution
   · rw [hX', hF', hLi, hL, hg, hΔ]
     field_simp
 
+/--
+@isnad1 id=and.11h10v.s8.a4831be96c83 from=translated src=- shape=96b19afa vocab=d8b90f1e
+-/
 theorem two_poisson_budget
     (K X F R B J Δ K' childColumnMass R' : ℝ)
     (hK : 0 ≤ K) (hX : 0 < X) (hF : 0 < F)
@@ -457,6 +508,9 @@ theorem two_poisson_budget
   · rw [hM']
     field_simp
 
+/--
+@isnad1 id=le.9h9v.s7.fd01b3e9f2cb from=translated src=- shape=b4b0879b vocab=373ada53
+-/
 theorem two_poisson_charge
     (R R' b0 B F A t ge Δ : ℝ)
     (hR : 0 ≤ R) (hB : 0 ≤ B)
@@ -479,6 +533,9 @@ theorem two_poisson_charge
         (mul_nonneg ht hge)]
     _ = R * Δ := by rw [hΔ]
 
+/--
+@isnad1 id=eq.15h18v.s9.00694bd4f1bc from=translated src=- shape=a90109e2 vocab=ef8d8fda
+-/
 theorem two_poisson_cost_identity
     (K A C d L B F c Y g e Li J t ge v X Δ : ℝ)
     (hK : K ≠ 0) (hC : C ≠ 0) (hd : d ≠ 0) (hL : L ≠ 0)
@@ -504,6 +561,9 @@ namespace ShortDraftLocal
 variable {F : Type*} [Field F] [Fintype F] [DecidableEq F]
 
 omit [Fintype F] [DecidableEq F] in
+/--
+@isnad1 id=eq.1h2v.s9.92a959ac40cf from=translated src=- shape=5c2e507e vocab=612240de
+-/
 theorem sextic_character_exponent (χ : MulChar F ℂ) (hχ : χ ^ 6 = 1) :
     χ⁻¹ * χ⁻¹ ^ 2 = χ ^ 3 := by
   calc
@@ -514,6 +574,9 @@ theorem sextic_character_exponent (χ : MulChar F ℂ) (hχ : χ ^ 6 = 1) :
           rw [zpow_add, zpow_ofNat, hχ, mul_one]
         _ = χ ^ 3 := by norm_num
 
+/--
+@isnad1 id=eq.1h4v.s7.a98a860b3318 from=translated src=- shape=92404a51 vocab=623b7913
+-/
 theorem gaussSum_mulShift_any (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
     (hχ : χ ≠ 1) (a : F) :
     gaussSum χ (ψ.mulShift a) = χ⁻¹ a * gaussSum χ ψ := by
@@ -527,6 +590,9 @@ theorem gaussSum_mulShift_any (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
   · have hu : IsUnit a := isUnit_iff_ne_zero.mpr ha
     simpa [hu.unit_spec] using gaussSum_mulShift_eq χ ψ hu.unit
 
+/--
+@isnad1 id=eq.0h3v.s7.c9607756422c from=translated src=- shape=b103b7da vocab=2a7205f6
+-/
 theorem gaussSum_eq_units_sum (χ : MulChar F ℂ) (ψ : AddChar F ℂ) :
     gaussSum χ ψ = ∑ y : Fˣ, χ (y : F) * ψ (y : F) := by
   classical
@@ -548,6 +614,9 @@ theorem gaussSum_eq_units_sum (χ : MulChar F ℂ) (ψ : AddChar F ℂ) :
       rfl
 
 omit [Fintype F] [DecidableEq F] in
+/--
+@isnad1 id=eq.1h2v.s9.40db6dcbccd2 from=translated src=- shape=0718e572 vocab=5aefe7d6
+-/
 theorem sextic_character_quadratic (χ : MulChar F ℂ) (hχ : χ ^ 6 = 1) :
     (χ ^ 3)⁻¹ = χ ^ 3 := by
   calc
@@ -558,6 +627,9 @@ theorem sextic_character_quadratic (χ : MulChar F ℂ) (hχ : χ ^ 6 = 1) :
           rw [zpow_add, zpow_ofNat, hχ, mul_one]
         _ = χ ^ 3 := by norm_num
 
+/--
+@isnad1 id=eq.1h4v.s10.5a4c997fbcde from=translated src=- shape=268a1b44 vocab=9c8698e6
+-/
 theorem sextic_inversion_sum (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
     (hχ : χ ^ 6 = 1) (a : F) :
     (∑ h : Fˣ, (χ⁻¹ * χ⁻¹ ^ 2) h * ψ (a * ((h⁻¹ : Fˣ) : F))) =
@@ -581,6 +653,9 @@ theorem sextic_inversion_sum (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
           _ = (χ ^ 3) (y : F) := by rw [hy]
       rw [← Units.val_inv_eq_inv_val y, hval]
 
+/--
+@isnad1 id=eq.1h4v.s9.bbef2e4e32fe from=translated src=- shape=2fb1d8a7 vocab=ad2ac8e3
+-/
 theorem sextic_inversion_gaussSum (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
     (hχ : χ ^ 6 = 1) (a : F) :
     (∑ h : Fˣ, (χ⁻¹ * χ⁻¹ ^ 2) h * ψ (a * ((h⁻¹ : Fˣ) : F))) =
@@ -588,6 +663,9 @@ theorem sextic_inversion_gaussSum (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
   rw [sextic_inversion_sum χ ψ hχ a, gaussSum_eq_units_sum]
   simp only [AddChar.mulShift_apply]
 
+/--
+@isnad1 id=eq.2h5v.s10.f77e09d761c2 from=translated src=- shape=bb66e8bf vocab=b20fe894
+-/
 theorem sextic_local_row (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
     (hχ : χ ^ 6 = 1) (hχ₃ : χ ^ 3 ≠ 1) (ε x : F) :
     (∑ h : Fˣ, (χ⁻¹ * χ⁻¹ ^ 2) h * ψ ((ε * x) * ((h⁻¹ : Fˣ) : F))) =
@@ -597,6 +675,9 @@ theorem sextic_local_row (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
   rw [sextic_character_quadratic χ hχ, map_mul]
   ring
 
+/--
+@isnad1 id=eq.1h3v.s8.caeec5e1dbed from=translated src=- shape=f2a611f2 vocab=a48cc313
+-/
 theorem additive_unit_sum (ψ : AddChar F ℂ) (hψ : ψ ≠ 1) (a : F) :
     (∑ y : Fˣ, ψ (a * (y : F))) =
       if a = 0 then (Fintype.card Fˣ : ℂ) else -1 := by
@@ -616,6 +697,9 @@ theorem additive_unit_sum (ψ : AddChar F ℂ) (hψ : ψ ≠ 1) (a : F) :
       exact hψ ((AddChar.mulShift_unit_eq_one_iff ψ hu).mp heq)
     exact gaussSum_one_left hshift
 
+/--
+@isnad1 id=eq.2h4v.s10.ba32903c7b55 from=translated src=- shape=e28f966f vocab=07fd26ed
+-/
 theorem sextic_fourth_mask (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
     (hχ : χ ^ 6 = 1) (hψ : ψ ≠ 1) (a : F) :
     (∑ h : Fˣ, ((χ⁻¹) ^ 4 * (χ⁻¹) ^ 2) h *
@@ -636,6 +720,9 @@ theorem sextic_fourth_mask (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
           simp
     _ = _ := additive_unit_sum ψ hψ a
 
+/--
+@isnad1 id=eq.1h5v.s10.0914bcb6a974 from=translated src=- shape=81030345 vocab=b20fe894
+-/
 theorem active_zero_local_row (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
     (hχ₂ : χ ^ 2 ≠ 1) (ε x : F) :
     (∑ h : Fˣ, ((χ⁻¹) ^ 2) (h : F) *
@@ -659,6 +746,9 @@ theorem active_zero_local_row (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
       rw [map_mul]
       ring
 
+/--
+@isnad1 id=eq.1h4v.s8.49826db53f72 from=translated src=- shape=040d58a6 vocab=a0a9e98d
+-/
 theorem nontrivial_fourier_coefficient (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
     (hχ : χ ≠ 1) (h : F) :
     (∑ t : F, χ t * ψ (-(h * t))) =
@@ -674,6 +764,9 @@ theorem nontrivial_fourier_coefficient (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
     _ = χ⁻¹ h * gaussSum χ (ψ.mulShift (-1)) :=
       gaussSum_mulShift_any χ (ψ.mulShift (-1)) hχ h
 
+/--
+@isnad1 id=eq.1h3v.s8.c0998390dff1 from=translated src=- shape=2b7531f9 vocab=dfb19c70
+-/
 theorem trivial_fourier_coefficient (ψ : AddChar F ℂ)
     (hψ : ψ ≠ 1) (h : F) :
     (∑ t : F, (1 : MulChar F ℂ) t * ψ (-(h * t))) =
@@ -692,6 +785,9 @@ theorem trivial_fourier_coefficient (ψ : AddChar F ℂ)
     _ = if h = 0 then (Fintype.card Fˣ : ℂ) else -1 := by
       simpa only [neg_eq_zero] using additive_unit_sum ψ hψ (-h)
 
+/--
+@isnad1 id=eq.2h6v.s10.c62bf7a05d18 from=translated src=- shape=9a60bbed vocab=9fa9053c
+-/
 theorem sextic_fourier_theta_row (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
     (hχ : χ ^ 6 = 1) (hχ₃ : χ ^ 3 ≠ 1)
     (σ : Fˣ) (ε x : F) :

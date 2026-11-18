@@ -53,6 +53,9 @@ open scoped Topology
 
 namespace TwoPassProfiles
 
+/--
+@isnad1 id=le.2h1v.s5.64eb614fca74 from=translated src=- shape=944fee3e vocab=a6efe56f
+-/
 theorem log_dyad_bound (r : ℝ) (hr₁ : 1 ≤ r) (hr₂ : r ≤ 2) :
     |Real.log r| ≤ Real.log 2 := by
   have hlog0 : 0 ≤ Real.log r := by
@@ -65,6 +68,9 @@ end TwoPassProfiles
 
 namespace ActualEisensteinCubic
 
+/--
+@isnad1 id=eq.2h1v.s7.501b964f31f2 from=translated src=- shape=c4e93536 vocab=5affe104
+-/
 theorem A3_primary_unit_eq_one (x : O) (hx : IsUnit x)
     (hprimary : lambda ^ 2 ∣ x - 1) : x = 1 := by
   let v : Oˣ := hx.unit
@@ -88,6 +94,9 @@ theorem A3_primary_unit_eq_one (x : O) (hx : IsUnit x)
     exact False.elim (lambda_not_dvd_two
       ((dvd_pow_self lambda (by decide)).trans htwo))
 
+/--
+@isnad1 id=and.4h5v.s9.21a585f4deae from=translated src=- shape=59603bd0 vocab=6229328c
+-/
 theorem A3_ramified_zero_lower_left
     (a b c d u : O) (hdet : a * d - b * c = 1)
     (hC : c - u * d = 0)
@@ -106,6 +115,9 @@ theorem A3_ramified_zero_lower_left
   have hd1 := A3_primary_unit_eq_one d hdunit hdprimary
   exact ⟨hA1, hd1, by simpa only [hd1, mul_one] using hc⟩
 
+/--
+@isnad1 id=and.2h3v.s8.645b30f04c7c from=translated src=- shape=b32e83a9 vocab=46d8a4f7
+-/
 theorem A3_unramified_zero_lower_left
     (a b c : O) (hdet : a * 0 - b * c = 1)
     (hcprimary : lambda ^ 2 ∣ c - 1) :
@@ -127,6 +139,9 @@ end FourierBridge
 
 namespace InitialMeanSquareProfile
 
+/--
+@isnad1 id=eq.8h9v.s8.61cc35bec5d5 from=translated src=- shape=79297ce1 vocab=8e69f003
+-/
 theorem dual_profile
     (H Z B F d s h v₁ v₂ : ℝ)
     (hH : H ≠ 0) (hZ : Z ≠ 0) (hB : B ≠ 0) (hF : F ≠ 0)
@@ -147,6 +162,9 @@ namespace LocalLogFourier
 noncomputable def eulerDeriv (F : ℝ → ℂ) (j : ℕ) (x : ℝ) : ℂ :=
   iteratedDeriv j (fun t : ℝ => F (x * Real.exp t)) 0
 
+/--
+@isnad1 id=eq.0h4v.s5.bdc8fc197b06 from=translated src=- shape=d9e32a4a vocab=5010d91a
+-/
 theorem iteratedDeriv_log_eq_euler (F : ℝ → ℂ) (R s : ℝ) (j : ℕ) :
     iteratedDeriv j (fun z : ℝ => F (R * Real.exp z)) s =
       eulerDeriv F j (R * Real.exp s) := by
@@ -160,6 +178,9 @@ theorem iteratedDeriv_log_eq_euler (F : ℝ → ℂ) (R s : ℝ) (j : ℕ) :
   simpa [G] using (congrArg (fun h : ℝ → ℂ => h 0)
     (iteratedDeriv_comp_const_add j G s)).symm
 
+/--
+@isnad1 id=le.6h7v.s7.c778a89d784a from=translated src=- shape=30e5d1e7 vocab=7ec19f75
+-/
 theorem euler_two_regime_bound
     (F : ℝ → ℂ) (A K : ℕ) (Csmall Clarge : ℝ)
     (hCs : 0 ≤ Csmall) (hCl : 0 ≤ Clarge)
@@ -211,6 +232,9 @@ noncomputable def positiveLogProfile
   have hc : HasCompactSupport (fun s => V s * F (arg s)) := hVc.mul_right
   exact hc.toSchwartzMap hH
 
+/--
+@isnad1 id=eq.4h4v.s7.a2429cc8695a from=translated src=- shape=b8a9d5e2 vocab=f615889d
+-/
 @[simp] theorem positiveLogProfile_apply
     (V F : ℝ → ℂ) (R s : ℝ)
     (hVc : HasCompactSupport V)
@@ -220,6 +244,9 @@ noncomputable def positiveLogProfile
     positiveLogProfile V F R hVc hVs hFpos hR s =
       V s * F (R * Real.exp s) := rfl
 
+/--
+@isnad1 id=eq.4h4v.s8.0c3f591f2df7 from=translated src=- shape=4b0c801f vocab=b0dca4c1
+-/
 theorem positive_log_separation
     (V F : ℝ → ℂ) (R s : ℝ)
     (hVc : HasCompactSupport V)
@@ -232,6 +259,9 @@ theorem positive_log_separation
   rw [← positiveLogProfile_apply V F R s hVc hVs hFpos hR]
   exact FourierBridge.schwartz_log_inversion _ _
 
+/--
+@isnad1 id=le.5h7v.s8.7a5df4347f30 from=translated src=- shape=db03180e vocab=90926a73
+-/
 theorem euler_derivative_scale
     (F : ℝ → ℂ) (R s m CF : ℝ) (A i : ℕ)
     (hR : 0 < R) (hm : 0 < m) (hm1 : m ≤ 1)
@@ -254,6 +284,9 @@ theorem euler_derivative_scale
       mul_le_mul_of_nonneg_right hpow (norm_nonneg _)
     _ ≤ CF := hF
 
+/--
+@isnad1 id=le.10h9v.s9.a07b0aae91e3 from=translated src=- shape=523bbf89 vocab=0a0d8544
+-/
 theorem positive_log_product_derivative_bound
     (V F : ℝ → ℂ) (R m CW CF : ℝ) (A n : ℕ)
     (hVs : ContDiff ℝ ∞ V)
@@ -309,6 +342,9 @@ theorem positive_log_product_derivative_bound
       have hVi' := hVderiv i hi' s
       gcongr
 
+/--
+@isnad1 id=le.12h10v.s10.3ddd9abf471b from=translated src=- shape=76a1fc42 vocab=24c79ba4
+-/
 theorem positive_log_uniform_seminorm
     (V F : ℝ → ℂ) (R m Lwin CW CF : ℝ) (A n k : ℕ)
     (hVc : HasCompactSupport V)
@@ -401,12 +437,18 @@ noncomputable def momentConstant (K : ℕ) (Lwin CW CF : ℝ) : ℝ :=
     (1 + Lwin ^ (volume : Measure ℝ).integrablePower) *
       derivativeConstant n CW CF
 
+/--
+@isnad1 id=le.2h3v.s5.0cee44173d30 from=translated src=- shape=1185f8fe vocab=40d50fd6
+-/
 theorem derivativeConstant_nonneg (n : ℕ) (CW CF : ℝ)
     (hCW : 0 ≤ CW) (hCF : 0 ≤ CF) :
     0 ≤ derivativeConstant n CW CF := by
   unfold derivativeConstant
   positivity
 
+/--
+@isnad1 id=le.3h4v.s5.1a083403276c from=translated src=- shape=a14b3bca vocab=c5a4fe59
+-/
 theorem momentConstant_nonneg (K : ℕ) (Lwin CW CF : ℝ)
     (hL : 0 ≤ Lwin) (hCW : 0 ≤ CW) (hCF : 0 ≤ CF) :
     0 ≤ momentConstant K Lwin CW CF := by
@@ -416,6 +458,9 @@ theorem momentConstant_nonneg (K : ℕ) (Lwin CW CF : ℝ)
   exact mul_nonneg (by positivity)
     (derivativeConstant_nonneg n CW CF hCW hCF)
 
+/--
+@isnad1 id=le.4h5v.s6.db7ab6c18d28 from=translated src=- shape=c504caf7 vocab=9f5e8cfb
+-/
 theorem momentConstant_dominates (K n : ℕ) (Lwin CW CF : ℝ)
     (hL : 0 ≤ Lwin) (hCW : 0 ≤ CW) (hCF : 0 ≤ CF)
     (hn : n ≤ K) :
@@ -432,6 +477,9 @@ theorem momentConstant_dominates (K n : ℕ) (Lwin CW CF : ℝ)
       (derivativeConstant_nonneg i CW CF hCW hCF)
   · exact Finset.mem_range.mpr (Nat.lt_succ_iff.mpr hn)
 
+/--
+@isnad1 id=le.14h11v.s10.adbb1579c6fe from=translated src=- shape=a821aec3 vocab=817f2768
+-/
 theorem positive_log_source_pair
     (V F : ℝ → ℂ) (R m Lwin CW CF C : ℝ) (A K n : ℕ)
     (hVc : HasCompactSupport V)
@@ -493,6 +541,9 @@ theorem positive_log_source_pair
     _ = (1 + Lwin ^ p) * D := by ring
     _ ≤ C := by simpa [D, p] using hCbound n hn
 
+/--
+@isnad1 id=le.12h9v.s10.2b094a691a7f from=translated src=- shape=52630684 vocab=4e735a04
+-/
 theorem positive_log_fourier_moment
     (V F : ℝ → ℂ) (R m Lwin CW CF : ℝ) (A J : ℕ)
     (hVc : HasCompactSupport V)
@@ -534,6 +585,9 @@ theorem positive_log_fourier_moment
       intro j hj
       simpa [C] using momentConstant_dominates K j Lwin CW CF hL hCW hCF hj)
 
+/--
+@isnad1 id=le.12h9v.s10.37c075658506 from=translated src=- shape=1b72e146 vocab=8060c63b
+-/
 theorem positive_log_fourier_bound
     (V F : ℝ → ℂ) (R m Lwin CW CF : ℝ) (A J : ℕ)
     (hVc : HasCompactSupport V)
@@ -566,6 +620,9 @@ theorem positive_log_fourier_bound
     hVc hVs hFpos hR hm hm1 hL hCW hCF hVderiv hwindow hEuler
   simpa [mul_assoc, mul_left_comm, mul_comm] using hbase
 
+/--
+@isnad1 id=eq.5h7v.s8.b707b6684260 from=translated src=- shape=d42b6c21 vocab=b79f0096
+-/
 theorem coupled_positive_log_separation
     {ι : Type*} [Fintype ι]
     (W : ι → ℝ → ℂ) (F V : ℝ → ℂ) (R : ℝ)

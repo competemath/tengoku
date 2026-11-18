@@ -10,6 +10,9 @@ namespace SevenEighths.InverseMoment
 open scoped BigOperators
 noncomputable section
 
+/--
+@isnad1 id=le.1h4v.s7.47d955ba4523 from=translated src=- shape=73267f27 vocab=b2337532
+-/
 theorem bounded_finset_coefficient_sum_sq {C : Type*} (s : Finset C)
     (b f : C → ℂ) (hb : ∀ c ∈ s, ‖b c‖ ≤ 1) :
     ‖∑ c ∈ s, b c * f c‖ ^ 2 ≤ (s.card : ℝ) * ∑ c ∈ s, ‖f c‖ ^ 2 := by
@@ -19,12 +22,18 @@ theorem bounded_finset_coefficient_sum_sq {C : Type*} (s : Finset C)
     (by simp) (by simpa using hb) (by simp)
   simpa using h
 
+/--
+@isnad1 id=le.1h3v.s6.072d6f3ffe0b from=translated src=- shape=405b15ab vocab=b80f533f
+-/
 theorem bounded_coefficient_sum_sq {C : Type*} [Fintype C]
     (b f : C → ℂ) (hb : ∀ c, ‖b c‖ ≤ 1) :
     ‖∑ c, b c * f c‖ ^ 2 ≤ (Fintype.card C : ℝ) * ∑ c, ‖f c‖ ^ 2 := by
   classical
   simpa using bounded_finset_coefficient_sum_sq Finset.univ b f (by simpa using hb)
 
+/--
+@isnad1 id=le.3h8v.s7.151d2a83f5b1 from=translated src=- shape=65e13abf vocab=b888efd0
+-/
 theorem positive_triple_enlarge {M H C : Type*}
     [DecidableEq M] [DecidableEq H] [DecidableEq C]
     (pairs : Finset (M × H)) (cset : M → Finset C)
@@ -52,6 +61,9 @@ theorem positive_triple_enlarge {M H C : Type*}
     (by intros; exact le_rfl) (by intro u _ _; exact hE _ _ _)
   simpa only [Finset.sum_sigma, Finset.sum_product] using hb
 
+/--
+@isnad1 id=le.4h11v.s8.137d9d5c9b7a from=translated src=- shape=588bdbda vocab=4a2df9ea
+-/
 theorem column_fiber_sieve {K X Y : Type*} [DecidableEq X] [DecidableEq Y]
     (rows : Finset K) (source : Finset X) (target : Finset Y)
     (φ : X → Y) (q : K → Y → ℂ) (a : X → ℂ) (Q D : ℝ) (hQ : 0 ≤ Q)
@@ -91,6 +103,9 @@ theorem column_fiber_sieve {K X Y : Type*} [DecidableEq X] [DecidableEq Y]
       _ ≤ Q * (D * ∑ x ∈ source, ‖a x‖ ^ 2) := mul_le_mul_of_nonneg_left hf' hQ
       _ = _ := by ring)
 
+/--
+@isnad1 id=le.4h11v.s8.89b3ea39af88 from=translated src=- shape=fb3c95d1 vocab=b80f533f
+-/
 theorem quadratic_cubic_composition
     {K M H C P : Type*} [Fintype K] [Fintype M] [Fintype H] [Fintype C] [Fintype P]
     (q : K → M → H → ℂ) (χ : M → C → P → ℂ)

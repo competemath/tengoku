@@ -19,6 +19,9 @@ private theorem pb_dim : pb.dim = 2 := by
 
 private theorem pb_gen : pb.gen = HeckeFamily.omega := hζ.integralPowerBasis_gen
 
+/--
+@isnad1 id=surjecti.0h0v.s4.59bab4e38e33 from=translated src=- shape=e37279c3 vocab=32849c8b
+-/
 theorem coordinateElement_surjective :
     Function.Surjective (fun n : ℤ × ℤ => coordinateElement n.1 n.2) := by
   intro x
@@ -52,10 +55,16 @@ def zmodQuotientHom (χ : Character) : ZMod χ.period →+ (O ⧸ χ.modulus) :=
     change Ideal.Quotient.mk χ.modulus ((χ.period : ℤ) : O) = 0
     simpa only [Int.cast_natCast] using quotient_period χ⟩
 
+/--
+@isnad1 id=eq.0h2v.s9.6d86e99116c2 from=translated src=- shape=cd508302 vocab=b97f530d
+-/
 @[simp] theorem zmodQuotientHom_intCast (χ : Character) (a : ℤ) :
     zmodQuotientHom χ (a : ZMod χ.period) = Ideal.Quotient.mk χ.modulus (a : O) :=
   ZMod.lift_coe _ _ _
 
+/--
+@isnad1 id=eq.0h2v.s9.af4cc5471f75 from=translated src=- shape=cd508302 vocab=85ed6a85
+-/
 @[simp] theorem zmodQuotientHom_natCast (χ : Character) (a : ℕ) :
     zmodQuotientHom χ (a : ZMod χ.period) = Ideal.Quotient.mk χ.modulus (a : O) := by
   simpa only [Int.cast_natCast] using zmodQuotientHom_intCast χ (a : ℤ)
@@ -67,12 +76,18 @@ def coordinateQuotientHom (χ : Character) :
   map_zero' := by simp
   map_add' x y := by simp only [Prod.fst_add, Prod.snd_add, map_add]; ring
 
+/--
+@isnad1 id=eq.0h3v.s9.5d721233a028 from=translated src=- shape=044b52aa vocab=90850392
+-/
 @[simp] theorem coordinateQuotientHom_intCast (χ : Character) (a b : ℤ) :
     coordinateQuotientHom χ (a, b) =
       Ideal.Quotient.mk χ.modulus (coordinateElement a b) := by
   simp only [coordinateQuotientHom, AddMonoidHom.coe_mk, ZeroHom.coe_mk,
     zmodQuotientHom_intCast, coordinateElement, map_add, map_mul]
 
+/--
+@isnad1 id=surjecti.0h1v.s9.b45170ffff07 from=translated src=- shape=79f2698c vocab=53163526
+-/
 theorem coordinateQuotientHom_surjective (χ : Character) :
     Function.Surjective (coordinateQuotientHom χ) := by
   intro x
@@ -81,6 +96,9 @@ theorem coordinateQuotientHom_surjective (χ : Character) :
   change coordinateElement a b = z at hab
   exact ⟨(a,b), by rw [coordinateQuotientHom_intCast, hab]⟩
 
+/--
+@isnad1 id=eq.0h2v.s9.ef0bc9d43a19 from=translated src=- shape=d5a61850 vocab=81c5077c
+-/
 theorem coefficients_eq_quotient_character (χ : Character)
     (a : Fin χ.period × Fin χ.period) :
     coefficients χ a = χ.residue (coordinateQuotientHom χ (a.1, a.2)) := by

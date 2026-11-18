@@ -44,6 +44,9 @@ namespace FiniteSFactor
 
 abbrev O := NumberField.RingOfIntegers (CyclotomicField 3 ℚ)
 
+/--
+@isnad1 id=ex.4h2v.s9.4e6a19fa49fe from=translated src=- shape=875b560b vocab=66c74524
+-/
 theorem extract_prime_of_squarefree {I P : Ideal O}
     (hI : I ≠ ⊥) (hP : Prime P) (hsq : Squarefree I) (hdvd : P ∣ I) :
     ∃ J : Ideal O, IsRelPrime P J ∧ I = P * J := by
@@ -67,6 +70,9 @@ noncomputable def outsideWeight (S : Finset (Ideal O))
   classical
   exact if ∀ P ∈ S, ¬ P ∣ I then w I else 0
 
+/--
+@isnad1 id=eq.2h4v.s9.0568ee9ced17 from=translated src=- shape=13ca94c8 vocab=04082b7d
+-/
 theorem outsideWeight_mul (S : Finset (Ideal O))
     (hprime : ∀ P ∈ S, Prime P) (w : Ideal O → ℂ)
     (I J : Ideal O) (hweight : w (I * J) = w I * w J) :
@@ -99,6 +105,9 @@ theorem outsideWeight_mul (S : Finset (Ideal O))
 noncomputable def fiber (n : ℕ) : Finset (Ideal O) :=
   (Ideal.finite_setOfPred_absNorm_eq (S := O) n).toFinset
 
+/--
+@isnad1 id=iff.0h2v.s8.72797708ecd5 from=translated src=- shape=ed8d996d vocab=414a71e9
+-/
 theorem mem_fiber {n : ℕ} {I : Ideal O} : I ∈ fiber n ↔ Ideal.absNorm I = n := by
   simp [fiber]
 
@@ -110,11 +119,17 @@ noncomputable def goodFiber (P : Ideal O) (m : ℕ) : Finset (Ideal O) := by
   classical
   exact (fiber m).filter (fun J => Squarefree J ∧ ¬ P ∣ J)
 
+/--
+@isnad1 id=iff.0h3v.s10.88e00417904f from=translated src=- shape=5c943d15 vocab=2cb1ccda
+-/
 theorem mem_badFiber {P : Ideal O} {m : ℕ} {I : Ideal O} :
     I ∈ badFiber P m ↔ Ideal.absNorm I = Ideal.absNorm P * m ∧ Squarefree I ∧ P ∣ I := by
   classical
   simp [badFiber, mem_fiber]
 
+/--
+@isnad1 id=iff.0h3v.s9.857566e738b4 from=translated src=- shape=a1af9ec0 vocab=b7c934ec
+-/
 theorem mem_goodFiber {P : Ideal O} {m : ℕ} {J : Ideal O} :
     J ∈ goodFiber P m ↔ Ideal.absNorm J = m ∧ Squarefree J ∧ ¬P ∣ J := by
   classical
@@ -134,6 +149,9 @@ private theorem pick_spec (P : Ideal O) (hP : Prime P) (m : ℕ)
     ((mem_badFiber.mp hI).2.1.ne_zero) hP
     (mem_badFiber.mp hI).2.1 (mem_badFiber.mp hI).2.2)
 
+/--
+@isnad1 id=eq.1h3v.s8.09643e2ff2bc from=translated src=- shape=2b974fdc vocab=30e7a7ab
+-/
 theorem squarefree_prime_fiber_sum (P : Ideal O) (hP : Prime P)
     (m : ℕ) (w : Ideal O → ℂ) :
     (∑ I ∈ badFiber P m, w I) =
@@ -196,6 +214,9 @@ private theorem sum_filter_squarefree (pred : Ideal O → Prop) (w : Ideal O →
   · simp [hsq]
   · simp [hsq, hzero I hsq]
 
+/--
+@isnad1 id=eq.3h3v.s10.0c700b3e7b97 from=translated src=- shape=9b972961 vocab=39751b08
+-/
 theorem restore_one_prime (P : Ideal O) (hP : Prime P)
     (w : Ideal O → ℂ)
     (hzero : ∀ I, ¬Squarefree I → w I = 0)
@@ -241,6 +262,9 @@ theorem restore_one_prime (P : Ideal O) (hP : Prime P)
       exact hmul J (mem_goodFiber.mp hJ).2.2
     _ = exceptPrimeCoeff P w n + w P * exceptPrimeCoeff P w m := by rw [hgood]
 
+/--
+@isnad1 id=eq.3h3v.s10.cdb8ea2bf031 from=translated src=- shape=e8e95a1b vocab=f93bb0bd
+-/
 theorem restore_one_prime_all (P : Ideal O) (hP : Prime P)
     (w : Ideal O → ℂ)
     (hzero : ∀ I, ¬Squarefree I → w I = 0)
@@ -309,6 +333,9 @@ private theorem exceptPrimeCoeff_outsideWeight (S : Finset (Ideal O))
     · simp [outsideWeight, hd]
     · simp [outsideWeight, hd, hs]
 
+/--
+@isnad1 id=eq.5h4v.s11.b05e6a519028 from=translated src=- shape=9a2cdcd0 vocab=fc24c706
+-/
 theorem restore_insert_prime (S : Finset (Ideal O))
     (hprime : ∀ Q ∈ S, Prime Q) (P : Ideal O) (hP : Prime P)
     (hPnot : P ∉ S) (w : Ideal O → ℂ)
@@ -335,12 +362,18 @@ theorem restore_insert_prime (S : Finset (Ideal O))
 end FiniteSFactor
 namespace ShortDraftHeckeBridge
 
+/--
+@isnad1 id=eq.1h3v.s7.f1eb9e1fa94f from=translated src=- shape=6398bb4d vocab=507e0475
+-/
 theorem baseChangeWeight_zero_of_not_squarefree {q : ℕ}
     (χ : DirichletCharacter ℂ q) (I : Ideal O) (hsq : ¬Squarefree I) :
     baseChangeWeight χ I = 0 := by
   rw [baseChangeWeight, UniqueFactorizationMonoid.moebius_of_not_squarefree hsq]
   simp
 
+/--
+@isnad1 id=eq.1h4v.s8.8b842971c01b from=translated src=- shape=4f559c41 vocab=e9049378
+-/
 theorem baseChangeWeight_mul_of_isRelPrime {q : ℕ}
     (χ : DirichletCharacter ℂ q) (I J : Ideal O) (h : IsRelPrime I J) :
     baseChangeWeight χ (I * J) =
@@ -355,6 +388,9 @@ namespace DyadicTransfer
 noncomputable def annularCutoff (φ : ℝ → ℂ) (y : ℝ) : ℂ :=
   φ y - φ (2 * y)
 
+/--
+@isnad1 id=eq.2h2v.s6.0265e88fa943 from=translated src=- shape=3eb2742b vocab=669d35c4
+-/
 theorem annularCutoff_eq_zero_of_le_half (φ : ℝ → ℂ)
     (hsmall : ∀ y : ℝ, y ≤ 1 → φ y = 1)
     {y : ℝ} (hy : y ≤ 1 / 2) : annularCutoff φ y = 0 := by
@@ -362,12 +398,18 @@ theorem annularCutoff_eq_zero_of_le_half (φ : ℝ → ℂ)
   have h2y : 2 * y ≤ 1 := by linarith
   simp [annularCutoff, hsmall y hy1, hsmall (2 * y) h2y]
 
+/--
+@isnad1 id=eq.2h2v.s5.3ac5e2955115 from=translated src=- shape=b8cd4236 vocab=82f8bae9
+-/
 theorem annularCutoff_eq_zero_of_two_le (φ : ℝ → ℂ)
     (hlarge : ∀ y : ℝ, 2 ≤ y → φ y = 0)
     {y : ℝ} (hy : 2 ≤ y) : annularCutoff φ y = 0 := by
   have h2y : 2 ≤ 2 * y := by linarith
   simp [annularCutoff, hlarge y hy, hlarge (2 * y) h2y]
 
+/--
+@isnad1 id=eq.0h3v.s6.1060ce4d4430 from=translated src=- shape=0d26da83 vocab=6cfea3bf
+-/
 theorem partial_partition (φ : ℝ → ℂ) (x : ℝ) (K : ℕ) :
     (∑ k ∈ Finset.range (K + 1),
       annularCutoff φ (x / (2 : ℝ) ^ k)) =
@@ -385,6 +427,9 @@ theorem partial_partition (φ : ℝ → ℂ) (x : ℝ) (K : ℕ) :
       rw [hshift]
       ring
 
+/--
+@isnad1 id=eq.4h3v.s7.105a65cf83cc from=translated src=- shape=34c0e5a4 vocab=f1980913
+-/
 theorem partition_nat (φ : ℝ → ℂ)
     (hsmall : ∀ y : ℝ, y ≤ 1 → φ y = 1)
     (hlarge : ∀ y : ℝ, 2 ≤ y → φ y = 0)
@@ -402,18 +447,27 @@ theorem partition_nat (φ : ℝ → ℂ)
 noncomputable def expAnnularTest (φ : ℝ → ℂ) (D : ℝ) (k : ℕ) (y : ℝ) : ℂ :=
   annularCutoff φ y * Real.exp (-((2 : ℝ) ^ k / D) * y)
 
+/--
+@isnad1 id=eq.2h4v.s6.acacf6908b49 from=translated src=- shape=9a8a19e1 vocab=5d165315
+-/
 theorem expAnnularTest_eq_zero_of_le_half (φ : ℝ → ℂ)
     (hsmall : ∀ y : ℝ, y ≤ 1 → φ y = 1)
     (D : ℝ) (k : ℕ) {y : ℝ} (hy : y ≤ 1 / 2) :
     expAnnularTest φ D k y = 0 := by
   simp [expAnnularTest, annularCutoff_eq_zero_of_le_half φ hsmall hy]
 
+/--
+@isnad1 id=eq.2h4v.s5.8f5845053c34 from=translated src=- shape=0641c84f vocab=82adf0e2
+-/
 theorem expAnnularTest_eq_zero_of_two_le (φ : ℝ → ℂ)
     (hlarge : ∀ y : ℝ, 2 ≤ y → φ y = 0)
     (D : ℝ) (k : ℕ) {y : ℝ} (hy : 2 ≤ y) :
     expAnnularTest φ D k y = 0 := by
   simp [expAnnularTest, annularCutoff_eq_zero_of_two_le φ hlarge hy]
 
+/--
+@isnad1 id=le.3h5v.s7.837127fc9fe7 from=translated src=- shape=eebe202a vocab=4d8e8f40
+-/
 theorem expAnnularTest_norm_le (φ : ℝ → ℂ) (D : ℝ) (k : ℕ)
     (hD : 0 < D) (M : ℝ) (hM : ∀ y : ℝ, ‖annularCutoff φ y‖ ≤ M)
     {y : ℝ} (hy : 1 / 2 ≤ y) :
@@ -436,6 +490,9 @@ theorem expAnnularTest_norm_le (φ : ℝ → ℂ) (D : ℝ) (k : ℕ)
     _ ≤ M * Real.exp (-t / 2) := mul_le_mul_of_nonneg_left hexp hM0
     _ = M * Real.exp (-((2 : ℝ) ^ k / D) / 2) := rfl
 
+/--
+@isnad1 id=eq.4h5v.s7.0b193a9fc9bd from=translated src=- shape=c75c067d vocab=67ca71b3
+-/
 theorem finite_exp_reassembly (a : ℕ → ℂ) (φ : ℝ → ℂ)
     (ha0 : a 0 = 0)
     (hsmall : ∀ y : ℝ, y ≤ 1 → φ y = 1)
@@ -466,6 +523,9 @@ theorem finite_exp_reassembly (a : ℕ → ℂ) (φ : ℝ → ℂ)
     rw [← Finset.sum_mul, hpart]
     simp
 
+/--
+@isnad1 id=le.6h6v.s8.ad7c65979a31 from=translated src=- shape=def7cdd6 vocab=10a27c1d
+-/
 theorem finite_dyadic_piece_bound
     (F : ℕ → ℂ) (C r : ℝ) (hC : 0 ≤ C) (hr : 1 < r)
     (b : ℕ → ℝ) (hb : Summable b) (hb0 : ∀ m, 0 ≤ b m)

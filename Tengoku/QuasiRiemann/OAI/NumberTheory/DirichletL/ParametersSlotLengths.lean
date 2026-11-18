@@ -10,6 +10,9 @@ noncomputable section
 open scoped BigOperators
 namespace SevenEighths.Parameters
 
+/--
+@isnad1 id=ex.1h1v.s6.ed0474117751 from=translated src=- shape=bb64a0ee vocab=d8d78734
+-/
 theorem exists_distinct_slot_lengths (L : ℝ) (hL : 0<L) :
     ∃N : ℕ,0<N ∧ ∃ell : Fin N→ℝ,Function.Injective ell ∧
       (∀j,0<ell j ∧ ell j<L) ∧ (∑j,ell j)=1/6 := by
@@ -58,6 +61,9 @@ theorem exists_distinct_slot_lengths (L : ℝ) (hL : 0<L) :
     change A/(6*A)=1/6
     field_simp
 
+/--
+@isnad1 id=ex.4h4v.s8.862d61313565 from=translated src=- shape=f441eec1 vocab=6d98b285
+-/
 theorem exists_physical_slot_lengths (dmin dmax mesh R : ℝ)
     (hdmin : 0<dmin) (hd : dmin≤dmax) (hm : 0<mesh) (hR : 0<R) :
     ∃N : ℕ,0<N ∧ ∃ell : Fin N→ℝ,∃rmin : ℝ,0<rmin ∧

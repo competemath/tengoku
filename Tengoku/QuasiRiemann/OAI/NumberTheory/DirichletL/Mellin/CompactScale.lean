@@ -141,6 +141,9 @@ open scoped Topology
 
 namespace CompactMellinBridge
 
+/--
+@isnad1 id=mellinco.2h2v.s6.226989bb8f19 from=translated src=- shape=3906fce7 vocab=7ed0073e
+-/
 theorem compact_weight_mellin_convergent
     (W : ℝ → ℂ) (hW : ContDiff ℝ (↑(⊤ : ℕ∞)) W)
     (hsupp : ∀ y : ℝ, y ≤ 1 ∨ 2 ≤ y → W y = 0)
@@ -160,6 +163,9 @@ theorem compact_weight_mellin_convergent
   exact mellinConvergent_of_isBigO_rpow hlocal htop (by linarith)
     hbot (by linarith)
 
+/--
+@isnad1 id=integrab.2h4v.s7.d9beade14d1b from=translated src=- shape=16c33419 vocab=a916251d
+-/
 theorem weighted_term_integrable
     (a : ℕ → ℂ) (ha0 : a 0 = 0) (W : ℝ → ℂ)
     (s : ℂ) (hW : MellinConvergent W s) (n : ℕ) :
@@ -177,6 +183,9 @@ theorem weighted_term_integrable
     have hscaled := hscale.const_smul (a n)
     simpa only [MellinConvergent, smul_eq_mul, mul_assoc] using hscaled
 
+/--
+@isnad1 id=continuo.3h3v.s7.b492d990657c from=translated src=- shape=83e55378 vocab=d1babc5f
+-/
 theorem weighted_sum_continuousOn_pos
     (a : ℕ → ℂ) (W F : ℝ → ℂ)
     (hW : ContDiff ℝ (↑(⊤ : ℕ∞)) W)
@@ -223,6 +232,9 @@ theorem weighted_sum_continuousOn_pos
     exact hsumEq u hu.le
   exact (hcontSum.continuousAt.congr_of_eventuallyEq hevent).continuousWithinAt
 
+/--
+@isnad1 id=locallyi.3h3v.s7.38a1892018fe from=translated src=- shape=efee64cc vocab=e3f2c7de
+-/
 theorem weighted_sum_inv_locallyIntegrableOn_pos
     (a : ℕ → ℂ) (W F : ℝ → ℂ)
     (hW : ContDiff ℝ (↑(⊤ : ℕ∞)) W)
@@ -304,6 +316,9 @@ private theorem weighted_norm_integral
       _ = (‖a n‖ * ((n : ℝ) ^ s.re)⁻¹) *
             (∫ u : ℝ in Set.Ioi 0, ‖(u : ℂ) ^ (s - 1) * W u‖) := by rw [hinv]
 
+/--
+@isnad1 id=summable.2h3v.s7.110b00da13f7 from=translated src=- shape=5bbdcab2 vocab=49b23dd4
+-/
 theorem weighted_terms_fubini
     (a : ℕ → ℂ) (ha0 : a 0 = 0) (W : ℝ → ℂ)
     (s : ℂ) (hlsum : LSeriesSummable a s) :
@@ -324,6 +339,9 @@ noncomputable def finiteEulerFactor
     (1 - χ (Ideal.absNorm P) *
       ((Ideal.absNorm P : ℂ) ^ (-s)))
 
+/--
+@isnad1 id=analytic.1h4v.s7.1826cfd852aa from=translated src=- shape=b68afae7 vocab=73184c99
+-/
 theorem finiteEulerFactor_analytic
     {q : ℕ} (χ : DirichletCharacter ℂ q)
     (S : Finset (Ideal ShortDraftHeckeBridge.O))
@@ -345,6 +363,9 @@ theorem finiteEulerFactor_analytic
   exact (Complex.analyticOnNhd_iff_differentiableOn
     (Complex.isOpen_re_gt σ)).2 hE.differentiableOn
 
+/--
+@isnad1 id=ne.7h5v.s7.84056cba6b1a from=translated src=- shape=10147444 vocab=2b62810c
+-/
 theorem zero_free_of_analytic_identity_gt_two
     (σ : ℝ) (hσ : σ < 2) (G M W : ℂ → ℂ)
     (hG : AnalyticOnNhd ℂ G {s | σ < s.re})
@@ -370,6 +391,9 @@ theorem zero_free_of_analytic_identity_gt_two
   rw [hGρ, zero_mul] at heqρ
   exact hWρ heqρ.symm
 
+/--
+@isnad1 id=ne.9h6v.s8.592f9712be04 from=translated src=- shape=4e5acd3a vocab=ac9de204
+-/
 theorem zero_free_of_regularized_identity_gt_two
     (σ : ℝ) (hσ : σ < 2) (G Lregular M W : ℂ → ℂ)
     (hLregular : AnalyticOnNhd ℂ Lregular {s | σ < s.re})
@@ -392,6 +416,9 @@ theorem zero_free_of_regularized_identity_gt_two
   rw [hregular ρ hρ hρone] at hLregularρ
   exact (mul_ne_zero_iff.mp hLregularρ).2
 
+/--
+@isnad1 id=eq.0h3v.s5.4f6bbea1db85 from=translated src=- shape=8a74bb4f vocab=6b473500
+-/
 theorem outsideCoeff_baseChange_zero {q : ℕ}
     (χ : DirichletCharacter ℂ q)
     (S : Finset (Ideal FiniteSFactor.O)) :
@@ -419,6 +446,9 @@ noncomputable def outsideCompactSum {q : ℕ} (χ : DirichletCharacter ℂ q)
     FiniteSFactor.outsideCoeff S (ShortDraftHeckeBridge.baseChangeWeight χ) n *
       W ((n : ℝ) * t)
 
+/--
+@isnad1 id=hassum.2h5v.s7.20a50be4a3b1 from=translated src=- shape=75b38f22 vocab=bbdd09a8
+-/
 theorem outsideCompactSum_hasSum {q : ℕ} (χ : DirichletCharacter ℂ q)
     (S : Finset (Ideal FiniteSFactor.O)) (W : ℝ → ℂ)
     (hsupp : ∀ y : ℝ, 2 ≤ y → W y = 0)
@@ -443,6 +473,9 @@ theorem outsideCompactSum_hasSum {q : ℕ} (χ : DirichletCharacter ℂ q)
     simp [hsupp _ hnt]
   exact (summable_of_ne_finset_zero htail).hasSum
 
+/--
+@isnad1 id=eq.4h5v.s8.22c06d3c551c from=translated src=- shape=9ad9bbf2 vocab=703df01c
+-/
 theorem outside_compact_euler_identity {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q)
     (S : Finset (Ideal FiniteSFactor.O)) (hS : ∀ P ∈ S, Prime P)
@@ -492,6 +525,9 @@ theorem outside_compact_euler_identity {q : ℕ} [NeZero q]
         (finiteEulerFactor χ S s * LSeries a s)) * mellin W s := by ring
     _ = mellin W s := by rw [hfinite]; ring
 
+/--
+@isnad1 id=and.8h8v.s8.786c3f9d690d from=translated src=- shape=ef3f5f21 vocab=4eaf3514
+-/
 theorem pair_zero_free_of_identity_gt_two
     {q r : ℕ} [NeZero q] [NeZero r]
     (χ : DirichletCharacter ℂ q) (ψ : DirichletCharacter ℂ r)
@@ -595,6 +631,9 @@ theorem pair_zero_free_of_identity_gt_two
         (hLχ.mul hLψ) hM hW heq ρ hρ hWρ
       exact mul_ne_zero_iff.mp hprod
 
+/--
+@isnad1 id=ne.7h6v.s8.03d3da8d3cfb from=translated src=- shape=a8ee457e vocab=cb5de93a
+-/
 theorem baseChange_outsideCompact_zero_free {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q)
     (S : Finset (Ideal FiniteSFactor.O)) (hS : ∀ P ∈ S, Prime P)
@@ -672,6 +711,9 @@ structure BaseChangeOutsideCompactTest
       (fun D : ℝ => D ^ sigma)
   mellin_nonzero : mellin W ρ ≠ 0
 
+/--
+@isnad1 id=dirichle.0h1v.s6.882e875aece2 from=translated src=- shape=25d84d4b vocab=b63f0b5f
+-/
 theorem dirichletTarget_of_compact_outside_tests
     (hTest : ∀ (q : ℕ) [NeZero q] (χ : DirichletCharacter ℂ q)
       (ρ : ℂ), (23 / 24 : ℝ) < ρ.re → ρ.re < 1 →

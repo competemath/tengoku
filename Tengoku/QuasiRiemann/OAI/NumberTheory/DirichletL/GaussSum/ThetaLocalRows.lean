@@ -30,6 +30,9 @@ section
 
 open EisensteinEmbedding ConcreteTraceCRT Complex
 
+/--
+@isnad1 id=other.0h5v.s7.92bdcbe7fd51 from=translated src=- shape=a32d942d vocab=54e180ff
+-/
 theorem actual_fixed_kernel_eq_dualFixedTerm
     (a b k l : ℤ) (η : ℝ) :
     let c : O := ActualEisensteinCoordinates.eval a b
@@ -102,6 +105,9 @@ private theorem dualScale_cast (η a b : ℝ) :
   push_cast
   ring
 
+/--
+@isnad1 id=eq.2h4v.s6.902295ee4b20 from=translated src=- shape=1fab516c vocab=9714bb1d
+-/
 theorem actual_variable_kernel_eq_dualVarTerm
     (a b : ℤ) (hc : ActualEisensteinCoordinates.eval a b ≠ 0)
     (η : ℝ) (hη : 0 < η) (z : ℤ × ℤ) :
@@ -119,6 +125,9 @@ theorem actual_variable_kernel_eq_dualVarTerm
   rw [dualScale_cast]
   exact h
 
+/--
+@isnad1 id=eq.0h4v.s5.cd9f153b6031 from=translated src=- shape=390759ef vocab=4e710a60
+-/
 theorem actual_fixed_kernel_eq_dualFixedTerm_point
     (a b : ℤ) (η : ℝ) (z : ℤ × ℤ) :
     actualFixedDualKernel a b η (dualFrequencyEquiv z) =
@@ -138,6 +147,9 @@ section
 
 open EisensteinEmbedding ConcreteTraceCRT Complex
 
+/--
+@isnad1 id=other.2h3v.s10.b9deab48154a from=translated src=- shape=8361b9b5 vocab=53b13ec6
+-/
 theorem actual_oscillatory_poisson_kernel
     (a b : ℤ) (hc : ActualEisensteinCoordinates.eval a b ≠ 0)
     (η : ℝ) (hη : 0 < η) :
@@ -168,6 +180,9 @@ end
 
 section
 
+/--
+@isnad1 id=other.1h2v.s7.f745ee9946b4 from=translated src=- shape=0b9d32f2 vocab=567df713
+-/
 theorem dual_abel_coefficient (a b : ℤ)
     (hq : 0 < OscSpecial.q (a : ℝ) (b : ℝ)) :
     let a2 := (ActualEisensteinCoordinates.coords (2 : O)).1
@@ -185,6 +200,9 @@ theorem dual_abel_coefficient (a b : ℤ)
   push_cast
   field_simp [hqC, hsC]
 
+/--
+@isnad1 id=other.1h2v.s8.8794bb1f683b from=translated src=- shape=9b1d6a14 vocab=05b980d1
+-/
 theorem full_dual_abel_coefficient (a b : ℤ)
     (hc : ActualEisensteinCoordinates.eval a b ≠ 0) :
     let c : O := ActualEisensteinCoordinates.eval a b
@@ -224,6 +242,9 @@ end
 
 end ActualEisensteinCubic
 
+/--
+@isnad1 id=eq.0h0v.s4.7d82970f79e8 from=translated src=- shape=a8d4d362 vocab=1a898209
+-/
 theorem theta_counter_lambda_eq : ActualEisensteinCubic.lambda =
     ActualEisensteinCoordinates.eval (-1) 1 := by
   have homega : ActualEisensteinCubic.omega = ActualEisensteinCoordinates.omega := by
@@ -242,6 +263,9 @@ namespace ShortDraftLocal
 
 variable {F : Type*} [Field F] [Fintype F] [DecidableEq F]
 
+/--
+@isnad1 id=eq.0h4v.s9.083126e746cd from=translated src=- shape=4f38964d vocab=ad2ac8e3
+-/
 theorem direct_theta_jone_inversion (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
     (a : F) :
     (∑ h : Fˣ, (χ⁻¹ * χ ^ 2) (h : F) *
@@ -262,6 +286,9 @@ theorem direct_theta_jone_inversion (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
       rw [gaussSum_eq_units_sum]
       simp only [AddChar.mulShift_apply]
 
+/--
+@isnad1 id=eq.1h6v.s10.57f1388c4e4b from=translated src=- shape=59b03e53 vocab=9fa9053c
+-/
 theorem direct_theta_jone_local_row (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
     (hχ : χ ≠ 1) (σ : Fˣ) (ε x : F) :
     (Fintype.card F : ℂ)⁻¹ *
@@ -298,6 +325,9 @@ theorem direct_theta_jone_local_row (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
   simp only [inv_inv, map_mul]
   ring
 
+/--
+@isnad1 id=eq.1h5v.s9.558f7b37b1a8 from=translated src=- shape=a7c1ea5d vocab=33a7e420
+-/
 theorem direct_theta_jone_zero (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
     (hχ : χ ≠ 1) (σ : Fˣ) (ε : F) :
     (Fintype.card F : ℂ)⁻¹ *
@@ -309,6 +339,9 @@ theorem direct_theta_jone_zero (χ : MulChar F ℂ) (ψ : AddChar F ℂ)
   simp
 
 omit [Fintype F] [DecidableEq F] in
+/--
+@isnad1 id=ne.1h2v.s8.f23fbea57d24 from=translated src=- shape=b4872a0e vocab=5e87c77b
+-/
 theorem direct_theta_jone_not_quadratic (χ : MulChar F ℂ)
     (hχ₂ : χ ^ 2 ≠ 1) : χ ≠ χ ^ 3 := by
   intro h

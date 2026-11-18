@@ -61,10 +61,16 @@ instance : IsPrincipalIdealRing O :=
 noncomputable def idealGenerator (I : Ideal O) : O :=
   Submodule.IsPrincipal.generator I
 
+/--
+@isnad1 id=eq.0h1v.s5.c708945b1856 from=translated src=- shape=8ceaa7bc vocab=52f18cd0
+-/
 theorem span_idealGenerator (I : Ideal O) :
     Ideal.span {idealGenerator I} = I := by
   exact Submodule.IsPrincipal.span_singleton_generator I
 
+/--
+@isnad1 id=injectiv.0h0v.s4.f89ec7f68fb7 from=translated src=- shape=d7985952 vocab=9fff0ec6
+-/
 theorem idealGenerator_injective : Function.Injective idealGenerator := by
   intro I J h
   calc
@@ -76,6 +82,9 @@ noncomputable def idealsUpTo (D : ℕ) : Finset (Ideal O) :=
   (Finset.Icc 1 D).biUnion
     (fun n => (Ideal.finite_setOfPred_absNorm_eq (S := O) n).toFinset)
 
+/--
+@isnad1 id=iff.0h2v.s9.9d1c58dc14dd from=translated src=- shape=8c38fe34 vocab=4c539a59
+-/
 theorem mem_idealsUpTo {D : ℕ} {I : Ideal O} :
     I ∈ idealsUpTo D ↔ 1 ≤ Ideal.absNorm I ∧ Ideal.absNorm I ≤ D := by
   classical
@@ -96,12 +105,18 @@ noncomputable def goodLambda : O :=
 noncomputable def primePool (F : Finset (Ideal O)) : Finset (Ideal O) :=
   F.biUnion (fun I => (UniqueFactorizationMonoid.normalizedFactors I).toFinset)
 
+/--
+@isnad1 id=iff.0h2v.s8.94e0c88b89e1 from=translated src=- shape=266d3855 vocab=921bbcbc
+-/
 theorem mem_primePool_iff {F : Finset (Ideal O)} {P : Ideal O} :
     P ∈ primePool F ↔
       ∃ I ∈ F, P ∈ UniqueFactorizationMonoid.normalizedFactors I := by
   classical
   simp only [primePool, Finset.mem_biUnion, Multiset.mem_toFinset]
 
+/--
+@isnad1 id=ismaxima.1h2v.s8.fe8309ac6719 from=translated src=- shape=86dd186b vocab=5b758beb
+-/
 theorem primePool_maximal (F : Finset (Ideal O))
     (_hFpos : ∀ I ∈ F, I ≠ ⊥) (i : primePool F) :
     (i.1).IsMaximal := by
@@ -109,6 +124,9 @@ theorem primePool_maximal (F : Finset (Ideal O))
   have hp : Prime i.1 := UniqueFactorizationMonoid.prime_of_normalized_factor i.1 hfac
   exact (Ideal.isPrime_of_prime hp).isMaximal hp.ne_zero
 
+/--
+@isnad1 id=not.1h2v.s9.635aadd83b76 from=translated src=- shape=0c96d15f vocab=e5b4df9e
+-/
 theorem primePool_good (F : Finset (Ideal O))
     (hFgood : ∀ I ∈ F,
       ∀ P ∈ UniqueFactorizationMonoid.normalizedFactors I,
@@ -121,12 +139,18 @@ noncomputable def idealSupport (F : Finset (Ideal O)) (I : Ideal O) :
     Finset (primePool F) :=
   Finset.univ.filter (fun i => i.1 ∈ UniqueFactorizationMonoid.normalizedFactors I)
 
+/--
+@isnad1 id=iff.0h3v.s10.907bfb9a257c from=translated src=- shape=2613b67c vocab=9282fc57
+-/
 theorem mem_idealSupport_iff (F : Finset (Ideal O)) (I : Ideal O)
     (i : primePool F) :
     i ∈ idealSupport F I ↔ i.1 ∈ UniqueFactorizationMonoid.normalizedFactors I := by
   classical
   simp [idealSupport]
 
+/--
+@isnad1 id=mem.3h3v.s10.0239b0f024c4 from=translated src=- shape=f3be48f0 vocab=2a1a4044
+-/
 theorem idealGenerator_mem_prime_of_support
     (F : Finset (Ideal O)) (hFpos : ∀ I ∈ F, I ≠ ⊥)
     (I : Ideal O) (hIF : I ∈ F) (i : primePool F)
@@ -150,6 +174,9 @@ noncomputable def idealSexticRow
     (fun i : primePool F => i.1) (primePool_good F hFgood)
     (idealSupport F I) u
 
+/--
+@isnad1 id=eq.1h3v.s7.58942797a14a from=translated src=- shape=6398bb4d vocab=bae3a638
+-/
 theorem baseChangeWeight_zero_of_not_squarefree {q : ℕ}
     (χ : DirichletCharacter ℂ q) (I : Ideal O)
     (hI : ¬ Squarefree I) : baseChangeWeight χ I = 0 := by
@@ -165,6 +192,9 @@ private theorem idealMoebius_norm_le_one (I : Ideal O) :
   · rw [UniqueFactorizationMonoid.moebius_of_not_squarefree h]
     simp
 
+/--
+@isnad1 id=le.0h3v.s5.32040f0f12e6 from=translated src=- shape=2af84057 vocab=db531efa
+-/
 theorem baseChangeWeight_norm_le_one {q : ℕ}
     (χ : DirichletCharacter ℂ q) (I : Ideal O) :
     ‖baseChangeWeight χ I‖ ≤ 1 := by
@@ -173,6 +203,9 @@ theorem baseChangeWeight_norm_le_one {q : ℕ}
   have hχ := χ.norm_le_one (Ideal.absNorm I)
   exact (mul_le_mul hμ hχ (norm_nonneg _) (by positivity)).trans (by norm_num)
 
+/--
+@isnad1 id=le.1h4v.s5.0ee390539a61 from=translated src=- shape=ec733e9e vocab=0f80b1eb
+-/
 theorem columnWeight_norm_le_one {q : ℕ}
     (χ : DirichletCharacter ℂ q) (W : ℕ → ℂ)
     (hW : ∀ n, ‖W n‖ ≤ 1) (x : O) :
@@ -215,6 +248,9 @@ noncomputable def rowNormDisk (H : ℕ) : Finset O := by
     (fun u => 0 < Ideal.absNorm (Ideal.span {u}) ∧
       Ideal.absNorm (Ideal.span {u}) ≤ H)
 
+/--
+@isnad1 id=iff.0h2v.s9.7cbb649af331 from=translated src=- shape=213dd3f3 vocab=a927fca1
+-/
 theorem mem_rowNormDisk {H : ℕ} {u : O} :
     u ∈ rowNormDisk H ↔
       0 < Ideal.absNorm (Ideal.span {u}) ∧
@@ -227,6 +263,9 @@ theorem mem_rowNormDisk {H : ℕ} {u : O} :
     exact Finset.mem_filter.mpr
       ⟨ShortDraftLatticeCount.mem_rowNormBall_of_absNorm_le H u h.2, h⟩
 
+/--
+@isnad1 id=le.4h5v.s8.e4e29c422055 from=translated src=- shape=f804f6e3 vocab=9bb50747
+-/
 theorem sixth_power_rows_in_rowNormDisk
     {β : Type*} (selected : Finset β) (p : β → O)
     (D H : ℕ) (hD : 1 ≤ D)
@@ -272,6 +311,9 @@ noncomputable def outsideIdealsUpTo (S : Finset (Ideal O)) (D : ℕ) :
   classical
   exact (idealsUpTo D).filter (fun I => ∀ P ∈ S, ¬ P ∣ I)
 
+/--
+@isnad1 id=iff.0h3v.s9.672f965baaf1 from=translated src=- shape=1069cb2b vocab=17f67b0e
+-/
 theorem mem_outsideIdealsUpTo {S : Finset (Ideal O)} {D : ℕ}
     {I : Ideal O} :
     I ∈ outsideIdealsUpTo S D ↔
@@ -280,6 +322,9 @@ theorem mem_outsideIdealsUpTo {S : Finset (Ideal O)} {D : ℕ}
   classical
   simp [outsideIdealsUpTo, mem_idealsUpTo, and_assoc]
 
+/--
+@isnad1 id=ne.1h3v.s7.7a697212ae74 from=translated src=- shape=08334fe4 vocab=1ccd784c
+-/
 theorem outsideIdealsUpTo_ne_bot (S : Finset (Ideal O)) (D : ℕ)
     (I : Ideal O) (hI : I ∈ outsideIdealsUpTo S D) : I ≠ ⊥ := by
   have hn := (mem_outsideIdealsUpTo.mp hI).1
@@ -287,12 +332,18 @@ theorem outsideIdealsUpTo_ne_bot (S : Finset (Ideal O)) (D : ℕ)
   subst I
   simp at hn
 
+/--
+@isnad1 id=prime.0h0v.s4.6d9c6cb77fb8 from=translated src=- shape=25b03439 vocab=466fbc42
+-/
 theorem goodLambda_prime : Prime goodLambda := by
   let : IsCyclotomicExtension {3} ℚ K :=
     CyclotomicField.isCyclotomicExtension 3 ℚ
   let : Fact (Nat.Prime 3) := ⟨Nat.prime_three⟩
   exact (IsCyclotomicExtension.zeta_spec 3 ℚ K).zeta_sub_one_prime'
 
+/--
+@isnad1 id=ismaxima.0h0v.s5.55d8079f180c from=translated src=- shape=4016e43a vocab=3639e6a6
+-/
 theorem goodLambdaIdeal_maximal :
     (Ideal.span {goodLambda} : Ideal O).IsMaximal := by
   have hp : (Ideal.span {goodLambda} : Ideal O).IsPrime :=
@@ -301,6 +352,9 @@ theorem goodLambdaIdeal_maximal :
     Ideal.span_singleton_eq_bot.not.mpr goodLambda_prime.ne_zero
   exact hp.isMaximal hne
 
+/--
+@isnad1 id=mem.3h2v.s8.d95f67522ca5 from=translated src=- shape=08d75346 vocab=a0a4e829
+-/
 theorem badPrime_cover_of_lambdaIdeal_mem
     (S : Finset (Ideal O))
     (hS : (Ideal.span {goodLambda} : Ideal O) ∈ S) :
@@ -312,6 +366,9 @@ theorem badPrime_cover_of_lambdaIdeal_mem
     goodLambdaIdeal_maximal.eq_of_le hP.ne_top hle
   rwa [heq] at hS
 
+/--
+@isnad1 id=not.3h4v.s9.b003ac87e82c from=translated src=- shape=d8fb2bde vocab=897b7013
+-/
 theorem outsideIdealsUpTo_good
     (S : Finset (Ideal O)) (D : ℕ)
     (hSbad : ∀ P : Ideal O, P.IsMaximal → goodLambda ∈ P → P ∈ S)
@@ -327,6 +384,9 @@ theorem outsideIdealsUpTo_good
     ((Ideal.mem_normalizedFactors_iff hne).mp hQ).2
   exact (mem_outsideIdealsUpTo.mp hI).2.2 Q hQS hdiv
 
+/--
+@isnad1 id=eq.0h1v.s7.cf21ef631b6b from=translated src=- shape=dd0890ec vocab=dc32d7cd
+-/
 theorem idealsUpTo_eq_biUnion_fibers (D : ℕ) :
     idealsUpTo D =
       (Finset.Icc 1 D).biUnion FiniteSFactor.fiber := by
@@ -341,6 +401,9 @@ private theorem normFibers_pairwiseDisjoint (D : ℕ) :
   exact hnm ((FiniteSFactor.mem_fiber.mp hIn).symm.trans
     (FiniteSFactor.mem_fiber.mp hIm))
 
+/--
+@isnad1 id=eq.0h4v.s8.4cf1ca43a866 from=translated src=- shape=49c8bfb4 vocab=130d603f
+-/
 theorem outsideIdealSum_eq_outsideCoeff_sum
     (S : Finset (Ideal O)) (D : ℕ)
     (w : Ideal O → ℂ) (W : ℕ → ℂ) :
@@ -370,6 +433,9 @@ theorem outsideIdealSum_eq_outsideCoeff_sum
 
 open ShortDraftHeckeBridge FiniteSFactor Filter
 
+/--
+@isnad1 id=ex.2h3v.s6.ab2b6d11778d from=translated src=- shape=f7f55eac vocab=58f4c843
+-/
 theorem eventually_absorb_MS_and_count_constants
     (Cmean Ccount eta : ℝ) (hcount : 0 < Ccount) (heta : 0 < eta) :
     ∃ D₀ : ℕ, ∀ D : ℕ, D₀ ≤ D →

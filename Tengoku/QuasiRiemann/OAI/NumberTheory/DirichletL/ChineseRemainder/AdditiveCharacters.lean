@@ -18,6 +18,9 @@ open AddChar
 
 variable {K : Type*} [Field K]
 
+/--
+@isnad1 id=eq.3h7v.s8.3341eeee3c07 from=translated src=- shape=7acd9b07 vocab=5e3452c5
+-/
 theorem addChar_crt_pair (ψ : AddChar K ℂ) (m n u v z : K)
     (hm : m ≠ 0) (hn : n ≠ 0) (hbez : u * n + v * m = 1) :
     ψ (z / (m * n)) = ψ (u * z / m) * ψ (v * z / n) := by
@@ -28,6 +31,9 @@ theorem addChar_crt_pair (ψ : AddChar K ℂ) (m n u v z : K)
     _ = u * z / m + v * z / n := by
       field_simp
 
+/--
+@isnad1 id=ex.3h7v.s9.fe2fec54d3f4 from=translated src=- shape=5673b75f vocab=8fcd3a23
+-/
 theorem addChar_crt_of_isCoprime
     {R : Type*} [CommRing R] (ι : R →+* K) (ψ : AddChar K ℂ)
     (m n : R) (z : K)
@@ -41,6 +47,9 @@ theorem addChar_crt_of_isCoprime
   apply addChar_crt_pair ψ (ι m) (ι n) (ι u) (ι v) z hm hn
   simpa only [map_add, map_mul, map_one] using congrArg ι hbez
 
+/--
+@isnad1 id=ex.1h4v.s8.260c0328208a from=translated src=- shape=f02b6bf9 vocab=6e1f23d5
+-/
 theorem bezout_with_lam_cube {R : Type*} [CommRing R] (lam c₀ r : R)
     (hcop : IsCoprime r (lam ^ 3 * c₀)) :
     ∃ u v : R,
@@ -55,6 +64,9 @@ theorem bezout_with_lam_cube {R : Type*} [CommRing R] (lam c₀ r : R)
   · refine ⟨-w, ?_⟩
     linear_combination hbez
 
+/--
+@isnad1 id=eq.4h11v.s10.29df1d345448 from=translated src=- shape=27c685a9 vocab=02869e74
+-/
 theorem normalized_crt_pair {R : Type*} [CommRing R]
     (ι : R →+* K) (ψ : AddChar K ℂ)
     (lam c₀ r d x u w : R)
@@ -75,6 +87,9 @@ theorem normalized_crt_pair {R : Type*} [CommRing R]
     simp only [map_mul, map_pow, map_neg]
     field_simp
 
+/--
+@isnad1 id=iscoprim.3h5v.s6.e88ac4b811a0 from=translated src=- shape=2aa58e70 vocab=fb49b154
+-/
 theorem coprime_cross_numerator
     {R : Type*} [CommRing R] (a c₀ h r : R)
     (hfixed : IsCoprime a c₀)
@@ -105,6 +120,9 @@ def GoodRows (c₀ : R) : List (R × R) → Prop
   | (p, h) :: xs =>
       GoodRows c₀ xs ∧ IsCoprime h p ∧ IsCoprime (crossDen c₀ xs) p
 
+/--
+@isnad1 id=iscoprim.2h4v.s5.edc1eef885e4 from=translated src=- shape=da2cbe17 vocab=5a4d8c07
+-/
 theorem coprime_cross_num_list (a c₀ : R) (rows : List (R × R))
     (hbase : IsCoprime a c₀) (hrows : GoodRows c₀ rows) :
     IsCoprime (crossNum a c₀ rows) (crossDen c₀ rows) := by
@@ -121,6 +139,9 @@ theorem coprime_cross_num_list (a c₀ : R) (rows : List (R × R))
         coprime_cross_numerator (crossNum a c₀ rows)
           (crossDen c₀ rows) h p (ih hrows) hhp hdp
 
+/--
+@isnad1 id=ne.2h5v.s7.40c0757bf282 from=translated src=- shape=eb2f34b3 vocab=148fac32
+-/
 theorem crossDen_ne_zero (ι : R →+* K) (c₀ : R)
     (rows : List (R × R)) (hc₀ : ι c₀ ≠ 0)
     (hp : ∀ ph ∈ rows, ι ph.1 ≠ 0) :
@@ -139,6 +160,9 @@ theorem crossDen_ne_zero (ι : R →+* K) (c₀ : R)
         exact hp ph (List.mem_cons_of_mem _ hmem)))
         (hp (p, h) (List.mem_cons_self ..))
 
+/--
+@isnad1 id=eq.0h3v.s6.27664d6ce2bd from=translated src=- shape=b2ff0d3e vocab=d6465f1c
+-/
 theorem crossDen_eq_product (c₀ : R) (rows : List (R × R)) :
     crossDen c₀ rows = c₀ * (rows.map Prod.fst).prod := by
   induction rows with
@@ -148,6 +172,9 @@ theorem crossDen_eq_product (c₀ : R) (rows : List (R × R)) :
       simp only [crossDen, List.map_cons, List.prod_cons, ih]
       ring
 
+/--
+@isnad1 id=dvd.0h6v.s6.336bdccb6ea9 from=translated src=- shape=c3ba1a95 vocab=aae5bd76
+-/
 theorem crossNum_mod_head (a c₀ p h : R) (rows : List (R × R)) :
     p ∣ crossNum a c₀ ((p, h) :: rows) - h * crossDen c₀ rows := by
   refine ⟨crossNum a c₀ rows, ?_⟩
@@ -167,6 +194,9 @@ private theorem product_coprime_of_each (p : R) (rows : List (R × R))
           intro ph hmem
           exact h ph (List.mem_cons_of_mem _ hmem)))
 
+/--
+@isnad1 id=goodrows.3h3v.s6.dee81b382453 from=translated src=- shape=086535bb vocab=e386db31
+-/
 theorem goodRows_of_pairwise (c₀ : R) (rows : List (R × R))
     (hfixed : ∀ ph ∈ rows, IsCoprime c₀ ph.1)
     (hfreq : ∀ ph ∈ rows, IsCoprime ph.2 ph.1)
@@ -192,6 +222,9 @@ theorem goodRows_of_pairwise (c₀ : R) (rows : List (R × R))
       rw [crossDen_eq_product]
       exact (hfixed (p, h) (List.mem_cons_self ..)).mul_left hprod
 
+/--
+@isnad1 id=eq.2h6v.s9.4536ed9b0231 from=translated src=- shape=823f98e7 vocab=3a03e0ac
+-/
 theorem cross_fraction_eq (ι : R →+* K) (a c₀ : R)
     (rows : List (R × R)) (hc₀ : ι c₀ ≠ 0)
     (hp : ∀ ph ∈ rows, ι ph.1 ≠ 0) :
@@ -225,6 +258,9 @@ theorem cross_fraction_eq (ι : R →+* K) (a c₀ : R)
             exact hp ph (List.mem_cons_of_mem _ hmem))]
           ring
 
+/--
+@isnad1 id=and.4h4v.s7.3894611fe2bc from=translated src=- shape=c9557949 vocab=343e5079
+-/
 theorem fixed_ray_denominator (a c₀ : R) (rows : List (R × R))
     (hbase : IsCoprime a c₀)
     (hfixed : ∀ ph ∈ rows, IsCoprime c₀ ph.1)
@@ -236,12 +272,18 @@ theorem fixed_ray_denominator (a c₀ : R) (rows : List (R × R))
     (goodRows_of_pairwise c₀ rows hfixed hfreq hpair),
     crossDen_eq_product c₀ rows⟩
 
+/--
+@isnad1 id=eq.4h5v.s8.36b25ec0f500 from=translated src=- shape=f5ed4bcc vocab=02337214
+-/
 theorem local_epsilon_identity (lam t σ h : K)
     (hlam : lam ≠ 0) (ht : t ≠ 0) (hσ : σ ≠ 0) (hh : h ≠ 0) :
     (-(lam ^ 3 * t * σ)⁻¹) * h⁻¹ * lam ^ 3 =
       -((σ * h)⁻¹) * t⁻¹ := by
   field_simp
 
+/--
+@isnad1 id=eq.4h9v.s9.aba99eb0bb1e from=translated src=- shape=d3205a58 vocab=d880f211
+-/
 theorem addChar_congr_of_dvd
     (ι : R →+* K) (ψ : AddChar K ℂ) (lam d a b x : R)
     (hlam : ι lam ≠ 0) (hd : ι d ≠ 0)
@@ -280,6 +322,9 @@ private theorem list_prod_ne_zero (ι : R →+* K) (ps : List R)
       exact mul_ne_zero (h p (List.mem_cons_self ..))
         (ih (by intro q hq; exact h q (List.mem_cons_of_mem _ hq)))
 
+/--
+@isnad1 id=ex.4h7v.s9.2ebb93752b6a from=translated src=- shape=f61cc91c vocab=17059880
+-/
 theorem addChar_crt_list_codifferent (ι : R →+* K) (ψ : AddChar K ℂ)
     (lam z : R) (ps : List R)
     (hlam : ι lam ≠ 0)
@@ -343,6 +388,9 @@ end ShortDraftCRT
 
 namespace ShortDraftDescent
 
+/--
+@isnad1 id=le.6h9v.s8.965b518aed22 from=translated src=- shape=1ec30745 vocab=b2d07434
+-/
 theorem binary_energy_descent
     {Node : Type*} (rank : Node → ℕ) (energy mass : Node → ℝ)
     (left right : Node → Node) (costLeft costRight : Node → ℝ)
@@ -396,6 +444,9 @@ theorem binary_energy_descent
   intro x
   exact H (rank x) x rfl
 
+/--
+@isnad1 id=lt.3h2v.s6.d43b3fe15f46 from=translated src=- shape=d701ea42 vocab=8b19d7e0
+-/
 theorem contraction_terminates_after_3001
     (z : ℝ) (K : ℕ → ℝ) (hz : 1 < z)
     (hK0 : K 0 ≤ z ^ 3000)
@@ -458,6 +509,9 @@ omit hconj in
 private lemma omega_sub_square : ω - ω ^ 2 = 1 + 2 * ω := by
   linear_combination -hω
 
+/--
+@isnad1 id=eq.2h3v.s8.4f933a676021 from=translated src=- shape=e42e7148 vocab=e6a214d1
+-/
 theorem trace_div_lam (a b : ℤ) :
     ((a : ℂ) + (b : ℂ) * ω) / (1 + 2 * ω) +
       conj (((a : ℂ) + (b : ℂ) * ω) / (1 + 2 * ω)) = (b : ℂ) := by
@@ -470,6 +524,9 @@ theorem trace_div_lam (a b : ℤ) :
         (1 + 2 * ω) = (b : ℂ) * (ω - ω ^ 2) / (1 + 2 * ω) := by ring
     _ = (b : ℂ) := by rw [omega_sub_square ω hω]; field_simp
 
+/--
+@isnad1 id=eq.2h3v.s8.0480e0e5ea59 from=translated src=- shape=68b0b689 vocab=054ffc74
+-/
 theorem trace_character_period (a b : ℤ) :
     Complex.exp (2 * Real.pi * Complex.I *
       ((((a : ℂ) + (b : ℂ) * ω) / (1 + 2 * ω)) +
@@ -496,6 +553,9 @@ private theorem omega_sq : ω₃ ^ 2 = -ω₃ - 1 := by
   norm_num at hquad
   linear_combination hquad
 
+/--
+@isnad1 id=eq.0h0v.s5.985b85c5a96d from=translated src=- shape=fb18cacd vocab=c73ec5bd
+-/
 theorem omega_conj : conj ω₃ = ω₃ ^ 2 := by
   rw [omega_sq]
   unfold ω₃
@@ -503,6 +563,9 @@ theorem omega_conj : conj ω₃ = ω₃ ^ 2 := by
     Complex.conj_ofReal, Complex.conj_I, map_ofNat]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s7.cd2dede8e5e1 from=translated src=- shape=b2305bcc vocab=87e89031
+-/
 theorem eisenstein_trace_period (a b : ℤ) :
     Complex.exp (2 * Real.pi * Complex.I *
       ((((a : ℂ) + (b : ℂ) * ω₃) / (1 + 2 * ω₃)) +
@@ -522,10 +585,16 @@ noncomputable def breveE : AddChar ℂ ℂ where
       ring
     rw [harg, Complex.exp_add]
 
+/--
+@isnad1 id=eq.0h2v.s6.9f9f6858ef32 from=translated src=- shape=409d32fe vocab=e30bd5b8
+-/
 theorem breveE_period_lam (a b : ℤ) :
     breveE (((a : ℂ) + (b : ℂ) * ω₃) / (1 + 2 * ω₃)) = 1 := by
   exact eisenstein_trace_period a b
 
+/--
+@isnad1 id=eq.0h2v.s5.1b5ce7afab7d from=translated src=- shape=58b5fbc9 vocab=7b4d8e1c
+-/
 theorem breveE_period_integer (a b : ℤ) :
     breveE ((a : ℂ) + (b : ℂ) * ω₃) = 1 := by
   have htrace : ((a : ℂ) + (b : ℂ) * ω₃) +
@@ -555,6 +624,9 @@ private theorem sub_conj_eq (z : ℂ) :
   · simp [Complex.mul_im]
     ring
 
+/--
+@isnad1 id=eq.0h1v.s6.59f27843c9db from=translated src=- shape=41fdb551 vocab=072f9100
+-/
 theorem breveE_div_lam_eq_e (z : ℂ) :
     breveE (z / (1 + 2 * ω₃)) =
       Complex.exp (4 * Real.pi * Complex.I * (z.im / Real.sqrt 3)) := by
@@ -595,6 +667,9 @@ def eisensteinSubring : Subring ℂ where
 noncomputable def lamEis : eisensteinSubring :=
   ⟨1 + 2 * ω₃, ⟨1, 2, by norm_num⟩⟩
 
+/--
+@isnad1 id=eq.0h1v.s7.4cf3082a3f5c from=translated src=- shape=ff3345a5 vocab=49132438
+-/
 theorem breveE_period_eisenstein (x : eisensteinSubring) :
     breveE (((x : ℂ) / (lamEis : ℂ))) = 1 := by
   obtain ⟨a, b, h⟩ := x.property

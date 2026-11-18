@@ -23,11 +23,17 @@ section
 
 open ActualEisensteinCoordinates ShortDraftLatticeCount
 
+/--
+@isnad1 id=eq.0h0v.s6.4d0cce68ac79 from=translated src=- shape=ec303945 vocab=91ac2543
+-/
 theorem omega_sq_for_norm : omega ^ 2 = -omega - 1 := by
   simpa [omega] using
     IsCyclotomicExtension.Rat.Three.eta_sq
       (IsCyclotomicExtension.zeta_spec 3 ℚ K)
 
+/--
+@isnad1 id=eq.0h2v.s8.85558fb8fa7e from=translated src=- shape=39774a1d vocab=c2701fb8
+-/
 theorem conjO_eval_coordinates (a b : ℤ) :
     conjO (eval a b) = eval (a - b) (-b) := by
   have hω : ActualEisensteinCoordinates.omega = omega := rfl
@@ -36,6 +42,9 @@ theorem conjO_eval_coordinates (a b : ℤ) :
   push_cast
   ring
 
+/--
+@isnad1 id=eq.0h1v.s8.d1a8ffb326a1 from=translated src=- shape=1667b965 vocab=bca06908
+-/
 theorem coordinate_norm_eq_mul_conjO (p : O) :
     ((q (coords p) : ℤ) : O) = p * conjO p := by
   let a := (coords p).1
@@ -52,12 +61,18 @@ theorem coordinate_norm_eq_mul_conjO (p : O) :
       push_cast
       ring
 
+/--
+@isnad1 id=eq.0h1v.s6.31c7fb1ee680 from=translated src=- shape=d44c0e20 vocab=26beb283
+-/
 theorem algebraNorm_eq_coordinate_norm (p : O) :
     Algebra.norm ℤ p = q (coords p) := by
   have h := (norm_int_eq_mul_conjO p).trans
     (coordinate_norm_eq_mul_conjO p).symm
   exact_mod_cast h
 
+/--
+@isnad1 id=eq.0h1v.s8.6b83030b69f6 from=translated src=- shape=0c1beac4 vocab=f1d958dd
+-/
 theorem qNat_eq_absNorm_span (p : O) :
     qNat p = Ideal.absNorm (Ideal.span {p}) := by
   rw [Ideal.absNorm_span_singleton, algebraNorm_eq_coordinate_norm]
@@ -70,6 +85,9 @@ end
 
 section
 
+/--
+@isnad1 id=eq.3h2v.s7.872778951721 from=translated src=- shape=a49b0ab2 vocab=3ace68b7
+-/
 theorem sixth_power_eq_implies_same_prime_ideal
     (p q : O)
     (hp : (Ideal.span {p} : Ideal O).IsMaximal)
@@ -85,6 +103,9 @@ theorem sixth_power_eq_implies_same_prime_ideal
     (Ideal.span_singleton_le_iff_mem _).mpr hpmem
   exact hp.eq_of_le hq.ne_top hle
 
+/--
+@isnad1 id=injon.3h4v.s7.f403ac2f046e from=translated src=- shape=e91ce0e1 vocab=6b9646e4
+-/
 theorem sixth_power_rows_injective
     {ι : Type*} (S : Finset ι) (P : ι → Ideal O) (p : ι → O)
     (hprime : ∀ i ∈ S, (P i).IsMaximal)
@@ -102,6 +123,9 @@ theorem sixth_power_rows_injective
 
 open EisensteinEmbedding ConcreteTraceCRT ConcreteBreveE
 
+/--
+@isnad1 id=eq.1h1v.s6.33d107d571ca from=translated src=- shape=f538544c vocab=304e8c91
+-/
 theorem rational_modulus_card (m : ℕ) (_hm : m ≠ 0) :
     Nat.card (O ⧸ Ideal.span {(m : O)}) = m ^ 2 := by
   have hnorm : Algebra.norm ℤ (m : O) = (m : ℤ) ^ 2 := by
@@ -141,6 +165,9 @@ noncomputable def rationalCoordMap (m : ℕ) :
   fun ab => Ideal.Quotient.mk (Ideal.span {(m : O)})
     (ActualEisensteinCoordinates.eval (ZMod.cast ab.1) (ZMod.cast ab.2))
 
+/--
+@isnad1 id=surjecti.0h1v.s6.c8f37179b797 from=translated src=- shape=1e5a1835 vocab=074f1a27
+-/
 theorem rationalCoordMap_surjective (m : ℕ) :
     Function.Surjective (rationalCoordMap m) := by
   intro x
@@ -169,6 +196,9 @@ noncomputable def rationalCoordEquiv (m : ℕ) (hm : m ≠ 0) :
       simpa only [Nat.card_eq_fintype_card] using rational_modulus_card m hm
     simp [hq, Fintype.card_prod, sq]
 
+/--
+@isnad1 id=eq.0h3v.s7.25ccf39f0393 from=translated src=- shape=e5643857 vocab=66e87a4a
+-/
 theorem breveE_rational_trace (m : ℕ) [NeZero m] (a b : ℤ) :
     ShortDraftTrace.breveE
       ((((a : ℂ) + (b : ℂ) * omega3) / eisLam) / m) =
@@ -193,6 +223,9 @@ theorem breveE_rational_trace (m : ℕ) [NeZero m] (a b : ℤ) :
     ring
   rw [harg, ZMod.stdAddChar_coe]
 
+/--
+@isnad1 id=eq.0h2v.s6.0fe5a3e242b8 from=translated src=- shape=f15fb0eb vocab=aca68e94
+-/
 theorem eisEmbedding_eval (a b : ℤ) :
     eisEmbedding (ActualEisensteinCoordinates.eval a b) =
       (a : ℂ) + (b : ℂ) * omega3 := by
@@ -205,12 +238,18 @@ theorem eisEmbedding_eval (a b : ℤ) :
     (a + b * EisensteinEmbedding.pb.gen : O) = _
   exact EisensteinEmbedding.embedding_apply_ab omega3 omega3_sq a b
 
+/--
+@isnad1 id=eq.1h3v.s10.cd12600a156a from=translated src=- shape=9bf7b2c9 vocab=91c80655
+-/
 theorem rationalCoordEquiv_apply (m : ℕ) (hm : m ≠ 0)
     (a b : ZMod m) :
     rationalCoordEquiv m hm (a,b) =
       Ideal.Quotient.mk (Ideal.span {(m : O)})
         (ActualEisensteinCoordinates.eval (ZMod.cast a) (ZMod.cast b)) := rfl
 
+/--
+@isnad1 id=other.1h3v.s10.6f27f943778e from=translated src=- shape=37137ace vocab=1c24def0
+-/
 theorem rational_quadratic_phase (m : ℕ) (hm : m ≠ 0)
     (a b : ZMod m) :
     letI : NeZero m := ⟨hm⟩
@@ -240,6 +279,9 @@ theorem rational_quadratic_phase (m : ℕ) (hm : m ≠ 0)
   push_cast
   ring
 
+/--
+@isnad1 id=eq.1h1v.s7.0009df0baafa from=translated src=- shape=8ba0fa24 vocab=d5a93d47
+-/
 theorem rational_quadratic_character_sum (m : ℕ) [NeZero m]
     (hodd : Odd m) :
     (∑ a : ZMod m, ∑ b : ZMod m,
@@ -284,6 +326,9 @@ noncomputable def quadraticGammaRational (m : ℕ) (hm : m ≠ 0) : ℂ := by
   exact (∑ x : O ⧸ Ideal.span {(m : O)}, ψ (x ^ 2)) /
     (‖eisEmbedding (m : O)‖ : ℂ)
 
+/--
+@isnad1 id=eq.2h1v.s4.713f113a99be from=translated src=- shape=5d355ecc vocab=9b62272e
+-/
 theorem quadraticGammaRational_eq_one (m : ℕ) (hm : m ≠ 0)
     (hodd : Odd m) : quadraticGammaRational m hm = 1 := by
   let : NeZero m := ⟨hm⟩
@@ -315,6 +360,9 @@ theorem quadraticGammaRational_eq_one (m : ℕ) (hm : m ≠ 0)
   have hmC : (m : ℂ) ≠ 0 := by exact_mod_cast hm
   exact div_self hmC
 
+/--
+@isnad1 id=eq.1h1v.s4.6d7377de0e01 from=translated src=- shape=f2acca44 vocab=51188203
+-/
 theorem breveGaussianFourTerms_rational_odd (m : ℕ) (hodd : Odd m) :
     breveGaussianFourTerms (m : ℤ) 0 = 1 := by
   have hsq : (Complex.I ^ m) ^ 2 = -1 := by
@@ -334,6 +382,9 @@ theorem breveGaussianFourTerms_rational_odd (m : ℕ) (hodd : Odd m) :
   rw [hinv]
   ring
 
+/--
+@isnad1 id=eq.2h1v.s4.b332909f50b2 from=translated src=- shape=8e1e927e vocab=64352ce3
+-/
 theorem quadraticGammaRational_eq_fourTerms (m : ℕ) (hm : m ≠ 0)
     (hodd : Odd m) :
     quadraticGammaRational m hm = breveGaussianFourTerms (m : ℤ) 0 := by
@@ -344,6 +395,9 @@ end
 
 section
 
+/--
+@isnad1 id=eq.4h3v.s9.eab3f7e2253c from=translated src=- shape=0218fd1d vocab=1751eac5
+-/
 theorem cubic_roots_reduce_injective (P : Ideal O) [P.IsMaximal]
     (hgood : lambda ∉ P) {x y : O}
     (hx : x ^ 3 = 1) (hy : y ^ 3 = 1)
@@ -355,6 +409,9 @@ theorem cubic_roots_reduce_injective (P : Ideal O) [P.IsMaximal]
     simpa only [map_pow] using hxy
   rw [hij]
 
+/--
+@isnad1 id=eq.1h1v.s9.14d2c8325d17 from=translated src=- shape=cc722b62 vocab=e341e355
+-/
 theorem cubicChar_omega (P : Ideal O) [P.IsMaximal]
     (hgood : lambda ∉ P) :
     cubicChar P hgood (Ideal.Quotient.mk P omega) =
@@ -371,6 +428,9 @@ theorem cubicChar_omega (P : Ideal O) [P.IsMaximal]
 
 open EisensteinEmbedding ConcreteTraceCRT Complex
 
+/--
+@isnad1 id=eq.1h3v.s7.382ada245bc8 from=translated src=- shape=dd96a5c4 vocab=496de231
+-/
 theorem breveE_int_trace_div (q u v : ℤ) (_hq : q ≠ 0) :
     ShortDraftTrace.breveE
       ((((u : ℂ) + (v : ℂ) * omega3) / eisLam) / q) =
@@ -389,6 +449,9 @@ theorem breveE_int_trace_div (q u v : ℤ) (_hq : q ≠ 0) :
   congr 1
   ring
 
+/--
+@isnad1 id=other.1h4v.s8.e108d9dbf73f from=translated src=- shape=2326cfa3 vocab=679e89f6
+-/
 theorem breveE_quadratic_coordinate (a b x y : ℤ)
     (hq : a*a - a*b + b*b ≠ 0) :
     let c : ℂ := (a : ℂ) + (b : ℂ) * omega3

@@ -66,6 +66,9 @@ noncomputable def finiteSexticQuotientRow
   ∏ i, (canonicalSextic (P i) (hgood i) ^ j i)
     (IdealGaussCRT.quotientProdEquivPi P hc x i)
 
+/--
+@isnad1 id=eq.5h5v.s11.7f3412e3b0bc from=translated src=- shape=99367048 vocab=d96a2c1e
+-/
 theorem canonical_finite_prime_gauss_transform_scalar
     {ι : Type*} [Fintype ι]
     (P : ι → Ideal O) [∀ i, (P i).IsMaximal]
@@ -84,6 +87,9 @@ theorem canonical_finite_prime_gauss_transform_scalar
     (fun i => canonicalSextic (P i) (hgood i) ^ j i) ψ
     (fun i => canonicalSextic_pow_ne_one (P i) (hgood i) (hchar i) (hj0 i) (hj6 i)) h
 
+/--
+@isnad1 id=eq.2h4v.s8.2f07a7c34839 from=translated src=- shape=c12caad2 vocab=21187117
+-/
 theorem finiteSexticQuotientRow_inv_eq_star
     {ι : Type*} [Fintype ι]
     (P : ι → Ideal O) [∀ i, (P i).IsMaximal]
@@ -100,6 +106,9 @@ theorem finiteSexticQuotientRow_inv_eq_star
   intro i _
   rw [MulChar.star_apply', MulChar.inv_apply_eq_inv']
 
+/--
+@isnad1 id=eq.5h5v.s11.7c203d2cc712 from=translated src=- shape=99367048 vocab=e9b31310
+-/
 theorem canonical_finite_prime_gauss_transform_conj
     {ι : Type*} [Fintype ι]
     (P : ι → Ideal O) [∀ i, (P i).IsMaximal]
@@ -127,10 +136,16 @@ def paperE (z : ℂ) : ℂ := ShortDraftTrace.breveE (z / eisLam)
 def paperFrequency (u : ℂ) : ℂ :=
   (2 * Complex.I / (Real.sqrt 3 : ℂ)) * (starRingEnd ℂ u)
 
+/--
+@isnad1 id=eq.0h1v.s5.4c2b44aaba15 from=translated src=- shape=0b558068 vocab=91bfad1a
+-/
 theorem paperE_eq_exp (z : ℂ) :
     paperE z = Complex.exp (4 * Real.pi * Complex.I * (z.im / Real.sqrt 3)) := by
   exact ShortDraftTrace.breveE_div_lam_eq_e z
 
+/--
+@isnad1 id=eq.0h2v.s6.b84a3ae0ebf8 from=translated src=- shape=19b8b167 vocab=ba170abd
+-/
 theorem inner_paperFrequency (z u : ℂ) :
     inner ℝ z (paperFrequency u) = 2 * (z * u).im / Real.sqrt 3 := by
   have hs : Real.sqrt 3 ≠ 0 := ne_of_gt (Real.sqrt_pos.mpr (by norm_num))
@@ -142,6 +157,9 @@ theorem inner_paperFrequency (z u : ℂ) :
   field_simp
   rw [Real.sq_sqrt (by norm_num)]
 
+/--
+@isnad1 id=eq.0h2v.s7.cacb387431fc from=translated src=- shape=20f2add8 vocab=15018a95
+-/
 theorem fourierChar_paperFrequency (z u : ℂ) :
     (Real.fourierChar (inner ℝ z (paperFrequency u)) : ℂ) = paperE (z * u) := by
   rw [inner_paperFrequency, paperE_eq_exp, Real.fourierChar_apply]
@@ -149,6 +167,9 @@ theorem fourierChar_paperFrequency (z u : ℂ) :
   push_cast
   ring
 
+/--
+@isnad1 id=eq.0h1v.s7.044f58a59cad from=translated src=- shape=9365f842 vocab=cba2f85f
+-/
 theorem dualFrequencyEquiv_coordinates (p : ℤ × ℤ) :
     eisEmbedding (dualFrequencyEquiv p) =
       complexPoint ((p.1 : ℝ) / 2 + (p.2 : ℝ))
@@ -157,6 +178,9 @@ theorem dualFrequencyEquiv_coordinates (p : ℤ × ℤ) :
   rw [eisEmbedding_eval]
   apply Complex.ext <;> norm_num [complexPoint, omega3] <;> ring
 
+/--
+@isnad1 id=eq.0h2v.s6.645b7e27f5e8 from=translated src=- shape=945e4e4b vocab=b6faa42c
+-/
 theorem explicitDualFrequency_eq_paperFrequency (c : ℂ) (p : ℤ × ℤ) :
     explicitDualFrequency c p = paperFrequency (eisEmbedding (dualFrequencyEquiv p) / c) := by
   have hs : Real.sqrt 3 ≠ 0 := ne_of_gt (Real.sqrt_pos.mpr (by norm_num))
@@ -173,6 +197,9 @@ theorem explicitDualFrequency_eq_paperFrequency (c : ℂ) (p : ℤ × ℤ) :
   rw [map_div₀, hnum]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s7.ade4e9fe2202 from=translated src=- shape=021c5202 vocab=ffdba033
+-/
 theorem explicitDualFrequency_phase (r c : ℂ) (p : ℤ × ℤ) :
     (Real.fourierChar (inner ℝ r (explicitDualFrequency c p)) : ℂ) =
       paperE (r * eisEmbedding (dualFrequencyEquiv p) / c) := by
@@ -180,6 +207,9 @@ theorem explicitDualFrequency_phase (r c : ℂ) (p : ℤ × ℤ) :
   congr 1
   ring
 
+/--
+@isnad1 id=eq.0h1v.s6.b6e6aec1eefc from=translated src=- shape=6cde71a8 vocab=7980077d
+-/
 theorem paperFrequency_norm_sq (u : ℂ) :
     ‖paperFrequency u‖ ^ 2 = (4 / 3 : ℝ) * ‖u‖ ^ 2 := by
   have hnorm : ‖(2 * Complex.I / (Real.sqrt 3 : ℂ))‖ ^ 2 = (4 / 3 : ℝ) := by
@@ -188,6 +218,9 @@ theorem paperFrequency_norm_sq (u : ℂ) :
       div_pow, Real.sq_sqrt]
   rw [paperFrequency, norm_mul, mul_pow, Complex.norm_conj, hnorm]
 
+/--
+@isnad1 id=eq.0h2v.s7.84c6ce59459d from=translated src=- shape=a3b199cd vocab=e0cca062
+-/
 theorem explicitDualFrequency_norm_sq (c : ℂ) (p : ℤ × ℤ) :
     ‖explicitDualFrequency c p‖ ^ 2 =
       (4 / 3 : ℝ) * ‖eisEmbedding (dualFrequencyEquiv p)‖ ^ 2 / ‖c‖ ^ 2 := by
@@ -197,6 +230,9 @@ theorem explicitDualFrequency_norm_sq (c : ℂ) (p : ℤ × ℤ) :
 def paperFourier (f : ℂ → ℂ) (u : ℂ) : ℂ :=
   (2 / Real.sqrt 3 : ℝ) • ∫ z : ℂ, paperE (-(z * u)) * f z
 
+/--
+@isnad1 id=eq.0h2v.s6.2ac63d9916cd from=translated src=- shape=2fcf6e11 vocab=1e63b2c8
+-/
 theorem paperFourier_eq_standard (f : ℂ → ℂ) (u : ℂ) :
     paperFourier f u = (2 / Real.sqrt 3 : ℝ) • 𝓕 f (paperFrequency u) := by
   unfold paperFourier
@@ -210,6 +246,9 @@ theorem paperFourier_eq_standard (f : ℂ → ℂ) (u : ℂ) :
     simpa only [inner_neg_left, neg_mul] using fourierChar_paperFrequency (-z) u
   rw [hp]
 
+/--
+@isnad1 id=eq.1h2v.s10.1d266c29b73e from=translated src=- shape=fffa3baf vocab=284b329a
+-/
 theorem eisTraceModChar_eq_paperE (c : O) (hc : c ≠ 0) (z : O) :
     eisTraceModChar ShortDraftTrace.breveE
       ConcreteBreveE.breveE_period_coordinates c hc
@@ -220,6 +259,9 @@ theorem eisTraceModChar_eq_paperE (c : O) (hc : c ≠ 0) (z : O) :
   congr 1
   ring
 
+/--
+@isnad1 id=eq.1h3v.s10.2cc010632dda from=translated src=- shape=cc51c9ca vocab=d5ee7315
+-/
 theorem eisTraceModChar_frequency (c : O) (hc : c ≠ 0)
     (h : O) (r : O ⧸ Ideal.span {c}) :
     eisTraceModChar ShortDraftTrace.breveE
@@ -232,6 +274,9 @@ theorem eisTraceModChar_frequency (c : O) (hc : c ≠ 0)
   congr 1
   ring
 
+/--
+@isnad1 id=eq.1h3v.s10.8f2029490a31 from=translated src=- shape=1aa61acf vocab=31f94348
+-/
 theorem actual_eisenstein_paper_poisson (f : 𝓢(ℂ, ℂ)) (c : O) (hc : c ≠ 0)
     (P : O ⧸ Ideal.span {c} → ℂ) :
     letI : Finite (O ⧸ Ideal.span {c}) := finite_quotient_span hc
@@ -277,6 +322,9 @@ theorem actual_eisenstein_paper_poisson (f : 𝓢(ℂ, ℂ)) (c : O) (hc : c ≠
   congr 1
   ring
 
+/--
+@isnad1 id=other.1h3v.s11.3f5262927983 from=translated src=- shape=4f984095 vocab=23f7a049
+-/
 theorem actual_eisenstein_paper_poisson_trace (f : 𝓢(ℂ, ℂ)) (c : O) (hc : c ≠ 0)
     (P : O ⧸ Ideal.span {c} → ℂ) :
     letI : Finite (O ⧸ Ideal.span {c}) := finite_quotient_span hc
@@ -296,6 +344,9 @@ theorem actual_eisenstein_paper_poisson_trace (f : 𝓢(ℂ, ℂ)) (c : O) (hc :
 open EisensteinEmbedding ConcreteTraceCRT ActualEisensteinCubic MeasureTheory
 open scoped FourierTransform SchwartzMap RealInnerProductSpace ContDiff
 
+/--
+@isnad1 id=eq.1h3v.s6.9c266e779f4a from=translated src=- shape=c84592ac vocab=335b8100
+-/
 theorem paperFourier_comp_mul (f : ℂ → ℂ) (a : ℂ) (ha : a ≠ 0) (u : ℂ) :
     paperFourier (fun z => f (a * z)) u =
       (1 / ‖a‖ ^ 2 : ℝ) • paperFourier f (u / a) := by
@@ -319,6 +370,9 @@ theorem paperFourier_comp_mul (f : ℂ → ℂ) (a : ℂ) (ha : a ≠ 0) (u : �
 def paperRadialFourier (W : ℝ → ℂ) (t : ℝ) : ℂ :=
   paperFourier (fun z => W (‖z‖ ^ 2)) (Real.sqrt t : ℂ)
 
+/--
+@isnad1 id=eq.0h2v.s5.4a5d3488a98a from=translated src=- shape=666c14d2 vocab=54821e52
+-/
 theorem paperFourier_radial (W : ℝ → ℂ) (u : ℂ) :
     paperFourier (fun z => W (‖z‖ ^ 2)) u =
       paperRadialFourier W (‖u‖ ^ 2) := by
@@ -342,16 +396,25 @@ theorem paperFourier_radial (W : ℝ → ℂ) (u : ℂ) :
   rw [hfun, hna, hq] at hF
   simpa using hF
 
+/--
+@isnad1 id=ne.1h1v.s4.ce4100c644bb from=translated src=- shape=cbb6784c vocab=ddc5b95d
+-/
 theorem inverseSqrt_ne_zero (K : ℝ) (hK : 0 < K) :
     (Real.sqrt K : ℂ)⁻¹ ≠ 0 :=
   inv_ne_zero (Complex.ofReal_ne_zero.mpr (ne_of_gt (Real.sqrt_pos.mpr hK)))
 
+/--
+@isnad1 id=eq.1h1v.s5.2a5da5d9816d from=translated src=- shape=d9d84283 vocab=1b789f47
+-/
 theorem inverseSqrt_norm_sq (K : ℝ) (hK : 0 < K) :
     ‖(Real.sqrt K : ℂ)⁻¹‖ ^ 2 = 1 / K := by
   rw [norm_inv, inv_pow]
   simp only [Complex.norm_real, Real.norm_eq_abs,
     abs_of_nonneg (Real.sqrt_nonneg K), Real.sq_sqrt hK.le, one_div]
 
+/--
+@isnad1 id=eq.1h3v.s7.e231f0d37f14 from=translated src=- shape=e7025eee vocab=dfa4e8a9
+-/
 theorem paperFourier_radial_scaled (W : ℝ → ℂ) (K : ℝ) (hK : 0 < K) (u : ℂ) :
     paperFourier (fun z => W (‖z‖ ^ 2 / K)) u =
       K • paperRadialFourier W (K * ‖u‖ ^ 2) := by
@@ -375,6 +438,9 @@ def scaledRadialTest (W : 𝓢(ℝ, ℂ)) (K : ℝ) (hK : 0 < K) : 𝓢(ℂ, ℂ
   affinePullback (radialTest W)
     (complexMulEquiv ((Real.sqrt K : ℂ)⁻¹) (inverseSqrt_ne_zero K hK)) 0
 
+/--
+@isnad1 id=eq.1h3v.s7.b7a16868de46 from=translated src=- shape=c5cadce7 vocab=0856ca97
+-/
 @[simp] theorem scaledRadialTest_apply (W : 𝓢(ℝ, ℂ)) (K : ℝ) (hK : 0 < K) (z : ℂ) :
     scaledRadialTest W K hK z = W (‖z‖ ^ 2 / K) := by
   simp only [scaledRadialTest, affinePullback_apply, complexMulEquiv_apply,
@@ -382,6 +448,9 @@ def scaledRadialTest (W : 𝓢(ℝ, ℂ)) (K : ℝ) (hK : 0 < K) : 𝓢(ℂ, ℂ
   congr 1
   ring
 
+/--
+@isnad1 id=eq.1h3v.s7.2fbc67af6e32 from=translated src=- shape=929152ec vocab=f66ac868
+-/
 theorem paperFourier_scaledRadialTest (W : 𝓢(ℝ, ℂ)) (K : ℝ) (hK : 0 < K) (u : ℂ) :
     paperFourier (scaledRadialTest W K hK) u =
       K • paperRadialFourier W (K * ‖u‖ ^ 2) := by
@@ -389,6 +458,9 @@ theorem paperFourier_scaledRadialTest (W : 𝓢(ℝ, ℂ)) (K : ℝ) (hK : 0 < K
   simp only [scaledRadialTest_apply]
   exact paperFourier_radial_scaled W K hK u
 
+/--
+@isnad1 id=other.2h4v.s11.a265935d48c0 from=translated src=- shape=47a85dd8 vocab=48897d36
+-/
 theorem actual_radial_paper_poisson_trace (W : 𝓢(ℝ, ℂ)) (K : ℝ) (hK : 0 < K)
     (c : O) (hc : c ≠ 0) (P : O ⧸ Ideal.span {c} → ℂ) :
     letI : Finite (O ⧸ Ideal.span {c}) := finite_quotient_span hc
@@ -431,6 +503,9 @@ theorem actual_radial_paper_poisson_trace (W : 𝓢(ℝ, ℂ)) (K : ℝ) (hK : 0
   rw [ht, smul_smul] at hp
   simpa only [scaledRadialTest_apply, one_div_mul_eq_div] using hp
 
+/--
+@isnad1 id=other.4h4v.s11.a0aa6ab7f3ce from=translated src=- shape=03acaea4 vocab=815a2066
+-/
 theorem actual_compact_radial_paper_poisson_trace (W : ℝ → ℂ)
     (hWc : HasCompactSupport W) (hWs : ContDiff ℝ ∞ W) (K : ℝ) (hK : 0 < K)
     (c : O) (hc : c ≠ 0) (P : O ⧸ Ideal.span {c} → ℂ) :
@@ -457,6 +532,9 @@ def finiteSexticRow {ι : Type*} [Fintype ι]
     (hgood : ∀ i, lambda ∉ P i) (j : ι → ℕ) (a : O) : ℂ :=
   ∏ i, (canonicalSextic (P i) (hgood i) ^ j i) (Ideal.Quotient.mk (P i) a)
 
+/--
+@isnad1 id=eq.1h5v.s7.6a992e1d336c from=translated src=- shape=bb021f50 vocab=4ade812f
+-/
 theorem finiteSexticRow_mul {ι : Type*} [Fintype ι]
     (P : ι → Ideal O) [∀ i, (P i).IsMaximal]
     (hgood : ∀ i, lambda ∉ P i) (j : ι → ℕ) (a b : O) :
@@ -464,6 +542,9 @@ theorem finiteSexticRow_mul {ι : Type*} [Fintype ι]
       finiteSexticRow P hgood j a * finiteSexticRow P hgood j b := by
   simp only [finiteSexticRow, map_mul, Finset.prod_mul_distrib]
 
+/--
+@isnad1 id=ne.0h2v.s7.330713bf4a61 from=translated src=- shape=6a9ad6fb vocab=4662ad6a
+-/
 theorem finite_prime_product_ne_bot {ι : Type*} [Fintype ι]
     (P : ι → Ideal O) [∀ i, (P i).IsMaximal] :
     (∏ i, P i) ≠ ⊥ := by
@@ -475,10 +556,16 @@ theorem finite_prime_product_ne_bot {ι : Type*} [Fintype ι]
 def finitePrimeModulus {ι : Type*} [Fintype ι] (P : ι → Ideal O) : O :=
   ConcretePrimeRowBridge.idealGenerator (∏ i, P i)
 
+/--
+@isnad1 id=eq.0h2v.s7.9390b942277d from=translated src=- shape=2f287ea7 vocab=f53d26f0
+-/
 theorem span_finitePrimeModulus {ι : Type*} [Fintype ι] (P : ι → Ideal O) :
     Ideal.span {finitePrimeModulus P} = ∏ i, P i :=
   ConcretePrimeRowBridge.span_idealGenerator _
 
+/--
+@isnad1 id=ne.0h2v.s6.bcab225f4cc3 from=translated src=- shape=c528e355 vocab=c0d67e6c
+-/
 theorem finitePrimeModulus_ne_zero {ι : Type*} [Fintype ι]
     (P : ι → Ideal O) [∀ i, (P i).IsMaximal] :
     finitePrimeModulus P ≠ 0 := by
@@ -487,6 +574,9 @@ theorem finitePrimeModulus_ne_zero {ι : Type*} [Fintype ι]
   rw [hz] at hspan
   exact finite_prime_product_ne_bot P (by simpa using hspan.symm)
 
+/--
+@isnad1 id=eq.0h1v.s8.d96bfed43c07 from=translated src=- shape=b34b91c9 vocab=bb3c18aa
+-/
 theorem eisEmbedding_norm_sq_eq_absNorm_span (a : O) :
     ‖eisEmbedding a‖ ^ 2 = (Ideal.absNorm (Ideal.span {a}) : ℝ) := by
   open ActualEisensteinCoordinates ShortDraftLatticeCount in
@@ -499,6 +589,9 @@ theorem eisEmbedding_norm_sq_eq_absNorm_span (a : O) :
     rw [← qNat_eq_absNorm_span, hNatR]
     exact hnorm
 
+/--
+@isnad1 id=eq.0h2v.s8.93cdd9492b63 from=translated src=- shape=9e684c05 vocab=9bcbf864
+-/
 theorem finitePrimeModulus_norm_sq {ι : Type*} [Fintype ι]
     (P : ι → Ideal O) :
     ‖eisEmbedding (finitePrimeModulus P)‖ ^ 2 = (Ideal.absNorm (∏ i, P i) : ℝ) := by
@@ -512,6 +605,9 @@ def principalSexticRow {ι : Type*} [Fintype ι]
     (r : O ⧸ Ideal.span {c}) : ℂ :=
   finiteSexticQuotientRow P hcop hgood j (Ideal.quotEquivOfEq hc r)
 
+/--
+@isnad1 id=eq.3h5v.s9.0d08c04cb4e2 from=translated src=- shape=02845a8d vocab=66233c58
+-/
 @[simp] theorem principalSexticRow_mk {ι : Type*} [Fintype ι]
     (P : ι → Ideal O) [∀ i, (P i).IsMaximal]
     (hcop : Pairwise (Function.onFun IsCoprime P))
@@ -522,6 +618,9 @@ def principalSexticRow {ι : Type*} [Fintype ι]
   simp only [principalSexticRow, finiteSexticQuotientRow,
     Ideal.quotEquivOfEq_mk, IdealGaussCRT.quotientProdEquivPi_mk, finiteSexticRow]
 
+/--
+@isnad1 id=eq.6h6v.s11.c31e8d88df0b from=translated src=- shape=f7ad8a32 vocab=ac7d6232
+-/
 theorem canonical_principal_gauss_transform {ι : Type*} [Fintype ι]
     (P : ι → Ideal O) [∀ i, (P i).IsMaximal]
     (hcop : Pairwise (Function.onFun IsCoprime P))
@@ -559,6 +658,9 @@ theorem canonical_principal_gauss_transform {ι : Type*} [Fintype ι]
   rw [hleft, hbase]
   exact canonical_finite_prime_gauss_transform_conj P hcop hgood hchar j hj0 hj6 φ (e h)
 
+/--
+@isnad1 id=other.6h5v.s10.1c9b1885d8a8 from=translated src=- shape=c6b72cbe vocab=21b19f9b
+-/
 theorem canonical_radial_poisson {ι : Type*} [Fintype ι]
     (P : ι → Ideal O) [∀ i, (P i).IsMaximal]
     (hcop : Pairwise (Function.onFun IsCoprime P))
@@ -622,6 +724,9 @@ def canonicalNormalizedGauss {ι : Type*} [Fintype ι]
     (hgood : ∀ i, lambda ∉ P i) (j : ι → ℕ) : ℂ :=
   canonicalGaussSum P hcop hgood j / (‖eisEmbedding (finitePrimeModulus P)‖ : ℂ)
 
+/--
+@isnad1 id=other.6h5v.s9.39dbca59378d from=translated src=- shape=18e0e7fd vocab=9b409db2
+-/
 theorem canonical_radial_poisson_normalized {ι : Type*} [Fintype ι]
     (P : ι → Ideal O) [∀ i, (P i).IsMaximal]
     (hcop : Pairwise (Function.onFun IsCoprime P))
@@ -663,6 +768,9 @@ theorem canonical_radial_poisson_normalized {ι : Type*} [Fintype ι]
   push_cast
   field_simp
 
+/--
+@isnad1 id=iff.1h4v.s7.e00ce1b0b98c from=translated src=- shape=3c6eccdb vocab=0bcc973f
+-/
 theorem finiteSexticRow_eq_zero_iff {ι : Type*} [Fintype ι]
     (P : ι → Ideal O) [∀ i, (P i).IsMaximal]
     (hgood : ∀ i, lambda ∉ P i) (j : ι → ℕ) (a : O) :
@@ -672,6 +780,9 @@ theorem finiteSexticRow_eq_zero_iff {ι : Type*} [Fintype ι]
   simp only [finiteSexticRow, Finset.prod_eq_zero_iff, Finset.mem_univ, true_and,
     MulChar.apply_eq_zero_iff, isUnit_iff_ne_zero, not_not, Ideal.Quotient.eq_zero_iff_mem]
 
+/--
+@isnad1 id=eq.1h3v.s7.7adaa0d50c7f from=translated src=- shape=2f4be376 vocab=c842be81
+-/
 theorem finiteSexticRow_zero {ι : Type*} [Fintype ι] [Nonempty ι]
     (P : ι → Ideal O) [∀ i, (P i).IsMaximal]
     (hgood : ∀ i, lambda ∉ P i) (j : ι → ℕ) :
@@ -679,6 +790,9 @@ theorem finiteSexticRow_zero {ι : Type*} [Fintype ι] [Nonempty ι]
   rw [finiteSexticRow_eq_zero_iff]
   exact ⟨Classical.arbitrary ι, Ideal.zero_mem _⟩
 
+/--
+@isnad1 id=summable.3h5v.s8.4ca83be2c61c from=translated src=- shape=61b01cdf vocab=401c0085
+-/
 theorem finiteSexticRow_radial_summable {ι : Type*} [Fintype ι]
     (P : ι → Ideal O) [∀ i, (P i).IsMaximal]
     (hcop : Pairwise (Function.onFun IsCoprime P))

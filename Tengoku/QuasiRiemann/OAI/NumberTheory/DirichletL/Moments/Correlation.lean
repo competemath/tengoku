@@ -22,6 +22,9 @@ def fullCorrelation (left : X → R) (right : Y → R)
   ∑ x, ∑ y, if left x - right y = j then f x * star (g y) else 0
 
 omit [Fintype R] in
+/--
+@isnad1 id=eq.0h8v.s6.9178b798ba8f from=translated src=- shape=15b9b72b vocab=0d433121
+-/
 theorem fullCorrelation_swap (left : X → R) (right : Y → R)
     (f : X → ℂ) (g : Y → ℂ) (j : R) :
     fullCorrelation left right f g j = star (fullCorrelation right left g f (-j)) := by
@@ -38,6 +41,9 @@ theorem fullCorrelation_swap (left : X → R) (right : Y → R)
   · simp [h, heq.mp h, star_mul]
   · simp [h, not_congr heq |>.mp h]
 
+/--
+@isnad1 id=eq.1h9v.s7.40ce1991da3d from=translated src=- shape=4d7bccaf vocab=19268522
+-/
 theorem fullCorrelation_fourier (ψ : AddChar R ℂ) (hψ : ψ.IsPrimitive)
     (left : X → R) (right : Y → R) (f : X → ℂ) (g : Y → ℂ) (j : R) :
     (∑ h : R, fourierSum ψ left f h * star (fourierSum ψ right g h) * ψ (-(h * j))) =
@@ -79,11 +85,17 @@ variable {F : Type*} [Field F] [Fintype F]
 def shiftCorrelation (χ : MulChar F ℂ) (k : F) : ℂ :=
   ∑ x : F, χ x * star (χ (x - k))
 
+/--
+@isnad1 id=eq.1h3v.s7.b2bef8755484 from=translated src=- shape=ad5ccfe5 vocab=97f08feb
+-/
 lemma character_mul_star (χ : MulChar F ℂ) {a : F} (ha : a ≠ 0) :
     χ a * star (χ a) = 1 := by
   rw [MulChar.star_apply', MulChar.inv_apply_eq_inv']
   exact mul_inv_cancel₀ (χ.apply_ne_zero_iff.mpr (isUnit_iff_ne_zero.mpr ha))
 
+/--
+@isnad1 id=eq.1h3v.s6.0c9749cfdb89 from=translated src=- shape=80d6b7e6 vocab=34a96ee7
+-/
 theorem shiftCorrelation_scale (χ : MulChar F ℂ) {k : F} (hk : k ≠ 0) :
     shiftCorrelation χ k = shiftCorrelation χ 1 := by
   unfold shiftCorrelation
@@ -98,6 +110,9 @@ theorem shiftCorrelation_scale (χ : MulChar F ℂ) {k : F} (hk : k ≠ 0) :
     _ = (χ k * star (χ k)) * (χ x * star (χ (x - 1))) := by ring
     _ = _ := by rw [character_mul_star χ hk, one_mul]
 
+/--
+@isnad1 id=eq.0h2v.s7.c4abf51e703a from=translated src=- shape=32f41e27 vocab=f7b8c331
+-/
 theorem shiftCorrelation_one (χ : MulChar F ℂ) :
     shiftCorrelation χ 1 = χ⁻¹ (-1) * jacobiSum χ χ⁻¹ := by
   simp only [shiftCorrelation, jacobiSum, Finset.mul_sum]
@@ -106,6 +121,9 @@ theorem shiftCorrelation_one (χ : MulChar F ℂ) :
   rw [MulChar.star_apply', show x - 1 = (-1) * (1 - x) by ring, map_mul]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s6.1a0de7e67677 from=translated src=- shape=88803ae9 vocab=9bd355bb
+-/
 theorem shiftCorrelation_zero (χ : MulChar F ℂ) :
     shiftCorrelation χ 0 = (Fintype.card F : ℂ) - 1 := by
   classical
@@ -114,11 +132,17 @@ theorem shiftCorrelation_zero (χ : MulChar F ℂ) :
   rw [MulChar.sum_one_eq_card_units, Fintype.card_eq_card_units_add_one (α := F)]
   simp
 
+/--
+@isnad1 id=eq.2h3v.s7.9854838c9156 from=translated src=- shape=a7e7c505 vocab=a34f66b4
+-/
 theorem shiftCorrelation_nonprincipal (χ : MulChar F ℂ) (hχ : χ ≠ 1)
     {k : F} (hk : k ≠ 0) : shiftCorrelation χ k = -1 := by
   rw [shiftCorrelation_scale χ hk, shiftCorrelation_one, jacobiSum_nontrivial_inv hχ,
     mul_neg, ← MulChar.mul_apply, inv_mul_cancel, MulChar.one_apply (isUnit_iff_ne_zero.mpr (neg_ne_zero.mpr one_ne_zero))]
 
+/--
+@isnad1 id=eq.1h2v.s6.b0c5932832bd from=translated src=- shape=0b368783 vocab=fd4b5f55
+-/
 theorem shiftCorrelation_principal {k : F} (hk : k ≠ 0) :
     shiftCorrelation (1 : MulChar F ℂ) k = (Fintype.card F : ℂ) - 2 := by
   rw [shiftCorrelation_scale _ hk, shiftCorrelation_one, inv_one,
@@ -127,6 +151,9 @@ theorem shiftCorrelation_principal {k : F} (hk : k ≠ 0) :
 def localCorrelation (χ : MulChar F ℂ) (n₁ n₂ k : F) : ℂ :=
   fullCorrelation (fun x : F => n₂ * x) (fun y : F => n₁ * y) χ χ k
 
+/--
+@isnad1 id=eq.2h5v.s7.22a94877b884 from=translated src=- shape=a70b5c8e vocab=47077c6d
+-/
 theorem localCorrelation_eq_shift (χ : MulChar F ℂ) {n₁ n₂ : F}
     (h₁ : n₁ ≠ 0) (h₂ : n₂ ≠ 0) (k : F) :
     localCorrelation χ n₁ n₂ k = χ (n₁ / n₂) * shiftCorrelation χ (k / n₁) := by
@@ -147,6 +174,9 @@ theorem localCorrelation_eq_shift (χ : MulChar F ℂ) {n₁ n₂ : F}
     field_simp
   rw [heq, mul_assoc]
 
+/--
+@isnad1 id=eq.2h5v.s8.fcd6a2879f7f from=translated src=- shape=98bf236c vocab=44e45b59
+-/
 theorem localCorrelation_units (χ : MulChar F ℂ) {n₁ n₂ : F}
     (h₁ : n₁ ≠ 0) (h₂ : n₂ ≠ 0) (k : F) :
     localCorrelation χ n₁ n₂ k = χ (n₁ / n₂) *
@@ -159,6 +189,9 @@ theorem localCorrelation_units (χ : MulChar F ℂ) {n₁ n₂ : F}
     · simp [hk, hχ, shiftCorrelation_principal (div_ne_zero hk h₁)]
     · simp [hk, hχ, shiftCorrelation_nonprincipal χ hχ (div_ne_zero hk h₁)]
 
+/--
+@isnad1 id=eq.0h2v.s7.2aea069835ab from=translated src=- shape=b5f3d0b5 vocab=64ada4af
+-/
 lemma character_sum (χ : MulChar F ℂ) :
     (∑ x : F, χ x) = if χ = 1 then (Fintype.card F : ℂ) - 1 else 0 := by
   classical
@@ -168,6 +201,9 @@ lemma character_sum (χ : MulChar F ℂ) :
     simp
   · simp [hχ, MulChar.sum_eq_zero_of_ne_one hχ]
 
+/--
+@isnad1 id=eq.1h4v.s8.105a50947636 from=translated src=- shape=efb4d9d5 vocab=36d44ed1
+-/
 theorem localCorrelation_first_zero (χ : MulChar F ℂ) {n₂ : F} (h₂ : n₂ ≠ 0) (k : F) :
     localCorrelation χ 0 n₂ k =
       if χ = 1 ∧ k ≠ 0 then (Fintype.card F : ℂ) - 1 else 0 := by
@@ -188,6 +224,9 @@ theorem localCorrelation_first_zero (χ : MulChar F ℂ) {n₂ : F} (h₂ : n₂
       simp [hk]
   · simp [hχ]
 
+/--
+@isnad1 id=eq.1h4v.s8.8d003726a69a from=translated src=- shape=1af32c7c vocab=36d44ed1
+-/
 theorem localCorrelation_second_zero (χ : MulChar F ℂ) {n₁ : F} (h₁ : n₁ ≠ 0) (k : F) :
     localCorrelation χ n₁ 0 k =
       if χ = 1 ∧ k ≠ 0 then (Fintype.card F : ℂ) - 1 else 0 := by
@@ -215,6 +254,9 @@ variable {A B : Type*} [CommRing A] [CommRing B] [Fintype A] [Fintype B]
 def reductionMultiplicity (π : A →+* B) : ℕ :=
   (Finset.univ.filter fun x : A => π x = 0).card
 
+/--
+@isnad1 id=eq.1h4v.s7.994a970fba82 from=translated src=- shape=748f5444 vocab=fd8a2bd6
+-/
 theorem sum_reduction (π : A →+* B) (hπ : Function.Surjective π) (f : B → ℂ) :
     (∑ x : A, f (π x)) = (reductionMultiplicity π : ℂ) * ∑ y : B, f y := by
   classical
@@ -232,12 +274,18 @@ theorem sum_reduction (π : A →+* B) (hπ : Function.Surjective π) (f : B →
       rw [hc]
       rfl
 
+/--
+@isnad1 id=eq.1h3v.s6.a408590bfcb2 from=translated src=- shape=48e743ce vocab=df2b552e
+-/
 theorem reductionMultiplicity_mul_card (π : A →+* B) (hπ : Function.Surjective π) :
     reductionMultiplicity π * Fintype.card B = Fintype.card A := by
   have h := sum_reduction π hπ (fun _ => (1 : ℂ))
   simp only [Finset.sum_const, Finset.card_univ, nsmul_eq_mul, mul_one] at h
   exact_mod_cast h.symm
 
+/--
+@isnad1 id=eq.5h5v.s7.197dfc10e259 from=translated src=- shape=18a34efc vocab=c9309f6e
+-/
 theorem reductionMultiplicity_eq_pow (π : A →+* B) (hπ : Function.Surjective π)
     {P c : ℕ} (hP : 0 < P) (hc : 1 ≤ c)
     (hA : Fintype.card A = P ^ c) (hB : Fintype.card B = P) :
@@ -246,6 +294,9 @@ theorem reductionMultiplicity_eq_pow (π : A →+* B) (hπ : Function.Surjective
   rw [← hB, reductionMultiplicity_mul_card π hπ, hA, hB, ← pow_succ,
     Nat.sub_add_cancel hc]
 
+/--
+@isnad1 id=eq.0h6v.s7.5f871c4b6959 from=translated src=- shape=2c33cda7 vocab=2572d3a7
+-/
 theorem fullCorrelation_unit_right (u : Aˣ) (v k : A) (f g : A → ℂ) :
     fullCorrelation (fun x => v * x) (fun y => (u : A) * y) f g k =
       ∑ x : A, f x * star (g ((↑u⁻¹ : A) * (v * x - k))) := by
@@ -261,6 +312,9 @@ theorem fullCorrelation_unit_right (u : Aˣ) (v k : A) (f g : A → ℂ) :
       ring
   simp only [fullCorrelation, hsolve, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
 
+/--
+@isnad1 id=eq.1h8v.s8.b27ab0104834 from=translated src=- shape=c2bed7db vocab=f0d5128d
+-/
 theorem fullCorrelation_reduction_unit_right (π : A →+* B)
     (hπ : Function.Surjective π) (u : Aˣ) (v k : A) (f g : B → ℂ) :
     fullCorrelation (fun x : A => v * x) (fun y : A => (u : A) * y)
@@ -277,6 +331,9 @@ theorem fullCorrelation_reduction_unit_right (π : A →+* B)
   simpa only [map_mul, map_sub] using
     sum_reduction π hπ (fun x => f x * star (g (π (↑u⁻¹ : A) * (π v * x - π k))))
 
+/--
+@isnad1 id=eq.1h8v.s8.a3365b8c77ef from=translated src=- shape=6e22fbc6 vocab=f0d5128d
+-/
 theorem fullCorrelation_reduction_unit_left (π : A →+* B)
     (hπ : Function.Surjective π) (u : A) (v : Aˣ) (k : A) (f g : B → ℂ) :
     fullCorrelation (fun x : A => (v : A) * x) (fun y : A => u * y)

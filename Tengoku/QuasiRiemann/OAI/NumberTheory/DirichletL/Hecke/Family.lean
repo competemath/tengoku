@@ -52,27 +52,45 @@ def elementCoeff (χ : Character) (z : O) : ℂ := χ.residue (Ideal.Quotient.mk
 def coefficients (χ : Character) (a : Fin χ.period × Fin χ.period) : ℂ :=
   elementCoeff χ (coordinateElement a.1 a.2)
 
+/--
+@isnad1 id=eq.0h1v.s5.09ba81b0ed66 from=translated src=- shape=59ae2d96 vocab=1660abc6
+-/
 @[simp] theorem elementCoeff_one (χ : Character) : elementCoeff χ 1 = 1 := by
   simp [elementCoeff]
 
+/--
+@isnad1 id=eq.0h3v.s5.ca10ebfb07d2 from=translated src=- shape=b51cb01a vocab=ac41a8e0
+-/
 theorem elementCoeff_mul (χ : Character) (z w : O) :
     elementCoeff χ (z * w) = elementCoeff χ z * elementCoeff χ w := by
   simp [elementCoeff, map_mul]
 
+/--
+@isnad1 id=eq.0h3v.s6.e771cf0d67b3 from=translated src=- shape=bafc1cdd vocab=f7130175
+-/
 theorem elementCoeff_unit_mul (χ : Character) (u : Oˣ) (z : O) :
     elementCoeff χ ((u : O) * z) = elementCoeff χ z := by
   rw [elementCoeff_mul]
   have hu : elementCoeff χ (u : O) = 1 := χ.unit_trivial u
   rw [hu, one_mul]
 
+/--
+@isnad1 id=eq.0h1v.s8.a8a38f7e5eef from=translated src=- shape=2848c218 vocab=db79403e
+-/
 theorem quotient_period (χ : Character) :
     Ideal.Quotient.mk χ.modulus (χ.period : O) = 0 :=
   Ideal.Quotient.eq_zero_iff_mem.mpr χ.period_mem
 
+/--
+@isnad1 id=eq.0h3v.s6.ec583f8801b7 from=translated src=- shape=b51668a3 vocab=7fef238a
+-/
 theorem elementCoeff_add_period_mul (χ : Character) (z w : O) :
     elementCoeff χ (z + (χ.period : O) * w) = elementCoeff χ z := by
   simp [elementCoeff, map_add, map_mul, quotient_period χ]
 
+/--
+@isnad1 id=eq.0h2v.s4.5fe9fe6ffe01 from=translated src=- shape=24293aac vocab=82f05876
+-/
 theorem periodicCoeff_eq_elementCoeff (χ : Character) (n : ℤ × ℤ) :
     HeckeTheta.periodicCoeff (coefficients χ) n =
       elementCoeff χ (coordinateElement n.1 n.2) := by
@@ -92,6 +110,9 @@ theorem periodicCoeff_eq_elementCoeff (χ : Character) (n : ℤ × ℤ) :
 
 def continuedLattice (χ : Character) : ℂ → ℂ := HeckeTheta.latticeL (coefficients χ)
 
+/--
+@isnad1 id=differen.2h2v.s7.c8cbcfa593ab from=translated src=- shape=b5139f9c vocab=3920329b
+-/
 theorem continuedLattice_differentiableAt (χ : Character) {s : ℂ}
     (hs₀ : s ≠ 0) (hs₁ : s ≠ 1 ∨ ∑ a, (coefficients χ) a = 0) :
     DifferentiableAt ℂ (continuedLattice χ) s :=

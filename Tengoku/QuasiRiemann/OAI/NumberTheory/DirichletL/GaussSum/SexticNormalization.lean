@@ -39,6 +39,9 @@ noncomputable def breveGamma3 (P : Ideal O) [P.IsMaximal]
       ConcreteBreveE.breveE_period_coordinates p hp) /
       (‖eisEmbedding p‖ : ℂ)
 
+/--
+@isnad1 id=eq.1h1v.s10.3302843ed78e from=translated src=- shape=44c2a888 vocab=423f611c
+-/
 theorem canonicalSextic_pow_three_quadratic (P : Ideal O)
     [P.IsMaximal] (hgood : lambda ∉ P) :
     canonicalSextic P hgood ^ 3 =
@@ -50,6 +53,9 @@ theorem canonicalSextic_pow_three_quadratic (P : Ideal O)
     ((quadraticChar (O ⧸ P) x : ℤ) : ℂ)
   simp
 
+/--
+@isnad1 id=eq.5h2v.s10.109539234c13 from=translated src=- shape=e9ca68d3 vocab=ec9e63f4
+-/
 theorem breveGamma1_gamma2_relation (P : Ideal O) [P.IsMaximal]
     (hgood : lambda ∉ P) (hchar : ringChar (O ⧸ P) ≠ 2)
     (p : O) (hP : P = Ideal.span {p}) (hp : p ≠ 0)
@@ -135,6 +141,9 @@ private noncomputable def eisBreveModChar (p : O) (hp : p ≠ 0) :
       intro x
       simpa only [div_one] using breveE_period_O x)
 
+/--
+@isnad1 id=eq.0h0v.s5.ceac9f17c71a from=translated src=- shape=501f93a1 vocab=7c65ca13
+-/
 theorem eisEmbedding_traceLambda :
     eisEmbedding traceLambda = eisLam := by
   have hgen : pb.gen = omega := by
@@ -156,6 +165,9 @@ noncomputable def breveLocalG (P : Ideal O) [P.IsMaximal]
   (canonicalSextic P hgood (Ideal.Quotient.mk P (4 : O)))⁻¹ *
     breveGamma3 P hgood p hP hp
 
+/--
+@isnad1 id=eq.5h2v.s9.ffe0147feacc from=translated src=- shape=917f1843 vocab=b1fe024d
+-/
 theorem breveGamma1_gamma2_eq_neg_alpha_G (P : Ideal O) [P.IsMaximal]
     (hgood : lambda ∉ P) (hchar : ringChar (O ⧸ P) ≠ 2)
     (p : O) (hP : P = Ideal.span {p}) (hp : p ≠ 0)
@@ -219,6 +231,9 @@ noncomputable def normalizedTraceGaussProduct
     eisTraceProdChar ShortDraftTrace.breveE breveE_period_coordinates
       a b ha hb x) / (‖eisEmbedding (a * b)‖ : ℂ)
 
+/--
+@isnad1 id=eq.3h4v.s11.793b94297ad4 from=translated src=- shape=244548b4 vocab=09d9214b
+-/
 theorem normalizedTraceGaussProduct_crt
     (a b : O) (ha : a ≠ 0) (hb : b ≠ 0)
     (hcop : IsCoprime (Ideal.span {a}) (Ideal.span {b}))
@@ -280,6 +295,9 @@ private theorem sum_zero_and_units {F : Type*} [Field F] [Fintype F]
       intro u
       rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.4f2044f8b7e2 from=translated src=- shape=52ad59f8 vocab=a1edb357
+-/
 theorem product_sum_by_active_set
     {ι : Type*} [Fintype ι]
     (F : ι → Type*) [∀ i, Field (F i)] [∀ i, Fintype (F i)]
@@ -302,6 +320,9 @@ theorem product_sum_by_active_set
       (fun i => ∑ u : (F i)ˣ, f i (u : F i))
       (fun i => f i 0) Finset.univ
 
+/--
+@isnad1 id=eq.2h7v.s6.aca3b5f49f37 from=translated src=- shape=b72154d1 vocab=73fa7301
+-/
 theorem branch_zero_of_local_mask
     {ι : Type*} [DecidableEq ι] (I A : Finset ι)
     (scalar dual inactive : ι → ℂ)
@@ -312,6 +333,9 @@ theorem branch_zero_of_local_mask
     Finset.prod_eq_zero hi (by rw [hzero, mul_zero])
   rw [hprod, zero_mul]
 
+/--
+@isnad1 id=le.0h2v.s7.e07d04d271e4 from=translated src=- shape=8c218ada vocab=172bfa6a
+-/
 theorem admissible_branch_count
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     (j : ι → ℕ) :
@@ -337,6 +361,9 @@ private theorem branch_zero_outside_admissible
     Finset.prod_eq_zero hi (hzero i hj)
   rw [hprod, mul_zero]
 
+/--
+@isnad1 id=eq.2h6v.s9.a61ea090d05d from=translated src=- shape=d27b3484 vocab=8a2c58ab
+-/
 theorem assemble_local_A5
     {ι : Type*} [Fintype ι]
     (F : ι → Type*) [∀ i, Field (F i)] [∀ i, Fintype (F i)]
@@ -377,6 +404,9 @@ end FixedRayActiveSet
 
 namespace CubeInversion
 
+/--
+@isnad1 id=eq.0h1v.s6.57016d72e06c from=translated src=- shape=2c947f87 vocab=da5c2c06
+-/
 theorem cube_index_filter_complex (m : ℕ) :
     (∑ h ∈ m.divisors, (ArithmeticFunction.moebius h : ℂ)) =
       if m = 1 then 1 else 0 := by
@@ -385,6 +415,9 @@ theorem cube_index_filter_complex (m : ℕ) :
   rw [ArithmeticFunction.coe_mul_zeta_apply, ArithmeticFunction.one_apply] at h
   exact_mod_cast h
 
+/--
+@isnad1 id=eq.1h3v.s7.5bd6d20335e3 from=translated src=- shape=7abd77d3 vocab=6dfeccc1
+-/
 theorem cube_coefficient_filter
     (m : ℕ) (c W : ℕ → ℂ)
     (hc : ∀ a b, c (a * b) = c a * c b) :
@@ -414,6 +447,9 @@ theorem cube_coefficient_filter
       rw [cube_index_filter_complex]
       split_ifs <;> simp
 
+/--
+@isnad1 id=eq.2h3v.s7.d0d98567c2ef from=translated src=- shape=d49a932e vocab=da5e91fc
+-/
 theorem finite_cube_inversion
     (S : Finset ℕ) (hS : 1 ∈ S) (c W : ℕ → ℂ)
     (hc : ∀ a b, c (a * b) = c a * c b) :
@@ -423,6 +459,9 @@ theorem finite_cube_inversion
   simp_rw [cube_coefficient_filter (c := c) (W := W) (hc := hc)]
   simp [hS]
 
+/--
+@isnad1 id=eq.2h6v.s7.039fbcfb8f08 from=translated src=- shape=713c5358 vocab=1a9ecae3
+-/
 theorem finite_cube_inversion_with_columns {N : Type*} [DecidableEq N]
     (columns : Finset N) (S : Finset ℕ) (hS : 1 ∈ S)
     (a : N → ℂ) (c : ℕ → ℂ) (W : N → ℕ → ℂ)
@@ -463,6 +502,9 @@ private theorem canonicalSextic_order_six (P : Ideal O) [P.IsMaximal]
   change orderOf (Φ (sexticChar P hgood)) = 6
   rw [orderOf_injective Φ hΦ, sexticChar_order P hgood hchar]
 
+/--
+@isnad1 id=eq.5h2v.s9.b3ea4eea59d4 from=translated src=- shape=23d54e73 vocab=81fc1f91
+-/
 theorem breveGamma1_gammaMinus1 (P : Ideal O) [P.IsMaximal]
     (hgood : lambda ∉ P) (hchar : ringChar (O ⧸ P) ≠ 2)
     (p : O) (hP : P = Ideal.span {p}) (hp : p ≠ 0)
@@ -509,6 +551,9 @@ end ActualEisensteinCubic
 
 namespace PowerExtraction
 
+/--
+@isnad1 id=le.5h4v.s8.600e1b541c6a from=translated src=- shape=9b96c8a4 vocab=5df71cf7
+-/
 theorem from_mean_square_and_prime_rows
     (D ε J A : ℝ) (hD : 1 ≤ D) (hε : 0 ≤ ε)
     (hA : 0 ≤ A)

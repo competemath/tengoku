@@ -9,10 +9,16 @@ noncomputable section
 namespace SevenEighths.LatticeSummability
 open EisensteinTheta
 
+/--
+@isnad1 id=le.0h2v.s4.85ac77d2589d from=translated src=- shape=a120b2a8 vocab=61c584a1
+-/
 theorem normForm_nonneg (x y : ℝ) : 0 ≤ normForm x y := by
   unfold normForm
   nlinarith [sq_nonneg (x - y), sq_nonneg x, sq_nonneg y]
 
+/--
+@isnad1 id=iff.0h2v.s5.6010ed99e7c5 from=translated src=- shape=33e5028f vocab=79101a5f
+-/
 theorem normForm_eq_zero_iff (x y : ℝ) : normForm x y = 0 ↔ x = 0 ∧ y = 0 := by
   constructor
   · intro h
@@ -24,6 +30,9 @@ theorem normForm_eq_zero_iff (x y : ℝ) : normForm x y = 0 ↔ x = 0 ∧ y = 0 
   · rintro ⟨rfl, rfl⟩
     simp [normForm]
 
+/--
+@isnad1 id=le.0h1v.s6.68d920146758 from=translated src=- shape=0f851b66 vocab=b7d8dc4d
+-/
 theorem normForm_ge_half_norm_sq (n : ℤ × ℤ) :
     (1 / 2 : ℝ) * ‖n‖ ^ 2 ≤ normForm n.1 n.2 := by
   rw [Prod.norm_def, ← Int.norm_cast_real, ← Int.norm_cast_real, Real.norm_eq_abs,
@@ -35,6 +44,9 @@ theorem normForm_ge_half_norm_sq (n : ℤ × ℤ) :
   · rw [max_eq_left h, sq_abs]
     nlinarith [sq_nonneg ((n.1 : ℝ) - n.2), sq_nonneg (n.2 : ℝ)]
 
+/--
+@isnad1 id=summable.1h1v.s6.0b61c4dafbf1 from=translated src=- shape=2d48d991 vocab=dbb3ab04
+-/
 theorem summable_pair_norm_rpow {k : ℝ} (hk : 2 < k) :
     Summable (fun n : ℤ × ℤ => ‖n‖ ^ (-k)) := by
   have h := (finTwoArrowEquiv ℤ).symm.summable_iff.mpr
@@ -45,6 +57,9 @@ theorem summable_pair_norm_rpow {k : ℝ} (hk : 2 < k) :
     EisensteinSeries.norm_eq_max_natAbs, Matrix.cons_val_zero,
     Matrix.cons_val_one, Prod.norm_def, Nat.cast_max, hn] using h
 
+/--
+@isnad1 id=summable.1h1v.s5.0d30ff4f4c58 from=translated src=- shape=271e2290 vocab=ec597e01
+-/
 theorem summable_normForm_neg_rpow {σ : ℝ} (hσ : 1 < σ) :
     Summable (fun n : ℤ × ℤ => normForm n.1 n.2 ^ (-σ)) := by
   have hmajor := (summable_pair_norm_rpow (k := 2 * σ) (by linarith)).mul_left
@@ -68,11 +83,17 @@ theorem summable_normForm_neg_rpow {σ : ℝ} (hσ : 1 < σ) :
         congr 1
         ring
 
+/--
+@isnad1 id=summable.1h1v.s6.2a0a7741a048 from=translated src=- shape=5a65943e vocab=c3458a52
+-/
 theorem summable_one_div_normForm_rpow {σ : ℝ} (hσ : 1 < σ) :
     Summable (fun n : ℤ × ℤ => 1 / normForm n.1 n.2 ^ σ) := by
   simpa only [Real.rpow_neg (normForm_nonneg _ _), one_div] using
     summable_normForm_neg_rpow hσ
 
+/--
+@isnad1 id=summable.2h3v.s6.75c24b996f8f from=translated src=- shape=6b8e8883 vocab=a998cf4e
+-/
 theorem summable_weighted_normForm {w : ℤ × ℤ → ℂ} {C σ : ℝ}
     (hw : ∀ n, ‖w n‖ ≤ C) (hσ : 1 < σ) :
     Summable (fun n : ℤ × ℤ => ‖w n‖ / normForm n.1 n.2 ^ σ) := by

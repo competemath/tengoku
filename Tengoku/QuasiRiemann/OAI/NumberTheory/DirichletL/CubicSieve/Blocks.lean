@@ -12,8 +12,14 @@ noncomputable section
 variable {a b n : Type*} [Fintype a] [Fintype b] [Fintype n]
   [DecidableEq n]
 
+/--
+@isnad1 id=le.0h3v.s5.cd90e4673f4c from=translated src=- shape=9fb52648 vocab=8f06df50
+-/
 theorem squaredNorm_nonneg (A : Matrix a n ℂ) : 0 ≤ squaredNorm A := sq_nonneg _
 
+/--
+@isnad1 id=le.1h5v.s7.45ae5ecafd50 from=translated src=- shape=d68b38f9 vocab=e736b540
+-/
 theorem masked_energy_le (A : Matrix a n ℂ) (coef phase : n → ℂ)
     (hphase : ∀ j, ‖phase j‖ ≤ 1) :
     (∑ i, ‖∑ j, A i j * (coef j * phase j)‖ ^ 2) ≤
@@ -26,6 +32,9 @@ theorem masked_energy_le (A : Matrix a n ℂ) (coef phase : n → ℂ)
   apply pow_le_pow_left₀ (by positivity)
   exact mul_le_of_le_one_right (norm_nonneg _) (hphase j)
 
+/--
+@isnad1 id=le.3h7v.s8.b749cf711392 from=translated src=- shape=9c8a54ec vocab=e944b7e4
+-/
 theorem rectangular_block_energy_le
     (A : Matrix a n ℂ) (B : Matrix b n ℂ) (coef mask : n → ℂ)
     (hA : ∀ i j, ‖A i j‖ ≤ 1) (hB : ∀ k j, ‖B k j‖ ≤ 1)
@@ -73,6 +82,9 @@ theorem rectangular_block_energy_le
   · rw [min_eq_right h]
     exact hright
 
+/--
+@isnad1 id=le.3h8v.s8.79f8d0451b27 from=translated src=- shape=8acbabc7 vocab=e944b7e4
+-/
 theorem cube_family_block_energy_le {c : Type*} [Fintype c]
     (A : Matrix a n ℂ) (B : Matrix b n ℂ) (coef : n → ℂ) (mask : c → n → ℂ)
     (hA : ∀ i j, ‖A i j‖ ≤ 1) (hB : ∀ k j, ‖B k j‖ ≤ 1)

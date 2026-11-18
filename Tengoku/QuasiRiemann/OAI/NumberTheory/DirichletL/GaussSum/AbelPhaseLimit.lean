@@ -34,6 +34,9 @@ private theorem sum_zmod_two_square (f : ZMod 2 × ZMod 2 → ℂ) :
   simp [hu]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s8.0158d76310b5 from=translated src=- shape=cd671409 vocab=2f272f47
+-/
 theorem fixedDualPhase_quotient_two_four_residues (c : O) :
     letI : Finite (O ⧸ Ideal.span {(2 : O)}) :=
       finite_quotient_span (by norm_num : (2 : O) ≠ 0)
@@ -75,6 +78,9 @@ theorem fixedDualPhase_quotient_two_four_residues (c : O) :
   have hcast1 : (ZMod.cast (1 : ZMod 2) : ℤ) = 1 := by decide
   simp only [ZMod.cast_zero, hcast1]
 
+/--
+@isnad1 id=eq.0h4v.s7.80e2007ad253 from=translated src=- shape=d0d4284e vocab=741a318b
+-/
 theorem fixedDualPhase_coordinates (a b x y : ℤ) :
     fixedDualPhase (ActualEisensteinCoordinates.eval a b)
       (ActualEisensteinCoordinates.eval x y) =
@@ -84,6 +90,9 @@ theorem fixedDualPhase_coordinates (a b x y : ℤ) :
   unfold fixedDualPhase
   rw [map_neg, map_mul, map_pow, eisEmbedding_eval, eisEmbedding_eval]
 
+/--
+@isnad1 id=eq.0h2v.s8.517e6e6e1145 from=translated src=- shape=eeb0bfd3 vocab=a99b9d3a
+-/
 theorem fixedDualPhase_four_terms (a b : ℤ) :
     letI : Finite (O ⧸ Ideal.span {(2 : O)}) :=
       finite_quotient_span (by norm_num : (2 : O) ≠ 0)
@@ -151,6 +160,9 @@ private theorem phaseA_nonneg {a b : ℝ} (hq : 0 ≤ q a b) :
   unfold phaseA
   positivity
 
+/--
+@isnad1 id=le.2h4v.s7.476085eaf9b8 from=translated src=- shape=38093dc5 vocab=8fbe2af3
+-/
 theorem dual_phase_term_error {η a b : ℝ} (_hη : 0 < η) (hq : 0 < q a b)
     (z : ℤ × ℤ) :
     ‖dualVarTerm η a b z - dualFixedTerm η a b z‖ ≤
@@ -261,6 +273,9 @@ private theorem phaseErrorConstant_nonneg {a b : ℝ} (hq : 0 < q a b) :
   exact mul_nonneg (mul_nonneg (half_pos Real.pi_pos).le
     (phaseBoundConstant_pos a b).le) (phaseA_nonneg hq.le)
 
+/--
+@isnad1 id=le.3h3v.s7.a23611acc93d from=translated src=- shape=d77ca1d4 vocab=f5999b56
+-/
 theorem normalized_dual_phase_sum_error {η a b : ℝ}
     (hη : 0 < η) (hq : 0 < q a b) (hrle : r η a b ≤ 2) :
     η * ‖(∑' z : ℤ × ℤ, dualVarTerm η a b z) -
@@ -328,6 +343,9 @@ theorem normalized_dual_phase_sum_error {η a b : ℝ}
 open scoped Topology
 open Filter
 
+/--
+@isnad1 id=eq.2h4v.s5.337af948e3fb from=translated src=- shape=3fe6cee9 vocab=6500c4aa
+-/
 theorem dualGaussian_eq_dualVarTerm {η a b : ℝ}
     (hη : 0 < η) (hq : 0 < q a b) (z : ℤ × ℤ) :
     RankTwoComplex.dualGaussian (A η a b) (B η a b) (D η a b) z =
@@ -370,6 +388,9 @@ namespace ActualEisensteinCubic
 
 open EisensteinEmbedding ConcreteTraceCRT
 
+/--
+@isnad1 id=eq.0h2v.s6.24ba07d6a324 from=translated src=- shape=b5b1a1cc vocab=d8a2c7e2
+-/
 theorem osc_q_eq_eis_norm_sq (a b : ℤ) :
     OscSpecial.q (a : ℝ) (b : ℝ) =
       ‖eisEmbedding (ActualEisensteinCoordinates.eval a b)‖ ^ 2 := by
@@ -378,6 +399,9 @@ theorem osc_q_eq_eis_norm_sq (a b : ℤ) :
   push_cast
   ring
 
+/--
+@isnad1 id=other.0h0v.s6.5e136a978065 from=translated src=- shape=2c6b96b8 vocab=a7f373a5
+-/
 theorem two_coordinate_norm_four :
     let a := (ActualEisensteinCoordinates.coords (2 : O)).1
     let b := (ActualEisensteinCoordinates.coords (2 : O)).2
@@ -392,6 +416,9 @@ end ActualEisensteinCubic
 open Filter
 open scoped Topology
 
+/--
+@isnad1 id=tendsto.3h5v.s7.03e066b9efc5 from=translated src=- shape=5eeaddfc vocab=b9084144
+-/
 theorem abel_transfer (P V W : ℝ → ℂ) (p w : ℂ)
     (hP : Tendsto P (𝓝[>] (0 : ℝ)) (𝓝 p))
     (hW : Tendsto (fun η : ℝ => (η : ℂ) * W η) (𝓝[>] (0 : ℝ)) (𝓝 w))
@@ -419,6 +446,9 @@ namespace ActualEisensteinCubic
 
 section
 
+/--
+@isnad1 id=eq.2h3v.s7.b0175366cb9c from=translated src=- shape=8934a801 vocab=918254c0
+-/
 theorem gamma_scalar (n : ℝ) (hn : 0 < n) (G S : ℂ)
     (h : (((2 / (Real.sqrt 3 * n) : ℝ) : ℂ) * G) =
       (((n / 2 : ℝ) : ℂ) *
@@ -444,6 +474,9 @@ private theorem breveE_norm_one_all (z : ℂ) :
     simp [Complex.mul_re]
   rw [hr, Real.exp_zero]
 
+/--
+@isnad1 id=eq.0h2v.s4.8eb240f281e5 from=translated src=- shape=6a85ccc7 vocab=e8ec8f0d
+-/
 theorem fixedDualPhase_norm_one (c y : O) :
     ‖fixedDualPhase c y‖ = 1 := by
   unfold fixedDualPhase

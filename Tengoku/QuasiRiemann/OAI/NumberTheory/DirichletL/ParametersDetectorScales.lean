@@ -7,6 +7,9 @@ namespace OAI
 noncomputable section
 namespace SevenEighths.Parameters
 
+/--
+@isnad1 id=ex.8h8v.s9.93e0aabef34f from=translated src=- shape=4ae620d5 vocab=70d00927
+-/
 theorem exists_detector_scales (R rmin mesh dmin loss ellMin allowance J : ℝ)
     (hR : 0≤R) (hr : 0<rmin) (hm : 0<mesh) (hd : 0<dmin)
     (hl : 0<loss) (hell : 0<ellMin) (ha : 0<allowance) (hJ : 0≤J) :

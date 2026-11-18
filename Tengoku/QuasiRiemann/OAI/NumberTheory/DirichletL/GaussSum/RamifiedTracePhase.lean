@@ -22,10 +22,16 @@ namespace TraceLambdaPhase
 open EisensteinEmbedding ConcreteTraceCRT Complex
 open scoped ComplexConjugate
 
+/--
+@isnad1 id=eq.0h0v.s5.32d6d0f844c8 from=translated src=- shape=8e19147c vocab=dd7612cd
+-/
 theorem eisLam_sq : eisLam ^ 2 = (-3 : ℂ) := by
   change (1 + 2 * omega3) ^ 2 = -3
   linear_combination 4 * omega3_sq
 
+/--
+@isnad1 id=eq.0h0v.s5.649d7057641c from=translated src=- shape=3ecff34a vocab=b0e2c665
+-/
 theorem exp_minus_four_pi_div_three :
     Complex.exp (-(4 : ℂ) * Real.pi * Complex.I / 3) = omega3 := by
   have hshift : Complex.exp (-(4 : ℂ) * Real.pi * Complex.I / 3) =
@@ -47,6 +53,9 @@ theorem exp_minus_four_pi_div_three :
   push_cast
   ring
 
+/--
+@isnad1 id=eq.0h0v.s5.c7fb54391c24 from=translated src=- shape=31239df7 vocab=71528127
+-/
 theorem breveE_traceLambda_square :
     ShortDraftTrace.breveE (1 / (eisLam * eisLam)) = omega3 := by
   have harg : (1 : ℂ) / (eisLam * eisLam) = -(1 : ℂ) / 3 := by
@@ -66,6 +75,9 @@ namespace ActualEisensteinCubic
 
 open EisensteinEmbedding ConcreteTraceCRT ConcreteBreveE TraceLambdaPhase
 
+/--
+@isnad1 id=ne.0h0v.s4.4343a51fb396 from=translated src=- shape=ffdda526 vocab=81256ff3
+-/
 theorem traceLambda_ne_zero : traceLambda ≠ 0 := by
   intro h
   have hh := congrArg eisEmbedding h
@@ -77,6 +89,9 @@ private theorem traceLambda_span_eq_lambda :
   rw [traceLambda_eq_unit_mul_lambda]
   exact Ideal.span_singleton_mul_left_unit neg_omega_isUnit lambda
 
+/--
+@isnad1 id=eq.0h0v.s5.f3487bfa8613 from=translated src=- shape=9442d71c vocab=5285cf35
+-/
 theorem traceLambda_quotient_card :
     Nat.card (O ⧸ Ideal.span {traceLambda}) = 3 := by
   rw [traceLambda_span_eq_lambda]
@@ -90,6 +105,9 @@ noncomputable def quadraticGammaTraceLambda : ℂ := by
   let ψ := eisTraceModChar ShortDraftTrace.breveE breveE_period_coordinates c hc
   exact (∑ x : O ⧸ Ideal.span {c}, ψ (x ^ 2)) / (‖eisEmbedding c‖ : ℂ)
 
+/--
+@isnad1 id=eq.0h0v.s2.88374621e250 from=translated src=- shape=54c8eceb vocab=d0419958
+-/
 theorem quadraticGammaTraceLambda_eq_I : quadraticGammaTraceLambda = Complex.I := by
   let c : O := traceLambda
   let hc : c ≠ 0 := traceLambda_ne_zero
@@ -164,6 +182,9 @@ def newFactorRing {R : Type*} [CommRing R]
     (parityBit ε₁ ε₂ : Bool) (z : R) (χ : MulChar R ℂ) : ℂ :=
   if retained parityBit ε₁ ε₂ then (χ z) ^ 4 else quotientUnitMask z
 
+/--
+@isnad1 id=eq.1h7v.s7.9908a4da30ef from=translated src=- shape=c65a3c9f vocab=fec8edd1
+-/
 theorem first_local_identity_ring {R : Type*} [CommRing R]
     (side parityBit ε₁ ε₂ : Bool)
     (z : R) (χ : MulChar R ℂ) (hχ : χ ^ 6 = 1) :
@@ -194,6 +215,9 @@ theorem first_local_identity_ring {R : Type*} [CommRing R]
   · have hz : q = 0 := MulChar.map_nonunit χ hu
     simp [oldFactorRing, newFactorRing, quotientUnitMask, hu]
 
+/--
+@isnad1 id=eq.1h7v.s8.bc7ad965c47d from=translated src=- shape=bdb7ffd8 vocab=d36578b7
+-/
 theorem first_prime_product_identity_ring
     {R : Type*} [CommRing R]
     (side : Bool) (P : Finset R)
@@ -247,6 +271,9 @@ noncomputable def quadraticGammaNegTraceLambda : ℂ := by
   let ψ := eisTraceModChar ShortDraftTrace.breveE breveE_period_coordinates c hc
   exact (∑ x : O ⧸ Ideal.span {c}, ψ (x ^ 2)) / (‖eisEmbedding c‖ : ℂ)
 
+/--
+@isnad1 id=eq.0h0v.s2.386e99f3e968 from=translated src=- shape=dfaa3aa7 vocab=e27b65ce
+-/
 theorem quadraticGammaNegTraceLambda_eq_neg_I :
     quadraticGammaNegTraceLambda = -Complex.I := by
   let c : O := -traceLambda
@@ -322,6 +349,9 @@ noncomputable def finiteSquarefreeRow
     (hgood : ∀ i, lambda ∉ P i) (S : Finset ι) (u : O) : ℂ :=
   ∏ i ∈ S, canonicalSextic (P i) (hgood i) (Ideal.Quotient.mk (P i) u)
 
+/--
+@isnad1 id=eq.1h4v.s8.7937a81f62d4 from=translated src=- shape=7c74acc8 vocab=b0a2414d
+-/
 theorem finiteSquarefreeRow_sixth_power
     {ι : Type*} (P : ι → Ideal O) [∀ i, (P i).IsMaximal]
     (hgood : ∀ i, lambda ∉ P i) (S : Finset ι) (a : O) :
@@ -355,45 +385,72 @@ private def cuspMatrix (a b c d : R) : Matrix (Fin 2) (Fin 2) R := !![a,b;c,d]
 private def unramifiedH (u : R) : Matrix (Fin 2) (Fin 2) R := U u * E
 private def unramifiedHInv (u : R) : Matrix (Fin 2) (Fin 2) R := !![0,1;-1,u]
 
+/--
+@isnad1 id=eq.0h5v.s8.ee684a1ccdd9 from=translated src=- shape=b4709514 vocab=173d70d7
+-/
 theorem A3_principal_matrix (a b c d : R) :
     cuspMatrix a b c d * (1 : Matrix (Fin 2) (Fin 2) R) =
       !![a,b;c,d] := by
   simp [cuspMatrix]
 
+/--
+@isnad1 id=eq.0h2v.s7.b9329775825e from=translated src=- shape=4f7f9a89 vocab=13c112db
+-/
 theorem A3_ramified_inverse (u : R) :
     L u * L (-u) = (1 : Matrix (Fin 2) (Fin 2) R) := by
   rw [lower_add]
   simp [L, Matrix.one_fin_two]
 
+/--
+@isnad1 id=eq.0h2v.s7.c98567568484 from=translated src=- shape=033b0286 vocab=13c112db
+-/
 theorem A3_ramified_inverse_left (u : R) :
     L (-u) * L u = (1 : Matrix (Fin 2) (Fin 2) R) := by
   rw [lower_add]
   simp [L, Matrix.one_fin_two]
 
+/--
+@isnad1 id=eq.0h6v.s8.b074c0d6de66 from=translated src=- shape=f1864eed vocab=a1fe4901
+-/
 theorem A3_ramified_matrix (a b c d u : R) :
     cuspMatrix a b c d * L (-u) =
       !![a - u * b,b;c - u * d,d] := by
   simp [cuspMatrix, L, mul_comm, sub_eq_add_neg]
 
+/--
+@isnad1 id=eq.0h2v.s8.6a8e13721000 from=translated src=- shape=a3761291 vocab=7226f7da
+-/
 theorem A3_unramified_H (u : R) :
     unramifiedH u = !![u,-1;1,0] := by
   simp [unramifiedH, U, E]
 
+/--
+@isnad1 id=eq.0h2v.s7.b1552a37c234 from=translated src=- shape=10ea7249 vocab=5838b099
+-/
 theorem A3_unramified_inverse_right (u : R) :
     unramifiedH u * unramifiedHInv u =
       (1 : Matrix (Fin 2) (Fin 2) R) := by
   simp [unramifiedH, unramifiedHInv, U, E, Matrix.one_fin_two]
 
+/--
+@isnad1 id=eq.0h2v.s7.aeb4339ca2b3 from=translated src=- shape=10ea7249 vocab=5838b099
+-/
 theorem A3_unramified_inverse_left (u : R) :
     unramifiedHInv u * unramifiedH u =
       (1 : Matrix (Fin 2) (Fin 2) R) := by
   simp [unramifiedH, unramifiedHInv, U, E, Matrix.one_fin_two]
 
+/--
+@isnad1 id=eq.0h6v.s8.6284eafb220c from=translated src=- shape=13d6b6b3 vocab=44fb2316
+-/
 theorem A3_unramified_matrix (a b c d u : R) :
     cuspMatrix a b c d * unramifiedHInv u =
       !![-b,a + u * b;-d,c + u * d] := by
   simp [cuspMatrix, unramifiedHInv, mul_comm]
 
+/--
+@isnad1 id=eq.1h6v.s7.dfa39f099524 from=translated src=- shape=378faa7e vocab=54617df9
+-/
 theorem A3_ramified_det_relation (a b c d u : R)
     (hdet : a * d - b * c = 1) :
     a * (c - u * d) - c * (a - u * b) = -u := by
@@ -402,6 +459,9 @@ theorem A3_ramified_det_relation (a b c d u : R)
         -u * (a * d - b * c) := by ring
     _ = -u := by rw [hdet]; ring
 
+/--
+@isnad1 id=eq.1h6v.s7.86ee4cf748dc from=translated src=- shape=e1aebe20 vocab=26b25aee
+-/
 theorem A3_ramified_reciprocity_congr (a b cprime d u : R)
     (hdet : a * d - b * (u * cprime) = 1) :
     (a - u * b) * cprime = 1 + a * (cprime - d) := by
@@ -410,10 +470,16 @@ theorem A3_ramified_reciprocity_congr (a b cprime d u : R)
         a * cprime + (a * d - b * (u * cprime)) - a * d := by ring
     _ = 1 + a * (cprime - d) := by rw [hdet]; ring
 
+/--
+@isnad1 id=eq.1h5v.s7.fef51f9048c9 from=translated src=- shape=019068c4 vocab=54617df9
+-/
 theorem A3_unramified_det_relation (a b c d : R)
     (hdet : a * d - b * c = 1) :
     (-b) * c = 1 - a * d := by linear_combination hdet
 
+/--
+@isnad1 id=eq.1h5v.s7.ce10cfc8b264 from=translated src=- shape=f07f893e vocab=26b25aee
+-/
 theorem A3_unramified_inverse_congr (a b c d : R)
     (hdet : a * d - b * c = 1) :
     a * d = 1 + b * c := by linear_combination hdet
@@ -424,6 +490,9 @@ namespace ActualEisensteinCubic
 
 open EisensteinEmbedding ConcreteTraceCRT Complex
 
+/--
+@isnad1 id=eq.0h2v.s6.44bfe2531eec from=translated src=- shape=aae66b34 vocab=16107704
+-/
 theorem breveE_quarter_trace (a b : ℤ) :
     ShortDraftTrace.breveE
       ((((a : ℂ) + (b : ℂ) * omega3) / eisLam) / 4) =
@@ -455,6 +524,9 @@ noncomputable def breveGaussianFourTerms (a b : ℤ) : ℂ :=
       ShortDraftTrace.breveE (((-c * omega3 ^ 2) / eisLam) / 4) +
       ShortDraftTrace.breveE (((-c * (1 + omega3) ^ 2) / eisLam) / 4)) / 2
 
+/--
+@isnad1 id=eq.0h2v.s6.5ac535453f6b from=translated src=- shape=02e204b5 vocab=7245c224
+-/
 theorem breveGaussianFourTerms_formula (a b : ℤ) :
     breveGaussianFourTerms a b =
       (1 + Complex.I ^ (-b) + Complex.I ^ a + Complex.I ^ (b-a)) / 2 := by

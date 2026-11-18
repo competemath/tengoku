@@ -157,6 +157,9 @@ private theorem outsideCoeff_baseChange_isBigO_linear {q : ℕ} [NeZero q]
     _ ≤ C * (n : ℝ) := hn
     _ = C * ‖(n : ℝ)‖ := by simp
 
+/--
+@isnad1 id=lseriess.1h4v.s6.3fa27858f489 from=translated src=- shape=9c680973 vocab=24722699
+-/
 theorem outsideCoeff_LSeriesSummable_baseChange {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) (S : Finset (Ideal O))
     (s : ℂ) (hs : 2 < s.re) :
@@ -168,6 +171,9 @@ theorem outsideCoeff_LSeriesSummable_baseChange {q : ℕ} [NeZero q]
       outsideCoeff_baseChange_isBigO_linear χ S
   exact LSeriesSummable_of_isBigO_rpow hs hO
 
+/--
+@isnad1 id=summable.1h4v.s6.2204d382d309 from=translated src=- shape=d4b3a924 vocab=0900e15c
+-/
 theorem outsideCoeff_exp_summable_baseChange {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) (S : Finset (Ideal O))
     (t : ℝ) (ht : 0 < t) :
@@ -192,6 +198,9 @@ theorem outsideCoeff_exp_summable_baseChange {q : ℕ} [NeZero q]
   simpa only [mul_assoc] using
     (mul_le_mul_of_nonneg_right hlin (Real.exp_pos (-(n : ℝ) * t)).le)
 
+/--
+@isnad1 id=eq.0h3v.s6.b29f810292c0 from=translated src=- shape=200ae3b8 vocab=dd73b602
+-/
 theorem outsideExpSum_empty_eq_normFiberExpSum {q : ℕ}
     (χ : DirichletCharacter ℂ q) (t : ℝ) :
     outsideExpSum ∅ (ShortDraftHeckeBridge.baseChangeWeight χ) t =
@@ -227,6 +236,9 @@ private theorem tsum_mul_kernel_eq_LSeries (a : ℕ → ℂ) (s : ℂ) :
   intro n
   exact (term_eq_mul_kernel a s n).symm
 
+/--
+@isnad1 id=eq.4h5v.s10.103f855f7356 from=translated src=- shape=6a15baff vocab=0806ef43
+-/
 theorem outsideLSeries_restore_baseChange {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q)
     (S : Finset (Ideal O)) (hS : ∀ Q ∈ S, Prime Q)
@@ -281,6 +293,9 @@ theorem outsideLSeries_restore_baseChange {q : ℕ} [NeZero q]
     LSeries a s = LSeries b s + c * ((N : ℂ) ^ (-s) * LSeries b s) := hgeneric
     _ = (1 + c * (N : ℂ) ^ (-s)) * LSeries b s := by ring
 
+/--
+@isnad1 id=eq.2h4v.s9.7e8460a37e4f from=translated src=- shape=c1ebba01 vocab=b171594b
+-/
 theorem outsideLSeries_finiteEuler_baseChange {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q)
     (S : Finset (Ideal O))
@@ -318,10 +333,16 @@ theorem outsideLSeries_finiteEuler_baseChange {q : ℕ} [NeZero q]
           rw [Finset.prod_insert hPnot]
           ring
 
+/--
+@isnad1 id=eq.0h2v.s6.e2809dda8755 from=translated src=- shape=b9caaddd vocab=198be5f5
+-/
 theorem outsideCoeff_empty_eq_normFiberCoeff (w : Ideal O → ℂ) (n : ℕ) :
     outsideCoeff ∅ w n = ShortDraftHeckeBridge.normFiberCoeff w n := by
   simp [outsideCoeff, outsideWeight, fiber, ShortDraftHeckeBridge.normFiberCoeff]
 
+/--
+@isnad1 id=eq.2h4v.s10.47a6e41725da from=translated src=- shape=4aecf7a3 vocab=92b1044d
+-/
 theorem normFiberLSeries_finiteEuler_baseChange {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q)
     (S : Finset (Ideal O)) (hS : ∀ P ∈ S, Prime P)
@@ -360,6 +381,9 @@ open ConcretePrimeRowBridge ShortDraftHeckeBridge
 
 abbrev O := ConcretePrimeRowBridge.O
 
+/--
+@isnad1 id=le.0h1v.s5.7d42397ff063 from=translated src=- shape=ccbb45f2 vocab=9232e7a7
+-/
 theorem idealsUpTo_card_le (N : ℕ) :
     (idealsUpTo N).card ≤ 64 * (N + 1) := by
   classical
@@ -388,6 +412,9 @@ theorem idealsUpTo_card_le (N : ℕ) :
     exact_mod_cast hqNat
   simpa only [hcast] using hqInt
 
+/--
+@isnad1 id=le.0h2v.s6.f6df2095ccec from=translated src=- shape=6d00b039 vocab=2d10637a
+-/
 theorem outsideIdealsUpTo_card_le (S : Finset (Ideal O)) (N : ℕ) :
     (outsideIdealsUpTo S N).card ≤ 64 * (N + 1) := by
   classical
@@ -398,6 +425,9 @@ theorem outsideIdealsUpTo_card_le (S : Finset (Ideal O)) (N : ℕ) :
       exact (Finset.mem_filter.mp hI).1
     _ ≤ _ := idealsUpTo_card_le N
 
+/--
+@isnad1 id=ex.2h1v.s7.1ceaf090a68f from=translated src=- shape=ac972ad8 vocab=faf4487b
+-/
 theorem smooth_supported_hasLipschitzConstant
     (W : ℝ → ℂ) (hSmooth : ContDiff ℝ (↑(⊤ : ℕ∞)) W)
     (hSupp : ∀ y : ℝ, y ≤ 1 ∨ 2 ≤ y → W y = 0) :
@@ -422,6 +452,9 @@ theorem smooth_supported_hasLipschitzConstant
 noncomputable def fixedTestWeight (W : ℝ → ℂ) (m n : ℕ) : ℂ :=
   W (2 * ((n : ℝ) / (2 * m : ℕ)))
 
+/--
+@isnad1 id=eq.1h3v.s5.6cefbca8029c from=translated src=- shape=635461bc vocab=9c63e1cb
+-/
 theorem fixedTestWeight_eq (W : ℝ → ℂ) {m : ℕ} (hm : 0 < m) (n : ℕ) :
     fixedTestWeight W m n = W ((n : ℝ) / (m : ℝ)) := by
   unfold fixedTestWeight

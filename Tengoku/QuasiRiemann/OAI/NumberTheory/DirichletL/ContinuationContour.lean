@@ -11,6 +11,9 @@ open MeasureTheory Set Filter Asymptotics Complex
 open scoped Topology
 namespace SevenEighths.Continuation
 
+/--
+@isnad1 id=eq.6h3v.s8.ace4ec423355 from=translated src=- shape=06cfcf75 vocab=9370314b
+-/
 theorem vertical_integral_eq_of_horizontal_vanish (F : ℂ → ℂ) {a b : ℝ}
     (hab : a ≤ b) (hhol : DifferentiableOn ℂ F {s : ℂ | a ≤ s.re ∧ s.re ≤ b})
     (ha : Integrable (fun y : ℝ => F ((a : ℂ) + y * I)))
@@ -42,6 +45,9 @@ theorem vertical_integral_eq_of_horizontal_vanish (F : ℂ → ℂ) {a b : ℝ}
       I * (∫ y : ℝ, F ((a : ℂ) + y * I)) := by simpa using sub_eq_zero.mp hzero
   exact (mul_left_cancel₀ I_ne_zero heq).symm
 
+/--
+@isnad1 id=tendsto.1h4v.s7.6f03ec8dfa29 from=translated src=- shape=78198221 vocab=85400bfe
+-/
 theorem horizontal_integral_tendsto_zero (F : ℂ → ℂ) (a b C : ℝ)
     (hbound : ∀ x ∈ Set.uIcc a b, ∀ y : ℝ,
       ‖F ((x : ℂ) + y * I)‖ ≤ C * Real.exp (-(y ^ 2))) :
@@ -56,6 +62,9 @@ theorem horizontal_integral_tendsto_zero (F : ℂ → ℂ) (a b C : ℝ)
   exact squeeze_zero (fun _ => norm_nonneg _) hnorm
     (by simpa using (hexp.const_mul C).mul_const |b-a|)
 
+/--
+@isnad1 id=integrab.2h2v.s6.cc5e1cb0573d from=translated src=- shape=199f1f4d vocab=17815a77
+-/
 theorem integrable_of_gaussian_bound (f : ℝ → ℂ) (C : ℝ)
     (hmeas : AEStronglyMeasurable f) (hbound : ∀ y, ‖f y‖ ≤ C * Real.exp (-(y ^ 2))) :
     Integrable f := by
@@ -63,6 +72,9 @@ theorem integrable_of_gaussian_bound (f : ℝ → ℂ) (C : ℝ)
     simpa using (integrable_exp_neg_mul_sq (b := 1) (by norm_num)).const_mul C
   exact hg.mono' hmeas (ae_of_all _ hbound)
 
+/--
+@isnad1 id=eq.3h4v.s8.f65527e5508b from=translated src=- shape=5aaf7913 vocab=32deb54b
+-/
 theorem vertical_integral_eq_of_gaussian_bound (F : ℂ → ℂ) {a b C : ℝ}
     (hab : a ≤ b) (hhol : DifferentiableOn ℂ F {s : ℂ | a ≤ s.re ∧ s.re ≤ b})
     (hbound : ∀ x ∈ Icc a b, ∀ y : ℝ,
@@ -85,6 +97,9 @@ theorem vertical_integral_eq_of_gaussian_bound (F : ℂ → ℂ) {a b C : ℝ}
 def gaussianContourIntegrand (G : ℂ → ℂ) (c Z : ℝ) (s : ℂ) : ℂ :=
   (Z : ℂ) ^ (s + (c : ℂ)) * Complex.exp ((s - 5 / 6) ^ 2) * G s
 
+/--
+@isnad1 id=eq.1h5v.s7.0550a9eae203 from=translated src=- shape=90978744 vocab=ba89f210
+-/
 theorem norm_gaussianContourIntegrand (G : ℂ → ℂ) (c x y : ℝ) {Z : ℝ}
     (hZ : 0 < Z) :
     ‖gaussianContourIntegrand G c Z ((x : ℂ) + y * I)‖ =
@@ -99,6 +114,9 @@ theorem norm_gaussianContourIntegrand (G : ℂ → ℂ) (c x y : ℝ) {Z : ℝ}
     add_zero, Real.exp_neg]
   ring
 
+/--
+@isnad1 id=differen.2h4v.s7.45e53b047975 from=translated src=- shape=f7caf265 vocab=7e9da405
+-/
 theorem gaussianContourIntegrand_differentiableOn {G : ℂ → ℂ} {U : Set ℂ}
     (hG : DifferentiableOn ℂ G U) (c : ℝ) {Z : ℝ} (hZ : 0 < Z) :
     DifferentiableOn ℂ (gaussianContourIntegrand G c Z) U := by

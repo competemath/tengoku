@@ -22,6 +22,9 @@ def tupleOperation {α : Type*} [CommMonoid α] {K : ℕ}
         (X / q (∏ i ∈ J, p i)) (Y / q (∏ i ∈ J, p i))
         (Z * q (∏ i ∈ Finset.univ \ J, p i))
 
+/--
+@isnad1 id=eq.2h8v.s6.b9217d0c71e7 from=translated src=- shape=44ef9d84 vocab=8b47e54b
+-/
 theorem tupleOperation_zero {α : Type*} [CommMonoid α]
     (p : Fin 0 → α) (q : α → ℝ) (η : α → ℂ)
     (hq : q 1 = 1) (hη : η 1 = 1)
@@ -29,6 +32,9 @@ theorem tupleOperation_zero {α : Type*} [CommMonoid α]
     tupleOperation p q η F X Y Z = F 1 X Y Z := by
   simp [tupleOperation, hq, hη]
 
+/--
+@isnad1 id=eq.2h8v.s8.0fd09a9a8af7 from=translated src=- shape=77f13798 vocab=8cc8d605
+-/
 theorem tupleOperation_one {α : Type*} [CommMonoid α]
     (p : Fin 1 → α) (q : α → ℝ) (η : α → ℂ)
     (hq : q 1 = 1) (hη : η 1 = 1)

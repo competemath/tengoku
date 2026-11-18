@@ -13,11 +13,17 @@ namespace SevenEighths.HeckeMellinIdentity
 def regularized (P : WeakFEPair ℂ) (s : ℂ) : ℂ :=
   s * (s - 1) * P.Λ₀ s - (s - 1) * P.f₀ + s * P.ε * P.g₀
 
+/--
+@isnad1 id=differen.0h1v.s6.f2366d851d4a from=translated src=- shape=8c84da0d vocab=bb7438f8
+-/
 theorem regularized_entire (P : WeakFEPair ℂ) : Differentiable ℂ (regularized P) := by
   unfold regularized
   have hd := P.differentiable_Λ₀
   fun_prop
 
+/--
+@isnad1 id=eq.3h2v.s6.c0d4f9faedc9 from=translated src=- shape=bed4b91e vocab=a296d075
+-/
 theorem regularized_eq (P : WeakFEPair ℂ) (hk : P.k = 1) {s : ℂ}
     (h0 : s ≠ 0) (h1 : s ≠ 1) : regularized P s = s * (s-1) * P.Λ s := by
   unfold regularized WeakFEPair.Λ
@@ -27,6 +33,9 @@ theorem regularized_eq (P : WeakFEPair ℂ) (hk : P.k = 1) {s : ℂ}
   field_simp
   ring
 
+/--
+@isnad1 id=eq.6h4v.s7.d6940347eb3f from=translated src=- shape=c785a5c7 vocab=b70376df
+-/
 theorem scaled_eq (P Q : WeakFEPair ℂ) (hP : P.k = 1) (hQ : Q.k = 1)
     (A : ℝ) (hA : 0 < A)
     (hright : ∀ s : ℂ, 1 < s.re → P.Λ s = (A : ℂ)^(-s) * Q.Λ s)

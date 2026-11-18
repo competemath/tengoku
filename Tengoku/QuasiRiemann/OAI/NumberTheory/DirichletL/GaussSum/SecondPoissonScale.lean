@@ -53,6 +53,9 @@ open scoped Topology
 open MeasureTheory Real
 open scoped ContDiff FourierTransform SchwartzMap
 
+/--
+@isnad1 id=eq.5h6v.s7.089302f5c6c0 from=translated src=- shape=18299175 vocab=1ddfebe1
+-/
 theorem second_prefactor_identity
     (Y qe qg qx₁ qx₂ Li : ℝ)
     (hqe : 0 < qe) (hqg : 0 < qg) (hqx₁ : 0 < qx₁)
@@ -104,6 +107,9 @@ section
 
 open scoped ComplexConjugate
 
+/--
+@isnad1 id=eq.1h2v.s10.04ec2d6d1c6c from=translated src=- shape=b0950409 vocab=f14a059f
+-/
 theorem canonicalSextic_conj_as_row_label
     (P : Ideal O) [P.IsMaximal] (hgood : lambda ∉ P) (e : O) :
     star (canonicalSextic P hgood (Ideal.Quotient.mk P e)) =
@@ -133,6 +139,9 @@ theorem canonicalSextic_conj_as_row_label
     change (χ x)⁻¹ = χ x * (χ x) ^ 4
     simp [hzero]
 
+/--
+@isnad1 id=eq.1h5v.s7.297e988bcb4d from=translated src=- shape=f052f5b6 vocab=a5e97cb1
+-/
 theorem finiteSquarefreeRow_mul
     {ι : Type*} (P : ι → Ideal O) [∀ i, (P i).IsMaximal]
     (hgood : ∀ i, lambda ∉ P i) (S : Finset ι) (a b : O) :
@@ -148,6 +157,9 @@ noncomputable def rowCoprimeMask
   classical
   exact if ∃ i ∈ S, u ∈ P i then 0 else 1
 
+/--
+@isnad1 id=eq.1h4v.s8.0579114eea16 from=translated src=- shape=994c2f83 vocab=af591cc7
+-/
 theorem finiteSquarefreeRow_self_pair
     {ι : Type*} (P : ι → Ideal O) [∀ i, (P i).IsMaximal]
     (hgood : ∀ i, (IsCyclotomicExtension.zeta_spec 3 ℚ K).toInteger - 1 ∉ P i)
@@ -171,6 +183,9 @@ theorem finiteSquarefreeRow_self_pair
     let : Field (O ⧸ P i) := Ideal.Quotient.field (P i)
     exact isUnit_iff_ne_zero.mpr fun hui => h ⟨i, hi, Ideal.Quotient.eq_zero_iff_mem.mp hui⟩
 
+/--
+@isnad1 id=eq.1h5v.s9.4cd3068423eb from=translated src=- shape=cfbc8664 vocab=ad802e11
+-/
 theorem finiteSquarefreeRow_pair_kernel
     {ι : Type*} [DecidableEq ι]
     (P : ι → Ideal O) [∀ i, (P i).IsMaximal]
@@ -227,6 +242,9 @@ private theorem mask_powerset {ι : Type*} [DecidableEq ι]
     apply Finset.prod_eq_zero hi
     simp [hp]
 
+/--
+@isnad1 id=eq.0h4v.s8.01589048def8 from=translated src=- shape=b02b783d vocab=da72596b
+-/
 theorem rowCoprimeMask_subsets
     {ι : Type*} [DecidableEq ι] (P : ι → Ideal O) (S : Finset ι) (u : O) :
     rowCoprimeMask P S u =
@@ -235,6 +253,9 @@ theorem rowCoprimeMask_subsets
   classical
   exact mask_powerset S (fun i => u ∈ P i)
 
+/--
+@isnad1 id=eq.2h3v.s8.22bf0ac10526 from=translated src=- shape=2714d4a0 vocab=235bacd0
+-/
 theorem prime_product_moebius
     {ι : Type*} [DecidableEq ι] (P : ι → Ideal O)
     [∀ i, (P i).IsMaximal] (hprime : ∀ i, Prime (P i))
@@ -254,6 +275,9 @@ theorem prime_product_moebius
       Int.cast_one, ih, Finset.card_insert_of_notMem hi, pow_succ]
     ring
 
+/--
+@isnad1 id=iff.1h4v.s8.0001e5a3c841 from=translated src=- shape=d66b2fe0 vocab=0a57a9b3
+-/
 theorem mem_prime_product_iff
     {ι : Type*} [DecidableEq ι] (P : ι → Ideal O)
     [∀ i, (P i).IsMaximal] (hinj : Function.Injective P)
@@ -290,6 +314,9 @@ end
 
 open ActualEisensteinCubic
 
+/--
+@isnad1 id=dvd.2h3v.s10.8fdeb2cd0467 from=translated src=- shape=540f3b33 vocab=74a0bc61
+-/
 theorem idealSupport_product_dvd
     (F : Finset (Ideal O)) (hFpos : ∀ I ∈ F, I ≠ ⊥)
     (I : Ideal O) (E : Finset (primePool F))
@@ -304,6 +331,9 @@ theorem idealSupport_product_dvd
     exact UniqueFactorizationMonoid.dvd_of_mem_normalizedFactors
       ((mem_idealSupport_iff F I i).mp (hE hi))
 
+/--
+@isnad1 id=and.2h4v.s11.e939833ae4da from=translated src=- shape=ff5dcaf0 vocab=b1592dc5
+-/
 theorem commonSupport_product_dvd
     (F : Finset (Ideal O)) (hFpos : ∀ I ∈ F, I ≠ ⊥)
     (I J : Ideal O) (E : Finset (primePool F))
@@ -322,6 +352,9 @@ open MeasureTheory Filter LineDeriv
 open scoped FourierTransform SchwartzMap Real RealInnerProductSpace
 abbrev LogPlane := WithLp 2 (ℝ × ℝ)
 
+/--
+@isnad1 id=eq.1h3v.s8.46a5bf2c4884 from=translated src=- shape=d79f6c17 vocab=b6a69b93
+-/
 theorem fourier_prod_eq_iterated (f : LogPlane → ℂ) (hf : Integrable f) (ξ η : ℝ) :
     𝓕 f (WithLp.toLp 2 (ξ, η)) =
       𝓕 (fun x : ℝ => 𝓕 (fun y : ℝ => f (WithLp.toLp 2 (x, y))) η) ξ := by
@@ -350,6 +383,9 @@ theorem fourier_prod_eq_iterated (f : LogPlane → ℂ) (hf : Integrable f) (ξ 
 
 def complexPoint (x y : ℝ) : ℂ := ⟨x, y⟩
 
+/--
+@isnad1 id=eq.0h2v.s4.1349a499119d from=translated src=- shape=8806ad8a vocab=cb675b87
+-/
 theorem complexPoint_eq (x y : ℝ) : complexPoint x y = (x : ℂ) + Complex.I * (y : ℂ) := by
   apply Complex.ext <;> simp [complexPoint]
 
@@ -364,9 +400,15 @@ def planeComplexIso : LogPlane ≃ₗᵢ[ℝ] ℂ where
     rw [Complex.sq_norm]
     simp [Complex.normSq_apply, complexPoint, Real.norm_eq_abs,  sq]
 
+/--
+@isnad1 id=eq.0h2v.s8.8b9cf834b16c from=translated src=- shape=34ba40e6 vocab=de5c0170
+-/
 @[simp] theorem planeComplexIso_apply (x y : ℝ) :
     planeComplexIso (WithLp.toLp 2 (x, y)) = complexPoint x y := rfl
 
+/--
+@isnad1 id=isometry.0h1v.s4.e80b3a747a1a from=translated src=- shape=a4c439d3 vocab=05fba010
+-/
 theorem horizontal_isometry (η : ℝ) : Isometry (fun x : ℝ => complexPoint x η) := by
   apply Isometry.of_dist_eq
   intro x y
@@ -374,6 +416,9 @@ theorem horizontal_isometry (η : ℝ) : Isometry (fun x : ℝ => complexPoint x
     apply Complex.ext <;> simp [complexPoint]
   simp only [dist_eq_norm, h, Complex.norm_real]
 
+/--
+@isnad1 id=hastempe.0h1v.s4.6b50dface241 from=translated src=- shape=a4c439d3 vocab=1e0cd58f
+-/
 theorem horizontal_temperate (η : ℝ) :
     (fun x : ℝ => complexPoint x η).HasTemperateGrowth := by
   have heq : (fun x : ℝ => complexPoint x η) =
@@ -387,16 +432,25 @@ def horizontalSlice (f : SchwartzMap ℂ ℂ) (η : ℝ) : SchwartzMap ℝ ℂ :
   SchwartzMap.compCLMOfAntilipschitz ℂ (horizontal_temperate η)
     (horizontal_isometry η).antilipschitzWith f
 
+/--
+@isnad1 id=eq.0h3v.s7.cdf5d500fa89 from=translated src=- shape=e48239c5 vocab=1b1233ea
+-/
 @[simp] theorem horizontalSlice_apply (f : SchwartzMap ℂ ℂ) (η x : ℝ) :
     horizontalSlice f η x = f (complexPoint x η) := rfl
 
 def partialFourier (f : SchwartzMap ℂ ℂ) (η x : ℝ) : ℂ :=
   𝓕 (fun y : ℝ => f (complexPoint x y)) η
 
+/--
+@isnad1 id=eq.0h3v.s7.d3915de817c7 from=translated src=- shape=04837905 vocab=36423dda
+-/
 theorem partialFourier_eq_integral (f : SchwartzMap ℂ ℂ) (η x : ℝ) :
     partialFourier f η x =
       ∫ y : ℝ, Real.fourierChar (-inner ℝ y η) • f (complexPoint x y) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.65434bfa62e0 from=translated src=- shape=236499a9 vocab=167cc612
+-/
 theorem partialFourier_eq_exp_integral (f : SchwartzMap ℂ ℂ) (η x : ℝ) :
     partialFourier f η x = ∫ y : ℝ,
       Complex.exp (((-2 * Real.pi * (y * η) : ℝ) : ℂ) * Complex.I) *
@@ -407,9 +461,15 @@ theorem partialFourier_eq_exp_integral (f : SchwartzMap ℂ ℂ) (η x : ℝ) :
 def verticalMajorant (f : SchwartzMap ℂ ℂ) (y : ℝ) : ℝ :=
   ((SchwartzMap.seminorm ℝ 0 0) f + (SchwartzMap.seminorm ℝ 2 0) f) * (1 + y ^ 2)⁻¹
 
+/--
+@isnad1 id=integrab.0h1v.s5.0261f70980a3 from=translated src=- shape=b295917b vocab=f2bded5d
+-/
 theorem verticalMajorant_integrable (f : SchwartzMap ℂ ℂ) : Integrable (verticalMajorant f) :=
   integrable_inv_one_add_sq.const_mul _
 
+/--
+@isnad1 id=le.0h3v.s6.2ce485665037 from=translated src=- shape=d9cec576 vocab=edb1e910
+-/
 theorem norm_le_verticalMajorant (f : SchwartzMap ℂ ℂ) (x y : ℝ) :
     ‖f (complexPoint x y)‖ ≤ verticalMajorant f y := by
   have h0 := SchwartzMap.norm_le_seminorm ℝ f (complexPoint x y)
@@ -423,6 +483,9 @@ theorem norm_le_verticalMajorant (f : SchwartzMap ℂ ℂ) (x y : ℝ) :
   apply (le_div_iff₀ hden).mpr
   nlinarith
 
+/--
+@isnad1 id=continuo.0h2v.s5.2e667b616602 from=translated src=- shape=876650a4 vocab=0664e41a
+-/
 theorem partialFourier_continuous (f : SchwartzMap ℂ ℂ) (η : ℝ) :
     Continuous (partialFourier f η) := by
   change Continuous (fun x : ℝ => ∫ y : ℝ,
@@ -444,6 +507,9 @@ theorem partialFourier_continuous (f : SchwartzMap ℂ ℂ) (η : ℝ) :
         f.continuous.comp (horizontal_isometry y).continuous
       exact continuous_const.smul hf
 
+/--
+@isnad1 id=integrab.0h2v.s6.e4d598478a21 from=translated src=- shape=78ec3247 vocab=f7fcdf54
+-/
 theorem partialFourier_integrable (f : SchwartzMap ℂ ℂ) (η : ℝ) :
     Integrable (partialFourier f η) := by
   let G : ℂ → ℂ := fun z => Real.fourierChar (-inner ℝ z.im η) • f z
@@ -459,6 +525,9 @@ theorem partialFourier_integrable (f : SchwartzMap ℂ ℂ) (η : ℝ) :
   simpa only [G, Complex.measurableEquivRealProd_symm_apply, complexPoint]
     using hGp.integral_prod_left
 
+/--
+@isnad1 id=eq.0h3v.s7.699644449467 from=translated src=- shape=181f025e vocab=3c4ed8b5
+-/
 theorem fourier_partialFourier (f : SchwartzMap ℂ ℂ) (ξ η : ℝ) :
     𝓕 (partialFourier f η) ξ = 𝓕 (f : ℂ → ℂ) (complexPoint ξ η) := by
   let fp : SchwartzMap LogPlane ℂ :=
@@ -472,6 +541,9 @@ theorem fourier_partialFourier (f : SchwartzMap ℂ ℂ) (ξ η : ℝ) :
 def partialFourierSchwartz (f : SchwartzMap ℂ ℂ) (η : ℝ) : SchwartzMap ℝ ℂ :=
   𝓕⁻ (horizontalSlice (𝓕 f) η)
 
+/--
+@isnad1 id=eq.0h3v.s6.e5c4ff40117d from=translated src=- shape=03e88913 vocab=64eb2d3d
+-/
 theorem partialFourierSchwartz_apply (f : SchwartzMap ℂ ℂ) (η x : ℝ) :
     partialFourierSchwartz f η x = partialFourier f η x := by
   have heq : 𝓕 (partialFourier f η) =
@@ -487,15 +559,24 @@ theorem partialFourierSchwartz_apply (f : SchwartzMap ℂ ℂ) (η x : ℝ) :
   exact (partialFourier_integrable f η).fourierInv_fourier_eq hi
     (partialFourier_continuous f η).continuousAt
 
+/--
+@isnad1 id=eq.0h2v.s6.e97a63ea906a from=translated src=- shape=f07ee2fd vocab=64eb2d3d
+-/
 theorem partialFourierSchwartz_coe (f : SchwartzMap ℂ ℂ) (η : ℝ) :
     (partialFourierSchwartz f η : ℝ → ℂ) = partialFourier f η :=
   funext (partialFourierSchwartz_apply f η)
 
+/--
+@isnad1 id=eq.0h3v.s7.ad8ad268ebd1 from=translated src=- shape=84d8e6bb vocab=9f16996c
+-/
 theorem fourier_partialFourierSchwartz (f : SchwartzMap ℂ ℂ) (ξ η : ℝ) :
     𝓕 (partialFourierSchwartz f η : ℝ → ℂ) ξ =
       𝓕 (f : ℂ → ℂ) ((ξ : ℂ) + Complex.I * (η : ℂ)) := by
   rw [partialFourierSchwartz_coe, fourier_partialFourier, complexPoint_eq]
 
+/--
+@isnad1 id=hasfderi.0h2v.s6.139016367152 from=translated src=- shape=0e3e1b15 vocab=cd7396fd
+-/
 theorem horizontal_hasFDerivAt (η x : ℝ) :
     HasFDerivAt (fun y : ℝ => complexPoint y η) Complex.ofRealCLM x := by
   have heq : (fun y : ℝ => complexPoint y η) =
@@ -505,6 +586,9 @@ theorem horizontal_hasFDerivAt (η x : ℝ) :
   rw [heq]
   exact Complex.ofRealCLM.hasFDerivAt.add_const _
 
+/--
+@isnad1 id=eq.0h2v.s7.86abdf96dbf3 from=translated src=- shape=3a5b0dff vocab=5fce0edc
+-/
 theorem horizontalSlice_lineDerivOp (F : SchwartzMap ℂ ℂ) (η : ℝ) :
     ∂_{(1 : ℝ)} (horizontalSlice F η) = horizontalSlice (∂_{(1 : ℂ)} F) η := by
   apply SchwartzMap.ext
@@ -517,11 +601,17 @@ theorem horizontalSlice_lineDerivOp (F : SchwartzMap ℂ ℂ) (η : ℝ) :
   rw [hcomp.fderiv]
   simp only [ContinuousLinearMap.comp_apply, Complex.ofRealCLM_apply, Complex.ofReal_one]
 
+/--
+@isnad1 id=eq.0h2v.s8.458f49841536 from=translated src=- shape=a05ec628 vocab=5fce0edc
+-/
 theorem horizontalSlice_lineDerivOp_twice (F : SchwartzMap ℂ ℂ) (η : ℝ) :
     ∂_{(1 : ℝ)} (∂_{(1 : ℝ)} (horizontalSlice F η)) =
       horizontalSlice (∂_{(1 : ℂ)} (∂_{(1 : ℂ)} F)) η := by
   rw [horizontalSlice_lineDerivOp, horizontalSlice_lineDerivOp]
 
+/--
+@isnad1 id=summable.0h0v.s5.5d76d76a3860 from=translated src=- shape=9200eb2e vocab=f72536ee
+-/
 theorem summable_int_cauchy_weight :
     Summable (fun n : ℤ => (1 + (n : ℝ) ^ 2)⁻¹) := by
   classical
@@ -538,12 +628,18 @@ theorem summable_int_cauchy_weight :
   simpa only [one_div] using
     one_div_le_one_div_of_le hsq (show (n.val : ℝ) ^ 2 ≤ 1 + (n.val : ℝ) ^ 2 by linarith)
 
+/--
+@isnad1 id=summable.0h0v.s6.9575b833f194 from=translated src=- shape=6bdf7331 vocab=5689753b
+-/
 theorem summable_int_cauchy_product :
     Summable (fun p : ℤ × ℤ =>
       (1 + (p.1 : ℝ) ^ 2)⁻¹ * (1 + (p.2 : ℝ) ^ 2)⁻¹) :=
   summable_int_cauchy_weight.mul_of_nonneg summable_int_cauchy_weight
     (fun _ => by positivity) (fun _ => by positivity)
 
+/--
+@isnad1 id=summable.1h2v.s7.5400b28f87da from=translated src=- shape=a76c1908 vocab=ed663f9b
+-/
 theorem summable_norm_of_cauchy_product (F : ℤ × ℤ → ℂ) (C : ℝ)
     (hF : ∀ p, ‖F p‖ ≤ C *
       ((1 + (p.1 : ℝ) ^ 2)⁻¹ * (1 + (p.2 : ℝ) ^ 2)⁻¹)) :
@@ -551,6 +647,9 @@ theorem summable_norm_of_cauchy_product (F : ℤ × ℤ → ℂ) (C : ℝ)
   Summable.of_nonneg_of_le (fun _ => norm_nonneg _) hF
     (summable_int_cauchy_product.mul_left C)
 
+/--
+@isnad1 id=summable.1h2v.s7.73f0aef9c97b from=translated src=- shape=4f25ec50 vocab=ed663f9b
+-/
 theorem summable_of_cauchy_product (F : ℤ × ℤ → ℂ) (C : ℝ)
     (hF : ∀ p, ‖F p‖ ≤ C *
       ((1 + (p.1 : ℝ) ^ 2)⁻¹ * (1 + (p.2 : ℝ) ^ 2)⁻¹)) : Summable F :=
@@ -560,10 +659,16 @@ def planeDecayConstant (F : SchwartzMap ℂ ℂ) : ℝ :=
   SchwartzMap.seminorm ℝ 0 0 F + SchwartzMap.seminorm ℝ 2 0 F +
     SchwartzMap.seminorm ℝ 4 0 F
 
+/--
+@isnad1 id=le.0h1v.s5.f89f0e7e0c11 from=translated src=- shape=31d5eeaa vocab=3beb0dbd
+-/
 theorem planeDecayConstant_nonneg (F : SchwartzMap ℂ ℂ) : 0 ≤ planeDecayConstant F := by
   unfold planeDecayConstant
   positivity
 
+/--
+@isnad1 id=le.0h3v.s7.febbabd4d724 from=translated src=- shape=5f5e47f1 vocab=4918d4c8
+-/
 theorem plane_schwartz_product_decay (F : SchwartzMap ℂ ℂ) (ξ η : ℝ) :
     ((1 + ξ ^ 2) * (1 + η ^ 2)) * ‖F (complexPoint ξ η)‖ ≤
       planeDecayConstant F := by
@@ -588,6 +693,9 @@ theorem plane_schwartz_product_decay (F : SchwartzMap ℂ ℂ) (ξ η : ℝ) :
   unfold planeDecayConstant
   nlinarith
 
+/--
+@isnad1 id=le.0h3v.s7.60e2d6f42a44 from=translated src=- shape=eac87b88 vocab=91d3ff73
+-/
 theorem norm_horizontalSlice_le (F : SchwartzMap ℂ ℂ) (η ξ : ℝ) :
     ‖horizontalSlice F η ξ‖ ≤
       (planeDecayConstant F / (1 + η ^ 2)) * (1 + ξ ^ 2)⁻¹ := by
@@ -595,6 +703,9 @@ theorem norm_horizontalSlice_le (F : SchwartzMap ℂ ℂ) (η ξ : ℝ) :
   apply (le_div_iff₀ (by positivity : 0 < (1 + η ^ 2) * (1 + ξ ^ 2))).mpr
   nlinarith [plane_schwartz_product_decay F ξ η]
 
+/--
+@isnad1 id=le.0h3v.s8.5a4da24e06a8 from=translated src=- shape=6a9c0412 vocab=93e92934
+-/
 theorem norm_inverse_horizontalSlice_le (F : SchwartzMap ℂ ℂ) (η x : ℝ) :
     ‖(𝓕⁻ (horizontalSlice F η)) x‖ ≤
       (planeDecayConstant F / (1 + η ^ 2)) * Real.pi := by
@@ -609,6 +720,9 @@ theorem norm_inverse_horizontalSlice_le (F : SchwartzMap ℂ ℂ) (η x : ℝ) :
       norm_horizontalSlice_le F η ξ)
   simpa only [integral_const_mul, integral_univ_inv_one_add_sq] using h
 
+/--
+@isnad1 id=eq.0h2v.s8.091eecfb45f8 from=translated src=- shape=f2a5e9e1 vocab=aace7872
+-/
 theorem norm_inverse_lineDeriv (g : SchwartzMap ℝ ℂ) (x : ℝ) :
     ‖(𝓕⁻ (∂_{(1 : ℝ)} g)) x‖ =
       (2 * Real.pi) * |x| * ‖(𝓕⁻ g) x‖ := by
@@ -620,6 +734,9 @@ theorem norm_inverse_lineDeriv (g : SchwartzMap ℝ ℂ) (x : ℝ) :
     norm_smul, hc]
   simp [RCLike.inner_apply, Real.norm_eq_abs, mul_assoc]
 
+/--
+@isnad1 id=le.0h2v.s9.c7dc54272370 from=translated src=- shape=64fb01db vocab=5b1574f6
+-/
 theorem sq_mul_norm_inverse_le_second (g : SchwartzMap ℝ ℂ) (x : ℝ) :
     x ^ 2 * ‖(𝓕⁻ g) x‖ ≤ ‖(𝓕⁻ (∂_{(1 : ℝ)} (∂_{(1 : ℝ)} g))) x‖ := by
   rw [norm_inverse_lineDeriv, norm_inverse_lineDeriv]
@@ -630,6 +747,9 @@ theorem sq_mul_norm_inverse_le_second (g : SchwartzMap ℝ ℂ) (x : ℝ) :
     _ = ((2 * Real.pi) ^ 2 * |x| ^ 2) * ‖(𝓕⁻ g) x‖ := by rw [sq_abs]
     _ = _ := by ring
 
+/--
+@isnad1 id=le.0h3v.s8.bc6b5ca8c2f4 from=translated src=- shape=32523591 vocab=1e485b91
+-/
 theorem inverse_horizontalSlice_product_decay (F : SchwartzMap ℂ ℂ) (η x : ℝ) :
     ((1 + x ^ 2) * (1 + η ^ 2)) * ‖(𝓕⁻ (horizontalSlice F η)) x‖ ≤
       Real.pi * (planeDecayConstant F +
@@ -654,17 +774,26 @@ def partialFourierDecayConstant (f : SchwartzMap ℂ ℂ) : ℝ :=
   Real.pi * (planeDecayConstant (𝓕 f) +
     planeDecayConstant (∂_{(1 : ℂ)} (∂_{(1 : ℂ)} (𝓕 f))))
 
+/--
+@isnad1 id=le.0h1v.s5.2bb89da898fa from=translated src=- shape=31d5eeaa vocab=582643c5
+-/
 theorem partialFourierDecayConstant_nonneg (f : SchwartzMap ℂ ℂ) :
     0 ≤ partialFourierDecayConstant f :=
   mul_nonneg Real.pi_pos.le
     (add_nonneg (planeDecayConstant_nonneg _) (planeDecayConstant_nonneg _))
 
+/--
+@isnad1 id=le.0h3v.s6.a9e911debd37 from=translated src=- shape=34a8c8e9 vocab=d373f369
+-/
 theorem partialFourier_product_decay (f : SchwartzMap ℂ ℂ) (η x : ℝ) :
     ((1 + x ^ 2) * (1 + η ^ 2)) * ‖partialFourier f η x‖ ≤
       partialFourierDecayConstant f := by
   rw [← partialFourierSchwartz_apply]
   exact inverse_horizontalSlice_product_decay (𝓕 f) η x
 
+/--
+@isnad1 id=le.0h3v.s6.ad351271ea71 from=translated src=- shape=ca543bc8 vocab=a25bc14b
+-/
 theorem norm_partialFourier_le (f : SchwartzMap ℂ ℂ) (η x : ℝ) :
     ‖partialFourier f η x‖ ≤
       partialFourierDecayConstant f * ((1 + x ^ 2)⁻¹ * (1 + η ^ 2)⁻¹) := by
@@ -672,6 +801,9 @@ theorem norm_partialFourier_le (f : SchwartzMap ℂ ℂ) (η x : ℝ) :
   apply (le_div_iff₀ (by positivity : 0 < (1 + x ^ 2) * (1 + η ^ 2))).mpr
   nlinarith [partialFourier_product_decay f η x]
 
+/--
+@isnad1 id=summable.0h1v.s5.55ea256c795d from=translated src=- shape=e788eb89 vocab=2bc23318
+-/
 theorem partialFourier_gaussian_summable_norm (f : SchwartzMap ℂ ℂ) :
     Summable (fun p : ℤ × ℤ =>
       ‖partialFourier f (p.2 : ℝ) (p.1 : ℝ)‖) := by
@@ -681,10 +813,16 @@ theorem partialFourier_gaussian_summable_norm (f : SchwartzMap ℂ ℂ) :
   intro p
   exact norm_partialFourier_le f (p.2 : ℝ) (p.1 : ℝ)
 
+/--
+@isnad1 id=summable.0h1v.s6.075bec1ee0c9 from=translated src=- shape=0960b139 vocab=0a852664
+-/
 theorem partialFourier_gaussian_summable (f : SchwartzMap ℂ ℂ) :
     Summable (fun p : ℤ × ℤ => partialFourier f (p.2 : ℝ) (p.1 : ℝ)) :=
   (partialFourier_gaussian_summable_norm f).of_norm
 
+/--
+@isnad1 id=summable.0h1v.s6.3b7411cf4ea9 from=translated src=- shape=c257469f vocab=b66b6edb
+-/
 theorem plane_lattice_summable_norm (f : 𝓢(ℂ, ℂ)) :
     Summable (fun p : ℤ × ℤ => ‖f (complexPoint (p.1 : ℝ) (p.2 : ℝ))‖) := by
   apply summable_norm_of_cauchy_product _ (planeDecayConstant f)
@@ -694,10 +832,16 @@ theorem plane_lattice_summable_norm (f : 𝓢(ℂ, ℂ)) :
     0 < (1 + (p.1 : ℝ) ^ 2) * (1 + (p.2 : ℝ) ^ 2))).mpr
   nlinarith [plane_schwartz_product_decay f (p.1 : ℝ) (p.2 : ℝ)]
 
+/--
+@isnad1 id=summable.0h1v.s6.8d6e5e9a6777 from=translated src=- shape=8950d1d7 vocab=5fce2c0f
+-/
 theorem plane_lattice_summable (f : 𝓢(ℂ, ℂ)) :
     Summable (fun p : ℤ × ℤ => f (complexPoint (p.1 : ℝ) (p.2 : ℝ))) :=
   (plane_lattice_summable_norm f).of_norm
 
+/--
+@isnad1 id=isometry.0h1v.s4.89f805244890 from=translated src=- shape=4827ab61 vocab=05fba010
+-/
 theorem vertical_isometry (x : ℝ) : Isometry (fun y : ℝ => complexPoint x y) := by
   apply Isometry.of_dist_eq
   intro y z
@@ -706,6 +850,9 @@ theorem vertical_isometry (x : ℝ) : Isometry (fun y : ℝ => complexPoint x y)
     apply Complex.ext <;> simp [complexPoint]
   simp only [dist_eq_norm, h, norm_mul, Complex.norm_I, one_mul, Complex.norm_real]
 
+/--
+@isnad1 id=hastempe.0h1v.s4.f2c02c19095d from=translated src=- shape=4827ab61 vocab=1e0cd58f
+-/
 theorem vertical_temperate (x : ℝ) :
     (fun y : ℝ => complexPoint x y).HasTemperateGrowth := by
   have heq : (fun y : ℝ => complexPoint x y) =
@@ -719,13 +866,22 @@ def verticalSlice (f : 𝓢(ℂ, ℂ)) (x : ℝ) : 𝓢(ℝ, ℂ) :=
   SchwartzMap.compCLMOfAntilipschitz ℂ (vertical_temperate x)
     (vertical_isometry x).antilipschitzWith f
 
+/--
+@isnad1 id=eq.0h3v.s7.68e8dc210af0 from=translated src=- shape=81622cfe vocab=5aaf3c5d
+-/
 @[simp] theorem verticalSlice_apply (f : 𝓢(ℂ, ℂ)) (x y : ℝ) :
     verticalSlice f x y = f (complexPoint x y) := rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.f1da0e4ae4d3 from=translated src=- shape=33a0da47 vocab=30302ea8
+-/
 theorem schwartz_poisson_zero (g : 𝓢(ℝ, ℂ)) :
     (∑' n : ℤ, g (n : ℝ)) = ∑' n : ℤ, 𝓕 (g : ℝ → ℂ) (n : ℝ) := by
   simpa [fourier_eval_zero, SchwartzMap.fourier_coe] using g.tsum_eq_tsum_fourier 0
 
+/--
+@isnad1 id=eq.0h2v.s7.37fefcbd36f6 from=translated src=- shape=cc230e92 vocab=40bdfb97
+-/
 theorem vertical_poisson (f : 𝓢(ℂ, ℂ)) (x : ℝ) :
     (∑' n : ℤ, f (complexPoint x (n : ℝ))) =
       ∑' n : ℤ, partialFourier f (n : ℝ) x := by
@@ -754,6 +910,9 @@ private theorem iterated_poisson_pair_sum
     _ = ∑' m, ∑' n, g m n := hg.tsum_comm
     _ = ∑' p : ℤ × ℤ, g p.1 p.2 := hg.tsum_prod.symm
 
+/--
+@isnad1 id=eq.0h1v.s8.ae854fbffa11 from=translated src=- shape=810fb29d vocab=5b7530f2
+-/
 theorem integer_pair_poisson (f : 𝓢(ℂ, ℂ)) :
     (∑' p : ℤ × ℤ, f (complexPoint (p.1 : ℝ) (p.2 : ℝ))) =
       ∑' p : ℤ × ℤ, (𝓕 f) (complexPoint (p.1 : ℝ) (p.2 : ℝ)) := by

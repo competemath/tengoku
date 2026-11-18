@@ -19,16 +19,25 @@ def inflate {M L : Ideal A} (hML : M ≤ L) (χ : MulChar (A ⧸ L) ℂ) :
   MulChar.ofUnitHom (χ.toUnitHom.comp
     (Units.map (Ideal.Quotient.factor hML).toMonoidHom))
 
+/--
+@isnad1 id=eq.1h4v.s9.fdedf523ef35 from=translated src=- shape=bf2fabc9 vocab=1eb077b2
+-/
 theorem inflate_toUnitHom {M L : Ideal A} (hML : M ≤ L) (χ : MulChar (A ⧸ L) ℂ) :
     (inflate hML χ).toUnitHom =
       χ.toUnitHom.comp (Units.map (Ideal.Quotient.factor hML).toMonoidHom) := by
   simp only [inflate, MulChar.toUnitHom_eq, MulChar.ofUnitHom_eq, Equiv.apply_symm_apply]
 
+/--
+@isnad1 id=eq.1h5v.s9.b9aca205eeb8 from=translated src=- shape=4755d339 vocab=30179d58
+-/
 theorem inflate_apply_unit {M L : Ideal A} (hML : M ≤ L) (χ : MulChar (A ⧸ L) ℂ)
     (u : (A ⧸ M)ˣ) :
     inflate hML χ u = χ (Ideal.Quotient.factor hML (u : A ⧸ M)) :=
   MulChar.ofUnitHom_coe _ u
 
+/--
+@isnad1 id=eq.1h5v.s9.7ac392ca7cef from=translated src=- shape=a98b322b vocab=7e89c2e1
+-/
 theorem inflate_apply {M L : Ideal A} (hML : M ≤ L) (χ : MulChar (A ⧸ L) ℂ)
     (x : A ⧸ M) :
     inflate hML χ x = if IsUnit x then χ (Ideal.Quotient.factor hML x) else 0 := by
@@ -37,11 +46,17 @@ theorem inflate_apply {M L : Ideal A} (hML : M ≤ L) (χ : MulChar (A ⧸ L) �
     simpa only [u.isUnit, ite_true] using inflate_apply_unit hML χ u
   · simp only [hx, ite_false, MulChar.map_nonunit _ hx]
 
+/--
+@isnad1 id=eq.1h5v.s10.ffe3908723e4 from=translated src=- shape=b6711246 vocab=a139548b
+-/
 theorem inflate_mk {M L : Ideal A} (hML : M ≤ L) (χ : MulChar (A ⧸ L) ℂ) (a : A) :
     inflate hML χ (Ideal.Quotient.mk M a) =
       if IsUnit (Ideal.Quotient.mk M a) then χ (Ideal.Quotient.mk L a) else 0 := by
   simpa only [Ideal.Quotient.factor_mk] using inflate_apply hML χ (Ideal.Quotient.mk M a)
 
+/--
+@isnad1 id=factorst.1h4v.s8.4b2f9632794f from=translated src=- shape=896cf3a2 vocab=7f197ddd
+-/
 theorem inflate_factorsThrough {M L : Ideal A} [Finite (A ⧸ M)]
     (hML : M ≤ L) (χ : MulChar (A ⧸ L) ℂ) :
     FactorsThroughIdeal (inflate hML χ) (L.map (Ideal.Quotient.mk M)) := by
@@ -55,6 +70,9 @@ theorem inflate_factorsThrough {M L : Ideal A} [Finite (A ⧸ M)]
     (Ideal.Quotient.mk_eq_one_iff_sub_mem _).mpr haL
   rw [inflate_apply_unit, ← ha, Ideal.Quotient.factor_mk, ha1, map_one]
 
+/--
+@isnad1 id=eq.2h5v.s7.f5609c4d725a from=translated src=- shape=ca21ee88 vocab=5d7f306d
+-/
 theorem inflate_trans {M L K : Ideal A} (hML : M ≤ L) (hLK : L ≤ K)
     (χ : MulChar (A ⧸ K) ℂ) :
     inflate hML (inflate hLK χ) = inflate (hML.trans hLK) χ := by
@@ -66,6 +84,9 @@ theorem inflate_trans {M L K : Ideal A} (hML : M ≤ L) (hLK : L ≤ K)
   rw [inflate_apply_unit, inflate_apply_unit]
   exact congrArg χ (Ideal.Quotient.factor_comp_apply hML hLK (u : A ⧸ M))
 
+/--
+@isnad1 id=eq.2h5v.s9.eca6ac9ee9fb from=translated src=- shape=6f0dea7e vocab=b5350f9c
+-/
 theorem inflate_global_units {M L : Ideal A} (hML : M ≤ L) (χ : MulChar (A ⧸ L) ℂ)
     (hχ : ∀ u : Aˣ, χ (Ideal.Quotient.mk L u) = 1) :
     ∀ u : Aˣ, inflate hML χ (Ideal.Quotient.mk M u) = 1 := by
@@ -73,6 +94,9 @@ theorem inflate_global_units {M L : Ideal A} (hML : M ≤ L) (χ : MulChar (A �
   rw [inflate_mk]
   simp only [u.isUnit.map (Ideal.Quotient.mk M), ite_true, hχ]
 
+/--
+@isnad1 id=iff.0h4v.s9.1b6bbbb99d2f from=translated src=- shape=445e4a70 vocab=6c81d886
+-/
 theorem isUnit_mk_inf_iff (I J : Ideal A) (a : A) :
     IsUnit (Ideal.Quotient.mk (I ⊓ J) a) ↔
       IsUnit (Ideal.Quotient.mk I a) ∧ IsUnit (Ideal.Quotient.mk J a) := by
@@ -100,6 +124,9 @@ theorem isUnit_mk_inf_iff (I J : Ideal A) (a : A) :
     rw [hid]
     exact ⟨I.neg_mem (I.mul_mem_right _ hbI), J.neg_mem (J.mul_mem_left _ hcJ)⟩
 
+/--
+@isnad1 id=finite.0h3v.s6.edba134f1c77 from=translated src=- shape=e134eb78 vocab=63b8a4fc
+-/
 theorem finite_quotient_inf (I J : Ideal A) [Finite (A ⧸ I)] [Finite (A ⧸ J)] :
     Finite (A ⧸ I ⊓ J) := by
   let f : A ⧸ I ⊓ J →+* (A ⧸ I) × (A ⧸ J) :=
@@ -116,6 +143,9 @@ def product (I J : Ideal A) (χ : MulChar (A ⧸ I) ℂ) (ψ : MulChar (A ⧸ J)
     MulChar (A ⧸ I ⊓ J) ℂ :=
   inflate inf_le_left χ * inflate inf_le_right ψ
 
+/--
+@isnad1 id=eq.0h6v.s10.98354c1eef5d from=translated src=- shape=a6facdc7 vocab=2d94b37c
+-/
 theorem product_mk (I J : Ideal A) (χ : MulChar (A ⧸ I) ℂ) (ψ : MulChar (A ⧸ J) ℂ)
     (a : A) :
     product I J χ ψ (Ideal.Quotient.mk (I ⊓ J) a) =
@@ -130,6 +160,9 @@ theorem product_mk (I J : Ideal A) (χ : MulChar (A ⧸ I) ℂ) (ψ : MulChar (A
       rw [MulChar.map_nonunit _ hJ, mul_zero]
     · rw [MulChar.map_nonunit _ hI, zero_mul]
 
+/--
+@isnad1 id=eq.2h6v.s10.89bbfc89742a from=translated src=- shape=e3a320fd vocab=ba1ae698
+-/
 theorem product_global_units (I J : Ideal A) (χ : MulChar (A ⧸ I) ℂ)
     (ψ : MulChar (A ⧸ J) ℂ)
     (hχ : ∀ u : Aˣ, χ (Ideal.Quotient.mk I u) = 1)

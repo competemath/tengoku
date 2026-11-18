@@ -20,6 +20,9 @@ def primePowerReduction (P : Ideal (𝓞 K)) {c : ℕ} (hc : 1 ≤ c) :
   Ideal.Quotient.factor (by simpa using Ideal.pow_le_pow_right (I := P) hc)
 
 omit [NumberField K] in
+/--
+@isnad1 id=surjecti.1h3v.s10.c6d90c26814f from=translated src=- shape=107272f2 vocab=3afe150b
+-/
 theorem primePowerReduction_surjective (P : Ideal (𝓞 K)) {c : ℕ} (hc : 1 ≤ c) :
     Function.Surjective (primePowerReduction P hc) :=
   Ideal.Quotient.factor_surjective _
@@ -36,6 +39,9 @@ def primePowerCharacter (P : Ideal (𝓞 K)) {c : ℕ} (hc : 1 ≤ c)
     exact hx ((Ideal.Quotient.isUnit_mk_pow_iff_isUnit_mk P (by omega)).mpr ha)
 
 omit [NumberField K] in
+/--
+@isnad1 id=eq.1h5v.s11.d7b8c4e3d14d from=translated src=- shape=6b551d37 vocab=355cb0cc
+-/
 @[simp] theorem primePowerCharacter_apply (P : Ideal (𝓞 K)) {c : ℕ} (hc : 1 ≤ c)
     (χ : MulChar (𝓞 K ⧸ P) ℂ) (x : 𝓞 K ⧸ P ^ c) :
     primePowerCharacter P hc χ x = χ (primePowerReduction P hc x) := rfl

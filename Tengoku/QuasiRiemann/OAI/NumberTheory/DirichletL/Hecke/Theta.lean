@@ -12,6 +12,9 @@ open scoped Topology BigOperators
 namespace SevenEighths.HeckeTheta
 open EisensteinTheta
 
+/--
+@isnad1 id=locallyi.1h3v.s7.21e6470bda2f from=translated src=- shape=2d9762fe vocab=446207e3
+-/
 theorem locallyIntegrableOn_sum {ι : Type*} (s : Finset ι)
     (f : ι → ℝ → ℂ) (hf : ∀ i ∈ s, LocallyIntegrableOn (f i) (Ioi 0)) :
     LocallyIntegrableOn (∑ i ∈ s, f i) (Ioi 0) := by
@@ -72,9 +75,15 @@ def pair {N : ℕ} [NeZero N] (w : Fin N × Fin N → ℂ) : WeakFEPair ℂ :=
     parityPair p.1.1 p.1.2 N (Nat.cast_pos.mpr (NeZero.pos N)) p.2)
     (fun _ => ThetaProduct.rectangularPair_k ..) (fun p => w p.1)
 
+/--
+@isnad1 id=eq.0h2v.s5.0b98ac7c2ffd from=translated src=- shape=645cc048 vocab=a1b1b651
+-/
 @[simp] theorem pair_k {N : ℕ} [NeZero N] (w : Fin N × Fin N → ℂ) :
     (pair w).k = 1 := rfl
 
+/--
+@isnad1 id=hassum.1h3v.s6.5e840bd66b6d from=translated src=- shape=cd374737 vocab=9afcb087
+-/
 theorem theta_hasSum {N : ℕ} [NeZero N] (w : Fin N × Fin N → ℂ)
     {t : ℝ} (ht : 0 < t) :
     HasSum (fun n : ℤ × ℤ => periodicCoeff w n *
@@ -111,10 +120,16 @@ theorem theta_hasSum {N : ℕ} [NeZero N] (w : Fin N × Fin N → ℂ)
   simp only [pair, finitePair, Finset.sum_apply, Pi.smul_apply, smul_eq_mul,
     Fintype.sum_prod_type, Finset.mul_sum]
 
+/--
+@isnad1 id=eq.1h3v.s5.00852430d4bb from=translated src=- shape=675b4fa4 vocab=8c1e468d
+-/
 theorem theta_eq_pair {N : ℕ} [NeZero N] (w : Fin N × Fin N → ℂ)
     {t : ℝ} (ht : 0 < t) : theta w t = (pair w).f t :=
   (theta_hasSum w ht).tsum_eq
 
+/--
+@isnad1 id=eq.0h2v.s5.57c1921bccbe from=translated src=- shape=1cb9992f vocab=702bf145
+-/
 theorem pair_f₀ {N : ℕ} [NeZero N] (w : Fin N × Fin N → ℂ) :
     (pair w).f₀ = w (0, 0) := by
   have hconst (a : Fin N × Fin N) :
@@ -137,6 +152,9 @@ def dualScalar (N : ℕ) : ℂ :=
   ((((N : ℝ) ^ 2) ^ (-(1 / 2 : ℝ)) : ℝ) : ℂ) *
     (((3 * (N : ℝ) ^ 2) ^ (-(1 / 2 : ℝ)) : ℝ) : ℂ)
 
+/--
+@isnad1 id=eq.0h2v.s6.67ba3c6b8b1e from=translated src=- shape=46d4a6bb vocab=318a854f
+-/
 theorem pair_g₀ {N : ℕ} [NeZero N] (w : Fin N × Fin N → ℂ) :
     (pair w).g₀ = 2 * dualScalar N * ∑ a, w a := by
   simp only [pair, finitePair, parityPair, ThetaProduct.rectangularPair,
@@ -149,15 +167,24 @@ theorem pair_g₀ {N : ℕ} [NeZero N] (w : Fin N × Fin N → ℂ) :
   simp only [← Finset.sum_mul, dualScalar]
   ring
 
+/--
+@isnad1 id=eq.1h2v.s6.5c7d4bfc1cbb from=translated src=- shape=de880304 vocab=cd9f462e
+-/
 theorem pair_g₀_eq_zero {N : ℕ} [NeZero N] (w : Fin N × Fin N → ℂ)
     (hw : ∑ a, w a = 0) : (pair w).g₀ = 0 := by rw [pair_g₀, hw, mul_zero]
 
 def completed {N : ℕ} [NeZero N] (w : Fin N × Fin N → ℂ) : ℂ → ℂ := (pair w).Λ
 
+/--
+@isnad1 id=differen.2h3v.s6.5afd99b72f59 from=translated src=- shape=582f243a vocab=c464baa1
+-/
 theorem completed_differentiableAt {N : ℕ} [NeZero N] (w : Fin N × Fin N → ℂ)
     {s : ℂ} (hs₀ : s ≠ 0) (hs₁ : s ≠ 1) : DifferentiableAt ℂ (completed w) s :=
   (pair w).differentiableAt_Λ (Or.inl hs₀) (Or.inl (by simpa using hs₁))
 
+/--
+@isnad1 id=hasmelli.1h3v.s6.fbe3af750822 from=translated src=- shape=a8706b0e vocab=6fa5690b
+-/
 theorem pair_hasMellin {N : ℕ} [NeZero N] (w : Fin N × Fin N → ℂ)
     {s : ℂ} (hs : 1 < s.re) :
     HasMellin (fun t => (pair w).f t - (pair w).f₀) s (completed w s) :=
@@ -166,11 +193,17 @@ theorem pair_hasMellin {N : ℕ} [NeZero N] (w : Fin N × Fin N → ℂ)
 def latticeL {N : ℕ} [NeZero N] (w : Fin N × Fin N → ℂ) (s : ℂ) : ℂ :=
   (Real.pi : ℂ) ^ s * (Complex.Gamma s)⁻¹ * completed w s
 
+/--
+@isnad1 id=differen.2h3v.s7.14ed220ada81 from=translated src=- shape=f3d3a85e vocab=833e5ff4
+-/
 theorem completed_differentiableAt_of_mean_zero {N : ℕ} [NeZero N]
     (w : Fin N × Fin N → ℂ) (hw : ∑ a, w a = 0) {s : ℂ} (hs₀ : s ≠ 0) :
     DifferentiableAt ℂ (completed w) s :=
   (pair w).differentiableAt_Λ (Or.inl hs₀) (Or.inr (pair_g₀_eq_zero w hw))
 
+/--
+@isnad1 id=differen.2h3v.s7.6ee67660d18d from=translated src=- shape=f9fb0ab9 vocab=3eec3c8f
+-/
 theorem latticeL_differentiableAt {N : ℕ} [NeZero N] (w : Fin N × Fin N → ℂ)
     {s : ℂ} (hs₀ : s ≠ 0) (hs₁ : s ≠ 1 ∨ ∑ a, w a = 0) :
     DifferentiableAt ℂ (latticeL w) s := by
@@ -185,6 +218,9 @@ theorem latticeL_differentiableAt {N : ℕ} [NeZero N] (w : Fin N × Fin N → �
 def regularizedCompleted {N : ℕ} [NeZero N] (w : Fin N × Fin N → ℂ) (s : ℂ) : ℂ :=
   (s - 1) * ((pair w).Λ₀ s - s⁻¹ * (pair w).f₀) + (pair w).g₀
 
+/--
+@isnad1 id=differen.1h3v.s6.d60e568b054e from=translated src=- shape=45a5c518 vocab=be55a972
+-/
 theorem regularizedCompleted_differentiableAt {N : ℕ} [NeZero N]
     (w : Fin N × Fin N → ℂ) {s : ℂ} (hs₀ : s ≠ 0) :
     DifferentiableAt ℂ (regularizedCompleted w) s := by
@@ -192,6 +228,9 @@ theorem regularizedCompleted_differentiableAt {N : ℕ} [NeZero N]
     (((pair w).differentiable_Λ₀ s).sub
       ((differentiableAt_id.inv hs₀).mul_const (pair w).f₀))).add_const (pair w).g₀)
 
+/--
+@isnad1 id=eq.2h3v.s6.27d72718c280 from=translated src=- shape=1d802925 vocab=55c24e53
+-/
 theorem regularizedCompleted_eq {N : ℕ} [NeZero N] (w : Fin N × Fin N → ℂ)
     {s : ℂ} (hs₀ : s ≠ 0) (hs₁ : s ≠ 1) :
     regularizedCompleted w s = (s - 1) * completed w s := by
@@ -205,6 +244,9 @@ theorem regularizedCompleted_eq {N : ℕ} [NeZero N] (w : Fin N × Fin N → ℂ
 def regularizedLatticeL {N : ℕ} [NeZero N] (w : Fin N × Fin N → ℂ) (s : ℂ) : ℂ :=
   (Real.pi : ℂ) ^ s * (Complex.Gamma s)⁻¹ * regularizedCompleted w s
 
+/--
+@isnad1 id=differen.1h3v.s6.9262f40f2371 from=translated src=- shape=45a5c518 vocab=f6c0e6b2
+-/
 theorem regularizedLatticeL_differentiableAt {N : ℕ} [NeZero N]
     (w : Fin N × Fin N → ℂ) {s : ℂ} (hs₀ : s ≠ 0) :
     DifferentiableAt ℂ (regularizedLatticeL w) s := by
@@ -213,6 +255,9 @@ theorem regularizedLatticeL_differentiableAt {N : ℕ} [NeZero N]
       (Complex.differentiable_one_div_Gamma s)).mul
         (regularizedCompleted_differentiableAt w hs₀)
 
+/--
+@isnad1 id=eq.2h3v.s6.db46f1b22c10 from=translated src=- shape=1d802925 vocab=52a582a4
+-/
 theorem regularizedLatticeL_eq {N : ℕ} [NeZero N] (w : Fin N × Fin N → ℂ)
     {s : ℂ} (hs₀ : s ≠ 0) (hs₁ : s ≠ 1) :
     regularizedLatticeL w s = (s - 1) * latticeL w s := by
@@ -220,6 +265,9 @@ theorem regularizedLatticeL_eq {N : ℕ} [NeZero N] (w : Fin N × Fin N → ℂ)
   rw [regularizedCompleted_eq w hs₀ hs₁]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s6.f1efb5dd2e83 from=translated src=- shape=fa706234 vocab=0401374b
+-/
 theorem completed_functional_equation {N : ℕ} [NeZero N]
     (w : Fin N × Fin N → ℂ) (s : ℂ) :
     completed w (1 - s) = (pair w).symm.Λ s := by

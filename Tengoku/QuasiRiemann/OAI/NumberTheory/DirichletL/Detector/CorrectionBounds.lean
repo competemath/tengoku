@@ -10,12 +10,18 @@ namespace OAI
 noncomputable section
 namespace SevenEighths.ProbeLocal
 
+/--
+@isnad1 id=ne.1h1v.s5.aa6dfa73341b from=translated src=- shape=25a84a34 vocab=c9cc40ec
+-/
 lemma one_sub_ne_zero_of_norm_le_half (a : ℂ) (ha : ‖a‖ ≤ 1/2) : 1 - a ≠ 0 := by
   intro h
   have : a = 1 := by linear_combination -h
   rw [this, norm_one] at ha
   norm_num at ha
 
+/--
+@isnad1 id=le.1h1v.s6.f3befd0bee3d from=translated src=- shape=34a6bff7 vocab=39686c9b
+-/
 lemma inv_one_sub_norm_le_two (a : ℂ) (ha : ‖a‖ ≤ 1/2) : ‖(1-a)⁻¹‖ ≤ 2 := by
   have hl := norm_sub_norm_le (1 : ℂ) a
   simp only [norm_one] at hl
@@ -23,6 +29,9 @@ lemma inv_one_sub_norm_le_two (a : ℂ) (ha : ‖a‖ ≤ 1/2) : ‖(1-a)⁻¹�
   rw [norm_inv, ← one_div, div_le_iff₀ hd]
   linarith
 
+/--
+@isnad1 id=le.4h6v.s7.016a8ffd1197 from=translated src=- shape=0297166b vocab=2bedc0c5
+-/
 theorem unramified_marked_error_bound (R V qInv K W D : ℂ)
     (hR : ‖R‖ ≤ 1/2) (hV : ‖V‖ ≤ 1/2) (hq : ‖qInv‖ ≤ 1) (hD : ‖D‖ ≤ 1/2) :
     ‖ProbeEuler.markedFactor R V qInv K (-D + W*R) 1 + D‖ ≤
@@ -55,6 +64,9 @@ theorem unramified_marked_error_bound (R V qInv K W D : ℂ)
         nlinarith [norm_nonneg W]
       nlinarith [mul_le_mul_of_nonneg_left he (norm_nonneg R)]
 
+/--
+@isnad1 id=le.2h4v.s7.ef0322904e0a from=translated src=- shape=f395d44a vocab=820f0248
+-/
 theorem continuedCorrection_defect_bound (V W D Pstar : ℂ)
     (hV : ‖V‖ ≤ 1/2) (hD : ‖D‖ ≤ 1/2) :
     ‖continuedCorrection V W D Pstar - 1‖ ≤

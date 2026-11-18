@@ -17,6 +17,9 @@ open Set Filter Metric Complex
 
 namespace SevenEighths.LogarithmicControl
 
+/--
+@isnad1 id=differen.4h3v.s7.63dd5123fc17 from=translated src=- shape=3a28ecb4 vocab=02e78a82
+-/
 theorem differentiableOn_of_exp_eq {U : Set ℂ} (hU : IsOpen U)
     {L g : ℂ → ℂ} (hL : DifferentiableOn ℂ L U)
     (hg : ContinuousOn g U) (he : EqOn (Complex.exp ∘ g) L U) :
@@ -36,6 +39,9 @@ theorem differentiableOn_of_exp_eq {U : Set ℂ} (hU : IsOpen U)
     simpa only [← he hwU, Function.comp_apply] using hw
   exact ((hi.comp z hLc).congr_of_eventuallyEq heq.symm).differentiableWithinAt
 
+/--
+@isnad1 id=ex.3h3v.s7.f672bf663e2b from=translated src=- shape=c43b3d77 vocab=9b4c608f
+-/
 theorem exists_holomorphic_log {L : ℂ → ℂ} {c : ℂ} {R : ℝ} (hR : 0 < R)
     (hL : DifferentiableOn ℂ L (ball c R))
     (h0 : ∀ z ∈ ball c R, L z ≠ 0) :
@@ -51,6 +57,9 @@ theorem exists_holomorphic_log {L : ℂ → ℂ} {c : ℂ} {R : ℝ} (hR : 0 < R
       exact h0 z hz heq)
   exact ⟨g, differentiableOn_of_exp_eq isOpen_ball hL hg he, he⟩
 
+/--
+@isnad1 id=ex.4h4v.s8.6087647d885a from=translated src=- shape=7e20e682 vocab=9b4c608f
+-/
 theorem exists_holomorphic_log_normalized {L : ℂ → ℂ} {c m : ℂ} {R : ℝ} (hR : 0 < R)
     (hL : DifferentiableOn ℂ L (ball c R))
     (h0 : ∀ z ∈ ball c R, L z ≠ 0) (hm : Complex.exp m = L c) :
@@ -65,6 +74,9 @@ theorem exists_holomorphic_log_normalized {L : ℂ → ℂ} {c m : ℂ} {R : ℝ
   rw [Complex.exp_add, Complex.exp_sub, hm, hez,
     hec, div_self (h0 c (mem_ball_self hR)), mul_one]
 
+/--
+@isnad1 id=eqon.5h4v.s7.a81e2b4f713d from=translated src=- shape=61c8a18b vocab=75727dc3
+-/
 theorem log_eqOn_of_eq_center {g h : ℂ → ℂ} {c : ℂ} {r : ℝ} (hr : 0 < r)
     (hg : DifferentiableOn ℂ g (ball c r)) (hh : DifferentiableOn ℂ h (ball c r))
     (he : EqOn (Complex.exp ∘ g) (Complex.exp ∘ h) (ball c r)) (hc : g c = h c) :
@@ -86,6 +98,9 @@ theorem log_eqOn_of_eq_center {g h : ℂ → ℂ} {c : ℂ} {r : ℝ} (hr : 0 < 
   exact (hg.analyticOnNhd isOpen_ball).eqOn_of_preconnected_of_eventuallyEq
     (hh.analyticOnNhd isOpen_ball) (convex_ball c r).isPreconnected hcm heq
 
+/--
+@isnad1 id=le.8h7v.s8.b8e2ba96e49c from=translated src=- shape=bab17a11 vocab=7a68d471
+-/
 theorem borel_caratheodory_closedBall {g : ℂ → ℂ} {c : ℂ} {r R M A : ℝ}
     (hr : 0 ≤ r) (hrR : r < R) (hM : 0 < M) (hA : 0 ≤ A)
     (hg : DifferentiableOn ℂ g (ball c R))
@@ -108,6 +123,9 @@ theorem borel_caratheodory_closedBall {g : ℂ → ℂ} {c : ℂ} {r R M A : ℝ
   · gcongr
   · gcongr
 
+/--
+@isnad1 id=le.8h8v.s8.54ff9137cb7a from=translated src=- shape=173cdba0 vocab=e7fa2d1a
+-/
 theorem three_circles {g : ℂ → ℂ} {c z : ℂ} {r R S A B : ℝ}
     (hr : 0 < r) (hrR : r < R) (hRS : R < S)
     (hg : DifferentiableOn ℂ g (ball c S))
@@ -161,6 +179,9 @@ theorem three_circles {g : ℂ → ℂ} {c z : ℂ} {r R S A B : ℝ}
   · intro w hw
     exact hb _ (hmap w (le_of_eq hw))
 
+/--
+@isnad1 id=le.11h10v.s8.4ed0d37a30e1 from=translated src=- shape=2ecd11d2 vocab=e7fa2d1a
+-/
 theorem three_circles_power_bound {g : ℂ → ℂ} {c z : ℂ} {r ρ R S A B T : ℝ}
     (hr : 0 < r) (hrρ : r < ρ) (hρR : ρ < R) (hRS : R < S)
     (hA : 1 ≤ A) (hB : 1 ≤ B) (hT : 1 ≤ T)
@@ -209,6 +230,9 @@ theorem three_circles_power_bound {g : ℂ → ℂ} {c z : ℂ} {r ρ R S A B T 
 
 def uniformTheta (e : ℝ) : ℝ := 1 - Real.log (1 + e) / Real.log (200 / 49)
 
+/--
+@isnad1 id=and.2h1v.s6.9a68e463cc8c from=translated src=- shape=b0617b69 vocab=1bc60d7e
+-/
 theorem uniformTheta_mem {e : ℝ} (he : 0 < e) (he' : e < 1 / 1000) :
     0 < uniformTheta e ∧ uniformTheta e < 1 := by
   have hD : 0 < Real.log (200 / 49) := Real.log_pos (by norm_num)
@@ -220,6 +244,9 @@ theorem uniformTheta_mem {e : ℝ} (he : 0 < e) (he' : e < 1 / 1000) :
   · linarith [(div_lt_one hD).mpr hnD]
   · linarith [div_pos hn hD]
 
+/--
+@isnad1 id=le.4h2v.s7.dc4b9a73028a from=translated src=- shape=1a0c9b82 vocab=6e150054
+-/
 theorem three_circles_exponent_uniform {a e : ℝ}
     (ha : 1 / 2 ≤ a) (ha' : a ≤ 1) (he : 0 < e) (he' : e < 1 / 1000) :
     (Real.log (2 - a - 6 * e) - Real.log (49 / 100)) /
@@ -262,6 +289,9 @@ theorem three_circles_exponent_uniform {a e : ℝ}
       ring
     _ ≤ uniformTheta e := sub_le_sub_left hfrac 1
 
+/--
+@isnad1 id=ex.4h3v.s6.624d35ca4bb3 from=translated src=- shape=0cb5f859 vocab=75638861
+-/
 theorem exp_sublinear_le {θ K ε : ℝ} (hθ : 0 ≤ θ) (hθ' : θ < 1)
     (hK : 0 ≤ K) (hε : 0 < ε) :
     ∃ D : ℝ, 0 < D ∧ ∀ x : ℝ, 1 ≤ x →
@@ -295,12 +325,18 @@ theorem exp_sublinear_le {θ K ε : ℝ} (hθ : 0 ≤ θ) (hθ' : θ < 1)
 
 def outerConstant (e A M : ℝ) : ℝ := (4 * M + 4 * A) / e
 
+/--
+@isnad1 id=le.4h3v.s6.dd6c4e71d6ac from=translated src=- shape=7855a156 vocab=c1fbda59
+-/
 theorem outerConstant_ge_one {e A M : ℝ} (he : 0 < e) (he' : e < 1 / 1000)
     (hA : 1 ≤ A) (hM : 1 ≤ M) : 1 ≤ outerConstant e A M := by
   unfold outerConstant
   apply (le_div_iff₀ he).mpr
   nlinarith
 
+/--
+@isnad1 id=le.11h8v.s8.4cf07df7ae37 from=translated src=- shape=d5c06e63 vocab=b4434eb4
+-/
 theorem outer_log_bound {g : ℂ → ℂ} {c : ℂ} {a e A M T : ℝ}
     (ha : 1 / 2 ≤ a) (ha' : a ≤ 1) (he : 0 < e) (he' : e < 1 / 1000)
     (hA : 1 ≤ A) (hM : 1 ≤ M) (hT : 1 ≤ T)
@@ -329,6 +365,9 @@ theorem outer_log_bound {g : ℂ → ℂ} {c : ℂ} {a e A M T : ℝ}
   rw [div_mul_eq_mul_div]
   exact (div_le_div_iff_of_pos_right he).mpr (by nlinarith)
 
+/--
+@isnad1 id=le.11h8v.s8.a8823d6986ca from=translated src=- shape=280cc53f vocab=ec143525
+-/
 theorem inner_log_bound {g : ℂ → ℂ} {c : ℂ} {a e A M T : ℝ}
     (ha : 1 / 2 ≤ a) (ha' : a ≤ 1) (he : 0 < e) (he' : e < 1 / 1000)
     (hA : 1 ≤ A) (hM : 1 ≤ M) (hT : 1 ≤ T)
@@ -350,6 +389,9 @@ theorem inner_log_bound {g : ℂ → ℂ} {c : ℂ} {a e A M T : ℝ}
     (Real.rpow_le_rpow_of_exponent_le hT (three_circles_exponent_uniform ha ha' he he'))
     (by positivity))
 
+/--
+@isnad1 id=le.11h8v.s8.fd08c1e6f786 from=translated src=- shape=99ca862c vocab=5868fb2f
+-/
 theorem logarithm_derivative_bound {g : ℂ → ℂ} {c : ℂ} {a e A M T : ℝ}
     (ha : 1 / 2 ≤ a) (ha' : a ≤ 1) (he : 0 < e) (he' : e < 1 / 1000)
     (hA : 1 ≤ A) (hM : 1 ≤ M) (hT : 1 ≤ T)
@@ -374,6 +416,9 @@ theorem logarithm_derivative_bound {g : ℂ → ℂ} {c : ℂ} {a e A M T : ℝ}
     change dist w c ≤ _
     linarith
 
+/--
+@isnad1 id=ex.10h8v.s9.65348a83322d from=translated src=- shape=09be5d1a vocab=ffe09af7
+-/
 theorem zero_free_disk_logarithm {L E : ℂ → ℂ} {c : ℂ} {a e A M C : ℝ}
     (ha' : a ≤ 1) (he : 0 < e) (he' : e < 1 / 1000) (hC : 0 < C)
     (hL : DifferentiableOn ℂ L (ball c (2 - a - 2 * e)))
@@ -404,6 +449,9 @@ theorem zero_free_disk_logarithm {L E : ℂ → ℂ} {c : ℂ} {a e A M C : ℝ}
     rw [← hez, Complex.norm_exp, Real.rpow_def_of_pos hC] at hp
     simpa [mul_comm] using Real.exp_le_exp.mp hp
 
+/--
+@isnad1 id=eq.4h4v.s7.b9b7bb63dc6d from=translated src=- shape=c5818bb9 vocab=5b718493
+-/
 theorem logarithmic_derivative_eq {L g : ℂ → ℂ} {U : Set ℂ} (hU : IsOpen U)
     (hg : DifferentiableOn ℂ g U) (he : EqOn (Complex.exp ∘ g) L U)
     {z : ℂ} (hz : z ∈ U) : deriv L z / L z = deriv g z := by
@@ -418,6 +466,9 @@ theorem logarithmic_derivative_eq {L g : ℂ → ℂ} {U : Set ℂ} (hU : IsOpen
   rw [← hez]
   field_simp
 
+/--
+@isnad1 id=ex.5h4v.s9.0605f0700854 from=translated src=- shape=91545f62 vocab=293fda1d
+-/
 theorem logarithmic_control {e A M ε : ℝ}
     (he : 0 < e) (he' : e < 1 / 1000) (hA : 1 ≤ A) (hM : 1 ≤ M) (hε : 0 < ε) :
     ∃ D : ℝ, 0 < D ∧ ∀ (a C : ℝ) (L E : ℂ → ℂ) (c : ℂ),
@@ -466,12 +517,18 @@ theorem logarithmic_control {e A M ε : ℝ}
     exact logarithm_derivative_bound ha ha' he he' hA hM hT hg hgRe
       (hgin c (mem_closedBall_self (by norm_num))) hz
 
+/--
+@isnad1 id=le.1h2v.s6.ab55921bb009 from=translated src=- shape=12309c31 vocab=0ab43161
+-/
 theorem conductor_height_scale_ge_exp (Q t : ℝ) (hQ : 1 ≤ Q) :
     Real.exp 1 ≤ 2 * Q * (3 + |t|) ^ 2 := by
   have hs : 9 ≤ (3 + |t|) ^ 2 := by nlinarith [abs_nonneg t]
   have hq := mul_le_mul_of_nonneg_right hQ (sq_nonneg (3 + |t|))
   nlinarith [Real.exp_one_lt_three]
 
+/--
+@isnad1 id=ex.1h2v.s6.bacb34d2d9d8 from=translated src=- shape=e7082d86 vocab=ef6d5963
+-/
 theorem absorb_polynomial_constant {K p : ℝ} (hp : 0 ≤ p) :
     ∃ M : ℝ, 1 ≤ M ∧ ∀ C : ℝ, Real.exp 1 ≤ C → K * C ^ p ≤ C ^ M := by
   let J := max 1 K
@@ -497,6 +554,9 @@ theorem absorb_polynomial_constant {K p : ℝ} (hp : 0 ≤ p) :
       ((show (1 : ℝ) ≤ Real.exp 1 by exact Real.one_le_exp (by norm_num)).trans hC)
       (by linarith)
 
+/--
+@isnad1 id=lt.1h4v.s6.b9c0f2bae9fc from=translated src=- shape=d556f687 vocab=f294ca93
+-/
 theorem disk_re_gt {a e t : ℝ} {z : ℂ}
     (hz : z ∈ ball (2 + (t : ℂ) * Complex.I) (2 - a - 2 * e)) :
     a + 2 * e < z.re := by
@@ -509,6 +569,9 @@ theorem disk_re_gt {a e t : ℝ} {z : ℂ}
   norm_num at hr
   linarith [neg_le_abs (z.re - 2)]
 
+/--
+@isnad1 id=mem.3h5v.s7.014687bb45e6 from=translated src=- shape=fb59839b vocab=8c05cfe5
+-/
 theorem same_height_mem_disk {a e t v x : ℝ} (hev : 8 * e ≤ v)
     (hx : a + v ≤ x) (hx' : x ≤ 2) :
     (x : ℂ) + (t : ℂ) * Complex.I ∈
@@ -519,6 +582,9 @@ theorem same_height_mem_disk {a e t v x : ℝ} (hev : 8 * e ≤ v)
   rw [heq, Complex.norm_real, Real.norm_eq_abs, abs_of_nonpos (by linarith : x - 2 ≤ 0)]
   linarith
 
+/--
+@isnad1 id=le.1h1v.s5.2bf96218167a from=translated src=- shape=50150cf0 vocab=092636ab
+-/
 theorem principal_regularizer_norm_le_one {s : ℂ} (hs : 0 ≤ s.re) :
     ‖(s - 1) / (s + 1)‖ ≤ 1 := by
   have hn : ‖s - 1‖ ≤ ‖s + 1‖ := by
@@ -529,6 +595,9 @@ theorem principal_regularizer_norm_le_one {s : ℂ} (hs : 0 ≤ s.re) :
   rw [norm_div]
   exact div_le_one_of_le₀ hn (norm_nonneg _)
 
+/--
+@isnad1 id=le.3h3v.s6.32e6f8828eb1 from=translated src=- shape=e839a9f4 vocab=74ae79a1
+-/
 theorem principal_reciprocal_transfer {s Z L : ℂ} (hs : 0 ≤ s.re)
     (hL : L = ((s - 1) / (s + 1)) * Z) (h0 : L ≠ 0) : ‖Z⁻¹‖ ≤ ‖L⁻¹‖ := by
   have hf0 : (s - 1) / (s + 1) ≠ 0 := by

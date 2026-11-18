@@ -10,6 +10,9 @@ open MeasureTheory Set Filter Asymptotics
 open scoped Topology FourierTransform
 namespace SevenEighths.Continuation
 
+/--
+@isnad1 id=integrab.1h2v.s6.085501d158bc from=translated src=- shape=802fc24e vocab=9eeca447
+-/
 theorem integrable_logProfile {f : ℝ → ℂ} {σ : ℝ}
     (hf : MellinConvergent f (σ : ℂ)) :
     Integrable (fun u : ℝ => Real.exp (-σ * u) • f (Real.exp (-u))) := by
@@ -41,6 +44,9 @@ theorem integrable_logProfile {f : ℝ → ℂ} {σ : ℝ}
     ring
   simpa only [Function.comp_apply, integrableOn_univ, heq] using hf
 
+/--
+@isnad1 id=eq.4h4v.s8.4a9f78356bcc from=translated src=- shape=2d9af36e vocab=ee4063f5
+-/
 theorem mellin_mellinInv_eq (σ : ℝ) (F : ℂ → ℂ) (f : ℝ → ℂ)
     (hf : MellinConvergent f (σ : ℂ))
     (hF : Integrable (fun y : ℝ => F ((σ : ℂ) + 2 * Real.pi * y * Complex.I)))
@@ -80,6 +86,9 @@ theorem mellin_mellinInv_eq (σ : ℝ) (F : ℂ → ℂ) (f : ℝ → ℂ)
 def normalizedSignal (f : ℝ → ℂ) (c : ℝ) (x : ℝ) : ℂ :=
   (x : ℂ) ^ (-(c : ℂ)) • f x
 
+/--
+@isnad1 id=eq.0h3v.s5.d291c07b93df from=translated src=- shape=1a946255 vocab=3e09f451
+-/
 theorem mellin_normalizedSignal (f : ℝ → ℂ) (c : ℝ) (s : ℂ) :
     mellin (normalizedSignal f c) (-s) = signalMellin f c s := by
   unfold normalizedSignal signalMellin
@@ -87,6 +96,9 @@ theorem mellin_normalizedSignal (f : ℝ → ℂ) (c : ℝ) (s : ℂ) :
   congr 1
   ring
 
+/--
+@isnad1 id=eq.4h5v.s8.1607c40266b4 from=translated src=- shape=a81dcc88 vocab=60e73b0e
+-/
 theorem signalMellin_eq_on_line (f : ℝ → ℂ) (A : ℂ → ℂ) (c d : ℝ)
     (hf : MellinConvergent f (-((d : ℂ) + (c : ℂ))))
     (hA : Integrable (fun y : ℝ => A ((d : ℂ) - 2 * Real.pi * y * Complex.I)))

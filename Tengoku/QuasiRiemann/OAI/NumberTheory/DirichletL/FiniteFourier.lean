@@ -20,6 +20,9 @@ variable {R : Type*} [CommRing R] [Fintype R]
 def IsPrimitiveOnIdeals (χ : MulChar R ℂ) : Prop :=
   ∀ I : Ideal R, I ≠ ⊥ → ∃ u : Rˣ, (u : R) - 1 ∈ I ∧ χ (u : R) ≠ 1
 
+/--
+@isnad1 id=isprimit.1h2v.s5.212c87689332 from=translated src=- shape=cc412bd5 vocab=5d2b8e65
+-/
 theorem IsPrimitiveOnIdeals.inv {χ : MulChar R ℂ} (hχ : IsPrimitiveOnIdeals χ) :
     IsPrimitiveOnIdeals χ⁻¹ := by
   intro I hI
@@ -29,6 +32,9 @@ theorem IsPrimitiveOnIdeals.inv {χ : MulChar R ℂ} (hχ : IsPrimitiveOnIdeals 
   apply hχu
   simpa only [← MulChar.star_apply', star_star, star_one] using congrArg star hinv
 
+/--
+@isnad1 id=isprimit.1h2v.s6.97d8639baffd from=translated src=- shape=cc742031 vocab=e40732c9
+-/
 theorem primitiveOnIdeals_of_field {F : Type*} [Field F]
     (χ : MulChar F ℂ) (hχ : χ ≠ 1) : IsPrimitiveOnIdeals χ := by
   intro I hI
@@ -39,6 +45,9 @@ theorem primitiveOnIdeals_of_field {F : Type*} [Field F]
 def transform (ψ : AddChar R ℂ) (f : R → ℂ) (a : R) : ℂ :=
   ∑ x : R, f x * ψ (a * x)
 
+/--
+@isnad1 id=eq.1h4v.s7.74396ce8c40f from=translated src=- shape=8b40e785 vocab=d49d2788
+-/
 theorem transform_inversion (ψ : AddChar R ℂ) (hψ : ψ.IsPrimitive)
     (f : R → ℂ) (x : R) :
     (∑ a : R, transform ψ f a * ψ (-(a * x))) =
@@ -61,6 +70,9 @@ theorem transform_inversion (ψ : AddChar R ℂ) (hψ : ψ.IsPrimitive)
       simp only [AddChar.sum_mulShift _ hψ, sub_eq_zero]
       simp [mul_ite, mul_comm]
 
+/--
+@isnad1 id=ex.1h2v.s6.4f77d86b8360 from=translated src=- shape=7092185a vocab=d132a042
+-/
 theorem exists_nonzero_annihilator {a : R} (ha : ¬ IsUnit a) :
     ∃ b : R, b ≠ 0 ∧ a * b = 0 := by
   by_contra! h
@@ -71,6 +83,9 @@ theorem exists_nonzero_annihilator {a : R} (ha : ¬ IsUnit a) :
   by_contra hb0
   exact h b hb0 hb
 
+/--
+@isnad1 id=ex.2h3v.s7.df3ed70110a1 from=translated src=- shape=ecf76db7 vocab=f7539984
+-/
 theorem exists_unit_stabilizer (χ : MulChar R ℂ) (hχ : IsPrimitiveOnIdeals χ)
     {a : R} (ha : ¬ IsUnit a) :
     ∃ u : Rˣ, a * (u : R) = a ∧ χ (u : R) ≠ 1 := by
@@ -87,6 +102,9 @@ theorem exists_unit_stabilizer (χ : MulChar R ℂ) (hχ : IsPrimitiveOnIdeals �
     rw [hc, ← mul_assoc, hab, zero_mul]
   linear_combination hzero
 
+/--
+@isnad1 id=eq.2h4v.s6.44bb40449868 from=translated src=- shape=c48d5adb vocab=064e2071
+-/
 theorem gaussSum_mulShift_nonunit_eq_zero (χ : MulChar R ℂ)
     (hχ : IsPrimitiveOnIdeals χ) (ψ : AddChar R ℂ)
     {a : R} (ha : ¬ IsUnit a) :
@@ -99,6 +117,9 @@ theorem gaussSum_mulShift_nonunit_eq_zero (χ : MulChar R ℂ)
   rw [hshift] at heq
   exact eq_zero_of_mul_eq_self_left hχu heq
 
+/--
+@isnad1 id=eq.1h4v.s7.1afd2d86aec5 from=translated src=- shape=5dc540e8 vocab=2ccca7f8
+-/
 theorem primitive_gaussSum_mulShift (χ : MulChar R ℂ)
     (hχ : IsPrimitiveOnIdeals χ) (ψ : AddChar R ℂ) (a : R) :
     gaussSum χ (ψ.mulShift a) = χ⁻¹ a * gaussSum χ ψ := by
@@ -107,11 +128,17 @@ theorem primitive_gaussSum_mulShift (χ : MulChar R ℂ)
   · rw [gaussSum_mulShift_nonunit_eq_zero χ hχ ψ ha,
       MulChar.map_nonunit _ ha, zero_mul]
 
+/--
+@isnad1 id=eq.1h4v.s7.2a84ce060b29 from=translated src=- shape=af74201b vocab=a4986f40
+-/
 theorem transform_primitive_character (χ : MulChar R ℂ)
     (hχ : IsPrimitiveOnIdeals χ) (ψ : AddChar R ℂ) (a : R) :
     transform ψ χ a = χ⁻¹ a * gaussSum χ ψ := by
   exact primitive_gaussSum_mulShift χ hχ ψ a
 
+/--
+@isnad1 id=eq.2h3v.s6.f475fc7c6717 from=translated src=- shape=921afcbe vocab=77da5677
+-/
 theorem primitive_gaussSum_mul_conjugate (χ : MulChar R ℂ)
     (hχ : IsPrimitiveOnIdeals χ) (ψ : AddChar R ℂ) (hψ : ψ.IsPrimitive) :
     gaussSum χ ψ * star (gaussSum χ ψ) = (Fintype.card R : ℂ) := by
@@ -129,6 +156,9 @@ theorem primitive_gaussSum_mul_conjugate (χ : MulChar R ℂ)
       ring
     _ = (Fintype.card R : ℂ) := hinv
 
+/--
+@isnad1 id=eq.2h3v.s6.531d59629656 from=translated src=- shape=24da8e58 vocab=f0cf0b4a
+-/
 theorem primitive_gaussSum_norm_sq (χ : MulChar R ℂ)
     (hχ : IsPrimitiveOnIdeals χ) (ψ : AddChar R ℂ) (hψ : ψ.IsPrimitive) :
     ‖gaussSum χ ψ‖ ^ 2 = (Fintype.card R : ℝ) := by
@@ -137,11 +167,17 @@ theorem primitive_gaussSum_norm_sq (χ : MulChar R ℂ)
   simpa only [starRingEnd_apply, mul_comm, Complex.ofReal_natCast] using
     primitive_gaussSum_mul_conjugate χ hχ ψ hψ
 
+/--
+@isnad1 id=eq.2h3v.s6.b6cc8897ff55 from=translated src=- shape=42c546bd vocab=c98b4123
+-/
 theorem primitive_gaussSum_norm (χ : MulChar R ℂ)
     (hχ : IsPrimitiveOnIdeals χ) (ψ : AddChar R ℂ) (hψ : ψ.IsPrimitive) :
     ‖gaussSum χ ψ‖ = Real.sqrt (Fintype.card R : ℝ) := by
   rw [← primitive_gaussSum_norm_sq χ hχ ψ hψ, Real.sqrt_sq (norm_nonneg _)]
 
+/--
+@isnad1 id=ne.2h3v.s6.9ebf48c556d3 from=translated src=- shape=16b561f0 vocab=b3c6f3cc
+-/
 theorem primitive_gaussSum_ne_zero (χ : MulChar R ℂ)
     (hχ : IsPrimitiveOnIdeals χ) (ψ : AddChar R ℂ) (hψ : ψ.IsPrimitive) :
     gaussSum χ ψ ≠ 0 := by
@@ -150,6 +186,9 @@ theorem primitive_gaussSum_ne_zero (χ : MulChar R ℂ)
   rw [hzero, zero_mul] at h
   exact (Nat.cast_ne_zero.mpr Fintype.card_ne_zero) h.symm
 
+/--
+@isnad1 id=eq.2h4v.s8.9e33c6b6108e from=translated src=- shape=f4abc12e vocab=0c03eb15
+-/
 theorem primitive_character_expansion (χ : MulChar R ℂ)
     (hχ : IsPrimitiveOnIdeals χ) (ψ : AddChar R ℂ) (hψ : ψ.IsPrimitive) (a : R) :
     χ a = (∑ x : R, χ⁻¹ x * ψ (a * x)) / gaussSum χ⁻¹ ψ := by

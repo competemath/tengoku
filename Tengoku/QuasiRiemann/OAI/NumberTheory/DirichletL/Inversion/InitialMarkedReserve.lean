@@ -6,6 +6,9 @@ namespace OAI
 
 namespace SevenEighths.InverseInitialMarkedReserve
 
+/--
+@isnad1 id=ex.1h1v.s8.1aa64ea5acfe from=translated src=- shape=1e0762de vocab=70d00927
+-/
 theorem exists_reserve (εm:ℝ)(hε:0<εm):
     ∃ρ gap η τ π eps loss:ℝ,
       0<ρ ∧ ρ≤1/4 ∧ ρ≤εm/4 ∧
@@ -19,6 +22,9 @@ theorem exists_reserve (εm:ℝ)(hε:0<εm):
   have hρb:ρ≤1/4:=min_le_right _ _
   refine ⟨ρ,ρ/4,ρ/400,ρ/400,ρ/16,ρ/16,ρ/16,hρ,hρb,hρa,?_,?_,?_,?_,?_,?_,?_,?_,?_,?_,?_⟩ <;> linarith
 
+/--
+@isnad1 id=and.13h7v.s9.d1bb7282180a from=translated src=- shape=6beae5ee vocab=ddc16063
+-/
 theorem shifted_capacity (ρ gap η r r' ell G:ℝ)
     (hρ:0<ρ)(hρmax:ρ≤1/4)(hgap:2*gap≤ρ)
     (hη:0<η)(hηmax:η≤1/7)(hr:0≤r)(hell:0≤ell)

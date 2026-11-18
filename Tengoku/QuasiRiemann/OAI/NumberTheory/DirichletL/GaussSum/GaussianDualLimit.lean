@@ -19,12 +19,18 @@ open scoped Classical
 
 namespace ActualEisensteinCubic
 
+/--
+@isnad1 id=eq.0h2v.s9.eca83cd963f0 from=translated src=- shape=8c4e875f vocab=a937db89
+-/
 theorem principal_absNorm_pow (p : O) (k : ℕ) :
     Ideal.absNorm (Ideal.span {p ^ k}) =
       (Ideal.absNorm (Ideal.span {p})) ^ k := by
   rw [← Ideal.span_singleton_pow]
   exact map_pow Ideal.absNorm (Ideal.span {p}) k
 
+/--
+@isnad1 id=le.3h5v.s9.8fdcdf965309 from=translated src=- shape=9c25cabd vocab=99744613
+-/
 theorem sixth_power_rows_within_norm_cutoff
     {β : Type*} (selected : Finset β) (p : β → O) (rows : Finset O)
     (D : ℕ) (hD : 1 ≤ D)
@@ -64,6 +70,9 @@ private noncomputable def A (t a b : ℂ) : ℂ := t + 2*Complex.I*b/q a b
 private noncomputable def B (t a b : ℂ) : ℂ := -t/2-2*Complex.I*a/q a b
 private noncomputable def D (t a b : ℂ) : ℂ := t + 2*Complex.I*(a-b)/q a b
 
+/--
+@isnad1 id=eq.1h3v.s7.4397df1e5be0 from=translated src=- shape=55fe052f vocab=2a15f66d
+-/
 theorem determinant (t a b : ℂ) (hq : q a b ≠ 0) :
     A t a b * D t a b - (B t a b)^2 =
       4/q a b + 3*t^2/4 := by
@@ -80,6 +89,9 @@ namespace ActualEisensteinCubic
 
 open EisensteinEmbedding ConcreteTraceCRT Complex
 
+/--
+@isnad1 id=eq.0h4v.s7.8396bfe65934 from=translated src=- shape=9b776c43 vocab=f48b4907
+-/
 theorem breveE_bilinear_coordinates (u v m n : ℤ) :
     ShortDraftTrace.breveE
       (eisEmbedding (ActualEisensteinCoordinates.eval u v) *
@@ -91,6 +103,9 @@ theorem breveE_bilinear_coordinates (u v m n : ℤ) :
   simpa using
     breveE_int_trace_div 1 (u*m-v*n) (u*n+v*m-v*n) (by norm_num)
 
+/--
+@isnad1 id=eq.0h4v.s7.93b299c9a4a2 from=translated src=- shape=55f1047e vocab=91e02fd9
+-/
 theorem breveE_standard_dual_frequency (k l m n : ℤ) :
     ShortDraftTrace.breveE
       (eisEmbedding (ActualEisensteinCoordinates.eval (k+l) k) *
@@ -110,6 +125,9 @@ def q (a b : ℝ) : ℝ := Q a b
 noncomputable def shiftX (a b x y : ℝ) : ℝ := ((a-b)*x+b*y)/q a b
 noncomputable def shiftY (a b x y : ℝ) : ℝ := (-b*x+a*y)/q a b
 
+/--
+@isnad1 id=eq.1h6v.s7.3173d3af8686 from=translated src=- shape=ce6d31eb vocab=c1fcb748
+-/
 theorem exact_shift (a b x y m n : ℝ) (hq : q a b ≠ 0) :
     Q (x+a*m-b*n) (y+b*m+(a-b)*n) =
       q a b * Q (m+shiftX a b x y) (n+shiftY a b x y) := by
@@ -129,6 +147,9 @@ noncomputable def rowNormBall (H : ℕ) : Finset O := by
   let I : Finset ℤ := Finset.Icc (-((H : ℤ) + 1)) ((H : ℤ) + 1)
   exact (I.product I).image (fun v => eval v.1 v.2)
 
+/--
+@isnad1 id=mem.1h2v.s4.2ff1da0e9382 from=translated src=- shape=b85c661e vocab=3d8115aa
+-/
 theorem mem_rowNormBall_of_qNat_le (H : ℕ) (u : O)
     (h : qNat u ≤ H) : u ∈ rowNormBall H := by
   classical
@@ -153,6 +174,9 @@ theorem mem_rowNormBall_of_qNat_le (H : ℕ) (u : O)
     ⟨Finset.mem_Icc.mpr ⟨haL, haU⟩,
      Finset.mem_Icc.mpr ⟨hbL, hbU⟩⟩
 
+/--
+@isnad1 id=mem.1h2v.s8.ae929f3b5574 from=translated src=- shape=c668c73a vocab=675a9e7c
+-/
 theorem mem_rowNormBall_of_absNorm_le (H : ℕ) (u : O)
     (h : Ideal.absNorm (Ideal.span {u}) ≤ H) :
     u ∈ rowNormBall H := by
@@ -162,6 +186,9 @@ theorem mem_rowNormBall_of_absNorm_le (H : ℕ) (u : O)
 end ShortDraftLatticeCount
 namespace EisensteinGaussianPrefactor
 
+/--
+@isnad1 id=eq.1h1v.s6.aca8587b5f1c from=translated src=- shape=3cf04cd7 vocab=613f93bf
+-/
 theorem sqrt_product (t : ℝ) (ht : 0 ≤ t) :
     Real.sqrt t * Real.sqrt (3*t/4) =
       Real.sqrt 3 * t / 2 := by
@@ -175,6 +202,9 @@ theorem sqrt_product (t : ℝ) (ht : 0 ≤ t) :
         Real.sqrt 3 / 2 * (Real.sqrt t)^2 := by ring
     _ = Real.sqrt 3 * t / 2 := by rw [Real.sq_sqrt ht]; ring
 
+/--
+@isnad1 id=eq.2h2v.s7.7ca840f76ec4 from=translated src=- shape=ada3fff9 vocab=0d4a5a35
+-/
 theorem eta_times_prefactor (η q : ℝ) (hη : 0 < η) (hq : 0 < q) :
     η * (1 / Real.sqrt (η*q)) *
       (1 / Real.sqrt (3*(η*q)/4)) =
@@ -202,6 +232,9 @@ namespace ActualEisensteinCubic
 
 open EisensteinEmbedding ConcreteTraceCRT Complex
 
+/--
+@isnad1 id=other.1h5v.s10.1eba6f5be82c from=translated src=- shape=c5a5c6f4 vocab=9f64e633
+-/
 theorem actual_oscillatory_gaussian_coordinate
     (a b m n : ℤ) (hc : ActualEisensteinCoordinates.eval a b ≠ 0)
     (η : ℝ) :
@@ -233,6 +266,9 @@ end ActualEisensteinCubic
 
 namespace EisensteinGaussianPrefactor
 
+/--
+@isnad1 id=eq.2h2v.s7.292dd9e5bc9d from=translated src=- shape=ab1d8912 vocab=75c1b6c1
+-/
 theorem complex_eta_times_prefactor (η q : ℝ) (hη : 0 < η) (hq : 0 < q) :
     (η : ℂ) *
       (1 / ((η*q : ℝ) : ℂ) ^ (1/2 : ℂ)) *
@@ -270,6 +306,9 @@ open Complex
 
 noncomputable def r (t a b : ℂ) : ℂ := 1 + 3 * q a b * t^2 / 16
 
+/--
+@isnad1 id=eq.2h5v.s8.c5c3887897fb from=translated src=- shape=7e0ba06a vocab=2062ac8f
+-/
 theorem inverse_quadratic (t a b k l : ℂ)
     (hq : q a b ≠ 0) (hr : r t a b ≠ 0) :
     (D t a b * k^2 - 2 * B t a b * k*l + A t a b * l^2) /
@@ -305,6 +344,9 @@ private theorem cheby_small_log :
     abs_of_nonneg (Real.log_nonneg (by linarith : (1 : ℝ) ≤ Y + 2)),
     abs_of_nonneg (by linarith : (0 : ℝ) ≤ Y + 2)] using hY
 
+/--
+@isnad1 id=ex.0h0v.s6.8826d8e267f2 from=translated src=- shape=82984dd7 vocab=f402b951
+-/
 theorem rational_prime_three_interval_real_count :
     ∃ Y₀ : ℝ, ∀ Y : ℝ, Y₀ ≤ Y →
       ((Real.log 2) / 20) * (Y / Real.log Y) ≤
@@ -380,6 +422,9 @@ theorem rational_prime_three_interval_real_count :
   rw [htarget]
   linarith
 
+/--
+@isnad1 id=ex.0h0v.s6.930e9203df4e from=translated src=- shape=c33fe96b vocab=5816fca2
+-/
 theorem rational_prime_three_interval_count :
     ∃ Y₀ : ℝ, ∀ Y : ℝ, Y₀ ≤ Y →
       ((Real.log 2) / 20) * (Y / Real.log Y) ≤
@@ -490,6 +535,9 @@ private theorem dualTerm_tendsto (x y : ℝ) (z : ℤ × ℤ) :
     simpa [dualTerm, limitTerm, hz] using
       hc.mul_const (RankTwoEisShift.dualPhase z.1 z.2 x y)
 
+/--
+@isnad1 id=tendsto.0h2v.s6.dce6c2eae28e from=translated src=- shape=84d182ce vocab=d83ccf78
+-/
 theorem dual_sum_tendsto_one (x y : ℝ) :
     Tendsto (fun T : ℝ => ∑' z : ℤ × ℤ, dualTerm T x y z)
       atTop (𝓝 (1 : ℂ)) := by
@@ -518,6 +566,9 @@ end
 open scoped Topology
 open Filter
 
+/--
+@isnad1 id=tendsto.0h2v.s6.448a2989c596 from=translated src=- shape=a323312f vocab=c5e74977
+-/
 theorem dual_sum_tendsto_one_small_t (x y : ℝ) :
     Tendsto (fun t : ℝ => ∑' z : ℤ × ℤ, dualTerm (4 / (3 * t)) x y z)
       (𝓝[>] (0 : ℝ)) (𝓝 (1 : ℂ)) := by
