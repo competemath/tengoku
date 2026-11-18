@@ -1,0 +1,502 @@
+import Tengoku
+import Tengoku.FltAnthropic.Definitions.Def_ModularCurve_UVCrossingModel
+import Tengoku.FltAnthropic.Definitions.Def_ModularCurve_UVCrossingGaussOrder
+import Tengoku.FltAnthropic.Definitions.Def_ModularCurve_UVCrossingDominantIndices
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_ModularCurve_UVCrossingModel_gaussOrder_scaled_eq_repGaussOrder_normalForm.lean`: wrote out 1 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_reactivate`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+namespace P2MW.S_ModularCurve_UVCrossingModel_gaussOrder_scaled_eq_repGaussOrder_normalForm
+
+set_option maxHeartbeats 800000
+set_option autoImplicit false
+
+set_option autoImplicit false
+
+set_option autoImplicit false
+
+open Finset BigOperators
+
+namespace AnnulusNF
+
+variable {W : Type*} [CommRing W] (I : Ideal W)
+
+def psum (c : ℕ → W) (π : W) (k N : ℕ) : W := ∑ m ∈ range N, c (k + m) * π ^ m
+
+theorem psum_succ (c : ℕ → W) (π : W) (k N : ℕ) :
+    psum c π k (N + 1) = c k + π * psum c π (k + 1) N := by
+  unfold psum
+  rw [Finset.sum_range_succ', pow_zero, mul_one, add_comm, Finset.mul_sum]
+  congr 1
+  refine Finset.sum_congr rfl fun m _ => ?_
+  rw [pow_succ, show k + (m + 1) = k + 1 + m by omega]
+  ring
+
+theorem psum_sub_psum_mem (c : ℕ → W) (π : W) (hπ : π ∈ I) (k : ℕ) {M N : ℕ} (hMN : M ≤ N) :
+    psum c π k N - psum c π k M ∈ I ^ M := by
+  unfold psum
+  rw [← Finset.sum_range_add_sum_Ico _ hMN, add_sub_cancel_left]
+  refine Ideal.sum_mem _ fun m hm => ?_
+  rw [Finset.mem_Ico] at hm
+  exact Ideal.mul_mem_left _ _ (Ideal.pow_le_pow_right hm.1 (Ideal.pow_mem_pow hπ m))
+
+theorem exists_diag_sum [IsAdicComplete I W] (c : ℕ → W) (π : W) (hπ : π ∈ I) :
+    ∃ h : ℕ → W, ∀ k, h k = c k + π * h (k + 1) := by
+
+  have hlim : ∀ k, ∃ L : W, ∀ N, psum c π k N ≡ L [SMOD (I ^ N • ⊤ : Submodule W W)] := by
+    intro k
+    refine IsPrecomplete.prec' (fun N => psum c π k N) ?_
+    intro M N hMN
+    rw [SModEq.sub_mem, smul_eq_mul, Ideal.mul_top]
+    have := psum_sub_psum_mem I c π hπ k hMN
+    rw [← Ideal.neg_mem_iff, neg_sub]
+    exact this
+  choose h hh using hlim
+  refine ⟨h, fun k => ?_⟩
+
+  rw [← sub_eq_zero]
+  apply IsHausdorff.haus' (I := I) (h k - (c k + π * h (k + 1)))
+  intro N
+  rw [SModEq.sub_mem, sub_zero, smul_eq_mul, Ideal.mul_top]
+  have h1 : psum c π k (N + 1) - h k ∈ I ^ (N + 1) := by
+    have := hh k (N + 1); rwa [SModEq.sub_mem, smul_eq_mul, Ideal.mul_top] at this
+  have h2 : psum c π (k + 1) N - h (k + 1) ∈ I ^ N := by
+    have := hh (k + 1) N; rwa [SModEq.sub_mem, smul_eq_mul, Ideal.mul_top] at this
+  have h1' : psum c π k (N + 1) - h k ∈ I ^ N := Ideal.pow_le_pow_right (Nat.le_succ N) h1
+  have key : h k - (c k + π * h (k + 1)) =
+      π * (psum c π (k + 1) N - h (k + 1)) - (psum c π k (N + 1) - h k) := by
+    rw [psum_succ]; ring
+  rw [key]
+  exact Ideal.sub_mem _ (Ideal.mul_mem_left _ _ h2) h1'
+
+theorem eq_zero_of_diag_rec [IsAdicComplete I W] (x : ℕ → W) (π : W) (hπ : π ∈ I)
+    (hx : ∀ k, x k = π * x (k + 1)) (k : ℕ) : x k = 0 := by
+  have hpow : ∀ n, x k = π ^ n * x (k + n) := by
+    intro n
+    induction n with
+    | zero => simp
+    | succ n ih => rw [ih, hx (k + n), pow_succ, mul_assoc, show k + n + 1 = k + (n + 1) by omega]
+  apply IsHausdorff.haus' (I := I) (x k)
+  intro n
+  rw [SModEq.sub_mem, sub_zero, smul_eq_mul, Ideal.mul_top, hpow n]
+  exact Ideal.mul_mem_right _ _ (Ideal.pow_mem_pow hπ n)
+
+end AnnulusNF
+
+namespace AnnulusNF
+
+open ModularCurve ModularCurve.UVCrossingModel
+
+variable {W : Type*} [CommRing W]
+
+noncomputable abbrev ij (i j : ℕ) : Fin 2 →₀ ℕ := Finsupp.single 0 i + Finsupp.single 1 j
+
+theorem ij_apply_zero (i j : ℕ) : ij i j 0 = i := by simp [ij]
+theorem ij_apply_one (i j : ℕ) : ij i j 1 = j := by simp [ij]
+
+theorem eq_ij (d : Fin 2 →₀ ℕ) : d = ij (d 0) (d 1) := by
+  ext k
+  fin_cases k <;> simp [ij]
+
+theorem exists_coherent {I : Ideal W} [IsAdicComplete I W] (c : ℕ → ℕ → W) (π : W) (hπ : π ∈ I) :
+    ∃ H : ℕ → ℕ → W, ∀ i j, H i j = c i j + π * H (i + 1) (j + 1) := by
+  have hex : ∀ i j : ℕ, ∃ h : ℕ → W, ∀ k, h k = c (i + k) (j + k) + π * h (k + 1) :=
+    fun i j => exists_diag_sum I (fun k => c (i + k) (j + k)) π hπ
+  choose h hh using hex
+  refine ⟨fun i j => h (i - min i j) (j - min i j) (min i j), fun i j => ?_⟩
+  have hmin : min (i + 1) (j + 1) = min i j + 1 := Nat.add_min_add_right i j 1
+  simp only [hmin, Nat.add_sub_add_right]
+  have h1 := hh (i - min i j) (j - min i j) (min i j)
+  rw [Nat.sub_add_cancel (Nat.min_le_left i j), Nat.sub_add_cancel (Nat.min_le_right i j)] at h1
+  exact h1
+
+theorem coeff_X_mul_X_mul (G : MvPowerSeries (Fin 2) W) (d : Fin 2 →₀ ℕ) :
+    MvPowerSeries.coeff d ((MvPowerSeries.X 0 : MvPowerSeries (Fin 2) W) * MvPowerSeries.X 1 * G) =
+      if 1 ≤ d 0 ∧ 1 ≤ d 1 then MvPowerSeries.coeff (ij (d 0 - 1) (d 1 - 1)) G else 0 := by
+  have hXX : (MvPowerSeries.X 0 : MvPowerSeries (Fin 2) W) * MvPowerSeries.X 1 =
+      MvPowerSeries.monomial (ij 1 1) 1 := by
+    rw [MvPowerSeries.X, MvPowerSeries.X, MvPowerSeries.monomial_mul_monomial, one_mul]
+  rw [hXX, MvPowerSeries.coeff_monomial_mul]
+  have hle : ij 1 1 ≤ d ↔ 1 ≤ d 0 ∧ 1 ≤ d 1 := by
+    constructor
+    · intro h; exact ⟨by simpa [ij] using h 0, by simpa [ij] using h 1⟩
+    · rintro ⟨h0, h1⟩ k; fin_cases k <;> simp [ij, h0, h1]
+  by_cases h : 1 ≤ d 0 ∧ 1 ≤ d 1
+  · rw [ite_eq_left (hle.2 h), ite_eq_left h, one_mul]
+    congr 1
+    rw [eq_ij (d - ij 1 1)]
+    simp [ij]
+  · rw [ite_eq_right (fun h' => h (hle.1 h')), ite_eq_right h]
+
+theorem normalForm_unique (ϖ : W) [IsAdicComplete (Ideal.span {ϖ}) W] (e : ℕ) (he : 1 ≤ e)
+    (a b a' b' : PowerSeries W) (hb : PowerSeries.constantCoeff b = 0) (hb' : PowerSeries.constantCoeff b' = 0)
+    (h : mk (ϖ ^ e) (inU a + inV b) = mk (ϖ ^ e) (inU a' + inV b')) : a = a' ∧ b = b' := by
+  classical
+  set π : W := ϖ ^ e with hπdef
+  have hπ : π ∈ Ideal.span {ϖ} := by
+    rw [hπdef, ← Nat.sub_add_cancel he, pow_succ]
+    exact Ideal.mul_mem_left _ _ (Ideal.subset_span rfl)
+  change Ideal.Quotient.mk _ _ = Ideal.Quotient.mk _ _ at h
+  rw [Ideal.Quotient.eq, Ideal.mem_span_singleton'] at h
+  obtain ⟨G, hG⟩ := h
+  rw [mul_comm] at hG
+
+  have hoff : ∀ i j, MvPowerSeries.coeff (ij i j) G = π * MvPowerSeries.coeff (ij (i + 1) (j + 1)) G := by
+    intro i j
+    have hc := congrArg (MvPowerSeries.coeff (ij (i + 1) (j + 1))) hG
+    rw [sub_mul, map_sub, coeff_X_mul_X_mul, MvPowerSeries.coeff_C_mul, ij_apply_zero, ij_apply_one,
+      ite_eq_left ⟨by omega, by omega⟩, Nat.add_sub_cancel, Nat.add_sub_cancel] at hc
+    have hz : MvPowerSeries.coeff (ij (i + 1) (j + 1)) (inU a + inV b - (inU a' + inV b')) = 0 := by
+      simp [coeff_inU, coeff_inV, ij_apply_zero, ij_apply_one]
+    rw [hz] at hc
+    exact sub_eq_zero.mp hc
+
+  have hG0 : ∀ i j, MvPowerSeries.coeff (ij i j) G = 0 := by
+    intro i j
+    have := eq_zero_of_diag_rec (Ideal.span {ϖ}) (fun k => MvPowerSeries.coeff (ij (i + k) (j + k)) G) π hπ
+      (fun k => by
+        have := hoff (i + k) (j + k)
+        simpa [Nat.add_assoc] using this) 0
+    simpa using this
+  have hGzero : G = 0 := by
+    ext d; rw [eq_ij d, hG0, map_zero]
+  rw [hGzero, mul_zero] at hG
+
+  have hz : ∀ d, MvPowerSeries.coeff d (inU a + inV b - (inU a' + inV b')) = 0 := by
+    intro d; rw [← hG, map_zero]
+  constructor
+  · ext i
+    rcases Nat.eq_zero_or_pos i with rfl | hi
+    · have h00 := hz (ij 0 0)
+      simp only [map_sub, map_add, coeff_inU, coeff_inV, ij_apply_zero, ij_apply_one, ite_true] at h00
+      have hb0 : PowerSeries.coeff 0 b = 0 := by simpa using hb
+      have hb0' : PowerSeries.coeff 0 b' = 0 := by simpa using hb'
+      rw [hb0, hb0'] at h00
+      exact sub_eq_zero.mp (by simpa using h00)
+    · have h := hz (ij i 0)
+      simp only [map_sub, map_add, coeff_inU, coeff_inV, ij_apply_zero, ij_apply_one, ite_true,
+        ite_eq_right (Nat.pos_iff_ne_zero.mp hi), add_zero] at h
+      exact sub_eq_zero.mp h
+  · ext j
+    rcases Nat.eq_zero_or_pos j with rfl | hj
+    · have hb0 : PowerSeries.coeff 0 b = 0 := by simpa using hb
+      have hb0' : PowerSeries.coeff 0 b' = 0 := by simpa using hb'
+      rw [hb0, hb0']
+    · have h := hz (ij 0 j)
+      simp only [map_sub, map_add, coeff_inU, coeff_inV, ij_apply_zero, ij_apply_one, ite_true,
+        ite_eq_right (Nat.pos_iff_ne_zero.mp hj), zero_add] at h
+      exact sub_eq_zero.mp h
+
+end AnnulusNF
+
+namespace AnnulusG1
+
+open ModularCurve ModularCurve.UVCrossingModel Finset
+
+variable {W : Type*} [CommRing W]
+
+theorem le_map_sum_add (v : AddValuation W ℕ∞) {ι : Type*} (s : Finset ι) (a : ι → W) (n w : ℕ∞)
+    (h : ∀ k ∈ s, n ≤ v (a k) + w) : n ≤ v (∑ k ∈ s, a k) + w := by
+  classical
+  induction s using Finset.induction_on with
+  | empty => simp
+  | insert x s hx ih =>
+      rw [Finset.sum_insert hx]
+      have h1 : n ≤ v (a x) + w := h x (Finset.mem_insert_self x s)
+      have h2 : n ≤ v (∑ k ∈ s, a k) + w := ih fun k hk => h k (Finset.mem_insert_of_mem hk)
+      calc n ≤ min (v (a x)) (v (∑ k ∈ s, a k)) + w := by
+            rw [← min_add_add_right]; exact le_min h1 h2
+        _ ≤ v (a x + ∑ k ∈ s, a k) + w := add_le_add (v.map_add _ _) le_rfl
+
+end AnnulusG1
+
+namespace AnnulusNF
+
+open ModularCurve ModularCurve.UVCrossingModel Finset
+
+variable {W : Type*} [CommRing W]
+
+theorem exists_normalForm_rec (ϖ : W) [IsAdicComplete (Ideal.span {ϖ}) W] (e : ℕ) (he : 1 ≤ e)
+    (F : MvPowerSeries (Fin 2) W) :
+    ∃ H : ℕ → ℕ → W, (∀ i j, H i j = MvPowerSeries.coeff (ij i j) F + ϖ ^ e * H (i + 1) (j + 1)) ∧
+      mk (ϖ ^ e) (inU (PowerSeries.mk fun i => H i 0) + inV (PowerSeries.mk fun j => if j = 0 then 0 else H 0 j)) =
+        mk (ϖ ^ e) F := by
+  classical
+  set π : W := ϖ ^ e with hπdef
+  have hπ : π ∈ Ideal.span {ϖ} := by
+    rw [hπdef, ← Nat.sub_add_cancel he, pow_succ]
+    exact Ideal.mul_mem_left _ _ (Ideal.subset_span rfl)
+  let c : ℕ → ℕ → W := fun i j => MvPowerSeries.coeff (ij i j) F
+  obtain ⟨H, hH⟩ := exists_coherent c π hπ
+  refine ⟨H, hH, ?_⟩
+  let a : PowerSeries W := PowerSeries.mk fun i => H i 0
+  let b : PowerSeries W := PowerSeries.mk fun j => if j = 0 then 0 else H 0 j
+  let G : MvPowerSeries (Fin 2) W := fun d => H (d 0 + 1) (d 1 + 1)
+  symm
+  change Ideal.Quotient.mk _ F = Ideal.Quotient.mk _ (inU a + inV b)
+  rw [Ideal.Quotient.eq, Ideal.mem_span_singleton']
+  refine ⟨G, ?_⟩
+  rw [mul_comm]
+  ext d
+  rw [map_sub, sub_mul, map_sub, coeff_X_mul_X_mul, MvPowerSeries.coeff_C_mul, map_add, coeff_inU, coeff_inV]
+  have hc : MvPowerSeries.coeff d F = c (d 0) (d 1) := by
+    show _ = MvPowerSeries.coeff (ij (d 0) (d 1)) F
+    rw [← eq_ij d]
+  rw [hc]
+  simp only [a, b, PowerSeries.coeff_mk]
+  have hG : ∀ i j, MvPowerSeries.coeff (ij i j) G = H (i + 1) (j + 1) := by
+    intro i j
+    show G (ij i j) = _
+    simp only [G, ij_apply_zero, ij_apply_one]
+  have hGd : MvPowerSeries.coeff d G = H (d 0 + 1) (d 1 + 1) := rfl
+  rw [hGd]
+  have hrec := hH (d 0) (d 1)
+  by_cases h0 : d 0 = 0 <;> by_cases h1 : d 1 = 0
+  · rw [ite_eq_right (by omega), ite_eq_left h1, ite_eq_left h0, ite_eq_left h1, h0, h1]
+    rw [h0, h1] at hrec
+    rw [hrec]; ring
+  · rw [ite_eq_right (by omega), ite_eq_right h1, ite_eq_left h0, ite_eq_right h1, h0]
+    rw [h0] at hrec
+    rw [hrec]; ring
+  · rw [ite_eq_right (by omega), ite_eq_left h1, ite_eq_right h0, h1]
+    rw [h1] at hrec
+    rw [hrec]; ring
+  · rw [ite_eq_left ⟨by omega, by omega⟩, ite_eq_right h1, ite_eq_right h0, hG, Nat.sub_add_cancel (by omega),
+      Nat.sub_add_cancel (by omega), hrec]
+    ring
+
+theorem rec_iterate {H c : ℕ → ℕ → W} {π : W} (hH : ∀ i j, H i j = c i j + π * H (i + 1) (j + 1))
+    (i j N : ℕ) :
+    H i j = (∑ k ∈ range N, c (i + k) (j + k) * π ^ k) + π ^ N * H (i + N) (j + N) := by
+  induction N with
+  | zero => simp
+  | succ N ih =>
+      rw [ih, Finset.sum_range_succ, hH (i + N) (j + N), pow_succ]
+      simp only [Nat.add_assoc]
+      ring
+
+end AnnulusNF
+
+namespace AnnulusStepA
+
+open ModularCurve ModularCurve.UVCrossingModel Finset AnnulusNF AnnulusG1
+
+variable {W : Type*} [CommRing W]
+
+theorem annulusWeight_diag_U (e t : ℕ) (ht : t ≤ e) (i k : ℕ) :
+    annulusWeight e t (ij (i + k) k) = i * t + k * e := by
+  simp only [annulusWeight, ij_apply_zero, ij_apply_one]
+  have : k * (e - t) + k * t = k * e := by rw [← mul_add, Nat.sub_add_cancel ht]
+  nlinarith [this]
+
+theorem annulusWeight_diag_V (e t : ℕ) (ht : t ≤ e) (j k : ℕ) :
+    annulusWeight e t (ij k (j + k)) = j * (e - t) + k * e := by
+  simp only [annulusWeight, ij_apply_zero, ij_apply_one]
+  have : k * (e - t) + k * t = k * e := by rw [← mul_add, Nat.sub_add_cancel ht]
+  nlinarith [this]
+
+theorem min_le_v_H_U (v : AddValuation W ℕ∞) (π : W) (e t : ℕ) (ht : t ≤ e) (hπ : ((e : ℕ) : ℕ∞) ≤ v π)
+    (F : MvPowerSeries (Fin 2) W) {H : ℕ → ℕ → W}
+    (hH : ∀ i j, H i j = MvPowerSeries.coeff (ij i j) F + π * H (i + 1) (j + 1)) (N i : ℕ) :
+    min (repGaussOrder v e t F) ((N * e : ℕ) : ℕ∞) ≤ v (H i 0) + ((i * t : ℕ) : ℕ∞) := by
+  rw [rec_iterate hH i 0 N]
+  simp only [Nat.zero_add]
+
+  have hsum : repGaussOrder v e t F ≤
+      v (∑ k ∈ range N, MvPowerSeries.coeff (ij (i + k) k) F * π ^ k) + ((i * t : ℕ) : ℕ∞) := by
+    apply le_map_sum_add
+    intro k _
+    have h1 := repGaussOrder_le v e t F (ij (i + k) k)
+    rw [annulusWeight_diag_U e t ht] at h1
+    calc repGaussOrder v e t F ≤ v (MvPowerSeries.coeff (ij (i + k) k) F) + ((i * t + k * e : ℕ) : ℕ∞) := h1
+      _ ≤ v (MvPowerSeries.coeff (ij (i + k) k) F * π ^ k) + ((i * t : ℕ) : ℕ∞) := by
+          rw [v.map_mul, v.map_pow, Nat.cast_add, Nat.cast_mul]
+          have hk : ((k : ℕ) : ℕ∞) * (e : ℕ∞) ≤ k • v π := by
+            rw [nsmul_eq_mul]; exact mul_le_mul_right hπ _
+          calc v (MvPowerSeries.coeff (ij (i + k) k) F) + (↑i * ↑t + ↑k * ↑e)
+              = (v (MvPowerSeries.coeff (ij (i + k) k) F) + ↑k * ↑e) + ↑i * ↑t := by ring
+            _ ≤ (v (MvPowerSeries.coeff (ij (i + k) k) F) + k • v π) + ↑i * ↑t :=
+                add_le_add (add_le_add le_rfl hk) le_rfl
+
+  have htail : ((N * e : ℕ) : ℕ∞) ≤ v (π ^ N * H (i + N) N) + ((i * t : ℕ) : ℕ∞) := by
+    rw [v.map_mul, v.map_pow, Nat.cast_mul]
+    have hN : ((N : ℕ) : ℕ∞) * (e : ℕ∞) ≤ N • v π := by
+      rw [nsmul_eq_mul]; exact mul_le_mul_right hπ _
+    calc (↑N * ↑e : ℕ∞) ≤ N • v π := hN
+      _ ≤ N • v π + v (H (i + N) N) := le_self_add
+      _ ≤ N • v π + v (H (i + N) N) + ↑(i * t) := le_self_add
+  calc min (repGaussOrder v e t F) ((N * e : ℕ) : ℕ∞)
+      ≤ min (v (∑ k ∈ range N, MvPowerSeries.coeff (ij (i + k) k) F * π ^ k) + ((i * t : ℕ) : ℕ∞))
+          (v (π ^ N * H (i + N) N) + ((i * t : ℕ) : ℕ∞)) := min_le_min hsum htail
+    _ = min (v (∑ k ∈ range N, MvPowerSeries.coeff (ij (i + k) k) F * π ^ k)) (v (π ^ N * H (i + N) N)) +
+          ((i * t : ℕ) : ℕ∞) := (min_add_add_right _ _ _)
+    _ ≤ _ := add_le_add (v.map_add _ _) le_rfl
+
+theorem min_le_v_H_V (v : AddValuation W ℕ∞) (π : W) (e t : ℕ) (ht : t ≤ e) (hπ : ((e : ℕ) : ℕ∞) ≤ v π)
+    (F : MvPowerSeries (Fin 2) W) {H : ℕ → ℕ → W}
+    (hH : ∀ i j, H i j = MvPowerSeries.coeff (ij i j) F + π * H (i + 1) (j + 1)) (N j : ℕ) :
+    min (repGaussOrder v e t F) ((N * e : ℕ) : ℕ∞) ≤ v (H 0 j) + ((j * (e - t) : ℕ) : ℕ∞) := by
+  rw [rec_iterate hH 0 j N]
+  simp only [Nat.zero_add]
+  have hsum : repGaussOrder v e t F ≤
+      v (∑ k ∈ range N, MvPowerSeries.coeff (ij k (j + k)) F * π ^ k) + ((j * (e - t) : ℕ) : ℕ∞) := by
+    apply le_map_sum_add
+    intro k _
+    have h1 := repGaussOrder_le v e t F (ij k (j + k))
+    rw [annulusWeight_diag_V e t ht] at h1
+    calc repGaussOrder v e t F ≤ v (MvPowerSeries.coeff (ij k (j + k)) F) + ((j * (e - t) + k * e : ℕ) : ℕ∞) := h1
+      _ ≤ v (MvPowerSeries.coeff (ij k (j + k)) F * π ^ k) + ((j * (e - t) : ℕ) : ℕ∞) := by
+          rw [v.map_mul, v.map_pow, Nat.cast_add, Nat.cast_mul, Nat.cast_mul]
+          have hk : ((k : ℕ) : ℕ∞) * (e : ℕ∞) ≤ k • v π := by
+            rw [nsmul_eq_mul]; exact mul_le_mul_right hπ _
+          calc v (MvPowerSeries.coeff (ij k (j + k)) F) + (↑j * ↑(e - t) + ↑k * ↑e)
+              = (v (MvPowerSeries.coeff (ij k (j + k)) F) + ↑k * ↑e) + ↑j * ↑(e - t) := by ring
+            _ ≤ (v (MvPowerSeries.coeff (ij k (j + k)) F) + k • v π) + ↑j * ↑(e - t) :=
+                add_le_add (add_le_add le_rfl hk) le_rfl
+  have htail : ((N * e : ℕ) : ℕ∞) ≤ v (π ^ N * H N (j + N)) + ((j * (e - t) : ℕ) : ℕ∞) := by
+    rw [v.map_mul, v.map_pow, Nat.cast_mul]
+    have hN : ((N : ℕ) : ℕ∞) * (e : ℕ∞) ≤ N • v π := by
+      rw [nsmul_eq_mul]; exact mul_le_mul_right hπ _
+    calc (↑N * ↑e : ℕ∞) ≤ N • v π := hN
+      _ ≤ N • v π + v (H N (j + N)) := le_self_add
+      _ ≤ N • v π + v (H N (j + N)) + ↑(j * (e - t)) := le_self_add
+  calc min (repGaussOrder v e t F) ((N * e : ℕ) : ℕ∞)
+      ≤ min (v (∑ k ∈ range N, MvPowerSeries.coeff (ij k (j + k)) F * π ^ k) + ((j * (e - t) : ℕ) : ℕ∞))
+          (v (π ^ N * H N (j + N)) + ((j * (e - t) : ℕ) : ℕ∞)) := min_le_min hsum htail
+    _ = min (v (∑ k ∈ range N, MvPowerSeries.coeff (ij k (j + k)) F * π ^ k)) (v (π ^ N * H N (j + N))) +
+          ((j * (e - t) : ℕ) : ℕ∞) := (min_add_add_right _ _ _)
+    _ ≤ _ := add_le_add (v.map_add _ _) le_rfl
+
+theorem le_of_forall_min_le {ρ X : ℕ∞} {e : ℕ} (he : 1 ≤ e)
+    (h : ∀ N : ℕ, min ρ ((N * e : ℕ) : ℕ∞) ≤ X) : ρ ≤ X := by
+  rw [← ENat.forall_natCast_le_iff_le]
+  intro a ha
+  have h1 : (a : ℕ∞) ≤ ((a * e : ℕ) : ℕ∞) := by exact_mod_cast Nat.le_mul_of_pos_right a he
+  exact le_trans (le_min ha h1) (h a)
+
+theorem repGaussOrder_le_normalForm (v : AddValuation W ℕ∞) (π : W) (e t : ℕ) (he : 1 ≤ e) (ht : t ≤ e)
+    (hπ : ((e : ℕ) : ℕ∞) ≤ v π) (F : MvPowerSeries (Fin 2) W) {H : ℕ → ℕ → W}
+    (hH : ∀ i j, H i j = MvPowerSeries.coeff (ij i j) F + π * H (i + 1) (j + 1)) :
+    repGaussOrder v e t F ≤
+      repGaussOrder v e t (inU (PowerSeries.mk fun i => H i 0) + inV (PowerSeries.mk fun j => if j = 0 then 0 else H 0 j)) := by
+  classical
+  rw [le_repGaussOrder_iff]
+  intro d
+  rw [map_add, coeff_inU, coeff_inV]
+  simp only [PowerSeries.coeff_mk]
+  by_cases h0 : d 0 = 0 <;> by_cases h1 : d 1 = 0
+  ·
+    rw [ite_eq_left h1, ite_eq_left h0, ite_eq_left h1, add_zero, h0]
+    have := le_of_forall_min_le he fun N => min_le_v_H_U v π e t ht hπ F hH N 0
+    simp only [Nat.zero_mul, Nat.cast_zero, add_zero] at this
+    have hw : annulusWeight e t d = 0 := by simp [annulusWeight, h0, h1]
+    rw [hw, Nat.cast_zero, add_zero]
+    exact this
+  ·
+    rw [ite_eq_right h1, ite_eq_left h0, ite_eq_right h1, zero_add]
+    have hw : annulusWeight e t d = d 1 * (e - t) := by simp [annulusWeight, h0]
+    rw [hw]
+    exact le_of_forall_min_le he fun N => min_le_v_H_V v π e t ht hπ F hH N (d 1)
+  ·
+    rw [ite_eq_left h1, ite_eq_right h0, add_zero]
+    have hw : annulusWeight e t d = d 0 * t := by simp [annulusWeight, h1]
+    rw [hw]
+    exact le_of_forall_min_le he fun N => min_le_v_H_U v π e t ht hπ F hH N (d 0)
+  ·
+    rw [ite_eq_right h1, ite_eq_right h0, add_zero, v.map_zero, top_add]
+    exact le_top
+
+end AnnulusStepA
+
+set_option autoImplicit false
+
+namespace AnnulusSlope
+
+noncomputable def gaussOrder (e : ℕ) (α β : ℕ → ℕ∞) (t : ℕ) : ℕ∞ :=
+  (⨅ i : ℕ, α i + ((i * t : ℕ) : ℕ∞)) ⊓ (⨅ j : ℕ, β j + (((j + 1) * (e - t) : ℕ) : ℕ∞))
+
+end AnnulusSlope
+
+namespace AnnulusStepA
+
+open ModularCurve ModularCurve.UVCrossingModel Finset AnnulusNF AnnulusG1
+
+variable {W : Type*} [CommRing W]
+
+end AnnulusStepA
+
+universe u
+
+open ModularCurve ModularCurve.UVCrossingModel IsLocalRing
+
+namespace SlopeLawSol
+open ModularCurve ModularCurve.UVCrossingModel
+
+open AnnulusNF AnnulusStepA
+
+variable {W : Type u} [CommRing W]
+
+section Scaled
+variable [IsDomain W] [IsDiscreteValuationRing W]
+
+noncomputable abbrev vq (W : Type u) [CommRing W] [IsDomain W] [IsDiscreteValuationRing W] (q : ℕ) : W → ℕ∞ :=
+  fun w => (q : ℕ∞) * IsDiscreteValuationRing.addVal W w
+
+theorem vq_zero (q : ℕ) (hq : 1 ≤ q) : vq W q 0 = ⊤ := by
+  simp only [vq, AddValuation.map_zero]
+  exact WithTop.mul_top (Nat.cast_ne_zero.mpr (by omega))
+
+noncomputable def vqAddVal (W : Type u) [CommRing W] [IsDomain W] [IsDiscreteValuationRing W] (q : ℕ) (hq : 1 ≤ q) :
+    AddValuation W ℕ∞ :=
+  AddValuation.of (vq W q) (vq_zero q hq) (by simp [vq])
+    (fun x y => by
+      simp only [vq]
+      rw [← mul_min]
+      exact mul_le_mul_right (AddValuation.map_add _ x y) _)
+    (fun x y => by simp only [vq, AddValuation.map_mul, mul_add])
+
+theorem gaussOrder_scaled_eq_repGaussOrder_normalForm [IsAdicComplete (maximalIdeal W) W]
+    (ϖ : W) (hϖ : Irreducible ϖ) (e : ℕ) (he : 1 ≤ e) (q : ℕ) (hq : 1 ≤ q)
+    (x : UVCrossingModel W (ϖ ^ e))
+    (ab : PowerSeries W × PowerSeries W) (hb : PowerSeries.constantCoeff ab.2 = 0)
+    (habx : mk (ϖ ^ e) (inU ab.1 + inV ab.2) = x) (p : ℕ) (hp : p ≤ q * e) :
+    gaussOrder (fun w => (q : ℕ∞) * IsDiscreteValuationRing.addVal W w) (ϖ ^ e) (q * e) p x =
+      repGaussOrder (fun w => (q : ℕ∞) * IsDiscreteValuationRing.addVal W w) (q * e) p (inU ab.1 + inV ab.2) := by
+  classical
+  have hmax : IsLocalRing.maximalIdeal W = Ideal.span {ϖ} :=
+    (IsDiscreteValuationRing.irreducible_iff_uniformizer ϖ).mp hϖ
+  haveI : IsAdicComplete (Ideal.span {ϖ}) W := hmax ▸ (inferInstance : IsAdicComplete (IsLocalRing.maximalIdeal W) W)
+  set v : AddValuation W ℕ∞ := vqAddVal W q hq with hvdef
+  have hv : (v : W → ℕ∞) = fun w => (q : ℕ∞) * IsDiscreteValuationRing.addVal W w := rfl
+  rw [← hv]
+  have hqe : 1 ≤ q * e := Nat.one_le_iff_ne_zero.mpr (Nat.mul_ne_zero (by omega) (by omega))
+  have hπ : (((q * e : ℕ) : ℕ∞)) ≤ v (ϖ ^ e) := by
+    change ((q * e : ℕ) : ℕ∞) ≤ (q : ℕ∞) * IsDiscreteValuationRing.addVal W (ϖ ^ e)
+    rw [IsDiscreteValuationRing.addVal_pow, IsDiscreteValuationRing.addVal_uniformizer hϖ, nsmul_eq_mul, mul_one,
+      Nat.cast_mul]
+  subst habx
+  refine le_antisymm ?_ (repGaussOrder_le_gaussOrder v (ϖ ^ e) (q * e) p _)
+  rw [gaussOrder_le_iff]
+  intro F hF
+  obtain ⟨H', hH', hmk'⟩ := exists_normalForm_rec ϖ e he F
+  have huniq := normalForm_unique ϖ e he (PowerSeries.mk fun i => H' i 0)
+    (PowerSeries.mk fun j => if j = 0 then 0 else H' 0 j) ab.1 ab.2 (by simp) hb (by rw [hmk', hF])
+  have hle := repGaussOrder_le_normalForm v (ϖ ^ e) (q * e) p hqe hp hπ F hH'
+  rw [huniq.1, huniq.2] at hle
+  exact hle
+
+end Scaled
+
+end SlopeLawSol
+open scoped _root_.P2MW.S_ModularCurve_UVCrossingModel_gaussOrder_scaled_eq_repGaussOrder_normalForm.SlopeLawSol
+
+open ModularCurve ModularCurve.UVCrossingModel IsLocalRing
+
+theorem solution
+    {W : Type u} [CommRing W] [IsDomain W] [IsDiscreteValuationRing W] [IsAdicComplete (maximalIdeal W) W]
+    (ϖ : W) (hϖ : Irreducible ϖ) (e : ℕ) (he : 1 ≤ e) (q : ℕ) (hq : 1 ≤ q)
+    (x : UVCrossingModel W (ϖ ^ e))
+    (ab : PowerSeries W × PowerSeries W) (hb : PowerSeries.constantCoeff ab.2 = 0)
+    (habx : mk (ϖ ^ e) (inU ab.1 + inV ab.2) = x) (p : ℕ) (hp : p ≤ q * e) :
+    gaussOrder (fun w => (q : ℕ∞) * IsDiscreteValuationRing.addVal W w) (ϖ ^ e) (q * e) p x = repGaussOrder (fun w => (q : ℕ∞) * IsDiscreteValuationRing.addVal W w) (q * e) p (inU ab.1 + inV ab.2) :=
+  SlopeLawSol.gaussOrder_scaled_eq_repGaussOrder_normalForm ϖ hϖ e he q hq x ab hb habx p hp
