@@ -1,0 +1,1 @@
+-- Barbier: a factory bundle (data/intake/barbier). This file only marks the library for Tengoku/All.lean.
