@@ -279,18 +279,32 @@ open Real Set
 /-- The standard isometry `ℂ ≃ ℝ²`, `z ↦ (re z, im z)`.-/
 noncomputable abbrev E : ℂ ≃ₗᵢ[ℝ] Plane := Complex.orthonormalBasisOneI.repr
 
+/--
+@isnad1 id=eq.0h1v.s9.3ee31d092ff4 from=translated src=- shape=b90e5bfa vocab=75255b1d
+-/
 lemma E_apply0 (z : ℂ) : (E z) 0 = z.re := rfl
+/--
+@isnad1 id=eq.0h1v.s9.cfa606bb6ccd from=translated src=- shape=b90e5bfa vocab=bc8910d1
+-/
 lemma E_apply1 (z : ℂ) : (E z) 1 = z.im := rfl
 
+/--
+@isnad1 id=eq.0h2v.s10.fa5de3ce93f1 from=translated src=- shape=3516095e vocab=c807f1ad
+-/
 lemma deriv_E_comp (γ : ℝ → ℂ) (t : ℝ) : deriv (fun s => E (γ s)) t = E (deriv γ t) := by
   show fderiv ℝ (E ∘ γ) t 1 = E (fderiv ℝ γ t 1)
   rw [LinearIsometryEquiv.comp_fderiv]; rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.02b5ea50315a from=translated src=- shape=c3078b28 vocab=eb65d30d
+-/
 lemma curveLength_E (γ : ℝ → ℂ) (T : ℝ) :
     curveLength (fun s => E (γ s)) T = ∫ t in (0:ℝ)..T, ‖deriv γ t‖ := by
   unfold curveLength; congr 1; funext t; rw [deriv_E_comp, LinearIsometryEquiv.norm_map]
 
-/-- NEW PROOF: `supportFn_obligation`.-/
+/-- NEW PROOF: `supportFn_obligation`.
+@isnad1 id=oblsuppo.0h0v.s0.897695c20828 from=translated src=- shape=45709ebd vocab=897695c2
+-/
 theorem cov_supportFn_obligation : obl_supportFn := by
   intro K hK u
   obtain ⟨x, hx, hmax⟩ := hK.1.exists_isMaxOn (hK.2.2.mono interior_subset)
@@ -300,7 +314,9 @@ theorem cov_supportFn_obligation : obl_supportFn := by
   exact IsGreatest.csSup_eq ⟨⟨x, hx, rfl⟩, by rintro _ ⟨y, hy, rfl⟩; exact hmax hy⟩
 
 /-- NEW PROOF: a finite intersection of closed `w`-balls about points pairwise at distance `≤ w`
-is a plane convex body (the centroid is an interior point).-/
+is a plane convex body (the centroid is an interior point).
+@isnad1 id=isplanec.2h3v.s7.edb0cf4ae818 from=translated src=- shape=f36504c4 vocab=bdb72e64
+-/
 theorem isPlaneConvexBody_iInter {ι : Type*} [Fintype ι] [Nonempty ι] (v : ι → Plane) (w : ℝ)
     (hw : 0 < w) (hd : ∀ i j, dist (v i) (v j) ≤ w) :
     IsPlaneConvexBody (⋂ i, Metric.closedBall (v i) w) := by
@@ -337,6 +353,9 @@ open Barbier
 
 variable {h : ℝ → ℝ} {w : ℝ}
 
+/--
+@isnad1 id=eq.0h2v.s9.8aafa4b6495b from=translated src=- shape=95753e1b vocab=c538e232
+-/
 lemma E_curve (h : ℝ → ℝ) (θ : ℝ) :
     E (Barbier.curve h θ) = !₂[h θ * Real.cos θ - deriv h θ * Real.sin θ,
                                h θ * Real.sin θ + deriv h θ * Real.cos θ] := by
@@ -346,7 +365,9 @@ lemma E_curve (h : ℝ → ℝ) (θ : ℝ) :
   · simp [E_apply1, Barbier.curve, Complex.mul_im, Complex.exp_ofReal_mul_I_re,
       Complex.exp_ofReal_mul_I_im]
 
-/-- C1(a), support-function form: COVERED (`perimeter_eq_integral`, `integral_support_eq`).-/
+/-- C1(a), support-function form: COVERED (`perimeter_eq_integral`, `integral_support_eq`).
+@isnad1 id=classica.0h0v.s0.bf840dff0757 from=translated src=- shape=45709ebd vocab=bf840dff
+-/
 theorem cov_C1_a_support : classical_C1_a_support := by
   intro p w hC2 hper hpos hwidth
   have hcv : ∀ θ, 0 ≤ p θ + deriv (deriv p) θ := fun θ => (hpos θ).le
@@ -358,6 +379,9 @@ theorem cov_C1_a_support : classical_C1_a_support := by
 
 /-! ### The body `K_h`, transported to `ℝ²`, has constant width in the writer's sense -/
 
+/--
+@isnad1 id=eq.1h3v.s10.c37d40c54755 from=translated src=- shape=3ebb68ae vocab=b2fb645b
+-/
 lemma supportFn_E_body (H : PiecewiseConstWidth h w) (θ : ℝ) :
     supportFn (E '' body h) (E (Complex.exp (θ * Complex.I))) = h θ := by
   unfold supportFn
@@ -367,6 +391,9 @@ lemma supportFn_E_body (H : PiecewiseConstWidth h w) (θ : ℝ) :
     funext z; rw [LinearIsometryEquiv.inner_map_map, bridge_inner_exp, neg_mul]
   rw [this]; exact support_body_piecewise H θ
 
+/--
+@isnad1 id=eq.1h1v.s10.8d4a6ece5c18 from=translated src=- shape=f2bc4dba vocab=210aa459
+-/
 lemma unit_eq_E_exp (u : Plane) (hu : ‖u‖ = 1) :
     u = E (Complex.exp ((Complex.arg (E.symm u) : ℝ) * Complex.I)) := by
   have h1 : ‖E.symm u‖ = 1 := by rw [LinearIsometryEquiv.norm_map, hu]
@@ -374,6 +401,9 @@ lemma unit_eq_E_exp (u : Plane) (hu : ‖u‖ = 1) :
   rw [h1, Complex.ofReal_one, one_mul] at this
   rw [this, LinearIsometryEquiv.apply_symm_apply]
 
+/--
+@isnad1 id=hasconst.2h2v.s9.d7e41e08bf47 from=translated src=- shape=bd3c203b vocab=a48f4d5c
+-/
 lemma hasConstantWidth_E_body (H : PiecewiseConstWidth h w) (hw : 0 < w) :
     HasConstantWidth (E '' body h) w := by
   refine ⟨hw, fun u hu => ?_⟩
@@ -389,7 +419,9 @@ lemma hasConstantWidth_E_body (H : PiecewiseConstWidth h w) (hw : 0 < w) :
 
 /-- C1(b), the part the repository reaches: for a piecewise constant-width support function `h`,
 the transported body `E '' K_h` is compact, convex and of constant width `w` in the writer's
-sense, and Barbier's perimeter (∫|γ'|) of its support-function curve is `π w`.-/
+sense, and Barbier's perimeter (∫|γ'|) of its support-function curve is `π w`.
+@isnad1 id=and.2h2v.s11.7903c2023ceb from=translated src=- shape=943431a8 vocab=5f891565
+-/
 theorem cov_C1_b_part (H : PiecewiseConstWidth h w) (hw : 0 < w) :
     IsCompact (E '' body h) ∧ Convex ℝ (E '' body h) ∧ HasConstantWidth (E '' body h) w ∧
       Barbier.perimeter h = π * w :=
@@ -397,18 +429,25 @@ theorem cov_C1_b_part (H : PiecewiseConstWidth h w) (hw : 0 < w) :
     (convex_body h).linear_image E.toLinearEquiv.toLinearMap,
     hasConstantWidth_E_body H hw, barbier_piecewise H⟩
 
-/-- C1(b) equivalent form, part: the circle of diameter `w` has the same Barbier perimeter.-/
+/-- C1(b) equivalent form, part: the circle of diameter `w` has the same Barbier perimeter.
+@isnad1 id=eq.2h2v.s5.f8832dabfdcd from=translated src=- shape=f3e07d38 vocab=e462634c
+-/
 theorem cov_C1_b_equiv_part (H : PiecewiseConstWidth h w) (hw : 0 < w) :
     Barbier.perimeter h = Barbier.perimeter (fun _ => w / 2) := by
   rw [barbier_piecewise H, circle_perimeter w hw.le]
 
 /-! ### C2 -/
 
+/--
+@isnad1 id=eq.0h4v.s6.4fdce7a68980 from=translated src=- shape=67395bd3 vocab=bc2b170b
+-/
 lemma reuleauxTriangle_eq (A B C : Plane) (w : ℝ) :
     reuleauxTriangle A B C w = ⋂ i : Fin 3, Metric.closedBall (![A, B, C] i) w := by
   ext x; simp [reuleauxTriangle, Fin.forall_fin_succ, and_assoc]
 
-/-- NEW PROOF: the Reuleaux triangle is a plane convex body.-/
+/-- NEW PROOF: the Reuleaux triangle is a plane convex body.
+@isnad1 id=isplanec.4h4v.s7.7b2529b7bf7a from=translated src=- shape=49deedb3 vocab=6308430c
+-/
 theorem isPlaneConvexBody_reuleaux (A B C : Plane) (w : ℝ) (hw : 0 < w)
     (hAB : dist A B = w) (hBC : dist B C = w) (hCA : dist C A = w) :
     IsPlaneConvexBody (reuleauxTriangle A B C w) := by
@@ -419,6 +458,9 @@ theorem isPlaneConvexBody_reuleaux (A B C : Plane) (w : ℝ) (hw : 0 < w)
   have hAC : dist A C = w := by rw [dist_comm]; exact hCA
   intro i j; fin_cases i <;> fin_cases j <;> simp [hAB, hBC, hCA, hBA, hCB, hAC, hw.le]
 
+/--
+@isnad1 id=le.3h5v.s7.6712e7709450 from=translated src=- shape=3822de38 vocab=fee29ffb
+-/
 lemma vertex_near_center {R : Set Plane} {X c : Plane} {r w : ℝ} (hR : R = Metric.closedBall c r)
     (hX : X ∈ R) (hsub : R ⊆ Metric.closedBall X w) : dist c X ≤ w / 2 := by
   have hXr : dist c X ≤ r := by
@@ -445,7 +487,9 @@ lemma vertex_near_center {R : Set Plane} {X c : Plane} {r w : ℝ} (hR : R = Met
   rw [Metric.mem_closedBall, hxX] at this
   linarith
 
-/-- NEW PROOF: the Reuleaux triangle is not a closed disk.-/
+/-- NEW PROOF: the Reuleaux triangle is not a closed disk.
+@isnad1 id=not.4h4v.s7.8eb979d1846e from=translated src=- shape=15613d0c vocab=7f4a9c71
+-/
 theorem reuleaux_not_disk (A B C : Plane) (w : ℝ) (hw : 0 < w)
     (hAB : dist A B = w) (hBC : dist B C = w) (hCA : dist C A = w) :
     ¬ ∃ (c : Plane) (r : ℝ), reuleauxTriangle A B C w = Metric.closedBall c r := by
@@ -482,7 +526,9 @@ theorem reuleaux_not_disk (A B C : Plane) (w : ℝ) (hw : 0 < w)
   have : dist C (midpoint ℝ A B) ^ 2 ≤ (w / 2) ^ 2 := pow_le_pow_left₀ hCm0 hCm 2
   nlinarith
 
-/-- C2(a), part (NEW PROOFS on the writer's object): plane convex body and not a disk.-/
+/-- C2(a), part (NEW PROOFS on the writer's object): plane convex body and not a disk.
+@isnad1 id=and.4h4v.s7.28064ad155b8 from=translated src=- shape=dc488c4b vocab=f10af8a1
+-/
 theorem cov_C2_a_part (A B C : Plane) (w : ℝ) (hw : 0 < w)
     (hAB : dist A B = w) (hBC : dist B C = w) (hCA : dist C A = w) :
     IsPlaneConvexBody (reuleauxTriangle A B C w) ∧
@@ -490,20 +536,26 @@ theorem cov_C2_a_part (A B C : Plane) (w : ℝ) (hw : 0 < w)
   ⟨isPlaneConvexBody_reuleaux A B C w hw hAB hBC hCA, reuleaux_not_disk A B C w hw hAB hBC hCA⟩
 
 /-- C2(c), Blaschke–Lebesgue, part (NEW PROOF, Mathlib only): the disk of diameter `w` has area
-`π w² / 4`.-/
+`π w² / 4`.
+@isnad1 id=eq.1h1v.s9.a81566c4fff7 from=translated src=- shape=4e41104b vocab=4d89201a
+-/
 theorem cov_C2_c_disk_area (w : ℝ) (hw : 0 < w) :
     MeasureTheory.volume (Metric.closedBall (0 : Plane) (w / 2)) = ENNReal.ofReal (π * w ^ 2 / 4) := by
   rw [EuclideanSpace.volume_closedBall_fin_two, ← ENNReal.ofReal_pow (by positivity),
     ← ENNReal.ofReal_mul (by positivity)]
   congr 1; ring
 
-/-- C2 Reuleaux polygons, part (NEW PROOF): the polygon is a plane convex body.-/
+/-- C2 Reuleaux polygons, part (NEW PROOF): the polygon is a plane convex body.
+@isnad1 id=isplanec.1h3v.s7.02669871a5c8 from=translated src=- shape=32f5e6fb vocab=b3481ebe
+-/
 theorem cov_C2_reuleaux_polygon_part (m : ℕ) (v : Fin (2 * m + 1) → Plane) (w : ℝ)
     (hv : IsReuleauxPolygonData m v w) :
     IsPlaneConvexBody (⋂ i, Metric.closedBall (v i) w) :=
   isPlaneConvexBody_iInter v w hv.2.1 hv.2.2.2.1
 
-/-- NEW PROOF (Mathlib only): the angles of an equilateral triangle are `π/3`.-/
+/-- NEW PROOF (Mathlib only): the angles of an equilateral triangle are `π/3`.
+@isnad1 id=eq.4h4v.s8.81b716ee2fd1 from=translated src=- shape=bb6002cb vocab=f8f2464e
+-/
 lemma angle_equilateral (A B C : Plane) (w : ℝ) (hw : 0 < w)
     (hAB : dist A B = w) (hCA : dist C A = w) (hBC : dist B C = w) :
     EuclideanGeometry.angle B A C = π / 3 := by
@@ -518,7 +570,9 @@ lemma angle_equilateral (A B C : Plane) (w : ℝ) (hw : 0 < w)
   exact Real.injOn_cos ⟨EuclideanGeometry.angle_nonneg _ _ _, EuclideanGeometry.angle_le_pi _ _ _⟩
     ⟨by positivity, by linarith [Real.pi_pos]⟩ hc
 
-/-- C2 boundary description, part (NEW PROOF): the three angles are `π/3`.-/
+/-- C2 boundary description, part (NEW PROOF): the three angles are `π/3`.
+@isnad1 id=and.4h4v.s9.ae8318f69e13 from=translated src=- shape=a775347d vocab=f8f2464e
+-/
 theorem cov_C2_boundary_part (A B C : Plane) (w : ℝ) (hw : 0 < w)
     (hAB : dist A B = w) (hBC : dist B C = w) (hCA : dist C A = w) :
     EuclideanGeometry.angle B A C = π / 3 ∧ EuclideanGeometry.angle C B A = π / 3 ∧

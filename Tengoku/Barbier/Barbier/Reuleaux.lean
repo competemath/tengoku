@@ -13,6 +13,9 @@ def reuleauxPiece (w p : ℝ) : ℝ :=
   if p ≤ π / 6 then (w / Real.sqrt 3) * Real.cos p
   else w - (w / Real.sqrt 3) * Real.cos (p - π / 3)
 
+/--
+@isnad1 id=lt.0h0v.s5.b1a4780f4eba from=translated src=- shape=0590051e vocab=f3f6407a
+-/
 lemma reuleaux_period_pos : (0 : ℝ) < 2 * π / 3 := by positivity
 
 def reuleaux (w : ℝ) (θ : ℝ) : ℝ :=
@@ -294,6 +297,9 @@ private lemma toIcoMod_two_pi_eq' (θ : ℝ) :
     simp only [zsmul_eq_mul]; push_cast; ring
   rw [heq, toIcoMod_add_zsmul]
 
+/--
+@isnad1 id=periodic.0h1v.s4.d74f2483e72a from=translated src=- shape=a9b37404 vocab=8b204913
+-/
 lemma reuleaux_periodic (w : ℝ) : Function.Periodic (reuleaux w) (2 * Real.pi) := fun θ => by
   simp only [reuleaux, toIcoMod_two_pi_eq']
 
@@ -307,6 +313,9 @@ private lemma toIcoMod_k_int' (k : ℤ) (θ : ℝ)
   exact ⟨⟨by linarith, by linarith [Real.pi_pos]⟩, k,
          by simp only [zsmul_eq_mul]; push_cast; ring⟩
 
+/--
+@isnad1 id=eq.0h2v.s4.33d4b0168441 from=translated src=- shape=5b9beca8 vocab=24d556f6
+-/
 lemma reuleaux_width (w : ℝ) (θ : ℝ) : reuleaux w θ + reuleaux w (θ + Real.pi) = w := by
   -- Let p = toIcoMod θ ∈ [-π/6, π/2), and θ = p + k*(2π/3)
   have hp_range : toIcoMod reuleaux_period_pos (-(Real.pi / 6)) θ ∈
@@ -1025,6 +1034,9 @@ private lemma reuleaux_integrable' (w : ℝ) (hw : 0 < w) :
     filter_upwards [hbreaks] with θ hθ
     exact reuleaux_hphdd_bound_nbp w hw θ hθ
 
+/--
+@isnad1 id=piecewis.1h1v.s4.71b37e5c1052 from=translated src=- shape=16c07a33 vocab=1c5f680c
+-/
 theorem reuleaux_constWidth {w : ℝ} (hw : 0 < w) : PiecewiseConstWidth (reuleaux w) w :=
   { smooth := reuleaux_smooth' w
     periodic := reuleaux_periodic w
@@ -1034,9 +1046,15 @@ theorem reuleaux_constWidth {w : ℝ} (hw : 0 < w) : PiecewiseConstWidth (reulea
                fun θ hθ => (reuleaux_breaks_field' w hw θ hθ).2⟩
     integrable := reuleaux_integrable' w hw }
 
+/--
+@isnad1 id=eq.1h1v.s4.cdf582cb64ac from=translated src=- shape=0738e936 vocab=8abee7e4
+-/
 theorem reuleaux_perimeter {w : ℝ} (hw : 0 < w) : perimeter (reuleaux w) = π * w :=
   barbier_piecewise (reuleaux_constWidth hw)
 
+/--
+@isnad1 id=not.1h1v.s5.0d2b87555ee4 from=translated src=- shape=bdb2740a vocab=9f9d022f
+-/
 theorem reuleaux_not_smooth {w : ℝ} (hw : 0 < w) : ¬ ContDiff ℝ 2 (reuleaux w) := by
   intro hC
   have hD : ContDiff ℝ 1 (deriv (reuleaux w)) := contDiff_one_deriv hC
@@ -1084,6 +1102,9 @@ theorem reuleaux_not_smooth {w : ℝ} (hw : 0 < w) : ¬ ContDiff ℝ 2 (reuleaux
     tendsto_nhds_unique (hcat.tendsto.mono_left nhdsWithin_le_nhds) hright
   linarith
 
+/--
+@isnad1 id=and.1h1v.s7.11d78531a6b0 from=translated src=- shape=01421700 vocab=7ff6ca3a
+-/
 theorem reuleaux_vertices {w : ℝ} (hw : 0 < w) :
     dist (curve (reuleaux w) 0) (curve (reuleaux w) (2 * π / 3)) = w ∧
     dist (curve (reuleaux w) (2 * π / 3)) (curve (reuleaux w) (4 * π / 3)) = w ∧
@@ -1317,6 +1338,9 @@ private lemma dist_arc_7pi6 {w : ℝ} (hw : 0 < w) :
   rw [Complex.normSq_mul, Complex.normSq_ofReal, normSq_diff_7pi6]
   linarith [w_div_sqrt3_sq_mul3 w]
 
+/--
+@isnad1 id=eq.2h2v.s6.74393c243ba6 from=translated src=- shape=0063bae0 vocab=1962fc82
+-/
 theorem reuleaux_arc {w : ℝ} (hw : 0 < w) :
     ∀ θ ∈ Set.Icc (5 * π / 6) (7 * π / 6),
       dist (curve (reuleaux w) θ) (curve (reuleaux w) 0) = w := by

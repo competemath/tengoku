@@ -6,6 +6,9 @@ namespace Barbier
 
 open MeasureTheory intervalIntegral Set eVariationOn Asymptotics ENNReal Topology
 
+/--
+@isnad1 id=ne.2h3v.s6.6006f8e2da78 from=translated src=- shape=79c90d37 vocab=e6f8b68d
+-/
 theorem eVariationOn_ne_top_of_contDiff {γ : ℝ → ℂ} (hγ : ContDiff ℝ 1 γ) {a b : ℝ}
     (hab : a ≤ b) :
     eVariationOn γ (Set.Icc a b) ≠ ⊤ := by
@@ -49,6 +52,9 @@ theorem eVariationOn_ne_top_of_contDiff {γ : ℝ → ℂ} (hγ : ContDiff ℝ 1
     hlocal_ub a b hab
   exact ne_top_of_le_ne_top ENNReal.ofReal_ne_top hupper
 
+/--
+@isnad1 id=and.2h3v.s7.30edcd132d23 from=translated src=- shape=f9a4f330 vocab=1b18522e
+-/
 theorem length_eq_integral_norm_deriv {γ : ℝ → ℂ} (hγ : ContDiff ℝ 1 γ) {a b : ℝ}
     (hab : a ≤ b) :
     eVariationOn γ (Set.Icc a b) ≠ ⊤ ∧

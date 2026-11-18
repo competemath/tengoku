@@ -32,7 +32,9 @@ def curve (h : ℝ → ℝ) (θ : ℝ) : ℂ := ((h θ : ℂ) + ((deriv h θ : �
 /-- Perimeter of the curve: `∫₀^{2π} ‖γ'(θ)‖ dθ`.-/
 def perimeter (h : ℝ → ℝ) : ℝ := ∫ θ in (0 : ℝ)..(2 * π), ‖deriv (curve h) θ‖
 
-/-- The width condition alone gives `∫₀^{2π} h = π w`.-/
+/-- The width condition alone gives `∫₀^{2π} h = π w`.
+@isnad1 id=eq.2h2v.s6.c4c949b05205 from=translated src=- shape=ee551d90 vocab=772b59bc
+-/
 theorem integral_support_eq {h : ℝ → ℝ} {w : ℝ} (hc : Continuous h)
     (hw : ∀ θ, h θ + h (θ + π) = w) :
     ∫ θ in (0 : ℝ)..(2 * π), h θ = π * w := by
@@ -48,10 +50,15 @@ theorem integral_support_eq {h : ℝ → ℝ} {w : ℝ} (hc : Continuous h)
   rw [integral_add h1 h5] at h4
   rw [h3, h4]
 
+/--
+@isnad1 id=contdiff.1h1v.s6.e14413459470 from=translated src=- shape=98270798 vocab=74a30785
+-/
 lemma contDiff_one_deriv {h : ℝ → ℝ} (hh : ContDiff ℝ 2 h) : ContDiff ℝ 1 (deriv h) :=
   ContDiff.deriv' (by simpa [one_add_one_eq_two] using hh)
 
-/-- Velocity of the curve: `γ'(θ) = (h + h'')(θ) · i e^{iθ}`.-/
+/-- Velocity of the curve: `γ'(θ) = (h + h'')(θ) · i e^{iθ}`.
+@isnad1 id=hasderiv.1h2v.s7.3cf0e46c16f5 from=translated src=- shape=ed157245 vocab=090b9f03
+-/
 theorem hasDerivAt_curve {h : ℝ → ℝ} (hh : ContDiff ℝ 2 h) (θ : ℝ) :
     HasDerivAt (curve h) (((h θ + deriv (deriv h) θ : ℝ) : ℂ) * (Complex.I * Complex.exp (θ * Complex.I))) θ := by
   have d0 : HasDerivAt h (deriv h θ) θ :=
@@ -67,24 +74,33 @@ theorem hasDerivAt_curve {h : ℝ → ℝ} (hh : ContDiff ℝ 2 h) (θ : ℝ) :
   push_cast
   linear_combination (((deriv h θ : ℝ) : ℂ) * Complex.exp ((θ : ℂ) * Complex.I)) * hI
 
+/--
+@isnad1 id=eq.1h2v.s7.ea7e37595403 from=translated src=- shape=a27917e3 vocab=67a6228a
+-/
 theorem deriv_curve {h : ℝ → ℝ} (hh : ContDiff ℝ 2 h) (θ : ℝ) :
     deriv (curve h) θ = ((h θ + deriv (deriv h) θ : ℝ) : ℂ) * (Complex.I * Complex.exp (θ * Complex.I)) :=
   (hasDerivAt_curve hh θ).deriv
 
-/-- Speed of the curve: `‖γ'(θ)‖ = |h θ + h''(θ)|`.-/
+/-- Speed of the curve: `‖γ'(θ)‖ = |h θ + h''(θ)|`.
+@isnad1 id=eq.1h2v.s7.03f9b901075b from=translated src=- shape=33c4c9ee vocab=b5bef648
+-/
 theorem norm_deriv_curve {h : ℝ → ℝ} (hh : ContDiff ℝ 2 h) (θ : ℝ) :
     ‖deriv (curve h) θ‖ = |h θ + deriv (deriv h) θ| := by
   rw [deriv_curve hh, norm_mul, norm_mul, Complex.norm_real, Real.norm_eq_abs,
     Complex.norm_I, Complex.norm_exp_ofReal_mul_I]
   ring
 
-/-- Under convexity, the speed is the radius of curvature `h + h''`.-/
+/-- Under convexity, the speed is the radius of curvature `h + h''`.
+@isnad1 id=eq.2h2v.s7.e3ffc63401a1 from=translated src=- shape=1b78e6c0 vocab=54674474
+-/
 theorem norm_deriv_curve_of_convex {h : ℝ → ℝ} (hh : ContDiff ℝ 2 h)
     (hcv : ∀ θ, 0 ≤ h θ + deriv (deriv h) θ) (θ : ℝ) :
     ‖deriv (curve h) θ‖ = h θ + deriv (deriv h) θ := by
   rw [norm_deriv_curve hh, abs_of_nonneg (hcv θ)]
 
-/-- `∫₀^{2π} h'' = 0` for a periodic `C²` function.-/
+/-- `∫₀^{2π} h'' = 0` for a periodic `C²` function.
+@isnad1 id=eq.2h1v.s7.9e56c9ec6929 from=translated src=- shape=6aa6b525 vocab=257813a7
+-/
 theorem integral_deriv_deriv_eq_zero {h : ℝ → ℝ} (hh : ContDiff ℝ 2 h)
     (hp : Function.Periodic h (2 * π)) :
     ∫ θ in (0 : ℝ)..(2 * π), deriv (deriv h) θ = 0 := by
@@ -97,7 +113,9 @@ theorem integral_deriv_deriv_eq_zero {h : ℝ → ℝ} (hh : ContDiff ℝ 2 h)
   rw [zero_add] at this
   rw [this, sub_self]
 
-/-- Cauchy's formula in this model: perimeter `= ∫₀^{2π} h`.-/
+/-- Cauchy's formula in this model: perimeter `= ∫₀^{2π} h`.
+@isnad1 id=eq.3h1v.s7.314eef9273dd from=translated src=- shape=b03ec62d vocab=e5f0dec9
+-/
 theorem perimeter_eq_integral {h : ℝ → ℝ} (hh : ContDiff ℝ 2 h)
     (hp : Function.Periodic h (2 * π)) (hcv : ∀ θ, 0 ≤ h θ + deriv (deriv h) θ) :
     perimeter h = ∫ θ in (0 : ℝ)..(2 * π), h θ := by
@@ -108,13 +126,17 @@ theorem perimeter_eq_integral {h : ℝ → ℝ} (hh : ContDiff ℝ 2 h)
     integral_deriv_deriv_eq_zero hh hp, add_zero]
 
 /-- **Barbier's theorem** (support-function model): a convex curve of constant width `w`
-has perimeter `π w`.-/
+has perimeter `π w`.
+@isnad1 id=eq.1h2v.s4.b52959b80776 from=translated src=- shape=f9ce0a4b vocab=d96b4f69
+-/
 theorem barbier {h : ℝ → ℝ} {w : ℝ} (H : ConstWidthSupport h w) :
     perimeter h = π * w := by
   rw [perimeter_eq_integral H.smooth H.periodic H.convex,
     integral_support_eq H.smooth.continuous H.width]
 
-/-- Geometric sanity check: the projection of `γ(θ)` on the direction `e^{iθ}` is `h θ`.-/
+/-- Geometric sanity check: the projection of `γ(θ)` on the direction `e^{iθ}` is `h θ`.
+@isnad1 id=eq.0h2v.s5.8d83d31340c5 from=translated src=- shape=7f144cc0 vocab=47a5f4b7
+-/
 theorem curve_proj (h : ℝ → ℝ) (θ : ℝ) :
     (curve h θ * Complex.exp (-(θ * Complex.I))).re = h θ := by
   unfold curve
@@ -122,7 +144,9 @@ theorem curve_proj (h : ℝ → ℝ) (θ : ℝ) :
   simp
 
 /-- The two points `γ(θ)`, `γ(θ + π)` (opposite normals) are at distance `w` measured
-along the normal direction `e^{iθ}`.-/
+along the normal direction `e^{iθ}`.
+@isnad1 id=eq.1h3v.s6.c04af2c94190 from=translated src=- shape=75a5b196 vocab=2448c8c6
+-/
 theorem curve_width {h : ℝ → ℝ} {w : ℝ} (hw : ∀ θ, h θ + h (θ + π) = w) (θ : ℝ) :
     ((curve h θ - curve h (θ + π)) * Complex.exp (-(θ * Complex.I))).re = w := by
   have e : Complex.exp (-(θ * Complex.I)) = -Complex.exp (-(((θ + π : ℝ) : ℂ) * Complex.I)) := by

@@ -107,7 +107,9 @@ private lemma intervalIntegrable_g (H : PiecewiseConstWidth h w) (θ a b : ℝ) 
 /-! ### Main theorem -/
 
 /-- **Bridge for `PiecewiseConstWidth` (support function).**
-`h θ` is the maximum of `⟪γ(φ), e^{iθ}⟫` over the whole curve.-/
+`h θ` is the maximum of `⟪γ(φ), e^{iθ}⟫` over the whole curve.
+@isnad1 id=isgreate.1h3v.s5.7b6229ae8b92 from=translated src=- shape=6c7852bc vocab=1eaf970c
+-/
 theorem bridge_support_piecewise (H : PiecewiseConstWidth h w) (θ : ℝ) :
     IsGreatest (Set.range fun φ => inner ℝ (curve h φ) (Complex.exp (θ * Complex.I))) (h θ) := by
   set f : ℝ → ℝ := fun φ => (curve h φ * Complex.exp (-(θ * Complex.I))).re with hfdef
@@ -169,6 +171,9 @@ theorem bridge_support_piecewise (H : PiecewiseConstWidth h w) (θ : ℝ) :
 
 /-! ### Derived theorems (proofs identical to Bridge.lean) -/
 
+/--
+@isnad1 id=mem.1h3v.s4.d67ccc1f5f5a from=translated src=- shape=125af521 vocab=dc7eab12
+-/
 theorem curve_mem_body_piecewise (H : PiecewiseConstWidth h w) (θ : ℝ) :
     curve h θ ∈ body h := by
   refine Set.mem_iInter.2 fun φ => ?_
@@ -176,6 +181,9 @@ theorem curve_mem_body_piecewise (H : PiecewiseConstWidth h w) (θ : ℝ) :
   simp only [bridge_inner_exp] at this
   simpa [neg_mul] using this
 
+/--
+@isnad1 id=eq.1h3v.s5.97e8ac6a602a from=translated src=- shape=644df031 vocab=2f7bdcab
+-/
 theorem support_body_piecewise (H : PiecewiseConstWidth h w) (θ : ℝ) :
     sSup ((fun z => (z * Complex.exp (-θ * Complex.I)).re) '' body h) = h θ := by
   refine IsGreatest.csSup_eq ⟨⟨curve h θ, curve_mem_body_piecewise H θ, ?_⟩, ?_⟩
@@ -183,6 +191,9 @@ theorem support_body_piecewise (H : PiecewiseConstWidth h w) (θ : ℝ) :
   · rintro _ ⟨z, hz, rfl⟩
     exact Set.mem_iInter.1 hz θ
 
+/--
+@isnad1 id=eq.1h3v.s6.c012ff8eb0ad from=translated src=- shape=703672bd vocab=56ddddec
+-/
 theorem width_body_piecewise (H : PiecewiseConstWidth h w) (θ : ℝ) :
     sSup ((fun z => (z * Complex.exp (-θ * Complex.I)).re) '' body h)
       + sSup ((fun z => (z * Complex.exp (-((θ + π : ℝ) : ℂ) * Complex.I)).re) '' body h) = w := by

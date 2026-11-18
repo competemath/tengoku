@@ -54,7 +54,9 @@ private lemma hasDerivAt_curve_pointwise (h1 : ContDiff ℝ 1 h) (theta : ℝ)
   simp only [Pi.add_apply]; push_cast
   linear_combination (((deriv h theta : ℝ) : ℂ) * Complex.exp ((theta : ℂ) * Complex.I)) * hI
 
-/-- The smooth class is an instance of the piecewise class (with `S = ∅`).-/
+/-- The smooth class is an instance of the piecewise class (with `S = ∅`).
+@isnad1 id=piecewis.1h2v.s3.fe1ba2d67b15 from=translated src=- shape=fc89a731 vocab=fa4eb1c9
+-/
 theorem ConstWidthSupport.toPiecewise (H : ConstWidthSupport h w) : PiecewiseConstWidth h w := by
   refine ⟨H.smooth.of_le (by norm_num), H.periodic, H.width,
           ⟨∅, Set.countable_empty, ?_, ?_⟩, ?_⟩
@@ -69,7 +71,9 @@ theorem ConstWidthSupport.toPiecewise (H : ConstWidthSupport h w) : PiecewiseCon
       (contDiff_one_deriv H.smooth).continuous_deriv_one
     exact (H.smooth.continuous.add hdd).intervalIntegrable _ _
 
-/-- **Barbier's theorem**, piecewise-`C²` support functions: perimeter `= π w`.-/
+/-- **Barbier's theorem**, piecewise-`C²` support functions: perimeter `= π w`.
+@isnad1 id=eq.1h2v.s4.c4e1c8a6bc89 from=translated src=- shape=f9ce0a4b vocab=7d4f2976
+-/
 theorem barbier_piecewise (H : PiecewiseConstWidth h w) : perimeter h = π * w := by
   obtain ⟨S, hS_count, hS_diff, hS_conv⟩ := H.breaks
   -- h'' is integrable (from H.integrable - h)

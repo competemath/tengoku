@@ -4,7 +4,9 @@ import Tengoku
 namespace Tengoku.Barbier end Tengoku.Barbier open Tengoku.Barbier
 open MeasureTheory intervalIntegral Set eVariationOn Asymptotics ENNReal Topology
 
-/-- For a C¹ function γ : ℝ → ℂ, the total variation on [a,b] equals ∫ₐᵇ ‖deriv γ t‖ dt-/
+/-- For a C¹ function γ : ℝ → ℂ, the total variation on [a,b] equals ∫ₐᵇ ‖deriv γ t‖ dt
+@isnad1 id=eq.2h3v.s7.daca4d49cbb7 from=translated src=- shape=9f5bb7d5 vocab=a64f9fe5
+-/
 theorem _root_.Tengoku.Barbier.eVariationOn_eq_integral_norm_deriv {γ : ℝ → ℂ} (hγ : ContDiff ℝ 1 γ) {a b : ℝ}
     (hab : a ≤ b) :
     (eVariationOn γ (Set.Icc a b)).toReal = ∫ t in a..b, ‖deriv γ t‖ := by

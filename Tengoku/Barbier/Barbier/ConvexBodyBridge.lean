@@ -56,13 +56,21 @@ private lemma isBounded_body (H : PiecewiseConstWidth h w) : Bornology.IsBounded
 
 /-! ### Main theorems -/
 
+/--
+@isnad1 id=iscompac.1h2v.s4.981ae0f64fcb from=translated src=- shape=aba482ff vocab=384bc954
+-/
 theorem isCompact_body_piecewise (H : PiecewiseConstWidth h w) : IsCompact (body h) :=
   Metric.isCompact_of_isClosed_isBounded (isClosed_body h) (isBounded_body H)
 
+/--
+@isnad1 id=nonempty.1h2v.s3.9b5ec7a1f4b5 from=translated src=- shape=aba482ff vocab=fab03141
+-/
 theorem body_nonempty_piecewise (H : PiecewiseConstWidth h w) : (body h).Nonempty :=
   ⟨curve h 0, curve_mem_body_piecewise H 0⟩
 
-/-- The body as a Mathlib `ConvexBody`, with support function `h` and constant width `w`.-/
+/-- The body as a Mathlib `ConvexBody`, with support function `h` and constant width `w`.
+@isnad1 id=ex.1h2v.s9.0511b21b07d3 from=translated src=- shape=9c01f93e vocab=5cee3eb1
+-/
 theorem exists_convexBody_piecewise (H : PiecewiseConstWidth h w) :
     ∃ K : ConvexBody ℂ, (K : Set ℂ) = body h ∧
       (∀ θ : ℝ, sSup ((fun z => (z * Complex.exp (-θ * Complex.I)).re) '' (K : Set ℂ)) = h θ) ∧
@@ -73,7 +81,9 @@ theorem exists_convexBody_piecewise (H : PiecewiseConstWidth h w) :
   · intro θ; simp only [ConvexBody.coe_mk]; exact support_body_piecewise H θ
   · intro θ; simp only [ConvexBody.coe_mk]; exact width_body_piecewise H θ
 
-/-- The Reuleaux triangle is a Mathlib `ConvexBody` of constant width `w`.-/
+/-- The Reuleaux triangle is a Mathlib `ConvexBody` of constant width `w`.
+@isnad1 id=ex.1h1v.s8.0e70447a247e from=translated src=- shape=265d3ff7 vocab=cb5e0e13
+-/
 theorem reuleaux_convexBody {w : ℝ} (hw : 0 < w) :
     ∃ K : ConvexBody ℂ, (K : Set ℂ) = body (reuleaux w) ∧
       (∀ θ : ℝ, sSup ((fun z => (z * Complex.exp (-θ * Complex.I)).re) '' (K : Set ℂ))

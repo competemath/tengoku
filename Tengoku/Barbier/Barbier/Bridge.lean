@@ -28,14 +28,18 @@ open Real
 namespace Barbier
 
 /-- The real inner product with the unit normal `e^{iθ}` is the projection used in the
-library (`curve_proj`, `curve_width`).-/
+library (`curve_proj`, `curve_width`).
+@isnad1 id=eq.0h2v.s5.fbda0f97ea56 from=translated src=- shape=7bcd6188 vocab=203edcff
+-/
 theorem bridge_inner_exp (z : ℂ) (θ : ℝ) :
     inner ℝ z (Complex.exp (θ * Complex.I)) = (z * Complex.exp (-(θ * Complex.I))).re := by
   rw [Complex.inner, ← Complex.conj_re, map_mul, Complex.conj_conj, ← Complex.exp_conj, map_mul,
     Complex.conj_ofReal, Complex.conj_I, mul_comm, show (θ : ℂ) * -Complex.I = -(θ * Complex.I) by ring]
 
 /-- **Bridge for `curve`.** `γ(θ)` lies on the line with unit normal `e^{iθ}` at signed distance
-`h θ` from the origin, and its velocity is tangent to that line (orthogonal to the normal).-/
+`h θ` from the origin, and its velocity is tangent to that line (orthogonal to the normal).
+@isnad1 id=and.1h2v.s7.0c77cea515f0 from=translated src=- shape=92f673d2 vocab=14da0bcd
+-/
 theorem bridge_curve {h : ℝ → ℝ} (hh : ContDiff ℝ 2 h) (θ : ℝ) :
     inner ℝ (curve h θ) (Complex.exp (θ * Complex.I)) = h θ ∧
     inner ℝ (deriv (curve h) θ) (Complex.exp (θ * Complex.I)) = 0 := by
@@ -45,7 +49,9 @@ theorem bridge_curve {h : ℝ → ℝ} (hh : ContDiff ℝ 2 h) (θ : ℝ) :
 
 /-- **Bridge for `ConstWidthSupport` (support function).** Under the hypotheses, `h θ` is the
 maximum of `⟪γ(φ), e^{iθ}⟫` over the whole curve: `h` is the support function of `γ`, so the
-line `⟪x, e^{iθ}⟫ = h θ` is a genuine support line.-/
+line `⟪x, e^{iθ}⟫ = h θ` is a genuine support line.
+@isnad1 id=isgreate.1h3v.s5.af5f2c8208e6 from=translated src=- shape=6c7852bc vocab=337d3bb0
+-/
 theorem bridge_support {h : ℝ → ℝ} {w : ℝ} (H : ConstWidthSupport h w) (θ : ℝ) :
     IsGreatest (Set.range fun φ => inner ℝ (curve h φ) (Complex.exp (θ * Complex.I))) (h θ) := by
   set f : ℝ → ℝ := fun φ => (curve h φ * Complex.exp (-(θ * Complex.I))).re with hf
@@ -108,7 +114,9 @@ theorem bridge_support {h : ℝ → ℝ} {w : ℝ} (H : ConstWidthSupport h w) (
 
 /-- **Bridge for `ConstWidthSupport` (width).** The support lines with normals `e^{iθ}` and
 `-e^{iθ}` are `w` apart in every direction, the speed of `γ` is the radius of curvature
-`h + h''`, and the width is nonnegative.-/
+`h + h''`, and the width is nonnegative.
+@isnad1 id=and.1h2v.s7.15a6a24996b1 from=translated src=- shape=787e62d8 vocab=8d002112
+-/
 theorem bridge_constWidth {h : ℝ → ℝ} {w : ℝ} (H : ConstWidthSupport h w) :
     (∀ θ : ℝ, inner ℝ (curve h θ - curve h (θ + π)) (Complex.exp (θ * Complex.I)) = w) ∧
     (∀ θ, ‖deriv (curve h) θ‖ = h θ + deriv (deriv h) θ) ∧ 0 ≤ w := by
@@ -120,7 +128,9 @@ theorem bridge_constWidth {h : ℝ → ℝ} {w : ℝ} (H : ConstWidthSupport h w
   exact nonneg_of_mul_nonneg_right (by linarith) Real.pi_pos
 
 /-- **Bridge for `perimeter`.** For a constant support function `r` the curve is Mathlib's
-circle `circleMap 0 r` and `perimeter` is its circumference `2π|r|`.-/
+circle `circleMap 0 r` and `perimeter` is its circumference `2π|r|`.
+@isnad1 id=and.0h1v.s5.dcff788f1025 from=translated src=- shape=afa69f5d vocab=a82034b0
+-/
 theorem bridge_perimeter (r : ℝ) :
     curve (fun _ => r) = circleMap 0 r ∧ perimeter (fun _ => r) = 2 * π * |r| := by
   refine ⟨funext fun θ => by simp [curve, circleMap], ?_⟩
@@ -129,7 +139,9 @@ theorem bridge_perimeter (r : ℝ) :
   simp
 
 /-- **Bridge for `trefoil`.** `a + b cos 3θ` has width `2a` in every direction and radius of
-curvature `a − 8b cos 3θ`.-/
+curvature `a − 8b cos 3θ`.
+@isnad1 id=and.0h3v.s7.e7443244e9a7 from=translated src=- shape=7fca2289 vocab=9f1f7fc5
+-/
 theorem bridge_trefoil (a b θ : ℝ) :
     trefoil a b θ + trefoil a b (θ + π) = 2 * a ∧
     trefoil a b θ + deriv (deriv (trefoil a b)) θ = a - 8 * b * Real.cos (3 * θ) := by
@@ -142,7 +154,9 @@ theorem bridge_trefoil (a b θ : ℝ) :
 /-! ## Paper C bridges: Mathlib curve length, the convex body, its support function and width -/
 
 /-- **General arclength helper** (not in Mathlib at our pin): the length (total variation,
-`eVariationOn`) of a `C¹` curve in `ℂ` over `[a, b]` is `∫ₐᵇ ‖γ'‖`.-/
+`eVariationOn`) of a `C¹` curve in `ℂ` over `[a, b]` is `∫ₐᵇ ‖γ'‖`.
+@isnad1 id=eq.2h3v.s7.daca4d49cbb7 from=translated src=- shape=9f5bb7d5 vocab=a64f9fe5
+-/
 theorem eVariationOn_eq_integral_norm_deriv {γ : ℝ → ℂ} (hγ : ContDiff ℝ 1 γ) {a b : ℝ}
     (hab : a ≤ b) :
     (eVariationOn γ (Set.Icc a b)).toReal = ∫ t in a..b, ‖deriv γ t‖ :=
@@ -163,7 +177,9 @@ private lemma contDiff_curve_of_contDiff2 {h : ℝ → ℝ} (hh : ContDiff ℝ 2
     · exact contDiff_const
 
 /-- **Length bridge.** Our  is Mathlib's length (total variation) of 
-on .-/
+on .
+@isnad1 id=eq.3h1v.s7.d8de88ceb1bd from=translated src=- shape=cf1f90ef vocab=354091c6
+-/
 theorem perimeter_eq_eVariationOn {h : ℝ → ℝ} (hh : ContDiff ℝ 2 h)
     (hp : Function.Periodic h (2 * π)) (hcv : ∀ θ, 0 ≤ h θ + deriv (deriv h) θ) :
     perimeter h = (eVariationOn (curve h) (Set.Icc 0 (2 * π))).toReal := by
@@ -174,11 +190,17 @@ theorem perimeter_eq_eVariationOn {h : ℝ → ℝ} (hh : ContDiff ℝ 2 h)
 def body (h : ℝ → ℝ) : Set ℂ :=
   ⋂ θ : ℝ, {z : ℂ | (z * Complex.exp (-θ * Complex.I)).re ≤ h θ}
 
+/--
+@isnad1 id=convex.0h1v.s5.f6eb825ff4e8 from=translated src=- shape=e849ac45 vocab=a1baf06e
+-/
 theorem convex_body (h : ℝ → ℝ) : Convex ℝ (body h) := by
   refine convex_iInter fun θ => convex_halfSpace_le ?_ (h θ)
   refine ⟨fun x y => by simp [add_mul], fun r x => ?_⟩
   simp [Complex.real_smul, mul_assoc]
 
+/--
+@isnad1 id=mem.1h3v.s4.e4abd22c4d37 from=translated src=- shape=125af521 vocab=91d343da
+-/
 theorem curve_mem_body {h : ℝ → ℝ} {w : ℝ} (H : ConstWidthSupport h w) (θ : ℝ) :
     curve h θ ∈ body h := by
   refine Set.mem_iInter.2 fun φ => ?_
@@ -186,7 +208,9 @@ theorem curve_mem_body {h : ℝ → ℝ} {w : ℝ} (H : ConstWidthSupport h w) (
   simp only [bridge_inner_exp] at this
   simpa [neg_mul] using this
 
-/-- `h` **is** the support function of `body h`.-/
+/-- `h` **is** the support function of `body h`.
+@isnad1 id=eq.1h3v.s5.522bf6c1acf4 from=translated src=- shape=644df031 vocab=7fa6d48c
+-/
 theorem support_body {h : ℝ → ℝ} {w : ℝ} (H : ConstWidthSupport h w) (θ : ℝ) :
     sSup ((fun z => (z * Complex.exp (-θ * Complex.I)).re) '' body h) = h θ := by
   refine IsGreatest.csSup_eq ⟨⟨curve h θ, curve_mem_body H θ, ?_⟩, ?_⟩
@@ -195,7 +219,9 @@ theorem support_body {h : ℝ → ℝ} {w : ℝ} (H : ConstWidthSupport h w) (θ
     exact Set.mem_iInter.1 hz θ
 
 /-- **Constant width of the set.** In every direction `θ`, the support values of `body h`
-in directions `θ` and `θ + π` add up to `w`: `body h` has width `w` in every direction.-/
+in directions `θ` and `θ + π` add up to `w`: `body h` has width `w` in every direction.
+@isnad1 id=eq.1h3v.s6.ce72ddf9044c from=translated src=- shape=703672bd vocab=e1755e0f
+-/
 theorem width_body {h : ℝ → ℝ} {w : ℝ} (H : ConstWidthSupport h w) (θ : ℝ) :
     sSup ((fun z => (z * Complex.exp (-θ * Complex.I)).re) '' body h)
       + sSup ((fun z => (z * Complex.exp (-((θ + π : ℝ) : ℂ) * Complex.I)).re) '' body h) = w := by
