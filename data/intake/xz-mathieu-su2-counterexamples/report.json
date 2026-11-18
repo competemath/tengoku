@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "486cfbbe8e4dd07032a4b73b44eeecaa8dc5bed66d9cd5f300dc7ca6b7538f32",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "xz-mathieu-su2-counterexamples",
+ "lint_mode": "proposed",
+ "modules": 26,
+ "part": 1,
+ "theorems": 188
+}
