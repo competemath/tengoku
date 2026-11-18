@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=ex.2h4v.s12.99952dfe5b80 from=translated src=- shape=099e9228 vocab=f941db96
+-/
 theorem LinearMap.exists_basis_apply_eq_smul_and_isUnit_and_card_le_of_finrank_ker_baseChange_le
     (R : Type) [CommRing R] [IsDomain R] [IsPrincipalIdealRing R] [IsLocalRing R]
     (M : Type) [AddCommGroup M] [Module R M] [Module.Free R M] [Module.Finite R M]

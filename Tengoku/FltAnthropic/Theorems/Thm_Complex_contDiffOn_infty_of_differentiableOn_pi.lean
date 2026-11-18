@@ -10,6 +10,9 @@ set_option autoImplicit false
 open Topology
 open scoped ContDiff
 
+/--
+@isnad1 id=contdiff.2h4v.s7.ad584953c8f2 from=translated src=- shape=50abee44 vocab=e887f036
+-/
 theorem Complex.contDiffOn_infty_of_differentiableOn_pi {n : ℕ} {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
     [CompleteSpace E] {f : (Fin n → ℂ) → E} {U : Set (Fin n → ℂ)} (hU : IsOpen U)
     (hf : DifferentiableOn ℂ f U) : ContDiffOn ℂ ∞ f U := by exact @_root_.P2MW.S_Complex_contDiffOn_infty_of_differentiableOn_pi.solution n E _ _ _ f U hU hf

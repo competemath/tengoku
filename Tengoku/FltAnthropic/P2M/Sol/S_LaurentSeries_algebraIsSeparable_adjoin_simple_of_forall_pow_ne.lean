@@ -22,17 +22,29 @@ noncomputable def thetaFun (f : LaurentSeries k) : LaurentSeries k where
     simp only [Function.mem_support, ne_eq] at hn ⊢
     exact fun h => hn (by rw [h, mul_zero])
 
+/--
+@isnad1 id=eq.0h3v.s6.8e96191d138e from=translated src=- shape=0459939d vocab=8323fded
+-/
 @[scoped simp] theorem coeff_thetaFun (f : LaurentSeries k) (n : ℤ) :
     (thetaFun f).coeff n = (n : k) * f.coeff n := rfl
 
+/--
+@isnad1 id=le.0h2v.s6.4ce2322f270f from=translated src=- shape=2715dba1 vocab=a3984c90
+-/
 theorem support_thetaFun_subset (f : LaurentSeries k) : (thetaFun f).support ⊆ f.support := by
   intro n hn
   simp only [HahnSeries.mem_support, coeff_thetaFun, ne_eq] at hn ⊢
   exact fun h => hn (by rw [h, mul_zero])
 
+/--
+@isnad1 id=eq.0h3v.s7.92acb9d28072 from=translated src=- shape=c0b94ddd vocab=f8f5eacb
+-/
 theorem thetaFun_add (f g : LaurentSeries k) : thetaFun (f + g) = thetaFun f + thetaFun g := by
   ext n; simp [mul_add]
 
+/--
+@isnad1 id=eq.0h3v.s8.763427f75b70 from=translated src=- shape=d5af515b vocab=5ee03cb1
+-/
 theorem thetaFun_mul (f g : LaurentSeries k) :
     thetaFun (f * g) = thetaFun f * g + f * thetaFun g := by
   ext n
@@ -50,8 +62,14 @@ theorem thetaFun_mul (f g : LaurentSeries k) :
 noncomputable def theta : LaurentSeries k →+ LaurentSeries k :=
   AddMonoidHom.mk' thetaFun thetaFun_add
 
+/--
+@isnad1 id=eq.0h2v.s8.0ddf0d84785e from=translated src=- shape=28ec49d3 vocab=5ebb5cb3
+-/
 @[scoped simp] theorem theta_apply (f : LaurentSeries k) : theta f = thetaFun f := rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.03eddd6eb0ef from=translated src=- shape=cb0fbde1 vocab=e2467b14
+-/
 theorem theta_leibniz (a b : LaurentSeries k) : theta (a * b) = a * theta b + b * theta a := by
   simp only [theta_apply, thetaFun_mul]
   ring
@@ -59,6 +77,9 @@ theorem theta_leibniz (a b : LaurentSeries k) : theta (a * b) = a * theta b + b 
 variable (p : ℕ) [Fact p.Prime] [CharP k p]
 
 omit [Fact p.Prime] in
+/--
+@isnad1 id=eq.2h4v.s7.ce7e1406dd06 from=translated src=- shape=5921ebaf vocab=050bf31b
+-/
 theorem coeff_eq_zero_of_thetaFun_eq_zero {f : LaurentSeries k} (hf : thetaFun f = 0) {n : ℤ}
     (hn : ¬ (p : ℤ) ∣ n) : f.coeff n = 0 := by
   have h := congrArg (fun g : LaurentSeries k => g.coeff n) hf
@@ -67,6 +88,9 @@ theorem coeff_eq_zero_of_thetaFun_eq_zero {f : LaurentSeries k} (hf : thetaFun f
   · exact absurd ((CharP.intCast_eq_zero_iff k p n).mp h) hn
   · exact h
 
+/--
+@isnad1 id=ex.1h3v.s8.7f6b4fed8db5 from=translated src=- shape=eb06cd28 vocab=6f748797
+-/
 theorem powerSeries_exists_pow_eq [PerfectRing k p] (g : PowerSeries k)
     (hg : ∀ n : ℕ, ¬ p ∣ n → PowerSeries.coeff n g = 0) : ∃ h : PowerSeries k, h ^ p = g := by
   have hp : p ≠ 0 := (Fact.out : p.Prime).ne_zero
@@ -91,6 +115,9 @@ theorem powerSeries_exists_pow_eq [PerfectRing k p] (g : PowerSeries k)
   · simp [frobenius_apply_frobeniusEquiv_symm]
   · simp
 
+/--
+@isnad1 id=ex.1h3v.s8.57174aecabbf from=translated src=- shape=7873a15d vocab=a148c4ad
+-/
 theorem exists_pow_eq_of_thetaFun_eq_zero [PerfectRing k p] {f : LaurentSeries k}
     (hf : thetaFun f = 0) : ∃ g : LaurentSeries k, g ^ p = f := by
   have hp : p ≠ 0 := (Fact.out : p.Prime).ne_zero
@@ -115,11 +142,17 @@ theorem exists_pow_eq_of_thetaFun_eq_zero [PerfectRing k p] {f : LaurentSeries k
   rw [mul_pow, HahnSeries.single_pow, one_pow, ← map_pow, hh, nsmul_eq_mul, ← hm,
     LaurentSeries.single_order_mul_powerSeriesPart]
 
+/--
+@isnad1 id=ne.1h3v.s9.d8f043aa65dc from=translated src=- shape=f7dc569b vocab=ef62748c
+-/
 theorem theta_ne_zero_of_forall_pow_ne [PerfectRing k p] {f : LaurentSeries k}
     (hf : ∀ v : LaurentSeries k, v ^ p ≠ f) : theta f ≠ 0 := fun h => by
   obtain ⟨g, hg⟩ := exists_pow_eq_of_thetaFun_eq_zero p h
   exact hf g hg
 
+/--
+@isnad1 id=charp.0h2v.s6.b492ae2025c3 from=translated src=- shape=6fed559a vocab=78c8c643
+-/
 scoped instance charP_laurentSeries : CharP (LaurentSeries k) p :=
   charP_of_injective_algebraMap (algebraMap k (LaurentSeries k)).injective p
 
@@ -131,12 +164,18 @@ variable {Ω : Type*} [Field Ω] (D : Ω →+ Ω) (hD : ∀ a b : Ω, D (a * b) 
 
 include hD
 
+/--
+@isnad1 id=eq.1h2v.s8.e20875311ba8 from=translated src=- shape=835ccdfb vocab=c49db70d
+-/
 theorem leibniz_map_one : D 1 = 0 := by
   have h := hD 1 1
   rw [one_mul, one_mul] at h
   have h2 : D 1 + D 1 = D 1 + 0 := by rw [add_zero]; exact h.symm
   exact add_left_cancel h2
 
+/--
+@isnad1 id=eq.1h4v.s9.2ee85d87d445 from=translated src=- shape=05fe419a vocab=fd35cf89
+-/
 theorem leibniz_map_pow_succ (a : Ω) (n : ℕ) :
     D (a ^ (n + 1)) = (n + 1 : Ω) * a ^ n * D a := by
   induction n with
@@ -146,12 +185,18 @@ theorem leibniz_map_pow_succ (a : Ω) (n : ℕ) :
     push_cast
     ring
 
+/--
+@isnad1 id=eq.1h4v.s8.75d441863028 from=translated src=- shape=76a5e38f vocab=33702707
+-/
 theorem leibniz_map_pow_p (p : ℕ) [Fact p.Prime] [CharP Ω p] (a : Ω) : D (a ^ p) = 0 := by
   obtain ⟨n, hn⟩ : ∃ n, p = n + 1 := Nat.exists_eq_succ_of_ne_zero (Fact.out : p.Prime).ne_zero
   rw [hn, leibniz_map_pow_succ D hD]
   have : ((n : Ω) + 1) = ((n + 1 : ℕ) : Ω) := by push_cast; ring
   rw [this, ← hn, CharP.cast_eq_zero, zero_mul, zero_mul]
 
+/--
+@isnad1 id=issepara.4h6v.s10.3c054142bc9c from=translated src=- shape=af47d43d vocab=ef254b5a
+-/
 theorem isSeparable_of_leibniz_map {K E : Type*} [Field K] [Field E] [Algebra K E] [Algebra E Ω]
     (p : ℕ) [Fact p.Prime] [CharP Ω p] (u : Ω) (hu : u ≠ 0)
     (hK : ∀ c : K, ∃ e : K,
@@ -293,6 +338,9 @@ end Leibniz
 
 section Constants
 
+/--
+@isnad1 id=eq.1h5v.s9.171bbf30201f from=translated src=- shape=bd70b1e1 vocab=8ca51396
+-/
 theorem leibniz_map_algebraMap {k Ω : Type*} [Field k] [Field Ω] [Algebra k Ω]
     (p : ℕ) [Fact p.Prime] [CharP Ω p] [CharP k p] [PerfectRing k p]
     (D : Ω →+ Ω) (hD : ∀ a b : Ω, D (a * b) = a * D b + b * D a) (c : k) :
@@ -314,6 +362,9 @@ noncomputable def toDerivation {k Ω : Type*} [Field k] [Field Ω] [Algebra k Ω
     change D (a * b) = a * D b + b * D a
     exact hD a b
 
+/--
+@isnad1 id=ex.1h6v.s11.4a9ea73fc4b3 from=translated src=- shape=abde8f2d vocab=1827a84a
+-/
 theorem exists_eq_div_pow {k Ω : Type*} [Field k] [Field Ω] [Algebra k Ω] (p : ℕ) [Fact p.Prime]
     (E : IntermediateField k Ω) (t : E) (c : E)
     (hc : c ∈ IntermediateField.adjoin k {t}) :
@@ -330,6 +381,9 @@ theorem exists_eq_div_pow {k Ω : Type*} [Field k] [Field Ω] [Algebra k Ω] (p 
       mul_div_mul_right _ _ (pow_ne_zero _ hs)]
     exact h
 
+/--
+@isnad1 id=and.3h7v.s12.a976c51ff128 from=translated src=- shape=53a30feb vocab=efbce66f
+-/
 theorem leibniz_map_adjoin_simple {k Ω : Type*} [Field k] [Field Ω] [Algebra k Ω]
     (p : ℕ) [Fact p.Prime] [CharP Ω p] [CharP k p] [PerfectRing k p]
     (D : Ω →+ Ω) (hD : ∀ a b : Ω, D (a * b) = a * D b + b * D a)
@@ -388,6 +442,9 @@ end SepLaurent
 open scoped _root_.P2MW.S_LaurentSeries_algebraIsSeparable_adjoin_simple_of_forall_pow_ne.SepLaurent
 
 open SepLaurent in
+/--
+@isnad1 id=issepara.2h4v.s14.4fff2d4f19a7 from=translated src=- shape=4efc6a96 vocab=e7bbe4bb
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] (k : Type) [Field k] [CharP k p] [PerfectRing k p]
     (F : IntermediateField k (LaurentSeries k)) (t : ↥F)

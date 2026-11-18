@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open MeasureTheory
 
+/--
+@isnad1 id=eq.0h2v.s9.e217a6e793b4 from=translated src=- shape=75129050 vocab=9f71e39b
+-/
 theorem Matrix.GeneralLinearGroup.modularCharacter_fin_two_eq_one
     {F : Type*} [Field F] [TopologicalSpace F] [IsTopologicalRing F]
     [LocallyCompactSpace (GL (Fin 2) F)] (g : GL (Fin 2) F) :

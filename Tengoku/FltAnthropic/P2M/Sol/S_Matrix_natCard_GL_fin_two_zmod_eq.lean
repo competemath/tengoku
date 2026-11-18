@@ -7,6 +7,9 @@ namespace P2MW.S_Matrix_natCard_GL_fin_two_zmod_eq
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.0h1v.s6.a06e67ade29b from=translated src=- shape=2718adb9 vocab=ac632517
+-/
 theorem solution (p : ℕ) [Fact p.Prime] :
     Nat.card (GL (Fin 2) (ZMod p)) = (p ^ 2 - 1) * (p ^ 2 - p) := by
   haveI : NeZero p := ⟨(Fact.out : p.Prime).ne_zero⟩

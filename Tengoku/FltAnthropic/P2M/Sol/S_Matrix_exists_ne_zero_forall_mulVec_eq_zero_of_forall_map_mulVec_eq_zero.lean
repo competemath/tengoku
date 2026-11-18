@@ -12,6 +12,9 @@ set_option maxHeartbeats 1600000
 namespace Ws23
 namespace Descent
 
+/--
+@isnad1 id=ex.2h6v.s8.25ab3cc5bc16 from=translated src=- shape=ca955834 vocab=29ec7782
+-/
 theorem main {k K : Type*} [Field k] [Field K] [Algebra k K] {ι : Type*} [Fintype ι] [DecidableEq ι]
     {J : Type*} (A : J → Matrix ι ι k) (v : ι → K) (hv : v ≠ 0)
     (hAv : ∀ j, ((A j).map (algebraMap k K)).mulVec v = 0) :
@@ -44,6 +47,9 @@ theorem main {k K : Type*} [Field k] [Field K] [Algebra k K] {ι : Type*} [Finty
 
 end Ws23.Descent
 
+/--
+@isnad1 id=ex.2h6v.s8.25ab3cc5bc16 from=translated src=- shape=ca955834 vocab=29ec7782
+-/
 theorem solution
     {k K : Type*} [Field k] [Field K] [Algebra k K] {ι : Type*} [Fintype ι] [DecidableEq ι]
     {J : Type*} (A : J → Matrix ι ι k) (v : ι → K) (hv : v ≠ 0)

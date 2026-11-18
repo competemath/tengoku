@@ -20,6 +20,9 @@ variable {K : Type*} [Field K] (O : ValuationSubring K)
 
 def IsInt (M : Matrix (Fin 2) (Fin 2) K) : Prop := ∀ i j, M i j ∈ O
 
+/--
+@isnad1 id=isint.2h4v.s7.98438c36a54d from=translated src=- shape=05c404c5 vocab=7e532258
+-/
 theorem IsInt.mul {M N : Matrix (Fin 2) (Fin 2) K} (hM : IsInt O M) (hN : IsInt O N) : IsInt O (M * N) := by
   intro i j
   rw [Matrix.mul_apply]
@@ -27,14 +30,23 @@ theorem IsInt.mul {M N : Matrix (Fin 2) (Fin 2) K} (hM : IsInt O M) (hN : IsInt 
 
 def mkGL (M M' : Matrix (Fin 2) (Fin 2) K) (h1 : M * M' = 1) (h2 : M' * M = 1) : GL (Fin 2) K := ⟨M, M', h1, h2⟩
 
+/--
+@isnad1 id=ex.2h3v.s9.b6ca3411d452 from=translated src=- shape=83ba9b03 vocab=e5dd7cce
+-/
 theorem exists_GL (M M' : Matrix (Fin 2) (Fin 2) K) (h1 : M * M' = 1) (h2 : M' * M = 1) :
     ∃ g : GL (Fin 2) K, (g : Matrix (Fin 2) (Fin 2) K) = M ∧ ((g⁻¹ : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) = M' :=
   ⟨mkGL M M' h1 h2, rfl, rfl⟩
 
+/--
+@isnad1 id=eq.0h3v.s8.ebd5029ee308 from=translated src=- shape=c1b481fd vocab=f33d27f9
+-/
 theorem smul_eq_scalar_mul (s : K) (X : Matrix (Fin 2) (Fin 2) K) : s • X = Matrix.scalar (Fin 2) s * X := by
   ext i j
   rw [Matrix.scalar_apply, Matrix.diagonal_mul, Matrix.smul_apply, smul_eq_mul]
 
+/--
+@isnad1 id=eq.0h5v.s9.cc15ca202c08 from=translated src=- shape=ae916fb9 vocab=a9d1e0b8
+-/
 theorem scalar_conj (r : K) (P X Q : Matrix (Fin 2) (Fin 2) K) :
     P * (Matrix.scalar (Fin 2) r * X) * Q = Matrix.scalar (Fin 2) r * (P * X * Q) := by
   have e : Matrix.scalar (Fin 2) r * P = P * Matrix.scalar (Fin 2) r := (Matrix.scalar_commute r (Commute.all r) P).eq
@@ -42,10 +54,16 @@ theorem scalar_conj (r : K) (P X Q : Matrix (Fin 2) (Fin 2) K) :
     _ = (Matrix.scalar (Fin 2) r * P) * X * Q := by rw [e]
     _ = Matrix.scalar (Fin 2) r * (P * X * Q) := by noncomm_ring
 
+/--
+@isnad1 id=eq.0h5v.s8.f5e3d03d23a2 from=translated src=- shape=f8d573a7 vocab=a9d1e0b8
+-/
 theorem scalar_mul_apply (r : K) (A : Matrix (Fin 2) (Fin 2) K) (i j : Fin 2) :
     (Matrix.scalar (Fin 2) r * A) i j = r * A i j := by
   rw [Matrix.scalar_apply, Matrix.diagonal_mul]
 
+/--
+@isnad1 id=isint.2h4v.s6.52765f378f46 from=translated src=- shape=5ac9e680 vocab=43f4a6ca
+-/
 theorem isInt_diagonal {x y : K} (hx : x ∈ O) (hy : y ∈ O) : IsInt O (Matrix.diagonal ![x, y]) := by
   intro i j
   fin_cases i <;> fin_cases j <;> simp [Matrix.diagonal, hx, hy, O.zero_mem]
@@ -80,6 +98,9 @@ def conjEquiv (g : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K ≃+* Matrix (Fin 2)
 
 end Generic
 
+/--
+@isnad1 id=eq.2h2v.s7.b5fff83bd2dd from=translated src=- shape=aa7c7b21 vocab=d1d54723
+-/
 theorem natGenerator_eq {ℓ : ℕ} (hℓ : ℓ.Prime) (v : HeightOneSpectrum (𝓞 ℚ)) (hv : ((ℓ : ℕ) : 𝓞 ℚ) ∈ v.asIdeal) :
     ((Rat.HeightOneSpectrum.primesEquiv v : Nat.Primes) : ℕ) = ℓ := by
   show Rat.HeightOneSpectrum.natGenerator v = ℓ
@@ -89,6 +110,9 @@ theorem natGenerator_eq {ℓ : ℕ} (hℓ : ℓ.Prime) (v : HeightOneSpectrum (�
     rwa [map_natCast] at this
   exact (Nat.prime_dvd_prime_iff_eq (Rat.HeightOneSpectrum.prime_natGenerator v) hℓ).mp hdvd
 
+/--
+@isnad1 id=ex.4h3v.s11.6ff2bced89a9 from=translated src=- shape=18693305 vocab=2429ffeb
+-/
 theorem exists_unit_mul_pow {ℓ : ℕ} (hℓ : ℓ.Prime) (v : HeightOneSpectrum (𝓞 ℚ)) (hv : ((ℓ : ℕ) : 𝓞 ℚ) ∈ v.asIdeal)
     (t₀ : v.adicCompletion ℚ) (ht₀ : t₀ ∈ v.adicCompletionIntegers ℚ) (ht₀0 : t₀ ≠ 0) :
     ∃ (n : ℕ) (u : (v.adicCompletionIntegers ℚ)ˣ),
@@ -122,6 +146,9 @@ namespace LocalType
 section Generic2
 variable {K : Type*} [Field K] (O : ValuationSubring K)
 
+/--
+@isnad1 id=eq.2h7v.s10.9547c49b755c from=translated src=- shape=0f4e6343 vocab=a9d1e0b8
+-/
 theorem cancel_conj (s : K) (A A' B W W' : Matrix (Fin 2) (Fin 2) K) (hA : A' * A = 1) (hW : W * W' = 1) :
     A' * (Matrix.scalar (Fin 2) s * (A * B * W)) * W' = Matrix.scalar (Fin 2) s * B := by
   rw [scalar_conj]
@@ -136,6 +163,9 @@ namespace LocalType
 section Generic3
 variable {K : Type*} [Field K] (O : ValuationSubring K)
 
+/--
+@isnad1 id=eq.0h3v.s8.8afe116d9933 from=translated src=- shape=53af4bfc vocab=f2bcefaa
+-/
 theorem entry00_scalar_diag (s x : K) : (Matrix.scalar (Fin 2) s * Matrix.diagonal ![(1 : K), x]) 0 0 = s := by
   rw [scalar_mul_apply]; simp
 
@@ -146,6 +176,9 @@ namespace Y3Cartan
 
 open LocalType
 
+/--
+@isnad1 id=not.2h2v.s9.1784540225e9 from=translated src=- shape=90ed235a vocab=ebfa86fe
+-/
 theorem inv_natCast_not_mem (v : HeightOneSpectrum (𝓞 ℚ)) {ℓ : ℕ} (hℓ : ℓ.Prime) (hv : ((ℓ : ℕ) : 𝓞 ℚ) ∈ v.asIdeal) :
     (((ℓ : ℕ) : v.adicCompletion ℚ))⁻¹ ∉ v.adicCompletionIntegers ℚ := by
   have hcast : ((ℓ : ℕ) : v.adicCompletion ℚ) = algebraMap ℚ (v.adicCompletion ℚ) (ℓ : ℚ) := by rw [map_natCast]
@@ -167,6 +200,9 @@ end Y3Cartan
 
 open scoped Quaternion TensorProduct NumberField Pointwise in
 open QuaternionAlgebra IsDedekindDomain NumberField LocalType Y3Cartan in
+/--
+@isnad1 id=ex.3h3v.s12.089f28c61375 from=translated src=- shape=70983ae6 vocab=c46f914b
+-/
 theorem solution
     (v : HeightOneSpectrum (𝓞 ℚ)) {ℓ : ℕ} (hℓ : ℓ.Prime) (hv : ((ℓ : ℕ) : 𝓞 ℚ) ∈ v.asIdeal)
     (Y : GL (Fin 2) (v.adicCompletion ℚ))

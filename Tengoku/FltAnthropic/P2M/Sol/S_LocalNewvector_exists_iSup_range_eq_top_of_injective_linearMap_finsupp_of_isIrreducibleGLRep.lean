@@ -169,6 +169,9 @@ private theorem exists_spanning_of_injective_finsupp (hirr : (ρV).IsIrreducible
 
 end converse
 
+/--
+@isnad1 id=ex.3h5v.s11.050a0c46d27b from=translated src=- shape=40c89fd3 vocab=a3850dcc
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime]
     (V : Type) [AddCommGroup V] [Module ℂ V] [DistribMulAction (GL (Fin 2) ℚ_[q]) V]

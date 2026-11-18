@@ -8,6 +8,9 @@ namespace P2MW.S_LinearMap_finrank_ker_dualMap_eq_finrank_ker
 set_option autoImplicit false
 open Module
 
+/--
+@isnad1 id=eq.0h3v.s10.7c28d4a4fbf9 from=translated src=- shape=1923beb9 vocab=e5683093
+-/
 theorem solution
     {K V : Type*} [Field K] [AddCommGroup V] [Module K V] [FiniteDimensional K V]
     (f : V →ₗ[K] V) :

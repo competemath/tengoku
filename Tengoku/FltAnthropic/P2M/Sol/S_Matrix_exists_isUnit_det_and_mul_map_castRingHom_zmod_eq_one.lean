@@ -7,6 +7,9 @@ namespace P2MW.S_Matrix_exists_isUnit_det_and_mul_map_castRingHom_zmod_eq_one
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.1h3v.s8.09dd1d8a2012 from=translated src=- shape=678ab084 vocab=9160ed60
+-/
 theorem solution
     {m : Type} [Fintype m] [DecidableEq m] (n : ℕ)
     (g : Matrix m m ℤ) (hg : IsUnit ((g.det : ℤ) : ZMod n)) :

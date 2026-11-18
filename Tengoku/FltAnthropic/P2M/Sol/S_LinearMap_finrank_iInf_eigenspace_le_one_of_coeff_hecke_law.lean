@@ -7,6 +7,9 @@ namespace P2MW.S_LinearMap_finrank_iInf_eigenspace_le_one_of_coeff_hecke_law
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=and.2h6v.s10.6e95d9d87483 from=translated src=- shape=93b04d37 vocab=7a241bed
+-/
 theorem solution
     {K V : Type*} [Field K] [AddCommGroup V] [Module K V]
     (a : ℕ → V →ₗ[K] K)

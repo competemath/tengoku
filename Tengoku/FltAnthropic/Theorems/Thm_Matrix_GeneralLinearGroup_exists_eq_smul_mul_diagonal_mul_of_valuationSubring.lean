@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open scoped Quaternion TensorProduct
 open IsDedekindDomain NumberField
+/--
+@isnad1 id=ex.0h3v.s10.e1aa9352cd89 from=translated src=- shape=f7d4d9ad vocab=a3ca62bf
+-/
 theorem Matrix.GeneralLinearGroup.exists_eq_smul_mul_diagonal_mul_of_valuationSubring
     {K : Type*} [Field K] (O : ValuationSubring K) (H : GL (Fin 2) K) :
     ∃ (s t : K) (k₁ k₂ : GL (Fin 2) K), s ≠ 0 ∧ t ≠ 0 ∧ t ∈ O ∧

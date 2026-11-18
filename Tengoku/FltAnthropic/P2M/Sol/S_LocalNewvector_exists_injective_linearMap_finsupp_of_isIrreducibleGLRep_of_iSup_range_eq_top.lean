@@ -117,6 +117,9 @@ private theorem exists_injective_equivariant_finsupp_of_isIrreducible (hirr : (�
 
 end core
 
+/--
+@isnad1 id=ex.3h5v.s11.0f6fd157c5b4 from=translated src=- shape=afd52b86 vocab=a3850dcc
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime]
     (V : Type) [AddCommGroup V] [Module ℂ V] [DistribMulAction (GL (Fin 2) ℚ_[q]) V]

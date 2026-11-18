@@ -32,8 +32,14 @@ def castM : Matrix (Fin n) (Fin n) ℤ →ₐ[ℤ] Matrix (Fin n) (Fin n) R :=
 
 variable {R}
 
+/--
+@isnad1 id=eq.0h3v.s7.b3185b0165d8 from=translated src=- shape=da0b8953 vocab=d481df26
+-/
 theorem castM_apply (m : Matrix (Fin n) (Fin n) ℤ) : castM (n := n) R m = m.map (Int.cast : ℤ → R) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.dc92cef3bce1 from=translated src=- shape=ef13f61d vocab=6525102d
+-/
 theorem map_castM {R' : Type*} [CommRing R'] [Algebra R R'] (m : Matrix (Fin n) (Fin n) ℤ) :
     (castM (n := n) R m).map (algebraMap R R') = castM R' m := by
   ext i j
@@ -41,11 +47,17 @@ theorem map_castM {R' : Type*} [CommRing R'] [Algebra R R'] (m : Matrix (Fin n) 
 
 variable (R)
 
+/--
+@isnad1 id=eq.0h4v.s7.a411f3a553eb from=translated src=- shape=e5349954 vocab=0d106c75
+-/
 theorem range_gen_eq : (Set.range fun i => (M i).map (Int.cast : ℤ → R)) = castM R '' Set.range M := by
   ext x
   simp only [Set.mem_range, Set.mem_image, exists_exists_eq_and]
   rfl
 
+/--
+@isnad1 id=mem.1h5v.s8.8ae36086c514 from=translated src=- shape=94f0fb67 vocab=b3061080
+-/
 theorem castM_mem {m : Matrix (Fin n) (Fin n) ℤ} (hm : m ∈ AZ M) : castM R m ∈ AR M R := by
   induction hm using Algebra.adjoin_induction with
   | mem x hx =>
@@ -57,6 +69,9 @@ theorem castM_mem {m : Matrix (Fin n) (Fin n) ℤ} (hm : m ∈ AZ M) : castM R m
   | add x y _ _ hx hy => rw [map_add]; exact Subalgebra.add_mem _ hx hy
   | mul x y _ _ hx hy => rw [map_mul]; exact Subalgebra.mul_mem _ hx hy
 
+/--
+@isnad1 id=eq.0h4v.s10.582086ee7a16 from=translated src=- shape=8e2740d5 vocab=7ec80979
+-/
 theorem AR_toSubmodule_eq_span :
     Subalgebra.toSubmodule (AR M R) = Submodule.span R (castM R '' (AZ M : Set (Matrix (Fin n) (Fin n) ℤ))) := by
   apply le_antisymm
@@ -94,17 +109,26 @@ def bZ : Module.Basis (Fin (kk M)) ℤ ↥(Subalgebra.toSubmodule (AZ M)) := (sn
 
 def bMat : Module.Basis (Fin n × Fin n) ℤ (Matrix (Fin n) (Fin n) ℤ) := (snf M).2.bM
 
+/--
+@isnad1 id=eq.0h4v.s14.b4edcc172607 from=translated src=- shape=27aaf79f vocab=fcc73992
+-/
 theorem bZ_eq (i : Fin (kk M)) :
     ((bZ M i : ↥(Subalgebra.toSubmodule (AZ M))) : Matrix (Fin n) (Fin n) ℤ) =
       (snf M).2.a i • bMat M ((snf M).2.f i) :=
   (snf M).2.snf i
 
+/--
+@isnad1 id=ne.0h4v.s11.34ca1d2cc2a8 from=translated src=- shape=6227b6ad vocab=496787c9
+-/
 theorem a_ne_zero (i : Fin (kk M)) : (snf M).2.a i ≠ 0 := by
   intro h
   have h1 := bZ_eq M i
   rw [h, zero_smul] at h1
   exact (bZ M).ne_zero i (Subtype.ext h1)
 
+/--
+@isnad1 id=eq.0h4v.s9.eabc92510e4a from=translated src=- shape=83ca5314 vocab=4d0359f0
+-/
 theorem stdBasis_repr_apply (S : Type*) [CommRing S] (x : Matrix (Fin n) (Fin n) S) (j : Fin n × Fin n) :
     (Matrix.stdBasis S (Fin n) (Fin n)).repr x j = x j.1 j.2 := by
   classical
@@ -119,6 +143,9 @@ theorem stdBasis_repr_apply (S : Type*) [CommRing S] (x : Matrix (Fin n) (Fin n)
 
 variable (R : Type*) [CommRing R] [IsDomain R] [CharZero R]
 
+/--
+@isnad1 id=and.0h4v.s9.28efaaedbe61 from=translated src=- shape=608657bd vocab=2577383f
+-/
 theorem isBasis_cast_bMat :
     LinearIndependent R (fun j => castM R (bMat M j)) ∧
       Submodule.span R (Set.range fun j => castM R (bMat M j)) = ⊤ := by
@@ -137,11 +164,20 @@ theorem isBasis_cast_bMat :
 def cB (i : Fin (kk M)) : Matrix (Fin n) (Fin n) R :=
   castM R ((bZ M i : ↥(Subalgebra.toSubmodule (AZ M))) : Matrix (Fin n) (Fin n) ℤ)
 
+/--
+@isnad1 id=eq.0h5v.s13.72eeab47a6b3 from=translated src=- shape=2b839359 vocab=0989ca83
+-/
 theorem cB_eq (i : Fin (kk M)) : cB M R i = ((snf M).2.a i : R) • castM R (bMat M ((snf M).2.f i)) := by
   rw [cB, bZ_eq, map_zsmul, Int.cast_smul_eq_zsmul]
 
+/--
+@isnad1 id=mem.0h5v.s7.3e4d75b318a2 from=translated src=- shape=207b2d3d vocab=d5029175
+-/
 theorem cB_mem (i : Fin (kk M)) : cB M R i ∈ AR M R := castM_mem M R (bZ M i).2
 
+/--
+@isnad1 id=linearin.0h4v.s6.24374498fc7b from=translated src=- shape=61ee6b85 vocab=f1ccd510
+-/
 theorem linearIndependent_cB : LinearIndependent R (cB M R) := by
   have hli := ((isBasis_cast_bMat M R).1.comp _ (snf M).2.f.injective)
   refine (Fintype.linearIndependent_iff (ι := Fin (kk M)) (v := cB M R)).mpr fun g hg i => ?_
@@ -152,6 +188,9 @@ theorem linearIndependent_cB : LinearIndependent R (cB M R) := by
   have h := (Fintype.linearIndependent_iff.mp hli) (fun i => g i * ((snf M).2.a i : R)) hg' i
   exact (mul_eq_zero.mp h).resolve_right (Int.cast_ne_zero.mpr (a_ne_zero M i))
 
+/--
+@isnad1 id=eq.0h4v.s10.8d979f8f55ce from=translated src=- shape=2db26184 vocab=edc724a0
+-/
 theorem span_cB : Submodule.span R (Set.range (cB M R)) = Subalgebra.toSubmodule (AR M R) := by
   rw [AR_toSubmodule_eq_span]
   apply le_antisymm
@@ -177,13 +216,22 @@ theorem span_cB : Submodule.span R (Set.range (cB M R)) = Subalgebra.toSubmodule
 
 def cB' (i : Fin (kk M)) : ↥(AR M R) := ⟨cB M R i, cB_mem M R i⟩
 
+/--
+@isnad1 id=eq.0h4v.s11.aab2996c6074 from=translated src=- shape=dd315a45 vocab=e012e7f0
+-/
 theorem val_comp_cB' : ((AR M R).val.toLinearMap : ↥(AR M R) → Matrix (Fin n) (Fin n) R) ∘ cB' M R = cB M R := rfl
 
+/--
+@isnad1 id=linearin.0h4v.s8.3424cdac3778 from=translated src=- shape=074f9285 vocab=331b3caf
+-/
 theorem linearIndependent_cB' : LinearIndependent R (cB' M R) := by
   apply LinearIndependent.of_comp (AR M R).val.toLinearMap
   rw [val_comp_cB']
   exact linearIndependent_cB M R
 
+/--
+@isnad1 id=le.0h4v.s11.b8cc72b033f6 from=translated src=- shape=8a7c4915 vocab=77f67a05
+-/
 theorem span_cB' : ⊤ ≤ Submodule.span R (Set.range (cB' M R)) := by
   rintro ⟨x, hx⟩ -
   have hx' : x ∈ Submodule.span R (Set.range (cB M R)) := by rw [span_cB]; exact hx
@@ -194,10 +242,16 @@ theorem span_cB' : ⊤ ≤ Submodule.span R (Set.range (cB' M R)) := by
 def basisAR : Module.Basis (Fin (kk M)) R ↥(AR M R) :=
   Module.Basis.mk (linearIndependent_cB' M R) (span_cB' M R)
 
+/--
+@isnad1 id=eq.0h5v.s10.0a6e2b6a7b5f from=translated src=- shape=bcd5618a vocab=48a42c6e
+-/
 @[scoped simp] theorem coe_basisAR (i : Fin (kk M)) : ((basisAR M R i : ↥(AR M R)) : Matrix (Fin n) (Fin n) R) = cB M R i := by
   rw [basisAR, Module.Basis.coe_mk]
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s14.9572b1d10849 from=translated src=- shape=d079f9cd vocab=9337420f
+-/
 theorem basisAR_repr_castM (x : ↥(Subalgebra.toSubmodule (AZ M))) (i : Fin (kk M)) :
     (basisAR M R).repr ⟨castM R (x : Matrix (Fin n) (Fin n) ℤ), castM_mem M R x.2⟩ i =
       (((bZ M).repr x i : ℤ) : R) := by
@@ -219,6 +273,9 @@ theorem basisAR_repr_castM (x : ↥(Subalgebra.toSubmodule (AZ M))) (i : Fin (kk
     rw [map_zsmul, Subalgebra.coe_smul, coe_basisAR, cB, Int.cast_smul_eq_zsmul]
   rw [hx, (basisAR M R).repr_sum_self]
 
+/--
+@isnad1 id=eq.0h6v.s15.d1096e50eef2 from=translated src=- shape=85da9273 vocab=e665158f
+-/
 theorem basisAR_mul (i j : Fin (kk M)) :
     basisAR M R i * basisAR M R j =
       ∑ m, ((((bZ M).repr ⟨(bZ M i : Matrix (Fin n) (Fin n) ℤ) * (bZ M j : Matrix (Fin n) (Fin n) ℤ),
@@ -233,6 +290,9 @@ theorem basisAR_mul (i j : Fin (kk M)) :
   refine Finset.sum_congr rfl fun m _ => ?_
   rw [basisAR_repr_castM]
 
+/--
+@isnad1 id=eq.0h4v.s14.7bc6c2ad001c from=translated src=- shape=58595b74 vocab=6bc79637
+-/
 theorem basisAR_one :
     (1 : ↥(AR M R)) = ∑ m, ((((bZ M).repr ⟨1, Subalgebra.one_mem _⟩ m : ℤ) : R)) • basisAR M R m := by
   set x : ↥(Subalgebra.toSubmodule (AZ M)) := ⟨1, Subalgebra.one_mem _⟩ with hxdef
@@ -253,6 +313,9 @@ section TraceGeneral
 
 variable {R : Type*} [CommRing R] {P : Type*} [AddCommGroup P] [Module R P]
 
+/--
+@isnad1 id=eq.0h6v.s10.ef50bc9b3c8a from=translated src=- shape=de930044 vocab=eb412d3f
+-/
 theorem trace_compLeft {m : ℕ} (b : Module.Basis (Fin m) R P) (d : ℕ) (f : Module.End R P) :
     LinearMap.trace R (Fin d → P) (f.compLeft (Fin d)) = d * LinearMap.trace R P f := by
   classical
@@ -290,12 +353,21 @@ def mulZ (x : ↥(Subalgebra.toSubmodule (AZ M))) :
 def castA (x : ↥(Subalgebra.toSubmodule (AZ M))) : ↥(AR M R) :=
   ⟨castM R (x : Matrix (Fin n) (Fin n) ℤ), castM_mem M R x.2⟩
 
+/--
+@isnad1 id=eq.0h5v.s11.c4cc1b62c15f from=translated src=- shape=6d77c101 vocab=811a2f52
+-/
 @[scoped simp] theorem coe_castA (x : ↥(Subalgebra.toSubmodule (AZ M))) :
     (castA M R x : Matrix (Fin n) (Fin n) R) = castM R (x : Matrix (Fin n) (Fin n) ℤ) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s13.21cf31ba5cd2 from=translated src=- shape=ac887749 vocab=dbe24eef
+-/
 theorem basisAR_eq_castA (i : Fin (kk M)) : basisAR M R i = castA M R (bZ M i) :=
   Subtype.ext (coe_basisAR M R i)
 
+/--
+@isnad1 id=eq.0h7v.s16.eda349cacd65 from=translated src=- shape=fa8c538f vocab=2ada0c8f
+-/
 theorem toMatrix_mulLeft_castA (x : ↥(Subalgebra.toSubmodule (AZ M))) (i j : Fin (kk M)) :
     LinearMap.toMatrix (basisAR M R) (basisAR M R) (LinearMap.mulLeft R (castA M R x)) i j =
       ((LinearMap.toMatrix (bZ M) (bZ M) (mulZ M x) i j : ℤ) : R) := by
@@ -305,6 +377,9 @@ theorem toMatrix_mulLeft_castA (x : ↥(Subalgebra.toSubmodule (AZ M))) (i j : F
     simp [basisAR_eq_castA, mulZ, map_mul]
   rw [h1, castA, basisAR_repr_castM]
 
+/--
+@isnad1 id=eq.0h5v.s16.b0220da02243 from=translated src=- shape=5e9df74f vocab=4135725a
+-/
 theorem trace_mulLeft_castA (x : ↥(Subalgebra.toSubmodule (AZ M))) :
     LinearMap.trace R ↥(AR M R) (LinearMap.mulLeft R (castA M R x)) =
       ((LinearMap.trace ℤ _ (mulZ M x) : ℤ) : R) := by
@@ -313,10 +388,16 @@ theorem trace_mulLeft_castA (x : ↥(Subalgebra.toSubmodule (AZ M))) :
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [Matrix.diag_apply, Matrix.diag_apply, toMatrix_mulLeft_castA]
 
+/--
+@isnad1 id=eq.0h3v.s7.7ec609e5dcc1 from=translated src=- shape=73652bdf vocab=84ab122f
+-/
 theorem trace_castM (x : Matrix (Fin n) (Fin n) ℤ) :
     Matrix.trace (castM R x) = ((Matrix.trace x : ℤ) : R) := by
   simp [Matrix.trace, castM_apply]
 
+/--
+@isnad1 id=eq.0h3v.s11.293ca3fec731 from=translated src=- shape=2b90b74d vocab=34b2ead5
+-/
 theorem trace_toLin' (S : Type*) [CommRing S] (x : Matrix (Fin n) (Fin n) S) :
     LinearMap.trace S (Fin n → S) (Matrix.toLin' x) = Matrix.trace x := by
   rw [LinearMap.trace_eq_matrix_trace S (Pi.basisFun S (Fin n)), LinearMap.toMatrix_eq_toMatrix',
@@ -332,6 +413,9 @@ variable (hfree : ∃ v : Fin d → (Fin n → ℂ), Function.Bijective
 
 include hfree in
 
+/--
+@isnad1 id=eq.1h5v.s13.25f60aafce61 from=translated src=- shape=b2d1c0a2 vocab=0dee979c
+-/
 theorem trace_eq_mul_trace_C (a : ↥(AR M ℂ)) :
     Matrix.trace (a : Matrix (Fin n) (Fin n) ℂ) =
       d * LinearMap.trace ℂ ↥(AR M ℂ) (LinearMap.mulLeft ℂ a) := by
@@ -368,6 +452,9 @@ theorem trace_eq_mul_trace_C (a : ↥(AR M ℂ)) :
 
 include hfree in
 
+/--
+@isnad1 id=eq.1h5v.s16.4d23fc38b27d from=translated src=- shape=d50784bb vocab=2178449f
+-/
 theorem trace_eq_mul_trace_Z (x : ↥(Subalgebra.toSubmodule (AZ M))) :
     Matrix.trace (x : Matrix (Fin n) (Fin n) ℤ) = d * LinearMap.trace ℤ _ (mulZ M x) := by
   have h := trace_eq_mul_trace_C M hfree (castA M ℂ x)
@@ -376,6 +463,9 @@ theorem trace_eq_mul_trace_Z (x : ↥(Subalgebra.toSubmodule (AZ M))) :
 
 include hfree in
 
+/--
+@isnad1 id=eq.1h6v.s13.23605e658c19 from=translated src=- shape=af605cf6 vocab=f48b20d7
+-/
 theorem trace_eq_mul_trace (R : Type*) [CommRing R] [IsDomain R] [CharZero R] (y : ↥(AR M R)) :
     Matrix.trace (y : Matrix (Fin n) (Fin n) R) = d * LinearMap.trace R ↥(AR M R) (LinearMap.mulLeft R y) := by
 
@@ -404,6 +494,9 @@ theorem trace_eq_mul_trace (R : Type*) [CommRing R] [IsDomain R] [CharZero R] (y
 
 variable (𝒪 : Type*) [CommRing 𝒪] [IsDomain 𝒪] [IsPrincipalIdealRing 𝒪] [CharZero 𝒪]
 
+/--
+@isnad1 id=eq.1h3v.s9.ab3809503cdc from=translated src=- shape=a25bad1e vocab=42ebbfa8
+-/
 theorem trace_eq_finrank_range_of_isIdempotentElem {P : Type*} [AddCommGroup P] [Module 𝒪 P]
     [Module.Finite 𝒪 P] [Module.IsTorsionFree 𝒪 P] (T : Module.End 𝒪 P) (hT : IsIdempotentElem T) :
     LinearMap.trace 𝒪 P T = (Module.finrank 𝒪 ↥(LinearMap.range T) : 𝒪) := by
@@ -418,6 +511,9 @@ theorem trace_eq_finrank_range_of_isIdempotentElem {P : Type*} [AddCommGroup P] 
 
 include hfree in
 
+/--
+@isnad1 id=eq.3h6v.s13.bfe09bb92cd8 from=translated src=- shape=756645e0 vocab=8947ee2e
+-/
 theorem part1 (ε : Matrix (Fin n) (Fin n) 𝒪) (hε : ε ∈ AR M 𝒪) (hidem : IsIdempotentElem ε) :
     Module.finrank 𝒪 ↥(LinearMap.range (Matrix.toLin' ε)) =
       d * Module.finrank 𝒪 ↥(LinearMap.range (LinearMap.mulLeft 𝒪 ε ∘ₗ (AR M 𝒪).val.toLinearMap)) := by
@@ -465,15 +561,24 @@ def Esp (R : Type*) [CommRing R] (C : Fin k → Matrix (Fin n) (Fin n) R) (μ : 
     Submodule R (Fin n → R) :=
   LinearMap.ker (Fmap (n := n) R C μ)
 
+/--
+@isnad1 id=eq.0h7v.s8.4ca046cd1d87 from=translated src=- shape=2870800a vocab=41865db7
+-/
 theorem Fmap_apply (R : Type*) [CommRing R] (C : Fin k → Matrix (Fin n) (Fin n) R) (μ : Fin k → R)
     (w : Fin n → R) (i : Fin k) : Fmap (n := n) R C μ w i = (C i).mulVec w - μ i • w := by
   simp [Fmap]
 
+/--
+@isnad1 id=iff.0h6v.s8.a284d90e31af from=translated src=- shape=26da208c vocab=4749fdd9
+-/
 theorem mem_Esp (R : Type*) [CommRing R] (C : Fin k → Matrix (Fin n) (Fin n) R) (μ : Fin k → R)
     (w : Fin n → R) : w ∈ Esp (n := n) R C μ ↔ ∀ i, (C i).mulVec w = μ i • w := by
   simp only [Esp, LinearMap.mem_ker, funext_iff, Fmap_apply, Pi.zero_apply, sub_eq_zero]
   try exact ⟨fun h i => funext (h i), fun h i j => congrFun (h i) j⟩
 
+/--
+@isnad1 id=eq.0h6v.s10.ea9012fe9f80 from=translated src=- shape=1448399c vocab=687205d4
+-/
 theorem finrank_Esp_baseChange (R R' : Type*) [CommRing R] [CommRing R'] [Algebra R R']
     [Module.Flat R R'] [NoZeroDivisors R'] [FaithfulSMul R R']
     (C : Fin k → Matrix (Fin n) (Fin n) R) (μ : Fin k → R) :
@@ -530,6 +635,9 @@ def uc (m : Fin (kk M)) : ℤ := (bZ M).repr ⟨1, Subalgebra.one_mem _⟩ m
 def IsPointVals {T : Type*} [Ring T] (ν : Fin (kk M) → T) : Prop :=
   (∀ i j, ν i * ν j = ∑ m, (sc M i j m : T) * ν m) ∧ (∑ m, (uc M m : T) * ν m = 1)
 
+/--
+@isnad1 id=ispointv.0h4v.s10.564f9336aa82 from=translated src=- shape=2c2c648d vocab=33100384
+-/
 theorem isPointVals_basisAR : IsPointVals M (basisAR M R) := by
   constructor
   · intro i j
@@ -542,6 +650,9 @@ theorem isPointVals_basisAR : IsPointVals M (basisAR M R) := by
     rw [Algebra.smul_def, map_intCast]
     rfl
 
+/--
+@isnad1 id=ispointv.1h7v.s6.1bf84003612e from=translated src=- shape=addf474b vocab=c97021d5
+-/
 theorem IsPointVals.map {T T' : Type*} [Ring T] [Ring T'] {ν : Fin (kk M) → T} (h : IsPointVals M ν)
     (φ : T →+* T') : IsPointVals M (φ ∘ ν) := by
   constructor
@@ -557,10 +668,16 @@ theorem IsPointVals.map {T T' : Type*} [Ring T] [Ring T'] {ν : Fin (kk M) → T
     refine Finset.sum_congr rfl fun m _ => ?_
     rw [map_mul, map_intCast]
 
+/--
+@isnad1 id=ispointv.0h6v.s11.fb9cdbfb6459 from=translated src=- shape=6090fd87 vocab=b7214fed
+-/
 theorem isPointVals_algHom {T : Type*} [Ring T] [Algebra R T] (φ : ↥(AR M R) →ₐ[R] T) :
     IsPointVals M (φ ∘ basisAR M R) :=
   (isPointVals_basisAR M R).map M φ.toRingHom
 
+/--
+@isnad1 id=ex.1h6v.s11.8aded5f915ec from=translated src=- shape=faaec655 vocab=b931a8f3
+-/
 theorem exists_algHom_of_isPointVals {T : Type*} [CommRing T] [Algebra R T] {ν : Fin (kk M) → T}
     (h : IsPointVals M ν) : ∃ φ : ↥(AR M R) →ₐ[R] T, ∀ i, φ (basisAR M R i) = ν i := by
   let φ : ↥(AR M R) →ₗ[R] T := (basisAR M R).constr R ν
@@ -588,6 +705,9 @@ theorem exists_algHom_of_isPointVals {T : Type*} [CommRing T] [Algebra R T] {ν 
     simpa using this
   exact ⟨AlgHom.ofLinearMap φ h1 hmul, hφ⟩
 
+/--
+@isnad1 id=eq.0h5v.s12.064952fe0623 from=translated src=- shape=45fc64e8 vocab=1d22d20c
+-/
 theorem iInf_eigenspace_eq_Esp (lam : ↥(AR M R) →ₗ[R] R) :
     (⨅ a : ↥(AR M R), Module.End.eigenspace (Matrix.toLin' (a : Matrix (Fin n) (Fin n) R)) (lam a)) =
       Esp (n := n) R (cB M R) (fun i => lam (basisAR M R i)) := by
@@ -615,6 +735,9 @@ theorem iInf_eigenspace_eq_Esp (lam : ↥(AR M R) →ₗ[R] R) :
     refine Finset.sum_congr rfl fun i _ => ?_
     rw [Matrix.smul_mulVec, hw i, map_smul, smul_eq_mul, mul_smul]
 
+/--
+@isnad1 id=eq.0h6v.s7.198f3840bc0f from=translated src=- shape=dd442c16 vocab=d8601725
+-/
 theorem cB_map {R' : Type*} [CommRing R'] [Algebra R R'] (i : Fin (kk M)) :
     (cB M R i).map (algebraMap R R') = cB M R' i := map_castM _
 
@@ -626,6 +749,9 @@ variable {d : ℕ}
 variable (𝒪 : Type*) [CommRing 𝒪] [IsDomain 𝒪] [CharZero 𝒪]
 variable (lam : ↥(AR M 𝒪) →ₐ[𝒪] 𝒪)
 
+/--
+@isnad1 id=ispointv.2h7v.s7.131eeaa3aea5 from=translated src=- shape=7cb2d21a vocab=5952d250
+-/
 theorem IsPointVals.of_injective {T T' : Type*} [Ring T] [Ring T'] {ν : Fin (kk M) → T} (φ : T →+* T')
     (hφ : Function.Injective φ) (h : IsPointVals M (φ ∘ ν)) : IsPointVals M ν := by
   constructor
@@ -645,24 +771,39 @@ theorem IsPointVals.of_injective {T T' : Type*} [Ring T] [Ring T'] {ν : Fin (kk
 
 def μO : Fin (kk M) → 𝒪 := fun i => lam (basisAR M 𝒪 i)
 
+/--
+@isnad1 id=ispointv.0h5v.s8.4524e978dc56 from=translated src=- shape=d1ce2c32 vocab=78193228
+-/
 theorem isPointVals_μO : IsPointVals M (μO M 𝒪 lam) := isPointVals_algHom M 𝒪 lam
 
 abbrev KK : Type _ := FractionRing 𝒪
 
+/--
+@isnad1 id=charzero.0h1v.s5.3c2befcde456 from=translated src=- shape=d96e9922 vocab=229d669f
+-/
 scoped instance charZero_KK : CharZero (KK 𝒪) :=
   charZero_of_injective_algebraMap (IsFractionRing.injective 𝒪 (KK 𝒪))
 
 def μK : Fin (kk M) → KK 𝒪 := algebraMap 𝒪 (KK 𝒪) ∘ μO M 𝒪 lam
 
+/--
+@isnad1 id=ispointv.0h5v.s8.c6dbfe1abb1f from=translated src=- shape=0ffb04c6 vocab=8d6468a2
+-/
 theorem isPointVals_μK : IsPointVals M (μK M 𝒪 lam) :=
   (isPointVals_μO M 𝒪 lam).map M (algebraMap 𝒪 (KK 𝒪))
 
 def lamQ : ↥(AR M ℚ) →ₐ[ℚ] KK 𝒪 :=
   Classical.choose (exists_algHom_of_isPointVals M ℚ (T := KK 𝒪) (isPointVals_μK M 𝒪 lam))
 
+/--
+@isnad1 id=eq.0h6v.s11.f09c23e23123 from=translated src=- shape=4560277e vocab=0fca1d05
+-/
 theorem lamQ_basisAR (i : Fin (kk M)) : lamQ M 𝒪 lam (basisAR M ℚ i) = μK M 𝒪 lam i :=
   Classical.choose_spec (exists_algHom_of_isPointVals M ℚ (T := KK 𝒪) (isPointVals_μK M 𝒪 lam)) i
 
+/--
+@isnad1 id=isintegr.0h6v.s8.eb34dc394364 from=translated src=- shape=db3221e1 vocab=9e90db49
+-/
 theorem isIntegral_μK (i : Fin (kk M)) : IsIntegral ℚ (μK M 𝒪 lam i) := by
   rw [← lamQ_basisAR]
   exact (Algebra.IsIntegral.isIntegral (R := ℚ) (basisAR M ℚ i)).map (lamQ M 𝒪 lam)
@@ -679,12 +820,18 @@ scoped instance : Algebra.IsAlgebraic ℚ ↥(L0 M 𝒪 lam) := Algebra.IsAlgebr
 def μL : Fin (kk M) → ↥(L0 M 𝒪 lam) := fun i =>
   ⟨μK M 𝒪 lam i, IntermediateField.subset_adjoin ℚ _ ⟨i, rfl⟩⟩
 
+/--
+@isnad1 id=ispointv.0h5v.s9.2b6b47841689 from=translated src=- shape=ba24b6aa vocab=d65729c9
+-/
 theorem isPointVals_μL : IsPointVals M (μL M 𝒪 lam) :=
   IsPointVals.of_injective M (algebraMap ↥(L0 M 𝒪 lam) (KK 𝒪)) (FaithfulSMul.algebraMap_injective _ _)
     (isPointVals_μK M 𝒪 lam)
 
 def ιC : ↥(L0 M 𝒪 lam) →ₐ[ℚ] ℂ := IsAlgClosed.lift
 
+/--
+@isnad1 id=eq.0h5v.s11.9eb23c31f7d6 from=translated src=- shape=083c5712 vocab=0470389b
+-/
 theorem step1 : Module.finrank (KK 𝒪) ↥(Esp (KK 𝒪) (cB M (KK 𝒪)) (μK M 𝒪 lam)) =
     Module.finrank 𝒪 ↥(Esp 𝒪 (cB M 𝒪) (μO M 𝒪 lam)) := by
   have h := finrank_Esp_baseChange 𝒪 (KK 𝒪) (cB M 𝒪) (μO M 𝒪 lam)
@@ -692,6 +839,9 @@ theorem step1 : Module.finrank (KK 𝒪) ↥(Esp (KK 𝒪) (cB M (KK 𝒪)) (μK
     funext fun i => cB_map M 𝒪 i] at h
   exact h
 
+/--
+@isnad1 id=eq.0h5v.s14.71e1ecc52670 from=translated src=- shape=21a4f566 vocab=99777800
+-/
 theorem step3 : Module.finrank (KK 𝒪) ↥(Esp (KK 𝒪) (cB M (KK 𝒪)) (μK M 𝒪 lam)) =
     Module.finrank ↥(L0 M 𝒪 lam) ↥(Esp ↥(L0 M 𝒪 lam) (cB M ↥(L0 M 𝒪 lam)) (μL M 𝒪 lam)) := by
   have h := finrank_Esp_baseChange ↥(L0 M 𝒪 lam) (KK 𝒪) (cB M ↥(L0 M 𝒪 lam)) (μL M 𝒪 lam)
@@ -700,6 +850,9 @@ theorem step3 : Module.finrank (KK 𝒪) ↥(Esp (KK 𝒪) (cB M (KK 𝒪)) (μK
   rw [← h]
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s14.cf9fb5eb1b78 from=translated src=- shape=fce38c7d vocab=e26524a6
+-/
 theorem step4 : Module.finrank ℂ ↥(Esp ℂ (cB M ℂ) (ιC M 𝒪 lam ∘ μL M 𝒪 lam)) =
     Module.finrank ↥(L0 M 𝒪 lam) ↥(Esp ↥(L0 M 𝒪 lam) (cB M ↥(L0 M 𝒪 lam)) (μL M 𝒪 lam)) := by
   letI : Algebra ↥(L0 M 𝒪 lam) ℂ := (ιC M 𝒪 lam).toRingHom.toAlgebra
@@ -715,6 +868,9 @@ variable (hmult : ∀ χ : ↥(AR M ℂ) →ₐ[ℂ] ℂ,
 
 include hmult in
 
+/--
+@isnad1 id=eq.1h6v.s14.9e2f8670d632 from=translated src=- shape=02a8a6d5 vocab=19f614b6
+-/
 theorem step5 : Module.finrank ℂ ↥(Esp ℂ (cB M ℂ) (ιC M 𝒪 lam ∘ μL M 𝒪 lam)) = d := by
   have hvalsC : IsPointVals M (ιC M 𝒪 lam ∘ μL M 𝒪 lam) :=
     (isPointVals_μL M 𝒪 lam).map M (ιC M 𝒪 lam).toRingHom
@@ -730,6 +886,9 @@ theorem step5 : Module.finrank ℂ ↥(Esp ℂ (cB M ℂ) (ιC M 𝒪 lam ∘ μ
 
 include hmult in
 
+/--
+@isnad1 id=eq.1h6v.s14.31c350899a16 from=translated src=- shape=35e5736d vocab=d6fc1db1
+-/
 theorem part2 :
     Module.finrank 𝒪 ↥(⨅ a : ↥(AR M 𝒪),
       Module.End.eigenspace (Matrix.toLin' (a : Matrix (Fin n) (Fin n) 𝒪)) (lam a)) = d := by
@@ -744,6 +903,9 @@ end Part2
 end ESD3H
 open scoped _root_.P2MW.S_Matrix_finrank_range_and_eigenspace_of_adjoin_intCast.ESD3H
 
+/--
+@isnad1 id=and.2h5v.s15.d5c48008c3fb from=translated src=- shape=0e248536 vocab=2eec3db6
+-/
 theorem solution
     {ι : Type*} (n d : ℕ) (M : ι → Matrix (Fin n) (Fin n) ℤ)
     (hfree : ∃ v : Fin d → (Fin n → ℂ), Function.Bijective

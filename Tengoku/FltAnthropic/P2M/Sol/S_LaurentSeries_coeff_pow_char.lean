@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open HahnSeries ModularCurve
 
+/--
+@isnad1 id=eq.0h4v.s7.bebbb74d3b47 from=translated src=- shape=a38776c4 vocab=65892472
+-/
 theorem solution {R : Type*} [CommRing R] (q : ℕ) [Fact q.Prime] [CharP R q]
     (f : LaurentSeries R) (n : ℤ) :
     (f ^ q).coeff n = if (q : ℤ) ∣ n then f.coeff (n / q) ^ q else 0 := by

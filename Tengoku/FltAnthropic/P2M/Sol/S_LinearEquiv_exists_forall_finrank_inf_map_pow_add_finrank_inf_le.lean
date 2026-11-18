@@ -14,6 +14,9 @@ open Submodule LinearMap Module
 namespace Ef8d
 variable {k : Type*} [Field k] {W : Type*} [AddCommGroup W] [Module k W]
 
+/--
+@isnad1 id=le.1h5v.s8.4e3db924a4cd from=translated src=- shape=8fb0d0ec vocab=b8127562
+-/
 theorem map_pow_le {ψ : W →ₗ[k] W} {S : Submodule k W} (hS : S.map ψ ≤ S) :
     ∀ M : ℕ, S.map (ψ^M) ≤ S := by
   intro M; induction M with
@@ -22,6 +25,9 @@ theorem map_pow_le {ψ : W →ₗ[k] W} {S : Submodule k W} (hS : S.map ψ ≤ S
     rw [pow_succ, show (ψ^n * ψ : W→ₗ[k]W) = (ψ^n).comp ψ from rfl, Submodule.map_comp]
     exact (Submodule.map_mono hS).trans ih
 
+/--
+@isnad1 id=mem.2h6v.s9.662e5ef0df96 from=translated src=- shape=2e84721e vocab=17dae487
+-/
 theorem mem_of_pow_map {ψ : W →ₗ[k] W} {S : Submodule k W} (hS : S.map ψ ≤ S)
     (M : ℕ) {x : W} (hx : x ∈ S) : (ψ^M) x ∈ S :=
   map_pow_le hS M ⟨x, hx, rfl⟩
@@ -32,6 +38,9 @@ def barEnd (φ : W →ₗ[k] W) (P B : Submodule k W)
   (P.comap B.subtype).mapQ (P.comap B.subtype) (φ.restrict (fun x hx => hB ⟨x, hx, rfl⟩))
     (fun x hx => by simp only [mem_comap, coe_subtype] at hx ⊢; exact hP ⟨(x : W), hx, rfl⟩)
 
+/--
+@isnad1 id=finitedi.5h6v.s11.92c8f2dc2a23 from=translated src=- shape=53025308 vocab=f7834b85
+-/
 theorem finiteDimensional_quot_of_monicTorsion
     (φ : W →ₗ[k] W) (P B : Submodule k W)
     (hP : P.map φ ≤ P) (hB : B.map φ ≤ B)
@@ -113,6 +122,9 @@ theorem finiteDimensional_quot_of_monicTorsion
   have hneg : (t : W) - b = -p := by rw [← hbpt]; abel
   rw [hneg]; exact P.neg_mem hpP
 
+/--
+@isnad1 id=ex.0h3v.s9.a967f66d8fde from=translated src=- shape=306124d8 vocab=6300e29a
+-/
 theorem disjoint_ker_pow_range_pow_aux {V : Type*} [AddCommGroup V] [Module k V]
     [FiniteDimensional k V] (g : V →ₗ[k] V) :
     ∃ M₀, ∀ M ≥ M₀, Disjoint (LinearMap.ker (g^M)) (LinearMap.range (g^M)) := by
@@ -129,6 +141,9 @@ theorem disjoint_ker_pow_range_pow_aux {V : Type*} [AddCommGroup V] [Module k V]
   have : (g^M) w = 0 := hsub hwk
   rw [← hw, this]
 
+/--
+@isnad1 id=ex.0h6v.s11.0509acc0b131 from=translated src=- shape=56275433 vocab=bba1d9d7
+-/
 theorem fitting_step
     {V₁ V₂ : Type*} [AddCommGroup V₁] [Module k V₁] [FiniteDimensional k V₁]
     [AddCommGroup V₂] [Module k V₂] [FiniteDimensional k V₂]
@@ -191,12 +206,21 @@ theorem fitting_step
 
 variable (φ : W ≃ₗ[k] W) (P B P' B' : Submodule k W)
 
+/--
+@isnad1 id=eq.0h3v.s9.51a1601679b6 from=translated src=- shape=8adc63e2 vocab=8023bb0e
+-/
 theorem aux_symm_mul : (φ.symm : W →ₗ[k] W) * (φ : W →ₗ[k] W) = 1 :=
   LinearMap.ext fun x => φ.symm_apply_apply x
 
+/--
+@isnad1 id=eq.0h3v.s9.7b5a5377f90d from=translated src=- shape=17ff0d61 vocab=8023bb0e
+-/
 theorem aux_mul_symm : (φ : W →ₗ[k] W) * (φ.symm : W →ₗ[k] W) = 1 :=
   LinearMap.ext fun x => φ.apply_symm_apply x
 
+/--
+@isnad1 id=eq.0h5v.s9.39c75039aac7 from=translated src=- shape=d54dfbd9 vocab=baeb8195
+-/
 theorem pow_symm_pow (M : ℕ) (x : W) :
     ((φ.symm : W →ₗ[k] W) ^ M) (((φ : W →ₗ[k] W) ^ M) x) = x := by
   have hcomm : Commute (φ.symm : W →ₗ[k] W) (φ : W →ₗ[k] W) :=
@@ -208,10 +232,16 @@ theorem pow_symm_pow (M : ℕ) (x : W) :
     _ = (1 : W →ₗ[k] W) x := by rw [h1]
     _ = x := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.89528a8ca331 from=translated src=- shape=63fb8334 vocab=baeb8195
+-/
 theorem pow_pow_symm (M : ℕ) (x : W) :
     ((φ : W →ₗ[k] W) ^ M) (((φ.symm : W →ₗ[k] W) ^ M) x) = x := by
   have := pow_symm_pow φ.symm M x; simpa using this
 
+/--
+@isnad1 id=eq.3h6v.s13.547d902bafe5 from=translated src=- shape=45868eeb vocab=7237ef78
+-/
 theorem barEnd_mkQ (ψ : W →ₗ[k] W) (P B : Submodule k W)
     (hP : P.map ψ ≤ P) (hB : B.map ψ ≤ B) (x : W) (hx : x ∈ B) :
     barEnd ψ P B hP hB ((P.comap B.subtype).mkQ ⟨x, hx⟩) =
@@ -219,6 +249,9 @@ theorem barEnd_mkQ (ψ : W →ₗ[k] W) (P B : Submodule k W)
   simp only [barEnd, Submodule.mapQ_apply, Submodule.mkQ_apply]
   rfl
 
+/--
+@isnad1 id=eq.3h7v.s14.79187c9e4abf from=translated src=- shape=daaed02f vocab=a2ec043e
+-/
 theorem barEnd_pow_mkQ (ψ : W →ₗ[k] W) (P B : Submodule k W)
     (hP : P.map ψ ≤ P) (hB : B.map ψ ≤ B) (M : ℕ) (x : W) (hx : x ∈ B) :
     ((barEnd ψ P B hP hB) ^ M) ((P.comap B.subtype).mkQ ⟨x, hx⟩) =
@@ -233,6 +266,9 @@ theorem barEnd_pow_mkQ (ψ : W →ₗ[k] W) (P B : Submodule k W)
     rw [hstep, ih, barEnd_mkQ]
     exact congrArg _ (Subtype.ext hval)
 
+/--
+@isnad1 id=mem.1h6v.s9.9e7f7ea37551 from=translated src=- shape=691376c7 vocab=2a3665bd
+-/
 theorem symm_pow_mem_of_mem_map (M : ℕ) (x : W) (hx : x ∈ B'.map ((φ : W →ₗ[k] W) ^ M)) :
     ((φ.symm : W →ₗ[k] W) ^ M) x ∈ B' := by
   obtain ⟨y, hyB', hy⟩ := hx; rw [← hy, pow_symm_pow]; exact hyB'
@@ -247,6 +283,9 @@ def Psi (M : ℕ) :
         map_add' := fun x y => by ext; simp
         map_smul' := fun c x => by ext; simp })
 
+/--
+@isnad1 id=eq.2h8v.s12.247594f90643 from=translated src=- shape=7623a533 vocab=e31867f2
+-/
 theorem ker_Psi_eq (hPB : P ≤ B) (hP'B' : P' ≤ B') (M : ℕ) :
     LinearMap.ker (Psi φ P B P' B' M) =
       (P ⊓ P'.map ((φ : W →ₗ[k] W) ^ M)).comap
@@ -275,14 +314,23 @@ theorem ker_Psi_eq (hPB : P ≤ B) (hP'B' : P' ≤ B') (M : ℕ) :
       rw [Submodule.mkQ_apply, Submodule.Quotient.mk_eq_zero]
       simp only [mem_comap, coe_subtype, hy']; exact hyP'
 
+/--
+@isnad1 id=eq.0h9v.s13.47304acf7017 from=translated src=- shape=ecae5479 vocab=5c7cec96
+-/
 theorem Psi_fst (M : ℕ) (z : ↥(B ⊓ B'.map ((φ:W→ₗ[k]W)^M))) :
     (Psi φ P B P' B' M z).1 = (P.comap B.subtype).mkQ ⟨z.1, z.2.1⟩ := rfl
 
+/--
+@isnad1 id=eq.0h9v.s13.2b2561dabc7c from=translated src=- shape=427a4171 vocab=f9ddfedd
+-/
 theorem Psi_snd (M : ℕ) (z : ↥(B ⊓ B'.map ((φ:W→ₗ[k]W)^M))) :
     (Psi φ P B P' B' M z).2 =
       (P'.comap B'.subtype).mkQ ⟨((φ.symm:W→ₗ[k]W)^M) z.1,
         symm_pow_mem_of_mem_map φ B' M z.1 z.2.2⟩ := rfl
 
+/--
+@isnad1 id=le.4h8v.s16.ed6e363d875b from=translated src=- shape=ca2194f7 vocab=53deb4d1
+-/
 theorem range_Psi_superset
     (hP : P.map (φ : W →ₗ[k] W) ≤ P) (hB : B.map (φ : W →ₗ[k] W) ≤ B)
     (hP' : P'.map (φ.symm : W →ₗ[k] W) ≤ P') (hB' : B'.map (φ.symm : W →ₗ[k] W) ≤ B')
@@ -325,6 +373,9 @@ theorem range_Psi_superset
 end Ef8d
 
 open Ef8d in
+/--
+@isnad1 id=ex.11h7v.s12.2f30b085ad1e from=translated src=- shape=dbaa3b39 vocab=3f3ae774
+-/
 theorem solution
     {k : Type*} [Field k] {W : Type*} [AddCommGroup W] [Module k W]
     (φ : W ≃ₗ[k] W) (P B P' B' : Submodule k W) (hPB : P ≤ B) (hP'B' : P' ≤ B')

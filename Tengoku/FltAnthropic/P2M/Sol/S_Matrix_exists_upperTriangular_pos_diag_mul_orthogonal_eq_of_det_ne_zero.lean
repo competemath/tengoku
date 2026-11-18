@@ -12,6 +12,9 @@ open InnerProductSpace
 
 namespace IwasawaAux
 
+/--
+@isnad1 id=ex.1h2v.s7.ac889086c9fc from=translated src=- shape=e75d71ae vocab=07e7cb6f
+-/
 theorem main (n : ℕ) (A : Matrix (Fin n) (Fin n) ℝ) (hA : A.det ≠ 0) :
     ∃ b o : Matrix (Fin n) (Fin n) ℝ,
       (∀ i j : Fin n, j < i → b i j = 0) ∧ (∀ i : Fin n, 0 < b i i) ∧
@@ -89,6 +92,9 @@ theorem main (n : ℕ) (A : Matrix (Fin n) (Fin n) ℝ) (hA : A.det ≠ 0) :
 
 end IwasawaAux
 
+/--
+@isnad1 id=ex.1h2v.s7.ac889086c9fc from=translated src=- shape=e75d71ae vocab=07e7cb6f
+-/
 theorem solution (n : ℕ) (A : Matrix (Fin n) (Fin n) ℝ) (hA : A.det ≠ 0) :
     ∃ b o : Matrix (Fin n) (Fin n) ℝ,
       (∀ i j : Fin n, j < i → b i j = 0) ∧ (∀ i : Fin n, 0 < b i i) ∧

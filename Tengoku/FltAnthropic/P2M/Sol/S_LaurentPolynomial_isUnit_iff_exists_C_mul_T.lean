@@ -11,6 +11,9 @@ open LaurentPolynomial
 
 universe u
 
+/--
+@isnad1 id=iff.0h2v.s7.f75fc2ca83d4 from=translated src=- shape=80bda4d6 vocab=a22408fb
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsDomain R] (f : R[T;T⁻¹]) :
     IsUnit f ↔ ∃ (c : Rˣ) (n : ℤ), f = C (c : R) * T n := by

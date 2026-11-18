@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Submodule_span_fixedPoints_eq_top_of_frobe
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.3h5v.s9.35ad9973f06d from=translated src=- shape=6a0c1c25 vocab=bece6e94
+-/
 theorem Submodule.span_fixedPoints_eq_top_of_frobenius_semilinear_injective
     {K V : Type*} [Field K] [IsAlgClosed K] {p : ℕ} [Fact p.Prime] [CharP K p]
     [AddCommGroup V] [Module K V] [FiniteDimensional K V]

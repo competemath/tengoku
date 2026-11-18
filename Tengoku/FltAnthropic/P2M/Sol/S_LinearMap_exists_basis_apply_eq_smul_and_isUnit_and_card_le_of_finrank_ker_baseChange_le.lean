@@ -13,12 +13,18 @@ namespace SNFCorank
 
 variable {R : Type} [CommRing R] {M : Type} [AddCommGroup M] [Module R M]
 
+/--
+@isnad1 id=eq.0h4v.s9.00b851477a43 from=translated src=- shape=fb34897b vocab=66e9d219
+-/
 theorem one_tmul_smul [IsLocalRing R] (a : R) (m : M) :
     ((1 : IsLocalRing.ResidueField R) ⊗ₜ[R] (a • m) : IsLocalRing.ResidueField R ⊗[R] M) =
       (IsLocalRing.residue R a) • ((1 : IsLocalRing.ResidueField R) ⊗ₜ[R] m) := by
   rw [TensorProduct.smul_tmul', smul_eq_mul, mul_one, TensorProduct.tmul_smul, TensorProduct.smul_tmul',
     Algebra.smul_def, mul_one, IsLocalRing.ResidueField.algebraMap_eq]
 
+/--
+@isnad1 id=eq.1h4v.s8.e85c9380c3d8 from=translated src=- shape=d02e0655 vocab=ff0d8209
+-/
 theorem one_tmul_smul_eq_zero [IsLocalRing R] {a : R} (ha : ¬ IsUnit a) (m : M) :
     ((1 : IsLocalRing.ResidueField R) ⊗ₜ[R] (a • m) : IsLocalRing.ResidueField R ⊗[R] M) = 0 := by
   rw [one_tmul_smul, (IsLocalRing.residue_eq_zero_iff a).2 ((IsLocalRing.mem_maximalIdeal a).2 ha),
@@ -27,6 +33,9 @@ theorem one_tmul_smul_eq_zero [IsLocalRing R] {a : R} (ha : ¬ IsUnit a) (m : M)
 end SNFCorank
 
 open SNFCorank in
+/--
+@isnad1 id=ex.2h4v.s12.99952dfe5b80 from=translated src=- shape=099e9228 vocab=f941db96
+-/
 theorem solution
     (R : Type) [CommRing R] [IsDomain R] [IsPrincipalIdealRing R] [IsLocalRing R]
     (M : Type) [AddCommGroup M] [Module R M] [Module.Free R M] [Module.Finite R M]

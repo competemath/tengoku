@@ -14,6 +14,9 @@ open Matrix
 
 variable (q : ℕ) [Fact q.Prime]
 
+/--
+@isnad1 id=injectiv.0h1v.s9.635915961534 from=translated src=- shape=80bb0179 vocab=d13c64e0
+-/
 theorem glMap_padicInt_injective :
     Function.Injective (GeneralLinearGroup.map (n := Fin 2) (algebraMap ℤ_[q] ℚ_[q])) := by
   apply Units.map_injective
@@ -30,6 +33,9 @@ variable (a : ℕ)
 noncomputable def liftK1Fun (k : LocalNewvector.padicK1 q a) : GL (Fin 2) ℤ_[q] :=
   k.2.choose
 
+/--
+@isnad1 id=eq.0h3v.s10.b2213f3e0575 from=translated src=- shape=fd4fb1ae vocab=b4f744f3
+-/
 theorem glMap_liftK1Fun (k : LocalNewvector.padicK1 q a) :
     GeneralLinearGroup.map (n := Fin 2) (algebraMap ℤ_[q] ℚ_[q]) (liftK1Fun q a k) = k.1 :=
   (k.2.choose_spec).1
@@ -51,6 +57,9 @@ noncomputable def reductionHom (m : ℕ) :
     ↥(LocalNewvector.padicK1 q a) →* GL (Fin 2) (ZMod (q ^ m)) :=
   (GeneralLinearGroup.map (n := Fin 2) (PadicInt.toZModPow m)).comp (liftK1 q a)
 
+/--
+@isnad1 id=le.1h6v.s12.9ad816f3f103 from=translated src=- shape=ff7bc0d1 vocab=8379615d
+-/
 theorem entry_norm_le_of_mem_ker_reductionHom (m : ℕ) (k : LocalNewvector.padicK1 q a)
     (hk : k ∈ (reductionHom q a m).ker) (i j : Fin 2) :
     ‖((k.1 : Matrix (Fin 2) (Fin 2) ℚ_[q]) - 1) i j‖ ≤ (q : ℝ) ^ (-(m : ℤ)) := by
@@ -76,6 +85,9 @@ theorem entry_norm_le_of_mem_ker_reductionHom (m : ℕ) (k : LocalNewvector.padi
   simp only [Matrix.one_apply, apply_ite (PadicInt.toZModPow (p := q) m), map_one, map_zero,
     sub_self]
 
+/--
+@isnad1 id=finitein.0h3v.s9.742c29bab97c from=translated src=- shape=1de61a42 vocab=3186412f
+-/
 theorem finiteIndex_gl2CongruenceSubgroup_subgroupOf_padicK1 (m a : ℕ) :
     ((FLT.SmoothVectors.gl2CongruenceSubgroup q m).subgroupOf
       (LocalNewvector.padicK1 q a)).FiniteIndex := by
@@ -97,6 +109,9 @@ end SolCFurniture
 
 namespace SolCAux
 
+/--
+@isnad1 id=eq.1h6v.s10.c6ed171bc595 from=translated src=- shape=35e321cb vocab=b608ba39
+-/
 theorem smul_sum_out_smul {G : Type} [Group G] {V : Type} [AddCommGroup V] [DistribMulAction G V]
     (K : Subgroup G) (H : Subgroup K) [Fintype (K ⧸ H)] {v : V}
     (hHv : ∀ h : K, h ∈ H → (h : G) • v = v) (k : K) :
@@ -125,6 +140,9 @@ end SolCAux
 
 open SolCAux in
 open LocalNewvector in
+/--
+@isnad1 id=ex.5h8v.s11.5fe33ed41f2d from=translated src=- shape=831e6c7a vocab=29ed6834
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime] {V : Type} [AddCommGroup V] [Module ℂ V]
     [DistribMulAction (GL (Fin 2) ℚ_[q]) V] [SMulCommClass (GL (Fin 2) ℚ_[q]) ℂ V]

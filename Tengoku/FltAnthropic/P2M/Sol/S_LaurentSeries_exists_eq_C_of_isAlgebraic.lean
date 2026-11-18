@@ -17,13 +17,22 @@ open HahnSeries Polynomial
 
 variable {K : Type u} [Field K]
 
+/--
+@isnad1 id=eq.0h2v.s8.95b9a8f56831 from=translated src=- shape=b940b4d3 vocab=90248186
+-/
 theorem algebraMap_eq_C (c : K) : algebraMap K (LaurentSeries K) c = HahnSeries.C c := by
   rw [HahnSeries.algebraMap_apply', PowerSeries.algebraMap_apply, Algebra.algebraMap_self, RingHom.id_apply,
     HahnSeries.ofPowerSeries_C]
 
+/--
+@isnad1 id=eq.0h4v.s8.6f982dff66f9 from=translated src=- shape=85166969 vocab=84aa2910
+-/
 theorem coeff_C_mul' (c : K) (y : LaurentSeries K) (a : ℤ) : (HahnSeries.C c * y).coeff a = c * y.coeff a :=
   HahnSeries.coeff_single_zero_mul
 
+/--
+@isnad1 id=eq.2h2v.s7.4ef312f4a0cb from=translated src=- shape=73714567 vocab=164d7b8d
+-/
 theorem order_eq_zero_of_isAlgebraic (x : LaurentSeries K) (hx : IsAlgebraic K x) (h0 : x ≠ 0) :
     x.order = 0 := by
   classical
@@ -58,6 +67,9 @@ theorem order_eq_zero_of_isAlgebraic (x : LaurentSeries K) (hx : IsAlgebraic K x
   · intro h
     exact absurd hi₀ h
 
+/--
+@isnad1 id=ex.1h2v.s8.cf1a6f4522ec from=translated src=- shape=82a056dc vocab=431d7573
+-/
 theorem exists_eq_C_of_isAlgebraic (x : LaurentSeries K) (hx : IsAlgebraic K x) :
     ∃ c : K, x = HahnSeries.C c := by
   refine ⟨x.coeff 0, ?_⟩
@@ -79,6 +91,9 @@ theorem exists_eq_C_of_isAlgebraic (x : LaurentSeries K) (hx : IsAlgebraic K x) 
 
 end LaurentSeries
 
+/--
+@isnad1 id=ex.1h2v.s8.cf1a6f4522ec from=translated src=- shape=82a056dc vocab=431d7573
+-/
 theorem solution
     {K : Type u} [Field K] (x : LaurentSeries K) (hx : IsAlgebraic K x) :
     ∃ c : K, x = HahnSeries.C c :=

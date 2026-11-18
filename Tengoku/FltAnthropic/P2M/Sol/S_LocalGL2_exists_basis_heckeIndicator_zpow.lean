@@ -25,6 +25,9 @@ section Basic
 variable {R : Type*} [CommRing R] {K : Type*} [Field K] [Algebra R K]
 variable (ϖ : R) (hϖ0 : algebraMap R K ϖ ≠ 0)
 
+/--
+@isnad1 id=eq.0h4v.s9.b52b965210ad from=translated src=- shape=6f5a34d1 vocab=aaa103f7
+-/
 theorem diag_two_pow (x y : K) (n : ℕ) :
     (!![x, 0; 0, y] : Matrix (Fin 2) (Fin 2) K) ^ n = !![x ^ n, 0; 0, y ^ n] := by
   induction n with
@@ -37,6 +40,9 @@ theorem diag_two_pow (x y : K) (n : ℕ) :
     ext i j
     fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two, pow_succ]
 
+/--
+@isnad1 id=commute.1h3v.s7.8b16fdd4d61b from=translated src=- shape=6aaeb39e vocab=719dcd72
+-/
 theorem commute_diagPi_localRepInf : Commute (diagPi ϖ hϖ0) (localRepInf ϖ hϖ0) := by
   apply Units.ext
   change (diagPi ϖ hϖ0 : Matrix (Fin 2) (Fin 2) K) * (localRepInf ϖ hϖ0 : Matrix (Fin 2) (Fin 2) K)
@@ -45,6 +51,9 @@ theorem commute_diagPi_localRepInf : Commute (diagPi ϖ hϖ0) (localRepInf ϖ h�
   ext i j
   fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.1h5v.s9.ed677d8da917 from=translated src=- shape=32f1321b vocab=7fd78756
+-/
 theorem coe_diagPi_zpow_mul_localRepInf_zpow (a b : ℕ) :
     ((diagPi ϖ hϖ0 ^ (a : ℤ) * localRepInf ϖ hϖ0 ^ (b : ℤ) : GL (Fin 2) K) :
         Matrix (Fin 2) (Fin 2) K)
@@ -55,11 +64,17 @@ theorem coe_diagPi_zpow_mul_localRepInf_zpow (a b : ℕ) :
   ext i j
   fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two, cartanDiag, map_pow]
 
+/--
+@isnad1 id=eq.0h3v.s9.fbfae4906e4f from=translated src=- shape=2f84fae0 vocab=7c506497
+-/
 theorem coe_map_algebraMap (k : GL (Fin 2) R) :
     ((Matrix.GeneralLinearGroup.map (algebraMap R K) k : GL (Fin 2) K) :
         Matrix (Fin 2) (Fin 2) K)
       = (k : Matrix (Fin 2) (Fin 2) R).map (algebraMap R K) := rfl
 
+/--
+@isnad1 id=eq.1h3v.s9.ded6d145d5a1 from=translated src=- shape=ebf1f2d0 vocab=094488a1
+-/
 theorem coe_diagPi_mul_coe_localRepInf'' :
     (diagPi ϖ hϖ0 : Matrix (Fin 2) (Fin 2) K) * (localRepInf ϖ hϖ0 : Matrix (Fin 2) (Fin 2) K)
       = algebraMap R K ϖ • (1 : Matrix (Fin 2) (Fin 2) K) := by
@@ -67,6 +82,9 @@ theorem coe_diagPi_mul_coe_localRepInf'' :
   ext i j
   fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=mem.1h3v.s9.6f49b5dbd104 from=translated src=- shape=51452471 vocab=9d55db64
+-/
 theorem diagPi_mul_localRepInf_mem_center'' :
     diagPi ϖ hϖ0 * localRepInf ϖ hϖ0 ∈ Subgroup.center (GL (Fin 2) K) := by
   rw [Subgroup.mem_center_iff]
@@ -76,6 +94,9 @@ theorem diagPi_mul_localRepInf_mem_center'' :
   rw [coe_diagPi_mul_coe_localRepInf'', Matrix.mul_smul, Matrix.smul_mul, Matrix.mul_one,
     Matrix.one_mul]
 
+/--
+@isnad1 id=eq.1h7v.s9.b5899845232c from=translated src=- shape=5d6c2dab vocab=55ea6b5f
+-/
 theorem diagPi_mul_localRepInf_pow_mul_apply (N : ℕ) (m : GL (Fin 2) K) (i j : Fin 2) :
     (((diagPi ϖ hϖ0 * localRepInf ϖ hϖ0) ^ N * m : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) i j
       = algebraMap R K ϖ ^ N * (m : Matrix (Fin 2) (Fin 2) K) i j := by
@@ -85,6 +106,9 @@ theorem diagPi_mul_localRepInf_pow_mul_apply (N : ℕ) (m : GL (Fin 2) K) (i j :
     rw [pow_succ, mul_assoc, ih, Units.val_mul, Units.val_mul, coe_diagPi_mul_coe_localRepInf'',
       Matrix.smul_mul, Matrix.one_mul, Matrix.smul_apply, smul_eq_mul, pow_succ, mul_assoc]
 
+/--
+@isnad1 id=eq.1h6v.s10.a2a49f520907 from=translated src=- shape=b4513b1c vocab=a4d9cda2
+-/
 theorem diagPi_mul_localRepInf_zpow_mul (N m n : ℤ) :
     (diagPi ϖ hϖ0 * localRepInf ϖ hϖ0) ^ N * (diagPi ϖ hϖ0 ^ m * localRepInf ϖ hϖ0 ^ n)
       = diagPi ϖ hϖ0 ^ (N + m) * localRepInf ϖ hϖ0 ^ (N + n) := by
@@ -104,6 +128,9 @@ variable (ϖ : R) (hϖ0 : algebraMap R K ϖ ≠ 0)
 
 include hϖ0 in
 
+/--
+@isnad1 id=ex.2h4v.s8.58e346974aa2 from=translated src=- shape=2de695a4 vocab=ebd01b46
+-/
 theorem exists_pow_mul_mem_range (hϖ : Irreducible ϖ) (x : K) :
     ∃ n : ℕ, algebraMap R K ϖ ^ n * x ∈ Set.range (algebraMap R K) := by
   obtain ⟨a, b, hb, rfl⟩ := IsFractionRing.div_surjective (A := R) x
@@ -117,6 +144,9 @@ theorem exists_pow_mul_mem_range (hϖ : Irreducible ϖ) (x : K) :
 
 omit [IsDomain R] [IsDiscreteValuationRing R] [IsFractionRing R K] in
 
+/--
+@isnad1 id=mem.2h6v.s8.f678203b8205 from=translated src=- shape=c5cca354 vocab=b49d4857
+-/
 theorem pow_mul_mem_range_of_le {x : K} {n N : ℕ} (hnN : n ≤ N)
     (hx : algebraMap R K ϖ ^ n * x ∈ Set.range (algebraMap R K)) :
     algebraMap R K ϖ ^ N * x ∈ Set.range (algebraMap R K) := by
@@ -126,6 +156,9 @@ theorem pow_mul_mem_range_of_le {x : K} {n N : ℕ} (hnN : n ≤ N)
   rw [map_mul, map_pow, hr, pow_add]
   ring
 
+/--
+@isnad1 id=ex.2h4v.s9.de8f2d0d8147 from=translated src=- shape=81d3cb64 vocab=7f46fdcc
+-/
 theorem exists_mem_doubleCoset_zpow (hϖ : Irreducible ϖ) (g : GL (Fin 2) K) :
     ∃ m n : ℤ, m ≤ n ∧ g ∈ HeckePair.doubleCoset (integralSubgroup R K)
       (diagPi ϖ hϖ0 ^ m * localRepInf ϖ hϖ0 ^ n) := by
@@ -179,6 +212,9 @@ theorem exists_mem_doubleCoset_zpow (hϖ : Irreducible ϖ) (g : GL (Fin 2) K) :
     mul_assoc _ ((diagPi ϖ hϖ0 * localRepInf ϖ hϖ0) ^ (N : ℤ)),
     diagPi_mul_localRepInf_zpow_mul, add_sub_cancel, add_sub_cancel]
 
+/--
+@isnad1 id=and.5h7v.s10.2b2aa3738c7f from=translated src=- shape=90c66660 vocab=7f46fdcc
+-/
 theorem zpow_pair_unique (hϖ : Irreducible ϖ) {m n m' n' : ℤ} (hmn : m ≤ n) (hmn' : m' ≤ n')
     (h : diagPi ϖ hϖ0 ^ m * localRepInf ϖ hϖ0 ^ n ∈ HeckePair.doubleCoset (integralSubgroup R K)
       (diagPi ϖ hϖ0 ^ m' * localRepInf ϖ hϖ0 ^ n')) :
@@ -230,11 +266,17 @@ noncomputable section
 
 variable {G : Type*} [Group G] {U : Subgroup G} {R₀ : Type*} [CommRing R₀]
 
+/--
+@isnad1 id=eq.1h6v.s9.b02906722c90 from=translated src=- shape=2ea567b7 vocab=a22200b5
+-/
 theorem apply_eq_of_mem_doubleCoset'' (f : HeckeAlgebra U R₀) {g x : G}
     (hx : x ∈ doubleCoset U g) : (f : G → R₀) x = (f : G → R₀) g := by
   obtain ⟨u, hu, v, hv, rfl⟩ := mem_doubleCoset_iff.mp hx
   rw [apply_mul_right f hv, apply_left_mul f hu]
 
+/--
+@isnad1 id=eq.0h7v.s9.0b7f3f7024b9 from=translated src=- shape=bed9c742 vocab=876fca64
+-/
 theorem coe_apply_sum {ι : Type*} (s : Finset ι) (F : ι → HeckeAlgebra U R₀) (x : G) :
     ((∑ i ∈ s, F i : HeckeAlgebra U R₀) : G → R₀) x = ∑ i ∈ s, (F i : G → R₀) x := by
   induction s using Finset.cons_induction with
@@ -257,6 +299,9 @@ variable {R : Type*} [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
 variable {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]
 variable (ϖ : R) (hϖ0 : algebraMap R K ϖ ≠ 0)
 
+/--
+@isnad1 id=and.6h8v.s10.cf6377af2916 from=translated src=- shape=791f5a82 vocab=7f46fdcc
+-/
 theorem zpow_pair_eq_of_mem_of_mem (hϖ : Irreducible ϖ) {m n m' n' : ℤ} (hmn : m ≤ n)
     (hmn' : m' ≤ n') {x : GL (Fin 2) K}
     (hx : x ∈ HeckePair.doubleCoset (integralSubgroup R K) (diagPi ϖ hϖ0 ^ m * localRepInf ϖ hϖ0 ^ n))
@@ -272,6 +317,9 @@ theorem zpow_pair_eq_of_mem_of_mem (hϖ : Irreducible ϖ) {m n m' n' : ℤ} (hmn
     rw [h']; group
   simpa only [mul_assoc] using h''
 
+/--
+@isnad1 id=ex.3h4v.s13.7b0ee83f9b7d from=translated src=- shape=a55356bb vocab=2657eb23
+-/
 theorem exists_basis_heckeIndicator_zpow_impl
     {R : Type*} [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]
@@ -366,6 +414,9 @@ end LocalGL2
 open scoped Pointwise
 open _root_.LocalGL2 open _root_.P2MW.S_LocalGL2_exists_basis_heckeIndicator_zpow.LocalGL2 open _root_.HeckePair open _root_.P2MW.S_LocalGL2_exists_basis_heckeIndicator_zpow.HeckePair
 
+/--
+@isnad1 id=ex.3h4v.s13.7b0ee83f9b7d from=translated src=- shape=a55356bb vocab=2657eb23
+-/
 theorem solution
     {R : Type*} [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]

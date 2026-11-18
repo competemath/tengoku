@@ -9,6 +9,9 @@ namespace P2MW.S_ValuationSubring_eq_bot_of_isPrime_of_ne_maximalIdeal_of_liesOv
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.3h3v.s10.8b5a2f3a8278 from=translated src=- shape=966136fd vocab=559c36f4
+-/
 theorem solution
     {p : ℕ} (hp : p.Prime) (A : ValuationSubring (AlgebraicClosure ℚ)) (hA : A.LiesOverPrime p)
     (𝔮 : Ideal ↥A) [𝔮.IsPrime] (h𝔮 : 𝔮 ≠ IsLocalRing.maximalIdeal ↥A) : 𝔮 = ⊥ := by

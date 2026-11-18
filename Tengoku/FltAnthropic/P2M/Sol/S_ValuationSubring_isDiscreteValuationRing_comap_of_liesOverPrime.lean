@@ -31,6 +31,9 @@ namespace ComapDVR
 set_option backward.isDefEq.respectTransparency false in
 set_option synthInstance.maxHeartbeats 800000 in
 set_option maxHeartbeats 6400000 in
+/--
+@isnad1 id=isdiscre.2h3v.s11.3e1e1844b33e from=translated src=- shape=4a586aa0 vocab=d9792c62
+-/
 theorem comap_isDiscreteValuationRing (L : IntermediateField ℚ Qb)
     [FiniteDimensional ℚ L] (A : ValuationSubring Qb) (q : ℕ) (hq_prime : q.Prime)
     (hA : A.valuation (q : Qb) < 1) :
@@ -169,6 +172,9 @@ theorem comap_isDiscreteValuationRing (L : IntermediateField ℚ Qb)
 
 end ComapDVR
 
+/--
+@isnad1 id=isdiscre.2h3v.s10.da83a3c3406b from=translated src=- shape=8cc6a80d vocab=581e48b8
+-/
 theorem solution
     (L : IntermediateField ℚ (AlgebraicClosure ℚ)) [FiniteDimensional ℚ L]
     (A : ValuationSubring (AlgebraicClosure ℚ)) {q : ℕ} (hq : q.Prime) (hA : A.LiesOverPrime q) :

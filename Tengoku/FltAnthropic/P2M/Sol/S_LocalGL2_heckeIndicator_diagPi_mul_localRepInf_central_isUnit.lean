@@ -18,6 +18,9 @@ noncomputable section
 
 variable {G : Type*} [Group G] {U : Subgroup G} {R₀ : Type*} [CommRing R₀]
 
+/--
+@isnad1 id=eq.1h3v.s7.9ac7955e77d1 from=translated src=- shape=2bc35cce vocab=4cbe399a
+-/
 theorem image_mk_mul_singleton_of_mem_center {z : G} (hz : z ∈ Subgroup.center G) :
     (QuotientGroup.mk '' ((U : Set G) * {z}) : Set (G ⧸ U)) = {QuotientGroup.mk z} := by
   ext c
@@ -30,11 +33,17 @@ theorem image_mk_mul_singleton_of_mem_center {z : G} (hz : z ∈ Subgroup.center
   · rintro rfl
     exact ⟨z, ⟨1, one_mem U, z, rfl, one_mul z⟩, rfl⟩
 
+/--
+@isnad1 id=finite.1h3v.s6.a3bf1c4b0085 from=translated src=- shape=2f1e49e5 vocab=83ccb097
+-/
 theorem finite_image_mk_mul_singleton_of_mem_center {z : G} (hz : z ∈ Subgroup.center G) :
     (QuotientGroup.mk '' ((U : Set G) * {z}) : Set (G ⧸ U)).Finite := by
   rw [image_mk_mul_singleton_of_mem_center hz]
   exact Set.finite_singleton _
 
+/--
+@isnad1 id=iff.1h4v.s6.387937c11857 from=translated src=- shape=43a3c202 vocab=e4346421
+-/
 theorem mem_doubleCoset_iff_of_mem_center {z x : G} (hz : z ∈ Subgroup.center G) :
     x ∈ doubleCoset U z ↔ z⁻¹ * x ∈ U := by
   rw [mem_doubleCoset_iff]
@@ -45,6 +54,9 @@ theorem mem_doubleCoset_iff_of_mem_center {z x : G} (hz : z ∈ Subgroup.center 
   · intro h
     exact ⟨1, one_mem U, z⁻¹ * x, h, by group⟩
 
+/--
+@isnad1 id=eq.2h6v.s10.66076ff3c355 from=translated src=- shape=ab4d24e5 vocab=0c6def8d
+-/
 theorem heckeIndicator_mul_apply_of_mem_center {z : G} (hz : z ∈ Subgroup.center G)
     (hfin : (QuotientGroup.mk '' ((U : Set G) * {z}) : Set (G ⧸ U)).Finite)
     (f : HeckeAlgebra U R₀) (x : G) :
@@ -69,6 +81,9 @@ theorem heckeIndicator_mul_apply_of_mem_center {z : G} (hz : z ∈ Subgroup.cent
     Finset.sum_singleton, convTerm_mk,
     heckeIndicator_apply_of_mem hfin (self_mem_doubleCoset z), one_mul]
 
+/--
+@isnad1 id=eq.2h6v.s10.9cbfae0337ad from=translated src=- shape=085fa8b3 vocab=0c6def8d
+-/
 theorem mul_heckeIndicator_apply_of_mem_center {z : G} (hz : z ∈ Subgroup.center G)
     (hfin : (QuotientGroup.mk '' ((U : Set G) * {z}) : Set (G ⧸ U)).Finite)
     (f : HeckeAlgebra U R₀) (x : G) :
@@ -102,6 +117,9 @@ theorem mul_heckeIndicator_apply_of_mem_center {z : G} (hz : z ∈ Subgroup.cent
       rw [mul_inv_rev, inv_inv, mul_assoc, ← hzc x, inv_mul_cancel_left]
     rw [hrep, heckeIndicator_apply_of_mem hfin (self_mem_doubleCoset z), mul_one]
 
+/--
+@isnad1 id=eq.2h5v.s10.8e1862e1b235 from=translated src=- shape=548be358 vocab=93c4c23c
+-/
 theorem heckeIndicator_mul_comm_of_mem_center {z : G} (hz : z ∈ Subgroup.center G)
     (hfin : (QuotientGroup.mk '' ((U : Set G) * {z}) : Set (G ⧸ U)).Finite)
     (f : HeckeAlgebra U R₀) :
@@ -109,6 +127,9 @@ theorem heckeIndicator_mul_comm_of_mem_center {z : G} (hz : z ∈ Subgroup.cente
   ext x
   rw [heckeIndicator_mul_apply_of_mem_center hz, mul_heckeIndicator_apply_of_mem_center hz]
 
+/--
+@isnad1 id=eq.4h5v.s10.016b75d76c47 from=translated src=- shape=fab0c48b vocab=93c4c23c
+-/
 theorem heckeIndicator_center_mul_heckeIndicator {z : G} (hz : z ∈ Subgroup.center G)
     (hfin : (QuotientGroup.mk '' ((U : Set G) * {z}) : Set (G ⧸ U)).Finite)
     (g : G) (hg : (QuotientGroup.mk '' ((U : Set G) * {g}) : Set (G ⧸ U)).Finite)
@@ -133,6 +154,9 @@ theorem heckeIndicator_center_mul_heckeIndicator {z : G} (hz : z ∈ Subgroup.ce
   · rw [heckeIndicator_apply_of_notMem hg (fun h => hx (key.mp h)),
       heckeIndicator_apply_of_notMem hzg hx]
 
+/--
+@isnad1 id=eq.3h4v.s10.6de289ed9730 from=translated src=- shape=9972d106 vocab=9404bb68
+-/
 theorem heckeIndicator_center_mul_inv {z : G} (hz : z ∈ Subgroup.center G)
     (hfin : (QuotientGroup.mk '' ((U : Set G) * {z}) : Set (G ⧸ U)).Finite)
     (hfin' : (QuotientGroup.mk '' ((U : Set G) * {z⁻¹}) : Set (G ⧸ U)).Finite) :
@@ -148,6 +172,9 @@ theorem heckeIndicator_center_mul_inv {z : G} (hz : z ∈ Subgroup.center G)
     exact heckeIndicator_of_mem (one_mem U) h
   exact this h1
 
+/--
+@isnad1 id=eq.3h4v.s10.c74e51e379d6 from=translated src=- shape=57769e48 vocab=9404bb68
+-/
 theorem heckeIndicator_inv_mul_center {z : G} (hz : z ∈ Subgroup.center G)
     (hfin : (QuotientGroup.mk '' ((U : Set G) * {z}) : Set (G ⧸ U)).Finite)
     (hfin' : (QuotientGroup.mk '' ((U : Set G) * {z⁻¹}) : Set (G ⧸ U)).Finite) :
@@ -156,6 +183,9 @@ theorem heckeIndicator_inv_mul_center {z : G} (hz : z ∈ Subgroup.center G)
   have := heckeIndicator_center_mul_inv (U := U) (R₀ := R₀) hz' hfin' (by rw [inv_inv]; exact hfin)
   simpa only [inv_inv] using this
 
+/--
+@isnad1 id=isunit.2h4v.s9.54503621b0c8 from=translated src=- shape=125c4b60 vocab=1576a754
+-/
 theorem isUnit_heckeIndicator_of_mem_center {z : G} (hz : z ∈ Subgroup.center G)
     (hfin : (QuotientGroup.mk '' ((U : Set G) * {z}) : Set (G ⧸ U)).Finite) :
     IsUnit (heckeIndicator R₀ z hfin : HeckeAlgebra U R₀) :=
@@ -176,6 +206,9 @@ noncomputable section
 variable {R : Type*} [CommRing R] {K : Type*} [Field K] [Algebra R K]
 variable (ϖ : R) (hϖ0 : algebraMap R K ϖ ≠ 0)
 
+/--
+@isnad1 id=eq.1h3v.s9.ded6d145d5a1 from=translated src=- shape=ebf1f2d0 vocab=094488a1
+-/
 theorem coe_diagPi_mul_coe_localRepInf :
     (diagPi ϖ hϖ0 : Matrix (Fin 2) (Fin 2) K) * (localRepInf ϖ hϖ0 : Matrix (Fin 2) (Fin 2) K)
       = algebraMap R K ϖ • (1 : Matrix (Fin 2) (Fin 2) K) := by
@@ -183,6 +216,9 @@ theorem coe_diagPi_mul_coe_localRepInf :
   ext i j
   fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=mem.1h3v.s9.6f49b5dbd104 from=translated src=- shape=51452471 vocab=9d55db64
+-/
 theorem diagPi_mul_localRepInf_mem_center :
     diagPi ϖ hϖ0 * localRepInf ϖ hϖ0 ∈ Subgroup.center (GL (Fin 2) K) := by
   rw [Subgroup.mem_center_iff]
@@ -192,6 +228,9 @@ theorem diagPi_mul_localRepInf_mem_center :
   rw [coe_diagPi_mul_coe_localRepInf, Matrix.mul_smul, Matrix.smul_mul, Matrix.mul_one,
     Matrix.one_mul]
 
+/--
+@isnad1 id=and.2h4v.s13.3c3fc24c7ba6 from=translated src=- shape=7b63dd7d vocab=0820c603
+-/
 theorem heckeIndicator_diagPi_mul_localRepInf_central_isUnit_impl
     {R₀ : Type*} [CommRing R₀]
     (hfin : (QuotientGroup.mk '' ((integralSubgroup R K : Set (GL (Fin 2) K))
@@ -214,6 +253,9 @@ end LocalGL2
 open scoped Pointwise
 open _root_.LocalGL2 open _root_.P2MW.S_LocalGL2_heckeIndicator_diagPi_mul_localRepInf_central_isUnit.LocalGL2 open _root_.HeckePair open _root_.P2MW.S_LocalGL2_heckeIndicator_diagPi_mul_localRepInf_central_isUnit.HeckePair
 
+/--
+@isnad1 id=and.2h4v.s13.3c3fc24c7ba6 from=translated src=- shape=7b63dd7d vocab=0820c603
+-/
 theorem solution
     {R : Type*} [CommRing R] {K : Type*} [Field K] [Algebra R K]
     (ϖ : R) (hϖ0 : algebraMap R K ϖ ≠ 0)

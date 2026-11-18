@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open MeasureTheory Topology
 
+/--
+@isnad1 id=ex.9h7v.s10.615b961a8833 from=translated src=- shape=43956ba5 vocab=6a95eabb
+-/
 theorem LocalParametrix.exists_hasCompactSupport_apply_eq_integral_add_integral_of_contDiffOn_compl_singleton
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
     [MeasurableSpace E] [BorelSpace E] (μ : Measure E) [IsFiniteMeasureOnCompacts μ]

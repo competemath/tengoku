@@ -673,6 +673,9 @@ end
 
 open WhittakerWeightZero in
 
+/--
+@isnad1 id=ex.9h6v.s11.be95cbb18893 from=translated src=- shape=5a3cfb26 vocab=54879f01
+-/
 theorem solution (u₁ u₂ : ℂ)
     (a : ZMod 2) (W₀ W₂ : ℂ → ℂ) (f₀ : ℝ → ℂ)
     (hf₀ : DifferentiableOn ℝ f₀ (Set.Ioi 0)) (hf₀' : DifferentiableOn ℝ (deriv f₀) (Set.Ioi 0))

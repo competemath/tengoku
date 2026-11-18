@@ -12,6 +12,9 @@ universe u v
 
 open IsLocalRing
 
+/--
+@isnad1 id=ex.7h8v.s11.ee63a4c1125b from=translated src=- shape=6926e8b0 vocab=222f0c3b
+-/
 theorem solution {R : Type u} [CommRing R] [IsLocalRing R]
     (hH : ∀ x : R, (∀ n : ℕ, x ∈ IsLocalRing.maximalIdeal R ^ n) → x = 0)
     {V : Type v} [AddCommGroup V] [Module R V] (b : Module.Basis (Fin 2) R V) (Φ N : Module.End R V)

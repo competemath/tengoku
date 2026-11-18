@@ -12,8 +12,14 @@ namespace IwahoriNormaliser
 section
 variable {K : Type*} [Field K] (O : ValuationSubring K)
 
+/--
+@isnad1 id=mem.2h4v.s5.36ade9211ab4 from=translated src=- shape=b2116f21 vocab=e66774e2
+-/
 theorem mem_of_eq {x y : K} (hy : y ∈ O) (e : x = y) : x ∈ O := e ▸ hy
 
+/--
+@isnad1 id=or.3h4v.s7.5c0e366d7d1d from=translated src=- shape=ace6c37c vocab=60963a61
+-/
 theorem inv_mem_or_inv_mem_of_add_eq_one {x y : K} (hx : x ∈ O) (hy : y ∈ O) (h : x + y = 1) :
     (x ≠ 0 ∧ x⁻¹ ∈ O) ∨ (y ≠ 0 ∧ y⁻¹ ∈ O) := by
   by_cases hy0 : y = 0
@@ -39,6 +45,9 @@ theorem inv_mem_or_inv_mem_of_add_eq_one {x y : K} (hx : x ∈ O) (hy : y ∈ O)
         _ = x⁻¹ * y + 1 := by rw [mul_add, inv_mul_cancel₀ hx0]
     rw [e]; exact O.add_mem _ _ h1 O.one_mem
 
+/--
+@isnad1 id=and.5h4v.s7.ffea11a93428 from=translated src=- shape=80eca40a vocab=f0220629
+-/
 theorem inv_mem_and_inv_mem_of_mul {x y : K} (hx : x ∈ O) (hy : y ∈ O) (hx0 : x ≠ 0) (hy0 : y ≠ 0)
     (h : (x * y)⁻¹ ∈ O) : x⁻¹ ∈ O ∧ y⁻¹ ∈ O := by
   constructor
@@ -47,6 +56,9 @@ theorem inv_mem_and_inv_mem_of_mul {x y : K} (hx : x ∈ O) (hy : y ∈ O) (hx0 
   · have e : y⁻¹ = x * (x * y)⁻¹ := by field_simp
     rw [e]; exact O.mul_mem _ _ hx h
 
+/--
+@isnad1 id=or.12h7v.s11.874d07c0eee3 from=translated src=- shape=cc2725d9 vocab=edb20f6e
+-/
 theorem core {ϖ p q r s : K} (hϖO : ϖ ∈ O) (hϖ : ϖ ≠ 0) (hD : p * s - q * r ≠ 0)
     (h_ps : p * s / (p * s - q * r) ∈ O) (h_pq : p * q / (p * s - q * r) ∈ O)
     (h_pr : p * r / (p * s - q * r) ∈ O) (h_qr : q * r / (p * s - q * r) ∈ O)
@@ -110,34 +122,61 @@ theorem core {ϖ p q r s : K} (hϖO : ϖ ∈ O) (hϖ : ϖ ≠ 0) (hD : p * s - q
     · exact mem_of_eq O (O.mul_mem _ _ h_qr h_sr) (by field_simp)
     · exact mem_of_eq O (O.mul_mem _ _ hϖO h_pq) (by field_simp)
 
+/--
+@isnad1 id=eq.0h5v.s9.3fbb68066c0b from=translated src=- shape=6df982ba vocab=a0c9895a
+-/
 theorem conj_E00_apply (G N : Matrix (Fin 2) (Fin 2) K) (k m : Fin 2) :
     (G * !![(1 : K), 0; 0, 0] * N) k m = G k 0 * N 0 m := by
   fin_cases k <;> fin_cases m <;> simp [Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.0h5v.s9.4db538fd8f67 from=translated src=- shape=6df982ba vocab=a0c9895a
+-/
 theorem conj_E01_apply (G N : Matrix (Fin 2) (Fin 2) K) (k m : Fin 2) :
     (G * !![(0 : K), 1; 0, 0] * N) k m = G k 0 * N 1 m := by
   fin_cases k <;> fin_cases m <;> simp [Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.0h5v.s9.6886017b9c0d from=translated src=- shape=6df982ba vocab=a0c9895a
+-/
 theorem conj_E11_apply (G N : Matrix (Fin 2) (Fin 2) K) (k m : Fin 2) :
     (G * !![(0 : K), 0; 0, 1] * N) k m = G k 1 * N 1 m := by
   fin_cases k <;> fin_cases m <;> simp [Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.0h6v.s9.e6ecb17ac6af from=translated src=- shape=585dbab0 vocab=a0c9895a
+-/
 theorem conj_E10_apply (ϖ : K) (G N : Matrix (Fin 2) (Fin 2) K) (k m : Fin 2) :
     (G * !![(0 : K), 0; ϖ, 0] * N) k m = G k 1 * ϖ * N 0 m := by
   fin_cases k <;> fin_cases m <;> simp [Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=mem.0h4v.s8.91e20172275e from=translated src=- shape=f5b1f75e vocab=0737ce73
+-/
 theorem isInt_E00 : ∀ i j, (!![(1 : K), 0; 0, 0] : Matrix (Fin 2) (Fin 2) K) i j ∈ O := by
   intro i j; fin_cases i <;> fin_cases j <;> simp [O.one_mem, O.zero_mem]
 
+/--
+@isnad1 id=mem.0h4v.s8.53961c70820e from=translated src=- shape=f5b1f75e vocab=0737ce73
+-/
 theorem isInt_E01 : ∀ i j, (!![(0 : K), 1; 0, 0] : Matrix (Fin 2) (Fin 2) K) i j ∈ O := by
   intro i j; fin_cases i <;> fin_cases j <;> simp [O.one_mem, O.zero_mem]
 
+/--
+@isnad1 id=mem.0h4v.s8.e39cb4b64f81 from=translated src=- shape=f5b1f75e vocab=0737ce73
+-/
 theorem isInt_E11 : ∀ i j, (!![(0 : K), 0; 0, 1] : Matrix (Fin 2) (Fin 2) K) i j ∈ O := by
   intro i j; fin_cases i <;> fin_cases j <;> simp [O.one_mem, O.zero_mem]
 
+/--
+@isnad1 id=mem.1h5v.s8.7d86c51c8a4d from=translated src=- shape=deec5c16 vocab=0737ce73
+-/
 theorem isInt_E10 {ϖ : K} (hϖO : ϖ ∈ O) : ∀ i j, (!![(0 : K), 0; ϖ, 0] : Matrix (Fin 2) (Fin 2) K) i j ∈ O := by
   intro i j; fin_cases i <;> fin_cases j <;> simp [hϖO, O.zero_mem]
 
+/--
+@isnad1 id=eq.0h2v.s11.0f436e10fecc from=translated src=- shape=f677a987 vocab=b85a5ede
+-/
 theorem GL_inv_eq (g : GL (Fin 2) K) :
     ((g⁻¹ : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) =
       !![(g : Matrix (Fin 2) (Fin 2) K) 1 1 / ((g : Matrix (Fin 2) (Fin 2) K) 0 0 * (g : Matrix (Fin 2) (Fin 2) K) 1 1 -
@@ -181,6 +220,9 @@ end IwahoriNormaliser
 
 open IwahoriNormaliser in
 
+/--
+@isnad1 id=ex.3h4v.s12.09a590e72b00 from=translated src=- shape=85e7322a vocab=e820439e
+-/
 theorem solution
     {K : Type*} [Field K] (O : ValuationSubring K) (ϖ : K) (hϖO : ϖ ∈ O) (hϖ : ϖ ≠ 0)
     (g : GL (Fin 2) K)

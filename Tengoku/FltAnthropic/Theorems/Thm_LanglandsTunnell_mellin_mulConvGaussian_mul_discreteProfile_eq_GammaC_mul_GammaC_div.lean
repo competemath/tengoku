@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_LanglandsTunnell_mellin_mulConvGaussian_mu
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=and.3h5v.s9.32738213d2fe from=translated src=- shape=7ebe9721 vocab=14f98b88
+-/
 theorem LanglandsTunnell.mellin_mulConvGaussian_mul_discreteProfile_eq_GammaC_mul_GammaC_div
     (α β u s : ℂ) (k : ℕ) (hk : 1 ≤ k)
     (h₁ : 0 < (s + α + u + (k : ℂ) / 2).re) (h₂ : 0 < (s + β + u + (k : ℂ) / 2).re) :

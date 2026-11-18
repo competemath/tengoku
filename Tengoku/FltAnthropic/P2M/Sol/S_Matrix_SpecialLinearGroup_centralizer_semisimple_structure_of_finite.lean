@@ -17,28 +17,52 @@ local notation "𝕄" => Matrix (Fin 2) (Fin 2) K
 
 def tr (M : 𝕄) : K := M 0 0 + M 1 1
 
+/--
+@isnad1 id=eq.0h4v.s8.b3afc7feee32 from=translated src=- shape=7ab46a6b vocab=f15d903d
+-/
 lemma tr_smul_one_add (x y : K) (g : 𝕄) : tr (x • (1 : 𝕄) + y • g) = 2 * x + y * tr g := by
   simp [tr]; ring
 
+/--
+@isnad1 id=eq.0h4v.s9.d7084d1a2f9d from=translated src=- shape=a271978c vocab=165806dd
+-/
 lemma det_smul_one_add (x y : K) (g : 𝕄) :
     (x • (1 : 𝕄) + y • g).det = x ^ 2 + x * y * tr g + y ^ 2 * g.det := by
   rw [Matrix.det_fin_two, Matrix.det_fin_two]
   simp [tr]; ring
 
+/--
+@isnad1 id=eq.0h3v.s7.b13da4671060 from=translated src=- shape=6ebd863d vocab=9b757888
+-/
 lemma tr_mul_comm (a b : 𝕄) : tr (a * b) = tr (b * a) := by
   simp [tr, Matrix.mul_apply, Fin.sum_univ_two]; ring
 
+/--
+@isnad1 id=eq.1h4v.s8.85ed47e8a4d2 from=translated src=- shape=c4b3340f vocab=9b757888
+-/
 lemma tr_conj {a b c : 𝕄} (h : c * a = 1) : tr (a * b * c) = tr b := by
   rw [tr_mul_comm, ← mul_assoc, h, one_mul]
 
+/--
+@isnad1 id=eq.0h1v.s6.fe20d13a37b9 from=translated src=- shape=715f3820 vocab=ef0e28bd
+-/
 lemma tr_one : tr (1 : 𝕄) = 2 := by simp [tr]; norm_num
 
+/--
+@isnad1 id=eq.0h2v.s6.fbbde28b7ff5 from=translated src=- shape=5bd024ce vocab=ebbc08d5
+-/
 lemma tr_neg (a : 𝕄) : tr (-a) = -tr a := by simp [tr]; ring
 
+/--
+@isnad1 id=eq.0h3v.s6.e0384f4f826a from=translated src=- shape=54fd0571 vocab=a0eb3276
+-/
 lemma tr_smul (c : K) (a : 𝕄) : tr (c • a) = c * tr a := by simp [tr]; ring
 
 def IsScalarMat (g : 𝕄) : Prop := ∃ c : K, g = c • (1 : 𝕄)
 
+/--
+@isnad1 id=iff.0h2v.s7.6df610cc9690 from=translated src=- shape=d165eb2d vocab=5e844358
+-/
 lemma isScalarMat_iff (g : 𝕄) : IsScalarMat g ↔ g 0 1 = 0 ∧ g 1 0 = 0 ∧ g 0 0 = g 1 1 := by
   constructor
   · rintro ⟨c, rfl⟩; simp
@@ -51,6 +75,9 @@ lemma eq_smul_one_add_smul_of_entries {m g : 𝕄} {x y : K}
     (h11 : m 1 1 = x + y * g 1 1) : m = x • (1 : 𝕄) + y • g := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [h00, h01, h10, h11]
 
+/--
+@isnad1 id=iff.1h3v.s9.97d763dfc17a from=translated src=- shape=3b788de1 vocab=9bd6a5ad
+-/
 lemma commute_iff {g : 𝕄} (hg : ¬ IsScalarMat g) (m : 𝕄) :
     m * g = g * m ↔ ∃ x y : K, m = x • (1 : 𝕄) + y • g := by
   constructor
@@ -104,6 +131,9 @@ lemma commute_iff {g : 𝕄} (hg : ¬ IsScalarMat g) (m : 𝕄) :
     rw [add_mul, mul_add, smul_mul_assoc, smul_mul_assoc, mul_smul_comm, mul_smul_comm, one_mul,
       mul_one]
 
+/--
+@isnad1 id=or.4h4v.s10.f4b57c0e08b8 from=translated src=- shape=d58682c3 vocab=820161e3
+-/
 lemma smul_one_add_eq_of_tr_sq_eq_four {g : 𝕄} (hg : (tr g) ^ 2 ≠ 4) (hdetg : g.det = 1)
     {x y : K} (hdet : (x • (1 : 𝕄) + y • g).det = 1)
     (htr : (tr (x • (1 : 𝕄) + y • g)) ^ 2 = 4) :
@@ -121,6 +151,9 @@ lemma smul_one_add_eq_of_tr_sq_eq_four {g : 𝕄} (hg : (tr g) ^ 2 ≠ 4) (hdetg
   · left; rw [sub_eq_zero.mp h]; simp
   · right; rw [eq_neg_of_add_eq_zero_left h]; simp
 
+/--
+@isnad1 id=or.5h4v.s10.178f21f37096 from=translated src=- shape=524d0ea3 vocab=c18487bf
+-/
 lemma smul_one_add_eq_of_tr_eq (h2 : (2 : K) ≠ 0) {g : 𝕄} (hg : (tr g) ^ 2 ≠ 4)
     (hdetg : g.det = 1) {x y : K} (hdet : (x • (1 : 𝕄) + y • g).det = 1)
     (htr : tr (x • (1 : 𝕄) + y • g) = tr g) :
@@ -145,10 +178,16 @@ lemma smul_one_add_eq_of_tr_eq (h2 : (2 : K) ≠ 0) {g : 𝕄} (hg : (tr g) ^ 2 
       linear_combination (mul_eq_zero.mp this).resolve_left h2
     subst hx; right; simp [sub_eq_add_neg]
 
+/--
+@isnad1 id=eq.0h2v.s9.1b2ef43f7c39 from=translated src=- shape=9ab58852 vocab=3776fd44
+-/
 lemma coe_inv_eq (s : SL(2, K)) : ((s⁻¹ : SL(2, K)) : 𝕄) = tr (s : 𝕄) • (1 : 𝕄) - s := by
   rw [Matrix.SpecialLinearGroup.coe_inv, Matrix.adjugate_fin_two, Matrix.eta_fin_two (s : 𝕄)]
   ext i j; fin_cases i <;> fin_cases j <;> simp [tr]
 
+/--
+@isnad1 id=not.1h2v.s7.26b6b3c3bd6b from=translated src=- shape=f671a3cd vocab=743b453b
+-/
 lemma not_isScalarMat_of_tr_sq (s : SL(2, K)) (hs : (tr (s : 𝕄)) ^ 2 ≠ 4) :
     ¬ IsScalarMat (s : 𝕄) := by
   rintro ⟨c, hc⟩
@@ -164,6 +203,9 @@ variable {H : Type} [Group H] (ρ : H →* SL(2, K))
 
 abbrev mat (h : H) : 𝕄 := ((ρ h : SL(2, K)) : 𝕄)
 
+/--
+@isnad1 id=eq.0h5v.s8.7ec4f38e5b72 from=translated src=- shape=7c9a69cc vocab=81c70048
+-/
 lemma mat_mul (a b : H) : mat ρ (a * b) = mat ρ a * mat ρ b := by
   simp [mat, map_mul]
 
@@ -184,12 +226,18 @@ def Zsub : Subgroup H where
 
 variable {ρ}
 
+/--
+@isnad1 id=iff.0h4v.s8.07b251767b42 from=translated src=- shape=c72e69c9 vocab=7ea1dec3
+-/
 lemma mem_Zsub_iff (h : H) : h ∈ Zsub ρ ↔ mat ρ h = 1 ∨ mat ρ h = -1 := Iff.rfl
 
 def IsSS (ρ : H →* SL(2, K)) (h : H) : Prop := (tr (mat ρ h)) ^ 2 ≠ 4
 
 abbrev torus (h : H) : Subgroup H := Subgroup.centralizer {h}
 
+/--
+@isnad1 id=iff.0h3v.s6.e1e0b2ee1f5c from=translated src=- shape=a9252b74 vocab=3a4e7999
+-/
 lemma mem_torus_iff (h g : H) : g ∈ torus h ↔ g * h = h * g := by
   rw [Subgroup.mem_centralizer_iff]
   simp only [Set.mem_singleton_iff, forall_eq]
@@ -198,9 +246,15 @@ lemma mem_torus_iff (h g : H) : g ∈ torus h ↔ g * h = h * g := by
 variable (hρ : Function.Injective ρ)
 include hρ
 
+/--
+@isnad1 id=injectiv.1h3v.s8.9646cd45c3dc from=translated src=- shape=c8f08748 vocab=b31837bb
+-/
 lemma mat_injective : Function.Injective (mat ρ) := fun _ _ h =>
   hρ (Subtype.ext h)
 
+/--
+@isnad1 id=iff.1h5v.s9.f64635af1a20 from=translated src=- shape=a5aabc4f vocab=43a9bdb7
+-/
 lemma mem_torus_iff_mat (h g : H) : g ∈ torus h ↔ mat ρ g * mat ρ h = mat ρ h * mat ρ g := by
   rw [mem_torus_iff]
   constructor
@@ -211,18 +265,30 @@ lemma mem_torus_iff_mat (h g : H) : g ∈ torus h ↔ mat ρ g * mat ρ h = mat 
     apply mat_injective hρ
     simpa [mat, map_mul] using e
 
+/--
+@isnad1 id=iff.2h5v.s9.37f71daa1888 from=translated src=- shape=b24b622e vocab=4a891a91
+-/
 lemma mem_torus_iff_exists {h : H} (hh : IsSS ρ h) (g : H) :
     g ∈ torus h ↔ ∃ x y : K, mat ρ g = x • (1 : 𝕄) + y • mat ρ h := by
   rw [mem_torus_iff_mat hρ, commute_iff (not_isScalarMat_of_tr_sq (ρ h) hh)]
 
+/--
+@isnad1 id=le.1h4v.s8.f8ccf246f6a3 from=translated src=- shape=0af7a1d1 vocab=c5b1f9d1
+-/
 lemma Zsub_le_torus (h : H) : Zsub ρ ≤ torus h := by
   intro g hg
   rw [mem_torus_iff_mat hρ]
   rcases hg with hg | hg <;> rw [hg] <;> simp
 
 omit hρ in
+/--
+@isnad1 id=mem.0h2v.s4.ccc2adb58436 from=translated src=- shape=cac0901d vocab=08d9f9c2
+-/
 lemma self_mem_torus (h : H) : h ∈ torus h := (mem_torus_iff h h).mpr rfl
 
+/--
+@isnad1 id=isss.4h5v.s8.f7030d4a8b57 from=translated src=- shape=5d958f1d vocab=a78c2a02
+-/
 lemma isSS_of_mem_torus {h : H} (hh : IsSS ρ h) {g : H} (hg : g ∈ torus h)
     (hgZ : g ∉ Zsub ρ) : IsSS ρ g := by
   intro htr
@@ -233,6 +299,9 @@ lemma isSS_of_mem_torus {h : H} (hh : IsSS ρ h) {g : H} (hg : g ∈ torus h)
   · rw [← hxy]; exact (ρ g).2
   · rw [← hxy]; exact htr
 
+/--
+@isnad1 id=eq.4h5v.s8.855040c8b633 from=translated src=- shape=518d1592 vocab=a78c2a02
+-/
 lemma torus_eq_of_mem {h : H} (hh : IsSS ρ h) {g : H} (hg : g ∈ torus h)
     (hgZ : g ∉ Zsub ρ) : torus g = torus h := by
   have hgss := isSS_of_mem_torus hρ hh hg hgZ
@@ -264,6 +333,9 @@ lemma torus_eq_of_mem {h : H} (hh : IsSS ρ h) {g : H} (hg : g ∈ torus h)
     refine ⟨a + b * (-(x * y⁻¹)), b * y⁻¹, ?_⟩
     rw [hab, hh', smul_add, smul_smul, smul_smul, ← add_assoc, ← add_smul]
 
+/--
+@isnad1 id=eq.5h5v.s9.3059631e6fb0 from=translated src=- shape=bf0136ea vocab=52c4eea1
+-/
 lemma conj_eq_inv_of_mem_normalizer (h2 : (2 : K) ≠ 0) {h : H} (hh : IsSS ρ h) {n : H}
     (hn : n ∈ Subgroup.normalizer (torus h : Set H)) (hnT : n ∉ torus h) : n * h * n⁻¹ = h⁻¹ := by
 
@@ -288,6 +360,9 @@ lemma conj_eq_inv_of_mem_normalizer (h2 : (2 : K) ≠ 0) {h : H} (hh : IsSS ρ h
     change _ = ((ρ h⁻¹ : SL(2, K)) : 𝕄)
     rw [map_inv, coe_inv_eq]
 
+/--
+@isnad1 id=mem.7h6v.s9.11bf46eb0a0e from=translated src=- shape=ad83c61f vocab=52c4eea1
+-/
 lemma inv_mul_mem_torus (h2 : (2 : K) ≠ 0) {h : H} (hh : IsSS ρ h) {n₁ n₂ : H}
     (hn₁ : n₁ ∈ Subgroup.normalizer (torus h : Set H)) (hn₁T : n₁ ∉ torus h)
     (hn₂ : n₂ ∈ Subgroup.normalizer (torus h : Set H)) (hn₂T : n₂ ∉ torus h) : n₂⁻¹ * n₁ ∈ torus h := by
@@ -301,6 +376,9 @@ lemma inv_mul_mem_torus (h2 : (2 : K) ≠ 0) {h : H} (hh : IsSS ρ h) {n₁ n₂
     _ = n₂⁻¹ * h⁻¹ * n₂ * (n₂⁻¹ * n₁) := by rw [e₁]; group
     _ = h * (n₂⁻¹ * n₁) := by rw [e₂']
 
+/--
+@isnad1 id=le.3h4v.s8.fe2778bff78b from=translated src=- shape=5d9c9463 vocab=4ffc2ca6
+-/
 lemma card_normalizer_le [Finite H] (h2 : (2 : K) ≠ 0) {h : H} (hh : IsSS ρ h) :
     Nat.card (Subgroup.normalizer (torus h : Set H)) ≤ 2 * Nat.card (torus h) := by
   classical
@@ -336,16 +414,25 @@ variable {H : Type} [Group H] {ρ : H →* SL(2, K)} (hρ : Function.Injective �
 
 include hρ in
 
+/--
+@isnad1 id=eq.2h5v.s8.63d925e57963 from=translated src=- shape=5829b7a6 vocab=7ddc9d53
+-/
 lemma comm_of_mem_Zsub {ζ : H} (hζ : ζ ∈ Zsub ρ) (h : H) : ζ * h = h * ζ := by
   apply mat_injective hρ
   rw [mat_mul, mat_mul]
   rcases hζ with e | e <;> rw [e] <;> simp
 
+/--
+@isnad1 id=eq.0h2v.s5.2217daeaaee1 from=translated src=- shape=ba745d85 vocab=fa293aec
+-/
 lemma card_subtype_add_card_subtype_not {α : Type} [Finite α] (q : α → Prop) :
     Nat.card {x // q x} + Nat.card {x // ¬ q x} = Nat.card α := by
   classical
   rw [← Nat.card_sum, Nat.card_congr (Equiv.sumCompl q)]
 
+/--
+@isnad1 id=iff.0h4v.s7.934a02c29055 from=translated src=- shape=634a9f11 vocab=fc69d917
+-/
 lemma mem_torus_conj_iff (w c g : H) : g ∈ torus (w * c * w⁻¹) ↔ w⁻¹ * g * w ∈ torus c := by
   rw [mem_torus_iff, mem_torus_iff]
   constructor
@@ -366,6 +453,9 @@ variable {H : Type} [Group H] {ρ : H →* SL(2, K)} (hρ : Function.Injective �
 
 def IsConjSub (M M' : Subgroup H) : Prop := ∃ s : H, ∀ g : H, g ∈ M' ↔ s⁻¹ * g * s ∈ M
 
+/--
+@isnad1 id=isconjsu.0h3v.s6.bc8c093ba5ee from=translated src=- shape=8e6cf042 vocab=4a2fd87f
+-/
 lemma isConjSub_torus_conj (h s : H) : IsConjSub (torus h) (torus (s * h * s⁻¹)) :=
   ⟨s, fun g => mem_torus_conj_iff s h g⟩
 
@@ -377,11 +467,17 @@ variable {ρ}
 
 include hρ in
 
+/--
+@isnad1 id=eq.2h5v.s8.f256aacbd61c from=translated src=- shape=3ce78f7e vocab=3037732b
+-/
 lemma conj_eq_of_mem_Zsub {ζ : H} (hζ : ζ ∈ Zsub ρ) (s : H) : s * ζ * s⁻¹ = ζ := by
   rw [← comm_of_mem_Zsub hρ hζ s, mul_inv_cancel_right]
 
 include hρ in
 
+/--
+@isnad1 id=eq.2h4v.s9.ab627da1f767 from=translated src=- shape=b2a6fa5c vocab=00754574
+-/
 lemma card_classSet_mul [Finite H] {h : H} (hh : IsSS ρ h) :
     Nat.card (classSet ρ (torus h)) * Nat.card (Subgroup.normalizer (torus h : Set H)) =
       Nat.card H * (Nat.card (torus h) - Nat.card (Zsub ρ)) := by
@@ -484,6 +580,9 @@ end Classes
 end P2mDicksonCore
 
 open P2mDicksonCore in
+/--
+@isnad1 id=and.3h4v.s12.c9fd14766748 from=translated src=- shape=ddcfff26 vocab=d6a1b335
+-/
 theorem solution
     {K : Type} [Field K] (h2 : (2 : K) ≠ 0)
     {H : Type} [Group H] [Finite H] (ρ : H →* SL(2, K)) (hρ : Function.Injective ρ)

@@ -33,12 +33,18 @@ variable (R) in
 def UnitComb (g : G) (n : ℕ) : Prop :=
   ∀ c : ℕ → R, (∃ j < n, IsUnit (c j)) → ∃ mu : R, IsUnit (∑ j ∈ range n, c j * g ^ j • mu)
 
+/--
+@isnad1 id=eq.1h5v.s7.14f0c012c684 from=translated src=- shape=bd2c5a58 vocab=0cc90dbe
+-/
 theorem pow_smul_of_smul_eq {g : G} {c : R} (hc : g • c = c) (j : ℕ) : g ^ j • c = c := by
   induction j with
   | zero => rw [pow_zero, one_smul]
   | succ j ih => rw [pow_succ, mul_smul, hc, ih]
 
 omit [MulSemiringAction G R] in
+/--
+@isnad1 id=eq.1h5v.s7.d54170483839 from=translated src=- shape=c69860c5 vocab=4c60e959
+-/
 theorem sum_shift {g : G} {n : ℕ} (hn : g ^ n = 1) (F : G → R) :
     ∑ j ∈ range n, F (g ^ (j + 1)) = ∑ j ∈ range n, F (g ^ j) := by
   cases n with
@@ -47,6 +53,9 @@ theorem sum_shift {g : G} {n : ℕ} (hn : g ^ n = 1) (F : G → R) :
     rw [Finset.sum_range_succ, Finset.sum_range_succ' (fun j => F (g ^ j)), hn, pow_zero]
 
 omit [MulSemiringAction G R] in
+/--
+@isnad1 id=eq.1h5v.s6.f7237ea6cb4f from=translated src=- shape=c69860c5 vocab=ce0c48b4
+-/
 theorem prod_shift {g : G} {n : ℕ} (hn : g ^ n = 1) (F : G → R) :
     ∏ j ∈ range n, F (g ^ (j + 1)) = ∏ j ∈ range n, F (g ^ j) := by
   cases n with
@@ -54,18 +63,27 @@ theorem prod_shift {g : G} {n : ℕ} (hn : g ^ n = 1) (F : G → R) :
   | succ m =>
     rw [Finset.prod_range_succ, Finset.prod_range_succ' (fun j => F (g ^ j)), hn, pow_zero]
 
+/--
+@isnad1 id=eq.1h5v.s7.ae20c7dfb3ac from=translated src=- shape=903e145b vocab=3b0bae1f
+-/
 theorem smul_tr {g : G} {n : ℕ} (hn : g ^ n = 1) (x : R) : g • tr g n x = tr g n x := by
   unfold tr
   rw [Finset.smul_sum]
   simp_rw [smul_smul, ← pow_succ']
   exact sum_shift hn (fun s => s • x)
 
+/--
+@isnad1 id=eq.1h5v.s7.7c46cd8808d4 from=translated src=- shape=903e145b vocab=ebae6d83
+-/
 theorem smul_nm {g : G} {n : ℕ} (hn : g ^ n = 1) (x : R) : g • nm g n x = nm g n x := by
   unfold nm
   rw [Finset.smul_prod']
   simp_rw [smul_smul, ← pow_succ']
   exact prod_shift hn (fun s => s • x)
 
+/--
+@isnad1 id=eq.1h6v.s7.f126ad16fb94 from=translated src=- shape=c1e3c79c vocab=fab1a861
+-/
 theorem tr_mul_left {g : G} (n : ℕ) {c : R} (hc : g • c = c) (x : R) :
     tr g n (c * x) = c * tr g n x := by
   unfold tr
@@ -73,25 +91,43 @@ theorem tr_mul_left {g : G} (n : ℕ) {c : R} (hc : g • c = c) (x : R) :
   refine Finset.sum_congr rfl fun j _ => ?_
   rw [smul_mul', pow_smul_of_smul_eq hc]
 
+/--
+@isnad1 id=eq.0h6v.s6.9ac98ec66b51 from=translated src=- shape=32666cf1 vocab=e53be17d
+-/
 theorem nm_mul (g : G) (n : ℕ) (x y : R) : nm g n (x * y) = nm g n x * nm g n y := by
   unfold nm
   rw [← Finset.prod_mul_distrib]
   exact Finset.prod_congr rfl fun j _ => smul_mul' _ _ _
 
+/--
+@isnad1 id=isunit.1h5v.s5.dc9422e9d157 from=translated src=- shape=a9d75961 vocab=884015f5
+-/
 theorem isUnit_nm (g : G) (n : ℕ) {x : R} (hx : IsUnit x) : IsUnit (nm g n x) := by
   unfold nm
   exact IsUnit.prod_iff.mpr fun j _ => hx.map (MulSemiringAction.toRingHom G R (g ^ j))
 
+/--
+@isnad1 id=eq.0h4v.s5.680cea31d627 from=translated src=- shape=ca71c589 vocab=2b1ee7de
+-/
 theorem pn_zero (g : G) (u : R) : pn g u 0 = 1 := by simp [pn]
 
+/--
+@isnad1 id=eq.0h5v.s7.de2a63f07021 from=translated src=- shape=aa37b6e3 vocab=5ab78c9f
+-/
 theorem pn_succ (g : G) (u : R) (j : ℕ) : pn g u (j + 1) = u * g • pn g u j := by
   unfold pn
   rw [Finset.prod_range_succ', pow_zero, one_smul, Finset.smul_prod', mul_comm]
   congr 1
   exact Finset.prod_congr rfl fun i _ => by rw [smul_smul, ← pow_succ']
 
+/--
+@isnad1 id=eq.0h5v.s5.6548c7587e23 from=translated src=- shape=4b9e8dae vocab=cc4ee19a
+-/
 theorem pn_eq_nm (g : G) (n : ℕ) (u : R) : pn g u n = nm g n u := rfl
 
+/--
+@isnad1 id=eq.2h6v.s7.b3e4d1e98f12 from=translated src=- shape=904689d0 vocab=d9941b3f
+-/
 theorem key_identity {g : G} {n : ℕ} (hn : g ^ n = 1) {u : R} (hu : nm g n u = 1) (lam : R) :
     u * g • rs g n u lam = rs g n u lam := by
   unfold rs
@@ -106,6 +142,9 @@ theorem key_identity {g : G} {n : ℕ} (hn : g ^ n = 1) {u : R} (hu : nm g n u =
     rw [Finset.sum_range_succ, Finset.sum_range_succ' (fun j => pn g u j * g ^ j • lam), hn,
       pow_zero, one_smul, pn_zero, one_mul, pn_eq_nm, hu, one_mul]
 
+/--
+@isnad1 id=ex.0h5v.s7.e5674591fb31 from=translated src=- shape=b2b59b3b vocab=0f9466ed
+-/
 theorem prod_one_add_mul (x : R) {ι : Type*} (s : Finset ι) (c : ι → R) :
     ∃ d : R, ∏ i ∈ s, (1 + x * c i) = 1 + x * ∑ i ∈ s, c i + x ^ 2 * d := by
   classical
@@ -117,12 +156,18 @@ theorem prod_one_add_mul (x : R) {ι : Type*} (s : Finset ι) (c : ι → R) :
     rw [Finset.prod_insert ha, Finset.sum_insert ha, hd]
     ring
 
+/--
+@isnad1 id=ex.4h5v.s7.b4fd70651e4d from=translated src=- shape=c6c381c1 vocab=9e7cde74
+-/
 theorem exists_mul_smul_eq_of_nm_eq_one {g : G} {n : ℕ} (hD : UnitComb R g n)
     (hn : g ^ n = 1) (hpos : 0 < n) {u : R} (hu : nm g n u = 1) :
     ∃ y : R, IsUnit y ∧ u * g • y = y := by
   obtain ⟨mu, hmu⟩ := hD (pn g u) ⟨0, hpos, by rw [pn_zero]; exact isUnit_one⟩
   exact ⟨rs g n u mu, hmu, key_identity hn hu mu⟩
 
+/--
+@isnad1 id=ex.4h5v.s7.2e877f294cb0 from=translated src=- shape=9f6c844d vocab=e7a9e48b
+-/
 theorem exists_tr_eq {g : G} {n : ℕ} (hD : UnitComb R g n) (hn : g ^ n = 1) (hpos : 0 < n)
     {b : R} (hb : g • b = b) : ∃ z : R, tr g n z = b := by
   obtain ⟨mu, hmu⟩ := hD (fun _ => (1 : R)) ⟨0, hpos, isUnit_one⟩
@@ -146,12 +191,18 @@ section Map
 
 variable {S : Type*} [CommRing S] [MulSemiringAction G S]
 
+/--
+@isnad1 id=eq.1h7v.s8.9c40f2061a34 from=translated src=- shape=384b6af9 vocab=e96ed429
+-/
 theorem map_nm (f : R →+* S) (hf : ∀ (s : G) (x : R), f (s • x) = s • f x) (g : G) (n : ℕ)
     (x : R) : f (nm g n x) = nm g n (f x) := by
   unfold nm; rw [map_prod]; exact Finset.prod_congr rfl fun j _ => hf _ _
 
 end Map
 
+/--
+@isnad1 id=eq.1h4v.s6.8cf3fc3e3861 from=translated src=- shape=7ba22226 vocab=79cf7bd8
+-/
 theorem prod_univ_eq_prod_range {M : Type*} [CommMonoid M] [Fintype G] {g : G}
     (hg : ∀ x, x ∈ Subgroup.zpowers g) (F : G → M) :
     ∏ s, F s = ∏ j ∈ range (orderOf g), F (g ^ j) := by
@@ -169,6 +220,9 @@ section Dedekind
 
 variable {G k : Type*} [Group G] [Field k] [MulSemiringAction G k]
 
+/--
+@isnad1 id=ex.2h4v.s9.2068d0d56f2b from=translated src=- shape=4abd512e vocab=1d654d13
+-/
 theorem dedekind (hinj : Function.Injective (MulSemiringAction.toRingAut G k)) (g : G)
     (c : ℕ → k) (hc : ∃ j < orderOf g, c j ≠ 0) :
     ∃ lam : k, ∑ j ∈ range (orderOf g), c j * g ^ j • lam ≠ 0 := by
@@ -199,6 +253,9 @@ theorem dedekind (hinj : Function.Injective (MulSemiringAction.toRingAut G k)) (
     simp only [Function.comp_apply, Pi.smul_apply, smul_eq_mul, hχ]
     exact hx
 
+/--
+@isnad1 id=unitcomb.1h3v.s8.a2119dfbad5f from=translated src=- shape=f001fa98 vocab=912827e7
+-/
 theorem unitComb_of_field (hinj : Function.Injective (MulSemiringAction.toRingAut G k))
     (g : G) : UnitComb k g (orderOf g) := by
   intro c hc
@@ -212,8 +269,14 @@ section LocalLift
 
 variable {G R : Type*} [Group G] [CommRing R] [IsLocalRing R] [MulSemiringAction G R]
 
+/--
+@isnad1 id=eq.0h4v.s8.5d146f66190e from=translated src=- shape=3e50a635 vocab=caec3a87
+-/
 theorem residue_smul' (s : G) (x : R) : residue R (s • x) = s • residue R x := rfl
 
+/--
+@isnad1 id=unitcomb.1h3v.s9.c1323666db44 from=translated src=- shape=bce8ded6 vocab=9055a0a0
+-/
 theorem unitComb_of_residue
     (hinj : Function.Injective (MulSemiringAction.toRingAut G (ResidueField R))) (g : G) :
     UnitComb R g (orderOf g) := by
@@ -239,8 +302,14 @@ variable {G k : Type*} [Group G] [Field k] [MulSemiringAction G k]
 noncomputable def uact (s : G) : kˣ →* kˣ :=
   Units.map (MulSemiringAction.toRingHom G k s).toMonoidHom
 
+/--
+@isnad1 id=eq.0h4v.s8.9e16c4dc1d36 from=translated src=- shape=13cb983f vocab=aef559a2
+-/
 @[scoped simp] theorem coe_uact (s : G) (x : kˣ) : ((uact s x : kˣ) : k) = s • (x : k) := rfl
 
+/--
+@isnad1 id=ex.5h5v.s7.e3c7b660238f from=translated src=- shape=bf31aecc vocab=c2a06ccb
+-/
 theorem exists_nm_eq_of_finite [Finite k] {g : G} {n : ℕ} (hD : UnitComb k g n)
     (hn : g ^ n = 1) (hpos : 0 < n) {a : k} (ha : a ≠ 0) (hfix : g • a = a) :
     ∃ x : k, x ≠ 0 ∧ nm g n x = a := by
@@ -306,6 +375,9 @@ section CompleteDVR
 variable {G A : Type*} [Group G] [CommRing A] [IsDomain A] [IsDiscreteValuationRing A]
   [MulSemiringAction G A]
 
+/--
+@isnad1 id=iff.1h4v.s7.154d6a833aed from=translated src=- shape=0593513c vocab=9aa07910
+-/
 theorem mem_maximalIdeal_pow_iff {ϖ : A} (hϖ : Irreducible ϖ) (m : ℕ) (x : A) :
     x ∈ maximalIdeal A ^ m ↔ ∃ a, x = ϖ ^ m * a := by
   rw [(IsDiscreteValuationRing.irreducible_iff_uniformizer ϖ).mp hϖ, Ideal.span_singleton_pow,
@@ -314,12 +386,18 @@ theorem mem_maximalIdeal_pow_iff {ϖ : A} (hϖ : Irreducible ϖ) (m : ℕ) (x : 
   · rintro ⟨a, ha⟩; exact ⟨a, by rw [← ha, mul_comm]⟩
   · rintro ⟨a, ha⟩; exact ⟨a, by rw [ha, mul_comm]⟩
 
+/--
+@isnad1 id=mem.3h6v.s8.ee6e86b644dc from=translated src=- shape=5cc2fc3f vocab=633cba26
+-/
 theorem smul_mem_maximalIdeal_pow {ϖ : A} (hϖ : Irreducible ϖ) {s : G} (hs : s • ϖ = ϖ)
     (m : ℕ) {x : A} (hx : x ∈ maximalIdeal A ^ m) : s • x ∈ maximalIdeal A ^ m := by
   rw [mem_maximalIdeal_pow_iff hϖ] at hx ⊢
   obtain ⟨a, rfl⟩ := hx
   exact ⟨s • a, by rw [smul_mul', smul_pow', hs]⟩
 
+/--
+@isnad1 id=mem.3h8v.s8.3ebc4829816d from=translated src=- shape=13f302b9 vocab=8888c788
+-/
 theorem nm_sub_nm_mem {ϖ : A} (hϖ : Irreducible ϖ) {g : G} (hg : g • ϖ = ϖ) (n m : ℕ)
     {x y : A} (h : x - y ∈ maximalIdeal A ^ m) :
     nm g n x - nm g n y ∈ maximalIdeal A ^ m := by
@@ -330,6 +408,9 @@ theorem nm_sub_nm_mem {ϖ : A} (hϖ : Irreducible ϖ) {g : G} (hg : g • ϖ = �
   rw [Ideal.Quotient.eq, ← smul_sub]
   exact smul_mem_maximalIdeal_pow hϖ (pow_smul_of_smul_eq hg j) m ((Ideal.Quotient.eq).mp h)
 
+/--
+@isnad1 id=ex.3h4v.s7.d2bd0bd63ab9 from=translated src=- shape=aeae18c4 vocab=6efaf4fb
+-/
 theorem exists_fixed_uniformizer {g : G} {n : ℕ} (hD : UnitComb A g n) (hn : g ^ n = 1)
     (hpos : 0 < n) : ∃ ϖ : A, Irreducible ϖ ∧ g • ϖ = ϖ := by
   obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible A
@@ -350,6 +431,9 @@ theorem exists_fixed_uniformizer {g : G} {n : ℕ} (hD : UnitComb A g n) (hn : g
   rw [this]
   exact smul_tr hn _
 
+/--
+@isnad1 id=ex.5h5v.s8.4f232947877e from=translated src=- shape=c86ef32d vocab=9bd363ee
+-/
 theorem level_zero [Finite (ResidueField A)] {g : G} {n : ℕ}
     (hDk : UnitComb (ResidueField A) g n) (hn : g ^ n = 1) (hpos : 0 < n)
     (u : A) (huU : IsUnit u) (hu : g • u = u) :
@@ -361,6 +445,9 @@ theorem level_zero [Finite (ResidueField A)] {g : G} {n : ℕ}
   refine ⟨v, (residue_ne_zero_iff_isUnit v).mp hx0, ?_⟩
   rw [← residue_eq_zero_iff, map_sub, map_nm (residue A) residue_smul', hx, sub_self]
 
+/--
+@isnad1 id=ex.8h8v.s9.676d985b0d1d from=translated src=- shape=7ae325ec vocab=113a7c92
+-/
 theorem level_step {g : G} {n : ℕ} (hD : UnitComb A g n) (hn : g ^ n = 1) (hpos : 0 < n)
     {ϖ : A} (hϖ : Irreducible ϖ) (hϖfix : g • ϖ = ϖ) {u : A} (hu : g • u = u) (m : ℕ)
     (v : A) (hvU : IsUnit v) (hv : ∃ b, u = nm g n v * (1 + ϖ ^ (m + 1) * b)) :
@@ -411,10 +498,16 @@ theorem level_step {g : G} {n : ℕ} (hD : UnitComb A g n) (hn : g ^ n = 1) (hpo
     exact Ideal.mul_mem_right _ _ (Ideal.pow_mem_pow hmaxϖ _)
 
 omit [IsDomain A] [IsDiscreteValuationRing A] in
+/--
+@isnad1 id=iff.0h5v.s8.03dd5da8e05d from=translated src=- shape=834ce8f4 vocab=06f1776e
+-/
 theorem smodEq_pow_top_iff (I : Ideal A) (m : ℕ) (x y : A) :
     x ≡ y [SMOD (I ^ m • ⊤ : Submodule A A)] ↔ x - y ∈ I ^ m := by
   rw [SModEq.sub_mem, Ideal.smul_eq_mul, Ideal.mul_top]
 
+/--
+@isnad1 id=ex.6h5v.s8.b7da9d820591 from=translated src=- shape=ed772c03 vocab=23168ae6
+-/
 theorem exists_isUnit_nm_eq [IsAdicComplete (maximalIdeal A) A] [Finite (ResidueField A)]
     {g : G} {n : ℕ} (hD : UnitComb A g n) (hDk : UnitComb (ResidueField A) g n)
     (hn : g ^ n = 1) (hpos : 0 < n) (u : A) (huU : IsUnit u) (hu : g • u = u) :
@@ -495,9 +588,15 @@ section Card
 variable {K L : Type*} [Field K] [Field L] [Algebra K L]
 variable (A : ValuationSubring L)
 
+/--
+@isnad1 id=eq.0h5v.s12.cb5b5805997d from=translated src=- shape=5ccfd78d vocab=9be62c6b
+-/
 theorem coe_unitsAct (s : A.decompositionSubgroup K) (v : Aˣ) :
     ((unitsAct A s v : Aˣ) : A) = s • (v : A) := rfl
 
+/--
+@isnad1 id=eq.1h5v.s12.d9134bf4613e from=translated src=- shape=f16f734b vocab=5f531ae7
+-/
 theorem coe_unitsNorm [Finite (A.decompositionSubgroup K)] {g : A.decompositionSubgroup K}
     (hg : ∀ x, x ∈ Subgroup.zpowers g) (v : Aˣ) :
     ((unitsNorm (K := K) A v : Aˣ) : A) = nm g (orderOf g) (v : A) := by
@@ -506,9 +605,15 @@ theorem coe_unitsNorm [Finite (A.decompositionSubgroup K)] {g : A.decompositionS
   rw [MonoidHom.finsetProd_apply, Units.coe_prod, prod_univ_eq_prod_range hg]
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.5b66d01841b7 from=translated src=- shape=f19259ae vocab=19e3be84
+-/
 theorem unitsDerive_apply (g : A.decompositionSubgroup K) (v : Aˣ) :
     unitsDerive A g v = unitsAct A g v / v := rfl
 
+/--
+@isnad1 id=iff.0h5v.s12.e51b7cd476b3 from=translated src=- shape=483e7f08 vocab=34b908ef
+-/
 theorem mem_ker_unitsDerive_iff (g : A.decompositionSubgroup K) (v : Aˣ) :
     v ∈ (unitsDerive A g).ker ↔ g • (v : A) = v := by
   rw [MonoidHom.mem_ker, unitsDerive_apply, div_eq_one, Units.ext_iff, coe_unitsAct]
@@ -520,6 +625,9 @@ variable [Finite (A.decompositionSubgroup K)]
 
 variable (K) in
 
+/--
+@isnad1 id=and.2h4v.s12.707863c8b1de from=translated src=- shape=b73f0d30 vocab=1127bc52
+-/
 theorem unitsDecomp_cohTrivial
     (g : A.decompositionSubgroup K) (hg : ∀ x, x ∈ Subgroup.zpowers g)
     (hur : A.inertiaSubgroup K = ⊥) :
@@ -559,6 +667,9 @@ open scoped _root_.P2MW.S_M4aLocalCFT_unitsDecomp_cohTrivial_of_inertia_eq_bot.M
 end M4aLocalCFT
 open scoped _root_.P2MW.S_M4aLocalCFT_unitsDecomp_cohTrivial_of_inertia_eq_bot.M4aLocalCFT.UnramUnitsCoh _root_.P2MW.S_M4aLocalCFT_unitsDecomp_cohTrivial_of_inertia_eq_bot.M4aLocalCFT
 
+/--
+@isnad1 id=and.2h4v.s12.d15d5e41c640 from=translated src=- shape=3aaa33ac vocab=91f8b9fe
+-/
 theorem solution (K : Type*) {L : Type*} [Field K] [Field L] [Algebra K L]
     (A : ValuationSubring L) [IsDiscreteValuationRing A]
     [IsAdicComplete (IsLocalRing.maximalIdeal (A : Type _)) A]

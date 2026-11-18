@@ -7,6 +7,9 @@ namespace P2MW.S_LaurentPolynomial_T_one_add_T_neg_one_pow_apply_eq_sum_ite_choo
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.0h3v.s8.8a8b05241921 from=translated src=- shape=725d3f0f vocab=4d83a5b1
+-/
 theorem solution (R : Type*) [CommSemiring R] (k : ℕ) (m : ℤ) :
     ((LaurentPolynomial.T 1 + LaurentPolynomial.T (-1)) ^ k : LaurentPolynomial R).coeff m =
       ∑ i ∈ Finset.range (k + 1), if (2 * (i : ℤ) - k = m) then ((k.choose i : ℕ) : R) else 0 := by

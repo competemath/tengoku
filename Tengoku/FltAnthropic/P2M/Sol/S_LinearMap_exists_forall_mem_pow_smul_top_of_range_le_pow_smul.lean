@@ -13,6 +13,9 @@ namespace HomARSol
 
 open Submodule
 
+/--
+@isnad1 id=mem.1h5v.s9.d5db07f5518e from=translated src=- shape=e674f32e vocab=cdac61ee
+-/
 theorem pi_mem_smul_top {B : Type u} [CommRing B] (J : Ideal B) {N : Type w} [AddCommGroup N] [Module B N]
     {r : ℕ} (x : Fin r → N) (hx : ∀ i, x i ∈ J • (⊤ : Submodule B N)) :
     x ∈ J • (⊤ : Submodule B (Fin r → N)) := by
@@ -40,6 +43,9 @@ theorem pi_mem_smul_top {B : Type u} [CommRing B] (J : Ideal B) {N : Type w} [Ad
 end HomARSol
 
 open HomARSol in
+/--
+@isnad1 id=ex.0h4v.s10.5301ab59809a from=translated src=- shape=576664b3 vocab=f0601b95
+-/
 theorem solution
     {B : Type u} [CommRing B] [IsNoetherianRing B] (I : Ideal B)
     {M : Type v} [AddCommGroup M] [Module B M] [Module.Finite B M]

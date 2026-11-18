@@ -24,15 +24,24 @@ variable {R : Type*} [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
 def gU (u₁ u₂ : Rˣ) (ϖ : R) (a b : ℕ) (y : R) : Matrix (Fin 2) (Fin 2) R :=
   !![(u₁ : R) * ϖ ^ a, y; 0, (u₂ : R) * ϖ ^ b]
 
+/--
+@isnad1 id=eq.0h7v.s7.a283db39be62 from=translated src=- shape=ad35fa17 vocab=cc11917a
+-/
 theorem gU_det (u₁ u₂ : Rˣ) (ϖ : R) (a b : ℕ) (y : R) :
     (gU u₁ u₂ ϖ a b y).det = (u₁ : R) * (u₂ : R) * ϖ ^ (a + b) := by
   rw [gU, Matrix.det_fin_two_of]; ring
 
+/--
+@isnad1 id=ne.1h7v.s6.e0bd448b5cf0 from=translated src=- shape=0247b5e4 vocab=13ddf600
+-/
 theorem gU_det_ne_zero (u₁ u₂ : Rˣ) {ϖ : R} (hϖ : Irreducible ϖ) (a b : ℕ) (y : R) :
     (gU u₁ u₂ ϖ a b y).det ≠ 0 := by
   rw [gU_det]
   exact mul_ne_zero (mul_ne_zero u₁.ne_zero u₂.ne_zero) (pow_ne_zero _ hϖ.ne_zero)
 
+/--
+@isnad1 id=iff.1h8v.s7.538954c8dbf4 from=translated src=- shape=9efa355e vocab=4d642386
+-/
 theorem entryIdeal_gU_le_iff (u₁ u₂ : Rˣ) {ϖ : R} (hϖ : Irreducible ϖ) (a b : ℕ) (y : R) (c : ℕ) :
     entryIdeal (gU u₁ u₂ ϖ a b y) ≤ Ideal.span {ϖ ^ c} ↔ c ≤ a ∧ c ≤ b ∧ ϖ ^ c ∣ y := by
   rw [entryIdeal_le_iff]
@@ -45,6 +54,9 @@ theorem entryIdeal_gU_le_iff (u₁ u₂ : Rˣ) {ϖ : R} (hϖ : Irreducible ϖ) (
   · rintro ⟨ha, hb, hy⟩
     exact ⟨⟨ha, hy⟩, dvd_zero _, hb⟩
 
+/--
+@isnad1 id=and.3h9v.s7.ae0fde58c2d0 from=translated src=- shape=f14504ca vocab=864e35c1
+-/
 theorem invariants_of_cartanRel (u₁ u₂ : Rˣ) {ϖ : R} (hϖ : Irreducible ϖ) (a b : ℕ) (y : R)
     {c d : ℕ} (hcd : c ≤ d) (h : CartanRel (gU u₁ u₂ ϖ a b y) (cartanDiag ϖ c d)) :
     c + d = a + b ∧ c ≤ min a b ∧ ϖ ^ c ∣ y ∧ (c < min a b → ¬ ϖ ^ (c + 1) ∣ y) := by
@@ -67,6 +79,9 @@ theorem invariants_of_cartanRel (u₁ u₂ : Rˣ) {ϖ : R} (hϖ : Irreducible ϖ
   rw [hE, Ideal.span_singleton_le_span_singleton, pow_irreducible_dvd_pow_iff hϖ] at hle
   omega
 
+/--
+@isnad1 id=iff.2h9v.s7.2133ed01cccb from=translated src=- shape=a430a305 vocab=864e35c1
+-/
 theorem integral_iff (u₁ u₂ : Rˣ) {ϖ : R} (hϖ : Irreducible ϖ) (a b : ℕ) (y : R) {c d : ℕ} (hcd : c ≤ d) :
     CartanRel (gU u₁ u₂ ϖ a b y) (cartanDiag ϖ c d) ↔
       c + d = a + b ∧ c ≤ min a b ∧ ϖ ^ c ∣ y ∧ (c < min a b → ¬ ϖ ^ (c + 1) ∣ y) := by
@@ -105,12 +120,18 @@ local notation "P" => LocalGL2.diagPi ϖ hϖ0
 local notation "Q" => LocalGL2.localRepInf ϖ hϖ0
 local notation "U" => LocalGL2.integralSubgroup R K
 
+/--
+@isnad1 id=eq.1h3v.s9.f947bc5a8c86 from=translated src=- shape=b8901552 vocab=f409d4de
+-/
 theorem coe_z :
     ((P * Q : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) = π • (1 : Matrix (Fin 2) (Fin 2) K) := by
   rw [Units.val_mul, coe_diagPi, coe_localRepInf]
   ext i j
   fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.1h4v.s9.29de4d3d0ede from=translated src=- shape=d6707b6f vocab=53c10985
+-/
 theorem coe_z_pow (n : ℕ) :
     (((P * Q) ^ n : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) = π ^ n • (1 : Matrix (Fin 2) (Fin 2) K) := by
   induction n with
@@ -118,6 +139,9 @@ theorem coe_z_pow (n : ℕ) :
   | succ n ih =>
     rw [pow_succ, Units.val_mul, ih, coe_z, smul_mul_smul_comm, one_mul, ← pow_succ]
 
+/--
+@isnad1 id=eq.1h4v.s9.fb93304f6ce7 from=translated src=- shape=d6269abf vocab=441db209
+-/
 theorem coe_diagPi_pow (n : ℕ) :
     ((P ^ n : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) = !![π ^ n, 0; 0, 1] := by
   induction n with
@@ -127,6 +151,9 @@ theorem coe_diagPi_pow (n : ℕ) :
     ext i j
     fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two, pow_succ]
 
+/--
+@isnad1 id=eq.1h4v.s9.db80bd0df1ee from=translated src=- shape=a17f0160 vocab=3cfba1bc
+-/
 theorem coe_localRepInf_pow (n : ℕ) :
     ((Q ^ n : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) = !![1, 0; 0, π ^ n] := by
   induction n with
@@ -136,12 +163,18 @@ theorem coe_localRepInf_pow (n : ℕ) :
     ext i j
     fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two, pow_succ]
 
+/--
+@isnad1 id=eq.1h5v.s9.95dbe7ba7b0a from=translated src=- shape=0c6dc125 vocab=0e760426
+-/
 theorem coe_D_nat (c d : ℕ) :
     ((P ^ c * Q ^ d : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) = (cartanDiag ϖ c d).map (algebraMap R K) := by
   rw [Units.val_mul, coe_diagPi_pow, coe_localRepInf_pow, cartanDiag]
   ext i j
   fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.1h4v.s9.185b921e2360 from=translated src=- shape=23da0f5d vocab=db290895
+-/
 theorem z_central (g : GL (Fin 2) K) : (P * Q) * g = g * (P * Q) := by
   apply Units.ext
   have h := coe_z ϖ hϖ0
@@ -149,6 +182,9 @@ theorem z_central (g : GL (Fin 2) K) : (P * Q) * g = g * (P * Q) := by
   rw [Units.val_mul, Units.val_mul, Units.val_mul, Units.val_mul, h, Matrix.smul_mul,
     Matrix.one_mul, Matrix.mul_smul, Matrix.mul_one]
 
+/--
+@isnad1 id=commute.1h3v.s7.bb5714a44f1e from=translated src=- shape=6cfaab99 vocab=231b8a32
+-/
 theorem commute_PQ : Commute (P) (Q : GL (Fin 2) K) := by
   show P * Q = Q * P
   apply Matrix.GeneralLinearGroup.ext
@@ -156,6 +192,9 @@ theorem commute_PQ : Commute (P) (Q : GL (Fin 2) K) := by
   simp only [Units.val_mul, coe_diagPi, coe_localRepInf]
   fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.1h6v.s10.549b1babde07 from=translated src=- shape=861c3fe9 vocab=9f56abd6
+-/
 theorem D_eq_z_zpow_mul (m n s : ℤ) :
     (P ^ m * Q ^ n : GL (Fin 2) K) = (P * Q) ^ s * (P ^ (m - s) * Q ^ (n - s)) := by
   rw [(commute_PQ ϖ hϖ0).mul_zpow]
@@ -167,6 +206,9 @@ theorem D_eq_z_zpow_mul (m n s : ℤ) :
     _ = P ^ s * (Q ^ s * P ^ (m - s)) * Q ^ (n - s) := by rw [hc.eq]
     _ = P ^ s * Q ^ s * (P ^ (m - s) * Q ^ (n - s)) := by group
 
+/--
+@isnad1 id=iff.1h5v.s7.3f980faaf4a4 from=translated src=- shape=9914596d vocab=7c7b6497
+-/
 theorem mem_doubleCoset_central_mul_iff {G : Type*} [Group G] {V : Subgroup G} {c g x : G}
     (hc : ∀ y : G, c * y = y * c) :
     x ∈ doubleCoset V (c * g) ↔ c⁻¹ * x ∈ doubleCoset V g := by
@@ -186,19 +228,31 @@ noncomputable def iota (M : Matrix (Fin 2) (Fin 2) R) (hM : M.det ≠ 0) : GL (F
     rw [← RingHom.mapMatrix_apply, ← RingHom.map_det]
     exact fun h => hM (IsFractionRing.injective R K (by rw [h, map_zero])))
 
+/--
+@isnad1 id=eq.1h3v.s8.26cb6e94e3ab from=translated src=- shape=252ff067 vocab=5d2ad5f4
+-/
 theorem coe_iota (M : Matrix (Fin 2) (Fin 2) R) (hM : M.det ≠ 0) :
     ((iota (K := K) M hM : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) = M.map (algebraMap R K) := rfl
 
+/--
+@isnad1 id=injectiv.0h2v.s7.dfe54615f75d from=translated src=- shape=9a1f9ecc vocab=fee3e4e2
+-/
 theorem map_injective : Function.Injective fun M : Matrix (Fin 2) (Fin 2) R => M.map (algebraMap R K) := by
   intro M N h
   ext i j
   have := congrFun (congrFun h i) j
   exact IsFractionRing.injective R K this
 
+/--
+@isnad1 id=eq.0h3v.s9.6404f6adc678 from=translated src=- shape=6a751253 vocab=e5c0de7a
+-/
 theorem coe_mapGL (k : GL (Fin 2) R) :
     ((Matrix.GeneralLinearGroup.map (algebraMap R K) k : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) =
       (k : Matrix (Fin 2) (Fin 2) R).map (algebraMap R K) := rfl
 
+/--
+@isnad1 id=iff.2h6v.s9.f87ba0c65bd1 from=translated src=- shape=51699160 vocab=36be0b07
+-/
 theorem iota_mem_doubleCoset_iff (M : Matrix (Fin 2) (Fin 2) R) (hM : M.det ≠ 0) (c d : ℕ) :
     iota (K := K) M hM ∈ doubleCoset U (P ^ (c : ℤ) * Q ^ (d : ℤ)) ↔ CartanRel M (cartanDiag ϖ c d) := by
   rw [zpow_natCast, zpow_natCast, mem_doubleCoset_iff]
@@ -225,6 +279,9 @@ section Main
 variable {R : Type*} [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
 variable {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]
 
+/--
+@isnad1 id=iff.6h10v.s11.c23d6593c7be from=translated src=- shape=cfb6aaf0 vocab=69326bec
+-/
 theorem main {ϖ : R} (hϖ : Irreducible ϖ) (hϖ0 : algebraMap R K ϖ ≠ 0)
     (g : GL (Fin 2) K) (u₁ u₂ : Rˣ) (a b : ℤ)
     (h00 : (g : Matrix (Fin 2) (Fin 2) K) 0 0 = algebraMap R K u₁ * algebraMap R K ϖ ^ a)
@@ -338,6 +395,9 @@ end Main
 end KcCartanUpperK
 
 open KcCartanUpperK in
+/--
+@isnad1 id=iff.6h10v.s11.c23d6593c7be from=translated src=- shape=cfb6aaf0 vocab=69326bec
+-/
 theorem solution
     {R : Type*} [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]

@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_LinearMap_exists_int_forall_apply_ne
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.1h6v.s9.3c4ba9ec40f0 from=translated src=- shape=473191ef vocab=c5dd35eb
+-/
 theorem LinearMap.exists_int_forall_apply_ne {K : Type*} [Field K] [CharZero K] {r : ℕ} {ι : Type*}
     (S : Finset ι) (f : ι → (Fin r → K) →ₗ[K] K) (a : ι → K) (hf : ∀ j ∈ S, f j ≠ 0) :
     ∃ c : Fin r → ℤ, ∀ j ∈ S, f j (fun i => (c i : K)) ≠ a j := by exact @_root_.P2MW.S_LinearMap_exists_int_forall_apply_ne.solution K _ _ r ι S f a hf

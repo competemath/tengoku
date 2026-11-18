@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open MeasureTheory Set
 
+/--
+@isnad1 id=and.1h1v.s8.57f7f394332d from=translated src=- shape=7a916a01 vocab=69a3f58f
+-/
 theorem LanglandsTunnell.integrableOn_and_integral_Ioi_exp_neg_pi_mul_sq_add_sq_div_sq_eq_half_exp
     (ρ : ℝ) (hρ : 0 < ρ) :
     IntegrableOn (fun w : ℝ => Real.exp (-(Real.pi * (w ^ 2 + ρ ^ 2 / w ^ 2)))) (Ioi 0) ∧

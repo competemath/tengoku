@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open Real Complex Filter Topology MeasureTheory
 
+/--
+@isnad1 id=eq.9h5v.s9.528cc503b5e8 from=translated src=- shape=f9e111bb vocab=a2223afa
+-/
 theorem LanglandsTunnell.whittaker_ode_neg_weight_zero_param_eq_zero_of_tendsto_of_mellinConvergent
     (k : ℝ) (hk : 0 < k) (f : ℝ → ℂ)
     (hf : DifferentiableOn ℝ f (Set.Ioi 0)) (hf' : DifferentiableOn ℝ (deriv f) (Set.Ioi 0))

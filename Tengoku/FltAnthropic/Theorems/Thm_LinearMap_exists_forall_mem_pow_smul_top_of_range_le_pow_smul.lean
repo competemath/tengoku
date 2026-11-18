@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u v w
 
+/--
+@isnad1 id=ex.0h4v.s10.5301ab59809a from=translated src=- shape=576664b3 vocab=f0601b95
+-/
 theorem LinearMap.exists_forall_mem_pow_smul_top_of_range_le_pow_smul
     {B : Type u} [CommRing B] [IsNoetherianRing B] (I : Ideal B)
     {M : Type v} [AddCommGroup M] [Module B M] [Module.Finite B M]

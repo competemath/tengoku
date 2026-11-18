@@ -8,6 +8,9 @@ attribute [-simp] ModularCurve.qExpand_coeff_mul ModularCurve.qExpandₐ_apply M
 set_option synthInstance.maxHeartbeats 400000
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.0h4v.s7.bebbb74d3b47 from=translated src=- shape=a38776c4 vocab=65892472
+-/
 theorem LaurentSeries.coeff_pow_char {R : Type*} [CommRing R] (q : ℕ) [Fact q.Prime] [CharP R q]
     (f : LaurentSeries R) (n : ℤ) :
     (f ^ q).coeff n = if (q : ℤ) ∣ n then f.coeff (n / q) ^ q else 0 := by exact @_root_.P2MW.S_LaurentSeries_coeff_pow_char.solution R _ q _ _ f n

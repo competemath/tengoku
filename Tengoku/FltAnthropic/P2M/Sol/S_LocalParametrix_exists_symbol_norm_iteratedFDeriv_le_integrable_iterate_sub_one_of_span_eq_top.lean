@@ -25,6 +25,9 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 def IsHomog (k : ℤ) (f : V → E) : Prop :=
   ∀ ξ : V, ξ ≠ 0 → ∀ t : ℝ, 0 < t → f (t • ξ) = (t ^ k) • f ξ
 
+/--
+@isnad1 id=ishomog.1h4v.s6.f6152055c50d from=translated src=- shape=a55d6022 vocab=162bc6f1
+-/
 theorem IsHomog.const_smul {k : ℤ} {f : V → ℂ} (hf : IsHomog k f) (c : ℂ) :
     IsHomog k (fun ξ => c * f ξ) := by
   intro ξ hξ t ht
@@ -32,6 +35,9 @@ theorem IsHomog.const_smul {k : ℤ} {f : V → ℂ} (hf : IsHomog k f) (c : ℂ
   rw [hf ξ hξ t ht, Complex.real_smul, Complex.real_smul]
   ring
 
+/--
+@isnad1 id=ishomog.2h5v.s6.884f9c9bcc6a from=translated src=- shape=74e884bd vocab=d3462d3c
+-/
 theorem IsHomog.mul {k l : ℤ} {f g : V → ℂ} (hf : IsHomog k f) (hg : IsHomog l g) :
     IsHomog (k + l) (fun ξ => f ξ * g ξ) := by
   intro ξ hξ t ht
@@ -41,12 +47,18 @@ theorem IsHomog.mul {k l : ℤ} {f g : V → ℂ} (hf : IsHomog k f) (hg : IsHom
   push_cast
   ring
 
+/--
+@isnad1 id=ishomog.1h6v.s6.702839601b23 from=translated src=- shape=9c23d1f2 vocab=417127eb
+-/
 theorem IsHomog.sum {ι : Type*} (s : Finset ι) {k : ℤ} {f : ι → V → E} (hf : ∀ i ∈ s, IsHomog k (f i)) :
     IsHomog k (fun ξ => ∑ i ∈ s, f i ξ) := by
   intro ξ hξ t ht
   rw [Finset.smul_sum]
   exact Finset.sum_congr rfl fun i hi => hf i hi ξ hξ t ht
 
+/--
+@isnad1 id=ishomog.0h2v.s6.8804c032e80e from=translated src=- shape=2e44013f vocab=f665f1e2
+-/
 theorem isHomog_inner (a : V) : IsHomog 1 (fun ξ : V => ((⟪ξ, a⟫_ℝ : ℝ) : ℂ)) := by
   intro ξ hξ t ht
   dsimp only
@@ -54,6 +66,9 @@ theorem isHomog_inner (a : V) : IsHomog 1 (fun ξ : V => ((⟪ξ, a⟫_ℝ : ℝ
   push_cast
   ring
 
+/--
+@isnad1 id=ex.2h4v.s7.7ce68769704a from=translated src=- shape=3e1b18b4 vocab=04133775
+-/
 theorem IsHomog.exists_bound {k : ℤ} {f : V → E} (hf : IsHomog k f) (hc : ContinuousOn f {0}ᶜ) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ ξ : V, ξ ≠ 0 → ‖f ξ‖ ≤ C * ‖ξ‖ ^ k := by
   have hK : IsCompact (Metric.sphere (0 : V) 1) := isCompact_sphere 0 1
@@ -77,6 +92,9 @@ theorem IsHomog.exists_bound {k : ℤ} {f : V → E} (hf : IsHomog k f) (hc : Co
   rw [key, norm_smul, Real.norm_eq_abs, abs_of_pos (zpow_pos hn k), mul_comm]
   exact mul_le_mul_of_nonneg_right ((hC u hu1).trans (le_max_left _ _)) (zpow_pos hn k).le
 
+/--
+@isnad1 id=ishomog.2h4v.s8.f7f230bdef1b from=translated src=- shape=feeb580a vocab=9a2fc967
+-/
 theorem isHomog_fderiv {k : ℤ} {f : V → E} (hf : IsHomog k f) (hd : DifferentiableOn ℝ f {0}ᶜ) :
     IsHomog (k - 1) (fderiv ℝ f) := by
   intro ξ hξ t ht
@@ -104,6 +122,9 @@ theorem isHomog_fderiv {k : ℤ} {f : V → E} (hf : IsHomog k f) (hd : Differen
   congr 1
   rw [zpow_sub_one₀ ht.ne', mul_comm]
 
+/--
+@isnad1 id=ishomog.1h6v.s8.d1405ec1f33c from=translated src=- shape=b1a25ffe vocab=6382f51a
+-/
 theorem IsHomog.clm_comp {k : ℤ} {f : V → E} (hf : IsHomog k f)
     {G : Type*} [NormedAddCommGroup G] [NormedSpace ℝ G] (L : E →L[ℝ] G) :
     IsHomog k (fun ξ => L (f ξ)) := by
@@ -111,22 +132,37 @@ theorem IsHomog.clm_comp {k : ℤ} {f : V → E} (hf : IsHomog k f)
   dsimp only
   rw [hf ξ hξ t ht, map_smul]
 
+/--
+@isnad1 id=ishomog.2h4v.s9.81f37fa20651 from=translated src=- shape=8d541044 vocab=3ca98c56
+-/
 theorem isHomog_fderiv_apply {k : ℤ} {f : V → ℂ} (hf : IsHomog k f) (hd : DifferentiableOn ℝ f {0}ᶜ) (w : V) :
     IsHomog (k - 1) (fun ξ => fderiv ℝ f ξ w) :=
   (isHomog_fderiv hf hd).clm_comp (ContinuousLinearMap.apply ℝ ℂ w)
 
+/--
+@isnad1 id=contdiff.1h3v.s8.e63a410b9146 from=translated src=- shape=66f3f392 vocab=c9202006
+-/
 theorem contDiffOn_fderiv {f : V → E} (hf : ContDiffOn ℝ (⊤ : ℕ∞) f {0}ᶜ) :
     ContDiffOn ℝ (⊤ : ℕ∞) (_root_.fderiv ℝ f) {0}ᶜ :=
   hf.fderiv_of_isOpen isOpen_compl_singleton (by simp)
 
+/--
+@isnad1 id=contdiff.1h3v.s8.30651ed86e41 from=translated src=- shape=32912eb5 vocab=e5e79fa7
+-/
 theorem contDiffOn_fderiv_apply {f : V → ℂ} (hf : ContDiffOn ℝ (⊤ : ℕ∞) f {0}ᶜ) (w : V) :
     ContDiffOn ℝ (⊤ : ℕ∞) (fun ξ => _root_.fderiv ℝ f ξ w) {0}ᶜ :=
   (contDiffOn_fderiv hf).clm_apply contDiffOn_const
 
+/--
+@isnad1 id=differen.1h3v.s7.fc43915925a9 from=translated src=- shape=92569123 vocab=ca76a821
+-/
 theorem differentiableOn_of_contDiffOn {f : V → E} (hf : ContDiffOn ℝ (⊤ : ℕ∞) f {0}ᶜ) :
     DifferentiableOn ℝ f {0}ᶜ :=
   hf.differentiableOn (by simp)
 
+/--
+@isnad1 id=and.2h5v.s9.d0fe76a0dbce from=translated src=- shape=4c2b199e vocab=d7de724d
+-/
 theorem isHomog_iteratedFDeriv {k : ℤ} {f : V → E} (hf : IsHomog k f) (hs : ContDiffOn ℝ (⊤ : ℕ∞) f {0}ᶜ) :
     ∀ n : ℕ, IsHomog (k - n) (iteratedFDeriv ℝ n f) ∧
       ContDiffOn ℝ (⊤ : ℕ∞) (iteratedFDeriv ℝ n f) {0}ᶜ := by
@@ -159,23 +195,38 @@ def InH (d : ℤ) (f : V → ℂ) : Prop :=
     (∀ j, deg j ≤ d) ∧ (∀ j, IsHomog (deg j) (g j)) ∧ (∀ j, ContDiffOn ℝ (⊤ : ℕ∞) (g j) {0}ᶜ) ∧
       Set.EqOn f (fun ξ => ∑ j, g j ξ) {0}ᶜ
 
+/--
+@isnad1 id=inh.3h4v.s7.94f0beddeb11 from=translated src=- shape=3449a4cb vocab=3fc3ce88
+-/
 theorem InH.of_isHomog {k d : ℤ} {g : V → ℂ} (hk : k ≤ d) (hg : IsHomog k g)
     (hs : ContDiffOn ℝ (⊤ : ℕ∞) g {0}ᶜ) : InH d g :=
   ⟨Unit, inferInstance, fun _ => k, fun _ => g, fun _ => hk, fun _ => hg, fun _ => hs,
     fun ξ _ => by simp⟩
 
+/--
+@isnad1 id=inh.0h2v.s5.178e6433773f from=translated src=- shape=82604296 vocab=80429cd8
+-/
 theorem InH.zero (d : ℤ) : InH d (fun _ : V => (0 : ℂ)) :=
   ⟨Empty, inferInstance, Empty.elim, Empty.elim, fun j => j.elim, fun j => j.elim, fun j => j.elim,
     fun ξ _ => by simp⟩
 
+/--
+@isnad1 id=inh.2h4v.s5.146c61792a36 from=translated src=- shape=a357b240 vocab=e8b39596
+-/
 theorem InH.mono {d d' : ℤ} {f : V → ℂ} (h : d ≤ d') (hf : InH d f) : InH d' f := by
   obtain ⟨ι, hι, deg, g, hdeg, hhom, hsm, heq⟩ := hf
   exact ⟨ι, hι, deg, g, fun j => (hdeg j).trans h, hhom, hsm, heq⟩
 
+/--
+@isnad1 id=inh.2h4v.s6.6a70fb6d1fac from=translated src=- shape=1c6b6fc3 vocab=bc480074
+-/
 theorem InH.congr {d : ℤ} {f f' : V → ℂ} (hf : InH d f) (h : Set.EqOn f' f {0}ᶜ) : InH d f' := by
   obtain ⟨ι, hι, deg, g, hdeg, hhom, hsm, heq⟩ := hf
   exact ⟨ι, hι, deg, g, hdeg, hhom, hsm, h.trans heq⟩
 
+/--
+@isnad1 id=inh.2h4v.s6.3e7d0ddf946b from=translated src=- shape=0d957523 vocab=6965a190
+-/
 theorem InH.add {d : ℤ} {f f' : V → ℂ} (hf : InH d f) (hf' : InH d f') : InH d (fun ξ => f ξ + f' ξ) := by
   obtain ⟨ι, hι, deg, g, hdeg, hhom, hsm, heq⟩ := hf
   obtain ⟨ι', hι', deg', g', hdeg', hhom', hsm', heq'⟩ := hf'
@@ -187,6 +238,9 @@ theorem InH.add {d : ℤ} {f f' : V → ℂ} (hf : InH d f) (hf' : InH d f') : I
     simp only [Fintype.sum_sum_type, Sum.elim_inl, Sum.elim_inr]
     rw [heq hξ, heq' hξ]
 
+/--
+@isnad1 id=inh.1h4v.s6.3d79e3447a54 from=translated src=- shape=a45ec1e9 vocab=f1ad9081
+-/
 theorem InH.const_mul {d : ℤ} {f : V → ℂ} (hf : InH d f) (c : ℂ) : InH d (fun ξ => c * f ξ) := by
   obtain ⟨ι, hι, deg, g, hdeg, hhom, hsm, heq⟩ := hf
   refine ⟨ι, hι, deg, fun j ξ => c * g j ξ, hdeg, fun j => (hhom j).const_smul c,
@@ -194,16 +248,25 @@ theorem InH.const_mul {d : ℤ} {f : V → ℂ} (hf : InH d f) (c : ℂ) : InH d
   intro ξ hξ
   simp only [heq hξ, Finset.mul_sum]
 
+/--
+@isnad1 id=inh.1h3v.s5.bf50332bb2da from=translated src=- shape=1a869789 vocab=f180f40c
+-/
 theorem InH.neg {d : ℤ} {f : V → ℂ} (hf : InH d f) : InH d (fun ξ => -f ξ) := by
   have := hf.const_mul (-1)
   refine this.congr fun ξ _ => ?_
   simp
 
+/--
+@isnad1 id=inh.2h4v.s6.3250f7e812af from=translated src=- shape=0d957523 vocab=3512dd69
+-/
 theorem InH.sub {d : ℤ} {f f' : V → ℂ} (hf : InH d f) (hf' : InH d f') : InH d (fun ξ => f ξ - f' ξ) := by
   have := hf.add hf'.neg
   refine this.congr fun ξ _ => ?_
   simp [sub_eq_add_neg]
 
+/--
+@isnad1 id=inh.1h5v.s6.418f58c45ee7 from=translated src=- shape=9f6a1087 vocab=d948d766
+-/
 theorem InH.finset_sum {d : ℤ} {κ : Type*} (s : Finset κ) {F : κ → V → ℂ} (hF : ∀ i ∈ s, InH d (F i)) :
     InH d (fun ξ => ∑ i ∈ s, F i ξ) := by
   classical
@@ -215,6 +278,9 @@ theorem InH.finset_sum {d : ℤ} {κ : Type*} (s : Finset κ) {F : κ → V → 
     refine (h1.add h2).congr fun ξ _ => ?_
     simp [Finset.sum_insert ha]
 
+/--
+@isnad1 id=inh.3h5v.s7.955e7c4fe53d from=translated src=- shape=b805107e vocab=e0e8593e
+-/
 theorem InH.mul_homog {d k : ℤ} {f h : V → ℂ} (hf : InH d f) (hh : IsHomog k h)
     (hhs : ContDiffOn ℝ (⊤ : ℕ∞) h {0}ᶜ) : InH (d + k) (fun ξ => h ξ * f ξ) := by
   obtain ⟨ι, hι, deg, g, hdeg, hhom, hsm, heq⟩ := hf
@@ -223,18 +289,30 @@ theorem InH.mul_homog {d k : ℤ} {f h : V → ℂ} (hf : InH d f) (hh : IsHomog
   intro ξ hξ
   simp only [heq hξ, Finset.mul_sum]
 
+/--
+@isnad1 id=contdiff.0h2v.s6.4872cec69321 from=translated src=- shape=4dee8861 vocab=c2dc57ae
+-/
 theorem contDiffOn_innerC (a : V) : ContDiffOn ℝ (⊤ : ℕ∞) (fun ξ : V => ((⟪ξ, a⟫_ℝ : ℝ) : ℂ)) {0}ᶜ :=
   (Complex.ofRealCLM.contDiff.comp ((innerSL ℝ).flip a).contDiff).contDiffOn
 
+/--
+@isnad1 id=inh.1h4v.s6.5be21fc5487e from=translated src=- shape=217edb68 vocab=97d3856f
+-/
 theorem InH.mul_inner {d : ℤ} {f : V → ℂ} (hf : InH d f) (a : V) :
     InH (d + 1) (fun ξ => ((⟪ξ, a⟫_ℝ : ℝ) : ℂ) * f ξ) :=
   hf.mul_homog (isHomog_inner a) (contDiffOn_innerC a)
 
+/--
+@isnad1 id=contdiff.1h3v.s6.1d82fa74e757 from=translated src=- shape=07a7fd69 vocab=af9cd832
+-/
 theorem InH.contDiffOn {d : ℤ} {f : V → ℂ} (hf : InH d f) : ContDiffOn ℝ (⊤ : ℕ∞) f {0}ᶜ := by
   obtain ⟨ι, hι, deg, g, hdeg, hhom, hsm, heq⟩ := hf
   have : ContDiffOn ℝ (⊤ : ℕ∞) (fun ξ => ∑ j, g j ξ) {0}ᶜ := ContDiffOn.sum fun j _ => hsm j
   exact this.congr heq
 
+/--
+@isnad1 id=ex.1h3v.s7.d066d1d95582 from=translated src=- shape=2fa291e3 vocab=ec5817ae
+-/
 theorem InH.eventuallyEq {d : ℤ} {f : V → ℂ} (hf : InH d f) :
     ∃ (ι : Type) (_ : Fintype ι) (deg : ι → ℤ) (g : ι → V → ℂ),
       (∀ j, deg j ≤ d) ∧ (∀ j, IsHomog (deg j) (g j)) ∧ (∀ j, ContDiffOn ℝ (⊤ : ℕ∞) (g j) {0}ᶜ) ∧
@@ -243,6 +321,9 @@ theorem InH.eventuallyEq {d : ℤ} {f : V → ℂ} (hf : InH d f) :
   refine ⟨ι, hι, deg, g, hdeg, hhom, hsm, fun ξ hξ => ?_⟩
   exact heq.eventuallyEq_of_mem (isOpen_compl_singleton.mem_nhds hξ)
 
+/--
+@isnad1 id=inh.1h4v.s8.bbda4754a12a from=translated src=- shape=45bb54ca vocab=b2c2233e
+-/
 theorem InH.fderiv_apply {d : ℤ} {f : V → ℂ} (hf : InH d f) (w : V) :
     InH (d - 1) (fun ξ => fderiv ℝ f ξ w) := by
   obtain ⟨ι, hι, deg, g, hdeg, hhom, hsm, hev⟩ := hf.eventuallyEq
@@ -256,6 +337,9 @@ theorem InH.fderiv_apply {d : ℤ} {f : V → ℂ} (hf : InH d f) (w : V) :
     ((hsm j).differentiableOn (by simp)).differentiableAt (isOpen_compl_singleton.mem_nhds hξ')]
   rw [sum_apply]
 
+/--
+@isnad1 id=ex.1h3v.s6.43f33a7eeb29 from=translated src=- shape=f444f2b7 vocab=6b084d78
+-/
 theorem InH.bound {d : ℤ} {f : V → ℂ} (hf : InH d f) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ ξ : V, 1 ≤ ‖ξ‖ → ‖f ξ‖ ≤ C * ‖ξ‖ ^ d := by
   obtain ⟨ι, hι, deg, g, hdeg, hhom, hsm, heq⟩ := hf
@@ -269,6 +353,9 @@ theorem InH.bound {d : ℤ} {f : V → ℂ} (hf : InH d f) :
   refine Finset.sum_le_sum fun j _ => (hC j ξ hξ0).trans ?_
   exact mul_le_mul_of_nonneg_left (zpow_le_zpow_right₀ hξ (hdeg j)) (hC0 j)
 
+/--
+@isnad1 id=ex.1h4v.s8.754b32459f48 from=translated src=- shape=a6764548 vocab=81c46840
+-/
 theorem InH.bound_iteratedFDeriv {d : ℤ} {f : V → ℂ} (hf : InH d f) (n : ℕ) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ ξ : V, 1 ≤ ‖ξ‖ → ‖iteratedFDeriv ℝ n f ξ‖ ≤ C * ‖ξ‖ ^ (d - n) := by
   obtain ⟨ι, hι, deg, g, hdeg, hhom, hsm, hev⟩ := hf.eventuallyEq
@@ -310,10 +397,16 @@ def symT (g : V → ℂ) (η : V) : ℂ :=
 
 def Mq (η : V) : ℂ := -(4 * Real.pi ^ 2 : ℂ) * ∑ i, ((⟪η, v i⟫_ℝ : ℝ) : ℂ) ^ 2
 
+/--
+@isnad1 id=eq.0h6v.s7.712ad9e1c53a from=translated src=- shape=dc5528b4 vocab=93dbd654
+-/
 theorem symP_eq (g : V → ℂ) (η : V) : symP B v g η = symT B v g η + Mq v η * g η := by
   simp only [symP, symT, Mq, Finset.sum_sub_distrib, Finset.mul_sum, Finset.sum_mul, neg_mul, Finset.sum_neg_distrib]
   ring
 
+/--
+@isnad1 id=ishomog.0h3v.s6.92815d1b60db from=translated src=- shape=71f984c9 vocab=52b9ac68
+-/
 theorem isHomog_Mq : IsHomog 2 (Mq v : V → ℂ) := by
   have h : IsHomog (1 + 1) (fun η : V => ∑ i, ((⟪η, v i⟫_ℝ : ℝ) : ℂ) * ((⟪η, v i⟫_ℝ : ℝ) : ℂ)) :=
     IsHomog.sum _ fun i _ => (isHomog_inner (v i)).mul (isHomog_inner (v i))
@@ -324,11 +417,17 @@ theorem isHomog_Mq : IsHomog 2 (Mq v : V → ℂ) := by
   rw [e, e]
   exact this ξ hξ t ht
 
+/--
+@isnad1 id=contdiff.0h3v.s6.99c8915b800f from=translated src=- shape=63de56e3 vocab=48f68c63
+-/
 theorem contDiff_Mq : ContDiff ℝ (⊤ : ℕ∞) (Mq v : V → ℂ) := by
   unfold Mq
   refine contDiff_const.mul (ContDiff.sum fun i _ => ?_)
   exact (Complex.ofRealCLM.contDiff.comp ((innerSL ℝ).flip (v i)).contDiff).pow 2
 
+/--
+@isnad1 id=eq.2h5v.s11.cf05912bafe2 from=translated src=- shape=cc59269a vocab=5bf08acf
+-/
 theorem fderiv_fderiv_apply_of_contDiffOn {g : V → ℂ} (hg : ContDiffOn ℝ (⊤ : ℕ∞) g {0}ᶜ) {η : V} (hη : η ≠ 0)
     (u w : V) : fderiv ℝ (fderiv ℝ g) η u w = fderiv ℝ (fun z => fderiv ℝ g z w) η u := by
   have hd : DifferentiableAt ℝ (fderiv ℝ g) η :=
@@ -338,6 +437,9 @@ theorem fderiv_fderiv_apply_of_contDiffOn {g : V → ℂ} (hg : ContDiffOn ℝ (
   simp only [add_apply, ContinuousLinearMap.comp_apply,
     zero_apply, map_zero, ContinuousLinearMap.flip_apply, zero_add]
 
+/--
+@isnad1 id=eq.0h7v.s12.867af2246541 from=translated src=- shape=81c401a2 vocab=5e6e516a
+-/
 theorem fderiv_adjoint_expand (b : OrthonormalBasis (Fin (Module.finrank ℝ V)) ℝ V) (g : V → ℂ) (i : ι) (η : V) :
     fderiv ℝ g η (ContinuousLinearMap.adjoint (B i) η) =
       ∑ j, ((⟪η, B i (b j)⟫_ℝ : ℝ) : ℂ) * fderiv ℝ g η (b j) := by
@@ -349,6 +451,9 @@ theorem fderiv_adjoint_expand (b : OrthonormalBasis (Fin (Module.finrank ℝ V))
   refine Finset.sum_congr rfl fun j _ => ?_
   rw [map_smul, Complex.real_smul]
 
+/--
+@isnad1 id=eq.0h7v.s12.3ba7635081a9 from=translated src=- shape=d245b362 vocab=d3ae1e38
+-/
 theorem fderiv_fderiv_adjoint_expand (b : OrthonormalBasis (Fin (Module.finrank ℝ V)) ℝ V) (g : V → ℂ) (i : ι)
     (η : V) :
     iteratedFDeriv ℝ 2 g η (fun _ => ContinuousLinearMap.adjoint (B i) η) =
@@ -377,6 +482,9 @@ theorem fderiv_fderiv_adjoint_expand (b : OrthonormalBasis (Fin (Module.finrank 
   refine Finset.sum_congr rfl fun l _ => ?_
   rw [Complex.real_smul, Complex.real_smul]
 
+/--
+@isnad1 id=inh.1h6v.s7.30d2cdd62181 from=translated src=- shape=8e57196b vocab=604ebefa
+-/
 theorem inH_symT {d : ℤ} {g : V → ℂ} (hg : InH d g) : InH (d + 1) (symT B v g) := by
   let b : OrthonormalBasis (Fin (Module.finrank ℝ V)) ℝ V := stdOrthonormalBasis ℝ V
   have hgs := hg.contDiffOn
@@ -419,12 +527,18 @@ theorem inH_symT {d : ℤ} {g : V → ℂ} (hg : InH d g) : InH (d + 1) (symT B 
     rw [← fderiv_adjoint_expand B b g i η]
     ring
 
+/--
+@isnad1 id=inh.1h6v.s7.b1c46bb3aefe from=translated src=- shape=8e57196b vocab=cd1dd109
+-/
 theorem inH_symP {d : ℤ} {g : V → ℂ} (hg : InH d g) : InH (d + 2) (symP B v g) := by
   have h1 : InH (d + 2) (symT B v g) := (inH_symT B v hg).mono (by omega)
   have h2 : InH (d + 2) (fun η => Mq v η * g η) := hg.mul_homog (isHomog_Mq v) (contDiff_Mq v).contDiffOn
   refine (h1.add h2).congr fun η _ => ?_
   exact symP_eq B v g η
 
+/--
+@isnad1 id=and.1h7v.s8.6a65f971b389 from=translated src=- shape=c09cf27a vocab=03fbfffe
+-/
 theorem inH_symP_iterate {d : ℤ} {g : V → ℂ} (hg : InH d g) (m : ℕ) :
     InH (d + 2 * m - 1) (fun η => (symP B v)^[m] g η - (Mq v η) ^ m * g η) ∧
       InH (d + 2 * m) ((symP B v)^[m] g) := by
@@ -458,6 +572,9 @@ section Additivity
 
 variable {ι : Type*} [Fintype ι] (B : ι → V →L[ℝ] V) (v : ι → V)
 
+/--
+@isnad1 id=eqon.1h6v.s7.7bb1b2a1575c from=translated src=- shape=535f7a9f vocab=c5cf82f9
+-/
 theorem symP_congr {g₁ g₂ : V → ℂ} (h : Set.EqOn g₁ g₂ {0}ᶜ) : Set.EqOn (symP B v g₁) (symP B v g₂) {0}ᶜ := by
   intro η hη
   have hη' : η ≠ 0 := hη
@@ -467,6 +584,9 @@ theorem symP_congr {g₁ g₂ : V → ℂ} (h : Set.EqOn g₁ g₂ {0}ᶜ) : Set
   unfold symP
   rw [h2, h1, h hη]
 
+/--
+@isnad1 id=eqon.2h6v.s8.18a5e9ce0ee9 from=translated src=- shape=26ac8756 vocab=d2606eb0
+-/
 theorem symP_sub {g₁ g₂ : V → ℂ} (hg₁ : ContDiffOn ℝ (⊤ : ℕ∞) g₁ {0}ᶜ) (hg₂ : ContDiffOn ℝ (⊤ : ℕ∞) g₂ {0}ᶜ) :
     Set.EqOn (symP B v (fun η => g₁ η - g₂ η)) (fun η => symP B v g₁ η - symP B v g₂ η) {0}ᶜ := by
   intro η hη
@@ -487,6 +607,9 @@ theorem symP_sub {g₁ g₂ : V → ℂ} (hg₁ : ContDiffOn ℝ (⊤ : ℕ∞) 
   simp only [sub_apply, sub_apply]
   ring
 
+/--
+@isnad1 id=eqon.2h8v.s7.74674a420425 from=translated src=- shape=640134ba vocab=f1514a15
+-/
 theorem symP_iterate_sub {d : ℤ} {g₁ g₂ : V → ℂ} (h₁ : InH d g₁) (h₂ : InH d g₂) (m : ℕ) :
     Set.EqOn ((symP B v)^[m] (fun η => g₁ η - g₂ η))
       (fun η => (symP B v)^[m] g₁ η - (symP B v)^[m] g₂ η) {0}ᶜ := by
@@ -511,6 +634,9 @@ variable {ι : Type*} [Fintype ι] (B : ι → V →L[ℝ] V) (v : ι → V)
   (hv : Submodule.span ℝ (Set.range v) = ⊤) (m : ℕ)
 
 include hv in
+/--
+@isnad1 id=lt.2h4v.s7.a309e670e893 from=translated src=- shape=12166b63 vocab=3fd7a4af
+-/
 theorem sum_sq_inner_pos {η : V} (hη : η ≠ 0) : 0 < ∑ i, ⟪η, v i⟫_ℝ ^ 2 := by
   by_contra hle
   have hle' : ∑ i, ⟪η, v i⟫_ℝ ^ 2 ≤ 0 := not_lt.mp hle
@@ -530,6 +656,9 @@ theorem sum_sq_inner_pos {η : V} (hη : η ≠ 0) : 0 < ∑ i, ⟪η, v i⟫_�
   exact hη (inner_self_eq_zero.mp this)
 
 include hv in
+/--
+@isnad1 id=ne.2h4v.s7.2a78c9951c05 from=translated src=- shape=cb53775a vocab=10107e60
+-/
 theorem Mq_ne_zero {η : V} (hη : η ≠ 0) : Mq v η ≠ 0 := by
   have hpos := sum_sq_inner_pos v hv hη
   have hsum : (∑ i, ((⟪η, v i⟫_ℝ : ℝ) : ℂ) ^ 2) = ((∑ i, ⟪η, v i⟫_ℝ ^ 2 : ℝ) : ℂ) := by push_cast; rfl
@@ -542,6 +671,9 @@ theorem Mq_ne_zero {η : V} (hη : η ≠ 0) : Mq v η ≠ 0 := by
 
 def R0 (η : V) : ℂ := ((Mq v η) ^ m)⁻¹
 
+/--
+@isnad1 id=ishomog.0h4v.s6.ce87f6cef094 from=translated src=- shape=33a8fbbf vocab=02d5d486
+-/
 theorem isHomog_R0 : IsHomog (-(2 * m : ℤ)) (R0 v m : V → ℂ) := by
   intro ξ hξ t ht
   unfold R0
@@ -552,16 +684,25 @@ theorem isHomog_R0 : IsHomog (-(2 * m : ℤ)) (R0 v m : V → ℂ) := by
   rw [← zpow_natCast, ← zpow_mul, ← zpow_neg]
 
 include hv in
+/--
+@isnad1 id=contdiff.1h4v.s7.30e9b4869c68 from=translated src=- shape=25fa988e vocab=a3934131
+-/
 theorem contDiffOn_R0 : ContDiffOn ℝ (⊤ : ℕ∞) (R0 v m : V → ℂ) {0}ᶜ := by
   unfold R0
   refine ((contDiff_Mq v).pow m).contDiffOn.inv fun η hη => ?_
   exact pow_ne_zero _ (Mq_ne_zero v hv hη)
 
 include hv in
+/--
+@isnad1 id=inh.1h4v.s7.3cef4882cb71 from=translated src=- shape=bbf504ed vocab=32ea4905
+-/
 theorem inH_R0 : InH (-(2 * m : ℤ)) (R0 v m : V → ℂ) :=
   InH.of_isHomog le_rfl (isHomog_R0 v m) (contDiffOn_R0 v hv m)
 
 include hv in
+/--
+@isnad1 id=eq.2h5v.s7.1a20eebf2dd8 from=translated src=- shape=b1fa438a vocab=f4638428
+-/
 theorem Mq_pow_mul_R0 {η : V} (hη : η ≠ 0) : Mq v η ^ m * R0 v m η = 1 := by
   unfold R0
   exact mul_inv_cancel₀ (pow_ne_zero _ (Mq_ne_zero v hv hη))
@@ -572,9 +713,15 @@ def Rseq : ℕ → V → ℂ
 
 def Eseq (j : ℕ) : V → ℂ := fun η => (symP B v)^[m] (Rseq B v m j) η - 1
 
+/--
+@isnad1 id=eq.0h6v.s7.1b781b0abcb6 from=translated src=- shape=6544737c vocab=5f9c4e5e
+-/
 theorem Rseq_succ (j : ℕ) : Rseq B v m (j + 1) = fun η => Rseq B v m j η - R0 v m η * Eseq B v m j η := rfl
 
 include hv in
+/--
+@isnad1 id=and.1h6v.s8.dda384ba322e from=translated src=- shape=6c93909b vocab=3669f398
+-/
 theorem rec_inH : ∀ j : ℕ, InH (-(2 * m : ℤ)) (Rseq B v m j) ∧ InH (-(j : ℤ) - 1) (Eseq B v m j) := by
   intro j
   induction j with
@@ -620,6 +767,9 @@ theorem rec_inH : ∀ j : ℕ, InH (-(2 * m : ℤ)) (Rseq B v m j) ∧ InH (-(j 
 
 include hv in
 
+/--
+@isnad1 id=ex.1h5v.s8.2bd7b65f1051 from=translated src=- shape=7f5ed28f vocab=ab8da69a
+-/
 theorem exists_symbol_pair :
     ∃ R E : V → ℂ, InH (-(2 * m : ℤ)) R ∧ InH (-(Module.finrank ℝ V : ℤ) - 1) E ∧
       ∀ η : V, (symP B v)^[m] R η = 1 + E η := by
@@ -634,6 +784,9 @@ section Cutoff
 
 variable {ι : Type*} [Fintype ι] (B : ι → V →L[ℝ] V) (v : ι → V)
 
+/--
+@isnad1 id=contdiff.1h5v.s7.89d4f77fc4e7 from=translated src=- shape=c26f417f vocab=92d0c99c
+-/
 theorem contDiff_symP {g : V → ℂ} (hg : ContDiff ℝ (⊤ : ℕ∞) g) : ContDiff ℝ (⊤ : ℕ∞) (symP B v g) := by
   have hB : ∀ i, ContDiff ℝ (⊤ : ℕ∞) (fun η : V => ContinuousLinearMap.adjoint (B i) η) := fun i =>
     (ContinuousLinearMap.adjoint (B i)).contDiff
@@ -651,12 +804,18 @@ theorem contDiff_symP {g : V → ℂ} (hg : ContDiff ℝ (⊤ : ℕ∞) g) : Con
   · exact (contDiff_const.mul (hin i)).mul (h1.clm_apply (hB i))
   · exact (contDiff_const.mul ((hin i).pow 2)).mul hg
 
+/--
+@isnad1 id=contdiff.1h6v.s7.652c773f26bc from=translated src=- shape=dfdbebaa vocab=6ea815ad
+-/
 theorem contDiff_symP_iterate {g : V → ℂ} (hg : ContDiff ℝ (⊤ : ℕ∞) g) (k : ℕ) :
     ContDiff ℝ (⊤ : ℕ∞) ((symP B v)^[k] g) := by
   induction k with
   | zero => exact hg
   | succ k ih => rw [Function.iterate_succ_apply']; exact contDiff_symP B v ih
 
+/--
+@isnad1 id=eventual.1h7v.s7.5d747a7b83a9 from=translated src=- shape=5554d946 vocab=3dfb5e0d
+-/
 theorem symP_eventuallyEq {g₁ g₂ : V → ℂ} {ξ : V} (h : g₁ =ᶠ[𝓝 ξ] g₂) : symP B v g₁ =ᶠ[𝓝 ξ] symP B v g₂ := by
   filter_upwards [h.eventuallyEq_nhds] with η hη
   have h2 : iteratedFDeriv ℝ 2 g₁ η = iteratedFDeriv ℝ 2 g₂ η := (hη.iteratedFDeriv ℝ 2).eq_of_nhds
@@ -664,12 +823,18 @@ theorem symP_eventuallyEq {g₁ g₂ : V → ℂ} {ξ : V} (h : g₁ =ᶠ[𝓝 �
   unfold symP
   rw [h2, h1, hη.eq_of_nhds]
 
+/--
+@isnad1 id=eventual.1h8v.s7.d341eab9ea9b from=translated src=- shape=0787fdf9 vocab=22187651
+-/
 theorem symP_iterate_eventuallyEq {g₁ g₂ : V → ℂ} {ξ : V} (h : g₁ =ᶠ[𝓝 ξ] g₂) (k : ℕ) :
     (symP B v)^[k] g₁ =ᶠ[𝓝 ξ] (symP B v)^[k] g₂ := by
   induction k with
   | zero => exact h
   | succ k ih => rw [Function.iterate_succ_apply', Function.iterate_succ_apply']; exact symP_eventuallyEq B v ih
 
+/--
+@isnad1 id=le.2h2v.s6.47ac65f92d56 from=translated src=- shape=1f07c93b vocab=c3d6a124
+-/
 theorem zpow_le_two_rpow_mul {x : ℝ} (hx : 1 ≤ x) {e : ℝ} (he : 0 ≤ e) :
     x ^ (-e) ≤ 2 ^ e * (1 + x) ^ (-e) := by
   have hxpos : 0 < x := by linarith
@@ -682,6 +847,9 @@ theorem zpow_le_two_rpow_mul {x : ℝ} (hx : 1 ≤ x) {e : ℝ} (he : 0 ≤ e) :
   calc x ^ (-e) = 2 ^ e * (2 ^ (-e) * x ^ (-e)) := h4.symm
     _ ≤ 2 ^ e * (1 + x) ^ (-e) := mul_le_mul_of_nonneg_left h2 (by positivity)
 
+/--
+@isnad1 id=le.4h3v.s6.9853fe18d31a from=translated src=- shape=9c8cfc16 vocab=c3d6a124
+-/
 theorem le_three_rpow_mul {x : ℝ} (hx0 : 0 ≤ x) (hx : x ≤ 2) {e : ℝ} (he : 0 ≤ e) {K : ℝ} (hK : 0 ≤ K) :
     K ≤ K * 3 ^ e * (1 + x) ^ (-e) := by
   have h1 : (3 : ℝ) ^ (-e) ≤ (1 + x) ^ (-e) := Real.rpow_le_rpow_of_nonpos (by linarith) (by linarith) (by linarith)
@@ -695,6 +863,9 @@ variable (hv : Submodule.span ℝ (Set.range v) = ⊤) (m : ℕ) (hm : Module.fi
 
 include hv hm in
 
+/--
+@isnad1 id=ex.2h5v.s9.9efb93c89fe8 from=translated src=- shape=8c1045ec vocab=a039b609
+-/
 theorem exists_symbol [MeasurableSpace V] [BorelSpace V] :
     ∃ r : V → ℂ, ContDiff ℝ (⊤ : ℕ∞) r ∧
       (∀ n : ℕ, ∃ C : ℝ, ∀ ξ : V, ‖iteratedFDeriv ℝ n r ξ‖ ≤ C * (1 + ‖ξ‖) ^ (-(2 * m + n : ℝ))) ∧
@@ -853,6 +1024,9 @@ end
 
 open MeasureTheory in
 open scoped InnerProductSpace in
+/--
+@isnad1 id=ex.2h5v.s12.0de3e8545b8b from=translated src=- shape=ac4f8f22 vocab=5c00fc23
+-/
 theorem solution
     {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℝ V] [FiniteDimensional ℝ V]
     [MeasurableSpace V] [BorelSpace V]

@@ -11,11 +11,17 @@ namespace KernelCoinvariants
 
 variable {R : Type*} [CommRing R]
 
+/--
+@isnad1 id=le.0h5v.s8.21f9637ec23e from=translated src=- shape=48d25ce7 vocab=c320a912
+-/
 theorem smul_top_le_comap {M N : Type*} [AddCommGroup M] [Module R M] [AddCommGroup N] [Module R N]
     (I : Ideal R) (u : M →ₗ[R] N) : (I • ⊤ : Submodule R M) ≤ (I • ⊤ : Submodule R N).comap u := by
   rw [← Submodule.map_le_iff_le_comap, Submodule.map_smul'']
   exact Submodule.smul_mono le_rfl le_top
 
+/--
+@isnad1 id=eq.1h5v.s9.b542cb15cd94 from=translated src=- shape=26ef59d0 vocab=25074ec2
+-/
 theorem mk_smul_eq_mk {M : Type*} [AddCommGroup M] [Module R M] (I : Ideal R) {r : R} (hr : r - 1 ∈ I) (x : M) :
     Submodule.Quotient.mk (p := (I • ⊤ : Submodule R M)) (r • x) = Submodule.Quotient.mk x := by
   rw [Submodule.Quotient.eq]
@@ -23,6 +29,9 @@ theorem mk_smul_eq_mk {M : Type*} [AddCommGroup M] [Module R M] (I : Ideal R) {r
   rw [this]
   exact Submodule.smul_mem_smul hr Submodule.mem_top
 
+/--
+@isnad1 id=ex.3h7v.s12.1c715b74d095 from=translated src=- shape=924871af vocab=91edb2f2
+-/
 theorem exists_linearEquiv (𝔪 : Ideal R)
     {Y L C : Type*} [AddCommGroup Y] [Module R Y] [AddCommGroup L] [Module R L] [AddCommGroup C] [Module R C]
     (f : Y →ₗ[R] L) (g : L →ₗ[R] C) (hf : Function.Injective f) (hfg : LinearMap.range f = LinearMap.ker g)
@@ -72,6 +81,9 @@ end KernelCoinvariants
 
 open KernelCoinvariants in
 
+/--
+@isnad1 id=and.2h5v.s12.b59dfa2cc05c from=translated src=- shape=fdc409f0 vocab=1aac852b
+-/
 theorem solution
     {R : Type*} [CommRing R] (𝔪 : Ideal R)
     {Y L : Type*} [AddCommGroup Y] [Module R Y] [AddCommGroup L] [Module R L]

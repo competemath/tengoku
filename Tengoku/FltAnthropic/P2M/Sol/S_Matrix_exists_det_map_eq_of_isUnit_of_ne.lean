@@ -7,6 +7,9 @@ namespace P2MW.S_Matrix_exists_det_map_eq_of_isUnit_of_ne
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.1h4v.s8.fbb061d2c102 from=translated src=- shape=feecf3b4 vocab=3a1adbbe
+-/
 theorem solution
     (ℓ q : ℕ) [Fact ℓ.Prime] [Fact q.Prime] (hℓq : ℓ ≠ q) (u : (ZMod ℓ)ˣ) (v : (ZMod q)ˣ) :
     ∃ g : Matrix (Fin 2) (Fin 2) ℤ,

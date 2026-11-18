@@ -20,8 +20,14 @@ noncomputable def R (A : Fin n → Fin n → ℝ) (i : Fin n) : EuclideanSpace �
 
 noncomputable def G (A : Fin n → Fin n → ℝ) (i : Fin n) : EuclideanSpace ℝ (Fin n) := gramSchmidt ℝ (R n A) i
 
+/--
+@isnad1 id=eq.0h4v.s5.14b9b8ca58ba from=translated src=- shape=5352917d vocab=1dbe6db9
+-/
 theorem R_apply (A : Fin n → Fin n → ℝ) (i c : Fin n) : R n A i c = A (Fin.rev i) c := rfl
 
+/--
+@isnad1 id=contdiff.0h2v.s7.02b7287d4867 from=translated src=- shape=d38b2943 vocab=64be8764
+-/
 theorem contDiff_R (i : Fin n) : ContDiff ℝ (⊤ : ℕ∞) (fun A : Fin n → Fin n → ℝ => R n A i) := by
   have : (fun A : Fin n → Fin n → ℝ => R n A i) =
       ⇑(((EuclideanSpace.equiv (Fin n) ℝ).symm : (Fin n → ℝ) →L[ℝ] EuclideanSpace ℝ (Fin n)).comp
@@ -29,20 +35,32 @@ theorem contDiff_R (i : Fin n) : ContDiff ℝ (⊤ : ℕ∞) (fun A : Fin n → 
     funext A; rfl
   rw [this]; exact ContinuousLinearMap.contDiff _
 
+/--
+@isnad1 id=contdiff.0h2v.s7.a1a7fcedf13b from=translated src=- shape=bb886d60 vocab=d3b637fc
+-/
 theorem contDiff_coord (c : Fin n) : ContDiff ℝ (⊤ : ℕ∞) (fun x : EuclideanSpace ℝ (Fin n) => x c) := by
   have : (fun x : EuclideanSpace ℝ (Fin n) => x c) =
       ⇑((ContinuousLinearMap.proj c).comp (EuclideanSpace.equiv (Fin n) ℝ : EuclideanSpace ℝ (Fin n) →L[ℝ] (Fin n → ℝ))) := by
     funext x; rfl
   rw [this]; exact ContinuousLinearMap.contDiff _
 
+/--
+@isnad1 id=linearin.1h2v.s7.8c0720de3720 from=translated src=- shape=54bcd09f vocab=d75a81f4
+-/
 theorem linearIndependent_R (A : Fin n → Fin n → ℝ) (hA : (Matrix.of A).det ≠ 0) : LinearIndependent ℝ (R n A) := by
   have h1 : LinearIndependent ℝ (fun i => (Matrix.of A) i) := Matrix.linearIndependent_rows_of_det_ne_zero hA
   have h2 : LinearIndependent ℝ (fun i => A (Fin.rev i)) := (linearIndependent_equiv Fin.revPerm).2 h1
   exact LinearIndependent.of_comp (EuclideanSpace.equiv (Fin n) ℝ).toLinearEquiv.toLinearMap h2
 
+/--
+@isnad1 id=ne.1h3v.s7.823872a90672 from=translated src=- shape=82b74c96 vocab=26f72a5b
+-/
 theorem G_ne_zero (A : Fin n → Fin n → ℝ) (hA : (Matrix.of A).det ≠ 0) (i : Fin n) : G n A i ≠ 0 :=
   gramSchmidt_ne_zero i (linearIndependent_R n A hA)
 
+/--
+@isnad1 id=contdiff.0h2v.s7.d7cedbddc10f from=translated src=- shape=dad808fb vocab=125afc84
+-/
 theorem contDiffOn_G : ∀ i : Fin n, ContDiffOn ℝ (⊤ : ℕ∞) (fun A : Fin n → Fin n → ℝ => G n A i) (U n) := by
   suffices h : ∀ (m : ℕ) (i : Fin n), (i : ℕ) < m → ContDiffOn ℝ (⊤ : ℕ∞) (fun A : Fin n → Fin n → ℝ => G n A i) (U n) from
     fun i => h (i + 1) i (Nat.lt_succ_self _)
@@ -76,6 +94,9 @@ noncomputable def oF (A : Fin n → Fin n → ℝ) : Fin n → Fin n → ℝ :=
 noncomputable def bF (A : Fin n → Fin n → ℝ) : Fin n → Fin n → ℝ :=
   fun i j => ⟪R n A (Fin.rev i), G n A (Fin.rev j)⟫_ℝ / ‖G n A (Fin.rev j)‖
 
+/--
+@isnad1 id=contdiff.0h1v.s8.54c6fea2d757 from=translated src=- shape=bf0281e1 vocab=4d4fcfe6
+-/
 theorem contDiffOn_oF : ContDiffOn ℝ (⊤ : ℕ∞) (oF n) (U n) := by
   refine contDiffOn_pi.2 fun j => contDiffOn_pi.2 fun c => ?_
   show ContDiffOn ℝ (⊤ : ℕ∞) (fun A => G n A (Fin.rev j) c / ‖G n A (Fin.rev j)‖) (U n)
@@ -83,6 +104,9 @@ theorem contDiffOn_oF : ContDiffOn ℝ (⊤ : ℕ∞) (oF n) (U n) := by
     ((contDiffOn_G n (Fin.rev j)).norm ℝ fun A hA => G_ne_zero n A hA _)
     (fun A hA => norm_ne_zero_iff.2 (G_ne_zero n A hA _))
 
+/--
+@isnad1 id=contdiff.0h1v.s8.97c0df3339d8 from=translated src=- shape=bf0281e1 vocab=45c7e843
+-/
 theorem contDiffOn_bF : ContDiffOn ℝ (⊤ : ℕ∞) (bF n) (U n) := by
   refine contDiffOn_pi.2 fun i => contDiffOn_pi.2 fun j => ?_
   show ContDiffOn ℝ (⊤ : ℕ∞) (fun A => ⟪R n A (Fin.rev i), G n A (Fin.rev j)⟫_ℝ / ‖G n A (Fin.rev j)‖) (U n)
@@ -90,6 +114,9 @@ theorem contDiffOn_bF : ContDiffOn ℝ (⊤ : ℕ∞) (bF n) (U n) := by
     ((contDiffOn_G n (Fin.rev j)).norm ℝ fun A hA => G_ne_zero n A hA _)
     (fun A hA => norm_ne_zero_iff.2 (G_ne_zero n A hA _))
 
+/--
+@isnad1 id=eq.0h4v.s6.7f048b69f018 from=translated src=- shape=795efea0 vocab=2ffd6007
+-/
 theorem oF_eq (A : Fin n → Fin n → ℝ) (j c : Fin n) : oF n A j c = gramSchmidtNormed ℝ (R n A) (Fin.rev j) c := by
   rw [gramSchmidtNormed]
   show G n A (Fin.rev j) c / ‖G n A (Fin.rev j)‖ = ((‖G n A (Fin.rev j)‖ : ℝ)⁻¹ • G n A (Fin.rev j)) c
@@ -101,6 +128,9 @@ namespace IwasawaSmoothAux
 
 variable (n : ℕ)
 
+/--
+@isnad1 id=and.1h2v.s8.ee932126a071 from=translated src=- shape=2623b2d6 vocab=4313feb4
+-/
 theorem algebra (A : Fin n → Fin n → ℝ) (hA : (Matrix.of A).det ≠ 0) :
     (∀ i j : Fin n, j < i → bF n A i j = 0) ∧ (∀ i : Fin n, 0 < bF n A i i) ∧
     (∀ i j : Fin n, ∑ a : Fin n, oF n A a i * oF n A a j = if i = j then 1 else 0) ∧
@@ -167,6 +197,9 @@ theorem algebra (A : Fin n → Fin n → ℝ) (hA : (Matrix.of A).det ≠ 0) :
     conv_lhs => rw [← hsum]
     simp
 
+/--
+@isnad1 id=ex.0h1v.s10.fe820e99f57d from=translated src=- shape=16b2c3ce vocab=ec206750
+-/
 theorem main :
     ∃ (b o : (Fin n → Fin n → ℝ) → (Fin n → Fin n → ℝ)),
       ContDiffOn ℝ (⊤ : ℕ∞) b {A : Fin n → Fin n → ℝ | (Matrix.of A).det ≠ 0} ∧
@@ -179,6 +212,9 @@ theorem main :
 
 end IwasawaSmoothAux
 
+/--
+@isnad1 id=ex.0h1v.s10.fe820e99f57d from=translated src=- shape=16b2c3ce vocab=ec206750
+-/
 theorem solution (n : ℕ) :
     ∃ (b o : (Fin n → Fin n → ℝ) → (Fin n → Fin n → ℝ)),
       ContDiffOn ℝ (⊤ : ℕ∞) b {A : Fin n → Fin n → ℝ | (Matrix.of A).det ≠ 0} ∧

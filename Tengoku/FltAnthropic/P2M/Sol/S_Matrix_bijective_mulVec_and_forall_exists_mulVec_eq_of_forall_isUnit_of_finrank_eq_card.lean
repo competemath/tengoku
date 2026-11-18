@@ -7,6 +7,9 @@ namespace P2MW.S_Matrix_bijective_mulVec_and_forall_exists_mulVec_eq_of_forall_i
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=and.3h5v.s9.006e5fb8fe0e from=translated src=- shape=2a135f6c vocab=0e39494a
+-/
 theorem solution
     {K : Type} [Field K] {D : Type} [Ring D] [Algebra K D]
     (hdiv : ∀ d : D, d ≠ 0 → IsUnit d)

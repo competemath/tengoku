@@ -16,6 +16,9 @@ variable {k : Type*} [Field k] {ι : Type*} {n : ℕ}
 
 def colAt (f : Fin n → ι → k) (i : ι) : Fin n → k := fun j => f j i
 
+/--
+@isnad1 id=eq.1h4v.s8.3bdb6b693009 from=translated src=- shape=7aca1a27 vocab=691f40ca
+-/
 theorem span_range_colAt_eq_top (f : Fin n → ι → k) (hf : LinearIndependent k f) :
     Submodule.span k (Set.range (colAt f)) = ⊤ := by
   by_contra hne
@@ -47,6 +50,9 @@ theorem span_range_colAt_eq_top (f : Fin n → ι → k) (hf : LinearIndependent
   simp only [hc] at this
   simpa using this
 
+/--
+@isnad1 id=ex.1h4v.s7.fc5fcea374d2 from=translated src=- shape=a9332628 vocab=f5a72ced
+-/
 theorem exists_submatrix_det_ne_zero_of_linearIndependent (f : Fin n → ι → k) (hf : LinearIndependent k f) :
     ∃ s : Fin n → ι, Function.Injective s ∧ (Matrix.of fun l j => f j (s l)).det ≠ 0 := by
   classical
@@ -73,6 +79,9 @@ end LocalRing
 
 end FltWs24.Cart
 
+/--
+@isnad1 id=ex.1h4v.s7.fc5fcea374d2 from=translated src=- shape=a9332628 vocab=f5a72ced
+-/
 theorem solution
     {k : Type*} [Field k] {ι : Type*} {n : ℕ}
     (f : Fin n → ι → k) (hf : LinearIndependent k f) :

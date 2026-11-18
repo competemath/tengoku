@@ -16,6 +16,9 @@ section Piece
 
 variable {W : Type*} [AddCommGroup W] [Module ℂ W]
 
+/--
+@isnad1 id=eq.2h4v.s8.468344a5bcc3 from=translated src=- shape=1a422c5b vocab=3ef83c02
+-/
 theorem form_zero_left (M₀ : Submodule ℂ W) (B : W → W → ℂ)
     (hlin : ∀ (z : ℂ), ∀ w₁ ∈ M₀, ∀ w₂ ∈ M₀, ∀ w' ∈ M₀, B (z • w₁ + w₂) w' = z * B w₁ w' + B w₂ w')
     {n : W} (hn : n ∈ M₀) : B 0 n = 0 := by
@@ -37,10 +40,16 @@ def orthoIn (M₀ N : Submodule ℂ W) (B : W → W → ℂ)
     rw [add_zero, ha.2 n hn, mul_zero, zero_add, form_zero_left M₀ B hlin (hNM hn)] at h
     exact h⟩
 
+/--
+@isnad1 id=iff.2h5v.s8.00555944f89a from=translated src=- shape=73476d04 vocab=9f06ab8f
+-/
 theorem mem_orthoIn (M₀ N : Submodule ℂ W) (B : W → W → ℂ)
     (hlin : ∀ (z : ℂ), ∀ w₁ ∈ M₀, ∀ w₂ ∈ M₀, ∀ w' ∈ M₀, B (z • w₁ + w₂) w' = z * B w₁ w' + B w₂ w')
     (hNM : N ≤ M₀) (w : W) : w ∈ orthoIn M₀ N B hlin hNM ↔ w ∈ M₀ ∧ ∀ n ∈ N, B w n = 0 := Iff.rfl
 
+/--
+@isnad1 id=ex.4h4v.s9.5210237b0789 from=translated src=- shape=5e5a60df vocab=c6ca7cdc
+-/
 theorem exists_ne_zero_mem_orthoIn (M₀ N : Submodule ℂ W) (B : W → W → ℂ)
     (hlin : ∀ (z : ℂ), ∀ w₁ ∈ M₀, ∀ w₂ ∈ M₀, ∀ w' ∈ M₀, B (z • w₁ + w₂) w' = z * B w₁ w' + B w₂ w')
     (hsymm : ∀ w ∈ M₀, ∀ w' ∈ M₀, B w' w = (starRingEnd ℂ) (B w w'))
@@ -111,6 +120,9 @@ theorem exists_ne_zero_mem_orthoIn (M₀ N : Submodule ℂ W) (B : W → W → �
   obtain ⟨x, hx, hx0⟩ := Submodule.exists_mem_ne_zero_of_ne_bot hnebot
   exact ⟨(x : W), hker x (LinearMap.mem_ker.1 hx), fun h => hx0 (Subtype.ext h)⟩
 
+/--
+@isnad1 id=eq.4h4v.s9.22fd61d890c0 from=translated src=- shape=470e34c8 vocab=c270f70f
+-/
 theorem sup_orthoIn_eq (M₀ N : Submodule ℂ W) (B : W → W → ℂ)
     (hlin : ∀ (z : ℂ), ∀ w₁ ∈ M₀, ∀ w₂ ∈ M₀, ∀ w' ∈ M₀, B (z • w₁ + w₂) w' = z * B w₁ w' + B w₂ w')
     (hsymm : ∀ w ∈ M₀, ∀ w' ∈ M₀, B w' w = (starRingEnd ℂ) (B w w'))
@@ -131,6 +143,9 @@ theorem sup_orthoIn_eq (M₀ N : Submodule ℂ W) (B : W → W → ℂ)
   rw [hself, Complex.zero_re] at this
   exact lt_irrefl _ this
 
+/--
+@isnad1 id=mem.6h6v.s9.dc006c3242f9 from=translated src=- shape=ca1b5db9 vocab=9f06ab8f
+-/
 theorem orthoIn_mapsTo_of_symm (M₀ N : Submodule ℂ W) (B : W → W → ℂ)
     (hlin : ∀ (z : ℂ), ∀ w₁ ∈ M₀, ∀ w₂ ∈ M₀, ∀ w' ∈ M₀, B (z • w₁ + w₂) w' = z * B w₁ w' + B w₂ w')
     (hNM : N ≤ M₀) (T : W → W) (hTM : ∀ w ∈ M₀, T w ∈ M₀) (hTN : ∀ n ∈ N, T n ∈ N)
@@ -142,6 +157,9 @@ theorem orthoIn_mapsTo_of_symm (M₀ N : Submodule ℂ W) (B : W → W → ℂ)
   rw [hsym w hwM n (hNM hn)]
   exact hperp (T n) (hTN n hn)
 
+/--
+@isnad1 id=ex.7h6v.s10.34bd377a613f from=translated src=- shape=76b939ab vocab=da64b97b
+-/
 theorem exists_eigen_decomposition :
     ∀ (n : ℕ) (M₀ : Submodule ℂ W) [FiniteDimensional ℂ M₀], Module.finrank ℂ M₀ = n →
       ∀ (B : W → W → ℂ),
@@ -244,6 +262,9 @@ section KerIm
 
 variable {W : Type*} [AddCommGroup W] [Module ℂ W]
 
+/--
+@isnad1 id=ex.6h6v.s10.f2f5781ebb51 from=translated src=- shape=2a4f67f4 vocab=6d69714a
+-/
 theorem exists_eigen_add_image (M₀ : Submodule ℂ W) [FiniteDimensional ℂ M₀] (B : W → W → ℂ)
     (hlin : ∀ (z : ℂ), ∀ w₁ ∈ M₀, ∀ w₂ ∈ M₀, ∀ w' ∈ M₀, B (z • w₁ + w₂) w' = z * B w₁ w' + B w₂ w')
     (hsymm : ∀ w ∈ M₀, ∀ w' ∈ M₀, B w' w = (starRingEnd ℂ) (B w w'))
@@ -277,6 +298,9 @@ end KerIm
 
 end WsB.EIG
 
+/--
+@isnad1 id=ex.6h7v.s10.0eb938dd7393 from=translated src=- shape=6a464a6c vocab=fd68a46c
+-/
 theorem solution
     (V : Type*) [AddCommGroup V] [Module ℂ V] (M₀ : Submodule ℂ V) [Module.Finite ℂ M₀]
     (B : V → V → ℂ)

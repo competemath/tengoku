@@ -5,6 +5,9 @@ import Tengoku
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_Matrix_exists_eq_smul_one_of_commute_of_span_eq_top.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 namespace P2MW.S_Matrix_exists_eq_smul_one_of_commute_of_span_eq_top
 
+/--
+@isnad1 id=ex.2h4v.s8.a89fb8e78fe3 from=translated src=- shape=3cd07c89 vocab=00032c1c
+-/
 theorem solution {n : Type*} [Fintype n] [DecidableEq n] {A : Type*} [CommRing A]
     {S : Set (Matrix n n A)} (hS : Submodule.span A S = ⊤)
     (M : Matrix n n A) (hM : ∀ X ∈ S, X * M = M * X) :

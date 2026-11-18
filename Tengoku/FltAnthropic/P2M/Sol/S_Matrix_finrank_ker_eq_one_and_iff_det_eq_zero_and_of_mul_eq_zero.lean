@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=iff.2h4v.s12.10ecb9f958f7 from=translated src=- shape=141cb419 vocab=27e52137
+-/
 theorem solution
     {K : Type} [Field K] (T : Matrix (Fin 2) (Fin 2) K) (a b : K)
     (hT : (T - a • (1 : Matrix (Fin 2) (Fin 2) K)) * (T - b • (1 : Matrix (Fin 2) (Fin 2) K)) = 0) (hab : a ≠ b) :

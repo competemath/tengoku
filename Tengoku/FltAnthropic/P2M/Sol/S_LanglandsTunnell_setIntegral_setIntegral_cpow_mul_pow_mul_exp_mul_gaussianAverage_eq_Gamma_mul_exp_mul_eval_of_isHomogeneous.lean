@@ -29,6 +29,9 @@ noncomputable def gz (z : ℝ) : ℂ := (Real.exp (-(Real.pi * z ^ 2)) : ℂ)
 
 noncomputable def Hn (n : ℕ) (σ : ℝ) : ℂ := ∫ z : ℝ, ((σ : ℂ) - I * (z : ℂ)) ^ n * gz z
 
+/--
+@isnad1 id=le.1h2v.s6.7e7864876a27 from=translated src=- shape=ac5e67e5 vocab=365d0a4d
+-/
 theorem pow_le_exp_half (k : ℕ) {x : ℝ} (hx : 0 ≤ x) :
     x ^ k ≤ (k.factorial : ℝ) * Real.exp (1 / (2 * Real.pi)) * Real.exp (Real.pi / 2 * x ^ 2) := by
   have h1 : x ^ k / (k.factorial : ℝ) ≤ Real.exp x := Real.pow_div_factorial_le_exp x hx k
@@ -45,6 +48,9 @@ theorem pow_le_exp_half (k : ℕ) {x : ℝ} (hx : 0 ≤ x) :
         mul_le_mul_of_nonneg_left (Real.exp_le_exp.mpr h3) hk.le
     _ = _ := by rw [Real.exp_add]; ring
 
+/--
+@isnad1 id=integrab.0h1v.s6.7ec8d6696a5d from=translated src=- shape=b4cd62b6 vocab=f769a512
+-/
 theorem integrable_abs_pow_mul_exp (k : ℕ) : Integrable (fun z : ℝ => |z| ^ k * Real.exp (-(Real.pi * z ^ 2))) := by
   have hb : Integrable (fun z : ℝ => Real.exp (-(Real.pi / 2) * z ^ 2)) := integrable_exp_neg_mul_sq (by positivity)
   refine Integrable.mono' (hb.const_mul ((k.factorial : ℝ) * Real.exp (1 / (2 * Real.pi)))) ?_ ?_
@@ -61,6 +67,9 @@ theorem integrable_abs_pow_mul_exp (k : ℕ) : Integrable (fun z : ℝ => |z| ^ 
           mul_le_mul_of_nonneg_right h hg.le
       _ = (k.factorial : ℝ) * Real.exp (1 / (2 * Real.pi)) * Real.exp (-(Real.pi / 2) * z ^ 2) := by rw [← hE]; ring
 
+/--
+@isnad1 id=le.2h3v.s6.5d984768c6e5 from=translated src=- shape=63ae7e9a vocab=cef4cf1d
+-/
 theorem add_pow_le (a b : ℝ) (ha : 0 ≤ a) (hb : 0 ≤ b) (n : ℕ) : (a + b) ^ n ≤ 2 ^ n * (a ^ n + b ^ n) := by
   have h : a + b ≤ 2 * max a b := by
     rcases le_total a b with hab | hab
@@ -74,6 +83,9 @@ theorem add_pow_le (a b : ℝ) (ha : 0 ≤ a) (hb : 0 ≤ b) (n : ℕ) : (a + b)
         · rw [max_eq_right hab]; linarith [pow_nonneg ha n]
         · rw [max_eq_left hab]; linarith [pow_nonneg hb n]
 
+/--
+@isnad1 id=integrab.0h2v.s6.304674654502 from=translated src=- shape=3276d439 vocab=5ba3a7c4
+-/
 theorem integrable_moment (x : ℝ) (n : ℕ) : Integrable (fun z : ℝ => ((x : ℂ) - I * (z : ℂ)) ^ n * gz z) := by
   have hmaj := (((integrable_abs_pow_mul_exp 0).const_mul (2 ^ n * |x| ^ n)).add
     ((integrable_abs_pow_mul_exp n).const_mul ((2 : ℝ) ^ n)))
@@ -88,12 +100,18 @@ theorem integrable_moment (x : ℝ) (n : ℕ) : Integrable (fun z : ℝ => ((x :
   have := Real.exp_pos (-(Real.pi * z ^ 2))
   nlinarith [h2, pow_nonneg (abs_nonneg z) n, pow_nonneg (abs_nonneg x) n]
 
+/--
+@isnad1 id=eq.0h2v.s8.25dc2ddedd4d from=translated src=- shape=ef7aaaee vocab=50628a4c
+-/
 theorem eval_fin_two (x : Fin 2 → ℂ) (p : MvPolynomial (Fin 2) ℂ) :
     MvPolynomial.eval x p = ∑ d ∈ p.support, p.coeff d * (x 0 ^ d 0 * x 1 ^ d 1) := by
   rw [MvPolynomial.eval_eq']
   refine Finset.sum_congr rfl fun d _ => ?_
   rw [Fin.prod_univ_two]
 
+/--
+@isnad1 id=eq.0h3v.s8.978b7108b690 from=translated src=- shape=67ff7711 vocab=f75d4fd4
+-/
 theorem gaussAverage_eq_sum (p : MvPolynomial (Fin 2) ℂ) (σ w : ℝ) :
     (∫ z : ℝ, MvPolynomial.eval ![(σ : ℂ) - I * (z : ℂ), (w : ℂ)] p * (Real.exp (-(Real.pi * z ^ 2)) : ℂ)) =
       ∑ d ∈ p.support, p.coeff d * ((w : ℂ) ^ d 1 * Hn (d 0) σ) := by
@@ -110,6 +128,9 @@ theorem gaussAverage_eq_sum (p : MvPolynomial (Fin 2) ℂ) (σ w : ℝ) :
   rw [integral_const_mul, Hn]
   ring
 
+/--
+@isnad1 id=eq.2h3v.s7.5134bbe243af from=translated src=- shape=d650b07d vocab=81edc23d
+-/
 theorem isHomogeneous_fin_two {p : MvPolynomial (Fin 2) ℂ} {m : ℕ} (hp : p.IsHomogeneous m)
     {d : Fin 2 →₀ ℕ} (hd : d ∈ p.support) : d 0 + d 1 = m := by
   have h := hp (MvPolynomial.mem_support_iff.mp hd)
@@ -119,6 +140,9 @@ theorem isHomogeneous_fin_two {p : MvPolynomial (Fin 2) ℂ} {m : ℕ} (hp : p.I
   rw [Finsupp.degree_eq_sum, Fin.sum_univ_two] at h2
   exact h2
 
+/--
+@isnad1 id=eq.0h1v.s7.2188135b6362 from=translated src=- shape=7b77537d vocab=6fc0764d
+-/
 theorem eval_one_one (p : MvPolynomial (Fin 2) ℂ) : MvPolynomial.eval ![(1 : ℂ), 1] p = ∑ d ∈ p.support, p.coeff d := by
   rw [eval_fin_two]
   refine Finset.sum_congr rfl fun d _ => ?_
@@ -128,6 +152,9 @@ end FiberAsm
 
 namespace FiberAsm
 
+/--
+@isnad1 id=eq.2h3v.s7.c159cc509c00 from=translated src=- shape=03cdc673 vocab=4a140171
+-/
 theorem integral_Ioi_cpow_sub_mul_exp (b : ℂ) (hb : -1 < b.re) (v r : ℝ) (hr : 0 < r) :
     ∫ ρ in Ioi v, ((ρ - v : ℝ) : ℂ) ^ b * (Real.exp (-(r * ρ)) : ℂ) =
       (Real.exp (-(r * v)) : ℂ) * ((1 / r : ℂ) ^ (b + 1) * Complex.Gamma (b + 1)) := by
@@ -147,6 +174,9 @@ theorem integral_Ioi_cpow_sub_mul_exp (b : ℂ) (hb : -1 < b.re) (v r : ℝ) (hr
   rw [show -((r : ℂ) * ((t : ℂ) + (v : ℂ))) = -((r : ℂ) * (v : ℂ)) + -((r : ℂ) * (t : ℂ)) by ring, Complex.exp_add]
   ring
 
+/--
+@isnad1 id=integrab.2h3v.s6.e2d5446892a7 from=translated src=- shape=da8a6244 vocab=6ad81451
+-/
 theorem integrableOn_Ioi_cpow_sub_mul_exp (b : ℂ) (hb : -1 < b.re) (v r : ℝ) (hr : 0 < r) :
     IntegrableOn (fun ρ : ℝ => ((ρ - v : ℝ) : ℂ) ^ b * (Real.exp (-(r * ρ)) : ℂ)) (Ioi v) := by
   by_contra h
@@ -159,6 +189,9 @@ theorem integrableOn_Ioi_cpow_sub_mul_exp (b : ℂ) (hb : -1 < b.re) (v r : ℝ)
   have h3 : Complex.Gamma (b + 1) ≠ 0 := Complex.Gamma_ne_zero_of_re_pos (by simp only [add_re, one_re]; linarith)
   exact (mul_ne_zero h1 (mul_ne_zero h2 h3)) h0
 
+/--
+@isnad1 id=le.1h2v.s7.2109f26f09ae from=translated src=- shape=a399f9cb vocab=a7b387c4
+-/
 theorem exp_hyp_le {w : ℝ} (hw : 0 < w) (ρ : ℝ) :
     Real.exp (-(Real.pi * (w ^ 2 + ρ ^ 2 / w ^ 2))) ≤ Real.exp (-(Real.pi / 2) * w ^ 2) * Real.exp (-(Real.pi * ρ)) := by
   rw [← Real.exp_add, Real.exp_le_exp]
@@ -169,6 +202,9 @@ theorem exp_hyp_le {w : ℝ} (hw : 0 < w) (ρ : ℝ) :
     nlinarith [sq_nonneg (w ^ 2 - ρ), sq_nonneg ρ]
   nlinarith [key]
 
+/--
+@isnad1 id=integrab.2h2v.s7.0f7cf7fa76f1 from=translated src=- shape=54ec833e vocab=04f72d44
+-/
 theorem integrable_prod_cpow_sub_mul_exp_hyp (b : ℂ) (hb : -1 < b.re) (v : ℝ) (hv : 0 < v) :
     Integrable (fun q : ℝ × ℝ => ((q.2 - v : ℝ) : ℂ) ^ b * (Real.exp (-(Real.pi * (q.1 ^ 2 + q.2 ^ 2 / q.1 ^ 2))) : ℂ))
       (((volume : Measure ℝ).restrict (Ioi 0)).prod ((volume : Measure ℝ).restrict (Ioi v))) := by
@@ -191,6 +227,9 @@ theorem integrable_prod_cpow_sub_mul_exp_hyp (b : ℂ) (hb : -1 < b.re) (v : ℝ
   have hn := norm_nonneg (((q.2 - v : ℝ) : ℂ) ^ b)
   nlinarith
 
+/--
+@isnad1 id=eq.1h3v.s7.4ae2c4550fb9 from=translated src=- shape=b42ed76a vocab=152e1533
+-/
 theorem integral_subst (b : ℂ) (v : ℝ) {w : ℝ} (hw : 0 < w) :
     ∫ σ in Ioi (v / w), ((σ * w - v : ℝ) : ℂ) ^ b * (Real.exp (-(Real.pi * σ ^ 2)) : ℂ) =
       (w : ℂ)⁻¹ * ∫ ρ in Ioi v, ((ρ - v : ℝ) : ℂ) ^ b * (Real.exp (-(Real.pi * (ρ / w) ^ 2)) : ℂ) := by
@@ -206,6 +245,9 @@ end FiberAsm
 
 namespace FiberAsm
 
+/--
+@isnad1 id=eq.1h2v.s6.7a89e8cb8609 from=translated src=- shape=d76709ed vocab=f200853f
+-/
 theorem prod_mul_Gamma (a : ℂ) : ∀ n : ℕ, (∀ k : ℕ, k < n → a - (k : ℂ) ≠ 0) →
     (∏ k ∈ Finset.range n, (a - (k : ℂ))) * Complex.Gamma (a - (n : ℂ) + 1) = Complex.Gamma (a + 1) := by
   intro n
@@ -220,6 +262,9 @@ theorem prod_mul_Gamma (a : ℂ) : ∀ n : ℕ, (∀ k : ℕ, k < n → a - (k :
     rw [h1, ← ih (fun k hk' => hk k (Nat.lt_succ_of_lt hk')), h2]
     ring
 
+/--
+@isnad1 id=eq.2h3v.s7.38b001c8cd21 from=translated src=- shape=5b390bc9 vocab=24e6d1f4
+-/
 theorem zpow_collapse {w : ℂ} (hw : w ≠ 0) {m n : ℕ} (hn : n ≤ m) :
     w ^ ((1 : ℤ) - (m : ℤ)) * w ^ (m - n) * (-w) ^ n * w⁻¹ = (-1) ^ n := by
   have h1 : w ^ (m - n) * w ^ n = w ^ m := by rw [← pow_add, Nat.sub_add_cancel hn]
@@ -229,11 +274,17 @@ theorem zpow_collapse {w : ℂ} (hw : w ≠ 0) {m n : ℕ} (hn : n ≤ m) :
       = (w ^ ((1 : ℤ) - (m : ℤ)) * (w ^ (m - n) * w ^ n)) * w⁻¹ * (-1) ^ n := by rw [neg_pow w n]; ring
     _ = (-1) ^ n := by rw [h1, h2, mul_inv_cancel₀ hw, one_mul]
 
+/--
+@isnad1 id=eq.2h3v.s6.9907301bef1b from=translated src=- shape=03f1435e vocab=b0b07e43
+-/
 theorem zpow_collapse' {w : ℂ} (hw : w ≠ 0) {m n : ℕ} (hn : n ≤ m) :
     w ^ ((1 : ℤ) - (m : ℤ)) * w ^ (m - n) = w ^ ((1 : ℤ) - (n : ℤ)) := by
   rw [← zpow_natCast, ← zpow_add₀ hw, Nat.cast_sub hn]
   congr 1; ring
 
+/--
+@isnad1 id=eq.0h2v.s7.7e1a3acdc723 from=translated src=- shape=c03176e1 vocab=ca6f9d9f
+-/
 theorem const_collapse (a : ℂ) (n : ℕ) :
     ((-(2 * (Real.pi : ℂ)))⁻¹) ^ n * (-1) ^ n * ((1 / (2 * Real.pi) : ℂ) ^ (a - (n : ℂ) + 1)) =
       (2 * (Real.pi : ℂ)) ^ (-a - 1) := by
@@ -260,6 +311,9 @@ noncomputable def Qn (m : ℕ) (a : ℂ) (v : ℝ) (n : ℕ) (q : ℝ × ℝ) : 
 noncomputable def K (a : ℂ) (v : ℝ) : ℂ :=
   (1 / 2 : ℂ) * (2 * (Real.pi : ℂ)) ^ (-a - 1) * Complex.Gamma (a + 1) * (Real.exp (-(2 * Real.pi * v)) : ℂ)
 
+/--
+@isnad1 id=integrab.3h4v.s7.f47d1e366577 from=translated src=- shape=c52062b6 vocab=2b740137
+-/
 theorem integrableOn_Qn (m : ℕ) (a : ℂ) (ha : (m : ℝ) - 1 < a.re) (v : ℝ) (hv : 0 < v) (n : ℕ) (hn : n ≤ m) :
     IntegrableOn (Qn m a v n) {q : ℝ × ℝ | 0 < q.1 ∧ 0 < q.2 ∧ v < q.1 * q.2} := by
   have ha' : -1 < a.re := lt_of_le_of_lt (by have : (0:ℝ) ≤ m := Nat.cast_nonneg m; linarith) ha
@@ -274,6 +328,9 @@ theorem integrableOn_Qn (m : ℕ) (a : ℂ) (ha : (m : ℝ) - 1 < a.re) (v : ℝ
   rw [← zpow_collapse' hw hn]
   ring
 
+/--
+@isnad1 id=eq.3h5v.s8.014acc61766f from=translated src=- shape=6745549d vocab=a8d54141
+-/
 theorem inner_eq (m : ℕ) (a : ℂ) (ha : (m : ℝ) - 1 < a.re) (v : ℝ) (n : ℕ) (hn : n ≤ m) {w : ℝ} (hw : 0 < w) :
     ∫ σ in Ioi (v / w), Qn m a v n (σ, w) =
       (((-(2 * (Real.pi : ℂ)))⁻¹) ^ n * (-1) ^ n * ∏ k ∈ Finset.range n, (a - (k : ℂ))) *
@@ -321,6 +378,9 @@ end FiberAsm
 
 namespace FiberAsm
 
+/--
+@isnad1 id=eq.3h4v.s7.3b8249e6ab0b from=translated src=- shape=5d333b06 vocab=ba240111
+-/
 theorem mono (m : ℕ) (a : ℂ) (ha : (m : ℝ) - 1 < a.re) (v : ℝ) (hv : 0 < v) (n : ℕ) (hn : n ≤ m) :
     ∫ q in {q : ℝ × ℝ | 0 < q.1 ∧ 0 < q.2 ∧ v < q.1 * q.2}, Qn m a v n q = K a v := by
   have hnm : (n : ℝ) ≤ m := by exact_mod_cast hn
@@ -365,6 +425,9 @@ theorem mono (m : ℕ) (a : ℂ) (ha : (m : ℝ) - 1 < a.re) (v : ℝ) (hv : 0 <
   push_cast
   ring
 
+/--
+@isnad1 id=eq.3h4v.s9.c54ad4e60e4c from=translated src=- shape=70473e5a vocab=2f475337
+-/
 theorem main (m : ℕ) (a : ℂ) (ha : (m : ℝ) - 1 < a.re) (v : ℝ) (hv : 0 < v)
     (p : MvPolynomial (Fin 2) ℂ) (hp : p.IsHomogeneous m) :
     ∫ σ in Ioi (0 : ℝ), ∫ w in Ioi (v / σ),
@@ -408,6 +471,9 @@ theorem main (m : ℕ) (a : ℂ) (ha : (m : ℝ) - 1 < a.re) (v : ℝ) (hv : 0 <
 
 end FiberAsm
 
+/--
+@isnad1 id=eq.3h4v.s9.c54ad4e60e4c from=translated src=- shape=70473e5a vocab=2f475337
+-/
 theorem solution
     (m : ℕ) (a : ℂ) (ha : (m : ℝ) - 1 < a.re) (v : ℝ) (hv : 0 < v)
     (p : MvPolynomial (Fin 2) ℂ) (hp : p.IsHomogeneous m) :

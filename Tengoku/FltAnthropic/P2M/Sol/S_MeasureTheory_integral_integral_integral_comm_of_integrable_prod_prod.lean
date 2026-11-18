@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open MeasureTheory Set
 
+/--
+@isnad1 id=eq.1h8v.s7.073a80006fa3 from=translated src=- shape=bba93661 vocab=1b1c9397
+-/
 theorem solution
     {X Y Z E : Type*} [MeasurableSpace X] [MeasurableSpace Y] [MeasurableSpace Z]
     (μ : Measure X) (ν : Measure Y) (ρ : Measure Z) [SFinite μ] [SFinite ν] [SFinite ρ]

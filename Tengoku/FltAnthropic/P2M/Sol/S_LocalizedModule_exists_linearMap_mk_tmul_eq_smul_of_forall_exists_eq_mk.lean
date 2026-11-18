@@ -22,13 +22,22 @@ abbrev locT (y : PrimeSpectrum B) (M : Type) [AddCommGroup M] [Module 𝒪 M] :
     B ⊗[𝒪] M →ₗ[B] Localization.AtPrime y.asIdeal ⊗[𝒪] M :=
   AlgebraTensorModule.rTensor 𝒪 M (Algebra.linearMap B (Localization.AtPrime y.asIdeal))
 
+/--
+@isnad1 id=islocali.0h4v.s9.9efc656beee3 from=translated src=- shape=8dedb988 vocab=1c45e71b
+-/
 scoped instance locT_isLocalizedModule (y : PrimeSpectrum B) (M : Type) [AddCommGroup M] [Module 𝒪 M] :
     IsLocalizedModule y.asIdeal.primeCompl (locT (𝒪 := 𝒪) y M) := by
   infer_instance
 
+/--
+@isnad1 id=eq.0h6v.s11.f6e38f0e6269 from=translated src=- shape=c32f2f09 vocab=58b96b2a
+-/
 theorem locT_tmul (y : PrimeSpectrum B) {M : Type} [AddCommGroup M] [Module 𝒪 M] (b : B) (v : M) :
     locT y M (b ⊗ₜ[𝒪] v) = algebraMap B (Localization.AtPrime y.asIdeal) b ⊗ₜ[𝒪] v := rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.9e1185692358 from=translated src=- shape=3a80cc47 vocab=a664c2a7
+-/
 theorem locT_one_tmul (y : PrimeSpectrum B) {M : Type} [AddCommGroup M] [Module 𝒪 M] (v : M) :
     locT y M ((1 : B) ⊗ₜ[𝒪] v) = (1 : Localization.AtPrime y.asIdeal) ⊗ₜ[𝒪] v := by
   rw [locT_tmul, map_one]
@@ -36,10 +45,16 @@ theorem locT_one_tmul (y : PrimeSpectrum B) {M : Type} [AddCommGroup M] [Module 
 variable {M : Type} [AddCommGroup M] [Module 𝒪 M]
 variable {T : Type} [AddCommGroup T] [Module B T]
 
+/--
+@isnad1 id=not.2h4v.s7.a8084b8c768f from=translated src=- shape=f546bf4e vocab=00f6bf0f
+-/
 theorem not_mem_of_dvd {a r : B} (y : PrimeSpectrum B) (h : a ∣ r) (hr : r ∉ y.asIdeal) : a ∉ y.asIdeal := by
   obtain ⟨c, rfl⟩ := h
   exact fun ha => hr (y.asIdeal.mul_mem_right c ha)
 
+/--
+@isnad1 id=ex.3h7v.s13.a46677302098 from=translated src=- shape=13bbf7bc vocab=98d9c9f6
+-/
 theorem main [Module.Free 𝒪 M] [Module.Finite 𝒪 M] [Module.Finite B T]
     (x : PrimeSpectrum B) (r₀ : B) (hr₀ : r₀ ∉ x.asIdeal)
     (u : ∀ y : PrimeSpectrum B, r₀ ∉ y.asIdeal →
@@ -159,6 +174,9 @@ end
 open scoped _root_.P2MW.S_LocalizedModule_exists_linearMap_mk_tmul_eq_smul_of_forall_exists_eq_mk.P2mKcSpread
 
 open P2mKcSpread in
+/--
+@isnad1 id=ex.3h7v.s13.c29562a9accc from=translated src=- shape=793da02b vocab=98d9c9f6
+-/
 theorem solution
     {𝒪 : Type} [CommRing 𝒪] {B : Type} [CommRing B] [Algebra 𝒪 B]
     {M : Type} [AddCommGroup M] [Module 𝒪 M] [Module.Free 𝒪 M] [Module.Finite 𝒪 M]

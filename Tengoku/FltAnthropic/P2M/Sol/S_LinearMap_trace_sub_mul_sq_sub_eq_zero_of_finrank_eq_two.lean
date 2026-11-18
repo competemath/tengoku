@@ -7,6 +7,9 @@ namespace P2MW.S_LinearMap_trace_sub_mul_sq_sub_eq_zero_of_finrank_eq_two
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.2h5v.s11.54004f5a3a2e from=translated src=- shape=76b18002 vocab=be22af7e
+-/
 theorem solution
     {k : Type*} [Field k] {V : Type*} [AddCommGroup V] [Module k V] [FiniteDimensional k V]
     (hV : Module.finrank k V = 2) (Φ : V →ₗ[k] V) (t n : k) (hΦ : Φ * Φ - t • Φ + n • (1 : V →ₗ[k] V) = 0) :

@@ -10,6 +10,9 @@ set_option autoImplicit false
 open MeasureTheory
 open scoped InnerProductSpace
 
+/--
+@isnad1 id=ex.2h5v.s12.0de3e8545b8b from=translated src=- shape=ac4f8f22 vocab=5c00fc23
+-/
 theorem LocalParametrix.exists_symbol_norm_iteratedFDeriv_le_integrable_iterate_sub_one_of_span_eq_top
     {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℝ V] [FiniteDimensional ℝ V]
     [MeasurableSpace V] [BorelSpace V]

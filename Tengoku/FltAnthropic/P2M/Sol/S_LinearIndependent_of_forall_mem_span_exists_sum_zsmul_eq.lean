@@ -7,6 +7,9 @@ namespace P2MW.S_LinearIndependent_of_forall_mem_span_exists_sum_zsmul_eq
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=linearin.1h4v.s7.c5c671de47e6 from=translated src=- shape=b4adfd22 vocab=1d2a2f4f
+-/
 theorem solution {V : Type*} [AddCommGroup V] [Module ℝ V]
     {k : ℕ} (b₀ : Module.Basis (Fin k) ℝ V) (v : Fin k → V)
     (hgen : ∀ x ∈ Submodule.span ℤ (Set.range b₀), ∃ n : Fin k → ℤ, (∑ i, n i • v i) = x) :

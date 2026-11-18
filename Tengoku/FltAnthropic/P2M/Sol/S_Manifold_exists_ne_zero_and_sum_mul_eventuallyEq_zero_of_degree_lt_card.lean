@@ -22,6 +22,9 @@ section Germs
 
 variable {f f₁ f₂ G G₁ G₂ : ℂ → ℂ} {c : ℂ}
 
+/--
+@isnad1 id=ex.2h2v.s7.db6ffe9cd9df from=translated src=- shape=83418ceb vocab=3c3987de
+-/
 theorem exists_analyticAt_eventuallyEq (hf : MeromorphicAt f c) (h0 : 0 ≤ meromorphicOrderAt f c) :
     ∃ G : ℂ → ℂ, AnalyticAt ℂ G c ∧ f =ᶠ[𝓝[≠] c] G := by
   by_cases htop : meromorphicOrderAt f c = ⊤
@@ -39,6 +42,9 @@ theorem exists_analyticAt_eventuallyEq (hf : MeromorphicAt f c) (h0 : 0 ≤ mero
       exact (analyticAt_id.sub analyticAt_const).pow k
     exact h1.smul hG
 
+/--
+@isnad1 id=eq.3h3v.s6.a7a0e8377a17 from=translated src=- shape=7589687c vocab=ffb2ce00
+-/
 theorem apply_eq_of_eventuallyEq (h₁ : AnalyticAt ℂ G₁ c) (h₂ : AnalyticAt ℂ G₂ c)
     (h : G₁ =ᶠ[𝓝[≠] c] G₂) : G₁ c = G₂ c :=
   tendsto_nhds_unique_of_eventuallyEq (h₁.continuousAt.tendsto.mono_left nhdsWithin_le_nhds)
@@ -46,23 +52,38 @@ theorem apply_eq_of_eventuallyEq (h₁ : AnalyticAt ℂ G₁ c) (h₂ : Analytic
 
 abbrev wt (k : ℕ) (c : ℂ) (f : ℂ → ℂ) : ℂ → ℂ := fun z => (z - c) ^ k * f z
 
+/--
+@isnad1 id=meromorp.0h2v.s5.1216cab3eb4a from=translated src=- shape=ec0ba46c vocab=e3c2bfd5
+-/
 theorem meromorphicAt_pow_sub (k : ℕ) (c : ℂ) : MeromorphicAt (fun z : ℂ => (z - c) ^ k) c :=
   ((analyticAt_id.sub analyticAt_const).pow k).meromorphicAt
 
+/--
+@isnad1 id=eq.0h2v.s5.66bb08f57941 from=translated src=- shape=fa2820d2 vocab=1fcfc6f6
+-/
 theorem meromorphicOrderAt_pow_sub (k : ℕ) (c : ℂ) :
     meromorphicOrderAt (fun z : ℂ => (z - c) ^ k) c = (k : ℤ) := by
   refine (meromorphicOrderAt_eq_int_iff (meromorphicAt_pow_sub k c)).2 ⟨1, analyticAt_const,
     one_ne_zero, Eventually.of_forall fun z => ?_⟩
   simp [zpow_natCast]
 
+/--
+@isnad1 id=meromorp.1h3v.s5.6d71543b3f0f from=translated src=- shape=ebde81c2 vocab=ecf55213
+-/
 theorem meromorphicAt_wt (k : ℕ) (hf : MeromorphicAt f c) : MeromorphicAt (wt k c f) c :=
   (meromorphicAt_pow_sub k c).mul hf
 
+/--
+@isnad1 id=eq.1h3v.s6.d65bed3a4a91 from=translated src=- shape=e686f2ad vocab=d7bf8197
+-/
 theorem meromorphicOrderAt_wt (k : ℕ) (hf : MeromorphicAt f c) :
     meromorphicOrderAt (wt k c f) c = (k : ℤ) + meromorphicOrderAt f c := by
   rw [show wt k c f = (fun z : ℂ => (z - c) ^ k) * f from rfl,
     meromorphicOrderAt_mul (meromorphicAt_pow_sub k c) hf, meromorphicOrderAt_pow_sub]
 
+/--
+@isnad1 id=iff.1h3v.s6.1f2cb394120f from=translated src=- shape=f27c7ae8 vocab=8dc4b929
+-/
 theorem le_order_iff (k : ℕ) (hf : MeromorphicAt f c) :
     ((-(k : ℤ) : ℤ) : WithTop ℤ) ≤ meromorphicOrderAt f c ↔ 0 ≤ meromorphicOrderAt (wt k c f) c := by
   rw [meromorphicOrderAt_wt k hf]
@@ -73,6 +94,9 @@ theorem le_order_iff (k : ℕ) (hf : MeromorphicAt f c) :
     norm_cast
     omega
 
+/--
+@isnad1 id=ex.2h3v.s7.384c774182bc from=translated src=- shape=c61e5ed4 vocab=0eabfd0e
+-/
 theorem exists_rep (k : ℕ) (hf : MeromorphicAt f c)
     (hk : ((-(k : ℤ) : ℤ) : WithTop ℤ) ≤ meromorphicOrderAt f c) :
     ∃ G : ℂ → ℂ, AnalyticAt ℂ G c ∧ wt k c f =ᶠ[𝓝[≠] c] G :=
@@ -83,12 +107,18 @@ open Classical in
 def lead (k : ℕ) (f : ℂ → ℂ) (c : ℂ) : ℂ :=
   if h : ∃ G : ℂ → ℂ, AnalyticAt ℂ G c ∧ wt k c f =ᶠ[𝓝[≠] c] G then h.choose c else 0
 
+/--
+@isnad1 id=eq.2h4v.s6.8563fdebb1f8 from=translated src=- shape=9cd3b070 vocab=093be8e6
+-/
 theorem lead_eq {k : ℕ} (hG : AnalyticAt ℂ G c) (heq : wt k c f =ᶠ[𝓝[≠] c] G) :
     lead k f c = G c := by
   have h : ∃ G : ℂ → ℂ, AnalyticAt ℂ G c ∧ wt k c f =ᶠ[𝓝[≠] c] G := ⟨G, hG, heq⟩
   rw [lead, dite_eq_left h]
   exact apply_eq_of_eventuallyEq h.choose_spec.1 hG (h.choose_spec.2.symm.trans heq)
 
+/--
+@isnad1 id=eq.4h4v.s7.d6bb989a15fe from=translated src=- shape=fe86644b vocab=d3ce465e
+-/
 theorem lead_add {k : ℕ} (h₁ : MeromorphicAt f₁ c) (hk₁ : ((-(k : ℤ) : ℤ) : WithTop ℤ) ≤ meromorphicOrderAt f₁ c)
     (h₂ : MeromorphicAt f₂ c) (hk₂ : ((-(k : ℤ) : ℤ) : WithTop ℤ) ≤ meromorphicOrderAt f₂ c) :
     lead k (f₁ + f₂) c = lead k f₁ c + lead k f₂ c := by
@@ -100,6 +130,9 @@ theorem lead_add {k : ℕ} (h₁ : MeromorphicAt f₁ c) (hk₁ : ((-(k : ℤ) :
     rw [mul_add, h1, h2]
   rw [lead_eq (hG₁.add hG₂) he, lead_eq hG₁ he₁, lead_eq hG₂ he₂, Pi.add_apply]
 
+/--
+@isnad1 id=eq.2h4v.s6.50b4d55ba65a from=translated src=- shape=c4c9b6ef vocab=c46b95b0
+-/
 theorem lead_smul {k : ℕ} (a : ℂ) (h₁ : MeromorphicAt f c)
     (hk₁ : ((-(k : ℤ) : ℤ) : WithTop ℤ) ≤ meromorphicOrderAt f c) :
     lead k (a • f) c = a * lead k f c := by
@@ -110,6 +143,9 @@ theorem lead_smul {k : ℕ} (a : ℂ) (h₁ : MeromorphicAt f c)
     rw [← h1]; ring
   rw [lead_eq (hG.const_smul (c := a)) he', lead_eq hG he, Pi.smul_apply, smul_eq_mul]
 
+/--
+@isnad1 id=le.3h3v.s7.c56de579ce24 from=translated src=- shape=f42c3b1b vocab=d3ce465e
+-/
 theorem le_order_of_lead_eq_zero {k : ℕ} (hf : MeromorphicAt f c)
     (hk : ((-((k + 1 : ℕ) : ℤ) : ℤ) : WithTop ℤ) ≤ meromorphicOrderAt f c)
     (h0 : lead (k + 1) f c = 0) : ((-(k : ℤ) : ℤ) : WithTop ℤ) ≤ meromorphicOrderAt f c := by
@@ -155,18 +191,27 @@ def Bdd (D : M →₀ ℕ) (ψ : M → ℂ) : Prop :=
 
 variable {D : M →₀ ℕ}
 
+/--
+@isnad1 id=bdd.0h2v.s5.5f33e9d94319 from=translated src=- shape=117b6de6 vocab=23f01411
+-/
 theorem Bdd.zero : Bdd D (0 : M → ℂ) := fun x => by
   refine ⟨MeromorphicAt.const 0 (ctr x), ?_⟩
   have : rd (0 : M → ℂ) x = fun _ => (0 : ℂ) := rfl
   rw [this, meromorphicOrderAt_const]
   simp
 
+/--
+@isnad1 id=bdd.2h4v.s6.c6f4d3daad92 from=translated src=- shape=94eb02a2 vocab=081cbe46
+-/
 theorem Bdd.add {ψ₁ ψ₂ : M → ℂ} (h₁ : Bdd D ψ₁) (h₂ : Bdd D ψ₂) : Bdd D (ψ₁ + ψ₂) := fun x => by
   have e : rd (ψ₁ + ψ₂) x = rd ψ₁ x + rd ψ₂ x := rfl
   refine ⟨by rw [e]; exact (h₁ x).1.add (h₂ x).1, ?_⟩
   rw [e]
   exact (le_min (h₁ x).2 (h₂ x).2).trans (meromorphicOrderAt_add (h₁ x).1 (h₂ x).1)
 
+/--
+@isnad1 id=bdd.1h4v.s6.39036336453a from=translated src=- shape=86fe289d vocab=d3faf1e9
+-/
 theorem Bdd.smul {ψ : M → ℂ} (a : ℂ) (h : Bdd D ψ) : Bdd D (a • ψ) := fun x => by
   by_cases ha : a = 0
   · rw [ha, zero_smul]; exact Bdd.zero x
@@ -177,10 +222,16 @@ theorem Bdd.smul {ψ : M → ℂ} (a : ℂ) (h : Bdd D ψ) : Bdd D (a • ψ) :=
   rw [e, meromorphicOrderAt_mul hc (h x).1, meromorphicOrderAt_const, ite_eq_right ha, zero_add]
   exact (h x).2
 
+/--
+@isnad1 id=bdd.2h4v.s6.48f86f4c9f9b from=translated src=- shape=94eb02a2 vocab=ecc45214
+-/
 theorem Bdd.sub {ψ₁ ψ₂ : M → ℂ} (h₁ : Bdd D ψ₁) (h₂ : Bdd D ψ₂) : Bdd D (ψ₁ - ψ₂) := by
   rw [sub_eq_add_neg, ← neg_one_smul ℂ ψ₂]
   exact h₁.add (h₂.smul (-1))
 
+/--
+@isnad1 id=bdd.3h4v.s7.1f7619179f63 from=translated src=- shape=15380731 vocab=33217697
+-/
 theorem Bdd.of_lead_eq_zero {ψ : M → ℂ} (h : Bdd D ψ) {x₀ : M} (hx₀ : 1 ≤ D x₀)
     (h0 : lead (D x₀) (rd ψ x₀) (ctr x₀) = 0) : Bdd (D - Finsupp.single x₀ 1) ψ := by
   classical
@@ -208,6 +259,9 @@ abbrev degN (D : M →₀ ℕ) : ℕ := D.sum fun _ n => n
 
 omit [TopologicalSpace M] [ChartedSpace ℂ M] [IsManifold 𝓘(ℂ, ℂ) ω M] [CompactSpace M]
   [ConnectedSpace M] in
+/--
+@isnad1 id=iff.0h2v.s5.4797425c176f from=translated src=- shape=f04d13eb vocab=50ed6b78
+-/
 theorem degN_eq_zero_iff (D : M →₀ ℕ) : degN D = 0 ↔ D = 0 := by
   constructor
   · intro h
@@ -220,6 +274,9 @@ theorem degN_eq_zero_iff (D : M →₀ ℕ) : degN D = 0 ↔ D = 0 := by
 
 omit [TopologicalSpace M] [ChartedSpace ℂ M] [IsManifold 𝓘(ℂ, ℂ) ω M] [CompactSpace M]
   [ConnectedSpace M] in
+/--
+@isnad1 id=eq.1h3v.s6.69c0c8bdf11d from=translated src=- shape=af9cbf79 vocab=8f14bcbb
+-/
 theorem degN_sub_single {D : M →₀ ℕ} {x₀ : M} (hx₀ : 1 ≤ D x₀) :
     degN (D - Finsupp.single x₀ 1) + 1 = degN D := by
   classical
@@ -233,6 +290,9 @@ theorem degN_sub_single {D : M →₀ ℕ} {x₀ : M} (hx₀ : 1 ≤ D x₀) :
   conv_rhs => rw [hD]
   rw [degN, degN, Finsupp.sum_add_index' (fun _ => rfl) (fun _ _ _ => rfl), Finsupp.sum_single_index rfl]
 
+/--
+@isnad1 id=ex.2h3v.s8.600e77c760dc from=translated src=- shape=17958202 vocab=87dc4a8b
+-/
 theorem base {ι : Type*} [Fintype ι] (ψ : ι → M → ℂ) (hψ : ∀ i, Bdd 0 (ψ i))
     (hcard : 1 < Fintype.card ι) :
     ∃ c : ι → ℂ, c ≠ 0 ∧ ∀ x, rd (∑ i, c i • ψ i) x =ᶠ[𝓝[≠] (ctr x)] 0 := by
@@ -268,6 +328,9 @@ theorem base {ι : Type*} [Fintype ι] (ψ : ι → M → ℂ) (hψ : ∀ i, Bdd
       simp only [Pi.sub_apply, Pi.smul_apply, smul_eq_mul, h₁, h₂, Pi.zero_apply]
       ring
 
+/--
+@isnad1 id=ex.3h5v.s8.4a6d2b763d18 from=translated src=- shape=e187d574 vocab=afc419b3
+-/
 theorem bound (n : ℕ) : ∀ (D : M →₀ ℕ), degN D = n → ∀ {ι : Type*} [Fintype ι] (ψ : ι → M → ℂ),
     (∀ i, Bdd D (ψ i)) → n + 1 < Fintype.card ι →
     ∃ c : ι → ℂ, c ≠ 0 ∧ ∀ x, rd (∑ i, c i • ψ i) x =ᶠ[𝓝[≠] (ctr x)] 0 := by
@@ -350,6 +413,9 @@ end Manifold.MeromorphicDimensionBoundProof
 
 open Manifold.MeromorphicDimensionBoundProof in
 
+/--
+@isnad1 id=ex.3h4v.s9.625bba4075d8 from=translated src=- shape=60589fe9 vocab=3c6b1ba0
+-/
 theorem solution
     {M : Type*} [TopologicalSpace M] [ChartedSpace ℂ M] [IsManifold 𝓘(ℂ, ℂ) ω M]
     [CompactSpace M] [ConnectedSpace M]

@@ -389,6 +389,9 @@ private theorem differentiableAt_torusFn (G : ℝ → ℂ) (hG : ContDiffOn ℝ 
   exact ⟨h1, h2, fun y hy => h1.differentiableAt (isOpen_Ioi.mem_nhds hy),
     fun y hy => h2.differentiableAt (isOpen_Ioi.mem_nhds hy)⟩
 
+/--
+@isnad1 id=and.4h3v.s13.fca0181ae810 from=translated src=- shape=d391ea68 vocab=5d498b3f
+-/
 theorem solution
     (F : GL (Fin 2) ℝ → ℂ) (k₀ : ℤ) (ν : ℂ)
     (hF : ContDiffOn ℝ 2

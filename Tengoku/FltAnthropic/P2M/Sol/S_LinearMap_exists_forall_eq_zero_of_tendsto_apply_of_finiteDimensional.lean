@@ -7,6 +7,9 @@ namespace P2MW.S_LinearMap_exists_forall_eq_zero_of_tendsto_apply_of_finiteDimen
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.1h3v.s10.32698680781d from=translated src=- shape=247ded18 vocab=7f8ac99f
+-/
 theorem solution
     {X : Type*} (Y : Submodule ℂ (X → ℂ)) [FiniteDimensional ℂ ↥Y]
     (T : ℕ → (↥Y →ₗ[ℂ] (X → ℂ)))

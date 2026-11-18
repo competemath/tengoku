@@ -22,19 +22,34 @@ variable {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℝ V] [FiniteDim
 
 def linC (a : V) : V → ℂ := fun y => ((⟪y, a⟫_ℝ : ℝ) : ℂ)
 
+/--
+@isnad1 id=eq.0h3v.s6.a423217c71f4 from=translated src=- shape=67e61c59 vocab=160b2168
+-/
 theorem linC_apply (a : V) (y : V) : linC a y = ((⟪y, a⟫_ℝ : ℝ) : ℂ) := rfl
 
+/--
+@isnad1 id=hastempe.0h2v.s6.46fe146a5760 from=translated src=- shape=d019e5bf vocab=b369c98b
+-/
 theorem hasTemperateGrowth_inner (a : V) : (fun y : V => ⟪y, a⟫_ℝ).HasTemperateGrowth := by
   fun_prop
 
+/--
+@isnad1 id=hastempe.0h2v.s6.8dbdc3053493 from=translated src=- shape=b5c49b2c vocab=6090d0b4
+-/
 theorem hasTemperateGrowth_linC (a : V) : (linC a).HasTemperateGrowth := by
   unfold linC; fun_prop
 
 def Mr (a : V) : 𝓢(V, ℂ) →L[ℂ] 𝓢(V, ℂ) := smulLeftCLM ℂ (linC a)
 
+/--
+@isnad1 id=eq.0h4v.s9.31c1c7991668 from=translated src=- shape=099ee29f vocab=82acd1d8
+-/
 theorem Mr_apply_apply (a : V) (f : 𝓢(V, ℂ)) (y : V) : Mr a f y = ((⟪y, a⟫_ℝ : ℝ) : ℂ) * f y := by
   rw [Mr, smulLeftCLM_apply_apply (hasTemperateGrowth_linC a), smul_eq_mul, linC_apply]
 
+/--
+@isnad1 id=eq.0h3v.s10.4cd4c2dce8c9 from=translated src=- shape=a74869ca vocab=5c51df62
+-/
 theorem Mr_eq_smulLeftCLM_real (a : V) (f : 𝓢(V, ℂ)) :
     Mr a f = smulLeftCLM ℂ (fun y : V => ⟪y, a⟫_ℝ) f := by
   rw [Mr]
@@ -43,14 +58,26 @@ theorem Mr_eq_smulLeftCLM_real (a : V) (f : 𝓢(V, ℂ)) :
 
 def Dd (v : V) : 𝓢(V, ℂ) →L[ℂ] 𝓢(V, ℂ) := lineDerivOpCLM ℂ 𝓢(V, ℂ) v
 
+/--
+@isnad1 id=eq.0h3v.s9.4a71e73e83ea from=translated src=- shape=ed2bf5ba vocab=e18c7647
+-/
 theorem Dd_apply (v : V) (f : 𝓢(V, ℂ)) : Dd v f = ∂_{v} f := rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.f8f2b6f656cf from=translated src=- shape=a7a11b0a vocab=46fb0bdd
+-/
 theorem Dd_apply_apply (v : V) (f : 𝓢(V, ℂ)) (y : V) : Dd v f y = fderiv ℝ (⇑f) y v := rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.2c141e020bd8 from=translated src=- shape=756a9c49 vocab=190aa892
+-/
 theorem fourier_Dd (v : V) (f : 𝓢(V, ℂ)) :
     𝓕 (Dd v f) = (2 * π * Complex.I) • Mr v (𝓕 f) := by
   rw [Dd_apply, fourier_lineDerivOp_eq, Mr_eq_smulLeftCLM_real]
 
+/--
+@isnad1 id=eq.0h3v.s10.44a8436e3c8a from=translated src=- shape=370c3825 vocab=a2ac0dbc
+-/
 theorem fourier_Mr (a : V) (f : 𝓢(V, ℂ)) :
     𝓕 (Mr a f) = (-(2 * π * Complex.I))⁻¹ • Dd a (𝓕 f) := by
   have h := lineDerivOp_fourier_eq f a
@@ -67,12 +94,18 @@ def avec (i : ι) (k : κ) : V := ContinuousLinearMap.adjoint (B i) (b k)
 
 def cst (i : ι) (k : κ) : ℂ := ((⟪v i, b k⟫_ℝ : ℝ) : ℂ)
 
+/--
+@isnad1 id=eq.0h8v.s8.bdde89f7d7e4 from=translated src=- shape=61570516 vocab=c49dca88
+-/
 theorem inner_avec (i : ι) (k : κ) (y : V) : ⟪y, avec B b i k⟫_ℝ = ⟪B i y, b k⟫_ℝ := by
   rw [avec, ContinuousLinearMap.adjoint_inner_right]
 
 def Malpha (i : ι) (k : κ) : 𝓢(V, ℂ) →L[ℂ] 𝓢(V, ℂ) :=
   cst v b i k • ContinuousLinearMap.id ℂ _ + Mr (avec B b i k)
 
+/--
+@isnad1 id=eq.0h10v.s10.c902821ea1cb from=translated src=- shape=f6b36360 vocab=defc87fe
+-/
 theorem Malpha_apply_apply (i : ι) (k : κ) (f : 𝓢(V, ℂ)) (y : V) :
     Malpha B v b i k f y = ((⟪B i y + v i, b k⟫_ℝ : ℝ) : ℂ) * f y := by
   simp only [Malpha, add_apply, smul_apply,
@@ -84,6 +117,9 @@ theorem Malpha_apply_apply (i : ι) (k : κ) (f : 𝓢(V, ℂ)) (y : V) :
 def Chat (i : ι) (k : κ) : 𝓢(V, ℂ) →L[ℂ] 𝓢(V, ℂ) :=
   cst v b i k • ContinuousLinearMap.id ℂ _ + (-(2 * π * Complex.I))⁻¹ • Dd (avec B b i k)
 
+/--
+@isnad1 id=eq.0h9v.s10.2b4b051e66b8 from=translated src=- shape=4ad8e72d vocab=c16a22c6
+-/
 theorem fourier_Malpha (i : ι) (k : κ) (f : 𝓢(V, ℂ)) :
     𝓕 (Malpha B v b i k f) = Chat B v b i k (𝓕 f) := by
   simp only [Malpha, Chat, add_apply, smul_apply,
@@ -96,6 +132,9 @@ def LapHat : 𝓢(V, ℂ) →L[ℂ] 𝓢(V, ℂ) :=
   ∑ i, ∑ k, ∑ l, ((2 * π * Complex.I) ^ 2 : ℂ) •
     (Chat B v b i k).comp ((Chat B v b i l).comp ((Mr (b k)).comp (Mr (b l))))
 
+/--
+@isnad1 id=eq.0h7v.s10.2a0c664acaec from=translated src=- shape=989fad70 vocab=5d0c72fd
+-/
 theorem fourier_LapS (f : 𝓢(V, ℂ)) : 𝓕 (LapS B v b f) = LapHat B v b (𝓕 f) := by
   simp only [LapS, LapHat, sum_apply, ContinuousLinearMap.comp_apply,
     smul_apply]
@@ -108,6 +147,9 @@ theorem fourier_LapS (f : 𝓢(V, ℂ)) : 𝓕 (LapS B v b f) = LapHat B v b (�
   rw [fourier_Malpha, fourier_Malpha, fourier_Dd, map_smul, fourier_Dd, map_smul, map_smul, map_smul,
     map_smul, smul_smul, pow_two]
 
+/--
+@isnad1 id=eq.0h8v.s10.c1852ecd435f from=translated src=- shape=65f4087f vocab=eddf61fa
+-/
 theorem fourier_LapS_iterate (m : ℕ) (f : 𝓢(V, ℂ)) :
     𝓕 ((LapS B v b)^[m] f) = (LapHat B v b)^[m] (𝓕 f) := by
   induction m generalizing f with
@@ -115,6 +157,9 @@ theorem fourier_LapS_iterate (m : ℕ) (f : 𝓢(V, ℂ)) :
   | succ m ih =>
     rw [Function.iterate_succ_apply', Function.iterate_succ_apply', fourier_LapS, ih]
 
+/--
+@isnad1 id=eq.1h5v.s11.1901d809a90e from=translated src=- shape=e99d06f0 vocab=569b6d8f
+-/
 theorem fderiv_fderiv_apply {G : V → ℂ} (hG : ContDiff ℝ (⊤ : ℕ∞) G) (y u w : V) :
     fderiv ℝ (fderiv ℝ G) y u w = fderiv ℝ (fun z => fderiv ℝ G z w) y u := by
   have h1 : ContDiff ℝ (⊤ : ℕ∞) (fderiv ℝ G) := (contDiff_infty_iff_fderiv.mp hG).2
@@ -124,6 +169,9 @@ theorem fderiv_fderiv_apply {G : V → ℂ} (hG : ContDiff ℝ (⊤ : ℕ∞) G)
   simp only [add_apply, ContinuousLinearMap.comp_apply,
     zero_apply, map_zero, ContinuousLinearMap.flip_apply, zero_add]
 
+/--
+@isnad1 id=eq.0h5v.s11.b6a8c3d748e7 from=translated src=- shape=a0489dff vocab=41446a9c
+-/
 theorem Dd_Dd_apply (u w : V) (f : 𝓢(V, ℂ)) (y : V) :
     Dd u (Dd w f) y = fderiv ℝ (fderiv ℝ (⇑f)) y u w := by
   rw [Dd_apply_apply]
@@ -131,6 +179,9 @@ theorem Dd_Dd_apply (u w : V) (f : 𝓢(V, ℂ)) (y : V) :
     funext z; rfl
   rw [this, fderiv_fderiv_apply (f.smooth ⊤)]
 
+/--
+@isnad1 id=eq.0h6v.s12.230c083d7c9b from=translated src=- shape=94257e12 vocab=e545cf4f
+-/
 theorem fderiv_fderiv_expand (f : 𝓢(V, ℂ)) (y x : V) :
     fderiv ℝ (fderiv ℝ (⇑f)) y x x =
       ∑ k, ∑ l, ((⟪x, b k⟫_ℝ : ℝ) : ℂ) * ((⟪x, b l⟫_ℝ : ℝ) : ℂ) * fderiv ℝ (fderiv ℝ (⇑f)) y (b k) (b l) := by
@@ -154,6 +205,9 @@ theorem fderiv_fderiv_expand (f : 𝓢(V, ℂ)) (y x : V) :
   rw [Complex.real_smul, Complex.real_smul]
   ring
 
+/--
+@isnad1 id=eq.0h8v.s10.5ce5d01739dc from=translated src=- shape=fb17cbe4 vocab=4523969c
+-/
 theorem LapS_apply (f : 𝓢(V, ℂ)) (y : V) :
     LapS B v b f y = ∑ i, iteratedFDeriv ℝ 2 (⇑f) y (fun _ => B i y + v i) := by
   simp only [LapS, sum_apply, ContinuousLinearMap.comp_apply, sum_apply]
@@ -165,21 +219,33 @@ theorem LapS_apply (f : 𝓢(V, ℂ)) (y : V) :
 
 section Duality
 
+/--
+@isnad1 id=hastempe.1h2v.s8.e6283d9e1b0f from=translated src=- shape=3de6fec1 vocab=5b8456fc
+-/
 theorem hasTemperateGrowth_fderiv' {r : V → ℂ} (hr : r.HasTemperateGrowth) :
     (fderiv ℝ r).HasTemperateGrowth := by
   refine ⟨(contDiff_infty_iff_fderiv.mp hr.1).2, fun n => ?_⟩
   obtain ⟨k, C, hC⟩ := hr.2 (n + 1)
   exact ⟨k, C, fun x => by rw [norm_iteratedFDeriv_fderiv]; exact hC x⟩
 
+/--
+@isnad1 id=hastempe.1h3v.s8.480589d035fa from=translated src=- shape=19a4cab0 vocab=9ceb2203
+-/
 theorem hasTemperateGrowth_fderiv_apply {r : V → ℂ} (hr : r.HasTemperateGrowth) (a : V) :
     (fun ξ => fderiv ℝ r ξ a).HasTemperateGrowth := by
   have h := (ContinuousLinearMap.apply ℝ ℂ a).hasTemperateGrowth.comp (hasTemperateGrowth_fderiv' hr)
   exact h
 
+/--
+@isnad1 id=hastempe.1h3v.s6.a3517d2a9d29 from=translated src=- shape=bac91521 vocab=7dbc34f9
+-/
 theorem hasTemperateGrowth_linC_mul {r : V → ℂ} (hr : r.HasTemperateGrowth) (a : V) :
     (fun ξ => linC a ξ * r ξ).HasTemperateGrowth :=
   (hasTemperateGrowth_linC a).mul hr
 
+/--
+@isnad1 id=integrab.1h3v.s7.91f62a670966 from=translated src=- shape=2696c7b3 vocab=89187715
+-/
 theorem integrable_schwartz_mul {r : V → ℂ} (hr : r.HasTemperateGrowth) (g : 𝓢(V, ℂ)) :
     Integrable (fun ξ => g ξ * r ξ) := by
   have h := (smulLeftCLM ℂ r g).integrable (μ := volume)
@@ -187,12 +253,18 @@ theorem integrable_schwartz_mul {r : V → ℂ} (hr : r.HasTemperateGrowth) (g :
     funext ξ; rw [smulLeftCLM_apply_apply hr, smul_eq_mul, mul_comm]
   rwa [he] at h
 
+/--
+@isnad1 id=eq.0h4v.s9.9102c767ad23 from=translated src=- shape=9d7692a0 vocab=8622a4fd
+-/
 theorem dual_Mr (a : V) (g : 𝓢(V, ℂ)) (r : V → ℂ) :
     ∫ ξ, Mr a g ξ * r ξ = ∫ ξ, g ξ * (linC a ξ * r ξ) := by
   refine integral_congr_ae (Filter.Eventually.of_forall fun ξ => ?_)
   change Mr a g ξ * r ξ = g ξ * (linC a ξ * r ξ)
   rw [Mr_apply_apply, linC_apply]; ring
 
+/--
+@isnad1 id=eq.1h4v.s10.a36e9308f50a from=translated src=- shape=bdabd93a vocab=5c208d7f
+-/
 theorem dual_Dd (a : V) (g : 𝓢(V, ℂ)) {r : V → ℂ} (hr : r.HasTemperateGrowth) :
     ∫ ξ, Dd a g ξ * r ξ = ∫ ξ, g ξ * (-fderiv ℝ r ξ a) := by
   have e1 : (fun ξ => Dd a g ξ * r ξ) = fun ξ => r ξ * fderiv ℝ (⇑g) ξ a := by
@@ -216,6 +288,9 @@ variable (B : ι → V →L[ℝ] V) (v : ι → V) (b : OrthonormalBasis κ ℝ 
 def ChatT (i : ι) (k : κ) (r : V → ℂ) : V → ℂ := fun ξ =>
   cst v b i k * r ξ + (-(2 * π * Complex.I))⁻¹ * (-fderiv ℝ r ξ (avec B b i k))
 
+/--
+@isnad1 id=hastempe.1h9v.s7.652aa403b5e2 from=translated src=- shape=23400003 vocab=0fbd8f8a
+-/
 theorem hasTemperateGrowth_ChatT (i : ι) (k : κ) {r : V → ℂ} (hr : r.HasTemperateGrowth) :
     (ChatT B v b i k r).HasTemperateGrowth := by
   unfold ChatT
@@ -225,6 +300,9 @@ theorem hasTemperateGrowth_ChatT (i : ι) (k : κ) {r : V → ℂ} (hr : r.HasTe
     (Function.HasTemperateGrowth.const _).mul (hasTemperateGrowth_fderiv_apply hr _).neg
   exact h1.add h2
 
+/--
+@isnad1 id=eq.1h10v.s9.0f1d30ba2a7e from=translated src=- shape=3a67a964 vocab=0131adc2
+-/
 theorem dual_Chat (i : ι) (k : κ) (g : 𝓢(V, ℂ)) {r : V → ℂ} (hr : r.HasTemperateGrowth) :
     ∫ ξ, Chat B v b i k g ξ * r ξ = ∫ ξ, g ξ * ChatT B v b i k r ξ := by
   have hI1 := integrable_schwartz_mul hr g
@@ -249,6 +327,9 @@ def LapHatT (r : V → ℂ) : V → ℂ := fun ξ =>
   ∑ i, ∑ k, ∑ l, (2 * π * Complex.I) ^ 2 *
     (linC (b l) ξ * (linC (b k) ξ * ChatT B v b i l (ChatT B v b i k r) ξ))
 
+/--
+@isnad1 id=hastempe.1h7v.s7.f6fb42cdc4ad from=translated src=- shape=32f81afe vocab=eccb4144
+-/
 theorem hasTemperateGrowth_LapHatT {r : V → ℂ} (hr : r.HasTemperateGrowth) :
     (LapHatT B v b r).HasTemperateGrowth := by
   unfold LapHatT
@@ -258,6 +339,9 @@ theorem hasTemperateGrowth_LapHatT {r : V → ℂ} (hr : r.HasTemperateGrowth) :
   exact hasTemperateGrowth_linC_mul (hasTemperateGrowth_linC_mul
     (hasTemperateGrowth_ChatT B v b i l (hasTemperateGrowth_ChatT B v b i k hr)) (b k)) (b l)
 
+/--
+@isnad1 id=eq.1h8v.s9.efbf94a8fd38 from=translated src=- shape=5932d898 vocab=f341188e
+-/
 theorem dual_LapHat (g : 𝓢(V, ℂ)) {r : V → ℂ} (hr : r.HasTemperateGrowth) :
     ∫ ξ, LapHat B v b g ξ * r ξ = ∫ ξ, g ξ * LapHatT B v b r ξ := by
 
@@ -302,6 +386,9 @@ theorem dual_LapHat (g : 𝓢(V, ℂ)) {r : V → ℂ} (hr : r.HasTemperateGrowt
   have h2 := hasTemperateGrowth_ChatT B v b i l h1
   rw [dual_Chat B v b i k _ hr, dual_Chat B v b i l _ h1, dual_Mr, dual_Mr]
 
+/--
+@isnad1 id=eq.1h9v.s9.56bc01ff3e65 from=translated src=- shape=700d83c3 vocab=2682a71f
+-/
 theorem dual_LapHat_iterate (m : ℕ) (g : 𝓢(V, ℂ)) {r : V → ℂ} (hr : r.HasTemperateGrowth) :
     ∫ ξ, ((LapHat B v b)^[m] g) ξ * r ξ = ∫ ξ, g ξ * ((LapHatT B v b)^[m] r) ξ := by
   induction m generalizing r with
@@ -317,6 +404,9 @@ section Realize
 variable {ι : Type*} [Fintype ι] {κ : Type*} [Fintype κ]
 variable (B : ι → V →L[ℝ] V) (v : ι → V) (b : OrthonormalBasis κ ℝ V)
 
+/--
+@isnad1 id=eq.2h3v.s8.03d5c993b676 from=translated src=- shape=ddd0e71e vocab=52eac0fc
+-/
 theorem flip_fun {φ ψ : V → ℂ} (hφ : Integrable φ) (hψ : Integrable ψ) :
     ∫ ξ, 𝓕 φ ξ * ψ ξ = ∫ x, φ x * 𝓕 ψ x := by
   have h__af := (VectorFourier.integral_bilin_fourierIntegral_eq_flip (ContinuousLinearMap.mul ℂ ℂ)
@@ -324,6 +414,9 @@ theorem flip_fun {φ ψ : V → ℂ} (hφ : Integrable φ) (hψ : Integrable ψ)
   simp at h__af
   exact h__af
 
+/--
+@isnad1 id=eq.0h2v.s8.07de5529df25 from=translated src=- shape=3236cd95 vocab=dc35d71a
+-/
 theorem integral_fourier_eq_apply_zero (f : 𝓢(V, ℂ)) : ∫ ξ, 𝓕 f ξ = f 0 := by
   have h1 : (𝓕⁻ (𝓕 f)) 0 = f 0 := by rw [fourierInv_fourier_eq]
   rw [← h1, fourierInv_apply_eq, compCLMOfContinuousLinearEquiv_apply]
@@ -333,6 +426,9 @@ theorem integral_fourier_eq_apply_zero (f : 𝓢(V, ℂ)) : ∫ ξ, 𝓕 f ξ = 
   rw [Real.fourier_eq]
   simp
 
+/--
+@isnad1 id=eq.3h9v.s10.3e5eeb94ec00 from=translated src=- shape=f7750a5c vocab=e0ac75b0
+-/
 theorem realize (m : ℕ) {r : V → ℂ} (hr : r.HasTemperateGrowth) (hri : Integrable r)
     (he : Integrable (fun ξ => ((LapHatT B v b)^[m] r) ξ - 1)) (f : 𝓢(V, ℂ)) :
     f 0 = (∫ x, ((LapS B v b)^[m] f) x * 𝓕 r x) +
@@ -378,6 +474,9 @@ section ClosedForm
 variable {ι : Type*} [Fintype ι] {κ : Type*} [Fintype κ]
 variable (B : ι → V →L[ℝ] V) (v : ι → V) (b : OrthonormalBasis κ ℝ V)
 
+/--
+@isnad1 id=eq.1h11v.s11.cfeb035d289b from=translated src=- shape=5dff7bf5 vocab=53cb06ce
+-/
 theorem fderiv_ChatT_apply (i : ι) (k : κ) {r : V → ℂ} (hr : ContDiff ℝ (⊤ : ℕ∞) r) (ξ w : V) :
     fderiv ℝ (ChatT B v b i k r) ξ w =
       cst v b i k * fderiv ℝ r ξ w +
@@ -399,6 +498,9 @@ theorem fderiv_ChatT_apply (i : ι) (k : κ) {r : V → ℂ} (hr : ContDiff ℝ 
     ContinuousLinearMap.comp_apply, zero_apply, map_zero, zero_add,
     ContinuousLinearMap.flip_apply, smul_eq_mul]
 
+/--
+@isnad1 id=contdiff.1h9v.s7.a72a20db5b20 from=translated src=- shape=f34d7e0d vocab=dbc56031
+-/
 theorem contDiff_ChatT (i : ι) (k : κ) {r : V → ℂ} (hr : ContDiff ℝ (⊤ : ℕ∞) r) :
     ContDiff ℝ (⊤ : ℕ∞) (ChatT B v b i k r) := by
   unfold ChatT
@@ -406,6 +508,9 @@ theorem contDiff_ChatT (i : ι) (k : κ) {r : V → ℂ} (hr : ContDiff ℝ (⊤
     ((contDiff_infty_iff_fderiv.mp hr).2).clm_apply contDiff_const
   exact (contDiff_const.mul hr).add (contDiff_const.mul h1.neg)
 
+/--
+@isnad1 id=eq.1h11v.s11.33c9a30e055d from=translated src=- shape=ee5db822 vocab=d9592c9a
+-/
 theorem ChatT_ChatT_apply (i : ι) (k l : κ) {r : V → ℂ} (hr : ContDiff ℝ (⊤ : ℕ∞) r) (ξ : V) :
     ChatT B v b i l (ChatT B v b i k r) ξ =
       cst v b i l * cst v b i k * r ξ
@@ -418,6 +523,9 @@ theorem ChatT_ChatT_apply (i : ι) (k l : κ) {r : V → ℂ} (hr : ContDiff ℝ
   simp only [ChatT]
   ring
 
+/--
+@isnad1 id=eq.0h7v.s7.8b98ad540c49 from=translated src=- shape=799e352a vocab=1c837a82
+-/
 theorem sum_linC_mul_cst (i : ι) (ξ : V) : ∑ k, linC (b k) ξ * cst v b i k = ((⟪ξ, v i⟫_ℝ : ℝ) : ℂ) := by
   simp only [linC, cst]
   rw [← b.sum_inner_mul_inner ξ (v i)]
@@ -425,6 +533,9 @@ theorem sum_linC_mul_cst (i : ι) (ξ : V) : ∑ k, linC (b k) ξ * cst v b i k 
   refine Finset.sum_congr rfl fun k _ => ?_
   rw [real_inner_comm (b k) (v i)]
 
+/--
+@isnad1 id=eq.0h7v.s11.2100d4a4eed4 from=translated src=- shape=89ee2e91 vocab=9f95b4f2
+-/
 theorem sum_inner_smul_avec (i : ι) (ξ : V) : ∑ k, ⟪ξ, b k⟫_ℝ • avec B b i k = ContinuousLinearMap.adjoint (B i) ξ := by
   simp only [avec]
   have : ∑ k, ⟪ξ, b k⟫_ℝ • ContinuousLinearMap.adjoint (B i) (b k) =
@@ -436,12 +547,18 @@ theorem sum_inner_smul_avec (i : ι) (ξ : V) : ∑ k, ⟪ξ, b k⟫_ℝ • ave
   conv_rhs => rw [← b.sum_repr' ξ]
   exact Finset.sum_congr rfl fun k _ => by rw [real_inner_comm]
 
+/--
+@isnad1 id=eq.0h8v.s11.94e9553b8b3a from=translated src=- shape=b8706c5b vocab=7f7c992b
+-/
 theorem sum_linC_mul_clm (i : ι) (ξ : V) (L : V →L[ℝ] ℂ) :
     ∑ k, linC (b k) ξ * L (avec B b i k) = L (ContinuousLinearMap.adjoint (B i) ξ) := by
   rw [← sum_inner_smul_avec B b i ξ, map_sum]
   refine Finset.sum_congr rfl fun k _ => ?_
   rw [map_smul, linC_apply, Complex.real_smul]
 
+/--
+@isnad1 id=eq.0h8v.s13.95d04533bcdd from=translated src=- shape=5c262604 vocab=7f7c992b
+-/
 theorem sum_sum_linC_mul_bilin (i : ι) (ξ : V) (L : V →L[ℝ] V →L[ℝ] ℂ) :
     ∑ k, ∑ l, linC (b l) ξ * (linC (b k) ξ * L (avec B b i l) (avec B b i k)) =
       L (ContinuousLinearMap.adjoint (B i) ξ) (ContinuousLinearMap.adjoint (B i) ξ) := by
@@ -456,23 +573,38 @@ theorem sum_sum_linC_mul_bilin (i : ι) (ξ : V) (L : V →L[ℝ] V →L[ℝ] �
   refine Finset.sum_congr rfl fun l _ => ?_
   rw [← h1 l, Finset.mul_sum]
 
+/--
+@isnad1 id=eq.0h5v.s6.9c33023c7ca2 from=translated src=- shape=68b2bb83 vocab=5903f063
+-/
 theorem dsum1 (F G : κ → ℂ) (c X : ℂ) :
     ∑ k, ∑ l, c * (F l * G k * X) = c * ((∑ l, F l) * (∑ k, G k) * X) := by
   simp only [Finset.sum_mul, Finset.mul_sum]
 
+/--
+@isnad1 id=eq.0h5v.s6.dd5ba2cf22c8 from=translated src=- shape=f821d606 vocab=5903f063
+-/
 theorem dsum2 (F H : κ → ℂ) (c d : ℂ) :
     ∑ k, ∑ l, c * (d * (F l * H k)) = c * (d * ((∑ l, F l) * (∑ k, H k))) := by
   simp only [Finset.sum_mul, Finset.mul_sum]
 
+/--
+@isnad1 id=eq.0h5v.s6.5600f7d9087b from=translated src=- shape=5605b6d2 vocab=5903f063
+-/
 theorem dsum3 (F H : κ → ℂ) (c d : ℂ) :
     ∑ k, ∑ l, c * (d * (F k * H l)) = c * (d * ((∑ k, F k) * (∑ l, H l))) := by
   simp only [Finset.sum_mul, Finset.mul_sum]
   rw [Finset.sum_comm]
 
+/--
+@isnad1 id=eq.0h4v.s6.06ff8cbe5efe from=translated src=- shape=3eb60571 vocab=5903f063
+-/
 theorem dsum4 (T : κ → κ → ℂ) (c d : ℂ) :
     ∑ k, ∑ l, c * (d * T k l) = c * (d * ∑ k, ∑ l, T k l) := by
   simp only [Finset.mul_sum]
 
+/--
+@isnad1 id=eq.1h8v.s13.accccd070a8f from=translated src=- shape=760f51c1 vocab=10f725b6
+-/
 theorem LapHatT_apply {r : V → ℂ} (hr : ContDiff ℝ (⊤ : ℕ∞) r) (ξ : V) :
     LapHatT B v b r ξ = ∑ i,
       (fderiv ℝ (fderiv ℝ r) ξ (ContinuousLinearMap.adjoint (B i) ξ) (ContinuousLinearMap.adjoint (B i) ξ)
@@ -529,6 +661,9 @@ def symOp (B : ι → V →L[ℝ] V) (v : ι → V) : (V → ℂ) → (V → ℂ
         fderiv ℝ g η (ContinuousLinearMap.adjoint (B i) η) -
       (4 * Real.pi ^ 2 : ℂ) * ((⟪η, v i⟫_ℝ : ℝ) : ℂ) ^ 2 * g η)
 
+/--
+@isnad1 id=eq.0h8v.s9.e8203183aca7 from=translated src=- shape=4667d5e6 vocab=e6d175d1
+-/
 theorem coe_LapS_iterate (B : ι → V →L[ℝ] V) (v : ι → V) (b : OrthonormalBasis κ ℝ V) (m : ℕ)
     (f : 𝓢(V, ℂ)) : ⇑((LapS B v b)^[m] f) = (cardOp B v)^[m] ⇑f := by
   induction m generalizing f with
@@ -539,6 +674,9 @@ theorem coe_LapS_iterate (B : ι → V →L[ℝ] V) (v : ι → V) (b : Orthonor
     rw [LapS_apply, ← ih]
     rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.f1c45a297ed5 from=translated src=- shape=0264603d vocab=deb25c26
+-/
 theorem cardOp_translate (A : ι → V →L[ℝ] V) (x₀ : V) (G : V → ℂ) :
     cardOp A (fun i => A i x₀) (fun z => G (z + x₀)) = fun y => linOp A G (y + x₀) := by
   funext y
@@ -549,6 +687,9 @@ theorem cardOp_translate (A : ι → V →L[ℝ] V) (x₀ : V) (G : V → ℂ) :
   funext j
   rw [map_add]
 
+/--
+@isnad1 id=eq.0h6v.s8.4cf75be3c322 from=translated src=- shape=de0a9545 vocab=3f014f35
+-/
 theorem cardOp_iterate_translate (A : ι → V →L[ℝ] V) (x₀ : V) (m : ℕ) (G : V → ℂ) :
     (cardOp A (fun i => A i x₀))^[m] (fun z => G (z + x₀)) = fun y => (linOp A)^[m] G (y + x₀) := by
   induction m generalizing G with
@@ -556,8 +697,14 @@ theorem cardOp_iterate_translate (A : ι → V →L[ℝ] V) (x₀ : V) (m : ℕ)
   | succ m ih =>
     rw [Function.iterate_succ_apply, Function.iterate_succ_apply, cardOp_translate, ih]
 
+/--
+@isnad1 id=contdiff.0h2v.s6.c109c1d90be2 from=translated src=- shape=aa8f6018 vocab=5f585216
+-/
 theorem contDiff_linC (a : V) : ContDiff ℝ (⊤ : ℕ∞) (linC a) := (hasTemperateGrowth_linC a).1
 
+/--
+@isnad1 id=contdiff.1h7v.s7.6ab2da939664 from=translated src=- shape=885be01f vocab=b588f804
+-/
 theorem contDiff_LapHatT (B : ι → V →L[ℝ] V) (v : ι → V) (b : OrthonormalBasis κ ℝ V) {g : V → ℂ}
     (hg : ContDiff ℝ (⊤ : ℕ∞) g) : ContDiff ℝ (⊤ : ℕ∞) (LapHatT B v b g) := by
   unfold LapHatT
@@ -565,12 +712,18 @@ theorem contDiff_LapHatT (B : ι → V →L[ℝ] V) (v : ι → V) (b : Orthonor
   refine contDiff_const.mul ((contDiff_linC (b l)).mul ((contDiff_linC (b k)).mul ?_))
   exact contDiff_ChatT B v b i l (contDiff_ChatT B v b i k hg)
 
+/--
+@isnad1 id=eq.1h7v.s7.0929023bf674 from=translated src=- shape=69d4bb35 vocab=8e412911
+-/
 theorem LapHatT_eq_symOp (B : ι → V →L[ℝ] V) (v : ι → V) (b : OrthonormalBasis κ ℝ V) {g : V → ℂ}
     (hg : ContDiff ℝ (⊤ : ℕ∞) g) : LapHatT B v b g = symOp B v g := by
   funext ξ
   rw [LapHatT_apply B v b hg ξ]
   simp only [symOp, iteratedFDeriv_two_apply]
 
+/--
+@isnad1 id=and.1h8v.s8.472d2a5eb12d from=translated src=- shape=2eced7ac vocab=c08e69b3
+-/
 theorem LapHatT_iterate_eq (B : ι → V →L[ℝ] V) (v : ι → V) (b : OrthonormalBasis κ ℝ V) (m : ℕ)
     {r : V → ℂ} (hr : ContDiff ℝ (⊤ : ℕ∞) r) :
     (LapHatT B v b)^[m] r = (symOp B v)^[m] r ∧ ContDiff ℝ (⊤ : ℕ∞) ((LapHatT B v b)^[m] r) := by
@@ -581,6 +734,9 @@ theorem LapHatT_iterate_eq (B : ι → V →L[ℝ] V) (v : ι → V) (b : Orthon
     refine ⟨?_, contDiff_LapHatT B v b ih.2⟩
     rw [LapHatT_eq_symOp B v b ih.2, ih.1]
 
+/--
+@isnad1 id=hastempe.2h3v.s8.63e9776a5dc0 from=translated src=- shape=ebb6efa4 vocab=583abf73
+-/
 theorem hasTemperateGrowth_of_bounds {r : V → ℂ} (hr : ContDiff ℝ (⊤ : ℕ∞) r) (m : ℕ)
     (hb : ∀ n : ℕ, ∃ C : ℝ, ∀ ξ : V, ‖iteratedFDeriv ℝ n r ξ‖ ≤ C * (1 + ‖ξ‖) ^ (-(2 * m + n : ℝ))) :
     r.HasTemperateGrowth := by
@@ -598,6 +754,9 @@ theorem hasTemperateGrowth_of_bounds {r : V → ℂ} (hr : ContDiff ℝ (⊤ : �
           linarith)
   exact mul_le_of_le_one_right hC0 h1
 
+/--
+@isnad1 id=integrab.3h3v.s8.0e99ff260be2 from=translated src=- shape=79d91ade vocab=fbb90c37
+-/
 theorem integrable_of_bounds {r : V → ℂ} (hr : ContDiff ℝ (⊤ : ℕ∞) r) (m : ℕ)
     (hm : Module.finrank ℝ V < 2 * m)
     (hb : ∀ n : ℕ, ∃ C : ℝ, ∀ ξ : V, ‖iteratedFDeriv ℝ n r ξ‖ ≤ C * (1 + ‖ξ‖) ^ (-(2 * m + n : ℝ))) :
@@ -616,6 +775,9 @@ section Main
 
 variable {ι : Type*} [Fintype ι]
 
+/--
+@isnad1 id=ex.2h5v.s9.99941d811eb4 from=translated src=- shape=f97fd72b vocab=478e117f
+-/
 theorem main (A : ι → V →L[ℝ] V) (x₀ : V)
     (hA : Submodule.span ℝ (Set.range fun i => A i x₀) = ⊤)
     (m : ℕ) (hm : Module.finrank ℝ V < 2 * m) :
@@ -676,6 +838,9 @@ end R4P1Engine
 end
 
 open MeasureTheory Topology in
+/--
+@isnad1 id=ex.2h5v.s10.8db61330a754 from=translated src=- shape=24764068 vocab=ab393d2a
+-/
 theorem solution
     {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℝ V] [FiniteDimensional ℝ V]
     [MeasurableSpace V] [BorelSpace V]

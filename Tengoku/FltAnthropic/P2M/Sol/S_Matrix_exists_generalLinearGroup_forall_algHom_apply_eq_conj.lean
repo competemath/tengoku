@@ -13,6 +13,9 @@ set_option autoImplicit false
 
 open scoped MatrixGroups
 
+/--
+@isnad1 id=ex.0h3v.s8.efa82134abc4 from=translated src=- shape=9542f8c0 vocab=5661e516
+-/
 theorem solution
     (K : Type) [Field K] (n : Type) [Fintype n] [DecidableEq n] [Nonempty n]
     (f : Matrix n n K →ₐ[K] Matrix n n K) :

@@ -5,6 +5,9 @@ import Tengoku
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_Matrix_det_eq_zero_of_isIdempotentElem_of_trace_eq_one.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 namespace P2MW.S_Matrix_det_eq_zero_of_isIdempotentElem_of_trace_eq_one
 
+/--
+@isnad1 id=eq.0h2v.s8.f6bebe1ea381 from=translated src=- shape=8b857a31 vocab=22e2cdda
+-/
 theorem w2aux_mul_self_eq {A : Type*} [CommRing A] (M : Matrix (Fin 2) (Fin 2) A) :
     M * M = M.trace • M - M.det • (1 : Matrix (Fin 2) (Fin 2) A) := by
   rw [← Matrix.ext_iff]
@@ -14,6 +17,9 @@ theorem w2aux_mul_self_eq {A : Type*} [CommRing A] (M : Matrix (Fin 2) (Fin 2) A
     Fin.one_eq_zero_iff, mul_zero, mul_one]
   refine ⟨⟨?_, ?_⟩, ?_, ?_⟩ <;> ring
 
+/--
+@isnad1 id=eq.2h2v.s7.81ceb4af2e7b from=translated src=- shape=6839c23d vocab=1d8339f9
+-/
 theorem solution {A : Type*} [CommRing A]
     {e : Matrix (Fin 2) (Fin 2) A} (he : IsIdempotentElem e) (htr : e.trace = 1) :
     e.det = 0 := by

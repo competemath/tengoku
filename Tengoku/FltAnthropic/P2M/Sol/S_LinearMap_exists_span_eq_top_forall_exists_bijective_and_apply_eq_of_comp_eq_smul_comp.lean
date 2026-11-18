@@ -25,6 +25,9 @@ variable {R : Type u} [CommRing R]
   (he₂ : ∀ (h : H) (χ₁ χ₂ : H'), e h (χ₁ + χ₂) = e h χ₁ * e h χ₂)
 
 include he₁ in
+/--
+@isnad1 id=eq.1h5v.s7.af8135221dc9 from=translated src=- shape=d250e90e vocab=97f872db
+-/
 theorem e_zero_left (χ : H') : e 0 χ = 1 := by
   have h := he₁ 0 0 χ
   rw [add_zero] at h
@@ -32,6 +35,9 @@ theorem e_zero_left (χ : H') : e 0 χ = 1 := by
   exact mul_left_cancel this
 
 include he₂ in
+/--
+@isnad1 id=eq.1h5v.s7.b182e3ca33fa from=translated src=- shape=9825ae04 vocab=97f872db
+-/
 theorem e_zero_right (h : H) : e h 0 = 1 := by
   have hh := he₂ h 0 0
   rw [add_zero] at hh
@@ -39,6 +45,9 @@ theorem e_zero_right (h : H) : e h 0 = 1 := by
   exact mul_left_cancel this
 
 include he₁ in
+/--
+@isnad1 id=eq.1h6v.s7.4834c7bcdb7d from=translated src=- shape=b65daa87 vocab=716c176e
+-/
 theorem e_neg_left (h : H) (χ : H') : e (-h) χ = (e h χ)⁻¹ := by
   have hh := he₁ (-h) h χ
   rw [neg_add_cancel, e_zero_left e he₁] at hh
@@ -46,6 +55,9 @@ theorem e_neg_left (h : H) (χ : H') : e (-h) χ = (e h χ)⁻¹ := by
 
 include he₂ in
 
+/--
+@isnad1 id=eq.2h5v.s7.17c8f4bd745b from=translated src=- shape=7fe1e4cb vocab=02fa3c95
+-/
 theorem sum_e_eq_zero (h : H) (hu : ∃ χ : H', IsUnit ((e h χ : R) - 1)) :
     ∑ χ : H', (e h χ : R) = 0 := by
   obtain ⟨χ₀, hχ₀⟩ := hu
@@ -58,6 +70,9 @@ theorem sum_e_eq_zero (h : H) (hu : ∃ χ : H', IsUnit ((e h χ : R) - 1)) :
 
 include he₁ in
 
+/--
+@isnad1 id=eq.2h5v.s7.6c4e6c0c9287 from=translated src=- shape=6d724d37 vocab=70f529af
+-/
 theorem sum_e_inv_eq_zero (χ : H') (hu : ∃ h : H, IsUnit ((e h χ : R) - 1)) :
     ∑ h : H, ((e h χ)⁻¹ : Rˣ).val = 0 := by
   obtain ⟨h₀, hh₀⟩ := hu
@@ -98,12 +113,18 @@ noncomputable def proj (hd : IsUnit ((Fintype.card H : ℕ) : R)) (e : H → H' 
     M →ₗ[R] M :=
   ((hd.unit⁻¹ : Rˣ) : R) • ∑ χ : H', ((e h χ)⁻¹ : Rˣ).val • V χ
 
+/--
+@isnad1 id=eq.1h8v.s8.37959032c131 from=translated src=- shape=adb93883 vocab=74459be5
+-/
 theorem proj_apply (h : H) (m : M) :
     proj hd e V h m = ((hd.unit⁻¹ : Rˣ) : R) • ∑ χ : H', ((e h χ)⁻¹ : Rˣ).val • V χ m := by
   simp only [proj, LinearMap.smul_apply, LinearMap.sum_apply]
 
 include he₂ hV in
 
+/--
+@isnad1 id=isweight.3h8v.s8.eb5966ce04ca from=translated src=- shape=579243e2 vocab=98c72b41
+-/
 theorem isWeight_proj (h : H) (m : M) : IsWeight e V h (proj hd e V h m) := by
   intro ψ
   have key : ∑ χ : H', ((e h χ)⁻¹ : Rˣ).val • V ψ (V χ m) =
@@ -118,6 +139,9 @@ theorem isWeight_proj (h : H) (m : M) : IsWeight e V h (proj hd e V h m) := by
 
 include hcard in
 
+/--
+@isnad1 id=eq.3h8v.s7.a97652592c73 from=translated src=- shape=74218c91 vocab=077e1752
+-/
 theorem proj_apply_of_isWeight (h : H) (m : M) (hm : IsWeight e V h m) : proj hd e V h m = m := by
   rw [proj_apply]
   have : ∀ χ : H', ((e h χ)⁻¹ : Rˣ).val • V χ m = m := fun χ => by
@@ -127,6 +151,9 @@ theorem proj_apply_of_isWeight (h : H) (m : M) (hm : IsWeight e V h m) : proj hd
 
 include he₁ he₂ hsep in
 
+/--
+@isnad1 id=eq.6h9v.s8.89daae9252b5 from=translated src=- shape=19f515f1 vocab=23ac0452
+-/
 theorem proj_apply_of_isWeight_ne (h h' : H) (hne : h ≠ h') (m : M) (hm : IsWeight e V h m) :
     proj hd e V h' m = 0 := by
   rw [proj_apply]
@@ -137,6 +164,9 @@ theorem proj_apply_of_isWeight_ne (h h' : H) (hne : h ≠ h') (m : M) (hm : IsWe
 
 include he₁ he₂ hsep' hV0 in
 
+/--
+@isnad1 id=eq.5h7v.s9.179b911d4aaf from=translated src=- shape=e9c56ea9 vocab=b24fce90
+-/
 theorem sum_proj_apply (m : M) : ∑ h : H, proj hd e V h m = m := by
   classical
   simp only [proj_apply]
@@ -153,6 +183,9 @@ theorem sum_proj_apply (m : M) : ∑ h : H, proj hd e V h m = m := by
 
 include he₁ hHeis in
 
+/--
+@isnad1 id=isweight.3h10v.s9.79118a89bd3b from=translated src=- shape=460c38ad vocab=ecb2dbb7
+-/
 theorem isWeight_U (k h : H) (m : M) (hm : IsWeight e V h m) : IsWeight e V (k + h) (U k m) := by
   intro χ
   have := LinearMap.congr_fun (hHeis k χ) m
@@ -160,14 +193,23 @@ theorem isWeight_U (k h : H) (m : M) (hm : IsWeight e V h m) : IsWeight e V (k +
   rw [this, hm χ, map_smul, smul_smul, he₁, Units.val_mul]
 
 include hU0 hU in
+/--
+@isnad1 id=eq.2h6v.s8.a6c84a091b94 from=translated src=- shape=54ad0377 vocab=54e7d1c9
+-/
 theorem U_neg_apply (k : H) (m : M) : U (-k) (U k m) = m := by
   rw [← LinearMap.comp_apply, ← hU, neg_add_cancel, hU0, LinearMap.id_apply]
 
 include hU0 hU in
+/--
+@isnad1 id=eq.2h6v.s8.77a09698300d from=translated src=- shape=cf322988 vocab=54e7d1c9
+-/
 theorem U_apply_neg (k : H) (m : M) : U k (U (-k) m) = m := by
   rw [← LinearMap.comp_apply, ← hU, add_neg_cancel, hU0, LinearMap.id_apply]
 
 include hU0 hU in
+/--
+@isnad1 id=injectiv.2h5v.s8.1ab6060c126b from=translated src=- shape=23532164 vocab=c0038c6e
+-/
 theorem U_injective (k : H) : Function.Injective (U k) := fun x y hxy => by
   have := congrArg (U (-k)) hxy
   rwa [U_neg_apply U hU0 hU, U_neg_apply U hU0 hU] at this
@@ -178,6 +220,9 @@ def weightZero (e : H → H' → Rˣ) (V : H' → M →ₗ[R] M) : Submodule R M
   zero_mem' := fun χ => by rw [map_zero, smul_zero]
   smul_mem' c {x} hx := fun χ => by rw [map_smul, hx χ, smul_comm]
 
+/--
+@isnad1 id=iff.0h7v.s7.64c8a0c56571 from=translated src=- shape=eae8fbbb vocab=8637072c
+-/
 theorem mem_weightZero {m : M} : m ∈ weightZero e V ↔ IsWeight e V 0 m := Iff.rfl
 
 def decomp (e : H → H' → Rˣ) (U : H → M →ₗ[R] M) (V : H' → M →ₗ[R] M) : (H → weightZero e V) →ₗ[R] M where
@@ -185,10 +230,16 @@ def decomp (e : H → H' → Rˣ) (U : H → M →ₗ[R] M) (V : H' → M →ₗ
   map_add' c c' := by simp only [Pi.add_apply, Submodule.coe_add, map_add, Finset.sum_add_distrib]
   map_smul' a c := by simp only [Pi.smul_apply, Submodule.coe_smul, map_smul, RingHom.id_apply, Finset.smul_sum]
 
+/--
+@isnad1 id=eq.0h8v.s9.0c21bc2cd32e from=translated src=- shape=ebf4cc8b vocab=1ee09924
+-/
 theorem decomp_apply (c : H → weightZero e V) : decomp e U V c = ∑ h : H, U h (c h) := rfl
 
 include he₁ he₂ hsep hcard hHeis in
 
+/--
+@isnad1 id=eq.6h9v.s10.99b3a6b11c99 from=translated src=- shape=49f09dc2 vocab=246c96d1
+-/
 theorem proj_decomp (c : H → weightZero e V) (h : H) : proj hd e V h (decomp e U V c) = U h (c h) := by
   classical
   rw [decomp_apply, map_sum]
@@ -204,6 +255,9 @@ theorem proj_decomp (c : H → weightZero e V) (h : H) : proj hd e V h (decomp e
 
 include hcard hd he₁ he₂ hsep hsep' hU0 hU hV0 hV hHeis in
 
+/--
+@isnad1 id=bijectiv.11h7v.s10.e2bff281d213 from=translated src=- shape=9f1156f0 vocab=a17dd409
+-/
 theorem decomp_bijective : Function.Bijective (decomp e U V) := by
   classical
   refine ⟨fun c c' hcc' => ?_, fun m => ?_⟩
@@ -228,9 +282,15 @@ variable {R : Type u} [CommRing R] {P : Type*} [AddCommGroup P] [Module R P]
 def LocGen (r : R) (w : P) : Prop :=
   (∀ m : P, ∃ (a : R) (k : ℕ), r ^ k • m = a • w) ∧ (∀ a : R, a • w = 0 → ∃ k : ℕ, r ^ k * a = 0)
 
+/--
+@isnad1 id=locgen.1h4v.s6.c9ea9795cbf6 from=translated src=- shape=9b9de942 vocab=f25288cb
+-/
 theorem locGen_of_pow_eq_zero {r : R} {k : ℕ} (hk : r ^ k = 0) : LocGen r (0 : P) :=
   ⟨fun m => ⟨0, k, by rw [hk, zero_smul, zero_smul]⟩, fun a _ => ⟨k, by rw [hk, zero_mul]⟩⟩
 
+/--
+@isnad1 id=ex.1h3v.s8.e3f527ae439f from=translated src=- shape=6bb1372d vocab=877823f6
+-/
 theorem exists_locGen_of_free (r : R)
     [Module.Free (Localization (Submonoid.powers r)) (LocalizedModule (Submonoid.powers r) P)]
     (h1 : Module.finrank (Localization (Submonoid.powers r)) (LocalizedModule (Submonoid.powers r) P) = 1) :
@@ -288,6 +348,9 @@ theorem exists_locGen_of_free (r : R)
       obtain ⟨k, hk⟩ := (Submonoid.mem_powers_iff _ _).mp hm
       exact ⟨k, by rw [hk]; exact hm0⟩
 
+/--
+@isnad1 id=ex.1h3v.s7.e9c5afbe6240 from=translated src=- shape=493e177b vocab=8066aa6d
+-/
 theorem exists_locGen_of_rankAtStalk_eq_one [Module.Finite R P] [Module.Projective R P]
     (p : PrimeSpectrum R) (hp : Module.rankAtStalk P p = 1) :
     ∃ r : R, r ∉ p.asIdeal ∧ ∃ w : P, LocGen r w := by
@@ -304,6 +367,9 @@ theorem exists_locGen_of_rankAtStalk_eq_one [Module.Finite R P] [Module.Projecti
   rw [hrank]
   exact hp
 
+/--
+@isnad1 id=ex.1h2v.s7.978aff1e0516 from=translated src=- shape=118cdd4d vocab=1b70c1bc
+-/
 theorem exists_cover_locGen [Module.Finite R P] [Module.Projective R P]
     (hrk : ∀ p : PrimeSpectrum R, Module.rankAtStalk P p = 1) :
     ∃ (n : ℕ) (r : Fin n → R), Ideal.span (Set.range r) = ⊤ ∧ ∀ j, ∃ w : P, LocGen (r j) w := by
@@ -330,6 +396,9 @@ section Transport
 variable {R : Type u} [CommRing R] {M : Type*} [AddCommGroup M] [Module R M]
   {H : Type v} [Fintype H]
 
+/--
+@isnad1 id=bijectiv.2h8v.s9.622202479bb8 from=translated src=- shape=36470208 vocab=1f5d3a2a
+-/
 theorem bijective_sum_smul_of_locGen (r : R) (v : H → M)
     (hgen : ∀ m : M, ∃ (a : H → R) (k : ℕ), r ^ k • m = ∑ h, a h • v h)
     (hind : ∀ a : H → R, ∑ h, a h • v h = 0 → ∃ k : ℕ, ∀ h, r ^ k * a h = 0)
@@ -391,6 +460,9 @@ end Transport
 
 end SvNSol
 
+/--
+@isnad1 id=ex.12h9v.s11.fa229479fb3d from=translated src=- shape=8b1830f2 vocab=96faf48d
+-/
 theorem solution
     {R : Type u} [CommRing R]
     {H : Type v} [AddCommGroup H] [Fintype H]

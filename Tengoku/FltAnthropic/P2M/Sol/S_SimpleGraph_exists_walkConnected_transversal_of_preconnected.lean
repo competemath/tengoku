@@ -27,12 +27,18 @@ structure IsConnectedTransversal {V : Type*} (T : SimpleGraph V) (Γ : Type*) [G
 
 variable {V : Type*} {T : SimpleGraph V} {Γ : Type*} [Group Γ] [MulAction Γ V]
 
+/--
+@isnad1 id=walkconn.0h3v.s4.96858c8e615e from=translated src=- shape=b3bec09e vocab=f399f564
+-/
 theorem walkConnected_singleton (T : SimpleGraph V) (v₀ : V) : WalkConnected T {v₀} := by
   intro v hv w hw
   rw [Set.mem_singleton_iff] at hv hw
   subst hv; subst hw
   exact ⟨Walk.nil, by simp⟩
 
+/--
+@isnad1 id=walkconn.3h5v.s5.7582427018c6 from=translated src=- shape=d661b91f vocab=28ea69f7
+-/
 theorem WalkConnected.insert_of_adj {s : Set V} (hs : WalkConnected T s) {v w : V}
     (hv : v ∈ s) (hadj : T.Adj v w) : WalkConnected T (insert w s) := by
 
@@ -57,6 +63,9 @@ theorem WalkConnected.insert_of_adj {s : Set V} (hs : WalkConnected T s) {v w : 
     exact hp y hy
   · exact hq y (List.mem_of_mem_tail hy)
 
+/--
+@isnad1 id=walkconn.2h3v.s5.0eddda8f4ef8 from=translated src=- shape=9b915a69 vocab=65debb48
+-/
 theorem walkConnected_sUnion {c : Set (Set V)} (hchain : IsChain (· ⊆ ·) c)
     (hwc : ∀ s ∈ c, WalkConnected T s) : WalkConnected T (⋃₀ c) := by
   rintro v ⟨s, hs, hvs⟩ w ⟨t, ht, hwt⟩
@@ -90,6 +99,9 @@ theorem eq_of_mem_orbit_insert {s : Set V}
   · exact absurd ⟨v, hvs, hvv'⟩ hw
   · exact hs v hvs v' hv's hvv'
 
+/--
+@isnad1 id=ex.3h7v.s8.3446965ae5d4 from=translated src=- shape=c99eb026 vocab=4c9e9b96
+-/
 theorem exists_adj_of_walk (hsmul : ∀ (γ : Γ) {v w : V}, T.Adj v w → T.Adj (γ • v) (γ • w))
     {s : Set V} {a b : V} (p : T.Walk a b) :
     (∃ v ∈ s, v ∈ orbit Γ a) → (¬∃ v ∈ s, v ∈ orbit Γ b) →
@@ -108,6 +120,9 @@ theorem exists_adj_of_walk (hsmul : ∀ (γ : Γ) {v w : V}, T.Adj v w → T.Adj
         rw [MulAction.orbit_smul] at hv'
         exact hc ⟨v', hv's, hv'⟩
 
+/--
+@isnad1 id=ex.2h4v.s6.4ed9f0228c7c from=translated src=- shape=98bdfecc vocab=ef5307b6
+-/
 theorem exists_isConnectedTransversal
     (hsmul : ∀ (γ : Γ) {v w : V}, T.Adj v w → T.Adj (γ • v) (γ • w))
     (hpre : T.Preconnected) (v₀ : V) :
@@ -148,6 +163,9 @@ end GraphTransversal
 
 end GroupTheory
 
+/--
+@isnad1 id=ex.2h4v.s8.14656e612c99 from=translated src=- shape=ddddd8bd vocab=73bcfa53
+-/
 theorem solution {V : Type*} {T : SimpleGraph V} {Γ : Type*} [Group Γ] [MulAction Γ V]
     (hsmul : ∀ (γ : Γ) {v w : V}, T.Adj v w → T.Adj (γ • v) (γ • w))
     (hpre : T.Preconnected) (v₀ : V) :

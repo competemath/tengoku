@@ -15,10 +15,16 @@ open HahnSeries Polynomial
 
 variable {K : Type*} [Field K]
 
+/--
+@isnad1 id=eq.0h2v.s8.95b9a8f56831 from=translated src=- shape=b940b4d3 vocab=90248186
+-/
 theorem algebraMap_eq_C (c : K) : algebraMap K (LaurentSeries K) c = HahnSeries.C c := by
   rw [HahnSeries.algebraMap_apply']
   simp
 
+/--
+@isnad1 id=le.2h2v.s7.6703f3a4aae8 from=translated src=- shape=7bb0185c vocab=2cd5f590
+-/
 theorem order_nonneg_of_isAlgebraic {x : LaurentSeries K} (hx : IsAlgebraic K x) (hx0 : x ≠ 0) :
     0 ≤ x.order := by
   by_contra hneg
@@ -52,6 +58,9 @@ theorem order_nonneg_of_isAlgebraic {x : LaurentSeries K} (hx : IsAlgebraic K x)
   rw [hpx]
   rfl
 
+/--
+@isnad1 id=eq.2h2v.s7.4ef312f4a0cb from=translated src=- shape=73714567 vocab=164d7b8d
+-/
 theorem order_eq_zero_of_isAlgebraic {x : LaurentSeries K} (hx : IsAlgebraic K x) (hx0 : x ≠ 0) :
     x.order = 0 := by
   have h1 := order_nonneg_of_isAlgebraic hx hx0
@@ -63,6 +72,9 @@ theorem order_eq_zero_of_isAlgebraic {x : LaurentSeries K} (hx : IsAlgebraic K x
 end LaurentSeries.AlgClosedPort
 
 open LaurentSeries.AlgClosedPort in
+/--
+@isnad1 id=eq.1h2v.s8.54cb686c0835 from=translated src=- shape=d04d5153 vocab=5a5e5da4
+-/
 theorem solution {K : Type*} [Field K] {x : LaurentSeries K} (hx : IsAlgebraic K x) :
     x = HahnSeries.C (x.coeff 0) := by
   set y : LaurentSeries K := x - HahnSeries.C (x.coeff 0) with hy

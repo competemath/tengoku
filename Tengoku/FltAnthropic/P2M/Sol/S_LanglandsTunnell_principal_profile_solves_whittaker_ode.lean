@@ -404,6 +404,9 @@ end C2PrincipalOde
 
 open C2PrincipalOde in
 
+/--
+@isnad1 id=and.6h8v.s10.04f1fe9b445d from=translated src=- shape=3d2d0a89 vocab=368e74b5
+-/
 theorem solution (u₁ : ℂ) (a₁ : ZMod 2) (u₂ : ℂ)
     (a₂ : ZMod 2) (ha₁ : a₁ = 0) (ha₂ : a₂ = 0) (c ν : ℂ) (hc : c = (u₁ + u₂) / 2)
     (hν : ν = (u₁ - u₂) / 2) (k : ℝ) (hk : k = 0) (f : ℝ → ℂ)

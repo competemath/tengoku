@@ -15,6 +15,9 @@ variable (p : ℕ) [Fact p.Prime]
 
 local notation "F" => ZMod p
 
+/--
+@isnad1 id=eq.0h1v.s8.8edd7b2635ce from=translated src=- shape=b81b288f vocab=a646cb88
+-/
 theorem range_toGL_eq_ker_det :
     (Matrix.SpecialLinearGroup.toGL : Matrix.SpecialLinearGroup (Fin 2) F →* GL (Fin 2) F).range =
       (Matrix.GeneralLinearGroup.det : GL (Fin 2) F →* Fˣ).ker := by
@@ -32,6 +35,9 @@ theorem range_toGL_eq_ker_det :
     apply Units.ext
     rfl
 
+/--
+@isnad1 id=surjecti.0h1v.s8.d3141bfa8973 from=translated src=- shape=63d11d85 vocab=0db7c2b8
+-/
 theorem det_surjective : Function.Surjective (Matrix.GeneralLinearGroup.det : GL (Fin 2) F →* Fˣ) := by
   intro u
   let A : Matrix (Fin 2) (Fin 2) F := Matrix.diagonal ![(u : F), 1]
@@ -43,6 +49,9 @@ theorem det_surjective : Function.Surjective (Matrix.GeneralLinearGroup.det : GL
   show Matrix.det ((Matrix.GeneralLinearGroup.mkOfDetNeZero A hA0 : GL (Fin 2) F) : Matrix (Fin 2) (Fin 2) F) = u
   rw [Matrix.GeneralLinearGroup.val_mkOfDetNeZero, hA]
 
+/--
+@isnad1 id=eq.0h1v.s6.a06e67ade29b from=translated src=- shape=2718adb9 vocab=ac632517
+-/
 theorem card_GL_two : Nat.card (GL (Fin 2) F) = (p ^ 2 - 1) * (p ^ 2 - p) := by
   rw [Matrix.card_GL_field 2, Fin.prod_univ_two, ZMod.card p]
   simp
@@ -50,6 +59,9 @@ theorem card_GL_two : Nat.card (GL (Fin 2) F) = (p ^ 2 - 1) * (p ^ 2 - p) := by
 end SL2Card
 
 open SL2Card in
+/--
+@isnad1 id=eq.0h1v.s6.eacc1eca767e from=translated src=- shape=06881b32 vocab=d6a68308
+-/
 theorem solution (p : ℕ) [Fact p.Prime] :
     Nat.card (Matrix.SpecialLinearGroup (Fin 2) (ZMod p)) = p * (p ^ 2 - 1) := by
   classical

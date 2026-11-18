@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open MeasureTheory
 
+/--
+@isnad1 id=and.2h2v.s7.aca7d41ef3c9 from=translated src=- shape=47a0b704 vocab=38f3040a
+-/
 theorem LanglandsTunnell.integrableOn_and_integral_cpow_mul_one_add_cpow_neg_eq_betaIntegral
     (a b : ℂ) (ha : 0 < a.re) (hb : 0 < b.re) :
     IntegrableOn (fun q : ℝ => (q : ℂ) ^ (b - 1) * ((1 + q : ℝ) : ℂ) ^ (-(a + b))) (Set.Ioi (0 : ℝ)) ∧

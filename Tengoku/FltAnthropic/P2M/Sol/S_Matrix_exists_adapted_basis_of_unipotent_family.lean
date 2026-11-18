@@ -122,6 +122,9 @@ private theorem one_add_line (s : R) :
 
 end Helpers
 
+/--
+@isnad1 id=ex.4h3v.s11.c259768a1e5e from=translated src=- shape=109ab7f7 vocab=c5e2d685
+-/
 theorem solution {R : Type} [CommRing R] [IsDomain R]
     [ValuationRing R] (T : Set (Matrix (Fin 2) (Fin 2) R))
     (hmul : ∀ A ∈ T, ∀ B ∈ T, A * B ∈ T)

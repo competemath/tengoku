@@ -11,6 +11,9 @@ set_option autoImplicit false
 universe u v
 
 open Matrix
+/--
+@isnad1 id=iseigeni.3h5v.s8.b0136a357955 from=translated src=- shape=2013e5d7 vocab=1e7b731d
+-/
 theorem TaylorWiles.isEigenIdempotent_smul_sub {A : Type u} [CommRing A] {M : Matrix (Fin 2) (Fin 2) A} {a b v : A}
     (htr : M.trace = a + b) (hdet : M.det = a * b) (hv : v * (a - b) = 1) :
     TaylorWiles.IsEigenIdempotent M a b (v • (M - b • (1 : Matrix (Fin 2) (Fin 2) A))) := by exact @_root_.P2MW.S_TaylorWiles_isEigenIdempotent_smul_sub.solution A _ M a b v htr hdet hv

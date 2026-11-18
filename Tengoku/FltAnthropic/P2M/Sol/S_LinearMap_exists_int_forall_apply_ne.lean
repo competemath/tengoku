@@ -13,6 +13,9 @@ set_option synthInstance.maxHeartbeats 80000
 
 open Polynomial
 
+/--
+@isnad1 id=ex.1h6v.s9.3c4ba9ec40f0 from=translated src=- shape=473191ef vocab=c5dd35eb
+-/
 theorem solution {K : Type*} [Field K] [CharZero K] {r : ℕ} {ι : Type*}
     (S : Finset ι) (f : ι → (Fin r → K) →ₗ[K] K) (a : ι → K) (hf : ∀ j ∈ S, f j ≠ 0) :
     ∃ c : Fin r → ℤ, ∀ j ∈ S, f j (fun i => (c i : K)) ≠ a j := by

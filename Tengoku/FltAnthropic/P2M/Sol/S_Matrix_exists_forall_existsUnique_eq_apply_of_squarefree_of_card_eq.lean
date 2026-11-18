@@ -13,6 +13,9 @@ open Matrix
 
 variable {N : ℕ} [NeZero N]
 
+/--
+@isnad1 id=isaddcyc.2h2v.s5.2f552c7e76da from=translated src=- shape=4041d6f9 vocab=af0727e2
+-/
 theorem isAddCyclic_of_card_eq (hN : Squarefree N) (M : Type) [AddCommGroup M] [Module (ZMod N) M] [Finite M]
     (hM : Nat.card M = N) : IsAddCyclic M := by
   apply IsAddCyclic.of_exponent_eq_card
@@ -36,6 +39,9 @@ theorem isAddCyclic_of_card_eq (hN : Squarefree N) (M : Type) [AddCommGroup M] [
       have : p * p ∣ N := dvd_trans ⟨p ^ k, by ring⟩ hk
       exact hp.prime.not_isUnit (hN p this)
 
+/--
+@isnad1 id=eq.3h3v.s6.c134aa97fbc3 from=translated src=- shape=d112e071 vocab=58cba5ed
+-/
 theorem exponent_eq (hN : Squarefree N) (M : Type) [AddCommGroup M] [Module (ZMod N) M] [Finite M]
     {e : ℕ} (he : e ≠ 0) (hM : Nat.card M = N ^ e) : AddMonoid.exponent M = N := by
   apply Nat.dvd_antisymm
@@ -57,6 +63,9 @@ theorem exponent_eq (hN : Squarefree N) (M : Type) [AddCommGroup M] [Module (ZMo
       have : p * p ∣ N := dvd_trans ⟨p ^ k, by ring⟩ hk
       exact hp.prime.not_isUnit (hN p this)
 
+/--
+@isnad1 id=eq.0h3v.s6.16a59ba1a115 from=translated src=- shape=2ad16a8a vocab=c53bc978
+-/
 theorem span_singleton_eq_zmultiples (M : Type) [AddCommGroup M] [Module (ZMod N) M] (m : M) :
     ((Submodule.span (ZMod N) {m}) : Set M) = AddSubgroup.zmultiples m := by
   ext x
@@ -70,6 +79,9 @@ theorem span_singleton_eq_zmultiples (M : Type) [AddCommGroup M] [Module (ZMod N
   · rintro ⟨k, rfl⟩
     exact ⟨(k : ZMod N), by rw [Int.cast_smul_eq_zsmul]⟩
 
+/--
+@isnad1 id=ex.2h2v.s8.204b2ad529f2 from=translated src=- shape=7043ead7 vocab=49a07f32
+-/
 theorem exists_pair_bijective (hN : Squarefree N) (M : Type) [AddCommGroup M] [Module (ZMod N) M] [Finite M]
     (hM : Nat.card M = N ^ 2) :
     ∃ m₁ m₂ : M, Function.Bijective (fun st : ZMod N × ZMod N => st.1 • m₁ + st.2 • m₂) := by
@@ -110,32 +122,59 @@ variable (V : Type) [AddCommGroup V] [Module (ZMod N) V]
 
 abbrev E (i j : Fin 2) : Matrix (Fin 2) (Fin 2) (ZMod N) := Matrix.single i j 1
 
+/--
+@isnad1 id=eq.0h4v.s7.46a51e71ebe3 from=translated src=- shape=224a9742 vocab=4f3bc9c7
+-/
 theorem E_mul_E_same (i j k : Fin 2) : E i j * E j k = (E i k : Matrix (Fin 2) (Fin 2) (ZMod N)) := by
   simp [E, Matrix.single_mul_single_same]
 
+/--
+@isnad1 id=eq.1h5v.s7.d8fe2eb05c2b from=translated src=- shape=c1666da8 vocab=4f3bc9c7
+-/
 theorem E_mul_E_ne (i j k l : Fin 2) (h : j ≠ k) : E i j * E k l = (0 : Matrix (Fin 2) (Fin 2) (ZMod N)) := by
   ext a b; fin_cases i <;> fin_cases j <;> fin_cases k <;> fin_cases l <;> first | exact absurd rfl h | (fin_cases a <;> fin_cases b <;> simp [Matrix.single, Matrix.mul_apply, Fin.sum_univ_two])
 
+/--
+@isnad1 id=eq.0h1v.s8.c8ab27431928 from=translated src=- shape=3efb312f vocab=ea00063a
+-/
 theorem E_add_E : E 0 0 + E 1 1 = (1 : Matrix (Fin 2) (Fin 2) (ZMod N)) := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [E, Matrix.single, Matrix.one_apply]
 
+/--
+@isnad1 id=eq.0h3v.s9.2f969eefa622 from=translated src=- shape=024a5d82 vocab=060fa19b
+-/
 theorem mul_E (a : Matrix (Fin 2) (Fin 2) (ZMod N)) (j : Fin 2) :
     a * E j 0 = a 0 j • E 0 0 + a 1 j • E 1 0 := by
   ext i k; fin_cases i <;> fin_cases k <;> fin_cases j <;> simp [E, Matrix.single, Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.0h5v.s9.c1a13c831d09 from=translated src=- shape=755cd61e vocab=c8517615
+-/
 theorem α_smul (r : ZMod N) (a : Matrix (Fin 2) (Fin 2) (ZMod N)) : α (r • a) = r • α a := by
   rw [← ZMod.natCast_zmod_val r, Nat.cast_smul_eq_nsmul, Nat.cast_smul_eq_nsmul, map_nsmul]
 
+/--
+@isnad1 id=eq.0h7v.s10.087123f4cefb from=translated src=- shape=5887ad15 vocab=4508ad74
+-/
 theorem αE_αE_same (i j k : Fin 2) (x : V) : α (E i j) (α (E j k) x) = α (E i k) x := by
   rw [← Module.End.mul_apply, ← map_mul, E_mul_E_same]
 
+/--
+@isnad1 id=eq.1h8v.s9.5436694c31aa from=translated src=- shape=58833217 vocab=4508ad74
+-/
 theorem αE_αE_ne (i j k l : Fin 2) (h : j ≠ k) (x : V) : α (E i j) (α (E k l) x) = 0 := by
   rw [← Module.End.mul_apply, ← map_mul, E_mul_E_ne _ _ _ _ h, map_zero, LinearMap.zero_apply]
 
+/--
+@isnad1 id=eq.0h4v.s10.30ad6404e06c from=translated src=- shape=daca01ff vocab=71d18363
+-/
 theorem decomp (w : V) : w = α (E 0 0) w + α (E 1 0) (α (E 0 1) w) := by
   rw [αE_αE_same]
   conv_lhs => rw [← Module.End.one_apply (R := ZMod N) w, ← map_one α, ← E_add_E, map_add, LinearMap.add_apply]
 
+/--
+@isnad1 id=eq.2h6v.s11.906b66054bcf from=translated src=- shape=1b1e6cfc vocab=36bcf6b9
+-/
 theorem α_apply_gen (a : Matrix (Fin 2) (Fin 2) (ZMod N)) (x y : V) (hx : α (E 0 0) x = x) (hy : α (E 0 0) y = y) :
     α a (x + α (E 1 0) y) = (a 0 0 • x + a 0 1 • y) + α (E 1 0) (a 1 0 • x + a 1 1 • y) := by
   have h1 : α a x = a 0 0 • x + a 1 0 • α (E 1 0) x := by
@@ -157,6 +196,9 @@ open Matrix
 
 variable {N : ℕ} [NeZero N]
 
+/--
+@isnad1 id=ex.2h3v.s8.1529550d11c9 from=translated src=- shape=f2574f07 vocab=9205e039
+-/
 theorem main (hN : Squarefree N) (V : Type) [AddCommGroup V] [Module (ZMod N) V] [Finite V]
     (hV : Nat.card V = N ^ 4) (α : Matrix (Fin 2) (Fin 2) (ZMod N) →+* Module.End (ZMod N) V) :
     ∃ v₀ : V, ∀ w : V, ∃! a : Matrix (Fin 2) (Fin 2) (ZMod N), w = α a v₀ := by
@@ -208,6 +250,9 @@ theorem main (hN : Squarefree N) (V : Type) [AddCommGroup V] [Module (ZMod N) V]
 end MoritaFree
 
 open MoritaFree in
+/--
+@isnad1 id=ex.2h3v.s8.1529550d11c9 from=translated src=- shape=f2574f07 vocab=9205e039
+-/
 theorem solution
     (N : ℕ) [NeZero N] (hN : Squarefree N) (V : Type) [AddCommGroup V] [Module (ZMod N) V] [Finite V]
     (hV : Nat.card V = N ^ 4) (α : Matrix (Fin 2) (Fin 2) (ZMod N) →+* Module.End (ZMod N) V) :

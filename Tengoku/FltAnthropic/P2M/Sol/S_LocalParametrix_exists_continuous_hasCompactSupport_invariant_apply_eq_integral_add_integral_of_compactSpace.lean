@@ -20,21 +20,33 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimension
   {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [CompactSpace G]
   (ρ : G →* (E →L[ℝ] E))
 
+/--
+@isnad1 id=eq.0h5v.s10.f4c16d80f47f from=translated src=- shape=7b413a46 vocab=391f2263
+-/
 theorem rho_inv_apply (k : G) (x : E) : ρ k⁻¹ (ρ k x) = x := by
   rw [← mul_apply_eq_comp, ← map_mul, inv_mul_cancel, map_one, one_apply_eq_self]
 
+/--
+@isnad1 id=eq.0h5v.s10.0758832b2f61 from=translated src=- shape=7a8aea2b vocab=391f2263
+-/
 theorem rho_apply_inv (k : G) (x : E) : ρ k (ρ k⁻¹ x) = x := by
   rw [← mul_apply_eq_comp, ← map_mul, mul_inv_cancel, map_one, one_apply_eq_self]
 
 def rhoEquiv (k : G) : E ≃L[ℝ] E :=
   ContinuousLinearEquiv.equivOfInverse (ρ k) (ρ k⁻¹) (rho_inv_apply ρ k) (rho_apply_inv ρ k)
 
+/--
+@isnad1 id=ne.0h4v.s10.c525a918b70b from=translated src=- shape=42393b68 vocab=361d4738
+-/
 theorem det_rho_ne_zero (k : G) : LinearMap.det (ρ k : E →ₗ[ℝ] E) ≠ 0 := by
   have h : LinearMap.det (ρ k : E →ₗ[ℝ] E) * LinearMap.det (ρ k⁻¹ : E →ₗ[ℝ] E) = 1 := by
     rw [← LinearMap.det_comp, ← ContinuousLinearMap.toLinearMap_comp, ← ContinuousLinearMap.mul_def, ← map_mul,
       mul_inv_cancel, map_one, ContinuousLinearMap.one_def, ContinuousLinearMap.coe_id, LinearMap.det_id]
   exact left_ne_zero_of_mul_eq_one h
 
+/--
+@isnad1 id=ex.3h5v.s11.b7d930d9022f from=translated src=- shape=0e26d9ee vocab=6ed02387
+-/
 theorem exists_stable_nhds (hρ : Continuous fun p : G × E => ρ p.1 p.2) (x₀ : E) (hx₀ : ∀ k : G, ρ k x₀ = x₀)
     {V : Set E} (hV : V ∈ 𝓝 x₀) :
     ∃ W ∈ 𝓝 x₀, W ⊆ V ∧ ∀ (k : G) (x : E), x ∈ W → ρ k x ∈ W := by
@@ -59,6 +71,9 @@ theorem exists_stable_nhds (hρ : Continuous fun p : G × E => ρ p.1 p.2) (x₀
 
 section Measure
 
+/--
+@isnad1 id=le.1h5v.s11.55802571492c from=translated src=- shape=2f010546 vocab=7913ebc8
+-/
 theorem abs_det_rho_le_one (μ : Measure E) [μ.IsAddHaarMeasure] (hρ : Continuous fun p : G × E => ρ p.1 p.2) (k : G) :
     |LinearMap.det (ρ k : E →ₗ[ℝ] E)| ≤ 1 := by
 
@@ -80,6 +95,9 @@ theorem abs_det_rho_le_one (μ : Measure E) [μ.IsAddHaarMeasure] (hρ : Continu
     (ENNReal.mul_le_mul_iff_left hCpos.ne' hCtop.ne).mp hle
   exact ENNReal.ofReal_le_one.mp h1
 
+/--
+@isnad1 id=eq.1h5v.s11.16b293af7e1e from=translated src=- shape=2f010546 vocab=4387ad9e
+-/
 theorem abs_det_rho_eq_one (μ : Measure E) [μ.IsAddHaarMeasure] (hρ : Continuous fun p : G × E => ρ p.1 p.2) (k : G) :
     |LinearMap.det (ρ k : E →ₗ[ℝ] E)| = 1 := by
   have h1 := abs_det_rho_le_one ρ μ hρ k
@@ -90,11 +108,17 @@ theorem abs_det_rho_eq_one (μ : Measure E) [μ.IsAddHaarMeasure] (hρ : Continu
       LinearMap.det_id, abs_one]
   nlinarith [abs_nonneg (LinearMap.det (ρ k : E →ₗ[ℝ] E)), abs_nonneg (LinearMap.det (ρ k⁻¹ : E →ₗ[ℝ] E))]
 
+/--
+@isnad1 id=eq.1h5v.s10.073bab1bc790 from=translated src=- shape=73374776 vocab=0598d883
+-/
 theorem map_rho_eq (μ : Measure E) [μ.IsAddHaarMeasure] (hρ : Continuous fun p : G × E => ρ p.1 p.2) (k : G) : Measure.map (ρ k) μ = μ := by
   have h := Measure.map_linearMap_addHaar_eq_smul_addHaar μ (det_rho_ne_zero ρ k)
   rw [abs_inv, abs_det_rho_eq_one ρ μ hρ k, inv_one, ENNReal.ofReal_one, one_smul] at h
   exact h
 
+/--
+@isnad1 id=eq.2h6v.s10.e6b2d74554a9 from=translated src=- shape=39eca0f8 vocab=c22d601f
+-/
 theorem integral_comp_rho (μ : Measure E) [μ.IsAddHaarMeasure] (hρ : Continuous fun p : G × E => ρ p.1 p.2) (k : G) {H : E → ℂ}
     (hH : Continuous H) : ∫ x, H (ρ k x) ∂μ = ∫ y, H y ∂μ := by
   have h := MeasureTheory.integral_map (μ := μ) (ρ k).continuous.aemeasurable
@@ -110,10 +134,16 @@ variable [MeasurableSpace G] [BorelSpace G] (ν : Measure G) [IsFiniteMeasure ν
 
 def avg (g : E → ℂ) (y : E) : ℂ := ∫ k, g (ρ k⁻¹ y) ∂ν
 
+/--
+@isnad1 id=continuo.2h4v.s10.2f96968dfa7f from=translated src=- shape=57a5c4db vocab=1b661c27
+-/
 theorem continuous_uncurry_comp_inv (hρ : Continuous fun p : G × E => ρ p.1 p.2) {g : E → ℂ}
     (hg : Continuous g) : Continuous (Function.uncurry fun (y : E) (k : G) => g (ρ k⁻¹ y)) :=
   hg.comp (hρ.comp ((continuous_inv.comp continuous_snd).prodMk continuous_fst))
 
+/--
+@isnad1 id=continuo.2h5v.s10.027ebcd4e353 from=translated src=- shape=dd28091f vocab=66f35379
+-/
 theorem continuous_avg (hρ : Continuous fun p : G × E => ρ p.1 p.2) {g : E → ℂ} (hg : Continuous g) :
     Continuous (avg ρ ν g) := by
   have h := continuous_parametric_integral_of_continuous (μ := ν)
@@ -123,16 +153,25 @@ theorem continuous_avg (hρ : Continuous fun p : G × E => ρ p.1 p.2) {g : E �
 
 def hull (g : E → ℂ) : Set E := (fun p : G × E => ρ p.1 p.2) '' (univ ×ˢ tsupport g)
 
+/--
+@isnad1 id=iscompac.2h4v.s10.43c2d39267e4 from=translated src=- shape=83096aa7 vocab=deb81bda
+-/
 theorem isCompact_hull (hρ : Continuous fun p : G × E => ρ p.1 p.2) {g : E → ℂ} (hg : HasCompactSupport g) :
     IsCompact (hull ρ g) :=
   (isCompact_univ.prod hg).image hρ
 
+/--
+@isnad1 id=eq.1h6v.s10.c11ef69aa3d1 from=translated src=- shape=d227d5e5 vocab=35c64669
+-/
 theorem apply_comp_inv_eq_zero_of_notMem_hull {g : E → ℂ} {y : E} (hy : y ∉ hull ρ g) (k : G) :
     g (ρ k⁻¹ y) = 0 := by
   apply image_eq_zero_of_notMem_tsupport
   intro hmem
   exact hy ⟨(k, ρ k⁻¹ y), ⟨mem_univ _, hmem⟩, rho_apply_inv ρ k y⟩
 
+/--
+@isnad1 id=le.0h5v.s8.6635002dcceb from=translated src=- shape=cf4c6139 vocab=8176bcc5
+-/
 theorem support_avg_subset (g : E → ℂ) : Function.support (avg ρ ν g) ⊆ hull ρ g := by
   intro y hy
   by_contra hy'
@@ -140,19 +179,31 @@ theorem support_avg_subset (g : E → ℂ) : Function.support (avg ρ ν g) ⊆ 
   change ∫ k, g (ρ k⁻¹ y) ∂ν = 0
   simp only [apply_comp_inv_eq_zero_of_notMem_hull ρ hy', integral_zero]
 
+/--
+@isnad1 id=hascompa.2h5v.s10.6fd2b78a29bd from=translated src=- shape=6646649a vocab=c451f0d9
+-/
 theorem hasCompactSupport_avg (hρ : Continuous fun p : G × E => ρ p.1 p.2) {g : E → ℂ}
     (hg : HasCompactSupport g) : HasCompactSupport (avg ρ ν g) :=
   HasCompactSupport.of_support_subset_isCompact (isCompact_hull ρ hρ hg) (support_avg_subset ρ ν g)
 
+/--
+@isnad1 id=le.2h5v.s10.0727c3da9734 from=translated src=- shape=3e81925d vocab=3a7b4d5c
+-/
 theorem tsupport_avg_subset (hρ : Continuous fun p : G × E => ρ p.1 p.2) {g : E → ℂ}
     (hg : HasCompactSupport g) : tsupport (avg ρ ν g) ⊆ hull ρ g :=
   closure_minimal (support_avg_subset ρ ν g) (isCompact_hull ρ hρ hg).isClosed
 
+/--
+@isnad1 id=le.2h5v.s10.fe557c3bd0f6 from=translated src=- shape=1f92a66c vocab=6709ebfc
+-/
 theorem hull_subset {g : E → ℂ} {W : Set E} (hgW : tsupport g ⊆ W) (hW : ∀ (k : G) (x : E), x ∈ W → ρ k x ∈ W) :
     hull ρ g ⊆ W := by
   rintro _ ⟨⟨k, x⟩, ⟨-, hx⟩, rfl⟩
   exact hW k x (hgW hx)
 
+/--
+@isnad1 id=eq.0h7v.s10.925b4efe6569 from=translated src=- shape=4036a383 vocab=9a62234c
+-/
 theorem avg_rho_apply [MeasurableMul G] [ν.IsMulLeftInvariant] (g : E → ℂ) (k₀ : G) (y : E) :
     avg ρ ν g (ρ k₀ y) = avg ρ ν g y := by
   change ∫ k, g (ρ k⁻¹ (ρ k₀ y)) ∂ν = ∫ k, g (ρ k⁻¹ y) ∂ν
@@ -164,6 +215,9 @@ theorem avg_rho_apply [MeasurableMul G] [ν.IsMulLeftInvariant] (g : E → ℂ) 
 
 end Average
 
+/--
+@isnad1 id=ex.6h7v.s12.def4c979b68d from=translated src=- shape=93e7d5a3 vocab=f3ac42b6
+-/
 theorem main (μ : Measure E) [μ.IsAddHaarMeasure]
     (hρ : Continuous fun p : G × E => ρ p.1 p.2)
     (x₀ : E) (hx₀ : ∀ k : G, ρ k x₀ = x₀)
@@ -262,6 +316,9 @@ open scoped _root_.P2MW.S_LocalParametrix_exists_continuous_hasCompactSupport_in
 
 open MeasureTheory Topology
 
+/--
+@isnad1 id=ex.6h7v.s12.69a733f427a5 from=translated src=- shape=668fa1c4 vocab=f3ac42b6
+-/
 theorem solution
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
     [MeasurableSpace E] [BorelSpace E] (μ : Measure E) [μ.IsAddHaarMeasure]

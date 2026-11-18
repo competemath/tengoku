@@ -13,6 +13,9 @@ open Matrix
 
 variable {𝕜 : Type*} [Field 𝕜]
 
+/--
+@isnad1 id=eq.0h2v.s8.a1435b09b70c from=translated src=- shape=8b857a31 vocab=4a0ae6d5
+-/
 theorem sq_eq (t : Matrix (Fin 2) (Fin 2) 𝕜) :
     t * t = Matrix.trace t • t - Matrix.det t • (1 : Matrix (Fin 2) (Fin 2) 𝕜) := by
   ext i j
@@ -20,6 +23,9 @@ theorem sq_eq (t : Matrix (Fin 2) (Fin 2) 𝕜) :
   fin_cases i <;> fin_cases j <;>
     simp [Matrix.mul_apply, Fin.sum_univ_two, Matrix.one_apply] <;> ring
 
+/--
+@isnad1 id=eq.2h4v.s10.ea128173dad7 from=translated src=- shape=9f3bc125 vocab=cf62841d
+-/
 theorem conj_eq (t x xinv : Matrix (Fin 2) (Fin 2) 𝕜) (hx : xinv * x = 1) (ht : Matrix.trace t ≠ 0) :
     xinv * t * x =
       (Matrix.trace t)⁻¹ • (xinv * (t * t) * x + Matrix.det t • (1 : Matrix (Fin 2) (Fin 2) 𝕜)) := by
@@ -29,6 +35,9 @@ theorem conj_eq (t x xinv : Matrix (Fin 2) (Fin 2) 𝕜) (hx : xinv * x = 1) (ht
   rw [Matrix.mul_smul, Matrix.smul_mul, Matrix.mul_add, Matrix.add_mul, Matrix.mul_smul, Matrix.smul_mul,
     Matrix.mul_one, hx]
 
+/--
+@isnad1 id=eq.0h2v.s8.76c50bc8fad6 from=translated src=- shape=7f040bb3 vocab=4504e708
+-/
 theorem trace_inv_val (t : GL (Fin 2) 𝕜) :
     Matrix.trace (((t⁻¹ : GL (Fin 2) 𝕜)) : Matrix (Fin 2) (Fin 2) 𝕜) =
       Matrix.trace ((t : GL (Fin 2) 𝕜) : Matrix (Fin 2) (Fin 2) 𝕜) /
@@ -45,6 +54,9 @@ theorem trace_inv_val (t : GL (Fin 2) 𝕜) :
 end CHUniformBound
 
 open CHUniformBound in
+/--
+@isnad1 id=ex.3h3v.s11.da6711a5dfdc from=translated src=- shape=88541a29 vocab=a1eb456d
+-/
 theorem solution
     {𝕜 : Type*} [RCLike 𝕜]
     (T : Set (GL (Fin 2) 𝕜)) (hT : IsCompact T)

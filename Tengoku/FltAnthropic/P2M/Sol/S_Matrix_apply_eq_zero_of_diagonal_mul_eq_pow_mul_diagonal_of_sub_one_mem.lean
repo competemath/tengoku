@@ -11,6 +11,9 @@ universe u
 
 open IsLocalRing
 
+/--
+@isnad1 id=and.5h5v.s9.4009fec887e5 from=translated src=- shape=8f54dfb7 vocab=8abeaf4e
+-/
 theorem solution {A : Type u} [CommRing A] [IsLocalRing A]
     (hH : ∀ x : A, (∀ n : ℕ, x ∈ IsLocalRing.maximalIdeal A ^ n) → x = 0)
     {a d : A} {q : ℕ} (had : IsUnit (a - (q : A) * d)) (hda : IsUnit (d - (q : A) * a))

@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open Real Complex Filter Topology
 
+/--
+@isnad1 id=ex.5h4v.s10.4009bd4023a6 from=translated src=- shape=d9c57878 vocab=5afdc7f9
+-/
 theorem LanglandsTunnell.whittaker_ode_exists_sub_mul_rpow_bound_near_zero_of_half_integer
     (n : ℕ) (hn : 1 ≤ n) (ν : ℂ) (hν : ν = (n : ℂ) / 2) (κ : ℝ) (f : ℝ → ℂ)
     (hf : DifferentiableOn ℝ f (Set.Ioi 0)) (hf' : DifferentiableOn ℝ (deriv f) (Set.Ioi 0))

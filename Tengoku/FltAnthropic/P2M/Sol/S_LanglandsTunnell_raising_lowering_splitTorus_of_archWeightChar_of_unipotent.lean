@@ -356,6 +356,9 @@ private theorem raise_lower_core (F : GL (Fin 2) ℝ → ℂ) (k₀ : ℤ) (c : 
   · linear_combination ((4 * π * c * y - k₀) * F (splitTorusGL2 (Real.log y / 2))) * Complex.I_mul_I
   · linear_combination (-((4 * π * c * y - k₀) * F (splitTorusGL2 (Real.log y / 2)))) * Complex.I_mul_I
 
+/--
+@isnad1 id=and.3h2v.s13.9b2cb6af0831 from=translated src=- shape=f9180bf0 vocab=3cc57c86
+-/
 theorem solution (F : GL (Fin 2) ℝ → ℂ) (k₀ : ℤ)
     (hF : ContDiffOn ℝ 1
       (fun e : Fin 2 → Fin 2 → ℝ =>

@@ -33,6 +33,9 @@ private theorem frob_shape_of_line {R : Type} [CommRing R] (F : Matrix (Fin 2) (
       _ = 0 := by rw [h01, sub_self]
   exact sub_eq_zero.mp (ht _ this)
 
+/--
+@isnad1 id=ex.4h6v.s10.419f1b2b0ab5 from=translated src=- shape=a9bc3d75 vocab=daf43213
+-/
 theorem solution {R : Type} [CommRing R] [IsDomain R]
     (N₀ P F : Matrix (Fin 2) (Fin 2) R) (hP : IsUnit P.det)
     (t : R) (ht : t ≠ 0) (hN₀P : N₀ * P = P * Matrix.of ![![0, t], ![0, 0]])

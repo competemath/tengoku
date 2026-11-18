@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open Real Complex Filter Topology
 
+/--
+@isnad1 id=ex.3h2v.s9.ddeefe0e3657 from=translated src=- shape=b2c02b58 vocab=e283cdc6
+-/
 theorem LanglandsTunnell.whittaker_ode_exists_sub_log_mul_sqrt_bound_near_zero_of_zero
     (κ : ℝ) (f : ℝ → ℂ)
     (hf : DifferentiableOn ℝ f (Set.Ioi 0)) (hf' : DifferentiableOn ℝ (deriv f) (Set.Ioi 0))

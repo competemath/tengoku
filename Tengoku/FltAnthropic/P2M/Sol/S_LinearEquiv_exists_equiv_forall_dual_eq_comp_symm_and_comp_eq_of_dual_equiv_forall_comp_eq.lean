@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=ex.1h8v.s12.22cb19ea11fe from=translated src=- shape=74dafd2d vocab=3a81a649
+-/
 theorem solution
     (R : Type*) [CommRing R] (k : Type*) [CommRing k] [Algebra R k]
     (Ω : Type*) [AddCommGroup Ω] [Module R Ω] [Module.Finite R Ω] [Module.Free R Ω]

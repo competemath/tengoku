@@ -13,6 +13,9 @@ set_option autoImplicit false
 
 open MeasureTheory Set
 
+/--
+@isnad1 id=eq.3h4v.s9.c54ad4e60e4c from=translated src=- shape=70473e5a vocab=2f475337
+-/
 theorem LanglandsTunnell.setIntegral_setIntegral_cpow_mul_pow_mul_exp_mul_gaussianAverage_eq_Gamma_mul_exp_mul_eval_of_isHomogeneous
     (m : ℕ) (a : ℂ) (ha : (m : ℝ) - 1 < a.re) (v : ℝ) (hv : 0 < v)
     (p : MvPolynomial (Fin 2) ℂ) (hp : p.IsHomogeneous m) :

@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open MeasureTheory Set
 
+/--
+@isnad1 id=ex.5h7v.s10.740f71f4719f from=translated src=- shape=b9efc5d7 vocab=31f154cc
+-/
 theorem LanglandsTunnell.exists_forall_integrable_oneSided_torusPair_integrand_of_torusBound_of_polyBound
     (β : ℂ) (g : ℝ → ℂ) (hg : Measurable g) (Cg σg : ℝ) (hσg : 0 ≤ σg)
     (hgb : ∀ τ : ℝ, τ ≠ 0 → ‖g τ‖ ≤ Cg * (1 + |τ| ^ (-σg)))

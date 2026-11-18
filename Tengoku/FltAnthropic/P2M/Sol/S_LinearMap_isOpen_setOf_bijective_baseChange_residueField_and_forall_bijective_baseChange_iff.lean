@@ -18,6 +18,9 @@ namespace LS1Body
 
 open TensorProduct
 
+/--
+@isnad1 id=iff.0h5v.s9.5e0b523e4936 from=translated src=- shape=886f59af vocab=0c089511
+-/
 theorem surjective_baseChange_iff_subsingleton {A : Type*} [CommRing A] {P Q : Type*} [AddCommGroup P] [Module A P]
     [AddCommGroup Q] [Module A Q] (d : P →ₗ[A] Q) (K : Type*) [CommRing K] [Algebra A K] :
     Function.Surjective (d.baseChange K) ↔ Subsingleton (K ⊗[A] (Q ⧸ LinearMap.range d)) := by
@@ -27,6 +30,9 @@ theorem surjective_baseChange_iff_subsingleton {A : Type*} [CommRing A] {P Q : T
     (LinearMap.lTensor_range K).symm
   rw [this]
 
+/--
+@isnad1 id=iff.0h4v.s8.36094508c20e from=translated src=- shape=530ff203 vocab=8770be13
+-/
 theorem bijective_iff_surjective_and_finrank_eq {k : Type*} [Field k] {V W : Type*} [AddCommGroup V] [Module k V]
     [AddCommGroup W] [Module k W] [Module.Finite k V] [Module.Finite k W] (h : V →ₗ[k] W) :
     Function.Bijective h ↔ Function.Surjective h ∧ Module.finrank k V = Module.finrank k W := by
@@ -34,12 +40,18 @@ theorem bijective_iff_surjective_and_finrank_eq {k : Type*} [Field k] {V W : Typ
   · intro hb; exact ⟨hb.2, (LinearEquiv.ofBijective h hb).finrank_eq⟩
   · rintro ⟨hs, hr⟩; exact ⟨(LinearMap.injective_iff_surjective_of_finrank_eq_finrank hr).mpr hs, hs⟩
 
+/--
+@isnad1 id=iff.0h5v.s9.b0d31b57bbb3 from=translated src=- shape=c1e931da vocab=03424545
+-/
 theorem surjective_baseChange_field_iff {k : Type*} [Field k] (K : Type*) [Field K] [Algebra k K]
     {V W : Type*} [AddCommGroup V] [Module k V] [AddCommGroup W] [Module k W] [Module.Finite k W] (h : V →ₗ[k] W) :
     Function.Surjective (h.baseChange K) ↔ Function.Surjective h := by
   rw [surjective_baseChange_iff_subsingleton, ← Module.finrank_eq_zero_iff_of_free K, Module.finrank_baseChange,
     Module.finrank_eq_zero_iff_of_free k, Submodule.Quotient.subsingleton_iff, LinearMap.range_eq_top]
 
+/--
+@isnad1 id=iff.0h5v.s9.0629208b656b from=translated src=- shape=a0db37dd vocab=8243d3fc
+-/
 theorem bijective_baseChange_field_iff {k : Type*} [Field k] (K : Type*) [Field K] [Algebra k K]
     {V W : Type*} [AddCommGroup V] [Module k V] [AddCommGroup W] [Module k W] [Module.Finite k V] [Module.Finite k W]
     (h : V →ₗ[k] W) :
@@ -47,6 +59,9 @@ theorem bijective_baseChange_field_iff {k : Type*} [Field k] (K : Type*) [Field 
   rw [bijective_iff_surjective_and_finrank_eq, bijective_iff_surjective_and_finrank_eq, surjective_baseChange_field_iff,
     Module.finrank_baseChange, Module.finrank_baseChange]
 
+/--
+@isnad1 id=eq.0h6v.s11.5bc238eea8fa from=translated src=- shape=be65220a vocab=de613c4f
+-/
 theorem baseChange_baseChange_comp {A : Type*} [CommRing A] (S T : Type*) [CommRing S] [CommRing T] [Algebra A S]
     [Algebra A T] [Algebra S T] [IsScalarTower A S T] {V W : Type*} [AddCommGroup V] [Module A V] [AddCommGroup W]
     [Module A W] (g : V →ₗ[A] W) :
@@ -64,6 +79,9 @@ theorem baseChange_baseChange_comp {A : Type*} [CommRing A] (S T : Type*) [CommR
       simp only [LinearMap.comp_apply, LinearEquiv.coe_coe, LinearMap.baseChange_tmul,
         AlgebraTensorModule.cancelBaseChange_tmul, LinearMap.baseChange_tmul]
 
+/--
+@isnad1 id=iff.0h6v.s11.d72679774ca5 from=translated src=- shape=fadec417 vocab=2adfc25c
+-/
 theorem bijective_baseChange_baseChange_iff {A : Type*} [CommRing A] (S T : Type*) [CommRing S] [CommRing T]
     [Algebra A S] [Algebra A T] [Algebra S T] [IsScalarTower A S T] {V W : Type*} [AddCommGroup V] [Module A V]
     [AddCommGroup W] [Module A W] (g : V →ₗ[A] W) :
@@ -74,6 +92,9 @@ theorem bijective_baseChange_baseChange_iff {A : Type*} [CommRing A] (S T : Type
   rw [← (AlgebraTensorModule.cancelBaseChange A S T T W).toEquiv.comp_bijective, LinearEquiv.coe_toEquiv, h,
     ← LinearEquiv.coe_toEquiv, Equiv.bijective_comp]
 
+/--
+@isnad1 id=iff.0h6v.s11.4ee94a86508b from=translated src=- shape=fadec417 vocab=ad1215ab
+-/
 theorem surjective_baseChange_baseChange_iff {A : Type*} [CommRing A] (S T : Type*) [CommRing S] [CommRing T]
     [Algebra A S] [Algebra A T] [Algebra S T] [IsScalarTower A S T] {V W : Type*} [AddCommGroup V] [Module A V]
     [AddCommGroup W] [Module A W] (g : V →ₗ[A] W) :
@@ -84,6 +105,9 @@ theorem surjective_baseChange_baseChange_iff {A : Type*} [CommRing A] (S T : Typ
   rw [← (AlgebraTensorModule.cancelBaseChange A S T T W).toEquiv.comp_surjective, LinearEquiv.coe_toEquiv, h,
     ← LinearEquiv.coe_toEquiv, Equiv.surjective_comp]
 
+/--
+@isnad1 id=injectiv.2h4v.s8.8ec548f73595 from=translated src=- shape=ae73e69c vocab=f750eb5a
+-/
 theorem injective_of_surjective_of_rankAtStalk_eq {B : Type*} [CommRing B] {F N : Type*} [AddCommGroup F] [Module B F]
     [AddCommGroup N] [Module B N] [Module.Finite B F] [Module.Flat B F] [Module.Finite B N] [Module.Projective B N]
     (g : F →ₗ[B] N) (hs : Function.Surjective g) (hrk : Module.rankAtStalk (R := B) F = Module.rankAtStalk N) :
@@ -114,6 +138,9 @@ section Main
 variable {A : Type u} [CommRing A] {M : Type v} [AddCommGroup M] [Module A M] [Module.Finite A M] [Module.Projective A M]
   {m : ℕ} (u : (Fin m → A) →ₗ[A] M)
 
+/--
+@isnad1 id=iff.0h5v.s13.2da0390334da from=translated src=- shape=083343a6 vocab=c30a94c5
+-/
 theorem bijective_fibre_iff (p : PrimeSpectrum A) :
     Function.Bijective (u.baseChange p.asIdeal.ResidueField) ↔
       Function.Surjective (u.baseChange p.asIdeal.ResidueField) ∧ Module.rankAtStalk M p = m := by
@@ -122,6 +149,9 @@ theorem bijective_fibre_iff (p : PrimeSpectrum A) :
     (TensorProduct.piScalarRight A p.asIdeal.ResidueField p.asIdeal.ResidueField (Fin m)).finrank_eq, Module.finrank_fin_fun]
   exact and_congr_right fun _ => eq_comm
 
+/--
+@isnad1 id=isopen.0h4v.s12.8f93dab1b55b from=translated src=- shape=c9f281da vocab=bb8074b6
+-/
 theorem isOpen_setOf_bijective :
     IsOpen {𝔭 : PrimeSpectrum A | Function.Bijective (u.baseChange 𝔭.asIdeal.ResidueField)} := by
   haveI : Module.FinitePresentation A M := Module.finitePresentation_of_projective A M
@@ -135,6 +165,9 @@ theorem isOpen_setOf_bijective :
 
 omit [Module.Projective A M] in
 
+/--
+@isnad1 id=and.0h6v.s15.8616736d80b8 from=translated src=- shape=af8cf5ad vocab=f49c4514
+-/
 theorem fibre_comap_iff (B : Type u) [CommRing B] [Algebra A B] (q : PrimeSpectrum B) :
     (Function.Bijective (u.baseChange q.asIdeal.ResidueField) ↔
         Function.Bijective (u.baseChange (PrimeSpectrum.comap (algebraMap A B) q).asIdeal.ResidueField)) ∧
@@ -157,6 +190,9 @@ end LS1Body
 
 open LS1Body in
 
+/--
+@isnad1 id=and.0h4v.s13.c22ed26d0487 from=translated src=- shape=110d2941 vocab=0f73bcab
+-/
 theorem solution
     {A : Type u} [CommRing A] {M : Type v} [AddCommGroup M] [Module A M] [Module.Finite A M] [Module.Projective A M]
     {m : ℕ} (u : (Fin m → A) →ₗ[A] M) :

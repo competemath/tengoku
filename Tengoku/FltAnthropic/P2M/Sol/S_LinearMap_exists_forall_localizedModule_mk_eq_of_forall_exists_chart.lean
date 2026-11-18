@@ -12,6 +12,9 @@ universe u
 
 namespace GlueStalkAux
 
+/--
+@isnad1 id=eq.1h8v.s10.35c6983141ee from=translated src=- shape=2a8efb18 vocab=3a7ae66b
+-/
 theorem mk_mk_eq_of_forall_prime {B : Type u} [CommRing B] {T : Type u} [AddCommGroup T] [Module B T]
     (f g : B) (t t' : T) (n m : ℕ)
     (h : ∀ y : PrimeSpectrum B, f ∉ y.asIdeal → g ∉ y.asIdeal →
@@ -46,6 +49,9 @@ theorem mk_mk_eq_of_forall_prime {B : Type u} [CommRing B] {T : Type u} [AddComm
   simp only [Submonoid.smul_def, one_smul, smul_smul]
   exact hkill'
 
+/--
+@isnad1 id=ex.0h4v.s7.a5f81bd02007 from=translated src=- shape=88a3fe84 vocab=7849408a
+-/
 theorem exists_rep {B : Type u} [CommRing B] {T : Type u} [AddCommGroup T] [Module B T] (f : B)
     (q : LocalizedModule (Submonoid.powers f) T) : ∃ (t : T) (n : ℕ), q = LocalizedModule.mk t (⟨f ^ n, n, rfl⟩ : Submonoid.powers f) := by
   induction q using LocalizedModule.induction_on with
@@ -56,6 +62,9 @@ theorem exists_rep {B : Type u} [CommRing B] {T : Type u} [AddCommGroup T] [Modu
 end GlueStalkAux
 
 open GlueStalkAux in
+/--
+@isnad1 id=ex.1h4v.s11.237a0d5202fa from=translated src=- shape=0bb9b174 vocab=74d0e614
+-/
 theorem solution
     {B : Type u} [CommRing B] {T T' : Type u} [AddCommGroup T] [Module B T] [AddCommGroup T'] [Module B T']
     (φ : ∀ x : PrimeSpectrum B,

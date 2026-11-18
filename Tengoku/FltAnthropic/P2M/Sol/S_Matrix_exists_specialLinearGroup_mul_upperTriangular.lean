@@ -14,6 +14,9 @@ namespace Matrix
 export _root_.Matrix (SpecialLinearGroup.coe_mul ext row SpecialLinearGroup det_fin_two SpecialLinearGroup.coe_one det_fin_two_of det_mul det of mul_apply)
 open _root_.Matrix
 
+/--
+@isnad1 id=ex.1h1v.s9.c54de201f7f4 from=translated src=- shape=7664fd74 vocab=7be1abb1
+-/
 theorem S06W2.exists_specialLinearGroup_mul_upperTriangular (M : Matrix (Fin 2) (Fin 2) ℤ) (hM : M.det ≠ 0) :
     ∃ (B : SpecialLinearGroup (Fin 2) ℤ) (a b d : ℤ), 0 < a ∧ 0 ≤ b ∧ b < |d| ∧ a * d = M.det ∧
       M = (B : Matrix (Fin 2) (Fin 2) ℤ) * !![a, b; 0, d] := by
@@ -75,5 +78,8 @@ theorem S06W2.exists_specialLinearGroup_mul_upperTriangular (M : Matrix (Fin 2) 
 
 end Matrix
 
+/--
+@isnad1 id=ex.1h1v.s9.c54de201f7f4 from=translated src=- shape=7664fd74 vocab=7be1abb1
+-/
 theorem solution (M : Matrix (Fin 2) (Fin 2) ℤ) (hM : M.det ≠ 0) : ∃ (B : Matrix.SpecialLinearGroup (Fin 2) ℤ) (a b d : ℤ), 0 < a ∧ 0 ≤ b ∧ b < |d| ∧ a * d = M.det ∧ M = (B : Matrix (Fin 2) (Fin 2) ℤ) * !![a, b; 0, d] :=
   Matrix.S06W2.exists_specialLinearGroup_mul_upperTriangular M hM

@@ -7,6 +7,9 @@ namespace P2MW.S_LinearMap_BilinForm_orthogonal_le_sup_of_restrict_nondegenerate
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=le.9h9v.s12.9c4a3c14a229 from=translated src=- shape=c40ddaa5 vocab=b27112a5
+-/
 theorem solution
     {K : Type*} [Field K] {V : Type*} [AddCommGroup V] [Module K V] [FiniteDimensional K V]
     {Γ : Type*} [Group Γ] (ρ : Representation K Γ V) (χ : Γ →* Kˣ)

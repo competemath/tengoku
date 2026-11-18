@@ -24,6 +24,9 @@ variable {r : V → ℂ} (hr : ContDiff ℝ (⊤ : ℕ∞) r) {s : ℝ} (hs : (M
 
 include hb in
 
+/--
+@isnad1 id=ex.1h4v.s9.69024ea62958 from=translated src=- shape=ef31f8be vocab=c6cf8861
+-/
 theorem bound_nonneg (n : ℕ) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ ξ : V, ‖iteratedFDeriv ℝ n r ξ‖ ≤ C * (1 + ‖ξ‖) ^ (-(s + n)) := by
   obtain ⟨C, hC⟩ := hb n
@@ -34,6 +37,9 @@ theorem bound_nonneg (n : ℕ) :
 
 def dirD (r : V → ℂ) (n : ℕ) (a : V) : V → ℂ := fun ξ => iteratedFDeriv ℝ n r ξ (fun _ => a)
 
+/--
+@isnad1 id=le.0h5v.s8.4a126797546d from=translated src=- shape=f8f06155 vocab=6d4a535f
+-/
 theorem norm_dirD_le (n : ℕ) (a : V) (ξ : V) :
     ‖dirD r n a ξ‖ ≤ ‖iteratedFDeriv ℝ n r ξ‖ * ‖a‖ ^ n := by
   unfold dirD
@@ -41,6 +47,9 @@ theorem norm_dirD_le (n : ℕ) (a : V) (ξ : V) :
   simpa [Finset.prod_const] using this
 
 include hr in
+/--
+@isnad1 id=continuo.1h4v.s6.38549ccfb172 from=translated src=- shape=5f7749d0 vocab=14bfb2bb
+-/
 theorem continuous_dirD (n : ℕ) (a : V) : Continuous (dirD r n a) := by
   unfold dirD
   have hc : Continuous (iteratedFDeriv ℝ n r) :=
@@ -49,6 +58,9 @@ theorem continuous_dirD (n : ℕ) (a : V) : Continuous (dirD r n a) := by
 
 include hs hb in
 
+/--
+@isnad1 id=integrab.4h6v.s8.26b628283e78 from=translated src=- shape=3064a977 vocab=33f21823
+-/
 theorem integrable_pow_mul_dirD (n i : ℕ) (hi : i ≤ n) (a : V) (hrm : AEStronglyMeasurable (dirD r n a)) :
     Integrable (fun ξ => ‖ξ‖ ^ i * ‖dirD r n a ξ‖) := by
   obtain ⟨C, hC0, hC⟩ := bound_nonneg hb n
@@ -75,12 +87,18 @@ theorem integrable_pow_mul_dirD (n i : ℕ) (hi : i ≤ n) (a : V) (hrm : AEStro
         ring
 
 include hr hs hb in
+/--
+@isnad1 id=integrab.3h5v.s8.37954a9465c3 from=translated src=- shape=8abff644 vocab=17241e7a
+-/
 theorem integrable_dirD (n : ℕ) (a : V) : Integrable (dirD r n a) := by
   have h := integrable_pow_mul_dirD hs hb n 0 (Nat.zero_le n) a (continuous_dirD hr n a).aestronglyMeasurable
   simp only [pow_zero, one_mul] at h
   exact (integrable_norm_iff (continuous_dirD hr n a).aestronglyMeasurable).mp h
 
 include hr hs hb in
+/--
+@isnad1 id=integrab.3h3v.s8.7503479fe73e from=translated src=- shape=c5de71f9 vocab=fbb90c37
+-/
 theorem integrable_r : Integrable r := by
   have h := integrable_dirD hr hs hb 0 0
   have : dirD r 0 (0 : V) = r := by
@@ -88,6 +106,9 @@ theorem integrable_r : Integrable r := by
   rwa [this] at h
 
 include hr hs hb in
+/--
+@isnad1 id=integrab.3h4v.s9.28716f3d2b55 from=translated src=- shape=845d42e1 vocab=fbb90c37
+-/
 theorem integrable_iteratedFDeriv (n : ℕ) : Integrable (iteratedFDeriv ℝ n r) := by
   obtain ⟨C, hC0, hC⟩ := bound_nonneg hb n
   have hexp : (Module.finrank ℝ V : ℝ) < s + n := by
@@ -100,6 +121,9 @@ theorem integrable_iteratedFDeriv (n : ℕ) : Integrable (iteratedFDeriv ℝ n r
 
 include hr hs hb in
 
+/--
+@isnad1 id=eq.3h6v.s8.81b8fcb971a4 from=translated src=- shape=c2a63380 vocab=5da2eabe
+-/
 theorem fourier_dirD (n : ℕ) (a x : V) :
     𝓕 (dirD r n a) x = (2 * π * Complex.I * ((⟪x, a⟫_ℝ : ℝ) : ℂ)) ^ n * 𝓕 r x := by
   have hF := Real.fourier_iteratedFDeriv (N := (⊤ : ℕ∞)) (f := r) hr
@@ -118,6 +142,9 @@ theorem fourier_dirD (n : ℕ) (a x : V) :
   ring
 
 include hr hs hb in
+/--
+@isnad1 id=contdiff.3h5v.s8.20baef1dd032 from=translated src=- shape=81b73f55 vocab=2a2ed19a
+-/
 theorem contDiff_fourier_dirD (n : ℕ) (a : V) : ContDiff ℝ (n : ℕ∞) (𝓕 (dirD r n a)) := by
   refine Real.contDiff_fourier (N := (n : ℕ∞)) fun i hi => ?_
   exact integrable_pow_mul_dirD hs hb n i (by exact_mod_cast hi) a
@@ -125,6 +152,9 @@ theorem contDiff_fourier_dirD (n : ℕ) (a : V) : ContDiff ℝ (n : ℕ∞) (�
 
 include hr hs hb in
 
+/--
+@isnad1 id=contdiff.3h5v.s8.273661ef5f40 from=translated src=- shape=b554fbdb vocab=a7ac411a
+-/
 theorem contDiffOn_slice (n : ℕ) (a : V) :
     ContDiffOn ℝ (n : ℕ∞) (𝓕 r) {x : V | ⟪x, a⟫_ℝ ≠ 0} := by
   set U : Set V := {x : V | ⟪x, a⟫_ℝ ≠ 0}
@@ -145,6 +175,9 @@ theorem contDiffOn_slice (n : ℕ) (a : V) :
   rw [fourier_dirD hr hs hb n a x, ← mul_assoc, inv_mul_cancel₀ (hφne x hx), one_mul]
 
 include hr hs hb in
+/--
+@isnad1 id=and.3h3v.s8.2e1fdadc6ebe from=translated src=- shape=b7053eaf vocab=8a8b4baa
+-/
 theorem main : Continuous (𝓕 r) ∧ ContDiffOn ℝ (⊤ : ℕ∞) (𝓕 r) {0}ᶜ := by
   refine ⟨VectorFourier.fourierIntegral_continuous Real.continuous_fourierChar (innerSL ℝ).continuous₂
     (integrable_r hr hs hb), ?_⟩
@@ -171,6 +204,9 @@ end R4SymFourier
 end
 
 open MeasureTheory FourierTransform in
+/--
+@isnad1 id=and.3h3v.s8.2e1fdadc6ebe from=translated src=- shape=b7053eaf vocab=8a8b4baa
+-/
 theorem solution
     {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℝ V] [FiniteDimensional ℝ V]
     [MeasurableSpace V] [BorelSpace V]

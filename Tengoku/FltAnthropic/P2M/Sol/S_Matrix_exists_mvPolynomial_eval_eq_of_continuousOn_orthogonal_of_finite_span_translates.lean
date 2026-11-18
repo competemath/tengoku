@@ -15,6 +15,9 @@ variable (n : ℕ)
 
 abbrev K : Type := ↥(Matrix.orthogonalGroup (Fin n) ℝ)
 
+/--
+@isnad1 id=le.0h4v.s7.134d957c0266 from=translated src=- shape=01a3e834 vocab=4922cfa0
+-/
 theorem entry_abs_le_one (o : K n) (i j : Fin n) : |(o : Matrix (Fin n) (Fin n) ℝ) i j| ≤ 1 := by
   have h := o.2
   rw [Matrix.mem_orthogonalGroup_iff'] at h
@@ -28,6 +31,9 @@ theorem entry_abs_le_one (o : K n) (i j : Fin n) : |(o : Matrix (Fin n) (Fin n) 
       (fun a _ => mul_self_nonneg _) (Finset.mem_univ i)
   exact abs_le_one_iff_mul_self_le_one.2 hle
 
+/--
+@isnad1 id=iscompac.0h1v.s6.7bd46df6ad16 from=translated src=- shape=c5dcff10 vocab=87ceee55
+-/
 theorem isCompact_carrier : IsCompact (Matrix.orthogonalGroup (Fin n) ℝ : Set (Matrix (Fin n) (Fin n) ℝ)) := by
   have hbox : IsCompact {A : Matrix (Fin n) (Fin n) ℝ | ∀ i j, A i j ∈ Set.Icc (-1 : ℝ) 1} := by
     have : {A : Matrix (Fin n) (Fin n) ℝ | ∀ i j, A i j ∈ Set.Icc (-1 : ℝ) 1} =
@@ -70,8 +76,14 @@ scoped instance : IsFiniteMeasureOnCompacts (μK : Measure (K n)) := by unfold �
 
 noncomputable def rt (f : C(K n, ℂ)) (r : K n) : C(K n, ℂ) := f.comp ⟨fun o => o * r, continuous_mul_const r⟩
 
+/--
+@isnad1 id=eq.0h4v.s9.c6eecd28bd93 from=translated src=- shape=e23c18e3 vocab=7d3b24eb
+-/
 @[scoped simp] theorem rt_apply (f : C(K n, ℂ)) (r o : K n) : rt f r o = f (o * r) := rfl
 
+/--
+@isnad1 id=continuo.0h2v.s9.9aa02ee369bd from=translated src=- shape=856a6a93 vocab=6ca4b367
+-/
 theorem continuous_rt (f : C(K n, ℂ)) : Continuous (rt f) := by
   have h : Continuous (fun p : K n × K n => f (p.2 * p.1)) := f.continuous.comp (continuous_snd.mul continuous_fst)
   let F : C(K n × K n, ℂ) := ⟨fun p => f (p.2 * p.1), h⟩
@@ -82,8 +94,14 @@ theorem continuous_rt (f : C(K n, ℂ)) : Continuous (rt f) := by
 
 noncomputable def W (f : C(K n, ℂ)) : Submodule ℂ C(K n, ℂ) := Submodule.span ℂ (Set.range (rt f))
 
+/--
+@isnad1 id=mem.0h3v.s11.a6f8fd606f5c from=translated src=- shape=75e5174f vocab=5fe464da
+-/
 theorem rt_mem_W (f : C(K n, ℂ)) (r : K n) : rt f r ∈ W f := Submodule.subset_span ⟨r, rfl⟩
 
+/--
+@isnad1 id=finite.1h4v.s11.1850826e78ed from=translated src=- shape=8c63767e vocab=395ef400
+-/
 theorem finite_W (f : C(K n, ℂ)) (m : ℕ) (g : Fin m → K n → ℂ)
     (hg : ∀ r : K n, ∃ a : Fin m → ℂ, ∀ o : K n, f (o * r) = ∑ l, a l * g l o) :
     Module.Finite ℂ (W f) := by
@@ -126,12 +144,18 @@ open scoped _root_.ContinuousMap _root_.MeasureTheory.ContinuousMap
 
 variable {n : ℕ}
 
+/--
+@isnad1 id=integrab.1h2v.s7.ad3a1c262291 from=translated src=- shape=d0e76d51 vocab=55fede2d
+-/
 theorem integrable_of_continuous (g : K n → ℂ) (hg : Continuous g) : Integrable g μK := by
   have := hg.continuousOn.integrableOn_compact (μ := μK) isCompact_univ
   simpa [integrableOn_univ] using this
 
 noncomputable def conv (f φ : C(K n, ℂ)) (o₀ : K n) : ℂ := ∫ o, f (o₀ * o) * φ o ∂μK
 
+/--
+@isnad1 id=ex.0h3v.s12.e3fadb0b2de3 from=translated src=- shape=01e8dac8 vocab=48568fb6
+-/
 theorem exists_mem_W_conv (f φ : C(K n, ℂ)) [Module.Finite ℂ (W f)] :
     ∃ w ∈ W f, ∀ o₀, conv f φ o₀ = w o₀ := by
   let b := Module.finBasis ℂ (W f)
@@ -174,6 +198,9 @@ scoped instance : SecondCountableTopology (Matrix (Fin n) (Fin n) ℝ) :=
 
 def cE (o : K n) (ij : Fin n × Fin n) : ℂ := (((o : Matrix (Fin n) (Fin n) ℝ) ij.1 ij.2 : ℝ) : ℂ)
 
+/--
+@isnad1 id=continuo.0h2v.s7.313a7ea5f0f9 from=translated src=- shape=2f62312d vocab=7df7564f
+-/
 theorem continuous_cE (ij : Fin n × Fin n) : Continuous fun o : K n => cE o ij := by
   unfold cE
   have h : Continuous fun o : K n => (o : Matrix (Fin n) (Fin n) ℝ) ij.1 ij.2 :=
@@ -182,13 +209,22 @@ theorem continuous_cE (ij : Fin n × Fin n) : Continuous fun o : K n => cE o ij 
 
 noncomputable def pev (P : MvPolynomial (Fin n × Fin n) ℂ) (o : K n) : ℂ := MvPolynomial.eval (cE o) P
 
+/--
+@isnad1 id=continuo.0h2v.s7.b05cc88d5244 from=translated src=- shape=001e8295 vocab=b8f216d5
+-/
 theorem continuous_pev (P : MvPolynomial (Fin n × Fin n) ℂ) : Continuous (pev (n := n) P) :=
   (MvPolynomial.continuous_eval P).comp (continuous_pi fun ij => continuous_cE ij)
 
 noncomputable def pevC (P : MvPolynomial (Fin n × Fin n) ℂ) : C(K n, ℂ) := ⟨pev P, continuous_pev P⟩
 
+/--
+@isnad1 id=eq.0h3v.s8.ef3e2ebc1be2 from=translated src=- shape=c05d0281 vocab=62d9715f
+-/
 @[scoped simp] theorem pevC_apply (P : MvPolynomial (Fin n × Fin n) ℂ) (o : K n) : pevC P o = pev P o := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.010f3d81aca7 from=translated src=- shape=64ad74c7 vocab=61707656
+-/
 theorem cE_inv_mul (o₀ x : K n) (i j : Fin n) :
     cE (o₀⁻¹ * x) (i, j) = ∑ a, cE o₀ (a, i) * cE x (a, j) := by
   unfold cE
@@ -199,6 +235,9 @@ theorem cE_inv_mul (o₀ x : K n) (i j : Fin n) :
   refine Finset.sum_congr rfl fun a _ => ?_
   rw [Matrix.star_apply, star_trivial]
 
+/--
+@isnad1 id=ex.0h2v.s8.bc4dcea53b60 from=translated src=- shape=a31c118e vocab=4f554df5
+-/
 theorem sep (P : MvPolynomial (Fin n × Fin n) ℂ) :
     ∃ (ι : Type) (_ : Fintype ι) (u : ι → K n → ℂ) (v : ι → MvPolynomial (Fin n × Fin n) ℂ),
       (∀ i, Continuous (u i)) ∧ ∀ x o₀ : K n, pev P (o₀⁻¹ * x) = ∑ i, u i x * pev (v i) o₀ := by
@@ -227,6 +266,9 @@ theorem sep (P : MvPolynomial (Fin n × Fin n) ℂ) :
     simp only [pev, map_mul, MvPolynomial.eval_X]
     ring
 
+/--
+@isnad1 id=ex.0h3v.s7.dfac917a1f0d from=translated src=- shape=d5c56578 vocab=b831f535
+-/
 theorem exists_pev_conv (f : C(K n, ℂ)) (P : MvPolynomial (Fin n × Fin n) ℂ) :
     ∃ Q : MvPolynomial (Fin n × Fin n) ℂ, ∀ o₀, conv f (pevC P) o₀ = pev Q o₀ := by
   obtain ⟨ι, _, u, v, hu, h⟩ := sep P
@@ -253,14 +295,23 @@ open scoped _root_.ContinuousMap _root_.MeasureTheory.ContinuousMap
 
 variable {n : ℕ}
 
+/--
+@isnad1 id=integrab.1h2v.s7.17f063814469 from=translated src=- shape=d0e76d51 vocab=71e23531
+-/
 theorem integrableR_of_continuous (g : K n → ℝ) (hg : Continuous g) : Integrable g μK := by
   have := hg.continuousOn.integrableOn_compact (μ := μK) isCompact_univ
   simpa [integrableOn_univ] using this
 
 noncomputable def ofRealC (g : C(K n, ℝ)) : C(K n, ℂ) := ⟨fun o => (g o : ℂ), Complex.continuous_ofReal.comp g.continuous⟩
 
+/--
+@isnad1 id=eq.0h3v.s9.88d190c3f518 from=translated src=- shape=a1c44815 vocab=f495570c
+-/
 @[scoped simp] theorem ofRealC_apply (g : C(K n, ℝ)) (o : K n) : ofRealC g o = (g o : ℂ) := rfl
 
+/--
+@isnad1 id=ex.1h3v.s9.92b1e05c81b4 from=translated src=- shape=e5f5d3b2 vocab=7b1e998d
+-/
 theorem exists_conv_sub_le (f : C(K n, ℂ)) (ε : ℝ) (hε : 0 < ε) :
     ∃ g : C(K n, ℝ), ∀ o₀, ‖conv f (ofRealC g) o₀ - f o₀‖ ≤ ε := by
 
@@ -331,6 +382,9 @@ def coordR (ij : Fin n × Fin n) : C(K n, ℝ) :=
 
 noncomputable def polyR : Subalgebra ℝ C(K n, ℝ) := (MvPolynomial.aeval (R := ℝ) (coordR (n := n))).range
 
+/--
+@isnad1 id=eq.0h3v.s11.b6bfad0a2cf8 from=translated src=- shape=232f7367 vocab=821fa469
+-/
 theorem aeval_coordR_apply (P : MvPolynomial (Fin n × Fin n) ℝ) (o : K n) :
     (MvPolynomial.aeval (R := ℝ) (coordR (n := n)) P) o =
       MvPolynomial.eval (fun ij => (o : Matrix (Fin n) (Fin n) ℝ) ij.1 ij.2) P := by
@@ -341,6 +395,9 @@ theorem aeval_coordR_apply (P : MvPolynomial (Fin n × Fin n) ℝ) (o : K n) :
     simp only [map_mul, MvPolynomial.aeval_X, ContinuousMap.mul_apply, hp, MvPolynomial.eval_X]
     rfl
 
+/--
+@isnad1 id=separate.0h1v.s7.12092ee2a919 from=translated src=- shape=1e4fa7bb vocab=88579cdb
+-/
 theorem polyR_separatesPoints : (polyR (n := n)).SeparatesPoints := by
   intro x y hxy
   have : ∃ ij : Fin n × Fin n, (x : Matrix (Fin n) (Fin n) ℝ) ij.1 ij.2 ≠ (y : Matrix (Fin n) (Fin n) ℝ) ij.1 ij.2 := by
@@ -350,6 +407,9 @@ theorem polyR_separatesPoints : (polyR (n := n)).SeparatesPoints := by
   obtain ⟨ij, hij⟩ := this
   refine ⟨coordR ij, ⟨coordR ij, ⟨MvPolynomial.X ij, MvPolynomial.aeval_X _ _⟩, rfl⟩, hij⟩
 
+/--
+@isnad1 id=ex.1h3v.s9.1d83029ecf0c from=translated src=- shape=e754e88c vocab=869bc198
+-/
 theorem exists_poly_close (g : C(K n, ℝ)) (η : ℝ) (hη : 0 < η) :
     ∃ P : MvPolynomial (Fin n × Fin n) ℝ, ∀ o,
       |g o - MvPolynomial.eval (fun ij => (o : Matrix (Fin n) (Fin n) ℝ) ij.1 ij.2) P| ≤ η := by
@@ -364,6 +424,9 @@ theorem exists_poly_close (g : C(K n, ℝ)) (η : ℝ) (hη : 0 < η) :
   rw [dist_eq_norm] at hdist
   exact h1.trans hdist.le
 
+/--
+@isnad1 id=le.1h6v.s10.f96a7c3c273f from=translated src=- shape=12dffa5e vocab=a646b21f
+-/
 theorem norm_conv_sub_conv_le (f φ ψ : C(K n, ℂ)) (η : ℝ) (h : ∀ o, ‖φ o - ψ o‖ ≤ η) (o₀ : K n) :
     ‖conv f φ o₀ - conv f ψ o₀‖ ≤ ‖f‖ * η * (μK : Measure (K n)).real Set.univ := by
   have hint : ∀ χ : C(K n, ℂ), Integrable (fun o => f (o₀ * o) * χ o) μK := fun χ =>
@@ -385,8 +448,14 @@ noncomputable def Wp (f : C(K n, ℂ)) : Submodule ℂ C(K n, ℂ) where
     rintro c a ⟨ha, Qa, hQa⟩
     exact ⟨(W f).smul_mem c ha, MvPolynomial.C c * Qa, fun o => by simp [hQa o, pev]⟩
 
+/--
+@isnad1 id=le.0h2v.s11.69a5284b8b5e from=translated src=- shape=68677619 vocab=49a02d55
+-/
 theorem Wp_le (f : C(K n, ℂ)) : Wp f ≤ W f := fun _ hw => hw.1
 
+/--
+@isnad1 id=eq.0h3v.s8.b393f78d628d from=translated src=- shape=07fcbaa6 vocab=96805437
+-/
 theorem eval₂_ofReal_cE (o : K n) (Pr : MvPolynomial (Fin n × Fin n) ℝ) :
     MvPolynomial.eval₂ (algebraMap ℝ ℂ) (cE o) Pr =
       ((MvPolynomial.eval (fun ij => (o : Matrix (Fin n) (Fin n) ℝ) ij.1 ij.2) Pr : ℝ) : ℂ) := by
@@ -397,6 +466,9 @@ theorem eval₂_ofReal_cE (o : K n) (Pr : MvPolynomial (Fin n × Fin n) ℝ) :
     rw [MvPolynomial.eval₂_mul, MvPolynomial.eval₂_X, hp, map_mul, MvPolynomial.eval_X, Complex.ofReal_mul]
     rfl
 
+/--
+@isnad1 id=ex.0h2v.s11.42c453b9372e from=translated src=- shape=4837b8af vocab=2e250230
+-/
 theorem main_K (f : C(K n, ℂ)) [Module.Finite ℂ (W f)] :
     ∃ Q : MvPolynomial (Fin n × Fin n) ℂ, ∀ o, f o = pev Q o := by
   haveI : Module.Finite ℂ (Wp f) := Module.Finite.of_injective (Submodule.inclusion (Wp_le f))
@@ -457,6 +529,9 @@ namespace KFinPolyAux
 
 open scoped _root_.ContinuousMap _root_.MeasureTheory.ContinuousMap
 
+/--
+@isnad1 id=iff.0h2v.s8.792aa6334551 from=translated src=- shape=7d721f75 vocab=3457a255
+-/
 theorem mem_orthogonalGroup_of_iff {n : ℕ} (o : Fin n → Fin n → ℝ) :
     Matrix.of o ∈ Matrix.orthogonalGroup (Fin n) ℝ ↔ ∀ i j : Fin n, ∑ a : Fin n, o a i * o a j = if i = j then 1 else 0 := by
   rw [Matrix.mem_orthogonalGroup_iff']
@@ -469,6 +544,9 @@ end KFinPolyAux
 open scoped _root_.P2MW.S_Matrix_exists_mvPolynomial_eval_eq_of_continuousOn_orthogonal_of_finite_span_translates.KFinPolyAux
 
 open KFinPolyAux in
+/--
+@isnad1 id=ex.2h2v.s9.c2d730a682c8 from=translated src=- shape=608db1a4 vocab=804f07c1
+-/
 theorem solution
     (n : ℕ) (f : (Fin n → Fin n → ℝ) → ℂ)
     (hf : ContinuousOn f {o : Fin n → Fin n → ℝ | ∀ i j : Fin n, ∑ a : Fin n, o a i * o a j = if i = j then 1 else 0})

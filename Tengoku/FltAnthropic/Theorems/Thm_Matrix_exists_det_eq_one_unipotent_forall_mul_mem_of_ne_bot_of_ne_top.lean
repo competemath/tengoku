@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Matrix_exists_det_eq_one_unipotent_forall_
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.4h3v.s11.0217dc75e1d6 from=translated src=- shape=a0f65b3c vocab=cd6574dd
+-/
 theorem Matrix.exists_det_eq_one_unipotent_forall_mul_mem_of_ne_bot_of_ne_top
     {F : Type*} [Field F] (I I' : Submodule (Matrix (Fin 2) (Fin 2) F) (Matrix (Fin 2) (Fin 2) F))
     (hI0 : I ≠ ⊥) (hI1 : I ≠ ⊤) (hI'0 : I' ≠ ⊥) (hI'1 : I' ≠ ⊤) :

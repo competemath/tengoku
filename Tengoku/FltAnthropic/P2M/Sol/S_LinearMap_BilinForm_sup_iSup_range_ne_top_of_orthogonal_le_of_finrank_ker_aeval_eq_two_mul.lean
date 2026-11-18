@@ -11,6 +11,9 @@ open Polynomial Module
 
 namespace OrdPinch
 
+/--
+@isnad1 id=eq.4h8v.s11.dd237d1d8e28 from=translated src=- shape=aa81981f vocab=87e49503
+-/
 theorem orth_of_coprime {K V : Type*} [Field K] [AddCommGroup V] [Module K V]
     (B : LinearMap.BilinForm K V) (T : Module.End K V)
     (hadjT : ∀ (P : K[X]) (v w : V), B (aeval T P v) w = B v (aeval T P w))
@@ -28,6 +31,9 @@ theorem orth_of_coprime {K V : Type*} [Field K] [AddCommGroup V] [Module K V]
   rw [hb', hadjT, aeval_mul, Module.End.mul_apply, hw, map_zero, map_zero]
 
 set_option maxHeartbeats 6400000 in
+/--
+@isnad1 id=ne.13h11v.s12.63b271d62667 from=translated src=- shape=fbd0cff5 vocab=72fdf6dc
+-/
 theorem main
     {K V R : Type*} [Field K] [AddCommGroup V] [Module K V] [FiniteDimensional K V]
     [CommRing R] [Algebra K R] (φ : R →ₐ[K] Module.End K V)
@@ -292,6 +298,9 @@ theorem main
 
 end OrdPinch
 
+/--
+@isnad1 id=ne.13h11v.s12.63b271d62667 from=translated src=- shape=fbd0cff5 vocab=72fdf6dc
+-/
 theorem solution
     {K V R : Type*} [Field K] [AddCommGroup V] [Module K V] [FiniteDimensional K V]
     [CommRing R] [Algebra K R] (φ : R →ₐ[K] Module.End K V)

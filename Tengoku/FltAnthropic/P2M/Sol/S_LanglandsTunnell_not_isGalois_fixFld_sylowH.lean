@@ -51,6 +51,9 @@ private theorem not_normal_sylowH {L : Type} [Field L] [NumberField L]
 end LanglandsTunnell.CubicResolventNotGalois
 
 open _root_.LanglandsTunnell _root_.P2MW.S_LanglandsTunnell_not_isGalois_fixFld_sylowH.LanglandsTunnell in
+/--
+@isnad1 id=not.0h2v.s9.78990400f336 from=translated src=- shape=48f66897 vocab=a4f4d726
+-/
 theorem solution {L : Type} [Field L] [NumberField L] [IsGalois ℚ L]
     (e : (L ≃ₐ[ℚ] L) ≃* Matrix.GeneralLinearGroup (Fin 2) (ZMod 3)) :
     ¬ IsGalois ℚ ↥(fixFld (sylowH e)) := by

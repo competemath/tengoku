@@ -15,6 +15,9 @@ open MeasureTheory Set
 
 namespace DA2
 
+/--
+@isnad1 id=eq.2h2v.s7.6226a158f209 from=translated src=- shape=20ddf7a5 vocab=7db630e5
+-/
 theorem integral_cpow_mul_exp_neg_mul_sq {w : ℂ} (hw : -1 < w.re) {b : ℝ} (hb : 0 < b) :
     ∫ a in Ioi (0 : ℝ), ((a : ℝ) : ℂ) ^ w * (Real.exp (-(b * a ^ 2)) : ℂ) =
       (1 / 2 : ℂ) * ((1 / (b : ℂ)) ^ ((w + 1) / 2) * Complex.Gamma ((w + 1) / 2)) := by
@@ -43,6 +46,9 @@ theorem integral_cpow_mul_exp_neg_mul_sq {w : ℂ} (hw : -1 < w.re) {b : ℝ} (h
 
 end DA2
 
+/--
+@isnad1 id=eq.3h2v.s9.120cdc5454c7 from=translated src=- shape=a39baae6 vocab=7b327f2d
+-/
 theorem solution
     (w : ℂ) (hw : -1 < w.re) (K : ℝ → ℝ → ℝ → ℂ)
     (hK : Measurable fun p : ℝ × ℝ × ℝ => K p.1 p.2.1 p.2.2)

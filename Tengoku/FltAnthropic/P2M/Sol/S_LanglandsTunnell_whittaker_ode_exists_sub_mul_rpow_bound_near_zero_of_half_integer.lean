@@ -16,28 +16,52 @@ namespace FrobChi
 
 def P (r : ℝ) (y : ℝ) : ℂ := ((y ^ r : ℝ) : ℂ)
 
+/--
+@isnad1 id=eq.1h3v.s5.0f8463dd68c3 from=translated src=- shape=c63d7f6f vocab=56f5df3a
+-/
 theorem P_mul {r s : ℝ} {y : ℝ} (hy : 0 < y) : P r y * P s y = P (r + s) y := by
   unfold P; rw [← ofReal_mul, ← Real.rpow_add hy]
 
+/--
+@isnad1 id=eq.0h1v.s4.214183d280f0 from=translated src=- shape=d7485c18 vocab=7c69f8bf
+-/
 theorem P_zero (y : ℝ) : P 0 y = 1 := by unfold P; rw [Real.rpow_zero]; simp
 
+/--
+@isnad1 id=eq.0h1v.s3.863faa8d4918 from=translated src=- shape=081bb367 vocab=e3a2bf97
+-/
 theorem P_one (y : ℝ) : P 1 y = (y : ℂ) := by unfold P; rw [Real.rpow_one]
 
+/--
+@isnad1 id=eq.1h2v.s5.895382762908 from=translated src=- shape=fd84b5cb vocab=4ca66a33
+-/
 theorem norm_P {r : ℝ} {y : ℝ} (hy : 0 < y) : ‖P r y‖ = y ^ r := by
   unfold P; rw [Complex.norm_real, Real.norm_eq_abs, abs_of_pos (Real.rpow_pos_of_pos hy r)]
 
+/--
+@isnad1 id=eq.2h3v.s5.67d2cfeb70a2 from=translated src=- shape=ea432b4a vocab=25c860a2
+-/
 theorem P_eq_cpow {r : ℝ} {y : ℝ} (hy : 0 < y) (c : ℂ) (hc : c = (r : ℂ)) : (y : ℂ) ^ c = P r y := by
   unfold P; rw [hc, Complex.ofReal_cpow hy.le]
 
+/--
+@isnad1 id=hasderiv.1h2v.s6.45d43377b2dd from=translated src=- shape=d4ef834f vocab=48d39349
+-/
 theorem hasDerivAt_P (r : ℝ) {y : ℝ} (hy : 0 < y) : HasDerivAt (P r) ((r : ℂ) * P (r - 1) y) y := by
   unfold P
   have h := (Real.hasDerivAt_rpow_const (x := y) (p := r) (Or.inl hy.ne')).ofReal_comp
   simpa using h
 
+/--
+@isnad1 id=continuo.0h1v.s5.f563ba7b69bc from=translated src=- shape=d8dfec1c vocab=275f605c
+-/
 theorem continuousOn_P (r : ℝ) : ContinuousOn (P r) (Set.Ioi 0) := by
   intro y hy
   exact (hasDerivAt_P r hy).continuousAt.continuousWithinAt
 
+/--
+@isnad1 id=le.6h5v.s8.0e7b5267f433 from=translated src=- shape=82b17150 vocab=5091c855
+-/
 theorem bound_of_deriv_large {φ φ' : ℝ → ℂ} {M r : ℝ} (hr : 1 < r) (hM : 0 ≤ M)
     (hφ : ∀ t ∈ Set.Ioc (0 : ℝ) 1, HasDerivAt φ (φ' t) t) (hφ' : ContinuousOn φ' (Set.Ioc 0 1))
     (hb : ∀ t ∈ Set.Ioc (0 : ℝ) 1, ‖φ' t‖ ≤ M * t ^ (-r)) :
@@ -77,6 +101,9 @@ theorem bound_of_deriv_large {φ φ' : ℝ → ℂ} {M r : ℝ} (hr : 1 < r) (hM
         linarith
     _ = (‖φ 1‖ + M / (r - 1)) * y ^ (1 - r) := by ring
 
+/--
+@isnad1 id=tendsto.3h4v.s7.3a79b0f528e3 from=translated src=- shape=7ff5a166 vocab=8936525f
+-/
 theorem tendsto_of_rate {ψ : ℝ → ℂ} {L : ℂ} {K e : ℝ} (he : 0 < e) (hK : 0 ≤ K)
     (h : ∀ y ∈ Set.Ioc (0 : ℝ) 1, ‖ψ y - L‖ ≤ K * y ^ e) : Tendsto ψ (𝓝[>] 0) (𝓝 L) := by
   rw [Metric.tendsto_nhdsWithin_nhds]
@@ -101,6 +128,9 @@ theorem tendsto_of_rate {ψ : ℝ → ℂ} {L : ℂ} {K e : ℝ} (he : 0 < e) (h
     _ ≤ (K + 1) * δ ^ e := mul_le_mul_of_nonneg_left (Real.rpow_le_rpow hy0.le hyδ.le he.le) (by positivity)
     _ < ε := hδε
 
+/--
+@isnad1 id=ex.5h4v.s8.614ae1dab090 from=translated src=- shape=77f1b753 vocab=99bbf009
+-/
 theorem limit_of_deriv_small {φ φ' : ℝ → ℂ} {M r : ℝ} (hr : r < 1) (hM : 0 ≤ M)
     (hφ : ∀ t ∈ Set.Ioc (0 : ℝ) 1, HasDerivAt φ (φ' t) t) (hφ' : ContinuousOn φ' (Set.Ioc 0 1))
     (hb : ∀ t ∈ Set.Ioc (0 : ℝ) 1, ‖φ' t‖ ≤ M * t ^ (-r)) :
@@ -158,9 +188,15 @@ def GF (α β : ℝ) (f : ℝ → ℂ) (y : ℝ) : ℂ := P (-α) y * gF β f y
 
 def FF (β : ℝ) (f : ℝ → ℂ) (y : ℝ) : ℂ := P (-β) y * f y
 
+/--
+@isnad1 id=hasderiv.0h1v.s6.b7918fe4771e from=translated src=- shape=93588a94 vocab=1a38dff6
+-/
 theorem hasDerivAt_ofReal' (y : ℝ) : HasDerivAt (fun t : ℝ => (t : ℂ)) 1 y := by
   simpa using (hasDerivAt_id y).ofReal_comp
 
+/--
+@isnad1 id=hasderiv.5h5v.s9.19bf07e1c8ab from=translated src=- shape=a6586992 vocab=139ebb9d
+-/
 theorem hasDerivAt_GF (α β : ℝ) (f : ℝ → ℂ) (φc : ℝ → ℂ) (hab : α + β = 1) {y : ℝ} (hy : 0 < y)
     (hdf : HasDerivAt f (deriv f y) y) (hddf : HasDerivAt (deriv f) (deriv (deriv f) y) y)
     (hode : (y : ℂ) ^ 2 * deriv (deriv f) y = -(((α : ℂ) * (β : ℂ)) * f y) - φc y * f y) :
@@ -179,6 +215,9 @@ theorem hasDerivAt_GF (α β : ℝ) (f : ℝ → ℂ) (φc : ℝ → ℂ) (hab :
   push_cast
   linear_combination (P (-α - 1) y) * hode - (P (-α - 1) y * (y : ℂ) * deriv f y) * habC
 
+/--
+@isnad1 id=hasderiv.2h4v.s7.a9c19e2d05da from=translated src=- shape=fb33a663 vocab=0a23953a
+-/
 theorem hasDerivAt_FF (α β : ℝ) (f : ℝ → ℂ) {y : ℝ} (hy : 0 < y) (hdf : HasDerivAt f (deriv f y) y) :
     HasDerivAt (FF β f) (P (α - β - 1) y * GF α β f y) y := by
   have hP := hasDerivAt_P (-β) hy
@@ -193,6 +232,9 @@ theorem hasDerivAt_FF (α β : ℝ) (f : ℝ → ℂ) {y : ℝ} (hy : 0 < y) (hd
   push_cast
   ring
 
+/--
+@isnad1 id=le.8h7v.s8.7bff935e5970 from=translated src=- shape=7e4156dd vocab=76efb47f
+-/
 theorem F_bound (n : ℕ) {G F F' : ℝ → ℂ} (hFd : ∀ t ∈ Set.Ioc (0 : ℝ) 1, HasDerivAt F (F' t) t)
     (hF'c : ContinuousOn F' (Set.Ioc 0 1))
     (hF' : ∀ t ∈ Set.Ioc (0 : ℝ) 1, ‖F' t‖ = t ^ ((n : ℝ) - 1) * ‖G t‖) (hF0 : Tendsto F (𝓝[>] 0) (𝓝 0))
@@ -214,6 +256,9 @@ theorem F_bound (n : ℕ) {G F F' : ℝ → ℂ} (hFd : ∀ t ∈ Set.Ioc (0 : �
   · ring
   · congr 1; ring
 
+/--
+@isnad1 id=ex.12h8v.s9.012b2ef0687e from=translated src=- shape=9d7f7203 vocab=b849b331
+-/
 theorem round (n : ℕ) {G G' F F' : ℝ → ℂ} {A : ℝ} (hA : 0 ≤ A)
     (hGd : ∀ t ∈ Set.Ioc (0 : ℝ) 1, HasDerivAt G (G' t) t) (hG'c : ContinuousOn G' (Set.Ioc 0 1))
     (hFd : ∀ t ∈ Set.Ioc (0 : ℝ) 1, HasDerivAt F (F' t) t) (hF'c : ContinuousOn F' (Set.Ioc 0 1))
@@ -240,6 +285,9 @@ theorem round (n : ℕ) {G G' F F' : ℝ → ℂ} {A : ℝ} (hA : 0 ≤ A)
   have := hres t ht
   rwa [show (1 - r : ℝ) = -(r - 1) by ring] at this
 
+/--
+@isnad1 id=ex.11h7v.s9.26638d8969e7 from=translated src=- shape=bb820deb vocab=41ec2e25
+-/
 theorem final_round (n : ℕ) (hn : 1 ≤ n) {G G' F F' : ℝ → ℂ} {A : ℝ} (hA : 0 ≤ A)
     (hGd : ∀ t ∈ Set.Ioc (0 : ℝ) 1, HasDerivAt G (G' t) t) (hG'c : ContinuousOn G' (Set.Ioc 0 1))
     (hFd : ∀ t ∈ Set.Ioc (0 : ℝ) 1, HasDerivAt F (F' t) t) (hF'c : ContinuousOn F' (Set.Ioc 0 1))
@@ -268,6 +316,9 @@ theorem final_round (n : ℕ) (hn : 1 ≤ n) {G G' F F' : ℝ → ℂ} {A : ℝ}
   have := hrate t ht
   rwa [show (1 - 1 / 2 : ℝ) = 1 / 2 by norm_num] at this ⊢
 
+/--
+@isnad1 id=ex.5h4v.s10.4009bd4023a6 from=translated src=- shape=d9c57878 vocab=5afdc7f9
+-/
 theorem main (n : ℕ) (hn : 1 ≤ n) (ν : ℂ) (hν : ν = (n : ℂ) / 2) (κ : ℝ) (f : ℝ → ℂ)
     (hf : DifferentiableOn ℝ f (Set.Ioi 0)) (hf' : DifferentiableOn ℝ (deriv f) (Set.Ioi 0))
     (hfeq : ∀ y : ℝ, 0 < y →
@@ -581,6 +632,9 @@ end FrobChi
 
 end
 
+/--
+@isnad1 id=ex.5h4v.s10.4009bd4023a6 from=translated src=- shape=d9c57878 vocab=5afdc7f9
+-/
 theorem solution
     (n : ℕ) (hn : 1 ≤ n) (ν : ℂ) (hν : ν = (n : ℂ) / 2) (κ : ℝ) (f : ℝ → ℂ)
     (hf : DifferentiableOn ℝ f (Set.Ioi 0)) (hf' : DifferentiableOn ℝ (deriv f) (Set.Ioi 0))

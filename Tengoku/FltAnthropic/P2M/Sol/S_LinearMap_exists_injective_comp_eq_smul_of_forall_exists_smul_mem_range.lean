@@ -8,6 +8,9 @@ namespace P2MW.S_LinearMap_exists_injective_comp_eq_smul_of_forall_exists_smul_m
 set_option autoImplicit false
 set_option maxHeartbeats 800000
 
+/--
+@isnad1 id=ex.4h7v.s10.ad4566623b1d from=translated src=- shape=910eba27 vocab=7b415fbf
+-/
 theorem solution
     {𝒪 : Type} [CommRing 𝒪] [IsDomain 𝒪]
     {R : Type} [CommRing R] [Algebra 𝒪 R]

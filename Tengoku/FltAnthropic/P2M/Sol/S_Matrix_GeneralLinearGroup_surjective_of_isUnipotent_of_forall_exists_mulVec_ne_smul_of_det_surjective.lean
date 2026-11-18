@@ -14,12 +14,18 @@ open scoped MatrixGroups
 
 section ArithmeticLemmas
 
+/--
+@isnad1 id=iff.0h2v.s4.a8d3c68789b4 from=translated src=- shape=c9ca3a3c vocab=e4e1ae04
+-/
 lemma natCast_dvd_int {p : ℕ} {z : ℤ} : (p : ℤ) ∣ z ↔ p ∣ z.natAbs :=
   Int.natCast_dvd
 
 def primeSel (c d : ℤ) : ℕ :=
   ∏ p ∈ c.natAbs.primeFactors, if p ∣ d.natAbs then 1 else p
 
+/--
+@isnad1 id=dvd.4h3v.s5.de0291dadfe6 from=translated src=- shape=0ce9507f vocab=131ed0e8
+-/
 lemma dvd_primeSel {c d : ℤ} {p : ℕ} (hc : c ≠ 0) (hp : p.Prime)
     (hpc : (p : ℤ) ∣ c) (hpd : ¬(p : ℤ) ∣ d) : p ∣ primeSel c d := by
   have hmem : p ∈ c.natAbs.primeFactors :=
@@ -28,6 +34,9 @@ lemma dvd_primeSel {c d : ℤ} {p : ℕ} (hc : c ≠ 0) (hp : p.Prime)
   simp only [ite_eq_right (fun hcontra => hpd (natCast_dvd_int.mpr hcontra))] at h
   exact h
 
+/--
+@isnad1 id=not.2h3v.s4.ea4443250bd2 from=translated src=- shape=4bc4f3b8 vocab=131ed0e8
+-/
 lemma not_dvd_primeSel {c d : ℤ} {p : ℕ} (hp : p.Prime) (hpd : (p : ℤ) ∣ d) :
     ¬p ∣ primeSel c d := by
   intro hdvd
@@ -39,6 +48,9 @@ lemma not_dvd_primeSel {c d : ℤ} {p : ℕ} (hp : p.Prime) (hpd : (p : ℤ) ∣
     have hq' : q.Prime := (Nat.mem_primeFactors.mp hq).1
     exact hqd (((Nat.prime_dvd_prime_iff_eq hp hq').mp hpq) ▸ natCast_dvd_int.mp hpd)
 
+/--
+@isnad1 id=ex.1h3v.s7.25d581b593f3 from=translated src=- shape=466e56ea vocab=41fcd4a0
+-/
 theorem exists_coprime_lift (N : ℕ) [NeZero N] {c₀ d₀ : ℤ}
     (H : ∀ p : ℕ, p.Prime → (p : ℤ) ∣ c₀ → (p : ℤ) ∣ d₀ → ¬(p : ℤ) ∣ (N : ℤ)) :
     ∃ γ δ : ℤ, Int.gcd γ δ = 1 ∧
@@ -93,6 +105,9 @@ end ArithmeticLemmas
 
 section Lifting
 
+/--
+@isnad1 id=ex.1h5v.s7.e9ded0e4bd49 from=translated src=- shape=de8e5785 vocab=695ea840
+-/
 theorem exists_sl2_int_lift {N : ℕ} [NeZero N] {a b c d : ZMod N}
     (h : a * d - b * c = 1) :
     ∃ α β γ δ : ℤ, α * δ - β * γ = 1 ∧
@@ -157,6 +172,9 @@ theorem exists_sl2_int_lift {N : ℕ} [NeZero N] {a b c d : ZMod N}
     rw [hcastl, hδ, hlam]
     linear_combination (-(β₀ : ZMod N)) * h + b * hdet₀'
 
+/--
+@isnad1 id=surjecti.0h1v.s9.a9276878e40b from=translated src=- shape=f709f38e vocab=1944a2b7
+-/
 theorem SL2_reduction_surjective (N : ℕ) [NeZero N] :
     Function.Surjective
       (SpecialLinearGroup.map (n := Fin 2) (Int.castRingHom (ZMod N))) := by
@@ -187,9 +205,15 @@ def unipotentLZ : SL(2, ℤ) :=
 def redThree : SL(2, ℤ) →* SL(2, ZMod 3) :=
   SpecialLinearGroup.map (n := Fin 2) (Int.castRingHom (ZMod 3))
 
+/--
+@isnad1 id=eq.0h0v.s8.574f6f05a855 from=translated src=- shape=8a424fc7 vocab=2afc20cd
+-/
 lemma S_eq_word : ModularGroup.S = ModularGroup.T⁻¹ * unipotentLZ * ModularGroup.T⁻¹ := by
   decide
 
+/--
+@isnad1 id=eq.0h0v.s9.51629562dcae from=translated src=- shape=ccc99b36 vocab=bfab63f1
+-/
 lemma redThree_T : redThree ModularGroup.T = unipotentU := by
   apply Subtype.ext
   show (ModularGroup.T : Matrix (Fin 2) (Fin 2) ℤ).map _ = _
@@ -197,6 +221,9 @@ lemma redThree_T : redThree ModularGroup.T = unipotentU := by
   fin_cases i <;> fin_cases j <;>
     simp [ModularGroup.T, unipotentU, Matrix.map_apply]
 
+/--
+@isnad1 id=eq.0h0v.s9.f4d0bce5e3c6 from=translated src=- shape=ccc99b36 vocab=6a5d682a
+-/
 lemma redThree_L : redThree unipotentLZ = unipotentL := by
   apply Subtype.ext
   show (unipotentLZ : Matrix (Fin 2) (Fin 2) ℤ).map _ = _
@@ -204,6 +231,9 @@ lemma redThree_L : redThree unipotentLZ = unipotentL := by
   fin_cases i <;> fin_cases j <;>
     simp [unipotentLZ, unipotentL, Matrix.map_apply]
 
+/--
+@isnad1 id=eq.0h0v.s8.4c1701854e4d from=translated src=- shape=3cbd9529 vocab=4f985644
+-/
 theorem closure_unipotentU_unipotentL :
     Subgroup.closure {unipotentU, unipotentL} = (⊤ : Subgroup SL(2, ZMod 3)) := by
   rw [eq_top_iff]
@@ -233,6 +263,9 @@ def unipotentUGL : GL (Fin 2) (ZMod 3) := Matrix.SpecialLinearGroup.toGL unipote
 
 def unipotentLGL : GL (Fin 2) (ZMod 3) := Matrix.SpecialLinearGroup.toGL unipotentL
 
+/--
+@isnad1 id=mem.1h1v.s10.f60d72bd0ef3 from=translated src=- shape=b914f707 vocab=de75c69f
+-/
 theorem mem_closure_of_det_eq_one (x : GL (Fin 2) (ZMod 3))
     (hx : (x : Matrix (Fin 2) (Fin 2) (ZMod 3)).det = 1) :
     x ∈ Subgroup.closure {unipotentUGL, unipotentLGL} := by
@@ -257,6 +290,9 @@ local notation "𝕍" => Fin 2 → ZMod 3
 
 def colMatrix (v w : 𝕍) : 𝕄 := Matrix.of fun i j => ![v, w] j i
 
+/--
+@isnad1 id=eq.0h3v.s9.ef7f50d7e065 from=translated src=- shape=a8607d3c vocab=6dd5fb4c
+-/
 lemma colMatrix_mulVec (v w : 𝕍) (x : 𝕍) :
     (colMatrix v w) *ᵥ x = x 0 • v + x 1 • w := by
   funext i
@@ -265,6 +301,9 @@ lemma colMatrix_mulVec (v w : 𝕍) (x : 𝕍) :
   show v i * x 0 + w i * x 1 = x 0 * v i + x 1 * w i
   ring
 
+/--
+@isnad1 id=ne.2h2v.s8.783ab76d50a2 from=translated src=- shape=f89a07a2 vocab=e9b3a454
+-/
 lemma det_colMatrix_ne_zero {v w : 𝕍} (hv : v ≠ 0) (hw : ∀ c : ZMod 3, w ≠ c • v) :
     (colMatrix v w).det ≠ 0 := by
   intro hdet
@@ -287,6 +326,9 @@ lemma det_colMatrix_ne_zero {v w : 𝕍} (hv : v ≠ 0) (hw : ∀ c : ZMod 3, w 
       _ = (x 1)⁻¹ • (-(x 0 • v)) := by rw [this]
       _ = (-(x 1)⁻¹ * x 0) • v := by rw [smul_neg, smul_smul, ← neg_smul, neg_mul]
 
+/--
+@isnad1 id=ex.2h3v.s9.79896810679e from=translated src=- shape=31654bf3 vocab=4be46511
+-/
 lemma exists_smul_add_smul {v w : 𝕍} (hv : v ≠ 0) (hw : ∀ c : ZMod 3, w ≠ c • v)
     (x : 𝕍) : ∃ a b : ZMod 3, x = a • v + b • w := by
   have hdet := det_colMatrix_ne_zero hv hw
@@ -307,6 +349,9 @@ lemma eq_zero_of_mulVec_eq_zero {M : 𝕄} {v w : 𝕍} (hv : v ≠ 0)
   have := congrFun (hall (Pi.single j 1)) i
   simpa [Matrix.mulVec_single] using this
 
+/--
+@isnad1 id=ex.4h3v.s9.c175408a448e from=translated src=- shape=f1663c59 vocab=6d8de3f9
+-/
 lemma exists_smul_of_sq_eq_zero {N : 𝕄} {v u : 𝕍} (hN : N ≠ 0) (hv : v ≠ 0)
     (hNv : N *ᵥ v = 0) (hNu : N *ᵥ u = 0) : ∃ c : ZMod 3, u = c • v := by
   by_contra hcon
@@ -324,8 +369,14 @@ def upperU (c : ZMod 3) : 𝕄 := !![1, c; 0, 1]
 
 def lowerU (d : ZMod 3) : 𝕄 := !![1, 0; d, 1]
 
+/--
+@isnad1 id=or.1h1v.s7.56dcb3553c34 from=translated src=- shape=5c19aa0d vocab=c87b9854
+-/
 lemma zmod3_cases : ∀ e : ZMod 3, e ≠ 0 → e = 1 ∨ e = 2 := by decide
 
+/--
+@isnad1 id=ex.5h3v.s10.2478fb9e225a from=translated src=- shape=334c1b14 vocab=912f711c
+-/
 lemma conj_upper {g : 𝕄} {v₁ v₂ : 𝕍} (hg2 : (g - 1) ^ 2 = 0) (hg1 : g ≠ 1)
     (hv₁ : g *ᵥ v₁ = v₁) (hv₁0 : v₁ ≠ 0) (hv₂ : ∀ c : ZMod 3, v₂ ≠ c • v₁) :
     ∃ c : ZMod 3, c ≠ 0 ∧ g * colMatrix v₁ v₂ = colMatrix v₁ v₂ * upperU c := by
@@ -377,6 +428,9 @@ lemma conj_upper {g : 𝕄} {v₁ v₂ : 𝕍} (hg2 : (g - 1) ^ 2 = 0) (hg1 : g 
     have := congrFun (key j) i
     simpa [Matrix.mulVec_single_one, Matrix.col_apply] using this
 
+/--
+@isnad1 id=ex.5h3v.s10.7929a2350af0 from=translated src=- shape=2a36fc9f vocab=d92abb14
+-/
 lemma conj_lower {g' : 𝕄} {v₁ v₂ : 𝕍} (hg2 : (g' - 1) ^ 2 = 0) (hg1 : g' ≠ 1)
     (hv₂ : g' *ᵥ v₂ = v₂) (hv₂0 : v₂ ≠ 0) (hv₁ : ∀ c : ZMod 3, v₁ ≠ c • v₂) :
     ∃ d : ZMod 3, d ≠ 0 ∧ g' * colMatrix v₁ v₂ = colMatrix v₁ v₂ * lowerU d := by
@@ -627,6 +681,9 @@ theorem eq_top_of_unipotent_of_irreducible_of_det_surjective
 
 end S18E6K2
 
+/--
+@isnad1 id=surjecti.3h2v.s12.ff3e22068b6f from=translated src=- shape=2c00aa56 vocab=3e33b938
+-/
 theorem solution
     {G : Type*} [Group G] (ρ : G →* Matrix.GeneralLinearGroup (Fin 2) (ZMod 3))
     (hunip : ∃ σ : G,

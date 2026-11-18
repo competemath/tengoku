@@ -12,6 +12,9 @@ universe u v w
 
 namespace Z1Alg
 
+/--
+@isnad1 id=finite.0h5v.s10.6f1b149c7015 from=translated src=- shape=fd94e35c vocab=026842e3
+-/
 theorem finite_hom_ker {B : Type u} [CommRing B] [IsNoetherianRing B] {M : Type v} {N : Type w}
     [AddCommGroup M] [Module B M] [AddCommGroup N] [Module B N] [Module.Finite B N]
     {r : ℕ} (p : (Fin r → B) →ₗ[B] M) : Module.Finite B (↥(LinearMap.ker p) →ₗ[B] N) := by
@@ -23,6 +26,9 @@ theorem finite_hom_ker {B : Type u} [CommRing B] [IsNoetherianRing B] {M : Type 
   obtain ⟨v, rfl⟩ := hπ s
   exact congrArg (fun φ : (Fin n → B) →ₗ[B] N => φ v) hfg
 
+/--
+@isnad1 id=ex.0h5v.s9.7dd0d9f9c096 from=translated src=- shape=320c467f vocab=b7b6c23d
+-/
 theorem exists_artinRees_lift {B : Type u} [CommRing B] [IsNoetherianRing B] {P : Type v} {Q : Type w}
     [AddCommGroup P] [Module B P] [AddCommGroup Q] [Module B Q] [Module.Finite B Q]
     (J : Ideal B) (L : P →ₗ[B] Q) :
@@ -38,6 +44,9 @@ theorem exists_artinRees_lift {B : Type u} [CommRing B] [IsNoetherianRing B] {P 
   obtain ⟨z, hz, hzx⟩ := hle hmem
   exact ⟨z, hz, hzx⟩
 
+/--
+@isnad1 id=mem.1h6v.s10.d2c49ccf3a65 from=translated src=- shape=2dd97d29 vocab=ec1a1429
+-/
 theorem apply_mem_smul_top_of_mem {B : Type u} [CommRing B] {X : Type v} {N : Type w}
     [AddCommGroup X] [Module B X] [AddCommGroup N] [Module B N]
     (J : Ideal B) (h : X →ₗ[B] N) (hh : h ∈ J • (⊤ : Submodule B (X →ₗ[B] N))) (x : X) :
@@ -49,6 +58,9 @@ theorem apply_mem_smul_top_of_mem {B : Type u} [CommRing B] {X : Type v} {N : Ty
 end Z1Alg
 
 open Z1Alg in
+/--
+@isnad1 id=ex.0h4v.s11.6c6bf2fc867c from=translated src=- shape=fe51311f vocab=76bd7edd
+-/
 theorem solution
     {B : Type u} [CommRing B] [IsNoetherianRing B] (I : Ideal B)
     {M : Type v} [AddCommGroup M] [Module B M] [Module.Finite B M]

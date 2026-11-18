@@ -20,10 +20,16 @@ variable {R : Type} [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
 
 abbrev spanSub (x : R) : AddSubgroup R := (Ideal.span {x} : Ideal R).toAddSubgroup
 
+/--
+@isnad1 id=iff.0h3v.s6.abd25d559cf1 from=translated src=- shape=4cbeaba9 vocab=e53e87f5
+-/
 theorem mem_spanSub {x y : R} : y ∈ spanSub x ↔ x ∣ y := by
   change y ∈ (Ideal.span {x} : Ideal R) ↔ _
   exact Ideal.mem_span_singleton
 
+/--
+@isnad1 id=eq.1h2v.s5.f77cd04484c2 from=translated src=- shape=4bd423b9 vocab=5236fbf2
+-/
 theorem card_residueField_eq_index {ϖ : R} (hϖ : Irreducible ϖ) :
     Nat.card (IsLocalRing.ResidueField R) = (spanSub ϖ).index := by
   have h : (spanSub ϖ).index = Submodule.cardQuot (IsLocalRing.maximalIdeal R) := by
@@ -31,6 +37,9 @@ theorem card_residueField_eq_index {ϖ : R} (hϖ : Irreducible ϖ) :
   rw [h, Submodule.cardQuot_apply]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.f4d19f6d3e9b from=translated src=- shape=81fa9793 vocab=45cadb93
+-/
 theorem map_mulLeft_spanSub (r x : R) : AddSubgroup.map (AddMonoidHom.mulLeft r) (spanSub x) = spanSub (r * x) := by
   ext y
   simp only [AddSubgroup.mem_map, AddMonoidHom.coe_mulLeft, mem_spanSub]
@@ -40,6 +49,9 @@ theorem map_mulLeft_spanSub (r x : R) : AddSubgroup.map (AddMonoidHom.mulLeft r)
   · rintro ⟨w, rfl⟩
     exact ⟨x * w, ⟨w, rfl⟩, by ring⟩
 
+/--
+@isnad1 id=eq.0h2v.s6.0bf761afe6ed from=translated src=- shape=19a4bac1 vocab=91fb84c3
+-/
 theorem map_mulLeft_top (r : R) : AddSubgroup.map (AddMonoidHom.mulLeft r) ⊤ = spanSub r := by
   ext y
   simp only [AddSubgroup.mem_map, AddSubgroup.mem_top, true_and, AddMonoidHom.coe_mulLeft, mem_spanSub]
@@ -47,11 +59,17 @@ theorem map_mulLeft_top (r : R) : AddSubgroup.map (AddMonoidHom.mulLeft r) ⊤ =
   · rintro ⟨z, rfl⟩; exact ⟨z, rfl⟩
   · rintro ⟨z, rfl⟩; exact ⟨z, rfl⟩
 
+/--
+@isnad1 id=eq.1h2v.s6.b4b50ff8af1a from=translated src=- shape=aee72630 vocab=4b93fd6d
+-/
 theorem ker_mulLeft {r : R} (hr : r ≠ 0) : (AddMonoidHom.mulLeft r).ker = ⊥ := by
   rw [AddMonoidHom.ker_eq_bot_iff]
   intro a b h
   exact mul_left_cancel₀ hr h
 
+/--
+@isnad1 id=eq.1h3v.s6.b3560b9f46d1 from=translated src=- shape=1eed0107 vocab=3f9a55d5
+-/
 theorem relIndex_spanSub_pow_succ {ϖ : R} (hϖ : Irreducible ϖ) (k : ℕ) :
     (spanSub (ϖ ^ (k + 1))).relIndex (spanSub (ϖ ^ k)) = Nat.card (IsLocalRing.ResidueField R) := by
   have hk : (ϖ ^ k : R) ≠ 0 := pow_ne_zero _ hϖ.ne_zero
@@ -62,6 +80,9 @@ theorem relIndex_spanSub_pow_succ {ϖ : R} (hϖ : Irreducible ϖ) (k : ℕ) :
   rw [h1, h2, AddSubgroup.relIndex_map_map, ker_mulLeft hk, sup_bot_eq, sup_bot_eq, AddSubgroup.relIndex_top_right,
     card_residueField_eq_index hϖ]
 
+/--
+@isnad1 id=eq.1h3v.s6.91c0d5bcd74f from=translated src=- shape=947aa1fb vocab=c3f418ea
+-/
 theorem index_spanSub_pow {ϖ : R} (hϖ : Irreducible ϖ) (k : ℕ) :
     (spanSub (ϖ ^ k)).index = Nat.card (IsLocalRing.ResidueField R) ^ k := by
   induction k with
@@ -75,6 +96,9 @@ theorem index_spanSub_pow {ϖ : R} (hϖ : Irreducible ϖ) (k : ℕ) :
       exact (pow_dvd_pow ϖ (Nat.le_succ k)).trans hy
     rw [← AddSubgroup.relIndex_mul_index hle, relIndex_spanSub_pow_succ hϖ, ih, pow_succ, mul_comm]
 
+/--
+@isnad1 id=iff.2h6v.s7.3008fd805538 from=translated src=- shape=97a2462f vocab=e7ffa3a9
+-/
 theorem pow_dvd_mul_iff {ϖ : R} (hϖ : Irreducible ϖ) {a : R} {e : ℕ} (ha : Associated a (ϖ ^ e)) (s : ℕ) (c : R) :
     ϖ ^ s ∣ c * a ↔ ϖ ^ (s - e) ∣ c := by
   rw [(Associated.mul_left c ha).dvd_iff_dvd_right]
@@ -91,6 +115,9 @@ section Coordinates
 
 variable {R : Type} [CommRing R] {M : Type} [AddCommGroup M] [Module R M] {n : ℕ}
 
+/--
+@isnad1 id=iff.0h6v.s9.8306174f9d3d from=translated src=- shape=8881402e vocab=e62b606f
+-/
 theorem mem_smul_top_iff (b : Module.Basis (Fin n) R M) (r : R) (x : M) :
     x ∈ (Ideal.span {r} • ⊤ : Submodule R M) ↔ ∀ i, r ∣ b.repr x i := by
   rw [Submodule.ideal_span_singleton_smul, Submodule.mem_smul_pointwise_iff_exists]
@@ -105,6 +132,9 @@ theorem mem_smul_top_iff (b : Module.Basis (Fin n) R M) (r : R) (x : M) :
     refine Finset.sum_congr rfl fun i _ => ?_
     rw [smul_smul, ← hd i]
 
+/--
+@isnad1 id=eq.1h9v.s10.14d018f6a2fa from=translated src=- shape=132a3989 vocab=09571473
+-/
 theorem repr_apply_of_diag (b b' : Module.Basis (Fin n) R M) (f : M →ₗ[R] M) (a : Fin n → R)
     (hfb : ∀ i, f (b i) = a i • b' i) (x : M) (i : Fin n) : b'.repr (f x) i = b.repr x i * a i := by
   have hx : f x = ∑ j, (b.repr x j * a j) • b' j := by
@@ -121,8 +151,14 @@ section Main
 variable (R : Type) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [Finite (IsLocalRing.ResidueField R)]
   (M : Type) [AddCommGroup M] [Module R M] [Module.Free R M] [Module.Finite R M]
 
+/--
+@isnad1 id=lt.0h1v.s5.c664f346ae1d from=translated src=- shape=b516baf3 vocab=b0b0d792
+-/
 theorem card_residueField_pos : 0 < Nat.card (IsLocalRing.ResidueField R) := Nat.card_pos
 
+/--
+@isnad1 id=eq.4h6v.s12.c2a1f7d566a4 from=translated src=- shape=8a5c3871 vocab=93a436d5
+-/
 theorem main (f : M →ₗ[R] M) (hf : Function.Injective f)
     (hker : Module.finrank (IsLocalRing.ResidueField R)
         (LinearMap.ker (f.baseChange (IsLocalRing.ResidueField R))) ≤ 1)
@@ -239,6 +275,9 @@ end Main
 
 end P2mCorankShells
 
+/--
+@isnad1 id=eq.4h6v.s12.c2a1f7d566a4 from=translated src=- shape=8a5c3871 vocab=93a436d5
+-/
 theorem solution
     (R : Type) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [Finite (IsLocalRing.ResidueField R)]
     (M : Type) [AddCommGroup M] [Module R M] [Module.Free R M] [Module.Finite R M]

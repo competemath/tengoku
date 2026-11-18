@@ -18,12 +18,18 @@ open TaylorWiles
 
 variable {A : Type u} [CommRing A]
 
+/--
+@isnad1 id=eq.0h1v.s6.e38d83a7a913 from=translated src=- shape=28c9e97e vocab=2259428a
+-/
 theorem trace_one_fin_two : (1 : Matrix (Fin 2) (Fin 2) A).trace = 2 := by
   rw [Matrix.trace_one, Fintype.card_fin, Nat.cast_ofNat]
 
 end Ws14Port
 
 open TaylorWiles in
+/--
+@isnad1 id=iseigeni.3h5v.s8.b0136a357955 from=translated src=- shape=2013e5d7 vocab=1e7b731d
+-/
 theorem solution {A : Type u} [CommRing A] {M : Matrix (Fin 2) (Fin 2) A} {a b v : A}
     (htr : M.trace = a + b) (hdet : M.det = a * b) (hv : v * (a - b) = 1) :
     TaylorWiles.IsEigenIdempotent M a b (v • (M - b • (1 : Matrix (Fin 2) (Fin 2) A))) := by

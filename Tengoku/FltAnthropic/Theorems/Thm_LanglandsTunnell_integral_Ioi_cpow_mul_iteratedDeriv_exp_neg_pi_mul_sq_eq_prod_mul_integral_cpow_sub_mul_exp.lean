@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open MeasureTheory Set
 
+/--
+@isnad1 id=eq.2h4v.s8.18ceaa71c66e from=translated src=- shape=85d5bc31 vocab=db33d152
+-/
 theorem LanglandsTunnell.integral_Ioi_cpow_mul_iteratedDeriv_exp_neg_pi_mul_sq_eq_prod_mul_integral_cpow_sub_mul_exp
     (n : ℕ) (a : ℂ) (ha : (n : ℝ) - 1 < a.re) (w : ℝ) (hw : 0 < w) (v : ℝ) :
     ∫ σ in Ioi (v / w), (((σ * w - v : ℝ) : ℂ) ^ a) *

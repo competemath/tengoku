@@ -11,12 +11,18 @@ open MeasureTheory Set
 
 namespace OSRT9
 
+/--
+@isnad1 id=eq.1h1v.s5.6a8c9e02e77d from=translated src=- shape=defc0dba vocab=4d1fdef2
+-/
 lemma image_div (u : ℝ) (hu : 0 < u) : (fun v : ℝ => u / v) '' Ioi 0 = Ioi 0 := by
   ext y
   constructor
   · rintro ⟨v, hv, rfl⟩; exact div_pos hu hv
   · intro hy; exact ⟨u / y, div_pos hu hy, by field_simp⟩
 
+/--
+@isnad1 id=eq.1h1v.s5.73c5a3d9fb54 from=translated src=- shape=18ead531 vocab=ee93de7b
+-/
 lemma image_negdiv (t : ℝ) (ht : 0 < t) : (fun u : ℝ => -(u / t)) '' Ioi 0 = Iio 0 := by
   ext y
   constructor
@@ -27,6 +33,9 @@ lemma image_negdiv (t : ℝ) (ht : 0 < t) : (fun u : ℝ => -(u / t)) '' Ioi 0 =
     refine ⟨-(y * t), by show (0:ℝ) < -(y * t); linarith, ?_⟩
     field_simp
 
+/--
+@isnad1 id=eq.1h2v.s6.868c204956a7 from=translated src=- shape=bbf00018 vocab=4a3ec50b
+-/
 lemma lintegral_comp_div (u : ℝ) (hu : 0 < u) (g : ℝ → ENNReal) :
     ∫⁻ v in Ioi (0 : ℝ), ENNReal.ofReal (u / v ^ 2) * g (u / v) = ∫⁻ y in Ioi (0 : ℝ), g y := by
   have hderiv : ∀ v ∈ Ioi (0 : ℝ), HasDerivWithinAt (fun v : ℝ => u / v) (-(u / v ^ 2)) (Ioi 0) v := by
@@ -50,6 +59,9 @@ lemma lintegral_comp_div (u : ℝ) (hu : 0 < u) (g : ℝ → ENNReal) :
     rw [abs_neg, abs_of_pos (by have : 0 < v := hv; positivity)]
   rw [this]
 
+/--
+@isnad1 id=eq.1h2v.s6.bf832358da05 from=translated src=- shape=8c32e62f vocab=77a2f0ab
+-/
 lemma lintegral_comp_negdiv (t : ℝ) (ht : 0 < t) (h : ℝ → ENNReal) :
     ∫⁻ u in Ioi (0 : ℝ), ENNReal.ofReal t⁻¹ * h (-(u / t)) = ∫⁻ y in Iio (0 : ℝ), h y := by
   have hderiv : ∀ u ∈ Ioi (0 : ℝ), HasDerivWithinAt (fun u : ℝ => -(u / t)) (-(t⁻¹)) (Ioi 0) u := by
@@ -71,6 +83,9 @@ lemma lintegral_comp_negdiv (t : ℝ) (ht : 0 < t) (h : ℝ → ENNReal) :
 
 end OSRT9
 
+/--
+@isnad1 id=integrab.2h1v.s8.ec0e9f2ec562 from=translated src=- shape=566ddb71 vocab=715b8192
+-/
 theorem solution
     (F : ℝ × ℝ × ℝ → ℂ) (hFm : Measurable F)
     (hF : Integrable F ((volume.restrict (Ioi (0 : ℝ))).prod

@@ -20,23 +20,47 @@ def f (ℓ : ℕ) : Matrix (Fin 2) (Fin 2) (ZMod ℓ) := !![0, 0; 0, 1]
 
 def w (ℓ : ℕ) : Matrix (Fin 2) (Fin 2) (ZMod ℓ) := !![0, 1; 1, 0]
 
+/--
+@isnad1 id=eq.0h1v.s7.31760c39491a from=translated src=- shape=8af0ebad vocab=d0ce39df
+-/
 theorem e_add_f : e ℓ + f ℓ = 1 := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [e, f]
+/--
+@isnad1 id=eq.0h1v.s6.be484676c489 from=translated src=- shape=178ba449 vocab=4b6c9ed8
+-/
 theorem e_mul_e : e ℓ * e ℓ = e ℓ := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [e, Matrix.mul_apply, Fin.sum_univ_two]
+/--
+@isnad1 id=eq.0h1v.s7.e4c44d1ef644 from=translated src=- shape=8af0ebad vocab=c4dedf6e
+-/
 theorem f_mul_e : f ℓ * e ℓ = 0 := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [e, f, Matrix.mul_apply, Fin.sum_univ_two]
+/--
+@isnad1 id=eq.0h1v.s7.3f7d095b2b77 from=translated src=- shape=8af0ebad vocab=723b729e
+-/
 theorem w_mul_w : w ℓ * w ℓ = 1 := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [w, Matrix.mul_apply, Fin.sum_univ_two]
+/--
+@isnad1 id=eq.0h1v.s7.959be9f4a654 from=translated src=- shape=4eaea968 vocab=b840d721
+-/
 theorem w_mul_e : w ℓ * e ℓ = f ℓ * w ℓ := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [w, e, f, Matrix.mul_apply, Fin.sum_univ_two]
+/--
+@isnad1 id=eq.0h1v.s7.125f94630dfc from=translated src=- shape=cddfbc8e vocab=b840d721
+-/
 theorem e_mul_w : e ℓ * w ℓ = w ℓ * f ℓ := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [w, e, f, Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.0h2v.s9.92c1a1827f30 from=translated src=- shape=e476e0a3 vocab=6351b65d
+-/
 theorem decomp (X : Matrix (Fin 2) (Fin 2) (ZMod ℓ)) :
     X = X 0 0 • e ℓ + X 0 1 • (e ℓ * w ℓ) + X 1 0 • (w ℓ * e ℓ) + X 1 1 • f ℓ := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [w, e, f, Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.0h1v.s5.664ebc9dcbb3 from=translated src=- shape=7be8f7c1 vocab=62744916
+-/
 theorem card_R [Fact ℓ.Prime] : Nat.card (Matrix (Fin 2) (Fin 2) (ZMod ℓ)) = ℓ ^ 4 := by
   haveI : NeZero ℓ := ⟨(Fact.out : ℓ.Prime).ne_zero⟩
   rw [Nat.card_eq_fintype_card, show Fintype.card (Matrix (Fin 2) (Fin 2) (ZMod ℓ)) = Fintype.card (Fin 2 → Fin 2 → ZMod ℓ) from rfl,
@@ -53,33 +77,81 @@ variable {ℓ : ℕ} (V : Type) [AddCommGroup V] [Module (Matrix (Fin 2) (Fin 2)
 
 def sc (c : ZMod ℓ) (v : V) : V := (algebraMap (ZMod ℓ) (Matrix (Fin 2) (Fin 2) (ZMod ℓ)) c) • v
 
+/--
+@isnad1 id=eq.0h5v.s9.5657a7226e56 from=translated src=- shape=7725bfbf vocab=28eef461
+-/
 theorem smul_matrix_smul (c : ZMod ℓ) (X : Matrix (Fin 2) (Fin 2) (ZMod ℓ)) (v : V) : (c • X) • v = sc V c (X • v) := by
   rw [Algebra.smul_def, mul_smul]; rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.1031cdbc7e0e from=translated src=- shape=8fac1ffc vocab=28eef461
+-/
 theorem X_sc (X : Matrix (Fin 2) (Fin 2) (ZMod ℓ)) (c : ZMod ℓ) (v : V) : X • sc V c v = sc V c (X • v) := by
   show X • ((algebraMap (ZMod ℓ) _ c) • v) = (algebraMap (ZMod ℓ) _ c) • (X • v)
   rw [← mul_smul, ← mul_smul, Algebra.commutes]
 
+/--
+@isnad1 id=eq.0h3v.s6.784657b332fd from=translated src=- shape=9fca410e vocab=c021b780
+-/
 theorem sc_zero (c : ZMod ℓ) : sc V c (0 : V) = 0 := smul_zero _
+/--
+@isnad1 id=eq.0h5v.s6.b9bcfdfe66d7 from=translated src=- shape=46592251 vocab=e0fbc9f5
+-/
 theorem mul_sc (c d : ZMod ℓ) (v : V) : sc V (c * d) v = sc V c (sc V d v) := by
   show (algebraMap (ZMod ℓ) _ (c * d)) • v = _; rw [map_mul, mul_smul]; rfl
+/--
+@isnad1 id=eq.0h3v.s6.f7a5d41873be from=translated src=- shape=5b72bc31 vocab=c021b780
+-/
 theorem one_sc (v : V) : sc V (1 : ZMod ℓ) v = v := by
   show (algebraMap (ZMod ℓ) (Matrix (Fin 2) (Fin 2) (ZMod ℓ)) 1) • v = v; rw [map_one, one_smul]
+/--
+@isnad1 id=eq.0h3v.s6.001c88c2ce03 from=translated src=- shape=57323f8d vocab=c021b780
+-/
 theorem zero_sc (v : V) : sc V (0 : ZMod ℓ) v = 0 := by
   show (algebraMap (ZMod ℓ) (Matrix (Fin 2) (Fin 2) (ZMod ℓ)) 0) • v = 0; rw [map_zero, zero_smul]
+/--
+@isnad1 id=eq.0h4v.s6.fc9118f4437c from=translated src=- shape=2fc04f96 vocab=d1709c84
+-/
 theorem neg_sc (c : ZMod ℓ) (v : V) : sc V (-c) v = -(sc V c v) := by
   show (algebraMap (ZMod ℓ) _ (-c)) • v = _; rw [map_neg, neg_smul]; rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.0989550b7504 from=translated src=- shape=b15c929b vocab=153c30ec
+-/
 theorem e_add_f_smul (v : V) : e ℓ • v + f ℓ • v = v := by rw [← add_smul, e_add_f, one_smul]
+/--
+@isnad1 id=eq.0h3v.s9.7bc9fecaa343 from=translated src=- shape=f834ebb9 vocab=458c31e7
+-/
 theorem e_e (v : V) : e ℓ • (e ℓ • v) = e ℓ • v := by rw [← mul_smul, e_mul_e]
+/--
+@isnad1 id=eq.0h3v.s8.bb8a06f3d017 from=translated src=- shape=a538f934 vocab=6c7d863b
+-/
 theorem f_e (v : V) : f ℓ • (e ℓ • v) = 0 := by rw [← mul_smul, f_mul_e, zero_smul]
+/--
+@isnad1 id=eq.0h3v.s8.f2462111c969 from=translated src=- shape=22b07864 vocab=c3dcc659
+-/
 theorem w_w (v : V) : w ℓ • (w ℓ • v) = v := by rw [← mul_smul, w_mul_w, one_smul]
+/--
+@isnad1 id=eq.0h3v.s9.187a4c11fe78 from=translated src=- shape=c7799b3c vocab=7f9193f1
+-/
 theorem w_e (v : V) : w ℓ • (e ℓ • v) = f ℓ • (w ℓ • v) := by rw [← mul_smul, w_mul_e, mul_smul]
+/--
+@isnad1 id=eq.0h3v.s9.c256719831d0 from=translated src=- shape=aa344622 vocab=7f9193f1
+-/
 theorem e_w (v : V) : e ℓ • (w ℓ • v) = w ℓ • (f ℓ • v) := by rw [← mul_smul, e_mul_w, mul_smul]
 
+/--
+@isnad1 id=eq.1h3v.s9.b452017a04aa from=translated src=- shape=b4a34eb0 vocab=65f633f8
+-/
 theorem e_w_of_e {v : V} (hv : e ℓ • v = v) : e ℓ • (w ℓ • v) = 0 := by
   rw [e_w, ← hv, f_e, smul_zero]
+/--
+@isnad1 id=eq.1h3v.s8.e423eef88b2e from=translated src=- shape=979a7616 vocab=6c7d863b
+-/
 theorem f_of_e {v : V} (hv : e ℓ • v = v) : f ℓ • v = 0 := by rw [← hv, f_e]
+/--
+@isnad1 id=eq.1h3v.s9.4d1f0de30f2e from=translated src=- shape=908f4e24 vocab=7f9193f1
+-/
 theorem f_w_of_e {v : V} (hv : e ℓ • v = v) : f ℓ • (w ℓ • v) = w ℓ • v := by
   rw [← w_e, hv]
 
@@ -96,12 +168,18 @@ def split : V ≃ {v : V // e ℓ • v = v} × {v : V // e ℓ • v = v} where
     · rw [smul_add, hx, e_w_of_e V hy, add_zero]
     · rw [smul_add, smul_add, e_w_of_e V hx, zero_add, w_w, hy]
 
+/--
+@isnad1 id=eq.1h2v.s8.87988b0778b5 from=translated src=- shape=49d5abbd vocab=b381b756
+-/
 theorem natCard_eFixed [Fact ℓ.Prime] [Finite V] (hV : Nat.card V = ℓ ^ 4) : Nat.card {v : V // e ℓ • v = v} = ℓ ^ 2 := by
   have h := Nat.card_congr (split V (ℓ := ℓ))
   rw [Nat.card_prod, hV] at h
   have : (Nat.card {v : V // e ℓ • v = v}) ^ 2 = (ℓ ^ 2) ^ 2 := by rw [sq, ← h]; ring
   exact Nat.pow_left_injective two_ne_zero this
 
+/--
+@isnad1 id=ex.1h2v.s9.f30ed8446d1e from=translated src=- shape=2ed27122 vocab=c23d2a6f
+-/
 theorem exists_indep [Fact ℓ.Prime] [Finite V] (hV : Nat.card V = ℓ ^ 4) :
     ∃ v₁ v₂ : V, e ℓ • v₁ = v₁ ∧ e ℓ • v₂ = v₂ ∧
       ∀ α β : ZMod ℓ, sc V α v₁ + sc V β v₂ = 0 → α = 0 ∧ β = 0 := by
@@ -169,6 +247,9 @@ theorem eq_zero_of_smul_gen_eq_zero [Fact ℓ.Prime] {v₁ v₂ : V} (hv₁ : e 
 
 end module
 
+/--
+@isnad1 id=nonempty.1h2v.s8.2626e5a278c3 from=translated src=- shape=4883fa6e vocab=ee6f3448
+-/
 theorem nonempty_linearEquiv (ℓ : ℕ) [Fact ℓ.Prime] (V : Type) [AddCommGroup V] [Module (Matrix (Fin 2) (Fin 2) (ZMod ℓ)) V] [Finite V]
     (hV : Nat.card V = ℓ ^ 4) :
     Nonempty (V ≃ₗ[Matrix (Fin 2) (Fin 2) (ZMod ℓ)] Matrix (Fin 2) (Fin 2) (ZMod ℓ)) := by
@@ -190,6 +271,9 @@ theorem nonempty_linearEquiv (ℓ : ℕ) [Fact ℓ.Prime] (V : Type) [AddCommGro
 
 end ASM21.M2
 
+/--
+@isnad1 id=nonempty.1h2v.s8.2626e5a278c3 from=translated src=- shape=4883fa6e vocab=ee6f3448
+-/
 theorem solution
     (ℓ : ℕ) [Fact ℓ.Prime] (V : Type) [AddCommGroup V] [Module (Matrix (Fin 2) (Fin 2) (ZMod ℓ)) V] [Finite V]
     (hV : Nat.card V = ℓ ^ 4) :

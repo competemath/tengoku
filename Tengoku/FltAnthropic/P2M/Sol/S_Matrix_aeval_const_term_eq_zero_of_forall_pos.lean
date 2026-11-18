@@ -9,11 +9,17 @@ namespace P2mAevalConstTerm
 
 open Polynomial
 
+/--
+@isnad1 id=eq.0h3v.s7.15aad3004bcc from=translated src=- shape=82632093 vocab=ca75cd3c
+-/
 theorem pencil_at_zero {R d : ℕ} (M : Fin (d + 1) → Matrix (Fin R) (Fin R) ℂ) :
     (∑ a : Fin (d + 1), (((0 : ℝ) : ℂ) ^ (a : ℕ)) • M a) = M 0 := by
   rw [Fin.sum_univ_succ]
   simp
 
+/--
+@isnad1 id=continuo.0h4v.s8.fdd500d634c0 from=translated src=- shape=77695de7 vocab=deaccc32
+-/
 theorem continuous_pencil_aeval {R d : ℕ} (M : Fin (d + 1) → Matrix (Fin R) (Fin R) ℂ)
     (q : Polynomial ℂ) :
     Continuous fun y : ℝ =>
@@ -26,6 +32,9 @@ theorem continuous_pencil_aeval {R d : ℕ} (M : Fin (d + 1) → Matrix (Fin R) 
 end P2mAevalConstTerm
 
 open Polynomial in
+/--
+@isnad1 id=eq.1h4v.s9.a4399212c1d1 from=translated src=- shape=a98a5b34 vocab=386fc84c
+-/
 theorem solution
     {R d : ℕ} (M : Fin (d + 1) → Matrix (Fin R) (Fin R) ℂ) (q : Polynomial ℂ)
     (h : ∀ y : ℝ, 0 < y → Polynomial.aeval (∑ a : Fin (d + 1), ((y : ℂ) ^ (a : ℕ)) • M a) q = 0) :

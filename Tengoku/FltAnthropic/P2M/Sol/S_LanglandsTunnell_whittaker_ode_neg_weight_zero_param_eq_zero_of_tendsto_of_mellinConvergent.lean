@@ -14,6 +14,9 @@ open Real Complex Filter Topology MeasureTheory Set
 namespace LanglandsTunnell
 namespace RecVanish0
 
+/--
+@isnad1 id=or.5h4v.s8.ee6fae06a1e8 from=translated src=- shape=0c5441ea vocab=04fc52d2
+-/
 theorem real_core (k : ℝ) (hk : 0 < k) (u u' : ℝ → ℝ)
     (hu : ∀ y : ℝ, 0 < y → HasDerivAt u (u' y) y)
     (hu' : ∀ y : ℝ, 0 < y → HasDerivAt u' (((-1 / 4 + 2 * π * k * y + 4 * π ^ 2 * y ^ 2) / y ^ 2) * u y) y)
@@ -99,6 +102,9 @@ theorem real_core (k : ℝ) (hk : 0 < k) (u u' : ℝ → ℝ)
     have h5 : u y ^ 2 = 0 := (mul_eq_zero.mp h4).resolve_left h3.ne'
     exact pow_eq_zero_iff (two_ne_zero) |>.mp h5
 
+/--
+@isnad1 id=false.5h4v.s6.3511e490acea from=translated src=- shape=e221b616 vocab=df61bdca
+-/
 theorem false_of_mellinConvergent_of_le_norm (f : ℝ → ℂ) (s₁ : ℝ) (hs₁ : 0 ≤ s₁)
     (hmel : MellinConvergent f (s₁ : ℂ)) (y₀ : ℝ) (hy₀ : 0 < y₀) (c : ℝ) (hc : 0 < c)
     (hle : ∀ y : ℝ, y₀ ≤ y → c ≤ ‖f y‖) : False := by
@@ -124,6 +130,9 @@ theorem false_of_mellinConvergent_of_le_norm (f : ℝ → ℂ) (s₁ : ℝ) (hs�
 end LanglandsTunnell.RecVanish0
 
 open LanglandsTunnell.RecVanish0 in
+/--
+@isnad1 id=eq.9h5v.s9.528cc503b5e8 from=translated src=- shape=f9e111bb vocab=a2223afa
+-/
 theorem solution
     (k : ℝ) (hk : 0 < k) (f : ℝ → ℂ)
     (hf : DifferentiableOn ℝ f (Set.Ioi 0)) (hf' : DifferentiableOn ℝ (deriv f) (Set.Ioi 0))

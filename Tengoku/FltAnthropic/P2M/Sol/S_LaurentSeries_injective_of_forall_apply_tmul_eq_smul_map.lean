@@ -13,6 +13,9 @@ open scoped TensorProduct
 
 universe u v
 
+/--
+@isnad1 id=injectiv.1h3v.s11.a2ec49ce2749 from=translated src=- shape=55e953d5 vocab=9e1ebaf1
+-/
 theorem solution
     (k : Type u) (K : Type v) [Field k] [Field K] [Algebra k K]
     (Φ : K ⊗[k] LaurentSeries k →ₗ[k] LaurentSeries K)

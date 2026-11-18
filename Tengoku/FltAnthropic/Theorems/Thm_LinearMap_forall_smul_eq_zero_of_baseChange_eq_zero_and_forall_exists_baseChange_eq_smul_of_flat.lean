@@ -11,6 +11,9 @@ universe u v w w'
 
 open TensorProduct
 
+/--
+@isnad1 id=and.2h6v.s11.20bc32a73ec8 from=translated src=- shape=946615c5 vocab=4a3f4749
+-/
 theorem LinearMap.forall_smul_eq_zero_of_baseChange_eq_zero_and_forall_exists_baseChange_eq_smul_of_flat
     {R₀ : Type u} [CommRing R₀] {R : Type v} [CommRing R] [Algebra R₀ R] [Module.Flat R₀ R]
     {M : Type w} [AddCommGroup M] [Module R₀ M] {N : Type w'} [AddCommGroup N] [Module R₀ N]

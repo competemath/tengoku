@@ -14,6 +14,9 @@ namespace ModularCurve
 
 namespace ModularGroupPingPong
 
+/--
+@isnad1 id=eq.0h1v.s8.df8917939df4 from=translated src=- shape=3d4d5f77 vocab=ec2cc098
+-/
 theorem det_entries (γ : SL(2, ℤ)) : γ 0 0 * γ 1 1 - γ 0 1 * γ 1 0 = 1 := by
   have h := γ.2
   rw [Matrix.det_fin_two] at h
@@ -25,16 +28,25 @@ namespace IrrationalPt
 
 scoped instance : CoeOut IrrationalPt ℝ := ⟨Subtype.val⟩
 
+/--
+@isnad1 id=eq.1h2v.s4.2999fc51edcc from=translated src=- shape=0943a87e vocab=ca3bcdee
+-/
 @[scoped ext] theorem ext {x y : IrrationalPt} (h : (x : ℝ) = y) : x = y := Subtype.ext h
 
 noncomputable def sqrtTwo : IrrationalPt := ⟨Real.sqrt 2, irrational_sqrt_two⟩
 
+/--
+@isnad1 id=lt.0h0v.s4.f7205478476d from=translated src=- shape=d9db3eea vocab=969b8210
+-/
 theorem sqrtTwo_pos : (0 : ℝ) < (sqrtTwo : ℝ) := by
   have : (0 : ℝ) < Real.sqrt 2 := Real.sqrt_pos.mpr (by norm_num)
   exact this
 
 noncomputable def negSqrtTwo : IrrationalPt := ⟨-Real.sqrt 2, irrational_sqrt_two.neg⟩
 
+/--
+@isnad1 id=lt.0h0v.s4.51ce71756e53 from=translated src=- shape=4898e8ed vocab=1a15f03f
+-/
 theorem negSqrtTwo_neg : ((negSqrtTwo : ℝ)) < 0 := by
   have : (0 : ℝ) < Real.sqrt 2 := Real.sqrt_pos.mpr (by norm_num)
   show -Real.sqrt 2 < 0
@@ -46,15 +58,24 @@ open scoped _root_.P2MW.S_ModularGroup_exists_mulEquiv_freeProduct_quotient_cent
 noncomputable def moebius (γ : SL(2, ℤ)) (x : ℝ) : ℝ :=
   ((γ 0 0 : ℝ) * x + (γ 0 1 : ℝ)) / ((γ 1 0 : ℝ) * x + (γ 1 1 : ℝ))
 
+/--
+@isnad1 id=eq.0h1v.s8.ab5d87f0cb91 from=translated src=- shape=b760eac4 vocab=5fdccbe9
+-/
 theorem det_entries_real (γ : SL(2, ℤ)) :
     (γ 0 0 : ℝ) * (γ 1 1 : ℝ) - (γ 0 1 : ℝ) * (γ 1 0 : ℝ) = 1 := by
   exact_mod_cast congrArg (fun n : ℤ => (n : ℝ)) (det_entries γ)
 
+/--
+@isnad1 id=eq.0h4v.s9.a67fc79f26d2 from=translated src=- shape=e9797867 vocab=b5fbbabf
+-/
 theorem mul_entry (A B : SL(2, ℤ)) (i j : Fin 2) :
     (A * B) i j = A i 0 * B 0 j + A i 1 * B 1 j := by
   show ((A * B : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) i j = _
   rw [Matrix.SpecialLinearGroup.coe_mul, Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=ne.1h2v.s8.078c40543cb5 from=translated src=- shape=53c86921 vocab=5ffe401c
+-/
 theorem den_ne_zero (γ : SL(2, ℤ)) {x : ℝ} (hx : Irrational x) :
     (γ 1 0 : ℝ) * x + (γ 1 1 : ℝ) ≠ 0 := by
   rcases eq_or_ne (γ 1 0) 0 with h | h
@@ -73,6 +94,9 @@ theorem den_ne_zero (γ : SL(2, ℤ)) {x : ℝ} (hx : Irrational x) :
     rw [div_eq_iff hc]
     linarith
 
+/--
+@isnad1 id=irration.1h2v.s4.f18ee93cafeb from=translated src=- shape=9ee3b086 vocab=c385ab04
+-/
 theorem irrational_moebius (γ : SL(2, ℤ)) {x : ℝ} (hx : Irrational x) :
     Irrational (moebius γ x) := by
   rintro ⟨q, hq⟩
@@ -102,6 +126,9 @@ private theorem div_div_div_same {P Q D : ℝ} (hD : D ≠ 0) : P / D / (Q / D) 
   · simp
   · field_simp
 
+/--
+@isnad1 id=eq.1h3v.s7.6e66f0d7a91c from=translated src=- shape=38318d94 vocab=b1b1edce
+-/
 theorem moebius_mul (A B : SL(2, ℤ)) {x : ℝ} (hx : Irrational x) :
     moebius (A * B) x = moebius A (moebius B x) := by
   have hB : ((B 1 0 : ℝ) * x + (B 1 1 : ℝ)) ≠ 0 := den_ne_zero B hx
@@ -130,6 +157,9 @@ theorem moebius_mul (A B : SL(2, ℤ)) {x : ℝ} (hx : Irrational x) :
     push_cast
     ring
 
+/--
+@isnad1 id=eq.0h1v.s6.377ffdb39bbc from=translated src=- shape=00d93106 vocab=3489a767
+-/
 theorem moebius_one (x : ℝ) : moebius 1 x = x := by
   have h00 : ((1 : SL(2, ℤ)) 0 0 : ℤ) = 1 := rfl
   have h01 : ((1 : SL(2, ℤ)) 0 1 : ℤ) = 0 := rfl
@@ -144,6 +174,9 @@ noncomputable scoped instance : MulAction SL(2, ℤ) IrrationalPt where
   one_smul x := IrrationalPt.ext (moebius_one (x : ℝ))
   mul_smul A B x := IrrationalPt.ext (moebius_mul A B x.2)
 
+/--
+@isnad1 id=eq.0h2v.s7.5814c458cb18 from=translated src=- shape=30489442 vocab=3d9e151d
+-/
 theorem smul_coe (γ : SL(2, ℤ)) (x : IrrationalPt) :
     ((γ • x : IrrationalPt) : ℝ) = moebius γ (x : ℝ) := rfl
 
@@ -151,10 +184,19 @@ def Pos : Set IrrationalPt := {x | 0 < (x : ℝ)}
 
 def Neg : Set IrrationalPt := {x | (x : ℝ) < 0}
 
+/--
+@isnad1 id=nonempty.0h0v.s1.98e94adfb6f7 from=translated src=- shape=25b03439 vocab=813ba171
+-/
 theorem pos_nonempty : Pos.Nonempty := ⟨IrrationalPt.sqrtTwo, IrrationalPt.sqrtTwo_pos⟩
 
+/--
+@isnad1 id=nonempty.0h0v.s1.ccc1d3897392 from=translated src=- shape=25b03439 vocab=de03b0a6
+-/
 theorem neg_nonempty : Neg.Nonempty := ⟨IrrationalPt.negSqrtTwo, IrrationalPt.negSqrtTwo_neg⟩
 
+/--
+@isnad1 id=disjoint.0h0v.s5.88b372a9822c from=translated src=- shape=836e6cbb vocab=e9361649
+-/
 theorem disjoint_pos_neg : Disjoint Pos Neg := by
   rw [Set.disjoint_left]
   intro x hx hx'
@@ -162,17 +204,26 @@ theorem disjoint_pos_neg : Disjoint Pos Neg := by
   have h2 : (x : ℝ) < 0 := hx'
   linarith
 
+/--
+@isnad1 id=eq.0h1v.s7.02d241a55578 from=translated src=- shape=3cde6b52 vocab=be114df3
+-/
 theorem S_smul_coe (x : IrrationalPt) : ((S • x : IrrationalPt) : ℝ) = -1 / (x : ℝ) := by
   rw [smul_coe, moebius]
   norm_num [show (S 0 0 : ℤ) = 0 from rfl, show (S 0 1 : ℤ) = -1 from rfl,
     show (S 1 0 : ℤ) = 1 from rfl, show (S 1 1 : ℤ) = 0 from rfl]
 
+/--
+@isnad1 id=eq.0h1v.s8.a7af1c7dc255 from=translated src=- shape=331e3d66 vocab=9cca67fd
+-/
 theorem ST_smul_coe (x : IrrationalPt) :
     (((S * T) • x : IrrationalPt) : ℝ) = -1 / ((x : ℝ) + 1) := by
   rw [smul_coe, moebius]
   norm_num [show ((S * T) 0 0 : ℤ) = 0 from rfl, show ((S * T) 0 1 : ℤ) = -1 from rfl,
     show ((S * T) 1 0 : ℤ) = 1 from rfl, show ((S * T) 1 1 : ℤ) = 1 from rfl]
 
+/--
+@isnad1 id=eq.0h1v.s9.1775b6519a9a from=translated src=- shape=be0ac16c vocab=da0cc7cb
+-/
 theorem ST_sq_smul_coe (x : IrrationalPt) :
     ((((S * T) * (S * T)) • x : IrrationalPt) : ℝ) = (-(x : ℝ) - 1) / (x : ℝ) := by
   rw [smul_coe, moebius]
@@ -182,6 +233,9 @@ theorem ST_sq_smul_coe (x : IrrationalPt) :
     show (((S * T) * (S * T)) 1 1 : ℤ) = 0 from rfl]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s8.d743d3b387cc from=translated src=- shape=66bf8e70 vocab=fd502379
+-/
 theorem neg_one_smul_eq (x : IrrationalPt) : ((-1 : SL(2, ℤ)) • x) = x := by
   apply IrrationalPt.ext
   rw [smul_coe, moebius]
@@ -190,11 +244,17 @@ theorem neg_one_smul_eq (x : IrrationalPt) : ((-1 : SL(2, ℤ)) • x) = x := by
     show ((-1 : SL(2, ℤ)) 1 0 : ℤ) = 0 from rfl,
     show ((-1 : SL(2, ℤ)) 1 1 : ℤ) = -1 from rfl]
 
+/--
+@isnad1 id=mem.1h1v.s7.65b7f5461c08 from=translated src=- shape=894a4c2c vocab=83de7ce8
+-/
 theorem S_smul_neg_mem_pos {x : IrrationalPt} (hx : x ∈ Neg) : S • x ∈ Pos := by
   show (0 : ℝ) < ((S • x : IrrationalPt) : ℝ)
   rw [S_smul_coe]
   exact div_pos_of_neg_of_neg (by norm_num) hx
 
+/--
+@isnad1 id=mem.1h1v.s8.f47364d1e15b from=translated src=- shape=f6b32f7d vocab=43e08a88
+-/
 theorem ST_smul_pos_mem_neg {x : IrrationalPt} (hx : x ∈ Pos) : (S * T) • x ∈ Neg := by
   show (((S * T) • x : IrrationalPt) : ℝ) < 0
   rw [ST_smul_coe]
@@ -202,6 +262,9 @@ theorem ST_smul_pos_mem_neg {x : IrrationalPt} (hx : x ∈ Pos) : (S * T) • x 
   have : (0 : ℝ) < (x : ℝ) := hx
   linarith
 
+/--
+@isnad1 id=mem.1h1v.s8.e9d90a7cff2e from=translated src=- shape=549b3596 vocab=43e08a88
+-/
 theorem ST_sq_smul_pos_mem_neg {x : IrrationalPt} (hx : x ∈ Pos) :
     ((S * T) * (S * T)) • x ∈ Neg := by
   show ((((S * T) * (S * T)) • x : IrrationalPt) : ℝ) < 0
@@ -212,37 +275,67 @@ theorem ST_sq_smul_pos_mem_neg {x : IrrationalPt} (hx : x ∈ Pos) :
 noncomputable def toPerm : SL(2, ℤ) →* Equiv.Perm IrrationalPt :=
   MulAction.toPermHom SL(2, ℤ) IrrationalPt
 
+/--
+@isnad1 id=eq.0h2v.s8.3c8c425b8d1b from=translated src=- shape=44fb66bf vocab=5ecc863d
+-/
 theorem toPerm_apply (γ : SL(2, ℤ)) (x : IrrationalPt) : toPerm γ x = γ • x := rfl
 
 noncomputable def permS : Equiv.Perm IrrationalPt := toPerm S
 
 noncomputable def permU : Equiv.Perm IrrationalPt := toPerm (S * T)
 
+/--
+@isnad1 id=eq.0h0v.s8.0276ad61a239 from=translated src=- shape=0bbee8e8 vocab=bf81f140
+-/
 theorem toPerm_neg_one : toPerm (-1) = 1 := by
   apply Equiv.ext
   intro x
   exact neg_one_smul_eq x
 
+/--
+@isnad1 id=eq.0h0v.s5.8d633e0ae693 from=translated src=- shape=a2bf1e6b vocab=0419b7ee
+-/
 theorem permS_sq : permS ^ 2 = 1 := by
   rw [permS, ← map_pow, show S ^ 2 = -1 from by decide, toPerm_neg_one]
 
+/--
+@isnad1 id=eq.0h0v.s5.a8f845af0606 from=translated src=- shape=a2bf1e6b vocab=d43a20c4
+-/
 theorem permU_pow_three : permU ^ 3 = 1 := by
   rw [permU, ← map_pow, show (S * T) ^ 3 = -1 from by decide, toPerm_neg_one]
 
+/--
+@isnad1 id=fact.0h0v.s2.2cde8ffc8dda from=translated src=- shape=8d7dbbf6 vocab=c1c9ca6d
+-/
 scoped instance fact_prime_two_freeProduct : Fact (Nat.Prime 2) := ⟨Nat.prime_two⟩
+/--
+@isnad1 id=fact.0h0v.s2.fdf266938498 from=translated src=- shape=8d7dbbf6 vocab=c1c9ca6d
+-/
 scoped instance fact_prime_three_freeProduct : Fact (Nat.Prime 3) := ⟨Nat.prime_three⟩
 
 open Subgroup
 
 abbrev G23 (i : Fin 2) : Type := Multiplicative (ZMod (i.val + 2))
 
+/--
+@isnad1 id=fact.0h1v.s5.c0905b53e33e from=translated src=- shape=f6eff656 vocab=f652d5f2
+-/
 scoped instance factOneLt (i : Fin 2) : Fact (1 < i.val + 2) := ⟨by omega⟩
 
 noncomputable def gen : Fin 2 → Equiv.Perm IrrationalPt := ![permS, permU]
 
+/--
+@isnad1 id=eq.0h0v.s4.e5baa98cf855 from=translated src=- shape=751e5260 vocab=f76ff48a
+-/
 @[scoped simp] theorem gen_zero : gen 0 = permS := rfl
+/--
+@isnad1 id=eq.0h0v.s4.e8e1266c03f9 from=translated src=- shape=751e5260 vocab=0e18b959
+-/
 @[scoped simp] theorem gen_one : gen 1 = permU := rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.c422aa49f10a from=translated src=- shape=a8caf1d1 vocab=1f7c4763
+-/
 theorem gen_pow_eq_one (i : Fin 2) : gen i ^ (i.val + 2) = 1 := by
   fin_cases i
   · exact permS_sq
@@ -254,16 +347,25 @@ noncomputable def incl (i : Fin 2) : G23 i →* Equiv.Perm IrrationalPt where
   map_mul' x y := by
     rw [toAdd_mul, ZMod.val_add, ← pow_eq_pow_mod _ (gen_pow_eq_one i), pow_add]
 
+/--
+@isnad1 id=eq.0h1v.s9.43aa7d7b85d6 from=translated src=- shape=d5368336 vocab=0bc4f00a
+-/
 theorem incl_ofAdd_one (i : Fin 2) : incl i (Multiplicative.ofAdd 1) = gen i := by
   show gen i ^ (Multiplicative.toAdd (Multiplicative.ofAdd (1 : ZMod (i.val + 2)))).val = gen i
   rw [toAdd_ofAdd, ZMod.val_one, pow_one]
 
+/--
+@isnad1 id=eq.1h1v.s9.a06e72caf310 from=translated src=- shape=49f7977b vocab=e4db884c
+-/
 theorem incl_zero_eq (h : G23 0) (hne : h ≠ 1) : incl 0 h = permS := by
   have hh : h = Multiplicative.ofAdd 1 := by
     revert hne; revert h; decide
   subst hh
   rw [incl_ofAdd_one, gen_zero]
 
+/--
+@isnad1 id=or.1h1v.s10.d3a21b184623 from=translated src=- shape=025ae462 vocab=d5e28ebe
+-/
 theorem incl_one_eq (h : G23 1) (hne : h ≠ 1) :
     incl 1 h = permU ∨ incl 1 h = permU * permU := by
   have hh : h = Multiplicative.ofAdd 1 ∨
@@ -275,6 +377,9 @@ theorem incl_one_eq (h : G23 1) (hne : h ≠ 1) :
 
 def pingPongSet : Fin 2 → Set IrrationalPt := ![Pos, Neg]
 
+/--
+@isnad1 id=pairwise.0h0v.s9.3db6693b9f1c from=translated src=- shape=5f832191 vocab=ce8994ad
+-/
 theorem pingPong : Pairwise fun i j => ∀ h : G23 i, h ≠ 1 →
     incl i h • pingPongSet j ⊆ pingPongSet i := by
   intro i j hij h hne
@@ -293,11 +398,17 @@ theorem pingPong : Pairwise fun i j => ∀ h : G23 i, h ≠ 1 →
       exact ST_sq_smul_pos_mem_neg hy
   · exact absurd rfl hij
 
+/--
+@isnad1 id=le.0h0v.s4.a945586b8442 from=translated src=- shape=2f89d6e1 vocab=bf66dc37
+-/
 theorem three_le_card_factor_one : 3 ≤ Cardinal.mk (G23 1) := by
   have hc : Fintype.card (G23 1) = 3 := by decide
   rw [Cardinal.mk_fintype, hc]
   norm_num
 
+/--
+@isnad1 id=injectiv.0h0v.s12.90304bb9b438 from=translated src=- shape=eea16911 vocab=38ad6bfb
+-/
 theorem lift_injective : Function.Injective (Monoid.CoprodI.lift incl) := by
   apply Monoid.CoprodI.lift_injective_of_ping_pong incl
     (Or.inr ⟨1, three_le_card_factor_one⟩) pingPongSet
@@ -313,6 +424,9 @@ theorem lift_injective : Function.Injective (Monoid.CoprodI.lift incl) := by
     · exact absurd rfl hij
   · exact pingPong
 
+/--
+@isnad1 id=eq.0h0v.s12.7cd36d5cc826 from=translated src=- shape=31bd59cf vocab=0859ce72
+-/
 theorem range_lift_eq : (Monoid.CoprodI.lift incl).range = toPerm.range := by
   apply le_antisymm
   · rw [Monoid.CoprodI.range_eq_iSup]
@@ -341,6 +455,9 @@ theorem range_lift_eq : (Monoid.CoprodI.lift incl).range = toPerm.range := by
       rw [this]
       exact mul_mem (inv_mem hS) hST
 
+/--
+@isnad1 id=irration.0h0v.s3.78bfaa9703f2 from=translated src=- shape=8d7dbbf6 vocab=3ec4de1b
+-/
 theorem irrational_sqrt_three : Irrational (Real.sqrt 3) := by
   have h : Irrational (Real.sqrt ((3 : ℕ) : ℝ)) := Nat.prime_three.irrational_sqrt
   rwa [Nat.cast_ofNat] at h
@@ -359,6 +476,9 @@ theorem eq_zero_of_irrational_relation {x : ℝ} (hx : Irrational x) {p q : ℤ}
     have hcomm : x * (q : ℝ) = (q : ℝ) * x := mul_comm _ _
     linarith
 
+/--
+@isnad1 id=eq.2h2v.s8.518dbe8da46f from=translated src=- shape=bc057997 vocab=c6561838
+-/
 theorem moebius_eq_self_relation (γ : SL(2, ℤ)) {x : ℝ} (hx : Irrational x)
     (h : moebius γ x = x) :
     (γ 1 0 : ℝ) * (x * x) + ((γ 1 1 : ℝ) - (γ 0 0 : ℝ)) * x - (γ 0 1 : ℝ) = 0 := by
@@ -399,6 +519,9 @@ theorem eq_one_or_neg_one_of_toPerm_eq_one {γ : SL(2, ℤ)} (h : toPerm γ = 1)
     fin_cases i <;> fin_cases j <;>
       simp [hb, hc, hd, h00, Matrix.SpecialLinearGroup.coe_neg, Matrix.neg_apply]
 
+/--
+@isnad1 id=iff.0h1v.s8.6cb1097c3385 from=translated src=- shape=9cbf6426 vocab=c43682b3
+-/
 theorem mem_center_iff_eq (A : SL(2, ℤ)) : A ∈ Subgroup.center SL(2, ℤ) ↔ A = 1 ∨ A = -1 := by
   rw [Matrix.SpecialLinearGroup.mem_center_iff]
   constructor
@@ -417,6 +540,9 @@ theorem mem_center_iff_eq (A : SL(2, ℤ)) : A ∈ Subgroup.center SL(2, ℤ) �
     · exact ⟨1, by simp, by simp⟩
     · exact ⟨-1, by simp, by simp⟩
 
+/--
+@isnad1 id=eq.0h0v.s7.5472a2758853 from=translated src=- shape=a56eead5 vocab=8871128b
+-/
 theorem ker_toPerm_eq_center : toPerm.ker = Subgroup.center SL(2, ℤ) := by
   ext γ
   rw [MonoidHom.mem_ker, mem_center_iff_eq]
@@ -429,6 +555,9 @@ theorem ker_toPerm_eq_center : toPerm.ker = Subgroup.center SL(2, ℤ) := by
 noncomputable def equivRange : Monoid.CoprodI G23 ≃* toPerm.range :=
   (MonoidHom.ofInjective lift_injective).trans (MulEquiv.subgroupCongr range_lift_eq)
 
+/--
+@isnad1 id=eq.0h1v.s13.e0f234309e9f from=translated src=- shape=76629811 vocab=4d1a4d2d
+-/
 theorem equivRange_apply_coe (w : Monoid.CoprodI G23) :
     (equivRange w : Equiv.Perm IrrationalPt) = Monoid.CoprodI.lift incl w := rfl
 
@@ -437,6 +566,9 @@ noncomputable def mulEquiv : Monoid.CoprodI G23 ≃* SL(2, ℤ) ⧸ Subgroup.cen
     ((QuotientGroup.quotientKerEquivRange toPerm).symm.trans
       (QuotientGroup.quotientMulEquivOfEq ker_toPerm_eq_center))
 
+/--
+@isnad1 id=eq.1h3v.s13.63a729b77a09 from=translated src=- shape=d85b172a vocab=03064bc5
+-/
 theorem mulEquiv_apply_of_eq (i : Fin 2) (x : G23 i) (g : SL(2, ℤ)) (hg : toPerm g = incl i x) :
     mulEquiv (Monoid.CoprodI.of x) = QuotientGroup.mk g := by
   unfold mulEquiv
@@ -449,10 +581,16 @@ theorem mulEquiv_apply_of_eq (i : Fin 2) (x : G23 i) (g : SL(2, ℤ)) (hg : toPe
   rw [h1, ← h2, MulEquiv.symm_apply_apply]
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s13.f0ccfe7043ce from=translated src=- shape=cacb27d3 vocab=16de20c9
+-/
 theorem mulEquiv_of_zero :
     mulEquiv (Monoid.CoprodI.of (i := 0) (Multiplicative.ofAdd 1)) = QuotientGroup.mk S :=
   mulEquiv_apply_of_eq 0 _ S (by rw [incl_ofAdd_one, gen_zero, permS])
 
+/--
+@isnad1 id=eq.0h0v.s13.1cd9ede81b3f from=translated src=- shape=30797ffc vocab=beb6555e
+-/
 theorem mulEquiv_of_one :
     mulEquiv (Monoid.CoprodI.of (i := 1) (Multiplicative.ofAdd 1)) = QuotientGroup.mk (S * T) :=
   mulEquiv_apply_of_eq 1 _ (S * T) (by rw [incl_ofAdd_one, gen_one, permU])
@@ -463,6 +601,9 @@ open scoped _root_.P2MW.S_ModularGroup_exists_mulEquiv_freeProduct_quotient_cent
 end ModularCurve
 open scoped _root_.P2MW.S_ModularGroup_exists_mulEquiv_freeProduct_quotient_center.ModularCurve.ModularGroupPingPong.IrrationalPt _root_.P2MW.S_ModularGroup_exists_mulEquiv_freeProduct_quotient_center.ModularCurve.ModularGroupPingPong _root_.P2MW.S_ModularGroup_exists_mulEquiv_freeProduct_quotient_center.ModularCurve
 
+/--
+@isnad1 id=ex.0h0v.s14.c26948aee4a7 from=translated src=- shape=93130b14 vocab=9077e1a7
+-/
 theorem solution :
     ∃ e : Monoid.CoprodI (fun i : Fin 2 => Multiplicative (ZMod (i.val + 2)))
         ≃* Matrix.SpecialLinearGroup (Fin 2) ℤ ⧸ Subgroup.center (Matrix.SpecialLinearGroup (Fin 2) ℤ),

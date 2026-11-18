@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u v w
 
+/--
+@isnad1 id=ex.0h4v.s11.6c6bf2fc867c from=translated src=- shape=fe51311f vocab=76bd7edd
+-/
 theorem LinearMap.exists_forall_exists_mkQ_comp_eq_factor_comp
     {B : Type u} [CommRing B] [IsNoetherianRing B] (I : Ideal B)
     {M : Type v} [AddCommGroup M] [Module B M] [Module.Finite B M]

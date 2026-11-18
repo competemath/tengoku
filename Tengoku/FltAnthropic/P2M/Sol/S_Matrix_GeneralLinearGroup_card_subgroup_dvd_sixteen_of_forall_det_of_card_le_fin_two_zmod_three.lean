@@ -19,6 +19,9 @@ open scoped MatrixGroups Pointwise
 namespace FLT
 namespace Gapsw2T1Gl2F3Lattice
 
+/--
+@isnad1 id=eq.0h0v.s5.7801371ecbaa from=translated src=- shape=22b9ad3f vocab=f6e904cd
+-/
 theorem gapsw2_t1_card_gl2_zmod3_eq_48 : Nat.card (GL (Fin 2) (ZMod 3)) = 48 := by
   rw [Matrix.card_GL_field, ZMod.card, Fin.prod_univ_two]
   norm_num
@@ -29,6 +32,9 @@ abbrev gapsw2T1SplitCartanPred (M : Matrix (Fin 2) (Fin 2) (ZMod 3)) : Prop :=
 abbrev gapsw2T1NonsplitCartanPred (M : Matrix (Fin 2) (Fin 2) (ZMod 3)) : Prop :=
   (M 0 0 = M 1 1 ∧ M 0 1 = -(M 1 0)) ∨ (M 0 0 = -(M 1 1) ∧ M 0 1 = M 1 0)
 
+/--
+@isnad1 id=eq.0h3v.s8.b5ef6a270232 from=translated src=- shape=c9b16664 vocab=d171efb3
+-/
 theorem gapsw2_t1_mulVec_fin_two_apply (M : Matrix (Fin 2) (Fin 2) (ZMod 3))
     (v : Fin 2 → ZMod 3) (i : Fin 2) :
     Matrix.mulVec M v i = M i 0 * v 0 + M i 1 * v 1 := by
@@ -37,12 +43,18 @@ theorem gapsw2_t1_mulVec_fin_two_apply (M : Matrix (Fin 2) (Fin 2) (ZMod 3))
 set_option synthInstance.maxSize 100000 in
 set_option synthInstance.maxHeartbeats 4000000 in
 
+/--
+@isnad1 id=ex.2h1v.s10.5030b49856cb from=translated src=- shape=dc904474 vocab=dbd86112
+-/
 theorem gapsw2_t1_order_three_exists_fixed_vector_scalar :
     ∀ M : Matrix (Fin 2) (Fin 2) (ZMod 3), M * M * M = 1 → M ≠ 1 →
       ∃ a b : ZMod 3, ¬(a = 0 ∧ b = 0) ∧
         M 0 0 * a + M 0 1 * b = a ∧ M 1 0 * a + M 1 1 * b = b := by
   decide +kernel
 
+/--
+@isnad1 id=ex.2h1v.s9.d588435bce4b from=translated src=- shape=79fcecf0 vocab=d513e5ab
+-/
 theorem gapsw2_t1_order_three_exists_fixed_vector :
     ∀ M : Matrix (Fin 2) (Fin 2) (ZMod 3), M * M * M = 1 → M ≠ 1 →
       ∃ v : Fin 2 → ZMod 3, v ≠ 0 ∧ Matrix.mulVec M v = v := by
@@ -59,6 +71,9 @@ theorem gapsw2_t1_order_three_exists_fixed_vector :
 set_option synthInstance.maxSize 100000 in
 set_option synthInstance.maxHeartbeats 4000000 in
 
+/--
+@isnad1 id=ex.7h5v.s11.9a0bab6396ea from=translated src=- shape=6a3fc330 vocab=dbd86112
+-/
 theorem gapsw2_t1_order_three_fixed_line_unique_scalar :
     ∀ M : Matrix (Fin 2) (Fin 2) (ZMod 3), M * M * M = 1 → M ≠ 1 →
       ∀ a b x y : ZMod 3, ¬(a = 0 ∧ b = 0) →
@@ -67,6 +82,9 @@ theorem gapsw2_t1_order_three_fixed_line_unique_scalar :
         ∃ c : ZMod 3, x = c * a ∧ y = c * b := by
   decide +kernel
 
+/--
+@isnad1 id=ex.5h3v.s10.9e2f58384560 from=translated src=- shape=61010835 vocab=294b2c06
+-/
 theorem gapsw2_t1_order_three_fixed_line_unique :
     ∀ M : Matrix (Fin 2) (Fin 2) (ZMod 3), M * M * M = 1 → M ≠ 1 →
       ∀ v w : Fin 2 → ZMod 3, v ≠ 0 → Matrix.mulVec M v = v → Matrix.mulVec M w = w →
@@ -101,14 +119,23 @@ def gapsw2T1UpowTable : Fin 3 → Matrix (Fin 2) (Fin 2) (ZMod 3) :=
 def gapsw2T1LpowTable : Fin 3 → Matrix (Fin 2) (Fin 2) (ZMod 3) :=
   ![1, !![1, 0; 1, 1], !![1, 0; 2, 1]]
 
+/--
+@isnad1 id=eq.0h1v.s7.8744b5ff7a40 from=translated src=- shape=a6f0fa7b vocab=0067f7c6
+-/
 theorem gapsw2_t1_UpowTable_eq_pow :
     ∀ a : Fin 3, gapsw2T1UpowTable a = gapsw2T1U ^ (a : ℕ) := by
   decide +kernel
 
+/--
+@isnad1 id=eq.0h1v.s7.4ee80607d4a8 from=translated src=- shape=a6f0fa7b vocab=67751bfb
+-/
 theorem gapsw2_t1_LpowTable_eq_pow :
     ∀ a : Fin 3, gapsw2T1LpowTable a = gapsw2T1L ^ (a : ℕ) := by
   decide +kernel
 
+/--
+@isnad1 id=eq.0h0v.s9.903be024baf2 from=translated src=- shape=d1eb6f62 vocab=5f32161e
+-/
 theorem gapsw2_t1_L_sq_sq :
     gapsw2T1L * gapsw2T1L * (gapsw2T1L * gapsw2T1L) = gapsw2T1L := by
   decide +kernel
@@ -116,6 +143,9 @@ theorem gapsw2_t1_L_sq_sq :
 set_option synthInstance.maxSize 100000 in
 set_option synthInstance.maxHeartbeats 4000000 in
 
+/--
+@isnad1 id=ex.5h2v.s12.86e0a7213397 from=translated src=- shape=471ef39d vocab=e5320dbc
+-/
 theorem gapsw2_t1_order_three_pair_simultaneous_conjugation_scalar :
     ∀ u w : Matrix (Fin 2) (Fin 2) (ZMod 3),
       u * u * u = 1 → u ≠ 1 → w * w * w = 1 → w ≠ 1 →
@@ -128,6 +158,9 @@ theorem gapsw2_t1_order_three_pair_simultaneous_conjugation_scalar :
           (g * gapsw2T1L = w * g ∨ g * (gapsw2T1L * gapsw2T1L) = w * g) := by
   decide +kernel
 
+/--
+@isnad1 id=ex.5h2v.s11.cf52d43a454d from=translated src=- shape=26ea9269 vocab=708412a0
+-/
 theorem gapsw2_t1_order_three_pair_simultaneous_conjugation :
     ∀ u w : Matrix (Fin 2) (Fin 2) (ZMod 3),
       u * u * u = 1 → u ≠ 1 → w * w * w = 1 → w ≠ 1 →
@@ -150,38 +183,59 @@ theorem gapsw2_t1_order_three_pair_simultaneous_conjugation :
       · simpa [gapsw2_t1_mulVec_fin_two_apply] using hwb
   exact ⟨by simpa using congrFun h0 0, by simpa using congrFun h0 1⟩
 
+/--
+@isnad1 id=ex.1h1v.s9.7afbda6097c6 from=translated src=- shape=87d41c28 vocab=ac48719b
+-/
 theorem gapsw2_t1_sl2_bruhat_four_factor :
     ∀ S : Matrix (Fin 2) (Fin 2) (ZMod 3), S 0 0 * S 1 1 - S 0 1 * S 1 0 = 1 →
       ∃ a b c d : Fin 3, S = gapsw2T1UpowTable a * gapsw2T1LpowTable b *
         gapsw2T1UpowTable c * gapsw2T1LpowTable d := by
   decide +kernel
 
+/--
+@isnad1 id=gapsw2t1.2h2v.s7.adfd8336ad2c from=translated src=- shape=2797351f vocab=359a8869
+-/
 theorem gapsw2_t1_nonsplit_pred_mul :
     ∀ A B : Matrix (Fin 2) (Fin 2) (ZMod 3),
       gapsw2T1NonsplitCartanPred A → gapsw2T1NonsplitCartanPred B →
         gapsw2T1NonsplitCartanPred (A * B) := by
   decide +kernel
 
+/--
+@isnad1 id=gapsw2t1.2h2v.s8.a30597e07161 from=translated src=- shape=861277fd vocab=359a8869
+-/
 theorem gapsw2_t1_nonsplit_pred_inv :
     ∀ A B : Matrix (Fin 2) (Fin 2) (ZMod 3),
       gapsw2T1NonsplitCartanPred A → A * B = 1 → gapsw2T1NonsplitCartanPred B := by
   decide +kernel
 
+/--
+@isnad1 id=gapsw2t1.0h0v.s7.8d081a20edcc from=translated src=- shape=f119dd0f vocab=ba4f82e1
+-/
 theorem gapsw2_t1_nonsplit_pred_one :
     gapsw2T1NonsplitCartanPred (1 : Matrix (Fin 2) (Fin 2) (ZMod 3)) := by
   decide +kernel
 
+/--
+@isnad1 id=gapsw2t1.2h2v.s7.55babffe81d9 from=translated src=- shape=2797351f vocab=45c87b25
+-/
 theorem gapsw2_t1_split_pred_mul :
     ∀ A B : Matrix (Fin 2) (Fin 2) (ZMod 3),
       gapsw2T1SplitCartanPred A → gapsw2T1SplitCartanPred B →
         gapsw2T1SplitCartanPred (A * B) := by
   decide +kernel
 
+/--
+@isnad1 id=gapsw2t1.2h2v.s8.dde5f0992850 from=translated src=- shape=861277fd vocab=45c87b25
+-/
 theorem gapsw2_t1_split_pred_inv :
     ∀ A B : Matrix (Fin 2) (Fin 2) (ZMod 3),
       gapsw2T1SplitCartanPred A → A * B = 1 → gapsw2T1SplitCartanPred B := by
   decide +kernel
 
+/--
+@isnad1 id=gapsw2t1.0h0v.s7.fd8d700e118e from=translated src=- shape=f119dd0f vocab=b8dce6bd
+-/
 theorem gapsw2_t1_split_pred_one :
     gapsw2T1SplitCartanPred (1 : Matrix (Fin 2) (Fin 2) (ZMod 3)) := by
   decide +kernel
@@ -228,6 +282,9 @@ def gapsw2T1CartanSplitNormalizerGL3 : Subgroup (GL (Fin 2) (ZMod 3)) where
     refine gapsw2_t1_split_pred_inv (a : Matrix (Fin 2) (Fin 2) (ZMod 3)) _ ha ?_
     rw [← Units.val_mul, mul_inv_cancel, Units.val_one]
 
+/--
+@isnad1 id=eq.0h0v.s11.86e5d94c8eb0 from=translated src=- shape=2504d0e5 vocab=ca6d1077
+-/
 theorem gapsw2_t1_nonsplit_units_subtype_card :
     Fintype.card {M : Matrix (Fin 2) (Fin 2) (ZMod 3) //
       gapsw2T1NonsplitCartanPred M ∧ M 0 0 * M 1 1 - M 0 1 * M 1 0 ≠ 0} = 16 := by
@@ -246,6 +303,9 @@ def gapsw2T1NonsplitUnitsEquiv :
   left_inv x := Subtype.ext (Units.ext rfl)
   right_inv M := Subtype.ext rfl
 
+/--
+@isnad1 id=eq.0h0v.s9.9a7695df7238 from=translated src=- shape=a729c535 vocab=6c7fe884
+-/
 theorem gapsw2_t1_card_cartanNonsplitNormalizerGL3 :
     Nat.card ↥gapsw2T1CartanNonsplitNormalizerGL3 = 16 := by
   rw [Nat.card_congr gapsw2T1NonsplitUnitsEquiv, Nat.card_eq_fintype_card]
@@ -253,6 +313,9 @@ theorem gapsw2_t1_card_cartanNonsplitNormalizerGL3 :
 
 set_option maxHeartbeats 3200000 in
 
+/--
+@isnad1 id=eq.4h1v.s12.844603837640 from=translated src=- shape=f6093951 vocab=b4a15859
+-/
 theorem gapsw2_t1_gl2F3_subgroup_dichotomy (H : Subgroup (GL (Fin 2) (ZMod 3)))
     (hirr : ¬ ∃ v : Fin 2 → ZMod 3, v ≠ 0 ∧ ∀ h ∈ H, ∃ c : ZMod 3,
       Matrix.mulVec (h : Matrix (Fin 2) (Fin 2) (ZMod 3)) v = c • v)
@@ -527,12 +590,18 @@ namespace Gapsw6W4SmallDegreeImageDescent
 
 open FLT.Gapsw2T1Gl2F3Lattice
 
+/--
+@isnad1 id=isalgebr.0h0v.s4.92f995461263 from=translated src=- shape=3905abf2 vocab=c7f7e443
+-/
 local instance gapsw6_w4_isAlgebraicQbar :
     Algebra.IsAlgebraic ℚ (AlgebraicClosure ℚ) := AlgebraicClosure.isAlgebraic ℚ
 
 set_option synthInstance.maxSize 100000 in
 set_option synthInstance.maxHeartbeats 4000000 in
 
+/--
+@isnad1 id=eq.0h0v.s11.a71e280efdd9 from=translated src=- shape=2504d0e5 vocab=be26de10
+-/
 theorem gapsw6_w4_split_units_subtype_card :
     Fintype.card {M : Matrix (Fin 2) (Fin 2) (ZMod 3) //
       gapsw2T1SplitCartanPred M ∧ M 0 0 * M 1 1 - M 0 1 * M 1 0 ≠ 0} = 8 := by
@@ -551,11 +620,17 @@ def gapsw6W4SplitUnitsEquiv :
   left_inv x := Subtype.ext (Units.ext rfl)
   right_inv M := Subtype.ext rfl
 
+/--
+@isnad1 id=eq.0h0v.s9.998ad910ba26 from=translated src=- shape=a729c535 vocab=4ae2c797
+-/
 theorem gapsw6_w4_card_cartanSplitNormalizerGL3 :
     Nat.card ↥gapsw2T1CartanSplitNormalizerGL3 = 8 := by
   rw [Nat.card_congr gapsw6W4SplitUnitsEquiv, Nat.card_eq_fintype_card]
   exact gapsw6_w4_split_units_subtype_card
 
+/--
+@isnad1 id=dvd.1h3v.s11.11af87ed769e from=translated src=- shape=f9d6f2e0 vocab=e1061e7d
+-/
 theorem gapsw6_w4_card_dvd_of_conj_le
     (H N : Subgroup (GL (Fin 2) (ZMod 3))) (g : GL (Fin 2) (ZMod 3))
     (hcontain : ∀ h ∈ H, g⁻¹ * h * g ∈ N) :
@@ -576,6 +651,9 @@ theorem gapsw6_w4_card_dvd_of_conj_le
   rw [hcard]
   exact Subgroup.card_dvd_of_le hle
 
+/--
+@isnad1 id=or.3h1v.s12.916b0de67b38 from=translated src=- shape=bd7b242f vocab=96a564cb
+-/
 theorem gapsw6_w4_census_cartan_containment
     (H : Subgroup (GL (Fin 2) (ZMod 3)))
     (hirr : ¬ ∃ v : Fin 2 → ZMod 3, v ≠ 0 ∧ ∀ h ∈ H, ∃ c : ZMod 3,
@@ -614,9 +692,15 @@ namespace Gapsw7X2DihedralLevelOneExclusion
 
 open FLT.Gapsw2T1Gl2F3Lattice FLT.Gapsw6W4SmallDegreeImageDescent
 
+/--
+@isnad1 id=isalgebr.0h0v.s4.92f995461263 from=translated src=- shape=3905abf2 vocab=c7f7e443
+-/
 local instance gapsw7_x2_isAlgebraicQbar :
     Algebra.IsAlgebraic ℚ (AlgebraicClosure ℚ) := AlgebraicClosure.isAlgebraic ℚ
 
+/--
+@isnad1 id=dvd.1h1v.s12.0aeb05802b7f from=translated src=- shape=d6fe42d6 vocab=f3644f9e
+-/
 theorem gapsw7_x2_card_dvd_sixteen_of_cartan_conj (H : Subgroup (GL (Fin 2) (ZMod 3)))
     (hconj :
       (∃ g : GL (Fin 2) (ZMod 3), ∀ h ∈ H,
@@ -636,6 +720,9 @@ end FLT.Gapsw7X2DihedralLevelOneExclusion
 end
 
 open FLT.Gapsw6W4SmallDegreeImageDescent FLT.Gapsw7X2DihedralLevelOneExclusion in
+/--
+@isnad1 id=dvd.3h1v.s11.c0f514cd1026 from=translated src=- shape=892d78ba vocab=5938708f
+-/
 theorem solution
     (H : Subgroup (GL (Fin 2) (ZMod 3)))
     (hirr : ¬ ∃ v : Fin 2 → ZMod 3, v ≠ 0 ∧ ∀ h ∈ H, ∃ c : ZMod 3,

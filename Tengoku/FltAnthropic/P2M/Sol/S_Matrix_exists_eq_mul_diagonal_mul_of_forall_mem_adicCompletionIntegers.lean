@@ -27,22 +27,43 @@ local notation "𝓞v" => HeightOneSpectrum.adicCompletionIntegers ℚ v
 
 def pr : ℕ := (Rat.HeightOneSpectrum.primesEquiv (R := 𝓞 ℚ) v : ℕ)
 
+/--
+@isnad1 id=prime.0h1v.s3.ac97cf847cf1 from=translated src=- shape=32354d46 vocab=bb4f18a1
+-/
 theorem pr_prime : (pr v).Prime := (Rat.HeightOneSpectrum.primesEquiv (R := 𝓞 ℚ) v).2
 
+/--
+@isnad1 id=fact.0h1v.s3.6280c7555b5c from=translated src=- shape=bee9f040 vocab=867acde1
+-/
 scoped instance factPr : Fact (pr v).Prime := ⟨pr_prime v⟩
 
+/--
+@isnad1 id=ne.0h1v.s4.df26525649df from=translated src=- shape=c0e41946 vocab=20f8a1c7
+-/
 theorem pr_ne_zero : pr v ≠ 0 := (pr_prime v).ne_zero
 
+/--
+@isnad1 id=eq.0h1v.s4.4f9183c8b84d from=translated src=- shape=5ae2e4d5 vocab=2d1680e1
+-/
 theorem natGenerator_eq_pr : Rat.HeightOneSpectrum.natGenerator v = pr v := rfl
 
+/--
+@isnad1 id=iff.0h2v.s7.8afe216250f4 from=translated src=- shape=a59a80cb vocab=46c37ad9
+-/
 theorem natCast_mem_asIdeal_iff (w : HeightOneSpectrum (𝓞 ℚ)) (n : ℕ) :
     (n : 𝓞 ℚ) ∈ w.asIdeal ↔ Rat.HeightOneSpectrum.natGenerator w ∣ n := by
   rw [Rat.HeightOneSpectrum.natGenerator_dvd_iff,
     ← map_natCast (Rat.IsIntegralClosure.intEquiv (𝓞 ℚ)) n, Ideal.apply_mem_of_equiv_iff]
 
+/--
+@isnad1 id=iff.0h2v.s7.9feebf2bbc1b from=translated src=- shape=ffd93404 vocab=1b9fd356
+-/
 theorem natCast_mem_asIdeal_iff_pr_dvd (n : ℕ) : (n : 𝓞 ℚ) ∈ v.asIdeal ↔ pr v ∣ n := by
   rw [natCast_mem_asIdeal_iff, natGenerator_eq_pr]
 
+/--
+@isnad1 id=eq.0h1v.s6.4f6c5e02ba3b from=translated src=- shape=60736f74 vocab=67a2b902
+-/
 theorem asIdeal_eq_span_pr : v.asIdeal = Ideal.span {(pr v : 𝓞 ℚ)} := by
   have h := Rat.HeightOneSpectrum.span_natGenerator (R := 𝓞 ℚ) v
   rw [natGenerator_eq_pr] at h
@@ -59,37 +80,64 @@ theorem asIdeal_eq_span_pr : v.asIdeal = Ideal.span {(pr v : 𝓞 ℚ)} := by
   congr 2
   simp
 
+/--
+@isnad1 id=eq.0h1v.s6.5329c57ad112 from=translated src=- shape=0f359a61 vocab=537c446c
+-/
 theorem valuation_pr : v.valuation ℚ (pr v : ℚ) = WithZero.exp (-1) := by
   rw [show (pr v : ℚ) = algebraMap (𝓞 ℚ) ℚ (pr v) from (map_natCast _ _).symm,
     HeightOneSpectrum.valuation_of_algebraMap]
   exact HeightOneSpectrum.intValuation_singleton v (by exact_mod_cast pr_ne_zero v)
     (asIdeal_eq_span_pr v)
 
+/--
+@isnad1 id=eq.0h2v.s9.855ecbd84dfd from=translated src=- shape=99a5a5bc vocab=bebd3a09
+-/
 theorem valued_algebraMap (r : ℚ) : Valued.v (algebraMap ℚ 𝕂 r) = v.valuation ℚ r := by
   rw [HeightOneSpectrum.algebraMap_adicCompletion]
   exact HeightOneSpectrum.valuedAdicCompletion_eq_valuation' v r
 
+/--
+@isnad1 id=eq.0h2v.s8.c43dee60edd4 from=translated src=- shape=c98e70c2 vocab=d895a768
+-/
 theorem algebraMap_natCast (n : ℕ) : algebraMap ℚ 𝕂 (n : ℚ) = (n : 𝕂) := map_natCast _ n
 
+/--
+@isnad1 id=eq.0h1v.s8.71c346e3b7cc from=translated src=- shape=c6edf309 vocab=2439397f
+-/
 theorem valued_pr : Valued.v ((pr v : ℕ) : 𝕂) = WithZero.exp (-1) := by
   rw [← algebraMap_natCast, valued_algebraMap, valuation_pr]
 
+/--
+@isnad1 id=ne.0h1v.s8.e055f0dbdfb4 from=translated src=- shape=31bc7237 vocab=d6705498
+-/
 theorem pr_ne_zero' : ((pr v : ℕ) : 𝕂) ≠ 0 := by
   intro h
   have := valued_pr v
   rw [h, map_zero] at this
   exact WithZero.zero_ne_coe this
 
+/--
+@isnad1 id=mem.0h2v.s8.5261912db99e from=translated src=- shape=c1c1b6e8 vocab=fe3db615
+-/
 theorem natCast_mem_integers (n : ℕ) : ((n : ℕ) : 𝕂) ∈ 𝓞v := by
   rw [HeightOneSpectrum.mem_adicCompletionIntegers, ← algebraMap_natCast, valued_algebraMap,
     show (n : ℚ) = algebraMap (𝓞 ℚ) ℚ n from (map_natCast _ _).symm]
   exact HeightOneSpectrum.valuation_le_one v _
 
+/--
+@isnad1 id=mem.0h1v.s8.09ba16f9512e from=translated src=- shape=fc5b79c1 vocab=b009b1e8
+-/
 theorem pr_mem_integers : ((pr v : ℕ) : 𝕂) ∈ 𝓞v := natCast_mem_integers v _
 
+/--
+@isnad1 id=le.1h2v.s8.ddf6156ae3b8 from=translated src=- shape=68a9801e vocab=ff7f4337
+-/
 theorem valued_le_one_of_mem {x : 𝕂} (hx : x ∈ 𝓞v) : Valued.v x ≤ 1 :=
   (HeightOneSpectrum.mem_adicCompletionIntegers (𝓞 ℚ) ℚ v).1 hx
 
+/--
+@isnad1 id=eq.3h3v.s9.aaebb67fdd61 from=translated src=- shape=ea2c9e0d vocab=5fd5912e
+-/
 theorem valued_eq_one_of_mul_eq_one {x y : 𝕂} (hx : x ∈ 𝓞v) (hy : y ∈ 𝓞v) (h : x * y = 1) :
     Valued.v x = 1 := by
   have h1 : Valued.v x * Valued.v y = 1 := by rw [← map_mul, h, map_one]
@@ -104,9 +152,15 @@ theorem valued_eq_one_of_mul_eq_one {x y : 𝕂} (hx : x ∈ 𝓞v) (hy : y ∈ 
   rw [h1] at this
   exact lt_irrefl _ this
 
+/--
+@isnad1 id=mem.1h2v.s9.174f1d15a71e from=translated src=- shape=aba8ae88 vocab=8028f592
+-/
 theorem inv_mem_integers_of_valued_eq_one {x : 𝕂} (h : Valued.v x = 1) : x⁻¹ ∈ 𝓞v := by
   rw [HeightOneSpectrum.mem_adicCompletionIntegers, map_inv₀, h, inv_one]
 
+/--
+@isnad1 id=irreduci.0h1v.s9.9676d712e58f from=translated src=- shape=718890c2 vocab=295c3172
+-/
 theorem irreducible_pr : Irreducible (⟨((pr v : ℕ) : 𝕂), pr_mem_integers v⟩ : 𝓞v) := by
   refine ⟨fun hu => ?_, fun x y hxy => ?_⟩
   · obtain ⟨u, hu⟩ := hu
@@ -166,13 +220,22 @@ def intMat : Subring M₂ where
   zero_mem' i j := by rw [Matrix.zero_apply]; exact zero_mem _
   neg_mem' {A} hA i j := by rw [Matrix.neg_apply]; exact neg_mem (hA i j)
 
+/--
+@isnad1 id=mem.2h3v.s10.9fd91c12f000 from=translated src=- shape=36d950b8 vocab=257c3b20
+-/
 theorem smul_mem_intMat {c : 𝕂} (hc : c ∈ 𝓞v) {M : M₂} (hM : M ∈ intMat v) : c • M ∈ intMat v :=
   fun i j => by rw [Matrix.smul_apply, smul_eq_mul]; exact mul_mem hc (hM i j)
 
+/--
+@isnad1 id=mem.1h2v.s9.bd720b750197 from=translated src=- shape=0c4713a4 vocab=685e6cff
+-/
 theorem det_mem_integers {M : M₂} (hM : M ∈ intMat v) : M.det ∈ 𝓞v := by
   rw [Matrix.det_fin_two]
   exact sub_mem (mul_mem (hM 0 0) (hM 1 1)) (mul_mem (hM 0 1) (hM 1 0))
 
+/--
+@isnad1 id=mem.1h2v.s9.895ec02552a6 from=translated src=- shape=53f553f3 vocab=55a72acd
+-/
 theorem adjugate_mem_intMat {M : M₂} (hM : M ∈ intMat v) : M.adjugate ∈ intMat v := by
   rw [Matrix.adjugate_fin_two]
   intro i j
@@ -194,13 +257,22 @@ theorem eq_smul_adjugate {M Mi : M₂} (h1 : M * Mi = 1) (h2 : Mi * M = 1) :
   rw [← mul_assoc, h2, one_mul] at key
   rw [key, smul_smul, inv_mul_cancel₀ hdet, one_smul]
 
+/--
+@isnad1 id=eq.1h3v.s10.874313c754d6 from=translated src=- shape=3fb44161 vocab=fb588f09
+-/
 theorem det_mul_det_eq_one {M Mi : M₂} (h1 : M * Mi = 1) : M.det * Mi.det = 1 := by
   rw [← Matrix.det_mul, h1, Matrix.det_one]
 
+/--
+@isnad1 id=eq.3h3v.s10.ce10bbc4e4bd from=translated src=- shape=beaa6db2 vocab=3f6bbd68
+-/
 theorem valued_det_eq_one {M Mi : M₂} (hM : M ∈ intMat v) (hMi : Mi ∈ intMat v) (h1 : M * Mi = 1) :
     Valued.v M.det = 1 :=
   valued_eq_one_of_mul_eq_one v (det_mem_integers v hM) (det_mem_integers v hMi) (det_mul_det_eq_one v h1)
 
+/--
+@isnad1 id=mem.4h3v.s11.157ca46678af from=translated src=- shape=92e8365e vocab=3f6bbd68
+-/
 theorem inv_mem_intMat_of_valued_det {M Mi : M₂} (hM : M ∈ intMat v) (h1 : M * Mi = 1) (h2 : Mi * M = 1)
     (hdet : Valued.v M.det = 1) : Mi ∈ intMat v := by
   rw [eq_smul_adjugate v h1 h2]
@@ -208,6 +280,9 @@ theorem inv_mem_intMat_of_valued_det {M Mi : M₂} (hM : M ∈ intMat v) (h1 : M
 
 def tM : M₂ := !![1, 0; 0, ϖ]
 
+/--
+@isnad1 id=ex.2h2v.s10.d2897b24706a from=translated src=- shape=9db63cec vocab=6d9d647d
+-/
 theorem exists_exp_valued_det {Y : M₂} (hY : Y ∈ intMat v) (hdet : Y.det ≠ 0) :
     ∃ m : ℤ, m ≤ 0 ∧ Valued.v Y.det = WithZero.exp m := by
   have h0 : Valued.v Y.det ≠ 0 := (Valuation.ne_zero_iff _).2 hdet
@@ -217,6 +292,9 @@ theorem exists_exp_valued_det {Y : M₂} (hY : Y ∈ intMat v) (hdet : Y.det ≠
   rw [hm, ← WithZero.exp_zero, WithZero.exp_le_exp] at this
   exact this
 
+/--
+@isnad1 id=ex.3h3v.s11.c0b1e2d6b285 from=translated src=- shape=2da220c0 vocab=aba8578b
+-/
 theorem valued_det_bounds {Y Yi : M₂} (h1 : Y * Yi = 1) (hY : Y ∈ intMat v) (hpYi : ϖ • Yi ∈ intMat v) :
     ∃ m : ℤ, -2 ≤ m ∧ m ≤ 0 ∧ Valued.v Y.det = WithZero.exp m := by
   have hdet0 : Y.det ≠ 0 := fun h => by
@@ -242,16 +320,31 @@ def liftInt (Y : M₂) (hY : Y ∈ intMat v) : Matrix (Fin 2) (Fin 2) 𝓞v := f
 def coeMat : Matrix (Fin 2) (Fin 2) 𝓞v →+* M₂ :=
   (HeightOneSpectrum.adicCompletionIntegers ℚ v).subtype.mapMatrix
 
+/--
+@isnad1 id=eq.0h4v.s11.4719d6d2f74f from=translated src=- shape=44275a5c vocab=465f865b
+-/
 theorem coeMat_apply (Y : Matrix (Fin 2) (Fin 2) 𝓞v) (i j : Fin 2) : coeMat v Y i j = (Y i j : 𝕂) := rfl
 
+/--
+@isnad1 id=eq.1h2v.s11.3953a3aef45d from=translated src=- shape=bf34c8a8 vocab=fb775558
+-/
 theorem coeMat_liftInt (Y : M₂) (hY : Y ∈ intMat v) : coeMat v (liftInt Y hY) = Y := by
   ext i j; rfl
 
+/--
+@isnad1 id=mem.0h2v.s11.3db4b024b5d4 from=translated src=- shape=451d13d4 vocab=32dde9db
+-/
 theorem coeMat_mem (Y : Matrix (Fin 2) (Fin 2) 𝓞v) : coeMat v Y ∈ intMat v := fun i j => (Y i j).2
 
+/--
+@isnad1 id=eq.0h2v.s11.04278c372be4 from=translated src=- shape=db5d3f58 vocab=3037bf6f
+-/
 theorem coeMat_det (Y : Matrix (Fin 2) (Fin 2) 𝓞v) : (coeMat v Y).det = (Y.det : 𝕂) :=
   (RingHom.map_det _ Y).symm
 
+/--
+@isnad1 id=ex.2h2v.s12.6c042dfc317e from=translated src=- shape=995308c4 vocab=dccad0e7
+-/
 theorem exists_eq_mul_tM_mul {Y : M₂} (hY : Y ∈ intMat v) (hdet : Valued.v Y.det = WithZero.exp (-1)) :
     ∃ K1 K1i K2 K2i : M₂, K1 ∈ intMat v ∧ K1i ∈ intMat v ∧ K2 ∈ intMat v ∧ K2i ∈ intMat v ∧
       K1 * K1i = 1 ∧ K1i * K1 = 1 ∧ K2 * K2i = 1 ∧ K2i * K2 = 1 ∧ Y = K1 * tM v * K2 := by
@@ -294,6 +387,9 @@ theorem exists_eq_mul_tM_mul {Y : M₂} (hY : Y ∈ intMat v) (hdet : Valued.v Y
   · rw [← map_mul, ← Units.val_mul, inv_mul_cancel, Units.val_one, map_one]
   · rw [← hdiag, ← map_mul, ← map_mul, ← hk, hY', coeMat_liftInt]
 
+/--
+@isnad1 id=eq.6h3v.s12.db7c6346a3c1 from=translated src=- shape=462dce42 vocab=e741dc88
+-/
 theorem valued_det_eq_of_hecke {Y Yi : M₂} (h1 : Y * Yi = 1) (h2 : Yi * Y = 1) (hY : Y ∈ intMat v)
     (hpYi : ϖ • Yi ∈ intMat v) (hYi : Yi ∉ intMat v) (hpY : ϖ⁻¹ • Y ∉ intMat v) :
     Valued.v Y.det = WithZero.exp (-1) := by
@@ -321,6 +417,9 @@ end LocalMatrix
 end HeckeCartan
 open scoped _root_.P2MW.S_Matrix_exists_eq_mul_diagonal_mul_of_forall_mem_adicCompletionIntegers.HeckeCartan
 
+/--
+@isnad1 id=ex.8h4v.s12.4b762545ece7 from=translated src=- shape=65824ae6 vocab=9c6c66ca
+-/
 theorem solution
     (p : ℕ) (hp : p.Prime) (v : HeightOneSpectrum (𝓞 ℚ)) (hpv : (p : 𝓞 ℚ) ∈ v.asIdeal)
     (Y Yi : Matrix (Fin 2) (Fin 2) (v.adicCompletion ℚ)) (h1 : Y * Yi = 1) (h2 : Yi * Y = 1)

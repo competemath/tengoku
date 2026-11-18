@@ -72,6 +72,9 @@ private theorem map_principalPreimage {g : GL (Fin 2) ℚ_[p]}
       (principalPreimage p hg) = g :=
   Units.ext (mapMatrix_principalMat p hg)
 
+/--
+@isnad1 id=le.0h2v.s8.fd4361e955b2 from=translated src=- shape=762e5517 vocab=8b6f925d
+-/
 theorem gl2CongruenceSubgroup_le_padicK1_impl (n : ℕ) :
     gl2CongruenceSubgroup p n ≤ padicK1 p n := by
   intro g hg
@@ -103,6 +106,9 @@ theorem gl2CongruenceSubgroup_le_padicK1_impl (n : ℕ) :
 
 end LocalNewvector
 
+/--
+@isnad1 id=le.0h2v.s8.fd4361e955b2 from=translated src=- shape=762e5517 vocab=8b6f925d
+-/
 theorem solution (p : ℕ) [Fact p.Prime] (n : ℕ) :
     FLT.SmoothVectors.gl2CongruenceSubgroup p n ≤ LocalNewvector.padicK1 p n :=
   LocalNewvector.gl2CongruenceSubgroup_le_padicK1_impl (p := p) n

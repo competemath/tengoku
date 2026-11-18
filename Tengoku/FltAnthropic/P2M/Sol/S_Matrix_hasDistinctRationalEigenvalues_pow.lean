@@ -8,6 +8,9 @@ import Tengoku.Seed.Tactic.LinearCombination
 namespace P2MW.S_Matrix_hasDistinctRationalEigenvalues_pow
 
 open Matrix in
+/--
+@isnad1 id=hasdisti.4h4v.s8.e06aaa3f891e from=translated src=- shape=803ffa41 vocab=a810e90c
+-/
 theorem solution {𝕜 : Type*} [Field 𝕜]
     {M : Matrix (Fin 2) (Fin 2) 𝕜} {d : ℕ} (hd : 0 < d) (hM : M ^ d = 1)
     (h : M.HasDistinctRationalEigenvalues) {k : ℕ} (hk : k.Coprime d) :

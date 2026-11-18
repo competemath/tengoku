@@ -17,11 +17,20 @@ namespace KcSubordination
 
 noncomputable def E (y t : ℝ) : ℝ := rexp (-(π * (t - y / t) ^ 2))
 
+/--
+@isnad1 id=lt.0h2v.s4.2160417ab706 from=translated src=- shape=a120b2a8 vocab=9d8fadad
+-/
 theorem E_pos (y t : ℝ) : 0 < E y t := exp_pos _
 
+/--
+@isnad1 id=measurab.0h1v.s3.0c5a5d34bcdb from=translated src=- shape=f736e2c1 vocab=6691d0ff
+-/
 theorem measurable_E (y : ℝ) : Measurable (E y) := by
   unfold E; fun_prop
 
+/--
+@isnad1 id=eq.1h1v.s5.39802b3ea7bf from=translated src=- shape=eeb07f2c vocab=1b3c96f6
+-/
 theorem image_sub_div {y : ℝ} (hy : 0 < y) : (fun t : ℝ => t - y / t) '' Ioi 0 = univ := by
   refine eq_univ_of_forall fun u => ?_
   set S : ℝ := √(u ^ 2 + 4 * y) with hS
@@ -42,12 +51,18 @@ theorem image_sub_div {y : ℝ} (hy : 0 < y) : (fun t : ℝ => t - y / t) '' Ioi
   simp only
   linarith [h2]
 
+/--
+@isnad1 id=strictmo.1h1v.s5.8bab3d0f8241 from=translated src=- shape=d082fae6 vocab=b20908bd
+-/
 theorem strictMonoOn_sub_div {y : ℝ} (hy : 0 < y) : StrictMonoOn (fun t : ℝ => t - y / t) (Ioi 0) := by
   intro a ha b hb hab
   have : y / b < y / a := div_lt_div_of_pos_left hy ha hab
   simp only
   linarith
 
+/--
+@isnad1 id=hasderiv.1h2v.s6.d5ece952d955 from=translated src=- shape=623114d6 vocab=3ffb208a
+-/
 theorem hasDerivAt_sub_div (y : ℝ) {t : ℝ} (ht : t ≠ 0) :
     HasDerivAt (fun t : ℝ => t - y / t) (1 + y / t ^ 2) t := by
   have h1 : HasDerivAt (fun t : ℝ => y * t⁻¹) (y * (-(t ^ 2)⁻¹)) t := (hasDerivAt_inv ht).const_mul y
@@ -58,11 +73,17 @@ theorem hasDerivAt_sub_div (y : ℝ) {t : ℝ} (ht : t ≠ 0) :
   · rfl
   ring
 
+/--
+@isnad1 id=hasderiv.1h2v.s6.8e67155a60b4 from=translated src=- shape=9b6a9596 vocab=978386f9
+-/
 theorem hasDerivAt_div (y : ℝ) {t : ℝ} (ht : t ≠ 0) :
     HasDerivAt (fun t : ℝ => y / t) (-(y / t ^ 2)) t := by
   have h1 : HasDerivAt (fun t : ℝ => y * t⁻¹) (y * (-(t ^ 2)⁻¹)) t := (hasDerivAt_inv ht).const_mul y
   convert h1 using 1 <;> first | rfl | ring1 | (field_simp; done)
 
+/--
+@isnad1 id=eq.1h1v.s5.6a8c9e02e77d from=translated src=- shape=defc0dba vocab=4d1fdef2
+-/
 theorem image_div {y : ℝ} (hy : 0 < y) : (fun t : ℝ => y / t) '' Ioi 0 = Ioi 0 := by
   ext t
   constructor
@@ -70,6 +91,9 @@ theorem image_div {y : ℝ} (hy : 0 < y) : (fun t : ℝ => y / t) '' Ioi 0 = Ioi
   · intro ht
     exact ⟨y / t, div_pos hy ht, by field_simp⟩
 
+/--
+@isnad1 id=injon.1h1v.s5.7efd8b51078c from=translated src=- shape=39365b35 vocab=310ac1b3
+-/
 theorem injOn_div {y : ℝ} (hy : 0 < y) : InjOn (fun t : ℝ => y / t) (Ioi 0) := by
   intro a ha b hb hab
   simp only at hab
@@ -78,6 +102,9 @@ theorem injOn_div {y : ℝ} (hy : 0 < y) : InjOn (fun t : ℝ => y / t) (Ioi 0) 
   field_simp at hab
   nlinarith [hab]
 
+/--
+@isnad1 id=eq.1h1v.s6.506662702b82 from=translated src=- shape=7b9dd52e vocab=209d3a1f
+-/
 theorem integral_W {y : ℝ} (hy : 0 < y) : ∫ t in Ioi (0:ℝ), (1 + y / t ^ 2) * E y t = 1 := by
   have h := MeasureTheory.integral_image_eq_integral_abs_deriv_smul (s := Ioi (0:ℝ))
     (f := fun t : ℝ => t - y / t) (f' := fun t => 1 + y / t ^ 2) measurableSet_Ioi
@@ -94,6 +121,9 @@ theorem integral_W {y : ℝ} (hy : 0 < y) : ∫ t in Ioi (0:ℝ), (1 + y / t ^ 2
   have hpos : 0 < 1 + y / t ^ 2 := by positivity
   simp only [E, smul_eq_mul, abs_of_pos hpos]
 
+/--
+@isnad1 id=eq.1h1v.s7.7600239fce3d from=translated src=- shape=a33a152c vocab=30bf7f58
+-/
 theorem integral_E_eq {y : ℝ} (hy : 0 < y) :
     ∫ t in Ioi (0:ℝ), E y t = ∫ t in Ioi (0:ℝ), y / t ^ 2 * E y t := by
   have h := MeasureTheory.integral_image_eq_integral_abs_deriv_smul (s := Ioi (0:ℝ))
@@ -109,6 +139,9 @@ theorem integral_E_eq {y : ℝ} (hy : 0 < y) :
   rw [div_div_cancel₀ hy.ne']
   ring
 
+/--
+@isnad1 id=eq.1h1v.s6.46509853f573 from=translated src=- shape=0f48470b vocab=30bf7f58
+-/
 theorem integral_P {y : ℝ} (hy : 0 < y) : ∫ t in Ioi (0:ℝ), y / t ^ 2 * E y t = 1 / 2 := by
   have hW := integral_W hy
   have hWint : IntegrableOn (fun t => (1 + y / t ^ 2) * E y t) (Ioi 0) :=
@@ -138,6 +171,9 @@ theorem integral_P {y : ℝ} (hy : 0 < y) : ∫ t in Ioi (0:ℝ), y / t ^ 2 * E 
   rw [hW, integral_E_eq hy] at hsplit
   linarith
 
+/--
+@isnad1 id=eq.1h1v.s7.ce97931b1365 from=translated src=- shape=7222dada vocab=6c442f54
+-/
 theorem glasser {y : ℝ} (hy : 0 < y) :
     ∫ t in Ioi (0:ℝ), y / t * rexp (-(π * t ^ 2)) * rexp (-(π * (y / t) ^ 2)) / t = rexp (-(2 * π * y)) / 2 := by
   have h1 : ∫ t in Ioi (0:ℝ), y / t * rexp (-(π * t ^ 2)) * rexp (-(π * (y / t) ^ 2)) / t =
@@ -154,6 +190,9 @@ theorem glasser {y : ℝ} (hy : 0 < y) :
   rw [h1, integral_mul_const, integral_P hy]
   ring
 
+/--
+@isnad1 id=eq.1h2v.s8.b11a6d941a85 from=translated src=- shape=d6a30307 vocab=17fe0c0e
+-/
 theorem discrete_eq (γ₀ : ℂ) {y : ℝ} (hy : 0 < y) :
     (4 : ℂ) * ∫ t in Ioi (0:ℝ),
         ((t : ℂ) ^ γ₀ * (Real.exp (-(Real.pi * t ^ 2)) : ℂ)) *
@@ -185,6 +224,9 @@ end KcSubordination
 
 end
 
+/--
+@isnad1 id=eq.1h2v.s8.b69d94e0242b from=translated src=- shape=5b503b25 vocab=23aa705c
+-/
 theorem solution
     (γ : ℂ) (y : ℝ) (hy : 0 < y) :
     (4 : ℂ) * ∫ t in Set.Ioi (0 : ℝ),

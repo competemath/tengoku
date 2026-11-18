@@ -7,6 +7,9 @@ namespace P2MW.S_Localization_Away_isDomain_and_charZero_and_isUnit_and_exists_i
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=and.0h2v.s8.2b08c73d8526 from=translated src=- shape=ff6cf997 vocab=28b87d96
+-/
 theorem solution
     (M : ℕ) [NeZero M] (k : Type) [Field k] [CharZero k] :
     IsDomain (Localization.Away ((M : ℕ) : ℤ)) ∧ CharZero (Localization.Away ((M : ℕ) : ℤ)) ∧

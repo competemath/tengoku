@@ -23,9 +23,15 @@ noncomputable def hIn (α β : ℂ) (y t : ℝ) : ℂ :=
 noncomputable def J (α β : ℂ) (y q : ℝ) : ℂ :=
   (1 / 2 : ℂ) * ((y : ℂ) ^ ((α + β) / 2) * ((q : ℂ) ^ ((β - α) / 2 - 1) * (Real.exp (-(π * y * (q + q⁻¹))) : ℂ)))
 
+/--
+@isnad1 id=ne.1h1v.s4.9e936970e0e8 from=translated src=- shape=2ffa855c vocab=3ca1f7c3
+-/
 theorem arg_ne_pi_of_pos {x : ℝ} (hx : 0 < x) : (x : ℂ).arg ≠ π := by
   rw [arg_ofReal_of_nonneg hx.le]; exact Real.pi_pos.ne
 
+/--
+@isnad1 id=eq.2h4v.s8.7efdb83d64d1 from=translated src=- shape=7405c839 vocab=0f3f29f2
+-/
 theorem subst_pointwise (α β : ℂ) (y : ℝ) (hy : 0 < y) (q : ℝ) (hq : 0 < q) :
     (Real.sqrt y) • ((|((-(1 / 2)) : ℝ)| * q ^ (((-(1 / 2)) : ℝ) - 1)) • hIn α β y (Real.sqrt y * q ^ ((-(1 / 2)) : ℝ))) =
       J α β y q := by
@@ -92,6 +98,9 @@ theorem subst_pointwise (α β : ℂ) (y : ℝ) (hy : 0 < y) (q : ℝ) (hq : 0 <
   push_cast
   field_simp
 
+/--
+@isnad1 id=eq.1h3v.s6.4d55fdd5b545 from=translated src=- shape=09852b0b vocab=815e1339
+-/
 theorem inner_subst (α β : ℂ) (y : ℝ) (hy : 0 < y) :
     ∫ t in Ioi (0 : ℝ), hIn α β y t = ∫ q in Ioi (0 : ℝ), J α β y q := by
   have ha0 : 0 < Real.sqrt y := Real.sqrt_pos.2 hy
@@ -105,15 +114,24 @@ theorem inner_subst (α β : ℂ) (y : ℝ) (hy : 0 < y) :
 
 noncomputable def muq (q : ℝ) : ℝ := π * (q + 2 + q⁻¹)
 
+/--
+@isnad1 id=lt.1h1v.s4.572fadf9f24d from=translated src=- shape=35bd48ee vocab=fb503ffe
+-/
 theorem muq_pos {q : ℝ} (hq : 0 < q) : 0 < muq q := by
   unfold muq; positivity
 
+/--
+@isnad1 id=eq.1h1v.s6.0ab70d5b27d4 from=translated src=- shape=c3bba7d4 vocab=64b4edeb
+-/
 theorem muq_eq {q : ℝ} (hq : 0 < q) : muq q = π * (1 + q) ^ 2 / q := by
   unfold muq; field_simp; ring
 
 noncomputable def Ψ (α β ν s : ℂ) (y q : ℝ) : ℂ :=
   (8 : ℂ) * ((y : ℂ) ^ (s - 1) * ((y : ℂ) ^ ν * (Real.exp (-(2 * π * y)) : ℂ))) * J α β y q
 
+/--
+@isnad1 id=eq.2h6v.s7.1ddce5269514 from=translated src=- shape=a4b62978 vocab=c752bfa9
+-/
 theorem Ψ_eq (α β ν s : ℂ) {y q : ℝ} (hy : 0 < y) (hq : 0 < q) :
     Ψ α β ν s y q = (4 : ℂ) * (q : ℂ) ^ ((β - α) / 2 - 1) *
       ((y : ℂ) ^ (s + ν + (α + β) / 2 - 1) * (Real.exp (-(muq q * y)) : ℂ)) := by
@@ -127,6 +145,9 @@ theorem Ψ_eq (α β ν s : ℂ) {y q : ℝ} (hy : 0 < y) (hq : 0 < q) :
   rw [hpow, hexp]
   ring
 
+/--
+@isnad1 id=eq.2h5v.s8.9b0cfb89f96d from=translated src=- shape=3c451b3a vocab=a3a1b381
+-/
 theorem integral_Ψ_section (α β ν s : ℂ) (hw : 0 < (s + ν + (α + β) / 2).re) {q : ℝ} (hq : 0 < q) :
     ∫ y in Ioi (0 : ℝ), Ψ α β ν s y q =
       (4 : ℂ) * (q : ℂ) ^ ((β - α) / 2 - 1) * ((1 / (muq q : ℂ)) ^ (s + ν + (α + β) / 2) * Gamma (s + ν + (α + β) / 2)) := by
@@ -137,6 +158,9 @@ theorem integral_Ψ_section (α β ν s : ℂ) (hw : 0 < (s + ν + (α + β) / 2
   push_cast
   ring_nf
 
+/--
+@isnad1 id=eq.1h5v.s8.27bd5aed7947 from=translated src=- shape=6b87628a vocab=e1f788b6
+-/
 theorem norm_section_eq (α β ν s : ℂ) {q : ℝ} (hq : 0 < q) :
     q ^ ((β - α) / 2 - 1).re * (1 / muq q) ^ (s + ν + (α + β) / 2).re =
       π ^ (-(s + ν + (α + β) / 2).re) * (q ^ ((s + ν + β).re - 1) * (1 + q) ^ (-((s + ν + α).re + (s + ν + β).re))) := by
@@ -156,6 +180,9 @@ theorem norm_section_eq (α β ν s : ℂ) {q : ℝ} (hq : 0 < q) :
       = π ^ (-x) * ((q ^ ((β - α) / 2 - 1).re * q ^ x) * (1 + q) ^ (-(2 * x))) := by ring
     _ = _ := by rw [← Real.rpow_add hq, hre1]
 
+/--
+@isnad1 id=eq.2h5v.s8.e072867a8d8f from=translated src=- shape=b5fd437c vocab=de4aefc1
+-/
 theorem integral_norm_Ψ_section (α β ν s : ℂ) (hw : 0 < (s + ν + (α + β) / 2).re) {q : ℝ} (hq : 0 < q) :
     ∫ y in Ioi (0 : ℝ), ‖Ψ α β ν s y q‖ =
       4 * (π ^ (-(s + ν + (α + β) / 2).re) *
@@ -171,9 +198,15 @@ theorem integral_norm_Ψ_section (α β ν s : ℂ) (hw : 0 < (s + ν + (α + β
     ← norm_section_eq α β ν s hq]
   ring
 
+/--
+@isnad1 id=continuo.1h2v.s5.b3735bd5bdac from=translated src=- shape=554b23e2 vocab=e3eb2d35
+-/
 theorem continuousAt_cpow_pos {x : ℝ} (hx : 0 < x) (z : ℂ) : ContinuousAt (fun t : ℝ => (t : ℂ) ^ z) x :=
   continuousAt_ofReal_cpow_const x z (Or.inr hx.ne')
 
+/--
+@isnad1 id=aestrong.0h4v.s6.770df3947f6a from=translated src=- shape=301d5399 vocab=82035417
+-/
 theorem aestronglyMeasurable_Ψ (α β ν s : ℂ) :
     AEStronglyMeasurable (Function.uncurry fun (y q : ℝ) => Ψ α β ν s y q)
       ((volume.restrict (Ioi (0 : ℝ))).prod (volume.restrict (Ioi (0 : ℝ)))) := by
@@ -196,6 +229,9 @@ theorem aestronglyMeasurable_Ψ (α β ν s : ℂ) :
   unfold Ψ J
   exact ((continuousAt_const.mul (c1.mul (c2.mul c3))).mul (continuousAt_const.mul (c4.mul (c5.mul c6))))
 
+/--
+@isnad1 id=integrab.2h2v.s6.0c06cd677f64 from=translated src=- shape=067c4d2a vocab=6ad81451
+-/
 theorem integrableOn_cpow_mul_exp_neg_mul {w : ℂ} (hw : 0 < w.re) {μ : ℝ} (hμ : 0 < μ) :
     IntegrableOn (fun y : ℝ => (y : ℂ) ^ (w - 1) * (Real.exp (-(μ * y)) : ℂ)) (Ioi 0) := by
   have h : MellinConvergent (fun y : ℝ => ((Real.exp (-(μ * y)) : ℝ) : ℂ)) w := by
@@ -206,6 +242,9 @@ theorem integrableOn_cpow_mul_exp_neg_mul {w : ℂ} (hw : 0 < w.re) {μ : ℝ} (
     ring
   simpa only [MellinConvergent, smul_eq_mul] using h
 
+/--
+@isnad1 id=integrab.2h4v.s7.185862c09377 from=translated src=- shape=be1909fb vocab=9320e690
+-/
 theorem integrable_Ψ (α β ν s : ℂ) (ha : 0 < (s + ν + α).re) (hb : 0 < (s + ν + β).re) :
     Integrable (Function.uncurry fun (y q : ℝ) => Ψ α β ν s y q)
       ((volume.restrict (Ioi (0 : ℝ))).prod (volume.restrict (Ioi (0 : ℝ)))) := by
@@ -244,9 +283,15 @@ theorem integrable_Ψ (α β ν s : ℂ) (ha : 0 < (s + ν + α).re) (hb : 0 < (
     rw [integral_norm_Ψ_section α β ν s hw hq']
     ring
 
+/--
+@isnad1 id=ne.1h2v.s5.0e8257646d17 from=translated src=- shape=54d9d84f vocab=c3cc7276
+-/
 theorem cpow_pos_ne_zero {x : ℝ} (hx : 0 < x) (z : ℂ) : (x : ℂ) ^ z ≠ 0 := by
   rw [Ne, cpow_eq_zero_iff, not_and_or]; exact Or.inl (ofReal_ne_zero.2 hx.ne')
 
+/--
+@isnad1 id=eq.1h5v.s8.215ecd604427 from=translated src=- shape=a6ebc9f8 vocab=fe8868e9
+-/
 theorem section_eq (α β ν s : ℂ) {q : ℝ} (hq : 0 < q) :
     (4 : ℂ) * (q : ℂ) ^ ((β - α) / 2 - 1) * ((1 / (muq q : ℂ)) ^ (s + ν + (α + β) / 2) * Gamma (s + ν + (α + β) / 2)) =
       ((4 : ℂ) * Gamma (s + ν + (α + β) / 2) * (π : ℂ) ^ (-(s + ν + (α + β) / 2))) *
@@ -274,6 +319,9 @@ theorem section_eq (α β ν s : ℂ) {q : ℝ} (hq : 0 < q) :
   rw [h3, ← h4, h5, h6]
   ring
 
+/--
+@isnad1 id=eq.2h2v.s7.1739b203489f from=translated src=- shape=17ef9c2e vocab=a6bd0e7e
+-/
 theorem const_identity (a b : ℂ) (ha : 0 < a.re) (hb : 0 < b.re) :
     (4 : ℂ) * Gamma ((a + b) / 2) * (π : ℂ) ^ (-((a + b) / 2)) * Complex.betaIntegral b a =
       2 * (Gammaℂ a * Gammaℂ b) / Gammaℝ (a + b + 1) := by
@@ -336,6 +384,9 @@ end K8PD
 
 open K8PD in
 
+/--
+@isnad1 id=and.3h5v.s9.32738213d2fe from=translated src=- shape=7ebe9721 vocab=14f98b88
+-/
 theorem solution
     (α β u s : ℂ) (k : ℕ) (hk : 1 ≤ k)
     (h₁ : 0 < (s + α + u + (k : ℂ) / 2).re) (h₂ : 0 < (s + β + u + (k : ℂ) / 2).re) :

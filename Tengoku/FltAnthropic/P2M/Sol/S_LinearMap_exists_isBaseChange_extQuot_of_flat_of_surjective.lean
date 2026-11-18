@@ -23,9 +23,15 @@ noncomputable abbrev φ (R S : Type*) [CommRing R] [CommRing S] [Algebra R S] (n
     (Fin n → R) →ₗ[R] (Fin n → S) :=
   (Algebra.linearMap R S).compLeft (Fin n)
 
+/--
+@isnad1 id=isbasech.0h3v.s7.14269e0a8e9f from=translated src=- shape=b475e3ab vocab=50c945cf
+-/
 theorem isBaseChange_φ (n : ℕ) : IsBaseChange S (φ R S n) :=
   IsBaseChange.finitePow (Fin n) (IsBaseChange.linearMap R S)
 
+/--
+@isnad1 id=mem.1h6v.s8.095293457f0a from=translated src=- shape=6bb5f101 vocab=f303cd5d
+-/
 theorem mem_span_of_isBaseChange {M N : Type*} [AddCommGroup M] [Module R M] [AddCommGroup N] [Module R N]
     [Module S N] [IsScalarTower R S N] {f : M →ₗ[R] N} (hf : IsBaseChange S f) (y : N) :
     y ∈ Submodule.span S (Set.range f) := by
@@ -35,6 +41,9 @@ theorem mem_span_of_isBaseChange {M N : Type*} [AddCommGroup M] [Module R M] [Ad
   | smul s n hn => exact Submodule.smul_mem _ s hn
   | add n₁ n₂ h₁ h₂ => exact Submodule.add_mem _ h₁ h₂
 
+/--
+@isnad1 id=surjecti.3h10v.s9.220281f05997 from=translated src=- shape=33e4ee81 vocab=12ecf091
+-/
 theorem surjective_of_comp_eq {M N M' N' : Type*} [AddCommGroup M] [Module R M] [AddCommGroup N] [Module R N]
     [AddCommGroup M'] [Module R M'] [Module S M'] [IsScalarTower R S M']
     [AddCommGroup N'] [Module R N'] [Module S N'] [IsScalarTower R S N']
@@ -49,6 +58,9 @@ theorem surjective_of_comp_eq {M N M' N' : Type*} [AddCommGroup M] [Module R M] 
   obtain ⟨m, rfl⟩ := hp n
   exact ⟨α m, h m⟩
 
+/--
+@isnad1 id=bijectiv.3h8v.s9.2f7d48a19a4d from=translated src=- shape=3f278ff5 vocab=e7348776
+-/
 theorem bijective_of_isBaseChange_of_isBaseChange {M N₁ N₂ : Type*} [AddCommGroup M] [Module R M]
     [AddCommGroup N₁] [Module R N₁] [Module S N₁] [IsScalarTower R S N₁]
     [AddCommGroup N₂] [Module R N₂] [Module S N₂] [IsScalarTower R S N₂]
@@ -71,6 +83,9 @@ variable {B : Type u} [CommRing B] {B' : Type u} [CommRing B'] [Algebra B B'] [M
   {N : Type*} [AddCommGroup N] [Module B N] {N' : Type*} [AddCommGroup N'] [Module B N'] [Module B' N'] [IsScalarTower B B' N']
   {g : S →ₗ[B] S'} (hg : IsBaseChange B' g) {ν : N →ₗ[B] N'} (hν : IsBaseChange B' ν)
 
+/--
+@isnad1 id=eq.3h14v.s11.97e118a7d688 from=translated src=- shape=fd697634 vocab=58b689b2
+-/
 theorem linearMapLeftRightHom_comp {P : Type*} [AddCommGroup P] [Module B P] {P' : Type*} [AddCommGroup P'] [Module B P']
     [Module B' P'] [IsScalarTower B B' P'] {π : P →ₗ[B] S} {α : P →ₗ[B] P'} (hα : IsBaseChange B' α)
     (π' : P' →ₗ[B'] S') (hπ : ∀ x, π' (α x) = g (π x)) (δ : S →ₗ[B] N) :
@@ -80,6 +95,9 @@ theorem linearMapLeftRightHom_comp {P : Type*} [AddCommGroup P] [Module B P] {P'
   rw [IsBaseChange.linearMapLeftRightHom_comp_apply, LinearMap.comp_apply, LinearMap.comp_apply, hπ,
     IsBaseChange.linearMapLeftRightHom_comp_apply]
 
+/--
+@isnad1 id=and.2h7v.s11.ae7e0996f263 from=translated src=- shape=f697496a vocab=82555d7c
+-/
 theorem exact_lcomp {R : Type*} [CommRing R] {P Q T N : Type*} [AddCommGroup P] [Module R P] [AddCommGroup Q] [Module R Q]
     [AddCommGroup T] [Module R T] [AddCommGroup N] [Module R N]
     (a : Q →ₗ[R] P) (π : P →ₗ[R] T) (hex : Function.Exact a π) (hπ : Function.Surjective π) :
@@ -116,6 +134,9 @@ theorem exact_lcomp {R : Type*} [CommRing R] {P Q T N : Type*} [AddCommGroup P] 
 
 include hg hν in
 
+/--
+@isnad1 id=isbasech.2h8v.s9.2c321e5e6143 from=translated src=- shape=4b886c07 vocab=813840e6
+-/
 theorem isBaseChange_linearMapLeftRightHom [Module.FinitePresentation B S] :
     IsBaseChange B' (IsBaseChange.linearMapLeftRightHom hg ν) := by
   classical
@@ -195,6 +216,9 @@ end presentation
 end EP2Sol
 
 open EP2Sol in
+/--
+@isnad1 id=and.4h11v.s17.8bdd9f6b41e3 from=translated src=- shape=6d22adca vocab=a1dd2da5
+-/
 theorem solution
     {B : Type u} [CommRing B] [IsNoetherianRing B] {B' : Type u} [CommRing B'] [Algebra B B'] [Module.Flat B B']
     {M : Type v} [AddCommGroup M] [Module B M] {N : Type v} [AddCommGroup N] [Module B N]

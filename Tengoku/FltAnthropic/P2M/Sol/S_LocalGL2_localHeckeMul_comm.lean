@@ -103,6 +103,9 @@ private theorem cartanRel_of_corner_dvd {ϖ : R} (hϖ : Irreducible ϖ)
   rw [this]
   exact cartanRel_unit_mul_mul hW.unit 1 (cartanDiag ϖ a m)
 
+/--
+@isnad1 id=ex.2h3v.s6.2f948de5b7a4 from=translated src=- shape=7b4b8bf5 vocab=b0187e71
+-/
 theorem existsCartan
     {R : Type*} [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     {ϖ : R} (hϖ : Irreducible ϖ)
@@ -221,6 +224,9 @@ private theorem isGelfandInvolution_transposeGL :
 
 end LHMC
 
+/--
+@isnad1 id=eq.0h5v.s13.ae1c814cae32 from=translated src=- shape=7fff9ecc vocab=ae51a75a
+-/
 theorem solution
     {R : Type*} [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]

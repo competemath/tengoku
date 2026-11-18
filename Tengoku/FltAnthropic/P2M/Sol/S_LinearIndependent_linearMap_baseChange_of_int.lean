@@ -9,6 +9,9 @@ open scoped TensorProduct
 
 namespace FixlFacesA
 
+/--
+@isnad1 id=eq.0h5v.s10.802b7512f607 from=translated src=- shape=408c6d0f vocab=1d30ac9f
+-/
 theorem matrixEquivTensor_symm_smul (R A : Type) [CommRing R] [CommRing A] [Algebra R A]
     (n : Type) [Fintype n] [DecidableEq n] (a : A) (x : A ⊗[R] Matrix n n R) :
     (matrixEquivTensor n R A).symm (a • x) = a • (matrixEquivTensor n R A).symm x := by
@@ -19,6 +22,9 @@ theorem matrixEquivTensor_symm_smul (R A : Type) [CommRing R] [CommRing A] [Alge
       smul_eq_mul, mul_smul]
   | add x y hx hy => rw [smul_add, map_add, map_add, hx, hy, smul_add]
 
+/--
+@isnad1 id=linearin.1h5v.s7.cba4f5793796 from=translated src=- shape=ff6d0395 vocab=d7246bca
+-/
 theorem linearIndependent_matrix_map (R A : Type) [CommRing R] [CommRing A] [Algebra R A]
     [Module.Flat R A] (n : Type) [Fintype n] [DecidableEq n] {ι : Type} (M : ι → Matrix n n R)
     (hM : LinearIndependent R M) :
@@ -37,6 +43,9 @@ end FixlFacesA
 
 open FixlFacesA in
 
+/--
+@isnad1 id=linearin.1h4v.s10.ad1d5735923e from=translated src=- shape=b9775113 vocab=b8778101
+-/
 theorem solution (K : Type) [Field K] [CharZero K]
     (Λ : Type) [AddCommGroup Λ] [Module.Finite ℤ Λ] [Module.Free ℤ Λ] {ι : Type}
     (f : ι → Module.End ℤ Λ) (hf : LinearIndependent ℤ f) :

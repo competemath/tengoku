@@ -8,6 +8,9 @@ namespace P2MW.S_LinearMap_exact_dualMap_of_exact
 set_option autoImplicit false
 set_option maxHeartbeats 1600000
 
+/--
+@isnad1 id=exact.1h6v.s10.7ef257390224 from=translated src=- shape=ae012a9d vocab=a72e2d8b
+-/
 theorem solution {K V₁ V₂ V₃ : Type*} [Field K]
     [AddCommGroup V₁] [Module K V₁] [AddCommGroup V₂] [Module K V₂] [AddCommGroup V₃] [Module K V₃]
     (f : V₁ →ₗ[K] V₂) (g : V₂ →ₗ[K] V₃) (h : Function.Exact f g) :

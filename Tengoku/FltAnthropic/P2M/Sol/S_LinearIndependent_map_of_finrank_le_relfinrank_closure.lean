@@ -15,6 +15,9 @@ variable {k : Type} [Field k]
   {E E' : Type} [Field E] [Field E'] [Algebra k E] [Algebra k E'] [Algebra E E'] [IsScalarTower k E E']
   {C Ω : Type} [Field C] [Field Ω] [Algebra k C] [Algebra C Ω] [Algebra k Ω] [IsScalarTower k C Ω]
 
+/--
+@isnad1 id=mem.2h4v.s9.ec47a4b6ad04 from=translated src=- shape=d7c5e099 vocab=ec7392f8
+-/
 theorem inv_mem_of_fg {F L : Type} [Field F] [Field L] [Algebra F L] (S : Subalgebra F L)
     (hS : S.toSubmodule.FG) {x : L} (hx : x ∈ S) : x⁻¹ ∈ S := by
   have hint : IsIntegral F x := IsIntegral.of_mem_of_fg S hS x hx
@@ -25,6 +28,9 @@ end LinDisjUp9
 
 open IntermediateField Module in
 
+/--
+@isnad1 id=linearin.5h8v.s10.42376cfdeeda from=translated src=- shape=9a97ba61 vocab=63b47d7e
+-/
 theorem solution
     (k : Type) [Field k]
     (E E' : Type) [Field E] [Field E'] [Algebra k E] [Algebra k E'] [Algebra E E']

@@ -19,55 +19,91 @@ variable (v : HeightOneSpectrum (𝓞 ℚ))
 local notation "K" => v.adicCompletion ℚ
 local notation "O" => v.adicCompletionIntegers ℚ
 
+/--
+@isnad1 id=mem.2h5v.s9.409516a11195 from=translated src=- shape=0184a44d vocab=888a6d02
+-/
 theorem intg_mul {M N : Matrix (Fin 2) (Fin 2) K}
     (hM : ∀ i j, M i j ∈ O) (hN : ∀ i j, N i j ∈ O) : ∀ i j, (M * N) i j ∈ O := by
   intro i j
   rw [Matrix.mul_apply]
   exact sum_mem fun k _ => mul_mem (hM i k) (hN k j)
 
+/--
+@isnad1 id=eq.2h4v.s10.270899569111 from=translated src=- shape=fc9bc1d0 vocab=96be11cf
+-/
 theorem inv_unique {Y Yi R : Matrix (Fin 2) (Fin 2) K} (h2 : Yi * Y = 1) (hR : Y * R = 1) : Yi = R := by
   calc Yi = Yi * (Y * R) := by rw [hR, mul_one]
     _ = R := by rw [← mul_assoc, h2, one_mul]
 
+/--
+@isnad1 id=eq.0h5v.s9.7d9dc97dd456 from=translated src=- shape=8fba4f0f vocab=e7ae9197
+-/
 theorem mul_fin_two (M N : Matrix (Fin 2) (Fin 2) K) (i j : Fin 2) :
     (M * N) i j = M i 0 * N 0 j + M i 1 * N 1 j := by
   rw [Matrix.mul_apply, Fin.sum_univ_two]
 
 noncomputable abbrev ℓ (w : HeightOneSpectrum (𝓞 ℚ)) : ℕ := (Rat.HeightOneSpectrum.primesEquiv (R := 𝓞 ℚ) w : ℕ)
 
+/--
+@isnad1 id=prime.0h1v.s3.6602c0274cb4 from=translated src=- shape=32354d46 vocab=127732e3
+-/
 theorem ℓ_prime (w : HeightOneSpectrum (𝓞 ℚ)) : (ℓ w).Prime := (Rat.HeightOneSpectrum.primesEquiv (R := 𝓞 ℚ) w).2
 
+/--
+@isnad1 id=iff.0h2v.s7.7a72ad76a1f7 from=translated src=- shape=4a215e3f vocab=cb7bf790
+-/
 theorem intCast_mem_asIdeal_iff (w : HeightOneSpectrum (𝓞 ℚ)) (z : ℤ) : (z : 𝓞 ℚ) ∈ w.asIdeal ↔ (ℓ w : ℤ) ∣ z := by
   rw [← Ideal.apply_mem_of_equiv_iff (f := Rat.IsIntegralClosure.intEquiv (𝓞 ℚ)), map_intCast,
     ← Rat.HeightOneSpectrum.span_natGenerator, Ideal.mem_span_singleton, Int.cast_id]
   rfl
 
+/--
+@isnad1 id=iff.0h2v.s7.b1e5255631ae from=translated src=- shape=ffd93404 vocab=2baf53a7
+-/
 theorem natCast_mem_asIdeal_iff (w : HeightOneSpectrum (𝓞 ℚ)) (n : ℕ) : (n : 𝓞 ℚ) ∈ w.asIdeal ↔ ℓ w ∣ n := by
   rw [show (n : 𝓞 ℚ) = ((n : ℤ) : 𝓞 ℚ) from (Int.cast_natCast n).symm, intCast_mem_asIdeal_iff, Int.natCast_dvd_natCast]
 
+/--
+@isnad1 id=eq.2h2v.s7.2da772f9d637 from=translated src=- shape=46480678 vocab=3a7b3fc6
+-/
 theorem ℓ_eq_of_prime_mem (w : HeightOneSpectrum (𝓞 ℚ)) {p : ℕ} (hp : p.Prime) (hpw : (p : 𝓞 ℚ) ∈ w.asIdeal) : ℓ w = p :=
   (Nat.prime_dvd_prime_iff_eq (ℓ_prime w) hp).mp ((natCast_mem_asIdeal_iff w p).mp hpw)
 
+/--
+@isnad1 id=eq.0h2v.s9.855ecbd84dfd from=translated src=- shape=99a5a5bc vocab=bebd3a09
+-/
 theorem valued_algebraMap (w : HeightOneSpectrum (𝓞 ℚ)) (q : ℚ) :
     Valued.v (algebraMap ℚ (w.adicCompletion ℚ) q) = w.valuation ℚ q := by
   rw [HeightOneSpectrum.algebraMap_adicCompletion]
   exact HeightOneSpectrum.valuedAdicCompletion_eq_valuation' w q
 
+/--
+@isnad1 id=iff.0h2v.s6.835803580045 from=translated src=- shape=463e4912 vocab=1086eeff
+-/
 theorem valuation_natCast_lt_one_iff (w : HeightOneSpectrum (𝓞 ℚ)) (n : ℕ) : w.valuation ℚ (n : ℚ) < 1 ↔ ℓ w ∣ n := by
   rw [show (n : ℚ) = algebraMap (𝓞 ℚ) ℚ (n : 𝓞 ℚ) from (map_natCast _ _).symm,
     HeightOneSpectrum.valuation_of_algebraMap, HeightOneSpectrum.intValuation_lt_one_iff_dvd,
     Ideal.dvd_span_singleton, natCast_mem_asIdeal_iff]
 
+/--
+@isnad1 id=le.0h2v.s6.617a0fc643f2 from=translated src=- shape=ff309457 vocab=e5319a3b
+-/
 theorem valuation_natCast_le_one (w : HeightOneSpectrum (𝓞 ℚ)) (n : ℕ) : w.valuation ℚ (n : ℚ) ≤ 1 := by
   rw [show (n : ℚ) = algebraMap (𝓞 ℚ) ℚ (n : 𝓞 ℚ) from (map_natCast _ _).symm,
     HeightOneSpectrum.valuation_of_algebraMap]
   exact HeightOneSpectrum.intValuation_le_one _ _
 
+/--
+@isnad1 id=lt.2h2v.s9.a725e2ceb011 from=translated src=- shape=769914d2 vocab=4db359d6
+-/
 theorem v_natCast_lt_one (w : HeightOneSpectrum (𝓞 ℚ)) {p : ℕ} (hp : p.Prime) (hpw : (p : 𝓞 ℚ) ∈ w.asIdeal) :
     Valued.v ((p : ℕ) : w.adicCompletion ℚ) < 1 := by
   rw [← map_natCast (algebraMap ℚ (w.adicCompletion ℚ)), valued_algebraMap, valuation_natCast_lt_one_iff,
     ℓ_eq_of_prime_mem w hp hpw]
 
+/--
+@isnad1 id=mem.0h2v.s8.5261912db99e from=translated src=- shape=c1c1b6e8 vocab=fe3db615
+-/
 theorem natCast_mem_integers (w : HeightOneSpectrum (𝓞 ℚ)) (n : ℕ) :
     ((n : ℕ) : w.adicCompletion ℚ) ∈ w.adicCompletionIntegers ℚ := by
   rw [HeightOneSpectrum.mem_adicCompletionIntegers, ← map_natCast (algebraMap ℚ (w.adicCompletion ℚ)),
@@ -78,6 +114,9 @@ section TwoByTwo
 variable {v}
 variable (p : ℕ)
 
+/--
+@isnad1 id=and.4h4v.s11.a8e2dbcc2539 from=translated src=- shape=30c10a49 vocab=ff5a8612
+-/
 theorem iw_mul {M N : Matrix (Fin 2) (Fin 2) K}
     (hM : ∀ i j, M i j ∈ O) (hM10 : (p : K)⁻¹ * M 1 0 ∈ O)
     (hN : ∀ i j, N i j ∈ O) (hN10 : (p : K)⁻¹ * N 1 0 ∈ O) :
@@ -87,6 +126,9 @@ theorem iw_mul {M N : Matrix (Fin 2) (Fin 2) K}
     ((p : K)⁻¹ * M 1 0) * N 0 0 + M 1 1 * ((p : K)⁻¹ * N 1 0) by ring]
   exact add_mem (mul_mem hM10 (hN 0 0)) (mul_mem (hM 1 1) hN10)
 
+/--
+@isnad1 id=eq.0h6v.s12.6195da0426c3 from=translated src=- shape=695e948c vocab=30f2af82
+-/
 theorem conj_eq (a b c d : K) (M : Matrix (Fin 2) (Fin 2) K) :
     !![a, 0; 0, b] * M * !![c, 0; 0, d] =
       !![a * M 0 0 * c, a * M 0 1 * d; b * M 1 0 * c, b * M 1 1 * d] := by
@@ -96,6 +138,9 @@ theorem conj_eq (a b c d : K) (M : Matrix (Fin 2) (Fin 2) K) :
       Matrix.cons_val_one, Matrix.head_cons, Matrix.empty_val', Matrix.cons_val_fin_one, Matrix.head_fin_const,
       Fin.isValue, Fin.zero_eta, Fin.mk_one] <;> ring
 
+/--
+@isnad1 id=eq.0h3v.s12.033686dec52f from=translated src=- shape=246b351f vocab=ffedb27a
+-/
 theorem al_conj_eq (M : Matrix (Fin 2) (Fin 2) K) :
     !![(0 : K), 1; (p : K), 0] * M * !![(0 : K), (p : K)⁻¹; 1, 0] =
       !![M 1 1, M 1 0 * (p : K)⁻¹; (p : K) * M 0 1, (p : K) * M 0 0 * (p : K)⁻¹] := by
@@ -105,11 +150,17 @@ theorem al_conj_eq (M : Matrix (Fin 2) (Fin 2) K) :
       Matrix.cons_val_one, Matrix.head_cons, Matrix.empty_val', Matrix.cons_val_fin_one, Matrix.head_fin_const,
       Fin.isValue, Fin.zero_eta, Fin.mk_one] <;> ring
 
+/--
+@isnad1 id=mem.4h7v.s10.47f58fe32039 from=translated src=- shape=80d412a7 vocab=a776186f
+-/
 theorem intg_of_entries {a b c d : K} (ha : a ∈ O) (hb : b ∈ O) (hc : c ∈ O) (hd : d ∈ O) :
     ∀ i j, (!![a, b; c, d]) i j ∈ O := by
   intro i j
   fin_cases i <;> fin_cases j <;> simpa
 
+/--
+@isnad1 id=mem.4h5v.s12.67105df16f0e from=translated src=- shape=876fd1d1 vocab=2cd4f4a8
+-/
 theorem conj_intg (hp0 : (p : K) ≠ 0) {M : Matrix (Fin 2) (Fin 2) K}
     (hM : ∀ i j, M i j ∈ O) (hM10 : (p : K)⁻¹ * M 1 0 ∈ O) (hpO : (p : K) ∈ O) :
     ∀ i j, (!![(1 : K), 0; 0, (p : K)⁻¹] * M * !![(1 : K), 0; 0, (p : K)]) i j ∈ O := by
@@ -120,6 +171,9 @@ theorem conj_intg (hp0 : (p : K) ≠ 0) {M : Matrix (Fin 2) (Fin 2) K}
   · simpa using hM10
   · rw [show (p : K)⁻¹ * M 1 1 * (p : K) = M 1 1 by field_simp]; exact hM 1 1
 
+/--
+@isnad1 id=mem.4h5v.s12.629f19769704 from=translated src=- shape=3ec239c6 vocab=2cd4f4a8
+-/
 theorem al_conj_intg (hp0 : (p : K) ≠ 0) {M : Matrix (Fin 2) (Fin 2) K}
     (hM : ∀ i j, M i j ∈ O) (hM10 : (p : K)⁻¹ * M 1 0 ∈ O) (hpO : (p : K) ∈ O) :
     ∀ i j, (!![(0 : K), 1; (p : K), 0] * M * !![(0 : K), (p : K)⁻¹; 1, 0]) i j ∈ O := by
@@ -128,10 +182,16 @@ theorem al_conj_intg (hp0 : (p : K) ≠ 0) {M : Matrix (Fin 2) (Fin 2) K}
   · rw [mul_comm]; exact hM10
   · rw [show (p : K) * M 0 0 * (p : K)⁻¹ = M 0 0 by field_simp]; exact hM 0 0
 
+/--
+@isnad1 id=mem.1h2v.s8.db50d00efbbe from=translated src=- shape=243c6e50 vocab=bdeb7eb6
+-/
 theorem det_intg {M : Matrix (Fin 2) (Fin 2) K} (hM : ∀ i j, M i j ∈ O) : M.det ∈ O := by
   rw [Matrix.det_fin_two]
   exact sub_mem (mul_mem (hM 0 0) (hM 1 1)) (mul_mem (hM 0 1) (hM 1 0))
 
+/--
+@isnad1 id=mem.5h4v.s11.7f71410a1a05 from=translated src=- shape=1c95c15c vocab=ff5a8612
+-/
 theorem iw_inv {M Mi : Matrix (Fin 2) (Fin 2) K}
     (hM : ∀ i j, M i j ∈ O) (hM10 : (p : K)⁻¹ * M 1 0 ∈ O) (hMi : ∀ i j, Mi i j ∈ O)
     (h1 : M * Mi = 1) (h2 : Mi * M = 1) : (p : K)⁻¹ * Mi 1 0 ∈ O := by
@@ -151,6 +211,9 @@ end TwoByTwo
 section TwoByTwo2
 variable {v}
 
+/--
+@isnad1 id=eq.0h5v.s11.19b2178d88e0 from=translated src=- shape=c83f3e30 vocab=30f2af82
+-/
 theorem diag_mul_diag (a b c d : K) : !![a, 0; 0, b] * !![c, 0; 0, d] = !![a * c, 0; 0, b * d] := by
   ext i j
   fin_cases i <;> fin_cases j <;>
@@ -158,6 +221,9 @@ theorem diag_mul_diag (a b c d : K) : !![a, 0; 0, b] * !![c, 0; 0, d] = !![a * c
       Matrix.cons_val_one, Matrix.head_cons, Matrix.empty_val', Matrix.cons_val_fin_one, Matrix.head_fin_const,
       Fin.isValue, Fin.zero_eta, Fin.mk_one] <;> ring
 
+/--
+@isnad1 id=eq.1h2v.s11.12ffde765cb2 from=translated src=- shape=5c18f73a vocab=53097323
+-/
 theorem al_mul_al' (p : K) (hp0 : p ≠ 0) : !![(0 : K), 1; p, 0] * !![(0 : K), p⁻¹; 1, 0] = 1 := by
   ext i j
   fin_cases i <;> fin_cases j <;>
@@ -166,11 +232,20 @@ theorem al_mul_al' (p : K) (hp0 : p ≠ 0) : !![(0 : K), 1; p, 0] * !![(0 : K), 
       Fin.isValue, Fin.zero_eta, Fin.mk_one, Matrix.one_apply_eq, Matrix.one_apply_ne, ne_eq, Fin.reduceNe]
     <;> simp [hp0]
 
+/--
+@isnad1 id=eq.0h1v.s10.5c2ae2a28f1b from=translated src=- shape=bc1932e9 vocab=bbdeb75e
+-/
 theorem diag_one_one : !![(1 : K), 0; 0, 1] = 1 := by
   rw [← Matrix.one_fin_two]
 
+/--
+@isnad1 id=eq.0h5v.s9.540174605315 from=translated src=- shape=afcab491 vocab=bbdeb75e
+-/
 theorem entry10 (a b c d : K) : (!![a, b; c, d]) 1 0 = c := by simp
 
+/--
+@isnad1 id=eq.0h3v.s10.01255f6575fe from=translated src=- shape=7f07e5f8 vocab=70732cd8
+-/
 theorem diagonal_eq (a b : K) : Matrix.diagonal ![a, b] = !![a, 0; 0, b] := by
   ext i j
   fin_cases i <;> fin_cases j <;> simp [Matrix.diagonal]
@@ -180,6 +255,9 @@ end TwoByTwo2
 end IwFlip
 
 open IwFlip in
+/--
+@isnad1 id=ex.11h4v.s13.21d416765cd5 from=translated src=- shape=f7c9a351 vocab=eae77e87
+-/
 theorem solution
     (p : ℕ) (hp : p.Prime) (v : HeightOneSpectrum (𝓞 ℚ)) (hpv : (p : 𝓞 ℚ) ∈ v.asIdeal)
     (Y Yi : Matrix (Fin 2) (Fin 2) (v.adicCompletion ℚ)) (h1 : Y * Yi = 1) (h2 : Yi * Y = 1)

@@ -25,6 +25,9 @@ theorem eq_zero_of_forall_mem_span_pow {x : ℤ_[p]}
   have := (PadicInt.mem_span_pow_iff_le_valuation x h (x.valuation + 1)).1 (hx _)
   omega
 
+/--
+@isnad1 id=ex.1h3v.s9.750283e6b0c0 from=translated src=- shape=4026f6b8 vocab=71fcf282
+-/
 theorem exists_pow_smul_mem_range_of_injective (f : V →ₗ[ℤ_[p]] V) (hf : Function.Injective f) :
     ∃ m' : ℕ, ∀ w : V, ∃ v : V, f v = (p : ℤ_[p]) ^ m' • w := by
   classical
@@ -88,25 +91,40 @@ variable {A : Type u} [Ring A] {n : Type} [Fintype n] [DecidableEq n]
 
 noncomputable abbrev up : Matrix n n ℤ_[p] →+* Matrix n n ℚ_[p] := (algebraMap ℤ_[p] ℚ_[p]).mapMatrix
 
+/--
+@isnad1 id=injectiv.0h2v.s7.bdd2c3d7f53f from=translated src=- shape=6067520d vocab=2a745f9e
+-/
 theorem up_injective : Function.Injective (up : Matrix n n ℤ_[p] → Matrix n n ℚ_[p]) := fun M N h => by
   ext i j
   have := congrFun (congrFun h i) j
   exact Subtype.ext this
 
+/--
+@isnad1 id=eq.0h4v.s8.708e474bb907 from=translated src=- shape=31946ab6 vocab=d186ff9c
+-/
 theorem up_smul (z : ℤ_[p]) (M : Matrix n n ℤ_[p]) : up (z • M) = (z : ℚ_[p]) • up M := by
   ext i j
   simp [Matrix.map_apply, Matrix.smul_apply]
 
+/--
+@isnad1 id=eq.0h4v.s9.27e0c0c61e6f from=translated src=- shape=12038e0b vocab=36a112fd
+-/
 theorem up_pow_smul (k : ℕ) (M : Matrix n n ℤ_[p]) :
     up ((p : ℤ_[p]) ^ k • M) = (p : ℚ_[p]) ^ k • up M := by
   rw [up_smul]; push_cast; rfl
 
 omit [Fintype n] [DecidableEq n] in
+/--
+@isnad1 id=eq.0h4v.s7.c46180ec626c from=translated src=- shape=66b84bf9 vocab=ff32016d
+-/
 theorem natCast_pow_smul_eq (k : ℕ) (Y : Matrix n n ℚ_[p]) :
     (p ^ k : ℕ) • Y = (p : ℚ_[p]) ^ k • Y := by
   rw [← Nat.cast_smul_eq_nsmul ℚ_[p], Nat.cast_pow]
 
 omit [Fintype n] [DecidableEq n] in
+/--
+@isnad1 id=eq.0h4v.s7.c050642e74b1 from=translated src=- shape=66b84bf9 vocab=04f8411d
+-/
 theorem natCast_pow_smul_eq' (k : ℕ) (Y : Matrix n n ℤ_[p]) :
     (p ^ k : ℕ) • Y = (p : ℤ_[p]) ^ k • Y := by
   rw [← Nat.cast_smul_eq_nsmul ℤ_[p], Nat.cast_pow]
@@ -117,14 +135,23 @@ variable (θ E : A →+* Matrix n n ℚ_[p]) (hθ : Function.Injective θ) (hE :
 
 noncomputable def aOf (M : Matrix n n ℤ_[p]) : A := (hθm M).choose
 
+/--
+@isnad1 id=eq.1h6v.s9.b5b2d08f297d from=translated src=- shape=2d0e659f vocab=e715b3d7
+-/
 theorem θ_aOf (M : Matrix n n ℤ_[p]) : θ (aOf θ m hθm M) = (p : ℚ_[p]) ^ m • up M :=
   (hθm M).choose_spec
 
 include hθ in
+/--
+@isnad1 id=eq.2h7v.s9.bb542a1d59c7 from=translated src=- shape=0cfd920b vocab=b8cde63e
+-/
 theorem aOf_add (M N : Matrix n n ℤ_[p]) : aOf θ m hθm (M + N) = aOf θ m hθm M + aOf θ m hθm N :=
   hθ (by rw [map_add, θ_aOf, θ_aOf, θ_aOf, map_add, smul_add])
 
 include hθ in
+/--
+@isnad1 id=eq.2h7v.s9.7498be5a980d from=translated src=- shape=4bb12b93 vocab=fc7a0bb1
+-/
 theorem aOf_mul (M N : Matrix n n ℤ_[p]) :
     aOf θ m hθm M * aOf θ m hθm N = (p ^ m : ℕ) • aOf θ m hθm (M * N) :=
   hθ (by
@@ -132,24 +159,39 @@ theorem aOf_mul (M N : Matrix n n ℤ_[p]) :
       smul_smul])
 
 include hθ in
+/--
+@isnad1 id=eq.2h5v.s9.1596de881420 from=translated src=- shape=c60eff4d vocab=00cc2e56
+-/
 theorem aOf_one : aOf θ m hθm 1 = (p ^ m : ℕ) • (1 : A) :=
   hθ (by rw [θ_aOf, map_nsmul, map_one, natCast_pow_smul_eq, map_one])
 
 include hθ in
+/--
+@isnad1 id=eq.2h7v.s9.0595cd6da4b1 from=translated src=- shape=03706286 vocab=00cc2e56
+-/
 theorem aOf_nsmul (k : ℕ) (M : Matrix n n ℤ_[p]) : aOf θ m hθm (k • M) = k • aOf θ m hθm M :=
   hθ (by rw [θ_aOf, map_nsmul, map_nsmul, θ_aOf, smul_comm])
 
 noncomputable def FOf (M : Matrix n n ℤ_[p]) : Matrix n n ℤ_[p] := (hEint (aOf θ m hθm M)).choose
 
+/--
+@isnad1 id=eq.2h7v.s9.ebe85f600b11 from=translated src=- shape=58b8a066 vocab=04f83a39
+-/
 theorem up_FOf (M : Matrix n n ℤ_[p]) : up (FOf θ E m hθm hEint M) = E (aOf θ m hθm M) :=
   ((hEint (aOf θ m hθm M)).choose_spec).symm
 
 include hθ in
+/--
+@isnad1 id=eq.3h8v.s9.6420d189c2d8 from=translated src=- shape=2cbd8a8c vocab=b36b6e85
+-/
 theorem FOf_add (M N : Matrix n n ℤ_[p]) :
     FOf θ E m hθm hEint (M + N) = FOf θ E m hθm hEint M + FOf θ E m hθm hEint N :=
   up_injective (by rw [map_add, up_FOf, up_FOf, up_FOf, aOf_add θ hθ, map_add])
 
 include hθ in
+/--
+@isnad1 id=eq.3h8v.s9.628dc0e1fca7 from=translated src=- shape=0becc5d2 vocab=f1c7d8a1
+-/
 theorem FOf_mul (M N : Matrix n n ℤ_[p]) :
     FOf θ E m hθm hEint M * FOf θ E m hθm hEint N = (p : ℤ_[p]) ^ m • FOf θ E m hθm hEint (M * N) :=
   up_injective (by
@@ -157,15 +199,24 @@ theorem FOf_mul (M N : Matrix n n ℤ_[p]) :
       natCast_pow_smul_eq])
 
 include hθ in
+/--
+@isnad1 id=eq.3h6v.s9.7a71e35f63a4 from=translated src=- shape=70314c38 vocab=6e6ac399
+-/
 theorem FOf_one : FOf θ E m hθm hEint 1 = (p : ℤ_[p]) ^ m • (1 : Matrix n n ℤ_[p]) :=
   up_injective (by rw [up_FOf, aOf_one θ hθ, map_nsmul, map_one, up_pow_smul, map_one, natCast_pow_smul_eq])
 
 include hθ in
+/--
+@isnad1 id=eq.3h8v.s9.f5207f51ae3e from=translated src=- shape=4ff5fc06 vocab=6e6ac399
+-/
 theorem FOf_nsmul (k : ℕ) (M : Matrix n n ℤ_[p]) :
     FOf θ E m hθm hEint (k • M) = k • FOf θ E m hθm hEint M :=
   up_injective (by rw [up_FOf, aOf_nsmul θ hθ, map_nsmul, map_nsmul, up_FOf])
 
 include hE in
+/--
+@isnad1 id=eq.4h7v.s9.81b7f51d09ad from=translated src=- shape=1447e1eb vocab=6e6ac399
+-/
 theorem FOf_injective {M : Matrix n n ℤ_[p]} (h : FOf θ E m hθm hEint M = 0) : M = 0 := by
   have h1 : E (aOf θ m hθm M) = 0 := by rw [← up_FOf θ E m hθm hEint, h, map_zero]
   have h2 : aOf θ m hθm M = 0 := hE (by rw [h1, map_zero])
@@ -180,11 +231,17 @@ noncomputable def DOf (z : ℤ_[p]) : Matrix n n ℤ_[p] :=
   FOf θ E m hθm hEint (z • (1 : Matrix n n ℤ_[p])) - ((p : ℤ_[p]) ^ m * z) • (1 : Matrix n n ℤ_[p])
 
 include hθ in
+/--
+@isnad1 id=eq.3h7v.s9.dff62b82b68c from=translated src=- shape=187ca79d vocab=a06d5c08
+-/
 theorem DOf_natCast (k : ℕ) : DOf θ E m hθm hEint (k : ℤ_[p]) = 0 := by
   rw [DOf, Nat.cast_smul_eq_nsmul, FOf_nsmul θ E hθ, FOf_one θ E hθ, ← Nat.cast_smul_eq_nsmul ℤ_[p],
     smul_smul, mul_comm, sub_self]
 
 include hθ in
+/--
+@isnad1 id=eq.3h8v.s9.8a6cffb3e03a from=translated src=- shape=0a2c5d9f vocab=a7536033
+-/
 theorem DOf_add (z z' : ℤ_[p]) :
     DOf θ E m hθm hEint (z + z') = DOf θ E m hθm hEint z + DOf θ E m hθm hEint z' := by
   simp only [DOf]
@@ -192,6 +249,9 @@ theorem DOf_add (z z' : ℤ_[p]) :
   abel
 
 include hθ in
+/--
+@isnad1 id=eq.3h8v.s9.b79ce712e7bf from=translated src=- shape=3ca66a39 vocab=ef523d9c
+-/
 theorem DOf_pow_mul (N : ℕ) (y : ℤ_[p]) :
     DOf θ E m hθm hEint ((p : ℤ_[p]) ^ N * y) = (p : ℤ_[p]) ^ N • DOf θ E m hθm hEint y := by
   simp only [DOf]
@@ -201,6 +261,9 @@ theorem DOf_pow_mul (N : ℕ) (y : ℤ_[p]) :
 
 include hθ in
 
+/--
+@isnad1 id=eq.3h7v.s9.e778a3936aae from=translated src=- shape=396820e3 vocab=a06d5c08
+-/
 theorem DOf_eq_zero (z : ℤ_[p]) : DOf θ E m hθm hEint z = 0 := by
   ext i j
   apply eq_zero_of_forall_mem_span_pow
@@ -213,6 +276,9 @@ theorem DOf_eq_zero (z : ℤ_[p]) : DOf θ E m hθm hEint z = 0 := by
   exact Ideal.mem_span_singleton'.2 ⟨_, rfl⟩
 
 include hθ in
+/--
+@isnad1 id=eq.3h7v.s9.c0049992c624 from=translated src=- shape=ecf2548e vocab=f1c7d8a1
+-/
 theorem FOf_smul_one (z : ℤ_[p]) :
     FOf θ E m hθm hEint (z • (1 : Matrix n n ℤ_[p])) = ((p : ℤ_[p]) ^ m * z) • (1 : Matrix n n ℤ_[p]) := by
   have h := DOf_eq_zero θ E hθ m hθm hEint z
@@ -220,6 +286,9 @@ theorem FOf_smul_one (z : ℤ_[p]) :
 
 include hθ in
 
+/--
+@isnad1 id=eq.3h8v.s9.55e8e04a5a73 from=translated src=- shape=1d5ed14d vocab=6e6ac399
+-/
 theorem FOf_smul (z : ℤ_[p]) (M : Matrix n n ℤ_[p]) :
     FOf θ E m hθm hEint (z • M) = z • FOf θ E m hθm hEint M := by
   have h := FOf_mul θ E hθ m hθm hEint (z • (1 : Matrix n n ℤ_[p])) M
@@ -233,12 +302,18 @@ noncomputable def FLin : Matrix n n ℤ_[p] →ₗ[ℤ_[p]] Matrix n n ℤ_[p] w
   map_smul' := FOf_smul θ E hθ m hθm hEint
 
 include hE in
+/--
+@isnad1 id=injectiv.4h6v.s10.affd0fe2a627 from=translated src=- shape=dc1fd024 vocab=c1a554fd
+-/
 theorem FLin_injective : Function.Injective (FLin θ E hθ m hθm hEint) := by
   rw [← LinearMap.ker_eq_bot, LinearMap.ker_eq_bot']
   intro M hM
   exact FOf_injective θ E hE m hθm hEint hM
 
 include hθ hE hθm hEint in
+/--
+@isnad1 id=ex.4h6v.s9.6b38483fff48 from=translated src=- shape=6ebb94ce vocab=b020a0ed
+-/
 theorem main :
     ∃ m' : ℕ, ∀ M : Matrix n n ℤ_[p], ∃ a : A, E a = (p : ℚ_[p]) ^ m' • M.map ((↑) : ℤ_[p] → ℚ_[p]) := by
   obtain ⟨m', hm'⟩ := exists_pow_smul_mem_range_of_injective (FLin θ E hθ m hθm hEint)
@@ -254,6 +329,9 @@ end Transport
 
 end R4E1Ord
 
+/--
+@isnad1 id=ex.4h6v.s9.6b38483fff48 from=translated src=- shape=6ebb94ce vocab=b020a0ed
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] {A : Type u} [Ring A] {n : Type} [Fintype n] [DecidableEq n]
     (θ E : A →+* Matrix n n ℚ_[p]) (hθ : Function.Injective θ) (hE : Function.Injective E) (m : ℕ)

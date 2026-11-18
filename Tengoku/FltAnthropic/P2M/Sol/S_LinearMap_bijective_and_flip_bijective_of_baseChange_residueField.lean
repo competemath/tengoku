@@ -24,6 +24,9 @@ variable {R : Type u} [CommRing R] [IsLocalRing R] {k : Type v} [Field k] [Algeb
 
 omit [IsLocalRing R] in
 
+/--
+@isnad1 id=ex.2h11v.s12.7f7bd537be62 from=translated src=- shape=a6eb29da vocab=df461b21
+-/
 theorem exists_apply_eq_of_baseChange_residueField
     (hπ : Function.Surjective (algebraMap R k))
     (B : M →ₗ[R] N →ₗ[R] R) (Bk : Mk →ₗ[k] Nk →ₗ[k] k)
@@ -45,6 +48,9 @@ theorem exists_apply_eq_of_baseChange_residueField
     exact ⟨m₁ + m₂, fun n => by rw [map_add, map_add, LinearMap.add_apply, h₁ n, h₂ n, map_add,
       LinearMap.add_apply, map_add]⟩
 
+/--
+@isnad1 id=surjecti.3h10v.s12.ac7ab8c7d693 from=translated src=- shape=8c46452f vocab=690b8cee
+-/
 theorem surjective_of_baseChange_residueField [Module.Free R N] [Module.Finite R N]
     (hπ : Function.Surjective (algebraMap R k))
     (B : M →ₗ[R] N →ₗ[R] R) (Bk : Mk →ₗ[k] Nk →ₗ[k] k)
@@ -86,6 +92,9 @@ theorem surjective_of_baseChange_residueField [Module.Free R N] [Module.Finite R
       (IsLocalRing.maximalIdeal_le_jacobson _) hle
   exact LinearMap.range_eq_top.mp (top_le_iff.mp htop)
 
+/--
+@isnad1 id=eq.1h9v.s10.46daf8d7b046 from=translated src=- shape=49188a9b vocab=948bd15b
+-/
 theorem finrank_eq_of_baseChange_residueField [Module.Free R M] [Module.Finite R M]
     [Module.Free R N] [Module.Finite R N]
     (Bk : Mk →ₗ[k] Nk →ₗ[k] k) (eM : k ⊗[R] M ≃ₗ[k] Mk) (eN : k ⊗[R] N ≃ₗ[k] Nk)
@@ -103,6 +112,9 @@ theorem finrank_eq_of_baseChange_residueField [Module.Free R M] [Module.Finite R
     (LinearMap.finrank_le_finrank_of_injective hBk.2.injective).trans (Subspace.dual_finrank_eq).le
   omega
 
+/--
+@isnad1 id=and.3h10v.s12.0e87f9357917 from=translated src=- shape=2f45ece3 vocab=8892d123
+-/
 theorem bijective_and_flip_bijective_of_baseChange_residueField
     [Module.Free R M] [Module.Finite R M] [Module.Free R N] [Module.Finite R N]
     (hπ : Function.Surjective (algebraMap R k))
@@ -131,6 +143,9 @@ theorem bijective_and_flip_bijective_of_baseChange_residueField
 end
 end BaseChangeResidueFieldPerfect
 
+/--
+@isnad1 id=and.3h10v.s12.0e87f9357917 from=translated src=- shape=2f45ece3 vocab=8892d123
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsLocalRing R] {k : Type v} [Field k] [Algebra R k]
     {M : Type w₁} {N : Type w₂} [AddCommGroup M] [Module R M] [AddCommGroup N] [Module R N]

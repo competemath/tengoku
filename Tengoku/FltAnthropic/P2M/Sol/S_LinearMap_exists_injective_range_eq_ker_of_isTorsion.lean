@@ -7,6 +7,9 @@ namespace P2MW.S_LinearMap_exists_injective_range_eq_ker_of_isTorsion
 
 universe u v
 
+/--
+@isnad1 id=ex.1h4v.s9.d57748dfc4d5 from=translated src=- shape=906fc964 vocab=9ae18fdd
+-/
 theorem solution
     {A : Type u} [CommRing A] [IsDomain A] [IsPrincipalIdealRing A]
     {D : Type v} [AddCommGroup D] [Module A D] (hD : Module.IsTorsion A D)

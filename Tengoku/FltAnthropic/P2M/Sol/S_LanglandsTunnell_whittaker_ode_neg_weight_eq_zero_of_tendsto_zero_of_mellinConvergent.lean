@@ -14,6 +14,9 @@ open Real Complex Filter Topology MeasureTheory Set
 namespace LanglandsTunnell
 namespace RecVanish
 
+/--
+@isnad1 id=or.4h3v.s8.7f095799e8e8 from=translated src=- shape=6f675400 vocab=3323ab36
+-/
 theorem real_core (u u' Q : ℝ → ℝ)
     (hu : ∀ y : ℝ, 0 < y → HasDerivAt u (u' y) y)
     (hu' : ∀ y : ℝ, 0 < y → HasDerivAt u' (Q y * u y) y)
@@ -74,6 +77,9 @@ theorem real_core (u u' Q : ℝ → ℝ)
     have : u y ^ 2 ≤ 0 := ge_of_tendsto hlim hle
     nlinarith [sq_nonneg (u y)]
 
+/--
+@isnad1 id=false.5h4v.s6.3511e490acea from=translated src=- shape=e221b616 vocab=df61bdca
+-/
 theorem false_of_mellinConvergent_of_le_norm (f : ℝ → ℂ) (s₁ : ℝ) (hs₁ : 0 ≤ s₁)
     (hmel : MellinConvergent f (s₁ : ℂ)) (y₀ : ℝ) (hy₀ : 0 < y₀) (c : ℝ) (hc : 0 < c)
     (hle : ∀ y : ℝ, y₀ ≤ y → c ≤ ‖f y‖) : False := by
@@ -96,12 +102,18 @@ theorem false_of_mellinConvergent_of_le_norm (f : ℝ → ℂ) (s₁ : ℝ) (hs�
   rw [integrableOn_Ioi_rpow_iff hy₀] at h3
   linarith
 
+/--
+@isnad1 id=hasderiv.1h2v.s7.06f371e397da from=translated src=- shape=3e9f6cb7 vocab=0271ed2a
+-/
 theorem hasDerivAt_re_comp {f : ℝ → ℂ} {y : ℝ} (hf : DifferentiableAt ℝ f y) :
     HasDerivAt (fun t => (f t).re) (deriv f y).re y := by
   have := Complex.reCLM.hasFDerivAt.comp_hasDerivAt y hf.hasDerivAt
   simp at this
   exact this
 
+/--
+@isnad1 id=hasderiv.1h2v.s7.5026ad95752f from=translated src=- shape=3e9f6cb7 vocab=a9765cc8
+-/
 theorem hasDerivAt_im_comp {f : ℝ → ℂ} {y : ℝ} (hf : DifferentiableAt ℝ f y) :
     HasDerivAt (fun t => (f t).im) (deriv f y).im y := by
   have := Complex.imCLM.hasFDerivAt.comp_hasDerivAt y hf.hasDerivAt
@@ -111,6 +123,9 @@ theorem hasDerivAt_im_comp {f : ℝ → ℂ} {y : ℝ} (hf : DifferentiableAt �
 end LanglandsTunnell.RecVanish
 
 open LanglandsTunnell.RecVanish in
+/--
+@isnad1 id=eq.10h5v.s9.98e91acdd344 from=translated src=- shape=04430a2c vocab=9988e245
+-/
 theorem solution
     (ν : ℂ) (hν : (ν ^ 2).im = 0) (hν' : 1 / 4 ≤ (ν ^ 2).re) (k : ℝ) (hk : 0 < k) (f : ℝ → ℂ)
     (hf : DifferentiableOn ℝ f (Set.Ioi 0)) (hf' : DifferentiableOn ℝ (deriv f) (Set.Ioi 0))

@@ -15,15 +15,24 @@ namespace ArchGammaSol
 variable {E : Type} [Field E] [NumberField E] {M : Type} [Field M] [NumberField M] [Algebra E M]
 
 omit [NumberField E] [NumberField M] in
+/--
+@isnad1 id=liesover.1h4v.s7.c452ce957a7e from=translated src=- shape=ab7f67a4 vocab=909b77ed
+-/
 theorem liesOver_of_comap_eq {w : InfinitePlace E} {w' : InfinitePlace M}
     (h : w'.comap (algebraMap E M) = w) : w'.1.LiesOver w.1 :=
   ⟨congrArg Subtype.val h⟩
 
 omit [NumberField E] [NumberField M] in
+/--
+@isnad1 id=iff.0h4v.s6.a5db490ba872 from=translated src=- shape=0cefde90 vocab=e6e48cc3
+-/
 theorem mem_placesOver_iff {w : InfinitePlace E} {w' : InfinitePlace M} :
     w' ∈ placesOver M w ↔ w'.comap (algebraMap E M) = w :=
   ⟨fun h => @LiesOver.comap_eq _ _ _ _ _ w' w h, fun h => liesOver_of_comap_eq h⟩
 
+/--
+@isnad1 id=or.1h3v.s8.4aae8f3dfd61 from=translated src=- shape=883ff8d9 vocab=f69afe81
+-/
 theorem fibre_cases (h2 : Module.finrank E M = 2) (w : InfinitePlace E) :
     (∃ w₁ w₂ : InfinitePlace M, w₁ ≠ w₂ ∧ w₁.comap (algebraMap E M) = w ∧ w₂.comap (algebraMap E M) = w ∧
       w₁.IsUnramified E ∧ w₂.IsUnramified E ∧
@@ -64,6 +73,9 @@ theorem fibre_cases (h2 : Module.finrank E M = 2) (w : InfinitePlace E) :
     rw [← hunion, hUempty, Set.union_empty, hRset] at hmem
     exact hmem
 
+/--
+@isnad1 id=eq.1h8v.s5.70e606a8a00a from=translated src=- shape=c6cdd579 vocab=34f00ce6
+-/
 theorem depfun_congr {K : Type} [Field K] {p : InfinitePlace K → Prop} {β : Type} (F : ∀ v : InfinitePlace K, p v → β)
     {v v' : InfinitePlace K} (h : v = v') (hv : p v) (hv' : p v') : F v hv = F v' hv' := by
   subst h; rfl
@@ -72,6 +84,9 @@ end ArchGammaSol
 
 open ArchGammaSol _root_.NumberField.InfinitePlace _root_.NumberField.InfinitePlace.NumberField.InfinitePlace in
 open scoped Classical in
+/--
+@isnad1 id=eq.6h12v.s10.5349eb8e1350 from=translated src=- shape=a60fde7c vocab=759285f2
+-/
 theorem solution
     (E : Type) [Field E] [NumberField E] (M : Type) [Field M] [NumberField M] [Algebra E M]
     (h2 : Module.finrank E M = 2)

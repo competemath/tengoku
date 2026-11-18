@@ -15,11 +15,17 @@ namespace P2mLES
 
 variable {k : Type u} [DivisionRing k]
 
+/--
+@isnad1 id=eq.0h4v.s8.d2150cb7a755 from=translated src=- shape=bb062bd1 vocab=23b693cc
+-/
 theorem finrank_eq_range_add_ker {M N : Type v} [AddCommGroup M] [Module k M] [AddCommGroup N] [Module k N]
     [Module.Finite k M] (f : M →ₗ[k] N) :
     finrank k M = finrank k (LinearMap.range f) + finrank k (LinearMap.ker f) :=
   (LinearMap.finrank_range_add_finrank_ker f).symm
 
+/--
+@isnad1 id=eq.5h8v.s11.c607e0473eaa from=translated src=- shape=630cbbd9 vocab=53f905c3
+-/
 theorem main
     (A B C : ℕ → Type v)
     [∀ i, AddCommGroup (A i)] [∀ i, Module k (A i)] [∀ i, Module.Finite k (A i)]
@@ -81,6 +87,9 @@ theorem main
 
 end P2mLES
 
+/--
+@isnad1 id=eq.5h8v.s11.c607e0473eaa from=translated src=- shape=630cbbd9 vocab=53f905c3
+-/
 theorem solution
     {k : Type u} [DivisionRing k] (A B C : ℕ → Type v)
     [∀ i, AddCommGroup (A i)] [∀ i, Module k (A i)] [∀ i, Module.Finite k (A i)]

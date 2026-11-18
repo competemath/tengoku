@@ -13,6 +13,9 @@ open LaurentPolynomial
 
 namespace LaurentUFD
 
+/--
+@isnad1 id=uniquefa.1h3v.s6.5ac9cd39fcb1 from=translated src=- shape=3cad004a vocab=bf079896
+-/
 theorem uniqueFactorizationMonoid_of_isLocalization
     {R : Type u} [CommRing R] [IsDomain R] [UniqueFactorizationMonoid R]
     (M : Submonoid R) (hM : M ≤ nonZeroDivisors R)
@@ -54,6 +57,9 @@ theorem uniqueFactorizationMonoid_of_isLocalization
     hp.ne_zero ((IsLocalization.injective S hM) (by rw [h, map_zero]))
   exact (Ideal.span_singleton_prime hp0).mp hprime
 
+/--
+@isnad1 id=uniquefa.0h1v.s5.2b7c9772725d from=translated src=- shape=7f51ae2a vocab=bae67215
+-/
 theorem laurentPolynomial (R : Type u) [CommRing R] [IsDomain R] [UniqueFactorizationMonoid R] :
     UniqueFactorizationMonoid R[T;T⁻¹] :=
   uniqueFactorizationMonoid_of_isLocalization (Submonoid.powers (Polynomial.X : R[X]))
@@ -61,6 +67,9 @@ theorem laurentPolynomial (R : Type u) [CommRing R] [IsDomain R] [UniqueFactoriz
 
 end LaurentUFD
 
+/--
+@isnad1 id=uniquefa.0h1v.s5.2b7c9772725d from=translated src=- shape=7f51ae2a vocab=bae67215
+-/
 theorem solution (R : Type u) [CommRing R] [IsDomain R] [UniqueFactorizationMonoid R] :
     UniqueFactorizationMonoid R[T;T⁻¹] :=
   LaurentUFD.laurentPolynomial R

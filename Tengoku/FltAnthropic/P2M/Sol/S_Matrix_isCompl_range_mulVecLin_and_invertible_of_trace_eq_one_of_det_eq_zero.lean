@@ -18,21 +18,45 @@ open _root_.Matrix
 
 variable {R : Type*} [CommRing R] (e : Matrix (Fin 2) (Fin 2) R)
 
+/--
+@isnad1 id=eq.1h2v.s7.6c7bc0ec2f6c from=translated src=- shape=495e13e5 vocab=80f0a393
+-/
 theorem trace_eq (htr : e.trace = 1) : e 0 0 + e 1 1 = 1 := by
   rw [Matrix.trace_fin_two] at htr; exact htr
 
+/--
+@isnad1 id=eq.1h2v.s7.49ecd900784d from=translated src=- shape=36508f88 vocab=556c2a3c
+-/
 theorem det_eq (hdet : e.det = 0) : e 0 0 * e 1 1 = e 0 1 * e 1 0 := by
   rw [Matrix.det_fin_two] at hdet; exact sub_eq_zero.mp hdet
 
+/--
+@isnad1 id=eq.0h4v.s7.7f407c54a301 from=translated src=- shape=1a691a5a vocab=c262cbaf
+-/
 theorem mulVec_apply (M : Matrix (Fin 2) (Fin 2) R) (v : Fin 2 → R) (i : Fin 2) :
     M.mulVec v i = M i 0 * v 0 + M i 1 * v 1 := by
   simp [Matrix.mulVec, dotProduct, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.0h2v.s8.d1691d1517b7 from=translated src=- shape=91345052 vocab=0c81ccc9
+-/
 theorem one_sub_apply_00 : (1 - e) 0 0 = 1 - e 0 0 := by simp
+/--
+@isnad1 id=eq.0h2v.s8.627fccc18f31 from=translated src=- shape=91345052 vocab=0c81ccc9
+-/
 theorem one_sub_apply_11 : (1 - e) 1 1 = 1 - e 1 1 := by simp
+/--
+@isnad1 id=eq.0h2v.s7.00baf5aef783 from=translated src=- shape=42265c8b vocab=6debb8d4
+-/
 theorem one_sub_apply_01 : (1 - e) 0 1 = -e 0 1 := by simp
+/--
+@isnad1 id=eq.0h2v.s7.bc9d871ebcfd from=translated src=- shape=42265c8b vocab=6debb8d4
+-/
 theorem one_sub_apply_10 : (1 - e) 1 0 = -e 1 0 := by simp
 
+/--
+@isnad1 id=eq.2h2v.s7.dda3189bd81f from=translated src=- shape=469b3126 vocab=2566d505
+-/
 theorem mul_self_eq (htr : e.trace = 1) (hdet : e.det = 0) : e * e = e := by
   have ht := trace_eq e htr
   have hd := det_eq e hdet
@@ -48,6 +72,9 @@ abbrev P : Submodule R (Fin 2 → R) := LinearMap.range (Matrix.mulVecLin e)
 
 abbrev Q : Submodule R (Fin 2 → R) := LinearMap.range (Matrix.mulVecLin (1 - e))
 
+/--
+@isnad1 id=iff.2h3v.s8.8803d6fc67fc from=translated src=- shape=98d18b59 vocab=bf3af070
+-/
 theorem mem_P_iff (htr : e.trace = 1) (hdet : e.det = 0) (v : Fin 2 → R) : v ∈ P e ↔ e.mulVec v = v := by
   constructor
   · rintro ⟨w, rfl⟩
@@ -55,6 +82,9 @@ theorem mem_P_iff (htr : e.trace = 1) (hdet : e.det = 0) (v : Fin 2 → R) : v �
     rw [Matrix.mulVec_mulVec, mul_self_eq e htr hdet]
   · intro hv; exact ⟨v, hv⟩
 
+/--
+@isnad1 id=iff.2h3v.s8.272583a63ff0 from=translated src=- shape=613799d4 vocab=4f2d489d
+-/
 theorem mem_Q_iff (htr : e.trace = 1) (hdet : e.det = 0) (v : Fin 2 → R) : v ∈ Q e ↔ e.mulVec v = 0 := by
   have hid : ∀ w : Fin 2 → R, (1 - e).mulVec w = w - e.mulVec w := fun w => by
     rw [Matrix.sub_mulVec, Matrix.one_mulVec]
@@ -67,6 +97,9 @@ theorem mem_Q_iff (htr : e.trace = 1) (hdet : e.det = 0) (v : Fin 2 → R) : v �
     show (1 - e).mulVec v = v
     rw [hid, hv, sub_zero]
 
+/--
+@isnad1 id=iscompl.2h2v.s8.532d55fc80ab from=translated src=- shape=3991bb91 vocab=7aff8f4a
+-/
 theorem isCompl_P_Q (htr : e.trace = 1) (hdet : e.det = 0) : IsCompl (P e) (Q e) := by
   have hidem : IsIdempotentElem (Matrix.mulVecLin e) := by
     show Matrix.mulVecLin e * Matrix.mulVecLin e = Matrix.mulVecLin e
@@ -81,6 +114,9 @@ section Abstract
 
 variable {M N : Type*} [AddCommGroup M] [Module R M] [AddCommGroup N] [Module R N]
 
+/--
+@isnad1 id=and.5h11v.s10.d486831c513d from=translated src=- shape=13e3a566 vocab=557d8709
+-/
 theorem key (a b c d : R) (ht : a + d = 1) (g₀ g₁ : M) (h₀ h₁ : N)
     (r1 : d • g₀ = c • g₁) (r2 : b • g₀ = a • g₁) (r3 : a • h₀ = -(c • h₁)) (r4 : b • h₀ = -(d • h₁)) :
     (-c) • (g₀ ⊗ₜ[R] h₁ - g₁ ⊗ₜ[R] h₀) = g₀ ⊗ₜ[R] h₀ ∧
@@ -138,7 +174,13 @@ def g (j : Fin 2) : ↥(P e) :=
 def h (j : Fin 2) : ↥(Q e) :=
   ⟨fun i => (1 - e) i j, ⟨Pi.single j 1, by rw [Matrix.mulVecLin_apply, Matrix.mulVec_single_one]; rfl⟩⟩
 
+/--
+@isnad1 id=eq.0h4v.s8.7114d01d3c7c from=translated src=- shape=91fdd6e3 vocab=2e29fb3f
+-/
 @[scoped simp] theorem g_val (j i : Fin 2) : ((g e j : ↥(P e)) : Fin 2 → R) i = e i j := rfl
+/--
+@isnad1 id=eq.0h4v.s8.dee194b2fe2f from=translated src=- shape=1c574849 vocab=8785022d
+-/
 @[scoped simp] theorem h_val (j i : Fin 2) : ((h e j : ↥(Q e)) : Fin 2 → R) i = (1 - e) i j := rfl
 
 def det₂ : (Fin 2 → R) →ₗ[R] (Fin 2 → R) →ₗ[R] R :=
@@ -151,6 +193,9 @@ def det₂ : (Fin 2 → R) →ₗ[R] (Fin 2 → R) →ₗ[R] R :=
 def δ : ↥(P e) ⊗[R] ↥(Q e) →ₗ[R] R :=
   TensorProduct.lift (((det₂ (R := R)).comp (P e).subtype).compl₂ (Q e).subtype)
 
+/--
+@isnad1 id=eq.0h4v.s13.47957e0b6b4c from=translated src=- shape=be3e7d74 vocab=1667fca7
+-/
 theorem δ_tmul (p : ↥(P e)) (q : ↥(Q e)) :
     δ e (p ⊗ₜ q) = (p : Fin 2 → R) 0 * (q : Fin 2 → R) 1 - (p : Fin 2 → R) 1 * (q : Fin 2 → R) 0 := by
   rw [δ, TensorProduct.lift.tmul]; rfl
@@ -188,6 +233,9 @@ theorem eq_smul_h_add (q : ↥(Q e)) :
     rw [one_sub_apply_10, one_sub_apply_11]
     linear_combination h0
 
+/--
+@isnad1 id=eq.2h2v.s11.be9cab1d0437 from=translated src=- shape=1d08a378 vocab=9ce17830
+-/
 theorem rel_g₁ : e 1 1 • g e 0 = e 1 0 • g e 1 := by
   have hd := det_eq e hdet
   apply Subtype.ext; funext i
@@ -196,6 +244,9 @@ theorem rel_g₁ : e 1 1 • g e 0 = e 1 0 • g e 1 := by
   · simp only [Fin.zero_eta, Fin.isValue]; linear_combination hd
   · simp only [Fin.mk_one, Fin.isValue]; ring
 
+/--
+@isnad1 id=eq.2h2v.s11.a0d105af463c from=translated src=- shape=1d08a378 vocab=9ce17830
+-/
 theorem rel_g₂ : e 0 1 • g e 0 = e 0 0 • g e 1 := by
   have hd := det_eq e hdet
   apply Subtype.ext; funext i
@@ -204,6 +255,9 @@ theorem rel_g₂ : e 0 1 • g e 0 = e 0 0 • g e 1 := by
   · simp only [Fin.zero_eta, Fin.isValue]; ring
   · simp only [Fin.mk_one, Fin.isValue]; linear_combination -hd
 
+/--
+@isnad1 id=eq.2h2v.s11.b7eb10750172 from=translated src=- shape=1817af66 vocab=de198483
+-/
 theorem rel_h₁ : e 0 0 • h e 0 = -(e 1 0 • h e 1) := by
   have hd := det_eq e hdet
   have ht := trace_eq e htr
@@ -215,6 +269,9 @@ theorem rel_h₁ : e 0 0 • h e 0 = -(e 1 0 • h e 1) := by
   · simp only [Fin.mk_one, Fin.isValue]; rw [one_sub_apply_10, one_sub_apply_11]
     linear_combination (-e 1 0) * ht
 
+/--
+@isnad1 id=eq.2h2v.s11.2795dc4853e2 from=translated src=- shape=1817af66 vocab=de198483
+-/
 theorem rel_h₂ : e 0 1 • h e 0 = -(e 1 1 • h e 1) := by
   have hd := det_eq e hdet
   have ht := trace_eq e htr
@@ -226,24 +283,42 @@ theorem rel_h₂ : e 0 1 • h e 0 = -(e 1 1 • h e 1) := by
   · simp only [Fin.mk_one, Fin.isValue]; rw [one_sub_apply_10, one_sub_apply_11]
     linear_combination hd - e 1 1 * ht
 
+/--
+@isnad1 id=eq.2h2v.s12.4bcf30c0af9e from=translated src=- shape=41b2f4e3 vocab=e1c0ee9d
+-/
 theorem δ_g_h_00 : δ e (g e 0 ⊗ₜ h e 0) = -e 1 0 := by
   rw [δ_tmul, g_val, g_val, h_val, h_val, one_sub_apply_10, one_sub_apply_00]; ring
 
+/--
+@isnad1 id=eq.2h2v.s12.f7a42628256c from=translated src=- shape=7cbb378a vocab=23a3f152
+-/
 theorem δ_g_h_01 : δ e (g e 0 ⊗ₜ h e 1) = e 0 0 := by
   have hd := det_eq e hdet
   rw [δ_tmul, g_val, g_val, h_val, h_val, one_sub_apply_11, one_sub_apply_01]; linear_combination -hd
 
+/--
+@isnad1 id=eq.2h2v.s12.371b65431cdb from=translated src=- shape=41b2f4e3 vocab=e1c0ee9d
+-/
 theorem δ_g_h_10 : δ e (g e 1 ⊗ₜ h e 0) = -e 1 1 := by
   have hd := det_eq e hdet
   rw [δ_tmul, g_val, g_val, h_val, h_val, one_sub_apply_10, one_sub_apply_00]; linear_combination hd
 
+/--
+@isnad1 id=eq.2h2v.s12.fdf984969664 from=translated src=- shape=7cbb378a vocab=23a3f152
+-/
 theorem δ_g_h_11 : δ e (g e 1 ⊗ₜ h e 1) = e 0 1 := by
   rw [δ_tmul, g_val, g_val, h_val, h_val, one_sub_apply_11, one_sub_apply_01]; ring
 
+/--
+@isnad1 id=eq.2h2v.s12.007565d6e64e from=translated src=- shape=c1231126 vocab=83ccfbb3
+-/
 theorem δ_w₀ : δ e (w₀ e) = 1 := by
   have ht := trace_eq e htr
   rw [w₀, map_sub, δ_g_h_01 e htr hdet, δ_g_h_10 e htr hdet]; linear_combination ht
 
+/--
+@isnad1 id=eq.2h4v.s13.b9738226cc36 from=translated src=- shape=791b909a vocab=dc5e5611
+-/
 theorem smul_w₀_eq_tmul (i j : Fin 2) :
     δ e (g e i ⊗ₜ h e j) • w₀ e = g e i ⊗ₜ h e j := by
   obtain ⟨k00, k01, k10, k11⟩ := key (R := R) (e 0 0) (e 0 1) (e 1 0) (e 1 1) (trace_eq e htr)
@@ -255,6 +330,9 @@ theorem smul_w₀_eq_tmul (i j : Fin 2) :
   · simp only [Fin.mk_one, Fin.isValue, Fin.zero_eta]; rw [δ_g_h_10 e htr hdet]; exact k10
   · simp only [Fin.mk_one, Fin.isValue]; rw [δ_g_h_11 e htr hdet]; exact k11
 
+/--
+@isnad1 id=eq.2h4v.s13.f1e38aeb82f1 from=translated src=- shape=1f64d3fe vocab=7fd72170
+-/
 theorem smul_w₀_eq_tmul' (p : ↥(P e)) (q : ↥(Q e)) :
     δ e (p ⊗ₜ q) • w₀ e = p ⊗ₜ q := by
   have hp := eq_smul_g_add e htr hdet p
@@ -277,8 +355,14 @@ def pairing : ↥(P e) ⊗[R] ↥(Q e) ≃ₗ[R] R :=
       intro p q
       rw [LinearMap.comp_apply, LinearMap.toSpanSingleton_apply, LinearMap.id_apply, smul_w₀_eq_tmul' e htr hdet])
 
+/--
+@isnad1 id=invertib.2h2v.s9.4ea4a7875e5d from=translated src=- shape=2940fda4 vocab=2138f6f3
+-/
 theorem invertible_P : Module.Invertible R ↥(P e) := Module.Invertible.left (pairing e htr hdet)
 
+/--
+@isnad1 id=invertib.2h2v.s9.7860265795a3 from=translated src=- shape=2940fda4 vocab=3583e437
+-/
 theorem invertible_Q : Module.Invertible R ↥(Q e) := Module.Invertible.right (pairing e htr hdet)
 
 end Columns
@@ -287,6 +371,9 @@ end Matrix.RankOneProjectorPlane
 open scoped _root_.P2MW.S_Matrix_isCompl_range_mulVecLin_and_invertible_of_trace_eq_one_of_det_eq_zero.Matrix _root_.P2MW.S_Matrix_isCompl_range_mulVecLin_and_invertible_of_trace_eq_one_of_det_eq_zero.Matrix.RankOneProjectorPlane
 open scoped _root_.P2MW.S_Matrix_isCompl_range_mulVecLin_and_invertible_of_trace_eq_one_of_det_eq_zero.Matrix
 
+/--
+@isnad1 id=and.2h2v.s11.14da23041468 from=translated src=- shape=31948f89 vocab=ec2c2964
+-/
 theorem solution
     {R : Type*} [CommRing R] (e : Matrix (Fin 2) (Fin 2) R) (htr : e.trace = 1) (hdet : e.det = 0) :
     e * e = e ∧

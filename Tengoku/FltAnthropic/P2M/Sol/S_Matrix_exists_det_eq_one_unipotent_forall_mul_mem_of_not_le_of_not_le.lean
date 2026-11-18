@@ -14,10 +14,16 @@ namespace SL2Lines
 
 variable {F : Type*} [Field F]
 
+/--
+@isnad1 id=eq.0h4v.s7.5e6914e34d0a from=translated src=- shape=1a691a5a vocab=9578ffb8
+-/
 theorem mulVec_two (A : Matrix (Fin 2) (Fin 2) F) (v : Fin 2 → F) (i : Fin 2) :
     (A *ᵥ v) i = A i 0 * v 0 + A i 1 * v 1 := by
   simp [Matrix.mulVec, dotProduct, Fin.sum_univ_two]
 
+/--
+@isnad1 id=iff.0h2v.s7.c624054fe0ca from=translated src=- shape=a728dc7f vocab=348792eb
+-/
 theorem vec_ne_zero_iff (v : Fin 2 → F) : v ≠ 0 ↔ v 0 ≠ 0 ∨ v 1 ≠ 0 := by
   constructor
   · intro hv
@@ -27,6 +33,9 @@ theorem vec_ne_zero_iff (v : Fin 2 → F) : v ≠ 0 ↔ v 0 ≠ 0 ∨ v 1 ≠ 0 
     ext i; fin_cases i <;> simp [h.1, h.2]
   · rintro (h | h) hv <;> exact h (by rw [hv]; rfl)
 
+/--
+@isnad1 id=ex.1h3v.s7.e9d1752afb91 from=translated src=- shape=f32f13d5 vocab=62cc2c63
+-/
 theorem exists_mulVec_eq (v t : Fin 2 → F) (hv : v ≠ 0) : ∃ X : Matrix (Fin 2) (Fin 2) F, X *ᵥ v = t := by
   rcases (vec_ne_zero_iff v).1 hv with h0 | h1
   · refine ⟨Matrix.of fun i j => if j = 0 then t i * (v 0)⁻¹ else 0, ?_⟩
@@ -40,6 +49,9 @@ theorem exists_mulVec_eq (v t : Fin 2 → F) (hv : v ≠ 0) : ∃ X : Matrix (Fi
     simp
     field_simp
 
+/--
+@isnad1 id=ex.2h3v.s8.7d826b143a54 from=translated src=- shape=cfeb4709 vocab=6c1c018f
+-/
 theorem exists_eq_smul {w u : Fin 2 → F} (hw : w ≠ 0) (h : w 0 * u 1 - w 1 * u 0 = 0) :
     ∃ lam : F, u = lam • w := by
   by_cases h0 : w 0 = 0
@@ -68,6 +80,9 @@ theorem eq_zero_of_mulVec_eq_zero {w u : Fin 2 → F} (h : w 0 * u 1 - w 1 * u 0
   · have : D i 1 * (w 0 * u 1 - w 1 * u 0) = 0 := by linear_combination (-(u 0)) * e1 + w 0 * e2
     simpa using (mul_eq_zero.mp this).resolve_right h
 
+/--
+@isnad1 id=ex.2h2v.s10.e84fb0651161 from=translated src=- shape=e1e76896 vocab=4594c368
+-/
 theorem exists_annihilator (I : Submodule (Matrix (Fin 2) (Fin 2) F) (Matrix (Fin 2) (Fin 2) F))
     (hI0 : I ≠ ⊥) (hI1 : I ≠ ⊤) :
     ∃ w : Fin 2 → F, w ≠ 0 ∧ ∀ A : Matrix (Fin 2) (Fin 2) F, A ∈ I ↔ A *ᵥ w = 0 := by
@@ -116,6 +131,9 @@ theorem exists_annihilator (I : Submodule (Matrix (Fin 2) (Fin 2) F) (Matrix (Fi
     rw [hAX]
     exact Ideal.mul_mem_left I X hA₀I
 
+/--
+@isnad1 id=eq.1h2v.s8.587887933c12 from=translated src=- shape=b8272412 vocab=cadcd62f
+-/
 theorem det_one_add_eq_one {N : Matrix (Fin 2) (Fin 2) F} (h : N * N = 0) : (1 + N).det = 1 := by
   have e := fun i j => congrFun (congrFun h i) j
   have e00 := e 0 0
@@ -150,11 +168,17 @@ namespace SL2Lines
 
 variable {F : Type*} [Field F]
 
+/--
+@isnad1 id=eq.0h2v.s7.a02fc2b1a927 from=translated src=- shape=9af1f483 vocab=37a74743
+-/
 theorem cross_two_self (w : Fin 2 → F) : w 0 * w 1 - w 1 * w 0 = 0 := by ring
 
 end SL2Lines
 
 open SL2Lines in
+/--
+@isnad1 id=ex.6h4v.s12.acd0f89ecb1a from=translated src=- shape=4e7b66c7 vocab=5a18a2e1
+-/
 theorem solution
     {F : Type*} [Field F] (I₀ I I' : Submodule (Matrix (Fin 2) (Fin 2) F) (Matrix (Fin 2) (Fin 2) F))
     (hI0 : I ≠ ⊥) (hI1 : I ≠ ⊤) (hI'0 : I' ≠ ⊥) (hI'1 : I' ≠ ⊤)

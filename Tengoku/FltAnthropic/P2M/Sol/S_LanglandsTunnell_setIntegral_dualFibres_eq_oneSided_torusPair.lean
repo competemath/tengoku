@@ -14,6 +14,9 @@ open MeasureTheory Set
 
 namespace K8FB
 
+/--
+@isnad1 id=eq.0h0v.s5.a0a47c9c7863 from=translated src=- shape=3ac08321 vocab=6abb2746
+-/
 theorem image_neg_inv_Ioi : (fun y : ℝ => -y⁻¹) '' Ioi (0 : ℝ) = Iio 0 := by
   ext x; constructor
   · rintro ⟨y, hy, rfl⟩
@@ -26,6 +29,9 @@ theorem image_neg_inv_Ioi : (fun y : ℝ => -y⁻¹) '' Ioi (0 : ℝ) = Iio 0 :=
     show (0 : ℝ) < -x⁻¹
     exact neg_pos.mpr (inv_lt_zero.mpr hx')
 
+/--
+@isnad1 id=eq.0h0v.s4.a879713f0dc0 from=translated src=- shape=e12ee647 vocab=71a42a5c
+-/
 theorem image_inv_Ioi : (fun y : ℝ => y⁻¹) '' Ioi (0 : ℝ) = Ioi 0 := by
   ext x; constructor
   · rintro ⟨y, hy, rfl⟩
@@ -38,6 +44,9 @@ theorem image_inv_Ioi : (fun y : ℝ => y⁻¹) '' Ioi (0 : ℝ) = Ioi 0 := by
     show (0 : ℝ) < x⁻¹
     exact inv_pos.mpr hx'
 
+/--
+@isnad1 id=eq.1h1v.s5.b18ece43f913 from=translated src=- shape=3d18c8dc vocab=ed3e0680
+-/
 theorem image_neg_inv_mul_Iio {τ : ℝ} (hτ : 0 < τ) : (fun y : ℝ => -(τ * y)⁻¹) '' Iio (0 : ℝ) = Ioi 0 := by
   ext x; constructor
   · rintro ⟨y, hy, rfl⟩
@@ -56,20 +65,32 @@ theorem image_neg_inv_mul_Iio {τ : ℝ} (hτ : 0 < τ) : (fun y : ℝ => -(τ *
       show -(τ * -(τ * x)⁻¹)⁻¹ = x
       field_simp
 
+/--
+@isnad1 id=hasderiv.1h1v.s6.5f9a7e8d98a6 from=translated src=- shape=1503769f vocab=edc2918d
+-/
 theorem hasDerivAt_neg_inv {y : ℝ} (hy : y ≠ 0) : HasDerivAt (fun y : ℝ => -y⁻¹) ((y ^ 2)⁻¹) y := by
   have h := (hasDerivAt_inv hy).neg
   convert h using 1; rfl; rfl; rfl; field_simp
 
+/--
+@isnad1 id=hasderiv.1h1v.s6.48770619b2c8 from=translated src=- shape=ba454c6c vocab=edc2918d
+-/
 theorem hasDerivAt_inv' {y : ℝ} (hy : y ≠ 0) : HasDerivAt (fun y : ℝ => y⁻¹) (-(y ^ 2)⁻¹) y := by
   have h := hasDerivAt_inv hy
   convert h using 1
 
+/--
+@isnad1 id=hasderiv.2h2v.s6.678a814ee956 from=translated src=- shape=acfe4de5 vocab=2598a008
+-/
 theorem hasDerivAt_neg_inv_mul {τ y : ℝ} (hτ : τ ≠ 0) (hy : y ≠ 0) :
     HasDerivAt (fun y : ℝ => -(τ * y)⁻¹) ((τ * y ^ 2)⁻¹) y := by
   have h1 : HasDerivAt (fun y : ℝ => τ * y) τ y := by simpa using (hasDerivAt_id y).const_mul τ
   have h2 := (h1.inv (mul_ne_zero hτ hy)).neg
   convert h2 using 1; rfl; rfl; rfl; field_simp
 
+/--
+@isnad1 id=eq.0h1v.s7.c054470abe4f from=translated src=- shape=6159d101 vocab=71df6866
+-/
 theorem setIntegral_Iio_eq_Ioi_neg_inv (χ : ℝ → ℂ) :
     ∫ u in Iio (0 : ℝ), χ u = ∫ y in Ioi (0 : ℝ), ((y ^ 2)⁻¹ : ℝ) • χ (-y⁻¹) := by
   rw [← image_neg_inv_Ioi,
@@ -79,6 +100,9 @@ theorem setIntegral_Iio_eq_Ioi_neg_inv (χ : ℝ → ℂ) :
   refine setIntegral_congr_fun measurableSet_Ioi (fun y hy => ?_)
   rw [abs_of_pos (inv_pos.mpr (pow_pos hy 2))]
 
+/--
+@isnad1 id=eq.0h1v.s7.6abdbf8db45f from=translated src=- shape=62d44c77 vocab=81f4c47a
+-/
 theorem setIntegral_Ioi_eq_Ioi_inv (χ : ℝ → ℂ) :
     ∫ u in Ioi (0 : ℝ), χ u = ∫ y in Ioi (0 : ℝ), ((y ^ 2)⁻¹ : ℝ) • χ (y⁻¹) := by
   conv_lhs => rw [← image_inv_Ioi]
@@ -88,6 +112,9 @@ theorem setIntegral_Ioi_eq_Ioi_inv (χ : ℝ → ℂ) :
   refine setIntegral_congr_fun measurableSet_Ioi (fun y hy => ?_)
   rw [abs_neg, abs_of_pos (inv_pos.mpr (pow_pos hy 2))]
 
+/--
+@isnad1 id=eq.1h2v.s7.37b776930f33 from=translated src=- shape=ac80c166 vocab=d656e5b6
+-/
 theorem setIntegral_Ioi_eq_Iio_neg_inv_mul (ψ : ℝ → ℂ) {τ : ℝ} (hτ : 0 < τ) :
     ∫ Y in Ioi (0 : ℝ), ψ Y = ∫ y in Iio (0 : ℝ), ((τ * y ^ 2)⁻¹ : ℝ) • ψ (-(τ * y)⁻¹) := by
   rw [← image_neg_inv_mul_Iio hτ,
@@ -103,14 +130,23 @@ theorem setIntegral_Ioi_eq_Iio_neg_inv_mul (ψ : ℝ → ℂ) {τ : ℝ} (hτ : 
   have : 0 < τ * y ^ 2 := mul_pos hτ (by positivity)
   rw [abs_of_pos (inv_pos.mpr this)]
 
+/--
+@isnad1 id=eq.0h1v.s6.941d67cef116 from=translated src=- shape=df853add vocab=a3777515
+-/
 theorem setIntegral_Iio_eq_Ioi_neg (φ : ℝ → ℂ) : ∫ t in Iio (0 : ℝ), φ t = ∫ τ in Ioi (0 : ℝ), φ (-τ) := by
   rw [integral_comp_neg_Ioi, neg_zero, integral_Iic_eq_integral_Iio]
 
+/--
+@isnad1 id=eq.0h0v.s6.d2487a6a9ddd from=translated src=- shape=08ac6324 vocab=c7f17854
+-/
 theorem volume_eq_restrict_Iio_add_restrict_Ioi :
     (volume : Measure ℝ) = volume.restrict (Iio 0) + volume.restrict (Ioi 0) := by
   conv_lhs => rw [← Measure.restrict_add_restrict_compl (μ := (volume : Measure ℝ)) (measurableSet_Iio (a := (0:ℝ)))]
   rw [compl_Iio, Measure.restrict_congr_set (Ioi_ae_eq_Ici (a := (0:ℝ)) (μ := volume)).symm]
 
+/--
+@isnad1 id=eq.1h3v.s8.e404c0a7e938 from=translated src=- shape=d3f907c8 vocab=f22ddf74
+-/
 theorem split3 (F : ℝ × ℝ × ℝ → ℂ) (μ ν : Measure ℝ) [SFinite μ] [SFinite ν]
     (hK : Integrable F (μ.prod (ν.prod volume))) :
     ∫ t, ∫ Y, ∫ u, F (t, Y, u) ∂volume ∂ν ∂μ
@@ -136,6 +172,9 @@ theorem split3 (F : ℝ × ℝ × ℝ → ℂ) (μ ν : Measure ℝ) [SFinite μ
 
 end K8FB
 
+/--
+@isnad1 id=eq.2h8v.s11.f31331e7aa25 from=translated src=- shape=509c6585 vocab=d00b482a
+-/
 theorem solution
     (A₁ β γ w : ℂ) (m n : ℕ) (S : ℝ → ℂ) (hS : ∀ c : ℝ, 0 < c → ∀ y : ℝ, S (y / c) = S y)
     (g : ℝ → ℂ)

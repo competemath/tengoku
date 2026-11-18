@@ -15,6 +15,9 @@ open _root_.LaurentSeries
 
 variable {F : Type*} [Field F] (O : ValuationSubring F) [IsDiscreteValuationRing O]
 
+/--
+@isnad1 id=ex.2h3v.s8.c4d316f75354 from=translated src=- shape=b867733f vocab=f1c8a0e2
+-/
 theorem exists_coeff_dvd (g : LaurentSeries F) (hg : g ≠ 0) (hint : ∀ n : ℤ, g.coeff n ∈ O) :
     ∃ n₀ : ℤ, g.coeff n₀ ≠ 0 ∧ ∀ n : ℤ, ∃ t : F, t ∈ O ∧ g.coeff n = g.coeff n₀ * t := by
   classical
@@ -38,15 +41,24 @@ theorem exists_coeff_dvd (g : LaurentSeries F) (hg : g ≠ 0) (hint : ∀ n : �
   have := congrArg Subtype.val ht
   simpa using this
 
+/--
+@isnad1 id=eq.0h3v.s8.1a154dc54998 from=translated src=- shape=6fd97062 vocab=30ffe132
+-/
 theorem coeff_linearMap_apply (n : ℤ) (x : LaurentSeries F) :
     (HahnSeries.coeff.linearMap (R := F) n) x = x.coeff n := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.36262d2249bc from=translated src=- shape=69b9475a vocab=519e1001
+-/
 theorem coeff_sum_smul {ι : Type*} (s : Finset ι) (c : ι → F) (x : ι → LaurentSeries F) (n : ℤ) :
     (∑ i ∈ s, c i • x i).coeff n = ∑ i ∈ s, c i * (x i).coeff n := by
   rw [← coeff_linearMap_apply (F := F) n, map_sum]
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [map_smul, smul_eq_mul, coeff_linearMap_apply]
 
+/--
+@isnad1 id=ex.3h4v.s10.1975145f99fe from=translated src=- shape=4cf01659 vocab=d9fa8617
+-/
 theorem exists_family (d : ℕ) : ∀ (V : Submodule F (LaurentSeries F)), FiniteDimensional F V →
     finrank F V = d →
     (∀ f ∈ V, ∃ c : F, c ≠ 0 ∧ ∀ n : ℤ, c * (f : LaurentSeries F).coeff n ∈ O) →
@@ -155,6 +167,9 @@ theorem exists_family (d : ℕ) : ∀ (V : Submodule F (LaurentSeries F)), Finit
 end LaurentSeries.Cart
 
 open LaurentSeries.Cart in
+/--
+@isnad1 id=ex.1h3v.s13.31aa861d66ef from=translated src=- shape=ec867817 vocab=0ee55248
+-/
 theorem solution
     {F : Type*} [Field F] (O : ValuationSubring F) [IsDiscreteValuationRing O]
     (V : Submodule F (LaurentSeries F)) [FiniteDimensional F V]

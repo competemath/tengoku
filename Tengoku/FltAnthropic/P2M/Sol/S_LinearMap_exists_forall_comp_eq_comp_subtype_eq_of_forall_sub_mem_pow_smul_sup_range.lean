@@ -11,6 +11,9 @@ universe u v w
 
 namespace X1cAlg
 
+/--
+@isnad1 id=finite.0h5v.s10.2d3c938dd883 from=translated src=- shape=fd94e35c vocab=026842e3
+-/
 theorem finite_hom_ker {B : Type u} [CommRing B] [IsNoetherianRing B] {GE GK : Type v}
     [AddCommGroup GE] [Module B GE] [AddCommGroup GK] [Module B GK] [Module.Finite B GK]
     {r : ℕ} (p : (Fin r → B) →ₗ[B] GE) : Module.Finite B (↥(LinearMap.ker p) →ₗ[B] GK) := by
@@ -22,6 +25,9 @@ theorem finite_hom_ker {B : Type u} [CommRing B] [IsNoetherianRing B] {GE GK : T
   obtain ⟨v, rfl⟩ := hπ s
   exact congrArg (fun φ : (Fin n → B) →ₗ[B] GK => φ v) hfg
 
+/--
+@isnad1 id=ex.0h5v.s9.7dd0d9f9c096 from=translated src=- shape=320c467f vocab=b7b6c23d
+-/
 theorem exists_artinRees_lift {B : Type u} [CommRing B] [IsNoetherianRing B] {P : Type v} {Q : Type w}
     [AddCommGroup P] [Module B P] [AddCommGroup Q] [Module B Q] [Module.Finite B Q]
     (J : Ideal B) (L : P →ₗ[B] Q) :
@@ -37,6 +43,9 @@ theorem exists_artinRees_lift {B : Type u} [CommRing B] [IsNoetherianRing B] {P 
   obtain ⟨z, hz, hzx⟩ := hle hmem
   exact ⟨z, hz, hzx⟩
 
+/--
+@isnad1 id=eq.2h8v.s10.44fd2911e74e from=translated src=- shape=e8c36fcc vocab=f14c012c
+-/
 theorem comp_eq_zero_of_mem_pow_smul {B : Type u} [CommRing B] {GK : Type v} {F : Type w} {X : Type v}
     [AddCommGroup GK] [Module B GK] [AddCommGroup F] [Module B F] [AddCommGroup X] [Module B X]
     (J : Ideal B) (m : ℕ) (hF : J ^ m • (⊤ : Submodule B F) = ⊥) (lam : GK →ₗ[B] F)
@@ -55,12 +64,18 @@ namespace X1cMain
 
 variable {B : Type u} [CommRing B]
 
+/--
+@isnad1 id=le.2h5v.s7.b1c62100fcc8 from=translated src=- shape=d06c249a vocab=da8beed4
+-/
 theorem anti_of_forall_succ_le {M : Type u} [AddCommGroup M] [Module B M]
     (N : ℕ → Submodule B M) (hN : ∀ n, N (n + 1) ≤ N n) (n m : ℕ) (hnm : n ≤ m) : N m ≤ N n := by
   induction m, hnm using Nat.le_induction with
   | base => exact le_rfl
   | succ m _ ih => exact (hN m).trans ih
 
+/--
+@isnad1 id=mem.3h6v.s8.a2508ae4e071 from=translated src=- shape=918abcf0 vocab=11c870df
+-/
 theorem sub_mem_of_forall_succ_sub_mem {M : Type u} [AddCommGroup M] [Module B M]
     (N : ℕ → Submodule B M) (hN : ∀ n, N (n + 1) ≤ N n)
     (x : ℕ → M) (hx : ∀ n, x (n + 1) - x n ∈ N n) (n m : ℕ) (hnm : n ≤ m) : x m - x n ∈ N n := by
@@ -72,6 +87,9 @@ theorem sub_mem_of_forall_succ_sub_mem {M : Type u} [AddCommGroup M] [Module B M
       rw [this]
       exact add_mem h1 ih
 
+/--
+@isnad1 id=le.1h5v.s8.b851475beae8 from=translated src=- shape=27b388cc vocab=560d288d
+-/
 theorem pow_smul_top_anti (J : Ideal B) {M : Type u} [AddCommGroup M] [Module B M] {m n : ℕ} (h : m ≤ n) :
     J ^ n • (⊤ : Submodule B M) ≤ J ^ m • ⊤ :=
   Submodule.smul_mono_left (Ideal.pow_le_pow_right h)
@@ -80,6 +98,9 @@ end X1cMain
 
 open X1cMain
 
+/--
+@isnad1 id=ex.10h15v.s15.3447ef874e71 from=translated src=- shape=b2ffac13 vocab=10f85493
+-/
 theorem solution
     {B : Type u} [CommRing B] [IsNoetherianRing B] (J : Ideal B)
     {GE GK : Type u} [AddCommGroup GE] [Module B GE] [AddCommGroup GK] [Module B GK] [Module.Finite B GK]

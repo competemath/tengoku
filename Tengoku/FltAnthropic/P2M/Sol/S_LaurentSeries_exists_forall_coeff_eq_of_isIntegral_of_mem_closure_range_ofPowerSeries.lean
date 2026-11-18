@@ -15,9 +15,15 @@ variable {R K : Type*} [CommRing R] [IsDomain R] [Field K] (i : R →+* K) (hi :
 
 noncomputable def φ : PowerSeries R →+* LaurentSeries K := (HahnSeries.ofPowerSeries ℤ K).comp (PowerSeries.map i)
 
+/--
+@isnad1 id=eq.0h4v.s8.29c8267064db from=translated src=- shape=0fdb8ebb vocab=076fa5d9
+-/
 theorem φ_apply (f : PowerSeries R) : φ i f = HahnSeries.ofPowerSeries ℤ K (f.map i) := rfl
 
 include hi in
+/--
+@isnad1 id=injectiv.1h3v.s7.618561adc3b9 from=translated src=- shape=b5b2a3c3 vocab=30735412
+-/
 theorem φ_injective : Function.Injective (φ i) := by
   intro a b h
   rw [φ_apply, φ_apply] at h
@@ -30,20 +36,32 @@ theorem φ_injective : Function.Injective (φ i) := by
 noncomputable def Φ : FractionRing (PowerSeries R) →+* LaurentSeries K :=
   IsFractionRing.lift (φ_injective i hi)
 
+/--
+@isnad1 id=eq.1h4v.s9.59f4f91503de from=translated src=- shape=950fd618 vocab=46e64c24
+-/
 theorem Φ_algebraMap (f : PowerSeries R) : Φ i hi (algebraMap _ _ f) = φ i f :=
   IsFractionRing.lift_algebraMap (φ_injective i hi) f
 
+/--
+@isnad1 id=le.1h3v.s8.f3dbf9b878af from=translated src=- shape=79956740 vocab=f887ae96
+-/
 theorem closure_le_fieldRange : Subfield.closure (Set.range (φ i)) ≤ (Φ i hi).fieldRange := by
   rw [Subfield.closure_le]
   rintro _ ⟨f, rfl⟩
   exact ⟨algebraMap _ _ f, Φ_algebraMap i hi f⟩
 
+/--
+@isnad1 id=eq.0h5v.s8.8cf847f9dbfc from=translated src=- shape=68097cd4 vocab=f2e7a6bd
+-/
 theorem coeff_φ_eq (f : PowerSeries R) (n : ℤ) : (φ i f).coeff n = i ((HahnSeries.ofPowerSeries ℤ R f).coeff n) := by
   rw [φ_apply, PowerSeries.coeff_coe, PowerSeries.coeff_coe]
   split_ifs with h
   · rw [map_zero]
   · rw [PowerSeries.coeff_map]
 
+/--
+@isnad1 id=ex.1h4v.s8.b3a229d16bab from=translated src=- shape=8697d075 vocab=9e984abb
+-/
 theorem exists_map_eq (g : PowerSeries K) (hg : ∀ n : ℕ, PowerSeries.coeff n g ∈ Set.range i) :
     ∃ f : PowerSeries R, f.map i = g := by
   classical
@@ -52,6 +70,9 @@ theorem exists_map_eq (g : PowerSeries K) (hg : ∀ n : ℕ, PowerSeries.coeff n
   rw [PowerSeries.coeff_map, PowerSeries.coeff_mk]
   exact (hg n).choose_spec
 
+/--
+@isnad1 id=ex.1h4v.s9.9b0646a8a5eb from=translated src=- shape=cf5e8bc2 vocab=62d5f1e9
+-/
 theorem exists_single_mul_φ_eq (z : LaurentSeries K) (hz : ∀ n : ℤ, z.coeff n ∈ Set.range i) :
     ∃ (e : ℤ) (f : PowerSeries R), HahnSeries.single e (1 : K) * φ i f = z := by
   obtain ⟨f, hf⟩ := exists_map_eq i z.powerSeriesPart (fun n => by rw [LaurentSeries.powerSeriesPart_coeff]; exact hz _)
@@ -59,6 +80,9 @@ theorem exists_single_mul_φ_eq (z : LaurentSeries K) (hz : ∀ n : ℤ, z.coeff
   rw [φ_apply, hf]
   exact z.single_order_mul_powerSeriesPart
 
+/--
+@isnad1 id=eq.0h2v.s9.76540ef4e42b from=translated src=- shape=92ac8f68 vocab=88e3a620
+-/
 theorem single_one_zpow (k : ℤ) : (HahnSeries.single (1 : ℤ) (1 : K) : LaurentSeries K) ^ k = HahnSeries.single k 1 := by
   have hpow : ∀ n : ℕ, (HahnSeries.single (1 : ℤ) (1 : K) : LaurentSeries K) ^ n = HahnSeries.single (n : ℤ) 1 := by
     intro n
@@ -72,11 +96,17 @@ theorem single_one_zpow (k : ℤ) : (HahnSeries.single (1 : ℤ) (1 : K) : Laure
     rw [HahnSeries.single_mul_single, one_mul, add_neg_cancel]
     rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.69f544729647 from=translated src=- shape=2658060b vocab=a3980328
+-/
 theorem φ_X : φ i PowerSeries.X = HahnSeries.single 1 1 := by
   rw [φ_apply, PowerSeries.map_X, HahnSeries.ofPowerSeries_X]
 
 end IntCoeffAux
 
+/--
+@isnad1 id=ex.4h5v.s10.9fa9ff0008be from=translated src=- shape=165a226a vocab=f2e32759
+-/
 theorem solution
     {R K : Type*} [CommRing R] [IsDomain R] [IsPrincipalIdealRing R] [Field K]
     (i : R →+* K) (hi : Function.Injective i)

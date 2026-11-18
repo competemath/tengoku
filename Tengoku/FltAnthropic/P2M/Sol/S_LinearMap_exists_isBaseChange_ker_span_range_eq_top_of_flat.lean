@@ -17,9 +17,15 @@ noncomputable abbrev φ (R S : Type*) [CommRing R] [CommRing S] [Algebra R S] (n
     (Fin n → R) →ₗ[R] (Fin n → S) :=
   (Algebra.linearMap R S).compLeft (Fin n)
 
+/--
+@isnad1 id=isbasech.0h3v.s7.0a8beb76bbcb from=translated src=- shape=b475e3ab vocab=c68ab906
+-/
 theorem isBaseChange_φ (n : ℕ) : IsBaseChange S (φ R S n) :=
   IsBaseChange.finitePow (Fin n) (IsBaseChange.linearMap R S)
 
+/--
+@isnad1 id=mem.1h6v.s8.095293457f0a from=translated src=- shape=6bb5f101 vocab=f303cd5d
+-/
 theorem mem_span_of_isBaseChange {M N : Type*} [AddCommGroup M] [Module R M] [AddCommGroup N] [Module R N]
     [Module S N] [IsScalarTower R S N] {f : M →ₗ[R] N} (hf : IsBaseChange S f) (y : N) :
     y ∈ Submodule.span S (Set.range f) := by
@@ -32,6 +38,9 @@ theorem mem_span_of_isBaseChange {M N : Type*} [AddCommGroup M] [Module R M] [Ad
 end PresBCSol
 
 open PresBCSol in
+/--
+@isnad1 id=ex.2h8v.s13.7a432cd3cdfe from=translated src=- shape=da80d29e vocab=53b1b018
+-/
 theorem solution
     {B : Type u} [CommRing B] {B' : Type u} [CommRing B'] [Algebra B B'] [Module.Flat B B']
     {M : Type v} [AddCommGroup M] [Module B M]

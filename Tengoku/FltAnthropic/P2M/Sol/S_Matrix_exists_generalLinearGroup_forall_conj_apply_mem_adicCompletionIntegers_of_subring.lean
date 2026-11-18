@@ -22,6 +22,9 @@ section PID
 variable {R : Type*} [CommRing R] [IsDomain R] [IsPrincipalIdealRing R]
 variable {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]
 
+/--
+@isnad1 id=ex.3h4v.s10.2fc4d44b15f7 from=translated src=- shape=261090d8 vocab=a77896b4
+-/
 theorem exists_isUnit_conj_integral
     (O : Subring (Matrix (Fin 2) (Fin 2) K))
     (hsmul : ∀ r : R, ∀ x ∈ O, r • x ∈ O)
@@ -170,6 +173,9 @@ open scoped TensorProduct Quaternion Pointwise
 
 set_option synthInstance.maxHeartbeats 1600000 in
 
+/--
+@isnad1 id=ex.2h2v.s12.813606a4ee67 from=translated src=- shape=535f87d2 vocab=7d4c429f
+-/
 theorem exists_generalLinearGroup_forall_conj_apply_mem_adicCompletionIntegers_of_subring
     (v : HeightOneSpectrum (𝓞 ℚ))
     (O : Subring (Matrix (Fin 2) (Fin 2) (v.adicCompletion ℚ)))
@@ -205,6 +211,9 @@ end Local
 
 end Ws50W2a
 
+/--
+@isnad1 id=ex.2h2v.s12.813606a4ee67 from=translated src=- shape=535f87d2 vocab=7d4c429f
+-/
 theorem solution
     (v : HeightOneSpectrum (𝓞 ℚ))
     (O : Subring (Matrix (Fin 2) (Fin 2) (v.adicCompletion ℚ)))

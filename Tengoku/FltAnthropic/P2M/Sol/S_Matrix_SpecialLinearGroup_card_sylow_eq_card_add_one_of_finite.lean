@@ -20,21 +20,39 @@ local notation "𝕄" => Matrix (Fin 2) (Fin 2) K
 
 def tr (M : 𝕄) : K := M 0 0 + M 1 1
 
+/--
+@isnad1 id=eq.0h2v.s8.e3995a4882b8 from=translated src=- shape=66e5c164 vocab=318ce92f
+-/
 lemma sq_eq (g : 𝕄) : g * g = tr g • g - g.det • (1 : 𝕄) := by
   rw [Matrix.det_fin_two]
   ext i j
   fin_cases i <;> fin_cases j <;> simp [tr, Matrix.mul_apply, Fin.sum_univ_two] <;> ring
 
+/--
+@isnad1 id=eq.0h3v.s7.dc2f7da1596f from=translated src=- shape=6ebd863d vocab=b06733d9
+-/
 lemma tr_mul_comm (a b : 𝕄) : tr (a * b) = tr (b * a) := by
   simp [tr, Matrix.mul_apply, Fin.sum_univ_two]; ring
 
+/--
+@isnad1 id=eq.1h4v.s8.f8eaaa4e2371 from=translated src=- shape=c4b3340f vocab=b06733d9
+-/
 lemma tr_conj {a b c : 𝕄} (h : c * a = 1) : tr (a * b * c) = tr b := by
   rw [tr_mul_comm, ← mul_assoc, h, one_mul]
 
+/--
+@isnad1 id=eq.0h1v.s6.7b271bf143cc from=translated src=- shape=715f3820 vocab=f09d5039
+-/
 lemma tr_one : tr (1 : 𝕄) = 2 := by simp [tr]; norm_num
 
+/--
+@isnad1 id=eq.0h2v.s6.19676d30f959 from=translated src=- shape=5bd024ce vocab=5b8f4009
+-/
 lemma tr_neg (a : 𝕄) : tr (-a) = -tr a := by simp [tr]; ring
 
+/--
+@isnad1 id=eq.0h2v.s9.a947d86f2f84 from=translated src=- shape=9ab58852 vocab=6b572b27
+-/
 lemma coe_inv_eq (s : SL(2, K)) : ((s⁻¹ : SL(2, K)) : 𝕄) = tr (s : 𝕄) • (1 : 𝕄) - s := by
   rw [Matrix.SpecialLinearGroup.coe_inv, Matrix.adjugate_fin_two, Matrix.eta_fin_two (s : 𝕄)]
   ext i j; fin_cases i <;> fin_cases j <;> simp [tr]
@@ -45,9 +63,15 @@ variable {H : Type} [Group H] (ρ : H →* SL(2, K))
 
 abbrev mat (h : H) : 𝕄 := ((ρ h : SL(2, K)) : 𝕄)
 
+/--
+@isnad1 id=eq.0h5v.s8.22109e8d72c0 from=translated src=- shape=7c9a69cc vocab=00d0bd9f
+-/
 lemma mat_mul (a b : H) : mat ρ (a * b) = mat ρ a * mat ρ b := by
   simp [mat, map_mul]
 
+/--
+@isnad1 id=eq.0h3v.s7.fb21b7e6ca04 from=translated src=- shape=d5cabad9 vocab=b4485258
+-/
 lemma mat_one : mat ρ (1 : H) = 1 := by simp [mat]
 
 def Zsub : Subgroup H where
@@ -71,6 +95,9 @@ def IsSS (ρ : H →* SL(2, K)) (h : H) : Prop := (tr (mat ρ h)) ^ 2 ≠ 4
 
 abbrev torus (h : H) : Subgroup H := Subgroup.centralizer {h}
 
+/--
+@isnad1 id=iff.0h3v.s6.4b345091f0e6 from=translated src=- shape=a9252b74 vocab=73b03c01
+-/
 lemma mem_torus_iff (h g : H) : g ∈ torus h ↔ g * h = h * g := by
   rw [Subgroup.mem_centralizer_iff]
   simp only [Set.mem_singleton_iff, forall_eq]
@@ -79,9 +106,15 @@ lemma mem_torus_iff (h g : H) : g ∈ torus h ↔ g * h = h * g := by
 variable (hρ : Function.Injective ρ)
 include hρ
 
+/--
+@isnad1 id=injectiv.1h3v.s8.ff00d94713ef from=translated src=- shape=c8f08748 vocab=568c164e
+-/
 lemma mat_injective : Function.Injective (mat ρ) := fun _ _ h =>
   hρ (Subtype.ext h)
 
+/--
+@isnad1 id=iff.1h5v.s9.1653ce280eff from=translated src=- shape=a5aabc4f vocab=c11a609b
+-/
 lemma mem_torus_iff_mat (h g : H) : g ∈ torus h ↔ mat ρ g * mat ρ h = mat ρ h * mat ρ g := by
   rw [mem_torus_iff]
   constructor
@@ -92,26 +125,44 @@ lemma mem_torus_iff_mat (h g : H) : g ∈ torus h ↔ mat ρ g * mat ρ h = mat 
     apply mat_injective hρ
     simpa [mat, map_mul] using e
 
+/--
+@isnad1 id=le.1h4v.s8.4287fcbc5f7a from=translated src=- shape=0af7a1d1 vocab=31b1dfc7
+-/
 lemma Zsub_le_torus (h : H) : Zsub ρ ≤ torus h := by
   intro g hg
   rw [mem_torus_iff_mat hρ]
   rcases hg with hg | hg <;> rw [hg] <;> simp
 
 omit hρ in
+/--
+@isnad1 id=mem.0h2v.s4.2eed5b5d59ab from=translated src=- shape=cac0901d vocab=eae3c17a
+-/
 lemma self_mem_torus (h : H) : h ∈ torus h := (mem_torus_iff h h).mpr rfl
 
+/--
+@isnad1 id=isss.5h5v.s8.f08597536759 from=translated src=- shape=cffe7536 vocab=1d8fa76b
+-/
 lemma isSS_of_mem_torus [Finite H] (h2 : (2 : K) ≠ 0) {h : H} (hh : IsSS ρ h) {g : H}
     (hg : g ∈ torus h) (hgZ : g ∉ Zsub ρ) : IsSS ρ g :=
   ((Matrix.SpecialLinearGroup.centralizer_semisimple_structure_of_finite h2 ρ hρ h hh).2.1
     g hg hgZ).2
 
+/--
+@isnad1 id=le.3h4v.s8.79c047f1681d from=translated src=- shape=5d9c9463 vocab=87400a1a
+-/
 lemma card_normalizer_le [Finite H] (h2 : (2 : K) ≠ 0) {h : H} (hh : IsSS ρ h) :
     Nat.card (Subgroup.normalizer (torus h : Set H)) ≤ 2 * Nat.card (torus h) :=
   (Matrix.SpecialLinearGroup.centralizer_semisimple_structure_of_finite h2 ρ hρ h hh).2.2.1
 
 omit hρ in
+/--
+@isnad1 id=eq.0h4v.s8.09151b1efdb2 from=translated src=- shape=2b48b009 vocab=0cbb79c0
+-/
 lemma mat_inv_mul (y : H) : mat ρ y⁻¹ * mat ρ y = 1 := by rw [← mat_mul, inv_mul_cancel, mat_one]
 
+/--
+@isnad1 id=eq.5h5v.s9.dcde3995eeeb from=translated src=- shape=643c123e vocab=6ec72326
+-/
 lemma Zsub_eq_of_apply {ζ ζ' : H} (hζ : ζ ∈ Zsub ρ) (hζ' : ζ' ∈ Zsub ρ)
     (h : mat ρ ζ 0 0 = mat ρ ζ' 0 0) (h2 : (2 : K) ≠ 0) : ζ = ζ' := by
   apply mat_injective hρ
@@ -121,6 +172,9 @@ lemma Zsub_eq_of_apply {ζ ζ' : H} (hζ : ζ ∈ Zsub ρ) (hζ' : ζ' ∈ Zsub 
 
 omit hρ in
 
+/--
+@isnad1 id=eq.0h2v.s5.2217daeaaee1 from=translated src=- shape=ba745d85 vocab=fa293aec
+-/
 lemma card_subtype_add_card_subtype_not {α : Type} [Finite α] (q : α → Prop) :
     Nat.card {x // q x} + Nat.card {x // ¬ q x} = Nat.card α := by
   classical
@@ -134,13 +188,22 @@ variable {H : Type} [Group H] {ρ : H →* SL(2, K)} (hρ : Function.Injective �
 
 def IsConjSub (M M' : Subgroup H) : Prop := ∃ s : H, ∀ g : H, g ∈ M' ↔ s⁻¹ * g * s ∈ M
 
+/--
+@isnad1 id=isconjsu.0h2v.s3.893cfc3b0722 from=translated src=- shape=53c84fe7 vocab=fb61e5a9
+-/
 lemma IsConjSub.refl (M : Subgroup H) : IsConjSub M M := ⟨1, fun g => by simp⟩
 
+/--
+@isnad1 id=isconjsu.1h3v.s4.c74ac3e0fcb6 from=translated src=- shape=34baef30 vocab=fb61e5a9
+-/
 lemma IsConjSub.symm {M M' : Subgroup H} (h : IsConjSub M M') : IsConjSub M' M := by
   obtain ⟨s, hs⟩ := h
   refine ⟨s⁻¹, fun g => ?_⟩
   rw [hs, inv_inv, show s⁻¹ * (s * g * s⁻¹) * s = g by group]
 
+/--
+@isnad1 id=isconjsu.2h4v.s5.ba96415bc54b from=translated src=- shape=46b34526 vocab=fb61e5a9
+-/
 lemma IsConjSub.trans {M M' M'' : Subgroup H} (h : IsConjSub M M') (h' : IsConjSub M' M'') :
     IsConjSub M M'' := by
   obtain ⟨s, hs⟩ := h
@@ -154,9 +217,15 @@ def classSet (M : Subgroup H) : Set H := {x | x ∉ Zsub ρ ∧ IsConjSub M (tor
 
 variable {ρ}
 
+/--
+@isnad1 id=iff.0h5v.s7.b6d733940d82 from=translated src=- shape=2293b89e vocab=da19857d
+-/
 lemma mem_classSet_iff (M : Subgroup H) (x : H) :
     x ∈ classSet ρ M ↔ x ∉ Zsub ρ ∧ IsConjSub M (torus x) := Iff.rfl
 
+/--
+@isnad1 id=eq.2h6v.s7.50b9b5819ffc from=translated src=- shape=cda3ceb9 vocab=e8e3b474
+-/
 lemma classSet_eq_of_mem {M M' : Subgroup H} {x : H} (hx : x ∈ classSet ρ M)
     (hx' : x ∈ classSet ρ M') : classSet ρ M = classSet ρ M' := by
   have hMM' : IsConjSub M M' := hx.2.trans hx'.2.symm
@@ -165,6 +234,9 @@ lemma classSet_eq_of_mem {M M' : Subgroup H} {x : H} (hx : x ∈ classSet ρ M)
   exact ⟨fun h => ⟨h.1, hMM'.symm.trans h.2⟩, fun h => ⟨h.1, hMM'.trans h.2⟩⟩
 
 include hρ in
+/--
+@isnad1 id=not.2h4v.s8.687d45430186 from=translated src=- shape=cdfb1fcd vocab=c4f721bf
+-/
 lemma not_mem_Zsub_of_isSS {x : H} (hx : IsSS ρ x) : x ∉ Zsub ρ := by
   intro h
   apply hx
@@ -173,11 +245,17 @@ lemma not_mem_Zsub_of_isSS {x : H} (hx : IsSS ρ x) : x ∉ Zsub ρ := by
   · rw [tr_neg, tr_one]; norm_num
 
 include hρ in
+/--
+@isnad1 id=mem.2h4v.s8.ccc4b9ef9171 from=translated src=- shape=daf23ea2 vocab=009b4644
+-/
 lemma self_mem_classSet {x : H} (hx : IsSS ρ x) : x ∈ classSet ρ (torus x) :=
   ⟨not_mem_Zsub_of_isSS hρ hx, IsConjSub.refl _⟩
 
 include hρ in
 
+/--
+@isnad1 id=isss.4h5v.s8.fd8ea5ae95b7 from=translated src=- shape=2340e73d vocab=0f92b1ca
+-/
 lemma isSS_of_mem_classSet [Finite H] (h2' : (2 : K) ≠ 0) {h : H} (hh : IsSS ρ h) {x : H} (hx : x ∈ classSet ρ (torus h)) :
     IsSS ρ x := by
   obtain ⟨hxZ, s, hs⟩ := hx
@@ -193,6 +271,9 @@ lemma isSS_of_mem_classSet [Finite H] (h2' : (2 : K) ≠ 0) {h : H} (hh : IsSS �
 
 include hρ in
 
+/--
+@isnad1 id=eq.3h4v.s9.f2ffabff1d57 from=translated src=- shape=aff075b5 vocab=976dc59b
+-/
 lemma card_classSet_mul [Finite H] (h2 : (2 : K) ≠ 0) {h : H} (hh : IsSS ρ h) :
     Nat.card (classSet ρ (torus h)) * Nat.card (Subgroup.normalizer (torus h : Set H)) =
       Nat.card H * (Nat.card (torus h) - Nat.card (Zsub ρ)) :=
@@ -210,11 +291,17 @@ variable {H : Type} [Group H] {ρ : H →* SL(2, K)}
 variable {p : ℕ} {P : Sylow p H} (D : NormData ρ P)
 
 include D in
+/--
+@isnad1 id=ex.2h6v.s8.365352c7fe94 from=translated src=- shape=f7f7b7c4 vocab=eaf4ecef
+-/
 lemma mat_of_mem_P {x : H} (hx : x ∈ P) : ∃ t : K, mat ρ x = !![1, t; 0, 1] := by
   obtain ⟨t, ht⟩ := (D.hP x).mp hx
   exact ⟨t, by rw [mat, ht, upperElem_coe]⟩
 
 include D in
+/--
+@isnad1 id=mem.2h7v.s8.b81367795437 from=translated src=- shape=bc524d7d vocab=eaf4ecef
+-/
 lemma mem_P_of_mat {x : H} {t : K} (hx : mat ρ x = !![1, t; 0, 1]) : x ∈ P :=
   (D.hP x).mpr ⟨t, Subtype.ext hx⟩
 
@@ -225,6 +312,9 @@ section Unipotent
 variable {H : Type} [Group H] {ρ : H →* SL(2, K)} (hρ : Function.Injective ρ)
 variable {p : ℕ} [Fact p.Prime] [CharP K p] {P : Sylow p H} (D : NormData ρ P)
 
+/--
+@isnad1 id=eq.1h3v.s8.0adc2e4dcbc1 from=translated src=- shape=bb79d89c vocab=55ea25dd
+-/
 lemma sq_eq_zero_of_pow_eq_zero {N : 𝕄} {m : ℕ} (hm : N ^ m = 0) : N ^ 2 = 0 := by
   have hCH : N ^ 2 = tr N • N - N.det • (1 : 𝕄) := by rw [pow_two]; exact sq_eq N
   have hm0 : m ≠ 0 := by
@@ -251,6 +341,9 @@ lemma sq_eq_zero_of_pow_eq_zero {N : 𝕄} {m : ℕ} (hm : N ^ m = 0) : N ^ 2 = 
     rw [hCH, ht0, zero_smul]
   · rw [hN, pow_two, mul_zero]
 
+/--
+@isnad1 id=eq.1h6v.s9.f99070f622d0 from=translated src=- shape=80a2ec9e vocab=8c81d477
+-/
 lemma unip_of_pow_eq_one {x : H} {k : ℕ} (hx : x ^ p ^ k = 1) : (mat ρ x - 1) ^ 2 = 0 := by
   have hM : (mat ρ x) ^ p ^ k = 1 := by
     rw [mat, ← Matrix.SpecialLinearGroup.coe_pow, ← map_pow, hx, map_one]; rfl
@@ -258,6 +351,9 @@ lemma unip_of_pow_eq_one {x : H} {k : ℕ} (hx : x ^ p ^ k = 1) : (mat ρ x - 1)
     rw [sub_pow_char_pow_of_commute p k (Commute.one_right (mat ρ x)), hM, one_pow, sub_self]
   exact sq_eq_zero_of_pow_eq_zero hN
 
+/--
+@isnad1 id=and.0h2v.s11.3e18455dfdcb from=translated src=- shape=58864d94 vocab=7fb91345
+-/
 lemma sq_sub_one_apply (M : 𝕄) :
     ((M - 1) ^ 2 : 𝕄) 0 0 = (M 0 0 - 1) * (M 0 0 - 1) + M 0 1 * M 1 0 ∧
     ((M - 1) ^ 2 : 𝕄) 0 1 = (M 0 0 - 1) * M 0 1 + M 0 1 * (M 1 1 - 1) ∧
@@ -267,6 +363,9 @@ lemma sq_sub_one_apply (M : 𝕄) :
   · rw [pow_two, Matrix.mul_apply, Fin.sum_univ_two]
     simp [Matrix.sub_apply]
 
+/--
+@isnad1 id=eq.1h2v.s8.4d9b62ce3abb from=translated src=- shape=1300d512 vocab=1147b60b
+-/
 lemma tr_of_unip {M : 𝕄} (h : (M - 1) ^ 2 = 0) : tr M = 2 := by
   rw [tr]
   obtain ⟨h00, h01, h10, h11⟩ := sq_sub_one_apply M
@@ -288,6 +387,9 @@ lemma tr_of_unip {M : 𝕄} (h : (M - 1) ^ 2 = 0) : tr M = 2 := by
       linear_combination this
     rw [e00, e11]; norm_num
 
+/--
+@isnad1 id=eq.2h2v.s8.254d80ef5cef from=translated src=- shape=728663cb vocab=96273547
+-/
 lemma unip_of_tr {M : 𝕄} (hdet : M.det = 1) (h : tr M = 2) : (M - 1) ^ 2 = 0 := by
   rw [tr] at h
   rw [Matrix.det_fin_two] at hdet
@@ -300,6 +402,9 @@ lemma unip_of_tr {M : 𝕄} (hdet : M.det = 1) (h : tr M = 2) : (M - 1) ^ 2 = 0 
   · linear_combination M 1 0 * h
   · linear_combination M 1 1 * h - hdet
 
+/--
+@isnad1 id=eq.1h3v.s9.b162cbb1416e from=translated src=- shape=25fedc82 vocab=373fd35d
+-/
 lemma unip_pow {M : 𝕄} (h : (M - 1) ^ 2 = 0) (n : ℕ) : M ^ n = 1 + (n : K) • (M - 1) := by
   induction n with
   | zero => simp
@@ -312,6 +417,9 @@ lemma unip_pow {M : 𝕄} (h : (M - 1) ^ 2 = 0) (n : ℕ) : M ^ n = 1 + (n : K) 
 
 include hρ in
 
+/--
+@isnad1 id=eq.2h5v.s9.dfdedc7bc02e from=translated src=- shape=dbb617fb vocab=54214782
+-/
 lemma pow_p_eq_one_of_unip {x : H} (h : (mat ρ x - 1) ^ 2 = 0) : x ^ p = 1 := by
   apply mat_injective hρ
   rw [mat, map_pow, Matrix.SpecialLinearGroup.coe_pow, show ((ρ x : SL(2, K)) : 𝕄) = mat ρ x
@@ -337,6 +445,9 @@ lemma eq_upper_of_unip_mul_upper {M : 𝕄} (hM : (M - 1) ^ 2 = 0) {a : K}
 
 include hρ D in
 
+/--
+@isnad1 id=eq.5h7v.s8.c23f993ed052 from=translated src=- shape=6cd70436 vocab=40a87044
+-/
 lemma sylow_eq_of_mem_inf {Q : Sylow p H} {y : H} (hyP : y ∈ P) (hyQ : y ∈ Q) (hy1 : y ≠ 1) :
     Q = P := by
   obtain ⟨t, ht⟩ := mat_of_mem_P D hyP
@@ -361,6 +472,9 @@ lemma sylow_eq_of_mem_inf {Q : Sylow p H} {y : H} (hyP : y ∈ P) (hyQ : y ∈ Q
 
 include hρ D in
 
+/--
+@isnad1 id=eq.5h8v.s8.d2cfe01e2a63 from=translated src=- shape=fd3aa9eb vocab=508832cd
+-/
 lemma sylow_eq_of_mem_of_mem [Finite H] {Q Q' : Sylow p H} {y : H} (hyQ : y ∈ Q) (hyQ' : y ∈ Q')
     (hy1 : y ≠ 1) : Q = Q' := by
   haveI : MulAction.IsPretransitive H (Sylow p H) := inferInstance
@@ -384,6 +498,9 @@ lemma sylow_eq_of_mem_of_mem [Finite H] {Q Q' : Sylow p H} {y : H} (hyQ : y ∈ 
 include D in
 omit [Fact p.Prime] [CharP K p] in
 
+/--
+@isnad1 id=eq.2h7v.s7.3274dbb7b694 from=translated src=- shape=335ecded vocab=7944b70f
+-/
 lemma tr_eq_two_of_mem_sylow [Finite H] [Fact p.Prime] {Q : Sylow p H} {y : H} (hy : y ∈ Q) :
     tr (mat ρ y) = 2 := by
   haveI : MulAction.IsPretransitive H (Sylow p H) := inferInstance
@@ -398,6 +515,9 @@ lemma tr_eq_two_of_mem_sylow [Finite H] [Fact p.Prime] {Q : Sylow p H} {y : H} (
 
 include hρ in
 
+/--
+@isnad1 id=eq.2h5v.s8.417e7b6acd60 from=translated src=- shape=4a54632d vocab=36741fe0
+-/
 lemma tr_sq_of_Zsub_mul {ζ x : H} (hζ : ζ ∈ Zsub ρ) : (tr (mat ρ (ζ * x))) ^ 2 = (tr (mat ρ x)) ^ 2 := by
   rw [mat_mul]
   rcases hζ with e | e <;> rw [e]
@@ -406,6 +526,9 @@ lemma tr_sq_of_Zsub_mul {ζ x : H} (hζ : ζ ∈ Zsub ρ) : (tr (mat ρ (ζ * x)
 
 include hρ D in
 
+/--
+@isnad1 id=eq.4h5v.s9.dc9894d5f163 from=translated src=- shape=b10d923f vocab=94eea0b7
+-/
 lemma card_not_isSS [Finite H] (hp2 : p ≠ 2) (h2 : (2 : K) ≠ 0) :
     Nat.card {x : H // ¬ IsSS ρ x} =
       Nat.card (Zsub ρ) * (1 + Nat.card (Sylow p H) * (Nat.card P - 1)) := by
@@ -549,6 +672,9 @@ end P2mDicksonCore
 
 namespace P2mDicksonCoreArith
 
+/--
+@isnad1 id=false.6h5v.s7.495848202e08 from=translated src=- shape=2cc86af1 vocab=19aefd93
+-/
 lemma case_cbar_one (n q z S w : ℕ) (hq : 4 ≤ q) (hn : 2 ≤ n) (hz : 0 < z)
     (hS : S + z * (1 + n * (q - 1)) = n * q * z)
     (hw : n * q * z ≤ 4 * w) (hwS : w ≤ S) : False := by
@@ -558,6 +684,9 @@ lemma case_cbar_one (n q z S w : ℕ) (hq : 4 ≤ q) (hn : 2 ≤ n) (hz : 0 < z)
   have hS' : S + z = z * n := by nlinarith [hS]
   nlinarith [hS', hw, hwS, hz, hn, hq]
 
+/--
+@isnad1 id=false.3h3v.s6.05bd4c9815cd from=translated src=- shape=89347f03 vocab=19aefd93
+-/
 lemma case_cbar_one_empty (n q z : ℕ) (hn : 2 ≤ n) (hz : 0 < z)
     (hS : z * (1 + n * (q - 1)) = n * q * z) : False := by
   rcases Nat.eq_zero_or_pos q with rfl | hq
@@ -566,6 +695,9 @@ lemma case_cbar_one_empty (n q z : ℕ) (hn : 2 ≤ n) (hz : 0 < z)
   simp only [Nat.add_sub_cancel] at hS
   nlinarith
 
+/--
+@isnad1 id=false.8h7v.s7.2cf2e3314787 from=translated src=- shape=0ed34ea4 vocab=19aefd93
+-/
 lemma case_eC_one (n q z c S wC w : ℕ) (hq : 4 ≤ q) (hn : 2 ≤ n) (hz : 0 < z) (hzc : 2 * z ≤ c)
     (hS : S + z * (1 + n * (q - 1)) = n * q * c)
     (hwC : wC * c = n * q * c * (c - z))
@@ -584,6 +716,9 @@ lemma case_eC_one (n q z c S wC w : ℕ) (hq : 4 ≤ q) (hn : 2 ≤ n) (hz : 0 <
   have F5 : 2 * z ≤ n * z := Nat.mul_le_mul_right _ hn
   nlinarith [hS, hw, hsum, hz, hn, hq, hzc, F2, F3, F4, F5]
 
+/--
+@isnad1 id=false.9h8v.s8.212580147172 from=translated src=- shape=2b736746 vocab=19aefd93
+-/
 lemma case_eC_two_no_third (n q z c S wC w w' : ℕ) (hq : 4 ≤ q) (hn : 2 ≤ n) (hz : 0 < z)
     (hzc : 2 * z ≤ c)
     (hS : S + z * (1 + n * (q - 1)) = n * q * c)
@@ -605,6 +740,9 @@ lemma case_eC_two_no_third (n q z c S wC w w' : ℕ) (hq : 4 ≤ q) (hn : 2 ≤ 
   have F6 : 3 * (n * c') ≤ q' * (n * c') := Nat.mul_le_mul_right _ (by omega : 3 ≤ q')
   nlinarith [hS, hwC2, hw, hw', hsum, hz, hn, hq, hzc, F2, F3, F4, F5, F6]
 
+/--
+@isnad1 id=eq.5h7v.s8.4ab169634f8e from=translated src=- shape=aa8b08d1 vocab=19aefd93
+-/
 lemma two_w_eq (n q' z cb₁ S wC w : ℕ) (hn : 1 ≤ n) (hz : 0 < z)
     (hS : S + z * (1 + n * q') = n * (q' + 1) * (z * (cb₁ + 1)))
     (hwC : wC * (2 * (z * (cb₁ + 1))) = n * (q' + 1) * (z * (cb₁ + 1)) * (z * (cb₁ + 1) - z))
@@ -623,6 +761,9 @@ lemma two_w_eq (n q' z cb₁ S wC w : ℕ) (hn : 1 ≤ n) (hz : 0 < z)
   rw [Nat.mul_succ 2 n', ← add_assoc, Nat.add_sub_cancel]
   nlinarith [hS, hwC2, hsum]
 
+/--
+@isnad1 id=false.9h8v.s8.6a5e23fb4182 from=translated src=- shape=8cf78d1d vocab=19aefd93
+-/
 lemma case_eC_two_e_one (n q z cb m S wC w : ℕ) (hq : 4 ≤ q) (hn : 2 ≤ n) (hz : 0 < z)
     (hcb : 2 ≤ cb) (hzm : 2 * z ≤ m)
     (hS : S + z * (1 + n * (q - 1)) = n * q * (z * cb))
@@ -657,6 +798,9 @@ lemma case_eC_two_e_one (n q z cb m S wC w : ℕ) (hq : 4 ≤ q) (hn : 2 ≤ n) 
       _ = _ := by ring
   omega
 
+/--
+@isnad1 id=eq.12h9v.s8.0d2322597816 from=translated src=- shape=3a2795c4 vocab=62e3e8c9
+-/
 lemma case_eC_two_e_two (n q z cb m S wC w k : ℕ) (hq : 4 ≤ q) (hn : 2 ≤ n) (hz : 0 < z)
     (hcb : 2 ≤ cb) (hzm : 2 * z ≤ m) (hzdvd : z ∣ m)
     (hS : S + z * (1 + n * (q - 1)) = n * q * (z * cb))
@@ -746,6 +890,9 @@ lemma case_eC_two_e_two (n q z cb m S wC w k : ℕ) (hq : 4 ≤ q) (hn : 2 ≤ n
   · rw [show 2 * (μ + 1) * q'' = n * q'' by rw [hr]; ring] at key2
     linarith
 
+/--
+@isnad1 id=false.6h6v.s7.0eeaa015cef5 from=translated src=- shape=0a6450ab vocab=19aefd93
+-/
 lemma case_eC_one_empty (n q z c S wC : ℕ) (hn : 2 ≤ n) (hz : 0 < z) (hzc : z ≤ c)
     (hS : S + z * (1 + n * (q - 1)) = n * q * c)
     (hwC : wC * c = n * q * c * (c - z)) (hle : S ≤ wC) : False := by
@@ -761,6 +908,9 @@ lemma case_eC_one_empty (n q z c S wC : ℕ) (hn : 2 ≤ n) (hz : 0 < z) (hzc : 
   subst hwC'
   nlinarith [hS, hle, hz, hn]
 
+/--
+@isnad1 id=false.7h6v.s7.c22a6d38553f from=translated src=- shape=4e1d5081 vocab=19aefd93
+-/
 lemma case_eC_two_empty (n q z cb S wC : ℕ) (hq : 4 ≤ q) (hn : 2 ≤ n) (hz : 0 < z) (hcb : 2 ≤ cb)
     (hS : S + z * (1 + n * (q - 1)) = n * q * (z * cb))
     (hwC : wC * (2 * (z * cb)) = n * q * (z * cb) * (z * cb - z)) (hle : S ≤ wC) : False := by
@@ -778,6 +928,9 @@ lemma case_eC_two_empty (n q z cb S wC : ℕ) (hq : 4 ≤ q) (hn : 2 ≤ n) (hz 
   have F : 2 * z ≤ n * z := Nat.mul_le_mul_right _ hn
   nlinarith [hS, hle, hwC2, hz, hn, F]
 
+/--
+@isnad1 id=le.4h5v.s6.7bc28983bdcb from=translated src=- shape=1ee2c151 vocab=418ffaaf
+-/
 lemma four_mul_ge (T w N m z : ℕ) (hw : w * N = T * (m - z)) (hN : N ≤ 2 * m) (hzm : 2 * z ≤ m)
     (hm : 0 < m) : T ≤ 4 * w := by
   obtain ⟨m₁, rfl⟩ : ∃ m₁, m = m₁ + z := ⟨m - z, by omega⟩
@@ -796,6 +949,9 @@ local notation "𝕄" => Matrix (Fin 2) (Fin 2) K
 variable {H : Type} [Group H] [Finite H] {ρ : H →* SL(2, K)}
 variable {p : ℕ} [Fact p.Prime] [CharP K p] {P : Sylow p H}
 
+/--
+@isnad1 id=and.3h4v.s9.6b1c9fc2ddfe from=translated src=- shape=12ba415c vocab=ed350bbd
+-/
 lemma torus_numerics (hρ : Function.Injective ρ) (h2 : (2 : K) ≠ 0) {h : H} (hh : IsSS ρ h) :
     (Nat.card (Subgroup.normalizer (torus h : Set H)) = Nat.card (torus h) ∨
       Nat.card (Subgroup.normalizer (torus h : Set H)) = 2 * Nat.card (torus h)) ∧
@@ -827,6 +983,9 @@ lemma torus_numerics (hρ : Function.Injective ρ) (h2 : (2 : K) ≠ 0) {h : H} 
       · exact hne (mul_one _)
     nlinarith
 
+/--
+@isnad1 id=le.3h4v.s8.fa957688596a from=translated src=- shape=1bac2027 vocab=4e9960bf
+-/
 lemma card_le_four_mul_card_classSet (hρ : Function.Injective ρ) (h2 : (2 : K) ≠ 0) {h : H}
     (hh : IsSS ρ h) : Nat.card H ≤ 4 * Nat.card (classSet ρ (torus h)) := by
   obtain ⟨hN, hzm⟩ := torus_numerics hρ h2 hh
@@ -836,6 +995,9 @@ lemma card_le_four_mul_card_classSet (hρ : Function.Injective ρ) (h2 : (2 : K)
 
 set_option maxHeartbeats 4000000 in
 
+/--
+@isnad1 id=eq.6h5v.s9.b9736104721c from=translated src=- shape=78660df5 vocab=0b900264
+-/
 theorem card_sylow_eq_of_normData (hρ : Function.Injective ρ) (D : NormData ρ P) (hp2 : p ≠ 2)
     (h2 : (2 : K) ≠ 0) (hq : 3 < Nat.card P) (hn1 : Nat.card (Sylow p H) ≠ 1) :
     Nat.card (Sylow p H) = Nat.card P + 1 := by
@@ -1013,6 +1175,9 @@ section Normalise
 variable (hρ : Function.Injective ρ)
 
 omit [Finite H] [Fact p.Prime] [CharP K p] in
+/--
+@isnad1 id=eq.2h3v.s6.46c959d213b9 from=translated src=- shape=55488693 vocab=00dd0f92
+-/
 lemma funext_fin_two {α : Type} {f g : Fin 2 → α} (h0 : f 0 = g 0) (h1 : f 1 = g 1) : f = g := by
   funext i; fin_cases i
   · exact h0
@@ -1020,6 +1185,9 @@ lemma funext_fin_two {α : Type} {f g : Fin 2 → α} (h0 : f 0 = g 0) (h1 : f 1
 
 omit [Finite H] [Fact p.Prime] [CharP K p] in
 
+/--
+@isnad1 id=ex.1h2v.s8.57a0a7e45725 from=translated src=- shape=4d3968da vocab=30040c27
+-/
 lemma exists_fixed_vec {M : 𝕄} (h : (M - 1) ^ 2 = 0) : ∃ v : Fin 2 → K, v ≠ 0 ∧ M *ᵥ v = v := by
   have hdet : Matrix.det (M - 1) = 0 := by
     have h2 : Matrix.det (M - 1) ^ 2 = 0 := by rw [← Matrix.det_pow, h, Matrix.det_zero]
@@ -1032,6 +1200,9 @@ lemma exists_fixed_vec {M : 𝕄} (h : (M - 1) ^ 2 = 0) : ∃ v : Fin 2 → K, v
 
 omit [Finite H] [Fact p.Prime] [CharP K p] in
 
+/--
+@isnad1 id=eq.3h4v.s10.8cd5c0a548ea from=translated src=- shape=0f3609d3 vocab=6f638787
+-/
 lemma conj_unip {M A B : 𝕄} (hAB : A * B = 1) (hBA : B * A = 1) (h : (M - 1) ^ 2 = 0) :
     (A * M * B - 1) ^ 2 = 0 := by
   have key : A * M * B - 1 = A * (M - 1) * B := by rw [mul_sub, sub_mul, mul_one, hAB]
@@ -1040,6 +1211,9 @@ lemma conj_unip {M A B : 𝕄} (hAB : A * B = 1) (hBA : B * A = 1) (h : (M - 1) 
   rw [key, hsq, hBA, mul_one, ← pow_two, h, mul_zero, zero_mul]
 
 omit [Finite H] [Fact p.Prime] [CharP K p] in
+/--
+@isnad1 id=eq.0h4v.s8.180d897c2eb3 from=translated src=- shape=be158ace vocab=5fc86b63
+-/
 lemma mulVec_fin_two (M : 𝕄) (x y : K) :
     M *ᵥ ![x, y] = ![M 0 0 * x + M 0 1 * y, M 1 0 * x + M 1 1 * y] := by
   funext i; fin_cases i <;> simp [Matrix.mulVec, dotProduct, Fin.sum_univ_two]
@@ -1081,10 +1255,16 @@ def conjSL (g : GL (Fin 2) K) : SL(2, K) →* SL(2, K) where
       _ = _ := by noncomm_ring
 
 omit [Finite H] [Fact p.Prime] [CharP K p] in
+/--
+@isnad1 id=eq.0h3v.s10.4356ff767e9c from=translated src=- shape=d0481f5e vocab=6a90b4eb
+-/
 lemma conjSL_coe (g : GL (Fin 2) K) (s : SL(2, K)) :
     ((conjSL g s : SL(2, K)) : 𝕄) = ((g⁻¹ : GL (Fin 2) K) : 𝕄) * s * (g : 𝕄) := rfl
 
 omit [Finite H] [Fact p.Prime] [CharP K p] in
+/--
+@isnad1 id=injectiv.0h2v.s9.79def5b9dfc3 from=translated src=- shape=20c3eade vocab=a3c4228f
+-/
 lemma conjSL_injective (g : GL (Fin 2) K) : Function.Injective (conjSL g) := by
   intro s t h
   have h1 := congrArg (fun u : SL(2, K) => (g : 𝕄) * (u : 𝕄) * ((g⁻¹ : GL (Fin 2) K) : 𝕄)) h
@@ -1103,6 +1283,9 @@ lemma conjSL_injective (g : GL (Fin 2) K) : Function.Injective (conjSL g) := by
 omit [Finite H] in
 include hρ in
 
+/--
+@isnad1 id=ex.2h5v.s9.72b8a55f9da4 from=translated src=- shape=72368473 vocab=b59a2852
+-/
 theorem exists_normData (P : Sylow p H) (hP1 : ∃ x ∈ P, x ≠ 1) :
     ∃ g : GL (Fin 2) K, NormData ((conjSL g).comp ρ) P := by
   classical
@@ -1187,6 +1370,9 @@ theorem exists_normData (P : Sylow p H) (hP1 : ∃ x ∈ P, x ≠ 1) :
 
 end Normalise
 
+/--
+@isnad1 id=eq.4h5v.s8.7da3829b707c from=translated src=- shape=a187d219 vocab=27e28fd7
+-/
 theorem card_sylow_eq (hρ : Function.Injective ρ) (hp2 : p ≠ 2) (P : Sylow p H)
     (hq : 3 < Nat.card P) (hP : Nat.card (Sylow p H) ≠ 1) :
     Nat.card (Sylow p H) = Nat.card P + 1 := by
@@ -1208,6 +1394,9 @@ theorem card_sylow_eq (hρ : Function.Injective ρ) (hp2 : p ≠ 2) (P : Sylow p
 
 end P2mDicksonCore
 
+/--
+@isnad1 id=eq.3h4v.s12.1c81fb65051a from=translated src=- shape=47c9bbc7 vocab=ee36c6d1
+-/
 theorem solution
     {K : Type} [Field K] {p : ℕ} [Fact p.Prime] [CharP K p] (hp2 : p ≠ 2)
     (G : Subgroup SL(2, K)) [Finite G] (P : Sylow p G)

@@ -9,6 +9,9 @@ namespace P2MW.S_LaurentSeries_eq_zero_of_heckeT_eq_smul_of_heckeU_eq_smul_of_co
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.4h5v.s9.2ba44dc8b7c4 from=translated src=- shape=308c545f vocab=8d4a7256
+-/
 theorem solution
     (R : Type*) [CommRing R] (M k : ℕ) (θ : Nat.Primes → R) (f : LaurentSeries R)
     (hneg : ∀ n : ℤ, n ≤ 0 → f.coeff n = 0)

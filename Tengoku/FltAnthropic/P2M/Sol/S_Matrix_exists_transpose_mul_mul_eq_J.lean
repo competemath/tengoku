@@ -9,6 +9,9 @@ namespace SymplecticNormalFormZ
 
 open LinearMap (BilinForm)
 
+/--
+@isnad1 id=ex.4h3v.s11.0277fa06fe41 from=translated src=- shape=0faa5640 vocab=90157c4e
+-/
 theorem exists_basis (k : ℕ) :
     ∀ (M : Type*) [AddCommGroup M] [Module.Free ℤ M] [Module.Finite ℤ M],
       Module.finrank ℤ M = k → ∀ B : BilinForm ℤ M, (∀ x, B x x = 0) →
@@ -205,6 +208,9 @@ end SymplecticNormalFormZ
 
 open SymplecticNormalFormZ Matrix in
 
+/--
+@isnad1 id=ex.2h2v.s8.1219744cee4a from=translated src=- shape=3fa4ced7 vocab=62039e8c
+-/
 theorem solution {n : ℕ} (Q : Matrix (Fin n ⊕ Fin n) (Fin n ⊕ Fin n) ℤ)
     (hQ : Q.transpose = -Q) (hdet : IsUnit Q.det) :
     ∃ P : Matrix (Fin n ⊕ Fin n) (Fin n ⊕ Fin n) ℤ, IsUnit P.det ∧

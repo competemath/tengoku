@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=ex.2h2v.s9.9f94826e32b6 from=translated src=- shape=5d93bddd vocab=5a9a7b96
+-/
 theorem solution {A : Type u} [CommRing A] [IsLocalRing A]
     {e : Matrix (Fin 2) (Fin 2) A} (he : e * e = e) (htr : e.trace = 1) :
     ∃ u w : Fin 2 → A, IsUnit (Matrix.of (fun i j => ![u, w] j i)).det ∧

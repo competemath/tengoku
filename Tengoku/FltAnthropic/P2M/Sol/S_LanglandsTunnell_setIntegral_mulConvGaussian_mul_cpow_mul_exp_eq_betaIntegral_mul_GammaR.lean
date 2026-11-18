@@ -14,6 +14,9 @@ set_option autoImplicit false
 open MeasureTheory Set
 open scoped Real
 
+/--
+@isnad1 id=eq.2h3v.s8.7aa902ba945a from=translated src=- shape=eeac6ec6 vocab=48322423
+-/
 theorem solution
     (p q z : ℂ) (hp : 0 < (z + p).re) (hq : 0 < (z + q).re) :
     ∫ y in Ioi (0 : ℝ),

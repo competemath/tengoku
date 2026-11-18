@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open Matrix MatrixGroups
 
+/--
+@isnad1 id=eq.3h4v.s12.1c81fb65051a from=translated src=- shape=47c9bbc7 vocab=ee36c6d1
+-/
 theorem Matrix.SpecialLinearGroup.card_sylow_eq_card_add_one_of_finite
     {K : Type} [Field K] {p : ℕ} [Fact p.Prime] [CharP K p] (hp2 : p ≠ 2)
     (G : Subgroup SL(2, K)) [Finite G] (P : Sylow p G)

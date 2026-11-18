@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Matrix_exists_mulVec_eq_and_isUnit_det_of_
 set_option autoImplicit false
 
 universe u
+/--
+@isnad1 id=ex.2h2v.s9.9f94826e32b6 from=translated src=- shape=5d93bddd vocab=5a9a7b96
+-/
 theorem Matrix.exists_mulVec_eq_and_isUnit_det_of_isIdempotentElem_of_trace_eq_one {A : Type u} [CommRing A] [IsLocalRing A]
     {e : Matrix (Fin 2) (Fin 2) A} (he : e * e = e) (htr : e.trace = 1) :
     ∃ u w : Fin 2 → A, IsUnit (Matrix.of (fun i j => ![u, w] j i)).det ∧

@@ -20,6 +20,9 @@ variable (A : ValuationSubring (AlgebraicClosure ℚ)) {p : ℕ}
 
 local notation "ℚb" => AlgebraicClosure ℚ
 
+/--
+@isnad1 id=eq.3h3v.s8.569c4bc8a474 from=translated src=- shape=cbbbda3c vocab=6600d384
+-/
 theorem val_natCast_eq_one (hp : p.Prime) (hA : ((p : ℕ) : ℚb) ∈ A.nonunits) {n : ℕ} (hn : ¬ p ∣ n) :
     A.valuation (n : ℚb) = 1 := by
   have hle : A.valuation (n : ℚb) ≤ 1 := (A.valuation_le_one_iff _).mpr (natCast_mem A n)
@@ -39,6 +42,9 @@ theorem val_natCast_eq_one (hp : p.Prime) (hA : ((p : ℕ) : ℚb) ∈ A.nonunit
   rw [h1, map_one] at this
   exact lt_irrefl _ this
 
+/--
+@isnad1 id=ex.3h3v.s8.68ce10605571 from=translated src=- shape=fb2962be vocab=52dd5f1f
+-/
 theorem val_natCast_eq_pow (hp : p.Prime) (hA : ((p : ℕ) : ℚb) ∈ A.nonunits) {n : ℕ} (hn : n ≠ 0) :
     ∃ e : ℕ, A.valuation (n : ℚb) = A.valuation ((p : ℕ) : ℚb) ^ e := by
   obtain ⟨e, n', hn', rfl⟩ := Nat.exists_eq_pow_mul_and_not_dvd hn p hp.one_lt.ne'
@@ -46,6 +52,9 @@ theorem val_natCast_eq_pow (hp : p.Prime) (hA : ((p : ℕ) : ℚb) ∈ A.nonunit
   push_cast
   rw [map_mul, map_pow, val_natCast_eq_one A hp hA hn', mul_one]
 
+/--
+@isnad1 id=ex.3h3v.s8.4b7d76b81c6f from=translated src=- shape=a40afbd1 vocab=02fbd015
+-/
 theorem val_intCast_eq_pow (hp : p.Prime) (hA : ((p : ℕ) : ℚb) ∈ A.nonunits) {z : ℤ} (hz : z ≠ 0) :
     ∃ e : ℕ, A.valuation (z : ℚb) = A.valuation ((p : ℕ) : ℚb) ^ e := by
   obtain ⟨e, he⟩ := val_natCast_eq_pow A hp hA (Int.natAbs_ne_zero.mpr hz)
@@ -54,6 +63,9 @@ theorem val_intCast_eq_pow (hp : p.Prime) (hA : ((p : ℕ) : ℚb) ∈ A.nonunit
   · rw [h, Int.cast_natCast]; exact he
   · rw [h, Int.cast_neg, Int.cast_natCast, Valuation.map_neg]; exact he
 
+/--
+@isnad1 id=ex.3h3v.s8.306648703bef from=translated src=- shape=33d4becc vocab=0151411f
+-/
 theorem val_ratCast_eq_zpow (hp : p.Prime) (hA : ((p : ℕ) : ℚb) ∈ A.nonunits) {c : ℚ} (hc : c ≠ 0) :
     ∃ m : ℤ, A.valuation (c : ℚb) = A.valuation ((p : ℕ) : ℚb) ^ m := by
   have hp0 : A.valuation ((p : ℕ) : ℚb) ≠ 0 :=
@@ -63,6 +75,9 @@ theorem val_ratCast_eq_zpow (hp : p.Prime) (hA : ((p : ℕ) : ℚb) ∈ A.nonuni
   refine ⟨(e₁ : ℤ) - e₂, ?_⟩
   rw [Rat.cast_def, map_div₀, h₁, h₂, zpow_sub₀ hp0, zpow_natCast, zpow_natCast, div_eq_mul_inv]
 
+/--
+@isnad1 id=ex.3h5v.s8.08edfdc14237 from=translated src=- shape=9cbe3cef vocab=706b14b2
+-/
 theorem exists_ne_val_eq {ι : Type*} (s : Finset ι) (f : ι → ℚb) (h0 : ∑ i ∈ s, f i = 0)
     {i₀ : ι} (hi₀s : i₀ ∈ s) (hi₀ : f i₀ ≠ 0) :
     ∃ i ∈ s, ∃ j ∈ s, i ≠ j ∧ f i ≠ 0 ∧ A.valuation (f i) = A.valuation (f j) := by
@@ -88,6 +103,9 @@ theorem exists_ne_val_eq {ι : Type*} (s : Finset ι) (f : ι → ℚb) (h0 : �
   rw [herase, Valuation.map_neg] at hsum
   exact lt_irrefl _ hsum
 
+/--
+@isnad1 id=ex.3h3v.s9.3902b0a5714c from=translated src=- shape=a041c5f7 vocab=54b3a2af
+-/
 theorem exists_pow_val_eq_zpow (hp : p.Prime) (hA : ((p : ℕ) : ℚb) ∈ A.nonunits) {a : ℚb} (ha : a ≠ 0) :
     ∃ N : ℕ, 0 < N ∧ ∃ m : ℤ, A.valuation a ^ N = A.valuation ((p : ℕ) : ℚb) ^ m := by
   classical
@@ -131,6 +149,9 @@ theorem exists_pow_val_eq_zpow (hp : p.Prime) (hA : ((p : ℕ) : ℚb) ∈ A.non
     have h2 := mul_left_cancel₀ (pow_ne_zero j ha0) h'
     rw [show j + d + 1 - j = d + 1 by omega, zpow_sub₀ hp0, h2, mul_div_cancel_left₀ _ (zpow_ne_zero mi hp0)]
 
+/--
+@isnad1 id=mularchi.2h2v.s11.306da54c1c62 from=translated src=- shape=7e9eaeac vocab=913b93e9
+-/
 theorem mulArchimedean_valueGroup (hp : p.Prime) (hA : ((p : ℕ) : ℚb) ∈ A.nonunits) :
     MulArchimedean ↥(valueGroup (.ofClass A.valuation)) := by
   classical
@@ -176,6 +197,9 @@ theorem mulArchimedean_valueGroup (hp : p.Prime) (hA : ((p : ℕ) : ℚb) ∈ A.
   intro a ha b hb
   rw [key a ha, key b hb]
 
+/--
+@isnad1 id=ex.2h2v.s8.2e13f2150d11 from=translated src=- shape=fd6e04c5 vocab=d97a6a46
+-/
 theorem exists_absoluteValue (hp : p.Prime) (hA : ((p : ℕ) : ℚb) ∈ A.nonunits) :
     ∃ μ : AbsoluteValue ℚb ℝ, IsNonarchimedean μ ∧
       μ (p : ℚb) < 1 ∧ ∀ a : ℚb, a ∈ A ↔ μ a ≤ 1 := by
@@ -233,6 +257,9 @@ theorem exists_absoluteValue (hp : p.Prime) (hA : ((p : ℕ) : ℚb) ∈ A.nonun
 
 end ValuationSubring.MuExist
 
+/--
+@isnad1 id=ex.2h2v.s8.46947cf6b400 from=translated src=- shape=cd845504 vocab=934d0c86
+-/
 theorem solution
     {p : ℕ} (hp : p.Prime) (A : ValuationSubring (AlgebraicClosure ℚ)) (hA : A.LiesOverPrime p) :
     ∃ μ : AbsoluteValue (AlgebraicClosure ℚ) ℝ, IsNonarchimedean μ ∧

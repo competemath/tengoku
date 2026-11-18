@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u v
 
+/--
+@isnad1 id=isunit.2h4v.s8.7fb8aa22c922 from=translated src=- shape=4d714440 vocab=e7c90c9d
+-/
 theorem solution
     {S : Type u} [CommRing S] {n : Type v} [Fintype n] [DecidableEq n]
     (𝔫 : Ideal S) (h𝔫 : 𝔫 ≤ (⊥ : Ideal S).jacobson)

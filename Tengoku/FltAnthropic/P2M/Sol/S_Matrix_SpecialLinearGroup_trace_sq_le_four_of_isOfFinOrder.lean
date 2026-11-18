@@ -16,10 +16,22 @@ def a (t : ℤ) : ℕ → ℤ
   | 1 => t
   | (k + 2) => t * a t (k + 1) - a t k
 
+/--
+@isnad1 id=eq.0h1v.s4.67b591080f2a from=translated src=- shape=0e0c2bda vocab=9c42a81e
+-/
 theorem a_zero (t : ℤ) : a t 0 = 2 := rfl
+/--
+@isnad1 id=eq.0h1v.s3.ec44e0c7ca14 from=translated src=- shape=bb0110a5 vocab=9c42a81e
+-/
 theorem a_one (t : ℤ) : a t 1 = t := rfl
+/--
+@isnad1 id=eq.0h2v.s5.beab2f38a8f4 from=translated src=- shape=5d40bff2 vocab=0977660b
+-/
 theorem a_add_two (t : ℤ) (k : ℕ) : a t (k + 2) = t * a t (k + 1) - a t k := rfl
 
+/--
+@isnad1 id=lt.1h2v.s5.af02d5cd15fe from=translated src=- shape=6ec7f032 vocab=b7921134
+-/
 theorem abs_a_lt_abs_a_succ {t : ℤ} (ht : 3 ≤ |t|) : ∀ k : ℕ, |a t k| < |a t (k + 1)| := by
   intro k
   induction k with
@@ -36,6 +48,9 @@ theorem abs_a_lt_abs_a_succ {t : ℤ} (ht : 3 ≤ |t|) : ∀ k : ℕ, |a t k| < 
     have h3 : 0 ≤ |a t k| := abs_nonneg _
     omega
 
+/--
+@isnad1 id=lt.2h2v.s5.7b77f0ba0bed from=translated src=- shape=d46249da vocab=e7024ec4
+-/
 theorem two_lt_abs_a {t : ℤ} (ht : 3 ≤ |t|) : ∀ n : ℕ, 1 ≤ n → 2 < |a t n| := by
   intro n hn
   induction n with
@@ -47,6 +62,9 @@ theorem two_lt_abs_a {t : ℤ} (ht : 3 ≤ |t|) : ∀ n : ℕ, 1 ≤ n → 2 < |
       have := ih hpos
       omega
 
+/--
+@isnad1 id=eq.1h1v.s8.e5917aab26e0 from=translated src=- shape=4badc1c8 vocab=1107d654
+-/
 theorem mul_self_eq (A : Matrix (Fin 2) (Fin 2) ℤ) (hdet : A.det = 1) :
     A * A = A.trace • A - 1 := by
   rw [Matrix.det_fin_two] at hdet
@@ -56,6 +74,9 @@ theorem mul_self_eq (A : Matrix (Fin 2) (Fin 2) ℤ) (hdet : A.det = 1) :
       Matrix.trace_fin_two, Matrix.one_apply, Fin.zero_eta, Fin.mk_one, Fin.isValue] <;>
     simp <;> nlinarith [hdet]
 
+/--
+@isnad1 id=eq.1h2v.s7.b5f5e0141ab6 from=translated src=- shape=f5145a3a vocab=29fdc597
+-/
 theorem trace_pow_eq_a (A : Matrix (Fin 2) (Fin 2) ℤ) (hdet : A.det = 1) :
     ∀ k : ℕ, (A ^ k).trace = a A.trace k := by
   have key : ∀ k : ℕ, (A ^ k).trace = a A.trace k ∧ (A ^ (k + 1)).trace = a A.trace (k + 1) := by
@@ -74,6 +95,9 @@ theorem trace_pow_eq_a (A : Matrix (Fin 2) (Fin 2) ℤ) (hdet : A.det = 1) :
 
 end FinordTrace
 
+/--
+@isnad1 id=le.1h1v.s7.bc44c41b3c2c from=translated src=- shape=d17094ae vocab=780e4f56
+-/
 theorem solution (γ : SL(2, ℤ)) (h : IsOfFinOrder γ) :
     (γ : Matrix (Fin 2) (Fin 2) ℤ).trace ^ 2 ≤ 4 := by
   obtain ⟨n, hn, hγn⟩ := h.exists_pow_eq_one

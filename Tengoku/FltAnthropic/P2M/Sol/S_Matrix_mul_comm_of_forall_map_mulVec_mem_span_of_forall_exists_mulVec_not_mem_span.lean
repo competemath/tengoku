@@ -11,6 +11,9 @@ namespace Matrix
 export _root_.Matrix (sub_mulVec ext row mulVec_mulVec smul_apply comp_apply of map mulVec_smul mulVec)
 open _root_.Matrix
 
+/--
+@isnad1 id=ex.2h4v.s8.21cbf70b9aeb from=translated src=- shape=fafca343 vocab=dae43fbe
+-/
 theorem exists_smul_vecCons_eq_of_mul_add_mul_eq_zero {K : Type*} [Field K] (a b : K)
     (x : Fin 2 → K) (hab : a ≠ 0 ∨ b ≠ 0) (h : a * x 0 + b * x 1 = 0) :
     ∃ c : K, c • ![b, -a] = x := by
@@ -34,6 +37,9 @@ theorem exists_smul_vecCons_eq_of_mul_add_mul_eq_zero {K : Type*} [Field K] (a b
       ring
     · simp [ha]
 
+/--
+@isnad1 id=mem.2h7v.s8.32324644b89d from=translated src=- shape=88cf3834 vocab=1300b760
+-/
 theorem mem_span_singleton_of_comp_eq_smul_comp {F F' : Type*} [Field F] [Field F']
     (e : F →+* F') {n : Type*} (v w : n → F) (d : F') (h : e ∘ w = d • (e ∘ v))
     (hv : v ≠ 0) : w ∈ F ∙ v := by
@@ -53,6 +59,9 @@ theorem mem_span_singleton_of_comp_eq_smul_comp {F F' : Type*} [Field F] [Field 
   simp only [Function.comp_apply, Pi.smul_apply, smul_eq_mul] at h2
   rw [Pi.smul_apply, smul_eq_mul, map_mul, ← hd, h2]
 
+/--
+@isnad1 id=eq.3h8v.s10.130b0718fed7 from=translated src=- shape=cb273d7e vocab=e5196aef
+-/
 theorem mul_comm_of_stableLine_impl
     {F F' : Type*} [Field F] [Field F'] (e : F →+* F') {ι : Type*}
     (M : ι → Matrix (Fin 2) (Fin 2) F)
@@ -119,6 +128,9 @@ theorem mul_comm_of_stableLine_impl
 
 end Matrix
 
+/--
+@isnad1 id=eq.3h8v.s10.130b0718fed7 from=translated src=- shape=cb273d7e vocab=e5196aef
+-/
 theorem solution
     {F F' : Type*} [Field F] [Field F'] (e : F →+* F') {ι : Type*}
     (M : ι → Matrix (Fin 2) (Fin 2) F)

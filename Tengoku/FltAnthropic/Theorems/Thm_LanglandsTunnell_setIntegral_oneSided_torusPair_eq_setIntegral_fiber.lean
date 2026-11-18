@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 open MeasureTheory Set
 
+/--
+@isnad1 id=eq.3h5v.s10.05495b47082a from=translated src=- shape=29f467ed vocab=5613e24e
+-/
 theorem LanglandsTunnell.setIntegral_oneSided_torusPair_eq_setIntegral_fiber
     (α β γ : ℂ) (g : ℝ → ℂ) (hg : Measurable g) (B : ℝ → ℝ → ℝ → ℝ → ℂ)
     (hB : Measurable fun x : ℝ × ℝ × ℝ × ℝ => B x.1 x.2.1 x.2.2.1 x.2.2.2)

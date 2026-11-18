@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open MeasureTheory FourierTransform
 
+/--
+@isnad1 id=and.3h3v.s8.2e1fdadc6ebe from=translated src=- shape=b7053eaf vocab=8a8b4baa
+-/
 theorem LocalParametrix.continuous_fourier_and_contDiffOn_compl_zero_of_norm_iteratedFDeriv_le
     {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℝ V] [FiniteDimensional ℝ V]
     [MeasurableSpace V] [BorelSpace V]

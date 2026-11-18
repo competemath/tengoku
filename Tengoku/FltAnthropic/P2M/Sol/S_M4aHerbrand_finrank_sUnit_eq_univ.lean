@@ -26,15 +26,24 @@ variable {R : Type*} [CommRing R] [IsDedekindDomain R]
   {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]
 
 omit [IsDedekindDomain R] in
+/--
+@isnad1 id=ne.0h3v.s7.80d8e2c2f3b7 from=translated src=- shape=46839215 vocab=4d952a5e
+-/
 theorem spanSingleton_units_ne_zero (x : Kˣ) : spanSingleton R⁰ (x : K) ≠ 0 :=
   spanSingleton_ne_zero_iff.mpr x.ne_zero
 
+/--
+@isnad1 id=eq.0h5v.s7.e911fd4b700a from=translated src=- shape=7ae6ba6a vocab=19408192
+-/
 theorem count_spanSingleton_units_mul (v : HeightOneSpectrum R) (x y : Kˣ) :
     count K v (spanSingleton R⁰ ((x * y : Kˣ) : K)) =
       count K v (spanSingleton R⁰ (x : K)) + count K v (spanSingleton R⁰ (y : K)) := by
   rw [Units.val_mul, ← spanSingleton_mul_spanSingleton]
   exact count_mul K v (spanSingleton_units_ne_zero x) (spanSingleton_units_ne_zero y)
 
+/--
+@isnad1 id=eq.1h5v.s9.b46ae4a438f0 from=translated src=- shape=8243dca3 vocab=c39b4aeb
+-/
 theorem count_spanSingleton_mk' (v : HeightOneSpectrum R) {r : R} (hr : r ≠ 0) (s : R⁰) :
     count K v (spanSingleton R⁰ (IsLocalization.mk' K r s)) =
       ((Associates.mk v.asIdeal).count (Associates.mk (Ideal.span {r} : Ideal R)).factors : ℤ)
@@ -50,6 +59,9 @@ theorem count_spanSingleton_mk' (v : HeightOneSpectrum R) {r : R} (hr : r ≠ 0)
       ← IsFractionRing.mk'_eq_div]
   exact count_well_defined K v (spanSingleton_ne_zero_iff.mpr hmk) hrep
 
+/--
+@isnad1 id=iff.0h4v.s7.86f3433281df from=translated src=- shape=ac69a918 vocab=0786c86c
+-/
 theorem valuation_eq_one_iff_count_eq_zero (v : HeightOneSpectrum R) (x : Kˣ) :
     v.valuation K (x : K) = 1 ↔ count K v (spanSingleton R⁰ (x : K)) = 0 := by
   obtain ⟨⟨r, s⟩, hx⟩ := IsLocalization.mk'_surjective (M := R⁰) (S := K) (x : K)
@@ -63,6 +75,9 @@ theorem valuation_eq_one_iff_count_eq_zero (v : HeightOneSpectrum R) (x : Kˣ) :
     ← exp_sub, show (1 : ℤᵐ⁰) = exp 0 by rw [exp_zero], exp_inj]
   omega
 
+/--
+@isnad1 id=iff.0h4v.s7.4c270a156a1a from=translated src=- shape=8036f8bd vocab=d91d8229
+-/
 theorem mem_unit_iff_count {T : Set (HeightOneSpectrum R)} {x : Kˣ} :
     x ∈ T.unit K ↔ ∀ v ∉ T, count K v (spanSingleton R⁰ (x : K)) = 0 := by
   have hmem : x ∈ T.unit K ↔
@@ -87,12 +102,18 @@ def sUnitCountHom (T : Set (HeightOneSpectrum R)) :
     rw [hco, count_spanSingleton_units_mul]
     rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.3ca45bbc463b from=translated src=- shape=b5ef92b0 vocab=a7e40e70
+-/
 @[scoped simp] theorem sUnitCountHom_apply (T : Set (HeightOneSpectrum R))
     (x : ↥(T.unit K)) (v : ↥T) :
     sUnitCountHom T (Additive.ofMul x) v
       = count K (v : HeightOneSpectrum R) (spanSingleton R⁰ ((x : Kˣ) : K)) :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.7e4c74198aee from=translated src=- shape=c6c71cb0 vocab=1af39b54
+-/
 theorem sUnitCountHom_apply' (T : Set (HeightOneSpectrum R))
     (x : Additive ↥(T.unit K)) (v : ↥T) :
     sUnitCountHom T x v
@@ -100,6 +121,9 @@ theorem sUnitCountHom_apply' (T : Set (HeightOneSpectrum R))
           (spanSingleton R⁰ (((x.toMul : ↥(T.unit K)) : Kˣ) : K)) :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.17308d20f4bb from=translated src=- shape=bf6b3194 vocab=38ebb326
+-/
 theorem valuation_algebraMap_units_eq_one (v : HeightOneSpectrum R) (u : Rˣ) :
     v.valuation K (algebraMap R K (u : R)) = 1 := by
   have h1 : v.valuation K (algebraMap R K (u : R)) ≤ 1 := by
@@ -118,11 +142,17 @@ def ringUnitsUnitHom (T : Set (HeightOneSpectrum R)) : Rˣ →* ↥(T.unit K) wh
   map_one' := Subtype.ext (map_one _)
   map_mul' a b := Subtype.ext (map_mul _ a b)
 
+/--
+@isnad1 id=injectiv.0h3v.s10.5428faa5c40d from=translated src=- shape=a64506e9 vocab=ea290a95
+-/
 theorem ringUnitsUnitHom_injective (T : Set (HeightOneSpectrum R)) :
     Function.Injective (ringUnitsUnitHom (K := K) (R := R) T) := fun _ _ h =>
   Units.map_injective (f := (algebraMap R K : R →* K))
     (IsFractionRing.injective R K) (Subtype.ext_iff.mp h)
 
+/--
+@isnad1 id=ex.1h3v.s8.cdf8053cf648 from=translated src=- shape=8bd5547d vocab=495e377f
+-/
 theorem exists_ringUnits_eq_of_forall_valuation_eq_one {x : Kˣ}
     (h : ∀ v : HeightOneSpectrum R, v.valuation K (x : K) = 1) :
     ∃ u : Rˣ, Units.map (algebraMap R K : R →* K) u = x := by
@@ -172,6 +202,9 @@ noncomputable def ringUnitsAddEquivCountHomKer (T : Set (HeightOneSpectrum R)) :
     apply Additive.toMul.injective
     exact Subtype.ext hu
 
+/--
+@isnad1 id=finite.1h3v.s9.e0c618b6f8c1 from=translated src=- shape=262802cd vocab=ea64b58e
+-/
 theorem moduleFinite_additive_unit (T : Set (HeightOneSpectrum R)) [Finite T]
     (hRu : Module.Finite ℤ (Additive Rˣ)) :
     Module.Finite ℤ (Additive ↥(T.unit K)) := by
@@ -210,6 +243,9 @@ open scoped nonZeroDivisors
 
 noncomputable section
 
+/--
+@isnad1 id=eq.0h1v.s4.023de4ce2fe9 from=translated src=- shape=49fcc145 vocab=0b80a6ab
+-/
 theorem finrank_eq_zero_of_finite (G : Type*) [AddCommGroup G] [Finite G] :
     finrank ℤ G = 0 := by
   apply finrank_eq_zero_of_rank_eq_zero
@@ -219,6 +255,9 @@ theorem finrank_eq_zero_of_finite (G : Type*) [AddCommGroup G] [Finite G] :
 
 variable (K : Type*) [Field K] [NumberField K]
 
+/--
+@isnad1 id=eq.0h1v.s7.108e977a17df from=translated src=- shape=fbbc9c0d vocab=486acaf5
+-/
 theorem finrank_additive_ringOfIntegers_units :
     finrank ℤ (Additive (RingOfIntegers K)ˣ) = NumberField.Units.rank K := by
   set N : Submodule ℤ (Additive (RingOfIntegers K)ˣ) :=
@@ -236,6 +275,9 @@ theorem finrank_additive_ringOfIntegers_units :
   rw [← hsplit, hN0, add_zero]
   exact hquot
 
+/--
+@isnad1 id=le.0h2v.s9.6028cfada8f2 from=translated src=- shape=9d8dff4c vocab=b38c4e58
+-/
 theorem finrank_unit_le (T : Set (HeightOneSpectrum (RingOfIntegers K))) [Finite T] :
     finrank ℤ (Additive ↥(T.unit K)) ≤ Nat.card T + NumberField.Units.rank K := by
   haveI : Fintype ↥T := Fintype.ofFinite ↥T
@@ -254,6 +296,9 @@ theorem finrank_unit_le (T : Set (HeightOneSpectrum (RingOfIntegers K))) [Finite
   rw [← hsplit, hker]
   exact Nat.add_le_add_right hquot _
 
+/--
+@isnad1 id=isprinci.0h2v.s7.caf047dc7af9 from=translated src=- shape=3c446786 vocab=433d10c8
+-/
 theorem isPrincipal_asIdeal_pow_classNumber (v : HeightOneSpectrum (RingOfIntegers K)) :
     (v.asIdeal ^ classNumber K : Ideal (RingOfIntegers K)).IsPrincipal := by
   have hv : v.asIdeal ∈ (Ideal (RingOfIntegers K))⁰ :=
@@ -268,6 +313,9 @@ theorem isPrincipal_asIdeal_pow_classNumber (v : HeightOneSpectrum (RingOfIntege
   exact (ClassGroup.mk0_eq_one_iff hpow).mp h1
 
 open scoped Classical in
+/--
+@isnad1 id=ex.0h3v.s11.0c6b1c3de4d6 from=translated src=- shape=c7918782 vocab=682ccad3
+-/
 theorem exists_sUnitCountHom_eq_classNumber_smul_single
     (T : Set (HeightOneSpectrum (RingOfIntegers K))) (v : ↥T) :
     ∃ x : Additive ↥(T.unit K),
@@ -319,6 +367,9 @@ theorem exists_sUnitCountHom_eq_classNumber_smul_single
     simp [this]
 
 open scoped Classical in
+/--
+@isnad1 id=mem.0h3v.s10.f51293841e2f from=translated src=- shape=bb166ce9 vocab=3e06cbbb
+-/
 theorem classNumber_smul_mem_range_sUnitCountHom
     (T : Set (HeightOneSpectrum (RingOfIntegers K))) [Finite T] (y : ↥T → ℤ) :
     (classNumber K : ℤ) • y ∈ LinearMap.range
@@ -337,6 +388,9 @@ theorem classNumber_smul_mem_range_sUnitCountHom
   obtain ⟨x, hx⟩ := exists_sUnitCountHom_eq_classNumber_smul_single K T v
   exact ⟨x, hx⟩
 
+/--
+@isnad1 id=eq.0h2v.s9.3f303865699c from=translated src=- shape=9d8dff4c vocab=0a813abf
+-/
 theorem finrank_unit_eq (T : Set (HeightOneSpectrum (RingOfIntegers K))) [Finite T] :
     finrank ℤ (Additive ↥(T.unit K)) = Nat.card T + NumberField.Units.rank K := by
   haveI : Fintype ↥T := Fintype.ofFinite ↥T
@@ -379,6 +433,9 @@ open scoped _root_.P2MW.S_M4aHerbrand_finrank_sUnit_eq_univ.M4aHerbrandSolH2
 end M4aHerbrandSolH2
 open scoped _root_.P2MW.S_M4aHerbrand_finrank_sUnit_eq_univ.M4aHerbrandSolH2
 
+/--
+@isnad1 id=and.0h2v.s10.48c6e0832b8a from=translated src=- shape=aff95c81 vocab=9c4bf9b0
+-/
 theorem solution (K : Type*) [Field K] [NumberField K]
     (S : Set (HeightOneSpectrum (𝓞 K))) [Finite S] :
     Module.Finite ℤ (Additive (S.unit K)) ∧

@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open IsDedekindDomain NumberField
 
+/--
+@isnad1 id=and.10h4v.s14.0a8512fb031d from=translated src=- shape=790cd922 vocab=e3570b86
+-/
 theorem Matrix.exists_eq_iwahori_mul_diagonal_mul_iwahori_or_eq_atkinLehner_mul_of_mem_iwahori
     (p : ℕ) (hp : p.Prime) (v : HeightOneSpectrum (𝓞 ℚ)) (hpv : (p : 𝓞 ℚ) ∈ v.asIdeal)
     (Y Yi : Matrix (Fin 2) (Fin 2) (v.adicCompletion ℚ)) (h1 : Y * Yi = 1) (h2 : Yi * Y = 1)

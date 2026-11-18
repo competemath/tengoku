@@ -19,20 +19,38 @@ local notation "𝕄" => Matrix (Fin 2) (Fin 2) K
 
 def tr (M : 𝕄) : K := M 0 0 + M 1 1
 
+/--
+@isnad1 id=eq.0h3v.s7.d061eac90a3e from=translated src=- shape=6ebd863d vocab=af05e42e
+-/
 lemma tr_mul_comm (a b : 𝕄) : tr (a * b) = tr (b * a) := by
   simp [tr, Matrix.mul_apply, Fin.sum_univ_two]; ring
 
+/--
+@isnad1 id=eq.1h4v.s8.57ebb2b262c7 from=translated src=- shape=c4b3340f vocab=af05e42e
+-/
 lemma tr_conj {a b c : 𝕄} (h : c * a = 1) : tr (a * b * c) = tr b := by
   rw [tr_mul_comm, ← mul_assoc, h, one_mul]
 
+/--
+@isnad1 id=eq.0h1v.s6.dd184ffad7c3 from=translated src=- shape=715f3820 vocab=12610392
+-/
 lemma tr_one : tr (1 : 𝕄) = 2 := by simp [tr]; norm_num
 
+/--
+@isnad1 id=eq.0h2v.s6.bc056ea29ec3 from=translated src=- shape=5bd024ce vocab=9760d296
+-/
 lemma tr_neg (a : 𝕄) : tr (-a) = -tr a := by simp [tr]; ring
 
+/--
+@isnad1 id=eq.0h3v.s6.2677b6eb2f9f from=translated src=- shape=54fd0571 vocab=d267890c
+-/
 lemma tr_smul (c : K) (a : 𝕄) : tr (c • a) = c * tr a := by simp [tr]; ring
 
 def IsScalarMat (g : 𝕄) : Prop := ∃ c : K, g = c • (1 : 𝕄)
 
+/--
+@isnad1 id=iff.0h2v.s7.9cbac5ab8ef2 from=translated src=- shape=d165eb2d vocab=564e79ca
+-/
 lemma isScalarMat_iff (g : 𝕄) : IsScalarMat g ↔ g 0 1 = 0 ∧ g 1 0 = 0 ∧ g 0 0 = g 1 1 := by
   constructor
   · rintro ⟨c, rfl⟩; simp
@@ -45,6 +63,9 @@ lemma eq_smul_one_add_smul_of_entries {m g : 𝕄} {x y : K}
     (h11 : m 1 1 = x + y * g 1 1) : m = x • (1 : 𝕄) + y • g := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [h00, h01, h10, h11]
 
+/--
+@isnad1 id=iff.1h3v.s9.ffda7735b0aa from=translated src=- shape=3b788de1 vocab=e9015e4d
+-/
 lemma commute_iff {g : 𝕄} (hg : ¬ IsScalarMat g) (m : 𝕄) :
     m * g = g * m ↔ ∃ x y : K, m = x • (1 : 𝕄) + y • g := by
   constructor
@@ -98,10 +119,16 @@ lemma commute_iff {g : 𝕄} (hg : ¬ IsScalarMat g) (m : 𝕄) :
     rw [add_mul, mul_add, smul_mul_assoc, smul_mul_assoc, mul_smul_comm, mul_smul_comm, one_mul,
       mul_one]
 
+/--
+@isnad1 id=eq.0h2v.s9.4b99dd269402 from=translated src=- shape=9ab58852 vocab=7d4c3059
+-/
 lemma coe_inv_eq (s : SL(2, K)) : ((s⁻¹ : SL(2, K)) : 𝕄) = tr (s : 𝕄) • (1 : 𝕄) - s := by
   rw [Matrix.SpecialLinearGroup.coe_inv, Matrix.adjugate_fin_two, Matrix.eta_fin_two (s : 𝕄)]
   ext i j; fin_cases i <;> fin_cases j <;> simp [tr]
 
+/--
+@isnad1 id=not.1h2v.s7.82a834aae35a from=translated src=- shape=f671a3cd vocab=63684206
+-/
 lemma not_isScalarMat_of_tr_sq (s : SL(2, K)) (hs : (tr (s : 𝕄)) ^ 2 ≠ 4) :
     ¬ IsScalarMat (s : 𝕄) := by
   rintro ⟨c, hc⟩
@@ -117,11 +144,20 @@ variable {H : Type} [Group H] (ρ : H →* SL(2, K))
 
 abbrev mat (h : H) : 𝕄 := ((ρ h : SL(2, K)) : 𝕄)
 
+/--
+@isnad1 id=eq.0h5v.s8.57180a510a25 from=translated src=- shape=7c9a69cc vocab=e5320cf4
+-/
 lemma mat_mul (a b : H) : mat ρ (a * b) = mat ρ a * mat ρ b := by
   simp [mat, map_mul]
 
+/--
+@isnad1 id=eq.0h3v.s7.8328dc0955ef from=translated src=- shape=d5cabad9 vocab=f2c811a6
+-/
 lemma mat_one : mat ρ (1 : H) = 1 := by simp [mat]
 
+/--
+@isnad1 id=eq.0h5v.s8.ab1340d7b134 from=translated src=- shape=94839d7e vocab=4a70cf12
+-/
 lemma mat_conj_mul (x u : H) : mat ρ (x * u * x⁻¹) * mat ρ x = mat ρ x * mat ρ u := by
   rw [← mat_mul, ← mat_mul, show x * u * x⁻¹ * x = x * u by group]
 
@@ -142,12 +178,18 @@ def Zsub : Subgroup H where
 
 variable {ρ}
 
+/--
+@isnad1 id=iff.0h4v.s8.84b59b187b9f from=translated src=- shape=c72e69c9 vocab=e27f0bd3
+-/
 lemma mem_Zsub_iff (h : H) : h ∈ Zsub ρ ↔ mat ρ h = 1 ∨ mat ρ h = -1 := Iff.rfl
 
 def IsSS (ρ : H →* SL(2, K)) (h : H) : Prop := (tr (mat ρ h)) ^ 2 ≠ 4
 
 abbrev torus (h : H) : Subgroup H := Subgroup.centralizer {h}
 
+/--
+@isnad1 id=iff.0h3v.s6.fa7eadb79833 from=translated src=- shape=a9252b74 vocab=9eadd98f
+-/
 lemma mem_torus_iff (h g : H) : g ∈ torus h ↔ g * h = h * g := by
   rw [Subgroup.mem_centralizer_iff]
   simp only [Set.mem_singleton_iff, forall_eq]
@@ -156,9 +198,15 @@ lemma mem_torus_iff (h g : H) : g ∈ torus h ↔ g * h = h * g := by
 variable (hρ : Function.Injective ρ)
 include hρ
 
+/--
+@isnad1 id=injectiv.1h3v.s8.5f0dbb6a793f from=translated src=- shape=c8f08748 vocab=e833294b
+-/
 lemma mat_injective : Function.Injective (mat ρ) := fun _ _ h =>
   hρ (Subtype.ext h)
 
+/--
+@isnad1 id=iff.1h5v.s9.bbe27fe524eb from=translated src=- shape=a5aabc4f vocab=bccb46cf
+-/
 lemma mem_torus_iff_mat (h g : H) : g ∈ torus h ↔ mat ρ g * mat ρ h = mat ρ h * mat ρ g := by
   rw [mem_torus_iff]
   constructor
@@ -169,23 +217,38 @@ lemma mem_torus_iff_mat (h g : H) : g ∈ torus h ↔ mat ρ g * mat ρ h = mat 
     apply mat_injective hρ
     simpa [mat, map_mul] using e
 
+/--
+@isnad1 id=iff.2h5v.s9.7f99f7897499 from=translated src=- shape=b24b622e vocab=a012d5de
+-/
 lemma mem_torus_iff_exists {h : H} (hh : IsSS ρ h) (g : H) :
     g ∈ torus h ↔ ∃ x y : K, mat ρ g = x • (1 : 𝕄) + y • mat ρ h := by
   rw [mem_torus_iff_mat hρ, commute_iff (not_isScalarMat_of_tr_sq (ρ h) hh)]
 
+/--
+@isnad1 id=le.1h4v.s8.cabf49e4eeec from=translated src=- shape=0af7a1d1 vocab=d1c6efc4
+-/
 lemma Zsub_le_torus (h : H) : Zsub ρ ≤ torus h := by
   intro g hg
   rw [mem_torus_iff_mat hρ]
   rcases hg with hg | hg <;> rw [hg] <;> simp
 
 omit hρ in
+/--
+@isnad1 id=mem.0h2v.s4.91207c536c06 from=translated src=- shape=cac0901d vocab=131d1cb2
+-/
 lemma self_mem_torus (h : H) : h ∈ torus h := (mem_torus_iff h h).mpr rfl
 
+/--
+@isnad1 id=isss.5h5v.s8.abb68cc1ec91 from=translated src=- shape=cffe7536 vocab=ebb34d51
+-/
 lemma isSS_of_mem_torus [Finite H] (h2 : (2 : K) ≠ 0) {h : H} (hh : IsSS ρ h) {g : H}
     (hg : g ∈ torus h) (hgZ : g ∉ Zsub ρ) : IsSS ρ g :=
   ((Matrix.SpecialLinearGroup.centralizer_semisimple_structure_of_finite h2 ρ hρ h hh).2.1
     g hg hgZ).2
 
+/--
+@isnad1 id=eq.5h5v.s8.ac807eb8d6b3 from=translated src=- shape=e58225a8 vocab=ebb34d51
+-/
 lemma torus_eq_of_mem [Finite H] (h2 : (2 : K) ≠ 0) {h : H} (hh : IsSS ρ h) {g : H}
     (hg : g ∈ torus h) (hgZ : g ∉ Zsub ρ) : torus g = torus h :=
   ((Matrix.SpecialLinearGroup.centralizer_semisimple_structure_of_finite h2 ρ hρ h hh).2.1
@@ -203,16 +266,25 @@ variable {H : Type} [Group H] {ρ : H →* SL(2, K)} (hρ : Function.Injective �
 variable {p : ℕ} {P : Sylow p H} (D : NormData ρ P)
 
 include D in
+/--
+@isnad1 id=ex.2h6v.s8.0253754317f0 from=translated src=- shape=f7f7b7c4 vocab=bc36078f
+-/
 lemma mat_of_mem_P {x : H} (hx : x ∈ P) : ∃ t : K, mat ρ x = !![1, t; 0, 1] := by
   obtain ⟨t, ht⟩ := (D.hP x).mp hx
   exact ⟨t, by rw [mat, ht, upperElem_coe]⟩
 
 include D in
+/--
+@isnad1 id=mem.2h7v.s8.81cdee5cfa18 from=translated src=- shape=bc524d7d vocab=bc36078f
+-/
 lemma mem_P_of_mat {x : H} {t : K} (hx : mat ρ x = !![1, t; 0, 1]) : x ∈ P :=
   (D.hP x).mpr ⟨t, Subtype.ext hx⟩
 
 include D in
 
+/--
+@isnad1 id=eq.2h6v.s7.918d9ada7b97 from=translated src=- shape=cfd07bdf vocab=10f4fa12
+-/
 lemma apply_one_zero_eq_zero_of_mem_normalizer
     {x : H} (hx : x ∈ Subgroup.normalizer (P : Set H)) : mat ρ x 1 0 = 0 := by
   obtain ⟨a, ha, u, hu⟩ := D.exists_ne
@@ -228,15 +300,27 @@ lemma apply_one_zero_eq_zero_of_mem_normalizer
   have h : mat ρ x 1 0 * a = 0 := by linear_combination this
   exact (mul_eq_zero.mp h).resolve_right ha
 
+/--
+@isnad1 id=eq.2h3v.s9.531eb5116dea from=translated src=- shape=12d5c695 vocab=a99eafa9
+-/
 lemma upper_conj_unip (X : 𝕄) (hX : X 1 0 = 0) (hdet : X.det = 1) (t : K) :
     X * !![1, t; 0, 1] = !![1, X 0 0 ^ 2 * t; 0, 1] * X := by
   rw [Matrix.det_fin_two, hX, mul_zero, sub_zero] at hdet
   ext i j; fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two, hX]
   linear_combination -(X 0 0 * t) * hdet
 
+/--
+@isnad1 id=eq.0h4v.s8.1d4ed4a6f3f6 from=translated src=- shape=2b48b009 vocab=4a70cf12
+-/
 lemma mat_inv_mul (y : H) : mat ρ y⁻¹ * mat ρ y = 1 := by rw [← mat_mul, inv_mul_cancel, mat_one]
+/--
+@isnad1 id=eq.0h4v.s8.135d7c8313b2 from=translated src=- shape=454cf99b vocab=4a70cf12
+-/
 lemma mat_mul_inv (y : H) : mat ρ y * mat ρ y⁻¹ = 1 := by rw [← mat_mul, mul_inv_cancel, mat_one]
 
+/--
+@isnad1 id=eq.2h6v.s9.2c98a12d91d2 from=translated src=- shape=a744af5a vocab=0897ebcc
+-/
 lemma mat_conj_of_upper {y u : H} (hy : mat ρ y 1 0 = 0) {t : K} (ht : mat ρ u = !![1, t; 0, 1]) :
     mat ρ (y * u * y⁻¹) = !![1, mat ρ y 0 0 ^ 2 * t; 0, 1] := by
   have e := upper_conj_unip (mat ρ y) hy (ρ y).2 t
@@ -249,6 +333,9 @@ lemma mat_conj_of_upper {y u : H} (hy : mat ρ y 1 0 = 0) {t : K} (ht : mat ρ u
 
 include D in
 
+/--
+@isnad1 id=mem.2h6v.s7.b02f22c183bb from=translated src=- shape=926f8320 vocab=10f4fa12
+-/
 lemma mem_normalizer_of_apply_one_zero
     {x : H} (hx : mat ρ x 1 0 = 0) : x ∈ Subgroup.normalizer (P : Set H) := by
   have key : ∀ y : H, mat ρ y 1 0 = 0 → ∀ u ∈ P, y * u * y⁻¹ ∈ (P : Subgroup H) := by
@@ -270,9 +357,15 @@ lemma mem_normalizer_of_apply_one_zero
 
 include D in
 
+/--
+@isnad1 id=iff.1h6v.s7.2c0c6b0b8fb8 from=translated src=- shape=61dc49b1 vocab=10f4fa12
+-/
 lemma mem_B_iff (x : H) : x ∈ Subgroup.normalizer (P : Set H) ↔ mat ρ x 1 0 = 0 :=
   ⟨apply_one_zero_eq_zero_of_mem_normalizer D, mem_normalizer_of_apply_one_zero D⟩
 
+/--
+@isnad1 id=eq.2h2v.s7.df41bcd656fe from=translated src=- shape=2cf58606 vocab=6dc2445f
+-/
 lemma diag_mul_eq_one_of_upper {X : 𝕄} (hX : X 1 0 = 0) (hdet : X.det = 1) :
     X 0 0 * X 1 1 = 1 := by
   rw [Matrix.det_fin_two, hX, mul_zero, sub_zero] at hdet; exact hdet
@@ -290,8 +383,14 @@ noncomputable def chi (D : NormData ρ P) : Subgroup.normalizer (P : Set H) →*
       Matrix.SpecialLinearGroup.coe_mul, Matrix.mul_apply, Fin.sum_univ_two]
     rw [show ((ρ (y : H) : SL(2, K)) : 𝕄) 1 0 = 0 from hy, mul_zero, add_zero]
 
+/--
+@isnad1 id=eq.1h6v.s9.a70908a05a36 from=translated src=- shape=305f0b16 vocab=0370adf9
+-/
 lemma chi_apply (x : Subgroup.normalizer (P : Set H)) : ((chi D x : Kˣ) : K) = mat ρ x 0 0 := rfl
 
+/--
+@isnad1 id=iff.1h6v.s9.685fc9660d0f from=translated src=- shape=46244890 vocab=2b1acd2e
+-/
 lemma chi_eq_one_iff (x : Subgroup.normalizer (P : Set H)) : chi D x = 1 ↔ (x : H) ∈ P := by
   have h10 := (mem_B_iff D x).mp x.2
   constructor
@@ -309,11 +408,17 @@ lemma chi_eq_one_iff (x : Subgroup.normalizer (P : Set H)) : chi D x = 1 ↔ (x 
     ext; rw [chi_apply, ht]; simp
 
 include D in
+/--
+@isnad1 id=le.1h5v.s7.2047d4d907f7 from=translated src=- shape=d68f0b9a vocab=5c4bf6ab
+-/
 lemma Zsub_le_B : Zsub ρ ≤ Subgroup.normalizer (P : Set H) := by
   intro x hx
   rw [mem_B_iff D]
   rcases hx with h | h <;> rw [h] <;> simp
 
+/--
+@isnad1 id=eq.1h5v.s9.89b4f77256fe from=translated src=- shape=61fc3ee1 vocab=6632ddf4
+-/
 lemma card_ker_chi : Nat.card (chi D).ker = Nat.card P := by
   refine Nat.card_congr
     { toFun := fun x => ⟨(x : Subgroup.normalizer (P : Set H)), (chi_eq_one_iff D _).mp x.2⟩
@@ -321,6 +426,9 @@ lemma card_ker_chi : Nat.card (chi D).ker = Nat.card P := by
       left_inv := fun x => rfl
       right_inv := fun y => rfl }
 
+/--
+@isnad1 id=eq.1h5v.s8.163166a5780d from=translated src=- shape=038121c2 vocab=1e263117
+-/
 lemma card_B [Finite H] :
     Nat.card (Subgroup.normalizer (P : Set H)) = Nat.card P * Nat.card (chi D).range := by
   rw [← card_ker_chi D, ← Subgroup.index_ker, Subgroup.card_mul_index]
@@ -329,6 +437,9 @@ variable [Fact p.Prime] [CharP K p]
 
 include D in
 
+/--
+@isnad1 id=eq.4h6v.s8.663be3f1d60a from=translated src=- shape=17fefcbc vocab=62658692
+-/
 lemma mat_pow_p_of_apply_eq_neg_one (hp2 : p ≠ 2) {x : H}
     (hxB : x ∈ Subgroup.normalizer (P : Set H)) (hx : mat ρ x 0 0 = -1) :
     mat ρ (x ^ p) = -1 := by
@@ -352,6 +463,9 @@ lemma mat_pow_p_of_apply_eq_neg_one (hp2 : p ≠ 2) {x : H}
 omit [Fact p.Prime] [CharP K p] in
 include hρ in
 
+/--
+@isnad1 id=eq.5h5v.s9.fd01ab35b8c3 from=translated src=- shape=643c123e vocab=ff5e5d2a
+-/
 lemma Zsub_eq_of_apply {ζ ζ' : H} (hζ : ζ ∈ Zsub ρ) (hζ' : ζ' ∈ Zsub ρ)
     (h : mat ρ ζ 0 0 = mat ρ ζ' 0 0) (h2 : (2 : K) ≠ 0) : ζ = ζ' := by
   apply mat_injective hρ
@@ -361,6 +475,9 @@ lemma Zsub_eq_of_apply {ζ ζ' : H} (hζ : ζ ∈ Zsub ρ) (hζ' : ζ' ∈ Zsub 
 
 include hρ in
 
+/--
+@isnad1 id=eq.4h5v.s10.a2157a1ff3bc from=translated src=- shape=d92bb076 vocab=b99ef1eb
+-/
 lemma card_ker_chiSq [Finite H] (hp2 : p ≠ 2) (h2 : (2 : K) ≠ 0) :
     Nat.card (chi D * chi D).ker = Nat.card (Zsub ρ) * Nat.card P := by
   rw [← Nat.card_prod]
@@ -436,6 +553,9 @@ lemma card_ker_chiSq [Finite H] (hp2 : p ≠ 2) (h2 : (2 : K) ≠ 0) :
 
 omit [Fact p.Prime] [CharP K p] in
 
+/--
+@isnad1 id=ex.2h5v.s12.64bb9a96544e from=translated src=- shape=5268df10 vocab=a76e46d3
+-/
 lemma exists_generator_chi [Finite H] (hc : Nat.card (chi D * chi D).range ≠ 1) :
     ∃ b : Subgroup.normalizer (P : Set H), (chi D b) ^ 2 ≠ 1 ∧
       ∀ d : (chi D).range, d ∈ Subgroup.zpowers (⟨chi D b, b, rfl⟩ : (chi D).range) := by
@@ -460,6 +580,9 @@ lemma exists_generator_chi [Finite H] (hc : Nat.card (chi D * chi D).range ≠ 1
 
 omit [Fact p.Prime] [CharP K p] in
 
+/--
+@isnad1 id=iff.1h6v.s9.9fb75042a0d9 from=translated src=- shape=83a9e9ac vocab=669b0c9e
+-/
 lemma isSS_iff_chi_sq_ne_one (x : Subgroup.normalizer (P : Set H)) :
     IsSS ρ (x : H) ↔ (chi D x) ^ 2 ≠ 1 := by
   have h10 := (mem_B_iff D x).mp x.2
@@ -486,6 +609,9 @@ lemma isSS_iff_chi_sq_ne_one (x : Subgroup.normalizer (P : Set H)) :
 include hρ D in
 omit [Fact p.Prime] [CharP K p] in
 
+/--
+@isnad1 id=le.4h6v.s8.95aa1008cedb from=translated src=- shape=9b0cfafa vocab=c804ebe2
+-/
 lemma torus_le_B {b : H} (hbB : b ∈ Subgroup.normalizer (P : Set H)) (hb : IsSS ρ b) :
     torus b ≤ Subgroup.normalizer (P : Set H) := by
   intro g hg
@@ -496,6 +622,9 @@ lemma torus_le_B {b : H} (hbB : b ∈ Subgroup.normalizer (P : Set H)) (hb : IsS
 include hρ D in
 omit [Fact p.Prime] [CharP K p] in
 
+/--
+@isnad1 id=eq.6h7v.s8.095e1df7e2b0 from=translated src=- shape=849bb6af vocab=74090fe0
+-/
 lemma torus_inf_P_eq_bot {b : H} (hbB : b ∈ Subgroup.normalizer (P : Set H)) (hb : IsSS ρ b) :
     ∀ g ∈ torus b, g ∈ P → g = 1 := by
   intro g hg hgP
@@ -527,6 +656,9 @@ lemma torus_inf_P_eq_bot {b : H} (hbB : b ∈ Subgroup.normalizer (P : Set H)) (
 include hρ in
 omit [Fact p.Prime] [CharP K p] in
 
+/--
+@isnad1 id=eq.4h6v.s12.f70cea4d203d from=translated src=- shape=9afb4535 vocab=510d6f1a
+-/
 lemma card_torus_eq [Finite H] {b : Subgroup.normalizer (P : Set H)} (hb : (chi D b) ^ 2 ≠ 1)
     (hgen : ∀ d : (chi D).range, d ∈ Subgroup.zpowers (⟨chi D b, b, rfl⟩ : (chi D).range)) :
     Nat.card (torus (b : H)) = Nat.card (chi D).range := by
@@ -579,6 +711,9 @@ lemma eq_one_of_mem_normalizer_torus_of_mem_P {b : H} (hbB : b ∈ Subgroup.norm
 
 omit [Fact p.Prime] [CharP K p] in
 
+/--
+@isnad1 id=eq.0h2v.s5.2217daeaaee1 from=translated src=- shape=ba745d85 vocab=fa293aec
+-/
 lemma card_subtype_add_card_subtype_not {α : Type} [Finite α] (q : α → Prop) :
     Nat.card {x // q x} + Nat.card {x // ¬ q x} = Nat.card α := by
   classical
@@ -586,6 +721,9 @@ lemma card_subtype_add_card_subtype_not {α : Type} [Finite α] (q : α → Prop
 
 omit [Fact p.Prime] [CharP K p] in
 
+/--
+@isnad1 id=iff.0h4v.s7.a14a34e9f6b5 from=translated src=- shape=634a9f11 vocab=9724380a
+-/
 lemma mem_torus_conj_iff (w c g : H) : g ∈ torus (w * c * w⁻¹) ↔ w⁻¹ * g * w ∈ torus c := by
   rw [mem_torus_iff, mem_torus_iff]
   constructor
@@ -600,6 +738,9 @@ lemma mem_torus_conj_iff (w c g : H) : g ∈ torus (w * c * w⁻¹) ↔ w⁻¹ *
 
 include hρ in
 
+/--
+@isnad1 id=ex.8h7v.s12.d0a465ae8822 from=translated src=- shape=464f5f2c vocab=3c93a2fa
+-/
 lemma exists_conj_mem_torus [Finite H] (hp2 : p ≠ 2) (h2 : (2 : K) ≠ 0)
     {b : Subgroup.normalizer (P : Set H)} (hb : (chi D b) ^ 2 ≠ 1)
     (hgen : ∀ d : (chi D).range, d ∈ Subgroup.zpowers (⟨chi D b, b, rfl⟩ : (chi D).range))
@@ -701,10 +842,16 @@ def cross (v w : Fin 2 → K) : K := v 0 * w 1 - v 1 * w 0
 
 def vecOf (ρ : H →* SL(2, K)) (s : H) : Fin 2 → K := ![mat ρ s 0 0, mat ρ s 1 0]
 
+/--
+@isnad1 id=eq.0h4v.s8.180d897c2eb3 from=translated src=- shape=be158ace vocab=5fc86b63
+-/
 lemma mulVec_fin_two (M : 𝕄) (x y : K) :
     M *ᵥ ![x, y] = ![M 0 0 * x + M 0 1 * y, M 1 0 * x + M 1 1 * y] := by
   funext i; fin_cases i <;> simp [Matrix.mulVec, dotProduct, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.0h5v.s8.ecf66f3112d1 from=translated src=- shape=2add0735 vocab=b9a74cf6
+-/
 lemma mat_conj_apply_one_zero (s g : H) :
     mat ρ (s⁻¹ * g * s) 1 0 = cross (vecOf ρ s) (mat ρ g *ᵥ vecOf ρ s) := by
   have e : mat ρ (s⁻¹ * g * s) = Matrix.adjugate (mat ρ s) * mat ρ g * mat ρ s := by
@@ -714,6 +861,9 @@ lemma mat_conj_apply_one_zero (s g : H) :
     Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.empty_val', Matrix.cons_val_fin_one]
   ring
 
+/--
+@isnad1 id=eq.0h5v.s7.c4f063b2315f from=translated src=- shape=c2e1201e vocab=3eece4a3
+-/
 lemma mat_inv_mul_apply_one_zero (s s' : H) :
     mat ρ (s⁻¹ * s') 1 0 = cross (vecOf ρ s) (vecOf ρ s') := by
   have e : mat ρ (s⁻¹ * s') = Matrix.adjugate (mat ρ s) * mat ρ s' := by
@@ -725,23 +875,35 @@ lemma mat_inv_mul_apply_one_zero (s s' : H) :
 
 include D in
 
+/--
+@isnad1 id=iff.1h7v.s8.52848e174849 from=translated src=- shape=8d949d1c vocab=a09362c1
+-/
 lemma smul_smul_eq_iff (g s : H) :
     g • (s • P) = s • P ↔ cross (vecOf ρ s) (mat ρ g *ᵥ vecOf ρ s) = 0 := by
   rw [← mat_conj_apply_one_zero, ← mem_B_iff D, ← Sylow.smul_eq_iff_mem_normalizer, mul_smul,
     mul_smul, inv_smul_eq_iff]
 
 include D in
+/--
+@isnad1 id=iff.1h6v.s7.98b91dac9cbc from=translated src=- shape=02fd2d9f vocab=67817997
+-/
 lemma smul_eq_iff_apply_one_zero (s : H) : s • P = P ↔ mat ρ s 1 0 = 0 := by
   rw [Sylow.smul_eq_iff_mem_normalizer, mem_B_iff D]
 
 def eigVec (ρ : H →* SL(2, K)) (b : H) : Fin 2 → K := ![mat ρ b 0 1, mat ρ b 1 1 - mat ρ b 0 0]
 
+/--
+@isnad1 id=eq.1h5v.s8.9e3a2d402b4f from=translated src=- shape=bf270b8c vocab=5dd4f1a8
+-/
 lemma cross_mulVec_of_upper {b : H} (hb : mat ρ b 1 0 = 0) (v : Fin 2 → K) :
     cross v (mat ρ b *ᵥ v) = v 1 * cross v (eigVec ρ b) := by
   have hv : v = ![v 0, v 1] := by funext i; fin_cases i <;> rfl
   conv_lhs => rw [hv, mulVec_fin_two]
   simp [cross, eigVec, hb]; ring
 
+/--
+@isnad1 id=ex.2h3v.s7.9904c26b3a9b from=translated src=- shape=435484a9 vocab=b28f52fb
+-/
 lemma exists_smul_of_cross_eq_zero {v w : Fin 2 → K} (hw : w 1 ≠ 0) (h : cross v w = 0) :
     ∃ κ : K, v = κ • w := by
   refine ⟨v 1 / w 1, ?_⟩
@@ -749,14 +911,26 @@ lemma exists_smul_of_cross_eq_zero {v w : Fin 2 → K} (hw : w 1 ≠ 0) (h : cro
   · rw [cross] at h; field_simp; linear_combination h
   · field_simp
 
+/--
+@isnad1 id=eq.0h4v.s6.363790caa365 from=translated src=- shape=9192e5d5 vocab=8251b74e
+-/
 lemma cross_smul_left (κ : K) (v w : Fin 2 → K) : cross (κ • v) w = κ * cross v w := by
   simp [cross]; ring
 
+/--
+@isnad1 id=eq.0h4v.s6.fd8ed6509299 from=translated src=- shape=25bd94bc vocab=8251b74e
+-/
 lemma cross_smul_right (κ : K) (v w : Fin 2 → K) : cross v (κ • w) = κ * cross v w := by
   simp [cross]; ring
 
+/--
+@isnad1 id=eq.0h2v.s5.264fcb666cb0 from=translated src=- shape=d90638ce vocab=d9aaaade
+-/
 lemma cross_self (v : Fin 2 → K) : cross v v = 0 := by simp [cross]; ring
 
+/--
+@isnad1 id=ne.2h4v.s7.a39351181505 from=translated src=- shape=7bd00dc9 vocab=94ee0b2b
+-/
 lemma eigVec_one_ne_zero {b : H} (hbB : mat ρ b 1 0 = 0) (hb : IsSS ρ b) : eigVec ρ b 1 ≠ 0 := by
   intro h0
   simp [eigVec] at h0
@@ -769,6 +943,9 @@ lemma eigVec_one_ne_zero {b : H} (hbB : mat ρ b 1 0 = 0) (hb : IsSS ρ b) : eig
 
 include hρ D in
 
+/--
+@isnad1 id=eq.7h8v.s9.79ae86cf9c2e from=translated src=- shape=6779ac3a vocab=faf76dbf
+-/
 lemma torus_le_stab {b s : H} (hbB : b ∈ Subgroup.normalizer (P : Set H)) (hb : IsSS ρ b)
     (hs : mat ρ s 1 0 ≠ 0) (hbs : b • (s • P) = s • P) {t : H} (ht : t ∈ torus b) :
     t • (s • P) = s • P := by
@@ -789,6 +966,9 @@ lemma torus_le_stab {b s : H} (hbB : b ∈ Subgroup.normalizer (P : Set H)) (hb 
 
 include D in
 
+/--
+@isnad1 id=eq.7h8v.s9.117d23eca808 from=translated src=- shape=bace1c0b vocab=766afdec
+-/
 lemma smul_eq_smul_of_stab {b s s' : H} (hbB : b ∈ Subgroup.normalizer (P : Set H))
     (hb : IsSS ρ b) (hs : mat ρ s 1 0 ≠ 0) (hs' : mat ρ s' 1 0 ≠ 0)
     (hbs : b • (s • P) = s • P) (hbs' : b • (s' • P) = s' • P) : s' • P = s • P := by
@@ -805,6 +985,9 @@ lemma smul_eq_smul_of_stab {b s s' : H} (hbB : b ∈ Subgroup.normalizer (P : Se
 
 include D in
 
+/--
+@isnad1 id=mem.5h7v.s8.6c636287bc77 from=translated src=- shape=33a22498 vocab=f84e026c
+-/
 lemma mem_Zsub_of_stab {g s : H} (hgB : g ∈ Subgroup.normalizer (P : Set H)) (hg : ¬ IsSS ρ g)
     (hs : mat ρ s 1 0 ≠ 0) (hgs : g • (s • P) = s • P) : g ∈ Zsub ρ := by
   have h10 := (mem_B_iff D g).mp hgB
@@ -831,6 +1014,9 @@ lemma mem_Zsub_of_stab {g s : H} (hgB : g ∈ Subgroup.normalizer (P : Set H)) (
 
 include hρ in
 
+/--
+@isnad1 id=eq.2h5v.s8.751169bf20cd from=translated src=- shape=5829b7a6 vocab=53684cd0
+-/
 lemma comm_of_mem_Zsub {ζ : H} (hζ : ζ ∈ Zsub ρ) (h : H) : ζ * h = h * ζ := by
   apply mat_injective hρ
   rw [mat_mul, mat_mul]
@@ -838,6 +1024,9 @@ lemma comm_of_mem_Zsub {ζ : H} (hζ : ζ ∈ Zsub ρ) (h : H) : ζ * h = h * ζ
 
 include hρ in
 
+/--
+@isnad1 id=eq.2h6v.s8.3d81fbdfc6fa from=translated src=- shape=d7e29c7f vocab=9dfd55e8
+-/
 lemma smul_eq_of_mem_Zsub {ζ : H} (hζ : ζ ∈ Zsub ρ) (Q : Sylow p H) : ζ • Q = Q := by
   rw [Sylow.smul_eq_iff_mem_normalizer, Subgroup.mem_set_normalizer_iff]
   intro h
@@ -869,6 +1058,9 @@ variable {b : Subgroup.normalizer (P : Set H)} (hb : (chi D b) ^ 2 ≠ 1)
 
 omit [Finite H] [Fact p.Prime] [CharP K p] in
 include D in
+/--
+@isnad1 id=not.2h6v.s7.a222772c9e18 from=translated src=- shape=f344a9b2 vocab=2a7e3c68
+-/
 lemma not_isSS_of_mem_P {x : H} (hx : x ∈ P) : ¬ IsSS ρ x := by
   obtain ⟨t, ht⟩ := mat_of_mem_P D hx
   rw [IsSS, not_not, tr, ht]; simp; norm_num
@@ -876,6 +1068,9 @@ lemma not_isSS_of_mem_P {x : H} (hx : x ∈ P) : ¬ IsSS ρ x := by
 include hρ hb hgen in
 omit [Fact p.Prime] [CharP K p] in
 
+/--
+@isnad1 id=ex.5h7v.s12.b26e78f8ee82 from=translated src=- shape=ca8ecebb vocab=4161a766
+-/
 lemma exists_eq_mul_of_mem_B {x : H} (hx : x ∈ Subgroup.normalizer (P : Set H)) :
     ∃ u ∈ P, ∃ c ∈ torus (b : H), x = u * c := by
   have hbss : IsSS ρ (b : H) := (isSS_iff_chi_sq_ne_one D b).mpr hb
@@ -905,6 +1100,9 @@ lemma exists_eq_mul_of_mem_B {x : H} (hx : x ∈ Subgroup.normalizer (P : Set H)
 include hρ hb hgen in
 omit [Fact p.Prime] [CharP K p] in
 
+/--
+@isnad1 id=not.6h7v.s12.9b73909c6566 from=translated src=- shape=eadeb5c2 vocab=c0367a02
+-/
 lemma not_mem_B_of_mem_normalizer_torus {n₀ : H}
     (hn₀ : n₀ ∈ Subgroup.normalizer (torus (b : H) : Set H)) (hn₀C : n₀ ∉ torus (b : H)) :
     n₀ ∉ Subgroup.normalizer (P : Set H) := by
@@ -922,6 +1120,9 @@ lemma not_mem_B_of_mem_normalizer_torus {n₀ : H}
 include hρ D in
 omit [Finite H] [Fact p.Prime] [CharP K p] in
 
+/--
+@isnad1 id=eq.5h8v.s9.9061992a708e from=translated src=- shape=679f66ea vocab=0cf1803f
+-/
 lemma torus_smul_eq {n₀ : H} (hn₀ : n₀ ∈ Subgroup.normalizer (torus (b : H) : Set H))
     (hbss : IsSS ρ (b : H)) {c : H} (hc : c ∈ torus (b : H)) : c • (n₀ • P) = n₀ • P := by
   have hc' : n₀⁻¹ * c * n₀ ∈ torus (b : H) := by
@@ -935,11 +1136,17 @@ lemma torus_smul_eq {n₀ : H} (hn₀ : n₀ ∈ Subgroup.normalizer (torus (b :
 
 include D in
 omit [Finite H] [Fact p.Prime] [CharP K p] in
+/--
+@isnad1 id=ne.2h6v.s7.17c1052667b9 from=translated src=- shape=90835b5e vocab=67817997
+-/
 lemma apply_one_zero_ne_zero_of_smul_ne {s : H} (hs : s • P ≠ P) : mat ρ s 1 0 ≠ 0 := by
   intro h; exact hs ((smul_eq_iff_apply_one_zero D s).mpr h)
 
 include hρ hp2 h2 hb hgen in
 
+/--
+@isnad1 id=ex.12h9v.s12.bb79e9710dca from=translated src=- shape=5d309113 vocab=a10363ea
+-/
 lemma exists_eq_smul_of_stab {n₀ : H} (hn₀ : n₀ ∈ Subgroup.normalizer (torus (b : H) : Set H))
     (hn₀C : n₀ ∉ torus (b : H)) {Q : Sylow p H} (hQ : Q ≠ P)
     {g : H} (hgB : g ∈ Subgroup.normalizer (P : Set H)) (hg : IsSS ρ g) (hgQ : g • Q = Q) :
@@ -976,12 +1183,18 @@ lemma exists_eq_smul_of_stab {n₀ : H} (hn₀ : n₀ ∈ Subgroup.normalizer (t
 
 omit [Finite H] [Fact p.Prime] [CharP K p] in
 
+/--
+@isnad1 id=eq.1h4v.s8.519aa6e6c024 from=translated src=- shape=a95db311 vocab=1229fd96
+-/
 lemma card_subgroupOf_eq {T : Subgroup H} (hT : T ≤ Subgroup.normalizer (P : Set H)) :
     Nat.card (T.subgroupOf (Subgroup.normalizer (P : Set H))) = Nat.card T :=
   Nat.card_congr (Subgroup.subgroupOfEquivOfLe hT).toEquiv
 
 include hρ hp2 h2 hb hgen in
 
+/--
+@isnad1 id=eq.8h8v.s12.46a5e0c66ccb from=translated src=- shape=766846b4 vocab=a1621185
+-/
 lemma card_stabilizer_orbit {n₀ : H} (hn₀ : n₀ ∈ Subgroup.normalizer (torus (b : H) : Set H))
     (hn₀C : n₀ ∉ torus (b : H)) (β : Subgroup.normalizer (P : Set H)) :
     Nat.card (MulAction.stabilizer (Subgroup.normalizer (P : Set H)) (β • n₀ • P)) =
@@ -1016,6 +1229,9 @@ lemma card_stabilizer_orbit {n₀ : H} (hn₀ : n₀ ∈ Subgroup.normalizer (to
 
 include hρ hp2 h2 hb hgen in
 
+/--
+@isnad1 id=eq.10h8v.s12.2bb507cd0e17 from=translated src=- shape=07cd78bf vocab=e03d8e62
+-/
 lemma card_stabilizer_free {n₀ : H} (hn₀ : n₀ ∈ Subgroup.normalizer (torus (b : H) : Set H))
     (hn₀C : n₀ ∉ torus (b : H)) {Q : Sylow p H} (hQ : Q ≠ P)
     (hQ' : ∀ u ∈ P, Q ≠ u • (n₀ • P)) :
@@ -1040,6 +1256,9 @@ lemma card_stabilizer_free {n₀ : H} (hn₀ : n₀ ∈ Subgroup.normalizer (tor
 
 include hρ hp2 h2 in
 
+/--
+@isnad1 id=eq.4h5v.s10.b44ef5e131bf from=translated src=- shape=2c0ad96c vocab=c78dc9d2
+-/
 lemma card_range_chi_eq :
     Nat.card (chi D).range = Nat.card (Zsub ρ) * Nat.card (chi D * chi D).range := by
   have h1 := card_B D
@@ -1055,6 +1274,9 @@ lemma card_range_chi_eq :
 
 include hρ hp2 h2 hb hgen in
 
+/--
+@isnad1 id=ex.8h7v.s12.93b3e5c22630 from=translated src=- shape=3fad7ae7 vocab=bd7e3141
+-/
 lemma exists_card_sylow_eq {n₀ : H} (hn₀ : n₀ ∈ Subgroup.normalizer (torus (b : H) : Set H))
     (hn₀C : n₀ ∉ torus (b : H)) :
     ∃ k : ℕ, Nat.card (Sylow p H) =
@@ -1151,11 +1373,17 @@ variable {H : Type} [Group H] {ρ : H →* SL(2, K)}
 
 def IsConjSub (M M' : Subgroup H) : Prop := ∃ s : H, ∀ g : H, g ∈ M' ↔ s⁻¹ * g * s ∈ M
 
+/--
+@isnad1 id=isconjsu.1h3v.s4.55c94f70a282 from=translated src=- shape=34baef30 vocab=9609a988
+-/
 lemma IsConjSub.symm {M M' : Subgroup H} (h : IsConjSub M M') : IsConjSub M' M := by
   obtain ⟨s, hs⟩ := h
   refine ⟨s⁻¹, fun g => ?_⟩
   rw [hs, inv_inv, show s⁻¹ * (s * g * s⁻¹) * s = g by group]
 
+/--
+@isnad1 id=isconjsu.2h4v.s5.a86fc0765542 from=translated src=- shape=46b34526 vocab=9609a988
+-/
 lemma IsConjSub.trans {M M' M'' : Subgroup H} (h : IsConjSub M M') (h' : IsConjSub M' M'') :
     IsConjSub M M'' := by
   obtain ⟨s, hs⟩ := h
@@ -1163,6 +1391,9 @@ lemma IsConjSub.trans {M M' M'' : Subgroup H} (h : IsConjSub M M') (h' : IsConjS
   refine ⟨t * s, fun g => ?_⟩
   rw [ht, hs, show s⁻¹ * (t⁻¹ * g * t) * s = (t * s)⁻¹ * g * (t * s) by group]
 
+/--
+@isnad1 id=isconjsu.0h3v.s6.4d4f7fe4b857 from=translated src=- shape=8e6cf042 vocab=d595e80e
+-/
 lemma isConjSub_torus_conj (h s : H) : IsConjSub (torus h) (torus (s * h * s⁻¹)) :=
   ⟨s, fun g => mem_torus_conj_iff s h g⟩
 
@@ -1178,6 +1409,9 @@ variable {b : Subgroup.normalizer (P : Set H)} (hb : (chi D b) ^ 2 ≠ 1)
 
 include hρ hp2 h2 hb hgen in
 
+/--
+@isnad1 id=mem.10h9v.s12.78786b51951c from=translated src=- shape=a1eebabc vocab=f80609b3
+-/
 lemma mem_Zsub_of_smul_eq_of_not_isConjSub {h : H} (hh : IsSS ρ h)
     (hnc : ¬ IsConjSub (torus (b : H)) (torus h)) {g : H} (hg : g ∈ torus h)
     {Q : Sylow p H} (hgQ : g • Q = Q) : g ∈ Zsub ρ := by
@@ -1210,6 +1444,9 @@ lemma mem_Zsub_of_smul_eq_of_not_isConjSub {h : H} (hh : IsSS ρ h)
 
 include hρ hp2 h2 hb hgen in
 
+/--
+@isnad1 id=dvd.8h7v.s12.4c49a8fd8bcf from=translated src=- shape=b7e1cc9c vocab=82a3903c
+-/
 lemma card_torus_dvd {h : H} (hh : IsSS ρ h) (hnc : ¬ IsConjSub (torus (b : H)) (torus h)) :
     Nat.card (torus h) ∣ Nat.card (Zsub ρ) * Nat.card (Sylow p H) := by
   classical
@@ -1250,6 +1487,9 @@ variable {p : ℕ} [Fact p.Prime] [CharP K p] {P : Sylow p H} (D : NormData ρ P
 
 omit [Finite H] [Fact p.Prime] [CharP K p] in
 
+/--
+@isnad1 id=eq.1h5v.s8.14c660ac92c4 from=translated src=- shape=24c63839 vocab=858ae879
+-/
 lemma card_range_chi_eq_card_setRange :
     Nat.card (chi D).range =
       Nat.card (Set.range fun x : Subgroup.normalizer (P : Set H) => mat ρ x 0 0) := by
@@ -1267,6 +1507,9 @@ lemma card_range_chi_eq_card_setRange :
 
 omit [Finite H] [Fact p.Prime] [CharP K p] in
 
+/--
+@isnad1 id=eq.1h5v.s10.568a595ab122 from=translated src=- shape=1a81bff4 vocab=3420c9a6
+-/
 lemma card_range_chiSq_eq_card_setRange :
     Nat.card (chi D * chi D).range =
       Nat.card (Set.range fun x : Subgroup.normalizer (P : Set H) => (mat ρ x 0 0) ^ 2) := by
@@ -1292,6 +1535,9 @@ end Export
 end P2mDicksonBorel
 
 open P2mDicksonBorel in
+/--
+@isnad1 id=and.4h5v.s12.f4f67356fc55 from=translated src=- shape=e855df7b vocab=30f3114b
+-/
 theorem solution
     {K : Type} [Field K] {p : ℕ} [Fact p.Prime] [CharP K p] (hp2 : p ≠ 2)
     {H : Type} [Group H] [Finite H] (ρ : H →* SL(2, K)) (hρ : Function.Injective ρ)

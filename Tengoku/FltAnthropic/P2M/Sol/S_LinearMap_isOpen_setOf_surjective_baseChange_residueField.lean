@@ -9,6 +9,9 @@ universe u v w
 
 open TensorProduct
 
+/--
+@isnad1 id=isopen.0h4v.s12.562dae57df1e from=translated src=- shape=a3744303 vocab=74725e64
+-/
 theorem solution
     {A : Type u} [CommRing A] {P : Type v} {Q : Type w} [AddCommGroup P] [Module A P] [AddCommGroup Q] [Module A Q]
     (d : P →ₗ[A] Q) [Module.Finite A (Q ⧸ LinearMap.range d)] :

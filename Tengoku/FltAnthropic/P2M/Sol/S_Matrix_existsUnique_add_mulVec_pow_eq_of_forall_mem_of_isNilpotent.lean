@@ -118,6 +118,9 @@ private theorem prodTwist_mul_eq_zero (𝔫 : Ideal S) (K : ℕ) (hK : 𝔫 ^ K 
 
 end Matrix.TwistedSolveC12
 
+/--
+@isnad1 id=existsun.2h6v.s7.fc3ce8dff0ce from=translated src=- shape=608d9d77 vocab=7a952af6
+-/
 theorem solution
     {S : Type u} [CommRing S] (p : ℕ) [Fact p.Prime] [CharP S p]
     {d : ℕ} (𝔫 : Ideal S) (h𝔫 : IsNilpotent 𝔫)

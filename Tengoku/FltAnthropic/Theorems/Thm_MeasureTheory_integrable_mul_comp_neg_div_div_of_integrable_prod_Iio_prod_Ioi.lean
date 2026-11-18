@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open MeasureTheory Set
 
+/--
+@isnad1 id=integrab.2h1v.s8.ec0e9f2ec562 from=translated src=- shape=566ddb71 vocab=715b8192
+-/
 theorem MeasureTheory.integrable_mul_comp_neg_div_div_of_integrable_prod_Iio_prod_Ioi
     (F : ℝ × ℝ × ℝ → ℂ) (hFm : Measurable F)
     (hF : Integrable F ((volume.restrict (Ioi (0 : ℝ))).prod

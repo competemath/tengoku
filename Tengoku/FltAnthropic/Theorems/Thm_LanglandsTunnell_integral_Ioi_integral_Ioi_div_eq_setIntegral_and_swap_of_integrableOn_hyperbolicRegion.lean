@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open MeasureTheory Set
 
+/--
+@isnad1 id=and.2h2v.s8.5e485a1247d8 from=translated src=- shape=777c932c vocab=53c94b5e
+-/
 theorem LanglandsTunnell.integral_Ioi_integral_Ioi_div_eq_setIntegral_and_swap_of_integrableOn_hyperbolicRegion
     (v : ℝ) (hv : 0 < v) (f : ℝ × ℝ → ℂ)
     (hf : IntegrableOn f {q : ℝ × ℝ | 0 < q.1 ∧ 0 < q.2 ∧ v < q.1 * q.2}) :

@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u v
 
+/--
+@isnad1 id=and.8h14v.s11.293980bbc639 from=translated src=- shape=27448b62 vocab=dd30f685
+-/
 theorem solution
     {k : Type u} [Field k]
     {A₁ A₂ A₃ B₁ B₂ B₃ : Type v}

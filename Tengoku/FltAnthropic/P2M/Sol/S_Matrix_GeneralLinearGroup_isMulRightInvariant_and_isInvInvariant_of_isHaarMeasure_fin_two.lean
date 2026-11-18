@@ -17,15 +17,24 @@ variable {F : Type*} [Field F] [TopologicalSpace F] [IsTopologicalRing F]
   [MeasurableSpace (GL (Fin 2) F)] [BorelSpace (GL (Fin 2) F)]
   (μ : Measure (GL (Fin 2) F)) [μ.IsHaarMeasure]
 
+/--
+@isnad1 id=eq.0h3v.s9.00a550ec2bbe from=translated src=- shape=2a7217e7 vocab=c0dc3cec
+-/
 theorem map_mul_right_eq_self' (g : GL (Fin 2) F) : Measure.map (· * g) μ = μ := by
   rw [isMulLeftInvariant_eq_smul (Measure.map (· * g) μ) μ,
     ← modularCharacterFun_eq_haarScalarFactor μ g]
   have : modularCharacterFun g = 1 := Matrix.GeneralLinearGroup.modularCharacter_fin_two_eq_one g
   rw [this, one_smul]
 
+/--
+@isnad1 id=ismulrig.0h2v.s9.69ad1f02fbd4 from=translated src=- shape=78fb2e85 vocab=2242c55b
+-/
 theorem isMulRightInvariant : μ.IsMulRightInvariant :=
   ⟨fun g => map_mul_right_eq_self' μ g⟩
 
+/--
+@isnad1 id=isinvinv.0h2v.s9.bf2ca5fc4357 from=translated src=- shape=78fb2e85 vocab=46bc2813
+-/
 theorem isInvInvariant : μ.IsInvInvariant := by
   haveI := isMulRightInvariant μ
   constructor
@@ -48,6 +57,9 @@ theorem isInvInvariant : μ.IsInvInvariant := by
 
 end SolGL2HaarRightInv
 
+/--
+@isnad1 id=and.0h2v.s9.aa4380bed702 from=translated src=- shape=07490018 vocab=58776766
+-/
 theorem solution
     {F : Type*} [Field F] [TopologicalSpace F] [IsTopologicalRing F]
     [LocallyCompactSpace (GL (Fin 2) F)] [SecondCountableTopology (GL (Fin 2) F)]

@@ -23,6 +23,9 @@ def kerMap {F₁ F₂ : Type u} [AddCommGroup F₁] [Module B F₁] [AddCommGrou
     rw [LinearMap.mem_ker] at hx ⊢
     rw [← LinearMap.comp_apply, hg, hx])
 
+/--
+@isnad1 id=eq.1h8v.s10.6cf8730ecaa4 from=translated src=- shape=1c6d8950 vocab=e2c96554
+-/
 theorem kerMap_coe {F₁ F₂ : Type u} [AddCommGroup F₁] [Module B F₁] [AddCommGroup F₂] [Module B F₂]
     (p₁ : F₁ →ₗ[B] M) (p₂ : F₂ →ₗ[B] M) (g : F₁ →ₗ[B] F₂) (hg : p₂ ∘ₗ g = p₁) (s : ↥(LinearMap.ker p₁)) :
     ((kerMap p₁ p₂ g hg s : ↥(LinearMap.ker p₂)) : F₂) = g s := rfl
@@ -37,10 +40,16 @@ def pull {F₁ F₂ : Type u} [AddCommGroup F₁] [Module B F₁] [AddCommGroup 
     ext s
     rfl)
 
+/--
+@isnad1 id=eq.1h9v.s14.0e814e765e5f from=translated src=- shape=400c48fc vocab=126662a5
+-/
 theorem pull_mk {F₁ F₂ : Type u} [AddCommGroup F₁] [Module B F₁] [AddCommGroup F₂] [Module B F₂]
     (p₁ : F₁ →ₗ[B] M) (p₂ : F₂ →ₗ[B] M) (g : F₁ →ₗ[B] F₂) (hg : p₂ ∘ₗ g = p₁) (δ : ↥(LinearMap.ker p₂) →ₗ[B] N) :
     pull (N := N) p₁ p₂ g hg (Submodule.Quotient.mk δ) = Submodule.Quotient.mk (δ ∘ₗ kerMap p₁ p₂ g hg) := rfl
 
+/--
+@isnad1 id=eq.2h9v.s12.950d674bb16f from=translated src=- shape=281cfdd3 vocab=452425db
+-/
 theorem pull_eq_pull {F₁ F₂ : Type u} [AddCommGroup F₁] [Module B F₁] [AddCommGroup F₂] [Module B F₂]
     (p₁ : F₁ →ₗ[B] M) (p₂ : F₂ →ₗ[B] M) (g g' : F₁ →ₗ[B] F₂) (hg : p₂ ∘ₗ g = p₁) (hg' : p₂ ∘ₗ g' = p₁) :
     pull (N := N) p₁ p₂ g hg = pull (N := N) p₁ p₂ g' hg' := by
@@ -58,6 +67,9 @@ theorem pull_eq_pull {F₁ F₂ : Type u} [AddCommGroup F₁] [Module B F₁] [A
     rw [← map_sub]
     congr 1
 
+/--
+@isnad1 id=eq.2h12v.s15.386c2c56686a from=translated src=- shape=7f729309 vocab=705729bc
+-/
 theorem pull_comp {F₁ F₂ F₃ : Type u} [AddCommGroup F₁] [Module B F₁] [AddCommGroup F₂] [Module B F₂]
     [AddCommGroup F₃] [Module B F₃]
     (p₁ : F₁ →ₗ[B] M) (p₂ : F₂ →ₗ[B] M) (p₃ : F₃ →ₗ[B] M) (g : F₁ →ₗ[B] F₂) (hg : p₂ ∘ₗ g = p₁)
@@ -67,11 +79,17 @@ theorem pull_comp {F₁ F₂ F₃ : Type u} [AddCommGroup F₁] [Module B F₁] 
   induction x using Submodule.Quotient.induction_on with
   | H δ => rw [pull_mk, pull_mk, pull_mk]; rfl
 
+/--
+@isnad1 id=eq.0h6v.s14.b877d6bf3ea3 from=translated src=- shape=0206c723 vocab=b64997ef
+-/
 theorem pull_id {F₁ : Type u} [AddCommGroup F₁] [Module B F₁] (p₁ : F₁ →ₗ[B] M) (x) :
     pull (N := N) p₁ p₁ LinearMap.id (LinearMap.comp_id p₁) x = x := by
   induction x using Submodule.Quotient.induction_on with
   | H δ => rw [pull_mk]; rfl
 
+/--
+@isnad1 id=ex.1h6v.s9.96a1ea77bf52 from=translated src=- shape=4a0e9f6d vocab=3243ef21
+-/
 theorem exists_lift {r : ℕ} {F₂ : Type u} [AddCommGroup F₂] [Module B F₂]
     (p₁ : (Fin r → B) →ₗ[B] M) (p₂ : F₂ →ₗ[B] M) (hp₂ : Function.Surjective p₂) :
     ∃ g : (Fin r → B) →ₗ[B] F₂, p₂ ∘ₗ g = p₁ := by
@@ -83,6 +101,9 @@ theorem exists_lift {r : ℕ} {F₂ : Type u} [AddCommGroup F₂] [Module B F₂
 end P2mWs3EP1
 
 open P2mWs3EP1 in
+/--
+@isnad1 id=ex.2h7v.s17.340af27844d5 from=translated src=- shape=be8e322d vocab=d6c6d86e
+-/
 theorem solution
     {B : Type u} [CommRing B] {M N : Type v} [AddCommGroup M] [Module B M] [AddCommGroup N] [Module B N]
     {r₁ r₂ : ℕ} (p₁ : (Fin r₁ → B) →ₗ[B] M) (p₂ : (Fin r₂ → B) →ₗ[B] M)

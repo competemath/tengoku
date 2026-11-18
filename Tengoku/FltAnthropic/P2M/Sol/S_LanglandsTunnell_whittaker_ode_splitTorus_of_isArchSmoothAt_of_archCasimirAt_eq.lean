@@ -507,6 +507,9 @@ section
 
 open NumberField
 
+/--
+@isnad1 id=and.6h6v.s13.abc42cb1be2b from=translated src=- shape=0b6ba0e5 vocab=0b368c17
+-/
 theorem solution
     {K : Type} [Field K] [NumberField K] {w : InfinitePlace K} (hw : w.IsReal) (W : AdelicGL2 (𝓞 K) K → ℂ)
     (k₀ : ℤ) (ν : ℂ)

@@ -12,6 +12,9 @@ open Filter Set
 
 namespace IDRS
 
+/--
+@isnad1 id=nebot.0h2v.s5.a3aa087f76ed from=translated src=- shape=7a43b038 vocab=df877653
+-/
 theorem nhdsNE_neBot {M : Type*} [TopologicalSpace M] [ChartedSpace ℂ M] (z : M) : (𝓝[≠] z).NeBot := by
   set e := extChartAt 𝓘(ℂ, ℂ) z with he
   have hc : ContinuousAt e.symm (e z) := continuousAt_extChartAt_symm z
@@ -29,6 +32,9 @@ theorem nhdsNE_neBot {M : Type*} [TopologicalSpace M] [ChartedSpace ℂ M] (z : 
         _ = e z := by rw [show e.symm y = z from heq]
   exact ht.neBot
 
+/--
+@isnad1 id=isopen.0h2v.s5.d80f28a2ccb6 from=translated src=- shape=60a9527e vocab=ca39f266
+-/
 theorem isOpen_setOf_eventually_nhdsNE {M : Type*} [TopologicalSpace M] [T1Space M] (g : M → ℂ) :
     IsOpen {x : M | ∀ᶠ y in 𝓝[≠] x, g y ≠ 0} := by
   rw [isOpen_iff_mem_nhds]
@@ -44,6 +50,9 @@ theorem isOpen_setOf_eventually_nhdsNE {M : Type*} [TopologicalSpace M] [T1Space
 
 end IDRS
 
+/--
+@isnad1 id=or.3h3v.s8.6ea4583e2ce4 from=translated src=- shape=fb3e8eda vocab=4ac0850a
+-/
 theorem solution
     {M : Type*} [TopologicalSpace M] [ChartedSpace ℂ M] [IsManifold 𝓘(ℂ, ℂ) ω M] [T2Space M]
     {W : Set M} (hW : IsOpen W) (hWc : IsConnected W) (g : M → ℂ)

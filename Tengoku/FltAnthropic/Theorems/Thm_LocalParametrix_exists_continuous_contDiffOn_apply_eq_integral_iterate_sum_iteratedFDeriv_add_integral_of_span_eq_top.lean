@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open MeasureTheory Topology
 
+/--
+@isnad1 id=ex.2h5v.s10.8db61330a754 from=translated src=- shape=24764068 vocab=ab393d2a
+-/
 theorem LocalParametrix.exists_continuous_contDiffOn_apply_eq_integral_iterate_sum_iteratedFDeriv_add_integral_of_span_eq_top
     {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℝ V] [FiniteDimensional ℝ V]
     [MeasurableSpace V] [BorelSpace V]

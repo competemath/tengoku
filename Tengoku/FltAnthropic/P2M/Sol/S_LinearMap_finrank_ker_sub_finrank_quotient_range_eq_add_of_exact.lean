@@ -17,12 +17,18 @@ variable {k : Type u₀} [DivisionRing k]
   {M : Type u₁} {N : Type u₂} {P : Type u₃}
   [AddCommGroup M] [Module k M] [AddCommGroup N] [Module k N] [AddCommGroup P] [Module k P]
 
+/--
+@isnad1 id=finitedi.1h6v.s8.c19953801b67 from=translated src=- shape=85a86c4e vocab=912e72d3
+-/
 lemma finiteDimensional_of_exact {f : M →ₗ[k] N} {g : N →ₗ[k] P} (h : Exact f g)
     [FiniteDimensional k M] [FiniteDimensional k P] : FiniteDimensional k N :=
   Module.Finite.of_exact (f := f) (g := g.rangeRestrict)
     (LinearMap.exact_iff.2 (by rw [LinearMap.ker_rangeRestrict]; exact h.linearMap_ker_eq))
     g.surjective_rangeRestrict
 
+/--
+@isnad1 id=eq.1h6v.s9.48b9f4c84f63 from=translated src=- shape=af6bff82 vocab=2889393d
+-/
 lemma finrank_eq_of_exact {f : M →ₗ[k] N} {g : N →ₗ[k] P} (h : Exact f g)
     [FiniteDimensional k N] :
     Module.finrank k N
@@ -35,6 +41,9 @@ universe u v
 
 open C2EulerCharAux in
 
+/--
+@isnad1 id=and.8h14v.s11.58dd0be3979c from=translated src=- shape=caa3a186 vocab=76dedd89
+-/
 theorem solution
     {k : Type u} [Field k]
     {A₁ A₂ A₃ B₁ B₂ B₃ : Type v}

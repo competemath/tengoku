@@ -22,6 +22,9 @@ export _root_.LanglandsTunnell (setIntegral_oneSided_torusPair_eq_setIntegral_fi
 namespace BackK8
 open _root_.LanglandsTunnell
 
+/--
+@isnad1 id=le.4h4v.s7.5e6d6ffc3d12 from=translated src=- shape=351a0d07 vocab=7b7bf493
+-/
 lemma sum_le_prod_one_add (a b c d : ℝ) (ha : 0 ≤ a) (hb : 0 ≤ b) (hc : 0 ≤ c) (hd : 0 ≤ d) :
     a + b + c + d ≤ (1 + a) * (1 + b) * (1 + c) * (1 + d) := by
   nlinarith [mul_nonneg ha hb, mul_nonneg hc hd, mul_nonneg (mul_nonneg ha hb) hc,
@@ -29,6 +32,9 @@ lemma sum_le_prod_one_add (a b c d : ℝ) (ha : 0 ≤ a) (hb : 0 ≤ b) (hc : 0 
     mul_nonneg (mul_nonneg ha hc) hd, mul_nonneg (mul_nonneg hb hc) hd,
     mul_nonneg (mul_nonneg (mul_nonneg ha hb) hc) hd]
 
+/--
+@isnad1 id=le.0h3v.s6.72c52ecead37 from=translated src=- shape=2d66b7e5 vocab=bc5bcdf3
+-/
 lemma norm_bracket_pow_le (m : ℕ) (x z : ℝ) :
     ‖(((x : ℝ) : ℂ) + Complex.I * (z : ℂ)) ^ m‖ ≤ (|x| + |z|) ^ m := by
   rw [norm_pow]
@@ -36,6 +42,9 @@ lemma norm_bracket_pow_le (m : ℕ) (x z : ℝ) :
   calc ‖((x : ℝ) : ℂ) + Complex.I * (z : ℂ)‖ ≤ ‖((x : ℝ) : ℂ)‖ + ‖Complex.I * (z : ℂ)‖ := norm_add_le _ _
     _ = |x| + |z| := by simp [Complex.norm_real, Real.norm_eq_abs]
 
+/--
+@isnad1 id=le.0h5v.s7.08bb6530f3b7 from=translated src=- shape=c1cd55aa vocab=8fb9f44c
+-/
 lemma bracketMinus_bound (m : ℕ) (p q r z : ℝ) :
     ‖(((p - q + r : ℝ) : ℂ) + Complex.I * (z : ℂ)) ^ m‖
       ≤ 1 * (1 + |p|) ^ m * (1 + |q|) ^ m * (1 + |r|) ^ m * (1 + |z|) ^ m := by
@@ -47,6 +56,9 @@ lemma bracketMinus_bound (m : ℕ) (p q r z : ℝ) :
     _ ≤ (1 + |p|) * (1 + |q|) * (1 + |r|) * (1 + |z|) :=
         sum_le_prod_one_add _ _ _ _ (abs_nonneg _) (abs_nonneg _) (abs_nonneg _) (abs_nonneg _)
 
+/--
+@isnad1 id=le.0h5v.s7.5d409c46e409 from=translated src=- shape=1ed365d1 vocab=b5eb1f75
+-/
 lemma bracketPlus_bound (m : ℕ) (p q r z : ℝ) :
     ‖(((-p - q - r : ℝ) : ℂ) + Complex.I * (z : ℂ)) ^ m‖
       ≤ 1 * (1 + |p|) ^ m * (1 + |q|) ^ m * (1 + |r|) ^ m * (1 + |z|) ^ m := by
@@ -61,27 +73,42 @@ lemma bracketPlus_bound (m : ℕ) (p q r z : ℝ) :
 noncomputable def pMinus (m : ℕ) : MvPolynomial (Fin 2) ℂ := (-(MvPolynomial.X 0 + MvPolynomial.X 1)) ^ m
 noncomputable def pPlus (m : ℕ) : MvPolynomial (Fin 2) ℂ := (MvPolynomial.X 0 - MvPolynomial.X 1) ^ m
 
+/--
+@isnad1 id=ishomoge.0h1v.s3.35477ffe4da6 from=translated src=- shape=00995351 vocab=d2e197ec
+-/
 lemma pMinus_isHomogeneous (m : ℕ) : (pMinus m).IsHomogeneous m := by
   have h1 : (-(MvPolynomial.X (R := ℂ) (0 : Fin 2) + MvPolynomial.X 1)).IsHomogeneous 1 :=
     ((MvPolynomial.isHomogeneous_X ℂ 0).add (MvPolynomial.isHomogeneous_X ℂ 1)).neg
   have h2 := h1.pow m
   simpa only [pMinus, mul_one, one_mul] using h2
 
+/--
+@isnad1 id=ishomoge.0h1v.s3.c73d2cd93b8c from=translated src=- shape=00995351 vocab=a93ebc39
+-/
 lemma pPlus_isHomogeneous (m : ℕ) : (pPlus m).IsHomogeneous m := by
   have h1 : (MvPolynomial.X (R := ℂ) (0 : Fin 2) - MvPolynomial.X 1).IsHomogeneous 1 :=
     (MvPolynomial.isHomogeneous_X ℂ 0).sub (MvPolynomial.isHomogeneous_X ℂ 1)
   have h2 := h1.pow m
   simpa only [pPlus, mul_one, one_mul] using h2
 
+/--
+@isnad1 id=eq.0h3v.s7.6bc2b1a54955 from=translated src=- shape=cb3decf6 vocab=6859c983
+-/
 lemma eval_pMinus (m : ℕ) (a b : ℂ) : MvPolynomial.eval ![a, b] (pMinus m) = (-(a + b)) ^ m := by
   simp [pMinus, MvPolynomial.eval_pow]
 
+/--
+@isnad1 id=eq.0h3v.s7.a54348bd1471 from=translated src=- shape=559a4937 vocab=af87331c
+-/
 lemma eval_pPlus (m : ℕ) (a b : ℂ) : MvPolynomial.eval ![a, b] (pPlus m) = (a - b) ^ m := by
   simp [pPlus, MvPolynomial.eval_pow]
 
 end LanglandsTunnell.BackK8
 
 open LanglandsTunnell.BackK8 in
+/--
+@isnad1 id=ex.7h8v.s10.5a38db3f2a7c from=translated src=- shape=c9caf3b6 vocab=55621b11
+-/
 theorem solution
     (m : ℕ) (hm : 1 ≤ m) (β : ℂ) (g g' : ℝ → ℂ) (hg : Measurable g) (hg' : Measurable g')
     (Cg σg : ℝ) (hσg : 0 ≤ σg) (hgb : ∀ τ : ℝ, τ ≠ 0 → ‖g τ‖ ≤ Cg * (1 + |τ| ^ (-σg)))

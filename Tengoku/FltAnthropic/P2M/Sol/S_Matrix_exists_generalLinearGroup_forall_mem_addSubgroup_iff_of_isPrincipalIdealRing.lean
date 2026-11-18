@@ -18,23 +18,38 @@ variable {R : Type*} [CommRing R] {K : Type*} [Field K] [Algebra R K]
 def colMat (j₀ : n) (c : n → K) : Matrix n n K :=
   Matrix.of fun i k => if k = j₀ then c i else 0
 
+/--
+@isnad1 id=eq.0h6v.s5.2794e807634d from=translated src=- shape=b413cf24 vocab=c511d455
+-/
 @[scoped simp] theorem colMat_apply (j₀ : n) (c : n → K) (i k : n) :
     colMat j₀ c i k = if k = j₀ then c i else 0 := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.fe65266ccc6f from=translated src=- shape=3a07b7a5 vocab=98f6da04
+-/
 theorem colMat_add (j₀ : n) (c c' : n → K) : colMat j₀ (c + c') = colMat j₀ c + colMat j₀ c' := by
   ext i k
   simp only [colMat_apply, Pi.add_apply, Matrix.add_apply]
   split_ifs <;> simp
 
+/--
+@isnad1 id=eq.0h3v.s6.0e2c6a3b1b28 from=translated src=- shape=81676056 vocab=b21a3559
+-/
 theorem colMat_zero (j₀ : n) : colMat j₀ (0 : n → K) = 0 := by
   ext i k
   simp
 
+/--
+@isnad1 id=eq.0h5v.s6.01ae263e5cb1 from=translated src=- shape=25e09678 vocab=ffe9343a
+-/
 theorem colMat_smul (j₀ : n) (a : K) (c : n → K) : colMat j₀ (a • c) = a • colMat j₀ c := by
   ext i k
   simp only [colMat_apply, Pi.smul_apply, smul_eq_mul, Matrix.smul_apply]
   split_ifs <;> simp
 
+/--
+@isnad1 id=eq.0h5v.s7.57c33c698f16 from=translated src=- shape=9f67877c vocab=d09d77e9
+-/
 theorem colMat_mul (j₀ : n) (c : n → K) (M : Matrix n n K) :
     colMat j₀ c * M = Matrix.of fun i k => c i * M j₀ k := by
   ext i k
@@ -45,12 +60,18 @@ theorem colMat_mul (j₀ : n) (c : n → K) (M : Matrix n n K) :
   · intro h
     exact absurd (Finset.mem_univ j₀) h
 
+/--
+@isnad1 id=eq.0h5v.s7.6afdd652c4ab from=translated src=- shape=67be7f18 vocab=dfa18885
+-/
 theorem map_single_one (j j' : n) :
     (Matrix.single j j' (1 : R)).map (algebraMap R K) = Matrix.single j j' (1 : K) := by
   ext i k
   simp only [Matrix.map_apply, Matrix.single_apply]
   split_ifs <;> simp
 
+/--
+@isnad1 id=eq.0h5v.s7.a1a660229d51 from=translated src=- shape=ce7226d4 vocab=c6e4d0ef
+-/
 theorem mul_single_one (x : Matrix n n K) (j j' : n) :
     x * Matrix.single j j' (1 : K) = Matrix.of fun i k => if k = j' then x i j else 0 := by
   ext i k
@@ -64,11 +85,17 @@ theorem mul_single_one (x : Matrix n n K) (j j' : n) :
   · intro h
     exact absurd (Finset.mem_univ j) h
 
+/--
+@isnad1 id=eq.0h5v.s6.ef3c85eaad0c from=translated src=- shape=ab866047 vocab=bfd7f861
+-/
 theorem colMat_col_eq_mul (j₀ : n) (x : Matrix n n K) (j : n) :
     colMat j₀ (fun i => x i j) = x * Matrix.single j j₀ (1 : K) := by
   rw [mul_single_one]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.0359f5f41b0a from=translated src=- shape=5a368c35 vocab=ee7004eb
+-/
 theorem sum_colMat_mul_single (j₀ : n) (x : Matrix n n K) :
     ∑ j, colMat j₀ (fun i => x i j) * Matrix.single j₀ j (1 : K) = x := by
   ext i k
@@ -86,6 +113,9 @@ open scoped _root_.P2MW.S_Matrix_exists_generalLinearGroup_forall_mem_addSubgrou
 open scoped _root_.P2MW.S_Matrix_exists_generalLinearGroup_forall_mem_addSubgroup_iff_of_isPrincipalIdealRing.Matrix
 
 open Matrix.PrincipalLattice in
+/--
+@isnad1 id=ex.3h4v.s10.d8ccf1d14f38 from=translated src=- shape=8b1888ea vocab=fe75b0b4
+-/
 theorem solution
     {R : Type*} [CommRing R] [IsDomain R] [IsPrincipalIdealRing R]
     {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]

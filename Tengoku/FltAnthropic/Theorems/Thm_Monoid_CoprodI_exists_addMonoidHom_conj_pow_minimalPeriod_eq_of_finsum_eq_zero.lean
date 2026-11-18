@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Monoid_CoprodI_exists_addMonoidHom_conj_po
 local notation α "^+" M:51 => FixedPoints.addSubgroup M α
 
 set_option autoImplicit false
+/--
+@isnad1 id=ex.2h4v.s16.2f882e420f70 from=translated src=- shape=6c28ea4d vocab=efd54f0e
+-/
 theorem Monoid.CoprodI.exists_addMonoidHom_conj_pow_minimalPeriod_eq_of_finsum_eq_zero
     (t : Monoid.CoprodI (fun i : Fin 2 => Multiplicative (ZMod (i.val + 2))))
     (ht : t = Monoid.CoprodI.of (M := fun i : Fin 2 => Multiplicative (ZMod (i.val + 2))) (i := 0)

@@ -16,6 +16,9 @@ set_option autoImplicit false
 
 open ModularCurve LaurentSeries
 
+/--
+@isnad1 id=eq.0h3v.s8.248f02de687e from=translated src=- shape=66185d42 vocab=27a97097
+-/
 theorem solution (R : Type*) [CommRing R] (ℓ : ℕ) [NeZero ℓ] (f : LaurentSeries R) :
     heckeV R ℓ (Nat.pos_of_ne_zero (NeZero.ne ℓ)) f = qExpand R ℓ f  := by
   ext n

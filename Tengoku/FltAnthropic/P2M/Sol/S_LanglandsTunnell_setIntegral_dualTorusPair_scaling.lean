@@ -14,6 +14,9 @@ open MeasureTheory Set
 
 namespace K8DS
 
+/--
+@isnad1 id=eq.1h2v.s7.22fcf6c32b69 from=translated src=- shape=0ffff006 vocab=017a0200
+-/
 theorem setIntegral_Iio_comp_mul_left (φ : ℝ → ℂ) {b : ℝ} (hb : 0 < b) :
     ∫ x in Iio (0 : ℝ), φ x = b • ∫ t in Iio (0 : ℝ), φ (b * t) := by
   have key : ∫ t in Iio (0 : ℝ), φ (b * t) = b⁻¹ • ∫ x in Iio (0 : ℝ), φ x := by
@@ -24,16 +27,25 @@ theorem setIntegral_Iio_comp_mul_left (φ : ℝ → ℂ) {b : ℝ} (hb : 0 < b) 
     rw [← indicator_comp_right, preimage_const_mul_Iio₀ _ hb, zero_div, Function.comp_def]
   rw [key, smul_smul, mul_inv_cancel₀ hb.ne', one_smul]
 
+/--
+@isnad1 id=eq.1h2v.s6.bf68ed9fffe7 from=translated src=- shape=d4527da4 vocab=08aa0fbc
+-/
 theorem integral_comp_div_left (ψ : ℝ → ℂ) {b : ℝ} (hb : 0 < b) :
     ∫ x : ℝ, ψ x = b⁻¹ • ∫ u : ℝ, ψ (u / b) := by
   rw [Measure.integral_comp_div ψ b, smul_smul, abs_of_pos hb, inv_mul_cancel₀ hb.ne', one_smul]
 
+/--
+@isnad1 id=eq.1h2v.s7.5bdb291bab28 from=translated src=- shape=1992f441 vocab=b5fc300c
+-/
 theorem setIntegral_Ioi_comp_inv_mul_left (χ : ℝ → ℂ) {b : ℝ} (hb : 0 < b) :
     ∫ x in Ioi (0 : ℝ), χ x = b⁻¹ • ∫ Y in Ioi (0 : ℝ), χ (b⁻¹ * Y) := by
   rw [integral_comp_mul_left_Ioi χ 0 (inv_pos.mpr hb), mul_zero, inv_inv, smul_smul, inv_mul_cancel₀ hb.ne', one_smul]
 
 end K8DS
 
+/--
+@isnad1 id=eq.1h8v.s10.5621e365333e from=translated src=- shape=56b36474 vocab=d732beb5
+-/
 theorem solution
     (A₁ A₂ β γ : ℂ) (m n : ℕ) (S : ℝ → ℂ) (hS : ∀ c : ℝ, 0 < c → ∀ y : ℝ, S (y / c) = S y)
     (g : ℝ → ℂ) :

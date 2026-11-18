@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open MeasureTheory Set
 
+/--
+@isnad1 id=eq.3h2v.s8.6598892b2c7b from=translated src=- shape=12017bd4 vocab=b7d85051
+-/
 theorem solution
     (H : ℝ → ℝ → ℂ) (hHm : Measurable (Function.uncurry H))
     (hHi : Integrable (Function.uncurry H)

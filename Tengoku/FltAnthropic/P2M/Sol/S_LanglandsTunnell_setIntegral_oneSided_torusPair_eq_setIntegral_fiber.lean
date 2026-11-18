@@ -15,13 +15,22 @@ open MeasureTheory Set
 
 namespace OSR9
 
+/--
+@isnad1 id=eq.1h2v.s5.643522020c81 from=translated src=- shape=c6513937 vocab=7bdb064f
+-/
 theorem ofReal_cpow_eq_exp (x : ℝ) (hx : 0 < x) (w : ℂ) :
     ((x : ℝ) : ℂ) ^ w = Complex.exp (w * (Real.log x : ℂ)) := by
   rw [Complex.cpow_def_of_ne_zero (Complex.ofReal_ne_zero.2 hx.ne'), ← Complex.ofReal_log hx.le, mul_comm]
 
+/--
+@isnad1 id=eq.1h1v.s4.609499df27b1 from=translated src=- shape=c546a62f vocab=95fa06e8
+-/
 theorem ofReal_eq_exp_log (x : ℝ) (hx : 0 < x) : ((x : ℝ) : ℂ) = Complex.exp ((Real.log x : ℝ) : ℂ) := by
   rw [← Complex.ofReal_exp, Real.exp_log hx]
 
+/--
+@isnad1 id=eq.5h10v.s9.f6babb8119f1 from=translated src=- shape=7876ba5d vocab=f1deba4d
+-/
 theorem pointwise (α β γ : ℂ) (g : ℝ → ℂ) (Z : ℝ → ℝ → ℝ → ℂ) (F Ft : ℝ × ℝ × ℝ → ℂ)
     (hF : ∀ t y₁ y₂ : ℝ, F (t, y₁, y₂) =
       ((t : ℝ) : ℂ) ^ α * (Real.exp (-(2 * Real.pi * t)) : ℂ) *
@@ -96,6 +105,9 @@ theorem pointwise (α β γ : ℂ) (g : ℝ → ℂ) (Z : ℝ → ℝ → ℝ �
 
 end OSR9
 
+/--
+@isnad1 id=eq.3h5v.s10.05495b47082a from=translated src=- shape=29f467ed vocab=5613e24e
+-/
 theorem solution
     (α β γ : ℂ) (g : ℝ → ℂ) (hg : Measurable g) (B : ℝ → ℝ → ℝ → ℝ → ℂ)
     (hB : Measurable fun x : ℝ × ℝ × ℝ × ℝ => B x.1 x.2.1 x.2.2.1 x.2.2.2)

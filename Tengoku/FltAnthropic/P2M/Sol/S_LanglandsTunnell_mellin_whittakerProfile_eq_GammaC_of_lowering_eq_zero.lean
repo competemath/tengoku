@@ -148,6 +148,9 @@ end WhittakerLowering
 
 open WhittakerLowering in
 
+/--
+@isnad1 id=and.8h5v.s10.823428d76733 from=translated src=- shape=40492f8c vocab=c24f2c4b
+-/
 theorem solution (e : ℂ) (k₀ : ℤ) (W : ℂ → ℂ)
     (fp fm : ℝ → ℂ)
     (hWp : ∀ t : ℝ, 0 < t → W t = ((Real.sqrt t : ℝ) : ℂ) ^ (e + 1) * fp t)

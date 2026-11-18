@@ -15,6 +15,9 @@ universe u v
 
 open Polynomial IsLocalRing
 
+/--
+@isnad1 id=ex.2h6v.s11.a765a6f467af from=translated src=- shape=93ecf79c vocab=8afc698e
+-/
 theorem solution {R : Type u} [CommRing R] [IsLocalRing R] [HenselianLocalRing R]
     {V : Type v} [AddCommGroup V] [Module R V] (b₀ : Module.Basis (Fin 2) R V) (Φ : Module.End R V)
     {α β : IsLocalRing.ResidueField R} (hαβ : α ≠ β)

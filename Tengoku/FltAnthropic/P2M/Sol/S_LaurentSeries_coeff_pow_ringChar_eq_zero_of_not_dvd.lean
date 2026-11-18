@@ -16,9 +16,15 @@ open HahnSeries
 
 variable {K : Type u} [CommRing K]
 
+/--
+@isnad1 id=charp.0h2v.s6.2a0879229479 from=translated src=- shape=b26e66a6 vocab=d41260d6
+-/
 theorem charP_of_coeff (ℓ : ℕ) [CharP K ℓ] : CharP (LaurentSeries K) ℓ :=
   charP_of_injective_ringHom (HahnSeries.C_injective (Γ := ℤ) (R := K)) ℓ
 
+/--
+@isnad1 id=eq.1h4v.s7.5001dc5b103d from=translated src=- shape=e812741a vocab=9982d0b1
+-/
 theorem coeff_pow_ringChar_eq_zero_of_not_dvd
     (ℓ : ℕ) [Fact ℓ.Prime] [CharP K ℓ]
     (g : LaurentSeries K) (n : ℤ) (hn : ¬ (ℓ : ℤ) ∣ n) :
@@ -89,6 +95,9 @@ theorem coeff_pow_ringChar_eq_zero_of_not_dvd
 
 end LaurentSeries
 
+/--
+@isnad1 id=eq.1h4v.s7.5001dc5b103d from=translated src=- shape=e812741a vocab=9982d0b1
+-/
 theorem solution
     {K : Type u} [CommRing K] (ℓ : ℕ) [Fact ℓ.Prime] [CharP K ℓ]
     (g : LaurentSeries K) (n : ℤ) (hn : ¬ (ℓ : ℤ) ∣ n) :

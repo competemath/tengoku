@@ -14,6 +14,9 @@ set_option autoImplicit false
 
 open Real Complex Filter Topology MeasureTheory Set
 
+/--
+@isnad1 id=eq.9h7v.s9.0de76bf8173b from=translated src=- shape=4e26e830 vocab=609b4d3d
+-/
 theorem solution
     (n : ℕ) (ν : ℂ) (hν : ν = (n : ℂ) / 2) (k : ℝ) (hk : 0 < k) (f : ℝ → ℂ)
     (hf : DifferentiableOn ℝ f (Set.Ioi 0)) (hf' : DifferentiableOn ℝ (deriv f) (Set.Ioi 0))

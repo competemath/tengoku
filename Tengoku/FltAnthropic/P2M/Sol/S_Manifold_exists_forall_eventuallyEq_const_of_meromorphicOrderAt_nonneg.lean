@@ -16,6 +16,9 @@ namespace Manifold
 namespace LiouvilleRemovableProof
 open _root_.Manifold
 
+/--
+@isnad1 id=ex.2h2v.s7.db6ffe9cd9df from=translated src=- shape=83418ceb vocab=3c3987de
+-/
 theorem exists_analyticAt_eventuallyEq {f : ℂ → ℂ} {c : ℂ} (hf : MeromorphicAt f c)
     (h0 : 0 ≤ meromorphicOrderAt f c) :
     ∃ G : ℂ → ℂ, AnalyticAt ℂ G c ∧ f =ᶠ[𝓝[≠] c] G := by
@@ -34,6 +37,9 @@ theorem exists_analyticAt_eventuallyEq {f : ℂ → ℂ} {c : ℂ} (hf : Meromor
       exact (analyticAt_id.sub analyticAt_const).pow k
     exact h1.smul hG
 
+/--
+@isnad1 id=eventual.1h2v.s6.bdbaa0077d68 from=translated src=- shape=e0a6322a vocab=56fd4082
+-/
 theorem eventually_eventually_of_punctured {c : ℂ} {P : ℂ → Prop}
     (h : ∀ᶠ z in 𝓝[≠] c, P z) : ∀ᶠ z in 𝓝[≠] c, ∀ᶠ z' in 𝓝 z, P z' := by
   rw [eventually_nhdsWithin_iff] at h ⊢
@@ -50,17 +56,26 @@ abbrev ctr (x : M) : ℂ := extChartAt 𝓘(ℂ, ℂ) x x
 
 abbrev rd (g : M → ℂ) (x : M) : ℂ → ℂ := fun z => g ((φ x).symm z)
 
+/--
+@isnad1 id=eq.1h5v.s6.8ef56e02172e from=translated src=- shape=6f06d17a vocab=69d4cd72
+-/
 theorem rd_eq_comp (g : M → ℂ) {x y : M} {w : ℂ} (hw : (φ y).symm w ∈ (φ x).source) :
     rd g y w = rd g x (φ x ((φ y).symm w)) := by
   simp only [rd]
   rw [(φ x).left_inv hw]
 
+/--
+@isnad1 id=eventual.2h4v.s6.e21bfc529beb from=translated src=- shape=8d252904 vocab=08e0e0ce
+-/
 theorem eventually_symm_mem_source {x y : M} {w : ℂ} (hw : w ∈ (φ y).target)
     (hx : (φ y).symm w ∈ (φ x).source) : ∀ᶠ w' in 𝓝 w, (φ y).symm w' ∈ (φ x).source :=
   (continuousAt_extChartAt_symm'' hw).preimage_mem_nhds (extChartAt_source_mem_nhds' hx)
 
 variable [IsManifold 𝓘(ℂ, ℂ) ω M]
 
+/--
+@isnad1 id=analytic.2h4v.s7.aa82998204e6 from=translated src=- shape=0b8ae7b0 vocab=4d48a75b
+-/
 theorem analyticAt_transition (x y : M) {w : ℂ} (hw : w ∈ (φ y).target)
     (hx : (φ y).symm w ∈ (φ x).source) : AnalyticAt ℂ (φ x ∘ (φ y).symm) w := by
   have hcd := contDiffOn_ext_coord_change (I := 𝓘(ℂ, ℂ)) (n := ω) x y
@@ -70,6 +85,9 @@ theorem analyticAt_transition (x y : M) {w : ℂ} (hw : w ∈ (φ y).target)
     exact (continuousAt_extChartAt_symm'' hw).preimage_mem_nhds (extChartAt_source_mem_nhds' hx)
   exact (hcd.contDiffAt hsrc).analyticAt
 
+/--
+@isnad1 id=eventual.2h4v.s7.1c05a9769735 from=translated src=- shape=35c3307e vocab=bd3701d1
+-/
 theorem key (g : M → ℂ) (G : M → ℂ → ℂ) (hGan : ∀ x, AnalyticAt ℂ (G x) (ctr x))
     (hGeq : ∀ x, rd g x =ᶠ[𝓝[≠] (ctr x)] G x) (x : M) :
     (fun z => G ((φ x).symm z) (ctr ((φ x).symm z))) =ᶠ[𝓝 (ctr x)] G x := by
@@ -121,6 +139,9 @@ theorem key (g : M → ℂ) (G : M → ℂ → ℂ) (hGan : ∀ x, AnalyticAt �
 
 omit [IsManifold 𝓘(ℂ, ℂ) ω M] in
 
+/--
+@isnad1 id=mdiffere.1h3v.s7.9910ce877006 from=translated src=- shape=98312f9d vocab=00196ac0
+-/
 theorem mdifferentiableAt_of_analyticAt (gt : M → ℂ) (x : M)
     (han : AnalyticAt ℂ (fun z => gt ((extChartAt 𝓘(ℂ, ℂ) x).symm z)) (extChartAt 𝓘(ℂ, ℂ) x x)) :
     MDifferentiableAt 𝓘(ℂ, ℂ) 𝓘(ℂ, ℂ) gt x := by
@@ -140,6 +161,9 @@ theorem mdifferentiableAt_of_analyticAt (gt : M → ℂ) (x : M)
     rw [this]
     exact han.differentiableAt.differentiableWithinAt
 
+/--
+@isnad1 id=ex.2h2v.s7.357b5a74279f from=translated src=- shape=4227c65b vocab=da46deec
+-/
 theorem main [CompactSpace M] [ConnectedSpace M] (g : M → ℂ)
     (hg : ∀ x, MeromorphicAt (rd g x) (ctr x)) (hg0 : ∀ x, 0 ≤ meromorphicOrderAt (rd g x) (ctr x)) :
     ∃ C : ℂ, ∀ x, rd g x =ᶠ[𝓝[≠] (ctr x)] fun _ => C := by
@@ -163,6 +187,9 @@ end Manifold.LiouvilleRemovableProof
 
 open Manifold.LiouvilleRemovableProof in
 
+/--
+@isnad1 id=ex.2h2v.s9.06a96ea797db from=translated src=- shape=bc26a78e vocab=0a5dfba6
+-/
 theorem solution
     {M : Type*} [TopologicalSpace M] [ChartedSpace ℂ M] [IsManifold 𝓘(ℂ, ℂ) ω M]
     [CompactSpace M] [ConnectedSpace M]

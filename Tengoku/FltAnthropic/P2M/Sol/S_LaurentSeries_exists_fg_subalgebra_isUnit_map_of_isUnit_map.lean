@@ -24,6 +24,9 @@ variable {A : Type u} {R : Type v} [CommRing A] [CommRing R] [Algebra A R]
 def CB (B : Subalgebra A R) : Subring (LaurentSeries R) :=
   (ModularCurve.coeffMap (algebraMap B R)).range
 
+/--
+@isnad1 id=iff.0h4v.s7.66baf9f46f71 from=translated src=- shape=fbc862ea vocab=994537e6
+-/
 theorem mem_CB_iff (B : Subalgebra A R) (y : LaurentSeries R) : y ∈ CB B ↔ ∀ n, y.coeff n ∈ B := by
   constructor
   · rintro ⟨z, rfl⟩ n
@@ -41,9 +44,15 @@ theorem mem_CB_iff (B : Subalgebra A R) (y : LaurentSeries R) : y ∈ CB B ↔ �
           exact y.isPWO_support }
     exact ⟨z, HahnSeries.ext (funext fun n => rfl)⟩
 
+/--
+@isnad1 id=le.1h4v.s7.c76797846e57 from=translated src=- shape=73ce05ca vocab=36b0ac8d
+-/
 theorem CB_mono {B B' : Subalgebra A R} (h : B ≤ B') : CB B ≤ CB B' := fun y hy =>
   (mem_CB_iff B' y).mpr fun n => h ((mem_CB_iff B y).mp hy n)
 
+/--
+@isnad1 id=mem.1h5v.s8.a4aecc033fe0 from=translated src=- shape=eb5711c7 vocab=6969e0f7
+-/
 theorem single_mem_CB {B : Subalgebra A R} (k : ℤ) {r : R} (hr : r ∈ B) : single k r ∈ CB B := by
   refine (mem_CB_iff B _).mpr fun n => ?_
   rw [HahnSeries.coeff_single]
@@ -51,10 +60,16 @@ theorem single_mem_CB {B : Subalgebra A R} (k : ℤ) {r : R} (hr : r ∈ B) : si
   · exact hr
   · exact B.zero_mem
 
+/--
+@isnad1 id=mem.1h4v.s8.47f7920940f6 from=translated src=- shape=52b508a5 vocab=1b7960d4
+-/
 theorem C_mem_CB {B : Subalgebra A R} {r : R} (hr : r ∈ B) : HahnSeries.C r ∈ CB B := by
   rw [HahnSeries.C_apply]
   exact single_mem_CB 0 hr
 
+/--
+@isnad1 id=eq.0h3v.s8.3f5cca017243 from=translated src=- shape=68dc2804 vocab=a842f8d3
+-/
 theorem coeff_ofPowerSeries (F : PowerSeries R) (k : ℤ) :
     (ofPowerSeries ℤ R F).coeff k = if 0 ≤ k then PowerSeries.coeff k.toNat F else 0 := by
   split_ifs with hk
@@ -67,6 +82,9 @@ theorem coeff_ofPowerSeries (F : PowerSeries R) (k : ℤ) :
     obtain ⟨n, hn⟩ := h
     omega
 
+/--
+@isnad1 id=mem.1h4v.s9.ead8e9e780d1 from=translated src=- shape=24f7dafc vocab=9867f14a
+-/
 theorem ofPowerSeries_mem_CB {B : Subalgebra A R} {F : PowerSeries R}
     (hF : ∀ n, PowerSeries.coeff n F ∈ B) : ofPowerSeries ℤ R F ∈ CB B := by
   refine (mem_CB_iff B _).mpr fun k => ?_
@@ -75,6 +93,9 @@ theorem ofPowerSeries_mem_CB {B : Subalgebra A R} {F : PowerSeries R}
   · exact hF _
   · exact B.zero_mem
 
+/--
+@isnad1 id=isunit.2h5v.s10.5d6e7f50d0c0 from=translated src=- shape=00733c91 vocab=20183b91
+-/
 theorem isUnit_map_of_mem_CB (B : Subalgebra A R) (x : LaurentSeries A) {z : LaurentSeries R}
     (hz : z ∈ CB B) (h : x.map (algebraMap A R) * z = 1) : IsUnit (x.map (algebraMap A B)) := by
   obtain ⟨zB, rfl⟩ := hz
@@ -90,6 +111,9 @@ theorem isUnit_map_of_mem_CB (B : Subalgebra A R) (x : LaurentSeries A) {z : Lau
   refine IsUnit.of_mul_eq_one zB (hinj ?_)
   rw [map_mul, hx, h, map_one]
 
+/--
+@isnad1 id=ex.1h2v.s8.1615563d9111 from=translated src=- shape=7a0f1c1d vocab=a9a5d1ee
+-/
 theorem exists_mul_eq_X_pow [Nontrivial R] {F : PowerSeries R} (hF : IsUnit (ofPowerSeries ℤ R F)) :
     ∃ (Γ : PowerSeries R) (n : ℕ), 1 ≤ n ∧ F * Γ = PowerSeries.X ^ n := by
   set U : LaurentSeries R := ((hF.unit⁻¹ : (LaurentSeries R)ˣ) : LaurentSeries R) with hU
@@ -109,6 +133,9 @@ theorem exists_mul_eq_X_pow [Nontrivial R] {F : PowerSeries R} (hF : IsUnit (ofP
     rw [hkey, hm, ofPowerSeries_X_pow]
   rw [← mul_assoc, hFΓ, pow_succ]
 
+/--
+@isnad1 id=eq.0h4v.s9.15e678ca30e1 from=translated src=- shape=97ea09df vocab=2a97b462
+-/
 theorem coeff_mul_range {F Γ : PowerSeries R} (j : ℕ) :
     PowerSeries.coeff j (F * Γ) =
       PowerSeries.constantCoeff F * PowerSeries.coeff j Γ +
@@ -117,6 +144,9 @@ theorem coeff_mul_range {F Γ : PowerSeries R} (j : ℕ) :
   simp only [PowerSeries.coeff_zero_eq_constantCoeff, tsub_zero]
   rw [add_comm]
 
+/--
+@isnad1 id=and.1h4v.s9.5525c973658b from=translated src=- shape=cc3796b8 vocab=d111617f
+-/
 theorem rel_of_mul_eq_X_pow {F Γ : PowerSeries R} {n : ℕ} (h : F * Γ = PowerSeries.X ^ n) :
     (∀ j < n, PowerSeries.constantCoeff F ^ (j + 1) * PowerSeries.coeff j Γ = 0) ∧
       PowerSeries.constantCoeff F ^ n = PowerSeries.constantCoeff F ^ (n + 1) * PowerSeries.coeff n Γ := by
@@ -166,6 +196,9 @@ theorem rel_of_mul_eq_X_pow {F Γ : PowerSeries R} {n : ℕ} (h : F * Γ = Power
   rw [hsum, add_zero, ← mul_assoc, ← pow_succ] at hc'
   exact hc'.symm
 
+/--
+@isnad1 id=and.2h4v.s8.d74c75cc1be4 from=translated src=- shape=bac4ce99 vocab=dde3f2c6
+-/
 theorem idempotent_of_rel {a γ : R} {n : ℕ} (hn : 1 ≤ n) (h : a ^ n = a ^ (n + 1) * γ) :
     (a * γ) ^ n * (a * γ) ^ n = (a * γ) ^ n ∧ a * (a ^ (n - 1) * γ ^ n) = (a * γ) ^ n ∧
       a ^ n * (1 - (a * γ) ^ n) = 0 := by
@@ -186,6 +219,9 @@ theorem idempotent_of_rel {a γ : R} {n : ℕ} (hn : 1 ≤ n) (h : a ^ n = a ^ (
 def OrdLE (F : PowerSeries R) (m : ℕ) : Prop :=
   ∀ P : Ideal R, P.IsPrime → ∃ j ≤ m, PowerSeries.coeff j F ∉ P
 
+/--
+@isnad1 id=ordle.1h4v.s6.71da5d4e99c1 from=translated src=- shape=c7ba8737 vocab=884b9571
+-/
 theorem ordLE_of_mul_eq_X_pow {F Γ : PowerSeries R} {n : ℕ} (h : F * Γ = PowerSeries.X ^ n) :
     OrdLE F n := by
   intro P hP
@@ -202,6 +238,9 @@ theorem ordLE_of_mul_eq_X_pow {F Γ : PowerSeries R} {n : ℕ} (h : F * Γ = Pow
   rw [hc] at hmem
   exact hP.ne_top ((Ideal.eq_top_iff_one P).mpr hmem)
 
+/--
+@isnad1 id=isunit.1h2v.s6.425910a77b69 from=translated src=- shape=23edf6cd vocab=ec274bc5
+-/
 theorem isUnit_of_ordLE_zero {F : PowerSeries R} (h : OrdLE F 0) : IsUnit (PowerSeries.constantCoeff F) := by
   by_contra hu
   obtain ⟨M, hM, haM⟩ := exists_max_ideal_of_mem_nonunits (mem_nonunits_iff.mpr hu)
@@ -214,19 +253,31 @@ def shiftPS (F : PowerSeries R) : PowerSeries R := PowerSeries.mk fun j => Power
 def stepPS (F : PowerSeries R) (e : R) : PowerSeries R :=
   PowerSeries.mk fun j => (if j = 0 then e else 0) + (1 - e) * PowerSeries.coeff (j + 1) F
 
+/--
+@isnad1 id=eq.0h4v.s8.7e4142444424 from=translated src=- shape=01b7b067 vocab=4c316e9d
+-/
 theorem coeff_stepPS (F : PowerSeries R) (e : R) (j : ℕ) :
     PowerSeries.coeff j (stepPS F e) = (if j = 0 then e else 0) + (1 - e) * PowerSeries.coeff (j + 1) F :=
   PowerSeries.coeff_mk _ _
 
+/--
+@isnad1 id=eq.0h2v.s7.cf0f350c8193 from=translated src=- shape=4529d7c4 vocab=3df81975
+-/
 theorem F_eq (F : PowerSeries R) :
     F = PowerSeries.X * shiftPS F + PowerSeries.C (PowerSeries.constantCoeff F) :=
   PowerSeries.eq_X_mul_shift_add_const F
 
+/--
+@isnad1 id=eq.0h3v.s7.6e689f870d17 from=translated src=- shape=6db2493b vocab=205fcf15
+-/
 theorem stepPS_eq (F : PowerSeries R) (e : R) :
     stepPS F e = PowerSeries.C e + PowerSeries.C (1 - e) * shiftPS F := by
   ext j
   rw [coeff_stepPS, map_add, PowerSeries.coeff_C, PowerSeries.coeff_C_mul, shiftPS, PowerSeries.coeff_mk]
 
+/--
+@isnad1 id=eq.1h3v.s6.9faa79b67871 from=translated src=- shape=16463df3 vocab=9c1cdc1d
+-/
 theorem one_sub_pow_succ {e : R} (he : e * e = e) (k : ℕ) : (1 - e) ^ (k + 1) = 1 - e := by
   induction k with
   | zero => rw [pow_one]
@@ -234,6 +285,9 @@ theorem one_sub_pow_succ {e : R} (he : e * e = e) (k : ℕ) : (1 - e) ^ (k + 1) 
     rw [pow_succ, ih]
     linear_combination he
 
+/--
+@isnad1 id=ordle.3h5v.s7.d4e6aab7e2e7 from=translated src=- shape=6b6a3230 vocab=e124bf92
+-/
 theorem ordLE_stepPS {F : PowerSeries R} {m : ℕ} (hF : OrdLE F (m + 1)) {e : R} (he : e * e = e)
     {N : ℕ} (haN : PowerSeries.constantCoeff F ^ N * (1 - e) = 0) : OrdLE (stepPS F e) m := by
   intro P hP
@@ -273,6 +327,9 @@ theorem ordLE_stepPS {F : PowerSeries R} {m : ℕ} (hF : OrdLE F (m + 1)) {e : R
     have h2 : (1 - e) * PowerSeries.coeff (0 + 1) F ∈ P := P.mul_mem_right _ h1e
     simpa using P.sub_mem hmem h2
 
+/--
+@isnad1 id=isunit.3h4v.s9.69fd36f06b34 from=translated src=- shape=2c52bfb0 vocab=35d80eaf
+-/
 theorem isUnit_ofPowerSeries_stepPS {F : PowerSeries R} (hF : IsUnit (ofPowerSeries ℤ R F)) {e : R}
     (he : e * e = e) {N : ℕ} (haN : PowerSeries.constantCoeff F ^ N * (1 - e) = 0) :
     IsUnit (ofPowerSeries ℤ R (stepPS F e)) := by
@@ -306,6 +363,9 @@ theorem isUnit_ofPowerSeries_stepPS {F : PowerSeries R} (hF : IsUnit (ofPowerSer
   linear_combination (cA * U * W + 1 - q * U * W - fs + fs * q * U * W) * hE + ((1 - cE) * W) * hfU +
     (1 - cE) * hgeom - (1 - cE) * h4
 
+/--
+@isnad1 id=ex.3h5v.s9.31eeb2f19ccb from=translated src=- shape=86ab5e89 vocab=3fbefe5b
+-/
 theorem exists_inv_of_constantCoeff {B : Subalgebra A R} {H : PowerSeries R}
     (hH : ∀ j, PowerSeries.coeff j H ∈ B) {b : R} (hb : b ∈ B) (h1 : PowerSeries.constantCoeff H * b = 1) :
     ∃ z ∈ CB B, ofPowerSeries ℤ R H * z = 1 := by
@@ -330,6 +390,9 @@ theorem exists_inv_of_constantCoeff {B : Subalgebra A R} {H : PowerSeries R}
   · rw [← map_mul (ofPowerSeries ℤ R), ← hmap, ← map_mul (PowerSeries.map (algebraMap B R)), ← hu,
       Units.mul_inv, map_one, map_one]
 
+/--
+@isnad1 id=ex.3h5v.s9.fb7b8d556997 from=translated src=- shape=baa7c143 vocab=dc465c75
+-/
 theorem core [Nontrivial R] (m : ℕ) : ∀ (S₀ : Finset R) (F : PowerSeries R),
     (∀ j, PowerSeries.coeff j F ∈ Algebra.adjoin A (S₀ : Set R)) → IsUnit (ofPowerSeries ℤ R F) →
     OrdLE F m →
@@ -488,6 +551,9 @@ end LaurentSeries.UnitDescent
 end
 
 open HahnSeries LaurentSeries.UnitDescent in
+/--
+@isnad1 id=ex.1h3v.s10.29c6dc4781b8 from=translated src=- shape=cb353e1e vocab=2d41d9e3
+-/
 theorem solution
     {A : Type u} {R : Type v} [CommRing A] [CommRing R] [Algebra A R]
     (x : LaurentSeries A) (hx : IsUnit (x.map (algebraMap A R))) :

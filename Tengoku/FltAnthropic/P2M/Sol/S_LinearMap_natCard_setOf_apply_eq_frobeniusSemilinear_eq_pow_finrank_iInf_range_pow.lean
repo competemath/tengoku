@@ -15,6 +15,9 @@ open Module Submodule
 
 variable {k V : Type*} [Field k] [AddCommGroup V] [Module k V]
 
+/--
+@isnad1 id=eq.1h6v.s10.81d715eedffa from=translated src=- shape=00698688 vocab=4c124417
+-/
 theorem pow_apply_comm (S : V →+ V) (U : V →ₗ[k] V) (hcomm : ∀ v : V, U (S v) = S (U v))
     (n : ℕ) (v : V) : (U ^ n) (S v) = S ((U ^ n) v) := by
   induction n generalizing v with
@@ -22,6 +25,9 @@ theorem pow_apply_comm (S : V →+ V) (U : V →ₗ[k] V) (hcomm : ∀ v : V, U 
   | succ n ih =>
     rw [pow_succ, Module.End.mul_apply, Module.End.mul_apply, hcomm, ih]
 
+/--
+@isnad1 id=eq.2h6v.s9.7ee733c77d5d from=translated src=- shape=17ab1201 vocab=1c51e9a9
+-/
 theorem pow_apply_eq_iterate (S : V →+ V) (U : V →ₗ[k] V) (hcomm : ∀ v : V, U (S v) = S (U v))
     {a : V} (ha : U a = S a) (n : ℕ) : (U ^ n) a = (⇑S)^[n] a := by
   induction n with
@@ -34,6 +40,9 @@ end ValkSemilinearFitting
 
 open Module Submodule ValkSemilinearFitting in
 
+/--
+@isnad1 id=eq.3h5v.s10.8cff65d6fe7a from=translated src=- shape=68bb88fc vocab=a375b40d
+-/
 theorem solution
     {k V : Type*} [Field k] [IsAlgClosed k] (p : ℕ) [Fact p.Prime] [CharP k p]
     [AddCommGroup V] [Module k V] [FiniteDimensional k V]

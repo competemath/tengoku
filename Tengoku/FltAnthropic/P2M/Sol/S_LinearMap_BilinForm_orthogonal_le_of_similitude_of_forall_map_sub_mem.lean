@@ -5,6 +5,9 @@ import Tengoku
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_LinearMap_BilinForm_orthogonal_le_of_similitude_of_forall_map_sub_mem.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 namespace P2MW.S_LinearMap_BilinForm_orthogonal_le_of_similitude_of_forall_map_sub_mem
 
+/--
+@isnad1 id=le.5h6v.s10.79fa0f96485d from=translated src=- shape=7ba69fff vocab=b41f7aaf
+-/
 theorem solution
     {K V : Type*} [Field K] [AddCommGroup V] [Module K V]
     (B : LinearMap.BilinForm K V) (hB : ∀ w : V, (∀ x : V, B x w = 0) → w = 0)

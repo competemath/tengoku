@@ -12,6 +12,9 @@ open MeasureTheory MeasureTheory.Measure
 
 namespace SolGL2HaarUnimodular
 
+/--
+@isnad1 id=eq.0h3v.s9.00a550ec2bbe from=translated src=- shape=2a7217e7 vocab=c0dc3cec
+-/
 theorem map_mul_right_eq_self
     {F : Type*} [Field F] [TopologicalSpace F] [IsTopologicalRing F]
     [LocallyCompactSpace (GL (Fin 2) F)] [SecondCountableTopology (GL (Fin 2) F)]
@@ -27,6 +30,9 @@ theorem map_mul_right_eq_self
 
 end SolGL2HaarUnimodular
 
+/--
+@isnad1 id=ismulrig.0h2v.s9.2ae27e3c8120 from=translated src=- shape=be47e0c0 vocab=b4da4333
+-/
 theorem solution
     {F : Type*} [Field F] [CharZero F] [TopologicalSpace F] [IsTopologicalRing F]
     [LocallyCompactSpace (GL (Fin 2) F)] [SecondCountableTopology (GL (Fin 2) F)]

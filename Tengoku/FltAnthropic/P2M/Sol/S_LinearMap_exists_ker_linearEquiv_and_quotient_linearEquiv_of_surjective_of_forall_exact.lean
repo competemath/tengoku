@@ -23,6 +23,9 @@ variable {R : Type u} [CommRing R] {C D : ℕ → Type v}
 
 include hf
 
+/--
+@isnad1 id=mem.2h8v.s10.ac6f29f67894 from=translated src=- shape=edee8a6b vocab=ac3726fb
+-/
 theorem map_mem_ker (n : ℕ) (x : C n) (hx : x ∈ LinearMap.ker (dC n)) : f n x ∈ LinearMap.ker (dD n) := by
   rw [LinearMap.mem_ker] at hx ⊢
   cases n with
@@ -32,9 +35,15 @@ theorem map_mem_ker (n : ℕ) (x : C n) (hx : x ∈ LinearMap.ker (dC n)) : f n 
 def kerMap (n : ℕ) : LinearMap.ker (dC n) →ₗ[R] LinearMap.ker (dD n) :=
   (f n).restrict fun x hx => map_mem_ker dC dD f hf n x hx
 
+/--
+@isnad1 id=eq.1h8v.s12.639280462a89 from=translated src=- shape=d76605ad vocab=2480ffb6
+-/
 theorem kerMap_apply (n : ℕ) (x : LinearMap.ker (dC n)) : (kerMap dC dD f hf n x : D n) = f n x := rfl
 
 include hex0 hdC hsurj hexS in
+/--
+@isnad1 id=bijectiv.5h6v.s13.a047d1221561 from=translated src=- shape=8dcf3a2c vocab=8998f7c1
+-/
 theorem kerMap_zero_bijective : Function.Bijective (kerMap dC dD f hf 0) := by
   constructor
   · intro x y hxy
@@ -60,6 +69,9 @@ theorem kerMap_zero_bijective : Function.Bijective (kerMap dC dD f hf 0) := by
 abbrev bd (d : ∀ n, C n →ₗ[R] C (n + 1)) (n : ℕ) : Submodule R (LinearMap.ker (d (n + 1))) :=
   (LinearMap.range (d n)).comap (LinearMap.ker (d (n + 1))).subtype
 
+/--
+@isnad1 id=le.1h7v.s12.e9801de723c8 from=translated src=- shape=696d21e3 vocab=c29fc260
+-/
 theorem bd_le_comap (n : ℕ) :
     bd dC n ≤ (bd dD n).comap (kerMap dC dD f hf (n + 1)) := by
   intro x hx
@@ -71,11 +83,17 @@ def quotMap (n : ℕ) :
     (LinearMap.ker (dC (n + 1)) ⧸ bd dC n) →ₗ[R] (LinearMap.ker (dD (n + 1)) ⧸ bd dD n) :=
   Submodule.mapQ (bd dC n) (bd dD n) (kerMap dC dD f hf (n + 1)) (bd_le_comap dC dD f hf n)
 
+/--
+@isnad1 id=eq.1h8v.s15.17c73058ed03 from=translated src=- shape=caca54ce vocab=546cca95
+-/
 theorem quotMap_mk (n : ℕ) (x : LinearMap.ker (dC (n + 1))) :
     quotMap dC dD f hf n (Submodule.Quotient.mk x) = Submodule.Quotient.mk (kerMap dC dD f hf (n + 1) x) :=
   rfl
 
 include hdC hsurj hexS in
+/--
+@isnad1 id=bijectiv.4h7v.s15.d5f88482fdf6 from=translated src=- shape=f08b4793 vocab=6e5836d5
+-/
 theorem quotMap_bijective (n : ℕ) : Function.Bijective (quotMap dC dD f hf n) := by
   constructor
   ·
@@ -112,6 +130,9 @@ theorem quotMap_bijective (n : ℕ) : Function.Bijective (quotMap dC dD f hf n) 
         rw [map_sub, hvf, sub_zero, hx']
 
 include hdC hsurj hex0 hexS in
+/--
+@isnad1 id=and.5h6v.s17.9f92556c8c05 from=translated src=- shape=29731ca9 vocab=fd757b59
+-/
 theorem main :
     (∃ e : LinearMap.ker (dC 0) ≃ₗ[R] LinearMap.ker (dD 0), ∀ x : LinearMap.ker (dC 0), (e x : D 0) = f 0 x) ∧
     ∀ n : ℕ, ∃ e : (LinearMap.ker (dC (n + 1)) ⧸
@@ -127,6 +148,9 @@ theorem main :
 
 end P2mAcyclicKer
 
+/--
+@isnad1 id=and.5h6v.s17.9f92556c8c05 from=translated src=- shape=29731ca9 vocab=fd757b59
+-/
 theorem solution
     {R : Type u} [CommRing R] {C D : ℕ → Type v}
     [∀ n, AddCommGroup (C n)] [∀ n, Module R (C n)] [∀ n, AddCommGroup (D n)] [∀ n, Module R (D n)]

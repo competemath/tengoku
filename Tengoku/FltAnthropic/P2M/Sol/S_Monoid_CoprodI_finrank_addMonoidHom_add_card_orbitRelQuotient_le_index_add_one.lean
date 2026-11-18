@@ -39,6 +39,9 @@ def graph : SimpleGraph (Vertex G) where
 
 variable {G}
 
+/--
+@isnad1 id=iff.0h5v.s8.3f5509532530 from=translated src=- shape=32e12643 vocab=224ca083
+-/
 theorem mk_eq_mk_iff {i : ι} {g h : CoprodI G} :
     Vertex.mk (G := G) i g = Vertex.mk i h ↔ g⁻¹ * h ∈ (of (M := G) (i := i)).range := by
   constructor
@@ -48,10 +51,16 @@ theorem mk_eq_mk_iff {i : ι} {g h : CoprodI G} :
   · intro H
     exact congrArg (Sigma.mk i) (QuotientGroup.eq.mpr H)
 
+/--
+@isnad1 id=adj.1h5v.s5.ee57720cda71 from=translated src=- shape=cd76ecd9 vocab=5efd00e6
+-/
 theorem adj_mk {i j : ι} (hij : i ≠ j) (g : CoprodI G) :
     (graph G).Adj (Vertex.mk i g) (Vertex.mk j g) :=
   ⟨hij, g, rfl, rfl⟩
 
+/--
+@isnad1 id=adj.1h4v.s7.e918a52ee33f from=translated src=- shape=3ba621b7 vocab=5efd00e6
+-/
 theorem adj_one {i j : ι} (hij : i ≠ j) :
     (graph G).Adj (Vertex.mk i (1 : CoprodI G)) (Vertex.mk j 1) :=
   adj_mk hij 1
@@ -59,6 +68,9 @@ theorem adj_one {i j : ι} (hij : i ≠ j) :
 scoped instance : SMul (CoprodI G) (Vertex G) where
   smul g v := ⟨v.1, g • v.2⟩
 
+/--
+@isnad1 id=eq.0h5v.s7.27059c39eee1 from=translated src=- shape=9dea3922 vocab=69ddfcbd
+-/
 @[scoped simp]
 theorem smul_mk (g : CoprodI G) (i : ι) (h : CoprodI G) :
     g • Vertex.mk i h = Vertex.mk i (g * h) :=
@@ -74,6 +86,9 @@ scoped instance : MulAction (CoprodI G) (Vertex G) where
     show (⟨i, (g * h) • x⟩ : Vertex G) = ⟨i, g • h • x⟩
     rw [mul_smul]
 
+/--
+@isnad1 id=adj.1h5v.s7.86288d1ff872 from=translated src=- shape=e622f506 vocab=5d601aa6
+-/
 theorem smul_adj {v w : Vertex G} (g : CoprodI G) (h : (graph G).Adj v w) :
     (graph G).Adj (g • v) (g • w) := by
   obtain ⟨hvw, e, hev, hew⟩ := h
@@ -83,18 +98,30 @@ def smulHom (g : CoprodI G) : graph G →g graph G where
   toFun v := g • v
   map_rel' := smul_adj g
 
+/--
+@isnad1 id=reachabl.1h5v.s7.76d71ced7527 from=translated src=- shape=e622f506 vocab=92e41908
+-/
 theorem reachable_smul {v w : Vertex G} (g : CoprodI G) (h : (graph G).Reachable v w) :
     (graph G).Reachable (g • v) (g • w) :=
   h.map (smulHom g)
 
+/--
+@isnad1 id=iff.0h5v.s9.5c17f7041a76 from=translated src=- shape=f4fa9e41 vocab=bc1c0870
+-/
 theorem smul_eq_self_iff {h : CoprodI G} {i : ι} {g : CoprodI G} :
     h • Vertex.mk i g = Vertex.mk i g ↔ g⁻¹ * h * g ∈ (of (M := G) (i := i)).range := by
   rw [smul_mk, mk_eq_mk_iff, show (h * g)⁻¹ * g = (g⁻¹ * h * g)⁻¹ by group, inv_mem_iff]
 
+/--
+@isnad1 id=eq.0h4v.s8.8122f2711b26 from=translated src=- shape=7f4efdc5 vocab=4edc150b
+-/
 theorem mk_of_eq_mk_one {i : ι} (m : G i) :
     Vertex.mk (G := G) i (of m) = Vertex.mk i 1 :=
   mk_eq_mk_iff.mpr (MonoidHom.mem_range.mpr ⟨m⁻¹, by simp⟩)
 
+/--
+@isnad1 id=reachabl.0h4v.s7.cc81bf3b2bcd from=translated src=- shape=df64943a vocab=4972031e
+-/
 theorem reachable_one_one (i j : ι) :
     (graph G).Reachable (Vertex.mk i (1 : CoprodI G)) (Vertex.mk j 1) := by
   classical
@@ -102,6 +129,9 @@ theorem reachable_one_one (i j : ι) :
   · subst h; exact Reachable.refl _
   · exact (adj_one h).reachable
 
+/--
+@isnad1 id=reachabl.0h5v.s8.1919b0f2d1d4 from=translated src=- shape=681b06bd vocab=b2299be4
+-/
 theorem reachable_one_of {i k : ι} (m : G k) :
     (graph G).Reachable (Vertex.mk i (1 : CoprodI G)) (Vertex.mk i (of m)) := by
   classical
@@ -112,6 +142,9 @@ theorem reachable_one_of {i k : ι} (m : G k) :
     rw [← mk_of_eq_mk_one m]
     exact (adj_mk hki (of m)).reachable
 
+/--
+@isnad1 id=reachabl.0h5v.s7.8d499da11626 from=translated src=- shape=688e0725 vocab=4972031e
+-/
 theorem reachable_one (i : ι) (g : CoprodI G) (j : ι) :
     (graph G).Reachable (Vertex.mk i (1 : CoprodI G)) (Vertex.mk j g) := by
   induction g using CoprodI.induction_left with
@@ -121,6 +154,9 @@ theorem reachable_one (i : ι) (g : CoprodI G) (j : ι) :
     rw [smul_mk, smul_mk, mul_one] at step
     exact (reachable_one_of m).trans step
 
+/--
+@isnad1 id=connecte.0h2v.s4.7286284a1dba from=translated src=- shape=72533ce7 vocab=7dd11c7a
+-/
 theorem connected [Nonempty ι] : (graph G).Connected := by
   inhabit ι
   rw [connected_iff_exists_forall_reachable]
@@ -173,6 +209,9 @@ structure IsConnectedTransversal {V : Type*} (T : SimpleGraph V) (Γ : Type*) [G
 
 variable {V : Type*} {T : SimpleGraph V} {Γ : Type*} [Group Γ] [MulAction Γ V]
 
+/--
+@isnad1 id=walkconn.3h5v.s5.69a53313a712 from=translated src=- shape=d661b91f vocab=aaa6b6e4
+-/
 theorem WalkConnected.insert_of_adj {s : Set V} (hs : WalkConnected T s) {v w : V}
     (hv : v ∈ s) (hadj : T.Adj v w) : WalkConnected T (insert w s) := by
   have key : ∀ x ∈ insert w s, ∃ p : T.Walk v x, ∀ y ∈ p.support, y ∈ insert w s := by
@@ -196,6 +235,9 @@ theorem WalkConnected.insert_of_adj {s : Set V} (hs : WalkConnected T s) {v w : 
     exact hp y hy
   · exact hq y (List.mem_of_mem_tail hy)
 
+/--
+@isnad1 id=ex.2h4v.s6.dad7316b1e1f from=translated src=- shape=98bdfecc vocab=e0c2bfca
+-/
 theorem exists_isConnectedTransversal
     (hsmul : ∀ (γ : Γ) {v w : V}, T.Adj v w → T.Adj (γ • v) (γ • w))
     (hpre : T.Preconnected) (v₀ : V) :
@@ -208,9 +250,15 @@ variable {D : Set V}
 noncomputable def orbitRepr (hD : IsConnectedTransversal T Γ D) (v : V) : V :=
   (hD.exists_mem_orbit v).choose
 
+/--
+@isnad1 id=mem.1h5v.s5.b06bef0dd44c from=translated src=- shape=e01c6ba7 vocab=226bddea
+-/
 theorem orbitRepr_mem (hD : IsConnectedTransversal T Γ D) (v : V) : orbitRepr hD v ∈ D :=
   (hD.exists_mem_orbit v).choose_spec.1
 
+/--
+@isnad1 id=mem.1h5v.s6.94af8b6366b1 from=translated src=- shape=22034351 vocab=f369a31d
+-/
 theorem orbitRepr_mem_orbit (hD : IsConnectedTransversal T Γ D) (v : V) :
     orbitRepr hD v ∈ orbit Γ v :=
   (hD.exists_mem_orbit v).choose_spec.2
@@ -218,14 +266,23 @@ theorem orbitRepr_mem_orbit (hD : IsConnectedTransversal T Γ D) (v : V) :
 noncomputable def transl (hD : IsConnectedTransversal T Γ D) (v : V) : Γ :=
   (orbitRepr_mem_orbit hD v).choose⁻¹
 
+/--
+@isnad1 id=eq.1h5v.s6.8edf19ca8849 from=translated src=- shape=669c3e39 vocab=ca2da90f
+-/
 theorem transl_smul_orbitRepr (hD : IsConnectedTransversal T Γ D) (v : V) :
     transl hD v • orbitRepr hD v = v :=
   inv_smul_eq_iff.mpr (orbitRepr_mem_orbit hD v).choose_spec.symm
 
+/--
+@isnad1 id=eq.2h5v.s5.40695b81ed04 from=translated src=- shape=2b4df5e7 vocab=226bddea
+-/
 theorem orbitRepr_eq_self (hD : IsConnectedTransversal T Γ D) {v : V} (hv : v ∈ D) :
     orbitRepr hD v = v :=
   hD.eq_of_mem_orbit _ (orbitRepr_mem hD v) _ hv (orbitRepr_mem_orbit hD v)
 
+/--
+@isnad1 id=eq.1h6v.s6.9648a06b6cd0 from=translated src=- shape=81459687 vocab=07a9822c
+-/
 theorem orbitRepr_smul (hD : IsConnectedTransversal T Γ D) (γ : Γ) (v : V) :
     orbitRepr hD (γ • v) = orbitRepr hD v := by
   refine hD.eq_of_mem_orbit _ (orbitRepr_mem hD _) _ (orbitRepr_mem hD _) ?_
@@ -242,10 +299,16 @@ open GraphTransversal
 variable {G : Fin 2 → Type*} [∀ i, Group (G i)] {H : Subgroup (CoprodI G)}
   {D : Set (Vertex G)}
 
+/--
+@isnad1 id=adj.1h5v.s12.7675bf311219 from=translated src=- shape=feef54ad vocab=2c7f5e0e
+-/
 theorem smul_adj_subgroup (η : H) {v w : Vertex G} (h : (graph G).Adj v w) :
     (graph G).Adj (η • v) (η • w) :=
   smul_adj (η : CoprodI G) h
 
+/--
+@isnad1 id=ex.0h3v.s8.08caab921f53 from=translated src=- shape=c12db47d vocab=7129c84e
+-/
 theorem exists_transversal (H : Subgroup (CoprodI G)) (v₀ : Vertex G) :
     ∃ D : Set (Vertex G), v₀ ∈ D ∧ IsConnectedTransversal (graph G) H D :=
   GraphTransversal.exists_isConnectedTransversal
@@ -254,6 +317,9 @@ theorem exists_transversal (H : Subgroup (CoprodI G)) (v₀ : Vertex G) :
 noncomputable def edgeGen (hD : IsConnectedTransversal (graph G) H D) (g : CoprodI G) : H :=
   (transl hD (Vertex.mk 0 g))⁻¹ * transl hD (Vertex.mk 1 g)
 
+/--
+@isnad1 id=mem.2h5v.s11.8b0881c73bc4 from=translated src=- shape=4a0656cf vocab=78d984af
+-/
 theorem inv_mul_transl_mem_closure (hD : IsConnectedTransversal (graph G) H D)
     {v w : Vertex G} (hadj : (graph G).Adj v w) :
     (transl hD v)⁻¹ * transl hD w ∈ Subgroup.closure (Set.range (edgeGen hD)) := by
@@ -271,6 +337,9 @@ theorem inv_mul_transl_mem_closure (hD : IsConnectedTransversal (graph G) H D)
     rw [hkey]
     exact (Subgroup.closure _).inv_mem (Subgroup.subset_closure (Set.mem_range_self g))
 
+/--
+@isnad1 id=mem.1h6v.s11.8da51e6b9ff7 from=translated src=- shape=4a0656cf vocab=b52becb7
+-/
 theorem inv_mul_transl_mem_closure_of_walk (hD : IsConnectedTransversal (graph G) H D)
     {a b : Vertex G} (p : (graph G).Walk a b) :
     (transl hD a)⁻¹ * transl hD b ∈ Subgroup.closure (Set.range (edgeGen hD)) := by
@@ -307,6 +376,9 @@ def vertexToSigma (H : Subgroup (CoprodI G)) (v : Vertex G) :
     Σ i : Fin 2, ComponentOrbits H i :=
   ⟨v.1, Quotient.mk'' v.2⟩
 
+/--
+@isnad1 id=eq.0h4v.s9.3cbbbd30133a from=translated src=- shape=7b9bd7cb vocab=38fa849f
+-/
 theorem vertexToSigma_smul (H : Subgroup (CoprodI G)) (η : H) (v : Vertex G) :
     vertexToSigma H ((η : CoprodI G) • v) = vertexToSigma H v := by
   obtain ⟨i, x⟩ := v
@@ -315,6 +387,9 @@ theorem vertexToSigma_smul (H : Subgroup (CoprodI G)) (η : H) (v : Vertex G) :
   refine congrArg (Sigma.mk i) (Quotient.sound' ?_)
   exact mem_orbit_iff.mpr ⟨η, rfl⟩
 
+/--
+@isnad1 id=eq.1h4v.s11.804e6a77d82d from=translated src=- shape=bda96620 vocab=e2355395
+-/
 theorem vertexToSigma_eq_of_mem_orbit (H : Subgroup (CoprodI G)) {v w : Vertex G}
     (hvw : v ∈ orbit H w) : vertexToSigma H v = vertexToSigma H w := by
   obtain ⟨η, hη⟩ := hvw
@@ -349,13 +424,22 @@ section Bridge
 
 variable {H : Subgroup (CoprodI G)} {D : Set (Vertex G)} (hD : IsConnectedTransversal (graph G) H D)
 
+/--
+@isnad1 id=eq.1h4v.s10.85e1f8509537 from=translated src=- shape=1cbd7156 vocab=21a9bc41
+-/
 theorem transl_smul_orbitRepr' (v : Vertex G) : ((transl hD v : H) : CoprodI G) • orbitRepr hD v = v :=
   transl_smul_orbitRepr hD v
 
+/--
+@isnad1 id=eq.1h5v.s10.85c0a201d4d2 from=translated src=- shape=fe13773a vocab=015e7033
+-/
 theorem orbitRepr_smul' (η : H) (v : Vertex G) :
     orbitRepr hD ((η : CoprodI G) • v) = orbitRepr hD v :=
   orbitRepr_smul hD η v
 
+/--
+@isnad1 id=ex.1h5v.s12.cd2c6998fd1a from=translated src=- shape=a6871f84 vocab=5277091b
+-/
 theorem exists_transl_smul (η : H) (v : Vertex G) :
     ∃ s : H, (s : CoprodI G) • orbitRepr hD v = orbitRepr hD v ∧
       transl hD ((η : CoprodI G) • v) = η * transl hD v * s := by
@@ -368,6 +452,9 @@ theorem exists_transl_smul (η : H) (v : Vertex G) :
     inv_smul_smul, inv_smul_eq_iff]
   exact h2.symm
 
+/--
+@isnad1 id=eq.2h4v.s10.7be3bb2876e2 from=translated src=- shape=945ef0ff vocab=fa24cc47
+-/
 theorem transl_smul_self_of_mem {v : Vertex G} (hv : v ∈ D) : ((transl hD v : H) : CoprodI G) • v = v := by
   have h := transl_smul_orbitRepr' hD v
   rwa [orbitRepr_eq_self hD hv] at h
@@ -379,6 +466,9 @@ section Characters
 
 variable (H : Subgroup (CoprodI G)) (K : Type*) [Field K]
 
+/--
+@isnad1 id=eq.2h6v.s12.a3555ebe5793 from=translated src=- shape=cec4280f vocab=206b6f8d
+-/
 theorem apply_eq_zero_of_smul_eq (hK : ∀ i, (Nat.card (G i) : K) ≠ 0) (φ : Additive H →+ K)
     (η : H) (v : Vertex G) (hfix : (η : CoprodI G) • v = v) : φ (Additive.ofMul η) = 0 := by
   obtain ⟨i, x⟩ := v
@@ -404,9 +494,15 @@ variable {H} {D : Set (Vertex G)} (hK : ∀ i, (Nat.card (G i) : K) ≠ 0) (φ :
   (hD : IsConnectedTransversal (graph G) H D)
 include hK
 
+/--
+@isnad1 id=eq.3h6v.s12.7923b747512f from=translated src=- shape=828d7f05 vocab=1d5b82e7
+-/
 theorem apply_transl_eq_zero_of_mem {v : Vertex G} (hv : v ∈ D) : φ (Additive.ofMul (transl hD v)) = 0 :=
   apply_eq_zero_of_smul_eq H K hK φ _ v (transl_smul_self_of_mem hD hv)
 
+/--
+@isnad1 id=eq.2h7v.s14.dd46ac139080 from=translated src=- shape=0c9ed69b vocab=4768e269
+-/
 theorem apply_transl_smul (η : H) (v : Vertex G) :
     φ (Additive.ofMul (transl hD ((η : CoprodI G) • v)))
       = φ (Additive.ofMul η) + φ (Additive.ofMul (transl hD v)) := by
@@ -414,6 +510,9 @@ theorem apply_transl_smul (η : H) (v : Vertex G) :
   rw [heq, ofMul_mul, ofMul_mul, map_add, map_add, apply_eq_zero_of_smul_eq H K hK φ s _ hs,
     add_zero]
 
+/--
+@isnad1 id=eq.2h7v.s13.08ed17e638f1 from=translated src=- shape=6b22bd4a vocab=5dc267af
+-/
 theorem apply_edgeGen_smul (η : H) (g : CoprodI G) :
     φ (Additive.ofMul (edgeGen hD ((η : CoprodI G) * g))) = φ (Additive.ofMul (edgeGen hD g)) := by
   show φ (Additive.ofMul ((transl hD (Vertex.mk 0 ((η : CoprodI G) * g)))⁻¹
@@ -425,6 +524,9 @@ theorem apply_edgeGen_smul (η : H) (g : CoprodI G) :
     apply_transl_smul K hK φ hD, apply_transl_smul K hK φ hD]
   ring
 
+/--
+@isnad1 id=eq.4h6v.s12.6dedbe05cfaa from=translated src=- shape=dd9ec018 vocab=3da230d3
+-/
 theorem apply_edgeGen_eq_zero_of_mem {g : CoprodI G}
     (h0 : Vertex.mk 0 g ∈ D) (h1 : Vertex.mk 1 g ∈ D) : φ (Additive.ofMul (edgeGen hD g)) = 0 := by
   show φ (Additive.ofMul ((transl hD (Vertex.mk 0 g))⁻¹ * transl hD (Vertex.mk 1 g))) = 0
@@ -432,6 +534,9 @@ theorem apply_edgeGen_eq_zero_of_mem {g : CoprodI G}
     apply_transl_eq_zero_of_mem K hK φ hD h1, neg_zero, add_zero]
 
 omit hK in
+/--
+@isnad1 id=eq.2h6v.s13.a8e452cf83d6 from=translated src=- shape=43f6c5e5 vocab=7330951f
+-/
 theorem apply_eq_zero_of_mem_closure {S : Set H} (hS : ∀ s ∈ S, φ (Additive.ofMul s) = 0) {x : H}
     (hx : x ∈ Subgroup.closure S) : φ (Additive.ofMul x) = 0 := by
   induction hx using Subgroup.closure_induction with
@@ -481,9 +586,15 @@ def edgeOrbitsEquiv : EdgeOrbits H ≃ CoprodI G ⧸ H :=
       try rfl)).trans
     (QuotientGroup.quotientRightRelEquivQuotientLeftRel H)
 
+/--
+@isnad1 id=eq.0h2v.s6.c3957c9aba3a from=translated src=- shape=d609568f vocab=e9cd149b
+-/
 theorem card_edgeOrbits : Nat.card (EdgeOrbits H) = H.index := by
   rw [Nat.card_congr (edgeOrbitsEquiv H), Subgroup.index]
 
+/--
+@isnad1 id=finite.0h2v.s6.dcdd4949a3b9 from=translated src=- shape=4c7ce19f vocab=3cac9885
+-/
 theorem finite_edgeOrbits [H.FiniteIndex] : Finite (EdgeOrbits H) :=
   Finite.of_equiv _ (edgeOrbitsEquiv H).symm
 
@@ -493,12 +604,18 @@ def edgeToComponent (i : Fin 2) : EdgeOrbits H → ComponentOrbits H i :=
     obtain ⟨η, rfl⟩ := hab
     exact ⟨η, rfl⟩)
 
+/--
+@isnad1 id=surjecti.0h3v.s6.8dbf0265377a from=translated src=- shape=94b988a4 vocab=b331b9c8
+-/
 theorem edgeToComponent_surjective (i : Fin 2) : Function.Surjective (edgeToComponent H i) := by
   intro c
   induction c using Quotient.inductionOn' with | h x =>
   induction x using QuotientGroup.induction_on with | H g =>
   exact ⟨Quotient.mk'' g, rfl⟩
 
+/--
+@isnad1 id=finite.0h3v.s6.12c92145a32c from=translated src=- shape=f4e9f101 vocab=96cdaa9c
+-/
 theorem finite_componentOrbits [H.FiniteIndex] (i : Fin 2) : Finite (ComponentOrbits H i) := by
   haveI := finite_edgeOrbits H
   exact Finite.of_surjective _ (edgeToComponent_surjective H i)
@@ -508,6 +625,9 @@ variable {H} {D : Set (Vertex G)}
 def IsInternal (D : Set (Vertex G)) (c : EdgeOrbits H) : Prop :=
   ∃ g : CoprodI G, Quotient.mk _ g = c ∧ Vertex.mk 0 g ∈ D ∧ Vertex.mk 1 g ∈ D
 
+/--
+@isnad1 id=eq.0h3v.s7.a73f45503306 from=translated src=- shape=06533e5b vocab=7aa40657
+-/
 theorem card_int_add_card_rep [H.FiniteIndex] (D : Set (Vertex G)) :
     Nat.card {c : EdgeOrbits H // IsInternal D c} + Nat.card {c : EdgeOrbits H // ¬ IsInternal D c}
       = H.index := by
@@ -515,6 +635,9 @@ theorem card_int_add_card_rep [H.FiniteIndex] (D : Set (Vertex G)) :
   haveI := finite_edgeOrbits H
   rw [← Nat.card_sum, Nat.card_congr (Equiv.sumCompl (IsInternal (H := H) D)), card_edgeOrbits]
 
+/--
+@isnad1 id=ex.1h4v.s11.3895d0deb07d from=translated src=- shape=1c9592f9 vocab=ca2f4b2f
+-/
 theorem exists_smul_eq_of_mk_eq {g g' : CoprodI G}
     (h : (Quotient.mk (orbitRel H (CoprodI G)) g : EdgeOrbits H) = Quotient.mk _ g') :
     ∃ η : H, (η : CoprodI G) * g' = g := by
@@ -530,6 +653,9 @@ noncomputable def ev (hD : IsConnectedTransversal (graph G) H D) : (Additive H �
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
+/--
+@isnad1 id=injectiv.3h5v.s13.06149cc87941 from=translated src=- shape=ac2a5f9d vocab=c6c6e161
+-/
 theorem ev_injective (hD : IsConnectedTransversal (graph G) H D) (hK : ∀ i, (Nat.card (G i) : K) ≠ 0)
     {v₀ : Vertex G} (hv₀ : v₀ ∈ D) : Function.Injective (ev K hD) := by
   rw [← LinearMap.ker_eq_bot, LinearMap.ker_eq_bot']
@@ -550,6 +676,9 @@ theorem ev_injective (hD : IsConnectedTransversal (graph G) H D) (hK : ∀ i, (N
     rw [← hη, apply_edgeGen_smul K hK φ hD]
     exact key
 
+/--
+@isnad1 id=le.3h5v.s11.f7f3da3e80b2 from=translated src=- shape=272e4c6e vocab=22f4b206
+-/
 theorem finrank_le_card_rep [H.FiniteIndex] (hD : IsConnectedTransversal (graph G) H D)
     (hK : ∀ i, (Nat.card (G i) : K) ≠ 0) {v₀ : Vertex G} (hv₀ : v₀ ∈ D) :
     Module.finrank K (Additive H →+ K) ≤ Nat.card {c : EdgeOrbits H // ¬ IsInternal D c} := by
@@ -567,6 +696,9 @@ section Count
 variable (hD : IsConnectedTransversal (graph G) H D)
 include hD
 
+/--
+@isnad1 id=connecte.2h4v.s8.8e36a84b3251 from=translated src=- shape=d896cf3a vocab=ef522a28
+-/
 theorem induce_connected {v₀ : Vertex G} (hv₀ : v₀ ∈ D) : ((graph G).induce D).Connected := by
   haveI : Nonempty D := ⟨⟨v₀, hv₀⟩⟩
   refine Connected.mk fun v w => ?_
@@ -590,11 +722,17 @@ noncomputable def intEdge (c : {c : EdgeOrbits H // IsInternal D c}) : ((graph G
     exact adj_mk (by decide) _⟩
 
 omit hD in
+/--
+@isnad1 id=eq.0h4v.s11.94fdd8a98353 from=translated src=- shape=61fd2ea5 vocab=dabc10e4
+-/
 theorem intEdge_val (c : {c : EdgeOrbits H // IsInternal D c}) :
     ((intEdge c : ((graph G).induce D).edgeSet) : Sym2 D)
       = s(⟨Vertex.mk 0 c.2.choose, c.2.choose_spec.2.1⟩, ⟨Vertex.mk 1 c.2.choose, c.2.choose_spec.2.2⟩) :=
   rfl
 
+/--
+@isnad1 id=ex.3h6v.s9.6c934115c9fb from=translated src=- shape=64e896b9 vocab=f644d2d6
+-/
 theorem intEdge_hits {a b : D} (g : CoprodI G) (ha : Vertex.mk 0 g = a.1) (hb : Vertex.mk 1 g = b.1) :
     ∃ c : {c : EdgeOrbits H // IsInternal D c}, ((intEdge c : ((graph G).induce D).edgeSet) : Sym2 D) = s(a, b) := by
   have h0 : Vertex.mk 0 g ∈ D := by rw [ha]; exact a.2
@@ -613,6 +751,9 @@ theorem intEdge_hits {a b : D} (g : CoprodI G) (ha : Vertex.mk 0 g = a.1) (hb : 
   rw [intEdge_val]
   exact congrArg₂ (fun u v => s(u, v)) ea eb
 
+/--
+@isnad1 id=surjecti.1h3v.s8.268fe975f8f1 from=translated src=- shape=0c1d067f vocab=2d89520c
+-/
 theorem intEdge_surjective : Function.Surjective (intEdge (H := H) (D := D)) := by
   rintro ⟨e, he⟩
   induction e using Sym2.ind with | h x y =>
@@ -629,6 +770,9 @@ theorem intEdge_surjective : Function.Surjective (intEdge (H := H) (D := D)) := 
     exact ⟨c, Subtype.ext (hc.trans Sym2.eq_swap)⟩
   · exact absurd (hx.trans hy.symm) hne
 
+/--
+@isnad1 id=le.2h4v.s9.539f03683b92 from=translated src=- shape=64b51123 vocab=07352692
+-/
 theorem card_D_le [H.FiniteIndex] {v₀ : Vertex G} (hv₀ : v₀ ∈ D) :
     Nat.card D ≤ Nat.card {c : EdgeOrbits H // IsInternal D c} + 1 := by
   haveI := finite_edgeOrbits H
@@ -639,6 +783,9 @@ theorem card_D_le [H.FiniteIndex] {v₀ : Vertex G} (hv₀ : v₀ ∈ D) :
     | exact Nat.card_le_card_of_surjective _ (intEdge_surjective hD)
   omega
 
+/--
+@isnad1 id=eq.1h3v.s8.ebe761ce888a from=translated src=- shape=7f5fd54f vocab=dd6d9831
+-/
 theorem card_D_eq [H.FiniteIndex] :
     Nat.card D = Nat.card (ComponentOrbits H 0) + Nat.card (ComponentOrbits H 1) := by
   haveI := fun i => finite_componentOrbits H i
@@ -654,6 +801,9 @@ theorem card_D_eq [H.FiniteIndex] :
 end Count
 open scoped _root_.P2MW.S_Monoid_CoprodI_finrank_addMonoidHom_add_card_orbitRelQuotient_le_index_add_one.GroupTheory.BassSerre _root_.P2MW.S_Monoid_CoprodI_finrank_addMonoidHom_add_card_orbitRelQuotient_le_index_add_one.GroupTheory
 
+/--
+@isnad1 id=le.1h3v.s11.9cb4f886f28c from=translated src=- shape=264435cc vocab=4d72052b
+-/
 theorem main (H : Subgroup (CoprodI G)) [H.FiniteIndex] (K : Type*) [Field K]
     (hK : ∀ i, (Nat.card (G i) : K) ≠ 0) :
     Module.finrank K (Additive H →+ K) + Nat.card (ComponentOrbits H 0) + Nat.card (ComponentOrbits H 1)
@@ -671,6 +821,9 @@ open scoped _root_.P2MW.S_Monoid_CoprodI_finrank_addMonoidHom_add_card_orbitRelQ
 end GroupTheory
 open scoped _root_.P2MW.S_Monoid_CoprodI_finrank_addMonoidHom_add_card_orbitRelQuotient_le_index_add_one.GroupTheory.BassSerre _root_.P2MW.S_Monoid_CoprodI_finrank_addMonoidHom_add_card_orbitRelQuotient_le_index_add_one.GroupTheory
 
+/--
+@isnad1 id=le.1h3v.s12.107f7e391b18 from=translated src=- shape=49440925 vocab=e346a7c8
+-/
 theorem solution {G : Fin 2 → Type*} [∀ i, Group (G i)]
     (H : Subgroup (Monoid.CoprodI G)) [H.FiniteIndex] (K : Type) [Field K]
     (hK : ∀ i, (Nat.card (G i) : K) ≠ 0) :

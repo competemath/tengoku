@@ -15,6 +15,9 @@ namespace PSCharCont
 
 variable (p : ℕ) [Fact p.Prime]
 
+/--
+@isnad1 id=continuo.0h2v.s9.b09d1930c393 from=translated src=- shape=de022bc4 vocab=585c281c
+-/
 theorem continuous_borelElem_left (g₀ : GL (Fin 2) ℚ_[p]) :
     Continuous fun u : ℚ_[p]ˣ => borelElem p u 1 0 * g₀ := by
   refine Continuous.mul ?_ continuous_const
@@ -31,6 +34,9 @@ theorem continuous_borelElem_left (g₀ : GL (Fin 2) ℚ_[p]) :
     simp only [borelElem_inv, coe_borelElem]
     fin_cases i <;> fin_cases j <;> simp <;> fun_prop
 
+/--
+@isnad1 id=continuo.0h2v.s9.12de29ca511f from=translated src=- shape=a8ef7685 vocab=585c281c
+-/
 theorem continuous_borelElem_right (g₀ : GL (Fin 2) ℚ_[p]) :
     Continuous fun u : ℚ_[p]ˣ => borelElem p 1 u 0 * g₀ := by
   refine Continuous.mul ?_ continuous_const
@@ -46,6 +52,9 @@ theorem continuous_borelElem_right (g₀ : GL (Fin 2) ℚ_[p]) :
     simp only [borelElem_inv, coe_borelElem]
     fin_cases i <;> fin_cases j <;> simp <;> fun_prop
 
+/--
+@isnad1 id=ex.1h2v.s8.fe134601876f from=translated src=- shape=45ca2a98 vocab=fab39d4c
+-/
 theorem exists_higherUnits_subset {V : Set ℚ_[p]ˣ} (hV : V ∈ 𝓝 (1 : ℚ_[p]ˣ)) :
     ∃ c : ℕ, higherUnits p c ⊆ V := by
   rw [Units.isEmbedding_val₀.nhds_eq_comap, Filter.mem_comap] at hV
@@ -67,6 +76,9 @@ theorem exists_higherUnits_subset {V : Set ℚ_[p]ˣ} (hV : V ∈ 𝓝 (1 : ℚ_
 end PSCharCont
 
 open PSCharCont in
+/--
+@isnad1 id=ex.1h4v.s9.6623561ed2e8 from=translated src=- shape=1cca2945 vocab=a98e5e21
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] (μ₁ μ₂ : ℚ_[p]ˣ →* ℂˣ) (F : LocalNewvector.PSCarrier p μ₁ μ₂)
     (hF : F ≠ 0) :

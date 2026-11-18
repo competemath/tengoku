@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open MeasureTheory Set
 
+/--
+@isnad1 id=integrab.2h4v.s8.88af18a5258f from=translated src=- shape=d6342e3c vocab=3d74fcfd
+-/
 theorem LanglandsTunnell.integrableOn_cpow_mul_zpow_mul_exp_mul_gaussMoment_hyperbolicRegion
     (a : ℂ) (ha : -1 < a.re) (k : ℤ) (n : ℕ) (v : ℝ) (hv : 0 < v) :
     IntegrableOn (fun q : ℝ × ℝ =>

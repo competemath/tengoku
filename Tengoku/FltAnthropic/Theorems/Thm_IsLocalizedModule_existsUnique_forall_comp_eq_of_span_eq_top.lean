@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=existsun.5h11v.s10.eb93d8133d90 from=translated src=- shape=74815fcb vocab=7ad56c07
+-/
 theorem IsLocalizedModule.existsUnique_forall_comp_eq_of_span_eq_top
     {B : Type u} [CommRing B] {k : ℕ} (f : Fin k → B) (hf : Ideal.span (Set.range f) = ⊤)
     (M : Fin k → Type u) [∀ i, AddCommGroup (M i)] [∀ i, Module B (M i)]

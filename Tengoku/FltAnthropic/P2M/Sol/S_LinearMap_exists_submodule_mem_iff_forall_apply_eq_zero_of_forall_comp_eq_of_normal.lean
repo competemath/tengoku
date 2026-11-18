@@ -7,6 +7,9 @@ namespace P2MW.S_LinearMap_exists_submodule_mem_iff_forall_apply_eq_zero_of_fora
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.2h6v.s10.4eb720fb0ce5 from=translated src=- shape=dfa61c71 vocab=18e7ee84
+-/
 theorem solution
     {R : Type*} [CommRing R] [IsDomain R]
     {Γ : Type*} [Group Γ] {T : Type*} [AddCommGroup T] [Module R T]

@@ -17,6 +17,9 @@ variable {K : Type} [Field K]
 
 local notation "𝕄" => Matrix (Fin 2) (Fin 2) K
 
+/--
+@isnad1 id=eq.0h4v.s8.180d897c2eb3 from=translated src=- shape=be158ace vocab=5fc86b63
+-/
 lemma mulVec_fin_two (M : 𝕄) (x y : K) :
     M *ᵥ ![x, y] = ![M 0 0 * x + M 0 1 * y, M 1 0 * x + M 1 1 * y] := by
   funext i; fin_cases i <;> simp [Matrix.mulVec, dotProduct, Fin.sum_univ_two]

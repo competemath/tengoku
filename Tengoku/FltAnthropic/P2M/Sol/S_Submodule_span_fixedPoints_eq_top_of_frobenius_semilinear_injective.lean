@@ -18,11 +18,17 @@ section General
 variable (q : ℕ) (θ : V →+ V) (hθ : ∀ (c : K) (v : V), θ (c • v) = c ^ q • θ v)
 include hθ
 
+/--
+@isnad1 id=eq.1h8v.s9.d859851c10a9 from=translated src=- shape=9402edf1 vocab=d6058b83
+-/
 theorem map_sum_smul {ι : Type*} (s : Finset ι) (c : ι → K) (w : ι → V) :
     θ (∑ i ∈ s, c i • w i) = ∑ i ∈ s, c i ^ q • θ (w i) := by
   rw [map_sum]
   exact Finset.sum_congr rfl fun i _ => hθ (c i) (w i)
 
+/--
+@isnad1 id=le.4h5v.s9.da873df7d9e5 from=translated src=- shape=2c77d5f0 vocab=d7a6d417
+-/
 theorem natCard_le_pow_finrank_span (hq : 1 < q) (Y : Set V) (hYfin : Y.Finite)
     (hY : ∀ y ∈ Y, θ y = y) :
     Nat.card Y ≤ q ^ Module.finrank K (Submodule.span K Y) := by
@@ -92,6 +98,9 @@ namespace LangSteinbergSol
 
 variable {K V : Type*} [Field K] [AddCommGroup V] [Module K V]
 
+/--
+@isnad1 id=ex.2h5v.s8.629703099274 from=translated src=- shape=3eaec6b8 vocab=cb02fc14
+-/
 theorem exists_mem_span_lt_of_sum_eq_zero {n : ℕ} (g : Fin n → K) (w : Fin n → V)
     (h : ∑ i, g i • w i = 0) (hg : ∃ i, g i ≠ 0) :
     ∃ j : Fin n, g j ≠ 0 ∧ w j ∈ Submodule.span K (w '' {i | i < j}) := by
@@ -125,20 +134,35 @@ noncomputable def kap (q : ℕ) (a : ℕ → K) : ℕ → K[X]
   | 0 => C (a 0) * X ^ q
   | i + 1 => kap q a i ^ q + C (a (i + 1)) * X ^ q
 
+/--
+@isnad1 id=eq.0h3v.s8.d1a6701a251a from=translated src=- shape=a4ef5877 vocab=ef873e6f
+-/
 theorem kap_zero (q : ℕ) (a : ℕ → K) : kap q a 0 = C (a 0) * X ^ q := rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.94cb2b72b814 from=translated src=- shape=194117dd vocab=0505c38d
+-/
 theorem kap_succ (q : ℕ) (a : ℕ → K) (i : ℕ) :
     kap q a (i + 1) = kap q a i ^ q + C (a (i + 1)) * X ^ q := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.a762da1f941b from=translated src=- shape=320ef821 vocab=b03d0166
+-/
 theorem eval_kap_succ (q : ℕ) (a : ℕ → K) (i : ℕ) (c : K) :
     (kap q a (i + 1)).eval c = ((kap q a i).eval c) ^ q + a (i + 1) * c ^ q := by
   rw [kap_succ, eval_add, eval_pow, eval_mul, eval_C, eval_pow, eval_X]
 
+/--
+@isnad1 id=eq.0h4v.s6.69a51c46bebe from=translated src=- shape=8a9ca89f vocab=f5c6e5a1
+-/
 theorem eval_kap_zero (q : ℕ) (a : ℕ → K) (c : K) : (kap q a 0).eval c = a 0 * c ^ q := by
   rw [kap_zero, eval_mul, eval_C, eval_pow, eval_X]
 
 variable {p : ℕ}
 
+/--
+@isnad1 id=eq.1h5v.s8.d1b7bf785988 from=translated src=- shape=8c182e6a vocab=f181f2b0
+-/
 theorem derivative_kap [CharP K p] (s : ℕ) (hs : s ≠ 0) (a : ℕ → K) (i : ℕ) :
     derivative (kap (p ^ s) a i) = 0 := by
   have hq0 : ((p ^ s : ℕ) : K) = 0 := by
@@ -150,6 +174,9 @@ theorem derivative_kap [CharP K p] (s : ℕ) (hs : s ≠ 0) (a : ℕ → K) (i :
   | zero => rw [kap_zero, hCX]
   | succ i ih => rw [kap_succ, derivative_add, derivative_pow, ih, mul_zero, zero_add, hCX]
 
+/--
+@isnad1 id=and.2h5v.s7.b9890834f8b8 from=translated src=- shape=907e92a3 vocab=866f03f8
+-/
 theorem natDegree_kap [Fact p.Prime] (s : ℕ) (hs : s ≠ 0) (a : ℕ → K) (ha : a 0 ≠ 0) (i : ℕ) :
     (kap (p ^ s) a i).natDegree = (p ^ s) ^ (i + 1) ∧ kap (p ^ s) a i ≠ 0 := by
   have hp : 1 < p := (Fact.out : p.Prime).one_lt
@@ -181,6 +208,9 @@ section Main
 
 variable [IsAlgClosed K] {p : ℕ} [Fact p.Prime] [CharP K p]
 
+/--
+@isnad1 id=eq.3h5v.s9.9f68b3e10d55 from=translated src=- shape=28263831 vocab=bece6e94
+-/
 theorem span_fixedPoints_eq_top [FiniteDimensional K V] (s : ℕ) (hs : s ≠ 0) (θ : V →+ V)
     (hθ : ∀ (c : K) (v : V), θ (c • v) = c ^ p ^ s • θ v) (hinj : Function.Injective θ) :
     Submodule.span K (Function.fixedPoints θ) = ⊤ := by
@@ -396,6 +426,9 @@ end Main
 
 end LangSteinbergSol
 
+/--
+@isnad1 id=eq.3h5v.s9.35ad9973f06d from=translated src=- shape=6a0c1c25 vocab=bece6e94
+-/
 theorem solution
     {K V : Type*} [Field K] [IsAlgClosed K] {p : ℕ} [Fact p.Prime] [CharP K p]
     [AddCommGroup V] [Module K V] [FiniteDimensional K V]

@@ -63,6 +63,9 @@ end Lattice
 end LinearMap.LengthQuotientIsogeny
 
 open LinearMap.LengthQuotientIsogeny in
+/--
+@isnad1 id=eq.3h5v.s11.2dfd0d69f3dc from=translated src=- shape=401acdd5 vocab=35cc7e81
+-/
 theorem solution
     {A : Type u} [CommRing A] [IsDomain A] [IsDiscreteValuationRing A] {r : ℕ}
     (F₁ F₂ φ : (Fin r → A) →ₗ[A] (Fin r → A))

@@ -789,6 +789,9 @@ end Generators
 
 end LocalGL2.IwasawaSlice
 
+/--
+@isnad1 id=ex.3h4v.s14.2d6bfb962e7b from=translated src=- shape=3c54b61a vocab=da6dcdba
+-/
 theorem solution
     {R : Type*} [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]

@@ -17,30 +17,54 @@ abbrev M2 : Type := Matrix (Fin 2) (Fin 2) ℂ
 
 def cj (m : M2) : M2 := m.map (starRingEnd ℂ)
 
+/--
+@isnad1 id=eq.0h2v.s6.27d79ab987a2 from=translated src=- shape=1730adff vocab=2ba17fe6
+-/
 theorem cj_mul (m n : M2) : cj (m * n) = cj m * cj n := Matrix.map_mul
 
+/--
+@isnad1 id=eq.0h2v.s5.36bebbafc742 from=translated src=- shape=a13ca989 vocab=ec128c40
+-/
 theorem cj_add (m n : M2) : cj (m + n) = cj m + cj n := by
   ext i j; simp [cj]
 
+/--
+@isnad1 id=eq.0h2v.s6.f7609634cea1 from=translated src=- shape=83807af6 vocab=392926ee
+-/
 theorem cj_smul (a : ℂ) (m : M2) : cj (a • m) = (starRingEnd ℂ a) • cj m := by
   ext i j; simp [cj]
 
+/--
+@isnad1 id=eq.0h0v.s5.e82dbfd98424 from=translated src=- shape=3c26ae4f vocab=d94d8e81
+-/
 theorem cj_one : cj 1 = 1 := by
   ext i j; simp [cj, Matrix.one_apply]
 
+/--
+@isnad1 id=eq.0h1v.s3.da7ad803ab1f from=translated src=- shape=47dcad53 vocab=b4849d1d
+-/
 theorem cj_cj (m : M2) : cj (cj m) = m := by
   ext i j; simp [cj]
 
 def bmat (lam : ℂ) (q : M2) : M2 := lam • (1 : M2) + (starRingEnd ℂ lam) • q
 
+/--
+@isnad1 id=continuo.0h1v.s5.2704547a81a5 from=translated src=- shape=8735051e vocab=17997423
+-/
 theorem continuous_bmat (lam : ℂ) : Continuous (bmat lam) := by
   unfold bmat; fun_prop
 
+/--
+@isnad1 id=eq.1h2v.s7.ca59d038fae1 from=translated src=- shape=3bca192e vocab=750db57d
+-/
 theorem mul_cj_bmat (q : M2) (hq : q * cj q = 1) (lam : ℂ) : q * cj (bmat lam q) = bmat lam q := by
   rw [bmat, cj_add, cj_smul, cj_smul, cj_one, Matrix.mul_add, Matrix.mul_smul, Matrix.mul_smul, Matrix.mul_one, hq]
   simp only [starRingEnd_apply, star_star]
   rw [add_comm]
 
+/--
+@isnad1 id=eq.3h4v.s8.2aa97e5da3c1 from=translated src=- shape=69416d4d vocab=2ba17fe6
+-/
 theorem cj_mul_eq_self (x xinv q b : M2) (hx : x * xinv = 1) (hq : xinv * cj x = q) (hb : q * cj b = b) :
     cj (x * b) = x * b := by
   rw [cj_mul]
@@ -49,12 +73,18 @@ theorem cj_mul_eq_self (x xinv q b : M2) (hx : x * xinv = 1) (hq : xinv * cj x =
     _ = x * (q * cj b) := by rw [hq, Matrix.mul_assoc]
     _ = x * b := by rw [hb]
 
+/--
+@isnad1 id=eq.0h2v.s7.9acbe0fbc4ae from=translated src=- shape=2ee0f1f1 vocab=618d7f82
+-/
 theorem det_smul_one_add (q : M2) (ω : ℂ) :
     Matrix.det (ω • (1 : M2) + q) = ω ^ 2 + Matrix.trace q * ω + Matrix.det q := by
   rw [Matrix.det_fin_two, Matrix.trace_fin_two, Matrix.det_fin_two]
   simp [Matrix.one_apply]
   ring
 
+/--
+@isnad1 id=or.3h4v.s8.0116f98352e0 from=translated src=- shape=9bdc22d8 vocab=5c73f93d
+-/
 theorem exists_det_ne_zero (q : M2) (ω₁ ω₂ ω₃ : ℂ) (h12 : ω₁ ≠ ω₂) (h13 : ω₁ ≠ ω₃) (h23 : ω₂ ≠ ω₃) :
     Matrix.det (ω₁ • (1 : M2) + q) ≠ 0 ∨ Matrix.det (ω₂ • (1 : M2) + q) ≠ 0 ∨
       Matrix.det (ω₃ • (1 : M2) + q) ≠ 0 := by
@@ -68,10 +98,16 @@ theorem exists_det_ne_zero (q : M2) (ω₁ ω₂ ω₃ : ℂ) (h12 : ω₁ ≠ �
   have a13 : ω₁ + ω₃ + Matrix.trace q = 0 := (mul_eq_zero.1 e13).resolve_left (sub_ne_zero.2 h13)
   exact h23 (by linear_combination a12 - a13)
 
+/--
+@isnad1 id=eq.1h3v.s7.17bcd4b1703b from=translated src=- shape=44bab6e0 vocab=8f8eb407
+-/
 theorem bmat_eq_smul (lam ω : ℂ) (h : starRingEnd ℂ lam * ω = lam) (q : M2) :
     bmat lam q = (starRingEnd ℂ lam) • (ω • (1 : M2) + q) := by
   rw [bmat, smul_add, smul_smul, h]
 
+/--
+@isnad1 id=eq.1h3v.s7.61521b324d44 from=translated src=- shape=0877dc1a vocab=05937264
+-/
 theorem det_bmat (lam ω : ℂ) (h : starRingEnd ℂ lam * ω = lam) (q : M2) :
     Matrix.det (bmat lam q) = (starRingEnd ℂ lam) ^ 2 * Matrix.det (ω • (1 : M2) + q) := by
   rw [bmat_eq_smul lam ω h, Matrix.det_smul, Fintype.card_fin]
@@ -83,14 +119,32 @@ def ω₁ : ℂ := 1
 def ω₂ : ℂ := -1
 def ω₃ : ℂ := (-7 + 24 * Complex.I) / 25
 
+/--
+@isnad1 id=eq.0h0v.s5.40b4e0331b06 from=translated src=- shape=fd2ef428 vocab=1c96a65a
+-/
 theorem h₁ : starRingEnd ℂ lam₁ * ω₁ = lam₁ := by simp [lam₁, ω₁]
+/--
+@isnad1 id=eq.0h0v.s5.2a7dd1e6f508 from=translated src=- shape=fd2ef428 vocab=d2e33618
+-/
 theorem h₂ : starRingEnd ℂ lam₂ * ω₂ = lam₂ := by simp [lam₂, ω₂]
+/--
+@isnad1 id=eq.0h0v.s5.b9ded0e68fce from=translated src=- shape=fd2ef428 vocab=933cc137
+-/
 theorem h₃ : starRingEnd ℂ lam₃ * ω₃ = lam₃ := by
   simp only [lam₃, ω₃, starRingEnd_apply]
   rw [Complex.ext_iff]
   constructor <;> simp <;> norm_num
+/--
+@isnad1 id=ne.0h0v.s5.e8bff5b6e1e2 from=translated src=- shape=78796809 vocab=9e623f56
+-/
 theorem lam₁_ne : starRingEnd ℂ lam₁ ≠ 0 := by simp [lam₁]
+/--
+@isnad1 id=ne.0h0v.s5.df8e4b619dd5 from=translated src=- shape=78796809 vocab=e2a8797e
+-/
 theorem lam₂_ne : starRingEnd ℂ lam₂ ≠ 0 := by simp [lam₂, Complex.I_ne_zero]
+/--
+@isnad1 id=ne.0h0v.s5.9974a9d83682 from=translated src=- shape=78796809 vocab=48a912cd
+-/
 theorem lam₃_ne : starRingEnd ℂ lam₃ ≠ 0 := by
   simp only [lam₃, starRingEnd_apply, ne_eq, star_eq_zero, div_eq_zero_iff]
   push Not
@@ -98,12 +152,24 @@ theorem lam₃_ne : starRingEnd ℂ lam₃ ≠ 0 := by
   intro h
   have := congrArg Complex.re h
   simp at this
+/--
+@isnad1 id=ne.0h0v.s2.a24e2112f78e from=translated src=- shape=54c8eceb vocab=31dc5bf2
+-/
 theorem ω₁₂ : ω₁ ≠ ω₂ := by simp [ω₁, ω₂]; norm_num
+/--
+@isnad1 id=ne.0h0v.s2.2eed1b6baf84 from=translated src=- shape=54c8eceb vocab=80a617e1
+-/
 theorem ω₁₃ : ω₁ ≠ ω₃ := by
   intro h; have := congrArg Complex.re h; simp [ω₁, ω₃] at this; norm_num at this
+/--
+@isnad1 id=ne.0h0v.s2.4be1a2b45acc from=translated src=- shape=54c8eceb vocab=803e68db
+-/
 theorem ω₂₃ : ω₂ ≠ ω₃ := by
   intro h; have := congrArg Complex.re h; simp [ω₂, ω₃] at this; norm_num at this
 
+/--
+@isnad1 id=or.0h1v.s6.25750c26d2ca from=translated src=- shape=c8862e38 vocab=13bdfb41
+-/
 theorem exists_det_bmat_ne_zero (q : M2) :
     Matrix.det (bmat lam₁ q) ≠ 0 ∨ Matrix.det (bmat lam₂ q) ≠ 0 ∨ Matrix.det (bmat lam₃ q) ≠ 0 := by
   rw [det_bmat lam₁ ω₁ h₁, det_bmat lam₂ ω₂ h₂, det_bmat lam₃ ω₃ h₃]
@@ -115,12 +181,18 @@ theorem exists_det_bmat_ne_zero (q : M2) :
 def F (q : M2) : ℝ :=
   max ‖Matrix.det (bmat lam₁ q)‖ (max ‖Matrix.det (bmat lam₂ q)‖ ‖Matrix.det (bmat lam₃ q)‖)
 
+/--
+@isnad1 id=continuo.0h0v.s5.08f2cce698ef from=translated src=- shape=54c8eceb vocab=33212cfd
+-/
 theorem continuous_F : Continuous F := by
   unfold F
   have hd : ∀ lam : ℂ, Continuous fun q : M2 => ‖Matrix.det (bmat lam q)‖ := fun lam =>
     ((continuous_bmat lam).matrix_det).norm
   exact (hd _).max ((hd _).max (hd _))
 
+/--
+@isnad1 id=lt.0h1v.s3.75f68e856bcf from=translated src=- shape=b9369acb vocab=32332d0d
+-/
 theorem F_pos (q : M2) : 0 < F q := by
   unfold F
   rcases exists_det_bmat_ne_zero q with h | h | h
@@ -128,6 +200,9 @@ theorem F_pos (q : M2) : 0 < F q := by
   · exact lt_max_of_lt_right (lt_max_of_lt_left (norm_pos_iff.2 h))
   · exact lt_max_of_lt_right (lt_max_of_lt_right (norm_pos_iff.2 h))
 
+/--
+@isnad1 id=continuo.1h2v.s7.307df0c8abe5 from=translated src=- shape=440d2e37 vocab=0fb31322
+-/
 theorem continuousOn_inv_bmat (lam : ℂ) (S : Set M2) (hS : ∀ q ∈ S, Matrix.det (bmat lam q) ≠ 0) :
     ContinuousOn (fun q => (bmat lam q)⁻¹) S := by
   have e : (fun q => (bmat lam q)⁻¹) = fun q => Ring.inverse (Matrix.det (bmat lam q)) • (bmat lam q).adjugate := by
@@ -145,6 +220,9 @@ end H90Section
 end
 
 open H90Section in
+/--
+@isnad1 id=ex.1h1v.s10.767185997383 from=translated src=- shape=58946572 vocab=14524d0e
+-/
 theorem solution
     (B : Set (Matrix (Fin 2) (Fin 2) ℂ)) (hB : IsCompact B) :
     ∃ K : Set (GL (Fin 2) ℂ), IsCompact K ∧

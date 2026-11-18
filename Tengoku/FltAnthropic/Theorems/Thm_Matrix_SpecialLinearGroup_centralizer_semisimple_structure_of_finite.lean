@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open Matrix MatrixGroups
 
+/--
+@isnad1 id=and.3h4v.s12.c9fd14766748 from=translated src=- shape=ddcfff26 vocab=d6a1b335
+-/
 theorem Matrix.SpecialLinearGroup.centralizer_semisimple_structure_of_finite
     {K : Type} [Field K] (h2 : (2 : K) ≠ 0)
     {H : Type} [Group H] [Finite H] (ρ : H →* SL(2, K)) (hρ : Function.Injective ρ)

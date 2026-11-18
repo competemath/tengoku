@@ -5,6 +5,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Matrix_trace_pow_eq_sum_pow
 
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `Theorems/Thm_Matrix_trace_pow_eq_sum_pow.lean`: wrote out 1 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_exact_reverting`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 
+/--
+@isnad1 id=eq.2h5v.s8.c6c1aeb81beb from=translated src=- shape=a7d0faf2 vocab=f40a5493
+-/
 theorem Matrix.trace_pow_eq_sum_pow {R : Type*} [CommRing R]
     {M : Matrix (Fin 2) (Fin 2) R} {α β : R}
     (htr : M.trace = α + β) (hdet : M.det = α * β) (k : ℕ) :

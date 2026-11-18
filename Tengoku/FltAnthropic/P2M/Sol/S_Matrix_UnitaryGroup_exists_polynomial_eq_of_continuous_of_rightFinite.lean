@@ -18,6 +18,9 @@ namespace TensorSplit
 
 variable {G : Type*}
 
+/--
+@isnad1 id=ex.0h3v.s9.06c9e09ff5db from=translated src=- shape=6a7febe6 vocab=e71144ac
+-/
 theorem exists_eval_combination (W : Submodule ℂ (G → ℂ)) [FiniteDimensional ℂ W]
     (φ : Module.Dual ℂ W) :
     ∃ (m : ℕ) (e : Fin m → ℂ) (x : Fin m → G), ∀ w : W, φ w = ∑ l, e l * (w : G → ℂ) (x l) := by
@@ -69,6 +72,9 @@ def polyFun : Submodule ℂ (Matrix (Fin 2) (Fin 2) ℂ → ℂ) :=
   Submodule.span ℂ
     {F | ∃ l : List (Matrix (Fin 2) (Fin 2) ℂ →L[ℝ] ℂ), F = fun m => (l.map (fun φ => φ m)).prod}
 
+/--
+@isnad1 id=iscompac.0h0v.s7.2b136757aec0 from=translated src=- shape=a8f2997c vocab=0569e94a
+-/
 theorem isCompact_unitaryGroup :
     IsCompact ((Matrix.unitaryGroup (Fin 2) ℂ : Set (Matrix (Fin 2) (Fin 2) ℂ))) := by
 
@@ -102,18 +108,30 @@ def haarU2 : Measure U2 := Measure.haarMeasure K0
 
 scoped instance : Measure.IsHaarMeasure haarU2 := Measure.isHaarMeasure_haarMeasure K0
 
+/--
+@isnad1 id=eq.0h0v.s4.2b7234523f85 from=translated src=- shape=7c7ab9f0 vocab=11b99ba9
+-/
 theorem haarU2_univ : haarU2 Set.univ = 1 := Measure.haarMeasure_self
 
 scoped instance : IsProbabilityMeasure haarU2 := ⟨haarU2_univ⟩
 
+/--
+@isnad1 id=eq.0h2v.s7.d619c0063d0a from=translated src=- shape=d54bc837 vocab=e9e34d2a
+-/
 theorem integral_translate (g : U2) (f : U2 → ℂ) :
     ∫ h, f (g * h) ∂haarU2 = ∫ h, f h ∂haarU2 :=
   integral_mul_left_eq_self f g
 
+/--
+@isnad1 id=integrab.1h2v.s8.5847a89b56ee from=translated src=- shape=4183922c vocab=f58971c2
+-/
 theorem integrable_of_continuous {E : Type} [NormedAddCommGroup E] {f : U2 → E}
     (hf : Continuous f) : Integrable f haarU2 :=
   hf.integrable_of_hasCompactSupport (isClosed_tsupport f).isCompact
 
+/--
+@isnad1 id=lt.3h1v.s8.448b0616b3cb from=translated src=- shape=756f92c6 vocab=b9e5a52b
+-/
 theorem integral_pos_of_continuous {χ : U2 → ℝ} (hc : Continuous χ) (h0 : 0 ≤ χ)
     (h1 : 0 < χ 1) : 0 < ∫ h, χ h ∂haarU2 := by
   rw [integral_pos_iff_support_of_nonneg h0 (integrable_of_continuous hc)]
@@ -124,18 +142,30 @@ theorem integral_pos_of_continuous {χ : U2 → ℝ} (hc : Continuous χ) (h0 : 
 
 def qker (k : U2) : ℝ := (2 + (Matrix.trace (k : Matrix (Fin 2) (Fin 2) ℂ)).re) / 4
 
+/--
+@isnad1 id=continuo.0h0v.s8.47b7df7e0fb1 from=translated src=- shape=54c8eceb vocab=cf75d44d
+-/
 theorem continuous_qker : Continuous qker := by
   have htr : Continuous fun k : U2 => Matrix.trace (k : Matrix (Fin 2) (Fin 2) ℂ) :=
     Continuous.matrix_trace continuous_subtype_val
   exact (continuous_const.add (Complex.continuous_re.comp htr)).div_const 4
 
+/--
+@isnad1 id=le.0h3v.s8.9a6ba4a03a3c from=translated src=- shape=9a55835a vocab=bb66755b
+-/
 theorem entry_re_le (k : U2) (i j : Fin 2) : ((k : Matrix (Fin 2) (Fin 2) ℂ) i j).re ≤ 1 :=
   le_trans (Complex.re_le_norm _) (entry_norm_bound_of_unitary k.2 i j)
 
+/--
+@isnad1 id=le.0h3v.s8.aec596dc5266 from=translated src=- shape=eb17ea98 vocab=b519cc16
+-/
 theorem entry_abs_re_le (k : U2) (i j : Fin 2) :
     |((k : Matrix (Fin 2) (Fin 2) ℂ) i j).re| ≤ 1 :=
   le_trans (Complex.abs_re_le_norm _) (entry_norm_bound_of_unitary k.2 i j)
 
+/--
+@isnad1 id=le.0h1v.s3.655270a72cd8 from=translated src=- shape=b9369acb vocab=888d5c81
+-/
 theorem qker_nonneg (k : U2) : 0 ≤ qker k := by
   have h0 := abs_le.mp (entry_abs_re_le k 0 0)
   have h1 := abs_le.mp (entry_abs_re_le k 1 1)
@@ -143,6 +173,9 @@ theorem qker_nonneg (k : U2) : 0 ≤ qker k := by
   rw [Matrix.trace_fin_two, Complex.add_re]
   linarith [h0.1, h1.1]
 
+/--
+@isnad1 id=le.0h1v.s3.ce1bc4e2ede2 from=translated src=- shape=a311c14d vocab=888d5c81
+-/
 theorem qker_le_one (k : U2) : qker k ≤ 1 := by
   have h0 := entry_re_le k 0 0
   have h1 := entry_re_le k 1 1
@@ -150,12 +183,18 @@ theorem qker_le_one (k : U2) : qker k ≤ 1 := by
   rw [Matrix.trace_fin_two, Complex.add_re]
   linarith
 
+/--
+@isnad1 id=eq.0h0v.s6.8ad836c5a283 from=translated src=- shape=1ac31801 vocab=e5d5807a
+-/
 theorem qker_one : qker 1 = 1 := by
   have h : ((1 : U2) : Matrix (Fin 2) (Fin 2) ℂ) = 1 := rfl
   unfold qker
   rw [h, Matrix.trace_one]
   norm_num
 
+/--
+@isnad1 id=iff.0h1v.s6.1f1d2129356f from=translated src=- shape=3a75f94e vocab=e5d5807a
+-/
 theorem qker_eq_one_iff {k : U2} : qker k = 1 ↔ k = 1 := by
   constructor
   · intro hq
@@ -211,6 +250,9 @@ theorem qker_eq_one_iff {k : U2} : qker k = 1 ↔ k = 1 := by
   · rintro rfl
     exact qker_one
 
+/--
+@isnad1 id=ex.1h1v.s8.366fb7b95a17 from=translated src=- shape=798c0331 vocab=6ed1af6e
+-/
 theorem exists_lt_one_bound {U : Set U2} (hU : U ∈ nhds (1 : U2)) :
     ∃ δ : ℝ, δ < 1 ∧ ∀ k : U2, k ∉ U → qker k ≤ δ := by
   rcases Set.eq_empty_or_nonempty ((interior U)ᶜ : Set U2) with hS | hS
@@ -231,6 +273,9 @@ theorem exists_lt_one_bound {U : Set U2} (hU : U ∈ nhds (1 : U2)) :
 
 def fejerNorm (n : ℕ) : ℝ := ∫ h, qker h ^ n ∂haarU2
 
+/--
+@isnad1 id=lt.0h1v.s3.4d9fa8112d71 from=translated src=- shape=b9369acb vocab=754c86f2
+-/
 theorem fejerNorm_pos (n : ℕ) : 0 < fejerNorm n := by
   refine integral_pos_of_continuous (continuous_qker.pow n)
     (fun h => pow_nonneg (qker_nonneg h) n) ?_
@@ -240,11 +285,17 @@ theorem fejerNorm_pos (n : ℕ) : 0 < fejerNorm n := by
 def fejerConv (n : ℕ) (Φ : U2 → ℂ) (k : U2) : ℂ :=
   (fejerNorm n)⁻¹ • ∫ h, Φ (k * h) * ((qker h ^ n : ℝ) : ℂ) ∂haarU2
 
+/--
+@isnad1 id=integrab.1h3v.s8.bfc7153ca2f1 from=translated src=- shape=fb29918a vocab=bc432dd0
+-/
 theorem integrable_conv_kernel {Φ : U2 → ℂ} (hc : Continuous Φ) (n : ℕ) (k : U2) :
     Integrable (fun h => Φ (k * h) * ((qker h ^ n : ℝ) : ℂ)) haarU2 :=
   integrable_of_continuous ((hc.comp (continuous_const_mul k)).mul
     (Complex.continuous_ofReal.comp (continuous_qker.pow n)))
 
+/--
+@isnad1 id=eq.1h3v.s9.1f55c975f1fb from=translated src=- shape=c38c60c8 vocab=2619cdb8
+-/
 theorem fejerConv_sub {Φ : U2 → ℂ} (hc : Continuous Φ) (n : ℕ) (k : U2) :
     fejerConv n Φ k - Φ k
       = (fejerNorm n)⁻¹ • ∫ h, (Φ (k * h) - Φ k) * ((qker h ^ n : ℝ) : ℂ) ∂haarU2 := by
@@ -275,6 +326,9 @@ private theorem aux_ratio (x d e b : ℝ) (n : ℕ) (he : e ≠ 0) (hb : b ≠ 0
   rw [div_pow]
   field_simp
 
+/--
+@isnad1 id=tendsto.1h2v.s8.7f975edb0b95 from=translated src=- shape=ff0c4433 vocab=0a62274e
+-/
 theorem fejerConv_tendsto {Φ : U2 → ℂ} (hc : Continuous Φ) (k : U2) :
     Filter.Tendsto (fun n => fejerConv n Φ k) Filter.atTop (nhds (Φ k)) := by
 
@@ -424,6 +478,9 @@ theorem fejerConv_tendsto {Φ : U2 → ℂ} (hc : Continuous Φ) (k : U2) :
     _ < ε/4 + ε/4 := by linarith [hN n hn]
     _ < ε := by linarith
 
+/--
+@isnad1 id=mem.2h3v.s9.f201ed36dd54 from=translated src=- shape=d82498ff vocab=c9474c94
+-/
 theorem fejerConv_mem_span {Φ : U2 → ℂ} (hc : Continuous Φ) {s : Finset (U2 → ℂ)}
     (hfin : ∀ k : U2, (fun x => Φ (x * k)) ∈ Submodule.span ℂ (s : Set (U2 → ℂ)))
     (n : ℕ) : fejerConv n Φ ∈ Submodule.span ℂ (s : Set (U2 → ℂ)) := by
@@ -498,6 +555,9 @@ def monom (β : Fin 8 → ℕ) : Matrix (Fin 2) (Fin 2) ℂ → ℂ :=
 def Pdeg (n : ℕ) : Submodule ℂ (Matrix (Fin 2) (Fin 2) ℂ → ℂ) :=
   Submodule.span ℂ (Set.range fun β : {β : Fin 8 → ℕ // ∀ α, β α ≤ n} => monom ↑β)
 
+/--
+@isnad1 id=finite.0h1v.s5.326978a62950 from=translated src=- shape=fd3bc570 vocab=0244ee19
+-/
 scoped instance finite_expIndex (n : ℕ) : Finite {β : Fin 8 → ℕ // ∀ α, β α ≤ n} := by
   refine Finite.of_injective
     (fun β => (fun α => (⟨β.1 α, Nat.lt_succ_of_le (β.2 α)⟩ : Fin (n+1)))) ?_
@@ -506,14 +566,23 @@ scoped instance finite_expIndex (n : ℕ) : Finite {β : Fin 8 → ℕ // ∀ α
   funext α
   exact congrArg Fin.val (congrFun hβγ α)
 
+/--
+@isnad1 id=finitedi.0h1v.s9.e82459a7880f from=translated src=- shape=68379ab4 vocab=db54c3c6
+-/
 theorem finiteDimensional_Pdeg (n : ℕ) : FiniteDimensional ℂ (Pdeg n) :=
   FiniteDimensional.span_of_finite ℂ (Set.finite_range _)
 
+/--
+@isnad1 id=mem.0h0v.s8.4783157da28d from=translated src=- shape=7c4dfbf5 vocab=ed0873ad
+-/
 theorem one_mem_polyFun : (fun _ : Matrix (Fin 2) (Fin 2) ℂ => (1 : ℂ)) ∈ polyFun := by
   refine Submodule.subset_span ⟨[], ?_⟩
   funext m
   simp
 
+/--
+@isnad1 id=mem.2h2v.s10.67d5d6aea12d from=translated src=- shape=2c723f06 vocab=9f40868f
+-/
 theorem polyFun_mul_mem {f g : Matrix (Fin 2) (Fin 2) ℂ → ℂ}
     (hf : f ∈ polyFun) (hg : g ∈ polyFun) : f * g ∈ polyFun := by
   have hSS : polyFun * polyFun ≤ polyFun := by
@@ -526,6 +595,9 @@ theorem polyFun_mul_mem {f g : Matrix (Fin 2) (Fin 2) ℂ → ℂ}
     simp [List.map_append, List.prod_append]
   exact hSS (Submodule.mul_mem_mul hf hg)
 
+/--
+@isnad1 id=le.0h1v.s8.30b4b3effa46 from=translated src=- shape=60decf08 vocab=88e8c60f
+-/
 theorem Pdeg_le_polyFun (n : ℕ) : Pdeg n ≤ polyFun := by
   refine Submodule.span_le.mpr ?_
   rintro F ⟨β, rfl⟩
@@ -543,6 +615,9 @@ theorem Pdeg_le_polyFun (n : ℕ) : Pdeg n ≤ polyFun := by
   refine Finset.prod_induction _ (· ∈ polyFun) (fun a b ha hb => polyFun_mul_mem ha hb)
     one_mem_polyFun (fun α _ => hpow α _)
 
+/--
+@isnad1 id=mem.2h4v.s10.d871d4a6f005 from=translated src=- shape=55613376 vocab=04e2bf77
+-/
 theorem Pdeg_mul_mem {a b : ℕ} {f g : Matrix (Fin 2) (Fin 2) ℂ → ℂ}
     (hf : f ∈ Pdeg a) (hg : g ∈ Pdeg b) : f * g ∈ Pdeg (a + b) := by
   have hle : Pdeg a * Pdeg b ≤ Pdeg (a + b) := by
@@ -556,6 +631,9 @@ theorem Pdeg_mul_mem {a b : ℕ} {f g : Matrix (Fin 2) (Fin 2) ℂ → ℂ}
     simp [monom, Pi.mul_apply, ← Finset.prod_mul_distrib, pow_add]
   exact hle (Submodule.mul_mem_mul hf hg)
 
+/--
+@isnad1 id=mem.1h2v.s9.035e31034a47 from=translated src=- shape=2a247e41 vocab=8ddab395
+-/
 theorem pow_mem_Pdeg {f : Matrix (Fin 2) (Fin 2) ℂ → ℂ} (hf : f ∈ Pdeg 1) :
     ∀ n : ℕ, f ^ n ∈ Pdeg n
   | 0 => by
@@ -567,6 +645,9 @@ theorem pow_mem_Pdeg {f : Matrix (Fin 2) (Fin 2) ℂ → ℂ} (hf : f ∈ Pdeg 1
     rw [pow_succ]
     exact Pdeg_mul_mem (pow_mem_Pdeg hf n) hf
 
+/--
+@isnad1 id=mem.0h1v.s9.7a8747529fda from=translated src=- shape=02f03d90 vocab=7509896c
+-/
 theorem coordFn_mem_Pdeg_one (α : Fin 8) : (fun M => coordFns α M) ∈ Pdeg 1 := by
   refine Submodule.subset_span
     ⟨⟨Pi.single α 1, fun γ => ?_⟩, ?_⟩
@@ -579,6 +660,9 @@ theorem coordFn_mem_Pdeg_one (α : Fin 8) : (fun M => coordFns α M) ∈ Pdeg 1 
     rw [Fintype.prod_eq_single α (fun γ hγ => by simp [Pi.single_eq_of_ne hγ])]
     simp
 
+/--
+@isnad1 id=mem.0h1v.s8.d7795903b3b3 from=translated src=- shape=e31411c4 vocab=4a304fc1
+-/
 theorem const_mem_Pdeg_one (c : ℂ) :
     (fun _ : Matrix (Fin 2) (Fin 2) ℂ => c) ∈ Pdeg 1 := by
   have h1 : (fun _ : Matrix (Fin 2) (Fin 2) ℂ => (1 : ℂ)) ∈ Pdeg 1 := by
@@ -595,10 +679,16 @@ theorem const_mem_Pdeg_one (c : ℂ) :
 def aker (h : U2) : Matrix (Fin 2) (Fin 2) ℂ → ℝ :=
   fun M => (2 + (Matrix.trace (star M * (h : Matrix (Fin 2) (Fin 2) ℂ))).re) / 4
 
+/--
+@isnad1 id=eq.0h2v.s9.c7f21daa0ef6 from=translated src=- shape=966c10a4 vocab=0c97d488
+-/
 theorem aker_coe (h k : U2) : aker h (k : Matrix (Fin 2) (Fin 2) ℂ) = qker (k⁻¹ * h) := by
   unfold aker qker
   congr 2
 
+/--
+@isnad1 id=continuo.0h1v.s8.e06170969a1d from=translated src=- shape=a0b7dc9e vocab=e0d024cc
+-/
 theorem continuous_aker (x : Matrix (Fin 2) (Fin 2) ℂ) :
     Continuous fun h : U2 => aker h x := by
   have hmul : Continuous fun h : U2 => star x * (h : Matrix (Fin 2) (Fin 2) ℂ) :=
@@ -608,6 +698,9 @@ theorem continuous_aker (x : Matrix (Fin 2) (Fin 2) ℂ) :
     Continuous.matrix_trace hmul
   exact (continuous_const.add (Complex.continuous_re.comp htr)).div_const 4
 
+/--
+@isnad1 id=mem.0h1v.s8.286fcd271f4a from=translated src=- shape=45c20fc2 vocab=837df9dc
+-/
 theorem akerC_mem_Pdeg_one (h : U2) :
     (fun M : Matrix (Fin 2) (Fin 2) ℂ => ((aker h M : ℝ) : ℂ)) ∈ Pdeg 1 := by
   set H : Matrix (Fin 2) (Fin 2) ℂ := (h : Matrix (Fin 2) (Fin 2) ℂ) with hH
@@ -662,6 +755,9 @@ def restrictU2 : (Matrix (Fin 2) (Fin 2) ℂ → ℂ) →ₗ[ℂ] (U2 → ℂ) w
   map_add' := fun _ _ => rfl
   map_smul' := fun _ _ => rfl
 
+/--
+@isnad1 id=ex.1h2v.s9.dce590952192 from=translated src=- shape=1cb73d5b vocab=2028f033
+-/
 theorem exists_polyFun_fejerConv {Φ : U2 → ℂ} (hc : Continuous Φ) (n : ℕ) :
     ∃ F ∈ polyFun, ∀ k : U2, fejerConv n Φ k = F (k : Matrix (Fin 2) (Fin 2) ℂ) := by
   classical
@@ -745,6 +841,9 @@ theorem exists_polyFun_fejerConv {Φ : U2 → ℂ} (hc : Continuous Φ) (n : ℕ
     simp only [Pi.smul_apply, smul_eq_mul, Complex.real_smul]
     ring
 
+/--
+@isnad1 id=ex.2h1v.s10.5edf3b8faed0 from=translated src=- shape=bd914166 vocab=637775e8
+-/
 theorem exists_polyFun_eq_of_continuous_of_rightFinite
     (Φ : U2 → ℂ) (hc : Continuous Φ)
     (hfin : ∃ s : Finset (U2 → ℂ), ∀ k : U2,
@@ -781,6 +880,9 @@ open scoped _root_.P2MW.S_Matrix_UnitaryGroup_exists_polynomial_eq_of_continuous
 
 noncomputable section
 
+/--
+@isnad1 id=ex.2h1v.s13.b96cf69941f7 from=translated src=- shape=e953a278 vocab=d7512364
+-/
 theorem solution
     (Φ : ↥(Matrix.unitaryGroup (Fin 2) ℂ) → ℂ) (hc : Continuous Φ)
     (hfin : ∃ s : Finset (↥(Matrix.unitaryGroup (Fin 2) ℂ) → ℂ),

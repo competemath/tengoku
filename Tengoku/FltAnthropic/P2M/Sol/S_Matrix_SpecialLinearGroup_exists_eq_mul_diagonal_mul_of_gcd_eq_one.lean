@@ -12,6 +12,9 @@ export _root_.Matrix.SpecialLinearGroup (ext)
 namespace PrimitiveSmith
 open _root_.Matrix.SpecialLinearGroup open _root_.Matrix
 
+/--
+@isnad1 id=ex.2h3v.s5.42fe0dbe1f60 from=translated src=- shape=3988d447 vocab=a382e741
+-/
 theorem exists_coprime_mul_add {a b d : ℕ} (hd : d ≠ 0) (hgcd : Nat.gcd a (Nat.gcd b d) = 1) :
     ∃ p : ℕ, Nat.Coprime (a * p + b) d := by
   classical
@@ -48,6 +51,9 @@ theorem exists_coprime_mul_add {a b d : ℕ} (hd : d ≠ 0) (hgcd : Nat.gcd a (N
     have hqP' : q ∣ a * P := Dvd.dvd.mul_left (hqP.mpr hqb) a
     exact hqb ((Nat.dvd_add_right hqP').mp hqab)
 
+/--
+@isnad1 id=ex.3h4v.s9.4fbad74dbdcd from=translated src=- shape=161118fe vocab=ba383ad0
+-/
 theorem main {N a b d : ℕ} (hN : N ≠ 0) (had : a * d = N) (hgcd : Nat.gcd a (Nat.gcd b d) = 1) :
     ∃ γ₁ γ₂ : Matrix.SpecialLinearGroup (Fin 2) ℤ,
       !![(a : ℤ), b; 0, d] = (γ₁ : Matrix (Fin 2) (Fin 2) ℤ) * !![(N : ℤ), 0; 0, 1]
@@ -84,6 +90,9 @@ theorem main {N a b d : ℕ} (hN : N ≠ 0) (had : a * d = N) (hgcd : Nat.gcd a 
 
 end Matrix.SpecialLinearGroup.PrimitiveSmith
 
+/--
+@isnad1 id=ex.3h4v.s9.4fbad74dbdcd from=translated src=- shape=161118fe vocab=ba383ad0
+-/
 theorem solution
     {N a b d : ℕ} (hN : N ≠ 0) (had : a * d = N) (hgcd : Nat.gcd a (Nat.gcd b d) = 1) :
     ∃ γ₁ γ₂ : Matrix.SpecialLinearGroup (Fin 2) ℤ,

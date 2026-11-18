@@ -20,6 +20,9 @@ noncomputable def dcMap :
       _root_.Quotient (QuotientGroup.rightRel Γ) :=
   fun qc => Quotient.mk'' (qc.1.out * ((qc.2.out : K) : G))
 
+/--
+@isnad1 id=eq.0h6v.s8.409204e28750 from=translated src=- shape=0075474c vocab=f612d4ec
+-/
 theorem dcMap_apply (q : DoubleCoset.Quotient (Γ : Set G) (K : Set G))
     (c : _root_.Quotient (QuotientGroup.rightRel K₀)) :
     dcMap Γ K K₀ (q, c) = Quotient.mk'' (q.out * ((c.out : K) : G)) := rfl
@@ -27,6 +30,9 @@ theorem dcMap_apply (q : DoubleCoset.Quotient (Γ : Set G) (K : Set G))
 variable (hK₀ : ∀ g : G, ∀ k : K, g * (k : G) * g⁻¹ ∈ Γ ↔ k ∈ K₀)
 include hK₀
 
+/--
+@isnad1 id=eq.2h7v.s9.5afba0343bfe from=translated src=- shape=fa2e8376 vocab=a1eadfb7
+-/
 theorem mk_mul_eq_of_rel (g : G) {k k' : K} (h : k' * k⁻¹ ∈ K₀) :
     (Quotient.mk'' (g * (k' : G)) : _root_.Quotient (QuotientGroup.rightRel Γ)) =
       Quotient.mk'' (g * (k : G)) := by
@@ -36,6 +42,9 @@ theorem mk_mul_eq_of_rel (g : G) {k k' : K} (h : k' * k⁻¹ ∈ K₀) :
   rw [this, hK₀]
   simpa using K₀.inv_mem h
 
+/--
+@isnad1 id=surjecti.1h4v.s8.804e096f73a9 from=translated src=- shape=d1b5bf6f vocab=be7b67ca
+-/
 theorem dcMap_surjective : Function.Surjective (dcMap Γ K K₀) := by
   intro x
   refine Quotient.inductionOn' x (fun g => ?_)
@@ -59,6 +68,9 @@ theorem dcMap_surjective : Function.Surjective (dcMap Γ K K₀) := by
   rw [this]
   exact Γ.inv_mem hh
 
+/--
+@isnad1 id=injectiv.1h4v.s8.ccb42f8d9afb from=translated src=- shape=d1b5bf6f vocab=ee7ab98e
+-/
 theorem dcMap_injective : Function.Injective (dcMap Γ K K₀) := by
   rintro ⟨q₁, c₁⟩ ⟨q₂, c₂⟩ h
   rw [dcMap_apply, dcMap_apply] at h
@@ -79,6 +91,9 @@ theorem dcMap_injective : Function.Injective (dcMap Γ K K₀) := by
     exact Quotient.sound' (QuotientGroup.rightRel_apply.mpr h'')
   rw [hc]
 
+/--
+@isnad1 id=eq.1h4v.s8.271dbee03d2f from=translated src=- shape=b0e38a21 vocab=2a389eaf
+-/
 theorem index_mul_card_eq_natCard_doubleCoset_mul :
     Γ.index * Nat.card K₀ = Nat.card (DoubleCoset.Quotient (Γ : Set G) (K : Set G)) * Nat.card K := by
   have h1 : Γ.index = Nat.card (DoubleCoset.Quotient (Γ : Set G) (K : Set G)) * K₀.index :=
@@ -98,18 +113,27 @@ theorem index_mul_card_eq_natCard_doubleCoset_mul :
 
 end General
 
+/--
+@isnad1 id=or.1h1v.s9.f7b04a0d0736 from=translated src=- shape=613570b8 vocab=10f8d285
+-/
 theorem mem_zpowers_neg_one {z : SL(2, ℤ)} (hz : z ∈ Subgroup.zpowers (-1 : SL(2, ℤ))) : z = 1 ∨ z = -1 := by
   obtain ⟨n, rfl⟩ := Subgroup.mem_zpowers_iff.mp hz
   rcases Int.even_or_odd n with ⟨m, rfl⟩ | ⟨m, rfl⟩
   · left; rw [← two_mul, zpow_mul, zpow_ofNat, neg_one_sq, one_zpow]
   · right; rw [zpow_add, zpow_mul, zpow_ofNat, neg_one_sq, one_zpow, one_mul, zpow_one]
 
+/--
+@isnad1 id=normal.0h0v.s7.0e0371bc12d3 from=translated src=- shape=20adafaa vocab=67149b4c
+-/
 scoped instance zpowers_neg_one_normal : (Subgroup.zpowers (-1 : SL(2, ℤ))).Normal := by
   refine ⟨fun n hn g => ?_⟩
   rcases mem_zpowers_neg_one hn with rfl | rfl
   · rw [mul_one, mul_inv_cancel]; exact Subgroup.one_mem _
   · rw [mul_neg, mul_one, neg_mul, mul_inv_cancel]; exact Subgroup.mem_zpowers _
 
+/--
+@isnad1 id=eq.1h2v.s10.fd4425adce49 from=translated src=- shape=b5d536b9 vocab=64040c2c
+-/
 theorem natCard_doubleCoset_sup_eq (Γ K : Subgroup SL(2, ℤ)) (hK : (-1 : SL(2, ℤ)) ∈ K) :
     Nat.card (DoubleCoset.Quotient ((Γ ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)) : Subgroup SL(2, ℤ)) : Set SL(2, ℤ))
         (K : Set SL(2, ℤ))) =
@@ -131,6 +155,9 @@ theorem natCard_doubleCoset_sup_eq (Γ K : Subgroup SL(2, ℤ)) (hK : (-1 : SL(2
 
 open Matrix.SpecialLinearGroup ModularGroup
 
+/--
+@isnad1 id=ex.3h4v.s6.87c844fc738b from=translated src=- shape=006a53dc vocab=ef190579
+-/
 theorem exists_pow_eq_of_mem_zpowers {G : Type*} [Group G] {x y : G} {m : ℕ} (hm : 0 < m) (hx : x ^ m = 1)
     (hy : y ∈ Subgroup.zpowers x) : ∃ r : ℕ, r < m ∧ x ^ r = y := by
   obtain ⟨k, rfl⟩ := Subgroup.mem_zpowers_iff.1 hy
@@ -139,22 +166,37 @@ theorem exists_pow_eq_of_mem_zpowers {G : Type*} [Group G] {x y : G} {m : ℕ} (
   refine ⟨(k % (m : ℤ)).toNat, by omega, ?_⟩
   rw [zpow_eq_zpow_emod' k hx, ← zpow_natCast, Int.toNat_of_nonneg h0]
 
+/--
+@isnad1 id=eq.0h0v.s8.44beaf9a967c from=translated src=- shape=323e5004 vocab=d7d6fd83
+-/
 theorem S_sq : ModularGroup.S ^ 2 = (-1 : SL(2, ℤ)) :=
   Subtype.ext (by rw [coe_pow, pow_two, S_mul_S_eq, coe_neg, Matrix.SpecialLinearGroup.coe_one])
 
+/--
+@isnad1 id=eq.0h0v.s7.788b3cb52685 from=translated src=- shape=be816c72 vocab=dfc9fd34
+-/
 theorem S_pow_four : ModularGroup.S ^ 4 = (1 : SL(2, ℤ)) := by
   rw [show (4 : ℕ) = 2 * 2 from rfl, pow_mul, S_sq, neg_one_sq]
 
+/--
+@isnad1 id=eq.0h0v.s8.82e717330943 from=translated src=- shape=405f5f4c vocab=24c3c1a5
+-/
 theorem coe_ST : ((ModularGroup.S * ModularGroup.T : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) =
     !![0, -1; 1, 1] := by
   rw [coe_mul, coe_S, coe_T, Matrix.mul_fin_two]
   norm_num
 
+/--
+@isnad1 id=eq.0h0v.s9.8b4a2b75de3e from=translated src=- shape=3c7ce8ad vocab=7bd1ffd8
+-/
 theorem coe_ST_sq : (((ModularGroup.S * ModularGroup.T) ^ 2 : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) =
     !![-1, -1; 1, 0] := by
   rw [coe_pow, coe_ST, pow_two, Matrix.mul_fin_two]
   norm_num
 
+/--
+@isnad1 id=eq.0h0v.s8.0d563df832ed from=translated src=- shape=abdbf034 vocab=2328d14f
+-/
 theorem ST_pow_three : (ModularGroup.S * ModularGroup.T) ^ 3 = (-1 : SL(2, ℤ)) := by
   apply Subtype.ext
   rw [pow_succ, coe_mul, coe_ST_sq, coe_ST, coe_neg, Matrix.SpecialLinearGroup.coe_one, Matrix.mul_fin_two,
@@ -162,9 +204,15 @@ theorem ST_pow_three : (ModularGroup.S * ModularGroup.T) ^ 3 = (-1 : SL(2, ℤ))
   ext i j
   fin_cases i <;> fin_cases j <;> norm_num
 
+/--
+@isnad1 id=eq.0h0v.s8.f26f42acbc01 from=translated src=- shape=5cc1983f vocab=9a2d3578
+-/
 theorem ST_pow_six : (ModularGroup.S * ModularGroup.T) ^ 6 = (1 : SL(2, ℤ)) := by
   rw [show (6 : ℕ) = 3 * 2 from rfl, pow_mul, ST_pow_three, neg_one_sq]
 
+/--
+@isnad1 id=eq.0h0v.s8.809bf447c2bf from=translated src=- shape=4b866bb0 vocab=09c54a7a
+-/
 theorem natCard_zpowers_S : Nat.card (Subgroup.zpowers ModularGroup.S) = 4 := by
   rw [Nat.card_zpowers]
   refine (orderOf_eq_iff (by norm_num)).2 ⟨S_pow_four, fun m hm hm0 h => ?_⟩
@@ -179,6 +227,9 @@ theorem natCard_zpowers_S : Nat.card (Subgroup.zpowers ModularGroup.S) = 4 := by
     rw [pow_succ, S_sq, neg_one_mul, coe_neg, coe_S, Matrix.SpecialLinearGroup.coe_one] at h'
     norm_num at h'
 
+/--
+@isnad1 id=eq.0h0v.s8.53f4ff487554 from=translated src=- shape=bcdee477 vocab=8a76411d
+-/
 theorem natCard_zpowers_ST : Nat.card (Subgroup.zpowers (ModularGroup.S * ModularGroup.T)) = 6 := by
   rw [Nat.card_zpowers]
   refine (orderOf_eq_iff (by norm_num)).2 ⟨ST_pow_six, fun m hm hm0 h => ?_⟩
@@ -200,9 +251,15 @@ theorem natCard_zpowers_ST : Nat.card (Subgroup.zpowers (ModularGroup.S * Modula
       Matrix.SpecialLinearGroup.coe_one] at h'
     norm_num at h'
 
+/--
+@isnad1 id=mem.0h0v.s8.1d2545038f2a from=translated src=- shape=8a97d8c6 vocab=7637a363
+-/
 theorem neg_one_mem_zpowers_S : (-1 : SL(2, ℤ)) ∈ Subgroup.zpowers ModularGroup.S := by
   rw [← S_sq]; exact Subgroup.pow_mem _ (Subgroup.mem_zpowers _) 2
 
+/--
+@isnad1 id=mem.0h0v.s8.e4b732cd7803 from=translated src=- shape=a347a38d vocab=baf5f84d
+-/
 theorem neg_one_mem_zpowers_ST : (-1 : SL(2, ℤ)) ∈ Subgroup.zpowers (ModularGroup.S * ModularGroup.T) := by
   rw [← ST_pow_three]; exact Subgroup.pow_mem _ (Subgroup.mem_zpowers _) 3
 
@@ -210,6 +267,9 @@ variable (Γ : Subgroup SL(2, ℤ))
   (hfree : ∀ γ : SL(2, ℤ), (γ ∈ Γ ∨ -γ ∈ Γ) → ∀ τ : UpperHalfPlane, γ • τ = τ → γ = 1 ∨ γ = -1)
 include hfree
 
+/--
+@isnad1 id=iff.3h5v.s12.f0bd35150953 from=translated src=- shape=c56c99c1 vocab=76398dcc
+-/
 theorem conj_mem_sup_iff (x : SL(2, ℤ)) (τ₀ : UpperHalfPlane) (hx : x • τ₀ = τ₀)
     (hneg : (-1 : SL(2, ℤ)) ∈ Subgroup.zpowers x) (g : SL(2, ℤ)) (k : Subgroup.zpowers x) :
     g * (k : SL(2, ℤ)) * g⁻¹ ∈ Γ ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)) ↔
@@ -251,6 +311,9 @@ theorem conj_mem_sup_iff (x : SL(2, ℤ)) (τ₀ : UpperHalfPlane) (hx : x • �
       rw [← hrk, mul_neg_one, neg_mul, mul_inv_cancel]
       exact Subgroup.mem_sup_right (Subgroup.mem_zpowers _)
 
+/--
+@isnad1 id=eq.2h2v.s11.1243ef0dc129 from=translated src=- shape=9c233714 vocab=ed951875
+-/
 theorem natCard_subgroupOf_neg_one (x : SL(2, ℤ)) (hneg : (-1 : SL(2, ℤ)) ∈ Subgroup.zpowers x) :
     Nat.card ((Subgroup.zpowers (-1 : SL(2, ℤ))).subgroupOf (Subgroup.zpowers x)) = 2 := by
   rw [Nat.card_congr (Subgroup.subgroupOfEquivOfLe (Subgroup.zpowers_le.mpr hneg)).toEquiv, Nat.card_zpowers]
@@ -260,6 +323,9 @@ theorem natCard_subgroupOf_neg_one (x : SL(2, ℤ)) (hneg : (-1 : SL(2, ℤ)) �
   rw [pow_one, coe_neg, Matrix.SpecialLinearGroup.coe_one] at h'
   norm_num at h'
 
+/--
+@isnad1 id=eq.3h3v.s11.78a545f81ede from=translated src=- shape=8de89548 vocab=2f92d74c
+-/
 theorem two_mul_index_eq (x : SL(2, ℤ)) (τ₀ : UpperHalfPlane) (hx : x • τ₀ = τ₀)
     (hneg : (-1 : SL(2, ℤ)) ∈ Subgroup.zpowers x) :
     (Γ ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index * 2 =
@@ -273,6 +339,9 @@ end DCEll
 open scoped _root_.P2MW.S_Matrix_SpecialLinearGroup_three_mul_natCard_doubleCoset_eq_index_and_two_mul_of_forall_smul_eq.DCEll
 
 open DCEll in
+/--
+@isnad1 id=and.1h1v.s11.82ae785d06a7 from=translated src=- shape=36bc5b4e vocab=b36e4c0c
+-/
 theorem solution
     (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex]
     (hfree : ∀ γ : SL(2, ℤ), (γ ∈ Γ ∨ -γ ∈ Γ) → ∀ τ : UpperHalfPlane, γ • τ = τ → γ = 1 ∨ γ = -1) :

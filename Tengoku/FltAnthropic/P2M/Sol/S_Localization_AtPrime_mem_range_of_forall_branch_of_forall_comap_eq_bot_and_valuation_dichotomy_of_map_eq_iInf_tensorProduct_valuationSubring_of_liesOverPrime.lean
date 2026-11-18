@@ -16,6 +16,9 @@ open scoped TensorProduct
 
 namespace LocalPlAlgebra
 
+/--
+@isnad1 id=ex.1h4v.s8.03132b661123 from=translated src=- shape=fb8c9c51 vocab=356769be
+-/
 theorem exists_pow_mul_eq_algebraMap {S K : Type*} [CommRing S] [CommRing K] [Algebra S K]
     (p : S) (f : K)
     (h2 : ∀ 𝔮 : Ideal S, 𝔮.IsPrime → p ∉ 𝔮 → ∃ a s : S, s ∉ 𝔮 ∧ f * algebraMap S K s = algebraMap S K a) :
@@ -40,6 +43,9 @@ theorem exists_pow_mul_eq_algebraMap {S K : Type*} [CommRing S] [CommRing K] [Al
   obtain ⟨n, hn⟩ := (Ideal.mem_radical_iff).mp hrad
   exact ⟨n, (hD _).mp hn⟩
 
+/--
+@isnad1 id=mem.1h4v.s9.3fba38165e37 from=translated src=- shape=e9a0fd38 vocab=3de561b4
+-/
 theorem tmul_one_mem_nonZeroDivisors {R A B : Type*} [CommRing R] [CommRing A] [CommRing B]
     [Algebra R A] [Algebra R B] [Module.Flat R B] (a : A) (ha : a ∈ nonZeroDivisors A) :
     (a ⊗ₜ[R] (1 : B)) ∈ nonZeroDivisors (A ⊗[R] B) := by
@@ -61,6 +67,9 @@ theorem tmul_one_mem_nonZeroDivisors {R A B : Type*} [CommRing R] [CommRing A] [
   · rw [mul_comm, hmul] at hz
     exact hinj2 (by rw [hz, map_zero])
 
+/--
+@isnad1 id=mem.1h4v.s7.21f575cf82cc from=translated src=- shape=c18f7eb5 vocab=e078b8c4
+-/
 theorem algebraMap_mem_nonZeroDivisors_of_isLocalization {T : Type*} [CommRing T] (M : Submonoid T)
     (S : Type*) [CommRing S] [Algebra T S] [IsLocalization M S] (x : T) (hx : x ∈ nonZeroDivisors T) :
     algebraMap T S x ∈ nonZeroDivisors S := by
@@ -75,6 +84,9 @@ theorem algebraMap_mem_nonZeroDivisors_of_isLocalization {T : Type*} [CommRing T
   have : (↑c * r) * x = 0 := by rw [mul_assoc, mul_comm r x]; exact hc
   exact (mem_nonZeroDivisors_iff_right.mp hx) _ this
 
+/--
+@isnad1 id=ex.0h4v.s10.6a00dad4f953 from=translated src=- shape=a80bcbb6 vocab=8aa6834f
+-/
 theorem exists_finset_forall_mem_range_map {R P B : Type*} [CommRing R] [CommRing P] [CommRing B]
     [Algebra R P] [Algebra R B] (x : P ⊗[R] B) :
     ∃ Λ : Finset P, ∀ (A : Type*) [CommRing A] [Algebra R A] [Algebra A P] [IsScalarTower R A P],
@@ -95,6 +107,9 @@ theorem exists_finset_forall_mem_range_map {R P B : Type*} [CommRing R] [CommRin
     obtain ⟨y', hy'⟩ := hΛy A (subset_trans (by simp) hA)
     exact ⟨x' + y', by rw [map_add, hx', hy']⟩
 
+/--
+@isnad1 id=ex.0h4v.s10.2563b1dbaa6b from=translated src=- shape=f5841ddb vocab=d0b0ca38
+-/
 theorem exists_finset_forall_subset_range_map {R P B : Type*} [CommRing R] [CommRing P] [CommRing B]
     [Algebra R P] [Algebra R B] (F : Finset (P ⊗[R] B)) :
     ∃ Λ : Finset P, ∀ (A : Type*) [CommRing A] [Algebra R A] [Algebra A P] [IsScalarTower R A P],
@@ -110,6 +125,9 @@ theorem exists_finset_forall_subset_range_map {R P B : Type*} [CommRing R] [Comm
     rw [Finset.coe_insert, Set.insert_subset_iff]
     exact ⟨hΛx A (subset_trans (by simp) hA), hΛ A (subset_trans (by simp) hA)⟩
 
+/--
+@isnad1 id=injectiv.1h4v.s9.fef493cefce3 from=translated src=- shape=80cf5b7f vocab=037372ed
+-/
 theorem map_toAlgHom_injective {R A P B : Type*} [CommRing R] [CommRing A] [CommRing P] [CommRing B]
     [Algebra R A] [Algebra R P] [Algebra R B] [Algebra A P] [IsScalarTower R A P] [Module.Flat R B]
     (hinj : Function.Injective (algebraMap A P)) :
@@ -133,9 +151,15 @@ variable {R k κ B : Type*} [CommRing R] [Field k] [CommRing κ] [CommRing B]
 noncomputable def prime_coordMap (c : κ →ₗ[k] k) : κ ⊗[R] B →ₗ[R] k ⊗[R] B :=
   TensorProduct.map (c.restrictScalars R) LinearMap.id
 
+/--
+@isnad1 id=eq.0h7v.s10.f8fa62e6abf7 from=translated src=- shape=6116f545 vocab=16c3ca0f
+-/
 theorem prime_coordMap_tmul (c : κ →ₗ[k] k) (x : κ) (b : B) :
     prime_coordMap (R := R) c (x ⊗ₜ[R] b) = c x ⊗ₜ[R] b := rfl
 
+/--
+@isnad1 id=eq.0h7v.s11.559b8d9e8c66 from=translated src=- shape=fc33736c vocab=e10bc192
+-/
 theorem prime_coordMap_mul (c : κ →ₗ[k] k) (y : k ⊗[R] B) (z : κ ⊗[R] B) :
     prime_coordMap (R := R) c (Algebra.TensorProduct.map (IsScalarTower.toAlgHom R k κ) (AlgHom.id R B) y * z) =
       y * prime_coordMap (R := R) c z := by
@@ -151,6 +175,9 @@ theorem prime_coordMap_mul (c : κ →ₗ[k] k) (y : k ⊗[R] B) (z : κ ⊗[R] 
         Algebra.TensorProduct.tmul_mul_tmul, prime_coordMap_tmul, prime_coordMap_tmul,
         Algebra.TensorProduct.tmul_mul_tmul, ← Algebra.smul_def, map_smul, smul_eq_mul]
 
+/--
+@isnad1 id=ex.0h7v.s11.79e5bd6da527 from=translated src=- shape=ce4e21f1 vocab=5e2bc68d
+-/
 theorem prime_exists_eq_sum_coord {ι₀ : Type*} (e : Module.Basis ι₀ k κ) (z : κ ⊗[R] B) :
     ∃ I : Finset ι₀, ∀ J : Finset ι₀, I ⊆ J →
       z = ∑ i ∈ J, Algebra.TensorProduct.map (IsScalarTower.toAlgHom R k κ) (AlgHom.id R B)
@@ -180,6 +207,9 @@ theorem prime_exists_eq_sum_coord {ι₀ : Type*} (e : Module.Basis ι₀ k κ) 
 
 end Coord
 
+/--
+@isnad1 id=eq.2h6v.s15.2bcad86b1e72 from=translated src=- shape=c81c7b67 vocab=bf1617d2
+-/
 theorem comap_localRingHom_map_maximalIdeal_eq_span_noprime
     {R A P B : Type*} [CommRing R] [CommRing A] [CommRing P] [CommRing B]
     [Algebra R A] [Algebra R P] [Algebra R B] [Algebra A P] [IsScalarTower R A P]
@@ -310,6 +340,9 @@ theorem comap_localRingHom_map_maximalIdeal_eq_span_noprime
     rw [e3]
     exact Ideal.mem_map_of_mem _ hϖm
 
+/--
+@isnad1 id=ex.5h8v.s8.ca61eb4fd164 from=translated src=- shape=fdbf56ef vocab=eae3e845
+-/
 theorem exists_eq_pow_mul_of_forall_mul_eq_pow_mul {T : Type*} [CommRing T] (ϖ : T)
     {ιx : Type*} (P : ιx → Ideal T) (hP : ∀ i, (P i).IsPrime) (hspan : Ideal.span {ϖ} = ⨅ i, P i)
     (hreg : ϖ ∈ nonZeroDivisors T)
@@ -339,6 +372,9 @@ theorem exists_eq_pow_mul_of_forall_mul_eq_pow_mul {T : Type*} [CommRing T] (ϖ 
     obtain ⟨W, hW⟩ := ih X' Z h4
     exact ⟨W, by rw [hW]; ring⟩
 
+/--
+@isnad1 id=ex.6h12v.s16.2f692c4bc748 from=translated src=- shape=6de4d1f0 vocab=a312cb4b
+-/
 theorem exists_eq_pow_mul_of_forall_localRingHom_not_mem
     {R A P B : Type*} [CommRing R] [CommRing A] [IsDomain A] [IsDiscreteValuationRing A] [CommRing P] [CommRing B]
     [Algebra R A] [Algebra R P] [Algebra R B] [Algebra A P] [IsScalarTower R A P] [Module.Flat R B]
@@ -392,6 +428,9 @@ theorem exists_eq_pow_mul_of_forall_localRingHom_not_mem
       = (v * algebraMap A _ ↑u⁻¹) ^ N * (ϖ' ^ (e * N) * W) := by ring
     _ = ϖ' ^ (e * N) * W := by rw [hu1, one_pow, one_mul]
 
+/--
+@isnad1 id=ex.6h10v.s17.f3e0dab586a8 from=translated src=- shape=9dac18b5 vocab=f6f279e1
+-/
 theorem exists_mul_eq_pow_mul_of_separated_branch
     {R A P B : Type*} [CommRing R] [CommRing A] [CommRing P] [CommRing B]
     [Algebra R A] [Algebra R P] [Algebra R B] [Algebra A P] [IsScalarTower R A P]
@@ -532,6 +571,9 @@ theorem exists_mul_eq_pow_mul_of_separated_branch
   rw [map_mul, map_mul, map_mul, map_mul, map_pow] at h1
   exact mul_left_cancel₀ (hφc c) h1
 
+/--
+@isnad1 id=ex.3h4v.s12.d9177c042cee from=translated src=- shape=0c034664 vocab=f116c496
+-/
 theorem exists_dvr_layer (p : ℕ) [Fact p.Prime]
     (Pl : ValuationSubring (AlgebraicClosure ℚ)) (hPl : Pl.LiesOverPrime p)
     (ρ : ↥(GaloisRep.ratLocalizedAt p) →+* ↥Pl)
@@ -621,6 +663,9 @@ end LocalPlAlgebra
 
 set_option maxHeartbeats 1600000 in
 
+/--
+@isnad1 id=mem.8h9v.s18.da40663c0105 from=translated src=- shape=e1cf1b08 vocab=f2f8f135
+-/
 theorem node_mem_range_of_forall_comap_eq_bot
     (p : ℕ) [Fact p.Prime]
     (Pl : ValuationSubring (AlgebraicClosure ℚ)) (hPl : Pl.LiesOverPrime p)
@@ -836,6 +881,9 @@ theorem node_mem_range_of_forall_comap_eq_bot
 
 set_option maxHeartbeats 1600000 in
 
+/--
+@isnad1 id=or.7h10v.s17.da7be5875f19 from=translated src=- shape=ac04795c vocab=30035f68
+-/
 theorem node_valuation_dichotomy
     (p : ℕ) [Fact p.Prime]
     (Pl : ValuationSubring (AlgebraicClosure ℚ)) (hPl : Pl.LiesOverPrime p)
@@ -1024,6 +1072,9 @@ theorem node_valuation_dichotomy
         _ = algebraMap _ K ((w ^ (n - m) * φ y₀ * φ s₀) * x) := by rw [hS]
         _ = _ := map_mul _ _ _
 
+/--
+@isnad1 id=and.7h8v.s18.1f71a01d2c28 from=translated src=- shape=65f697d2 vocab=3c07f885
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime]
     (Pl : ValuationSubring (AlgebraicClosure ℚ)) (hPl : Pl.LiesOverPrime p)

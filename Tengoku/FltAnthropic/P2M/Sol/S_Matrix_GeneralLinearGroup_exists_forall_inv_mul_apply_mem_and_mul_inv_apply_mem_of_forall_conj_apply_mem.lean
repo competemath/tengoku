@@ -7,6 +7,9 @@ namespace P2MW.S_Matrix_GeneralLinearGroup_exists_forall_inv_mul_apply_mem_and_m
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.1h4v.s8.362acebd4d05 from=translated src=- shape=e4d1ed90 vocab=26867fa8
+-/
 theorem solution
     {K : Type*} [Field K] (𝒪 : ValuationSubring K) {n : Type*} [Fintype n] [DecidableEq n]
     (g : GL n K)

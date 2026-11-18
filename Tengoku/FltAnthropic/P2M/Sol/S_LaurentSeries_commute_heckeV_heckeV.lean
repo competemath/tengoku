@@ -16,6 +16,9 @@ set_option autoImplicit false
 
 open ModularCurve LaurentSeries
 
+/--
+@isnad1 id=commute.3h3v.s7.d8c1aad38c7a from=translated src=- shape=10d393b7 vocab=64292b42
+-/
 theorem solution (R : Type*) [CommRing R] (ℓ ℓ' : ℕ) (hℓ : 0 < ℓ) (hℓ' : 0 < ℓ')
     (h : Nat.Coprime ℓ ℓ') :
     Commute (heckeV R ℓ hℓ) (heckeV R ℓ' hℓ')  := by

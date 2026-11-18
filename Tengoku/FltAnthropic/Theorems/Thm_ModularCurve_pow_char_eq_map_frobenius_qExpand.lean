@@ -6,6 +6,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_ModularCurve_pow_char_eq_map_frobenius_qEx
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `Theorems/Thm_ModularCurve_pow_char_eq_map_frobenius_qExpand.lean`: wrote out 1 shortcut(s) of the library's `P2M.Util` (it runs code when a module compiles) as plain Lean: 1 `p2m_exact_reverting`; removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 
 open ModularCurve
+/--
+@isnad1 id=eq.0h3v.s8.f37b5948b1ce from=translated src=- shape=91ed43bf vocab=85c79e4c
+-/
 theorem ModularCurve.pow_char_eq_map_frobenius_qExpand {R : Type*} [CommRing R] (p : ℕ) [Fact p.Prime] [CharP R p]
     (s : LaurentSeries R) :
     s ^ p = (qExpand R p s).map (frobenius R p) := by exact @_root_.P2MW.S_ModularCurve_pow_char_eq_map_frobenius_qExpand.solution R _ p _ _ s

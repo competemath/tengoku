@@ -12,6 +12,9 @@ set_option autoImplicit false
 set_option maxHeartbeats 800000
 set_option synthInstance.maxHeartbeats 80000
 
+/--
+@isnad1 id=ex.1h7v.s9.9667e5d23acf from=translated src=- shape=a1c0c46a vocab=fe1b3305
+-/
 theorem solution
     {K V : Type*} [Field K] [CharZero K] [AddCommGroup V] [Module K V] {r : ℕ} {ι : Type*}
     (S : Finset ι) (f : ι → (Fin r → K) →ₗ[K] V) (W : ι → Submodule K V)

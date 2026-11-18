@@ -74,6 +74,9 @@ end FreeModuleKerBaseChangeAux
 
 open FreeModuleKerBaseChangeAux in
 open scoped TensorProduct in
+/--
+@isnad1 id=le.1h4v.s11.bf488171e3d9 from=translated src=- shape=2e643bb2 vocab=4fc55b04
+-/
 theorem solution
     {L : Type} [AddCommGroup L] [Module.Free ℤ L] [Module.Finite ℤ L]
     (A : L →ₗ[ℤ] L) (hA : LinearMap.det A ≠ 0) (p : ℕ) [Fact p.Prime]

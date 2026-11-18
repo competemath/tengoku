@@ -17,29 +17,53 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimension
 
 def cb {c : E} (f : ContDiffBump c) : E → ℂ := fun x => ((f x : ℝ) : ℂ)
 
+/--
+@isnad1 id=eq.0h4v.s5.00e9e467f497 from=translated src=- shape=88d08ade vocab=2ab90b8f
+-/
 theorem cb_apply {c : E} (f : ContDiffBump c) (x : E) : cb f x = ((f x : ℝ) : ℂ) := rfl
 
+/--
+@isnad1 id=contdiff.0h3v.s6.3b9323a8fd50 from=translated src=- shape=b6c0e6c3 vocab=a5d43b4f
+-/
 theorem contDiff_cb {c : E} (f : ContDiffBump c) : ContDiff ℝ (⊤ : ℕ∞) (cb f) :=
   Complex.ofRealCLM.contDiff.comp f.contDiff
 
+/--
+@isnad1 id=continuo.0h3v.s6.d18ddbf78d2c from=translated src=- shape=de63dd45 vocab=8b4a7e69
+-/
 theorem continuous_cb {c : E} (f : ContDiffBump c) : Continuous (cb f) :=
   Complex.continuous_ofReal.comp f.continuous
 
+/--
+@isnad1 id=hascompa.0h3v.s5.27697fc3cbcd from=translated src=- shape=de63dd45 vocab=4f0fd520
+-/
 theorem hasCompactSupport_cb {c : E} (f : ContDiffBump c) : HasCompactSupport (cb f) :=
   f.hasCompactSupport.comp_left Complex.ofReal_zero
 
+/--
+@isnad1 id=le.0h3v.s6.dca8716fd7f3 from=translated src=- shape=d1e9913a vocab=e46586e4
+-/
 theorem tsupport_cb_subset {c : E} (f : ContDiffBump c) : tsupport (cb f) ⊆ closedBall c f.rOut := by
   rw [← f.tsupport_eq]
   exact closure_mono (Function.support_comp_subset Complex.ofReal_zero f)
 
+/--
+@isnad1 id=eq.1h4v.s6.d77e9adf8e97 from=translated src=- shape=e561af7b vocab=16aefc92
+-/
 theorem cb_eq_one_of_mem {c : E} (f : ContDiffBump c) {x : E} (hx : x ∈ closedBall c f.rIn) :
     cb f x = 1 := by
   rw [cb_apply, f.one_of_mem_closedBall hx, Complex.ofReal_one]
 
+/--
+@isnad1 id=eq.1h4v.s6.0a22374c91ea from=translated src=- shape=e62bf4cd vocab=8acb11a2
+-/
 theorem cb_eq_zero_of_le {c : E} (f : ContDiffBump c) {x : E} (hx : f.rOut ≤ dist x c) :
     cb f x = 0 := by
   rw [cb_apply, f.zero_of_le_dist hx, Complex.ofReal_zero]
 
+/--
+@isnad1 id=eventual.1h4v.s6.5dc33d9fec91 from=translated src=- shape=1d29a441 vocab=ab269877
+-/
 theorem cb_eventuallyEq_one {c : E} (f : ContDiffBump c) {x : E} (hx : x ∈ ball c f.rIn) :
     cb f =ᶠ[𝓝 x] fun _ => (1 : ℂ) := by
   filter_upwards [f.eventuallyEq_one_of_mem_ball hx] with y hy
@@ -47,6 +71,9 @@ theorem cb_eventuallyEq_one {c : E} (f : ContDiffBump c) {x : E} (hx : x ∈ bal
 
 variable [MeasurableSpace E] [BorelSpace E]
 
+/--
+@isnad1 id=ex.9h7v.s10.615b961a8833 from=translated src=- shape=43956ba5 vocab=6a95eabb
+-/
 theorem main (μ : Measure E) [IsFiniteMeasureOnCompacts μ]
     (D : (E → ℂ) → (E → ℂ))
     (hD_add : ∀ F G : E → ℂ, ContDiff ℝ (⊤ : ℕ∞) F → HasCompactSupport F →
@@ -215,6 +242,9 @@ end R4Cutoff
 end
 
 open MeasureTheory Topology in
+/--
+@isnad1 id=ex.9h7v.s10.615b961a8833 from=translated src=- shape=43956ba5 vocab=6a95eabb
+-/
 theorem solution
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
     [MeasurableSpace E] [BorelSpace E] (μ : Measure E) [IsFiniteMeasureOnCompacts μ]

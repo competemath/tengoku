@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open Matrix MatrixGroups
 
+/--
+@isnad1 id=and.4h5v.s12.f4f67356fc55 from=translated src=- shape=e855df7b vocab=30f3114b
+-/
 theorem Matrix.SpecialLinearGroup.borel_orbit_structure_of_sylow_eq_upper
     {K : Type} [Field K] {p : ℕ} [Fact p.Prime] [CharP K p] (hp2 : p ≠ 2)
     {H : Type} [Group H] [Finite H] (ρ : H →* SL(2, K)) (hρ : Function.Injective ρ)

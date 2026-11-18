@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open Matrix
 
+/--
+@isnad1 id=and.1h3v.s6.962120181547 from=translated src=- shape=56130162 vocab=31155cef
+-/
 theorem solution {m : Type*} [Fintype m] [DecidableEq m]
     (p : ℕ) [Fact p.Prime] (M : Matrix m m ℤ) (hM : ¬ (p : ℤ) ∣ M.det) :
     IsUnit (M.map (Int.cast : ℤ → ℚ)) ∧

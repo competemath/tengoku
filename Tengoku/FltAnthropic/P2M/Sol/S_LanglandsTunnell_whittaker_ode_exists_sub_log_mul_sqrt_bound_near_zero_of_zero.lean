@@ -16,6 +16,9 @@ namespace Frob0
 
 variable {g h q : ℝ → ℂ}
 
+/--
+@isnad1 id=eq.4h4v.s7.44eea9d7287e from=translated src=- shape=acd5a230 vocab=daf468f9
+-/
 theorem g_sub (hg : ∀ y : ℝ, 0 < y → HasDerivAt g (h y / y) y) (hhc : ContinuousOn h (Ioi 0))
     {t y₀ : ℝ} (ht : 0 < t) (hty : t ≤ y₀) :
     g y₀ - g t = ∫ s in t..y₀, h s / s := by
@@ -28,6 +31,9 @@ theorem g_sub (hg : ∀ y : ℝ, 0 < y → HasDerivAt g (h y / y) y) (hhc : Cont
     exact hg s (ht.trans_le hs.1)
   · exact (hcont.intervalIntegrable_of_Icc hty)
 
+/--
+@isnad1 id=eq.5h5v.s7.f4ffb79d8df8 from=translated src=- shape=3b6d5976 vocab=11388613
+-/
 theorem h_sub (hh : ∀ y : ℝ, 0 < y → HasDerivAt h (q y * g y) y) (hqc : ContinuousOn q (Ioi 0))
     (hgc : ContinuousOn g (Ioi 0)) {t y₀ : ℝ} (ht : 0 < t) (hty : t ≤ y₀) :
     h y₀ - h t = ∫ s in t..y₀, q s * g s := by
@@ -39,6 +45,9 @@ theorem h_sub (hh : ∀ y : ℝ, 0 < y → HasDerivAt h (q y * g y) y) (hqc : Co
     exact hh s (ht.trans_le hs.1)
   · exact (hcont.intervalIntegrable_of_Icc hty)
 
+/--
+@isnad1 id=le.2h2v.s5.c6feaed7b3f1 from=translated src=- shape=2b517494 vocab=dd42b66a
+-/
 theorem integral_log_div_le {s y₀ : ℝ} (hs : 0 < s) (hsy : s ≤ y₀) :
     ∫ r in s..y₀, (Real.log y₀ - Real.log r) ≤ y₀ := by
   have hy₀ : 0 < y₀ := hs.trans_le hsy
@@ -49,6 +58,9 @@ theorem integral_log_div_le {s y₀ : ℝ} (hs : 0 < s) (hsy : s ≤ y₀) :
     exact mul_nonpos_of_nonneg_of_nonpos hs.le (Real.log_nonpos (div_pos hs hy₀).le ((div_le_one hy₀).mpr hsy))
   nlinarith [h2]
 
+/--
+@isnad1 id=le.3h2v.s6.1af698cfb5e1 from=translated src=- shape=0d4ee307 vocab=4aba904e
+-/
 theorem log_div_le_two_sqrt {t y₀ : ℝ} (ht : 0 < t) (hty : t ≤ y₀) (hy₀1 : y₀ ≤ 1) :
     t * (Real.log y₀ - Real.log t) ≤ 2 * Real.sqrt t := by
   have hy₀ : 0 < y₀ := ht.trans_le hty
@@ -89,11 +101,20 @@ variable (hg : ∀ y : ℝ, 0 < y → HasDerivAt g (h y / y) y) (hh : ∀ y : �
   (hq : ∀ y : ℝ, 0 < y → y ≤ y₀ → ‖q y‖ ≤ Q) (hsmall : Q * y₀ ≤ 1 / 2)
 
 include hg in
+/--
+@isnad1 id=continuo.1h2v.s6.731ec1262ada from=translated src=- shape=b38e39fa vocab=d700eabe
+-/
 theorem g_cont : ContinuousOn g (Ioi 0) := fun y hy => (hg y hy).continuousAt.continuousWithinAt
 
 include hh in
+/--
+@isnad1 id=continuo.1h3v.s6.b261edcae066 from=translated src=- shape=3f1c9b89 vocab=90db8a9e
+-/
 theorem h_cont : ContinuousOn h (Ioi 0) := fun y hy => (hh y hy).continuousAt.continuousWithinAt
 
+/--
+@isnad1 id=le.5h6v.s7.362e82c02e1b from=translated src=- shape=537962f4 vocab=5af3eedd
+-/
 theorem norm_g_le (hg : ∀ y : ℝ, 0 < y → HasDerivAt g (h y / y) y) (hhc : ContinuousOn h (Ioi 0))
     {t y₀ X : ℝ} (ht : 0 < t) (hX : ∀ s ∈ Icc t y₀, ‖h s‖ ≤ X) {s : ℝ} (hs : s ∈ Icc t y₀) :
     ‖g s‖ ≤ ‖g y₀‖ + X * (Real.log y₀ - Real.log s) := by
@@ -115,6 +136,9 @@ theorem norm_g_le (hg : ∀ y : ℝ, 0 < y → HasDerivAt g (h y / y) y) (hhc : 
 
 include hg hh hqc hQ hy₀ hy₀1 hq hsmall in
 
+/--
+@isnad1 id=and.10h6v.s8.344c83818352 from=translated src=- shape=d76cc670 vocab=4b436a4c
+-/
 theorem bound (t : ℝ) (ht : 0 < t) (hty : t ≤ y₀) :
     ‖h t‖ ≤ 2 * (‖h y₀‖ + Q * y₀ * ‖g y₀‖) ∧
       ‖g t‖ ≤ ‖g y₀‖ + 2 * (‖h y₀‖ + Q * y₀ * ‖g y₀‖) * (Real.log y₀ - Real.log t) := by
@@ -179,6 +203,9 @@ variable (hg : ∀ y : ℝ, 0 < y → HasDerivAt g (h y / y) y) (hh : ∀ y : �
   (hqc : ContinuousOn q (Ioi 0)) {Q y₀ : ℝ} (hQ : 0 ≤ Q) (hy₀ : 0 < y₀) (hy₀1 : y₀ ≤ 1)
   (hq : ∀ y : ℝ, 0 < y → y ≤ y₀ → ‖q y‖ ≤ Q) (hsmall : Q * y₀ ≤ 1 / 2)
 
+/--
+@isnad1 id=interval.4h3v.s7.046a610e2aa0 from=translated src=- shape=71b8afb7 vocab=1b82fd1e
+-/
 theorem intervalIntegrable_of_bound {F : ℝ → ℂ} {B : ℝ → ℝ} {y₀ : ℝ} (hy₀ : 0 < y₀)
     (hF : ContinuousOn F (Ioc 0 y₀)) (hB : IntervalIntegrable B volume 0 y₀)
     (hle : ∀ s ∈ Ioc 0 y₀, ‖F s‖ ≤ B s) : IntervalIntegrable F volume 0 y₀ := by
@@ -188,6 +215,9 @@ theorem intervalIntegrable_of_bound {F : ℝ → ℂ} {B : ℝ → ℝ} {y₀ : 
 
 include hg hh hqc hQ hy₀ hy₀1 hq hsmall in
 
+/--
+@isnad1 id=ex.8h5v.s8.ab92d7b3c5a3 from=translated src=- shape=bd79828b vocab=4480dbe6
+-/
 theorem core : ∃ (a b : ℂ) (K : ℝ), ∀ t : ℝ, 0 < t → t ≤ y₀ →
     ‖h t - b‖ ≤ K * Real.sqrt t ∧ ‖g t - (a + b * (Real.log t : ℂ))‖ ≤ K * Real.sqrt t := by
   have hgc := g_cont hg
@@ -331,6 +361,9 @@ def hOf (y : ℝ) : ℂ := ((Real.sqrt y : ℝ) : ℂ) * (deriv f y - f y / (2 *
 
 def qOf (y : ℝ) : ℂ := -(2 * (π : ℂ) * (κ : ℂ)) + 4 * (π : ℂ) ^ 2 * (y : ℂ)
 
+/--
+@isnad1 id=hasderiv.1h1v.s6.419041052045 from=translated src=- shape=448bc828 vocab=e99f5e23
+-/
 theorem hasDerivAt_sqrtC {y : ℝ} (hy : 0 < y) :
     HasDerivAt (fun t : ℝ => ((Real.sqrt t : ℝ) : ℂ)) ((((Real.sqrt y : ℝ) : ℂ))⁻¹ / 2) y := by
   have h := (Real.hasDerivAt_sqrt hy.ne').ofReal_comp
@@ -339,6 +372,9 @@ theorem hasDerivAt_sqrtC {y : ℝ} (hy : 0 < y) :
   ring
 
 include hf in
+/--
+@isnad1 id=hasderiv.2h2v.s7.e37613f94b26 from=translated src=- shape=a2582561 vocab=0957860f
+-/
 theorem hasDerivAt_gOf {y : ℝ} (hy : 0 < y) : HasDerivAt (gOf f) (hOf f y / y) y := by
   have hS : ((Real.sqrt y : ℝ) : ℂ) ≠ 0 := Complex.ofReal_ne_zero.mpr (Real.sqrt_pos.mpr hy).ne'
   have hS2 : ((Real.sqrt y : ℝ) : ℂ) ^ 2 = (y : ℂ) := by rw [← Complex.ofReal_pow, Real.sq_sqrt hy.le]
@@ -351,6 +387,9 @@ theorem hasDerivAt_gOf {y : ℝ} (hy : 0 < y) : HasDerivAt (gOf f) (hOf f y / y)
   field_simp
 
 include hf hf' hfeq in
+/--
+@isnad1 id=hasderiv.4h3v.s9.baca29f1ee56 from=translated src=- shape=92c5d2d0 vocab=f3d23ee4
+-/
 theorem hasDerivAt_hOf {y : ℝ} (hy : 0 < y) : HasDerivAt (hOf f) (qOf κ y * gOf f y) y := by
   have hS : ((Real.sqrt y : ℝ) : ℂ) ≠ 0 := Complex.ofReal_ne_zero.mpr (Real.sqrt_pos.mpr hy).ne'
   have hS2 : ((Real.sqrt y : ℝ) : ℂ) ^ 2 = (y : ℂ) := by rw [← Complex.ofReal_pow, Real.sq_sqrt hy.le]
@@ -372,6 +411,9 @@ theorem hasDerivAt_hOf {y : ℝ} (hy : 0 < y) : HasDerivAt (hOf f) (qOf κ y * g
   field_simp
   linear_combination (4 : ℂ) * e + (8 * f y * (π : ℂ) * (κ : ℂ)) * hS3 - (16 * f y * (π : ℂ) ^ 2) * hS5
 
+/--
+@isnad1 id=le.2h2v.s6.0a9158ca7fd4 from=translated src=- shape=c1a86942 vocab=a3f7b18e
+-/
 theorem norm_qOf_le {y : ℝ} (hy : 0 < y) (hy1 : y ≤ 1) : ‖qOf κ y‖ ≤ 2 * π * |κ| + 4 * π ^ 2 := by
   rw [qOf]
   refine (norm_add_le _ _).trans (add_le_add ?_ ?_)
@@ -391,6 +433,9 @@ open Real Complex Filter Topology
 
 open LanglandsTunnell.Frob0 in
 
+/--
+@isnad1 id=ex.3h2v.s9.ddeefe0e3657 from=translated src=- shape=b2c02b58 vocab=e283cdc6
+-/
 theorem solution
     (κ : ℝ) (f : ℝ → ℂ)
     (hf : DifferentiableOn ℝ f (Set.Ioi 0)) (hf' : DifferentiableOn ℝ (deriv f) (Set.Ioi 0))

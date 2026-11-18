@@ -11,6 +11,9 @@ universe u
 
 open Module
 
+/--
+@isnad1 id=eq.9h18v.s10.177fc1bd4088 from=translated src=- shape=1284cb9f vocab=d63316cd
+-/
 theorem solution {k : Type u} [Field k]
     {V₀ V₁ V₂ V₃ V₄ V₅ V₆ V₇ V₈ : Type u}
     [AddCommGroup V₀] [Module k V₀] [AddCommGroup V₁] [Module k V₁]

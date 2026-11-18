@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=and.4h4v.s13.c3407a722355 from=translated src=- shape=703936c3 vocab=62d92b64
+-/
 theorem solution
     {p : ℕ} [Fact p.Prime] {V : Type*} [AddCommGroup V] [Module (ZMod p) V] [Finite V]
     (b : LinearMap.BilinForm (ZMod p) V)

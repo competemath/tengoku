@@ -9,6 +9,9 @@ set_option autoImplicit false
 set_option maxHeartbeats 800000
 open scoped TensorProduct
 
+/--
+@isnad1 id=and.2h5v.s13.6441876db085 from=translated src=- shape=53614f2b vocab=48a107ee
+-/
 theorem solution
     {R : Type} [CommRing R] {k : Type} [CommRing k] [Algebra R k] [Nontrivial k]
     {G : Type} [Group G]

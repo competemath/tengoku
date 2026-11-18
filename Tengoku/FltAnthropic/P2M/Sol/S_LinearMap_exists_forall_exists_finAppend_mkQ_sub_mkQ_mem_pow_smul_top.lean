@@ -20,12 +20,21 @@ abbrev π₁ (B : Type u) [CommRing B] (r₁ r₂ : ℕ) : (Fin (r₁ + r₂) �
 abbrev π₂ (B : Type u) [CommRing B] (r₁ r₂ : ℕ) : (Fin (r₁ + r₂) → B) →ₗ[B] (Fin r₂ → B) :=
   LinearMap.funLeft B B (Fin.natAdd r₁)
 
+/--
+@isnad1 id=eq.0h5v.s8.e233ae28fccc from=translated src=- shape=12fbf3bc vocab=9c3f37c0
+-/
 theorem π₁_append {r₁ r₂ : ℕ} (v : Fin r₁ → B) (w : Fin r₂ → B) : π₁ B r₁ r₂ (Fin.append v w) = v := by
   funext i; simp [LinearMap.funLeft_apply]
 
+/--
+@isnad1 id=eq.0h5v.s8.ed86461759cf from=translated src=- shape=adc2a619 vocab=4150348f
+-/
 theorem π₂_append {r₁ r₂ : ℕ} (v : Fin r₁ → B) (w : Fin r₂ → B) : π₂ B r₁ r₂ (Fin.append v w) = w := by
   funext i; simp [LinearMap.funLeft_apply]
 
+/--
+@isnad1 id=eq.0h4v.s9.d974fc106522 from=translated src=- shape=90b8e3e2 vocab=73cfaa77
+-/
 theorem append_π {r₁ r₂ : ℕ} (x : Fin (r₁ + r₂) → B) : Fin.append (π₁ B r₁ r₂ x) (π₂ B r₁ r₂ x) = x := by
   funext i
   refine Fin.addCases (fun j => ?_) (fun j => ?_) i
@@ -35,6 +44,9 @@ theorem append_π {r₁ r₂ : ℕ} (x : Fin (r₁ + r₂) → B) : Fin.append (
 end X1aOverlapSol
 
 open X1aOverlapSol in
+/--
+@isnad1 id=ex.5h14v.s18.354ef9efc060 from=translated src=- shape=65ee9a17 vocab=5943ada9
+-/
 theorem solution
     {B : Type u} [CommRing B] [IsNoetherianRing B] (J : Ideal B)
     {GE GK : Type v} [AddCommGroup GE] [Module B GE] [AddCommGroup GK] [Module B GK] [Module.Finite B GK]

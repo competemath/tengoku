@@ -53,6 +53,9 @@ end Selb4_13
 
 open Selb4_13 in
 
+/--
+@isnad1 id=eq.10h7v.s9.f5c202a2d8af from=translated src=- shape=683503d4 vocab=239b3cec
+-/
 theorem solution
     (A : Type) [CommRing A] [IsDomain A] [CharZero A]
     (𝔪₁ 𝔪₂ : Ideal A) (h𝔪₁ : 𝔪₁.IsMaximal) (h𝔪₂ : 𝔪₂.IsMaximal)

@@ -90,6 +90,9 @@ theorem eq_of_additive_of_hasFDerivAt {k : E → E} {A : E →L[ℂ] E} {s : ℝ
       linarith
   exact sub_eq_zero.mp (norm_le_zero_iff.mp this)
 
+/--
+@isnad1 id=ex.11h8v.s10.61b65a9b1819 from=translated src=- shape=77d2e7bd vocab=243ece6a
+-/
 theorem core {r ρ : ℝ} (hr : 0 < r) (hρ : 0 < ρ) (F : E → E → E)
     (e : E → E) (he0 : e 0 = 0) (heC : ContDiffAt ℂ 1 e 0)
     (hde : HasFDerivAt e (ContinuousLinearMap.id ℂ E) 0)
@@ -181,6 +184,9 @@ end
 
 open scoped ContDiff in
 open LocalGroupLawB2 in
+/--
+@isnad1 id=ex.14h8v.s11.f77a130247e1 from=translated src=- shape=48192e48 vocab=02b0bba6
+-/
 theorem solution
     {g : ℕ} {r ρ : ℝ} (hr : 0 < r) (hρ : 0 < ρ) (F : (Fin g → ℂ) → (Fin g → ℂ) → (Fin g → ℂ))
 

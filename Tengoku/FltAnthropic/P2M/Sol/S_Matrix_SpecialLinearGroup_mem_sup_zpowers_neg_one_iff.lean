@@ -47,6 +47,9 @@ def pmSubgroup (Γ : Subgroup SL(2, ℤ)) : Subgroup SL(2, ℤ) where
         exact Γ.inv_mem ha
       exact this
 
+/--
+@isnad1 id=iff.0h2v.s9.9a5db7fd1783 from=translated src=- shape=678aa315 vocab=e50a6620
+-/
 theorem mem_pmSubgroup_iff (Γ : Subgroup SL(2, ℤ)) (g : SL(2, ℤ)) :
     g ∈ pmSubgroup Γ ↔ g ∈ Γ ∨ -g ∈ Γ := Iff.rfl
 
@@ -54,6 +57,9 @@ end Matrix.SpecialLinearGroup.MemSupNegOne
 
 open Matrix.SpecialLinearGroup.MemSupNegOne in
 
+/--
+@isnad1 id=iff.0h2v.s10.08a9515daeab from=translated src=- shape=363cae40 vocab=f9aa1175
+-/
 theorem solution
     (Γ : Subgroup SL(2, ℤ)) (g : SL(2, ℤ)) :
     g ∈ Γ ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)) ↔ g ∈ Γ ∨ -g ∈ Γ := by

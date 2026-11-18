@@ -13,6 +13,9 @@ universe u v
 
 namespace A3
 
+/--
+@isnad1 id=bijectiv.2h7v.s11.019311a5281c from=translated src=- shape=2a2111d4 vocab=ddfba14a
+-/
 theorem main
     {R : Type u} [CommRing R] [IsDomain R] (K : Type u) [Field K] [Algebra R K] [IsFractionRing R K]
     {M N : Type v} [AddCommGroup M] [Module R M] [AddCommGroup N] [Module R N] (f : M →ₗ[R] N)
@@ -67,6 +70,9 @@ theorem main
 
 end A3
 
+/--
+@isnad1 id=bijectiv.2h7v.s11.019311a5281c from=translated src=- shape=2a2111d4 vocab=ddfba14a
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsDomain R] (K : Type u) [Field K] [Algebra R K] [IsFractionRing R K]
     {M N : Type v} [AddCommGroup M] [Module R M] [AddCommGroup N] [Module R N] (f : M →ₗ[R] N)

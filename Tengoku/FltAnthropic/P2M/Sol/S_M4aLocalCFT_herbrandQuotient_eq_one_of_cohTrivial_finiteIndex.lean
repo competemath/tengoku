@@ -17,6 +17,9 @@ open QuotientGroup
 
 variable {M : Type*} [CommGroup M]
 
+/--
+@isnad1 id=eq.1h3v.s8.90f5bd88821c from=translated src=- shape=72fe9d30 vocab=7b94aa8a
+-/
 theorem card_eq_three (D N : M →* M) [Finite M] (hDN : ∀ x, D (N x) = 1) :
     Nat.card M =
       Nat.card (D.ker ⧸ (N.range.subgroupOf D.ker)) * Nat.card N.range * Nat.card D.range := by
@@ -35,6 +38,9 @@ theorem card_eq_three (D N : M →* M) [Finite M] (hDN : ∀ x, D (N x) = 1) :
   rw [h1, h2, h3, h4]
   ring
 
+/--
+@isnad1 id=and.2h3v.s9.5448cdafca5c from=translated src=- shape=39d14dcd vocab=e8bd700d
+-/
 theorem finite_case (D N : M →* M) [Finite M]
     (hDN : ∀ x, D (N x) = 1) (hND : ∀ x, N (D x) = 1) :
     Nat.card (D.ker ⧸ (N.range.subgroupOf D.ker)) =
@@ -59,10 +65,16 @@ variable (D N : M →* M) (V : Subgroup M)
 def quotMap (hDV : ∀ v ∈ V, D v ∈ V) : M ⧸ V →* M ⧸ V :=
   QuotientGroup.map V V D (fun v hv => Subgroup.mem_comap.2 (hDV v hv))
 
+/--
+@isnad1 id=eq.1h4v.s9.7a103a3bfd24 from=translated src=- shape=747280e9 vocab=5ebb2a2f
+-/
 @[scoped simp] theorem quotMap_mk (hDV : ∀ v ∈ V, D v ∈ V) (x : M) :
     quotMap D V hDV (x : M ⧸ V) = ((D x : M) : M ⧸ V) := by
   simp [quotMap]
 
+/--
+@isnad1 id=eq.3h5v.s10.522c66ec4c93 from=translated src=- shape=e52e46b2 vocab=88a32f65
+-/
 theorem quotMap_comp (hDV : ∀ v ∈ V, D v ∈ V) (hNV : ∀ v ∈ V, N v ∈ V)
     (hDN : ∀ x, D (N x) = 1) (q : M ⧸ V) :
     quotMap D V hDV (quotMap N V hNV q) = 1 := by
@@ -75,6 +87,9 @@ def kerToQuot (hDV : ∀ v ∈ V, D v ∈ V) : D.ker →* (quotMap D V hDV).ker 
   map_one' := by ext; simp
   map_mul' x y := by ext; simp
 
+/--
+@isnad1 id=eq.1h4v.s11.e545eac612a8 from=translated src=- shape=c05c3197 vocab=eac78656
+-/
 @[scoped simp] theorem kerToQuot_coe (hDV : ∀ v ∈ V, D v ∈ V) (x : D.ker) :
     ((kerToQuot D V hDV x : (quotMap D V hDV).ker) : M ⧸ V) = ((x : M) : M ⧸ V) := rfl
 
@@ -88,6 +103,9 @@ def tateMap (hDV : ∀ v ∈ V, D v ∈ V) (hNV : ∀ v ∈ V, N v ∈ V) :
     rw [Subgroup.mem_comap, Subgroup.mem_subgroupOf, kerToQuot_coe]
     exact ⟨(y : M ⧸ V), by rw [quotMap_mk, hy]⟩)
 
+/--
+@isnad1 id=injectiv.4h4v.s14.87dbe6b99855 from=translated src=- shape=52e2cb88 vocab=07421d44
+-/
 theorem tateMap_injective (hDV : ∀ v ∈ V, D v ∈ V) (hNV : ∀ v ∈ V, N v ∈ V)
     (hDN : ∀ x, D (N x) = 1)
     (h0 : ∀ v ∈ V, D v = 1 → ∃ w ∈ V, N w = v) :
@@ -112,6 +130,9 @@ theorem tateMap_injective (hDV : ∀ v ∈ V, D v ∈ V) (hNV : ∀ v ∈ V, N v
   refine ⟨m * w, ?_⟩
   rw [map_mul, hw, mul_inv_cancel_left]
 
+/--
+@isnad1 id=surjecti.4h4v.s14.6b4e1b09f41b from=translated src=- shape=9bc0808d vocab=0e793e25
+-/
 theorem tateMap_surjective (hDV : ∀ v ∈ V, D v ∈ V) (hNV : ∀ v ∈ V, N v ∈ V)
     (hND : ∀ x, N (D x) = 1)
     (h1 : ∀ v ∈ V, N v = 1 → ∃ w ∈ V, D w = v) :
@@ -132,6 +153,9 @@ theorem tateMap_surjective (hDV : ∀ v ∈ V, D v ∈ V) (hNV : ∀ v ∈ V, N 
   rw [QuotientGroup.mk_mul, QuotientGroup.mk_inv, (QuotientGroup.eq_one_iff w).2 hwV, inv_one,
     mul_one]
 
+/--
+@isnad1 id=eq.6h4v.s11.08228f63c8fb from=translated src=- shape=8e170c7a vocab=bd7a1d10
+-/
 theorem card_tate_eq (hDV : ∀ v ∈ V, D v ∈ V) (hNV : ∀ v ∈ V, N v ∈ V)
     (hDN : ∀ x, D (N x) = 1) (hND : ∀ x, N (D x) = 1)
     (h0 : ∀ v ∈ V, D v = 1 → ∃ w ∈ V, N w = v)
@@ -151,6 +175,9 @@ end M4aLocalCFT
 open scoped _root_.P2MW.S_M4aLocalCFT_herbrandQuotient_eq_one_of_cohTrivial_finiteIndex.M4aLocalCFT.HerbrandFiniteIndex _root_.P2MW.S_M4aLocalCFT_herbrandQuotient_eq_one_of_cohTrivial_finiteIndex.M4aLocalCFT
 
 open M4aLocalCFT.HerbrandFiniteIndex in
+/--
+@isnad1 id=and.6h4v.s10.54debb404b6c from=translated src=- shape=8bb69444 vocab=28d1688e
+-/
 theorem solution
     {M : Type*} [CommGroup M] (D N : M →* M)
     (hDN : ∀ x, D (N x) = 1) (hND : ∀ x, N (D x) = 1)

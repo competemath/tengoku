@@ -18,6 +18,9 @@ open _root_.LaurentSeries
 
 variable {R : Type*} [CommRing R]
 
+/--
+@isnad1 id=eq.4h5v.s9.de6540d7f3e3 from=translated src=- shape=55354c18 vocab=fdebb3d8
+-/
 theorem main (q : ℕ) [Fact q.Prime] [CharP R q]
     (ω s v : LaurentSeries R) (hω : ∀ n < 0, ω.coeff n = 0)
     (hs1 : s.coeff 1 = 1) (hs : ∀ n < 1, s.coeff n = 0) (hv : s ^ q * v = 1) :
@@ -108,6 +111,9 @@ theorem main (q : ℕ) [Fact q.Prime] [CharP R q]
 
 end LaurentSeries.R4
 
+/--
+@isnad1 id=eq.4h5v.s9.de6540d7f3e3 from=translated src=- shape=55354c18 vocab=fdebb3d8
+-/
 theorem solution {R : Type*} [CommRing R]
     (q : ℕ) [Fact q.Prime] [CharP R q]
     (ω s v : LaurentSeries R) (hω : ∀ n < 0, ω.coeff n = 0)

@@ -8,6 +8,9 @@ namespace P2MW.S_Localization_Away_existsUnique_forall_algebraMap_eq_of_span_eq_
 set_option autoImplicit false
 
 open IsLocalization in
+/--
+@isnad1 id=existsun.2h4v.s10.7f03821982c4 from=translated src=- shape=016a350a vocab=7b7d7361
+-/
 theorem solution
     {B : Type} [CommRing B] {n : ℕ} (g : Fin n → B) (hg : Ideal.span (Set.range g) = ⊤)
     (x : ∀ i : Fin n, Localization.Away (g i))

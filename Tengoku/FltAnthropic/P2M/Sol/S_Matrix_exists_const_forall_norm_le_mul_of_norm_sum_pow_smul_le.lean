@@ -12,6 +12,9 @@ namespace P2MW.S_Matrix_exists_const_forall_norm_le_mul_of_norm_sum_pow_smul_le
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.1h2v.s7.585eeb37b0da from=translated src=- shape=b3887795 vocab=6e399d70
+-/
 theorem solution
     (L : ℕ) (x : Fin L → ℂ) (hx : Function.Injective x) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ (E : Type*) [NormedAddCommGroup E] [NormedSpace ℂ E] (v : Fin L → E) (B : ℝ),

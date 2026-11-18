@@ -30,20 +30,41 @@ local notation "𝓞v" => HeightOneSpectrum.adicCompletionIntegers ℚ v
 
 def pr : ℕ := (Rat.HeightOneSpectrum.primesEquiv (R := 𝓞 ℚ) v : ℕ)
 
+/--
+@isnad1 id=prime.0h1v.s3.698370a2b5c6 from=translated src=- shape=32354d46 vocab=77e6247e
+-/
 theorem pr_prime : (pr v).Prime := (Rat.HeightOneSpectrum.primesEquiv (R := 𝓞 ℚ) v).2
 
+/--
+@isnad1 id=fact.0h1v.s3.ec24230f1203 from=translated src=- shape=bee9f040 vocab=02bced59
+-/
 scoped instance factPr : Fact (pr v).Prime := ⟨pr_prime v⟩
 
+/--
+@isnad1 id=ne.0h1v.s4.cebc5a012d6e from=translated src=- shape=c0e41946 vocab=5d3bd90d
+-/
 theorem pr_ne_zero : pr v ≠ 0 := (pr_prime v).ne_zero
+/--
+@isnad1 id=eq.0h1v.s4.041d31cb96ad from=translated src=- shape=5ae2e4d5 vocab=d2288a8d
+-/
 theorem natGenerator_eq_pr : Rat.HeightOneSpectrum.natGenerator v = pr v := rfl
+/--
+@isnad1 id=iff.0h2v.s7.8afe216250f4 from=translated src=- shape=a59a80cb vocab=46c37ad9
+-/
 theorem natCast_mem_asIdeal_iff (w : HeightOneSpectrum (𝓞 ℚ)) (n : ℕ) :
     (n : 𝓞 ℚ) ∈ w.asIdeal ↔ Rat.HeightOneSpectrum.natGenerator w ∣ n := by
   rw [Rat.HeightOneSpectrum.natGenerator_dvd_iff,
     ← map_natCast (Rat.IsIntegralClosure.intEquiv (𝓞 ℚ)) n, Ideal.apply_mem_of_equiv_iff]
 
+/--
+@isnad1 id=iff.0h2v.s7.f44b8b469843 from=translated src=- shape=ffd93404 vocab=d1df84ce
+-/
 theorem natCast_mem_asIdeal_iff_pr_dvd (n : ℕ) : (n : 𝓞 ℚ) ∈ v.asIdeal ↔ pr v ∣ n := by
   rw [natCast_mem_asIdeal_iff, natGenerator_eq_pr]
 
+/--
+@isnad1 id=eq.0h1v.s6.97700f6e5066 from=translated src=- shape=60736f74 vocab=54091408
+-/
 theorem asIdeal_eq_span_pr : v.asIdeal = Ideal.span {(pr v : 𝓞 ℚ)} := by
   have h := Rat.HeightOneSpectrum.span_natGenerator (R := 𝓞 ℚ) v
   rw [natGenerator_eq_pr] at h
@@ -60,35 +81,62 @@ theorem asIdeal_eq_span_pr : v.asIdeal = Ideal.span {(pr v : 𝓞 ℚ)} := by
   congr 2
   simp
 
+/--
+@isnad1 id=eq.0h1v.s6.2332990fbff8 from=translated src=- shape=0f359a61 vocab=42d0b12b
+-/
 theorem valuation_pr : v.valuation ℚ (pr v : ℚ) = WithZero.exp (-1) := by
   rw [show (pr v : ℚ) = algebraMap (𝓞 ℚ) ℚ (pr v) from (map_natCast _ _).symm,
     HeightOneSpectrum.valuation_of_algebraMap]
   exact HeightOneSpectrum.intValuation_singleton v (by exact_mod_cast pr_ne_zero v)
     (asIdeal_eq_span_pr v)
 
+/--
+@isnad1 id=eq.0h2v.s9.855ecbd84dfd from=translated src=- shape=99a5a5bc vocab=bebd3a09
+-/
 theorem valued_algebraMap (r : ℚ) : Valued.v (algebraMap ℚ 𝕂 r) = v.valuation ℚ r := by
   rw [HeightOneSpectrum.algebraMap_adicCompletion]
   exact HeightOneSpectrum.valuedAdicCompletion_eq_valuation' v r
 
+/--
+@isnad1 id=eq.0h2v.s8.c43dee60edd4 from=translated src=- shape=c98e70c2 vocab=d895a768
+-/
 theorem algebraMap_natCast (n : ℕ) : algebraMap ℚ 𝕂 (n : ℚ) = (n : 𝕂) := map_natCast _ n
+/--
+@isnad1 id=eq.0h1v.s8.813cb9b536ba from=translated src=- shape=c6edf309 vocab=4f051caa
+-/
 theorem valued_pr : Valued.v ((pr v : ℕ) : 𝕂) = WithZero.exp (-1) := by
   rw [← algebraMap_natCast, valued_algebraMap, valuation_pr]
+/--
+@isnad1 id=ne.0h1v.s8.9d8b5bf6b6cb from=translated src=- shape=31bc7237 vocab=4fdacb2c
+-/
 theorem pr_ne_zero' : ((pr v : ℕ) : 𝕂) ≠ 0 := by
   intro h
   have := valued_pr v
   rw [h, map_zero] at this
   exact WithZero.zero_ne_coe this
 
+/--
+@isnad1 id=mem.0h2v.s8.5261912db99e from=translated src=- shape=c1c1b6e8 vocab=fe3db615
+-/
 theorem natCast_mem_integers (n : ℕ) : ((n : ℕ) : 𝕂) ∈ 𝓞v := by
   rw [HeightOneSpectrum.mem_adicCompletionIntegers, ← algebraMap_natCast, valued_algebraMap,
     show (n : ℚ) = algebraMap (𝓞 ℚ) ℚ n from (map_natCast _ _).symm]
   exact HeightOneSpectrum.valuation_le_one v _
 
+/--
+@isnad1 id=mem.0h1v.s8.1925b66eaf2c from=translated src=- shape=fc5b79c1 vocab=703850c7
+-/
 theorem pr_mem_integers : ((pr v : ℕ) : 𝕂) ∈ 𝓞v := natCast_mem_integers v _
 
+/--
+@isnad1 id=le.1h2v.s8.ddf6156ae3b8 from=translated src=- shape=68a9801e vocab=ff7f4337
+-/
 theorem valued_le_one_of_mem {x : 𝕂} (hx : x ∈ 𝓞v) : Valued.v x ≤ 1 :=
   (HeightOneSpectrum.mem_adicCompletionIntegers (𝓞 ℚ) ℚ v).1 hx
 
+/--
+@isnad1 id=iff.1h2v.s10.3c4799c597a3 from=translated src=- shape=becb9cc0 vocab=0caf8eb9
+-/
 theorem pr_inv_mul_mem_integers_iff {x : 𝕂} (hx : x ∈ 𝓞v) :
     ((pr v : ℕ) : 𝕂)⁻¹ * x ∈ 𝓞v ↔ Valued.v x < 1 := by
   rw [HeightOneSpectrum.mem_adicCompletionIntegers, map_mul, map_inv₀, valued_pr]
@@ -100,6 +148,9 @@ theorem pr_inv_mul_mem_integers_iff {x : 𝕂} (hx : x ∈ 𝓞v) :
       WithZero.exp_lt_exp]
     omega
 
+/--
+@isnad1 id=mem.1h2v.s9.174f1d15a71e from=translated src=- shape=aba8ae88 vocab=8028f592
+-/
 theorem inv_mem_integers_of_valued_eq_one {x : 𝕂} (h : Valued.v x = 1) : x⁻¹ ∈ 𝓞v := by
   rw [HeightOneSpectrum.mem_adicCompletionIntegers, map_inv₀, h, inv_one]
 
@@ -126,13 +177,25 @@ def intMat : Subring M₂ where
   zero_mem' i j := by rw [Matrix.zero_apply]; exact zero_mem _
   neg_mem' {A} hA i j := by rw [Matrix.neg_apply]; exact neg_mem (hA i j)
 
+/--
+@isnad1 id=iff.0h2v.s9.77d3ee55bd94 from=translated src=- shape=d76ec0b1 vocab=25c88f55
+-/
 theorem mem_intMat_iff (M : M₂) : M ∈ intMat v ↔ ∀ i j, M i j ∈ 𝓞v := Iff.rfl
+/--
+@isnad1 id=mem.2h3v.s10.dce5f7d0b289 from=translated src=- shape=36d950b8 vocab=6924f676
+-/
 theorem smul_mem_intMat {c : 𝕂} (hc : c ∈ 𝓞v) {M : M₂} (hM : M ∈ intMat v) : c • M ∈ intMat v :=
   fun i j => by rw [Matrix.smul_apply, smul_eq_mul]; exact mul_mem hc (hM i j)
+/--
+@isnad1 id=mem.1h2v.s9.cce02c5ed250 from=translated src=- shape=0c4713a4 vocab=fe93b867
+-/
 theorem det_mem_integers {M : M₂} (hM : M ∈ intMat v) : M.det ∈ 𝓞v := by
   rw [Matrix.det_fin_two]
   exact sub_mem (mul_mem (hM 0 0) (hM 1 1)) (mul_mem (hM 0 1) (hM 1 0))
 
+/--
+@isnad1 id=mem.1h2v.s9.2c844a61e416 from=translated src=- shape=53f553f3 vocab=f0917659
+-/
 theorem adjugate_mem_intMat {M : M₂} (hM : M ∈ intMat v) : M.adjugate ∈ intMat v := by
   rw [Matrix.adjugate_fin_two]
   intro i j
@@ -154,14 +217,23 @@ theorem eq_smul_adjugate {M Mi : M₂} (h1 : M * Mi = 1) (h2 : Mi * M = 1) :
   rw [← mul_assoc, h2, one_mul] at key
   rw [key, smul_smul, inv_mul_cancel₀ hdet, one_smul]
 
+/--
+@isnad1 id=eq.1h3v.s10.874313c754d6 from=translated src=- shape=3fb44161 vocab=fb588f09
+-/
 theorem det_mul_det_eq_one {M Mi : M₂} (h1 : M * Mi = 1) : M.det * Mi.det = 1 := by
   rw [← Matrix.det_mul, h1, Matrix.det_one]
 
+/--
+@isnad1 id=mem.4h3v.s11.1aa05a7c4abd from=translated src=- shape=92e8365e vocab=ee3d6549
+-/
 theorem inv_mem_intMat_of_valued_det {M Mi : M₂} (hM : M ∈ intMat v) (h1 : M * Mi = 1) (h2 : Mi * M = 1)
     (hdet : Valued.v M.det = 1) : Mi ∈ intMat v := by
   rw [eq_smul_adjugate v h1 h2]
   exact smul_mem_intMat v (inv_mem_integers_of_valued_eq_one v hdet) (adjugate_mem_intMat v hM)
 
+/--
+@isnad1 id=eq.2h3v.s10.96bc8ceb1510 from=translated src=- shape=b762f5dd vocab=f375d39d
+-/
 theorem inv_apply_one_zero {M Mi : M₂} (h1 : M * Mi = 1) (h2 : Mi * M = 1) :
     Mi 1 0 = -(M.det⁻¹ * M 1 0) := by
   rw [eq_smul_adjugate v h1 h2, Matrix.adjugate_fin_two]
@@ -177,6 +249,9 @@ def tbMi : M₂ := !![ϖ⁻¹, 0; 0, 1]
 
 def wM : M₂ := !![0, 1; 1, 0]
 
+/--
+@isnad1 id=eq.0h2v.s10.4900ea95d589 from=translated src=- shape=351498d5 vocab=0a8d92a9
+-/
 theorem tMi_mul_mul_tM (Y : M₂) : tMi v * Y * tM v = !![Y 0 0, ϖ * Y 0 1; ϖ⁻¹ * Y 1 0, Y 1 1] := by
   ext i j : 1
   rw [Matrix.mul_apply, Fin.sum_univ_two, Matrix.mul_apply, Matrix.mul_apply, Fin.sum_univ_two,
@@ -184,6 +259,9 @@ theorem tMi_mul_mul_tM (Y : M₂) : tMi v * Y * tM v = !![Y 0 0, ϖ * Y 0 1; ϖ�
   have hp := pr_ne_zero' v
   fin_cases i <;> fin_cases j <;> simp [tM, tMi] <;> field_simp
 
+/--
+@isnad1 id=iff.1h2v.s10.2f3008fc8b43 from=translated src=- shape=a8ae7b18 vocab=499d2997
+-/
 theorem tMi_mul_mul_tM_mem_iff {Y : M₂} (hY : Y ∈ intMat v) :
     tMi v * Y * tM v ∈ intMat v ↔ Valued.v (Y 1 0) < 1 := by
   rw [← pr_inv_mul_mem_integers_iff v (hY 1 0), tMi_mul_mul_tM, mem_intMat_iff]
@@ -196,6 +274,9 @@ theorem tMi_mul_mul_tM_mem_iff {Y : M₂} (hY : Y ∈ intMat v) :
     · simpa using h
     · simpa using hY 1 1
 
+/--
+@isnad1 id=ex.2h2v.s10.f7c89373e4d7 from=translated src=- shape=9db63cec vocab=fd819f74
+-/
 theorem exists_exp_valued_det {Y : M₂} (hY : Y ∈ intMat v) (hdet : Y.det ≠ 0) :
     ∃ m : ℤ, m ≤ 0 ∧ Valued.v Y.det = WithZero.exp m := by
   have h0 : Valued.v Y.det ≠ 0 := (Valuation.ne_zero_iff _).2 hdet
@@ -205,6 +286,9 @@ theorem exists_exp_valued_det {Y : M₂} (hY : Y ∈ intMat v) (hdet : Y.det ≠
   rw [hm, ← WithZero.exp_zero, WithZero.exp_le_exp] at this
   exact this
 
+/--
+@isnad1 id=ex.3h3v.s11.a9a0108a6be7 from=translated src=- shape=2da220c0 vocab=aa2dfd26
+-/
 theorem valued_det_bounds {Y Yi : M₂} (h1 : Y * Yi = 1) (hY : Y ∈ intMat v) (hpYi : ϖ • Yi ∈ intMat v) :
     ∃ m : ℤ, -2 ≤ m ∧ m ≤ 0 ∧ Valued.v Y.det = WithZero.exp m := by
   have hdet0 : Y.det ≠ 0 := fun h => by
@@ -268,6 +352,9 @@ def E10 : M₂ := !![0, 0; 1, 0]
 
 def E11 : M₂ := !![0, 0; 0, 1]
 
+/--
+@isnad1 id=ex.5h2v.s13.f5bd46f0c8ca from=translated src=- shape=f18c63e7 vocab=d6d06a09
+-/
 theorem exists_iwahori_mul_tbM_mul {Y : M₂} (hY : Y ∈ intMat v) (h00 : ϖ⁻¹ * Y 0 0 ∈ 𝓞v) (h10 : ϖ⁻¹ * Y 1 0 ∈ 𝓞v)
     (h11 : Valued.v (Y 1 1) = 1) (hdet : Valued.v Y.det = Valued.v ϖ) :
     ∃ ι ιi ι' ι'i : M₂, ι ∈ intMat v ∧ ιi ∈ intMat v ∧ ι' ∈ intMat v ∧ ι'i ∈ intMat v ∧
@@ -319,6 +406,9 @@ theorem exists_iwahori_mul_tbM_mul {Y : M₂} (hY : Y ∈ intMat v) (h00 : ϖ⁻
     simp only [Matrix.mul_apply, Fin.sum_univ_two]
     fin_cases i <;> fin_cases j <;> simp [tbM, hY00, hY10, hα'] <;> (try field_simp) <;> ring
 
+/--
+@isnad1 id=ex.5h2v.s13.1c27aaf1d67f from=translated src=- shape=f18c63e7 vocab=a950a201
+-/
 theorem exists_iwahori_mul_tM_mul {Y : M₂} (hY : Y ∈ intMat v) (h10 : ϖ⁻¹ * Y 1 0 ∈ 𝓞v) (h11 : ϖ⁻¹ * Y 1 1 ∈ 𝓞v)
     (h00 : Valued.v (Y 0 0) = 1) (hdet : Valued.v Y.det = Valued.v ϖ) :
     ∃ ι ιi ι' ι'i : M₂, ι ∈ intMat v ∧ ιi ∈ intMat v ∧ ι' ∈ intMat v ∧ ι'i ∈ intMat v ∧
@@ -383,21 +473,36 @@ local notation "ϖ" => (((pr v : ℕ) : HeightOneSpectrum.adicCompletion ℚ v))
 def alM : M₂ := !![0, 1; ϖ, 0]
 def alMi : M₂ := !![0, ϖ⁻¹; 1, 0]
 
+/--
+@isnad1 id=eq.0h1v.s9.e67635a10cc8 from=translated src=- shape=3df2d618 vocab=f042802a
+-/
 theorem alM_mul_alMi : alM v * alMi v = 1 := by
   have hp0 := pr_ne_zero' v
   ext i j : 1; fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two, alM, alMi, mul_inv_cancel₀ hp0]
+/--
+@isnad1 id=eq.0h1v.s9.86fe16b84980 from=translated src=- shape=3df2d618 vocab=f042802a
+-/
 theorem alMi_mul_alM : alMi v * alM v = 1 := by
   have hp0 := pr_ne_zero' v
   ext i j : 1; fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two, alM, alMi, inv_mul_cancel₀ hp0]
 
+/--
+@isnad1 id=iff.1h2v.s11.0c2375a9ca5b from=translated src=- shape=432737b6 vocab=6462a4cc
+-/
 theorem iwahori_iff {X : M₂} (hX : X ∈ intMat v) : tMi v * X * tM v ∈ intMat v ↔ ϖ⁻¹ * X 1 0 ∈ 𝓞v :=
   (tMi_mul_mul_tM_mem_iff v hX).trans (pr_inv_mul_mem_integers_iff v (hX 1 0)).symm
 
+/--
+@isnad1 id=or.1h2v.s9.74665b36b533 from=translated src=- shape=17d3df6e vocab=e0b7a200
+-/
 theorem valued_eq_one_or_pr_inv_mul_mem {x : 𝕂} (hx : x ∈ 𝓞v) : Valued.v x = 1 ∨ ϖ⁻¹ * x ∈ 𝓞v := by
   rcases (valued_le_one_of_mem v hx).lt_or_eq with h | h
   · exact Or.inr ((pr_inv_mul_mem_integers_iff v hx).2 h)
   · exact Or.inl h
 
+/--
+@isnad1 id=lt.3h2v.s11.5430bfbaa753 from=translated src=- shape=6ca76659 vocab=c962a8de
+-/
 theorem valued_diag_mul_lt_one {η : M₂} (hη : η ∈ intMat v) (h10 : ϖ⁻¹ * η 1 0 ∈ 𝓞v)
     (hdet : Valued.v η.det = Valued.v ϖ) : Valued.v (η 0 0 * η 1 1) < 1 := by
   have hp0 := pr_ne_zero' v
@@ -412,12 +517,18 @@ theorem valued_diag_mul_lt_one {η : M₂} (hη : η ∈ intMat v) (h10 : ϖ⁻�
           mul_le_mul' (valued_le_one_of_mem v (hη 0 1)) (mul_le_mul_right (valued_le_one_of_mem v h10) _)
       _ < 1 := by rw [one_mul, mul_one, ← WithZero.exp_zero]; exact WithZero.exp_lt_exp.2 (by norm_num)
 
+/--
+@isnad1 id=mem.4h2v.s11.ddaa9e50d0cf from=translated src=- shape=a88c0065 vocab=e842b42e
+-/
 theorem pr_inv_mul_apply_zero_zero_mem {η : M₂} (hη : η ∈ intMat v) (h10 : ϖ⁻¹ * η 1 0 ∈ 𝓞v)
     (hdet : Valued.v η.det = Valued.v ϖ) (h11 : Valued.v (η 1 1) = 1) : ϖ⁻¹ * η 0 0 ∈ 𝓞v := by
   have h := valued_diag_mul_lt_one v hη h10 hdet
   rw [map_mul, h11, mul_one] at h
   exact (pr_inv_mul_mem_integers_iff v (hη 0 0)).2 h
 
+/--
+@isnad1 id=and.5h3v.s12.89bc146af14d from=translated src=- shape=91523c04 vocab=5c197a72
+-/
 theorem iwahori_inv_mem {κ κi : M₂} (h1 : κ * κi = 1) (h2 : κi * κ = 1) (hκ : κ ∈ intMat v)
     (hκ' : tMi v * κ * tM v ∈ intMat v) (hdet : Valued.v κ.det = 1) :
     κi ∈ intMat v ∧ tMi v * κi * tM v ∈ intMat v := by
@@ -437,6 +548,9 @@ local notation "𝓞v" => HeightOneSpectrum.adicCompletionIntegers ℚ v
 local notation "M₂" => Matrix (Fin 2) (Fin 2) (HeightOneSpectrum.adicCompletion ℚ v)
 local notation "ϖ" => (((pr v : ℕ) : HeightOneSpectrum.adicCompletion ℚ v))
 
+/--
+@isnad1 id=eq.8h3v.s13.be302c95a8ac from=translated src=- shape=9930d608 vocab=5c4be3f7
+-/
 theorem valued_det_eq_valued_pr {Y Yi : M₂} (h1 : Y * Yi = 1) (h2 : Yi * Y = 1)
     (hY : Y ∈ intMat v) (hY' : tMi v * Y * tM v ∈ intMat v)
     (hpYi : ϖ • Yi ∈ intMat v) (hpYi' : tMi v * (ϖ • Yi) * tM v ∈ intMat v)
@@ -478,6 +592,9 @@ local notation "𝓞v" => HeightOneSpectrum.adicCompletionIntegers ℚ v
 local notation "M₂" => Matrix (Fin 2) (Fin 2) (HeightOneSpectrum.adicCompletion ℚ v)
 local notation "ϖ" => (((pr v : ℕ) : HeightOneSpectrum.adicCompletion ℚ v))
 
+/--
+@isnad1 id=ex.7h3v.s12.847b0460d4c4 from=translated src=- shape=fbaf2ac1 vocab=ccde6948
+-/
 theorem exists_eq_alM_mul {η ηi : M₂} (h1 : η * ηi = 1) (h2 : ηi * η = 1) (hη : η ∈ intMat v)
     (h10 : ϖ⁻¹ * η 1 0 ∈ 𝓞v) (hdet : Valued.v η.det = Valued.v ϖ)
     (h00 : ϖ⁻¹ * η 0 0 ∈ 𝓞v) (h11 : ϖ⁻¹ * η 1 1 ∈ 𝓞v) :
@@ -505,6 +622,9 @@ theorem exists_eq_alM_mul {η ηi : M₂} (h1 : η * ηi = 1) (h2 : ηi * η = 1
   obtain ⟨hκiO, -⟩ := iwahori_inv_mem v hκκi hκiκ hκO hκ' hκdet
   exact ⟨κ, κi, hκO, hκiO, hκκi, hκiκ, by rw [hκ10]; exact h00, hηκ⟩
 
+/--
+@isnad1 id=and.8h3v.s14.3210c7b44aa1 from=translated src=- shape=a26f46ac vocab=5c0e3364
+-/
 theorem trichotomy {Y Yi : M₂} (h1 : Y * Yi = 1) (h2 : Yi * Y = 1)
     (hY : Y ∈ intMat v) (hY' : tMi v * Y * tM v ∈ intMat v)
     (hpYi : ϖ • Yi ∈ intMat v) (hpYi' : tMi v * (ϖ • Yi) * tM v ∈ intMat v)
@@ -531,6 +651,9 @@ end Lib
 
 section Card
 
+/--
+@isnad1 id=eq.2h2v.s7.e2e1ee4ce773 from=translated src=- shape=c9b0eafb vocab=5feb3b99
+-/
 theorem pr_eq_of_mem (p : ℕ) (hp : p.Prime) (v : HeightOneSpectrum (𝓞 ℚ)) (hpv : (p : 𝓞 ℚ) ∈ v.asIdeal) : pr v = p :=
   (Nat.prime_dvd_prime_iff_eq (pr_prime v) hp).1 ((natCast_mem_asIdeal_iff_pr_dvd v p).1 hpv)
 
@@ -547,6 +670,9 @@ open scoped _root_.P2MW.S_Matrix_exists_eq_iwahori_mul_diagonal_mul_iwahori_or_e
 
 open IsDedekindDomain NumberField
 
+/--
+@isnad1 id=and.10h4v.s14.0a8512fb031d from=translated src=- shape=790cd922 vocab=e3570b86
+-/
 theorem solution
     (p : ℕ) (hp : p.Prime) (v : HeightOneSpectrum (𝓞 ℚ)) (hpv : (p : 𝓞 ℚ) ∈ v.asIdeal)
     (Y Yi : Matrix (Fin 2) (Fin 2) (v.adicCompletion ℚ)) (h1 : Y * Yi = 1) (h2 : Yi * Y = 1)

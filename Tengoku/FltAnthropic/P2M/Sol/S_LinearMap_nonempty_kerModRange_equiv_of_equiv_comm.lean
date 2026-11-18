@@ -22,6 +22,9 @@ variable {R : Type u} [CommRing R] {C : ℕ → Type v} {C' : ℕ → Type w}
 
 include he
 
+/--
+@isnad1 id=eq.1h7v.s10.93d1c3c5253c from=translated src=- shape=01400246 vocab=1307459d
+-/
 theorem kerModRange_map_ker (i : ℕ) :
     (LinearMap.ker (d i)).map (e i : C i →ₗ[R] C' i) = LinearMap.ker (d' i) := by
   ext y
@@ -37,9 +40,15 @@ theorem kerModRange_map_ker (i : ℕ) :
 def kerEquivOfComm (i : ℕ) : LinearMap.ker (d i) ≃ₗ[R] LinearMap.ker (d' i) :=
   ((e i).submoduleMap (LinearMap.ker (d i))).trans (LinearEquiv.ofEq _ _ (kerModRange_map_ker d d' e he i))
 
+/--
+@isnad1 id=eq.1h8v.s12.648725fe9300 from=translated src=- shape=acc692eb vocab=9cef28aa
+-/
 theorem kerEquivOfComm_apply (i : ℕ) (x : LinearMap.ker (d i)) :
     ((kerEquivOfComm d d' e he i x : LinearMap.ker (d' i)) : C' i) = e i x := rfl
 
+/--
+@isnad1 id=eq.1h7v.s13.4c4a4b264eeb from=translated src=- shape=b7b7a41d vocab=7a5a1047
+-/
 theorem kerModRange_map_comap (i : ℕ) :
     ((LinearMap.range (d i)).comap (LinearMap.ker (d (i + 1))).subtype).map
         (kerEquivOfComm d d' e he (i + 1) : LinearMap.ker (d (i + 1)) →ₗ[R] LinearMap.ker (d' (i + 1)))
@@ -61,6 +70,9 @@ theorem kerModRange_map_comap (i : ℕ) :
     apply (e (i + 1)).injective
     rw [he, LinearEquiv.apply_symm_apply, LinearEquiv.apply_symm_apply, hw]
 
+/--
+@isnad1 id=and.1h6v.s14.ffb191b0fee9 from=translated src=- shape=cc737e30 vocab=b271bc19
+-/
 theorem nonempty_kerModRange_equiv_of_equiv_comm' :
     Nonempty (LinearMap.ker (d 0) ≃ₗ[R] LinearMap.ker (d' 0)) ∧
     ∀ i, Nonempty
@@ -73,6 +85,9 @@ end KerModRange
 
 end LinearMap
 
+/--
+@isnad1 id=and.1h6v.s14.89a60ed8218b from=translated src=- shape=ccb529f0 vocab=b271bc19
+-/
 theorem solution
     {R : Type u} [CommRing R] {C C' : ℕ → Type u}
     [∀ i, AddCommGroup (C i)] [∀ i, Module R (C i)] [∀ i, AddCommGroup (C' i)] [∀ i, Module R (C' i)]

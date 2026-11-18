@@ -7,6 +7,9 @@ namespace P2MW.S_LaurentSeries_forall_coeff_mem_map_maximalIdeal_of_mul_eq_C_of_
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.6h8v.s9.56e2435cc93d from=translated src=- shape=8d0e16e9 vocab=db58b74a
+-/
 theorem solution
     (A L : Type) [CommRing A] [Field L] [Algebra A L] (hinj : Function.Injective (algebraMap A L))
     (I : Ideal A)

@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Manifold_exists_forall_eventuallyEq_const_
 
 open scoped Manifold ContDiff Topology
 
+/--
+@isnad1 id=ex.2h2v.s9.06a96ea797db from=translated src=- shape=bc26a78e vocab=0a5dfba6
+-/
 theorem Manifold.exists_forall_eventuallyEq_const_of_meromorphicOrderAt_nonneg
     {M : Type*} [TopologicalSpace M] [ChartedSpace ℂ M] [IsManifold 𝓘(ℂ, ℂ) ω M]
     [CompactSpace M] [ConnectedSpace M]

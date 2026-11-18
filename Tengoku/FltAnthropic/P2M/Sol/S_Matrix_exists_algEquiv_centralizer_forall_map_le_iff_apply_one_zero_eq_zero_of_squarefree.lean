@@ -17,6 +17,9 @@ section Morita
 
 variable (α : (Matrix (Fin 2) (Fin 2) (ZMod N)) →+* Module.End (ZMod N) (Fin 2 → Fin 2 → ZMod N)) (v₀ : (Fin 2 → Fin 2 → ZMod N)) (hv₀ : ∀ w : (Fin 2 → Fin 2 → ZMod N), ∃! a : (Matrix (Fin 2) (Fin 2) (ZMod N)), w = α a v₀)
 
+/--
+@isnad1 id=eq.0h4v.s12.018ff001e52f from=translated src=- shape=aaaa1ac1 vocab=ed4b1060
+-/
 theorem α_smul (r : (ZMod N)) (a : (Matrix (Fin 2) (Fin 2) (ZMod N))) : α (r • a) = r • α a := by
   rw [← ZMod.natCast_zmod_val r, Nat.cast_smul_eq_nsmul, Nat.cast_smul_eq_nsmul, map_nsmul]
 
@@ -26,6 +29,9 @@ def eps : (Matrix (Fin 2) (Fin 2) (ZMod N)) →ₗ[(ZMod N)] (Fin 2 → Fin 2 �
   map_smul' r a := by rw [α_smul]; rfl
 
 include hv₀ in
+/--
+@isnad1 id=bijectiv.1h3v.s11.31663941bc23 from=translated src=- shape=aee7a2f5 vocab=0df101f2
+-/
 theorem eps_bijective : Function.Bijective (eps α v₀) := by
   refine ⟨fun a b h => ?_, fun w => ?_⟩
   · obtain ⟨c, hc, huniq⟩ := hv₀ (α a v₀)
@@ -35,18 +41,33 @@ theorem eps_bijective : Function.Bijective (eps α v₀) := by
 
 noncomputable def epsE : (Matrix (Fin 2) (Fin 2) (ZMod N)) ≃ₗ[(ZMod N)] (Fin 2 → Fin 2 → ZMod N) := LinearEquiv.ofBijective (eps α v₀) (eps_bijective α v₀ hv₀)
 
+/--
+@isnad1 id=eq.1h4v.s12.e40fcdc5b0f0 from=translated src=- shape=7a54472e vocab=d06488c9
+-/
 @[scoped simp] theorem epsE_apply (a : (Matrix (Fin 2) (Fin 2) (ZMod N))) : epsE α v₀ hv₀ a = α a v₀ := rfl
 
+/--
+@isnad1 id=eq.1h5v.s12.66640b1fdc74 from=translated src=- shape=9fdec6a9 vocab=69dfb5db
+-/
 theorem epsE_mul (b a : (Matrix (Fin 2) (Fin 2) (ZMod N))) : epsE α v₀ hv₀ (b * a) = α b (epsE α v₀ hv₀ a) := by
   simp [map_mul]
 
+/--
+@isnad1 id=eq.1h3v.s11.6507c289a6dc from=translated src=- shape=9ed06db6 vocab=d06488c9
+-/
 theorem epsE_one : epsE α v₀ hv₀ 1 = v₀ := by simp
 
 noncomputable def cOf (β : Module.End (ZMod N) (Fin 2 → Fin 2 → ZMod N)) : (Matrix (Fin 2) (Fin 2) (ZMod N)) := (epsE α v₀ hv₀).symm (β v₀)
 
+/--
+@isnad1 id=eq.1h4v.s12.026a476174d2 from=translated src=- shape=9d2c09c7 vocab=92b449e0
+-/
 theorem epsE_cOf (β : Module.End (ZMod N) (Fin 2 → Fin 2 → ZMod N)) : epsE α v₀ hv₀ (cOf α v₀ hv₀ β) = β v₀ := by
   simp [cOf]
 
+/--
+@isnad1 id=eq.2h5v.s13.5410ea2b20c1 from=translated src=- shape=50775908 vocab=f0a35cde
+-/
 theorem comm_apply_epsE (β : Module.End (ZMod N) (Fin 2 → Fin 2 → ZMod N)) (hβ : β ∈ Subalgebra.centralizer (ZMod N) (Set.range α)) (a : (Matrix (Fin 2) (Fin 2) (ZMod N))) :
     β (epsE α v₀ hv₀ a) = epsE α v₀ hv₀ (a * cOf α v₀ hv₀ β) := by
   have hcomm : α a * β = β * α a := (Subalgebra.mem_centralizer_iff (ZMod N)).mp hβ _ ⟨a, rfl⟩
@@ -54,21 +75,33 @@ theorem comm_apply_epsE (β : Module.End (ZMod N) (Fin 2 → Fin 2 → ZMod N)) 
   show (β * α a) (epsE α v₀ hv₀ 1) = (α a * β) (epsE α v₀ hv₀ 1)
   rw [hcomm]
 
+/--
+@isnad1 id=eq.3h5v.s13.cba456b2f901 from=translated src=- shape=fe8618fe vocab=10af714d
+-/
 theorem cOf_mul (β₁ β₂ : Module.End (ZMod N) (Fin 2 → Fin 2 → ZMod N)) (h₁ : β₁ ∈ Subalgebra.centralizer (ZMod N) (Set.range α))
     (h₂ : β₂ ∈ Subalgebra.centralizer (ZMod N) (Set.range α)) :
     cOf α v₀ hv₀ (β₁ * β₂) = cOf α v₀ hv₀ β₂ * cOf α v₀ hv₀ β₁ := by
   apply (epsE α v₀ hv₀).injective
   rw [epsE_cOf, Module.End.mul_apply, ← epsE_cOf α v₀ hv₀ β₂, comm_apply_epsE α v₀ hv₀ β₁ h₁]
 
+/--
+@isnad1 id=eq.1h3v.s11.493b9d826d81 from=translated src=- shape=6330f748 vocab=ed853cc9
+-/
 theorem cOf_one : cOf α v₀ hv₀ 1 = 1 := by
   apply (epsE α v₀ hv₀).injective
   rw [epsE_cOf, epsE_one]; rfl
 
+/--
+@isnad1 id=eq.1h5v.s12.9779d91339c2 from=translated src=- shape=eecde42f vocab=6073027e
+-/
 theorem cOf_add (β₁ β₂ : Module.End (ZMod N) (Fin 2 → Fin 2 → ZMod N)) :
     cOf α v₀ hv₀ (β₁ + β₂) = cOf α v₀ hv₀ β₁ + cOf α v₀ hv₀ β₂ := by
   apply (epsE α v₀ hv₀).injective
   rw [epsE_cOf, map_add, epsE_cOf, epsE_cOf]; rfl
 
+/--
+@isnad1 id=eq.1h5v.s12.2407a1bc24f3 from=translated src=- shape=d119c744 vocab=30b213c8
+-/
 theorem cOf_smul (r : (ZMod N)) (β : Module.End (ZMod N) (Fin 2 → Fin 2 → ZMod N)) :
     cOf α v₀ hv₀ (r • β) = r • cOf α v₀ hv₀ β := by
   apply (epsE α v₀ hv₀).injective
@@ -77,6 +110,9 @@ theorem cOf_smul (r : (ZMod N)) (β : Module.End (ZMod N) (Fin 2 → Fin 2 → Z
 noncomputable def βOf (c : (Matrix (Fin 2) (Fin 2) (ZMod N))) : Module.End (ZMod N) (Fin 2 → Fin 2 → ZMod N) :=
   (epsE α v₀ hv₀).toLinearMap ∘ₗ (LinearMap.mulRight (ZMod N) c) ∘ₗ (epsE α v₀ hv₀).symm.toLinearMap
 
+/--
+@isnad1 id=mem.1h4v.s12.c1640c6782db from=translated src=- shape=df03f177 vocab=74fa74cb
+-/
 theorem βOf_mem (c : (Matrix (Fin 2) (Fin 2) (ZMod N))) : βOf α v₀ hv₀ c ∈ Subalgebra.centralizer (ZMod N) (Set.range α) := by
   rw [Subalgebra.mem_centralizer_iff]
   rintro _ ⟨b, rfl⟩
@@ -86,6 +122,9 @@ theorem βOf_mem (c : (Matrix (Fin 2) (Fin 2) (ZMod N))) : βOf α v₀ hv₀ c 
   simp only [βOf, LinearMap.comp_apply, LinearEquiv.coe_toLinearMap, LinearEquiv.symm_apply_apply,
     LinearMap.mulRight_apply, ← epsE_mul, LinearEquiv.symm_apply_apply, mul_assoc]
 
+/--
+@isnad1 id=eq.1h4v.s11.974d55ca480f from=translated src=- shape=0a41cbce vocab=258b76a8
+-/
 theorem cOf_βOf (c : (Matrix (Fin 2) (Fin 2) (ZMod N))) : cOf α v₀ hv₀ (βOf α v₀ hv₀ c) = c := by
   apply (epsE α v₀ hv₀).injective
   rw [epsE_cOf]
@@ -93,6 +132,9 @@ theorem cOf_βOf (c : (Matrix (Fin 2) (Fin 2) (ZMod N))) : cOf α v₀ hv₀ (β
   show epsE α v₀ hv₀ (LinearMap.mulRight (ZMod N) c ((epsE α v₀ hv₀).symm v₀)) = epsE α v₀ hv₀ c
   rw [h1, LinearMap.mulRight_apply, one_mul]
 
+/--
+@isnad1 id=eq.4h5v.s13.2eb87bcba25e from=translated src=- shape=0887b090 vocab=372db092
+-/
 theorem cOf_injective (β₁ β₂ : Module.End (ZMod N) (Fin 2 → Fin 2 → ZMod N)) (h₁ : β₁ ∈ Subalgebra.centralizer (ZMod N) (Set.range α))
     (h₂ : β₂ ∈ Subalgebra.centralizer (ZMod N) (Set.range α)) (h : cOf α v₀ hv₀ β₁ = cOf α v₀ hv₀ β₂) :
     β₁ = β₂ := by
@@ -121,25 +163,43 @@ def rowEmbLin (k : Fin 2) : (Fin 2 → ZMod N) →ₗ[ZMod N] Matrix (Fin 2) (Fi
   map_add' r s := by ext i j; simp only [rowEmb, Matrix.add_apply]; split_ifs <;> simp
   map_smul' c r := by ext i j; simp only [rowEmb, Matrix.smul_apply, RingHom.id_apply]; split_ifs <;> simp
 
+/--
+@isnad1 id=eq.0h3v.s5.1ef5618002f6 from=translated src=- shape=a4594085 vocab=014aa6dd
+-/
 @[scoped simp] theorem rowEmb_apply_same (k : Fin 2) (r : Fin 2 → ZMod N) : rowEmb k r k = r := by
   ext j; simp [rowEmb]
 
+/--
+@isnad1 id=eq.1h4v.s6.98cbe275beae from=translated src=- shape=6278c8e8 vocab=014aa6dd
+-/
 theorem rowEmb_apply_ne {k i : Fin 2} (h : i ≠ k) (r : Fin 2 → ZMod N) : rowEmb k r i = 0 := by
   ext j; simp [rowEmb, h]
 
+/--
+@isnad1 id=eq.0h4v.s7.d88bbc781c45 from=translated src=- shape=82f4143c vocab=6d09be3f
+-/
 theorem add_row (x y : Matrix (Fin 2) (Fin 2) (ZMod N)) (i : Fin 2) : (x + y) i = x i + y i := rfl
 
 theorem eq_rowEmb_add (x : Matrix (Fin 2) (Fin 2) (ZMod N)) : x = rowEmb 0 (x 0) + rowEmb 1 (x 1) := by
   ext i j; fin_cases i <;> simp [rowEmb]
 
+/--
+@isnad1 id=eq.0h4v.s7.e1562ff012df from=translated src=- shape=36a9f6c2 vocab=230ccf43
+-/
 theorem single_mul_eq_rowEmb (k i : Fin 2) (x : Matrix (Fin 2) (Fin 2) (ZMod N)) :
     rowEmb k (Pi.single i 1) * x = rowEmb k (x i) := by
   ext a j
   fin_cases a <;> fin_cases k <;> fin_cases i <;> simp [rowEmb, Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.0h4v.s7.abd785ed34c7 from=translated src=- shape=c185aad0 vocab=abe05367
+-/
 theorem mul_row (x c : Matrix (Fin 2) (Fin 2) (ZMod N)) (i : Fin 2) : (x * c) i = x i ᵥ* c := by
   ext j; simp [Matrix.mul_apply, Matrix.vecMul, dotProduct]
 
+/--
+@isnad1 id=eq.0h4v.s7.91e009f15b9c from=translated src=- shape=11b3a02b vocab=0e3285ec
+-/
 theorem rowEmb_mul (k : Fin 2) (r : Fin 2 → ZMod N) (c : Matrix (Fin 2) (Fin 2) (ZMod N)) :
     rowEmb k r * c = rowEmb k (r ᵥ* c) := by
   ext i j
@@ -148,10 +208,16 @@ theorem rowEmb_mul (k : Fin 2) (r : Fin 2 → ZMod N) (c : Matrix (Fin 2) (Fin 2
   · subst h; rw [rowEmb_apply_same, rowEmb_apply_same]
   · rw [rowEmb_apply_ne h, rowEmb_apply_ne h, Matrix.zero_vecMul]
 
+/--
+@isnad1 id=eq.0h3v.s8.3298cd6ab004 from=translated src=- shape=b5a5695a vocab=b965b56a
+-/
 theorem vecMul_two (x : Fin 2 → ZMod N) (P : Matrix (Fin 2) (Fin 2) (ZMod N)) :
     x ᵥ* P = x 0 • P 0 + x 1 • P 1 := by
   ext j; simp [Matrix.vecMul, dotProduct, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.0h3v.s7.3dcb0bfd1b6e from=translated src=- shape=63786187 vocab=f53670e9
+-/
 theorem single_vecMul (k : Fin 2) (P : Matrix (Fin 2) (Fin 2) (ZMod N)) :
     (Pi.single k 1 : Fin 2 → ZMod N) ᵥ* P = P k := by
   rw [vecMul_two]; fin_cases k <;> simp
@@ -166,9 +232,15 @@ variable (J : Submodule (ZMod N) (Matrix (Fin 2) (Fin 2) (ZMod N)))
 
 def rowMod : Submodule (ZMod N) (Fin 2 → ZMod N) := J.comap (rowEmbLin 0)
 
+/--
+@isnad1 id=iff.0h3v.s9.e3868c321195 from=translated src=- shape=e342ad79 vocab=f9126908
+-/
 theorem mem_rowMod (r : Fin 2 → ZMod N) : r ∈ rowMod J ↔ rowEmb 0 r ∈ J := Iff.rfl
 
 include hJ in
+/--
+@isnad1 id=iff.1h3v.s10.fd0df226dcd2 from=translated src=- shape=770ac568 vocab=b1fb8798
+-/
 theorem mem_iff_rows (x : Matrix (Fin 2) (Fin 2) (ZMod N)) : x ∈ J ↔ x 0 ∈ rowMod J ∧ x 1 ∈ rowMod J := by
   constructor
   · intro hx
@@ -203,11 +275,17 @@ def rowsEquiv : ↥J ≃ ↥(rowMod J) × ↥(rowMod J) where
       rw [add_row, rowEmb_apply_same, rowEmb_apply_ne (show (1 : Fin 2) ≠ 0 by decide), zero_add]
 
 include hJ in
+/--
+@isnad1 id=eq.1h2v.s10.8be08d7bd877 from=translated src=- shape=cd494cf9 vocab=56d2f8d7
+-/
 theorem card_eq_sq : Nat.card ↥J = Nat.card ↥(rowMod J) ^ 2 := by
   rw [Nat.card_congr (rowsEquiv J hJ), Nat.card_prod, pow_two]
 
 include hJ in
 
+/--
+@isnad1 id=iff.1h3v.s11.c8e4830b1aab from=translated src=- shape=880d802e vocab=21cfb836
+-/
 theorem forall_mul_mem_iff (c : Matrix (Fin 2) (Fin 2) (ZMod N)) :
     (∀ x ∈ J, x * c ∈ J) ↔ ∀ r ∈ rowMod J, r ᵥ* c ∈ rowMod J := by
   constructor
@@ -223,6 +301,9 @@ open scoped _root_.P2MW.S_Matrix_exists_algEquiv_centralizer_forall_map_le_iff_a
 
 section Cyclic
 
+/--
+@isnad1 id=isaddcyc.2h2v.s5.2f552c7e76da from=translated src=- shape=4041d6f9 vocab=af0727e2
+-/
 theorem isAddCyclic_of_card_eq (hN : Squarefree N) (M : Type) [AddCommGroup M] [Module (ZMod N) M] [Finite M]
     (hM : Nat.card M = N) : IsAddCyclic M := by
   apply IsAddCyclic.of_exponent_eq_card
@@ -260,6 +341,9 @@ variable {N : ℕ} [NeZero N]
 
 section Basis
 
+/--
+@isnad1 id=ex.2h2v.s10.51e2319cbfeb from=translated src=- shape=ee503495 vocab=78cc6508
+-/
 theorem exists_basis (hN : Squarefree N) (L : Submodule (ZMod N) (Fin 2 → ZMod N)) (hL : Nat.card ↥L = N) :
     ∃ (u v : Fin 2 → ZMod N) (P Q : Matrix (Fin 2) (Fin 2) (ZMod N)),
       P 0 = u ∧ P 1 = v ∧ P * Q = 1 ∧ Q * P = 1 ∧ L = Submodule.span (ZMod N) {u} := by
@@ -305,6 +389,9 @@ theorem exists_basis (hN : Squarefree N) (L : Submodule (ZMod N) (Fin 2 → ZMod
   · rw [← hPu, Units.mul_inv]
   · rw [← hPu, Units.inv_mul]
 
+/--
+@isnad1 id=iff.4h6v.s10.1e951724b025 from=translated src=- shape=bc32e06d vocab=a2ccf738
+-/
 theorem vecMul_mem_span_iff (u v : Fin 2 → ZMod N) (P Q : Matrix (Fin 2) (Fin 2) (ZMod N))
     (hP0 : P 0 = u) (hP1 : P 1 = v) (hPQ : P * Q = 1) (hQP : Q * P = 1) (c : Matrix (Fin 2) (Fin 2) (ZMod N)) :
     u ᵥ* c ∈ Submodule.span (ZMod N) {u} ↔ (P * c * Q) 0 1 = 0 := by
@@ -336,6 +423,9 @@ section Assembly
 variable (α : (Matrix (Fin 2) (Fin 2) (ZMod N)) →+* Module.End (ZMod N) (Fin 2 → Fin 2 → ZMod N))
   (v₀ : (Fin 2 → Fin 2 → ZMod N)) (hv₀ : ∀ w : (Fin 2 → Fin 2 → ZMod N), ∃! a : (Matrix (Fin 2) (Fin 2) (ZMod N)), w = α a v₀)
 
+/--
+@isnad1 id=eq.1h3v.s11.8b97199309fb from=translated src=- shape=6330f748 vocab=ed853cc9
+-/
 theorem cOf_zero : cOf α v₀ hv₀ 0 = 0 := by
   apply (epsE α v₀ hv₀).injective
   rw [epsE_cOf, map_zero]; rfl
@@ -363,10 +453,16 @@ noncomputable def thetaHom (P Q : Matrix (Fin 2) (Fin 2) (ZMod N)) (hPQ : P * Q 
     rw [Algebra.algebraMap_eq_smul_one, cOf_smul, cOf_one, Algebra.algebraMap_eq_smul_one, Matrix.mul_smul,
       Matrix.mul_one, Matrix.smul_mul, hPQ, Matrix.transpose_smul, Matrix.transpose_one]
 
+/--
+@isnad1 id=eq.3h6v.s15.881e72619c33 from=translated src=- shape=859add35 vocab=be16b920
+-/
 theorem thetaHom_apply (P Q : Matrix (Fin 2) (Fin 2) (ZMod N)) (hPQ : P * Q = 1) (hQP : Q * P = 1)
     (β : ↥(Subalgebra.centralizer (ZMod N) (Set.range α))) :
     thetaHom α v₀ hv₀ P Q hPQ hQP β = (P * cOf α v₀ hv₀ β.1 * Q)ᵀ := rfl
 
+/--
+@isnad1 id=bijectiv.3h5v.s15.5761a269336c from=translated src=- shape=a1542814 vocab=6094094b
+-/
 theorem thetaHom_bijective (P Q : Matrix (Fin 2) (Fin 2) (ZMod N)) (hPQ : P * Q = 1) (hQP : Q * P = 1) :
     Function.Bijective (thetaHom α v₀ hv₀ P Q hPQ hQP) := by
   constructor
@@ -396,6 +492,9 @@ end BorelStab
 open scoped _root_.P2MW.S_Matrix_exists_algEquiv_centralizer_forall_map_le_iff_apply_one_zero_eq_zero_of_squarefree.BorelStab
 
 open BorelStab in
+/--
+@isnad1 id=ex.4h3v.s16.74f62c95c1d4 from=translated src=- shape=20ce5e9f vocab=2ecbbcf9
+-/
 theorem solution
     (N : ℕ) [NeZero N] (hN : Squarefree N)
     (α : Matrix (Fin 2) (Fin 2) (ZMod N) →+* Module.End (ZMod N) (Fin 2 → Fin 2 → ZMod N))
