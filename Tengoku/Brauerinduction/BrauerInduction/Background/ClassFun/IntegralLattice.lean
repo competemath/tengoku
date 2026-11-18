@@ -40,6 +40,9 @@ def IntegerValued :
 
 namespace IntegerValuedClassFun
 
+/--
+@isnad1 id=iff.0h3v.s6.dc2cf6a2b564 from=translated src=- shape=3c3e42ba vocab=c9435fdf
+-/
 @[simp]
 lemma mem_iff
     {f : ClassFun k G} :
@@ -71,6 +74,9 @@ def mapIntCastRingHom :
     ext g
     simp
 
+/--
+@isnad1 id=eq.0h3v.s9.1421f094ec79 from=translated src=- shape=a7932807 vocab=bb6e436e
+-/
 @[simp]
 lemma coe_mapIntCastRingHom
     (ψ : ClassFun ℤ G) :
@@ -85,6 +91,9 @@ noncomputable def intValue
     (g : G) :
     ℤ := Classical.choose (f.property g)
 
+/--
+@isnad1 id=eq.0h4v.s7.eb59512d0733 from=translated src=- shape=248b7e76 vocab=22955535
+-/
 lemma intValue_spec
     (f : IntegerValued (k := k) (G := G))
     (g : G) :
@@ -115,6 +124,9 @@ noncomputable def intLift
       _ = (intValue f y : k) :=
             intValue_spec f y
 
+/--
+@isnad1 id=eq.0h3v.s9.5ee81e5edfbc from=translated src=- shape=0b0ea5a8 vocab=1270d444
+-/
 @[simp]
 lemma mapIntCast_intLift
     (f : IntegerValued (k := k) (G := G)) :
@@ -123,6 +135,9 @@ lemma mapIntCast_intLift
   ext g
   exact (intValue_spec f g).symm
 
+/--
+@isnad1 id=injectiv.0h2v.s9.38d18fb15c30 from=translated src=- shape=5f622aac vocab=7a490135
+-/
 lemma mapIntCastRingHom_injective :
     Function.Injective
       (mapIntCastRingHom (k := k) (G := G)) := by
@@ -136,6 +151,9 @@ lemma mapIntCastRingHom_injective :
       h
   exact Int.cast_injective hg
 
+/--
+@isnad1 id=eq.0h3v.s9.d385054f6218 from=translated src=- shape=36fa9ad7 vocab=1270d444
+-/
 @[simp]
 lemma intLift_mapIntCast
     (ψ : ClassFun ℤ G) :
@@ -168,7 +186,9 @@ noncomputable def mapIntCastLinearEquiv :
 /--
 If every value of an integer-valued class function is divisible by a nonzero
 integer `n`, then the class function itself is an `n`-fold multiple in the
-integer-valued class-function lattice.-/
+integer-valued class-function lattice.
+@isnad1 id=ex.2h4v.s9.e104e67d4773 from=translated src=- shape=fff63190 vocab=293be907
+-/
 lemma exists_zsmul_eq_of_intLift_dvd
     (n : ℤ) (hn : n ≠ 0)
     (f : IntegerValued (k := k) (G := G))

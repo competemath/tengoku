@@ -31,6 +31,9 @@ variable [(i : ι) → Module k (V i)]
 variable [(i : ι) → Module.Free k (V i)]
 variable [(i : ι) → Module.Finite k (V i)]
 
+/--
+@isnad1 id=eq.0h4v.s10.667427240c06 from=translated src=- shape=b5bc836b vocab=31c8520d
+-/
 lemma LinearMap.trace_pi_diag (f : ∀ i, V i →ₗ[k] V i) :
     LinearMap.trace k ((i : ι) → V i)
         (LinearMap.pi fun i => f i ∘ₗ LinearMap.proj i)
@@ -65,6 +68,9 @@ variable [(i : ι) → Module.Free k (V i)]
 variable [(i : ι) → Module.Finite k (V i)]
 
 open DirectSum in
+/--
+@isnad1 id=eq.0h4v.s10.6a3437b6e3c7 from=translated src=- shape=b6605308 vocab=25514e9f
+-/
 lemma DirectSum.trace_lmap (f : ∀ i, V i →ₗ[k] V i) :
     LinearMap.trace k (⨁ i, V i) (DirectSum.lmap f)
       = ∑ i, LinearMap.trace k (V i) (f i) := by
@@ -98,10 +104,15 @@ variable {G k : Type*} [Monoid G] [Field k]
 
 variable {V W : Type*} [AddCommGroup V] [Module k V] [AddCommGroup W] [Module k W]
 
+/--
+@isnad1 id=eq.0h5v.s9.403b06393581 from=translated src=- shape=570cdf9d vocab=4f1c0d7a
+-/
 lemma character_def (ρ : Representation k G V) (g : G) :
   character ρ g = LinearMap.trace k V (ρ g) := rfl
 
-/-- Equivalent representations have the same character.-/
+/-- Equivalent representations have the same character.
+@isnad1 id=eq.0h8v.s7.b30126992e4e from=translated src=- shape=8b97e6ad vocab=a64dd5ee
+-/
 lemma char_equiv
     {ρ : Representation k G V} {σ : Representation k G W}
      (h : Representation.Equiv ρ σ) (g : G) :
@@ -116,7 +127,9 @@ lemma char_equiv
   exact Eq.symm (LinearMap.trace_conj' (ρ g) h.toLinearEquiv)
 
 /-- The character of a product representation is the sum of the characters of
-  the two factors.-/
+  the two factors.
+@isnad1 id=eq.0h6v.s7.476c68593c56 from=translated src=- shape=c2a6c07b vocab=00503e9c
+-/
 @[simp]
 lemma char_prod [Module.Finite k V] [Module.Finite k W]
   (ρ : Representation k G V) (σ : Representation k G W) :
@@ -136,7 +149,9 @@ variable [(i : ι) → Module.Finite k (V i)]
 open DirectSum
 
 /-- The character of a finite direct sum of representations is the sum of the
-  characters of the summands.-/
+  characters of the summands.
+@isnad1 id=eq.0h6v.s7.b5886aafb379 from=translated src=- shape=e5f1a62a vocab=c91a723a
+-/
 @[simp]
 lemma char_directSum (ρ : (i : ι) → Representation k G (V i)) (g : G) :
     (Representation.directSum ρ).character g = ∑ i, (ρ i).character g := by
@@ -151,7 +166,9 @@ variable {k G : Type*} [Monoid G] [CommRing k]
 
 open Classical in
 /-- For the permutation representation on `MonoidAlgebra k X`,
-    the trace of the linear map attached to `g : G` is the number of fixed points of `g`.-/
+    the trace of the linear map attached to `g : G` is the number of fixed points of `g`.
+@isnad1 id=eq.0h4v.s10.874a30d8c46f from=translated src=- shape=63687ff4 vocab=0ce50ef0
+-/
 lemma ofMulAction_trace
     {X : Type*} [Finite X] [MulAction G X] (g : G) :
     LinearMap.trace k (MonoidAlgebra k X)
@@ -181,7 +198,9 @@ end numOfFixedPoints
 
 /--
 The average of the character of a finite-group representation is the dimension
-of its invariant subspace.-/
+of its invariant subspace.
+@isnad1 id=eq.0h4v.s8.df15c22bef99 from=translated src=- shape=8a20e492 vocab=1c81b00f
+-/
 theorem average_char_eq_finrank_invariants
     {k : Type u} [Field k]
     {G : Type v} [Group G]

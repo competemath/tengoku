@@ -66,7 +66,9 @@ noncomputable def phiSum
 
 /--
 Pointwise expansion of `phiSum` as a sum of scalar multiples of linear
-characters.-/
+characters.
+@isnad1 id=eq.1h5v.s10.80d454d51cad from=translated src=- shape=b4d9bd00 vocab=927e7db9
+-/
 lemma phiSum_apply_expand [Finite G]
     {a : G}
     (ha : IsPRegular p a)
@@ -86,7 +88,9 @@ lemma phiSum_apply_expand [Finite G]
 
 /--
 In the pointwise expansion of `phiSum`, the two values of the linear character
-combine to the value at the product `a⁻¹ * x`.-/
+combine to the value at the product `a⁻¹ * x`.
+@isnad1 id=eq.1h5v.s11.a3ed61256eff from=translated src=- shape=5d3094cb vocab=833ca05f
+-/
 lemma phiSum_apply_product_eq_combine [Finite G]
     {a : G} (ha : IsPRegular p a)
     (x : E_subgroup p a) :
@@ -116,7 +120,9 @@ characters `ψ_ζ` over all roots of unity vanishes.
 
 This is the first point in the construction where the coefficient field is
 assumed algebraically closed: the proof uses the full set of `orderOf a`-th
-roots of unity and the standard vanishing sum for a nontrivial power of them.-/
+roots of unity and the standard vanishing sum for a nontrivial power of them.
+@isnad1 id=eq.2h5v.s9.a761aedc0ae4 from=translated src=- shape=bb5af57d vocab=fa2e74ce
+-/
 lemma sum_psiEZeta_eq_zero_of_not_mem_P
     [CharZero k] [IsAlgClosed k] [Finite G]
     {a : G} (ha : IsPRegular p a)
@@ -223,6 +229,9 @@ noncomputable def phi
     exact h_iff.symm
 
 open Classical in
+/--
+@isnad1 id=eq.0h5v.s8.1ec7b2ed93a9 from=translated src=- shape=0df2eae4 vocab=af699735
+-/
 @[simp]
 lemma phi_apply
     (k : Type u) [CommRing k]
@@ -231,7 +240,9 @@ lemma phi_apply
       if Group.pRegular p (x : G) = a then (orderOf a : k) else 0 :=
   rfl
 
-/-- The Fourier delta function is integer-valued.-/
+/-- The Fourier delta function is integer-valued.
+@isnad1 id=mem.0h4v.s7.6ed022fe0fe7 from=translated src=- shape=de49ea20 vocab=dfb16a69
+-/
 lemma phi_mem_C_Z (a : G)
     (k : Type u) [CommRing k] :
     phi p k a ∈ C_Z k (E_subgroup p a) := by
@@ -244,7 +255,9 @@ lemma phi_mem_C_Z (a : G)
 
 open Classical in
 /--
-The direct definition of `phi` agrees with its Fourier expansion.-/
+The direct definition of `phi` agrees with its Fourier expansion.
+@isnad1 id=eq.1h4v.s6.d787bdce7f92 from=translated src=- shape=4cc0dedb vocab=6577b0ab
+-/
 lemma phi_eq_phiSum
     {k : Type u} [Field k] [CharZero k] [IsAlgClosed k]
     [Finite G]
@@ -303,7 +316,9 @@ lemma phi_eq_phiSum
     exact by
       simpa using hsum0.symm
 
-/-- The Fourier expansion lies in the cyclotomic character span.-/
+/-- The Fourier expansion lies in the cyclotomic character span.
+@isnad1 id=mem.1h4v.s10.d78985072d4d from=translated src=- shape=aa5eda7a vocab=78bc13f4
+-/
 lemma phiSum_mem_R_Lambda
     {k : Type u} [Field k]
     {G : Type u} [Group G] [Finite G]
@@ -340,7 +355,9 @@ lemma phiSum_mem_R_Lambda
   exact Submodule.smul_mem _ c
     (R_Lambda.char_mem (k := k) (E_subgroup p a) (VpsiEZeta p ha ζ))
 
-/-- The Fourier delta function lies in the cyclotomic character span.-/
+/-- The Fourier delta function lies in the cyclotomic character span.
+@isnad1 id=mem.1h4v.s10.65e79f370691 from=translated src=- shape=94cb25ee vocab=991160c0
+-/
  lemma phi_mem_R_Lambda
     {k : Type u} [Field k] [IsAlgClosed k] [CharZero k]
     {G : Type u} [Group G] [Finite G]
@@ -352,7 +369,9 @@ lemma phiSum_mem_R_Lambda
 
 /--
 The Fourier delta function is an integer-valued element of the cyclotomic
-character span.-/
+character span.
+@isnad1 id=mem.1h4v.s7.2cd91c57d4ce from=translated src=- shape=61b3a3c6 vocab=db0bc645
+-/
 lemma phi_mem_Q
     {k : Type u} [Field k] [IsAlgClosed k] [CharZero k]
     {G : Type u} [Group G] [Finite G]

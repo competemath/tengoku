@@ -59,23 +59,35 @@ instance : FunLike (ClassFun k G) G k where
     cases h
     rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.4f705b49d7c1 from=translated src=- shape=f9e20c2d vocab=7b091d3a
+-/
 @[simp]
 lemma coe_mk {f : G → k} {h} (x : G) :
     ClassFun.mk f h x = f x :=
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.6820c65ffa08 from=translated src=- shape=b24282e4 vocab=19ac1320
+-/
 @[ext]
 lemma ext {f g : ClassFun k G}
     (h : ∀ x : G, f x = g x) :
     f = g :=
   DFunLike.ext f g h
 
+/--
+@isnad1 id=eq.1h5v.s5.30457845c88a from=translated src=- shape=fa84394a vocab=54847d82
+-/
 lemma apply_eq_apply_of_isConj
     {f : ClassFun k G} {x y : G}
     (h : IsConj x y) :
     f x = f y :=
   f.map_conj x y h
 
+/--
+@isnad1 id=eq.0h5v.s6.91ad6c9fcf61 from=translated src=- shape=919d7f1e vocab=0f57ec36
+-/
 @[simp]
 lemma map_conj_eq (f : ClassFun k G) (g x : G) :
     f (x⁻¹ * g * x) = f g := by
@@ -84,6 +96,9 @@ lemma map_conj_eq (f : ClassFun k G) (g x : G) :
   use x
   group
 
+/--
+@isnad1 id=eq.0h5v.s6.eef2b05802a4 from=translated src=- shape=678a020d vocab=0f57ec36
+-/
 @[simp]
 lemma map_conj_eq' (f : ClassFun k G) (g x : G) :
     f (x * g * x⁻¹) = f g := by
@@ -97,6 +112,9 @@ def const (a : k) : ClassFun k G where
     intro _ _ _
     rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.373f7db5b591 from=translated src=- shape=002c707c vocab=914588cd
+-/
 @[simp]
 lemma const_apply (a : k) (g : G) :
     ClassFun.const (G := G) a g = a :=
@@ -108,11 +126,17 @@ def involution (f : ClassFun k G) : ClassFun k G where
     intro x y hxy
     exact f.map_conj _ _ (IsConj.inv.mp hxy)
 
+/--
+@isnad1 id=eq.0h4v.s5.8299ca148eb3 from=translated src=- shape=2f2bf488 vocab=30ba7633
+-/
 @[simp]
 lemma involution_apply (f : ClassFun k G) (g : G) :
     involution f g = f g⁻¹ :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.f0c8cfd4b9ac from=translated src=- shape=47f54aa6 vocab=9e06032b
+-/
 @[simp]
 lemma involution_involution (f : ClassFun k G) :
     involution (involution f) = f := by
@@ -130,11 +154,17 @@ instance [Zero k] : Zero (ClassFun k G) where
         intro _ _ _
         rfl }
 
+/--
+@isnad1 id=eq.0h3v.s5.266233912060 from=translated src=- shape=953159a9 vocab=45b99c96
+-/
 @[simp]
 lemma zero_apply [Zero k] (g : G) :
     (0 : ClassFun k G) g = 0 :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.b3e2b0628963 from=translated src=- shape=facb026e vocab=e04847f9
+-/
 @[simp]
 lemma toFun_zero_apply [Zero k] (g : G) :
     ClassFun.toFun 0 g = (0 : k) := rfl
@@ -149,6 +179,9 @@ instance [Add k] : Add (ClassFun k G) where
           (f.map_conj x y hxy)
           (g.map_conj x y hxy) }
 
+/--
+@isnad1 id=eq.0h5v.s6.240b642192f6 from=translated src=- shape=b5d2ec09 vocab=e8546478
+-/
 @[simp]
 lemma add_apply [Add k]
     (f g : ClassFun k G) (x : G) :
@@ -163,6 +196,9 @@ instance [Neg k] : Neg (ClassFun k G) where
         change -f.toFun x = -f.toFun y
         exact congrArg Neg.neg (f.map_conj x y hxy) }
 
+/--
+@isnad1 id=eq.0h4v.s5.0a5a61ffbf37 from=translated src=- shape=fae620fd vocab=3c7ad785
+-/
 @[simp]
 lemma neg_apply [Neg k]
     (f : ClassFun k G) (x : G) :
@@ -177,6 +213,9 @@ instance [Sub k] : Sub (ClassFun k G) where
         change f.toFun x - g.toFun x = f.toFun y - g.toFun y
         rw [f.map_conj x y hxy, g.map_conj x y hxy] }
 
+/--
+@isnad1 id=eq.0h5v.s6.859448c8244a from=translated src=- shape=b5d2ec09 vocab=3364ea4d
+-/
 @[simp]
 lemma sub_apply [Sub k]
     (f g : ClassFun k G) (x : G) :
@@ -190,6 +229,9 @@ instance [One k] : One (ClassFun k G) where
         intro _ _ _
         rfl }
 
+/--
+@isnad1 id=eq.0h3v.s5.f3c35ecfc7ef from=translated src=- shape=953159a9 vocab=1e43b42e
+-/
 @[simp]
 lemma one_apply [One k] (g : G) :
     (1 : ClassFun k G) g = 1 :=
@@ -203,6 +245,9 @@ instance [Mul k] : Mul (ClassFun k G) where
         change f.toFun x * g.toFun x = f.toFun y * g.toFun y
         rw [f.map_conj x y hxy, g.map_conj x y hxy] }
 
+/--
+@isnad1 id=eq.0h5v.s6.7f841b84471a from=translated src=- shape=b5d2ec09 vocab=dc0568e8
+-/
 @[simp]
 lemma mul_apply [Mul k]
     (f g : ClassFun k G) (x : G) :
@@ -218,6 +263,9 @@ instance {R : Type w} [SMul R k] :
         change r • f.toFun x = r • f.toFun y
         exact congrArg (fun z => r • z) (f.map_conj x y hxy) }
 
+/--
+@isnad1 id=eq.0h6v.s6.9d04647e1a2e from=translated src=- shape=e983cb05 vocab=a1f49c56
+-/
 @[simp]
 lemma smul_apply
     {R : Type w} [SMul R k]
@@ -260,6 +308,9 @@ instance : Monoid (ClassFun k G) where
         (f.toFun x) ^ n * f.toFun x
     exact pow_succ _ _
 
+/--
+@isnad1 id=eq.0h5v.s6.63e1c5e4429a from=translated src=- shape=aca7210a vocab=f31734f7
+-/
 @[simp]
 lemma pow_apply
     (f : ClassFun k G) (n : ℕ) (x : G) :
@@ -315,6 +366,9 @@ instance : AddCommMonoid (ClassFun k G) where
     change (n + 1) • f.toFun g = n • f.toFun g + f.toFun g
     exact succ_nsmul (f.toFun g) n
 
+/--
+@isnad1 id=eq.0h5v.s6.2cbecfd0fb80 from=translated src=- shape=614c17e3 vocab=5b0210fb
+-/
 @[simp]
 lemma nsmul_apply
     (n : ℕ) (f : ClassFun k G) (g : G) :
@@ -323,6 +377,9 @@ lemma nsmul_apply
   | zero => simp
   | succ n ih => simp [add_nsmul, ih]
 
+/--
+@isnad1 id=eq.0h6v.s6.25d04e80dc0f from=translated src=- shape=89a08ac5 vocab=34c7bc3e
+-/
 @[simp]
 lemma finset_sum_apply
     {ι : Type*} (s : Finset ι)
@@ -333,6 +390,9 @@ lemma finset_sum_apply
   | empty => simp
   | insert a s ha ih => simp [Finset.sum_insert ha, ih]
 
+/--
+@isnad1 id=eq.0h5v.s6.382ad72ef89f from=translated src=- shape=dc6da2c3 vocab=00c9263f
+-/
 @[simp]
 lemma sum_apply
     {ι : Type*} [Fintype ι]
@@ -378,6 +438,9 @@ instance : AddCommGroup (ClassFun k G) where
         -((n.succ : ℤ) • f.toFun x)
     exact neg_zsmul (f.toFun x) (n.succ : ℤ)
 
+/--
+@isnad1 id=eq.0h5v.s6.156fbe8572b5 from=translated src=- shape=614c17e3 vocab=fa04363c
+-/
 @[simp]
 lemma zsmul_apply
     (n : ℤ) (f : ClassFun k G) (x : G) :
@@ -422,6 +485,9 @@ instance : Semiring (ClassFun k G) :=
           n • (1 : k) + 1
       simp only [succ_nsmul (1 : k) n, nsmul_eq_mul, mul_one] }
 
+/--
+@isnad1 id=eq.0h4v.s6.1241f3e21d6c from=translated src=- shape=7a8e4974 vocab=d47098ed
+-/
 @[simp]
 lemma natCast_apply (n : ℕ) (x : G) :
     (n : ClassFun k G) x = (n : k) := by
@@ -441,6 +507,9 @@ def evalRingHom (x : G) : ClassFun k G →+* k where
     intro f g
     simp
 
+/--
+@isnad1 id=eq.0h4v.s6.4d47e2f6d630 from=translated src=- shape=ae2e2a24 vocab=75866b0a
+-/
 @[simp]
 lemma evalRingHom_apply (x : G) (f : ClassFun k G) :
     evalRingHom (G := G) (k := k) x f = f x :=
@@ -465,6 +534,9 @@ instance : Ring (ClassFun k G) :=
       ext x
       simp }
 
+/--
+@isnad1 id=eq.0h4v.s5.0b573c2ef981 from=translated src=- shape=7a8e4974 vocab=2c183fde
+-/
 @[simp]
 lemma intCast_apply (z : ℤ) (x : G) :
     (z : ClassFun k G) x = (z : k) := by
@@ -628,7 +700,9 @@ variable [DivisionRing k] [Finite G]
 
 /--
 The space of class functions on a finite group is finite-dimensional, since it
-embeds linearly into the finite-dimensional function space `G → k`.-/
+embeds linearly into the finite-dimensional function space `G → k`.
+@isnad1 id=finitedi.0h2v.s5.1db449182e6f from=translated src=- shape=7d0733aa vocab=fae74322
+-/
 noncomputable instance finiteDimensional :
     FiniteDimensional k (ClassFun k G) := by
   letI : Fintype G := Fintype.ofFinite G

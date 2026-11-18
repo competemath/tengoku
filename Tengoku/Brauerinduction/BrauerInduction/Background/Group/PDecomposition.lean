@@ -41,6 +41,9 @@ universe u
 variable {G : Type u} [Group G]
 variable (p : ℕ)
 
+/--
+@isnad1 id=other.1h2v.s6.a6696aee12c5 from=translated src=- shape=83ea4fcf vocab=8e4084ed
+-/
 lemma Nat.ordProj_ordCompl_coprime {n : ℕ} [Fact p.Prime] (h : n ≠ 0) :
     let a := ordProj[p] n
     let b := ordCompl[p] n
@@ -54,18 +57,28 @@ def _root_.Tengoku.Brauerinduction.IsPRegular (a : G) : Prop := Nat.Coprime (ord
 
 namespace Tengoku.Brauerinduction.IsPRegular
 
+/--
+@isnad1 id=ispregul.0h2v.s4.677cf533ba84 from=translated src=- shape=182f3df2 vocab=9657be24
+-/
 @[simp]
 lemma one : IsPRegular p (1 : G) := by simp [IsPRegular]
 
+/--
+@isnad1 id=coprime.1h3v.s4.edcbafd403b2 from=translated src=- shape=a74bc715 vocab=3dd5c895
+-/
 lemma order_coprime {a : G} (h : IsPRegular p a) :
     Nat.Coprime (orderOf a) p := h
 
-/-- An element is `p`-regular iff its inverse is `p`-regular.-/
+/-- An element is `p`-regular iff its inverse is `p`-regular.
+@isnad1 id=iff.0h3v.s4.165ee7f850b5 from=translated src=- shape=672253ef vocab=50ffcaba
+-/
 lemma inv_iff (a : G) : IsPRegular p a⁻¹ ↔ IsPRegular p a := by
     simp only [IsPRegular, orderOf_inv]
 
 /--
-The product of commuting `p`-regular elements is `p`-regular.-/
+The product of commuting `p`-regular elements is `p`-regular.
+@isnad1 id=ispregul.3h4v.s5.e80b20966579 from=translated src=- shape=3e8adeb0 vocab=92f9eb4c
+-/
 lemma mul {a b : G} (ha : IsPRegular p a) (hb : IsPRegular p b)
     (hcomm : Commute a b) : IsPRegular p (a * b) := by
   have h_dvd : orderOf (a * b) ∣ orderOf a * orderOf b :=
@@ -73,34 +86,52 @@ lemma mul {a b : G} (ha : IsPRegular p a) (hb : IsPRegular p b)
   exact Nat.Coprime.coprime_dvd_left h_dvd (Nat.Coprime.mul_left ha hb)
 
 /--
-The image of a `p`-regular element under a group homomorphism is `p`-regular.-/
+The image of a `p`-regular element under a group homomorphism is `p`-regular.
+@isnad1 id=ispregul.1h5v.s6.e34f03fdd0d3 from=translated src=- shape=3380ef29 vocab=d55b6cb1
+-/
 lemma map {H : Type v} [Group H] (f : G →* H) {a : G}
     (h : IsPRegular p a) : IsPRegular p (f a) := by
   have h_dvd : orderOf (f a) ∣ orderOf a := orderOf_map_dvd f a
   exact Nat.Coprime.coprime_dvd_left h_dvd h
 
+/--
+@isnad1 id=ispregul.2h4v.s5.97cf1956da88 from=translated src=- shape=6c8abe68 vocab=035c9ab3
+-/
 lemma isConj {a b : G} (ha : IsPRegular p a) (h : IsConj a b) :
     IsPRegular p b := by
   simpa only [IsPRegular, IsConj.orderOf_eq h] using ha
 
+/--
+@isnad1 id=ispregul.1h4v.s6.f1c217fc5a2a from=translated src=- shape=c4efadc8 vocab=16bdeb18
+-/
 lemma conj {a : G} (h : IsPRegular p a) (b : G) :
     IsPRegular p (b * a * b⁻¹) :=
       IsPRegular.isConj p h (isConj_iff.mpr ⟨b, rfl⟩)
 
+/--
+@isnad1 id=ispregul.1h4v.s6.23d122d77669 from=translated src=- shape=b0d671e7 vocab=16bdeb18
+-/
 lemma conj' {a : G} (h : IsPRegular p a) (b : G) :
     IsPRegular p (b⁻¹ * a * b) :=
       IsPRegular.isConj p h (isConj_iff.mpr ⟨b⁻¹, by rw [inv_inv]⟩)
 
-/-- p-regularity is invariant under conjugacy.-/
+/-- p-regularity is invariant under conjugacy.
+@isnad1 id=iff.1h4v.s5.90bc909908e5 from=translated src=- shape=ae8266b1 vocab=035c9ab3
+-/
 lemma iff_isConj {a b : G} (h : IsConj a b) :
     IsPRegular p a ↔ IsPRegular p b :=
   ⟨fun ha ↦ isConj p ha h, fun hb ↦ isConj p hb h.symm⟩
 
+/--
+@isnad1 id=not.1h3v.s5.6b2248be7aed from=translated src=- shape=fe6319a6 vocab=288cc45f
+-/
 lemma not_dvd_orderOf [Fact p.Prime] {a : G} (h : IsPRegular p a) :
     ¬ p ∣ orderOf a := (Nat.Prime.coprime_iff_not_dvd Fact.out).mp h.symm
 
 /--
-A `p`-regular element has finite order, provided `p` is prime.-/
+A `p`-regular element has finite order, provided `p` is prime.
+@isnad1 id=isoffino.1h3v.s4.f7bc62722ef1 from=translated src=- shape=5d1e4b94 vocab=73f77297
+-/
 lemma isOfFinOrder [Fact p.Prime] {a : G}
     (h : IsPRegular p a) :
     IsOfFinOrder a := by
@@ -111,27 +142,40 @@ lemma isOfFinOrder [Fact p.Prime] {a : G}
     exact dvd_zero p
   exact h.not_dvd_orderOf p hp_dvd
 
-/-- A `p`-regular element has nonzero order.-/
+/-- A `p`-regular element has nonzero order.
+@isnad1 id=nezero.1h3v.s5.93da74863044 from=translated src=- shape=1d5b6093 vocab=a9fbd099
+-/
 lemma neZero_orderOf
     [Fact p.Prime] {a : G} (ha : IsPRegular p a) :
     NeZero (orderOf a) :=
   ⟨(orderOf_ne_zero_iff).2 (IsPRegular.isOfFinOrder p ha)⟩
 
+/--
+@isnad1 id=dvd.2h4v.s6.6fe72ea9050c from=translated src=- shape=1a4ad4a9 vocab=5365d5ec
+-/
 lemma orderOf_dvd_ordCompl [Fact p.Prime] {a : G} (h : IsPRegular p a) {n : ℕ}
     (hd : orderOf a ∣ n) : orderOf a ∣ ordCompl[p] n :=
   Nat.dvd_ordCompl_of_dvd_not_dvd hd h.not_dvd_orderOf
 
+/--
+@isnad1 id=ispregul.2h4v.s5.7d4c918453a3 from=translated src=- shape=985dd3cf vocab=33f70fb4
+-/
 lemma of_mem_zpowers {a b : G} (ha : a ∈ Subgroup.zpowers b) (hb : IsPRegular p b) :
     IsPRegular p a := by
   have h_dvd : orderOf a ∣ orderOf b := orderOf_dvd_of_mem_zpowers ha
   exact Nat.Coprime.coprime_dvd_left h_dvd hb
 
 /--
-A power of a `p`-regular element is `p`-regular.-/
+A power of a `p`-regular element is `p`-regular.
+@isnad1 id=ispregul.1h4v.s5.75e6d96031a0 from=translated src=- shape=6d5538b3 vocab=1e33e04c
+-/
 lemma pow (a : G) (h : IsPRegular p a) (n : ℕ) :
     IsPRegular p (a ^ n) :=
   h.coprime_dvd_left (orderOf_pow_dvd n)
 
+/--
+@isnad1 id=ispregul.1h3v.s6.ae74d6748133 from=translated src=- shape=42d9aed2 vocab=a88c355c
+-/
 lemma pow_ordProj [Fact p.Prime] {a : G} (ha : IsOfFinOrder a) :
     IsPRegular p (a ^ ordProj[p] (orderOf a)) := by
   let n : ℕ := orderOf a
@@ -153,6 +197,9 @@ lemma pow_ordProj [Fact p.Prime] {a : G} (ha : IsOfFinOrder a) :
     orderOf_dvd_of_pow_eq_one hpow1
   exact hcop.of_dvd_left hdvd
 
+/--
+@isnad1 id=iff.0h4v.s6.1364777fd28a from=translated src=- shape=0eaf49a6 vocab=80bf6f17
+-/
 @[simp]
 lemma subtype_iff
     {H : Subgroup G} (x : H) :
@@ -166,15 +213,22 @@ def _root_.Tengoku.Brauerinduction.IsPSingular (a : G) : Prop := ∃ n, orderOf 
 
 namespace Tengoku.Brauerinduction.IsPSingular
 
+/--
+@isnad1 id=ispsingu.0h2v.s4.1a76a77801fe from=translated src=- shape=182f3df2 vocab=9362e082
+-/
 @[simp]
 lemma one : IsPSingular p (1 : G) := ⟨0, by simp⟩
 
-/-- An element is `p`-singular iff its inverse is `p`-singular.-/
+/-- An element is `p`-singular iff its inverse is `p`-singular.
+@isnad1 id=iff.0h3v.s4.9ab35bb3b940 from=translated src=- shape=672253ef vocab=0ba57570
+-/
 lemma inv_iff (a : G) : IsPSingular p a⁻¹ ↔ IsPSingular p a := by
     simp only [IsPSingular, orderOf_inv]
 
 /--
-The product of commuting `p`-singular elements is `p`-singular.-/
+The product of commuting `p`-singular elements is `p`-singular.
+@isnad1 id=ispsingu.3h4v.s6.05aa95fdfdbc from=translated src=- shape=9e7f83ef vocab=c0857eed
+-/
 lemma mul [Fact p.Prime] {a b : G} (ha : IsPSingular p a)
     (hb : IsPSingular p b) (hcomm : Commute a b) : IsPSingular p (a * b) := by
   rcases ha with ⟨n, ha⟩
@@ -185,6 +239,9 @@ lemma mul [Fact p.Prime] {a b : G} (ha : IsPSingular p a)
   obtain ⟨k, -, heq⟩ := (Nat.dvd_prime_pow Fact.out).mp h_dvd
   exact ⟨k, heq⟩
 
+/--
+@isnad1 id=ispsingu.1h5v.s6.779010472062 from=translated src=- shape=bb8bfab2 vocab=faec7439
+-/
 lemma map [Fact p.Prime] {H : Type v} [Group H] (f : G →* H) {a : G}
     (ha : IsPSingular p a) : IsPSingular p (f a) := by
   rcases ha with ⟨n, hn⟩
@@ -193,6 +250,9 @@ lemma map [Fact p.Prime] {H : Type v} [Group H] (f : G →* H) {a : G}
   obtain ⟨k, -, heq⟩ := (Nat.dvd_prime_pow Fact.out).mp h_dvd
   exact ⟨k, heq⟩
 
+/--
+@isnad1 id=ispsingu.2h4v.s5.3c069d58b812 from=translated src=- shape=6c8abe68 vocab=d3986d1f
+-/
 lemma isConj {a b : G} (ha : IsPSingular p a) (h : IsConj a b) :
     IsPSingular p b := by
   obtain ⟨n,hn⟩ := ha
@@ -200,16 +260,24 @@ lemma isConj {a b : G} (ha : IsPSingular p a) (h : IsConj a b) :
   rw [← hn]
   exact IsConj.orderOf_eq (IsConj.symm h)
 
+/--
+@isnad1 id=ispsingu.1h4v.s6.796c354e663b from=translated src=- shape=c4efadc8 vocab=0c04f4d5
+-/
 lemma conj {a : G} (h : IsPSingular p a) (b : G) :
     IsPSingular p (b * a * b⁻¹) :=
       IsPSingular.isConj p h (isConj_iff.mpr ⟨b, rfl⟩)
 
+/--
+@isnad1 id=ispsingu.1h4v.s6.be634027d2ed from=translated src=- shape=b0d671e7 vocab=0c04f4d5
+-/
 lemma conj' {a : G} (h : IsPSingular p a) (b : G) :
     IsPSingular p (b⁻¹ * a * b) :=
       IsPSingular.isConj p h (isConj_iff.mpr ⟨b⁻¹, by rw [inv_inv]⟩)
 
 /--
-A `p`-singular element has finite order, provided `p` is prime.-/
+A `p`-singular element has finite order, provided `p` is prime.
+@isnad1 id=isoffino.1h3v.s4.4e9f349f1070 from=translated src=- shape=5d1e4b94 vocab=10e14cfe
+-/
 lemma isOfFinOrder [Fact p.Prime] {a : G}
     (h : IsPSingular p a) :
     IsOfFinOrder a := by
@@ -218,12 +286,17 @@ lemma isOfFinOrder [Fact p.Prime] {a : G}
   rw [hn]
   exact pow_ne_zero n (Nat.Prime.ne_zero Fact.out)
 
-/-- A `p`-regular element has nonzero order.-/
+/-- A `p`-regular element has nonzero order.
+@isnad1 id=nezero.1h3v.s5.8e1d1c4199d3 from=translated src=- shape=1d5b6093 vocab=60fee946
+-/
 lemma neZero_orderOf
     [Fact p.Prime] {a : G} (h : IsPSingular p a) :
     NeZero (orderOf a) :=
   ⟨(orderOf_ne_zero_iff).2 (IsPSingular.isOfFinOrder p h)⟩
 
+/--
+@isnad1 id=dvd.3h4v.s6.9dd5a14aed5d from=translated src=- shape=8b1d51a9 vocab=8a35e090
+-/
 lemma orderOf_dvd_ordProj [Fact p.Prime] {a : G} (h : IsPSingular p a) {n : ℕ}
     (hd : orderOf a ∣ n) (hn : n ≠ 0) :
     orderOf a ∣ ordProj[p] n := by
@@ -233,7 +306,9 @@ lemma orderOf_dvd_ordProj [Fact p.Prime] {a : G} (h : IsPSingular p a) {n : ℕ}
 
 /--
 An element is `p`-singular iff the cyclic subgroup it generates is a
-`p`-group.-/
+`p`-group.
+@isnad1 id=iff.0h3v.s5.91657c2a2e0b from=translated src=- shape=ae5da24c vocab=3353a37e
+-/
 lemma iff_zpowers_isPGroup [Fact p.Prime] (a : G) :
     IsPSingular p a ↔ IsPGroup p (Subgroup.zpowers a) := by
   unfold IsPSingular
@@ -253,6 +328,9 @@ lemma iff_zpowers_isPGroup [Fact p.Prime] (a : G) :
     use n
     simp [← hn, ← Subgroup.orderOf_coe]
 
+/--
+@isnad1 id=eq.2h3v.s5.29b8c15be845 from=translated src=- shape=964b437a vocab=2f713292
+-/
 lemma isPRegular_eq_one [Fact p.Prime]
     (a : G) (hs : IsPSingular p a) (hr : IsPRegular p a) :
     a = 1 := by
@@ -268,6 +346,9 @@ lemma isPRegular_eq_one [Fact p.Prime]
       simp only [hr, lt_self_iff_false] at hp
     · simp
 
+/--
+@isnad1 id=iff.0h4v.s6.a633459a3ffc from=translated src=- shape=0eaf49a6 vocab=ecfee329
+-/
 @[simp]
 lemma subtype_iff
     {H : Subgroup G} (x : H) :
@@ -290,20 +371,31 @@ noncomputable def pRegular (a : G) : G :=
   let m := ordCompl[p] (orderOf a)
   a ^ (Nat.gcdA n m * n)
 
+/--
+@isnad1 id=eq.0h2v.s5.336f576e3987 from=translated src=- shape=c42f8cb7 vocab=89f81f2e
+-/
 @[simp]
 lemma pRegular_one : pRegular p (1 : G) = 1 := by simp [pRegular]
 
-/-- The inverse of a `p`-regular element is `p`-regular.-/
+/-- The inverse of a `p`-regular element is `p`-regular.
+@isnad1 id=eq.0h3v.s5.e58bfc136212 from=translated src=- shape=c9765324 vocab=cc3085d2
+-/
 lemma pRegular_inv [Fact p.Prime] {a : G} :
     pRegular p (a⁻¹) = (pRegular p a)⁻¹ := by
   have h_ord : orderOf (a⁻¹) = orderOf a := orderOf_inv a
   simp only [pRegular, h_ord, Nat.cast_pow, inv_zpow', zpow_neg]
 
+/--
+@isnad1 id=eq.1h5v.s7.bc31414f4d25 from=translated src=- shape=edf82b05 vocab=e8ddea1d
+-/
 lemma pRegular_map {H : Type v} [Group H] (f : G →* H) (hf : Function.Injective f)
     (a : G) : pRegular p (f a) = f (pRegular p a) := by
   have h_ord : orderOf (f a) = orderOf a := orderOf_injective f hf a
   simp only [pRegular, h_ord, Nat.cast_pow, map_zpow]
 
+/--
+@isnad1 id=dvd.0h3v.s6.87bd52fadee3 from=translated src=- shape=271e6726 vocab=729f6f10
+-/
 theorem orderOf_pRegular_dvd (a : G) :
     orderOf (pRegular p a) ∣ ordCompl[p] (orderOf a) := by
   let n := ordProj[p] (orderOf a)
@@ -325,7 +417,9 @@ theorem orderOf_pRegular_dvd (a : G) :
                 simp only [zpow_mul, zpow_natCast, zpow_pow_orderOf]
   exact orderOf_dvd_iff_pow_eq_one.mpr hpow
 
-/-- `pRegular p x` is p-regular: its order is coprime to `p`.-/
+/-- `pRegular p x` is p-regular: its order is coprime to `p`.
+@isnad1 id=ispregul.1h3v.s4.6294fc062c20 from=translated src=- shape=0a83807d vocab=966613f1
+-/
 @[simp]
 lemma isPRegular_pRegular [Fact p.Prime] {a : G} (h : IsOfFinOrder a) :
     IsPRegular p (pRegular p a) := by
@@ -349,19 +443,31 @@ noncomputable def pSingular (a : G) : G :=
   let n := ordCompl[p] (orderOf a)
   a ^ (Nat.gcdB m n * n)
 
+/--
+@isnad1 id=eq.0h2v.s5.edb292d0c202 from=translated src=- shape=c42f8cb7 vocab=2ecceba0
+-/
 @[simp]
 lemma pSingular_one : pSingular p (1 : G) = 1 := by simp [pSingular]
 
+/--
+@isnad1 id=eq.0h3v.s5.23d82eba7519 from=translated src=- shape=c9765324 vocab=2531e475
+-/
 lemma pSingular_inv [Fact p.Prime] {a : G} :
     pSingular p (a⁻¹) = (pSingular p a)⁻¹ := by
   have h_ord : orderOf (a⁻¹) = orderOf a := orderOf_inv a
   simp only [pSingular, h_ord, Int.natCast_ediv, Nat.cast_pow, inv_zpow', zpow_neg]
 
+/--
+@isnad1 id=eq.1h5v.s7.2d31fc9d3428 from=translated src=- shape=edf82b05 vocab=6a7bc20e
+-/
 lemma pSingular_map {H : Type v} [Group H] (f : G →* H) (h : Function.Injective f)
     (a : G) : pSingular p (f a) = f (pSingular p a) := by
   have h_ord : orderOf (f a) = orderOf a := orderOf_injective f h a
   simp only [pSingular, h_ord, Int.natCast_ediv, Nat.cast_pow, map_zpow]
 
+/--
+@isnad1 id=dvd.0h3v.s6.4f50fa39b734 from=translated src=- shape=83154039 vocab=ece48501
+-/
 theorem orderOf_pSingular_dvd (a : G) :
     orderOf (pSingular p a) ∣ ordProj[p] (orderOf a) := by
   let n := ordProj[p] (orderOf a)
@@ -385,7 +491,9 @@ theorem orderOf_pSingular_dvd (a : G) :
                 simp only [zpow_mul, zpow_natCast, zpow_pow_orderOf]
   exact orderOf_dvd_iff_pow_eq_one.mpr hpow
 
-/-- `pSingular p a` is p-singular: its order is a power of `p`.-/
+/-- `pSingular p a` is p-singular: its order is a power of `p`.
+@isnad1 id=ispsingu.0h3v.s4.c039472836a5 from=translated src=- shape=59171bb4 vocab=4561eb79
+-/
 lemma isPSingular_pSingular (a : G) [Fact p.Prime] :
     IsPSingular p (pSingular p a) := by
   let n := ordProj[p] (orderOf a)
@@ -421,6 +529,9 @@ end pSingular
 
 section pDecomposition
 
+/--
+@isnad1 id=coprime.2h4v.s5.277bcc18c986 from=translated src=- shape=951068a0 vocab=b054286e
+-/
 lemma isPSingular_isPRegular_orders_coprime
     {a b : G} (ha : IsPSingular p a) (hb : IsPRegular p b) :
     Nat.Coprime (orderOf a) (orderOf b) := by
@@ -428,10 +539,15 @@ lemma isPSingular_isPRegular_orders_coprime
   rw [hn]
   exact hb.symm.pow_left n
 
-/-- Powers of `a` commute, hence the canonical factors commute.-/
+/-- Powers of `a` commute, hence the canonical factors commute.
+@isnad1 id=commute.0h3v.s5.5b53da7ba44b from=translated src=- shape=c0d9a0e9 vocab=34d11023
+-/
 lemma pDecomp_commute (a : G) :
     Commute (pSingular p a) (pRegular p a) := by simp [pSingular, pRegular]
 
+/--
+@isnad1 id=eq.1h3v.s5.4410d95de029 from=translated src=- shape=88f393a2 vocab=db7b800a
+-/
 theorem pDecomp [Fact p.Prime] {a : G} (hf : IsOfFinOrder a) :
     pSingular p a * pRegular p a = a := by
   let m := ordProj[p] (orderOf a)
@@ -451,6 +567,9 @@ theorem pDecomp [Fact p.Prime] {a : G} (hf : IsOfFinOrder a) :
   simp only [zpow_add, zpow_one, mul_comm _ r, mul_comm _ s] at this
   exact this
 
+/--
+@isnad1 id=eq.1h3v.s5.c81268b672d7 from=translated src=- shape=88f393a2 vocab=db7b800a
+-/
 theorem pDecomp' [Fact p.Prime] {a : G} (h : IsOfFinOrder a) :
     pRegular p a * pSingular p a = a := by
   rw [← (pDecomp_commute p a).eq, pDecomp p h]
@@ -460,7 +579,9 @@ Uniqueness of the `p`-decomposition.
 
 If `a = b * c = c * b`, where `b` is `p`-singular and `c` is `p`-regular,
 then `b` and `c` are respectively the canonical `p`-singular and `p`-regular
-factors of `a`.-/
+factors of `a`.
+@isnad1 id=and.5h5v.s6.f1d5c482d4ee from=translated src=- shape=ebd7325d vocab=f9de4d52
+-/
 theorem pSingular_pRegular_unique [Fact p.Prime]
     {a b c : G}
     (ha : IsOfFinOrder a)
@@ -505,6 +626,9 @@ theorem pSingular_pRegular_unique [Fact p.Prime]
       _ = pRegular p a := by rw [h₁]; rfl
   exact ⟨hs_eq, hv_eq⟩
 
+/--
+@isnad1 id=eq.2h3v.s5.dfd6392543e7 from=translated src=- shape=fd53cddf vocab=966613f1
+-/
 lemma pRegular_eq_self_of_isPRegular [Fact p.Prime]
     {a : G} (hf : IsOfFinOrder a) (hr : IsPRegular p a) :
     pRegular p a = a := by
@@ -512,6 +636,9 @@ lemma pRegular_eq_self_of_isPRegular [Fact p.Prime]
   obtain ⟨_, hr_eq⟩ := pSingular_pRegular_unique p hf (one_mul a) (mul_one a) hs hr
   exact hr_eq.symm
 
+/--
+@isnad1 id=eq.2h3v.s5.1cfcfd012eb6 from=translated src=- shape=fd53cddf vocab=083f5403
+-/
 lemma pSingular_eq_self_of_isPSingular [Fact p.Prime]
     {a : G} (hf : IsOfFinOrder a) (hs : IsPSingular p a) :
     pSingular p a = a := by
@@ -519,6 +646,9 @@ lemma pSingular_eq_self_of_isPSingular [Fact p.Prime]
   obtain ⟨hs_eq, _⟩ := pSingular_pRegular_unique p hf (mul_one a) (one_mul a) hs hr
   exact hs_eq.symm
 
+/--
+@isnad1 id=eq.2h3v.s5.e296d203159b from=translated src=- shape=f16bc490 vocab=3d6b0b9c
+-/
 lemma isPSingular_pRegular_eq_one [Fact p.Prime]
     {a : G} (hf : IsOfFinOrder a) (hs : IsPSingular p a) :
     pRegular p a = 1 := by
@@ -526,6 +656,9 @@ lemma isPSingular_pRegular_eq_one [Fact p.Prime]
   obtain ⟨_, hv_eq⟩ := pSingular_pRegular_unique p hf (mul_one a) (one_mul a) hs hr
   exact hv_eq.symm
 
+/--
+@isnad1 id=eq.2h3v.s5.860668b01b59 from=translated src=- shape=f16bc490 vocab=41f2df26
+-/
 lemma isPRegular_pSingular_eq_one [Fact p.Prime]
      {a : G} (hf : IsOfFinOrder a) (hr : IsPRegular p a) :
     pSingular p a = 1 := by
@@ -534,7 +667,9 @@ lemma isPRegular_pSingular_eq_one [Fact p.Prime]
   exact hs_eq.symm
 
 /-- Conjugation carries the `p`-elementary/`p`-regular factors
-    to those of the conjugate element.-/
+    to those of the conjugate element.
+@isnad1 id=and.1h5v.s6.464aa073add5 from=translated src=- shape=72a8653a vocab=b31461c2
+-/
 lemma pDecomp_SemiconjBy [Fact p.Prime] {a b c : G} (h : SemiconjBy a b c) :
     SemiconjBy a (pSingular p b) (pSingular p c) ∧
     SemiconjBy a (pRegular p b) (pRegular p c) := by
@@ -545,6 +680,9 @@ lemma pDecomp_SemiconjBy [Fact p.Prime] {a b c : G} (h : SemiconjBy a b c) :
   · simp only [pRegular, h_ord]
     exact h.zpow_right _
 
+/--
+@isnad1 id=eq.0h4v.s6.09e45a6614de from=translated src=- shape=0aa221bb vocab=371e3e9f
+-/
 @[simp]
 lemma pRegular_conj [Fact p.Prime] (a b : G) :
     Group.pRegular p (a * b * a⁻¹) = a * Group.pRegular p b * a⁻¹ := by
@@ -553,6 +691,9 @@ lemma pRegular_conj [Fact p.Prime] (a b : G) :
   have h_reg := (pDecomp_SemiconjBy p h_semi).right
   exact eq_mul_inv_of_mul_eq h_reg.eq.symm
 
+/--
+@isnad1 id=eq.0h4v.s6.ca58682553dc from=translated src=- shape=2ebffb68 vocab=371e3e9f
+-/
 @[simp]
 lemma pRegular_conj' [Fact p.Prime] (a b : G) :
     Group.pRegular p (a⁻¹ * b * a)  = a⁻¹ * Group.pRegular p b * a := by
@@ -560,6 +701,9 @@ lemma pRegular_conj' [Fact p.Prime] (a b : G) :
   rw [inv_inv] at h
   exact h
 
+/--
+@isnad1 id=eq.0h4v.s6.4912b44eff6b from=translated src=- shape=0aa221bb vocab=d266244e
+-/
 @[simp]
 lemma pSingular_conj [Fact p.Prime] (a b : G) :
     Group.pSingular p (a * b * a⁻¹) = a * Group.pSingular p b * a⁻¹ := by
@@ -570,7 +714,9 @@ lemma pSingular_conj [Fact p.Prime] (a b : G) :
 
 /--
 If h is p-regular and s is p-singular and they commute, then the p-regular part
-of (h * s) is just h.-/
+of (h * s) is just h.
+@isnad1 id=eq.4h4v.s6.f4408bd9bc3d from=translated src=- shape=5def4e8d vocab=3fa66c2a
+-/
 lemma pRegular_mul_eq_self_of_pSingular_commute [Fact p.Prime]
       {a b : G} (hf : IsOfFinOrder (a * b))
       (ha : IsPRegular p a) (hb : IsPSingular p b)
@@ -581,6 +727,9 @@ lemma pRegular_mul_eq_self_of_pSingular_commute [Fact p.Prime]
     pSingular_pRegular_unique p (a := a * b) (b := b) (c := a) hf h_mul rfl hb ha
   exact h_reg_eq.symm
 
+/--
+@isnad1 id=eq.3h4v.s6.9e495e749240 from=translated src=- shape=abd6a6c4 vocab=731cd483
+-/
 lemma isPRegular_eq_one_of_mem_pGroup [Fact p.Prime]
     {a : G} {P : Subgroup G} (hP : IsPGroup p P)
     (haP : a ∈ P) (hr : IsPRegular p a) : a = 1 := by
@@ -592,26 +741,36 @@ lemma isPRegular_eq_one_of_mem_pGroup [Fact p.Prime]
   -- 2. A sinngular and regular element is 1
   exact IsPSingular.isPRegular_eq_one p a hs hr
 
-/-- Two p-regular parts commute if the elements commute.-/
+/-- Two p-regular parts commute if the elements commute.
+@isnad1 id=commute.1h4v.s5.a282495cafe8 from=translated src=- shape=4b333b1e vocab=3e72d6dd
+-/
 lemma pRegular.commute {a b : G} (h : Commute a b) :
     Commute (pRegular p a) (pRegular p b) := Commute.zpow_zpow h _ _
 
-/-- Two p-singular parts commute if the elements commute.-/
+/-- Two p-singular parts commute if the elements commute.
+@isnad1 id=commute.1h4v.s5.9d876eb9402b from=translated src=- shape=4b333b1e vocab=054886b4
+-/
 lemma pSingular.commute {a b : G} (h : Commute a b) :
     Commute (pSingular p a) (pSingular p b) := Commute.zpow_zpow h _ _
 
-/-- If a and b commute, then the p-regular part of a commutes with the p-singular part of b.-/
+/-- If a and b commute, then the p-regular part of a commutes with the p-singular part of b.
+@isnad1 id=commute.1h4v.s5.4e197f2e9d58 from=translated src=- shape=4b333b1e vocab=34d11023
+-/
 lemma pRegular_pSingular_commute {a b : G} (h : Commute a b) :
     Commute (Group.pRegular p a) (Group.pSingular p b) := Commute.zpow_zpow h _ _
 
 /-- If a and b commute, then the p-singular part of a commutes with the
-  p-regular part of b.-/
+  p-regular part of b.
+@isnad1 id=commute.1h4v.s5.269bc4f52d12 from=translated src=- shape=4b333b1e vocab=34d11023
+-/
 lemma pSingular_pRegular_commute {a b : G} (h : Commute a b) :
     Commute (Group.pSingular p a) (Group.pRegular p b) := Commute.zpow_zpow h _ _
 
 /--
 The `p`-decomposition of a commuting product is the product of the
-corresponding `p`-singular and `p`-regular factors.-/
+corresponding `p`-singular and `p`-regular factors.
+@isnad1 id=and.3h4v.s7.84da05e7537a from=translated src=- shape=398609f1 vocab=0661e433
+-/
 lemma pDecomp_mul_of_commute [Fact p.Prime]
     {a b : G} (ha : IsOfFinOrder a) (hb : IsOfFinOrder b)
     (hcomm : Commute a b) :
@@ -652,20 +811,26 @@ lemma pDecomp_mul_of_commute [Fact p.Prime]
   obtain ⟨hs_eq, hr_eq⟩ := pSingular_pRegular_unique p hfab h_prod h_prod_rev hcs hcr
   exact ⟨hs_eq.symm, hr_eq.symm⟩
 
-/-- Two p-regular parts multiply together if the original elements commute.-/
+/-- Two p-regular parts multiply together if the original elements commute.
+@isnad1 id=eq.3h4v.s6.866f01a5a340 from=translated src=- shape=8b67d304 vocab=b379846f
+-/
 lemma pRegular.mul_of_commute [Fact p.Prime]
     {a b : G} (ha : IsOfFinOrder a) (hb : IsOfFinOrder b) (hcomm : Commute a b) :
     Group.pRegular p (a * b) = Group.pRegular p a * Group.pRegular p b :=
   (pDecomp_mul_of_commute p ha hb hcomm).right
 
-/-- Two p-singular parts multiply together if the original elements commute.-/
+/-- Two p-singular parts multiply together if the original elements commute.
+@isnad1 id=eq.3h4v.s6.a14526913486 from=translated src=- shape=8b67d304 vocab=cb11ce19
+-/
 lemma pSingular.mul_of_commute [Fact p.Prime]
     {a b : G} (ha : IsOfFinOrder a) (hb : IsOfFinOrder b)
     (hcomm : Commute a b) :
     Group.pSingular p (a * b) = Group.pSingular p a * Group.pSingular p b :=
   (pDecomp_mul_of_commute p ha hb hcomm).left
 
-/-- If `s` is p-singular and commutes with `a`, then `pRegular (a * s) = pRegular a`.-/
+/-- If `s` is p-singular and commutes with `a`, then `pRegular (a * s) = pRegular a`.
+@isnad1 id=eq.4h4v.s6.b5e2d92e4975 from=translated src=- shape=f5f2d5ff vocab=900a9414
+-/
 lemma pRegular_mul_eq_left_of_right_pSingular_commute [Fact p.Prime]
     {a s : G} (ha_fin : IsOfFinOrder s) (hb_fin : IsOfFinOrder a)
     (hs : IsPSingular p s) (hcomm : Commute s a) :
@@ -679,7 +844,9 @@ lemma pRegular_mul_eq_left_of_right_pSingular_commute [Fact p.Prime]
 
 /--
 Raising an element to the `p`-part of its order only depends on its
-`p`-regular factor.-/
+`p`-regular factor.
+@isnad1 id=eq.1h3v.s7.80371f0bf06d from=translated src=- shape=0a0e4d05 vocab=0d71d8e3
+-/
 lemma pow_ordProj_eq_pRegular_pow_ordProj [Fact p.Prime]
     {a : G} (h : IsOfFinOrder a) :
     a ^ ordProj[p] (orderOf a) = Group.pRegular p a ^ ordProj[p] (orderOf a) := by

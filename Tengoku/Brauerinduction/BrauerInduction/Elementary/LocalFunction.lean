@@ -47,7 +47,9 @@ noncomputable def f [Finite G]
 /-- Bernstein Step 8, Claim (ii), support part.
 
 If the `p`-regular part of `x` is not conjugate to `a`, then the induced function
-`f` vanishes at `x`.-/
+`f` vanishes at `x`.
+@isnad1 id=eq.1h5v.s6.f8e3c57f841e from=translated src=- shape=018dd4bf vocab=4f5786c2
+-/
 lemma f_apply_eq_zero_of_not_isConj [Finite G]
     (a x : G)
     (hx : ¬ IsConj (Group.pRegular p x) a) :
@@ -82,7 +84,9 @@ lemma f_apply_eq_zero_of_not_isConj [Finite G]
 
 /--
 For a `p`-regular element `a`, the conjugate `x⁻¹ * a * x` contributes
-nontrivially to `phi p k a` exactly when `x` centralizes `a`.-/
+nontrivially to `phi p k a` exactly when `x` centralizes `a`.
+@isnad1 id=iff.1h4v.s7.0d22d96c3e5d from=translated src=- shape=bc7dbb37 vocab=6130cc0e
+-/
 lemma conj_inv_mem_E_and_phi_nonzero_iff [Finite G]
     {a : G} (ha : IsPRegular p a) (x : G) :
     (x⁻¹ * a * x ∈ E_subgroup p a ∧
@@ -144,7 +148,9 @@ variable {G : Type v} [Group G]
 
 /--
 Closed formula for `f(a)` in terms of the centralizer of `a`, the subgroup
-`E(a)`, and `orderOf a`.-/
+`E(a)`, and `orderOf a`.
+@isnad1 id=eq.1h4v.s7.62379b22eea2 from=translated src=- shape=135829d3 vocab=04b5a2ea
+-/
 lemma f_apply_a_closed_form
     [CharZero k] [Finite G]
     {a : G} (ha : IsPRegular p a) :
@@ -214,7 +220,9 @@ noncomputable def index (x : G) : ℕ :=
 open Subgroup in
 /--
 The value of `f p a` at `a` is Bernstein's index: the index of the
-chosen Sylow `p`-subgroup `P_Z(a)` inside the centralizer of `a`.-/
+chosen Sylow `p`-subgroup `P_Z(a)` inside the centralizer of `a`.
+@isnad1 id=eq.1h4v.s6.1fc8b217cd7d from=translated src=- shape=35411fcf vocab=e227a79a
+-/
 lemma f_apply_a_eq_index
     [CharZero k] [Finite G]
     {a : G} (ha : IsPRegular p a) :
@@ -247,6 +255,9 @@ lemma f_apply_a_eq_index
     _ = (index p a : k) :=
         by ring
 
+/--
+@isnad1 id=ex.1h4v.s6.510cec263acb from=translated src=- shape=320ed227 vocab=9c8330ff
+-/
 lemma f_apply_self_coprime
     [CharZero k] [Finite G]
     {a : G} (ha : IsPRegular p a) :

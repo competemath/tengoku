@@ -25,7 +25,9 @@ def isPRegular (C : ConjClasses G) : Prop := IsPRegular p (C.out)
 
 /--
 The conjugacy class of an element is `p`-regular iff the element itself is
-`p`-regular.-/
+`p`-regular.
+@isnad1 id=iff.0h3v.s4.ff4cfaca70fc from=translated src=- shape=a3698713 vocab=3fa1a3f5
+-/
 @[simp] lemma mk_isPRegular (p : ℕ) (g : G) :
   ConjClass.isPRegular p ⟦g⟧ ↔ IsPRegular p g :=
 by
@@ -45,12 +47,17 @@ namespace Tengoku.Brauerinduction.PRegularClass
 noncomputable def repr {p : ℕ} (C : PRegularClass p G) : G :=
   C.1.out
 
-/-- The chosen representative of a `p`-regular conjugacy class is `p`-regular.-/
+/-- The chosen representative of a `p`-regular conjugacy class is `p`-regular.
+@isnad1 id=ispregul.0h3v.s4.4e62f8a1902d from=translated src=- shape=21cb1911 vocab=28edcb91
+-/
 lemma repr_isPRegular {p : ℕ} (C : PRegularClass p G) :
     IsPRegular p (repr C) := by
   dsimp [repr, PRegularClass, ConjClass.isPRegular] at C
   exact C.2
 
+/--
+@isnad1 id=eq.1h4v.s6.9dd0eb1ec8e9 from=translated src=- shape=b89c1613 vocab=32f2a412
+-/
 @[ext] lemma ext {C₁ C₂ : PRegularClass p G} (h : C₁.val = C₂.val) : C₁ = C₂ :=
   Subtype.ext h
 
@@ -58,7 +65,9 @@ lemma repr_isPRegular {p : ℕ} (C : PRegularClass p G) :
 Every `p`-regular element belongs to a unique `p`-regular conjugacy class.
 
 The class is characterized by the condition that its chosen representative is
-conjugate to the given element.-/
+conjugate to the given element.
+@isnad1 id=existsun.1h3v.s5.e7bd035e090f from=translated src=- shape=0c9f4f29 vocab=62495172
+-/
 lemma unique_of_isPRegular
   (g : G) (hg : IsPRegular p g) :
   ∃! C : PRegularClass p G, IsConj (repr C) g := by

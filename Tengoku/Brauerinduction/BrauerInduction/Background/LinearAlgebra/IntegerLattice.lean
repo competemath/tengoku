@@ -116,7 +116,9 @@ namespace Submodule
 Bernstein's lattice lemma, in elementwise form.
 
 If `x` is congruent modulo `A` to a multiple of `p ^ N` for every prime `p`
-and every exponent `N`, then `x` belongs to `A`.-/
+and every exponent `N`, then `x` belongs to `A`.
+@isnad1 id=mem.1h3v.s7.11acd741b228 from=translated src=- shape=8c8c10a0 vocab=6df30b80
+-/
 theorem mem_of_forall_primePow_congr
     {L : Type u} [AddCommGroup L]
     [Module.Finite ℤ L]

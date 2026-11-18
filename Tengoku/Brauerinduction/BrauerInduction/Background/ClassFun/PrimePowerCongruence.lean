@@ -20,7 +20,9 @@ variable {G : Type v} [Group G]
 /--
 If every value of `f` is represented by an integer not divisible by `p`, then
 every value of `f ^ φ(p ^ r) - 1` is represented by an integer divisible by
-`p ^ r`.-/
+`p ^ r`.
+@isnad1 id=ex.1h6v.s7.874b395428db from=translated src=- shape=fda10015 vocab=8f76bf88
+-/
 lemma pow_totient_sub_one_apply_of_not_dvd
     (p r : ℕ) [Fact p.Prime]
     {f : ClassFun k G}
@@ -42,7 +44,9 @@ lemma pow_totient_sub_one_apply_of_not_dvd
           p r ha_not_dvd).symm
 
 /--
-Under the same hypotheses, `f ^ φ(p ^ r) - 1` is integer-valued.-/
+Under the same hypotheses, `f ^ φ(p ^ r) - 1` is integer-valued.
+@isnad1 id=mem.1h5v.s7.70c28a4ac453 from=translated src=- shape=4a34d534 vocab=5b683f19
+-/
 lemma pow_totient_sub_one_mem_C_Z_of_not_dvd
     (p r : ℕ) [Fact p.Prime]
     {f : ClassFun k G}
@@ -60,7 +64,9 @@ lemma pow_totient_sub_one_mem_C_Z_of_not_dvd
 
 /--
 Every integer representing a value of `f ^ φ(p ^ r) - 1` is divisible by
-`p ^ r`.-/
+`p ^ r`.
+@isnad1 id=dvd.2h7v.s7.38f9481bd438 from=translated src=- shape=f1be0420 vocab=0ceb73c6
+-/
 lemma pow_totient_sub_one_values_dvd_of_not_dvd [CharZero k]
     (p r : ℕ) [Fact p.Prime]
     {f : ClassFun k G}

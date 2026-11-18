@@ -37,6 +37,9 @@ noncomputable def conjNormal {k : Type u} [CommRing k] {G : Type v} [Group G]
   (A : Subgroup G) [A.Normal] (σ : FDRep k A) (g : G) : FDRep k A :=
   FDRep.of (σ.ρ.comp (MulAut.conjNormal (H := A) g).toMonoidHom)
 
+/--
+@isnad1 id=eq.0h6v.s14.1a8239d8affd from=translated src=- shape=4425917d vocab=5afad5db
+-/
 @[simp]
 lemma conjNormal_rho_apply {k : Type u} [CommRing k] {G : Type v} [Group G]
     (A : Subgroup G) [A.Normal] (σ : FDRep k A) (g : G) (a : A) :
@@ -60,6 +63,9 @@ noncomputable def conjMap
     (MulAut.conj g).subgroupMap I
   exact FDRep.of (σ.ρ.comp e.symm.toMonoidHom)
 
+/--
+@isnad1 id=eq.0h7v.s16.cab966c3ad6f from=translated src=- shape=ab68c01a vocab=811b26ec
+-/
 @[simp]
 lemma conjMap_rho_apply
     (I : Subgroup G) (g : G)
@@ -72,7 +78,9 @@ lemma conjMap_rho_apply
 
 /--
 If `A` is normal and `A ≤ I`, then `A` is contained in the conjugate subgroup
-`I.map (MulAut.conj g).toMonoidHom`.-/
+`I.map (MulAut.conj g).toMonoidHom`.
+@isnad1 id=le.1h4v.s8.da62ac6c2219 from=translated src=- shape=8406df7c vocab=dd60f842
+-/
 lemma le_conjMap_of_normal
     (A I : Subgroup G) [haN : A.Normal] (hAI : A ≤ I) (g : G) :
     A ≤ I.map (MulAut.conj g).toMonoidHom := by
@@ -90,7 +98,9 @@ Evaluate `conjMap I g σ` on an element of a normal subgroup contained in `I`.
 If `A` is normal in `G`, `A ≤ I`, and `a : A`, then the element `a`, viewed as
 an element of the conjugate subgroup `I.map (MulAut.conj g).toMonoidHom`, acts
 in `conjMap I g σ` as the original representation `σ` evaluated at
-`g⁻¹ * a * g`, viewed as an element of `I`.-/
+`g⁻¹ * a * g`, viewed as an element of `I`.
+@isnad1 id=other.1h8v.s16.6f499e612f1f from=translated src=- shape=e371e63c vocab=cf0af3cb
+-/
 lemma conjMap_rho_apply_of_mem_normal
     (A I : Subgroup G) [haN : A.Normal] (hAI : A ≤ I)
     (g : G) (σ : FDRep k I)

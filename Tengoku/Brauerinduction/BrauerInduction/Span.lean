@@ -56,6 +56,9 @@ def InducedCharacterSpan
 
 namespace InducedCharacterSpan
 
+/--
+@isnad1 id=mem.0h6v.s8.a05a4bdfe3d8 from=translated src=- shape=bbf9bdd1 vocab=8cff54e7
+-/
 lemma inducedCharacter_mem
     {P : Subgroup G → Prop}
     (H : Subgroup G)
@@ -64,6 +67,9 @@ lemma inducedCharacter_mem
     ClassFun.ind H (ClassFun.character V) ∈ InducedCharacterSpan P :=
   Submodule.subset_span ⟨H, hH, V, rfl⟩
 
+/--
+@isnad1 id=le.0h5v.s7.efabb604a686 from=translated src=- shape=60f075b6 vocab=31792fa7
+-/
 lemma mono
     {P Q : Subgroup G → Prop}
     (hPQ : ∀ H, P H → Q H) :
@@ -74,7 +80,9 @@ lemma mono
 
 /--
 Multiplication on the left by the character of a representation preserves an
-induced-character span.-/
+induced-character span.
+@isnad1 id=mem.1h5v.s8.408dfbe85990 from=translated src=- shape=e47fcf85 vocab=8b53588b
+-/
 lemma character_mul_mem
     (P : Subgroup G → Prop)
     (V : FDRep k G)
@@ -108,7 +116,9 @@ lemma character_mul_mem
 
 /--
 Multiplication on the left by an element of the character span preserves an
-induced-character span.-/
+induced-character span.
+@isnad1 id=mem.2h5v.s8.9b68f149736d from=translated src=- shape=0746d49b vocab=950d15d4
+-/
 lemma characterSpan_mul_mem
     (P : Subgroup G → Prop)
     {φ ψ : ClassFun k G}
@@ -134,7 +144,9 @@ lemma characterSpan_mul_mem
 /--
 Induction from a subgroup maps one induced-character span into another,
 provided the subgroup predicate is preserved when subgroups are mapped into
-the ambient group.-/
+the ambient group.
+@isnad1 id=mem.1h7v.s9.179d16c7bc69 from=translated src=- shape=a106ba5e vocab=8cf9e5fb
+-/
 lemma induction_mem
     {H : Subgroup G}
     {P : Subgroup H → Prop}
@@ -199,6 +211,9 @@ def InducedCharacterIdeal
 
 namespace InducedCharacterIdeal
 
+/--
+@isnad1 id=iff.0h4v.s10.c1553f6f59ce from=translated src=- shape=0bab0a03 vocab=f9cbdce9
+-/
 @[simp]
 lemma mem_iff
     (P : Subgroup G → Prop)
@@ -209,7 +224,9 @@ lemma mem_iff
 
 /--
 An implication between subgroup predicates induces an inclusion between the
-corresponding induced-character ideals.-/
+corresponding induced-character ideals.
+@isnad1 id=le.0h5v.s10.7691c4f17e0c from=translated src=- shape=5d7040bc vocab=28f527c2
+-/
 lemma mono
     {P Q : Subgroup G → Prop}
     (hPQ : ∀ H, P H → Q H) :
@@ -239,6 +256,9 @@ def BrauerIdeal :
 
 namespace BrauerIdeal
 
+/--
+@isnad1 id=iff.0h3v.s10.b4d1f70df4f6 from=translated src=- shape=90eee97b vocab=c48ddf71
+-/
 @[simp]
 lemma mem_iff
     (φ : ClassFun.CharacterRing k G) :
@@ -251,7 +271,9 @@ namespace BrauerSpanChar
 
 /--
 Multiplication on the left by an arbitrary virtual character preserves
-membership in `BrauerSpanChar`.-/
+membership in `BrauerSpanChar`.
+@isnad1 id=mem.2h4v.s8.5ba2e73ada9b from=translated src=- shape=e3c335ce vocab=4aeb0c60
+-/
 lemma characterSpan_mul_mem
     {φ ψ : ClassFun k G}
     (hφ : φ ∈ ClassFun.characterSpan k G)
@@ -262,7 +284,9 @@ lemma characterSpan_mul_mem
 
 /--
 Multiplication on the left by the character of a representation preserves
-membership in `BrauerSpanChar`.-/
+membership in `BrauerSpanChar`.
+@isnad1 id=mem.1h4v.s8.70d95bd09904 from=translated src=- shape=91a3cd9a vocab=21611f5a
+-/
 lemma character_mul_mem
     (V : FDRep k G)
     {φ : ClassFun k G}
@@ -272,7 +296,9 @@ lemma character_mul_mem
     (ClassFun.characterSpan.character_mem V) hφ
 
 /--
-Induction from a subgroup preserves membership in `BrauerSpanChar`.-/
+Induction from a subgroup preserves membership in `BrauerSpanChar`.
+@isnad1 id=mem.1h4v.s9.c63c9765e119 from=translated src=- shape=39ae1542 vocab=958390cd
+-/
 lemma induction_mem
     {H : Subgroup G}
     {ψ : ClassFun k H}

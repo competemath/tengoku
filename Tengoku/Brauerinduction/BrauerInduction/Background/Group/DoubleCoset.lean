@@ -19,7 +19,9 @@ namespace DoubleCoset
 
 /--
 A double coset representative `g` defines the identity double coset iff
-`g = h * k` for some `h ∈ H` and `k ∈ K`.-/
+`g = h * k` for some `h ∈ H` and `k ∈ K`.
+@isnad1 id=iff.0h4v.s6.e40f091d5ff9 from=translated src=- shape=f4927298 vocab=ca981460
+-/
 lemma mk_eq_one_iff {H K : Subgroup G} {g : G} :
     DoubleCoset.mk H K g = DoubleCoset.mk H K 1 ↔ ∃ h ∈ H, ∃ k ∈ K, g = h * k := by
   rw [DoubleCoset.eq] --
@@ -55,7 +57,9 @@ abbrev oneDC (I : Subgroup G) : DoubleCoset.Quotient (G:=G) I I :=
 
 /--
 If a double coset in `I \ G / I` is not the identity double coset, then its
-chosen representative is not an element of `I`.-/
+chosen representative is not an element of `I`.
+@isnad1 id=not.1h3v.s6.5693afb41c70 from=translated src=- shape=68ba5ee3 vocab=b3fd7db3
+-/
 lemma out_not_mem_of_ne_one
     (I : Subgroup G) (d : DoubleCoset.Quotient (G := G) I I)
       (hd : d ≠ DoubleCoset.oneDC (G := G) I) :
@@ -73,7 +77,9 @@ lemma out_not_mem_of_ne_one
     _ = DoubleCoset.mk (G := G) I I (1 : G) := hmk
 
 /--
-The chosen representative of the identity double coset belongs to `I`.-/
+The chosen representative of the identity double coset belongs to `I`.
+@isnad1 id=mem.0h2v.s5.e16052f180cb from=translated src=- shape=0f578c76 vocab=289e515b
+-/
 lemma out_oneDC_mem
     (I : Subgroup G) :
     Quotient.out (DoubleCoset.oneDC (G := G) I) ∈ I := by
@@ -198,7 +204,9 @@ noncomputable def fiberEquiv
             := by simp only [inv_mul_cancel_left]
 
 /-- The fibres of `parameterization I g` all have cardinality
-  `Nat.card (I ⊓ I.map (MulAut.conj g))`.-/
+  `Nat.card (I ⊓ I.map (MulAut.conj g))`.
+@isnad1 id=eq.0h5v.s8.123422b51bf9 from=translated src=- shape=072aabe7 vocab=a5f454d0
+-/
 lemma natCard_fiber_parameterization
     [Finite G] (I : Subgroup G) (g : G) (u v : I) :
     Nat.card {p : I × I // parameterization I g p = (u : G) * g * (v : G)}
@@ -211,7 +219,9 @@ open Classical in
 Summing `F` over the double coset `I g I` equals `1 / |I ⊓ I^g|` times the sum
 over `I × I` through the parametrisation `(u, v) ↦ u⁻¹ * g * v⁻¹`.
 
-Here `I^g` is represented as `I.map (MulAut.conj g).toMonoidHom`.-/
+Here `I^g` is represented as `I.map (MulAut.conj g).toMonoidHom`.
+@isnad1 id=eq.0h5v.s9.8aeee34f5ff6 from=translated src=- shape=f689ddc8 vocab=4df88bd9
+-/
 lemma sum_eq_sum_over_product
     {k : Type v} [Field k] [CharZero k] [Fintype G]
     (I : Subgroup G)
@@ -350,7 +360,9 @@ open Classical in
 Regroup a finite sum over right cosets by double cosets.
 
 This is `Fintype.sum_fiberwise` for the map sending a right coset `q` to the
-double coset represented by `q.out`.-/
+double coset represented by `q.out`.
+@isnad1 id=eq.0h4v.s8.5704420c349c from=translated src=- shape=c5e46e08 vocab=8e1b8610
+-/
 lemma sum_rightCosets_by_doubleCoset
     {k : Type v} [AddCommMonoid k]
     [Finite G] (I : Subgroup G)
@@ -370,7 +382,9 @@ lemma sum_rightCosets_by_doubleCoset
 open Classical in
 /--
 The set associated to a double-coset quotient element is the double coset of its
-chosen representative.-/
+chosen representative.
+@isnad1 id=eq.0h4v.s6.61777c8d3ec7 from=translated src=- shape=ca6a096a vocab=e8541e48
+-/
 @[simp]
 lemma quotToDoubleCoset_eq_doubleCoset_out
     (I J : Subgroup G)

@@ -12,7 +12,9 @@ noncomputable local instance
 
 /--
 The sum of the `n`-th powers of all `m`-th roots of unity is zero when `m` does
-not divide `n`.-/
+not divide `n`.
+@isnad1 id=eq.1h3v.s9.b8bcd0705e5c from=translated src=- shape=1550cd24 vocab=c6eda33b
+-/
 lemma sum_zpow_eq_zero_of_not_dvd
     {k : Type u} [Field k] [IsAlgClosed k] [CharZero k]
     (m : ℕ) [NeZero m] :
@@ -77,7 +79,9 @@ lemma sum_zpow_eq_zero_of_not_dvd
   | inr h =>
     exact h
 
-/-- A nonzero-order root of unity is integral over `ℤ`.-/
+/-- A nonzero-order root of unity is integral over `ℤ`.
+@isnad1 id=isintegr.1h3v.s7.c72efa83f5fd from=translated src=- shape=21f42e9c vocab=ccb98f30
+-/
 lemma isIntegral_of_ne_zero
     (k : Type u) [CommRing k]
     (n : ℕ) (hn : n ≠ 0)
@@ -96,7 +100,9 @@ lemma isIntegral_of_ne_zero
       Polynomial.eval₂_X_pow, Polynomial.eval₂_one]
     simp only [← hpow, sub_self]
 
-/-- A `|G|`-th root of unity is integral over `ℤ`-/
+/-- A `|G|`-th root of unity is integral over `ℤ`
+@isnad1 id=isintegr.0h3v.s7.e4104b37f26d from=translated src=- shape=855d041d vocab=d9b1ae05
+-/
 lemma isIntegral
     (k : Type u) [CommRing k]
     (G : Type v) [Group G] [NeZero (Nat.card G)]

@@ -33,6 +33,9 @@ noncomputable def coindLin (H : Subgroup G)
     (ψ : H →* kˣ) : FDRep k G :=
   FDRep.coind H (FDRep.ofLinearChar ψ)
 
+/--
+@isnad1 id=eq.0h7v.s14.2cbc6cac95b9 from=translated src=- shape=bb7d9dd4 vocab=d545f203
+-/
 @[simp]
 lemma coindLin_ρ_apply (H : Subgroup G) (ψ : H →* kˣ)
     (g : G) (v : (FDRep.coindLin H ψ)) (x : G) :
@@ -49,7 +52,9 @@ noncomputable def indLinCoindLinIso
 
 open Classical in
 /--
-An isomorphism to `indLin` is equivalent to an isomorphism to `coindLin`.-/
+An isomorphism to `indLin` is equivalent to an isomorphism to `coindLin`.
+@isnad1 id=iff.0h5v.s8.27f1b7ee0ece from=translated src=- shape=e8009516 vocab=91de5f3b
+-/
 lemma nonempty_iso_indLin_iff_coindLin
     (ρ : FDRep k G) (H : Subgroup G) (ψ : H →* kˣ) :
     Nonempty (ρ ≅ FDRep.indLin (k := k) (G := G) H ψ) ↔

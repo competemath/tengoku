@@ -39,7 +39,9 @@ representation in a finite family of simple representations, then it acts as
 the zero endomorphism on each member of that family.
 
 The pairing used here is the unnormalised sum
-`∑ g : G, f g * (S i).character g⁻¹`.-/
+`∑ g : G, f g * (S i).character g⁻¹`.
+@isnad1 id=eq.1h6v.s11.40cdf391c4d4 from=translated src=- shape=b040974a vocab=97d8489c
+-/
 lemma action_eq_zero_of_pairing_eq_zero
     [Fintype G] [IsAlgClosed k] [CharZero k]
     {κ : Type} (S : κ → FDRep k G)
@@ -140,6 +142,9 @@ noncomputable def characterPairingLeft
       _ = c * ∑ x : G, f x * φ x⁻¹ := by
           rw [Finset.mul_sum]
 
+/--
+@isnad1 id=eq.0h4v.s9.455382b32887 from=translated src=- shape=0384ea78 vocab=cb12f40b
+-/
 @[simp]
 theorem characterPairingLeft_apply [Fintype G]
     (f φ : ClassFun k G) :
@@ -171,6 +176,9 @@ noncomputable def conjClassIndicator
       simp only [hxa, hga] }
 
 open Classical in
+/--
+@isnad1 id=eq.0h4v.s6.72686b30279d from=translated src=- shape=6303bfb5 vocab=3a75a11a
+-/
 @[simp]
 lemma conjClassIndicator_apply
     (k : Type u) [Zero k] [One k]
@@ -182,7 +190,9 @@ lemma conjClassIndicator_apply
 open BigOperators Classical in
 /--
 Pairing a class function `f` with the indicator of the conjugacy class of `a⁻¹`
-gives the size of the conjugacy class of `a` multiplied by `f a`.-/
+gives the size of the conjugacy class of `a` multiplied by `f a`.
+@isnad1 id=eq.0h4v.s10.57a9e8b855e8 from=translated src=- shape=659d51dc vocab=d22319c8
+-/
 lemma characterPairingLeft_conjClassIndicator
     [Fintype G]
     (f : ClassFun k G) (a : G) :
@@ -246,7 +256,9 @@ private lemma conjClass_card_cast_ne_zero
 
 open Classical in
 /--
-The unnormalised character pairing is nondegenerate in its left argument.-/
+The unnormalised character pairing is nondegenerate in its left argument.
+@isnad1 id=injectiv.0h2v.s9.98c52b28d53e from=translated src=- shape=e5edd929 vocab=0063d4b2
+-/
 lemma characterPairingLeft_injective
     [Fintype G] [CharZero k] :
     Function.Injective
@@ -261,7 +273,9 @@ lemma characterPairingLeft_injective
 
 /--
 The unnormalised character pairing identifies the space of class functions
-with its linear dual.-/
+with its linear dual.
+@isnad1 id=surjecti.0h2v.s9.66da4348fdf7 from=translated src=- shape=e5edd929 vocab=ab0540b3
+-/
 lemma characterPairingLeft_surjective
     [Fintype G] [CharZero k] :
     Function.Surjective

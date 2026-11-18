@@ -33,7 +33,9 @@ noncomputable instance instFintypeConjClasses
 open Classical in
 /--
 A sum of a class function over a finite group may be evaluated by summing over
-conjugacy classes, weighted by the cardinality of each conjugacy class.-/
+conjugacy classes, weighted by the cardinality of each conjugacy class.
+@isnad1 id=eq.0h3v.s7.2ced4a7fe61b from=translated src=- shape=efd5ac8c vocab=5334afe8
+-/
 theorem sum_eq_sum_conjClasses
     [Fintype G]
     (f : ClassFun k G) :
@@ -89,7 +91,9 @@ open Classical in
 /--
 For a class function over a finite group, summing one representative from
 each conjugacy class with weight `|C_G(g)|⁻¹` equals the normalized sum over
-the whole group.-/
+the whole group.
+@isnad1 id=eq.0h3v.s8.5a83e11e2177 from=translated src=- shape=a9959c95 vocab=2421b868
+-/
 theorem sum_inv_card_centralizer
     {k : Type u} [Field k] [CharZero k] [Fintype G]
     (f : ClassFun k G) :

@@ -34,7 +34,9 @@ namespace BrauerInduction.Cyclotomic
 In a finitely generated free `ℤ`-module, every primitive element admits a
 linear projection to `ℤ` sending it to `1`.
 
-Here “primitive” means that if `v = m • x`, then `m` is a unit of `ℤ`.-/
+Here “primitive” means that if `v = m • x`, then `m` is a unit of `ℤ`.
+@isnad1 id=ex.1h2v.s7.0195cdb1fee8 from=translated src=- shape=4fa6de28 vocab=48f6d65f
+-/
 lemma exists_projection_of_primitive {M : Type*} [AddCommGroup M] [Module ℤ M]
     [Module.Free ℤ M] [Module.Finite ℤ M]
     (v : M) (h_prim : ∀ (m : ℤ) (x : M), m • x = v → IsUnit m) :

@@ -28,7 +28,9 @@ variable [Field k] [Group G]
 
 /--
 The character of a finite-dimensional representation is a finite sum of
-characters of simple representations.-/
+characters of simple representations.
+@isnad1 id=ex.0h3v.s8.698a93667175 from=translated src=- shape=aa8ddd44 vocab=95a07763
+-/
 theorem char_eq_sum_simples
     [Finite G] [NeZero (Nat.card G : k)]
     (V : FDRep k G) :
@@ -65,7 +67,9 @@ def irreducibleCharacterSet
 
 /--
 The character of a finite-dimensional representation belongs to the
-`ℤ`-linear span of the characters of simple representations.-/
+`ℤ`-linear span of the characters of simple representations.
+@isnad1 id=mem.0h3v.s7.02b836ddda9b from=translated src=- shape=0aa4f9b5 vocab=19b494e3
+-/
 theorem character_mem_span_irreducibles
     [Finite G] [NeZero (Nat.card G : k)]
     (V : FDRep k G) :
@@ -80,6 +84,9 @@ theorem character_mem_span_irreducibles
     Submodule.subset_span
       ⟨S i, hSimple i, rfl⟩
 
+/--
+@isnad1 id=mem.1h3v.s7.afc77d547ae0 from=translated src=- shape=c7d88fa0 vocab=19b494e3
+-/
 theorem character_mem_span_irreducibles_of_eq
     [Finite G] [NeZero (Nat.card G : k)]
     (φ : ClassFun k G)

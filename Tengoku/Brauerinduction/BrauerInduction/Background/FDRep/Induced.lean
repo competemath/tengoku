@@ -63,6 +63,9 @@ noncomputable def indHom [Finite H]
   haveI : Module.Finite k τind.V := h_fin_τ
   exact FDRep.of τind.ρ
 
+/--
+@isnad1 id=eq.0h5v.s11.3219f8c8722d from=translated src=- shape=4be4e8f5 vocab=d9389973
+-/
 @[simp]
 lemma forget₂_obj_indHom [Finite H]
     (φ : G →* H)
@@ -80,6 +83,9 @@ noncomputable def indHomMap [Finite H]
   FDRep.forget₂HomLinearEquiv (indHom φ A) (indHom φ B)
     (Rep.indMap φ ((forget₂ (FDRep k G) (Rep k G)).map f))
 
+/--
+@isnad1 id=eq.0h7v.s14.84d695c11e22 from=translated src=- shape=9227a7d4 vocab=7fc6f3a0
+-/
 @[simp]
 lemma forget₂_map_indHomMap [Finite H]
     (φ : G →* H)
@@ -134,6 +140,9 @@ noncomputable abbrev indMap [Finite G] (H : Subgroup G) {A B : FDRep k H} (f : A
 noncomputable abbrev indFunctor [Finite G] (H : Subgroup G) : FDRep k H ⥤ FDRep k G :=
   indHomFunctor H.subtype
 
+/--
+@isnad1 id=eq.0h4v.s11.3a0678c80ffe from=translated src=- shape=676dd236 vocab=ac01665e
+-/
 @[simp]
 lemma forget₂_obj_ind [Finite G] (H : Subgroup G) (σ : FDRep k H) :
     (forget₂ (FDRep k G) (Rep k G)).obj (ind H σ) =
@@ -187,6 +196,9 @@ noncomputable def coindHom [Finite H]
   haveI : Module.Finite k τcoind.V := h_fin_τ
   exact FDRep.of τcoind.ρ
 
+/--
+@isnad1 id=eq.0h5v.s11.8f63c738f48a from=translated src=- shape=72c3682a vocab=95e39860
+-/
 @[simp]
 lemma forget₂_obj_coindHom [Finite H]
     (φ : G →* H)
@@ -204,6 +216,9 @@ noncomputable def coindHomMap [Finite H]
   FDRep.forget₂HomLinearEquiv (coindHom φ A) (coindHom φ B)
     (Rep.coindMap φ ((forget₂ (FDRep k G) (Rep k G)).map f))
 
+/--
+@isnad1 id=eq.0h7v.s14.c7bf7aec6725 from=translated src=- shape=0a13afdd vocab=feef46e1
+-/
 @[simp]
 lemma forget₂_map_coindHomMap [Finite H]
     (φ : G →* H)
@@ -261,6 +276,9 @@ noncomputable abbrev coindFunctor [Finite G] [IsNoetherianRing k]
     (H : Subgroup G) : FDRep k H ⥤ FDRep k G :=
   coindHomFunctor H.subtype
 
+/--
+@isnad1 id=eq.0h4v.s11.1a96421ede6f from=translated src=- shape=0efc2a0b vocab=cda5e869
+-/
 @[simp]
 lemma forget₂_obj_coind [Finite G] [IsNoetherianRing k]
     (H : Subgroup G) (σ : FDRep k H) :
@@ -381,6 +399,9 @@ noncomputable def indResCounit (ρ : FDRep k G) :
   (FDRep.indResHomEquiv (I := I)
       (res (G := G) ρ I) ρ).symm (𝟙 _)
 
+/--
+@isnad1 id=eq.0h4v.s12.2e03b37240e5 from=translated src=- shape=ece29924 vocab=ee170b88
+-/
 @[simp]
 lemma indResHomEquiv_id
     (σ : FDRep k I) :
@@ -388,6 +409,9 @@ lemma indResHomEquiv_id
       FDRep.indResUnit I σ := by
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s13.2c8cfcbf3836 from=translated src=- shape=82143915 vocab=1148b92c
+-/
 @[simp]
 lemma indResHomEquiv_symm_id
     (ρ : FDRep k G) :
@@ -403,6 +427,9 @@ noncomputable def indResEquiv
     (FDRep.ind H σ ⟶ ρ) ≃ₗ[k] (σ ⟶ FDRep.res ρ H) :=
   indHomComapEquiv H.subtype σ ρ
 
+/--
+@isnad1 id=eq.0h6v.s18.a415812b42dc from=translated src=- shape=8ebc119e vocab=bc682b95
+-/
 @[simp]
 lemma forget₂_map_indResHomEquiv
     (σ : FDRep k I) (ρ : FDRep k G)
@@ -416,6 +443,9 @@ lemma forget₂_map_indResHomEquiv
       ((forget₂ (FDRep k G) (Rep k G)).map f) := by
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s18.8350430de912 from=translated src=- shape=9eec818b vocab=c57fb972
+-/
 @[simp]
 lemma forget₂_map_indResHomEquiv_symm
     (σ : FDRep k I) (ρ : FDRep k G)

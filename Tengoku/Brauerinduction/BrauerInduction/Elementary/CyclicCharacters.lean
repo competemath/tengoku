@@ -37,7 +37,9 @@ variable {G : Type v} [Group G]
 noncomputable def cycExp {a : G} (x : PElementary.Cyc a) : ℤ :=
   Classical.choose (Subgroup.mem_zpowers_iff.mp x.property)
 
-/-- Guarantees that a ^ (cycExp x) evaluates exactly to x-/
+/-- Guarantees that a ^ (cycExp x) evaluates exactly to x
+@isnad1 id=eq.0h3v.s6.68aed6cb73e0 from=translated src=- shape=1c812712 vocab=6a4ea8e5
+-/
 lemma cycExp_spec {a : G} (x : PElementary.Cyc a) :
     a ^ cycExp x = (x : G) :=
   Classical.choose_spec (Subgroup.mem_zpowers_iff.mp x.property)
@@ -99,7 +101,9 @@ noncomputable def chiCyc
 open PElementary in
 /--
 The cyclic character `χ_ζ` sends the distinguished generator `a` of `Cyc a` to
-the root of unity `ζ`.-/
+the root of unity `ζ`.
+@isnad1 id=eq.0h4v.s9.158b57ffb622 from=translated src=- shape=7790e523 vocab=9d729d68
+-/
 lemma chiCyc_apply_generator
     {G : Type v} [Group G]
     {a : G}
@@ -143,7 +147,9 @@ lemma chiCyc_apply_generator
 open PElementary in
 /--
 The cyclic character `χ_ζ` sends the `n`th power of the distinguished generator
-of `Cyc a` to `ζ ^ n`.-/
+of `Cyc a` to `ζ ^ n`.
+@isnad1 id=eq.0h5v.s9.cc1699102cec from=translated src=- shape=d5e0aa01 vocab=d9ed2e35
+-/
 lemma chiCyc_apply_generator_zpow
     {G : Type v} [Group G]
     {a : G}
@@ -153,6 +159,9 @@ lemma chiCyc_apply_generator_zpow
       ((⟨a, Subgroup.mem_zpowers a⟩ : Cyc a) ^ n) = ζ ^ n := by
   rw [map_zpow, chiCyc_apply_generator (a := a) ζ]
 
+/--
+@isnad1 id=mem.0h5v.s9.6cc790abc348 from=translated src=- shape=a7dc299d vocab=37ee1a91
+-/
 lemma chiCyc_apply_mem_Lambda [Finite G]
     {a : G} (ζ : rootsOfUnity (orderOf a) k)
     (y : PElementary.Cyc a) :
@@ -211,7 +220,9 @@ noncomputable def VpsiEZeta
 
 /--
 Evaluation of `psiEZeta` is evaluation of the corresponding cyclic character on
-the cyclic component of the element of `E(a)`.-/
+the cyclic component of the element of `E(a)`.
+@isnad1 id=eq.1h6v.s10.07d5f958a496 from=translated src=- shape=f496a2c3 vocab=92b23832
+-/
 lemma psiE_apply_eq_chiCyc_cycPart
     {a : G} (ha : IsPRegular p a)
     (ζ : rootsOfUnity (orderOf a) k)
@@ -226,7 +237,9 @@ open PElementary in
 If the cyclic component of `y ∈ E(a)` is `a ^ n`, then `ψ_ζ(y) = ζ ^ n`.
 
 This isolates the root-of-unity evaluation used in
-`sum_psiEZeta_eq_zero_of_not_mem_P`.-/
+`sum_psiEZeta_eq_zero_of_not_mem_P`.
+@isnad1 id=eq.2h7v.s10.11fa8b6d7e5d from=translated src=- shape=9ae80c63 vocab=78bf3193
+-/
 lemma psiEZeta_apply_eq_zpow_of_cycPart_eq_zpow
     {G : Type v} [Group G]
     {a : G} (ha : IsPRegular p a)
@@ -244,6 +257,9 @@ lemma psiEZeta_apply_eq_zpow_of_cycPart_eq_zpow
   rw [h_c_pow]
   exact chiCyc_apply_generator_zpow (a := a) ζ n
 
+/--
+@isnad1 id=mem.2h5v.s9.d39a90a4c667 from=translated src=- shape=97fb1d8d vocab=4b9e258c
+-/
 lemma psiEZeta_apply_a_inv_mem_Lambda [Finite G]
     {a : G} (ha : IsPRegular p a)
     (ζ : rootsOfUnity (orderOf a) k)
@@ -270,6 +286,9 @@ lemma psiEZeta_apply_a_inv_mem_Lambda [Finite G]
 
 open PElementary in
 
+/--
+@isnad1 id=eq.2h6v.s9.60c6e9655089 from=translated src=- shape=50c917b5 vocab=cd9a2c8d
+-/
 lemma psiEZeta_apply_eq_one_of_mem_P [Finite G]
     {a : G} (ha : IsPRegular p a)
     (ζ : rootsOfUnity (orderOf a) k)

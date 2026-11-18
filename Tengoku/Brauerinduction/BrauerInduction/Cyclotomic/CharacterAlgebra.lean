@@ -21,14 +21,18 @@ namespace R_Lambda
 
 /--
 Characters of finite-dimensional representations belong to the global
-cyclotomic character span.-/
+cyclotomic character span.
+@isnad1 id=mem.0h3v.s10.218b1808f0e1 from=translated src=- shape=a2f4eb06 vocab=bc5f3d53
+-/
 lemma top_char_mem
     (V : FDRep k G) :
     ClassFun.character V ∈ R_Lambda.top k G :=
   Submodule.subset_span ⟨V, rfl⟩
 
 /--
-The constant character `1` belongs to the global cyclotomic character span.-/
+The constant character `1` belongs to the global cyclotomic character span.
+@isnad1 id=mem.0h2v.s10.3ebd7053f48b from=translated src=- shape=02419e30 vocab=13e4131c
+-/
 lemma top_one_mem :
     (1 : ClassFun k G) ∈ R_Lambda.top k G := by
   rw [← ClassFun.char_trivial k G]
@@ -36,7 +40,9 @@ lemma top_one_mem :
 
 /--
 The global cyclotomic character span is closed under pointwise
-multiplication.-/
+multiplication.
+@isnad1 id=mem.2h4v.s11.f9d46212e0cd from=translated src=- shape=fd17af79 vocab=4f55722e
+-/
 lemma top_mul_mem
     {f g : ClassFun k G}
     (hf : f ∈ R_Lambda.top k G)
@@ -83,6 +89,9 @@ def CyclotomicCharacterAlgebra :
 
 namespace CyclotomicCharacterAlgebra
 
+/--
+@isnad1 id=iff.0h3v.s10.077165800a9e from=translated src=- shape=7a2ab1ec vocab=fe9421ac
+-/
 @[simp]
 lemma mem_iff
     {f : ClassFun k G} :
@@ -98,18 +107,27 @@ noncomputable def character
     CyclotomicCharacterAlgebra (k := k) (G := G) :=
   ⟨ClassFun.character V, R_Lambda.top_char_mem V⟩
 
+/--
+@isnad1 id=eq.0h3v.s9.71fcd4959621 from=translated src=- shape=d2b6790e vocab=1df78543
+-/
 @[simp]
 lemma coe_character
     (V : FDRep k G) :
     (character V : ClassFun k G) = ClassFun.character V :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s10.43a1db341806 from=translated src=- shape=bf0c2d5f vocab=e167ccdf
+-/
 @[simp]
 lemma character_trivial :
     character (FDRep.trivial k G) = 1 := by
   apply Subtype.ext
   exact ClassFun.char_trivial k G
 
+/--
+@isnad1 id=eq.0h4v.s11.7b667df84200 from=translated src=- shape=7bcd273c vocab=4fd42e81
+-/
 @[simp]
 lemma character_tensor
     (V W : FDRep k G) :

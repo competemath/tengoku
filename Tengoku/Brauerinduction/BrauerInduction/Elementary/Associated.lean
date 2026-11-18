@@ -43,13 +43,17 @@ noncomputable def E_subgroup (a : G) : Subgroup G :=
   PElementary.Cyc a ⊔ PElementary.P_of_Z p a
 
 /--
-If `a` is `p`-regular, then the subgroup `E(a)` is `p`-elementary.-/
+If `a` is `p`-regular, then the subgroup `E(a)` is `p`-elementary.
+@isnad1 id=ispeleme.1h3v.s5.9687fe83bfcf from=translated src=- shape=9694d9b3 vocab=9b30d840
+-/
 lemma E_isPElementary
     {a : G} (ha : IsPRegular p a) :
     IsPElementary p (E_subgroup p a) :=
      ⟨PElementary.associatedSubgroup ha⟩
 
-/-- The associated subgroup `E(a)` is contained in the centralizer of `a`.-/
+/-- The associated subgroup `E(a)` is contained in the centralizer of `a`.
+@isnad1 id=le.0h3v.s5.0f65bd401b2f from=translated src=- shape=6e13da7b vocab=baee678d
+-/
 lemma E_le_centralizer (a : G) :
     E_subgroup p a ≤ Subgroup.centralizer {a} := by
   rw [E_subgroup, sup_le_iff]
@@ -57,7 +61,9 @@ lemma E_le_centralizer (a : G) :
   · exact Subgroup.zpowers_le_centralizer a
   · exact PElementary.P_of_Z_le_Z a
 
-/-- Every element of `E(a)` centralizes `a`.-/
+/-- Every element of `E(a)` centralizes `a`.
+@isnad1 id=eq.0h4v.s7.b3966f1e2e4d from=translated src=- shape=7f75c813 vocab=eeb78876
+-/
 lemma E_commutes_with_a (a : G)
     (y : E_subgroup p a) :
     (y : G) * a * (y : G)⁻¹ = a := by
@@ -68,14 +74,18 @@ lemma E_commutes_with_a (a : G)
     _ = a := by rw [mul_inv_cancel_right]
 
 open PElementary in
-/-- The element `a` lies in Bernstein's elementary subgroup `E(a)`.-/
+/-- The element `a` lies in Bernstein's elementary subgroup `E(a)`.
+@isnad1 id=mem.0h3v.s4.d0b89bef9dc7 from=translated src=- shape=994681e5 vocab=a0c3bff5
+-/
 lemma self_mem_E_subgroup (a : G) :
     a ∈ E_subgroup p a := by
   refine (le_sup_left : Cyc a ≤ E_subgroup p a) ?_
   exact Subgroup.mem_zpowers a
 
 open PElementary in
-/-- The element `a⁻¹` lies in Bernstein's elementary subgroup `E(a)`.-/
+/-- The element `a⁻¹` lies in Bernstein's elementary subgroup `E(a)`.
+@isnad1 id=mem.0h3v.s5.99bdd13ce582 from=translated src=- shape=f6a3bc27 vocab=3bbd15e1
+-/
 lemma inv_mem_E_subgroup (a : G) :
     a⁻¹ ∈ E_subgroup p a :=
   (E_subgroup p a).inv_mem (self_mem_E_subgroup p a)
@@ -143,6 +153,9 @@ noncomputable def E_to_Cyc [Fact p.Prime]
             (prodEquiv x).1
             (prodEquiv y).1 }
 
+/--
+@isnad1 id=eq.1h4v.s14.da791a448c6e from=translated src=- shape=3b563179 vocab=0fd70e87
+-/
 @[simp]
 lemma E_to_Cyc_apply [Fact p.Prime]
     {a : G} (ha : IsPRegular p a)
@@ -155,7 +168,9 @@ lemma E_to_Cyc_apply [Fact p.Prime]
 
 /--
 The projection `E_to_Cyc` has the same ambient value as the internal cyclic
-component of the product decomposition of `E(a)`.-/
+component of the product decomposition of `E(a)`.
+@isnad1 id=eq.1h4v.s14.a036852969f8 from=translated src=- shape=88dad4d6 vocab=2aa655a6
+-/
 @[simp]
 lemma E_to_Cyc_apply_coe [Fact p.Prime]
     {a : G} (ha : IsPRegular p a)
@@ -187,7 +202,9 @@ The identification `E_Cyc_equiv` does not change the underlying element of `G`.
 The cyclic factor of `associatedSubgroup ha` is internally a subgroup of `E(a)`,
 while `E_Cyc_equiv` identifies it with the ambient cyclic subgroup `Cyc a`. This
 lemma records that this identification is just the evident inclusion at the
-level of elements of `G`.-/
+level of elements of `G`.
+@isnad1 id=eq.1h4v.s12.1d55785f543e from=translated src=- shape=a7c2af24 vocab=24b2dd22
+-/
 @[simp]
 lemma E_Cyc_equiv_apply_coe [Fact p.Prime]
     {a : G} (ha : IsPRegular p a)
@@ -198,7 +215,9 @@ lemma E_Cyc_equiv_apply_coe [Fact p.Prime]
 
 open PElementary in
 /--
-The cardinality of `E(a)` is `orderOf a * |P_Z(a)|`.-/
+The cardinality of `E(a)` is `orderOf a * |P_Z(a)|`.
+@isnad1 id=eq.1h3v.s6.6aea6df54d09 from=translated src=- shape=06a8a0d2 vocab=0b6921a4
+-/
 lemma E_card [Fact p.Prime] [Finite G]
     {a : G} (ha : IsPRegular p a) :
     Nat.card (E_subgroup p a) =

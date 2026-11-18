@@ -49,16 +49,25 @@ def characterSpan
 
 namespace characterSpan
 
+/--
+@isnad1 id=mem.0h3v.s7.e82559ddf9be from=translated src=- shape=39ce8ab6 vocab=4e99f741
+-/
 lemma character_mem
     (V : FDRep k G) :
     ClassFun.character V ∈ characterSpan k G :=
   Submodule.subset_span ⟨V, rfl⟩
 
+/--
+@isnad1 id=mem.0h2v.s7.57142b54c667 from=translated src=- shape=6d7c0ddc vocab=151ed15b
+-/
 lemma one_mem :
     (1 : ClassFun k G) ∈ characterSpan k G := by
   rw [← ClassFun.char_trivial (k := k) (G := G)]
   exact character_mem (FDRep.trivial k G)
 
+/--
+@isnad1 id=mem.1h4v.s8.4446b70605b0 from=translated src=- shape=2df5a15e vocab=1b6f944a
+-/
 lemma character_mul_mem
     (V : FDRep k G)
     {f : ClassFun k G}
@@ -79,6 +88,9 @@ lemma character_mul_mem
     rw [mul_smul_comm]
     exact Submodule.smul_mem _ n hx
 
+/--
+@isnad1 id=mem.2h4v.s8.4dac827b497f from=translated src=- shape=acd728da vocab=3cbe4698
+-/
 lemma mul_mem
     {f g : ClassFun k G}
     (hf : f ∈ characterSpan k G)
@@ -118,6 +130,9 @@ def CharacterRing
 
 namespace CharacterRing
 
+/--
+@isnad1 id=iff.0h3v.s7.99a10eec1f70 from=translated src=- shape=fcf92858 vocab=ec462d20
+-/
 @[simp]
 lemma mem_iff
     {f : ClassFun k G} :
@@ -130,18 +145,27 @@ noncomputable def character
     CharacterRing k G :=
   ⟨ClassFun.character V, characterSpan.character_mem V⟩
 
+/--
+@isnad1 id=eq.0h3v.s7.2fd80802a883 from=translated src=- shape=e8a3d1ff vocab=35885b7a
+-/
 @[simp]
 lemma coe_character
     (V : FDRep k G) :
     (character V : ClassFun k G) = ClassFun.character V :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.cfc6e2a1c474 from=translated src=- shape=2813f851 vocab=905c7d01
+-/
 @[simp]
 lemma character_trivial :
     character (FDRep.trivial k G) = 1 := by
   apply Subtype.ext
   exact ClassFun.char_trivial k G
 
+/--
+@isnad1 id=eq.0h4v.s9.724946f10dca from=translated src=- shape=0568cabb vocab=5e4dcf77
+-/
 @[simp]
 lemma character_tensor
     (V W : FDRep k G) :

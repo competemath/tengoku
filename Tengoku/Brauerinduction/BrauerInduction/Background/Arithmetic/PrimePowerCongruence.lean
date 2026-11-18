@@ -15,7 +15,9 @@ namespace Int
 
 /--
 If an integer `m` is not divisible by a prime `p`, then its Euler-totient
-power is congruent to `1` modulo `p ^ r`.-/
+power is congruent to `1` modulo `p ^ r`.
+@isnad1 id=modeq.1h3v.s6.b91c3b9734ae from=translated src=- shape=3c23fb75 vocab=1cc36768
+-/
 lemma pow_totient_primePow_modEq_one
     (p r : ℕ) [Fact p.Prime] {m : ℤ}
     (hm : ¬ (p : ℤ) ∣ m) :

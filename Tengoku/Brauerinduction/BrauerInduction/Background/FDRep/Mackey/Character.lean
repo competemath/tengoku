@@ -29,7 +29,9 @@ variable {G : Type v} [Group G]
 
 /--
 The character of the left Mackey restriction is the restriction of `σ.character`
-through the left inclusion into `I`.-/
+through the left inclusion into `I`.
+@isnad1 id=eq.0h6v.s8.695f837ff865 from=translated src=- shape=ccc2afab vocab=27b14da5
+-/
 @[simp] lemma char_mackeyLeftRes
     [Finite G]
     (I : Subgroup G) (σ : FDRep k I) (g : G)
@@ -41,7 +43,9 @@ through the left inclusion into `I`.-/
 
 /--
 The Mackey Hom-term dimension formula with the two restricted characters
-expanded explicitly in terms of `σ.character`.-/
+expanded explicitly in terms of `σ.character`.
+@isnad1 id=eq.0h6v.s12.b5c4c3fef420 from=translated src=- shape=03c07952 vocab=1a8caae4
+-/
 @[simp] lemma char_mackeyConjRes
     [Finite G]
     (I : Subgroup G) (σ : FDRep k I) (g : G)
@@ -138,7 +142,9 @@ noncomputable def mackeyParameterizationInnerEquiv
 
 /--
 Under `mackeyParameterizationInnerEquiv`, the inner summand in the double-coset
-parameterization agrees with the expanded Mackey Hom-term summand.-/
+parameterization agrees with the expanded Mackey Hom-term summand.
+@isnad1 id=other.0h7v.s12.ebc209d4385d from=translated src=- shape=903b752b vocab=d7183111
+-/
 lemma mackey_parameterization_inner_summand_eq_expanded
     (I : Subgroup G)
     (σ : FDRep k I)
@@ -201,7 +207,9 @@ lemma mackey_parameterization_inner_summand_eq_expanded
 open Classical in
 /--
 The inner sum over `I` in the double-coset parameterization is equal to the
-expanded character sum over the Mackey intersection.-/
+expanded character sum over the Mackey intersection.
+@isnad1 id=other.0h6v.s12.b3775b2f4ea1 from=translated src=- shape=f4eae1c0 vocab=f7052a38
+-/
 lemma mackey_parameterization_inner_sum_eq_expanded
     [Fintype G]
     (I : Subgroup G)
@@ -308,7 +316,9 @@ lemma mackey_parameterization_inner_sum_eq_expanded
 open Classical in
 /--
 The product sum over `I × I` associated to a double-coset representative is
-`|I|²` times the expanded Mackey-intersection character sum.-/
+`|I|²` times the expanded Mackey-intersection character sum.
+@isnad1 id=other.0h5v.s12.ff7b7c317e02 from=translated src=- shape=08122a7e vocab=de5a6de2
+-/
 lemma mackey_product_sum_eq_card_sq_mul_expanded_sum
     [Fintype G]
     (I : Subgroup G)
@@ -381,7 +391,9 @@ noncomputable def mackeyDoubleCosetElementSum
 
 /--
 By Frobenius reciprocity, the endomorphism dimension of `Ind_I^G σ` agrees with
-the dimension of `Hom(σ, Res_I^G Ind_I^G σ)`.-/
+the dimension of `Hom(σ, Res_I^G Ind_I^G σ)`.
+@isnad1 id=eq.0h4v.s11.25be1c2abf0a from=translated src=- shape=ad6326ad vocab=6d1c874a
+-/
 lemma finrank_end_ind_eq_hom_res_ind
     {G : Type u} [Group G] [Finite G]
     (I : Subgroup G)

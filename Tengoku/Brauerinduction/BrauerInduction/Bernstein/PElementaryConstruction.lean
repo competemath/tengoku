@@ -28,7 +28,9 @@ open Classical Subgroup in
 /--
 Evaluation of `f p a` at `a * s`, where `s` is `p`-singular and
 commutes with `a`. The induction sum reduces to a count of elements of
-`C_G(a)` that conjugate `s` into the Sylow `p`-subgroup `P_Z(a)`.-/
+`C_G(a)` that conjugate `s` into the Sylow `p`-subgroup `P_Z(a)`.
+@isnad1 id=eq.3h5v.s9.abf8e0673015 from=translated src=- shape=0bb6415c vocab=6a7e07f8
+-/
 lemma f_apply_mul_pSingular_eq_sum
     [CharZero k] [Fintype G]
     {a : G} (ha : IsPRegular p a) (s : G) (hs_sing : IsPSingular p s) (h_comm : Commute a s) :
@@ -125,7 +127,9 @@ For a `p`-regular element `a` and a commuting `p`-singular element `s`, the
 value of `f p a` at `a * s` is the number of fixed cosets of `P_Z(a)` in the
 centralizer of `a`.
 
-This is the fixed-point count appearing in Bernstein's Step 8.-/
+This is the fixed-point count appearing in Bernstein's Step 8.
+@isnad1 id=eq.3h5v.s11.5c96d474deda from=translated src=- shape=75d7be2a vocab=a80bfeba
+-/
 lemma f_apply_mul_pSingular_eq_card_fixedCosets
     [CharZero k] [Finite G]
     {a : G} (ha : IsPRegular p a) (s : G) (hs_sing : IsPSingular p s) (h_comm : Commute a s) :

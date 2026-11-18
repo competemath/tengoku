@@ -53,6 +53,9 @@ def PElementaryIdeal :
 
 namespace PElementaryIdeal
 
+/--
+@isnad1 id=iff.0h4v.s10.26155e256713 from=translated src=- shape=e531b90d vocab=b674a9e0
+-/
 @[simp]
 lemma mem_iff
     (φ : ClassFun.CharacterRing k G) :
@@ -61,7 +64,9 @@ lemma mem_iff
   Iff.rfl
 
 /--
-For prime `p`, the fixed-prime ideal is contained in the global Brauer ideal.-/
+For prime `p`, the fixed-prime ideal is contained in the global Brauer ideal.
+@isnad1 id=le.0h3v.s10.264143f96aef from=translated src=- shape=15d60ace vocab=6ad68e45
+-/
 lemma le_BrauerIdeal [Fact p.Prime] :
     PElementaryIdeal p ≤ BrauerIdeal (k := k) (G := G) := by
   exact InducedCharacterIdeal.mono
@@ -75,7 +80,9 @@ namespace PElementarySpanChar
 
 /--
 A character induced from a representation of a `p`-elementary subgroup
-belongs to the fixed-`p` integral span.-/
+belongs to the fixed-`p` integral span.
+@isnad1 id=mem.1h5v.s8.baa7b5c05f10 from=translated src=- shape=81d06b2c vocab=4941ee2a
+-/
 lemma inducedCharacter_mem
     (H : Subgroup G)
     (hH : IsPElementary p H)
@@ -86,7 +93,9 @@ lemma inducedCharacter_mem
       (P := fun K => IsPElementary p K) H hH V
 
 /--
-The fixed-`p` span is contained in the global Brauer-elementary span.-/
+The fixed-`p` span is contained in the global Brauer-elementary span.
+@isnad1 id=le.0h3v.s7.4cb5172e7eeb from=translated src=- shape=47dd5f36 vocab=9db66c87
+-/
 lemma le_BrauerSpanChar [Fact p.Prime] :
     PElementarySpanChar p ≤ BrauerSpanChar (k := k) (G := G) := by
   apply InducedCharacterSpan.mono
@@ -95,7 +104,9 @@ lemma le_BrauerSpanChar [Fact p.Prime] :
 
 /--
 Multiplication on the left by a representation character preserves the
-fixed-`p` integral span.-/
+fixed-`p` integral span.
+@isnad1 id=mem.1h5v.s8.ef3694d4bd1f from=translated src=- shape=0255a527 vocab=243eae58
+-/
 lemma character_mul_mem
     (V : FDRep k G)
     {φ : ClassFun k G}
@@ -106,7 +117,9 @@ lemma character_mul_mem
     (fun H => IsPElementary p H) V hφ
 
 /--
-Induction from a subgroup preserves the fixed-`p` integral span.-/
+Induction from a subgroup preserves the fixed-`p` integral span.
+@isnad1 id=mem.1h5v.s9.e08cfcf5d832 from=translated src=- shape=f32c2ef9 vocab=c4562c87
+-/
 lemma induction_mem
     {H : Subgroup G}
     {φ : ClassFun k H}
@@ -135,7 +148,9 @@ namespace PElementarySpanLambda
 
 /--
 A character induced from a representation of a `p`-elementary subgroup
-belongs to the fixed-`p` cyclotomic span.-/
+belongs to the fixed-`p` cyclotomic span.
+@isnad1 id=mem.1h5v.s10.3a4c7c47ab58 from=translated src=- shape=642003a0 vocab=0156d843
+-/
 lemma inducedCharacter_mem
     (H : Subgroup G)
     (hH : IsPElementary p H)
@@ -145,6 +160,9 @@ lemma inducedCharacter_mem
   apply Submodule.subset_span
   exact ⟨H, hH, V, rfl⟩
 
+/--
+@isnad1 id=mem.2h5v.s11.8d12c445e20d from=translated src=- shape=1458db24 vocab=f113cca9
+-/
 lemma ind_mem
     (H : Subgroup G)
     (hH : IsPElementary p H)
@@ -169,7 +187,9 @@ lemma ind_mem
 
 /--
 Multiplication on the left by an element of the full cyclotomic character
-span preserves the fixed-`p` elementary span.-/
+span preserves the fixed-`p` elementary span.
+@isnad1 id=mem.2h5v.s11.a1931929b6d6 from=translated src=- shape=b4ecb6c2 vocab=b13d0d06
+-/
 lemma mul_mem_left_R_Lambda_top
     {f g : ClassFun k G}
     (hf : f ∈ ClassFun.R_Lambda.top k G)
@@ -223,6 +243,9 @@ def PElementaryCyclotomicIdeal :
 
 namespace PElementaryCyclotomicIdeal
 
+/--
+@isnad1 id=iff.0h4v.s12.446d8b8e8c8a from=translated src=- shape=00e39a37 vocab=5005188b
+-/
 @[simp]
 lemma mem_iff
     (f : ClassFun.CyclotomicCharacterAlgebra) :

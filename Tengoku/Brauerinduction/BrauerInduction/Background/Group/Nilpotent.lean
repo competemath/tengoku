@@ -15,7 +15,9 @@ universe u
 variable {G : Type u} [Group G]
 
 /--
-The normal closure of a nontrivial element is not the bottom subgroup.-/
+The normal closure of a nontrivial element is not the bottom subgroup.
+@isnad1 id=ne.1h2v.s5.11c91baf84b4 from=translated src=- shape=16f3c1db vocab=3321884d
+-/
 lemma Group.normalClosure_singleton_ne_bot_of_ne_one
     (c : G) (hc : c ≠ 1) :
     Subgroup.normalClosure ({c} : Set G) ≠ ⊥ := by
@@ -28,7 +30,9 @@ lemma Group.normalClosure_singleton_ne_bot_of_ne_one
 open commutatorElement in
 /--
 A nontrivial normal subgroup of a nilpotent group has nontrivial intersection
-with the center.-/
+with the center.
+@isnad1 id=ne.1h2v.s5.dccbaea2a4d7 from=translated src=- shape=5e607876 vocab=e381c34b
+-/
 lemma Subgroup.inf_center_ne_bot_of_normal_ne_bot_of_nilpotent [Group.IsNilpotent G]
     (N : Subgroup G) [N.Normal] (hN : N ≠ ⊥) : N ⊓ center G ≠ ⊥ := by
   open Classical in
@@ -73,7 +77,9 @@ lemma Subgroup.inf_center_ne_bot_of_normal_ne_bot_of_nilpotent [Group.IsNilpoten
 
 /--
 In a nilpotent group, the normal closure of a nontrivial element contains a
-nontrivial central element.-/
+nontrivial central element.
+@isnad1 id=ex.1h2v.s6.4431314bbccb from=translated src=- shape=8df535b7 vocab=951ead16
+-/
 lemma Group.exists_center_mem_normalClosure_singleton_of_ne_one
      [Group.IsNilpotent G] {c : G} (hc : c ≠ 1) :
     ∃ z : G,
@@ -102,7 +108,9 @@ If a nilpotent group is nonabelian, then there is a normal abelian subgroup
 strictly containing the center.
 
 The subgroup is constructed as the closure of the center together with an
-element of the second upper central subgroup which is not central.-/
+element of the second upper central subgroup which is not central.
+@isnad1 id=ex.1h1v.s6.a2de3a2298c4 from=translated src=- shape=a7710ea0 vocab=b9581b47
+-/
 lemma Group.exists_normal_abelian_gt_center [Group.IsNilpotent G]
     (h_non_comm : ¬ IsMulCommutative G) :
     ∃ (A : Subgroup G), A.Normal ∧ IsMulCommutative A ∧ Subgroup.center G < A := by

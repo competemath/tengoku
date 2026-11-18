@@ -24,6 +24,9 @@ noncomputable def coindEval
     intro c v
     rfl
 
+/--
+@isnad1 id=eq.0h6v.s12.e6d224dbd54b from=translated src=- shape=b74ec381 vocab=8904db3f
+-/
 @[simp]
 lemma coindEval_apply
     [Finite G]
@@ -34,7 +37,9 @@ lemma coindEval_apply
 
 /--
 Two vectors in a coinduced representation are equal if their values agree at every
-group element.-/
+group element.
+@isnad1 id=eq.1h6v.s13.af39fdb8afda from=translated src=- shape=f1a41104 vocab=ad8eddc6
+-/
 @[ext]
 lemma coind_ext_val
     [Finite G]
@@ -48,7 +53,9 @@ lemma coind_ext_val
 
 /--
 Two vectors in a coinduced representation are equal if they agree at every
-group element.-/
+group element.
+@isnad1 id=eq.1h6v.s11.263c6f8779f0 from=translated src=- shape=c79c71d9 vocab=f9f8c1a4
+-/
 
 lemma coind_ext
     [Finite G]

@@ -51,7 +51,9 @@ def JGen : Set (ClassFun k G) :=
 /-- Bernstein's integral prime-local span `J_p`.-/
 def J : Submodule ℤ (ClassFun k G) := Submodule.span ℤ (JGen p)
 
-/-- A generator of `J_p`: induction from a `p`-elementary subgroup.-/
+/-- A generator of `J_p`: induction from a `p`-elementary subgroup.
+@isnad1 id=mem.2h5v.s8.59ff43b21c02 from=translated src=- shape=7cc07b0d vocab=dff8c2c9
+-/
 lemma ind_mem_J
     (E : Subgroup G) (hE : IsPElementary p E)
     {q : ClassFun k E}
@@ -59,24 +61,32 @@ lemma ind_mem_J
     ClassFun.ind (k := k) E q ∈ J p := by
   exact Submodule.subset_span ⟨E, hE, q, hq, rfl⟩
 
-/-- The zero function belongs to `J_p`.-/
+/-- The zero function belongs to `J_p`.
+@isnad1 id=mem.0h3v.s7.8533eb452714 from=translated src=- shape=bb5de77a vocab=9c556c4b
+-/
 lemma zero_mem_J :
     (0 : ClassFun k G) ∈ J p :=
   Submodule.zero_mem _
 
-/-- `J_p` is closed under addition.-/
+/-- `J_p` is closed under addition.
+@isnad1 id=mem.2h5v.s8.5c3ecec52b97 from=translated src=- shape=34084741 vocab=6597c069
+-/
 lemma add_mem_J
     {f g : ClassFun k G} (hf : f ∈ J p) (hg : g ∈ J p) :
     f + g ∈ J p :=
   Submodule.add_mem _ hf hg
 
-/-- `J_p` is closed under integral scalar multiplication.-/
+/-- `J_p` is closed under integral scalar multiplication.
+@isnad1 id=mem.1h5v.s8.2347e4a990eb from=translated src=- shape=69823ef6 vocab=73827ae6
+-/
 lemma zsmul_mem_J
     (n : ℤ) {f : ClassFun k G} (hf : f ∈ J p) :
     n • f ∈ J p :=
   Submodule.smul_mem _ n hf
 
-/-- The integral span `J_p` absorbs multiplication by global `Q`-functions.-/
+/-- The integral span `J_p` absorbs multiplication by global `Q`-functions.
+@isnad1 id=mem.2h5v.s8.4e281201e4c5 from=translated src=- shape=e55a8c19 vocab=5897c6dc
+-/
 lemma mul_mem_J [Fact p.Prime]
     (f g : ClassFun k G)
     (hf : f ∈ J p)
@@ -141,6 +151,9 @@ def JIdeal :
 
 namespace JIdeal
 
+/--
+@isnad1 id=iff.0h4v.s16.3b2395c84f34 from=translated src=- shape=535d28a9 vocab=22df81d7
+-/
 @[simp]
 lemma mem_iff
     (f : ClassFun.IntegralCyclotomicCharacterRing (k := k) (G := G)) :
@@ -151,7 +164,9 @@ end JIdeal
 end IdealPackaging
 
 open BrauerInduction.PElementary in
-/-- Bernstein Step 8: the induced function `f_a` belongs to `J_p`.-/
+/-- Bernstein Step 8: the induced function `f_a` belongs to `J_p`.
+@isnad1 id=mem.1h4v.s7.055be3c90591 from=translated src=- shape=f062d267 vocab=8c55009c
+-/
 lemma f_a_mem_J
     [Fact p.Prime] [CharZero k] [IsAlgClosed k]
     (a : G) (ha : IsPRegular p a) :

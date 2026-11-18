@@ -48,7 +48,9 @@ variable {k : Type u} [CommRing k]
 
 /--
 A split monomorphism realizes its codomain as a binary biproduct of its source
-and its cokernel.-/
+and its cokernel.
+@isnad1 id=nonempty.0h6v.s8.ad6dcb418bc2 from=translated src=- shape=ab05444c vocab=924a3175
+-/
 lemma exists_iso_biprod_of_splitMono
     {G : Type v} [Monoid G]
     {S V : FDRep k G} (f : S ⟶ V) (sf : SplitMono f) :
@@ -118,7 +120,9 @@ open CategoryTheory
 /--
 Assume `G` is finite and `char k ∤ |G|`.
 Then every nontrivial finite-dimensional `k`-representation of `G`
-(i.e. object of `FDRep k G`) contains a simple subrepresentation.-/
+(i.e. object of `FDRep k G`) contains a simple subrepresentation.
+@isnad1 id=ex.1h3v.s8.875a5e64fc35 from=translated src=- shape=7fb77512 vocab=d692f1b7
+-/
 theorem exists_simple_subobject
     {k : Type u} [Field k]
     {G : Type u} [Group G]
@@ -215,7 +219,9 @@ Maschke-style decomposition: every finite-dimensional representation is a finite
 biproduct of simple finite-dimensional representations.
 
 The coefficient field and group are kept in the same universe because the
-Mathlib `FDRep` Maschke/injectivity instance currently has this universe shape.-/
+Mathlib `FDRep` Maschke/injectivity instance currently has this universe shape.
+@isnad1 id=ex.0h3v.s9.69f10b03dbaf from=translated src=- shape=cf23707b vocab=c06010ca
+-/
 theorem exists_simple_decomposition
     {k : Type u} [Field k]
     {G : Type u} [Group G]

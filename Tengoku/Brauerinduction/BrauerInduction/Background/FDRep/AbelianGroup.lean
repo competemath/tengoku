@@ -42,7 +42,9 @@ noncomputable def endoOfAction
 
 /--
 The underlying linear map of the endomorphism induced by the action of a group
-element.-/
+element.
+@isnad1 id=eq.0h4v.s12.ab4fe290ca27 from=translated src=- shape=0115d454 vocab=a247a5af
+-/
 @[simp]
 lemma endoOfAction_homToLinearMap
     [IsMulCommutative G]
@@ -51,7 +53,9 @@ lemma endoOfAction_homToLinearMap
   rfl
 
 /--
-Evaluation of the endomorphism induced by the action of a group element.-/
+Evaluation of the endomorphism induced by the action of a group element.
+@isnad1 id=eq.0h5v.s12.63f3c150a834 from=translated src=- shape=20517699 vocab=a247a5af
+-/
 @[simp]
 lemma endoOfAction_hom_apply
     [IsMulCommutative G]
@@ -61,7 +65,9 @@ lemma endoOfAction_hom_apply
 
 /--
 In a simple representation of a commutative group over an algebraically closed
-field, every group element acts by a scalar.-/
+field, every group element acts by a scalar.
+@isnad1 id=ex.0h4v.s12.23080c3ef4f3 from=translated src=- shape=203660ef vocab=1e8c1424
+-/
 lemma exists_scalar_action_of_simple_abelian
     [IsMulCommutative G] [IsAlgClosed k]
     (ρ : FDRep k G) [Simple ρ] (g : G) :
@@ -87,7 +93,9 @@ lemma exists_scalar_action_of_simple_abelian
 
 /--
 Every simple finite-dimensional representation of a commutative group over an
-algebraically closed field is one-dimensional.-/
+algebraically closed field is one-dimensional.
+@isnad1 id=eq.0h3v.s8.a8be3d58c83b from=translated src=- shape=a7b86b4e vocab=48bfba7d
+-/
 lemma abelian_simple_is_linear
     [IsMulCommutative G] [IsAlgClosed k]
     (ρ : FDRep k G) [Simple ρ] :

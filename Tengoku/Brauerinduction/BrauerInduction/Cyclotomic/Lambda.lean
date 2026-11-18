@@ -54,7 +54,9 @@ namespace Lambda
 
 /--
 Scalar multiplication by an element of `Λ` acts pointwise through its coercion
-to `k`.-/
+to `k`.
+@isnad1 id=eq.0h5v.s8.1fc479313a9d from=translated src=- shape=3effaca5 vocab=7c55801f
+-/
 @[simp]
 lemma smul_apply {k : Type u} [CommRing k]
     (a : ClassFun.Lambda k G) (f : ClassFun k G) (x : G) :
@@ -67,6 +69,9 @@ local instance {k : Type u} [CommRing k] (H : Subgroup G) :
     Module (Lambda k G) (ClassFun k H) :=
   Module.compHom (ClassFun k H) (Lambda k G).subtype
 
+/--
+@isnad1 id=mem.0h4v.s7.70a2ed5b0c60 from=translated src=- shape=78c75001 vocab=246ad3f5
+-/
 lemma rootsOfUnity_orderOf_mem_Lambda
     {k : Type u} [CommRing k] [Finite G]
     (a : G) (ζ : rootsOfUnity (orderOf a) k) :
@@ -93,7 +98,9 @@ lemma rootsOfUnity_orderOf_mem_Lambda
 
 /--
 The value of a linear character of a subgroup of `G` lies in Bernstein's
-coefficient ring `Λ` formed using the ambient group `G`.-/
+coefficient ring `Λ` formed using the ambient group `G`.
+@isnad1 id=mem.0h4v.s7.d2c05d8cb7b6 from=translated src=- shape=1533386a vocab=f452aa1d
+-/
 lemma linearChar_apply_mem_Lambda
     {k : Type u} [CommRing k] [Finite G]
     (χ : G →* kˣ) (g : G) :
@@ -124,6 +131,9 @@ lemma linearChar_apply_mem_Lambda
 
   exact Subring.subset_closure ⟨η, rfl⟩
 
+/--
+@isnad1 id=mem.0h5v.s9.00308e03cb01 from=translated src=- shape=b6512888 vocab=7d0bad20
+-/
 lemma linearChar_subgroup_apply_mem_Lambda
     {k : Type u} [CommRing k] [Finite G]
     {H : Subgroup G}
@@ -177,14 +187,18 @@ def HasLambdaCoords
 
 namespace HasLambdaCoords
 
-/-- The zero class function has `Λ`-coordinates.-/
+/-- The zero class function has `Λ`-coordinates.
+@isnad1 id=haslambd.0h3v.s5.5a33fff27d78 from=translated src=- shape=a9dff018 vocab=5bf5335e
+-/
 lemma zero
     (B : ClassFun.IrrepCharBasis k G) :
     HasLambdaCoords B 0 := by
   intro i
   simp
 
-/-- Class functions with `Λ`-coordinates are closed under addition.-/
+/-- Class functions with `Λ`-coordinates are closed under addition.
+@isnad1 id=haslambd.2h5v.s6.fc57bd3bbde7 from=translated src=- shape=3f5e307a vocab=82f21f7c
+-/
 lemma add
     (B : ClassFun.IrrepCharBasis k G)
     {f g : ClassFun k G}
@@ -197,7 +211,9 @@ lemma add
 
 /--
 Class functions with `Λ`-coordinates are closed under integer scalar
-multiplication.-/
+multiplication.
+@isnad1 id=haslambd.1h5v.s6.a1b9c344781f from=translated src=- shape=24e3a1b8 vocab=039d3498
+-/
 lemma zsmul
     (B : ClassFun.IrrepCharBasis k G)
     (z : ℤ) {f : ClassFun k G}
@@ -218,7 +234,9 @@ lemma zsmul
 
 /--
 Class functions with `Λ`-coordinates are closed under scalar multiplication
-by elements of `Λ`.-/
+by elements of `Λ`.
+@isnad1 id=haslambd.2h5v.s6.7e083001659e from=translated src=- shape=f5b745d9 vocab=fec85740
+-/
 lemma smul
     (B : ClassFun.IrrepCharBasis k G)
     {a : k} (ha : a ∈ ClassFun.Lambda k G)

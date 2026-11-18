@@ -62,9 +62,15 @@ convention is `(conj ψ g)(h) = ψ(g * h * g⁻¹)`. Normality of `H` ensures
 def conj (ψ : H →* kˣ) (g : G) :  H →* kˣ :=
   ψ.comp ((MulAut.conjNormal (H := H) g).toMonoidHom)
 
+/--
+@isnad1 id=eq.0h6v.s10.5148ac824fe0 from=translated src=- shape=fda3b8ac vocab=59ff1114
+-/
 @[simp] lemma conj_apply (ψ : H →* kˣ) (g : G) (h : H) :
     conj ψ g h = ψ (((MulAut.conjNormal g) : H ≃* H) h) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.d4afbe7059d1 from=translated src=- shape=a838cca9 vocab=c8805d21
+-/
 @[simp] lemma conj_one (ψ : H →* kˣ) :
     conj (H := H) ψ (1 : G) = ψ := by
   ext h
@@ -72,7 +78,9 @@ def conj (ψ : H →* kˣ) (g : G) :  H →* kˣ :=
 
 /--
 Conjugation of linear characters reverses multiplication in the acting
-variable: `conj ψ (g₁ * g₂) = conj (conj ψ g₁) g₂`.-/
+variable: `conj ψ (g₁ * g₂) = conj (conj ψ g₁) g₂`.
+@isnad1 id=eq.0h6v.s8.cf522f280d79 from=translated src=- shape=bd67c9fb vocab=a59777fc
+-/
 lemma conj_mul (ψ : H →* kˣ) (g₁ g₂ : G) :
     conj ψ (g₁ * g₂) = conj (conj ψ g₁) g₂ := by
   ext h
@@ -111,6 +119,9 @@ def inertia (ψ : H →* kˣ) : Subgroup G where
       simpa [mul_inv_cancel, conj_one] using h1
     exact this.symm
 
+/--
+@isnad1 id=iff.0h5v.s8.74e98d01d2e7 from=translated src=- shape=a18299b0 vocab=05c45f45
+-/
 @[simp] lemma mem_inertia_iff (ψ : H →* kˣ) (g : G) :
     g ∈ inertia (H := H) ψ ↔ conj (H := H) ψ g = ψ := Iff.rfl
 
@@ -132,7 +143,9 @@ instance : MulAction G (H →* kˣ) where
 
 /--
 The inertia subgroup of `ψ` is its stabilizer under the left conjugation
-action of `G` on the linear characters of `H`.-/
+action of `G` on the linear characters of `H`.
+@isnad1 id=eq.0h4v.s8.e0a7cc90ae83 from=translated src=- shape=1d8690ad vocab=f1279f87
+-/
 lemma inertia_eq_stabilizer (ψ : H →* kˣ) :
     inertia (H := H) ψ = MulAction.stabilizer G ψ := by
   ext g
@@ -153,7 +166,9 @@ lemma inertia_eq_stabilizer (ψ : H →* kˣ) :
 /--
 Every element of a commutative normal subgroup `A` fixes each linear
 character of `A` under conjugation. Consequently, `A` is contained in the
-inertia subgroup of any linear character of `A`.-/
+inertia subgroup of any linear character of `A`.
+@isnad1 id=le.0h4v.s7.bc9deefec878 from=translated src=- shape=dbfd2e8d vocab=7fc34e4f
+-/
 lemma le_inertia_of_isMulCommutative
     {A : Subgroup G} [A.Normal] [IsMulCommutative A]
     (ψ : A →* kˣ) :
@@ -176,7 +191,9 @@ lemma le_inertia_of_isMulCommutative
 
 /--
 Membership in the inertia subgroup is equivalent to fixing the character under
-the left conjugation action.-/
+the left conjugation action.
+@isnad1 id=iff.0h5v.s9.ba1423bfaf1a from=translated src=- shape=7d4cfaf7 vocab=15a12feb
+-/
 @[simp] lemma mem_inertia_iff_smul_eq (ψ : H →* kˣ) (g : G) :
     g ∈ LinearChar.inertia (H := H) ψ ↔ g • ψ = ψ := by
   simp [LinearChar.inertia_eq_stabilizer,
@@ -184,7 +201,9 @@ the left conjugation action.-/
 
 /--
 If `g` does not belong to the inertia subgroup of `ψ`, then conjugation by `g`
-changes the value of `ψ` at some element of the normal subgroup.-/
+changes the value of `ψ` at some element of the normal subgroup.
+@isnad1 id=ex.1h5v.s9.acabf286bf86 from=translated src=- shape=3d05cc7d vocab=7c15948c
+-/
 lemma exists_conj_coe_apply_ne_of_not_mem_inertia
     {A : Subgroup G} [A.Normal]
     (ψ : A →* kˣ) {g : G}

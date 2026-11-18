@@ -31,6 +31,9 @@ noncomputable def character (V : FDRep k G) : ClassFun k G where
     intro x y h
     exact FDRep.char_eq_of_isConj V h
 
+/--
+@isnad1 id=eq.0h4v.s5.480f4fe6fc0a from=translated src=- shape=4e0ce5d2 vocab=7669bc7b
+-/
 @[simp]
 theorem char_apply (V : FDRep k G) (g : G) :
     ClassFun.character V g = V.character g :=
@@ -42,18 +45,25 @@ variable {k : Type u} {G : Type v} [Field k] [Group G]
 
 /--
 Character value on a product is unchanged when the two factors are swapped:
-`χ(hg) = χ(gh)`.-/
+`χ(hg) = χ(gh)`.
+@isnad1 id=eq.0h5v.s6.d7c734f1b922 from=translated src=- shape=3aed368e vocab=fd76b82b
+-/
 theorem char_mul_comm (V : FDRep k G) (g : G) (h : G) :
     ClassFun.character V (h * g) = ClassFun.character V (g * h) :=
       Representation.char_mul_comm V.ρ g h
 
+/--
+@isnad1 id=eq.0h3v.s8.01e1c762e2ee from=translated src=- shape=bbc781bd vocab=90020555
+-/
 @[simp]
 lemma char_one (V : FDRep k G) :
     ClassFun.character V 1 = Module.finrank k V := by
   simp only [character, coe_mk, FDRep.char_one]
 
 /--
-Isomorphic representations have equal characters.-/
+Isomorphic representations have equal characters.
+@isnad1 id=eq.0h5v.s6.586d4452c2ba from=translated src=- shape=29ea2d90 vocab=a51b0063
+-/
 lemma char_eq_of_iso
     {V W : FDRep k G} (e : V ≅ W) :
     ClassFun.character V = ClassFun.character W := by
@@ -61,7 +71,9 @@ lemma char_eq_of_iso
   exact congrFun (FDRep.char_eq_of_iso e) g
 
 /--
-The trivial representation has constant character `1`.-/
+The trivial representation has constant character `1`.
+@isnad1 id=eq.0h2v.s5.f56ca102b239 from=translated src=- shape=7f4dcf24 vocab=9bc66872
+-/
 @[simp]
 lemma char_trivial
     (k : Type u) (G : Type v)
@@ -71,14 +83,18 @@ lemma char_trivial
   simp only [character, FDRep.char_trivial, coe_mk, Pi.one_apply, one_apply]
 
 /--
-The character of a binary product is the sum of the characters.-/
+The character of a binary product is the sum of the characters.
+@isnad1 id=eq.0h4v.s6.fe2402049b9c from=translated src=- shape=7c813a74 vocab=4fcaa758
+-/
 @[simp]
 lemma char_prod (V W : FDRep k G) :
     ClassFun.character (V.prod W) = ClassFun.character V + ClassFun.character W := by
   simp only [character, FDRep.char_prod]
   rfl
 /--
-The character of a tensor product is the product of the characters.-/
+The character of a tensor product is the product of the characters.
+@isnad1 id=eq.0h4v.s6.9d256d6b321d from=translated src=- shape=7c813a74 vocab=7c79432a
+-/
 @[simp]
 theorem char_tensor
     (V W : FDRep k G) :
@@ -89,7 +105,9 @@ theorem char_tensor
   exact congrFun (FDRep.char_tensor V W) g
 
 /--
-The character of the dual representation is the involution of the character.-/
+The character of the dual representation is the involution of the character.
+@isnad1 id=eq.0h3v.s5.4a0723fd885f from=translated src=- shape=1b7ac577 vocab=42b89ffd
+-/
 @[simp]
 lemma char_dual (V : FDRep k G) :
     ClassFun.character (V.dual) = ClassFun.involution (ClassFun.character V) := by
@@ -98,7 +116,9 @@ lemma char_dual (V : FDRep k G) :
   exact FDRep.char_dual V g
 
 /--
-The character of the internal Hom representation is `χ_V(g⁻¹) * χ_W(g)`.-/
+The character of the internal Hom representation is `χ_V(g⁻¹) * χ_W(g)`.
+@isnad1 id=eq.0h5v.s6.45705bfb3386 from=translated src=- shape=568f59f6 vocab=7d853726
+-/
 @[simp]
 lemma char_linHom (V W : FDRep k G) (g : G) :
     ClassFun.character (FDRep.linHom V W) g =
@@ -106,7 +126,9 @@ lemma char_linHom (V W : FDRep k G) (g : G) :
   simp only [character, coe_mk, FDRep.char_linHom_apply]
 
 /--
-The character of a finite biproduct is the sum of the characters.-/
+The character of a finite biproduct is the sum of the characters.
+@isnad1 id=eq.0h4v.s7.5a88327f4b4a from=translated src=- shape=3f22cc0e vocab=33ed9f23
+-/
 @[simp]
 lemma char_biproduct
     {ι : Type} [Fintype ι]
@@ -134,7 +156,9 @@ variable {G : Type v} [Group G]
 
 /--
 Restricting the character of a representation agrees with the character of
-the restricted representation.-/
+the restricted representation.
+@isnad1 id=eq.0h4v.s6.a318e4ec6181 from=translated src=- shape=19e50ec9 vocab=f0e181f4
+-/
 @[simp] theorem res_ofChar
     {H : Subgroup G} (V : FDRep k G) :
     ClassFun.res (G := G) (k := k) H (ClassFun.character V)

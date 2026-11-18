@@ -15,7 +15,9 @@ variable {G : Type u} [Group G]
 
 /--
 Taking inverses preserves conjugacy: `a` is conjugate to `b` iff `a⁻¹` is
-conjugate to `b⁻¹`.-/
+conjugate to `b⁻¹`.
+@isnad1 id=iff.0h3v.s5.aec8ff4ecd59 from=translated src=- shape=32f12fdc vocab=7ced427c
+-/
 lemma IsConj.inv {a b : G} : IsConj a b ↔ IsConj a⁻¹ b⁻¹  := by
   simp only [isConj_iff]
   constructor
@@ -31,7 +33,9 @@ lemma IsConj.inv {a b : G} : IsConj a b ↔ IsConj a⁻¹ b⁻¹  := by
     exact h
 
 /--
-Conjugacy in a subgroup implies conjugacy in the ambient group.-/
+Conjugacy in a subgroup implies conjugacy in the ambient group.
+@isnad1 id=isconj.1h4v.s7.98d8ce7dcf88 from=translated src=- shape=a0b0625e vocab=28db4a62
+-/
 lemma IsConj.of_subgroup {H : Subgroup G} {x y : H} (h : IsConj x y) :
     IsConj (x : G) (y : G) := by
   rcases h with ⟨c, hc⟩
@@ -41,7 +45,9 @@ lemma IsConj.of_subgroup {H : Subgroup G} {x y : H} (h : IsConj x y) :
   -- Now norm_cast can see "↑(c * x) = ↑(y * c)" and pull the arrows out
   norm_cast
 
-/-- Conjugate elements have the same order.-/
+/-- Conjugate elements have the same order.
+@isnad1 id=eq.1h3v.s5.02b270ff79b1 from=translated src=- shape=397ee572 vocab=996761e1
+-/
 lemma IsConj.orderOf_eq
    {a b : G} (h : IsConj a b) : orderOf a = orderOf b := by
   rw [isConj_iff] at h
@@ -51,7 +57,9 @@ lemma IsConj.orderOf_eq
 
 /--
 The chosen representative of a conjugacy class maps back to that conjugacy
-class.-/
+class.
+@isnad1 id=eq.0h2v.s5.c002d5df18cf from=translated src=- shape=276efb81 vocab=e0497f5e
+-/
 @[simp]
 lemma ConjClasses.mk_out (C : ConjClasses G) :
     ConjClasses.mk C.out = C := by
@@ -60,14 +68,18 @@ lemma ConjClasses.mk_out (C : ConjClasses G) :
 namespace Subgroup
 
 /--
-The centralizer of the singleton `{1}` is the whole group.-/
+The centralizer of the singleton `{1}` is the whole group.
+@isnad1 id=eq.0h1v.s5.07b4aff5e1b0 from=translated src=- shape=e2f73a5c vocab=cb949829
+-/
 lemma centralizer_singleton_one :
     Subgroup.centralizer ({1} : Set G) = ⊤ := by
   ext x
   simp [Subgroup.mem_centralizer_iff]
 
 /--
-The centralizer of `g⁻¹` is the same as the centralizer of `g`.-/
+The centralizer of `g⁻¹` is the same as the centralizer of `g`.
+@isnad1 id=eq.0h2v.s5.45f85f9b42bd from=translated src=- shape=b6df7dd2 vocab=f4d8cbaa
+-/
 lemma centralizer_singleton_inv (g : G) :
     Subgroup.centralizer ({g⁻¹} : Set G) =
       Subgroup.centralizer ({g} : Set G) := by
@@ -75,6 +87,9 @@ lemma centralizer_singleton_inv (g : G) :
   simp only [Subgroup.mem_centralizer_singleton_iff]
   exact Commute.inv_right_iff
 
+/--
+@isnad1 id=eq.0h2v.s6.a839f7ff009f from=translated src=- shape=d3619532 vocab=c3ff7c69
+-/
 lemma card_centralizer_inv (g : G) :
     Nat.card (Subgroup.centralizer ({g⁻¹} : Set G)) =
       Nat.card (Subgroup.centralizer ({g} : Set G)) := by
@@ -137,7 +152,9 @@ noncomputable def centralizerEquivOfIsConj
     (centralizerEquiv ((c : G)⁻¹) g).symm
 
 /--
-Conjugate elements have centralizers of the same cardinality.-/
+Conjugate elements have centralizers of the same cardinality.
+@isnad1 id=eq.1h3v.s6.264137c3729f from=translated src=- shape=0391f206 vocab=ae132730
+-/
 lemma card_centralizer_of_isConj
     {g h : G} (h_conj : IsConj g h) :
     Nat.card (centralizer ({g} : Set G)) =
@@ -149,7 +166,9 @@ open Classical in
 A finite sum of the constant value `orderOf a` over the centralizer of `a`.
 
 The left-hand side is written as a sum over all of `G` with an `if` selecting
-the centralizer.-/
+the centralizer.
+@isnad1 id=eq.0h3v.s7.7dcad73c41a3 from=translated src=- shape=320e3a27 vocab=3f9e9675
+-/
 lemma sum_ite_mem_centralizer_mul (k : Type*) [Semiring k]
     [Fintype G] {a : G} :
     (∑ x : G,
@@ -247,7 +266,9 @@ end Subgroup
 /--
 For the conjugation action of a finite group on itself, the size of the
 conjugacy class of `g` times the size of the centralizer of `g` is the order of
-the group.-/
+the group.
+@isnad1 id=eq.0h2v.s6.bdfcf246266c from=translated src=- shape=0f78b1d1 vocab=1d26de07
+-/
 lemma MulAction.card_conjClass_mul_card_centralizer [Fintype G] (g : G) :
     (Nat.card (MulAction.orbit (ConjAct G) g)) *
         (Nat.card ↥(Subgroup.centralizer ({g} : Set G)))

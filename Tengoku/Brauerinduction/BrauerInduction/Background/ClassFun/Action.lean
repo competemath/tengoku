@@ -41,7 +41,9 @@ noncomputable def action [Fintype G]
 
 /--
 The operator associated to a class function commutes with the action of every
-group element.-/
+group element.
+@isnad1 id=eq.0h5v.s13.0fa70a018e8e from=translated src=- shape=aac7fd88 vocab=9ff22860
+-/
 lemma action_comm [Fintype G] (f : ClassFun k G) (V : FDRep k G) (h : G) :
     action f V ∘ₗ V.ρ h = V.ρ h ∘ₗ action f V := by
   ext v
@@ -74,7 +76,9 @@ lemma action_comm [Fintype G] (f : ClassFun k G) (V : FDRep k G) (h : G) :
 
 /--
 The trace of the action of a class function `f` on `V` is
-`∑ g : G, f g * V.character g⁻¹`.-/
+`∑ g : G, f g * V.character g⁻¹`.
+@isnad1 id=eq.0h4v.s12.da417b9c2fd2 from=translated src=- shape=93dd301d vocab=6e380f69
+-/
 lemma trace_action [Fintype G] (f : ClassFun k G) (V : FDRep k G) :
     LinearMap.trace k V (action f V) = ∑ g : G, f g * V.character g⁻¹ := by
   dsimp [action]
@@ -95,7 +99,9 @@ noncomputable def actionHom [Fintype G]
   FDRep.homOfLinearMap (ClassFun.action f V) (ClassFun.action_comm f V)
 
 /--
-The class-function action is natural with respect to intertwining maps.-/
+The class-function action is natural with respect to intertwining maps.
+@isnad1 id=eq.0h6v.s11.61789d9543b8 from=translated src=- shape=22121ff6 vocab=0232c588
+-/
 lemma action_naturality
     [Fintype G]
     (f : ClassFun k G)
@@ -116,7 +122,9 @@ lemma action_naturality
 
 /--
 The endomorphisms obtained from the class-function action form a natural
-family with respect to morphisms of representations.-/
+family with respect to morphisms of representations.
+@isnad1 id=eq.0h6v.s8.02b8c639d54e from=translated src=- shape=110d7b34 vocab=9a52cd1f
+-/
 lemma actionHom_naturality [Fintype G]
     (f : ClassFun k G) {A B : FDRep k G} (α : A ⟶ B) :
     actionHom f A ≫ α = α ≫ actionHom f B := by
@@ -125,7 +133,9 @@ lemma actionHom_naturality [Fintype G]
 
 /--
 The bundled equivariant endomorphism associated to a class function is zero
-if and only if its underlying linear action is zero.-/
+if and only if its underlying linear action is zero.
+@isnad1 id=iff.0h4v.s11.019919b79dde from=translated src=- shape=dab8c84f vocab=3722fabb
+-/
 lemma actionHom_eq_zero_iff [Fintype G]
     (f : ClassFun k G) (V : FDRep k G) :
     actionHom f V = 0 ↔ ClassFun.action f V = 0 := by
@@ -145,7 +155,9 @@ section SimpleRepresentations
 
 /--
 If the equivariant endomorphism associated to `f` is multiplication by
-`lambda`, then its trace is `lambda` times the dimension of the representation.-/
+`lambda`, then its trace is `lambda` times the dimension of the representation.
+@isnad1 id=eq.1h5v.s12.2fbef062babd from=translated src=- shape=55705e5e vocab=d005f357
+-/
 lemma trace_action_eq_scalar_mul_finrank
     [Fintype G] (f : ClassFun k G) (V : FDRep k G)
     (lambda : k) (h : actionHom f V = lambda • 𝟙 V) :
@@ -178,7 +190,9 @@ lemma trace_action_eq_scalar_mul_finrank
 
 /--
 On a simple representation over an algebraically closed field, the
-endomorphism associated to a class function is scalar.-/
+endomorphism associated to a class function is scalar.
+@isnad1 id=ex.0h4v.s11.97e845915730 from=translated src=- shape=c6f69e58 vocab=8b3a6813
+-/
 lemma actionHom_is_scalar [Fintype G] [IsAlgClosed k]
   (f : ClassFun k G) (V : FDRep k G) [Simple V] :
     ∃ lambda : k, actionHom f V = lambda • 𝟙 V := by
@@ -191,7 +205,9 @@ section IsomorphismsAndBiproducts
 open Classical in
 /--
 Vanishing of the action of a class function is preserved when a
-representation is replaced by an isomorphic representation.-/
+representation is replaced by an isomorphic representation.
+@isnad1 id=eq.1h6v.s11.bea2cc6c9ce7 from=translated src=- shape=2261ad85 vocab=d3268260
+-/
 lemma action_zero_of_iso
     [Fintype G]
     (f : ClassFun k G)
@@ -210,7 +226,9 @@ lemma action_zero_of_iso
 
 /--
 A class function acts trivially on one representation if and only if it acts
-trivially on any isomorphic representation.-/
+trivially on any isomorphic representation.
+@isnad1 id=iff.0h6v.s11.fda823327c38 from=translated src=- shape=3620e667 vocab=d3268260
+-/
 lemma action_eq_zero_iff_of_iso [Fintype G]
     {V W : FDRep k G}
     (f : ClassFun k G) (e : V ≅ W) :
@@ -222,7 +240,9 @@ lemma action_eq_zero_iff_of_iso [Fintype G]
 /--
 If a class function acts trivially on every representation in a finite family,
 then the endomorphisms obtained from the class-function of their biproduct is
-trivial.-/
+trivial.
+@isnad1 id=eq.1h5v.s11.cf20942782bc from=translated src=- shape=b5213037 vocab=2007de99
+-/
 lemma actionHom_eq_zero_of_biproduct
     [Fintype G] {ι : Type*} [Finite ι]
     (f : ClassFun k G) (S : ι → FDRep k G)
@@ -241,7 +261,9 @@ lemma actionHom_eq_zero_of_biproduct
 
 /--
 If a class function acts trivially on every representation in a finite
-family, then it acts trivially on their biproduct.-/
+family, then it acts trivially on their biproduct.
+@isnad1 id=eq.1h5v.s13.c85667593511 from=translated src=- shape=5fcd3918 vocab=13105f87
+-/
 lemma action_zero_of_biproduct
     [Fintype G] {ι : Type*} [Finite ι]
     (f : ClassFun k G) (S : ι → FDRep k G)

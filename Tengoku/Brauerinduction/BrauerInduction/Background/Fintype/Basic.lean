@@ -6,7 +6,9 @@ namespace Fintype
 
 /--
 Rewrite a finite sum with an `if` condition as a sum over the subtype where the
-condition holds-/
+condition holds
+@isnad1 id=eq.0h4v.s6.eed29458ed04 from=translated src=- shape=896b2854 vocab=a8a8e9d1
+-/
 lemma sum_dite_eq_sum_subtype
     {α : Type*} [Fintype α]
     {β : Type*} [AddCommMonoid β]
@@ -32,7 +34,9 @@ end Fintype
 
 namespace One
 /--
-A finite type with a `1` element has nonzero cardinality.-/
+A finite type with a `1` element has nonzero cardinality.
+@isnad1 id=ne.0h1v.s4.608be5710267 from=translated src=- shape=21777def vocab=c20c28c7
+-/
 lemma natCard_ne_zero_of_finite
     (H : Type*) [One H] [Finite H] :
     Nat.card H ≠ 0 := by
@@ -40,7 +44,9 @@ lemma natCard_ne_zero_of_finite
 
 /--
 In characteristic zero, the cardinality of a finite type with a `1` element
-is nonzero in any semiring.-/
+is nonzero in any semiring.
+@isnad1 id=ne.0h2v.s5.522e35399dc5 from=translated src=- shape=0fe5943a vocab=2fc190d4
+-/
 lemma natCast_natCard_ne_zero_of_finite
     (H : Type*) [One H] [Finite H]
     (k : Type*) [Semiring k] [CharZero k] :

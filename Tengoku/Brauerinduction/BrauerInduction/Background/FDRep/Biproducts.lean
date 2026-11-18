@@ -25,6 +25,9 @@ section BinaryBiproducts
 
 variable {k : Type u} {G : Type v} [CommRing k] [Monoid G]
 
+/--
+@isnad1 id=hasbinar.0h2v.s6.dbef072627cd from=translated src=- shape=0be73952 vocab=f76d72e8
+-/
 noncomputable instance instHasBinaryBiproductsFDRep :
   HasBinaryBiproducts (FDRep k G) := HasBinaryBiproducts.of_hasBinaryCoproducts
 
@@ -36,12 +39,17 @@ variable {k : Type u} {G : Type v} [CommRing k] [Monoid G]
 
 variable {ι : Type wι}
 
+/--
+@isnad1 id=hastermi.0h2v.s5.9fae061199d3 from=translated src=- shape=0be73952 vocab=8279f283
+-/
 noncomputable instance instHasTerminal :
     HasTerminal (FDRep k G) := by
   apply HasZeroObject.hasTerminal
 
 /--
-The category `FDRep k G` has finite products.-/
+The category `FDRep k G` has finite products.
+@isnad1 id=hasfinit.0h2v.s5.2aa15b9f85af from=translated src=- shape=0be73952 vocab=cf07bf9e
+-/
 noncomputable instance instHasFiniteProducts :
     HasFiniteProducts (FDRep k G) :=
   hasFiniteProducts_of_has_binary_and_terminal
@@ -54,6 +62,9 @@ The underlying module is `V × W`, and the action is the product action
 noncomputable def prod (V W : FDRep k G) : FDRep k G := by
   exact FDRep.of (Representation.prod V.ρ W.ρ)
 
+/--
+@isnad1 id=eq.0h4v.s11.a9a1310bdcc7 from=translated src=- shape=f0845189 vocab=1bf30a0b
+-/
 @[simp]
 lemma prod_ρ (V W : FDRep k G) :
     (FDRep.prod V W).ρ = Representation.prod V.ρ W.ρ := by
@@ -68,6 +79,9 @@ lemma prod_ρ (V W : FDRep k G) :
     | (all_goals decide; done)
     | (all_goals tauto; done)
 
+/--
+@isnad1 id=eq.0h6v.s13.0b39cc6071b6 from=translated src=- shape=9ff2bf3a vocab=7e7c6e34
+-/
 @[simp]
 lemma prod_ρ_apply (V W : FDRep k G) (g : G) (x : V × W) :
     (FDRep.prod V W).ρ g x =
@@ -156,12 +170,16 @@ noncomputable def biprodIsoProd (V W : FDRep k G) :
     exact LinearMap.congr_fun (FDRep.hom_comp_ρ Limits.biprod.snd g).symm x
 
 /--
-The category `FDRep k G` has finite biproducts.-/
+The category `FDRep k G` has finite biproducts.
+@isnad1 id=hasfinit.0h2v.s6.fe0bea38029d from=translated src=- shape=0be73952 vocab=22092059
+-/
 noncomputable instance instHasFiniteBiproducts :
     HasFiniteBiproducts (FDRep k G) := HasFiniteBiproducts.of_hasFiniteProducts
 
 /--
-The biproduct over the empty indexing type is a zero object.-/
+The biproduct over the empty indexing type is a zero object.
+@isnad1 id=iszero.0h3v.s7.3cb264f91cdb from=translated src=- shape=1bacf89a vocab=6ab762f0
+-/
 lemma IsZero_biproduct_empty
     (f : PEmpty → FDRep k G) : IsZero (⨁ f) := by
   refine ⟨?_, ?_⟩
@@ -196,7 +214,9 @@ open Classical in
 /--
 If two finite families have the same multiplicities in each isomorphism class
 represented by either family, then their index types are equivalent in a way
-that matches isomorphic summands.-/
+that matches isomorphic summands.
+@isnad1 id=ex.2h6v.s9.dae1a6480f50 from=translated src=- shape=56229f20 vocab=8a8e010a
+-/
 lemma exists_equiv_of_iso_counts
     {ι κ : Type} [Fintype ι] [Fintype κ]
     (f : ι → FDRep k G) (g : κ → FDRep k G)
@@ -334,7 +354,9 @@ lemma exists_equiv_of_iso_counts
 open Classical in
 /--
 Two finite biproducts are isomorphic if their summands have the same
-multiplicities in every isomorphism class represented by either family.-/
+multiplicities in every isomorphism class represented by either family.
+@isnad1 id=nonempty.2h6v.s9.f0b558c14326 from=translated src=- shape=9234778e vocab=e19ea467
+-/
 theorem biproduct_iso_of_iso_counts
     {ι κ : Type} [Fintype ι] [Fintype κ]
     (f : ι → FDRep k G) (g : κ → FDRep k G)
@@ -391,7 +413,9 @@ noncomputable def hom_to_biproduct_linearEquiv
 
 /--
 The dimension of the morphism space into a finite biproduct is the sum of the
-dimensions of the morphism spaces into the summands.-/
+dimensions of the morphism spaces into the summands.
+@isnad1 id=eq.0h5v.s10.85bafea607f5 from=translated src=- shape=3833049d vocab=6a7c4d3b
+-/
 lemma finrank_hom_to_biproduct_eq_sum
     {ι : Type wι} [Fintype ι]
     {k : Type u} {G : Type v} [Field k] [Monoid G]
@@ -415,6 +439,9 @@ section finrank
 
 variable {k : Type u} {G : Type v} [Field k] [Monoid G]
 
+/--
+@isnad1 id=eq.0h4v.s7.c702eaa3da1a from=translated src=- shape=88a2954c vocab=cd1c9998
+-/
 lemma finrank_biprod (X Y : FDRep k G) :
       (X ⊞ Y).finrank = X.finrank + Y.finrank := by
   have e := FDRep.linearEquivBiprod (X := X) (Y := Y)

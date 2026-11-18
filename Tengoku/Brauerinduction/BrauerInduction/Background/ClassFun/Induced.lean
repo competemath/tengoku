@@ -169,7 +169,9 @@ noncomputable def ind
 
 open Classical in
 /--
-The defining formula for the induced class function.-/
+The defining formula for the induced class function.
+@isnad1 id=eq.0h5v.s9.d3de1ebf50b5 from=translated src=- shape=3978c1b3 vocab=2151d918
+-/
 @[simp]
 lemma ind_apply
     (H : Subgroup G) (φ : ClassFun k H) (g : G) :
@@ -188,7 +190,9 @@ Alternative formula for induction as a sum over the explicit right-coset
 quotient.
 
 The equivalence with the defining quotient is induced by inversion, so the
-conjugate `x⁻¹ * g * x` becomes `x * g * x⁻¹`.-/
+conjugate `x⁻¹ * g * x` becomes `x * g * x⁻¹`.
+@isnad1 id=eq.0h5v.s9.6c05c8984a91 from=translated src=- shape=dfb8c158 vocab=b4215e01
+-/
 lemma ind_apply_rightCosets
     (H : Subgroup G) (φ : ClassFun k H) (g : G) :
     ind H φ g =
@@ -239,7 +243,9 @@ lemma ind_apply_rightCosets
       simp only [inv_inv]
 
 /--
-Induction is additive.-/
+Induction is additive.
+@isnad1 id=eq.0h5v.s8.cb99d714c064 from=translated src=- shape=8bdea3e7 vocab=eef569ab
+-/
 @[simp]
 theorem ind_add {H : Subgroup G} (φ ψ : ClassFun k H) :
     ind H (φ + ψ) = ind H φ + ind H ψ := by
@@ -251,14 +257,18 @@ theorem ind_add {H : Subgroup G} (φ ψ : ClassFun k H) :
   split_ifs <;> simp
 
 /--
-Induction commutes with finite sums.-/
+Induction commutes with finite sums.
+@isnad1 id=eq.0h5v.s7.e580f3942984 from=translated src=- shape=9833a14b vocab=6c615402
+-/
 lemma ind_sum (H : Subgroup G) {ι : Type*} [Fintype ι] (f : ι → ClassFun k H) :
     ind H (∑ i, f i) = ∑ i, ind H (f i) := by
   ext g
   simp [ind_apply, Finset.sum_comm]
 
 /--
-Induction sends the zero class function to zero.-/
+Induction sends the zero class function to zero.
+@isnad1 id=eq.0h3v.s7.4f477301f9e2 from=translated src=- shape=844493cc vocab=c42d8c5a
+-/
 @[simp]
 theorem ind_zero {H : Subgroup G} :
     ind H (0 : ClassFun k H) = 0 := by
@@ -274,6 +284,9 @@ variable {k : Type u} [AddCommMonoid k] [Module R k]
 variable {G : Type v} [Group G]
 
 open Classical in
+/--
+@isnad1 id=eq.0h5v.s7.30256dd3b20b from=translated src=- shape=dc8ba807 vocab=29a9145f
+-/
 lemma ind_apply_of_fintype [Fintype G]
     (H : Subgroup G) (φ : ClassFun k H) (g : G) :
     ind H φ g =
@@ -286,7 +299,9 @@ lemma ind_apply_of_fintype [Fintype G]
     rfl
 
 /--
-Induction commutes with scalar multiplication.-/
+Induction commutes with scalar multiplication.
+@isnad1 id=eq.0h6v.s8.b5fc9308d7d5 from=translated src=- shape=b411a8f1 vocab=f61268bf
+-/
 @[simp]
 theorem ind_smul [Finite G]
     {H : Subgroup G} (r : R) (φ : ClassFun k H) :
@@ -312,7 +327,9 @@ noncomputable def indLinearMap [Finite G]
     simp only [ind_smul (R := R) (H := H) r φ, RingHom.id_apply]
 
 /--
-Evaluation of `indLinearMap`.-/
+Evaluation of `indLinearMap`.
+@isnad1 id=eq.0h5v.s8.b1b98447d33b from=translated src=- shape=1747e6b5 vocab=4d2da97e
+-/
 @[simp]
 lemma indLinearMap_apply [Finite G]
     (H : Subgroup G) (φ : ClassFun k H) :
@@ -327,7 +344,9 @@ variable {k : Type u} [AddCommGroup k]
 variable {G : Type v} [Group G] [Finite G]
 
 /--
-Induction commutes with integer scalar multiplication.-/
+Induction commutes with integer scalar multiplication.
+@isnad1 id=eq.0h5v.s8.eda1bc364b28 from=translated src=- shape=00f541c2 vocab=cbc49d8b
+-/
 @[simp]
 theorem ind_zsmul
     {H : Subgroup G} (n : ℤ) (φ : ClassFun k H) :
@@ -346,7 +365,9 @@ open Classical in
 
 /--
 The standard averaging formula for induction, written as a sum over all
-elements of `G`.-/
+elements of `G`.
+@isnad1 id=eq.0h5v.s9.0d87356586aa from=translated src=- shape=7a29cbc5 vocab=54ec9eb3
+-/
 lemma ind_apply_eq_inv_mul_sum
     (H : Subgroup G) (φ : ClassFun k H) (g : G) :
     ind H φ g =
@@ -383,7 +404,9 @@ lemma ind_apply_eq_inv_mul_sum
 open Classical in
 /--
 The standard averaging formula for induction, with conjugation written as
-`x * g * x⁻¹`.-/
+`x * g * x⁻¹`.
+@isnad1 id=eq.0h5v.s9.d9176e02178c from=translated src=- shape=12c0f673 vocab=54ec9eb3
+-/
 lemma ind_apply_eq_inv_mul_sum_mul_inv
     (H : Subgroup G) (φ : ClassFun k H) (g : G) :
     ind H φ g =
@@ -612,7 +635,9 @@ Transitivity of induction for class functions.
 
 Inducing from `H` to `K` and then from `K` to `G` agrees with inducing
 directly from the image of `H` as a subgroup of `G`, after transporting the
-class function along the natural subgroup equivalence.-/
+class function along the natural subgroup equivalence.
+@isnad1 id=eq.0h5v.s11.ae126bebcc1c from=translated src=- shape=87aab0d5 vocab=e5b0c8fb
+-/
 lemma ind_trans
     {k : Type u} [AddCommMonoid k]
     {G : Type v} [Group G] [Finite G]
@@ -660,7 +685,9 @@ open Classical in
 The projection formula for class-function induction.
 
 Multiplication by a class function on `G` commutes with induction after
-restricting that class function to the subgroup.-/
+restricting that class function to the subgroup.
+@isnad1 id=eq.0h5v.s7.bc898a60ca4c from=translated src=- shape=236d81ed vocab=ba506552
+-/
 lemma projection_formula
     (H : Subgroup G)
     (ψ : ClassFun k G)
@@ -687,7 +714,9 @@ variable {G : Type v} [Group G] [Finite G]
 open Classical in
 /--
 Induction commutes with postcomposition by an additive homomorphism of
-coefficient types.-/
+coefficient types.
+@isnad1 id=eq.0h6v.s7.bcd993b9f7b2 from=translated src=- shape=f01a0fb2 vocab=75b97100
+-/
 @[simp]
 lemma ind_postcomp
     (F : R →+ S)

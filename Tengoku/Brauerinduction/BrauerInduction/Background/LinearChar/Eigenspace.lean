@@ -34,7 +34,9 @@ noncomputable def psiEigenspace
   ⨅ a : A, LinearMap.ker (ρ.ρ (a : G) - (ψ a : k) • LinearMap.id)
 
 /--
-Membership criterion for the `ψ`-eigenspace.-/
+Membership criterion for the `ψ`-eigenspace.
+@isnad1 id=iff.0h6v.s13.fd2852f15e95 from=translated src=- shape=110a9f26 vocab=24f916c7
+-/
 lemma mem_psiEigenspace_iff
     (ρ : FDRep k G) (A : Subgroup G) (ψ : A →* kˣ) (v : ρ) :
     v ∈ psiEigenspace ρ A ψ
@@ -44,7 +46,9 @@ lemma mem_psiEigenspace_iff
     sub_eq_zero]
 
 /--
-The `ψ`-eigenspace is stable under the inertia subgroup of `ψ`.-/
+The `ψ`-eigenspace is stable under the inertia subgroup of `ψ`.
+@isnad1 id=mem.1h7v.s12.76bea52a0d46 from=translated src=- shape=192ea39b vocab=23ffeb35
+-/
 lemma psiEigenspace_invariant
     (ρ : FDRep k G) (A : Subgroup G) [hA : A.Normal]
     (ψ : A →* kˣ)
@@ -104,6 +108,9 @@ noncomputable def psiEigenspaceFDRep
       exact psiEigenspace_invariant
         ρ A ψ g v hv)
 
+/--
+@isnad1 id=eq.0h7v.s14.0611c11d5e28 from=translated src=- shape=d5817846 vocab=9887cdc3
+-/
 @[simp] lemma psiEigenspaceFDRep_rho_apply
     (ρ : FDRep k G)
     (A : Subgroup G) [A.Normal]
@@ -134,6 +141,9 @@ noncomputable def psiEigenspaceIncl
       exact psiEigenspace_invariant
         ρ A ψ g v hv)
 
+/--
+@isnad1 id=mem.2h7v.s12.835b250cacb5 from=translated src=- shape=65c339b4 vocab=82cbed97
+-/
 lemma psiEigenspace_invariant_of_inertia_eq_top
     (ρ : FDRep k G)
     (A : Subgroup G) [A.Normal]
@@ -179,6 +189,9 @@ noncomputable def psiEigenspaceInclOfInertiaEqTop
     exact psiEigenspace_invariant_of_inertia_eq_top
       ρ A ψ hI g x hx)
 
+/--
+@isnad1 id=eq.1h6v.s12.f2c0e00c7955 from=translated src=- shape=8b47f9b1 vocab=f38ef576
+-/
 @[simp] lemma psiEigenspaceInclOfInertiaEqTop_apply
     (ρ : FDRep k G)
     (A : Subgroup G) [A.Normal]
@@ -191,6 +204,9 @@ noncomputable def psiEigenspaceInclOfInertiaEqTop
     (x : ρ) := by
   rfl
 
+/--
+@isnad1 id=ne.2h5v.s10.925439f904c8 from=translated src=- shape=820485e7 vocab=a8bd5fbb
+-/
 lemma psiEigenspaceInclOfInertiaEqTop_ne_zero
     (ρ : FDRep k G)
     (A : Subgroup G) [A.Normal]
@@ -220,6 +236,9 @@ lemma psiEigenspaceInclOfInertiaEqTop_ne_zero
     simpa [Submodule.mem_bot] using hx0
   · exact bot_le
 
+/--
+@isnad1 id=eq.2h5v.s10.e25c97d822f0 from=translated src=- shape=69e62077 vocab=71159012
+-/
 lemma psiEigenspace_eq_top_of_inertia_eq_top
     (ρ : FDRep k G)
     (A : Subgroup G) [A.Normal]
@@ -251,7 +270,9 @@ lemma psiEigenspace_eq_top_of_inertia_eq_top
 
 /--
 If the inertia subgroup of `ψ` is all of `G`, then `ρ(g)` acts by the scalar
-`ψ(g)` on the whole `ψ`-eigenspace.-/
+`ψ(g)` on the whole `ψ`-eigenspace.
+@isnad1 id=eq.2h6v.s13.f027ebc4aafe from=translated src=- shape=73c2c937 vocab=3d5e7478
+-/
 lemma rho_eq_smul_of_inertia_eq_top
     (ρ : FDRep k G) [Simple ρ]
     (A : Subgroup G) [A.Normal] [IsMulCommutative A]

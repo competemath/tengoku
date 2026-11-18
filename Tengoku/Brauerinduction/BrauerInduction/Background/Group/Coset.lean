@@ -70,7 +70,9 @@ If a function is constant on every fibre of the right-coset quotient map
 `|H|`.
 
 The constant value on a coset is evaluated at the chosen representative
-`q.out`.-/
+`q.out`.
+@isnad1 id=eq.1h4v.s7.8db7bb992b8a from=translated src=- shape=c9148d7c vocab=89fad9fb
+-/
 lemma sum_of_right_coset_constant {k : Type*} [Semiring k] [Fintype G]
     (H : Subgroup G) (f : G → k)
     (h_const : ∀ (x : G) (h : H), f ((h : G) * x) = f x) :
@@ -98,7 +100,9 @@ open Classical in
 If a function is constant on every left coset of `H`, then its sum over `G` is
 the sum over left cosets multiplied by `|H|`.
 
-This is the left-coset analogue of `Subgroup.sum_of_right_coset_constant`.-/
+This is the left-coset analogue of `Subgroup.sum_of_right_coset_constant`.
+@isnad1 id=eq.1h4v.s7.38c29056d2eb from=translated src=- shape=1b9c2a56 vocab=37f517f4
+-/
 lemma sum_of_left_coset_constant {k : Type*} [Semiring k] [Fintype G]
     (H : Subgroup G) (f : G → k)
     (h_const : ∀ (x : G) (h : H), f (x * (h : G)) = f x) :
@@ -140,7 +144,9 @@ end Subgroup
 namespace QuotientGroup
 
 /--
-The chosen representative of the right coset of `h` is right-related to `h`.-/
+The chosen representative of the right coset of `h` is right-related to `h`.
+@isnad1 id=r.0h3v.s4.77a94bb0fb0c from=translated src=- shape=cacd5e99 vocab=b9485676
+-/
 lemma rightRel_out_mk
     (I : Subgroup G)
     (h : G) :
@@ -152,7 +158,9 @@ lemma rightRel_out_mk
 
 /--
 For the chosen representative of the right coset of `h`, the element
-`h * out(mk h)⁻¹` lies in the subgroup.-/
+`h * out(mk h)⁻¹` lies in the subgroup.
+@isnad1 id=mem.0h3v.s6.a147575b32c9 from=translated src=- shape=15968c78 vocab=ac00d860
+-/
 lemma rightRel_mk_mul_out_inv_mem
     (I : Subgroup G)
     (h : G) :
@@ -163,7 +171,9 @@ lemma rightRel_mk_mul_out_inv_mem
 
 /--
 For the chosen representative of the right coset of `h`, the element
-`out(mk h) * h⁻¹` lies in the subgroup.-/
+`out(mk h) * h⁻¹` lies in the subgroup.
+@isnad1 id=mem.0h3v.s6.24004807946d from=translated src=- shape=d667abb5 vocab=ac00d860
+-/
 lemma rightRel_out_mul_mk_inv_mem
     (I : Subgroup G)
     (h : G) :
@@ -178,7 +188,9 @@ lemma rightRel_out_mul_mk_inv_mem
 
 /--
 Two elements are equivalent for the right-coset relation modulo `H` iff
-`a * b⁻¹ ∈ H`.-/
+`a * b⁻¹ ∈ H`.
+@isnad1 id=iff.0h4v.s6.c4e7a8639950 from=translated src=- shape=bb6aaef1 vocab=daf2fdfd
+-/
 lemma rightRel_iff_mul_inv_mem (H : Subgroup G) (a b : G) :
     QuotientGroup.rightRel H a b ↔ a * b⁻¹ ∈ H := by
   constructor

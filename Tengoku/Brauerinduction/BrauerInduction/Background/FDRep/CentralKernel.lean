@@ -50,7 +50,9 @@ noncomputable def endoOfCentral
             _ = ρ.ρ g (ρ.ρ (z : G) v) := rfl })
 
 /--
-Evaluation of the endomorphism induced by a central element.-/
+Evaluation of the endomorphism induced by a central element.
+@isnad1 id=eq.0h5v.s12.e8c71418ed36 from=translated src=- shape=f16de17d vocab=0c8d3dc9
+-/
 @[simp]
 lemma endoOfCentral_homToLinearMap_apply
     (ρ : FDRep k G) (z : Subgroup.center G) (v : ρ) :
@@ -67,7 +69,9 @@ variable {G : Type v} [Group G]
 
 /--
 Schur's lemma applied to the center: every central element acts as a scalar on
-a simple representation.-/
+a simple representation.
+@isnad1 id=ex.0h4v.s12.2254f9982e7f from=translated src=- shape=aa9b9482 vocab=61c2c309
+-/
 lemma center_action_is_scalar
 
     (ρ : FDRep k G) [Simple ρ] (z : Subgroup.center G) :
@@ -100,7 +104,9 @@ noncomputable def centralScalar
   Classical.choose (center_action_is_scalar ρ z)
 
 /--
-The defining property of `centralScalar`.-/
+The defining property of `centralScalar`.
+@isnad1 id=eq.0h4v.s12.e49cb415ab63 from=translated src=- shape=3442fbb7 vocab=2743d5ce
+-/
 lemma centralScalar_spec
     (ρ : FDRep k G) [Simple ρ]
     (z : Subgroup.center G) :
@@ -109,7 +115,9 @@ lemma centralScalar_spec
   Classical.choose_spec (center_action_is_scalar ρ z)
 
 /--
-The identity central element acts by the scalar `1`.-/
+The identity central element acts by the scalar `1`.
+@isnad1 id=eq.0h3v.s7.73e780b88bff from=translated src=- shape=4364d848 vocab=59ff58c2
+-/
 lemma centralScalar_one
     (ρ : FDRep k G) [Simple ρ] :
     centralScalar ρ (1 : Subgroup.center G) = 1 := by
@@ -123,7 +131,9 @@ lemma centralScalar_one
   simp only [OneMemClass.coe_one, map_one, Module.End.one_eq_id, one_smul]
 
 /--
-The scalar action of central elements is multiplicative.-/
+The scalar action of central elements is multiplicative.
+@isnad1 id=eq.0h5v.s8.0d023f625a01 from=translated src=- shape=049eece7 vocab=5a0159bc
+-/
 lemma centralScalar_mul
     (ρ : FDRep k G) [Simple ρ]
     (z₁ z₂ : Subgroup.center G) :
@@ -148,7 +158,9 @@ lemma centralScalar_mul
   rw [smul_smul, mul_comm]
 
 /--
-The scalar by which a central element acts is nonzero.-/
+The scalar by which a central element acts is nonzero.
+@isnad1 id=ne.0h4v.s7.e76044db24f2 from=translated src=- shape=641b5cc3 vocab=59ff58c2
+-/
 lemma centralScalar_ne_zero
     (ρ : FDRep k G) [Simple ρ]
     (z : Subgroup.center G) :
@@ -208,7 +220,9 @@ noncomputable def centralKernel
     (MonoidHom.ker (centralCharacter ρ))
 
 /--
-The central kernel is contained in the center.-/
+The central kernel is contained in the center.
+@isnad1 id=le.0h3v.s7.8599425528ab from=translated src=- shape=f026e49c vocab=bfc059a0
+-/
 lemma centralKernel_le_center
     (ρ : FDRep k G) [Simple ρ] :
     centralKernel ρ ≤ Subgroup.center G := by
@@ -217,7 +231,9 @@ lemma centralKernel_le_center
   exact z.2
 
 /--
-Every element of the central kernel acts trivially.-/
+Every element of the central kernel acts trivially.
+@isnad1 id=eq.0h4v.s12.a3981e999dd7 from=translated src=- shape=6cfa9247 vocab=63b0517d
+-/
 lemma centralKernel_acts_trivially
     (ρ : FDRep k G) [Simple ρ]
     (g : centralKernel ρ) :
@@ -234,7 +250,9 @@ lemma centralKernel_acts_trivially
   simp only [Module.End.one_eq_id, one_smul]
 
 /--
-A central element lies in the central kernel iff it acts trivially.-/
+A central element lies in the central kernel iff it acts trivially.
+@isnad1 id=iff.0h4v.s12.1859848d9c4d from=translated src=- shape=06d8c0f0 vocab=232b63e3
+-/
 lemma center_coe_mem_centralKernel_iff
     (ρ : FDRep k G) [Simple ρ]
     (z : Subgroup.center G) :
@@ -259,7 +277,9 @@ lemma center_coe_mem_centralKernel_iff
     simp only [Module.End.one_eq_id, one_smul]
 
 /--
-The representation is trivial on its central kernel.-/
+The representation is trivial on its central kernel.
+@isnad1 id=eq.1h4v.s12.ee7983cf6a40 from=translated src=- shape=d1e55141 vocab=f934f208
+-/
 lemma rho_eq_one_of_mem_centralKernel
     (ρ : FDRep k G) [Simple ρ] :
     ∀ x ∈ centralKernel ρ, ρ.ρ x = 1 := by

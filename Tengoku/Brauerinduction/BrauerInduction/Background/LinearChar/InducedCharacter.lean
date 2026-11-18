@@ -21,7 +21,9 @@ namespace FDRep
 open BigOperators
 
 /--
-Induced and coinduced linear representations have the same character.-/
+Induced and coinduced linear representations have the same character.
+@isnad1 id=eq.0h4v.s7.62ffbce76a88 from=translated src=- shape=d6772bd0 vocab=a748cbcf
+-/
 lemma char_indLin_eq_char_coindLin
     (H : Subgroup G) (ψ : H →* kˣ) :
     (FDRep.indLin H ψ).character =

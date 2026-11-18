@@ -51,7 +51,9 @@ def R_Lambda
         ∃ V : FDRep k H, χ = ClassFun.character V }
 
 namespace R_Lambda
-/-- Characters of finite-dimensional representations lie in `R_Λ(H)`.-/
+/-- Characters of finite-dimensional representations lie in `R_Λ(H)`.
+@isnad1 id=mem.0h4v.s10.ff73e235601b from=translated src=- shape=97c4c4b9 vocab=83b392ca
+-/
 lemma char_mem
     (H : Subgroup G) (V : FDRep k H) :
     ClassFun.character V ∈ R_Lambda k G H := by
@@ -63,7 +65,9 @@ Restriction along a subgroup inclusion preserves `R_Λ`.
 
 If `H ≤ K` and a class function on `K` lies in the `Λ`-span of characters of
 finite-dimensional representations of `K`, then its composition with the
-inclusion `H → K` lies in the corresponding `Λ`-span for `H`.-/
+inclusion `H → K` lies in the corresponding `Λ`-span for `H`.
+@isnad1 id=mem.2h5v.s11.02ff76a1889b from=translated src=- shape=b9800134 vocab=6134ea4e
+-/
 lemma comp_inclusion_mem
     {H K : Subgroup G} (hHK : H ≤ K)
     (φ : ClassFun k K)
@@ -125,7 +129,9 @@ lemma comp_inclusion_mem
 Restricting from `⊤` to a subgroup preserves membership in `R_Λ`.
 
 This is the special case of `R_Lambda.comp_inclusion_mem` used in the localized
-ideal multiplication proof.-/
+ideal multiplication proof.
+@isnad1 id=mem.1h4v.s11.808f41985029 from=translated src=- shape=333c5ca6 vocab=a6392237
+-/
 lemma res_top_to_subgroup
      {E : Subgroup G} {g : ClassFun k G}
     (hg :
@@ -148,7 +154,9 @@ lemma res_top_to_subgroup
   exact (Submodule.mem_toAddSubgroup (R_Lambda k G E)).mp h_comp
 
 /--
-The character system `R_Λ` is closed under pointwise multiplication.-/
+The character system `R_Λ` is closed under pointwise multiplication.
+@isnad1 id=mem.2h5v.s12.a976a49d9012 from=translated src=- shape=5f233b5a vocab=f8b26398
+-/
 lemma mul_mem
     {k : Type u} [Field k] {H : Subgroup G} {f g : ClassFun k H}
     (hf : f ∈ R_Lambda k G H)
@@ -214,7 +222,9 @@ def top
 
 /--
 Restricting an element of the global `R_Λ` to a subgroup gives an element of
-the subgroup-indexed `R_Λ`.-/
+the subgroup-indexed `R_Λ`.
+@isnad1 id=mem.1h4v.s11.e7b5d4b4e6fc from=translated src=- shape=8bfc337f vocab=3413d71d
+-/
 lemma top_res_to_subgroup
     (H : Subgroup G)
     {f : ClassFun k G}

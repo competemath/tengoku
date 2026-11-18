@@ -39,6 +39,9 @@ noncomputable def coindCoeff
   (Finsupp.lapply i).comp
     (bV.repr.toLinearMap.comp (coindEval I σ q.out))
 
+/--
+@isnad1 id=eq.0h9v.s12.a0b4863b06d0 from=translated src=- shape=5b40177f vocab=d100b78a
+-/
 @[simp]
 lemma coindCoeff_apply
     (I : Subgroup G) (σ : FDRep k I)

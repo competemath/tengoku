@@ -41,7 +41,9 @@ def mapIntCast
     ClassFun k G :=
   ψ.postcomp fun z => (z : k)
 
-/-- Evaluation of a pointwise-cast integer-valued class function.-/
+/-- Evaluation of a pointwise-cast integer-valued class function.
+@isnad1 id=eq.0h4v.s5.25a9dcc79ee0 from=translated src=- shape=8ebfdc17 vocab=5a153795
+-/
 @[simp]
 lemma mapIntCast_apply
     {H : Type v} [Group H]
@@ -51,7 +53,9 @@ lemma mapIntCast_apply
 
 /--
 Pointwise casting of integer-valued class functions commutes with integer
-scalar multiplication.-/
+scalar multiplication.
+@isnad1 id=eq.0h4v.s6.04131f4e4d47 from=translated src=- shape=fae4fbaa vocab=955599c6
+-/
 lemma intCast_zsmul
     {H : Type v} [Group H]
     (n : ℤ) (ψ : ClassFun ℤ H) :
@@ -68,7 +72,9 @@ def IsIntValued (f : ClassFun k G) : Prop :=
   ∀ g : G, ∃ n : ℤ, f g = (n : k)
 
 /--
-Induction commutes with pointwise casting of integer-valued class functions.-/
+Induction commutes with pointwise casting of integer-valued class functions.
+@isnad1 id=eq.0h4v.s6.5305e0956ae5 from=translated src=- shape=546eb2f6 vocab=b1c62e60
+-/
 @[simp]
 lemma ind_mapIntCast
     (H : Subgroup G) [Finite G]
@@ -95,6 +101,9 @@ abbrev C_Z (k : Type u) [CommRing k]
     (G : Type v) [Group G] : Set (ClassFun k G) :=
   { f | ClassFun.IsIntValued f }
 
+/--
+@isnad1 id=iff.0h3v.s5.dfdc42858ac4 from=translated src=- shape=f165b349 vocab=10fa2ebf
+-/
 @[simp]
 lemma mem_C_Z {f : ClassFun k G} :
     f ∈ C_Z k G ↔ ClassFun.IsIntValued f :=
@@ -102,18 +111,27 @@ lemma mem_C_Z {f : ClassFun k G} :
 
 namespace C_Z
 
+/--
+@isnad1 id=mem.0h2v.s5.1a4bb08715a7 from=translated src=- shape=ee74871d vocab=cd160374
+-/
 lemma zero_mem :
     (0 : ClassFun k G) ∈ C_Z k G := by
   intro g
   refine ⟨0, ?_⟩
   simp
 
+/--
+@isnad1 id=mem.0h2v.s5.4198c045e17c from=translated src=- shape=ee74871d vocab=cd160374
+-/
 lemma one_mem :
     (1 : ClassFun k G) ∈ C_Z k G := by
   intro g
   refine ⟨1, ?_⟩
   simp
 
+/--
+@isnad1 id=mem.2h4v.s6.627c6b4f67f2 from=translated src=- shape=00fe3b30 vocab=628a56e9
+-/
 lemma add_mem {f g : ClassFun k G}
     (hf : f ∈ C_Z k G) (hg : g ∈ C_Z k G) :
     f + g ∈ C_Z k G := by
@@ -123,6 +141,9 @@ lemma add_mem {f g : ClassFun k G}
   refine ⟨m + n, ?_⟩
   simp [ClassFun.add_apply, hm, hn]
 
+/--
+@isnad1 id=mem.1h3v.s6.215280c708a3 from=translated src=- shape=fa4b5858 vocab=1b126001
+-/
 lemma neg_mem {f : ClassFun k G}
     (hf : f ∈ C_Z k G) :
     -f ∈ C_Z k G := by
@@ -131,11 +152,17 @@ lemma neg_mem {f : ClassFun k G}
   refine ⟨-m, ?_⟩
   simp [hm]
 
+/--
+@isnad1 id=mem.2h4v.s6.04c1a2e37143 from=translated src=- shape=00fe3b30 vocab=4db2adee
+-/
 lemma sub_mem {f g : ClassFun k G}
     (hf : f ∈ C_Z k G) (hg : g ∈ C_Z k G) :
     f - g ∈ C_Z k G := by
   simpa [sub_eq_add_neg] using add_mem hf (neg_mem hg)
 
+/--
+@isnad1 id=mem.1h4v.s6.9bfce3b3c2aa from=translated src=- shape=4e6d7de0 vocab=f5005062
+-/
 lemma zsmul_mem (n : ℤ) {f : ClassFun k G}
     (hf : f ∈ C_Z k G) :
     n • f ∈ C_Z k G := by
@@ -144,6 +171,9 @@ lemma zsmul_mem (n : ℤ) {f : ClassFun k G}
   refine ⟨n * m, ?_⟩
   simp [hm]
 
+/--
+@isnad1 id=mem.2h4v.s6.349386c12334 from=translated src=- shape=00fe3b30 vocab=1bf56436
+-/
 lemma mul_mem {f g : ClassFun k G}
     (hf : f ∈ C_Z k G) (hg : g ∈ C_Z k G) :
     f * g ∈ C_Z k G := by
@@ -153,6 +183,9 @@ lemma mul_mem {f g : ClassFun k G}
   refine ⟨m * n, ?_⟩
   simp [ClassFun.mul_apply, hm, hn]
 
+/--
+@isnad1 id=mem.1h4v.s6.1f2c6556451a from=translated src=- shape=b40cd6f9 vocab=fdf5c131
+-/
 lemma pow_mem {f : ClassFun k G}
     (hf : f ∈ ClassFun.C_Z k G) :
     ∀ n : ℕ, f ^ n ∈ ClassFun.C_Z k G := by
@@ -161,7 +194,9 @@ lemma pow_mem {f : ClassFun k G}
   | zero => simp only [pow_zero, Set.mem_ofPred_eq]; apply one_mem
   | succ n ih => simpa [pow_succ] using mul_mem ih hf
 
-/-- Integer-valued class functions remain integer-valued after restriction.-/
+/-- Integer-valued class functions remain integer-valued after restriction.
+@isnad1 id=mem.1h4v.s7.406c824c51c5 from=translated src=- shape=3faeca3e vocab=18288e71
+-/
 lemma res
     {G : Type v} [Group G]
     {H : Subgroup G} {g : ClassFun k G}
@@ -194,7 +229,9 @@ private lemma exists_int_cast_sum
 Induction preserves integer-valued class functions.
 
 The result is stated after restricting the induced class function to `⊤`, so
-that it is an element of `C_Z k (⊤ : Subgroup G)`.-/
+that it is an element of `C_Z k (⊤ : Subgroup G)`.
+@isnad1 id=mem.1h4v.s8.f2a94289bc5c from=translated src=- shape=9d7097ff vocab=6c13d737
+-/
 lemma ind_mem_C_Z
     {G : Type v} [Group G] [Finite G]
     {H : Subgroup G} {q : ClassFun k H}
@@ -227,7 +264,9 @@ lemma ind_mem_C_Z
   · refine ⟨0, ?_⟩
     simp [hmem]
 
-/-- Induction preserves integer-valued class functions.-/
+/-- Induction preserves integer-valued class functions.
+@isnad1 id=mem.1h4v.s7.1e245540262b from=translated src=- shape=5f72829e vocab=c656b8df
+-/
 lemma ind_mem
     {G : Type v} [Group G] [Finite G]
     {H : Subgroup G} {q : ClassFun k H}

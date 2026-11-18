@@ -40,6 +40,9 @@ noncomputable def inducedCharacter
   (i : BrauerLinGen k G) : ClassFun k G :=
     ClassFun.character (FDRep.indLin i.H i.ψ)
 
+/--
+@isnad1 id=eq.0h4v.s6.f9dcca25b428 from=translated src=- shape=9173c781 vocab=94e84ba7
+-/
 @[simp] lemma inducedCharacter_apply
     (i : BrauerLinGen k G) (g : G) :
     BrauerLinGen.inducedCharacter i g
@@ -56,7 +59,9 @@ def BrauerSpanLin : Submodule ℤ (ClassFun k G) :=
 
 /--
 Membership in `BrauerSpanLin` gives an explicit finite `ℤ`-linear combination
-of induced linear characters.-/
+of induced linear characters.
+@isnad1 id=ex.1h3v.s9.104480c27d9e from=translated src=- shape=fd827e79 vocab=da84b9ea
+-/
 theorem BrauerSpanLin.exists_decomposition
     {χ : ClassFun k G}
     (hχ : χ ∈ BrauerSpanLin) :

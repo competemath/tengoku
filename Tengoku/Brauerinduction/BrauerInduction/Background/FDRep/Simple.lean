@@ -25,7 +25,9 @@ section Schur
 
 /--
 The identity linear map on the underlying module of a simple object of `FDRep`
-is nonzero.-/
+is nonzero.
+@isnad1 id=ne.0h3v.s10.a6d7bdc8d34f from=translated src=- shape=f35cfdea vocab=f25cf241
+-/
 
 lemma linearMap_id_ne_zero_of_simple
     {k : Type u} [CommRing k] {G : Type v} [Monoid G]
@@ -41,7 +43,9 @@ lemma linearMap_id_ne_zero_of_simple
   exact congrArg (fun L : ρ →ₗ[k] ρ => L x) h0
 
 /--
-A simple object of `FDRep` has nontrivial underlying module.-/
+A simple object of `FDRep` has nontrivial underlying module.
+@isnad1 id=nontrivi.0h3v.s7.161459c9ee6c from=translated src=- shape=83e1d4de vocab=5e51e0d0
+-/
 theorem nontrivial_of_simple
     {k : Type u} [CommRing k] {G : Type v} [Monoid G]
     (V : FDRep k G) [Simple V] :
@@ -60,7 +64,9 @@ Scalar multiplication of the identity linear map is injective for a simple
 FD representation.
 
 Equivalently, if `a • id = b • id` as endomorphisms of the underlying module,
-then `a = b`.-/
+then `a = b`.
+@isnad1 id=injectiv.0h3v.s11.2f0837694a76 from=translated src=- shape=243503aa vocab=990bfeb4
+-/
 lemma smul_id_injective
     {k : Type u} [Field k] {G : Type v} [Monoid G]
     (ρ : FDRep k G) [Simple ρ] :
@@ -86,7 +92,9 @@ Schur's lemma for simple finite-dimensional representations:
 every endomorphism of a simple `FDRep` is a scalar multiple of the identity.
 
 This is the representation-theoretic form used later to show that central
-group elements act by scalars.-/
+group elements act by scalars.
+@isnad1 id=ex.0h4v.s11.a82109b10a20 from=translated src=- shape=d2139f48 vocab=2cd734a1
+-/
 lemma end_eq_smul_id_of_simple
    {k : Type u} [Field k] [IsAlgClosed k]
    {G : Type v} [Monoid G]
@@ -112,7 +120,9 @@ lemma end_eq_smul_id_of_simple
 open Classical in
 /--
 Schur's lemma in dimension form: the Hom space between two simple
-representations has dimension `1` if they are isomorphic and `0` otherwise.-/
+representations has dimension `1` if they are isomorphic and `0` otherwise.
+@isnad1 id=eq.0h4v.s9.f560f078192a from=translated src=- shape=91d73a00 vocab=09716d9d
+-/
 lemma finrank_hom_simple
     {k : Type u} [Field k] [IsAlgClosed k]
     {G : Type v} [Monoid G]
@@ -158,7 +168,9 @@ lemma finrank_hom_simple
 open Classical in
 /--
 The dimension of maps from a simple representation into a finite biproduct of
-simple representations is the number of summands isomorphic to it.-/
+simple representations is the number of summands isomorphic to it.
+@isnad1 id=eq.1h5v.s10.548a095d5e38 from=translated src=- shape=89898712 vocab=836b91b6
+-/
 lemma finrank_hom_to_biproduct_simple
     {k : Type u} [Field k] [IsAlgClosed k]
     {G : Type v} [Monoid G]
@@ -182,7 +194,9 @@ end Schur
 
 section homSpace
 /--
-There are no nonzero morphisms between nonisomorphic simple FD representations.-/
+There are no nonzero morphisms between nonisomorphic simple FD representations.
+@isnad1 id=eq.1h5v.s9.20c8a7d9a862 from=translated src=- shape=38c608ed vocab=25dedc73
+-/
 lemma hom_eq_zero_of_not_iso_simple
     {k : Type u} [Field k]
     {G : Type v} [Monoid G]
@@ -195,7 +209,9 @@ lemma hom_eq_zero_of_not_iso_simple
   exact h.false (asIso f)
 
 /--
-There are no nonzero morphisms between nonisomorphic simple FD representations.-/
+There are no nonzero morphisms between nonisomorphic simple FD representations.
+@isnad1 id=subsingl.1h4v.s8.c0a64f0f04fd from=translated src=- shape=2cc06108 vocab=cf5388f6
+-/
 lemma hom_subsingleton_of_not_iso_simple
     {k : Type u} [Field k]
     {G : Type v} [Monoid G]
@@ -215,7 +231,9 @@ lemma hom_subsingleton_of_not_iso_simple
 
 /--
 The Hom space between two nonisomorphic simple FD representations has dimension
-zero.-/
+zero.
+@isnad1 id=eq.1h4v.s9.88ccc8eb5873 from=translated src=- shape=25679e87 vocab=4b382fe7
+-/
 lemma finrank_hom_eq_zero_of_not_iso_simple
     {k : Type u} [Field k]
     {G : Type v} [Monoid G]
@@ -229,7 +247,9 @@ lemma finrank_hom_eq_zero_of_not_iso_simple
 /--
 The identity endomorphism of a simple FD representation is nonzero.
 
-This is the categorical version of `linearMap_id_ne_zero_of_simple`.-/
+This is the categorical version of `linearMap_id_ne_zero_of_simple`.
+@isnad1 id=ne.0h3v.s8.2e8e3e9a9b8c from=translated src=- shape=8d6e4d28 vocab=d0558e1e
+-/
 lemma id_hom_ne_zero_of_simple
     {k : Type u} [CommRing k]
     {G : Type v} [Monoid G]
@@ -243,7 +263,9 @@ lemma id_hom_ne_zero_of_simple
   simpa using hlin
 
 /--
-The endomorphism space of a simple FD representation has nonzero dimension.-/
+The endomorphism space of a simple FD representation has nonzero dimension.
+@isnad1 id=ne.0h3v.s9.bddd0236c4c5 from=translated src=- shape=99d15d9a vocab=a9031a1b
+-/
 lemma finrank_end_ne_zero_of_simple
     {k : Type u} [Field k]
     {G : Type v} [Monoid G]
@@ -255,6 +277,9 @@ lemma finrank_end_ne_zero_of_simple
   exact Nat.ne_of_gt hpos
 end homSpace
 
+/--
+@isnad1 id=ne.0h3v.s9.9abf714ef618 from=translated src=- shape=0a22bdd7 vocab=5e2328f9
+-/
 lemma finrank_end_cast_ne_zero_of_simple
     {k : Type u} [Field k] [CharZero k]
     {G : Type v} [Monoid G]
@@ -264,6 +289,9 @@ lemma finrank_end_cast_ne_zero_of_simple
 
 section QuotientLift
 
+/--
+@isnad1 id=simple.1h4v.s12.8b534b9a3a39 from=translated src=- shape=b2393bf4 vocab=1ba93e62
+-/
 lemma lift_simple_of_simple
     {k : Type u} [Field k]
     {G : Type u} [Group G]

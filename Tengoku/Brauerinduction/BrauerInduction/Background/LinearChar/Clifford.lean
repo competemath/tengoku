@@ -116,7 +116,9 @@ private lemma commutator_ne_one_of_mul_ne {G : Type v} [Group G]
 /--
 If the central kernel of a simple representation is trivial, and `A` is a
 normal abelian subgroup strictly larger than the center, then any linear
-character of `A` occurring in `ρ|_A` has proper inertia.-/
+character of `A` occurring in `ρ|_A` has proper inertia.
+@isnad1 id=ne.3h5v.s10.21991c1b4591 from=translated src=- shape=4981f9d7 vocab=72a97455
+-/
 theorem inertia_ne_top_of_centralKernel_eq_bot
     {k : Type u} [Field k] [IsAlgClosed k]
     {G : Type v} [Group G]

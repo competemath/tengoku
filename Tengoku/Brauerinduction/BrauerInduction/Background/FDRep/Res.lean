@@ -41,6 +41,9 @@ is the representation of `H` in which `h : H` acts as `ρ (φ h)`.-/
 noncomputable def comap (φ : H →* G) (ρ : FDRep k G) : FDRep k H :=
   FDRep.of (ρ.ρ.comp φ)
 
+/--
+@isnad1 id=eq.0h5v.s11.e1bdb6c75682 from=translated src=- shape=a58d246f vocab=6cb20ced
+-/
 @[simp]
 lemma comap_ρ (φ : H →* G) (ρ : FDRep k G) :
     (comap φ ρ).ρ = ρ.ρ.comp φ := by
@@ -55,7 +58,9 @@ lemma comap_ρ (φ : H →* G) (ρ : FDRep k G) :
     | (all_goals decide; done)
     | (all_goals tauto; done)
 
-/-- The dimension of a representation remains the same upon homomorphism restriction.-/
+/-- The dimension of a representation remains the same upon homomorphism restriction.
+@isnad1 id=eq.0h5v.s8.d7ecf4ecf0fe from=translated src=- shape=271bf2c7 vocab=7b0c6b84
+-/
 lemma finrank_comap (φ : H →* G) (σ : FDRep k G) :
     Module.finrank k (comap φ σ) = Module.finrank k σ := by
   rfl
@@ -73,6 +78,9 @@ noncomputable def comapMap (φ : H →* G) {ρ σ : FDRep k G} (f : ρ ⟶ σ) :
           ext x
           exact FDRep.homToLinearMap_comm f (φ h) x })
 
+/--
+@isnad1 id=eq.0h8v.s10.07a6d85c6a99 from=translated src=- shape=f2d9bd3a vocab=4bbb8cc8
+-/
 @[simp]
 lemma comapMap_homToLinearMap_apply
     (φ : H →* G) {ρ σ : FDRep k G} (f : ρ ⟶ σ)
@@ -81,6 +89,9 @@ lemma comapMap_homToLinearMap_apply
       FDRep.homToLinearMap (H := G) f x := by
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s9.e657517dc9c7 from=translated src=- shape=e392b817 vocab=d05d9acf
+-/
 @[simp] lemma comapMap_hom_toLinearMap (φ : H →* G) {ρ σ : FDRep k G} (f : ρ ⟶ σ) :
     FDRep.homToLinearMap (comapMap φ f) = FDRep.homToLinearMap f := rfl
 
@@ -134,11 +145,17 @@ Restrict a finite-dimensional representation of `G` to a subgroup `I`.-/
 noncomputable def res (ρ : FDRep k G) (I : Subgroup G) : FDRep k I :=
   comap I.subtype ρ
 
+/--
+@isnad1 id=eq.0h4v.s12.d32f80923502 from=translated src=- shape=aa2e8356 vocab=10aae566
+-/
 @[simp]
 lemma res_ρ (ρ : FDRep k G) (I : Subgroup G) :
     (res ρ I).ρ = ρ.ρ.comp I.subtype := by
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.63a818eb5a24 from=translated src=- shape=13e46a45 vocab=dba364ca
+-/
 lemma finrank_res (σ : FDRep k G) (I : Subgroup G) :
     Module.finrank k (res σ I) = Module.finrank k σ := rfl
 
@@ -161,17 +178,24 @@ variable {H : Type w} [CommRing k] [Monoid G] [Monoid H]
 noncomputable def transport (e : G ≃* H) (V : FDRep k G) : FDRep k H :=
   comap e.symm.toMonoidHom V
 
-/-- The dimension of a representation remains the same upon transport.-/
+/-- The dimension of a representation remains the same upon transport.
+@isnad1 id=eq.0h5v.s8.3855f618770d from=translated src=- shape=7d02da7f vocab=4c5b8701
+-/
 lemma finrank_transport (e : G ≃* H) (σ : FDRep k G) :
     Module.finrank k (transport e σ) = Module.finrank k σ := rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.52e98c0bcb3d from=translated src=- shape=c72cbf50 vocab=42d3f109
+-/
 @[simp]
 lemma transport_ρ (e : G ≃* H) (V : FDRep k G) :
     (transport e V).ρ = V.ρ.comp e.symm.toMonoidHom := by
   rfl
 
 /--
-Transport along a composite monoid isomorphism agrees definitionally with iterated transport.-/
+Transport along a composite monoid isomorphism agrees definitionally with iterated transport.
+@isnad1 id=eq.0h7v.s6.dfbbf6f992d6 from=translated src=- shape=fa50de0b vocab=f4e0353e
+-/
 lemma transport_trans {K : Type*} [Monoid K]
     (e₁ : G ≃* H) (e₂ : H ≃* K) (V : FDRep k G) :
     transport (e₁.trans e₂) V = transport e₂ (transport e₁ V) := rfl
@@ -181,6 +205,9 @@ noncomputable def transportMap (e : G ≃* H) {V W : FDRep k G} (f : V ⟶ W) :
     transport e V ⟶ transport e W :=
   comapMap e.symm.toMonoidHom f
 
+/--
+@isnad1 id=eq.0h7v.s9.42a70c2328f0 from=translated src=- shape=dff10888 vocab=ca967a64
+-/
 @[simp] lemma transportMap_hom_toLinearMap (e : G ≃* H) {V W : FDRep k G} (f : V ⟶ W) :
    FDRep.homToLinearMap (transportMap e f) = FDRep.homToLinearMap f := rfl
 
@@ -256,6 +283,9 @@ noncomputable def ofTopMap
     Subgroup.topEquiv
     f
 
+/--
+@isnad1 id=eq.0h6v.s11.3c586bc34cc0 from=translated src=- shape=ebcc7650 vocab=7686f0a4
+-/
 @[simp]
 lemma ofTopMap_homToLinearMap_apply
     {σ τ : FDRep k (⊤ : Subgroup G)}

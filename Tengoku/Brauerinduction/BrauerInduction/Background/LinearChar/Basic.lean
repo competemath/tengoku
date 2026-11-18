@@ -54,12 +54,18 @@ noncomputable def ofLinearChar (ψ : G →* kˣ) : FDRep k G :=
   }
   FDRep.of ρ
 
+/--
+@isnad1 id=eq.0h5v.s12.7e6162448e1c from=translated src=- shape=a853cb7e vocab=56152580
+-/
 @[simp] lemma ofLinearChar_rho_apply (ψ : G →* kˣ) (g : G) (x : k) :
     (ofLinearChar (k := k) ψ).ρ g x = (ψ g : k) * x := by
   simp only [ofLinearChar]
   change ↑(ψ g) * LinearMap.id x = ↑(ψ g) * x
   simp only [LinearMap.id_coe, id_eq]
 
+/--
+@isnad1 id=eq.0h4v.s7.165ffdf15655 from=translated src=- shape=48d676c2 vocab=17318035
+-/
 @[simp]
 lemma char_ofLinearChar {k : Type u} [Field k]
     (ψ : G →* kˣ) (g : G) :
@@ -82,6 +88,9 @@ lemma char_ofLinearChar {k : Type u} [Field k]
   simp only [LinearMap.smul_apply, LinearMap.id_coe, id_eq,
     smul_eq_mul, mul_one]
 
+/--
+@isnad1 id=eq.0h3v.s6.53d1d8c8b36c from=translated src=- shape=cc6bfe43 vocab=a0ab8994
+-/
 @[simp]
 theorem finrank_ofLinearChar
     {k : Type u} [Field k]
@@ -108,7 +117,9 @@ noncomputable def FDRep.transport_ofLinearChar_iso
     ofLinearChar (ψ.comp e.symm.toMonoidHom) := Iso.refl (transport e (ofLinearChar ψ))
 
 /--
-If two linear characters differ, they differ at some element.-/
+If two linear characters differ, they differ at some element.
+@isnad1 id=ex.1h5v.s10.1ec35f062766 from=translated src=- shape=78a3ed2a vocab=4484169e
+-/
 lemma LinearChar.exists_apply_ne
     {A : Subgroup G} {χ χ' : A →* kˣ} (hχ : χ ≠ χ') :
     ∃ a : A, (χ a : k) ≠ (χ' a : k) := by
@@ -119,6 +130,9 @@ lemma LinearChar.exists_apply_ne
   exact not_ne_iff.mp hnne
 
 open Classical in
+/--
+@isnad1 id=eq.0h4v.s9.19f31cc6ec0f from=translated src=- shape=5f6210a8 vocab=7d2b4a56
+-/
 @[simp]
 lemma LinearChar.char_ofTop_ulift_of
     {k : Type u} [Field k] [Finite G]

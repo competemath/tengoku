@@ -274,7 +274,9 @@ noncomputable def mackeyLeftResEndEquivEndOfMem
 
 /--
 If `g ∈ I`, then the Mackey Hom term over `g` has the same dimension as
-`End(σ)`.-/
+`End(σ)`.
+@isnad1 id=eq.1h5v.s11.0ba3b0c72435 from=translated src=- shape=6e8cef30 vocab=9206617c
+-/
 lemma finrank_mackeyHomTerm_eq_end_of_mem
     (I : Subgroup G)
     (σ : FDRep k I)
@@ -306,7 +308,9 @@ lemma finrank_mackeyHomTerm_eq_end_of_mem
 
 /--
 The Mackey Hom term for a representative of the identity double coset has the
-same dimension as `End(σ)`.-/
+same dimension as `End(σ)`.
+@isnad1 id=eq.0h4v.s11.47355ef8b6d5 from=translated src=- shape=5fa423d7 vocab=1c42fd41
+-/
 lemma finrank_mackeyHomTerm_oneDC_eq_end
     (I : Subgroup G)
     (σ : FDRep k I) :
