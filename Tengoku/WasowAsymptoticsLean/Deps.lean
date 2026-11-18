@@ -1,0 +1,1 @@
+-- WasowAsymptoticsLean: a factory bundle (data/intake/wasow-asymptotics-lean). This file only marks the library for Tengoku/All.lean.
