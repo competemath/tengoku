@@ -1,0 +1,20 @@
+import Tengoku.SharpIntermediateSubgroupBounds.SharpIntermediateSubgroupBounds.Blocks
+import Tengoku.SharpIntermediateSubgroupBounds.SharpIntermediateSubgroupBounds.Decimal
+import Tengoku.SharpIntermediateSubgroupBounds.SharpIntermediateSubgroupBounds.Escape
+import Tengoku.SharpIntermediateSubgroupBounds.SharpIntermediateSubgroupBounds.Gaussian
+import Tengoku.SharpIntermediateSubgroupBounds.SharpIntermediateSubgroupBounds.GroupMain
+import Tengoku.SharpIntermediateSubgroupBounds.SharpIntermediateSubgroupBounds.Manuscript
+import Tengoku.SharpIntermediateSubgroupBounds.SharpIntermediateSubgroupBounds.Packing
+import Tengoku.SharpIntermediateSubgroupBounds.SharpIntermediateSubgroupBounds.PrimePower
+import Tengoku.SharpIntermediateSubgroupBounds.SharpIntermediateSubgroupBounds.QBinomial
+import Tengoku.SharpIntermediateSubgroupBounds.SharpIntermediateSubgroupBounds.Theta
+import Tengoku.SharpIntermediateSubgroupBounds.SharpIntermediateSubgroupBounds.Tree
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Sharp bounds for intervals in finite subgroup lattices
+
+This is the root module of the formal certificate accompanying
+`sharp_intermediate_subgroup_bounds.tex`.
+-/

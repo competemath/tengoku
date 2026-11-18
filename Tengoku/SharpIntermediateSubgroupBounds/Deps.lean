@@ -1,0 +1,1 @@
+-- SharpIntermediateSubgroupBounds: a factory bundle (data/intake/sharp-intermediate-subgroup-bounds). This file only marks the library for Tengoku/All.lean.
