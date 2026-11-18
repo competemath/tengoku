@@ -253,5 +253,62 @@ class Requeue(unittest.TestCase):
         self.assertIn('gh(["pr", "merge", str(pr), "-R", repo, "--auto", "--match-head-commit", head], bot_token)', src)
 
 
+class Shell(unittest.TestCase):
+    """the one function that talks to gh: the token given to a call is used for that call only, and a failing call raises with gh's own words"""
+
+    def test_the_token_is_passed_for_that_call_only(self):
+        from unittest import mock
+
+        seen = []
+
+        def fake_run(cmd, **kw):
+            seen.append((cmd, kw["env"].get("GH_TOKEN")))
+            return type("R", (), {"returncode": 0, "stdout": "ok", "stderr": ""})()
+
+        with mock.patch.object(rl.subprocess, "run", fake_run), mock.patch.dict(rl.os.environ, {"GH_TOKEN": "job-token"}):
+            self.assertEqual(rl.sh(["pr", "view", "1"]), "ok")
+            self.assertEqual(rl.sh(["pr", "merge", "1"], "bot-token"), "ok")
+        self.assertEqual([t for _, t in seen], ["job-token", "bot-token"])
+        self.assertEqual(seen[0][0][0], "gh")
+
+    def test_a_failing_call_raises_with_the_words_of_gh(self):
+        from unittest import mock
+
+        def fake_run(cmd, **kw):
+            return type("R", (), {"returncode": 1, "stdout": "", "stderr": "HTTP 502: Bad Gateway"})()
+
+        with mock.patch.object(rl.subprocess, "run", fake_run):
+            with self.assertRaises(RuntimeError) as cm:
+                rl.sh(["api", "repos/x/y", "--jq", ".a"])
+        self.assertIn("HTTP 502", str(cm.exception))
+
+
+class OtherJobs(unittest.TestCase):
+    def test_a_run_without_exactly_one_queue_build_job_is_left_alone(self):
+        for jobs in (
+            [],
+            [{"id": 1, "name": "queue-gate", "conclusion": "failure", "steps": []}],
+            [{"id": 1, "name": "queue-build"}, {"id": 2, "name": "queue-build"}],
+        ):
+            writes = []
+
+            def gh(args, token=None, jobs=jobs):
+                if "/jobs" in " ".join(args):
+                    return json.dumps(jobs)
+                writes.append(args)
+                return ""
+
+            said = []
+            self.assertEqual(rl.main("1", BRANCHES[910], REPO, "t", gh=gh, say=said.append), 0)
+            self.assertEqual(writes, [])
+            self.assertIn("no single queue-build job", said[-1])
+
+    def test_the_failure_of_a_real_build_is_explained_on_the_pr_not_here(self):
+        f = Fake(notes=[NOTICE])
+        rc, said = f.run()
+        self.assertEqual((rc, f.writes), (0, []))
+        self.assertIn("did not lose its runner", said[-1])
+
+
 if __name__ == "__main__":
     unittest.main()
