@@ -8,6 +8,9 @@ noncomputable section
 open MeasureTheory Polynomial
 namespace XZMathieuSU2Counterexamples
 
+/--
+@isnad1 id=eq.0h2v.s7.4635c39b158f from=translated src=- shape=3d13c3ec vocab=b275c70b
+-/
 theorem beta_factorial (r s : ℕ) :
     (∫ x in (0 : ℝ)..1, (1-(x : ℂ))^r * (x : ℂ)^s) =
       (r.factorial : ℂ) * s.factorial / (r+s+1).factorial := by
@@ -39,6 +42,9 @@ def betaTriple : TriplePolynomial →ₐ[ℂ] Laurent :=
   MvPolynomial.aeval ![LaurentPolynomial.C (1-X),
     LaurentPolynomial.C X * LaurentPolynomial.T 1, -LaurentPolynomial.T (-1)]
 
+/--
+@isnad1 id=eq.0h3v.s15.41844e7ce639 from=translated src=- shape=e8fd7d8b vocab=99b84324
+-/
 theorem entryTriple_monomial (e : Fin 3 →₀ ℕ) (c : ℂ) (g : SU2) :
     (entryTriple (MvPolynomial.monomial e c)).val g =
       c * entryMonomial (e 0) (e 1) (e 2) (e 0) g := by
@@ -49,6 +55,9 @@ theorem entryTriple_monomial (e : Fin 3 →₀ ℕ) (c : ℂ) (g : SU2) :
   simp only [entryMonomial, mul_pow]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s9.924e7f214d22 from=translated src=- shape=0e8d3cc9 vocab=c0842a66
+-/
 theorem betaTriple_monomial (e : Fin 3 →₀ ℕ) (c : ℂ) :
     betaTriple (MvPolynomial.monomial e c) =
       LaurentPolynomial.C (C (c * (-1)^e 2) * (1-X)^e 0 * X^e 1) *
@@ -66,6 +75,9 @@ theorem betaTriple_monomial (e : Fin 3 →₀ ℕ) (c : ℂ) :
   simp only [mul_neg_one, mul_one]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s9.ee31a05cb13a from=translated src=- shape=2aaab992 vocab=440383e9
+-/
 theorem betaTriple_monomial_integral (e : Fin 3 →₀ ℕ) (c : ℂ) :
     integral (betaTriple (MvPolynomial.monomial e c)) =
       c * (if e 1 = e 2 then (-1 : ℂ)^e 1 *
@@ -82,7 +94,9 @@ theorem betaTriple_monomial_integral (e : Fin 3 →₀ ℕ) (c : ℂ) :
     simp [hh, h]
 
 /-- A normalized-Haar transfer theorem for every polynomial in ad,b,c.
-This includes every pure and marked power in Theorem 4.2.-/
+This includes every pure and marked power in Theorem 4.2.
+@isnad1 id=eq.0h1v.s16.9f5566cc00ef from=translated src=- shape=c38e7a3b vocab=01d357c2
+-/
 theorem su2_polynomial_transfer (P : TriplePolynomial) :
     representativeIntegral SU2 (entryTriple P) = integral (betaTriple P) := by
   induction P using MvPolynomial.induction_on' with

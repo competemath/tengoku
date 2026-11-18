@@ -21,6 +21,9 @@ instance : BorelSpace SU2 := ⟨rfl⟩
 def sphereMatrix (z : Sphere) : Matrix (Fin 2) (Fin 2) ℂ :=
   !![z.val.1, -star z.val.2; z.val.2, star z.val.1]
 
+/--
+@isnad1 id=mem.0h1v.s8.1a654138b327 from=translated src=- shape=24ff3666 vocab=55fd0ab3
+-/
 theorem sphereMatrix_mem (z : Sphere) : sphereMatrix z ∈ Matrix.specialUnitaryGroup (Fin 2) ℂ := by
   have hz : z.val.1 * star z.val.1 + z.val.2 * star z.val.2 = 1 := by
     simpa [a, Complex.normSq_eq_conj_mul_self, mul_comm] using congrArg Complex.ofReal z.property
@@ -35,11 +38,17 @@ theorem sphereMatrix_mem (z : Sphere) : sphereMatrix z ∈ Matrix.specialUnitary
 
 def sphereToSU2 (z : Sphere) : SU2 := ⟨sphereMatrix z, sphereMatrix_mem z⟩
 
+/--
+@isnad1 id=eq.0h1v.s9.8f50683fe89a from=translated src=- shape=49fff46b vocab=8d7f62fb
+-/
 theorem su2_star_eq_adjugate (g : SU2) : star g.val = g.val.adjugate := by
   have hg := Matrix.mem_specialUnitaryGroup_iff.mp g.property
   apply left_inv_eq_right_inv hg.1.1
   rw [Matrix.mul_adjugate, hg.2, one_smul]
 
+/--
+@isnad1 id=and.0h1v.s10.a5f6c126f063 from=translated src=- shape=28d008cd vocab=81ef8550
+-/
 theorem su2_entries (g : SU2) :
     g.val 0 1 = -star (g.val 1 0) ∧ g.val 1 1 = star (g.val 0 0) := by
   have h := su2_star_eq_adjugate g
@@ -51,6 +60,9 @@ theorem su2_entries (g : SU2) :
     simpa using h01
   · exact h00.symm
 
+/--
+@isnad1 id=eq.0h1v.s9.62ed7e994e20 from=translated src=- shape=73aefe4b vocab=f7b29272
+-/
 theorem su2_first_column (g : SU2) : a (g.val 0 0, g.val 1 0) = 1 := by
   have h := (Matrix.mem_specialUnitaryGroup_iff.mp g.property).1.1
   have h00 := congrArg (fun A : Matrix (Fin 2) (Fin 2) ℂ => A 0 0) h
@@ -99,12 +111,18 @@ def su2Linear (g : SU2) : Space ≃ₗ[ℂ] Space :=
       ⟨g.val, (Matrix.mem_specialUnitaryGroup_iff.mp g.property).1⟩).trans
       (LinearEquiv.finTwoArrow ℂ ℂ))
 
+/--
+@isnad1 id=eq.0h2v.s10.d64c1313dbc0 from=translated src=- shape=a7ce739c vocab=fcefa186
+-/
 theorem su2Linear_apply (g : SU2) (z : Space) :
     su2Linear g z = (g.val 0 0 * z.1 + g.val 0 1 * z.2,
       g.val 1 0 * z.1 + g.val 1 1 * z.2) := by
   change ((g.val *ᵥ ![z.1, z.2]) 0, (g.val *ᵥ ![z.1, z.2]) 1) = _
   simp [Matrix.mulVec, dotProduct, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.0h2v.s8.2b2ac183d9b5 from=translated src=- shape=d321f42b vocab=3b97d5d5
+-/
 theorem su2Linear_a (g : SU2) (z : Space) : a (su2Linear g z) = a z := by
   have h := su2_first_column g
   rw [su2Linear_apply, (su2_entries g).1, (su2_entries g).2]
@@ -115,10 +133,16 @@ theorem su2Linear_a (g : SU2) (z : Space) : a (su2Linear g z) = a z := by
     ring
   rw [heq, h, one_mul]
 
+/--
+@isnad1 id=eq.0h1v.s9.0d5febfa2159 from=translated src=- shape=bfaadbd4 vocab=26baeddb
+-/
 theorem su2Linear_one (z : Space) : su2Linear 1 z = z := by
   rw [su2Linear_apply]
   simp
 
+/--
+@isnad1 id=eq.0h3v.s11.2270a850cab7 from=translated src=- shape=b6c9ee7b vocab=a65ce8f6
+-/
 theorem su2Linear_mul (g h : SU2) (z : Space) :
     su2Linear (g * h) z = su2Linear g (su2Linear h z) := by
   simp only [su2Linear_apply, Submonoid.coe_mul, Matrix.mul_apply, Fin.sum_univ_two]
@@ -129,6 +153,9 @@ instance : MulAction SU2 Space where
   one_smul := su2Linear_one
   mul_smul := su2Linear_mul
 
+/--
+@isnad1 id=eq.0h2v.s11.8af853a2bbf1 from=translated src=- shape=066687b6 vocab=45e461e8
+-/
 theorem su2_smul_apply (g : SU2) (z : Space) :
     g • z = (g.val 0 0 * z.1 + g.val 0 1 * z.2,
       g.val 1 0 * z.1 + g.val 1 1 * z.2) := su2Linear_apply g z
@@ -155,14 +182,23 @@ instance : MulAction SU2 Sphere where
   one_smul z := Subtype.ext (one_smul SU2 z.val)
   mul_smul g h z := Subtype.ext (mul_smul g h z.val)
 
+/--
+@isnad1 id=eq.0h2v.s11.4055938cbc6d from=translated src=- shape=f9d8175d vocab=fe8a0098
+-/
 theorem su2_smul_val (g : SU2) (z : Sphere) : (g • z).val = g • z.val := rfl
 
 instance : ContinuousSMul SU2 Sphere where
   continuous_smul := continuous_induced_rng.mpr
     (continuous_fst.smul (continuous_subtype_val.comp continuous_snd))
 
+/--
+@isnad1 id=eq.0h2v.s10.a434c50cea8d from=translated src=- shape=a205788a vocab=a84a4ee6
+-/
 theorem su2_sphereAction (g : SU2) (z : Sphere) : sphereAction (su2Isometry g) z = g • z := rfl
 
+/--
+@isnad1 id=measurep.0h1v.s10.7d3ba350ea7e from=translated src=- shape=dea6ecd4 vocab=6f40e2a5
+-/
 theorem su2_surfaceMeasure_preserving (g : SU2) :
     MeasurePreserving (fun z : Sphere => g • z) surfaceMeasure surfaceMeasure :=
   surfaceMeasure_preserving (su2Isometry g)
@@ -170,10 +206,15 @@ theorem su2_surfaceMeasure_preserving (g : SU2) :
 instance : SMulInvariantMeasure SU2 Sphere surfaceMeasure where
   measure_preimage_smul g _S hS := (su2_surfaceMeasure_preserving g).measure_preimage hS.nullMeasurableSet
 
-/-- The explicit matrix carries the first basis vector to any prescribed unit vector.-/
+/-- The explicit matrix carries the first basis vector to any prescribed unit vector.
+@isnad1 id=eq.0h1v.s10.adc4ad486cca from=translated src=- shape=5830ada9 vocab=716772d9
+-/
 theorem sphereToSU2_smul (z : Sphere) : sphereToSU2 z • ((1, 0) : Space) = z.val := by
   simp [su2_smul_apply, sphereToSU2, sphereMatrix]
 
+/--
+@isnad1 id=ex.0h2v.s10.1c6ccf3c09b0 from=translated src=- shape=fa05eac0 vocab=e4919fdc
+-/
 theorem SU2_transitive_sphere (z w : Sphere) : ∃ g : SU2, g • z = w := by
   refine ⟨sphereToSU2 w * (sphereToSU2 z)⁻¹, ?_⟩
   apply Subtype.ext

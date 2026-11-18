@@ -24,6 +24,9 @@ instance : SecondCountableTopology Sphere :=
   inferInstanceAs (SecondCountableTopology {z : Space // a z = 1})
 instance : T2Space Sphere := inferInstanceAs (T2Space {z : Space // a z = 1})
 
+/--
+@isnad1 id=eq.0h1v.s5.394d7ae10dde from=translated src=- shape=287e60f1 vocab=1bc1950f
+-/
 theorem norm_sq_eq_a (z : EuclideanPair) : ‖z‖ ^ 2 = a (WithLp.ofLp z) := by
   simp [a, Complex.normSq_eq_norm_sq, WithLp.prod_norm_sq_eq_of_L2]
 
@@ -46,6 +49,9 @@ def sphereHomeomorph : Metric.sphere (0 : EuclideanPair) 1 ≃ₜ Sphere where
 
 instance : CompactSpace Sphere := sphereHomeomorph.compactSpace
 
+/--
+@isnad1 id=continuo.0h0v.s5.120383bf1369 from=translated src=- shape=54c8eceb vocab=2702fefe
+-/
 @[fun_prop] theorem continuous_a : Continuous a := by unfold a; fun_prop
 /-- Unnormalized Euclidean surface measure, from the cone construction.-/
 def euclideanSurface : Measure (Metric.sphere (0 : EuclideanPair) 1) :=
@@ -55,6 +61,9 @@ instance : IsFiniteMeasure euclideanSurface := by
   unfold euclideanSurface
   infer_instance
 
+/--
+@isnad1 id=ne.0h0v.s9.d34b9774485e from=translated src=- shape=68f605e7 vocab=fe27b809
+-/
 theorem euclideanSurface_ne_zero : euclideanSurface ≠ 0 :=
   Measure.toSphere_ne_zero _
 

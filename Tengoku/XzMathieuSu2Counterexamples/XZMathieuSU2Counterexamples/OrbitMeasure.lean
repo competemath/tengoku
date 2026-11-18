@@ -14,6 +14,9 @@ variable {G X : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
   [TopologicalSpace X] [SecondCountableTopology X] [MeasurableSpace X] [BorelSpace X]
   [MulAction G X] [ContinuousSMul G X]
 
+/--
+@isnad1 id=measurep.1h4v.s7.835597787a58 from=translated src=- shape=14d6d367 vocab=510eb2b9
+-/
 theorem measurePreserving_transitive_orbit (μ : Measure X) [IsProbabilityMeasure μ]
     [SMulInvariantMeasure G X μ]
     (htrans : ∀ x y : X, ∃ g : G, g • x = y) (z : X) :

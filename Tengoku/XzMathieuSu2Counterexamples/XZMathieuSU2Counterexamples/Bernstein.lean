@@ -12,6 +12,9 @@ noncomputable section
 open MeasureTheory Polynomial
 namespace XZMathieuSU2Counterexamples
 
+/--
+@isnad1 id=eq.1h2v.s7.f0a412edb777 from=translated src=- shape=1ff550e8 vocab=26b9f646
+-/
 theorem bernstein_integral (m j : ℕ) (hj : j ≤ m) :
     ∫ t in (0 : ℝ)..1, (m.choose j : ℂ) * (t : ℂ) ^ j * (1 - (t : ℂ)) ^ (m - j) =
       1 / (m + 1 : ℂ) := by
@@ -46,6 +49,9 @@ def xzA : ScalarLaurent := 1 - LaurentPolynomial.T (-1)
 def xzFamily (t : ℂ) : ScalarLaurent :=
   xzA * (LaurentPolynomial.C t * LaurentPolynomial.T 1 + LaurentPolynomial.C (1 - t))
 
+/--
+@isnad1 id=eq.0h2v.s7.0238ad1091e7 from=translated src=- shape=8a8a6751 vocab=39f13e14
+-/
 theorem xzFamily_pow (t : ℂ) (m : ℕ) :
     xzFamily t ^ m = ∑ j ∈ Finset.range (m + 1),
       LaurentPolynomial.C ((m.choose j : ℂ) * t ^ j * (1 - t) ^ (m - j)) *
@@ -56,12 +62,18 @@ theorem xzFamily_pow (t : ℂ) (m : ℕ) :
   simp only [mul_pow, LaurentPolynomial.T_pow, mul_one, map_mul, map_pow, map_natCast]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s7.4ac133afc550 from=translated src=- shape=1710cca3 vocab=7db6e8f3
+-/
 theorem scalarLaurent_C_mul_coeff (c : ℂ) (f : ScalarLaurent) (k : ℤ) :
     (LaurentPolynomial.C c * f).coeff k = c * f.coeff k := by
   change (AddMonoidAlgebra.single 0 c * f).coeff k = _
   rw [AddMonoidAlgebra.coeff_single_mul_apply]
   simp
 
+/--
+@isnad1 id=eq.0h2v.s7.a876861e5ba4 from=translated src=- shape=2b8cb125 vocab=0374b599
+-/
 theorem xzFamily_integrated_coeff (m : ℕ) (k : ℤ) :
     ∫ t in (0 : ℝ)..1, (xzFamily (t : ℂ) ^ m).coeff k =
       (1 / (m + 1 : ℂ)) * (xzA ^ m * ∑ j ∈ Finset.range (m + 1), LaurentPolynomial.T (j : ℤ)).coeff k := by
@@ -77,16 +89,25 @@ theorem xzFamily_integrated_coeff (m : ℕ) (k : ℤ) :
       (m.choose j : ℂ) * (t : ℂ)^j * (1 - (t : ℂ))^(m-j) *
         (xzA^m * LaurentPolynomial.T (j : ℤ)).coeff k)).intervalIntegrable (μ := volume) 0 1
 
+/--
+@isnad1 id=eq.0h3v.s6.16369aaa2eb4 from=translated src=- shape=d0d92c5a vocab=aa40c56b
+-/
 theorem scalarLaurent_mul_T_coeff (f : ScalarLaurent) (i k : ℤ) :
     (f * LaurentPolynomial.T i).coeff k = f.coeff (k - i) := by
   simp only [LaurentPolynomial.T, AddMonoidAlgebra.coeff_mul_single_apply, mul_one, sub_eq_add_neg]
 
+/--
+@isnad1 id=eq.0h2v.s7.2182c61cdbd0 from=translated src=- shape=84cdad77 vocab=5ea8a2e8
+-/
 theorem xzA_pow_coeff_succ (m : ℕ) (k : ℤ) :
     (xzA ^ (m + 1)).coeff k = (xzA ^ m).coeff k - (xzA ^ m).coeff (k + 1) := by
   rw [pow_succ, xzA, mul_sub, mul_one, AddMonoidAlgebra.coeff_sub, Finsupp.sub_apply,
     scalarLaurent_mul_T_coeff]
   rfl
 
+/--
+@isnad1 id=eq.1h2v.s6.3405fa5a4dc6 from=translated src=- shape=93bf1b46 vocab=2dcd7cc5
+-/
 theorem xzA_pow_coeff_outside (m : ℕ) (k : ℤ) (hk : k < -(m : ℤ) ∨ 0 < k) :
     (xzA ^ m).coeff k = 0 := by
   induction m generalizing k with
@@ -97,6 +118,9 @@ theorem xzA_pow_coeff_outside (m : ℕ) (k : ℤ) (hk : k < -(m : ℤ) ∨ 0 < k
   | succ m ih =>
     rw [xzA_pow_coeff_succ, ih k (by omega), ih (k + 1) (by omega), sub_self]
 
+/--
+@isnad1 id=eq.0h1v.s6.990e1ae3b93b from=translated src=- shape=9e86c663 vocab=cba884d7
+-/
 theorem xzA_pow_coeff_bottom (m : ℕ) : (xzA ^ m).coeff (-(m : ℤ)) = (-1 : ℂ) ^ m := by
   induction m with
   | zero => simp
@@ -106,6 +130,9 @@ theorem xzA_pow_coeff_bottom (m : ℕ) : (xzA ^ m).coeff (-(m : ℤ)) = (-1 : �
     rw [hk, ih, pow_succ]
     ring
 
+/--
+@isnad1 id=eq.0h1v.s6.5d59c8735746 from=translated src=- shape=d10a5afa vocab=780167b0
+-/
 theorem xzA_geometric_sum (m : ℕ) :
     xzA * ∑ j ∈ Finset.range (m + 1), (LaurentPolynomial.T (j : ℤ) : ScalarLaurent) =
       LaurentPolynomial.T (m : ℤ) - LaurentPolynomial.T (-1) := by
@@ -121,6 +148,9 @@ theorem xzA_geometric_sum (m : ℕ) :
     rw [xzA, sub_mul, one_mul, hh]
     ring
 
+/--
+@isnad1 id=eq.1h1v.s6.86fb7406e0c6 from=translated src=- shape=66e709d8 vocab=b233a977
+-/
 theorem xzFamily_integral_pure (m : ℕ) (hm : 1 ≤ m) :
     ∫ t in (0 : ℝ)..1, (xzFamily (t : ℂ) ^ m).coeff 0 = 0 := by
   obtain ⟨l, rfl⟩ : ∃ l, m = l + 1 := ⟨m - 1, by omega⟩
@@ -130,6 +160,9 @@ theorem xzFamily_integral_pure (m : ℕ) (hm : 1 ≤ m) :
   rw [xzA_pow_coeff_outside l _ (Or.inl (by omega)),
     xzA_pow_coeff_outside l _ (Or.inr (by omega)), sub_self, mul_zero]
 
+/--
+@isnad1 id=eq.1h1v.s7.4d11ca1ee179 from=translated src=- shape=e2dc37ad vocab=0d4faf4a
+-/
 theorem xzFamily_integral_marked (m : ℕ) (hm : 1 ≤ m) :
     ∫ t in (0 : ℝ)..1, (xzFamily (t : ℂ) ^ m).coeff 1 = (-1 : ℂ) ^ (m - 1) / (m + 1 : ℂ) := by
   obtain ⟨l, rfl⟩ : ∃ l, m = l + 1 := ⟨m - 1, by omega⟩
@@ -141,7 +174,9 @@ theorem xzFamily_integral_marked (m : ℕ) (hm : 1 ≤ m) :
   rw [hk, xzA_pow_coeff_bottom]
   simp [div_eq_mul_inv, mul_comm]
 
-/-- The exact Bernstein average, for every complex value of the Laurent variable.-/
+/-- The exact Bernstein average, for every complex value of the Laurent variable.
+@isnad1 id=eq.0h2v.s7.f9377ab16552 from=translated src=- shape=6640332a vocab=f321708a
+-/
 theorem bernstein_average (n : ℕ) (z : ℂ) :
     (∫ x in (0 : ℝ)..1, ((1-(x : ℂ)) + (x : ℂ)*z)^n) =
       (1/(n+1 : ℂ)) * ∑ k ∈ Finset.range (n+1), z^k := by

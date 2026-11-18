@@ -9,6 +9,9 @@ noncomputable section
 open MeasureTheory
 namespace XZMathieuSU2Counterexamples.Hopf
 
+/--
+@isnad1 id=eq.0h2v.s6.f10aa090f8c1 from=translated src=- shape=91d9c3a3 vocab=502dacf7
+-/
 theorem normSq_phase (r θ : ℝ) :
     Complex.normSq ((r : ℂ) * Complex.exp (Complex.I * θ)) = r ^ 2 := by
   rw [Complex.normSq_mul, Complex.normSq_ofReal]
@@ -17,6 +20,9 @@ theorem normSq_phase (r θ : ℝ) :
 def diagonalPhase (θ : ℝ) : SU2 := sphereToSU2 ⟨(Complex.exp (Complex.I * θ), 0), by
   simpa [a] using normSq_phase 1 θ⟩
 
+/--
+@isnad1 id=eq.0h2v.s10.efb73e3ed5e1 from=translated src=- shape=98f8141f vocab=018c64fc
+-/
 theorem diagonalPhase_smul (θ : ℝ) (z : Sphere) :
     (diagonalPhase θ • z).val =
       (Complex.exp (Complex.I * θ) * z.val.1,
@@ -29,9 +35,15 @@ def coordinateMonomial (α β γ δ : ℕ) (z : Space) : ℂ :=
 def sphereMonomial (α β γ δ : ℕ) (z : Sphere) : ℂ :=
   coordinateMonomial α β γ δ z.val
 
+/--
+@isnad1 id=continuo.0h4v.s4.54ef1fb4604a from=translated src=- shape=b8ec122f vocab=b08ca3c5
+-/
 @[fun_prop] theorem continuous_sphereMonomial (α β γ δ : ℕ) :
     Continuous (sphereMonomial α β γ δ) := by unfold sphereMonomial coordinateMonomial; fun_prop
 
+/--
+@isnad1 id=eq.0h6v.s10.62040d8ba3a2 from=translated src=- shape=0d8a4822 vocab=fe814571
+-/
 theorem sphereMonomial_phase (α β γ δ : ℕ) (θ : ℝ) (z : Sphere) :
     sphereMonomial α β γ δ (diagonalPhase θ • z) =
       Complex.exp (((α : ℂ) + δ - β - γ) * Complex.I * θ) * sphereMonomial α β γ δ z := by
@@ -50,6 +62,9 @@ theorem sphereMonomial_phase (α β γ δ : ℕ) (θ : ℝ) (z : Sphere) :
   simp only [sphereMonomial, coordinateMonomial, diagonalPhase_smul, mul_pow, star_mul, star_star, pow_add]
   ring
 
+/--
+@isnad1 id=eq.1h4v.s5.aad6e3c6f0a1 from=translated src=- shape=b591912e vocab=559820ac
+-/
 theorem sphereMonomial_integral_zero (α β γ δ : ℕ) (h : α + δ ≠ β + γ) :
     (∫ z, sphereMonomial α β γ δ z ∂surfaceMeasure) = 0 := by
   let n : ℝ := (α : ℝ) + δ - β - γ
@@ -70,6 +85,9 @@ theorem sphereMonomial_integral_zero (α β γ δ : ℕ) (h : α + δ ≠ β + �
   rw [integral_const_mul] at heq
   linear_combination -heq / 2
 
+/--
+@isnad1 id=eq.0h6v.s6.d89fb2eb4f47 from=translated src=- shape=3dd9f24d vocab=28113889
+-/
 theorem coordinateMonomial_real_smul (α β γ δ : ℕ) (r : ℝ) (z : Space) :
     coordinateMonomial α β γ δ ((r : ℂ) • z) =
       (r : ℂ) ^ (α + β + γ + δ) * coordinateMonomial α β γ δ z := by
@@ -81,14 +99,23 @@ theorem coordinateMonomial_real_smul (α β γ δ : ℕ) (r : ℝ) (z : Space) :
 def scaledSU2Action (v z : Space) : Space :=
   (v.1 * z.1 - star v.2 * z.2, v.2 * z.1 + star v.1 * z.2)
 
+/--
+@isnad1 id=eq.0h3v.s5.04e7a6d07098 from=translated src=- shape=5cc3aba6 vocab=c92952f2
+-/
 theorem scaledSU2Action_real_smul (r : ℝ) (v z : Space) :
     scaledSU2Action ((r : ℂ) • v) z = (r : ℂ) • scaledSU2Action v z := by
   ext <;> simp [scaledSU2Action] <;> ring
 
+/--
+@isnad1 id=eq.0h2v.s10.889a3d81f026 from=translated src=- shape=c843b7b4 vocab=5f8dfb94
+-/
 theorem scaledSU2Action_unit (w : Sphere) (z : Space) :
     scaledSU2Action w.val z = sphereToSU2 w • z := by
   simp [scaledSU2Action, su2_smul_apply, sphereToSU2, sphereMatrix, sub_eq_add_neg]
 
+/--
+@isnad1 id=eq.1h5v.s6.9d01f78e6c3c from=translated src=- shape=ce012b66 vocab=3b9b75b0
+-/
 theorem coordinateMonomial_scaled_integral_zero (α β γ δ : ℕ)
     (h : α + δ ≠ β + γ) (v : Space) :
     (∫ z : Sphere, coordinateMonomial α β γ δ (scaledSU2Action v z.val) ∂surfaceMeasure) = 0 := by

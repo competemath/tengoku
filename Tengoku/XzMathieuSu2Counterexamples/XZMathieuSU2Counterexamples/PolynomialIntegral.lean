@@ -12,6 +12,9 @@ namespace XZMathieuSU2Counterexamples.Hopf
 def integrateCoefficients (p : Polynomial C(Sphere, ℂ)) : Polynomial ℂ :=
   ∑ n ∈ p.support, monomial n (∫ z, p.coeff n z ∂surfaceMeasure)
 
+/--
+@isnad1 id=eq.0h2v.s7.1ba1410adc7f from=translated src=- shape=0b687aa5 vocab=e5bcc368
+-/
 theorem integrateCoefficients_coeff (p : Polynomial C(Sphere, ℂ)) (n : ℕ) :
     (integrateCoefficients p).coeff n = ∫ z, p.coeff n z ∂surfaceMeasure := by
   classical
@@ -21,6 +24,9 @@ theorem integrateCoefficients_coeff (p : Polynomial C(Sphere, ℂ)) (n : ℕ) :
   · rfl
   · simp [notMem_support_iff.mp h]
 
+/--
+@isnad1 id=eq.0h2v.s7.edf585f919ee from=translated src=- shape=ea4811aa vocab=9536fce8
+-/
 theorem integrateCoefficients_eval (p : Polynomial C(Sphere, ℂ)) (c : ℂ) :
     (integrateCoefficients p).eval c =
       ∫ z, (p.eval (ContinuousMap.const Sphere c)) z ∂surfaceMeasure := by
@@ -38,6 +44,9 @@ theorem integrateCoefficients_eval (p : Polynomial C(Sphere, ℂ)) (c : ℂ) :
     exact ((p.coeff n).continuous.mul continuous_const).integrable_of_hasCompactSupport
       (HasCompactSupport.of_compactSpace _)
 
+/--
+@isnad1 id=eq.1h1v.s7.2ca83051114d from=translated src=- shape=4a1d2059 vocab=2e3b3e87
+-/
 theorem integrateCoefficients_eq_zero (p : Polynomial C(Sphere, ℂ))
     (h : ∀ t : ℝ, (∫ z, (p.eval (ContinuousMap.const Sphere (t : ℂ))) z ∂surfaceMeasure) = 0) :
     integrateCoefficients p = 0 := by

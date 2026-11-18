@@ -22,6 +22,9 @@ def euclideanSphereAction (e : EuclideanPair ≃ₗᵢ[ℝ] EuclideanPair) :
   continuous_toFun := continuous_induced_rng.mpr (e.continuous.comp continuous_subtype_val)
   continuous_invFun := continuous_induced_rng.mpr (e.symm.continuous.comp continuous_subtype_val)
 
+/--
+@isnad1 id=eq.0h2v.s11.d9649007d039 from=translated src=- shape=0921027c vocab=f309a0c9
+-/
 theorem surface_cone_preimage (e : EuclideanPair ≃ₗᵢ[ℝ] EuclideanPair)
     (S : Set (Metric.sphere (0 : EuclideanPair) 1)) :
     Set.Ioo (0 : ℝ) 1 • (Subtype.val '' (euclideanSphereAction e ⁻¹' S)) =
@@ -38,6 +41,9 @@ theorem surface_cone_preimage (e : EuclideanPair ≃ₗᵢ[ℝ] EuclideanPair)
     · apply e.injective
       simpa using heq
 
+/--
+@isnad1 id=measurep.0h1v.s11.0d3ccab51d1a from=translated src=- shape=792254a8 vocab=4cb1c0de
+-/
 theorem euclideanSurface_preserving (e : EuclideanPair ≃ₗᵢ[ℝ] EuclideanPair) :
     MeasurePreserving (euclideanSphereAction e) euclideanSurface euclideanSurface := by
   refine ⟨(euclideanSphereAction e).measurable, ?_⟩
@@ -51,6 +57,9 @@ theorem euclideanSurface_preserving (e : EuclideanPair ≃ₗᵢ[ℝ] EuclideanP
 def sphereAction (e : EuclideanPair ≃ₗᵢ[ℝ] EuclideanPair) : Sphere ≃ₜ Sphere :=
   sphereHomeomorph.symm.trans ((euclideanSphereAction e).trans sphereHomeomorph)
 
+/--
+@isnad1 id=measurep.0h1v.s8.fbe2637119d5 from=translated src=- shape=a3c14ddc vocab=188a0411
+-/
 theorem surfaceMeasure_preserving (e : EuclideanPair ≃ₗᵢ[ℝ] EuclideanPair) :
     MeasurePreserving (sphereAction e) surfaceMeasure surfaceMeasure := by
   refine ⟨(sphereAction e).measurable, ?_⟩

@@ -20,6 +20,9 @@ def multiEval {k l : ℕ} (x : Fin l → ℝ) (z : Fin k → Circle) : MultiLaur
   AddMonoidAlgebra.liftNCRingHom (MvPolynomial.eval (fun i => (x i : ℂ)))
     (torusMonomialHom z) (fun _ _ => Commute.all _ _)
 
+/--
+@isnad1 id=eq.0h6v.s8.dcd938281ce5 from=translated src=- shape=3c4d9f9b vocab=647fce29
+-/
 theorem multiEval_single {k l : ℕ} (x : Fin l → ℝ) (z : Fin k → Circle)
     (e : Fin k → ℤ) (p : MvPolynomial (Fin l) ℂ) :
     multiEval x z (AddMonoidAlgebra.single e p) =
@@ -27,6 +30,9 @@ theorem multiEval_single {k l : ℕ} (x : Fin l → ℝ) (z : Fin k → Circle)
   rw [multiEval, AddMonoidAlgebra.liftNCRingHom_single]
   rfl
 
+/--
+@isnad1 id=continuo.0h4v.s7.d83c547b7f26 from=translated src=- shape=c4c8f77a vocab=963135bb
+-/
 theorem multiEval_continuous {k l : ℕ} (x : Fin l → ℝ) (f : MultiLaurent k l) :
     Continuous (fun z : Fin k → Circle => multiEval x z f) := by
   induction f using AddMonoidAlgebra.induction_linear with
@@ -43,6 +49,9 @@ theorem multiEval_continuous {k l : ℕ} (x : Fin l → ℝ) (f : MultiLaurent k
     exact (continuous_subtype_val.comp (continuous_apply j)).zpow₀ (e j)
       (fun z => Or.inl (Circle.coe_ne_zero (z j)))
 
+/--
+@isnad1 id=eq.0h4v.s8.c55f6089c8a8 from=translated src=- shape=d1b8614c vocab=1a71112a
+-/
 theorem multiCircle_constantTerm {k l : ℕ} (x : Fin l → ℝ) (f : MultiLaurent k l) :
     (∫ z, multiEval x z f ∂torusMeasure k) = MvPolynomial.eval (fun i => (x i : ℂ)) (f.coeff 0) := by
   classical
@@ -68,7 +77,9 @@ theorem multiCircle_constantTerm {k l : ℕ} (x : Fin l → ℝ) (f : MultiLaure
       rw [hp]
       simp [AddMonoidAlgebra.coeff_single, he]
 
-/-- Padding is the usual inclusion using exactly one interval and torus coordinate.-/
+/-- Padding is the usual inclusion using exactly one interval and torus coordinate.
+@isnad1 id=eq.0h7v.s8.65211bf6ea47 from=translated src=- shape=33d63a41 vocab=a9d829d7
+-/
 theorem pad_eval {k l : ℕ} (j : Fin k) (i : Fin l) (f : Laurent)
     (x : Fin l → ℝ) (z : Fin k → Circle) :
     multiEval x z (pad j i f) = circleEval (z j) (specialize (x i : ℂ) f) := by

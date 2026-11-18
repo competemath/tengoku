@@ -12,6 +12,9 @@ namespace XZMathieuSU2Counterexamples
 instance : MeasurableSpace Circle := borel Circle
 instance : BorelSpace Circle := ⟨rfl⟩
 
+/--
+@isnad1 id=eq.0h1v.s7.c718e1b33a88 from=translated src=- shape=17385a46 vocab=b6679516
+-/
 theorem circle_zpow_integral (k : ℤ) :
     (∫ z : Circle, (z : ℂ)^k ∂normalizedHaar Circle) = if k = 0 then 1 else 0 := by
   by_cases hk : k = 0
@@ -32,10 +35,16 @@ theorem circle_zpow_integral (k : ℤ) :
 def circleEval (z : Circle) : ScalarLaurent →+* ℂ :=
   LaurentPolynomial.eval₂ (RingHom.id ℂ) (Circle.toUnits z)
 
+/--
+@isnad1 id=eq.0h3v.s7.dbadc70f5035 from=translated src=- shape=52814bd7 vocab=73eb255d
+-/
 theorem circleEval_monomial (z : Circle) (k : ℤ) (c : ℂ) :
     circleEval z (LaurentPolynomial.C c * LaurentPolynomial.T k) = c * (z : ℂ)^k := by
   simp [circleEval]
 
+/--
+@isnad1 id=continuo.0h1v.s5.bd02d35e685c from=translated src=- shape=8daa5237 vocab=390c27cb
+-/
 @[fun_prop] theorem circleEval_continuous (f : ScalarLaurent) :
     Continuous (fun z : Circle => circleEval z f) := by
   induction f using LaurentPolynomial.induction_on' with
@@ -50,6 +59,9 @@ theorem circleEval_monomial (z : Circle) (k : ℤ) (c : ℂ) :
     simp_rw [circleEval_monomial]
     exact continuous_const.mul (continuous_subtype_val.zpow₀ k (fun z => Or.inl (Circle.coe_ne_zero z)))
 
+/--
+@isnad1 id=eq.0h1v.s6.8436564e38e4 from=translated src=- shape=ec58d2d5 vocab=7dc59885
+-/
 theorem circle_constantTerm (f : ScalarLaurent) :
     (∫ z : Circle, circleEval z f ∂normalizedHaar Circle) = f.coeff 0 := by
   induction f using LaurentPolynomial.induction_on' with
@@ -65,7 +77,9 @@ theorem circle_constantTerm (f : ScalarLaurent) :
       Finsupp.single_apply]
     split_ifs <;> simp_all
 
-/-- Equation I-def with genuine normalized circle Haar measure.-/
+/-- Equation I-def with genuine normalized circle Haar measure.
+@isnad1 id=eq.0h1v.s7.f12d0df6e0bb from=translated src=- shape=d64fa779 vocab=f558915e
+-/
 theorem integral_eq_interval_circle (f : Laurent) : integral f =
     ∫ x in (0 : ℝ)..1, ∫ z : Circle, circleEval z (specialize (x : ℂ) f) ∂normalizedHaar Circle := by
   simp only [circle_constantTerm, specialize_coeff, integral]

@@ -17,6 +17,9 @@ variable {G X : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
   [TopologicalSpace X] [T2Space X] [SecondCountableTopology X] [MeasurableSpace X] [BorelSpace X]
   [MulAction G X] [ContinuousSMul G X]
 
+/--
+@isnad1 id=integrab.2h4v.s7.60cff01e453c from=translated src=- shape=42b65179 vocab=e7a565d1
+-/
 theorem integrable_orbit_function (μ : Measure X) [IsFiniteMeasure μ]
     (hμ : IsCompact μ.support) {f : X → ℂ} (hf : Continuous f) :
     Integrable (fun p : G × X => f (p.1 • p.2)) ((normalizedHaar G).prod μ) := by
@@ -33,7 +36,9 @@ theorem integrable_orbit_function (μ : Measure X) [IsFiniteMeasure μ]
 
 omit [T2Space G] [T2Space X] in
 /-- Averaging a measure-preserving action against a probability Haar measure
-preserves the measure, including for merely measurable test functions.-/
+preserves the measure, including for merely measurable test functions.
+@isnad1 id=measurep.0h3v.s7.4c0187de389a from=translated src=- shape=d344c8d6 vocab=7dcf6daa
+-/
 theorem measurePreserving_smul_prod (μ : Measure X) [IsFiniteMeasure μ]
     [SMulInvariantMeasure G X μ] :
     MeasurePreserving (fun p : G × X => p.1 • p.2) ((normalizedHaar G).prod μ) μ := by
@@ -49,7 +54,9 @@ theorem measurePreserving_smul_prod (μ : Measure X) [IsFiniteMeasure μ]
 
 omit [T2Space G] [T2Space X] in
 /-- The manuscript's orbit averaging identity for every μ-integrable complex
-function. Product integrability follows from invariance, rather than being assumed.-/
+function. Product integrability follows from invariance, rather than being assumed.
+@isnad1 id=eq.1h4v.s7.996bfbc0737b from=translated src=- shape=9e425391 vocab=bc35695d
+-/
 theorem orbit_average_integrable (μ : Measure X) [IsFiniteMeasure μ]
     [SMulInvariantMeasure G X μ] {f : X → ℂ} (hf : Integrable f μ) :
     (∫ x, (∫ g, f (g • x) ∂normalizedHaar G) ∂μ) = ∫ x, f x ∂μ := by
@@ -58,7 +65,9 @@ theorem orbit_average_integrable (μ : Measure X) [IsFiniteMeasure μ]
   simp only [integral_smul_eq_self]
   simp
 
-/-- Orbit averaging with no unproved Fubini or integrability assumption.-/
+/-- Orbit averaging with no unproved Fubini or integrability assumption.
+@isnad1 id=eq.2h4v.s7.7487b48541bd from=translated src=- shape=935e90ca vocab=6451b1b4
+-/
 theorem orbit_average (μ : Measure X) [IsFiniteMeasure μ] [SMulInvariantMeasure G X μ]
     (hμ : IsCompact μ.support) {f : X → ℂ} (hf : Continuous f) :
     (∫ x, (∫ g, f (g • x) ∂normalizedHaar G) ∂μ) = ∫ x, f x ∂μ := by

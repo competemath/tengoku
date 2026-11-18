@@ -16,7 +16,9 @@ def IsMathieuSubspace (M : Submodule K A) : Prop :=
   ∀ f : A, (∀ m : ℕ, 1 ≤ m → f ^ m ∈ M) →
     ∀ h : A, ∃ N : ℕ, ∀ m : ℕ, N ≤ m → h * f ^ m ∈ M
 
-/-- A single fixed multiplier detecting every positive power refutes the condition.-/
+/-- A single fixed multiplier detecting every positive power refutes the condition.
+@isnad1 id=not.2h5v.s8.74e613f289b0 from=translated src=- shape=bb76e7cb vocab=7a65387f
+-/
 theorem not_isMathieuSubspace_of_witness (M : Submodule K A) (f h : A)
     (hpure : ∀ m : ℕ, 1 ≤ m → f ^ m ∈ M)
     (hmarked : ∀ m : ℕ, 1 ≤ m → h * f ^ m ∉ M) :
@@ -25,7 +27,9 @@ theorem not_isMathieuSubspace_of_witness (M : Submodule K A) (f h : A)
   obtain ⟨N, hN⟩ := hM f hpure h
   exact hmarked (max N 1) (le_max_right _ _) (hN _ (le_max_left _ _))
 
-/-- The condition is inherited by the inverse image under an algebra homomorphism.-/
+/-- The condition is inherited by the inverse image under an algebra homomorphism.
+@isnad1 id=ismathie.1h5v.s7.909f205dd18b from=translated src=- shape=455e2834 vocab=32406ae0
+-/
 theorem IsMathieuSubspace.comap {M : Submodule K B} (hM : IsMathieuSubspace M)
     (φ : A →ₐ[K] B) : IsMathieuSubspace (M.comap φ.toLinearMap) := by
   intro f hf h
@@ -34,7 +38,9 @@ theorem IsMathieuSubspace.comap {M : Submodule K B} (hM : IsMathieuSubspace M)
 
 /-- A compatible functional transports a witness along an algebra homomorphism.
 For quotient pullback the homomorphism goes from functions on the quotient to
-functions on the source. Existence of that homomorphism is a separate obligation.-/
+functions on the source. Existence of that homomorphism is a separate obligation.
+@isnad1 id=not.3h8v.s10.001fef2946a8 from=translated src=- shape=432e1980 vocab=a57a92a9
+-/
 theorem counterexample_pullback (φ : A →ₐ[K] B) (I : A →ₗ[K] K) (J : B →ₗ[K] K)
     (hcompat : ∀ f, J (φ f) = I f) (f h : A)
     (hpure : ∀ m : ℕ, 1 ≤ m → I (f ^ m) = 0)

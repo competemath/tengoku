@@ -25,6 +25,9 @@ def circuitMonomial (d : ℤ) (μ : ℂ) (hμ : μ ≠ 0) : Multiplicative ℤ �
 def circuitMap (d : ℤ) (μ : ℂ) (hμ : μ ≠ 0) : Laurent →+* Laurent :=
   AddMonoidAlgebra.liftNCRingHom LC (circuitMonomial d μ hμ) (fun _ _ => Commute.all _ _)
 
+/--
+@isnad1 id=eq.1h4v.s8.175847dea755 from=translated src=- shape=4d70f7d4 vocab=bd14a8dc
+-/
 theorem circuitMap_single (d k : ℤ) (μ : ℂ) (hμ : μ ≠ 0) (p : ℂ[X]) :
     circuitMap d μ hμ (LC p * LT k) = LC (p * C (μ ^ (-k))) * LT (d*k) := by
   rw [← LaurentPolynomial.single_eq_C_mul_T]
@@ -32,14 +35,23 @@ theorem circuitMap_single (d k : ℤ) (μ : ℂ) (hμ : μ ≠ 0) (p : ℂ[X]) :
   change LC p * (LC (C (μ ^ (-k))) * LT (d*k)) = _
   rw [map_mul, mul_assoc]
 
+/--
+@isnad1 id=eq.1h3v.s7.45d41c22b8eb from=translated src=- shape=46ae5d88 vocab=44aeef8f
+-/
 theorem circuitMap_C (d : ℤ) (μ : ℂ) (hμ : μ ≠ 0) (p : ℂ[X]) :
     circuitMap d μ hμ (LC p) = LC p := by
   simpa using circuitMap_single d 0 μ hμ p
 
+/--
+@isnad1 id=eq.1h3v.s8.981bd3e552f9 from=translated src=- shape=73bc17f8 vocab=bd14a8dc
+-/
 theorem circuitMap_T (d k : ℤ) (μ : ℂ) (hμ : μ ≠ 0) :
     circuitMap d μ hμ (LT k) = LC (C (μ ^ (-k))) * LT (d*k) := by
   simpa using circuitMap_single d k μ hμ 1
 
+/--
+@isnad1 id=eq.2h4v.s8.fe5984989ce3 from=translated src=- shape=33141ca5 vocab=7995a170
+-/
 theorem circuitMap_coeff (d : ℤ) (hd : d ≠ 0) (μ : ℂ) (hμ : μ ≠ 0)
     (f : Laurent) (k : ℤ) :
     (circuitMap d μ hμ f).coeff (d*k) = f.coeff k * C (μ ^ (-k)) := by
@@ -53,11 +65,17 @@ theorem circuitMap_coeff (d : ℤ) (hd : d ≠ 0) (μ : ℂ) (hμ : μ ≠ 0)
     · subst j; rfl
     · simp
 
+/--
+@isnad1 id=eq.1h3v.s7.897d45b891c7 from=translated src=- shape=4afb263c vocab=929bb65a
+-/
 theorem circuit_eq_map (d : ℤ) (lam μ : ℂ) (hμ : μ ≠ 0) :
     circuit d lam μ = LC (C lam) * circuitMap d μ hμ basic := by
   simp [basic, circuit, circuitMap_C, circuitMap_T, map_mul]
   ring
 
+/--
+@isnad1 id=eq.2h5v.s8.9affc6266af1 from=translated src=- shape=23eab7ac vocab=5d51a68c
+-/
 theorem circuit_moment_coeff (d : ℤ) (hd : d ≠ 0) (lam μ : ℂ) (hμ : μ ≠ 0)
     (n : ℕ) (k : ℤ) :
     (circuit d lam μ ^ n).coeff (d*k) = C (lam^n * μ^(-k)) * (basic ^ n).coeff k := by
@@ -70,6 +88,9 @@ theorem circuit_moment_coeff (d : ℤ) (hd : d ≠ 0) (lam μ : ℂ) (hμ : μ �
   rw [circuitMap_coeff d hd μ hμ, map_mul]
   ring
 
+/--
+@isnad1 id=eq.3h4v.s6.fd64cdb0ea6a from=translated src=- shape=adefe359 vocab=ced83b03
+-/
 theorem circuit_pure (d : ℤ) (hd : 1 ≤ d) (lam μ : ℂ) (hμ : μ ≠ 0)
     (n : ℕ) (hn : 1 ≤ n) : integral (circuit d lam μ ^ n) = 0 := by
   have hc := circuit_moment_coeff d (by omega) lam μ hμ n 0
@@ -79,6 +100,9 @@ theorem circuit_pure (d : ℤ) (hd : 1 ≤ d) (lam μ : ℂ) (hμ : μ ≠ 0)
   change lam ^ n * integral (basic ^ n) = 0
   rw [basic_pure n hn, mul_zero]
 
+/--
+@isnad1 id=eq.3h4v.s7.04f55c32c8fc from=translated src=- shape=c2d0285a vocab=39ce1242
+-/
 theorem circuit_marked (d : ℤ) (hd : 1 ≤ d) (lam μ : ℂ) (hμ : μ ≠ 0)
     (n : ℕ) (hn : 1 ≤ n) :
     integral (LT (-d) * circuit d lam μ ^ n) = (-1 : ℂ)^(n-1) * lam^n * μ⁻¹ / (n+1) := by
@@ -96,6 +120,9 @@ theorem circuit_marked (d : ℤ) (hd : 1 ≤ d) (lam μ : ℂ) (hμ : μ ≠ 0)
   rw [hb]
   ring
 
+/--
+@isnad1 id=eq.1h3v.s9.b5bd7d1762fa from=translated src=- shape=26f6437c vocab=b49ee04f
+-/
 theorem circuit_expansion (d : ℤ) (lam μ : ℂ) (hμ : μ ≠ 0) :
     circuit d lam μ = LC (C (lam*μ⁻¹) * X) * LT d + LC (C lam * (1-2*X)) -
       LC (C (lam*μ) * (1-X)) * LT (-d) := by
@@ -106,6 +133,9 @@ theorem circuit_expansion (d : ℤ) (lam μ : ℂ) (hμ : μ ≠ 0) :
   linear_combination -LC (C lam) * LC X * (LC (C μ) * LC (C μ⁻¹)) * ht -
     LC (C lam) * LC X * hu
 
+/--
+@isnad1 id=eq.1h4v.s8.a9ac9b80ea13 from=translated src=- shape=b75d7baf vocab=10973c2a
+-/
 theorem circuit_coeff (d k : ℤ) (lam μ : ℂ) (hμ : μ ≠ 0) :
     (circuit d lam μ).coeff k =
       (if k = d then C (lam*μ⁻¹) * X else 0) +
@@ -117,6 +147,9 @@ theorem circuit_coeff (d k : ℤ) (lam μ : ℂ) (hμ : μ ≠ 0) :
     AddMonoidAlgebra.coeff_single, LaurentPolynomial.C_apply, Finsupp.single_apply]
   simp [eq_comm]
 
+/--
+@isnad1 id=eq.3h3v.s6.4edb90771096 from=translated src=- shape=f4861c5c vocab=2a9e4599
+-/
 theorem circuit_spectrum (d : ℤ) (hd : 1 ≤ d) (lam μ : ℂ) (hlam : lam ≠ 0) (hμ : μ ≠ 0) :
     (circuit d lam μ).coeff.support = {-d,0,d} := by
   classical
@@ -142,6 +175,9 @@ theorem circuit_spectrum (d : ℤ) (hd : 1 ≤ d) (lam μ : ℂ) (hlam : lam ≠
     simpa using hn
   · simp [hkd, hk0, hkn]
 
+/--
+@isnad1 id=ne.4h4v.s6.a110287d5f01 from=translated src=- shape=0a13d3c3 vocab=65599f40
+-/
 theorem circuit_marked_ne_zero (d : ℤ) (hd : 1 ≤ d) (lam μ : ℂ)
     (hlam : lam ≠ 0) (hμ : μ ≠ 0) (n : ℕ) (hn : 1 ≤ n) :
     integral (LT (-d) * circuit d lam μ ^ n) ≠ 0 := by
@@ -149,7 +185,9 @@ theorem circuit_marked_ne_zero (d : ℤ) (hd : 1 ≤ d) (lam μ : ℂ)
   exact div_ne_zero (mul_ne_zero (mul_ne_zero (pow_ne_zero _ (by norm_num))
     (pow_ne_zero _ hlam)) (inv_ne_zero hμ)) (by exact_mod_cast Nat.succ_ne_zero n)
 
-/-- Proposition 3.1, preserving all three parameters and exact coefficients.-/
+/-- Proposition 3.1, preserving all three parameters and exact coefficients.
+@isnad1 id=and.3h3v.s8.938ad39dd74e from=translated src=- shape=4fbc758f vocab=85f97aee
+-/
 theorem circuit_family (d : ℤ) (hd : 1 ≤ d) (lam μ : ℂ) (hlam : lam ≠ 0) (hμ : μ ≠ 0) :
     (circuit d lam μ).coeff.support = {-d,0,d} ∧
     (∀ n : ℕ, 1 ≤ n → integral (circuit d lam μ ^ n) = 0) ∧

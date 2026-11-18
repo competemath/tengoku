@@ -9,6 +9,9 @@ noncomputable section
 open MeasureTheory
 namespace XZMathieuSU2Counterexamples
 
+/--
+@isnad1 id=continuo.1h2v.s6.e4a1411edd18 from=translated src=- shape=c2512e7d vocab=a6b182e5
+-/
 theorem continuous_circle_integral {X : Type*} [TopologicalSpace X]
     [FirstCountableTopology X] [LocallyCompactSpace X] {f : X → Circle → ℂ}
     (hf : Continuous f.uncurry) : Continuous (fun x => ∫ z, f x z ∂normalizedHaar Circle) := by
@@ -32,6 +35,9 @@ def betaAverage (P : CoordinatePolynomial) (x : ℝ) : ℂ :=
 
 def betaIntegral (P : CoordinatePolynomial) : ℂ := ∫ x in (0 : ℝ)..1, betaAverage P x
 
+/--
+@isnad1 id=continuo.0h1v.s6.996094e05d39 from=translated src=- shape=8b7ca759 vocab=e4838407
+-/
 theorem betaEval_continuous (P : CoordinatePolynomial) :
     Continuous (fun v : (ℝ × Circle) × Circle => betaEval P v.1.1 v.1.2 v.2) := by
   apply P.continuous_eval.comp
@@ -39,17 +45,29 @@ theorem betaEval_continuous (P : CoordinatePolynomial) :
   intro i
   fin_cases i <;> dsimp [betaPoint] <;> fun_prop (disch := intro v; exact Circle.coe_ne_zero _)
 
+/--
+@isnad1 id=continuo.0h1v.s6.9ab6bf287714 from=translated src=- shape=c886f089 vocab=a90710e9
+-/
 theorem betaInner_continuous (P : CoordinatePolynomial) :
     Continuous (fun v : ℝ × Circle => ∫ z₂, betaEval P v.1 v.2 z₂ ∂normalizedHaar Circle) :=
   continuous_circle_integral (betaEval_continuous P)
 
+/--
+@isnad1 id=continuo.0h1v.s4.41cf2f130cd7 from=translated src=- shape=7000f90d vocab=50fe9b48
+-/
 theorem betaAverage_continuous (P : CoordinatePolynomial) : Continuous (betaAverage P) :=
   continuous_circle_integral (betaInner_continuous P)
 
+/--
+@isnad1 id=eq.0h5v.s6.27f319838d0d from=translated src=- shape=e20a4d51 vocab=d5e0ab6a
+-/
 theorem betaEval_add (P Q : CoordinatePolynomial) (x : ℝ) (z₁ z₂ : Circle) :
     betaEval (P+Q) x z₁ z₂ = betaEval P x z₁ z₂ + betaEval Q x z₁ z₂ := by
   simp [betaEval]
 
+/--
+@isnad1 id=eq.0h3v.s5.1b7ae1b2ca61 from=translated src=- shape=897af36f vocab=b1d3348e
+-/
 theorem betaAverage_add (P Q : CoordinatePolynomial) (x : ℝ) :
     betaAverage (P+Q) x = betaAverage P x + betaAverage Q x := by
   have hi (P : CoordinatePolynomial) (z₁ : Circle) :
@@ -64,11 +82,17 @@ theorem betaAverage_add (P Q : CoordinatePolynomial) (x : ℝ) :
   simp_rw [betaEval_add, integral_add (hi P _) (hi Q _)]
   exact integral_add (hj P) (hj Q)
 
+/--
+@isnad1 id=eq.0h2v.s5.61683061bf08 from=translated src=- shape=0438c7a3 vocab=f01b7863
+-/
 theorem betaIntegral_add (P Q : CoordinatePolynomial) : betaIntegral (P+Q) = betaIntegral P + betaIntegral Q := by
   simp only [betaIntegral, betaAverage_add]
   exact intervalIntegral.integral_add ((betaAverage_continuous P).intervalIntegrable 0 1)
     ((betaAverage_continuous Q).intervalIntegrable 0 1)
 
+/--
+@isnad1 id=eq.0h3v.s15.4ddd08757a25 from=translated src=- shape=e8fd7d8b vocab=7fda7d8b
+-/
 theorem entryCoordinates_monomial (e : Fin 4 →₀ ℕ) (c : ℂ) (g : SU2) :
     (entryCoordinates (MvPolynomial.monomial e c)).val g =
       c * entryMonomial (e 0) (e 1) (e 2) (e 3) g := by
@@ -78,6 +102,9 @@ theorem entryCoordinates_monomial (e : Fin 4 →₀ ℕ) (c : ℂ) (g : SU2) :
   simp only [entryMonomial]
   ring
 
+/--
+@isnad1 id=eq.0h5v.s9.0f474fc7ed8d from=translated src=- shape=e1f2c89c vocab=9628c7d0
+-/
 theorem betaEval_monomial (e : Fin 4 →₀ ℕ) (c : ℂ) (x : ℝ) (z₁ z₂ : Circle) :
     betaEval (MvPolynomial.monomial e c) x z₁ z₂ =
       (c * (-1 : ℂ)^e 2 * (1-(x : ℂ))^e 0 * (x : ℂ)^e 1) *
@@ -90,6 +117,9 @@ theorem betaEval_monomial (e : Fin 4 →₀ ℕ) (c : ℂ) (x : ℝ) (z₁ z₂ 
   simp only [zpow_sub₀ (Circle.coe_ne_zero _), zpow_natCast, div_eq_mul_inv, inv_pow, mul_pow]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s10.eb59b0cb6230 from=translated src=- shape=377cbc47 vocab=84ce6dd0
+-/
 theorem betaAverage_monomial (e : Fin 4 →₀ ℕ) (c : ℂ) (x : ℝ) :
     betaAverage (MvPolynomial.monomial e c) x =
       if e 0 = e 3 ∧ e 1 = e 2 then c * (-1 : ℂ)^e 1 * (1-(x : ℂ))^e 0 * (x : ℂ)^e 1 else 0 := by
@@ -98,6 +128,9 @@ theorem betaAverage_monomial (e : Fin 4 →₀ ℕ) (c : ℂ) (x : ℝ) :
   by_cases h0 : e 0 = e 3 <;> by_cases h1 : e 1 = e 2
   all_goals simp [h0, h1, sub_eq_zero, integral_const_mul, circle_zpow_integral]
 
+/--
+@isnad1 id=eq.0h2v.s10.75d102112ee7 from=translated src=- shape=64328905 vocab=ccfbe2d1
+-/
 theorem betaIntegral_monomial (e : Fin 4 →₀ ℕ) (c : ℂ) :
     betaIntegral (MvPolynomial.monomial e c) = c *
       (if e 0 = e 3 ∧ e 1 = e 2 then
@@ -109,7 +142,9 @@ theorem betaIntegral_monomial (e : Fin 4 →₀ ℕ) (c : ℂ) :
     rw [intervalIntegral.integral_const_mul, intervalIntegral.integral_const_mul, beta_factorial]
   · simp [h]
 
-/-- Lemma 4.1 for every polynomial in all four matrix entries.-/
+/-- Lemma 4.1 for every polynomial in all four matrix entries.
+@isnad1 id=eq.0h1v.s16.f2ae7a8f0b43 from=translated src=- shape=e0556fc0 vocab=6d6b925b
+-/
 theorem su2_integration (P : CoordinatePolynomial) :
     representativeIntegral SU2 (entryCoordinates P) = betaIntegral P := by
   induction P using MvPolynomial.induction_on' with
@@ -119,6 +154,9 @@ theorem su2_integration (P : CoordinatePolynomial) :
     rw [integral_const_mul, su2_monomial, betaIntegral_monomial]
   | add P Q hP hQ => rw [map_add, map_add, hP, hQ, betaIntegral_add]
 
+/--
+@isnad1 id=eq.0h2v.s15.2507d04b4faf from=translated src=- shape=51bcd369 vocab=885a46d4
+-/
 theorem entryCoordinates_apply (P : CoordinatePolynomial) (g : SU2) :
     (entryCoordinates P).val g =
       MvPolynomial.eval ![g.val 0 0, g.val 1 0, g.val 0 1, g.val 1 1] P := by
@@ -135,7 +173,9 @@ theorem entryCoordinates_apply (P : CoordinatePolynomial) (g : SU2) :
     rw [hP]
     fin_cases i <;> rfl
 
-/-- Literal manuscript-facing version of Lemma 4.1.-/
+/-- Literal manuscript-facing version of Lemma 4.1.
+@isnad1 id=eq.0h1v.s11.10685b6ac6a9 from=translated src=- shape=2a69b766 vocab=6a6532b4
+-/
 theorem su2_integration_formula (P : CoordinatePolynomial) :
     (∫ g : SU2, MvPolynomial.eval ![g.val 0 0, g.val 1 0, g.val 0 1, g.val 1 1] P
       ∂normalizedHaar SU2) =
