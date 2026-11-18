@@ -14,6 +14,9 @@ set_option autoImplicit false
 
 open Polynomial IsLocalRing
 
+/--
+@isnad1 id=ex.4h5v.s10.663d33a48e95 from=translated src=- shape=4b21496a vocab=7077afc8
+-/
 theorem solution
     {𝒪 : Type} [CommRing 𝒪] [IsDomain 𝒪] [IsDiscreteValuationRing 𝒪]
     {F : Type} [Field F] [Algebra 𝒪 F] (hinj : Function.Injective (algebraMap 𝒪 F))

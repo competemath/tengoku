@@ -13,6 +13,9 @@ universe u
 
 namespace TensorLocalC1
 
+/--
+@isnad1 id=islocalh.0h2v.s7.330ffcc761e7 from=translated src=- shape=81daee25 vocab=70b49dae
+-/
 theorem isLocalHom_algebraMap (R R' : Type*) [CommRing R] [IsLocalRing R] [CommRing R'] [IsLocalRing R']
     [Algebra R R'] [Module.Finite R R'] : IsLocalHom (algebraMap R R') := by
   refine ⟨fun a ha => ?_⟩
@@ -25,6 +28,9 @@ theorem isLocalHom_algebraMap (R R' : Type*) [CommRing R] [IsLocalRing R] [CommR
     rw [heq]; exact (IsLocalRing.mem_maximalIdeal _).mpr h
   exact (IsLocalRing.mem_maximalIdeal _).mp (Ideal.mem_comap.mp ha') ha
 
+/--
+@isnad1 id=ex.0h3v.s8.f271f2cffa6c from=translated src=- shape=4d2b6de9 vocab=64a3203d
+-/
 theorem exists_algHom_ker_eq (R : Type u) [CommRing R] [IsLocalRing R]
     [IsAlgClosed (IsLocalRing.ResidueField R)]
     (S : Type u) [CommRing S] [Algebra R S] [Module.Finite R S] (M : Ideal S) [M.IsMaximal] :
@@ -53,6 +59,9 @@ theorem exists_algHom_ker_eq (R : Type u) [CommRing R] [IsLocalRing R]
   change e.symm (Ideal.Quotient.mk M s) = 0 ↔ s ∈ M
   rw [EmbeddingLike.map_eq_zero_iff, Ideal.Quotient.eq_zero_iff_mem]
 
+/--
+@isnad1 id=islocalr.0h2v.s6.d9c3342cdc49 from=translated src=- shape=0afec77a vocab=0393a7fb
+-/
 theorem isLocalRing_of_subsingleton_algHom (R : Type u) [CommRing R] [IsLocalRing R]
     [IsAlgClosed (IsLocalRing.ResidueField R)]
     (S : Type u) [CommRing S] [Algebra R S] [Module.Finite R S] [Nontrivial S]
@@ -63,6 +72,9 @@ theorem isLocalRing_of_subsingleton_algHom (R : Type u) [CommRing R] [IsLocalRin
   obtain ⟨χ₀, hχ₀⟩ := exists_algHom_ker_eq R S M₀
   rw [← hχ, ← hχ₀, Subsingleton.elim χ χ₀]
 
+/--
+@isnad1 id=subsingl.0h2v.s6.1932a850d52a from=translated src=- shape=017c9ed6 vocab=c0ed6f52
+-/
 theorem subsingleton_algHom_of_isLocalRing (R : Type u) [CommRing R] [IsLocalRing R]
     [IsAlgClosed (IsLocalRing.ResidueField R)]
     (A : Type u) [CommRing A] [Algebra R A] [Module.Finite R A] [IsLocalRing A] :
@@ -105,6 +117,9 @@ theorem subsingleton_algHom_of_isLocalRing (R : Type u) [CommRing R] [IsLocalRin
     rw [← sub_add_cancel x (algebraMap R A r), map_add, hk χ₂ _ hr, zero_add, AlgHom.commutes]
   rw [e1, e2]
 
+/--
+@isnad1 id=nonempty.0h2v.s6.19dee17bea7b from=translated src=- shape=017c9ed6 vocab=12c0c56d
+-/
 theorem nonempty_algHom_of_isLocalRing (R : Type u) [CommRing R] [IsLocalRing R]
     [IsAlgClosed (IsLocalRing.ResidueField R)]
     (A : Type u) [CommRing A] [Algebra R A] [Module.Finite R A] [IsLocalRing A] :
@@ -116,6 +131,9 @@ end TensorLocalC1
 
 open TensorLocalC1 in
 
+/--
+@isnad1 id=islocalr.0h3v.s7.30897b72eb4f from=translated src=- shape=054c1ea0 vocab=cf9137b0
+-/
 theorem solution
     (R : Type u) [CommRing R] [IsLocalRing R] [IsAlgClosed (IsLocalRing.ResidueField R)]
     (A : Type u) [CommRing A] [Algebra R A] [Module.Finite R A] [IsLocalRing A]

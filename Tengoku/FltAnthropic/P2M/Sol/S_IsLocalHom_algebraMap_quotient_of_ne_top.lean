@@ -8,6 +8,9 @@ namespace P2MW.S_IsLocalHom_algebraMap_quotient_of_ne_top
 
 open IsLocalRing
 
+/--
+@isnad1 id=islocalh.1h3v.s8.8b3c646924cd from=translated src=- shape=f0d62174 vocab=cd50dab9
+-/
 theorem solution
     {𝒪 A : Type} [CommRing 𝒪] [CommRing A] [IsLocalRing A] [Algebra 𝒪 A]
     [IsLocalHom (algebraMap 𝒪 A)] (I : Ideal A) (hI : I ≠ ⊤) :

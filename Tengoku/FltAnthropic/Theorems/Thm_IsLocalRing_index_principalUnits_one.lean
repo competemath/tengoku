@@ -8,5 +8,8 @@ import Tengoku.FltAnthropic.P2M.Sol.S_IsLocalRing_index_principalUnits_one
 
 set_option autoImplicit false
 open IsLocalRing
+/--
+@isnad1 id=eq.0h1v.s6.06836955d354 from=translated src=- shape=2c3438e0 vocab=dc784e61
+-/
 theorem IsLocalRing.index_principalUnits_one {R : Type*} [CommRing R] [IsLocalRing R] :
     (principalUnits R 1).index = Nat.card (ResidueField R)ˣ := by exact @_root_.P2MW.S_IsLocalRing_index_principalUnits_one.solution R _ _

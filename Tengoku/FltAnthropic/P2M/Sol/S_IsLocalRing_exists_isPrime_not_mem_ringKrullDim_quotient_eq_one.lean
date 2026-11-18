@@ -18,6 +18,9 @@ theorem eq_bot_of_height_eq_zero {R : Type u} [CommRing R] [IsDomain R] {q : Ide
   rw [Ideal.height_eq_zero_iff] at h
   exact le_bot_iff.mp (h.2 ⟨Ideal.isPrime_bot, bot_le⟩ bot_le)
 
+/--
+@isnad1 id=ex.2h2v.s7.ba11f81257fd from=translated src=- shape=9656b838 vocab=feb50568
+-/
 theorem exists_isPrime_ne_bot_ne_maximalIdeal_not_mem
     {R : Type u} [CommRing R] [IsDomain R] [IsNoetherianRing R] [IsLocalRing R]
     (h2 : ¬ (maximalIdeal R).height ≤ 1) (s : R) (hs : s ≠ 0) :
@@ -92,6 +95,9 @@ theorem exists_isPrime_ne_bot_ne_maximalIdeal_not_mem
 
 end CoheightOneGC5
 
+/--
+@isnad1 id=ex.2h2v.s7.2be680097d89 from=translated src=- shape=b8d4676e vocab=b0514aa9
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsDomain R] [IsNoetherianRing R] [IsLocalRing R] (hR : ¬ IsField R)
     (s : R) (hs : s ≠ 0) :

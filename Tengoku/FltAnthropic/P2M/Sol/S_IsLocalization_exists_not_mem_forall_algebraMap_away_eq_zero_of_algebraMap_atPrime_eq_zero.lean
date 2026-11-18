@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=ex.0h2v.s9.91168880d860 from=translated src=- shape=79c1cc59 vocab=76b98f00
+-/
 theorem solution
     {S : Type u} [CommRing S] [IsNoetherianRing S] (𝔭 : PrimeSpectrum S) :
     ∃ g : S, g ∉ 𝔭.asIdeal ∧ ∀ x : S, algebraMap S (Localization.AtPrime 𝔭.asIdeal) x = 0 →

@@ -7,6 +7,9 @@ namespace P2MW.S_IsLocalRing_ker_quotient_mk_comp_algebraMap_eq_maximalIdeal_pow
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.1h3v.s10.3715829da96c from=translated src=- shape=40c564be vocab=01254d74
+-/
 theorem solution
     {R S : Type*} [CommRing R] [CommRing S]
     [IsLocalRing R] [IsLocalRing S] [Algebra R S] [IsLocalHom (algebraMap R S)] [Module.Flat R S]

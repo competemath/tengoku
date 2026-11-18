@@ -20,8 +20,14 @@ variable {K : Type*} [Field K] [NumberField K]
 local notation "M " K:70 => (4 / π) ^ nrComplexPlaces K *
   ((finrank ℚ K)! / (finrank ℚ K) ^ (finrank ℚ K) * √|discr K|)
 
+/--
+@isnad1 id=fact.0h0v.s2.15e87fe6585e from=translated src=- shape=8d7dbbf6 vocab=c1c9ca6d
+-/
 scoped instance fact_prime_seven : Fact (Nat.Prime 7) := ⟨by norm_num⟩
 
+/--
+@isnad1 id=eq.0h0v.s6.26539f3a2817 from=translated src=- shape=86fc15d4 vocab=60e1ded4
+-/
 lemma floor_minkowskiBound_seven : ⌊(4 / π) ^ 3 * (6! / 6 ^ 6 * √16807)⌋₊ = 4 := by
   refine (floor_eq_iff (by positivity)).mpr ⟨?_, ?_⟩
   · calc
@@ -39,6 +45,9 @@ lemma floor_minkowskiBound_seven : ⌊(4 / π) ^ 3 * (6! / 6 ^ 6 * √16807)⌋�
 
 variable [IsCyclotomicExtension {7} ℚ K]
 
+/--
+@isnad1 id=eq.0h1v.s7.5717f05be827 from=translated src=- shape=5ba4c64f vocab=8cee5292
+-/
 theorem floor_M_seven : ⌊(M K)⌋₊ = 4 := by
   rw [discr_prime 7 K, IsCyclotomicExtension.finrank (n := 7) K
     (irreducible_rat (by norm_num)), nrComplexPlaces_eq_totient_div_two 7, totient_prime
@@ -47,11 +56,17 @@ theorem floor_M_seven : ⌊(M K)⌋₊ = 4 := by
     reduceSub, neg_mul, one_mul, Int.cast_neg, Int.cast_ofNat, abs_neg, abs_ofNat]
   exact floor_minkowskiBound_seven
 
+/--
+@isnad1 id=eq.0h0v.s6.72529d3a480c from=translated src=- shape=2ed5f085 vocab=c6a3eb70
+-/
 lemma orderOf_two_zmod_seven : orderOf ((2 : ℕ) : ZMod 7) = 3 := by
   rw [orderOf_eq_iff (by norm_num)]
   refine ⟨by decide, fun m hm hm' ↦ ?_⟩
   interval_cases m <;> decide
 
+/--
+@isnad1 id=eq.0h0v.s6.cd66863f7a00 from=translated src=- shape=2ed5f085 vocab=c6a3eb70
+-/
 lemma orderOf_three_zmod_seven : orderOf ((3 : ℕ) : ZMod 7) = 6 := by
   rw [orderOf_eq_iff (by norm_num)]
   refine ⟨by decide, fun m hm hm' ↦ ?_⟩
@@ -59,6 +74,9 @@ lemma orderOf_three_zmod_seven : orderOf ((3 : ℕ) : ZMod 7) = 6 := by
 
 variable (K) in
 
+/--
+@isnad1 id=isprinci.0h1v.s5.da43f05319de from=translated src=- shape=7f41e255 vocab=ea413f24
+-/
 theorem seven_pid : IsPrincipalIdealRing (𝓞 K) := by
   refine RingOfIntegers.isPrincipalIdealRing_of_isPrincipal_of_pow_le_of_mem_primesOver_of_mem_Icc
     (fun p hple hp P hPmem hle ↦ ?_)
@@ -82,6 +100,9 @@ end SevenPidPort
 open scoped _root_.P2MW.S_IsCyclotomicExtension_Rat_seven_pid.SevenPidPort
 
 open scoped NumberField in
+/--
+@isnad1 id=isprinci.0h1v.s5.da43f05319de from=translated src=- shape=7f41e255 vocab=ea413f24
+-/
 theorem solution (K : Type*) [Field K] [NumberField K] [IsCyclotomicExtension {7} ℚ K] :
     IsPrincipalIdealRing (𝓞 K) :=
   SevenPidPort.seven_pid K

@@ -18,14 +18,26 @@ section units
 
 variable (p k : ℕ) [hp : Fact p.Prime]
 
+/--
+@isnad1 id=nezero.0h2v.s4.1e5caaa3c45c from=translated src=- shape=c9308450 vocab=23bc1ea8
+-/
 scoped instance neZero_pow : NeZero (p ^ k) := ⟨pow_ne_zero k hp.out.ne_zero⟩
 
 noncomputable def T : Subgroup (ZMod (p ^ k))ˣ :=
   if p = 2 then Subgroup.zpowers (-1) else (powMonoidHom (p - 1)).ker
 
+/--
+@isnad1 id=eq.1h2v.s9.dfa0104423ee from=translated src=- shape=ee8298a1 vocab=91d3ea8e
+-/
 theorem T_of_two (h : p = 2) : T p k = Subgroup.zpowers (-1) := ite_eq_left h
+/--
+@isnad1 id=eq.1h2v.s9.ce1fef7a6e1d from=translated src=- shape=4fe275ec vocab=c114fb32
+-/
 theorem T_of_ne_two (h : p ≠ 2) : T p k = (powMonoidHom (p - 1)).ker := ite_eq_right h
 
+/--
+@isnad1 id=mem.0h2v.s10.cb3eb1acc50b from=translated src=- shape=662e773b vocab=be13357c
+-/
 theorem neg_one_mem_T : (-1 : (ZMod (p ^ k))ˣ) ∈ T p k := by
   by_cases h : p = 2
   · rw [T_of_two p k h]; exact Subgroup.mem_zpowers _
@@ -34,6 +46,9 @@ theorem neg_one_mem_T : (-1 : (ZMod (p ^ k))ˣ) ∈ T p k := by
     obtain ⟨m, hm⟩ := hodd
     rw [hm, Nat.add_sub_cancel, pow_mul, neg_one_sq, one_pow]
 
+/--
+@isnad1 id=dvd.0h2v.s6.61106a76a5f3 from=translated src=- shape=3c9aa126 vocab=71dcaa05
+-/
 theorem card_units_dvd : Nat.card (ZMod (p ^ k))ˣ ∣ p ^ k * (p - 1) := by
   rw [Nat.card_eq_fintype_card, ZMod.card_units_eq_totient]
   rcases Nat.eq_zero_or_pos k with rfl | hk
@@ -41,10 +56,16 @@ theorem card_units_dvd : Nat.card (ZMod (p ^ k))ˣ ∣ p ^ k * (p - 1) := by
   · rw [Nat.totient_prime_pow hp.out hk]
     exact Nat.mul_dvd_mul_right (pow_dvd_pow p (Nat.sub_le k 1)) _
 
+/--
+@isnad1 id=eq.0h3v.s9.8692d0c2977a from=translated src=- shape=c4564019 vocab=ffd3b8c1
+-/
 theorem pow_pow_mul_eq_one (x : (ZMod (p ^ k))ˣ) : x ^ (p ^ k * (p - 1)) = 1 := by
   obtain ⟨c, hc⟩ := card_units_dvd p k
   rw [hc, pow_mul, pow_card_eq_one', one_pow]
 
+/--
+@isnad1 id=mem.0h3v.s10.e7d3add9b703 from=translated src=- shape=33d1f3a3 vocab=5e73ac05
+-/
 theorem pow_mem_T (x : (ZMod (p ^ k))ˣ) : x ^ (p ^ k) ∈ T p k := by
   by_cases h : p = 2
   · have h1 := pow_pow_mul_eq_one p k x
@@ -55,6 +76,9 @@ theorem pow_mem_T (x : (ZMod (p ^ k))ˣ) : x ^ (p ^ k) ∈ T p k := by
   · rw [T_of_ne_two p k h, MonoidHom.mem_ker, powMonoidHom_apply, ← pow_mul]
     exact pow_pow_mul_eq_one p k x
 
+/--
+@isnad1 id=le.0h2v.s9.20f923156829 from=translated src=- shape=47027a7e vocab=c91b8338
+-/
 theorem card_T_le : Nat.card (T p k) ≤ 2 * (p - 1) := by
   by_cases h : p = 2
   · rw [T_of_two p k h, Nat.card_zpowers, h]
@@ -76,6 +100,9 @@ theorem eq_or_eq_of_mem_zpowers_neg_one {G : Type} [Group G] [HasDistribNeg G] {
   · left; exact hj.neg_one_zpow
   · right; exact hj.neg_one_zpow
 
+/--
+@isnad1 id=iscyclic.0h1v.s13.7f2f346fa062 from=translated src=- shape=3747011b vocab=57010c57
+-/
 theorem isCyclic_quot_two (n : ℕ) : IsCyclic ((ZMod (2 ^ (n + 2)))ˣ ⧸ Subgroup.zpowers (-1 : (ZMod (2 ^ (n + 2)))ˣ)) := by
   have h5 : Nat.Coprime 5 (2 ^ (n + 2)) := Nat.Coprime.pow_right _ (by norm_num)
   set u5 : (ZMod (2 ^ (n + 2)))ˣ := ZMod.unitOfCoprime 5 h5 with hu5
@@ -128,6 +155,9 @@ theorem isCyclic_quot_two (n : ℕ) : IsCyclic ((ZMod (2 ^ (n + 2)))ˣ ⧸ Subgr
   have hbij : Function.Bijective f := hinj.bijective_of_nat_card_le (by rw [hcardQ, hcard5])
   exact isCyclic_of_surjective f hbij.2
 
+/--
+@isnad1 id=iscyclic.0h2v.s10.091d7897e3c0 from=translated src=- shape=44a3e98b vocab=e88e26b2
+-/
 theorem isCyclic_quot_T : IsCyclic ((ZMod (p ^ k))ˣ ⧸ T p k) := by
   by_cases h : p = 2
   · rw [T_of_two p k h]
@@ -151,6 +181,9 @@ end IsGalois.CycLayerAux
 open scoped _root_.P2MW.S_IsGalois_exists_subgroup_fixedField_isCyclic_isPGroup_of_injective_monoidHom_zmod_units.IsGalois _root_.P2MW.S_IsGalois_exists_subgroup_fixedField_isCyclic_isPGroup_of_injective_monoidHom_zmod_units.IsGalois.CycLayerAux
 open scoped _root_.P2MW.S_IsGalois_exists_subgroup_fixedField_isCyclic_isPGroup_of_injective_monoidHom_zmod_units.IsGalois
 
+/--
+@isnad1 id=ex.1h5v.s12.d8975516dab3 from=translated src=- shape=a738ba04 vocab=13a6a23d
+-/
 theorem solution
     (E C : Type) [Field E] [Field C] [Algebra E C] [FiniteDimensional E C] [IsGalois E C]
     (p k : ℕ) [Fact p.Prime] (χ : (C ≃ₐ[E] C) →* (ZMod (p ^ k))ˣ) (hχ : Function.Injective χ) :

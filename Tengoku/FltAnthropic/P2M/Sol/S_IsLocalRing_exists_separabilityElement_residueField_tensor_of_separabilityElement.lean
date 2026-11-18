@@ -15,6 +15,9 @@ section sepBC
 
 variable {S T : Type} [CommRing S] [CommRing T] (σ : S →+* T) {Λ : Type} [Ring Λ]
 
+/--
+@isnad1 id=ex.3h5v.s14.34f10e61a9c1 from=translated src=- shape=0c60557e vocab=c72cf367
+-/
 theorem exists_sepElt_baseChange_of_surjective (hσ : Function.Surjective σ)
     (e : (S ⊗[ℤ] Λ) ⊗[S] (S ⊗[ℤ] Λ)) (he₁ : LinearMap.mul' S (S ⊗[ℤ] Λ) e = 1)
     (he₂ : ∀ x : S ⊗[ℤ] Λ, TensorProduct.map (LinearMap.mulLeft S x) LinearMap.id e =
@@ -98,6 +101,9 @@ end sepBC
 
 end PoleCore
 
+/--
+@isnad1 id=ex.2h3v.s15.291ee875b849 from=translated src=- shape=0de49e34 vocab=1f1c1759
+-/
 theorem solution
     (S : Type) [CommRing S] [IsLocalRing S] {Λ : Type} [Ring Λ]
     (e : (S ⊗[ℤ] Λ) ⊗[S] (S ⊗[ℤ] Λ)) (he₁ : LinearMap.mul' S (S ⊗[ℤ] Λ) e = 1)

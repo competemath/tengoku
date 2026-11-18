@@ -13,6 +13,9 @@ open Module Submodule
 
 variable {R : Type} [CommRing R] [IsDomain R]
 
+/--
+@isnad1 id=eq.1h3v.s7.7941a351febf from=translated src=- shape=d6d1c041 vocab=33bb384f
+-/
 theorem natCard_quotient_span_mul (a : R) {b : R} (hb : b ≠ 0) :
     Nat.card (R ⧸ Ideal.span ({a * b} : Set R)) =
       Nat.card (R ⧸ Ideal.span ({a} : Set R)) * Nat.card (R ⧸ Ideal.span ({b} : Set R)) := by
@@ -67,6 +70,9 @@ theorem natCard_quotient_span_mul (a : R) {b : R} (hb : b ≠ 0) :
   rw [h1, h2] at key
   exact key.symm
 
+/--
+@isnad1 id=eq.1h4v.s7.1ee928692248 from=translated src=- shape=5748807c vocab=313fe051
+-/
 theorem natCard_quotient_span_prod {ι : Type} (s : Finset ι) (a : ι → R)
     (ha : ∀ i ∈ s, a i ≠ 0) :
     Nat.card (R ⧸ Ideal.span ({∏ i ∈ s, a i} : Set R)) =
@@ -88,6 +94,9 @@ variable [IsPrincipalIdealRing R]
 variable {M : Type} [AddCommGroup M] [Module R M]
 variable {ι : Type} [Fintype ι] [DecidableEq ι]
 
+/--
+@isnad1 id=eq.0h6v.s9.7aa955e16ac8 from=translated src=- shape=692edf26 vocab=5579d788
+-/
 theorem natCard_quotient_eq_natCard_quotient_span_det
     (b : Basis ι R M) (N : Submodule R M) (bN : Basis ι R N) :
     Nat.card (M ⧸ N) = Nat.card (R ⧸ Ideal.span ({b.det ((↑) ∘ bN)} : Set R)) := by
@@ -135,6 +144,9 @@ theorem natCard_quotient_eq_natCard_quotient_span_det
 
 end P2mIndexDetPID
 
+/--
+@isnad1 id=eq.0h6v.s9.9c94d6e3d3b7 from=translated src=- shape=aa56f451 vocab=2ec11b4b
+-/
 theorem solution
     {R : Type} [CommRing R] [IsDomain R] [IsPrincipalIdealRing R]
     {M : Type} [AddCommGroup M] [Module R M]

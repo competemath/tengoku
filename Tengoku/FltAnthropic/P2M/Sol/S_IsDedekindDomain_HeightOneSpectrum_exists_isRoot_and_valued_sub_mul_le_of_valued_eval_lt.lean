@@ -19,21 +19,39 @@ open _root_.IsDedekindDomain.HeightOneSpectrum open _root_.IsDedekindDomain
 
 variable {K : Type} [Field K] [NumberField K] {v : HeightOneSpectrum (𝓞 K)}
 
+/--
+@isnad1 id=iff.0h4v.s9.c046d9f12723 from=translated src=- shape=3a6e7f95 vocab=86ed4655
+-/
 theorem norm_le_iff' (x y : (v.adicCompletion K)) : ‖x‖ ≤ ‖y‖ ↔ Valued.v x ≤ Valued.v y := Valued.toNormedField.norm_le_iff
+/--
+@isnad1 id=iff.0h4v.s9.a1fc4d083c8f from=translated src=- shape=3a6e7f95 vocab=aa4a1728
+-/
 theorem norm_lt_iff' (x y : (v.adicCompletion K)) : ‖x‖ < ‖y‖ ↔ Valued.v x < Valued.v y := Valued.toNormedField.norm_lt_iff
 
+/--
+@isnad1 id=le.0h3v.s8.451f697793e3 from=translated src=- shape=d1abd3f3 vocab=5f60eae7
+-/
 theorem norm_coe_le_one (x : (v.adicCompletionIntegers K)) : ‖(x : (v.adicCompletion K))‖ ≤ 1 :=
   Valued.toNormedField.norm_le_one_iff.mpr x.2
 
+/--
+@isnad1 id=mem.1h3v.s7.7cc58efd6d0b from=translated src=- shape=a1db72be vocab=cbcca64e
+-/
 theorem mem_integers_of_norm_le_one {x : (v.adicCompletion K)} (hx : ‖x‖ ≤ 1) : x ∈ v.adicCompletionIntegers K :=
   Valued.toNormedField.norm_le_one_iff.mp hx
 
+/--
+@isnad1 id=eq.0h4v.s11.c7b67618088e from=translated src=- shape=e7c059f8 vocab=f159f000
+-/
 theorem coe_eval (f : Polynomial (v.adicCompletionIntegers K)) (x : (v.adicCompletionIntegers K)) :
     ((f.eval x : (v.adicCompletionIntegers K)) : (v.adicCompletion K)) = (f.map (algebraMap (v.adicCompletionIntegers K) (v.adicCompletion K))).eval (x : (v.adicCompletion K)) := by
   show algebraMap (v.adicCompletionIntegers K) (v.adicCompletion K) (f.eval x) =
     (f.map (algebraMap (v.adicCompletionIntegers K) (v.adicCompletion K))).eval (algebraMap (v.adicCompletionIntegers K) (v.adicCompletion K) x)
   rw [Polynomial.eval_map, Polynomial.eval₂_hom]
 
+/--
+@isnad1 id=le.0h5v.s11.efd3317f94ff from=translated src=- shape=26d09b33 vocab=cc792145
+-/
 theorem norm_coe_sub_eval_le (g : Polynomial (v.adicCompletionIntegers K)) (x y : (v.adicCompletionIntegers K)) :
     ‖((g.eval x : (v.adicCompletionIntegers K)) : (v.adicCompletion K)) - ((g.eval y : (v.adicCompletionIntegers K)) : (v.adicCompletion K))‖ ≤ ‖(x : (v.adicCompletion K)) - (y : (v.adicCompletion K))‖ := by
   obtain ⟨c, hc⟩ := Polynomial.sub_dvd_eval_sub x y g
@@ -56,12 +74,21 @@ noncomputable def step (b : (v.adicCompletionIntegers K)) : (v.adicCompletionInt
 
 noncomputable def seq (k : ℕ) : (v.adicCompletionIntegers K) := (step f)^[k] a₀
 
+/--
+@isnad1 id=eq.0h4v.s9.60509efa332f from=translated src=- shape=2c508828 vocab=ce085cb3
+-/
 theorem seq_zero : seq f a₀ 0 = a₀ := rfl
+/--
+@isnad1 id=eq.0h5v.s9.9a695a480b66 from=translated src=- shape=b94eec64 vocab=45f4ea5b
+-/
 theorem seq_succ (k : ℕ) : seq f a₀ (k + 1) = step f (seq f a₀ k) := by
   rw [seq, Function.iterate_succ', Function.comp_apply]; rfl
 
 variable {f a₀}
 
+/--
+@isnad1 id=and.3h5v.s16.6d5d92eb52fc from=translated src=- shape=a9c26937 vocab=4c81b259
+-/
 theorem step_spec (h0 : ‖((f.eval a₀ : (v.adicCompletionIntegers K)) : (v.adicCompletion K))‖ < ‖((f.derivative.eval a₀ : (v.adicCompletionIntegers K)) : (v.adicCompletion K))‖ ^ 2) (b : (v.adicCompletionIntegers K))
     (hb1 : ‖(b : (v.adicCompletion K)) - (a₀ : (v.adicCompletion K))‖ < ‖((f.derivative.eval a₀ : (v.adicCompletionIntegers K)) : (v.adicCompletion K))‖) (hb2 : ‖((f.eval b : (v.adicCompletionIntegers K)) : (v.adicCompletion K))‖ ≤ ‖((f.eval a₀ : (v.adicCompletionIntegers K)) : (v.adicCompletion K))‖) :
     ‖((step f b : (v.adicCompletionIntegers K)) : (v.adicCompletion K)) - (b : (v.adicCompletion K))‖ = ‖((f.eval b : (v.adicCompletionIntegers K)) : (v.adicCompletion K))‖ / ‖((f.derivative.eval a₀ : (v.adicCompletionIntegers K)) : (v.adicCompletion K))‖ ∧
@@ -109,6 +136,9 @@ theorem step_spec (h0 : ‖((f.eval a₀ : (v.adicCompletionIntegers K)) : (v.ad
     rw [show ((k * (-y) ^ 2 : (v.adicCompletionIntegers K)) : (v.adicCompletion K)) = (k : (v.adicCompletion K)) * (-(y : (v.adicCompletion K))) ^ 2 from rfl, norm_mul, norm_pow, norm_neg, hynorm, div_pow]
     exact mul_le_of_le_one_left (by positivity) (norm_coe_le_one k)
 
+/--
+@isnad1 id=and.1h5v.s16.0c4c5f09faea from=translated src=- shape=974c6f51 vocab=cf9d0503
+-/
 theorem seq_spec (h0 : ‖((f.eval a₀ : (v.adicCompletionIntegers K)) : (v.adicCompletion K))‖ < ‖((f.derivative.eval a₀ : (v.adicCompletionIntegers K)) : (v.adicCompletion K))‖ ^ 2) (k : ℕ) :
     ‖((seq f a₀ k : (v.adicCompletionIntegers K)) : (v.adicCompletion K)) - (a₀ : (v.adicCompletion K))‖ ≤ ‖((f.eval a₀ : (v.adicCompletionIntegers K)) : (v.adicCompletion K))‖ / ‖((f.derivative.eval a₀ : (v.adicCompletionIntegers K)) : (v.adicCompletion K))‖ ∧
     ‖((f.eval (seq f a₀ k) : (v.adicCompletionIntegers K)) : (v.adicCompletion K))‖ ≤
@@ -174,6 +204,9 @@ end IsDedekindDomain.HeightOneSpectrum.HenselStrong
 
 open IsDedekindDomain.HeightOneSpectrum.HenselStrong in
 
+/--
+@isnad1 id=ex.1h4v.s15.21a61ab4d162 from=translated src=- shape=af4c5145 vocab=a8af90a1
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K))
     (f : Polynomial ↥(v.adicCompletionIntegers K)) (a₀ : ↥(v.adicCompletionIntegers K))

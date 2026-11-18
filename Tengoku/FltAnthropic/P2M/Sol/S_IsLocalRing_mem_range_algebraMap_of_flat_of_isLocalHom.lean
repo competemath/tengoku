@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 universe u v u' v'
 
+/--
+@isnad1 id=mem.3h6v.s9.ab303d34ef67 from=translated src=- shape=661b7b09 vocab=5d3f151a
+-/
 theorem solution
     {R : Type u} {S : Type v} [CommRing R] [CommRing S] [IsLocalRing R] [IsLocalRing S] [IsDomain R] [IsDomain S]
     (f : R →+* S) (hf : f.Flat) [IsLocalHom f]

@@ -22,8 +22,14 @@ variable {F : Type*} [Group F] {R : Subgroup F} {A : Type*} [CommGroup A]
 abbrev V (R : Subgroup F) (A : Type*) : Type _ := F ⧸ R → A
 
 omit [CommGroup A] in
+/--
+@isnad1 id=eq.0h6v.s7.81025ee525e1 from=translated src=- shape=75a69fc6 vocab=2d5f3cbe
+-/
 theorem smul_apply' (g : F) (f : V R A) (q : F ⧸ R) : (g • f) q = f (g⁻¹ • q) := rfl
 
+/--
+@isnad1 id=eq.1h4v.s7.b01960146caa from=translated src=- shape=1ad5a077 vocab=52a1e0f8
+-/
 theorem smul_coe_eq_of_mem [R.Normal] {h : F} (hh : h ∈ R) (x : F) :
     h • ((x : F) : F ⧸ R) = (x : F ⧸ R) := by
   rw [MulAction.Quotient.smul_coe, smul_eq_mul, QuotientGroup.eq]
@@ -31,12 +37,18 @@ theorem smul_coe_eq_of_mem [R.Normal] {h : F} (hh : h ∈ R) (x : F) :
   rw [this]
   exact Subgroup.Normal.conj_mem inferInstance _ (inv_mem hh) _
 
+/--
+@isnad1 id=eq.1h4v.s7.66a1aa243925 from=translated src=- shape=77685a95 vocab=cde453e5
+-/
 theorem smul_quot_eq_of_mem [R.Normal] {h : F} (hh : h ∈ R) (q : F ⧸ R) : h • q = q := by
   induction q using QuotientGroup.induction_on with
   | H x => exact smul_coe_eq_of_mem hh x
 
 omit [CommGroup A] in
 
+/--
+@isnad1 id=eq.1h5v.s7.39951c85176d from=translated src=- shape=36dc4c50 vocab=f76bdf59
+-/
 theorem smul_eq_of_mem [R.Normal] {h : F} (hh : h ∈ R) (f : V R A) : h • f = f := by
   funext q
   rw [smul_apply', smul_quot_eq_of_mem (inv_mem hh)]
@@ -47,28 +59,49 @@ namespace IsDer
 
 variable {D E : F → V R A}
 
+/--
+@isnad1 id=eq.1h4v.s6.43c1357f9b4e from=translated src=- shape=c8413414 vocab=3566b2a7
+-/
 theorem map_one (hD : IsDer D) : D 1 = 1 := by
   have h := hD 1 1
   rw [one_mul, one_smul] at h
   exact mul_eq_left.mp h.symm
 
+/--
+@isnad1 id=eq.1h5v.s7.c0cfae786536 from=translated src=- shape=cfde851b vocab=72e6d7f5
+-/
 theorem map_inv (hD : IsDer D) (g : F) : D g⁻¹ = (g⁻¹ • D g)⁻¹ := by
   have h := hD g⁻¹ g
   rw [inv_mul_cancel, hD.map_one] at h
   exact eq_inv_of_mul_eq_one_left h.symm
 
+/--
+@isnad1 id=isder.0h3v.s6.2d6dcf2346a0 from=translated src=- shape=6a2cb29c vocab=3566b2a7
+-/
 theorem one : IsDer (1 : F → V R A) := fun g h => by
   rw [Pi.one_apply, Pi.one_apply, Pi.one_apply, smul_one, mul_one]
 
+/--
+@isnad1 id=isder.2h5v.s7.6f74e08863ee from=translated src=- shape=d930f5cc vocab=160388f3
+-/
 theorem mul (hD : IsDer D) (hE : IsDer E) : IsDer (D * E) := fun g h => by
   simp only [Pi.mul_apply, hD g h, hE g h, smul_mul', mul_mul_mul_comm]
 
+/--
+@isnad1 id=isder.1h4v.s6.2175699acdc2 from=translated src=- shape=ae3d8332 vocab=15256cdc
+-/
 theorem inv (hD : IsDer D) : IsDer D⁻¹ := fun g h => by
   simp only [Pi.inv_apply, hD g h, smul_inv', mul_inv]
 
+/--
+@isnad1 id=isder.2h5v.s7.ad43684cd507 from=translated src=- shape=d930f5cc vocab=789f48f8
+-/
 theorem div (hD : IsDer D) (hE : IsDer E) : IsDer (D / E) := by
   rw [div_eq_mul_inv]; exact hD.mul hE.inv
 
+/--
+@isnad1 id=isder.1h6v.s6.af2f03583593 from=translated src=- shape=ddffca56 vocab=ddbe2ad7
+-/
 theorem prod {ι : Type*} (s : Finset ι) (f : ι → F → V R A) (hf : ∀ i ∈ s, IsDer (f i)) :
     IsDer (∏ i ∈ s, f i) := by
   classical
@@ -79,6 +112,9 @@ theorem prod {ι : Type*} (s : Finset ι) (f : ι → F → V R A) (hf : ∀ i �
     exact (hf a (Finset.mem_insert_self a s)).mul
       (ih fun i hi => hf i (Finset.mem_insert_of_mem hi))
 
+/--
+@isnad1 id=isder.2h5v.s7.e867ecc2149a from=translated src=- shape=5c7aa9f5 vocab=ebb7d7a9
+-/
 theorem smul [R.Normal] (hR : ∀ x y : F, x * y * x⁻¹ * y⁻¹ ∈ R) (hD : IsDer D) (a : F) :
     IsDer (fun g => a • D g) := fun g h => by
   show a • D (g * h) = a • D g * g • a • D h
@@ -91,6 +127,9 @@ theorem smul [R.Normal] (hR : ∀ x y : F, x * y * x⁻¹ * y⁻¹ ∈ R) (hD : 
           rw [mul_inv_cancel_left]
     _ = (g * a) • D h := by rw [mul_smul, smul_eq_of_mem hmem]
 
+/--
+@isnad1 id=eq.2h6v.s7.985a2dc051ec from=translated src=- shape=0930b89d vocab=ebb7d7a9
+-/
 theorem conj [R.Normal] (hD : IsDer D) {h : F} (hh : h ∈ R) (a : F) :
     D (a * h * a⁻¹) = a • D h := by
   rw [hD, hD, hD.map_inv, smul_inv', ← mul_smul,
@@ -106,9 +145,15 @@ def resHom [R.Normal] (D : F → V R A) (hD : IsDer D) : ↥R →* A where
     rw [Subgroup.coe_mul, hD, Pi.mul_apply, smul_apply',
       smul_quot_eq_of_mem (inv_mem h.2)]
 
+/--
+@isnad1 id=eq.1h5v.s8.c5f1ff4b8ca7 from=translated src=- shape=40fd6cec vocab=9854d7e0
+-/
 @[scoped simp] theorem resHom_apply [R.Normal] (D : F → V R A) (hD : IsDer D) (h : ↥R) :
     resHom D hD h = D h ((1 : F) : F ⧸ R) := rfl
 
+/--
+@isnad1 id=eq.1h6v.s10.30b459dd7eb9 from=translated src=- shape=022656ff vocab=5004d21e
+-/
 theorem resHom_conj [R.Normal] (D : F → V R A) (hD : IsDer D) (a : F) (h : ↥R) :
     resHom D hD (MulAut.conjNormal a h) = (a • D h) ((1 : F) : F ⧸ R) := by
   rw [resHom_apply, MulAut.conjNormal_apply, hD.conj h.2]
@@ -121,13 +166,22 @@ attribute [local instance] Subgroup.fintypeQuotientOfFiniteIndex
 
 noncomputable def total (f : V R A) : A := ∏ q, f q
 
+/--
+@isnad1 id=eq.0h5v.s7.88a31778dcf6 from=translated src=- shape=e1ffe55e vocab=bb049834
+-/
 theorem total_mul (f f' : V R A) : total (f * f') = total f * total f' :=
   Finset.prod_mul_distrib
 
+/--
+@isnad1 id=eq.0h5v.s7.b216abb2cd59 from=translated src=- shape=c5b6e4cb vocab=dc62b552
+-/
 theorem total_smul (g : F) (f : V R A) : total (g • f) = total f := by
   unfold total
   exact Fintype.prod_equiv (MulAction.toPerm g⁻¹) (fun q => (g • f) q) f fun _ => rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.2992e2bcb9cf from=translated src=- shape=36b0ba1b vocab=3756fbb4
+-/
 theorem total_one : total (1 : V R A) = 1 := by simp [total]
 
 noncomputable def totalHom (D : F → V R A) (hD : IsDer D) : F →* A where
@@ -142,24 +196,39 @@ open scoped Classical in
 noncomputable def sec (R : Subgroup F) (q : F ⧸ R) : F :=
   if q = ((1 : F) : F ⧸ R) then 1 else Quotient.out q
 
+/--
+@isnad1 id=eq.0h3v.s5.8bd78aefb881 from=translated src=- shape=132095b3 vocab=6e900230
+-/
 theorem sec_spec (q : F ⧸ R) : ((sec R q : F) : F ⧸ R) = q := by
   unfold sec
   split_ifs with h
   · exact h.symm
   · exact QuotientGroup.out_eq' q
 
+/--
+@isnad1 id=eq.0h2v.s5.8793e9b038b3 from=translated src=- shape=6400b9f5 vocab=99ee5592
+-/
 theorem sec_one : sec R ((1 : F) : F ⧸ R) = 1 := by
   simp [sec]
 
+/--
+@isnad1 id=mem.0h4v.s7.e25bdf0441d0 from=translated src=- shape=f94a1d67 vocab=245d46f3
+-/
 theorem sec_mem (g : F) (q : F ⧸ R) : (sec R q)⁻¹ * (g * sec R (g⁻¹ • q)) ∈ R := by
   rw [← QuotientGroup.eq, sec_spec, ← smul_eq_mul, ← MulAction.Quotient.smul_coe, sec_spec,
     smul_inv_smul]
 
 noncomputable def shapiroDer (χ : ↥R →* A) : F → V R A := fun g q => χ ⟨_, sec_mem g q⟩
 
+/--
+@isnad1 id=eq.0h6v.s9.945aa2f1d73c from=translated src=- shape=bc61c665 vocab=e42395df
+-/
 theorem shapiroDer_apply (χ : ↥R →* A) (g : F) (q : F ⧸ R) :
     shapiroDer χ g q = χ ⟨(sec R q)⁻¹ * (g * sec R (g⁻¹ • q)), sec_mem g q⟩ := rfl
 
+/--
+@isnad1 id=isder.0h4v.s7.28dfdbdcee79 from=translated src=- shape=1d11ae28 vocab=4e2b411c
+-/
 theorem isDer_shapiroDer (χ : ↥R →* A) : IsDer (shapiroDer χ) := by
   intro g h
   funext q
@@ -169,6 +238,9 @@ theorem isDer_shapiroDer (χ : ↥R →* A) : IsDer (shapiroDer χ) := by
   simp only [Subgroup.coe_mul, mul_inv_rev, mul_smul]
   group
 
+/--
+@isnad1 id=eq.0h4v.s8.ddfbff38190d from=translated src=- shape=7c21c799 vocab=21cc9d15
+-/
 theorem resHom_shapiroDer [R.Normal] (χ : ↥R →* A) :
     resHom (shapiroDer χ) (isDer_shapiroDer χ) = χ := by
   ext h
@@ -184,6 +256,9 @@ variable [R.FiniteIndex]
 
 attribute [local instance] Subgroup.fintypeQuotientOfFiniteIndex
 
+/--
+@isnad1 id=eq.0h5v.s7.263886337667 from=translated src=- shape=4d7ad3ee vocab=6b656229
+-/
 theorem transfer_eq_prod (χ : ↥R →* A) (g : F) :
     MonoidHom.transfer χ g = ∏ q, shapiroDer χ g q := by
   let T : R.LeftTransversal := ⟨Set.range (sec R), Subgroup.isComplement_range_left sec_spec⟩
@@ -198,6 +273,9 @@ theorem transfer_eq_prod (χ : ↥R →* A) (g : F) :
   simp only
   rw [Subgroup.smul_apply_eq_smul_apply_inv_smul, hT, hT, smul_eq_mul]
 
+/--
+@isnad1 id=eq.1h5v.s7.aa3e1f041602 from=translated src=- shape=6a9b0a1b vocab=79d0d132
+-/
 theorem transfer_resHom [R.Normal] (D : F → V R A) (hD : IsDer D) (g : F) :
     MonoidHom.transfer (resHom D hD) g = ∏ q, D g q := by
   rw [transfer_eq_prod]
@@ -212,6 +290,9 @@ theorem transfer_resHom [R.Normal] (D : F → V R A) (hD : IsDer D) (g : F) :
     (fun q => D (sec R q) q) fun _ => rfl]
   rw [mul_comm, mul_inv_cancel_right]
 
+/--
+@isnad1 id=eq.1h5v.s9.741877d3c570 from=translated src=- shape=8817e601 vocab=d5fce679
+-/
 theorem transfer_comp_conj [R.Normal] (hR : ∀ x y : F, x * y * x⁻¹ * y⁻¹ ∈ R)
     (χ : ↥R →* A) (a : F) :
     MonoidHom.transfer (χ.comp (MulAut.conjNormal a : MulAut ↥R).toMonoidHom) =
@@ -238,6 +319,9 @@ noncomputable abbrev actV (R : Subgroup F) (A : Type*) [CommGroup A] : F →* Mu
   mulAutArrow
 
 omit [IsFreeGroup F] in
+/--
+@isnad1 id=eq.0h5v.s10.ee618ef0c82f from=translated src=- shape=c2e82de0 vocab=6f74504e
+-/
 theorem actV_apply (g : F) (f : V R A) : actV R A g f = g • f := rfl
 
 noncomputable def secOfDer (D : F → V R A) (hD : IsDer D) : F →* (V R A) ⋊[actV R A] F where
@@ -251,6 +335,9 @@ noncomputable def secOfDer (D : F → V R A) (hD : IsDer D) : F →* (V R A) ⋊
     · simp only [SemidirectProduct.mul_left, actV_apply, hD g h]
     · simp only [SemidirectProduct.mul_right]
 
+/--
+@isnad1 id=eq.3h5v.s6.0b6305511c32 from=translated src=- shape=90547a2b vocab=d5517257
+-/
 theorem isDer_ext {D E : F → V R A} (hD : IsDer D) (hE : IsDer E)
     (h : ∀ i, D (IsFreeGroup.of i) = E (IsFreeGroup.of i)) : D = E := by
   have key : secOfDer D hD = secOfDer E hE := by
@@ -262,6 +349,9 @@ theorem isDer_ext {D E : F → V R A} (hD : IsDer D) (hE : IsDer E)
   funext g
   exact congrArg SemidirectProduct.left (DFunLike.congr_fun key g)
 
+/--
+@isnad1 id=ex.0h4v.s6.857e0f177ae7 from=translated src=- shape=ce32d7b0 vocab=d5517257
+-/
 theorem exists_isDer_apply_of (v : IsFreeGroup.Generators F → V R A) :
     ∃ D : F → V R A, IsDer D ∧ ∀ i, D (IsFreeGroup.of i) = v i := by
   let s : F →* (V R A) ⋊[actV R A] F := IsFreeGroup.lift fun i => ⟨v i, IsFreeGroup.of i⟩
@@ -288,6 +378,9 @@ variable [R.Normal] [R.FiniteIndex] [IsFreeGroup F]
 
 attribute [local instance] Subgroup.fintypeQuotientOfFiniteIndex
 
+/--
+@isnad1 id=surjecti.0h3v.s8.c003e5ee45b0 from=translated src=- shape=1644d501 vocab=c0f6a90f
+-/
 theorem surjective_transfer :
     Function.Surjective (fun χ : ↥R →* A => MonoidHom.transfer χ) := by
   classical
@@ -301,6 +394,9 @@ theorem surjective_transfer :
   rw [transfer_resHom, hDof]
   exact Finset.prod_pi_mulSingle' _ _ _ |>.trans (ite_eq_left (Finset.mem_univ _))
 
+/--
+@isnad1 id=eq.0h5v.s8.4ea8752f2ac1 from=translated src=- shape=08e63676 vocab=71813197
+-/
 theorem sec_smul_mulSingle [DecidableEq (F ⧸ R)] (s : F ⧸ R) (a : A) :
     sec R s • (Pi.mulSingle ((1 : F) : F ⧸ R) a : V R A) = Pi.mulSingle s a := by
   funext q
@@ -333,6 +429,9 @@ noncomputable def transferHom (R : Subgroup F) [R.FiniteIndex] (A : Type*) [Comm
       ← Finset.prod_mul_distrib]
     rfl
 
+/--
+@isnad1 id=iff.1h4v.s11.3e98ba7bc38b from=translated src=- shape=a951cdaa vocab=716779bd
+-/
 theorem transfer_eq_one_iff (hR : ∀ x y : F, x * y * x⁻¹ * y⁻¹ ∈ R) (χ : ↥R →* A) :
     MonoidHom.transfer χ = 1 ↔
       χ ∈ Subgroup.closure {ψ : ↥R →* A | ∃ (g : F) (χ' : ↥R →* A),
@@ -393,6 +492,9 @@ end General
 end FreeCoresSol
 open scoped _root_.P2MW.S_IsFreeGroup_surjective_transfer_and_transfer_eq_one_iff_mem_closure.FreeCoresSol
 
+/--
+@isnad1 id=and.1h3v.s11.223bc5da0cd9 from=translated src=- shape=51e7ba95 vocab=89d62fc6
+-/
 theorem solution
     {F : Type*} [Group F] [IsFreeGroup F] (R : Subgroup F) [R.Normal] [R.FiniteIndex]
     (hR : ∀ x y : F, x * y * x⁻¹ * y⁻¹ ∈ R) (A : Type*) [CommGroup A] :

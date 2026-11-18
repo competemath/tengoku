@@ -25,9 +25,15 @@ def topIC (hZ : IsIrreducible Z) : IrreducibleCloseds Z where
 def push (hYZ : Y ⊆ Z) : IrreducibleCloseds Y → IrreducibleCloseds Z :=
   IrreducibleCloseds.map (inclusion hYZ) (continuous_inclusion hYZ)
 
+/--
+@isnad1 id=strictmo.1h3v.s7.f22d2f6925e6 from=translated src=- shape=73312a62 vocab=b17d6d4b
+-/
 theorem push_strictMono (hYZ : Y ⊆ Z) : StrictMono (push (X := X) hYZ) :=
   IrreducibleCloseds.map_strictMono_of_isInducing (IsEmbedding.inclusion hYZ).isInducing
 
+/--
+@isnad1 id=le.2h4v.s6.d2edbf20b5ef from=translated src=- shape=a7c5f9ee vocab=8e0a51bb
+-/
 theorem coe_push_subset (hYZ : Y ⊆ Z) (hY : IsClosed Y) (s : IrreducibleCloseds Y) :
     ((push hYZ s : IrreducibleCloseds Z) : Set Z) ⊆ (Subtype.val ⁻¹' Y : Set Z) := by
   show closure (inclusion hYZ '' (s : Set Y)) ⊆ _
@@ -35,6 +41,9 @@ theorem coe_push_subset (hYZ : Y ⊆ Z) (hY : IsClosed Y) (s : IrreducibleClosed
   rintro _ ⟨y, _, rfl⟩
   exact y.2
 
+/--
+@isnad1 id=lt.4h4v.s7.b66007f8b39c from=translated src=- shape=de5e1e28 vocab=fda24adc
+-/
 theorem push_lt_top (hZ : IsIrreducible Z) (hYZ : Y ⊆ Z) (hY : IsClosed Y) (hne : Y ≠ Z)
     (s : IrreducibleCloseds Y) : push hYZ s < topIC hZ := by
   refine lt_of_le_of_ne (fun _ _ => trivial) fun h => hne ?_
@@ -43,6 +52,9 @@ theorem push_lt_top (hZ : IsIrreducible Z) (hYZ : Y ⊆ Z) (hY : IsClosed Y) (hn
     rw [h]; trivial
   exact coe_push_subset hYZ hY s hmem
 
+/--
+@isnad1 id=le.4h3v.s6.013f430b2084 from=translated src=- shape=17a64f4a vocab=0d01ba80
+-/
 theorem main (hZ : IsIrreducible Z) (hY : IsClosed Y) (hYZ : Y ⊆ Z) (hne : Y ≠ Z) :
     topologicalKrullDim Y + 1 ≤ topologicalKrullDim Z := by
   unfold topologicalKrullDim
@@ -65,6 +77,9 @@ theorem main (hZ : IsIrreducible Z) (hY : IsClosed Y) (hYZ : Y ⊆ Z) (hne : Y �
 
 end P2mDim
 
+/--
+@isnad1 id=le.4h3v.s6.013f430b2084 from=translated src=- shape=17a64f4a vocab=0d01ba80
+-/
 theorem solution
     {X : Type u} [TopologicalSpace X] {Y Z : Set X}
     (hZ : IsIrreducible Z) (hY : IsClosed Y) (hYZ : Y ⊆ Z) (hne : Y ≠ Z) :

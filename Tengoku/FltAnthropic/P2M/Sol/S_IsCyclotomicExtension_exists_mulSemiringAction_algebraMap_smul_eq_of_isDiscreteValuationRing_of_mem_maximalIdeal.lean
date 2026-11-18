@@ -16,6 +16,9 @@ open NumberField IsLocalRing
 variable {L : Type} [Field L] [NumberField L]
 variable {A : Type} [CommRing A] [IsDomain A] [IsDiscreteValuationRing A] [Algebra A L] [IsFractionRing A L]
 
+/--
+@isnad1 id=ex.0h3v.s6.c1db5ec42867 from=translated src=- shape=342462d2 vocab=4538ba28
+-/
 theorem exists_algebraMap_eq_coe (y : 𝓞 L) : ∃ a : A, algebraMap A L a = (y : L) := by
   have h : IsIntegral ℤ (y : L) := y.isIntegral_coe
   exact IsIntegrallyClosed.isIntegral_iff.mp h.tower_top
@@ -26,6 +29,9 @@ noncomputable def intToA : 𝓞 L →+* A :=
     ((algebraMap (𝓞 L) L).codRestrict (algebraMap A L).range
       (fun y => by obtain ⟨a, ha⟩ := exists_algebraMap_eq_coe (A := A) y; exact ⟨a, ha⟩))
 
+/--
+@isnad1 id=eq.0h3v.s7.16c734077818 from=translated src=- shape=fdb8d1a4 vocab=04d08787
+-/
 theorem algebraMap_intToA (y : 𝓞 L) : algebraMap A L (intToA y) = (y : L) := by
   have key : ∀ (z : (algebraMap A L).range),
       algebraMap A L ((RingEquiv.ofBijective (algebraMap A L).rangeRestrict
@@ -41,10 +47,19 @@ variable (A) in
 
 noncomputable def centre : Ideal (𝓞 L) := (maximalIdeal A).comap (intToA (A := A))
 
+/--
+@isnad1 id=isprime.0h2v.s6.fb3ae19993be from=translated src=- shape=4075f7c0 vocab=cc268b9c
+-/
 scoped instance centre_isPrime : (centre (L := L) A).IsPrime := Ideal.comap_isPrime _ _
 
+/--
+@isnad1 id=iff.0h3v.s8.7a4467cf2a9f from=translated src=- shape=7f56fe75 vocab=f9eb8641
+-/
 theorem mem_centre_iff (y : 𝓞 L) : y ∈ centre (L := L) A ↔ intToA (A := A) y ∈ maximalIdeal A := Iff.rfl
 
+/--
+@isnad1 id=liesover.1h3v.s7.eb6795d8cf68 from=translated src=- shape=2ec9faf1 vocab=19ca9457
+-/
 theorem centre_liesOver (p : ℕ) [hp : Fact p.Prime] (hAp : (p : A) ∈ maximalIdeal A) :
     (centre (L := L) A).LiesOver (Ideal.span {(p : ℤ)}) := by
   refine ⟨?_⟩
@@ -58,14 +73,23 @@ section Cyc
 
 variable (p : ℕ) [hp : Fact p.Prime] [hcyc : IsCyclotomicExtension {p} ℚ L] {ζ : L} (hζ : IsPrimitiveRoot ζ p)
 
+/--
+@isnad1 id=eq.2h4v.s8.be91aee3ee45 from=translated src=- shape=a1e11c7b vocab=315a6b0e
+-/
 theorem centre_eq (hAp : (p : A) ∈ maximalIdeal A) : centre (L := L) A = Ideal.span {hζ.toInteger - 1} := by
   haveI := centre_liesOver (L := L) (A := A) p hAp
   exact IsCyclotomicExtension.Rat.eq_span_zeta_sub_one_of_liesOver' p L hζ _
 
+/--
+@isnad1 id=eq.0h3v.s9.e99ec0f2ba91 from=translated src=- shape=3c691fcf vocab=78d9891b
+-/
 theorem coe_smul (σ : L ≃ₐ[ℚ] L) (y : 𝓞 L) : ((σ • y : 𝓞 L) : L) = σ (y : L) := rfl
 
 include hζ in
 
+/--
+@isnad1 id=iff.2h6v.s9.45b4c36ef6f4 from=translated src=- shape=16891fd9 vocab=f21dc0b8
+-/
 theorem smul_mem_centre_iff (hAp : (p : A) ∈ maximalIdeal A) (σ : L ≃ₐ[ℚ] L) (y : 𝓞 L) :
     σ • y ∈ centre (L := L) A ↔ y ∈ centre (L := L) A := by
 
@@ -84,12 +108,18 @@ theorem smul_mem_centre_iff (hAp : (p : A) ∈ maximalIdeal A) (σ : L ≃ₐ[�
   change y ∈ Q ↔ _
   rw [hQ]
 
+/--
+@isnad1 id=isunit.1h3v.s7.d47e8fb1e677 from=translated src=- shape=0e0df175 vocab=07586d4c
+-/
 theorem isUnit_intToA {c : 𝓞 L} (hc : c ∉ centre (L := L) A) : IsUnit (intToA (A := A) c) := by
   by_contra h
   exact hc ((mem_centre_iff c).mpr ((mem_maximalIdeal _).mpr h))
 
 include hζ in
 
+/--
+@isnad1 id=iff.2h5v.s8.61c548962af0 from=translated src=- shape=ac534e59 vocab=4d029693
+-/
 theorem mem_range_iff (hAp : (p : A) ∈ maximalIdeal A) (x : L) :
     x ∈ (algebraMap A L).range ↔ ∃ b c : 𝓞 L, c ∉ centre (L := L) A ∧ x * (c : L) = (b : L) := by
   constructor
@@ -160,6 +190,9 @@ theorem mem_range_iff (hAp : (p : A) ∈ maximalIdeal A) (x : L) :
 
 include hζ in
 
+/--
+@isnad1 id=ex.2h6v.s8.6521b64b2f8f from=translated src=- shape=7c06305e vocab=a95ca26d
+-/
 theorem exists_algebraMap_eq_apply (hAp : (p : A) ∈ maximalIdeal A) (σ : L ≃ₐ[ℚ] L) (a : A) :
     ∃ a' : A, algebraMap A L a' = σ (algebraMap A L a) := by
   obtain ⟨b, c, hc, habc⟩ := (mem_range_iff p hζ hAp _).mp ⟨a, rfl⟩
@@ -175,6 +208,9 @@ open scoped _root_.P2MW.S_IsCyclotomicExtension_exists_mulSemiringAction_algebra
 
 open RootsGal in
 
+/--
+@isnad1 id=ex.3h4v.s10.4e6fb74901fe from=translated src=- shape=1dc49a53 vocab=a6b8b489
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime]
     (L : Type) [Field L] [CharZero L] [IsCyclotomicExtension {p} ℚ L]

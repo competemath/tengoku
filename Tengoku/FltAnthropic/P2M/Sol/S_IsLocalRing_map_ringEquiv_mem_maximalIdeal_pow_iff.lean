@@ -12,6 +12,9 @@ open IsLocalRing
 open scoped NNReal
 
 open IsLocalRing in
+/--
+@isnad1 id=iff.0h4v.s8.791ee2e8557d from=translated src=- shape=19995efd vocab=3dfdd52c
+-/
 theorem solution {R : Type*} [CommRing R] [IsLocalRing R]
     (σ : R ≃+* R) {k : ℕ} {x : R} : σ x ∈ maximalIdeal R ^ k ↔ x ∈ maximalIdeal R ^ k := by
   have hmap : ∀ (τ : R ≃+* R) {y : R}, y ∈ maximalIdeal R ^ k → τ y ∈ maximalIdeal R ^ k := by

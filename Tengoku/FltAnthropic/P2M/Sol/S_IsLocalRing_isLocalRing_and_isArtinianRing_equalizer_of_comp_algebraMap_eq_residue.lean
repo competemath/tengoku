@@ -19,6 +19,9 @@ section base
 
 variable {A : Type u} [CommRing A] [Algebra O A]
 
+/--
+@isnad1 id=isartini.3h4v.s9.52d871948a97 from=translated src=- shape=55861fa2 vocab=b3e2bb81
+-/
 theorem isArtinian_of_forall_smul_eq_zero (m : Ideal A)
     (hOm : ∀ a : A, ∃ o : O, a - algebraMap O A o ∈ m)
     (hmO : ∀ o ∈ maximalIdeal O, algebraMap O A o ∈ m)
@@ -66,6 +69,9 @@ theorem isArtinian_of_forall_smul_eq_zero (m : Ideal A)
   haveI : IsArtinian (ResidueField O) M := inferInstance
   exact isArtinian_of_surjective_algebraMap hsurj
 
+/--
+@isnad1 id=isartini.3h5v.s9.d85a25b3e78e from=translated src=- shape=414124e6 vocab=d82a848a
+-/
 theorem isArtinian_of_pow_smul_top_eq_bot [IsNoetherianRing A] (m : Ideal A)
     (hOm : ∀ a : A, ∃ o : O, a - algebraMap O A o ∈ m)
     (hmO : ∀ o ∈ maximalIdeal O, algebraMap O A o ∈ m) (N : ℕ) :
@@ -114,16 +120,25 @@ theorem isArtinian_of_pow_smul_top_eq_bot [IsNoetherianRing A] (m : Ideal A)
 
 end base
 
+/--
+@isnad1 id=eq.0h3v.s7.4f8e9190e0f5 from=translated src=- shape=ef6bea86 vocab=511f8864
+-/
 theorem ker_res_eq_maximalIdeal {B : Type u} [CommRing B] [IsLocalRing B] [IsArtinianRing B]
     (res : B →+* ResidueField O) : RingHom.ker res = maximalIdeal B :=
   IsLocalRing.eq_maximalIdeal
     ((IsArtinianRing.isPrime_iff_isMaximal (RingHom.ker res)).1 (RingHom.ker_isPrime res))
 
+/--
+@isnad1 id=iff.0h4v.s7.ff8b1779f0cf from=translated src=- shape=4a1c7ae8 vocab=f7111d29
+-/
 theorem isUnit_iff_res_ne_zero {B : Type u} [CommRing B] [IsLocalRing B] [IsArtinianRing B]
     (res : B →+* ResidueField O) (b : B) : IsUnit b ↔ res b ≠ 0 := by
   rw [ne_eq, ← RingHom.mem_ker, ker_res_eq_maximalIdeal, IsLocalRing.mem_maximalIdeal, mem_nonunits_iff,
     not_not]
 
+/--
+@isnad1 id=isartini.1h3v.s7.3402e5434156 from=translated src=- shape=519b8514 vocab=c42ef5e9
+-/
 theorem isArtinian_base (A : Type u) [CommRing A] [IsLocalRing A] [IsArtinianRing A] [Algebra O A]
     (resA : A →+* ResidueField O) (hc : resA.comp (algebraMap O A) = residue O) : IsArtinian O A := by
   have hker : RingHom.ker resA ≤ maximalIdeal A :=
@@ -156,10 +171,16 @@ abbrev E : Subalgebra O (A' × A'') :=
   AlgHom.equalizer (q'.comp (AlgHom.fst O A' A'')) (q''.comp (AlgHom.snd O A' A''))
 
 omit [IsLocalRing O] [IsLocalRing A'] [IsArtinianRing A'] [IsLocalRing A''] [IsArtinianRing A''] in
+/--
+@isnad1 id=iff.0h7v.s8.a6065810d76b from=translated src=- shape=4261b996 vocab=efbdd857
+-/
 theorem mem_E (x : A' × A'') : x ∈ E q' q'' ↔ q' x.1 = q'' x.2 := Iff.rfl
 
 include hq' hq'' in
 
+/--
+@isnad1 id=isunit.3h10v.s10.915b5bd87f04 from=translated src=- shape=34dca403 vocab=f01ec3e7
+-/
 theorem isUnit_of_isUnit_fst (x : ↥(E q' q'')) (hx : IsUnit (x : A' × A'').1) : IsUnit x := by
   have hx'' : IsUnit (x : A' × A'').2 := by
     rw [isUnit_iff_res_ne_zero resA''] ; rw [isUnit_iff_res_ne_zero resA'] at hx
@@ -193,6 +214,9 @@ theorem isUnit_of_isUnit_fst (x : ↥(E q' q'')) (hx : IsUnit (x : A' × A'').1)
     · simp only [Prod.snd_mul, Prod.snd_one]; rw [← hu'', Units.inv_mul]
 
 include hq' hq'' in
+/--
+@isnad1 id=islocalr.2h9v.s9.a1fa83d3f56b from=translated src=- shape=2d8f777f vocab=72bf27b4
+-/
 theorem isLocalRing_E : IsLocalRing ↥(E q' q'') := by
   haveI : Nontrivial ↥(E q' q'') := ⟨⟨0, 1, fun h => zero_ne_one congr(($h : A' × A'').1)⟩⟩
   refine IsLocalRing.of_isUnit_or_isUnit_one_sub_self fun x => ?_
@@ -203,6 +227,9 @@ theorem isLocalRing_E : IsLocalRing ↥(E q' q'') := by
     have hm : (x : A' × A'').1 ∈ maximalIdeal A' := (IsLocalRing.mem_maximalIdeal _).2 hx
     exact IsLocalRing.isUnit_one_sub_self_of_mem_nonunits _ hm
 
+/--
+@isnad1 id=isartini.2h8v.s9.8b664b7a8bbf from=translated src=- shape=cb01194e vocab=a90e559b
+-/
 theorem isArtinianRing_E (hc' : resA'.comp (algebraMap O A') = residue O)
     (hc'' : resA''.comp (algebraMap O A'') = residue O) : IsArtinianRing ↥(E q' q'') := by
   haveI : IsArtinian O A' := isArtinian_base A' resA' hc'
@@ -213,6 +240,9 @@ theorem isArtinianRing_E (hc' : resA'.comp (algebraMap O A') = residue O)
   exact isArtinian_of_tower O hE
 
 omit [IsLocalRing A'] [IsArtinianRing A'] [IsLocalRing A''] [IsArtinianRing A''] in
+/--
+@isnad1 id=surjecti.1h7v.s11.54bc312f8f43 from=translated src=- shape=4d10a897 vocab=78466574
+-/
 theorem res_surjective (hc' : resA'.comp (algebraMap O A') = residue O) :
     Function.Surjective (resA'.comp ((AlgHom.fst O A' A'').comp (E q' q'').val).toRingHom) := by
   intro c
@@ -226,6 +256,9 @@ end equalizer
 end P2mSchlessingerPullback
 
 open IsLocalRing in
+/--
+@isnad1 id=and.4h9v.s12.e9a6617a5f1a from=translated src=- shape=b215240e vocab=4f8792b4
+-/
 theorem solution
     (O : Type u) [CommRing O] [IsLocalRing O]
     (A' : Type u) [CommRing A'] [IsLocalRing A'] [IsArtinianRing A'] [Algebra O A']

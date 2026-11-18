@@ -20,6 +20,9 @@ section Local
 
 variable {𝒪 : Type u} {A : Type v} [CommRing 𝒪] [IsLocalRing 𝒪] [CommRing A] [Algebra 𝒪 A] [IsLocalRing A]
 
+/--
+@isnad1 id=le.1h2v.s8.a6905571f6b2 from=translated src=- shape=c51f645f vocab=206b01d2
+-/
 theorem map_maximalIdeal_le
     (hres : Function.Surjective (⇑(Ideal.Quotient.mk (maximalIdeal A)) ∘ ⇑(algebraMap 𝒪 A))) :
     (maximalIdeal 𝒪).map (algebraMap 𝒪 A) ≤ maximalIdeal A := by
@@ -40,6 +43,9 @@ section Main
 variable {𝒪 : Type u} {A : Type v} [CommRing 𝒪] [IsLocalRing 𝒪] [IsPrecomplete (maximalIdeal 𝒪) 𝒪]
   [CommRing A] [Algebra 𝒪 A] [IsLocalRing A] [IsNoetherianRing A]
 
+/--
+@isnad1 id=surjecti.3h3v.s9.4617cb4aaab3 from=translated src=- shape=d7dc9eff vocab=1873a482
+-/
 theorem surjective_of_maximalIdeal_le_sup {J : Ideal A} (hJ : J ≤ maximalIdeal A)
     (hres : Function.Surjective (⇑(Ideal.Quotient.mk (maximalIdeal A)) ∘ ⇑(algebraMap 𝒪 A)))
     (hle : maximalIdeal A ≤ J ⊔ (maximalIdeal 𝒪).map (algebraMap 𝒪 A)) :
@@ -80,6 +86,9 @@ theorem surjective_of_maximalIdeal_le_sup {J : Ideal A} (hJ : J ≤ maximalIdeal
   rw [this]
   exact J.neg_mem hj
 
+/--
+@isnad1 id=surjecti.2h3v.s9.b0012c6f4c54 from=translated src=- shape=d84a9385 vocab=38f01b14
+-/
 theorem main
     (hres : Function.Surjective (⇑(residue A) ∘ ⇑(algebraMap 𝒪 A)))
     {J : Ideal A}
@@ -102,6 +111,9 @@ end Main
 
 end M4cP4PERT
 
+/--
+@isnad1 id=surjecti.2h3v.s9.b0012c6f4c54 from=translated src=- shape=d84a9385 vocab=38f01b14
+-/
 theorem solution
     {𝒪 : Type u} {A : Type v} [CommRing 𝒪] [IsLocalRing 𝒪] [IsPrecomplete (IsLocalRing.maximalIdeal 𝒪) 𝒪]
     [CommRing A] [Algebra 𝒪 A] [IsLocalRing A] [IsNoetherianRing A]

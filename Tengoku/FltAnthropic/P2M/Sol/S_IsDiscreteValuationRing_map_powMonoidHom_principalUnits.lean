@@ -12,6 +12,9 @@ set_option autoImplicit false
 open IsLocalRing
 
 open IsLocalRing in
+/--
+@isnad1 id=eq.3h4v.s7.e9f17fac32b2 from=translated src=- shape=5a676633 vocab=66cbb3f8
+-/
 theorem solution {R : Type*} [CommRing R] [IsDomain R]
     [IsDiscreteValuationRing R] [IsAdicComplete (IsLocalRing.maximalIdeal R) R]
     {p : ℕ} (hp : p.Prime) {e : ℕ} (hpe : Ideal.span {(p : R)} = IsLocalRing.maximalIdeal R ^ e)

@@ -40,14 +40,23 @@ def DDTsep.dualHom {R k : Type} [CommRing R] [CommRing k] (res : R →+* k) (δ 
     · simp
     · simp only [snd_add, snd_inl, snd_inr, zero_add, map_add, hadd]
 
+/--
+@isnad1 id=eq.2h5v.s8.c55683ef974b from=translated src=- shape=aa0d6316 vocab=2b8226c1
+-/
 theorem DDTsep.dualHom_apply {R k : Type} [CommRing R] [CommRing k] (res : R →+* k) (δ : R → k)
     (hadd : ∀ a b, δ (a + b) = δ a + δ b) (hmul : ∀ a b, δ (a * b) = res a * δ b + res b * δ a) (r : R) :
     DDTsep.dualHom res δ hadd hmul r = inl (res r) + inr (δ r) := rfl
 
+/--
+@isnad1 id=eq.2h5v.s8.409a9b583d8d from=translated src=- shape=342eed17 vocab=10b18293
+-/
 theorem DDTsep.fst_dualHom {R k : Type} [CommRing R] [CommRing k] (res : R →+* k) (δ : R → k)
     (hadd : ∀ a b, δ (a + b) = δ a + δ b) (hmul : ∀ a b, δ (a * b) = res a * δ b + res b * δ a) (r : R) :
     (DDTsep.dualHom res δ hadd hmul r).fst = res r := by simp [DDTsep.dualHom_apply]
 
+/--
+@isnad1 id=eq.2h5v.s8.e5939ef17ca8 from=translated src=- shape=ccae8ac6 vocab=f17946ff
+-/
 theorem DDTsep.snd_dualHom {R k : Type} [CommRing R] [CommRing k] (res : R →+* k) (δ : R → k)
     (hadd : ∀ a b, δ (a + b) = δ a + δ b) (hmul : ∀ a b, δ (a * b) = res a * δ b + res b * δ a) (r : R) :
     (DDTsep.dualHom res δ hadd hmul r).snd = δ r := by simp [DDTsep.dualHom_apply]
@@ -57,16 +66,25 @@ namespace DDTsep
 variable {O : Type} [CommRing O] [IsLocalRing O]
 variable {R : Type} [CommRing R] [IsLocalRing R] [Algebra O R]
 
+/--
+@isnad1 id=surjecti.1h3v.s8.36590c33ee8b from=translated src=- shape=83f356e5 vocab=dd5217fe
+-/
 theorem res_surjective (res : R →+* ResidueField O) (hres : res.comp (algebraMap O R) = residue O) :
     Function.Surjective res := by
   intro y
   obtain ⟨o, rfl⟩ := IsLocalRing.residue_surjective y
   exact ⟨algebraMap O R o, by rw [← RingHom.comp_apply, hres]⟩
 
+/--
+@isnad1 id=eq.1h3v.s8.4118ba0c3230 from=translated src=- shape=30a237b0 vocab=8ef32b78
+-/
 theorem ker_res (res : R →+* ResidueField O) (hres : res.comp (algebraMap O R) = residue O) :
     RingHom.ker res = maximalIdeal R :=
   IsLocalRing.eq_maximalIdeal (RingHom.ker_isMaximal_of_surjective res (res_surjective res hres))
 
+/--
+@isnad1 id=iff.1h4v.s8.c6ee9706e171 from=translated src=- shape=46407a83 vocab=41f3550b
+-/
 theorem mem_maximalIdeal_iff (res : R →+* ResidueField O) (hres : res.comp (algebraMap O R) = residue O)
     (x : R) : x ∈ maximalIdeal R ↔ res x = 0 := by
   rw [← ker_res res hres, RingHom.mem_ker]
@@ -74,6 +92,9 @@ theorem mem_maximalIdeal_iff (res : R →+* ResidueField O) (hres : res.comp (al
 end DDTsep
 
 open DDTsep in
+/--
+@isnad1 id=eq.3h4v.s11.bccbc197781e from=translated src=- shape=a5e0703d vocab=49583832
+-/
 theorem solution
     (O : Type) [CommRing O] [IsLocalRing O]
     (R : Type) [CommRing R] [IsLocalRing R] [IsNoetherianRing R] [Algebra O R]

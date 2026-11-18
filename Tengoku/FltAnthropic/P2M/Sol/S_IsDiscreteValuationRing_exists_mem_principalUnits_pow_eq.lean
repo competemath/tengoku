@@ -11,6 +11,9 @@ open IsLocalRing
 
 namespace Ws26U8
 
+/--
+@isnad1 id=ex.0h4v.s8.152611880a0c from=translated src=- shape=ac7404b0 vocab=ff9c9055
+-/
 theorem exists_add_pow_succ_eq_quadratic {R : Type*} [CommRing R] (a h : R) (n : ℕ) :
     ∃ d : R, (a + h) ^ (n + 1) = a ^ (n + 1) + (n + 1 : R) * a ^ n * h + h ^ 2 * d := by
   induction n with
@@ -25,6 +28,9 @@ theorem exists_add_pow_succ_eq_quadratic {R : Type*} [CommRing R] (a h : R) (n :
 end Ws26U8
 
 open IsLocalRing Ws26U8 in
+/--
+@isnad1 id=ex.4h5v.s8.324fd3d1abe3 from=translated src=- shape=be9e9333 vocab=c73c4dd6
+-/
 theorem solution {R : Type*} [CommRing R] [IsDomain R]
     [IsDiscreteValuationRing R] [IsAdicComplete (IsLocalRing.maximalIdeal R) R]
     {n : ℕ} (hn : 0 < n) {e : ℕ} (hne : Ideal.span {(n : R)} = IsLocalRing.maximalIdeal R ^ e)

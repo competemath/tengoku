@@ -14,6 +14,9 @@ set_option autoImplicit false
 
 open Polynomial IsLocalRing
 
+/--
+@isnad1 id=not.3h5v.s9.8f22a30944a6 from=translated src=- shape=ae327a48 vocab=0d793a6b
+-/
 theorem solution
     {𝒪 : Type} [CommRing 𝒪] [IsLocalRing 𝒪]
     {F : Type} [CommRing F] [Nontrivial F] [Algebra 𝒪 F]

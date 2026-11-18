@@ -10,6 +10,9 @@ set_option autoImplicit false
 open scoped NNReal
 
 open IsLocalRing in
+/--
+@isnad1 id=eq.0h2v.s6.bf6b80fcef01 from=translated src=- shape=5aa45293 vocab=c7142b22
+-/
 theorem solution {R : Type*} [CommRing R] [IsDomain R]
     [IsDiscreteValuationRing R] (n : ℕ) :
     Nat.card (R ⧸ IsLocalRing.maximalIdeal R ^ n) = Nat.card (IsLocalRing.ResidueField R) ^ n := by

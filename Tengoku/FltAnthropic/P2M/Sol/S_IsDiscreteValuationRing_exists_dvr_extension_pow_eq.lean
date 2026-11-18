@@ -13,6 +13,9 @@ universe u
 
 set_option synthInstance.maxHeartbeats 1600000 in
 set_option maxHeartbeats 6400000 in
+/--
+@isnad1 id=ex.3h4v.s9.de1626e61dc7 from=translated src=- shape=46e9ae56 vocab=3c4d52fc
+-/
 theorem solution
     {R₀ : Type u} [CommRing R₀] [IsDomain R₀] [IsDiscreteValuationRing R₀]
     {K : Type u} [Field K] [Algebra R₀ K] [IsFractionRing R₀ K]

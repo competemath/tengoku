@@ -9,6 +9,9 @@ set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 1600000
 open IsLocalRing
 
+/--
+@isnad1 id=ex.2h4v.s8.154aa48bd562 from=translated src=- shape=e5f2c1a3 vocab=acfb9610
+-/
 theorem solution
     {𝒪 : Type} [CommRing 𝒪] [IsDomain 𝒪] [IsDiscreteValuationRing 𝒪] [CharZero 𝒪]
     (p : ℕ) [Fact p.Prime] (hp𝒪 : (p : 𝒪) ∈ maximalIdeal 𝒪)

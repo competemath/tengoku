@@ -11,6 +11,9 @@ set_option autoImplicit false
 open IsDedekindDomain NumberField
 
 open scoped Classical in
+/--
+@isnad1 id=ex.4h3v.s15.99071a001345 from=translated src=- shape=ac329de4 vocab=98009b5a
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K))
     (Ψ : (v.adicCompletion K)ˣ × (v.adicCompletion K)ˣ → ℂ)

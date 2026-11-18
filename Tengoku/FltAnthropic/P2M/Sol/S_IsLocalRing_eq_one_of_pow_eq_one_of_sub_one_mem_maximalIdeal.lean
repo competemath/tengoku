@@ -13,6 +13,9 @@ open IsLocalRing
 
 namespace Ws14Port
 
+/--
+@isnad1 id=mem.1h3v.s7.f43b097cedcd from=translated src=- shape=ef77426b vocab=afded478
+-/
 theorem geomSum_sub_natCast_mem_maximalIdeal {A : Type u} [CommRing A] [IsLocalRing A] {u : A}
     (hu : u - 1 ∈ maximalIdeal A) (n : ℕ) :
     (∑ i ∈ Finset.range n, u ^ i) - (n : A) ∈ maximalIdeal A := by
@@ -28,6 +31,9 @@ theorem geomSum_sub_natCast_mem_maximalIdeal {A : Type u} [CommRing A] [IsLocalR
 
 end Ws14Port
 
+/--
+@isnad1 id=eq.3h3v.s7.13d8d3edcf65 from=translated src=- shape=9e3fa473 vocab=e87fe2c9
+-/
 theorem solution {A : Type u} [CommRing A] [IsLocalRing A]
     {u : A} (hu : u - 1 ∈ IsLocalRing.maximalIdeal A) {n : ℕ} (hn : IsUnit (n : A)) (hun : u ^ n = 1) : u = 1 := by
   have hfact : (u - 1) * (∑ i ∈ Finset.range n, u ^ i) = 0 := by

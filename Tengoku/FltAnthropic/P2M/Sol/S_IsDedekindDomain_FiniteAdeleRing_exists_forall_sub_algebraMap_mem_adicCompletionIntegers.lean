@@ -26,6 +26,9 @@ open scoped WithZero
 
 local notation "vK" => (Valued.v : Valuation (v.adicCompletion K) ℤᵐ⁰)
 
+/--
+@isnad1 id=isrankon.0h3v.s7.71282bd7f98f from=translated src=- shape=9ed2a9e3 vocab=082a3138
+-/
 scoped instance s2_isRankOneDiscrete_valuedAdicCompletion : Valuation.IsRankOneDiscrete vK where
   exists_generator_lt_one' := by
     have h : (v.valuation K).IsRankOneDiscrete := Valuation.IsRankOneDiscrete.mk' (valuation K v)

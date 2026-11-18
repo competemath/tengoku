@@ -10,6 +10,9 @@ set_option autoImplicit false
 open IsLocalRing
 
 open IsLocalRing in
+/--
+@isnad1 id=eq.0h1v.s8.577812e2042e from=translated src=- shape=4e51f56e vocab=ef9416dd
+-/
 theorem solution {R : Type*} [CommRing R] [IsLocalRing R] :
     principalUnits R 1 = (Units.map (residue R : R →* ResidueField R)).ker := by
   ext u

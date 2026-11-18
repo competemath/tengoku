@@ -11,6 +11,9 @@ universe u
 
 open IsLocalRing
 
+/--
+@isnad1 id=eq.2h2v.s8.ded05fe380b2 from=translated src=- shape=ead75b59 vocab=95893b03
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
     (N : Ideal R) (hN : N ≤ maximalIdeal R) (h : maximalIdeal R ≤ N ⊔ maximalIdeal R ^ 2) :

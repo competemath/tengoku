@@ -22,6 +22,9 @@ variable {K : Type*} [Field K] [Algebra ℂ K]
 
 omit [Algebra ℂ K] in
 
+/--
+@isnad1 id=iff.0h3v.s7.8dd34ee666f1 from=translated src=- shape=29c26d66 vocab=26897d69
+-/
 theorem isIntegral_subring_iff (T : Subring K) (y : K) :
     IsIntegral ↥T y ↔ ∃ p : K[X], p.Monic ∧ (∀ n, p.coeff n ∈ T) ∧ p.eval y = 0 := by
   constructor
@@ -39,6 +42,9 @@ theorem isIntegral_subring_iff (T : Subring K) (y : K) :
 
 omit [Algebra ℂ K] in
 
+/--
+@isnad1 id=iff.0h4v.s8.670e31cb69a5 from=translated src=- shape=4c57aad2 vocab=81f919ab
+-/
 theorem isIntegral_subalgebra_iff {R₀ : Type*} [CommRing R₀] [Algebra R₀ K]
     (T : Subalgebra R₀ K) (y : K) :
     IsIntegral ↥T y ↔ ∃ p : K[X], p.Monic ∧ (∀ n, p.coeff n ∈ T) ∧ p.eval y = 0 := by
@@ -57,6 +63,9 @@ theorem isIntegral_subalgebra_iff {R₀ : Type*} [CommRing R₀] [Algebra R₀ K
 
 omit [Algebra ℂ K] in
 
+/--
+@isnad1 id=iff.0h4v.s8.4ec0e0c0b789 from=translated src=- shape=2fbcb380 vocab=d31ea158
+-/
 theorem isIntegral_adjoin_iff_closure {R₀ : Type*} [CommRing R₀] [Algebra R₀ K] (B : Set K) (y : K) :
     IsIntegral ↥(Algebra.adjoin R₀ B) y ↔
       IsIntegral ↥(Subring.closure (Set.range (algebraMap R₀ K) ∪ B)) y := by
@@ -65,12 +74,18 @@ theorem isIntegral_adjoin_iff_closure {R₀ : Type*} [CommRing R₀] [Algebra R�
 
 omit [Algebra ℂ K] in
 
+/--
+@isnad1 id=isintegr.2h4v.s7.1365adea26f0 from=translated src=- shape=64da47ac vocab=a58209c7
+-/
 theorem isIntegral_of_isIntegral_adjoin_singleton {A : Type*} [CommRing A] [Algebra A K] {r z : K}
     (hr : IsIntegral A r) (hz : IsIntegral ↥(Algebra.adjoin A {r}) z) : IsIntegral A z := by
   haveI : Algebra.IsIntegral A ↥(Algebra.adjoin A {r}) :=
     Algebra.IsIntegral.adjoin fun _ h ↦ by rw [Set.mem_singleton_iff] at h; rw [h]; exact hr
   exact isIntegral_trans z hz
 
+/--
+@isnad1 id=eq.0h2v.s9.f35432a87b59 from=translated src=- shape=3a6acc0d vocab=7913160f
+-/
 theorem range_algebraMap_subfield (F : IntermediateField ℚ ℂ) :
     Set.range (algebraMap ↥F K) = ⇑(algebraMap ℂ K) '' (F : Set ℂ) := by
   ext x
@@ -78,9 +93,15 @@ theorem range_algebraMap_subfield (F : IntermediateField ℚ ℂ) :
   · rintro ⟨c, rfl⟩; exact ⟨c, c.2, rfl⟩
   · rintro ⟨c, hc, rfl⟩; exact ⟨⟨c, hc⟩, rfl⟩
 
+/--
+@isnad1 id=eq.0h4v.s11.4a8a39dd9b86 from=translated src=- shape=0513134a vocab=23ff2bfd
+-/
 theorem algebraMap_subfield_apply' (F : IntermediateField ℚ ℂ) (E₀ : IntermediateField ↥F ℂ)
     (c : ↥E₀) : algebraMap ↥E₀ K c = algebraMap ℂ K (c : ℂ) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s11.a1e5ab7a1187 from=translated src=- shape=c2f43c6d vocab=7913160f
+-/
 theorem range_algebraMap_subfield' (F : IntermediateField ℚ ℂ) (E₀ : IntermediateField ↥F ℂ) :
     Set.range (algebraMap ↥E₀ K) = ⇑(algebraMap ℂ K) '' (E₀ : Set ℂ) := by
   ext x
@@ -88,6 +109,9 @@ theorem range_algebraMap_subfield' (F : IntermediateField ℚ ℂ) (E₀ : Inter
   · rintro ⟨c, rfl⟩; exact ⟨c, c.2, rfl⟩
   · rintro ⟨c, hc, rfl⟩; exact ⟨⟨c, hc⟩, rfl⟩
 
+/--
+@isnad1 id=charzero.0h3v.s10.089a7122bb9d from=translated src=- shape=7d27c377 vocab=1e615316
+-/
 theorem charZero_KFld (F : IntermediateField ℚ ℂ) (L₀ : IntermediateField ↥F K) : CharZero ↥L₀ :=
   haveI : CharZero ↥F := charZero_of_injective_algebraMap (algebraMap ℚ ↥F).injective
   charZero_of_injective_algebraMap (algebraMap ↥F ↥L₀).injective
@@ -102,19 +126,31 @@ def RSet : Set K := {y | y ∈ KFld F S ∧ IsIntegral ↥(TRng F B) y}
 
 variable {B S}
 
+/--
+@isnad1 id=isintegr.1h4v.s9.466828dc34c7 from=translated src=- shape=ac5afec5 vocab=7cd93128
+-/
 theorem isIntegral_TRng_algebraMap {a : ℂ} (ha : IsIntegral ↥F a) :
     IsIntegral ↥(TRng F B) (algebraMap ℂ K a) :=
   (ha.algebraMap (B := K)).tower_top
 
+/--
+@isnad1 id=isintegr.1h4v.s9.63624f7bf40b from=translated src=- shape=7de8da3a vocab=f431ace7
+-/
 theorem isIntegral_KFld_algebraMap {a : ℂ} (ha : IsIntegral ↥F a) :
     IsIntegral ↥(KFld F S) (algebraMap ℂ K a) :=
   (ha.algebraMap (B := K)).tower_top
 
+/--
+@isnad1 id=dvd.0h4v.s13.598afb9c4ace from=translated src=- shape=94ef1eed vocab=0f3e3a8d
+-/
 theorem minpoly_KFld_dvd (c : ℂ) :
     minpoly ↥(KFld F S) (algebraMap ℂ K c) ∣ (minpoly ↥F c).map (algebraMap ↥F ↥(KFld F S)) := by
   apply minpoly.dvd
   rw [Polynomial.aeval_map_algebraMap, Polynomial.aeval_algebraMap_apply, minpoly.aeval, map_zero]
 
+/--
+@isnad1 id=ex.2h5v.s10.ef340abfee27 from=translated src=- shape=6640aae6 vocab=ad83bbc7
+-/
 theorem root_minpoly_KFld_eq_algebraMap {c : ℂ} (hc : IsIntegral ↥F c) {r : K}
     (hr : r ∈ (minpoly ↥(KFld F S) (algebraMap ℂ K c)).aroots K) :
     ∃ a : ℂ, IsIntegral ↥F a ∧ algebraMap ℂ K a = r := by
@@ -138,6 +174,9 @@ theorem root_minpoly_KFld_eq_algebraMap {c : ℂ} (hc : IsIntegral ↥F c) {r : 
 
 attribute [local instance] Classical.propDecidable in
 
+/--
+@isnad1 id=eq.1h4v.s11.07aae58dc783 from=translated src=- shape=35799129 vocab=ad38e7bc
+-/
 theorem card_rootFinset_minpoly_KFld {c : ℂ} (hc : IsIntegral ↥F c) :
     ((minpoly ↥(KFld F S) (algebraMap ℂ K c)).aroots K).toFinset.card =
       (minpoly ↥(KFld F S) (algebraMap ℂ K c)).natDegree := by
@@ -159,6 +198,9 @@ theorem card_rootFinset_minpoly_KFld {c : ℂ} (hc : IsIntegral ↥F c) :
     ((IsAlgClosed.splits q).map ι).of_dvd (hqm.map ι).ne_zero hdvd
   rw [← hspl.natDegree_eq_card_roots, Polynomial.natDegree_map]
 
+/--
+@isnad1 id=mem.1h5v.s11.f1642083d9de from=translated src=- shape=1d07b292 vocab=2679a323
+-/
 theorem algebraMap_adjoinF_mem {c : ℂ} {z : ℂ} (hz : z ∈ IntermediateField.adjoin ↥F {c}) :
     algebraMap ℂ K z ∈
       IntermediateField.adjoin ↥(KFld F S) {algebraMap ℂ K c} := by
@@ -173,6 +215,9 @@ theorem algebraMap_adjoinF_mem {c : ℂ} {z : ℂ} (hz : z ∈ IntermediateField
       (IntermediateField.mem_adjoin_simple_self ↥(KFld F S) _))
   exact h2 h1
 
+/--
+@isnad1 id=le.0h4v.s10.cc64a8420884 from=translated src=- shape=fa78edfe vocab=2fb67f5e
+-/
 theorem closure_adjoin_le {c : ℂ} :
     Subfield.closure
         (⇑(algebraMap ℂ K) '' (IntermediateField.adjoin ↥F {c} : Set ℂ) ∪ S) ≤
@@ -185,6 +230,9 @@ theorem closure_adjoin_le {c : ℂ} :
 
 variable (B) in
 
+/--
+@isnad1 id=ex.3h6v.s16.c96046aa290b from=translated src=- shape=0afe122b vocab=f6c2f70a
+-/
 theorem exists_lift_of_mem_adjoin (hBS : B ⊆ S) {c : ℂ} (hc : IsIntegral ↥F c) {y : K}
     (hy : y ∈ Algebra.adjoin ↥(IntermediateField.adjoin ↥F {c}) B) :
     ∃ y' : ↥(IntermediateField.adjoin ↥(KFld F S) {algebraMap ℂ K c}),
@@ -229,6 +277,9 @@ theorem exists_lift_of_mem_adjoin (hBS : B ⊆ S) {c : ℂ} (hc : IsIntegral ↥
 
 attribute [local instance] Classical.propDecidable in
 
+/--
+@isnad1 id=isintegr.2h6v.s9.d7f0819669e6 from=translated src=- shape=41b00ac5 vocab=d114a3ca
+-/
 theorem isIntegral_coeff_lagrangeBasis {s : Finset K}
     (hs : ∀ r ∈ s, ∃ a : ℂ, IsIntegral ↥F a ∧ algebraMap ℂ K a = r)
     {r : K} (hr : r ∈ s) (k : ℕ) :
@@ -264,6 +315,9 @@ theorem isIntegral_coeff_lagrangeBasis {s : Finset K}
 variable (B S) in
 set_option maxHeartbeats 6400000 in
 
+/--
+@isnad1 id=mem.4h6v.s12.86ee3234843c from=translated src=- shape=e84915d4 vocab=9da7dc6c
+-/
 theorem mem_span_RSet_of_adjoin_simple (hBS : B ⊆ S) {c : ℂ} (hc : IsIntegral ↥F c) {x : K}
     (hxK : x ∈ Subfield.closure
       (⇑(algebraMap ℂ K) '' (IntermediateField.adjoin ↥F {c} : Set ℂ) ∪ S))
@@ -403,16 +457,25 @@ theorem mem_span_RSet_of_adjoin_simple (hBS : B ⊆ S) {c : ℂ} (hc : IsIntegra
   rw [this]
   exact Submodule.smul_mem _ _ (Submodule.subset_span (hZ5 i))
 
+/--
+@isnad1 id=iff.0h4v.s8.ba60a3311320 from=translated src=- shape=a7d98b3c vocab=60757ad7
+-/
 theorem mem_KFld_iff_closure (z : K) :
     z ∈ KFld F S ↔ z ∈ Subfield.closure (⇑(algebraMap ℂ K) '' (F : Set ℂ) ∪ S) := by
   rw [← IntermediateField.mem_toSubfield, IntermediateField.adjoin_toSubfield,
     range_algebraMap_subfield]
 
+/--
+@isnad1 id=iff.0h4v.s9.6dc9db2e17c0 from=translated src=- shape=4c95c2ce vocab=78894010
+-/
 theorem isIntegral_TRng_iff_closure (z : K) :
     IsIntegral ↥(TRng F B) z ↔
       IsIntegral ↥(Subring.closure (⇑(algebraMap ℂ K) '' (F : Set ℂ) ∪ B)) z := by
   rw [isIntegral_adjoin_iff_closure, range_algebraMap_subfield]
 
+/--
+@isnad1 id=iff.0h5v.s12.9b517b53fc69 from=translated src=- shape=cbf4321a vocab=94263933
+-/
 theorem isIntegral_adjoin_iff_closure' (E₀ : IntermediateField ↥F ℂ) (z : K) :
     IsIntegral ↥(Algebra.adjoin ↥E₀ B) z ↔
       IsIntegral ↥(Subring.closure (⇑(algebraMap ℂ K) '' (E₀ : Set ℂ) ∪ B)) z := by
@@ -420,6 +483,9 @@ theorem isIntegral_adjoin_iff_closure' (E₀ : IntermediateField ↥F ℂ) (z : 
 
 end WLightR7b
 
+/--
+@isnad1 id=mem.4h6v.s11.d58e315358ea from=translated src=- shape=f220a132 vocab=658b4627
+-/
 theorem solution {K : Type*} [Field K] [Algebra ℂ K]
     (F : IntermediateField ℚ ℂ) (B S : Set K) (hBS : B ⊆ S) (c : ℂ) (hc : IsAlgebraic ↥F c)
     (y : K)

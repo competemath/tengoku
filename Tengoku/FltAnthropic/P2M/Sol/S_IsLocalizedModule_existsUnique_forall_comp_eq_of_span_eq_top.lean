@@ -11,10 +11,16 @@ universe u
 
 namespace MorphismDescentAux
 
+/--
+@isnad1 id=eq.0h5v.s6.79cadde81d76 from=translated src=- shape=1660a690 vocab=ac47105c
+-/
 theorem pow_sup_eq {B : Type u} [CommRing B] {ι : Type*} [Fintype ι] (b : B) (n : ι → ℕ) (i : ι) :
     b ^ (Finset.univ.sup n) = b ^ (Finset.univ.sup n - n i) * b ^ (n i) := by
   rw [← pow_add, Nat.sub_add_cancel (Finset.le_sup (Finset.mem_univ i))]
 
+/--
+@isnad1 id=ex.1h4v.s7.11902edde45a from=translated src=- shape=dde3c3e3 vocab=eb12735b
+-/
 theorem exists_sum_mul_pow_eq_one {B : Type u} [CommRing B] {k : ℕ} (f : Fin k → B)
     (hf : Ideal.span (Set.range f) = ⊤) (n : Fin k → ℕ) : ∃ c : Fin k → B, ∑ i, c i * f i ^ n i = 1 := by
   classical
@@ -32,6 +38,9 @@ theorem exists_sum_mul_pow_eq_one {B : Type u} [CommRing B] {k : ℕ} (f : Fin k
 end MorphismDescentAux
 
 open MorphismDescentAux in
+/--
+@isnad1 id=existsun.5h11v.s10.eb93d8133d90 from=translated src=- shape=74815fcb vocab=7ad56c07
+-/
 theorem solution
     {B : Type u} [CommRing B] {k : ℕ} (f : Fin k → B) (hf : Ideal.span (Set.range f) = ⊤)
     (M : Fin k → Type u) [∀ i, AddCommGroup (M i)] [∀ i, Module B (M i)]

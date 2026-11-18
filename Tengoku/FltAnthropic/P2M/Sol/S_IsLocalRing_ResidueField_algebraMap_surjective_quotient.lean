@@ -13,13 +13,22 @@ namespace LCMazurS10LTRES
 variable {A : Type*} [CommRing A] [IsLocalRing A]
 
 omit [IsLocalRing A] in
+/--
+@isnad1 id=nontrivi.1h2v.s6.25d02e1ff0f5 from=translated src=- shape=d6f59e47 vocab=147351a3
+-/
 theorem nontrivial_quotient_of_ne_top {I : Ideal A} (hI : I ≠ ⊤) : Nontrivial (A ⧸ I) :=
   Ideal.Quotient.nontrivial_iff.mpr hI
 
+/--
+@isnad1 id=islocalh.1h2v.s7.1c5ce50ccf35 from=translated src=- shape=37a2513e vocab=3a4668b4
+-/
 theorem isLocalHom_mk_of_ne_top {I : Ideal A} (hI : I ≠ ⊤) : IsLocalHom (Ideal.Quotient.mk I) :=
   haveI := nontrivial_quotient_of_ne_top hI
   IsLocalHom.of_surjective _ Ideal.Quotient.mk_surjective
 
+/--
+@isnad1 id=eq.1h2v.s8.9a4c31985ee9 from=translated src=- shape=91278451 vocab=3c485cba
+-/
 theorem map_maximalIdeal_mk_of_ne_top {I : Ideal A} (hI : I ≠ ⊤) [IsLocalRing (A ⧸ I)] :
     (maximalIdeal A).map (Ideal.Quotient.mk I) = maximalIdeal (A ⧸ I) := by
   haveI := isLocalHom_mk_of_ne_top hI
@@ -31,6 +40,9 @@ theorem map_maximalIdeal_mk_of_ne_top {I : Ideal A} (hI : I ≠ ⊤) [IsLocalRin
 end LCMazurS10LTRES
 
 open LCMazurS10LTRES in
+/--
+@isnad1 id=surjecti.1h3v.s9.690ed2a8a454 from=translated src=- shape=58825a5e vocab=8359e7eb
+-/
 theorem solution
     {𝒪 A : Type} [CommRing 𝒪] [CommRing A] [IsLocalRing A] [Algebra 𝒪 A]
     (I : Ideal A) [IsLocalRing (A ⧸ I)]

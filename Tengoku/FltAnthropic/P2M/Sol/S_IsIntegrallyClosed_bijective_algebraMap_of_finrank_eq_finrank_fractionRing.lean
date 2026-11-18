@@ -8,6 +8,9 @@ namespace P2MW.S_IsIntegrallyClosed_bijective_algebraMap_of_finrank_eq_finrank_f
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=bijectiv.1h5v.s9.70f0af40d70d from=translated src=- shape=6bd68444 vocab=5341b9b2
+-/
 theorem solution
     {O W C : Type*} [CommRing O] [IsDomain O] [CommRing W] [IsDomain W] [IsIntegrallyClosed W]
     [CommRing C] [IsDomain C]

@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=and.1h4v.s10.121853f56368 from=translated src=- shape=987f37f7 vocab=1ad1bbe5
+-/
 theorem solution
     {K₁ K E F : Type*} [Field K₁] [Field K] [Field E] [Field F]
     [Algebra K₁ K] [FiniteDimensional K₁ K] [IsGalois K₁ K]

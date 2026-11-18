@@ -14,6 +14,9 @@ open IsLocalizedModule
 variable {R : Type*} [CommRing R] {M : Type*} [AddCommGroup M] [Module R M]
 variable {ι : Type*} [Fintype ι] (g : ι → R)
 
+/--
+@isnad1 id=eq.1h8v.s8.f45246b7244b from=translated src=- shape=c4ebcea1 vocab=7237646c
+-/
 theorem smul_pow_injective {N : Type*} [AddCommGroup N] [Module R N] (f : M →ₗ[R] N) (r : R)
     [IsLocalizedModule (Submonoid.powers r) f] (n : ℕ) {y y' : N} (h : r ^ n • y = r ^ n • y') : y = y' := by
   have hu := IsLocalizedModule.map_units f (⟨r ^ n, n, rfl⟩ : Submonoid.powers r)
@@ -21,6 +24,9 @@ theorem smul_pow_injective {N : Type*} [AddCommGroup N] [Module R N] (f : M →�
     ((Module.End.isUnit_iff _).mp hu).1
   exact hinj h
 
+/--
+@isnad1 id=ex.0h7v.s8.8186bfd00316 from=translated src=- shape=4ae6aecd vocab=dce1b786
+-/
 theorem exists_common_numerators {N : ι → Type*} [∀ i, AddCommGroup (N i)] [∀ i, Module R (N i)]
     (f : ∀ i, M →ₗ[R] N i) [∀ i, IsLocalizedModule (Submonoid.powers (g i)) (f i)] (x : ∀ i, N i) :
     ∃ (a : ℕ) (m : ι → M), ∀ i, g i ^ a • x i = f i (m i) := by
@@ -34,6 +40,9 @@ theorem exists_common_numerators {N : ι → Type*} [∀ i, AddCommGroup (N i)] 
   have hle : n i ≤ Finset.univ.sup n := Finset.le_sup (Finset.mem_univ i)
   rw [map_smul, ← hm i, ← smul_assoc, smul_eq_mul, ← pow_add, Nat.sub_add_cancel hle]
 
+/--
+@isnad1 id=ex.3h10v.s9.75de578961e5 from=translated src=- shape=5ea6d3fe vocab=5797a743
+-/
 theorem exists_of_compatible (hg : Ideal.span (Set.range g) = ⊤)
     {N : ι → Type*} [∀ i, AddCommGroup (N i)] [∀ i, Module R (N i)]
     (f : ∀ i, M →ₗ[R] N i) [∀ i, IsLocalizedModule (Submonoid.powers (g i)) (f i)]
@@ -97,6 +106,9 @@ theorem exists_of_compatible (hg : Ideal.span (Set.range g) = ⊤)
 end P2mWs3Glue
 
 universe u v w in
+/--
+@isnad1 id=ex.3h10v.s9.bc857048b35c from=translated src=- shape=a8a703b5 vocab=5797a743
+-/
 theorem solution
     {R : Type u} [CommRing R] {M : Type v} [AddCommGroup M] [Module R M]
     {ι : Type w} [Fintype ι] (g : ι → R) (hg : Ideal.span (Set.range g) = ⊤)

@@ -21,14 +21,23 @@ structure Good (f : B) (s : Finset B) : Prop where
   ortho : ∀ e ∈ s, ∀ e' ∈ s, e ≠ e' → e * e' = 0
   sum : ∑ e ∈ s, e = f
 
+/--
+@isnad1 id=good.0h1v.s4.60dd18c3973d from=translated src=- shape=069fa2a1 vocab=e888fe71
+-/
 theorem good_zero : Good (0 : B) ∅ :=
   ⟨by simp, by simp, by simp, by simp, by simp, by simp⟩
 
+/--
+@isnad1 id=good.3h2v.s6.20d056ba2988 from=translated src=- shape=63261867 vocab=305acfd5
+-/
 theorem good_prim {f : B} (hf : IsIdempotentElem f) (hf0 : f ≠ 0)
     (hprim : ∀ x : B, IsIdempotentElem x → x * f = 0 ∨ x * f = f) : Good f {f} :=
   ⟨by simpa using hf, by simpa using hf0, by simpa using hf.eq, by simpa using hprim,
     by simp, by simp⟩
 
+/--
+@isnad1 id=good.3h5v.s6.53bd0655bc7a from=translated src=- shape=400bad3b vocab=92ea37c9
+-/
 theorem good_union [DecidableEq B] {f₁ f₂ : B} {s₁ s₂ : Finset B} (h₁ : Good f₁ s₁) (h₂ : Good f₂ s₂)
     (h12 : f₁ * f₂ = 0) : Good (f₁ + f₂) (s₁ ∪ s₂) := by
   have hcross : ∀ e ∈ s₁, ∀ e' ∈ s₂, e * e' = 0 := fun e he e' he' => by
@@ -57,6 +66,9 @@ theorem good_union [DecidableEq B] {f₁ f₂ : B} {s₁ s₂ : Finset B} (h₁ 
     · exact h₂.ortho e h e' h' hne
   · rw [Finset.sum_union hdisj, h₁.sum, h₂.sum]
 
+/--
+@isnad1 id=ex.1h2v.s5.af63dfc98c50 from=translated src=- shape=7b248323 vocab=848907e1
+-/
 theorem exists_good [IsNoetherianRing B] (f : B) (hf : IsIdempotentElem f) : ∃ s : Finset B, Good f s := by
   classical
 
@@ -105,6 +117,9 @@ theorem exists_good [IsNoetherianRing B] (f : B) (hf : IsIdempotentElem f) : ∃
 end NoethIdem29
 
 open NoethIdem29 in
+/--
+@isnad1 id=ex.0h1v.s7.72a8e39005b7 from=translated src=- shape=e328d2b2 vocab=d645e005
+-/
 theorem solution
     (B : Type u) [CommRing B] [IsNoetherianRing B] :
     ∃ (n : ℕ) (e : Fin n → B), CompleteOrthogonalIdempotents e ∧

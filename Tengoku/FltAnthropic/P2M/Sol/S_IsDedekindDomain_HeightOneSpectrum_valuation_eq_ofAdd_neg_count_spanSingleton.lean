@@ -9,6 +9,9 @@ open scoped nonZeroDivisors
 set_option autoImplicit false
 set_option maxHeartbeats 4000000
 
+/--
+@isnad1 id=eq.1h4v.s7.62cad2a38049 from=translated src=- shape=35a2784a vocab=a029c45e
+-/
 theorem solution
     {R : Type*} [CommRing R] [IsDedekindDomain R] {K : Type*} [Field K]
     [Algebra R K] [IsFractionRing R K] (v : HeightOneSpectrum R) (x : K) (hx : x ≠ 0) :

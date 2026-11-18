@@ -15,10 +15,16 @@ open IsLocalRing Polynomial
 namespace P2M
 namespace WittTwoLift
 
+/--
+@isnad1 id=eq.0h5v.s7.39d67ff801a6 from=translated src=- shape=5b89688f vocab=99eba4de
+-/
 theorem map_eval₂_int {A B : Type*} [CommRing A] [CommRing B] (f : A →+* B) (P : ℤ[X]) (t : A) :
     f (P.eval₂ (Int.castRingHom A) t) = P.eval₂ (Int.castRingHom B) (f t) := by
   rw [Polynomial.hom_eval₂, RingHom.ext_int (f.comp (Int.castRingHom A)) (Int.castRingHom B)]
 
+/--
+@isnad1 id=eq.2h4v.s8.11759d46b90a from=translated src=- shape=ba40e53f vocab=2f236e87
+-/
 theorem newton {A : Type*} [CommRing A] (P : ℤ[X]) (t u : A)
     (hu : u * P.derivative.eval₂ (Int.castRingHom A) t = 1)
     (hsq : P.eval₂ (Int.castRingHom A) t * P.eval₂ (Int.castRingHom A) t = 0) :
@@ -34,6 +40,9 @@ theorem newton {A : Type*} [CommRing A] (P : ℤ[X]) (t u : A)
       P.eval₂ (Int.castRingHom A) t * (1 - u * (derivative P).eval₂ (Int.castRingHom A) t) := by ring
   rw [this, hu, sub_self, mul_zero]
 
+/--
+@isnad1 id=ex.2h2v.s7.b2143b59b793 from=translated src=- shape=5e4db8ed vocab=72e845c7
+-/
 theorem exists_eq_C_mul_of_map_eq_zero {q : ℕ} (hq : q ≠ 0) (B : ℤ[X])
     (hB : B.map (Int.castRingHom (ZMod q)) = 0) : ∃ B' : ℤ[X], B = C (q : ℤ) * B' ∧ B'.degree = B.degree := by
   have hker : B ∈ RingHom.ker (Polynomial.mapRingHom (Int.castRingHom (ZMod q))) := hB
@@ -44,6 +53,9 @@ theorem exists_eq_C_mul_of_map_eq_zero {q : ℕ} (hq : q ≠ 0) (B : ℤ[X])
   rw [hB', Polynomial.degree_C_mul]
   exact_mod_cast hq
 
+/--
+@isnad1 id=ex.4h6v.s9.37bac63c82dc from=translated src=- shape=cc227552 vocab=8509e592
+-/
 theorem main
     {q : ℕ} [hqp : Fact q.Prime] {S : Type u} [CommRing S] [IsLocalRing S]
     [Finite (ResidueField S)] [CharP (ResidueField S) q]
@@ -326,6 +338,9 @@ theorem main
 
 end P2M.WittTwoLift
 
+/--
+@isnad1 id=ex.4h6v.s9.37bac63c82dc from=translated src=- shape=cc227552 vocab=8509e592
+-/
 theorem solution
     {q : ℕ} [Fact q.Prime] {S : Type u} [CommRing S] [IsLocalRing S]
     [Finite (ResidueField S)] [CharP (ResidueField S) q]

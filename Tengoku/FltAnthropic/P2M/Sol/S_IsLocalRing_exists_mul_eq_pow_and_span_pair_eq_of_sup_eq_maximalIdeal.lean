@@ -13,17 +13,29 @@ open IsLocalRing Ideal
 
 variable {A : Type*} [CommRing A]
 
+/--
+@isnad1 id=mem.0h3v.s6.476c2d28abaf from=translated src=- shape=3332937d vocab=f3f7606e
+-/
 theorem mem_span_pair_left (x y : A) : x ∈ Ideal.span ({x, y} : Set A) :=
   Ideal.subset_span (Set.mem_insert _ _)
 
+/--
+@isnad1 id=mem.0h3v.s6.8f4d5cb7ddd9 from=translated src=- shape=f3821dce vocab=f3f7606e
+-/
 theorem mem_span_pair_right (x y : A) : y ∈ Ideal.span ({x, y} : Set A) :=
   Ideal.subset_span (Set.mem_insert_of_mem _ rfl)
 
+/--
+@isnad1 id=iff.0h4v.s7.4620939a87d2 from=translated src=- shape=b930bece vocab=e2d9456c
+-/
 theorem span_pair_le_iff {x y : A} {I : Ideal A} :
     Ideal.span ({x, y} : Set A) ≤ I ↔ x ∈ I ∧ y ∈ I := by
   rw [Ideal.span_le, Set.insert_subset_iff, Set.singleton_subset_iff]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.7dd2b6691b54 from=translated src=- shape=c0fd299d vocab=23aa84bf
+-/
 theorem span_pair_add_mul_eq (x y k : A) :
     Ideal.span ({x + k * y, y} : Set A) = Ideal.span {x, y} := by
   apply le_antisymm
@@ -32,6 +44,9 @@ theorem span_pair_add_mul_eq (x y k : A) :
   · rw [span_pair_le_iff]
     exact ⟨Ideal.mem_span_pair.mpr ⟨1, -k, by ring⟩, mem_span_pair_right _ _⟩
 
+/--
+@isnad1 id=eq.1h4v.s6.51199479608d from=translated src=- shape=09d6edb0 vocab=cb6e164e
+-/
 theorem span_pair_mul_isUnit_eq {x w : A} (hw : IsUnit w) (y : A) :
     Ideal.span ({x * w, y} : Set A) = Ideal.span {x, y} := by
   obtain ⟨w, rfl⟩ := hw
@@ -42,6 +57,9 @@ theorem span_pair_mul_isUnit_eq {x w : A} (hw : IsUnit w) (y : A) :
     refine ⟨Ideal.mem_span_pair.mpr ⟨((w⁻¹ : Aˣ) : A), 0, ?_⟩, mem_span_pair_right _ _⟩
     rw [zero_mul, add_zero, mul_comm x, ← mul_assoc, Units.inv_mul, one_mul]
 
+/--
+@isnad1 id=le.3h5v.s7.c01f1faaffc8 from=translated src=- shape=fc995769 vocab=921b0694
+-/
 theorem span_pair_pow_le {b ϖ : A} {Q : Ideal A} (hb : b ∈ Q) (hϖ : ϖ ∈ Q) {i : ℕ} (hi : 1 ≤ i) :
     Ideal.span ({b, ϖ ^ i} : Set A) ≤ Q := by
   rw [span_pair_le_iff]
@@ -51,6 +69,9 @@ section StepDown
 
 variable {ϖ a b : A} {P : Ideal A}
 
+/--
+@isnad1 id=mem.6h8v.s8.337e6d9431fb from=translated src=- shape=db72e647 vocab=03c38147
+-/
 theorem step_down (hϖ : ϖ ∈ nonZeroDivisors A) [P.IsPrime] (ha : Ideal.span {a, ϖ} = P)
     (hbP : b ∉ P) {M : ℕ} (hM : 1 ≤ M) {c : A} (hab : a * b = ϖ ^ M * c) {z : A}
     (hz : ϖ * z ∈ Ideal.span ({b, ϖ ^ M} : Set A)) :
@@ -78,6 +99,9 @@ theorem step_down (hϖ : ϖ ∈ nonZeroDivisors A) [P.IsPrime] (ha : Ideal.span 
   rw [hz']
   exact Ideal.mem_span_pair.mpr ⟨β, α * c + y, by ring⟩
 
+/--
+@isnad1 id=mem.6h9v.s8.760d5ddf4ca8 from=translated src=- shape=febf377a vocab=03c38147
+-/
 theorem step_down_iter (hϖ : ϖ ∈ nonZeroDivisors A) [P.IsPrime] (ha : Ideal.span {a, ϖ} = P)
     (hbP : b ∉ P) {i : ℕ} :
     ∀ {M : ℕ}, i ≤ M → ∀ {c : A}, a * b = ϖ ^ M * c → ∀ {z : A},
@@ -104,6 +128,9 @@ section Witness
 
 variable [IsLocalRing A] {ϖ a b : A} {P Q : Ideal A}
 
+/--
+@isnad1 id=false.8h10v.s8.30563163698f from=translated src=- shape=0f4ab1b8 vocab=27d97d99
+-/
 theorem no_deep_stage (hϖ : ϖ ∈ nonZeroDivisors A) [P.IsPrime] [Q.IsPrime]
     (ha : Ideal.span {a, ϖ} = P) (hb : Ideal.span {b, ϖ} = Q) (hbP : b ∉ P)
     {n : ℕ} {t t' : A} (htQ : t ∉ Q) (ht : t ∈ maximalIdeal A) (htt' : t * t' = ϖ ^ n)
@@ -200,6 +227,9 @@ section Main
 
 variable [IsLocalRing A]
 
+/--
+@isnad1 id=ex.9h9v.s9.20c82d7c6316 from=translated src=- shape=b5a54729 vocab=794c5e89
+-/
 theorem exists_mul_eq_pow
     {ϖ : A} (hϖ : ϖ ∈ nonZeroDivisors A)
     {P Q : Ideal A} [P.IsPrime] [Q.IsPrime] (hQP : ¬ Q ≤ P)
@@ -264,6 +294,9 @@ end Main
 
 end NodeLiftEngine
 
+/--
+@isnad1 id=ex.9h9v.s9.20c82d7c6316 from=translated src=- shape=b5a54729 vocab=794c5e89
+-/
 theorem solution
     {A : Type*} [CommRing A] [IsLocalRing A]
     {ϖ : A} (hϖ : ϖ ∈ nonZeroDivisors A)

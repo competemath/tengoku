@@ -14,6 +14,9 @@ export _root_.IsLocalRing (ResidueField maximalIdeal residue_eq_zero_iff mem_max
 namespace HasseForm
 open _root_.IsLocalRing
 
+/--
+@isnad1 id=mem.1h3v.s7.607c6fd1953d from=translated src=- shape=1e33efb7 vocab=a65009e8
+-/
 theorem intCast_pow_sub_intCast_mem (q : ℕ) [Fact q.Prime] {W : Type*} [CommRing W] [IsLocalRing W]
     (hq : (q : W) ∈ maximalIdeal W) (n : ℤ) : (n : W) ^ q - (n : W) ∈ maximalIdeal W := by
   have h : ((n ^ q - n : ℤ) : ZMod q) = 0 := by
@@ -26,6 +29,9 @@ theorem intCast_pow_sub_intCast_mem (q : ℕ) [Fact q.Prime] {W : Type*} [CommRi
 end IsLocalRing.HasseForm
 
 open IsLocalRing.HasseForm in
+/--
+@isnad1 id=isunit.5h8v.s9.c1e3382c6610 from=translated src=- shape=f112d8c8 vocab=0ac176b8
+-/
 theorem solution
     (q : ℕ) [Fact q.Prime]
     {W₁ W₂ : Type*} [CommRing W₁] [IsLocalRing W₁] [CommRing W₂] [IsLocalRing W₂]

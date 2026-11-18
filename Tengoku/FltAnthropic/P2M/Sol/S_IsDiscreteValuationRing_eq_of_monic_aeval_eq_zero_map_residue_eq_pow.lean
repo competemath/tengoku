@@ -43,6 +43,9 @@ theorem eq_of_monic_aeval_eq_zero_map_residue_eq_pow
 
 end Ws50RT
 
+/--
+@isnad1 id=eq.7h7v.s10.7521e11c358b from=translated src=- shape=8bcf1b23 vocab=f81bcedd
+-/
 theorem solution
     {𝒪 : Type} [CommRing 𝒪] [IsDomain 𝒪] [IsDiscreteValuationRing 𝒪]
     {F : Type} [Field F] [Algebra 𝒪 F] (hinj : Function.Injective (algebraMap 𝒪 F))

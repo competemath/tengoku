@@ -21,6 +21,9 @@ variable {A : Type u} [CommRing A] [IsDomain A] {K : Type u} [Field K] [Algebra 
   (R : Type u) [CommRing R] [Algebra R K] [Algebra A R] [IsScalarTower A R K]
   (m : Ideal A) [m.IsMaximal] [IsLocalization.AtPrime R m]
 
+/--
+@isnad1 id=iff.0h5v.s8.d6d8b3b33f6a from=translated src=- shape=d7c5f088 vocab=1733b31e
+-/
 theorem mem_range_iff (x : K) :
     x ∈ Set.range (algebraMap R K) ↔ ∃ a s : A, s ∉ m ∧ x = algebraMap A K a * (algebraMap A K s)⁻¹ := by
   constructor
@@ -50,6 +53,9 @@ variable (k : Type u) [Field k] {A : Type u} [CommRing A] [IsDomain A] [Algebra 
   (m : Ideal A) [hm : m.IsMaximal] (B : Subalgebra A K)
 
 omit hm in
+/--
+@isnad1 id=ne.1h4v.s7.4ee3c2877bd7 from=translated src=- shape=84fbd141 vocab=f7bf93d3
+-/
 theorem algebraMap_ne_zero {s : A} (hs : s ∉ m) : algebraMap A K s ≠ 0 :=
   IsFractionRing.to_map_ne_zero_of_mem_nonZeroDivisors
     (mem_nonZeroDivisors_of_ne_zero fun h => hs (h ▸ m.zero_mem))
@@ -88,6 +94,9 @@ def locBSub : Submodule k K where
 
 variable (R : Type u) [CommRing R] [Algebra R K] [Algebra A R] [IsScalarTower A R K] [IsLocalization.AtPrime R m]
 
+/--
+@isnad1 id=eq.0h5v.s8.959fdc3a6050 from=translated src=- shape=db60418f vocab=7641aebc
+-/
 theorem span_range_eq_locSub : Submodule.span k (Set.range (algebraMap R K)) = locSub k m := by
   apply le_antisymm
   · rw [Submodule.span_le]
@@ -96,6 +105,9 @@ theorem span_range_eq_locSub : Submodule.span k (Set.range (algebraMap R K)) = l
   · intro x hx
     exact Submodule.subset_span ((mem_range_iff R m x).mpr hx)
 
+/--
+@isnad1 id=eq.0h6v.s8.42c15028b408 from=translated src=- shape=85746c5c vocab=23506b78
+-/
 theorem span_mul_range_eq_locBSub :
     Submodule.span k ((B : Set K) * Set.range (algebraMap R K)) = locBSub k m B := by
   apply le_antisymm
@@ -118,6 +130,9 @@ section Denominator
 variable {A : Type u} [CommRing A] [IsDomain A] {K : Type u} [Field K] [Algebra A K] [IsFractionRing A K]
   (B : Subalgebra A K)
 
+/--
+@isnad1 id=ex.1h3v.s8.4b296e88f896 from=translated src=- shape=df1783c0 vocab=bb80dfd5
+-/
 theorem exists_denominator (hB : Module.Finite A B) :
     ∃ d : A, d ≠ 0 ∧ ∀ b : K, b ∈ B → ∃ a : A, algebraMap A K d * b = algebraMap A K a := by
   classical
@@ -158,6 +173,9 @@ variable {A : Type u} [CommRing A] [IsDomain A] [IsNoetherianRing A]
 
 omit [IsDomain A] in
 
+/--
+@isnad1 id=finite.2h2v.s7.fa6788c27211 from=translated src=- shape=16eba03a vocab=828a376f
+-/
 theorem finite_setOf_isMaximal_mem (hdim : ∀ p : Ideal A, p.IsPrime → p ≠ ⊥ → p.IsMaximal) {d : A} (hd : d ≠ 0) :
     {m : Ideal A | m.IsMaximal ∧ d ∈ m}.Finite := by
   apply (Ideal.finite_minimalPrimes_of_isNoetherianRing A (Ideal.span {d})).subset
@@ -170,6 +188,9 @@ theorem finite_setOf_isMaximal_mem (hdim : ∀ p : Ideal A, p.IsPrime → p ≠ 
     exact hd hdq
   exact ((hdim q hq hqne).eq_of_le hm.ne_top hqm).ge
 
+/--
+@isnad1 id=ex.2h3v.s8.0c8f46c6b479 from=translated src=- shape=7c2c9292 vocab=28bc93d3
+-/
 theorem exists_pow_forall_mul_mem (hdim : ∀ p : Ideal A, p.IsPrime → p ≠ ⊥ → p.IsMaximal)
     (m : Ideal A) [hm : m.IsMaximal] {d : A} (hd : d ≠ 0) :
     ∃ N : ℕ, ∀ x ∈ m ^ N, ∃ a s : A, s ∉ m ∧ s * x = d * a := by
@@ -219,6 +240,9 @@ variable (k : Type u) [Field k] {A : Type u} [CommRing A] [IsDomain A] [Algebra 
   (m : Ideal A) [hm : m.IsMaximal] (B : Subalgebra A K)
 
 include hm in
+/--
+@isnad1 id=mem.4h9v.s9.c2fec1b6d11b from=translated src=- shape=dfbab470 vocab=97f92e01
+-/
 theorem mul_mem_locSub_of {d : A} (hdB : ∀ b : K, b ∈ B → ∃ a : A, algebraMap A K d * b = algebraMap A K a)
     {N : ℕ} (hN : ∀ x ∈ m ^ N, ∃ a s : A, s ∉ m ∧ s * x = d * a)
     {x : A} (hx : x ∈ m ^ N) {b : K} (hb : b ∈ B) :
@@ -239,6 +263,9 @@ namespace FinQuotLG
 
 open Ideal
 
+/--
+@isnad1 id=ex.1h4v.s8.fe34c01215a1 from=translated src=- shape=0d518e98 vocab=a54b242c
+-/
 theorem exists_algebraMap_add_mem {k A : Type u} [Field k] [CommRing A] [Algebra k A] (m : Ideal A)
     (hres : Function.Surjective (algebraMap k (A ⧸ m))) (a : A) :
     ∃ (c : k) (n : A), n ∈ m ∧ a = algebraMap k A c + n := by
@@ -247,6 +274,9 @@ theorem exists_algebraMap_add_mem {k A : Type u} [Field k] [CommRing A] [Algebra
   rw [← Ideal.Quotient.eq, ← hc]
   rfl
 
+/--
+@isnad1 id=finite.1h4v.s8.049d5bd4cdf9 from=translated src=- shape=8b56fbb8 vocab=b27f164a
+-/
 theorem finite_quotient_pow (k A : Type u) [Field k] [CommRing A] [IsNoetherianRing A] [Algebra k A]
     (m : Ideal A) [m.IsMaximal] (hres : Function.Surjective (algebraMap k (A ⧸ m))) (N : ℕ) :
     Module.Finite k (A ⧸ m ^ N) := by
@@ -303,6 +333,9 @@ theorem finite_quotient_pow (k A : Type u) [Field k] [CommRing A] [IsNoetherianR
         · rw [top_inf_eq]; exact hkerFG
       exact Module.finite_def.mpr htop
 
+/--
+@isnad1 id=finite.3h7v.s9.970e1dc1fbad from=translated src=- shape=bfdad04f vocab=dc5a8ce6
+-/
 theorem finite_of_surjective_of_smul_pow_le {k A : Type u} [Field k] [CommRing A] [IsNoetherianRing A] [Algebra k A]
     (m : Ideal A) [m.IsMaximal] (hres : Function.Surjective (algebraMap k (A ⧸ m))) (N : ℕ)
     {V : Type u} [AddCommGroup V] [Module k V] {ι : Type u} [Finite ι]
@@ -340,6 +373,9 @@ variable (k : Type u) [Field k] {A : Type u} [CommRing A] [IsDomain A] [Algebra 
   {K : Type u} [Field K] [Algebra k K] [Algebra A K] [IsScalarTower k A K] [IsFractionRing A K]
   (m : Ideal A) [hm : m.IsMaximal]
 
+/--
+@isnad1 id=mem.2h6v.s9.862be7eb2cb4 from=translated src=- shape=625a491c vocab=e0e3c6e9
+-/
 theorem mul_inv_mem_locSub {x : K} (hx : x ∈ locSub k m (K := K)) {s : A} (hs : s ∉ m) :
     x * (algebraMap A K s)⁻¹ ∈ locSub k m (K := K) := by
   obtain ⟨a, s', hs', rfl⟩ := hx
@@ -348,6 +384,9 @@ theorem mul_inv_mem_locSub {x : K} (hx : x ∈ locSub k m (K := K)) {s : A} (hs 
 
 omit [IsDomain A] in
 
+/--
+@isnad1 id=ex.1h4v.s7.8ff6d7254201 from=translated src=- shape=e21318c0 vocab=377380f6
+-/
 theorem exists_mul_sub_one_mem_pow {s : A} (hs : s ∉ m) (N : ℕ) : ∃ t : A, t * s - 1 ∈ m ^ N := by
   obtain ⟨y, i, hi, e⟩ := hm.exists_inv hs
   have hcop : IsCoprime m (Ideal.span {s}) :=
@@ -361,6 +400,9 @@ end Aux2
 end FinQuotLG
 
 open FinQuotLG in
+/--
+@isnad1 id=other.4h8v.s14.74adb59da596 from=translated src=- shape=3b4eb834 vocab=1d933f79
+-/
 theorem solution
     (k : Type u) [Field k] {A : Type u} [CommRing A] [IsDomain A] [IsNoetherianRing A] [Algebra k A]
     (K : Type u) [Field K] [Algebra k K] [Algebra A K] [IsScalarTower k A K] [IsFractionRing A K]

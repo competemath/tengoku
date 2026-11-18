@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open IsLocalRing TensorProduct
 
+/--
+@isnad1 id=and.6h11v.s10.09ff9ccfc48e from=translated src=- shape=fe4d34c4 vocab=5efd9e9d
+-/
 theorem K3apAux
     (ℓ : ℕ) [Fact ℓ.Prime]
     (C : Type) [CommRing C] [IsLocalRing C]
@@ -114,6 +117,9 @@ theorem K3apAux
   exact RingHom.domain_nontrivial ((Ideal.Quotient.lift (RingHom.ker mkA) Θ.toRingHom hΘ).comp eA.symm.toRingHom)
 
 set_option maxHeartbeats 1600000 in
+/--
+@isnad1 id=and.1h3v.s12.78def7ed6339 from=translated src=- shape=64e550c0 vocab=4a8d45e1
+-/
 theorem solution
     (ℓ : ℕ) [Fact ℓ.Prime]
     (C : Type) [CommRing C] [IsLocalRing C] [IsArtinianRing C] [Finite (ResidueField C)] [CharP (ResidueField C) ℓ]

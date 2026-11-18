@@ -15,6 +15,9 @@ universe u v
 
 open IsLocalRing
 
+/--
+@isnad1 id=ex.1h3v.s8.804ca7f72658 from=translated src=- shape=f25143a0 vocab=4eb10643
+-/
 theorem solution
     {A : Type u} [CommRing A] [IsLocalRing A] [IsAlgClosed (ResidueField A)]
     {C : Type v} [CommRing C] [Algebra A C] [Algebra.FiniteType A C]

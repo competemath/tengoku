@@ -12,6 +12,9 @@ set_option maxHeartbeats 1600000
 
 open IsLocalRing Polynomial
 
+/--
+@isnad1 id=ex.1h5v.s9.ed9f87cff04e from=translated src=- shape=8979fc01 vocab=4515f88e
+-/
 theorem solution
     (R : Type) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     [IsAdicComplete (IsLocalRing.maximalIdeal R) R]

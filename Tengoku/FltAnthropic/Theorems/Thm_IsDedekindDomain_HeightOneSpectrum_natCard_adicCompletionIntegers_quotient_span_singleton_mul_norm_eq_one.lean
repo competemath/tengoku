@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open NumberField IsDedekindDomain
 
+/--
+@isnad1 id=eq.1h3v.s11.e0c5d337fb9c from=translated src=- shape=65f53973 vocab=a437a11e
+-/
 theorem IsDedekindDomain.HeightOneSpectrum.natCard_adicCompletionIntegers_quotient_span_singleton_mul_norm_eq_one
     (K : Type) [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K))
     (a : v.adicCompletionIntegers K) (ha : a ≠ 0) :

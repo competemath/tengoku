@@ -11,6 +11,9 @@ set_option autoImplicit false
 
 open IsLocalRing
 
+/--
+@isnad1 id=and.5h4v.s9.3ae9fabc08f5 from=translated src=- shape=51532e8c vocab=172d0713
+-/
 theorem solution
     (S₀ : Type) [CommRing S₀] [IsDomain S₀] [IsNoetherianRing S₀] [IsLocalRing S₀] (hdim₀ : ringKrullDim S₀ = 2)
     (S : Type) [CommRing S] [IsLocalRing S] [IsNoetherianRing S] [Algebra S₀ S] [Module.Finite S₀ S]

@@ -14,6 +14,9 @@ universe u
 namespace E160VP
 end E160VP
 
+/--
+@isnad1 id=ex.1h3v.s10.4231337e9af7 from=translated src=- shape=a1a95748 vocab=d98cbd0b
+-/
 theorem solution
     {B B₁ : Type u} [CommRing B] [IsLocalRing B] [IsArtinianRing B] [CommRing B₁] (π : B →+* B₁)
     (hsmall : RingHom.ker π * maximalIdeal B = ⊥) :

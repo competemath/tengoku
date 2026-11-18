@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open IsLocalRing
 
+/--
+@isnad1 id=ex.2h3v.s9.13a08f5535aa from=translated src=- shape=3578f34a vocab=6046d70e
+-/
 theorem solution
     {A S : Type*} [CommRing A] [IsLocalRing A] [CommRing S] [Algebra A S] (t : S)
     [Module.Finite A (S ⧸ Ideal.span ({t} : Set S))]

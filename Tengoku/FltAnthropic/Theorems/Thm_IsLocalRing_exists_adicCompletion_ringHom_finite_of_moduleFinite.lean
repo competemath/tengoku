@@ -10,6 +10,9 @@ set_option autoImplicit false
 open CategoryTheory AlgebraicGeometry
 open scoped TensorProduct
 
+/--
+@isnad1 id=ex.0h2v.s13.caf313c8be14 from=translated src=- shape=3d0a5a3c vocab=6a737ca2
+-/
 theorem IsLocalRing.exists_adicCompletion_ringHom_finite_of_moduleFinite
     (R S : Type*) [CommRing R] [CommRing S] [IsNoetherianRing R] [IsLocalRing R]
     [IsNoetherianRing S] [IsLocalRing S] [Algebra R S] [Module.Finite R S] :

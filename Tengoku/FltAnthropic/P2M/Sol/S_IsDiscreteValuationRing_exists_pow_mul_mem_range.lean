@@ -7,6 +7,9 @@ namespace P2MW.S_IsDiscreteValuationRing_exists_pow_mul_mem_range
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.2h4v.s8.54582c4c9a8a from=translated src=- shape=5ca4d38b vocab=2fa6cefb
+-/
 theorem solution
     {R : Type*} [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     (K : Type*) [Field K] [Algebra R K] [IsFractionRing R K]

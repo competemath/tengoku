@@ -14,6 +14,9 @@ set_option autoImplicit false
 open IsLocalRing
 open scoped TensorProduct
 
+/--
+@isnad1 id=etale.3h4v.s10.7ebc12a9a16d from=translated src=- shape=43302d5b vocab=85d1cfcf
+-/
 theorem solution
     {O C : Type*} [CommRing O] [IsDomain O] [IsNoetherianRing O] [IsLocalRing O]
     [CommRing C] [IsDomain C] [IsNoetherianRing C] [IsLocalRing C]

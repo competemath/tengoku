@@ -16,6 +16,9 @@ open IsLocalRing
 
 namespace DvrDomFinGC5
 
+/--
+@isnad1 id=finite.1h2v.s5.a4b91b27ed5e from=translated src=- shape=2c70c1a1 vocab=f4b76149
+-/
 theorem finite_of_isFiniteLength {A : Type u} [CommRing A] [IsLocalRing A] [Finite (ResidueField A)]
     {M : Type v} [AddCommGroup M] [Module A M] (hM : IsFiniteLength A M) : Finite M := by
   induction hM with
@@ -40,6 +43,9 @@ theorem finite_of_isFiniteLength {A : Type u} [CommRing A] [IsLocalRing A] [Fini
 
 end DvrDomFinGC5
 
+/--
+@isnad1 id=ex.1h3v.s8.ba88ffd82eef from=translated src=- shape=1ddbad13 vocab=0243f8c7
+-/
 theorem solution
     {A : Type u} [CommRing A] [IsDomain A] [IsNoetherianRing A] [IsLocalRing A] (hA : ringKrullDim A = 1)
     [Finite (ResidueField A)]

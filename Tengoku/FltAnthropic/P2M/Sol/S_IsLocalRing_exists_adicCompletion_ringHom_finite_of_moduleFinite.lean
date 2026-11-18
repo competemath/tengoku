@@ -17,15 +17,24 @@ section Cofinal
 
 variable {R S : Type*} [CommRing R] [CommRing S] [Algebra R S] (I : Ideal R) (M : Ideal S)
 
+/--
+@isnad1 id=eq.0h4v.s8.a43791fb7598 from=translated src=- shape=eccc3b16 vocab=2cda1dd2
+-/
 theorem pow_smul_top_eq_restrictScalars (n : ℕ) :
     (I ^ n • ⊤ : Submodule R S) = ((I.map (algebraMap R S)) ^ n).restrictScalars R := by
   rw [← Ideal.map_pow, Ideal.smul_top_eq_map]
 
+/--
+@isnad1 id=iff.0h4v.s8.b25e6989e8da from=translated src=- shape=7cecc07c vocab=6c84d089
+-/
 theorem mem_pow_smul_top_iff (n : ℕ) (s : S) : s ∈ (M ^ n • ⊤ : Submodule S S) ↔ s ∈ M ^ n := by
   rw [smul_eq_mul, Ideal.mul_top]
 
 variable {I M}
 
+/--
+@isnad1 id=le.1h5v.s9.cf3e86583995 from=translated src=- shape=fbd9316c vocab=9a210cc5
+-/
 theorem pow_smul_top_le (hIM : I.map (algebraMap R S) ≤ M) (n : ℕ) :
     (I ^ n • ⊤ : Submodule R S) ≤ (M ^ n • ⊤ : Submodule S S).restrictScalars R := by
   intro s hs
@@ -33,6 +42,9 @@ theorem pow_smul_top_le (hIM : I.map (algebraMap R S) ≤ M) (n : ℕ) :
   rw [Submodule.restrictScalars_mem, mem_pow_smul_top_iff]
   exact Ideal.pow_right_mono hIM n hs
 
+/--
+@isnad1 id=le.1h6v.s9.c589010a7ba4 from=translated src=- shape=dd6b6195 vocab=5aaa15ec
+-/
 theorem pow_smul_top_ge {k : ℕ} (hk : M ^ k ≤ I.map (algebraMap R S)) (n : ℕ) :
     (M ^ (k * n) • ⊤ : Submodule S S).restrictScalars R ≤ (I ^ n • ⊤ : Submodule R S) := by
   intro s hs
@@ -46,6 +58,9 @@ def θ (hIM : I.map (algebraMap R S) ≤ M) (n : ℕ) :
     rw [LinearMap.ker_restrictScalars, Submodule.ker_mkQ]
     exact pow_smul_top_le hIM n)
 
+/--
+@isnad1 id=eq.1h6v.s12.8c67ec7c37e2 from=translated src=- shape=61c3e854 vocab=cc3751a3
+-/
 theorem θ_mk (hIM : I.map (algebraMap R S) ≤ M) (n : ℕ) (s : S) :
     θ hIM n (Submodule.Quotient.mk s) = Submodule.Quotient.mk s := rfl
 
@@ -55,6 +70,9 @@ def η {k : ℕ} (hk : M ^ k ≤ I.map (algebraMap R S)) (n : ℕ) :
     rw [Submodule.ker_mkQ]; exact pow_smul_top_ge hk n)).comp
     (Submodule.Quotient.restrictScalarsEquiv R (M ^ (k * n) • ⊤ : Submodule S S)).symm.toLinearMap
 
+/--
+@isnad1 id=eq.1h7v.s12.ead654f32154 from=translated src=- shape=bb0ab2b5 vocab=cea5643f
+-/
 theorem η_mk {k : ℕ} (hk : M ^ k ≤ I.map (algebraMap R S)) (n : ℕ) (s : S) :
     η hk n (Submodule.Quotient.mk s) = Submodule.Quotient.mk s := rfl
 
@@ -67,6 +85,9 @@ def χ (hIM : I.map (algebraMap R S) ≤ M) (f : AdicCompletion I S) : AdicCompl
     simp only [← hs, hm, θ_mk]
     rfl⟩
 
+/--
+@isnad1 id=eq.1h6v.s13.e9ed8dbb540e from=translated src=- shape=6bf65240 vocab=4c0a5239
+-/
 theorem χ_val (hIM : I.map (algebraMap R S) ≤ M) (f : AdicCompletion I S) (n : ℕ) :
     (χ hIM f).val n = θ hIM n (f.val n) := rfl
 
@@ -80,6 +101,9 @@ def χinv {k : ℕ} (hk : M ^ k ≤ I.map (algebraMap R S)) (g : AdicCompletion 
     simp only [← hs, hm, η_mk]
     rfl⟩
 
+/--
+@isnad1 id=eq.3h6v.s8.cfd790c490d3 from=translated src=- shape=8f40c567 vocab=60173e79
+-/
 theorem χinv_χ (hIM : I.map (algebraMap R S) ≤ M) {k : ℕ} (hk : M ^ k ≤ I.map (algebraMap R S)) (hk1 : 1 ≤ k)
     (f : AdicCompletion I S) : χinv hk (χ hIM f) = f := by
   apply AdicCompletion.ext
@@ -90,6 +114,9 @@ theorem χinv_χ (hIM : I.map (algebraMap R S) ≤ M) {k : ℕ} (hk : M ^ k ≤ 
   show η hk n (θ hIM (k * n) (f.val (k * n))) = f.val n
   rw [← hs, θ_mk, η_mk, hn]
 
+/--
+@isnad1 id=eq.3h6v.s8.086e736540df from=translated src=- shape=0edb3c62 vocab=60173e79
+-/
 theorem χ_χinv (hIM : I.map (algebraMap R S) ≤ M) {k : ℕ} (hk : M ^ k ≤ I.map (algebraMap R S)) (hk1 : 1 ≤ k)
     (g : AdicCompletion M S) : χ hIM (χinv hk g) = g := by
   apply AdicCompletion.ext
@@ -100,10 +127,16 @@ theorem χ_χinv (hIM : I.map (algebraMap R S) ≤ M) {k : ℕ} (hk : M ^ k ≤ 
   show θ hIM n (η hk n (g.val (k * n))) = g.val n
   rw [← hs, η_mk, θ_mk, hn]
 
+/--
+@isnad1 id=bijectiv.3h5v.s8.f1df459e4470 from=translated src=- shape=3a15625b vocab=abc347cd
+-/
 theorem χ_bijective (hIM : I.map (algebraMap R S) ≤ M) {k : ℕ} (hk : M ^ k ≤ I.map (algebraMap R S))
     (hk1 : 1 ≤ k) : Function.Bijective (χ hIM) :=
   ⟨Function.LeftInverse.injective (χinv_χ hIM hk hk1), Function.RightInverse.surjective (χ_χinv hIM hk hk1)⟩
 
+/--
+@isnad1 id=eq.1h6v.s8.65ed5f611eb5 from=translated src=- shape=8f0a228b vocab=24459f38
+-/
 theorem χ_add (hIM : I.map (algebraMap R S) ≤ M) (f g : AdicCompletion I S) :
     χ hIM (f + g) = χ hIM f + χ hIM g := by
   apply AdicCompletion.ext
@@ -113,6 +146,9 @@ theorem χ_add (hIM : I.map (algebraMap R S) ≤ M) (f g : AdicCompletion I S) :
   rw [← map_add]
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s8.358abeefa094 from=translated src=- shape=eec2fa1d vocab=3c3e1c3d
+-/
 theorem χ_zero (hIM : I.map (algebraMap R S) ≤ M) : χ hIM (0 : AdicCompletion I S) = 0 := by
   have h := χ_add hIM 0 0
   rw [add_zero] at h
@@ -126,6 +162,9 @@ open IsLocalRing
 
 variable (R S : Type*) [CommRing R] [CommRing S] [IsLocalRing R] [IsLocalRing S] [Algebra R S] [Module.Finite R S]
 
+/--
+@isnad1 id=ne.0h2v.s7.a8068fd68ecb from=translated src=- shape=c388aebf vocab=1e280a09
+-/
 theorem map_maximalIdeal_ne_top : (maximalIdeal R).map (algebraMap R S) ≠ ⊤ := by
   intro h
   have htop : (⊤ : Submodule R S) ≤ maximalIdeal R • ⊤ := by
@@ -138,9 +177,15 @@ theorem map_maximalIdeal_ne_top : (maximalIdeal R).map (algebraMap R S) ≠ ⊤ 
   rw [Submodule.mem_bot] at h1
   exact one_ne_zero h1
 
+/--
+@isnad1 id=le.0h2v.s7.3d11ab48816f from=translated src=- shape=9840120a vocab=a80c61bd
+-/
 theorem map_maximalIdeal_le : (maximalIdeal R).map (algebraMap R S) ≤ maximalIdeal S :=
   IsLocalRing.le_maximalIdeal (map_maximalIdeal_ne_top R S)
 
+/--
+@isnad1 id=ex.0h2v.s7.d7525c961d21 from=translated src=- shape=fa7bb0f3 vocab=3d2306b0
+-/
 theorem exists_maximalIdeal_pow_le [IsNoetherianRing S] :
     ∃ k : ℕ, 1 ≤ k ∧ maximalIdeal S ^ k ≤ (maximalIdeal R).map (algebraMap R S) := by
   set J := (maximalIdeal R).map (algebraMap R S) with hJ
@@ -165,12 +210,21 @@ section Eval
 
 variable {R : Type*} [CommRing R] (I : Ideal R)
 
+/--
+@isnad1 id=le.0h3v.s8.db6b57ca72e2 from=translated src=- shape=87b951ef vocab=38f8a19a
+-/
 theorem smul_top_le_pow (n : ℕ) : (I ^ n • ⊤ : Submodule R R) ≤ I ^ n := by
   rw [smul_eq_mul, Ideal.mul_top]
 
+/--
+@isnad1 id=le.0h3v.s8.c753020d66e1 from=translated src=- shape=545ba917 vocab=38f8a19a
+-/
 theorem pow_le_smul_top (n : ℕ) : I ^ n ≤ (I ^ n • ⊤ : Submodule R R) := by
   rw [smul_eq_mul, Ideal.mul_top]
 
+/--
+@isnad1 id=eq.1h5v.s12.fa4e41a4af52 from=translated src=- shape=29415154 vocab=1de63386
+-/
 theorem evalₐ_eq_mk_of_val_eq {n : ℕ} (x : AdicCompletion I R) (r : R)
     (h : x.val n = Submodule.Quotient.mk r) :
     AdicCompletion.evalₐ I n x = Ideal.Quotient.mk (I ^ n) r := by
@@ -179,12 +233,18 @@ theorem evalₐ_eq_mk_of_val_eq {n : ℕ} (x : AdicCompletion I R) (r : R)
   rw [h]
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s12.4fdb758f75c3 from=translated src=- shape=31cf082b vocab=c16f3da4
+-/
 theorem val_eq_zero_of_evalₐ_eq_zero {n : ℕ} (x : AdicCompletion I R) (h : AdicCompletion.evalₐ I n x = 0) :
     x.val n = 0 := by
   have h2 := AdicCompletion.factor_evalₐ_eq_eval I x (pow_le_smul_top I n)
   rw [h, map_zero, AdicCompletion.eval_apply] at h2
   exact h2.symm
 
+/--
+@isnad1 id=eq.2h5v.s10.78336e6cba09 from=translated src=- shape=ebbd417b vocab=d30b00e5
+-/
 theorem evalₐ_eq_zero_of_le {m n : ℕ} (hle : m ≤ n) (x : AdicCompletion I R)
     (h : AdicCompletion.evalₐ I n x = 0) : AdicCompletion.evalₐ I m x = 0 := by
   have hn := val_eq_zero_of_evalₐ_eq_zero I x h
@@ -193,11 +253,17 @@ theorem evalₐ_eq_zero_of_le {m n : ℕ} (hle : m ≤ n) (x : AdicCompletion I 
     rfl
   rw [evalₐ_eq_mk_of_val_eq I x 0 hm, map_zero]
 
+/--
+@isnad1 id=ex.0h4v.s10.07bfeed2ee09 from=translated src=- shape=eaf29869 vocab=c000c459
+-/
 theorem exists_evalₐ_sub_of_eq_zero (n : ℕ) (x : AdicCompletion I R) :
     ∃ a : R, AdicCompletion.evalₐ I n (x - AdicCompletion.of I R a) = 0 := by
   obtain ⟨a, ha⟩ := Ideal.Quotient.mk_surjective (AdicCompletion.evalₐ I n x)
   exact ⟨a, by rw [map_sub, AdicCompletion.evalₐ_of, ha, sub_self]⟩
 
+/--
+@isnad1 id=eq.0h3v.s9.7e10a75f9b92 from=translated src=- shape=4997bcce vocab=c84c1649
+-/
 theorem of_eq_algebraMap (r : R) : AdicCompletion.of I R r = algebraMap R (AdicCompletion I R) r := by
   rw [AdicCompletion.algebraMap_apply]
   rfl
@@ -207,6 +273,9 @@ end Eval
 end CompFin
 
 open CompFin IsLocalRing in
+/--
+@isnad1 id=ex.0h2v.s13.caf313c8be14 from=translated src=- shape=3d0a5a3c vocab=6a737ca2
+-/
 theorem solution
     (R S : Type*) [CommRing R] [CommRing S] [IsNoetherianRing R] [IsLocalRing R]
     [IsNoetherianRing S] [IsLocalRing S] [Algebra R S] [Module.Finite R S] :

@@ -16,9 +16,15 @@ variable {V : Type*} [AddCommGroup V] [Module ℂ V]
 def restr (L : Submodule ℤ V) (T : V →ₗ[ℂ] V) (hTL : ∀ x ∈ L, T x ∈ L) : Module.End ℤ L :=
   (T.restrictScalars ℤ).restrict hTL
 
+/--
+@isnad1 id=eq.1h4v.s9.acae8565570e from=translated src=- shape=2b8ff310 vocab=5cd73cc6
+-/
 theorem coe_restr_apply (L : Submodule ℤ V) (T : V →ₗ[ℂ] V) (hTL : ∀ x ∈ L, T x ∈ L) (x : L) :
     ((restr L T hTL x : L) : V) = T x := rfl
 
+/--
+@isnad1 id=eq.1h5v.s10.b7bc8a2c72bb from=translated src=- shape=a0fad11f vocab=c8487b79
+-/
 theorem coe_restr_pow_apply (L : Submodule ℤ V) (T : V →ₗ[ℂ] V) (hTL : ∀ x ∈ L, T x ∈ L)
     (n : ℕ) (x : L) : (((restr L T hTL ^ n) x : L) : V) = (T ^ n) (x : V) := by
   induction n generalizing x with
@@ -26,6 +32,9 @@ theorem coe_restr_pow_apply (L : Submodule ℤ V) (T : V →ₗ[ℂ] V) (hTL : �
   | succ n ih =>
     rw [pow_succ, Module.End.mul_apply, ih, pow_succ, Module.End.mul_apply, coe_restr_apply]
 
+/--
+@isnad1 id=eq.1h5v.s11.941b66946832 from=translated src=- shape=5eaf7031 vocab=862b2910
+-/
 theorem coe_aeval_restr_apply (L : Submodule ℤ V) (T : V →ₗ[ℂ] V) (hTL : ∀ x ∈ L, T x ∈ L)
     (P : ℤ[X]) (x : L) :
     ((aeval (restr L T hTL) P x : L) : V) = aeval T (P.map (algebraMap ℤ ℂ)) (x : V) := by
@@ -38,6 +47,9 @@ theorem coe_aeval_restr_apply (L : Submodule ℤ V) (T : V →ₗ[ℂ] V) (hTL :
       coe_restr_pow_apply, Polynomial.map_monomial, aeval_monomial, Module.End.mul_apply,
       Module.algebraMap_end_apply, eq_intCast, Int.cast_smul_eq_zsmul]
 
+/--
+@isnad1 id=isintegr.5h5v.s8.279cf662449c from=translated src=- shape=290814a7 vocab=07159938
+-/
 theorem isIntegral_of_mem_span_of_apply_eq_smul (L : Submodule ℤ V) (hfg : L.FG) (T : V →ₗ[ℂ] V)
     (hTL : ∀ x ∈ L, T x ∈ L) {v : V} (hv : v ∈ Submodule.span ℂ (L : Set V)) (hv0 : v ≠ 0)
     {c : ℂ} (hTv : T v = c • v) : IsIntegral ℤ c := by
@@ -59,6 +71,9 @@ theorem isIntegral_of_mem_span_of_apply_eq_smul (L : Submodule ℤ V) (hfg : L.F
 
 end W3A
 
+/--
+@isnad1 id=isintegr.5h5v.s8.279cf662449c from=translated src=- shape=290814a7 vocab=07159938
+-/
 theorem solution {V : Type*} [AddCommGroup V] [Module ℂ V] (L : Submodule ℤ V) (hfg : L.FG)
     (T : V →ₗ[ℂ] V) (hTL : ∀ x ∈ L, T x ∈ L) {v : V} (hv : v ∈ Submodule.span ℂ (L : Set V))
     (hv0 : v ≠ 0) {c : ℂ} (hTv : T v = c • v) : IsIntegral ℤ c :=

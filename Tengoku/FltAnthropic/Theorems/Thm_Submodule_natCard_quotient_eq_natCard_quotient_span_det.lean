@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Submodule_natCard_quotient_eq_natCard_quot
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.0h6v.s9.9c94d6e3d3b7 from=translated src=- shape=aa56f451 vocab=2ec11b4b
+-/
 theorem Submodule.natCard_quotient_eq_natCard_quotient_span_det
     {R : Type} [CommRing R] [IsDomain R] [IsPrincipalIdealRing R]
     {M : Type} [AddCommGroup M] [Module R M]

@@ -14,6 +14,9 @@ open IsLocalRing IsDedekindDomain
 
 namespace S17B1
 
+/--
+@isnad1 id=charzero.1h2v.s5.85f9d80f660b from=translated src=- shape=648dec22 vocab=429b90e4
+-/
 theorem charZero_of_irreducible_natCast
     {R : Type u} [CommRing R] [IsDomain R] {p : ℕ} (hunif : Irreducible (p : R)) : CharZero R := by
   classical
@@ -37,6 +40,9 @@ theorem charZero_of_irreducible_natCast
   · subst hzero
     exact CharP.charP_to_charZero R
 
+/--
+@isnad1 id=le.1h1v.s6.8711fed2fe84 from=translated src=- shape=445cfd7b vocab=6b2015c6
+-/
 theorem le_exp_neg_one_of_lt_one {γ : WithZero (Multiplicative ℤ)} (h : γ < 1) : γ ≤ WithZero.exp (-1) := by
   induction γ using WithZero.recZeroCoe with
   | zero => exact bot_le
@@ -49,6 +55,9 @@ theorem le_exp_neg_one_of_lt_one {γ : WithZero (Multiplicative ℤ)} (h : γ < 
 
 end S17B1
 
+/--
+@isnad1 id=ex.1h2v.s7.4c3d2fbddff3 from=translated src=- shape=00678af0 vocab=94bff387
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     (p : ℕ) (hunif : Irreducible (p : R)) :

@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Algebra_Etale_exists_sum_mul_smul_eq_ite_o
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.2h3v.s9.d9a7109f71f3 from=translated src=- shape=341ca2f9 vocab=0b39e9da
+-/
 theorem Algebra.Etale.exists_sum_mul_smul_eq_ite_of_isLocalRing
     {W W' : Type*} [CommRing W] [IsLocalRing W] [CommRing W'] [IsLocalRing W']
     [Algebra W W'] [Module.Finite W W'] [Module.Flat W W'] [FaithfulSMul W W'] [Algebra.Etale W W']

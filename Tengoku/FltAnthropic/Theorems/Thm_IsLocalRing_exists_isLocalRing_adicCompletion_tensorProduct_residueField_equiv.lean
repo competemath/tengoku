@@ -12,6 +12,9 @@ universe u v
 open IsLocalRing in
 open scoped TensorProduct in
 
+/--
+@isnad1 id=ex.0h2v.s14.21806c078035 from=translated src=- shape=bb198e3c vocab=804937cd
+-/
 theorem IsLocalRing.exists_isLocalRing_adicCompletion_tensorProduct_residueField_equiv
     {O : Type u} {C : Type v} [CommRing O] [IsNoetherianRing O] [IsLocalRing O]
     [CommRing C] [IsNoetherianRing C] [IsLocalRing C]

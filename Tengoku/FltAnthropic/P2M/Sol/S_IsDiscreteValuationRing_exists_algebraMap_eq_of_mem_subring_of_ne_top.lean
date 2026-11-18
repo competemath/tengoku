@@ -14,6 +14,9 @@ section Overring
 variable {V K : Type*} [CommRing V] [IsDomain V] [IsDiscreteValuationRing V]
   [Field K] [Algebra V K] [IsFractionRing V K]
 
+/--
+@isnad1 id=eq.3h4v.s8.c9ac9758d927 from=translated src=- shape=0e1c5df4 vocab=8691288e
+-/
 theorem subring_eq_top_of_inv_mem (W : Subring K) (hVW : ∀ v : V, algebraMap V K v ∈ W)
     {ϖ : V} (hϖ : Irreducible ϖ) (hinv : (algebraMap V K ϖ)⁻¹ ∈ W) : W = ⊤ := by
   refine eq_top_iff.mpr fun y _ => ?_
@@ -29,6 +32,9 @@ theorem subring_eq_top_of_inv_mem (W : Subring K) (hVW : ∀ v : V, algebraMap V
     obtain ⟨m, rfl⟩ := Int.exists_eq_neg_ofNat hn.le
     rw [zpow_neg, zpow_natCast, ← inv_pow]; exact W.pow_mem hinv m
 
+/--
+@isnad1 id=ex.3h4v.s8.366af35fb259 from=translated src=- shape=aa737d82 vocab=d7cb03d4
+-/
 theorem exists_algebraMap_eq_of_mem_subring (W : Subring K) (hVW : ∀ v : V, algebraMap V K v ∈ W)
     (hW : W ≠ ⊤) {x : K} (hx : x ∈ W) : ∃ v : V, algebraMap V K v = x := by
   obtain ⟨ϖ, hϖ⟩ := IsDiscreteValuationRing.exists_irreducible V
@@ -59,6 +65,9 @@ end Overring
 
 end DVROverringAux
 
+/--
+@isnad1 id=ex.3h4v.s8.70e6a8b27827 from=translated src=- shape=00e0fa9e vocab=d7cb03d4
+-/
 theorem solution
     (V : Type*) [CommRing V] [IsDomain V] [IsDiscreteValuationRing V]
     (K : Type*) [Field K] [Algebra V K] [IsFractionRing V K]

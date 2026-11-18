@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open IsLocalRing Polynomial
 
+/--
+@isnad1 id=ex.1h2v.s10.1448f23b92ae from=translated src=- shape=50d123ff vocab=bdafc99d
+-/
 theorem solution
     (A₀ : Type) [CommRing A₀] [IsDomain A₀] [IsDiscreteValuationRing A₀]
     (W₀ : Type) [CommRing W₀] [IsDomain W₀] [IsDiscreteValuationRing W₀]

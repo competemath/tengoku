@@ -12,6 +12,9 @@ open scoped TensorProduct nonZeroDivisors
 namespace Ws44
 namespace F0
 
+/--
+@isnad1 id=islocali.0h3v.s7.eaa82e5831c2 from=translated src=- shape=afe182de vocab=25af45a8
+-/
 theorem isLocalization_algebraMapSubmonoid_of_isIntegral
     {R S : Type*} [CommRing R] [IsDomain R] [CommRing S] [IsDomain S] [Algebra R S]
     [Algebra.IsIntegral R S] [FaithfulSMul R S]
@@ -49,6 +52,9 @@ theorem isLocalization_algebraMapSubmonoid_of_isIntegral
 end Ws44.F0
 
 open Ws44.F0 in
+/--
+@isnad1 id=and.1h8v.s11.035f34897ab3 from=translated src=- shape=faad5855 vocab=ab8f04e2
+-/
 theorem solution
     {R S Rhat T K₁ K E : Type*}
     [CommRing R] [IsDomain R] [CommRing S] [IsDomain S] [CommRing Rhat] [IsDomain Rhat]

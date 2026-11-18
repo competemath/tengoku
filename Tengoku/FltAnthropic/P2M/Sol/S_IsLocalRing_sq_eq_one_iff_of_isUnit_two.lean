@@ -10,6 +10,9 @@ set_option autoImplicit false
 namespace IsLocalRing export _root_.IsLocalRing (isUnit_or_isUnit_of_isUnit_add) end IsLocalRing
 open scoped _root_.IsLocalRing in
 
+/--
+@isnad1 id=iff.1h2v.s6.d4ad5e21dadf from=translated src=- shape=7dd59d15 vocab=6f452041
+-/
 theorem IsLocalRing.mul_self_eq_one_iff_of_isUnit_two {R : Type} [CommRing R] [IsLocalRing R]
     (h2 : IsUnit (2 : R)) (u : R) : u * u = 1 ↔ u = 1 ∨ u = -1 := by
   constructor
@@ -32,6 +35,9 @@ theorem IsLocalRing.mul_self_eq_one_iff_of_isUnit_two {R : Type} [CommRing R] [I
       exact eq_neg_of_add_eq_zero_left this
   · rintro (rfl | rfl) <;> ring
 
+/--
+@isnad1 id=iff.1h2v.s7.713a483aff6c from=translated src=- shape=3ff19e50 vocab=18b2bc25
+-/
 theorem solution {R : Type} [CommRing R] [IsLocalRing R]
     (h2 : IsUnit (2 : R)) (u : R) : u ^ 2 = 1 ↔ u = 1 ∨ u = -1 := by
   rw [sq, IsLocalRing.mul_self_eq_one_iff_of_isUnit_two h2]

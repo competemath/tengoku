@@ -12,6 +12,9 @@ universe u v
 
 open groupCohomology groupCohomology.Kummer
 
+/--
+@isnad1 id=ex.1h3v.s7.bc4e263a8d2f from=translated src=- shape=743a9a5c vocab=a04a7473
+-/
 theorem solution
     {Ω : Type u} [Field Ω] [IsAlgClosed Ω] {n : ℕ} (hn : 0 < n) (x : Ωˣ) :
     ∃ y : Ωˣ, y ^ n = x := by

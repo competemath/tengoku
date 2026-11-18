@@ -8,6 +8,9 @@ namespace P2MW.S_IsLocalRing_perfectField_residueField_of_isAlgebraic_rat
 set_option autoImplicit false
 
 open Polynomial in
+/--
+@isnad1 id=perfectf.2h3v.s7.f2ef116c9c38 from=translated src=- shape=04eac6c2 vocab=3b8dd9c0
+-/
 theorem solution
     (L₀ : Type) [Field L₀] [CharZero L₀] [Algebra.IsAlgebraic ℚ L₀]
     (A₀ : Type) [CommRing A₀] [IsDomain A₀] [IsLocalRing A₀] [Algebra A₀ L₀]

@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_IsGaloisGroup_isIntegrallyClosed_of_isInte
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=isintegr.0h3v.s6.5a4735b1b35f from=translated src=- shape=a377edc3 vocab=b3070424
+-/
 theorem IsGaloisGroup.isIntegrallyClosed_of_isIntegrallyClosed
     (G : Type*) [Group G] {A B : Type*} [CommRing A] [IsDomain A] [CommRing B] [IsDomain B]
     [Algebra A B] [FaithfulSMul A B] [MulSemiringAction G B] [IsGaloisGroup G A B]

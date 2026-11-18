@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open IsLocalRing
 
+/--
+@isnad1 id=ex.0h1v.s9.dac1eb53ecd7 from=translated src=- shape=4053ad22 vocab=8136247c
+-/
 theorem solution
     (T : Type) [CommRing T] [IsLocalRing T] [IsNoetherianRing T] [IsReduced T] :
     ∃ (n : ℕ) (A : Fin n → Type) (_ : ∀ i, CommRing (A i)) (_ : ∀ i, IsDomain (A i))

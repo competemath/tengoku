@@ -25,9 +25,15 @@ abbrev NR : Submodule R (Fin n → R) := LinearMap.ker (Fintype.linearCombinatio
 abbrev NA (A : Type) [CommRing A] [Algebra R A] : Submodule A (Fin n → A) :=
   LinearMap.ker (Fintype.linearCombination A (fun i => algebraMap R A (σ i)))
 
+/--
+@isnad1 id=iff.0h4v.s7.785e9fa65d95 from=translated src=- shape=583cca3a vocab=8731c332
+-/
 theorem mem_NR_iff (c : Fin n → R) : c ∈ NR σ ↔ ∑ i, c i * σ i = 0 := by
   simp [LinearMap.mem_ker, Fintype.linearCombination_apply, smul_eq_mul]
 
+/--
+@isnad1 id=iff.0h5v.s8.335380b42a03 from=translated src=- shape=e6a3fedb vocab=f7e9f621
+-/
 theorem mem_NA_iff (w : Fin n → A) : w ∈ NA σ A ↔ ∑ i, σ i • w i = 0 := by
   simp only [LinearMap.mem_ker, Fintype.linearCombination_apply, Algebra.smul_def]
   constructor <;> intro h <;> simpa [mul_comm] using h
@@ -54,9 +60,15 @@ def relMap : (ι → NR σ) →ₗ[R] NA σ A where
     funext i
     simp [Finset.smul_sum, smul_smul]
 
+/--
+@isnad1 id=eq.0h8v.s11.7386ee150e98 from=translated src=- shape=eeb9fbfa vocab=50f7bfdb
+-/
 theorem relMap_apply (v : ι → NR σ) (i : Fin n) :
     ((relMap b σ v : NA σ A) : Fin n → A) i = ∑ k, ((v k : Fin n → R) i) • b k := rfl
 
+/--
+@isnad1 id=injectiv.0h6v.s11.54d8ffe39a32 from=translated src=- shape=79ef4b34 vocab=65a3f17b
+-/
 theorem relMap_injective : Function.Injective (relMap (A := A) b σ) := by
   rw [← LinearMap.ker_eq_bot, Submodule.eq_bot_iff]
   intro v hv
@@ -70,6 +82,9 @@ theorem relMap_injective : Function.Injective (relMap (A := A) b σ) := by
   have := Fintype.linearIndependent_iff.1 b.linearIndependent (fun k => (v k : Fin n → R) i) h0 k
   simpa using this
 
+/--
+@isnad1 id=surjecti.0h6v.s11.4645df54953d from=translated src=- shape=79ef4b34 vocab=e6b2ffe5
+-/
 theorem relMap_surjective : Function.Surjective (relMap (A := A) b σ) := by
   intro w
   have hw : ∑ i, σ i • (w : Fin n → A) i = 0 := (mem_NA_iff σ _).1 w.2
@@ -90,6 +105,9 @@ def relEquiv : (ι → NR σ) ≃ₗ[R] NA σ A :=
 include b in
 omit [Fintype ι] in
 
+/--
+@isnad1 id=injectiv.0h4v.s6.fb35e45cec0d from=translated src=- shape=04434c3d vocab=2b3a6119
+-/
 theorem algebraMap_injective' [Nontrivial A] : Function.Injective (algebraMap R A) := by
   obtain ⟨k⟩ := b.index_nonempty
   intro r s h
@@ -108,6 +126,9 @@ variable {κ : Type} [Field κ] {R : Type} [CommRing R] [IsLocalRing R] [IsNoeth
   [Algebra R (MvPowerSeries (Fin 2) κ)] {ι : Type} [Fintype ι]
   (b : Module.Basis ι R (MvPowerSeries (Fin 2) κ)) {n : ℕ} (σ : Fin n → R)
 
+/--
+@isnad1 id=le.1h1v.s4.703395d8dbca from=translated src=- shape=da30d3bb vocab=ba1e66e2
+-/
 theorem three_le_choose_two : ∀ n : ℕ, 3 ≤ n → n ≤ n.choose 2 := by
   intro n hn
   rw [Nat.choose_two_right, Nat.le_div_iff_mul_le (by norm_num)]
@@ -115,6 +136,9 @@ theorem three_le_choose_two : ∀ n : ℕ, 3 ≤ n → n ≤ n.choose 2 := by
 
 include b in
 
+/--
+@isnad1 id=le.2h6v.s8.05b95fba1b58 from=translated src=- shape=69956cbe vocab=0dd4084e
+-/
 theorem le_two
     (hσ : ∀ c : Fin n → R, ∑ i, c i * σ i ∈ IsLocalRing.maximalIdeal R ^ 2 →
       ∀ i, c i ∈ IsLocalRing.maximalIdeal R)
@@ -178,6 +202,9 @@ variable {R : Type} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
 
 open IsLocalRing
 
+/--
+@isnad1 id=ex.1h3v.s8.c8c931bcb78c from=translated src=- shape=24e58e2c vocab=a0a82590
+-/
 theorem exists_minimal_subfamily {m : ℕ} (s : Fin m → R)
     (hs : Ideal.span (Set.range s) = maximalIdeal R) :
     ∃ t : Finset (Fin m),
@@ -252,6 +279,9 @@ end Choose
 
 end QB2B
 
+/--
+@isnad1 id=ex.1h6v.s7.00bf1ee56e7a from=translated src=- shape=e652967f vocab=30024d3b
+-/
 theorem solution
     {κ : Type} [Field κ] {R : Type} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
     [Algebra R (MvPowerSeries (Fin 2) κ)]

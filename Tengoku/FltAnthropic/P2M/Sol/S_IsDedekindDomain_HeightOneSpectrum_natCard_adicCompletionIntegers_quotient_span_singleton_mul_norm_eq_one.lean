@@ -17,11 +17,20 @@ namespace P2mResidueCount
 
 variable (K : Type) [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K))
 
+/--
+@isnad1 id=lt.0h2v.s7.75351e1a4fc6 from=translated src=- shape=b26b1aa4 vocab=70992259
+-/
 theorem one_lt_q : (1 : ℝ) < (Ideal.absNorm v.asIdeal : ℝ) := by
   exact_mod_cast NumberField.HeightOneSpectrum.one_lt_absNorm v
 
+/--
+@isnad1 id=lt.0h2v.s7.cf2fabf0b408 from=translated src=- shape=b26b1aa4 vocab=70992259
+-/
 theorem q_pos : (0 : ℝ) < (Ideal.absNorm v.asIdeal : ℝ) := lt_trans zero_lt_one (one_lt_q K v)
 
+/--
+@isnad1 id=ex.1h3v.s9.1dccd3946957 from=translated src=- shape=9e2b6760 vocab=7fa56751
+-/
 theorem exists_norm_eq_zpow_and_v_eq {x : v.adicCompletion K} (hx : x ≠ 0) :
     ∃ k : ℤ, ‖x‖ = (Ideal.absNorm v.asIdeal : ℝ) ^ k ∧
       (Valued.v x : WithZero (Multiplicative ℤ)) = WithZero.exp k := by
@@ -33,6 +42,9 @@ theorem exists_norm_eq_zpow_and_v_eq {x : v.adicCompletion K} (hx : x ≠ 0) :
   · conv_lhs => rw [← WithZero.coe_unzero hv0]
     rfl
 
+/--
+@isnad1 id=eq.1h4v.s9.2241f7808439 from=translated src=- shape=024b2f44 vocab=7fa56751
+-/
 theorem norm_eq_zpow_of_v_eq_exp {x : v.adicCompletion K} {k : ℤ}
     (h : (Valued.v x : WithZero (Multiplicative ℤ)) = WithZero.exp k) :
     ‖x‖ = (Ideal.absNorm v.asIdeal : ℝ) ^ k := by
@@ -45,10 +57,16 @@ theorem norm_eq_zpow_of_v_eq_exp {x : v.adicCompletion K} {k : ℤ}
   have : k' = k := WithZero.exp_injective h
   rw [hk', this]
 
+/--
+@isnad1 id=iff.0h3v.s8.2b2a092448a2 from=translated src=- shape=b9dcf92e vocab=212903a8
+-/
 theorem mem_integers_iff_v (x : v.adicCompletion K) :
     x ∈ v.adicCompletionIntegers K ↔ (Valued.v x : WithZero (Multiplicative ℤ)) ≤ 1 :=
   HeightOneSpectrum.mem_adicCompletionIntegers _ _ _
 
+/--
+@isnad1 id=le.1h1v.s6.8711fed2fe84 from=translated src=- shape=445cfd7b vocab=6b2015c6
+-/
 theorem le_exp_neg_one_of_lt_one {x : WithZero (Multiplicative ℤ)} (hx : x < 1) : x ≤ WithZero.exp (-1) := by
   by_cases h0 : x = 0
   · rw [h0]; exact zero_le
@@ -57,13 +75,22 @@ theorem le_exp_neg_one_of_lt_one {x : WithZero (Multiplicative ℤ)} (hx : x < 1
     rw [WithZero.exp_le_exp]
     omega
 
+/--
+@isnad1 id=eq.0h1v.s5.d390d88d4773 from=translated src=- shape=9c5d5130 vocab=7d1e97a4
+-/
 theorem exp_neg_one_pow (m : ℕ) : (WithZero.exp (-1 : ℤ)) ^ m = WithZero.exp (-(m : ℤ)) := by
   rw [← WithZero.exp_nsmul, smul_neg, nsmul_one]
 
+/--
+@isnad1 id=iff.0h3v.s10.b9b983a3ea53 from=translated src=- shape=1ca1f223 vocab=28e85417
+-/
 theorem isUnit_int_iff (x : v.adicCompletionIntegers K) :
     IsUnit x ↔ (Valued.v (x : v.adicCompletion K) : WithZero (Multiplicative ℤ)) = 1 :=
   Valuation.Integers.isUnit_iff_valuation_eq_one (Valuation.integer.integers _)
 
+/--
+@isnad1 id=eq.1h3v.s10.bc9c2470f77b from=translated src=- shape=b6de387b vocab=e308c099
+-/
 theorem v_irreducible {ϖ : v.adicCompletionIntegers K} (hϖ : Irreducible ϖ) :
     (Valued.v (ϖ : v.adicCompletion K) : WithZero (Multiplicative ℤ)) = WithZero.exp (-1) := by
 
@@ -94,6 +121,9 @@ theorem v_irreducible {ϖ : v.adicCompletionIntegers K} (hϖ : Irreducible ϖ) :
     _ ≤ Valued.v (ϖ : v.adicCompletion K) * 1 := by gcongr
     _ = Valued.v (ϖ : v.adicCompletion K) := mul_one _
 
+/--
+@isnad1 id=eq.0h2v.s8.26438ad7319c from=translated src=- shape=fd66871e vocab=0bf5545b
+-/
 theorem natCard_residueField :
     Nat.card (IsLocalRing.ResidueField (v.adicCompletionIntegers K)) = Ideal.absNorm v.asIdeal := by
   haveI : v.asIdeal.IsMaximal := v.isMaximal
@@ -113,6 +143,9 @@ theorem natCard_residueField :
 set_option synthInstance.maxHeartbeats 800000 in
 set_option maxHeartbeats 3200000 in
 
+/--
+@isnad1 id=eq.1h3v.s11.e0c5d337fb9c from=translated src=- shape=65f53973 vocab=a437a11e
+-/
 theorem natCard_quotient_span_singleton_mul_norm_eq_one
     (a : v.adicCompletionIntegers K) (ha : a ≠ 0) :
     (Nat.card (v.adicCompletionIntegers K ⧸ Ideal.span ({a} : Set (v.adicCompletionIntegers K))) : ℝ) *
@@ -144,6 +177,9 @@ theorem natCard_quotient_span_singleton_mul_norm_eq_one
 
 end P2mResidueCount
 
+/--
+@isnad1 id=eq.1h3v.s11.e0c5d337fb9c from=translated src=- shape=65f53973 vocab=a437a11e
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K))
     (a : v.adicCompletionIntegers K) (ha : a ≠ 0) :

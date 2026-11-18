@@ -14,23 +14,38 @@ variable {K : Type*} [Field K] {ι : Type*}
 noncomputable def shift (c : ι → K) : MvPolynomial ι K →ₐ[K] MvPolynomial ι K :=
   aeval fun i => X i + C (c i)
 
+/--
+@isnad1 id=eq.0h4v.s8.db4d828ab392 from=translated src=- shape=34478692 vocab=88ff66cf
+-/
 @[scoped simp] theorem shift_X (c : ι → K) (i : ι) : shift c (X i) = X i + C (c i) := by
   simp [shift]
 
+/--
+@isnad1 id=eq.0h3v.s8.41d55c192a46 from=translated src=- shape=0bfa6885 vocab=4aa8a9dd
+-/
 theorem shift_comp_shift_neg (c : ι → K) : (shift c).comp (shift (-c)) = AlgHom.id K _ := by
   apply MvPolynomial.algHom_ext
   intro i
   simp [shift, add_assoc]
 
+/--
+@isnad1 id=eq.0h3v.s8.13acf434a7b3 from=translated src=- shape=ca2ef191 vocab=4aa8a9dd
+-/
 theorem shift_neg_comp_shift (c : ι → K) : (shift (-c)).comp (shift c) = AlgHom.id K _ := by
   simpa using shift_comp_shift_neg (-c)
 
 noncomputable def shiftEquiv (c : ι → K) : MvPolynomial ι K ≃ₐ[K] MvPolynomial ι K :=
   AlgEquiv.ofAlgHom (shift c) (shift (-c)) (shift_comp_shift_neg c) (shift_neg_comp_shift c)
 
+/--
+@isnad1 id=eq.0h4v.s8.0c67f8b1bb5d from=translated src=- shape=34478692 vocab=f1bb3fc4
+-/
 @[scoped simp] theorem shiftEquiv_X (c : ι → K) (i : ι) : shiftEquiv c (X i) = X i + C (c i) := by
   simp [shiftEquiv]
 
+/--
+@isnad1 id=eq.0h4v.s8.9b5bfefe2c56 from=translated src=- shape=fcd5842f vocab=b99fb19b
+-/
 @[scoped simp] theorem shiftEquiv_C (c : ι → K) (k : K) : shiftEquiv c (C k) = C k := by
   simp [shiftEquiv, shift]
 
@@ -38,6 +53,9 @@ end TranslateTranscendental
 open scoped _root_.P2MW.S_IsAlgClosed_exists_algEquiv_apply_eq_add_algebraMap_of_transcendental.TranslateTranscendental
 
 open TranslateTranscendental in
+/--
+@isnad1 id=ex.1h4v.s7.286162ed084c from=translated src=- shape=e49f9aad vocab=3c28ce15
+-/
 theorem solution
     (K K' : Type*) [Field K] [Field K'] [Algebra K K'] [IsAlgClosed K']
     (t : K') (ht : Transcendental K t) (a : K) :

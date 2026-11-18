@@ -18,6 +18,9 @@ set_option maxHeartbeats 3200000
 namespace P2mS26G1
 open IsLocalRing
 
+/--
+@isnad1 id=ex.0h3v.s7.254acc16fd25 from=translated src=- shape=e77dbd37 vocab=6b55205c
+-/
 theorem exists_pow_sub_one_sub_eq {R : Type*} [CommRing R] (u : R) (n : ℕ) :
     ∃ y : R, u ^ n - 1 - n * (u - 1) = (u - 1) ^ 2 * y := by
   induction n with
@@ -30,6 +33,9 @@ theorem exists_pow_sub_one_sub_eq {R : Type*} [CommRing R] (u : R) (n : ℕ) :
       push_cast; ring
     rw [h, hy]; ring
 
+/--
+@isnad1 id=mem.3h5v.s8.cc39fd6ec1d9 from=translated src=- shape=b42676bc vocab=66f3a176
+-/
 theorem pow_mem_principalUnits_add {R : Type*} [CommRing R] [IsLocalRing R] {n e k : ℕ}
     (hne : (n : R) ∈ maximalIdeal R ^ e) (hk : e ≤ k) {u : Rˣ} (hu : u ∈ principalUnits R k) :
     u ^ n ∈ principalUnits R (k + e) := by
@@ -45,6 +51,9 @@ theorem pow_mem_principalUnits_add {R : Type*} [CommRing R] [IsLocalRing R] {n e
     rw [pow_add, sq]
     exact Ideal.mul_mem_mul hu hu
 
+/--
+@isnad1 id=ex.1h2v.s7.1444612158a4 from=translated src=- shape=cd7c2387 vocab=e401fd4b
+-/
 theorem exists_span_natCast_eq_maximalIdeal_pow {R : Type*} [CommRing R] [IsDomain R]
     [IsDiscreteValuationRing R] {n : ℕ} (hn : (n : R) ≠ 0) :
     ∃ e : ℕ, Ideal.span {(n : R)} = maximalIdeal R ^ e := by
@@ -55,6 +64,9 @@ theorem exists_span_natCast_eq_maximalIdeal_pow {R : Type*} [CommRing R] [IsDoma
 
 end P2mS26G1
 
+/--
+@isnad1 id=eq.1h2v.s8.ae8d4f3c14bb from=translated src=- shape=ed1d1380 vocab=29d7760d
+-/
 theorem solution {R : Type*} [CommRing R] [IsDomain R]
     [IsDiscreteValuationRing R] [IsAdicComplete (IsLocalRing.maximalIdeal R) R]
     [Finite (IsLocalRing.ResidueField R)] {n : ℕ} (hn : (n : R) ≠ 0) :

@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open IsLocalRing
 
+/--
+@isnad1 id=and.1h3v.s11.6166b29b3051 from=translated src=- shape=e587c0d5 vocab=f75dcb91
+-/
 theorem solution
     {C C' : Type} [CommRing C] [IsLocalRing C] [CommRing C'] [Algebra C C']
     (𝔫 : Ideal C') [𝔫.IsMaximal]

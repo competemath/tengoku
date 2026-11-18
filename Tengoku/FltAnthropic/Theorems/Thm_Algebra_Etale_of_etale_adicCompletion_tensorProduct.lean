@@ -11,6 +11,9 @@ universe u v
 
 open scoped TensorProduct in
 
+/--
+@isnad1 id=etale.1h2v.s9.fd1328794d90 from=translated src=- shape=31f1e9ab vocab=306c198c
+-/
 theorem Algebra.Etale.of_etale_adicCompletion_tensorProduct
     {R : Type u} {S : Type v} [CommRing R] [IsNoetherianRing R] [IsLocalRing R] [CommRing S] [Algebra R S]
     (h : Algebra.Etale (AdicCompletion (IsLocalRing.maximalIdeal R) R)

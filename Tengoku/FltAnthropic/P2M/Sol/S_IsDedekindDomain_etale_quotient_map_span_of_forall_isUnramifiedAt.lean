@@ -15,6 +15,9 @@ namespace HpoolG2
 
 variable {k : Type u} [Field k] {B : Type u} [CommRing B] [Algebra k[X] B]
 
+/--
+@isnad1 id=formally.1h3v.s7.70375ba60790 from=translated src=- shape=9da2e41a vocab=5cb66d26
+-/
 theorem formallyUnramified_quotient_of_forall {R : Type*} [CommRing R] [Algebra R B] (I : Ideal B)
     (hunr : ∀ (P : Ideal B) [P.IsPrime], I ≤ P → Algebra.IsUnramifiedAt R P) :
     Algebra.FormallyUnramified R (B ⧸ I) := by
@@ -44,6 +47,9 @@ theorem formallyUnramified_quotient_of_forall {R : Type*} [CommRing R] [Algebra 
 end HpoolG2
 
 open HpoolG2 in
+/--
+@isnad1 id=etale.3h3v.s10.176d4281b80e from=translated src=- shape=1c53f63a vocab=85dcbcf4
+-/
 theorem solution
     {k : Type u} [Field k] (B : Type u) [CommRing B] [IsDedekindDomain B]
     [Algebra k[X] B] [Algebra k B] [IsScalarTower k k[X] B] [Module.Finite k[X] B] [NoZeroSMulDivisors k[X] B]

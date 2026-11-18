@@ -7,6 +7,9 @@ namespace P2MW.S_IsDiscreteValuationRing_subalgebra_eq_bot_or_eq_top
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=or.0h3v.s8.c7088520b5fc from=translated src=- shape=ede0bc80 vocab=a55cc607
+-/
 theorem solution
     {R K : Type*} [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     [Field K] [Algebra R K] [IsFractionRing R K] (S : Subalgebra R K) :

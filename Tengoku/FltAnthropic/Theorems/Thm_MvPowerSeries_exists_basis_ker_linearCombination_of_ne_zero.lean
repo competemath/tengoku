@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_MvPowerSeries_exists_basis_ker_linearCombi
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.1h3v.s11.ae1173dc4581 from=translated src=- shape=0b69d394 vocab=49ae6608
+-/
 theorem MvPowerSeries.exists_basis_ker_linearCombination_of_ne_zero
     {κ : Type} [Field κ] {m : ℕ} (f : Fin m → MvPowerSeries (Fin 2) κ) (hf : f ≠ 0) :
     ∃ (r : ℕ) (e : Module.Basis (Fin r) (MvPowerSeries (Fin 2) κ)

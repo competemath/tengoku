@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 namespace ModuleGlue
 
+/--
+@isnad1 id=ex.1h4v.s7.a7ba5fa35aa1 from=translated src=- shape=01d25d38 vocab=255d027d
+-/
 theorem exists_sum_mul_pow_eq_one {R : Type*} [CommRing R] {ι : Type*} [Fintype ι] (g : ι → R)
     (hg : Ideal.span (Set.range g) = ⊤) (N : ℕ) : ∃ a : ι → R, ∑ i, a i * g i ^ N = 1 := by
   classical
@@ -22,6 +25,9 @@ theorem exists_sum_mul_pow_eq_one {R : Type*} [CommRing R] {ι : Type*} [Fintype
 
 end ModuleGlue
 
+/--
+@isnad1 id=existsun.4h11v.s10.23718fe4f0c2 from=translated src=- shape=99dba6f0 vocab=943b8651
+-/
 theorem solution
     {R : Type*} [CommRing R] {M : Type*} [AddCommGroup M] [Module R M]
     {ι : Type*} [Finite ι] (g : ι → R) (hg : Ideal.span (Set.range g) = ⊤)

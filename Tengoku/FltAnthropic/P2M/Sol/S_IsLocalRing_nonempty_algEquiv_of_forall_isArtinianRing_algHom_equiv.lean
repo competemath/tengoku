@@ -17,10 +17,16 @@ section Quot
 
 variable {S : Type v} [CommRing S] [IsLocalRing S]
 
+/--
+@isnad1 id=islocalr.1h2v.s6.22f4644b59d0 from=translated src=- shape=1404771f vocab=580b26b0
+-/
 theorem isLocalRing_quotient (I : Ideal S) (hI : I ≤ maximalIdeal S) : IsLocalRing (S ⧸ I) :=
   haveI := Ideal.Quotient.nontrivial_iff.mpr (ne_top_of_le_ne_top (maximalIdeal.isMaximal S).ne_top hI)
   IsLocalRing.of_surjective' (Ideal.Quotient.mk I) Ideal.Quotient.mk_surjective
 
+/--
+@isnad1 id=mem.2h3v.s9.4ccd297b8bae from=translated src=- shape=a68dbacc vocab=d7497b6e
+-/
 theorem mk_mem_maximalIdeal (I : Ideal S) [IsLocalRing (S ⧸ I)] (hI : I ≤ maximalIdeal S) {x : S}
     (hx : x ∈ maximalIdeal S) : Ideal.Quotient.mk I x ∈ maximalIdeal (S ⧸ I) := by
   rw [IsLocalRing.mem_maximalIdeal, mem_nonunits_iff]
@@ -34,6 +40,9 @@ theorem mk_mem_maximalIdeal (I : Ideal S) [IsLocalRing (S ⧸ I)] (hI : I ≤ ma
     exact Ideal.sub_mem _ (Ideal.mul_mem_right _ _ hx) (hI hy)
   exact (maximalIdeal.isMaximal S).ne_top (Ideal.eq_top_of_isUnit_mem _ h1 isUnit_one)
 
+/--
+@isnad1 id=surjecti.2h3v.s9.7ba9cef321f2 from=translated src=- shape=dfc1c2dc vocab=a1fbd839
+-/
 theorem surjective_residue_comp_algebraMap_quotient {Λ : Type u} [CommRing Λ] [Algebra Λ S]
     (I : Ideal S) [IsLocalRing (S ⧸ I)] (hI : I ≤ maximalIdeal S)
     (h : Function.Surjective (⇑(residue S) ∘ ⇑(algebraMap Λ S))) :
@@ -51,6 +60,9 @@ theorem surjective_residue_comp_algebraMap_quotient {Λ : Type u} [CommRing Λ] 
   rw [← map_sub]
   exact mk_mem_maximalIdeal I hI hmem
 
+/--
+@isnad1 id=isartini.1h3v.s7.67c45d2599f0 from=translated src=- shape=0fa7fd88 vocab=fc58749d
+-/
 theorem isArtinianRing_quotient [IsNoetherianRing S] (I : Ideal S) (N : ℕ) (hN : maximalIdeal S ^ N ≤ I) :
     IsArtinianRing (S ⧸ I) := by
   rw [isArtinianRing_iff_isNoetherianRing_krullDimLE_zero]
@@ -72,12 +84,21 @@ theorem isArtinianRing_quotient [IsNoetherianRing S] (I : Ideal S) (N : ℕ) (hN
   · exact absurd (by rw [hPQ, hQm, h]) hP.ne_top
   · rw [hPQ, hQm]; exact h
 
+/--
+@isnad1 id=islocalr.0h2v.s7.a88298113630 from=translated src=- shape=c8a6c8c5 vocab=83abf9f2
+-/
 scoped instance isLocalRing_testQuot (n : ℕ) : IsLocalRing (S ⧸ maximalIdeal S ^ (n + 1)) :=
   isLocalRing_quotient _ (Ideal.pow_le_self n.succ_ne_zero)
 
+/--
+@isnad1 id=isartini.0h2v.s7.1186a5331149 from=translated src=- shape=651335b0 vocab=d83c7d66
+-/
 scoped instance isArtinianRing_testQuot [IsNoetherianRing S] (n : ℕ) : IsArtinianRing (S ⧸ maximalIdeal S ^ (n + 1)) :=
   isArtinianRing_quotient _ (n + 1) le_rfl
 
+/--
+@isnad1 id=surjecti.1h3v.s12.0c48a3a342a2 from=translated src=- shape=07e2aaa0 vocab=01d44d1d
+-/
 theorem surjective_testQuot {Λ : Type u} [CommRing Λ] [Algebra Λ S]
     (hS : Function.Surjective (⇑(residue S) ∘ ⇑(algebraMap Λ S))) (n : ℕ) :
     Function.Surjective (⇑(residue (S ⧸ maximalIdeal S ^ (n + 1))) ∘ ⇑(algebraMap Λ (S ⧸ maximalIdeal S ^ (n + 1)))) :=
@@ -91,6 +112,9 @@ variable {Λ : Type u} [CommRing Λ] {R : Type v} [CommRing R] [IsLocalRing R] [
   {T : Type v} [CommRing T] [IsLocalRing T] [IsArtinianRing T] [Algebra Λ T]
 
 omit [IsArtinianRing T] in
+/--
+@isnad1 id=eq.1h4v.s8.3751fa8a8544 from=translated src=- shape=24dac382 vocab=9d70cb48
+-/
 theorem comap_maximalIdeal_eq (hT : Function.Surjective (⇑(residue T) ∘ ⇑(algebraMap Λ T)))
     (u : R →ₐ[Λ] T) : (maximalIdeal T).comap (u : R →+* T) = maximalIdeal R := by
   have hsurj : Function.Surjective ((residue T).comp (u : R →+* T)) := by
@@ -106,6 +130,9 @@ theorem comap_maximalIdeal_eq (hT : Function.Surjective (⇑(residue T) ∘ ⇑(
   rw [hker] at hmax
   exact IsLocalRing.eq_maximalIdeal hmax
 
+/--
+@isnad1 id=ex.1h4v.s8.cf76db583eb9 from=translated src=- shape=4b5d89b8 vocab=968c3e7a
+-/
 theorem exists_pow_le_ker (hT : Function.Surjective (⇑(residue T) ∘ ⇑(algebraMap Λ T)))
     (u : R →ₐ[Λ] T) : ∃ n : ℕ, ∀ x ∈ maximalIdeal R ^ (n + 1), u x = 0 := by
   obtain ⟨n, hn⟩ := IsArtinianRing.isNilpotent_jacobson_bot (R := T)
@@ -122,6 +149,9 @@ theorem exists_pow_le_ker (hT : Function.Surjective (⇑(residue T) ∘ ⇑(alge
   rw [h3] at h2
   exact h2
 
+/--
+@isnad1 id=ex.1h4v.s10.095f11e5c666 from=translated src=- shape=f509dadc vocab=fd2fbc01
+-/
 theorem exists_factor (hT : Function.Surjective (⇑(residue T) ∘ ⇑(algebraMap Λ T)))
     (u : R →ₐ[Λ] T) :
     ∃ (n : ℕ) (ū : (R ⧸ maximalIdeal R ^ (n + 1)) →ₐ[Λ] T),
@@ -134,6 +164,9 @@ end Kill
 end ProYonedaAux
 open scoped _root_.P2MW.S_IsLocalRing_nonempty_algEquiv_of_forall_isArtinianRing_algHom_equiv.ProYonedaAux
 
+/--
+@isnad1 id=nonempty.3h4v.s10.af7eb24cbf3e from=translated src=- shape=a823cdb1 vocab=cb1b4181
+-/
 theorem solution
     {Λ : Type u} [CommRing Λ]
     (R₁ : Type v) [CommRing R₁] [IsLocalRing R₁] [IsNoetherianRing R₁] [IsAdicComplete (maximalIdeal R₁) R₁] [Algebra Λ R₁]

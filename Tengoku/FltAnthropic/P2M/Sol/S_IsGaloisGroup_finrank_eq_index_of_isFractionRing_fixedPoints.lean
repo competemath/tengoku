@@ -13,6 +13,9 @@ open Module
 
 namespace FracDegFixedAux
 
+/--
+@isnad1 id=eq.0h8v.s9.e79e23b154ec from=translated src=- shape=285e614f vocab=eca543fd
+-/
 theorem finrank_eq_index_core
     (A B C : Type*) [CommRing A] [CommRing B] [CommRing C]
     [Algebra A B] [Algebra C B]
@@ -41,6 +44,9 @@ theorem finrank_eq_index_core
 
 end FracDegFixedAux
 
+/--
+@isnad1 id=eq.0h6v.s10.1c145dcac469 from=translated src=- shape=8b2e7e4c vocab=ab7b62a0
+-/
 theorem solution
     {A B : Type*} [CommRing A] [CommRing B] [IsDomain B] [Algebra A B] [FaithfulSMul A B]
     (G : Type*) [Group G] [Finite G] [MulSemiringAction G B] [IsGaloisGroup G A B]

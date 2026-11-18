@@ -8,6 +8,9 @@ namespace P2MW.S_IsLocalRing_surjective_algebraMap_of_ringEquiv_adicCompletion_o
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=surjecti.2h4v.s10.99a616d322b5 from=translated src=- shape=e679457f vocab=7b9504b3
+-/
 theorem solution
     {R S M : Type*} [CommRing R] [CommRing S] [CommRing M]
     [IsLocalRing R] [IsNoetherianRing R] [IsLocalRing S] [IsNoetherianRing S] [IsLocalRing M] [IsNoetherianRing M]

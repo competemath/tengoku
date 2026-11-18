@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_IsLocalRing_exists_mem_principalUnits_coe_
 
 set_option autoImplicit false
 open IsLocalRing
+/--
+@isnad1 id=ex.2h3v.s8.46aff96aab49 from=translated src=- shape=256e8f01 vocab=9a537ab4
+-/
 theorem IsLocalRing.exists_mem_principalUnits_coe_sub_one_eq {R : Type*} [CommRing R] [IsLocalRing R]
     {k : ℕ} (hk : 1 ≤ k) {x : R} (hx : x ∈ maximalIdeal R ^ k) :
     ∃ u ∈ principalUnits R k, (u : R) - 1 = x := by exact @_root_.P2MW.S_IsLocalRing_exists_mem_principalUnits_coe_sub_one_eq.solution R _ _ k hk x hx

@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open NumberField IsDedekindDomain
 
+/--
+@isnad1 id=mem.2h4v.s11.1fc6e9b6c550 from=translated src=- shape=5ec9bb78 vocab=71fd709c
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K)) (n : ℕ) (hn : 0 < n)
     (V : Set (v.adicCompletion K)ˣ) (hV : V ∈ nhds (1 : (v.adicCompletion K)ˣ)) :

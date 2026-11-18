@@ -8,6 +8,9 @@ namespace P2MW.S_IsArtinianRing_isLocalization_nonZeroDivisors_of_isLocalization
 set_option autoImplicit false
 set_option maxHeartbeats 800000
 
+/--
+@isnad1 id=islocali.1h3v.s7.bea7a3a5763b from=translated src=- shape=7e958d52 vocab=f3c8d1f7
+-/
 theorem solution
     {B F : Type*} [CommRing B] [CommRing F] [Algebra B F]
     (M : Submonoid B) (hM : M ≤ nonZeroDivisors B) [IsLocalization M F] [IsArtinianRing F] :

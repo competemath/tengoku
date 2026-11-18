@@ -13,6 +13,9 @@ universe u v
 open IsLocalRing
 open scoped TensorProduct
 
+/--
+@isnad1 id=eq.0h6v.s11.beedb7af2132 from=translated src=- shape=a31f387a vocab=a5699c51
+-/
 theorem solution
     {O : Type u} {C : Type v} [CommRing O] [IsDomain O] [IsNoetherianRing O] [IsLocalRing O]
     [CommRing C] [IsDomain C] [Algebra O C] [Module.Finite O C] [FaithfulSMul O C]

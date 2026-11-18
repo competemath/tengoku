@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open Polynomial IsLocalRing in
 
+/--
+@isnad1 id=ex.3h3v.s10.f196fc848162 from=translated src=- shape=bbf0cbf8 vocab=2ff324f2
+-/
 theorem IsLocalRing.exists_isRoot_residue_eq_of_isAdicComplete
     {C : Type*} [CommRing C] [IsLocalRing C] [IsAdicComplete (maximalIdeal C) C]
     (p : C[X]) (hp : p.Monic) (α : ResidueField C)

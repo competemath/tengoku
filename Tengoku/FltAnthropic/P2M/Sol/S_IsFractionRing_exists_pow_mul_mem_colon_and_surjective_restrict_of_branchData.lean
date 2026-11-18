@@ -21,6 +21,9 @@ def cond {B : Type u} [CommRing B] {F : Type v} [CommRing F] [Algebra B F] (y : 
     rintro r a ⟨c, hc⟩
     exact ⟨r * c, by rw [smul_eq_mul, map_mul, mul_assoc, hc, map_mul]⟩
 
+/--
+@isnad1 id=ex.1h3v.s8.fba80d96a867 from=translated src=- shape=c0e955bd vocab=3b6e03a1
+-/
 theorem exists_eq_algebraMap_of_forall_maximal {B : Type u} [CommRing B] {F : Type v} [CommRing F] [Algebra B F]
     (y : F) (h : ∀ 𝔪 : Ideal B, 𝔪.IsMaximal → ∃ b : B, b ∉ 𝔪 ∧ ∃ c : B, algebraMap B F b * y = algebraMap B F c) :
     ∃ c : B, y = algebraMap B F c := by
@@ -37,6 +40,9 @@ end H3fColon
 
 open H3fColon in
 set_option maxHeartbeats 6400000 in
+/--
+@isnad1 id=and.6h7v.s11.f6645a4c3ddf from=translated src=- shape=be3bec33 vocab=da58c31c
+-/
 theorem solution
     {B : Type u} [CommRing B] [IsDomain B] [IsNoetherianRing B]
     {F : Type v} [Field F] [Algebra B F] [IsFractionRing B F]

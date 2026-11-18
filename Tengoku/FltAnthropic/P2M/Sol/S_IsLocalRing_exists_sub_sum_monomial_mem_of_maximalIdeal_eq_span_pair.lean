@@ -10,6 +10,9 @@ set_option autoImplicit false
 open IsLocalRing Finset
 
 set_option maxHeartbeats 3200000 in
+/--
+@isnad1 id=ex.4h7v.s9.194194a17795 from=translated src=- shape=cb51c679 vocab=d9620a4d
+-/
 theorem solution
     {W R : Type*} [CommRing W] [CommRing R] [IsLocalRing R] [Algebra W R]
     (y₀ y₁ : R) (hmax : maximalIdeal R = Ideal.span {y₀, y₁})

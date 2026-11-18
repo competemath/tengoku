@@ -8,6 +8,9 @@ namespace P2MW.S_IsLocalRing_isField_of_isIntegrallyClosedIn_of_isArtinianRing_o
 set_option autoImplicit false
 
 open Polynomial in
+/--
+@isnad1 id=isfield.1h2v.s6.eea985f5a041 from=translated src=- shape=2394c466 vocab=5d779468
+-/
 theorem solution
     {B F : Type*} [CommRing B] [IsLocalRing B] [CommRing F] [Nontrivial F] [Algebra B F]
     [IsArtinianRing F] [IsReduced F] (h : IsIntegrallyClosedIn B F) :

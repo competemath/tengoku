@@ -17,6 +17,9 @@ export _root_.IsLocalRing (eq_maximalIdeal ResidueField maximalIdeal residue)
 namespace B5cK11
 open _root_.IsLocalRing
 
+/--
+@isnad1 id=and.2h3v.s9.2365466aae36 from=translated src=- shape=88cac16c vocab=be9e2000
+-/
 theorem core {A B : Type*} [CommRing A] [CommRing B] [IsLocalRing A] [IsLocalRing B]
     [Algebra A B] [IsLocalHom (algebraMap A B)]
     (G : Type*) [Group G] [Finite G] [MulSemiringAction G B] [SMulCommClass G A B] [Algebra.IsInvariant A B G]
@@ -79,6 +82,9 @@ theorem core {A B : Type*} [CommRing A] [CommRing B] [IsLocalRing A] [IsLocalRin
 end IsLocalRing.B5cK11
 
 open IsLocalRing.B5cK11 in
+/--
+@isnad1 id=and.3h3v.s10.5c87248d8c7d from=translated src=- shape=cd071744 vocab=21b539f4
+-/
 theorem solution
     {A B : Type*} [CommRing A] [CommRing B] [IsLocalRing A] [IsLocalRing B]
     [Algebra A B] [IsLocalHom (algebraMap A B)]

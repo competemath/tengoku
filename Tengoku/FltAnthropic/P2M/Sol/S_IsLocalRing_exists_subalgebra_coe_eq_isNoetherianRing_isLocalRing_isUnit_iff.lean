@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=ex.0h3v.s9.3a0c702f3b40 from=translated src=- shape=8e106647 vocab=1ed256df
+-/
 theorem solution
     {A₀ : Type u} [CommRing A₀] {R : Type u} [CommRing R] [IsLocalRing R] [Algebra A₀ R]
     (T : Subalgebra A₀ R) [IsNoetherianRing ↥T] :

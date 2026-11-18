@@ -7,6 +7,9 @@ namespace P2MW.S_IsLocalRing_map_maximalIdeal_le_jacobson_bot_of_isIntegral
 
 open IsLocalRing
 
+/--
+@isnad1 id=le.0h2v.s7.810ccfc0a588 from=translated src=- shape=7521a994 vocab=a097fe8c
+-/
 theorem solution {R S : Type*} [CommRing R] [CommRing S] [Algebra R S]
     [IsLocalRing R] [Algebra.IsIntegral R S] :
     (IsLocalRing.maximalIdeal R).map (algebraMap R S) ≤ Ideal.jacobson (⊥ : Ideal S) := by

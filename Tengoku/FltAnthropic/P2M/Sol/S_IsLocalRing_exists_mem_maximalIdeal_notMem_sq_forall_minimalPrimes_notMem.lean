@@ -12,6 +12,9 @@ namespace W2RLR
 
 universe u v
 
+/--
+@isnad1 id=ne.1h1v.s6.fa8c521f3369 from=translated src=- shape=ff4e19b8 vocab=6bb23999
+-/
 theorem maximalIdeal_ne_bot_of_ringKrullDim_pos (R : Type u) [CommRing R] [IsLocalRing R] (hdim : 0 < ringKrullDim R) :
     maximalIdeal R ≠ ⊥ := by
   intro hbot
@@ -33,6 +36,9 @@ end Exchange0
 
 section PrimeAvoidance
 
+/--
+@isnad1 id=not.1h1v.s6.15db0760469e from=translated src=- shape=5f391251 vocab=ef030caf
+-/
 theorem maximalIdeal_notMem_minimalPrimes_of_ringKrullDim_pos
     (R : Type u) [CommRing R] [IsLocalRing R] (hdim : 0 < ringKrullDim R) :
     maximalIdeal R ∉ minimalPrimes R := by
@@ -51,6 +57,9 @@ theorem maximalIdeal_notMem_minimalPrimes_of_ringKrullDim_pos
   rw [heq] at hdim
   exact hdim.false
 
+/--
+@isnad1 id=ex.1h1v.s8.331277e0cc45 from=translated src=- shape=45e1dd62 vocab=5880acdb
+-/
 theorem exists_parameter_notMem_minimalPrimes
     (R : Type u) [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
     (hdim : 0 < ringKrullDim R) :
@@ -123,6 +132,9 @@ end W2RLR
 
 open IsLocalRing
 
+/--
+@isnad1 id=ex.1h1v.s8.331277e0cc45 from=translated src=- shape=45e1dd62 vocab=5880acdb
+-/
 theorem solution
     (R : Type*) [CommRing R] [IsLocalRing R] [IsNoetherianRing R] (hdim : 0 < ringKrullDim R) :
     ∃ x ∈ maximalIdeal R, x ∉ maximalIdeal R ^ 2 ∧ ∀ p ∈ minimalPrimes R, x ∉ p :=

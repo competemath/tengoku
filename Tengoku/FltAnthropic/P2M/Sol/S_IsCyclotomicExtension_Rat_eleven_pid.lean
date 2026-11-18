@@ -22,10 +22,19 @@ variable {K : Type*} [Field K] [NumberField K]
 local notation "M " K:70 => (4 / π) ^ nrComplexPlaces K *
   ((finrank ℚ K)! / (finrank ℚ K) ^ (finrank ℚ K) * √|discr K|)
 
+/--
+@isnad1 id=fact.0h0v.s2.6208d772be9b from=translated src=- shape=8d7dbbf6 vocab=c1c9ca6d
+-/
 scoped instance fact_prime_eleven : Fact (Nat.Prime 11) := ⟨by norm_num⟩
 
+/--
+@isnad1 id=fact.0h0v.s2.1e8f35d99f49 from=translated src=- shape=8d7dbbf6 vocab=c1c9ca6d
+-/
 scoped instance fact_prime_twentythree : Fact (Nat.Prime 23) := ⟨by norm_num⟩
 
+/--
+@isnad1 id=eq.0h0v.s6.8d9d18fd4244 from=translated src=- shape=86fc15d4 vocab=60e1ded4
+-/
 lemma crazy11 : ⌊(4 / π) ^ 5 * (10! / 10 ^ 10 * √2357947691)⌋₊ = 58 := by
   refine (floor_eq_iff (by positivity)).mpr ⟨?_, ?_⟩
   · calc
@@ -45,6 +54,9 @@ section Cyclo
 
 variable [hK : IsCyclotomicExtension {11} ℚ K]
 
+/--
+@isnad1 id=eq.0h1v.s7.a37e3860d6da from=translated src=- shape=5ba4c64f vocab=8cee5292
+-/
 theorem M11 : ⌊(M K)⌋₊ = 58 := by
   rw [discr_prime 11 K, IsCyclotomicExtension.finrank (n := 11) K
     (irreducible_rat (by norm_num)), nrComplexPlaces_eq_totient_div_two 11, totient_prime
@@ -53,6 +65,9 @@ theorem M11 : ⌊(M K)⌋₊ = 58 := by
     reduceSub, neg_mul, one_mul, Int.cast_neg, Int.cast_ofNat, abs_neg, abs_ofNat]
   exact crazy11
 
+/--
+@isnad1 id=not.4h4v.s8.7b4cbee73341 from=translated src=- shape=a8a45a8e vocab=16bb6464
+-/
 lemma not_pow_orderOf_le {a : ZMod 11} {p B : ℕ} (k : ℕ) (h10 : a ^ 10 = 1) (hp : 0 < p)
     (hk : B < p ^ (k + 1)) (hne : ∀ i ∈ Finset.Icc 1 k, a ^ i ≠ 1) : ¬ p ^ orderOf a ≤ B := by
   intro hle
@@ -65,6 +80,9 @@ lemma not_pow_orderOf_le {a : ZMod 11} {p B : ℕ} (k : ℕ) (h10 : a ^ 10 = 1) 
   have := Nat.pow_le_pow_right hp hord
   omega
 
+/--
+@isnad1 id=isprinci.0h2v.s7.99c015081bec from=translated src=- shape=d8ed547b vocab=f5d3b74d
+-/
 theorem isPrincipal_of_liesOver_twentythree (P : Ideal (𝓞 K)) [hP : P.IsPrime]
     [hP23 : P.LiesOver (span {(23 : ℤ)})] : Submodule.IsPrincipal P := by
   have hζ := hK.zeta_spec
@@ -147,6 +165,9 @@ theorem isPrincipal_of_liesOver_twentythree (P : Ideal (𝓞 K)) [hP : P.IsPrime
 
 variable (K) in
 
+/--
+@isnad1 id=isprinci.0h1v.s5.7a1c1b11d1e7 from=translated src=- shape=7f41e255 vocab=ea413f24
+-/
 theorem eleven_pid : IsPrincipalIdealRing (𝓞 K) := by
   refine RingOfIntegers.isPrincipalIdealRing_of_isPrincipal_of_pow_le_of_mem_primesOver_of_mem_Icc
     (fun p hple hp P hPmem hle ↦ ?_)
@@ -179,5 +200,8 @@ end Cyclo
 end M3dS11
 open scoped _root_.P2MW.S_IsCyclotomicExtension_Rat_eleven_pid.M3dS11
 
+/--
+@isnad1 id=isprinci.0h1v.s5.7a1c1b11d1e7 from=translated src=- shape=7f41e255 vocab=ea413f24
+-/
 theorem solution (K : Type*) [Field K] [NumberField K] [IsCyclotomicExtension {11} ℚ K] : IsPrincipalIdealRing (𝓞 K) :=
   M3dS11.eleven_pid K

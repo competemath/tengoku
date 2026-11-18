@@ -17,6 +17,9 @@ variable {A : Type u} [CommRing A] [IsNoetherianRing A] [IsLocalRing A]
 
 local notation "𝔪" => IsLocalRing.maximalIdeal A
 
+/--
+@isnad1 id=eq.0h2v.s7.8c766fe69149 from=translated src=- shape=085757cf vocab=9a984251
+-/
 theorem iInf_sup_pow_eq (K : Ideal A) : ⨅ k : ℕ, (K ⊔ 𝔪 ^ k) = K := by
   refine le_antisymm ?_ (le_iInf fun k => le_sup_left)
   intro x hx
@@ -35,6 +38,9 @@ theorem iInf_sup_pow_eq (K : Ideal A) : ⨅ k : ℕ, (K ⊔ 𝔪 ^ k) = K := by
   rw [hbot, Submodule.mem_bot, Submodule.Quotient.mk_eq_zero] at hmk
   exact hmk
 
+/--
+@isnad1 id=ex.1h3v.s8.cd58898d29e6 from=translated src=- shape=c25d70fe vocab=77533e05
+-/
 theorem exists_forall_sup_pow_eq (I : ℕ → Ideal A) (hI : Antitone I) (N : ℕ) :
     ∃ n₀ : ℕ, ∀ n, n₀ ≤ n → I n ⊔ 𝔪 ^ N = I n₀ ⊔ 𝔪 ^ N := by
   classical
@@ -72,6 +78,9 @@ end ChevalleyE95
 
 open ChevalleyE95 in
 
+/--
+@isnad1 id=ex.2h3v.s8.14e0862c9be7 from=translated src=- shape=4d16d5bd vocab=f69745f2
+-/
 theorem solution
     {A : Type u} [CommRing A] [IsNoetherianRing A] [IsLocalRing A]
     [IsAdicComplete (IsLocalRing.maximalIdeal A) A]

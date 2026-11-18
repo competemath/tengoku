@@ -26,6 +26,9 @@ private theorem K4Aux.finite_quotient_of_maximalIdeal_pow_le
     exact Ideal.Quotient.mk_surjective
   exact Finite.of_surjective g hsurj
 
+/--
+@isnad1 id=ex.2h3v.s10.51f532d1a902 from=translated src=- shape=bf1fa992 vocab=79ea8fa2
+-/
 theorem solution
     {A : Type} [CommRing A] [IsLocalRing A] [IsNoetherianRing A]
     [Finite (IsLocalRing.ResidueField A)]

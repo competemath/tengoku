@@ -31,6 +31,9 @@ end CRT
 variable {k : Type u} [Field k] (B : Type u) [CommRing B] [IsDedekindDomain B]
   [Algebra k[X] B] [Algebra k B] [IsScalarTower k k[X] B] [Module.Finite k[X] B] [NoZeroSMulDivisors k[X] B]
 
+/--
+@isnad1 id=etale.2h3v.s10.b669641fc348 from=translated src=- shape=df508179 vocab=b7f410d8
+-/
 theorem etale_quotient_map_span_of_separable_of_forall_isUnramifiedAt
     (h : k[X]) (hsep : h.Separable)
     (hunr : ∀ (P : Ideal B) [P.IsPrime], P ≠ ⊥ → Ideal.span {h} ≤ P.comap (algebraMap k[X] B) →
@@ -81,6 +84,9 @@ theorem etale_quotient_map_span_of_separable_of_forall_isUnramifiedAt
 
 end IsDedekindDomain
 
+/--
+@isnad1 id=etale.2h3v.s10.b669641fc348 from=translated src=- shape=df508179 vocab=b7f410d8
+-/
 theorem solution
     {k : Type u} [Field k] (B : Type u) [CommRing B] [IsDedekindDomain B]
     [Algebra k[X] B] [Algebra k B] [IsScalarTower k k[X] B] [Module.Finite k[X] B] [NoZeroSMulDivisors k[X] B]

@@ -10,6 +10,9 @@ set_option autoImplicit false
 namespace C4sol
 open IsLocalRing
 
+/--
+@isnad1 id=faithful.0h1v.s6.85028dee5ad7 from=translated src=- shape=d7071ce9 vocab=eca1334a
+-/
 theorem faithfullyFlat_adicCompletion (R : Type*) [CommRing R] [IsNoetherianRing R] [IsLocalRing R] :
     Module.FaithfullyFlat R (AdicCompletion (maximalIdeal R) R) := by
   haveI : Module.Flat R (AdicCompletion (maximalIdeal R) R) := AdicCompletion.flat_of_isNoetherian _
@@ -37,6 +40,9 @@ theorem faithfullyFlat_adicCompletion (R : Type*) [CommRing R] [IsNoetherianRing
 end C4sol
 
 open IsLocalRing in
+/--
+@isnad1 id=eq.0h2v.s9.0c2beee20e0e from=translated src=- shape=ee2cda4e vocab=03932625
+-/
 theorem solution
     {R : Type*} [CommRing R] [IsNoetherianRing R] [IsLocalRing R] (I : Ideal R) :
     (I.map (algebraMap R (AdicCompletion (IsLocalRing.maximalIdeal R) R))).comap

@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open IsLocalRing
 
+/--
+@isnad1 id=ex.1h2v.s10.ffdd975f09e1 from=translated src=- shape=0052a76a vocab=8e18871b
+-/
 theorem solution
     (B B₁ : Type) [CommRing B] [IsLocalRing B] [IsArtinianRing B] [CommRing B₁] [Algebra B B₁]
     (hsmall : RingHom.ker (algebraMap B B₁) * maximalIdeal B = ⊥) :

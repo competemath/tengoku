@@ -7,6 +7,9 @@ namespace P2MW.S_IsLocalRing_isUnit_natCast_or_isUnit_natCast_of_coprime
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=or.1h3v.s6.33f98017db35 from=translated src=- shape=a14c5524 vocab=84ba52d5
+-/
 theorem solution
     {R : Type*} [CommRing R] [IsLocalRing R] {m n : ℕ} (h : Nat.Coprime m n) :
     IsUnit (m : R) ∨ IsUnit (n : R) := by

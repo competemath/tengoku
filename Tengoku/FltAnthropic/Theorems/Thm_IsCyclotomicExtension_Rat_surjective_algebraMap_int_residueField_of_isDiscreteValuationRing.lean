@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_IsCyclotomicExtension_Rat_surjective_algeb
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=surjecti.1h3v.s8.b044bb2ca527 from=translated src=- shape=91187b19 vocab=9fa71cc3
+-/
 theorem IsCyclotomicExtension.Rat.surjective_algebraMap_int_residueField_of_isDiscreteValuationRing
     (p : ℕ) [Fact p.Prime] (L : Type) [Field L] [CharZero L] [IsCyclotomicExtension {p} ℚ L]
     (A : Type) [CommRing A] [IsDomain A] [IsDiscreteValuationRing A] [Algebra A L] [IsFractionRing A L]

@@ -18,6 +18,9 @@ variable {𝒪 : Type} [CommRing 𝒪] [IsLocalRing 𝒪]
   {A : Type} [CommRing A] [IsLocalRing A] [Algebra 𝒪 A] [Module.Finite 𝒪 A] [Module.Free 𝒪 A]
   [IsLocalHom (algebraMap 𝒪 A)]
 
+/--
+@isnad1 id=ex.1h3v.s8.55f1355a0ea9 from=translated src=- shape=7b72eea1 vocab=a59e27cd
+-/
 theorem exists_pow_mem_map_maximalIdeal (m : A) (hm : m ∈ maximalIdeal A) :
     ∃ n : ℕ, m ^ n ∈ (maximalIdeal 𝒪).map (algebraMap 𝒪 A) := by
   have hrad : m ∈ ((maximalIdeal 𝒪).map (algebraMap 𝒪 A)).radical := by
@@ -36,6 +39,9 @@ theorem exists_pow_mem_map_maximalIdeal (m : A) (hm : m ∈ maximalIdeal A) :
 
 variable (𝒪 A) in
 
+/--
+@isnad1 id=eq.1h3v.s11.083ace743dfe from=translated src=- shape=749d1401 vocab=36ab56a3
+-/
 theorem baseChange_lmul_eq_zero_of_mem {a : A} (ha : a ∈ (maximalIdeal 𝒪).map (algebraMap 𝒪 A)) :
     (Algebra.lmul 𝒪 A a).baseChange (ResidueField 𝒪) = 0 := by
   refine Submodule.span_induction (p := fun a _ => (Algebra.lmul 𝒪 A a).baseChange (ResidueField 𝒪) = 0)
@@ -53,6 +59,9 @@ theorem baseChange_lmul_eq_zero_of_mem {a : A} (ha : a ∈ (maximalIdeal 𝒪).m
   · intro a b _ hb
     rw [smul_eq_mul, map_mul, Module.End.mul_eq_comp, LinearMap.baseChange_comp, hb, LinearMap.comp_zero]
 
+/--
+@isnad1 id=ex.1h6v.s10.4cf1206db724 from=translated src=- shape=1f374c2e vocab=cc0b57c4
+-/
 theorem exists_monic_aeval_eq_zero_map_residue_eq_pow
     {F : Type} [CommRing F] [Algebra 𝒪 F]
     (φ : A →ₐ[𝒪] F) (x : A) (c : ResidueField 𝒪)
@@ -105,6 +114,9 @@ end engine
 
 end Ws50RT
 
+/--
+@isnad1 id=ex.1h6v.s10.4cf1206db724 from=translated src=- shape=1f374c2e vocab=cc0b57c4
+-/
 theorem solution
     {𝒪 : Type} [CommRing 𝒪] [IsLocalRing 𝒪]
     {A : Type} [CommRing A] [IsLocalRing A] [Algebra 𝒪 A] [Module.Finite 𝒪 A] [Module.Free 𝒪 A]

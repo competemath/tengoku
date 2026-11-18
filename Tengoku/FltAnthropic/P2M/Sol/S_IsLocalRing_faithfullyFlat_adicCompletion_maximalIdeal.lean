@@ -8,6 +8,9 @@ set_option autoImplicit false
 
 open IsLocalRing
 
+/--
+@isnad1 id=faithful.0h1v.s6.85028dee5ad7 from=translated src=- shape=d7071ce9 vocab=eca1334a
+-/
 theorem solution (R : Type*) [CommRing R] [IsNoetherianRing R] [IsLocalRing R] :
     Module.FaithfullyFlat R (AdicCompletion (IsLocalRing.maximalIdeal R) R) := by
   haveI : Module.Flat R (AdicCompletion (maximalIdeal R) R) := AdicCompletion.flat_of_isNoetherian _

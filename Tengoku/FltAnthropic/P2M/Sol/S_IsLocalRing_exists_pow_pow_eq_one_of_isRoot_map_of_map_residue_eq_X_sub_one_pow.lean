@@ -24,6 +24,9 @@ set_option autoImplicit false
 
 open Polynomial
 
+/--
+@isnad1 id=ex.4h7v.s9.dc46d69e72b3 from=translated src=- shape=8f6dcca0 vocab=32360a17
+-/
 theorem solution
     {R : Type} [CommRing R] [IsLocalRing R] (p : ℕ) [Fact p.Prime] [CharP (IsLocalRing.ResidueField R) p]
     (P : R[X]) (hP : P.map (IsLocalRing.residue R) = (X - 1) ^ P.natDegree)

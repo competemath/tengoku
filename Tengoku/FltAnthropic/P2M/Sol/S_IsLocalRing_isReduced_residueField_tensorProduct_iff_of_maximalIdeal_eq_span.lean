@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open IsLocalRing TensorProduct
 
+/--
+@isnad1 id=iff.1h3v.s9.00cba1ee8494 from=translated src=- shape=95629b09 vocab=5dc989e8
+-/
 theorem solution
     {A : Type*} [CommRing A] [IsLocalRing A] (a : A) (ha : maximalIdeal A = Ideal.span {a})
     (R : Type*) [CommRing R] [Algebra A R] :

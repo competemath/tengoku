@@ -12,6 +12,9 @@ open scoped TensorProduct
 
 namespace FracBC
 
+/--
+@isnad1 id=islocali.0h3v.s7.6a209a5ce642 from=translated src=- shape=238c34bf vocab=89f4fe53
+-/
 theorem isLocalization_algebraMapSubmonoid_nonZeroDivisors
     (A B L : Type*) [CommRing A] [IsDomain A] [CommRing B] [IsDomain B] [Algebra A B] [Module.Finite A B]
     [FaithfulSMul A B] [Field L] [Algebra B L] [IsFractionRing B L] :
@@ -27,6 +30,9 @@ theorem isLocalization_algebraMapSubmonoid_nonZeroDivisors
 end FracBC
 
 open FracBC in
+/--
+@isnad1 id=bijectiv.1h8v.s10.08b831cde7db from=translated src=- shape=abbb1bbd vocab=afa4b8d9
+-/
 theorem solution
     {R S Rhat T K₁ K E F : Type*}
     [CommRing R] [IsDomain R] [CommRing S] [IsDomain S] [CommRing Rhat] [IsDomain Rhat]

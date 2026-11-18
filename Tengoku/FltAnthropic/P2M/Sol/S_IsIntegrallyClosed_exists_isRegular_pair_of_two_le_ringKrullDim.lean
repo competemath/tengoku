@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open scoped Pointwise
 
+/--
+@isnad1 id=ex.3h2v.s7.dfa21f2318e5 from=translated src=- shape=197c63f8 vocab=20cd6d20
+-/
 theorem solution
     {B : Type*} [CommRing B] [IsDomain B] [IsNoetherianRing B] [IsLocalRing B] [IsIntegrallyClosed B]
     (hdim : 2 ≤ ringKrullDim B) (t : B) (ht : t ∈ IsLocalRing.maximalIdeal B) (ht0 : t ≠ 0) :

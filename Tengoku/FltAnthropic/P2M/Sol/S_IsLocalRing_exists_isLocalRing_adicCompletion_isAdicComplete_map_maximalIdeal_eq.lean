@@ -10,6 +10,9 @@ set_option autoImplicit false
 universe u
 
 open AdicCompletion IsLocalRing in
+/--
+@isnad1 id=ex.0h1v.s11.dcb3e50681dc from=translated src=- shape=a66b66b2 vocab=089fc8d3
+-/
 theorem solution
     (O : Type u) [CommRing O] [IsNoetherianRing O] [IsLocalRing O] :
     ∃ (_ : IsLocalRing (AdicCompletion (maximalIdeal O) O))

@@ -11,6 +11,9 @@ set_option autoImplicit false
 open IsLocalRing
 
 open IsLocalRing in
+/--
+@isnad1 id=eq.1h2v.s6.0bbad58ecbbb from=translated src=- shape=3cbbb42b vocab=8388a1ac
+-/
 theorem solution {R : Type*} [CommRing R] [IsDomain R]
     [IsDiscreteValuationRing R] {k : ℕ} (hk : 1 ≤ k) :
     (principalUnits R (k + 1)).relIndex (principalUnits R k) = Nat.card (IsLocalRing.ResidueField R) := by

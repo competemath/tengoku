@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open IsDedekindDomain NumberField
 
+/--
+@isnad1 id=ex.0h1v.s6.9ce3414d95cf from=translated src=- shape=311f7e17 vocab=aa5606b0
+-/
 theorem solution
     (v : IsDedekindDomain.HeightOneSpectrum (𝓞 ℚ)) :
     ∃ p : ℕ, p.Prime ∧ v.asIdeal = Ideal.span {(p : 𝓞 ℚ)} := by

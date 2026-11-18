@@ -16,10 +16,16 @@ section functorial
 
 variable {R S : Type*} [CommRing R] [CommRing S] (I : Ideal R) (J : Ideal S)
 
+/--
+@isnad1 id=le.1h6v.s8.7a209452e44b from=translated src=- shape=97abe355 vocab=c552be7d
+-/
 lemma pow_le_comap (g : R →+* S) (hg : I.map g ≤ J) (n : ℕ) : I ^ n ≤ (J ^ n).comap g := by
   rw [← Ideal.map_le_iff_le_comap, Ideal.map_pow]
   exact Ideal.pow_right_mono hg n
 
+/--
+@isnad1 id=eq.2h7v.s11.366d7ae82cae from=translated src=- shape=17b2908f vocab=c9ab17b6
+-/
 lemma complMap_compat (g : R →+* S) (hg : I.map g ≤ J) :
     ∀ {m n : ℕ} (hle : m ≤ n), (Ideal.Quotient.factorPow J hle).comp
       ((Ideal.quotientMap (J ^ n) g (pow_le_comap I J g hg n)).comp (AdicCompletion.evalₐ I n).toRingHom) =
@@ -39,12 +45,18 @@ noncomputable def complMap (g : R →+* S) (hg : I.map g ≤ J) : AdicCompletion
     (fun n => (Ideal.quotientMap (J ^ n) g (pow_le_comap I J g hg n)).comp (AdicCompletion.evalₐ I n).toRingHom)
     (complMap_compat I J g hg)
 
+/--
+@isnad1 id=eq.1h7v.s11.e2311648beb8 from=translated src=- shape=924bb86e vocab=c4a6b63e
+-/
 lemma evalₐ_complMap (g : R →+* S) (hg : I.map g ≤ J) (n : ℕ) (x : AdicCompletion I R) :
     AdicCompletion.evalₐ J n (complMap I J g hg x) =
       Ideal.quotientMap (J ^ n) g (pow_le_comap I J g hg n) (AdicCompletion.evalₐ I n x) := by
   unfold complMap
   exact AdicCompletion.evalₐ_liftRingHom J _ (complMap_compat I J g hg) n x
 
+/--
+@isnad1 id=eq.1h6v.s10.8a3fdb4f9a39 from=translated src=- shape=9b3743ae vocab=c7d6829e
+-/
 lemma complMap_of (g : R →+* S) (hg : I.map g ≤ J) (r : R) :
     complMap I J g hg (AdicCompletion.of I R r) = AdicCompletion.of J S (g r) := by
   apply AdicCompletion.ext_evalₐ
@@ -75,6 +87,9 @@ noncomputable def complEquiv (θ : R ≃+* S) (h₁ : I.map θ.toRingHom ≤ J) 
       rw [← ha, Ideal.quotientMap_mk, Ideal.quotientMap_mk]
       simp)
 
+/--
+@isnad1 id=eq.2h6v.s10.e60cd9f5d948 from=translated src=- shape=2c5c600b vocab=c3b358ba
+-/
 lemma complEquiv_of (θ : R ≃+* S) (h₁ : I.map θ.toRingHom ≤ J) (h₂ : J.map θ.symm.toRingHom ≤ I) (r : R) :
     complEquiv I J θ h₁ h₂ (AdicCompletion.of I R r) = AdicCompletion.of J S (θ r) :=
   complMap_of I J θ.toRingHom h₁ r
@@ -84,6 +99,9 @@ end equiv
 end M3cC2
 
 open M3cC2 in
+/--
+@isnad1 id=other.1h8v.s15.c110bf110725 from=translated src=- shape=a6ade945 vocab=f7d78089
+-/
 theorem solution
     {A₀ : Type} [CommRing A₀] [IsLocalRing A₀] (ϖ₀ : A₀) (w : ℕ)
     {R : Type} [CommRing R] [IsLocalRing R] (b : A₀ →+* R)

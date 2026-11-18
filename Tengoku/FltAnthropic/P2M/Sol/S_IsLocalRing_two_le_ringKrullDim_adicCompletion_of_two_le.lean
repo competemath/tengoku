@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.Theorems.Thm_IsLocalRing_faithfullyFlat_adicCompleti
 namespace P2MW.S_IsLocalRing_two_le_ringKrullDim_adicCompletion_of_two_le
 set_option autoImplicit false
 
+/--
+@isnad1 id=le.1h1v.s6.7fa035f9fae9 from=translated src=- shape=4a3a88f9 vocab=d15192b4
+-/
 theorem solution
     (R : Type*) [CommRing R] [IsNoetherianRing R] [IsLocalRing R] (h : 2 ≤ ringKrullDim R) :
     2 ≤ ringKrullDim (AdicCompletion (IsLocalRing.maximalIdeal R) R) := by

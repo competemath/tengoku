@@ -11,6 +11,9 @@ open IsLocalRing
 
 set_option maxHeartbeats 3200000 in
 
+/--
+@isnad1 id=ex.7h6v.s10.ff325913449b from=translated src=- shape=aa1a2fa4 vocab=e1f524b6
+-/
 theorem solution
     {A : Type*} [CommRing A] [IsLocalRing A]
     (ϖ : A) (hϖ : maximalIdeal A = Ideal.span {ϖ})

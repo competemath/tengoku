@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open IsDedekindDomain NumberField
 
+/--
+@isnad1 id=ex.2h4v.s14.6ac1b4656ee6 from=translated src=- shape=15df0542 vocab=b513822c
+-/
 theorem IsDedekindDomain.HeightOneSpectrum.exists_subgroups_shells_finset_card_le_of_units_adicCompletion
     (K : Type) [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K)) (n₀ c : ℕ) (hn₀ : 1 ≤ n₀) (hc : 1 ≤ c) :
     ∃ (U₁ A : Subgroup (v.adicCompletion K)ˣ) (V : ℕ → Subgroup (v.adicCompletion K)ˣ) (sh : ℕ → Set (v.adicCompletion K)ˣ) (M₀ : ℕ),

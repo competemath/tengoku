@@ -12,6 +12,9 @@ open scoped TensorProduct
 namespace Ws23
 namespace CB4b
 
+/--
+@isnad1 id=nonempty.1h3v.s8.b69ca57d6e74 from=translated src=- shape=4187e4a2 vocab=f69e7488
+-/
 theorem main (A : Type*) [CommRing A] [IsArtinianRing A] (𝔫 : Ideal A) [h𝔫 : 𝔫.IsMaximal]
     (N : ℕ) (hN : (Ideal.jacobson (⊥ : Ideal A)) ^ N = ⊥) :
     Nonempty ((A ⧸ 𝔫 ^ N) ≃ₐ[A] Localization.AtPrime 𝔫) := by
@@ -82,6 +85,9 @@ theorem main (A : Type*) [CommRing A] [IsArtinianRing A] (𝔫 : Ideal A) [h𝔫
 
 end Ws23.CB4b
 
+/--
+@isnad1 id=nonempty.1h3v.s8.b69ca57d6e74 from=translated src=- shape=4187e4a2 vocab=f69e7488
+-/
 theorem solution
     (A : Type*) [CommRing A] [IsArtinianRing A] (𝔫 : Ideal A) [𝔫.IsMaximal]
     (N : ℕ) (hN : (Ideal.jacobson (⊥ : Ideal A)) ^ N = ⊥) :

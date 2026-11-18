@@ -10,6 +10,9 @@ open Polynomial IsLocalRing
 
 namespace DedekindCritField
 
+/--
+@isnad1 id=isreduce.1h2v.s7.143c9e9e5cfd from=translated src=- shape=b4756bd0 vocab=eea7a2c7
+-/
 theorem isReduced_quotient_span_singleton_of_squarefree {R : Type*} [CommRing R]
     [DecompositionMonoid R] {f : R} (hf : Squarefree f) : IsReduced (R ⧸ Ideal.span {f}) := by
   rw [← Ideal.isRadical_iff_quotient_reduced, ← isRadical_iff_span_singleton]
@@ -18,6 +21,9 @@ theorem isReduced_quotient_span_singleton_of_squarefree {R : Type*} [CommRing R]
 end DedekindCritField
 
 open DedekindCritField in
+/--
+@isnad1 id=isintegr.4h4v.s9.d023213b00b5 from=translated src=- shape=d1036e0a vocab=12c0c30e
+-/
 theorem solution
     {O : Type*} [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
     {ϖ : O} (hϖ : Irreducible ϖ)

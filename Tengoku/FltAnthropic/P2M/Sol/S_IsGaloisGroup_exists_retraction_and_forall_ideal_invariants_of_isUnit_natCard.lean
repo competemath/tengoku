@@ -16,6 +16,9 @@ variable (G : Type*) [Group G] [Fintype G] [MulSemiringAction G B] [SMulCommClas
 
 def osum (b : B) : B := ∑ g : G, g • b
 
+/--
+@isnad1 id=eq.0h4v.s6.329a01e2ef60 from=translated src=- shape=f2cbc6ed vocab=6f855b3e
+-/
 theorem smul_osum (h : G) (b : B) : h • osum G b = osum G b := by
   unfold osum
   rw [Finset.smul_sum]
@@ -23,14 +26,23 @@ theorem smul_osum (h : G) (b : B) : h • osum G b = osum G b := by
   exact Fintype.sum_equiv (Equiv.mulLeft h) _ _ (fun g => rfl)
 
 omit [SMulCommClass G O B] in
+/--
+@isnad1 id=eq.0h4v.s6.9923dd7021c7 from=translated src=- shape=b6b7bfb3 vocab=4d6d2a4f
+-/
 theorem osum_add (b c : B) : osum G (b + c) = osum G b + osum G c := by
   unfold osum; rw [← Finset.sum_add_distrib]; simp_rw [smul_add]
 
 omit [SMulCommClass G O B] in
+/--
+@isnad1 id=eq.1h4v.s7.2ebcc4bcdabc from=translated src=- shape=103dc8e6 vocab=142e853b
+-/
 theorem osum_mul_of_invariant (a b : B) (ha : ∀ g : G, g • a = a) : osum G (a * b) = a * osum G b := by
   unfold osum; rw [Finset.mul_sum]; simp_rw [smul_mul', ha]
 
 omit [SMulCommClass G O B] in
+/--
+@isnad1 id=eq.1h3v.s7.69afb73d73ef from=translated src=- shape=6e80e483 vocab=dbfae456
+-/
 theorem osum_of_invariant (b : B) (hb : ∀ g : G, g • b = b) : osum G b = (Fintype.card G : B) * b := by
   unfold osum; simp_rw [hb]; rw [Finset.sum_const, Finset.card_univ, nsmul_eq_mul]
 
@@ -38,33 +50,54 @@ variable (u : O) (hu : u * (Fintype.card G : O) = 1)
 
 def rey (b : B) : B := algebraMap O B u * osum G b
 
+/--
+@isnad1 id=eq.0h6v.s7.4d86edccae2f from=translated src=- shape=7839c86f vocab=9bd44f60
+-/
 theorem smul_rey (h : G) (b : B) : h • rey G u b = rey G u b := by
   unfold rey; rw [smul_mul', smul_algebraMap, smul_osum]
 
 omit [SMulCommClass G O B] in
 include hu in
+/--
+@isnad1 id=eq.2h5v.s7.6bdead60ff43 from=translated src=- shape=377bb631 vocab=e6f02361
+-/
 theorem rey_of_invariant (b : B) (hb : ∀ g : G, g • b = b) : rey G u b = b := by
   unfold rey
   rw [osum_of_invariant G b hb, ← mul_assoc, ← map_natCast (algebraMap O B), ← map_mul, hu, map_one, one_mul]
 
 omit [SMulCommClass G O B] in
+/--
+@isnad1 id=eq.0h6v.s6.c3a95bc05210 from=translated src=- shape=28d8ae7b vocab=51115963
+-/
 theorem rey_add (b c : B) : rey G u (b + c) = rey G u b + rey G u c := by
   unfold rey; rw [osum_add, mul_add]
 
 omit [SMulCommClass G O B] in
+/--
+@isnad1 id=eq.0h4v.s6.05b1a7ded164 from=translated src=- shape=e392c027 vocab=6a003a54
+-/
 theorem rey_zero : rey G u (0 : B) = 0 := by
   unfold rey osum; simp
 
 omit [SMulCommClass G O B] in
+/--
+@isnad1 id=eq.1h6v.s7.9e771ada32f7 from=translated src=- shape=33f32f0a vocab=668720de
+-/
 theorem rey_mul_of_invariant (a b : B) (ha : ∀ g : G, g • a = a) : rey G u (a * b) = a * rey G u b := by
   unfold rey; rw [osum_mul_of_invariant G a b ha]; ring
 
+/--
+@isnad1 id=eq.0h6v.s8.750f64c56873 from=translated src=- shape=df148e7e vocab=6f1d48b3
+-/
 theorem rey_algebraMap_mul (r : O) (b : B) : rey G u (algebraMap O B r * b) = algebraMap O B r * rey G u b :=
   rey_mul_of_invariant G u _ _ (fun g => smul_algebraMap g r)
 
 omit [SMulCommClass G O B] in
 include hu in
 
+/--
+@isnad1 id=mem.2h6v.s8.09fc6067546b from=translated src=- shape=03aa167f vocab=049a246d
+-/
 theorem rey_sub_mem (J : Ideal B) (b : B) (hb : ∀ g : G, g • b - b ∈ J) : rey G u b - b ∈ J := by
   have h1 : rey G u b - b = algebraMap O B u * ∑ g : G, (g • b - b) := by
     rw [Finset.sum_sub_distrib, Finset.sum_const, Finset.card_univ, nsmul_eq_mul, mul_sub, ← mul_assoc,
@@ -77,6 +110,9 @@ end ReynoldsKit
 
 open ReynoldsKit
 
+/--
+@isnad1 id=and.1h4v.s10.55e830c126b4 from=translated src=- shape=3cec0e2d vocab=18f7dfa6
+-/
 theorem solution
     (O A B : Type) [CommRing O] [IsNoetherianRing O] [CommRing A] [CommRing B]
     [Algebra O A] [Algebra O B] [Algebra A B] [IsScalarTower O A B] [Algebra.FiniteType O B]

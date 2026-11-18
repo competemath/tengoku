@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open IsLocalRing Polynomial
 
+/--
+@isnad1 id=ex.1h4v.s10.29d8ac437cab from=translated src=- shape=1aa5da62 vocab=4d7623e9
+-/
 theorem solution
     {A S : Type*} [CommRing A] [IsLocalRing A] [CommRing S] [Algebra A S]
     (h T : S) [Module.Finite A (S ⧸ Ideal.span ({h} : Set S))]

@@ -6,6 +6,9 @@ import Tengoku
 namespace P2MW.S_IsIntegrallyClosed_of_faithfullyFlat
 set_option autoImplicit false
 
+/--
+@isnad1 id=isintegr.0h2v.s6.7ccd36364e15 from=translated src=- shape=1fdaca27 vocab=f1a2cc67
+-/
 theorem solution (A B : Type*) [CommRing A] [IsDomain A] [CommRing B] [IsDomain B]
     [Algebra A B] [Module.FaithfullyFlat A B] [IsIntegrallyClosed B] : IsIntegrallyClosed A := by
   have hinj : Function.Injective (algebraMap A B) := FaithfulSMul.algebraMap_injective A B

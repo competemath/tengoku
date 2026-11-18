@@ -9,5 +9,8 @@ set_option autoImplicit false
 
 open IsLocalRing
 
+/--
+@isnad1 id=finite.0h1v.s4.f2974cb575c3 from=translated src=- shape=a084f232 vocab=725246ad
+-/
 theorem IsArtinianRing.finite_of_isLocalRing_of_finite_residueField
     (C : Type) [CommRing C] [IsLocalRing C] [IsArtinianRing C] [Finite (ResidueField C)] : Finite C := by exact @_root_.P2MW.S_IsArtinianRing_finite_of_isLocalRing_of_finite_residueField.solution C _ _ _ _

@@ -20,6 +20,9 @@ section IndexBijection
 
 variable {α β : Type*}
 
+/--
+@isnad1 id=injectiv.0h2v.s5.a6de76fb697c from=translated src=- shape=78199d3b vocab=2fd46f85
+-/
 theorem Finsupp.sumElim_injective2 :
     Function.Injective2 (Finsupp.sumElim : (α →₀ ℕ) → (β →₀ ℕ) → (α ⊕ β →₀ ℕ)) := by
   intro a a' b b' h
@@ -44,11 +47,17 @@ def sumInvFun (g : MvPowerSeries α (MvPowerSeries β R)) : MvPowerSeries (α �
 
 variable {α β}
 
+/--
+@isnad1 id=eq.0h6v.s9.7f5cafdf7119 from=translated src=- shape=9bd8c879 vocab=4c2ce211
+-/
 @[scoped simp]
 theorem coeff_sumToFun (f : MvPowerSeries (α ⊕ β) R) (a : α →₀ ℕ) (b : β →₀ ℕ) :
     coeff b (coeff a (sumToFun α β f)) = coeff (a.sumElim b) f :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s9.fca66e605ed1 from=translated src=- shape=c0c6d0a7 vocab=e9a56f44
+-/
 theorem coeff_mul_sumElim [DecidableEq α] [DecidableEq β]
     (f g : MvPowerSeries (α ⊕ β) R) (a : α →₀ ℕ) (b : β →₀ ℕ) :
     coeff (a.sumElim b) (f * g) =
@@ -136,6 +145,9 @@ end IsEmpty
 
 section Noetherian
 
+/--
+@isnad1 id=isnoethe.0h2v.s4.2581ed7f22fa from=translated src=- shape=65f277ad vocab=897e9348
+-/
 theorem isNoetherianRing_fin (R : Type*) [CommRing R] [IsNoetherianRing R] (n : ℕ) :
     IsNoetherianRing (MvPowerSeries (Fin n) R) := by
   induction n with
@@ -165,6 +177,9 @@ namespace PowerSeries
 
 variable {R : Type u} [CommRing R]
 
+/--
+@isnad1 id=eq.0h1v.s6.bcdf19f53fbf from=translated src=- shape=3511d1b1 vocab=077c940f
+-/
 lemma ker_constantCoeff : RingHom.ker (constantCoeff (R := R)) = Ideal.span {(X : R⟦X⟧)} := by
   ext f
   rw [RingHom.mem_ker, Ideal.mem_span_singleton, X_dvd_iff]
@@ -199,6 +214,9 @@ open scoped _root_.P2MW.S_MvPowerSeries_isNoetherianRing_fin.W2MV.MvPowerSeries 
 
 open IsLocalRing
 
+/--
+@isnad1 id=isnoethe.0h2v.s4.2581ed7f22fa from=translated src=- shape=65f277ad vocab=897e9348
+-/
 theorem solution (R : Type*) [CommRing R] [IsNoetherianRing R] (n : ℕ) :
     IsNoetherianRing (MvPowerSeries (Fin n) R) :=
   W2MV.MvPowerSeries.isNoetherianRing_fin R n

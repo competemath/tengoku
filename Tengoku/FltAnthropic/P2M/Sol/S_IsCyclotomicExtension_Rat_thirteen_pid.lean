@@ -23,37 +23,61 @@ namespace M3dS11
 
 open IsCyclotomicExtension.Rat
 
+/--
+@isnad1 id=fact.0h0v.s2.c69a5e4ae4f7 from=translated src=- shape=8d7dbbf6 vocab=c1c9ca6d
+-/
 scoped instance fact_prime_thirteen : Fact (Nat.Prime 13) := ⟨by norm_num⟩
 
 noncomputable def g3 : Polynomial (ZMod 3) := X ^ 3 - X - 1
 
+/--
+@isnad1 id=eq.0h0v.s5.886d5101488d from=translated src=- shape=415057c6 vocab=ca3a8273
+-/
 theorem g3_natDegree : g3.natDegree = 3 := by
   rw [g3]; compute_degree!
 
+/--
+@isnad1 id=irreduci.0h0v.s6.5d0f4b9d6179 from=translated src=- shape=c523da69 vocab=9d96cbfd
+-/
 theorem g3_irreducible : Irreducible g3 := by
   refine irreducible_of_degree_le_three_of_not_isRoot (by rw [g3_natDegree]; decide) ?_
   intro x hx
   rw [IsRoot.def, g3, eval_sub, eval_sub, eval_pow, eval_X, eval_one] at hx
   fin_cases x <;> revert hx <;> decide
 
+/--
+@isnad1 id=fact.0h0v.s6.0f0cb138eab2 from=translated src=- shape=8507b1be vocab=3ef58b16
+-/
 scoped instance fact_irreducible_g3 : Fact (Irreducible g3) := ⟨g3_irreducible⟩
 
 abbrev F27 : Type := AdjoinRoot g3
 
+/--
+@isnad1 id=eq.0h0v.s9.109ff5f5eead from=translated src=- shape=04828644 vocab=b345c8e0
+-/
 theorem F27_root : (AdjoinRoot.root g3) ^ 3 - AdjoinRoot.root g3 - 1 = 0 := by
   have := AdjoinRoot.eval₂_root g3
   rw [g3, eval₂_sub, eval₂_sub, eval₂_X_pow, eval₂_X, eval₂_one] at this
   exact this
 
+/--
+@isnad1 id=eq.0h0v.s6.144a02b1c5be from=translated src=- shape=91ed63c4 vocab=f8211dcc
+-/
 theorem F27_three : (3 : F27) = 0 := by
   have h : (3 : ZMod 3) = 0 := rfl
   rw [← map_ofNat (algebraMap (ZMod 3) F27) 3, h, map_zero]
 
+/--
+@isnad1 id=charp.0h0v.s4.d1cc6184d0c1 from=translated src=- shape=aa0f4b0e vocab=f8cca0ff
+-/
 scoped instance F27_charP : CharP F27 3 :=
   charP_of_injective_algebraMap (algebraMap (ZMod 3) F27).injective 3
 
 variable {K : Type*} [Field K] [NumberField K] [hK : IsCyclotomicExtension {13} ℚ K]
 
+/--
+@isnad1 id=isprinci.0h2v.s7.660386c975ca from=translated src=- shape=d8ed547b vocab=f5d3b74d
+-/
 theorem isPrincipal_of_liesOver_three (P : Ideal (𝓞 K)) [hP : P.IsPrime]
     [hP3 : P.LiesOver (span {(3 : ℤ)})] : Submodule.IsPrincipal P := by
   have hζ := hK.zeta_spec
@@ -160,6 +184,9 @@ theorem isPrincipal_of_liesOver_three (P : Ideal (𝓞 K)) [hP : P.IsPrime]
 end M3dS11
 open scoped _root_.P2MW.S_IsCyclotomicExtension_Rat_thirteen_pid.M3dS11
 
+/--
+@isnad1 id=isprinci.1h2v.s7.377db6faf0fe from=translated src=- shape=be40ae2a vocab=773cf7a2
+-/
 theorem isPrincipal_of_mem_primesOver_three (K : Type*) [Field K] [NumberField K]
     [IsCyclotomicExtension {13} ℚ K] (P : Ideal (𝓞 K))
     (hP : P ∈ primesOver (Ideal.span {((3 : ℕ) : ℤ)}) (𝓞 K)) : Submodule.IsPrincipal P := by
@@ -168,6 +195,9 @@ theorem isPrincipal_of_mem_primesOver_three (K : Type*) [Field K] [NumberField K
   haveI : P.LiesOver (span {(3 : ℤ)}) := by rw [← h3]; exact hP.2
   exact M3dS11.isPrincipal_of_liesOver_three P
 
+/--
+@isnad1 id=ex.0h1v.s7.7986eb779152 from=translated src=- shape=95b19434 vocab=773cf7a2
+-/
 theorem exists_primesOver_three_isPrincipal (K : Type*) [Field K] [NumberField K] [IsCyclotomicExtension {13} ℚ K] : ∃ P ∈ primesOver (Ideal.span {((3 : ℕ) : ℤ)}) (𝓞 K), Submodule.IsPrincipal P := by
   have h3 : ((3 : ℕ) : ℤ) = 3 := by norm_num
   haveI : (Ideal.span {((3 : ℕ) : ℤ)}).IsPrime := by
@@ -183,6 +213,9 @@ section cert
 variable {n : ℕ} [NeZero n] {K : Type*} [Field K] [NumberField K] [IsCyclotomicExtension {n} ℚ K]
   {ζ : K}
 
+/--
+@isnad1 id=mem.5h8v.s9.48f5f9f4ecc3 from=translated src=- shape=6228f568 vocab=7b662def
+-/
 theorem span_mem_primesOver_of_cert (hζ : IsPrimitiveRoot ζ n) (q : ℕ) [hq : Fact q.Prime]
     (r : ℤ) (hr : (q : ℤ) ∣ (cyclotomic n ℤ).eval r)
     (A : ℤ[X]) (hA : (q : ℤ) ∣ A.eval r) (b c : 𝓞 K)
@@ -236,6 +269,9 @@ theorem span_mem_primesOver_of_cert (hζ : IsPrimitiveRoot ζ n) (q : ℕ) [hq :
   rw [map_natCast]
   exact hqα
 
+/--
+@isnad1 id=ex.3h5v.s8.b5f785a66ffa from=translated src=- shape=9fde7a62 vocab=33530668
+-/
 theorem exists_primesOver_lt (n : ℕ) [NeZero n] (K : Type*) [Field K] [NumberField K]
     [IsCyclotomicExtension {n} ℚ K] (p : ℕ) [hp : Fact p.Prime] (hpn : ¬ p ∣ n) (N k : ℕ)
     (hN : N < p ^ k) (hk : ∀ j < k, 0 < j → (p : ZMod n) ^ j ≠ 1) :
@@ -267,6 +303,9 @@ open IsCyclotomicExtension.Rat Real NumberField.InfinitePlace Module Nat
 local notation "M " K:70 => (4 / π) ^ nrComplexPlaces K *
   ((finrank ℚ K)! / (finrank ℚ K) ^ (finrank ℚ K) * √|discr K|)
 
+/--
+@isnad1 id=lt.0h0v.s6.de0b54e5f370 from=translated src=- shape=86fc15d4 vocab=53e5987d
+-/
 lemma crazy13 : ⌊(4 / π) ^ 6 * (12! / 12 ^ 12 * √1792160394037)⌋₊ < 307 := by
   rw [Nat.floor_lt (by positivity)]
   calc
@@ -276,10 +315,16 @@ lemma crazy13 : ⌊(4 / π) ^ 6 * (12! / 12 ^ 12 * √1792160394037)⌋₊ < 307
       gcongr; exact (sqrt_le_left (by norm_num)).mpr (by norm_num)
     _ < 307 := by norm_num
 
+/--
+@isnad1 id=fact.0h0v.s2.c69a5e4ae4f7 from=translated src=- shape=8d7dbbf6 vocab=c1c9ca6d
+-/
 scoped instance fact_prime_thirteen : Fact (Nat.Prime 13) := ⟨by norm_num⟩
 
 variable (K : Type*) [Field K] [NumberField K] [IsCyclotomicExtension {13} ℚ K]
 
+/--
+@isnad1 id=lt.0h1v.s7.1fce22c0a5fd from=translated src=- shape=5ba4c64f vocab=2881f12a
+-/
 theorem M13 : ⌊(M K)⌋₊ < 307 := by
   rw [discr_prime 13 K, IsCyclotomicExtension.finrank (n := 13) K
     (cyclotomic.irreducible_rat (by norm_num)), nrComplexPlaces_eq_totient_div_two 13, totient_prime
@@ -288,6 +333,9 @@ theorem M13 : ⌊(M K)⌋₊ < 307 := by
     reduceSub, one_mul, Int.cast_ofNat, abs_ofNat]
   exact crazy13
 
+/--
+@isnad1 id=ex.7h3v.s9.097cabdd93e3 from=translated src=- shape=b3098678 vocab=60fa6a9b
+-/
 theorem dispatchA (N : ℕ) (hN : N < 307) (h3 : ∃ P ∈ primesOver (Ideal.span {((3 : ℕ) : ℤ)}) (𝓞 K), Submodule.IsPrincipal P) (h13 : ∃ P ∈ primesOver (Ideal.span {((13 : ℕ) : ℤ)}) (𝓞 K), Submodule.IsPrincipal P) (h53 : ∃ P ∈ primesOver (Ideal.span {((53 : ℕ) : ℤ)}) (𝓞 K), Submodule.IsPrincipal P) (h79 : ∃ P ∈ primesOver (Ideal.span {((79 : ℕ) : ℤ)}) (𝓞 K), Submodule.IsPrincipal P)
     (p : ℕ) [hpF : Fact p.Prime] (hp1 : 1 ≤ p) (hp2 : p ≤ 80) :
     ∃ P ∈ primesOver (Ideal.span {(p : ℤ)}) (𝓞 K),
@@ -375,6 +423,9 @@ theorem dispatchA (N : ℕ) (hN : N < 307) (h3 : ∃ P ∈ primesOver (Ideal.spa
   · exact let ⟨P, hP, hpr⟩ := h79; ⟨P, hP, Or.inr hpr⟩
   · norm_num at hpp
 
+/--
+@isnad1 id=ex.5h3v.s9.a8973278c5fc from=translated src=- shape=8c725806 vocab=60fa6a9b
+-/
 theorem dispatchB (N : ℕ) (hN : N < 307) (h131 : ∃ P ∈ primesOver (Ideal.span {((131 : ℕ) : ℤ)}) (𝓞 K), Submodule.IsPrincipal P) (h157 : ∃ P ∈ primesOver (Ideal.span {((157 : ℕ) : ℤ)}) (𝓞 K), Submodule.IsPrincipal P)
     (p : ℕ) [hpF : Fact p.Prime] (hp1 : 81 ≤ p) (hp2 : p ≤ 160) :
     ∃ P ∈ primesOver (Ideal.span {(p : ℤ)}) (𝓞 K),
@@ -462,6 +513,9 @@ theorem dispatchB (N : ℕ) (hN : N < 307) (h131 : ∃ P ∈ primesOver (Ideal.s
   · norm_num at hpp
   · norm_num at hpp
 
+/--
+@isnad1 id=ex.3h3v.s8.a0c7d18122eb from=translated src=- shape=eab72512 vocab=60fa6a9b
+-/
 theorem dispatchC (N : ℕ) (hN : N < 307)
     (p : ℕ) [hpF : Fact p.Prime] (hp1 : 161 ≤ p) (hp2 : p ≤ 240) :
     ∃ P ∈ primesOver (Ideal.span {(p : ℤ)}) (𝓞 K),
@@ -549,6 +603,9 @@ theorem dispatchC (N : ℕ) (hN : N < 307)
   · exact exists_primesOver_lt 13 K _ (by norm_num) _ 2 (lt_of_lt_of_le hN (by norm_num)) (by decide)
   · norm_num at hpp
 
+/--
+@isnad1 id=ex.3h3v.s8.f0396761620c from=translated src=- shape=eab72512 vocab=60fa6a9b
+-/
 theorem dispatchD (N : ℕ) (hN : N < 307)
     (p : ℕ) [hpF : Fact p.Prime] (hp1 : 241 ≤ p) (hp2 : p ≤ 306) :
     ∃ P ∈ primesOver (Ideal.span {(p : ℤ)}) (𝓞 K),
@@ -622,6 +679,9 @@ theorem dispatchD (N : ℕ) (hN : N < 307)
   · norm_num at hpp
   · norm_num at hpp
 
+/--
+@isnad1 id=isprinci.0h1v.s5.70d28614a9b9 from=translated src=- shape=7f41e255 vocab=ea413f24
+-/
 theorem thirteen_pid : IsPrincipalIdealRing (𝓞 K) := by
   haveI := IsCyclotomicExtension.isGalois {13} ℚ K
   have hζ := IsCyclotomicExtension.zeta_spec 13 ℚ K
@@ -730,6 +790,9 @@ end M3aS12
 open scoped _root_.P2MW.S_IsCyclotomicExtension_Rat_thirteen_pid.M3dS11 _root_.P2MW.S_IsCyclotomicExtension_Rat_thirteen_pid.M3aS12
 
 open scoped NumberField in
+/--
+@isnad1 id=isprinci.0h1v.s5.70d28614a9b9 from=translated src=- shape=7f41e255 vocab=ea413f24
+-/
 theorem solution (K : Type*) [Field K] [NumberField K] [IsCyclotomicExtension {13} ℚ K] :
     IsPrincipalIdealRing (𝓞 K) :=
   M3aS12.thirteen_pid K

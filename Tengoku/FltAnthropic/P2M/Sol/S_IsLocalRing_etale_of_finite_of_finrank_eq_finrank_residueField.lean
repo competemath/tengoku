@@ -9,6 +9,9 @@ namespace P2MW.S_IsLocalRing_etale_of_finite_of_finrank_eq_finrank_residueField
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=etale.3h4v.s9.c233082be01d from=translated src=- shape=dba9c890 vocab=33d565e1
+-/
 theorem solution
     {O C : Type*} [CommRing O] [IsDomain O] [IsNoetherianRing O] [IsLocalRing O]
     [CommRing C] [IsDomain C] [IsNoetherianRing C] [IsLocalRing C]

@@ -7,6 +7,9 @@ namespace P2MW.S_IsAlgClosed_exists_isPrimitiveRoot_pow_and_pow_succ_eq
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.1h2v.s6.60a912e34df5 from=translated src=- shape=585ca87f vocab=f1ebd3fc
+-/
 theorem solution
     (k : Type) [Field k] [IsAlgClosed k] (ℓ : ℕ) [Fact ℓ.Prime] (hℓ : (ℓ : k) ≠ 0) :
     ∃ ζ : ℕ → k, (∀ n : ℕ, IsPrimitiveRoot (ζ n) (ℓ ^ n)) ∧ ∀ n : ℕ, ζ (n + 1) ^ ℓ = ζ n := by

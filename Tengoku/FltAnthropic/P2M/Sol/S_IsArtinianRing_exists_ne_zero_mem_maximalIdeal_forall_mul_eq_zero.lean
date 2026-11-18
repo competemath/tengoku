@@ -7,6 +7,9 @@ namespace P2MW.S_IsArtinianRing_exists_ne_zero_mem_maximalIdeal_forall_mul_eq_ze
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.1h1v.s7.dfa24865e3a3 from=translated src=- shape=a55ffccf vocab=da22ff14
+-/
 theorem solution
     (B : Type) [CommRing B] [IsLocalRing B] [IsArtinianRing B] (h : IsLocalRing.maximalIdeal B ≠ ⊥) :
     ∃ t : B, t ≠ 0 ∧ t ∈ IsLocalRing.maximalIdeal B ∧ ∀ m ∈ IsLocalRing.maximalIdeal B, m * t = 0 := by

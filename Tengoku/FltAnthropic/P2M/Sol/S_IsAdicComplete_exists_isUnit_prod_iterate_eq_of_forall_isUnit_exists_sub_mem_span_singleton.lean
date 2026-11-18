@@ -22,24 +22,45 @@ def trc (x : D) : D := ∑ i ∈ range n, τ^[i] x
 
 variable {ϖ τ n}
 
+/--
+@isnad1 id=eq.0h5v.s7.6533be244cb2 from=translated src=- shape=2bca1e0e vocab=7084ace3
+-/
 theorem iterate_map_mul (i : ℕ) (x y : D) : τ^[i] (x * y) = τ^[i] x * τ^[i] y := by
   rw [← RingHom.coe_pow, map_mul]
 
+/--
+@isnad1 id=eq.0h5v.s7.b0b1cfb2ddc7 from=translated src=- shape=2bca1e0e vocab=6394b7cb
+-/
 theorem iterate_map_add (i : ℕ) (x y : D) : τ^[i] (x + y) = τ^[i] x + τ^[i] y := by
   rw [← RingHom.coe_pow, map_add]
 
+/--
+@isnad1 id=eq.0h3v.s6.1b4aca2439e8 from=translated src=- shape=5268e07b vocab=dd317159
+-/
 theorem iterate_map_one (i : ℕ) : τ^[i] (1 : D) = 1 := by
   rw [← RingHom.coe_pow, map_one]
 
+/--
+@isnad1 id=eq.1h4v.s6.0712650df080 from=translated src=- shape=b6c80275 vocab=dd317159
+-/
 theorem iterate_fix {x : D} (hx : τ x = x) (i : ℕ) : τ^[i] x = x :=
   Function.iterate_fixed hx i
 
+/--
+@isnad1 id=eq.0h5v.s6.636aac01cb28 from=translated src=- shape=46aecfb9 vocab=46fb6f05
+-/
 theorem nrm_mul (x y : D) : nrm τ n (x * y) = nrm τ n x * nrm τ n y := by
   simp only [nrm, iterate_map_mul, prod_mul_distrib]
 
+/--
+@isnad1 id=eq.1h5v.s6.f54b9c3e9b8c from=translated src=- shape=47762d39 vocab=eabf2c78
+-/
 theorem trc_mul_of_fix (x : D) {a : D} (ha : τ a = a) : trc τ n (x * a) = trc τ n x * a := by
   simp only [trc, iterate_map_mul, iterate_fix ha, sum_mul]
 
+/--
+@isnad1 id=eq.1h4v.s7.018820d4cfb5 from=translated src=- shape=435bc135 vocab=1b880048
+-/
 theorem map_nrm (hτn : ∀ x, τ^[n] x = x) (x : D) : τ (nrm τ n x) = nrm τ n x := by
   unfold nrm
   rw [map_prod]
@@ -51,6 +72,9 @@ theorem map_nrm (hτn : ∀ x, τ^[n] x = x) (x : D) : τ (nrm τ n x) = nrm τ 
     rw [prod_range_succ, prod_range_succ', hτn]
     simp
 
+/--
+@isnad1 id=mem.2h6v.s8.45910ca550c8 from=translated src=- shape=50b0e8ad vocab=4b51301b
+-/
 theorem iterate_sub_mem {J : Ideal D} (hJ : ∀ x ∈ J, τ x ∈ J) {x y : D} (h : x - y ∈ J) (i : ℕ) :
     τ^[i] x - τ^[i] y ∈ J := by
   induction i with
@@ -59,6 +83,9 @@ theorem iterate_sub_mem {J : Ideal D} (hJ : ∀ x ∈ J, τ x ∈ J) {x y : D} (
     rw [Function.iterate_succ_apply', Function.iterate_succ_apply', ← map_sub]
     exact hJ _ ih
 
+/--
+@isnad1 id=mem.2h6v.s8.1718c5c61922 from=translated src=- shape=1c8c5252 vocab=dff3ec65
+-/
 theorem nrm_sub_nrm_mem {J : Ideal D} (hJ : ∀ x ∈ J, τ x ∈ J) {x y : D} (h : x - y ∈ J) :
     nrm τ n x - nrm τ n y ∈ J := by
   rw [← Ideal.Quotient.eq]
@@ -68,6 +95,9 @@ theorem nrm_sub_nrm_mem {J : Ideal D} (hJ : ∀ x ∈ J, τ x ∈ J) {x y : D} (
   rw [Ideal.Quotient.eq]
   exact iterate_sub_mem hJ h i
 
+/--
+@isnad1 id=mem.2h5v.s8.79f3848ab5ce from=translated src=- shape=0532b971 vocab=b3a00913
+-/
 theorem span_pow_stable (hτϖ : τ ϖ = ϖ) (k : ℕ) : ∀ x ∈ Ideal.span {ϖ ^ k}, τ x ∈ Ideal.span {ϖ ^ k} := by
   intro x hx
   rw [Ideal.mem_span_singleton] at hx ⊢
@@ -75,6 +105,9 @@ theorem span_pow_stable (hτϖ : τ ϖ = ϖ) (k : ℕ) : ∀ x ∈ Ideal.span {�
   rw [map_mul, map_pow, hτϖ]
   exact dvd_mul_right _ _
 
+/--
+@isnad1 id=mem.0h5v.s8.dab12067ea02 from=translated src=- shape=d354f370 vocab=5d0a293f
+-/
 theorem prod_one_add_sub_mem (k : ℕ) (s : Finset ℕ) (x : ℕ → D) :
     ∏ i ∈ s, (1 + ϖ ^ k * x i) - (1 + ϖ ^ k * ∑ i ∈ s, x i) ∈ Ideal.span {ϖ ^ (2 * k)} := by
   classical
@@ -108,6 +141,9 @@ variable (ϖ : D) (τ : D →+* D) (n : ℕ)
 
 include hreg hτn hτϖ hx₀ hc hτc in
 
+/--
+@isnad1 id=ex.8h8v.s9.7acfe5823c04 from=translated src=- shape=2590123f vocab=8344fef8
+-/
 theorem step [IsAdicComplete (Ideal.span {ϖ}) D] (P : D) (hP : IsUnit P) (k : ℕ)
     (hk : ϖ ^ (k + 1) ∣ nrm τ n P - c) :
     ∃ P' : D, IsUnit P' ∧ ϖ ^ (k + 1) ∣ P' - P ∧ ϖ ^ (k + 2) ∣ nrm τ n P' - c := by
@@ -198,6 +234,9 @@ variable [IsAdicComplete (Ideal.span {ϖ}) D] (u₀ : D) (hu₀ : IsUnit u₀)
   (hu₀c : ϖ ∣ nrm τ n u₀ - c)
 
 include hu₀ hu₀c in
+/--
+@isnad1 id=and.8h8v.s9.0e7fd661e50e from=translated src=- shape=d232e56c vocab=81d400eb
+-/
 theorem seq_spec (k : ℕ) :
     IsUnit (seq ϖ τ n hreg hτn hτϖ x₀ hx₀ c hc hτc u₀ k) ∧
       ϖ ^ (k + 1) ∣ nrm τ n (seq ϖ τ n hreg hτn hτϖ x₀ hx₀ c hc hτc u₀ k) - c := by
@@ -212,6 +251,9 @@ theorem seq_spec (k : ℕ) :
     exact ⟨hspec.1, hspec.2.2⟩
 
 include hu₀ hu₀c in
+/--
+@isnad1 id=dvd.8h8v.s9.18987bde4437 from=translated src=- shape=e7a81e63 vocab=81d400eb
+-/
 theorem seq_succ_sub (k : ℕ) :
     ϖ ^ (k + 1) ∣ seq ϖ τ n hreg hτn hτϖ x₀ hx₀ c hc hτc u₀ (k + 1) -
       seq ϖ τ n hreg hτn hτϖ x₀ hx₀ c hc hτc u₀ k := by
@@ -223,6 +265,9 @@ theorem seq_succ_sub (k : ℕ) :
   exact (Classical.choose_spec (step ϖ τ n hreg hτn hτϖ x₀ hx₀ c hc hτc _ ih.1 k ih.2)).2.1
 
 include hu₀ hu₀c in
+/--
+@isnad1 id=mem.9h9v.s9.0dd6679f2059 from=translated src=- shape=f3b38552 vocab=7bdee8e9
+-/
 theorem seq_sub_mem {m k : ℕ} (hmk : m ≤ k) :
     seq ϖ τ n hreg hτn hτϖ x₀ hx₀ c hc hτc u₀ k - seq ϖ τ n hreg hτn hτϖ x₀ hx₀ c hc hτc u₀ m ∈
       Ideal.span {ϖ ^ m} := by
@@ -239,6 +284,9 @@ theorem seq_sub_mem {m k : ℕ} (hmk : m ≤ k) :
 
 include hreg hτn hτϖ hx₀ hc hτc hu₀ hu₀c in
 
+/--
+@isnad1 id=ex.8h7v.s8.089203a6dc1b from=translated src=- shape=c3c377cb vocab=1c626867
+-/
 theorem exists_isUnit_nrm_eq : ∃ u : D, IsUnit u ∧ nrm τ n u = c := by
   set f : ℕ → D := seq ϖ τ n hreg hτn hτϖ x₀ hx₀ c hc hτc u₀ with hf_def
   have hI : ∀ m : ℕ, (Ideal.span ({ϖ} : Set D) ^ m • ⊤ : Submodule D D) = Ideal.span {ϖ ^ m} := by
@@ -292,6 +340,9 @@ end Limit
 end IsAdicComplete.NormLift
 
 open IsAdicComplete.NormLift in
+/--
+@isnad1 id=ex.7h5v.s9.deeef04e440e from=translated src=- shape=00537ed2 vocab=b3d3d963
+-/
 theorem solution
     {D : Type*} [CommRing D] (ϖ : D) (hϖ : ϖ ∈ nonZeroDivisors D)
     [IsAdicComplete (Ideal.span {ϖ}) D]

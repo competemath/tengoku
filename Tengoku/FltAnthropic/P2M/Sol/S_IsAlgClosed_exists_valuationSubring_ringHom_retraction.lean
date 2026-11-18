@@ -8,6 +8,9 @@ namespace P2MW.S_IsAlgClosed_exists_valuationSubring_ringHom_retraction
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.0h2v.s9.208581dab8bc from=translated src=- shape=a2ad4c5d vocab=10d57040
+-/
 theorem solution
     (K K' : Type*) [Field K] [IsAlgClosed K] [Field K'] [Algebra K K'] :
     ∃ (A : ValuationSubring K') (hK : ∀ c : K, algebraMap K K' c ∈ A) (σ : A →+* K),

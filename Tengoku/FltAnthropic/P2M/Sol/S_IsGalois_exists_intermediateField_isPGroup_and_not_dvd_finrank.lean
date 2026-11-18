@@ -7,6 +7,9 @@ namespace P2MW.S_IsGalois_exists_intermediateField_isPGroup_and_not_dvd_finrank
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.0h3v.s8.46b488481bf9 from=translated src=- shape=6b3da4e8 vocab=5327e8f0
+-/
 theorem solution
     (k K : Type*) [Field k] [Field K] [Algebra k K] [FiniteDimensional k K] [IsGalois k K]
     (p : ℕ) [Fact p.Prime] :

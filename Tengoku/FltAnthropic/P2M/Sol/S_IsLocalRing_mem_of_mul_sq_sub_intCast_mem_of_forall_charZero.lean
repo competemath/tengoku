@@ -7,6 +7,9 @@ namespace P2MW.S_IsLocalRing_mem_of_mul_sq_sub_intCast_mem_of_forall_charZero
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=mem.4h4v.s8.14626b324d81 from=translated src=- shape=b37c92b6 vocab=1b706360
+-/
 theorem solution
     {R : Type} [CommRing R] [IsLocalRing R] (r : R) (d : ℤ)
     (hmax : r ∈ IsLocalRing.maximalIdeal R)

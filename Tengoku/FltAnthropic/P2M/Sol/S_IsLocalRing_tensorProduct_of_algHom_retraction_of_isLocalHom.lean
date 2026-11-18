@@ -8,6 +8,9 @@ namespace P2MW.S_IsLocalRing_tensorProduct_of_algHom_retraction_of_isLocalHom
 open scoped TensorProduct
 open IsLocalRing
 
+/--
+@isnad1 id=islocalr.0h4v.s7.6c3df6fdebc5 from=translated src=- shape=f4757d3e vocab=13700b85
+-/
 theorem solution
     (R : Type*) [CommRing R] [IsLocalRing R]
     (A : Type*) [CommRing A] [Algebra R A] [IsLocalRing A] [Module.Finite R A]

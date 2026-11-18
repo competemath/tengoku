@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_IsDiscreteValuationRing_exists_mem_princip
 
 set_option autoImplicit false
 open IsLocalRing
+/--
+@isnad1 id=ex.4h5v.s8.324fd3d1abe3 from=translated src=- shape=be9e9333 vocab=c73c4dd6
+-/
 theorem IsDiscreteValuationRing.exists_mem_principalUnits_pow_eq {R : Type*} [CommRing R] [IsDomain R]
     [IsDiscreteValuationRing R] [IsAdicComplete (IsLocalRing.maximalIdeal R) R]
     {n : ℕ} (hn : 0 < n) {e : ℕ} (hne : Ideal.span {(n : R)} = IsLocalRing.maximalIdeal R ^ e)

@@ -18,6 +18,9 @@ variable {A₀ : Type u} {W₀ : Type v} {C : Type w}
   [Algebra A₀ W₀] [IsLocalHom (algebraMap A₀ W₀)]
   [CommRing C] [IsLocalRing C]
 
+/--
+@isnad1 id=eq.4h4v.s8.a33929b5ca13 from=translated src=- shape=fe2a6867 vocab=93102311
+-/
 lemma root_eq_of_sub_mem (f : C[X]) (b₁ b₂ : C) (h₁ : f.eval b₁ = 0) (h₂ : f.eval b₂ = 0)
     (hu : IsUnit (f.derivative.eval b₁)) (hδ : b₂ - b₁ ∈ maximalIdeal C) : b₁ = b₂ := by
   obtain ⟨k, hk⟩ := f.binomExpansion b₁ (b₂ - b₁)
@@ -44,6 +47,9 @@ lemma root_eq_of_sub_mem (f : C[X]) (b₁ b₂ : C) (h₁ : f.eval b₁ = 0) (h�
 
 omit [IsLocalHom (algebraMap A₀ W₀)] in
 
+/--
+@isnad1 id=ex.2h5v.s9.afe8e14fa2da from=translated src=- shape=2bb6e01b vocab=8619bdc6
+-/
 lemma top_le_adjoin_sup_pow_smul
     (hW₀ : maximalIdeal W₀ = (maximalIdeal A₀).map (algebraMap A₀ W₀))
     (α : W₀)
@@ -96,6 +102,9 @@ lemma top_le_adjoin_sup_pow_smul
 end UnramifiedRigidity
 
 open UnramifiedRigidity in
+/--
+@isnad1 id=eq.3h5v.s9.31cef8df1245 from=translated src=- shape=173e4b87 vocab=cb9ac757
+-/
 theorem solution
     (A₀ : Type u) (W₀ : Type v) (C : Type w)
     [CommRing A₀] [IsLocalRing A₀] [CommRing W₀] [HenselianLocalRing W₀]

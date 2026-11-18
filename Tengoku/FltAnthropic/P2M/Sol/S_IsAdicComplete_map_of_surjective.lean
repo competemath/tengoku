@@ -18,10 +18,16 @@ section
 
 variable {R : Type u} {S : Type v} [CommRing R] [CommRing S]
 
+/--
+@isnad1 id=iff.0h5v.s8.03dd5da8e05d from=translated src=- shape=834ce8f4 vocab=06f1776e
+-/
 theorem smodEq_pow_smul_top_iff (I : Ideal R) (n : ℕ) (x y : R) :
     x ≡ y [SMOD (I ^ n • ⊤ : Submodule R R)] ↔ x - y ∈ I ^ n := by
   rw [SModEq.sub_mem, smul_eq_mul, Ideal.mul_top]
 
+/--
+@isnad1 id=isadicco.1h4v.s7.73e3c7044732 from=translated src=- shape=bde95586 vocab=25523771
+-/
 theorem isAdicComplete_map_of_surjective [IsNoetherianRing R] (I : Ideal R)
     [IsAdicComplete I R] (f : R →+* S)
     (hf : Function.Surjective f) : IsAdicComplete (I.map f) S := by
@@ -78,6 +84,9 @@ end
 
 end M4cP4PS
 
+/--
+@isnad1 id=isadicco.1h4v.s7.73e3c7044732 from=translated src=- shape=bde95586 vocab=25523771
+-/
 theorem solution {R : Type u} {S : Type v} [CommRing R] [CommRing S]
     [IsNoetherianRing R] (I : Ideal R) [IsAdicComplete I R]
     (f : R →+* S) (hf : Function.Surjective f) : IsAdicComplete (I.map f) S :=

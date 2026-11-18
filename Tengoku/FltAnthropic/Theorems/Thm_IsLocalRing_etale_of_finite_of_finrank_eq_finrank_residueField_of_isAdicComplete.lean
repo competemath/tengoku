@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open IsLocalRing in
 
+/--
+@isnad1 id=etale.1h4v.s9.1e32f94e6b44 from=translated src=- shape=d95db035 vocab=74b7b39a
+-/
 theorem IsLocalRing.etale_of_finite_of_finrank_eq_finrank_residueField_of_isAdicComplete
     {O C : Type*} [CommRing O] [IsDomain O] [IsLocalRing O] [IsIntegrallyClosed O]
     [IsAdicComplete (maximalIdeal O) O]

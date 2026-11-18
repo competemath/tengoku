@@ -14,6 +14,9 @@ open scoped Pointwise
 
 variable {G M : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [Zero M]
 
+/--
+@isnad1 id=ex.2h3v.s6.9ee92381f96b from=translated src=- shape=0c971a5c vocab=94e8bbcb
+-/
 theorem right (Φ : G → M) (hlc : IsLocallyConstant Φ) (hcs : HasCompactSupport Φ) :
     ∃ W : Set G, IsOpen W ∧ (1 : G) ∈ W ∧ ∀ g : G, ∀ w ∈ W, Φ (g * w) = Φ g := by
   classical
@@ -66,6 +69,9 @@ theorem right (Φ : G → M) (hlc : IsLocallyConstant Φ) (hcs : HasCompactSuppo
       have z2 : Φ (h * w) = 0 := image_eq_zero_of_notMem_tsupport h2
       rw [z1, z2]
 
+/--
+@isnad1 id=ex.2h3v.s7.9b2d714ec05d from=translated src=- shape=98a83961 vocab=94e8bbcb
+-/
 theorem both (Φ : G → M) (hlc : IsLocallyConstant Φ) (hcs : HasCompactSupport Φ) :
     ∃ W : Set G, IsOpen W ∧ (1 : G) ∈ W ∧
       ∀ g : G, ∀ w ∈ W, Φ (g * w) = Φ g ∧ Φ (w * g) = Φ g := by
@@ -82,6 +88,9 @@ theorem both (Φ : G → M) (hlc : IsLocallyConstant Φ) (hcs : HasCompactSuppor
 
 end UnifLC
 
+/--
+@isnad1 id=ex.2h3v.s7.9b2d714ec05d from=translated src=- shape=98a83961 vocab=94e8bbcb
+-/
 theorem solution
     {G M : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [Zero M]
     (Φ : G → M) (hlc : IsLocallyConstant Φ) (hcs : HasCompactSupport Φ) :

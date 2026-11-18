@@ -11,6 +11,9 @@ open IsLocalRing
 
 universe u
 
+/--
+@isnad1 id=and.4h6v.s9.3fa665eed7c7 from=translated src=- shape=711f4a3c vocab=994b4b6c
+-/
 theorem solution
     {B B' : Type u} [CommRing B] [IsLocalRing B] [CommRing B'] [IsLocalRing B']
     (σ : B' →+* B) (hσ : Function.Surjective σ) (hsmall : RingHom.ker σ * maximalIdeal B' = ⊥)

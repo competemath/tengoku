@@ -19,11 +19,20 @@ local notation "F" => (IsDedekindDomain.HeightOneSpectrum.adicCompletion K v)
 
 def q : ℝ := (Ideal.absNorm v.asIdeal : ℝ)
 
+/--
+@isnad1 id=lt.0h2v.s4.69616af6713f from=translated src=- shape=ab769d6d vocab=6d2e518b
+-/
 theorem one_lt_q : 1 < q K v := by
   unfold q; exact_mod_cast NumberField.HeightOneSpectrum.one_lt_absNorm v
 
+/--
+@isnad1 id=lt.0h2v.s4.e320d0d5449c from=translated src=- shape=ab769d6d vocab=6d2e518b
+-/
 theorem q_pos : 0 < q K v := one_pos.trans (one_lt_q K v)
 
+/--
+@isnad1 id=ex.1h3v.s7.1edae7d2d082 from=translated src=- shape=f0b7dab7 vocab=495927e5
+-/
 theorem exists_norm_eq_zpow (x : F) (hx : x ≠ 0) : ∃ n : ℤ, ‖x‖ = q K v ^ n := by
   have hv : Valued.v x ≠ 0 := (Valuation.ne_zero_iff _).mpr hx
   refine ⟨Multiplicative.toAdd (WithZero.unzero hv), ?_⟩
@@ -31,6 +40,9 @@ theorem exists_norm_eq_zpow (x : F) (hx : x ≠ 0) : ∃ n : ℤ, ‖x‖ = q K 
   push_cast
   rfl
 
+/--
+@isnad1 id=ex.0h2v.s6.f9fa3f86b83c from=translated src=- shape=b85ef397 vocab=6833ffef
+-/
 theorem exists_norm_eq_q : ∃ u : F, ‖u‖ = q K v := by
   obtain ⟨π, hπ⟩ := v.valuation_exists_uniformizer K
   have hn : ‖((π : K) : F)‖ = (q K v)⁻¹ := by
@@ -44,6 +56,9 @@ theorem exists_norm_eq_q : ∃ u : F, ‖u‖ = q K v := by
   refine ⟨((π : K) : F)⁻¹, ?_⟩
   rw [norm_inv, hn, inv_inv]
 
+/--
+@isnad1 id=eq.1h3v.s8.4b45b79a9f0d from=translated src=- shape=9923f9b9 vocab=9b5508cf
+-/
 theorem norm_eq_one_of_norm_sub_one_lt {t : F} (h : ‖t - 1‖ < 1) : ‖t‖ = 1 := by
   have hne : ‖(1 : F)‖ ≠ ‖t - 1‖ := by rw [norm_one]; exact (ne_of_lt h).symm
   have := IsUltrametricDist.norm_add_eq_max_of_norm_ne_norm hne
@@ -77,17 +92,29 @@ def ballSub (r : ℝ) (hr0 : 0 ≤ r) (hr : r < 1) : Subgroup Fˣ where
     rw [this, norm_neg, norm_mul, Units.val_inv_eq_inv_val, norm_inv, ht1, inv_one, one_mul]
     exact ht
 
+/--
+@isnad1 id=iff.2h4v.s10.dc11a68435e1 from=translated src=- shape=a6bb8372 vocab=cadc3481
+-/
 theorem mem_ballSub_iff {r : ℝ} (hr0 : 0 ≤ r) (hr : r < 1) (t : Fˣ) : t ∈ ballSub K v r hr0 hr ↔ ‖(t : F) - 1‖ ≤ r := Iff.rfl
 
+/--
+@isnad1 id=eq.3h4v.s10.6547a82977b2 from=translated src=- shape=fe64f0fe vocab=0e357ade
+-/
 theorem norm_eq_one_of_mem_ballSub {r : ℝ} (hr0 : 0 ≤ r) (hr : r < 1) {t : Fˣ} (ht : t ∈ ballSub K v r hr0 hr) : ‖(t : F)‖ = 1 :=
   norm_eq_one_of_norm_sub_one_lt K v (lt_of_le_of_lt ht hr)
 
+/--
+@isnad1 id=isopen.3h3v.s9.464386574b89 from=translated src=- shape=ca1d0ff0 vocab=044e860f
+-/
 theorem isOpen_ballSub {r : ℝ} (hr0 : 0 ≤ r) (hr0' : 0 < r) (hr : r < 1) : IsOpen (ballSub K v r hr0 hr : Set Fˣ) := by
   have : (ballSub K v r hr0 hr : Set Fˣ) = (Units.val : Fˣ → F) ⁻¹' Metric.closedBall (1 : F) r := by
     ext t; simp [mem_ballSub_iff, Metric.mem_closedBall, dist_eq_norm]
   rw [this]
   exact (IsUltrametricDist.isOpen_closedBall (1 : F) hr0'.ne').preimage Units.continuous_val
 
+/--
+@isnad1 id=iscompac.2h3v.s9.1c0b68328dfe from=translated src=- shape=dc85343b vocab=7ad07d7e
+-/
 theorem isCompact_preimage_val {C : Set F} (hC : IsCompact C) (h0 : (0 : F) ∉ C) :
     IsCompact ((Units.val : Fˣ → F) ⁻¹' C) := by
   rw [Units.isOpenEmbedding_val.isEmbedding.isCompact_iff, Set.image_preimage_eq_of_subset]
@@ -95,6 +122,9 @@ theorem isCompact_preimage_val {C : Set F} (hC : IsCompact C) (h0 : (0 : F) ∉ 
   · intro x hx
     exact ⟨Units.mk0 x (fun h => h0 (h ▸ hx)), rfl⟩
 
+/--
+@isnad1 id=iscompac.2h3v.s9.8d9bde7bd233 from=translated src=- shape=fc9ef5bc vocab=57d55e23
+-/
 theorem isCompact_ballSub {r : ℝ} (hr0 : 0 ≤ r) (hr : r < 1) : IsCompact (ballSub K v r hr0 hr : Set Fˣ) := by
   have : (ballSub K v r hr0 hr : Set Fˣ) = (Units.val : Fˣ → F) ⁻¹' Metric.closedBall (1 : F) r := by
     ext t; simp [mem_ballSub_iff, Metric.mem_closedBall, dist_eq_norm]
@@ -103,6 +133,9 @@ theorem isCompact_ballSub {r : ℝ} (hr0 : 0 ≤ r) (hr : r < 1) : IsCompact (ba
   rw [Metric.mem_closedBall, dist_eq_norm, zero_sub, norm_neg, norm_one] at h
   exact absurd (h.trans_lt hr) (lt_irrefl _)
 
+/--
+@isnad1 id=ex.2h4v.s12.24495a30e150 from=translated src=- shape=0baaa38b vocab=6afd5c27
+-/
 theorem exists_finset_reps (H : Subgroup Fˣ) (hH : IsOpen (H : Set Fˣ)) (S : Set Fˣ) (hS : IsCompact S) :
     ∃ R : Finset Fˣ, (↑R ⊆ S) ∧ (∀ τ ∈ R, ∀ τ' ∈ R, τ ≠ τ' → τ⁻¹ * τ' ∉ H) ∧
       ∀ t ∈ S, ∃ τ ∈ R, t⁻¹ * τ ∈ H := by
@@ -145,6 +178,9 @@ theorem exists_finset_reps (H : Subgroup Fˣ) (hH : IsOpen (H : Set Fˣ)) (S : S
     rw [← QuotientGroup.eq, hrepmk _ hc]
     exact (QuotientGroup.eq.mpr hst).symm
 
+/--
+@isnad1 id=iff.3h5v.s11.bbf5344c01de from=translated src=- shape=9a8a487c vocab=0677fcdf
+-/
 theorem inv_mul_mem_ballSub_iff {r : ℝ} (hr0 : 0 ≤ r) (hr : r < 1) {a b : Fˣ} (ha : ‖(a : F)‖ = 1) :
     a⁻¹ * b ∈ ballSub K v r hr0 hr ↔ ‖(b : F) - (a : F)‖ ≤ r := by
   rw [mem_ballSub_iff]
@@ -157,6 +193,9 @@ end ShellGeo
 end
 
 open ShellGeo in
+/--
+@isnad1 id=ex.2h4v.s14.6ac1b4656ee6 from=translated src=- shape=15df0542 vocab=b513822c
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K)) (n₀ c : ℕ) (hn₀ : 1 ≤ n₀) (hc : 1 ≤ c) :
     ∃ (U₁ A : Subgroup (v.adicCompletion K)ˣ) (V : ℕ → Subgroup (v.adicCompletion K)ˣ) (sh : ℕ → Set (v.adicCompletion K)ˣ) (M₀ : ℕ),

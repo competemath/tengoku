@@ -9,6 +9,9 @@ namespace P2MW.S_IsAlgClosed_exists_valuationSubring_ringHom_retraction_forall_v
 set_option autoImplicit false
 set_option maxHeartbeats 3200000
 
+/--
+@isnad1 id=ex.1h3v.s10.b67c0be2f64d from=translated src=- shape=1d98b820 vocab=cbc3bf51
+-/
 theorem solution
     (K E : Type*) [Field K] [Field E] [Algebra K E] [IsAlgClosed K]
     (S : Finset E) (hS : (0 : E) ∉ S) :

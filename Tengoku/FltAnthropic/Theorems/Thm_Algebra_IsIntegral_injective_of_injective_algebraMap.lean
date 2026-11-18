@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Algebra_IsIntegral_injective_of_injective_
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=injectiv.1h4v.s7.e34a41567739 from=translated src=- shape=9078d83d vocab=05f54e58
+-/
 theorem Algebra.IsIntegral.injective_of_injective_algebraMap
     {A B C : Type*} [CommRing A] [CommRing B] [CommRing C] [IsDomain B] [IsDomain C]
     [Algebra A B] [Algebra A C] [Algebra.IsIntegral A B]

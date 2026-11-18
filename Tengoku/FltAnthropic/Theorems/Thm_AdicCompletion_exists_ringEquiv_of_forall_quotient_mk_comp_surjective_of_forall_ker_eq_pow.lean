@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_AdicCompletion_exists_ringEquiv_of_forall_
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.2h5v.s11.2224eb3cb05e from=translated src=- shape=138abb23 vocab=25591dc2
+-/
 theorem AdicCompletion.exists_ringEquiv_of_forall_quotient_mk_comp_surjective_of_forall_ker_eq_pow
     {R S : Type*} [CommRing R] [CommRing S] (I : Ideal R) (J : Ideal S) (f : R →+* S)
     (hsurj : ∀ k : ℕ, Function.Surjective ((Ideal.Quotient.mk (J ^ k)).comp f))

@@ -8,6 +8,9 @@ namespace P2MW.S_IsDedekindDomain_HeightOneSpectrum_valuation_eq_exp_neg_count
 
 open scoped nonZeroDivisors
 
+/--
+@isnad1 id=eq.1h4v.s7.506b5fd2f179 from=translated src=- shape=07f79589 vocab=eb98ddaa
+-/
 theorem solution {R : Type*} [CommRing R] [IsDedekindDomain R] (K : Type*) [Field K] [Algebra R K] [IsFractionRing R K] (v : IsDedekindDomain.HeightOneSpectrum R) {x : K} (hx : x ≠ 0) : v.valuation K x = WithZero.exp (-FractionalIdeal.count K v (FractionalIdeal.spanSingleton R⁰ x)) := by
   classical
   obtain ⟨r, s, rfl⟩ := IsLocalization.exists_mk'_eq R⁰ x

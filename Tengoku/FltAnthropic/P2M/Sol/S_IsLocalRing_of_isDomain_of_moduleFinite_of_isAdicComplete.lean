@@ -10,6 +10,9 @@ open Polynomial
 namespace S10Card2
 variable {R : Type*} [CommRing R] (I : Ideal R)
 
+/--
+@isnad1 id=isprecom.1h5v.s7.fd753a89abb9 from=translated src=- shape=fb5b4823 vocab=35f2f1aa
+-/
 theorem isPrecomplete_of_surjective {M N : Type*} [AddCommGroup M] [Module R M] [AddCommGroup N]
     [Module R N] [IsPrecomplete I M] {f : M →ₗ[R] N}
     (hf : Function.Surjective f) : IsPrecomplete I N := by
@@ -62,6 +65,9 @@ theorem isPrecomplete_of_surjective {M N : Type*} [AddCommGroup M] [Module R M] 
 
 variable {ι : Type*} (M : ι → Type*) [∀ i, AddCommGroup (M i)] [∀ i, Module R (M i)]
 
+/--
+@isnad1 id=mem.1h6v.s9.72d2b28f450d from=translated src=- shape=432b60a5 vocab=2e420837
+-/
 theorem apply_mem_smul_top {K : Ideal R} {x : ∀ i, M i}
     (hx : x ∈ (K • ⊤ : Submodule R (∀ i, M i))) (i : ι) :
     x i ∈ (K • ⊤ : Submodule R (M i)) := by
@@ -73,6 +79,9 @@ theorem apply_mem_smul_top {K : Ideal R} {x : ∀ i, M i}
     Submodule.smul_mono le_rfl le_top h2
   simpa using h3
 
+/--
+@isnad1 id=mem.1h5v.s9.78fbaf11cb03 from=translated src=- shape=71ec782b vocab=9320c6aa
+-/
 theorem mem_smul_top_pi [Finite ι] {K : Ideal R} {x : ∀ i, M i}
     (hx : ∀ i, x i ∈ (K • ⊤ : Submodule R (M i))) :
     x ∈ (K • ⊤ : Submodule R (∀ i, M i)) := by
@@ -87,6 +96,9 @@ theorem mem_smul_top_pi [Finite ι] {K : Ideal R} {x : ∀ i, M i}
     exact Submodule.smul_mono le_rfl le_top
   exact hle h1
 
+/--
+@isnad1 id=isprecom.0h4v.s6.7aefbb8e71fc from=translated src=- shape=669c348d vocab=0383d451
+-/
 theorem isPrecomplete_pi [Finite ι] [∀ i, IsPrecomplete I (M i)] :
     IsPrecomplete I (∀ i, M i) := by
   refine ⟨fun g hg => ?_⟩
@@ -107,6 +119,9 @@ theorem isPrecomplete_pi [Finite ι] [∀ i, IsPrecomplete I (M i)] :
   rw [SModEq.sub_mem] at h3
   simpa using h3
 
+/--
+@isnad1 id=isprecom.0h3v.s6.dcf88c8146f3 from=translated src=- shape=67461377 vocab=3c050046
+-/
 theorem isPrecomplete_of_module_finite (M : Type*) [AddCommGroup M] [Module R M]
     [IsPrecomplete I R] [Module.Finite R M] :
     IsPrecomplete I M := by
@@ -116,12 +131,18 @@ theorem isPrecomplete_of_module_finite (M : Type*) [AddCommGroup M] [Module R M]
   exact isPrecomplete_of_surjective I hf
 end S10Card2
 
+/--
+@isnad1 id=isadicco.0h3v.s6.49ba16e1c36f from=translated src=- shape=87469a23 vocab=8fb8cfab
+-/
 theorem S10.adic_complete_of_finite {R : Type*} [CommRing R] (I : Ideal R)
     [IsNoetherianRing R] [IsAdicComplete I R] (M : Type*) [AddCommGroup M] [Module R M]
     [Module.Finite R M] : IsAdicComplete I M :=
   { toIsHausdorff := IsHausdorff.of_le_jacobson I M (IsAdicComplete.le_jacobson_bot (I := I))
     toIsPrecomplete := S10Card2.isPrecomplete_of_module_finite I M }
 
+/--
+@isnad1 id=or.1h3v.s7.d774436b46b6 from=translated src=- shape=bfe8519b vocab=c5403624
+-/
 theorem S10.henselian_idem {D : Type*} [CommRing D]
     [IsDomain D] (J : Ideal D) [HenselianRing D J] (e : D ⧸ J) (he : IsIdempotentElem e) :
     e = 0 ∨ e = 1 := by
@@ -161,6 +182,9 @@ theorem S10.henselian_idem {D : Type*} [CommRing D]
   · left; rw [← hae, map_zero]
   · right; rw [← hae, map_one]
 
+/--
+@isnad1 id=subsingl.0h2v.s6.062920cbf2d3 from=translated src=- shape=c3869a9a vocab=2f010b2b
+-/
 theorem S10Card4.subsingleton_maximalSpectrum_quotient {D : Type*} [CommRing D]
     [IsDomain D] (J : Ideal D) [HenselianRing D J] [IsArtinianRing (D ⧸ J)] :
     Subsingleton (MaximalSpectrum (D ⧸ J)) := by
@@ -193,6 +217,9 @@ theorem S10Card4.subsingleton_maximalSpectrum_quotient {D : Type*} [CommRing D]
     simp only [map_one, Pi.one_apply, δ, ite_eq_left rfl] at this
     exact one_ne_zero this
 
+/--
+@isnad1 id=islocalr.0h2v.s6.b867d33dc6af from=translated src=- shape=cd307a9d vocab=d2f51357
+-/
 theorem S10.local_of_henselian_artinian {D : Type*} [CommRing D]
     [IsDomain D] (J : Ideal D) [HenselianRing D J] [IsArtinianRing (D ⧸ J)] [Nontrivial (D ⧸ J)] :
     IsLocalRing D := by
@@ -211,6 +238,9 @@ theorem S10.local_of_henselian_artinian {D : Type*} [CommRing D]
   · refine Or.inr (isUnit_of_map_unit (Ideal.Quotient.mk J) (1 - a) ?_)
     rwa [map_sub, map_one]
 
+/--
+@isnad1 id=ne.0h2v.s7.a83ede7d4bd8 from=translated src=- shape=823c11e9 vocab=2d930b67
+-/
 theorem S10Card5.map_maximalIdeal_ne_top {R : Type*} [CommRing R] [IsLocalRing R]
     (D : Type*) [CommRing D] [Algebra R D] [Module.Finite R D] [Nontrivial D] :
     (IsLocalRing.maximalIdeal R).map (algebraMap R D) ≠ ⊤ := by
@@ -222,6 +252,9 @@ theorem S10Card5.map_maximalIdeal_ne_top {R : Type*} [CommRing R] [IsLocalRing R
     Module.Finite.fg_top (by rw [hsmul]) (IsLocalRing.maximalIdeal_le_jacobson _)
   exact top_ne_bot this
 
+/--
+@isnad1 id=islocalr.0h2v.s6.4943288ace10 from=translated src=- shape=e0e9a763 vocab=8b75f77a
+-/
 theorem solution (R : Type*) [CommRing R]
     [IsLocalRing R] [IsNoetherianRing R] [IsAdicComplete (IsLocalRing.maximalIdeal R) R]
     (D : Type*) [CommRing D] [IsDomain D] [Algebra R D] [Module.Finite R D] : IsLocalRing D := by

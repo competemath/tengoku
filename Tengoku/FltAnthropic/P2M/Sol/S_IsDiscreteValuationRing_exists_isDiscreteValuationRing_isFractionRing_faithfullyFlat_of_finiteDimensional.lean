@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open IsLocalRing
 
+/--
+@isnad1 id=ex.0h3v.s9.3d875b1dfc27 from=translated src=- shape=cf9099eb vocab=71d9cec4
+-/
 theorem solution
     (𝒪 : Type) [CommRing 𝒪] [IsDomain 𝒪] [IsDiscreteValuationRing 𝒪]
     (K : Type) [Field K] [Algebra 𝒪 K] [IsFractionRing 𝒪 K]

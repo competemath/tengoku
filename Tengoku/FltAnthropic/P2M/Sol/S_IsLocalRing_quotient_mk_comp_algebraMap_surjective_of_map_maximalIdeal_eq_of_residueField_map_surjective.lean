@@ -8,6 +8,9 @@ namespace P2MW.S_IsLocalRing_quotient_mk_comp_algebraMap_surjective_of_map_maxim
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=surjecti.2h3v.s10.65e9ea3e989c from=translated src=- shape=2e576454 vocab=0f9f156a
+-/
 theorem solution
     {R S : Type*} [CommRing R] [CommRing S] [IsNoetherianRing S]
     [IsLocalRing R] [IsLocalRing S] [Algebra R S] [IsLocalHom (algebraMap R S)]

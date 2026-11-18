@@ -13,6 +13,9 @@ open scoped Pointwise
 
 open IsDedekindDomain WithZero
 
+/--
+@isnad1 id=ex.5h7v.s9.f096eaa0d732 from=translated src=- shape=52edb09f vocab=56b16589
+-/
 theorem solution
     {A : Type u} {B : Type u} [CommRing A] [IsDedekindDomain A] [CommRing B] [IsDedekindDomain B]
     [Algebra A B] (π : A) (p : Ideal A) [p.IsMaximal] (hp : p = Ideal.span {π})

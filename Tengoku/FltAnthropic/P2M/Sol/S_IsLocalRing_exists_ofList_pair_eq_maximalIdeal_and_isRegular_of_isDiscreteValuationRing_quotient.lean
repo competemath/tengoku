@@ -7,6 +7,9 @@ namespace P2MW.S_IsLocalRing_exists_ofList_pair_eq_maximalIdeal_and_isRegular_of
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.2h2v.s7.52395117ac7a from=translated src=- shape=93c6a8bc vocab=4c304bde
+-/
 theorem solution
     {A : Type*} [CommRing A] [IsDomain A] [IsLocalRing A] (ϖ : A) (hϖ : ϖ ∈ IsLocalRing.maximalIdeal A) (hϖ0 : ϖ ≠ 0)
     [IsDomain (A ⧸ Ideal.span {ϖ})] [IsDiscreteValuationRing (A ⧸ Ideal.span {ϖ})] :

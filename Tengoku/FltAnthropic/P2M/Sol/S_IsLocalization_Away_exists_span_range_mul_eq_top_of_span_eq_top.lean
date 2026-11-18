@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=ex.2h6v.s9.f7d77c85c30d from=translated src=- shape=50a81969 vocab=226a7025
+-/
 theorem solution
     {B : Type u} [CommRing B] {n : ℕ} (f : Fin n → B) (hf : Ideal.span (Set.range f) = ⊤)
     (L : Fin n → Type u) [∀ i, CommRing (L i)] [∀ i, Algebra B (L i)] [∀ i, IsLocalization.Away (f i) (L i)]

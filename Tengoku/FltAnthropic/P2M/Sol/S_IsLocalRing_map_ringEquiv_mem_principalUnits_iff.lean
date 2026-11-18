@@ -10,6 +10,9 @@ set_option autoImplicit false
 open IsLocalRing
 
 open IsLocalRing in
+/--
+@isnad1 id=iff.0h4v.s9.384414fff435 from=translated src=- shape=457e10b7 vocab=3074ae0c
+-/
 theorem solution {R : Type*} [CommRing R] [IsLocalRing R]
     (σ : R ≃+* R) {k : ℕ} {u : Rˣ} :
     Units.map (σ : R →* R) u ∈ principalUnits R k ↔ u ∈ principalUnits R k := by

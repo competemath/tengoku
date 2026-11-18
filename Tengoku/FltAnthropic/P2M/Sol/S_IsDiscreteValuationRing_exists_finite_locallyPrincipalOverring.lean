@@ -19,6 +19,9 @@ variable {C : Type*} [CommRing C] [IsDomain C] [IsDiscreteValuationRing C]
 
 include K₀ in
 
+/--
+@isnad1 id=isprinci.0h3v.s8.cf2a0d87e580 from=translated src=- shape=1f40ac5f vocab=8c9a62b3
+-/
 theorem isPrincipalIdealRing_integralClosure : IsPrincipalIdealRing (integralClosure C κ) := by
   set B := integralClosure C κ
   haveI : IsDedekindDomain B := integralClosure.isDedekindDomain C K₀ κ
@@ -40,6 +43,9 @@ theorem isPrincipalIdealRing_integralClosure : IsPrincipalIdealRing (integralClo
 
 include K₀ in
 
+/--
+@isnad1 id=ex.0h4v.s11.00f23c0af966 from=translated src=- shape=47b9e347 vocab=3f06d0c2
+-/
 theorem exists_subalgebra_finite_locallyPrincipal :
     ∃ D₁ : Subalgebra A κ, Module.Finite A D₁ ∧ (∀ x : κ, IsIntegral C x → x ∈ D₁) ∧
       ∀ 𝔫 : Ideal D₁, 𝔫.IsMaximal → ∃ t ∈ 𝔫, ∀ x ∈ 𝔫, ∃ s ∉ 𝔫, ∃ y : D₁, s * x = t * y := by
@@ -228,6 +234,9 @@ theorem exists_subalgebra_finite_locallyPrincipal :
 
 end R1AF8H3
 
+/--
+@isnad1 id=ex.0h4v.s11.00f23c0af966 from=translated src=- shape=47b9e347 vocab=3f06d0c2
+-/
 theorem solution
     {C : Type*} [CommRing C] [IsDomain C] [IsDiscreteValuationRing C]
     (K₀ : Type*) [Field K₀] [Algebra C K₀] [IsFractionRing C K₀]

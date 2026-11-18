@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 open IsLocalRing TensorProduct
 
+/--
+@isnad1 id=and.2h4v.s10.fcbf51fc7194 from=translated src=- shape=13a3134f vocab=79deb85f
+-/
 theorem solution
     (ℓ : ℕ) [Fact ℓ.Prime]
     (C : Type) [CommRing C] [IsLocalRing C] [IsArtinianRing C] [Finite (ResidueField C)] [CharP (ResidueField C) ℓ]

@@ -8,6 +8,9 @@ namespace P2MW.S_IsLocalRing_isUnit_of_isUnit_mod_maximalIdeal_of_isIntegral
 
 open IsLocalRing
 
+/--
+@isnad1 id=isunit.1h3v.s10.f53846311e70 from=translated src=- shape=801359c0 vocab=db47283d
+-/
 theorem solution {R S : Type*} [CommRing R] [CommRing S] [Algebra R S]
     [IsLocalRing R] [Algebra.IsIntegral R S] {a : S}
     (h : IsUnit ((Ideal.Quotient.mk ((IsLocalRing.maximalIdeal R).map (algebraMap R S))) a)) :

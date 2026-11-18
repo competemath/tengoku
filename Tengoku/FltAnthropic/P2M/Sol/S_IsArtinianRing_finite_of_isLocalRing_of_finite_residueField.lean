@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open IsLocalRing
 
+/--
+@isnad1 id=finite.0h1v.s4.f2974cb575c3 from=translated src=- shape=a084f232 vocab=725246ad
+-/
 theorem solution
     (C : Type) [CommRing C] [IsLocalRing C] [IsArtinianRing C] [Finite (ResidueField C)] : Finite C := by
   classical

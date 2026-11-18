@@ -10,6 +10,9 @@ set_option autoImplicit false
 open IsLocalRing
 
 open IsLocalRing in
+/--
+@isnad1 id=ex.2h3v.s8.46aff96aab49 from=translated src=- shape=256e8f01 vocab=9a537ab4
+-/
 theorem solution {R : Type*} [CommRing R] [IsLocalRing R]
     {k : ℕ} (hk : 1 ≤ k) {x : R} (hx : x ∈ maximalIdeal R ^ k) :
     ∃ u ∈ principalUnits R k, (u : R) - 1 = x := by

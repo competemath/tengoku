@@ -18,6 +18,9 @@ namespace P2mLatticeIndexDet
 
 variable (K : Type) [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K))
 
+/--
+@isnad1 id=istorsio.0h2v.s10.ae638ace938e from=translated src=- shape=69f32639 vocab=928cc6de
+-/
 theorem isTorsionFree : Module.IsTorsionFree (v.adicCompletionIntegers K) (v.adicCompletion K) :=
   Module.isTorsionFree_iff_algebraMap_injective.mpr Subtype.val_injective
 
@@ -28,6 +31,9 @@ variable {V : Type} [AddCommGroup V] [Module (v.adicCompletion K) V]
 
 set_option synthInstance.maxHeartbeats 800000 in
 set_option maxHeartbeats 6400000 in
+/--
+@isnad1 id=eq.1h6v.s13.db1a100cfe52 from=translated src=- shape=6e27f653 vocab=89fd2c94
+-/
 theorem relIndex_span_mul_norm_det_eq_one
     (b₁ b₂ : Basis ι (v.adicCompletion K) V)
     (h : ∀ i, b₁ i ∈ Submodule.span (v.adicCompletionIntegers K) (Set.range b₂)) :
@@ -91,6 +97,9 @@ theorem relIndex_span_mul_norm_det_eq_one
 
 end P2mLatticeIndexDet
 
+/--
+@isnad1 id=eq.1h6v.s13.db1a100cfe52 from=translated src=- shape=6e27f653 vocab=89fd2c94
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K))
     {V : Type} [AddCommGroup V] [Module (v.adicCompletion K) V]

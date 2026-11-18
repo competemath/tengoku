@@ -7,6 +7,9 @@ namespace P2MW.S_IsLocalRing_exists_ringHom_range_comp_rangeRestrict_eq_of_surje
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.1h5v.s10.2f86420a959f from=translated src=- shape=cc373d43 vocab=694034aa
+-/
 theorem solution
     {R : Type*} [CommRing R] [IsLocalRing R]
     {k : Type*} [Field k] (π : R →+* k) (hπ : Function.Surjective π)

@@ -10,6 +10,9 @@ set_option maxHeartbeats 1600000
 
 namespace RED1c
 
+/--
+@isnad1 id=isunit.1h2v.s6.bf1de89d509d from=translated src=- shape=ee9d0777 vocab=26c8edca
+-/
 theorem isUnit_of_forall_maximal_not_mem {L : Type*} [CommRing L] (x : L)
     (h : ∀ M : Ideal L, M.IsMaximal → x ∉ M) : IsUnit x := by
   by_contra hx
@@ -19,6 +22,9 @@ theorem isUnit_of_forall_maximal_not_mem {L : Type*} [CommRing L] (x : L)
   obtain ⟨M, hM, hle⟩ := Ideal.exists_le_maximal _ hne
   exact h M hM (hle (Ideal.subset_span rfl))
 
+/--
+@isnad1 id=isunit.2h3v.s7.0b58638f3f3d from=translated src=- shape=ab243aa3 vocab=64f59894
+-/
 theorem isUnit_algebraMap_of_map_maximalIdeal_eq_top
     {R : Type} [CommRing R] [IsDomain R] [IsPrincipalIdealRing R] [IsLocalRing R]
     {L : Type} [CommRing L] [Algebra R L]
@@ -40,6 +46,9 @@ theorem isUnit_algebraMap_of_map_maximalIdeal_eq_top
   rw [hPbot, Ideal.mem_bot] at this
   exact hd this
 
+/--
+@isnad1 id=surjecti.1h3v.s7.ddbd0f91e9bd from=translated src=- shape=c2e321e0 vocab=da59a70d
+-/
 theorem algebraMap_away_surjective {H : Type*} [CommRing H] {e : H} (he : IsIdempotentElem e)
     (L : Type*) [CommRing L] [Algebra H L] [IsLocalization.Away (1 - e) L] :
     Function.Surjective (algebraMap H L) := by
@@ -66,6 +75,9 @@ theorem algebraMap_away_surjective {H : Type*} [CommRing H] {e : H} (he : IsIdem
 end RED1c
 
 open RED1c in
+/--
+@isnad1 id=ex.3h5v.s10.79c31f9384b2 from=translated src=- shape=9e150ee4 vocab=0759bd6f
+-/
 theorem solution
     (R : Type) [CommRing R] [IsDomain R] [IsPrincipalIdealRing R] [IsLocalRing R]
     (H : Type) [CommRing H] [Algebra R H] (e : H) (he : IsIdempotentElem e)

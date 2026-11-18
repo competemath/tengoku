@@ -17,27 +17,42 @@ namespace IsGraph
 
 variable {Γ : Subring (L × Ω)}
 
+/--
+@isnad1 id=eq.3h6v.s7.2631385a7a1d from=translated src=- shape=262f1474 vocab=13cfdbe4
+-/
 theorem snd_eq (hΓ : IsGraph Γ) {x : L} {a b : Ω} (ha : (x, a) ∈ Γ) (hb : (x, b) ∈ Γ) : a = b := by
   have h := Γ.sub_mem ha hb
   rw [Prod.mk_sub_mk, sub_self] at h
   exact sub_eq_zero.mp (hΓ _ h)
 
+/--
+@isnad1 id=ne.3h5v.s7.8f1a815f8807 from=translated src=- shape=bae7478d vocab=13cfdbe4
+-/
 theorem fst_ne_zero (hΓ : IsGraph Γ) {x : L} {a : Ω} (h : (x, a) ∈ Γ) (ha : a ≠ 0) : x ≠ 0 := by
   rintro rfl; exact ha (hΓ a h)
 
 def dom (Γ : Subring (L × Ω)) : Subring L := Γ.map (RingHom.fst L Ω)
 
+/--
+@isnad1 id=iff.0h4v.s7.3fa75269ad53 from=translated src=- shape=a1e804f8 vocab=e2aeb889
+-/
 theorem mem_dom {x : L} : x ∈ dom Γ ↔ ∃ a, (x, a) ∈ Γ := by
   simp only [dom, Subring.mem_map, RingHom.coe_fst, Prod.exists, exists_and_right, exists_eq_right]
 
 noncomputable def fn (Γ : Subring (L × Ω)) (x : L) : Ω :=
   open Classical in if h : ∃ a, (x, a) ∈ Γ then Classical.choose h else 0
 
+/--
+@isnad1 id=eq.2h5v.s7.e5a562b117dd from=translated src=- shape=2cc9fdf6 vocab=82bfbda3
+-/
 theorem fn_spec (hΓ : IsGraph Γ) {x : L} {a : Ω} (h : (x, a) ∈ Γ) : fn Γ x = a := by
   unfold fn
   rw [dite_eq_left ⟨a, h⟩]
   exact hΓ.snd_eq (Classical.choose_spec (⟨a, h⟩ : ∃ a, (x, a) ∈ Γ)) h
 
+/--
+@isnad1 id=mem.1h4v.s7.f25825965aed from=translated src=- shape=8c21eb4f vocab=62f6f134
+-/
 theorem mem_of_mem_dom {x : L} (hx : x ∈ dom Γ) : (x, fn Γ x) ∈ Γ := by
   obtain ⟨a, ha⟩ := mem_dom.mp hx
   unfold fn
@@ -51,6 +66,9 @@ noncomputable def hom (hΓ : IsGraph Γ) : dom Γ →+* Ω where
   map_zero' := hΓ.fn_spec Γ.zero_mem
   map_add' x y := hΓ.fn_spec (by simpa using Γ.add_mem (mem_of_mem_dom x.2) (mem_of_mem_dom y.2))
 
+/--
+@isnad1 id=eq.2h5v.s9.3e5c8f3c8f22 from=translated src=- shape=7c78ccdd vocab=d67c0dd4
+-/
 theorem hom_eq_of_mem (hΓ : IsGraph Γ) {x : L} {a : Ω} (h : (x, a) ∈ Γ) :
     hΓ.hom ⟨x, mem_dom.mpr ⟨a, h⟩⟩ = a := hΓ.fn_spec h
 
@@ -65,9 +83,15 @@ def graph (R : Subring L) (φ : R →+* Ω) : Subring (L × Ω) :=
     · rintro ⟨h, ha⟩; exact ⟨⟨x, h⟩, rfl, ha⟩
     · rintro ⟨⟨y, hy⟩, rfl, rfl⟩; exact ⟨hy, rfl⟩)
 
+/--
+@isnad1 id=iff.0h5v.s9.8ca65361b450 from=translated src=- shape=040cece7 vocab=de4817a5
+-/
 theorem mem_graph {R : Subring L} {φ : R →+* Ω} {p : L × Ω} :
     p ∈ graph R φ ↔ ∃ h : p.1 ∈ R, φ ⟨p.1, h⟩ = p.2 := Iff.rfl
 
+/--
+@isnad1 id=isgraph.0h4v.s7.b82df0176ce9 from=translated src=- shape=99959c24 vocab=87af1571
+-/
 theorem isGraph_graph (R : Subring L) (φ : R →+* Ω) : IsGraph (graph R φ) := by
   rintro a ⟨h, ha⟩
   have h0 : (⟨(((0 : L), a) : L × Ω).1, h⟩ : R) = 0 := Subtype.ext rfl
@@ -82,6 +106,9 @@ variable {L Ω : Type*} [Field L] [Field Ω]
 
 def Above (Γ₀ : Subring (L × Ω)) : Set (Subring (L × Ω)) := {Γ | Γ₀ ≤ Γ ∧ IsGraph Γ}
 
+/--
+@isnad1 id=ex.1h3v.s8.ef53520a0a06 from=translated src=- shape=79d89f3d vocab=85563dbe
+-/
 theorem exists_maximal (Γ₀ : Subring (L × Ω)) (h₀ : IsGraph Γ₀) :
     ∃ Γ, Γ₀ ≤ Γ ∧ Maximal (· ∈ Above Γ₀) Γ := by
   refine zorn_le_nonempty₀ (Above Γ₀) (fun c hc hchain y hy => ?_) Γ₀ ⟨le_rfl, h₀⟩
@@ -99,13 +126,22 @@ section Maximal
 variable {Γ₀ Γ : Subring (L × Ω)} (hmax : Maximal (· ∈ Above Γ₀) Γ)
 include hmax
 
+/--
+@isnad1 id=isgraph.1h4v.s7.b3ab677733e8 from=translated src=- shape=449b206e vocab=c3ed74bd
+-/
 theorem isGraph_of_maximal : IsGraph Γ := hmax.prop.2
 
+/--
+@isnad1 id=le.1h4v.s8.008ad27fc9d2 from=translated src=- shape=70d9cdd7 vocab=bddf002b
+-/
 theorem le_of_maximal : Γ₀ ≤ Γ := hmax.prop.1
 
 theorem eq_of_le (Γ' : Subring (L × Ω)) (hΓ' : IsGraph Γ') (hle : Γ ≤ Γ') : Γ' = Γ :=
   (hmax.eq_of_ge ⟨hmax.prop.1.trans hle, hΓ'⟩ hle)
 
+/--
+@isnad1 id=mem.3h6v.s8.6243fccb805a from=translated src=- shape=406e1fd9 vocab=b20bea54
+-/
 theorem inv_mem {x : L} {a : Ω} (h : (x, a) ∈ Γ) (ha : a ≠ 0) : (x⁻¹, a⁻¹) ∈ Γ := by
   have hΓ := isGraph_of_maximal hmax
 
@@ -145,6 +181,9 @@ theorem inv_mem {x : L} {a : Ω} (h : (x, a) ∈ Γ) (ha : a ≠ 0) : (x⁻¹, a
   have : (x⁻¹, a⁻¹) ∈ Γ' := ⟨1, Γ.one_mem, (x, a), h, ha, by ext <;> simp⟩
   rwa [heq] at this
 
+/--
+@isnad1 id=iff.1h5v.s9.5ccd1e6a9c28 from=translated src=- shape=20c784c0 vocab=7f2e51f5
+-/
 theorem isUnit_iff {x : IsGraph.dom Γ} : IsUnit x ↔ (isGraph_of_maximal hmax).hom x ≠ 0 := by
   have hΓ := isGraph_of_maximal hmax
   constructor
@@ -160,6 +199,9 @@ theorem isUnit_iff {x : IsGraph.dom Γ} : IsUnit x ↔ (isGraph_of_maximal hmax)
     · exact Subtype.ext (mul_inv_cancel₀ hx0)
     · exact Subtype.ext (inv_mul_cancel₀ hx0)
 
+/--
+@isnad1 id=islocalr.1h4v.s8.43357255d380 from=translated src=- shape=58d81a1f vocab=9cc5b24a
+-/
 theorem isLocalRing : IsLocalRing (IsGraph.dom Γ) := by
   have hΓ := isGraph_of_maximal hmax
   haveI : Nontrivial (IsGraph.dom Γ) := inferInstance
@@ -167,6 +209,9 @@ theorem isLocalRing : IsLocalRing (IsGraph.dom Γ) := by
   rw [mem_nonunits_iff, isUnit_iff hmax, not_not] at ha hb ⊢
   rw [map_add, ha, hb, add_zero]
 
+/--
+@isnad1 id=iff.1h5v.s10.3bb12baca1ef from=translated src=- shape=fd97fd42 vocab=29600b05
+-/
 theorem mem_maximalIdeal_iff (x : IsGraph.dom Γ) :
     haveI := isLocalRing hmax
     x ∈ IsLocalRing.maximalIdeal (IsGraph.dom Γ) ↔ (isGraph_of_maximal hmax).hom x = 0 := by
@@ -188,6 +233,9 @@ include hmax
 
 open IsGraph Polynomial in
 
+/--
+@isnad1 id=mem.3h7v.s12.1927c05d3a1a from=translated src=- shape=b6a66b05 vocab=efbe146c
+-/
 theorem mem_dom_of_hom [IsAlgClosed Ω] (z : L) {F : Type*} [Field F]
     (θ : Polynomial (dom Γ) →+* F)
     (hθm : haveI := isLocalRing hmax; ∀ b ∈ IsLocalRing.maximalIdeal (dom Γ), θ (C b) = 0)
@@ -292,6 +340,9 @@ theorem mem_dom_of_hom [IsAlgClosed Ω] (z : L) {F : Type*} [Field F]
 end Extend
 
 open IsGraph Polynomial in
+/--
+@isnad1 id=ex.0h4v.s10.c9f73c5ccaf4 from=translated src=- shape=d1230dd3 vocab=558a7a71
+-/
 theorem main [IsAlgClosed Ω] (R : Subring L) (φ : R →+* Ω) :
     ∃ (O : ValuationSubring L) (h : R ≤ O.toSubring) (ψ : O →+* Ω),
       ψ.comp (Subring.inclusion h) = φ ∧ RingHom.ker ψ = IsLocalRing.maximalIdeal O := by
@@ -337,6 +388,9 @@ theorem main [IsAlgClosed Ω] (R : Subring L) (φ : R →+* Ω) :
 
 end ChevalleyHom
 
+/--
+@isnad1 id=ex.0h4v.s10.c9f73c5ccaf4 from=translated src=- shape=d1230dd3 vocab=558a7a71
+-/
 theorem solution
     {L Ω : Type*} [Field L] [Field Ω] [IsAlgClosed Ω] (R : Subring L) (φ : R →+* Ω) :
     ∃ (O : ValuationSubring L) (h : R ≤ O.toSubring) (ψ : O →+* Ω),

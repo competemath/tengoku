@@ -11,6 +11,9 @@ universe u v
 
 namespace L1BAdic
 
+/--
+@isnad1 id=eq.1h5v.s11.b28f3d5ba92d from=translated src=- shape=576c93d7 vocab=a954745f
+-/
 theorem factorPow_evalₐ {S : Type u} [CommRing S] (J : Ideal S) {m n : ℕ} (hle : m ≤ n) (z : AdicCompletion J S) :
     Ideal.Quotient.factorPow J hle (AdicCompletion.evalₐ J n z) = AdicCompletion.evalₐ J m z := by
   obtain ⟨a, rfl⟩ := AdicCompletion.mk_surjective J S z
@@ -19,6 +22,9 @@ theorem factorPow_evalₐ {S : Type u} [CommRing S] (J : Ideal S) {m n : ℕ} (h
   rw [AdicCompletion.evalₐ_mkₐ, AdicCompletion.evalₐ_mkₐ, Ideal.Quotient.factorPow, Ideal.Quotient.factor_mk,
     AdicCompletion.Ideal.mk_eq_mk J hle]
 
+/--
+@isnad1 id=eq.1h5v.s11.b28f3d5ba92d from=translated src=- shape=576c93d7 vocab=a954745f
+-/
 theorem factorPow_evalₐ' {S : Type v} [CommRing S] (J : Ideal S) {m n : ℕ} (hle : m ≤ n) (z : AdicCompletion J S) :
     Ideal.Quotient.factorPow J hle (AdicCompletion.evalₐ J n z) = AdicCompletion.evalₐ J m z := by
   obtain ⟨a, rfl⟩ := AdicCompletion.mk_surjective J S z
@@ -29,6 +35,9 @@ theorem factorPow_evalₐ' {S : Type v} [CommRing S] (J : Ideal S) {m n : ℕ} (
 
 end L1BAdic
 
+/--
+@isnad1 id=ex.0h3v.s10.c77813604e8f from=translated src=- shape=ac832ae1 vocab=a5d2bd62
+-/
 theorem solution
     {B : Type u} [CommRing B] (𝔪 : Ideal B) [𝔪.IsMaximal]
     (O : Type v) [CommRing O] [IsLocalRing O] [Algebra B O] [IsLocalization.AtPrime O 𝔪] :

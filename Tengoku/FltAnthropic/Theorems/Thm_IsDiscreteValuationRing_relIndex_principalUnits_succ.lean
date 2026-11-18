@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_IsDiscreteValuationRing_relIndex_principal
 
 set_option autoImplicit false
 open IsLocalRing
+/--
+@isnad1 id=eq.1h2v.s6.0bbad58ecbbb from=translated src=- shape=3cbbb42b vocab=8388a1ac
+-/
 theorem IsDiscreteValuationRing.relIndex_principalUnits_succ {R : Type*} [CommRing R] [IsDomain R]
     [IsDiscreteValuationRing R] {k : ℕ} (hk : 1 ≤ k) :
     (principalUnits R (k + 1)).relIndex (principalUnits R k) = Nat.card (IsLocalRing.ResidueField R) := by exact @_root_.P2MW.S_IsDiscreteValuationRing_relIndex_principalUnits_succ.solution R _ _ _ k hk

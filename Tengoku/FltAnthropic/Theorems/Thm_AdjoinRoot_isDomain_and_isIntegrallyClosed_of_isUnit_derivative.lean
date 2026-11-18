@@ -11,6 +11,9 @@ universe u
 
 open Polynomial in
 
+/--
+@isnad1 id=and.3h2v.s8.b23579ca50c7 from=translated src=- shape=08ea34c7 vocab=c2077e46
+-/
 theorem AdjoinRoot.isDomain_and_isIntegrallyClosed_of_isUnit_derivative
     (R : Type u) [CommRing R] [IsDomain R] [IsIntegrallyClosed R]
     (f : R[X]) (hfm : f.Monic) (hfi : Irreducible f)

@@ -13,6 +13,9 @@ open IsLocalRing
 
 open scoped PowerSeries.WithPiTopology
 
+/--
+@isnad1 id=ex.1h3v.s9.ad2708d392d2 from=translated src=- shape=93dc164b vocab=6d10d891
+-/
 theorem solution
     {𝒪 R : Type u} [CommRing 𝒪] [CommRing R] [IsLocalRing R] [IsAdicComplete (maximalIdeal R) R] [Algebra 𝒪 R]
     (t : R) (ht : t ∈ maximalIdeal R) :

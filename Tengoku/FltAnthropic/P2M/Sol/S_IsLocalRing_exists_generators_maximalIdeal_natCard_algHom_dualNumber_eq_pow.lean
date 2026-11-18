@@ -20,22 +20,37 @@ variable (𝒪 : Type u) (R : Type v) [CommRing 𝒪] [IsLocalRing 𝒪]
 
 abbrev J : Ideal R := (maximalIdeal 𝒪).map (algebraMap 𝒪 R)
 
+/--
+@isnad1 id=le.0h2v.s7.d949a15a0527 from=translated src=- shape=7a52f4bf vocab=fce647a0
+-/
 lemma J_le : J 𝒪 R ≤ maximalIdeal R :=
   Ideal.map_le_iff_le_comap.2 fun o ho => map_nonunit (algebraMap 𝒪 R) o ho
 
+/--
+@isnad1 id=ne.0h2v.s7.d7017bb88f9b from=translated src=- shape=cbb1744e vocab=de3d5872
+-/
 lemma J_ne_top : J 𝒪 R ≠ ⊤ :=
   fun h => (maximalIdeal.isMaximal R).ne_top (top_le_iff.1 (h ▸ J_le 𝒪 R))
 
 abbrev R' : Type v := R ⧸ J 𝒪 R
 
+/--
+@isnad1 id=nontrivi.0h2v.s6.7c9797ac6999 from=translated src=- shape=a3768bc7 vocab=a53081b6
+-/
 scoped instance instNontrivialR' : Nontrivial (R' 𝒪 R) :=
   Ideal.Quotient.nontrivial_iff.2 (J_ne_top 𝒪 R)
 
+/--
+@isnad1 id=islocalr.0h2v.s6.efe5c6211b65 from=translated src=- shape=a9671f7e vocab=342b362f
+-/
 scoped instance instIsLocalRingR' : IsLocalRing (R' 𝒪 R) :=
   IsLocalRing.of_surjective' (Ideal.Quotient.mk (J 𝒪 R)) Ideal.Quotient.mk_surjective
 
 abbrev mkR' : R →+* R' 𝒪 R := Ideal.Quotient.mk (J 𝒪 R)
 
+/--
+@isnad1 id=iff.0h3v.s8.e03dcce3abb3 from=translated src=- shape=f196d272 vocab=932657e4
+-/
 lemma mkR'_mem_iff (x : R) : mkR' 𝒪 R x ∈ maximalIdeal (R' 𝒪 R) ↔ x ∈ maximalIdeal R := by
   constructor
   · intro hx
@@ -62,6 +77,9 @@ noncomputable def ι : ResidueField 𝒪 →+* R' 𝒪 R :=
   Ideal.Quotient.lift (maximalIdeal 𝒪) ((mkR' 𝒪 R).comp (algebraMap 𝒪 R))
     fun _ ho => Ideal.Quotient.eq_zero_iff_mem.2 (Ideal.mem_map_of_mem _ ho)
 
+/--
+@isnad1 id=eq.0h3v.s8.3687b0806c7e from=translated src=- shape=413f89c3 vocab=8194e4e1
+-/
 lemma ι_residue (o : 𝒪) : ι 𝒪 R (residue 𝒪 o) = mkR' 𝒪 R (algebraMap 𝒪 R o) := rfl
 
 noncomputable def e : ResidueField 𝒪 →+* ResidueField (R' 𝒪 R) :=
@@ -69,6 +87,9 @@ noncomputable def e : ResidueField 𝒪 →+* ResidueField (R' 𝒪 R) :=
 
 variable {𝒪 R}
 
+/--
+@isnad1 id=bijectiv.1h2v.s9.7e24da9de9b8 from=translated src=- shape=30d2707c vocab=374a6f76
+-/
 lemma e_bijective (hres : Function.Surjective (residue R ∘ algebraMap 𝒪 R)) :
     Function.Bijective (e 𝒪 R) := by
   refine ⟨(e 𝒪 R).injective, fun z => ?_⟩
@@ -85,6 +106,9 @@ noncomputable def E (hres : Function.Surjective (residue R ∘ algebraMap 𝒪 R
     ResidueField 𝒪 ≃+* ResidueField (R' 𝒪 R) :=
   RingEquiv.ofBijective (e 𝒪 R) (e_bijective hres)
 
+/--
+@isnad1 id=eq.1h3v.s10.eb63ae343f09 from=translated src=- shape=35d0c0b3 vocab=92c6f192
+-/
 lemma E_apply (hres : Function.Surjective (residue R ∘ algebraMap 𝒪 R)) (a : ResidueField 𝒪) :
     E hres a = residue (R' 𝒪 R) (ι 𝒪 R a) := rfl
 
@@ -92,17 +116,29 @@ noncomputable def c (hres : Function.Surjective (residue R ∘ algebraMap 𝒪 R
     R' 𝒪 R →+* ResidueField 𝒪 :=
   ((E hres).symm : ResidueField (R' 𝒪 R) →+* ResidueField 𝒪).comp (residue (R' 𝒪 R))
 
+/--
+@isnad1 id=eq.1h3v.s11.24a8dd40dd91 from=translated src=- shape=aa3fa9f2 vocab=c2226752
+-/
 lemma c_apply (hres : Function.Surjective (residue R ∘ algebraMap 𝒪 R)) (r : R' 𝒪 R) :
     c hres r = (E hres).symm (residue (R' 𝒪 R) r) := rfl
 
+/--
+@isnad1 id=eq.1h3v.s9.7388edbad670 from=translated src=- shape=5bafeaf9 vocab=0730849f
+-/
 lemma c_ι (hres : Function.Surjective (residue R ∘ algebraMap 𝒪 R)) (a : ResidueField 𝒪) :
     c hres (ι 𝒪 R a) = a := by
   rw [c_apply, ← E_apply hres, RingEquiv.symm_apply_apply]
 
+/--
+@isnad1 id=eq.2h3v.s9.cf6d653ca5b0 from=translated src=- shape=ec465ca4 vocab=35689821
+-/
 lemma c_eq_zero_of_mem (hres : Function.Surjective (residue R ∘ algebraMap 𝒪 R)) {r : R' 𝒪 R}
     (hr : r ∈ maximalIdeal (R' 𝒪 R)) : c hres r = 0 := by
   rw [c_apply, (residue_eq_zero_iff r).2 hr, map_zero]
 
+/--
+@isnad1 id=mem.1h3v.s9.87d332a02cec from=translated src=- shape=404a3cee vocab=6a1c27e9
+-/
 lemma sub_ι_c_mem (hres : Function.Surjective (residue R ∘ algebraMap 𝒪 R)) (r : R' 𝒪 R) :
     r - ι 𝒪 R (c hres r) ∈ maximalIdeal (R' 𝒪 R) := by
   rw [← residue_eq_zero_iff, map_sub, ← E_apply hres, c_apply, RingEquiv.apply_symm_apply,
@@ -112,6 +148,9 @@ noncomputable def x' (hres : Function.Surjective (residue R ∘ algebraMap 𝒪 
     maximalIdeal (R' 𝒪 R) :=
   ⟨r - ι 𝒪 R (c hres r), sub_ι_c_mem hres r⟩
 
+/--
+@isnad1 id=eq.1h3v.s9.5a670e377d12 from=translated src=- shape=df242997 vocab=e0da819f
+-/
 @[scoped simp] lemma x'_coe (hres : Function.Surjective (residue R ∘ algebraMap 𝒪 R)) (r : R' 𝒪 R) :
     (x' hres r : R' 𝒪 R) = r - ι 𝒪 R (c hres r) := rfl
 
@@ -130,12 +169,18 @@ local notation "V" => CotangentSpace (R' 𝒪 R)
 noncomputable def δ (μ : V →ₗ[κ'] κ') (r : R' 𝒪 R) : k :=
   (E hres).symm (μ ((maximalIdeal (R' 𝒪 R)).toCotangent (x' hres r)))
 
+/--
+@isnad1 id=eq.1h5v.s10.11ffca027b10 from=translated src=- shape=ce999071 vocab=80d5e57b
+-/
 lemma δ_add (μ : V →ₗ[κ'] κ') (r s : R' 𝒪 R) : δ hres μ (r + s) = δ hres μ r + δ hres μ s := by
   have hx : x' hres (r + s) = x' hres r + x' hres s := Subtype.ext (by
     simp only [x'_coe, map_add, Submodule.coe_add]; ring)
   unfold δ
   rw [hx, map_add, map_add, map_add]
 
+/--
+@isnad1 id=eq.1h5v.s10.4b542117646f from=translated src=- shape=f1349656 vocab=2501358f
+-/
 lemma δ_mul (μ : V →ₗ[κ'] κ') (r s : R' 𝒪 R) :
     δ hres μ (r * s) = c hres r * δ hres μ s + δ hres μ r * c hres s := by
   unfold δ
@@ -158,6 +203,9 @@ lemma δ_mul (μ : V →ₗ[κ'] κ') (r s : R' 𝒪 R) :
     RingEquiv.symm_apply_apply, RingEquiv.symm_apply_apply]
   ring
 
+/--
+@isnad1 id=eq.1h3v.s9.c56470042c59 from=translated src=- shape=3928b067 vocab=c056fc6a
+-/
 lemma δ_one (μ : V →ₗ[κ'] κ') : δ hres μ 1 = 0 := by
   have h := δ_mul hres μ 1 1
   rw [mul_one, map_one, one_mul, mul_one] at h
@@ -185,9 +233,15 @@ noncomputable def ψ (μ : V →ₗ[κ'] κ') : R' 𝒪 R →+* DualNumber k whe
     · simp [map_add]
     · simp [δ_add]
 
+/--
+@isnad1 id=eq.1h4v.s10.bc05f247ec93 from=translated src=- shape=ae0a1755 vocab=e8e81329
+-/
 lemma ψ_apply_fst (μ : V →ₗ[κ'] κ') (r : R' 𝒪 R) : (ψ hres μ r).fst = c hres r := by
   simp [ψ]
 
+/--
+@isnad1 id=eq.1h4v.s10.921954842df4 from=translated src=- shape=7e4828e0 vocab=806d77e2
+-/
 lemma ψ_apply_snd (μ : V →ₗ[κ'] κ') (r : R' 𝒪 R) : (ψ hres μ r).snd = δ hres μ r := by
   simp [ψ]
 
@@ -198,16 +252,25 @@ lemma ψ_apply_snd (μ : V →ₗ[κ'] κ') (r : R' 𝒪 R) : (ψ hres μ r).snd
 
 attribute [local instance] instAlg
 
+/--
+@isnad1 id=eq.0h2v.s9.d11dff5fcfa2 from=translated src=- shape=b3de3335 vocab=3fce9fe4
+-/
 lemma algebraMap_dual_apply (o : 𝒪) :
     algebraMap 𝒪 (DualNumber k) o = inl (residue 𝒪 o) := by
   show algebraMap (ResidueField 𝒪) (DualNumber k) (algebraMap 𝒪 (ResidueField 𝒪) o) = _
   rw [algebraMap_eq_inl]
   rfl
 
+/--
+@isnad1 id=eq.2h3v.s9.0e9104b73cdf from=translated src=- shape=9756b580 vocab=d40f5ba5
+-/
 lemma x'_of_mem {r : R' 𝒪 R} (hr : r ∈ maximalIdeal (R' 𝒪 R)) : x' hres r = ⟨r, hr⟩ := by
   refine Subtype.ext ?_
   rw [x'_coe, c_eq_zero_of_mem hres hr, map_zero, sub_zero]
 
+/--
+@isnad1 id=eq.1h4v.s10.fd4b61d490b2 from=translated src=- shape=f9c810dd vocab=9e82c96f
+-/
 lemma δ_ι (μ : V →ₗ[κ'] κ') (a : k) : δ hres μ (ι 𝒪 R a) = 0 := by
   have hx : x' hres (ι 𝒪 R a) = 0 := Subtype.ext (by
     rw [x'_coe, c_ι, sub_self]; rfl)
@@ -230,11 +293,17 @@ noncomputable def fstRingHom (φ : R →ₐ[𝒪] DualNumber k) : R →+* k wher
   map_zero' := by rw [map_zero, fst_zero]
   map_add' r s := by rw [map_add, fst_add]
 
+/--
+@isnad1 id=eq.0h4v.s8.be7744d96d03 from=translated src=- shape=004d1168 vocab=0bb4da17
+-/
 lemma fstRingHom_algebraMap (φ : R →ₐ[𝒪] DualNumber k) (o : 𝒪) :
     fstRingHom φ (algebraMap 𝒪 R o) = residue 𝒪 o := by
   show (φ (algebraMap 𝒪 R o)).fst = _
   rw [AlgHom.commutes, algebraMap_dual_apply, fst_inl]
 
+/--
+@isnad1 id=eq.1h4v.s9.20da969bbbca from=translated src=- shape=7a3c6287 vocab=653b4528
+-/
 lemma fst_eq_zero_of_mem (φ : R →ₐ[𝒪] DualNumber k) {y : R} (hy : y ∈ maximalIdeal R) :
     (φ y).fst = 0 := by
   have hsurj : Function.Surjective (fstRingHom φ) := fun a => by
@@ -245,6 +314,9 @@ lemma fst_eq_zero_of_mem (φ : R →ₐ[𝒪] DualNumber k) {y : R} (hy : y ∈ 
   have : y ∈ RingHom.ker (fstRingHom φ) := hker ▸ hy
   exact this
 
+/--
+@isnad1 id=eq.1h4v.s9.65db31e702ad from=translated src=- shape=56648f9c vocab=b6769466
+-/
 lemma fst_eq_c (φ : R →ₐ[𝒪] DualNumber k) (r : R) : (φ r).fst = c hres (mkR' 𝒪 R r) := by
   obtain ⟨o, ho⟩ := hres (residue R r)
   have hy : r - algebraMap 𝒪 R o ∈ maximalIdeal R := by
@@ -260,6 +332,9 @@ lemma fst_eq_c (φ : R →ₐ[𝒪] DualNumber k) (r : R) : (φ r).fst = c hres 
     rw [h3, ← ι_residue, c_ι]
   rw [h1, h2]
 
+/--
+@isnad1 id=eq.1h4v.s9.acf8012b397b from=translated src=- shape=887c6a5a vocab=cb304561
+-/
 lemma apply_eq_zero_of_mem_J (φ : R →ₐ[𝒪] DualNumber k) {j : R} (hj : j ∈ J 𝒪 R) : φ j = 0 := by
   have hle : J 𝒪 R ≤ RingHom.ker (φ : R →+* DualNumber k) := by
     refine Ideal.map_le_iff_le_comap.2 fun o ho => ?_
@@ -268,6 +343,9 @@ lemma apply_eq_zero_of_mem_J (φ : R →ₐ[𝒪] DualNumber k) {j : R} (hj : j 
   exact hle hj
 
 omit [IsLocalRing R] [IsLocalHom (algebraMap 𝒪 R)] in
+/--
+@isnad1 id=eq.2h4v.s9.3ead430f31d8 from=translated src=- shape=dccfd1f5 vocab=5a83da3a
+-/
 lemma mul_eq_mul_of_fst_eq {x₁ x₂ w : DualNumber k} (hx : x₁.fst = x₂.fst) (hw : w.fst = 0) :
     x₁ * w = x₂ * w := by
   refine TrivSqZeroExt.ext ?_ ?_
@@ -277,6 +355,9 @@ lemma mul_eq_mul_of_fst_eq {x₁ x₂ w : DualNumber k} (hx : x₁.fst = x₂.fs
 
 include hres in
 
+/--
+@isnad1 id=eq.4h6v.s10.7be1a6b02dc4 from=translated src=- shape=2e874a79 vocab=4449ab97
+-/
 lemma algHom_ext_of_snd_eq {ι' : Type*} (a : ι' → R) (ha : ∀ i, a i ∈ maximalIdeal R)
     (hgen : maximalIdeal R ≤ Ideal.span (Set.range a) ⊔ J 𝒪 R)
     (φ₁ φ₂ : R →ₐ[𝒪] DualNumber k) (h : ∀ i, (φ₁ (a i)).snd = (φ₂ (a i)).snd) : φ₁ = φ₂ := by
@@ -322,6 +403,9 @@ local notation "V" => CotangentSpace (R' 𝒪 R)
 attribute [local instance] instAlg
 
 include hres in
+/--
+@isnad1 id=ex.1h2v.s9.e881c0ac29a4 from=translated src=- shape=6fd9f344 vocab=5338bd13
+-/
 theorem main :
     ∃ (m : ℕ) (a : Fin m → R), (∀ i, a i ∈ maximalIdeal R) ∧
       maximalIdeal R ≤ Ideal.span (Set.range a) ⊔ (maximalIdeal 𝒪).map (algebraMap 𝒪 R) ∧
@@ -386,6 +470,9 @@ end Count
 end P2mCotangentCount
 open scoped _root_.P2MW.S_IsLocalRing_exists_generators_maximalIdeal_natCard_algHom_dualNumber_eq_pow.P2mCotangentCount
 
+/--
+@isnad1 id=ex.1h2v.s10.767d103496a1 from=translated src=- shape=6fd9f344 vocab=199f7f8f
+-/
 theorem solution
     {𝒪 : Type*} {R : Type*} [CommRing 𝒪] [IsLocalRing 𝒪]
     [CommRing R] [IsLocalRing R] [IsNoetherianRing R] [Algebra 𝒪 R] [IsLocalHom (algebraMap 𝒪 R)]

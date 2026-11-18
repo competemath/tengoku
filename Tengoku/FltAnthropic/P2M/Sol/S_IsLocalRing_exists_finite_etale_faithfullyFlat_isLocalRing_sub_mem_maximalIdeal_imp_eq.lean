@@ -26,6 +26,9 @@ noncomputable def quotEquiv :
     AdjoinRoot P ⧸ m0 P ≃+* AdjoinRoot (P.map (residue R)) :=
   (AdjoinRoot.quotEquivQuotMap P (maximalIdeal R)).toRingEquiv
 
+/--
+@isnad1 id=eq.0h3v.s11.cb16a8043715 from=translated src=- shape=729a17e2 vocab=6b75f512
+-/
 theorem quotEquiv_mk (g : R[X]) :
     quotEquiv P (Ideal.Quotient.mk (m0 P) (AdjoinRoot.mk P g)) =
       AdjoinRoot.mk (P.map (residue R)) (g.map (residue R)) :=
@@ -33,17 +36,26 @@ theorem quotEquiv_mk (g : R[X]) :
 
 variable {P}
 
+/--
+@isnad1 id=ismaxima.1h2v.s7.648698059dca from=translated src=- shape=1db6d1d8 vocab=566de15f
+-/
 theorem m0_isMaximal (hirr : Irreducible (P.map (residue R))) : (m0 P).IsMaximal := by
   haveI := Fact.mk hirr
   apply Ideal.Quotient.maximal_of_isField
   exact MulEquiv.isField (Field.toIsField (AdjoinRoot (P.map (residue R))))
     (quotEquiv P).toMulEquiv
 
+/--
+@isnad1 id=nontrivi.1h2v.s7.8dfc865dae65 from=translated src=- shape=f0c7324a vocab=a4e75048
+-/
 theorem nontrivial (hirr : Irreducible (P.map (residue R))) :
     Nontrivial (AdjoinRoot P) :=
   nontrivial_of_ne 0 1 fun h => (m0_isMaximal hirr).ne_top
     ((Ideal.eq_top_iff_one _).mpr (h ▸ (m0 P).zero_mem))
 
+/--
+@isnad1 id=islocalr.2h2v.s7.b61825a0a7ea from=translated src=- shape=5aad8859 vocab=b0c37469
+-/
 theorem isLocalRing (hP : P.Monic) (hirr : Irreducible (P.map (residue R))) :
     IsLocalRing (AdjoinRoot P) := by
   haveI : Module.Finite R (AdjoinRoot P) := (AdjoinRoot.powerBasis' hP).finite
@@ -57,12 +69,18 @@ theorem isLocalRing (hP : P.Monic) (hirr : Irreducible (P.map (residue R))) :
     exact Ideal.map_comap_le
   exact ((m0_isMaximal hirr).eq_of_le hM.ne_top hle).symm
 
+/--
+@isnad1 id=eq.2h2v.s7.093e5a5a356d from=translated src=- shape=422b4a78 vocab=755bf01c
+-/
 theorem maximalIdeal_eq (hP : P.Monic) (hirr : Irreducible (P.map (residue R))) :
     letI := isLocalRing hP hirr
     maximalIdeal (AdjoinRoot P) = m0 P :=
   letI := isLocalRing hP hirr
   (IsLocalRing.eq_maximalIdeal (m0_isMaximal hirr)).symm
 
+/--
+@isnad1 id=islocalh.2h2v.s8.4a937a4f5886 from=translated src=- shape=9a69ef5a vocab=093452dd
+-/
 theorem isLocalHom (hP : P.Monic) (hirr : Irreducible (P.map (residue R))) :
     IsLocalHom (algebraMap R (AdjoinRoot P)) := by
   letI := isLocalRing hP hirr
@@ -73,6 +91,9 @@ theorem isLocalHom (hP : P.Monic) (hirr : Irreducible (P.map (residue R))) :
     exact Ideal.mem_map_of_mem _ ((mem_maximalIdeal _).mpr hna)
   exact (mem_maximalIdeal _).mp hmem ha
 
+/--
+@isnad1 id=etale.3h2v.s7.6e4b7faa4ad6 from=translated src=- shape=f0b8b6bd vocab=4154d6a6
+-/
 theorem etale (hP : P.Monic) (hirr : Irreducible (P.map (residue R)))
     (hsep : (P.map (residue R)).Separable) : Algebra.Etale R (AdjoinRoot P) := by
   letI := isLocalRing hP hirr
@@ -104,6 +125,9 @@ theorem etale (hP : P.Monic) (hirr : Irreducible (P.map (residue R)))
     IsLocalization.atUnit (R := AdjoinRoot P) (S := Localization.Away (AdjoinRoot.mk P (derivative P * b'))) _ hgu
   exact Algebra.Etale.of_equiv (e₁.trans (e₂.restrictScalars R).symm)
 
+/--
+@isnad1 id=ex.1h4v.s8.ba5860827c3b from=translated src=- shape=9832ecf2 vocab=640df019
+-/
 theorem exists_residues {n : ℕ}
     (y : Fin (n + 1) → AdjoinRoot (P.map (residue R))) (hy : Function.Injective y) :
     ∃ x : Fin (n + 1) → AdjoinRoot P, ∀ i j, x i - x j ∈ m0 P → i = j := by
@@ -121,6 +145,9 @@ section Field
 
 variable (k : Type u) [Field k] [Fintype k]
 
+/--
+@isnad1 id=ex.0h2v.s7.ec398b3f622b from=translated src=- shape=01c0cdc8 vocab=1575729b
+-/
 theorem exists_irreducible_card_gt (n : ℕ) :
     ∃ Pb : k[X], Pb.Monic ∧ Irreducible Pb ∧ Pb.Separable ∧
       ∃ y : Fin (n + 1) → AdjoinRoot Pb, Function.Injective y := by
@@ -167,6 +194,9 @@ theorem exists_irreducible_card_gt (n : ℕ) :
 
 end Field
 
+/--
+@isnad1 id=ex.0h2v.s8.65b101f7326b from=translated src=- shape=47cb73e6 vocab=0937d4d8
+-/
 theorem main (R : Type u) [CommRing R] [IsLocalRing R] [IsNoetherianRing R] (n : ℕ) :
     ∃ (R₀ : Type u) (_ : CommRing R₀) (_ : Algebra R R₀) (_ : Module.Finite R R₀)
       (_ : Algebra.Etale R R₀) (_ : Module.FaithfullyFlat R R₀) (_ : IsLocalRing R₀) (_ : IsNoetherianRing R₀)
@@ -205,6 +235,9 @@ theorem main (R : Type u) [CommRing R] [IsLocalRing R] [IsNoetherianRing R] (n :
 
 end IsLocalRing.ResidueExtImpl
 
+/--
+@isnad1 id=ex.0h2v.s8.65b101f7326b from=translated src=- shape=47cb73e6 vocab=0937d4d8
+-/
 theorem solution
     (R : Type u) [CommRing R] [IsLocalRing R] [IsNoetherianRing R] (n : ℕ) :
     ∃ (R₀ : Type u) (_ : CommRing R₀) (_ : Algebra R R₀) (_ : Module.Finite R R₀)

@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=eq.1h6v.s9.0fa435d1d303 from=translated src=- shape=fbf9c16f vocab=055e8970
+-/
 theorem Algebra.finrank_tensorProduct_eq_finrank_of_isFractionRing_of_finite
     {A B : Type*} [CommRing A] [CommRing B] [Algebra A B] [Module.Finite A B]
     (K : Type*) [Field K] [Algebra A K] [IsFractionRing A K]

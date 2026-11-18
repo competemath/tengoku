@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open scoped TensorProduct in
 
+/--
+@isnad1 id=etale.3h4v.s10.7ebc12a9a16d from=translated src=- shape=43302d5b vocab=85d1cfcf
+-/
 theorem IsLocalRing.etale_adicCompletion_tensorProduct_of_finite_of_finrank_eq_finrank_residueField
     {O C : Type*} [CommRing O] [IsDomain O] [IsNoetherianRing O] [IsLocalRing O]
     [CommRing C] [IsDomain C] [IsNoetherianRing C] [IsLocalRing C]

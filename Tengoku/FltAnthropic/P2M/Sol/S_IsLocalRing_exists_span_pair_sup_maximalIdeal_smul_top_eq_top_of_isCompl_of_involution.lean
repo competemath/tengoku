@@ -24,6 +24,9 @@ theorem eq_top_or_eq_top_of_sup_eq_top {I J : Ideal R} (h : I ⊔ J = ⊤) : I =
   rw [h, top_le_iff] at hle
   exact (IsLocalRing.maximalIdeal.isMaximal R).ne_top hle
 
+/--
+@isnad1 id=ex.5h7v.s13.ead14ef34213 from=translated src=- shape=d3fcbe5f vocab=c473b475
+-/
 theorem core (X Y : Submodule R V) (hXY : IsCompl X Y) (φ : ↥X ≃ₗ[R] R)
     (hY : ∀ W₁ W₂ : Submodule R ↥Y, IsCompl W₁ W₂ → W₁ = ⊥ ∨ W₂ = ⊥)
     (E F : Submodule R V) (hEF : IsCompl E F)
@@ -198,6 +201,9 @@ theorem core (X Y : Submodule R V) (hXY : IsCompl X Y) (φ : ↥X ≃ₗ[R] R)
     rw [hv₀, Ideal.smul_eq_mul, Ideal.mul_top] at hπ𝔪
     exact (IsLocalRing.maximalIdeal.isMaximal R).ne_top ((Ideal.eq_top_iff_one _).mpr hπ𝔪)
 
+/--
+@isnad1 id=iscompl.2h3v.s9.8c57bc43eff7 from=translated src=- shape=b262f486 vocab=a4e66e03
+-/
 theorem isCompl_ker_sub_ker_add (h2 : IsUnit (2 : R)) (τ : V →ₗ[R] V) (hτ : τ ∘ₗ τ = LinearMap.id) :
     IsCompl (LinearMap.ker (τ - LinearMap.id)) (LinearMap.ker (τ + LinearMap.id)) := by
   obtain ⟨u, hu⟩ := h2
@@ -224,6 +230,9 @@ theorem isCompl_ker_sub_ker_add (h2 : IsUnit (2 : R)) (τ : V →ₗ[R] V) (hτ 
         ← smul_add, sub_add_sub_cancel', sub_self, smul_zero]
     · rw [← smul_add, add_add_sub_cancel, ← two_smul R v, smul_smul, ← hu, Units.inv_mul, one_smul]
 
+/--
+@isnad1 id=ex.6h5v.s13.fb1c8e613745 from=translated src=- shape=6c072f17 vocab=14935f03
+-/
 theorem main (h2 : IsUnit (2 : R)) (τ : V →ₗ[R] V) (hτ : τ ∘ₗ τ = LinearMap.id)
     (X Y : Submodule R V) (hXY : IsCompl X Y) (hX : Nonempty (↥X ≃ₗ[R] R))
     (hY : ∀ W₁ W₂ : Submodule R ↥Y, IsCompl W₁ W₂ → W₁ = ⊥ ∨ W₂ = ⊥)
@@ -251,6 +260,9 @@ theorem main (h2 : IsUnit (2 : R)) (τ : V →ₗ[R] V) (hτ : τ ∘ₗ τ = Li
 
 end TilouineArgument
 
+/--
+@isnad1 id=ex.6h5v.s13.049d259180fd from=translated src=- shape=0073f19f vocab=14935f03
+-/
 theorem solution
     {R : Type*} [CommRing R] [IsLocalRing R] (h2 : IsUnit (2 : R))
     {V : Type*} [AddCommGroup V] [Module R V]

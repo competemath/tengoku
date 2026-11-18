@@ -13,6 +13,9 @@ namespace FormalCartier
 
 variable {k : Type} [Field k] {A : Type} [CommRing A] [Algebra k A]
 
+/--
+@isnad1 id=mem.1h6v.s8.5cc5e92348d8 from=translated src=- shape=b89c717f vocab=555663b3
+-/
 theorem derivation_apply_mem_pow (D : Derivation k A A) (I : Ideal A) :
     ∀ (d : ℕ) (a : A), a ∈ I ^ (d + 1) → D a ∈ I ^ d := by
   intro d
@@ -27,6 +30,9 @@ theorem derivation_apply_mem_pow (D : Derivation k A A) (I : Ideal A) :
       exact Submodule.mul_mem_mul_rev (ih b hb) hc
     · rw [map_add]; exact Ideal.add_mem _ hb hc
 
+/--
+@isnad1 id=ishomoge.1h5v.s8.088219170bdd from=translated src=- shape=24ce76bd vocab=a3da6dec
+-/
 theorem isHomogeneous_pderiv {σ : Type} [DecidableEq σ] (F : MvPolynomial σ k) (d : ℕ) (hF : F.IsHomogeneous (d + 1))
     (i : σ) : (pderiv i F).IsHomogeneous d := by
   rw [F.as_sum, map_sum]
@@ -43,6 +49,9 @@ theorem isHomogeneous_pderiv {σ : Type} [DecidableEq σ] (F : MvPolynomial σ k
     rw [Finsupp.degree_eq_weight_one]
     exact Nat.add_right_cancel h2
 
+/--
+@isnad1 id=eq.0h6v.s10.e113c7389ef9 from=translated src=- shape=58f61928 vocab=7abc65df
+-/
 theorem derivation_aeval {n : ℕ} (D : Derivation k A A) (x : Fin n → A) (F : MvPolynomial (Fin n) k) :
     D (aeval x F) = ∑ j, aeval x (pderiv j F) * D (x j) := by
   induction F using MvPolynomial.induction_on with
@@ -63,6 +72,9 @@ theorem derivation_aeval {n : ℕ} (D : Derivation k A A) (x : Fin n → A) (F :
         simp [pderiv_X_of_ne (Ne.symm hij)]
       · simp
 
+/--
+@isnad1 id=mem.2h7v.s8.b791a4d44add from=translated src=- shape=30cda8d6 vocab=e673b64e
+-/
 theorem aeval_mem_pow {n : ℕ} (x : Fin n → A) (I : Ideal A) (hx : ∀ j, x j ∈ I) (F : MvPolynomial (Fin n) k) (d : ℕ)
     (hF : F.IsHomogeneous d) : aeval x F ∈ I ^ d := by
   rw [F.as_sum, map_sum]
@@ -84,6 +96,9 @@ theorem aeval_mem_pow {n : ℕ} (x : Fin n → A) (I : Ideal A) (hx : ∀ j, x j
 
 open IsLocalRing in
 
+/--
+@isnad1 id=ex.2h2v.s10.8faf257b30ee from=translated src=- shape=398428c5 vocab=d66f12e9
+-/
 theorem exists_coords [IsLocalRing A] [IsNoetherianRing A]
     (hk : ∀ a : A, ∃ c : k, a - algebraMap k A c ∈ maximalIdeal A)
     (hder : ∀ φ : A →ₗ[k] k, (∀ a ∈ (maximalIdeal A) ^ 2, φ a = 0) → (∀ c : k, φ (algebraMap k A c) = 0) →
@@ -179,6 +194,9 @@ theorem exists_coords [IsLocalRing A] [IsNoetherianRing A]
 
 open IsLocalRing in
 
+/--
+@isnad1 id=eq.5h7v.s9.75ce68ca7f84 from=translated src=- shape=f0cf0c36 vocab=107aa050
+-/
 theorem form_eq_zero [IsLocalRing A] [CharZero k] {n : ℕ} (x : Fin n → A) (D : Fin n → Derivation k A A)
     (hx : ∀ j, x j ∈ maximalIdeal A) (hD : ∀ i j, D i (x j) - (if i = j then 1 else 0) ∈ maximalIdeal A)
     (hunit : ∀ c : k, algebraMap k A c ∈ maximalIdeal A → c = 0) :
@@ -228,6 +246,9 @@ theorem form_eq_zero [IsLocalRing A] [CharZero k] {n : ℕ} (x : Fin n → A) (D
     exact (smul_eq_zero.1 this).resolve_left (Nat.cast_ne_zero.2 (Nat.succ_ne_zero d))
 
 open IsLocalRing in
+/--
+@isnad1 id=eq.1h3v.s7.2f9b21b7cb51 from=translated src=- shape=41f5762a vocab=99f3f41d
+-/
 theorem algebraMap_mem_imp_eq_zero [IsLocalRing A] (c : k) (hc : algebraMap k A c ∈ maximalIdeal A) : c = 0 := by
   by_contra h
   have h1 : algebraMap k A (c⁻¹ * c) ∈ maximalIdeal A := by rw [map_mul]; exact (maximalIdeal A).mul_mem_left _ hc
@@ -236,6 +257,9 @@ theorem algebraMap_mem_imp_eq_zero [IsLocalRing A] (c : k) (hc : algebraMap k A 
 
 open IsLocalRing in
 
+/--
+@isnad1 id=ex.3h5v.s9.f1e7e263fa16 from=translated src=- shape=0a175b71 vocab=66c9293d
+-/
 theorem exists_linear_form [IsLocalRing A] {n : ℕ} (x : Fin n → A) (hx : ∀ j, x j ∈ maximalIdeal A)
     (hk : ∀ a : A, ∃ c : k, a - algebraMap k A c ∈ maximalIdeal A)
     (c : A) (hc : c ∈ Ideal.span (Set.range x)) :
@@ -264,6 +288,9 @@ theorem exists_linear_form [IsLocalRing A] {n : ℕ} (x : Fin n → A) (hx : ∀
 
 open IsLocalRing in
 
+/--
+@isnad1 id=ex.4h6v.s9.ef5cfc078807 from=translated src=- shape=ccff968a vocab=c33e01b3
+-/
 theorem exists_form [IsLocalRing A] {n : ℕ} (x : Fin n → A) (hx : ∀ j, x j ∈ maximalIdeal A)
     (hspan : Ideal.span (Set.range x) = maximalIdeal A)
     (hk : ∀ a : A, ∃ c : k, a - algebraMap k A c ∈ maximalIdeal A) :
@@ -298,6 +325,9 @@ theorem exists_form [IsLocalRing A] {n : ℕ} (x : Fin n → A) (hx : ∀ j, x j
 end FormalCartier
 
 open IsLocalRing FormalCartier MvPolynomial in
+/--
+@isnad1 id=isreduce.2h2v.s10.b4a073b2bb53 from=translated src=- shape=0cd14b31 vocab=b319a94e
+-/
 theorem solution
     (k : Type) [Field k] [CharZero k] (A : Type) [CommRing A] [IsLocalRing A] [IsNoetherianRing A] [Algebra k A]
     (hk : ∀ a : A, ∃ c : k, a - algebraMap k A c ∈ IsLocalRing.maximalIdeal A)

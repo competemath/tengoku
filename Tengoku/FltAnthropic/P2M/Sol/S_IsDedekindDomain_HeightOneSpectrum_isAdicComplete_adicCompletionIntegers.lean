@@ -11,6 +11,9 @@ open IsDedekindDomain
 set_option maxHeartbeats 6400000
 set_option synthInstance.maxHeartbeats 1600000
 
+/--
+@isnad1 id=isadicco.0h3v.s10.498e7a73dd6c from=translated src=- shape=b716117f vocab=953400f7
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsDedekindDomain R] (K : Type v) [Field K] [Algebra R K] [IsFractionRing R K]
     (v : HeightOneSpectrum R) :

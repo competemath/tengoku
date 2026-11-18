@@ -8,6 +8,9 @@ namespace P2MW.S_IsLocalRing_quotient_of_ne_top
 
 open IsLocalRing
 
+/--
+@isnad1 id=islocalr.1h2v.s6.6966d127faf6 from=translated src=- shape=f232e73a vocab=b20e41e6
+-/
 theorem solution
     {A : Type} [CommRing A] [IsLocalRing A] (I : Ideal A) (hI : I ≠ ⊤) :
     IsLocalRing (A ⧸ I) :=

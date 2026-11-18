@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_IsDedekindDomain_HeightOneSpectrum_exists_
 set_option autoImplicit false
 open NumberField IsDedekindDomain
 
+/--
+@isnad1 id=ex.1h4v.s15.21a61ab4d162 from=translated src=- shape=af4c5145 vocab=a8af90a1
+-/
 theorem IsDedekindDomain.HeightOneSpectrum.exists_isRoot_and_valued_sub_mul_le_of_valued_eval_lt
     (K : Type) [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K))
     (f : Polynomial ↥(v.adicCompletionIntegers K)) (a₀ : ↥(v.adicCompletionIntegers K))

@@ -7,6 +7,9 @@ namespace P2MW.S_IsIntegrallyClosed_of_directed_iUnion_subring
 
 universe u v
 
+/--
+@isnad1 id=isintegr.3h3v.s7.767e0c63cfdb from=translated src=- shape=c723a0da vocab=5b438d5e
+-/
 theorem solution
     {B : Type u} [CommRing B] [IsDomain B] {ι : Type v} [Nonempty ι] (S : ι → Subring B)
     (hdir : Directed (· ≤ ·) S) (hcov : ∀ x : B, ∃ i, x ∈ S i)

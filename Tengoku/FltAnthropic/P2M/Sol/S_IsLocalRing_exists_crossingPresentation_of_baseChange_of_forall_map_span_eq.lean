@@ -16,6 +16,9 @@ open IsLocalRing
 
 namespace C2Aux
 
+/--
+@isnad1 id=islocalh.0h2v.s7.e1df0c2ade74 from=translated src=- shape=dd1d3b62 vocab=70b49dae
+-/
 theorem isLocalHom_of_finite {R S : Type*} [CommRing R] [CommRing S] [IsLocalRing R] [IsLocalRing S]
     [Algebra R S] [Module.Finite R S] : IsLocalHom (algebraMap R S) := by
   haveI : Algebra.IsIntegral R S := Algebra.IsIntegral.of_finite R S
@@ -27,11 +30,17 @@ theorem isLocalHom_of_finite {R S : Type*} [CommRing R] [CommRing S] [IsLocalRin
   rw [← hcomap, Ideal.mem_comap] at hmem
   exact hmem hr
 
+/--
+@isnad1 id=eq.0h3v.s7.856cde67301a from=translated src=- shape=94525590 vocab=b094da4a
+-/
 theorem comap_maximalIdeal {R S : Type*} [CommRing R] [CommRing S] [IsLocalRing R] [IsLocalRing S]
     (f : R →+* S) [IsLocalHom f] : (maximalIdeal S).comap f = maximalIdeal R := by
   ext r
   rw [Ideal.mem_comap, mem_maximalIdeal, mem_maximalIdeal, mem_nonunits_iff, mem_nonunits_iff, isUnit_map_iff]
 
+/--
+@isnad1 id=ex.2h3v.s7.6d6ef07d3b68 from=translated src=- shape=56c5b182 vocab=776d282d
+-/
 theorem exists_unit_mul_eq_of_span_eq {T : Type*} [CommRing T] {a b : T} (hb : b ∈ nonZeroDivisors T)
     (h : Ideal.span {a} = Ideal.span {b}) : ∃ v : Tˣ, a = v * b := by
   have ha : a ∈ Ideal.span {b} := h ▸ Ideal.mem_span_singleton_self a
@@ -45,6 +54,9 @@ theorem exists_unit_mul_eq_of_span_eq {T : Type*} [CommRing T] {a b : T} (hb : b
     linear_combination -this
   exact ⟨⟨c, d, by rw [mul_comm, hdc], hdc⟩, rfl⟩
 
+/--
+@isnad1 id=ex.2h4v.s8.d0fb4c52bb59 from=translated src=- shape=645f18f9 vocab=4fc7416d
+-/
 theorem exists_eq_span_singleton_of_map_eq_span {S T : Type*} [CommRing S] [IsNoetherianRing S] [IsLocalRing S]
     [CommRing T] [Nontrivial T] [Algebra S T] [Module.Free S T] [Module.Finite S T]
     (J : Ideal S) (x' : T) (hx' : x' ∈ nonZeroDivisors T) (hJ : J.map (algebraMap S T) = Ideal.span {x'}) :
@@ -160,6 +172,9 @@ theorem exists_eq_span_singleton_of_map_eq_span {S T : Type*} [CommRing S] [IsNo
 end C2Aux
 
 open C2Aux in
+/--
+@isnad1 id=ex.7h9v.s12.bf4dcb40929c from=translated src=- shape=1d8f5578 vocab=26581bf2
+-/
 theorem solution
     {W W' S : Type*} [CommRing W] [IsLocalRing W] [CommRing W'] [IsLocalRing W']
     [Algebra W W'] [Module.Finite W W'] [Module.Flat W W'] [FaithfulSMul W W'] [Algebra.Etale W W']

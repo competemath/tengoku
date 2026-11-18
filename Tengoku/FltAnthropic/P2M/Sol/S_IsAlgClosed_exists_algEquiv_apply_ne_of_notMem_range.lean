@@ -15,6 +15,9 @@ namespace WLightR11g
 
 open IntermediateField
 
+/--
+@isnad1 id=ex.1h3v.s8.9336b6cdc115 from=translated src=- shape=0e6547d1 vocab=cba31393
+-/
 theorem exists_algEquiv_apply_ne_of_exists_notMem {F E : Type*} [Field F] [Field E]
     [Algebra F E] [IsAlgClosed E] [CharZero F] {c : E}
     (h : ∃ K₁ : IntermediateField F E, Algebra.IsAlgebraic ↥K₁ E ∧ c ∉ K₁) :
@@ -35,6 +38,9 @@ theorem exists_algEquiv_apply_ne_of_exists_notMem {F E : Type*} [Field F] [Field
 
 open MvPolynomial Polynomial in
 
+/--
+@isnad1 id=mem.3h5v.s7.289a0114c53c from=translated src=- shape=1b31658b vocab=1a1ad573
+-/
 theorem mem_bot_of_isAlgebraic_of_mem_adjoin_algebraicIndependent {F E : Type*} [Field F]
     [Field E] [Algebra F E] {ι : Type*} {x : ι → E} (hx : AlgebraicIndependent F x)
     {c : E} (hmem : c ∈ IntermediateField.adjoin F (Set.range x)) (halg : IsAlgebraic F c) :
@@ -91,6 +97,9 @@ theorem mem_bot_of_isAlgebraic_of_mem_adjoin_algebraicIndependent {F E : Type*} 
   obtain ⟨y, hy⟩ := minpoly.degree_eq_one_iff.mp hdeg
   exact ⟨y, hy⟩
 
+/--
+@isnad1 id=ex.2h3v.s8.31dace2554f0 from=translated src=- shape=60fa8385 vocab=b77ec59e
+-/
 theorem exists_intermediateField_isAlgebraic_notMem_of_isAlgebraic {F E : Type*} [Field F]
     [Field E] [Algebra F E] {c : E} (halg : IsAlgebraic F c)
     (hc : c ∉ (⊥ : IntermediateField F E)) :
@@ -102,6 +111,9 @@ theorem exists_intermediateField_isAlgebraic_notMem_of_isAlgebraic {F E : Type*}
 
 open Polynomial in
 
+/--
+@isnad1 id=not.1h3v.s6.462400793d7a from=translated src=- shape=b772fbb6 vocab=4d934bd4
+-/
 theorem notMem_adjoin_sq_of_transcendental {F E : Type*} [Field F] [Field E] [Algebra F E]
     {c : E} (hc : Transcendental F c) : c ∉ IntermediateField.adjoin F {c ^ 2} := by
   intro hmem
@@ -122,6 +134,9 @@ theorem notMem_adjoin_sq_of_transcendental {F E : Type*} [Field F] [Field E] [Al
     natDegree_X_pow] at hdeg
   omega
 
+/--
+@isnad1 id=ex.1h3v.s7.2648bd7325d6 from=translated src=- shape=5566411b vocab=c29412ef
+-/
 theorem exists_algEquiv_apply_ne_of_transcendental {F E : Type*} [Field F] [Field E]
     [Algebra F E] [IsAlgClosed E] [CharZero F] {c : E} (hc : Transcendental F c) :
     ∃ σ : E ≃ₐ[F] E, σ c ≠ c := by
@@ -138,6 +153,9 @@ theorem exists_algEquiv_apply_ne_of_transcendental {F E : Type*} [Field F] [Fiel
     (exists_intermediateField_isAlgebraic_notMem_of_isAlgebraic halg_F' hc_F')
   exact ⟨σ.restrictScalars F, hσ⟩
 
+/--
+@isnad1 id=ex.1h3v.s8.36a1eae84f31 from=translated src=- shape=3f997293 vocab=48761fe7
+-/
 theorem exists_algEquiv_apply_ne {F E : Type*} [Field F] [Field E] [Algebra F E]
     [IsAlgClosed E] [CharZero F] {c : E} (hc : c ∉ (⊥ : IntermediateField F E)) :
     ∃ σ : E ≃ₐ[F] E, σ c ≠ c := by
@@ -148,6 +166,9 @@ theorem exists_algEquiv_apply_ne {F E : Type*} [Field F] [Field E] [Algebra F E]
 
 end WLightR11g
 
+/--
+@isnad1 id=ex.1h3v.s7.070c13f6e15d from=translated src=- shape=fa64d576 vocab=efbb7385
+-/
 theorem solution {F E : Type*} [Field F] [Field E]
     [Algebra F E] [IsAlgClosed E] [CharZero F] {c : E} (hc : c ∉ Set.range (algebraMap F E)) :
     ∃ σ : E ≃ₐ[F] E, σ c ≠ c :=

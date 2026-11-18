@@ -8,6 +8,9 @@ namespace P2MW.S_IsDedekindDomain_HeightOneSpectrum_exists_forall_exists_pow_eq_
 set_option autoImplicit false
 open NumberField IsDedekindDomain
 
+/--
+@isnad1 id=ex.1h3v.s9.1f520d2575c8 from=translated src=- shape=0c9704ae vocab=1871534b
+-/
 theorem solution
     (K : Type) [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K)) (n : ℕ) (hn : 0 < n) :
     ∃ m : ℕ, ∀ a : v.adicCompletion K,

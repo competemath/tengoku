@@ -12,6 +12,9 @@ open AdicCompletion
 
 universe u
 
+/--
+@isnad1 id=isadicco.0h3v.s6.010dfaa822df from=translated src=- shape=915833f0 vocab=8fb8cfab
+-/
 theorem isAdicComplete_of_finite_aux {R : Type u} [CommRing R] [IsNoetherianRing R]
     (I : Ideal R) [IsAdicComplete I R]
     (M : Type u) [AddCommGroup M] [Module R M] [Module.Finite R M] : IsAdicComplete I M := by
@@ -33,6 +36,9 @@ theorem isAdicComplete_of_finite_aux {R : Type u} [CommRing R] [IsNoetherianRing
     rw [h1, one_smul]
   rw [this]; exact e3.bijective.comp (e2.bijective.comp e1.bijective)
 
+/--
+@isnad1 id=isadicco.0h5v.s6.c6f26bafe361 from=translated src=- shape=15d81d40 vocab=0b014639
+-/
 theorem isAdicComplete_of_linearEquiv {R : Type*} [CommRing R] (I : Ideal R)
     {M N : Type*} [AddCommGroup M] [Module R M] [AddCommGroup N] [Module R N]
     (e : M ≃ₗ[R] N) [IsAdicComplete I M] : IsAdicComplete I N := by
@@ -44,6 +50,9 @@ theorem isAdicComplete_of_linearEquiv {R : Type*} [CommRing R] (I : Ideal R)
   exact (AdicCompletion.congr I e).bijective.comp
     ((AdicCompletion.of_bijective I M).comp e.symm.bijective)
 
+/--
+@isnad1 id=isadicco.0h3v.s6.ba3c32a3c4bd from=translated src=- shape=915833f0 vocab=8fb8cfab
+-/
 theorem isAdicComplete_of_finite {R : Type*} [CommRing R] [IsNoetherianRing R] (I : Ideal R)
     [IsAdicComplete I R]
     (M : Type*) [AddCommGroup M] [Module R M] [Module.Finite R M] : IsAdicComplete I M := by
@@ -53,6 +62,9 @@ theorem isAdicComplete_of_finite {R : Type*} [CommRing R] [IsNoetherianRing R] (
 
 end SolFinComplete
 
+/--
+@isnad1 id=isadicco.0h3v.s6.ba3c32a3c4bd from=translated src=- shape=915833f0 vocab=8fb8cfab
+-/
 theorem solution
     {R : Type*} [CommRing R] [IsNoetherianRing R] (I : Ideal R) [IsAdicComplete I R]
     (M : Type*) [AddCommGroup M] [Module R M] [Module.Finite R M] :

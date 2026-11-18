@@ -8,5 +8,8 @@ import Tengoku.FltAnthropic.P2M.Sol.S_IsLocalRing_principalUnits_one_eq_ker_map_
 
 set_option autoImplicit false
 open IsLocalRing
+/--
+@isnad1 id=eq.0h1v.s8.577812e2042e from=translated src=- shape=4e51f56e vocab=ef9416dd
+-/
 theorem IsLocalRing.principalUnits_one_eq_ker_map_residue {R : Type*} [CommRing R] [IsLocalRing R] :
     principalUnits R 1 = (Units.map (residue R : R →* ResidueField R)).ker := by exact @_root_.P2MW.S_IsLocalRing_principalUnits_one_eq_ker_map_residue.solution R _ _

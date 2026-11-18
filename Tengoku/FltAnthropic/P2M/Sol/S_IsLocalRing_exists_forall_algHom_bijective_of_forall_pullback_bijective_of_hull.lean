@@ -126,12 +126,18 @@ variable {O : Type u} [CommRing O] [IsLocalRing O] {R : Type u} [CommRing R] [Al
 
 namespace Hull
 
+/--
+@isnad1 id=eq.3h10v.s8.ce6d9789e909 from=translated src=- shape=a13cf602 vocab=f9558a8a
+-/
 theorem Fmap_congr {A : Type u} [CommRing A] [Algebra O A] {resA : A →+* ResidueField O}
     {A' : Type u} [CommRing A'] [Algebra O A'] {resA' : A' →+* ResidueField O}
     (f f' : A →ₐ[O] A') (hf : resA'.comp f.toRingHom = resA) (hf' : resA'.comp f'.toRingHom = resA)
     (h : f = f') (x : S.F A resA) : S.Fmap f hf x = S.Fmap f' hf' x := by
   subst h; rfl
 
+/--
+@isnad1 id=eq.7h7v.s9.1dff3719fd18 from=translated src=- shape=5a4ae8e5 vocab=78f460d9
+-/
 theorem Ξ_congr {A : Type u} [CommRing A] [Algebra O A] (hlA : IsLocalRing A) (haA : IsArtinianRing A)
     (resA : A →+* ResidueField O) (hsA : Function.Surjective resA)
     (hcA : resA.comp (algebraMap O A) = residue O) (u u' : R →ₐ[O] A)
@@ -139,11 +145,17 @@ theorem Ξ_congr {A : Type u} [CommRing A] [Algebra O A] (hlA : IsLocalRing A) (
     S.Ξ A hlA haA resA hsA hcA u hu = S.Ξ A hlA haA resA hsA hcA u' hu' := by
   subst h; rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.4f8e9190e0f5 from=translated src=- shape=ef6bea86 vocab=511f8864
+-/
 theorem ker_res_eq_maximalIdeal {B : Type u} [CommRing B] [IsLocalRing B] [IsArtinianRing B]
     (res : B →+* ResidueField O) : RingHom.ker res = maximalIdeal B :=
   IsLocalRing.eq_maximalIdeal
     ((IsArtinianRing.isPrime_iff_isMaximal (RingHom.ker res)).1 (RingHom.ker_isPrime res))
 
+/--
+@isnad1 id=iff.0h4v.s7.ff8b1779f0cf from=translated src=- shape=4a1c7ae8 vocab=f7111d29
+-/
 theorem isUnit_iff_res_ne_zero {B : Type u} [CommRing B] [IsLocalRing B] [IsArtinianRing B]
     (res : B →+* ResidueField O) (b : B) : IsUnit b ↔ res b ≠ 0 := by
   rw [ne_eq, ← RingHom.mem_ker, ker_res_eq_maximalIdeal, IsLocalRing.mem_maximalIdeal, mem_nonunits_iff,
@@ -163,15 +175,27 @@ variable (O)
 abbrev resD : DualNumber (ResidueField O) →+* ResidueField O :=
   (TrivSqZeroExt.fstHom O (ResidueField O) (ResidueField O)).toRingHom
 
+/--
+@isnad1 id=islocalr.0h1v.s6.cc5fae064953 from=translated src=- shape=84ca63d1 vocab=9c70d44d
+-/
 theorem hlD : IsLocalRing (DualNumber (ResidueField O)) := inferInstance
 
+/--
+@isnad1 id=isartini.0h1v.s6.b71d2e73c65c from=translated src=- shape=763df72c vocab=33168f35
+-/
 theorem haD : IsArtinianRing (DualNumber (ResidueField O)) :=
   haveI : Module.Finite (ResidueField O) (DualNumber (ResidueField O)) :=
     inferInstanceAs (Module.Finite (ResidueField O) (ResidueField O × ResidueField O))
   IsArtinianRing.of_finite (ResidueField O) _
 
+/--
+@isnad1 id=surjecti.0h1v.s8.f2953dfd59bc from=translated src=- shape=62994114 vocab=9f9ef512
+-/
 theorem hsD : Function.Surjective (resD O) := fun c => ⟨TrivSqZeroExt.inl c, rfl⟩
 
+/--
+@isnad1 id=eq.0h1v.s8.e4038a031493 from=translated src=- shape=907c81de vocab=164426fa
+-/
 theorem hcD : (resD O).comp (algebraMap O (DualNumber (ResidueField O))) = residue O := rfl
 
 end dual
@@ -185,6 +209,9 @@ variable {B : Type u} [CommRing B] [Algebra O B] {A' : Type u} [CommRing A'] [Al
   (hcart : ∀ (a' : A') (a'' : A''), q' a' = q'' a'' → ∃! b : B, p' b = a' ∧ p'' b = a'')
 
 include hcomm hcart in
+/--
+@isnad1 id=eq.4h11v.s9.ceaf7ba4932b from=translated src=- shape=bf6c6fcd vocab=100082e7
+-/
 theorem cart_inj (b b' : B) (h1 : p' b = p' b') (h2 : p'' b = p'' b') : b = b' := by
   have hb : q' (p' b') = q'' (p'' b') := by
     change (q'.comp p') b' = (q''.comp p'') b'; rw [hcomm]
@@ -192,6 +219,9 @@ theorem cart_inj (b b' : B) (h1 : p' b = p' b') (h2 : p'' b = p'' b') : b = b' :
 
 include hcomm hcart in
 
+/--
+@isnad1 id=ex.3h12v.s9.67fb977ef928 from=translated src=- shape=7294ff27 vocab=100082e7
+-/
 theorem exists_lift {T : Type u} [CommRing T] [Algebra O T] (v' : T →ₐ[O] A') (v'' : T →ₐ[O] A'')
     (hv : q'.comp v' = q''.comp v'') :
     ∃ w : T →ₐ[O] B, p'.comp w = v' ∧ p''.comp w = v'' := by
@@ -215,6 +245,9 @@ theorem exists_lift {T : Type u} [CommRing T] [Algebra O T] (v' : T →ₐ[O] A'
   exact ⟨w, AlgHom.ext hf1, AlgHom.ext hf2⟩
 
 include hcomm hcart in
+/--
+@isnad1 id=eq.4h12v.s9.40c2e3409be5 from=translated src=- shape=0605e12c vocab=100082e7
+-/
 theorem lift_unique {T : Type u} [CommRing T] [Algebra O T] (w w' : T →ₐ[O] B)
     (h1 : p'.comp w = p'.comp w') (h2 : p''.comp w = p''.comp w') : w = w' :=
   AlgHom.ext fun x => cart_inj p' p'' q' q'' hcomm hcart _ _ (congr($h1 x)) (congr($h2 x))
@@ -229,45 +262,75 @@ abbrev It (t : A) : Ideal A := Ideal.span {t}
 
 abbrev qt (t : A) : A →ₐ[O] A ⧸ It t := Ideal.Quotient.mkₐ O (It t)
 
+/--
+@isnad1 id=surjecti.0h3v.s7.62d0ff35e5d9 from=translated src=- shape=38da4bca vocab=0269039a
+-/
 theorem qt_surjective (t : A) : Function.Surjective (qt (O := O) t) := Ideal.Quotient.mk_surjective
 
+/--
+@isnad1 id=iff.0h4v.s8.aff541832c8b from=translated src=- shape=48ee3132 vocab=3f58a6d0
+-/
 theorem qt_eq_zero_iff (t a : A) : qt (O := O) t a = 0 ↔ a ∈ Ideal.span {t} :=
   Ideal.Quotient.eq_zero_iff_mem
 
+/--
+@isnad1 id=iff.0h5v.s8.e05914fa9a12 from=translated src=- shape=54a986f7 vocab=aa47496d
+-/
 theorem qt_eq_iff (t a b : A) : qt (O := O) t a = qt (O := O) t b ↔ a - b ∈ Ideal.span {t} :=
   Ideal.Quotient.eq
 
+/--
+@isnad1 id=ne.1h4v.s8.1feaab692109 from=translated src=- shape=7b4fe4a3 vocab=1616b14b
+-/
 theorem It_ne_top [IsLocalRing A] [IsArtinianRing A] (resA : A →+* ResidueField O) (t : A)
     (htm : t ∈ RingHom.ker resA) : It t ≠ ⊤ := by
   apply Ideal.span_singleton_ne_top
   rw [isUnit_iff_res_ne_zero resA, not_not]
   exact htm
 
+/--
+@isnad1 id=eq.2h5v.s8.a43dc2ff22cc from=translated src=- shape=f73f43ca vocab=6ae7b08f
+-/
 theorem res_eq_zero_of_mem (resA : A →+* ResidueField O) (t : A) (htm : t ∈ RingHom.ker resA) (a : A)
     (ha : a ∈ It t) : resA a = 0 := by
   obtain ⟨c, rfl⟩ := Ideal.mem_span_singleton'.1 ha
   rw [map_mul, RingHom.mem_ker.1 htm, mul_zero]
 
+/--
+@isnad1 id=islocalr.1h4v.s8.ce4d4e439087 from=translated src=- shape=c1ca5760 vocab=35568d76
+-/
 theorem isLocalRing_quot [IsLocalRing A] [IsArtinianRing A] (resA : A →+* ResidueField O) (t : A)
     (htm : t ∈ RingHom.ker resA) : IsLocalRing (A ⧸ It t) :=
   haveI : Nontrivial (A ⧸ It t) := Ideal.Quotient.nontrivial_iff.2 (It_ne_top resA t htm)
   IsLocalRing.of_surjective' (Ideal.Quotient.mk (It t)) Ideal.Quotient.mk_surjective
 
+/--
+@isnad1 id=isartini.0h2v.s5.06ea6559a14b from=translated src=- shape=f7f0c9ee vocab=2ab857b2
+-/
 theorem isArtinianRing_quot [IsArtinianRing A] (t : A) : IsArtinianRing (A ⧸ It t) := inferInstance
 
 def res₀ (resA : A →+* ResidueField O) (t : A) (htm : t ∈ RingHom.ker resA) :
     A ⧸ It t →+* ResidueField O :=
   Ideal.Quotient.lift (It t) resA (fun a ha => res_eq_zero_of_mem resA t htm a ha)
 
+/--
+@isnad1 id=eq.1h4v.s8.540f1f10baa1 from=translated src=- shape=f8530bf2 vocab=96bf4d11
+-/
 theorem res₀_comp (resA : A →+* ResidueField O) (t : A) (htm : t ∈ RingHom.ker resA) :
     (res₀ resA t htm).comp (qt (O := O) t).toRingHom = resA :=
   RingHom.ext fun _ => rfl
 
+/--
+@isnad1 id=surjecti.2h4v.s9.acc81c3ffcb7 from=translated src=- shape=0845b600 vocab=a782f744
+-/
 theorem res₀_surjective (resA : A →+* ResidueField O) (hsA : Function.Surjective resA) (t : A)
     (htm : t ∈ RingHom.ker resA) : Function.Surjective (res₀ resA t htm) := fun c => by
   obtain ⟨a, rfl⟩ := hsA c
   exact ⟨qt (O := O) t a, rfl⟩
 
+/--
+@isnad1 id=eq.2h4v.s8.79f01b724c3f from=translated src=- shape=67b25cd8 vocab=cc2aec74
+-/
 theorem res₀_compat (resA : A →+* ResidueField O) (hcA : resA.comp (algebraMap O A) = residue O) (t : A)
     (htm : t ∈ RingHom.ker resA) : (res₀ resA t htm).comp (algebraMap O (A ⧸ It t)) = residue O := by
   rw [← hcA]; rfl
@@ -278,15 +341,24 @@ abbrev Bt (t : A) : Subalgebra O (A × A) :=
 abbrev π₁ (t : A) : ↥(Bt (O := O) t) →ₐ[O] A := (AlgHom.fst O A A).comp (Bt t).val
 abbrev π₂ (t : A) : ↥(Bt (O := O) t) →ₐ[O] A := (AlgHom.snd O A A).comp (Bt t).val
 
+/--
+@isnad1 id=iff.0h4v.s8.2e6f034cfe98 from=translated src=- shape=d54fec08 vocab=b279c57f
+-/
 theorem mem_Bt (t : A) (x : A × A) : x ∈ Bt (O := O) t ↔ qt (O := O) t x.1 = qt (O := O) t x.2 :=
   Iff.rfl
 
+/--
+@isnad1 id=mem.0h4v.s9.fe52f41a1c61 from=translated src=- shape=8e4a7498 vocab=13cdedab
+-/
 theorem diff_mem (t : A) (b : ↥(Bt (O := O) t)) : (b : A × A).2 - (b : A × A).1 ∈ Ideal.span {t} :=
   (qt_eq_iff t _ _).1 ((mem_Bt t _).1 b.2).symm
 
 abbrev resB (resA : A →+* ResidueField O) (t : A) : ↥(Bt (O := O) t) →+* ResidueField O :=
   resA.comp (π₁ t).toRingHom
 
+/--
+@isnad1 id=and.2h4v.s10.aafea99aef37 from=translated src=- shape=780521e9 vocab=581a231c
+-/
 theorem obj_Bt [IsLocalRing A] [IsArtinianRing A] (resA : A →+* ResidueField O)
     (hcA : resA.comp (algebraMap O A) = residue O) (t : A) (htm : t ∈ RingHom.ker resA) :
     IsLocalRing ↥(Bt (O := O) t) ∧ IsArtinianRing ↥(Bt (O := O) t) ∧
@@ -295,25 +367,43 @@ theorem obj_Bt [IsLocalRing A] [IsArtinianRing A] (resA : A →+* ResidueField O
   IsLocalRing.isLocalRing_and_isArtinianRing_equalizer_of_comp_algebraMap_eq_residue O A resA hcA A resA
     hcA (A ⧸ It t) (res₀ resA t htm) (qt t) (res₀_comp resA t htm) (qt t) (res₀_comp resA t htm)
 
+/--
+@isnad1 id=eq.1h4v.s9.65ddabcd7d2d from=translated src=- shape=240a2e98 vocab=689c0652
+-/
 theorem resB_compat (resA : A →+* ResidueField O) (hcA : resA.comp (algebraMap O A) = residue O)
     (t : A) : (resB (O := O) resA t).comp (algebraMap O ↥(Bt (O := O) t)) = residue O := by
   rw [← hcA]; rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.5e5c624415de from=translated src=- shape=8f2bf412 vocab=06b8af62
+-/
 theorem hπ₁ (resA : A →+* ResidueField O) (t : A) : resA.comp (π₁ (O := O) t).toRingHom = resB resA t :=
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s9.f5ab927168dc from=translated src=- shape=68df31b2 vocab=95fe54a8
+-/
 theorem res_snd_eq (resA : A →+* ResidueField O) (t : A) (htm : t ∈ RingHom.ker resA)
     (b : ↥(Bt (O := O) t)) : resA (b : A × A).2 = resA (b : A × A).1 := by
   rw [← sub_eq_zero, ← map_sub]
   exact res_eq_zero_of_mem resA t htm _ (diff_mem t b)
 
+/--
+@isnad1 id=eq.1h4v.s10.80b8738bbd44 from=translated src=- shape=613cf390 vocab=f3a71686
+-/
 theorem hπ₂ (resA : A →+* ResidueField O) (t : A) (htm : t ∈ RingHom.ker resA) :
     resA.comp (π₂ (O := O) t).toRingHom = resB resA t :=
   RingHom.ext fun b => res_snd_eq resA t htm b
 
+/--
+@isnad1 id=eq.0h3v.s9.90c696766aae from=translated src=- shape=49f7ab6e vocab=f1bc42ac
+-/
 theorem comm₁ (t : A) : (qt (O := O) t).comp (π₁ t) = (qt t).comp (π₂ t) :=
   AlgHom.ext fun b => (mem_Bt t _).1 b.2
 
+/--
+@isnad1 id=existsun.1h5v.s11.a1f219c8a421 from=translated src=- shape=754a6fb9 vocab=f260390a
+-/
 theorem cart₁ (t : A) (a' a'' : A) (h : qt (O := O) t a' = qt (O := O) t a'') :
     ∃! b : ↥(Bt (O := O) t), π₁ t b = a' ∧ π₂ t b = a'' := by
   refine ⟨⟨(a', a''), h⟩, ⟨rfl, rfl⟩, ?_⟩
@@ -323,9 +413,15 @@ theorem cart₁ (t : A) (a' a'' : A) (h : qt (O := O) t a' = qt (O := O) t a'') 
 def coef (t : A) (b : ↥(Bt (O := O) t)) : A :=
   (Ideal.mem_span_singleton'.1 (diff_mem t b)).choose
 
+/--
+@isnad1 id=eq.0h4v.s9.bb17cfb10a44 from=translated src=- shape=e4915a08 vocab=6fb1b690
+-/
 theorem coef_spec (t : A) (b : ↥(Bt (O := O) t)) : coef t b * t = (b : A × A).2 - (b : A × A).1 :=
   (Ideal.mem_span_singleton'.1 (diff_mem t b)).choose_spec
 
+/--
+@isnad1 id=eq.2h5v.s8.d99fbded7320 from=translated src=- shape=6ef4e4b0 vocab=6798d7ae
+-/
 theorem res_eq_zero_of_mul_eq_zero [IsLocalRing A] [IsArtinianRing A] (resA : A →+* ResidueField O)
     (t : A) (ht0 : t ≠ 0) (c : A) (hc : c * t = 0) : resA c = 0 := by
   by_contra h
@@ -338,6 +434,9 @@ theorem res_eq_zero_of_mul_eq_zero [IsLocalRing A] [IsArtinianRing A] (resA : A 
 def lam (resA : A →+* ResidueField O) (t : A) (b : ↥(Bt (O := O) t)) : ResidueField O :=
   resA (coef t b)
 
+/--
+@isnad1 id=eq.2h6v.s9.2171655c3c79 from=translated src=- shape=69cb3172 vocab=8c7f3e12
+-/
 theorem lam_eq_of [IsLocalRing A] [IsArtinianRing A] (resA : A →+* ResidueField O) (t : A) (ht0 : t ≠ 0)
     (b : ↥(Bt (O := O) t)) (c : A) (hc : c * t = (b : A × A).2 - (b : A × A).1) :
     lam resA t b = resA c := by
@@ -345,6 +444,9 @@ theorem lam_eq_of [IsLocalRing A] [IsArtinianRing A] (resA : A →+* ResidueFiel
   apply res_eq_zero_of_mul_eq_zero resA t ht0
   rw [sub_mul, hc, coef_spec, sub_self]
 
+/--
+@isnad1 id=eq.2h6v.s9.16c2a6d7383c from=translated src=- shape=ba2ab8c2 vocab=13500545
+-/
 theorem mul_eq_of_lam_eq (resA : A →+* ResidueField O) (t : A) (hmt : ∀ m ∈ RingHom.ker resA, m * t = 0)
     (b : ↥(Bt (O := O) t)) (c : A) (hc : resA c = lam resA t b) :
     c * t = (b : A × A).2 - (b : A × A).1 := by
@@ -399,12 +501,18 @@ def τ [IsLocalRing A] [IsArtinianRing A] (resA : A →+* ResidueField O)
       · change (0 : A) * t = (algebraMap O (A × A) o).2 - (algebraMap O (A × A) o).1
         simp
 
+/--
+@isnad1 id=eq.3h4v.s10.1440ea3b8b53 from=translated src=- shape=b0f95169 vocab=555cb139
+-/
 theorem comm₂ [IsLocalRing A] [IsArtinianRing A] (resA : A →+* ResidueField O)
     (hcA : resA.comp (algebraMap O A) = residue O) (t : A) (ht0 : t ≠ 0) (htm : t ∈ RingHom.ker resA) :
     (resAlgHom resA hcA).comp (π₁ t) =
       (TrivSqZeroExt.fstHom O (ResidueField O) (ResidueField O)).comp (τ resA hcA t ht0 htm) :=
   AlgHom.ext fun _ => rfl
 
+/--
+@isnad1 id=existsun.6h6v.s11.a78f06d3633f from=translated src=- shape=b3fc75e8 vocab=ed4ed01d
+-/
 theorem cart₂ [IsLocalRing A] [IsArtinianRing A] (resA : A →+* ResidueField O)
     (hsA : Function.Surjective resA) (hcA : resA.comp (algebraMap O A) = residue O) (t : A) (ht0 : t ≠ 0)
     (htm : t ∈ RingHom.ker resA) (hmt : ∀ m ∈ RingHom.ker resA, m * t = 0)
@@ -430,12 +538,18 @@ theorem cart₂ [IsLocalRing A] [IsArtinianRing A] (resA : A →+* ResidueField 
 
 end pullback
 
+/--
+@isnad1 id=eq.2h9v.s9.a01f2856502e from=translated src=- shape=cdea94cb vocab=c15651a3
+-/
 theorem comp_compat {A : Type u} [CommRing A] [Algebra O A] {resA : A →+* ResidueField O}
     {A' : Type u} [CommRing A'] [Algebra O A'] {resA' : A' →+* ResidueField O}
     (f : A →ₐ[O] A') (hf : resA'.comp f.toRingHom = resA) (u : R →ₐ[O] A)
     (hu : resA.comp u.toRingHom = S.resR) : resA'.comp (f.comp u).toRingHom = S.resR := by
   rw [← hu, ← hf]; rfl
 
+/--
+@isnad1 id=frel.3h10v.s9.f59a0d740180 from=translated src=- shape=804a0f45 vocab=9a87a7fe
+-/
 theorem Fmap_gf_id {A : Type u} [CommRing A] [Algebra O A] {resA : A →+* ResidueField O}
     {A' : Type u} [CommRing A'] [Algebra O A'] {resA' : A' →+* ResidueField O}
     (f : A →ₐ[O] A') (hf : resA'.comp f.toRingHom = resA) (g : A' →ₐ[O] A)
@@ -481,6 +595,9 @@ abbrev ΞD (θ : R →ₐ[O] DualNumber (ResidueField O)) (hθ : (resD O).comp �
 
 abbrev τE : ↥(Bt (O := O) E.t) →ₐ[O] DualNumber (ResidueField O) := τ E.resA E.hcA E.t E.ht0 E.htm
 
+/--
+@isnad1 id=eq.0h3v.s10.e026380065c0 from=translated src=- shape=542c576e vocab=957f6779
+-/
 theorem hτE : (resD O).comp (τE E).toRingHom = resB E.resA E.t := rfl
 
 def Inj : Prop :=
@@ -499,6 +616,9 @@ def Surj₀ : Prop :=
   ∀ x : S.F (A ⧸ It E.t) (res₀ E.resA E.t E.htm), ∃ (u : R →ₐ[O] A ⧸ It E.t)
     (hu : (res₀ E.resA E.t E.htm).comp u.toRingHom = S.resR), S.Frel (Ξ₀ S E u hu) x
 
+/--
+@isnad1 id=frel.1h6v.s9.3bb2ad4ec5cd from=translated src=- shape=4e7fd867 vocab=1f573022
+-/
 theorem nat_qt (u : R →ₐ[O] A) (hu : E.resA.comp u.toRingHom = S.resR) :
     S.Frel (Ξ₀ S E ((qt E.t).comp u) (comp_compat S (qt E.t) (res₀_comp E.resA E.t E.htm) u hu))
       (S.Fmap (qt E.t) (res₀_comp E.resA E.t E.htm) (ΞA S E u hu)) :=
@@ -506,6 +626,9 @@ theorem nat_qt (u : R →ₐ[O] A) (hu : E.resA.comp u.toRingHom = S.resR) :
     (isArtinianRing_quot E.t) (res₀ E.resA E.t E.htm) (res₀_surjective E.resA E.hsA E.t E.htm)
     (res₀_compat E.resA E.hcA E.t E.htm) (qt E.t) (res₀_comp E.resA E.t E.htm) u hu _
 
+/--
+@isnad1 id=frel.1h6v.s10.560ed01a5c4b from=translated src=- shape=5d3ec55c vocab=28f3a3c1
+-/
 theorem nat_π₁ (w : R →ₐ[O] ↥(Bt (O := O) E.t)) (hw : (resB E.resA E.t).comp w.toRingHom = S.resR) :
     S.Frel (ΞA S E ((π₁ E.t).comp w) (comp_compat S (π₁ E.t) (hπ₁ E.resA E.t) w hw))
       (S.Fmap (π₁ E.t) (hπ₁ E.resA E.t) (ΞB S E w hw)) :=
@@ -513,6 +636,9 @@ theorem nat_π₁ (w : R →ₐ[O] ↥(Bt (O := O) E.t)) (hw : (resB E.resA E.t)
     (resB E.resA E.t) (obj_Bt E.resA E.hcA E.t E.htm).2.2 (resB_compat E.resA E.hcA E.t) A ‹_› ‹_› E.resA
     E.hsA E.hcA (π₁ E.t) (hπ₁ E.resA E.t) w hw _
 
+/--
+@isnad1 id=frel.1h6v.s10.eaa6e48444cb from=translated src=- shape=5d3ec55c vocab=3439e3d9
+-/
 theorem nat_π₂ (w : R →ₐ[O] ↥(Bt (O := O) E.t)) (hw : (resB E.resA E.t).comp w.toRingHom = S.resR) :
     S.Frel (ΞA S E ((π₂ E.t).comp w) (comp_compat S (π₂ E.t) (hπ₂ E.resA E.t E.htm) w hw))
       (S.Fmap (π₂ E.t) (hπ₂ E.resA E.t E.htm) (ΞB S E w hw)) :=
@@ -520,6 +646,9 @@ theorem nat_π₂ (w : R →ₐ[O] ↥(Bt (O := O) E.t)) (hw : (resB E.resA E.t)
     (resB E.resA E.t) (obj_Bt E.resA E.hcA E.t E.htm).2.2 (resB_compat E.resA E.hcA E.t) A ‹_› ‹_› E.resA
     E.hsA E.hcA (π₂ E.t) (hπ₂ E.resA E.t E.htm) w hw _
 
+/--
+@isnad1 id=frel.1h6v.s11.967207f31b27 from=translated src=- shape=59601229 vocab=15a62ed8
+-/
 theorem nat_τ (w : R →ₐ[O] ↥(Bt (O := O) E.t)) (hw : (resB E.resA E.t).comp w.toRingHom = S.resR) :
     S.Frel (ΞD S ((τE E).comp w) (comp_compat S (τE E) (hτE E) w hw))
       (S.Fmap (τE E) (hτE E) (ΞB S E w hw)) :=
@@ -527,27 +656,42 @@ theorem nat_τ (w : R →ₐ[O] ↥(Bt (O := O) E.t)) (hw : (resB E.resA E.t).co
     (resB E.resA E.t) (obj_Bt E.resA E.hcA E.t E.htm).2.2 (resB_compat E.resA E.hcA E.t)
     (DualNumber (ResidueField O)) (hlD O) (haD O) (resD O) (hsD O) (hcD O) (τE E) (hτE E) w hw _
 
+/--
+@isnad1 id=frel.3h7v.s9.66d5cb3b564e from=translated src=- shape=1ed68f27 vocab=d1c0bd32
+-/
 theorem nat_qt' (u : R →ₐ[O] A) (hu : E.resA.comp u.toRingHom = S.resR) (v : R →ₐ[O] A ⧸ It E.t)
     (hv : (res₀ E.resA E.t E.htm).comp v.toRingHom = S.resR) (h : (qt E.t).comp u = v) :
     S.Frel (Ξ₀ S E v hv) (S.Fmap (qt E.t) (res₀_comp E.resA E.t E.htm) (ΞA S E u hu)) := by
   subst h; exact nat_qt S E u hu
 
+/--
+@isnad1 id=frel.3h7v.s10.ede45902de7e from=translated src=- shape=0da9e6a9 vocab=b299e0d4
+-/
 theorem nat_π₁' (w : R →ₐ[O] ↥(Bt (O := O) E.t)) (hw : (resB E.resA E.t).comp w.toRingHom = S.resR)
     (u : R →ₐ[O] A) (hu : E.resA.comp u.toRingHom = S.resR) (h : (π₁ E.t).comp w = u) :
     S.Frel (ΞA S E u hu) (S.Fmap (π₁ E.t) (hπ₁ E.resA E.t) (ΞB S E w hw)) := by
   subst h; exact nat_π₁ S E w hw
 
+/--
+@isnad1 id=frel.3h7v.s10.815af5021e95 from=translated src=- shape=0da9e6a9 vocab=1b7c1056
+-/
 theorem nat_π₂' (w : R →ₐ[O] ↥(Bt (O := O) E.t)) (hw : (resB E.resA E.t).comp w.toRingHom = S.resR)
     (u : R →ₐ[O] A) (hu : E.resA.comp u.toRingHom = S.resR) (h : (π₂ E.t).comp w = u) :
     S.Frel (ΞA S E u hu) (S.Fmap (π₂ E.t) (hπ₂ E.resA E.t E.htm) (ΞB S E w hw)) := by
   subst h; exact nat_π₂ S E w hw
 
+/--
+@isnad1 id=frel.3h7v.s11.98198c7122d2 from=translated src=- shape=c0ac0236 vocab=5996745a
+-/
 theorem nat_τ' (w : R →ₐ[O] ↥(Bt (O := O) E.t)) (hw : (resB E.resA E.t).comp w.toRingHom = S.resR)
     (θ : R →ₐ[O] DualNumber (ResidueField O)) (hθ : (resD O).comp θ.toRingHom = S.resR)
     (h : (τE E).comp w = θ) :
     S.Frel (ΞD S θ hθ) (S.Fmap (τE E) (hτE E) (ΞB S E w hw)) := by
   subst h; exact nat_τ S E w hw
 
+/--
+@isnad1 id=and.0h5v.s11.5ffce0f8bace from=translated src=- shape=08d34035 vocab=047ce060
+-/
 theorem glue₁ :
     (∀ (x' : S.F A E.resA) (x'' : S.F A E.resA),
         S.Frel (S.Fmap (qt E.t) (res₀_comp E.resA E.t E.htm) x')
@@ -568,6 +712,9 @@ theorem glue₁ :
     (π₁ E.t) (hπ₁ E.resA E.t) (π₂ E.t) (hπ₂ E.resA E.t E.htm) (qt E.t) (res₀_comp E.resA E.t E.htm)
     (qt E.t) (res₀_comp E.resA E.t E.htm) (comm₁ E.t) (cart₁ E.t) (qt_surjective E.t)
 
+/--
+@isnad1 id=frel.2h7v.s11.a2bb28f39aba from=translated src=- shape=f7d677d0 vocab=5366617a
+-/
 theorem glue₂ :
     ∀ (y₁ y₂ : S.F ↥(Bt (O := O) E.t) (resB E.resA E.t)),
       S.Frel (S.Fmap (π₁ E.t) (hπ₁ E.resA E.t) y₁) (S.Fmap (π₁ E.t) (hπ₁ E.resA E.t) y₂) →
@@ -582,6 +729,9 @@ theorem glue₂ :
     (resAlgHom E.resA E.hcA) rfl (TrivSqZeroExt.fstHom O (ResidueField O) (ResidueField O)) rfl
     (comm₂ E.resA E.hcA E.t E.ht0 E.htm) (cart₂ E.resA E.hsA E.hcA E.t E.ht0 E.htm E.hmt) (hsD O)).2
 
+/--
+@isnad1 id=inj.1h5v.s6.f9ddd4d71a34 from=translated src=- shape=b1c963d3 vocab=260b7dc8
+-/
 theorem inj_step (ih : Inj₀ S E) : Inj S E := by
   intro u₁ u₂ hu₁ hu₂ hrel
 
@@ -626,6 +776,9 @@ theorem inj_step (ih : Inj₀ S E) : Inj S E := by
       (cart₂ E.resA E.hsA E.hcA E.t E.ht0 E.htm E.hmt) w w₀ (by rw [hw1, hw01]) h4
   rw [← hw2, h5, hw02]
 
+/--
+@isnad1 id=surj.1h5v.s6.b6acc21ddb23 from=translated src=- shape=b1c963d3 vocab=39680a5a
+-/
 theorem surj_step (ih : Surj₀ S E) : Surj S E := by
   intro x'
 
@@ -679,6 +832,9 @@ variable {A : Type u} [CommRing A] [IsLocalRing A] [IsArtinianRing A] [Algebra O
   (hcA : resA.comp (algebraMap O A) = residue O)
 
 include hsA in
+/--
+@isnad1 id=and.3h5v.s9.269b64e92f7e from=translated src=- shape=8a604c78 vocab=d73c0f1c
+-/
 theorem base_case (hm : maximalIdeal A = ⊥) :
     (∀ (u u' : R →ₐ[O] A) (hu : resA.comp u.toRingHom = S.resR) (hu' : resA.comp u'.toRingHom = S.resR),
         S.Frel (S.Ξ A ‹_› ‹_› resA hsA hcA u hu) (S.Ξ A ‹_› ‹_› resA hsA hcA u' hu') → u = u') ∧
@@ -727,6 +883,9 @@ theorem base_case (hm : maximalIdeal A = ⊥) :
 
 end base
 
+/--
+@isnad1 id=ex.1h1v.s7.ff5adb205cbb from=translated src=- shape=769bde26 vocab=da22ff14
+-/
 theorem exists_small (A : Type u) [CommRing A] [IsLocalRing A] [IsArtinianRing A]
     (hm : maximalIdeal A ≠ ⊥) :
     ∃ t : A, t ≠ 0 ∧ t ∈ maximalIdeal A ∧ ∀ a ∈ maximalIdeal A, a * t = 0 := by
@@ -748,6 +907,9 @@ theorem exists_small (A : Type u) [CommRing A] [IsLocalRing A] [IsArtinianRing A
   rw [← hj, hM] at hat
   exact hat
 
+/--
+@isnad1 id=and.3h6v.s9.c6c67573d317 from=translated src=- shape=28fb0bf6 vocab=33681230
+-/
 theorem bij_of_length (n : ℕ) :
     ∀ (A : Type u) [CommRing A] [IsLocalRing A] [IsArtinianRing A] [Algebra O A]
       (resA : A →+* ResidueField O) (hsA : Function.Surjective resA)
@@ -780,6 +942,9 @@ theorem bij_of_length (n : ℕ) :
     (res₀_compat resA hcA t htm) hn₀.symm
   exact ⟨inj_step S E ih₀.1, surj_step S E ih₀.2⟩
 
+/--
+@isnad1 id=and.2h5v.s9.d4ef4800581e from=translated src=- shape=166e0f43 vocab=20a69fc9
+-/
 theorem bij (A : Type u) [CommRing A] [IsLocalRing A] [IsArtinianRing A] [Algebra O A]
     (resA : A →+* ResidueField O) (hsA : Function.Surjective resA)
     (hcA : resA.comp (algebraMap O A) = residue O) :
@@ -795,18 +960,27 @@ def β (A : Type u) [CommRing A] [IsLocalRing A] [IsArtinianRing A] [Algebra O A
     (hcA : resA.comp (algebraMap O A) = residue O) (x : S.F A resA) : R →ₐ[O] A :=
   ((bij S A resA hsA hcA).2 x).choose
 
+/--
+@isnad1 id=eq.2h6v.s8.d65e927a6134 from=translated src=- shape=8a08c33b vocab=71720309
+-/
 theorem β_compat (A : Type u) [CommRing A] [IsLocalRing A] [IsArtinianRing A] [Algebra O A]
     (resA : A →+* ResidueField O) (hsA : Function.Surjective resA)
     (hcA : resA.comp (algebraMap O A) = residue O) (x : S.F A resA) :
     resA.comp (β S A resA hsA hcA x).toRingHom = S.resR :=
   ((bij S A resA hsA hcA).2 x).choose_spec.choose
 
+/--
+@isnad1 id=frel.2h6v.s8.fcb405e77026 from=translated src=- shape=1cbd568e vocab=773ba0dd
+-/
 theorem β_spec (A : Type u) [CommRing A] [IsLocalRing A] [IsArtinianRing A] [Algebra O A]
     (resA : A →+* ResidueField O) (hsA : Function.Surjective resA)
     (hcA : resA.comp (algebraMap O A) = residue O) (x : S.F A resA) :
     S.Frel (S.Ξ A ‹_› ‹_› resA hsA hcA (β S A resA hsA hcA x) (β_compat S A resA hsA hcA x)) x :=
   ((bij S A resA hsA hcA).2 x).choose_spec.choose_spec
 
+/--
+@isnad1 id=eq.4h7v.s9.69a681f985ab from=translated src=- shape=455b5d07 vocab=0b043be5
+-/
 theorem β_unique (A : Type u) [CommRing A] [IsLocalRing A] [IsArtinianRing A] [Algebra O A]
     (resA : A →+* ResidueField O) (hsA : Function.Surjective resA)
     (hcA : resA.comp (algebraMap O A) = residue O) (x : S.F A resA) (u : R →ₐ[O] A)
@@ -821,6 +995,9 @@ end P2mSchlessingerUniversal
 open scoped _root_.P2MW.S_IsLocalRing_exists_forall_algHom_bijective_of_forall_pullback_bijective_of_hull.P2mSchlessingerUniversal.Hull _root_.P2MW.S_IsLocalRing_exists_forall_algHom_bijective_of_forall_pullback_bijective_of_hull.P2mSchlessingerUniversal
 
 open IsLocalRing in
+/--
+@isnad1 id=ex.5h16v.s14.db53c8768d6c from=translated src=- shape=83faac55 vocab=4c5b7a58
+-/
 theorem solution
     (O : Type u) [CommRing O] [IsLocalRing O]
     (F : ∀ (A : Type u) [CommRing A] [Algebra O A], (A →+* ResidueField O) → Type u)

@@ -11,6 +11,9 @@ open IsLocalRing Polynomial
 
 open IsLocalRing Polynomial
 
+/--
+@isnad1 id=mem.4h5v.s8.5d641af323a1 from=translated src=- shape=1d9a15f6 vocab=89735b8a
+-/
 theorem solution
     {R : Type*} [CommRing R] [IsLocalRing R] [IsNoetherianRing R] [IsAdicComplete (maximalIdeal R) R]
     (e : ℕ) (he : 0 < e) (heR : IsUnit (e : R)) (w : Rˣ)

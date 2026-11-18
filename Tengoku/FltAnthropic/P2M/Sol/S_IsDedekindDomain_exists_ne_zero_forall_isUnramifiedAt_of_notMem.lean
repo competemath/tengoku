@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 attribute [local instance] FractionRing.liftAlgebra FractionRing.isScalarTower_liftAlgebra
 
+/--
+@isnad1 id=ex.0h2v.s8.4d13e5cebdeb from=translated src=- shape=fe4182f4 vocab=85fa470c
+-/
 theorem solution
     (A B : Type*) [CommRing A] [IsDedekindDomain A] [CommRing B] [IsDedekindDomain B] [Algebra A B]
     [Module.IsTorsionFree A B] [Module.Finite A B] [Algebra.IsSeparable (FractionRing A) (FractionRing B)] :

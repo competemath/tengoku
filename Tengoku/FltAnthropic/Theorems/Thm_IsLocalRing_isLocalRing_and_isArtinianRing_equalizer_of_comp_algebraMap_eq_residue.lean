@@ -11,6 +11,9 @@ universe u
 
 open IsLocalRing in
 
+/--
+@isnad1 id=and.4h9v.s12.e9a6617a5f1a from=translated src=- shape=b215240e vocab=4f8792b4
+-/
 theorem IsLocalRing.isLocalRing_and_isArtinianRing_equalizer_of_comp_algebraMap_eq_residue
     (O : Type u) [CommRing O] [IsLocalRing O]
     (A' : Type u) [CommRing A'] [IsLocalRing A'] [IsArtinianRing A'] [Algebra O A']

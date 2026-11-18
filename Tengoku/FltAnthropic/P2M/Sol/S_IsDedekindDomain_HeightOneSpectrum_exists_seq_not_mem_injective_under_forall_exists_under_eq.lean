@@ -11,6 +11,9 @@ open NumberField IsDedekindDomain
 
 namespace RecAux
 
+/--
+@isnad1 id=infinite.0h1v.s4.5b9417d72574 from=translated src=- shape=43b6f901 vocab=cd830730
+-/
 theorem infinite_heightOneSpectrum (L : Type) [Field L] [NumberField L] : Infinite (HeightOneSpectrum (𝓞 L)) := by
   classical
   have key : ∀ p : {p : ℕ // p.Prime}, ∃ v : HeightOneSpectrum (𝓞 L),
@@ -34,6 +37,9 @@ theorem infinite_heightOneSpectrum (L : Type) [Field L] [NumberField L] : Infini
   have hd : q.1 ∣ p.1 := Int.natCast_dvd_natCast.mp (Ideal.mem_span_singleton.mp hmem)
   exact ((Nat.prime_dvd_prime_iff_eq q.2 p.2).mp hd).symm
 
+/--
+@isnad1 id=countabl.0h1v.s4.b87d9180016d from=translated src=- shape=43b6f901 vocab=7692a8de
+-/
 theorem countable_heightOneSpectrum (K : Type) [Field K] [NumberField K] : Countable (HeightOneSpectrum (𝓞 K)) := by
   have hc : (Set.univ : Set (Ideal (𝓞 K))).Countable := by
     have hsub : (Set.univ : Set (Ideal (𝓞 K))) ⊆ ⋃ n : ℕ, {I : Ideal (𝓞 K) | Ideal.absNorm I ≤ n} := by
@@ -43,6 +49,9 @@ theorem countable_heightOneSpectrum (K : Type) [Field K] [NumberField K] : Count
   haveI : Countable (Ideal (𝓞 K)) := Set.countable_univ_iff.mp hc
   exact Function.Injective.countable fun v w (h : v.asIdeal = w.asIdeal) => HeightOneSpectrum.ext h
 
+/--
+@isnad1 id=finite.0h3v.s6.1755c7ad28ba from=translated src=- shape=c0395ea8 vocab=61179c12
+-/
 theorem finite_fibre_under (K L : Type) [Field K] [NumberField K] [Field L] [NumberField L] [Algebra K L]
     (v : HeightOneSpectrum (𝓞 K)) :
     {w : HeightOneSpectrum (𝓞 L) | HeightOneSpectrum.under (𝓞 K) w = v}.Finite := by
@@ -54,6 +63,9 @@ theorem finite_fibre_under (K L : Type) [Field K] [NumberField K] [Field L] [Num
   rw [← hw]
   rfl
 
+/--
+@isnad1 id=ex.0h3v.s8.a736838765c8 from=translated src=- shape=36b39218 vocab=c5028abe
+-/
 theorem main (K L : Type) [Field K] [NumberField K] [Field L] [NumberField L] [Algebra K L]
     (SL : Finset (HeightOneSpectrum (𝓞 L))) :
     ∃ rec : ℕ → HeightOneSpectrum (𝓞 L), (∀ k, rec k ∉ SL) ∧
@@ -97,6 +109,9 @@ theorem main (K L : Type) [Field K] [NumberField K] [Field L] [NumberField L] [A
 
 end RecAux
 
+/--
+@isnad1 id=ex.0h3v.s8.a736838765c8 from=translated src=- shape=36b39218 vocab=c5028abe
+-/
 theorem solution
     (K L : Type) [Field K] [NumberField K] [Field L] [NumberField L] [Algebra K L]
     (SL : Finset (HeightOneSpectrum (𝓞 L))) :

@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open scoped BigOperators
 
+/--
+@isnad1 id=le.1h5v.s9.96103c8826b2 from=translated src=- shape=54b3a68f vocab=7c2dc511
+-/
 theorem IsLocalRing.choose_two_le_of_basis_ker_linearCombination
     {R : Type} [CommRing R] [IsLocalRing R] {m : ℕ} (σ : Fin m → R)
     (hσ : ∀ c : Fin m → R, ∑ i, c i * σ i ∈ IsLocalRing.maximalIdeal R ^ 2 →

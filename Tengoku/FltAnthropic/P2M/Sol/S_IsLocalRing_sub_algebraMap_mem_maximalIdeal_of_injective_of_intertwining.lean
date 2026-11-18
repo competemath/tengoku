@@ -20,6 +20,9 @@ namespace DCore
 
 open IsLocalRing
 
+/--
+@isnad1 id=ex.1h4v.s8.9302d921cc43 from=translated src=- shape=8406a259 vocab=13089a8b
+-/
 theorem exists_pow_mem_map_pow {𝒪 : Type} [CommRing 𝒪] [IsLocalRing 𝒪]
     {R : Type} [CommRing R] [IsLocalRing R] [Algebra 𝒪 R] [Module.Finite 𝒪 R]
     (x : R) (hx : x ∈ maximalIdeal R) (k : ℕ) :
@@ -36,6 +39,9 @@ theorem exists_pow_mem_map_pow {𝒪 : Type} [CommRing 𝒪] [IsLocalRing 𝒪]
   rw [pow_mul, Ideal.map_pow]
   exact Ideal.pow_mem_pow (hN (Ideal.pow_mem_pow hx N)) k
 
+/--
+@isnad1 id=mem.1h6v.s8.bf30ec2cb93b from=translated src=- shape=5d7c0652 vocab=41d52154
+-/
 theorem smul_mem_of_mem_map {𝒪 : Type} [CommRing 𝒪] {R : Type} [CommRing R] [Algebra 𝒪 R]
     {M : Type} [AddCommGroup M] [Module R M] [Module 𝒪 M] [IsScalarTower 𝒪 R M]
     (J : Ideal 𝒪) (y : R) (hy : y ∈ J.map (algebraMap 𝒪 R)) (m : M) :
@@ -51,6 +57,9 @@ theorem smul_mem_of_mem_map {𝒪 : Type} [CommRing 𝒪] {R : Type} [CommRing R
     rw [smul_eq_mul, mul_comm, mul_smul]
     exact hy (r • m)
 
+/--
+@isnad1 id=ex.1h5v.s9.ef53407bd747 from=translated src=- shape=11f84a63 vocab=6868617f
+-/
 theorem nilpotent_smul {𝒪 : Type} [CommRing 𝒪] [IsLocalRing 𝒪]
     {R : Type} [CommRing R] [IsLocalRing R] [Algebra 𝒪 R] [Module.Finite 𝒪 R]
     {M : Type} [AddCommGroup M] [Module R M] [Module 𝒪 M] [IsScalarTower 𝒪 R M]
@@ -75,6 +84,9 @@ namespace ClauseB
 
 open IsLocalRing
 
+/--
+@isnad1 id=eq.1h11v.s10.ebcdc66698fb from=translated src=- shape=2f8c0f9f vocab=a3a2b3d5
+-/
 theorem map_pow_smul {𝒪 : Type} [CommRing 𝒪]
     {R 𝕋 : Type} [CommRing R] [CommRing 𝕋] [Algebra 𝒪 R] [Algebra 𝒪 𝕋]
     {C V : Type} [AddCommGroup C] [Module 𝒪 C] [Module R C] [IsScalarTower 𝒪 R C]
@@ -89,6 +101,9 @@ theorem map_pow_smul {𝒪 : Type} [CommRing 𝒪]
     rw [pow_succ, mul_smul, ih, sub_smul, map_sub, hj, algebraMap_smul, map_smul, pow_succ, mul_smul,
       sub_smul, algebraMap_smul]
 
+/--
+@isnad1 id=mem.2h12v.s10.ae2875916c53 from=translated src=- shape=a804ecc9 vocab=be76077a
+-/
 theorem corner_of_full {𝒪 : Type} [CommRing 𝒪] [IsLocalRing 𝒪]
     {R 𝕋 : Type} [CommRing R] [IsLocalRing R] [CommRing 𝕋] [Algebra 𝒪 R] [Algebra 𝒪 𝕋]
     [Module.Finite 𝒪 R]
@@ -129,6 +144,9 @@ namespace Gamma
 
 open IsLocalRing
 
+/--
+@isnad1 id=mem.4h10v.s10.f2189edfeabc from=translated src=- shape=58832428 vocab=57cb97bc
+-/
 theorem sub_algebraMap_mem_of_intertwining {𝒪 : Type} [CommRing 𝒪] [IsLocalRing 𝒪] [IsNoetherianRing 𝒪]
     {R₀ Rₐ : Type} [CommRing R₀] [IsLocalRing R₀] [Algebra 𝒪 R₀] [Module.Finite 𝒪 R₀]
     [CommRing Rₐ] [IsLocalRing Rₐ] [Algebra 𝒪 Rₐ]
@@ -182,6 +200,9 @@ theorem sub_algebraMap_mem_of_intertwining {𝒪 : Type} [CommRing 𝒪] [IsLoca
 
 end CohL2.Gamma
 
+/--
+@isnad1 id=mem.4h10v.s10.f2189edfeabc from=translated src=- shape=58832428 vocab=57cb97bc
+-/
 theorem solution
     {𝒪 : Type} [CommRing 𝒪] [IsLocalRing 𝒪] [IsNoetherianRing 𝒪]
     {R₀ Rₐ : Type} [CommRing R₀] [IsLocalRing R₀] [Algebra 𝒪 R₀] [Module.Finite 𝒪 R₀]

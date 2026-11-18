@@ -12,6 +12,9 @@ namespace WeilPairingND
 variable {R : Type*} [CommRing R] [IsDedekindDomain R] {K : Type*} [Field K] [Algebra R K]
   [IsFractionRing R K]
 
+/--
+@isnad1 id=le.1h1v.s6.27dd339f2759 from=translated src=- shape=445cfd7b vocab=6b2015c6
+-/
 lemma le_exp_neg_one_of_lt_one {x : ℤᵐ⁰} (hx : x < 1) : x ≤ exp (-1) := by
   by_cases h0 : x = 0
   · rw [h0]; exact zero_le
@@ -22,6 +25,9 @@ lemma le_exp_neg_one_of_lt_one {x : ℤᵐ⁰} (hx : x < 1) : x ≤ exp (-1) := 
 
 omit [IsDedekindDomain R] in
 
+/--
+@isnad1 id=isunit.1h3v.s6.e09cb5565170 from=translated src=- shape=bdfb1824 vocab=62a6d11f
+-/
 lemma isUnit_of_forall_not_mem [IsDomain R] {r : R} (hr : ∀ w : HeightOneSpectrum R, r ∉ w.asIdeal)
     (w₀ : HeightOneSpectrum R) : IsUnit r := by
   by_contra hu
@@ -34,6 +40,9 @@ lemma isUnit_of_forall_not_mem [IsDomain R] {r : R} (hr : ∀ w : HeightOneSpect
     exact hr0 hle
   exact hr ⟨𝔪, h𝔪.isPrime, h𝔪0⟩ (hle (Ideal.mem_span_singleton_self r))
 
+/--
+@isnad1 id=ex.5h6v.s9.2803d75cc8ff from=translated src=- shape=5e925752 vocab=55daa182
+-/
 theorem exists_eq_span_of_eq_pullback (μ : K →+* K)
     (N : HeightOneSpectrum R → Option (HeightOneSpectrum R)) (hN : ∀ w, ∃ v, N v = some w)
     (hμ : ∀ v w, N v = some w → ∀ (h : K) (k : ℕ),
@@ -141,5 +150,8 @@ theorem exists_eq_span_of_eq_pullback (μ : K →+* K)
 
 end WeilPairingND
 
+/--
+@isnad1 id=ex.5h6v.s9.2803d75cc8ff from=translated src=- shape=5e925752 vocab=55daa182
+-/
 theorem solution {R : Type*} [CommRing R] [IsDedekindDomain R] {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K] (μ : K →+* K) (N : IsDedekindDomain.HeightOneSpectrum R → Option (IsDedekindDomain.HeightOneSpectrum R)) (hN : ∀ w, ∃ v, N v = some w) (hμ : ∀ v w, N v = some w → ∀ (h : K) (k : ℕ), w.valuation K h ≤ WithZero.exp (-(k : ℤ)) → v.valuation K (μ h) ≤ WithZero.exp (-(k : ℤ))) (g : K) (t₀ : IsDedekindDomain.HeightOneSpectrum R) (hg₀ : ∀ v, N v = some t₀ → v.valuation K g = WithZero.exp (-1)) (hg₁ : ∀ v w, N v = some w → w ≠ t₀ → v.valuation K g = 1) (hgμ : ∃ h, μ h = g) : ∃ r : R, t₀.asIdeal = Ideal.span {r} :=
   WeilPairingND.exists_eq_span_of_eq_pullback μ N hN hμ g t₀ hg₀ hg₁ hgμ

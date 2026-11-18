@@ -13,6 +13,9 @@ namespace IdemDecompAux
 
 variable {X : Type*} [TopologicalSpace X]
 
+/--
+@isnad1 id=finite.0h1v.s3.d1930afd51fa from=translated src=- shape=9499e9bc vocab=e82f651b
+-/
 theorem finite_connectedComponents [NoetherianSpace X] : Finite (ConnectedComponents X) := by
   classical
   have hfin : (irreducibleComponents X).Finite := NoetherianSpace.finite_irreducibleComponents
@@ -28,6 +31,9 @@ theorem finite_connectedComponents [NoetherianSpace X] : Finite (ConnectedCompon
   exact (isIrreducible_irreducibleComponent.isConnected.isPreconnected.subset_connectedComponent
     mem_irreducibleComponent) (hirr _ (irreducibleComponent_mem_irreducibleComponents x)).nonempty.some_mem
 
+/--
+@isnad1 id=isclopen.0h2v.s4.ef32ca61f438 from=translated src=- shape=2669ccc1 vocab=ff426a6f
+-/
 theorem isClopen_connectedComponent [NoetherianSpace X] (x : X) :
     IsClopen (connectedComponent x) := by
   classical
@@ -50,6 +56,9 @@ end IdemDecompAux
 
 open IdemDecompAux
 
+/--
+@isnad1 id=ex.0h1v.s6.f97862f2dae5 from=translated src=- shape=577fd83e vocab=5deb564b
+-/
 theorem solution (R : Type u) [CommRing R] [IsNoetherianRing R] :
     ∃ (m : ℕ) (e : Fin m → R), CompleteOrthogonalIdempotents e ∧
       ∀ i, ConnectedSpace (PrimeSpectrum (Localization.Away (e i))) := by

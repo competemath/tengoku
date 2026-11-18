@@ -7,6 +7,9 @@ namespace P2MW.S_IsDiscreteValuationRing_length_ker_lsmul_quotient_maximalIdeal_
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=le.0h3v.s13.66bdcb3caf17 from=translated src=- shape=465c075f vocab=0245fce4
+-/
 theorem solution
     {𝒪 : Type} [CommRing 𝒪] [IsDomain 𝒪] [IsDiscreteValuationRing 𝒪] (a : 𝒪) (n : ℕ) :
     Module.length 𝒪 (LinearMap.ker

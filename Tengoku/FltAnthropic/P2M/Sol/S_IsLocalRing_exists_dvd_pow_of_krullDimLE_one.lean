@@ -9,6 +9,9 @@ open IsLocalRing
 
 namespace RankOneNilSol
 
+/--
+@isnad1 id=ex.2h3v.s7.23a43114228f from=translated src=- shape=db7c5edc vocab=121cab43
+-/
 theorem exists_dvd_pow {R : Type*} [CommRing R] [IsDomain R] [IsLocalRing R] [Ring.KrullDimLE 1 R]
     {b : R} (hb : b ≠ 0) {c : R} (hc : c ∈ maximalIdeal R) : ∃ n : ℕ, b ∣ c ^ n := by
   by_cases hu : IsUnit b
@@ -30,6 +33,9 @@ theorem exists_dvd_pow {R : Type*} [CommRing R] [IsDomain R] [IsLocalRing R] [Ri
 
 end RankOneNilSol
 
+/--
+@isnad1 id=ex.2h3v.s7.23a43114228f from=translated src=- shape=db7c5edc vocab=121cab43
+-/
 theorem solution
     {R : Type*} [CommRing R] [IsDomain R] [IsLocalRing R] [Ring.KrullDimLE 1 R]
     {b : R} (hb : b ≠ 0) {c : R} (hc : c ∈ IsLocalRing.maximalIdeal R) : ∃ n : ℕ, b ∣ c ^ n :=

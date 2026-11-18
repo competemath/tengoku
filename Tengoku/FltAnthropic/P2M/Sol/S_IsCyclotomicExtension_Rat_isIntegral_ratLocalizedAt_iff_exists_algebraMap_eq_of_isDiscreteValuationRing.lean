@@ -18,6 +18,9 @@ section Overring
 variable {V K : Type*} [CommRing V] [IsDomain V] [IsDiscreteValuationRing V]
   [Field K] [Algebra V K] [IsFractionRing V K]
 
+/--
+@isnad1 id=eq.3h4v.s8.c9ac9758d927 from=translated src=- shape=0e1c5df4 vocab=8691288e
+-/
 theorem subring_eq_top_of_inv_mem (W : Subring K) (hVW : ∀ v : V, algebraMap V K v ∈ W)
     {ϖ : V} (hϖ : Irreducible ϖ) (hinv : (algebraMap V K ϖ)⁻¹ ∈ W) : W = ⊤ := by
   refine eq_top_iff.mpr fun y _ => ?_
@@ -33,6 +36,9 @@ theorem subring_eq_top_of_inv_mem (W : Subring K) (hVW : ∀ v : V, algebraMap V
     obtain ⟨m, rfl⟩ := Int.exists_eq_neg_ofNat hn.le
     rw [zpow_neg, zpow_natCast, ← inv_pow]; exact W.pow_mem hinv m
 
+/--
+@isnad1 id=ex.3h4v.s8.366af35fb259 from=translated src=- shape=aa737d82 vocab=d7cb03d4
+-/
 theorem exists_algebraMap_eq_of_mem_subring (W : Subring K) (hVW : ∀ v : V, algebraMap V K v ∈ W)
     (hW : W ≠ ⊤) {x : K} (hx : x ∈ W) : ∃ v : V, algebraMap V K v = x := by
   obtain ⟨ϖ, hϖ⟩ := IsDiscreteValuationRing.exists_irreducible V
@@ -67,6 +73,9 @@ variable {A L : Type*} [CommRing A] [IsDomain A] [IsIntegrallyClosed A] [Field L
   [IsFractionRing A L]
 
 omit [IsDomain A] in
+/--
+@isnad1 id=ex.1h3v.s6.edd207ab4fa4 from=translated src=- shape=10acab0d vocab=863485fc
+-/
 theorem exists_algebraMap_eq_of_isIntegral_int {x : L} (hx : IsIntegral ℤ x) :
     ∃ a : A, algebraMap A L a = x :=
   IsIntegrallyClosed.algebraMap_eq_of_integral
@@ -90,11 +99,17 @@ noncomputable def liftHom : B →+* A where
       (exists_algebraMap_eq_of_isIntegral_int (A := A) (hB y)).choose_spec])
 
 omit [IsDomain A] in
+/--
+@isnad1 id=eq.1h4v.s8.f8f967637102 from=translated src=- shape=100625a0 vocab=d204cf63
+-/
 theorem algebraMap_liftHom (b : B) : algebraMap A L (liftHom (A := A) hB b) = algebraMap B L b :=
   (exists_algebraMap_eq_of_isIntegral_int (A := A) (hB b)).choose_spec
 
 end Lift
 
+/--
+@isnad1 id=isunit.3h3v.s6.8c9db369b1ac from=translated src=- shape=9b3d2ba1 vocab=d2e0ece6
+-/
 theorem isUnit_of_not_dvd {p : ℕ} (hp : p.Prime) {A : Type*} [CommRing A] [IsLocalRing A]
     (hAp : (p : A) ∈ maximalIdeal A) {n : ℤ} (hn : ¬ (p : ℤ) ∣ n) : IsUnit ((n : ℤ) : A) := by
   by_contra hnu
@@ -126,6 +141,9 @@ noncomputable def φ : 𝓞 L →+* A :=
   liftHom (A := A) (L := L) (B := 𝓞 L) RingOfIntegers.isIntegral_coe
 
 omit [NumberField L] in
+/--
+@isnad1 id=eq.0h3v.s7.057d5354b94a from=translated src=- shape=a53bf224 vocab=bde3aa7d
+-/
 theorem algebraMap_φ (x : 𝓞 L) : algebraMap A L (φ L A x) = (x : L) :=
   algebraMap_liftHom (A := A) _ x
 
@@ -134,14 +152,23 @@ noncomputable def 𝔮 : Ideal (𝓞 L) := (maximalIdeal A).comap (φ L A)
 scoped instance : (𝔮 L A).IsPrime := Ideal.comap_isPrime _ _
 
 omit [NumberField L] in
+/--
+@isnad1 id=isunit.1h3v.s7.6404c7eca714 from=translated src=- shape=c64a88a8 vocab=ec74448d
+-/
 theorem isUnit_φ {s : 𝓞 L} (hs : s ∉ 𝔮 L A) : IsUnit (φ L A s) := by
   by_contra h
   exact hs ((mem_maximalIdeal _).mpr h)
 
+/--
+@isnad1 id=isprime.0h1v.s4.a55d79ccb0a6 from=translated src=- shape=1a4968a7 vocab=6fb39c7a
+-/
 scoped instance isPrime_span_p : (Ideal.span {(p : ℤ)}).IsPrime :=
   (Ideal.span_singleton_prime (by exact_mod_cast hp.out.ne_zero)).mpr
     (Nat.prime_iff_prime_int.mp hp.out)
 
+/--
+@isnad1 id=ismaxima.0h1v.s4.83b5da2027c2 from=translated src=- shape=1a4968a7 vocab=592666df
+-/
 theorem isMaximal_span_p : (Ideal.span {(p : ℤ)}).IsMaximal :=
   (isPrime_span_p p).isMaximal (by simpa using hp.out.ne_zero)
 
@@ -149,11 +176,17 @@ variable (hAp : (p : A) ∈ maximalIdeal A)
 include hAp
 
 omit hp [NumberField L] hL in
+/--
+@isnad1 id=mem.1h3v.s7.563ee4c1a5c1 from=translated src=- shape=de876d63 vocab=de4ffa2d
+-/
 theorem p_mem_𝔮 : (p : 𝓞 L) ∈ 𝔮 L A := by
   change φ L A p ∈ maximalIdeal A
   rwa [map_natCast]
 
 omit [NumberField L] hL in
+/--
+@isnad1 id=liesover.1h3v.s7.4a16512c0255 from=translated src=- shape=de9788f2 vocab=a4869130
+-/
 theorem liesOver : (𝔮 L A).LiesOver (Ideal.span {(p : ℤ)}) := by
   refine ⟨(isMaximal_span_p p).eq_of_le ?_ ?_⟩
   · exact Ideal.comap_ne_top _ (Ideal.IsPrime.ne_top inferInstance)
@@ -162,6 +195,9 @@ theorem liesOver : (𝔮 L A).LiesOver (Ideal.span {(p : ℤ)}) := by
     rw [map_natCast]
     exact p_mem_𝔮 p L A hAp
 
+/--
+@isnad1 id=eq.1h3v.s8.23dc9564adb3 from=translated src=- shape=99f4f79a vocab=99f7825e
+-/
 theorem 𝔮_eq_span :
     𝔮 L A = Ideal.span {(IsCyclotomicExtension.zeta_spec p ℚ L).toInteger - 1} := by
   haveI := liesOver p L A hAp
@@ -169,6 +205,9 @@ theorem 𝔮_eq_span :
     (IsCyclotomicExtension.zeta_spec p ℚ L) _
 
 omit hL in
+/--
+@isnad1 id=ne.1h3v.s7.fc5d1acbd644 from=translated src=- shape=9599e600 vocab=062e26f2
+-/
 theorem 𝔮_ne_bot : 𝔮 L A ≠ ⊥ := by
   intro h
   have := p_mem_𝔮 p L A hAp
@@ -188,6 +227,9 @@ theorem eq_𝔮_of_isPrime (P : Ideal (𝓞 L)) [P.IsPrime] (hP : (p : 𝓞 L) �
 
 omit hL in
 
+/--
+@isnad1 id=ex.1h4v.s8.65b4d3423415 from=translated src=- shape=10579fcd vocab=31548d69
+-/
 theorem exists_eq_div (a : A) :
     ∃ x s : 𝓞 L, s ∉ 𝔮 L A ∧ algebraMap A L a = (x : L) * ((s : L))⁻¹ := by
   let W : Subring L := (algebraMap A L).range
@@ -213,6 +255,9 @@ theorem exists_eq_div (a : A) :
     exists_algebraMap_eq_of_mem_subring (V := V) (K := L) W hVW hW (x := algebraMap A L a) ⟨a, rfl⟩
   exact ⟨x, s, hs, hv.symm⟩
 
+/--
+@isnad1 id=not.2h4v.s8.28ef7851182d from=translated src=- shape=10441998 vocab=b1ad4844
+-/
 theorem not_dvd_absNorm {s : 𝓞 L} (hs : s ∉ 𝔮 L A) : ¬ p ∣ Ideal.absNorm (Ideal.span {s}) := by
   intro h
   obtain ⟨P, hPmax, hPunder, hPdvd⟩ := Ideal.exists_isMaximal_dvd_of_dvd_absNorm' hp.out _ h
@@ -231,10 +276,16 @@ section RatLoc
 variable (p : ℕ) [hp : Fact p.Prime] (L : Type) [Field L] [CharZero L]
 
 omit hp in
+/--
+@isnad1 id=isintegr.1h3v.s6.03de0e584ee9 from=translated src=- shape=56e78694 vocab=c3a41b6b
+-/
 theorem isIntegral_ratLocalizedAt_of_isIntegral_int {x : L} (hx : IsIntegral ℤ x) :
     IsIntegral (GaloisRep.ratLocalizedAt p) x :=
   hx.map_of_comp_eq (algebraMap ℤ (GaloisRep.ratLocalizedAt p)) (RingHom.id L) (Subsingleton.elim _ _)
 
+/--
+@isnad1 id=isintegr.1h3v.s7.1e052ab776c5 from=translated src=- shape=17c205e2 vocab=40947c63
+-/
 theorem isIntegral_ratLocalizedAt_inv_natCast {N : ℕ} (hN : ¬ p ∣ N) :
     IsIntegral (GaloisRep.ratLocalizedAt p) ((N : L))⁻¹ := by
   have hN0 : N ≠ 0 := by rintro rfl; exact hN (dvd_zero p)
@@ -259,6 +310,9 @@ variable (p : ℕ) [hp : Fact p.Prime] (L : Type) [Field L] [CharZero L] [hL : I
   (hAp : (p : A) ∈ maximalIdeal A)
 include hAp
 
+/--
+@isnad1 id=iff.1h4v.s8.0bac7a475a49 from=translated src=- shape=3c449490 vocab=88fd2409
+-/
 theorem isIntegral_ratLocalizedAt_iff (y : L) :
     IsIntegral ↥(GaloisRep.ratLocalizedAt p) y ↔ ∃ a : A, algebraMap A L a = y := by
   haveI := IsCyclotomicExtension.numberField {p} ℚ L
@@ -317,6 +371,9 @@ end MainB
 end CycDVRAux
 open scoped _root_.P2MW.S_IsCyclotomicExtension_Rat_isIntegral_ratLocalizedAt_iff_exists_algebraMap_eq_of_isDiscreteValuationRing.CycDVRAux
 
+/--
+@isnad1 id=iff.1h4v.s8.0bac7a475a49 from=translated src=- shape=3c449490 vocab=88fd2409
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] (L : Type) [Field L] [CharZero L] [IsCyclotomicExtension {p} ℚ L]
     (A : Type) [CommRing A] [IsDomain A] [IsDiscreteValuationRing A] [Algebra A L] [IsFractionRing A L]

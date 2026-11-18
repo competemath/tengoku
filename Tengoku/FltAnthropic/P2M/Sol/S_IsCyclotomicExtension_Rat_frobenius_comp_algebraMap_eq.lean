@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 namespace L1Sol
 
+/--
+@isnad1 id=le.1h4v.s7.86f98ba9498e from=translated src=- shape=0634ba9c vocab=91379570
+-/
 theorem maximalIdeal_le_ker_of_charP (p : ℕ) [Fact p.Prime]
     (A : Type*) [CommRing A] [IsDomain A] [IsDiscreteValuationRing A] (hp0 : (p : A) ≠ 0)
     {k : Type*} [CommRing k] [IsDomain k] [CharP k p] (φ : A →+* k) :
@@ -21,6 +24,9 @@ theorem maximalIdeal_le_ker_of_charP (p : ℕ) [Fact p.Prime]
   have hmax : (RingHom.ker φ).IsMaximal := IsPrime.to_maximal_ideal hne
   exact (IsLocalRing.eq_maximalIdeal hmax).ge
 
+/--
+@isnad1 id=eq.1h6v.s8.11ce23f99b28 from=translated src=- shape=63aa2301 vocab=6a3a42ad
+-/
 theorem apply_pow_eq_apply (p : ℕ) [Fact p.Prime]
     (L : Type) [Field L] [CharZero L] [IsCyclotomicExtension {p} ℚ L]
     (A : Type) [CommRing A] [IsDomain A] [IsDiscreteValuationRing A] [Algebra A L] [IsFractionRing A L]
@@ -43,6 +49,9 @@ theorem apply_pow_eq_apply (p : ℕ) [Fact p.Prime]
 
 end L1Sol
 
+/--
+@isnad1 id=eq.1h4v.s8.8d7657743f40 from=translated src=- shape=ec953005 vocab=22257cb3
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime]
     (L : Type) [Field L] [CharZero L] [IsCyclotomicExtension {p} ℚ L]

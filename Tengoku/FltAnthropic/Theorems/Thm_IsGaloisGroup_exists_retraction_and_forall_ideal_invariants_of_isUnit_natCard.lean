@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_IsGaloisGroup_exists_retraction_and_forall
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=and.1h4v.s10.55e830c126b4 from=translated src=- shape=3cec0e2d vocab=18f7dfa6
+-/
 theorem IsGaloisGroup.exists_retraction_and_forall_ideal_invariants_of_isUnit_natCard
     (O A B : Type) [CommRing O] [IsNoetherianRing O] [CommRing A] [CommRing B]
     [Algebra O A] [Algebra O B] [Algebra A B] [IsScalarTower O A B] [Algebra.FiniteType O B]

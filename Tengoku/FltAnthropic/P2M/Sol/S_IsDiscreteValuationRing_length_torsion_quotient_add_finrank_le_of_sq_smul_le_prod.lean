@@ -19,6 +19,9 @@ variable {R : Type u} [CommRing R] {M : Type*} [AddCommGroup M] [Module R M]
 
 abbrev SQ (A B : Submodule R M) : Type _ := ↥B ⧸ (A.comap B.subtype)
 
+/--
+@isnad1 id=eq.2h5v.s10.381ddd8d12de from=translated src=- shape=7244f07c vocab=3561e642
+-/
 theorem length_SQ_add (A B C : Submodule R M) (hAB : A ≤ B) (hBC : B ≤ C) :
     Module.length R (SQ A C) = Module.length R (SQ A B) + Module.length R (SQ B C) := by
 
@@ -57,6 +60,9 @@ variable [IsDomain R]
 
 def sat (P : Submodule R M) : Submodule R M := (Submodule.torsion R (M ⧸ P)).comap P.mkQ
 
+/--
+@isnad1 id=iff.0h4v.s7.5757772cdde6 from=translated src=- shape=7f9e1e71 vocab=8467473c
+-/
 theorem mem_sat {P : Submodule R M} {x : M} : x ∈ sat P ↔ ∃ a : R, a ≠ 0 ∧ a • x ∈ P := by
   simp only [sat, Submodule.mem_comap, Submodule.mkQ_apply, Submodule.mem_torsion_iff]
   constructor
@@ -70,9 +76,15 @@ theorem mem_sat {P : Submodule R M} {x : M} : x ∈ sat P ↔ ∃ a : R, a ≠ 0
     rw [← Submodule.Quotient.mk_smul, Submodule.Quotient.mk_eq_zero]
     exact ha
 
+/--
+@isnad1 id=le.0h3v.s6.74fc6d98be79 from=translated src=- shape=ac81a2e9 vocab=d5eb221e
+-/
 theorem le_sat (P : Submodule R M) : P ≤ sat P := fun x hx =>
   mem_sat.mpr ⟨1, one_ne_zero, by rw [one_smul]; exact hx⟩
 
+/--
+@isnad1 id=eq.1h4v.s12.aab14a91edb3 from=translated src=- shape=3d77357b vocab=f064c4c5
+-/
 theorem length_torsion_quot (F P : Submodule R M) (hPF : P ≤ F) :
     Module.length R (Submodule.torsion R (↥F ⧸ P.comap F.subtype)) = Module.length R (SQ P (F ⊓ sat P)) := by
 
@@ -115,6 +127,9 @@ open Pointwise
 
 variable {R : Type u} [CommRing R] [IsDomain R] {M : Type*} [AddCommGroup M] [Module R M]
 
+/--
+@isnad1 id=eq.0h3v.s9.ad5e5ffbaeef from=translated src=- shape=8d13f384 vocab=9f00e0ec
+-/
 theorem length_torsion_quot_top (P : Submodule R M) :
     Module.length R (Submodule.torsion R (M ⧸ P)) = Module.length R (SQ P (sat P)) := by
   let φ : ↥(sat P) →ₗ[R] (M ⧸ P) := P.mkQ.comp (sat P).subtype
@@ -135,6 +150,9 @@ theorem length_torsion_quot_top (P : Submodule R M) :
 
 variable [NoZeroSMulDivisors R M]
 
+/--
+@isnad1 id=eq.1h4v.s8.8956b84af1d9 from=translated src=- shape=a8710c1a vocab=66efd12d
+-/
 theorem sat_smul_eq (a : R) (ha : a ≠ 0) (P : Submodule R M) : sat (a • P) = sat P := by
   ext x
   simp only [mem_sat]
@@ -147,6 +165,9 @@ theorem sat_smul_eq (a : R) (ha : a ≠ 0) (P : Submodule R M) : sat (a • P) =
     rw [mul_smul]
     exact (Submodule.mem_smul_pointwise_iff_exists _ _ _).mpr ⟨_, hb, rfl⟩
 
+/--
+@isnad1 id=eq.2h5v.s12.fd7d6aadf299 from=translated src=- shape=7956f93e vocab=8fa70993
+-/
 theorem length_SQ_smul (a : R) (ha : a ≠ 0) (A B : Submodule R M) (hAB : A ≤ B) :
     Module.length R (SQ (a • A) (a • B)) = Module.length R (SQ A B) := by
   let f₀ : ↥B →ₗ[R] ↥(a • B) :=
@@ -183,6 +204,9 @@ theorem length_SQ_smul (a : R) (ha : a ≠ 0) (A B : Submodule R M) (hAB : A ≤
 
 omit [NoZeroSMulDivisors R M] in
 
+/--
+@isnad1 id=eq.1h4v.s9.a69dff22e983 from=translated src=- shape=51cbab10 vocab=595ae3b5
+-/
 theorem finrank_SQ_eq_zero [Module.Finite R M] [IsNoetherianRing R] (A B : Submodule R M) (hB : B ≤ sat A) :
     Module.finrank R (SQ A B) = 0 := by
   rw [Module.finrank_eq_zero_iff_isTorsion]
@@ -196,6 +220,9 @@ theorem finrank_SQ_eq_zero [Module.Finite R M] [IsNoetherianRing R] (A B : Submo
 
 omit [NoZeroSMulDivisors R M] in
 
+/--
+@isnad1 id=eq.1h3v.s9.71c965ac4e34 from=translated src=- shape=824b7a1c vocab=38233afc
+-/
 theorem length_quot_smul_top_of_free {L : Type*} [AddCommGroup L] [Module R L] [Module.Free R L] [Module.Finite R L]
     (π : R) (hπ : (Ideal.span {π} : Ideal R).IsMaximal) :
     Module.length R (L ⧸ (π • (⊤ : Submodule R L))) = Module.finrank R L := by
@@ -227,6 +254,9 @@ theorem length_quot_smul_top_of_free {L : Type*} [AddCommGroup L] [Module R L] [
     exact ⟨Ideal.span {π}, hπ, ⟨LinearEquiv.refl _ _⟩⟩
   simp only [h1, Finset.sum_const, Finset.card_univ, Fintype.card_fin, nsmul_eq_mul, mul_one]
 
+/--
+@isnad1 id=le.2h5v.s17.b4440ae8ede4 from=translated src=- shape=a2a83973 vocab=720671d6
+-/
 theorem main [IsDiscreteValuationRing R]
     (π : R) (hπ : Irreducible π) (r n : ℕ)
     (N'' : Submodule R ((Fin r → R) × (Fin n → R)))
@@ -353,6 +383,9 @@ end Main
 
 end LatticeDrop
 
+/--
+@isnad1 id=le.2h5v.s17.b4440ae8ede4 from=translated src=- shape=a2a83973 vocab=720671d6
+-/
 theorem solution
     {R' : Type u} [CommRing R'] [IsDomain R'] [IsDiscreteValuationRing R']
     (π : R') (hπ : Irreducible π) (r n : ℕ)

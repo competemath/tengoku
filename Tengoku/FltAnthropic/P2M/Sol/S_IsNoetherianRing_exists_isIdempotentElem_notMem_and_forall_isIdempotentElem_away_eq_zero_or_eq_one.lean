@@ -11,6 +11,9 @@ namespace ConnLoc
 
 open TopologicalSpace Topology
 
+/--
+@isnad1 id=isopen.0h2v.s4.f7ab073973fa from=translated src=- shape=4927a877 vocab=9a12ad69
+-/
 theorem isOpen_connectedComponent_of_noetherianSpace {X : Type} [TopologicalSpace X] [NoetherianSpace X] (x : X) :
     IsOpen (connectedComponent x) := by
 
@@ -36,6 +39,9 @@ theorem isOpen_connectedComponent_of_noetherianSpace {X : Type} [TopologicalSpac
     exact NoetherianSpace.finite_irreducibleComponents.subset (fun Z hZ => hZ.1)
   exact isClosed_compl_iff.mp hclosed
 
+/--
+@isnad1 id=or.1h2v.s6.1294d71df5e0 from=translated src=- shape=9256402a vocab=612acb1b
+-/
 theorem isIdempotentElem_eq_zero_or_one_of_preconnectedSpace {S : Type} [CommRing S]
     [PreconnectedSpace (PrimeSpectrum S)] (x : S) (hx : IsIdempotentElem x) : x = 0 ∨ x = 1 := by
   have hclopen : IsClopen ((PrimeSpectrum.basicOpen x : Set (PrimeSpectrum S))) :=
@@ -65,6 +71,9 @@ theorem isIdempotentElem_eq_zero_or_one_of_preconnectedSpace {S : Type} [CommRin
     have h2 : (u : S) * u * ↑u⁻¹ = u * ↑u⁻¹ := by rw [this]
     simpa [mul_assoc] using h2
 
+/--
+@isnad1 id=ex.0h2v.s8.170a35931bf8 from=translated src=- shape=32587b94 vocab=386b9eea
+-/
 theorem main (B : Type) [CommRing B] [IsNoetherianRing B] (𝔭 : Ideal B) [h𝔭 : 𝔭.IsPrime] :
     ∃ e : B, IsIdempotentElem e ∧ e ∉ 𝔭 ∧
       ∀ x : Localization.Away e, IsIdempotentElem x → x = 0 ∨ x = 1 := by
@@ -89,6 +98,9 @@ theorem main (B : Type) [CommRing B] [IsNoetherianRing B] (𝔭 : Ideal B) [h�
 
 end ConnLoc
 
+/--
+@isnad1 id=ex.0h2v.s8.170a35931bf8 from=translated src=- shape=32587b94 vocab=386b9eea
+-/
 theorem solution
     (B : Type) [CommRing B] [IsNoetherianRing B] (𝔭 : Ideal B) [𝔭.IsPrime] :
     ∃ e : B, IsIdempotentElem e ∧ e ∉ 𝔭 ∧

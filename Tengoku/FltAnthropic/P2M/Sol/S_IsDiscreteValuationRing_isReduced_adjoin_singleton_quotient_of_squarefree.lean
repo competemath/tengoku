@@ -7,6 +7,9 @@ namespace P2MW.S_IsDiscreteValuationRing_isReduced_adjoin_singleton_quotient_of_
 
 open Polynomial IsLocalRing
 
+/--
+@isnad1 id=isreduce.3h4v.s12.fb5a30c82f79 from=translated src=- shape=0dd0d440 vocab=7937c34c
+-/
 theorem solution
     {O : Type*} [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
     {ϖ : O} (hϖ : Irreducible ϖ)

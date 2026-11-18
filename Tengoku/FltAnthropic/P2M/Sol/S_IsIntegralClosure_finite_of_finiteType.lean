@@ -14,6 +14,9 @@ export _root_.IsIntegralClosure (equiv finite)
 namespace FiniteOfFiniteType
 open _root_.IsIntegralClosure
 
+/--
+@isnad1 id=finite.2h5v.s7.1c3dce108fc7 from=translated src=- shape=a9eeb88a vocab=016f5462
+-/
 theorem finite_of_comp_finite_of_injective {R B T : Type*} [CommRing R] [CommRing B]
     [CommRing T] [IsNoetherianRing R] (φ : R →+* B) (g : B →+* T)
     (hg : Function.Injective g) (h : (g.comp φ).Finite) : φ.Finite := by
@@ -28,6 +31,9 @@ theorem finite_of_comp_finite_of_injective {R B T : Type*} [CommRing R] [CommRin
           Function.comp_apply, RingHom.id_apply] }
   exact Module.Finite.of_injective g' hg
 
+/--
+@isnad1 id=finite.3h9v.s9.d4c6220505e3 from=translated src=- shape=64b97f26 vocab=f5f5fb39
+-/
 theorem finite_integralClosure_of_factor
     {R A L R' F' Ω : Type*} [CommRing R] [IsNoetherianRing R] [CommRing A] [Algebra R A]
     [Algebra.IsIntegral R A] [Field L] [Algebra A L] [Algebra R L] [IsScalarTower R A L]
@@ -89,6 +95,9 @@ theorem finite_integralClosure_of_factor
   have hAC : (algebraMap A C).Finite := RingHom.Finite.of_comp_finite hφ
   exact RingHom.finite_algebraMap.mp hAC
 
+/--
+@isnad1 id=ex.2h7v.s12.82dc8997cebe from=translated src=- shape=50457ade vocab=2d066271
+-/
 theorem exists_twist {k Ω : Type*} [Field k] [Field Ω] [Algebra k Ω] (p n : ℕ) [ExpChar k p]
     [ExpChar Ω p] [PerfectRing Ω p] {d : ℕ} (η : MvPolynomial (Fin d) k →+* Ω)
     (hη : Function.Injective η) (hηC : η.comp MvPolynomial.C = algebraMap k Ω)
@@ -254,15 +263,24 @@ theorem exists_twist {k Ω : Type*} [Field k] [Field Ω] [Algebra k Ω] (p n : �
       exact (AlgHom.mem_range θ).mpr ⟨MvPolynomial.X i, by rw [hθX]; rfl⟩
   exact ⟨k', hk'fd, θ, σ, hθinj, hσfin, hθσ, hcoef⟩
 
+/--
+@isnad1 id=isintegr.0h2v.s5.f2f3d4411226 from=translated src=- shape=f93d885d vocab=1c457b21
+-/
 theorem isIntegrallyClosed_mvPolynomial (K : Type*) [Field K] (d : ℕ) :
     IsIntegrallyClosed (MvPolynomial (Fin d) K) := inferInstance
 
+/--
+@isnad1 id=isnoethe.0h2v.s5.74dc9c6dc77f from=translated src=- shape=f93d885d vocab=3b1038cc
+-/
 theorem isNoetherianRing_mvPolynomial (K : Type*) [Field K] (d : ℕ) :
     IsNoetherianRing (MvPolynomial (Fin d) K) := inferInstance
 
 set_option maxHeartbeats 6400000 in
 set_option synthInstance.maxHeartbeats 480000 in
 
+/--
+@isnad1 id=finite.0h4v.s8.73099829b61f from=translated src=- shape=1a9734cd vocab=7379c7ba
+-/
 theorem finite_integralClosure (k A K L : Type*) [Field k] [CommRing A] [IsDomain A]
     [Algebra k A] [Algebra.FiniteType k A] [Field K] [Algebra A K] [IsFractionRing A K]
     [Field L] [Algebra K L] [Algebra A L] [IsScalarTower A K L] [FiniteDimensional K L] :
@@ -461,6 +479,9 @@ theorem finite_integralClosure (k A K L : Type*) [Field k] [CommRing A] [IsDomai
 
 end IsIntegralClosure.FiniteOfFiniteType
 
+/--
+@isnad1 id=finite.0h5v.s8.2b9021e4b40c from=translated src=- shape=24946846 vocab=7cba54eb
+-/
 theorem solution
     (k A K L C : Type*) [Field k] [CommRing A] [IsDomain A] [Algebra k A]
     [Algebra.FiniteType k A] [Field K] [Algebra A K] [IsFractionRing A K]

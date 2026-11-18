@@ -11,6 +11,9 @@ universe u v
 
 namespace P2mWs2AffEtale
 
+/--
+@isnad1 id=ex.0h3v.s7.c933047a8053 from=translated src=- shape=b9ad9c66 vocab=055e1918
+-/
 theorem exists_notMem_isDomain_away
     {R Rp : Type*} [CommRing R] [CommRing Rp] [Algebra R Rp] [IsNoetherianRing R] [IsReduced R]
     (P : Ideal R) [P.IsPrime] [IsLocalization.AtPrime Rp P] [IsDomain Rp] :
@@ -97,6 +100,9 @@ theorem exists_notMem_isDomain_away
 end P2mWs2AffEtale
 
 open P2mWs2AffEtale in
+/--
+@isnad1 id=ex.0h3v.s7.f98c09907d3c from=translated src=- shape=ddbceaaf vocab=055e1918
+-/
 theorem solution
     {R : Type u} [CommRing R] [IsNoetherianRing R] [IsReduced R]
     (P : Ideal R) [P.IsPrime]

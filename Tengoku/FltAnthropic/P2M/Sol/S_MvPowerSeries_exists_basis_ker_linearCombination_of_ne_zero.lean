@@ -18,16 +18,28 @@ variable {κ : Type} [Field κ]
 
 local notation "𝔸" => MvPowerSeries (Fin 2) κ
 
+/--
+@isnad1 id=isnoethe.0h1v.s4.1b5c7d3850c8 from=translated src=- shape=34e0b484 vocab=341baefb
+-/
 scoped instance instNoeth : IsNoetherianRing 𝔸 := MvPowerSeries.isNoetherianRing_fin κ 2
 
+/--
+@isnad1 id=isdomain.0h1v.s4.3da85766565d from=translated src=- shape=34e0b484 vocab=07d02685
+-/
 scoped instance instDomain : IsDomain 𝔸 := NoZeroDivisors.to_isDomain _
 
+/--
+@isnad1 id=ne.0h2v.s6.142d0d6812ab from=translated src=- shape=ec7dc706 vocab=aeb366e2
+-/
 theorem X_ne_zero' (s : Fin 2) : (X s : 𝔸) ≠ 0 := by
   intro h
   have := congrArg (coeff (Finsupp.single s 1)) h
   rw [coeff_X, coeff_zero, ite_eq_left rfl] at this
   exact one_ne_zero this
 
+/--
+@isnad1 id=dvd.1h3v.s8.d22c9b418c91 from=translated src=- shape=300b50b2 vocab=4273d731
+-/
 theorem X0_dvd_of_X1_mul_eq (a b : 𝔸) (h : X 1 * a = X 0 * b) : (X 0 : 𝔸) ∣ a := by
   classical
   rw [X_dvd_iff]
@@ -42,6 +54,9 @@ theorem X0_dvd_of_X1_mul_eq (a b : 𝔸) (h : X 1 * a = X 0 * b) : (X 0 : 𝔸) 
     exact le_add_self), one_mul, add_tsub_cancel_right] at h1
   exact h1
 
+/--
+@isnad1 id=ex.1h2v.s8.2f2f964b6edd from=translated src=- shape=8dc48b92 vocab=536dba08
+-/
 theorem exists_eq_X0_mul_add_X1_mul (g : 𝔸) (hg : constantCoeff g = 0) :
     ∃ p q : 𝔸, g = X 0 * p + X 1 * q := by
   classical
@@ -70,15 +85,24 @@ theorem exists_eq_X0_mul_add_X1_mul (g : 𝔸) (hg : constantCoeff g = 0) :
   obtain ⟨q, hq⟩ := h1
   exact ⟨p, q, by rw [← hp, ← hq, sub_add_cancel]⟩
 
+/--
+@isnad1 id=eq.1h2v.s7.98b418d2880e from=translated src=- shape=386c9126 vocab=56cd1527
+-/
 theorem constantCoeff_eq_zero_of_not_isUnit (g : 𝔸) (hg : ¬ IsUnit g) : constantCoeff g = 0 := by
   rw [isUnit_iff_constantCoeff] at hg
   by_contra h
   exact hg (Ne.isUnit h)
 
+/--
+@isnad1 id=mem.0h2v.s7.c7e770110ee1 from=translated src=- shape=7d35f25a vocab=f5e32eca
+-/
 theorem X_mem_maximalIdeal (s : Fin 2) : (X s : 𝔸) ∈ IsLocalRing.maximalIdeal 𝔸 := by
   rw [IsLocalRing.mem_maximalIdeal, mem_nonunits_iff, isUnit_iff_constantCoeff, constantCoeff_X]
   exact not_isUnit_zero
 
+/--
+@isnad1 id=le.0h1v.s8.86d68e8d7ab6 from=translated src=- shape=4cb05c44 vocab=51a99098
+-/
 theorem span_X_le_jacobson : (Ideal.span {(X 0 : 𝔸), X 1} : Ideal 𝔸) ≤ Ideal.jacobson ⊥ := by
   rw [IsLocalRing.jacobson_eq_maximalIdeal ⊥ bot_ne_top, Ideal.span_le]
   rintro x hx
@@ -91,12 +115,18 @@ variable {m : ℕ}
 def Saturated (K : Submodule 𝔸 (Fin m → 𝔸)) : Prop :=
   ∀ (a : 𝔸) (v : Fin m → 𝔸), a ≠ 0 → a • v ∈ K → v ∈ K
 
+/--
+@isnad1 id=saturate.0h3v.s8.f411923f456b from=translated src=- shape=cf5aec2d vocab=17b85d85
+-/
 theorem saturated_ker (f : Fin m → 𝔸) : Saturated (LinearMap.ker (Fintype.linearCombination 𝔸 f)) := by
   intro a v ha hv
   rw [LinearMap.mem_ker] at hv ⊢
   rw [map_smul, smul_eq_mul] at hv
   exact (mul_eq_zero.mp hv).resolve_left ha
 
+/--
+@isnad1 id=ex.3h5v.s10.18fdb102eb29 from=translated src=- shape=986b6b78 vocab=0b6b22c7
+-/
 theorem exists_eq_X0_smul (K : Submodule 𝔸 (Fin m → 𝔸)) (hK : Saturated K) (w w' : Fin m → 𝔸)
     (hw : w ∈ K) (h : (X 1 : 𝔸) • w = (X 0 : 𝔸) • w') : ∃ v ∈ K, w = (X 0 : 𝔸) • v := by
   have hdvd : ∀ i, (X 0 : 𝔸) ∣ w i := fun i => X0_dvd_of_X1_mul_eq (w i) (w' i) (by
@@ -106,6 +136,9 @@ theorem exists_eq_X0_smul (K : Submodule 𝔸 (Fin m → 𝔸)) (hK : Saturated 
   have hw' : w = (X 0 : 𝔸) • v := funext fun i => by rw [Pi.smul_apply, smul_eq_mul]; exact hv i
   refine ⟨v, hK (X 0) v (X_ne_zero' 0) (hw' ▸ hw), hw'⟩
 
+/--
+@isnad1 id=eq.3h5v.s11.9c233ae707fe from=translated src=- shape=bdc4e4b3 vocab=f529c7e2
+-/
 theorem ker_eq_bot_of_forall_not_isUnit {n : ℕ} (K : Submodule 𝔸 (Fin m → 𝔸)) (hK : Saturated K)
     (k : Fin n → (Fin m → 𝔸)) (hspan : Submodule.span 𝔸 (Set.range k) = K)
     (hmin : ∀ c : Fin n → 𝔸, Fintype.linearCombination 𝔸 k c = 0 → ∀ i, ¬ IsUnit (c i)) :
@@ -155,6 +188,9 @@ theorem ker_eq_bot_of_forall_not_isUnit {n : ℕ} (K : Submodule 𝔸 (Fin m →
     (Submodule.smul_mem_smul (Ideal.subset_span (by simp)) ha')
     (Submodule.smul_mem_smul (Ideal.subset_span (by simp)) hb')
 
+/--
+@isnad1 id=ex.3h5v.s11.8b33accced18 from=translated src=- shape=aeda9a41 vocab=c1fb6b75
+-/
 theorem exists_basis_of_forall_not_isUnit {n : ℕ} (K : Submodule 𝔸 (Fin m → 𝔸)) (hK : Saturated K)
     (k : Fin n → (Fin m → 𝔸)) (hspan : Submodule.span 𝔸 (Set.range k) = K)
     (hmin : ∀ c : Fin n → 𝔸, Fintype.linearCombination 𝔸 k c = 0 → ∀ i, ¬ IsUnit (c i)) :
@@ -175,6 +211,9 @@ theorem exists_basis_of_forall_not_isUnit {n : ℕ} (K : Submodule 𝔸 (Fin m �
     exact ⟨c, Subtype.ext hc⟩
   exact ⟨n, ⟨(Pi.basisFun 𝔸 (Fin n)).map (LinearEquiv.ofBijective φK ⟨hinj, hsurj⟩)⟩⟩
 
+/--
+@isnad1 id=ex.1h3v.s9.c5d2e20913fd from=translated src=- shape=698f6670 vocab=f00ce92c
+-/
 theorem exists_basis_of_saturated (K : Submodule 𝔸 (Fin m → 𝔸)) (hK : Saturated K) :
     ∃ r : ℕ, Nonempty (Module.Basis (Fin r) 𝔸 K) := by
   classical
@@ -211,6 +250,9 @@ theorem exists_basis_of_saturated (K : Submodule 𝔸 (Fin m → 𝔸)) (hK : Sa
     · push Not at h
       exact exists_basis_of_forall_not_isUnit K hK k hk (fun c hc i hu => h c hc i hu)
 
+/--
+@isnad1 id=eq.1h5v.s10.9d5ee7186b2d from=translated src=- shape=1f66878a vocab=49ae6608
+-/
 theorem card_add_one_eq {m : ℕ} (f : Fin m → 𝔸) (hf : f ≠ 0) {r : ℕ}
     (e : Module.Basis (Fin r) 𝔸 (LinearMap.ker (Fintype.linearCombination 𝔸 f))) : r + 1 = m := by
   classical
@@ -240,6 +282,9 @@ end P2mRelFree
 open scoped _root_.P2MW.S_MvPowerSeries_exists_basis_ker_linearCombination_of_ne_zero.P2mRelFree
 
 open P2mRelFree in
+/--
+@isnad1 id=ex.1h3v.s11.ae1173dc4581 from=translated src=- shape=0b69d394 vocab=49ae6608
+-/
 theorem solution
     {κ : Type} [Field κ] {m : ℕ} (f : Fin m → MvPowerSeries (Fin 2) κ) (hf : f ≠ 0) :
     ∃ (r : ℕ) (e : Module.Basis (Fin r) (MvPowerSeries (Fin 2) κ)

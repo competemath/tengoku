@@ -23,17 +23,29 @@ noncomputable section
 variable (R : Type*) [CommRing R] [IsDedekindDomain R] (K : Type*) [Field K] [Algebra R K]
   [IsFractionRing R K]
 
+/--
+@isnad1 id=eq.0h5v.s8.27eea965b1ef from=translated src=- shape=b85687c8 vocab=ae3acdbd
+-/
 lemma far_mul_apply (x y : FiniteAdeleRing R K) (v : HeightOneSpectrum R) :
     (x * y) v = x v * y v := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.feb77c904bcd from=translated src=- shape=49358a69 vocab=120983fe
+-/
 lemma far_one_apply (v : HeightOneSpectrum R) : (1 : FiniteAdeleRing R K) v = 1 := rfl
 
 def evalAt (v : HeightOneSpectrum R) : (FiniteAdeleRing R K)ˣ →* (v.adicCompletion K)ˣ :=
   Units.map (RestrictedProduct.evalRingHom _ v).toMonoidHom
 
+/--
+@isnad1 id=eq.0h4v.s9.380a116df1a8 from=translated src=- shape=6a009171 vocab=bcce846d
+-/
 @[scoped simp] lemma evalAt_val (v : HeightOneSpectrum R) (x : (FiniteAdeleRing R K)ˣ) :
     (evalAt R K v x : v.adicCompletion K) = (x : FiniteAdeleRing R K) v := rfl
 
+/--
+@isnad1 id=ne.0h4v.s8.056aed0e0808 from=translated src=- shape=6e7d0c79 vocab=55189e21
+-/
 lemma valued_ne_zero (v : HeightOneSpectrum R) (x : (FiniteAdeleRing R K)ˣ) :
     Valued.v ((x : FiniteAdeleRing R K) v) ≠ 0 := by
   rw [← evalAt_val]
@@ -43,9 +55,15 @@ lemma valued_ne_zero (v : HeightOneSpectrum R) (x : (FiniteAdeleRing R K)ˣ) :
 def expAt (v : HeightOneSpectrum R) (x : (FiniteAdeleRing R K)ˣ) : ℤ :=
   -log (Valued.v ((x : FiniteAdeleRing R K) v))
 
+/--
+@isnad1 id=eq.0h3v.s7.d98c155b5086 from=translated src=- shape=1c401904 vocab=d3e15ea0
+-/
 lemma expAt_one (v : HeightOneSpectrum R) : expAt R K v 1 = 0 := by
   rw [expAt, Units.val_one, far_one_apply, map_one, log_one, neg_zero]
 
+/--
+@isnad1 id=eq.0h5v.s8.ba8baee84319 from=translated src=- shape=fba86d6f vocab=a62b3f0d
+-/
 lemma expAt_mul (v : HeightOneSpectrum R) (x y : (FiniteAdeleRing R K)ˣ) :
     expAt R K v (x * y) = expAt R K v x + expAt R K v y := by
   simp only [expAt]
@@ -53,12 +71,18 @@ lemma expAt_mul (v : HeightOneSpectrum R) (x y : (FiniteAdeleRing R K)ˣ) :
     log_mul (valued_ne_zero R K v x) (valued_ne_zero R K v y)]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s7.a87aed475800 from=translated src=- shape=b370451a vocab=6d8e755a
+-/
 lemma expAt_inv (v : HeightOneSpectrum R) (x : (FiniteAdeleRing R K)ˣ) :
     expAt R K v x⁻¹ = -expAt R K v x := by
   have h := expAt_mul R K v x x⁻¹
   rw [mul_inv_cancel, expAt_one] at h
   omega
 
+/--
+@isnad1 id=iff.0h4v.s8.d0d63e758a97 from=translated src=- shape=b012d2c0 vocab=8251cccd
+-/
 lemma expAt_eq_zero_iff (v : HeightOneSpectrum R) (x : (FiniteAdeleRing R K)ˣ) :
     expAt R K v x = 0 ↔ Valued.v ((x : FiniteAdeleRing R K) v) = 1 := by
   rw [expAt, neg_eq_zero]
@@ -77,6 +101,9 @@ private lemma eq_one_of_mul_eq_one_of_le_one {a b : ℤᵐ⁰} (hab : a * b = 1)
   rw [hb1, mul_one] at hab
   exact hab
 
+/--
+@isnad1 id=eq.2h4v.s9.a51f1b8afbb3 from=translated src=- shape=ca0b8687 vocab=06cc99be
+-/
 theorem expAt_eq_zero_of_integral {v : HeightOneSpectrum R} {x : (FiniteAdeleRing R K)ˣ}
     (hx : Valued.v ((x : FiniteAdeleRing R K) v) ≤ 1)
     (hxi : Valued.v (((x⁻¹ : (FiniteAdeleRing R K)ˣ) : FiniteAdeleRing R K) v) ≤ 1) :
@@ -88,6 +115,9 @@ theorem expAt_eq_zero_of_integral {v : HeightOneSpectrum R} {x : (FiniteAdeleRin
       far_one_apply, map_one]
   exact eq_one_of_mul_eq_one_of_le_one hmul hx hxi
 
+/--
+@isnad1 id=finite.0h3v.s6.dd490eff89bc from=translated src=- shape=a4b8815c vocab=40409281
+-/
 theorem finite_support_expAt (x : (FiniteAdeleRing R K)ˣ) :
     {v : HeightOneSpectrum R | expAt R K v x ≠ 0}.Finite := by
   have hx : ∀ᶠ v in Filter.cofinite,
@@ -106,14 +136,23 @@ theorem finite_support_expAt (x : (FiniteAdeleRing R K)ˣ) :
     ((mem_adicCompletionIntegers R K v).mp hcon.2))
 
 omit [IsDedekindDomain R] in
+/--
+@isnad1 id=ne.0h3v.s7.50becd14f3c4 from=translated src=- shape=2c70bb0d vocab=1de97356
+-/
 lemma coeIdeal_asIdeal_ne_zero (v : HeightOneSpectrum R) :
     (v.asIdeal : FractionalIdeal R⁰ K) ≠ 0 :=
   FractionalIdeal.coeIdeal_ne_zero.mpr v.ne_bot
 
+/--
+@isnad1 id=ne.0h4v.s8.292d8f3f3ca1 from=translated src=- shape=01a54517 vocab=57deea1a
+-/
 lemma zpow_asIdeal_ne_zero (v : HeightOneSpectrum R) (n : ℤ) :
     (v.asIdeal : FractionalIdeal R⁰ K) ^ n ≠ 0 :=
   zpow_ne_zero n (coeIdeal_asIdeal_ne_zero R K v)
 
+/--
+@isnad1 id=le.0h3v.s8.b9a695f4fb14 from=translated src=- shape=254e6716 vocab=c86bb5d9
+-/
 lemma mulSupport_zpow_subset (e : HeightOneSpectrum R → ℤ) :
     (Function.mulSupport fun v => (v.asIdeal : FractionalIdeal R⁰ K) ^ (e v)) ⊆
       {v | e v ≠ 0} := by
@@ -126,17 +165,26 @@ lemma mulSupport_zpow_subset (e : HeightOneSpectrum R → ℤ) :
 def assocIdeal (x : (FiniteAdeleRing R K)ˣ) : FractionalIdeal R⁰ K :=
   ∏ᶠ v : HeightOneSpectrum R, (v.asIdeal : FractionalIdeal R⁰ K) ^ (expAt R K v x)
 
+/--
+@isnad1 id=ne.0h3v.s7.afa3d8531772 from=translated src=- shape=e6ed5884 vocab=e911b7df
+-/
 lemma assocIdeal_ne_zero (x : (FiniteAdeleRing R K)ˣ) : assocIdeal R K x ≠ 0 := by
   rw [assocIdeal, finprod_eq_prod_of_mulSupport_subset _
     (s := (finite_support_expAt R K x).toFinset)
     (by simpa using mulSupport_zpow_subset R K _)]
   exact Finset.prod_ne_zero_iff.mpr fun v _ => zpow_asIdeal_ne_zero R K v _
 
+/--
+@isnad1 id=eq.0h4v.s6.8b6836a544fe from=translated src=- shape=50b7aa1e vocab=2ad953cf
+-/
 theorem count_assocIdeal (v : HeightOneSpectrum R) (x : (FiniteAdeleRing R K)ˣ) :
     FractionalIdeal.count K v (assocIdeal R K x) = expAt R K v x :=
   FractionalIdeal.count_finprod K v _ (Filter.eventually_cofinite.mpr
     (by simpa using finite_support_expAt R K x))
 
+/--
+@isnad1 id=eq.0h4v.s8.80638d83cd5f from=translated src=- shape=633373f7 vocab=ced5e684
+-/
 theorem assocIdeal_mul (x y : (FiniteAdeleRing R K)ˣ) :
     assocIdeal R K (x * y) = assocIdeal R K x * assocIdeal R K y := by
   unfold assocIdeal
@@ -147,6 +195,9 @@ theorem assocIdeal_mul (x y : (FiniteAdeleRing R K)ˣ) :
   intro v
   rw [expAt_mul, zpow_add₀ (coeIdeal_asIdeal_ne_zero R K v)]
 
+/--
+@isnad1 id=eq.3h4v.s8.36154c27b8c0 from=translated src=- shape=9a3813cf vocab=10192a9f
+-/
 theorem fractionalIdeal_eq_of_count_eq {I J : FractionalIdeal R⁰ K} (hI : I ≠ 0) (hJ : J ≠ 0)
     (h : ∀ v : HeightOneSpectrum R, FractionalIdeal.count K v I = FractionalIdeal.count K v J) :
     I = J :=
@@ -173,10 +224,16 @@ def contentHom : (FiniteAdeleRing R K)ˣ →* ClassGroup R where
     congr 1
     exact Units.ext (by simpa using assocIdeal_mul R K x y)
 
+/--
+@isnad1 id=eq.0h3v.s10.40e80fa77ee1 from=translated src=- shape=9f457cc6 vocab=e3bf4a30
+-/
 @[scoped simp] lemma contentHom_apply (x : (FiniteAdeleRing R K)ˣ) :
     contentHom R K x = ClassGroup.mk (K := K) (Units.mk0 (assocIdeal R K x) (assocIdeal_ne_zero R K x)) :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.b31e880f840d from=translated src=- shape=34a4e00f vocab=ce6fbd6c
+-/
 theorem count_spanSingleton_eq_neg_log_valuation (v : HeightOneSpectrum R) (u : Kˣ) :
     FractionalIdeal.count K v (FractionalIdeal.spanSingleton R⁰ (u : K)) =
       -log (v.valuation K (u : K)) := by
@@ -203,17 +260,26 @@ theorem count_spanSingleton_eq_neg_log_valuation (v : HeightOneSpectrum R) (u : 
   rw [show ((Multiplicative.ofAdd _ : Multiplicative ℤ) : ℤᵐ⁰) = exp _ from rfl, log_exp]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s8.d4d8fa38ff3d from=translated src=- shape=88be8308 vocab=21315934
+-/
 lemma valued_coe_eq_valuation (v : HeightOneSpectrum R) (k : K) :
     Valued.v ((algebraMap K (FiniteAdeleRing R K) k) v) = v.valuation K k := by
   show Valued.v ((k : v.adicCompletion K)) = _
   exact valuedAdicCompletion_eq_valuation' v k
 
+/--
+@isnad1 id=eq.0h4v.s9.82e6cd13e390 from=translated src=- shape=c6fed130 vocab=3a1331e3
+-/
 theorem expAt_principal (v : HeightOneSpectrum R) (u : Kˣ) :
     expAt R K v (Units.map (algebraMap K (FiniteAdeleRing R K) : K →* FiniteAdeleRing R K) u) =
       -log (v.valuation K (u : K)) := by
   unfold expAt
   rw [Units.coe_map, MonoidHom.coe_coe, valued_coe_eq_valuation]
 
+/--
+@isnad1 id=eq.0h3v.s10.ace15be04cad from=translated src=- shape=8dcba608 vocab=336b95af
+-/
 theorem contentHom_principal (u : Kˣ) :
     contentHom R K (Units.map (algebraMap K (FiniteAdeleRing R K) : K →* FiniteAdeleRing R K) u)
       = 1 := by
@@ -229,11 +295,17 @@ theorem contentHom_principal (u : Kˣ) :
   rw [FractionalIdeal.coe_spanSingleton]
   exact ⟨⟨(u : K), rfl⟩⟩
 
+/--
+@isnad1 id=eq.1h4v.s8.07afba0d6fad from=translated src=- shape=56ef1d5a vocab=5b27f4b5
+-/
 lemma expAt_eq_zero_of_mem_unitIdeles {x : (FiniteAdeleRing R K)ˣ} (h : x ∈ unitIdeles R K)
     (v : HeightOneSpectrum R) : expAt R K v x = 0 :=
   expAt_eq_zero_of_integral R K ((mem_adicCompletionIntegers R K v).mp (h.1 v))
     ((mem_adicCompletionIntegers R K v).mp (h.2 v))
 
+/--
+@isnad1 id=mem.1h3v.s8.e18d6c69c2a3 from=translated src=- shape=262852c8 vocab=5b27f4b5
+-/
 lemma mem_unitIdeles_of_expAt_eq_zero {x : (FiniteAdeleRing R K)ˣ}
     (h : ∀ v : HeightOneSpectrum R, expAt R K v x = 0) : x ∈ unitIdeles R K := by
   refine ⟨fun v => ?_, fun v => ?_⟩
@@ -241,6 +313,9 @@ lemma mem_unitIdeles_of_expAt_eq_zero {x : (FiniteAdeleRing R K)ˣ}
   · have h' : expAt R K v x⁻¹ = 0 := by rw [expAt_inv, h v, neg_zero]
     exact (mem_adicCompletionIntegers R K v).mpr ((expAt_eq_zero_iff R K v x⁻¹).mp h').le
 
+/--
+@isnad1 id=eq.1h3v.s9.2e986624d66b from=translated src=- shape=4e86b294 vocab=b5b40b99
+-/
 theorem contentHom_eq_one_of_mem_unitIdeles {x : (FiniteAdeleRing R K)ˣ} (h : x ∈ unitIdeles R K) :
     contentHom R K x = 1 := by
   have h1 : assocIdeal R K x = 1 := by
@@ -252,6 +327,9 @@ theorem contentHom_eq_one_of_mem_unitIdeles {x : (FiniteAdeleRing R K)ˣ} (h : x
   congr 1
   exact Units.ext (by simpa using h1)
 
+/--
+@isnad1 id=eq.0h2v.s10.199bc0f4a983 from=translated src=- shape=b6db42b6 vocab=ce570231
+-/
 theorem ker_contentHom_eq :
     (contentHom R K).ker = unitIdeles R K ⊔
       (Units.map (algebraMap K (FiniteAdeleRing R K) : K →* FiniteAdeleRing R K)).range := by
@@ -301,6 +379,9 @@ private lemma log_exp_neg_one_pow (n : ℕ) : log ((exp (-1 : ℤ)) ^ n) = -(n :
     push_cast
     ring
 
+/--
+@isnad1 id=surjecti.0h2v.s9.e0ec1e8e191e from=translated src=- shape=e586f858 vocab=8385c7cb
+-/
 theorem contentHom_surjective : Function.Surjective (contentHom R K) := by
   classical
   intro c
@@ -366,6 +447,9 @@ open scoped _root_.P2MW.S_IsDedekindDomain_FiniteAdeleRing_exists_monoidHom_unit
 open scoped _root_.P2MW.S_IsDedekindDomain_FiniteAdeleRing_exists_monoidHom_units_classGroup_surjective_ker_eq.IsDedekindDomain
 
 open _root_.IsDedekindDomain _root_.P2MW.S_IsDedekindDomain_FiniteAdeleRing_exists_monoidHom_units_classGroup_surjective_ker_eq.IsDedekindDomain in
+/--
+@isnad1 id=ex.0h2v.s10.e4fe73362e92 from=translated src=- shape=2ccf8379 vocab=7f95f38f
+-/
 theorem solution
     (R : Type*) [CommRing R] [IsDedekindDomain R] (K : Type*) [Field K] [Algebra R K] [IsFractionRing R K] :
     ∃ φ : (FiniteAdeleRing R K)ˣ →* ClassGroup R, Function.Surjective φ ∧

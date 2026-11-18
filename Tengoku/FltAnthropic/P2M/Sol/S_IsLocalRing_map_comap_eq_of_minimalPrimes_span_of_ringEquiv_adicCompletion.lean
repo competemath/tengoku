@@ -14,6 +14,9 @@ namespace B1aSol
 
 open TensorProduct
 
+/--
+@isnad1 id=eq.4h6v.s11.97641996b099 from=translated src=- shape=632d9feb vocab=5a89ba29
+-/
 theorem main
     (R : Type) [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
     (S : Type) [CommRing S] [IsNoetherianRing S]
@@ -154,6 +157,9 @@ theorem main
 
 end B1aSol
 
+/--
+@isnad1 id=eq.4h6v.s11.97641996b099 from=translated src=- shape=632d9feb vocab=5a89ba29
+-/
 theorem solution
     (R : Type) [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
     (S : Type) [CommRing S] [IsNoetherianRing S]

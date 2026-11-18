@@ -11,6 +11,9 @@ universe u
 
 namespace ZariskiGlueAux
 
+/--
+@isnad1 id=eq.0h5v.s6.79cadde81d76 from=translated src=- shape=1660a690 vocab=ac47105c
+-/
 theorem pow_sup_eq {B : Type u} [CommRing B] {ι : Type*} [Fintype ι] (b : B) (n : ι → ℕ) (i : ι) :
     b ^ (Finset.univ.sup n) = b ^ (Finset.univ.sup n - n i) * b ^ (n i) := by
   rw [← pow_add, Nat.sub_add_cancel (Finset.le_sup (Finset.mem_univ i))]
@@ -29,6 +32,9 @@ theorem eq_of_pow_smul_eq {B : Type u} [CommRing B] {M : Type u} [AddCommGroup M
 end ZariskiGlueAux
 
 open ZariskiGlueAux in
+/--
+@isnad1 id=ex.8h11v.s10.a1cb6d696d19 from=translated src=- shape=84c22f86 vocab=4e660282
+-/
 theorem solution
     {B : Type u} [CommRing B] {k : ℕ} (f : Fin k → B) (hf : Ideal.span (Set.range f) = ⊤)
     (M : Fin k → Type u) [∀ i, AddCommGroup (M i)] [∀ i, Module B (M i)]

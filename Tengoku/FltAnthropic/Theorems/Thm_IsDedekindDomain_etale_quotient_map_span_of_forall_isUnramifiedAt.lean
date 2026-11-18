@@ -11,6 +11,9 @@ open Polynomial TensorProduct
 
 universe u
 
+/--
+@isnad1 id=etale.3h3v.s10.176d4281b80e from=translated src=- shape=1c53f63a vocab=85dcbcf4
+-/
 theorem IsDedekindDomain.etale_quotient_map_span_of_forall_isUnramifiedAt
     {k : Type u} [Field k] (B : Type u) [CommRing B] [IsDedekindDomain B]
     [Algebra k[X] B] [Algebra k B] [IsScalarTower k k[X] B] [Module.Finite k[X] B] [NoZeroSMulDivisors k[X] B]

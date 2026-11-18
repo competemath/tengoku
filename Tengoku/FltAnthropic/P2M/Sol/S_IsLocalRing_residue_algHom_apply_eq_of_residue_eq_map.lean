@@ -14,6 +14,9 @@ open IsLocalRing
 namespace CohL2
 namespace Residue
 
+/--
+@isnad1 id=mem.1h4v.s7.127d3aca94e2 from=translated src=- shape=abcfa242 vocab=1545295f
+-/
 theorem map_mem_maximalIdeal {𝒪 : Type} [CommRing 𝒪] [IsLocalRing 𝒪]
     {L : Type} [CommRing L] [IsLocalRing L] [Algebra 𝒪 L] (πT : L →ₐ[𝒪] 𝒪)
     {z : L} (hz : z ∈ maximalIdeal L) : πT z ∈ maximalIdeal 𝒪 := by
@@ -33,6 +36,9 @@ theorem map_mem_maximalIdeal {𝒪 : Type} [CommRing 𝒪] [IsLocalRing 𝒪]
   rw [hk] at h1
   exact not_isUnit_zero h1
 
+/--
+@isnad1 id=eq.1h5v.s9.ba4305fba3d8 from=translated src=- shape=74cac777 vocab=c08d971f
+-/
 theorem residue_point_eq {𝒪 : Type} [CommRing 𝒪] [IsLocalRing 𝒪]
     {L : Type} [CommRing L] [IsLocalRing L] [Algebra 𝒪 L] [IsLocalHom (algebraMap 𝒪 L)]
     (πT : L →ₐ[𝒪] 𝒪) (z : L) (x : ResidueField 𝒪)
@@ -52,6 +58,9 @@ theorem residue_point_eq {𝒪 : Type} [CommRing 𝒪] [IsLocalRing 𝒪]
 
 end CohL2.Residue
 
+/--
+@isnad1 id=eq.1h5v.s9.ba4305fba3d8 from=translated src=- shape=74cac777 vocab=c08d971f
+-/
 theorem solution
     {𝒪 : Type} [CommRing 𝒪] [IsLocalRing 𝒪]
     {L : Type} [CommRing L] [IsLocalRing L] [Algebra 𝒪 L] [IsLocalHom (algebraMap 𝒪 L)]

@@ -7,6 +7,9 @@ namespace P2MW.S_IsDiscreteValuationRing_of_isAdicComplete_span_singleton_of_isM
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=isdiscre.3h2v.s6.f3a40059f2cb from=translated src=- shape=5f43de6e vocab=dcb582ea
+-/
 theorem solution
     (R : Type) [CommRing R] [IsDomain R] (ϖ : R) (hϖ : ϖ ≠ 0)
     (hc : IsAdicComplete (Ideal.span {ϖ}) R) (hm : (Ideal.span {ϖ}).IsMaximal) :

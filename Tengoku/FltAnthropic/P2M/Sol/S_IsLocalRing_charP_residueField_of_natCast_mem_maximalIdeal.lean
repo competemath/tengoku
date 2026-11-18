@@ -7,6 +7,9 @@ namespace P2MW.S_IsLocalRing_charP_residueField_of_natCast_mem_maximalIdeal
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=charp.1h2v.s6.d968ce1bd5bb from=translated src=- shape=4f170ddd vocab=65746e26
+-/
 theorem solution
     (A : Type*) [CommRing A] [IsLocalRing A] (p : ℕ) [Fact p.Prime]
     (hAp : (p : A) ∈ IsLocalRing.maximalIdeal A) :

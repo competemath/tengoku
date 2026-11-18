@@ -7,6 +7,9 @@ namespace P2MW.S_IsLocalRing_moduleFinite_quotient_maximalIdeal_pow_of_residueFi
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=finite.1h3v.s9.d0a68b6d6e3d from=translated src=- shape=e88649f2 vocab=15c63b21
+-/
 theorem solution
     {R S : Type*} [CommRing R] [CommRing S] [IsNoetherianRing S]
     [IsLocalRing R] [IsLocalRing S] [Algebra R S] [IsLocalHom (algebraMap R S)]

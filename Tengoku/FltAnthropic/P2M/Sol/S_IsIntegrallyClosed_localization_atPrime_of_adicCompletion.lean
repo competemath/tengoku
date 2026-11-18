@@ -12,6 +12,9 @@ open IsLocalRing Polynomial
 set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 6400000
 
+/--
+@isnad1 id=isintegr.0h2v.s7.c6c5b7f17ab6 from=translated src=- shape=d19781f4 vocab=1bad68d0
+-/
 theorem solution
     (R : Type*) [CommRing R] [IsDomain R] [IsNoetherianRing R] (𝔪 : Ideal R) [𝔪.IsMaximal]
     [IsDomain (AdicCompletion 𝔪 R)] [IsIntegrallyClosed (AdicCompletion 𝔪 R)] :

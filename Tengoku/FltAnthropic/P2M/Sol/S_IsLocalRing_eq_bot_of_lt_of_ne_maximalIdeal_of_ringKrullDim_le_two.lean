@@ -12,6 +12,9 @@ universe u v
 
 open IsLocalRing
 
+/--
+@isnad1 id=eq.5h5v.s8.89884ed7a25b from=translated src=- shape=29ec8ecf vocab=8b29fd3c
+-/
 theorem solution
     {B : Type u} [CommRing B] [IsDomain B] [IsLocalRing B] [IsNoetherianRing B]
     {R : Type v} [CommRing R] (e : AdicCompletion (maximalIdeal B) B ≃+* R) (hR : ringKrullDim R ≤ 2) :

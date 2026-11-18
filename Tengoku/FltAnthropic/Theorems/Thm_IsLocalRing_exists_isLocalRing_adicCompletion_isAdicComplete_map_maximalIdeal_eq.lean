@@ -11,6 +11,9 @@ universe u
 
 open IsLocalRing in
 
+/--
+@isnad1 id=ex.0h1v.s11.dcb3e50681dc from=translated src=- shape=a66b66b2 vocab=089fc8d3
+-/
 theorem IsLocalRing.exists_isLocalRing_adicCompletion_isAdicComplete_map_maximalIdeal_eq
     (O : Type u) [CommRing O] [IsNoetherianRing O] [IsLocalRing O] :
     ∃ (_ : IsLocalRing (AdicCompletion (maximalIdeal O) O))

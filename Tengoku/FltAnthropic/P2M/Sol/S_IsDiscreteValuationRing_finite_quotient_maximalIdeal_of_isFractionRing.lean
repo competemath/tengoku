@@ -60,6 +60,9 @@ theorem eq_zero_of_forall_dvd {ι : Type*} [Fintype ι] (p : ℕ) (hp : 1 < p)
 end ResFinite
 
 open IsLocalRing in
+/--
+@isnad1 id=finite.1h3v.s7.a91113cfa64e from=translated src=- shape=d30f9183 vocab=c2cf01fd
+-/
 theorem solution (A : Type*) [CommRing A] [IsDomain A] [IsDiscreteValuationRing A]
     (L : Type*) [Field L] [CharZero L] [Algebra A L] [IsFractionRing A L] [FiniteDimensional ℚ L]
     (p : ℕ) [Fact p.Prime] (hAp : (p : A) ∈ IsLocalRing.maximalIdeal A) :

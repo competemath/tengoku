@@ -9,6 +9,9 @@ namespace P2MW.S_IsLocalRing_surjective_of_isAdicComplete_of_maximalIdeal_le_map
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=surjecti.3h3v.s9.dfb520df898d from=translated src=- shape=61d69418 vocab=06801631
+-/
 theorem solution
     {R S : Type} [CommRing R] [CommRing S] [IsLocalRing R] [IsLocalRing S] [IsNoetherianRing S]
     [IsAdicComplete (IsLocalRing.maximalIdeal R) R] [IsAdicComplete (IsLocalRing.maximalIdeal S) S]

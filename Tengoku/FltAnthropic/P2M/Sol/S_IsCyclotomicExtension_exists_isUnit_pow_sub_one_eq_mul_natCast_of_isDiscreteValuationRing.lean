@@ -15,6 +15,9 @@ section Embed
 
 variable {L : Type} [Field L] (A : Type) [CommRing A] [IsDomain A] [IsDiscreteValuationRing A] [Algebra A L] [IsFractionRing A L]
 
+/--
+@isnad1 id=ex.1h3v.s7.2e5cff78b2d2 from=translated src=- shape=e8ebb16d vocab=514dd571
+-/
 theorem exists_algebraMap_eq_of_isIntegral_int {x : L} (hx : IsIntegral ℤ x) : ∃ a : A, algebraMap A L a = x :=
   IsIntegrallyClosed.isIntegral_iff.mp hx.tower_top
 
@@ -24,6 +27,9 @@ noncomputable def embFun (x : NumberField.RingOfIntegers L) : A :=
   Classical.choose (exists_algebraMap_eq_of_isIntegral_int A x.isIntegral_coe)
 
 omit [NumberField L] in
+/--
+@isnad1 id=eq.0h3v.s6.b837b9aae3a6 from=translated src=- shape=f0f55292 vocab=f0a56ca4
+-/
 @[scoped simp] theorem algebraMap_embFun (x : NumberField.RingOfIntegers L) : algebraMap A L (embFun A x) = (x : L) :=
   Classical.choose_spec (exists_algebraMap_eq_of_isIntegral_int A x.isIntegral_coe)
 
@@ -35,6 +41,9 @@ noncomputable def emb : NumberField.RingOfIntegers L →+* A where
   map_add' x y := IsFractionRing.injective A L (by simp)
 
 omit [NumberField L] in
+/--
+@isnad1 id=eq.0h3v.s7.00ae703e1dd5 from=translated src=- shape=a53bf224 vocab=c21e585c
+-/
 @[scoped simp] theorem algebraMap_emb (x : NumberField.RingOfIntegers L) : algebraMap A L (emb A x) = (x : L) :=
   algebraMap_embFun A x
 
@@ -45,6 +54,9 @@ open scoped _root_.P2MW.S_IsCyclotomicExtension_exists_isUnit_pow_sub_one_eq_mul
 
 open NumberField in
 
+/--
+@isnad1 id=ex.3h5v.s8.98529bc27e26 from=translated src=- shape=e8043ca1 vocab=1506b47d
+-/
 theorem solution
     (q ℓ : ℕ) [Fact q.Prime] [Fact ℓ.Prime] (hqℓ : q ≠ ℓ)
     (L : Type) [Field L] [CharZero L] [IsCyclotomicExtension {q * ℓ} ℚ L]

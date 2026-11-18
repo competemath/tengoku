@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open IsLocalRing
 
+/--
+@isnad1 id=eq.4h9v.s9.94f6035fe9c7 from=translated src=- shape=1ccf019d vocab=87b8e7ce
+-/
 theorem solution
     (Λ : Type) [CommRing Λ] (k : Type) [Field k] (res₀ : Λ →+* k) (hres₀ : Function.Surjective res₀)
     (A : Type) [CommRing A] [IsLocalRing A] [Algebra Λ A]

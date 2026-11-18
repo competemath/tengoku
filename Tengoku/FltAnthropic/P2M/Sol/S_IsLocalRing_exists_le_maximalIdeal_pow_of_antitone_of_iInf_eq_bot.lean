@@ -15,6 +15,9 @@ open IsLocalRing
 
 variable {A : Type u} [CommRing A] [IsNoetherianRing A] [IsLocalRing A]
 
+/--
+@isnad1 id=eq.0h2v.s7.8c766fe69149 from=translated src=- shape=085757cf vocab=9a984251
+-/
 theorem iInf_sup_pow_eq (K : Ideal A) : (⨅ t : ℕ, K ⊔ maximalIdeal A ^ t) = K := by
   refine le_antisymm ?_ (le_iInf fun t => le_sup_left)
   intro x hx
@@ -36,6 +39,9 @@ theorem iInf_sup_pow_eq (K : Ideal A) : (⨅ t : ℕ, K ⊔ maximalIdeal A ^ t) 
   rw [hKr, Submodule.mem_bot, Submodule.mkQ_apply, Submodule.Quotient.mk_eq_zero] at h0
   exact h0
 
+/--
+@isnad1 id=isartini.1h2v.s7.622844505229 from=translated src=- shape=43c34d50 vocab=a114bd41
+-/
 theorem isArtinianRing_quotient_pow (n : ℕ) (hn : 0 < n) : IsArtinianRing (A ⧸ maximalIdeal A ^ n) := by
   set 𝔞 : Ideal A := maximalIdeal A ^ n with h𝔞
   have h𝔞le : 𝔞 ≤ maximalIdeal A := Ideal.pow_le_self (Nat.pos_iff_ne_zero.1 hn)
@@ -58,6 +64,9 @@ theorem isArtinianRing_quotient_pow (n : ℕ) (hn : 0 < n) : IsArtinianRing (A �
     _ = (maximalIdeal A ^ n).map (Ideal.Quotient.mk 𝔞) := (Ideal.map_pow _ _ n).symm
     _ = ⊥ := by rw [← h𝔞, Ideal.map_quotient_self]
 
+/--
+@isnad1 id=ex.2h3v.s8.55977aa02877 from=translated src=- shape=2ec38af2 vocab=74f5fcf0
+-/
 theorem exists_stable (K : ℕ → Ideal A) (hK : Antitone K) (n : ℕ) (hn : 0 < n) :
     ∃ w₀ : ℕ, ∀ w : ℕ, w₀ ≤ w → K w ⊔ maximalIdeal A ^ n = K w₀ ⊔ maximalIdeal A ^ n := by
   haveI := isArtinianRing_quotient_pow (A := A) n hn
@@ -82,6 +91,9 @@ end ChevalleyLemma
 
 open IsLocalRing in
 
+/--
+@isnad1 id=ex.2h3v.s8.14e0862c9be7 from=translated src=- shape=4d16d5bd vocab=f69745f2
+-/
 theorem solution
     {A : Type u} [CommRing A] [IsNoetherianRing A] [IsLocalRing A]
     [IsAdicComplete (IsLocalRing.maximalIdeal A) A]

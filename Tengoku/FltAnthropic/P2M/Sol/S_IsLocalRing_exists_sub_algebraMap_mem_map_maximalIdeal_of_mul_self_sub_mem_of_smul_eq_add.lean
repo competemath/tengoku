@@ -15,6 +15,9 @@ section dimOne
 
 variable [IsLocalRing R]
 
+/--
+@isnad1 id=isnilpot.2h4v.s10.42110ec5e53e from=translated src=- shape=7e430335 vocab=6b8a49c3
+-/
 theorem isNilpotent_mk_of_mem_map {P : Type*} [CommRing P] [Algebra R P]
     {b : R} (hnil : ∀ c ∈ maximalIdeal R, ∃ n : ℕ, b ∣ c ^ n)
     {x : P} (hx : x ∈ (maximalIdeal R).map (algebraMap R P)) :
@@ -31,6 +34,9 @@ theorem isNilpotent_mk_of_mem_map {P : Type*} [CommRing P] [Algebra R P]
     exact Ideal.mul_mem_right _ _ (Ideal.subset_span rfl)
   exact hle hx
 
+/--
+@isnad1 id=ex.3h4v.s9.3f1422d0c4ec from=translated src=- shape=6a82f4ac vocab=8daa0185
+-/
 theorem exists_mul_self_sub_mem_span_and_sub_mem {P : Type*} [CommRing P] [Algebra R P]
     {b : R} (hb : b ∈ maximalIdeal R) (hnil : ∀ c ∈ maximalIdeal R, ∃ n : ℕ, b ∣ c ^ n)
     (e : P) (he : e * e - e ∈ (maximalIdeal R).map (algebraMap R P)) :
@@ -64,6 +70,9 @@ theorem exists_mul_self_sub_mem_span_and_sub_mem {P : Type*} [CommRing P] [Algeb
   · rw [← Ideal.Quotient.eq_zero_iff_mem, map_sub, sub_eq_zero, ← hf]
     exact hyf
 
+/--
+@isnad1 id=mem.4h5v.s9.7226322e5e94 from=translated src=- shape=6f82a067 vocab=8daa0185
+-/
 theorem sub_mem_span_of_mul_self_sub_mem {P : Type*} [CommRing P] [Algebra R P]
     {b : R} (hnil : ∀ c ∈ maximalIdeal R, ∃ n : ℕ, b ∣ c ^ n)
     {y y' : P} (hy : y * y - y ∈ Ideal.span {algebraMap R P b})
@@ -88,6 +97,9 @@ theorem sub_mem_span_of_mul_self_sub_mem {P : Type*} [CommRing P] [Algebra R P]
 
 end dimOne
 
+/--
+@isnad1 id=mem.1h6v.s8.aa7fad4083dc from=translated src=- shape=1bfa8e59 vocab=0526b1f8
+-/
 theorem map_mul_self_sub_mem_span {P P'' : Type*} [CommRing P] [CommRing P'']
     [Algebra R P] [Algebra R P''] (u : P →ₐ[R] P'') {b : R} {x : P}
     (hx : x * x - x ∈ Ideal.span {algebraMap R P b}) :
@@ -98,6 +110,9 @@ theorem map_mul_self_sub_mem_span {P P'' : Type*} [CommRing P] [CommRing P'']
   have := congrArg u hc
   simpa [map_mul, map_sub, AlgHom.commutes] using this
 
+/--
+@isnad1 id=mem.1h5v.s8.0efe845ed6a9 from=translated src=- shape=7eb31e1a vocab=dbdc34bc
+-/
 theorem map_mem_map_maximalIdeal [IsLocalRing R] {P P'' : Type*} [CommRing P] [CommRing P'']
     [Algebra R P] [Algebra R P''] (u : P →ₐ[R] P'') {x : P}
     (hx : x ∈ (maximalIdeal R).map (algebraMap R P)) :
@@ -109,6 +124,9 @@ theorem map_mem_map_maximalIdeal [IsLocalRing R] {P P'' : Type*} [CommRing P] [C
 end EngineCoreSol
 
 open EngineCoreSol in
+/--
+@isnad1 id=ex.7h10v.s10.a10fd095c879 from=translated src=- shape=53a39a37 vocab=5aec9b9b
+-/
 theorem solution
     {R : Type*} [CommRing R] [IsLocalRing R]
     {P P' P'' : Type*} [CommRing P] [CommRing P'] [CommRing P'']

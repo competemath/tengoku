@@ -7,6 +7,9 @@ namespace P2MW.S_IsDiscreteValuationRing_mem_maximalIdeal_pow_sub_of_mul_mem_of_
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=mem.2h5v.s8.a23dca4ee203 from=translated src=- shape=0b18ab4d vocab=354f756a
+-/
 theorem solution
     {𝒪 : Type} [CommRing 𝒪] [IsDomain 𝒪] [IsDiscreteValuationRing 𝒪]
     (a v : 𝒪) (k M : ℕ)

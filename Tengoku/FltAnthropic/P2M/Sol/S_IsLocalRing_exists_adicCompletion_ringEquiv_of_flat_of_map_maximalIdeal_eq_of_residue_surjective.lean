@@ -11,6 +11,9 @@ namespace P2MW.S_IsLocalRing_exists_adicCompletion_ringEquiv_of_flat_of_map_maxi
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.2h2v.s10.6a28121700cf from=translated src=- shape=f0cdc452 vocab=0a9a4169
+-/
 theorem solution
     {R S : Type*} [CommRing R] [CommRing S] [IsNoetherianRing R] [IsNoetherianRing S]
     [IsLocalRing R] [IsLocalRing S] [Algebra R S] [IsLocalHom (algebraMap R S)] [Module.Flat R S]

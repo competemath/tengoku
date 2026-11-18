@@ -24,6 +24,9 @@ include hf
 
 omit [FiniteDimensional K L] in
 
+/--
+@isnad1 id=eq.1h8v.s12.8539315acc55 from=translated src=- shape=8285ca03 vocab=205dce6e
+-/
 theorem f_mul (τ σ : Gal) (x : L ⊗[K] U) : f (τ * σ) x = f τ (f σ x) := by
   induction x using TensorProduct.induction_on with
   | zero => simp only [map_zero]
@@ -38,12 +41,18 @@ def inv : AddSubgroup (L ⊗[K] U) where
 
 omit [FiniteDimensional K L] in
 
+/--
+@isnad1 id=mem.1h6v.s11.430b790a766c from=translated src=- shape=f53ffd3e vocab=9aaa7f01
+-/
 theorem sum_mem_inv [Fintype Gal] (x : L ⊗[K] U) : ∑ σ : Gal, f σ x ∈ inv f := by
   intro τ
   rw [map_sum]
   simp_rw [← f_mul ρ f hf]
   exact Fintype.sum_equiv (Equiv.mulLeft τ) _ _ fun σ => rfl
 
+/--
+@isnad1 id=mem.1h6v.s11.784aa8a9a1ec from=translated src=- shape=6b6401c9 vocab=77c9d764
+-/
 theorem one_tmul_mem_span [IsGalois K L] (u : U) :
     (1 : L) ⊗ₜ[K] u ∈ Submodule.span L (inv f : Set (L ⊗[K] U)) := by
   classical
@@ -116,6 +125,9 @@ theorem one_tmul_mem_span [IsGalois K L] (u : U) :
   rw [← hcomb]
   refine Submodule.sum_mem _ fun j _ => Submodule.smul_mem _ _ (Submodule.subset_span (hmem j))
 
+/--
+@isnad1 id=eq.1h5v.s11.3402f192f7a2 from=translated src=- shape=31bdf67a vocab=3a28483d
+-/
 theorem span_inv_eq_top [IsGalois K L] :
     Submodule.span L (inv f : Set (L ⊗[K] U)) = ⊤ := by
   rw [eq_top_iff]
@@ -131,6 +143,9 @@ theorem span_inv_eq_top [IsGalois K L] :
 
 end HTDESC
 
+/--
+@isnad1 id=ex.1h5v.s11.c47fa7be1dc9 from=translated src=- shape=06bde070 vocab=5a1d6902
+-/
 theorem solution
     {K L : Type*} [Field K] [Field L] [Algebra K L] [FiniteDimensional K L] [IsGalois K L]
     {U : Type*} [AddCommGroup U] [Module K U] [FiniteDimensional K U]

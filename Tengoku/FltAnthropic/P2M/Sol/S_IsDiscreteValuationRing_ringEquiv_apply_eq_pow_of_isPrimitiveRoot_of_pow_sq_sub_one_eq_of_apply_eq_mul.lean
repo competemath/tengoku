@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open IsLocalRing
 
+/--
+@isnad1 id=eq.6h7v.s9.0f5b401c5e0c from=translated src=- shape=031eca51 vocab=99d7bb96
+-/
 theorem solution
     {A : Type*} [CommRing A] [IsDomain A] [IsDiscreteValuationRing A]
     (q : ℕ) [Fact q.Prime] (hAq : (q : A) ∈ IsLocalRing.maximalIdeal A)

@@ -10,6 +10,9 @@ set_option autoImplicit false
 open IsLocalRing
 
 open IsLocalRing in
+/--
+@isnad1 id=mem.3h5v.s8.c7df38cd6c1b from=translated src=- shape=7af7d334 vocab=d59ef843
+-/
 theorem solution {R : Type*} [CommRing R] [IsLocalRing R]
     {p : ℕ} (hp : p.Prime) {e : ℕ} (hpe : (p : R) ∈ maximalIdeal R ^ e)
     {k : ℕ} {u : Rˣ} (hu : u ∈ principalUnits R k) :

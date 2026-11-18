@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_IsDedekindDomain_HeightOneSpectrum_isAdicC
 set_option autoImplicit false
 universe u v
 open IsDedekindDomain
+/--
+@isnad1 id=isadicco.0h3v.s10.498e7a73dd6c from=translated src=- shape=b716117f vocab=953400f7
+-/
 theorem IsDedekindDomain.HeightOneSpectrum.isAdicComplete_adicCompletionIntegers
     {R : Type u} [CommRing R] [IsDedekindDomain R] (K : Type v) [Field K] [Algebra R K] [IsFractionRing R K]
     (v : HeightOneSpectrum R) :

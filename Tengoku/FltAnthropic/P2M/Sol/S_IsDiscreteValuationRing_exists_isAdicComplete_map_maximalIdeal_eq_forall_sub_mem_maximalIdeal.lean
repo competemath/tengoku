@@ -12,6 +12,9 @@ universe u
 
 open AdicCompletion IsLocalRing
 
+/--
+@isnad1 id=ex.0h1v.s8.ddc1ac5492bb from=translated src=- shape=87f5d506 vocab=fbf9db08
+-/
 theorem solution
     (A : Type u) [CommRing A] [IsDomain A] [IsDiscreteValuationRing A] :
     ∃ (W : Type u) (_ : CommRing W) (_ : IsDomain W) (_ : IsDiscreteValuationRing W)

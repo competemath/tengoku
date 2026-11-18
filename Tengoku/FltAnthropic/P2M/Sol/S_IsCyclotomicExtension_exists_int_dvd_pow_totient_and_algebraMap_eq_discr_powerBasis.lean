@@ -13,6 +13,9 @@ universe u v
 
 namespace C2
 
+/--
+@isnad1 id=isintegr.1h3v.s7.6de79e01f298 from=translated src=- shape=3d6d5a5f vocab=67b445aa
+-/
 theorem isIntegral_aeval_int {L : Type v} [CommRing L] {ζ : L} (hζi : IsIntegral ℤ ζ) (g : ℤ[X]) : IsIntegral ℤ (aeval ζ g) := by
   have hmem : aeval ζ g ∈ Algebra.adjoin ℤ ({ζ} : Set L) := Polynomial.aeval_mem_adjoin_singleton ℤ ζ
   haveI : Algebra.IsIntegral ℤ (Algebra.adjoin ℤ ({ζ} : Set L)) :=
@@ -20,6 +23,9 @@ theorem isIntegral_aeval_int {L : Type v} [CommRing L] {ζ : L} (hζi : IsIntegr
   have h : IsIntegral ℤ (⟨aeval ζ g, hmem⟩ : Algebra.adjoin ℤ ({ζ} : Set L)) := Algebra.IsIntegral.isIntegral _
   exact h.map (Algebra.adjoin ℤ ({ζ} : Set L)).val
 
+/--
+@isnad1 id=eq.2h6v.s9.a7199c5441a4 from=translated src=- shape=2d0a1cc6 vocab=b096a572
+-/
 theorem prod_embeddings_aeval_eq {K : Type u} {L : Type v} [Field K] [Field L] [Algebra K L] {n : ℕ} [NeZero n]
     [IsCyclotomicExtension {n} K L] [FiniteDimensional K L] {ζ : L} (hζ : IsPrimitiveRoot ζ n) (hirr : Irreducible (cyclotomic n K))
     (E : Type*) [Field E] [Algebra K E] (g : ℤ[X]) :
@@ -33,6 +39,9 @@ theorem prod_embeddings_aeval_eq {K : Type u} {L : Type v} [Field K] [Field L] [
   rw [← Polynomial.aeval_algHom_apply]
   rfl
 
+/--
+@isnad1 id=ex.3h7v.s9.88e8eb416b32 from=translated src=- shape=62a3a119 vocab=5cc11993
+-/
 theorem exists_int_norm_aeval {K : Type u} {L : Type v} [Field K] [CharZero K] [Field L] [Algebra K L] {n : ℕ} [NeZero n]
     [IsCyclotomicExtension {n} K L] {ζ : L} (hζ : IsPrimitiveRoot ζ n) (hirr : Irreducible (cyclotomic n K))
     (L₀ : Type) [Field L₀] [Algebra ℚ L₀] [IsCyclotomicExtension {n} ℚ L₀] {ζ₀ : L₀} (hζ₀ : IsPrimitiveRoot ζ₀ n) (g : ℤ[X]) :
@@ -61,6 +70,9 @@ theorem exists_int_norm_aeval {K : Type u} {L : Type v} [Field K] [CharZero K] [
     convert prod_embeddings_aeval_eq hζ₀ hirr₀ E g <;> first | rfl | exact Subsingleton.elim _ _
   rw [h1, ← h2, ← hD, eq_intCast, eq_intCast, map_intCast, map_intCast]
 
+/--
+@isnad1 id=ex.2h4v.s8.f0e2fcf7c65b from=translated src=- shape=f929cac2 vocab=601022fa
+-/
 theorem exists_int_dvd_pow_totient_and_algebraMap_eq_discr
     {K : Type u} {L : Type v} [Field K] [CharZero K] [Field L] [Algebra K L] {n : ℕ} [NeZero n]
     [IsCyclotomicExtension {n} K L] {ζ : L} (hζ : IsPrimitiveRoot ζ n) (hirr : Irreducible (cyclotomic n K)) :
@@ -135,6 +147,9 @@ theorem exists_int_dvd_pow_totient_and_algebraMap_eq_discr
 
 end C2
 
+/--
+@isnad1 id=ex.2h4v.s8.f0e2fcf7c65b from=translated src=- shape=f929cac2 vocab=601022fa
+-/
 theorem solution
     {K : Type u} {L : Type v} [Field K] [CharZero K] [Field L] [Algebra K L] {n : ℕ} [NeZero n]
     [IsCyclotomicExtension {n} K L] {ζ : L} (hζ : IsPrimitiveRoot ζ n) (hirr : Irreducible (cyclotomic n K)) :

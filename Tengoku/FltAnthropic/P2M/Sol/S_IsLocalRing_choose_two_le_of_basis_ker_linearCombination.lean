@@ -15,6 +15,9 @@ open IsLocalRing TensorProduct
 
 abbrev LtPair (m : ℕ) : Type := {p : Fin m × Fin m // p.1 < p.2}
 
+/--
+@isnad1 id=eq.0h1v.s6.1cee6728b6a7 from=translated src=- shape=5f32f2e5 vocab=5954a79d
+-/
 theorem card_ltPairs (m : ℕ) : Fintype.card (LtPair m) = m.choose 2 := by
   classical
   rw [Fintype.card_subtype, Finset.card_filter, Fintype.sum_prod_type, Finset.sum_comm]
@@ -29,12 +32,18 @@ variable {R : Type} [CommRing R] {m : ℕ} (σ : Fin m → R)
 def kvec (q : Fin m × Fin m) : Fin m → R :=
   Pi.single q.1 (σ q.2) - Pi.single q.2 (σ q.1)
 
+/--
+@isnad1 id=mem.0h4v.s8.3feb386b98d5 from=translated src=- shape=54086bd9 vocab=448dae1c
+-/
 theorem kvec_mem_ker (q : Fin m × Fin m) :
     kvec σ q ∈ LinearMap.ker (Fintype.linearCombination R σ) := by
   classical
   rw [LinearMap.mem_ker, kvec, map_sub, Fintype.linearCombination_apply_single,
     Fintype.linearCombination_apply_single, smul_eq_mul, smul_eq_mul, mul_comm, sub_self]
 
+/--
+@isnad1 id=eq.0h5v.s7.750003046997 from=translated src=- shape=f5dbdf9d vocab=daf6e902
+-/
 theorem sum_kvec_apply (c : Fin m → Fin m → R) (k : Fin m) :
     (∑ q : Fin m × Fin m, c q.1 q.2 • kvec σ q) k = ∑ l, (c k l - c l k) * σ l := by
   classical
@@ -46,6 +55,9 @@ theorem sum_kvec_apply (c : Fin m → Fin m → R) (k : Fin m) :
   rw [← Finset.sum_sub_distrib]
   exact Finset.sum_congr rfl fun l _ => (sub_mul _ _ _).symm
 
+/--
+@isnad1 id=le.1h5v.s9.ebe7eecd6855 from=translated src=- shape=a7432fae vocab=7c2dc511
+-/
 theorem main [IsLocalRing R]
     (hσ : ∀ c : Fin m → R, ∑ i, c i * σ i ∈ maximalIdeal R ^ 2 → ∀ i, c i ∈ maximalIdeal R)
     {ρ : ℕ} (η : Module.Basis (Fin ρ) R (LinearMap.ker (Fintype.linearCombination R σ))) :
@@ -141,6 +153,9 @@ theorem main [IsLocalRing R]
 
 end KoszulMin
 
+/--
+@isnad1 id=le.1h5v.s9.96103c8826b2 from=translated src=- shape=54b3a68f vocab=7c2dc511
+-/
 theorem solution
     {R : Type} [CommRing R] [IsLocalRing R] {m : ℕ} (σ : Fin m → R)
     (hσ : ∀ c : Fin m → R, ∑ i, c i * σ i ∈ IsLocalRing.maximalIdeal R ^ 2 →

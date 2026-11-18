@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_IsLocalRing_quotient_mk_comp_algebraMap_su
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=surjecti.2h3v.s10.65e9ea3e989c from=translated src=- shape=2e576454 vocab=0f9f156a
+-/
 theorem IsLocalRing.quotient_mk_comp_algebraMap_surjective_of_map_maximalIdeal_eq_of_residueField_map_surjective
     {R S : Type*} [CommRing R] [CommRing S] [IsNoetherianRing S]
     [IsLocalRing R] [IsLocalRing S] [Algebra R S] [IsLocalHom (algebraMap R S)]

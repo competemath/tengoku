@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open IsLocalRing
 
+/--
+@isnad1 id=ex.3h4v.s9.6b4297ffa027 from=translated src=- shape=af1dcd3d vocab=2791dee4
+-/
 theorem solution
     (Λ : Type) [CommRing Λ] [IsLocalRing Λ] (k : Type) [Field k]
     (res₀ : Λ →+* k) (hres₀ : Function.Surjective res₀) (hker₀ : RingHom.ker res₀ = maximalIdeal Λ)

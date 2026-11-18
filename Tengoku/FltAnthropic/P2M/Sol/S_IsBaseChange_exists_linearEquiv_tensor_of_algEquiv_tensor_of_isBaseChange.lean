@@ -11,6 +11,9 @@ open scoped TensorProduct
 
 universe u v w
 
+/--
+@isnad1 id=ex.4h13v.s12.6036993bdcf1 from=translated src=- shape=c6eea61f vocab=22236c67
+-/
 theorem solution
     {R₀ : Type u} [CommRing R₀] {R : Type u} [CommRing R] [Algebra R₀ R]
     {Γ₀ : Type u} [CommRing Γ₀] [Algebra R₀ Γ₀]

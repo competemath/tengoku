@@ -58,6 +58,9 @@ private theorem cast_mod_mul_pow (p N : ℕ) (hN : 1 ≤ N) (m : ℕ) :
 
 end UextAux
 
+/--
+@isnad1 id=ex.3h3v.s10.d1f0a54af8cf from=translated src=- shape=a6f17e0a vocab=53c0b82e
+-/
 theorem solution
     {B : Type} [CommRing B] [IsLocalRing B] [Finite B] (p : ℕ) [Fact p.Prime]
     (hpB : (p : B) ∈ IsLocalRing.maximalIdeal B)

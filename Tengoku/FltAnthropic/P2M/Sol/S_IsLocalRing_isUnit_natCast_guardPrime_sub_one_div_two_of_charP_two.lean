@@ -7,6 +7,9 @@ namespace P2MW.S_IsLocalRing_isUnit_natCast_guardPrime_sub_one_div_two_of_charP_
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=isunit.2h2v.s6.f4206f68d622 from=translated src=- shape=73051f71 vocab=a10cc438
+-/
 theorem solution
     (R : Type*) [CommRing R] [IsLocalRing R] [CharP (IsLocalRing.ResidueField R) 2]
     (ℓg : ℕ) (hℓg : ℓg.Prime) (hℓg12 : ℓg % 12 = 11) :

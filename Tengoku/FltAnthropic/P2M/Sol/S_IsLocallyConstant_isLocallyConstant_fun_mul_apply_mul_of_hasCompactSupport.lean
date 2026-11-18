@@ -17,6 +17,9 @@ namespace M4aP3B
 namespace Rows
 namespace SliceLocConst
 
+/--
+@isnad1 id=islocall.2h5v.s6.7be7b8bcd314 from=translated src=- shape=bbe54e08 vocab=20763cb2
+-/
 theorem isLocallyConstant_fun_mul_apply_mul_of_hasCompactSupport_impl
     {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] {Y : Type*} [Zero Y]
     {f : G → Y} (hf : IsLocallyConstant f) (hsupp : HasCompactSupport f) {S : Type*} (n : S → G) :
@@ -37,11 +40,17 @@ theorem isLocallyConstant_fun_mul_apply_mul_of_hasCompactSupport_impl
   rw [e]
   exact hV _ h1 _ h2 _
 
+/--
+@isnad1 id=islocall.0h5v.s6.4282ec7c4f78 from=translated src=- shape=226e8d24 vocab=7311f70c
+-/
 theorem gate_discrete {G : Type*} [Group G] [TopologicalSpace G] [DiscreteTopology G]
     {Y S : Type*} (f : G → Y) (n : S → G) :
     IsLocallyConstant (fun kk : G × G => fun s => f (kk.1 * n s * kk.2)) :=
   IsLocallyConstant.of_discrete _
 
+/--
+@isnad1 id=finite.3h6v.s6.4e63f8ca314e from=translated src=- shape=e4781471 vocab=d6709cc3
+-/
 theorem finite_image_of_isCompact
     {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] {Y : Type*} [Zero Y]
     {f : G → Y} (hf : IsLocallyConstant f) (hsupp : HasCompactSupport f) {S : Type*} (n : S → G)
@@ -56,6 +65,9 @@ theorem finite_image_of_isCompact
 
 end M4aP3B.Rows.SliceLocConst
 
+/--
+@isnad1 id=islocall.2h5v.s6.7be7b8bcd314 from=translated src=- shape=bbe54e08 vocab=20763cb2
+-/
 theorem solution
     {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] {Y : Type*} [Zero Y]
     {f : G → Y} (hf : IsLocallyConstant f) (hsupp : HasCompactSupport f) {S : Type*} (n : S → G) :

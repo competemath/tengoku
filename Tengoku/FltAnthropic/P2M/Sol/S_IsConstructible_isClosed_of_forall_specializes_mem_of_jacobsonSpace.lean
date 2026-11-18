@@ -15,6 +15,9 @@ namespace ConstrClosedPtsGC3
 
 variable {X : Type u} [TopologicalSpace X]
 
+/--
+@isnad1 id=ex.1h2v.s5.809ef7168e67 from=translated src=- shape=63f26c60 vocab=47c586ae
+-/
 theorem exists_iUnion_isLocallyClosed [TopologicalSpace.NoetherianSpace X] {C : Set X} (hC : IsConstructible C) :
     ∃ (ι : Type u) (_ : Finite ι) (L : ι → Set X), (∀ i, IsLocallyClosed (L i)) ∧ (⋃ i, L i) = C := by
 
@@ -38,6 +41,9 @@ theorem exists_iUnion_isLocallyClosed [TopologicalSpace.NoetherianSpace X] {C : 
       · rintro ⟨⟨i, hi⟩, ⟨j, hj⟩⟩; exact ⟨i, j, hi, hj⟩
   | compl s hs Hs => rw [compl_compl]; exact ⟨Hs.2, Hs.1⟩
 
+/--
+@isnad1 id=ex.2h3v.s5.2c6995705f33 from=translated src=- shape=e9f3b333 vocab=7f230bb2
+-/
 theorem exists_mem_specializes_of_mem_closure [TopologicalSpace.NoetherianSpace X] [QuasiSober X]
     {L : Set X} (hL : IsLocallyClosed L) {y : X} (hy : y ∈ closure L) : ∃ x ∈ L, x ⤳ y := by
   obtain ⟨U, F, hU, hF, rfl⟩ := hL
@@ -71,6 +77,9 @@ theorem exists_mem_specializes_of_mem_closure [TopologicalSpace.NoetherianSpace 
   rw [specializes_iff_mem_closure, hξ.def]
   exact (hScl t ht).closure_subset_iff.mpr Set.inter_subset_right hyt
 
+/--
+@isnad1 id=isconstr.1h2v.s4.e83268f1ad02 from=translated src=- shape=b36b1524 vocab=855b3358
+-/
 theorem isConstructible_of_isClosed [TopologicalSpace.NoetherianSpace X] {F : Set X} (hF : IsClosed F) :
     IsConstructible F := by
   have : IsConstructible Fᶜ :=
@@ -79,6 +88,9 @@ theorem isConstructible_of_isClosed [TopologicalSpace.NoetherianSpace X] {F : Se
 
 end ConstrClosedPtsGC3
 
+/--
+@isnad1 id=isclosed.2h2v.s6.e38d888dde30 from=translated src=- shape=d4e089f3 vocab=732970b8
+-/
 theorem solution
     {X : Type u} [TopologicalSpace X] [TopologicalSpace.NoetherianSpace X] [QuasiSober X] [JacobsonSpace X]
     {C : Set X} (hC : IsConstructible C)

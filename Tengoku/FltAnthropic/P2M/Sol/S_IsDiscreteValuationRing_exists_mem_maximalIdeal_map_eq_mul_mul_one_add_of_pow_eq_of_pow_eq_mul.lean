@@ -7,6 +7,9 @@ namespace P2MW.S_IsDiscreteValuationRing_exists_mem_maximalIdeal_map_eq_mul_mul_
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.6h7v.s9.35c57a31c3f1 from=translated src=- shape=cf8f8b18 vocab=8b2d5962
+-/
 theorem solution
     (A : Type) [CommRing A] [IsDomain A] [IsDiscreteValuationRing A]
     (σ : A ≃+* A) (hσ : ∀ a : A, σ a - a ∈ IsLocalRing.maximalIdeal A)

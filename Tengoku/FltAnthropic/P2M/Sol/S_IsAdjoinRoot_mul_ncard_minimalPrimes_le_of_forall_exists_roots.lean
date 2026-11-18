@@ -7,6 +7,9 @@ namespace P2MW.S_IsAdjoinRoot_mul_ncard_minimalPrimes_le_of_forall_exists_roots
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=le.3h5v.s10.050672e680fa from=translated src=- shape=8cd5bb00 vocab=764c9138
+-/
 theorem solution
     (R S : Type) [CommRing R] [CommRing S] [Algebra R S]
     (f : Polynomial R) (hf : f.Monic) (hS : IsAdjoinRoot S f) (n : ℕ)

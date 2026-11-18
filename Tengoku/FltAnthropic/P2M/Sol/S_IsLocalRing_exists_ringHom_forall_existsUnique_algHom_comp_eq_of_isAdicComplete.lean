@@ -18,17 +18,29 @@ variable {R : Type} [CommRing R] [IsLocalRing R] [IsNoetherianRing R] [Algebra O
 
 abbrev Q (R : Type) [CommRing R] [IsLocalRing R] (n : ℕ) : Type := R ⧸ maximalIdeal R ^ (n + 1)
 
+/--
+@isnad1 id=ne.0h2v.s6.a987c6dcea0e from=translated src=- shape=8de07366 vocab=d7e29001
+-/
 theorem pow_ne_top (n : ℕ) : maximalIdeal R ^ (n + 1) ≠ ⊤ :=
   fun h => (maximalIdeal.isMaximal R).ne_top (by
     rw [eq_top_iff, ← h]
     exact Ideal.pow_le_self (Nat.succ_ne_zero n))
 
+/--
+@isnad1 id=nontrivi.0h2v.s4.8f5c9e26fb85 from=translated src=- shape=ff58787a vocab=19317f47
+-/
 scoped instance nontrivial_Q (n : ℕ) : Nontrivial (Q R n) :=
   Ideal.Quotient.nontrivial_iff.mpr (pow_ne_top n)
 
+/--
+@isnad1 id=islocalr.0h2v.s6.adcb971957ee from=translated src=- shape=d2fcc89a vocab=53df13a7
+-/
 scoped instance isLocalRing_Q (n : ℕ) : IsLocalRing (Q R n) :=
   IsLocalRing.of_surjective' (Ideal.Quotient.mk _) Ideal.Quotient.mk_surjective
 
+/--
+@isnad1 id=le.0h2v.s10.059579148ce3 from=translated src=- shape=18138434 vocab=714fa235
+-/
 theorem maximalIdeal_Q_le (n : ℕ) :
     maximalIdeal (Q R n) ≤ (maximalIdeal R).map (Ideal.Quotient.mk (maximalIdeal R ^ (n + 1))) := by
   intro x hx
@@ -39,6 +51,9 @@ theorem maximalIdeal_Q_le (n : ℕ) :
     exact (mem_maximalIdeal _ |>.mp hx) (hu.map _)
   exact Ideal.mem_map_of_mem _ hr
 
+/--
+@isnad1 id=isartini.0h2v.s6.f1a410b29f17 from=translated src=- shape=ff58787a vocab=6b8e4fe2
+-/
 scoped instance isArtinianRing_Q (n : ℕ) : IsArtinianRing (Q R n) := by
   rw [isArtinianRing_iff_isNilpotent_maximalIdeal]
   refine ⟨n + 1, ?_⟩
@@ -57,16 +72,25 @@ section Res
 variable (resR : R →+* ResidueField O) (hresR : resR.comp (algebraMap O R) = residue O)
 
 include hresR in
+/--
+@isnad1 id=surjecti.1h3v.s8.c5438a86b141 from=translated src=- shape=f49f8cca vocab=449baafe
+-/
 theorem resR_surjective : Function.Surjective resR := by
   intro c
   obtain ⟨o, rfl⟩ := IsLocalRing.residue_surjective c
   exact ⟨algebraMap O R o, by rw [← RingHom.comp_apply, hresR]⟩
 
 include hresR in
+/--
+@isnad1 id=eq.1h3v.s8.44ea958a5a5a from=translated src=- shape=25877979 vocab=8666aa32
+-/
 theorem ker_resR : RingHom.ker resR = maximalIdeal R :=
   IsLocalRing.eq_maximalIdeal (RingHom.ker_isMaximal_of_surjective resR (resR_surjective resR hresR))
 
 include hresR in
+/--
+@isnad1 id=eq.2h5v.s8.d0a92e8d0317 from=translated src=- shape=ef9f0841 vocab=b923144a
+-/
 theorem pow_le_ker (n : ℕ) : ∀ a ∈ maximalIdeal R ^ (n + 1), resR a = 0 := by
   intro a ha
   have : a ∈ maximalIdeal R := Ideal.pow_le_self (Nat.succ_ne_zero n) ha
@@ -76,14 +100,23 @@ theorem pow_le_ker (n : ℕ) : ∀ a ∈ maximalIdeal R ^ (n + 1), resR a = 0 :=
 noncomputable def resQ (n : ℕ) : Q R n →+* ResidueField O :=
   Ideal.Quotient.lift _ resR (pow_le_ker resR hresR n)
 
+/--
+@isnad1 id=eq.1h5v.s10.ed6fdc342206 from=translated src=- shape=fd15164b vocab=ca18e4b7
+-/
 theorem resQ_mk (n : ℕ) (r : R) : resQ resR hresR n (Ideal.Quotient.mk _ r) = resR r :=
   Ideal.Quotient.lift_mk _ _ _
 
+/--
+@isnad1 id=surjecti.1h4v.s8.112008305d77 from=translated src=- shape=316b4292 vocab=c4e43e30
+-/
 theorem resQ_surjective (n : ℕ) : Function.Surjective (resQ resR hresR n) := by
   intro c
   obtain ⟨r, rfl⟩ := resR_surjective resR hresR c
   exact ⟨Ideal.Quotient.mk _ r, resQ_mk resR hresR n r⟩
 
+/--
+@isnad1 id=eq.1h4v.s8.ed608ed1ff7e from=translated src=- shape=03c3dce4 vocab=cef4f29e
+-/
 theorem resQ_comp_algebraMap (n : ℕ) : (resQ resR hresR n).comp (algebraMap O (Q R n)) = residue O := by
   ext o
   show resQ resR hresR n (Ideal.Quotient.mk _ (algebraMap O R o)) = residue O o
@@ -92,6 +125,9 @@ theorem resQ_comp_algebraMap (n : ℕ) : (resQ resR hresR n).comp (algebraMap O 
 noncomputable def proj (O : Type) [CommRing O] {R : Type} [CommRing R] [IsLocalRing R] [Algebra O R] (n : ℕ) :
     R →ₐ[O] Q R n := Ideal.Quotient.mkₐ O _
 
+/--
+@isnad1 id=eq.1h4v.s9.2215c69913ec from=translated src=- shape=6a636f8d vocab=9f7c7421
+-/
 theorem resQ_comp_proj (n : ℕ) : (resQ resR hresR n).comp (proj O n : R →ₐ[O] Q R n).toRingHom = resR := by
   ext r
   exact resQ_mk resR hresR n r
@@ -100,9 +136,15 @@ noncomputable def trans (O : Type) [CommRing O] {R : Type} [CommRing R] [IsLocal
     {m n : ℕ} (h : m ≤ n) : Q R n →ₐ[O] Q R m :=
   Ideal.Quotient.factorₐ O (Ideal.pow_le_pow_right (Nat.succ_le_succ h))
 
+/--
+@isnad1 id=eq.1h4v.s9.99cd61deb79b from=translated src=- shape=1022c6b1 vocab=180dbe59
+-/
 theorem trans_comp_proj {m n : ℕ} (h : m ≤ n) : (trans O h).comp (proj O n) = (proj O m : R →ₐ[O] Q R m) :=
   Ideal.Quotient.factorₐ_comp_mk O _
 
+/--
+@isnad1 id=eq.2h5v.s9.8e07fb7737a2 from=translated src=- shape=269284bb vocab=f8aef410
+-/
 theorem resQ_comp_trans {m n : ℕ} (h : m ≤ n) :
     (resQ resR hresR m).comp (trans O h : Q R n →ₐ[O] Q R m).toRingHom = resQ resR hresR n := by
   apply Ideal.Quotient.ringHom_ext
@@ -112,6 +154,9 @@ theorem resQ_comp_trans {m n : ℕ} (h : m ≤ n) :
 
 end Res
 
+/--
+@isnad1 id=ex.5h6v.s12.136629e0e29e from=translated src=- shape=baf9b3d0 vocab=c1207db9
+-/
 theorem main
     (S : Type) [CommRing S] (xbar : S →+* ResidueField O)
     [IsAdicComplete (maximalIdeal R) R]
@@ -243,6 +288,9 @@ end R4Yoneda
 open scoped _root_.P2MW.S_IsLocalRing_exists_ringHom_forall_existsUnique_algHom_comp_eq_of_isAdicComplete.R4Yoneda
 
 open IsLocalRing in
+/--
+@isnad1 id=ex.5h6v.s12.b23a06005a5d from=translated src=- shape=03a678ea vocab=c1207db9
+-/
 theorem solution
     (O : Type) [CommRing O] [IsLocalRing O]
     (S : Type) [CommRing S] (xbar : S →+* ResidueField O)

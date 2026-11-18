@@ -10,6 +10,9 @@ namespace P2MW.S_IsGaloisGroup_finitePresentation_and_smooth_invariants_typeZero
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=and.1h4v.s10.ae63f9574941 from=translated src=- shape=27ac32f2 vocab=0dd09778
+-/
 theorem solution
     (O : Type) [CommRing O] [IsDomain O] [IsNoetherianRing O]
     (A B : Type) [CommRing A] [CommRing B] [IsDomain B]

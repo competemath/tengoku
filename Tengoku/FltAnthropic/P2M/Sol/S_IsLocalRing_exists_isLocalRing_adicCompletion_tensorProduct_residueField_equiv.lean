@@ -16,6 +16,9 @@ open scoped TensorProduct
 
 namespace CompletedFibre
 
+/--
+@isnad1 id=isadicco.0h4v.s8.0c1757be4fbb from=translated src=- shape=69cf42c4 vocab=c2da82df
+-/
 theorem isAdicComplete_map_ringEquiv {R S : Type*} [CommRing R] [CommRing S] (I : Ideal R) (e : R ≃+* S)
     [h : IsAdicComplete I R] : IsAdicComplete (I.map (e : R →+* S)) S := by
   have hmem : ∀ (J : Ideal R) (y : S), y ∈ J.map (e : R →+* S) ↔ e.symm y ∈ J := fun J y => by
@@ -46,6 +49,9 @@ theorem isAdicComplete_map_ringEquiv {R S : Type*} [CommRing R] [CommRing S] (I 
 end CompletedFibre
 
 open CompletedFibre in
+/--
+@isnad1 id=ex.0h2v.s14.21806c078035 from=translated src=- shape=bb198e3c vocab=804937cd
+-/
 theorem solution
     {O : Type u} {C : Type v} [CommRing O] [IsNoetherianRing O] [IsLocalRing O]
     [CommRing C] [IsNoetherianRing C] [IsLocalRing C]

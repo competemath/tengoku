@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=ex.1h2v.s7.3589466ade91 from=translated src=- shape=4bb00717 vocab=15f775bf
+-/
 theorem IsAdicComplete.exists_isDomain_isDiscreteValuationRing_of_span_singleton_isMaximal
     {𝓞 : Type u} [CommRing 𝓞] (ϖ : 𝓞) (hϖ : ϖ ∈ nonZeroDivisors 𝓞)
     [(Ideal.span {ϖ}).IsMaximal] [IsAdicComplete (Ideal.span {ϖ}) 𝓞] :

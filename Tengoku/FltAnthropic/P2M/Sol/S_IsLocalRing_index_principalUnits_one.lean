@@ -11,6 +11,9 @@ set_option autoImplicit false
 open IsLocalRing
 
 open IsLocalRing in
+/--
+@isnad1 id=eq.0h1v.s6.06836955d354 from=translated src=- shape=2c3438e0 vocab=dc784e61
+-/
 theorem solution {R : Type*} [CommRing R] [IsLocalRing R] :
     (principalUnits R 1).index = Nat.card (ResidueField R)ˣ := by
   have hsurj : Function.Surjective (Units.map (residue R : R →* ResidueField R)) :=

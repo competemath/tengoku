@@ -8,6 +8,9 @@ namespace P2MW.S_IsIntegral_exists_notMem_and_algebraMap_eq_mul_of_isIntegrallyC
 set_option autoImplicit false
 set_option maxHeartbeats 800000
 
+/--
+@isnad1 id=ex.2h5v.s8.7edffe344add from=translated src=- shape=9b268294 vocab=53e8226a
+-/
 theorem solution
     {B F : Type*} [CommRing B] [CommRing F] [Algebra B F]
     (M : Submonoid B) (hM : M ≤ nonZeroDivisors B) [IsLocalization M F]
