@@ -1,0 +1,1 @@
+-- CollatzGeneralizedNaturalDensity: a factory bundle (data/intake/collatz-generalized-natural-density). This file only marks the library for Tengoku/All.lean.

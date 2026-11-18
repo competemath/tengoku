@@ -162,6 +162,7 @@ import Tengoku.DeletionCodesLean
 import Tengoku.QuadraticNumberFields
 import Tengoku.AbelFormalization
 import Tengoku.Rankamplificationtotient
+import Tengoku.CollatzGeneralizedNaturalDensity
 import Tengoku.EquationalTheories
 import Tengoku.XzMathieuSu2Counterexamples
 import Tengoku.FormalConjectures

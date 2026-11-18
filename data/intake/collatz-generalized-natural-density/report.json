@@ -1,0 +1,13 @@
+{
+ "bundle_sha256": "34839722fde10292e235d592edb6ec57375c952b838bbcc82fd34b7c06d653fb",
+ "factory_changes": {
+  "modules changed": 1,
+  "print lines removed": 1
+ },
+ "gate2_unjudged": [],
+ "library": "collatz-generalized-natural-density",
+ "lint_mode": "proposed",
+ "modules": 37,
+ "part": 1,
+ "theorems": 388
+}
