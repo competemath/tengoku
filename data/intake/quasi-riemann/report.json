@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "2c780ffdbef030168a21be56beeca20cafcb5611e82201ddc4d5ca8895b271c8",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "quasi-riemann",
+ "lint_mode": "proposed",
+ "modules": 110,
+ "part": 1,
+ "theorems": 1386
+}

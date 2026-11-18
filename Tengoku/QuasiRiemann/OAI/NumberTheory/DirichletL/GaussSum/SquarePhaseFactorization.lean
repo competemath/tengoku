@@ -1,0 +1,509 @@
+import Tengoku.QuasiRiemann.OAI.NumberTheory.DirichletL.GaussSum.CubicTrace
+import Tengoku.QuasiRiemann.OAI.NumberTheory.DirichletL.Fourier.PositiveLogProfiles
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+namespace OAI
+
+noncomputable section
+
+open scoped BigOperators
+open MulChar AddChar
+open scoped BigOperators
+open Filter Asymptotics MeasureTheory
+open scoped Topology
+open MeasureTheory Real
+open scoped FourierTransform SchwartzMap
+open Finset Complex
+open scoped Classical
+open scoped Classical
+open Filter Real Asymptotics
+open ActualEisensteinCubic
+open Filter
+open ActualEisensteinCubic RationalPrimeExtraction ShortDraftLatticeCount
+open ActualEisensteinCubic ShortDraftLatticeCount
+open Filter
+open scoped Topology
+open EisensteinEmbedding ConcreteTraceCRT ActualEisensteinCubic
+open MulChar AddChar
+open Filter Asymptotics
+open scoped LSeries.notation ArithmeticFunction.Moebius
+open Filter
+open MulChar AddChar
+open MulChar AddChar
+open scoped LSeries.notation ArithmeticFunction.Moebius
+open Filter Asymptotics MeasureTheory
+open scoped Topology
+open Filter Asymptotics
+open Ideal NumberField RingOfIntegers UniqueFactorizationMonoid
+open Ideal NumberField RingOfIntegers UniqueFactorizationMonoid
+open Ideal NumberField RingOfIntegers UniqueFactorizationMonoid
+open Ideal NumberField RingOfIntegers UniqueFactorizationMonoid
+open Ideal NumberField RingOfIntegers UniqueFactorizationMonoid
+open Filter Asymptotics
+open Filter Asymptotics MeasureTheory
+open scoped Topology
+open Filter Asymptotics Ideal NumberField
+open Filter
+open Filter Asymptotics MeasureTheory
+open scoped Topology
+open Filter Asymptotics MeasureTheory
+open scoped Topology
+open Filter Asymptotics MeasureTheory
+open scoped Topology
+open MeasureTheory Real
+open scoped ContDiff FourierTransform SchwartzMap
+open scoped BigOperators Classical
+open scoped BigOperators Classical
+open scoped BigOperators Classical
+open scoped BigOperators Classical SchwartzMap ContDiff
+open scoped BigOperators Classical SchwartzMap ContDiff
+open scoped BigOperators Classical
+open scoped BigOperators Classical SchwartzMap ContDiff
+open scoped BigOperators Classical
+open scoped BigOperators Classical SchwartzMap ContDiff
+open scoped BigOperators Classical SchwartzMap ContDiff
+open scoped BigOperators Classical SchwartzMap ContDiff
+open scoped BigOperators Classical
+open scoped BigOperators Classical SchwartzMap ContDiff
+open MeasureTheory Set
+open scoped BigOperators
+
+namespace ActualEisensteinCubic
+
+/--
+@isnad1 id=eq.3h2v.s7.4041ab784117 from=translated src=- shape=82ea1530 vocab=6d5c37e3
+-/
+theorem primary_associated_eq (x y : O) (hxy : Associated x y)
+    (hx : lambda ^ 2 ∣ x - 1) (hy : lambda ^ 2 ∣ y - 1) : x = y := by
+  obtain ⟨u, hu⟩ := hxy
+  have huprimary : lambda ^ 2 ∣ (u : O) - 1 := by
+    have heq : (u : O) - 1 = (y - 1) - (x - 1) * (u : O) := by
+      rw [← hu]
+      ring
+    rw [heq]
+    exact dvd_sub hy (dvd_mul_of_dvd_left hx _)
+  have huone : (u : O) = 1 := A3_primary_unit_eq_one _ u.isUnit huprimary
+  simpa only [huone, mul_one] using hu
+
+/--
+@isnad1 id=dvd.1h1v.s7.c7459cfba987 from=translated src=- shape=fb0045a1 vocab=cde8aa01
+-/
+theorem primary_multiset_prod (s : Multiset O)
+    (hs : ∀ x ∈ s, lambda ^ 2 ∣ x - 1) : lambda ^ 2 ∣ s.prod - 1 := by
+  induction s using Multiset.induction_on with
+  | empty => simp
+  | @cons a s ih =>
+    have ha := hs a (Multiset.mem_cons_self _ _)
+    have hb := ih (fun x hx => hs x (Multiset.mem_cons_of_mem hx))
+    rw [Multiset.prod_cons]
+    have heq : a * s.prod - 1 = (a - 1) * s.prod + (s.prod - 1) := by ring
+    rw [heq]
+    exact dvd_add (dvd_mul_of_dvd_left ha _) hb
+
+/--
+@isnad1 id=not.2h2v.s8.bf927149f384 from=translated src=- shape=15ec5b82 vocab=8f301fe2
+-/
+theorem primary_maximal_divisor_good (t : O) (ht : lambda ^ 2 ∣ t - 1)
+    (P : Ideal O) [P.IsMaximal] (htP : t ∈ P) : lambda ∉ P := by
+  intro hlam
+  have hlam2 : lambda ^ 2 ∈ P := by
+    simpa only [pow_two] using P.mul_mem_left lambda hlam
+  have hsub : t - 1 ∈ P := Ideal.mem_of_dvd P ht hlam2
+  have hone : (1 : O) ∈ P := by simpa using P.sub_mem htP hsub
+  exact (Ideal.IsMaximal.ne_top (inferInstance : P.IsMaximal))
+    ((Ideal.eq_top_iff_one _).mpr hone)
+
+/--
+@isnad1 id=ex.2h1v.s8.9b22745f3560 from=translated src=- shape=2c15fc77 vocab=3c74666e
+-/
+theorem exists_primary_prime_factorization (t : O) (ht0 : t ≠ 0)
+    (ht : lambda ^ 2 ∣ t - 1) :
+    ∃ s : Multiset O, s.prod = t ∧
+      ∀ r ∈ s, Prime r ∧ lambda ^ 2 ∣ r - 1 := by
+  classical
+  obtain ⟨f, hf, hft⟩ := UniqueFactorizationMonoid.exists_prime_factors t ht0
+  have hfgood : ∀ r ∈ f, lambda ∉ (Ideal.span {r} : Ideal O) := by
+    intro r hr
+    have hp := hf r hr
+    let : (Ideal.span {r} : Ideal O).IsMaximal :=
+      PrincipalIdealRing.isMaximal_of_irreducible hp.irreducible
+    apply primary_maximal_divisor_good t ht
+    exact Ideal.mem_span_singleton.mpr ((Multiset.dvd_prod hr).trans hft.dvd)
+  have hreplace : ∃ s : Multiset O, Associated s.prod f.prod ∧
+      ∀ r ∈ s, Prime r ∧ lambda ^ 2 ∣ r - 1 := by
+    clear hft
+    induction f using Multiset.induction_on with
+    | empty => exact ⟨0, Associated.refl _, by simp⟩
+    | @cons a f ih =>
+      have ha := hf a (Multiset.mem_cons_self _ _)
+      let : (Ideal.span {a} : Ideal O).IsMaximal :=
+        PrincipalIdealRing.isMaximal_of_irreducible ha.irreducible
+      obtain ⟨r, hrspan, hrprimary, _⟩ := cubicJacobi_exists_primary_generator
+        (Ideal.span {a}) (hfgood a (Multiset.mem_cons_self _ _))
+      have har : Associated a r := Ideal.span_singleton_eq_span_singleton.mp hrspan
+      obtain ⟨s, hsf, hs⟩ := ih
+        (fun r hr => hf r (Multiset.mem_cons_of_mem hr))
+        (fun r hr => hfgood r (Multiset.mem_cons_of_mem hr))
+      refine ⟨r ::ₘ s, ?_, ?_⟩
+      · simpa only [Multiset.prod_cons] using har.symm.mul_mul hsf
+      · intro x hx
+        rcases Multiset.mem_cons.mp hx with rfl | hx
+        · exact ⟨har.prime_iff.mp ha, hrprimary⟩
+        · exact hs x hx
+  obtain ⟨s, hsf, hs⟩ := hreplace
+  refine ⟨s, ?_, hs⟩
+  exact primary_associated_eq _ _ (hsf.trans hft)
+    (primary_multiset_prod s (fun r hr => (hs r hr).2)) ht
+
+/--
+@isnad1 id=mem.0h1v.s7.a5feafa470a8 from=translated src=- shape=f27fadd0 vocab=99522188
+-/
+theorem residue_char_mem (P : Ideal O) :
+    (ringChar (O ⧸ P) : O) ∈ P := by
+  apply Ideal.Quotient.eq_zero_iff_mem.mp
+  rw [map_natCast]
+  exact CharP.cast_eq_zero (O ⧸ P) (ringChar (O ⧸ P))
+
+/--
+@isnad1 id=or.3h3v.s8.86de82c0ed7d from=translated src=- shape=48e39329 vocab=505583db
+-/
+theorem maximal_eq_or_eq_of_same_residue_char
+    (P Q R : Ideal O) [P.IsMaximal] [Q.IsMaximal] [R.IsMaximal]
+    (hne : P ≠ Q) (hPQ : ringChar (O ⧸ Q) = ringChar (O ⧸ P))
+    (hRP : ringChar (O ⧸ R) = ringChar (O ⧸ P)) : R = P ∨ R = Q := by
+  classical
+  let : Field (O ⧸ P) := Ideal.Quotient.field P
+  let : Fintype (O ⧸ P) := Fintype.ofFinite _
+  obtain ⟨a, b, _, _, _, _, hcover⟩ := rational_prime_ideal_cover
+    (ringChar (O ⧸ P)) (CharP.char_is_prime (O ⧸ P) _)
+  have hp := hcover P inferInstance (residue_char_mem P)
+  have hq := hcover Q inferInstance (by rw [← hPQ]; exact residue_char_mem Q)
+  have hr := hcover R inferInstance (by rw [← hRP]; exact residue_char_mem R)
+  rcases hp with hp | hp <;> rcases hq with hq | hq <;>
+    rcases hr with hr | hr <;> simp_all
+
+/--
+@isnad1 id=ne.5h4v.s9.a044fbd565f7 from=translated src=- shape=1c3adca2 vocab=ecf1e2b7
+-/
+theorem prime_divisor_residue_char_ne
+    (P Q R : Ideal O) [P.IsMaximal] [Q.IsMaximal] [R.IsMaximal]
+    (hne : P ≠ Q) (hPQ : ringChar (O ⧸ Q) = ringChar (O ⧸ P))
+    (t : O) (htP : t ∉ P) (htQ : t ∉ Q) (htR : t ∈ R) :
+    ringChar (O ⧸ R) ≠ ringChar (O ⧸ P) := by
+  intro hRP
+  rcases maximal_eq_or_eq_of_same_residue_char P Q R hne hPQ hRP with rfl | rfl
+  · exact htP htR
+  · exact htQ htR
+
+/--
+@isnad1 id=dvd.0h0v.s6.819d04294951 from=translated src=- shape=f9867af3 vocab=ad4f46a7
+-/
+theorem lambda_sq_dvd_three : lambda ^ 2 ∣ (3 : O) := by
+  have hlam : lambda ^ 2 = -3 * omega := by
+    change (omega - 1) ^ 2 = -3 * omega
+    linear_combination omega_sq_for_norm
+  refine ⟨-omega ^ 2, ?_⟩
+  rw [hlam]
+  calc
+    (3 : O) = 3 * omega ^ 3 := by rw [omega_primitive.pow_eq_one]; ring
+    _ = -3 * omega * -omega ^ 2 := by ring
+
+/--
+@isnad1 id=dvd.0h0v.s7.276109585c21 from=translated src=- shape=5dee11b1 vocab=b435d8c0
+-/
+theorem neg_two_primary : lambda ^ 2 ∣ (-2 : O) - 1 := by
+  convert dvd_neg.mpr lambda_sq_dvd_three using 1 ; ring
+
+/--
+@isnad1 id=dvd.2h2v.s8.66e709a51422 from=translated src=- shape=8d82fc41 vocab=479ce793
+-/
+theorem neg_add_primary (p q : O)
+    (hp : lambda ^ 2 ∣ p - 1) (hq : lambda ^ 2 ∣ q - 1) :
+    lambda ^ 2 ∣ -(p + q) - 1 := by
+  have hd := dvd_neg.mpr (dvd_add (dvd_add hp hq) lambda_sq_dvd_three)
+  convert hd using 1 ; ring
+
+/--
+@isnad1 id=not.2h3v.s7.d7bee7376268 from=translated src=- shape=0ed83ea4 vocab=28e7cf4b
+-/
+theorem prime_generator_not_mem_of_ne (P Q : Ideal O)
+    [P.IsMaximal] [Q.IsMaximal] (hne : P ≠ Q)
+    (q : O) (hQ : Q = Ideal.span {q}) : q ∉ P := by
+  intro hq
+  have hle : Q ≤ P := by
+    rw [hQ]
+    exact (Ideal.span_singleton_le_iff_mem _).mpr hq
+  exact hne (Ideal.IsMaximal.eq_of_le (inferInstance : Q.IsMaximal)
+    (Ideal.IsMaximal.ne_top (inferInstance : P.IsMaximal)) hle).symm
+
+/--
+@isnad1 id=eq.8h4v.s10.1e14449c0057 from=translated src=- shape=d693d360 vocab=4c3e48e5
+-/
+theorem cubic_reciprocity_equal_residue_char
+    (P Q : Ideal O) [P.IsMaximal] [Q.IsMaximal]
+    (hPgood : lambda ∉ P) (hQgood : lambda ∉ Q)
+    (hne : P ≠ Q) (hchar : ringChar (O ⧸ Q) = ringChar (O ⧸ P))
+    (p q : O) (hP : P = Ideal.span {p}) (hQ : Q = Ideal.span {q})
+    (hpprimary : lambda ^ 2 ∣ p - 1) (hqprimary : lambda ^ 2 ∣ q - 1) :
+    cubicChar P hPgood (Ideal.Quotient.mk P q) =
+      cubicChar Q hQgood (Ideal.Quotient.mk Q p) := by
+  classical
+  let t : O := -(p + q)
+  have hpP : p ∈ P := by rw [hP]; exact Ideal.subset_span (by simp)
+  have hqQ : q ∈ Q := by rw [hQ]; exact Ideal.subset_span (by simp)
+  have hqP : q ∉ P := prime_generator_not_mem_of_ne P Q hne q hQ
+  have hpQ : p ∉ Q := prime_generator_not_mem_of_ne Q P hne.symm p hP
+  have htP : t ∉ P := by
+    intro ht
+    have hs : p + q ∈ P := by simpa only [t, neg_neg] using P.neg_mem ht
+    exact hqP (by simpa only [add_sub_cancel_left] using P.sub_mem hs hpP)
+  have htQ : t ∉ Q := by
+    intro ht
+    have hs : p + q ∈ Q := by simpa only [t, neg_neg] using Q.neg_mem ht
+    exact hpQ (by simpa only [add_sub_cancel_right] using Q.sub_mem hs hqQ)
+  have ht0 : t ≠ 0 := fun h => htP (h ▸ P.zero_mem)
+  obtain ⟨s, hst, hs⟩ := exists_primary_prime_factorization t ht0
+    (neg_add_primary p q hpprimary hqprimary)
+  have hlocal : ∀ r ∈ s,
+      cubicChar P hPgood (Ideal.Quotient.mk P r) =
+      cubicChar Q hQgood (Ideal.Quotient.mk Q r) := by
+    intro r hr
+    let R : Ideal O := Ideal.span {r}
+    let : R.IsMaximal := PrincipalIdealRing.isMaximal_of_irreducible (hs r hr).1.irreducible
+    have hrR : r ∈ R := Ideal.subset_span (by simp)
+    have htR : t ∈ R := Ideal.mem_span_singleton.mpr (hst ▸ Multiset.dvd_prod hr)
+    have hRgood : lambda ∉ R := primary_maximal_divisor_good t
+      (neg_add_primary p q hpprimary hqprimary) R htR
+    have hRP := prime_divisor_residue_char_ne P Q R hne hchar t htP htQ htR
+    have hRQ : ringChar (O ⧸ R) ≠ ringChar (O ⧸ Q) := by rwa [hchar]
+    rw [cubic_reciprocity_distinct_residue_char P R hPgood hRgood hRP
+      p r hP rfl hpprimary (hs r hr).2,
+      cubic_reciprocity_distinct_residue_char Q R hQgood hRgood hRQ
+      q r hQ rfl hqprimary (hs r hr).2]
+    have hsum : Ideal.Quotient.mk R p + Ideal.Quotient.mk R q = 0 := by
+      have hz := Ideal.Quotient.eq_zero_iff_mem.mpr htR
+      simpa only [t, map_neg, map_add, neg_eq_zero] using hz
+    have heq : Ideal.Quotient.mk R p = -Ideal.Quotient.mk R q := eq_neg_of_add_eq_zero_left hsum
+    rw [heq, ← neg_one_mul (Ideal.Quotient.mk R q), map_mul,
+      A3_cubicChar_neg_one, one_mul]
+  have hmul : ∀ f : Multiset O,
+      (∀ r ∈ f, cubicChar P hPgood (Ideal.Quotient.mk P r) =
+        cubicChar Q hQgood (Ideal.Quotient.mk Q r)) →
+      cubicChar P hPgood (Ideal.Quotient.mk P f.prod) =
+        cubicChar Q hQgood (Ideal.Quotient.mk Q f.prod) := by
+    intro f
+    induction f using Multiset.induction_on with
+    | empty => intro _; simp
+    | @cons r f ih =>
+      intro hf
+      simp only [Multiset.prod_cons, map_mul]
+      rw [hf r (Multiset.mem_cons_self _ _), ih
+        (fun x hx => hf x (Multiset.mem_cons_of_mem hx))]
+  have htval := hmul s hlocal
+  rw [hst] at htval
+  have hpzero : Ideal.Quotient.mk P p = 0 := Ideal.Quotient.eq_zero_iff_mem.mpr hpP
+  have hqzero : Ideal.Quotient.mk Q q = 0 := Ideal.Quotient.eq_zero_iff_mem.mpr hqQ
+  simp only [t, map_neg, map_add, hpzero, hqzero, zero_add, add_zero] at htval
+  rw [← neg_one_mul (Ideal.Quotient.mk P q), map_mul, A3_cubicChar_neg_one, one_mul,
+    ← neg_one_mul (Ideal.Quotient.mk Q p), map_mul, A3_cubicChar_neg_one, one_mul] at htval
+  exact htval
+
+/--
+@isnad1 id=eq.6h4v.s10.a164510bc118 from=translated src=- shape=1bf19398 vocab=3105cff5
+-/
+theorem cubic_reciprocity_primary
+    (P Q : Ideal O) [P.IsMaximal] [Q.IsMaximal]
+    (hPgood : lambda ∉ P) (hQgood : lambda ∉ Q)
+    (p q : O) (hP : P = Ideal.span {p}) (hQ : Q = Ideal.span {q})
+    (hpprimary : lambda ^ 2 ∣ p - 1) (hqprimary : lambda ^ 2 ∣ q - 1) :
+    cubicChar P hPgood (Ideal.Quotient.mk P q) =
+      cubicChar Q hQgood (Ideal.Quotient.mk Q p) := by
+  by_cases hPQ : P = Q
+  · have hqP : q ∈ P := by rw [hPQ, hQ]; exact Ideal.subset_span (by simp)
+    have hpQ : p ∈ Q := by rw [← hPQ, hP]; exact Ideal.subset_span (by simp)
+    rw [Ideal.Quotient.eq_zero_iff_mem.mpr hqP,
+      Ideal.Quotient.eq_zero_iff_mem.mpr hpQ, MulChar.map_zero, MulChar.map_zero]
+  · by_cases hchar : ringChar (O ⧸ Q) = ringChar (O ⧸ P)
+    · exact cubic_reciprocity_equal_residue_char P Q hPgood hQgood hPQ hchar
+        p q hP hQ hpprimary hqprimary
+    · exact cubic_reciprocity_distinct_residue_char P Q hPgood hQgood hchar
+        p q hP hQ hpprimary hqprimary
+
+def cubicTwoIdeal : Ideal O := Ideal.span {(-2 : O)}
+
+/--
+@isnad1 id=ismaxima.0h0v.s4.5358f791b4fb from=translated src=- shape=25b03439 vocab=91cbe112
+-/
+instance cubicTwoIdeal_isMaximal : cubicTwoIdeal.IsMaximal := by
+  rcases rational_prime_factor_cases 2 Nat.prime_two with hm |
+      ⟨a, b, _, _, _, ha, _, _, _⟩
+  · simpa only [cubicTwoIdeal, Ideal.span_singleton_neg, Nat.cast_ofNat] using hm
+  · have hin : (Ideal.span {a} : Ideal O) ∈ {I : Ideal O | Ideal.absNorm I = 2} := by
+      change Ideal.absNorm (Ideal.span {a}) = 2
+      rwa [← qNat_eq_absNorm_span]
+    rw [ShortDraftHeckeBridge.norm_p_fiber_inert Nat.prime_two (by decide)] at hin
+    exact False.elim hin
+
+/--
+@isnad1 id=not.0h0v.s6.e9a86f190dc3 from=translated src=- shape=eedf340d vocab=e2eeac5d
+-/
+theorem cubicTwoIdeal_good : lambda ∉ cubicTwoIdeal := by
+  apply primary_maximal_divisor_good (-2 : O) neg_two_primary
+  exact Ideal.subset_span (by simp)
+
+/--
+@isnad1 id=eq.0h0v.s6.4d7659569e85 from=translated src=- shape=2221e9d0 vocab=f249310a
+-/
+theorem cubicTwoIdeal_residue_char : ringChar (O ⧸ cubicTwoIdeal) = 2 := by
+  let : Field (O ⧸ cubicTwoIdeal) := Ideal.Quotient.field cubicTwoIdeal
+  let : Fintype (O ⧸ cubicTwoIdeal) := Fintype.ofFinite _
+  have hmem : (2 : O) ∈ cubicTwoIdeal := by
+    rw [cubicTwoIdeal, Ideal.span_singleton_neg]
+    exact Ideal.subset_span (by simp)
+  have hz : (2 : O ⧸ cubicTwoIdeal) = 0 := by
+    simpa only [map_ofNat] using Ideal.Quotient.eq_zero_iff_mem.mpr hmem
+  exact (Nat.prime_dvd_prime_iff_eq (CharP.char_is_prime (O ⧸ cubicTwoIdeal) _)
+    Nat.prime_two).mp ((ringChar.spec (O ⧸ cubicTwoIdeal) 2).mp hz)
+
+end ActualEisensteinCubic
+
+open scoped BigOperators Classical
+
+namespace IdealGaussCRT
+
+/--
+@isnad1 id=eq.0h5v.s8.a4c0cf5ffa4b from=translated src=- shape=ff19ebaf vocab=9139da2f
+-/
+theorem sum_square_phase_finite_crt {ι T : Type*} [Fintype ι]
+    (R : ι → Type*) [CommRing T] [∀ i, CommRing (R i)]
+    [Fintype T] [∀ i, Fintype (R i)]
+    (e : T ≃+* ∀ i, R i) (ψ : AddChar T ℂ) :
+    (∑ x : T, ψ (x ^ 2)) =
+      ∏ i, ∑ y : R i, coordinateAddChar R e ψ i (y ^ 2) := by
+  calc
+    _ = ∑ x : T, ∏ i, coordinateAddChar R e ψ i ((e x i) ^ 2) := by
+      apply Finset.sum_congr rfl
+      intro x _
+      rw [addChar_finite_crt_factor R e ψ (x ^ 2)]
+      simp only [map_pow, Pi.pow_apply]
+    _ = ∑ x : ∀ i, R i, ∏ i, coordinateAddChar R e ψ i ((x i) ^ 2) :=
+      Equiv.sum_comp e.toEquiv
+        (fun x : ∀ i, R i => ∏ i, coordinateAddChar R e ψ i ((x i) ^ 2))
+    _ = _ := (Fintype.prod_sum (fun i (x : R i) => coordinateAddChar R e ψ i (x ^ 2))).symm
+
+/--
+@isnad1 id=eq.2h5v.s9.0acccc755b80 from=translated src=- shape=f7e8bf41 vocab=b11de009
+-/
+theorem quadratic_gauss_finite_crt_eq_square_sum {ι T : Type*} [Fintype ι]
+    (R : ι → Type*) [CommRing T] [∀ i, Field (R i)]
+    [Fintype T] [∀ i, Fintype (R i)]
+    (e : T ≃+* ∀ i, R i) (ψ : AddChar T ℂ)
+    (hψ : ψ.IsPrimitive) (hchar : ∀ i, ringChar (R i) ≠ 2) :
+    (∑ x : T, (∏ i, ((quadraticChar (R i)).ringHomComp (Int.castRingHom ℂ)) (e x i)) * ψ x) =
+      ∑ x : T, ψ (x ^ 2) := by
+  rw [gauss_sum_finite_crt R e
+    (fun i => (quadraticChar (R i)).ringHomComp (Int.castRingHom ℂ)) ψ,
+    sum_square_phase_finite_crt R e ψ]
+  apply Finset.prod_congr rfl
+  intro i _
+  have hp := coordinateAddChar_isPrimitive R e ψ hψ i
+  have hn : coordinateAddChar R e ψ i ≠ 1 := by
+    simpa only [AddChar.mulShift_one] using hp (a := 1) one_ne_zero
+  exact ShortDraftQuadraticGauss.quadratic_gauss_as_square_phase _ (hchar i) hn
+
+end IdealGaussCRT
+
+namespace QuadraticGaussRay
+
+abbrev O := ActualEisensteinCubic.O
+open ActualEisensteinCubic ConcreteTraceCRT FiniteGaussPhase ActualEisensteinCoordinates
+
+/--
+@isnad1 id=eq.1h2v.s6.d48c82a08d81 from=translated src=- shape=5eb6ff71 vocab=73a8ff29
+-/
+theorem I_zpow_eq_of_mod_four {a b : ℤ} (h : (a : ZMod 4) = b) :
+    Complex.I ^ a = Complex.I ^ b := by
+  obtain ⟨k, hk⟩ := (ZMod.intCast_eq_intCast_iff_dvd_sub b a 4).mp h.symm
+  have ha : a = b + 4 * k := by omega
+  rw [ha, zpow_add₀ Complex.I_ne_zero, zpow_mul]
+  norm_num
+
+/--
+@isnad1 id=eq.2h4v.s7.339b1d64f199 from=translated src=- shape=c24dec50 vocab=5adf0527
+-/
+theorem fourTerms_eq_of_mod_four {a b c d : ℤ}
+    (ha : (a : ZMod 4) = c) (hb : (b : ZMod 4) = d) :
+    breveGaussianFourTerms a b = breveGaussianFourTerms c d := by
+  have hn : ((-b : ℤ) : ZMod 4) = (-d : ℤ) := by simpa using congrArg Neg.neg hb
+  have hs : ((b-a : ℤ) : ZMod 4) = (d-c : ℤ) := by
+    push_cast
+    rw [ha, hb]
+  rw [breveGaussianFourTerms_formula, breveGaussianFourTerms_formula,
+    I_zpow_eq_of_mod_four ha, I_zpow_eq_of_mod_four hn, I_zpow_eq_of_mod_four hs]
+
+def quadraticRayValue (r : EisensteinEPrimaryPhase.Coord) : ℂ :=
+  breveGaussianFourTerms (r.1.val : ℤ) (r.2.val : ℤ)
+
+open ActualEisensteinCubic ConcreteTraceCRT FiniteGaussPhase ActualEisensteinCoordinates
+
+/--
+@isnad1 id=eq.0h1v.s9.e4afe9f680cd from=translated src=- shape=e25c2233 vocab=e45835dc
+-/
+theorem fixed_two_mk_eq_residue_lift (c : O) :
+    Ideal.Quotient.mk cubicTwoIdeal c =
+      Ideal.Quotient.mk cubicTwoIdeal (lift (residue c)) := by
+  obtain ⟨z, hz⟩ := congr_mod_four_of_residue_eq (residue_lift (residue c)).symm
+  apply Ideal.Quotient.eq.mpr
+  rw [cubicTwoIdeal, Ideal.mem_span_singleton]
+  refine ⟨(-2 : O) * z, ?_⟩
+  calc
+    c - lift (residue c) = 4 * z := hz
+    _ = (-2 : O) * (-2 * z) := by ring
+
+def fixedGValue (r : EisensteinEPrimaryPhase.Coord) : ℂ :=
+  (eisEmbedding (cubicChar cubicTwoIdeal cubicTwoIdeal_good
+    (Ideal.Quotient.mk cubicTwoIdeal (lift r))))⁻¹ * quadraticRayValue r
+
+/--
+@isnad1 id=eq.1h2v.s6.f34559c0d365 from=translated src=- shape=d3106531 vocab=bfb2fac4
+-/
+theorem residue_eq_of_four_dvd_sub (c d : O) (h : (4 : O) ∣ c - d) :
+    residue c = residue d := by
+  obtain ⟨z, hz⟩ := h
+  have he : c = eval ((coords d).1 + 4 * (coords z).1)
+      ((coords d).2 + 4 * (coords z).2) := by
+    calc
+      c = d + 4 * z := by linear_combination hz
+      _ = eval (coords d).1 (coords d).2 + 4 * eval (coords z).1 (coords z).2 := by
+        rw [eval_coords, eval_coords]
+      _ = _ := by simp only [eval]; push_cast; ring
+  rw [he, residue_eval]
+  simp only [residue, Int.cast_add, Int.cast_mul, Int.cast_ofNat,
+    show (4 : ZMod 4) = 0 by decide, zero_mul, add_zero]
+
+/--
+@isnad1 id=eq.1h2v.s10.ddcf7e23d5ee from=translated src=- shape=3e6b47e0 vocab=a6016e7e
+-/
+theorem residue_eq_of_quotient_four_eq (c d : O)
+    (h : Ideal.Quotient.mk (Ideal.span {(4 : O)}) c =
+      Ideal.Quotient.mk (Ideal.span {(4 : O)}) d) : residue c = residue d :=
+  residue_eq_of_four_dvd_sub c d (Ideal.mem_span_singleton.mp (Ideal.Quotient.eq.mp h))
+
+def residueQuotientFour : (O ⧸ Ideal.span {(4 : O)}) → EisensteinEPrimaryPhase.Coord :=
+  Quotient.lift residue (fun c d h => residue_eq_of_quotient_four_eq c d (Quotient.sound h))
+
+/--
+@isnad1 id=eq.0h1v.s9.039f79e3c936 from=translated src=- shape=f472fee0 vocab=6b172ff0
+-/
+@[simp] theorem residueQuotientFour_mk (c : O) :
+    residueQuotientFour (Ideal.Quotient.mk (Ideal.span {(4 : O)}) c) = residue c := rfl
+
+def fixedGQuotientValue (r : O ⧸ Ideal.span {(4 : O)}) : ℂ :=
+  fixedGValue (residueQuotientFour r)
+
+end QuadraticGaussRay
+
+end
+
+end OAI

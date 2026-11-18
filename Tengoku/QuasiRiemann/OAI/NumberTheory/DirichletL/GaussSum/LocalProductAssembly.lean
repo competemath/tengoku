@@ -1,0 +1,440 @@
+import Tengoku.QuasiRiemann.OAI.NumberTheory.DirichletL.Cusp.MatrixPhases
+import Tengoku.QuasiRiemann.OAI.NumberTheory.DirichletL.GaussSum.SexticNormalization
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+namespace Tengoku.QuasiRiemann end Tengoku.QuasiRiemann open Tengoku.QuasiRiemann
+namespace OAI
+
+noncomputable section
+
+open scoped BigOperators
+open MulChar AddChar
+open scoped BigOperators
+open Filter Asymptotics MeasureTheory
+open scoped Topology
+open MeasureTheory Real
+open scoped FourierTransform SchwartzMap
+open Finset Complex
+open scoped Classical
+open scoped Classical
+
+namespace ActualEisensteinCubic
+
+open ConcreteTraceCRT
+open scoped ComplexConjugate
+
+/--
+@isnad1 id=eq.1h2v.s9.fd6e7a3d6fc2 from=translated src=- shape=a358eb3c vocab=e0c90f5e
+-/
+theorem canonicalSextic_inverse_eq_conj_on_units (P : Ideal O)
+    [P.IsMaximal] (hgood : lambda ∉ P) (u : (O ⧸ P)ˣ) :
+    (canonicalSextic P hgood (u : O ⧸ P))⁻¹ =
+      star (canonicalSextic P hgood (u : O ⧸ P)) := by
+  let χ := canonicalSextic P hgood
+  have hχ6 : χ ^ 6 = 1 := canonicalSextic_pow_six P hgood
+  have hval : χ (u : O ⧸ P) ^ 6 = 1 := by
+    rw [← χ.pow_apply_coe 6 u, hχ6, MulChar.one_apply_coe]
+  exact Complex.inv_eq_conj (Complex.norm_eq_one_of_pow_eq_one hval (by decide))
+
+end ActualEisensteinCubic
+
+namespace FourierBridge
+open scoped ContDiff FourierTransform SchwartzMap
+
+/--
+@isnad1 id=eq.8h11v.s9.4115b4e60d00 from=translated src=- shape=eb88c362 vocab=aa7d3efd
+-/
+theorem coupled_double_log_separation
+    {ι : Type*} [Fintype ι]
+    (W : ι → ℝ → ℂ) (F₁ F₂ V₁ V₂ : ℝ → ℂ)
+    (R₁ R₂ : ℝ) (a₁ a₂ y : ι → ℝ)
+    (hV₁c : HasCompactSupport V₁) (hV₁s : ContDiff ℝ ∞ V₁)
+    (hF₁s : ContDiff ℝ ∞ F₁)
+    (hV₂c : HasCompactSupport V₂) (hV₂s : ContDiff ℝ ∞ V₂)
+    (hF₂s : ContDiff ℝ ∞ F₂)
+    (hactive₁ : (∏ j : ι, W j (y j)) ≠ 0 →
+      V₁ (∑ j : ι, a₁ j * y j) = 1)
+    (hactive₂ : (∏ j : ι, W j (y j)) ≠ 0 →
+      V₂ (∑ j : ι, a₂ j * y j) = 1) :
+    (∏ j : ι, W j (y j)) *
+      F₁ (R₁ * Real.exp (∑ j : ι, a₁ j * y j)) *
+      F₂ (R₂ * Real.exp (∑ j : ι, a₂ j * y j)) =
+      ∫ t₁ : ℝ,
+        (∫ t₂ : ℝ,
+          (∏ j : ι,
+            W j (y j) * logPhase t₁ (a₁ j * y j) *
+              logPhase t₂ (a₂ j * y j)) *
+            (𝓕 (logProfile V₂ F₂ R₂ 1 hV₂c hV₂s hF₂s)) t₂) *
+          (𝓕 (logProfile V₁ F₁ R₁ 1 hV₁c hV₁s hF₁s)) t₁ := by
+  classical
+  let P : ℂ := ∏ j : ι, W j (y j)
+  let Z₁ : ℂ := F₁ (R₁ * Real.exp (∑ j : ι, a₁ j * y j))
+  let Z₂ : ℂ := F₂ (R₂ * Real.exp (∑ j : ι, a₂ j * y j))
+  let b₁ := 𝓕 (logProfile V₁ F₁ R₁ 1 hV₁c hV₁s hF₁s)
+  let b₂ := 𝓕 (logProfile V₂ F₂ R₂ 1 hV₂c hV₂s hF₂s)
+  let Q (t₁ : ℝ) : ℂ :=
+    ∏ j : ι, W j (y j) * logPhase t₁ (a₁ j * y j)
+  let T (t₁ t₂ : ℝ) : ℂ :=
+    ∏ j : ι,
+      W j (y j) * logPhase t₁ (a₁ j * y j) *
+        logPhase t₂ (a₂ j * y j)
+  have hsep₁ : P * Z₁ = ∫ t₁ : ℝ, Q t₁ * b₁ t₁ := by
+    simpa [P, Z₁, Q, b₁] using
+      coupled_log_separation W F₁ V₁ R₁ a₁ y
+        hV₁c hV₁s hF₁s hactive₁
+  have hsep₂ (t₁ : ℝ) :
+      Q t₁ * Z₂ = ∫ t₂ : ℝ, T t₁ t₂ * b₂ t₂ := by
+    let W' : ι → ℝ → ℂ :=
+      fun j z => W j z * logPhase t₁ (a₁ j * z)
+    have hP : (∏ j : ι, W' j (y j)) = Q t₁ := rfl
+    have hactive₂' : (∏ j : ι, W' j (y j)) ≠ 0 →
+        V₂ (∑ j : ι, a₂ j * y j) = 1 := by
+      intro hW'
+      have hprod : (∏ j : ι, W j (y j)) ≠ 0 := by
+        intro hz
+        have hz' : (∏ j : ι, W' j (y j)) = 0 := by
+          rw [show (∏ j : ι, W' j (y j)) =
+            (∏ j : ι, W j (y j)) *
+              (∏ j : ι, logPhase t₁ (a₁ j * y j)) by
+                simp [W', Finset.prod_mul_distrib]]
+          simp [hz]
+        exact hW' hz'
+      exact hactive₂ hprod
+    simpa [W', Q, T, Z₂, b₂] using
+      coupled_log_separation W' F₂ V₂ R₂ a₂ y
+        hV₂c hV₂s hF₂s hactive₂'
+  calc
+    P * Z₁ * Z₂ = (∫ t₁ : ℝ, Q t₁ * b₁ t₁) * Z₂ := by rw [hsep₁]
+    _ = ∫ t₁ : ℝ, (Q t₁ * b₁ t₁) * Z₂ := by rw [integral_mul_const]
+    _ = ∫ t₁ : ℝ, (Q t₁ * Z₂) * b₁ t₁ := by
+      apply integral_congr_ae
+      filter_upwards [] with t₁
+      ring
+    _ = ∫ t₁ : ℝ,
+          (∫ t₂ : ℝ, T t₁ t₂ * b₂ t₂) * b₁ t₁ := by
+      apply integral_congr_ae
+      filter_upwards [] with t₁
+      rw [hsep₂ t₁]
+
+end FourierBridge
+
+namespace AnalyticBridge
+
+/--
+@isnad1 id=le.6h8v.s9.768283c26390 from=translated src=- shape=35b8bff3 vocab=4cc54277
+-/
+theorem double_weighted_fourier_minkowski
+    {Ω : Type*} (S : Finset Ω)
+    (b₁ b₂ : ℝ → ℂ) (φ : Ω → ℝ → ℝ → ℂ)
+    (J₁ J₂ : ℕ) (H : ℝ) (hH : 0 ≤ H)
+    (hinner : ∀ t₁ : ℝ, ∀ ω ∈ S,
+      Integrable (fun t₂ : ℝ => b₂ t₂ * φ ω t₁ t₂) volume)
+    (houter : ∀ ω ∈ S,
+      Integrable (fun t₁ : ℝ =>
+        b₁ t₁ * (∫ t₂ : ℝ, b₂ t₂ * φ ω t₁ t₂)) volume)
+    (hweight₁ : Integrable
+      (fun t₁ : ℝ => (1 + ‖t₁‖) ^ J₁ * ‖b₁ t₁‖) volume)
+    (hweight₂ : Integrable
+      (fun t₂ : ℝ => (1 + ‖t₂‖) ^ J₂ * ‖b₂ t₂‖) volume)
+    (hφ : ∀ t₁ t₂ : ℝ,
+      ‖∑ ω ∈ S, φ ω t₁ t₂‖ ≤
+        H * (1 + ‖t₁‖) ^ J₁ * (1 + ‖t₂‖) ^ J₂) :
+    ‖∑ ω ∈ S,
+        ∫ t₁ : ℝ,
+          b₁ t₁ * (∫ t₂ : ℝ, b₂ t₂ * φ ω t₁ t₂)‖ ≤
+      H *
+        (∫ t₁ : ℝ, (1 + ‖t₁‖) ^ J₁ * ‖b₁ t₁‖) *
+        (∫ t₂ : ℝ, (1 + ‖t₂‖) ^ J₂ * ‖b₂ t₂‖) := by
+  let I₂ : ℝ := ∫ t₂ : ℝ, (1 + ‖t₂‖) ^ J₂ * ‖b₂ t₂‖
+  have hI₂ : 0 ≤ I₂ :=
+    integral_nonneg (fun t₂ => by positivity)
+  have hinnerbound (t₁ : ℝ) :
+      ‖∑ ω ∈ S, ∫ t₂ : ℝ, b₂ t₂ * φ ω t₁ t₂‖ ≤
+        (H * (1 + ‖t₁‖) ^ J₁) * I₂ := by
+    apply weighted_fourier_minkowski S b₂ (fun ω t₂ => φ ω t₁ t₂)
+      J₂ (H * (1 + ‖t₁‖) ^ J₁) (by positivity)
+      (hinner t₁) hweight₂
+    intro t₂
+    convert hφ t₁ t₂ using 1
+  have houterbound :
+      ‖∑ ω ∈ S,
+          ∫ t₁ : ℝ,
+            b₁ t₁ * (∫ t₂ : ℝ, b₂ t₂ * φ ω t₁ t₂)‖ ≤
+        (H * I₂) *
+          (∫ t₁ : ℝ, (1 + ‖t₁‖) ^ J₁ * ‖b₁ t₁‖) := by
+    apply weighted_fourier_minkowski S b₁
+      (fun ω t₁ => ∫ t₂ : ℝ, b₂ t₂ * φ ω t₁ t₂)
+      J₁ (H * I₂) (mul_nonneg hH hI₂)
+      houter hweight₁
+    intro t₁
+    convert hinnerbound t₁ using 1 ; ring
+  simpa [I₂, mul_assoc, mul_comm, mul_left_comm] using houterbound
+
+end AnalyticBridge
+
+namespace FourierBridge
+open scoped FourierTransform SchwartzMap
+
+/--
+@isnad1 id=eq.0h2v.s4.c0aadef1bafc from=translated src=- shape=18e50d40 vocab=abcae2c7
+-/
+theorem logPhase_norm (t y : ℝ) : ‖logPhase t y‖ = 1 := by
+  simpa [logPhase] using
+    Complex.norm_exp_ofReal_mul_I (2 * Real.pi * t * y)
+
+/--
+@isnad1 id=continuo.0h1v.s4.2822c6dfffed from=translated src=- shape=a4c439d3 vocab=b2f2c927
+-/
+theorem logPhase_continuous_left (y : ℝ) :
+    Continuous (fun t : ℝ => logPhase t y) := by
+  unfold logPhase
+  fun_prop
+
+end FourierBridge
+
+namespace AnalyticBridge
+open scoped FourierTransform SchwartzMap
+
+/--
+@isnad1 id=and.4h6v.s9.42d9227ad6f9 from=translated src=- shape=7b81ecb2 vocab=da73dcf1
+-/
+theorem bounded_separated_double_integrable
+    {Ω : Type*} (S : Finset Ω)
+    (g₁ g₂ : 𝓢(ℝ, ℂ)) (u v : Ω → ℝ → ℂ)
+    (humeas : ∀ ω ∈ S, AEStronglyMeasurable (u ω) volume)
+    (hvmeas : ∀ ω ∈ S, AEStronglyMeasurable (v ω) volume)
+    (hubdd : ∀ ω ∈ S, ∃ M : ℝ, ∀ t : ℝ, ‖u ω t‖ ≤ M)
+    (hvbdd : ∀ ω ∈ S, ∃ M : ℝ, ∀ t : ℝ, ‖v ω t‖ ≤ M) :
+    (∀ t₁ : ℝ, ∀ ω ∈ S,
+      Integrable (fun t₂ : ℝ =>
+        (𝓕 g₂) t₂ * (u ω t₁ * v ω t₂)) volume) ∧
+    (∀ ω ∈ S,
+      Integrable (fun t₁ : ℝ =>
+        (𝓕 g₁) t₁ *
+          (∫ t₂ : ℝ,
+            (𝓕 g₂) t₂ * (u ω t₁ * v ω t₂))) volume) := by
+  have hb₁ : Integrable (fun t : ℝ => (𝓕 g₁) t) volume :=
+    (𝓕 g₁).integrable
+  have hb₂ : Integrable (fun t : ℝ => (𝓕 g₂) t) volume :=
+    (𝓕 g₂).integrable
+  have hvint (ω : Ω) (hω : ω ∈ S) :
+      Integrable (fun t₂ : ℝ => (𝓕 g₂) t₂ * v ω t₂) volume := by
+    obtain ⟨Mv, hMv⟩ := hvbdd ω hω
+    exact hb₂.mul_bdd (hvmeas ω hω)
+      (Filter.Eventually.of_forall hMv)
+  constructor
+  · intro t₁ ω hω
+    have hmeas : AEStronglyMeasurable
+        (fun t₂ : ℝ => u ω t₁ * v ω t₂) volume :=
+      (hvmeas ω hω).const_mul (u ω t₁)
+    obtain ⟨Mv, hMv⟩ := hvbdd ω hω
+    have hbound : ∀ t₂ : ℝ,
+        ‖u ω t₁ * v ω t₂‖ ≤ ‖u ω t₁‖ * Mv := by
+      intro t₂
+      rw [norm_mul]
+      exact mul_le_mul_of_nonneg_left (hMv t₂) (norm_nonneg _)
+    exact hb₂.mul_bdd hmeas (Filter.Eventually.of_forall hbound)
+  · intro ω hω
+    let Cv : ℂ := ∫ t₂ : ℝ, (𝓕 g₂) t₂ * v ω t₂
+    have hfactor (t₁ : ℝ) :
+        (∫ t₂ : ℝ,
+          (𝓕 g₂) t₂ * (u ω t₁ * v ω t₂)) = u ω t₁ * Cv := by
+      calc
+        (∫ t₂ : ℝ,
+          (𝓕 g₂) t₂ * (u ω t₁ * v ω t₂)) =
+            ∫ t₂ : ℝ, u ω t₁ * ((𝓕 g₂) t₂ * v ω t₂) := by
+          apply integral_congr_ae
+          filter_upwards [] with t₂
+          ring
+        _ = u ω t₁ * Cv := by rw [integral_const_mul]
+    obtain ⟨Mu, hMu⟩ := hubdd ω hω
+    have hmeas : AEStronglyMeasurable
+        (fun t₁ : ℝ => u ω t₁ * Cv) volume :=
+      (humeas ω hω).mul_const Cv
+    have hbound : ∀ t₁ : ℝ,
+        ‖u ω t₁ * Cv‖ ≤ Mu * ‖Cv‖ := by
+      intro t₁
+      rw [norm_mul]
+      exact mul_le_mul_of_nonneg_right (hMu t₁) (norm_nonneg _)
+    have hInt : Integrable
+        (fun t₁ : ℝ => (𝓕 g₁) t₁ * (u ω t₁ * Cv)) volume :=
+      hb₁.mul_bdd hmeas (Filter.Eventually.of_forall hbound)
+    convert hInt using 1
+    funext t₁
+    rw [hfactor t₁]
+
+end AnalyticBridge
+
+namespace PowerExtraction
+
+/--
+@isnad1 id=le.7h9v.s8.88eabc4eee77 from=translated src=- shape=540fe026 vocab=4aa349eb
+-/
+theorem from_finite_sixth_power_rows
+    {α β : Type*} [DecidableEq α] [DecidableEq β]
+    (rows : Finset α) (primes : Finset β) (row : β → α)
+    (A : α → ℂ) (untwisted : α) (D ε : ℝ)
+    (hD : 1 ≤ D) (hε : 0 ≤ ε)
+    (hrows : primes.image row ⊆ rows)
+    (hinj : Set.InjOn row (primes : Set β))
+    (happrox : ∀ p ∈ primes,
+      ‖A untwisted - A (row p)‖ ≤ D ^ (49 / 60 : ℝ))
+    (hcount : D ^ ((11 / 60 : ℝ) - ε) ≤ (primes.card : ℝ))
+    (hmean : (∑ u ∈ rows, ‖A u‖ ^ 2) ≤
+      D ^ ((21 / 10 : ℝ) + ε)) :
+    ‖A untwisted‖ ≤ 2 * D ^ ((23 / 24 : ℝ) + ε) := by
+  have hDpos : 0 < D := lt_of_lt_of_le zero_lt_one hD
+  have hextract := ShortDraft.complex_row_extraction rows primes row A untwisted
+    (D ^ (49 / 60 : ℝ)) (D ^ ((21 / 10 : ℝ) + ε))
+    (by positivity) hrows hinj happrox hmean
+  have herror : (D ^ (49 / 60 : ℝ)) ^ 2 = D ^ (49 / 30 : ℝ) := by
+    calc
+      (D ^ (49 / 60 : ℝ)) ^ 2 = D ^ ((49 / 60 : ℝ) * 2) :=
+        (Real.rpow_mul_natCast hDpos.le _ 2).symm
+      _ = D ^ (49 / 30 : ℝ) := by congr 1; norm_num
+  rw [herror] at hextract
+  exact from_mean_square_and_prime_rows D ε (primes.card : ℝ)
+    ‖A untwisted‖ hD hε (norm_nonneg _) hcount hextract
+
+end PowerExtraction
+
+namespace ActualEisensteinCubic
+
+section
+
+open AddChar MulChar
+
+private noncomputable def localA5Kernel (P : Ideal O) [P.IsMaximal]
+    (hgood : lambda ∉ P) (ψ : AddChar (O ⧸ P) ℂ)
+    (j : ℕ) (σ : (O ⧸ P)ˣ) (ε x h : O ⧸ P) : ℂ :=
+  let χ := canonicalSextic P hgood
+  let q : ℂ := Nat.card (O ⧸ P)
+  if h = 0 then (if j = 0 then 1 - q⁻¹ else 0)
+  else q⁻¹ *
+    (∑ t : O ⧸ P, (χ ^ j) t * ψ (-(h * t))) *
+    (((χ⁻¹) ^ 2) ((σ : O ⧸ P) * h)) *
+    ψ ((ε * x) * h⁻¹)
+
+private noncomputable def localA5Output (P : Ideal O) [P.IsMaximal]
+    (hgood : lambda ∉ P) (ψ : AddChar (O ⧸ P) ℂ)
+    (j : ℕ) (σ : (O ⧸ P)ˣ) (ε x : O ⧸ P) : ℂ :=
+  let χ := canonicalSextic P hgood
+  let q : ℂ := Nat.card (O ⧸ P)
+  if j = 0 then
+    -(((χ⁻¹) ^ 2) σ) *
+      (q⁻¹ * ((χ ^ 2)⁻¹ ε * gaussSum (χ ^ 2) ψ * (χ ^ 2)⁻¹ x))
+  else if j = 4 then
+    (((χ⁻¹) ^ 2) σ) *
+      (q⁻¹ * gaussSum (χ ^ 4) (ψ.mulShift (-1)) *
+        (if ε * x = 0 then (Fintype.card (O ⧸ P)ˣ : ℂ) else -1))
+  else
+    ((χ⁻¹) ^ 2) σ *
+      (q⁻¹ * gaussSum (χ ^ j) (ψ.mulShift (-1)) *
+        gaussSum (χ ^ (j + 2)) ψ * (χ ^ (j + 2))⁻¹ ε) *
+      (χ ^ (j + 2))⁻¹ x
+
+@[instance_reducible] noncomputable def crtIntersectionFintype
+    {ι : Type*} [Fintype ι]
+    (p : ι → O) [∀ i, (Ideal.span {p i}).IsMaximal]
+    (hdistinct : Function.Injective (fun i => Ideal.span {p i})) :
+    Fintype (O ⧸ ⨅ i, Ideal.span {p i}) := by
+  classical
+  letI (i : ι) : Fintype (O ⧸ Ideal.span {p i}) := Fintype.ofFinite _
+  have hcop : Pairwise
+      (fun i k => IsCoprime (Ideal.span {p i}) (Ideal.span {p k})) := by
+    intro i k hik
+    exact Ideal.isCoprime_of_isMaximal (hdistinct.ne hik)
+  let e := Ideal.quotientInfRingEquivPiQuotient
+    (fun i => Ideal.span {p i}) hcop
+  exact Fintype.ofEquiv (∀ i, O ⧸ Ideal.span {p i}) e.symm.toEquiv
+
+end
+
+/--
+@isnad1 id=eq.1h2v.s9.5a841639331d from=translated src=- shape=690ce3a1 vocab=c48bd992
+-/
+theorem canonicalSextic_sixth_power_mask (P : Ideal O) [P.IsMaximal]
+    (hgood : lambda ∉ P) (a : O) :
+    canonicalSextic P hgood (Ideal.Quotient.mk P (a ^ 6)) =
+      if a ∈ P then 0 else 1 := by
+  let : Field (O ⧸ P) := Ideal.Quotient.field P
+  rw [map_pow, ShortDraftSextic.sextic_power_is_unit_mask
+    (canonicalSextic P hgood) (canonicalSextic_pow_six P hgood)]
+  by_cases ha : a ∈ P
+  · simp [ha, isUnit_iff_ne_zero, Ideal.Quotient.eq_zero_iff_mem]
+  · simp [ha, isUnit_iff_ne_zero, Ideal.Quotient.eq_zero_iff_mem]
+
+end ActualEisensteinCubic
+
+namespace PoissonFirstLocal
+
+private def localA (ε : Bool) (p : ℕ) : ℕ := if ε then p else 1
+private def localC (parityBit ε₁ ε₂ : Bool) (p : ℕ) : ℕ :=
+  if localE parityBit ε₁ ε₂ = 0 then 1 else p
+private def localCorrectionE (parityBit ε₁ ε₂ : Bool) (p : ℕ) : ℕ :=
+  if parityBit then localA ε₁ p * localA ε₂ p else 1
+private def localS (parityBit : Bool) (p : ℕ) : ℕ := if parityBit then p else 1
+private def localJ2 (parityBit ε₁ ε₂ : Bool) (p : ℕ) : ℕ :=
+  if !parityBit && ε₁ && ε₂ then p else 1
+
+/--
+@isnad1 id=eq.0h4v.s6.8b9f3c51e3dd from=translated src=- shape=249a54f2 vocab=e1627f32
+-/
+theorem first_poisson_local_scale_identity
+    (parityBit ε₁ ε₂ : Bool) (p : ℕ) :
+    localC parityBit ε₁ ε₂ p * localCorrectionE parityBit ε₁ ε₂ p *
+        (localJ2 parityBit ε₁ ε₂ p) ^ 2 =
+      localA ε₁ p * localA ε₂ p * localS parityBit p := by
+  cases parityBit <;> cases ε₁ <;> cases ε₂ <;>
+    simp [localC, localCorrectionE, localJ2, localS, localA,
+      localE, bit,
+      show (1 : ZMod 6) ≠ 0 by decide,
+
+      show (3 : ZMod 6) ≠ 0 by decide,
+      ] <;> ring_nf <;>
+      (intro h; exfalso; revert h; decide)
+
+/--
+@isnad1 id=eq.0h4v.s7.1c7b43560a96 from=translated src=- shape=ef9e0183 vocab=bbcbc66d
+-/
+theorem first_poisson_global_scale_identity
+    (P : Finset ℕ) (parityBit ε₁ ε₂ : ℕ → Bool) :
+    (∏ p ∈ P, localC (parityBit p) (ε₁ p) (ε₂ p) p) *
+      (∏ p ∈ P, localCorrectionE (parityBit p) (ε₁ p) (ε₂ p) p) *
+      (∏ p ∈ P, localJ2 (parityBit p) (ε₁ p) (ε₂ p) p) ^ 2 =
+    (∏ p ∈ P, localA (ε₁ p) p) *
+      (∏ p ∈ P, localA (ε₂ p) p) *
+      (∏ p ∈ P, localS (parityBit p) p) := by
+  classical
+  induction P using Finset.induction_on with
+  | empty => simp
+  | @insert p P hp ih =>
+    simp only [Finset.prod_insert hp]
+    calc
+      (localC (parityBit p) (ε₁ p) (ε₂ p) p *
+          ∏ q ∈ P, localC (parityBit q) (ε₁ q) (ε₂ q) q) *
+        (localCorrectionE (parityBit p) (ε₁ p) (ε₂ p) p *
+          ∏ q ∈ P, localCorrectionE (parityBit q) (ε₁ q) (ε₂ q) q) *
+        (localJ2 (parityBit p) (ε₁ p) (ε₂ p) p *
+          ∏ q ∈ P, localJ2 (parityBit q) (ε₁ q) (ε₂ q) q) ^ 2 =
+        (localC (parityBit p) (ε₁ p) (ε₂ p) p *
+          localCorrectionE (parityBit p) (ε₁ p) (ε₂ p) p *
+          localJ2 (parityBit p) (ε₁ p) (ε₂ p) p ^ 2) *
+        ((∏ q ∈ P, localC (parityBit q) (ε₁ q) (ε₂ q) q) *
+          (∏ q ∈ P, localCorrectionE (parityBit q) (ε₁ q) (ε₂ q) q) *
+          (∏ q ∈ P, localJ2 (parityBit q) (ε₁ q) (ε₂ q) q) ^ 2) := by ring
+      _ = (localA (ε₁ p) p * localA (ε₂ p) p * localS (parityBit p) p) *
+        ((∏ q ∈ P, localA (ε₁ q) q) *
+          (∏ q ∈ P, localA (ε₂ q) q) *
+          (∏ q ∈ P, localS (parityBit q) q)) := by
+        rw [first_poisson_local_scale_identity, ih]
+      _ = (localA (ε₁ p) p * ∏ q ∈ P, localA (ε₁ q) q) *
+          (localA (ε₂ p) p * ∏ q ∈ P, localA (ε₂ q) q) *
+          (localS (parityBit p) p * ∏ q ∈ P, localS (parityBit q) q) := by ring
+
+end PoissonFirstLocal
+
+end
+
+end OAI
+-- Tengoku: root names of this library moved to Tengoku.QuasiRiemann so they do not collide with other libraries (generated)

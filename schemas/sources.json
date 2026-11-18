@@ -237,7 +237,28 @@
     "https://github.com/stalex444/pdt-lean",
     "https://github.com/lailai0916/saturated-sperner-6-7",
     "https://github.com/jpbald93/dandelin",
-    "https://github.com/xyli9596/levin-entire-functions-lean"
+    "https://github.com/xyli9596/levin-entire-functions-lean",
+    "https://github.com/jeremypparker/mahler-hansen-cograph",
+    "https://github.com/peilinliu66-dev/jsp-000198-lean",
+    "https://github.com/noahbenjamin1994/erdos-1091-lean",
+    "https://github.com/jpbald93/barbier",
+    "https://github.com/roos-j/lean-nct",
+    "https://github.com/anastasiosfragkosmath/quadratic-carleson-palomar-submission",
+    "https://github.com/canghaimeng/Nikoghosyan-conjecture",
+    "https://github.com/snorin239/LinearHadwiger",
+    "https://github.com/t4v1/damian_formalizare",
+    "https://github.com/harappa/collatz-generalized-natural-density",
+    "https://github.com/zakharov2k/EGZ-formal-proof",
+    "https://github.com/Yunlei-Wang/svw-half-density",
+    "https://github.com/Hanziwww/erdos260",
+    "https://github.com/CoolRmal/NKBesicovitch",
+    "https://github.com/mekty2012/OddCycleGoodman-lean",
+    "https://github.com/selpoG/lean-hahn-kaplansky",
+    "https://github.com/norbsvr/BrauerInduction",
+    "https://github.com/langlerangle/NashEmbedding",
+    "https://github.com/JustinWick/erdos647",
+    "https://github.com/GiulianoBasso/Grunbaum-lean",
+    "https://github.com/jiji7879/magic-squares-fields-lean"
   ],
   "licences": {
     "https://github.com/leanprover-community/mathlib4": "Apache-2.0",
@@ -487,7 +508,28 @@
     "https://github.com/stalex444/pdt-lean": "MIT",
     "https://github.com/lailai0916/saturated-sperner-6-7": "Apache-2.0",
     "https://github.com/jpbald93/dandelin": "Apache-2.0",
-    "https://github.com/xyli9596/levin-entire-functions-lean": "Apache-2.0"
+    "https://github.com/xyli9596/levin-entire-functions-lean": "Apache-2.0",
+    "https://github.com/jeremypparker/mahler-hansen-cograph": "Apache-2.0",
+    "https://github.com/peilinliu66-dev/jsp-000198-lean": "MIT",
+    "https://github.com/noahbenjamin1994/erdos-1091-lean": "Apache-2.0",
+    "https://github.com/jpbald93/barbier": "Apache-2.0",
+    "https://github.com/roos-j/lean-nct": "Apache-2.0",
+    "https://github.com/anastasiosfragkosmath/quadratic-carleson-palomar-submission": "Apache-2.0",
+    "https://github.com/canghaimeng/Nikoghosyan-conjecture": "Apache-2.0",
+    "https://github.com/snorin239/LinearHadwiger": "Apache-2.0",
+    "https://github.com/t4v1/damian_formalizare": "Apache-2.0",
+    "https://github.com/harappa/collatz-generalized-natural-density": "Apache-2.0",
+    "https://github.com/zakharov2k/EGZ-formal-proof": "MIT",
+    "https://github.com/Yunlei-Wang/svw-half-density": "Apache-2.0",
+    "https://github.com/Hanziwww/erdos260": "MIT",
+    "https://github.com/CoolRmal/NKBesicovitch": "Apache-2.0",
+    "https://github.com/mekty2012/OddCycleGoodman-lean": "MIT",
+    "https://github.com/selpoG/lean-hahn-kaplansky": "Apache-2.0",
+    "https://github.com/norbsvr/BrauerInduction": "Apache-2.0",
+    "https://github.com/langlerangle/NashEmbedding": "Apache-2.0",
+    "https://github.com/JustinWick/erdos647": "Apache-2.0",
+    "https://github.com/GiulianoBasso/Grunbaum-lean": "Apache-2.0",
+    "https://github.com/jiji7879/magic-squares-fields-lean": "MIT"
   },
   "corpora": {
     "equational-theories": {
@@ -2406,6 +2448,177 @@
         "LevinScaling",
         "LevinSmallDensity",
         "LevinZeroFree"
+      ]
+    },
+    "mahler-hansen-cograph": {
+      "repo": "https://github.com/jeremypparker/mahler-hansen-cograph",
+      "commit": "c7639c5060f40d69b613bcbd637b1750f27b7e3f",
+      "roots": [
+        "Challenge",
+        "CographPortalFlagsAxiomAudit",
+        "CographPortalRestrictedProductAxiomAudit",
+        "Formalisation",
+        "GeneralFlagProductAllSizesAxiomAudit",
+        "GeneralFlagProductShuffleAxiomAudit",
+        "Solution"
+      ]
+    },
+    "jsp-000198-lean": {
+      "repo": "https://github.com/peilinliu66-dev/jsp-000198-lean",
+      "commit": "0202e2902bbe51bcf202dc117075b2869e76a355",
+      "roots": [
+        "EmptyPentagon",
+        "Prize",
+        "Proof"
+      ]
+    },
+    "erdos-1091-lean": {
+      "repo": "https://github.com/noahbenjamin1994/erdos-1091-lean",
+      "commit": "c692a97e2d476e176ee207ded68f15ef2d956ed5",
+      "roots": [
+        "Erdos1091"
+      ]
+    },
+    "barbier": {
+      "repo": "https://github.com/jpbald93/barbier",
+      "commit": "d2d6d48d509a3c1d4c5e87faee319760dba31089",
+      "roots": [
+        "Barbier"
+      ]
+    },
+    "lean-nct": {
+      "repo": "https://github.com/roos-j/lean-nct",
+      "commit": "412a206c3d6254058d78c0805dabefa735502af0",
+      "roots": [
+        "LeanNct"
+      ]
+    },
+    "quadratic-carleson-palomar-submission": {
+      "repo": "https://github.com/anastasiosfragkosmath/quadratic-carleson-palomar-submission",
+      "commit": "3d3cf4316acac4c23140059a78fb570b1440394b",
+      "roots": [
+        "Challenge",
+        "QuadraticCarleson",
+        "Solution"
+      ]
+    },
+    "nikoghosyan-conjecture": {
+      "repo": "https://github.com/canghaimeng/Nikoghosyan-conjecture",
+      "commit": "ccc8514d6801c4bce0bb00bf8a3061b0750c043c",
+      "roots": [
+        "Nikoghosyan",
+        "NikoghosyanPrerequisites"
+      ]
+    },
+    "linearhadwiger": {
+      "repo": "https://github.com/snorin239/LinearHadwiger",
+      "commit": "9ef0db5fbaba0c4bc15248b9ea83933c262559c1",
+      "roots": [
+        "HadwigerLean"
+      ]
+    },
+    "damian-formalizare": {
+      "repo": "https://github.com/t4v1/damian_formalizare",
+      "commit": "545ebb1a7d4c55299b1f59787a7ff0d4d703af27",
+      "roots": [
+        "MorseFloer"
+      ]
+    },
+    "collatz-generalized-natural-density": {
+      "repo": "https://github.com/harappa/collatz-generalized-natural-density",
+      "commit": "a390df858b5433039c7fbaeb6e8713d6ac247d8d",
+      "roots": [
+        "GGMCollatz"
+      ]
+    },
+    "egz-formal-proof": {
+      "repo": "https://github.com/zakharov2k/EGZ-formal-proof",
+      "commit": "7c82267c43a51dd5cb3e440412780ff82aff7500",
+      "roots": [
+        "Challenge",
+        "EGZ",
+        "Solution"
+      ]
+    },
+    "svw-half-density": {
+      "repo": "https://github.com/Yunlei-Wang/svw-half-density",
+      "commit": "44cbe11f95704667a60a037c046781b2ec82e013",
+      "roots": [
+        "Main",
+        "SVWHalfDensity"
+      ]
+    },
+    "erdos260": {
+      "repo": "https://github.com/Hanziwww/erdos260",
+      "commit": "e708b584c9a3b54857f050d6b7efbecb8a5ea27a",
+      "roots": [
+        "Erdos260"
+      ]
+    },
+    "nkbesicovitch": {
+      "repo": "https://github.com/CoolRmal/NKBesicovitch",
+      "commit": "e12e5981d840eb5ebdc25403691b3c63a9c7aff8",
+      "roots": [
+        "Challenge",
+        "NKBesicovitch",
+        "Solution"
+      ]
+    },
+    "oddcyclegoodman-lean": {
+      "repo": "https://github.com/mekty2012/OddCycleGoodman-lean",
+      "commit": "dbaea5a4d2c044a202f1e40647f4b24a1c77b313",
+      "roots": [
+        "OddCycleBound"
+      ]
+    },
+    "lean-hahn-kaplansky": {
+      "repo": "https://github.com/selpoG/lean-hahn-kaplansky",
+      "commit": "0dff534638ae00e8eaaa55417079568f7da0dd9a",
+      "roots": [
+        "HahnKaplanskyRealClosedness"
+      ]
+    },
+    "brauerinduction": {
+      "repo": "https://github.com/norbsvr/BrauerInduction",
+      "commit": "a88cd7566a7c3b5d93d791a9320b9e7fa75a001a",
+      "roots": [
+        "BrauerInduction",
+        "Challenge",
+        "Solution"
+      ]
+    },
+    "nashembedding": {
+      "repo": "https://github.com/langlerangle/NashEmbedding",
+      "commit": "f8e753f8ddd0edfb21bf5c5dd08b0c25cdb63323",
+      "roots": [
+        "Challenge",
+        "NashEmbedding",
+        "NashEmbeddingTest",
+        "Solution"
+      ]
+    },
+    "erdos647": {
+      "repo": "https://github.com/JustinWick/erdos647",
+      "commit": "3df8fb47a0072817c704fc96d93e308c7c34a95e",
+      "roots": [
+        "Erdos647Sieve",
+        "Examples"
+      ]
+    },
+    "grunbaum-lean": {
+      "repo": "https://github.com/GiulianoBasso/Grunbaum-lean",
+      "commit": "ad79767bf01b553e5fa3f34ceb4e3d184786709e",
+      "roots": [
+        "FranklFuredi",
+        "Grunbaum",
+        "ProjectionConstants"
+      ]
+    },
+    "magic-squares-fields-lean": {
+      "repo": "https://github.com/jiji7879/magic-squares-fields-lean",
+      "commit": "d7efc54f0a8a7bda257319615f2b9ddb6bd81f95",
+      "roots": [
+        "MagicSquares"
       ]
     }
   },
