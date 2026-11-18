@@ -7,6 +7,9 @@ namespace Oscillation
 noncomputable section
 open Finset
 
+/--
+@isnad1 id=le.2h5v.s6.084c674c327a from=translated src=- shape=5858458e vocab=6b4bf122
+-/
 lemma gridOsc_perturb {m : ℕ} (hm : 0 < m) (f g : Fin m → ℝ)
     (a b : ℝ) (h : ∀ t, a ≤ g t - f t ∧ g t - f t ≤ b) :
     |gridOsc hm g - gridOsc hm f| ≤ b - a := by
@@ -37,6 +40,9 @@ lemma gridOsc_perturb {m : ℕ} (hm : 0 < m) (f g : Fin m → ℝ)
   unfold gridOsc
   exact abs_le.mpr ⟨by linarith, by linarith⟩
 
+/--
+@isnad1 id=le.1h4v.s6.01fb638710a6 from=translated src=- shape=409e0de5 vocab=ab8c51c0
+-/
 lemma gridOsc_step_perturb {m : ℕ} (hm : 0 < m) (f : Fin m → ℝ)
     (e : ℝ) (Q : Fin m → Prop) [DecidablePred Q] :
     |gridOsc hm (fun t => f t + e * (if Q t then 1 else 0)) - gridOsc hm f| ≤ |e| := by
@@ -52,12 +58,18 @@ lemma gridOsc_step_perturb {m : ℕ} (hm : 0 < m) (f : Fin m → ℝ)
         intro t; split_ifs <;> constructor <;> linarith)
     simpa using h
 
+/--
+@isnad1 id=eq.1h4v.s6.578e733f9be7 from=translated src=- shape=630dd228 vocab=290feed8
+-/
 lemma sum_sub_single {ι : Type*} [Fintype ι] [DecidableEq ι] (f g : ι → ℝ) (i : ι)
     (h : ∀ k, k ≠ i → f k = g k) :
     (∑ k, f k) - (∑ k, g k) = f i - g i := by
   rw [← sum_sub_distrib]
   exact sum_eq_single i (fun k _ hki => by rw [h k hki]; ring) (by simp)
 
+/--
+@isnad1 id=eq.0h8v.s6.62a3275e58d7 from=translated src=- shape=dc3a9798 vocab=c38a8ae1
+-/
 lemma endpointValue_update {n : ℕ} (χ : Fin n → ℝ) (p Y : Fin n → ℕ)
     (i : Fin n) (z c y : ℕ) :
     endpointValue χ (Function.update p i z) Y c y = endpointValue χ p Y c y +
@@ -72,6 +84,9 @@ lemma endpointValue_update {n : ℕ} (χ : Fin n → ℝ) (p Y : Fin n → ℕ)
   unfold endpointValue
   linarith [he]
 
+/--
+@isnad1 id=eq.1h5v.s6.ee208227174e from=translated src=- shape=9b98f934 vocab=88edff28
+-/
 lemma endpointWeight_refine {b : ℕ} (hb : 0 < b) (p c : ℕ) (r k : Fin b) :
     endpointWeight (b * p + r.val) (b * c + k.val) =
       if p < c then 1 else if p = c then endpointWeight r.val k.val else 0 := by
@@ -89,11 +104,17 @@ lemma endpointWeight_refine {b : ℕ} (hb : 0 < b) (p c : ℕ) (r k : Fin b) :
         nlinarith [k.isLt]
       simp [endpointWeight, hpc, he, not_lt.mpr (le_of_lt hlt), ne_of_gt hlt]
 
+/--
+@isnad1 id=eq.0h3v.s6.05347035a15c from=translated src=- shape=b4232272 vocab=db629ff3
+-/
 lemma sum_fin_mul {K b : ℕ} (f : ℕ → ℝ) :
     (∑ c : Fin (K * b), f c.val) = ∑ c : Fin K, ∑ k : Fin b, f (b * c.val + k.val) := by
   rw [← Equiv.sum_comp (finProdFinEquiv : Fin K × Fin b ≃ Fin (K * b))]
   simp [Fintype.sum_prod_type, finProdFinEquiv, Nat.add_comm]
 
+/--
+@isnad1 id=eq.2h5v.s7.4d923eed8750 from=translated src=- shape=a5a4b51a vocab=145507a2
+-/
 lemma gridOsc_step_outside {m : ℕ} (hm : 0 < m) (f : Fin m → ℝ)
     (e : ℝ) (Y v : ℕ) (hv : v ≠ Y / m) :
     gridOsc hm (fun t => f t + e * (if Y < v * m + t.val + 1 then 1 else 0)) =
@@ -114,6 +135,9 @@ lemma gridOsc_step_outside {m : ℕ} (hm : 0 < m) (f : Fin m → ℝ)
       nlinarith
     simpa only [hh, ite_true, mul_one] using gridOsc_add_const hm f e
 
+/--
+@isnad1 id=le.1h5v.s7.bb887c6a33e7 from=translated src=- shape=9b608fc0 vocab=0461097b
+-/
 lemma sum_gridOsc_step {m V : ℕ} (hm : 0 < m) (f : Fin V → Fin m → ℝ)
     (e : ℝ) (Y : ℕ) :
     |(∑ v : Fin V, gridOsc hm (fun t => f v t +
@@ -138,6 +162,9 @@ lemma sum_gridOsc_step {m V : ℕ} (hm : 0 < m) (f : Fin V → Fin m → ℝ)
     simp only [he, sub_self, abs_zero]
     exact abs_nonneg e
 
+/--
+@isnad1 id=eq.0h3v.s5.ef5e32b2ab2d from=translated src=- shape=57cfe896 vocab=b0f942ca
+-/
 lemma sum_fin_indicator (K p : ℕ) (a : ℝ) :
     (∑ c : Fin K, if c.val = p then a else 0) = if p < K then a else 0 := by
   by_cases hp : p < K
@@ -153,6 +180,9 @@ lemma sum_fin_indicator (K p : ℕ) (a : ℝ) :
       omega
     simp [he, hp]
 
+/--
+@isnad1 id=le.2h6v.s7.4c44378972de from=translated src=- shape=89fd2eb1 vocab=9283c8d2
+-/
 lemma sum_refined_weight_change_le {K b : ℕ} (hb : 0 < b) (p : ℕ)
     (r r' : Fin b) (a : ℝ) (ha : |a| ≤ 1) :
     (∑ c : Fin (K * b), |a * (endpointWeight (b * p + r'.val) c.val -
@@ -178,6 +208,9 @@ lemma sum_refined_weight_change_le {K b : ℕ} (hb : 0 < b) (p : ℕ)
       rw [sum_fin_indicator]
       split_ifs <;> simp
 
+/--
+@isnad1 id=le.1h9v.s7.36b2566b8afb from=translated src=- shape=401d408f vocab=48aec128
+-/
 lemma sum_blockOsc_update_le {n m V : ℕ} (hm : 0 < m)
     (χ : Fin n → ℝ) (p Y : Fin n → ℕ) (i : Fin n) (z c : ℕ) :
     |(∑ v : Fin V, gridOsc hm (blockValues χ (Function.update p i z) Y c v.val)) -
@@ -199,7 +232,9 @@ lemma sum_blockOsc_update_le {n m V : ℕ} (hm : 0 < m)
 
 /-- A genuine one-coordinate update of the next digit changes the actual
 finite oscillation potential by at most one over the number of comparison
-rectangles. No concentration or influence hypothesis is assumed.-/
+rectangles. No concentration or influence hypothesis is assumed.
+@isnad1 id=le.5h11v.s7.fb0c55ee82b3 from=translated src=- shape=2045b66f vocab=26b3bd56
+-/
 theorem gridPotential_refined_influence {n K V m b : ℕ}
     (hK : 0 < K) (hV : 0 < V) (hm : 0 < m) (hb : 0 < b)
     (χ : Fin n → ℝ) (hχ : ∀ i, |χ i| ≤ 1) (p Y : Fin n → ℕ)

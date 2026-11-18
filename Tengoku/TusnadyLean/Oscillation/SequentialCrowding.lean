@@ -19,6 +19,9 @@ def accepted {k M : ℕ} (q : ℕ) (x : Fin k → Option (Fin M)) : Option (Fin 
   | none => 0
   | some c => if count x c < q then 1 else 0
 
+/--
+@isnad1 id=eq.0h5v.s6.50c96398311b from=translated src=- shape=fe959cb7 vocab=f2292f12
+-/
 lemma count_snoc {k M : ℕ} (x : Fin k → Option (Fin M)) (z : Option (Fin M)) (c : Fin M) :
     count (Fin.snoc x z) c = count x c + if z = some c then 1 else 0 := by
   have H : ∀ {l : ℕ} (y : Fin l → Option (Fin M)),
@@ -28,6 +31,9 @@ lemma count_snoc {k M : ℕ} (x : Fin k → Option (Fin M)) (z : Option (Fin M))
   rw [H,Fin.sum_univ_castSucc,H]
   simp
 
+/--
+@isnad1 id=eq.0h5v.s6.06172c50511c from=translated src=- shape=6a0eb159 vocab=261b1627
+-/
 lemma capped_snoc {k M : ℕ} (q : ℕ) (x : Fin k → Option (Fin M)) (z : Option (Fin M)) :
     capped q (Fin.snoc x z) = capped q x + accepted q x z := by
   unfold capped
@@ -43,10 +49,15 @@ lemma capped_snoc {k M : ℕ} (q : ℕ) (x : Fin k → Option (Fin M)) (z : Opti
     simp_rw [H]
     simp [sum_add_distrib]
 
+/--
+@isnad1 id=le.0h4v.s4.83539b2f3233 from=translated src=- shape=baa6aa37 vocab=c76a2354
+-/
 lemma capped_le_sample {k M : ℕ} (q : ℕ) (x : Fin k → Option (Fin M)) : capped q x ≤ k :=
   (sum_le_sum (fun c _ => min_le_left (count x c) q)).trans (sum_count_le x)
 
-/-- The total mass of buckets full before the next draw is at most k/(qM).-/
+/-- The total mass of buckets full before the next draw is at most k/(qM).
+@isnad1 id=le.7h6v.s7.e652477fa99e from=translated src=- shape=58c00db2 vocab=b6ec15ef
+-/
 lemma rejection_mass {k M q : ℕ} (hq : 0 < q) (hM : 0 < M)
     (p : Option (Fin M) → ℝ) (hp : ∀ z, 0 ≤ p z)
     (hgood : ∀ c, p (some c) ≤ 1/M) {b : ℝ} (hb : 0<b)
@@ -89,7 +100,9 @@ lemma rejection_mass {k M q : ℕ} (hq : 0 < q) (hM : 0 < M)
       have hr : 2/b+2/b=4/b := by ring
       linarith
 
-/-- One sequential exponential-moment step, for an arbitrary previous sample.-/
+/-- One sequential exponential-moment step, for an arbitrary previous sample.
+@isnad1 id=le.8h6v.s8.7c334de9c57f from=translated src=- shape=c11d8d99 vocab=747b131b
+-/
 lemma capped_exp_step {k M q : ℕ} (hq : 0<q) (hM : 0<M)
     (p : Option (Fin M) → ℝ) (hp : ∀ z, 0≤p z) (htotal : ∑ z,p z=1)
     (hgood : ∀ c, p (some c)≤1/M) {b : ℝ} (hb : 4<b)
@@ -112,6 +125,9 @@ lemma capped_exp_step {k M q : ℕ} (hq : 0<q) (hM : 0<M)
   have : 0≤4/b := by positivity
   linarith
 
+/--
+@isnad1 id=eq.0h4v.s8.81039edbae8b from=translated src=- shape=59c03002 vocab=ceaa719c
+-/
 lemma weighted_snoc_sum {Ω : Type*} [Fintype Ω] (p : Ω → ℝ) (k : ℕ)
     (f : (Fin (k+1) → Ω) → ℝ) :
     (∑ x,productWeight p x*f x) = ∑ x : Fin k → Ω, productWeight p x *
@@ -128,7 +144,9 @@ lemma weighted_snoc_sum {Ω : Type*} [Fintype Ω] (p : Ω → ℝ) (k : ℕ)
   simp only [productWeight,Fin.prod_univ_castSucc,Fin.snoc_castSucc,Fin.snoc_last]
   ring
 
-/-- Repeatedly expose one new point. The capacity is fixed using the final n.-/
+/-- Repeatedly expose one new point. The capacity is fixed using the final n.
+@isnad1 id=le.8h5v.s8.8567ecf14e17 from=translated src=- shape=81163fb1 vocab=cbb31823
+-/
 lemma capped_exp_bound {n M q : ℕ} (hq : 0<q) (hM : 0<M)
     (p : Option (Fin M) → ℝ) (hp : ∀ z, 0≤p z) (htotal : ∑ z,p z=1)
     (hgood : ∀ c, p (some c)≤1/M) {b : ℝ} (hb : 4<b)
@@ -167,6 +185,9 @@ lemma capped_exp_bound {n M q : ℕ} (hq : 0<q) (hM : 0<M)
       _ ≤ 2^k*2 := mul_le_mul_of_nonneg_right (ih (by omega)) (by norm_num)
       _ = _ := (pow_succ _ _).symm
 
+/--
+@isnad1 id=le.2h5v.s6.e1e2f5fb3e2d from=translated src=- shape=c5928ad6 vocab=b60fb6d1
+-/
 lemma capped_sqrt_bound {n M q : ℕ} {v : ℝ} (hv : 0≤v) (hq : (q:ℝ)≤v^2)
     (x : Fin n → Option (Fin M)) :
     (capped q x:ℝ) ≤ v * ∑ c,Real.sqrt (count x c) := by

@@ -12,11 +12,17 @@ open scoped ENNReal NNReal
 
 variable {Ω : Type*} {mΩ : MeasurableSpace Ω} {μ : Measure Ω}
 
+/--
+@isnad1 id=integrab.2h5v.s6.8c33779c8fdf from=translated src=- shape=f23a4951 vocab=fa8c9e14
+-/
 lemma integrable_exp_of_bounded [IsFiniteMeasure μ] {f : Ω → ℝ} (hf : Measurable f)
     (B : ℝ) (hb : ∀ ω, f ω ≤ B) : Integrable (fun ω ↦ Real.exp (f ω)) μ := by
   exact Integrable.of_mem_Icc 0 (Real.exp B) (hf.exp.aemeasurable)
     (Filter.Eventually.of_forall (fun ω ↦ ⟨(Real.exp_pos _).le, Real.exp_le_exp.mpr (hb ω)⟩))
 
+/--
+@isnad1 id=memlp.2h6v.s6.984edb5d51cf from=translated src=- shape=0fe22db9 vocab=1ec10b4e
+-/
 lemma memLp_exp_of_bounded [IsFiniteMeasure μ] {f : Ω → ℝ} (hf : Measurable f)
     (B : ℝ) (hb : ∀ ω, f ω ≤ B) (p : ℝ≥0∞) : MemLp (fun ω ↦ Real.exp (f ω)) p μ := by
   apply MemLp.of_bound hf.exp.aestronglyMeasurable (Real.exp B)
@@ -24,6 +30,9 @@ lemma memLp_exp_of_bounded [IsFiniteMeasure μ] {f : Ω → ℝ} (hf : Measurabl
     rw [Real.norm_eq_abs, abs_of_pos (Real.exp_pos _)]
     exact Real.exp_le_exp.mpr (hb ω))
 
+/--
+@isnad1 id=le.0h2v.s4.49984af54f0c from=translated src=- shape=9d96de37 vocab=9c690a68
+-/
 lemma exp_finAvg_le_finAvg_exp {ι : Type*} [Fintype ι] [Nonempty ι] (a : ι → ℝ) :
     Real.exp (finAvg a) ≤ finAvg (fun i ↦ Real.exp (a i)) := by
   have hc : (Fintype.card ι : ℝ) ≠ 0 := by exact_mod_cast Fintype.card_ne_zero
@@ -33,7 +42,9 @@ lemma exp_finAvg_le_finAvg_exp {ι : Type*} [Fintype ι] [Nonempty ι] (a : ι �
   simp only [smul_eq_mul, ← Finset.mul_sum] at hj
   simpa only [finAvg, div_eq_mul_inv, mul_comm] using hj
 
-/-- Cauchy--Schwarz in the form needed to remove a random positive drift.-/
+/-- Cauchy--Schwarz in the form needed to remove a random positive drift.
+@isnad1 id=le.4h7v.s7.e08fdbcc6c81 from=translated src=- shape=29762fa6 vocab=63bdbe7e
+-/
 theorem integral_exp_split_le [IsFiniteMeasure μ] (A B : Ω → ℝ)
     (hA : Measurable A) (hB : Measurable B) (CA CB : ℝ)
     (hAb : ∀ ω, A ω ≤ CA) (hBb : ∀ ω, B ω ≤ CB) :
@@ -65,7 +76,9 @@ def HasFiniteConditionalLaw {α : Type*} [Fintype α] (m : MeasurableSpace Ω)
     μ[(fun ω ↦ φ (X ω)) | m] =ᵐ[μ] (fun ω ↦ finAvg (fun r ↦ φ (Y ω r)))
 
 /-- A genuine finite conditional law, coordinate oscillations, and a lower
-conditional drift imply the one-step exponential estimate.-/
+conditional drift imply the one-step exponential estimate.
+@isnad1 id=eventual.10h13v.s8.4fb356dc0e30 from=translated src=- shape=f4ff2e49 vocab=dd26e122
+-/
 theorem condExp_exp_drift_le_of_finite_law [IsProbabilityMeasure μ]
     {α : Type*} [Fintype α] [Nonempty α] {m : MeasurableSpace Ω} (hm : m ≤ mΩ)
     (n : ℕ) (X z s : Ω → ℝ) (Y : Ω → (Fin n → α) → ℝ)

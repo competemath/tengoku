@@ -10,6 +10,9 @@ open scoped BigOperators ENNReal
 open MeasureTheory Riesz Riesz.PointSets Riesz.Occupancy
 noncomputable section
 
+/--
+@isnad1 id=eq.1h2v.s6.576af16b35a4 from=translated src=- shape=dd45e8e7 vocab=eff1aee0
+-/
 lemma finiteGridIndex_predicate_real (N : ℕ) (hN : 0 < N) (P : Fin N → Prop) [DecidablePred P] :
     (μI {x | P (finiteGridIndex N hN x)}).toReal =
       (∑ j : Fin N, if P j then (1:ℝ) else 0) / N := by
@@ -19,6 +22,9 @@ lemma finiteGridIndex_predicate_real (N : ℕ) (hN : 0 < N) (P : Fin N → Prop)
   simpa only [Set.indicator, Set.mem_ofPred_eq, Pi.one_apply] using
     integral_finiteGridIndex N hN (fun j => if P j then (1:ℝ) else 0)
 
+/--
+@isnad1 id=eq.2h3v.s7.05f60d196ce3 from=translated src=- shape=7cb91f9b vocab=3d257f6c
+-/
 lemma coarseFineGrid_mass (V W : ℕ) (hV : 0 < V) (hW : 0 < W) (v : Fin V) :
     μI {y | (finProdFinEquiv.symm (finiteGridIndex (V*W) (Nat.mul_pos hV hW) y)).1 = v} =
       ENNReal.ofReal (1/(V:ℝ)) := by
@@ -43,6 +49,9 @@ def interiorSubcell (b m : ℕ) (r : Fin (b*m)) : Prop :=
 instance (b m : ℕ) : DecidablePred (interiorSubcell b m) :=
   fun r => inferInstanceAs (Decidable (m ≤ r.val ∧ r.val < (b-1)*m))
 
+/--
+@isnad1 id=le.2h2v.s6.4c72c0e5cd40 from=translated src=- shape=e73d2dec vocab=e8976cc3
+-/
 lemma boundarySubcell_card_le {b m : ℕ} (hb : 4 ≤ b) (hm : 0 < m) :
     (Finset.univ.filter (fun r : Fin (b*m) => ¬interiorSubcell b m r)).card ≤ 2*m := by
   have hlow : 1*m < b*m := Nat.mul_lt_mul_of_pos_right (by omega) hm
@@ -66,6 +75,9 @@ lemma boundarySubcell_card_le {b m : ℕ} (hb : 4 ≤ b) (hm : 0 < m) :
       rw [Nat.sub_mul]
       omega
 
+/--
+@isnad1 id=le.3h3v.s8.9b02febff5fc from=translated src=- shape=bbc8975e vocab=5e966068
+-/
 lemma fineBoundary_mass {V b m : ℕ} (hV : 0 < V) (hb : 4 ≤ b) (hm : 0 < m) :
     μI {y | ¬interiorSubcell b m (finProdFinEquiv.symm
       (finiteGridIndex (V*(b*m)) (by positivity) y)).2} ≤ ENNReal.ofReal (2/(b:ℝ)) := by
@@ -103,6 +115,9 @@ def rectangularBucket (K V b m : ℕ) (hK : 0 < K) (hV : 0 < V) (hb : 0 < b) (hm
   if interiorSubcell b m vr.2 then
     some (finProdFinEquiv (finiteGridIndex K hK z.1, vr.1)) else none
 
+/--
+@isnad1 id=measurab.4h4v.s6.6c18615f1289 from=translated src=- shape=808f6228 vocab=7398a25b
+-/
 lemma rectangularBucket_measurable (K V b m : ℕ) (hK : 0 < K) (hV : 0 < V)
     (hb : 0 < b) (hm : 0 < m) [MeasurableSpace (Option (Fin (K*V)))] :
     Measurable (rectangularBucket K V b m hK hV hb hm) := by
@@ -113,6 +128,9 @@ lemma rectangularBucket_measurable (K V b m : ℕ) (hK : 0 < K) (hV : 0 < V)
     (((measurable_finiteGridIndex K hK).comp measurable_fst).prodMk
       ((measurable_finiteGridIndex (V*(b*m)) (by positivity)).comp measurable_snd))
 
+/--
+@isnad1 id=le.4h5v.s7.b84d977c3f21 from=translated src=- shape=7401728c vocab=089584f2
+-/
 lemma rectangularBucket_good_mass (K V b m : ℕ) (hK : 0 < K) (hV : 0 < V)
     (hb : 0 < b) (hm : 0 < m) (c : Fin (K*V)) :
     (μI.prod μI) {z | rectangularBucket K V b m hK hV hb hm z = some c}
@@ -140,6 +158,9 @@ lemma rectangularBucket_good_mass (K V b m : ℕ) (hK : 0 < K) (hV : 0 < V)
       push_cast
       ring
 
+/--
+@isnad1 id=le.4h4v.s7.49082dd10f7c from=translated src=- shape=485a4751 vocab=348a54b1
+-/
 lemma rectangularBucket_bad_mass (K V b m : ℕ) (hK : 0 < K) (hV : 0 < V)
     (hb : 4 ≤ b) (hm : 0 < m) :
     (μI.prod μI) {z | rectangularBucket K V b m hK hV (by omega) hm z = none}

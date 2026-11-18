@@ -17,18 +17,30 @@ def rowMean (d : ℕ) (k : Fin (2 * d)) : ℝ := (k.val + 1 / 2 : ℝ) / (2 * d)
 
 def halfGain (d : ℕ) (k : Fin (2 * d)) : ℝ := min (rowMean d k) (1 - rowMean d k)
 
+/--
+@isnad1 id=le.0h2v.s4.6e3df41d7d6d from=translated src=- shape=e06a2447 vocab=ad0faac7
+-/
 lemma rowMean_nonneg (d : ℕ) (k : Fin (2 * d)) : 0 ≤ rowMean d k := by
   unfold rowMean; positivity
 
+/--
+@isnad1 id=le.1h2v.s5.87f06ecd8e59 from=translated src=- shape=da5da6a4 vocab=1fe7363f
+-/
 lemma rowMean_le_one (d : ℕ) (hd : 0 < d) (k : Fin (2 * d)) : rowMean d k ≤ 1 := by
   have h : (k.val : ℝ) + 1 ≤ 2 * d := by exact_mod_cast k.isLt
   unfold rowMean
   apply (div_le_one (by positivity)).mpr
   linarith
 
+/--
+@isnad1 id=le.1h2v.s5.7df91cd592f6 from=translated src=- shape=c2dd8fdd vocab=62140f44
+-/
 lemma halfGain_nonneg (d : ℕ) (hd : 0 < d) (k : Fin (2 * d)) : 0 ≤ halfGain d k := by
   exact le_min (rowMean_nonneg d k) (sub_nonneg.mpr (rowMean_le_one d hd k))
 
+/--
+@isnad1 id=eq.2h2v.s5.399d4977a121 from=translated src=- shape=884bc7e5 vocab=11c6fa57
+-/
 lemma halfGain_left (d : ℕ) (hd : 0 < d) (k : Fin (2 * d)) (hk : k.val < d) :
     halfGain d k = rowMean d k := by
   unfold halfGain
@@ -40,6 +52,9 @@ lemma halfGain_left (d : ℕ) (hd : 0 < d) (k : Fin (2 * d)) (hk : k.val < d) :
     linarith
   linarith
 
+/--
+@isnad1 id=eq.2h2v.s6.bfa574bc3546 from=translated src=- shape=e5273513 vocab=0df656fa
+-/
 lemma halfGain_right (d : ℕ) (hd : 0 < d) (k : Fin (2 * d)) (hk : d ≤ k.val) :
     halfGain d k = 1 - rowMean d k := by
   unfold halfGain
@@ -51,6 +66,9 @@ lemma halfGain_right (d : ℕ) (hd : 0 < d) (k : Fin (2 * d)) (hk : d ≤ k.val)
     linarith
   linarith
 
+/--
+@isnad1 id=eq.0h2v.s5.4ef58585c81c from=translated src=- shape=ae0874a5 vocab=ad317639
+-/
 lemma sum_endpointWeight_inside {d : ℕ} (k : Fin d) :
     (∑ r : Fin d, endpointWeight r.val k.val) = k.val + (1 / 2 : ℝ) := by
   have hs : (∑ r : Fin d, if r.val < k.val then (1 : ℝ) else 0) = k.val := by
@@ -62,6 +80,9 @@ lemma sum_endpointWeight_inside {d : ℕ} (k : Fin d) :
     simp
   simp only [endpointWeight, sum_add_distrib, hs, he]
 
+/--
+@isnad1 id=eq.1h3v.s6.27df7e9d2538 from=translated src=- shape=ea43ac5d vocab=2d5c53ff
+-/
 lemma halfDigit_mean (d : ℕ) (hd : 0 < d) (ξ : Bool) (k : Fin (2 * d)) :
     finAvg (fun s : Fin d ↦ endpointWeight (halfDigit d hd ξ s).val k.val) =
       rowMean d k + halfGain d k * boolSign ξ := by
@@ -125,6 +146,9 @@ def halfDigitEquiv (d : ℕ) (hd : 0 < d) : Bool × Fin d ≃ Fin (2 * d) where
     · simp only [halfDigit, Bool.false_eq_true, ↓reduceIte]
       apply Fin.ext; dsimp; omega
 
+/--
+@isnad1 id=eq.1h3v.s7.50ff27d7a6d3 from=translated src=- shape=98e9ca70 vocab=83c57549
+-/
 lemma halfDigits_finAvg {n : ℕ} (d : ℕ) (hd : 0 < d)
     (F : (Fin n → Fin (2 * d)) → ℝ) :
     finAvg F = finAvg (fun ξ : Fin n → Bool ↦ finAvg (fun ρ : Fin n → Fin d ↦
@@ -134,6 +158,9 @@ lemma halfDigits_finAvg {n : ℕ} (d : ℕ) (hd : 0 < d)
   rw [← finAvg_equiv e F, finAvg_prod]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.be531aecf36a from=translated src=- shape=528e93d9 vocab=8d708198
+-/
 lemma finAvg_eval {ι α : Type*} [Fintype ι] [DecidableEq ι] [Fintype α] [Nonempty α]
     (i : ι) (f : α → ℝ) : finAvg (fun x : ι → α ↦ f (x i)) = finAvg f := by
   classical
@@ -141,6 +168,9 @@ lemma finAvg_eval {ι α : Type*} [Fintype ι] [DecidableEq ι] [Fintype α] [No
   rw [← finAvg_equiv e (fun x : ι → α ↦ f (x i)), finAvg_prod]
   simp [e, Equiv.funSplitAt, Equiv.piSplitAt]
 
+/--
+@isnad1 id=eq.1h1v.s6.3186cf2e8310 from=translated src=- shape=cae46dab vocab=1ee14a72
+-/
 lemma sum_halfGain (d : ℕ) (hd : 0 < d) :
     (∑ k : Fin (2 * d), halfGain d k) = (2 * d : ℕ) / (4 : ℝ) := by
   have he := (halfDigitEquiv d hd).sum_comp (halfGain d)
@@ -159,6 +189,9 @@ lemma sum_halfGain (d : ℕ) (hd : 0 < d) :
   simp
   ring
 
+/--
+@isnad1 id=eq.1h1v.s7.28d927ef5a9d from=translated src=- shape=78d4992e vocab=684aa78e
+-/
 lemma matrix_double_mean (d : ℕ) (hd : 0 < d) :
     finAvg (fun k : Fin (2 * d) ↦ finAvg
       (fun r : Fin (2 * d) ↦ endpointWeight r.val k.val)) = 1 / 2 := by

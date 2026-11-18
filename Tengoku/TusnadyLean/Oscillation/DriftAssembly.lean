@@ -8,6 +8,9 @@ noncomputable section
 open Finset
 set_option maxHeartbeats 1000000
 
+/--
+@isnad1 id=eq.1h8v.s7.b98713777d41 from=translated src=- shape=3b12f935 vocab=f3a00178
+-/
 lemma gridMax_numerator_split_old {n : ℕ} (K V b m : ℕ) (hm : 0 < m)
     (χ : Fin n → ℝ) (p Y : Fin n → ℕ) :
     (∑ c : Fin K, ∑ w : Fin (V * b), gridMax hm (blockValues χ p Y c.val w.val)) =
@@ -18,6 +21,9 @@ lemma gridMax_numerator_split_old {n : ℕ} (K V b m : ℕ) (hm : 0 < m)
   simpa only [Nat.mul_comm] using
     (sum_fin_mul (K := V) (b := b) (fun w => gridMax hm (blockValues χ p Y c.val w)))
 
+/--
+@isnad1 id=eq.1h8v.s7.6553241234c8 from=translated src=- shape=f298cbfb vocab=f3a00178
+-/
 lemma gridMax_numerator_split_new {n : ℕ} (K V b m : ℕ) (hm : 0 < m)
     (χ : Fin n → ℝ) (p Y : Fin n → ℕ) :
     (∑ w : Fin (K * b), ∑ v : Fin V, gridMax hm (blockValues χ p Y w.val v.val)) =

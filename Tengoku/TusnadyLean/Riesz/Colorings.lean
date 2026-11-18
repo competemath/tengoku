@@ -18,6 +18,9 @@ open scoped ENNReal
 /-- A two-valued parametrization of colors.-/
 def boolSign (b : Bool) : ℤ := if b then 1 else -1
 
+/--
+@isnad1 id=or.0h1v.s4.ddbbd393b58d from=translated src=- shape=af53c325 vocab=3c86750d
+-/
 lemma boolSign_pm (b : Bool) : boolSign b = 1 ∨ boolSign b = -1 := by
   cases b <;> simp [boolSign]
 
@@ -28,6 +31,9 @@ def fixedColorBad (n : ℕ) (b : ℝ) (χ : Fin n → Bool) : Set (Fin n → ℝ
         (fun t => 0 ≤ (X t).1 ∧ (X t).1 ≤ x ∧ 0 ≤ (X t).2 ∧ (X t).2 ≤ y),
       (boolSign (χ t) : ℝ)| ≤ b}
 
+/--
+@isnad1 id=eq.0h2v.s5.ae7dcb5b849d from=translated src=- shape=e0d89f3e vocab=94d9ee8a
+-/
 lemma badSet_eq_iUnion_fixedColorBad (n : ℕ) (b : ℝ) :
     badSet n b = ⋃ χ : Fin n → Bool, fixedColorBad n b χ := by
   classical
@@ -48,7 +54,9 @@ lemma badSet_eq_iUnion_fixedColorBad (n : ℕ) (b : ℝ) :
 
 /-- A per-coloring bound holds uniformly over all sample-dependent choices of
 coloring after multiplication by exactly `2^n`. Measurability of each bad event
-is not required: the inequality uses outer measure.-/
+is not required: the inequality uses outer measure.
+@isnad1 id=le.1h3v.s7.0e1debe257e4 from=translated src=- shape=6bb8cff1 vocab=19a9c68d
+-/
 theorem badSet_measure_le_of_fixedColor (n : ℕ) (b : ℝ) (q : ℝ≥0∞)
     (hfixed : ∀ χ : Fin n → Bool, unifPts n (fixedColorBad n b χ) ≤ q) :
     unifPts n (badSet n b) ≤ (2 : ℝ≥0∞) ^ n * q := by

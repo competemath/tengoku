@@ -12,6 +12,9 @@ noncomputable section
 open MeasureTheory Riesz Riesz.PointSets Riesz.Occupancy
 open scoped BigOperators
 
+/--
+@isnad1 id=le.1h6v.s5.fdbfdcf7c21d from=translated src=- shape=881cf7d3 vocab=813c743a
+-/
 lemma endpointValue_abs_le {n : ℕ} (χ : Fin n → ℝ) (hχ : ∀ i, |χ i| ≤ 1)
     (p Y : Fin n → ℕ) (c y : ℕ) : |endpointValue χ p Y c y| ≤ n := by
   unfold endpointValue
@@ -29,6 +32,9 @@ lemma endpointValue_abs_le {n : ℕ} (χ : Fin n → ℝ) (hχ : ∀ i, |χ i| �
       · simp
     _ = n := by simp
 
+/--
+@isnad1 id=le.2h7v.s6.a3845c34552c from=translated src=- shape=9f627447 vocab=449b4314
+-/
 lemma gridPotential_le_two_n {n : ℕ} (K V m : ℕ) (hm : 0 < m)
     (χ : Fin n → ℝ) (hχ : ∀ i, |χ i| ≤ 1) (p Y : Fin n → ℕ) :
     gridPotential K V m hm χ p Y ≤ 2 * n := by
@@ -50,12 +56,18 @@ lemma gridPotential_le_two_n {n : ℕ} (K V m : ℕ) (hm : 0 < m)
 def sampleCells (n K : ℕ) (hK : 0 < K) (U : Fin n → ℝ) : Fin n → ℕ :=
   fun i ↦ (finiteGridIndex K hK (U i)).val
 
+/--
+@isnad1 id=measurab.1h2v.s5.3a44ac42ab10 from=translated src=- shape=0df4fd8e vocab=ab614242
+-/
 lemma measurable_sampleCells (n K : ℕ) (hK : 0 < K) : Measurable (sampleCells n K hK) := by
   apply measurable_pi_iff.mpr
   intro i
   exact (measurable_of_countable (fun x : Fin K ↦ x.val)).comp
     ((measurable_finiteGridIndex K hK).comp (measurable_pi_apply i))
 
+/--
+@isnad1 id=eq.1h2v.s6.21b09167f914 from=translated src=- shape=17e03c73 vocab=37ab7436
+-/
 lemma finiteGridIndex_val_eq (K : ℕ) (hK : 0 < K) (x : ℝ) :
     (finiteGridIndex K hK x).val =
       if 0 ≤ gridIndex K x ∧ gridIndex K x < (K : ℤ) then (gridIndex K x).toNat else 0 := by
@@ -78,6 +90,9 @@ lemma finiteGridIndex_val_eq (K : ℕ) (hK : 0 < K) (x : ℝ) :
       exact ⟨by nlinarith, by nlinarith⟩
     simp [finiteGridIndex, hx, hnot]
 
+/--
+@isnad1 id=measurab.1h2v.s5.d13e764e9436 from=translated src=- shape=0df4fd8e vocab=1130dc3e
+-/
 lemma measurable_sampleCells_grid (n K : ℕ) (hK : 0 < K) :
     Measurable[sampleGridSigma n K] (sampleCells n K hK) := by
   let g : (Fin n → ℤ) → (Fin n → ℕ) := fun p i ↦
@@ -88,6 +103,9 @@ lemma measurable_sampleCells_grid (n K : ℕ) (hK : 0 < K) :
   rw [he]
   exact (measurable_of_countable g).comp (Measurable.of_comap_le le_rfl)
 
+/--
+@isnad1 id=eventual.0h1v.s6.adc46f5b5015 from=translated src=- shape=fba2ebe8 vocab=2b7d3541
+-/
 lemma ae_sample_unit (n : ℕ) : ∀ᵐ U ∂(Measure.pi (fun _ : Fin n ↦ μI)),
     ∀ i, U i ∈ Set.Ioc (0 : ℝ) 1 := by
   apply ae_all_iff.mpr
@@ -95,6 +113,9 @@ lemma ae_sample_unit (n : ℕ) : ∀ᵐ U ∂(Measure.pi (fun _ : Fin n ↦ μI)
   exact Measure.tendsto_eval_ae_ae (μ := fun _ : Fin n ↦ μI)
     (i := i) (by change ∀ᵐ x ∂μI, x ∈ Set.Ioc (0 : ℝ) 1; rw [ae_iff]; exact μI_compl_Ioc)
 
+/--
+@isnad1 id=eq.2h3v.s6.504f99054ffb from=translated src=- shape=ac5c1c04 vocab=b291eb4c
+-/
 lemma sampleCells_eq_toNat {n K : ℕ} (hK : 0 < K) (U : Fin n → ℝ)
     (hU : ∀ i, U i ∈ Set.Ioc (0 : ℝ) 1) :
     sampleCells n K hK U = fun i ↦ (sampleGridIndex n K U i).toNat := by
@@ -102,6 +123,9 @@ lemma sampleCells_eq_toNat {n K : ℕ} (hK : 0 < K) (U : Fin n → ℝ)
   have he := finiteGridIndex_eq hK (hU i)
   simpa [sampleCells, sampleGridIndex] using congrArg Int.toNat he
 
+/--
+@isnad1 id=eq.3h3v.s6.224c3b3579c6 from=translated src=- shape=e17c2152 vocab=ff318c84
+-/
 lemma finiteGridIndex_refine {K b : ℕ} (hK : 0 < K) (hb : 0 < b) {x : ℝ}
     (hx : x ∈ Set.Ioc (0 : ℝ) 1) :
     (finiteGridIndex (b * K) (Nat.mul_pos hb hK) x).val =
@@ -117,6 +141,9 @@ lemma finiteGridIndex_refine {K b : ℕ} (hK : 0 < K) (hb : 0 < b) {x : ℝ}
     exact_mod_cast hid.symm
   simpa only [add_comm] using hh
 
+/--
+@isnad1 id=eq.3h4v.s6.c76c90939554 from=translated src=- shape=5a3387e8 vocab=346aea46
+-/
 lemma sampleCells_refine {n K b : ℕ} (hK : 0 < K) (hb : 0 < b) (U : Fin n → ℝ)
     (hU : ∀ i, U i ∈ Set.Ioc (0 : ℝ) 1) :
     sampleCells n (b * K) (Nat.mul_pos hb hK) U =
@@ -128,12 +155,18 @@ def actualPotential {n : ℕ} (K V m : ℕ) (hK : 0 < K) (hm : 0 < m)
     (χ : Fin n → ℝ) (Y : Fin n → ℕ) (U : Fin n → ℝ) : ℝ :=
   gridPotential K V m hm χ (sampleCells n K hK U) Y
 
+/--
+@isnad1 id=measurab.2h6v.s6.357935977ea7 from=translated src=- shape=334531db vocab=f22d6518
+-/
 lemma measurable_actualPotential {n : ℕ} (K V m : ℕ) (hK : 0 < K) (hm : 0 < m)
     (χ : Fin n → ℝ) (Y : Fin n → ℕ) :
     Measurable (actualPotential K V m hK hm χ Y) := by
   exact (measurable_of_countable (fun p : Fin n → ℕ ↦ gridPotential K V m hm χ p Y)).comp
     (measurable_sampleCells n K hK)
 
+/--
+@isnad1 id=integrab.4h10v.s7.524c3135a401 from=translated src=- shape=6514921d vocab=ec7a14fe
+-/
 lemma integrable_continuous_gridPotential {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsFiniteMeasure μ] {n : ℕ} (K V m : ℕ) (hm : 0 < m)
     (χ : Fin n → ℝ) (hχ : ∀ i, |χ i| ≤ 1) (Y : Fin n → ℕ)
@@ -147,6 +180,9 @@ lemma integrable_continuous_gridPotential {Ω : Type*} [MeasurableSpace Ω]
   exact Filter.Eventually.of_forall (fun ω ↦ hB _ ⟨gridPotential_nonneg _ _ _ _ _ _ _,
     gridPotential_le_two_n K V m hm χ hχ (p ω) Y⟩)
 
+/--
+@isnad1 id=eventual.5h8v.s8.e983d91071f6 from=translated src=- shape=67f14774 vocab=f7c89d97
+-/
 theorem condExp_actualPotential_refined {n K V m b : ℕ} (hK : 0 < K)
     (hm : 0 < m) (hb : 0 < b) (χ : Fin n → ℝ) (hχ : ∀ i, |χ i| ≤ 1)
     (Y : Fin n → ℕ) (φ : ℝ → ℝ) (hφ : Continuous φ) :
@@ -182,6 +218,9 @@ theorem condExp_actualPotential_refined {n K V m b : ℕ} (hK : 0 < K)
   simp only [finAvg, Fintype.card_fun, Fintype.card_fin, Nat.cast_pow]
   rfl
 
+/--
+@isnad1 id=iff.2h3v.s6.6414a030e888 from=translated src=- shape=6b0dab94 vocab=4ed5ec7c
+-/
 lemma finiteGridIndex_lt_iff {K : ℕ} (hK : 0 < K) {x : ℝ}
     (hx : x ∈ Set.Ioc (0 : ℝ) 1) (s : ℕ) :
     (finiteGridIndex K hK x).val < s ↔ x ≤ (s : ℝ) / K := by
@@ -203,11 +242,17 @@ lemma finiteGridIndex_lt_iff {K : ℕ} (hK : 0 < K) {x : ℝ}
 def finiteCount {n : ℕ} (χ : Fin n → ℝ) (p Y : Fin n → ℕ) (x y : ℕ) : ℝ :=
   ∑ i, if p i < x ∧ Y i < y then χ i else 0
 
+/--
+@isnad1 id=eq.0h2v.s6.de6d6eb07a92 from=translated src=- shape=07ea14fb vocab=bb6995f6
+-/
 lemma endpointWeight_eq_average (p c : ℕ) : endpointWeight p c =
     ((if p < c then (1 : ℝ) else 0) + (if p < c + 1 then 1 else 0)) / 2 := by
   unfold endpointWeight
   split_ifs <;> norm_num at * <;> omega
 
+/--
+@isnad1 id=eq.0h6v.s6.4b292d9268a5 from=translated src=- shape=75d3445c vocab=75abbd01
+-/
 lemma endpointValue_eq_average {n : ℕ} (χ : Fin n → ℝ) (p Y : Fin n → ℕ)
     (c y : ℕ) : endpointValue χ p Y c y = (finiteCount χ p Y c y +
       finiteCount χ p Y (c + 1) y) / 2 := by
@@ -219,6 +264,9 @@ lemma endpointValue_eq_average {n : ℕ} (χ : Fin n → ℝ) (p Y : Fin n → �
   by_cases hY : Y i < y <;> by_cases hp : p i < c <;>
     by_cases hp' : p i < c + 1 <;> simp [hY, hp, hp'] <;> ring
 
+/--
+@isnad1 id=eq.4h8v.s8.535f47de94a7 from=translated src=- shape=4a80f301 vocab=739b59a9
+-/
 lemma finiteCount_eq_real_count {n K N : ℕ} (hK : 0 < K) (hN : 0 < N)
     (χ : Fin n → ℝ) (U W : Fin n → ℝ)
     (hU : ∀ i, U i ∈ Set.Ioc (0 : ℝ) 1) (hW : ∀ i, W i ∈ Set.Ioc (0 : ℝ) 1)
@@ -233,6 +281,9 @@ lemma finiteCount_eq_real_count {n K N : ℕ} (hK : 0 < K) (hN : 0 < N)
   have h2 := finiteGridIndex_lt_iff hN (hW i) y
   simp only [sampleCells, h1, h2, (hU i).1.le, (hW i).1.le, true_and]
 
+/--
+@isnad1 id=le.7h9v.s7.d8a39dad5a9c from=translated src=- shape=479bc075 vocab=5daa7814
+-/
 lemma finiteCount_abs_le_of_fixedColorBad {n K N : ℕ} (hK : 0 < K) (hN : 0 < N)
     (χ : Fin n → Bool) (U W : Fin n → ℝ)
     (hU : ∀ i, U i ∈ Set.Ioc (0 : ℝ) 1) (hW : ∀ i, W i ∈ Set.Ioc (0 : ℝ) 1)
@@ -245,6 +296,9 @@ lemma finiteCount_abs_le_of_fixedColorBad {n K N : ℕ} (hK : 0 < K) (hN : 0 < N
   · exact ⟨by positivity, (div_le_one (by exact_mod_cast hK)).mpr (by exact_mod_cast hx)⟩
   · exact ⟨by positivity, (div_le_one (by exact_mod_cast hN)).mpr (by exact_mod_cast hy)⟩
 
+/--
+@isnad1 id=le.6h8v.s7.484c30ff7831 from=translated src=- shape=a0db7d67 vocab=8040eb6a
+-/
 theorem actualPotential_le_of_fixedColorBad {n K V m : ℕ} (hK : 0 < K)
     (hV : 0 < V) (hm : 0 < m) (χ : Fin n → Bool) (U W : Fin n → ℝ)
     (hU : ∀ i, U i ∈ Set.Ioc (0 : ℝ) 1) (hW : ∀ i, W i ∈ Set.Ioc (0 : ℝ) 1)

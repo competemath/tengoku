@@ -8,7 +8,9 @@ noncomputable section
 open Finset
 
 /-- The sum of child maxima pays for the averaged representative values and
-the difference between the two endpoint representatives.-/
+the difference between the two endpoint representatives.
+@isnad1 id=le.2h4v.s8.43b94b4e60c1 from=translated src=- shape=3fcd88a6 vocab=39103711
+-/
 theorem sum_gridMax_averaged_end_comparison {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     (f : Fin (2*d) → Fin m → ℝ) (a : Fin (2*d) → Fin m) :
     (∑ l : Fin (2*d), finAvg (fun k => f k (a l))) +

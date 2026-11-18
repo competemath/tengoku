@@ -8,6 +8,9 @@ noncomputable section
 open Finset
 set_option maxHeartbeats 1000000
 
+/--
+@isnad1 id=eq.1h5v.s7.8762eebc14b6 from=translated src=- shape=5715e5f1 vocab=7dbb6c74
+-/
 lemma averaged_refined_weight {n : ℕ} (d : ℕ) (hd : 0 < d)
     (p : Fin n → ℕ) (i : Fin n) (c : ℕ) :
     finAvg (fun k : Fin (2 * d) => finAvg (fun r : Fin n → Fin (2 * d) =>
@@ -25,6 +28,9 @@ lemma averaged_refined_weight {n : ℕ} (d : ℕ) (hd : 0 < d)
       norm_num [endpointWeight]
     · simp [hlt, he, endpointWeight]
 
+/--
+@isnad1 id=eq.1h7v.s7.c30f4e50bd69 from=translated src=- shape=a17fbbbe vocab=bda1fcee
+-/
 lemma averaged_endpoint_baseline {n : ℕ} (d : ℕ) (hd : 0 < d)
     (χ : Fin n → ℝ) (p Y : Fin n → ℕ) (c y : ℕ) :
     finAvg (fun r : Fin n → Fin (2 * d) => finAvg (fun k : Fin (2 * d) =>
@@ -35,6 +41,9 @@ lemma averaged_endpoint_baseline {n : ℕ} (d : ℕ) (hd : 0 < d)
   simp_rw [finAvg_sum, finAvg_const_mul]
   simp_rw [averaged_refined_weight d hd]
 
+/--
+@isnad1 id=eq.1h9v.s8.cfcd97380a18 from=translated src=- shape=354e286b vocab=0319ad3b
+-/
 lemma half_averaged_rowDifference {n : ℕ} (d : ℕ) (hd : 0 < d)
     (χ : Fin n → ℝ) (p Y : Fin n → ℕ) (c : ℕ) (y : Fin (2 * d) → ℕ)
     (k : Fin (2 * d)) (ξ : Fin n → Bool) :
@@ -77,6 +86,9 @@ lemma half_averaged_rowDifference {n : ℕ} (d : ℕ) (hd : 0 < d)
   intro i _
   split_ifs <;> simp_all <;> ring
 
+/--
+@isnad1 id=le.3h9v.s8.f8fb42d2187b from=translated src=- shape=ca0e56a7 vocab=ed2937d6
+-/
 lemma rowDifference_abs_gain {n d m : ℕ} (hd : 0 < d) (hm : 0 < m)
     (χ : Fin n → ℝ) (hχ : ∀ i, |χ i| = 1) (p Y : Fin n → ℕ)
     (c v : ℕ) (k : Fin (2 * d)) :

@@ -21,11 +21,17 @@ variable {Ω : Type*} {mΩ : MeasurableSpace Ω} {μ : Measure Ω} [IsProbabilit
 noncomputable def prefixProduct (Y : ℕ → Ω → ℝ) (n : ℕ) (ω : Ω) : ℝ :=
   ∏ i ∈ range n, Y i ω
 
+/--
+@isnad1 id=eq.0h3v.s5.ce6bfb051ba7 from=translated src=- shape=eed32ddf vocab=bbeb9901
+-/
 lemma prefixProduct_succ (Y : ℕ → Ω → ℝ) (n : ℕ) :
     prefixProduct Y (n + 1) = prefixProduct Y n * Y n := by
   funext ω
   simp [prefixProduct, Finset.prod_range_succ, Pi.mul_apply]
 
+/--
+@isnad1 id=strongly.1h5v.s6.91d7b448b237 from=translated src=- shape=4b0c1c4d vocab=a290580f
+-/
 lemma stronglyMeasurable_prefixProduct (ℱ : Filtration ℕ mΩ) (Y : ℕ → Ω → ℝ)
     (hY : ∀ i, StronglyMeasurable[ℱ (i + 1)] (Y i)) (n : ℕ) :
     StronglyMeasurable[ℱ n] (prefixProduct Y n) := by

@@ -9,7 +9,9 @@ noncomputable section
 open MeasureTheory Finset
 open scoped ENNReal Classical
 
-/-- Direct subset counting: at least half of the iid points in a region of mass at most q.-/
+/-- Direct subset counting: at least half of the iid points in a region of mass at most q.
+@isnad1 id=le.3h5v.s7.5d9f2f66b425 from=translated src=- shape=b51e34b1 vocab=b14c2c77
+-/
 theorem half_sample_bound {α : Type*} [MeasurableSpace α] (μ : Measure α)
     [IsProbabilityMeasure μ] (n : ℕ) (s : Set α) {q : ℝ}
     (hq : 0 < q) (hq1 : q ≤ 1) (hs : μ.real s ≤ q) :
@@ -52,6 +54,9 @@ def heavy {n M : ℕ} (b : ℝ) (x : Fin n → Option (Fin M)) : Finset (Fin M) 
 def exceptional {M : ℕ} (H : Finset (Fin M)) : Set (Option (Fin M)) :=
   {c | c = none ∨ ∃ a ∈ H, c = some a}
 
+/--
+@isnad1 id=le.0h3v.s5.92c9335b6ff2 from=translated src=- shape=b6fbc58b vocab=836c5e6d
+-/
 lemma sum_count_le {n M : ℕ} (x : Fin n → Option (Fin M)) :
     (∑ c, count x c) ≤ n := by
   have h := histogram_count_sum (histogram x)
@@ -60,6 +65,9 @@ lemma sum_count_le {n M : ℕ} (x : Fin n → Option (Fin M)) :
   dsimp [count]
   omega
 
+/--
+@isnad1 id=le.3h4v.s6.1ae7a48fd194 from=translated src=- shape=7221b175 vocab=792adb82
+-/
 lemma heavy_card {n M : ℕ} (hn : 0 < n) (hM : 0 < M) {b : ℝ} (hb : 0 < b)
     (x : Fin n → Option (Fin M)) : (heavy b x).card ≤ (M:ℝ)/b := by
   classical
@@ -75,7 +83,9 @@ lemma heavy_card {n M : ℕ} (hn : 0 < n) (hM : 0 < M) {b : ℝ} (hb : 0 < b)
   apply (le_div_iff₀ hb).mpr
   nlinarith
 
-/-- At least half the sample outside the exceptional union implies a square-root mass gain.-/
+/-- At least half the sample outside the exceptional union implies a square-root mass gain.
+@isnad1 id=le.4h4v.s7.3c6b5c363d64 from=translated src=- shape=ae1b3007 vocab=fb951589
+-/
 lemma mass_gain {n M : ℕ} (hn : 0 < n) (hM : 0 < M) {b : ℝ} (hb : 0 < b)
     (x : Fin n → Option (Fin M))
     (hgood : 2 * (univ.filter (fun i => x i ∈ exceptional (heavy b x))).card ≤ n) :
@@ -124,7 +134,9 @@ lemma mass_gain {n M : ℕ} (hn : 0 < n) (hM : 0 < M) {b : ℝ} (hb : 0 < b)
   apply (div_le_iff₀ (mul_pos (by norm_num) hroot)).mpr
   nlinarith
 
-/-- The exceptional region has mass at most 3/b, for every fixed small bucket collection.-/
+/-- The exceptional region has mass at most 3/b, for every fixed small bucket collection.
+@isnad1 id=le.5h6v.s7.efb966c486db from=translated src=- shape=1bfaa480 vocab=0b6e4c81
+-/
 lemma exceptional_mass {α : Type*} [MeasurableSpace α] (μ : Measure α)
     [IsProbabilityMeasure μ] {M : ℕ} (hM : 0 < M) {b : ℝ} (hb : 0 < b)
     (cell : α → Option (Fin M))
@@ -154,7 +166,9 @@ lemma exceptional_mass {α : Type*} [MeasurableSpace α] (μ : Measure α)
         _ ≤ 2/b + 1/b := add_le_add_right hc _
         _ = _ := by ring
 
-/-- A direct occupancy lower-tail bound, with no histogram enumeration or Laplace estimate.-/
+/-- A direct occupancy lower-tail bound, with no histogram enumeration or Laplace estimate.
+@isnad1 id=le.6h6v.s8.252e69fb3224 from=translated src=- shape=6ec57886 vocab=eaf49c46
+-/
 theorem bucket_mass_small {α : Type*} [MeasurableSpace α] (μ : Measure α)
     [IsProbabilityMeasure μ] {n M : ℕ} (hn : 0 < n) (hM : 0 < M) (hMn : M ≤ n)
     {b : ℝ} (hb : 3 ≤ b) (cell : α → Option (Fin M))

@@ -20,6 +20,9 @@ def boolLaw : FiniteLaw Bool where
 def rademacherSum {n : ℕ} (a : Fin n → ℝ) (x : Fin n → Bool) : ℝ :=
   ∑ i, a i * boolSign (x i)
 
+/--
+@isnad1 id=eq.0h2v.s6.1cd51be7a309 from=translated src=- shape=d5c6c33e vocab=fd6b89d1
+-/
 lemma bool_product_expectation (n : ℕ) (f : (Fin n → Bool) → ℝ) :
     expectation (independentLaw boolLaw n)
       (fun x ↦ f (sampleSpaceEquiv Bool n x)) = finAvg f := by
@@ -28,6 +31,9 @@ lemma bool_product_expectation (n : ℕ) (f : (Fin n → Bool) → ℝ) :
     Nat.cast_pow, Nat.cast_ofNat, one_div_pow]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s6.28a6be6db4cd from=translated src=- shape=5f676353 vocab=045eac25
+-/
 lemma rademacher_second (n : ℕ) (a : Fin n → ℝ) :
     finAvg (fun x ↦ rademacherSum a x ^ 2) = ∑ i, a i ^ 2 := by
   rw [← bool_product_expectation]
@@ -35,6 +41,9 @@ lemma rademacher_second (n : ℕ) (a : Fin n → ℝ) :
   rw [weightedSum_second boolLaw boolSign (by norm_num [expectation, boolLaw, boolSign])]
   norm_num [expectation, boolLaw, boolSign]
 
+/--
+@isnad1 id=le.0h2v.s6.a398b8639a09 from=translated src=- shape=b74c1133 vocab=f95f7750
+-/
 lemma rademacher_fourth (n : ℕ) (a : Fin n → ℝ) :
     finAvg (fun x ↦ rademacherSum a x ^ 4) ≤ 4 * (∑ i, a i ^ 2) ^ 2 := by
   rw [← rademacher_second n a, ← bool_product_expectation, ← bool_product_expectation]
@@ -43,6 +52,9 @@ lemma rademacher_fourth (n : ℕ) (a : Fin n → ℝ) :
     (by norm_num [expectation, boolLaw, boolSign])
     (by norm_num [expectation, boolLaw, boolSign]) n a
 
+/--
+@isnad1 id=le.3h4v.s7.f06b71e10d1c from=translated src=- shape=c076f9fa vocab=7d23bb57
+-/
 lemma abs_mean_of_fourth {Ω : Type*} [Fintype Ω] (μ : FiniteLaw Ω)
     (X : Ω → ℝ) (v : ℝ) (hv : 0 ≤ v)
     (hsecond : expectation μ (fun x ↦ X x ^ 2) = v)
@@ -88,6 +100,9 @@ lemma abs_mean_of_fourth {Ω : Type*} [Fintype Ω] (μ : FiniteLaw Ω)
   change Real.sqrt v / 2 ≤ A
   nlinarith
 
+/--
+@isnad1 id=le.0h2v.s6.58a990280d39 from=translated src=- shape=80965a46 vocab=483d0239
+-/
 lemma rademacher_abs (n : ℕ) (a : Fin n → ℝ) :
     Real.sqrt (∑ i, a i ^ 2) / 2 ≤ finAvg (fun x ↦ |rademacherSum a x|) := by
   let μ := independentLaw boolLaw n
@@ -97,6 +112,9 @@ lemma rademacher_abs (n : ℕ) (a : Fin n → ℝ) :
   rw [← he] at hs hf ⊢
   exact abs_mean_of_fourth μ _ _ (Finset.sum_nonneg (fun i _ ↦ sq_nonneg _)) hs hf
 
+/--
+@isnad1 id=eq.0h3v.s4.19e478fc753c from=translated src=- shape=2d32d2ea vocab=18559928
+-/
 lemma rademacher_negate {n : ℕ} (a : Fin n → ℝ) (x : Fin n → Bool) :
     rademacherSum a (fun i ↦ !(x i)) = -rademacherSum a x := by
   simp only [rademacherSum, ← Finset.sum_neg_distrib]
@@ -104,6 +122,9 @@ lemma rademacher_negate {n : ℕ} (a : Fin n → ℝ) (x : Fin n → Bool) :
   intro i _
   cases x i <;> simp [boolSign]
 
+/--
+@isnad1 id=le.0h3v.s6.410c96be5c1e from=translated src=- shape=c0ad3c1d vocab=2a490b1e
+-/
 lemma shifted_rademacher_abs (n : ℕ) (a : Fin n → ℝ) (d : ℝ) :
     Real.sqrt (∑ i, a i ^ 2) / 2 ≤
       finAvg (fun x ↦ |d + rademacherSum a x|) := by

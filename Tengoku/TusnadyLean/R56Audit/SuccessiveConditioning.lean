@@ -45,7 +45,9 @@ open MeasureTheory
 
 /-- If each `W_j` is `ℱ_{j+1}`-measurable, then the product of the first `h` factors is
 `ℱ_h`-measurable. "For every `j`, the earlier terms `T_0, …, T_{j-1}` are
-`𝓕_j`-measurable."-/
+`𝓕_j`-measurable."
+@isnad1 id=strongly.1h5v.s6.343a8713ce1c from=translated src=- shape=b70e6bae vocab=7747a3b3
+-/
 lemma stronglyMeasurable_prod_range {Ω : Type*} {mΩ : MeasurableSpace Ω}
     (ℱ : Filtration ℕ mΩ) (W : ℕ → Ω → ℝ) (h : ℕ)
     (hW : ∀ j < h, StronglyMeasurable[ℱ (j + 1)] (W j)) :
@@ -63,7 +65,9 @@ every real `a`,
 
 "By Markov's inequality, `Pr(T ≤ -λ) = Pr(e^{-tT} ≥ e^{tλ}) ≤ exp(-tλ + hnt²/(2M²))`": this
 is the case `Z = T`, `a = -λ`, followed by the bound for `E e^{-tT}`. The measure need not be
-finite, and neither `Z` nor the event is assumed measurable.-/
+finite, and neither `Z` nor the event is assumed measurable.
+@isnad1 id=le.2h6v.s7.b23e76d2517f from=translated src=- shape=be2fe4be vocab=01164211
+-/
 theorem measureReal_le_exp_mul_integral_exp_neg {Ω : Type*} {mΩ : MeasurableSpace Ω}
     {μ : Measure Ω} (Z : Ω → ℝ) {t : ℝ} (ht : 0 < t)
     (hint : Integrable (fun ω => Real.exp (-t * Z ω)) μ) (a : ℝ) :

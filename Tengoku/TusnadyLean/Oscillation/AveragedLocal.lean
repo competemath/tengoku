@@ -7,9 +7,15 @@ noncomputable section
 open Finset
 set_option maxHeartbeats 300000
 
+/--
+@isnad1 id=eq.0h2v.s4.b6769b507fae from=translated src=- shape=67aa5d67 vocab=43168b06
+-/
 lemma finAvg_neg {α : Type*} [Fintype α] (f : α → ℝ) :
     finAvg (fun x => -f x) = -finAvg f := by simp [finAvg, sum_neg_distrib, neg_div]
 
+/--
+@isnad1 id=eq.0h1v.s6.05db478c0fc9 from=translated src=- shape=abe0fb8f vocab=b8edef4a
+-/
 lemma sum_digit_values (d : ℕ) :
     2 * (∑ s : Fin d, (s.val : ℝ)) = (d:ℝ)*((d:ℝ)-1) := by
   induction d with
@@ -19,7 +25,9 @@ lemma sum_digit_values (d : ℕ) :
     simp only [Fin.val_castSucc, Fin.val_last, Nat.cast_add, Nat.cast_one]
     nlinarith
 
-/-- Average all children before conditioning on a point's half choice.-/
+/-- Average all children before conditioning on a point's half choice.
+@isnad1 id=eq.1h2v.s6.a8fcf87b5a5a from=translated src=- shape=63c63fc2 vocab=258615e2
+-/
 lemma averaged_child_weight {b : ℕ} (hb : 0 < b) (r : Fin b) :
     finAvg (fun k : Fin b => endpointWeight r.val k.val) =
       1 - ((r.val:ℝ)+1/2)/b := by
@@ -32,6 +40,9 @@ lemma averaged_child_weight {b : ℕ} (hb : 0 < b) (r : Fin b) :
   simp only [sum_const, nsmul_eq_mul, card_univ, Fintype.card_fin, mul_one]
   field_simp
 
+/--
+@isnad1 id=eq.1h2v.s7.5204d2750a0a from=translated src=- shape=5308f530 vocab=38b7a8b4
+-/
 lemma averaged_half_weight (d : ℕ) (hd : 0 < d) (ξ : Bool) :
     finAvg (fun s : Fin d => finAvg (fun k : Fin (2*d) =>
       endpointWeight (halfDigit d hd ξ s).val k.val)) = 1/2 + boolSign ξ/4 := by
@@ -46,6 +57,9 @@ lemma averaged_half_weight (d : ℕ) (hd : 0 < d) (ξ : Bool) :
       nsmul_eq_mul, card_univ, Fintype.card_fin, mul_one] <;>
     field_simp <;> nlinarith
 
+/--
+@isnad1 id=eq.1h8v.s8.09c1eb907598 from=translated src=- shape=f0c35543 vocab=7418d4fa
+-/
 lemma half_averaged_child_difference {n : ℕ} (d : ℕ) (hd : 0 < d)
     (χ : Fin n → ℝ) (p Y : Fin n → ℕ) (c : ℕ) (y : Fin (2*d) → ℕ)
     (ξ : Fin n → Bool) :

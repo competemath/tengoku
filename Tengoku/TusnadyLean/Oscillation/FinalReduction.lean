@@ -24,11 +24,17 @@ def FixedScaleEstimate : Prop :=
       unifPts n (fixedColorBad n (scaleThreshold n k L) χ) ≤
         ENNReal.ofReal (Real.exp (-(scaleRate L) * n))
 
+/--
+@isnad1 id=le.1h4v.s5.e545e20de792 from=translated src=- shape=1e6b5cbf vocab=a63afb71
+-/
 lemma fixedColorBad_mono {n : ℕ} {a b : ℝ} (hab : a ≤ b) (χ : Fin n → Bool) :
     fixedColorBad n a χ ⊆ fixedColorBad n b χ := by
   intro X hX x hx y hy
   exact (hX x hx y hy).trans hab
 
+/--
+@isnad1 id=paperlow.1h0v.s1.83bfb8a91285 from=translated src=- shape=1d48f1ac vocab=434b5465
+-/
 theorem paper_lower_bound_of_fixed_scale (hfixed : FixedScaleEstimate) : Riesz.PaperLowerBound := by
   intro A hA
   obtain ⟨L, hL, hLA⟩ := exists_base A

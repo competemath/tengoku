@@ -28,12 +28,18 @@ noncomputable def sampleSpaceEquiv (Ω : Type u) : (n : ℕ) → SampleSpace Ω 
     ((Equiv.prodCongr (sampleSpaceEquiv Ω n) (Equiv.refl Ω)).trans
       (Equiv.prodComm _ _)).trans (Fin.snocEquiv (fun _ : Fin (n + 1) => Ω))
 
+/--
+@isnad1 id=eq.0h4v.s8.5cdd7a89e5ee from=translated src=- shape=51b36849 vocab=1b4a691c
+-/
 @[simp] lemma sampleSpaceEquiv_castSucc (Ω : Type u) (n : ℕ) (ω : SampleSpace Ω (n + 1))
     (i : Fin n) :
     sampleSpaceEquiv Ω (n + 1) ω i.castSucc = sampleSpaceEquiv Ω n ω.1 i := by
   change Fin.snoc (α := fun _ : Fin (n + 1) => Ω) (sampleSpaceEquiv Ω n ω.1) ω.2 i.castSucc = _
   exact Fin.snoc_castSucc _ _ _
 
+/--
+@isnad1 id=eq.0h3v.s7.72f8a132e56f from=translated src=- shape=9764ad99 vocab=956c974f
+-/
 @[simp] lemma sampleSpaceEquiv_last (Ω : Type u) (n : ℕ) (ω : SampleSpace Ω (n + 1)) :
     sampleSpaceEquiv Ω (n + 1) ω (Fin.last n) = ω.2 := by
   change Fin.snoc (α := fun _ : Fin (n + 1) => Ω) (sampleSpaceEquiv Ω n ω.1) ω.2 (Fin.last n) = _
@@ -41,6 +47,9 @@ noncomputable def sampleSpaceEquiv (Ω : Type u) : (n : ℕ) → SampleSpace Ω 
 
 variable {Ω : Type u} [Fintype Ω]
 
+/--
+@isnad1 id=eq.1h5v.s5.4ef3c037f85e from=translated src=- shape=86d3e4c4 vocab=b45158a6
+-/
 lemma independentLaw_constant_weight (μ : FiniteLaw Ω) (c : ℝ)
     (hweight : ∀ ω, μ.weight ω = c) (n : ℕ) (ω : SampleSpace Ω n) :
     (independentLaw μ n).weight ω = c ^ n := by
@@ -51,7 +60,9 @@ lemma independentLaw_constant_weight (μ : FiniteLaw Ω) (c : ℝ)
     rw [ih, hweight, pow_succ]
 
 /-- Exact conversion of expectations under a uniform recursive product law
-into a finite vector sum.-/
+into a finite vector sum.
+@isnad1 id=eq.1h5v.s7.e7ad1db8ada6 from=translated src=- shape=c0337728 vocab=a3bc621c
+-/
 theorem expectation_independentLaw_vector (μ : FiniteLaw Ω) (c : ℝ)
     (hweight : ∀ ω, μ.weight ω = c) (n : ℕ) (H : (Fin n → Ω) → ℝ) :
     expectation (independentLaw μ n) (fun ω => H (sampleSpaceEquiv Ω n ω)) =
@@ -63,7 +74,9 @@ theorem expectation_independentLaw_vector (μ : FiniteLaw Ω) (c : ℝ)
   exact (sampleSpaceEquiv Ω n).sum_comp H
 
 omit [Fintype Ω] in
-/-- The recursively defined weighted sum is the ordinary vector dot product.-/
+/-- The recursively defined weighted sum is the ordinary vector dot product.
+@isnad1 id=eq.0h5v.s6.51d336fd5034 from=translated src=- shape=7711721e vocab=38c43065
+-/
 lemma weightedSum_eq_vector_sum (W : Ω → ℝ) (n : ℕ) (a : Fin n → ℝ)
     (ω : SampleSpace Ω n) :
     weightedSum W n a ω = ∑ i, a i * W (sampleSpaceEquiv Ω n ω i) := by
@@ -74,7 +87,9 @@ lemma weightedSum_eq_vector_sum (W : Ω → ℝ) (n : ℕ) (a : Fin n → ℝ)
     simp only [weightedSum, sampleSpaceEquiv_castSucc, sampleSpaceEquiv_last]
     rw [ih]
 
-/-- Exact expectation identity for independent uniform dyadic profile cells.-/
+/-- Exact expectation identity for independent uniform dyadic profile cells.
+@isnad1 id=eq.1h3v.s8.aba799384f41 from=translated src=- shape=a122344c vocab=3f84a34f
+-/
 theorem profile_vector_expectation (m : ℕ) (hm : 0 < m) (n : ℕ)
     (H : (Fin n → (Fin 4 × Fin m)) → ℝ) :
     expectation (independentLaw (profileLaw m hm) n)
@@ -85,7 +100,9 @@ theorem profile_vector_expectation (m : ℕ) (hm : 0 < m) (n : ℕ)
   rw [one_div_pow]
   ring
 
-/-- Flatten each quarter/cell pair into its ordinary `4m`-cell index.-/
+/-- Flatten each quarter/cell pair into its ordinary `4m`-cell index.
+@isnad1 id=eq.0h3v.s8.dceb731e1661 from=translated src=- shape=c900734a vocab=d131c358
+-/
 lemma profile_vector_sum_eq_flat (m n : ℕ) (H : (Fin n → (Fin 4 × Fin m)) → ℝ) :
     (∑ ω : Fin n → (Fin 4 × Fin m), H ω) =
       ∑ ω : Fin n → Fin (4 * m), H (fun i => finProdFinEquiv.symm (ω i)) := by

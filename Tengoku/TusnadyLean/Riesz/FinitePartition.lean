@@ -18,7 +18,9 @@ noncomputable section
 open scoped BigOperators
 
 /-- The finite sum factors over disjoint coordinate groups. Empty groups are
-included and have one possible tuple.-/
+included and have one possible tuple.
+@isnad1 id=eq.0h5v.s7.bd93b6efa65a from=translated src=- shape=fd631c7c vocab=e0d550a7
+-/
 theorem sum_grouped_product {ι κ Ω : Type*} [Fintype ι] [Fintype κ] [Fintype Ω]
     [DecidableEq ι] [DecidableEq κ] (a : ι → κ)
     (F : (c : κ) → ({i : ι // a i = c} → Ω) → ℝ) :
@@ -32,13 +34,18 @@ theorem sum_grouped_product {ι κ Ω : Type*} [Fintype ι] [Fintype κ] [Fintyp
       Equiv.sum_comp e (fun y => ∏ c, F c (y c))
     _ = _ := (Fintype.prod_sum F).symm
 
+/--
+@isnad1 id=eq.0h3v.s5.e95600fba5c3 from=translated src=- shape=222acfa9 vocab=0c9175d4
+-/
 lemma card_eq_sum_fiber_card {ι κ : Type*} [Fintype ι] [Fintype κ]
     [DecidableEq κ] (a : ι → κ) :
     Fintype.card ι = ∑ c : κ, Fintype.card {i : ι // a i = c} := by
   rw [← Fintype.card_sigma]
   exact (Fintype.card_congr (Equiv.sigmaFiberEquiv a)).symm
 
-/-- Uniform product averages factor over the same disjoint groups.-/
+/-- Uniform product averages factor over the same disjoint groups.
+@isnad1 id=eq.0h5v.s8.f60146cc356f from=translated src=- shape=00e574ba vocab=6a319e81
+-/
 theorem uniform_average_grouped_product {ι κ Ω : Type*}
     [Fintype ι] [Fintype κ] [Fintype Ω] [DecidableEq ι] [DecidableEq κ]
     (a : ι → κ) (F : (c : κ) → ({i : ι // a i = c} → Ω) → ℝ) :

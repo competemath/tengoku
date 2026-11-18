@@ -23,7 +23,9 @@ def PaperLowerBound : Prop :=
     GoodEvent n (c * (Real.logb 2 n) ^ ((3 : ℝ) / 2)) (Real.exp (-A * n))
 
 /-- Positive probability suffices for the deterministic lower-bound conclusion.
-This reusable reduction is instantiated by `planar_tusnady_lower_bound` in Main.-/
+This reusable reduction is instantiated by `planar_tusnady_lower_bound` in Main.
+@isnad1 id=ex.1h0v.s6.364ea78f248c from=translated src=- shape=e8d6e2b7 vocab=1e6dc16e
+-/
 theorem deterministic_lower_of_paper (h : PaperLowerBound) :
     ∃ c : ℝ, 0 < c ∧ ∀ n : ℕ, 1 ≤ n →
       c * (Real.logb 2 n) ^ ((3 : ℝ) / 2) < PointSets.Δ₂ n := by

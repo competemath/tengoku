@@ -15,7 +15,9 @@ open MeasureTheory
 
 namespace Riesz
 
-/-- The coarse index is integer division of the fine index.-/
+/-- The coarse index is integer division of the fine index.
+@isnad1 id=eq.1h3v.s5.23040e45c034 from=translated src=- shape=9ce54d2a vocab=10a9ac5f
+-/
 theorem gridIndex_mul_ediv (n m : ℕ) (hm : 0 < m) (x : ℝ) :
     gridIndex (n * m) x / (m : ℤ) = gridIndex n x := by
   have hmz : (0 : ℤ) < m := by exact_mod_cast hm
@@ -40,7 +42,9 @@ theorem gridIndex_mul_ediv (n m : ℕ) (hm : 0 < m) (x : ℝ) :
     simp only [gridIndex]
     omega
 
-/-- Every coarse-grid event is a fine-grid event.-/
+/-- Every coarse-grid event is a fine-grid event.
+@isnad1 id=le.1h2v.s4.66037ebbd7e0 from=translated src=- shape=4f27b859 vocab=fa35dc89
+-/
 theorem gridSigma_le_mul (n m : ℕ) (hm : 0 < m) :
     gridSigma n ≤ gridSigma (n * m) := by
   apply MeasurableSpace.comap_le_comap_of_eq_comp (fun k : ℤ ↦ k / (m : ℤ))
@@ -48,13 +52,17 @@ theorem gridSigma_le_mul (n m : ℕ) (hm : 0 < m) :
   funext x
   exact (gridIndex_mul_ediv n m hm x).symm
 
-/-- Refinement for arbitrary divisible positive grid sizes.-/
+/-- Refinement for arbitrary divisible positive grid sizes.
+@isnad1 id=le.2h2v.s4.eea4fe1a05df from=translated src=- shape=52f360ac vocab=d9b3fec2
+-/
 theorem gridSigma_mono_of_dvd {n m : ℕ} (hm : 0 < m) (hnm : n ∣ m) :
     gridSigma n ≤ gridSigma m := by
   obtain ⟨k, rfl⟩ := hnm
   exact gridSigma_le_mul n k (Nat.pos_of_mul_pos_left hm)
 
-/-- Integer division recovers an earlier dyadic cell index.-/
+/-- Integer division recovers an earlier dyadic cell index.
+@isnad1 id=eq.1h3v.s6.9f8828757111 from=translated src=- shape=aa625656 vocab=a58853e0
+-/
 theorem dyadic_gridIndex_ediv {r s : ℕ} (hrs : r ≤ s) (x : ℝ) :
     gridIndex (2 ^ s) x / ((2 ^ (s - r) : ℕ) : ℤ) = gridIndex (2 ^ r) x := by
   have hpow : 2 ^ s = 2 ^ r * 2 ^ (s - r) := by
@@ -62,7 +70,9 @@ theorem dyadic_gridIndex_ediv {r s : ℕ} (hrs : r ≤ s) (x : ℝ) :
   rw [hpow]
   exact gridIndex_mul_ediv _ _ (pow_pos (by norm_num) _) x
 
-/-- The sigma-algebras of dyadic grids form an increasing sequence.-/
+/-- The sigma-algebras of dyadic grids form an increasing sequence.
+@isnad1 id=monotone.0h0v.s4.db589c3221bf from=translated src=- shape=8ea3af55 vocab=10cfcf10
+-/
 theorem dyadic_gridSigma_mono : Monotone (fun r : ℕ ↦ gridSigma (2 ^ r)) := by
   intro r s hrs
   exact gridSigma_mono_of_dvd (pow_pos (by norm_num) _) (Nat.pow_dvd_pow 2 hrs)
@@ -73,6 +83,9 @@ noncomputable def dyadicFiltration : Filtration ℕ (inferInstance : MeasurableS
   mono' := dyadic_gridSigma_mono
   le' r := (measurable_gridIndex (2 ^ r)).comap_le
 
+/--
+@isnad1 id=eq.0h1v.s5.09876f4d1ac2 from=translated src=- shape=e970582d vocab=8b6e885c
+-/
 @[simp] theorem dyadicFiltration_apply (r : ℕ) :
     dyadicFiltration r = gridSigma (2 ^ r) := rfl
 
@@ -83,16 +96,23 @@ noncomputable def spacedDyadicFiltration (L : ℕ) :
   mono' := fun _ _ hij ↦ dyadic_gridSigma_mono (Nat.mul_le_mul_right L hij)
   le' j := (measurable_gridIndex (2 ^ (j * L))).comap_le
 
+/--
+@isnad1 id=eq.0h2v.s5.b22179dcb81b from=translated src=- shape=8b0bff7b vocab=90832e3f
+-/
 @[simp] theorem spacedDyadicFiltration_apply (L j : ℕ) :
     spacedDyadicFiltration L j = gridSigma (2 ^ (j * L)) := rfl
 
-/-- Every point belongs to the cell selected by its index.-/
+/-- Every point belongs to the cell selected by its index.
+@isnad1 id=mem.1h2v.s4.fd61120d6089 from=translated src=- shape=163c15ab vocab=39519a81
+-/
 theorem mem_gridCell_gridIndex (n : ℕ) (hn : 0 < n) (x : ℝ) :
     x ∈ gridCell n (gridIndex n x) := by
   rw [← gridIndex_fiber n hn]
   simp
 
-/-- Each fine cell lies entirely inside its parent cell.-/
+/-- Each fine cell lies entirely inside its parent cell.
+@isnad1 id=le.2h3v.s5.32777881d265 from=translated src=- shape=313e9dde vocab=d51f8c14
+-/
 theorem gridCell_subset_parent (n m : ℕ) (hn : 0 < n) (hm : 0 < m) (k : ℤ) :
     gridCell (n * m) k ⊆ gridCell n (k / (m : ℤ)) := by
   intro x hx
@@ -102,7 +122,9 @@ theorem gridCell_subset_parent (n m : ℕ) (hn : 0 < n) (hm : 0 < m) (k : ℤ) :
   simpa only [Set.mem_preimage, Set.mem_singleton_iff, hx'] using
     (gridIndex_mul_ediv n m hm x).symm
 
-/-- On a fixed fine dyadic cell every earlier cell index is constant.-/
+/-- On a fixed fine dyadic cell every earlier cell index is constant.
+@isnad1 id=eq.2h4v.s6.4e7bef81328e from=translated src=- shape=a9864dc9 vocab=909b75d9
+-/
 theorem dyadic_gridIndex_eq_on_cell {r s : ℕ} (hrs : r ≤ s) (k : ℤ)
     {x : ℝ} (hx : x ∈ gridCell (2 ^ s) k) :
     gridIndex (2 ^ r) x = k / ((2 ^ (s - r) : ℕ) : ℤ) := by
@@ -110,7 +132,9 @@ theorem dyadic_gridIndex_eq_on_cell {r s : ℕ} (hrs : r ≤ s) (k : ℤ)
   have hx' : gridIndex (2 ^ s) x = k := hx
   simpa only [hx'] using (dyadic_gridIndex_ediv hrs x).symm
 
-/-- A dyadic cell is contained in its parent at any earlier level.-/
+/-- A dyadic cell is contained in its parent at any earlier level.
+@isnad1 id=le.1h3v.s6.1d2e62b2d1f3 from=translated src=- shape=f672683b vocab=d95f339f
+-/
 theorem dyadic_gridCell_subset {r s : ℕ} (hrs : r ≤ s) (k : ℤ) :
     gridCell (2 ^ s) k ⊆ gridCell (2 ^ r) (k / ((2 ^ (s - r) : ℕ) : ℤ)) := by
   intro x hx
@@ -119,7 +143,9 @@ theorem dyadic_gridCell_subset {r s : ℕ} (hrs : r ≤ s) (k : ℤ) :
 
 open PointSets
 
-/-- The tower identity for actual uniform-grid averages.-/
+/-- The tower identity for actual uniform-grid averages.
+@isnad1 id=eventual.4h3v.s6.fcfaff9ccbbc from=translated src=- shape=2de12f85 vocab=282c77d3
+-/
 theorem condExp_gridMean_of_dvd {n m : ℕ} (hn : 0 < n) (hm : 0 < m)
     (hnm : n ∣ m) {f : ℝ → ℝ} (hf : Integrable f μI) :
     μI[gridMean f m | gridSigma n] =ᵐ[μI] gridMean f n := by
@@ -127,7 +153,9 @@ theorem condExp_gridMean_of_dvd {n m : ℕ} (hn : 0 < n) (hm : 0 < m)
     ((condExp_condExp_of_le (gridSigma_mono_of_dvd hm hnm)
       (measurable_gridIndex m).comap_le).trans (condExp_ae_eq_gridMean n hn hf))
 
-/-- Fine-minus-coarse grid averages are conditionally centered.-/
+/-- Fine-minus-coarse grid averages are conditionally centered.
+@isnad1 id=eventual.4h3v.s7.712038386f90 from=translated src=- shape=53000006 vocab=092ad233
+-/
 theorem condExp_gridMean_sub_of_dvd {n m : ℕ} (hn : 0 < n) (hm : 0 < m)
     (hnm : n ∣ m) {f : ℝ → ℝ} (hf : Integrable f μI) :
     μI[(gridMean f m - gridMean f n) | gridSigma n] =ᵐ[μI] 0 := by
@@ -139,7 +167,9 @@ theorem condExp_gridMean_sub_of_dvd {n m : ℕ} (hn : 0 < n) (hm : 0 < m)
   filter_upwards [condExp_gridMean_of_dvd hn hm hnm hf] with x hx
   simp [Pi.sub_apply, hc, hx]
 
-/-- The last, unaveraged step has the same conditional-centering identity.-/
+/-- The last, unaveraged step has the same conditional-centering identity.
+@isnad1 id=eventual.2h2v.s6.f1bdc4bfa0f5 from=translated src=- shape=c4b299a9 vocab=ae966201
+-/
 theorem condExp_sub_gridMean (n : ℕ) (hn : 0 < n) {f : ℝ → ℝ}
     (hf : Integrable f μI) :
     μI[(f - gridMean f n) | gridSigma n] =ᵐ[μI] 0 := by

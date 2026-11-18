@@ -18,7 +18,9 @@ namespace Riesz
 variable {Ω : Type*} {mΩ : MeasurableSpace Ω} {μ : Measure Ω}
   {X : Ω → ℝ}
 
-/-- Hoeffding's lemma in the symmetric interval used in Section 4.-/
+/-- Hoeffding's lemma in the symmetric interval used in Section 4.
+@isnad1 id=hassubga.3h5v.s6.417cf4a021a0 from=translated src=- shape=b4970f77 vocab=7b9cc37d
+-/
 theorem hasSubgaussianMGF_centered_bounded [IsProbabilityMeasure μ]
     (d : ℝ≥0) (hX : AEMeasurable X μ)
     (hbound : ∀ᵐ ω ∂μ, |X ω| ≤ d) (hzero : ∫ ω, X ω ∂μ = 0) :
@@ -35,7 +37,9 @@ theorem hasSubgaussianMGF_centered_bounded [IsProbabilityMeasure μ]
   simpa only [heq] using
     hasSubgaussianMGF_of_mem_Icc_of_integral_eq_zero hX hb hzero
 
-/-- The paper's one-step bound, valid for every real exponential parameter.-/
+/-- The paper's one-step bound, valid for every real exponential parameter.
+@isnad1 id=le.3h6v.s7.00c1968a2013 from=translated src=- shape=705c8547 vocab=4bb96dbf
+-/
 theorem integral_exp_le_of_centered_bounded [IsProbabilityMeasure μ]
     (d : ℝ≥0) (hX : AEMeasurable X μ)
     (hbound : ∀ᵐ ω ∂μ, |X ω| ≤ d) (hzero : ∫ ω, X ω ∂μ = 0) (t : ℝ) :
@@ -48,7 +52,9 @@ section Conditional
 variable [StandardBorelSpace Ω] [IsProbabilityMeasure μ]
 
 /-- Conditional Hoeffding: zero conditional mean and an almost-sure bound imply
-the conditional exponential estimate.  No independence assumption is used.-/
+the conditional exponential estimate.  No independence assumption is used.
+@isnad1 id=hasconds.4h6v.s7.a5e1ce21bae2 from=translated src=- shape=8ea1f45d vocab=1b6bc02b
+-/
 theorem hasCondSubgaussianMGF_of_condCentered_bounded
     {m : MeasurableSpace Ω} (hm : m ≤ mΩ) (d : ℝ≥0)
     (hX : Measurable[mΩ] X) (hbound : ∀ᵐ ω ∂μ, |X ω| ≤ d)
@@ -76,7 +82,9 @@ theorem hasCondSubgaussianMGF_of_condCentered_bounded
     exact (hasSubgaussianMGF_centered_bounded d hX.aemeasurable hbω hz).mgf_le
 
 /-- A finite adapted sum of bounded conditionally centered increments is
-subgaussian with the sum of the squared bounds as variance parameter.-/
+subgaussian with the sum of the squared bounds as variance parameter.
+@isnad1 id=hassubga.4h7v.s8.8ada5759dd39 from=translated src=- shape=99f40c84 vocab=9f789df4
+-/
 theorem hasSubgaussianMGF_sum_of_condCentered_bounded
     (ℱ : Filtration ℕ mΩ) (Y : ℕ → Ω → ℝ) (d : ℕ → ℝ≥0) (n : ℕ)
     (hadapted : StronglyAdapted ℱ Y)
@@ -99,7 +107,9 @@ theorem hasSubgaussianMGF_sum_of_condCentered_bounded
     (hbound (i + 1) (by omega)) (hcondzero i hi)
 
 /-- The finite accumulation estimate from Section 4. Its hypotheses are
-boundedness and zero conditional means, not exponential-moment bounds.-/
+boundedness and zero conditional means, not exponential-moment bounds.
+@isnad1 id=le.4h8v.s8.11a8b6ebc711 from=translated src=- shape=e99a3913 vocab=dc956c94
+-/
 theorem integral_exp_sum_le_of_condCentered_bounded
     (ℱ : Filtration ℕ mΩ) (Y : ℕ → Ω → ℝ) (d : ℝ≥0) (n : ℕ)
     (hadapted : StronglyAdapted ℱ Y)
@@ -114,7 +124,9 @@ theorem integral_exp_sum_le_of_condCentered_bounded
     NNReal.coe_mul, NNReal.coe_natCast, NNReal.coe_pow, mul_right_comm] using h
 
 /-- An increment may be measurable only at the next level of the filtration.
-This is the indexing used for finite conditional cell averages.-/
+This is the indexing used for finite conditional cell averages.
+@isnad1 id=le.3h8v.s8.28245645919a from=translated src=- shape=129d48b6 vocab=c8b72345
+-/
 theorem integral_exp_sum_le_of_bounded_increments
     (ℱ : Filtration ℕ mΩ) (Y : ℕ → Ω → ℝ) (d : ℝ≥0) (n : ℕ)
     (hmeasurable : ∀ i, StronglyMeasurable[ℱ (i + 1)] (Y i))
@@ -142,7 +154,9 @@ theorem integral_exp_sum_le_of_bounded_increments
 
 /-- A terminal variable represented by finitely many bounded, conditionally
 centered differences satisfies the Section 4 exponential bound.  The process
-starts at zero almost surely; no independence of its differences is required.-/
+starts at zero almost surely; no independence of its differences is required.
+@isnad1 id=le.4h8v.s8.631db7d0c67e from=translated src=- shape=165c9b28 vocab=a499708c
+-/
 theorem integral_exp_terminal_le_of_bounded_differences
     (ℱ : Filtration ℕ mΩ) (Z : ℕ → Ω → ℝ) (d : ℝ≥0) (n : ℕ)
     (hadapted : StronglyAdapted ℱ Z) (hstart : Z 0 =ᵐ[μ] 0)

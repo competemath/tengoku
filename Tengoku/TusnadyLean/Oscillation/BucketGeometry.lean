@@ -10,6 +10,9 @@ open scoped BigOperators
 open MeasureTheory Riesz Riesz.PointSets Riesz.Occupancy
 noncomputable section
 
+/--
+@isnad1 id=iff.0h4v.s7.12f46e66a87b from=translated src=- shape=452a29a6 vocab=a1cedaf0
+-/
 lemma interior_div_mod_iff (b m y v : ℕ) :
     (y/(b*m) = v ∧ m ≤ y%(b*m) ∧ y%(b*m) < (b-1)*m) ↔
       (v*(b*m)+m ≤ y ∧ y < v*(b*m)+(b-1)*m) := by
@@ -26,6 +29,9 @@ lemma interior_div_mod_iff (b m y v : ℕ) :
     rw [hdiv] at hid
     exact ⟨hdiv, by omega, by omega⟩
 
+/--
+@isnad1 id=iff.4h7v.s8.f5e19efba44b from=translated src=- shape=7d71dfeb vocab=ace32df9
+-/
 lemma rectangularBucket_some_iff (K V b m : ℕ) (hK : 0 < K) (hV : 0 < V)
     (hb : 0 < b) (hm : 0 < m) (z : ℝ × ℝ) (c : Fin K) (v : Fin V) :
     rectangularBucket K V b m hK hV hb hm z = some (finProdFinEquiv (c,v)) ↔
@@ -48,7 +54,9 @@ lemma rectangularBucket_some_iff (K V b m : ℕ) (hK : 0 < K) (hV : 0 < V)
       m ≤ Y.val%(b*m) ∧ Y.val%(b*m) < (b-1)*m) ↔ _
   rw [interior_div_mod_iff]
 
-/-- Exact identification of the proof's geometric interior mass with the sum of actual bucket counts.-/
+/-- Exact identification of the proof's geometric interior mass with the sum of actual bucket counts.
+@isnad1 id=eq.4h6v.s7.781b26969182 from=translated src=- shape=0c67afb5 vocab=6b615052
+-/
 lemma bucketSquareRootSum_eq_interiorMass (K V b m : ℕ) (hK : 0 < K) (hV : 0 < V)
     (hb : 0 < b) (hm : 0 < m) {n : ℕ} (P : Fin n → ℝ × ℝ) :
     bucketSquareRootSum (rectangularBucket K V b m hK hV hb hm) P =

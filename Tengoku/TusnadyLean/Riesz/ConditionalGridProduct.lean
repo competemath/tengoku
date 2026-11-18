@@ -17,7 +17,9 @@ open MeasureTheory PointSets Occupancy
 open scoped ENNReal
 
 /-- Normalized averages of coordinate products factor over the actual product
-partition, including zero-measure fibers.-/
+partition, including zero-measure fibers.
+@isnad1 id=eq.0h7v.s6.10d99a137188 from=translated src=- shape=ce62042d vocab=daa526a9
+-/
 theorem fiberMean_pi_product {ι α κ : Type*} [Fintype ι]
     [MeasurableSpace α] (μ : Measure α) [IsFiniteMeasure μ]
     (p : α → κ) (f : ι → α → ℝ) (x : ι → α) :
@@ -38,11 +40,16 @@ def sampleGridIndex (n k : ℕ) (x : Fin n → ℝ) : Fin n → ℤ :=
 abbrev sampleGridSigma (n k : ℕ) : MeasurableSpace (Fin n → ℝ) :=
   (inferInstance : MeasurableSpace (Fin n → ℤ)).comap (sampleGridIndex n k)
 
+/--
+@isnad1 id=measurab.0h2v.s5.a7ee16584778 from=translated src=- shape=cb0b756e vocab=09b6392d
+-/
 lemma measurable_sampleGridIndex (n k : ℕ) : Measurable (sampleGridIndex n k) := by
   exact measurable_pi_iff.mpr (fun i => (measurable_gridIndex k).comp (measurable_pi_apply i))
 
 /-- A product of functions of fresh blocks has the product of their uniform
-averages, even after every coarse sample cell has been revealed.-/
+averages, even after every coarse sample cell has been revealed.
+@isnad1 id=eventual.2h4v.s7.ce847cce9f4b from=translated src=- shape=2d5b606f vocab=84aaa632
+-/
 theorem condExp_freshGrid_product (n k m : ℕ) (hk : 0 < k) (hm : 0 < m)
     (f : Fin n → Fin m → ℝ) :
     (Measure.pi (fun _ : Fin n => μI))[
@@ -71,6 +78,9 @@ theorem condExp_freshGrid_product (n k m : ℕ) (hk : 0 < k) (hm : 0 < m)
   rw [fiberMean_pi_product μI (gridIndex k) (fun i y => f i (freshGridIndex k m hm y)) x]
   exact Finset.prod_congr rfl (fun i _ => hxi i)
 
+/--
+@isnad1 id=eq.0h4v.s6.a6df2d161401 from=translated src=- shape=4a0f1ea8 vocab=832f1ce4
+-/
 lemma finiteFunction_delta_expansion {ι α : Type*} [Fintype ι] [Fintype α]
     [DecidableEq ι] [DecidableEq α]
     (H : (ι → α) → ℝ) (a : ι → α) :
@@ -83,7 +93,9 @@ lemma finiteFunction_delta_expansion {ι α : Type*} [Fintype ι] [Fintype α]
   simp
 
 /-- An arbitrary statistic of all fresh digit blocks has the uniform product
-law conditionally on all old blocks. This is stronger than pairwise independence.-/
+law conditionally on all old blocks. This is stronger than pairwise independence.
+@isnad1 id=eventual.2h4v.s7.d3c92c10c53c from=translated src=- shape=74dea669 vocab=97839bd3
+-/
 theorem condExp_freshGrid_vector (n k m : ℕ) (hk : 0 < k) (hm : 0 < m)
     (H : (Fin n → Fin m) → ℝ) :
     (Measure.pi (fun _ : Fin n => μI))[
@@ -127,11 +139,17 @@ theorem condExp_freshGrid_vector (n k m : ℕ) (hk : 0 < k) (hm : 0 < m)
 def sampleFreshIndex (n k m : ℕ) (hm : 0 < m) (x : Fin n → ℝ) : Fin n → Fin m :=
   fun i => freshGridIndex k m hm (x i)
 
+/--
+@isnad1 id=measurab.1h3v.s5.5b6d7c384b48 from=translated src=- shape=2d8190d6 vocab=c59cde7c
+-/
 lemma measurable_sampleFreshIndex (n k m : ℕ) (hm : 0 < m) :
     Measurable (sampleFreshIndex n k m hm) := by
   exact measurable_pi_iff.mpr
     (fun i => (measurable_freshGridIndex k m hm).comp (measurable_pi_apply i))
 
+/--
+@isnad1 id=integrab.1h4v.s6.19ddcec2d4c5 from=translated src=- shape=7681a865 vocab=9e510fdc
+-/
 lemma integrable_sampleFreshFunction (n k m : ℕ) (hm : 0 < m)
     (H : (Fin n → Fin m) → ℝ) :
     Integrable (fun x => H (sampleFreshIndex n k m hm x)) (Measure.pi (fun _ : Fin n => μI)) := by
@@ -143,7 +161,9 @@ lemma integrable_sampleFreshFunction (n k m : ℕ) (hm : 0 < m)
   exact Finset.single_le_sum (fun a _ => abs_nonneg (H a)) (Finset.mem_univ _)
 
 /-- The statistic may depend arbitrarily on the revealed coarse sample cells.
-Its fresh variables still have the uniform product law in each such cell.-/
+Its fresh variables still have the uniform product law in each such cell.
+@isnad1 id=eventual.3h4v.s8.ce5fcf302b9f from=translated src=- shape=aece52bc vocab=78e17c2f
+-/
 theorem condExp_freshGrid_with_past (n k m : ℕ) (hk : 0 < k) (hm : 0 < m)
     (H : (Fin n → ℤ) → (Fin n → Fin m) → ℝ)
     (hH : Integrable (fun x => H (sampleGridIndex n k x) (sampleFreshIndex n k m hm x))
@@ -178,6 +198,9 @@ theorem condExp_freshGrid_with_past (n k m : ℕ) (hk : 0 < k) (hm : 0 < m)
       rw [hy]
     _ = _ := hxf (p x)
 
+/--
+@isnad1 id=le.1h3v.s5.23146541cbb6 from=translated src=- shape=f80cc2f6 vocab=c851d47c
+-/
 lemma sampleGridSigma_le_mul (n k m : ℕ) (hm : 0 < m) :
     sampleGridSigma n k ≤ sampleGridSigma n (k * m) := by
   apply MeasurableSpace.comap_le_comap_of_eq_comp
@@ -185,10 +208,16 @@ lemma sampleGridSigma_le_mul (n k m : ℕ) (hm : 0 < m) :
   funext x i
   exact (gridIndex_mul_ediv k m hm (x i)).symm
 
+/--
+@isnad1 id=measurab.0h2v.s4.303454b8b113 from=translated src=- shape=cb0b756e vocab=95e69034
+-/
 lemma sampleGridIndex_grid_measurable (n k : ℕ) :
     Measurable[sampleGridSigma n k] (sampleGridIndex n k) :=
   Measurable.of_comap_le le_rfl
 
+/--
+@isnad1 id=measurab.2h3v.s6.d3b3c5422f6c from=translated src=- shape=ac53f89f vocab=7acf06bf
+-/
 lemma sampleFreshIndex_grid_measurable (n k m : ℕ) (hk : 0 < k) (hm : 0 < m) :
     Measurable[sampleGridSigma n (k * m)] (sampleFreshIndex n k m hm) := by
   have hmz : (0 : ℤ) < m := by exact_mod_cast hm
@@ -209,7 +238,9 @@ lemma sampleFreshIndex_grid_measurable (n k m : ℕ) (hk : 0 < k) (hm : 0 < m) :
     ((measurable_pi_apply i).comp (sampleGridIndex_grid_measurable n (k * m))))
 
 /-- Both past-dependent coefficients and the fresh block are known at the next
-sample grid. This provides the adaptedness required by the iteration lemma.-/
+sample grid. This provides the adaptedness required by the iteration lemma.
+@isnad1 id=measurab.2h4v.s6.f50d2aae3cbd from=translated src=- shape=3a00d19d vocab=ea120e4e
+-/
 theorem freshGrid_statistic_grid_measurable (n k m : ℕ) (hk : 0 < k) (hm : 0 < m)
     (H : (Fin n → ℤ) → (Fin n → Fin m) → ℝ) :
     Measurable[sampleGridSigma n (k * m)]

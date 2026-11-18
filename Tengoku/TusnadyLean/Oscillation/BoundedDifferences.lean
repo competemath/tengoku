@@ -13,7 +13,9 @@ set_option maxHeartbeats 800000
 variable {α : Type*} [Fintype α] [Nonempty α]
 
 /-- A finite function whose range has diameter at most `d` satisfies the
-centered Hoeffding bound.-/
+centered Hoeffding bound.
+@isnad1 id=le.2h4v.s7.67b3ff1f90b6 from=translated src=- shape=ae77436a vocab=90a1adc3
+-/
 theorem finAvg_exp_centered_le (f : α → ℝ) {d : ℝ} (hd : 0 ≤ d)
     (hosc : ∀ x y, |f x - f y| ≤ d) (t : ℝ) :
     finAvg (fun x ↦ Real.exp (t * (f x - finAvg f))) ≤ Real.exp (t ^ 2 * d ^ 2 / 2) := by
@@ -35,6 +37,9 @@ theorem finAvg_exp_centered_le (f : α → ℝ) {d : ℝ} (hd : 0 ≤ d)
 def CoordinateOscillation {n : ℕ} (f : (Fin n → α) → ℝ) (d : ℝ) : Prop :=
   ∀ x i a, |f (Function.update x i a) - f x| ≤ d
 
+/--
+@isnad1 id=coordina.1h4v.s6.0a1ee6add715 from=translated src=- shape=9bda99e4 vocab=6a94b209
+-/
 lemma coordinateOscillation_finAvg_last {n : ℕ} (f : (Fin (n + 1) → α) → ℝ) {d : ℝ}
     (hf : CoordinateOscillation f d) :
     CoordinateOscillation (fun x : Fin n → α ↦ finAvg (fun a ↦ f (Fin.snoc x a))) d := by
@@ -45,7 +50,9 @@ lemma coordinateOscillation_finAvg_last {n : ℕ} (f : (Fin (n + 1) → α) → 
   exact hf (Fin.snoc x z) i.castSucc a
 
 /-- A finite-product bounded-differences theorem. The exponential estimate is
-derived from the coordinate oscillations by successively averaging coordinates.-/
+derived from the coordinate oscillations by successively averaging coordinates.
+@isnad1 id=le.2h5v.s7.52d2e3a0f35a from=translated src=- shape=de2d9e10 vocab=f3cddd6f
+-/
 theorem finAvg_exp_boundedDifferences (n : ℕ) (f : (Fin n → α) → ℝ)
     {d : ℝ} (hd : 0 ≤ d) (hf : CoordinateOscillation f d) (t : ℝ) :
     finAvg (fun x ↦ Real.exp (t * (f x - finAvg f))) ≤
@@ -105,7 +112,9 @@ theorem finAvg_exp_boundedDifferences (n : ℕ) (f : (Fin n → α) → ℝ)
         ring
 
 /-- A lower bound for the finite mean turns the centered bound into the
-one-sided drift estimate used at a layer.-/
+one-sided drift estimate used at a layer.
+@isnad1 id=le.4h7v.s7.4dc21892e629 from=translated src=- shape=f3f7a762 vocab=6c926e43
+-/
 theorem finAvg_exp_drift_le (n : ℕ) (f : (Fin n → α) → ℝ)
     {d : ℝ} (hd : 0 ≤ d) (hf : CoordinateOscillation f d)
     (z s u : ℝ) (hu : 0 ≤ u) (hmean : s ≤ finAvg f - z) :

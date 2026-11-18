@@ -8,6 +8,9 @@ noncomputable section
 open MeasureTheory
 open scoped ENNReal
 
+/--
+@isnad1 id=le.3h4v.s7.f42deaf1496e from=translated src=- shape=b79c95c0 vocab=97fa0fb3
+-/
 lemma density_laplace_coefficient {b : ℝ} (hb : 0 < b) {n h M : ℕ} (hM : 0 < M)
     (hd : (n : ℝ) ≤ h * M / (4 * b ^ 3)) :
     Real.sqrt (b * n / M) ≤ Real.sqrt (h : ℝ) / (2 * b) := by
@@ -19,12 +22,18 @@ lemma density_laplace_coefficient {b : ℝ} (hb : 0 < b) {n h M : ℕ} (hM : 0 <
   have hd' := (le_div_iff₀ (show 0 < 4 * b ^ 3 by positivity)).mp hd
   nlinarith
 
+/--
+@isnad1 id=eq.0h1v.s4.70e5b3f0867d from=translated src=- shape=73728446 vocab=136077da
+-/
 lemma sqrt_exp_half (x : ℝ) : Real.sqrt (Real.exp x) = Real.exp (x / 2) := by
   apply (Real.sqrt_eq_iff_mul_self_eq (Real.exp_nonneg _) (Real.exp_nonneg _)).mpr
   rw [← Real.exp_add]
   congr 1
   ring
 
+/--
+@isnad1 id=le.2h3v.s7.7bbe5e1536f1 from=translated src=- shape=a812e73c vocab=9c38df33
+-/
 lemma laplace_histogram_rhs {b : ℝ} (hb : 0 < b) {n M : ℕ} (hMn : M ≤ n) :
     Real.exp (n : ℝ) * Real.sqrt ((2 : ℝ) ^ (n + M) * (4 / b) ^ n) ≤
       Real.exp ((n : ℝ) * (1 + 2 * Real.log 2 - Real.log b / 2)) := by
@@ -41,6 +50,9 @@ lemma laplace_histogram_rhs {b : ℝ} (hb : 0 < b) {n M : ℕ} (hMn : M ≤ n) :
   push_cast
   nlinarith [mul_le_mul_of_nonneg_right hMnR hl]
 
+/--
+@isnad1 id=le.3h6v.s7.d963b6de3f06 from=translated src=- shape=19670d52 vocab=1bdde67f
+-/
 theorem small_event_of_laplace {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω)
     [IsFiniteMeasure μ] (Z : Ω → ℝ) (t a B : ℝ) (ht : 0 < t)
     (hi : Integrable (fun ω ↦ Real.exp (-t * Z ω)) μ)
@@ -66,6 +78,9 @@ theorem small_event_of_laplace {Ω : Type*} [MeasurableSpace Ω] (μ : Measure �
   change Z ω ≤ a at hω
   nlinarith
 
+/--
+@isnad1 id=eq.3h4v.s8.4c4c248861a4 from=translated src=- shape=77a614f4 vocab=8ceb3592
+-/
 lemma fixed_scale_exponent {n h : ℕ} {b M : ℝ} (_hb : 0 < b) (hM : 0 < M) (hh : 0 < h) :
     Real.exp ((M / Real.sqrt h) * (2 * ((n : ℝ) * Real.sqrt h / (8 * M)))) *
       Real.exp ((n : ℝ) * (1 + 2 * Real.log 2 - Real.log b / 2)) =

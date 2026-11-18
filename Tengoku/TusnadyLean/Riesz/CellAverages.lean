@@ -27,7 +27,9 @@ noncomputable def fiberMean (μ : Measure Ω) (p : Ω → ι) (f : Ω → ℝ) (
   (∫ y in p ⁻¹' {p x}, f y ∂μ) / (μ (p ⁻¹' {p x})).toReal
 
 /-- A function measurable for the cell-index sigma-algebra is constant on
-each fiber, as an exact pointwise statement.-/
+each fiber, as an exact pointwise statement.
+@isnad1 id=eq.2h7v.s5.a112e236a286 from=translated src=- shape=403c81a8 vocab=7e71e4c3
+-/
 theorem measurable_comap_eq_of_index_eq {g : Ω → ℝ}
     (hg : Measurable[mι.comap p] g) {x y : Ω} (hxy : p x = p y) : g x = g y := by
   obtain ⟨s, _, hs⟩ := hg (measurableSet_singleton (g x))
@@ -42,7 +44,9 @@ theorem measurable_comap_eq_of_index_eq {g : Ω → ℝ}
   exact hy.symm
 
 /-- The conditional expectation has the cell-average value at every point
-whose fiber has positive measure.-/
+whose fiber has positive measure.
+@isnad1 id=eq.3h8v.s7.8a4e830e5421 from=translated src=- shape=a3b7556b vocab=62ec3e02
+-/
 theorem condExp_eq_fiberMean_of_measure_ne_zero [IsFiniteMeasure μ]
     [MeasurableSingletonClass ι] (hp : Measurable p) (hf : Integrable f μ)
     (x : Ω) (hcell : μ (p ⁻¹' {p x}) ≠ 0) :
@@ -67,7 +71,9 @@ theorem condExp_eq_fiberMean_of_measure_ne_zero [IsFiniteMeasure μ]
     _ = _ := setIntegral_condExp hp.comap_le hf hsc
 
 /-- For a countable index, null fibers form a null set, even if some endpoints
-or empty cells are assigned a separate index.-/
+or empty cells are assigned a separate index.
+@isnad1 id=eventual.0h5v.s6.f1af0fe495ee from=translated src=- shape=310cc824 vocab=fe8fd9d3
+-/
 theorem ae_fiber_measure_ne_zero [Countable ι] :
     ∀ᵐ x ∂μ, μ (p ⁻¹' {p x}) ≠ 0 := by
   have hi (i : ι) : ∀ᵐ x ∂μ, p x = i → μ (p ⁻¹' {i}) ≠ 0 := by
@@ -81,14 +87,18 @@ theorem ae_fiber_measure_ne_zero [Countable ι] :
   exact hx (p x) rfl
 
 /-- Conditional expectation for any countable measurable partition is the
-normalized integral on its cells, with zero-measure cells handled a.e.-/
+normalized integral on its cells, with zero-measure cells handled a.e.
+@isnad1 id=eventual.2h7v.s6.3aef6b247812 from=translated src=- shape=ad880d64 vocab=8e5a88fd
+-/
 theorem condExp_ae_eq_fiberMean [IsFiniteMeasure μ] [Countable ι]
     [MeasurableSingletonClass ι] (hp : Measurable p) (hf : Integrable f μ) :
     μ[f | mι.comap p] =ᵐ[μ] fiberMean μ p f := by
   filter_upwards [ae_fiber_measure_ne_zero (μ := μ) (p := p)] with x hx
   exact condExp_eq_fiberMean_of_measure_ne_zero hp hf x hx
 
-/-- The explicit average is measurable for the cell-index sigma-algebra.-/
+/-- The explicit average is measurable for the cell-index sigma-algebra.
+@isnad1 id=strongly.0h7v.s5.bbc976441964 from=translated src=- shape=4da5e653 vocab=1d6ad58d
+-/
 theorem stronglyMeasurable_fiberMean [Countable ι] [MeasurableSingletonClass ι] :
     StronglyMeasurable[mι.comap p] (fiberMean μ p f) := by
   have hg : Measurable (fun i : ι ↦
@@ -96,13 +106,18 @@ theorem stronglyMeasurable_fiberMean [Countable ι] [MeasurableSingletonClass ι
     measurable_of_countable _
   exact (hg.comp (Measurable.of_comap_le le_rfl)).stronglyMeasurable
 
+/--
+@isnad1 id=integrab.2h7v.s6.516f6dc3a667 from=translated src=- shape=bea881fb vocab=95b25126
+-/
 theorem integrable_fiberMean [IsFiniteMeasure μ] [Countable ι]
     [MeasurableSingletonClass ι] (hp : Measurable p) (hf : Integrable f μ) :
     Integrable (fiberMean μ p f) μ :=
   integrable_condExp.congr (condExp_ae_eq_fiberMean hp hf)
 
 /-- Vanishing integrals on cells imply zero conditional expectation; this
-turns the local centering identities of the proof into conditional centering.-/
+turns the local centering identities of the proof into conditional centering.
+@isnad1 id=eventual.3h7v.s7.aa007645096d from=translated src=- shape=1200fa30 vocab=91265f99
+-/
 theorem condExp_ae_eq_zero_of_cell_integrals [IsFiniteMeasure μ] [Countable ι]
     [MeasurableSingletonClass ι] (hp : Measurable p) (hf : Integrable f μ)
     (hzero : ∀ i, ∫ y in p ⁻¹' {i}, f y ∂μ = 0) :
@@ -112,7 +127,9 @@ theorem condExp_ae_eq_zero_of_cell_integrals [IsFiniteMeasure μ] [Countable ι]
   simp [fiberMean, hzero]
 
 /-- Refining a cell partition and then averaging back recovers the coarse
-cell averages. The premise concerns the sigma-algebras, not expectations.-/
+cell averages. The premise concerns the sigma-algebras, not expectations.
+@isnad1 id=eventual.4h10v.s7.d3988116698e from=translated src=- shape=ac35b532 vocab=88132597
+-/
 theorem condExp_fiberMean_of_refinement {κ : Type*} {mκ : MeasurableSpace κ}
     {q : Ω → κ} [IsFiniteMeasure μ] [Countable ι] [Countable κ]
     [MeasurableSingletonClass ι] [MeasurableSingletonClass κ]
@@ -123,7 +140,9 @@ theorem condExp_fiberMean_of_refinement {κ : Type*} {mκ : MeasurableSpace κ}
     ((condExp_condExp_of_le hrefines hq.comap_le).trans (condExp_ae_eq_fiberMean hp hf))
 
 /-- Differences of nested cell averages have zero conditional mean at the
-coarser level; this is the martingale-difference input to `Exponential.lean`.-/
+coarser level; this is the martingale-difference input to `Exponential.lean`.
+@isnad1 id=eventual.4h10v.s7.8eee6d5126f6 from=translated src=- shape=01fc88c3 vocab=77260cdf
+-/
 theorem condExp_fiberMean_sub_of_refinement {κ : Type*} {mκ : MeasurableSpace κ}
     {q : Ω → κ} [IsFiniteMeasure μ] [Countable ι] [Countable κ]
     [MeasurableSingletonClass ι] [MeasurableSingletonClass κ]
@@ -156,9 +175,15 @@ noncomputable def gridMean (f : ℝ → ℝ) (n : ℕ) (x : ℝ) : ℝ :=
 noncomputable abbrev gridSigma (n : ℕ) : MeasurableSpace ℝ :=
   (inferInstance : MeasurableSpace ℤ).comap (gridIndex n)
 
+/--
+@isnad1 id=measurab.0h1v.s3.74cfd3f1c9ec from=translated src=- shape=7000f90d vocab=9e7b3f0b
+-/
 theorem measurable_gridIndex (n : ℕ) : Measurable (gridIndex n) := by
   exact ((measurable_const.mul measurable_id).ceil.sub_const 1)
 
+/--
+@isnad1 id=eq.1h2v.s5.edfb608f57eb from=translated src=- shape=bac50c6b vocab=650432ba
+-/
 theorem gridIndex_fiber (n : ℕ) (hn : 0 < n) (k : ℤ) :
     gridIndex n ⁻¹' {k} = gridCell n k := by
   have hn' : (0 : ℝ) < n := by exact_mod_cast hn
@@ -167,6 +192,9 @@ theorem gridIndex_fiber (n : ℕ) (hn : 0 < n) (k : ℤ) :
     Int.ceil_eq_iff, Int.cast_add, Int.cast_one, add_sub_cancel_right,
     gridCell, Set.mem_Ioc, div_lt_iff₀ hn', le_div_iff₀ hn', mul_comm]
 
+/--
+@isnad1 id=le.3h2v.s6.b8c48b4a3951 from=translated src=- shape=6dca4848 vocab=c44f415c
+-/
 theorem gridCell_subset_unit (n : ℕ) (hn : 0 < n) (k : ℤ)
     (hk : (0 : ℝ) ≤ k) (hkn : (k : ℝ) + 1 ≤ n) :
     gridCell n k ⊆ Set.Icc 0 1 := by
@@ -176,6 +204,9 @@ theorem gridCell_subset_unit (n : ℕ) (hn : 0 < n) (k : ℤ)
   · exact (div_nonneg hk hn'.le).trans hx0.le
   · exact hx1.trans ((div_le_one hn').mpr hkn)
 
+/--
+@isnad1 id=eq.3h2v.s6.4cfdb46ab624 from=translated src=- shape=851b7999 vocab=63930140
+-/
 theorem gridCell_measure (n : ℕ) (hn : 0 < n) (k : ℤ)
     (hk : (0 : ℝ) ≤ k) (hkn : (k : ℝ) + 1 ≤ n) :
     μI (gridCell n k) = ENNReal.ofReal (1 / (n : ℝ)) := by
@@ -184,6 +215,9 @@ theorem gridCell_measure (n : ℕ) (hn : 0 < n) (k : ℤ)
   congr 1
   ring
 
+/--
+@isnad1 id=and.2h2v.s6.69083c7cb8f9 from=translated src=- shape=4ceef289 vocab=3baeab27
+-/
 theorem gridIndex_bounds (n : ℕ) (hn : 0 < n) {x : ℝ} (hx : x ∈ Set.Ioc 0 1) :
     (0 : ℝ) ≤ gridIndex n x ∧ (gridIndex n x : ℝ) + 1 ≤ n := by
   have hn' : (0 : ℝ) < n := by exact_mod_cast hn
@@ -197,6 +231,9 @@ theorem gridIndex_bounds (n : ℕ) (hn : 0 < n) {x : ℝ} (hx : x ∈ Set.Ioc 0 
   · have hhi' : (⌈(n : ℝ) * x⌉ : ℝ) ≤ n := by exact_mod_cast hhi
     simpa [gridIndex] using hhi'
 
+/--
+@isnad1 id=eq.2h3v.s5.6dcf46c4b5c9 from=translated src=- shape=78bb0130 vocab=3a3cf27a
+-/
 theorem fiberMean_gridIndex_eq_gridMean (n : ℕ) (hn : 0 < n) (f : ℝ → ℝ)
     {x : ℝ} (hx : x ∈ Set.Ioc 0 1) :
     fiberMean μI (gridIndex n) f x = gridMean f n x := by
@@ -213,7 +250,9 @@ theorem fiberMean_gridIndex_eq_gridMean (n : ℕ) (hn : 0 < n) (f : ℝ → ℝ)
 
 /-- The actual uniform-grid average is conditional expectation on the
 sigma-algebra generated by its cell index. The endpoint zero is excluded by
-the already proved null-measure endpoint fact, not a pointwise convention.-/
+the already proved null-measure endpoint fact, not a pointwise convention.
+@isnad1 id=eventual.2h2v.s6.6a72ee6714f5 from=translated src=- shape=65ba495b vocab=53450ff8
+-/
 theorem condExp_ae_eq_gridMean (n : ℕ) (hn : 0 < n) {f : ℝ → ℝ}
     (hf : Integrable f μI) : μI[f | gridSigma n] =ᵐ[μI] gridMean f n := by
   have hcell := condExp_ae_eq_fiberMean (measurable_gridIndex n) hf
@@ -222,17 +261,25 @@ theorem condExp_ae_eq_gridMean (n : ℕ) (hn : 0 < n) {f : ℝ → ℝ}
   filter_upwards [hcell, hunit] with x hx hxunit
   exact hx.trans (fiberMean_gridIndex_eq_gridMean n hn f hxunit)
 
+/--
+@isnad1 id=strongly.0h2v.s4.b520d4dc1e96 from=translated src=- shape=99aec71e vocab=b439fb47
+-/
 theorem stronglyMeasurable_gridMean (f : ℝ → ℝ) (n : ℕ) :
     StronglyMeasurable[gridSigma n] (gridMean f n) := by
   have hg : Measurable (fun k : ℤ ↦ (n : ℝ) * ∫ y in gridCell n k, f y) :=
     measurable_of_countable _
   exact (hg.comp (Measurable.of_comap_le le_rfl)).stronglyMeasurable
 
+/--
+@isnad1 id=integrab.2h2v.s6.3cc93576ef25 from=translated src=- shape=8c96160e vocab=271eaa19
+-/
 theorem integrable_gridMean (n : ℕ) (hn : 0 < n) {f : ℝ → ℝ}
     (hf : Integrable f μI) : Integrable (gridMean f n) μI :=
   integrable_condExp.congr (condExp_ae_eq_gridMean n hn hf)
 
-/-- Dyadic cells are the special case with `2^r` equal grid cells.-/
+/-- Dyadic cells are the special case with `2^r` equal grid cells.
+@isnad1 id=eventual.1h2v.s6.0a1ccdd834bc from=translated src=- shape=854548f7 vocab=61e0fde4
+-/
 theorem condExp_ae_eq_dyadicMean (r : ℕ) {f : ℝ → ℝ}
     (hf : Integrable f μI) :
     μI[f | gridSigma (2 ^ r)] =ᵐ[μI] gridMean f (2 ^ r) :=

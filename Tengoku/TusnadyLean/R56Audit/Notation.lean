@@ -37,6 +37,9 @@ def supNorm (χ : Fin n → ℤˣ) (P : Fin n → ℝ × ℝ) : ℝ :=
 
 /-! ### Elementary facts -/
 
+/--
+@isnad1 id=le.0h5v.s5.5c0a822ff67f from=translated src=- shape=371a2da0 vocab=a5358879
+-/
 lemma abs_F_le (χ : Fin n → ℤˣ) (P : Fin n → ℝ × ℝ) (x y : ℝ) : |F χ P x y| ≤ n := by
   classical
   unfold F
@@ -50,19 +53,26 @@ lemma abs_F_le (χ : Fin n → ℤˣ) (P : Fin n → ℝ × ℝ) (x y : ℝ) : |
         · simp
     _ = n := by simp
 
+/--
+@isnad1 id=bddabove.0h3v.s7.229cfeba0f49 from=translated src=- shape=f3493826 vocab=943c2266
+-/
 lemma bddAbove_F (χ : Fin n → ℤˣ) (P : Fin n → ℝ × ℝ) :
     BddAbove (Set.range fun z : Set.Icc (0 : ℝ) 1 × Set.Icc (0 : ℝ) 1 => |F χ P z.1 z.2|) :=
   ⟨n, by rintro _ ⟨z, rfl⟩; exact abs_F_le χ P _ _⟩
 
 /-- Every anchored rectangle `[0,x] × [0,y]` with `x, y ∈ [0,1]` has imbalance at most
-`‖F_χ‖∞`.-/
+`‖F_χ‖∞`.
+@isnad1 id=le.2h5v.s6.b9ea180c651a from=translated src=- shape=91fe4df7 vocab=a32ce641
+-/
 lemma le_supNorm (χ : Fin n → ℤˣ) (P : Fin n → ℝ × ℝ) {x y : ℝ}
     (hx : x ∈ Set.Icc (0 : ℝ) 1) (hy : y ∈ Set.Icc (0 : ℝ) 1) :
     |F χ P x y| ≤ supNorm χ P :=
   le_ciSup (f := fun z : Set.Icc (0 : ℝ) 1 × Set.Icc (0 : ℝ) 1 => |F χ P z.1 z.2|)
     (bddAbove_F χ P) (⟨x, hx⟩, ⟨y, hy⟩)
 
-/-- `‖F_χ‖∞ ≤ B` exactly when every anchored rectangle has imbalance at most `B`.-/
+/-- `‖F_χ‖∞ ≤ B` exactly when every anchored rectangle has imbalance at most `B`.
+@isnad1 id=iff.0h4v.s6.5a65e3863268 from=translated src=- shape=1178cf75 vocab=a32ce641
+-/
 lemma supNorm_le_iff (χ : Fin n → ℤˣ) (P : Fin n → ℝ × ℝ) (B : ℝ) :
     supNorm χ P ≤ B ↔
       ∀ x ∈ Set.Icc (0 : ℝ) 1, ∀ y ∈ Set.Icc (0 : ℝ) 1, |F χ P x y| ≤ B := by
@@ -76,10 +86,15 @@ lemma supNorm_le_iff (χ : Fin n → ℤˣ) (P : Fin n → ℝ × ℝ) (B : ℝ)
   · intro h z
     exact h z.1 z.1.2 z.2 z.2.2
 
+/--
+@isnad1 id=le.0h3v.s4.f7590e0cd433 from=translated src=- shape=c41a9889 vocab=f730b99c
+-/
 lemma supNorm_nonneg (χ : Fin n → ℤˣ) (P : Fin n → ℝ × ℝ) : 0 ≤ supNorm χ P :=
   (abs_nonneg _).trans (le_supNorm χ P (x := 0) (y := 0) (by simp) (by simp))
 
-/-- `F_χ` written with the four coordinate inequalities.-/
+/-- `F_χ` written with the four coordinate inequalities.
+@isnad1 id=eq.0h5v.s8.917cff8db13b from=translated src=- shape=15f75fb8 vocab=d15ff153
+-/
 lemma F_eq_filter (χ : Fin n → ℤˣ) (P : Fin n → ℝ × ℝ) (x y : ℝ) :
     F χ P x y = ∑ t ∈ Finset.univ.filter
       (fun t => 0 ≤ (P t).1 ∧ (P t).1 ≤ x ∧ 0 ≤ (P t).2 ∧ (P t).2 ≤ y),

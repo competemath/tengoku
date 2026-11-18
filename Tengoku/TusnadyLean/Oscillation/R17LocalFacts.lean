@@ -7,7 +7,9 @@ noncomputable section
 open Finset Riesz.Moments
 set_option maxHeartbeats 1000000
 
-/-- The algebraic range comparison in r17 Lemma 2.1. No parity condition.-/
+/-- The algebraic range comparison in r17 Lemma 2.1. No parity condition.
+@isnad1 id=le.3h7v.s7.0045047f5f9f from=translated src=- shape=c364a116 vocab=aba10665
+-/
 theorem midpoint_range_comparison {ι : Type*} [Fintype ι] [DecidableEq ι]
     (a z : ι) (haz : a≠z) (lo hi : ι → ℝ) (L U : ℝ)
     (hlo : ∀ i,L≤lo i) (hhi : ∀ i,hi i≤U) :
@@ -28,7 +30,9 @@ theorem midpoint_range_comparison {ι : Type*} [Fintype ι] [DecidableEq ι]
   rw [he] at hpair
   linarith
 
-/-- The sharp moment constant used in Fact 2.3, for a finite law.-/
+/-- The sharp moment constant used in Fact 2.3, for a finite law.
+@isnad1 id=le.3h4v.s7.ca20d252ead6 from=translated src=- shape=c1778e1e vocab=7d23bb57
+-/
 lemma abs_mean_of_fourth_three {Ω : Type*} [Fintype Ω] (μ : FiniteLaw Ω)
     (X : Ω → ℝ) (v : ℝ) (hv : 0 ≤ v)
     (hsecond : expectation μ (fun x ↦ X x ^ 2) = v)

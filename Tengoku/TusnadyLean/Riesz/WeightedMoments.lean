@@ -16,10 +16,16 @@ noncomputable def productLaw (μ : FiniteLaw Ω) (ν : FiniteLaw Γ) : FiniteLaw
     simp_rw [← Finset.mul_sum, ν.total, mul_one]
     exact μ.total
 
+/--
+@isnad1 id=eq.0h4v.s5.846123d33648 from=translated src=- shape=4e012137 vocab=3986022b
+-/
 lemma expectation_add (μ : FiniteLaw Ω) (X Y : Ω → ℝ) :
     expectation μ (fun ω ↦ X ω + Y ω) = expectation μ X + expectation μ Y := by
   simp [expectation, mul_add, Finset.sum_add_distrib]
 
+/--
+@isnad1 id=eq.0h4v.s5.3e9ebcfc7b82 from=translated src=- shape=55282c94 vocab=d2dd9804
+-/
 lemma expectation_const_mul (μ : FiniteLaw Ω) (a : ℝ) (X : Ω → ℝ) :
     expectation μ (fun ω ↦ a * X ω) = a * expectation μ X := by
   unfold expectation
@@ -28,6 +34,9 @@ lemma expectation_const_mul (μ : FiniteLaw Ω) (a : ℝ) (X : Ω → ℝ) :
   intro ω _
   ring
 
+/--
+@isnad1 id=eq.0h6v.s6.5a2d189fb56f from=translated src=- shape=7d134e36 vocab=707f32f3
+-/
 lemma expectation_product_mul (μ : FiniteLaw Ω) (ν : FiniteLaw Γ)
     (X : Ω → ℝ) (Y : Γ → ℝ) :
     expectation (productLaw μ ν) (fun ω ↦ X ω.1 * Y ω.2) =
@@ -41,19 +50,31 @@ lemma expectation_product_mul (μ : FiniteLaw Ω) (ν : FiniteLaw Γ)
   intro γ _
   ring
 
+/--
+@isnad1 id=eq.0h5v.s5.83d4316e7bde from=translated src=- shape=3ff9f04f vocab=ba559258
+-/
 lemma expectation_product_left (μ : FiniteLaw Ω) (ν : FiniteLaw Γ) (X : Ω → ℝ) :
     expectation (productLaw μ ν) (fun ω ↦ X ω.1) = expectation μ X := by
   simpa using expectation_product_mul μ ν X (fun _ ↦ 1)
 
+/--
+@isnad1 id=eq.0h5v.s5.81d99377cf1a from=translated src=- shape=c539dd21 vocab=09ebda4b
+-/
 lemma expectation_product_right (μ : FiniteLaw Ω) (ν : FiniteLaw Γ) (Y : Γ → ℝ) :
     expectation (productLaw μ ν) (fun ω ↦ Y ω.2) = expectation ν Y := by
   simpa using expectation_product_mul μ ν (fun _ ↦ 1) Y
 
+/--
+@isnad1 id=eq.0h6v.s6.316a846d63e2 from=translated src=- shape=7d134e36 vocab=2ea846de
+-/
 lemma product_sum_mean (μ : FiniteLaw Ω) (ν : FiniteLaw Γ) (X : Ω → ℝ) (Y : Γ → ℝ) :
     expectation (productLaw μ ν) (fun ω ↦ X ω.1 + Y ω.2) =
       expectation μ X + expectation ν Y := by
   rw [expectation_add, expectation_product_left, expectation_product_right]
 
+/--
+@isnad1 id=eq.2h6v.s7.825832833350 from=translated src=- shape=fc2f8458 vocab=e43386f0
+-/
 lemma product_sum_second (μ : FiniteLaw Ω) (ν : FiniteLaw Γ) (X : Ω → ℝ) (Y : Γ → ℝ)
     (hX : expectation μ X = 0) (hY : expectation ν Y = 0) :
     expectation (productLaw μ ν) (fun ω ↦ (X ω.1 + Y ω.2) ^ 2) =
@@ -68,6 +89,9 @@ lemma product_sum_second (μ : FiniteLaw Ω) (ν : FiniteLaw Γ) (X : Ω → ℝ
   rw [expectation_product_left μ ν (fun ω ↦ X ω ^ 2),
     expectation_product_right μ ν (fun ω ↦ Y ω ^ 2)]
 
+/--
+@isnad1 id=eq.2h6v.s7.684067fe9af6 from=translated src=- shape=dc8cd887 vocab=dea13e61
+-/
 lemma product_sum_fourth (μ : FiniteLaw Ω) (ν : FiniteLaw Γ) (X : Ω → ℝ) (Y : Γ → ℝ)
     (hX : expectation μ X = 0) (hY : expectation ν Y = 0) :
     expectation (productLaw μ ν) (fun ω ↦ (X ω.1 + Y ω.2) ^ 4) =
@@ -89,7 +113,9 @@ lemma product_sum_fourth (μ : FiniteLaw Ω) (ν : FiniteLaw Γ) (X : Ω → ℝ
   simp only [hX, hY, mul_zero, zero_mul, add_zero]
 
 /-- Independent centered variables satisfying the fourth-moment bound retain
-it under addition. Independence here is implemented by the actual product law.-/
+it under addition. Independence here is implemented by the actual product law.
+@isnad1 id=le.4h6v.s8.0340dc0a0f4a from=translated src=- shape=40ef71b5 vocab=dc8720a5
+-/
 theorem product_sum_fourth_le (μ : FiniteLaw Ω) (ν : FiniteLaw Γ)
     (X : Ω → ℝ) (Y : Γ → ℝ)
     (hX : expectation μ X = 0) (hY : expectation ν Y = 0)
@@ -104,6 +130,9 @@ theorem product_sum_fourth_le (μ : FiniteLaw Ω) (ν : FiniteLaw Γ)
   have hy2 := expectation_nonneg ν (fun ω ↦ sq_nonneg (Y ω))
   nlinarith [mul_nonneg hx2 hy2]
 
+/--
+@isnad1 id=le.1h4v.s7.33b31dfed577 from=translated src=- shape=28d36f0a vocab=c2907ddb
+-/
 lemma weighted_fourth_le (μ : FiniteLaw Ω) (X : Ω → ℝ) (a : ℝ)
     (h4 : expectation μ (fun ω ↦ X ω ^ 4) ≤
       4 * (expectation μ (fun ω ↦ X ω ^ 2)) ^ 2) :
@@ -136,6 +165,9 @@ noncomputable def weightedSum (W : Ω → ℝ) :
   | 0, _, _ => 0
   | n + 1, a, ω => weightedSum W n (fun i => a i.castSucc) ω.1 + a (Fin.last n) * W ω.2
 
+/--
+@isnad1 id=eq.1h5v.s5.63ea0631e84f from=translated src=- shape=9207b546 vocab=a8bac579
+-/
 lemma weightedSum_centered (μ : FiniteLaw Ω) (W : Ω → ℝ)
     (hmean : expectation μ W = 0) (n : ℕ) (a : Fin n → ℝ) :
     expectation (independentLaw μ n) (weightedSum W n a) = 0 := by
@@ -149,6 +181,9 @@ lemma weightedSum_centered (μ : FiniteLaw Ω) (W : Ω → ℝ)
       ih, expectation_const_mul, hmean]
     ring
 
+/--
+@isnad1 id=eq.1h5v.s7.278c6c252ac4 from=translated src=- shape=411e380c vocab=33c46bca
+-/
 lemma weightedSum_second (μ : FiniteLaw Ω) (W : Ω → ℝ)
     (hmean : expectation μ W = 0) (n : ℕ) (a : Fin n → ℝ) :
     expectation (independentLaw μ n) (fun ω => weightedSum W n a ω ^ 2) =
@@ -166,6 +201,9 @@ lemma weightedSum_second (μ : FiniteLaw Ω) (W : Ω → ℝ)
       ring
     · rw [expectation_const_mul, hmean, mul_zero]
 
+/--
+@isnad1 id=le.2h5v.s7.9175ee4f4315 from=translated src=- shape=ee061d72 vocab=4cf799eb
+-/
 theorem weightedSum_fourth_le (μ : FiniteLaw Ω) (W : Ω → ℝ)
     (hmean : expectation μ W = 0)
     (hfourth : expectation μ (fun ω => W ω ^ 4) ≤
@@ -180,7 +218,9 @@ theorem weightedSum_fourth_le (μ : FiniteLaw Ω) (W : Ω → ℝ)
       (weightedSum_centered μ W hmean n _) (by rw [expectation_const_mul, hmean, mul_zero])
       (ih _) (weighted_fourth_le μ W _ hfourth)
 
-/-- Each good coefficient contributes at least `1 / C²` to the squared-weight sum.-/
+/-- Each good coefficient contributes at least `1 / C²` to the squared-weight sum.
+@isnad1 id=le.2h4v.s7.93c0c75db7a3 from=translated src=- shape=de651390 vocab=18dd58e6
+-/
 lemma squared_weights_lower (n : ℕ) (a : Fin n → ℝ) (good : Finset (Fin n))
     (C : ℝ) (hC : 0 < C) (hgood : ∀ i ∈ good, 1 / C ≤ |a i|) :
     (good.card : ℝ) / C ^ 2 ≤ ∑ i, a i ^ 2 := by
@@ -194,6 +234,9 @@ lemma squared_weights_lower (n : ℕ) (a : Fin n → ℝ) (good : Finset (Fin n)
     _ ≤ ∑ i, a i ^ 2 := Finset.sum_le_sum_of_subset_of_nonneg (Finset.subset_univ good)
       (fun i _ _ => sq_nonneg (a i))
 
+/--
+@isnad1 id=le.4h7v.s7.7ec8b98c7363 from=translated src=- shape=b193f13b vocab=b4ac7c55
+-/
 theorem weightedSum_variance_lower (μ : FiniteLaw Ω) (W : Ω → ℝ)
     (hmean : expectation μ W = 0)
     (hvariance : 1 / 64 ≤ expectation μ (fun ω => W ω ^ 2))
@@ -211,7 +254,9 @@ theorem weightedSum_variance_lower (μ : FiniteLaw Ω) (W : Ω → ℝ)
       mul_le_mul_of_nonneg_right hvariance hsn
 
 /-- The manuscript's one-rectangle Laplace bound for actual independent copies
-of a finite profile law.  The moment conclusions are derived from independence.-/
+of a finite profile law.  The moment conclusions are derived from independence.
+@isnad1 id=le.9h9v.s8.210c1d4f0cec from=translated src=- shape=699d47f9 vocab=73c97fff
+-/
 theorem independent_sum_laplace (μ : FiniteLaw Ω) (W : Ω → ℝ)
     (hmean : expectation μ W = 0)
     (hvariance : 1 / 64 ≤ expectation μ (fun ω => W ω ^ 2))

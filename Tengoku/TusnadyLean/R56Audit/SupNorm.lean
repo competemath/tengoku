@@ -31,13 +31,22 @@ variable {n : ℕ}
 /-- The nearest point of `[0,1]`.-/
 def clampUnit (u : ℝ) : ℝ := min (max u 0) 1
 
+/--
+@isnad1 id=mem.0h1v.s4.2679885807b8 from=translated src=- shape=828ff9db vocab=0b5848a5
+-/
 lemma clampUnit_mem (u : ℝ) : clampUnit u ∈ Set.Icc (0 : ℝ) 1 :=
   ⟨le_min (le_max_right _ _) zero_le_one, min_le_right _ _⟩
 
+/--
+@isnad1 id=eq.1h1v.s4.864dba1f3bab from=translated src=- shape=59a9e9ba vocab=0b5848a5
+-/
 lemma clampUnit_of_mem {u : ℝ} (h : u ∈ Set.Icc (0 : ℝ) 1) : clampUnit u = u := by
   unfold clampUnit
   rw [max_eq_left h.1, min_eq_left h.2]
 
+/--
+@isnad1 id=measurab.0h0v.s2.c8fcce7677be from=translated src=- shape=e3d48bcb vocab=0f91ceaf
+-/
 lemma measurable_clampUnit : Measurable clampUnit :=
   (measurable_id.max measurable_const).min measurable_const
 
@@ -49,30 +58,44 @@ def candidateX (o : Option (Fin n)) (P : Fin n → ℝ × ℝ) : ℝ :=
 def candidateY (o : Option (Fin n)) (P : Fin n → ℝ × ℝ) : ℝ :=
   o.elim 0 (fun k => clampUnit (P k).2)
 
+/--
+@isnad1 id=mem.0h3v.s5.9487f9bd49b0 from=translated src=- shape=2bbdc38e vocab=29f1e12f
+-/
 lemma candidateX_mem (o : Option (Fin n)) (P : Fin n → ℝ × ℝ) :
     candidateX o P ∈ Set.Icc (0 : ℝ) 1 := by
   cases o with
   | none => simp [candidateX]
   | some k => exact clampUnit_mem _
 
+/--
+@isnad1 id=mem.0h3v.s5.9720c3beffdc from=translated src=- shape=2bbdc38e vocab=5017554b
+-/
 lemma candidateY_mem (o : Option (Fin n)) (P : Fin n → ℝ × ℝ) :
     candidateY o P ∈ Set.Icc (0 : ℝ) 1 := by
   cases o with
   | none => simp [candidateY]
   | some k => exact clampUnit_mem _
 
+/--
+@isnad1 id=measurab.0h2v.s5.0ba4dad63bdb from=translated src=- shape=9c113d99 vocab=75a25b60
+-/
 lemma measurable_candidateX (o : Option (Fin n)) : Measurable (candidateX (n := n) o) := by
   cases o with
   | none => exact measurable_const
   | some k => exact measurable_clampUnit.comp (measurable_pi_apply k).fst
 
+/--
+@isnad1 id=measurab.0h2v.s5.98acacefae3b from=translated src=- shape=9c113d99 vocab=90220c72
+-/
 lemma measurable_candidateY (o : Option (Fin n)) : Measurable (candidateY (n := n) o) := by
   cases o with
   | none => exact measurable_const
   | some k => exact measurable_clampUnit.comp (measurable_pi_apply k).snd
 
 /-- For `x ∈ [0,1]` there is a candidate `x'`, either `0` or a clamped coordinate, such that
-`[0,x']` and `[0,x]` contain the same coordinates.-/
+`[0,x']` and `[0,x]` contain the same coordinates.
+@isnad1 id=ex.1h3v.s6.e3ff02774b8d from=translated src=- shape=83ed3653 vocab=cad9ff5d
+-/
 lemma exists_candidate (w : Fin n → ℝ) {x : ℝ} (hx : x ∈ Set.Icc (0 : ℝ) 1) :
     ∃ o : Option (Fin n), ∀ i,
       (0 ≤ w i ∧ w i ≤ o.elim 0 (fun k => clampUnit (w k))) ↔ (0 ≤ w i ∧ w i ≤ x) := by
@@ -99,7 +122,9 @@ lemma exists_candidate (w : Fin n → ℝ) {x : ℝ} (hx : x ∈ Set.Icc (0 : �
     · intro h
       exact absurd ⟨i, h⟩ hA
 
-/-- `F_χ` depends on `(x, y)` only through the set of sample points in `[0,x] × [0,y]`.-/
+/-- `F_χ` depends on `(x, y)` only through the set of sample points in `[0,x] × [0,y]`.
+@isnad1 id=eq.2h7v.s7.2c6623529ef6 from=translated src=- shape=3e53d474 vocab=7573c278
+-/
 lemma F_congr (χ : Fin n → ℤˣ) (P : Fin n → ℝ × ℝ) {x x' y y' : ℝ}
     (hx : ∀ i, (0 ≤ (P i).1 ∧ (P i).1 ≤ x') ↔ (0 ≤ (P i).1 ∧ (P i).1 ≤ x))
     (hy : ∀ i, (0 ≤ (P i).2 ∧ (P i).2 ≤ y') ↔ (0 ≤ (P i).2 ∧ (P i).2 ≤ y)) :
@@ -117,7 +142,9 @@ lemma F_congr (χ : Fin n → ℤˣ) (P : Fin n → ℝ × ℝ) {x x' y y' : ℝ
     exact ⟨((hx i).mpr ⟨a1, a2⟩).1, ((hx i).mpr ⟨a1, a2⟩).2,
       ((hy i).mpr ⟨a3, a4⟩).1, ((hy i).mpr ⟨a3, a4⟩).2⟩
 
-/-- `‖F_χ‖∞` is the maximum of `|F_χ|` over the `(n+1)²` candidate rectangles.-/
+/-- `‖F_χ‖∞` is the maximum of `|F_χ|` over the `(n+1)²` candidate rectangles.
+@isnad1 id=eq.0h3v.s6.98863dc49d22 from=translated src=- shape=d846fcd0 vocab=e907af2f
+-/
 theorem supNorm_eq_max (χ : Fin n → ℤˣ) (P : Fin n → ℝ × ℝ) :
     supNorm χ P = ⨆ o : Option (Fin n) × Option (Fin n),
       |F χ P (candidateX o.1 P) (candidateY o.2 P)| := by
@@ -134,7 +161,9 @@ theorem supNorm_eq_max (χ : Fin n → ℤˣ) (P : Fin n → ℝ × ℝ) :
   · exact ciSup_le fun o => le_supNorm χ P (candidateX_mem _ _) (candidateY_mem _ _)
 
 /-- **`‖F_χ‖∞` is the largest imbalance of an anchored rectangle**: the supremum over `[0,1]²`
-is attained.-/
+is attained.
+@isnad1 id=ex.0h3v.s6.25a2ebac6210 from=translated src=- shape=0320841a vocab=d56fa1a2
+-/
 theorem exists_eq_supNorm (χ : Fin n → ℤˣ) (P : Fin n → ℝ × ℝ) :
     ∃ x ∈ Set.Icc (0 : ℝ) 1, ∃ y ∈ Set.Icc (0 : ℝ) 1, |F χ P x y| = supNorm χ P := by
   obtain ⟨o, ho⟩ := exists_eq_ciSup_of_finite
@@ -142,6 +171,9 @@ theorem exists_eq_supNorm (χ : Fin n → ℤˣ) (P : Fin n → ℝ × ℝ) :
       |F χ P (candidateX o.1 P) (candidateY o.2 P)|)
   exact ⟨_, candidateX_mem o.1 P, _, candidateY_mem o.2 P, by rw [supNorm_eq_max]; exact ho⟩
 
+/--
+@isnad1 id=measurab.0h4v.s5.7ba23aa4bfa3 from=translated src=- shape=06445bd5 vocab=3e28658c
+-/
 lemma measurable_F_candidate (χ : Fin n → ℤˣ) (o1 o2 : Option (Fin n)) :
     Measurable (fun P : Fin n → ℝ × ℝ => F χ P (candidateX o1 P) (candidateY o2 P)) := by
   classical
@@ -155,7 +187,9 @@ lemma measurable_F_candidate (χ : Fin n → ℤˣ) (o1 o2 : Option (Fin n)) :
       ((measurableSet_le measurable_const hV).inter
         (measurableSet_le hV (measurable_candidateY o2))))
 
-/-- `‖F_χ‖∞` is a measurable function of the sample.-/
+/-- `‖F_χ‖∞` is a measurable function of the sample.
+@isnad1 id=measurab.0h2v.s5.d1236c68ed43 from=translated src=- shape=e877c656 vocab=f66246a7
+-/
 theorem measurable_supNorm (χ : Fin n → ℤˣ) : Measurable (supNorm χ) := by
   have h : supNorm χ = fun P => ⨆ o : Option (Fin n) × Option (Fin n),
       |F χ P (candidateX o.1 P) (candidateY o.2 P)| :=
@@ -164,7 +198,9 @@ theorem measurable_supNorm (χ : Fin n → ℤˣ) : Measurable (supNorm χ) := b
   exact Measurable.iSup fun o =>
     continuous_abs.measurable.comp (measurable_F_candidate χ o.1 o.2)
 
-/-- The event of Theorem 1.1, that every coloring `χ` has `‖F_χ‖∞ ≥ t`, is measurable.-/
+/-- The event of Theorem 1.1, that every coloring `χ` has `‖F_χ‖∞ ≥ t`, is measurable.
+@isnad1 id=measurab.0h2v.s5.35ee67fa5ea5 from=translated src=- shape=4bace729 vocab=108c6ad9
+-/
 theorem measurableSet_forall_le_supNorm (t : ℝ) :
     MeasurableSet {P : Fin n → ℝ × ℝ | ∀ χ : Fin n → ℤˣ, t ≤ supNorm χ P} := by
   have h : {P : Fin n → ℝ × ℝ | ∀ χ : Fin n → ℤˣ, t ≤ supNorm χ P} =
@@ -174,12 +210,16 @@ theorem measurableSet_forall_le_supNorm (t : ℝ) :
   rw [h]
   exact MeasurableSet.iInter fun χ => measurableSet_le measurable_const (measurable_supNorm χ)
 
-/-- The event `‖F_χ‖∞ ≤ B` of a fixed coloring is measurable.-/
+/-- The event `‖F_χ‖∞ ≤ B` of a fixed coloring is measurable.
+@isnad1 id=measurab.0h3v.s5.4b8c05defcfe from=translated src=- shape=19cde133 vocab=108c6ad9
+-/
 theorem measurableSet_supNorm_le (χ : Fin n → ℤˣ) (B : ℝ) :
     MeasurableSet {P : Fin n → ℝ × ℝ | supNorm χ P ≤ B} :=
   measurableSet_le (measurable_supNorm χ) measurable_const
 
-/-- The event of Proposition 2.7, that some coloring `χ` has `‖F_χ‖∞ ≤ B`, is measurable.-/
+/-- The event of Proposition 2.7, that some coloring `χ` has `‖F_χ‖∞ ≤ B`, is measurable.
+@isnad1 id=measurab.0h2v.s6.1a4eb9516496 from=translated src=- shape=ed5b5ccb vocab=108c6ad9
+-/
 theorem measurableSet_exists_supNorm_le (B : ℝ) :
     MeasurableSet {P : Fin n → ℝ × ℝ | ∃ χ : Fin n → ℤˣ, supNorm χ P ≤ B} := by
   have h : {P : Fin n → ℝ × ℝ | ∃ χ : Fin n → ℤˣ, supNorm χ P ≤ B} =
@@ -191,7 +231,9 @@ theorem measurableSet_exists_supNorm_le (B : ℝ) :
 
 /-- **The lowest point.** If `n ≥ 1`, the points lie in the unit square and all heights are
 distinct, then the anchored rectangle `[0,1] × [0, min_i V_i]` contains just the lowest
-point, so it has imbalance `1` under every coloring: `‖F_χ‖∞ ≥ 1`.-/
+point, so it has imbalance `1` under every coloring: `‖F_χ‖∞ ≥ 1`.
+@isnad1 id=le.3h3v.s6.ee71acc02e3b from=translated src=- shape=23bbb8c1 vocab=d7d9b266
+-/
 theorem one_le_supNorm (hn : 1 ≤ n) (χ : Fin n → ℤˣ) (P : Fin n → ℝ × ℝ)
     (hP : ∀ i, (P i).1 ∈ Set.Icc (0 : ℝ) 1 ∧ (P i).2 ∈ Set.Icc (0 : ℝ) 1)
     (hinj : Function.Injective fun i => (P i).2) : 1 ≤ supNorm χ P := by

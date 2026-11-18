@@ -22,6 +22,9 @@ def bucketSquareRootSum {n M : ℕ} (cell : α → Option (Fin M)) (P : Fin n �
   ∑ c : Fin M, Real.sqrt ((Finset.univ.filter (fun i => cell (P i) = some c)).card)
 
 omit [MeasurableSpace α] in
+/--
+@isnad1 id=eq.0h5v.s5.cdb9a5ed2bfb from=translated src=- shape=e377b193 vocab=a9796720
+-/
 lemma bucketSquareRootSum_eq {n M : ℕ} (cell : α → Option (Fin M)) (P : Fin n → α) :
     bucketSquareRootSum cell P = interiorSum (histogram (fun i => cell (P i))) := by
   simp only [bucketSquareRootSum, interiorSum, histogramCount_eq_card]

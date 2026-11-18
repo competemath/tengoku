@@ -29,6 +29,9 @@ def profileLaw (m : ℕ) (hm : 0 < m) : FiniteLaw (Fin 4 × Fin m) where
 def profileValue (m : ℕ) (a : Fin 4 × Fin m) : ℝ :=
   quarterValue a.1 (quarterMidpoint m a.2)
 
+/--
+@isnad1 id=eq.1h2v.s6.56ed8630e340 from=translated src=- shape=49fc2340 vocab=2d6ff117
+-/
 lemma profileLaw_expectation {m : ℕ} (hm : 0 < m) (f : ℝ → ℝ) :
     expectation (profileLaw m hm) (fun a => f (profileValue m a)) = blockMean m f := by
   unfold expectation profileLaw profileValue blockMean quarterMean
@@ -38,6 +41,9 @@ lemma profileLaw_expectation {m : ℕ} (hm : 0 < m) (f : ℝ → ℝ) :
   simp_rw [← Finset.sum_div]
   ring
 
+/--
+@isnad1 id=eq.1h1v.s5.78ac3b690e71 from=translated src=- shape=dd05640d vocab=0fd1bb1e
+-/
 lemma profileLaw_centered {m : ℕ} (hm : 0 < m) :
     expectation (profileLaw m hm) (profileValue m) = 0 := by
   simpa only [id_eq] using (profileLaw_expectation hm id).trans (blockMean_id m)

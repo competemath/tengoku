@@ -32,24 +32,39 @@ noncomputable def probability (μ : FiniteLaw Ω) (A : Ω → Prop) : ℝ := by
   classical
   exact ∑ ω, if A ω then μ.weight ω else 0
 
+/--
+@isnad1 id=le.1h3v.s5.4807d04cfd0c from=translated src=- shape=f996a2b1 vocab=8c2b11a0
+-/
 lemma expectation_nonneg (μ : FiniteLaw Ω) {X : Ω → ℝ} (h : ∀ ω, 0 ≤ X ω) :
     0 ≤ expectation μ X :=
   Finset.sum_nonneg fun ω _ ↦ mul_nonneg (μ.nonneg ω) (h ω)
 
+/--
+@isnad1 id=le.1h4v.s5.a407f3aa0175 from=translated src=- shape=77e73f20 vocab=8c2b11a0
+-/
 lemma expectation_mono (μ : FiniteLaw Ω) {X Y : Ω → ℝ} (h : ∀ ω, X ω ≤ Y ω) :
     expectation μ X ≤ expectation μ Y :=
   Finset.sum_le_sum fun ω _ ↦ mul_le_mul_of_nonneg_left (h ω) (μ.nonneg ω)
 
+/--
+@isnad1 id=eq.0h3v.s4.ba6481aa3c45 from=translated src=- shape=46664767 vocab=81d76060
+-/
 @[simp] lemma expectation_const (μ : FiniteLaw Ω) (a : ℝ) :
     expectation μ (fun _ ↦ a) = a := by
   simp only [expectation, ← Finset.sum_mul, μ.total, one_mul]
 
+/--
+@isnad1 id=le.0h3v.s4.865b4803ad6d from=translated src=- shape=9befd6ab vocab=d510f73c
+-/
 lemma probability_nonneg (μ : FiniteLaw Ω) (A : Ω → Prop) :
     0 ≤ probability μ A := by
   classical
   exact Finset.sum_nonneg fun ω _ ↦ by
     split_ifs <;> simp_all [μ.nonneg]
 
+/--
+@isnad1 id=le.0h3v.s4.90e83cd3675a from=translated src=- shape=53aae997 vocab=d510f73c
+-/
 lemma probability_le_one (μ : FiniteLaw Ω) (A : Ω → Prop) :
     probability μ A ≤ 1 := by
   classical
@@ -62,7 +77,9 @@ lemma probability_le_one (μ : FiniteLaw Ω) (A : Ω → Prop) :
 
 /-- The one-sixteenth lower-tail bound requires only the second and fourth
 moments. Centering and independence are needed to establish those moments for
-a weighted sum, but are not extra assumptions of this implication.-/
+a weighted sum, but are not extra assumptions of this implication.
+@isnad1 id=le.3h4v.s7.ebaede671b8e from=translated src=- shape=fc2d9ca1 vocab=ca05f4a0
+-/
 theorem small_ball_of_fourth_moment (μ : FiniteLaw Ω) (X : Ω → ℝ) (v : ℝ)
     (hv : 0 < v) (hsecond : expectation μ (fun ω ↦ X ω ^ 2) = v)
     (hfourth : expectation μ (fun ω ↦ X ω ^ 4) ≤ 4 * v ^ 2) :
@@ -106,7 +123,9 @@ theorem small_ball_of_fourth_moment (μ : FiniteLaw Ω) (X : Ω → ℝ) (v : �
   have := mul_lt_mul_of_pos_right hq' hp
   nlinarith
 
-/-- A finite probability lower bound yields the elementary Laplace bound.-/
+/-- A finite probability lower bound yields the elementary Laplace bound.
+@isnad1 id=le.3h6v.s7.700248ebc2c0 from=translated src=- shape=f21f0755 vocab=edbc3f52
+-/
 theorem laplace_le_of_small_ball (μ : FiniteLaw Ω) (X : Ω → ℝ)
     (a t p : ℝ) (ha : 0 ≤ a) (ht : 0 ≤ t)
     (hprob : p ≤ probability μ (fun ω ↦ a ≤ |X ω|)) :
@@ -147,6 +166,9 @@ theorem laplace_le_of_small_ball (μ : FiniteLaw Ω) (X : Ω → ℝ)
       have := mul_le_mul_of_nonneg_right hprob (sub_nonneg.mpr he)
       linarith
 
+/--
+@isnad1 id=le.2h1v.s5.5693a35ca220 from=translated src=- shape=a40daae4 vocab=652a836c
+-/
 lemma exp_neg_linear_bound {z : ℝ} (hz : 0 ≤ z) (hz1 : z ≤ 1) :
     z / 2 ≤ 1 - Real.exp (-z) := by
   have hprod : (1 + z) * Real.exp (-z) ≤ 1 := by
@@ -163,7 +185,9 @@ lemma exp_neg_linear_bound {z : ℝ} (hz : 0 ≤ z) (hz1 : z ≤ 1) :
   linarith
 
 /-- Second and fourth moment hypotheses imply Laplace contraction at any
-threshold below the Paley--Zygmund threshold.-/
+threshold below the Paley--Zygmund threshold.
+@isnad1 id=le.7h6v.s8.ccc0fb600302 from=translated src=- shape=0020f332 vocab=2a0b1087
+-/
 theorem laplace_le_exp_of_fourth_moment (μ : FiniteLaw Ω) (X : Ω → ℝ)
     (v a t : ℝ) (hv : 0 < v) (ha : 0 ≤ a) (ht : 0 ≤ t)
     (ha2 : a ^ 2 ≤ v / 2) (hat : a * t ≤ 1)
@@ -194,7 +218,9 @@ theorem laplace_le_exp_of_fourth_moment (μ : FiniteLaw Ω) (X : Ω → ℝ)
   have := Real.add_one_le_exp (-(a * t) / 32)
   linarith
 
-/-- Normalized form convenient for the one-rectangle coefficient estimate.-/
+/-- Normalized form convenient for the one-rectangle coefficient estimate.
+@isnad1 id=le.7h6v.s8.10d0879666e8 from=translated src=- shape=22d68860 vocab=101c78dc
+-/
 theorem laplace_normalized_of_fourth_moment (μ : FiniteLaw Ω) (X : Ω → ℝ)
     (v lam z : ℝ) (hv : 0 < v) (hlam : 0 < lam) (hz : 0 ≤ z) (hz1 : z ≤ 1)
     (hzv : z ^ 2 * lam ≤ v / 2)
@@ -220,7 +246,9 @@ theorem laplace_normalized_of_fourth_moment (μ : FiniteLaw Ω) (X : Ω → ℝ)
 Here `r` is the ratio `g / lam`; the bound on `b` is written as
 `1 / (512 * C * sqrt C)`, equal to `1 / (512 * C^(3/2))` for positive `C`.
 The proof uses the slightly smaller normalized threshold `sqrt r / (16*C)`;
-this still gives the paper's final exponential bound with the same constant.-/
+this still gives the paper's final exponential bound with the same constant.
+@isnad1 id=le.9h8v.s8.85de3213b317 from=translated src=- shape=22b95bb7 vocab=101c78dc
+-/
 theorem laplace_le_exp_of_weight_ratio (μ : FiniteLaw Ω) (X : Ω → ℝ)
     (v lam C r b : ℝ) (hlam : 0 < lam) (hC : 1 ≤ C) (hr : 0 ≤ r) (hrC : r ≤ C)
     (hb : 0 ≤ b) (hbC : b ≤ 1 / (512 * C * Real.sqrt C))
@@ -284,7 +312,9 @@ theorem laplace_le_exp_of_weight_ratio (μ : FiniteLaw Ω) (X : Ω → ℝ)
   nlinarith
 
 /-- The final one-rectangle estimate with the paper's parameters, including
-`g = 0`. The variance and fourth-moment hypotheses are explicit inputs.-/
+`g = 0`. The variance and fourth-moment hypotheses are explicit inputs.
+@isnad1 id=le.9h8v.s8.d6c3a6b132e0 from=translated src=- shape=367009a8 vocab=101c78dc
+-/
 theorem one_rectangle_laplace (μ : FiniteLaw Ω) (S : Ω → ℝ)
     (v lam C g b : ℝ) (hlam : 1 ≤ lam) (hC : 20 < C)
     (hg : 0 ≤ g) (hgC : g / lam ≤ C)

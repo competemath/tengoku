@@ -30,7 +30,9 @@ noncomputable def hitCount {n : ℕ} (A : Set α) (x : Fin n → α) : ℕ := by
 def halfHitEvent (n : ℕ) (A : Set α) : Set (Fin n → α) :=
   {x | (n : ℝ) / 2 ≤ (hitCount A x : ℝ)}
 
-/-- Specifying the coordinates of hits gives the exact iid product probability.-/
+/-- Specifying the coordinates of hits gives the exact iid product probability.
+@isnad1 id=eq.0h5v.s7.5f4248afccaa from=translated src=- shape=4aec5c53 vocab=ea7ab7cf
+-/
 lemma fixed_hits_measure (μ : Measure α) [IsProbabilityMeasure μ]
     (n : ℕ) (A : Set α) (s : Finset (Fin n)) :
     (Measure.pi (fun _ : Fin n => μ)) {x | ∀ i ∈ s, x i ∈ A} = μ A ^ s.card := by
@@ -41,7 +43,9 @@ lemma fixed_hits_measure (μ : Measure α) [IsProbabilityMeasure μ]
   simp
 
 /-- A fixed set of mass at most `p ≤ 1` contains at least half of `n` iid samples
-with probability at most `2^n p^(n/2)`. The exponent is real, so odd `n` is included.-/
+with probability at most `2^n p^(n/2)`. The exponent is real, so odd `n` is included.
+@isnad1 id=le.2h5v.s7.55c5d63cacd3 from=translated src=- shape=2e88661f vocab=151d64dc
+-/
 theorem iid_half_hits_le (μ : Measure α) [IsProbabilityMeasure μ]
     (n : ℕ) (A : Set α) (p : ℝ≥0∞) (hAp : μ A ≤ p) (hp : p ≤ 1) :
     (Measure.pi (fun _ : Fin n => μ)) (halfHitEvent n A) ≤
@@ -77,7 +81,9 @@ theorem iid_half_hits_le (μ : Measure α) [IsProbabilityMeasure μ]
     _ = (2 : ℝ≥0∞) ^ n * p ^ ((n : ℝ) / 2) := by simp
 
 /-- Union bound over all subsets of an `M`-element family. `admissible` records
-any deterministic restriction, such as the total area of heavy cells.-/
+any deterministic restriction, such as the total area of heavy cells.
+@isnad1 id=le.2h7v.s8.e214397ee7c2 from=translated src=- shape=d82d6809 vocab=18899adb
+-/
 theorem iid_family_half_hits_le (μ : Measure α) [IsProbabilityMeasure μ]
     (n M : ℕ) (A : Finset (Fin M) → Set α) (admissible : Finset (Fin M) → Prop)
     (p : ℝ≥0∞) (hp : p ≤ 1) (hA : ∀ s, admissible s → μ (A s) ≤ p) :
@@ -114,13 +120,18 @@ noncomputable def heavyCells {n M : ℕ} (cell : α → Fin M) (x : Fin n → α
   exact Finset.univ.filter (fun j => C * lam < (cellCount cell x j : ℝ))
 
 omit [MeasurableSpace α] in
+/--
+@isnad1 id=eq.0h5v.s5.46b05e92c83e from=translated src=- shape=2fcaf827 vocab=e07d087f
+-/
 lemma sum_cellCount {n M : ℕ} (cell : α → Fin M) (x : Fin n → α) :
     ∑ j, cellCount cell x j = n := by
   simpa [cellCount] using Finset.sum_card_fiberwise_eq_card_filter
     (Finset.univ : Finset (Fin n)) (Finset.univ : Finset (Fin M)) (fun i => cell (x i))
 
 omit [MeasurableSpace α] in
-/-- Deterministic counting: each heavy cell consumes more than `C * lam` points.-/
+/-- Deterministic counting: each heavy cell consumes more than `C * lam` points.
+@isnad1 id=le.0h7v.s5.a83883b59a2a from=translated src=- shape=50c2d0f3 vocab=94ae0cf4
+-/
 theorem heavy_count_bound {n M : ℕ} (cell : α → Fin M) (x : Fin n → α) (C lam : ℝ) :
     ((heavyCells cell x C lam).card : ℝ) * C * lam ≤ n := by
   classical
@@ -134,7 +145,9 @@ theorem heavy_count_bound {n M : ℕ} (cell : α → Fin M) (x : Fin n → α) (
     _ = n := by exact_mod_cast sum_cellCount cell x
 
 omit [MeasurableSpace α] in
-/-- When `n = M * lam`, the heavy cells occupy at most a `1/C` fraction of the grid.-/
+/-- When `n = M * lam`, the heavy cells occupy at most a `1/C` fraction of the grid.
+@isnad1 id=le.4h7v.s6.ac1c31dc52a9 from=translated src=- shape=2e04babc vocab=9c8ec38d
+-/
 theorem heavy_fraction_bound {n M : ℕ} (cell : α → Fin M) (x : Fin n → α)
     (C lam : ℝ) (hC : 0 < C) (hlam : 0 < lam) (hM : 0 < M)
     (hn : (n : ℝ) = M * lam) :
@@ -151,6 +164,9 @@ theorem heavy_fraction_bound {n M : ℕ} (cell : α → Fin M) (x : Fin n → α
 def cellRegion {M : ℕ} (cell : α → Fin M) (s : Finset (Fin M)) : Set α :=
   {z | cell z ∈ s}
 
+/--
+@isnad1 id=le.1h6v.s6.b0c47663b395 from=translated src=- shape=f2ce252b vocab=977d47e9
+-/
 lemma cellRegion_measure_le (μ : Measure α) (M : ℕ) (cell : α → Fin M)
     (s : Finset (Fin M)) (q : ℝ≥0∞) (hcells : ∀ j, μ {z | cell z = j} ≤ q) :
     μ (cellRegion cell s) ≤ (s.card : ℝ≥0∞) * q := by
@@ -164,6 +180,9 @@ lemma cellRegion_measure_le (μ : Measure α) (M : ℕ) (cell : α → Fin M)
     _ ≤ ∑ _j ∈ s, q := Finset.sum_le_sum (fun j _ => hcells j)
     _ = (s.card : ℝ≥0∞) * q := by simp
 
+/--
+@isnad1 id=le.4h7v.s7.5b0730902699 from=translated src=- shape=17026088 vocab=70c595ca
+-/
 lemma cells_and_bad_mass_le (μ : Measure α) (M : ℕ) (cell : α → Fin M)
     (bad : Set α) (C : ℝ) (hC : 0 < C) (s : Finset (Fin M))
     (hs : (s.card : ℝ) / M ≤ 1 / C)
@@ -195,6 +214,9 @@ noncomputable def goodCount {n M : ℕ} (cell : α → Fin M) (x : Fin n → α)
     (cellCount cell x (cell (x i)) : ℝ) ≤ C * lam ∧ x i ∉ bad)).card
 
 omit [MeasurableSpace α] in
+/--
+@isnad1 id=eq.0h8v.s6.fa97e7073bd7 from=translated src=- shape=3abf07b5 vocab=5a88f01e
+-/
 lemma bad_hits_add_goodCount {n M : ℕ} (cell : α → Fin M) (x : Fin n → α)
     (C lam : ℝ) (bad : Set α) :
     hitCount (cellRegion cell (heavyCells cell x C lam) ∪ bad) x +
@@ -210,7 +232,9 @@ def badOccupancyEvent (n M : ℕ) (cell : α → Fin M) (C lam : ℝ) (bad : Set
 
 /-- The one-shape failure estimate, for any equal-mass partition and a bad set
 of mass at most `4/C`. Both sample-dependent heavy-cell counting and the iid
-probability bound are proved, rather than assumed as probabilistic hypotheses.-/
+probability bound are proved, rather than assumed as probabilistic hypotheses.
+@isnad1 id=le.6h8v.s8.86a18d8e600b from=translated src=- shape=77819671 vocab=2c5a637a
+-/
 theorem bad_occupancy_le (μ : Measure α) [IsProbabilityMeasure μ]
     (n M : ℕ) (cell : α → Fin M) (bad : Set α) (C lam : ℝ)
     (hC : 20 < C) (hlam : 0 < lam) (hM : 0 < M) (hn : (n : ℝ) = M * lam)
@@ -246,7 +270,9 @@ theorem bad_occupancy_le (μ : Measure α) [IsProbabilityMeasure μ]
       rw [ENNReal.ofReal_rpow_of_nonneg (by positivity : (0 : ℝ) ≤ 5 / C) (by positivity)]
       norm_num
 
-/-- The occupancy contribution over all `h` shapes, matching the manuscript.-/
+/-- The occupancy contribution over all `h` shapes, matching the manuscript.
+@isnad1 id=le.6h9v.s8.2231cf14fc66 from=translated src=- shape=9495cec6 vocab=a4fb8b86
+-/
 theorem all_shapes_bad_occupancy_le (μ : Measure α) [IsProbabilityMeasure μ]
     (n M h : ℕ) (cell : Fin h → α → Fin M) (bad : Fin h → Set α) (C lam : ℝ)
     (hC : 20 < C) (hlam : 0 < lam) (hM : 0 < M) (hn : (n : ℝ) = M * lam)
@@ -280,12 +306,18 @@ noncomputable def finiteGridIndex (m : ℕ) (hm : 0 < m) (x : ℝ) : Fin m :=
       omega⟩
   else ⟨0, hm⟩
 
+/--
+@isnad1 id=eq.2h2v.s5.a65c9ea7fd94 from=translated src=- shape=a9112779 vocab=2ef0c74e
+-/
 lemma finiteGridIndex_eq {m : ℕ} (hm : 0 < m) {x : ℝ} (hx : x ∈ Set.Ioc (0 : ℝ) 1) :
     ((finiteGridIndex m hm x : ℕ) : ℤ) = gridIndex m x := by
   have hk := (gridIndex_bounds m hm hx).1
   have hk0 : (0 : ℤ) ≤ gridIndex m x := by exact_mod_cast hk
   simp [finiteGridIndex, hx, Int.toNat_of_nonneg hk0]
 
+/--
+@isnad1 id=le.1h2v.s6.944463d4d34c from=translated src=- shape=27ba4150 vocab=5b66ed84
+-/
 lemma finiteGridIndex_mass (m : ℕ) (hm : 0 < m) (j : Fin m) :
     μI {x | finiteGridIndex m hm x = j} ≤ ENNReal.ofReal (1 / (m : ℝ)) := by
   have hsub : {x | finiteGridIndex m hm x = j} ⊆
@@ -312,6 +344,9 @@ noncomputable def rectangularGridIndex (u v : ℕ) (hu : 0 < u) (hv : 0 < v)
     (z : ℝ × ℝ) : Fin (u * v) :=
   finProdFinEquiv (finiteGridIndex u hu z.1, finiteGridIndex v hv z.2)
 
+/--
+@isnad1 id=le.2h3v.s7.da935ce4b051 from=translated src=- shape=478cfbda vocab=5bb06470
+-/
 lemma rectangularGridIndex_mass (u v : ℕ) (hu : 0 < u) (hv : 0 < v) (j : Fin (u * v)) :
     (μI.prod μI) {z | rectangularGridIndex u v hu hv z = j} ≤
       ENNReal.ofReal (1 / ((u * v : ℕ) : ℝ)) := by
@@ -332,7 +367,9 @@ lemma rectangularGridIndex_mass (u v : ℕ) (hu : 0 < u) (hv : 0 < v) (j : Fin (
       push_cast
       ring
 
-/-- The small-value part of the actual profile lies near its three zeros.-/
+/-- The small-value part of the actual profile lies near its three zeros.
+@isnad1 id=mem.2h2v.s7.3eafa7db1fce from=translated src=- shape=627c98e3 vocab=9de2cac0
+-/
 lemma profile_small_subset {x ε : ℝ} (hx : x ∈ Set.Icc (0 : ℝ) 1)
     (hsmall : |profile x| < ε) :
     x ∈ Set.Icc 0 ε ∪ Set.Icc (1 / 2 - ε) (1 / 2 + ε) ∪ Set.Icc (1 - ε) 1 := by
@@ -353,6 +390,9 @@ def scaledProfileBands (m : ℕ) (k ε : ℝ) : Set ℝ :=
   Set.Icc ((k + 1 / 2 - ε) / m) ((k + 1 / 2 + ε) / m) ∪
   Set.Icc ((k + 1 - ε) / m) ((k + 1) / m)
 
+/--
+@isnad1 id=le.2h3v.s6.5e53ec54db0a from=translated src=- shape=9c11e503 vocab=5b233739
+-/
 lemma scaledProfileBands_volume_le (m : ℕ) (hm : 0 < m) (k ε : ℝ) (hε : 0 ≤ ε) :
     volume (scaledProfileBands m k ε) ≤ ENNReal.ofReal (4 * ε / m) := by
   have hm' : (0 : ℝ) < m := by exact_mod_cast hm
@@ -377,6 +417,9 @@ lemma scaledProfileBands_volume_le (m : ℕ) (hm : 0 < m) (k ε : ℝ) (hε : 0 
 def periodicProfileBad (m : ℕ) (ε : ℝ) : Set ℝ :=
   {y | |profile ((m : ℝ) * y - gridIndex m y)| < ε}
 
+/--
+@isnad1 id=le.2h2v.s5.d1002b8cf670 from=translated src=- shape=68d705e9 vocab=38fde905
+-/
 lemma periodicProfileBad_mass (m : ℕ) (hm : 0 < m) (ε : ℝ) (hε : 0 ≤ ε) :
     μI (periodicProfileBad m ε) ≤ ENNReal.ofReal (4 * ε) := by
   have hm' : (0 : ℝ) < m := by exact_mod_cast hm
@@ -425,6 +468,9 @@ lemma periodicProfileBad_mass (m : ℕ) (hm : 0 < m) (ε : ℝ) (hε : 0 ≤ ε)
 def verticalBadBands (v : ℕ) (C : ℝ) : Set (ℝ × ℝ) :=
   Set.univ ×ˢ periodicProfileBad v (1 / C)
 
+/--
+@isnad1 id=le.2h2v.s6.9fc6a106b777 from=translated src=- shape=3612c6f7 vocab=11232395
+-/
 lemma verticalBadBands_mass (v : ℕ) (hv : 0 < v) (C : ℝ) (hC : 0 < C) :
     (μI.prod μI) (verticalBadBands v C) ≤ ENNReal.ofReal (4 / C) := by
   rw [verticalBadBands, Measure.prod_prod, measure_univ, one_mul]
@@ -433,7 +479,9 @@ lemma verticalBadBands_mass (v : ℕ) (hv : 0 < v) (C : ℝ) (hC : 0 < C) :
   ring
 
 /-- The one-shape occupancy bound for iid uniform points of the unit square,
-with actual uniform rectangular cells and the actual profile's vertical bands.-/
+with actual uniform rectangular cells and the actual profile's vertical bands.
+@isnad1 id=le.5h5v.s8.95457ac1772e from=translated src=- shape=9f2a5c12 vocab=5e6444ce
+-/
 theorem rectangular_grid_bad_occupancy_le (n u v : ℕ) (hu : 0 < u) (hv : 0 < v)
     (C lam : ℝ) (hC : 20 < C) (hlam : 0 < lam)
     (hn : (n : ℝ) = ((u * v : ℕ) : ℝ) * lam) :
@@ -446,7 +494,9 @@ theorem rectangular_grid_bad_occupancy_le (n u v : ℕ) (hu : 0 < u) (hv : 0 < v
 
 /-- All shapes in the concrete two-dimensional grid. Every shape has `M` cells,
 but its horizontal and vertical resolutions may differ. This proves the full
-occupancy term appearing in the coefficient-sum lemma.-/
+occupancy term appearing in the coefficient-sum lemma.
+@isnad1 id=le.6h7v.s8.72a54790e712 from=translated src=- shape=07a8ddc9 vocab=84671f00
+-/
 theorem grid_shapes_bad_occupancy_le (n M h : ℕ) (u v : Fin h → ℕ)
     (hu : ∀ j, 0 < u j) (hv : ∀ j, 0 < v j) (hM : ∀ j, u j * v j = M)
     (C lam : ℝ) (hC : 20 < C) (hlam : 0 < lam) (hn : (n : ℝ) = M * lam) :

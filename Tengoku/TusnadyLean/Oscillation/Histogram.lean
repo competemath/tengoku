@@ -24,6 +24,9 @@ def productWeight {n : ℕ} (p : Ω → ℝ) (x : Fin n → Ω) : ℝ :=
   ∏ i, p (x i)
 
 omit [DecidableEq Ω] in
+/--
+@isnad1 id=eq.0h3v.s6.03157d3457b3 from=translated src=- shape=ae2cde1c vocab=a9326a96
+-/
 lemma sum_productWeight {n : ℕ} (p : Ω → ℝ) :
     ∑ x : Fin n → Ω, productWeight p x = (∑ c, p c) ^ n := by
   simp only [productWeight]
@@ -31,15 +34,24 @@ lemma sum_productWeight {n : ℕ} (p : Ω → ℝ) :
   simp
 
 omit [Fintype Ω] in
+/--
+@isnad1 id=eq.0h4v.s5.e9fbf141d141 from=translated src=- shape=19cd447e vocab=22de5097
+-/
 lemma histogramCount_eq_card {n : ℕ} (x : Fin n → Ω) (c : Ω) :
     histogramCount (histogram x) c = (Finset.univ.filter (fun i => x i = c)).card := by
   simp only [histogramCount, histogram, Sym.toMultiset, Multiset.count_map]
   simp only [eq_comm]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.b49852d3f671 from=translated src=- shape=aed6abd5 vocab=9812a382
+-/
 lemma histogram_count_sum {n : ℕ} (s : Sym Ω n) : ∑ c, histogramCount s c = n := by
   exact (Multiset.sum_count_eq_card (fun _ _ => Finset.mem_univ _)).trans s.2
 
+/--
+@isnad1 id=eq.0h4v.s6.f3a262ad322a from=translated src=- shape=44d56c7f vocab=80678151
+-/
 lemma sum_sample_eq_counts {n : ℕ} (x : Fin n → Ω) (f : Ω → ℝ) :
     ∑ i, f (x i) = ∑ c, (histogramCount (histogram x) c : ℝ) * f c := by
   rw [← Finset.sum_fiberwise Finset.univ x (fun i => f (x i))]
@@ -54,11 +66,17 @@ lemma sum_sample_eq_counts {n : ℕ} (x : Fin n → Ω) (f : Ω → ℝ) :
       rw [(Finset.mem_filter.mp hi).2]
     _ = _ := by simp
 
+/--
+@isnad1 id=lt.0h4v.s5.112ce3f17e7c from=translated src=- shape=4b3475ef vocab=1f9e4df1
+-/
 lemma histogramCount_pos_sample {n : ℕ} (x : Fin n → Ω) (i : Fin n) :
     0 < histogramCount (histogram x) (x i) := by
   rw [histogramCount_eq_card]
   exact Finset.card_pos.mpr ⟨i, by simp⟩
 
+/--
+@isnad1 id=le.2h2v.s6.a168f67885c6 from=translated src=- shape=2b987b0c vocab=ea11e8b4
+-/
 lemma prod_le_mean_pow {n : ℕ} (hn : 0 < n) (z : Fin n → ℝ) (hz : ∀ i, 0 ≤ z i) :
     (∏ i, z i) ≤ ((∑ i, z i) / n) ^ n := by
   have hnR : (0 : ℝ) < n := by exact_mod_cast hn
@@ -72,20 +90,32 @@ lemma prod_le_mean_pow {n : ℕ} (hn : 0 < n) (z : Fin n → ℝ) (hz : ∀ i, 0
 def empirical {n : ℕ} (s : Sym Ω n) (c : Ω) : ℝ := histogramCount s c / n
 
 omit [Fintype Ω] in
+/--
+@isnad1 id=le.0h4v.s4.4c96f1b3b155 from=translated src=- shape=34936494 vocab=85af1532
+-/
 lemma empirical_nonneg {n : ℕ} (s : Sym Ω n) (c : Ω) : 0 ≤ empirical s c := by
   unfold empirical
   positivity
 
+/--
+@isnad1 id=eq.1h3v.s5.26ae8c469ea7 from=translated src=- shape=25fe545b vocab=cb629feb
+-/
 lemma empirical_total {n : ℕ} (hn : 0 < n) (s : Sym Ω n) : ∑ c, empirical s c = 1 := by
   simp only [empirical, ← Finset.sum_div, ← Nat.cast_sum, histogram_count_sum]
   exact div_self (by exact_mod_cast Nat.ne_of_gt hn)
 
 omit [Fintype Ω] in
+/--
+@isnad1 id=eq.1h4v.s5.31d9eee1c065 from=translated src=- shape=3f95790b vocab=b0a6b2b2
+-/
 lemma count_eq_mul_empirical {n : ℕ} (hn : 0 < n) (s : Sym Ω n) (c : Ω) :
     (histogramCount s c : ℝ) = n * empirical s c := by
   unfold empirical
   field_simp
 
+/--
+@isnad1 id=eq.2h2v.s5.00810761b569 from=translated src=- shape=a8727d22 vocab=102c45ce
+-/
 lemma mul_sqrt_div {p q : ℝ} (hp : 0 ≤ p) (hq : 0 ≤ q) :
     q * Real.sqrt (p / q) = Real.sqrt (p * q) := by
   by_cases hq0 : q = 0
@@ -99,9 +129,15 @@ lemma mul_sqrt_div {p q : ℝ} (hp : 0 ≤ p) (hq : 0 ≤ q) :
 def affinity {n : ℕ} (p : Ω → ℝ) (s : Sym Ω n) : ℝ :=
   ∑ c, Real.sqrt (p c * empirical s c)
 
+/--
+@isnad1 id=le.0h4v.s5.6d7acd631e00 from=translated src=- shape=f2eb5953 vocab=fb1a704e
+-/
 lemma affinity_nonneg {n : ℕ} (p : Ω → ℝ) (s : Sym Ω n) : 0 ≤ affinity p s :=
   Finset.sum_nonneg fun _ _ => Real.sqrt_nonneg _
 
+/--
+@isnad1 id=eq.2h4v.s6.e4befa87d3fa from=translated src=- shape=2a126851 vocab=611b2fb6
+-/
 lemma sample_ratio_mean {n : ℕ} (hn : 0 < n) (p : Ω → ℝ) (hp : ∀ c, 0 ≤ p c)
     (x : Fin n → Ω) :
     (∑ i, Real.sqrt (p (x i) / empirical (histogram x) (x i))) / n =
@@ -112,6 +148,9 @@ lemma sample_ratio_mean {n : ℕ} (hn : 0 < n) (p : Ω → ℝ) (hp : ∀ c, 0 �
   rw [← Finset.mul_sum]
   exact mul_div_cancel_left₀ _ (by exact_mod_cast Nat.ne_of_gt hn)
 
+/--
+@isnad1 id=le.2h4v.s6.c77da25fc225 from=translated src=- shape=6d7b69c0 vocab=6090386f
+-/
 lemma productWeight_le_empirical {n : ℕ} (hn : 0 < n) (p : Ω → ℝ) (hp : ∀ c, 0 ≤ p c)
     (x : Fin n → Ω) :
     productWeight p x ≤ productWeight (empirical (histogram x)) x *
@@ -136,7 +175,9 @@ lemma productWeight_le_empirical {n : ℕ} (hn : 0 < n) (p : Ω → ℝ) (hp : �
   have hz2 := pow_le_pow_left₀ (Finset.prod_nonneg fun i _ => Real.sqrt_nonneg _) hz 2
   simpa [← pow_mul, Nat.mul_comm] using hz2
 
-/-- Probability of one actual histogram, with no multinomial formula assumed.-/
+/-- Probability of one actual histogram, with no multinomial formula assumed.
+@isnad1 id=le.2h4v.s7.c20b5cfe31e4 from=translated src=- shape=386f4d9b vocab=7d5d0918
+-/
 theorem histogram_probability_le {n : ℕ} (hn : 0 < n) (p : Ω → ℝ)
     (hp : ∀ c, 0 ≤ p c) (s : Sym Ω n) :
     (∑ x ∈ Finset.univ.filter (fun x : Fin n → Ω => histogram x = s), productWeight p x)
@@ -165,13 +206,22 @@ theorem histogram_probability_le {n : ℕ} (hn : 0 < n) (p : Ω → ℝ)
 def interiorSum {n M : ℕ} (s : Sym (Option (Fin M)) n) : ℝ :=
   ∑ c : Fin M, Real.sqrt (histogramCount s (some c))
 
+/--
+@isnad1 id=le.0h3v.s4.fc208228b70a from=translated src=- shape=0cdb9142 vocab=30721770
+-/
 lemma interiorSum_nonneg {n M : ℕ} (s : Sym (Option (Fin M)) n) : 0 ≤ interiorSum s :=
   Finset.sum_nonneg fun _ _ => Real.sqrt_nonneg _
 
+/--
+@isnad1 id=le.1h4v.s5.a31c3bf6c681 from=translated src=- shape=d57815c4 vocab=e6bf1bbb
+-/
 lemma empirical_le_one {n : ℕ} (hn : 0 < n) (s : Sym Ω n) (c : Ω) : empirical s c ≤ 1 := by
   rw [← empirical_total hn s]
   exact Finset.single_le_sum (fun d _ => empirical_nonneg s d) (Finset.mem_univ c)
 
+/--
+@isnad1 id=le.6h5v.s7.c993acb93be2 from=translated src=- shape=fb452846 vocab=def229fc
+-/
 lemma affinity_le_interior {n M : ℕ} (hn : 0 < n) (hM : 0 < M) {b : ℝ} (_hb : 0 < b)
     (p : Option (Fin M) → ℝ) (hp : ∀ c, 0 ≤ p c)
     (hgood : ∀ c, p (some c) ≤ 1 / M) (hbad : p none ≤ 4/b)
@@ -204,11 +254,17 @@ lemma affinity_le_interior {n M : ℕ} (hn : 0 < n) (hM : 0 < M) {b : ℝ} (_hb 
           Real.sqrt ((n:ℝ)*M) := add_le_add hbad' (Finset.sum_le_sum fun c _ => hgood' c)
     _ = _ := by rw [← Finset.sum_div]; exact add_comm _ _
 
+/--
+@isnad1 id=le.0h2v.s6.b168042527ed from=translated src=- shape=40e95135 vocab=c5ff295b
+-/
 lemma histogram_card_le (n M : ℕ) :
     Fintype.card (Sym (Option (Fin M)) n) ≤ 2^(n+M) := by
   rw [Sym.card_sym_eq_choose]
   simpa [Nat.add_comm, Nat.add_left_comm, Nat.add_assoc] using Nat.choose_le_two_pow (n+M) n
 
+/--
+@isnad1 id=le.1h1v.s6.3fd5f16fca3e from=translated src=- shape=716a5f17 vocab=2446b050
+-/
 lemma square_exp_neg_le_four {x : ℝ} (hx : 0 ≤ x) :
     (x+2)^2 * Real.exp (-x) ≤ 4 := by
   have hexp := Real.add_one_le_exp (x/2)
@@ -224,6 +280,9 @@ lemma square_exp_neg_le_four {x : ℝ} (hx : 0 ≤ x) :
       mul_le_mul_of_nonneg_right hsq (Real.exp_pos _).le
     _ = 4 := by rw [mul_assoc, ← Real.exp_add]; simp
 
+/--
+@isnad1 id=le.4h4v.s7.f75fdce8e51e from=translated src=- shape=02ef2842 vocab=f7c166ae
+-/
 lemma occupancy_exponential_absorption {n M : ℕ} (hn : 0 < n) (hM : 0 < M)
     {b S : ℝ} (hb : 0 < b) (hS : 0 ≤ S) :
     (S / Real.sqrt ((n:ℝ)*M) + 2 / Real.sqrt b)^(2*n) *
@@ -255,7 +314,9 @@ lemma occupancy_exponential_absorption {n M : ℕ} (hn : 0 < n) (hM : 0 < M)
     _ ≤ 4/b := div_le_div_of_nonneg_right (square_exp_neg_le_four hx) hb.le
 
 /-- The exact one-layer estimate for a product law on M interior buckets plus a boundary bucket.
-Only upper bounds on bucket probabilities are needed; the histogram argument is proved above.-/
+Only upper bounds on bucket probabilities are needed; the histogram argument is proved above.
+@isnad1 id=le.6h4v.s8.15ff207c58e1 from=translated src=- shape=7f1e2532 vocab=98026b08
+-/
 theorem iid_interior_laplace {n M : ℕ} (hn : 0 < n) (hM : 0 < M) {b : ℝ} (hb : 0 < b)
     (p : Option (Fin M) → ℝ) (hp : ∀ c, 0 ≤ p c)
     (hgood : ∀ c, p (some c) ≤ 1 / M) (hbad : p none ≤ 4/b) :

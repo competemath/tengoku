@@ -29,11 +29,17 @@ noncomputable abbrev μI : Measure ℝ := volume.restrict (Set.Icc (0 : ℝ) 1)
 
 instance : IsProbabilityMeasure μI := ⟨by simp [μI, Real.volume_Icc]⟩
 
+/--
+@isnad1 id=eq.0h0v.s6.c5fdf49ae192 from=translated src=- shape=d0485207 vocab=50185c04
+-/
 lemma unitSq_eq :
     (volume : Measure (ℝ × ℝ)).restrict (Set.Icc 0 1) = μI.prod μI := by
   rw [Set.Icc_prod_eq, Measure.volume_eq_prod, μI, Measure.prod_restrict]
   simp
 
+/--
+@isnad1 id=eq.2h2v.s6.c16c3b8b2747 from=translated src=- shape=bbcb4fb7 vocab=b2c25f48
+-/
 lemma μI_cell (m k : ℕ) (hm : 1 ≤ m) (hk : k < m) :
     μI (Set.Ioc ((k : ℝ) / m) (((k : ℝ) + 1) / m)) = ENNReal.ofReal (1 / m) := by
   have hm0 : (0 : ℝ) < m := by exact_mod_cast hm
@@ -46,6 +52,9 @@ lemma μI_cell (m k : ℕ) (hm : 1 ≤ m) (hk : k < m) :
   rw [μI, Measure.restrict_eq_self _ hsub, Real.volume_Ioc]
   congr 1; ring
 
+/--
+@isnad1 id=eq.0h0v.s5.a99acb01c24c from=translated src=- shape=24067711 vocab=0eae529b
+-/
 lemma μI_compl_Ioc : μI (Set.Ioc 0 1)ᶜ = 0 := by
   rw [μI, Measure.restrict_apply measurableSet_Ioc.compl]
   refine measure_mono_null (t := {0}) ?_ (measure_singleton 0)
@@ -57,17 +66,25 @@ lemma μI_compl_Ioc : μI (Set.Ioc 0 1)ᶜ = 0 := by
   have := h1 (lt_of_le_of_ne h2.1 (Ne.symm hx))
   linarith [h2.2]
 
+/--
+@isnad1 id=eq.0h0v.s5.2ac0043682b4 from=translated src=- shape=24067711 vocab=1f03886e
+-/
 lemma μI_compl_Icc : μI (Set.Icc 0 1)ᶜ = 0 := by
   rw [μI, Measure.restrict_apply measurableSet_Icc.compl]
   refine measure_mono_null (t := ∅) ?_ measure_empty
   rintro x ⟨h1, h2⟩
   exact h1 h2
 
+/--
+@isnad1 id=eq.0h1v.s4.21a094aef15c from=translated src=- shape=778ca0af vocab=c3938839
+-/
 lemma μI_singleton (a : ℝ) : μI {a} = 0 := by
   rw [μI, Measure.restrict_apply (measurableSet_singleton a)]
   exact measure_mono_null Set.inter_subset_left (measure_singleton a)
 
-/-- Ties have probability zero.-/
+/-- Ties have probability zero.
+@isnad1 id=eq.1h3v.s6.e236e92283f2 from=translated src=- shape=08872008 vocab=cb0e158b
+-/
 lemma diag_null {n : ℕ} (i j : Fin n) (hij : i ≠ j) :
     Measure.pi (fun _ : Fin n => μI) {y | y i = y j} = 0 := by
   obtain ⟨n', rfl⟩ : ∃ n', n = n' + 1 := ⟨n - 1, by have := i.pos; omega⟩
@@ -102,12 +119,21 @@ noncomputable def rectDisc (X : Finset (ℝ × ℝ)) : ℕ :=
 noncomputable def Δ₂ (n : ℕ) : ℕ :=
   ⨆ X : {X : Finset (ℝ × ℝ) // X.card = n}, rectDisc X.1
 
+/--
+@isnad1 id=eq.0h1v.s4.21ebdd08bfdb from=translated src=- shape=99656a98 vocab=c3304e7a
+-/
 lemma units_abs (u : ℤˣ) : |(u : ℤ)| = 1 := by
   rcases Int.units_eq_one_or u with h | h <;> simp [h]
 
+/--
+@isnad1 id=or.0h1v.s4.dee1b813ddfc from=translated src=- shape=02523acf vocab=c2696686
+-/
 lemma units_pm (u : ℤˣ) : (u : ℤ) = 1 ∨ (u : ℤ) = -1 := by
   rcases Int.units_eq_one_or u with h | h <;> simp [h]
 
+/--
+@isnad1 id=le.0h3v.s6.5d06478eaa3b from=translated src=- shape=357c208d vocab=9afbd6cb
+-/
 lemma abs_colorSum_le (X : Finset (ℝ × ℝ)) (χ : X → ℤˣ) (R : Set (ℝ × ℝ)) :
     |colorSum X χ R| ≤ X.card := by
   classical
@@ -119,23 +145,34 @@ lemma abs_colorSum_le (X : Finset (ℝ × ℝ)) (χ : X → ℤˣ) (R : Set (ℝ
         split_ifs <;> simp [units_abs]
     _ = X.card := by simp
 
+/--
+@isnad1 id=le.0h3v.s5.cd33c2673b59 from=translated src=- shape=357f935e vocab=d4d1a882
+-/
 lemma natAbs_colorSum_le (X : Finset (ℝ × ℝ)) (χ : X → ℤˣ) (R : Set (ℝ × ℝ)) :
     (colorSum X χ R).natAbs ≤ X.card := by
   have h : ((colorSum X χ R).natAbs : ℤ) ≤ X.card := by
     rw [Int.natCast_natAbs]; exact abs_colorSum_le X χ R
   exact_mod_cast h
 
+/--
+@isnad1 id=bddabove.0h2v.s6.a0a5a87425c2 from=translated src=- shape=79b30cc1 vocab=9ce77485
+-/
 lemma bdd_rect (X : Finset (ℝ × ℝ)) (χ : X → ℤˣ) :
     BddAbove (Set.range fun ab : (ℝ × ℝ) × (ℝ × ℝ) =>
       (colorSum X χ (Set.Icc ab.1 ab.2)).natAbs) :=
   ⟨X.card, by rintro _ ⟨ab, rfl⟩; exact natAbs_colorSum_le _ _ _⟩
 
+/--
+@isnad1 id=le.0h1v.s3.14c07573810f from=translated src=- shape=a50a4159 vocab=93896dc7
+-/
 lemma rectDisc_le_card (X : Finset (ℝ × ℝ)) : rectDisc X ≤ X.card := by
   unfold rectDisc
   exact (ciInf_le (OrderBot.bddBelow _) (fun _ => 1)).trans
     (ciSup_le fun ab => natAbs_colorSum_le _ _ _)
 
-/-- If every coloring has a rectangle with `|χ(X ∩ R)| > k`, then `disc(X) > k`.-/
+/-- If every coloring has a rectangle with `|χ(X ∩ R)| > k`, then `disc(X) > k`.
+@isnad1 id=lt.1h2v.s6.a86db04a3596 from=translated src=- shape=8704be8b vocab=3b1aeaf0
+-/
 lemma lt_rectDisc {X : Finset (ℝ × ℝ)} {k : ℝ}
     (h : ∀ χ : X → ℤˣ, ∃ a b : ℝ × ℝ, k < |(colorSum X χ (Set.Icc a b) : ℝ)|) :
     k < rectDisc X := by
@@ -152,14 +189,22 @@ lemma lt_rectDisc {X : Finset (ℝ × ℝ)} {k : ℝ}
   rw [e] at hab
   exact lt_of_lt_of_le hab (by exact_mod_cast h1)
 
+/--
+@isnad1 id=bddabove.0h1v.s6.0f2e65f1bf5c from=translated src=- shape=17aeb5ac vocab=7946e53e
+-/
 lemma bdd_Δ₂ (n : ℕ) :
     BddAbove (Set.range fun X : {X : Finset (ℝ × ℝ) // X.card = n} => rectDisc X.1) :=
   ⟨n, by rintro _ ⟨Y, rfl⟩; exact (rectDisc_le_card Y.1).trans Y.2.le⟩
 
+/--
+@isnad1 id=le.1h2v.s4.caf297882d15 from=translated src=- shape=e95417ea vocab=4ff760f7
+-/
 lemma rectDisc_le_Δ₂ {X : Finset (ℝ × ℝ)} {n : ℕ} (hX : X.card = n) : rectDisc X ≤ Δ₂ n :=
   le_ciSup (f := fun X : {X : Finset (ℝ × ℝ) // X.card = n} => rectDisc X.1) (bdd_Δ₂ n) ⟨X, hX⟩
 
-/-- `Δ₂(n) ≤ n`.-/
+/-- `Δ₂(n) ≤ n`.
+@isnad1 id=le.0h1v.s3.703c442083f4 from=translated src=- shape=a365602c vocab=5e664bf2
+-/
 lemma Δ₂_le (n : ℕ) : Δ₂ n ≤ n := by
   unfold Δ₂
   rcases isEmpty_or_nonempty {X : Finset (ℝ × ℝ) // X.card = n} with h | h
@@ -172,12 +217,18 @@ lemma Δ₂_le (n : ℕ) : Δ₂ n ≤ n := by
 noncomputable def extend (X : Finset (ℝ × ℝ)) (χ : X → ℤˣ) : ℝ × ℝ → ℤ := fun p =>
   if h : p ∈ X then ((χ ⟨p, h⟩ : ℤˣ) : ℤ) else 1
 
+/--
+@isnad1 id=or.1h3v.s6.de7a4d3a8a8b from=translated src=- shape=5c05099a vocab=c9f4c743
+-/
 lemma extend_pm (X : Finset (ℝ × ℝ)) (χ : X → ℤˣ) :
     ∀ p ∈ X, extend X χ p = 1 ∨ extend X χ p = -1 := by
   intro p hp
   simp only [extend, hp, ↓reduceDIte]
   exact units_pm _
 
+/--
+@isnad1 id=eq.0h3v.s6.7915c5b7db3e from=translated src=- shape=88f1dc9c vocab=e9380153
+-/
 lemma sum_filter_extend (X : Finset (ℝ × ℝ)) (χ : X → ℤˣ) (q : ℝ × ℝ → Prop)
     [DecidablePred q] :
     ∑ p ∈ X.filter q, (extend X χ p : ℝ) = (colorSum X χ {p | q p} : ℝ) := by
@@ -190,7 +241,9 @@ lemma sum_filter_extend (X : Finset (ℝ × ℝ)) (χ : X → ℤˣ) (q : ℝ ×
   · simp [hq, extend]
   · simp [hq]
 
-/-- The anchored rectangle `[0,x] × [0,y]`.-/
+/-- The anchored rectangle `[0,x] × [0,y]`.
+@isnad1 id=eq.0h2v.s6.a9503150fe37 from=translated src=- shape=1cff5512 vocab=20bac1fe
+-/
 lemma Icc_zero_eq (x y : ℝ) :
     Set.Icc (0 : ℝ × ℝ) (x, y) = {p | 0 ≤ p.1 ∧ p.1 ≤ x ∧ 0 ≤ p.2 ∧ p.2 ≤ y} := by
   ext p
@@ -200,7 +253,9 @@ lemma Icc_zero_eq (x y : ℝ) :
 /-! ### Theorem 1.1 -/
 
 /-- A point set whose colorings of the plane all have a large anchored rectangle sum has
-`Δ₂(n)` larger than that bound.-/
+`Δ₂(n)` larger than that bound.
+@isnad1 id=lt.2h3v.s8.d77280730b37 from=translated src=- shape=816824d1 vocab=3c4c676e
+-/
 lemma lt_Δ₂_of {n : ℕ} {k : ℝ} (P : Finset (ℝ × ℝ)) (hP : P.card = n)
     (h : ∀ χ : ℝ × ℝ → ℤ, (∀ p ∈ P, χ p = 1 ∨ χ p = -1) →
       ∃ x y : ℝ, k <
@@ -220,7 +275,9 @@ lemma lt_Δ₂_of {n : ℕ} {k : ℝ} (P : Finset (ℝ × ℝ)) (hP : P.card = n
 instance : IsProbabilityMeasure ((volume : Measure (ℝ × ℝ)).restrict (Set.Icc 0 1)) := by
   rw [unitSq_eq]; infer_instance
 
-/-- Almost surely the `n` sample points are distinct.-/
+/-- Almost surely the `n` sample points are distinct.
+@isnad1 id=eq.0h1v.s7.40a0d4b2d793 from=translated src=- shape=300005ed vocab=7232d73a
+-/
 lemma ties_null (n : ℕ) :
     Measure.pi (fun _ : Fin n => (volume : Measure (ℝ × ℝ)).restrict (Set.Icc 0 1))
       {ω | ¬ Injective ω} = 0 := by
@@ -245,7 +302,9 @@ lemma ties_null (n : ℕ) :
   · rw [hmp.measure_preimage_equiv, Measure.prod_prod, hN, mul_zero]
 
 /-- For distinct sample points, the sum over the point set `X = {ω t}` equals the sum over
-the indices `t`.-/
+the indices `t`.
+@isnad1 id=eq.1h4v.s7.4e9001e34d8c from=translated src=- shape=0ae01b45 vocab=8c836b38
+-/
 lemma colorSum_image {n : ℕ} (ω : Fin n → ℝ × ℝ) (hω : Injective ω)
     (χ : ↥(univ.image ω) → ℤˣ) (q : ℝ × ℝ → Prop) [DecidablePred q] :
     (colorSum (univ.image ω) χ {p | q p} : ℝ) =
@@ -261,7 +320,9 @@ lemma colorSum_image {n : ℕ} (ω : Fin n → ℝ × ℝ) (hω : Injective ω)
 
 /-- Packaging: a bound on the (outer) probability of the index-form bad event gives a measurable
 good event, on which the points are distinct and every coloring of the point set has a large
-anchored rectangle.-/
+anchored rectangle.
+@isnad1 id=ex.2h3v.s9.5613e8280175 from=translated src=- shape=046858df vocab=d7dd6ecd
+-/
 theorem good_event_of_bad (n : ℕ) (b ε : ℝ) (hε : 0 ≤ ε)
     (hB : Measure.pi (fun _ : Fin n => (volume : Measure (ℝ × ℝ)).restrict (Set.Icc 0 1))
       {X : Fin n → ℝ × ℝ | ∃ χ : Fin n → ℤ, (∀ t, χ t = 1 ∨ χ t = -1) ∧
@@ -311,7 +372,9 @@ theorem good_event_of_bad (n : ℕ) (b ε : ℝ) (hε : 0 ≤ ε)
 /-- The lowest point. If all points lie in `[0,1]²` and their `y`-coordinates are distinct
 (which holds almost surely), then the lowest point `p` is the only point of `P` in
 `[0, x(p)] × [0, y(p)]`, so every coloring has an anchored rectangle with `|χ(P ∩ R)| = 1`.
-Hence for `b < 1` the bad event is a null set.-/
+Hence for `b < 1` the bad event is a null set.
+@isnad1 id=eq.2h2v.s9.5a93369fb908 from=translated src=- shape=4df80757 vocab=9a98eeb0
+-/
 theorem bad_lowest (n : ℕ) (hn : 1 ≤ n) (b : ℝ) (hb : b < 1) :
     Measure.pi (fun _ : Fin n => (volume : Measure (ℝ × ℝ)).restrict (Set.Icc 0 1))
       {X : Fin n → ℝ × ℝ | ∃ χ : Fin n → ℤ, (∀ t, χ t = 1 ∨ χ t = -1) ∧
@@ -395,7 +458,9 @@ def badSet (n : ℕ) (b : ℝ) : Set (Fin n → ℝ × ℝ) :=
         (fun t => 0 ≤ (X t).1 ∧ (X t).1 ≤ x ∧ 0 ≤ (X t).2 ∧ (X t).2 ≤ y),
         (χ t : ℝ)| ≤ b}
 
-/-- For thresholds below one, the index-coloring bad event has probability zero.-/
+/-- For thresholds below one, the index-coloring bad event has probability zero.
+@isnad1 id=eq.2h2v.s6.3a3da2d12881 from=translated src=- shape=1ccae8dc vocab=dcd4685f
+-/
 theorem badSet_measure_zero (n : ℕ) (hn : 1 ≤ n) (b : ℝ) (hb : b < 1) :
     unifPts n (badSet n b) = 0 := bad_lowest n hn b hb
 
@@ -411,12 +476,16 @@ def GoodEvent (n : ℕ) (b ε : ℝ) : Prop :=
           b < |(colorSum (Finset.univ.image ω) χ (Set.Icc 0 (x, y)) : ℝ)|
 
 /-- The index-coloring probability bound is the only hypothesis needed to package
-an arbitrary failure probability as a measurable point-set event.-/
+an arbitrary failure probability as a measurable point-set event.
+@isnad1 id=goodeven.2h3v.s6.885578a89aaf from=translated src=- shape=7b39a8b4 vocab=229085ac
+-/
 theorem goodEvent_of_bad (n : ℕ) (b ε : ℝ) (hε : 0 ≤ ε)
     (hB : unifPts n (badSet n b) ≤ ENNReal.ofReal ε) : GoodEvent n b ε :=
   good_event_of_bad n b ε hε hB
 
-/-- A good event of positive probability yields a worst-case discrepancy lower bound.-/
+/-- A good event of positive probability yields a worst-case discrepancy lower bound.
+@isnad1 id=lt.2h3v.s4.085bacd2d3d9 from=translated src=- shape=8067acfc vocab=460fd12a
+-/
 theorem lt_Δ₂_of_goodEvent {n : ℕ} {b ε : ℝ} (hε : ε < 1)
     (h : GoodEvent n b ε) : b < Δ₂ n := by
   obtain ⟨G, -, hP, hG⟩ := h
