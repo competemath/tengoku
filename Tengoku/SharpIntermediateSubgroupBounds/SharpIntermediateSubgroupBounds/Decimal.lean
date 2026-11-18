@@ -227,7 +227,9 @@ private lemma gaussianTheta_two_le : gaussianTheta 2 ≤ thetaUpper4 := by
 
 /-- A completely exact certificate for the decimal displayed in the paper.
 No floating-point computation is used: twenty Euler factors and four theta
-terms suffice, and both remaining tails are bounded by geometric series.-/
+terms suffice, and both remaining tails are bounded by geometric series.
+@isnad1 id=lt.0h0v.s5.bcd8a49203d8 from=translated src=- shape=d4f6e56f vocab=8d0e8658
+-/
 theorem sharpConstant_two_lt_decimal :
     sharpConstant 2 < (3685984401 : ℝ) / 500000000 := by
   rw [sharpConstant]
@@ -401,7 +403,9 @@ private lemma gaussianTheta_two_le6 : gaussianTheta 2 ≤ thetaUpper6 := by
   nlinarith
 
 /-- Exact enclosure of the value printed in the manuscript:
-`7.371968801461 < c(2) < 7.371968801462`.-/
+`7.371968801461 < c(2) < 7.371968801462`.
+@isnad1 id=and.0h0v.s6.e3c9c9d7ce44 from=translated src=- shape=022c050d vocab=a61b5216
+-/
 theorem sharpConstant_two_decimal_enclosure :
     (7371968801461 : ℝ) / 10 ^ 12 < sharpConstant 2 ∧
       sharpConstant 2 < (3685984400731 : ℝ) / 500000000000 := by

@@ -31,7 +31,9 @@ noncomputable local instance subgroupIntervalFintype (H : Subgroup G) : Fintype 
   Fintype.ofFinite (Set.Ici H)
 
 /-- A subgroup of prime index is maximal.  This small lemma is useful below because the
-prime-index subgroup is chosen by its cardinality, rather than by a maximality argument.-/
+prime-index subgroup is chosen by its cardinality, rather than by a maximality argument.
+@isnad1 id=iscoatom.1h2v.s5.956cab56e0fa from=translated src=- shape=9b4d5027 vocab=a446b3e0
+-/
 theorem isCoatom_of_prime_index (H : Subgroup G) (hprime : H.index.Prime) : IsCoatom H := by
   refine ⟨?_, ?_⟩
   · intro htop
@@ -47,7 +49,9 @@ theorem isCoatom_of_prime_index (H : Subgroup G) (hprime : H.index.Prime) : IsCo
         simpa [hK] using htower
       exact ((not_le_of_gt hHK) (Subgroup.relIndex_eq_one.mp hrel)).elim
 
-/-- In a finite `p`-group, a subgroup of index `p` is normal.-/
+/-- In a finite `p`-group, a subgroup of index `p` is normal.
+@isnad1 id=normal.3h3v.s5.56997595351d from=translated src=- shape=5d5eb6ac vocab=b8abcecb
+-/
 theorem normal_of_index_eq_prime_of_isPGroup {p : ℕ} (hp : p.Prime)
     (hG : IsPGroup p G) (H : Subgroup G) (hindex : H.index = p) : H.Normal := by
   letI : Fact p.Prime := ⟨hp⟩
@@ -69,7 +73,9 @@ noncomputable local instance coatomFiberFintype (M V : Subgroup G) :
     Fintype (CoatomFiber M V) := Fintype.ofFinite _
 
 /-- All subgroups with a fixed intersection with a normal coatom inject into the corresponding
-coset space.  Notice that this statement does not require a `p`-group hypothesis.-/
+coset space.  Notice that this statement does not require a `p`-group hypothesis.
+@isnad1 id=le.2h3v.s6.f8bc55c46517 from=translated src=- shape=9e7830f5 vocab=5dcfeeee
+-/
 theorem coatomFiber_card_le_relIndex (M V : Subgroup G) [M.Normal]
     (hM : IsCoatom M) (hVM : V ≤ M) :
     Fintype.card (CoatomFiber M V) ≤ V.relIndex M := by
@@ -164,13 +170,18 @@ def primePowerLayer (p k : ℕ) (T P : Subgroup G) : Finset (Subgroup G) :=
     classical
     exact Finset.univ.filter fun Q ↦ T ≤ Q ∧ Q ≤ P ∧ Q.relIndex P = p ^ k
 
+/--
+@isnad1 id=iff.0h6v.s6.908372ec4f33 from=translated src=- shape=9f4f0c59 vocab=41e68e79
+-/
 @[simp]
 theorem mem_primePowerLayer {p k : ℕ} {T P Q : Subgroup G} :
     Q ∈ primePowerLayer p k T P ↔ T ≤ Q ∧ Q ≤ P ∧ Q.relIndex P = p ^ k := by
   simp [primePowerLayer]
 
 /-- Passing from an ambient subgroup `P` to the group `P` itself preserves every relative-index
-layer.-/
+layer.
+@isnad1 id=eq.1h5v.s7.b3d761988260 from=translated src=- shape=ea0fb498 vocab=b533656e
+-/
 theorem primePowerLayer_card_subgroup {p k : ℕ} {T P : Subgroup G} (hTP : T ≤ P) :
     (primePowerLayer p k T P).card =
       (primePowerLayer p k (T.subgroupOf P) (⊤ : Subgroup P)).card := by
@@ -213,7 +224,9 @@ theorem primePowerLayer_card_subgroup {p k : ℕ} {T P : Subgroup G} (hTP : T �
       left_inv := hleft
       right_inv := hright }
 
-/-- The Gaussian layer bound for an arbitrary subgroup of a finite `p`-group.-/
+/-- The Gaussian layer bound for an arbitrary subgroup of a finite `p`-group.
+@isnad1 id=le.3h5v.s6.2893179c5afd from=translated src=- shape=391bcd3a vocab=dc57beca
+-/
 theorem pGroup_primePowerLayer_card_le {p a : ℕ} (hp : p.Prime) (hG : IsPGroup p G)
     (T : Subgroup G) (hindex : T.index = p ^ a) (k : ℕ) :
     (primePowerLayer p k T ⊤).card ≤ qBinom p a k := by
@@ -380,7 +393,9 @@ theorem pGroup_primePowerLayer_card_le {p a : ℕ} (hp : p.Prime) (hG : IsPGroup
             _ = qBinom p (a + 1) (k + 1) := (qBinom_succ_succ p a k).symm
 
 /-- If `[G:H]` is a power of `p`, a Sylow `p`-subgroup of `G` can be chosen so that its
-action on `G/H` is transitive.  Its stabilizer has exactly the same prime-power index.-/
+action on `G/H` is transitive.  Its stabilizer has exactly the same prime-power index.
+@isnad1 id=ex.2h4v.s8.8c00a42e4f4f from=translated src=- shape=f3449334 vocab=279b1d0f
+-/
 theorem exists_sylow_pretransitive_of_index_primePower {p a : ℕ} (hp : p.Prime)
     (H : Subgroup G) (hindex : H.index = p ^ a) :
     ∃ P : Sylow p G,
@@ -459,7 +474,9 @@ theorem exists_sylow_pretransitive_of_index_primePower {p a : ℕ} (hp : p.Prime
     simp [smul_smul]⟩
   exact ⟨P, hpre, hrel⟩
 
-/-- Transitivity on `G/H` descends to every quotient `G/K` with `H ≤ K`.-/
+/-- Transitivity on `G/H` descends to every quotient `G/K` with `H ≤ K`.
+@isnad1 id=ispretra.2h4v.s8.159887a17f9c from=translated src=- shape=86fdab5d vocab=82935a75
+-/
 theorem pretransitive_quotient_of_le {P H K : Subgroup G}
     (hpre : MulAction.IsPretransitive P (G ⧸ H)) (hHK : H ≤ K) :
     MulAction.IsPretransitive P (G ⧸ K) := by
@@ -471,7 +488,9 @@ theorem pretransitive_quotient_of_le {P H K : Subgroup G}
   apply QuotientGroup.eq.mpr
   exact hHK (QuotientGroup.eq.mp hp')
 
-/-- Under a transitive `P`-action on `G/H`, intersection with `P` preserves all later indices.-/
+/-- Under a transitive `P`-action on `G/H`, intersection with `P` preserves all later indices.
+@isnad1 id=eq.2h4v.s7.8ce8d589c844 from=translated src=- shape=6dd4afce vocab=4dc98966
+-/
 theorem relIndex_eq_index_of_pretransitive {P H K : Subgroup G}
     (hpre : MulAction.IsPretransitive P (G ⧸ H)) (hHK : H ≤ K) :
     K.relIndex P = K.index := by
@@ -490,7 +509,9 @@ theorem relIndex_eq_index_of_pretransitive {P H K : Subgroup G}
     _ = K.index := rfl
 
 /-- A subgroup containing `H` is determined by its intersection with a subgroup acting
-transitively on `G/H`.-/
+transitively on `G/H`.
+@isnad1 id=injon.1h3v.s8.39f6cc482706 from=translated src=- shape=43d7a8d0 vocab=997c8460
+-/
 theorem subgroupOf_injective_of_pretransitive {P H : Subgroup G}
     (hpre : MulAction.IsPretransitive P (G ⧸ H)) :
     Set.InjOn (fun K : Subgroup G ↦ K.subgroupOf P) (Set.Ici H) := by
@@ -533,7 +554,9 @@ theorem subgroupOf_injective_of_pretransitive {P H : Subgroup G}
     have := K.mul_mem hpK hpgK
     simpa [mul_assoc] using this
 
-/-- The Gaussian layer bound for an arbitrary finite group inclusion of prime-power index.-/
+/-- The Gaussian layer bound for an arbitrary finite group inclusion of prime-power index.
+@isnad1 id=le.2h5v.s6.fab7f79b187d from=translated src=- shape=0b4c5456 vocab=3875ee93
+-/
 theorem primePowerLayer_card_le {p a k : ℕ} (hp : p.Prime) (H : Subgroup G)
     (hindex : H.index = p ^ a) :
     (primePowerLayer p k H ⊤).card ≤ qBinom p a k := by
@@ -566,11 +589,16 @@ def intermediateSubgroups (H : Subgroup G) : Finset (Subgroup G) :=
     classical
     exact Finset.univ.filter fun K ↦ H ≤ K
 
+/--
+@isnad1 id=iff.0h3v.s5.fe506c341fbc from=translated src=- shape=06933f25 vocab=4b8ffc56
+-/
 @[simp] theorem mem_intermediateSubgroups {H K : Subgroup G} :
     K ∈ intermediateSubgroups H ↔ H ≤ K := by
   simp [intermediateSubgroups]
 
-/-- The finset and order-interval presentations of the intermediate subgroups are equinumerous.-/
+/-- The finset and order-interval presentations of the intermediate subgroups are equinumerous.
+@isnad1 id=eq.0h2v.s5.287277590fa5 from=translated src=- shape=35566eea vocab=f8cdb69c
+-/
 theorem intermediateSubgroups_card_eq_Ici (H : Subgroup G) :
     (intermediateSubgroups H).card = Fintype.card (Set.Ici H) := by
   classical
@@ -582,7 +610,9 @@ theorem intermediateSubgroups_card_eq_Ici (H : Subgroup G) :
   rw [← Fintype.card_coe]
   exact Fintype.card_congr e
 
-/-- Exact prime-power interval upper bound.-/
+/-- Exact prime-power interval upper bound.
+@isnad1 id=le.2h4v.s5.22e473b427a5 from=translated src=- shape=04103110 vocab=7692f2e2
+-/
 theorem intermediateSubgroups_card_le_totalQBinom {p a : ℕ} (hp : p.Prime)
     (H : Subgroup G) (hindex : H.index = p ^ a) :
     (intermediateSubgroups H).card ≤ totalQBinom p a := by
@@ -608,7 +638,9 @@ theorem intermediateSubgroups_card_le_totalQBinom {p a : ℕ} (hp : p.Prime)
     _ = totalQBinom p a := by
       rw [totalQBinom, Fin.sum_univ_eq_sum_range]
 
-/-- Order-interval form of the exact prime-power upper bound.-/
+/-- Order-interval form of the exact prime-power upper bound.
+@isnad1 id=le.2h4v.s6.970e63b48e5c from=translated src=- shape=7f2b4818 vocab=9441bda1
+-/
 theorem intermediate_interval_card_le_totalQBinom {p a : ℕ} (hp : p.Prime)
     (H : Subgroup G) (hindex : H.index = p ^ a) :
     Fintype.card (Set.Ici H) ≤ totalQBinom p a := by
@@ -632,7 +664,9 @@ def elementaryCarrierEquiv (p a : ℕ)
   right_inv _ := rfl
 
 /-- A subgroup of an elementary abelian group has cardinality `p` to its
-linear dimension.-/
+linear dimension.
+@isnad1 id=eq.0h3v.s11.92f2d630cfea from=translated src=- shape=90e0b76b vocab=fd0f45b6
+-/
 theorem card_elementarySubgroup {p a : ℕ} [Fact p.Prime]
     (Q : Subgroup (Multiplicative (Fin a → ZMod p))) :
     Nat.card Q =
@@ -643,7 +677,9 @@ theorem card_elementarySubgroup {p a : ℕ} [Fact p.Prime]
   simpa using (Module.card_eq_pow_finrank (K := ZMod p)
     (V := elementarySubgroupSubmoduleIso p a Q))
 
-/-- Index `p^k` is equivalent to codimension `k`, forward direction.-/
+/-- Index `p^k` is equivalent to codimension `k`, forward direction.
+@isnad1 id=eq.2h4v.s11.c72d266d73b6 from=translated src=- shape=86de2538 vocab=3eed82df
+-/
 theorem elementarySubgroup_finrank_eq_sub_of_index {p a k : ℕ} [Fact p.Prime]
     (hk : k ≤ a) (Q : Subgroup (Multiplicative (Fin a → ZMod p)))
     (hindex : Q.index = p ^ k) :
@@ -661,7 +697,9 @@ theorem elementarySubgroup_finrank_eq_sub_of_index {p a k : ℕ} [Fact p.Prime]
   have hadd := Nat.pow_right_injective ((Fact.out : p.Prime).two_le) hpowequal
   omega
 
-/-- Index `p^k` is equivalent to codimension `k`, reverse direction.-/
+/-- Index `p^k` is equivalent to codimension `k`, reverse direction.
+@isnad1 id=eq.2h4v.s11.c78beae46768 from=translated src=- shape=10d18c92 vocab=3eed82df
+-/
 theorem elementarySubgroup_index_eq_pow_of_finrank {p a k : ℕ} [Fact p.Prime]
     (hk : k ≤ a) (Q : Subgroup (Multiplicative (Fin a → ZMod p)))
     (hrank : Module.finrank (ZMod p) (elementarySubgroupSubmoduleIso p a Q) = a - k) :
@@ -679,7 +717,9 @@ theorem elementarySubgroup_index_eq_pow_of_finrank {p a k : ℕ} [Fact p.Prime]
     _ = p ^ (a - k) * p ^ k := by rw [← pow_add, Nat.sub_add_cancel hk]
 
 /-- Every prime-power layer of an elementary abelian group attains the
-Gaussian layer bound.-/
+Gaussian layer bound.
+@isnad1 id=eq.1h3v.s8.7aa1c09c3e6f from=translated src=- shape=d8177144 vocab=2c6e2c4c
+-/
 theorem elementaryAbelian_primePowerLayer_card_eq_qBinom (p a k : ℕ)
     [Fact p.Prime] (hk : k ≤ a) :
     (primePowerLayer p k
@@ -721,7 +761,9 @@ theorem elementaryAbelian_primePowerLayer_card_eq_qBinom (p a k : ℕ)
     _ = qBinom p a k := (qBinom_symm (q := p) (n := a) (k := k)
       (Fact.out : p.Prime).two_le hk).symm
 
-/-- Elementary abelian groups attain the bound.-/
+/-- Elementary abelian groups attain the bound.
+@isnad1 id=eq.0h2v.s8.c31ee52462ae from=translated src=- shape=f9e40df5 vocab=bbbfadeb
+-/
 theorem elementaryAbelian_interval_card_eq_totalQBinom (p a : ℕ) [Fact p.Prime] :
     Fintype.card
         (Set.Ici (⊥ : Subgroup (Multiplicative (Fin a → ZMod p)))) = totalQBinom p a := by
@@ -746,7 +788,9 @@ theorem elementaryAbelian_interval_card_eq_totalQBinom (p a : ℕ) [Fact p.Prime
       rw [Fintype.card_eq_nat_card]
       exact card_all_subspaces_fin_zmod p a
 
-/-- More generally, a normal inclusion whose quotient is elementary abelian attains equality.-/
+/-- More generally, a normal inclusion whose quotient is elementary abelian attains equality.
+@isnad1 id=eq.0h5v.s7.a25b25c3480a from=translated src=- shape=99db4205 vocab=5d1ca831
+-/
 theorem normal_elementaryAbelian_quotient_interval_card_eq {p a : ℕ}
     (H : Subgroup G) [H.Normal]
     (e : (G ⧸ H) ≃* Multiplicative (Fin a → ZMod p)) [Fact p.Prime] :
@@ -787,7 +831,9 @@ noncomputable def productTopBotQuotientEquiv (H₀ : Type u) (E : Type v)
         exact QuotientGroup.quotientBot.map_mul x.2 y.2 }
 
 /-- The literal inclusions `H₀ × 1 ≤ H₀ × E` attain the exact
-prime-power interval bound when `E` is elementary abelian.-/
+prime-power interval bound when `E` is elementary abelian.
+@isnad1 id=eq.0h3v.s9.7b9f725afcd3 from=translated src=- shape=677cc046 vocab=3bd49c0d
+-/
 theorem product_elementaryAbelian_interval_card_eq
     (H₀ : Type u) [Group H₀] [Fintype H₀]
     (p a : ℕ) [Fact p.Prime] :
@@ -802,7 +848,9 @@ theorem product_elementaryAbelian_interval_card_eq
       (Multiplicative (Fin a → ZMod p)))
 
 /-- The index of the literal product inclusion is the order of its
-elementary-abelian second factor.-/
+elementary-abelian second factor.
+@isnad1 id=eq.0h3v.s7.48eda81d7171 from=translated src=- shape=e1a468b1 vocab=4f1e16e4
+-/
 theorem product_elementaryAbelian_index_eq
     (H₀ : Type u) [Group H₀] [Fintype H₀]
     (p a : ℕ) [Fact p.Prime] :
@@ -815,7 +863,9 @@ theorem product_elementaryAbelian_index_eq
     (V := Fin a → ZMod p))
 
 /-- Index and exact interval count for the full fixed-factor product
-sharpness family, packaged in one statement.-/
+sharpness family, packaged in one statement.
+@isnad1 id=and.0h3v.s9.2b6b75b19736 from=translated src=- shape=480c25a8 vocab=df24c401
+-/
 theorem product_elementaryAbelian_family
     (H₀ : Type u) [Group H₀] [Fintype H₀]
     (p a : ℕ) [Fact p.Prime] :
@@ -829,7 +879,9 @@ theorem product_elementaryAbelian_family
     product_elementaryAbelian_interval_card_eq H₀ p a⟩
 
 /-- The even-rank product family appearing in the asymptotic sharpness
-statement of the manuscript.-/
+statement of the manuscript.
+@isnad1 id=eq.0h3v.s10.7651a6c7aa4a from=translated src=- shape=41752bc4 vocab=7a97763f
+-/
 theorem product_elementaryAbelian_even_interval_card_eq
     (H₀ : Type u) [Group H₀] [Fintype H₀]
     (p a : ℕ) [Fact p.Prime] :
@@ -840,7 +892,9 @@ theorem product_elementaryAbelian_even_interval_card_eq
   product_elementaryAbelian_interval_card_eq H₀ p (2 * a)
 
 /-- Index and interval count for the even-rank family
-`H₀ × 1 ≤ H₀ × C_p^{2a}`.-/
+`H₀ × 1 ≤ H₀ × C_p^{2a}`.
+@isnad1 id=and.0h3v.s10.9cc9033bc6dd from=translated src=- shape=2feb912f vocab=5e0b5c49
+-/
 theorem product_elementaryAbelian_even_family
     (H₀ : Type u) [Group H₀] [Fintype H₀]
     (p a : ℕ) [Fact p.Prime] :
@@ -854,7 +908,9 @@ theorem product_elementaryAbelian_even_family
   product_elementaryAbelian_family H₀ p (2 * a)
 
 /-- The fixed-layer Gaussian estimate packaged with its elementary-abelian
-equality witness.-/
+equality witness.
+@isnad1 id=and.1h3v.s8.b38e2c61d4b2 from=translated src=- shape=f90c7b91 vocab=8470f664
+-/
 theorem primePower_layer_bound_optimal (p a k : ℕ) [Fact p.Prime]
     (hk : k ≤ a) :
     (∀ {G : Type*} [Group G] [Fintype G] (H : Subgroup G),
@@ -869,7 +925,9 @@ theorem primePower_layer_bound_optimal (p a k : ℕ) [Fact p.Prime]
   · exact elementaryAbelian_primePowerLayer_card_eq_qBinom p a k hk
 
 /-- The exact prime-power theorem packaged as an optimality statement: the bound holds for
-every finite inclusion of index `p ^ a`, and the elementary abelian inclusion attains it.-/
+every finite inclusion of index `p ^ a`, and the elementary abelian inclusion attains it.
+@isnad1 id=and.0h2v.s8.2d2a8a0ba2ba from=translated src=- shape=2c3e9c97 vocab=51fd2302
+-/
 theorem primePower_interval_bound_optimal (p a : ℕ) [Fact p.Prime] :
     (∀ {G : Type*} [Group G] [Fintype G] (H : Subgroup G), H.index = p ^ a →
       Fintype.card (Set.Ici H) ≤ totalQBinom p a) ∧

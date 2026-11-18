@@ -37,7 +37,9 @@ def generatedFrom (H : Subgroup G) {r : ℕ} (x : Fin r → G) : Subgroup G :=
   H ⊔ Subgroup.closure (Set.range x)
 
 /-- Multiplying tuple entries on the right by elements of `H` does not
-change the subgroup generated relative to `H`.-/
+change the subgroup generated relative to `H`.
+@isnad1 id=eq.0h5v.s6.850db32a0e04 from=translated src=- shape=e5f4169c vocab=41f5ea54
+-/
 theorem generatedFrom_mul_right (H : Subgroup G) {r : ℕ}
     (x : Fin r → G) (h : Fin r → H) :
     generatedFrom H (fun i => x i * (h i : G)) = generatedFrom H x := by
@@ -102,6 +104,9 @@ def cosetAdjustment (H K : Subgroup G) (b : K) : H := by
   exact Quotient.exact' (Quotient.out_eq'
     (QuotientGroup.mk b : K ⧸ H.subgroupOf K))
 
+/--
+@isnad1 id=eq.0h4v.s7.04ab1d7cfa44 from=translated src=- shape=2765e1cc vocab=cb9c8475
+-/
 @[simp]
 theorem cosetRep_mul_cosetAdjustment (H K : Subgroup G) (b : K) :
     ((Quotient.out (QuotientGroup.mk b : K ⧸ H.subgroupOf K) : K) : G) *
@@ -109,7 +114,9 @@ theorem cosetRep_mul_cosetAdjustment (H K : Subgroup G) (b : K) :
   simp [cosetAdjustment]
 
 /-- Replacing a raw tuple by the canonical representatives of its cosets
-does not change the subgroup it generates relative to `H`.-/
+does not change the subgroup it generates relative to `H`.
+@isnad1 id=eq.0h5v.s5.51c3fb12f610 from=translated src=- shape=46384c4a vocab=1b388020
+-/
 theorem generatedFrom_cosetRep_raw (H K : Subgroup G) {r : ℕ}
     (x : RawRelGen H K r) :
     generatedFrom H (cosetRepTuple H K (rawCosetTuple H K x)) = K := by
@@ -137,7 +144,9 @@ def cosetRelGenProdToRaw {H K : Subgroup G} (hHK : H ≤ K) {r : ℕ} :
       rw [generatedFrom_mul_right H (cosetRepTuple H K z.1.1) z.2,
         z.1.2]⟩
 
-/-- The cosets of a reconstructed tuple are exactly the prescribed cosets.-/
+/-- The cosets of a reconstructed tuple are exactly the prescribed cosets.
+@isnad1 id=eq.1h5v.s7.21af2fa4302e from=translated src=- shape=01e5ce2b vocab=844c7164
+-/
 theorem rawCosetTuple_cosetRelGenProdToRaw {H K : Subgroup G}
     (hHK : H ≤ K) {r : ℕ} (z : CosetRelGen H K r × (Fin r → H)) :
     rawCosetTuple H K (cosetRelGenProdToRaw hHK z) = z.1.1 := by
@@ -156,7 +165,9 @@ theorem rawCosetTuple_cosetRelGenProdToRaw {H K : Subgroup G}
     _ = z.1.1 i := Quotient.out_eq' _
 
 /-- The adjustment recovered from a reconstructed entry is the prescribed
-right `H`-factor.-/
+right `H`-factor.
+@isnad1 id=eq.1h5v.s8.c905cf703609 from=translated src=- shape=a28c9a05 vocab=20e9f59b
+-/
 theorem cosetAdjustment_reconstructed {H K : Subgroup G}
     (hHK : H ≤ K) (q : K ⧸ H.subgroupOf K) (h : H) :
     cosetAdjustment H K
@@ -205,7 +216,9 @@ def rawRelGenEquivCosetRelGenProd {H K : Subgroup G} (hHK : H ≤ K)
       exact cosetAdjustment_reconstructed hHK (z.1.1 i) (z.2 i)
 
 /-- Exact representative multiplicity: every generating coset tuple has
-exactly `|H|^r` raw representative tuples.-/
+exactly `|H|^r` raw representative tuples.
+@isnad1 id=eq.1h4v.s6.55a6803a8c6b from=translated src=- shape=e29c1d9b vocab=91dc7925
+-/
 theorem rawRelGen_card_eq_cosetRelGen_card_mul_cardH_pow
     {H K : Subgroup G} (hHK : H ≤ K) (r : ℕ) :
     Nat.card (RawRelGen H K r) =
@@ -219,7 +232,9 @@ theorem rawRelGen_card_eq_cosetRelGen_card_mul_cardH_pow
     _ = Nat.card (CosetRelGen H K r) * Nat.card H ^ r := by
       rw [Nat.card_fun, Nat.card_fin]
 
-/-- Symmetric form of the exact representative multiplicity.-/
+/-- Symmetric form of the exact representative multiplicity.
+@isnad1 id=eq.1h4v.s6.f86191ffb46b from=translated src=- shape=82f4c70c vocab=91dc7925
+-/
 theorem rawRelGen_card_eq_cardH_pow_mul_cosetRelGen_card
     {H K : Subgroup G} (hHK : H ≤ K) (r : ℕ) :
     Nat.card (RawRelGen H K r) =
@@ -227,7 +242,9 @@ theorem rawRelGen_card_eq_cardH_pow_mul_cosetRelGen_card
   rw [rawRelGen_card_eq_cosetRelGen_card_mul_cardH_pow hHK r,
     Nat.mul_comm]
 
-/-- Cardinality form of Lagrange's theorem for a subgroup tower.-/
+/-- Cardinality form of Lagrange's theorem for a subgroup tower.
+@isnad1 id=eq.1h3v.s6.2eccf6e104c3 from=translated src=- shape=86271d3b vocab=8b7d5674
+-/
 theorem card_mul_relIndex {A B : Subgroup G} (hAB : A ≤ B) :
     Nat.card A * A.relIndex B = Nat.card B := by
   have h := (A.subgroupOf B).card_mul_index
@@ -236,7 +253,9 @@ theorem card_mul_relIndex {A B : Subgroup G} (hAB : A ≤ B) :
   exact h
 
 /-- Every strict subgroup step has index at least the least prime factor of
-the original ambient index.-/
+the original ambient index.
+@isnad1 id=le.2h4v.s6.46524328e802 from=translated src=- shape=3d5f7781 vocab=a98059d9
+-/
 theorem minFac_le_relIndex_of_lt {H A B : Subgroup G}
     (hHA : H ≤ A) (hAB : A < B) :
     H.index.minFac ≤ A.relIndex B := by
@@ -266,6 +285,9 @@ instance escapeChoiceFintype (K : Subgroup G) (s : EscapeState K) :
       exact Subtype.ext (Subtype.ext h))
   exact Fintype.ofFinite _
 
+/--
+@isnad1 id=nonempty.0h3v.s4.051a05f7c0d7 from=translated src=- shape=d5b4db11 vocab=e139a01f
+-/
 instance escapeChoiceNonempty (K : Subgroup G) (s : EscapeState K) :
     Nonempty (EscapeChoice K s) := by
   classical
@@ -276,7 +298,9 @@ instance escapeChoiceNonempty (K : Subgroup G) (s : EscapeState K) :
     exact ⟨⟨⟨x, hxK⟩, Or.inr hxM⟩⟩
 
 /-- Once the target has been reached, every element of the target is an
-allowed choice.-/
+allowed choice.
+@isnad1 id=eq.1h3v.s6.82a6d5edeb5f from=translated src=- shape=01613298 vocab=cf59b40b
+-/
 theorem escapeChoice_card_of_eq (K : Subgroup G) (s : EscapeState K)
     (hs : s.1 = K) :
     Fintype.card (EscapeChoice K s) = Nat.card K := by
@@ -292,7 +316,9 @@ theorem escapeChoice_card_of_eq (K : Subgroup G) (s : EscapeState K)
   rw [Fintype.card_congr e, Nat.card_eq_fintype_card]
 
 /-- At a proper state, the allowed choices and the elements of the state
-partition the target.-/
+partition the target.
+@isnad1 id=eq.1h3v.s7.a052bcce331e from=translated src=- shape=9519051d vocab=866bc6e1
+-/
 theorem escapeChoice_card_add (K : Subgroup G) (s : EscapeState K)
     (hs : s.1 ≠ K) :
     Fintype.card (EscapeChoice K s) + Nat.card s.1 = Nat.card K := by
@@ -331,7 +357,9 @@ theorem escapeChoice_card_add (K : Subgroup G) (s : EscapeState K)
   have hcancel := Nat.sub_add_cancel (by simpa [hmem] using hle)
   simpa only [Nat.card_eq_fintype_card] using hcancel
 
-/-- Exact normalized branching degree at a proper state.-/
+/-- Exact normalized branching degree at a proper state.
+@isnad1 id=eq.1h3v.s7.4bf49f3b0be4 from=translated src=- shape=3d346085 vocab=080f33bc
+-/
 theorem escapeChoice_ratio_of_ne (K : Subgroup G) (s : EscapeState K)
     (hs : s.1 ≠ K) :
     (Fintype.card (EscapeChoice K s) : ℚ) / Nat.card K =
@@ -361,7 +389,9 @@ def gammaProdQ (p r : ℕ) : ℚ :=
   ∏ j ∈ Finset.range r, (1 - 1 / (p : ℚ) ^ (j + 1))
 
 /-- The triangular-power denominator is the product of the individual
-power denominators.-/
+power denominators.
+@isnad1 id=eq.0h2v.s5.3d4f02e03ede from=translated src=- shape=526c1036 vocab=ff22a603
+-/
 theorem gammaDen_eq_prod_pow (p r : ℕ) :
     gammaDen p r = ∏ j ∈ Finset.range r, p ^ (j + 1) := by
   rw [gammaDen, Finset.prod_pow_eq_pow_sum]
@@ -373,7 +403,9 @@ theorem gammaDen_eq_prod_pow (p r : ℕ) :
   have hr := Finset.sum_range_id r
   rw [Nat.mul_comm r (r + 1), ← hsucc, ← hr, Finset.sum_range_succ]
 
-/-- The cleared-denominator definition agrees with the product definition.-/
+/-- The cleared-denominator definition agrees with the product definition.
+@isnad1 id=eq.1h2v.s4.b01e58f3e0aa from=translated src=- shape=678da05f vocab=8fa38b74
+-/
 theorem gammaQ_eq_gammaProdQ (p r : ℕ) (hp : 0 < p) :
     gammaQ p r = gammaProdQ p r := by
   rw [gammaQ, gammaNum, gammaDen_eq_prod_pow, gammaProdQ]
@@ -387,11 +419,16 @@ theorem gammaQ_eq_gammaProdQ (p r : ℕ) (hp : 0 < p) :
     pow_ne_zero _ (Nat.cast_ne_zero.mpr hp.ne')
   field_simp
 
+/--
+@isnad1 id=eq.0h1v.s4.8a087c3e9e48 from=translated src=- shape=8fc7241c vocab=50d478bc
+-/
 @[simp]
 theorem gammaQ_zero (p : ℕ) : gammaQ p 0 = 1 := by
   simp [gammaQ, gammaNum, gammaDen]
 
-/-- Recurrence for the finite Euler factor.-/
+/-- Recurrence for the finite Euler factor.
+@isnad1 id=eq.1h2v.s6.a98f0586fbfa from=translated src=- shape=69775520 vocab=95537810
+-/
 theorem gammaQ_succ (p r : ℕ) (hp : 0 < p) :
     gammaQ p (r + 1) =
       gammaQ p r * (1 - 1 / (p : ℚ) ^ (r + 1)) := by
@@ -399,7 +436,9 @@ theorem gammaQ_succ (p r : ℕ) (hp : 0 < p) :
     gammaQ_eq_gammaProdQ p r hp]
   simp [gammaProdQ, Finset.prod_range_succ]
 
-/-- Each finite Euler factor is nonnegative when `p ≥ 2`.-/
+/-- Each finite Euler factor is nonnegative when `p ≥ 2`.
+@isnad1 id=le.1h2v.s4.79190ddf14c0 from=translated src=- shape=e3349857 vocab=3d619198
+-/
 theorem gammaQ_nonneg {p r : ℕ} (hp : 1 < p) : 0 ≤ gammaQ p r := by
   rw [gammaQ_eq_gammaProdQ p r (by omega)]
   apply Finset.prod_nonneg
@@ -409,7 +448,9 @@ theorem gammaQ_nonneg {p r : ℕ} (hp : 1 < p) : 0 ≤ gammaQ p r := by
   exact_mod_cast one_le_pow₀ hp.le
 
 /-- The finite Euler factor is strictly positive for every base at least
-two.-/
+two.
+@isnad1 id=lt.1h2v.s4.9b274e2ed958 from=translated src=- shape=796edf62 vocab=d8678639
+-/
 theorem gammaQ_pos {p r : ℕ} (hp : 1 < p) : 0 < gammaQ p r := by
   rw [gammaQ_eq_gammaProdQ p r (by omega)]
   apply Finset.prod_pos
@@ -419,19 +460,25 @@ theorem gammaQ_pos {p r : ℕ} (hp : 1 < p) : 0 < gammaQ p r := by
     (0 : ℚ) < (p : ℚ) ^ (j + 1))).2
   exact one_lt_pow₀ (by exact_mod_cast hp : (1 : ℚ) < p) (by omega)
 
-/-- Adding a factor can only decrease the finite Euler product.-/
+/-- Adding a factor can only decrease the finite Euler product.
+@isnad1 id=le.1h2v.s5.6b968c05432a from=translated src=- shape=a75d667d vocab=763604c9
+-/
 theorem gammaQ_succ_le {p r : ℕ} (hp : 1 < p) :
     gammaQ p (r + 1) ≤ gammaQ p r := by
   rw [gammaQ_succ p r (by omega)]
   apply mul_le_of_le_one_right (gammaQ_nonneg hp)
   exact sub_le_self _ (by positivity)
 
-/-- The finite Euler products are antitone in the length.-/
+/-- The finite Euler products are antitone in the length.
+@isnad1 id=antitone.1h1v.s4.11a3dc9db573 from=translated src=- shape=b8038e13 vocab=bce9a409
+-/
 theorem gammaQ_antitone {p : ℕ} (hp : 1 < p) :
     Antitone (gammaQ p) :=
   antitone_nat_of_succ_le fun r => gammaQ_succ_le hp
 
-/-- For fixed length the Euler factor increases with its base.-/
+/-- For fixed length the Euler factor increases with its base.
+@isnad1 id=le.2h3v.s4.6506bd11189b from=translated src=- shape=fbd96906 vocab=3d619198
+-/
 theorem gammaQ_mono_base {q p r : ℕ} (hq : 1 < q) (hqp : q ≤ p) :
     gammaQ q r ≤ gammaQ p r := by
   rw [gammaQ_eq_gammaProdQ q r (by omega),
@@ -461,6 +508,9 @@ def escapeNext (K : Subgroup G) (s : EscapeState K) (x : EscapeChoice K s) :
     subst y
     exact x.1.2⟩
 
+/--
+@isnad1 id=eq.1h4v.s6.ead578ca6abc from=translated src=- shape=c60c41fd vocab=da7637cb
+-/
 @[simp]
 theorem escapeNext_of_eq (K : Subgroup G) (s : EscapeState K)
     (hs : s.1 = K) (x : EscapeChoice K s) :
@@ -469,6 +519,9 @@ theorem escapeNext_of_eq (K : Subgroup G) (s : EscapeState K)
   have hKs : K ≤ s.1 := hs.symm.le
   exact hKs.trans le_sup_left
 
+/--
+@isnad1 id=lt.1h4v.s7.d8e77d6f18e5 from=translated src=- shape=e2bcbfaa vocab=4f8bf2a7
+-/
 theorem lt_escapeNext_of_ne (K : Subgroup G) (s : EscapeState K)
     (hs : s.1 ≠ K) (x : EscapeChoice K s) :
     s.1 < (escapeNext K s x).1 := by
@@ -504,6 +557,9 @@ def escapeEnd (K : Subgroup G) : ∀ {r : ℕ} {s : EscapeState K},
   | 0, s, _ => s
   | _ + 1, _, ⟨x, z⟩ => escapeEnd K z
 
+/--
+@isnad1 id=eq.0h6v.s6.45eb8fb51816 from=translated src=- shape=243d2567 vocab=7adc0f7a
+-/
 @[simp]
 theorem escapeEnd_cons (K : Subgroup G) {r : ℕ} {s : EscapeState K}
     (x : EscapeChoice K s) (z : EscapePath K r (escapeNext K s x)) :
@@ -516,12 +572,18 @@ def escapeStrictCount (K : Subgroup G) : ∀ {r : ℕ} {s : EscapeState K},
   | _ + 1, s, ⟨x, z⟩ =>
       if s.1 = K then escapeStrictCount K z else escapeStrictCount K z + 1
 
+/--
+@isnad1 id=eq.0h6v.s7.c9ca34caec4a from=translated src=- shape=ee46c923 vocab=7a720f6a
+-/
 @[simp]
 theorem escapeStrictCount_cons (K : Subgroup G) {r : ℕ} {s : EscapeState K}
     (x : EscapeChoice K s) (z : EscapePath K r (escapeNext K s x)) :
     escapeStrictCount K (escapeCons K x z) =
       if s.1 = K then escapeStrictCount K z else escapeStrictCount K z + 1 := rfl
 
+/--
+@isnad1 id=le.0h5v.s5.83cfaad4c36d from=translated src=- shape=ae95c7bb vocab=9d564280
+-/
 theorem escapeStrictCount_le (K : Subgroup G) {r : ℕ} {s : EscapeState K}
     (z : EscapePath K r s) : escapeStrictCount K z ≤ r := by
   induction r generalizing s with
@@ -532,6 +594,9 @@ theorem escapeStrictCount_le (K : Subgroup G) {r : ℕ} {s : EscapeState K}
       rw [escapeStrictCount_cons]
       split_ifs <;> specialize ih z <;> omega
 
+/--
+@isnad1 id=eq.1h5v.s6.661fe4f0a264 from=translated src=- shape=05b9a373 vocab=aa058dc9
+-/
 theorem escapeEnd_of_top (K : Subgroup G) {r : ℕ}
     (s : EscapeState K) (hs : s.1 = K) (z : EscapePath K r s) :
     (escapeEnd K z).1 = K := by
@@ -543,6 +608,9 @@ theorem escapeEnd_of_top (K : Subgroup G) {r : ℕ}
       rw [escapeEnd_cons]
       exact ih (escapeNext K s x) (escapeNext_of_eq K s hs x) z
 
+/--
+@isnad1 id=eq.1h5v.s6.65f99a7fac7b from=translated src=- shape=be420ad6 vocab=55ed3e30
+-/
 theorem escapeStrictCount_eq_length_of_end_ne (K : Subgroup G)
     {r : ℕ} {s : EscapeState K} (z : EscapePath K r s)
     (hend : (escapeEnd K z).1 ≠ K) :
@@ -560,6 +628,9 @@ theorem escapeStrictCount_eq_length_of_end_ne (K : Subgroup G)
       rw [escapeStrictCount_cons, ite_eq_right hs]
       rw [ih z hend']
 
+/--
+@isnad1 id=eq.1h5v.s6.1ae8374acae6 from=translated src=- shape=f9ecb2ab vocab=9c5de47b
+-/
 theorem escapeStrictCount_of_top (K : Subgroup G) {r : ℕ}
     (s : EscapeState K) (hs : s.1 = K) (z : EscapePath K r s) :
     escapeStrictCount K z = 0 := by
@@ -577,12 +648,18 @@ def escapeTuple (K : Subgroup G) : ∀ {r : ℕ} {s : EscapeState K},
   | 0, _, _ => Fin.elim0
   | _ + 1, _, ⟨x, z⟩ => Fin.cons (x.1 : G) (escapeTuple K z)
 
+/--
+@isnad1 id=eq.0h6v.s8.90045ea9dffe from=translated src=- shape=4918e6f4 vocab=730ae071
+-/
 @[simp]
 theorem escapeTuple_cons (K : Subgroup G) {r : ℕ} {s : EscapeState K}
     (x : EscapeChoice K s) (z : EscapePath K r (escapeNext K s x)) :
     escapeTuple K (escapeCons K x z) =
       Fin.cons (x.1 : G) (escapeTuple K z) := rfl
 
+/--
+@isnad1 id=mem.0h6v.s5.3641b3e09eca from=translated src=- shape=510ebdb1 vocab=8c535e58
+-/
 theorem escapeTuple_mem (K : Subgroup G) {r : ℕ} {s : EscapeState K}
     (z : EscapePath K r s) (i : Fin r) : escapeTuple K z i ∈ K := by
   induction r generalizing s with
@@ -592,6 +669,9 @@ theorem escapeTuple_mem (K : Subgroup G) {r : ℕ} {s : EscapeState K}
       refine Fin.cases x.1.2 (fun j => ?_) i
       simpa [escapeTuple] using ih z j
 
+/--
+@isnad1 id=injectiv.0h4v.s5.0d3fce61c157 from=translated src=- shape=19793c29 vocab=eac6935a
+-/
 theorem escapeTuple_injective (K : Subgroup G) {r : ℕ} {s : EscapeState K} :
     Function.Injective (escapeTuple K : EscapePath K r s → Fin r → G) := by
   induction r generalizing s with
@@ -615,7 +695,9 @@ theorem escapeTuple_injective (K : Subgroup G) {r : ℕ} {s : EscapeState K} :
       rfl
 
 /-- The terminal state is obtained by adjoining exactly the labels of the
-path to its initial state.-/
+path to its initial state.
+@isnad1 id=eq.0h5v.s7.439dda98541a from=translated src=- shape=1db00fa2 vocab=8094d47e
+-/
 theorem escapeEnd_eq_generated (K : Subgroup G) {r : ℕ}
     {s : EscapeState K} (z : EscapePath K r s) :
     (escapeEnd K z).1 = s.1 ⊔ Subgroup.closure (Set.range (escapeTuple K z)) := by
@@ -639,7 +721,9 @@ theorem escapeEnd_eq_generated (K : Subgroup G) {r : ℕ}
       ac_rfl
 
 /-- In particular, a path beginning at `H` ends at the subgroup generated
-by `H` and its tuple.-/
+by `H` and its tuple.
+@isnad1 id=eq.1h5v.s7.f7e77fae323a from=translated src=- shape=71ccabdb vocab=0b5bc7a5
+-/
 theorem escapeEnd_eq_generatedFrom (K : Subgroup G) {H : Subgroup G}
     (hHK : H ≤ K) {r : ℕ} (z : EscapePath K r ⟨H, hHK⟩) :
     (escapeEnd K z).1 = generatedFrom H (escapeTuple K z) := by
@@ -647,7 +731,9 @@ theorem escapeEnd_eq_generatedFrom (K : Subgroup G) {H : Subgroup G}
 
 /-- Along a path, each strict move contributes at least the least prime
 factor of the original index.  The terminal relative index is retained as a
-factor; this is the form needed for the endpoint contradiction.-/
+factor; this is the form needed for the endpoint contradiction.
+@isnad1 id=le.2h6v.s7.af6b02bb838d from=translated src=- shape=cc0312d9 vocab=99acbc51
+-/
 theorem escape_chain_bound {H K : Subgroup G} (hHK : H ≤ K)
     {r : ℕ} {s : EscapeState K} (hHs : H ≤ s.1)
     (z : EscapePath K r s) :
@@ -688,7 +774,9 @@ theorem escape_chain_bound {H K : Subgroup G} (hHK : H ≤ K)
               Nat.mul_le_mul hstep htail
           _ = s.1.relIndex K := htower
 
-/-- Under the band hypothesis every full escape path reaches the target.-/
+/-- Under the band hypothesis every full escape path reaches the target.
+@isnad1 id=eq.2h5v.s7.d2527d8abb60 from=translated src=- shape=134853ff vocab=838753d3
+-/
 theorem escapeEnd_eq_target {H K : Subgroup G} (hHK : H ≤ K)
     {r : ℕ}
     (hhi : H.relIndex K < H.index.minFac ^ (r + 1))
@@ -711,6 +799,9 @@ theorem escapeEnd_eq_target {H K : Subgroup G} (hHK : H ≤ K)
     exact le_trans (Nat.mul_le_mul_left _ hpEnd) hchain
   omega
 
+/--
+@isnad1 id=eq.0h6v.s7.82deadf21e1e from=translated src=- shape=cf4ad743 vocab=32493749
+-/
 @[simp]
 theorem escapeBranchProduct_cons (K : Subgroup G) {r : ℕ}
     {s : EscapeState K} (x : EscapeChoice K s)
@@ -722,7 +813,9 @@ theorem escapeBranchProduct_cons (K : Subgroup G) {r : ℕ}
 
 /-- Pathwise lower bound for the product of the escape-tree branching
 degrees.  The exponent in `gammaQ` records exactly the strict moves made
-along the path.-/
+along the path.
+@isnad1 id=le.3h6v.s7.412ab37e1019 from=translated src=- shape=acb7325a vocab=26d01330
+-/
 theorem escape_path_branchProduct_bound {H K : Subgroup G}
     (hn : 1 < H.index) (hHK : H ≤ K) {r : ℕ}
     {s : EscapeState K} (hHs : H ≤ s.1) (z : EscapePath K r s) :
@@ -821,7 +914,9 @@ theorem escape_path_branchProduct_bound {H K : Subgroup G}
                 simp only [escapeBranchProduct_cons, Nat.cast_mul]
         · omega
 
-/-- Uniform pathwise bound at the prescribed depth.-/
+/-- Uniform pathwise bound at the prescribed depth.
+@isnad1 id=le.3h6v.s7.e550af1a39f5 from=translated src=- shape=4afe26b3 vocab=a6658d00
+-/
 theorem escape_path_full_gamma_bound {H K : Subgroup G}
     (hn : 1 < H.index) (hHK : H ≤ K) {r : ℕ}
     {s : EscapeState K} (hHs : H ≤ s.1) (z : EscapePath K r s) :
@@ -835,7 +930,9 @@ theorem escape_path_full_gamma_bound {H K : Subgroup G}
   exact escape_path_branchProduct_bound hn hHK hHs z
 
 /-- The escape tree has at least the Euler-factor fraction of all raw
-tuples as leaves.-/
+tuples as leaves.
+@isnad1 id=le.2h4v.s7.918329fbede6 from=translated src=- shape=f8e9e137 vocab=5d3a2bb1
+-/
 theorem escapePath_card_lower_bound {H K : Subgroup G}
     (hn : 1 < H.index) (hHK : H ≤ K) (r : ℕ) :
     gammaQ H.index.minFac r * (Nat.card K : ℚ) ^ r ≤
@@ -855,6 +952,9 @@ def escapePathToRawRelGen {H K : Subgroup G} (hHK : H ≤ K) {r : ℕ}
     rw [← escapeEnd_eq_generatedFrom K hHK z]
     exact escapeEnd_eq_target hHK hhi z⟩
 
+/--
+@isnad1 id=injectiv.2h4v.s7.fddd48f2a23a from=translated src=- shape=d7f8df6f vocab=94b373d1
+-/
 theorem escapePathToRawRelGen_injective {H K : Subgroup G}
     (hHK : H ≤ K) {r : ℕ}
     (hhi : H.relIndex K < H.index.minFac ^ (r + 1)) :
@@ -864,7 +964,9 @@ theorem escapePathToRawRelGen_injective {H K : Subgroup G}
   exact congrArg Subtype.val h
 
 /-- Relative escape theorem, in exact rational form for raw element
-tuples.  This is the coset-free form used by packing.-/
+tuples.  This is the coset-free form used by packing.
+@isnad1 id=le.3h4v.s7.0fb14081fdc6 from=translated src=- shape=6fe8f877 vocab=e9d6c9fe
+-/
 theorem relative_escape_raw {H K : Subgroup G}
     (hn : 1 < H.index) (hHK : H ≤ K) {r : ℕ}
     (hhi : H.relIndex K < H.index.minFac ^ (r + 1)) :
@@ -882,7 +984,9 @@ theorem relative_escape_raw {H K : Subgroup G}
   rw [Nat.card_eq_fintype_card]
   exact_mod_cast hcard
 
-/-- Denominator-cleared natural-number form of relative escape.-/
+/-- Denominator-cleared natural-number form of relative escape.
+@isnad1 id=le.3h4v.s7.6651a171d185 from=translated src=- shape=0e47d4c4 vocab=fd7da490
+-/
 theorem relative_escape_raw_nat {H K : Subgroup G}
     (hn : 1 < H.index) (hHK : H ≤ K) {r : ℕ}
     (hhi : H.relIndex K < H.index.minFac ^ (r + 1)) :
@@ -912,7 +1016,9 @@ theorem relative_escape_raw_nat {H K : Subgroup G}
 
 /-- **Relative escape for literal coset tuples (Proposition 2.3).**
 No normality hypothesis is imposed on `H`: the quotient here is the type
-of left cosets for the subgroup `H.subgroupOf K`.-/
+of left cosets for the subgroup `H.subgroupOf K`.
+@isnad1 id=le.3h4v.s7.cff383932fc6 from=translated src=- shape=3c6fdbac vocab=26d80501
+-/
 theorem relative_escape_coset {H K : Subgroup G}
     (hn : 1 < H.index) (hHK : H ≤ K) {r : ℕ}
     (hhi : H.relIndex K < H.index.minFac ^ (r + 1)) :
@@ -952,7 +1058,9 @@ theorem relative_escape_coset {H K : Subgroup G}
   exact le_of_mul_le_mul_left hmul hHpowPos
 
 /-- Denominator-cleared natural-number form of the literal coset escape
-theorem.-/
+theorem.
+@isnad1 id=le.3h4v.s7.7cce894a6e3d from=translated src=- shape=7826beb6 vocab=b3ce5ce1
+-/
 theorem relative_escape_coset_nat {H K : Subgroup G}
     (hn : 1 < H.index) (hHK : H ≤ K) {r : ℕ}
     (hhi : H.relIndex K < H.index.minFac ^ (r + 1)) :
@@ -979,7 +1087,9 @@ theorem relative_escape_coset_nat {H K : Subgroup G}
 
 /-- The manuscript's band-form statement of Proposition 2.3.  The lower
 band inequality records that `K` is in band `r`; escape itself uses the
-upper inequality.-/
+upper inequality.
+@isnad1 id=le.4h4v.s7.35d1abc32b08 from=translated src=- shape=24697151 vocab=26d80501
+-/
 theorem relative_escape_coset_band {H K : Subgroup G}
     (hn : 1 < H.index) (hHK : H ≤ K) {r : ℕ}
     (_hlo : H.index.minFac ^ r ≤ H.relIndex K)

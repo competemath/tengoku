@@ -53,6 +53,9 @@ def branchProduct : ∀ {r s}, Path Choice next r s → ℕ
   | 0, _, _ => 1
   | _ + 1, s, ⟨x, z⟩ => Fintype.card (Choice s) * branchProduct z
 
+/--
+@isnad1 id=eq.0h5v.s5.d695c8c5931e from=translated src=- shape=4c590674 vocab=94ac878c
+-/
 @[simp]
 theorem branchProduct_zero (s : State) (z : Path Choice next 0 s) :
     branchProduct Choice next z = 1 := by
@@ -61,7 +64,9 @@ theorem branchProduct_zero (s : State) (z : Path Choice next 0 s) :
 
 /-- The leaf-product bound.  Positivity of every branching type is the
 type-theoretic form of saying that no leaf occurs before the prescribed
-depth.-/
+depth.
+@isnad1 id=le.1h6v.s6.77a5446a238e from=translated src=- shape=b43b2a04 vocab=09afe6ba
+-/
 theorem leaf_product_bound [∀ s, Nonempty (Choice s)]
     (r : ℕ) (s : State) (q : ℚ)
     (hq : ∀ z : Path Choice next r s,
@@ -102,7 +107,9 @@ theorem leaf_product_bound [∀ s, Nonempty (Choice s)]
 
 /-- Same-universe wrapper for applications in which states and choices are
 subtypes of one fixed ambient type.  Making this universe equality explicit
-avoids leaving a metavariable in downstream declarations.-/
+avoids leaving a metavariable in downstream declarations.
+@isnad1 id=le.1h6v.s6.8c33c86ab0b2 from=translated src=- shape=b43b2a04 vocab=09afe6ba
+-/
 theorem leaf_product_bound_sameUniverse {State : Type u}
     (Choice : State → Type u) [∀ s, Fintype (Choice s)]
     (next : ∀ s, Choice s → State) [∀ s, Nonempty (Choice s)]

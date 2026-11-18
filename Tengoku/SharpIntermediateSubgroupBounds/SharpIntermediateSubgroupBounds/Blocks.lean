@@ -49,6 +49,9 @@ noncomputable def systemOfImprimitivityToPointedBlock (a : X)
   have hB : B ∈ P.1 ∧ a ∈ B := (P.2.1.1.2 a).choose_spec.1
   exact ⟨B, hB.2, P.2.1.2 hB.1⟩
 
+/--
+@isnad1 id=mem.0h4v.s6.5772d9765dbc from=translated src=- shape=a0ffa5d2 vocab=d7f5d6dc
+-/
 lemma systemOfImprimitivityToPointedBlock_mem (a : X)
     (P : SystemOfImprimitivity G X) :
     (systemOfImprimitivityToPointedBlock G X a P : Set X) ∈ P.1 := by
@@ -92,6 +95,9 @@ noncomputable local instance blockMemFintype (a : X) :
     Fintype (MulAction.BlockMem G a) :=
   Fintype.ofFinite _
 
+/--
+@isnad1 id=finite.0h1v.s3.55a88c868bab from=translated src=- shape=9499e9bc vocab=8ca526be
+-/
 local instance blocksSubgroupFinite : Finite (Subgroup G) :=
   Finite.of_injective (fun H : Subgroup G => (H : Set G)) SetLike.coe_injective
 
@@ -107,7 +113,9 @@ noncomputable local instance systemOfImprimitivityFintype :
 with the subgroups containing the stabilizer of `a`.
 
 This is the exact cardinal form of the block--subgroup correspondence used to
-transfer subgroup-interval estimates to transitive permutation actions.-/
+transfer subgroup-interval estimates to transitive permutation actions.
+@isnad1 id=eq.0h3v.s6.3e491beb2e01 from=translated src=- shape=0a6910e5 vocab=82ec6f2c
+-/
 theorem blockMem_card_eq_interval_card (a : X) :
     Fintype.card (MulAction.BlockMem G a) =
       Fintype.card (Set.Ici (MulAction.stabilizer G a)) := by
@@ -115,7 +123,9 @@ theorem blockMem_card_eq_interval_card (a : X) :
   exact Fintype.card_congr (MulAction.block_stabilizerOrderIso G a).toEquiv
 
 /-- Systems of imprimitivity, rather than merely individual pointed blocks,
-are counted exactly by the intermediate subgroups above a point stabilizer.-/
+are counted exactly by the intermediate subgroups above a point stabilizer.
+@isnad1 id=eq.0h3v.s6.625a79f10dbd from=translated src=- shape=1baf055c vocab=dceae782
+-/
 theorem systemOfImprimitivity_card_eq_interval_card (a : X) :
     Fintype.card (SystemOfImprimitivity G X) =
       Fintype.card (Set.Ici (MulAction.stabilizer G a)) := by
@@ -125,7 +135,9 @@ theorem systemOfImprimitivity_card_eq_interval_card (a : X) :
       (MulAction.block_stabilizerOrderIso G a).toEquiv)
 
 /-- The sharp universal interval estimate transferred to block systems of a
-finite transitive action.-/
+finite transitive action.
+@isnad1 id=lt.1h3v.s7.6399ad2bc3bb from=translated src=- shape=0a62c4ba vocab=45ec22d3
+-/
 theorem blockMem_card_lt_universal (a : X) (hX : 1 < Nat.card X) :
     (Fintype.card (MulAction.BlockMem G a) : ℝ) <
       sharpConstant 2 *
@@ -145,7 +157,9 @@ theorem blockMem_card_lt_universal (a : X) (hX : 1 < Nat.card X) :
   simpa [hindex] using hmain
 
 /-- The sharp universal bound for the number of genuine invariant systems
-of imprimitivity of a finite transitive action.-/
+of imprimitivity of a finite transitive action.
+@isnad1 id=lt.1h3v.s7.d1705ab77494 from=translated src=- shape=130b343f vocab=41e32398
+-/
 theorem systemOfImprimitivity_card_lt_universal (a : X)
     (hX : 1 < Nat.card X) :
     (Fintype.card (SystemOfImprimitivity G X) : ℝ) <
@@ -157,7 +171,9 @@ theorem systemOfImprimitivity_card_lt_universal (a : X)
 
 /-- All-degree form of the system-of-imprimitivity estimate.  In degree one
 there is exactly one invariant system and the same strict analytic bound is
-still valid.-/
+still valid.
+@isnad1 id=lt.0h3v.s6.ff233ed6d690 from=translated src=- shape=dabe1974 vocab=41e32398
+-/
 theorem systemOfImprimitivity_card_lt_universal_all_degrees (a : X) :
     (Fintype.card (SystemOfImprimitivity G X) : ℝ) <
       sharpConstant 2 *

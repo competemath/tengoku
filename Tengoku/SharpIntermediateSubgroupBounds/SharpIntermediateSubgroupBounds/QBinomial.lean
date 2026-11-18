@@ -30,16 +30,31 @@ def qBinom (q : ℕ) : ℕ → ℕ → ℕ
   | _ + 1, 0 => 1
   | n + 1, k + 1 => qBinom q n k + q ^ (k + 1) * qBinom q n (k + 1)
 
+/--
+@isnad1 id=eq.0h1v.s4.e394c8e45497 from=translated src=- shape=5f667179 vocab=5428b1c1
+-/
 @[simp] theorem qBinom_zero_zero (q : ℕ) : qBinom q 0 0 = 1 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.afa35db31283 from=translated src=- shape=92d1e92b vocab=7ab078f8
+-/
 @[simp] theorem qBinom_zero_succ (q k : ℕ) : qBinom q 0 (k + 1) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.603d76a1b6d3 from=translated src=- shape=687adb21 vocab=7ab078f8
+-/
 @[simp] theorem qBinom_succ_zero (q n : ℕ) : qBinom q (n + 1) 0 = 1 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.bdcd9420accd from=translated src=- shape=10050eda vocab=5f4abe42
+-/
 @[simp] theorem qBinom_succ_succ (q n k : ℕ) :
     qBinom q (n + 1) (k + 1) =
       qBinom q n k + q ^ (k + 1) * qBinom q n (k + 1) := rfl
 
+/--
+@isnad1 id=eq.1h3v.s4.3a2c08966b78 from=translated src=- shape=5306ff9b vocab=3bf9c8b7
+-/
 theorem qBinom_eq_zero_of_lt (q : ℕ) : ∀ {n k : ℕ}, n < k → qBinom q n k = 0
   | 0, 0, h => by omega
   | 0, _ + 1, _ => by simp
@@ -50,13 +65,18 @@ theorem qBinom_eq_zero_of_lt (q : ℕ) : ∀ {n k : ℕ}, n < k → qBinom q n k
       have hnks : n < k + 1 := by omega
       simp [qBinom_eq_zero_of_lt q hnk, qBinom_eq_zero_of_lt q hnks]
 
+/--
+@isnad1 id=eq.0h2v.s3.4b91cc8b2db1 from=translated src=- shape=c2a510d9 vocab=5428b1c1
+-/
 @[simp] theorem qBinom_self (q : ℕ) : ∀ n : ℕ, qBinom q n n = 1
   | 0 => by simp
   | n + 1 => by
       rw [qBinom_succ_succ]
       simp [qBinom_self q n, qBinom_eq_zero_of_lt q (Nat.lt_succ_self n)]
 
-/-- The Pascal recurrence in the indexing used in the manuscript.-/
+/-- The Pascal recurrence in the indexing used in the manuscript.
+@isnad1 id=eq.2h3v.s6.22e983a2fac4 from=translated src=- shape=154978c5 vocab=b2936f37
+-/
 theorem qBinom_pascal (q : ℕ) {n k : ℕ} (hn : 0 < n) (hk : 0 < k) :
     qBinom q n k = qBinom q (n - 1) (k - 1) + q ^ k * qBinom q (n - 1) k := by
   obtain ⟨n, rfl⟩ := Nat.exists_eq_succ_of_ne_zero (Nat.ne_of_gt hn)
@@ -67,13 +87,22 @@ theorem qBinom_pascal (q : ℕ) {n k : ℕ} (hn : 0 < n) (hk : 0 < k) :
 def qFactorial (q n : ℕ) : ℕ :=
   ∏ i ∈ Finset.range n, (q ^ (i + 1) - 1)
 
+/--
+@isnad1 id=eq.0h1v.s4.fc6e728a2fe3 from=translated src=- shape=1d838610 vocab=ae89b785
+-/
 @[simp] theorem qFactorial_zero (q : ℕ) : qFactorial q 0 = 1 := by
   simp [qFactorial]
 
+/--
+@isnad1 id=eq.0h2v.s6.b8ed94d6c3fa from=translated src=- shape=97fb70f3 vocab=31895c7b
+-/
 theorem qFactorial_succ (q n : ℕ) :
     qFactorial q (n + 1) = qFactorial q n * (q ^ (n + 1) - 1) := by
   simp [qFactorial, Finset.prod_range_succ]
 
+/--
+@isnad1 id=lt.1h2v.s4.fab8d8ed1bd3 from=translated src=- shape=1852429d vocab=03046cf6
+-/
 theorem qFactorial_pos {q : ℕ} (hq : 2 ≤ q) (n : ℕ) : 0 < qFactorial q n := by
   rw [qFactorial]
   exact Finset.prod_pos fun i hi ↦ by
@@ -90,7 +119,9 @@ private theorem pow_sub_one_add_mul_pow_sub_one {q a b : ℕ} (hq : 1 ≤ q) :
   rw [pow_add, Nat.mul_sub_left_distrib, mul_one, add_comm]
   exact tsub_add_tsub_cancel hab ha
 
-/-- The division-free Gaussian factorial identity.-/
+/-- The division-free Gaussian factorial identity.
+@isnad1 id=eq.2h3v.s5.cea3f41a2187 from=translated src=- shape=3738d603 vocab=4e8ce79f
+-/
 theorem qBinom_mul_qFactorials {q : ℕ} (hq : 2 ≤ q) :
     ∀ {n k : ℕ}, k ≤ n →
       qBinom q n k * qFactorial q k * qFactorial q (n - k) = qFactorial q n := by
@@ -144,7 +175,9 @@ theorem qBinom_mul_qFactorials {q : ℕ} (hq : 2 ≤ q) :
                       _ = qFactorial q n * (q ^ (n + 1) - 1) := by rw [hexp]
               _ = qFactorial q (n + 1) := by rw [qFactorial_succ]
 
-/-- Symmetry of Gaussian binomial coefficients.-/
+/-- Symmetry of Gaussian binomial coefficients.
+@isnad1 id=eq.2h3v.s5.632f1c9c4535 from=translated src=- shape=96a99aa8 vocab=992de29f
+-/
 theorem qBinom_symm {q n k : ℕ} (hq : 2 ≤ q) (hk : k ≤ n) :
     qBinom q n k = qBinom q n (n - k) := by
   have hleft := qBinom_mul_qFactorials hq hk
@@ -159,7 +192,9 @@ theorem qBinom_symm {q n k : ℕ} (hq : 2 ≤ q) (hk : k ≤ n) :
     _ = qBinom q n (n - k) * (qFactorial q k * qFactorial q (n - k)) := by
       simpa [mul_assoc, mul_left_comm, mul_comm] using hright.symm
 
-/-- The usual product formula, stated in `ℚ` to make the division exact.-/
+/-- The usual product formula, stated in `ℚ` to make the division exact.
+@isnad1 id=eq.2h3v.s6.be24ddca1dbb from=translated src=- shape=8113d022 vocab=657e2e07
+-/
 theorem qBinom_cast_eq_qFactorial_div {q n k : ℕ} (hq : 2 ≤ q) (hk : k ≤ n) :
     (qBinom q n k : ℚ) =
       qFactorial q n / (qFactorial q k * qFactorial q (n - k)) := by
@@ -251,9 +286,15 @@ vector space over a field of cardinality `q`.-/
 def frameProd (q n k : ℕ) : ℕ :=
   ∏ i : Fin k, (q ^ n - q ^ i.val)
 
+/--
+@isnad1 id=eq.0h2v.s4.815cdfccb9af from=translated src=- shape=9bf57cd7 vocab=bbcbb6fc
+-/
 @[simp] theorem frameProd_zero (q n : ℕ) : frameProd q n 0 = 1 := by
   simp [frameProd]
 
+/--
+@isnad1 id=eq.0h3v.s6.c9ddb581d40c from=translated src=- shape=f057d4e8 vocab=4feb4db4
+-/
 theorem frameProd_succ (q n k : ℕ) :
     frameProd q n (k + 1) = frameProd q n k * (q ^ n - q ^ k) := by
   rw [frameProd, Fin.prod_univ_castSucc]
@@ -263,9 +304,15 @@ theorem frameProd_succ (q n k : ℕ) :
 frame count.-/
 def framePower (q k : ℕ) : ℕ := ∏ i : Fin k, q ^ i.val
 
+/--
+@isnad1 id=eq.0h1v.s4.f5fdf9f63795 from=translated src=- shape=1d838610 vocab=22c2e65a
+-/
 @[simp] theorem framePower_zero (q : ℕ) : framePower q 0 = 1 := by
   simp [framePower]
 
+/--
+@isnad1 id=eq.0h2v.s5.34d1277b4097 from=translated src=- shape=c832fd96 vocab=66482534
+-/
 theorem framePower_succ (q k : ℕ) :
     framePower q (k + 1) = framePower q k * q ^ k := by
   rw [framePower, Fin.prod_univ_castSucc]
@@ -277,7 +324,9 @@ private theorem pow_sub_pow_eq_mul_sub {q n k : ℕ} (hk : k ≤ n) :
   rw [pow_add, Nat.mul_sub_left_distrib]
   simp
 
-/-- Clearing the denominator in the ordered-frame product formula.-/
+/-- Clearing the denominator in the ordered-frame product formula.
+@isnad1 id=eq.1h3v.s5.3787ddd62f57 from=translated src=- shape=ff2d1b20 vocab=e560aacf
+-/
 theorem frameProd_mul_qFactorial {q n k : ℕ} (hk : k ≤ n) :
     frameProd q n k * qFactorial q (n - k) =
       framePower q k * qFactorial q n := by
@@ -297,7 +346,9 @@ theorem frameProd_mul_qFactorial {q n k : ℕ} (hk : k ≤ n) :
         _ = q ^ k * (framePower q k * qFactorial q n) := by rw [ih hkn]
         _ = framePower q k * q ^ k * qFactorial q n := by ring
 
-/-- The ordered-frame form of the Gaussian product identity.-/
+/-- The ordered-frame form of the Gaussian product identity.
+@isnad1 id=eq.2h3v.s5.571f61804b4c from=translated src=- shape=2065b08a vocab=feaa7492
+-/
 theorem qBinom_mul_frameProd {q n k : ℕ} (hq : 2 ≤ q) (hk : k ≤ n) :
     qBinom q n k * frameProd q k k = frameProd q n k := by
   have hmain := frameProd_mul_qFactorial (q := q) (n := n) hk
@@ -315,6 +366,9 @@ theorem qBinom_mul_frameProd {q n k : ℕ} (hq : 2 ≤ q) (hk : k ≤ n) :
     _ = framePower q k * qFactorial q n := by rw [hqbin]
     _ = frameProd q n k * qFactorial q (n - k) := hmain.symm
 
+/--
+@isnad1 id=lt.2h3v.s5.07a0304634a3 from=translated src=- shape=2ab25192 vocab=adcafea6
+-/
 theorem frameProd_pos {q n k : ℕ} (hq : 2 ≤ q) (hk : k ≤ n) :
     0 < frameProd q n k := by
   rw [frameProd]
@@ -324,6 +378,9 @@ theorem frameProd_pos {q n k : ℕ} (hq : 2 ≤ q) (hk : k ≤ n) :
   have hin : i.val < n := lt_of_lt_of_le hik hk
   exact Nat.sub_pos_of_lt (Nat.pow_lt_pow_right (by omega) hin)
 
+/--
+@isnad1 id=eq.1h3v.s6.de1e1ad8ced9 from=translated src=- shape=795b7c8e vocab=cc6683b4
+-/
 theorem card_linearIndependentFrames
     {K V : Type*} [DivisionRing K] [Fintype K] [AddCommGroup V] [Module K V]
     [Finite V] {k : ℕ} (hk : k ≤ Module.finrank K V) :
@@ -332,7 +389,9 @@ theorem card_linearIndependentFrames
   simpa [frameProd] using card_linearIndependent (K := K) (V := V) hk
 
 /-- The exact number of ordered bases of the standard `r`-space over
-`ZMod p`, expressed as the ordered-frame product.-/
+`ZMod p`, expressed as the ordered-frame product.
+@isnad1 id=eq.0h2v.s6.0e83ee07dfdc from=translated src=- shape=2c732c5b vocab=8096ac6c
+-/
 theorem card_orderedBases_fin_zmod (p r : ℕ) [Fact p.Prime] :
     Nat.card (LinearIndependentFrames (ZMod p) (Fin r → ZMod p) r) =
       frameProd p r r := by
@@ -340,7 +399,9 @@ theorem card_orderedBases_fin_zmod (p r : ℕ) [Fact p.Prime] :
     (card_linearIndependentFrames
       (K := ZMod p) (V := Fin r → ZMod p) (k := r) (by simp))
 
-/-- Counting independent frames by their span.-/
+/-- Counting independent frames by their span.
+@isnad1 id=eq.1h3v.s6.cef4985dcd2f from=translated src=- shape=4835e7f1 vocab=b2013690
+-/
 theorem card_finrankSubspaces_mul_frameProd
     {K V : Type*} [DivisionRing K] [Fintype K] [AddCommGroup V] [Module K V]
     [Finite V] {k : ℕ} (hk : k ≤ Module.finrank K V) :
@@ -368,7 +429,9 @@ theorem card_finrankSubspaces_mul_frameProd
       card_linearIndependentFrames hk
 
 /-- The Gaussian coefficient counts subspaces of a fixed dimension over any
-finite division ring.-/
+finite division ring.
+@isnad1 id=eq.1h3v.s6.0c8354870a2b from=translated src=- shape=795b7c8e vocab=665c4553
+-/
 theorem card_finrankSubspaces_eq_qBinom
     {K V : Type*} [DivisionRing K] [Fintype K] [AddCommGroup V] [Module K V]
     [Finite V] {k : ℕ} (hk : k ≤ Module.finrank K V) :
@@ -385,7 +448,9 @@ theorem card_finrankSubspaces_eq_qBinom
         frameProd (Fintype.card K) k k := (qBinom_mul_frameProd hq hk).symm
 
 /-- Exact Gaussian count for subspaces of the standard `n`-space over
-`ZMod p`.-/
+`ZMod p`.
+@isnad1 id=eq.1h3v.s9.b498fde13a57 from=translated src=- shape=ce776650 vocab=3446ba7d
+-/
 theorem card_subspaces_fin_zmod (p n k : ℕ) [Fact p.Prime] (hk : k ≤ n) :
     Nat.card {W : Submodule (ZMod p) (Fin n → ZMod p) //
       Module.finrank (ZMod p) W = k} = qBinom p n k := by
@@ -415,7 +480,9 @@ noncomputable def submoduleEquivSigmaFinrank
 def totalQBinom (q n : ℕ) : ℕ :=
   ∑ k : Fin (n + 1), qBinom q n k.val
 
-/-- Pairing dimensions equidistant from the middle in even rank.-/
+/-- Pairing dimensions equidistant from the middle in even rank.
+@isnad1 id=eq.1h2v.s6.6e36cbbc6c59 from=translated src=- shape=50c24373 vocab=dfc8fd8b
+-/
 theorem totalQBinom_even_split {q : ℕ} (hq : 2 ≤ q) (a : ℕ) :
     totalQBinom q (2 * a) = qBinom q (2 * a) a +
       2 * ∑ j ∈ Finset.range a, qBinom q (2 * a) (a + (j + 1)) := by
@@ -441,7 +508,9 @@ theorem totalQBinom_even_split {q : ℕ} (hq : 2 ≤ q) (a : ℕ) :
   simp only [Nat.add_assoc]
   ring
 
-/-- Exact count of all subspaces of the standard space over `ZMod p`.-/
+/-- Exact count of all subspaces of the standard space over `ZMod p`.
+@isnad1 id=eq.0h2v.s6.c443fecb4d00 from=translated src=- shape=09ebe6bc vocab=540dedfa
+-/
 theorem card_all_subspaces_fin_zmod (p n : ℕ) [Fact p.Prime] :
     Nat.card (Submodule (ZMod p) (Fin n → ZMod p)) = totalQBinom p n := by
   rw [Nat.card_congr (submoduleEquivSigmaFinrank (ZMod p) (Fin n → ZMod p)),

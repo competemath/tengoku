@@ -28,6 +28,9 @@ variable {G : Type u} [Group G] [Fintype G]
 
 local instance packingSubgroupDecidableEq : DecidableEq (Subgroup G) := Classical.decEq _
 
+/--
+@isnad1 id=finite.0h1v.s3.55a88c868bab from=translated src=- shape=9499e9bc vocab=8ca526be
+-/
 local instance subgroupFinite : Finite (Subgroup G) :=
   Finite.of_injective (fun K : Subgroup G => (K : Set G)) SetLike.coe_injective
 
@@ -70,6 +73,9 @@ def packedRawMap (H : Subgroup G) (q r : ℕ) :
     (Σ K : band H q r, RawRelGen H K.1 r) → (Fin r → G) :=
   fun z => z.2.1
 
+/--
+@isnad1 id=injectiv.0h4v.s7.e9520423d58c from=translated src=- shape=65e733c4 vocab=3457b6fa
+-/
 theorem packedRawMap_injective (H : Subgroup G) (q r : ℕ) :
     Function.Injective (packedRawMap H q r) := by
   rintro ⟨K, x⟩ ⟨L, y⟩ hxy
@@ -83,7 +89,9 @@ theorem packedRawMap_injective (H : Subgroup G) (q r : ℕ) :
   rfl
 
 /-- The raw relative-generating tuples for all targets in one band pack
-injectively into the ambient tuple space.-/
+injectively into the ambient tuple space.
+@isnad1 id=le.0h4v.s7.c480b66dc66b from=translated src=- shape=22a736b6 vocab=07644e5a
+-/
 theorem packed_raw_card_bound (H : Subgroup G) (q r : ℕ) :
     (∑ K : band H q r, Nat.card (RawRelGen H K.1 r)) ≤ Nat.card G ^ r := by
   have hcard := Fintype.card_le_of_injective (packedRawMap H q r)
@@ -93,7 +101,9 @@ theorem packed_raw_card_bound (H : Subgroup G) (q r : ℕ) :
     Fintype.card_fin] using hcard
 
 /-- Relative escape for one member of a `q`-band, allowing any
-`2 ≤ q ≤ minFac [G:H]`.-/
+`2 ≤ q ≤ minFac [G:H]`.
+@isnad1 id=le.3h5v.s8.7ccc119bddef from=translated src=- shape=b8fa3f65 vocab=b9b0598a
+-/
 theorem band_relative_escape_raw {H : Subgroup G} (hn : 1 < H.index)
     {q r : ℕ} (hq : 1 < q) (hqp : q ≤ H.index.minFac)
     (K : band H q r) :
@@ -105,7 +115,9 @@ theorem band_relative_escape_raw {H : Subgroup G} (hn : 1 < H.index)
     (mul_le_mul_of_nonneg_right (gammaQ_mono_base hq hqp) (by positivity))
   exact relative_escape_raw hn K.2.1 hupper
 
-/-- Summed raw-tuple escape bound before cancellation of `|H|^r`.-/
+/-- Summed raw-tuple escape bound before cancellation of `|H|^r`.
+@isnad1 id=le.3h4v.s7.393100c207c4 from=translated src=- shape=b417a9bb vocab=68a02bb9
+-/
 theorem band_raw_sum_bound {H : Subgroup G} (hn : 1 < H.index)
     {q r : ℕ} (hq : 1 < q) (hqp : q ≤ H.index.minFac) :
     gammaQ q r *
@@ -124,7 +136,9 @@ theorem band_raw_sum_bound {H : Subgroup G} (hn : 1 < H.index)
 
 /-- The bandwise moment theorem (Theorem 1.3), over the exact field `ℚ`.
 The parameterized form includes the least-prime choice and the universal
-choice `q = 2`.-/
+choice `q = 2`.
+@isnad1 id=le.3h4v.s7.c633de1e5bca from=translated src=- shape=2ad052d9 vocab=39871122
+-/
 theorem bandwise_moment {H : Subgroup G} (hn : 1 < H.index)
     {q : ℕ} (hq : 1 < q) (hqp : q ≤ H.index.minFac) (r : ℕ) :
     gammaQ q r *
@@ -159,7 +173,9 @@ theorem bandwise_moment {H : Subgroup G} (hn : 1 < H.index)
     _ = (Nat.card H : ℚ) ^ r * (H.index : ℚ) ^ r := hGpow
 
 /-- Denominator-cleared natural-number form of the bandwise moment
-theorem.-/
+theorem.
+@isnad1 id=le.3h4v.s7.16b79daa953b from=translated src=- shape=39672fe4 vocab=a97c355d
+-/
 theorem bandwise_moment_nat {H : Subgroup G} (hn : 1 < H.index)
     {q : ℕ} (hq : 1 < q) (hqp : q ≤ H.index.minFac) (r : ℕ) :
     gammaNum q r *
@@ -186,7 +202,9 @@ theorem bandwise_moment_nat {H : Subgroup G} (hn : 1 < H.index)
   exact_mod_cast hqRat
 
 /-- Every term in a band contributes at least `q^(r^2)` to its `r`-th
-moment.-/
+moment.
+@isnad1 id=le.0h4v.s7.ce919cbe87a6 from=translated src=- shape=dd79b576 vocab=c6750af4
+-/
 theorem band_card_mul_pow_le_moment (H : Subgroup G) (q r : ℕ) :
     Nat.card (band H q r) * q ^ (r * r) ≤
       ∑ K : band H q r, H.relIndex K.1 ^ r := by
@@ -204,7 +222,9 @@ theorem band_card_mul_pow_le_moment (H : Subgroup G) (q r : ℕ) :
       simp [Nat.mul_comm]
     _ ≤ ∑ K : band H q r, H.relIndex K.1 ^ r := hsum
 
-/-- Denominator-cleared band-cardinality bound (Corollary 3.1).-/
+/-- Denominator-cleared band-cardinality bound (Corollary 3.1).
+@isnad1 id=le.3h4v.s6.3230b867230b from=translated src=- shape=4607e0ef vocab=cf943cb7
+-/
 theorem band_card_bound_nat {H : Subgroup G} (hn : 1 < H.index)
     {q : ℕ} (hq : 1 < q) (hqp : q ≤ H.index.minFac) (r : ℕ) :
     gammaNum q r * (Nat.card (band H q r) * q ^ (r * r)) ≤
@@ -212,7 +232,9 @@ theorem band_card_bound_nat {H : Subgroup G} (hn : 1 < H.index)
   exact (Nat.mul_le_mul_left _ (band_card_mul_pow_le_moment H q r)).trans
     (bandwise_moment_nat hn hq hqp r)
 
-/-- Division form of the band-cardinality bound.-/
+/-- Division form of the band-cardinality bound.
+@isnad1 id=le.3h4v.s6.50f2dd25485e from=translated src=- shape=73f51af4 vocab=629e9a15
+-/
 theorem band_card_bound {H : Subgroup G} (hn : 1 < H.index)
     {q : ℕ} (hq : 1 < q) (hqp : q ≤ H.index.minFac) (r : ℕ) :
     (Nat.card (band H q r) : ℚ) ≤
@@ -235,7 +257,9 @@ theorem band_card_bound {H : Subgroup G} (hn : 1 < H.index)
       exact_mod_cast hmass
     _ ≤ (H.index : ℚ) ^ r := hmoment
 
-/-- The zeroth band contains only its bottom subgroup.-/
+/-- The zeroth band contains only its bottom subgroup.
+@isnad1 id=eq.2h4v.s7.12b4a30c7cec from=translated src=- shape=83797935 vocab=a2197690
+-/
 theorem band_zero_eq_bottom {H : Subgroup G} {q : ℕ}
     (hq : 1 < q) (hqp : q ≤ H.index.minFac) (K : band H q 0) :
     K.1 = H := by
@@ -247,14 +271,18 @@ theorem band_zero_eq_bottom {H : Subgroup G} {q : ℕ}
     simpa using K.2.2.2
   omega
 
-/-- Any two members of the zeroth band coincide.-/
+/-- Any two members of the zeroth band coincide.
+@isnad1 id=eq.2h5v.s6.b644ac4cca57 from=translated src=- shape=8e897020 vocab=5dbd9c9e
+-/
 theorem band_zero_subsingleton {H : Subgroup G} {q : ℕ}
     (hq : 1 < q) (hqp : q ≤ H.index.minFac) (K L : band H q 0) :
     K = L := by
   apply Subtype.ext
   rw [band_zero_eq_bottom hq hqp K, band_zero_eq_bottom hq hqp L]
 
-/-- The zeroth band has cardinality exactly one.-/
+/-- The zeroth band has cardinality exactly one.
+@isnad1 id=eq.2h3v.s5.c91fbbe3267c from=translated src=- shape=957b493b vocab=162016d9
+-/
 theorem band_zero_card_eq_one {H : Subgroup G} {q : ℕ}
     (hq : 1 < q) (hqp : q ≤ H.index.minFac) :
     Nat.card (band H q 0) = 1 := by
@@ -289,6 +317,9 @@ def bandSigmaToInterval (H : Subgroup G) (q : ℕ) :
     (Σ r : Fin (Nat.log q H.index + 1), band H q r.1) → interval H :=
   fun z => ⟨z.2.1, z.2.2.1⟩
 
+/--
+@isnad1 id=eq.2h4v.s5.9515376d6939 from=translated src=- shape=2047074d vocab=862f2223
+-/
 @[simp]
 theorem bandSigmaToInterval_intervalToBandSigma (H : Subgroup G) (q : ℕ)
     (hn : 1 < H.index) (hq : 1 < q) (K : interval H) :
@@ -296,6 +327,9 @@ theorem bandSigmaToInterval_intervalToBandSigma (H : Subgroup G) (q : ℕ)
   apply Subtype.ext
   rfl
 
+/--
+@isnad1 id=injectiv.2h3v.s6.e42ea0c0e703 from=translated src=- shape=d28db933 vocab=419fe8df
+-/
 theorem intervalToBandSigma_injective (H : Subgroup G) (q : ℕ)
     (hn : 1 < H.index) (hq : 1 < q) :
     Function.Injective (intervalToBandSigma H q hn hq) := by
@@ -304,7 +338,9 @@ theorem intervalToBandSigma_injective (H : Subgroup G) (q : ℕ)
   simpa using this
 
 /-- Every intermediate subgroup lies in a unique band through
-`floor(log_q [G:H])`.-/
+`floor(log_q [G:H])`.
+@isnad1 id=existsun.2h4v.s7.ee6bf023011e from=translated src=- shape=85a04cfa vocab=69a93bf9
+-/
 theorem intermediate_unique_band (H : Subgroup G) (q : ℕ)
     (hn : 1 < H.index) (hq : 1 < q) (K : interval H) :
     ∃! r : Fin (Nat.log q H.index + 1),
@@ -329,7 +365,9 @@ def finiteUQ (n q : ℕ) : ℚ :=
     (n : ℚ) ^ (r : ℕ) /
       (gammaQ q (r : ℕ) * (q : ℚ) ^ ((r : ℕ) * (r : ℕ)))
 
-/-- Finite `U` bound for the whole interval.-/
+/-- Finite `U` bound for the whole interval.
+@isnad1 id=le.3h3v.s6.973f38ffaa0b from=translated src=- shape=8ebeb6d1 vocab=69fd52db
+-/
 theorem finiteU_bound {H : Subgroup G} (hn : 1 < H.index)
     {q : ℕ} (hq : 1 < q) (hqp : q ≤ H.index.minFac) :
     (Nat.card (interval H) : ℚ) ≤ finiteUQ H.index q := by
@@ -360,6 +398,9 @@ def packedLayerRawMap (H : Subgroup G) (m r : ℕ) :
     (Σ K : layer H m, RawRelGen H K.1 r) → (Fin r → G) :=
   fun z => z.2.1
 
+/--
+@isnad1 id=injectiv.0h4v.s6.67bffb32a507 from=translated src=- shape=208448ea vocab=015faeef
+-/
 theorem packedLayerRawMap_injective (H : Subgroup G) (m r : ℕ) :
     Function.Injective (packedLayerRawMap H m r) := by
   rintro ⟨K, x⟩ ⟨L, y⟩ hxy
@@ -372,6 +413,9 @@ theorem packedLayerRawMap_injective (H : Subgroup G) (m r : ℕ) :
   subst y
   rfl
 
+/--
+@isnad1 id=le.0h4v.s6.3afcc6a8a5a5 from=translated src=- shape=96ebfadd vocab=af98cd45
+-/
 theorem packed_layer_raw_card_bound (H : Subgroup G) (m r : ℕ) :
     (∑ K : layer H m, Nat.card (RawRelGen H K.1 r)) ≤ Nat.card G ^ r := by
   have hcard := Fintype.card_le_of_injective (packedLayerRawMap H m r)
@@ -380,6 +424,9 @@ theorem packed_layer_raw_card_bound (H : Subgroup G) (m r : ℕ) :
   simpa only [Nat.card_eq_fintype_card, Fintype.card_fun,
     Fintype.card_fin] using hcard
 
+/--
+@isnad1 id=le.4h6v.s7.c047a95b0444 from=translated src=- shape=2bc24708 vocab=eff01df1
+-/
 theorem layer_relative_escape_raw {H : Subgroup G} (hn : 1 < H.index)
     {q r m : ℕ} (hq : 1 < q) (hqp : q ≤ H.index.minFac)
     (hmi : m < q ^ (r + 1)) (K : layer H m) :
@@ -392,6 +439,9 @@ theorem layer_relative_escape_raw {H : Subgroup G} (hn : 1 < H.index)
     (mul_le_mul_of_nonneg_right (gammaQ_mono_base hq hqp) (by positivity))
   exact relative_escape_raw hn K.2.1 hupper
 
+/--
+@isnad1 id=le.4h5v.s7.f5d0f6ee5a3e from=translated src=- shape=fecbd8d9 vocab=b73d300c
+-/
 theorem layer_raw_sum_bound {H : Subgroup G} (hn : 1 < H.index)
     {q r m : ℕ} (hq : 1 < q) (hqp : q ≤ H.index.minFac)
     (hmi : m < q ^ (r + 1)) :
@@ -409,7 +459,9 @@ theorem layer_raw_sum_bound {H : Subgroup G} (hn : 1 < H.index)
     _ ≤ (Nat.card G : ℚ) ^ r := by
       exact_mod_cast packed_layer_raw_card_bound H m r
 
-/-- Rational layer bound retaining the exact index `m`.-/
+/-- Rational layer bound retaining the exact index `m`.
+@isnad1 id=le.4h5v.s7.ade7f881e59c from=translated src=- shape=a2aede51 vocab=163f94f8
+-/
 theorem layer_card_moment {H : Subgroup G} (hn : 1 < H.index)
     {q r m : ℕ} (hq : 1 < q) (hqp : q ≤ H.index.minFac)
     (hmi : m < q ^ (r + 1)) :
@@ -453,7 +505,9 @@ theorem layer_card_moment {H : Subgroup G} (hn : 1 < H.index)
     _ ≤ (Nat.card G : ℚ) ^ r := hraw
     _ = (Nat.card H : ℚ) ^ r * (H.index : ℚ) ^ r := hGpow
 
-/-- Denominator-cleared exact layer bound (Corollary 3.1).-/
+/-- Denominator-cleared exact layer bound (Corollary 3.1).
+@isnad1 id=le.4h5v.s7.bff0cbd94b6d from=translated src=- shape=6f21d81f vocab=fb996e13
+-/
 theorem layer_card_bound_nat {H : Subgroup G} (hn : 1 < H.index)
     {q r m : ℕ} (hq : 1 < q) (hqp : q ≤ H.index.minFac)
     (hmi : m < q ^ (r + 1)) :
@@ -478,7 +532,9 @@ theorem layer_card_bound_nat {H : Subgroup G} (hn : 1 < H.index)
   exact_mod_cast hqRat
 
 /-- Literal division form of the exact-layer clause of Corollary 3.1.
-The hypotheses place the fixed index `m` in band `r`.-/
+The hypotheses place the fixed index `m` in band `r`.
+@isnad1 id=le.5h5v.s7.0fdf278474dc from=translated src=- shape=75013c4a vocab=5033cd6c
+-/
 theorem layer_card_bound {H : Subgroup G} (hn : 1 < H.index)
     {q r m : ℕ} (hq : 1 < q) (hqp : q ≤ H.index.minFac)
     (hlo : q ^ r ≤ m) (hhi : m < q ^ (r + 1)) :
@@ -505,6 +561,9 @@ def rawHTranslate {H K : Subgroup G} {r : ℕ} (hHK : H ≤ K)
     fun i => K.mul_mem (x.2.1 i) (hHK (h i).2), by
       rw [generatedFrom_mul_right H x.1 h, x.2.2]⟩
 
+/--
+@isnad1 id=injectiv.1h5v.s6.7ba8118d1994 from=translated src=- shape=6b8a588b vocab=a3f013fe
+-/
 theorem rawHTranslate_injective {H K : Subgroup G} {r : ℕ}
     (hHK : H ≤ K) (x : RawRelGen H K r) :
     Function.Injective (rawHTranslate hHK x) := by
@@ -514,7 +573,9 @@ theorem rawHTranslate_injective {H K : Subgroup G} {r : ℕ}
   have hi := congrFun (congrArg Subtype.val heq) i
   exact mul_left_cancel hi
 
-/-- A single relative generating tuple yields `|H|^r` distinct raw tuples.-/
+/-- A single relative generating tuple yields `|H|^r` distinct raw tuples.
+@isnad1 id=le.1h5v.s6.882b79a602da from=translated src=- shape=75674bc6 vocab=0b688a38
+-/
 theorem cardH_pow_le_rawRelGen {H K : Subgroup G} {r : ℕ}
     (hHK : H ≤ K) (x : RawRelGen H K r) :
     Nat.card H ^ r ≤ Nat.card (RawRelGen H K r) := by
@@ -524,6 +585,9 @@ theorem cardH_pow_le_rawRelGen {H K : Subgroup G} {r : ℕ}
   rw [Nat.card_eq_fintype_card, Nat.card_eq_fintype_card]
   simpa only [Fintype.card_fun, Fintype.card_fin] using hcard
 
+/--
+@isnad1 id=nonempty.0h4v.s4.9f2f41e4852e from=translated src=- shape=818cc01b vocab=fa98665c
+-/
 theorem escapePath_nonempty (K : Subgroup G) (r : ℕ) (s : EscapeState K) :
     Nonempty (EscapePath K r s) := by
   induction r generalizing s with
@@ -559,6 +623,9 @@ def packedIntervalRawMap (H : Subgroup G) (r : ℕ) :
     (Σ K : interval H, RawRelGen H K.1 r) → (Fin r → G) :=
   fun z => z.2.1
 
+/--
+@isnad1 id=injectiv.0h3v.s6.9675301a346a from=translated src=- shape=980665e1 vocab=0b34ee29
+-/
 theorem packedIntervalRawMap_injective (H : Subgroup G) (r : ℕ) :
     Function.Injective (packedIntervalRawMap H r) := by
   rintro ⟨K, x⟩ ⟨L, y⟩ hxy
@@ -571,6 +638,9 @@ theorem packedIntervalRawMap_injective (H : Subgroup G) (r : ℕ) :
   subst y
   rfl
 
+/--
+@isnad1 id=le.0h3v.s6.b4e54ec288ca from=translated src=- shape=e043d33a vocab=54889cb0
+-/
 theorem packed_interval_raw_card_bound (H : Subgroup G) (r : ℕ) :
     (∑ K : interval H, Nat.card (RawRelGen H K.1 r)) ≤ Nat.card G ^ r := by
   have hcard := Fintype.card_le_of_injective (packedIntervalRawMap H r)
@@ -579,7 +649,9 @@ theorem packed_interval_raw_card_bound (H : Subgroup G) (r : ℕ) :
   simpa only [Nat.card_eq_fintype_card, Fintype.card_fun,
     Fintype.card_fin] using hcard
 
-/-- The elementary generating-set estimate from the introduction.-/
+/-- The elementary generating-set estimate from the introduction.
+@isnad1 id=le.1h2v.s5.081652fb9fa5 from=translated src=- shape=e9cdb1f9 vocab=424eb388
+-/
 theorem elementary_interval_bound {H : Subgroup G} (hn : 1 < H.index) :
     Nat.card (interval H) ≤ H.index ^ Nat.log 2 H.index := by
   let r := Nat.log 2 H.index
@@ -606,7 +678,9 @@ theorem elementary_interval_bound {H : Subgroup G} (hn : 1 < H.index) :
     (by simpa [Nat.mul_comm] using htotal)
     (pow_pos Nat.card_pos _)
 
-/-- The interval above the top subgroup is a singleton.-/
+/-- The interval above the top subgroup is a singleton.
+@isnad1 id=eq.0h1v.s4.3a624031c56d from=translated src=- shape=ce6accb4 vocab=327077c7
+-/
 theorem interval_top_card_eq_one :
     Nat.card (interval (⊤ : Subgroup G)) = 1 := by
   let e : interval (⊤ : Subgroup G) ≃ PUnit.{u + 1} :=
@@ -621,7 +695,9 @@ theorem interval_top_card_eq_one :
   simp
 
 /-- All-index form of the elementary generating bound, including the
-degenerate index-one interval.-/
+degenerate index-one interval.
+@isnad1 id=le.0h2v.s5.6411766e9317 from=translated src=- shape=871276c3 vocab=38e44abd
+-/
 theorem elementary_interval_bound_all (H : Subgroup G) :
     Nat.card (interval H) ≤ H.index ^ Nat.log 2 H.index := by
   by_cases hn : 1 < H.index
@@ -659,6 +735,9 @@ def intervalStrictDecode (H : Subgroup G) :
   | Sum.inr false => ⟨H, le_rfl⟩
   | Sum.inr true => ⟨⊤, le_top⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.25699ab2a48b from=translated src=- shape=42333f9b vocab=c878969c
+-/
 theorem intervalStrictDecode_encode (H : Subgroup G) (K : interval H) :
     intervalStrictDecode H (intervalStrictEncode H K) = K := by
   by_cases hKH : K.1 = H
@@ -672,6 +751,9 @@ theorem intervalStrictDecode_encode (H : Subgroup G) (K : interval H) :
     · rw [intervalStrictEncode, dite_eq_right hKH, dite_eq_right hKG]
       rfl
 
+/--
+@isnad1 id=eq.1h3v.s5.2d8123c39037 from=translated src=- shape=90f4f4ed vocab=55353628
+-/
 theorem intervalStrictEncode_decode (H : Subgroup G) (hHt : H < ⊤)
     (z : strictIntermediate H ⊕ Bool) :
     intervalStrictEncode H (intervalStrictDecode H z) = z := by
@@ -699,6 +781,9 @@ def intervalStrictEquiv (H : Subgroup G) (hHt : H < ⊤) :
   left_inv := intervalStrictDecode_encode H
   right_inv := intervalStrictEncode_decode H hHt
 
+/--
+@isnad1 id=eq.1h2v.s5.b16d370cae49 from=translated src=- shape=b629ff0f vocab=70c844d9
+-/
 theorem strictIntermediate_card_add_two (H : Subgroup G) (hHt : H < ⊤) :
     Nat.card (strictIntermediate H) + 2 = Nat.card (interval H) := by
   letI : Fintype (strictIntermediate H ⊕ Bool) := inferInstance
@@ -706,6 +791,9 @@ theorem strictIntermediate_card_add_two (H : Subgroup G) (hHt : H < ⊤) :
   rw [Nat.card_eq_fintype_card, Nat.card_eq_fintype_card]
   simpa using hcard.symm
 
+/--
+@isnad1 id=eq.1h2v.s5.e35a49547b85 from=translated src=- shape=0dcec05b vocab=1103e63a
+-/
 theorem strictIntermediate_card_eq_sub_two (H : Subgroup G) (hHt : H < ⊤) :
     Nat.card (strictIntermediate H) = Nat.card (interval H) - 2 := by
   have h := strictIntermediate_card_add_two H hHt

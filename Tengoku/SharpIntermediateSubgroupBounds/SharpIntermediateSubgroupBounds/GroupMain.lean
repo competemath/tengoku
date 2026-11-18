@@ -39,13 +39,17 @@ def sharpScale (q n : ℕ) : ℝ :=
   Real.exp (Real.log (q : ℝ) * indexLog q n ^ 2 / 4)
 
 /-- The natural floor of the real logarithm is Mathlib's exact natural
-logarithm.-/
+logarithm.
+@isnad1 id=eq.0h2v.s4.ca8d57315175 from=translated src=- shape=8c042ac6 vocab=0fcc20bd
+-/
 @[simp]
 theorem natFloor_indexLog (q n : ℕ) :
     Nat.floor (indexLog q n) = Nat.log q n := by
   rw [indexLog, Real.log_div_log, Real.natFloor_logb_natCast]
 
-/-- The logarithmic parameter is nonnegative in the range used below.-/
+/-- The logarithmic parameter is nonnegative in the range used below.
+@isnad1 id=le.2h2v.s5.018468a378f1 from=translated src=- shape=603a042a vocab=aa964f31
+-/
 theorem indexLog_nonneg {q n : ℕ} (hq : 1 < q) (hn : 0 < n) :
     0 ≤ indexLog q n := by
   have hqR : (1 : ℝ) < q := by exact_mod_cast hq
@@ -53,7 +57,9 @@ theorem indexLog_nonneg {q n : ℕ} (hq : 1 < q) (hn : 0 < n) :
   exact div_nonneg (Real.log_nonneg hnR) (Real.log_pos hqR).le
 
 /-- The exact rational Euler factor used by packing casts to the real Euler
-factor used by the theta estimate.-/
+factor used by the theta estimate.
+@isnad1 id=eq.1h2v.s4.25c8d4163865 from=translated src=- shape=4bb7ff45 vocab=96cad8a4
+-/
 theorem ratCast_gammaQ_eq_gammaR (q r : ℕ) (hq : 0 < q) :
     ((gammaQ q r : ℚ) : ℝ) = gammaR (q : ℝ) r := by
   induction r with
@@ -68,7 +74,9 @@ theorem ratCast_gammaQ_eq_gammaR (q r : ℕ) (hq : 0 < q) :
       norm_num [div_eq_mul_inv]
 
 /-- One summand of the exact rational finite sum has precisely the
-exponential form used in `finiteThetaSum`.-/
+exponential form used in `finiteThetaSum`.
+@isnad1 id=eq.2h3v.s6.6a747296b893 from=translated src=- shape=5071ef47 vocab=9604a2df
+-/
 theorem exp_log_band_term {q n r : ℕ} (hq : 1 < q) (hn : 0 < n) :
     Real.exp
         (Real.log (q : ℝ) * (r : ℝ) * (indexLog q n - (r : ℝ))) =
@@ -89,7 +97,9 @@ theorem exp_log_band_term {q n r : ℕ} (hq : 1 < q) (hn : 0 < n) :
   rw [Real.exp_log hnR, Real.exp_log (by positivity : (0 : ℝ) < q)]
 
 /-- Casting the exact finite packing sum to `ℝ` gives the analytic finite
-theta sum, term by term.-/
+theta sum, term by term.
+@isnad1 id=eq.2h2v.s5.038cc1ff6b9c from=translated src=- shape=9acbe73a vocab=eae22e74
+-/
 theorem ratCast_finiteUQ_eq_finiteThetaSum {q n : ℕ} (hq : 1 < q)
     (hn : 0 < n) :
     ((finiteUQ n q : ℚ) : ℝ) =
@@ -109,7 +119,9 @@ theorem ratCast_finiteUQ_eq_finiteThetaSum {q n : ℕ} (hq : 1 < q)
   norm_num [div_eq_mul_inv, hgamma]
   ring
 
-/-- Rational packing followed by the exact real change of variables.-/
+/-- Rational packing followed by the exact real change of variables.
+@isnad1 id=le.3h3v.s6.6cfe830dba66 from=translated src=- shape=6a5d22be vocab=00e352cb
+-/
 theorem interval_card_le_finiteThetaSum {H : Subgroup G} (hn : 1 < H.index)
     {q : ℕ} (hq : 1 < q) (hqp : q ≤ H.index.minFac) :
     (Nat.card (interval H) : ℝ) ≤
@@ -124,7 +136,9 @@ theorem interval_card_le_finiteThetaSum {H : Subgroup G} (hn : 1 < H.index)
 
 /-- General base form of the sharp analytic interval bound.  It applies to
 every integer growth base not exceeding the least prime divisor of the
-ambient index.-/
+ambient index.
+@isnad1 id=lt.3h3v.s6.cbf0644e44d9 from=translated src=- shape=6515ac44 vocab=9952fb4c
+-/
 theorem interval_card_lt_sharpConstant {H : Subgroup G} (hn : 1 < H.index)
     {q : ℕ} (hq : 1 < q) (hqp : q ≤ H.index.minFac) :
     (Nat.card (interval H) : ℝ) <
@@ -134,7 +148,9 @@ theorem interval_card_lt_sharpConstant {H : Subgroup G} (hn : 1 < H.index)
       (indexLog_nonneg hq (by omega)))
 
 /-- The exponential scale agrees exactly with the conventional real-power
-notation in the manuscript.-/
+notation in the manuscript.
+@isnad1 id=eq.2h2v.s5.400f3a022ec5 from=translated src=- shape=400d6e50 vocab=d8244674
+-/
 theorem sharpScale_eq_rpow {q n : ℕ} (hq : 1 < q) (hn : 0 < n) :
     sharpScale q n = (n : ℝ) ^ (indexLog q n / 4) := by
   rw [sharpScale, Real.rpow_def_of_pos (by exact_mod_cast hn)]
@@ -145,7 +161,9 @@ theorem sharpScale_eq_rpow {q n : ℕ} (hq : 1 < q) (hn : 0 < n) :
   field_simp
 
 /-- The least-prime-divisor form of the manuscript's main finite-group
-theorem.-/
+theorem.
+@isnad1 id=lt.1h2v.s5.7bfb48e234a0 from=translated src=- shape=417ba7bc vocab=0578fc5b
+-/
 theorem interval_card_lt_leastPrime {H : Subgroup G} (hn : 1 < H.index) :
     (Nat.card (interval H) : ℝ) <
       sharpConstant (H.index.minFac : ℝ) *
@@ -153,7 +171,9 @@ theorem interval_card_lt_leastPrime {H : Subgroup G} (hn : 1 < H.index) :
   have hp : H.index.minFac.Prime := Nat.minFac_prime (by omega)
   exact interval_card_lt_sharpConstant hn hp.one_lt le_rfl
 
-/-- Least-prime bound in the literal real-power notation of Theorem 1.1.-/
+/-- Least-prime bound in the literal real-power notation of Theorem 1.1.
+@isnad1 id=lt.1h2v.s6.b9940ea21d00 from=translated src=- shape=594db42e vocab=473b93b0
+-/
 theorem interval_card_lt_leastPrime_rpow {H : Subgroup G} (hn : 1 < H.index) :
     (Nat.card (interval H) : ℝ) <
       sharpConstant (H.index.minFac : ℝ) *
@@ -164,7 +184,9 @@ theorem interval_card_lt_leastPrime_rpow {H : Subgroup G} (hn : 1 < H.index) :
   exact interval_card_lt_leastPrime hn
 
 /-- The two inequalities in the finite main theorem, packaged together:
-first the exact rational finite sum and then its strict theta simplification.-/
+first the exact rational finite sum and then its strict theta simplification.
+@isnad1 id=and.1h2v.s6.473bc96718f1 from=translated src=- shape=90542125 vocab=dc3b66b4
+-/
 theorem finiteU_and_sharp_leastPrime {H : Subgroup G} (hn : 1 < H.index) :
     ((Nat.card (interval H) : ℚ) ≤
         finiteUQ H.index H.index.minFac) ∧
@@ -176,21 +198,27 @@ theorem finiteU_and_sharp_leastPrime {H : Subgroup G} (hn : 1 < H.index) :
   exact ⟨finiteU_bound hn hp.one_lt le_rfl,
     interval_card_lt_leastPrime_rpow hn⟩
 
-/-- Universal sharp bound, obtained by taking the uniform growth base `2`.-/
+/-- Universal sharp bound, obtained by taking the uniform growth base `2`.
+@isnad1 id=lt.1h2v.s5.fabf6fe092fd from=translated src=- shape=99cd259f vocab=db3aa7c3
+-/
 theorem interval_card_lt_universal {H : Subgroup G} (hn : 1 < H.index) :
     (Nat.card (interval H) : ℝ) <
       sharpConstant 2 * sharpScale 2 H.index := by
   have hp : H.index.minFac.Prime := Nat.minFac_prime (by omega)
   exact interval_card_lt_sharpConstant hn (by norm_num) hp.two_le
 
-/-- Universal bound in the literal `n ^ ((log_2 n)/4)` notation.-/
+/-- Universal bound in the literal `n ^ ((log_2 n)/4)` notation.
+@isnad1 id=lt.1h2v.s6.bb37eb69d1a0 from=translated src=- shape=1c9f7893 vocab=6cf1ecc5
+-/
 theorem interval_card_lt_universal_rpow {H : Subgroup G} (hn : 1 < H.index) :
     (Nat.card (interval H) : ℝ) <
       sharpConstant 2 * (H.index : ℝ) ^ (indexLog 2 H.index / 4) := by
   rw [← sharpScale_eq_rpow (q := 2) (n := H.index) (by norm_num) (by omega)]
   exact interval_card_lt_universal hn
 
-/-- A fully rational decimal coefficient above the universal sharp constant.-/
+/-- A fully rational decimal coefficient above the universal sharp constant.
+@isnad1 id=lt.1h2v.s6.e945e70ff9c3 from=translated src=- shape=c70b7ccd vocab=d9fdd93a
+-/
 theorem interval_card_lt_universal_decimal {H : Subgroup G} (hn : 1 < H.index) :
     (Nat.card (interval H) : ℝ) <
       ((3685984401 : ℝ) / 500000000) *
@@ -200,7 +228,9 @@ theorem interval_card_lt_universal_decimal {H : Subgroup G} (hn : 1 < H.index) :
     (mul_lt_mul_of_pos_right sharpConstant_two_lt_decimal hscale)
 
 /-- The elementary generating-set estimate from the introduction, in its
-literal real-power form.-/
+literal real-power form.
+@isnad1 id=le.1h2v.s5.b779ee99cfe7 from=translated src=- shape=7bec3243 vocab=6ea4d988
+-/
 theorem elementary_interval_bound_rpow {H : Subgroup G} (hn : 1 < H.index) :
     (Nat.card (interval H) : ℝ) ≤
       (H.index : ℝ) ^ indexLog 2 H.index := by
@@ -220,7 +250,9 @@ theorem elementary_interval_bound_rpow {H : Subgroup G} (hn : 1 < H.index) :
       exact Real.natLog_le_logb H.index 2
 
 /-- All-index form of the elementary generating-set estimate in real-power
-notation, including the singleton interval of index one.-/
+notation, including the singleton interval of index one.
+@isnad1 id=le.0h2v.s5.5bca2e5d2b80 from=translated src=- shape=9e3258af vocab=c2c2e623
+-/
 theorem elementary_interval_bound_rpow_all (H : Subgroup G) :
     (Nat.card (interval H) : ℝ) ≤
       (H.index : ℝ) ^ indexLog 2 H.index := by

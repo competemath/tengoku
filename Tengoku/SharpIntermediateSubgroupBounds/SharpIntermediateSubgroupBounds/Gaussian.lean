@@ -20,13 +20,22 @@ open Filter Finset Real
 
 /-! ## Finite Euler products and the Gaussian product formula -/
 
+/--
+@isnad1 id=eq.0h1v.s4.6e0855dd53cc from=translated src=- shape=0e0c2bda vocab=744e2fc7
+-/
 @[simp] theorem gammaR_zero (p : ℝ) : gammaR p 0 = 1 := by
   simp [gammaR]
 
+/--
+@isnad1 id=eq.0h2v.s6.144f67a5f400 from=translated src=- shape=c0a10936 vocab=1930db7f
+-/
 theorem gammaR_succ (p : ℝ) (r : ℕ) :
     gammaR p (r + 1) = gammaR p r * (1 - p⁻¹ ^ (r + 1)) := by
   simp [gammaR, Finset.prod_range_succ]
 
+/--
+@isnad1 id=lt.1h2v.s4.1931056f3428 from=translated src=- shape=9141f3a7 vocab=44c9a421
+-/
 theorem gammaR_pos {p : ℝ} (hp : 1 < p) (r : ℕ) : 0 < gammaR p r := by
   rw [gammaR]
   apply Finset.prod_pos
@@ -35,6 +44,9 @@ theorem gammaR_pos {p : ℝ} (hp : 1 < p) (r : ℕ) : 0 < gammaR p r := by
   have hinv : p⁻¹ < 1 := inv_lt_one_of_one_lt₀ hp
   exact sub_pos.mpr (pow_lt_one₀ (inv_pos.mpr hp0).le hinv (by omega))
 
+/--
+@isnad1 id=le.1h2v.s4.054bda973e67 from=translated src=- shape=740a21f0 vocab=234524a1
+-/
 theorem gammaR_le_one {p : ℝ} (hp : 1 < p) (r : ℕ) : gammaR p r ≤ 1 := by
   have hp0 : 0 < p := lt_trans (by norm_num) hp
   rw [gammaR]
@@ -46,7 +58,9 @@ theorem gammaR_le_one {p : ℝ} (hp : 1 < p) (r : ℕ) : gammaR p r ≤ 1 := by
     have : 0 ≤ p⁻¹ ^ (j + 1) := pow_nonneg (inv_pos.mpr hp0).le _
     linarith
 
-/-- Finite Euler products decrease as more factors are included.-/
+/-- Finite Euler products decrease as more factors are included.
+@isnad1 id=antitone.1h1v.s4.f7a319dc4097 from=translated src=- shape=cc36a0cc vocab=fcd7e652
+-/
 theorem gammaR_antitone {p : ℝ} (hp : 1 < p) : Antitone (gammaR p) := by
   apply antitone_nat_of_succ_le
   intro r
@@ -59,11 +73,20 @@ theorem gammaR_antitone {p : ℝ} (hp : 1 < p) : Antitone (gammaR p) := by
 Euler factors.  Keeping it as a finite sum avoids parity bookkeeping.-/
 def qWeight (r : ℕ) : ℕ := ∑ j ∈ Finset.range r, (j + 1)
 
+/--
+@isnad1 id=eq.0h0v.s3.ffdf4577da7c from=translated src=- shape=3c26ae4f vocab=3ce9e45b
+-/
 @[simp] theorem qWeight_zero : qWeight 0 = 0 := by simp [qWeight]
 
+/--
+@isnad1 id=eq.0h1v.s5.69e9b32519d5 from=translated src=- shape=50954a66 vocab=51a34a33
+-/
 theorem qWeight_succ (r : ℕ) : qWeight (r + 1) = qWeight r + (r + 1) := by
   simp [qWeight, Finset.sum_range_succ]
 
+/--
+@isnad1 id=eq.1h2v.s5.49cefeb31f2e from=translated src=- shape=c8a0ef2e vocab=08ff569e
+-/
 theorem qWeight_split : ∀ {n k : ℕ}, k ≤ n →
     qWeight n = qWeight k + qWeight (n - k) + k * (n - k) := by
   intro n
@@ -93,7 +116,9 @@ private theorem cast_qpow_sub_one_factor {q m : ℕ} (hq : 1 ≤ q) :
   rw [inv_pow]
   field_simp
 
-/-- The finite Euler product is the normalized `q`-factorial.-/
+/-- The finite Euler product is the normalized `q`-factorial.
+@isnad1 id=eq.1h2v.s5.910048d57349 from=translated src=- shape=aec98c30 vocab=78b72641
+-/
 theorem qFactorial_cast_real_eq_pow_mul_gammaR {q r : ℕ} (hq : 1 ≤ q) :
     (qFactorial q r : ℝ) = (q : ℝ) ^ qWeight r * gammaR (q : ℝ) r := by
   induction r with
@@ -103,7 +128,9 @@ theorem qFactorial_cast_real_eq_pow_mul_gammaR {q r : ℕ} (hq : 1 ≤ q) :
         cast_qpow_sub_one_factor hq, pow_add]
       ring
 
-/-- Gaussian product formula in terms of finite Euler products.-/
+/-- Gaussian product formula in terms of finite Euler products.
+@isnad1 id=eq.2h3v.s6.6ed59c870494 from=translated src=- shape=e9076b6c vocab=c38f57b3
+-/
 theorem qBinom_cast_real_eq_gammaR {q n k : ℕ} (hq : 2 ≤ q) (hk : k ≤ n) :
     (qBinom q n k : ℝ) =
       (q : ℝ) ^ (k * (n - k)) * gammaR (q : ℝ) n /
@@ -172,7 +199,9 @@ private theorem framePower_cast_real {p r : ℕ} :
   | succ r ih =>
       rw [framePower_succ, Nat.cast_mul, Nat.cast_pow, ih, frameWeight_succ, pow_add]
 
-/-- The exact Euler-product form of the ordered-basis count.-/
+/-- The exact Euler-product form of the ordered-basis count.
+@isnad1 id=eq.1h2v.s5.de35b3590a0f from=translated src=- shape=585c8413 vocab=cec940b9
+-/
 theorem frameProd_diagonal_cast_real_eq_gammaR {p r : ℕ} (hp : 2 ≤ p) :
     (frameProd p r r : ℝ) =
       (p : ℝ) ^ (r * r) * gammaR (p : ℝ) r := by
@@ -186,7 +215,9 @@ theorem frameProd_diagonal_cast_real_eq_gammaR {p r : ℕ} (hp : 2 ≤ p) :
 
 /-- In `𝔽_p^r`, relative generating `r`-tuples are ordered bases; their
 certified cardinal is `γ_{p,r} |𝔽_p^r|^r`.  The first equality is the
-finite-vector-space realization used in the escape argument.-/
+finite-vector-space realization used in the escape argument.
+@isnad1 id=eq.0h2v.s7.a7c03d170490 from=translated src=- shape=9b6d79dd vocab=ccc1aa6d
+-/
 theorem card_orderedBases_fin_zmod_cast_eq_gammaR (p r : ℕ) [Fact p.Prime] :
     (Nat.card (LinearIndependentFrames (ZMod p) (Fin r → ZMod p) r) : ℝ) =
       (p : ℝ) ^ (r * r) * gammaR (p : ℝ) r := by
@@ -195,7 +226,9 @@ theorem card_orderedBases_fin_zmod_cast_eq_gammaR (p r : ℕ) [Fact p.Prime] :
 
 /-- An `r`-tuple in the standard `r`-dimensional elementary-abelian space
 generates the whole space if and only if it is linearly independent.  This is
-the literal ordered-basis bridge used by the escape example.-/
+the literal ordered-basis bridge used by the escape example.
+@isnad1 id=iff.0h3v.s8.abbe3364498e from=translated src=- shape=62a97dfc vocab=4b667af5
+-/
 theorem span_eq_top_iff_linearIndependent_fin_zmod (p r : ℕ) [Fact p.Prime]
     (s : Fin r → (Fin r → ZMod p)) :
     Submodule.span (ZMod p) (Set.range s) = ⊤ ↔
@@ -221,7 +254,9 @@ private def addSubgroupAsZModSubmodule {p : ℕ} [Fact p.Prime]
     exact A.nsmul_mem hx _
 
 /-- For an elementary-abelian group, additive generation and vector-space
-generation agree literally.-/
+generation agree literally.
+@isnad1 id=eq.0h3v.s6.f7288d7aaca0 from=translated src=- shape=f78b50e5 vocab=91a9c316
+-/
 theorem span_toAddSubgroup_eq_addClosure_zmod {p : ℕ} [Fact p.Prime]
     {V : Type*} [AddCommGroup V] [Module (ZMod p) V] (s : Set V) :
     (Submodule.span (ZMod p) s).toAddSubgroup = AddSubgroup.closure s := by
@@ -235,6 +270,9 @@ theorem span_toAddSubgroup_eq_addClosure_zmod {p : ℕ} [Fact p.Prime]
     intro x hx
     exact Submodule.subset_span hx
 
+/--
+@isnad1 id=iff.0h3v.s7.358f20629094 from=translated src=- shape=5b715664 vocab=43ed704e
+-/
 theorem addClosure_eq_top_iff_span_eq_top_zmod {p : ℕ} [Fact p.Prime]
     {V : Type*} [AddCommGroup V] [Module (ZMod p) V] (s : Set V) :
     AddSubgroup.closure s = ⊤ ↔ Submodule.span (ZMod p) s = ⊤ := by
@@ -248,7 +286,9 @@ theorem addClosure_eq_top_iff_span_eq_top_zmod {p : ℕ} [Fact p.Prime]
     rfl
 
 /-- Literal group-generation form: an ordered `r`-tuple generates the
-additive elementary-abelian group if and only if it is an ordered basis.-/
+additive elementary-abelian group if and only if it is an ordered basis.
+@isnad1 id=iff.0h3v.s7.41e6ae0b8f90 from=translated src=- shape=76b1d03a vocab=791ebee7
+-/
 theorem addClosure_eq_top_iff_linearIndependent_fin_zmod
     (p r : ℕ) [Fact p.Prime] (s : Fin r → (Fin r → ZMod p)) :
     AddSubgroup.closure (Set.range s) = ⊤ ↔ LinearIndependent (ZMod p) s := by
@@ -269,19 +309,25 @@ def generatingFramesEquivOrderedBasesFinZMod (p r : ℕ) [Fact p.Prime] :
     addClosure_eq_top_iff_linearIndependent_fin_zmod p r s
 
 /-- Exact cardinality of the generating tuples in the elementary-abelian
-escape family.-/
+escape family.
+@isnad1 id=eq.0h2v.s5.5363677539ef from=translated src=- shape=50eb2c0a vocab=0f3361ab
+-/
 theorem card_generatingFrames_fin_zmod_cast_eq_gammaR (p r : ℕ) [Fact p.Prime] :
     (Nat.card (GeneratingFramesFinZMod p r) : ℝ) =
       (p : ℝ) ^ (r * r) * gammaR (p : ℝ) r := by
   rw [Nat.card_congr (generatingFramesEquivOrderedBasesFinZMod p r)]
   exact card_orderedBases_fin_zmod_cast_eq_gammaR p r
 
-/-- The inverse finite Euler products converge to the Euler constant.-/
+/-- The inverse finite Euler products converge to the Euler constant.
+@isnad1 id=tendsto.1h1v.s5.1c063cb59b64 from=translated src=- shape=0473deb4 vocab=e693eeac
+-/
 theorem gammaR_inv_tendsto {p : ℝ} (hp : 2 ≤ p) :
     Tendsto (fun r : ℕ ↦ (gammaR p r)⁻¹) atTop (nhds (eulerC p)) := by
   simpa [gammaR, Finset.prod_inv_distrib] using eulerC_partial_tendsto hp
 
-/-- The finite Euler products themselves converge to `C_p⁻¹`.-/
+/-- The finite Euler products themselves converge to `C_p⁻¹`.
+@isnad1 id=tendsto.1h1v.s5.d27da0059a00 from=translated src=- shape=ff3a2700 vocab=e693eeac
+-/
 theorem gammaR_tendsto {p : ℝ} (hp : 2 ≤ p) :
     Tendsto (gammaR p) atTop (nhds (eulerC p)⁻¹) := by
   have h := (gammaR_inv_tendsto hp).inv₀ (ne_of_gt (eulerC_pos hp))
@@ -294,6 +340,9 @@ normalized by the central power.  It is set to zero outside the rank.-/
 noncomputable def normalizedGaussianRight (p a j : ℕ) : ℝ :=
   if j ≤ a then (p : ℝ)⁻¹ ^ (a * a) * (qBinom p (2 * a) (a + j) : ℝ) else 0
 
+/--
+@isnad1 id=eq.2h3v.s7.529e4e650a0e from=translated src=- shape=0b446617 vocab=7af77978
+-/
 theorem normalizedGaussianRight_eq {p a j : ℕ} (hp : 2 ≤ p) (hj : j ≤ a) :
     normalizedGaussianRight p a j =
       (p : ℝ)⁻¹ ^ (j * j) * gammaR (p : ℝ) (2 * a) *
@@ -331,6 +380,9 @@ private theorem tendsto_double_nat_atTop :
   filter_upwards [eventually_ge_atTop b] with a ha
   omega
 
+/--
+@isnad1 id=tendsto.1h2v.s6.3dac6ba924b4 from=translated src=- shape=0d90b010 vocab=2cd2dfd3
+-/
 theorem normalizedGaussianRight_tendsto {p j : ℕ} (hp : 2 ≤ p) :
     Tendsto (fun a : ℕ ↦ normalizedGaussianRight p a j) atTop
       (nhds (eulerC (p : ℝ) * (p : ℝ)⁻¹ ^ (j * j))) := by
@@ -348,6 +400,9 @@ theorem normalizedGaussianRight_tendsto {p j : ℕ} (hp : 2 ≤ p) :
     rw [normalizedGaussianRight_eq hp ha]
     simp only [Function.comp_apply, Nat.add_comm, Nat.mul_comm]
 
+/--
+@isnad1 id=le.1h3v.s4.300c6185428e from=translated src=- shape=80952cdd vocab=0ca4a856
+-/
 theorem normalizedGaussianRight_nonneg {p a j : ℕ} (hp : 2 ≤ p) :
     0 ≤ normalizedGaussianRight p a j := by
   unfold normalizedGaussianRight
@@ -355,6 +410,9 @@ theorem normalizedGaussianRight_nonneg {p a j : ℕ} (hp : 2 ≤ p) :
   · positivity
   · exact le_rfl
 
+/--
+@isnad1 id=le.1h3v.s6.ee5caa0472c1 from=translated src=- shape=4b888939 vocab=df577185
+-/
 theorem normalizedGaussianRight_le {p a j : ℕ} (hp : 2 ≤ p) :
     normalizedGaussianRight p a j ≤
       eulerC (p : ℝ) ^ 2 * (p : ℝ)⁻¹ ^ (j * j) := by
@@ -393,7 +451,9 @@ theorem normalizedGaussianRight_le {p a j : ℕ} (hp : 2 ≤ p) :
 
 /-- The sharp one-sided Gaussian majorant used in the manuscript.  One
 inverse Euler factor cancels against the longer numerator product, leaving
-only a single factor `C_p`.-/
+only a single factor `C_p`.
+@isnad1 id=le.1h3v.s5.4ec3f00e19f7 from=translated src=- shape=6098ba7f vocab=df577185
+-/
 theorem normalizedGaussianRight_le_eulerC {p a j : ℕ} (hp : 2 ≤ p) :
     normalizedGaussianRight p a j ≤
       eulerC (p : ℝ) * (p : ℝ)⁻¹ ^ (j * j) := by
@@ -436,6 +496,9 @@ theorem normalizedGaussianRight_le_eulerC {p a j : ℕ} (hp : 2 ≤ p) :
 noncomputable def normalizedGaussianCentered (p a : ℕ) (j : ℤ) : ℝ :=
   normalizedGaussianRight p a j.natAbs
 
+/--
+@isnad1 id=eq.2h3v.s7.a4c81ceb4bac from=translated src=- shape=806f71e8 vocab=44bcf2d0
+-/
 theorem normalizedGaussianCentered_eq {p a : ℕ} {j : ℤ} (hp : 2 ≤ p)
     (hj : j.natAbs ≤ a) :
     normalizedGaussianCentered p a j =
@@ -444,12 +507,18 @@ theorem normalizedGaussianCentered_eq {p a : ℕ} {j : ℤ} (hp : 2 ≤ p)
           (gammaR (p : ℝ) (a - j.natAbs))⁻¹ := by
   exact normalizedGaussianRight_eq hp hj
 
+/--
+@isnad1 id=tendsto.1h2v.s6.2f990ed23d71 from=translated src=- shape=8a6cda0f vocab=4578c127
+-/
 theorem normalizedGaussianCentered_tendsto {p : ℕ} {j : ℤ} (hp : 2 ≤ p) :
     Tendsto (fun a : ℕ ↦ normalizedGaussianCentered p a j) atTop
       (nhds (eulerC (p : ℝ) *
         (p : ℝ)⁻¹ ^ (j.natAbs * j.natAbs))) := by
   exact normalizedGaussianRight_tendsto hp
 
+/--
+@isnad1 id=le.1h3v.s6.118016349117 from=translated src=- shape=be7f1579 vocab=a5a907fd
+-/
 theorem normalizedGaussianCentered_le_eulerC {p a : ℕ} {j : ℤ}
     (hp : 2 ≤ p) :
     normalizedGaussianCentered p a j ≤
@@ -467,11 +536,17 @@ noncomputable def evenGaussianLimitSummand (p j : ℕ) : ℝ :=
   (centerMultiplicity j : ℝ) *
     (eulerC (p : ℝ) * (p : ℝ)⁻¹ ^ (j * j))
 
+/--
+@isnad1 id=tendsto.1h2v.s5.071cd8b1d871 from=translated src=- shape=012c5019 vocab=eb56ca81
+-/
 theorem evenGaussianSummand_tendsto {p j : ℕ} (hp : 2 ≤ p) :
     Tendsto (fun a : ℕ ↦ evenGaussianSummand p a j) atTop
       (nhds (evenGaussianLimitSummand p j)) := by
   exact tendsto_const_nhds.mul (normalizedGaussianRight_tendsto hp)
 
+/--
+@isnad1 id=summable.1h1v.s5.4f5f77accd82 from=translated src=- shape=619ed105 vocab=fd70906a
+-/
 theorem summable_nat_gaussian_inv_pow {p : ℕ} (hp : 2 ≤ p) :
     Summable (fun j : ℕ ↦ (p : ℝ)⁻¹ ^ (j * j)) := by
   have hpR0 : 0 ≤ (p : ℝ)⁻¹ := inv_nonneg.mpr (by positivity)
@@ -489,6 +564,9 @@ private theorem exp_neg_log_sq_nat_eq_inv_pow {p j : ℕ} (hp : 1 ≤ p) :
       (j * j : ℕ) * (-Real.log (p : ℝ)) by norm_num; ring]
   rw [Real.exp_nat_mul, Real.exp_neg, Real.exp_log hpR]
 
+/--
+@isnad1 id=eq.1h2v.s6.fd9adab66fce from=translated src=- shape=d2779691 vocab=78b53ac7
+-/
 theorem tsum_evenGaussianSummand_eq_normalized_total {p a : ℕ} (hp : 2 ≤ p) :
     ∑' j : ℕ, evenGaussianSummand p a j =
       (p : ℝ)⁻¹ ^ (a * a) * (totalQBinom p (2 * a) : ℝ) := by
@@ -521,6 +599,9 @@ theorem tsum_evenGaussianSummand_eq_normalized_total {p a : ℕ} (hp : 2 ≤ p) 
       omega
     simp [evenGaussianSummand, normalizedGaussianRight, show ¬j ≤ a by omega]
 
+/--
+@isnad1 id=eq.1h1v.s5.d96d3a128b69 from=translated src=- shape=480764c8 vocab=ece7e0b3
+-/
 theorem tsum_evenGaussianLimitSummand_eq_sharpConstant {p : ℕ} (hp : 2 ≤ p) :
     ∑' j : ℕ, evenGaussianLimitSummand p j = sharpConstant (p : ℝ) := by
   have hsum : Summable (fun j : ℕ ↦ evenGaussianLimitSummand p j) := by
@@ -560,7 +641,9 @@ theorem tsum_evenGaussianLimitSummand_eq_sharpConstant {p : ℕ} (hp : 2 ≤ p) 
   simp
   ring
 
-/-- Full-constant asymptotic for the number of subspaces in even rank.-/
+/-- Full-constant asymptotic for the number of subspaces in even rank.
+@isnad1 id=tendsto.1h1v.s6.9d3b1a5b938c from=translated src=- shape=61ec7614 vocab=58c2e9f9
+-/
 theorem gaussian_even_rank_asymptotic {p : ℕ} (hp : 2 ≤ p) :
     Tendsto (fun a : ℕ ↦
       (p : ℝ)⁻¹ ^ (a * a) * (totalQBinom p (2 * a) : ℝ)) atTop
@@ -618,6 +701,9 @@ noncomputable def normalizedOddGaussianRight (p a j : ℕ) : ℝ :=
       (qBinom p (2 * a + 1) (a + 1 + j) : ℝ)
   else 0
 
+/--
+@isnad1 id=eq.2h3v.s7.4afb6fa141c7 from=translated src=- shape=8b145fa5 vocab=ce39a1b2
+-/
 theorem normalizedOddGaussianRight_eq {p a j : ℕ} (hp : 2 ≤ p) (hj : j ≤ a) :
     normalizedOddGaussianRight p a j =
       (p : ℝ)⁻¹ ^ (j * (j + 1)) * gammaR (p : ℝ) (2 * a + 1) *
@@ -659,6 +745,9 @@ private theorem tendsto_double_add_one_nat_atTop :
   filter_upwards [eventually_ge_atTop b] with a ha
   omega
 
+/--
+@isnad1 id=tendsto.1h2v.s6.f357a6eab840 from=translated src=- shape=2086783f vocab=2b9b12ff
+-/
 theorem normalizedOddGaussianRight_tendsto {p j : ℕ} (hp : 2 ≤ p) :
     Tendsto (fun a : ℕ ↦ normalizedOddGaussianRight p a j) atTop
       (nhds (eulerC (p : ℝ) * (p : ℝ)⁻¹ ^ (j * (j + 1)))) := by
@@ -685,6 +774,9 @@ theorem normalizedOddGaussianRight_tendsto {p j : ℕ} (hp : 2 ≤ p) :
   convert htend using 1
   field_simp
 
+/--
+@isnad1 id=le.1h3v.s4.eb2f433a9db7 from=translated src=- shape=80952cdd vocab=6a684df3
+-/
 theorem normalizedOddGaussianRight_nonneg {p a j : ℕ} (hp : 2 ≤ p) :
     0 ≤ normalizedOddGaussianRight p a j := by
   unfold normalizedOddGaussianRight
@@ -692,6 +784,9 @@ theorem normalizedOddGaussianRight_nonneg {p a j : ℕ} (hp : 2 ≤ p) :
   · positivity
   · exact le_rfl
 
+/--
+@isnad1 id=le.1h3v.s6.aff3d419d725 from=translated src=- shape=60c9d990 vocab=bcc624c7
+-/
 theorem normalizedOddGaussianRight_le {p a j : ℕ} (hp : 2 ≤ p) :
     normalizedOddGaussianRight p a j ≤
       eulerC (p : ℝ) ^ 2 * (p : ℝ)⁻¹ ^ (j * (j + 1)) := by
@@ -737,11 +832,17 @@ noncomputable def oddGaussianLimitSummand (p j : ℕ) : ℝ :=
   2 * quarterShiftScale (p : ℝ) *
     (eulerC (p : ℝ) * (p : ℝ)⁻¹ ^ (j * (j + 1)))
 
+/--
+@isnad1 id=tendsto.1h2v.s5.dceda57fb3a1 from=translated src=- shape=012c5019 vocab=8db262f7
+-/
 theorem oddGaussianSummand_tendsto {p j : ℕ} (hp : 2 ≤ p) :
     Tendsto (fun a : ℕ ↦ oddGaussianSummand p a j) atTop
       (nhds (oddGaussianLimitSummand p j)) := by
   exact tendsto_const_nhds.mul (normalizedOddGaussianRight_tendsto hp)
 
+/--
+@isnad1 id=summable.1h1v.s6.e81a5c3d7d9c from=translated src=- shape=8f9a3a29 vocab=df21aad3
+-/
 theorem summable_nat_odd_gaussian_inv_pow {p : ℕ} (hp : 2 ≤ p) :
     Summable (fun j : ℕ ↦ (p : ℝ)⁻¹ ^ (j * (j + 1))) := by
   have hpR0 : 0 ≤ (p : ℝ)⁻¹ := inv_nonneg.mpr (by positivity)
@@ -757,7 +858,9 @@ theorem summable_nat_odd_gaussian_inv_pow {p : ℕ} (hp : 2 ≤ p) :
           Nat.mul_le_mul_left j (Nat.succ_le_succ (Nat.zero_le j))))
 
 /-- Odd rank has no single central layer: the lower and upper halves pair
-exactly.-/
+exactly.
+@isnad1 id=eq.1h2v.s6.839dbe130587 from=translated src=- shape=4b5dfa1e vocab=dfc8fd8b
+-/
 theorem totalQBinom_odd_split {q : ℕ} (hq : 2 ≤ q) (a : ℕ) :
     totalQBinom q (2 * a + 1) =
       2 * ∑ j ∈ Finset.range (a + 1), qBinom q (2 * a + 1) (a + 1 + j) := by
@@ -782,6 +885,9 @@ theorem totalQBinom_odd_split {q : ℕ} (hq : 2 ≤ q) (a : ℕ) :
   dsimp [f]
   ring
 
+/--
+@isnad1 id=eq.1h2v.s6.9ec472f956ea from=translated src=- shape=c902746f vocab=4836fea7
+-/
 theorem tsum_oddGaussianSummand_eq_normalized_total {p a : ℕ} (hp : 2 ≤ p) :
     ∑' j : ℕ, oddGaussianSummand p a j =
       quarterShiftScale (p : ℝ) * (p : ℝ)⁻¹ ^ (a * (a + 1)) *
@@ -821,7 +927,9 @@ private theorem exp_neg_log_nat_eq_inv_pow {p m : ℕ} (hp : 1 ≤ p) :
   rw [Real.exp_nat_mul, Real.exp_neg, Real.exp_log hpR]
 
 /-- The half-shifted theta series is exactly the paired odd Gaussian series,
-including the quarter-power normalization.-/
+including the quarter-power normalization.
+@isnad1 id=eq.1h1v.s6.f196e026cf58 from=translated src=- shape=4e09495f vocab=25467835
+-/
 theorem shiftedTheta_half_eq_quarterShiftScale_mul_tsum {p : ℕ} (hp : 2 ≤ p) :
     shiftedTheta (p : ℝ) (1 / 2) = quarterShiftScale (p : ℝ) *
       (2 * ∑' j : ℕ, (p : ℝ)⁻¹ ^ (j * (j + 1))) := by
@@ -873,6 +981,9 @@ theorem shiftedTheta_half_eq_quarterShiftScale_mul_tsum {p : ℕ} (hp : 2 ≤ p)
   rw [tsum_mul_left]
   ring
 
+/--
+@isnad1 id=eq.1h1v.s5.cb25198001d7 from=translated src=- shape=480764c8 vocab=0eeefb46
+-/
 theorem tsum_oddGaussianLimitSummand_eq_oddGaussianConstant {p : ℕ} (hp : 2 ≤ p) :
     ∑' j : ℕ, oddGaussianLimitSummand p j = oddGaussianConstant (p : ℝ) := by
   have htheta := shiftedTheta_half_eq_quarterShiftScale_mul_tsum hp
@@ -891,12 +1002,18 @@ theorem tsum_oddGaussianLimitSummand_eq_oddGaussianConstant {p : ℕ} (hp : 2 �
           (2 * ∑' j : ℕ, (p : ℝ)⁻¹ ^ (j * (j + 1)))) := by ring
     _ = eulerC (p : ℝ) * shiftedTheta (p : ℝ) (1 / 2) := by rw [htheta]
 
+/--
+@isnad1 id=le.1h3v.s4.4fe8e9450dc5 from=translated src=- shape=80952cdd vocab=eef38e9d
+-/
 theorem oddGaussianSummand_nonneg {p a j : ℕ} (hp : 2 ≤ p) :
     0 ≤ oddGaussianSummand p a j := by
   have hscale : 0 ≤ quarterShiftScale (p : ℝ) := (Real.exp_pos _).le
   exact mul_nonneg (mul_nonneg (by norm_num) hscale)
     (normalizedOddGaussianRight_nonneg hp)
 
+/--
+@isnad1 id=le.1h3v.s6.7d3fa539c4de from=translated src=- shape=66a1a80d vocab=8257003a
+-/
 theorem oddGaussianSummand_le {p a j : ℕ} (hp : 2 ≤ p) :
     oddGaussianSummand p a j ≤
       2 * quarterShiftScale (p : ℝ) * eulerC (p : ℝ) ^ 2 *
@@ -912,7 +1029,9 @@ theorem oddGaussianSummand_le {p a j : ℕ} (hp : 2 ≤ p) :
     _ = 2 * quarterShiftScale (p : ℝ) * eulerC (p : ℝ) ^ 2 *
           (p : ℝ)⁻¹ ^ (j * (j + 1)) := by ring
 
-/-- Full half-shifted-theta asymptotic in odd rank.-/
+/-- Full half-shifted-theta asymptotic in odd rank.
+@isnad1 id=tendsto.1h1v.s6.16394b0bab56 from=translated src=- shape=245a754b vocab=e2e2e70c
+-/
 theorem gaussian_odd_rank_asymptotic {p : ℕ} (hp : 2 ≤ p) :
     Tendsto (fun a : ℕ ↦
       quarterShiftScale (p : ℝ) * (p : ℝ)⁻¹ ^ (a * (a + 1)) *
@@ -934,6 +1053,9 @@ theorem gaussian_odd_rank_asymptotic {p : ℕ} (hp : 2 ≤ p) :
   · rw [Real.norm_eq_abs, abs_of_nonneg (oddGaussianSummand_nonneg hp)]
     exact oddGaussianSummand_le hp
 
+/--
+@isnad1 id=eq.1h2v.s7.87643e879b06 from=translated src=- shape=1aeeb7df vocab=0d3c4b87
+-/
 theorem quarterShiftScale_mul_centered_power {p a : ℕ} (hp : 2 ≤ p) :
     quarterShiftScale (p : ℝ) * (p : ℝ)⁻¹ ^ (a * (a + 1)) =
       Real.rpow (p : ℝ) (-(((2 * a + 1 : ℕ) : ℝ) ^ 2 / 4)) := by
@@ -947,7 +1069,9 @@ theorem quarterShiftScale_mul_centered_power {p a : ℕ} (hp : 2 ≤ p) :
   push_cast
   ring
 
-/-- Equivalent quarter-square form of the odd-rank asymptotic.-/
+/-- Equivalent quarter-square form of the odd-rank asymptotic.
+@isnad1 id=tendsto.1h1v.s7.01342c60926b from=translated src=- shape=b8646be6 vocab=d6ac9abb
+-/
 theorem gaussian_odd_rank_rpow_asymptotic {p : ℕ} (hp : 2 ≤ p) :
     Tendsto (fun a : ℕ ↦
       Real.rpow (p : ℝ) (-(((2 * a + 1 : ℕ) : ℝ) ^ 2 / 4)) *
@@ -959,7 +1083,9 @@ theorem gaussian_odd_rank_rpow_asymptotic {p : ℕ} (hp : 2 ≤ p) :
 
 /-- The half-integral translate is strictly below the integral theta maximum,
 so the odd-rank constant is strictly smaller than the even-rank sharp
-constant under the canonical quarter-square normalization.-/
+constant under the canonical quarter-square normalization.
+@isnad1 id=lt.1h1v.s4.b4a56fad7c75 from=translated src=- shape=9c8b14d8 vocab=fa74ab8f
+-/
 theorem oddGaussianConstant_lt_sharpConstant {p : ℝ} (hp : 2 ≤ p) :
     oddGaussianConstant p < sharpConstant p := by
   have hhalf : ¬ ∃ z : ℤ, (z : ℝ) = (1 / 2 : ℝ) := by
@@ -997,6 +1123,9 @@ noncomputable def evenUSummand (p a j : ℕ) : ℝ :=
       ((gammaR (p : ℝ) (a + j))⁻¹ + (gammaR (p : ℝ) (a - j))⁻¹)
   else 0
 
+/--
+@isnad1 id=eq.1h2v.s6.2df899865434 from=translated src=- shape=2df497ea vocab=c57954a5
+-/
 theorem tsum_evenUSummand_eq_normalized_U {p a : ℕ} (hp : 2 ≤ p) :
     ∑' j : ℕ, evenUSummand p a j =
       (p : ℝ)⁻¹ ^ (a * a) * primePowerU p (2 * a) := by
@@ -1060,6 +1189,9 @@ theorem tsum_evenUSummand_eq_normalized_U {p a : ℕ} (hp : 2 ≤ p) :
       omega
     simp [evenUSummand, show j ≠ 0 by omega, show ¬j ≤ a by omega]
 
+/--
+@isnad1 id=tendsto.1h2v.s5.e305f4842ee3 from=translated src=- shape=012c5019 vocab=63f97cf4
+-/
 theorem evenUSummand_tendsto {p j : ℕ} (hp : 2 ≤ p) :
     Tendsto (fun a : ℕ ↦ evenUSummand p a j) atTop
       (nhds (evenGaussianLimitSummand p j)) := by
@@ -1084,6 +1216,9 @@ theorem evenUSummand_tendsto {p j : ℕ} (hp : 2 ≤ p) :
     filter_upwards [eventually_ge_atTop j] with a ha
     simp [evenUSummand, hj0, ha]
 
+/--
+@isnad1 id=le.1h3v.s4.fef389c89336 from=translated src=- shape=80952cdd vocab=90e430aa
+-/
 theorem evenUSummand_nonneg {p a j : ℕ} (hp : 2 ≤ p) :
     0 ≤ evenUSummand p a j := by
   have hp1 : (1 : ℝ) < (p : ℝ) := by exact_mod_cast (by omega : 1 < p)
@@ -1099,6 +1234,9 @@ theorem evenUSummand_nonneg {p a j : ℕ} (hp : 2 ≤ p) :
           (inv_pos.mpr (gammaR_pos hp1 (a - j))).le)
     · rw [ite_eq_right hja]
 
+/--
+@isnad1 id=le.1h3v.s6.7403bbaeea5a from=translated src=- shape=ceb73dce vocab=d2657138
+-/
 theorem evenUSummand_le {p a j : ℕ} (hp : 2 ≤ p) :
     evenUSummand p a j ≤
       2 * eulerC (p : ℝ) * (p : ℝ)⁻¹ ^ (j * j) := by
@@ -1120,7 +1258,9 @@ theorem evenUSummand_le {p a j : ℕ} (hp : 2 ≤ p) :
     · rw [ite_eq_right hja]
       exact mul_nonneg (mul_nonneg (by norm_num) (eulerC_pos hpR).le) (by positivity)
 
-/-- The finite envelope has the same sharp even-rank asymptotic.-/
+/-- The finite envelope has the same sharp even-rank asymptotic.
+@isnad1 id=tendsto.1h1v.s6.743a8657df0c from=translated src=- shape=10dc262a vocab=4427aa6f
+-/
 theorem primePowerU_even_rank_asymptotic {p : ℕ} (hp : 2 ≤ p) :
     Tendsto (fun a : ℕ ↦
       (p : ℝ)⁻¹ ^ (a * a) * primePowerU p (2 * a)) atTop
@@ -1143,7 +1283,9 @@ theorem primePowerU_even_rank_asymptotic {p : ℕ} (hp : 2 ≤ p) :
   exact ht.congr' (Filter.Eventually.of_forall fun a ↦
     tsum_evenUSummand_eq_normalized_U hp)
 
-/-- The elementary-abelian count asymptotically exhausts the finite envelope.-/
+/-- The elementary-abelian count asymptotically exhausts the finite envelope.
+@isnad1 id=tendsto.1h1v.s6.691f08a875f8 from=translated src=- shape=04fc936f vocab=01c371de
+-/
 theorem gaussian_total_div_primePowerU_tendsto_one {p : ℕ} (hp : 2 ≤ p) :
     Tendsto (fun a : ℕ ↦
       (totalQBinom p (2 * a) : ℝ) / primePowerU p (2 * a)) atTop (nhds 1) := by
@@ -1160,13 +1302,17 @@ theorem gaussian_total_div_primePowerU_tendsto_one {p : ℕ} (hp : 2 ≤ p) :
     dsimp
     field_simp [hp0]
 
-/-- Exact elementary-abelian realization of every even-rank Gaussian sum.-/
+/-- Exact elementary-abelian realization of every even-rank Gaussian sum.
+@isnad1 id=eq.0h2v.s7.5fbf15712d69 from=translated src=- shape=d334ac92 vocab=f904529e
+-/
 theorem elementaryAbelian_subspace_escape_equality (p a : ℕ) [Fact p.Prime] :
     Nat.card (Submodule (ZMod p) (Fin (2 * a) → ZMod p)) = totalQBinom p (2 * a) :=
   card_all_subspaces_fin_zmod p (2 * a)
 
 /-- No uniformly smaller constant can dominate all normalized even-rank
-elementary-abelian examples.-/
+elementary-abelian examples.
+@isnad1 id=le.2h2v.s6.32c64ae92018 from=translated src=- shape=43a9f637 vocab=0236d43d
+-/
 theorem sharpConstant_le_of_even_rank_bound {p : ℕ} (hp : 2 ≤ p) {C : ℝ}
     (hC : ∀ a : ℕ,
       (p : ℝ)⁻¹ ^ (a * a) * (totalQBinom p (2 * a) : ℝ) ≤ C) :
@@ -1175,7 +1321,9 @@ theorem sharpConstant_le_of_even_rank_bound {p : ℕ} (hp : 2 ≤ p) {C : ℝ}
 
 /-- Any proposed improvement whose normalized right side tends to zero is
 incompatible with the elementary-abelian family; this is the quantified
-optimal-exponent assertion used in the manuscript.-/
+optimal-exponent assertion used in the manuscript.
+@isnad1 id=false.3h2v.s6.1964e0df8dc9 from=translated src=- shape=e861400d vocab=92063cbc
+-/
 theorem no_vanishing_normalized_bound {p : ℕ} (hp : 2 ≤ p) (b : ℕ → ℝ)
     (hb : Tendsto b atTop (nhds 0))
     (hbound : ∀ a : ℕ,
@@ -1188,7 +1336,9 @@ theorem no_vanishing_normalized_bound {p : ℕ} (hp : 2 ≤ p) (b : ℕ → ℝ)
 /-- Explicit optimality of the exponent `1/4`, in normalized exponential
 form.  For every `α < 1/4` and every fixed constant `C`, the proposed
 normalized right side tends to zero and therefore cannot dominate all
-elementary-abelian examples.-/
+elementary-abelian examples.
+@isnad1 id=not.2h3v.s7.88b35a88f5aa from=translated src=- shape=a3ec52a8 vocab=5e17b3f2
+-/
 theorem no_subquarter_normalized_exponential_bound {p : ℕ} (hp : 2 ≤ p)
     {α C : ℝ} (hα : α < 1 / 4) :
     ¬ ∀ a : ℕ,
@@ -1217,7 +1367,9 @@ theorem no_subquarter_normalized_exponential_bound {p : ℕ} (hp : 2 ≤ p)
 
 /-- Unnormalized `Real.rpow` form of exponent optimality.  The order of the
 elementary-abelian group is `p^(2a)`, so an exponent `α` on the square of
-the base-`p` logarithm gives the power `p^(4αa²)`.-/
+the base-`p` logarithm gives the power `p^(4αa²)`.
+@isnad1 id=not.2h3v.s6.9776ba0fd98e from=translated src=- shape=a9031fb8 vocab=759fcc9e
+-/
 theorem no_subquarter_rpow_bound {p : ℕ} (hp : 2 ≤ p) {α C : ℝ}
     (hα : α < 1 / 4) :
     ¬ ∀ a : ℕ,

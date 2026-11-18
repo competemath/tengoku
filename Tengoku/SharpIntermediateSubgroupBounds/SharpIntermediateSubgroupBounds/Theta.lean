@@ -86,6 +86,9 @@ private lemma eulerCorrection_le {p : ℝ} (hp : 2 ≤ p) (n : ℕ) :
   rw [eulerCorrection, div_le_iff₀ (by linarith : 0 < 1 - p⁻¹ ^ (n + 1))]
   nlinarith [mul_nonneg ht0 (sub_nonneg.mpr (by linarith : 2 * p⁻¹ ^ (n + 1) ≤ 1))]
 
+/--
+@isnad1 id=summable.1h1v.s4.2eb752f76509 from=translated src=- shape=2a9d7336 vocab=286e855b
+-/
 lemma summable_eulerCorrection {p : ℝ} (hp : 2 ≤ p) :
     Summable (eulerCorrection p) := by
   have hp0 : 0 < p := by linarith
@@ -96,6 +99,9 @@ lemma summable_eulerCorrection {p : ℝ} (hp : 2 ≤ p) :
   exact (hgeom.mul_left 2).of_nonneg_of_le
     (fun n ↦ eulerCorrection_nonneg hp n) (fun n ↦ eulerCorrection_le hp n)
 
+/--
+@isnad1 id=multipli.1h1v.s6.c41d729bddce from=translated src=- shape=3e5c74d2 vocab=ba07fb0a
+-/
 lemma multipliable_euler_factors {p : ℝ} (hp : 2 ≤ p) :
     Multipliable (fun n : ℕ ↦ (1 - p⁻¹ ^ (n + 1))⁻¹) := by
   have hs := summable_eulerCorrection hp
@@ -115,7 +121,9 @@ lemma multipliable_euler_factors {p : ℝ} (hp : 2 ≤ p) :
     (pow_lt_one₀ (inv_pos.mpr hp0).le hq1 (by omega))
   linarith
 
-/-- The finite inverse Euler products converge to `eulerC`.-/
+/-- The finite inverse Euler products converge to `eulerC`.
+@isnad1 id=tendsto.1h1v.s6.507cdab32ffa from=translated src=- shape=43dec19e vocab=28b920be
+-/
 lemma eulerC_partial_tendsto {p : ℝ} (hp : 2 ≤ p) :
     Tendsto (fun r : ℕ ↦ ∏ n ∈ Finset.range r, (1 - p⁻¹ ^ (n + 1))⁻¹)
       atTop (nhds (eulerC p)) := by
@@ -143,6 +151,9 @@ private lemma euler_partial_strictMono {p : ℝ} (hp : 2 ≤ p) :
     exact (one_lt_inv₀ hden).2 (by linarith)
   nlinarith [euler_partial_pos hp r]
 
+/--
+@isnad1 id=lt.1h1v.s4.8dddd9b5999a from=translated src=- shape=a8dc2df9 vocab=7573e8be
+-/
 lemma eulerC_pos {p : ℝ} (hp : 2 ≤ p) : 0 < eulerC p := by
   have hmono := (euler_partial_strictMono hp).monotone
   have hlim := eulerC_partial_tendsto hp
@@ -152,7 +163,9 @@ lemma eulerC_pos {p : ℝ} (hp : 2 ≤ p) : 0 < eulerC p := by
     simpa using (euler_partial_strictMono hp (Nat.zero_lt_one))
   linarith
 
-/-- Every finite inverse Euler factor is strictly below the infinite product.-/
+/-- Every finite inverse Euler factor is strictly below the infinite product.
+@isnad1 id=lt.1h2v.s4.ffdf1e74be6e from=translated src=- shape=21a3902e vocab=957df523
+-/
 lemma gammaR_inv_lt_eulerC {p : ℝ} (hp : 2 ≤ p) (r : ℕ) :
     (gammaR p r)⁻¹ < eulerC p := by
   have hfinite : (gammaR p r)⁻¹ =
@@ -163,7 +176,9 @@ lemma gammaR_inv_lt_eulerC {p : ℝ} (hp : 2 ≤ p) (r : ℕ) :
   have hle := hs.monotone.ge_of_tendsto (eulerC_partial_tendsto hp) (r + 1)
   exact (hs (Nat.lt_succ_self r)).trans_le hle
 
-/-- Summability of an arbitrary positive Gaussian on `ℤ`.-/
+/-- Summability of an arbitrary positive Gaussian on `ℤ`.
+@isnad1 id=summable.1h1v.s5.752dc00c3be6 from=translated src=- shape=18154e3c vocab=0137c2a1
+-/
 lemma summable_int_gaussian {A : ℝ} (hA : 0 < A) :
     Summable (fun z : ℤ ↦ Real.exp (-A * (z : ℝ) ^ 2)) := by
   have hT : 0 < A / Real.pi := div_pos hA Real.pi_pos
@@ -174,12 +189,17 @@ lemma summable_int_gaussian {A : ℝ} (hA : 0 < A) :
       field_simp [Real.pi_ne_zero]
       ring)
 
+/--
+@isnad1 id=summable.1h1v.s5.89c350027f21 from=translated src=- shape=8c067efd vocab=278ef414
+-/
 lemma gaussianTheta_summable {p : ℝ} (hp : 1 < p) :
     Summable (fun z : ℤ ↦ Real.exp (-Real.log p * (z : ℝ) ^ 2)) :=
   summable_int_gaussian (Real.log_pos hp)
 
 /-- The symmetric Gaussian sum, split into its central term and the positive
-tail.  This form is convenient for natural-number dominated convergence.-/
+tail.  This form is convenient for natural-number dominated convergence.
+@isnad1 id=eq.1h1v.s6.0675cf3117e5 from=translated src=- shape=1bd81614 vocab=6f060e1f
+-/
 lemma gaussianTheta_eq_one_add_two_mul_tsum_pnat {p : ℝ} (hp : 1 < p) :
     gaussianTheta p = 1 + 2 * ∑' j : ℕ+,
       Real.exp (-Real.log p * (j : ℝ) ^ 2) := by
@@ -190,6 +210,9 @@ lemma gaussianTheta_eq_one_add_two_mul_tsum_pnat {p : ℝ} (hp : 1 < p) :
     simp
   · exact gaussianTheta_summable hp
 
+/--
+@isnad1 id=summable.1h2v.s6.b3ed853746d1 from=translated src=- shape=ce9d8762 vocab=a703cff7
+-/
 lemma shiftedTheta_summable {p x : ℝ} (hp : 1 < p) :
     Summable (fun z : ℤ ↦ Real.exp (-Real.log p * ((z : ℝ) - x) ^ 2)) := by
   let A := Real.log p
@@ -203,11 +226,17 @@ lemma shiftedTheta_summable {p x : ℝ} (hp : 1 < p) :
   have hs : 0 ≤ ((z : ℝ) - 2 * x) ^ 2 := sq_nonneg _
   nlinarith [mul_nonneg hA.le hs]
 
+/--
+@isnad1 id=lt.1h1v.s4.ac1ddb358053 from=translated src=- shape=35bd48ee vocab=b6e84896
+-/
 lemma gaussianTheta_pos {p : ℝ} (hp : 1 < p) : 0 < gaussianTheta p := by
   unfold gaussianTheta
   apply (gaussianTheta_summable hp).tsum_pos (fun z ↦ (Real.exp_pos _).le) 0
   simpa using Real.exp_pos (0 : ℝ)
 
+/--
+@isnad1 id=lt.1h1v.s4.bf4b2acaf146 from=translated src=- shape=a8dc2df9 vocab=a245c036
+-/
 lemma sharpConstant_pos {p : ℝ} (hp2 : 2 ≤ p) : 0 < sharpConstant p := by
   exact mul_pos (eulerC_pos hp2) (gaussianTheta_pos (by linarith))
 
@@ -317,7 +346,9 @@ private lemma shifted_gaussian_fourier {A : ℝ} (hA : 0 < A) (x : ℝ) :
   simpa only [hprimalTerm, Complex.ofReal_re, Complex.ofReal_im, hdualRe,
     zero_mul, sub_zero, a] using hre
 
-/-- The translated theta series is maximized at an integral translate.-/
+/-- The translated theta series is maximized at an integral translate.
+@isnad1 id=le.1h2v.s4.12ad5cee8d54 from=translated src=- shape=c9e0acd6 vocab=752ced33
+-/
 lemma shiftedTheta_le {p x : ℝ} (hp : 1 < p) :
     shiftedTheta p x ≤ gaussianTheta p := by
   have hA : 0 < Real.log p := Real.log_pos hp
@@ -362,6 +393,9 @@ private lemma cos_two_pi_lt_one_of_not_integer {x : ℝ}
     2 * Real.pi * (z : ℝ) = (z : ℝ) * (2 * Real.pi) := by ring
     _ = 2 * Real.pi * x := by simpa [mul_assoc] using hz
 
+/--
+@isnad1 id=lt.2h2v.s5.f7794c3b3d36 from=translated src=- shape=7d6f5183 vocab=d939fc88
+-/
 lemma shiftedTheta_lt_of_not_integer {p x : ℝ} (hp : 1 < p)
     (hx : ¬ ∃ z : ℤ, (z : ℝ) = x) :
     shiftedTheta p x < gaussianTheta p := by
@@ -396,6 +430,9 @@ lemma shiftedTheta_lt_of_not_integer {p x : ℝ} (hp : 1 < p)
   have hpref : 0 < 1 / (Real.log p / Real.pi) ^ (1 / 2 : ℝ) := by positivity
   simpa [w] using mul_lt_mul_of_pos_left hsum hpref
 
+/--
+@isnad1 id=eq.2h2v.s5.eaf832267a34 from=translated src=- shape=ab27d6b1 vocab=d939fc88
+-/
 lemma shiftedTheta_eq_of_integer {p x : ℝ} (hp : 1 < p)
     (hx : ∃ z : ℤ, (z : ℝ) = x) :
     shiftedTheta p x = gaussianTheta p := by
@@ -415,7 +452,9 @@ lemma shiftedTheta_eq_of_integer {p x : ℝ} (hp : 1 < p)
     convert hcos using 1 <;> push_cast <;> ring
   rw [this, mul_one]
 
-/-- Equality in the shifted-theta estimate holds exactly at integral shifts.-/
+/-- Equality in the shifted-theta estimate holds exactly at integral shifts.
+@isnad1 id=iff.1h2v.s5.264eb0354c8b from=translated src=- shape=05e08d57 vocab=d939fc88
+-/
 lemma shiftedTheta_eq_iff {p x : ℝ} (hp : 1 < p) :
     shiftedTheta p x = gaussianTheta p ↔ ∃ z : ℤ, (z : ℝ) = x := by
   constructor
@@ -433,7 +472,9 @@ noncomputable def finiteThetaSum (p L : ℝ) : ℝ :=
 
 /-- Strict analytic upper bound for the finite sum.  The strictness comes from
 the omitted tail of the reciprocal Euler product, so it remains strict even
-when the shifted theta series itself is at a maximizing integral translate.-/
+when the shifted theta series itself is at a maximizing integral translate.
+@isnad1 id=lt.2h2v.s6.75870f914bc2 from=translated src=- shape=68c3b254 vocab=62e9fa6b
+-/
 lemma finiteThetaSum_lt {p L : ℝ} (hp : 2 ≤ p) (hL : 0 ≤ L) :
     finiteThetaSum p L <
       sharpConstant p * Real.exp (Real.log p * L ^ 2 / 4) := by

@@ -34,14 +34,18 @@ elementary-abelian group.-/
 abbrev elementaryAbelianInterval (p n : ℕ) :=
   Set.Ici (⊥ : Subgroup (ElementaryAbelianGroup p n))
 
-/-- Exact subgroup-interval count for the elementary-abelian witness family.-/
+/-- Exact subgroup-interval count for the elementary-abelian witness family.
+@isnad1 id=eq.0h2v.s7.4f15ad55d6b7 from=translated src=- shape=fd927f08 vocab=b33adce1
+-/
 theorem manuscript_elementaryAbelian_interval_card_eq (p n : ℕ)
     [Fact p.Prime] :
     Fintype.card (elementaryAbelianInterval p n) = totalQBinom p n :=
   elementaryAbelian_interval_card_eq_totalQBinom p n
 
 /-- The index of the trivial subgroup in the even-rank elementary-abelian
-witness is exactly `p^(2a)`.-/
+witness is exactly `p^(2a)`.
+@isnad1 id=eq.0h2v.s8.be73273d025e from=translated src=- shape=9684e37c vocab=5e4bf4be
+-/
 theorem manuscript_elementaryAbelian_bottom_index (p a : ℕ)
     [Fact p.Prime] :
     (⊥ : Subgroup (ElementaryAbelianGroup p (2 * a))).index = p ^ (2 * a) := by
@@ -49,7 +53,9 @@ theorem manuscript_elementaryAbelian_bottom_index (p a : ℕ)
   simp [ZMod.card]
 
 /-- In every positive even rank, the least prime divisor of the witness
-index is the prescribed prime `p`.-/
+index is the prescribed prime `p`.
+@isnad1 id=eq.1h2v.s8.384a23341469 from=translated src=- shape=523c5384 vocab=46cf0b43
+-/
 theorem manuscript_elementaryAbelian_bottom_index_minFac (p a : ℕ)
     [Fact p.Prime] (ha : 0 < a) :
     (⊥ : Subgroup (ElementaryAbelianGroup p (2 * a))).index.minFac = p := by
@@ -57,7 +63,9 @@ theorem manuscript_elementaryAbelian_bottom_index_minFac (p a : ℕ)
   exact (Fact.out : p.Prime).pow_minFac (by omega)
 
 /-- The manuscript's index-logarithmic scale specializes to the centered
-power `p^(a²)` on the even-rank elementary-abelian family.-/
+power `p^(a²)` on the even-rank elementary-abelian family.
+@isnad1 id=eq.0h2v.s9.efebc795f58a from=translated src=- shape=a9625357 vocab=9e65c773
+-/
 theorem manuscript_elementaryAbelian_indexLog_rpow_eq (p a : ℕ)
     [Fact p.Prime] :
     (((⊥ : Subgroup (ElementaryAbelianGroup p (2 * a))).index : ℝ) ^
@@ -81,7 +89,9 @@ theorem manuscript_elementaryAbelian_indexLog_rpow_eq (p a : ℕ)
     ring]
   exact Real.rpow_natCast (p : ℝ) (a * a)
 
-/-- The logarithm base `p` of the exact prime power `p^n` is `n`.-/
+/-- The logarithm base `p` of the exact prime power `p^n` is `n`.
+@isnad1 id=eq.1h2v.s5.9a8b2dd013c4 from=translated src=- shape=4d12ec15 vocab=95d1581c
+-/
 theorem manuscript_indexLog_primePower (p n : ℕ) (hp : 1 < p) :
     indexLog p (p ^ n) = n := by
   have hpR : (1 : ℝ) < p := by exact_mod_cast hp
@@ -90,7 +100,9 @@ theorem manuscript_indexLog_primePower (p n : ℕ) (hp : 1 < p) :
   exact mul_div_cancel_right₀ (n : ℝ) hlog
 
 /-- On a prime power, the manuscript's real envelope is exactly the real
-cast of the rational finite packing sum.-/
+cast of the rational finite packing sum.
+@isnad1 id=eq.1h2v.s5.d655457820d2 from=translated src=- shape=42de5a71 vocab=61987259
+-/
 theorem manuscript_primePowerU_eq_ratCast_finiteUQ
     (p n : ℕ) (hp : 1 < p) :
     primePowerU p n = ((finiteUQ (p ^ n) p : ℚ) : ℝ) := by
@@ -119,7 +131,9 @@ theorem manuscript_primePowerU_eq_ratCast_finiteUQ
   ring
 
 /-- The normalized number of subgroups of the elementary-abelian group of
-even rank tends to the sharp Euler--theta constant.-/
+even rank tends to the sharp Euler--theta constant.
+@isnad1 id=tendsto.0h1v.s9.34783cb88947 from=translated src=- shape=55990664 vocab=3e123b83
+-/
 theorem manuscript_elementaryAbelian_even_rank_tendsto_sharpConstant
     {p : ℕ} [Fact p.Prime] :
     Tendsto (fun a : ℕ ↦
@@ -130,7 +144,9 @@ theorem manuscript_elementaryAbelian_even_rank_tendsto_sharpConstant
     gaussian_even_rank_asymptotic (Fact.out : p.Prime).two_le
 
 /-- Literal displayed ratio: the interval count divided by the
-index-logarithmic scale tends to the sharp constant.-/
+index-logarithmic scale tends to the sharp constant.
+@isnad1 id=tendsto.0h1v.s10.2ae92ae883b4 from=translated src=- shape=d803d4e3 vocab=d2d73a76
+-/
 theorem manuscript_elementaryAbelian_displayed_ratio_tendsto_sharpConstant
     {p : ℕ} [Fact p.Prime] :
     Tendsto (fun a : ℕ ↦
@@ -148,7 +164,9 @@ theorem manuscript_elementaryAbelian_displayed_ratio_tendsto_sharpConstant
     ring
 
 /-- The elementary-abelian subgroup interval asymptotically exhausts the
-finite prime-power envelope.-/
+finite prime-power envelope.
+@isnad1 id=tendsto.0h1v.s9.93098d04f519 from=translated src=- shape=25b04a50 vocab=fb6a5be9
+-/
 theorem manuscript_elementaryAbelian_interval_div_primePowerU_tendsto_one
     {p : ℕ} [Fact p.Prime] :
     Tendsto (fun a : ℕ ↦
@@ -158,7 +176,9 @@ theorem manuscript_elementaryAbelian_interval_div_primePowerU_tendsto_one
     gaussian_total_div_primePowerU_tendsto_one (Fact.out : p.Prime).two_le
 
 /-- Literal finite-sum ratio, using the rational packing envelope evaluated
-at the witness index.-/
+at the witness index.
+@isnad1 id=tendsto.0h1v.s9.c4180cde6c4a from=translated src=- shape=08a9e6ed vocab=369d330a
+-/
 theorem manuscript_elementaryAbelian_interval_div_finiteUQ_tendsto_one
     {p : ℕ} [Fact p.Prime] :
     Tendsto (fun a : ℕ ↦
@@ -175,7 +195,9 @@ theorem manuscript_elementaryAbelian_interval_div_finiteUQ_tendsto_one
         (Fact.out : p.Prime).one_lt]
 
 /-- Any constant which bounds every normalized elementary-abelian subgroup
-interval is at least the sharp Euler--theta constant.-/
+interval is at least the sharp Euler--theta constant.
+@isnad1 id=le.1h2v.s9.566c438aab9f from=translated src=- shape=0f485a11 vocab=0ca8b531
+-/
 theorem manuscript_sharpConstant_le_of_elementaryAbelian_bound
     {p : ℕ} [Fact p.Prime] {C : ℝ}
     (hC : ∀ a : ℕ,
@@ -187,7 +209,9 @@ theorem manuscript_sharpConstant_le_of_elementaryAbelian_bound
   simpa only [manuscript_elementaryAbelian_interval_card_eq] using hC a
 
 /-- Manuscript-domain form of constant optimality.  Only positive ranks are
-assumed, exactly matching the `index > 1` domain of the sharp interval bound.-/
+assumed, exactly matching the `index > 1` domain of the sharp interval bound.
+@isnad1 id=le.1h2v.s9.2fb1591ac554 from=translated src=- shape=e9ac67a0 vocab=41190071
+-/
 theorem manuscript_sharpConstant_le_of_positive_elementaryAbelian_bound
     {p : ℕ} [Fact p.Prime] {C : ℝ}
     (hC : ∀ a : ℕ, 0 < a →
@@ -199,7 +223,9 @@ theorem manuscript_sharpConstant_le_of_positive_elementaryAbelian_bound
   exact Filter.eventually_atTop.2 ⟨1, fun a ha ↦ hC a (by omega)⟩
 
 /-- The exponent `1/4` cannot be decreased, already on the standard
-elementary-abelian subgroup intervals.-/
+elementary-abelian subgroup intervals.
+@isnad1 id=not.1h3v.s9.de882a5a4e39 from=translated src=- shape=d28f4fbf vocab=ee0bcefb
+-/
 theorem manuscript_no_subquarter_elementaryAbelian_rpow_bound
     {p : ℕ} [Fact p.Prime] {alpha C : ℝ} (halpha : alpha < 1 / 4) :
     ¬ ∀ a : ℕ,
@@ -212,7 +238,9 @@ theorem manuscript_no_subquarter_elementaryAbelian_rpow_bound
 
 /-- Manuscript-domain form of exponent optimality.  A putative bound only on
 positive ranks can be enlarged at the single rank-zero term, contradicting
-the all-rank version above.-/
+the all-rank version above.
+@isnad1 id=not.1h3v.s9.98561fcceede from=translated src=- shape=bd0d9c92 vocab=ee0bcefb
+-/
 theorem manuscript_no_subquarter_positive_elementaryAbelian_rpow_bound
     {p : ℕ} [Fact p.Prime] {alpha C : ℝ} (halpha : alpha < 1 / 4) :
     ¬ ∀ a : ℕ, 0 < a →
@@ -233,7 +261,9 @@ theorem manuscript_no_subquarter_positive_elementaryAbelian_rpow_bound
       (mul_le_mul_of_nonneg_right (le_max_left C 1) hpow)
 
 /-- Every fixed index layer of the elementary-abelian witness attains the
-Gaussian-binomial layer bound.-/
+Gaussian-binomial layer bound.
+@isnad1 id=eq.1h3v.s8.00c7ed6b1861 from=translated src=- shape=7e80387c vocab=e426833a
+-/
 theorem manuscript_elementaryAbelian_fixed_layer_eq (p n k : ℕ)
     [Fact p.Prime] (hk : k ≤ n) :
     (primePowerLayer p k
@@ -241,7 +271,9 @@ theorem manuscript_elementaryAbelian_fixed_layer_eq (p n k : ℕ)
   elementaryAbelian_primePowerLayer_card_eq_qBinom p n k hk
 
 /-- A normal inclusion with elementary-abelian quotient has the exact same
-closed-interval count as the standard witness.-/
+closed-interval count as the standard witness.
+@isnad1 id=eq.0h5v.s7.714972f989b9 from=translated src=- shape=34d10725 vocab=b18800d1
+-/
 theorem manuscript_normal_elementaryAbelian_quotient_interval_card_eq
     {G : Type*} [Group G] [Fintype G] {p n : ℕ}
     (H : Subgroup G) [H.Normal]
@@ -252,7 +284,9 @@ theorem manuscript_normal_elementaryAbelian_quotient_interval_card_eq
 /-! ## Literal generating-coset sharpness witness -/
 
 /-- In the elementary-abelian witness with trivial bottom subgroup,
-`generatedFrom` is exactly additive generation of the corresponding frame.-/
+`generatedFrom` is exactly additive generation of the corresponding frame.
+@isnad1 id=iff.0h3v.s8.a2b60e5da368 from=translated src=- shape=0e0332f1 vocab=29fa15b1
+-/
 theorem manuscript_generatedFrom_bot_eq_top_iff_addClosure
     (p r : ℕ) [Fact p.Prime]
     (x : Fin r → ElementaryAbelianGroup p r) :
@@ -288,7 +322,9 @@ def manuscript_rawRelGenEquivGeneratingFrames (p r : ℕ) [Fact p.Prime] :
   left_inv := by intro x; apply Subtype.ext; rfl
   right_inv := by intro s; apply Subtype.ext; rfl
 
-/-- Exact manuscript Remark 2.4 in its coset-tuple formulation.-/
+/-- Exact manuscript Remark 2.4 in its coset-tuple formulation.
+@isnad1 id=eq.0h2v.s7.40d0e2863a82 from=translated src=- shape=725efe36 vocab=5f13f69e
+-/
 theorem manuscript_cosetRelGen_elementaryAbelian_card_cast_eq_gammaR
     (p r : ℕ) [Fact p.Prime] :
     (Nat.card (CosetRelGen
