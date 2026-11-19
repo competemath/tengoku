@@ -16,7 +16,9 @@ namespace HadwigerLean
 variable {V : Type*} [DecidableEq V]
 
 /-- A finite family of connected, disjoint, mutually adjacent branch
-sets forms a clique minor of the same order.-/
+sets forms a clique minor of the same order.
+@isnad1 id=hascliqu.4h4v.s7.943c9d0b1b6c from=translated src=- shape=bdb9385a vocab=3461cfa3
+-/
 theorem hasCliqueMinor_of_finset_branches
     (G : SimpleGraph V) (S : Finset (Finset V)) (r : ℕ)
     (hcard : S.card = r)

@@ -13,7 +13,9 @@ namespace HadwigerLean.Deduction
 
 /-- At a base scale, the coefficient-30 clique-minor chromatic estimate
 is strictly below the `2000T` reserve. The slack `14a ≤ T²` avoids
-carrying a decimal estimate for `log 14 / log T`.-/
+carrying a decimal estimate for `log 14 / log T`.
+@isnad1 id=lt.3h2v.s7.516a379121e3 from=translated src=- shape=ec87b7a0 vocab=d38ea8e2
+-/
 theorem cor24_base_chromatic_threshold
     (T a : ℕ) (hT : 100 ≤ T) (ha : 1 ≤ a)
     (hscale : (a : ℝ) ≤ (T : ℝ) / Real.sqrt (Real.log (T : ℝ))) :

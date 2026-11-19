@@ -10,6 +10,9 @@ import Tengoku.Seed.Tactic
 
 namespace HadwigerLean.Deduction
 
+/--
+@isnad1 id=le.1h4v.s6.bf9e704d883e from=translated src=- shape=dcb640a7 vocab=43850335
+-/
 theorem cor24_outer_gn_budget
     (m i T d : ℕ) (hi : i < m) :
     10000 * Woven.outerScale m i ≤
@@ -30,6 +33,9 @@ theorem cor24_outer_gn_budget
   change 10000 * a ≤ 2000 * T + cor24B d * c
   omega
 
+/--
+@isnad1 id=lt.1h4v.s6.04c70a06af6c from=translated src=- shape=32caf5db vocab=63ef1a05
+-/
 theorem cor24_outer_sep_budget
     (m i T d : ℕ) (hi : i < m) :
     14 * d * Woven.outerScale m i <

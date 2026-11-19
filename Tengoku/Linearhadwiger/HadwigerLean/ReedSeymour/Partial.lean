@@ -31,6 +31,9 @@ noncomputable def eggSupport (P : ConnectedPartition G I) (w : V → ℝ) : Fins
   exact Finset.univ.filter (fun v => ∃ i, v ∈ P.block i ∧ IsEgg G w (P.block i))
 
 omit [DecidableEq I] in
+/--
+@isnad1 id=iff.0h6v.s6.c15efb9a99cf from=translated src=- shape=3329b86a vocab=0c4c1488
+-/
 @[simp] theorem mem_eggSupport (P : ConnectedPartition G I) (w : V → ℝ) (v : V) :
     v ∈ eggSupport P w ↔ ∃ i, v ∈ P.block i ∧ IsEgg G w (P.block i) := by
   classical
@@ -42,7 +45,9 @@ def IsPartialEggSupport (G : SimpleGraph V) (w : V → ℝ) (S : Finset V) : Pro
     IsPartialEggDecomposition P w ∧ eggSupport P w = S
 
 /-- Among any nonempty collection of partial egg decompositions, one has
-support of maximal cardinality. The index type may change between candidates.-/
+support of maximal cardinality. The index type may change between candidates.
+@isnad1 id=ex.1h3v.s6.d9154bfb71a3 from=translated src=- shape=a66880e9 vocab=079e845e
+-/
 theorem exists_maximal_partial_egg_support (G : SimpleGraph V) (w : V → ℝ)
     (hinit : ∃ n : ℕ, ∃ P : ConnectedPartition G (Fin n),
       IsPartialEggDecomposition P w) :
@@ -102,7 +107,9 @@ def touchingQuotientIso (P : ConnectedPartition G I) (e : J ≃ I) :
       exact ⟨fun he => hne (e.injective he), hw⟩
 
 omit [DecidableEq I] in
-/-- Relabeling preserves the exact set of vertices in egg blocks.-/
+/-- Relabeling preserves the exact set of vertices in egg blocks.
+@isnad1 id=eq.0h7v.s5.559636744baa from=translated src=- shape=6f2ed1b6 vocab=79f61372
+-/
 theorem eggSupport_relabel [DecidableEq J]
     (P : ConnectedPartition G I) (e : J ≃ I) (w : V → ℝ) :
     eggSupport (P.relabel e) w = eggSupport P w := by
@@ -128,7 +135,9 @@ def oneBlockPartition {U : Type*} [Fintype U] {H : SimpleGraph U}
   cover v := ⟨0, Set.mem_univ v⟩
 
 /-- A connected graph supplies an initial partial decomposition, possibly with
-empty egg support. This avoids a separate positive-support construction.-/
+empty egg support. This avoids a separate positive-support construction.
+@isnad1 id=ex.1h3v.s5.499ed6a724fc from=translated src=- shape=0e6e2f51 vocab=7f4ee055
+-/
 theorem exists_initial_partial_egg_decomposition
     {U : Type*} [Fintype U] {H : SimpleGraph U}
     (hconn : H.Connected) (w : U → ℝ) :

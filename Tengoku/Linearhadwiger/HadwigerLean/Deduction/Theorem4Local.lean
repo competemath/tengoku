@@ -10,6 +10,9 @@ namespace HadwigerLean.Deduction
 
 universe u
 
+/--
+@isnad1 id=le.6h7v.s7.a5893f63de7d from=translated src=- shape=c6a10c44 vocab=8d5407f3
+-/
 theorem theorem4_local_chromatic_bound
     {V : Type u} [Fintype V] (Y : SimpleGraph V)
     (D T q s : ℕ) (hqpos : 0 < q)

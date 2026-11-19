@@ -39,7 +39,9 @@ private theorem twoEdgePath_vertices {G : SimpleGraph V} {s m t : V}
   ext v
   simp [pathVertexSet, twoEdgePath, SimpleGraph.Path.singleton]
 /-- Families of `n` finite sets, each of size at least `n`, admit distinct
-representatives. This is the Hall step for choosing path middles.-/
+representatives. This is the Hall step for choosing path middles.
+@isnad1 id=ex.1h3v.s6.20c37b5c080a from=translated src=- shape=feb053e0 vocab=56afeaf3
+-/
 theorem representatives_of_large (n : ℕ) (t : Fin n → Finset V)
     (hlarge : ∀ i, n ≤ (t i).card) :
     ∃ f : Fin n → V, Function.Injective f ∧ ∀ i, f i ∈ t i := by
@@ -63,12 +65,17 @@ noncomputable def commonOutside (G : SimpleGraph V) (X : Finset V)
   classical
   exact (G.neighborFinset s ∩ G.neighborFinset t) \ X
 
+/--
+@isnad1 id=iff.0h6v.s6.b15272179a2a from=translated src=- shape=81881ee9 vocab=eebb80e8
+-/
 @[simp] theorem mem_commonOutside (G : SimpleGraph V) (X : Finset V)
     (s t v : V) :
     v ∈ commonOutside G X s t ↔ G.Adj s v ∧ G.Adj t v ∧ v ∉ X := by
   classical
   simp [commonOutside, SimpleGraph.mem_neighborFinset, and_assoc]
-/-- If the roots form a clique, pairing edges already give a rooted linkage.-/
+/-- If the roots form a clique, pairing edges already give a rooted linkage.
+@isnad1 id=rootedli.1h3v.s5.21aecd31987a from=translated src=- shape=98ce9bb5 vocab=22ea922e
+-/
 theorem rootedLinked_of_clique (G : SimpleGraph V) (X : Finset V)
     (hclique : ∀ u ∈ X, ∀ v ∈ X, u ≠ v → G.Adj u v) :
     RootedLinked G X := by
@@ -87,7 +94,9 @@ theorem rootedLinked_of_clique (G : SimpleGraph V) (X : Finset V)
   simpa [L, singletonPath_vertices, IndexedPairs.terminals] using hv
 
 /-- Distinct representatives among sufficiently numerous common neighbors
-produce disjoint length-two paths with interiors outside the roots.-/
+produce disjoint length-two paths with interiors outside the roots.
+@isnad1 id=ex.4h5v.s6.836b00ecccf3 from=translated src=- shape=ad742bf5 vocab=b81e0bb6
+-/
 theorem rooted_linkage_of_common_neighbors (G : SimpleGraph V)
     (X : Finset V) (n : ℕ) (P : IndexedPairs (Fin n) V)
     (hP : P.DisjointTerminals)
@@ -140,7 +149,9 @@ theorem rooted_linkage_of_common_neighbors (G : SimpleGraph V)
 /-- A strengthened form of (D.7) supplies at least `k` common neighbors
 outside any set of at most `2k` designated terminals. The four units of
 slack removed from (D.7) are available in the `5k`-minimum-degree,
-`7k`-vertex core where this will be applied.-/
+`7k`-vertex core where this will be applied.
+@isnad1 id=le.3h7v.s7.6f41d70512c1 from=translated src=- shape=331c48f5 vocab=5a9572f1
+-/
 theorem commonOutside_card_ge_of_minDegree (G : SimpleGraph V) [DecidableRel G.Adj]
     (k δ : ℕ) (hdegree : ∀ v, δ ≤ G.degree v)
     (hsize : Fintype.card V + 3 * k ≤ 2 * δ)
@@ -174,7 +185,9 @@ theorem commonOutside_card_ge_of_minDegree (G : SimpleGraph V) [DecidableRel G.A
 
 /-- The degree criterion used for the final small component in Appendix D.
 It is slightly stronger than (D.7), but the `5k` by `7k` application
-meets it exactly.-/
+meets it exactly.
+@isnad1 id=klinked.2h4v.s6.c4e96e8039a1 from=translated src=- shape=571bcc3c vocab=5becd8b7
+-/
 theorem kLinked_of_high_minDegree (G : SimpleGraph V) [DecidableRel G.Adj] (k δ : ℕ)
     (hdegree : ∀ v, δ ≤ G.degree v)
     (hsize : Fintype.card V + 3 * k ≤ 2 * δ) :
@@ -192,7 +205,9 @@ theorem kLinked_of_high_minDegree (G : SimpleGraph V) [DecidableRel G.Adj] (k δ
   exact ⟨L⟩
 /-- A vertex of degree below `2r` whose incident edges each have at least
 `r-1` common neighbors lies in an induced core of order at most `2r`
-and minimum degree at least `r`. This is the local step of Appendix D.-/
+and minimum degree at least `r`. This is the local step of Appendix D.
+@isnad1 id=other.3h4v.s8.c419e71513e8 from=translated src=- shape=2590e1ae vocab=2961fccd
+-/
 theorem closedNeighborhood_small_dense_core (G : SimpleGraph V) [DecidableRel G.Adj]
     (v : V) (r : ℕ)
     (hdegreeLow : r ≤ G.degree v) (hdegree : G.degree v < 2 * r)

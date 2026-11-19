@@ -20,7 +20,9 @@ namespace IndexedPairs
 variable {ι : Type u} {κ : Type*} {V : Type v}
 
 /-- The terminal set of a reindexed family is contained in the terminal set
-of the original family.-/
+of the original family.
+@isnad1 id=le.0h5v.s5.5282d9a1dd8a from=translated src=- shape=03246ef0 vocab=af3acebc
+-/
 theorem allTerminals_reindex_subset (P : IndexedPairs ι V) (f : κ → ι) :
     (P.reindex f).allTerminals ⊆ P.allTerminals := by
   intro x hx
@@ -34,7 +36,9 @@ namespace IndexedLinkage
 variable {ι : Type u} {κ : Type*} {V : Type v} {G : SimpleGraph V}
   {P : IndexedPairs ι V}
 
-/-- Deleting indexed paths only decreases the set of linkage vertices.-/
+/-- Deleting indexed paths only decreases the set of linkage vertices.
+@isnad1 id=le.0h7v.s5.c97aafbee6fa from=translated src=- shape=e377fcd7 vocab=87794102
+-/
 theorem reindex_vertices_subset (L : IndexedLinkage G P) (f : κ ↪ ι) :
     (L.reindex f).vertices ⊆ L.vertices := by
   intro x hx

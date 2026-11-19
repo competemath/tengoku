@@ -14,7 +14,9 @@ namespace Linkedness
 set_option maxHeartbeats 1000000
 
 /-- A disconnected graph meeting the 14k/5k bounds contains a
-k-linked induced subgraph of order at most 7k.-/
+k-linked induced subgraph of order at most 7k.
+@isnad1 id=ex.3h5v.s7.d44b660af2cb from=translated src=- shape=8f24a971 vocab=a0ddc5ff
+-/
 theorem linked_side_of_nonreachable
     {V : Type*} [Fintype V] [DecidableEq V]
     (H : SimpleGraph V) [DecidableRel H.Adj] (k : ℕ)
@@ -50,7 +52,9 @@ theorem linked_side_of_nonreachable
 namespace ShortPartial
 
 /-- A vertex whose degree exceeds the occupied set has an exterior
-neighbor.-/
+neighbor.
+@isnad1 id=ex.1h6v.s7.c5adac894b2a from=translated src=- shape=1fe68cba vocab=8814f618
+-/
 theorem exterior_neighbor_of_degree_gt_occupied
     {V : Type*} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj]
@@ -69,7 +73,9 @@ theorem exterior_neighbor_of_degree_gt_occupied
   rw [G.card_neighborFinset_eq_degree] at hcard
   omega
 
-/-- A partial linkage with no full extension leaves one index unused.-/
+/-- A partial linkage with no full extension leaves one index unused.
+@isnad1 id=ex.1h6v.s6.c649c59728bf from=translated src=- shape=bab359eb vocab=a9b67d11
+-/
 theorem exists_unused_index
     {V : Type*} [Fintype V]
     {G : SimpleGraph V} {k : ℕ}

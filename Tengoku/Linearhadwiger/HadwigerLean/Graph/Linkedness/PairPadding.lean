@@ -15,7 +15,9 @@ variable {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- Extend `n ≤ k` prescribed disjoint pairs to `k` disjoint pairs whose
 terminals include every vertex of `Y`. The original pairs occupy the first
-`n` indices.-/
+`n` indices.
+@isnad1 id=ex.6h5v.s7.d6c2b96dd29f from=translated src=- shape=393e32c6 vocab=1065d1c8
+-/
 theorem exists_padded_pairs
     (k n : ℕ) (hk : 0 < k)
     (Q : IndexedPairs (Fin n) V)

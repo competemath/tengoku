@@ -53,6 +53,9 @@ def Network.cutCapacity (N : Network V) (S : Finset V) : ℤ :=
 def Flow.cutFlux (f : Flow N) (S : Finset V) : ℤ :=
   ∑ u ∈ S, ∑ v ∈ Finset.univ \ S, f.amount u v
 
+/--
+@isnad1 id=le.0h4v.s5.cce203f954ca from=translated src=- shape=5cbfaba6 vocab=37f02e4c
+-/
 theorem Flow.source_out_nonneg (f : Flow N) (v : V) :
     0 ≤ f.amount N.source v := by
   have h := f.bound v N.source
@@ -60,15 +63,24 @@ theorem Flow.source_out_nonneg (f : Flow N) (v : V) :
   rw [f.antisymm v N.source] at h
   exact neg_nonpos.mp h
 
+/--
+@isnad1 id=le.0h3v.s4.0cf365275925 from=translated src=- shape=9527a699 vocab=5cef9d59
+-/
 theorem Flow.value_nonneg (f : Flow N) : 0 ≤ f.value := by
   unfold Flow.value
   exact Finset.sum_nonneg (fun v _ => f.source_out_nonneg v)
 
+/--
+@isnad1 id=le.0h3v.s5.2bab3e148d1b from=translated src=- shape=f43b60c4 vocab=19f07b82
+-/
 theorem Flow.value_le_source_capacity (f : Flow N) :
     f.value ≤ ∑ v, (N.capacity N.source v : ℤ) := by
   unfold Flow.value
   exact Finset.sum_le_sum (fun v _ => f.bound N.source v)
 
+/--
+@isnad1 id=le.0h4v.s5.545beedc6fc6 from=translated src=- shape=c32ee9bb vocab=f36fe7f4
+-/
 theorem Flow.cutFlux_le_cutCapacity (f : Flow N) (S : Finset V) :
     f.cutFlux S ≤ N.cutCapacity S := by
   unfold Flow.cutFlux Network.cutCapacity
@@ -77,7 +89,9 @@ theorem Flow.cutFlux_le_cutCapacity (f : Flow N) (S : Finset V) :
   exact Finset.sum_le_sum (fun v hv => f.bound u v)
 
 /-- A saturated cut certifies a flow's value once flow conservation has been
-used to identify source value with cut flux.-/
+used to identify source value with cut flux.
+@isnad1 id=eq.1h4v.s6.ea5a700a4c95 from=translated src=- shape=a7236474 vocab=7057aa7a
+-/
 theorem Flow.cutFlux_eq_cutCapacity_of_saturated (f : Flow N) (S : Finset V)
     (hsat : ∀ u ∈ S, ∀ v ∈ Finset.univ \ S,
       f.amount u v = (N.capacity u v : ℤ)) :
@@ -106,7 +120,9 @@ private theorem Flow.internalFlux_eq_zero (f : Flow N) (S : Finset V) :
             simp only [Finset.sum_neg_distrib]
   omega
 /-- Flow conservation identifies the value of a flow with its net flux
-across every source--sink cut.-/
+across every source--sink cut.
+@isnad1 id=eq.2h4v.s6.dfa012be49f5 from=translated src=- shape=a93d6b68 vocab=c043d384
+-/
 theorem Flow.value_eq_cutFlux (f : Flow N) (S : Finset V)
     (hsource : N.source ∈ S) (hsink : N.sink ∉ S) :
     f.value = f.cutFlux S := by
@@ -143,14 +159,18 @@ theorem Flow.value_eq_cutFlux (f : Flow N) (S : Finset V)
           rw [Finset.sum_add_distrib]
     _ = f.cutFlux S := by rw [f.internalFlux_eq_zero]; simp [Flow.cutFlux]
 
-/-- Every flow is bounded by the capacity of every source--sink cut.-/
+/-- Every flow is bounded by the capacity of every source--sink cut.
+@isnad1 id=le.2h4v.s6.929f6705d1bd from=translated src=- shape=ec5f666b vocab=0a360e32
+-/
 theorem Flow.value_le_cutCapacity (f : Flow N) (S : Finset V)
     (hsource : N.source ∈ S) (hsink : N.sink ∉ S) :
     f.value ≤ N.cutCapacity S := by
   rw [f.value_eq_cutFlux S hsource hsink]
   exact f.cutFlux_le_cutCapacity S
 
-/-- A saturated cut certifies that a flow has maximum value.-/
+/-- A saturated cut certifies that a flow has maximum value.
+@isnad1 id=le.3h5v.s6.d3634dc8d0b5 from=translated src=- shape=a648bc2f vocab=7c9e17ff
+-/
 theorem Flow.maximal_of_saturated_cut (f : Flow N) (S : Finset V)
     (hsource : N.source ∈ S) (hsink : N.sink ∉ S)
     (hsat : ∀ u ∈ S, ∀ v ∈ Finset.univ \ S,
@@ -173,12 +193,18 @@ noncomputable def Flow.reachableCut (f : Flow N) : Finset V := by
   classical
   exact Finset.univ.filter f.ResidualReachable
 
+/--
+@isnad1 id=mem.0h3v.s5.39452a31048e from=translated src=- shape=056b6760 vocab=af937224
+-/
 theorem Flow.source_mem_reachableCut (f : Flow N) :
     N.source ∈ f.reachableCut := by
   classical
   simp only [Flow.reachableCut, Finset.mem_filter, Finset.mem_univ, true_and]
   exact Relation.ReflTransGen.refl
 
+/--
+@isnad1 id=mem.2h5v.s5.06e9c1292a4a from=translated src=- shape=4cca7132 vocab=1dad1b6a
+-/
 theorem Flow.reachableCut_closed (f : Flow N) {u v : V}
     (hu : u ∈ f.reachableCut) (hres : f.ResidualArc u v) :
     v ∈ f.reachableCut := by
@@ -186,6 +212,9 @@ theorem Flow.reachableCut_closed (f : Flow N) {u v : V}
   simp only [Flow.reachableCut, Finset.mem_filter, Finset.mem_univ, true_and] at hu ⊢
   exact Relation.ReflTransGen.tail hu hres
 
+/--
+@isnad1 id=eq.2h5v.s6.178ca601cae9 from=translated src=- shape=85ace37e vocab=d8de3c07
+-/
 theorem Flow.reachableCut_saturated (f : Flow N) :
     ∀ u ∈ f.reachableCut, ∀ v ∈ Finset.univ \ f.reachableCut,
       f.amount u v = (N.capacity u v : ℤ) := by
@@ -197,7 +226,9 @@ theorem Flow.reachableCut_saturated (f : Flow N) :
   exact le_antisymm (f.bound u v) (le_of_not_gt hnot)
 
 /-- If no residual source--sink path exists, the reachable cut witnesses the
-max-flow/min-cut equality for this particular flow.-/
+max-flow/min-cut equality for this particular flow.
+@isnad1 id=eq.1h3v.s5.ae73adfdcbbe from=translated src=- shape=c9fa0900 vocab=5a7d5020
+-/
 theorem Flow.value_eq_reachableCut_capacity (f : Flow N)
     (hsink : N.sink ∉ f.reachableCut) :
     f.value = N.cutCapacity f.reachableCut := by
@@ -211,10 +242,15 @@ def Flow.zero (N : Network V) : Flow N where
   bound := by intro u v; exact Int.natCast_nonneg _
   balanced := by intro u hu ht; simp
 
+/--
+@isnad1 id=eq.0h2v.s4.aa31aee5cb84 from=translated src=- shape=3c534a39 vocab=3dbe3276
+-/
 @[simp] theorem Flow.value_zero : (Flow.zero N).value = 0 := by
   simp [Flow.value, Flow.zero]
 
-/-- The natural source-capacity bound on every flow value.-/
+/-- The natural source-capacity bound on every flow value.
+@isnad1 id=le.0h3v.s5.863cf60de6ef from=translated src=- shape=f3b5548f vocab=16898d53
+-/
 theorem Flow.value_toNat_le_source_capacity (f : Flow N) :
     f.value.toNat ≤ ∑ v, N.capacity N.source v := by
   have h := f.value_le_source_capacity
@@ -226,7 +262,9 @@ theorem Flow.value_toNat_le_source_capacity (f : Flow N) :
   omega
 
 /-- A finite integer network has a flow with maximum value. This uses only
-bounded integer values, so it does not need compactness or linear programming.-/
+bounded integer values, so it does not need compactness or linear programming.
+@isnad1 id=ex.0h2v.s5.3fd568da217a from=translated src=- shape=cc2ee22d vocab=5cef9d59
+-/
 theorem Network.exists_maximum_flow (N : Network V) :
     ∃ f : Flow N, ∀ g : Flow N, g.value ≤ f.value := by
   classical
@@ -260,7 +298,9 @@ namespace DirectedSimplePath
 variable {r : V → V → Prop} {s t : V} {l : List V}
 
 /-- Every vertex already on a simple directed path is itself reachable by
-the prefix ending at that vertex.-/
+the prefix ending at that vertex.
+@isnad1 id=ex.1h7v.s5.2e5ea2676f54 from=translated src=- shape=09db1a8c vocab=875850ae
+-/
 theorem prefix_of_mem (p : DirectedSimplePath r s t l) :
     ∀ v ∈ l, ∃ l', Nonempty (DirectedSimplePath r s v l') := by
   induction p with
@@ -278,7 +318,9 @@ theorem prefix_of_mem (p : DirectedSimplePath r s t l) :
         exact ⟨l ++ [v], ⟨.snoc p hres hfresh⟩⟩
 
 /-- A reflexive transitive directed connection can always be shortened to
-a path with no repeated vertices.-/
+a path with no repeated vertices.
+@isnad1 id=ex.1h4v.s5.e58173273ed3 from=translated src=- shape=65e0b915 vocab=bc9d2c41
+-/
 theorem exists_of_reflTransGen {t : V}
     (h : Relation.ReflTransGen r s t) :
     ∃ l, Nonempty (DirectedSimplePath r s t l) := by
@@ -296,6 +338,9 @@ namespace DirectedSimplePath
 
 variable {r : V → V → Prop} {s t : V} {l : List V}
 
+/--
+@isnad1 id=mem.0h6v.s5.afda388d74dc from=translated src=- shape=0ba0b298 vocab=42711e6a
+-/
 theorem end_mem (p : DirectedSimplePath r s t l) : t ∈ l := by
   induction p with
   | nil => simp
@@ -310,6 +355,9 @@ def delta {r : V → V → Prop} {s : V} :
         (if x = u ∧ y = v then 1 else 0) -
         (if x = v ∧ y = u then 1 else 0)
 
+/--
+@isnad1 id=eq.1h8v.s5.56bcc431570f from=translated src=- shape=95d01191 vocab=e5b944b7
+-/
 theorem delta_left_zero (p : DirectedSimplePath r s t l)
     {x y : V} (hx : x ∉ l) : p.delta x y = 0 := by
   induction p with
@@ -326,6 +374,9 @@ theorem delta_left_zero (p : DirectedSimplePath r s t l)
         exact hxOld (h ▸ p.end_mem)
       simp [delta, ih hxOld, hxV, hxU]
 
+/--
+@isnad1 id=eq.1h8v.s5.3160d40f0b2b from=translated src=- shape=dd29cf21 vocab=e5b944b7
+-/
 theorem delta_right_zero (p : DirectedSimplePath r s t l)
     {x y : V} (hy : y ∉ l) : p.delta x y = 0 := by
   induction p with
@@ -342,6 +393,9 @@ theorem delta_right_zero (p : DirectedSimplePath r s t l)
         exact hyOld (h ▸ p.end_mem)
       simp [delta, ih hyOld, hyV, hyU]
 
+/--
+@isnad1 id=eq.0h8v.s5.6e4e392e0682 from=translated src=- shape=0d7331ff vocab=9ac5e07e
+-/
 theorem delta_antisymm (p : DirectedSimplePath r s t l) (x y : V) :
     p.delta x y = -p.delta y x := by
   induction p generalizing x y with
@@ -364,7 +418,9 @@ theorem delta_antisymm (p : DirectedSimplePath r s t l) (x y : V) :
       rw [hA, hB]
       omega
 
-/-- Path incidence is nonnegative on an arc whose reverse is unavailable.-/
+/-- Path incidence is nonnegative on an arc whose reverse is unavailable.
+@isnad1 id=le.1h8v.s5.ab1729373a62 from=translated src=- shape=9aa0af53 vocab=5576bf13
+-/
 theorem delta_nonneg_of_no_reverse (p : DirectedSimplePath r s t l)
     {x y : V} (hrev : ¬ r y x) : 0 ≤ p.delta x y := by
   induction p with
@@ -376,7 +432,9 @@ theorem delta_nonneg_of_no_reverse (p : DirectedSimplePath r s t l)
       simp only [delta, ite_eq_right hback, sub_zero]
       split_ifs <;> omega
 /-- The signed path incidence has one unit of divergence at its start
-and minus one at its current endpoint.-/
+and minus one at its current endpoint.
+@isnad1 id=eq.0h7v.s6.805f62cd6b20 from=translated src=- shape=90d70840 vocab=dc737904
+-/
 theorem delta_divergence (p : DirectedSimplePath r s t l) (x : V) :
     (∑ y, p.delta x y) =
       (if x = s then (1 : ℤ) else 0) -
@@ -397,7 +455,9 @@ theorem delta_divergence (p : DirectedSimplePath r s t l) (x : V) :
       omega
 end DirectedSimplePath
 /-- Increasing flow by the signed incidence of a simple residual path respects
-every arc capacity.-/
+every arc capacity.
+@isnad1 id=le.0h8v.s6.6d2d5c1b1f68 from=translated src=- shape=97e06b27 vocab=06a2f2c1
+-/
 theorem Flow.augmented_bound (f : Flow N)
     {t : V} {l : List V}
     (p : DirectedSimplePath f.ResidualArc N.source t l) :
@@ -450,6 +510,9 @@ def Flow.augment (f : Flow N) {l : List V}
     rw [f.balanced x hxsource hxsink, p.delta_divergence x]
     simp [hxsource, hxsink]
 
+/--
+@isnad1 id=eq.0h5v.s6.f02e74f17b4e from=translated src=- shape=363789a8 vocab=367e58bb
+-/
 theorem Flow.augment_value (f : Flow N) {l : List V}
     (p : DirectedSimplePath f.ResidualArc N.source N.sink l) :
     (f.augment p).value = f.value + 1 := by
@@ -457,7 +520,9 @@ theorem Flow.augment_value (f : Flow N) {l : List V}
   rw [p.delta_divergence N.source]
   simp [N.source_ne_sink]
 
-/-- The residual sink of a maximum integer flow is unreachable.-/
+/-- The residual sink of a maximum integer flow is unreachable.
+@isnad1 id=not.1h3v.s5.fe14494cb602 from=translated src=- shape=73fc125e vocab=66c425fb
+-/
 theorem Flow.sink_not_reachable_of_maximal (f : Flow N)
     (hmax : ∀ g : Flow N, g.value ≤ f.value) :
     N.sink ∉ f.reachableCut := by
@@ -471,7 +536,9 @@ theorem Flow.sink_not_reachable_of_maximal (f : Flow N)
   omega
 
 /-- Finite integral max flow equals minimum cut. Both a maximum flow and
-a minimum cut are returned, with equality of their integer values.-/
+a minimum cut are returned, with equality of their integer values.
+@isnad1 id=ex.0h2v.s7.fca2e7ccd781 from=translated src=- shape=3e288f50 vocab=0a360e32
+-/
 theorem Network.exists_max_flow_min_cut (N : Network V) :
     ∃ (f : Flow N) (S : Finset V),
       N.source ∈ S ∧ N.sink ∉ S ∧
@@ -491,7 +558,9 @@ theorem Network.exists_max_flow_min_cut (N : Network V) :
 def Flow.PositiveArc (f : Flow N) (u v : V) : Prop :=
   0 < f.amount u v
 
-/-- Positive value forces a source--sink path of positive-flow arcs.-/
+/-- Positive value forces a source--sink path of positive-flow arcs.
+@isnad1 id=ex.1h3v.s5.521409afc0a4 from=translated src=- shape=182c541a vocab=38a8f78a
+-/
 theorem Flow.exists_positive_path_of_value_pos (f : Flow N)
     (hpos : 0 < f.value) :
     ∃ l, Nonempty
@@ -525,7 +594,9 @@ theorem Flow.exists_positive_path_of_value_pos (f : Flow N)
   have hreach : Relation.ReflTransGen f.PositiveArc N.source N.sink := by
     simpa [R] using hsink
   exact DirectedSimplePath.exists_of_reflTransGen hreach
-/-- Subtracting a simple positive-flow path preserves all capacities.-/
+/-- Subtracting a simple positive-flow path preserves all capacities.
+@isnad1 id=le.0h8v.s6.f4be1ec4da80 from=translated src=- shape=97e06b27 vocab=1e8ecd61
+-/
 theorem Flow.reduced_bound (f : Flow N)
     {t : V} {l : List V}
     (p : DirectedSimplePath f.PositiveArc N.source t l) :
@@ -581,6 +652,9 @@ def Flow.reduce (f : Flow N) {l : List V}
     rw [f.balanced x hxsource hxsink, p.delta_divergence x]
     simp [hxsource, hxsink]
 
+/--
+@isnad1 id=eq.0h5v.s6.f2d6541da551 from=translated src=- shape=363789a8 vocab=cd703857
+-/
 theorem Flow.reduce_value (f : Flow N) {l : List V}
     (p : DirectedSimplePath f.PositiveArc N.source N.sink l) :
     (f.reduce p).value = f.value - 1 := by
@@ -599,6 +673,9 @@ def map {r q : V → V → Prop} {s : V} :
   | _, _, .snoc (u := u) (v := v) p huv hfresh, h =>
       .snoc (p.map h) (h u v huv) hfresh
 
+/--
+@isnad1 id=eq.0h10v.s6.2adc27215d34 from=translated src=- shape=3b9ad784 vocab=022c8bc1
+-/
 theorem delta_map (p : DirectedSimplePath r s t l)
     (h : ∀ u v, r u v → q u v) (x y : V) :
     (p.map h).delta x y = p.delta x y := by
@@ -609,7 +686,9 @@ theorem delta_map (p : DirectedSimplePath r s t l)
 
 end DirectedSimplePath
 
-/-- Every positive-flow arc has positive network capacity.-/
+/-- Every positive-flow arc has positive network capacity.
+@isnad1 id=lt.1h5v.s5.02150c3460b0 from=translated src=- shape=f34dc5cb vocab=2751522c
+-/
 theorem Flow.positiveArc_capacity_pos (f : Flow N) {u v : V}
     (h : f.PositiveArc u v) : 0 < N.capacity u v := by
   have hb := f.bound u v
@@ -628,7 +707,9 @@ def Network.pathFlux (N : Network V) :
   | p :: ps, x, y => p.2.delta x y + N.pathFlux ps x y
 
 /-- Every integer flow is a sum of source--sink path incidences and a
-zero-value residual flow. The path list has length equal to the flow value.-/
+zero-value residual flow. The path list has length equal to the flow value.
+@isnad1 id=ex.0h3v.s6.2c4cd75b9b9d from=translated src=- shape=4a0ac0ad vocab=708ff6e7
+-/
 theorem Flow.exists_path_decomposition (f : Flow N) :
     ∃ (ps : List N.CapacityPath) (g : Flow N),
       ps.length = f.value.toNat ∧ g.value = 0 ∧
@@ -678,7 +759,9 @@ theorem Flow.exists_path_decomposition (f : Flow N) :
             residual.amount x y + (q.2.delta x y + N.pathFlux ps x y)
           omega
   exact hall f.value.toNat f rfl
-/-- Every crossing arc's capacity is at most the total cut capacity.-/
+/-- Every crossing arc's capacity is at most the total cut capacity.
+@isnad1 id=le.2h5v.s5.ab08284d892e from=translated src=- shape=6f075c9a vocab=e21abb2e
+-/
 theorem Network.arcCapacity_le_cutCapacity (N : Network V)
     (S : Finset V) {x y : V} (hx : x ∈ S) (hy : y ∉ S) :
     (N.capacity x y : ℤ) ≤ N.cutCapacity S := by

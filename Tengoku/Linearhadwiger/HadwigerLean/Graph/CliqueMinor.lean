@@ -7,7 +7,9 @@ import Tengoku.Linearhadwiger.HadwigerLean.Graph.Finite
 
 namespace HadwigerLean
 
-/-- The largest clique order is bounded by the largest complete-minor order.-/
+/-- The largest clique order is bounded by the largest complete-minor order.
+@isnad1 id=le.0h2v.s4.40b9abfba488 from=translated src=- shape=0afa9c3e vocab=47d90ad3
+-/
 theorem cliqueNum_le_cliqueMinorNumber {V : Type*} [Fintype V]
     (G : SimpleGraph V) : G.cliqueNum ≤ cliqueMinorNumber G := by
   classical

@@ -67,7 +67,9 @@ def toRootedMinor (M : RootAttachedCliqueModel G root) :
     exact ⟨x, Set.mem_insert_iff.mpr (Or.inr hx), y, Set.mem_insert_iff.mpr (Or.inr hy), hxy⟩
   root_mem := fun i => Set.mem_insert (root i) (M.branch i)
 
-/-- An attached model certifies the desired rooted clique minor.-/
+/-- An attached model certifies the desired rooted clique minor.
+@isnad1 id=hasroote.0h5v.s4.db18680a16e5 from=translated src=- shape=cfe7f9ca vocab=09a512eb
+-/
 theorem hasRootedCliqueMinor (M : RootAttachedCliqueModel G root) :
     HasRootedCliqueMinor G root :=
   ⟨M.toRootedMinor⟩
@@ -101,13 +103,22 @@ namespace completeRoots
 
 variable {V : Type v} {G : SimpleGraph V} {R : Set V}
 
+/--
+@isnad1 id=le.0h3v.s4.88b35770a49e from=translated src=- shape=c00568ff vocab=f266c44a
+-/
 theorem supergraph : G ≤ completeRoots G R :=
   fun _ _ h => Or.inl h
 
+/--
+@isnad1 id=adj.3h5v.s5.2dec506b3a40 from=translated src=- shape=93055bd8 vocab=f075704e
+-/
 theorem adj_of_roots {x y : V} (hx : x ∈ R) (hy : y ∈ R)
     (hne : x ≠ y) : (completeRoots G R).Adj x y :=
   Or.inr ⟨hx, hy, hne⟩
 
+/--
+@isnad1 id=adj.2h5v.s5.daf1eb616fcc from=translated src=- shape=08feb9cf vocab=f075704e
+-/
 theorem adj_of_not_both_roots {x y : V}
     (h : (completeRoots G R).Adj x y)
     (hn : ¬(x ∈ R ∧ y ∈ R)) : G.Adj x y := by
@@ -118,7 +129,9 @@ theorem adj_of_not_both_roots {x y : V}
 end completeRoots
 
 /-- Completing edges inside R does not alter the induced graph on a set
-which avoids R.-/
+which avoids R.
+@isnad1 id=eq.1h4v.s6.e299b8089e24 from=translated src=- shape=0cdf8ef2 vocab=ecc8d048
+-/
 theorem completeRoots_induce_eq_of_disjoint (B : Set V) (hBR : Disjoint B R) :
     (completeRoots G R).induce B = G.induce B := by
   ext x y
@@ -134,7 +147,9 @@ theorem completeRoots_induce_eq_of_disjoint (B : Set V) (hBR : Disjoint B R) :
     exact Or.inl hxy
 
 /-- A clique-model branch avoiding the roots is already connected by
-original graph edges.-/
+original graph edges.
+@isnad1 id=connecte.1h6v.s7.216bdee4a87b from=translated src=- shape=31cce972 vocab=5915d3d2
+-/
 theorem cliqueModel_branch_connected_of_avoids_roots
     {V : Type v} {G : SimpleGraph V} {r : ℕ}
     {root : Fin r → V}
@@ -148,7 +163,9 @@ theorem cliqueModel_branch_connected_of_avoids_roots
   exact M.connected i
 
 /-- A model edge from a branch avoiding the roots is an actual edge of
-G, since completed edges have both ends at roots.-/
+G, since completed edges have both ends at roots.
+@isnad1 id=ex.2h7v.s8.352c3b28d6b9 from=translated src=- shape=9f43fb9c vocab=215faf7c
+-/
 theorem cliqueModel_adjacent_of_avoids_roots
     {V : Type v} {G : SimpleGraph V} {r : ℕ}
     {root : Fin r → V}
@@ -164,7 +181,9 @@ theorem cliqueModel_adjacent_of_avoids_roots
   exact (Set.disjoint_left.mp havoid) hx hboth.1
 /-- A non-singleton model branch with a vertex outside the roots has an
 actual graph edge incident with that vertex. This is the edge contracted
-in Appendix B's induction.-/
+in Appendix B's induction.
+@isnad1 id=ex.3h7v.s7.6ef4528c8510 from=translated src=- shape=c093eef4 vocab=ef3b169c
+-/
 theorem cliqueModel_actual_edge_for_contraction
     {V : Type v} {G : SimpleGraph V} {r : ℕ}
     {root : Fin r → V}
@@ -185,7 +204,9 @@ theorem cliqueModel_actual_edge_for_contraction
   exact completeRoots.adj_of_not_both_roots huw (by
     intro h
     exact huR h.1)
-/-- Among 2r disjoint clique-model branches, at least r avoid the r roots.-/
+/-- Among 2r disjoint clique-model branches, at least r avoid the r roots.
+@isnad1 id=ex.0h5v.s7.3e73bb39412f from=translated src=- shape=39c6b6c2 vocab=fc84c695
+-/
 theorem exists_root_avoiding_branches
     {V : Type v} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} {r : ℕ}
@@ -229,7 +250,9 @@ theorem exists_root_avoiding_branches
   subst x
   exact hno ⟨j, hx⟩
 /-- A completed-root K_(2r) model contains an actual K_r model whose
-branch sets all avoid the roots.-/
+branch sets all avoid the roots.
+@isnad1 id=ex.0h5v.s7.b1d09d1b5a26 from=translated src=- shape=dae72e34 vocab=32ef183d
+-/
 theorem exists_root_avoiding_clique_model
     {V : Type v} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} {r : ℕ}
@@ -286,7 +309,9 @@ namespace HadwigerLean
 universe v
 
 /-- Disjoint root-to-clique paths themselves form the branch sets of a rooted
-clique minor. The terminal clique may have additional unused vertices.-/
+clique minor. The terminal clique may have additional unused vertices.
+@isnad1 id=hasroote.2h6v.s6.ebfeae95e453 from=translated src=- shape=31d7cbc5 vocab=4eb4cc29
+-/
 theorem rootedCliqueMinor_of_linkage_to_clique
     {V : Type v} {G : SimpleGraph V} {r : ℕ}
     {root : Fin r → V} {P : IndexedPairs (Fin r) V}
@@ -310,7 +335,9 @@ theorem rootedCliqueMinor_of_linkage_to_clique
     exact (hstart i) ▸ pathVertexSet.start_mem (L.path i)
 
 /-- In an r-connected graph, any actual clique of size at least r can be
-linked to any prescribed r distinct roots, yielding a rooted clique minor.-/
+linked to any prescribed r distinct roots, yielding a rooted clique minor.
+@isnad1 id=hasroote.4h5v.s6.4f9dea8c5ed9 from=translated src=- shape=374da1c1 vocab=048ce4c0
+-/
 theorem rootedCliqueMinor_of_connected_clique
     {V : Type v} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} {r : ℕ}
@@ -364,7 +391,9 @@ theorem rootedCliqueMinor_of_connected_clique
     · exact hAB.2 (emb j)
     · exact hfinishInj.ne (hidxInj.ne hij)
 /-- Appendix B's final case: if every branch avoiding the roots is a
-singleton, r-connectivity links the roots to an actual r-clique.-/
+singleton, r-connectivity links the roots to an actual r-clique.
+@isnad1 id=hasroote.3h5v.s7.6a0c88749904 from=translated src=- shape=76d0571e vocab=376dfad0
+-/
 theorem rootedCliqueMinor_of_singleton_avoiding_branches
     {V : Type v} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} {r : ℕ}
@@ -408,7 +437,9 @@ theorem rootedCliqueMinor_of_singleton_avoiding_branches
     (by omega) hclique
 
 /-- If no model branch has an actual edge incident to a nonroot vertex,
-then the root-free branches are singleton clique vertices and KR follows.-/
+then the root-free branches are singleton clique vertices and KR follows.
+@isnad1 id=hasroote.3h5v.s7.97852d87431d from=translated src=- shape=4326e1e5 vocab=d7a97776
+-/
 theorem rootedCliqueMinor_of_no_contractable_edge
     {V : Type v} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} {r : ℕ}
@@ -438,7 +469,9 @@ theorem rootedCliqueMinor_of_no_contractable_edge
     simpa using (hv : v = u) ▸ hu
 
 /-- A map that sends each edge either to an edge or to a single vertex
-preserves reachability. This permits branch-set contraction.-/
+preserves reachability. This permits branch-set contraction.
+@isnad1 id=reachabl.2h7v.s5.8d43f8a41016 from=translated src=- shape=dbdd992e vocab=28c7ad7c
+-/
 theorem reachable_of_adj_or_eq_map
     {V W : Type*} {G : SimpleGraph V} {H : SimpleGraph W}
     (f : V → W)
@@ -454,7 +487,9 @@ theorem reachable_of_adj_or_eq_map
     · exact hnew.reachable.trans ih
 
 /-- A connected branch remains connected after a map that may collapse
-edges but otherwise preserves them.-/
+edges but otherwise preserves them.
+@isnad1 id=connecte.2h6v.s6.9d6ae87c544a from=translated src=- shape=8851281e vocab=af78f24b
+-/
 theorem connected_induce_image_of_adj_or_eq_map
     {V W : Type*} {G : SimpleGraph V} {H : SimpleGraph W}
     (B : Set V) (hB : (G.induce B).Connected)
@@ -489,11 +524,16 @@ noncomputable def index {V I : Type*} {G : SimpleGraph V}
     (P : ConnectedPartition G I) (x : V) : I :=
   Classical.choose (P.cover x)
 
+/--
+@isnad1 id=mem.0h5v.s5.b5b13a4f3d34 from=translated src=- shape=1e55f177 vocab=49e1aa1f
+-/
 theorem index_mem {V I : Type*} {G : SimpleGraph V}
     (P : ConnectedPartition G I) (x : V) :
     x ∈ P.block (P.index x) := Classical.choose_spec (P.cover x)
 
-/-- Quotienting either collapses an edge or maps it to an edge.-/
+/-- Quotienting either collapses an edge or maps it to an edge.
+@isnad1 id=or.1h6v.s5.8088da48fe61 from=translated src=- shape=cf276561 vocab=836d1287
+-/
 theorem index_adj_or_eq {V I : Type*} {G : SimpleGraph V}
     (P : ConnectedPartition G I) {x y : V} (hxy : G.Adj x y) :
     P.index x = P.index y ∨
@@ -603,7 +643,9 @@ def mono {V I : Type*} {G G' : SimpleGraph V}
   cover := P.cover
 
 /-- Completing edges inside R commutes with taking a touching quotient.
-The quotient root set consists of blocks containing some original root.-/
+The quotient root set consists of blocks containing some original root.
+@isnad1 id=eq.0h5v.s6.fee7e6aa4986 from=translated src=- shape=31b32664 vocab=ba0a808e
+-/
 theorem touchingQuotient_completeRoots
     {V I : Type*} {G : SimpleGraph V}
     (P : ConnectedPartition G I) (R : Set V) :
@@ -636,7 +678,9 @@ def edgeContractionRootSet {V : Type*} {a b : V}
   {q | ∃ x ∈ R, x ∈ edgeContractionBlock (a := a) (b := b) q}
 
 /-- Contracting an actual edge after completing R gives the same graph as
-completing the quotient root blocks after contraction.-/
+completing the quotient root blocks after contraction.
+@isnad1 id=eq.1h5v.s5.b597ac1dcc4f from=translated src=- shape=717a2b41 vocab=9b6d072b
+-/
 theorem edgeContraction_completeRoots
     {V : Type*} {G : SimpleGraph V} {a b : V}
     (hab : G.Adj a b) (R : Set V) :
@@ -649,7 +693,9 @@ theorem edgeContraction_completeRoots
 
 namespace ConnectedPartition
 
-/-- Membership in a block identifies the block index.-/
+/-- Membership in a block identifies the block index.
+@isnad1 id=eq.1h6v.s5.66966e65b281 from=translated src=- shape=08ac504f vocab=49e1aa1f
+-/
 theorem index_eq_of_mem {V I : Type*} {G : SimpleGraph V}
     (P : ConnectedPartition G I) {x : V} {i : I}
     (hx : x ∈ P.block i) : P.index x = i := by
@@ -665,6 +711,9 @@ noncomputable def edgeContractionRoot
     Fin r → EdgeContractionVertex a b :=
   (edgeContractionPartition G hab).index ∘ root
 
+/--
+@isnad1 id=eq.1h6v.s5.762c960ffebd from=translated src=- shape=87110c67 vocab=4b2ce3d0
+-/
 theorem edgeContractionRootSet_eq_range
     {V : Type*} {G : SimpleGraph V} {a b : V}
     (hab : G.Adj a b) {r : ℕ} (root : Fin r → V) :
@@ -679,7 +728,9 @@ theorem edgeContractionRootSet_eq_range
     exact ⟨root i, ⟨i, rfl⟩, P.index_mem (root i)⟩
 
 /-- If one contracted endpoint is outside the root set, distinct roots
-remain distinct after contraction.-/
+remain distinct after contraction.
+@isnad1 id=injectiv.3h6v.s5.051b71c08771 from=translated src=- shape=6b21a7b2 vocab=069e0129
+-/
 theorem edgeContractionRoot_injective
     {V : Type*} {G : SimpleGraph V} {a b : V}
     (hab : G.Adj a b) {r : ℕ} (root : Fin r → V)
@@ -756,7 +807,9 @@ noncomputable def cliqueModel_contract_nonroot_edge
       edgeContractionRootSet_eq_range hab root] using h
 
 /-- A rooted clique minor in a single-edge contraction lifts to the
-original graph at the original prescribed roots.-/
+original graph at the original prescribed roots.
+@isnad1 id=hasroote.2h6v.s5.827f6bf4bb19 from=translated src=- shape=6291e359 vocab=b16351aa
+-/
 theorem rootedCliqueMinor_of_edgeContraction
     {V : Type*} {G : SimpleGraph V} {a b : V}
     (hab : G.Adj a b) {r : ℕ} (root : Fin r → V)
@@ -768,7 +821,9 @@ theorem rootedCliqueMinor_of_edgeContraction
   exact ⟨M.liftThroughPartition P root (fun i => P.index_mem (root i))⟩
 
 /-- Menger links every prescribed root to a distinct vertex of any
-r-element target set in an r-connected graph.-/
+r-element target set in an r-connected graph.
+@isnad1 id=ex.3h5v.s7.47e66d673893 from=translated src=- shape=66853679 vocab=d00bca7c
+-/
 theorem exists_root_target_linkage
     {V : Type*} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} {r : ℕ}
@@ -831,7 +886,9 @@ theorem exists_root_target_linkage
 namespace IndexedLinkage
 
 /-- When all vertices of X occur as distinct finishes, a disjoint path
-can meet X only at its own finish.-/
+can meet X only at its own finish.
+@isnad1 id=eq.3h8v.s6.02c12674fa76 from=translated src=- shape=5be494f9 vocab=444bd0db
+-/
 theorem path_meets_finish_set_only_at_finish
     {ι V : Type*} {G : SimpleGraph V} {P : IndexedPairs ι V}
     (L : IndexedLinkage G P) (X : Set V)
@@ -848,7 +905,9 @@ theorem path_meets_finish_set_only_at_finish
     exact False.elim ((Set.disjoint_left.mp (L.disjoint hij)) hx hxj)
 
 /-- When all vertices of R occur as distinct starts, a disjoint path
-can meet R only at its own start.-/
+can meet R only at its own start.
+@isnad1 id=eq.3h8v.s6.e597ee22dc55 from=translated src=- shape=b268f144 vocab=444bd0db
+-/
 theorem path_meets_start_set_only_at_start
     {ι V : Type*} {G : SimpleGraph V} {P : IndexedPairs ι V}
     (L : IndexedLinkage G P) (R : Set V)
@@ -869,7 +928,9 @@ end IndexedLinkage
 namespace VertexSeparation
 
 /-- A simple path starting on the left and meeting the separator only at
-its finish stays on the left.-/
+its finish stays on the left.
+@isnad1 id=mem.4h7v.s6.56e963804bb8 from=translated src=- shape=9627d697 vocab=72b055c2
+-/
 theorem path_support_subset_left_of_boundary_only_at_finish
     {V : Type*} [Fintype V] {G : SimpleGraph V}
     (S : VertexSeparation G)

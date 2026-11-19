@@ -25,7 +25,9 @@ def HasEggSupportImprovement (G : SimpleGraph V) (w : V → ℝ) : Prop :=
         IsPartialEggDecomposition Q w ∧ eggSupport P w ⊂ eggSupport Q w
 
 /-- Every local improvement rule yields an egg partition with a chordal
-(simplicial-elimination) touching quotient.-/
+(simplicial-elimination) touching quotient.
+@isnad1 id=ex.1h3v.s5.9777cecfbb6f from=translated src=- shape=9baa5522 vocab=2a615d34
+-/
 theorem exists_all_egg_partition_of_improvement
     (G : SimpleGraph V) (w : V → ℝ)
     (hImprove : HasEggSupportImprovement G w) :

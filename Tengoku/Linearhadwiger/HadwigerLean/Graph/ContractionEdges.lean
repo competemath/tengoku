@@ -21,6 +21,9 @@ universe u
 variable {V : Type u} {G : SimpleGraph V} {a b : V}
   (hab : G.Adj a b)
 
+/--
+@isnad1 id=iff.1h5v.s6.329d9806cb78 from=translated src=- shape=ab04df16 vocab=d0083022
+-/
 theorem edgeContraction_adj_none_some
     (x : {v : V // v ≠ a ∧ v ≠ b}) :
     (edgeContraction G hab).Adj none (some x) ↔
@@ -28,6 +31,9 @@ theorem edgeContraction_adj_none_some
   simp [edgeContraction, edgeContractionPartition,
     ConnectedPartition.touchingQuotient, edgeContractionBlock]
 
+/--
+@isnad1 id=iff.1h6v.s6.64571fb8b437 from=translated src=- shape=990eb34f vocab=c37f637d
+-/
 theorem edgeContraction_adj_some_some
     (x y : {v : V // v ≠ a ∧ v ≠ b}) :
     (edgeContraction G hab).Adj (some x) (some y) ↔ G.Adj x y := by
@@ -78,7 +84,9 @@ noncomputable def edgeContractionOutsideIso (hab : G.Adj a b) :
     change (edgeContraction G hab).Adj (some x) (some y) ↔ G.Adj x y
     exact edgeContraction_adj_some_some (G := G) hab x y
 
-/-- Edge count is invariant under graph isomorphism.-/
+/-- Edge count is invariant under graph isomorphism.
+@isnad1 id=eq.0h5v.s4.498ac84a2ab4 from=translated src=- shape=2a63277f vocab=5804e6c5
+-/
 theorem edgeCount_eq_of_iso {W : Type*} [Fintype V] [Fintype W]
     {H : SimpleGraph W} (e : G ≃g H) :
     edgeCount G = edgeCount H := by
@@ -95,7 +103,9 @@ universe u
 variable {V : Type u} [Fintype V] {G : SimpleGraph V} {a b : V}
 
 /-- The new vertex has one neighbor for each surviving vertex adjacent to
-at least one end of the contracted edge.-/
+at least one end of the contracted edge.
+@isnad1 id=eq.1h4v.s8.3a60fc639581 from=translated src=- shape=6cd4833b vocab=107735c1
+-/
 theorem edgeContraction_degree_none (hab : G.Adj a b)
     [DecidableEq V] [DecidableRel G.Adj]
     [DecidableRel (edgeContraction G hab).Adj] :
@@ -126,7 +136,9 @@ variable {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj] {a b : V}
 
 /-- The outside vertices adjacent to at least one contracted endpoint are
-exactly the union of the two neighborhoods with the endpoints removed.-/
+exactly the union of the two neighborhoods with the endpoints removed.
+@isnad1 id=eq.0h4v.s8.32f06d8aaa82 from=translated src=- shape=e6266692 vocab=dd6312d9
+-/
 theorem edgeOutside_neighbor_filter_card :
     ((Finset.univ : Finset (EdgeOutside a b)).filter
       (fun x : EdgeOutside a b => G.Adj a x ∨ G.Adj b x)).card =
@@ -164,7 +176,9 @@ variable {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj] {a b : V}
 
 /-- The union of the two original neighborhoods includes both ends of the
-contracted edge, while the new vertex sees exactly the other members.-/
+contracted edge, while the new vertex sees exactly the other members.
+@isnad1 id=eq.1h4v.s8.d587e41b1fb7 from=translated src=- shape=cb39dcc8 vocab=afed4e91
+-/
 theorem edgeContraction_degree_none_add_two (hab : G.Adj a b)
     [DecidableRel (edgeContraction G hab).Adj] :
     (edgeContraction G hab).degree none + 2 =
@@ -198,7 +212,9 @@ universe u
 variable {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj] {a b : V}
 
-/-- Edges touching either endpoint are the union of their incidence sets.-/
+/-- Edges touching either endpoint are the union of their incidence sets.
+@isnad1 id=eq.0h4v.s6.50470d7d74f5 from=translated src=- shape=e7f292d5 vocab=5818b7da
+-/
 theorem edgeIncidenceCount_pair_eq_card_union :
     edgeIncidenceCount G {a, b} =
       (G.incidenceFinset a ∪ G.incidenceFinset b).card := by
@@ -210,7 +226,9 @@ theorem edgeIncidenceCount_pair_eq_card_union :
   tauto
 
 /-- An edge at a and b is counted twice in the sum of their degrees, so
-the number of edges touching the pair is one less.-/
+the number of edges touching the pair is one less.
+@isnad1 id=eq.1h4v.s6.58a4598c9746 from=translated src=- shape=faf26ebb vocab=4dc95d34
+-/
 theorem edgeIncidenceCount_pair_add_one (hab : G.Adj a b) :
     edgeIncidenceCount G {a, b} + 1 = G.degree a + G.degree b := by
   classical
@@ -240,7 +258,9 @@ variable {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V}
 
 /-- Every edge is either internal to the complement of S or touches S,
-and these two classes partition the edge set.-/
+and these two classes partition the edge set.
+@isnad1 id=eq.0h3v.s6.c657f099d882 from=translated src=- shape=e1ecc22d vocab=07b699fc
+-/
 theorem edgeCount_induce_compl_add_incidence (S : Finset V) :
     edgeCount (G.induce ((Sᶜ : Finset V) : Set V)) +
       edgeIncidenceCount G S = edgeCount G := by
@@ -284,7 +304,9 @@ variable {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj] {a b : V}
 
 /-- Exact simple-edge-contraction count: one contracted edge disappears,
-and every common neighbor merges one further pair of edges.-/
+and every common neighbor merges one further pair of edges.
+@isnad1 id=eq.1h4v.s6.95544cd441f6 from=translated src=- shape=e55c7c25 vocab=827bcad4
+-/
 theorem edgeContraction_edgeCount_add_one_add_common
     (hab : G.Adj a b) :
     edgeCount (edgeContraction G hab) + 1 +

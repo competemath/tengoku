@@ -9,7 +9,9 @@ namespace HadwigerLean.Deduction
 
 open Filter
 
-/-- A convenient consequence of logarithm being little-o of the identity.-/
+/-- A convenient consequence of logarithm being little-o of the identity.
+@isnad1 id=eventual.0h0v.s5.c79936203412 from=translated src=- shape=8aab675c vocab=057389d5
+-/
 theorem eventually_log_mul_bound :
     ∀ᶠ x : ℝ in atTop, 2000 * Real.log (100 * x) ≤ x := by
   have h := (Real.isLittleO_log_id_atTop.const_mul_left (200000 : ℝ)).eventuallyLE
@@ -28,7 +30,9 @@ theorem eventually_log_mul_bound :
   nlinarith
 
 /-- The exact additive term of Theorem 2 is dominated by an exponential
-once the logarithmic factor is below the cube-root scale.-/
+once the logarithmic factor is below the cube-root scale.
+@isnad1 id=le.2h1v.s6.61763c716d7c from=translated src=- shape=a0fe94bb vocab=07ee3683
+-/
 theorem Aepsilon_inv_le_exp_cube {x : ℝ} (hx : 0 < x)
     (hlog : 2000 * Real.log (100 * x) ≤ x) :
     HadwigerLean.Theorem2.Aepsilon (x⁻¹) ≤ Real.exp (x ^ 3) := by
@@ -43,7 +47,9 @@ theorem Aepsilon_inv_le_exp_cube {x : ℝ} (hx : 0 < x)
   nlinarith
 
 /-- The cube-root logarithmic choice of epsilon eventually satisfies all
-analytic requirements for the initial local bound.-/
+analytic requirements for the initial local bound.
+@isnad1 id=eventual.0h0v.s7.86113793670b from=translated src=- shape=eb12f32e vocab=b9408f40
+-/
 theorem eventually_initial_epsilon :
     ∀ᶠ t : ℕ in atTop,
       2 ≤ t ∧
@@ -79,7 +85,9 @@ theorem eventually_initial_epsilon :
     field_simp
 
 /-- For exponent greater than four, the extra logarithmic power absorbs any
-fixed coefficient at sufficiently large integer arguments.-/
+fixed coefficient at sufficiently large integer arguments.
+@isnad1 id=eventual.1h2v.s6.ed2694c9e9f2 from=translated src=- shape=39914684 vocab=48b6f6e5
+-/
 theorem eventually_log_power_window {α : ℝ} (hα : 4 < α) (C : ℕ) :
     ∀ᶠ a : ℕ in atTop,
       (C : ℝ) * (Real.log (a : ℝ)) ^ (4 : ℝ) ≤
@@ -102,7 +110,9 @@ theorem eventually_log_power_window {α : ℝ} (hα : 4 < α) (C : ℕ) :
         (Real.rpow_add hlogpos (α - 4) (4 : ℝ)).symm
 
 /-- The lower edge of the Delcourt--Postle window is at least the square root
-of `t` for `t ≥ 2`.-/
+of `t` for `t ≥ 2`.
+@isnad1 id=le.1h1v.s5.177544f586db from=translated src=- shape=a5c013e1 vocab=7ba99450
+-/
 theorem sqrt_le_dp_window {t : ℝ} (ht : 2 ≤ t) :
     Real.sqrt t ≤ t / Real.sqrt (Real.log t) := by
   have htpos : 0 < t := by linarith
@@ -116,7 +126,9 @@ theorem sqrt_le_dp_window {t : ℝ} (ht : 2 ≤ t) :
       mul_le_mul_of_nonneg_left hsqrtle (Real.sqrt_nonneg t)
     _ = t := Real.mul_self_sqrt htpos.le
 
-/-- Uniform control of every integer in the Theorem 4 window.-/
+/-- Uniform control of every integer in the Theorem 4 window.
+@isnad1 id=ex.1h3v.s7.bb4628f6f59e from=translated src=- shape=efd0d615 vocab=f55e23d8
+-/
 theorem eventual_dp_window {α : ℝ} (hα : 4 < α) (C t₀ : ℕ) :
     ∃ T₀ : ℕ, 3 ≤ T₀ ∧
       ∀ (t a : ℕ), T₀ ≤ t →
@@ -139,7 +151,9 @@ theorem eventual_dp_window {α : ℝ} (hα : 4 < α) (C t₀ : ℕ) :
   exact hB a hBnat
 
 /-- Every nonbase outer scale has logarithm at least half that of the
-excluded-minor order after the factor `14`.-/
+excluded-minor order after the factor `14`.
+@isnad1 id=le.3h3v.s6.c6a9a8ab3d21 from=translated src=- shape=ae23dc1f vocab=b89ee0dc
+-/
 theorem bootstrap_scale_log_lower {t T a : ℕ} (ht : 2 ≤ t) (htT : t ≤ T)
     (ha : (T : ℝ) / Real.sqrt (Real.log (T : ℝ)) < (a : ℝ)) :
     Real.log (t : ℝ) / 2 ≤ Real.log (14 * (a : ℝ)) := by

@@ -16,7 +16,9 @@ universe v
 
 variable {V : Type v} [Fintype V] [DecidableEq V]
 
-/-- The four possible shapes of a positive-capacity arc.-/
+/-- The four possible shapes of a positive-capacity arc.
+@isnad1 id=or.1h6v.s7.46f3d5e397ae from=translated src=- shape=182d1b30 vocab=b8ab7f78
+-/
 theorem positive_split_arc (G : SimpleGraph V) (A B : Finset V)
     {x y : SplitVertex V} (h : 0 < splitCapacity G A B x y) :
     (∃ a ∈ A, x = splitSource ∧ y = splitIn a) ∨
@@ -72,6 +74,9 @@ theorem positive_split_arc (G : SimpleGraph V) (A B : Finset V)
           · omega
         | some w => simp [splitCapacity] at h
 
+/--
+@isnad1 id=eq.2h7v.s5.24bfd38f9bae from=translated src=- shape=33328ff8 vocab=01f9dab8
+-/
 theorem positive_into_splitOut (G : SimpleGraph V) (A B : Finset V)
     {u v : SplitVertex V} (h : 0 < splitCapacity G A B u v)
     {w : V} (hv : v = splitOut w) : u = splitIn w := by
@@ -87,12 +92,17 @@ theorem positive_into_splitOut (G : SimpleGraph V) (A B : Finset V)
   · obtain ⟨b, _, _, hv'⟩ := h4
     cases hv'.symm.trans hv
 
+/--
+@isnad1 id=not.0h5v.s5.2e58b2d56602 from=translated src=- shape=f99468cc vocab=a54abfde
+-/
 theorem no_reverse_split_unit_arc (G : SimpleGraph V) (A B : Finset V)
     (w : V) : ¬ 0 < splitCapacity G A B (splitOut w) (splitIn w) := by
   simp [splitCapacity, splitOut, splitIn]
 
 /-- Visiting an output copy means the unit arc of that original vertex is
-traversed once by the directed split path.-/
+traversed once by the directed split path.
+@isnad1 id=eq.1h8v.s7.a881c05a1478 from=translated src=- shape=407fa3c9 vocab=e194c14f
+-/
 theorem delta_split_unit_of_out_mem (G : SimpleGraph V) (A B : Finset V)
     {t : SplitVertex V} {l : List (SplitVertex V)}
     (p : FiniteFlow.DirectedSimplePath
@@ -192,7 +202,9 @@ private theorem projected_state (G : SimpleGraph V) (A B : Finset V)
 
 /-- A positive-capacity path in the vertex-split network projects to an
 A--B path in the original graph. Every projected vertex traverses its unit
-split arc exactly once.-/
+split arc exactly once.
+@isnad1 id=ex.0h5v.s8.a13b29dcf3da from=translated src=- shape=27344dcb vocab=ee7959cc
+-/
 theorem capacityPath_project (G : SimpleGraph V) (A B : Finset V)
     (p : (splitNetwork G A B).CapacityPath) :
     ∃ a ∈ A, ∃ b ∈ B, ∃ q : G.Path a b,

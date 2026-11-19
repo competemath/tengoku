@@ -24,6 +24,9 @@ def sampledHypergraph (H : IndexedHypergraph W E) (ω : E → Bool) :
   H.restrictEdges (H.edges.filter fun e => ω e) (Finset.filter_subset _ _)
 
 omit [DecidableEq W] [DecidableEq E] [Fintype E] in
+/--
+@isnad1 id=isunifor.1h5v.s4.796fd7479817 from=translated src=- shape=edfa5643 vocab=e45f2727
+-/
 theorem sampled_uniform (H : IndexedHypergraph W E) (ω : E → Bool)
     {r : ℕ} (hunif : H.IsUniform r) :
     (sampledHypergraph H ω).IsUniform r := by
@@ -63,6 +66,9 @@ noncomputable def tokenDummyHypergraph (G : SimpleGraph V) (m p z : ℕ) :
         exact Finset.subset_univ _ }
 
 omit [Fintype V] in
+/--
+@isnad1 id=iff.0h6v.s6.32c01ac18bc1 from=translated src=- shape=11cb83d3 vocab=8caacf5a
+-/
 @[simp] theorem original_mem_tokenDummyEdge (G : SimpleGraph V) {p z : ℕ}
     (e : TokenDummyLabel G p z) (v : V) :
     Sum.inl v ∈ tokenDummyEdge G e ↔ v ∈ e.1.1 := by
@@ -70,6 +76,9 @@ omit [Fintype V] in
   simp [tokenDummyEdge]
 
 omit [Fintype V] in
+/--
+@isnad1 id=iff.0h6v.s6.6c3467fc85b0 from=translated src=- shape=a5ee0663 vocab=35d4048f
+-/
 @[simp] theorem token_mem_tokenDummyEdge (G : SimpleGraph V) {p z : ℕ}
     (e : TokenDummyLabel G p z) (c : Fin p) :
     Sum.inr (Sum.inl c) ∈ tokenDummyEdge G e ↔ c = e.2.1 := by
@@ -77,6 +86,9 @@ omit [Fintype V] in
   simp [tokenDummyEdge]
 
 omit [Fintype V] in
+/--
+@isnad1 id=iff.0h6v.s6.d64fbb111809 from=translated src=- shape=28d30ad4 vocab=47732521
+-/
 @[simp] theorem dummy_mem_tokenDummyEdge (G : SimpleGraph V) {p z : ℕ}
     (e : TokenDummyLabel G p z) (d : Fin z) :
     Sum.inr (Sum.inr d) ∈ tokenDummyEdge G e ↔ d ∈ e.2.2 := by
@@ -84,6 +96,9 @@ omit [Fintype V] in
   simp [tokenDummyEdge]
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h5v.s6.234cedd88f1d from=translated src=- shape=2eb2728d vocab=1285bf38
+-/
 theorem tokenDummyEdge_card (G : SimpleGraph V) {p z : ℕ}
     (e : TokenDummyLabel G p z) :
     (tokenDummyEdge G e).card = e.1.1.card + 1 + e.2.2.card := by
@@ -108,6 +123,9 @@ theorem tokenDummyEdge_card (G : SimpleGraph V) {p z : ℕ}
   simp [Finset.card_image_of_injective _ Sum.inl_injective,
     Finset.card_image_of_injective _ hinj]
 
+/--
+@isnad1 id=isunifor.0h5v.s5.ff41f9a305ce from=translated src=- shape=66f8e855 vocab=4be38610
+-/
 theorem tokenDummy_uniform (G : SimpleGraph V) (m p z : ℕ) :
     (tokenDummyHypergraph G m p z).IsUniform (m + 2) := by
   classical
@@ -136,6 +154,9 @@ noncomputable def tokenOrPrivateColor {p : ℕ} (f : V → Option (Fin p))
   | some c => Sum.inl c
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=eq.1h4v.s6.0dc7795e22e0 from=translated src=- shape=c1927038 vocab=20a1e77a
+-/
 @[simp] theorem tokenOrPrivateColor_none {p : ℕ} (f : V → Option (Fin p))
     (v : V) (h : f v = none) :
     tokenOrPrivateColor f v = Sum.inr ⟨v, h⟩ := by
@@ -143,6 +164,9 @@ omit [Fintype V] [DecidableEq V] in
   split <;> simp_all
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=eq.1h5v.s6.793f5037aff1 from=translated src=- shape=7e38954f vocab=588edf0b
+-/
 @[simp] theorem tokenOrPrivateColor_some {p : ℕ} (f : V → Option (Fin p))
     (v : V) (c : Fin p) (h : f v = some c) :
     tokenOrPrivateColor f v = Sum.inl c := by
@@ -151,7 +175,9 @@ omit [Fintype V] [DecidableEq V] in
 
 omit [DecidableEq V] in
 /-- A proper partial assignment of color tokens extends using one private
-color for each unassigned vertex.-/
+color for each unassigned vertex.
+@isnad1 id=colorabl.1h4v.s6.89ae71fb69f7 from=translated src=- shape=3281a3ac vocab=29d7b9d8
+-/
 theorem colorable_of_partial_token (G : SimpleGraph V) {p : ℕ}
     (f : V → Option (Fin p))
     (hproper : ∀ {v w : V}, G.Adj v w → ∀ c : Fin p,
@@ -194,7 +220,9 @@ section MatchingExtraction
 
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
-/-- Distinct edges of a matching cannot use the same color token.-/
+/-- Distinct edges of a matching cannot use the same color token.
+@isnad1 id=eq.4h8v.s7.bf8660b3b52e from=translated src=- shape=5d4874cf vocab=4bfeab36
+-/
 theorem matching_token_injective (G : SimpleGraph V) (m p z : ℕ)
     (M : Finset (TokenDummyLabel G p z))
     (hM : (tokenDummyHypergraph G m p z).IsMatching M)
@@ -222,7 +250,9 @@ noncomputable def matchingPartialToken {p z : ℕ}
   if h : ∃ e ∈ M, v ∈ e.1.1 then some (Classical.choose h).2.1 else none
 
 omit [Fintype V] in
-/-- Assigned tokens always arise from a selected stable set containing the vertex.-/
+/-- Assigned tokens always arise from a selected stable set containing the vertex.
+@isnad1 id=ex.1h7v.s7.b8565566f35f from=translated src=- shape=45d31b09 vocab=e1f5a282
+-/
 theorem matchingPartialToken_some {p z : ℕ}
     {G : SimpleGraph V} (M : Finset (TokenDummyLabel G p z))
     {v : V} {c : Fin p} (hc : matchingPartialToken M v = some c) :
@@ -237,7 +267,9 @@ theorem matchingPartialToken_some {p z : ℕ}
   · simp at hc
 
 omit [Fintype V] in
-/-- Unassigned vertices are exactly those omitted by all selected stable sets.-/
+/-- Unassigned vertices are exactly those omitted by all selected stable sets.
+@isnad1 id=iff.0h6v.s6.7675fa1cbe14 from=translated src=- shape=6222ba48 vocab=42c8e854
+-/
 theorem matchingPartialToken_none_iff {p z : ℕ}
     {G : SimpleGraph V} (M : Finset (TokenDummyLabel G p z))
     (v : V) :
@@ -254,7 +286,9 @@ theorem matchingPartialToken_none_iff {p z : ℕ}
       exact h e he hv
     simp [matchingPartialToken, hex]
 
-/-- Edges in a token/dummy matching induce a proper partial token coloring.-/
+/-- Edges in a token/dummy matching induce a proper partial token coloring.
+@isnad1 id=ne.3h9v.s6.5000b280c6c9 from=translated src=- shape=f8bfb999 vocab=81e6f1f8
+-/
 theorem matchingPartialToken_proper (G : SimpleGraph V) (m p z : ℕ)
     (M : Finset (TokenDummyLabel G p z))
     (hM : (tokenDummyHypergraph G m p z).IsMatching M) :
@@ -270,7 +304,9 @@ theorem matchingPartialToken_proper (G : SimpleGraph V) (m p z : ℕ)
   exact (e.1.2.2 hve hwf (G.ne_of_adj hvw)) hvw
 
 /-- A matching gives a coloring using its tokens and one color per
-uncovered original vertex.-/
+uncovered original vertex.
+@isnad1 id=colorabl.1h6v.s6.fcaaabb88a0a from=translated src=- shape=12ef50b1 vocab=fdd29184
+-/
 theorem colorable_of_tokenDummy_matching (G : SimpleGraph V) (m p z : ℕ)
     (M : Finset (TokenDummyLabel G p z))
     (hM : (tokenDummyHypergraph G m p z).IsMatching M) :
@@ -279,7 +315,9 @@ theorem colorable_of_tokenDummy_matching (G : SimpleGraph V) (m p z : ℕ)
   exact colorable_of_partial_token G (matchingPartialToken M)
     (matchingPartialToken_proper G m p z M hM)
 /-- Private colors for original vertices are bounded by all vertices left
-uncovered by the hypergraph matching.-/
+uncovered by the hypergraph matching.
+@isnad1 id=le.1h6v.s7.5bb113fc936a from=translated src=- shape=1cc2e6d7 vocab=3e493dfe
+-/
 theorem private_color_count_le_uncovered (G : SimpleGraph V) (m p z : ℕ)
     (M : Finset (TokenDummyLabel G p z))
     (hM : (tokenDummyHypergraph G m p z).IsMatching M) :
@@ -322,7 +360,9 @@ def MatchingHypothesis (G : SimpleGraph V) (m p z : ℕ) (ξ : ℝ) : Prop :=
 
 /-- Conditional rounding: an almost-perfect token/dummy matching produces
 a coloring whose number of private colors is at most ξ times the enlarged
-vertex count.-/
+vertex count.
+@isnad1 id=ex.1h6v.s6.6750f7755597 from=translated src=- shape=04fcc483 vocab=8bf58fc2
+-/
 theorem colorable_of_MatchingHypothesis (G : SimpleGraph V) (m p z : ℕ)
     (ξ : ℝ) (hmatch : MatchingHypothesis G m p z ξ) :
     ∃ k : ℕ,
@@ -347,7 +387,9 @@ theorem colorable_of_MatchingHypothesis (G : SimpleGraph V) (m p z : ℕ)
   nlinarith
 /-- Final arithmetic step of the rounding lemma: token count is within one
 of fractional cost, and the matching leaves enough slack for the extra
-private colors.-/
+private colors.
+@isnad1 id=le.4h8v.s7.3ccaa17b1ca6 from=translated src=- shape=6d56fc58 vocab=da9c39c7
+-/
 theorem chromatic_le_of_MatchingHypothesis (G : SimpleGraph V)
     (m p z : ℕ) (ξ γ : ℝ) (x : StableSet G → ℝ)
     (hmatch : MatchingHypothesis G m p z ξ)
@@ -372,7 +414,9 @@ namespace HadwigerLean.LowCodegreeRounding
 
 section DummyNormalization
 
-/-- The fixed-size subsets of `Fin z` are counted by the binomial coefficient.-/
+/-- The fixed-size subsets of `Fin z` are counted by the binomial coefficient.
+@isnad1 id=eq.0h2v.s5.ab9448f56ce3 from=translated src=- shape=380f9a0d vocab=298377d3
+-/
 theorem card_dummy_subsets (z j : ℕ) :
     (Finset.univ.filter (fun T : Finset (Fin z) => T.card = j)).card =
       Nat.choose z j := by
@@ -385,7 +429,9 @@ theorem card_dummy_subsets (z j : ℕ) :
   simp
 
 /-- Uniformly distributing unit mass among all `j`-subsets of `Fin z`
-produces total mass one.-/
+produces total mass one.
+@isnad1 id=eq.1h2v.s6.81dc81c1f766 from=translated src=- shape=918584b7 vocab=08e363e0
+-/
 theorem sum_dummy_recip_choose (z j : ℕ) (hj : j ≤ z) :
     (∑ T : Finset (Fin z),
       if T.card = j then (1 : ℝ) / (Nat.choose z j : ℝ) else 0) = 1 := by
@@ -396,7 +442,9 @@ theorem sum_dummy_recip_choose (z j : ℕ) (hj : j ≤ z) :
   simp [hjR]
 
 /-- Among all `j`-subsets of `Fin z`, the fraction containing a fixed
-dummy vertex is `j/z`.-/
+dummy vertex is `j/z`.
+@isnad1 id=eq.3h3v.s7.6c98d3d274d8 from=translated src=- shape=c1a286b9 vocab=05a23da9
+-/
 theorem sum_dummy_mem_recip_choose (z j : ℕ) (hz : 0 < z)
     (hj : 0 < j) (hjz : j ≤ z) (d : Fin z) :
     (∑ T : Finset (Fin z),
@@ -436,7 +484,9 @@ theorem sum_dummy_mem_recip_choose (z j : ℕ) (hz : 0 < z)
     hcard, nsmul_eq_mul]
   field_simp
   nlinarith
-/-- Scaling the fixed-dummy incidence identity by a real mass.-/
+/-- Scaling the fixed-dummy incidence identity by a real mass.
+@isnad1 id=eq.3h4v.s7.ae7485994d5b from=translated src=- shape=4be3107e vocab=af2bfda5
+-/
 theorem sum_dummy_mem_scaled (z j : ℕ) (hz : 0 < z)
     (hj : 0 < j) (hjz : j ≤ z) (d : Fin z) (a : ℝ) :
     (∑ T : Finset (Fin z),
@@ -459,7 +509,9 @@ theorem sum_dummy_mem_scaled (z j : ℕ) (hz : 0 < z)
     _ = a * ((j : ℝ) / (z : ℝ)) := by
       rw [sum_dummy_mem_recip_choose z j hz hj hjz d]
 /-- The dummy and token choices have total weight equal to their stable-set
-weight.-/
+weight.
+@isnad1 id=eq.2h4v.s6.7312cd18dfa3 from=translated src=- shape=5fd6f8ec vocab=6b1cb96b
+-/
 theorem sum_token_dummy_weight (p z j : ℕ) (hp : 0 < p) (hj : j ≤ z)
     (x : ℝ) :
     (∑ _ : Fin p, ∑ T : Finset (Fin z),
@@ -505,6 +557,9 @@ noncomputable def tokenDummyWeight (G : SimpleGraph V) (m p z : ℕ)
     x e.1 / ((p : ℝ) * (Nat.choose z e.2.2.card : ℝ))
   else 0
 
+/--
+@isnad1 id=le.1h7v.s6.68e50d7e3e84 from=translated src=- shape=4bf06637 vocab=2d618213
+-/
 theorem tokenDummyWeight_nonneg (G : SimpleGraph V) (m p z : ℕ)
     (x : StableSet G → ℝ) (hx : ∀ S, 0 ≤ x S)
     (e : TokenDummyLabel G p z) :
@@ -516,7 +571,9 @@ theorem tokenDummyWeight_nonneg (G : SimpleGraph V) (m p z : ℕ)
   · exact le_refl _
 
 /-- For each stable set, its mass is split uniformly over every token and
-valid dummy subset.-/
+valid dummy subset.
+@isnad1 id=eq.3h7v.s7.34156bbe260c from=translated src=- shape=f35181c0 vocab=380c8511
+-/
 theorem sum_tokenDummyWeight_fixed_stable (G : SimpleGraph V)
     (m p z : ℕ) (hp : 0 < p) (hz : m + 1 ≤ z)
     (x : StableSet G → ℝ) (S : StableSet G)
@@ -556,7 +613,9 @@ theorem sum_tokenDummyWeight_fixed_stable (G : SimpleGraph V)
     _ = x S := sum_token_dummy_weight p z j hp hj (x S)
 
 /-- For a fixed stable set, active edge copies are exactly the dummy
-subsets of the required cardinality.-/
+subsets of the required cardinality.
+@isnad1 id=eq.1h9v.s8.9a6d50721356 from=translated src=- shape=ce423210 vocab=a1e6e1e8
+-/
 theorem tokenDummyWeight_fixed_stable_eq (G : SimpleGraph V)
     (m p z : ℕ) (x : StableSet G → ℝ) (S : StableSet G)
     (hS : S.1.card ≤ m) (c : Fin p) (T : Finset (Fin z)) :
@@ -577,7 +636,9 @@ theorem tokenDummyWeight_fixed_stable_eq (G : SimpleGraph V)
       fun hv => hT (hiff.mp hv)
     rw [ite_eq_right hnotvalid, ite_eq_right hT]
 /-- A fixed dummy vertex receives the fraction `j/z` of the mass of a
-stable set, where `j = m+1-|S|` is its dummy count.-/
+stable set, where `j = m+1-|S|` is its dummy count.
+@isnad1 id=eq.3h8v.s7.82e58709698e from=translated src=- shape=ef6ebdbb vocab=dd2bc19e
+-/
 theorem sum_tokenDummyWeight_fixed_dummy (G : SimpleGraph V)
     (m p z : ℕ) (hp : 0 < p) (hz : m + 1 ≤ z)
     (x : StableSet G → ℝ) (S : StableSet G)
@@ -635,7 +696,9 @@ theorem sum_tokenDummyWeight_fixed_dummy (G : SimpleGraph V)
       dsimp [j]
       field_simp
 /-- Each individual token receives an equal `1/p` share of the weight
-of a fixed stable set.-/
+of a fixed stable set.
+@isnad1 id=eq.3h8v.s7.e0680c0acbc2 from=translated src=- shape=15b773f9 vocab=35e97de0
+-/
 theorem sum_tokenDummyWeight_fixed_token (G : SimpleGraph V)
     (m p z : ℕ) (hp : 0 < p) (hz : m + 1 ≤ z)
     (x : StableSet G → ℝ) (S : StableSet G)
@@ -663,7 +726,9 @@ theorem sum_tokenDummyWeight_fixed_token (G : SimpleGraph V)
   change Y * (p : ℝ) = x S
   simpa [mul_comm] using htotal
 /-- Any predicate depending only on the stable-set coordinate preserves
-the full stable-set weight after token/dummy splitting.-/
+the full stable-set weight after token/dummy splitting.
+@isnad1 id=eq.3h7v.s7.b5f279f2d4b9 from=translated src=- shape=61e4015a vocab=568ac103
+-/
 theorem sum_tokenDummyWeight_stable_pred (G : SimpleGraph V)
     (m p z : ℕ) (hp : 0 < p) (hz : m + 1 ≤ z)
     (x : StableSet G → ℝ)
@@ -690,7 +755,9 @@ theorem sum_tokenDummyWeight_stable_pred (G : SimpleGraph V)
         exact sum_tokenDummyWeight_fixed_stable G m p z hp hz x S (hstable S)
       · simp [hP]
 
-/-- Restricting to active edges yields the same stable-coordinate sum.-/
+/-- Restricting to active edges yields the same stable-coordinate sum.
+@isnad1 id=eq.3h7v.s7.20f0123d460d from=translated src=- shape=922713bc vocab=1ac585cd
+-/
 theorem tokenDummy_weighted_stable_pred (G : SimpleGraph V)
     (m p z : ℕ) (hp : 0 < p) (hz : m + 1 ≤ z)
     (x : StableSet G → ℝ)
@@ -714,7 +781,9 @@ theorem tokenDummy_weighted_stable_pred (G : SimpleGraph V)
       simp [tokenDummyWeight, H, henot]
     _ = ∑ S : StableSet G, if P S then x S else 0 :=
       sum_tokenDummyWeight_stable_pred G m p z hp hz x hstable P
-/-- Exact original-original weighted codegree is the fractional pair load.-/
+/-- Exact original-original weighted codegree is the fractional pair load.
+@isnad1 id=eq.3h8v.s9.fd5a509a3c47 from=translated src=- shape=03f5febe vocab=ff1c5df6
+-/
 theorem tokenDummy_weighted_original_codegree (G : SimpleGraph V)
     (m p z : ℕ) (hp : 0 < p) (hz : m + 1 ≤ z)
     (x : StableSet G → ℝ)
@@ -742,7 +811,9 @@ theorem tokenDummy_weighted_original_codegree (G : SimpleGraph V)
   exact tokenDummy_weighted_stable_pred G m p z hp hz x hstable
     (fun S => u ∈ S.1 ∧ v ∈ S.1)
 
-/-- Exact weighted degree at each original vertex.-/
+/-- Exact weighted degree at each original vertex.
+@isnad1 id=eq.3h7v.s7.ec11f9250985 from=translated src=- shape=e8616bec vocab=d45275a3
+-/
 theorem sum_tokenDummyWeight_original (G : SimpleGraph V)
     (m p z : ℕ) (hp : 0 < p) (hz : m + 1 ≤ z)
     (x : StableSet G → ℝ)
@@ -769,7 +840,9 @@ theorem sum_tokenDummyWeight_original (G : SimpleGraph V)
       · simp [hv]
     _ = vertexLoad G x v := rfl
 /-- Summing over all edge-copy labels, a fixed token receives total
-weight equal to the fractional cost divided by the token count.-/
+weight equal to the fractional cost divided by the token count.
+@isnad1 id=eq.3h7v.s7.5feaeefdaebe from=translated src=- shape=dd12865b vocab=2aca24d5
+-/
 theorem sum_tokenDummyWeight_token (G : SimpleGraph V)
     (m p z : ℕ) (hp : 0 < p) (hz : m + 1 ≤ z)
     (x : StableSet G → ℝ)
@@ -799,7 +872,9 @@ theorem sum_tokenDummyWeight_token (G : SimpleGraph V)
     _ = fractionalCost G x / (p : ℝ) := by
       simp [fractionalCost, div_eq_mul_inv, Finset.sum_mul]
 /-- Summing over all labels, a fixed dummy vertex receives the weighted
-average of the required dummy counts.-/
+average of the required dummy counts.
+@isnad1 id=eq.3h7v.s8.4b909dd0b851 from=translated src=- shape=be1636ca vocab=bcee3395
+-/
 theorem sum_tokenDummyWeight_dummy (G : SimpleGraph V)
     (m p z : ℕ) (hp : 0 < p) (hz : m + 1 ≤ z)
     (x : StableSet G → ℝ)
@@ -825,7 +900,9 @@ theorem sum_tokenDummyWeight_dummy (G : SimpleGraph V)
       exact sum_tokenDummyWeight_fixed_dummy G m p z hp hz x S (hstable S) d
 
 /-- Exact fractional vertex loads count weighted incidences as the number
-of original vertices.-/
+of original vertices.
+@isnad1 id=eq.1h3v.s6.1537aa5deb35 from=translated src=- shape=7582db6a vocab=6956f6f3
+-/
 theorem sum_stable_card_weight_eq_vertices (G : SimpleGraph V)
     (x : StableSet G → ℝ)
     (hload : ∀ v, vertexLoad G x v = 1) :
@@ -845,7 +922,9 @@ theorem sum_stable_card_weight_eq_vertices (G : SimpleGraph V)
   rw [hleft, hright] at h
   exact h.symm
 /-- The dummy-vertex load numerator is `(m+1)τ-n` when every original
-vertex has fractional load one.-/
+vertex has fractional load one.
+@isnad1 id=eq.2h5v.s7.7ac739bf9091 from=translated src=- shape=babc5bbe vocab=39dbb0c9
+-/
 theorem sum_dummy_mass_eq (G : SimpleGraph V) (m z : ℕ)
     (x : StableSet G → ℝ)
     (hstable : ∀ S : StableSet G, S.1.card ≤ m)
@@ -882,7 +961,9 @@ theorem sum_dummy_mass_eq (G : SimpleGraph V) (m z : ℕ)
     _ = (((m + 1 : ℕ) : ℝ) * fractionalCost G x -
         (Fintype.card V : ℝ)) / (z : ℝ) := by
       rw [hsum, div_eq_mul_inv]
-/-- Exact weighted degree at a dummy vertex in the active hypergraph.-/
+/-- Exact weighted degree at a dummy vertex in the active hypergraph.
+@isnad1 id=eq.3h7v.s8.0e350116d1f8 from=translated src=- shape=cc819131 vocab=78aa2a42
+-/
 theorem tokenDummy_weighted_dummy_degree (G : SimpleGraph V)
     (m p z : ℕ) (hp : 0 < p) (hz : m + 1 ≤ z)
     (x : StableSet G → ℝ)
@@ -917,7 +998,9 @@ theorem tokenDummy_weighted_dummy_degree (G : SimpleGraph V)
     _ = ∑ S : StableSet G,
         x S * (((m + 1 - S.1.card : ℕ) : ℝ) / (z : ℝ)) :=
       sum_tokenDummyWeight_dummy G m p z hp hz x hstable d
-/-- Paper's exact weighted dummy degree under unit original loads.-/
+/-- Paper's exact weighted dummy degree under unit original loads.
+@isnad1 id=eq.4h7v.s8.e1da82a4773c from=translated src=- shape=39301fa3 vocab=f5fdf42b
+-/
 theorem tokenDummy_weighted_dummy_degree_exact (G : SimpleGraph V)
     (m p z : ℕ) (hp : 0 < p) (hz : m + 1 ≤ z)
     (x : StableSet G → ℝ)
@@ -932,7 +1015,9 @@ theorem tokenDummy_weighted_dummy_degree_exact (G : SimpleGraph V)
   rw [tokenDummy_weighted_dummy_degree G m p z hp hz x hstable d,
     sum_dummy_mass_eq G m z x hstable hload]
 /-- The weighted degree in the active indexed hypergraph equals the exact
-fractional vertex load.-/
+fractional vertex load.
+@isnad1 id=eq.3h7v.s8.1f8eb4ef9026 from=translated src=- shape=aebe29b4 vocab=be3ddc2f
+-/
 theorem tokenDummy_weighted_original_degree (G : SimpleGraph V)
     (m p z : ℕ) (hp : 0 < p) (hz : m + 1 ≤ z)
     (x : StableSet G → ℝ)
@@ -964,7 +1049,9 @@ theorem tokenDummy_weighted_original_degree (G : SimpleGraph V)
     _ = vertexLoad G x v :=
       sum_tokenDummyWeight_original G m p z hp hz x hstable v
 /-- The weighted degree at each token is the fractional cost divided by
-the number of tokens.-/
+the number of tokens.
+@isnad1 id=eq.3h7v.s8.ff1c246b6735 from=translated src=- shape=d02f38ee vocab=02615758
+-/
 theorem tokenDummy_weighted_token_degree (G : SimpleGraph V)
     (m p z : ℕ) (hp : 0 < p) (hz : m + 1 ≤ z)
     (x : StableSet G → ℝ)
@@ -1002,7 +1089,9 @@ noncomputable def tokenDummySampleProbability (G : SimpleGraph V)
     (e : TokenDummyLabel G p z) : ℝ :=
   n * tokenDummyWeight G m p z x e
 
-/-- Exact expected sampled original-original codegree.-/
+/-- Exact expected sampled original-original codegree.
+@isnad1 id=eq.3h9v.s9.d3a1448dedc7 from=translated src=- shape=5b671bbf vocab=aa3cabfc
+-/
 theorem tokenDummy_expected_original_codegree (G : SimpleGraph V)
     (m p z : ℕ) (hp : 0 < p) (hz : m + 1 ≤ z)
     (x : StableSet G → ℝ)
@@ -1018,7 +1107,9 @@ theorem tokenDummy_expected_original_codegree (G : SimpleGraph V)
   unfold FiniteBernoulli.mean tokenDummySampleProbability
   rw [← Finset.mul_sum]
   rw [tokenDummy_weighted_original_codegree G m p z hp hz x hstable u v]
-/-- Exact expected sampled degree at an original vertex.-/
+/-- Exact expected sampled degree at an original vertex.
+@isnad1 id=eq.3h8v.s8.a5870f2b4247 from=translated src=- shape=a1539ab1 vocab=59ab3557
+-/
 theorem tokenDummy_expected_original_degree (G : SimpleGraph V)
     (m p z : ℕ) (hp : 0 < p) (hz : m + 1 ≤ z)
     (x : StableSet G → ℝ)
@@ -1033,7 +1124,9 @@ theorem tokenDummy_expected_original_degree (G : SimpleGraph V)
   rw [← Finset.mul_sum]
   rw [tokenDummy_weighted_original_degree G m p z hp hz x hstable v]
 
-/-- Exact expected sampled degree at each color token.-/
+/-- Exact expected sampled degree at each color token.
+@isnad1 id=eq.3h8v.s8.c0fb33d60185 from=translated src=- shape=2e83f18a vocab=96452b1a
+-/
 theorem tokenDummy_expected_token_degree (G : SimpleGraph V)
     (m p z : ℕ) (hp : 0 < p) (hz : m + 1 ≤ z)
     (x : StableSet G → ℝ)
@@ -1049,7 +1142,9 @@ theorem tokenDummy_expected_token_degree (G : SimpleGraph V)
   rw [← Finset.mul_sum]
   rw [tokenDummy_weighted_token_degree G m p z hp hz x hstable c]
 /-- Exact expected sampled degree at each dummy vertex under unit
-original loads.-/
+original loads.
+@isnad1 id=eq.4h8v.s8.907baeee9c8e from=translated src=- shape=134af6ba vocab=69f59131
+-/
 theorem tokenDummy_expected_dummy_degree (G : SimpleGraph V)
     (m p z : ℕ) (hp : 0 < p) (hz : m + 1 ≤ z)
     (x : StableSet G → ℝ)
@@ -1067,7 +1162,9 @@ theorem tokenDummy_expected_dummy_degree (G : SimpleGraph V)
   rw [← Finset.mul_sum]
   rw [tokenDummy_weighted_dummy_degree_exact G m p z hp hz x hstable hload d]
 /-- Under exact fractional loads, each original vertex has expected
-sampled degree `n`.-/
+sampled degree `n`.
+@isnad1 id=eq.4h8v.s8.e0aa701e7a9c from=translated src=- shape=2dd483fd vocab=12b25208
+-/
 theorem tokenDummy_expected_original_degree_exact (G : SimpleGraph V)
     (m p z : ℕ) (hp : 0 < p) (hz : m + 1 ≤ z)
     (x : StableSet G → ℝ)
@@ -1090,7 +1187,9 @@ section MixedCodegrees
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- A fixed token receives exactly a `1/p` share of every stable-coordinate
-subfamily.-/
+subfamily.
+@isnad1 id=eq.3h8v.s8.bf09c367c09c from=translated src=- shape=25044734 vocab=447c5c5a
+-/
 theorem sum_tokenDummyWeight_token_stable_pred (G : SimpleGraph V)
     (m p z : ℕ) (hp : 0 < p) (hz : m + 1 ≤ z)
     (x : StableSet G → ℝ)
@@ -1135,7 +1234,9 @@ section OriginalTokenCodegree
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- The original-token weighted codegree is the fractional vertex load
-shared equally over all tokens.-/
+shared equally over all tokens.
+@isnad1 id=eq.3h8v.s9.2404a60649e0 from=translated src=- shape=fca15023 vocab=d5b28aa7
+-/
 theorem tokenDummy_weighted_original_token_codegree (G : SimpleGraph V)
     (m p z : ℕ) (hp : 0 < p) (hz : m + 1 ≤ z)
     (x : StableSet G → ℝ)
@@ -1174,7 +1275,9 @@ theorem tokenDummy_weighted_original_token_codegree (G : SimpleGraph V)
       sum_tokenDummyWeight_token_stable_pred G m p z hp hz x hstable
         (fun S => v ∈ S.1) c
 
-/-- Expected original-token codegree under independent edge-copy sampling.-/
+/-- Expected original-token codegree under independent edge-copy sampling.
+@isnad1 id=eq.3h9v.s9.067ba9421f62 from=translated src=- shape=07e8c6d1 vocab=60e84c9b
+-/
 theorem tokenDummy_expected_original_token_codegree (G : SimpleGraph V)
     (m p z : ℕ) (hp : 0 < p) (hz : m + 1 ≤ z)
     (x : StableSet G → ℝ)
@@ -1200,7 +1303,9 @@ section DummyStablePredicate
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- A fixed dummy receives the same `j/z` share from any family selected
-by its stable-set coordinate.-/
+by its stable-set coordinate.
+@isnad1 id=eq.3h8v.s8.4fefc857a230 from=translated src=- shape=a55f4915 vocab=13ee6961
+-/
 theorem sum_tokenDummyWeight_dummy_stable_pred (G : SimpleGraph V)
     (m p z : ℕ) (hp : 0 < p) (hz : m + 1 ≤ z)
     (x : StableSet G → ℝ)
@@ -1245,7 +1350,9 @@ section OriginalDummyCodegree
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- Exact original-dummy weighted codegree before applying the dummy-count
-bound.-/
+bound.
+@isnad1 id=eq.3h8v.s9.e03d603223ec from=translated src=- shape=fb43bfce vocab=ff29b92b
+-/
 theorem tokenDummy_weighted_original_dummy_codegree (G : SimpleGraph V)
     (m p z : ℕ) (hp : 0 < p) (hz : m + 1 ≤ z)
     (x : StableSet G → ℝ)
@@ -1295,7 +1402,9 @@ section OriginalDummyBound
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- The nonempty stable-set condition makes every edge use at most `m`
-dummy vertices.-/
+dummy vertices.
+@isnad1 id=le.4h8v.s9.feb08730ee07 from=translated src=- shape=bf3bf7b5 vocab=ea676fd7
+-/
 theorem tokenDummy_weighted_original_dummy_codegree_le (G : SimpleGraph V)
     (m p z : ℕ) (hp : 0 < p) (hz : m + 1 ≤ z)
     (x : StableSet G → ℝ) (hx : ∀ S, 0 ≤ x S)
@@ -1339,7 +1448,9 @@ section TokenDummyPair
 
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
-/-- A fixed token receives `1/p` of each fixed-dummy incidence mass.-/
+/-- A fixed token receives `1/p` of each fixed-dummy incidence mass.
+@isnad1 id=eq.3h9v.s7.faab0a1873fd from=translated src=- shape=6cd40b3c vocab=dd2bc19e
+-/
 theorem sum_tokenDummyWeight_fixed_token_dummy (G : SimpleGraph V)
     (m p z : ℕ) (hp : 0 < p) (hz : m + 1 ≤ z)
     (x : StableSet G → ℝ) (S : StableSet G)
@@ -1380,7 +1491,9 @@ section TokenDummyCodegree
 
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
-/-- The token-dummy weighted codegree is a `1/p` share of a dummy degree.-/
+/-- The token-dummy weighted codegree is a `1/p` share of a dummy degree.
+@isnad1 id=eq.3h8v.s9.469fc034c721 from=translated src=- shape=da30a7fd vocab=b8e01377
+-/
 theorem tokenDummy_weighted_token_dummy_codegree (G : SimpleGraph V)
     (m p z : ℕ) (hp : 0 < p) (hz : m + 1 ≤ z)
     (x : StableSet G → ℝ)
@@ -1440,7 +1553,9 @@ theorem tokenDummy_weighted_token_dummy_codegree (G : SimpleGraph V)
     _ = _ := by simp [div_eq_mul_inv, Finset.sum_mul]
 
 /-- With exact unit original loads, token-dummy codegree has the paper's
-closed formula.-/
+closed formula.
+@isnad1 id=eq.4h8v.s9.04975a9e2d2f from=translated src=- shape=81192756 vocab=a0d957f3
+-/
 theorem tokenDummy_weighted_token_dummy_codegree_exact (G : SimpleGraph V)
     (m p z : ℕ) (hp : 0 < p) (hz : m + 1 ≤ z)
     (x : StableSet G → ℝ)
@@ -1465,7 +1580,9 @@ namespace HadwigerLean.LowCodegreeRounding
 section TwoDummyCounting
 
 /-- Number of `j`-subsets of `Fin z` containing two distinct fixed
-vertices.-/
+vertices.
+@isnad1 id=eq.2h4v.s7.5d08c7730a00 from=translated src=- shape=5b2f706b vocab=e122d4cb
+-/
 theorem card_dummy_subsets_two_mem (z j : ℕ) (d d' : Fin z)
     (hne : d ≠ d') (hj : 2 ≤ j) :
     (Finset.univ.filter (fun T : Finset (Fin z) =>
@@ -1493,7 +1610,9 @@ end HadwigerLean.LowCodegreeRounding
 namespace HadwigerLean.LowCodegreeRounding
 
 /-- The double-incidence binomial identity, obtained by applying the
-one-incidence identity twice.-/
+one-incidence identity twice.
+@isnad1 id=eq.2h2v.s6.dc4984d225bd from=translated src=- shape=f59eed85 vocab=005aed2a
+-/
 theorem choose_two_incidence (z j : ℕ) (hz : 2 ≤ z) (hj : 2 ≤ j) :
     z * (z - 1) * Nat.choose (z - 2) (j - 2) =
       j * (j - 1) * Nat.choose z j := by
@@ -1522,7 +1641,9 @@ theorem choose_two_incidence (z j : ℕ) (hz : 2 ≤ z) (hj : 2 ≤ j) :
 end HadwigerLean.LowCodegreeRounding
 namespace HadwigerLean.LowCodegreeRounding
 
-/-- Fraction of `j`-subsets containing two fixed distinct dummy vertices.-/
+/-- Fraction of `j`-subsets containing two fixed distinct dummy vertices.
+@isnad1 id=eq.3h4v.s8.60363e235971 from=translated src=- shape=46d8fc90 vocab=99375bed
+-/
 theorem sum_dummy_two_mem_recip_choose (z j : ℕ)
     (hj : 2 ≤ j) (hjz : j ≤ z) (d d' : Fin z) (hne : d ≠ d') :
     (∑ T : Finset (Fin z),
@@ -1553,7 +1674,9 @@ theorem sum_dummy_two_mem_recip_choose (z j : ℕ)
 end HadwigerLean.LowCodegreeRounding
 namespace HadwigerLean.LowCodegreeRounding
 
-/-- Scale the two-dummy incidence formula by a real mass.-/
+/-- Scale the two-dummy incidence formula by a real mass.
+@isnad1 id=eq.3h5v.s8.7c3c2b498582 from=translated src=- shape=28c36226 vocab=99375bed
+-/
 theorem sum_dummy_two_mem_scaled (z j : ℕ)
     (hj : 2 ≤ j) (hjz : j ≤ z) (d d' : Fin z) (hne : d ≠ d') (a : ℝ) :
     (∑ T : Finset (Fin z),
@@ -1584,7 +1707,9 @@ section FixedTwoDummyWeight
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- A fixed stable-set mass is shared between two distinct dummy vertices
-with the usual sampling-without-replacement factor.-/
+with the usual sampling-without-replacement factor.
+@isnad1 id=eq.4h9v.s8.1e210983cff1 from=translated src=- shape=b7f2cd04 vocab=dd2bc19e
+-/
 theorem sum_tokenDummyWeight_fixed_two_dummy (G : SimpleGraph V)
     (m p z : ℕ) (hp : 0 < p) (hz : m + 1 ≤ z)
     (x : StableSet G → ℝ) (S : StableSet G)
@@ -1673,7 +1798,9 @@ section TwoDummyWeight
 
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
-/-- Exact mass of all labels containing two distinct dummy vertices.-/
+/-- Exact mass of all labels containing two distinct dummy vertices.
+@isnad1 id=eq.4h8v.s9.145b8894ea56 from=translated src=- shape=8bf2306d vocab=bcee3395
+-/
 theorem sum_tokenDummyWeight_two_dummy (G : SimpleGraph V)
     (m p z : ℕ) (hp : 0 < p) (hz : m + 1 ≤ z)
     (x : StableSet G → ℝ)
@@ -1700,7 +1827,9 @@ theorem sum_tokenDummyWeight_two_dummy (G : SimpleGraph V)
       intro S hS
       exact sum_tokenDummyWeight_fixed_two_dummy G m p z hp hz x S (hstable S) d d' hne
 
-/-- The active token/dummy hypergraph has the same two-dummy mass.-/
+/-- The active token/dummy hypergraph has the same two-dummy mass.
+@isnad1 id=eq.4h8v.s9.cf181c97e6d6 from=translated src=- shape=457ca219 vocab=78aa2a42
+-/
 theorem tokenDummy_weighted_two_dummy_codegree (G : SimpleGraph V)
     (m p z : ℕ) (hp : 0 < p) (hz : m + 1 ≤ z)
     (x : StableSet G → ℝ)
@@ -1750,7 +1879,9 @@ section TwoDummyBound
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- The dummy-dummy weighted codegree is bounded by the maximum dummy
-count squared times fractional cost.-/
+count squared times fractional cost.
+@isnad1 id=le.6h8v.s9.e9347f81f6ef from=translated src=- shape=108fc25e vocab=a1751f56
+-/
 theorem tokenDummy_weighted_two_dummy_codegree_le (G : SimpleGraph V)
     (m p z : ℕ) (hp : 0 < p) (hz : m + 1 ≤ z) (hz2 : 2 ≤ z)
     (x : StableSet G → ℝ) (hx : ∀ S, 0 ≤ x S)
@@ -1810,7 +1941,9 @@ section TwoTokenCodegree
 
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
-/-- No edge copy contains two distinct color tokens.-/
+/-- No edge copy contains two distinct color tokens.
+@isnad1 id=eq.1h8v.s8.61f0d2b29a97 from=translated src=- shape=df4e9e3a vocab=75fd0531
+-/
 theorem tokenDummy_weighted_two_token_codegree (G : SimpleGraph V)
     (m p z : ℕ) (x : StableSet G → ℝ)
     (c c' : Fin p) (hne : c ≠ c') :
@@ -1869,7 +2002,9 @@ section PairConstraintBridge
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- Pair LP rows control every distinct pair: adjacent pairs have zero
-stable-set weight, and nonadjacent pairs have an explicit LP row.-/
+stable-set weight, and nonadjacent pairs have an explicit LP row.
+@isnad1 id=le.3h6v.s8.357d101e5669 from=translated src=- shape=635d63d5 vocab=16ba02b4
+-/
 theorem pair_mass_le_of_isPairConstrained (G : SimpleGraph V)
     (δ : ℝ) (hδ : 0 ≤ δ) (x : StableSet G → ℝ)
     (hx : IsPairConstrainedColoring G δ x)
@@ -1916,7 +2051,9 @@ section UniformCodegreeBudget
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- All six distinct vertex-pair types meet one weighted codegree budget
-when the four mixed/dummy ratios and the LP pair tolerance do.-/
+when the four mixed/dummy ratios and the LP pair tolerance do.
+@isnad1 id=le.13h10v.s9.a3c495b492a8 from=translated src=- shape=275a2b12 vocab=0438a0c4
+-/
 theorem tokenDummy_weighted_codegree_le (G : SimpleGraph V)
     (m p z : ℕ) (hp : 0 < p) (hz : m + 1 ≤ z) (hz2 : 2 ≤ z)
     (δ B : ℝ) (hδ : 0 ≤ δ)
@@ -2044,7 +2181,9 @@ end UniformCodegreeBudget
 end HadwigerLean.LowCodegreeRounding
 namespace HadwigerLean.LowCodegreeRounding
 
-/-- Every interior binomial coefficient is at least the row number.-/
+/-- Every interior binomial coefficient is at least the row number.
+@isnad1 id=le.2h2v.s4.6e7b58967093 from=translated src=- shape=02ddb093 vocab=9e20b754
+-/
 theorem choose_ge_self_of_pos_lt : ∀ z j : ℕ,
     0 < j → j < z → z ≤ Nat.choose z j := by
   intro z
@@ -2078,7 +2217,9 @@ section SampleProbability
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- A nonempty stable-set column has weight at most one under exact unit
-vertex loads and nonnegative column weights.-/
+vertex loads and nonnegative column weights.
+@isnad1 id=le.2h4v.s6.1fbba92b6bca from=translated src=- shape=afca533f vocab=530e2e70
+-/
 theorem stable_weight_le_one_of_exact_load (G : SimpleGraph V)
     (x : StableSet G → ℝ) (hx : ∀ S, 0 ≤ x S)
     (hload : ∀ v, vertexLoad G x v = 1) (S : StableSet G) :
@@ -2100,7 +2241,9 @@ theorem stable_weight_le_one_of_exact_load (G : SimpleGraph V)
   simpa [hv, hload v] using hle
 
 /-- Under the paper's token and dummy count lower bounds, every edge-copy
-sampling parameter is a genuine probability.-/
+sampling parameter is a genuine probability.
+@isnad1 id=and.7h8v.s7.222d878615a2 from=translated src=- shape=abee78ff vocab=3f4faaed
+-/
 theorem tokenDummySampleProbability_bounds (G : SimpleGraph V)
     (m p z : ℕ) (hp : 0 < p) (hz : m + 1 ≤ z)
     (n : ℝ) (hn : 0 ≤ n) (hnpz : n ≤ (p : ℝ) * (z : ℝ))
@@ -2155,7 +2298,9 @@ variable {W E : Type*} [DecidableEq W] [DecidableEq E] [Fintype E]
 
 omit [DecidableEq W] [DecidableEq E] [Fintype E] in
 /-- A matching found after Bernoulli sampling is a matching in the
-original indexed hypergraph.-/
+original indexed hypergraph.
+@isnad1 id=ismatchi.1h5v.s4.08e8daf8bc87 from=translated src=- shape=f93c828e vocab=a67de3c1
+-/
 theorem sampled_matching_lift (H : IndexedHypergraph W E)
     (ω : E → Bool) (M : Finset E)
     (hM : (sampledHypergraph H ω).IsMatching M) :
@@ -2166,7 +2311,9 @@ theorem sampled_matching_lift (H : IndexedHypergraph W E)
 
 omit [DecidableEq E] [Fintype E] in
 /-- Sampling changes which copies are active but preserves the endpoint
-set of every edge copy, hence the covered set of a fixed matching.-/
+set of every edge copy, hence the covered set of a fixed matching.
+@isnad1 id=eq.0h5v.s5.0417ababc5f6 from=translated src=- shape=546ea6c1 vocab=a64ea6eb
+-/
 theorem sampled_covered_eq (H : IndexedHypergraph W E)
     (ω : E → Bool) (M : Finset E) :
     (sampledHypergraph H ω).covered M = H.covered M := rfl
@@ -2179,7 +2326,9 @@ namespace HadwigerLean.LowCodegreeRounding
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- The auxiliary hypergraph has the original vertices, one vertex per
-token, and one vertex per dummy.-/
+token, and one vertex per dummy.
+@isnad1 id=eq.0h5v.s5.5a68f48193eb from=translated src=- shape=3d24e0ca vocab=7541b3f9
+-/
 theorem tokenDummy_vertices_card (G : SimpleGraph V) (m p z : ℕ) :
     (tokenDummyHypergraph G m p z).vertices.card = Fintype.card V + p + z := by
   classical
@@ -2190,7 +2339,9 @@ end HadwigerLean.LowCodegreeRounding
 namespace HadwigerLean.LowCodegreeRounding
 
 /-- The exact degree/codegree union budget is dominated by the paper-sized
-single exponential budget. `N` counts vertices and `P` counts distinct pairs.-/
+single exponential budget. `N` counts vertices and `P` counts distinct pairs.
+@isnad1 id=le.8h5v.s8.2b367e81a513 from=translated src=- shape=11e21fad vocab=597a0a46
+-/
 theorem sampled_budget_le_paper_budget (r n μ N P : ℝ)
     (hr : 2 ≤ r) (hn : 1 ≤ n) (hμ : 0 < μ) (hμ1 : μ ≤ 1)
     (hN0 : 0 ≤ N) (hP0 : 0 ≤ P)
@@ -2241,7 +2392,9 @@ section UnionBudgetInstantiation
 variable {W E : Type*} [DecidableEq W]
 
 /-- The number of ordered distinct active vertex pairs is at most the
-square of the active vertex count.-/
+square of the active vertex count.
+@isnad1 id=le.0h3v.s6.2f7ea3cfd54b from=translated src=- shape=5f36e776 vocab=39d7021f
+-/
 theorem card_distinct_active_pairs_le_sq (H : IndexedHypergraph W E) :
     ((((H.vertices.product H.vertices).filter
       (fun q : W × W => q.1 ≠ q.2)).card : ℝ)) ≤
@@ -2259,7 +2412,9 @@ theorem card_distinct_active_pairs_le_sq (H : IndexedHypergraph W E) :
   exact_mod_cast hnat
 
 /-- The explicit quantitative exponential estimate implies the precise
-finite union budget needed for a simultaneous good sample.-/
+finite union budget needed for a simultaneous good sample.
+@isnad1 id=lt.6h6v.s8.dec29aeaf48d from=translated src=- shape=8c61fc7b vocab=4e257d2c
+-/
 theorem sampled_exact_union_budget_lt_one (H : IndexedHypergraph W E)
     (r : ℕ) (n μ : ℝ)
     (hr : 2 ≤ r) (hn : 1 ≤ n) (hμ : 0 < μ) (hμ1 : μ ≤ 1)
@@ -2304,7 +2459,9 @@ section FractionalCostBounds
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- Exact original loads and nonempty columns imply that fractional cost
-is at most the number of original vertices.-/
+is at most the number of original vertices.
+@isnad1 id=le.2h3v.s6.b84daf196a28 from=translated src=- shape=f82377a2 vocab=8520bdfa
+-/
 theorem fractionalCost_le_card_of_exact_load (G : SimpleGraph V)
     (x : StableSet G → ℝ) (hx : ∀ S, 0 ≤ x S)
     (hload : ∀ v, vertexLoad G x v = 1) :
@@ -2321,7 +2478,9 @@ theorem fractionalCost_le_card_of_exact_load (G : SimpleGraph V)
     _ = (Fintype.card V : ℝ) := sum_stable_card_weight_eq_vertices G x hload
 
 /-- If every stable set has size at most `m`, the vertex count is at
-most `m` times the fractional cost.-/
+most `m` times the fractional cost.
+@isnad1 id=le.3h4v.s6.6e6ce40ae22f from=translated src=- shape=17967681 vocab=1dd179c3
+-/
 theorem card_le_m_mul_fractionalCost (G : SimpleGraph V)
     (m : ℕ) (x : StableSet G → ℝ) (hx : ∀ S, 0 ≤ x S)
     (hstable : ∀ S : StableSet G, S.1.card ≤ m)
@@ -2347,7 +2506,9 @@ end HadwigerLean.LowCodegreeRounding
 namespace HadwigerLean.LowCodegreeRounding
 
 /-- Rounding a positive mass `a` to a denominator `b ∈ [a,a+1]`
-loses at most `m` from an `n`-scaled unit degree when `m*a ≥ n`.-/
+loses at most `m` from an `n`-scaled unit degree when `m*a ≥ n`.
+@isnad1 id=and.6h4v.s7.781b540e5e45 from=translated src=- shape=4b680b3b vocab=1b82c742
+-/
 theorem scaled_rounded_ratio_between (n m a b : ℝ)
     (hm : 0 ≤ m) (hn : m ≤ n) (hma : n ≤ m * a)
     (hb : 0 < b) (hab : a ≤ b) (hba : b ≤ a + 1) :
@@ -2376,7 +2537,9 @@ variable {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- Every auxiliary vertex has expected sampled degree between `n-m`
 and `n`, provided token and dummy counts round their ideal masses up
-by at most one.-/
+by at most one.
+@isnad1 id=and.10h7v.s9.732592887e92 from=translated src=- shape=68b349ad vocab=f34beac5
+-/
 theorem tokenDummy_expected_degree_between (G : SimpleGraph V)
     (m p z : ℕ) (hp : 0 < p) (hz : m + 1 ≤ z)
     (x : StableSet G → ℝ) (hx : ∀ S, 0 ≤ x S)
@@ -2448,7 +2611,9 @@ end HadwigerLean.LowCodegreeRounding
 namespace HadwigerLean.LowCodegreeRounding
 
 /-- The probability of including a second dummy, conditional on a first,
-is at most `(m-1)/(z-1)` when the edge uses at most `m` dummies.-/
+is at most `(m-1)/(z-1)` when the edge uses at most `m` dummies.
+@isnad1 id=le.1h3v.s7.e1c6a8cb57dd from=translated src=- shape=11c64a05 vocab=60687568
+-/
 theorem two_dummy_ratio_le_single_times (j m z : ℕ) (hj : j ≤ m) :
     ((j : ℝ) * ((j - 1 : ℕ) : ℝ)) /
         ((z : ℝ) * ((z - 1 : ℕ) : ℝ)) ≤
@@ -2465,7 +2630,9 @@ theorem two_dummy_ratio_le_single_times (j m z : ℕ) (hj : j ≤ m) :
   simpa [div_eq_mul_inv, mul_inv_rev, mul_assoc, mul_comm, mul_left_comm] using hmul
 
 /-- For `z ≥ m+1`, the conditional second-dummy ratio is no larger
-than `m/z`.-/
+than `m/z`.
+@isnad1 id=le.2h2v.s6.acc59ddcd571 from=translated src=- shape=28c23f9b vocab=3bde4f44
+-/
 theorem pred_ratio_le_ratio (m z : ℕ) (hm : 1 ≤ m) (hz : m + 1 ≤ z) :
     (((m - 1 : ℕ) : ℝ) / ((z - 1 : ℕ) : ℝ)) ≤
       (m : ℝ) / (z : ℝ) := by
@@ -2492,7 +2659,9 @@ section SharpTwoDummyBound
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- The dummy-dummy codegree is at most `m/z` once dummy weighted
-degrees are at most one. This improves the coarse paper bound.-/
+degrees are at most one. This improves the coarse paper bound.
+@isnad1 id=le.8h8v.s9.d3b010e2b6dc from=translated src=- shape=75bbce30 vocab=f5fdf42b
+-/
 theorem tokenDummy_weighted_two_dummy_codegree_le_m_div_z
     (G : SimpleGraph V) (m p z : ℕ)
     (hm : 1 ≤ m) (hp : 0 < p) (hz : m + 1 ≤ z)
@@ -2566,7 +2735,9 @@ section SharpUniformCodegreeBudget
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- All weighted pair codegrees are bounded by the largest of the
-LP tolerance, reciprocal token count, and dummy ratio.-/
+LP tolerance, reciprocal token count, and dummy ratio.
+@isnad1 id=le.13h10v.s9.c18fb242f5e9 from=translated src=- shape=c07cdf17 vocab=0438a0c4
+-/
 theorem tokenDummy_weighted_codegree_le_sharp (G : SimpleGraph V)
     (m p z : ℕ) (hp : 0 < p) (hz : m + 1 ≤ z) (hz2 : 2 ≤ z)
     (δ B : ℝ) (hδ : 0 ≤ δ)
@@ -2704,7 +2875,9 @@ section SharpSampledCodegree
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- Multiplying the sharp weighted codegree bound by the sampling scale
-bounds every expected sampled codegree.-/
+bounds every expected sampled codegree.
+@isnad1 id=le.14h11v.s9.5c1d8d3ee8e3 from=translated src=- shape=b148d3e3 vocab=6a7247cb
+-/
 theorem tokenDummy_expected_codegree_le_sharp (G : SimpleGraph V)
     (m p z : ℕ) (hp : 0 < p) (hz : m + 1 ≤ z) (hz2 : 2 ≤ z)
     (δ B n : ℝ) (hδ : 0 ≤ δ) (hn : 0 ≤ n)
@@ -2737,7 +2910,9 @@ end HadwigerLean.LowCodegreeRounding
 namespace HadwigerLean.LowCodegreeRounding
 
 /-- If `a` is at least `n/m`, the sample-size scale makes `m/a`
-small enough for the codegree budget.-/
+small enough for the codegree budget.
+@isnad1 id=le.5h4v.s7.c5b46a390ccc from=translated src=- shape=01b95b99 vocab=d8b90f1e
+-/
 theorem ratio_le_quarter_of_size (m a n μ : ℝ)
     (hm : 1 ≤ m) (ha : 0 < a) (hμ : 0 ≤ μ)
     (hsize : n ≤ m * a) (hscale : 4 * m ^ 2 ≤ μ * n) :
@@ -2764,7 +2939,9 @@ section TokenDummyRatioBudget
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- The paper-scale order assumption controls both non-original
-weighted pair-codegree ratios.-/
+weighted pair-codegree ratios.
+@isnad1 id=and.10h7v.s8.eab6a972f075 from=translated src=- shape=153e53e5 vocab=8072d296
+-/
 theorem tokenDummy_scalar_codegree_budget (G : SimpleGraph V)
     (m p z : ℕ) (hm : 1 ≤ m) (hp : 0 < p) (hz : m + 1 ≤ z)
     (x : StableSet G → ℝ) (hx : ∀ S, 0 ≤ x S)
@@ -2816,7 +2993,9 @@ section ConcreteSampledCodegree
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- Every distinct sampled vertex pair has expected codegree at most
-`μ n/4` under the LP pair constraint and the paper-scale order bound.-/
+`μ n/4` under the LP pair constraint and the paper-scale order bound.
+@isnad1 id=le.11h9v.s9.38f187d30fc5 from=translated src=- shape=c51efbed vocab=963e49d5
+-/
 theorem tokenDummy_expected_codegree_le_quarter (G : SimpleGraph V)
     (m p z : ℕ) (hm : 1 ≤ m) (hp : 0 < p) (hz : m + 1 ≤ z)
     (x : StableSet G → ℝ)
@@ -2853,7 +3032,9 @@ end HadwigerLean.LowCodegreeRounding
 namespace HadwigerLean.LowCodegreeRounding
 
 /-- The large order hypothesis used for the union bound also covers
-the elementary degree and codegree scales needed in rounding.-/
+the elementary degree and codegree scales needed in rounding.
+@isnad1 id=and.4h3v.s7.a87b0a09a020 from=translated src=- shape=55365e8b vocab=5092686c
+-/
 theorem paper_scale_implies_rounding_scales (m : ℕ) (n μ : ℝ)
     (hm : 1 ≤ m) (hμ : 0 < μ) (hμ1 : μ ≤ 1)
     (hscale : 1000000 * (((m + 2 : ℕ) : ℝ) ^ 4) ≤ μ ^ 4 * n) :
@@ -2914,7 +3095,9 @@ section TokenDummyVertexBudget
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- Rounded token and dummy counts keep the enlarged vertex set below
-`(m+2)n+2`, the finite union-bound budget.-/
+`(m+2)n+2`, the finite union-bound budget.
+@isnad1 id=le.4h6v.s7.b300213f75d1 from=translated src=- shape=4f68f5e5 vocab=ca9bc2cf
+-/
 theorem tokenDummy_vertex_count_le (G : SimpleGraph V)
     (m p z : ℕ) (x : StableSet G → ℝ)
     (hx : ∀ S, 0 ≤ x S)
@@ -2943,7 +3126,9 @@ section ConcreteSampleValidity
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- The ideal token count and the dummy count force the normalization
-`n/(p·z)` below one for every active edge copy.-/
+`n/(p·z)` below one for every active edge copy.
+@isnad1 id=and.6h7v.s7.f395696d06ed from=translated src=- shape=ed431dc2 vocab=01a6bb75
+-/
 theorem tokenDummySampleProbability_bounds_of_exact_load (G : SimpleGraph V)
     (m p z : ℕ) (hp : 0 < p) (hz : m + 1 ≤ z)
     (x : StableSet G → ℝ) (hx : ∀ S, 0 ≤ x S)
@@ -2984,7 +3169,9 @@ end HadwigerLean.LowCodegreeRounding
 namespace HadwigerLean.LowCodegreeRounding
 
 /-- A pointwise real upper bound also bounds a finite maximum of
-natural values.-/
+natural values.
+@isnad1 id=le.2h4v.s6.1ed0de25fba4 from=translated src=- shape=8f26953e vocab=a284554d
+-/
 theorem natCast_finset_sup_le {ι : Type*} [DecidableEq ι]
     (s : Finset ι) (f : ι → ℕ) (B : ℝ)
     (hB : 0 ≤ B) (h : ∀ i ∈ s, (f i : ℝ) ≤ B) :
@@ -3008,7 +3195,9 @@ variable {W E : Type*} [DecidableEq W] [DecidableEq E] [Fintype E]
 
 omit [DecidableEq E] [Fintype E] in
 /-- The sampled degree and codegree estimates imply the nearly-regular
-conditions used by the matching theorem, with the actual maximum degree.-/
+conditions used by the matching theorem, with the actual maximum degree.
+@isnad1 id=and.7h7v.s8.bee53ceed2dc from=translated src=- shape=5327d79f vocab=f6240f45
+-/
 theorem sampled_paper_bounds_imply_matching_hypotheses
     (H : IndexedHypergraph W E) (ω : E → Bool) (n m μ : ℝ)
     (hn : 0 < n) (hμ : 0 < μ) (hμ1 : μ ≤ 1)

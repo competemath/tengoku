@@ -21,7 +21,9 @@ def HasAdmissibleObstruction (G : SimpleGraph V) (k n : ℕ) (U : Finset V) : Pr
     T.carrier = U ∧ T.Admissible G k ∧ T.Obstructing G
 
 /-- Any graph requiring at least `7k` colors has a smallest induced carrier
-supporting an admissible obstructing template with one fewer color.-/
+supporting an admissible obstructing template with one fewer color.
+@isnad1 id=ex.2h3v.s6.6b89c93e9f5d from=translated src=- shape=5f60903c vocab=4deb0c0b
+-/
 theorem exists_minimal_obstructing_carrier (G : SimpleGraph V) (k : ℕ)
     (hk : 0 < k) (hχ : 7 * k ≤ chromatic G) :
     ∃ U : Finset V,
@@ -50,7 +52,9 @@ theorem exists_minimal_obstructing_carrier (G : SimpleGraph V) (k : ℕ)
   exact Nat.find_min hP hsmall ⟨W, rfl, hbad⟩
 
 /-- Once the carrier is fixed, there is an admissible obstructing template
-with the largest possible precolored set.-/
+with the largest possible precolored set.
+@isnad1 id=ex.1h5v.s6.17dd59045519 from=translated src=- shape=02bbbe8e vocab=5793d906
+-/
 theorem exists_maximal_precoloring (G : SimpleGraph V) (k n : ℕ)
     (U : Finset V) (hU : HasAdmissibleObstruction G k n U) :
     ∃ T : ChromaticTemplate V (Fin n),
@@ -86,7 +90,9 @@ theorem exists_maximal_precoloring (G : SimpleGraph V) (k n : ℕ)
   simpa only [id_eq, ← hcard] using hle
 
 /-- Maximality of the precolored set forces every remaining forbidden list
-to have fewer than k colors. This is the first GN extremal step.-/
+to have fewer than k colors. This is the first GN extremal step.
+@isnad1 id=lt.7h7v.s7.ed475df26fd9 from=translated src=- shape=7c3325ae vocab=5f6bb948
+-/
 theorem lists_small_of_maximal_precoloring (G : SimpleGraph V) (k n : ℕ)
     (hk : 0 < k) (hpalette : 4 * k < n)
     (U : Finset V) (T : ChromaticTemplate V (Fin n))
@@ -114,7 +120,9 @@ theorem lists_small_of_maximal_precoloring (G : SimpleGraph V) (k n : ℕ)
     simp [T', ChromaticTemplate.precolor, hvS]
   omega
 
-/-- The maximally precolored obstructing carrier has more than k vertices.-/
+/-- The maximally precolored obstructing carrier has more than k vertices.
+@isnad1 id=lt.6h6v.s7.d472a94fd712 from=translated src=- shape=41538ba8 vocab=6a3dd6a5
+-/
 theorem large_carrier_of_maximal_precoloring (G : SimpleGraph V) (k n : ℕ)
     (hk : 0 < k) (hpalette : 4 * k < n)
     (U : Finset V) (T : ChromaticTemplate V (Fin n))
@@ -138,7 +146,9 @@ theorem large_carrier_of_maximal_precoloring (G : SimpleGraph V) (k n : ℕ)
 /-- The first complete extremal reduction in Appendix A.2: for a graph
 requiring at least 7k colors, there is a vertex-minimal obstructing induced
 carrier, and every maximizing template on it has more than k vertices and
-short forbidden lists.-/
+short forbidden lists.
+@isnad1 id=ex.2h3v.s8.eb539baf6360 from=translated src=- shape=fba3ac27 vocab=b7489238
+-/
 theorem exists_large_minimal_obstruction (G : SimpleGraph V) (k : ℕ)
     (hk : 0 < k) (hχ : 7 * k ≤ chromatic G) :
     ∃ (U : Finset V) (T : ChromaticTemplate V (Fin (chromatic G - 1))),
@@ -160,7 +170,9 @@ theorem exists_large_minimal_obstruction (G : SimpleGraph V) (k : ℕ)
   exact ⟨U, T, hlarge, hT, ha, ho, hmin, hshort⟩
 
 /-- The extremal carrier from the template argument has no decomposition
-across fewer than k vertices into two nonempty anticomplete sides.-/
+across fewer than k vertices into two nonempty anticomplete sides.
+@isnad1 id=false.12h8v.s7.79f9a4195c87 from=translated src=- shape=162057cc vocab=12d495c6
+-/
 theorem no_small_separation_of_minimal_obstruction
     (G : SimpleGraph V) (k n : ℕ) (hk : 0 < k)
     (T : ChromaticTemplate V (Fin n))
@@ -185,7 +197,9 @@ theorem no_small_separation_of_minimal_obstruction
   exact T.no_small_separation G k hk ha ho hshort hminimal
     X Y Z hcover hX hY hZ hdisjZ hdisjY hno
 
-/-- A disconnected finite graph splits into two nonempty anticomplete parts.-/
+/-- A disconnected finite graph splits into two nonempty anticomplete parts.
+@isnad1 id=ex.1h2v.s6.dde3fe8358a3 from=translated src=- shape=526657b7 vocab=7ffa2ac8
+-/
 theorem disconnected_partition {W : Type*} [Fintype W] [DecidableEq W]
     [Nonempty W] (H : SimpleGraph W) (hH : ¬ H.Connected) :
     ∃ Y Z : Finset W,
@@ -215,7 +229,9 @@ theorem disconnected_partition {W : Type*} [Fintype W] [DecidableEq W]
       (Finset.mem_filter.mpr ⟨Finset.mem_univ _, hxv⟩)
 
 /-- A disconnection after deleting fewer than k vertices of an induced
-graph produces the finite separator partition used by the template lemma.-/
+graph produces the finite separator partition used by the template lemma.
+@isnad1 id=ex.3h5v.s8.e61bc2fa80f7 from=translated src=- shape=580c0c32 vocab=b2fc5df6
+-/
 theorem partition_of_disconnected_delete (G : SimpleGraph V)
     (S : Finset V) (k : ℕ) (horder : k < S.card)
     (D : Finset (S : Set V)) (hD : D.card < k)
@@ -327,6 +343,9 @@ theorem partition_of_disconnected_delete (G : SimpleGraph V)
   exact ⟨X, Y, Z, hcover, hXcard, hP.image e,
     hQ.image e, hZdisj, hYdisj, hno⟩
 
+/--
+@isnad1 id=vertexco.2h4v.s7.1cb58af306c1 from=translated src=- shape=ea250c40 vocab=fc1a69da
+-/
 theorem vertexConnected_of_no_small_separation
     (G : SimpleGraph V) (S : Finset V) (k : ℕ)
     (horder : k < S.card)
@@ -345,7 +364,9 @@ theorem vertexConnected_of_no_small_separation
       partition_of_disconnected_delete G S k horder D hD hconn
     exact hsep X Y Z hcover hX hY hZ hdisjZ hdisjY hno
 
-/-- The maximally precolored minimal obstruction is k-vertex-connected.-/
+/-- The maximally precolored minimal obstruction is k-vertex-connected.
+@isnad1 id=vertexco.6h5v.s7.98733841a653 from=translated src=- shape=8f0680ab vocab=410dbf0b
+-/
 theorem connected_of_minimal_obstruction
     (G : SimpleGraph V) (k n : ℕ) (hk : 0 < k)
     (T : ChromaticTemplate V (Fin n))
@@ -363,7 +384,9 @@ theorem connected_of_minimal_obstruction
     hcover hX hY hZ hdisjZ hdisjY hno
 
 /-- An obstructing template with short lists forces the induced carrier to
-retain all but six k of the palette colors.-/
+retain all but six k of the palette colors.
+@isnad1 id=lt.5h5v.s7.aebbf03ab6cc from=translated src=- shape=ead6bd2a vocab=0a2c25d9
+-/
 theorem chromatic_bound_of_obstructing_template
     (G : SimpleGraph V) (k n : ℕ) (hk : 0 < k)
     (T : ChromaticTemplate V (Fin n))
@@ -398,7 +421,9 @@ theorem chromatic_bound_of_obstructing_template
     hshort color hcolor (by simpa using hpalette)
   exact ho hext
 
-/-- Additive Girão--Narayanan chromatic connectivity theorem.-/
+/-- Additive Girão--Narayanan chromatic connectivity theorem.
+@isnad1 id=ex.2h3v.s6.b3452b13240d from=translated src=- shape=eb0e61e1 vocab=22f77e69
+-/
 theorem exists_chromatic_connected_induced
     (G : SimpleGraph V) (k : ℕ)
     (hk : 0 < k) (hχ : 7 * k ≤ chromatic G) :

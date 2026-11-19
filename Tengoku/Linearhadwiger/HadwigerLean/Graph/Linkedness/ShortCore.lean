@@ -17,7 +17,9 @@ namespace Linkedness
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- A simple path of length at most seven whose distinct endpoints are
-terminals occupies at most six additional vertices.-/
+terminals occupies at most six additional vertices.
+@isnad1 id=le.4h6v.s7.ff7729c5ca4f from=translated src=- shape=082acb1a vocab=56904060
+-/
 theorem short_path_nonterminal_card_le_six
     {G : SimpleGraph V} {s t : V}
     (X : Finset V) (p : G.Path s t)

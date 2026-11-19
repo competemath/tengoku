@@ -28,18 +28,30 @@ noncomputable def setWeight (w : V → ℝ) (X : Set V) : ℝ := by
   exact
   ∑ v : V, if v ∈ X then w v else 0
 
+/--
+@isnad1 id=eq.0h2v.s4.dcb992b89074 from=translated src=- shape=3289cd7d vocab=c20b6dcc
+-/
 @[simp] theorem setWeight_empty (w : V → ℝ) : setWeight w ∅ = 0 := by
   simp [setWeight]
 
+/--
+@isnad1 id=eq.0h2v.s4.70537ed65e58 from=translated src=- shape=aa5f515d vocab=92c3d7f5
+-/
 @[simp] theorem setWeight_univ (w : V → ℝ) :
     setWeight w Set.univ = ∑ v : V, w v := by
   simp [setWeight]
 
+/--
+@isnad1 id=eq.0h3v.s4.68be4fd88c2b from=translated src=- shape=d41e790d vocab=81514318
+-/
 @[simp] theorem setWeight_singleton (w : V → ℝ) (v : V) :
     setWeight w {v} = w v := by
   classical
   simp [setWeight]
 
+/--
+@isnad1 id=le.1h3v.s5.21238726ac30 from=translated src=- shape=a3687cc2 vocab=61a31b12
+-/
 theorem setWeight_nonneg (w : V → ℝ) (hw : ∀ v, 0 ≤ w v) (X : Set V) :
     0 ≤ setWeight w X := by
   classical
@@ -50,6 +62,9 @@ theorem setWeight_nonneg (w : V → ℝ) (hw : ∀ v, 0 ≤ w v) (X : Set V) :
   · exact hw v
   · exact le_refl _
 
+/--
+@isnad1 id=eq.1h4v.s6.ac62dbb9795e from=translated src=- shape=01d8446c vocab=a0195b8e
+-/
 theorem setWeight_union_of_disjoint (w : V → ℝ) {A B : Set V}
     (hAB : Disjoint A B) :
     setWeight w (A ∪ B) = setWeight w A + setWeight w B := by
@@ -82,25 +97,34 @@ structure IsEgg (G : SimpleGraph V) (w : V → ℝ) (X : Set V) : Prop where
   connected : (G.induce X).Connected
   has_yolk : ∃ Y, IsYolk G w X Y
 
+/--
+@isnad1 id=nonempty.1h4v.s4.beb0ed72b0fc from=translated src=- shape=7e6ed64c vocab=b842fd09
+-/
 theorem IsEgg.nonempty {G : SimpleGraph V} {w : V → ℝ} {X : Set V}
     (hX : IsEgg G w X) : X.Nonempty := by
   obtain ⟨v⟩ := hX.connected.nonempty
   exact ⟨v.val, v.property⟩
 
-/-- An independent set is its own yolk when vertex weights are nonnegative.-/
+/-- An independent set is its own yolk when vertex weights are nonnegative.
+@isnad1 id=isyolk.2h4v.s5.37000c8d2e8e from=translated src=- shape=5f02a409 vocab=ed8c4a77
+-/
 theorem yolk_self {G : SimpleGraph V} {w : V → ℝ} {X : Set V}
     (hw : ∀ v, 0 ≤ w v) (hX : G.IsIndepSet X) : IsYolk G w X X := by
   refine ⟨Set.Subset.rfl, hX, ?_⟩
   have hnonneg := setWeight_nonneg w hw X
   linarith
 
-/-- A connected independent induced subgraph is an egg.-/
+/-- A connected independent induced subgraph is an egg.
+@isnad1 id=isegg.3h4v.s5.93a41a3a79c5 from=translated src=- shape=60745463 vocab=bd22f57f
+-/
 theorem egg_of_independent {G : SimpleGraph V} {w : V → ℝ} {X : Set V}
     (hw : ∀ v, 0 ≤ w v) (hconn : (G.induce X).Connected)
     (hstable : G.IsIndepSet X) : IsEgg G w X :=
   ⟨hconn, ⟨X, yolk_self hw hstable⟩⟩
 
-/-- One side of an independent bipartition is a yolk.-/
+/-- One side of an independent bipartition is a yolk.
+@isnad1 id=ex.4h6v.s6.93d1e07309b8 from=translated src=- shape=ce51b35e vocab=d02b463e
+-/
 theorem exists_yolk_of_bipartition {G : SimpleGraph V} (w : V → ℝ)
     {X A B : Set V} (hX : X = A ∪ B) (hdisj : Disjoint A B)
     (hA : G.IsIndepSet A) (hB : G.IsIndepSet B) :
@@ -119,14 +143,18 @@ theorem exists_yolk_of_bipartition {G : SimpleGraph V} (w : V → ℝ)
     · rw [hweight]
       linarith
 
-/-- A connected bipartite piece is an egg for every real vertex weight.-/
+/-- A connected bipartite piece is an egg for every real vertex weight.
+@isnad1 id=isegg.5h6v.s6.16acbc220043 from=translated src=- shape=5d401936 vocab=d7ad0b36
+-/
 theorem egg_of_bipartition {G : SimpleGraph V} (w : V → ℝ)
     {X A B : Set V} (hconn : (G.induce X).Connected)
     (hX : X = A ∪ B) (hdisj : Disjoint A B)
     (hA : G.IsIndepSet A) (hB : G.IsIndepSet B) : IsEgg G w X :=
   ⟨hconn, exists_yolk_of_bipartition w hX hdisj hA hB⟩
 
-/-- A two-colorable induced subgraph has a half-weight stable subset.-/
+/-- A two-colorable induced subgraph has a half-weight stable subset.
+@isnad1 id=ex.1h4v.s5.82a0ccd421a5 from=translated src=- shape=38a35056 vocab=5839d8f3
+-/
 theorem exists_yolk_of_colorable_two {G : SimpleGraph V} (w : V → ℝ)
     {X : Set V} (hcolor : (G.induce X).Colorable 2) :
     ∃ Y, IsYolk G w X Y := by
@@ -163,12 +191,16 @@ theorem exists_yolk_of_colorable_two {G : SimpleGraph V} (w : V → ℝ)
       (hu1.trans hv1.symm)
   exact exists_yolk_of_bipartition w hX hdisj hA hB
 
-/-- A connected two-colorable induced subgraph is an egg.-/
+/-- A connected two-colorable induced subgraph is an egg.
+@isnad1 id=isegg.2h4v.s5.f048ff3a035b from=translated src=- shape=a155e8d8 vocab=027c7a5f
+-/
 theorem egg_of_colorable_two {G : SimpleGraph V} (w : V → ℝ)
     {X : Set V} (hconn : (G.induce X).Connected)
     (hcolor : (G.induce X).Colorable 2) : IsEgg G w X :=
   ⟨hconn, exists_yolk_of_colorable_two w hcolor⟩
-/-- A singleton piece is an egg for nonnegative weights.-/
+/-- A singleton piece is an egg for nonnegative weights.
+@isnad1 id=isegg.1h4v.s5.51556bb6636c from=translated src=- shape=e86eb43f vocab=0a783bf2
+-/
 theorem egg_singleton {G : SimpleGraph V} {w : V → ℝ}
     (hw : ∀ u, 0 ≤ w u) (v : V) : IsEgg G w {v} := by
   have hconn : (G.induce ({v} : Set V)).Connected := by
@@ -183,7 +215,9 @@ theorem egg_singleton {G : SimpleGraph V} {w : V → ℝ}
   have hstable : G.IsIndepSet ({v} : Set V) := by
     simp [SimpleGraph.isIndepSet_iff]
   exact egg_of_independent hw hconn hstable
-/-- Yolks combine across disjoint pieces when there are no edges between them.-/
+/-- Yolks combine across disjoint pieces when there are no edges between them.
+@isnad1 id=isyolk.4h7v.s6.655bb79ab50d from=translated src=- shape=c744f67a vocab=ff439b4e
+-/
 theorem IsYolk.union_of_no_cross {G : SimpleGraph V} {w : V → ℝ}
     {X Q Y Z : Set V} (hY : IsYolk G w X Y)
     (hZ : IsYolk G w Q Z) (hXQ : Disjoint X Q)

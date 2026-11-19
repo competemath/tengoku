@@ -19,7 +19,9 @@ namespace VertexSeparation
 variable {V : Type u} [Fintype V] {J : SimpleGraph V}
   (S : VertexSeparation J)
 
-/-- A vertex outside the right side belongs to the strict left side.-/
+/-- A vertex outside the right side belongs to the strict left side.
+@isnad1 id=mem.1h4v.s5.92480ec8ce7b from=translated src=- shape=c190b005 vocab=57366cbc
+-/
 theorem strictLeft_of_not_right {x : V} (hx : x ∉ S.right) :
     x ∈ S.strictLeft := by
   have hcover : x ∈ S.left ∪ S.right := by rw [S.cover]; trivial
@@ -28,14 +30,18 @@ theorem strictLeft_of_not_right {x : V} (hx : x ∉ S.right) :
   · exact (hx hr).elim
 
 /-- A right-side neighbor of a vertex outside the right side lies on the
-separator boundary.-/
+separator boundary.
+@isnad1 id=mem.3h5v.s5.b0de7013acd6 from=translated src=- shape=f1c4f385 vocab=4e6738f4
+-/
 theorem left_of_adj_not_right {x y : V}
     (hx : x ∉ S.right) (hy : y ∈ S.right) (hxy : J.Adj x y) :
     y ∈ S.left := by
   by_contra hyl
   exact S.no_cross (S.strictLeft_of_not_right hx).1 hx hy hyl hxy
 
-/-- A connected branch meeting both sides also meets the boundary.-/
+/-- A connected branch meeting both sides also meets the boundary.
+@isnad1 id=ex.3h4v.s6.da1794cd2f2c from=translated src=- shape=964004e9 vocab=94063d8b
+-/
 theorem connected_set_meets_separator (C : Set V)
     (hconn : (J.induce C).Connected)
     (hright : ∃ x ∈ C, x ∈ S.right)
@@ -66,7 +72,9 @@ def torso : SimpleGraph S.right :=
 
 /-- Restricting a connected set to the right side remains connected in the
 torso, because each excursion through the strict left side can be replaced by
-an edge of the completed boundary clique.-/
+an edge of the completed boundary clique.
+@isnad1 id=connecte.2h4v.s7.11801e55e7f7 from=translated src=- shape=7c7d48bb vocab=1d64b13a
+-/
 theorem connected_restrict_torso (C : Set V)
     (hconn : (J.induce C).Connected)
     (hright : ∃ x ∈ C, x ∈ S.right) :
@@ -231,7 +239,9 @@ def restrictCompletedRootModel {W : Type*} {H : SimpleGraph W}
     · exact Or.inr hxy
   exact (S'.restrictMinorModel M hmeet).mono hmono
 /-- If one clique branch lies strictly on the far shore, every other branch
-must meet the far shore as well.-/
+must meet the far shore as well.
+@isnad1 id=ex.2h8v.s7.9e2ccbf090f7 from=translated src=- shape=8d70855a vocab=cda7e762
+-/
 theorem cliqueBranches_meet_right (R : Set V) (hR : R ⊆ S.left)
     {r : ℕ}
     (M : MinorModel (SimpleGraph.completeGraph (Fin (2 * r)))

@@ -16,7 +16,9 @@ namespace ReedSeymour
 variable {V : Type*} {G : SimpleGraph V}
 
 /-- A minimal connected transversal is two-colorable whenever all induced
-endpoint-only connectors between different terminal sets have even length.-/
+endpoint-only connectors between different terminal sets have even length.
+@isnad1 id=colorabl.2h4v.s5.8cabd37dd3d9 from=translated src=- shape=39c30f47 vocab=8b56c899
+-/
 theorem colorable_two_of_minimal_connected_transversal
     {I : Type*} {N : I → Set V}
     (hmin : IsMinimalConnectedTransversal G N)

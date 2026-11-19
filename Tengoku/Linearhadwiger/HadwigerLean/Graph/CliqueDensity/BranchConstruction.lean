@@ -16,7 +16,9 @@ namespace HadwigerLean
 universe u
 variable {V : Type u} [Fintype V] [DecidableEq V]
 
-/-- The residual graph has the expected order after deleting a finite set.-/
+/-- The residual graph has the expected order after deleting a finite set.
+@isnad1 id=eq.0h3v.s6.dfddf6953ed0 from=translated src=- shape=9db53b9b vocab=092d68ba
+-/
 theorem card_induce_compl_eq_sub (G : SimpleGraph V) (U : Finset V) :
     Fintype.card ↥((U : Set V)ᶜ) = Fintype.card V - U.card := by
   classical
@@ -27,7 +29,9 @@ theorem card_induce_compl_eq_sub (G : SimpleGraph V) (U : Finset V) :
       simp
     _ = Fintype.card V - U.card := Finset.card_compl U
 
-/-- Residual degree and order bounds in core case (I).-/
+/-- Residual degree and order bounds in core case (I).
+@isnad1 id=and.3h4v.s9.120245228525 from=translated src=- shape=50430819 vocab=e89d0951
+-/
 theorem residual_bounds_caseI
     (F : SimpleGraph V) [DecidableRel F.Adj] (d : ℕ) (U : Finset V)
     (horder : Fintype.card V ≤ 2 * d)
@@ -48,7 +52,9 @@ theorem residual_bounds_caseI
   · rw [hcard]
     exact residual_ratio_case_one d (Fintype.card V) U.card horder hb
 
-/-- Residual degree and order bounds in core case (II).-/
+/-- Residual degree and order bounds in core case (II).
+@isnad1 id=and.4h5v.s9.b03edc05881e from=translated src=- shape=1d51a545 vocab=e89d0951
+-/
 theorem residual_bounds_caseII
     (F : SimpleGraph V) [DecidableRel F.Adj]
     (d δ : ℕ) (U : Finset V)
@@ -70,7 +76,9 @@ theorem residual_bounds_caseII
   · rw [hcard]
     exact residual_ratio_case_two d δ (Fintype.card V) U.card horder hδ hb
 
-/-- The one-step sampling conclusion from a numerical endpoint estimate.-/
+/-- The one-step sampling conclusion from a numerical endpoint estimate.
+@isnad1 id=ex.7h8v.s9.e2fdf979c76f from=translated src=- shape=7f5a1c2d vocab=a9e5a0ba
+-/
 theorem exists_good_sample_of_endpoint_bound
     (R : SimpleGraph V) [DecidableRel R.Adj]
     {ι : Type*} [DecidableEq ι] (J : Finset ι)
@@ -98,7 +106,9 @@ theorem exists_good_sample_of_endpoint_bound
     nlinarith [hsum, hstep]
   exact exists_good_sample_of_count_bounds R J A s δ (4 * η) hV
     hmin hratio (by linarith) hdom hold
-/-- Convert the real endpoint estimate to the residual graph in case (I).-/
+/-- Convert the real endpoint estimate to the residual graph in case (I).
+@isnad1 id=le.5h5v.s8.dc5c1b98bec3 from=translated src=- shape=683ba5e1 vocab=8401f647
+-/
 theorem residual_endpoint_caseI
     (F : SimpleGraph V) (d s : ℕ) (U : Finset V)
     (hd : 0 < d) (hmlo : d < Fintype.card V)
@@ -125,7 +135,9 @@ theorem residual_endpoint_caseI
   rw [card_induce_compl_eq_sub F U]
   rw [Nat.cast_sub hb₁, Nat.cast_sub hb₂]
   convert hreal using 1 <;> ring
-/-- Convert the real endpoint estimate to the residual graph in case (II).-/
+/-- Convert the real endpoint estimate to the residual graph in case (II).
+@isnad1 id=le.6h6v.s8.7b7b409081d2 from=translated src=- shape=bb230c0d vocab=8401f647
+-/
 theorem residual_endpoint_caseII
     (F : SimpleGraph V) (d δ s : ℕ) (U : Finset V)
     (hd : 0 < d) (hmlo : 2 * d < 3 * Fintype.card V)
@@ -190,7 +202,9 @@ def CliqueBranchState.empty (F : SimpleGraph V) [DecidableRel F.Adj]
   size_bound := by simp
   used_bound := by simp [branchFamilyUsed]
   avoid_bound := by simp
-/-- Adding branch sets can only shrink each old forbidden set.-/
+/-- Adding branch sets can only shrink each old forbidden set.
+@isnad1 id=le.1h5v.s6.ebd47de489e2 from=translated src=- shape=09262903 vocab=9fd8c22b
+-/
 theorem branchAvoid_mono
     (F : SimpleGraph V) [DecidableRel F.Adj]
     {S T : Finset (Finset V)} (hST : S ⊆ T) (Q : Finset V) :
@@ -209,7 +223,9 @@ theorem branchAvoid_mono
     exact (Finset.mem_compl.mp hxout) (hused hxS)
   · exact hxnon
 
-/-- Avoiding every sampled neighbor is the undominated-vertex predicate.-/
+/-- Avoiding every sampled neighbor is the undominated-vertex predicate.
+@isnad1 id=eq.0h4v.s7.b5a282f2e2f0 from=translated src=- shape=2870a5b0 vocab=208e571a
+-/
 theorem undominatedCount_eq_no_sample_neighbor
     (R : SimpleGraph V) [DecidableRel R.Adj]
     {s : ℕ} (ω : Fin s → V) :
@@ -221,7 +237,9 @@ theorem undominatedCount_eq_no_sample_neighbor
   ext v
   simp [Finset.subset_iff, Finset.mem_compl, SimpleGraph.mem_neighborFinset]
 /-- The new branch's forbidden set is controlled by vertices
-undominated by its sampled subset.-/
+undominated by its sampled subset.
+@isnad1 id=le.1h6v.s9.796463d853f5 from=translated src=- shape=f49bd690 vocab=342fef83
+-/
 theorem new_branch_avoid_card_le_undominated
     (F : SimpleGraph V) [DecidableRel F.Adj]
     (S : Finset (Finset V))
@@ -263,7 +281,9 @@ theorem new_branch_avoid_card_le_undominated
     _ = undominatedCount R ω := by
       exact (undominatedCount_eq_no_sample_neighbor R ω).symm
 /-- A sample that escapes an old forbidden set supplies the required
-edge from the new branch to that old branch.-/
+edge from the new branch to that old branch.
+@isnad1 id=ex.2h7v.s9.1a9634f05def from=translated src=- shape=0dce21b6 vocab=d5e75ea5
+-/
 theorem adjacent_new_branch_of_sample_escape
     (F : SimpleGraph V) [DecidableRel F.Adj]
     (U T : Finset V)
@@ -385,7 +405,9 @@ noncomputable def CliqueBranchState.extend
       have hcardReal : ((branchAvoid F S' R).card : ℝ) ≤
           ((branchAvoid F S R).card : ℝ) := by exact_mod_cast hcard
       exact hcardReal.trans (st.avoid_bound R hR)
-/-- The numerical E.7 bound applies to every unfinished branch family.-/
+/-- The numerical E.7 bound applies to every unfinished branch family.
+@isnad1 id=lt.3h3v.s7.9030c46c7c06 from=translated src=- shape=e77cf390 vocab=71436e0e
+-/
 theorem branch_old_numeric_bound
     (r s i : ℕ) (hr : 13 ≤ r)
     (hs : s = Nat.ceil (4 * Real.sqrt (Real.log (r : ℝ))))
@@ -411,7 +433,9 @@ theorem branch_old_numeric_bound
     nlinarith [mul_le_mul_of_nonneg_right hreal hpow]
   exact h₂.trans_lt h₁
 /-- The branch budget leaves strictly fewer than `d/3` vertices used
-before every one of the `r` stages.-/
+before every one of the `r` stages.
+@isnad1 id=and.3h5v.s6.b9ed9d803359 from=translated src=- shape=75e55e87 vocab=ef4726aa
+-/
 theorem branch_used_lt_third
     (d r s i b : ℕ) (hi : i < r)
     (hbudget : 3 * r * (s + 8) ≤ d)
@@ -422,7 +446,9 @@ theorem branch_used_lt_third
   have hgap : 3 * b + 3 * (s + 8) ≤ d := by
     nlinarith
   constructor <;> omega
-/-- The large-order sample length is at least seven.-/
+/-- The large-order sample length is at least seven.
+@isnad1 id=le.1h1v.s5.94269928101a from=translated src=- shape=1078488e vocab=4ea8baaa
+-/
 theorem clique_sample_size_ge_seven (r : ℕ) (hr : 13 ≤ r) :
     7 ≤ Nat.ceil (4 * Real.sqrt (Real.log (r : ℝ))) := by
   let L : ℝ := Real.log (r : ℝ)
@@ -441,7 +467,9 @@ theorem clique_sample_size_ge_seven (r : ℕ) (hr : 13 ≤ r) :
   have hs : 6 < s := by exact_mod_cast hsreal
   exact hs
 /-- The fixed forbidden-set threshold is at most the current
-order times the E.7 avoidance factor.-/
+order times the E.7 avoidance factor.
+@isnad1 id=le.2h5v.s8.24133caf1c07 from=translated src=- shape=271d0a2a vocab=8401f647
+-/
 theorem branch_threshold_le_current_order
     (F : SimpleGraph V) (d s : ℕ) (U : Finset V)
     (hb : 3 * U.card < d)
@@ -460,7 +488,9 @@ theorem branch_threshold_le_current_order
   nlinarith [mul_nonneg (sub_nonneg.mpr (by linarith :
     0 ≤ ((Fintype.card V : ℝ) - (U.card : ℝ)) -
       ((Fintype.card V : ℝ) - (d : ℝ) / 3))) he]
-/-- The two correlated core cases yield the same residual sampling data.-/
+/-- The two correlated core cases yield the same residual sampling data.
+@isnad1 id=ex.5h5v.s9.a1f14887d338 from=translated src=- shape=b6ede2ce vocab=88357e99
+-/
 theorem residual_parameters_of_core_case
     (F : SimpleGraph V) [DecidableRel F.Adj]
     (d s : ℕ) (U : Finset V)

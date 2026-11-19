@@ -9,7 +9,9 @@ import Tengoku.Seed.Tactic
 
 namespace HadwigerLean
 
-/-- A complete minor of order `n` contains one of every smaller order.-/
+/-- A complete minor of order `n` contains one of every smaller order.
+@isnad1 id=hascliqu.2h4v.s4.846381111ace from=translated src=- shape=12a76390 vocab=c54cc7a8
+-/
 theorem hasCliqueMinor_of_le
     {V : Type*} {G : SimpleGraph V} {m n : ℕ}
     (h : HasCliqueMinor G n) (hm : m ≤ n) :

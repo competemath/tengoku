@@ -34,6 +34,9 @@ noncomputable def expect (p : ι → ℝ) (X : (ι → Bool) → ℝ) : ℝ := b
   classical
   exact ∑ ω, weight p ω * X ω
 
+/--
+@isnad1 id=eq.0h2v.s5.64c60d7c008b from=translated src=- shape=7a582b84 vocab=397d969e
+-/
 theorem sum_weight (p : ι → ℝ) : (∑ ω : ι → Bool, weight p ω) = 1 := by
   classical
   calc
@@ -44,6 +47,9 @@ theorem sum_weight (p : ι → ℝ) : (∑ ω : ι → Bool, weight p ω) = 1 :=
     _ = 1 := by simp
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=le.1h3v.s5.6010638b182e from=translated src=- shape=f47c7f20 vocab=30ff5656
+-/
 theorem weight_nonneg (p : ι → ℝ) (hp : ∀ i, 0 ≤ p i ∧ p i ≤ 1)
     (ω : ι → Bool) : 0 ≤ weight p ω := by
   classical
@@ -53,6 +59,9 @@ theorem weight_nonneg (p : ι → ℝ) (hp : ∀ i, 0 ≤ p i ∧ p i ≤ 1)
   · exact (hp i).1
   · linarith [(hp i).2]
 
+/--
+@isnad1 id=le.1h3v.s5.a29ccd65378c from=translated src=- shape=3bd2ec1d vocab=514688fa
+-/
 theorem prob_nonneg (p : ι → ℝ) (hp : ∀ i, 0 ≤ p i ∧ p i ≤ 1)
     (A : Set (ι → Bool)) : 0 ≤ prob p A := by
   classical
@@ -63,7 +72,9 @@ theorem prob_nonneg (p : ι → ℝ) (hp : ∀ i, 0 ≤ p i ∧ p i ≤ 1)
   · exact weight_nonneg p hp ω
   · exact le_rfl
 
-/-- Exact factorization of an expectation of coordinate-wise factors.-/
+/-- Exact factorization of an expectation of coordinate-wise factors.
+@isnad1 id=eq.0h3v.s6.b6a9a1235f77 from=translated src=- shape=e4cd0f64 vocab=e457d44f
+-/
 theorem expect_prod (p : ι → ℝ) (f : ι → Bool → ℝ) :
     expect p (fun ω => ∏ i, f i (ω i)) =
       ∏ i, (p i * f i true + (1 - p i) * f i false) := by
@@ -79,7 +90,9 @@ theorem expect_prod (p : ι → ℝ) (f : ι → Bool → ℝ) :
     _ = ∏ i, (p i * f i true + (1 - p i) * f i false) := by
       simp
 
-/-- Probability that all marks in a specified finite set are absent.-/
+/-- Probability that all marks in a specified finite set are absent.
+@isnad1 id=eq.0h3v.s6.595e740e0c42 from=translated src=- shape=20a35e6d vocab=64fa64cb
+-/
 theorem prob_all_false (p : ι → ℝ) (S : Finset ι) :
     prob p {ω | ∀ i ∈ S, ω i = false} = ∏ i ∈ S, (1 - p i) := by
   classical
@@ -133,6 +146,9 @@ noncomputable def expMarkProbability (rate : ι → ℝ) (i : ι) : ℝ :=
   1 - Real.exp (-rate i)
 
 omit [Fintype ι] [DecidableEq ι] in
+/--
+@isnad1 id=and.1h3v.s5.f9c7d0cae8f8 from=translated src=- shape=9d3e4e5d vocab=60590f14
+-/
 theorem expMarkProbability_bounds (rate : ι → ℝ) (hrate : ∀ i, 0 ≤ rate i)
     (i : ι) : 0 ≤ expMarkProbability rate i ∧ expMarkProbability rate i ≤ 1 := by
   have h₁ : Real.exp (-rate i) ≤ 1 :=
@@ -141,7 +157,9 @@ theorem expMarkProbability_bounds (rate : ι → ℝ) (hrate : ∀ i, 0 ≤ rate
   unfold expMarkProbability
   constructor <;> linarith
 
-/-- Exact joint survival probability under Poisson-zero Bernoulli marks.-/
+/-- Exact joint survival probability under Poisson-zero Bernoulli marks.
+@isnad1 id=eq.0h3v.s6.97c1d5512c7d from=translated src=- shape=346b8566 vocab=dd1035e1
+-/
 theorem prob_all_false_exp (rate : ι → ℝ) (S : Finset ι) :
     prob (expMarkProbability rate) {ω | ∀ i ∈ S, ω i = false} =
       Real.exp (-(∑ i ∈ S, rate i)) := by
@@ -164,7 +182,9 @@ noncomputable def count (S : Finset ι) (ω : ι → Bool) : ℝ :=
 noncomputable def mean (p : ι → ℝ) (S : Finset ι) : ℝ :=
   ∑ i ∈ S, p i
 
-/-- Expected value of a single Bernoulli mark.-/
+/-- Expected value of a single Bernoulli mark.
+@isnad1 id=eq.0h3v.s5.467e0d3f5df6 from=translated src=- shape=8baa9387 vocab=285fcc4d
+-/
 theorem expect_mark (p : ι → ℝ) (i : ι) :
     expect p (fun ω => if ω i then 1 else 0) = p i := by
   classical
@@ -191,6 +211,9 @@ theorem expect_mark (p : ι → ℝ) (i : ι) :
       simp_rw [hfactor]
       simp [Finset.prod_ite_eq']
 
+/--
+@isnad1 id=eq.0h3v.s4.beb513cbb587 from=translated src=- shape=0b938931 vocab=c3dbce65
+-/
 theorem expect_count (p : ι → ℝ) (S : Finset ι) :
     expect p (count S) = mean p S := by
   classical
@@ -202,7 +225,9 @@ theorem expect_count (p : ι → ℝ) (S : Finset ι) :
   simpa only [expect] using expect_mark p i
 
 omit [Fintype ι] [DecidableEq ι] in
-/-- Exponential of a sampled count is a product of coordinate factors.-/
+/-- Exponential of a sampled count is a product of coordinate factors.
+@isnad1 id=eq.0h4v.s5.a5f80a9f81a5 from=translated src=- shape=6e37bc90 vocab=f30ff275
+-/
 theorem exp_mul_count (S : Finset ι) (t : ℝ) (ω : ι → Bool) :
     Real.exp (t * count S ω) =
       ∏ i ∈ S, (if ω i then Real.exp t else 1) := by
@@ -217,7 +242,9 @@ theorem exp_mul_count (S : Finset ι) (t : ℝ) (ω : ι → Bool) :
       intro i hi
       cases h : ω i <;> simp
 
-/-- Exact moment-generating function of the sampled count.-/
+/-- Exact moment-generating function of the sampled count.
+@isnad1 id=eq.0h4v.s6.8eabc1010153 from=translated src=- shape=45670be4 vocab=4df3d27d
+-/
 theorem expect_exp_count (p : ι → ℝ) (S : Finset ι) (t : ℝ) :
     expect p (fun ω => Real.exp (t * count S ω)) =
       ∏ i ∈ S, (1 - p i + p i * Real.exp t) := by
@@ -246,7 +273,9 @@ theorem expect_exp_count (p : ι → ℝ) (S : Finset ι) (t : ℝ) :
     _ = ∏ i ∈ S, (1 - p i + p i * Real.exp t) := by
       simp [Finset.prod_ite_mem]
 
-/-- A mean-sensitive MGF bound for a finite Bernoulli sum.-/
+/-- A mean-sensitive MGF bound for a finite Bernoulli sum.
+@isnad1 id=le.1h4v.s6.5f05df9a2b1a from=translated src=- shape=5c0b3e57 vocab=60854325
+-/
 theorem expect_exp_count_le (p : ι → ℝ) (hp : ∀ i, 0 ≤ p i ∧ p i ≤ 1)
     (S : Finset ι) (t : ℝ) :
     expect p (fun ω => Real.exp (t * count S ω)) ≤
@@ -273,7 +302,9 @@ theorem expect_exp_count_le (p : ι → ℝ) (hp : ∀ i, 0 ≤ p i ∧ p i ≤ 
       congr 1
       simp [mean, Finset.sum_mul]
 
-/-- Finite weighted Markov inequality for an event and a nonnegative witness.-/
+/-- Finite weighted Markov inequality for an event and a nonnegative witness.
+@isnad1 id=le.3h4v.s6.619ea11db50f from=translated src=- shape=52996f1d vocab=fefe5065
+-/
 theorem prob_le_expect (p : ι → ℝ) (hp : ∀ i, 0 ≤ p i ∧ p i ≤ 1)
     (A : Set (ι → Bool)) (X : (ι → Bool) → ℝ)
     (hX : ∀ ω, 0 ≤ X ω) (hA : ∀ ω ∈ A, 1 ≤ X ω) :
@@ -290,7 +321,9 @@ theorem prob_le_expect (p : ι → ℝ) (hp : ∀ i, 0 ≤ p i ∧ p i ≤ 1)
   · simp only [ite_eq_right h]
     exact mul_nonneg (weight_nonneg p hp ω) (hX ω)
 
-/-- Mean-sensitive Chernoff bound, with either tail selected by the sign of `t`.-/
+/-- Mean-sensitive Chernoff bound, with either tail selected by the sign of `t`.
+@isnad1 id=le.1h5v.s7.9e18a2b4d010 from=translated src=- shape=dc1bd8e9 vocab=774db5c9
+-/
 theorem prob_count_chernoff (p : ι → ℝ) (hp : ∀ i, 0 ≤ p i ∧ p i ≤ 1)
     (S : Finset ι) (t threshold : ℝ) :
     prob p {ω | t * threshold ≤ t * count S ω} ≤
@@ -324,6 +357,9 @@ theorem prob_count_chernoff (p : ι → ℝ) (hp : ∀ i, 0 ≤ p i ∧ p i ≤ 
     _ = Real.exp (-t * threshold + mean p S * (Real.exp t - 1)) := by
       rw [Real.exp_add]
 
+/--
+@isnad1 id=le.2h4v.s6.3cc4ca54d2e5 from=translated src=- shape=12eadd26 vocab=514688fa
+-/
 theorem prob_mono (p : ι → ℝ) (hp : ∀ i, 0 ≤ p i ∧ p i ≤ 1)
     {A B : Set (ι → Bool)} (hAB : A ⊆ B) : prob p A ≤ prob p B := by
   classical
@@ -338,7 +374,9 @@ theorem prob_mono (p : ι → ℝ) (hp : ∀ i, 0 ≤ p i ∧ p i ≤ 1)
       exact weight_nonneg p hp ω
     · simp [hA, hB]
 
-/-- Upper-tail Chernoff bound with a positive exponential parameter.-/
+/-- Upper-tail Chernoff bound with a positive exponential parameter.
+@isnad1 id=le.2h5v.s7.8c991b6cdc7d from=translated src=- shape=714218b7 vocab=774db5c9
+-/
 theorem prob_count_ge_chernoff (p : ι → ℝ) (hp : ∀ i, 0 ≤ p i ∧ p i ≤ 1)
     (S : Finset ι) (t threshold : ℝ) (ht : 0 ≤ t) :
     prob p {ω | threshold ≤ count S ω} ≤
@@ -347,7 +385,9 @@ theorem prob_count_ge_chernoff (p : ι → ℝ) (hp : ∀ i, 0 ≤ p i ∧ p i �
   intro ω hω
   exact mul_le_mul_of_nonneg_left hω ht
 
-/-- Lower-tail Chernoff bound with a negative exponential parameter.-/
+/-- Lower-tail Chernoff bound with a negative exponential parameter.
+@isnad1 id=le.2h5v.s7.fdc87eb7b7a8 from=translated src=- shape=a4a2daf0 vocab=774db5c9
+-/
 theorem prob_count_le_chernoff (p : ι → ℝ) (hp : ∀ i, 0 ≤ p i ∧ p i ≤ 1)
     (S : Finset ι) (t threshold : ℝ) (ht : t ≤ 0) :
     prob p {ω | count S ω ≤ threshold} ≤
@@ -357,13 +397,18 @@ theorem prob_count_le_chernoff (p : ι → ℝ) (hp : ∀ i, 0 ≤ p i ∧ p i �
   exact mul_le_mul_of_nonpos_left hω ht
 
 omit [Fintype ι] [DecidableEq ι] in
+/--
+@isnad1 id=le.1h3v.s5.376c46fafce4 from=translated src=- shape=fba822a8 vocab=609cb9c1
+-/
 theorem mean_nonneg (p : ι → ℝ) (hp : ∀ i, 0 ≤ p i ∧ p i ≤ 1)
     (S : Finset ι) : 0 ≤ mean p S := by
   unfold mean
   exact Finset.sum_nonneg (fun i hi => (hp i).1)
 
 /-- Quadratic Chernoff form for |t| ≤ 1. The exponent scales with the mean,
-not the number of possible marks.-/
+not the number of possible marks.
+@isnad1 id=le.2h5v.s7.05ea32cc0fe0 from=translated src=- shape=f22c9828 vocab=7c3f4578
+-/
 theorem prob_count_chernoff_quadratic (p : ι → ℝ)
     (hp : ∀ i, 0 ≤ p i ∧ p i ≤ 1) (S : Finset ι)
     (t threshold : ℝ) (ht : |t| ≤ 1) :
@@ -380,10 +425,16 @@ theorem prob_count_chernoff_quadratic (p : ι → ℝ)
   exact (prob_count_chernoff p hp S t threshold).trans
     (Real.exp_le_exp.mpr harg)
 
+/--
+@isnad1 id=eq.0h2v.s4.2924b54793f7 from=translated src=- shape=13b59e15 vocab=6eb2b908
+-/
 theorem prob_univ (p : ι → ℝ) : prob p Set.univ = 1 := by
   classical
   simpa [prob] using sum_weight p
 
+/--
+@isnad1 id=le.1h4v.s6.443c5be34552 from=translated src=- shape=228e7fe0 vocab=774e0d4d
+-/
 theorem prob_union_le (p : ι → ℝ) (hp : ∀ i, 0 ≤ p i ∧ p i ≤ 1)
     (A B : Set (ι → Bool)) :
     prob p (A ∪ B) ≤ prob p A + prob p B := by
@@ -395,7 +446,9 @@ theorem prob_union_le (p : ι → ℝ) (hp : ∀ i, 0 ≤ p i ∧ p i ≤ 1)
   by_cases hA : ω ∈ A <;> by_cases hB : ω ∈ B <;>
     simp [hA, hB]; nlinarith [weight_nonneg p hp ω]
 
-/-- Union bound over a finite family of bad events.-/
+/-- Union bound over a finite family of bad events.
+@isnad1 id=le.1h5v.s6.1e572bccef8f from=translated src=- shape=6bca779b vocab=4ecc0f6e
+-/
 theorem prob_biUnion_le {κ : Type*} (p : ι → ℝ)
     (hp : ∀ i, 0 ≤ p i ∧ p i ≤ 1)
     (s : Finset κ) (A : κ → Set (ι → Bool)) :
@@ -412,7 +465,9 @@ theorem prob_biUnion_le {κ : Type*} (p : ι → ℝ)
       have hUnion := prob_union_le p hp (A j) (⋃ k ∈ s, A k)
       linarith
 
-/-- If a bad event has probability less than one, some configuration avoids it.-/
+/-- If a bad event has probability less than one, some configuration avoids it.
+@isnad1 id=ex.1h3v.s5.727f14ea7d1b from=translated src=- shape=731a3ed0 vocab=e4e52f92
+-/
 theorem exists_not_mem_of_prob_lt_one (p : ι → ℝ)
     (A : Set (ι → Bool)) (hA : prob p A < 1) :
     ∃ ω, ω ∉ A := by
@@ -430,6 +485,9 @@ noncomputable def eventIndicator (A : Set (ι → Bool)) (ω : ι → Bool) : �
   classical
   exact if ω ∈ A then 1 else 0
 
+/--
+@isnad1 id=eq.0h3v.s5.75e06cac9cad from=translated src=- shape=e8597108 vocab=fd7b1591
+-/
 theorem expect_eventIndicator (p : ι → ℝ) (A : Set (ι → Bool)) :
     expect p (eventIndicator A) = prob p A := by
   classical
@@ -438,7 +496,9 @@ theorem expect_eventIndicator (p : ι → ℝ) (A : Set (ι → Bool)) :
   intro ω hω
   by_cases h : ω ∈ A <;> simp [h]
 
-/-- Finite linearity of expectation.-/
+/-- Finite linearity of expectation.
+@isnad1 id=eq.0h5v.s5.9f9d21068b95 from=translated src=- shape=e3e57b9d vocab=98c54ed2
+-/
 theorem expect_sum {κ : Type*} (p : ι → ℝ) (s : Finset κ)
     (X : κ → (ι → Bool) → ℝ) :
     expect p (fun ω => ∑ j ∈ s, X j ω) =
@@ -448,7 +508,9 @@ theorem expect_sum {κ : Type*} (p : ι → ℝ) (s : Finset κ)
   simp_rw [Finset.mul_sum]
   rw [Finset.sum_comm]
 
-/-- Probability that every mark in a finite set is present.-/
+/-- Probability that every mark in a finite set is present.
+@isnad1 id=eq.0h3v.s5.0573b136fc9e from=translated src=- shape=32cc373a vocab=e0c3a9ca
+-/
 theorem prob_all_true (p : ι → ℝ) (S : Finset ι) :
     prob p {ω | ∀ i ∈ S, ω i = true} = ∏ i ∈ S, p i := by
   classical
@@ -497,7 +559,9 @@ theorem prob_all_true (p : ι → ℝ) (S : Finset ι) :
         ring
     _ = ∏ i ∈ S, p i := by simp [Finset.prod_ite_mem]
 
-/-- Two distinct marks occur jointly with the product of their probabilities.-/
+/-- Two distinct marks occur jointly with the product of their probabilities.
+@isnad1 id=eq.1h4v.s5.8019a01b28be from=translated src=- shape=24985a5b vocab=dd954b7d
+-/
 theorem prob_two_true (p : ι → ℝ) {i j : ι} (hij : i ≠ j) :
     prob p {ω | ω i = true ∧ ω j = true} = p i * p j := by
   classical
@@ -516,7 +580,9 @@ namespace HadwigerLean.FiniteBernoulli
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
 /-- Finite weighted Cauchy–Schwarz: the mean absolute value is bounded by
-the square root of the second moment.-/
+the square root of the second moment.
+@isnad1 id=le.1h3v.s6.648dfc988773 from=translated src=- shape=3c90e645 vocab=0cac4d1c
+-/
 theorem expect_abs_le_sqrt_expect_sq (p : ι → ℝ)
     (hp : ∀ i, 0 ≤ p i ∧ p i ≤ 1)
     (X : (ι → Bool) → ℝ) :
@@ -549,7 +615,9 @@ namespace HadwigerLean.FiniteBernoulli
 
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
-/-- A centered upper-tail bound using a cap on the mean.-/
+/-- A centered upper-tail bound using a cap on the mean.
+@isnad1 id=le.5h5v.s7.9ee783c5454b from=translated src=- shape=7641116f vocab=64ac847d
+-/
 theorem prob_count_ge_mean_add (p : ι → ℝ)
     (hp : ∀ i, 0 ≤ p i ∧ p i ≤ 1) (S : Finset ι)
     (D s : ℝ) (hD : 0 < D) (hs : 0 ≤ s) (hsD : s ≤ 2 * D)
@@ -591,7 +659,9 @@ namespace HadwigerLean.FiniteBernoulli
 
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
-/-- A centered lower-tail bound using a cap on the mean.-/
+/-- A centered lower-tail bound using a cap on the mean.
+@isnad1 id=le.5h5v.s7.de5b7ca4f750 from=translated src=- shape=3f44d96f vocab=62025362
+-/
 theorem prob_count_le_mean_sub (p : ι → ℝ)
     (hp : ∀ i, 0 ≤ p i ∧ p i ≤ 1) (S : Finset ι)
     (D s : ℝ) (hD : 0 < D) (hs : 0 ≤ s) (hsD : s ≤ 2 * D)
@@ -639,7 +709,9 @@ namespace HadwigerLean.FiniteBernoulli
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
 /-- If the mean is at most half the threshold, a fixed exponential tilt
-gives an exponentially small upper tail.-/
+gives an exponentially small upper tail.
+@isnad1 id=le.2h4v.s6.80ebf3254864 from=translated src=- shape=32867f6b vocab=20de385d
+-/
 theorem prob_count_ge_of_mean_le_half (p : ι → ℝ)
     (hp : ∀ i, 0 ≤ p i ∧ p i ≤ 1) (S : Finset ι)
     (C : ℝ) (hmean : mean p S ≤ C / 2) :

@@ -10,7 +10,9 @@ namespace HadwigerLean
 namespace Linkedness
 
 /-- A vertex-disjoint linkage uses each designated terminal only on the
-path for that terminal's pair.-/
+path for that terminal's pair.
+@isnad1 id=interior.1h6v.s5.90d31b503fc6 from=translated src=- shape=51805c7b vocab=d504c611
+-/
 theorem IndexedLinkage.interiorsAvoid_terminal_cover
     {V : Type*} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} {ι : Type*} [Fintype ι]

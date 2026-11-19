@@ -49,12 +49,18 @@ def IsFractionalDualFeasible (G : SimpleGraph V) (w : V → ℝ) : Prop :=
 noncomputable def fractionalDualValue (w : V → ℝ) : ℝ :=
   ∑ v, w v
 
+/--
+@isnad1 id=le.1h3v.s5.77b8c7690c23 from=translated src=- shape=06084332 vocab=fe74cbb3
+-/
 theorem fractionalCost_nonneg (G : SimpleGraph V) {x : StableSet G → ℝ}
     (hx : IsFractionalColoring G x) : 0 ≤ fractionalCost G x := by
   classical
   exact Finset.sum_nonneg (fun S _ => hx.1 S)
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=mem.0h3v.s5.e72adf11096a from=translated src=- shape=1f30a520 vocab=21e2c230
+-/
 theorem stableSet_mem (G : SimpleGraph V) (S : StableSet G) :
     S.1 ∈ stableFinsets G := by
   simp [S.property.2]
@@ -63,6 +69,9 @@ def singletonStableSet (G : SimpleGraph V) (v : V) : StableSet G :=
   ⟨{v}, by simp [SimpleGraph.isIndepSet_iff]⟩
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=le.1h4v.s4.dfe5aef6bda4 from=translated src=- shape=cb864d18 vocab=5a8af860
+-/
 theorem dual_weight_le_one (G : SimpleGraph V) {w : V → ℝ}
     (hw : IsFractionalDualFeasible G w) (v : V) : w v ≤ 1 := by
   simpa [singletonStableSet] using hw.2 (singletonStableSet G v)
@@ -80,6 +89,9 @@ private theorem stableSet_eq_singleton (G : SimpleGraph V) (S : StableSet G)
   subst u
   exact Subtype.ext hu
 
+/--
+@isnad1 id=eq.0h3v.s4.9ebe6993ebb8 from=translated src=- shape=ded027bc vocab=6bc88cc7
+-/
 theorem singletonFractionalColoring_vertexLoad (G : SimpleGraph V) (v : V) :
     vertexLoad G (singletonFractionalColoring G) v = 1 := by
   classical
@@ -104,6 +116,9 @@ theorem singletonFractionalColoring_vertexLoad (G : SimpleGraph V) (v : V) :
           exact hterm S
     _ = 1 := by simp
 
+/--
+@isnad1 id=isfracti.0h2v.s4.4a2b8d064d1f from=translated src=- shape=fe3051fb vocab=4cb7de37
+-/
 theorem singletonFractionalColoring_feasible (G : SimpleGraph V) :
     IsFractionalColoring G (singletonFractionalColoring G) := by
   constructor
@@ -130,6 +145,9 @@ private theorem fractionalCosts_bddBelow (G : SimpleGraph V) :
   rintro t ⟨x, hx, rfl⟩
   exact fractionalCost_nonneg G hx
 
+/--
+@isnad1 id=le.0h2v.s4.f32e719e4288 from=translated src=- shape=abec20dc vocab=db70d35e
+-/
 theorem fractionalChromaticNumber_nonneg (G : SimpleGraph V) :
     0 ≤ fractionalChromaticNumber G := by
   unfold fractionalChromaticNumber
@@ -137,12 +155,18 @@ theorem fractionalChromaticNumber_nonneg (G : SimpleGraph V) :
   rintro t ⟨x, hx, rfl⟩
   exact fractionalCost_nonneg G hx
 
+/--
+@isnad1 id=le.1h3v.s5.cb0097044d68 from=translated src=- shape=69802f6e vocab=dc1e211a
+-/
 theorem fractionalChromaticNumber_le_cost (G : SimpleGraph V)
     {x : StableSet G → ℝ} (hx : IsFractionalColoring G x) :
     fractionalChromaticNumber G ≤ fractionalCost G x := by
   unfold fractionalChromaticNumber
   apply csInf_le (fractionalCosts_bddBelow G)
   exact ⟨x, hx, rfl⟩
+/--
+@isnad1 id=eq.0h4v.s6.b2d62688db8b from=translated src=- shape=d02fe8b5 vocab=2eefd6f9
+-/
 theorem weighted_vertexLoad_eq (G : SimpleGraph V) (x : StableSet G → ℝ)
     (w : V → ℝ) :
     (∑ v, w v * vertexLoad G x v) =
@@ -159,7 +183,9 @@ theorem weighted_vertexLoad_eq (G : SimpleGraph V) (x : StableSet G → ℝ)
           intro S _
           simp [mul_sum, mul_comm]
 
-/-- Weak duality for fractional coloring.-/
+/-- Weak duality for fractional coloring.
+@isnad1 id=le.2h4v.s5.c954e77e2559 from=translated src=- shape=299fe702 vocab=b44a2291
+-/
 theorem fractional_weak_duality (G : SimpleGraph V) {x : StableSet G → ℝ}
     {w : V → ℝ} (hx : IsFractionalColoring G x)
     (hw : IsFractionalDualFeasible G w) :
@@ -184,6 +210,9 @@ theorem fractional_weak_duality (G : SimpleGraph V) {x : StableSet G → ℝ}
       weighted_vertexLoad_eq G x w
     _ ≤ ∑ S : StableSet G, x S := hstable
     _ = fractionalCost G x := rfl
+/--
+@isnad1 id=le.1h3v.s5.dbb888656138 from=translated src=- shape=d6f612ef vocab=0613ac08
+-/
 theorem fractionalDualValue_le_chromatic (G : SimpleGraph V) {w : V → ℝ}
     (hw : IsFractionalDualFeasible G w) :
     fractionalDualValue w ≤ fractionalChromaticNumber G := by

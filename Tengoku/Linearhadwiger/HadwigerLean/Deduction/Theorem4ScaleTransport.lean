@@ -10,6 +10,9 @@ namespace HadwigerLean.Deduction
 
 universe u
 
+/--
+@isnad1 id=le.4h6v.s7.c1b27644beb8 from=translated src=- shape=2514e39a vocab=f5719af8
+-/
 theorem theorem4_scale_candidate_le_max
     {V : Type u} [Fintype V] (G : SimpleGraph V)
     (D T q : ℕ) (H : G.Subgraph)
@@ -25,6 +28,9 @@ theorem theorem4_scale_candidate_le_max
   apply le_csSup (theorem4ScaleRatioSet_finite G D T).bddAbove
   exact Or.inr ⟨q, H, hwindow, hq, hminor, horder, rfl⟩
 
+/--
+@isnad1 id=le.4h7v.s7.2b3772fb9924 from=translated src=- shape=39d46216 vocab=83192979
+-/
 theorem theorem4_scale_candidate_induce_le_max
     {V : Type u} [Fintype V] (G : SimpleGraph V) (U : Set V)
     [Fintype U] (D T q : ℕ)
@@ -58,6 +64,9 @@ theorem theorem4_scale_candidate_induce_le_max
   simpa only [hχ] using
     theorem4_scale_candidate_le_max G D T q J hwindow hq hJminor hJorder
 
+/--
+@isnad1 id=le.0h5v.s5.a3e5a08b9817 from=translated src=- shape=83e3b17e vocab=48b5eb33
+-/
 theorem theorem4ScaleMaxRatio_induce_le
     {V : Type u} [Fintype V] (G : SimpleGraph V) (U : Set V)
     [Fintype U] (D T : ℕ) :

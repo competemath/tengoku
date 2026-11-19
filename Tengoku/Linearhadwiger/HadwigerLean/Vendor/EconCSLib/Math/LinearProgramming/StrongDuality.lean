@@ -64,6 +64,9 @@ def DualFeasible (A : I → Fin n → 𝕜) (c : Fin n → 𝕜) (u : I → 𝕜
 /-! ### Weak duality
 
 For any primal-feasible `x` and dual-feasible `u`, `⟨c, x⟩ ≥ ⟨u, b⟩`. -/
+/--
+@isnad1 id=le.3h8v.s8.f6efaaa92bfe from=translated src=- shape=28fdbd9c vocab=04afb2e0
+-/
 theorem lp_weak_duality (A : I → Fin n → 𝕜) (b : I → 𝕜) (c : Fin n → 𝕜)
     {x : Fin n → 𝕜} (hxA : ∀ i, b i ≤ ∑ j, A i j * x j) (hxnn : ∀ j, 0 ≤ x j)
     {u : I → 𝕜} (hu_du : DualFeasible A c u) :
@@ -114,19 +117,33 @@ def dualAugB (b : I → 𝕜) : DualAugRow I n → 𝕜
   | Sum.inl i => b i
   | Sum.inr _ => 0
 
+/--
+@isnad1 id=eq.0h6v.s6.78ae9b67489a from=translated src=- shape=6cf09cbe vocab=0f6a74c7
+-/
 @[simp] theorem dualAugA_inl (A : I → Fin n → 𝕜) (i : I) (j : Fin n) :
     dualAugA A (Sum.inl i) j = A i j := rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.829dece27122 from=translated src=- shape=fdfa76a2 vocab=8c88627d
+-/
 @[simp] theorem dualAugA_inr (A : I → Fin n → 𝕜) (j' j : Fin n) :
     dualAugA A (Sum.inr j') j = if j = j' then 1 else 0 := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.8a1a416d6b3f from=translated src=- shape=8fb38245 vocab=d457d24c
+-/
 @[simp] theorem dualAugB_inl (b : I → 𝕜) (i : I) :
     dualAugB b (Sum.inl i : DualAugRow I n) = b i := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.1f3938e9f630 from=translated src=- shape=c52a8187 vocab=ba43935c
+-/
 @[simp] theorem dualAugB_inr (b : I → 𝕜) (j' : Fin n) :
     dualAugB b (Sum.inr j' : DualAugRow I n) = 0 := rfl
 
-/-- Augmented feasibility is the primal feasibility (with `x ≥ 0`).-/
+/-- Augmented feasibility is the primal feasibility (with `x ≥ 0`).
+@isnad1 id=iff.0h5v.s6.b075742eae52 from=translated src=- shape=6add9da3 vocab=9e7a2fd9
+-/
 theorem isFeasible_dualAug_iff (A : I → Fin n → 𝕜) (b : I → 𝕜) :
     IsFeasible (dualAugA A) (dualAugB b) ↔ PrimalFeasible A b := by
   unfold IsFeasible PrimalFeasible
@@ -156,7 +173,9 @@ theorem isFeasible_dualAug_iff (A : I → Fin n → 𝕜) (b : I → 𝕜) :
 
 /-- **LP Strong Duality** [MFoGT, Section 2.8, Exercise 9]: if the primal LP
 `min ⟨c, x⟩ s.t. A x ≥ b, x ≥ 0` is feasible and bounded below by `d`, then
-there exists a dual-feasible `u` with `⟨u, b⟩ ≥ d`.-/
+there exists a dual-feasible `u` with `⟨u, b⟩ ≥ d`.
+@isnad1 id=ex.2h7v.s8.ed8713e91a8a from=translated src=- shape=4261abbc vocab=48c8ef49
+-/
 theorem lp_strong_duality (A : I → Fin n → 𝕜) (b : I → 𝕜) (c : Fin n → 𝕜) (d : 𝕜)
     (hP_feas : PrimalFeasible A b)
     (hP_bound : ∀ x : Fin n → 𝕜,

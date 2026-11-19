@@ -15,7 +15,9 @@ namespace HadwigerLean
 namespace CliqueDensity
 
 /-- A common form of the E.5 endpoint estimate. Both correlated cases
-satisfy the order and degree hypotheses.-/
+satisfy the order and degree hypotheses.
+@isnad1 id=le.6h5v.s8.2b934f4cdf5e from=translated src=- shape=9d3d906f vocab=9d920375
+-/
 theorem endpoint_exponential_bound
     (d m₀ b s δ₀ : ℝ)
     (hd : 0 < d) (hb0 : 0 ≤ b) (hb : b ≤ d / 3)
@@ -91,7 +93,9 @@ theorem endpoint_exponential_bound
       congr 1
       ring
 
-/-- E.5 in the high degree, order-at-most-2d case.-/
+/-- E.5 in the high degree, order-at-most-2d case.
+@isnad1 id=le.7h5v.s7.52518f1b82c2 from=translated src=- shape=bf1399c3 vocab=9b15d243
+-/
 theorem endpoint_exponential_bound_caseI
     (d m₀ b s δ₀ : ℝ)
     (hd : 0 < d) (hmlo : d < m₀) (hmhi : m₀ ≤ 2 * d)
@@ -103,7 +107,9 @@ theorem endpoint_exponential_bound_caseI
   · linarith
   · linarith
 
-/-- E.5 in the smaller order, degree-at-least-2d/3 case.-/
+/-- E.5 in the smaller order, degree-at-least-2d/3 case.
+@isnad1 id=le.7h5v.s8.145914d833f2 from=translated src=- shape=4b225a7d vocab=9b15d243
+-/
 theorem endpoint_exponential_bound_caseII
     (d m₀ b s δ₀ : ℝ)
     (hd : 0 < d) (hmlo : 2 * d / 3 < m₀) (hmhi : m₀ ≤ d)

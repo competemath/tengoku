@@ -34,7 +34,9 @@ def HasOddConnectorImprovement (G : SimpleGraph V) : Prop :=
       IsPartialEggDecomposition Q w ∧ eggSupport P w ⊂ eggSupport Q w
 
 /-- The odd-case improvement and the checked even-case strategy together
-improve every non-egg block.-/
+improve every non-egg block.
+@isnad1 id=haseggsu.1h3v.s4.6c1e615b4b2f from=translated src=- shape=4b9de475 vocab=609b1ddb
+-/
 theorem hasEggSupportImprovement_of_odd_connector_improvement
     (G : SimpleGraph V) (w : V → ℝ)
     (hOdd : HasOddConnectorImprovement G) :
@@ -46,7 +48,9 @@ theorem hasEggSupportImprovement_of_odd_connector_improvement
   · exact improve_of_no_odd_connector P i₀ w hP hnot hU hmin hno
   · exact hOdd n P i₀ w U hU hmin hP hnot hno
 
-/-- Conditional all-egg decomposition for every real vertex weight.-/
+/-- Conditional all-egg decomposition for every real vertex weight.
+@isnad1 id=ex.1h3v.s5.aa6803dc5f9c from=translated src=- shape=9135586c vocab=d858e4ec
+-/
 theorem exists_all_egg_partition_of_odd_connector_improvement
     (G : SimpleGraph V) (w : V → ℝ)
     (hOdd : HasOddConnectorImprovement G) :
@@ -57,7 +61,9 @@ theorem exists_all_egg_partition_of_odd_connector_improvement
     (hasEggSupportImprovement_of_odd_connector_improvement G w hOdd)
 
 /-- Reed--Seymour's bound follows from the explicit odd-connector
-improvement hypothesis. The empty graph is included.-/
+improvement hypothesis. The empty graph is included.
+@isnad1 id=le.1h2v.s5.6c3d5f2ae403 from=translated src=- shape=5542de15 vocab=39f6521e
+-/
 theorem reed_seymour_bound_of_odd_connector_improvement
     [DecidableEq V] (G : SimpleGraph V)
     (hOdd : HasOddConnectorImprovement G) :

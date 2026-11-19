@@ -115,7 +115,9 @@ def partition : ConnectedPartition G (SplitIndex I J i₀) where
       · exact ⟨.inr (some j), hj⟩
     · exact ⟨.inl ⟨i, hieq⟩, hi⟩
 
-/-- Edges between untouched blocks are unchanged by the split.-/
+/-- Edges between untouched blocks are unchanged by the split.
+@isnad1 id=iff.0h9v.s6.8041f86e1372 from=translated src=- shape=9224c5ba vocab=8f5aeb48
+-/
 theorem adj_old_old (i j : {i : I // i ≠ i₀}) :
     S.partition.touchingQuotient.Adj (.inl i) (.inl j) ↔
       P.touchingQuotient.Adj i.1 j.1 := by
@@ -129,7 +131,9 @@ theorem adj_old_old (i j : {i : I // i ≠ i₀}) :
     exact ⟨fun h => hij (congrArg Subtype.val (Sum.inl.inj h)), htouch⟩
 
 /-- An edge from the new block to an untouched block was already incident
-with the old central block.-/
+with the old central block.
+@isnad1 id=adj.1h8v.s6.778d969d5719 from=translated src=- shape=8aa133d7 vocab=fe90dbe7
+-/
 theorem old_neighbor_of_U_adj (i : {i : I // i ≠ i₀})
     (h : S.partition.touchingQuotient.Adj (.inr none) (.inl i)) :
     P.touchingQuotient.Adj i₀ i.1 := by
@@ -139,7 +143,9 @@ theorem old_neighbor_of_U_adj (i : {i : I // i ≠ i₀})
     ⟨i.2.symm, x, S.U_subset hx, y, hy, hxy⟩
 
 /-- An edge from a remainder block to an untouched block was already
-incident with the old central block.-/
+incident with the old central block.
+@isnad1 id=adj.1h9v.s6.b9f42935abdf from=translated src=- shape=50b9a977 vocab=53b8ee24
+-/
 theorem old_neighbor_of_remainder_adj (j : J) (i : {i : I // i ≠ i₀})
     (h : S.partition.touchingQuotient.Adj (.inr (some j)) (.inl i)) :
     P.touchingQuotient.Adj i₀ i.1 := by
@@ -149,7 +155,9 @@ theorem old_neighbor_of_remainder_adj (j : J) (i : {i : I // i ≠ i₀})
     ⟨i.2.symm, x, S.remainder_subset j hx, y, hy, hxy⟩
 
 /-- The new block keeps all old neighbors if it meets each old neighboring
-block. This is the terminal-hitting property of the minimal connector.-/
+block. This is the terminal-hitting property of the minimal connector.
+@isnad1 id=adj.2h8v.s7.5a8d26f7cf21 from=translated src=- shape=1bc254a6 vocab=3e9ab223
+-/
 theorem U_adj_of_old_neighbor (i : {i : I // i ≠ i₀})
     (htouch : ∀ k, P.touchingQuotient.Adj i₀ k →
       ∃ x ∈ S.U, ∃ y ∈ P.block k, G.Adj x y)
@@ -162,7 +170,9 @@ theorem U_adj_of_old_neighbor (i : {i : I // i ≠ i₀})
   exact (S.partition.touchingQuotient_adj_iff _ _).mpr
     ⟨hne, x, hx, y, hy, hxy⟩
 
-/-- Remainder blocks from distinct connected components do not touch.-/
+/-- Remainder blocks from distinct connected components do not touch.
+@isnad1 id=not.2h9v.s7.38efbb311523 from=translated src=- shape=699024c2 vocab=27bc602c
+-/
 theorem not_adj_remainders (j k : J) (hjk : j ≠ k)
     (hno : ∀ j k, j ≠ k →
       ¬ ∃ x ∈ S.remainder j, ∃ y ∈ S.remainder k, G.Adj x y) :
@@ -170,7 +180,9 @@ theorem not_adj_remainders (j k : J) (hjk : j ≠ k)
   intro h
   exact hno j k hjk ((S.partition.touchingQuotient_adj_iff _ _).mp h).2
 
-/-- Distinct remainder components have no quotient edge.-/
+/-- Distinct remainder components have no quotient edge.
+@isnad1 id=not.1h9v.s7.e7c8ad840113 from=translated src=- shape=c8c61dd4 vocab=27bc602c
+-/
 theorem not_adj_remainder_any (j k : J)
     (hno : ∀ j k, j ≠ k →
       ¬ ∃ x ∈ S.remainder j, ∃ y ∈ S.remainder k, G.Adj x y) :
@@ -182,7 +194,9 @@ theorem not_adj_remainder_any (j k : J)
   · exact S.not_adj_remainders j k h hno
 
 /-- Each remainder component is simplicial in the new quotient when the old
-central block was simplicial and the new block retains its neighbors.-/
+central block was simplicial and the new block retains its neighbors.
+@isnad1 id=issimpli.3h8v.s7.4421c32e8af2 from=translated src=- shape=23128fad vocab=8b2815f2
+-/
 theorem remainder_simplicial [Fintype I] [Fintype (SplitIndex I J i₀)] (j : J)
     (hcentral : IsSimplicialOn P.touchingQuotient Finset.univ i₀)
     (htouch : ∀ k, P.touchingQuotient.Adj i₀ k →
@@ -299,7 +313,9 @@ noncomputable def coreIso
 /-- The central split preserves simplicial elimination. The assumptions
 are exactly the quotient conditions used in the final Reed--Seymour update:
 the old central vertex is simplicial, U meets all its old neighbors, and
-distinct remainder components have no edges between them.-/
+distinct remainder components have no edges between them.
+@isnad1 id=hassimpl.4h7v.s7.6e3c0ea347d0 from=translated src=- shape=f942888e vocab=deb36bb2
+-/
 theorem partition_hasSimplicialElimination [Fintype I] [Fintype J]
     [Fintype (SplitIndex I J i₀)]
     (hPEO : HasSimplicialElimination P.touchingQuotient)
@@ -342,7 +358,9 @@ theorem partition_hasSimplicialElimination [Fintype I] [Fintype J]
 
 /-- The central update preserves the partial egg-decomposition invariant.
 An old non-egg block cannot neighbor the central non-egg block, so its quotient
-neighborhood is unchanged by the split.-/
+neighborhood is unchanged by the split.
+@isnad1 id=ispartia.5h8v.s7.afd38a66cbcb from=translated src=- shape=7a885e47 vocab=55e29f0d
+-/
 theorem partition_isPartialEggDecomposition [Fintype V] [Fintype I]
     [DecidableEq I] [Fintype J] [Fintype (SplitIndex I J i₀)]
     [DecidableEq (SplitIndex I J i₀)]
@@ -424,7 +442,9 @@ theorem partition_isPartialEggDecomposition [Fintype V] [Fintype I]
               exact False.elim (hnoNew q hb)
 
 /-- Replacing a non-egg central block by an egg strictly increases egg
-support, regardless of the status of the remainder blocks.-/
+support, regardless of the status of the remainder blocks.
+@isnad1 id=lt.2h8v.s6.a5a7e32f5b3b from=translated src=- shape=5294ee4e vocab=c4cfa8f9
+-/
 theorem eggSupport_ssubset [Fintype V] [Fintype I] [DecidableEq I]
     [Fintype (SplitIndex I J i₀)] [DecidableEq (SplitIndex I J i₀)]
     (w : V → ℝ)
@@ -468,12 +488,18 @@ def block
   {x | ∃ hx : x ∈ P.block i₀ \ U,
     (⟨x, hx⟩ : {v : V // v ∈ P.block i₀ \ U}) ∈ c.supp}
 
+/--
+@isnad1 id=le.0h7v.s6.c848615de2aa from=translated src=- shape=bbff1163 vocab=759d9e19
+-/
 theorem block_subset_central
     (c : (G.induce (P.block i₀ \ U)).ConnectedComponent) :
     block i₀ U c ⊆ P.block i₀ := by
   rintro x ⟨hx, _⟩
   exact hx.1
 
+/--
+@isnad1 id=disjoint.0h7v.s6.ea6d7e9921be from=translated src=- shape=be762b1a vocab=64ffcb15
+-/
 theorem block_disjoint_U
     (c : (G.induce (P.block i₀ \ U)).ConnectedComponent) :
     Disjoint U (block i₀ U c) := by
@@ -481,7 +507,9 @@ theorem block_disjoint_U
   rintro x hxU ⟨hx, _⟩
   exact hx.2 hxU
 
-/-- Every vertex outside U belongs to its canonical component.-/
+/-- Every vertex outside U belongs to its canonical component.
+@isnad1 id=ex.2h7v.s6.6d937005f588 from=translated src=- shape=c27147f4 vocab=5d26b747
+-/
 theorem cover (x : V) (hx : x ∈ P.block i₀)
     (hU : x ∉ U) :
     ∃ c : (G.induce (P.block i₀ \ U)).ConnectedComponent,
@@ -490,7 +518,9 @@ theorem cover (x : V) (hx : x ∈ P.block i₀)
   exact ⟨(G.induce (P.block i₀ \ U)).connectedComponentMk ⟨x, hxR⟩,
     ⟨hxR, rfl⟩⟩
 
-/-- A component block, viewed as a subset of V, is connected.-/
+/-- A component block, viewed as a subset of V, is connected.
+@isnad1 id=connecte.0h7v.s6.82c26daa5ca2 from=translated src=- shape=33021dc2 vocab=ca8121b6
+-/
 theorem block_connected
     (c : (G.induce (P.block i₀ \ U)).ConnectedComponent) :
     (G.induce (block i₀ U c)).Connected := by
@@ -517,7 +547,9 @@ theorem block_connected
   exact e.connected_iff.mpr c.connected_toSimpleGraph
 
 /-- Different connected components produce disjoint subsets of the original
-vertex type.-/
+vertex type.
+@isnad1 id=disjoint.1h8v.s7.d3abe924e346 from=translated src=- shape=e06e5ee0 vocab=64ffcb15
+-/
 theorem block_disjoint (c d : (G.induce (P.block i₀ \ U)).ConnectedComponent)
     (hcd : c ≠ d) :
     Disjoint (block i₀ U c) (block i₀ U d) := by
@@ -528,7 +560,9 @@ theorem block_disjoint (c d : (G.induce (P.block i₀ \ U)).ConnectedComponent)
   exact hcd (SimpleGraph.ConnectedComponent.eq_of_common_vertex
     (heq ▸ hc) hd)
 
-/-- Different connected components have no edge between them.-/
+/-- Different connected components have no edge between them.
+@isnad1 id=not.1h8v.s7.cd690efe8712 from=translated src=- shape=49e6bd63 vocab=70c05130
+-/
 theorem no_cross (c d : (G.induce (P.block i₀ \ U)).ConnectedComponent)
     (hcd : c ≠ d) :
     ¬ ∃ x ∈ block i₀ U c, ∃ y ∈ block i₀ U d, G.Adj x y := by
@@ -567,7 +601,9 @@ noncomputable def ofComponents (P : ConnectedPartition G I) (i₀ : I)
     · exact Or.inr (Components.cover i₀ U x hx hu)
 
 /-- Components of the complement of U satisfy the no-cross hypothesis of
-the quotient update automatically.-/
+the quotient update automatically.
+@isnad1 id=not.3h8v.s8.0507540b34d9 from=translated src=- shape=8b72630b vocab=4b04e631
+-/
 theorem ofComponents_no_cross (P : ConnectedPartition G I) (i₀ : I)
     (U : Set V) (hconn : (G.induce U).Connected)
     (hsubset : U ⊆ P.block i₀) :
@@ -581,7 +617,9 @@ theorem ofComponents_no_cross (P : ConnectedPartition G I) (i₀ : I)
 
 /-- The concrete final update: a connected egg U inside a non-egg central
 block that meets every old quotient neighbor yields a new partial
-egg-decomposition with strictly larger support.-/
+egg-decomposition with strictly larger support.
+@isnad1 id=and.5h7v.s8.dc1f8e11b89e from=translated src=- shape=e66ecc08 vocab=e500dc91
+-/
 theorem ofComponents_partial_and_support [Fintype V] [Fintype I]
     [DecidableEq I] (P : ConnectedPartition G I) (i₀ : I) (w : V → ℝ)
     (U : Set V)
@@ -610,7 +648,9 @@ These are the terminal sets Nᵢ in Reed--Seymour, Section 2.-/
 def terminalSet (P : ConnectedPartition G I) (i₀ i : I) : Set V :=
   {x | x ∈ P.block i₀ ∧ ∃ y ∈ P.block i, G.Adj x y}
 
-/-- Every old quotient neighbor has a nonempty terminal set.-/
+/-- Every old quotient neighbor has a nonempty terminal set.
+@isnad1 id=nonempty.1h6v.s5.5e0c210e4cfe from=translated src=- shape=85af0cbd vocab=50b927b6
+-/
 theorem terminalSet_nonempty_of_adj (P : ConnectedPartition G I)
     {i₀ i : I} (h : P.touchingQuotient.Adj i₀ i) :
     (terminalSet P i₀ i).Nonempty := by
@@ -619,7 +659,9 @@ theorem terminalSet_nonempty_of_adj (P : ConnectedPartition G I)
   exact ⟨x, hx, y, hy, hxy⟩
 
 /-- Meeting every terminal set is exactly the quotient-neighbor retention
-condition required by the concrete central update.-/
+condition required by the concrete central update.
+@isnad1 id=ex.2h7v.s6.25409ff494e5 from=translated src=- shape=ae6516f8 vocab=4d844ef8
+-/
 theorem touches_neighbors_of_meets_terminals
     (P : ConnectedPartition G I) (i₀ : I) (U : Set V)
     (hmeets : ∀ i, P.touchingQuotient.Adj i₀ i →
@@ -640,7 +682,9 @@ def IsTerminalHittingSet (P : ConnectedPartition G I) (i₀ : I)
       ((U : Set V) ∩ terminalSet P i₀ i).Nonempty
 
 /-- A connector of minimum cardinality exists, including when the central
-block has no quotient neighbors.-/
+block has no quotient neighbors.
+@isnad1 id=ex.0h5v.s5.93636c4133e5 from=translated src=- shape=ca5de7d1 vocab=c0e596e3
+-/
 theorem exists_minimal_terminal_connector [Fintype V]
     (P : ConnectedPartition G I) (i₀ : I) :
     ∃ U : Finset V, IsTerminalHittingSet P i₀ U ∧
@@ -673,7 +717,9 @@ theorem exists_minimal_terminal_connector [Fintype V]
   simpa only [candidates, Finset.mem_filter, Finset.mem_univ, true_and] using hT
 
 /-- The chosen minimum-cardinality terminal connector is also
-inclusion-minimal, the form used in the odd-cycle argument.-/
+inclusion-minimal, the form used in the odd-cycle argument.
+@isnad1 id=ex.0h5v.s5.aa6a8849b634 from=translated src=- shape=3c26f610 vocab=2e30eff8
+-/
 theorem exists_inclusion_minimal_terminal_connector [Fintype V]
     (P : ConnectedPartition G I) (i₀ : I) :
     ∃ U : Finset V, IsTerminalHittingSet P i₀ U ∧
@@ -685,7 +731,9 @@ theorem exists_inclusion_minimal_terminal_connector [Fintype V]
 
 /-- A minimum terminal-hitting set cannot contain a proper connected
 terminal-hitting subset. This is the finite form of the minimal transversal
-hypothesis used in the parity argument.-/
+hypothesis used in the parity argument.
+@isnad1 id=eq.5h7v.s7.4a12f540bd72 from=translated src=- shape=a1fbb036 vocab=98941e2c
+-/
 theorem terminal_connector_subset_eq [Fintype V]
     (P : ConnectedPartition G I) (i₀ : I)
     {U T : Finset V}
@@ -711,7 +759,9 @@ def inducedTerminalSet (P : ConnectedPartition G I) (i₀ : I)
   {v | v.1 ∈ terminalSet P i₀ i.1}
 
 /-- A minimum connector gives the minimal connected transversal hypothesis
-used in the parity argument, after restricting the graph to U.-/
+used in the parity argument, after restricting the graph to U.
+@isnad1 id=isminima.2h6v.s6.beb3e9e13fa3 from=translated src=- shape=57989a59 vocab=e6532c83
+-/
 theorem minimal_hitting_set_is_minimal_transversal [Fintype V]
     (P : ConnectedPartition G I) (i₀ : I)
     {U : Finset V}

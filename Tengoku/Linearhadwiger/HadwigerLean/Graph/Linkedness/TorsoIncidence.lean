@@ -20,7 +20,9 @@ private theorem edgeIncidenceSetCount_eq_torsoIncidentEdges
   }
   exact Nat.card_congr e
 
-/-- Every edge incident with U either meets F or survives deletion of F-incident edges.-/
+/-- Every edge incident with U either meets F or survives deletion of F-incident edges.
+@isnad1 id=le.0h4v.s5.061976b9b4f5 from=translated src=- shape=7120e4c8 vocab=5a60ba4e
+-/
 theorem incidence_le_far_add_near
     (G : SimpleGraph V) (U F : Set V) :
     edgeIncidenceSetCount G U ≤
@@ -45,7 +47,9 @@ theorem incidence_le_far_add_near
   exact (Set.ncard_le_ncard hcover).trans
     (Set.ncard_union_le _ _)
 
-/-- Removing all far-shore incident edges leaves a graph supported on the near side.-/
+/-- Removing all far-shore incident edges leaves a graph supported on the near side.
+@isnad1 id=le.0h3v.s5.6736f2f7415c from=translated src=- shape=782ce169 vocab=70f6f604
+-/
 theorem support_delete_far_subset_left
     (G : SimpleGraph V) (S : VertexSeparation G) :
     (G.deleteEdges (torsoIncidentEdges G S.strictRight)).support ⊆ S.left := by
@@ -61,7 +65,9 @@ theorem support_delete_far_subset_left
     exact ⟨x, ⟨hxR,hxNotL⟩, by simp⟩
   exact hxy'.2 hxe
 
-/-- Deleting far-shore incident edges preserves exactly the induced near-side graph.-/
+/-- Deleting far-shore incident edges preserves exactly the induced near-side graph.
+@isnad1 id=eq.0h3v.s5.77286aca59cc from=translated src=- shape=4ca34962 vocab=8b6fa350
+-/
 theorem induce_delete_far_eq
     (G : SimpleGraph V) (S : VertexSeparation G) :
     (G.deleteEdges (torsoIncidentEdges G S.strictRight)).induce S.left =
@@ -82,7 +88,9 @@ theorem induce_delete_far_eq
     · exact hzF.2 x.property
     · exact hzF.2 y.property
 
-/-- Incidence surviving far-edge deletion is exactly incidence in the induced near side.-/
+/-- Incidence surviving far-edge deletion is exactly incidence in the induced near side.
+@isnad1 id=eq.0h4v.s6.8928d6fb241c from=translated src=- shape=6be47ad9 vocab=19a3d6b9
+-/
 theorem incidence_delete_far_eq_induce_left
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (S : VertexSeparation G) (R : Set V) :
@@ -109,7 +117,9 @@ theorem incidence_delete_far_eq_induce_left
   have hinter := incidence_inter_support_subset H S.left hSupport Rᶜ
   exact hinter.symm.trans hinc.symm
 
-/-- The exact incidence decomposition needed for D.1.-/
+/-- The exact incidence decomposition needed for D.1.
+@isnad1 id=le.0h4v.s6.bac4e814b1c1 from=translated src=- shape=1a64fbea vocab=a3ca954d
+-/
 theorem incidence_near_far_bound
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (S : VertexSeparation G) (R : Set V) :
@@ -121,7 +131,9 @@ theorem incidence_near_far_bound
   rw [incidence_delete_far_eq_induce_left G S R] at h
   exact h
 
-/-- The exterior root count splits into the far shore and the near-side exterior.-/
+/-- The exterior root count splits into the far shore and the near-side exterior.
+@isnad1 id=eq.1h4v.s6.741148830835 from=translated src=- shape=8bc84082 vocab=7390e577
+-/
 theorem outside_card_near_add_far
     {G : SimpleGraph V} (R : Set V) (S : VertexSeparation G)
     (hroot : R ⊆ S.left) :
@@ -160,7 +172,9 @@ theorem outside_card_near_add_far
   rw [hdecomp, Set.ncard_union_eq hdis, hUcard]
   omega
 
-/-- D.1: removing a sparse far shore leaves strict global mass on the induced near side.-/
+/-- D.1: removing a sparse far shore leaves strict global mass on the induced near side.
+@isnad1 id=lt.3h5v.s7.836a1da08373 from=translated src=- shape=f6a41119 vocab=df785f48
+-/
 theorem dense_induced_near_of_massed
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (R : Set V) (α : ℝ) (hm : MassedPair G R α)
@@ -201,14 +215,18 @@ def torsoGraph (G : SimpleGraph V) (S : VertexSeparation G) :
     · exact G.irrefl h
     · exact h.2.2 rfl
 
-/-- The induced near side is a subgraph of its torso.-/
+/-- The induced near side is a subgraph of its torso.
+@isnad1 id=le.0h3v.s5.d61f8bddf8b1 from=translated src=- shape=21db25ba vocab=50024387
+-/
 theorem induce_le_torso
     (G : SimpleGraph V) (S : VertexSeparation G) :
     G.induce S.left ≤ torsoGraph G S := by
   intro u v h
   exact Or.inl h
 
-/-- Every adhesion vertex pair is adjacent in the torso.-/
+/-- Every adhesion vertex pair is adjacent in the torso.
+@isnad1 id=pairwise.0h3v.s6.297b11306ccc from=translated src=- shape=16eacce7 vocab=e7b54ac1
+-/
 theorem torso_boundary_clique
     (G : SimpleGraph V) (S : VertexSeparation G) :
     ({u : S.left | (u : V) ∈ S.right} : Set S.left).Pairwise
@@ -216,7 +234,9 @@ theorem torso_boundary_clique
   intro u hu v hv huv
   exact Or.inr ⟨hu,hv,huv⟩
 
-/-- D.1 for the completed near-side torso.-/
+/-- D.1 for the completed near-side torso.
+@isnad1 id=lt.3h5v.s7.2c6de889a4e5 from=translated src=- shape=06653586 vocab=95e906be
+-/
 theorem torso_global_of_massed
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (R : Set V) (α : ℝ) (hm : MassedPair G R α)
@@ -239,7 +259,9 @@ theorem torso_global_of_massed
     exact_mod_cast hmono
   exact hnear.trans_le hmonoR
 
-/-- Artificial torso edges have no effect on incidence away from the adhesion.-/
+/-- Artificial torso edges have no effect on incidence away from the adhesion.
+@isnad1 id=eq.1h4v.s6.ed2688809090 from=translated src=- shape=0b9877fa vocab=7f773372
+-/
 theorem torso_incidence_eq_induce_near
     (G : SimpleGraph V) (S : VertexSeparation G)
     (U : Set S.left)
@@ -271,7 +293,9 @@ def swapSeparation {G : SimpleGraph V} (S : VertexSeparation G) :
     intro x y hxR hxNotL hyL hyNotR hxy
     exact (S.no_cross hyL hyNotR hxR hxNotL) hxy.symm
 
-/-- Torso incidence away from the adhesion equals ambient graph incidence.-/
+/-- Torso incidence away from the adhesion equals ambient graph incidence.
+@isnad1 id=eq.1h4v.s7.25ce5501e128 from=translated src=- shape=8835262d vocab=0a310115
+-/
 theorem torso_incidence_eq_ambient_far
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (S : VertexSeparation G) (U : Set S.left)
@@ -304,7 +328,9 @@ def glueTorsoLeft
   glueRightInduced (swapSeparation S) (torsoSeparationInduced S T)
     hBoundary
 
-/-- Gluing a torso separation preserves its adhesion order.-/
+/-- Gluing a torso separation preserves its adhesion order.
+@isnad1 id=eq.1h4v.s7.dc8cb87faf23 from=translated src=- shape=36f7eaf5 vocab=0c38f8f2
+-/
 theorem glueTorsoLeft_separator_card
     {G : SimpleGraph V} (S : VertexSeparation G)
     (T : VertexSeparation (torsoGraph G S))
@@ -314,7 +340,9 @@ theorem glueTorsoLeft_separator_card
   exact glueRightInduced_separator_card (swapSeparation S)
     (torsoSeparationInduced S T) hBoundary
 
-/-- The glued far shore is the torso far shore viewed in the original vertex type.-/
+/-- The glued far shore is the torso far shore viewed in the original vertex type.
+@isnad1 id=eq.1h4v.s7.ce41004725b3 from=translated src=- shape=92d0b941 vocab=422f96ec
+-/
 theorem glueTorsoLeft_strictRight
     {G : SimpleGraph V} (S : VertexSeparation G)
     (T : VertexSeparation (torsoGraph G S))
@@ -324,7 +352,9 @@ theorem glueTorsoLeft_strictRight
   exact glueRightInduced_strictRight (swapSeparation S)
     (torsoSeparationInduced S T) hBoundary
 
-/-- Root cardinality is unchanged when roots are placed in the induced near-side type.-/
+/-- Root cardinality is unchanged when roots are placed in the induced near-side type.
+@isnad1 id=eq.1h4v.s6.ade88c330891 from=translated src=- shape=1b89aa83 vocab=fd20f228
+-/
 theorem lifted_roots_card
     {G : SimpleGraph V} (R : Set V) (S : VertexSeparation G)
     (hroot : R ⊆ S.left) :
@@ -340,7 +370,9 @@ theorem lifted_roots_card
   change Y.ncard = R.ncard
   rw [← hImg, Set.ncard_image_of_injective _ Subtype.val_injective]
 
-/-- A dense torso shore cannot put the completed adhesion on its near side.-/
+/-- A dense torso shore cannot put the completed adhesion on its near side.
+@isnad1 id=false.6h6v.s8.a5856af59588 from=translated src=- shape=ac1fcf5b vocab=9979c582
+-/
 theorem no_dense_torso_shore_of_boundary_near
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (R : Set V) (α : ℝ)
@@ -376,7 +408,9 @@ theorem no_dense_torso_shore_of_boundary_near
     ← hinc] at hbound
   exact (not_lt_of_ge hbound) hdense
 
-/-- Every dense torso shore of order below the root set contains the whole adhesion on its far side.-/
+/-- Every dense torso shore of order below the root set contains the whole adhesion on its far side.
+@isnad1 id=le.5h6v.s8.5c2f8080cf15 from=translated src=- shape=e93e5ad2 vocab=9979c582
+-/
 theorem boundary_far_of_dense_torso_shore
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (R : Set V) (α : ℝ) (hm : MassedPair G R α)
@@ -408,6 +442,9 @@ def glueTorsoFar {G : SimpleGraph V}
   swapSeparation (glueRightInduced (swapSeparation S)
     (swapSeparation (torsoSeparationInduced S T)) hBoundary)
 
+/--
+@isnad1 id=eq.1h4v.s7.35c1701c9c26 from=translated src=- shape=775eaed9 vocab=df404881
+-/
 theorem glueTorsoFar_left {G : SimpleGraph V}
     (S : VertexSeparation G)
     (T : VertexSeparation (torsoGraph G S))
@@ -416,6 +453,9 @@ theorem glueTorsoFar_left {G : SimpleGraph V}
       Subtype.val '' T.left := by
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s7.ae190116a04d from=translated src=- shape=76edc95b vocab=43a87464
+-/
 theorem glueTorsoFar_right {G : SimpleGraph V}
     (S : VertexSeparation G)
     (T : VertexSeparation (torsoGraph G S))
@@ -424,13 +464,18 @@ theorem glueTorsoFar_right {G : SimpleGraph V}
       S.right ∪ Subtype.val '' T.right := by
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.722e47e44122 from=translated src=- shape=b1e85df5 vocab=48bd4171
+-/
 theorem swapSeparation_separator {G : SimpleGraph V}
     (S : VertexSeparation G) :
     (swapSeparation S).separator = S.separator := by
   ext x
   exact and_comm
 
-/-- A nonempty torso far shore strictly shrinks the new near side.-/
+/-- A nonempty torso far shore strictly shrinks the new near side.
+@isnad1 id=lt.2h4v.s7.cb0c53879394 from=translated src=- shape=4021900e vocab=1835175b
+-/
 theorem glueTorsoFar_left_card_lt {G : SimpleGraph V}
     (S : VertexSeparation G)
     (T : VertexSeparation (torsoGraph G S))
@@ -458,7 +503,9 @@ theorem glueTorsoFar_left_card_lt {G : SimpleGraph V}
   have hc := Set.ncard_lt_ncard hss
   simpa only [Nat.card_coe_set_eq] using hc
 
-/-- The original strict far shore survives far-side torso gluing.-/
+/-- The original strict far shore survives far-side torso gluing.
+@isnad1 id=nonempty.2h4v.s6.829c58e1037a from=translated src=- shape=ccbc31e1 vocab=2dc1f85b
+-/
 theorem glueTorsoFar_strictRight_nonempty {G : SimpleGraph V}
     (S : VertexSeparation G)
     (T : VertexSeparation (torsoGraph G S))

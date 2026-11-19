@@ -13,7 +13,9 @@ namespace Linkedness
 set_option maxHeartbeats 1000000
 
 /-- The small side of an anticomplete dense partition retains minimum
-degree five times k, in addition to being k-linked.-/
+degree five times k, in addition to being k-linked.
+@isnad1 id=ex.7h5v.s8.01f0e66154b4 from=translated src=- shape=255c9070 vocab=1c75f73e
+-/
 theorem dense_linked_side_of_anticomplete_partition
     {V : Type*} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj]
@@ -61,7 +63,9 @@ theorem dense_linked_side_of_anticomplete_partition
     exact kLinked_of_five_k_degree_seven_k_order
       (G.induce (B : Set V)) k hdegB (by simpa using hB_small)
 
-/-- The dense linked side has at least twice k vertices.-/
+/-- The dense linked side has at least twice k vertices.
+@isnad1 id=le.2h4v.s8.9ba3a5ba0789 from=translated src=- shape=3abb7044 vocab=e1749101
+-/
 theorem dense_linked_side_card_ge_two_mul
     {V : Type*} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj]
@@ -78,7 +82,9 @@ theorem dense_linked_side_card_ge_two_mul
   omega
 
 /-- A disconnected residual graph meeting the 14k/5k bounds contains a
-linked side retaining the five-k degree guarantee.-/
+linked side retaining the five-k degree guarantee.
+@isnad1 id=ex.3h5v.s8.be5631907d2a from=translated src=- shape=435c91f3 vocab=55ba9629
+-/
 theorem dense_linked_side_of_nonreachable
     {V : Type*} [Fintype V] [DecidableEq V]
     (H : SimpleGraph V) [DecidableRel H.Adj] (k : ℕ)

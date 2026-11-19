@@ -20,7 +20,9 @@ def IsSimplicialOn (G : SimpleGraph V) (s : Finset V) (v : V) : Prop :=
 
 omit [Fintype V] in
 /-- A vertex is simplicial when all of its neighbors in the specified set lie
-inside a clique.-/
+inside a clique.
+@isnad1 id=issimpli.2h5v.s5.0ffd482b3d75 from=translated src=- shape=4acfb812 vocab=c26b290f
+-/
 theorem IsSimplicialOn.of_neighbor_subset_clique
     (G : SimpleGraph V) (s K : Finset V) (v : V)
     (hK : G.IsClique (K : Set V))
@@ -131,7 +133,9 @@ private theorem colorable_induce_of_simplicial_elimination
     exact SimpleGraph.Colorable.of_isEmpty n
 
 /-- A finite graph with a simplicial elimination property is colorable by its
-clique number.-/
+clique number.
+@isnad1 id=colorabl.1h2v.s4.a7e49b166200 from=translated src=- shape=395f813d vocab=cb4544be
+-/
 theorem HasSimplicialElimination.colorable_cliqueNum
     {G : SimpleGraph V} (h : HasSimplicialElimination G) :
     G.Colorable G.cliqueNum := by
@@ -144,7 +148,9 @@ theorem HasSimplicialElimination.colorable_cliqueNum
   exact C.valid hvw
 
 /-- The usual chromatic number equals the clique number for a graph with
-simplicial elimination.-/
+simplicial elimination.
+@isnad1 id=eq.1h2v.s4.d77a4cea5c79 from=translated src=- shape=f0811d7c vocab=6c8d450d
+-/
 theorem HasSimplicialElimination.chromatic_eq_cliqueNum
     {G : SimpleGraph V} (h : HasSimplicialElimination G) :
     chromatic G = G.cliqueNum := by
@@ -155,7 +161,9 @@ theorem HasSimplicialElimination.chromatic_eq_cliqueNum
     exact hs.isClique.card_le_of_colorable G.colorable_chromaticNumber_of_fintype
 
 omit [Fintype V] in
-/-- Simplicial elimination is invariant under graph isomorphism.-/
+/-- Simplicial elimination is invariant under graph isomorphism.
+@isnad1 id=hassimpl.1h5v.s4.d3e214dfa03a from=translated src=- shape=6eedadaa vocab=0c9617e6
+-/
 theorem HasSimplicialElimination.of_iso {W : Type*}
     {G : SimpleGraph V} {H : SimpleGraph W}
     (e : G ≃g H) (h : HasSimplicialElimination G) :
@@ -191,7 +199,9 @@ theorem HasSimplicialElimination.of_iso {W : Type*}
   have hadj : H.Adj (e (e.symm x)) (e (e.symm y)) := e.map_rel_iff.mpr hxy'
   simpa using hadj
 omit [Fintype V] in
-/-- Restricting to an induced vertex set preserves simplicial elimination.-/
+/-- Restricting to an induced vertex set preserves simplicial elimination.
+@isnad1 id=hassimpl.1h3v.s4.664a84bcdcdf from=translated src=- shape=f9726a05 vocab=3c5892d8
+-/
 theorem HasSimplicialElimination.induce {G : SimpleGraph V}
     (h : HasSimplicialElimination G) (S : Set V) :
     HasSimplicialElimination (G.induce S) := by
@@ -214,7 +224,9 @@ theorem HasSimplicialElimination.induce {G : SimpleGraph V}
   exact hsim htx hty hwx hwy hne
 /-- Adding a simplicial vertex to a graph with simplicial elimination preserves
 simplicial elimination. The remaining graph is represented as an induced graph
-on the vertices different from `v`.-/
+on the vertices different from `v`.
+@isnad1 id=hassimpl.2h3v.s5.31f6b2461b41 from=translated src=- shape=3d41daa6 vocab=46ef748e
+-/
 theorem HasSimplicialElimination.of_simplicial_vertex
     (G : SimpleGraph V) (v : V)
     (hv : IsSimplicialOn G Finset.univ v)
@@ -250,7 +262,9 @@ theorem HasSimplicialElimination.of_simplicial_vertex
       exact hxy (congrArg Subtype.val he)
     exact hsim htx hty hwx hwy hne
 /-- Removing a finite set of globally simplicial vertices reduces the
-elimination question to the induced graph on the remaining vertices.-/
+elimination question to the induced graph on the remaining vertices.
+@isnad1 id=hassimpl.2h3v.s6.0358278db3ae from=translated src=- shape=e795772c vocab=ed09c190
+-/
 theorem HasSimplicialElimination.of_simplicial_set
     (G : SimpleGraph V) (Z : Finset V)
     (hZ : ∀ z ∈ Z, IsSimplicialOn G Finset.univ z)

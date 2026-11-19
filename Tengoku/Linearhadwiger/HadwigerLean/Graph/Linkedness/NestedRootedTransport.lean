@@ -11,7 +11,9 @@ namespace HadwigerLean
 namespace Linkedness
 
 /-- A rooted-linked core inside a residual induced graph remains a
-rooted-linked induced core in the ambient graph.-/
+rooted-linked induced core in the ambient graph.
+@isnad1 id=other.1h5v.s7.42b92f66ede2 from=translated src=- shape=d9a308ed vocab=81879fe3
+-/
 theorem rootedLinked_induce_image_of_nested
     {V : Type*} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) (R : Set V) (S : Finset R)

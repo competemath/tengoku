@@ -25,6 +25,9 @@ noncomputable def matchingMu (r : ℕ) (ξ : ℝ) : ℝ :=
 noncomputable def matchingB (r : ℕ) (ξ : ℝ) : ℝ :=
   2 * matchingMu r ξ * (4 / ξ) ^ (2 * r)
 
+/--
+@isnad1 id=le.2h1v.s5.408d14c28b00 from=translated src=- shape=536e06c9 vocab=7b94a2ad
+-/
 theorem matchingL_ge_one {ξ : ℝ} (hξ : 0 < ξ) (hξ1 : ξ ≤ 1) :
     1 ≤ matchingL ξ := by
   have hfour : (4 : ℝ) ≤ 4 / ξ := by
@@ -35,11 +38,17 @@ theorem matchingL_ge_one {ξ : ℝ} (hξ : 0 < ξ) (hξ1 : ξ ≤ 1) :
   apply (Real.le_log_iff_exp_le harg).2
   exact (Real.exp_one_lt_three.le.trans (by norm_num : (3 : ℝ) ≤ 4)).trans hfour
 
+/--
+@isnad1 id=le.1h1v.s5.fdb8d06fd4eb from=translated src=- shape=3e62dd79 vocab=b7076eb2
+-/
 theorem matchingL_le_four_div {ξ : ℝ} (hξ : 0 < ξ) :
     matchingL ξ ≤ 4 / ξ := by
   unfold matchingL
   exact Real.log_le_self (div_nonneg (by norm_num) hξ.le)
 
+/--
+@isnad1 id=lt.3h2v.s5.a6f26c2a6b7a from=translated src=- shape=c2ab32ba vocab=107eb2c3
+-/
 theorem matchingA_pos {r : ℕ} {ξ : ℝ}
     (hr : 2 ≤ r) (hξ : 0 < ξ) (hξ1 : ξ ≤ 1) :
     0 < matchingA r ξ := by
@@ -48,6 +57,9 @@ theorem matchingA_pos {r : ℕ} {ξ : ℝ}
   unfold matchingA
   positivity
 
+/--
+@isnad1 id=le.3h2v.s6.a8fd726ab629 from=translated src=- shape=ed16cbf5 vocab=fc92bb02
+-/
 theorem matchingA_mul_r_le {r : ℕ} {ξ : ℝ}
     (hr : 2 ≤ r) (hξ : 0 < ξ) (hξ1 : ξ ≤ 1) :
     matchingA r ξ * (r : ℝ) ≤ 1 / 100 := by
@@ -64,6 +76,9 @@ theorem matchingA_mul_r_le {r : ℕ} {ξ : ℝ}
   apply (div_le_iff₀ (by positivity : 0 < 100 * matchingL ξ)).2
   nlinarith [hξL]
 
+/--
+@isnad1 id=le.3h2v.s5.3051fdd8e417 from=translated src=- shape=b13e7953 vocab=b10bc55f
+-/
 theorem matchingA_le_L {r : ℕ} {ξ : ℝ}
     (hr : 2 ≤ r) (hξ : 0 < ξ) (hξ1 : ξ ≤ 1) :
     matchingA r ξ ≤ matchingL ξ := by
@@ -75,9 +90,15 @@ theorem matchingA_le_L {r : ℕ} {ξ : ℝ}
   have hL := matchingL_ge_one hξ hξ1
   linarith
 
+/--
+@isnad1 id=lt.0h2v.s4.922454b9b2cf from=translated src=- shape=787c1379 vocab=2e176edf
+-/
 theorem matchingQ_pos {r : ℕ} {ξ : ℝ} :
     0 < matchingQ r ξ := by unfold matchingQ; positivity
 
+/--
+@isnad1 id=le.3h2v.s5.0ccebf0ef7de from=translated src=- shape=cf9ffc43 vocab=71b69bf3
+-/
 theorem matchingQ_le_one {r : ℕ} {ξ : ℝ}
     (hr : 2 ≤ r) (hξ : 0 < ξ) (hξ1 : ξ ≤ 1) :
     matchingQ r ξ ≤ 1 := by
@@ -85,6 +106,9 @@ theorem matchingQ_le_one {r : ℕ} {ξ : ℝ}
   have ha := matchingA_pos hr hξ hξ1
   simpa using (Real.exp_le_exp.mpr (show -matchingA r ξ ≤ 0 by linarith))
 
+/--
+@isnad1 id=and.3h2v.s6.95cb1b763013 from=translated src=- shape=284cb9f3 vocab=996198b5
+-/
 theorem matchingA_mul_T_bounds {r : ℕ} {ξ : ℝ}
     (hr : 2 ≤ r) (hξ : 0 < ξ) (hξ1 : ξ ≤ 1) :
     matchingL ξ ≤ matchingA r ξ * (matchingT r ξ : ℝ) ∧
@@ -111,6 +135,9 @@ theorem matchingA_mul_T_bounds {r : ℕ} {ξ : ℝ}
   · have haL := matchingA_le_L hr hξ hξ1
     nlinarith [hupp]
 
+/--
+@isnad1 id=le.3h2v.s6.2192b24c2319 from=translated src=- shape=fe07ddd7 vocab=a005bba5
+-/
 theorem matchingQ_pow_T_le {r : ℕ} {ξ : ℝ}
     (hr : 2 ≤ r) (hξ : 0 < ξ) (hξ1 : ξ ≤ 1) :
     matchingQ r ξ ^ matchingT r ξ ≤ ξ / 4 := by
@@ -134,7 +161,9 @@ theorem matchingQ_pow_T_le {r : ℕ} {ξ : ℝ}
       rw [Real.exp_neg, Real.exp_log hξ4]
       field_simp
 
-/-- A direct small-base estimate for the paper's codegree error.-/
+/-- A direct small-base estimate for the paper's codegree error.
+@isnad1 id=le.3h2v.s6.a51688e9b264 from=translated src=- shape=8cac9000 vocab=a2cc689b
+-/
 theorem matchingB_le_base_pow_ten {r : ℕ} {ξ : ℝ}
     (hr : 2 ≤ r) (hξ : 0 < ξ) (hξ1 : ξ ≤ 1) :
     matchingB r ξ ≤ (ξ / (100 * (r : ℝ))) ^ 10 := by
@@ -175,6 +204,9 @@ theorem matchingB_le_base_pow_ten {r : ℕ} {ξ : ℝ}
       nlinarith [mul_le_mul_of_nonneg_left htwo (pow_nonneg ht0 10)]
     _ = (ξ / (100 * (r : ℝ))) ^ 10 := rfl
 
+/--
+@isnad1 id=le.3h2v.s6.bbef7247fc48 from=translated src=- shape=906202b9 vocab=e9c1fcfc
+-/
 theorem matchingB_sqrt_le {r : ℕ} {ξ : ℝ}
     (hr : 2 ≤ r) (hξ : 0 < ξ) (hξ1 : ξ ≤ 1) :
     Real.sqrt (matchingB r ξ) ≤ ξ ^ 5 / (100000000 * (r : ℝ) ^ 3) := by
@@ -205,6 +237,9 @@ theorem matchingB_sqrt_le {r : ℕ} {ξ : ℝ}
     _ ≤ ξ ^ 5 / (100000000 * (r : ℝ) ^ 3) :=
       div_le_div_of_nonneg_left (pow_nonneg hξ.le _) hdenpos hden
 
+/--
+@isnad1 id=le.3h2v.s6.653a56e9d0a8 from=translated src=- shape=5dfcfbb5 vocab=06b2e52a
+-/
 theorem matchingA_ge_quadratic {r : ℕ} {ξ : ℝ}
     (hr : 2 ≤ r) (hξ : 0 < ξ) (hξ1 : ξ ≤ 1) :
     ξ ^ 2 / (400 * (r : ℝ)) ≤ matchingA r ξ := by
@@ -228,6 +263,9 @@ theorem matchingA_ge_quadratic {r : ℕ} {ξ : ℝ}
       mul_le_mul_of_nonneg_left hfactor hnum
     _ = matchingA r ξ := by unfold matchingA; field_simp
 
+/--
+@isnad1 id=le.3h2v.s6.b9125f94da2b from=translated src=- shape=992a4232 vocab=f0fc9b88
+-/
 theorem matchingMu_le_quadratic {r : ℕ} {ξ : ℝ}
     (hr : 2 ≤ r) (hξ : 0 < ξ) (hξ1 : ξ ≤ 1) :
     matchingMu r ξ ≤ ξ ^ 2 / 800 := by
@@ -252,6 +290,9 @@ theorem matchingMu_le_quadratic {r : ℕ} {ξ : ℝ}
     _ ≤ ξ ^ 2 / 800 :=
       div_le_div_of_nonneg_left (sq_nonneg ξ) (by norm_num) hden
 
+/--
+@isnad1 id=le.3h2v.s5.df7571c32180 from=translated src=- shape=b775c326 vocab=e2499c79
+-/
 theorem matchingB_le_a_quarter {r : ℕ} {ξ : ℝ}
     (hr : 2 ≤ r) (hξ : 0 < ξ) (hξ1 : ξ ≤ 1) :
     matchingB r ξ ≤ matchingA r ξ / 4 := by
@@ -288,17 +329,26 @@ noncomputable def matchingD (D₀ r : ℕ) (ξ : ℝ) : ℕ → ℕ
   | 0 => D₀
   | i + 1 => ⌊matchingLambda r ξ * (matchingD D₀ r ξ i : ℝ)⌋₊
 
+/--
+@isnad1 id=lt.0h2v.s4.c45c7ac1a847 from=translated src=- shape=787c1379 vocab=5b8b8420
+-/
 theorem matchingLambda_pos (r : ℕ) (ξ : ℝ) :
     0 < matchingLambda r ξ := by
   unfold matchingLambda
   exact pow_pos matchingQ_pos _
 
+/--
+@isnad1 id=le.3h2v.s5.ae70d5c15f32 from=translated src=- shape=cf9ffc43 vocab=c68506e9
+-/
 theorem matchingLambda_le_one {r : ℕ} {ξ : ℝ}
     (hr : 2 ≤ r) (hξ : 0 < ξ) (hξ1 : ξ ≤ 1) :
     matchingLambda r ξ ≤ 1 := by
   unfold matchingLambda
   exact pow_le_one₀ (matchingQ_pos.le) (matchingQ_le_one hr hξ hξ1)
 
+/--
+@isnad1 id=eq.1h2v.s5.9c496e030337 from=translated src=- shape=bc915cd7 vocab=692a28e2
+-/
 theorem matchingLambda_eq_exp {r : ℕ} {ξ : ℝ} (hr : 2 ≤ r) :
     matchingLambda r ξ =
       Real.exp ((1 - (r : ℝ)) * matchingA r ξ) := by
@@ -311,6 +361,9 @@ theorem matchingLambda_eq_exp {r : ℕ} {ξ : ℝ} (hr : 2 ≤ r) :
   rw [hcast]
   ring
 
+/--
+@isnad1 id=eq.1h2v.s5.91e5c1811f79 from=translated src=- shape=86ba39fc vocab=74d15475
+-/
 theorem matchingLambda_mul_q_eq_exp {r : ℕ} {ξ : ℝ} (hr : 2 ≤ r) :
     matchingLambda r ξ * matchingQ r ξ =
       Real.exp (-(r : ℝ) * matchingA r ξ) := by
@@ -320,18 +373,27 @@ theorem matchingLambda_mul_q_eq_exp {r : ℕ} {ξ : ℝ} (hr : 2 ≤ r) :
   congr 1
   ring
 
+/--
+@isnad1 id=le.0h4v.s5.25d55f7d5a42 from=translated src=- shape=d73927f7 vocab=fde30095
+-/
 theorem matchingD_next_le {D₀ r i : ℕ} {ξ : ℝ} :
     (matchingD D₀ r ξ (i + 1) : ℝ) ≤
       matchingLambda r ξ * (matchingD D₀ r ξ i : ℝ) := by
   simp only [matchingD]
   exact Nat.floor_le (mul_nonneg (matchingLambda_pos r ξ).le (Nat.cast_nonneg _))
 
+/--
+@isnad1 id=lt.0h4v.s5.cc792bff49ea from=translated src=- shape=4928bb0c vocab=1eefde28
+-/
 theorem matchingD_next_lt_add_one {D₀ r i : ℕ} {ξ : ℝ} :
     matchingLambda r ξ * (matchingD D₀ r ξ i : ℝ) <
       (matchingD D₀ r ξ (i + 1) : ℝ) + 1 := by
   simp only [matchingD]
   exact Nat.lt_floor_add_one _
 
+/--
+@isnad1 id=le.1h4v.s6.71d0be42eb35 from=translated src=- shape=9d79993d vocab=7f333db0
+-/
 theorem matchingD_next_le_exp {D₀ r i : ℕ} {ξ : ℝ} (hr : 2 ≤ r) :
     (matchingD D₀ r ξ (i + 1) : ℝ) * matchingQ r ξ ≤
       (matchingD D₀ r ξ i : ℝ) *
@@ -346,6 +408,9 @@ theorem matchingD_next_le_exp {D₀ r i : ℕ} {ξ : ℝ} (hr : 2 ≤ r) :
     _ = (matchingD D₀ r ξ i : ℝ) *
           Real.exp (-(r : ℝ) * matchingA r ξ) := by
       rw [matchingLambda_mul_q_eq_exp hr]
+/--
+@isnad1 id=le.3h4v.s6.380d1e8367d4 from=translated src=- shape=a045f7e1 vocab=8d59e9e5
+-/
 theorem matchingD_rounding_loss {D₀ r : ℕ} {ξ : ℝ}
     (hr : 2 ≤ r) (hξ : 0 < ξ) (hξ1 : ξ ≤ 1) (i : ℕ) :
     matchingLambda r ξ ^ i * (D₀ : ℝ) ≤
@@ -367,6 +432,9 @@ theorem matchingD_rounding_loss {D₀ r : ℕ} {ξ : ℝ}
         _ ≤ (matchingD D₀ r ξ (i + 1) : ℝ) + ((i + 1 : ℕ) : ℝ) := by
           push_cast
           linarith
+/--
+@isnad1 id=le.3h2v.s6.4791b820df75 from=translated src=- shape=1788c3f8 vocab=c39345d1
+-/
 theorem matchingT_cubic_bound {r : ℕ} {ξ : ℝ}
     (hr : 2 ≤ r) (hξ : 0 < ξ) (hξ1 : ξ ≤ 1) :
     (matchingT r ξ : ℝ) * ξ ^ 3 ≤ 3200 * (r : ℝ) := by
@@ -391,6 +459,9 @@ theorem matchingT_cubic_bound {r : ℕ} {ξ : ℝ}
   have hbound := mul_le_mul_of_nonneg_left hTxi
     (by positivity : 0 ≤ 400 * (r : ℝ))
   nlinarith [hmulxi, hbound]
+/--
+@isnad1 id=le.3h2v.s6.44850fd11b30 from=translated src=- shape=735778db vocab=a2cc689b
+-/
 theorem matchingB_le_cubic {r : ℕ} {ξ : ℝ}
     (hr : 2 ≤ r) (hξ : 0 < ξ) (hξ1 : ξ ≤ 1) :
     matchingB r ξ ≤ ξ ^ 3 / (10000 * (r : ℝ)) := by
@@ -414,6 +485,9 @@ theorem matchingB_le_cubic {r : ℕ} {ξ : ℝ}
     _ ≤ ξ ^ 3 / (10000 * (r : ℝ)) :=
       div_le_div_of_nonneg_left (pow_nonneg hξ.le _) (by positivity) hden
 
+/--
+@isnad1 id=le.3h2v.s5.db61961d1c42 from=translated src=- shape=d890509c vocab=88bf0e1e
+-/
 theorem matchingB_mul_T_le_one {r : ℕ} {ξ : ℝ}
     (hr : 2 ≤ r) (hξ : 0 < ξ) (hξ1 : ξ ≤ 1) :
     matchingB r ξ * (matchingT r ξ : ℝ) ≤ 1 := by
@@ -434,6 +508,9 @@ theorem matchingB_mul_T_le_one {r : ℕ} {ξ : ℝ}
   have hprod : 0 < (matchingB r ξ * (matchingT r ξ : ℝ) - 1) * (r : ℝ) :=
     mul_pos (by linarith) hrpos
   nlinarith [hscaled, hT, hprod]
+/--
+@isnad1 id=le.4h3v.s6.9450433fcf1a from=translated src=- shape=fe3ab43a vocab=5948502c
+-/
 theorem matchingLambda_pow_lower {r i : ℕ} {ξ : ℝ}
     (hr : 2 ≤ r) (hξ : 0 < ξ) (hξ1 : ξ ≤ 1)
     (hi : i ≤ matchingT r ξ) :
@@ -477,6 +554,9 @@ theorem matchingLambda_pow_lower {r i : ℕ} {ξ : ℝ}
       _ = (ξ / 4) ^ (2 * r) := by rw [hbase]
   rw [← hleft, hpow]
   exact Real.exp_le_exp.mpr hexpArg
+/--
+@isnad1 id=eq.1h2v.s6.31cdb25bc3da from=translated src=- shape=c8630d0b vocab=37d6ed03
+-/
 theorem matchingB_mul_decay_base {r : ℕ} {ξ : ℝ}
     (hξ : 0 < ξ) :
     matchingB r ξ * (ξ / 4) ^ (2 * r) =
@@ -491,13 +571,18 @@ theorem matchingB_mul_decay_base {r : ℕ} {ξ : ℝ}
             ring
     _ = 2 * matchingMu r ξ := by rw [hcancel]; simp
 
+/--
+@isnad1 id=lt.2h2v.s5.8da9d73941cb from=translated src=- shape=ff64acc4 vocab=a3816466
+-/
 theorem matchingB_pos {r : ℕ} {ξ : ℝ}
     (hr : 2 ≤ r) (hξ : 0 < ξ) : 0 < matchingB r ξ := by
   have hrpos : 0 < (r : ℝ) := by exact_mod_cast (by omega : 0 < r)
   unfold matchingB matchingMu
   positivity
 
-/-- The initial codegree cap absorbs every floor loss in the schedule.-/
+/-- The initial codegree cap absorbs every floor loss in the schedule.
+@isnad1 id=le.6h5v.s6.513080f613b5 from=translated src=- shape=93713bdf vocab=ee4b876d
+-/
 theorem matchingD_codegree_invariant {D₀ B r i : ℕ} {ξ : ℝ}
     (hr : 2 ≤ r) (hξ : 0 < ξ) (hξ1 : ξ ≤ 1)
     (hBmin : 1 ≤ B)
@@ -525,6 +610,9 @@ theorem matchingD_codegree_invariant {D₀ B r i : ℕ} {ξ : ℝ}
   have hBminR : (1 : ℝ) ≤ (B : ℝ) := by exact_mod_cast hBmin
   nlinarith [hscaled, hbi]
 
+/--
+@isnad1 id=lt.6h5v.s6.29a396628959 from=translated src=- shape=0d889993 vocab=65812682
+-/
 theorem matchingD_positive {D₀ B r i : ℕ} {ξ : ℝ}
     (hr : 2 ≤ r) (hξ : 0 < ξ) (hξ1 : ξ ≤ 1)
     (hBmin : 1 ≤ B)
@@ -537,6 +625,9 @@ theorem matchingD_positive {D₀ B r i : ℕ} {ξ : ℝ}
   simp [hz] at h
   have hBminR : (1 : ℝ) ≤ (B : ℝ) := by exact_mod_cast hBmin
   linarith
+/--
+@isnad1 id=le.6h5v.s6.9cd32ce5261b from=translated src=- shape=b7068969 vocab=257a12b8
+-/
 theorem matchingD_large {D₀ B r i : ℕ} {ξ : ℝ}
     (hr : 2 ≤ r) (hξ : 0 < ξ) (hξ1 : ξ ≤ 1)
     (hBmin : 1 ≤ B)
@@ -551,6 +642,9 @@ theorem matchingD_large {D₀ B r i : ℕ} {ξ : ℝ}
     (show 4 * matchingB r ξ ≤ matchingA r ξ by linarith) hD0
   nlinarith [hinv, hmul]
 
+/--
+@isnad1 id=le.6h5v.s6.8904cb4c7a65 from=translated src=- shape=3eaca949 vocab=2ccc5ee1
+-/
 theorem matchingD_codegree_ratio {D₀ B r i : ℕ} {ξ : ℝ}
     (hr : 2 ≤ r) (hξ : 0 < ξ) (hξ1 : ξ ≤ 1)
     (hBmin : 1 ≤ B)
@@ -562,6 +656,9 @@ theorem matchingD_codegree_ratio {D₀ B r i : ℕ} {ξ : ℝ}
     exact_mod_cast matchingD_positive hr hξ hξ1 hBmin hBmax hi
   exact (div_le_iff₀ hDpos).2 hinv
 
+/--
+@isnad1 id=le.3h2v.s6.8ccbf2e99d5d from=translated src=- shape=22404eb0 vocab=71b00a76
+-/
 theorem matching_small {r : ℕ} {ξ : ℝ}
     (hr : 2 ≤ r) (hξ : 0 < ξ) (hξ1 : ξ ≤ 1) :
     (((2 * r - 1 : ℕ) : ℝ) ^ 2) *
@@ -595,11 +692,17 @@ theorem matching_small {r : ℕ} {ξ : ℝ}
 noncomputable def matchingDelta (r : ℕ) (ξ : ℝ) : ℝ :=
   8 * (r : ℝ) ^ 2 * Real.sqrt (matchingB r ξ)
 
+/--
+@isnad1 id=le.0h2v.s4.39495e7ba5e6 from=translated src=- shape=787c1379 vocab=db1aff92
+-/
 theorem matchingDelta_nonneg (r : ℕ) (ξ : ℝ) :
     0 ≤ matchingDelta r ξ := by
   unfold matchingDelta
   positivity
 
+/--
+@isnad1 id=le.3h2v.s6.d1b1c2cbb878 from=translated src=- shape=735778db vocab=d69cca0b
+-/
 theorem matchingDelta_le_quintic {r : ℕ} {ξ : ℝ}
     (hr : 2 ≤ r) (hξ : 0 < ξ) (hξ1 : ξ ≤ 1) :
     matchingDelta r ξ ≤
@@ -615,6 +718,9 @@ theorem matchingDelta_le_quintic {r : ℕ} {ξ : ℝ}
   unfold matchingDelta
   rw [heq] at hmul
   exact hmul
+/--
+@isnad1 id=le.3h2v.s6.8a5243de22b8 from=translated src=- shape=ffc25945 vocab=0e6af5ed
+-/
 theorem matching_round_error_budget {r : ℕ} {ξ : ℝ}
     (hr : 2 ≤ r) (hξ : 0 < ξ) (hξ1 : ξ ≤ 1) :
     matchingDelta r ξ * matchingA r ξ *
@@ -651,6 +757,9 @@ theorem matching_round_error_budget {r : ℕ} {ξ : ℝ}
     _ ≤ ξ / 100 := by
       field_simp
       nlinarith [hξ.le]
+/--
+@isnad1 id=le.3h2v.s6.1be315190da9 from=translated src=- shape=256600bf vocab=63c4bc1a
+-/
 theorem matching_quadratic_rate_budget {r : ℕ} {ξ : ℝ}
     (hr : 2 ≤ r) (hξ : 0 < ξ) (hξ1 : ξ ≤ 1) :
     (r : ℝ) * matchingA r ξ ^ 2 * (matchingT r ξ : ℝ) ≤
@@ -668,6 +777,9 @@ theorem matching_quadratic_rate_budget {r : ℕ} {ξ : ℝ}
     field_simp
   nlinarith [hmul]
 
+/--
+@isnad1 id=le.3h2v.s6.c9a8bf40aee8 from=translated src=- shape=d069a64f vocab=cc12e38f
+-/
 theorem matching_initial_mu_budget {r : ℕ} {ξ : ℝ}
     (hr : 2 ≤ r) (hξ : 0 < ξ) (hξ1 : ξ ≤ 1) :
     2 * matchingL ξ * matchingMu r ξ ≤ ξ / 4 := by
@@ -684,6 +796,9 @@ theorem matching_initial_mu_budget {r : ℕ} {ξ : ℝ}
       exact matchingMu_le_quadratic hr hξ hξ1
     _ = ξ / 100 := by field_simp; ring
     _ ≤ ξ / 4 := by nlinarith
+/--
+@isnad1 id=le.3h2v.s7.0f1a94af3ab8 from=translated src=- shape=5cf795fa vocab=c76bb466
+-/
 theorem matching_total_error_budget {r : ℕ} {ξ : ℝ}
     (hr : 2 ≤ r) (hξ : 0 < ξ) (hξ1 : ξ ≤ 1) :
     matchingDelta r ξ * matchingA r ξ *

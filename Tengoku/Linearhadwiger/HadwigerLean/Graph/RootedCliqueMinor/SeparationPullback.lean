@@ -41,7 +41,9 @@ noncomputable def pullbackPartition {V : Type u} {I : Type v}
     exact S.no_cross hxL hxNR hyR hyNL hq
 
 /-- A branch whose quotient image is strictly far remains strictly far
-when the separation is pulled back.-/
+when the separation is pulled back.
+@isnad1 id=le.1h6v.s5.1c8f837d8d58 from=translated src=- shape=c8957875 vocab=81e21ab2
+-/
 theorem branch_subset_strictRight_pullback
     {V : Type u} {I : Type v} {G : SimpleGraph V}
     (P : ConnectedPartition G I)
@@ -55,7 +57,9 @@ theorem branch_subset_strictRight_pullback
 end VertexSeparation
 
 /-- The index map of an edge contraction is injective after deleting one
-endpoint of the contracted edge.-/
+endpoint of the contracted edge.
+@isnad1 id=injon.1h4v.s5.0d5d848756db from=translated src=- shape=2d1d545a vocab=eb592c8e
+-/
 theorem edgeContractionIndex_injOn_away
     {V : Type u} {G : SimpleGraph V} {a b : V}
     (hab : G.Adj a b) :

@@ -14,7 +14,9 @@ namespace HadwigerLean
 namespace Linkedness
 
 /-- Set Menger with a prescribed enumeration of the starts and an
-arbitrary target set.-/
+arbitrary target set.
+@isnad1 id=or.1h5v.s6.2343c2e99cd3 from=translated src=- shape=f425c0a5 vocab=47e16280
+-/
 theorem root_set_linkage_or_separator
     {V : Type*} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) {r : ℕ}

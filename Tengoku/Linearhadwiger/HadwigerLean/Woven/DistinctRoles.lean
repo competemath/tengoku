@@ -65,7 +65,9 @@ def selectedPairs (f : DistinctRoleIndex a j ↪ Fin n) (role : Fin n → V) :
   finish := fun i => role (f (Sum.inr (Sum.inr i)))
 
 /-- Distinct proxy role slots keep proxy roots disjoint from proxy
-terminal vertices.-/
+terminal vertices.
+@isnad1 id=disjoint.1h6v.s6.a67827743f83 from=translated src=- shape=7f7990bd vocab=1319eb97
+-/
 theorem selectedRoles_disjoint
     (f : DistinctRoleIndex a j ↪ Fin n) (role : Fin n → V)
     (hrole : Function.Injective role) :

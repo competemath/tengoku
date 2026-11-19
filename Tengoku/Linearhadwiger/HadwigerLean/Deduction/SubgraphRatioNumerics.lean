@@ -8,7 +8,9 @@ import Tengoku.Seed.Tactic
 namespace HadwigerLean.Deduction
 
 /-- The logarithmic cost of enlarging the minor order from `t` to at most
-`42t` fits within the final coefficient `3^9`.-/
+`42t` fits within the final coefficient `3^9`.
+@isnad1 id=le.1h1v.s6.b9b60217f06a from=translated src=- shape=bb552d64 vocab=681d6686
+-/
 theorem log_fortytwo_mul_le (t : ℕ) (ht : 3 ≤ t) :
     Real.log (42 * (t : ℝ)) ≤ (9 / 2 : ℝ) * Real.log (t : ℝ) := by
   have htpos : (0 : ℝ) < (t : ℝ) := by exact_mod_cast (by omega : 0 < t)
@@ -25,7 +27,9 @@ theorem log_fortytwo_mul_le (t : ℕ) (ht : 3 ≤ t) :
   nlinarith
 
 /-- The final `3^9` coefficient pays for any graph of minor order at most
-`42t`, even when its size was initially bounded at that larger order.-/
+`42t`, even when its size was initially bounded at that larger order.
+@isnad1 id=le.2h2v.s7.a82af40b215f from=translated src=- shape=ef7a33f3 vocab=b83cb17c
+-/
 theorem fortytwo_order_log_budget (t q : ℕ) (ht : 3 ≤ t)
     (hq : q ≤ 42 * t) :
     (q : ℝ) * (Real.log (q : ℝ)) ^ 4 ≤
@@ -67,7 +71,9 @@ theorem fortytwo_order_log_budget (t q : ℕ) (ht : 3 ≤ t)
     _ = (3 ^ 9 : ℕ) * (t : ℝ) * (Real.log (t : ℝ)) ^ 4 := by ring
 
 /-- The lower edge `x / sqrt (log x)` of the Delcourt--Postle window
-is increasing for real orders at least three.-/
+is increasing for real orders at least three.
+@isnad1 id=le.2h2v.s5.6eca4c3bbc34 from=translated src=- shape=b2a7f505 vocab=7ba99450
+-/
 theorem dp_window_mono {x y : ℝ} (hx : 3 ≤ x) (hxy : x ≤ y) :
     x / Real.sqrt (Real.log x) ≤
       y / Real.sqrt (Real.log y) := by

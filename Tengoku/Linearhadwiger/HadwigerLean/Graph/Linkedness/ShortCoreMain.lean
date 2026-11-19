@@ -19,7 +19,9 @@ set_option maxHeartbeats 1000000
 
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
-/-- A side of an anticomplete partition retains every degree.-/
+/-- A side of an anticomplete partition retains every degree.
+@isnad1 id=eq.2h5v.s8.c7d8b3a20686 from=translated src=- shape=0cddd605 vocab=4a0f730b
+-/
 theorem degree_induce_of_anticomplete_partition
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (S T : Set V) [DecidablePred (· ∈ S)] [Fintype S]
@@ -62,7 +64,9 @@ theorem degree_induce_of_anticomplete_partition
     _ = G.degree v.1 := G.card_neighborFinset_eq_degree v.1
 
 /-- An anticomplete partition of a graph of order at most 14k and
-minimum degree at least 5k has a k-linked induced side.-/
+minimum degree at least 5k has a k-linked induced side.
+@isnad1 id=ex.7h5v.s7.6b00918b92b4 from=translated src=- shape=d4a30b14 vocab=4de37dad
+-/
 theorem linked_side_of_dense_anticomplete_partition
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (k : ℕ)
@@ -145,15 +149,24 @@ def path (C : ShortPartial G P X) (i : C.used) :
 def totalLength (C : ShortPartial G P X) : ℕ :=
   ∑ i : C.used, (C.path i : G.Walk (P.start i.1) (P.finish i.1)).length
 
+/--
+@isnad1 id=le.0h7v.s8.46aa023d06c6 from=translated src=- shape=d98f4b72 vocab=30db19bd
+-/
 theorem short (C : ShortPartial G P X) (i : C.used) :
     (C.path i : G.Walk (P.start i.1) (P.finish i.1)).length ≤ 7 :=
   C.2.1 i
 
+/--
+@isnad1 id=mem.2h8v.s7.93bfa5c6c715 from=translated src=- shape=dc13822d vocab=6bc2dede
+-/
 theorem avoids (C : ShortPartial G P X) (i : C.used) (x : V)
     (hx : x ∈ pathVertexSet (C.path i)) (hxX : x ∈ X) :
     x ∈ P.terminals i.1 :=
   C.2.2.1 i x hx hxX
 
+/--
+@isnad1 id=disjoint.1h8v.s8.8e34f00e296c from=translated src=- shape=382faecd vocab=7c71e71f
+-/
 theorem disjoint (C : ShortPartial G P X) (i j : C.used)
     (hij : i.1 ≠ j.1) :
     Disjoint (pathVertexSet (C.path i)) (pathVertexSet (C.path j)) :=
@@ -169,7 +182,9 @@ def empty : ShortPartial G P X :=
 end ShortPartial
 
 /-- Among all admissible partial short linkages, choose first the
-maximum number of completed pairs and then minimum total length.-/
+maximum number of completed pairs and then minimum total length.
+@isnad1 id=ex.0h5v.s6.6a42c56501a8 from=translated src=- shape=6060ca7f vocab=fb085337
+-/
 theorem exists_optimal_short_partial
     {V : Type*} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj] {k : ℕ}
@@ -227,7 +242,9 @@ def toLinkageOfFull
   exact C.disjoint (f i) (f j) hij
 
 /-- If the prescribed pairing has no full linkage, a partial family
-leaves at least one pair unused.-/
+leaves at least one pair unused.
+@isnad1 id=le.1h6v.s5.a9b30bb48d93 from=translated src=- shape=99bec9f3 vocab=af0c3ae7
+-/
 theorem card_used_le_sub_one
     {V : Type*} [Fintype V] {G : SimpleGraph V} {k : ℕ}
     {P : IndexedPairs (Fin k) V} {X : Finset V}
@@ -255,6 +272,9 @@ noncomputable def occupied
   exact X ∪ (Finset.univ : Finset C.used).biUnion (fun i =>
     ((C.path i : G.Walk (P.start i.1) (P.finish i.1)).support.toFinset) \ X)
 
+/--
+@isnad1 id=le.0h6v.s5.549585922f55 from=translated src=- shape=cd8edbcd vocab=da6b1886
+-/
 theorem terminal_subset_occupied
     {V : Type*} [DecidableEq V] {G : SimpleGraph V} {k : ℕ}
     {P : IndexedPairs (Fin k) V} {X : Finset V}
@@ -264,6 +284,9 @@ theorem terminal_subset_occupied
   intro x hx
   exact Finset.mem_union.mpr (Or.inl hx)
 
+/--
+@isnad1 id=le.0h7v.s7.6d8f86c044f8 from=translated src=- shape=b9a91ca2 vocab=58372467
+-/
 theorem path_subset_occupied
     {V : Type*} [DecidableEq V] {G : SimpleGraph V} {k : ℕ}
     {P : IndexedPairs (Fin k) V} {X : Finset V}
@@ -281,7 +304,9 @@ theorem path_subset_occupied
       ⟨List.mem_toFinset.mpr hx, hxX⟩
 
 /-- Each completed path contributes at most six vertices beyond the
-terminal set.-/
+terminal set.
+@isnad1 id=le.3h6v.s7.4fad5430acdb from=translated src=- shape=0a28d761 vocab=4254717d
+-/
 theorem occupied_card_le
     {V : Type*} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} {k : ℕ}
@@ -325,7 +350,9 @@ namespace ShortPartial
 
 /-- Replacing one completed path by a shorter path that uses only its
 old vertices and one entirely new vertex preserves admissibility and
-strictly decreases the total path length.-/
+strictly decreases the total path length.
+@isnad1 id=ex.3h9v.s9.c4b124c0f9fc from=translated src=- shape=098cb436 vocab=cfc53395
+-/
 theorem replace_shorter_path
     {V : Type*} [DecidableEq V] {G : SimpleGraph V}
     {k : ℕ} {P : IndexedPairs (Fin k) V} {X : Finset V}
@@ -407,7 +434,9 @@ theorem replace_shorter_path
   · exact ⟨i, Finset.mem_univ _, by simpa [hpeq] using hqlt⟩
 
 /-- In a length-minimal maximal partial linkage, an unused vertex
-has at most three neighbors on each completed short path.-/
+has at most three neighbors on each completed short path.
+@isnad1 id=le.2h8v.s8.ee17f9cca267 from=translated src=- shape=b09660f7 vocab=3c5857a0
+-/
 theorem outside_path_neighbor_card_le_three
     {V : Type*} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj]

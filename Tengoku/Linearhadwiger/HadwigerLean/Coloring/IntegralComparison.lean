@@ -74,6 +74,9 @@ noncomputable def coloringFractionalWeight {G : SimpleGraph V} {n : ℕ}
     (C : G.Coloring (Fin n)) : StableSet G → ℝ :=
   fun S => if S ∈ colorClassFamily C then 1 else 0
 
+/--
+@isnad1 id=isfracti.0h4v.s4.32db60e6ecf6 from=translated src=- shape=155be71e vocab=c1d7ff66
+-/
 theorem coloringFractionalWeight_feasible {G : SimpleGraph V} {n : ℕ}
     (C : G.Coloring (Fin n)) :
     IsFractionalColoring G (coloringFractionalWeight C) := by
@@ -104,6 +107,9 @@ theorem coloringFractionalWeight_feasible {G : SimpleGraph V} {n : ℕ}
             if v ∈ S.1 then coloringFractionalWeight C S else 0 :=
           Finset.single_le_sum hnonneg (Finset.mem_univ _)
 
+/--
+@isnad1 id=eq.0h4v.s5.c13cedeb1f33 from=translated src=- shape=34906db7 vocab=3de7e12d
+-/
 theorem coloringFractionalWeight_cost {G : SimpleGraph V} {n : ℕ}
     (C : G.Coloring (Fin n)) :
     fractionalCost G (coloringFractionalWeight C) =
@@ -111,7 +117,9 @@ theorem coloringFractionalWeight_cost {G : SimpleGraph V} {n : ℕ}
   classical
   simp [fractionalCost, coloringFractionalWeight]
 
-/-- A coloring with `n` colors gives a fractional coloring of cost at most `n`.-/
+/-- A coloring with `n` colors gives a fractional coloring of cost at most `n`.
+@isnad1 id=le.1h3v.s4.60e49b7c4a47 from=translated src=- shape=be52274e vocab=33cac738
+-/
 theorem fractionalChromaticNumber_le_colorable (G : SimpleGraph V) {n : ℕ}
     (h : G.Colorable n) : fractionalChromaticNumber G ≤ (n : ℝ) := by
   let C : G.Coloring (Fin n) := h.some
@@ -121,7 +129,9 @@ theorem fractionalChromaticNumber_le_colorable (G : SimpleGraph V) {n : ℕ}
     _ = ((colorClassFamily C).card : ℝ) := coloringFractionalWeight_cost C
     _ ≤ n := by exact_mod_cast colorClassFamily_card_le C
 
-/-- Fractional chromatic number is at most ordinary chromatic number.-/
+/-- Fractional chromatic number is at most ordinary chromatic number.
+@isnad1 id=le.0h2v.s4.24236062ef12 from=translated src=- shape=4fc5e85e vocab=9aaad485
+-/
 theorem fractionalChromaticNumber_le_chromatic (G : SimpleGraph V) :
     fractionalChromaticNumber G ≤ (chromatic G : ℝ) :=
   fractionalChromaticNumber_le_colorable G (colorable_chromatic G)

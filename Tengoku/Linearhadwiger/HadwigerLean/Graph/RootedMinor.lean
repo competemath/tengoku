@@ -26,7 +26,9 @@ namespace RootedMinorModel
 variable {W : Type u} {V : Type v} {H : SimpleGraph W}
   {G : SimpleGraph V} {root : W → V}
 
-/-- Prescribed roots of a rooted model are distinct.-/
+/-- Prescribed roots of a rooted model are distinct.
+@isnad1 id=injectiv.0h6v.s4.0e598987abe8 from=translated src=- shape=c2447e4d vocab=1887f290
+-/
 theorem root_injective (M : RootedMinorModel H G root) :
     Function.Injective root := by
   intro i j hij
@@ -34,7 +36,9 @@ theorem root_injective (M : RootedMinorModel H G root) :
   exact (Set.disjoint_left.mp (M.disjoint hne)) (M.root_mem i)
     (hij ▸ M.root_mem j)
 
-/-- A branch cannot contain the root of a different branch.-/
+/-- A branch cannot contain the root of a different branch.
+@isnad1 id=not.1h8v.s5.2065fd8d0038 from=translated src=- shape=d0ded2e6 vocab=338bba1e
+-/
 theorem other_root_not_mem (M : RootedMinorModel H G root)
     {i j : W} (hij : i ≠ j) : root j ∉ M.branch i := by
   intro hmem
@@ -70,7 +74,9 @@ def HasRootedCliqueMinor {V : Type v} (G : SimpleGraph V)
     {n : ℕ} (root : Fin n → V) : Prop :=
   Nonempty (RootedMinorModel (SimpleGraph.completeGraph (Fin n)) G root)
 
-/-- Forgetting the roots gives an ordinary clique minor.-/
+/-- Forgetting the roots gives an ordinary clique minor.
+@isnad1 id=hascliqu.1h4v.s4.df28425c3119 from=translated src=- shape=275ed25e vocab=a8312184
+-/
 theorem HasRootedCliqueMinor.toCliqueMinor {V : Type v}
     {G : SimpleGraph V} {n : ℕ} {root : Fin n → V}
     (h : HasRootedCliqueMinor G root) : HasCliqueMinor G n := by

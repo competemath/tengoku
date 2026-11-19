@@ -13,7 +13,9 @@ namespace Linkedness
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- Replacing a sufficiently long segment of a path by a two-edge detour through an
-outside vertex shortens the path without introducing other vertices.-/
+outside vertex shortens the path without introducing other vertices.
+@isnad1 id=ex.5h8v.s8.93b0267fe5ae from=translated src=- shape=7e25c164 vocab=a6882237
+-/
 theorem path_shortcut_of_distant_neighbors
     {G : SimpleGraph V} {s t x a b : V} (p : G.Path s t)
     (ha : a ∈ (p : G.Walk s t).support)
@@ -76,7 +78,9 @@ private theorem four_indices_have_gap (J : Finset ℕ) (hcard : 4 ≤ J.card) :
   have hsmall : (Finset.Icc m (m + 2)).card = 3 := by simp; omega
   omega
 
-/-- Four neighbors on a path yield a two-edge shortcut through their common neighbor.-/
+/-- Four neighbors on a path yield a two-edge shortcut through their common neighbor.
+@isnad1 id=ex.1h6v.s7.e4756a313fe1 from=translated src=- shape=4cafab73 vocab=acca81f2
+-/
 theorem path_shortcut_of_four_neighbors
     {V : Type*} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj] {s t x : V} (p : G.Path s t)

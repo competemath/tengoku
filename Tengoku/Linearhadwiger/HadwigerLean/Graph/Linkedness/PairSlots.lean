@@ -18,7 +18,9 @@ def pairOccurrence {n : ℕ} (Q : IndexedPairs (Fin n) V)
     (z : Fin n × Fin 2) : V :=
   if z.2 = 0 then Q.start z.1 else Q.finish z.1
 
-/-- Distinct nontrivial pairs have distinct terminal occurrences.-/
+/-- Distinct nontrivial pairs have distinct terminal occurrences.
+@isnad1 id=injectiv.2h3v.s5.f2fc7f5d0b62 from=translated src=- shape=e93b2254 vocab=99d3feba
+-/
 theorem pairOccurrence_injective {n : ℕ}
     (Q : IndexedPairs (Fin n) V)
     (hQ : Q.DisjointTerminals)
@@ -51,7 +53,9 @@ theorem pairOccurrence_injective {n : ℕ}
     subst j
     rfl
 
-/-- An injective occurrence map certifies disjoint, nontrivial pairs.-/
+/-- An injective occurrence map certifies disjoint, nontrivial pairs.
+@isnad1 id=and.1h3v.s5.ac2966cab9da from=translated src=- shape=9d921104 vocab=99d3feba
+-/
 theorem pair_properties_of_occurrence_injective {n : ℕ}
     (Q : IndexedPairs (Fin n) V)
     (hinj : Function.Injective (pairOccurrence Q)) :
@@ -78,7 +82,9 @@ theorem pair_properties_of_occurrence_injective {n : ℕ}
       simpa [pairOccurrence] using heq)
     exact (show (0 : Fin 2) ≠ 1 by decide) (congrArg Prod.snd h)
 /-- Every pairing inside the enumerated root set determines an injective
-assignment of its terminal occurrences to root indices.-/
+assignment of its terminal occurrences to root indices.
+@isnad1 id=ex.3h5v.s7.6de6708e2847 from=translated src=- shape=352c99b2 vocab=48a27da3
+-/
 theorem exists_pair_slots
     {r n : ℕ} (P : IndexedPairs (Fin r) V)
     (Q : IndexedPairs (Fin n) V)

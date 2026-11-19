@@ -17,6 +17,9 @@ universe u
 variable {V : Type u} [Fintype V] [DecidableEq V] {G : SimpleGraph V}
   {k : ℕ}
 
+/--
+@isnad1 id=not.4h6v.s5.d0a712426e00 from=translated src=- shape=3b12b6aa vocab=1f098949
+-/
 theorem VertexConnected.no_small_AB_separator (hconn : VertexConnected G k)
     (A B : Finset V) (hA : k ≤ A.card) (hB : k ≤ B.card)
     (Q : Finset V) (hQ : Q.card < k) :
@@ -56,6 +59,9 @@ theorem VertexConnected.no_small_AB_separator (hconn : VertexConnected G k)
   obtain ⟨z, _, hz⟩ := List.mem_map.mp hvmap
   exact z.property (hz ▸ hvQ)
 
+/--
+@isnad1 id=ex.3h5v.s6.ca5ae5222281 from=translated src=- shape=660fbf2a vocab=1ed61989
+-/
 theorem VertexConnected.exists_AB_linkage (hconn : VertexConnected G k)
     (A B : Finset V) (hA : k ≤ A.card) (hB : k ≤ B.card) :
     ∃ (P : IndexedPairs (Fin k) V) (L : IndexedLinkage G P),

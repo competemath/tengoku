@@ -21,7 +21,9 @@ namespace ReedSeymour
 
 variable {V : Type*} {G : SimpleGraph V}
 
-/-- A preconnected graph with no odd closed walk has a two-coloring.-/
+/-- A preconnected graph with no odd closed walk has a two-coloring.
+@isnad1 id=colorabl.2h2v.s5.781790d16d67 from=translated src=- shape=bffecc94 vocab=c30fd879
+-/
 theorem colorable_two_of_even_closed_walks (hconn : G.Preconnected)
     (heven : ∀ (v : V) (p : G.Walk v v), Even p.length) : G.Colorable 2 := by
   classical
@@ -46,7 +48,9 @@ theorem colorable_two_of_even_closed_walks (hconn : G.Preconnected)
   · haveI : IsEmpty V := not_nonempty_iff.mp hV
     exact SimpleGraph.Colorable.of_isEmpty 2
 
-/-- In a preconnected graph, failure of bipartiteness produces an odd closed walk.-/
+/-- In a preconnected graph, failure of bipartiteness produces an odd closed walk.
+@isnad1 id=ex.2h2v.s5.79bab35c6a9b from=translated src=- shape=13c6c728 vocab=522d3dcd
+-/
 theorem exists_odd_closed_walk_of_not_colorable_two (hconn : G.Preconnected)
     (hnot : ¬ G.Colorable 2) :
     ∃ (v : V) (p : G.Walk v v), Odd p.length := by
@@ -57,7 +61,9 @@ theorem exists_odd_closed_walk_of_not_colorable_two (hconn : G.Preconnected)
   by_contra hneven
   exact hnone ⟨v, p, (Nat.not_even_iff_odd).mp hneven⟩
 
-/-- Failure of bipartiteness in a connected graph yields an odd cycle.-/
+/-- Failure of bipartiteness in a connected graph yields an odd cycle.
+@isnad1 id=ex.2h2v.s5.ddbe45dcb6f6 from=translated src=- shape=c6c7b72c vocab=87076b9e
+-/
 theorem exists_odd_cycle_of_not_colorable_two (hconn : G.Connected)
     (hnot : ¬ G.Colorable 2) :
     ∃ (v : V) (c : G.Walk v v), c.IsCycle ∧ Odd c.length := by
@@ -102,7 +108,9 @@ theorem exists_odd_cycle_of_not_colorable_two (hconn : G.Connected)
   exact ⟨u, _, hcyc, hOdd⟩
 
 /-- A Boolean label that flips on every edge of a walk agrees at the endpoints
-exactly when the walk has even length.-/
+exactly when the walk has even length.
+@isnad1 id=iff.1h6v.s6.9de59de5f000 from=translated src=- shape=6dc8481c vocab=852c227b
+-/
 theorem walk_even_length_iff_end_color_of_flip (f : V → Bool)
     {u v : V} (p : G.Walk u v)
     (hflip : ∀ x y, s(x, y) ∈ p.edges → f x ≠ f y) :
@@ -124,7 +132,9 @@ theorem walk_even_length_iff_end_color_of_flip (f : V → Bool)
       tauto
 
 /-- Every Boolean labeling of the vertices of an odd closed walk is constant
-across at least one edge of that walk.-/
+across at least one edge of that walk.
+@isnad1 id=ex.1h5v.s5.b8de9466c131 from=translated src=- shape=c3ec3952 vocab=1c6345b9
+-/
 theorem odd_closed_walk_has_equal_color_edge {u : V} (p : G.Walk u u)
     (hodd : Odd p.length) (f : V → Bool) :
     ∃ x y, s(x, y) ∈ p.edges ∧ f x = f y := by
@@ -137,7 +147,9 @@ theorem odd_closed_walk_has_equal_color_edge {u : V} (p : G.Walk u u)
   exact (Nat.not_even_iff_odd.mpr hodd) heven
 
 /-- On an odd closed walk, any assignment of natural-number lengths gives
-adjacent vertices with lengths of the same parity.-/
+adjacent vertices with lengths of the same parity.
+@isnad1 id=ex.1h5v.s6.346caaa4e60a from=translated src=- shape=99dfeeda vocab=6d3cecaa
+-/
 theorem odd_closed_walk_has_equal_parity_edge {u : V} (p : G.Walk u u)
     (hodd : Odd p.length) (d : V → ℕ) :
     ∃ x y, s(x, y) ∈ p.edges ∧ d x % 2 = d y % 2 := by
@@ -163,7 +175,9 @@ def NoOddConnector {I : Type*} (H : SimpleGraph V) (N : I → Set V) : Prop :=
   ∀ (i j : I), i ≠ j → ∀ {a b : V} (p : H.Walk a b),
     IsTerminalConnector N i j p → Even p.length
 
-/-- Equal parities on two connector paths make their joined path odd.-/
+/-- Equal parities on two connector paths make their joined path odd.
+@isnad1 id=odd.1h2v.s5.6280a8b09346 from=translated src=- shape=1197d99e vocab=1eeaa115
+-/
 theorem odd_add_one_of_same_parity {a b : ℕ} (h : a % 2 = b % 2) :
     Odd (a + 1 + b) := by
   apply (Nat.not_even_iff_odd).mp
@@ -172,7 +186,9 @@ theorem odd_add_one_of_same_parity {a b : ℕ} (h : a % 2 = b % 2) :
   omega
 
 /-- A shortest walk between its endpoints has no chord. This supplements
-`Walk.isPath_of_length_eq_dist` from Mathlib.-/
+`Walk.isPath_of_length_eq_dist` from Mathlib.
+@isnad1 id=ischordl.1h5v.s5.01e1008ecdea from=translated src=- shape=514a3c45 vocab=5ec1bc83
+-/
 theorem shortest_walk_isChordless {a b : V} (p : G.Walk a b)
     (hshort : p.length = G.dist a b) : p.IsChordless := by
   classical
@@ -222,7 +238,9 @@ theorem shortest_walk_isChordless {a b : V} (p : G.Walk a b)
     simpa only [hi, hj] using h'
 
 /-- Among walks from `A` to `B`, a shortest one is an induced path and
-meets each terminal set only at its corresponding endpoint.-/
+meets each terminal set only at its corresponding endpoint.
+@isnad1 id=ex.3h4v.s7.e14c23bde2e9 from=translated src=- shape=4c518d3f vocab=05680108
+-/
 theorem exists_shortest_terminal_connector (hconn : G.Preconnected)
     {A B : Set V} (hA : A.Nonempty) (hB : B.Nonempty) :
     ∃ (a b : V) (p : G.Walk a b), a ∈ A ∧ b ∈ B ∧
@@ -263,7 +281,9 @@ theorem exists_shortest_terminal_connector (hconn : G.Preconnected)
     omega
 
 /-- A terminal set can force a walk to another nonempty set through at most
-one vertex of that target set. This gives distinct gate indices on a cycle.-/
+one vertex of that target set. This gives distinct gate indices on a cycle.
+@isnad1 id=eq.7h6v.s7.1c894b47f474 from=translated src=- shape=f5cc3c01 vocab=e5cc4e7f
+-/
 theorem unique_gate_for_terminal_set (hconn : G.Preconnected)
     {A B : Set V} (hA : A.Nonempty) (hB : B.Nonempty)
     {x y : V} (hx : x ∈ B) (hy : y ∈ B)
@@ -278,7 +298,9 @@ theorem unique_gate_for_terminal_set (hconn : G.Preconnected)
   exact hxb.trans hyb.symm
 
 /-- If all terminal-to-target walks pass through `x` in the target set,
-a shortest such walk ends exactly at `x`.-/
+a shortest such walk ends exactly at `x`.
+@isnad1 id=ex.5h5v.s7.532ed53b57b3 from=translated src=- shape=715d0891 vocab=05680108
+-/
 theorem exists_shortest_stem_to_gate (hconn : G.Preconnected)
     {A B : Set V} (hA : A.Nonempty) (hB : B.Nonempty)
     {x : V} (hx : x ∈ B)
@@ -299,7 +321,9 @@ def IsMinimalConnectedTransversal {I : Type*} (H : SimpleGraph V)
     ∀ S : Set V, (H.induce S).Connected →
       (∀ i, ∃ v, v ∈ N i ∧ v ∈ S) → S = Set.univ
 
-/-- A walk avoiding the deleted vertex stays in its starting component.-/
+/-- A walk avoiding the deleted vertex stays in its starting component.
+@isnad1 id=mem.2h7v.s6.af13f8b25aeb from=translated src=- shape=4e82af77 vocab=8a527abd
+-/
 theorem walk_end_mem_componentCompl_of_avoid {x a b : V}
     (C : G.ComponentCompl {x}) (p : G.Walk a b)
     (ha : a ∈ C) (hx : x ∉ p.support) : b ∈ C := by
@@ -316,7 +340,9 @@ theorem walk_end_mem_componentCompl_of_avoid {x a b : V}
       apply ih hvC
       intro hq
       exact hx (by simp [hq])
-/-- The vertices of a component after deleting one vertex induce a connected graph.-/
+/-- The vertices of a component after deleting one vertex induce a connected graph.
+@isnad1 id=connecte.0h4v.s6.56b9f746fc2d from=translated src=- shape=334d9786 vocab=c54d4e2a
+-/
 theorem connected_induce_componentCompl {x : V}
     (C : G.ComponentCompl {x}) : (G.induce (C : Set V)).Connected := by
   let f : {z : ({x}ᶜ : Set V) // z ∈ SimpleGraph.ConnectedComponent.supp C} →
@@ -334,7 +360,9 @@ theorem connected_induce_componentCompl {x : V}
     rfl
   exact C.connected_toSimpleGraph.map hom hf
 /-- A component left after deleting a vertex of a minimal connected
-transversal must miss at least one terminal set.-/
+transversal must miss at least one terminal set.
+@isnad1 id=ex.1h6v.s6.03b86a959501 from=translated src=- shape=bfa5ae86 vocab=d1a292f8
+-/
 theorem minimal_component_misses_terminal {I : Type*} {N : I → Set V}
     (hmin : IsMinimalConnectedTransversal G N) {x : V}
     (C : G.ComponentCompl {x}) :
@@ -351,7 +379,9 @@ theorem minimal_component_misses_terminal {I : Type*} {N : I → Set V}
   exact (SimpleGraph.ComponentCompl.notMem_of_mem hxC) (by simp)
 
 /-- If a terminal set misses a deletion component, its deleted vertex is a
-gate for every walk from that terminal set into the component.-/
+gate for every walk from that terminal set into the component.
+@isnad1 id=mem.4h11v.s7.53998f122d71 from=translated src=- shape=ede570f5 vocab=8a527abd
+-/
 theorem component_missing_terminal_is_gate {I : Type*} {N : I → Set V}
     {x : V} (C : G.ComponentCompl {x}) {i : I}
     (hmiss : ∀ v, v ∈ N i → v ∉ C)
@@ -367,7 +397,9 @@ theorem component_missing_terminal_is_gate {I : Type*} {N : I → Set V}
     have haC := walk_end_mem_componentCompl_of_avoid C p.reverse hbC hr
     exact hmiss a ha haC
 /-- Every vertex of a walk avoiding the deleted vertex remains in its
-starting deletion component.-/
+starting deletion component.
+@isnad1 id=mem.3h8v.s7.7fc49dda2227 from=translated src=- shape=7c03113c vocab=8a527abd
+-/
 theorem walk_support_subset_componentCompl_of_avoid {x a b : V}
     (C : G.ComponentCompl {x}) (p : G.Walk a b)
     (ha : a ∈ C) (hx : x ∉ p.support) :
@@ -378,7 +410,9 @@ theorem walk_support_subset_componentCompl_of_avoid {x a b : V}
   intro hxprefix
   exact hx (p.support_takeUntil_subset_support hv hxprefix)
 /-- All vertices of a cycle except one lie in the same component after
-that vertex is deleted.-/
+that vertex is deleted.
+@isnad1 id=ex.2h5v.s6.852de22a6ca5 from=translated src=- shape=aa844407 vocab=fa99239f
+-/
 theorem cycle_except_vertex_in_one_component {u x : V}
     (c : G.Walk u u) (hc : c.IsCycle) (hx : x ∈ c.support) :
     ∃ C : G.ComponentCompl {x},
@@ -427,7 +461,9 @@ theorem cycle_except_vertex_in_one_component {u x : V}
     G.componentComplMk_mem (K := {x}) (by simpa using hfirst)
   exact walk_support_subset_componentCompl_of_avoid C q hstart hxq y hmemq
 /-- Every vertex on a cycle in a minimal connected transversal has a
-terminal label whose walks into the cycle must pass that vertex.-/
+terminal label whose walks into the cycle must pass that vertex.
+@isnad1 id=ex.3h7v.s6.57acadfc7d3c from=translated src=- shape=58d4e60d vocab=539ed389
+-/
 theorem cycle_vertex_has_gate {I : Type*} {N : I → Set V}
     (hmin : IsMinimalConnectedTransversal G N)
     {u : V} (c : G.Walk u u) (hc : c.IsCycle)
@@ -442,7 +478,9 @@ theorem cycle_vertex_has_gate {I : Type*} {N : I → Set V}
   · exact Or.inl hbx
   · exact Or.inr (hcycle b hb hbx)
 
-/-- Distinct cycle vertices cannot carry the same gate label.-/
+/-- Distinct cycle vertices cannot carry the same gate label.
+@isnad1 id=eq.6h9v.s7.b36c4c378a9b from=translated src=- shape=9bb032fc vocab=e5cc4e7f
+-/
 theorem cycle_gate_injective {I : Type*} {N : I → Set V}
     (hconn : G.Preconnected)
     {u : V} (c : G.Walk u u)
@@ -470,7 +508,9 @@ structure GatedCycleStem {I : Type*} (H : SimpleGraph V) (N : I → Set V)
     ∀ (p : H.Walk a b), x ∈ p.support
 
 /-- Every cycle vertex in a minimal connected transversal admits a gated
-induced stem from one of the terminal sets.-/
+induced stem from one of the terminal sets.
+@isnad1 id=nonempty.3h7v.s5.ac437a9e9033 from=translated src=- shape=955e78fe vocab=23fa0043
+-/
 theorem exists_gated_cycle_stem {I : Type*} {N : I → Set V}
     (hmin : IsMinimalConnectedTransversal G N)
     {u : V} (c : G.Walk u u) (hc : c.IsCycle)
@@ -493,7 +533,9 @@ theorem exists_gated_cycle_stem {I : Type*} {N : I → Set V}
     gate := hgate
   }⟩
 
-/-- Gated stems attached to distinct cycle vertices use distinct labels.-/
+/-- Gated stems attached to distinct cycle vertices use distinct labels.
+@isnad1 id=ne.2h10v.s6.f110f81f584c from=translated src=- shape=7715d9b1 vocab=f897bb70
+-/
 theorem GatedCycleStem.index_ne_of_vertex_ne
     {I : Type*} {N : I → Set V}
     (hmin : IsMinimalConnectedTransversal G N)
@@ -506,7 +548,9 @@ theorem GatedCycleStem.index_ne_of_vertex_ne
     (hi ▸ sy.gate)
   exact hxy hxy'
 /-- An odd cycle has adjacent vertices whose chosen gated stems have
-lengths of the same parity.-/
+lengths of the same parity.
+@isnad1 id=ex.3h6v.s7.3be5c2013396 from=translated src=- shape=ed075a91 vocab=7c9df6e4
+-/
 theorem odd_cycle_has_equal_parity_gated_stems
     {I : Type*} {N : I → Set V}
     (hmin : IsMinimalConnectedTransversal G N)
@@ -526,7 +570,9 @@ theorem odd_cycle_has_equal_parity_gated_stems
   refine ⟨x, y, hxy, stem ⟨x, hx⟩, stem ⟨y, hy⟩, ?_⟩
   simpa only [d, dite_eq_left hx, dite_eq_left hy] using hparity
 /-- The equal-parity stems selected on an odd cycle necessarily have
-different terminal labels.-/
+different terminal labels.
+@isnad1 id=ex.3h6v.s7.fade02ede967 from=translated src=- shape=46fe7629 vocab=1c21e05c
+-/
 theorem odd_cycle_has_distinct_equal_parity_gated_stems
     {I : Type*} {N : I → Set V}
     (hmin : IsMinimalConnectedTransversal G N)

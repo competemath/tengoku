@@ -15,7 +15,9 @@ variable {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- A fan, together with an inner linkage which avoids all fan arrival
 vertices other than its own ends, yields a linkage between selected fan
-starts.-/
+starts.
+@isnad1 id=ex.10h12v.s9.230d7f6350fc from=translated src=- shape=3bc81dd4 vocab=3ccedc2e
+-/
 theorem exists_spliced_linkage
     {G : SimpleGraph V} {r n : ℕ}
     (P : IndexedPairs (Fin r) V) (F : IndexedLinkage G P)

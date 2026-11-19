@@ -38,6 +38,9 @@ noncomputable def pairLoad (G : SimpleGraph V) (x : StableSet G → ℝ)
     (p : Finset V) : ℝ :=
   ∑ S : StableSet G, if p ⊆ S.1 then x S else 0
 
+/--
+@isnad1 id=eq.0h5v.s7.419c0d756b8f from=translated src=- shape=49866c27 vocab=f487eaac
+-/
 theorem pairLoad_pair (G : SimpleGraph V) (x : StableSet G → ℝ) (u v : V) :
     pairLoad G x {u, v} =
       ∑ S : StableSet G, if u ∈ S.1 ∧ v ∈ S.1 then x S else 0 := by
@@ -47,6 +50,9 @@ theorem pairLoad_pair (G : SimpleGraph V) (x : StableSet G → ℝ) (u v : V) :
   intro S _
   simp only [Finset.insert_subset_iff, Finset.singleton_subset_iff]
 
+/--
+@isnad1 id=le.1h4v.s5.b9e057436574 from=translated src=- shape=7b6dbe6f vocab=ed4bcdbf
+-/
 theorem pairLoad_nonneg (G : SimpleGraph V) {x : StableSet G → ℝ}
     (hx : ∀ S, 0 ≤ x S) (p : Finset V) : 0 ≤ pairLoad G x p := by
   classical
@@ -62,6 +68,9 @@ def IsPairConstrainedColoring (G : SimpleGraph V) (δ : ℝ)
     (x : StableSet G → ℝ) : Prop :=
   IsFractionalColoring G x ∧ ∀ p : NonedgePair G, pairLoad G x p.1 ≤ δ
 
+/--
+@isnad1 id=eq.0h3v.s5.9f49f0477e5a from=translated src=- shape=5fa77864 vocab=f4d74e2f
+-/
 theorem pairLoad_singletonFractionalColoring (G : SimpleGraph V)
     (p : NonedgePair G) :
     pairLoad G (singletonFractionalColoring G) p.1 = 0 := by
@@ -79,7 +88,9 @@ theorem pairLoad_singletonFractionalColoring (G : SimpleGraph V)
     simp [hp, singletonFractionalColoring, hcard]
   · simp [hp]
 
-/-- Singletons prove feasibility of the pair-constrained LP for `δ ≥ 0`.-/
+/-- Singletons prove feasibility of the pair-constrained LP for `δ ≥ 0`.
+@isnad1 id=ispairco.1h3v.s5.1ab74784259b from=translated src=- shape=cbdbd535 vocab=ab84eb2f
+-/
 theorem singleton_isPairConstrainedColoring (G : SimpleGraph V)
     {δ : ℝ} (hδ : 0 ≤ δ) :
     IsPairConstrainedColoring G δ (singletonFractionalColoring G) := by
@@ -123,7 +134,9 @@ private theorem pairProblem_pairRow (G : SimpleGraph V) (δ : ℝ)
       rw [Finset.sum_neg_distrib]
 
 /-- The LP primal predicate is exactly the paper's pair-constrained
-fractional-coloring predicate.-/
+fractional-coloring predicate.
+@isnad1 id=iff.0h4v.s5.dc85f3cdff5d from=translated src=- shape=8f1d8754 vocab=4e27ac29
+-/
 theorem pairProblem_primal_iff (G : SimpleGraph V) (δ : ℝ)
     (x : StableSet G → ℝ) :
     (pairProblem G δ).PrimalFeasible x ↔ IsPairConstrainedColoring G δ x := by
@@ -153,6 +166,9 @@ theorem pairProblem_primal_iff (G : SimpleGraph V) (δ : ℝ)
         rw [pairProblem_pairRow]
         linarith [hx.2 p]
 
+/--
+@isnad1 id=eq.0h4v.s5.2af14a238914 from=translated src=- shape=c18fd8a9 vocab=54e88c0e
+-/
 theorem pairProblem_primalValue (G : SimpleGraph V) (δ : ℝ)
     (x : StableSet G → ℝ) :
     (pairProblem G δ).primalValue x = fractionalCost G x := by
@@ -191,7 +207,9 @@ private theorem pairProblem_dualColumn (G : SimpleGraph V) (δ : ℝ)
         if p.1 ⊆ S.1 then y (Sum.inr p) else 0) := by
       rw [Finset.sum_neg_distrib]
 
-/-- The generic LP dual predicate is exactly equation eq:pairdual.-/
+/-- The generic LP dual predicate is exactly equation eq:pairdual.
+@isnad1 id=iff.0h4v.s6.8dd88a86e896 from=translated src=- shape=788916c8 vocab=c97bfc10
+-/
 theorem pairProblem_dual_iff (G : SimpleGraph V) (δ : ℝ)
     (y : V ⊕ NonedgePair G → ℝ) :
     (pairProblem G δ).DualFeasible y ↔
@@ -214,6 +232,9 @@ theorem pairProblem_dual_iff (G : SimpleGraph V) (δ : ℝ)
       rw [pairProblem_dualColumn]
       exact hy.2.2 S
 
+/--
+@isnad1 id=eq.0h4v.s6.d96136f5519a from=translated src=- shape=fefa486f vocab=bfe9ab3f
+-/
 theorem pairProblem_dualValue (G : SimpleGraph V) (δ : ℝ)
     (y : V ⊕ NonedgePair G → ℝ) :
     (pairProblem G δ).dualValue y =
@@ -223,7 +244,9 @@ theorem pairProblem_dualValue (G : SimpleGraph V) (δ : ℝ)
   simp [FiniteLP.Problem.dualValue, pairProblem, pairDualValue,
     Fintype.sum_sum_type, Finset.mul_sum, Finset.sum_neg_distrib,
     sub_eq_add_neg]
-/-- The pair-constrained coloring cost attains its minimum for `δ ≥ 0`.-/
+/-- The pair-constrained coloring cost attains its minimum for `δ ≥ 0`.
+@isnad1 id=ex.1h3v.s6.219e5b5b70ff from=translated src=- shape=cca01ea2 vocab=4fddab75
+-/
 theorem exists_pairConstrained_minimizer (G : SimpleGraph V)
     {δ : ℝ} (hδ : 0 ≤ δ) :
     ∃ x, IsPairConstrainedColoring G δ x ∧
@@ -244,7 +267,9 @@ theorem exists_pairConstrained_minimizer (G : SimpleGraph V)
   simpa only [pairProblem_primalValue] using h
 
 /-- Attained strong duality for the pair-constrained coloring LP.  This is
-equations eq:pairlp and eq:pairdual with δ specialized later to μ / 4.-/
+equations eq:pairlp and eq:pairdual with δ specialized later to μ / 4.
+@isnad1 id=ex.1h3v.s6.53b072c57b74 from=translated src=- shape=b0303a92 vocab=9ecfa729
+-/
 theorem exists_pairConstrained_primal_dual_optima (G : SimpleGraph V)
     {δ : ℝ} (hδ : 0 ≤ δ) :
     ∃ x a b, IsPairConstrainedColoring G δ x ∧

@@ -41,11 +41,16 @@ variable {W : Type u} {V : Type v} {H : SimpleGraph W} {G G' : SimpleGraph V}
 noncomputable def representative (M : MinorModel H G) (w : W) : V :=
   (M.connected w).nonempty.some.val
 
+/--
+@isnad1 id=mem.0h6v.s5.c133b38863c4 from=translated src=- shape=77e39f1d vocab=97653d61
+-/
 theorem representative_mem (M : MinorModel H G) (w : W) :
     M.representative w ∈ M.branch w :=
   (M.connected w).nonempty.some.property
 
-/-- Distinct branch sets have distinct representatives.-/
+/-- Distinct branch sets have distinct representatives.
+@isnad1 id=injectiv.0h5v.s4.366fa8bf62d3 from=translated src=- shape=65ed704c vocab=bc945f49
+-/
 theorem representative_injective (M : MinorModel H G) :
     Function.Injective M.representative := by
   intro w w' heq
@@ -53,7 +58,9 @@ theorem representative_injective (M : MinorModel H G) :
   exact (Set.disjoint_left.mp (M.disjoint hne)) (M.representative_mem w)
     (heq ▸ M.representative_mem w')
 
-/-- A minor cannot have more vertices than its host.-/
+/-- A minor cannot have more vertices than its host.
+@isnad1 id=le.0h5v.s4.51ae5121c9cf from=translated src=- shape=c3ef7350 vocab=def6a849
+-/
 theorem card_le (M : MinorModel H G) [Fintype W] [Fintype V] :
     Fintype.card W ≤ Fintype.card V :=
   Fintype.card_le_of_injective M.representative M.representative_injective
@@ -181,13 +188,17 @@ def comp {X : Type w} {K : SimpleGraph X}
 
 end MinorModel
 
-/-- A complete minor has at most as many branch sets as host vertices.-/
+/-- A complete minor has at most as many branch sets as host vertices.
+@isnad1 id=le.1h3v.s4.92d4961be591 from=translated src=- shape=c8b5b6db vocab=3e1032e2
+-/
 theorem hasCliqueMinor_card_le {V : Type v} [Fintype V] {G : SimpleGraph V}
     {n : ℕ} (h : HasCliqueMinor G n) : n ≤ Fintype.card V := by
   obtain ⟨M⟩ := h
   simpa using M.card_le
 
-/-- Every modeled clique order lies below the complete-minor number.-/
+/-- Every modeled clique order lies below the complete-minor number.
+@isnad1 id=le.1h3v.s4.18e3907f10ec from=translated src=- shape=d15cfb5b vocab=11eaeff5
+-/
 theorem hasCliqueMinor_le_cliqueMinorNumber {V : Type v} [Fintype V]
     {G : SimpleGraph V} {n : ℕ} (h : HasCliqueMinor G n) :
     n ≤ cliqueMinorNumber G := by
@@ -197,7 +208,9 @@ theorem hasCliqueMinor_le_cliqueMinorNumber {V : Type v} [Fintype V]
   simpa [cliqueMinorNumber, h] using
     (Finset.le_sup (f := fun m => if HasCliqueMinor G m then m else 0) hn)
 
-/-- The number of branch sets is bounded by the host order.-/
+/-- The number of branch sets is bounded by the host order.
+@isnad1 id=le.0h2v.s4.accc174aa6ad from=translated src=- shape=702d4805 vocab=0a0af673
+-/
 theorem cliqueMinorNumber_le_card {V : Type v} [Fintype V]
     (G : SimpleGraph V) : cliqueMinorNumber G ≤ Fintype.card V := by
   classical
@@ -207,7 +220,9 @@ theorem cliqueMinorNumber_le_card {V : Type v} [Fintype V]
   · exact hasCliqueMinor_card_le hminor
   · exact Nat.zero_le _
 
-/-- Any construction that lifts clique models also preserves the minor number.-/
+/-- Any construction that lifts clique models also preserves the minor number.
+@isnad1 id=le.1h4v.s5.256d35f224b4 from=translated src=- shape=ddf7cf1c vocab=11eaeff5
+-/
 theorem cliqueMinorNumber_le_of_transfer {V : Type v} {W : Type u}
     [Fintype V] [Fintype W] {G : SimpleGraph V} {H : SimpleGraph W}
     (transfer : ∀ n, HasCliqueMinor H n → HasCliqueMinor G n) :
@@ -224,10 +239,15 @@ def IsMinor {W : Type u} {V : Type v}
     (H : SimpleGraph W) (G : SimpleGraph V) : Prop :=
   Nonempty (MinorModel H G)
 
+/--
+@isnad1 id=isminor.0h2v.s3.d0595de03bb3 from=translated src=- shape=97c8b2d0 vocab=5668f2b0
+-/
 theorem IsMinor.refl {V : Type v} (G : SimpleGraph V) : IsMinor G G :=
   ⟨MinorModel.refl G⟩
 
-/-- Branch-set graph minors compose.-/
+/-- Branch-set graph minors compose.
+@isnad1 id=isminor.2h6v.s5.0b39bebd8ed6 from=translated src=- shape=848ea211 vocab=5668f2b0
+-/
 theorem IsMinor.trans {X : Type w} {W : Type u} {V : Type v}
     {K : SimpleGraph X} {H : SimpleGraph W} {G : SimpleGraph V}
     (hKH : IsMinor K H) (hHG : IsMinor H G) : IsMinor K G := by
@@ -235,19 +255,25 @@ theorem IsMinor.trans {X : Type w} {W : Type u} {V : Type v}
   obtain ⟨N⟩ := hHG
   exact ⟨M.comp N⟩
 
-/-- A clique model in a minor lifts to a clique model in the host.-/
+/-- A clique model in a minor lifts to a clique model in the host.
+@isnad1 id=hascliqu.2h5v.s4.8f0e49b2132d from=translated src=- shape=063e5b35 vocab=d935e206
+-/
 theorem hasCliqueMinor_of_minor {W : Type u} {V : Type v}
     {H : SimpleGraph W} {G : SimpleGraph V} {n : ℕ}
     (hHG : IsMinor H G) (hn : HasCliqueMinor H n) : HasCliqueMinor G n :=
   IsMinor.trans hn hHG
 
-/-- The complete-minor number is monotone under graph minors.-/
+/-- The complete-minor number is monotone under graph minors.
+@isnad1 id=le.1h4v.s5.53a78dcf0663 from=translated src=- shape=879e4235 vocab=d4e76a4d
+-/
 theorem cliqueMinorNumber_mono_minor {W : Type u} {V : Type v}
     [Fintype W] [Fintype V] {H : SimpleGraph W} {G : SimpleGraph V}
     (hHG : IsMinor H G) : cliqueMinorNumber H ≤ cliqueMinorNumber G :=
   cliqueMinorNumber_le_of_transfer (fun _ hn => hasCliqueMinor_of_minor hHG hn)
 
-/-- Every graph contains the empty complete graph as a minor.-/
+/-- Every graph contains the empty complete graph as a minor.
+@isnad1 id=hascliqu.0h2v.s3.56baa4d668cf from=translated src=- shape=3832f936 vocab=6864b678
+-/
 theorem hasCliqueMinor_zero {V : Type v} (G : SimpleGraph V) :
     HasCliqueMinor G 0 := by
   refine ⟨{ branch := Fin.elim0, connected := ?_, disjoint := ?_, adjacent := ?_ }⟩
@@ -258,7 +284,9 @@ theorem hasCliqueMinor_zero {V : Type v} (G : SimpleGraph V) :
   · intro i
     exact i.elim0
 
-/-- A nonempty graph contains a one-vertex complete minor.-/
+/-- A nonempty graph contains a one-vertex complete minor.
+@isnad1 id=hascliqu.0h2v.s4.1821c2582a80 from=translated src=- shape=101e930a vocab=bb9165ab
+-/
 theorem hasCliqueMinor_one {V : Type v} [Nonempty V] (G : SimpleGraph V) :
     HasCliqueMinor G 1 := by
   classical
@@ -271,7 +299,9 @@ theorem hasCliqueMinor_one {V : Type v} [Nonempty V] (G : SimpleGraph V) :
   · intro i j hij
     exact (hij.ne (Subsingleton.elim i j)).elim
 
-/-- The finite supremum defining the complete-minor number is attained.-/
+/-- The finite supremum defining the complete-minor number is attained.
+@isnad1 id=hascliqu.0h2v.s3.cd3ef47fa357 from=translated src=- shape=bb2418e6 vocab=82704cc7
+-/
 theorem hasCliqueMinor_cliqueMinorNumber {V : Type v} [Fintype V]
     (G : SimpleGraph V) : HasCliqueMinor G (cliqueMinorNumber G) := by
   classical
@@ -288,13 +318,17 @@ theorem hasCliqueMinor_cliqueMinorNumber {V : Type v} [Fintype V]
     rw [heq]
     exact hasCliqueMinor_zero G
 
-/-- On a nonempty vertex type, the complete-minor number is positive.-/
+/-- On a nonempty vertex type, the complete-minor number is positive.
+@isnad1 id=lt.0h2v.s4.a984148e6826 from=translated src=- shape=abec20dc vocab=aa01d324
+-/
 theorem cliqueMinorNumber_pos {V : Type v} [Fintype V] [Nonempty V]
     (G : SimpleGraph V) : 0 < cliqueMinorNumber G := by
   have h := hasCliqueMinor_le_cliqueMinorNumber (hasCliqueMinor_one G)
   omega
 
-/-- An injective graph homomorphism preserves every complete minor.-/
+/-- An injective graph homomorphism preserves every complete minor.
+@isnad1 id=hascliqu.2h6v.s5.b0b90f10bf24 from=translated src=- shape=2f01be2c vocab=84d6197e
+-/
 theorem hasCliqueMinor_map {V : Type v} {W : Type u}
     {G : SimpleGraph V} {H : SimpleGraph W} (f : G →g H)
     (hf : Function.Injective f) {n : ℕ}
@@ -302,21 +336,27 @@ theorem hasCliqueMinor_map {V : Type v} {W : Type u}
   obtain ⟨M⟩ := hn
   exact ⟨M.map f hf⟩
 
-/-- The complete-minor number is monotone under injective graph homomorphisms.-/
+/-- The complete-minor number is monotone under injective graph homomorphisms.
+@isnad1 id=le.1h5v.s5.7ab077c887e7 from=translated src=- shape=4d972603 vocab=41f6b9de
+-/
 theorem cliqueMinorNumber_map {V : Type v} {W : Type u}
     [Fintype V] [Fintype W] {G : SimpleGraph V} {H : SimpleGraph W}
     (f : G →g H) (hf : Function.Injective f) :
     cliqueMinorNumber G ≤ cliqueMinorNumber H :=
   cliqueMinorNumber_le_of_transfer (fun _ hn => hasCliqueMinor_map f hf hn)
 
-/-- Induced subgraphs have no larger complete minor than the original graph.-/
+/-- Induced subgraphs have no larger complete minor than the original graph.
+@isnad1 id=le.0h3v.s5.86bf3900b68c from=translated src=- shape=37829bb4 vocab=7cf334b0
+-/
 theorem cliqueMinorNumber_induce {V : Type v} [Fintype V]
     (G : SimpleGraph V) (s : Set V) [Fintype s] :
     cliqueMinorNumber (G.induce s) ≤ cliqueMinorNumber G := by
   let e : G.induce s ↪g G := SimpleGraph.Embedding.induce s
   exact cliqueMinorNumber_map e.toHom e.injective
 
-/-- A complete graph has complete-minor number equal to its order.-/
+/-- A complete graph has complete-minor number equal to its order.
+@isnad1 id=eq.0h1v.s3.0bd138f6e060 from=translated src=- shape=23590e10 vocab=246be0c7
+-/
 theorem cliqueMinorNumber_completeGraph (n : ℕ) :
     cliqueMinorNumber (SimpleGraph.completeGraph (Fin n)) = n := by
   have hlow : n ≤ cliqueMinorNumber (SimpleGraph.completeGraph (Fin n)) :=
@@ -325,13 +365,17 @@ theorem cliqueMinorNumber_completeGraph (n : ℕ) :
     simpa using cliqueMinorNumber_le_card (SimpleGraph.completeGraph (Fin n))
   exact Nat.le_antisymm hhigh hlow
 
-/-- The minor relation is monotone in the host graph's edge set.-/
+/-- The minor relation is monotone in the host graph's edge set.
+@isnad1 id=hascliqu.2h4v.s4.57523bb104c3 from=translated src=- shape=1fb9552a vocab=c54cc7a8
+-/
 theorem hasCliqueMinor_mono {V : Type v} {G G' : SimpleGraph V} (h : G ≤ G')
     {n : ℕ} (hn : HasCliqueMinor G n) : HasCliqueMinor G' n := by
   obtain ⟨M⟩ := hn
   exact ⟨M.mono h⟩
 
-/-- The complete-minor number is monotone in the host graph's edge set.-/
+/-- The complete-minor number is monotone in the host graph's edge set.
+@isnad1 id=le.1h3v.s4.3eaf9889221b from=translated src=- shape=43044cdd vocab=04319fbc
+-/
 theorem cliqueMinorNumber_mono {V : Type v} [Fintype V] {G G' : SimpleGraph V}
     (h : G ≤ G') : cliqueMinorNumber G ≤ cliqueMinorNumber G' := by
   classical
@@ -342,7 +386,9 @@ theorem cliqueMinorNumber_mono {V : Type v} [Fintype V] {G G' : SimpleGraph V}
       (Finset.le_sup (f := fun m => if HasCliqueMinor G' m then m else 0) hn)
   · exact Nat.zero_le _
 
-/-- The empty graph has complete-minor number zero.-/
+/-- The empty graph has complete-minor number zero.
+@isnad1 id=eq.0h2v.s4.171c83d4a263 from=translated src=- shape=f686e912 vocab=229c0614
+-/
 @[simp] theorem cliqueMinorNumber_isEmpty {V : Type v} [Fintype V] [IsEmpty V]
     (G : SimpleGraph V) : cliqueMinorNumber G = 0 := by
   classical

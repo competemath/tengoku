@@ -27,13 +27,17 @@ namespace ConnectedPartition
 
 variable {V : Type v} {I : Type u} {G : SimpleGraph V}
 
-/-- A connected block is nonempty.-/
+/-- A connected block is nonempty.
+@isnad1 id=nonempty.0h5v.s4.3434660ad439 from=translated src=- shape=a327bbe7 vocab=a89f2b20
+-/
 theorem block_nonempty (P : ConnectedPartition G I) (i : I) :
     (P.block i).Nonempty := by
   obtain ⟨x⟩ := (P.connected i).nonempty
   exact ⟨x.val, x.property⟩
 
-/-- Every vertex lies in exactly one block.-/
+/-- Every vertex lies in exactly one block.
+@isnad1 id=existsun.0h5v.s4.7d8dbe0e4771 from=translated src=- shape=8931c68f vocab=d5ee92ee
+-/
 theorem existsUnique_block (P : ConnectedPartition G I) (x : V) :
     ∃! i, x ∈ P.block i := by
   obtain ⟨i, hi⟩ := P.cover x
@@ -53,6 +57,9 @@ def touchingQuotient (P : ConnectedPartition G I) : SimpleGraph I where
     intro i hii
     exact hii.1 rfl⟩
 
+/--
+@isnad1 id=iff.0h6v.s6.4458c9da542e from=translated src=- shape=6682d5aa vocab=d34128b9
+-/
 theorem touchingQuotient_adj_iff (P : ConnectedPartition G I) (i j : I) :
     P.touchingQuotient.Adj i j ↔
       i ≠ j ∧ ∃ x ∈ P.block i, ∃ y ∈ P.block j, G.Adj x y :=
@@ -67,10 +74,15 @@ def toMinorModel (P : ConnectedPartition G I) : MinorModel P.touchingQuotient G 
     intro i j hij
     exact (P.touchingQuotient_adj_iff i j).mp hij |>.2
 
+/--
+@isnad1 id=isminor.0h4v.s4.414086536a7d from=translated src=- shape=be0665ee vocab=6e438a25
+-/
 theorem isMinor (P : ConnectedPartition G I) : IsMinor P.touchingQuotient G :=
   ⟨P.toMinorModel⟩
 
-/-- A connected touching quotient has no larger complete minor.-/
+/-- A connected touching quotient has no larger complete minor.
+@isnad1 id=le.0h4v.s5.c54fa5d2a139 from=translated src=- shape=acfcea30 vocab=f5b4c2d1
+-/
 theorem cliqueMinorNumber_touchingQuotient_le [Fintype V] [Fintype I]
     (P : ConnectedPartition G I) :
     cliqueMinorNumber P.touchingQuotient ≤ cliqueMinorNumber G :=

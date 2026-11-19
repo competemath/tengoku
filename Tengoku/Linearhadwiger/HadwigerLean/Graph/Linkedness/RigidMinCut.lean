@@ -12,7 +12,9 @@ namespace Linkedness
 
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
-/-- A full near-shore fan into a linked rigid far shore links all roots.-/
+/-- A full near-shore fan into a linked rigid far shore links all roots.
+@isnad1 id=rootedli.4h7v.s7.c1f7cb55971e from=translated src=- shape=e9105060 vocab=fc918bab
+-/
 theorem rootedLinked_of_rigid_full_near_fan
     (G : SimpleGraph V) (S : VertexSeparation G) [Fintype S.left]
     (X : Finset V) (hX : (X : Set V) ⊆ S.left)

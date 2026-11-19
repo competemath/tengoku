@@ -15,7 +15,9 @@ set_option maxHeartbeats 1000000
 namespace ShortPartial
 
 /-- A new short path avoiding the old paths and other terminals
-extends a partial short linkage by one index.-/
+extends a partial short linkage by one index.
+@isnad1 id=ex.4h8v.s8.01a4908ad652 from=translated src=- shape=a0c2b399 vocab=4e3b8e43
+-/
 theorem extend
     {V : Type*} [DecidableEq V] {G : SimpleGraph V}
     {k : ℕ} {P : IndexedPairs (Fin k) V} {X : Finset V}

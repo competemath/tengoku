@@ -17,7 +17,9 @@ variable {V : Type u} [Fintype V] [DecidableEq V]
 
 /-- The paper's quantitative bound follows from the low-codegree rounding
 inequality and the robust fractional bound. Both inputs are quantified over
-all finite graphs so that they apply to induced residual graphs.-/
+all finite graphs so that they apply to induced residual graphs.
+@isnad1 id=le.4h3v.s8.65af3a764689 from=translated src=- shape=65887faf vocab=f71982ba
+-/
 theorem quantitative_bound_of_rounding_and_robust
     (G : SimpleGraph V)
     (ε : ℝ) (hε : 0 < ε) (hε1 : ε ≤ 1)
@@ -54,7 +56,9 @@ theorem quantitative_bound_of_rounding_and_robust
   simpa only [hcard] using hJ
 
 /-- The robust fractional bound is now unconditional; the remaining input is
-the low-codegree rounding inequality.-/
+the low-codegree rounding inequality.
+@isnad1 id=le.3h3v.s7.852e64f2c2d3 from=translated src=- shape=e6ada4e4 vocab=5bb1e332
+-/
 theorem quantitative_bound_of_rounding
     (G : SimpleGraph V)
     (ε : ℝ) (hε : 0 < ε) (hε1 : ε ≤ 1)

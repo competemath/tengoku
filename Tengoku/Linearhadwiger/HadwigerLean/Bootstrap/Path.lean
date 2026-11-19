@@ -50,7 +50,9 @@ private theorem induced_star_connected_bipartite (G : SimpleGraph V)
         exact False.elim (hstable hxs hys (G.ne_of_adj hxy') hxy')
 
 /-- A stable set of neighbors cannot have `k` vertices when no connected
-bipartite induced graph has `k+1` vertices.-/
+bipartite induced graph has `k+1` vertices.
+@isnad1 id=lt.3h5v.s6.de0edb23a506 from=translated src=- shape=3e07ee3d vocab=811860e7
+-/
 theorem stable_neighbors_card_lt (G : SimpleGraph V) (k : ℕ)
     (hno : NoLargeConnectedBipartite G (k + 1))
     (v : V) (S : Finset V) (hstable : G.IsIndepSet (S : Set V))
@@ -77,7 +79,9 @@ theorem stable_neighbors_card_lt (G : SimpleGraph V) (k : ℕ)
   exact induced_star_connected_bipartite G v T hTstable hTadj
 
 /-- The closed neighborhood of one vertex has independence number at most
-one less than the first excluded connected bipartite induced order.-/
+one less than the first excluded connected bipartite induced order.
+@isnad1 id=le.2h4v.s6.8c85e2f9d75e from=translated src=- shape=123440e2 vocab=611788af
+-/
 theorem independence_closedNeighborhood_le (G : SimpleGraph V) (k : ℕ)
     (hk : 2 ≤ k) (hno : NoLargeConnectedBipartite G k) (v : V) :
     HadwigerLean.independenceNumber
@@ -149,7 +153,9 @@ def closedNeighborhoodSet (G : SimpleGraph V) (P : Finset V) : Set V :=
   {w | ∃ v ∈ P, w = v ∨ G.Adj v w}
 
 /-- A stable set covered by closed neighborhoods of vertices of P has
-cardinality at most |P|(k-1).-/
+cardinality at most |P|(k-1).
+@isnad1 id=le.4h5v.s6.94306bd84bc4 from=translated src=- shape=11abac1d vocab=bf296a7b
+-/
 theorem stable_closedNeighborhood_card_le (G : SimpleGraph V) (k : ℕ)
     (hk : 2 ≤ k) (hno : NoLargeConnectedBipartite G k)
     (P S : Finset V) (hS : G.IsIndepSet (S : Set V))
@@ -223,7 +229,9 @@ private theorem independence_induce_le_of_stable_bound (G : SimpleGraph V)
   rw [← hScard, ← hTcard]
   exact hbound T hTstable hTU
 
-/-- Independence is at most the number of centers times the local bound.-/
+/-- Independence is at most the number of centers times the local bound.
+@isnad1 id=le.2h4v.s6.04dc57c2c550 from=translated src=- shape=96122654 vocab=072bc8be
+-/
 theorem independence_closedNeighborhoodSet_le (G : SimpleGraph V) (k : ℕ)
     (hk : 2 ≤ k) (hno : NoLargeConnectedBipartite G k) (P : Finset V) :
     HadwigerLean.independenceNumber (G.induce (closedNeighborhoodSet G P)) ≤
@@ -234,7 +242,9 @@ theorem independence_closedNeighborhoodSet_le (G : SimpleGraph V) (k : ℕ)
   exact stable_closedNeighborhood_card_le G k hk hno P T hT hTU
 
 /-- The numeric conclusion of path localization follows once a short path
-has a low-chromatic complement of its closed neighborhood.-/
+has a low-chromatic complement of its closed neighborhood.
+@isnad1 id=ex.4h5v.s7.f91e313a8213 from=translated src=- shape=7f898925 vocab=b6b883e8
+-/
 theorem localization_of_short_closed_path (G : SimpleGraph V) (k q : ℕ)
     (hk : 2 ≤ k) (hno : NoLargeConnectedBipartite G k)
     (P : Finset V) (hPcard : P.card ≤ k)
@@ -247,19 +257,26 @@ theorem localization_of_short_closed_path (G : SimpleGraph V) (k q : ℕ)
   exact (independence_closedNeighborhoodSet_le G k hk hno P).trans
     (Nat.mul_le_mul_right (k - 1) hPcard)
 
+/--
+@isnad1 id=eq.0h2v.s4.027fd516853b from=translated src=- shape=edc6a18b vocab=d1480cf5
+-/
 @[simp] theorem closedNeighborhoodSet_empty (G : SimpleGraph V) :
     closedNeighborhoodSet G (∅ : Finset V) = ∅ := by
   ext w
   simp [closedNeighborhoodSet]
 
-/-- Closed neighborhoods increase with their center set.-/
+/-- Closed neighborhoods increase with their center set.
+@isnad1 id=le.1h4v.s5.a4f4346fb456 from=translated src=- shape=6d0bda27 vocab=61299ab2
+-/
 theorem closedNeighborhoodSet_mono (G : SimpleGraph V)
     {P Q : Finset V} (hPQ : P ⊆ Q) :
     closedNeighborhoodSet G P ⊆ closedNeighborhoodSet G Q := by
   rintro w ⟨v, hv, hw⟩
   exact ⟨v, hPQ hv, hw⟩
 
-/-- The closed neighborhood after adding one center.-/
+/-- The closed neighborhood after adding one center.
+@isnad1 id=eq.0h4v.s5.805e7100e0e7 from=translated src=- shape=cb22bc9b vocab=08c29ddc
+-/
 theorem closedNeighborhoodSet_insert (G : SimpleGraph V)
     (v : V) (P : Finset V) :
     closedNeighborhoodSet G (insert v P) =
@@ -269,7 +286,9 @@ theorem closedNeighborhoodSet_insert (G : SimpleGraph V)
     Set.mem_union, Set.mem_insert_iff, SimpleGraph.mem_neighborSet]
   aesop
 
-/-- Vertices outside the closed neighborhood have no edge to a center.-/
+/-- Vertices outside the closed neighborhood have no edge to a center.
+@isnad1 id=not.2h5v.s5.d5c923d44893 from=translated src=- shape=4a0ff7f9 vocab=813e9ff1
+-/
 theorem not_adj_of_not_mem_closedNeighborhoodSet (G : SimpleGraph V)
     (P : Finset V) {w v : V} (hw : w ∉ closedNeighborhoodSet G P)
     (hv : v ∈ P) : ¬ G.Adj v w := by
@@ -285,7 +304,9 @@ private def componentToInduce (G : SimpleGraph V) (K : Set V)
   map_rel' := by intro x y h; exact h
 
 /-- If the complement of K has at least q colors, one of its
-connected components has at least q colors.-/
+connected components has at least q colors.
+@isnad1 id=ex.2h4v.s6.983b8e9fe8ba from=translated src=- shape=e71e14b8 vocab=80d90303
+-/
 theorem exists_high_component (G : SimpleGraph V) (K : Set V) (q : ℕ)
     (hq : 1 ≤ q)
     (h : q ≤ HadwigerLean.chromatic (G.induce Kᶜ)) :
@@ -310,7 +331,9 @@ theorem exists_high_component (G : SimpleGraph V) (K : Set V) (q : ℕ)
   omega
 
 /-- Two high-chromatic components of one deleted graph must coincide
-when the ambient graph contains no disjoint pair of high subgraphs.-/
+when the ambient graph contains no disjoint pair of high subgraphs.
+@isnad1 id=eq.3h6v.s7.e9820e4126a8 from=translated src=- shape=f592da18 vocab=c4b0ac0b
+-/
 theorem high_component_unique (G : SimpleGraph V) (K : Set V) (q : ℕ)
     (hnopair : ∀ A B : Set V, Disjoint A B →
       HadwigerLean.chromatic (G.induce A) < q ∨
@@ -327,7 +350,9 @@ theorem high_component_unique (G : SimpleGraph V) (K : Set V) (q : ℕ)
   · omega
 
 /-- The new high component is contained in the previous one after
-deleting more vertices.-/
+deleting more vertices.
+@isnad1 id=le.4h7v.s7.4abb6571515f from=translated src=- shape=d5d7e7db vocab=c4b0ac0b
+-/
 theorem high_component_nested (G : SimpleGraph V) (K L : Set V)
     (q : ℕ) (hKL : K ⊆ L)
     (hnopair : ∀ A B : Set V, Disjoint A B →
@@ -348,7 +373,9 @@ theorem high_component_nested (G : SimpleGraph V) (K L : Set V)
   simpa [heq] using C.subset_hom hKL
 
 /-- The high component after deleting L maps to the previous high
-component after deleting K.-/
+component after deleting K.
+@isnad1 id=eq.4h7v.s7.e0e5faf4c357 from=translated src=- shape=8d749d18 vocab=064988b0
+-/
 theorem high_component_hom_eq (G : SimpleGraph V) (K L : Set V)
     (q : ℕ) (hKL : K ⊆ L)
     (hnopair : ∀ A B : Set V, Disjoint A B →
@@ -362,7 +389,9 @@ theorem high_component_hom_eq (G : SimpleGraph V) (K L : Set V)
   exact high_component_nested G K L q hKL hnopair C D hC hD
 
 /-- A boundary vertex adjacent to the current path endpoint also
-touches the next high component.-/
+touches the next high component.
+@isnad1 id=ex.6h7v.s7.d05e71f3e03d from=translated src=- shape=4409bb5f vocab=df68509c
+-/
 theorem boundary_extension (G : SimpleGraph V)
     (K L : Set V) (v : V) (hKL : K ⊆ L)
     (hL_v : v ∈ L) (hL_adj : ∀ x, G.Adj v x → x ∈ L)
@@ -411,7 +440,9 @@ theorem boundary_extension (G : SimpleGraph V)
     exact False.elim ((D.notMem_of_mem haD) (hL_adj a hva))
   · exact ⟨w, hwC, hvw, a, haD, haw.symm⟩
 
-/-- Inducing on all vertices leaves the finite chromatic number unchanged.-/
+/-- Inducing on all vertices leaves the finite chromatic number unchanged.
+@isnad1 id=eq.0h2v.s4.640d99cb82cb from=translated src=- shape=549b2ce2 vocab=2c7ed5de
+-/
 theorem chromatic_induce_univ (G : SimpleGraph V) :
     HadwigerLean.chromatic (G.induce Set.univ) =
       HadwigerLean.chromatic G := by
@@ -629,7 +660,9 @@ private theorem exists_max_active_path (G : SimpleGraph V) (k q : ℕ)
 
 /-- The induced-path localization conclusion of paper Lemma 13, in the
 numeric form needed by separation. Its witness is the closed neighborhood
-of a finite leaf-grown induced path.-/
+of a finite leaf-grown induced path.
+@isnad1 id=pathloca.0h4v.s4.b897b22103f0 from=translated src=- shape=d38d5ba8 vocab=41edada9
+-/
 theorem path_localization (G : SimpleGraph V) (k q : ℕ) :
     PathLocalizationStatement G k q := by
   intro hk hq hno hchi hnopair

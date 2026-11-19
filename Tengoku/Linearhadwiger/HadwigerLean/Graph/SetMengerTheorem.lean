@@ -123,7 +123,9 @@ private noncomputable def projectCapacityPath (G : SimpleGraph V)
   obtain ⟨a, ha, b, hb, q, hunit⟩ := capacityPath_project G A B p
   exact ⟨⟨a, b, q, ha, hb, hunit⟩⟩
 
-/-- A decomposed integral split-network flow supplies disjoint A--B paths.-/
+/-- A decomposed integral split-network flow supplies disjoint A--B paths.
+@isnad1 id=ex.1h7v.s8.034f48665b2d from=translated src=- shape=b85c6691 vocab=e466b2bb
+-/
 theorem linkage_of_decomposition (G : SimpleGraph V) (A B : Finset V)
     (f g : FiniteFlow.Flow (splitNetwork G A B))
     (ps : List (splitNetwork G A B).CapacityPath)
@@ -151,7 +153,9 @@ theorem linkage_of_decomposition (G : SimpleGraph V) (A B : Finset V)
   exact ⟨P, L, ⟨fun i => (D i).start_mem, fun i => (D i).finish_mem⟩⟩
 
 /-- Finite set Menger: a minimum A--B separator and a vertex-disjoint
-A--B linkage have the same order. Paths of length zero are included.-/
+A--B linkage have the same order. Paths of length zero are included.
+@isnad1 id=ex.0h4v.s6.3706a0b17d35 from=translated src=- shape=9ebec7b0 vocab=bb79e5a9
+-/
 theorem finite_set_menger (G : SimpleGraph V) (A B : Finset V) :
     ∃ (Q : Finset V) (n : ℕ) (P : IndexedPairs (Fin n) V)
       (L : IndexedLinkage G P),
@@ -176,7 +180,9 @@ theorem finite_set_menger (G : SimpleGraph V) (A B : Finset V) :
   simpa [hlenQ] using hle
 
 /-- If every A--B separator has at least `k` vertices, there are `k`
-pairwise vertex-disjoint A--B paths.-/
+pairwise vertex-disjoint A--B paths.
+@isnad1 id=ex.1h5v.s6.fca2f7dcde3f from=translated src=- shape=e6af8a03 vocab=bb79e5a9
+-/
 theorem exists_linkage_of_separator_lower_bound (G : SimpleGraph V)
     (A B : Finset V) (k : ℕ)
     (hsep : ∀ Q : Finset V, IsABSeparator G A B Q → k ≤ Q.card) :
@@ -191,7 +197,9 @@ theorem exists_linkage_of_separator_lower_bound (G : SimpleGraph V)
   exact ⟨fun i => hAB.1 (e i), fun i => hAB.2 (e i)⟩
 
 /-- The minimum separator in finite set Menger is saturated: each of its
-vertices lies on one of the disjoint paths.-/
+vertices lies on one of the disjoint paths.
+@isnad1 id=ex.0h4v.s6.960393c2eab0 from=translated src=- shape=92c0f647 vocab=66b1b4d9
+-/
 theorem finite_set_menger_saturated (G : SimpleGraph V) (A B : Finset V) :
     ∃ (Q : Finset V) (n : ℕ) (P : IndexedPairs (Fin n) V)
       (L : IndexedLinkage G P),

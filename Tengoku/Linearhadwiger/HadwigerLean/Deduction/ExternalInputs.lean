@@ -57,14 +57,18 @@ def Corollary24Statement : Prop :=
     HadwigerLean.chromatic G <
       3 * (10 ^ 6 * (d + 1) + 62000) * t
 
-/-- The displayed ratio set contains zero.-/
+/-- The displayed ratio set contains zero.
+@isnad1 id=nonempty.0h4v.s4.82ade8e55b26 from=translated src=- shape=d40a1671 vocab=980e24f8
+-/
 theorem theorem4RatioSet_nonempty {V : Type u} [Fintype V]
     (G : SimpleGraph V) (C t : ℕ) :
     (theorem4RatioSet G C t).Nonempty := by
   refine ⟨0, ?_⟩
   simp [theorem4RatioSet]
 
-/-- There are only finitely many admissible ratios in a finite graph.-/
+/-- There are only finitely many admissible ratios in a finite graph.
+@isnad1 id=finite.0h4v.s4.52ca1738ca6f from=translated src=- shape=d40a1671 vocab=b9f12a5d
+-/
 theorem theorem4RatioSet_finite {V : Type u} [Fintype V]
     (G : SimpleGraph V) (C t : ℕ) :
     (theorem4RatioSet G C t).Finite := by
@@ -81,7 +85,9 @@ theorem theorem4RatioSet_finite {V : Type u} [Fintype V]
     rfl
 
 /-- The supremum used in paper Theorem 4 is attained by zero or one of the
-eligible arbitrary-subgraph ratios.-/
+eligible arbitrary-subgraph ratios.
+@isnad1 id=mem.0h4v.s4.ab325fbb11ec from=translated src=- shape=431a857e vocab=b187be7e
+-/
 theorem theorem4MaxRatio_mem {V : Type u} [Fintype V]
     (G : SimpleGraph V) (C t : ℕ) :
     theorem4MaxRatio G C t ∈ theorem4RatioSet G C t := by
@@ -90,7 +96,9 @@ theorem theorem4MaxRatio_mem {V : Type u} [Fintype V]
     (theorem4RatioSet_finite G C t)
 /-- The paper maximum admits the pointwise elimination form used in the
 bootstrap deduction. This is a direct consequence of Theorem 4: every
-eligible subgraph ratio is bounded by `D`.-/
+eligible subgraph ratio is bounded by `D`.
+@isnad1 id=ex.1h0v.s7.fe3abe5b88f3 from=translated src=- shape=3d35c574 vocab=957010de
+-/
 theorem theorem4_elimination (h4 : Theorem4Statement.{u}) :
     ∃ C : ℕ, 1 ≤ C ∧
       ∀ (V : Type u) [Fintype V] (G : SimpleGraph V) (t : ℕ) (D : ℝ),

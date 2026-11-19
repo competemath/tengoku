@@ -30,7 +30,9 @@ def IsABLinkage {G : SimpleGraph V} {P : IndexedPairs ι V}
   (∀ i, P.start i ∈ A) ∧ (∀ i, P.finish i ∈ B)
 
 /-- The vertices at which the paths of an indexed linkage meet a separator
-are all distinct. Hence every separator has order at least the linkage size.-/
+are all distinct. Hence every separator has order at least the linkage size.
+@isnad1 id=le.2h8v.s5.0a6d0b0b9ee2 from=translated src=- shape=a9410808 vocab=dc302b0c
+-/
 theorem card_le_separator {G : SimpleGraph V} {P : IndexedPairs ι V}
     (L : IndexedLinkage G P) (A B Q : Finset V)
     (hAB : IsABLinkage L A B) (hQ : IsABSeparator G A B Q) :
@@ -58,7 +60,9 @@ theorem card_le_separator {G : SimpleGraph V} {P : IndexedPairs ι V}
     _ ≤ Q.card := Finset.card_le_card hsubset
 
 /-- If the separator and linkage have the same order, every separator
-vertex is occupied by exactly one of the disjoint paths.-/
+vertex is occupied by exactly one of the disjoint paths.
+@isnad1 id=ex.4h9v.s6.2ef695e84802 from=translated src=- shape=b92a12e6 vocab=8b28d792
+-/
 theorem separator_saturated {G : SimpleGraph V} {P : IndexedPairs ι V}
     (L : IndexedLinkage G P) (A B Q : Finset V)
     (hAB : IsABLinkage L A B) (hQ : IsABSeparator G A B Q)
@@ -137,20 +141,32 @@ noncomputable def allInCut : Finset (SplitVertex V) := by
   classical
   exact Finset.univ.image (fun o : Option V => (Sum.inl o : SplitVertex V))
 
+/--
+@isnad1 id=mem.0h1v.s4.21976962568c from=translated src=- shape=313b5319 vocab=1a41e637
+-/
 @[simp] theorem splitSource_mem_allInCut : splitSource ∈ (allInCut (V := V)) := by
   classical
   simp [allInCut, splitSource]
 
+/--
+@isnad1 id=mem.0h2v.s5.6ba68578743b from=translated src=- shape=f19e8b6e vocab=7d0a471a
+-/
 @[simp] theorem splitIn_mem_allInCut (v : V) :
     splitIn v ∈ (allInCut (V := V)) := by
   classical
   simp [allInCut, splitIn]
 
+/--
+@isnad1 id=not.0h1v.s4.7ceeeb8db31d from=translated src=- shape=e76dfdec vocab=2a8425e6
+-/
 @[simp] theorem splitSink_not_mem_allInCut :
     splitSink ∉ (allInCut (V := V)) := by
   classical
   simp [allInCut, splitSink]
 
+/--
+@isnad1 id=not.0h2v.s5.8aa3160842c2 from=translated src=- shape=ce0efd89 vocab=4b743fb7
+-/
 @[simp] theorem splitOut_not_mem_allInCut (v : V) :
     splitOut v ∉ (allInCut (V := V)) := by
   classical
@@ -160,6 +176,9 @@ noncomputable def allOutCut : Finset (SplitVertex V) := by
   classical
   exact Finset.univ.image (fun o : Option V => (Sum.inr o : SplitVertex V))
 
+/--
+@isnad1 id=eq.0h1v.s6.3fa1dbb33835 from=translated src=- shape=51536d36 vocab=48e62afa
+-/
 theorem allInCut_compl :
     Finset.univ \ (allInCut (V := V)) = allOutCut (V := V) := by
   classical
@@ -167,6 +186,9 @@ theorem allInCut_compl :
   cases x with
   | inl o => simp [allInCut, allOutCut]
   | inr o => simp [allInCut, allOutCut]
+/--
+@isnad1 id=eq.0h4v.s6.6095349169bc from=translated src=- shape=17345661 vocab=c5fde640
+-/
 theorem allInCut_capacity (G : SimpleGraph V) (A B : Finset V) :
     (splitNetwork G A B).cutCapacity (allInCut (V := V)) =
       Fintype.card V := by
@@ -187,7 +209,9 @@ theorem allInCut_capacity (G : SimpleGraph V) (A B : Finset V) :
   rw [Finset.sum_image hinl]
   simp_rw [Finset.sum_image hinr]
   simp [splitNetwork, splitCapacity, Fintype.sum_option]
-/-- No arc of capacity `|V|+1` crosses a cut of capacity at most `|V|`.-/
+/-- No arc of capacity `|V|+1` crosses a cut of capacity at most `|V|`.
+@isnad1 id=not.2h7v.s7.37867927d6d9 from=translated src=- shape=3ea00ad1 vocab=ad4fbabc
+-/
 theorem no_large_arc_crosses (G : SimpleGraph V) (A B : Finset V)
     (S : Finset (SplitVertex V))
     (hsmall : (splitNetwork G A B).cutCapacity S ≤ Fintype.card V)
@@ -203,7 +227,9 @@ theorem no_large_arc_crosses (G : SimpleGraph V) (A B : Finset V)
   omega
 
 /-- Max-flow/min-cut yields a minimum split-network cut with capacity at
-most the number of graph vertices.-/
+most the number of graph vertices.
+@isnad1 id=ex.0h4v.s8.447a42ca88af from=translated src=- shape=a83a9ae1 vocab=395541f8
+-/
 theorem exists_small_split_cut (G : SimpleGraph V) (A B : Finset V) :
     ∃ (f : FiniteFlow.Flow (splitNetwork G A B))
       (S : Finset (SplitVertex V)),
@@ -228,11 +254,17 @@ noncomputable def splitSeparator (S : Finset (SplitVertex V)) : Finset V := by
   exact Finset.univ.filter
     (fun v => splitIn v ∈ S ∧ splitOut v ∉ S)
 
+/--
+@isnad1 id=iff.0h3v.s6.35c70db32143 from=translated src=- shape=9b510a12 vocab=e7eb4bdc
+-/
 @[simp] theorem mem_splitSeparator {S : Finset (SplitVertex V)} {v : V} :
     v ∈ splitSeparator S ↔ splitIn v ∈ S ∧ splitOut v ∉ S := by
   classical
   simp [splitSeparator]
 
+/--
+@isnad1 id=mem.3h6v.s7.5badf6d4a449 from=translated src=- shape=613f4648 vocab=ccbb1941
+-/
 theorem split_start_in_cut (G : SimpleGraph V) (A B : Finset V)
     (S : Finset (SplitVertex V))
     (hsource : splitSource ∈ S)
@@ -245,6 +277,9 @@ theorem split_start_in_cut (G : SimpleGraph V) (A B : Finset V)
     simp [splitCapacity, splitSource, splitIn, ha]
   exact no_large_arc_crosses G A B S hsmall hlarge ⟨hsource, hnot⟩
 
+/--
+@isnad1 id=mem.3h7v.s7.05eb43de2545 from=translated src=- shape=6131ee4c vocab=4fa6533b
+-/
 theorem split_adj_closed (G : SimpleGraph V) (A B : Finset V)
     (S : Finset (SplitVertex V))
     (hsmall : (splitNetwork G A B).cutCapacity S ≤ Fintype.card V)
@@ -257,6 +292,9 @@ theorem split_adj_closed (G : SimpleGraph V) (A B : Finset V)
     simp [splitCapacity, splitOut, splitIn, huv]
   exact no_large_arc_crosses G A B S hsmall hlarge ⟨hu, hnot⟩
 
+/--
+@isnad1 id=not.3h6v.s7.c7225b5c99b9 from=translated src=- shape=01f1b52f vocab=650b4425
+-/
 theorem split_finish_not_in_cut (G : SimpleGraph V) (A B : Finset V)
     (S : Finset (SplitVertex V))
     (hsink : splitSink ∉ S)
@@ -269,6 +307,9 @@ theorem split_finish_not_in_cut (G : SimpleGraph V) (A B : Finset V)
     simp [splitCapacity, splitOut, splitSink, hb]
   exact no_large_arc_crosses G A B S hsmall hlarge ⟨h, hsink⟩
 
+/--
+@isnad1 id=mem.2h3v.s6.b171d1202621 from=translated src=- shape=7f719ade vocab=e7eb4bdc
+-/
 theorem split_out_of_not_separator
     (S : Finset (SplitVertex V)) {v : V}
     (hin : splitIn v ∈ S) (hnot : v ∉ splitSeparator S) :
@@ -298,7 +339,9 @@ private theorem walk_through_small_cut (G : SimpleGraph V) (A B : Finset V)
       exact ih hrest hIn
 
 /-- Every small split-network source--sink cut defines a vertex separator in
-the original graph, with terminals permitted in the separator.-/
+the original graph, with terminals permitted in the separator.
+@isnad1 id=isabsepa.3h5v.s7.68e839437188 from=translated src=- shape=c383826b vocab=b19923ff
+-/
 theorem splitSeparator_isABSeparator (G : SimpleGraph V)
     (A B : Finset V) (S : Finset (SplitVertex V))
     (hsource : splitSource ∈ S) (hsink : splitSink ∉ S)
@@ -382,7 +425,9 @@ private theorem splitCapacity_eq_unit_of_small (G : SimpleGraph V) (A B : Finset
     cases ox <;> cases oy <;>
     simp [splitCapacity, splitUnitCapacity] at * <;> assumption
 
-/-- A small network cut has precisely the number of its separated vertex arcs.-/
+/-- A small network cut has precisely the number of its separated vertex arcs.
+@isnad1 id=eq.1h5v.s7.481768a63f08 from=translated src=- shape=23232baf vocab=a2afe2aa
+-/
 theorem small_cut_capacity_eq_separator_card (G : SimpleGraph V)
     (A B : Finset V) (S : Finset (SplitVertex V))
     (hsmall : (splitNetwork G A B).cutCapacity S ≤ Fintype.card V) :

@@ -20,7 +20,9 @@ variable {V I : Type*} [Fintype V] [Fintype I] [DecidableEq I]
   {G : SimpleGraph V}
 
 /-- If the induced minimal terminal connector has no odd terminal path,
-the central block can be replaced by an egg and connected remainder pieces.-/
+the central block can be replaced by an egg and connected remainder pieces.
+@isnad1 id=ex.5h7v.s7.9d32f989dd8c from=translated src=- shape=b193879e vocab=bf73b475
+-/
 theorem improve_of_no_odd_connector
     (P : ConnectedPartition G I) (i₀ : I) (w : V → ℝ)
     (hP : IsPartialEggDecomposition P w)
@@ -55,7 +57,9 @@ theorem improve_of_no_odd_connector
   exact ⟨m, Q, hQpartial, by simpa only [hQsupport] using hQ.2⟩
 
 /-- Failure of the parity obstruction produces a concrete induced odd path
-with distinct terminal labels.-/
+with distinct terminal labels.
+@isnad1 id=ex.1h4v.s6.f6d8caa293e0 from=translated src=- shape=143a6732 vocab=910d1a89
+-/
 theorem exists_odd_connector_of_not_no_odd {W I : Type*}
     {H : SimpleGraph W} {N : I → Set W}
     (hnot : ¬ NoOddConnector H N) :

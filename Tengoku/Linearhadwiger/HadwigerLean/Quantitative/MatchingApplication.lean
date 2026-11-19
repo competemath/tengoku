@@ -16,7 +16,9 @@ namespace HadwigerLean.Theorem2
 open MatchingRound
 
 /-- The paper's floor schedule satisfies every condition of the finite
-matching iteration once the initial maximum codegree is small.-/
+matching iteration once the initial maximum codegree is small.
+@isnad1 id=matching.5h4v.s6.aeef9a61a311 from=translated src=- shape=4e2569a3 vocab=00a36f4f
+-/
 theorem matchingSchedule_paper
     {D₀ B r : ℕ} {ξ : ℝ}
     (hr : 2 ≤ r) (hξ : 0 < ξ) (hξ1 : ξ ≤ 1)
@@ -53,7 +55,9 @@ theorem matchingSchedule_paper
     simpa only [matchingQ, neg_mul] using
       (matchingD_next_le_exp (D₀ := D₀) (r := r) (i := i) (ξ := ξ) hr)
 
-/-- The numerical potential budget for the sampled hypergraph.-/
+/-- The numerical potential budget for the sampled hypergraph.
+@isnad1 id=le.4h6v.s7.0bdfcc833837 from=translated src=- shape=f772ab60 vocab=4933f5d1
+-/
 theorem matching_initial_potential_budget
     {V E : Type*} [DecidableEq V]
     (H : IndexedHypergraph V E)

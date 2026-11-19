@@ -15,6 +15,9 @@ namespace ReedSeymour
 
 variable {V : Type*} {G : SimpleGraph V}
 
+/--
+@isnad1 id=disjoint.3h8v.s6.4fcc1ff48c5b from=translated src=- shape=b2ea1e01 vocab=32e32caf
+-/
 theorem gated_stems_disjoint {a b u v : V}
     (p : G.Walk a u) (q : G.Walk b v)
     (hp : p.IsPath) (huq : u ∉ q.support)
@@ -38,6 +41,9 @@ theorem gated_stems_disjoint {a b u v : V}
     u ∈ (p.takeUntil x hxp).support ∨ u ∈ (q.dropUntil x hxq).support).elim
       hnotLeft hnotRight
 
+/--
+@isnad1 id=eq.6h10v.s6.15319e6fc77e from=translated src=- shape=465ebc08 vocab=d70b29e5
+-/
 theorem gated_stems_cross_edge {a b u v : V}
     (p : G.Walk a u) (q : G.Walk b v)
     (hp : p.IsPath) (huq : u ∉ q.support)
@@ -62,6 +68,9 @@ theorem gated_stems_cross_edge {a b u v : V}
     u ∈ ((p.takeUntil x hx).concat hxy).support ∨
       u ∈ (q.dropUntil y hy).support).elim hnotLeft hnotRight
 
+/--
+@isnad1 id=false.4h10v.s6.7e3c8efa4d4d from=translated src=- shape=c68f1cc2 vocab=f2fcf452
+-/
 theorem gated_stem_avoids_terminal {I : Type*} (N : I → Set V)
     {u v b : V} {i : I} (q : G.Walk b v)
     (huq : u ∉ q.support)
@@ -72,7 +81,9 @@ theorem gated_stem_avoids_terminal {I : Type*} (N : I → Set V)
   have h := hgate z hNi (q.dropUntil z hz)
   exact huq (q.support_dropUntil_subset_support hz h)
 
-/-- Two vertex-disjoint paths joined by an edge form a path.-/
+/-- Two vertex-disjoint paths joined by an edge form a path.
+@isnad1 id=ispath.4h8v.s6.1d3d7e74b879 from=translated src=- shape=035baf73 vocab=57c9294c
+-/
 theorem joined_disjoint_paths_isPath {a b u v : V}
     (p : G.Walk a u) (q : G.Walk b v)
     (hp : p.IsPath) (hq : q.IsPath)
@@ -104,7 +115,9 @@ theorem joined_disjoint_paths_isPath {a b u v : V}
     List.nodup_append']
   exact ⟨hp'.support_nodup, hq'.support_nodup.tail, hdisj'⟩
 
-/-- A joined stem has exactly the vertices of the two original stems.-/
+/-- A joined stem has exactly the vertices of the two original stems.
+@isnad1 id=iff.1h9v.s6.9a3a01e48b8f from=translated src=- shape=75315660 vocab=331d810a
+-/
 theorem mem_joined_stems_support_iff {a b u v z : V}
     (p : G.Walk a u) (q : G.Walk b v) (huv : G.Adj u v) :
     z ∈ ((p.concat huv).append q.reverse).support ↔
@@ -122,7 +135,9 @@ theorem mem_joined_stems_support_iff {a b u v z : V}
     · exact Or.inl (Or.inl h)
     · exact Or.inr h
 
-/-- If all cross edges are the joining edge, the joined path is induced.-/
+/-- If all cross edges are the joining edge, the joined path is induced.
+@isnad1 id=ischordl.4h8v.s6.a9e130fb3bc6 from=translated src=- shape=52441bc3 vocab=5579bebb
+-/
 theorem joined_disjoint_paths_isChordless {a b u v : V}
     (p : G.Walk a u) (q : G.Walk b v)
     (hcp : p.IsChordless) (hcq : q.IsChordless)
@@ -148,7 +163,9 @@ theorem joined_disjoint_paths_isChordless {a b u v : V}
         SimpleGraph.Walk.edges_concat, he]
 
 /-- Adjacent gated stems of equal length parity give an induced odd connector
-between their terminal sets.-/
+between their terminal sets.
+@isnad1 id=ex.2h10v.s7.c401504d320e from=translated src=- shape=399ad497 vocab=9aa6e1db
+-/
 theorem odd_connector_of_gated_stems {I : Type*} {N : I → Set V}
     {u x y : V} (c : G.Walk u u)
     (sx : GatedCycleStem G N c x) (sy : GatedCycleStem G N c y)

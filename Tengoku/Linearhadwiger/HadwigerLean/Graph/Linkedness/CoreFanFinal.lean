@@ -11,7 +11,9 @@ namespace HadwigerLean
 namespace Linkedness
 
 /-- Rooted linkedness at precisely the fan arrival set suffices for
-rooted linkedness at all fan starts.-/
+rooted linkedness at all fan starts.
+@isnad1 id=rootedli.3h6v.s7.921ddd7c3bdb from=translated src=- shape=9a715322 vocab=8444da63
+-/
 theorem rootedLinked_of_trimmed_fan_to_arrivals
     {V : Type*} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} {r : ℕ}
@@ -31,7 +33,9 @@ theorem rootedLinked_of_trimmed_fan_to_arrivals
     slot hslot Q hstart hfinish'
 /-- If a fan from all roots reaches a core without meeting that core before
 its last vertex, and the core links every arrival set, then the original
-root set is linked with path interiors avoiding the other roots.-/
+root set is linked with path interiors avoiding the other roots.
+@isnad1 id=rootedli.3h6v.s7.8fc8fbf5c524 from=translated src=- shape=781d297b vocab=079c8aac
+-/
 theorem rootedLinked_of_trimmed_fan_to_core
     {V : Type*} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} {r : ℕ}

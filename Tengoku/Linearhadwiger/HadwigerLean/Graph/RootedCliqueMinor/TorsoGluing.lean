@@ -61,7 +61,9 @@ def glueRight {V : Type*} [Fintype V]
     · exact crossT hxS hxT
 
 /-- Strict far-side vertices of a torso separation remain strictly far
-+after the separation is glued to the original graph.-/
++after the separation is glued to the original graph.
+@isnad1 id=mem.2h5v.s7.283364277b3b from=translated src=- shape=a019751b vocab=b4d78367
+-/
 theorem strictRight_glueRight {V : Type*} [Fintype V]
     {G : SimpleGraph V} (S : VertexSeparation G)
     (T : VertexSeparation S.torso)
@@ -74,7 +76,9 @@ theorem strictRight_glueRight {V : Type*} [Fintype V]
   · exact hx.2 (hX x hxSL)
   · exact hx.2 hxTL
 /-- If a restricted model branch is strictly beyond a torso separation,
-its whole original branch is strictly beyond the glued separation.-/
+its whole original branch is strictly beyond the glued separation.
+@isnad1 id=le.4h9v.s8.adc6b9c902fd from=translated src=- shape=1f0b99aa vocab=2f1aa5d4
+-/
 theorem completed_branch_strictRight_glueRight
     {V : Type*} [Fintype V]
     {G : SimpleGraph V} (S : VertexSeparation G)

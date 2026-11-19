@@ -16,7 +16,9 @@ namespace HadwigerLean
 universe u
 
 /-- Give each of `n` roles a distinct adjacent proxy outside `U` when each
-candidate set has at least `n` members. Repeated roles are allowed.-/
+candidate set has at least `n` members. Repeated roles are allowed.
+@isnad1 id=ex.1h5v.s6.69e0fce95c08 from=translated src=- shape=3f030efa vocab=f88a8a91
+-/
 theorem exists_distinct_neighbor_proxies_of_candidates
     {V : Type u} [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj] (n : ℕ)
     (role : Fin n → V) (U : Finset V)
@@ -48,7 +50,9 @@ theorem exists_distinct_neighbor_proxies_of_candidates
     exact (Finset.mem_sdiff.mp (hproxy i)).2
 
 /-- Minimum degree `2n` leaves enough distinct neighbors for `n` roles
-after forbidding at most `n` original occupied vertices.-/
+after forbidding at most `n` original occupied vertices.
+@isnad1 id=ex.2h5v.s7.915b93765b9f from=translated src=- shape=0ed19ab4 vocab=c46f35bd
+-/
 theorem exists_distinct_neighbor_proxies
     {V : Type u} [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj] (n : ℕ)
     (role : Fin n → V) (U : Finset V)
@@ -67,7 +71,9 @@ theorem exists_distinct_neighbor_proxies
   omega
 
 /-- A `2n` degree bound separates all proxies from all original roles,
-even when several occurrences name the same vertex.-/
+even when several occurrences name the same vertex.
+@isnad1 id=ex.1h4v.s6.ca210bca4196 from=translated src=- shape=b786bd5a vocab=438068b2
+-/
 theorem exists_distinct_neighbor_proxies_for_roles
     {V : Type u} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj] (n : ℕ)

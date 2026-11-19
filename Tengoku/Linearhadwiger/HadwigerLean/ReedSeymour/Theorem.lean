@@ -17,7 +17,9 @@ namespace ReedSeymour
 variable {V : Type*} [Fintype V]
 
 /-- The odd terminal connector in a minimal induced central set triggers
-the checked fusion improvement.-/
+the checked fusion improvement.
+@isnad1 id=hasoddco.0h2v.s3.2d80bee46635 from=translated src=- shape=1df4a4a2 vocab=1cdd6fdf
+-/
 theorem hasOddConnectorImprovement (G : SimpleGraph V) :
     HasOddConnectorImprovement G := by
   classical
@@ -37,7 +39,9 @@ theorem hasOddConnectorImprovement (G : SimpleGraph V) :
     i.2 j.2 q hq hqodd hinside
 
 /-- The Reed--Seymour theorem: the fractional chromatic number is at most
-twice the clique-minor number for every finite simple graph.-/
+twice the clique-minor number for every finite simple graph.
+@isnad1 id=le.0h2v.s5.78b71f5bbbd1 from=translated src=- shape=94384eea vocab=43e6b870
+-/
 theorem reed_seymour_bound [DecidableEq V] (G : SimpleGraph V) :
     fractionalChromaticNumber G ≤ 2 * (cliqueMinorNumber G : ℝ) :=
   reed_seymour_bound_of_odd_connector_improvement G

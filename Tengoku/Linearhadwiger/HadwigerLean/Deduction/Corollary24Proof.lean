@@ -14,7 +14,9 @@ open HadwigerLean.Bootstrap
 
 universe u
 
-/-- At the top scale, the Corollary 24 cutoff is strict.-/
+/-- At the top scale, the Corollary 24 cutoff is strict.
+@isnad1 id=lt.1h1v.s5.12bb5e08a571 from=translated src=- shape=06afebfc vocab=fad178cf
+-/
 theorem cor24_top_scale_above_cutoff
     (T : ℕ) (hT : 100 ≤ T) :
     (T : ℝ) / Real.sqrt (Real.log (T : ℝ)) < (T : ℝ) := by
@@ -44,7 +46,9 @@ def Cor24SharedOuterWoven : Prop :=
     Woven G a (3 * a)
 
 /-- The common woven induction at Corollary 24's numerical constants
-implies the paper's complete Corollary 24 statement.-/
+implies the paper's complete Corollary 24 statement.
+@isnad1 id=corollar.1h0v.s1.aefc51572923 from=translated src=- shape=1d48f1ac vocab=cf150579
+-/
 theorem corollary24_of_shared_outer_woven
     (hOuter : Cor24SharedOuterWoven.{u}) :
     Corollary24Statement.{u} := by

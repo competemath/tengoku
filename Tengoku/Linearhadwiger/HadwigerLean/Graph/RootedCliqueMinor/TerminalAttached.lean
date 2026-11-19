@@ -75,7 +75,9 @@ noncomputable def ofLinkageToClique
 end RootAttachedCliqueModel
 
 /-- An r-connected graph with an r-vertex clique outside the prescribed
-roots has an attached rooted K_r model.-/
+roots has an attached rooted K_r model.
+@isnad1 id=nonempty.5h5v.s7.9ca6d3c63362 from=translated src=- shape=971cda0a vocab=5c27fefb
+-/
 theorem rootAttachedCliqueModel_of_connected_clique_away
     {V : Type*} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} {r : ℕ}

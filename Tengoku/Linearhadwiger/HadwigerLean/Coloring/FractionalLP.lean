@@ -24,6 +24,9 @@ noncomputable def fractionalLP (G : SimpleGraph V) :
   b _ := 1
   c _ := 1
 
+/--
+@isnad1 id=iff.0h3v.s5.8994d8165c83 from=translated src=- shape=0b9e7129 vocab=7c652140
+-/
 theorem fractionalLP_primalFeasible_iff (G : SimpleGraph V)
     (x : StableSet G → ℝ) :
     (fractionalLP G).PrimalFeasible x ↔ IsFractionalColoring G x := by
@@ -36,6 +39,9 @@ theorem fractionalLP_primalFeasible_iff (G : SimpleGraph V)
   · intro v
     simpa [ite_mul] using hcover v
 
+/--
+@isnad1 id=iff.0h3v.s4.ad47ae6928ee from=translated src=- shape=d9af210f vocab=d3d92d27
+-/
 theorem fractionalLP_dualFeasible_iff (G : SimpleGraph V) (w : V → ℝ) :
     (fractionalLP G).DualFeasible w ↔ IsFractionalDualFeasible G w := by
   classical
@@ -47,15 +53,23 @@ theorem fractionalLP_dualFeasible_iff (G : SimpleGraph V) (w : V → ℝ) :
   · intro S
     simpa [ite_mul, Finset.sum_ite] using hstable S
 
+/--
+@isnad1 id=eq.0h3v.s5.f905ca4b7fd9 from=translated src=- shape=21a573e3 vocab=a1211611
+-/
 theorem fractionalLP_primalValue (G : SimpleGraph V) (x : StableSet G → ℝ) :
     (fractionalLP G).primalValue x = fractionalCost G x := by
   simp [FiniteLP.Problem.primalValue, fractionalLP, fractionalCost]
 
+/--
+@isnad1 id=eq.0h3v.s5.bd1294761926 from=translated src=- shape=bb55b18c vocab=df429b37
+-/
 theorem fractionalLP_dualValue (G : SimpleGraph V) (w : V → ℝ) :
     (fractionalLP G).dualValue w = fractionalDualValue w := by
   simp [FiniteLP.Problem.dualValue, fractionalLP, fractionalDualValue]
 
-/-- On a finite graph, the infimum defining fractional chromatic number is attained.-/
+/-- On a finite graph, the infimum defining fractional chromatic number is attained.
+@isnad1 id=ex.0h2v.s5.85d606c73b22 from=translated src=- shape=90ac94e7 vocab=9f037fa3
+-/
 theorem exists_fractionalColoring_minimizer (G : SimpleGraph V) :
     ∃ x : StableSet G → ℝ,
       IsFractionalColoring G x ∧
@@ -80,7 +94,9 @@ theorem exists_fractionalColoring_minimizer (G : SimpleGraph V) :
     simpa only [fractionalLP_primalValue] using
       hmin z ((fractionalLP_primalFeasible_iff G z).2 hz)
 
-/-- Fractional coloring has optimal primal and dual solutions with equal values.-/
+/-- Fractional coloring has optimal primal and dual solutions with equal values.
+@isnad1 id=ex.0h2v.s6.002e1aee45f3 from=translated src=- shape=06eb75ca vocab=dc41fb75
+-/
 theorem exists_fractional_primal_dual_optima (G : SimpleGraph V) :
     ∃ x : StableSet G → ℝ, ∃ w : V → ℝ,
       IsFractionalColoring G x ∧ IsFractionalDualFeasible G w ∧
@@ -108,7 +124,9 @@ theorem exists_fractional_primal_dual_optima (G : SimpleGraph V) :
     fractionalCost G x = fractionalDualValue w := hcost
     _ ≤ fractionalChromaticNumber G := fractionalDualValue_le_chromatic G hw'
 
-/-- The dual vertex-weight formulation attains fractional chromatic number.-/
+/-- The dual vertex-weight formulation attains fractional chromatic number.
+@isnad1 id=ex.0h2v.s5.e6762360491a from=translated src=- shape=529ec75e vocab=9bfda4ff
+-/
 theorem exists_fractionalDual_optimum (G : SimpleGraph V) :
     ∃ w : V → ℝ,
       IsFractionalDualFeasible G w ∧
@@ -117,6 +135,9 @@ theorem exists_fractionalDual_optimum (G : SimpleGraph V) :
     exists_fractional_primal_dual_optima G
   exact ⟨w, hw, hcost.symm.trans hchrom.symm⟩
 
+/--
+@isnad1 id=eq.0h2v.s4.fcabfbfef04f from=translated src=- shape=d85dc8f5 vocab=6cadbb7d
+-/
 @[simp] theorem fractionalChromaticNumber_eq_zero_of_isEmpty
     (G : SimpleGraph V) [IsEmpty V] : fractionalChromaticNumber G = 0 := by
   obtain ⟨w, _, hw⟩ := exists_fractionalDual_optimum G

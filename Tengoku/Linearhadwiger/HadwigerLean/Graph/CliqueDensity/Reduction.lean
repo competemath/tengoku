@@ -20,11 +20,15 @@ universe u
 
 variable {V : Type u} [Fintype V]
 
-/-- A graph obtained by removing edges is a minor, via singleton branches.-/
+/-- A graph obtained by removing edges is a minor, via singleton branches.
+@isnad1 id=isminor.1h3v.s4.39f73964e7b8 from=translated src=- shape=8156789a vocab=7627e32e
+-/
 theorem isMinor_of_graph_le {G H : SimpleGraph V} (h : H ≤ G) : IsMinor H G :=
   ⟨(MinorModel.refl H).mono h⟩
 
-/-- A graph induced on a vertex set is a minor of the ambient graph.-/
+/-- A graph induced on a vertex set is a minor of the ambient graph.
+@isnad1 id=isminor.0h3v.s4.80346985a6ad from=translated src=- shape=764d28da vocab=6c48dca3
+-/
 theorem induce_isMinor (G : SimpleGraph V) (S : Set V) : IsMinor (G.induce S) G :=
   ⟨(MinorModel.refl (G.induce S)).map
     (SimpleGraph.Embedding.induce S).toHom Subtype.coe_injective⟩
@@ -34,7 +38,9 @@ private def DenseMinorScore (G : SimpleGraph V) (d score : ℕ) : Prop :=
     IsMinor H G ∧ 0 < Fintype.card W ∧ d * Fintype.card W ≤ edgeCount H ∧
       Fintype.card W + edgeCount H = score
 
-/-- There is a dense minor minimizing the sum of its vertex and edge counts.-/
+/-- There is a dense minor minimizing the sum of its vertex and edge counts.
+@isnad1 id=ex.2h3v.s7.09b73d762289 from=translated src=- shape=325dd837 vocab=80f528cc
+-/
 theorem exists_minimal_dense_minor (G : SimpleGraph V) (d : ℕ)
     (hnonempty : 0 < Fintype.card V)
     (hdense : d * Fintype.card V ≤ edgeCount G) :
@@ -59,7 +65,9 @@ theorem exists_minimal_dense_minor (G : SimpleGraph V) (d : ℕ)
     Fintype.card W + edgeCount H = Nat.find hP := hscore
     _ ≤ Fintype.card X + edgeCount J := Nat.find_min' hP hJ
 
-/-- Deleting one present edge removes exactly one edge.-/
+/-- Deleting one present edge removes exactly one edge.
+@isnad1 id=eq.1h3v.s6.253a2e9aca75 from=translated src=- shape=ac3e577b vocab=5ef57003
+-/
 theorem edgeCount_delete_one [DecidableEq V] (G : SimpleGraph V)
     [DecidableRel G.Adj] (e : Sym2 V) (he : e ∈ G.edgeFinset) :
     edgeCount (G.deleteEdges ({e} : Finset (Sym2 V))) + 1 = edgeCount G := by
@@ -70,7 +78,9 @@ theorem edgeCount_delete_one [DecidableEq V] (G : SimpleGraph V)
   exact Finset.card_erase_add_one he
 
 /-- A positive-order dense minor of minimum score has exactly `d` edges per
-vertex; otherwise one edge can be deleted while preserving the inequality.-/
+vertex; otherwise one edge can be deleted while preserving the inequality.
+@isnad1 id=ex.2h3v.s7.19742427a4f5 from=translated src=- shape=dca388fc vocab=80f528cc
+-/
 theorem exists_edge_exact_dense_minor (G : SimpleGraph V) (d : ℕ)
     (hnonempty : 0 < Fintype.card V)
     (hdense : d * Fintype.card V ≤ edgeCount G) :
@@ -101,7 +111,9 @@ theorem exists_edge_exact_dense_minor (G : SimpleGraph V) (d : ℕ)
 
 /-- A minimum-score positive-order dense minor has no isolated vertex.
 Deleting such a vertex would preserve the density inequality and reduce the
-score.-/
+score.
+@isnad1 id=lt.5h6v.s7.ae5edb7bfb35 from=translated src=- shape=26eaff1d vocab=1652a774
+-/
 theorem no_isolated_of_minimal_dense_minor {W : Type u} [Fintype W]
     (G : SimpleGraph V) (H : SimpleGraph W) [DecidableRel H.Adj] (d : ℕ)
     (hd : 1 ≤ d) (hpositive : 0 < Fintype.card W)
@@ -145,7 +157,9 @@ theorem no_isolated_of_minimal_dense_minor {W : Type u} [Fintype W]
   omega
 
 /-- In a graph with exactly `d` edges per vertex, some vertex has degree
-at most `2d`.-/
+at most `2d`.
+@isnad1 id=ex.2h3v.s6.b7111fc378ef from=translated src=- shape=9d29a5d9 vocab=aa412d56
+-/
 theorem exists_degree_le_two_density (H : SimpleGraph V) [DecidableRel H.Adj]
     (d : ℕ) (hpositive : 0 < Fintype.card V)
     (hexact : edgeCount H = d * Fintype.card V) :
@@ -160,7 +174,9 @@ theorem exists_degree_le_two_density (H : SimpleGraph V) [DecidableRel H.Adj]
   exact ⟨v, hv⟩
 
 /-- A vertex's degree inside a neighborhood is the number of common
-neighbors with its center.-/
+neighbors with its center.
+@isnad1 id=eq.0h4v.s8.4cca309e7ec6 from=translated src=- shape=01d12fc0 vocab=3c1d3b67
+-/
 theorem degree_induce_neighborSet_eq_commonNeighbors
     (G : SimpleGraph V) [DecidableRel G.Adj] (v : V)
     (w : G.neighborSet v) :
@@ -180,7 +196,9 @@ theorem degree_induce_neighborSet_eq_commonNeighbors
   rw [← (G.induce (G.neighborSet v)).card_neighborSet_eq_degree]
   exact Fintype.card_congr e
 
-/-- Contracting an edge lowers the vertex count by one.-/
+/-- Contracting an edge lowers the vertex count by one.
+@isnad1 id=eq.1h4v.s6.e55349f3e67e from=translated src=- shape=4ba181f0 vocab=69e18125
+-/
 theorem edgeContraction_card_add_one [DecidableEq V] (G : SimpleGraph V)
     {a b : V} (hab : G.Adj a b) :
     Fintype.card (EdgeContractionVertex a b) + 1 = Fintype.card V := by
@@ -199,7 +217,9 @@ theorem edgeContraction_card_add_one [DecidableEq V] (G : SimpleGraph V)
   omega
 
 /-- Minimality under edge contraction forces at least `d` common neighbors
-at every edge of an exact-density minor.-/
+at every edge of an exact-density minor.
+@isnad1 id=le.4h7v.s7.e68f066db3c6 from=translated src=- shape=b2c39f31 vocab=4aa965a7
+-/
 theorem common_neighbor_finset_card_ge_of_minimal_dense_minor
     {W : Type u} [Fintype W] [DecidableEq W]
     (G : SimpleGraph V) (H : SimpleGraph W) [DecidableRel H.Adj] (d : ℕ)
@@ -235,7 +255,9 @@ theorem common_neighbor_finset_card_ge_of_minimal_dense_minor
   omega
 /-- The dense-minor reduction in the form used by the clique-minor argument:
 an exact-density minor has a vertex of degree at most `2d`, and every vertex
-of its open neighborhood has at least `d` neighbors within that neighborhood.-/
+of its open neighborhood has at least `d` neighbors within that neighborhood.
+@isnad1 id=ex.3h3v.s8.ad548493d946 from=translated src=- shape=38c6924c vocab=ad7c4946
+-/
 theorem exists_dense_neighborhood_minor
     (G : SimpleGraph V) (d : ℕ) (hd : 1 ≤ d)
     (hnonempty : 0 < Fintype.card V)
@@ -267,7 +289,9 @@ theorem exists_dense_neighborhood_minor
     rw [degree_induce_neighborSet_eq_commonNeighbors H v w, hcard]
     exact hcommon
 /-- Summing a lower bound on every degree gives a lower bound on twice the
-edge count.-/
+edge count.
+@isnad1 id=le.1h3v.s6.02db1599b3ec from=translated src=- shape=cfbd88f1 vocab=42f21f6e
+-/
 theorem twice_edgeCount_ge_card_mul_min_degree
     (H : SimpleGraph V) [DecidableRel H.Adj] (d : ℕ)
     (hmin : ∀ v : V, d ≤ H.degree v) :
@@ -279,14 +303,18 @@ theorem twice_edgeCount_ge_card_mul_min_degree
     exact hmin v
   simpa [sum_degree_eq_two_edgeCount H, Nat.mul_comm] using hsum
 
-/-- Minimum degree at least `2k` gives edge density at least `k`.-/
+/-- Minimum degree at least `2k` gives edge density at least `k`.
+@isnad1 id=le.1h3v.s6.b861c11c7e74 from=translated src=- shape=c926d230 vocab=42f21f6e
+-/
 theorem edgeCount_ge_card_mul_of_min_degree_twice
     (H : SimpleGraph V) [DecidableRel H.Adj] (k : ℕ)
     (hmin : ∀ v : V, 2 * k ≤ H.degree v) :
     k * Fintype.card V ≤ edgeCount H := by
   have h := twice_edgeCount_ge_card_mul_min_degree H (2 * k) hmin
   nlinarith
-/-- Convert a real edge-per-vertex bound to its integer edge-count form.-/
+/-- Convert a real edge-per-vertex bound to its integer edge-count form.
+@isnad1 id=le.1h3v.s5.a4dbf31b83e4 from=translated src=- shape=6f36d37b vocab=dd801e06
+-/
 theorem edgeCount_ge_card_mul_of_edgeDensity_ge
     (G : SimpleGraph V) (d : ℕ)
     (hdense : (d : ℝ) ≤ edgeDensity G) :
@@ -300,7 +328,9 @@ theorem edgeCount_ge_card_mul_of_edgeDensity_ge
   · have hzero : Fintype.card V = 0 := by omega
     simp [hzero]
 /-- Deleting a finite vertex set lowers every remaining degree by at most
-the number of deleted vertices.-/
+the number of deleted vertices.
+@isnad1 id=le.1h4v.s8.e3cc73d307a9 from=translated src=- shape=c7b13c01 vocab=c9cc364b
+-/
 theorem degree_le_degree_induce_compl_add_card
     [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]
     (U : Finset V) [DecidableRel (G.induce (U : Set V)ᶜ).Adj]

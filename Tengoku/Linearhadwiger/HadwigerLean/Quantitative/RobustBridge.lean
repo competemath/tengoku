@@ -16,7 +16,9 @@ universe u
 
 /-- The robust fractional-coloring input to the bounded-independence and
 quantitative Theorem 2 arguments, with its full quantification over induced
-residual vertex types.-/
+residual vertex types.
+@isnad1 id=le.5h4v.s6.746bdfb6bccc from=translated src=- shape=a54e689b vocab=e173cc82
+-/
 theorem robust_fractional_bound_at_theorem2_parameters
     (ε : ℝ) (hε : 0 < ε) (hε1 : ε ≤ 1) :
     ∀ (W : Type u) [Fintype W] [DecidableEq W]

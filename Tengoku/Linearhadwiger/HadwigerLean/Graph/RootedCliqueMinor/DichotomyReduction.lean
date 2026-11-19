@@ -13,6 +13,9 @@ or gives an order-r separation whose boundary contains the contracted edge.
 
 namespace HadwigerLean
 
+/--
+@isnad1 id=eq.3h9v.s8.887b770a1d7e from=translated src=- shape=7c629769 vocab=2962d4bb
+-/
 theorem cliqueModel_contract_nonroot_edge_branch
     {V : Type*} {G : SimpleGraph V} {r : ℕ}
     (root : Fin r → V)

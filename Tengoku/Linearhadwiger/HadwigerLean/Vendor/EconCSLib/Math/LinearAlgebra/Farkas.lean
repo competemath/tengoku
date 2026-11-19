@@ -86,42 +86,69 @@ def farkasAugB (b : I → 𝕜) : FarkasAugRow I → 𝕜
 
 /-! ### Simp lemmas for `farkasAugA` and `farkasAugB` -/
 
+/--
+@isnad1 id=eq.0h9v.s6.a6b352a8ed1a from=translated src=- shape=bc5655cd vocab=c3395821
+-/
 @[simp] theorem farkasAugA_inl_castSucc (A : I → Fin n → 𝕜) (b : I → 𝕜)
     (c : Fin n → 𝕜) (d : 𝕜) (i : I) (j' : Fin n) :
     farkasAugA A b c d (Sum.inl i) j'.castSucc = A i j' := by
   simp [farkasAugA]
 
+/--
+@isnad1 id=eq.0h8v.s6.1762fad5c946 from=translated src=- shape=4c07bace vocab=4e567690
+-/
 @[simp] theorem farkasAugA_inl_last (A : I → Fin n → 𝕜) (b : I → 𝕜)
     (c : Fin n → 𝕜) (d : 𝕜) (i : I) :
     farkasAugA A b c d (Sum.inl i) (Fin.last n) = -b i := by
   simp [farkasAugA]
 
+/--
+@isnad1 id=eq.0h8v.s6.082ac4bf50ee from=translated src=- shape=cc34fa74 vocab=d4f208fc
+-/
 @[simp] theorem farkasAugA_inr_false_castSucc (A : I → Fin n → 𝕜) (b : I → 𝕜)
     (c : Fin n → 𝕜) (d : 𝕜) (j' : Fin n) :
     farkasAugA A b c d (Sum.inr false) j'.castSucc = 0 := by
   simp [farkasAugA]
 
+/--
+@isnad1 id=eq.0h7v.s6.c229bc92487f from=translated src=- shape=678b861b vocab=26b67426
+-/
 @[simp] theorem farkasAugA_inr_false_last (A : I → Fin n → 𝕜) (b : I → 𝕜)
     (c : Fin n → 𝕜) (d : 𝕜) :
     farkasAugA A b c d (Sum.inr false) (Fin.last n) = 1 := by
   simp [farkasAugA]
 
+/--
+@isnad1 id=eq.0h8v.s6.c93b160e2036 from=translated src=- shape=2835cbad vocab=2b369ad4
+-/
 @[simp] theorem farkasAugA_inr_true_castSucc (A : I → Fin n → 𝕜) (b : I → 𝕜)
     (c : Fin n → 𝕜) (d : 𝕜) (j' : Fin n) :
     farkasAugA A b c d (Sum.inr true) j'.castSucc = -c j' := by
   simp [farkasAugA]
 
+/--
+@isnad1 id=eq.0h7v.s6.36206c8c7a72 from=translated src=- shape=eacee2ad vocab=487acdfe
+-/
 @[simp] theorem farkasAugA_inr_true_last (A : I → Fin n → 𝕜) (b : I → 𝕜)
     (c : Fin n → 𝕜) (d : 𝕜) :
     farkasAugA A b c d (Sum.inr true) (Fin.last n) = d := by
   simp [farkasAugA]
 
+/--
+@isnad1 id=eq.0h4v.s6.cecba448b9a2 from=translated src=- shape=11e7f5ba vocab=02478ee8
+-/
 @[simp] theorem farkasAugB_inl (b : I → 𝕜) (i : I) :
     farkasAugB b (Sum.inl i) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.b0739bee9c4c from=translated src=- shape=1aceca28 vocab=f74f7104
+-/
 @[simp] theorem farkasAugB_inr_false (b : I → 𝕜) :
     farkasAugB b (Sum.inr false) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.6dc712284048 from=translated src=- shape=1aceca28 vocab=59d96b7e
+-/
 @[simp] theorem farkasAugB_inr_true (b : I → 𝕜) :
     farkasAugB b (Sum.inr true) = 1 := rfl
 
@@ -166,7 +193,9 @@ private theorem augRowEval_inr_true
 /-- **Farkas' Lemma** (objective-bound form). For a finite linear system
 `A x ≥ b` with `S = {x | A x ≥ b}` nonempty, the primal bound
 "`∀ x ∈ S, ⟨c, x⟩ ≥ d`" is equivalent to the existence of a nonneg dual
-certificate `u` with `uᵀA = c` and `⟨u, b⟩ ≥ d`.-/
+certificate `u` with `uᵀA = c` and `⟨u, b⟩ ≥ d`.
+@isnad1 id=iff.1h7v.s8.6179c7a0e839 from=translated src=- shape=503f0ca3 vocab=d21e7c6b
+-/
 theorem farkas_lemma (A : I → Fin n → 𝕜) (b : I → 𝕜) (c : Fin n → 𝕜) (d : 𝕜)
     (hS : IsFeasible A b) :
     (∀ x : Fin n → 𝕜, (∀ i, b i ≤ ∑ j, A i j * x j) → d ≤ ∑ j, c j * x j) ↔

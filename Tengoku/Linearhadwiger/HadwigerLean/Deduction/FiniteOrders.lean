@@ -11,7 +11,9 @@ universe u
 
 /-- A bound for all `t ≥ T` extends to every `t ≥ 2` by enlarging its
 coefficient. A `K_t`-minor-free graph is also `K_T`-minor-free when `t < T`.
-This is the finite-order step of the paper without its density theorem.-/
+This is the finite-order step of the paper without its density theorem.
+@isnad1 id=le.4h5v.s6.bd734f8b2e7e from=translated src=- shape=802b8548 vocab=9258d185
+-/
 theorem extend_linear_bound_from_large_orders
     (C T : ℕ) (hT : 2 ≤ T)
     (hlarge : ∀ (V : Type u) [Fintype V] (G : SimpleGraph V) (t : ℕ),

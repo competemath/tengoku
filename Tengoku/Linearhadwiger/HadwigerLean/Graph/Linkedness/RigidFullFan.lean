@@ -8,7 +8,9 @@ import Tengoku.Linearhadwiger.HadwigerLean.Graph.Linkedness.RootedLinkedIso
 namespace HadwigerLean
 namespace Linkedness
 
-/-- A full fan from the roots into a linked rigid far side links the roots.-/
+/-- A full fan from the roots into a linked rigid far side links the roots.
+@isnad1 id=rootedli.3h6v.s6.9ef4926e4839 from=translated src=- shape=e65149cf vocab=d7091d8f
+-/
 theorem rootedLinked_of_full_fan_to_rigid_far
     {V : Type*} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} (S : VertexSeparation G) [Fintype S.right]

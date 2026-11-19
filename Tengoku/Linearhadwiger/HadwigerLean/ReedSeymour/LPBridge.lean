@@ -20,7 +20,9 @@ variable {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- A weighted stable-set bound implies the fractional Reed--Seymour bound.
 The combinatorial bound is supplied as a hypothesis here; the egg-decomposition
-modules will prove it.-/
+modules will prove it.
+@isnad1 id=le.1h2v.s7.40538a4ff62c from=translated src=- shape=29ded8b7 vocab=1fcf9efe
+-/
 theorem fractionalChromaticNumber_le_twice_cliqueMinorNumber_of_weighted
     (G : SimpleGraph V)
     (hweighted : ∀ w : V → ℝ, (∀ v, 0 ≤ w v) →

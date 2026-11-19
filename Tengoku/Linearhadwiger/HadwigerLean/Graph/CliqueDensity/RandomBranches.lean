@@ -17,7 +17,9 @@ set_option maxHeartbeats 1000000
 
 namespace HadwigerLean
 
-/-- The elementary logarithm estimate needed for the branch-set budget.-/
+/-- The elementary logarithm estimate needed for the branch-set budget.
+@isnad1 id=lt.0h0v.s5.3318fc77abc0 from=translated src=- shape=63c521e8 vocab=26a59d5f
+-/
 theorem log_twelve_gt_nine_fourths :
     (9 / 4 : ℝ) < Real.log 12 := by
   have h2 := Real.log_two_gt_d9
@@ -30,7 +32,9 @@ theorem log_twelve_gt_nine_fourths :
   linarith
 
 /-- The total budget for `r` branch sets of size at most `s+8`.
-This is the integer form of (E.4).-/
+This is the integer form of (E.4).
+@isnad1 id=le.1h1v.s6.4f6f6dbb8978 from=translated src=- shape=6924e012 vocab=20a68919
+-/
 theorem clique_branch_budget (r : ℕ) (hr : 13 ≤ r) :
     3 * r * (Nat.ceil (4 * Real.sqrt (Real.log (r : ℝ))) + 8) ≤
       Nat.floor (30 * (r : ℝ) * Real.sqrt (Real.log (r : ℝ))) := by
@@ -61,13 +65,17 @@ theorem clique_branch_budget (r : ℕ) (hr : 13 ≤ r) :
   exact Nat.le_floor hcast
 
 /-- In case (I) of (E.3), deleting fewer than `d/3` vertices
-leaves minimum degree greater than two fifths of the remaining order.-/
+leaves minimum degree greater than two fifths of the remaining order.
+@isnad1 id=lt.2h3v.s6.44bff5cd3827 from=translated src=- shape=5a85a7b7 vocab=418ffaaf
+-/
 theorem residual_ratio_case_one (d m b : ℕ)
     (hm : m ≤ 2 * d) (hb : 3 * b < d) :
     2 * (m - b) < 5 * (d - b) := by
   omega
 
-/-- The analogous two-fifths ratio in case (II) of (E.3).-/
+/-- The analogous two-fifths ratio in case (II) of (E.3).
+@isnad1 id=lt.3h4v.s6.1163ad9229b6 from=translated src=- shape=11b886c3 vocab=418ffaaf
+-/
 theorem residual_ratio_case_two (d δ m b : ℕ)
     (hm : m ≤ d) (hδ : 2 * d < 3 * δ) (hb : 3 * b < d) :
     2 * (m - b) < 5 * (δ - b) := by
@@ -76,7 +84,9 @@ universe u
 
 variable {V : Type u} [Fintype V]
 
-/-- An inclusion-exclusion form of the common-neighborhood bound.-/
+/-- An inclusion-exclusion form of the common-neighborhood bound.
+@isnad1 id=le.0h4v.s7.50beecb9554a from=translated src=- shape=2f971d74 vocab=622deead
+-/
 theorem degree_sum_le_order_add_common_neighbor_card
     [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]
     (x y : V) :
@@ -93,7 +103,9 @@ theorem degree_sum_le_order_add_common_neighbor_card
   omega
 
 /-- If every degree is large enough that any two vertices retain a common
-neighbor after fewer than `k` deletions, then the graph is `k`-connected.-/
+neighbor after fewer than `k` deletions, then the graph is `k`-connected.
+@isnad1 id=vertexco.2h3v.s6.e3520585b154 from=translated src=- shape=473f62f7 vocab=ba5f98be
+-/
 theorem vertexConnected_of_degree_bound
     [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj] (k : ℕ)
     (horder : k < Fintype.card V)
@@ -131,7 +143,9 @@ theorem vertexConnected_of_degree_bound
   have hyz' : (G.induce (U : Set V)ᶜ).Adj y ⟨z, hzU⟩ := hyz
   exact hxz'.reachable.trans hyz'.symm.reachable
 /-- A disconnected finite graph has a nonempty side of a cut containing at
-most half its vertices. The cut has no crossing edge.-/
+most half its vertices. The cut has no crossing edge.
+@isnad1 id=ex.2h2v.s6.9db9a2784eea from=translated src=- shape=f0fbe201 vocab=6d0899d3
+-/
 theorem exists_small_noncross_side_of_not_connected
     [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]
     (hpositive : 0 < Fintype.card V) (hnot : ¬ G.Connected) :
@@ -172,7 +186,9 @@ theorem exists_small_noncross_side_of_not_connected
       have hbA : b ∈ A := by simpa [B] using hb
       exact hnocross hbA ha hab.symm
 /-- A side of an edge cut retains every degree when taken as an induced
-subgraph.-/
+subgraph.
+@isnad1 id=eq.1h4v.s8.6e74d22a67cc from=translated src=- shape=4f199786 vocab=99f47077
+-/
 theorem degree_induce_of_noncross
     [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]
     (C : Finset V)
@@ -193,7 +209,9 @@ theorem degree_induce_of_noncross
   exact Fintype.card_congr e
 /-- The connected core dichotomy (E.3). From an order-`2d` graph of
 minimum degree `d`, it extracts a `k`-connected induced minor, either
-unchanged or with order at most `d` and minimum degree above `2d/3`.-/
+unchanged or with order at most `d` and minimum degree above `2d/3`.
+@isnad1 id=ex.5h4v.s8.6f65ee2f2034 from=translated src=- shape=e8ab476e vocab=20d3f4ee
+-/
 theorem exists_connected_dense_core
     [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]
     (d k : ℕ) (hk : 0 < k) (hthree : 3 * k ≤ d)
@@ -280,7 +298,9 @@ theorem exists_connected_dense_core
     exact ⟨(C : Set S), inferInstance, F, inferInstance, hminorFG,
       hFconn, Or.inr ⟨hForder, hFstrong⟩⟩
 /-- Apply the connected-core dichotomy to the neighborhood supplied by the
-minimal dense-minor reduction.-/
+minimal dense-minor reduction.
+@isnad1 id=ex.5h4v.s7.d4f26a4291c2 from=translated src=- shape=c8ce90d9 vocab=49415952
+-/
 theorem exists_dense_connected_core_from_edges
     (G : SimpleGraph V) (d k : ℕ)
     (hd : 1 ≤ d) (hk : 0 < k) (hthree : 3 * k ≤ d)
@@ -313,7 +333,9 @@ theorem exists_dense_connected_core_from_edges
   exact ⟨X, instX, F, instAdjF, IsMinor.trans hminorFJ hminorJG,
     hconnected, hcase⟩
 /-- The old-branch failure probability in (E.7) is below `1/8`.
-The fixed-size sampling argument only needs this numerical inequality.-/
+The fixed-size sampling argument only needs this numerical inequality.
+@isnad1 id=lt.1h1v.s7.5d445d9a16c6 from=translated src=- shape=02a47b4a vocab=71436e0e
+-/
 theorem clique_branch_old_set_failure_bound (r : ℕ) (hr : 13 ≤ r) :
     (r : ℝ) *
       (4 * Real.exp (-(2 : ℝ) *
@@ -380,12 +402,17 @@ decrease its size.-/
 def sampleRange [DecidableEq V] {s : ℕ} (ω : Fin s → V) : Finset V :=
   Finset.univ.image ω
 
+/--
+@isnad1 id=le.0h3v.s4.2f017fb5ccbd from=translated src=- shape=5472e2f1 vocab=685c11be
+-/
 theorem sampleRange_card_le [DecidableEq V] {s : ℕ} (ω : Fin s → V) :
     (sampleRange ω).card ≤ s := by
   simpa [sampleRange] using Finset.card_image_le (s := Finset.univ) (f := ω)
 
 /-- Exactly `|A|^s` ordered samples of length `s` use only vertices in
-`A`.-/
+`A`.
+@isnad1 id=eq.0h3v.s6.913563e1f022 from=translated src=- shape=5fb01adc vocab=51f6bb83
+-/
 theorem card_sample_words_in [DecidableEq V] (A : Finset V) (s : ℕ) :
     Fintype.card {ω : Fin s → V // sampleRange ω ⊆ A} = A.card ^ s := by
   classical
@@ -402,7 +429,9 @@ theorem card_sample_words_in [DecidableEq V] (A : Finset V) (s : ℕ) :
   rw [Fintype.card_congr e]
   simp
 
-/-- The same count as a finite-set filter, convenient for double counting.-/
+/-- The same count as a finite-set filter, convenient for double counting.
+@isnad1 id=eq.0h3v.s6.39a92356e8c3 from=translated src=- shape=174910d5 vocab=35115f60
+-/
 theorem card_filter_sample_words_in [DecidableEq V] (A : Finset V) (s : ℕ) :
     (Finset.univ.filter (fun ω : Fin s → V => sampleRange ω ⊆ A)).card =
       A.card ^ s := by
@@ -421,7 +450,9 @@ def undominatedCount [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]
     (fun v : V => sampleRange ω ⊆ (G.neighborFinset v)ᶜ)).card
 
 /-- A fixed vertex has no sampled neighbor in exactly
-`(m-degree(v))^s` ordered samples.-/
+`(m-degree(v))^s` ordered samples.
+@isnad1 id=eq.0h4v.s7.d78631474eae from=translated src=- shape=56d52683 vocab=8c37647b
+-/
 theorem card_sample_words_undominated
     [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]
     (v : V) (s : ℕ) :
@@ -433,7 +464,9 @@ theorem card_sample_words_undominated
   rw [card_filter_sample_words_in]
   simp only [Finset.card_compl, G.card_neighborFinset_eq_degree]
 
-/-- Double counting the undominated vertices in every ordered sample.-/
+/-- Double counting the undominated vertices in every ordered sample.
+@isnad1 id=eq.0h3v.s6.3ff531f0010f from=translated src=- shape=e5787ea2 vocab=2c4a34e3
+-/
 theorem sum_undominatedCount
     [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]
     (s : ℕ) :
@@ -456,7 +489,9 @@ theorem sum_undominatedCount
   intro v _
   exact card_sample_words_undominated G v s
 /-- Minimum degree bounds the total number of undominated vertices over all
-ordered samples.-/
+ordered samples.
+@isnad1 id=le.1h4v.s7.e6136ba70f00 from=translated src=- shape=2b354120 vocab=d6280515
+-/
 theorem sum_undominatedCount_le
     [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]
     (s δ : ℕ) (hmin : ∀ v : V, δ ≤ G.degree v) :
@@ -470,7 +505,9 @@ theorem sum_undominatedCount_le
       intro v _
       exact Nat.pow_le_pow_left (Nat.sub_le_sub_left (hmin v) _) s
     _ = Fintype.card V * (Fintype.card V - δ) ^ s := by simp
-/-- Sampling with replacement gives the standard exponential avoidance bound.-/
+/-- Sampling with replacement gives the standard exponential avoidance bound.
+@isnad1 id=le.2h3v.s6.b582e57cb284 from=translated src=- shape=397b8b89 vocab=ae15446b
+-/
 theorem sub_pow_le_exp_bound (m δ s : ℕ)
     (hm : 0 < m) (hδ : δ ≤ m) :
     ((m - δ : ℕ) : ℝ) ^ s ≤
@@ -501,7 +538,9 @@ theorem sub_pow_le_exp_bound (m δ s : ℕ)
       push_cast
       ring
 /-- Exponential upper bound for the total number of undominated vertices
-over the uniform ordered sample space.-/
+over the uniform ordered sample space.
+@isnad1 id=le.3h4v.s7.838315f34fa0 from=translated src=- shape=d4c36f0d vocab=b5434b1f
+-/
 theorem sum_undominatedCount_le_exp
     [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]
     (s δ : ℕ) (hm : 0 < Fintype.card V)
@@ -527,7 +566,9 @@ theorem sum_undominatedCount_le_exp
       simp only [Fintype.card_fun, Fintype.card_fin, Nat.cast_pow]
       ring
 /-- Every sampled connected component has a first sampled vertex, and
-that vertex has no earlier sampled neighbor.-/
+that vertex has no earlier sampled neighbor.
+@isnad1 id=le.0h4v.s8.a417217fb1b0 from=translated src=- shape=2ae267ef vocab=17f3bfdb
+-/
 theorem sampled_component_count_le_first_without_neighbor
     [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]
     {s : ℕ} (ω : Fin s → V) :
@@ -592,7 +633,9 @@ theorem sampled_component_count_le_first_without_neighbor
   rw [hgoodCard] at hcard
   exact hcard
 /-- Independent coordinate restrictions on an ordered sample multiply
-their counts.-/
+their counts.
+@isnad1 id=eq.0h3v.s7.f58bb3e2ac7e from=translated src=- shape=1a4ececd vocab=03ee62d2
+-/
 theorem card_constrained_words [DecidableEq V] (s : ℕ)
     (allowed : Fin s → Finset V) :
     Fintype.card
@@ -610,7 +653,9 @@ theorem card_constrained_words [DecidableEq V] (s : ℕ)
   rw [Fintype.card_congr e]
   simp
 /-- A product with one fixed coordinate and constant values before and after
-that coordinate.-/
+that coordinate.
+@isnad1 id=eq.0h4v.s6.3269439c1af4 from=translated src=- shape=efef0781 vocab=a2d6468a
+-/
 theorem prod_fin_before_at_after (s : ℕ) (j : Fin s) (a m : ℕ) :
     (∏ i : Fin s, if i < j then a else if i = j then 1 else m) =
       a ^ (j : ℕ) * m ^ (s - (j : ℕ) - 1) := by
@@ -634,7 +679,9 @@ theorem prod_fin_before_at_after (s : ℕ) (j : Fin s) (a m : ℕ) :
   rw [hbefore, hafter]
   simp
 /-- Exact count of samples whose vertex at position `j` is `v` and has
-no neighbor among earlier positions.-/
+no neighbor among earlier positions.
+@isnad1 id=eq.0h5v.s8.55db5c88f4c5 from=translated src=- shape=01de9e88 vocab=937c529a
+-/
 theorem card_fixed_first_event
     [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]
     {s : ℕ} (j : Fin s) (v : V) :
@@ -690,7 +737,9 @@ theorem card_fixed_first_event
   rw [hproduct, prod_fin_before_at_after]
   simp only [A, Finset.card_compl, G.card_neighborFinset_eq_degree]
 /-- Exact number of samples whose `j`th vertex has no neighbor in the
-earlier part of the sample.-/
+earlier part of the sample.
+@isnad1 id=eq.0h4v.s8.a75b3d9d6275 from=translated src=- shape=1ac54f9f vocab=5930990b
+-/
 theorem card_first_without_neighbor
     [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]
     {s : ℕ} (j : Fin s) :
@@ -737,7 +786,9 @@ def firstWithoutNeighborCount [DecidableEq V]
   (Finset.univ.filter (fun j : Fin s =>
     ∀ i : Fin s, i < j → ¬ G.Adj (ω j) (ω i))).card
 
-/-- Double count position/sample pairs with no earlier neighbor.-/
+/-- Double count position/sample pairs with no earlier neighbor.
+@isnad1 id=eq.0h3v.s7.ec9957853ada from=translated src=- shape=0089eccb vocab=44d738a7
+-/
 theorem sum_firstWithoutNeighborCount
     [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]
     (s : ℕ) :
@@ -762,7 +813,9 @@ theorem sum_firstWithoutNeighborCount
   intro j _
   exact card_first_without_neighbor G j
 
-/-- Sampled components are bounded by positions with no earlier neighbor.-/
+/-- Sampled components are bounded by positions with no earlier neighbor.
+@isnad1 id=le.0h4v.s8.4d445a7a5330 from=translated src=- shape=6906df60 vocab=24f3659a
+-/
 theorem sampled_component_count_le_firstWithoutNeighborCount
     [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]
     {s : ℕ} (ω : Fin s → V) :
@@ -776,7 +829,9 @@ theorem sampled_component_count_le_firstWithoutNeighborCount
   simp only [Finset.mem_filter, Finset.mem_univ, true_and]
   exact forall_congr' fun i => imp_congr_right fun _ =>
     not_congr (G.adj_comm _ _)
-/-- The finite geometric sum underlying the expected component bound (E.6).-/
+/-- The finite geometric sum underlying the expected component bound (E.6).
+@isnad1 id=le.1h3v.s7.c5342df43390 from=translated src=- shape=b5e2319a vocab=aed931ef
+-/
 theorem first_event_geometric_bound (m δ s : ℕ) (hδ : δ ≤ m) :
     δ * (m *
       (∑ j : Fin s, (m - δ) ^ (j : ℕ) *
@@ -813,7 +868,9 @@ theorem first_event_geometric_bound (m δ s : ℕ) (hδ : δ ≤ m) :
     _ ≤ m * m ^ s := Nat.mul_le_mul_left _ hpow
     _ = m ^ (s + 1) := by rw [pow_succ]; ring
 
-/-- The total number of first-component events in all ordered samples.-/
+/-- The total number of first-component events in all ordered samples.
+@isnad1 id=le.2h4v.s7.b792f8834f8a from=translated src=- shape=9ede46b8 vocab=4f3f25e2
+-/
 theorem sum_firstWithoutNeighborCount_le
     [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]
     (s δ : ℕ) (hV : Nonempty V)
@@ -843,7 +900,9 @@ theorem sum_firstWithoutNeighborCount_le
   exact (Nat.mul_le_mul_left δ hsum).trans
     (first_event_geometric_bound m δ s hδ)
 /-- The total first-component count has mean strictly below `5/2`
-when the minimum degree exceeds two fifths of the order.-/
+when the minimum degree exceeds two fifths of the order.
+@isnad1 id=lt.3h4v.s7.a8350e289dd9 from=translated src=- shape=3f1ca006 vocab=e9c6e0a8
+-/
 theorem two_mul_sum_firstWithoutNeighborCount_lt
     [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]
     (s δ : ℕ) (hV : Nonempty V)
@@ -866,7 +925,9 @@ theorem two_mul_sum_firstWithoutNeighborCount_lt
   have hmul := Nat.mul_le_mul_left δ hle
   nlinarith
 
-/-- The sampled induced graph has fewer than `5/2` components on average.-/
+/-- The sampled induced graph has fewer than `5/2` components on average.
+@isnad1 id=lt.3h4v.s8.3182082c3779 from=translated src=- shape=5b764f83 vocab=74c85dea
+-/
 theorem two_mul_sum_sampled_components_lt
     [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]
     (s δ : ℕ) (hV : Nonempty V)
@@ -887,7 +948,9 @@ theorem two_mul_sum_sampled_components_lt
   rw [hcard]
   exact lt_of_le_of_lt (Nat.mul_le_mul_left 2 hsum)
     (two_mul_sum_firstWithoutNeighborCount_lt G s δ hV hmin hratio)
-/-- A three-event union bound with the exact fractions used in Appendix E.-/
+/-- A three-event union bound with the exact fractions used in Appendix E.
+@isnad1 id=ex.3h4v.s7.1b1b3352a11c from=translated src=- shape=00d5825d vocab=6d263c98
+-/
 theorem exists_outside_three_bad_events
     {Ω : Type*} [Fintype Ω] (bad₁ bad₂ bad₃ : Ω → Prop)
     [DecidablePred bad₁] [DecidablePred bad₂] [DecidablePred bad₃]
@@ -913,7 +976,9 @@ theorem exists_outside_three_bad_events
   simp only [Finset.card_univ] at hc
   dsimp [B₁, B₂, B₃] at *
   omega
-/-- Finite Markov counting in the form used for the three failure events.-/
+/-- Finite Markov counting in the form used for the three failure events.
+@isnad1 id=le.2h4v.s6.5ebae07abf9b from=translated src=- shape=b0586536 vocab=661301e6
+-/
 theorem threshold_mul_bad_card_le_sum
     {Ω : Type*} [Fintype Ω] (f : Ω → ℝ) (t : ℝ)
     (bad : Ω → Prop) [DecidablePred bad]
@@ -933,7 +998,9 @@ theorem threshold_mul_bad_card_le_sum
       · intro ω _ _
         exact hnonneg ω
 /-- Fewer than five eighths of ordered samples have four or more
-sampled components.-/
+sampled components.
+@isnad1 id=lt.3h4v.s9.3cc7e10650d8 from=translated src=- shape=ba3096ff vocab=a6b44222
+-/
 theorem eight_mul_bad_component_samples_lt
     [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]
     (s δ : ℕ) (hV : Nonempty V)
@@ -967,7 +1034,9 @@ theorem eight_mul_bad_component_samples_lt
     exact_mod_cast hcast
   have hmean := two_mul_sum_sampled_components_lt G s δ hV hmin hratio
   omega
-/-- Union bound for samples contained in one of a finite family of sets.-/
+/-- Union bound for samples contained in one of a finite family of sets.
+@isnad1 id=le.0h5v.s7.3608f6479ecc from=translated src=- shape=aa2d67ea vocab=ba34b1a9
+-/
 theorem card_sample_words_in_some_le_sum_pow
     [DecidableEq V] {ι : Type*} [DecidableEq ι]
     (J : Finset ι) (A : ι → Finset V) (s : ℕ) :
@@ -990,7 +1059,9 @@ theorem card_sample_words_in_some_le_sum_pow
       intro j _
       exact card_filter_sample_words_in (A j) s
 /-- The old-branch avoidance event is rare once each forbidden set is
-small compared with the current vertex set.-/
+small compared with the current vertex set.
+@isnad1 id=lt.4h6v.s8.6bf48d9837b8 from=translated src=- shape=b18ff85f vocab=f36275ea
+-/
 theorem eight_mul_bad_old_samples_lt
     [DecidableEq V] {ι : Type*} [DecidableEq ι]
     (J : Finset ι) (A : ι → Finset V) (s : ℕ) (α : ℝ)
@@ -1039,7 +1110,9 @@ theorem eight_mul_bad_old_samples_lt
         ring
       _ < (m : ℝ) ^ s := hnum'
   exact_mod_cast hreal
-/-- Markov's inequality with a quarter of the sample space as threshold.-/
+/-- Markov's inequality with a quarter of the sample space as threshold.
+@isnad1 id=le.3h3v.s6.034ebaa2fce0 from=translated src=- shape=418ba6f1 vocab=f4551fcd
+-/
 theorem four_mul_large_value_samples_le
     {Ω : Type*} [Fintype Ω] (f : Ω → ℝ) (θ : ℝ)
     (hθ : 0 < θ) (hnonneg : ∀ ω, 0 ≤ f ω)
@@ -1056,7 +1129,9 @@ theorem four_mul_large_value_samples_le
     exact_mod_cast hnat
   have hmul := mul_lt_mul_of_pos_right hreal hθ
   nlinarith
-/-- A usable ordered sample from the three finite counting bounds.-/
+/-- A usable ordered sample from the three finite counting bounds.
+@isnad1 id=ex.6h8v.s9.44bb46b7ff36 from=translated src=- shape=fec94a49 vocab=496f6cc0
+-/
 theorem exists_good_sample_of_count_bounds
     [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]
     {ι : Type*} [DecidableEq ι] (J : Finset ι) (A : ι → Finset V)
@@ -1089,7 +1164,9 @@ theorem exists_good_sample_of_count_bounds
   · omega
   · intro j hj hsub
     exact hgood₃ ⟨j, hj, hsub⟩
-/-- Appendix E.7 as a finite count of bad ordered samples.-/
+/-- Appendix E.7 as a finite count of bad ordered samples.
+@isnad1 id=lt.4h5v.s9.3581b729978d from=translated src=- shape=321737a4 vocab=1830912f
+-/
 theorem eight_mul_bad_old_samples_lt_kt
     [DecidableEq V] {ι : Type*} [DecidableEq ι]
     (r : ℕ) (hr : 13 ≤ r) (J : Finset ι) (A : ι → Finset V)
@@ -1123,7 +1200,9 @@ def inducedComponentSet [DecidableEq V] (G : SimpleGraph V)
   (Subtype.val : B → V) '' c.supp
 
 /-- A component of an induced graph remains connected on its original
-vertex set.-/
+vertex set.
+@isnad1 id=connecte.0h4v.s5.6c6440ecda21 from=translated src=- shape=3dfce9df vocab=12feca5a
+-/
 theorem connected_induce_inducedComponentSet
     [DecidableEq V] (G : SimpleGraph V) (B : Finset V)
     (c : (G.induce (B : Set V)).ConnectedComponent) :
@@ -1138,7 +1217,9 @@ theorem connected_induce_inducedComponentSet
     exact ⟨⟨u, hu⟩, rfl⟩
   exact c.connected_toSimpleGraph.map φ hsurj
 
-/-- Every sampled vertex lies in its induced connected component.-/
+/-- Every sampled vertex lies in its induced connected component.
+@isnad1 id=mem.0h4v.s6.3670afcc850a from=translated src=- shape=cd4b9c85 vocab=e2b3f0ea
+-/
 theorem mem_inducedComponentSet_mk
     [DecidableEq V] (G : SimpleGraph V) (B : Finset V)
     (v : B) :
@@ -1146,7 +1227,9 @@ theorem mem_inducedComponentSet_mk
       ((G.induce (B : Set V)).connectedComponentMk v) := by
   exact ⟨v, by simp, rfl⟩
 /-- Join the components of a finite vertex set by paths from one fixed
-component. The quantitative version below bounds the added vertices.-/
+component. The quantitative version below bounds the added vertices.
+@isnad1 id=ex.4h3v.s8.1b20d7be82d2 from=translated src=- shape=7e60a15e vocab=7fc650e0
+-/
 theorem exists_connected_superset_by_component_paths
     [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]
     (hconn : G.Connected) (hdist : ∀ u v : V, G.dist u v ≤ 5)

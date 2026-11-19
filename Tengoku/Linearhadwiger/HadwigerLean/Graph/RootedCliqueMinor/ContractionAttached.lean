@@ -13,7 +13,9 @@ by a singleton block, so attachments in the quotient lift unchanged.
 namespace HadwigerLean
 
 /-- Either all root-avoiding branches are singletons, or an actual edge
-inside one such branch can be contracted without identifying a root.-/
+inside one such branch can be contracted without identifying a root.
+@isnad1 id=or.0h5v.s8.32964640925b from=translated src=- shape=0450ed7a vocab=a54758c8
+-/
 theorem singleton_avoiding_or_contractable
     {V : Type*} {G : SimpleGraph V} {r : ℕ}
     (root : Fin r → V)

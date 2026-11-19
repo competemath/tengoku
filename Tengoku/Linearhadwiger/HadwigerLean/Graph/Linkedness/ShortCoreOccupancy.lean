@@ -16,7 +16,9 @@ variable {V : Type*} [Fintype V] [DecidableEq V]
   {k : ℕ} {P : IndexedPairs (Fin k) V}
 
 /-- In an optimal short partial linkage, an outside vertex has at most
-`3k` neighbors among all terminals and completed path vertices.-/
+`3k` neighbors among all terminals and completed path vertices.
+@isnad1 id=le.4h6v.s7.af013634b06b from=translated src=- shape=5082eb32 vocab=f539811e
+-/
 theorem outside_occupied_neighbor_card_le_three_mul
     (C : ShortPartial G P (terminalFinset P))
     (hP : P.DisjointTerminals)

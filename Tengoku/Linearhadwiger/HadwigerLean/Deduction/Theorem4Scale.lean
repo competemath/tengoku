@@ -26,12 +26,18 @@ noncomputable def theorem4ScaleMaxRatio
     {V : Type u} [Fintype V] (F : SimpleGraph V) (D T : ℕ) : ℝ :=
   sSup (theorem4ScaleRatioSet F D T)
 
+/--
+@isnad1 id=nonempty.0h4v.s4.86fd554cb061 from=translated src=- shape=d40a1671 vocab=f7a92632
+-/
 theorem theorem4ScaleRatioSet_nonempty
     {V : Type u} [Fintype V] (F : SimpleGraph V) (D T : ℕ) :
     (theorem4ScaleRatioSet F D T).Nonempty := by
   refine ⟨0, ?_⟩
   simp [theorem4ScaleRatioSet]
 
+/--
+@isnad1 id=finite.0h4v.s4.865a971444ec from=translated src=- shape=d40a1671 vocab=792c4d2f
+-/
 theorem theorem4ScaleRatioSet_finite
     {V : Type u} [Fintype V] (F : SimpleGraph V) (D T : ℕ) :
     (theorem4ScaleRatioSet F D T).Finite := by
@@ -48,6 +54,9 @@ theorem theorem4ScaleRatioSet_finite
     refine ⟨(⟨q, Nat.lt_succ_of_le hq⟩, H), ?_⟩
     rfl
 
+/--
+@isnad1 id=le.0h4v.s4.9b0406d29506 from=translated src=- shape=7f0f4ee9 vocab=b587da30
+-/
 theorem theorem4ScaleMaxRatio_nonneg
     {V : Type u} [Fintype V] (F : SimpleGraph V) (D T : ℕ) :
     0 ≤ theorem4ScaleMaxRatio F D T := by

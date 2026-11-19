@@ -30,7 +30,9 @@ private theorem fourth_power_exp_tail {x : ℝ} (hx : 0 ≤ x) :
     _ = 1 := by rw [← Real.exp_add]; simp
 
 /-- The fourth-order exponential estimate gives a strict union budget
-for `r ≥ 2` and the scaled lower bound on the sampled order.-/
+for `r ≥ 2` and the scaled lower bound on the sampled order.
+@isnad1 id=lt.3h3v.s7.b9dd7835678f from=translated src=- shape=5997814f vocab=feb48b58
+-/
 theorem sampled_union_budget_lt_one
     {r n μ : ℝ} (hr : 2 ≤ r) (hμ : 0 < μ)
     (hscale : 1000000 * r ^ 4 ≤ μ ^ 4 * n) :

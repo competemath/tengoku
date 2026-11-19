@@ -12,7 +12,9 @@ namespace HadwigerLean
 
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
-/-- Chromatic number decreases when the induced vertex set shrinks.-/
+/-- Chromatic number decreases when the induced vertex set shrinks.
+@isnad1 id=le.1h4v.s6.7af8454fcaa9 from=translated src=- shape=3c4924ed vocab=54adbde3
+-/
 theorem chromatic_induce_mono_finset
     (G : SimpleGraph V) {S T : Finset V} (hST : S ⊆ T) :
     chromatic (G.induce (S : Set V)) ≤ chromatic (G.induce (T : Set V)) := by
@@ -23,7 +25,9 @@ theorem chromatic_induce_mono_finset
   intro x y hxy
   exact C.valid hxy
 
-/-- Inducing on the full vertex set preserves the finite chromatic number.-/
+/-- Inducing on the full vertex set preserves the finite chromatic number.
+@isnad1 id=eq.0h2v.s5.49f0df04c090 from=translated src=- shape=0e729049 vocab=5580d796
+-/
 theorem chromatic_induce_univ_finset (G : SimpleGraph V) :
     chromatic (G.induce ((Finset.univ : Finset V) : Set V)) = chromatic G := by
   change ENat.toNat (G.induce ((Finset.univ : Finset V) : Set V)).chromaticNumber =
@@ -31,7 +35,9 @@ theorem chromatic_induce_univ_finset (G : SimpleGraph V) :
   rw [show ((Finset.univ : Finset V) : Set V) = Set.univ by ext; simp]
   exact congrArg ENat.toNat (SimpleGraph.chromaticNumber_congr (SimpleGraph.induceUnivIso G))
 
-/-- Removing one vertex reduces the chromatic number by at most one.-/
+/-- Removing one vertex reduces the chromatic number by at most one.
+@isnad1 id=le.1h4v.s6.b0b668fbe7ff from=translated src=- shape=4d8b7116 vocab=e1007493
+-/
 theorem chromatic_induce_le_erase_add_one
     (G : SimpleGraph V) (S : Finset V) (v : V) (hv : v ∈ S) :
     chromatic (G.induce (S : Set V)) ≤
@@ -72,7 +78,9 @@ theorem chromatic_induce_le_erase_add_one
       exact C.valid hxy' heq'
 
 /-- Every integer from zero to the chromatic number occurs as the
-chromatic number of an induced subgraph.-/
+chromatic number of an induced subgraph.
+@isnad1 id=ex.1h3v.s5.dbbdaec06e60 from=translated src=- shape=faa1b3c2 vocab=54adbde3
+-/
 theorem exists_induced_chromatic_eq
     (G : SimpleGraph V) (n : ℕ) (hn : n ≤ chromatic G) :
     ∃ S : Finset V, chromatic (G.induce (S : Set V)) = n := by

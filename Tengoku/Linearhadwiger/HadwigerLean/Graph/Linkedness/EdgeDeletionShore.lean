@@ -35,7 +35,9 @@ private theorem edgeIncidenceSetCount_eq_incident_ncard
   exact Nat.card_congr e
 
 /-- Deleting an existing edge meeting the outside of `X` removes exactly
-one edge from the outside-incidence count.-/
+one edge from the outside-incidence count.
+@isnad1 id=eq.2h5v.s6.dc88e697e899 from=translated src=- shape=dea99ecc vocab=18700284
+-/
 theorem edgeIncidenceSetCount_delete_edge_add_one
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (X : Finset V) (u v : V) (huv : G.Adj u v)
@@ -60,7 +62,9 @@ theorem edgeIncidenceSetCount_delete_edge_add_one
   exact Set.ncard_sdiff_singleton_add_one hmem (by toFinite_tac)
 /-- The exact global incidence count (D.3) at an edge-tight massed pair.
 Minimality supplies failure of the strict global inequality after one
-exterior edge is deleted; the original pair has the strict inequality.-/
+exterior edge is deleted; the original pair has the strict inequality.
+@isnad1 id=eq.4h6v.s7.33a31e04c89e from=translated src=- shape=70964396 vocab=0885a219
+-/
 theorem massed_global_edge_tight
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (X : Finset V) (r : ℕ)

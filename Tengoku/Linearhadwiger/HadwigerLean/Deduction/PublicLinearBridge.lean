@@ -9,7 +9,9 @@ namespace HadwigerLean.Deduction
 universe u
 
 /-- The checked bridge from the internal minor/chromatic vocabulary to a
-statement using only Mathlib coloring and expanded connected branch sets.-/
+statement using only Mathlib coloring and expanded connected branch sets.
+@isnad1 id=ex.1h0v.s7.cb434cf0c66c from=translated src=- shape=dd8f2d5e vocab=df4749d4
+-/
 theorem linear_mathlib_of_internal
     (hlinear : ∃ C : ℕ,
       ∀ (V : Type u) [Fintype V] (G : SimpleGraph V) (t : ℕ),

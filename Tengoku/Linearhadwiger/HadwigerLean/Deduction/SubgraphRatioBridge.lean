@@ -13,7 +13,9 @@ namespace HadwigerLean.Deduction
 universe u
 
 /-- The lower endpoint of the paper's scale window is no greater than `t`
-for `t ≥ 3`.-/
+for `t ≥ 3`.
+@isnad1 id=le.1h1v.s5.f7d553d2d8f8 from=translated src=- shape=77d99d00 vocab=d5996e26
+-/
 theorem dp_window_le_self (t : ℕ) (ht : 3 ≤ t) :
     (t : ℝ) / Real.sqrt (Real.log (t : ℝ)) ≤ (t : ℝ) := by
   have htpos : (0 : ℝ) < (t : ℝ) := by exact_mod_cast (by omega : 0 < t)

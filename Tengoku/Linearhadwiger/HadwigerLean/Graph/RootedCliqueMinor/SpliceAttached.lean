@@ -24,14 +24,23 @@ empty; for a nontrivial path it is the support of the path's tail.-/
 def pathAfterStart {u w : V} (p : G.Path u w) : Set V :=
   pathVertexSet p \ {u}
 
+/--
+@isnad1 id=le.0h5v.s5.0375b9ef7140 from=translated src=- shape=fc1313c7 vocab=517d21d9
+-/
 theorem pathAfterStart_subset {u w : V} (p : G.Path u w) :
     pathAfterStart p ⊆ pathVertexSet p :=
   Set.sdiff_subset
 
+/--
+@isnad1 id=not.0h5v.s4.20e553299960 from=translated src=- shape=31479e1e vocab=4ee51383
+-/
 theorem start_not_mem_pathAfterStart {u w : V} (p : G.Path u w) :
     u ∉ pathAfterStart p := by
   simp [pathAfterStart]
 
+/--
+@isnad1 id=eq.1h5v.s5.5e1b307087d1 from=translated src=- shape=d0a3f0ab vocab=9fda4f61
+-/
 theorem pathAfterStart_eq_empty_of_nil {u w : V}
     (p : G.Path u w) (hnil : (p : G.Walk u w).Nil) :
     pathAfterStart p = ∅ := by
@@ -40,6 +49,9 @@ theorem pathAfterStart_eq_empty_of_nil {u w : V}
   rw [p.loop_eq]
   simp [pathAfterStart, pathVertexSet]
 
+/--
+@isnad1 id=not.1h5v.s6.bfaa5cd07ada from=translated src=- shape=9c2dbe07 vocab=0eaf6848
+-/
 theorem start_not_mem_tail_support {u w : V}
     (p : G.Path u w) (hnil : ¬(p : G.Walk u w).Nil) :
     u ∉ (p : G.Walk u w).tail.support := by
@@ -47,6 +59,9 @@ theorem start_not_mem_tail_support {u w : V}
   rw [← (p : G.Walk u w).cons_support_tail hnil] at hnodup
   exact (List.nodup_cons.mp hnodup).1
 
+/--
+@isnad1 id=eq.1h5v.s6.b622a406d058 from=translated src=- shape=dc028102 vocab=c3096fbe
+-/
 theorem pathAfterStart_eq_tail_support {u w : V}
     (p : G.Path u w) (hnil : ¬(p : G.Walk u w).Nil) :
     pathAfterStart p =
@@ -63,6 +78,9 @@ theorem pathAfterStart_eq_tail_support {u w : V}
   · intro hx
     exact ⟨Or.inr hx, fun heq => hnot (heq ▸ hx)⟩
 
+/--
+@isnad1 id=connecte.1h5v.s5.f25aa09f4dc0 from=translated src=- shape=44b72d4c vocab=d0bbd881
+-/
 theorem pathAfterStart_connected {u w : V}
     (p : G.Path u w) (hnil : ¬(p : G.Walk u w).Nil) :
     (G.induce (pathAfterStart p)).Connected := by

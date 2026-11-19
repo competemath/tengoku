@@ -19,7 +19,9 @@ open Finset
 
 /-- Among finitely many colors, one color class contains enough of the
 half-weight choices. The graph-theoretic assertion that this union is stable
-is handled separately.-/
+is handled separately.
+@isnad1 id=ex.1h5v.s7.6175e3bf92b3 from=translated src=- shape=9946edee vocab=a8b7e780
+-/
 theorem exists_color_class_half_weight
     {I C : Type*} [Fintype I] [Fintype C] [Nonempty C] [DecidableEq C]
     (color : I → C) (pieceWeight yolkWeight : I → ℝ)

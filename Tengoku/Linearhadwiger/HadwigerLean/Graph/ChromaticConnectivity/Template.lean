@@ -67,15 +67,27 @@ def restrict (U : Finset V) : ChromaticTemplate V C where
   color := T.color
   forbidden := T.forbidden
 
+/--
+@isnad1 id=eq.0h4v.s5.37a18022e1f6 from=translated src=- shape=115ed31c vocab=db719247
+-/
 @[simp] theorem restrict_carrier (U : Finset V) : (T.restrict U).carrier = T.carrier ∩ U := rfl
+/--
+@isnad1 id=eq.0h4v.s5.079c1590f1c1 from=translated src=- shape=115ed31c vocab=bc9a67bf
+-/
 @[simp] theorem restrict_precolored (U : Finset V) :
     (T.restrict U).precolored = T.precolored ∩ U := rfl
 
+/--
+@isnad1 id=properpr.1h5v.s5.fdb7bec01b2a from=translated src=- shape=defdb44c vocab=e34f9256
+-/
 theorem properPrecoloring_restrict (h : T.ProperPrecoloring G) (U : Finset V) :
     (T.restrict U).ProperPrecoloring G := by
   intro u v hu hv huv
   exact h (Finset.mem_inter.mp hu).1 (Finset.mem_inter.mp hv).1 huv
 
+/--
+@isnad1 id=le.0h5v.s5.fb65168e6865 from=translated src=- shape=2686744a vocab=89fe5e47
+-/
 theorem degree_restrict_le (k : ℕ) (U : Finset V) :
     (T.restrict U).degree k ≤ T.degree k := by
   classical
@@ -92,6 +104,9 @@ theorem degree_restrict_le (k : ℕ) (U : Finset V) :
   exact add_le_add (Nat.mul_le_mul_left k hpre)
     (Finset.sum_le_sum_of_subset hsub)
 
+/--
+@isnad1 id=admissib.1h6v.s5.72eea70bd257 from=translated src=- shape=76400d92 vocab=f27be33f
+-/
 theorem admissible_restrict (h : T.Admissible G k) (U : Finset V) :
     (T.restrict U).Admissible G k := by
   refine ⟨T.properPrecoloring_restrict G h.1 U,
@@ -103,7 +118,9 @@ theorem admissible_restrict (h : T.Admissible G k) (U : Finset V) :
     intro hp
     exact hv'.2 (Finset.mem_inter.mpr ⟨hp, (Finset.mem_inter.mp hv'.1).2⟩))
 
-/-- An admissible template precolors at most twice k vertices when k > 0.-/
+/-- An admissible template precolors at most twice k vertices when k > 0.
+@isnad1 id=le.2h5v.s6.f6ed64a7e0b4 from=translated src=- shape=c0c9704d vocab=c3b59cf1
+-/
 theorem precolored_card_le (k : ℕ) (hk : 0 < k)
     (h : T.Admissible G k) : T.precolored.card ≤ 2 * k := by
   have hdeg : k * T.precolored.card ≤ 2 * k ^ 2 := by
@@ -117,6 +134,9 @@ def degreeOn (k : ℕ) (U : Finset V) : ℕ :=
   k * (T.precolored ∩ U).card +
     ∑ v ∈ (T.carrier \ T.precolored) ∩ U, (T.forbidden v).card
 
+/--
+@isnad1 id=le.1h6v.s6.da8dfad71809 from=translated src=- shape=1015ba6b vocab=b303f239
+-/
 theorem degreeOn_disjoint_add_le (k : ℕ) (Y Z : Finset V)
     (hYZ : Disjoint Y Z) :
     T.degreeOn k Y + T.degreeOn k Z ≤ T.degree k := by
@@ -162,6 +182,9 @@ theorem degreeOn_disjoint_add_le (k : ℕ) (Y Z : Finset V)
     k * T.precolored.card + ∑ v ∈ A, (T.forbidden v).card
   omega
 
+/--
+@isnad1 id=or.2h6v.s7.134e0a2d64cb from=translated src=- shape=a617bd60 vocab=190e129f
+-/
 theorem one_side_low_degree (k : ℕ) (Y Z : Finset V)
     (h : T.degree k ≤ 2 * k ^ 2)
     (hYZ : Disjoint Y Z) :
@@ -183,7 +206,9 @@ def precolor (v : V) (hv : v ∈ T.carrier) (γ : C) : ChromaticTemplate V C whe
   forbidden := Function.update T.forbidden v ∅
 
 /-- Precoloring a vertex by a color outside its old forbidden list preserves
-the failure of extendibility.-/
+the failure of extendibility.
+@isnad1 id=obstruct.3h6v.s6.1a48ba985f64 from=translated src=- shape=8700f920 vocab=a124334e
+-/
 theorem precolor_obstructing (v : V) (hv : v ∈ T.carrier \ T.precolored)
     (γ : C) (hγ : γ ∉ T.forbidden v) (hobs : T.Obstructing G) :
     (T.precolor v (Finset.mem_sdiff.mp hv).1 γ).Obstructing G := by
@@ -216,7 +241,9 @@ theorem precolor_obstructing (v : V) (hv : v ∈ T.carrier \ T.precolored)
       simpa [precolor, Function.update, heq] using h
 
 /-- If the chosen color avoids all existing prescribed colors and the old
-forbidden list is large enough, precoloring preserves admissibility.-/
+forbidden list is large enough, precoloring preserves admissibility.
+@isnad1 id=admissib.4h7v.s6.6eb21031d53b from=translated src=- shape=45de7706 vocab=4d127f3a
+-/
 theorem precolor_admissible (k : ℕ) (h : T.Admissible G k)
     (v : V) (hv : v ∈ T.carrier \ T.precolored) (γ : C)
     (hγ : γ ∉ T.precolored.image T.color)
@@ -296,7 +323,9 @@ theorem precolor_admissible (k : ℕ) (h : T.Admissible G k)
   simpa [precolor, Function.update, hwv] using h.2.2 w hwA
 
 /-- A palette with more than four k colors contains a color which is both
-allowed at an uncolored vertex and unused by the precoloring.-/
+allowed at an uncolored vertex and unused by the precoloring.
+@isnad1 id=ex.4h6v.s7.580cda54094e from=translated src=- shape=dd6ada63 vocab=28e3207c
+-/
 theorem exists_fresh_color (k : ℕ) (hk : 0 < k) (h : T.Admissible G k)
     (hpalette : 4 * k < Fintype.card C)
     (v : V) (hv : v ∈ T.carrier \ T.precolored) :
@@ -327,7 +356,9 @@ theorem exists_fresh_color (k : ℕ) (hk : 0 < k) (h : T.Admissible G k)
   exact ⟨γ, hγ'.1, hγ'.2⟩
 
 /-- If every uncolored vertex has at least as many available colors as there
-are uncolored vertices, Hall's theorem gives an extension.-/
+are uncolored vertices, Hall's theorem gives an extension.
+@isnad1 id=ex.2h5v.s7.0e638803468e from=translated src=- shape=3fe5c158 vocab=7859e825
+-/
 theorem extends_of_large_lists (base : C)
     (hproper : T.ProperPrecoloring G)
     (hlarge : ∀ v ∈ T.carrier \ T.precolored,
@@ -403,7 +434,9 @@ theorem extends_of_large_lists (base : C)
     exact (hgavoid ⟨v, hv⟩).1
 
 /-- An admissible obstructing template with short lists needs more than k
-vertices in its carrier.-/
+vertices in its carrier.
+@isnad1 id=not.5h6v.s7.d0760e001adf from=translated src=- shape=4f959a61 vocab=6c12fa59
+-/
 theorem not_obstructing_of_small_carrier (base : C) (k : ℕ) (hk : 0 < k)
     (hpalette : 4 * k < Fintype.card C)
     (h : T.Admissible G k)
@@ -466,12 +499,18 @@ def secondSide (X Z : Finset V) (f : V → C) : ChromaticTemplate V C where
   color := fun v => if v ∈ X then f v else T.color v
   forbidden := T.forbidden
 
+/--
+@isnad1 id=properpr.1h7v.s5.a9bb1d273a2e from=translated src=- shape=ffe1b78d vocab=a903d836
+-/
 theorem firstSide_properPrecoloring (X Y Z : Finset V)
     (h : T.ProperPrecoloring G) :
     (T.firstSide X Y Z).ProperPrecoloring G := by
   intro u v hu hv huv
   exact h (Finset.mem_inter.mp hu).1 (Finset.mem_inter.mp hv).1 huv
 
+/--
+@isnad1 id=le.3h8v.s7.472a9c51fa60 from=translated src=- shape=22cab853 vocab=14aaf36b
+-/
 theorem firstSide_list_bound (X Y Z : Finset V) (k : ℕ)
     (hshort : ∀ v ∈ T.carrier \ T.precolored, (T.forbidden v).card < k)
     (hSZ : (T.precolored ∩ Z).card ≤ k) :
@@ -504,6 +543,9 @@ theorem firstSide_list_bound (X Y Z : Finset V) (k : ℕ)
     have hgoal : (T.forbidden v).card ≤ 2 * k := by omega
     simpa [firstSide, hx] using hgoal
 
+/--
+@isnad1 id=le.2h7v.s6.250b2643aec0 from=translated src=- shape=13940afc vocab=82c20cae
+-/
 theorem firstSide_degree_le (X Y Z : Finset V) (k : ℕ)
     (hX : X.card ≤ k) (hdisj : Disjoint Z (X ∪ Y)) :
     (T.firstSide X Y Z).degree k ≤ T.degree k := by
@@ -583,6 +625,9 @@ theorem firstSide_degree_le (X Y Z : Finset V) (k : ℕ)
   rw [← hA₀]
   omega
 
+/--
+@isnad1 id=admissib.5h8v.s7.78dfd7cfbf6c from=translated src=- shape=f0ed59cd vocab=90bf07f2
+-/
 theorem firstSide_admissible (X Y Z : Finset V) (k : ℕ)
     (h : T.Admissible G k)
     (hshort : ∀ v ∈ T.carrier \ T.precolored, (T.forbidden v).card < k)
@@ -593,6 +638,9 @@ theorem firstSide_admissible (X Y Z : Finset V) (k : ℕ)
     (T.firstSide_degree_le X Y Z k hX hdisj).trans h.2.1,
     T.firstSide_list_bound X Y Z k hshort hSZ⟩
 
+/--
+@isnad1 id=le.2h9v.s6.a62427564a0b from=translated src=- shape=fa0585dc vocab=2ce95b86
+-/
 theorem secondSide_list_bound (X Z : Finset V) (f : V → C) (k : ℕ)
     (h : T.Admissible G k) :
     ∀ v ∈ (T.secondSide X Z f).carrier \
@@ -617,6 +665,9 @@ theorem secondSide_list_bound (X Z : Finset V) (f : V → C) (k : ℕ)
       (Finset.mem_union.mpr (Or.inl (Finset.mem_inter.mpr ⟨hs, hvZ⟩)))
   exact h.2.2 v (Finset.mem_sdiff.mpr ⟨hvC, hvS⟩)
 
+/--
+@isnad1 id=le.3h7v.s7.50694b6a9e61 from=translated src=- shape=a51a61a9 vocab=eb3420a3
+-/
 theorem secondSide_degree_le (X Z : Finset V) (f : V → C) (k : ℕ)
     (hX : X.card ≤ k) (hdisjXZ : Disjoint X Z)
     (hlow : k * (T.precolored ∩ Z).card +
@@ -679,6 +730,9 @@ theorem secondSide_degree_le (X Z : Finset V) (f : V → C) (k : ℕ)
   simp only [pow_two, two_mul] at hlow' ⊢
   omega
 
+/--
+@isnad1 id=properpr.3h8v.s6.ac5c253a4197 from=translated src=- shape=f6f84317 vocab=a6286cfb
+-/
 theorem secondSide_properPrecoloring (X Y Z : Finset V) (f : V → C)
     (hT : T.ProperPrecoloring G)
     (hdisjXZ : Disjoint X Z)
@@ -745,6 +799,9 @@ theorem secondSide_properPrecoloring (X Y Z : Finset V) (f : V → C)
             Finset.mem_union.mpr (Or.inl hvX)⟩) huv
       simpa [secondSide, huX, hvX] using hproper
 
+/--
+@isnad1 id=admissib.5h9v.s7.7da6560cf50e from=translated src=- shape=1d95920d vocab=2ce34e79
+-/
 theorem secondSide_admissible (X Y Z : Finset V) (f : V → C) (k : ℕ)
     (h : T.Admissible G k) (hX : X.card ≤ k)
     (hdisjXZ : Disjoint X Z)
@@ -757,6 +814,9 @@ theorem secondSide_admissible (X Y Z : Finset V) (f : V → C) (k : ℕ)
     T.secondSide_degree_le X Z f k hX hdisjXZ hlow,
     T.secondSide_list_bound G X Z f k h⟩
 
+/--
+@isnad1 id=extends.1h8v.s6.7103b0f6d7e0 from=translated src=- shape=f8ed03d1 vocab=df3399d3
+-/
 theorem firstSide_extends_restrict (X Y Z : Finset V) (f : V → C)
     (hf : (T.firstSide X Y Z).Extends G f) :
     (T.restrict (X ∪ Y)).Extends G f := by
@@ -772,6 +832,9 @@ theorem firstSide_extends_restrict (X Y Z : Finset V) (f : V → C)
       exact fun h => hav' (Finset.mem_union.mpr (Or.inl h))
     · simpa [firstSide, hx, restrict] using hav
 
+/--
+@isnad1 id=and.3h9v.s7.739643c2cd07 from=translated src=- shape=b07b96c1 vocab=7b6cbbf2
+-/
 theorem secondSide_extends_restrict (X Y Z : Finset V) (f₁ f₂ : V → C)
     (hX : X ⊆ T.carrier)
     (h₁ : (T.firstSide X Y Z).Extends G f₁)
@@ -841,7 +904,9 @@ theorem secondSide_extends_restrict (X Y Z : Finset V) (f₁ f₂ : V → C)
       simpa [secondSide, restrict] using h
 
 /-- Colorings of two overlapping sides glue when they agree on the separator
-and there are no edges between the strict sides.-/
+and there are no edges between the strict sides.
+@isnad1 id=ex.5h9v.s7.3a57915f99ef from=translated src=- shape=92a732e3 vocab=66b034a3
+-/
 theorem glue_extensions (X Y Z : Finset V)
     (hcover : T.carrier = X ∪ Y ∪ Z)
     (hno : ∀ ⦃y z : V⦄, y ∈ Y → z ∈ Z → ¬ G.Adj y z)
@@ -920,7 +985,9 @@ theorem glue_extensions (X Y Z : Finset V)
       simpa [f, hvZ, restrict] using h
 
 /-- The two separator-side templates cannot both be extendible when the
-original template obstructs its carrier.-/
+original template obstructs its carrier.
+@isnad1 id=false.6h9v.s7.38a9f50c6d20 from=translated src=- shape=8591b2a8 vocab=c539301e
+-/
 theorem not_both_side_extensions (X Y Z : Finset V)
     (hcover : T.carrier = X ∪ Y ∪ Z)
     (hX : X ⊆ T.carrier)
@@ -936,7 +1003,9 @@ theorem not_both_side_extensions (X Y Z : Finset V)
     f₁ f₂ h₁r h₂r hagree)
 
 /-- A vertex-minimal obstructing template cannot have a separator for which
-one strict side carries at most k squared units of template degree.-/
+one strict side carries at most k squared units of template degree.
+@isnad1 id=false.13h8v.s8.51e9baf9c4ae from=translated src=- shape=a7f830aa vocab=6f0fbb86
+-/
 theorem no_low_weight_separation (k : ℕ) (hk : 0 < k)
     (hT : T.Admissible G k) (hobs : T.Obstructing G)
     (hshort : ∀ v ∈ T.carrier \ T.precolored,
@@ -1012,7 +1081,9 @@ theorem no_low_weight_separation (k : ℕ) (hk : 0 < k)
     hobs f₁ f₂ hf₁ hf₂
 
 /-- The extremal template admits no separator smaller than k with two
-nonempty anticomplete strict sides.-/
+nonempty anticomplete strict sides.
+@isnad1 id=false.12h8v.s8.08079975c942 from=translated src=- shape=ea3deb8b vocab=15c2787b
+-/
 theorem no_small_separation (k : ℕ) (hk : 0 < k)
     (hT : T.Admissible G k) (hobs : T.Obstructing G)
     (hshort : ∀ v ∈ T.carrier \ T.precolored,
@@ -1051,6 +1122,9 @@ def empty (baseColor : C) : ChromaticTemplate V C where
   color := fun _ => baseColor
   forbidden := fun _ => ∅
 
+/--
+@isnad1 id=admissib.0h5v.s5.5fbb89cc935a from=translated src=- shape=c5f37a28 vocab=4a4eafb5
+-/
 theorem empty_admissible (baseColor : C) (k : ℕ) :
     (empty baseColor : ChromaticTemplate V C).Admissible G k := by
   classical
@@ -1061,6 +1135,9 @@ theorem empty_admissible (baseColor : C) (k : ℕ) :
   · intro v hv
     simp [empty]
 
+/--
+@isnad1 id=iff.0h4v.s5.7687f9d672d0 from=translated src=- shape=8fbb6813 vocab=a4dc4294
+-/
 theorem empty_extends_iff_colorable {n : ℕ} (baseColor : Fin n) :
     (∃ f : V → Fin n, (empty baseColor).Extends G f) ↔ G.Colorable n := by
   constructor
@@ -1077,6 +1154,9 @@ theorem empty_extends_iff_colorable {n : ℕ} (baseColor : Fin n) :
     · intro v hv
       simp [empty]
 
+/--
+@isnad1 id=obstruct.1h4v.s5.9e2340d9fb32 from=translated src=- shape=f533a286 vocab=74c0f66c
+-/
 theorem empty_obstructing {n : ℕ} (baseColor : Fin n) (hn : ¬ G.Colorable n) :
     (empty baseColor).Obstructing G := by
   intro h
@@ -1086,7 +1166,9 @@ end ChromaticTemplate
 
 /-- A finite family of weights below k whose total exceeds k contains a
 subset of weight strictly between k and 2k. This is the chunk-cutting step
-in the additive chromatic connectivity proof.-/
+in the additive chromatic connectivity proof.
+@isnad1 id=ex.2h4v.s6.283cbb81729b from=translated src=- shape=f45ed8a2 vocab=d72ba0a4
+-/
 theorem exists_medium_weight_subset (S : Finset V) (w : V → ℕ) (k : ℕ)
     (hunit : ∀ v ∈ S, w v < k)
     (htotal : k < ∑ v ∈ S, w v) :
@@ -1137,7 +1219,9 @@ structure WeightedChunkPacking (S : Finset V) (w : V → ℕ)
     (∑ v ∈ residual.filter (fun v => color v = a), w v) ≤ k
   charge : chunks.card * (k + 1) ≤ ∑ v ∈ S, w v
 
-/-- Greedily extract medium-weight subsets from heavy color classes.-/
+/-- Greedily extract medium-weight subsets from heavy color classes.
+@isnad1 id=nonempty.1h6v.s5.a1facffe9e09 from=translated src=- shape=0d9ba13d vocab=9c76d738
+-/
 theorem exists_weighted_chunk_packing (w : V → ℕ)
     (color : V → Fin m) (k : ℕ) (S : Finset V)
     (hunit : ∀ v ∈ S, w v < k) :
@@ -1287,6 +1371,9 @@ namespace WeightedChunkPacking
 variable {V : Type*} [DecidableEq V] {m : ℕ} {S : Finset V}
   {w : V → ℕ} {color : V → Fin m} {k : ℕ}
 
+/--
+@isnad1 id=le.1h7v.s6.dfc9c1f004cd from=translated src=- shape=2cdd613e vocab=690d5d11
+-/
 theorem card_le (p : WeightedChunkPacking S w color k)
     (hweight : (∑ v ∈ S, w v) ≤ 2 * k ^ 2) :
     p.chunks.card ≤ 2 * k := by
@@ -1299,7 +1386,9 @@ namespace ChromaticTemplate
 variable (G : SimpleGraph V) (T : ChromaticTemplate V C)
 
 /-- Color independent chunks with distinct palette colors, avoiding all lists
-inside each chunk and every color already used by the precoloring.-/
+inside each chunk and every color already used by the precoloring.
+@isnad1 id=ex.7h8v.s8.09cdf8ff9186 from=translated src=- shape=f560c50e vocab=66625568
+-/
 theorem extends_of_independent_chunks (base : C) (k : ℕ)
     {I : Type*} [Fintype I] [DecidableEq I]
     (B : I → Finset V)
@@ -1404,7 +1493,9 @@ namespace ChromaticTemplate
 variable (G : SimpleGraph V) (T : ChromaticTemplate V C)
 
 /-- The quantitative recoloring step: a template with short lists extends
-whenever the unprecolored graph uses at most palette-size minus six k colors.-/
+whenever the unprecolored graph uses at most palette-size minus six k colors.
+@isnad1 id=ex.5h8v.s7.53d1bcdf8b40 from=translated src=- shape=f169c04b vocab=ee305b43
+-/
 theorem extends_of_colorable_remainder (base : C) (k m : ℕ) (hk : 0 < k)
     (ha : T.Admissible G k)
     (hshort : ∀ v ∈ T.carrier \ T.precolored,

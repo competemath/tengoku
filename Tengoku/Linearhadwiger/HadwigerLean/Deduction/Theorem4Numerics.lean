@@ -14,14 +14,23 @@ def theorem4B (D s : ℕ) : ℕ := 276 * D * (1 + s)
 
 def theorem4Sigma (D s a : ℕ) : ℕ := 14 * D * (1 + s) * a
 
+/--
+@isnad1 id=le.0h1v.s3.19b314c99723 from=translated src=- shape=e65c4e42 vocab=56723b18
+-/
 theorem theorem4_ratio_le_ceil (f : ℝ) :
     f ≤ (theorem4RatioCeil f : ℝ) := by
   exact Nat.le_ceil f
 
+/--
+@isnad1 id=lt.1h1v.s5.aacb9c4dbec4 from=translated src=- shape=d0e966e3 vocab=0aad6579
+-/
 theorem theorem4_ratio_ceil_lt_add_one (f : ℝ) (hf : 0 ≤ f) :
     (theorem4RatioCeil f : ℝ) < f + 1 := by
   exact Nat.ceil_lt_add_one hf
 
+/--
+@isnad1 id=le.1h2v.s4.b5acfd303bff from=translated src=- shape=334a1355 vocab=70607e47
+-/
 theorem theorem4_B_ge (D s : ℕ) (hD : 2000 ≤ D) :
     994 ≤ theorem4B D s := by
   dsimp [theorem4B]
@@ -29,6 +38,9 @@ theorem theorem4_B_ge (D s : ℕ) (hD : 2000 ≤ D) :
   have hmul := Nat.mul_le_mul_left (276 * D) h1
   nlinarith
 
+/--
+@isnad1 id=le.1h3v.s5.7cddfc8e2f6a from=translated src=- shape=d6342fd9 vocab=1d4e3c38
+-/
 theorem theorem4_child_budget (D s a : ℕ) (hD : 2000 ≤ D) :
     3 * Woven.outerChildLoss a D (980 * a) (theorem4Sigma D s a) ≤
       theorem4B D s * a := by
@@ -40,6 +52,9 @@ theorem theorem4_child_budget (D s a : ℕ) (hD : 2000 ≤ D) :
   dsimp [Woven.outerChildLoss, theorem4Sigma, theorem4B]
   nlinarith
 
+/--
+@isnad1 id=le.2h5v.s6.291aaae1907b from=translated src=- shape=e6ea703c vocab=117e3e54
+-/
 theorem theorem4_outer_gn_budget
     (m i T D s : ℕ) (hi : i < m) (hD : 2000 ≤ D) :
     D * Woven.outerScale m i ≤
@@ -62,6 +77,9 @@ theorem theorem4_outer_gn_budget
   change D * a ≤ D * T + theorem4B D s * c
   nlinarith [hBa, hscale]
 
+/--
+@isnad1 id=lt.2h5v.s6.91edccaa7f85 from=translated src=- shape=cc4462b0 vocab=f67759ac
+-/
 theorem theorem4_outer_sep_budget
     (m i T D s : ℕ) (hi : i < m) (hD : 2000 ≤ D) :
     theorem4Sigma D s (Woven.outerScale m i) <

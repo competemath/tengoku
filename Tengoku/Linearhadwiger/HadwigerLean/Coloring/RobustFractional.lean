@@ -35,7 +35,9 @@ noncomputable def unmatchedVertices (M : IndexedMatching G I) : Finset V :=
 
 omit [Fintype V] [DecidableEq I] in
 /-- A vertex is covered by an indexed matching exactly when it has a
-matching-graph neighbor.-/
+matching-graph neighbor.
+@isnad1 id=iff.0h5v.s5.4b72530bf3dc from=translated src=- shape=c1c77f7c vocab=a2b09015
+-/
 theorem mem_matchedVertices_iff (M : IndexedMatching G I) (x : V) :
     x ∈ M.matchedVertices ↔ ∃ y, M.edgeGraph.Adj x y := by
   classical
@@ -50,6 +52,9 @@ theorem mem_matchedVertices_iff (M : IndexedMatching G I) (x : V) :
     · exact Finset.mem_image.mpr ⟨(i, false), Finset.mem_univ _, rfl⟩
     · exact Finset.mem_image.mpr ⟨(i, true), Finset.mem_univ _, rfl⟩
 omit [Fintype V] [DecidableEq I] in
+/--
+@isnad1 id=eq.0h5v.s6.18983435ec8d from=translated src=- shape=95357855 vocab=6a9c7c42
+-/
 theorem sum_matchedVertices (M : IndexedMatching G I) (w : V → ℝ) :
     ∑ v ∈ M.matchedVertices, w v =
       ∑ i : I, (w (M.endpoint i false) + w (M.endpoint i true)) := by
@@ -58,6 +63,9 @@ theorem sum_matchedVertices (M : IndexedMatching G I) (w : V → ℝ) :
   simp [Fintype.sum_prod_type, add_comm]
 
 omit [DecidableEq I] in
+/--
+@isnad1 id=eq.0h5v.s6.37aff6a32d5d from=translated src=- shape=ccb93132 vocab=043a4249
+-/
 theorem sum_vertices_split (M : IndexedMatching G I) (w : V → ℝ) :
     ∑ v : V, w v =
       (∑ i : I, (w (M.endpoint i false) + w (M.endpoint i true))) +
@@ -84,7 +92,9 @@ private theorem chosen_injective (M : IndexedMatching G I) (c : I → Bool) :
 
 omit [Fintype V] [Fintype I] [DecidableEq I] in
 /-- The minimum endpoint weights satisfy every quotient dual constraint
-whenever each stable family of matching pairs has a stable transversal.-/
+whenever each stable family of matching pairs has a stable transversal.
+@isnad1 id=isfracti.2h6v.s5.baa5dd4baae7 from=translated src=- shape=e86ea445 vocab=082b3956
+-/
 theorem minWeight_dualFeasible (M : IndexedMatching G I)
     (w : V → ℝ) (hw : IsFractionalDualFeasible H w)
     (htrans : M.HasStableTransversals H) :
@@ -120,6 +130,9 @@ private theorem twice_min_add_abs (a b : ℝ) :
     ring
 
 omit [Fintype V] [DecidableEq V] [DecidableEq I] in
+/--
+@isnad1 id=eq.0h5v.s7.0b6d381a2203 from=translated src=- shape=33894fc6 vocab=d2c2c777
+-/
 theorem sum_minWeight_identity (M : IndexedMatching G I) (w : V → ℝ) :
     2 * (∑ i : I, M.minWeight w i) +
       ∑ i : I, |w (M.endpoint i false) - w (M.endpoint i true)| =
@@ -136,7 +149,9 @@ theorem sum_minWeight_identity (M : IndexedMatching G I) (w : V → ℝ) :
 
 /-- The analytic part of the robust bound.  The only missing combinatorial
 ingredients are a matching with small unmatched set and weight loss, and
-independent transversals for quotient-stable families of its pairs.-/
+independent transversals for quotient-stable families of its pairs.
+@isnad1 id=le.5h8v.s7.e21f53c67b11 from=translated src=- shape=2f491a77 vocab=2b456d87
+-/
 theorem robust_bound_of_matching_certificate
     (M : IndexedMatching G I)
     (w : V → ℝ)
@@ -184,7 +199,9 @@ theorem robust_bound_of_matching_certificate
 
 omit [Fintype I] [DecidableEq I] in
 /-- The cycle-free partial matching supplies stable choices from every
-quotient-stable family of pairs for the union graph.-/
+quotient-stable family of pairs for the union graph.
+@isnad1 id=hasstabl.2h5v.s6.e6ffda3eabec from=translated src=- shape=20653b12 vocab=a9ee3bb5
+-/
 theorem hasStableTransversals_sup_of_no_matching_cycle
     (M : IndexedMatching G I) (D : SimpleGraph V)
     (hedgeDisjoint : ∀ a b, D.Adj a b → ¬ M.edgeGraph.Adj a b)
@@ -222,7 +239,9 @@ theorem hasStableTransversals_sup_of_no_matching_cycle
 
 omit [Fintype I] [DecidableEq I] in
 /-- A stable family of contracted pairs has at most the independence number
-of the original graph.-/
+of the original graph.
+@isnad1 id=le.0h5v.s5.8a12873b5273 from=translated src=- shape=11c8f5f7 vocab=ac15bf2b
+-/
 theorem quotient_stable_card_le_independenceNumber
     (M : IndexedMatching G I) (S : StableSet M.quotient) :
     S.1.card ≤ independenceNumber G := by
@@ -249,7 +268,9 @@ theorem quotient_stable_card_le_independenceNumber
 
 omit [Fintype I] [DecidableEq I] in
 /-- The paper's short-cycle exclusion implies all quotient-stable pair
-families admit stable representatives in G + D.-/
+families admit stable representatives in G + D.
+@isnad1 id=hasstabl.4h7v.s7.6d97844192cd from=translated src=- shape=83ec4e4e vocab=f1278093
+-/
 theorem hasStableTransversals_sup_of_short_cycles
     (M : IndexedMatching G I) (D : SimpleGraph V)
     (m L : ℕ) (halpha : independenceNumber G ≤ m)
@@ -296,7 +317,9 @@ theorem hasStableTransversals_sup_of_short_cycles
   · exact hTind (hchosen i hi) (hchosen j hj) hne hDadj
 
 /-- Combining the short-cycle transversal with the fractional dual transfer.
-Here C is any common cap on unmatched vertices and matching weight loss.-/
+Here C is any common cap on unmatched vertices and matching weight loss.
+@isnad1 id=le.8h9v.s8.4a5f57aadc23 from=translated src=- shape=69e20273 vocab=3b34ecab
+-/
 theorem robust_bound_of_short_matching_certificate
     (M : IndexedMatching G I) (D : SimpleGraph V)
     (m L : ℕ) (halpha : independenceNumber G ≤ m)
@@ -322,7 +345,9 @@ theorem robust_bound_of_short_matching_certificate
 
 omit [Fintype V] [Fintype I] [DecidableEq V] [DecidableEq I] in
 /-- A matching edge is automatically absent from D if D lies in the
-complement of the graph matched.-/
+complement of the graph matched.
+@isnad1 id=not.2h7v.s5.67f00a8cb170 from=translated src=- shape=5a259ab6 vocab=129b57f8
+-/
 theorem edgeGraph_disjoint_of_le_compl
     (M : IndexedMatching G I) (D : SimpleGraph V)
     (hD : D ≤ Gᶜ) :
@@ -333,7 +358,9 @@ theorem edgeGraph_disjoint_of_le_compl
 
 /-- The robust fractional bound from a finite greedy trace certificate.
 The only external combinatorial data are the matching, its processing-time
-conditions, and the no-short-cycle insertion invariant.-/
+conditions, and the no-short-cycle insertion invariant.
+@isnad1 id=le.12h11v.s9.b2c2bc440816 from=translated src=- shape=a90c2740 vocab=ff27617f
+-/
 theorem robust_bound_of_greedy_trace
     (M : IndexedMatching G I) (D : SimpleGraph V)
     [DecidableRel G.Adj] [DecidableRel D.Adj]
@@ -388,7 +415,9 @@ private noncomputable instance finiteGraphEdgeSetFintype
     {V : Type*} [Fintype V] (P : SimpleGraph V) : Fintype P.edgeSet :=
   Fintype.ofFinite _
 /-- The set-aside vertices recorded by the finite greedy run are precisely
-the unmatched vertices of its indexed matching.-/
+the unmatched vertices of its indexed matching.
+@isnad1 id=eq.0h5v.s6.01dbd9f99634 from=translated src=- shape=c16490cc vocab=c8d9c838
+-/
 theorem weightedGreedyFullMatching_unmatched_eq
     {V : Type*} [Fintype V] [DecidableEq V]
     (G D : SimpleGraph V) (w : V → ℝ) (r : ℕ) :
@@ -401,6 +430,9 @@ theorem weightedGreedyFullMatching_unmatched_eq
   rw [IndexedMatching.mem_matchedVertices_iff,
     weightedGreedyFullMatching_edgeGraph_eq]
   exact (weightedGreedyFullRun_mem_unmatched_iff G D w r x).symm
+/--
+@isnad1 id=eq.1h5v.s5.347cfade48ee from=translated src=- shape=e4676219 vocab=b7cab303
+-/
 theorem IndexedMatching.unmatchedVertices_eq_of_edgeGraph_eq
     {V I : Type*} [Fintype V] [Fintype I] [DecidableEq V]
     {G : SimpleGraph V} (M N : IndexedMatching G I)
@@ -412,6 +444,9 @@ theorem IndexedMatching.unmatchedVertices_eq_of_edgeGraph_eq
     Finset.mem_univ, true_and]
   rw [M.mem_matchedVertices_iff, N.mem_matchedVertices_iff, hgraph]
 
+/--
+@isnad1 id=eq.0h5v.s6.22c70b686065 from=translated src=- shape=c16490cc vocab=a1c5061e
+-/
 theorem weightedGreedyFullMatchingSorted_unmatched_eq
     {V : Type*} [Fintype V] [DecidableEq V]
     (G D : SimpleGraph V) (w : V → ℝ) (r : ℕ) :
@@ -425,7 +460,9 @@ theorem weightedGreedyFullMatchingSorted_unmatched_eq
   exact weightedGreedyFullMatching_unmatched_eq G D w r
 
 /-- The finite greedy matching gives the robust fractional bound at any
-radius that covers the short cycles needed by the transversal argument.-/
+radius that covers the short cycles needed by the transversal argument.
+@isnad1 id=le.4h6v.s7.4e9d8f21b4ff from=translated src=- shape=4ef6fa85 vocab=d929c04a
+-/
 theorem robust_fractional_bound_at_radius
     {V : Type*} [Fintype V] [DecidableEq V]
     (G D : SimpleGraph V) [DecidableRel G.Adj] [DecidableRel D.Adj]
@@ -461,7 +498,9 @@ theorem robust_fractional_bound_at_radius
     (M.robust_bound_of_short_matching_certificate D m (r + 1)
       halpha hR hdisj hshort w hw hopt C hX' hLoss')
 
-/-- A version with the radius and additive term used in Theorem 2.-/
+/-- A version with the radius and additive term used in Theorem 2.
+@isnad1 id=le.4h5v.s7.3fcc1c67fc43 from=translated src=- shape=ce86b02a vocab=d929c04a
+-/
 theorem robust_fractional_bound
     {V : Type*} [Fintype V] [DecidableEq V]
     (G D : SimpleGraph V) [DecidableRel G.Adj] [DecidableRel D.Adj]
@@ -477,7 +516,9 @@ theorem robust_fractional_bound
     robust_fractional_bound_at_radius G D hD m d (2 * m - 1)
       halpha hdegree (by omega)
 
-/-- The robust bound in terms of the added graph's maximum degree.-/
+/-- The robust bound in terms of the added graph's maximum degree.
+@isnad1 id=le.4h5v.s7.cdbe5b33cc60 from=translated src=- shape=8f51860e vocab=13e72b8f
+-/
 theorem robust_fractional_bound_maxDegree
     {V : Type*} [Fintype V] [DecidableEq V]
     (G D : SimpleGraph V) [DecidableRel G.Adj] [DecidableRel D.Adj]

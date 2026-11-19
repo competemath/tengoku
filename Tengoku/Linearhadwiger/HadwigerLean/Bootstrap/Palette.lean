@@ -9,7 +9,9 @@ namespace HadwigerLean.Bootstrap
 universe u
 
 /-- If two vertex sets cover the graph, separate palettes for their induced
-subgraphs give a coloring with the sum of their chromatic numbers.-/
+subgraphs give a coloring with the sum of their chromatic numbers.
+@isnad1 id=le.1h4v.s5.c345a38fcc62 from=translated src=- shape=cb9e8547 vocab=397cd815
+-/
 theorem chromatic_le_add_induce {V : Type u} [Fintype V]
     (G : SimpleGraph V) (W R : Set V) (hcover : W ∪ R = Set.univ) :
     HadwigerLean.chromatic G ≤

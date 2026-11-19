@@ -12,7 +12,9 @@ namespace HadwigerLean.Bootstrap
 universe u
 
 /-- Paper Lemma 14, conditional only on the path-localization statement for
-the graph under consideration.-/
+the graph under consideration.
+@isnad1 id=chromati.7h5v.s7.4204b2c366a0 from=translated src=- shape=214ba61a vocab=bff63214
+-/
 theorem chromatic_separable_of_path_localization
     {V : Type u} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) (u d k : ℕ) (hu : 0 < u) (hk : 2 ≤ k)

@@ -15,7 +15,9 @@ namespace ReedSeymour
 variable {V I : Type*} {G : SimpleGraph V}
 
 /-- Forgetting the induced-subgraph subtype preserves the endpoint-only
-terminal connector property.-/
+terminal connector property.
+@isnad1 id=istermin.1h11v.s7.87ae70a94c0a from=translated src=- shape=e4fc4af7 vocab=1d8b12d0
+-/
 theorem lift_induced_terminal_connector
     (P : ConnectedPartition G I) (i₀ : I) (U : Set V)
     (i j : {k : I // P.touchingQuotient.Adj i₀ k})
@@ -49,13 +51,17 @@ theorem lift_induced_terminal_connector
     have hend := congrArg Subtype.val (hp.end_only z' hz' hNj')
     exact hval'.symm.trans hend
 
-/-- The lifted walk has the same length as the induced walk.-/
+/-- The lifted walk has the same length as the induced walk.
+@isnad1 id=eq.0h6v.s6.573860da694d from=translated src=- shape=95e68f62 vocab=475d2a2a
+-/
 theorem liftInducedWalk_length {U : Set V} {a b : U} (p : (G.induce U).Walk a b) :
     (CentralSplit.liftInducedWalk p).length = p.length := by
   change (p.map (SimpleGraph.Embedding.induce U).toHom).length = p.length
   rw [SimpleGraph.Walk.length_map]
 
-/-- Every lifted vertex still belongs to the inducing set.-/
+/-- Every lifted vertex still belongs to the inducing set.
+@isnad1 id=mem.1h7v.s6.b929c74cacf8 from=translated src=- shape=51ea3413 vocab=56d161fb
+-/
 theorem liftInducedWalk_support_subset {U : Set V} {a b : U}
     (p : (G.induce U).Walk a b) :
     ∀ z, z ∈ (CentralSplit.liftInducedWalk p).support → z ∈ U := by

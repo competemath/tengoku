@@ -22,6 +22,9 @@ def reachableSide : Set V :=
     ∃ b : ↥((Q : Set V)ᶜ), (b : V) = v ∧
       (G.induce (Q : Set V)ᶜ).Reachable a b}
 
+/--
+@isnad1 id=disjoint.0h4v.s5.92a12250e2a6 from=translated src=- shape=fa83e06f vocab=1ca7c975
+-/
 theorem reachableSide_avoids_cut :
     Disjoint (reachableSide G A Q) (Q : Set V) := by
   apply Set.disjoint_left.mpr
@@ -29,6 +32,9 @@ theorem reachableSide_avoids_cut :
   obtain ⟨a, haA, b, rfl, hab⟩ := hv
   exact b.property hvQ
 
+/--
+@isnad1 id=mem.3h6v.s6.58e6d1f9370d from=translated src=- shape=e736b933 vocab=eb506cf6
+-/
 theorem reachableSide_closed {x y : V}
     (hx : x ∈ reachableSide G A Q)
     (hyQ : y ∉ Q) (hxy : G.Adj x y) :
@@ -60,6 +66,9 @@ def reachableSeparation : VertexSeparation G where
       exact hyL (Or.inr hyQ)
     exact hyR (reachableSide_closed G A Q hx hyQ hxy)
 
+/--
+@isnad1 id=mem.1h5v.s5.8745522b93ec from=translated src=- shape=92a5d06d vocab=7a187ecf
+-/
 theorem reachableSeparation_left_of_mem (a : V) (ha : a ∈ A) :
     a ∈ (reachableSeparation G A Q).left := by
   by_cases hQ : a ∈ Q
@@ -68,6 +77,9 @@ theorem reachableSeparation_left_of_mem (a : V) (ha : a ∈ A) :
     let a' : ↥((Q : Set V)ᶜ) := ⟨a, hQ⟩
     exact ⟨a', ha, a', rfl, SimpleGraph.Reachable.refl _⟩
 
+/--
+@isnad1 id=mem.3h6v.s6.a323a94fc4d6 from=translated src=- shape=8252463c vocab=f3c5c6e4
+-/
 theorem reachableSeparation_strictRight_of_ABSeparator
     (B : Finset V) (hAB : IsABSeparator G A B Q)
     (b : V) (hb : b ∈ B) (hbQ : b ∉ Q) :
@@ -94,6 +106,9 @@ theorem reachableSeparation_strictRight_of_ABSeparator
     · exact hnot hnear
     · exact hbQ hcut⟩
 
+/--
+@isnad1 id=mem.2h6v.s5.0107ed41b155 from=translated src=- shape=dd567fec vocab=2f353ef6
+-/
 theorem reachableSeparation_right_of_ABSeparator
     (B : Finset V) (hAB : IsABSeparator G A B Q)
     (b : V) (hb : b ∈ B) :

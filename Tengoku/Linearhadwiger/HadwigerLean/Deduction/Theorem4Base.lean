@@ -8,7 +8,9 @@ import Tengoku.Seed.Tactic
 namespace HadwigerLean.Deduction
 
 /-- For every admissible low scale, the clique-minor coloring estimate fits
-inside the `2000T` reserve.-/
+inside the `2000T` reserve.
+@isnad1 id=lt.3h2v.s7.89b949888672 from=translated src=- shape=ec87b7a0 vocab=d38ea8e2
+-/
 theorem theorem4_base_chromatic_threshold
     (T a : ℕ) (hT : 3 ≤ T) (ha : 1 ≤ a)
     (hscale : (a : ℝ) ≤ (T : ℝ) / Real.sqrt (Real.log (T : ℝ))) :

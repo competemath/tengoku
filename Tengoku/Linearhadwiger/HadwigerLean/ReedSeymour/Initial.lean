@@ -32,7 +32,9 @@ noncomputable def componentPartition (G : SimpleGraph V) :
   cover v := ⟨G.connectedComponentMk v, rfl⟩
 
 omit [Fintype V] in
-/-- Distinct connected components never touch.-/
+/-- Distinct connected components never touch.
+@isnad1 id=not.0h4v.s4.3043fafbba90 from=translated src=- shape=a332d461 vocab=9008a717
+-/
 theorem componentPartition_no_edges (G : SimpleGraph V)
     (C D : G.ConnectedComponent) :
     ¬ (componentPartition G).touchingQuotient.Adj C D := by
@@ -40,7 +42,9 @@ theorem componentPartition_no_edges (G : SimpleGraph V)
   have hxyc := SimpleGraph.ConnectedComponent.connectedComponentMk_eq_of_adj hxy
   exact hCD (hx.symm.trans (hxyc.trans hy))
 
-/-- The component partition is a partial egg decomposition for any weight.-/
+/-- The component partition is a partial egg decomposition for any weight.
+@isnad1 id=ispartia.0h3v.s4.711e2a79cfd2 from=translated src=- shape=83d45375 vocab=0bedb955
+-/
 theorem componentPartition_partial (G : SimpleGraph V) (w : V → ℝ) :
     IsPartialEggDecomposition (componentPartition G) w := by
   classical
@@ -59,7 +63,9 @@ theorem componentPartition_partial (G : SimpleGraph V) (w : V → ℝ) :
       exact False.elim (componentPartition_no_edges G C D hCD)
 
 /-- Every finite graph, including the empty graph, has an initial partial egg
-decomposition indexed by a finite ordinal.-/
+decomposition indexed by a finite ordinal.
+@isnad1 id=ex.0h3v.s5.25ee3534b622 from=translated src=- shape=ea91991b vocab=53b923ef
+-/
 theorem exists_initial_partial_egg_decomposition_any
     (G : SimpleGraph V) (w : V → ℝ) :
     ∃ n : ℕ, ∃ P : ConnectedPartition G (Fin n),
@@ -90,7 +96,9 @@ theorem exists_initial_partial_egg_decomposition_any
       exact False.elim (hno i j hij)
 /-- A partial egg decomposition of maximal egg-support cardinality always
 exists. The contradiction steps will show that every block of this choice is
-an egg.-/
+an egg.
+@isnad1 id=ex.0h3v.s6.095c48b21f84 from=translated src=- shape=cb277647 vocab=079e845e
+-/
 theorem exists_maximal_partial_egg_support_any
     (G : SimpleGraph V) (w : V → ℝ) :
     ∃ n : ℕ, ∃ P : ConnectedPartition G (Fin n),

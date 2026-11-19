@@ -39,7 +39,9 @@ section RoundedCounts
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- Choose the paper's token and dummy counts by natural ceilings.
-The sample-size bound makes the dummy count large enough for every edge.-/
+The sample-size bound makes the dummy count large enough for every edge.
+@isnad1 id=ex.7h5v.s8.9139609a5fa5 from=translated src=- shape=3c74798e vocab=744cb3e6
+-/
 theorem exists_rounded_token_dummy_counts (G : SimpleGraph V)
     (m : ℕ) (hm : 1 ≤ m)
     (x : StableSet G → ℝ) (hx : ∀ S, 0 ≤ x S)

@@ -9,7 +9,9 @@ namespace HadwigerLean.Deduction
 
 open HadwigerLean.Bootstrap
 
-/-- The least power of three at least `t` is `3 ^ clog 3 t`.-/
+/-- The least power of three at least `t` is `3 ^ clog 3 t`.
+@isnad1 id=isleastp.0h1v.s4.3e332740dbae from=translated src=- shape=0ce28908 vocab=e666e4b4
+-/
 theorem least_power_of_three_spec (t : ℕ) :
     IsLeastPowerOfThreeAtLeast t (3 ^ Nat.clog 3 t) := by
   refine ⟨⟨Nat.clog 3 t, rfl⟩, Nat.le_pow_clog (by decide) t, ?_⟩
@@ -19,7 +21,9 @@ theorem least_power_of_three_spec (t : ℕ) :
     (Nat.clog_le_iff_le_pow (by decide)).mpr htU
   exact Nat.pow_le_pow_right (by decide) hm
 
-/-- For `t ≥ 2`, the least power of three above `t` is strictly below `3t`.-/
+/-- For `t ≥ 2`, the least power of three above `t` is strictly below `3t`.
+@isnad1 id=lt.2h2v.s5.0d3c33d2f1c1 from=translated src=- shape=c686fa39 vocab=cd832877
+-/
 theorem least_power_of_three_lt_three_mul {t T : ℕ}
     (ht : 2 ≤ t) (hT : IsLeastPowerOfThreeAtLeast t T) : T < 3 * t := by
   obtain ⟨⟨m, rfl⟩, hle, hminimal⟩ := hT

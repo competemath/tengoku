@@ -9,7 +9,9 @@ import Tengoku.Linearhadwiger.HadwigerLean.Graph.Linkedness.RegionLinkage
 namespace HadwigerLean
 namespace Linkedness
 
-/-- A path in an induced graph maps to an ambient path with exactly the image support.-/
+/-- A path in an induced graph maps to an ambient path with exactly the image support.
+@isnad1 id=ex.0h6v.s7.094234ee2af1 from=translated src=- shape=32417adc vocab=03ceaa80
+-/
 theorem path_lift_induce_support
     {V : Type*} (G : SimpleGraph V) (S : Set V)
     {s t : S} (p : (G.induce S).Path s t) :
@@ -29,7 +31,9 @@ theorem path_lift_induce_support
   · rintro ⟨u,hu,hux⟩
     exact ⟨u,hu,hux⟩
 
-/-- The ambient image of an induced path support is connected.-/
+/-- The ambient image of an induced path support is connected.
+@isnad1 id=connecte.0h6v.s6.844e3744bcd0 from=translated src=- shape=2aed9904 vocab=71002cd4
+-/
 theorem connected_induce_path_image
     {V : Type*} (G : SimpleGraph V) (S : Set V)
     {s t : S} (p : (G.induce S).Path s t) :
@@ -65,7 +69,9 @@ noncomputable def torsoCrossingPairs (G : SimpleGraph V)
     ⟨((torsoPathEndsChosen G S (L.path i.val) i.property).last : V),
       (torsoPathEndsChosen G S (L.path i.val) i.property).last_mem⟩
 
-/-- Different torso paths give disjoint adhesion endpoint pairs.-/
+/-- Different torso paths give disjoint adhesion endpoint pairs.
+@isnad1 id=disjoint.0h6v.s6.ee97c3bf3b36 from=translated src=- shape=60e090f6 vocab=3e3d3f46
+-/
 theorem torsoCrossingPairs_disjoint (G : SimpleGraph V)
     (S : VertexSeparation G)
     {ι : Type*} {P : IndexedPairs ι S.left}
@@ -89,7 +95,9 @@ theorem torsoCrossingPairs_disjoint (G : SimpleGraph V)
   exact (Set.disjoint_left.mp (L.disjoint
     (fun heq => hij (Subtype.ext heq)))) ha (hab ▸ hb)
 
-/-- Every crossing-pair endpoint belongs to the original separation adhesion.-/
+/-- Every crossing-pair endpoint belongs to the original separation adhesion.
+@isnad1 id=le.0h7v.s7.62b0060faab8 from=translated src=- shape=c07be352 vocab=5eb39051
+-/
 theorem torsoCrossingPairs_terminals_subset (G : SimpleGraph V)
     (S : VertexSeparation G)
     {ι : Type*} {P : IndexedPairs ι S.left}
@@ -106,7 +114,9 @@ theorem torsoCrossingPairs_terminals_subset (G : SimpleGraph V)
   · exact (mem_separationBoundaryFinset S _).mpr
       (torsoPathEndsChosen G S (L.path i.val) i.property).last.property
 
-/-- Far-side rooted linkedness joins all first-to-last adhesion pairs.-/
+/-- Far-side rooted linkedness joins all first-to-last adhesion pairs.
+@isnad1 id=ex.1h6v.s8.03346067fa2f from=translated src=- shape=3894bf30 vocab=32711e35
+-/
 theorem exists_torso_crossing_linkage (G : SimpleGraph V)
     (S : VertexSeparation G)
     {ι : Type*} [Fintype ι]
@@ -129,6 +139,9 @@ noncomputable def torsoNoHitPath (G : SimpleGraph V)
     (G.induce S.left).Path s t :=
   Classical.choose (torso_path_transfer_of_no_boundary G S p hno)
 
+/--
+@isnad1 id=eq.1h6v.s6.4e4a6dd3d0d4 from=translated src=- shape=0108c07b vocab=5bca0aa6
+-/
 theorem torsoNoHitPath_support (G : SimpleGraph V)
     (S : VertexSeparation G) {s t : S.left}
     (p : (torsoGraph G S).Path s t)
@@ -137,7 +150,9 @@ theorem torsoNoHitPath_support (G : SimpleGraph V)
   Classical.choose_spec (torso_path_transfer_of_no_boundary G S p hno)
 
 /-- A far-side linkage path can meet the near side only at its own selected
-adhesion endpoints; both lie on its original torso path.-/
+adhesion endpoints; both lie on its original torso path.
+@isnad1 id=ex.3h9v.s9.9343fba8939b from=translated src=- shape=f9acd73d vocab=b621f4b8
+-/
 theorem crossing_path_near_overlap
     (G : SimpleGraph V) (S : VertexSeparation G)
     {ι : Type*} {P : IndexedPairs ι S.left}

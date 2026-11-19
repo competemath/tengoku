@@ -19,7 +19,9 @@ namespace HadwigerLean.Bootstrap
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- Summing the covering constraints of an optimal fractional coloring gives
-the first two inequalities in the paper's equation (5).-/
+the first two inequalities in the paper's equation (5).
+@isnad1 id=le.0h2v.s5.f13853d5d636 from=translated src=- shape=363741c8 vocab=c6fd913b
+-/
 theorem card_le_independence_mul_fractional (G : SimpleGraph V) :
     (Fintype.card V : ℝ) ≤
       (HadwigerLean.independenceNumber G : ℝ) *
@@ -51,7 +53,9 @@ theorem card_le_independence_mul_fractional (G : SimpleGraph V) :
     _ = (HadwigerLean.independenceNumber G : ℝ) *
           HadwigerLean.fractionalChromaticNumber G := by rw [hopt]
 
-/-- Equation (5) after applying the checked Reed--Seymour theorem.-/
+/-- Equation (5) after applying the checked Reed--Seymour theorem.
+@isnad1 id=le.0h2v.s5.f1c8510771ed from=translated src=- shape=92b2682d vocab=fa8defd9
+-/
 theorem card_le_twice_independence_mul_cliqueMinorNumber (G : SimpleGraph V) :
     (Fintype.card V : ℝ) ≤
       2 * (HadwigerLean.independenceNumber G : ℝ) *
@@ -70,7 +74,9 @@ theorem card_le_twice_independence_mul_cliqueMinorNumber (G : SimpleGraph V) :
           (HadwigerLean.cliqueMinorNumber G : ℝ) := by ring
 
 /-- The numerical contradiction in paper Lemma 14: an excluded K_u minor
-and a quadratic independence bound force order strictly below 2uk².-/
+and a quadratic independence bound force order strictly below 2uk².
+@isnad1 id=lt.3h4v.s6.8b82f39481b3 from=translated src=- shape=1ee8acab vocab=9f176cfe
+-/
 theorem card_lt_two_u_k_sq (G : SimpleGraph V) (u k : ℕ)
     (hk : 0 < k) (hminor : ¬ HadwigerLean.HasCliqueMinor G u)
     (hind : HadwigerLean.independenceNumber G ≤ k ^ 2) :

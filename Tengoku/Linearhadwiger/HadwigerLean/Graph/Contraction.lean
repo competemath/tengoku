@@ -26,6 +26,9 @@ def edgeContractionBlock : EdgeContractionVertex a b → Set V
   | none => {a, b}
   | some x => {x.1}
 
+/--
+@isnad1 id=connecte.1h5v.s5.4543f2adcdbe from=translated src=- shape=b9291174 vocab=58f53e36
+-/
 theorem edgeContractionBlock_connected (hab : G.Adj a b)
     (i : EdgeContractionVertex a b) :
     (G.induce (edgeContractionBlock (a := a) (b := b) i)).Connected := by
@@ -35,6 +38,9 @@ theorem edgeContractionBlock_connected (hab : G.Adj a b)
   | some x =>
       simp [edgeContractionBlock]
 
+/--
+@isnad1 id=pairwise.0h3v.s6.521758cd71b6 from=translated src=- shape=b2e824b4 vocab=db64b9b6
+-/
 theorem edgeContractionBlock_disjoint :
     Pairwise fun i j : EdgeContractionVertex a b =>
       Disjoint (edgeContractionBlock (a := a) (b := b) i)
@@ -69,6 +75,9 @@ theorem edgeContractionBlock_disjoint :
           apply hij
           exact congrArg some (Subtype.ext (hz.symm.trans hz'))
 
+/--
+@isnad1 id=ex.0h4v.s4.11e367de9ce1 from=translated src=- shape=b9064662 vocab=8b0702f1
+-/
 theorem edgeContractionBlock_cover (x : V) :
     ∃ i : EdgeContractionVertex a b,
       x ∈ edgeContractionBlock (a := a) (b := b) i := by
@@ -89,10 +98,15 @@ def edgeContractionPartition (hab : G.Adj a b) : ConnectedPartition G (EdgeContr
 def edgeContraction (hab : G.Adj a b) : SimpleGraph (EdgeContractionVertex a b) :=
   (edgeContractionPartition G hab).touchingQuotient
 
+/--
+@isnad1 id=isminor.1h4v.s4.5a51f9dcf1b8 from=translated src=- shape=166f6b6d vocab=aba1ad3b
+-/
 theorem edgeContraction_isMinor (hab : G.Adj a b) : IsMinor (edgeContraction G hab) G :=
   (edgeContractionPartition G hab).isMinor
 
-/-- A model in an edge contraction lifts to the original graph.-/
+/-- A model in an edge contraction lifts to the original graph.
+@isnad1 id=hascliqu.2h5v.s5.c822eeb012d9 from=translated src=- shape=7f0d97c7 vocab=ba7e0796
+-/
 theorem hasCliqueMinor_of_edgeContraction {n : ℕ}
     (h : HasCliqueMinor (edgeContraction G hab) n) : HasCliqueMinor G n :=
   hasCliqueMinor_of_minor (edgeContraction_isMinor G hab) h

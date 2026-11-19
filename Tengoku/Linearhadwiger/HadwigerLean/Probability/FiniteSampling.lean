@@ -21,7 +21,9 @@ namespace HadwigerLean.FiniteSampling
 variable {ι : Type*} [DecidableEq ι]
 
 /-- Some member of a nonempty finite family is at least its average. The
-division-free form is useful when the family cardinality is symbolic.-/
+division-free form is useful when the family cardinality is symbolic.
+@isnad1 id=ex.1h3v.s5.e8e94d6eb418 from=translated src=- shape=25c4f7f8 vocab=a259f3f9
+-/
 theorem exists_sum_le_card_mul (s : Finset ι) (hs : s.Nonempty) (f : ι → ℝ) :
     ∃ i ∈ s, (∑ j ∈ s, f j) ≤ (s.card : ℝ) * f i := by
   have hsum :
@@ -31,7 +33,9 @@ theorem exists_sum_le_card_mul (s : Finset ι) (hs : s.Nonempty) (f : ι → ℝ
     exact le_rfl
   exact Finset.exists_le_of_sum_le hs hsum
 
-/-- Some member of a nonempty finite family is at most its average.-/
+/-- Some member of a nonempty finite family is at most its average.
+@isnad1 id=ex.1h3v.s5.ea4d01cba281 from=translated src=- shape=ed0d0ef2 vocab=a259f3f9
+-/
 theorem exists_card_mul_le_sum (s : Finset ι) (hs : s.Nonempty) (f : ι → ℝ) :
     ∃ i ∈ s, (s.card : ℝ) * f i ≤ ∑ j ∈ s, f j := by
   have hsum :
@@ -46,7 +50,9 @@ namespace HadwigerLean.FiniteSampling
 
 variable {ι : Type*} [DecidableEq ι]
 
-/-- The exact number of m-sets containing two prescribed distinct members.-/
+/-- The exact number of m-sets containing two prescribed distinct members.
+@isnad1 id=eq.4h5v.s7.7ae283aa6142 from=translated src=- shape=c415c861 vocab=da86969c
+-/
 theorem card_fixed_pair_subsets (u : Finset ι) {a b : ι}
     (ha : a ∈ u) (hb : b ∈ u) (hab : a ≠ b)
     (m : ℕ) (hm : 2 ≤ m) :
@@ -69,7 +75,9 @@ namespace HadwigerLean.FiniteSampling
 variable {ι : Type*} [DecidableEq ι]
 
 /-- Double counting: each two-element member belongs to the same number
-of fixed-size subsets of the ambient set.-/
+of fixed-size subsets of the ambient set.
+@isnad1 id=eq.2h4v.s7.8cd8a11ba504 from=translated src=- shape=a2e4f111 vocab=4b031a7b
+-/
 theorem sum_card_contained_pairs (u : Finset ι)
     (pairs : Finset (Finset ι)) (m : ℕ)
     (hpair : ∀ e ∈ pairs, e ⊆ u ∧ e.card = 2)
@@ -101,7 +109,9 @@ namespace HadwigerLean.FiniteSampling
 variable {ι : Type*} [DecidableEq ι]
 
 /-- A finite sample retains at least the average number of two-element
-objects. This is the counting core of Appendix F's sampling inequality.-/
+objects. This is the counting core of Appendix F's sampling inequality.
+@isnad1 id=ex.3h4v.s7.5b84ad6fc102 from=translated src=- shape=8da71d2d vocab=7bfb7e05
+-/
 theorem exists_fixed_size_sample (u : Finset ι)
     (pairs : Finset (Finset ι)) (m : ℕ)
     (hpair : ∀ e ∈ pairs, e ⊆ u ∧ e.card = 2)
@@ -131,7 +141,9 @@ namespace HadwigerLean.FiniteSampling
 
 /-- The two-point inclusion probability in a uniform fixed-size sample is
 at least p squared whenever its falling factorial has the corresponding
-lower bound.-/
+lower bound.
+@isnad1 id=le.3h3v.s7.ddb1642aa635 from=translated src=- shape=0f270769 vocab=8b064fd1
+-/
 theorem choose_ratio_bound (n m : ℕ) (hn : 2 ≤ n) (hm : 2 ≤ m)
     (p : ℝ)
     (hfall : p ^ 2 * (n : ℝ) * ((n : ℝ) - 1) ≤
@@ -162,7 +174,9 @@ namespace HadwigerLean.FiniteSampling
 variable {ι : Type*} [DecidableEq ι]
 
 /-- A fixed-size sample retaining a p-squared fraction of every family of
-two-element subsets, under the explicit numerical conditions on its size.-/
+two-element subsets, under the explicit numerical conditions on its size.
+@isnad1 id=ex.6h5v.s8.ed6c350f985e from=translated src=- shape=a42bda69 vocab=ce7509db
+-/
 theorem exists_sample_of_falling_bound (u : Finset ι)
     (pairs : Finset (Finset ι)) (m : ℕ) (p : ℝ)
     (hpair : ∀ e ∈ pairs, e ⊆ u ∧ e.card = 2)
@@ -189,7 +203,9 @@ theorem exists_sample_of_falling_bound (u : Finset ι)
 end HadwigerLean.FiniteSampling
 namespace HadwigerLean.FiniteSampling
 
-/-- Numerical choice of sample size from Appendix F.-/
+/-- Numerical choice of sample size from Appendix F.
+@isnad1 id=other.3h2v.s7.ef8b428d03ba from=translated src=- shape=c4c2216a vocab=1aef149b
+-/
 theorem sample_size_bounds (n : ℕ) (hn : 2 ≤ n)
     (p : ℝ) (hp : 0 < p) (hp1 : p ≤ 1) :
     let m := min n (Nat.ceil (p * (n : ℝ)) + 1)
@@ -264,7 +280,9 @@ namespace HadwigerLean.FiniteSampling
 variable {ι : Type*} [DecidableEq ι]
 
 /-- Uniform finite sampling: some vertex sample of size at most p n + 2
-retains at least a p-squared fraction of a family of two-element sets.-/
+retains at least a p-squared fraction of a family of two-element sets.
+@isnad1 id=ex.4h4v.s7.1b3acb21d933 from=translated src=- shape=43c85718 vocab=77dc1b58
+-/
 theorem exists_sample (u : Finset ι)
     (pairs : Finset (Finset ι))
     (hpair : ∀ e ∈ pairs, e ⊆ u ∧ e.card = 2)
@@ -289,7 +307,9 @@ namespace HadwigerLean.FiniteSampling
 variable {ι β : Type*} [DecidableEq ι] [DecidableEq β]
 
 /-- Double counting fixed-size samples for indexed two-element objects.
-Different objects may have the same endpoint set.-/
+Different objects may have the same endpoint set.
+@isnad1 id=eq.2h6v.s7.5b8800910145 from=translated src=- shape=f4872f81 vocab=4b031a7b
+-/
 theorem sum_card_contained_objects (u : Finset ι)
     (objects : Finset β) (ends : β → Finset ι) (m : ℕ)
     (hends : ∀ e ∈ objects, ends e ⊆ u ∧ (ends e).card = 2)
@@ -321,7 +341,9 @@ theorem sum_card_contained_objects (u : Finset ι)
     _ = objects.card * Nat.choose (u.card - 2) (m - 2) := by simp
 
 /-- Uniform sampling for indexed two-element objects, without requiring
-distinct objects to have distinct endpoint sets.-/
+distinct objects to have distinct endpoint sets.
+@isnad1 id=ex.4h6v.s7.7dd3b8f53ac6 from=translated src=- shape=1af4112f vocab=77dc1b58
+-/
 theorem exists_sample_objects (u : Finset ι)
     (objects : Finset β) (ends : β → Finset ι)
     (hends : ∀ e ∈ objects, ends e ⊆ u ∧ (ends e).card = 2)
@@ -373,7 +395,9 @@ namespace HadwigerLean.FiniteSampling
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- Counting the edges whose two endpoints lie in a vertex sample agrees
-with the edge count of its induced graph.-/
+with the edge count of its induced graph.
+@isnad1 id=eq.0h3v.s6.c6e9cbf14cba from=translated src=- shape=f53a05a5 vocab=f7dabf7e
+-/
 theorem sampled_edges_eq_induced_count (G : SimpleGraph V)
     [DecidableRel G.Adj] (s : Finset V) :
     ((G.edgeFinset.filter fun e => e.toFinset ⊆ s).card) =
@@ -401,7 +425,9 @@ theorem sampled_edges_eq_induced_count (G : SimpleGraph V)
   simp only [SimpleGraph.edgeFinset_card, ← Nat.card_eq_fintype_card] at hcard
   simpa only [edgeCount] using hcard.symm
 
-/-- Graph form of the finite sampling estimate (F.4).-/
+/-- Graph form of the finite sampling estimate (F.4).
+@isnad1 id=ex.3h3v.s7.b1ead9d9561a from=translated src=- shape=4cbf94ba vocab=e46b3b23
+-/
 theorem exists_induced_sample (G : SimpleGraph V)
     (hn : 2 ≤ Fintype.card V) (p : ℝ) (hp : 0 < p) (hp1 : p ≤ 1) :
     ∃ s : Finset V,

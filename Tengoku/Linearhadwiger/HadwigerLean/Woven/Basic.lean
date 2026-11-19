@@ -46,13 +46,17 @@ namespace Woven
 
 variable {V : Type v} {G : SimpleGraph V} {a b c : ℕ}
 
-/-- The pair budget may be decreased.-/
+/-- The pair budget may be decreased.
+@isnad1 id=woven.2h5v.s4.d6ded2dbd5d6 from=translated src=- shape=30fd0143 vocab=8c198a6a
+-/
 theorem of_le (h : Woven G a b) (hcb : c ≤ b) : Woven G a c := by
   intro root hroot j hj P hP
   exact h root hroot j (hj.trans hcb) P hP
 
 /-- Wovenness supplies a rooted clique minor for every injective root map.
-The empty terminal family is essential here: no padding is needed.-/
+The empty terminal family is essential here: no padding is needed.
+@isnad1 id=hasroote.2h5v.s4.de435066d9ea from=translated src=- shape=0b59dfb7 vocab=bb817f00
+-/
 theorem rooted_minor (h : Woven G a b) (root : Fin a → V)
     (hroot : Function.Injective root) : HasRootedCliqueMinor G root := by
   let P : IndexedPairs (Fin 0) V :=
@@ -63,7 +67,9 @@ theorem rooted_minor (h : Woven G a b) (root : Fin a → V)
   obtain ⟨S⟩ := h root hroot 0 (Nat.zero_le b) P hP
   exact ⟨S.model⟩
 
-/-- Forgetting roots gives an ordinary clique minor.-/
+/-- Forgetting roots gives an ordinary clique minor.
+@isnad1 id=hascliqu.2h5v.s4.2dce3fa3da8d from=translated src=- shape=8cf75d41 vocab=b90495e5
+-/
 theorem clique_minor (h : Woven G a b)
     (root : Fin a → V) (hroot : Function.Injective root) :
     HasCliqueMinor G a :=
@@ -84,6 +90,9 @@ def mono (L : IndexedLinkage G P) (h : G ≤ H) : IndexedLinkage H P where
     simpa only [pathVertexSet, SimpleGraph.Walk.support_mapLe_eq_support] using
       L.disjoint hij
 
+/--
+@isnad1 id=eq.1h6v.s5.13464e82f433 from=translated src=- shape=0e3b354d vocab=de475e7d
+-/
 @[simp] theorem vertices_mono (L : IndexedLinkage G P) (h : G ≤ H) :
     (L.mono h).vertices = L.vertices := by
   apply Set.iUnion_congr
@@ -115,7 +124,9 @@ namespace Woven
 
 variable {V : Type v} {G H : SimpleGraph V} {a b : ℕ}
 
-/-- Wovenness is monotone when host edges are added.-/
+/-- Wovenness is monotone when host edges are added.
+@isnad1 id=woven.2h5v.s4.c3f57734af4e from=translated src=- shape=2999aee5 vocab=8c198a6a
+-/
 theorem mono_graph (hG : Woven G a b) (hGH : G ≤ H) : Woven H a b := by
   intro root hroot j hj P hP
   obtain ⟨S⟩ := hG root hroot j hj P hP
@@ -131,7 +142,9 @@ namespace Woven
 
 variable {V : Type*} {G : SimpleGraph V} {a : ℕ}
 
-/-- The rooted-clique-minor property is precisely the zero-pair woven base.-/
+/-- The rooted-clique-minor property is precisely the zero-pair woven base.
+@isnad1 id=woven.1h3v.s5.77a35a5c305a from=translated src=- shape=825e4bc0 vocab=bb817f00
+-/
 theorem of_rooted_minor_zero
     (h : ∀ (root : Fin a → V), Function.Injective root →
       HasRootedCliqueMinor G root) : Woven G a 0 := by
@@ -176,7 +189,9 @@ private theorem completePath_vertices (s t : V) :
 
 /-- Every complete graph is woven for any numbers of roots and disjoint
 terminal pairs. This also checks the singleton-pair and root-terminal cases
-of the definition.-/
+of the definition.
+@isnad1 id=woven.0h3v.s3.b9217e20a091 from=translated src=- shape=849ef8a3 vocab=61dc624e
+-/
 theorem completeGraph (a b : ℕ) :
     Woven (SimpleGraph.completeGraph V) a b := by
   intro root hroot j _ P hP
@@ -224,21 +239,30 @@ namespace WovenSolution
 variable {V : Type*} {G : SimpleGraph V} {a j : ℕ}
   {root : Fin a → V} {P : IndexedPairs (Fin j) V}
 
-/-- Every prescribed root belongs to the model's vertex set.-/
+/-- Every prescribed root belongs to the model's vertex set.
+@isnad1 id=mem.0h8v.s6.e1e035b1acbb from=translated src=- shape=c46d0cd5 vocab=fb993fc9
+-/
 theorem root_mem_model (S : WovenSolution G root P) (i : Fin a) :
     root i ∈ S.model.toMinorModel.vertices :=
   Set.mem_iUnion.mpr ⟨i, S.model.root_mem i⟩
 
-/-- Every prescribed terminal belongs to the linkage's vertex set.-/
+/-- Every prescribed terminal belongs to the linkage's vertex set.
+@isnad1 id=mem.0h8v.s5.ae92b3f5efbb from=translated src=- shape=c5a296e2 vocab=0ed6fa4d
+-/
 theorem start_mem_linkage (S : WovenSolution G root P) (i : Fin j) :
     P.start i ∈ S.linkage.vertices :=
   S.linkage.start_mem_vertices i
 
+/--
+@isnad1 id=mem.0h8v.s5.c2fe0c6ca443 from=translated src=- shape=c5a296e2 vocab=b8c201b0
+-/
 theorem finish_mem_linkage (S : WovenSolution G root P) (i : Fin j) :
     P.finish i ∈ S.linkage.vertices :=
   S.linkage.finish_mem_vertices i
 
-/-- All overlap is explained by a prescribed root that is also a terminal.-/
+/-- All overlap is explained by a prescribed root that is also a terminal.
+@isnad1 id=iff.0h8v.s6.4b1ec666692d from=translated src=- shape=b5934549 vocab=a452a939
+-/
 theorem overlap_iff (S : WovenSolution G root P) (x : V) :
     x ∈ S.model.toMinorModel.vertices ∧ x ∈ S.linkage.vertices ↔
       x ∈ Set.range root ∧ x ∈ P.allTerminals := by

@@ -16,7 +16,9 @@ namespace Linkedness
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- A connected set in a touching quotient lifts to a connected union of
-its partition blocks.-/
+its partition blocks.
+@isnad1 id=connecte.1h5v.s5.c87b0e75d806 from=translated src=- shape=29f7dd04 vocab=05fcc071
+-/
 theorem connected_partition_preimage {I : Type*} {G : SimpleGraph V}
     (P : ConnectedPartition G I) (C : Set I)
     (hC : (P.touchingQuotient.induce C).Connected) :
@@ -47,7 +49,9 @@ theorem connected_partition_preimage {I : Type*} {G : SimpleGraph V}
   exact h
 
 /-- Lift a path between specified original endpoints through a connected
-quotient set, keeping every lifted vertex over that set.-/
+quotient set, keeping every lifted vertex over that set.
+@isnad1 id=ex.3h7v.s6.ec8df86c486f from=translated src=- shape=e903cb52 vocab=01724f54
+-/
 theorem exists_path_in_partition_preimage
     {I : Type*} {G : SimpleGraph V}
     (P : ConnectedPartition G I) (C : Set I)
@@ -74,7 +78,9 @@ theorem exists_path_in_partition_preimage
 
 /-- Rooted linkedness lifts through contraction of an edge whose second
 endpoint is not a prescribed root. Quotient paths are lifted inside the
-preimages of their support sets.-/
+preimages of their support sets.
+@isnad1 id=rootedli.3h5v.s7.18757920d542 from=translated src=- shape=df432c84 vocab=3d013409
+-/
 theorem rootedLinked_of_edgeContraction
     {G : SimpleGraph V} {a b : V} (hab : G.Adj a b)
     (X : Finset V) (hb : b ∉ X)
@@ -154,7 +160,9 @@ theorem rootedLinked_of_edgeContraction
   obtain ⟨y, hy, hfy⟩ := hterm_lift i hqterm
   have hxy : x = y := hfinj hxX (hterm i hy) hfy.symm
   exact hxy ▸ hy
-/-- Lift a connected quotient set into any larger induced shore.-/
+/-- Lift a connected quotient set into any larger induced shore.
+@isnad1 id=ex.4h8v.s8.bae6df91bc95 from=translated src=- shape=c250a016 vocab=ea2c929b
+-/
 theorem exists_path_in_partition_preimage_induce
     {I : Type*} {G : SimpleGraph V}
     (P : ConnectedPartition G I) (U C : Set I) (hCU : C ⊆ U)
@@ -194,7 +202,9 @@ theorem exists_path_in_partition_preimage_induce
     exact hp hxold
   exact ⟨q, hqs⟩
 
-/-- Rooted linkedness inside a quotient shore lifts into its full preimage.-/
+/-- Rooted linkedness inside a quotient shore lifts into its full preimage.
+@isnad1 id=rootedli.3h7v.s8.21e279b39afd from=translated src=- shape=256882ad vocab=50415ee7
+-/
 theorem rootedLinked_of_partition_induce
     {I : Type*} {G : SimpleGraph V}
     (C : ConnectedPartition G I) (U : Set I)
@@ -314,7 +324,9 @@ theorem rootedLinked_of_partition_induce
   have hxy : x = y := hinj hxX (hterm i hy) hfy.symm
   exact hxy ▸ hy
 
-/-- A linked quotient shore whose contracted vertex is strict-far lifts to a linked original shore.-/
+/-- A linked quotient shore whose contracted vertex is strict-far lifts to a linked original shore.
+@isnad1 id=other.3h5v.s7.dcbfc7b71d01 from=translated src=- shape=d35b249c vocab=e58e72a0
+-/
 theorem rootedLinked_contraction_strictFar_induce
     {G : SimpleGraph V} {a b : V} (hab : G.Adj a b)
     (S : VertexSeparation (edgeContraction G hab))
@@ -351,7 +363,9 @@ theorem rootedLinked_contraction_strictFar_induce
     (separationBoundaryFinset T) (separationBoundaryFinset S)
     hinj hroots hlinked
 
-/-- A dense contraction shore with the contracted vertex in its separator expands to a massed original shore.-/
+/-- A dense contraction shore with the contracted vertex in its separator expands to a massed original shore.
+@isnad1 id=other.6h7v.s8.401ec47d9a76 from=translated src=- shape=204e4ed8 vocab=90a746f7
+-/
 theorem massed_contraction_separator_shore
     {G : SimpleGraph V} [DecidableRel G.Adj]
     {a b : V} (hab : G.Adj a b)
@@ -405,7 +419,9 @@ theorem massed_contraction_separator_shore
   exact massed_induced_far_shore_of_adhesion_le G (X : Set V) α
     hm T hrootT hle hdenseT
 
-/-- A sub-root-order quotient separator leaves an original root outside its pulled-back right side.-/
+/-- A sub-root-order quotient separator leaves an original root outside its pulled-back right side.
+@isnad1 id=lt.3h6v.s7.87d58abd1f80 from=translated src=- shape=3d5a265a vocab=b4d36110
+-/
 theorem contraction_pullback_right_card_lt_of_root_sep
     {G : SimpleGraph V} {a b : V} (hab : G.Adj a b)
     (X : Finset V)
@@ -442,7 +458,9 @@ theorem contraction_pullback_right_card_lt_of_root_sep
   change T.right.ncard < Fintype.card V
   simpa only [Set.ncard_univ, Nat.card_eq_fintype_card] using hc
 
-/-- A dense violating contraction shore with contracted vertex on its boundary is forbidden by minimality and absence of rigid shores.-/
+/-- A dense violating contraction shore with contracted vertex on its boundary is forbidden by minimality and absence of rigid shores.
+@isnad1 id=false.8h7v.s8.b572a1b7ea81 from=translated src=- shape=ea63c344 vocab=c561067a
+-/
 theorem no_violating_contraction_separator
     {G : SimpleGraph V} [DecidableRel G.Adj]
     {a b : V} (hab : G.Adj a b)

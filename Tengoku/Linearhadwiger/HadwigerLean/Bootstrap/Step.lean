@@ -15,7 +15,9 @@ open HadwigerLean.Deduction
 
 universe u
 
-/-- Every integer outer scale is at most its initial scale.-/
+/-- Every integer outer scale is at most its initial scale.
+@isnad1 id=le.1h2v.s3.f1533c6d28ae from=translated src=- shape=22bddd8e vocab=f843fccc
+-/
 theorem outerScale_le {T a : ℕ} (h : IsOuterScale T a) : a ≤ T := by
   obtain ⟨i, hi⟩ := h
   have hpow : 2 ^ i ≤ 3 ^ i := Nat.pow_le_pow_left (by omega) i
@@ -29,7 +31,9 @@ theorem outerScale_le {T a : ℕ} (h : IsOuterScale T a) : a ≤ T := by
   omega
 
 /-- One exponent-bootstrap step, conditional on the path-localization lemma.
-The only external mathematical input is the explicit Corollary 24 hypothesis.-/
+The only external mathematical input is the explicit Corollary 24 hypothesis.
+@isnad1 id=locallin.4h1v.s6.7a4f4721d892 from=translated src=- shape=707f4bcd vocab=c5b4b909
+-/
 theorem local_linear_bound_step_of_path
     (h24 : Corollary24Statement.{u})
     (hpath : ∀ (W : Type u) [Fintype W] [DecidableEq W]

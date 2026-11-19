@@ -9,7 +9,9 @@ import Tengoku.Linearhadwiger.HadwigerLean.Graph.Linkedness.Massed
 namespace HadwigerLean
 namespace Linkedness
 
-/-- A linkage avoiding a larger root set also avoids any smaller one.-/
+/-- A linkage avoiding a larger root set also avoids any smaller one.
+@isnad1 id=rootedli.2h4v.s5.cba144bfc85a from=translated src=- shape=71587487 vocab=2e6de8c5
+-/
 theorem RootedLinked.of_subset
     {V : Type*} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} {X Y : Finset V}

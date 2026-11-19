@@ -13,7 +13,9 @@ namespace HadwigerLean
 variable {V : Type*} [Fintype V]
 
 /-- The standard degree-elimination coloring argument, phrased for every
-nonempty induced vertex set.-/
+nonempty induced vertex set.
+@isnad1 id=colorabl.1h3v.s8.19f2ee368da7 from=translated src=- shape=8bf6bb8c vocab=9e8a3ac2
+-/
 theorem colorable_of_induced_low_degree
     (G : SimpleGraph V) [DecidableRel G.Adj] (d : ℕ)
     (helim : ∀ s : Finset V, s.Nonempty →
@@ -107,7 +109,9 @@ theorem colorable_of_induced_low_degree
   intro v w hvw
   exact C.valid hvw
 
-/-- A strict edge-per-vertex bound yields a vertex below twice that bound.-/
+/-- A strict edge-per-vertex bound yields a vertex below twice that bound.
+@isnad1 id=ex.2h3v.s6.1a2e15ced66b from=translated src=- shape=f7b549d1 vocab=0db30c35
+-/
 theorem exists_degree_lt_twice_of_edgeCount_lt
     (G : SimpleGraph V) [DecidableRel G.Adj] (c : ℝ)
     (hcard : 0 < Fintype.card V)

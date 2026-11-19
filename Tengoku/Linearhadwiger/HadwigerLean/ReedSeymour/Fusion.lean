@@ -120,7 +120,9 @@ def fusionPartition (hi : i₁ ≠ i₀)
 variable {i₁ : I} (hi : i₁ ≠ i₀)
   (hconn : (G.induce (P.block i₁ ∪ S.U)).Connected)
 
-/-- Absorption does not alter edges between untouched blocks.-/
+/-- Absorption does not alter edges between untouched blocks.
+@isnad1 id=iff.2h10v.s7.ca190942a7d2 from=translated src=- shape=9f694f06 vocab=55112ebc
+-/
 theorem fusion_adj_old_old
     (a b : {i : I // i ≠ i₀ ∧ i ≠ i₁}) :
     (S.fusionPartition i₁ hi hconn).touchingQuotient.Adj (.inl a) (.inl b) ↔
@@ -134,7 +136,9 @@ theorem fusion_adj_old_old
   · rintro ⟨hne, htouch⟩
     exact ⟨fun hab => hne (congrArg Subtype.val (Sum.inl.inj hab)), htouch⟩
 
-/-- Every external neighbor of a remainder was an old central neighbor.-/
+/-- Every external neighbor of a remainder was an old central neighbor.
+@isnad1 id=adj.3h10v.s7.9752808a28d0 from=translated src=- shape=bd9b695b vocab=95a9dce1
+-/
 theorem fusion_old_neighbor_of_remainder
     (j : J) (a : {i : I // i ≠ i₀ ∧ i ≠ i₁})
     (h : (S.fusionPartition i₁ hi hconn).touchingQuotient.Adj
@@ -146,7 +150,9 @@ theorem fusion_old_neighbor_of_remainder
     ⟨a.2.1.symm, x, S.remainder_subset j hx, y, hy, hxy⟩
 
 /-- Every external neighbor of the absorbed block was already a neighbor of
-the absorbing old block, by simpliciality of the central old block.-/
+the absorbing old block, by simpliciality of the central old block.
+@isnad1 id=adj.5h9v.s7.d6ec1ea45f67 from=translated src=- shape=a6783884 vocab=8ed21f5b
+-/
 theorem fusion_old_neighbor_of_absorbed [Fintype I]
     (hcentral : IsSimplicialOn P.touchingQuotient Finset.univ i₀)
     (h₁ : P.touchingQuotient.Adj i₀ i₁)
@@ -164,7 +170,9 @@ theorem fusion_old_neighbor_of_absorbed [Fintype I]
         ⟨a.2.1.symm, x, S.U_subset hx, y, hy, hxy⟩
     exact hcentral (Finset.mem_univ _) (Finset.mem_univ _) h₁ h₀a a.2.2.symm
 
-/-- Every old edge from the absorbing block to an untouched block persists.-/
+/-- Every old edge from the absorbing block to an untouched block persists.
+@isnad1 id=adj.3h9v.s7.5aab6215fe97 from=translated src=- shape=5a93b5d8 vocab=1236ee9c
+-/
 theorem fusion_absorbed_adj_of_old
     (a : {i : I // i ≠ i₀ ∧ i ≠ i₁})
     (h : P.touchingQuotient.Adj i₁ a.1) :
@@ -177,7 +185,9 @@ theorem fusion_absorbed_adj_of_old
   exact ((S.fusionPartition i₁ hi hconn).touchingQuotient_adj_iff _ _).mpr
     ⟨hne, x, Or.inl hx, y, hy, hxy⟩
 
-/-- Distinct remainder components have no quotient edge.-/
+/-- Distinct remainder components have no quotient edge.
+@isnad1 id=not.3h10v.s7.5324c996f006 from=translated src=- shape=e46364a1 vocab=e4c55f1c
+-/
 theorem fusion_not_adj_remainders
     (hno : ∀ j k, j ≠ k →
       ¬ ∃ x ∈ S.remainder j, ∃ y ∈ S.remainder k, G.Adj x y)
@@ -192,7 +202,9 @@ theorem fusion_not_adj_remainders
       (((S.fusionPartition i₁ hi hconn).touchingQuotient_adj_iff _ _).mp h).2
 
 /-- Each remainder is simplicial in the fused quotient. Its old-block
-neighbors all neighbor the old central block, hence form a clique.-/
+neighbors all neighbor the old central block, hence form a clique.
+@isnad1 id=issimpli.5h9v.s7.c853d6753bda from=translated src=- shape=cae7b528 vocab=6007a547
+-/
 theorem fusion_remainder_simplicial [Fintype I]
     [Fintype (FusionIndex I J i₀ i₁)]
     (hcentral : IsSimplicialOn P.touchingQuotient Finset.univ i₀)
@@ -242,7 +254,9 @@ theorem fusion_remainder_simplicial [Fintype I]
           exact False.elim (S.fusion_not_adj_remainders hi hconn hno j k hja)
 
 /-- Replacing an egg block by its absorption of a nonempty part of a non-egg
-central block strictly increases egg support.-/
+central block strictly increases egg support.
+@isnad1 id=lt.4h9v.s7.c00e9cd4ea10 from=translated src=- shape=12a1d6b7 vocab=55a33d26
+-/
 theorem fusion_eggSupport_ssubset [Fintype V] [Fintype I] [DecidableEq I]
     [Fintype (FusionIndex I J i₀ i₁)]
     [DecidableEq (FusionIndex I J i₀ i₁)]
@@ -367,7 +381,9 @@ noncomputable def fusionCoreIso [Fintype I]
 
 /-- The first Reed--Seymour quotient update preserves simplicial
 elimination: eliminate all remainder vertices, then use the old quotient
-with its simplicial central vertex removed.-/
+with its simplicial central vertex removed.
+@isnad1 id=hassimpl.6h8v.s7.14be61dde46e from=translated src=- shape=6b463ff6 vocab=0ceaea89
+-/
 theorem fusion_hasSimplicialElimination [Fintype I] [Fintype J]
     [Fintype (FusionIndex I J i₀ i₁)]
     (hPEO : HasSimplicialElimination P.touchingQuotient)
@@ -419,7 +435,9 @@ theorem fusion_hasSimplicialElimination [Fintype I] [Fintype J]
 
 /-- The odd-path absorption update preserves the partial egg-decomposition
 invariant. The absorbed block is an egg; each new remainder is simplicial and
-has only egg neighbors.-/
+has only egg neighbors.
+@isnad1 id=ispartia.7h9v.s7.dd4639362122 from=translated src=- shape=08ba3928 vocab=1bb159f1
+-/
 theorem fusion_isPartialEggDecomposition [Fintype V] [Fintype I]
     [DecidableEq I] [Fintype J] [Fintype (FusionIndex I J i₀ i₁)]
     [DecidableEq (FusionIndex I J i₀ i₁)]
@@ -537,7 +555,9 @@ theorem fusion_isPartialEggDecomposition [Fintype V] [Fintype I]
               | some j => exact False.elim (hnoRemainder j hb)
 
 /-- The concrete first update: absorb a connected central set into an old
-neighboring egg and use the components of its complement as remainder blocks.-/
+neighboring egg and use the components of its complement as remainder blocks.
+@isnad1 id=and.7h8v.s8.f992467224ea from=translated src=- shape=fcdb7f46 vocab=4d7b949b
+-/
 theorem ofComponents_fusion_partial_and_support [Fintype V] [Fintype I]
     [DecidableEq I] (P : ConnectedPartition G I) (i₀ i₁ : I) (w : V → ℝ)
     (U : Set V)
@@ -567,7 +587,9 @@ theorem ofComponents_fusion_partial_and_support [Fintype V] [Fintype I]
 
 /-- Applying yolk absorption to a bipartite central connector yields one of
 the two fused partial decompositions with strictly larger egg support. The
-path argument supplies the stable classes and no-cross-edge hypotheses.-/
+path argument supplies the stable classes and no-cross-edge hypotheses.
+@isnad1 id=or.17h14v.s9.81116d62ad82 from=translated src=- shape=4870d71e vocab=f866dd33
+-/
 theorem bipartite_connector_fusion_improves [Fintype V] [Fintype I]
     [DecidableEq I] [Fintype J]
     [Fintype (FusionIndex I J i₀ i₁)]
@@ -616,11 +638,17 @@ def liftInducedWalk {T : Set V} {a b : T}
     (p : (G.induce T).Walk a b) : G.Walk a.1 b.1 :=
   p.map (SimpleGraph.Embedding.induce T).toHom
 
+/--
+@isnad1 id=ispath.1h6v.s6.cbecb605fd01 from=translated src=- shape=8fcd8d17 vocab=b24cff38
+-/
 theorem liftInducedWalk_isPath {T : Set V} {a b : T}
     {p : (G.induce T).Walk a b} (hp : p.IsPath) :
     (liftInducedWalk p).IsPath := by
   exact hp.map (SimpleGraph.Embedding.induce (G := G) T).injective
 
+/--
+@isnad1 id=ischordl.1h6v.s6.778330393f37 from=translated src=- shape=8fcd8d17 vocab=c4e53c1f
+-/
 theorem liftInducedWalk_isChordless {T : Set V} {a b : T}
     {p : (G.induce T).Walk a b} (hp : p.IsChordless) :
     (liftInducedWalk p).IsChordless := by
@@ -641,7 +669,9 @@ theorem liftInducedWalk_isChordless {T : Set V} {a b : T}
   exact List.mem_map.mpr ⟨s(x', y'), hedge, rfl⟩
 
 /-- The vertices of an odd induced path split into two independent classes
-containing its respective endpoints.-/
+containing its respective endpoints.
+@isnad1 id=ex.3h5v.s7.dfdbc68e49fe from=translated src=- shape=0cfcb7bb vocab=5120d7ab
+-/
 theorem odd_chordless_path_bipartition {a b : V}
     (p : G.Walk a b) (hp : p.IsPath)
     (hchord : p.IsChordless) (hodd : Odd p.length) :
@@ -693,7 +723,9 @@ theorem odd_chordless_path_bipartition {a b : V}
 
 /-- An odd induced path between two terminal sets can be absorbed into one
 of the corresponding eggs. Its endpoint-only property prevents the added
-parity class from meeting the old yolk by an edge.-/
+parity class from meeting the old yolk by an edge.
+@isnad1 id=or.7h13v.s7.7d4411967645 from=translated src=- shape=fbe24b87 vocab=fe859ef4
+-/
 theorem odd_terminal_connector_absorbs [Fintype V]
     (P : ConnectedPartition G I) (i₀ i₁ i₂ : I)
     (w : V → ℝ) {a b : V} (p : G.Walk a b)
@@ -751,7 +783,9 @@ theorem odd_terminal_connector_absorbs [Fintype V]
     hdisj₁ hdisj₂ hconn₁ hconn₂ hcross₁ hcross₂
 
 /-- The first Reed--Seymour improvement: an odd induced terminal connector
-contradicts maximal egg support by absorption into one neighboring egg.-/
+contradicts maximal egg support by absorption into one neighboring egg.
+@isnad1 id=ex.7h11v.s7.bae39fb0216f from=translated src=- shape=8912969a vocab=6bb9ea5b
+-/
 theorem improve_of_odd_terminal_connector [Fintype V] [Fintype I]
     [DecidableEq I]
     (P : ConnectedPartition G I) (i₀ : I) (w : V → ℝ)

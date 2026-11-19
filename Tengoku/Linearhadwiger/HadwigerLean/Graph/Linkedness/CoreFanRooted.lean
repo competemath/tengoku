@@ -20,7 +20,9 @@ noncomputable def fanArrivalFinset
   classical
   exact Finset.univ.image (fun t : Fin r => ⟨P.finish t, hfinish t⟩)
 
-/-- There are at most as many arrival vertices as fan paths.-/
+/-- There are at most as many arrival vertices as fan paths.
+@isnad1 id=le.1h4v.s5.35d72cf0cc68 from=translated src=- shape=c2315153 vocab=94a8a49a
+-/
 theorem fanArrivalFinset_card_le
     {r : ℕ} (P : IndexedPairs (Fin r) V) (J : Finset V)
     (hfinish : ∀ t, P.finish t ∈ J) :
@@ -32,7 +34,9 @@ theorem fanArrivalFinset_card_le
     (f := fun t : Fin r => (⟨P.finish t, hfinish t⟩ : (J : Set V))))
 /-- Given a chosen injective assignment of the prescribed terminal
 occurrences to fan paths, rooted linkedness of the core supplies the inner
-linkage and the fan splice supplies the outer rooted linkage.-/
+linkage and the fan splice supplies the outer rooted linkage.
+@isnad1 id=ex.6h9v.s8.78739ada3934 from=translated src=- shape=d519f2f0 vocab=02376678
+-/
 theorem rooted_linkage_of_core_fan_slots
     {G : SimpleGraph V} {r n : ℕ}
     (P : IndexedPairs (Fin r) V) (F : IndexedLinkage G P)

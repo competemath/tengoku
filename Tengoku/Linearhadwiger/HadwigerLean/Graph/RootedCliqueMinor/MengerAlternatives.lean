@@ -13,7 +13,9 @@ separator. The latter is converted to a graph separation later.
 namespace HadwigerLean
 
 /-- Reindex a full linkage so the path indexed by `i` starts at `root i`,
-and note that its finishes exhaust the target set.-/
+and note that its finishes exhaust the target set.
+@isnad1 id=ex.3h7v.s7.0e4250266b5b from=translated src=- shape=51fda9fd vocab=e2e4e85b
+-/
 theorem reindex_root_target_linkage
     {V : Type*} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} {r : ℕ}
@@ -73,7 +75,9 @@ theorem reindex_root_target_linkage
   exact ⟨i, hi⟩
 
 /-- Menger either links every prescribed root to a distinct member of an
-equicardinal target set, or supplies a separator of order below r.-/
+equicardinal target set, or supplies a separator of order below r.
+@isnad1 id=or.2h5v.s7.7e3ae3532993 from=translated src=- shape=b2b20041 vocab=47e16280
+-/
 theorem root_target_linkage_or_separator
     {V : Type*} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) {r : ℕ}

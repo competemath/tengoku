@@ -15,7 +15,9 @@ variable {V : Type*} [Fintype V] [DecidableEq V]
   {G : SimpleGraph V} [DecidableRel G.Adj]
   {k : ℕ} {P : IndexedPairs (Fin k) V}
 
-/-- Deleting the occupied set removes at least the `2k` distinct terminals.-/
+/-- Deleting the occupied set removes at least the `2k` distinct terminals.
+@isnad1 id=le.3h5v.s7.d4ef27dccd89 from=translated src=- shape=169e7a27 vocab=1e0ea831
+-/
 theorem residual_order_le_fourteen_mul
     (C : ShortPartial G P (terminalFinset P))
     (hP : P.DisjointTerminals)
@@ -36,7 +38,9 @@ theorem residual_order_le_fourteen_mul
   omega
 
 /-- The induced residual degree is the number of original neighbors
-outside the occupied set.-/
+outside the occupied set.
+@isnad1 id=eq.0h6v.s9.ffd8607d2755 from=translated src=- shape=8201fa88 vocab=b0af9120
+-/
 theorem residual_degree_eq_outside_neighbors
     (C : ShortPartial G P (terminalFinset P))
     (v : ↥((C.occupied : Set V)ᶜ)) :
@@ -71,7 +75,9 @@ theorem residual_degree_eq_outside_neighbors
       congrArg Finset.card hmap
 
 /-- Minimum degree `8k` in the original graph leaves minimum degree `5k`
-after deleting the occupied set of an optimal partial linkage.-/
+after deleting the occupied set of an optimal partial linkage.
+@isnad1 id=le.4h6v.s9.92167bcd5284 from=translated src=- shape=1de31109 vocab=d5fce31b
+-/
 theorem residual_min_degree_ge_five_mul
     (C : ShortPartial G P (terminalFinset P))
     (hP : P.DisjointTerminals)

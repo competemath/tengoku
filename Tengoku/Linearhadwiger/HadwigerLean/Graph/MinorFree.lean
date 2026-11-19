@@ -15,7 +15,9 @@ namespace HadwigerLean
 
 universe u
 
-/-- A complete-minor model can be restricted to any smaller order.-/
+/-- A complete-minor model can be restricted to any smaller order.
+@isnad1 id=hascliqu.2h4v.s4.81c598f4a69b from=translated src=- shape=57e186f0 vocab=c54cc7a8
+-/
 theorem hasCliqueMinor_order_mono {V : Type u} {G : SimpleGraph V}
     {m n : ℕ} (hmn : m ≤ n) (hn : HasCliqueMinor G n) :
     HasCliqueMinor G m := by
@@ -35,7 +37,9 @@ theorem hasCliqueMinor_order_mono {V : Type u} {G : SimpleGraph V}
     simpa using hne
 
 /-- A finite graph excludes `K_t` exactly when its largest complete-minor
-order is strictly below `t`. This includes `t = 0` and the empty graph.-/
+order is strictly below `t`. This includes `t = 0` and the empty graph.
+@isnad1 id=iff.0h3v.s4.74b7e5ca7f29 from=translated src=- shape=c333ca72 vocab=1fae612a
+-/
 theorem not_hasCliqueMinor_iff_cliqueMinorNumber_lt
     {V : Type u} [Fintype V] (G : SimpleGraph V) (t : ℕ) :
     ¬ HasCliqueMinor G t ↔ cliqueMinorNumber G < t := by
@@ -49,7 +53,9 @@ theorem not_hasCliqueMinor_iff_cliqueMinorNumber_lt
 
 /-- The complete-minor predicate is equivalent to its expanded branch-set
 description. In particular the branch sets are connected induced subgraphs,
-pairwise disjoint, and every distinct pair touches by an edge.-/
+pairwise disjoint, and every distinct pair touches by an edge.
+@isnad1 id=iff.0h3v.s7.9f4b85c09910 from=translated src=- shape=194b85d3 vocab=069fa9a5
+-/
 theorem hasCliqueMinor_iff_branchSets {V : Type u}
     (G : SimpleGraph V) (t : ℕ) :
     HasCliqueMinor G t ↔

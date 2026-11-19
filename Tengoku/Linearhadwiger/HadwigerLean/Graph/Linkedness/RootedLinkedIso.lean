@@ -11,7 +11,9 @@ namespace HadwigerLean
 namespace Linkedness
 
 /-- Rooted linkedness is invariant under graph isomorphisms, with the
-root set transported by the equivalence.-/
+root set transported by the equivalence.
+@isnad1 id=rootedli.2h7v.s6.69d091ad11a8 from=translated src=- shape=9b929a7d vocab=09920865
+-/
 theorem rootedLinked_of_iso
     {V W : Type*} [Fintype V] [Fintype W]
     [DecidableEq V] [DecidableEq W]

@@ -80,6 +80,9 @@ def HasCertificate {I : Type*} {n : ℕ} [Fintype I] (A : I → Fin n → 𝕜)
 
 /-! ### Disjointness: `IsFeasible` and `HasCertificate` cannot both hold -/
 
+/--
+@isnad1 id=false.2h5v.s6.ed834005e9e8 from=translated src=- shape=f6c64747 vocab=32cfdf92
+-/
 theorem feas_cert_disjoint {I : Type*} {n : ℕ} [Fintype I]
     (A : I → Fin n → 𝕜) (b : I → 𝕜)
     (hfeas : IsFeasible A b) (hcert : HasCertificate A b) : False := by
@@ -167,24 +170,39 @@ def fmB (A : I → Fin (n+1) → 𝕜) (b : I → 𝕜) (idx : FMRowIndex A) : �
       (-A q.val (Fin.last n)) * b p.val
         + A p.val (Fin.last n) * b q.val
 
+/--
+@isnad1 id=eq.0h6v.s7.6d3d0cde8352 from=translated src=- shape=0084cfe1 vocab=21aebf17
+-/
 @[simp] theorem fmA_inl (A : I → Fin (n+1) → 𝕜) (k : ZeroRows A) (j : Fin n) :
     fmA A (Sum.inl k) j = A k.val j.castSucc := rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.b7017b1e975c from=translated src=- shape=7867bda1 vocab=9c8e83bb
+-/
 @[simp] theorem fmA_inr (A : I → Fin (n+1) → 𝕜)
     (p : PosRows A) (q : NegRows A) (j : Fin n) :
     fmA A (Sum.inr (p, q)) j
       = (-A q.val (Fin.last n)) * A p.val j.castSucc
         + A p.val (Fin.last n) * A q.val j.castSucc := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.90b8a6d15074 from=translated src=- shape=8f0bb588 vocab=8018baa3
+-/
 @[simp] theorem fmB_inl (A : I → Fin (n+1) → 𝕜) (b : I → 𝕜)
     (k : ZeroRows A) : fmB A b (Sum.inl k) = b k.val := rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.727a720accf8 from=translated src=- shape=98fe9bbf vocab=dcc2ddc8
+-/
 @[simp] theorem fmB_inr (A : I → Fin (n+1) → 𝕜) (b : I → 𝕜)
     (p : PosRows A) (q : NegRows A) :
     fmB A b (Sum.inr (p, q))
       = (-A q.val (Fin.last n)) * b p.val
         + A p.val (Fin.last n) * b q.val := rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.00c4e9548be5 from=translated src=- shape=93c48fda vocab=d6a7aefe
+-/
 @[simp] theorem rowEval_def {I : Type*} {n : ℕ} [Fintype I]
     (A : I → Fin n → 𝕜) (i : I) (x : Fin n → 𝕜) :
     rowEval A i x = ∑ j, A i j * x j := rfl
@@ -194,6 +212,9 @@ def fmB (A : I → Fin (n+1) → 𝕜) (b : I → 𝕜) (idx : FMRowIndex A) : �
 If `(x_0, ..., x_n)` satisfies the original `(n+1)`-variable system, then
 `(x_0, ..., x_{n-1})` satisfies the reduced `n`-variable system. -/
 
+/--
+@isnad1 id=isfeasib.1h5v.s8.acf8023c3835 from=translated src=- shape=d06288c8 vocab=c25234b6
+-/
 theorem fm_feasible_of_feasible (A : I → Fin (n+1) → 𝕜) (b : I → 𝕜)
     (hfeas : IsFeasible A b) : IsFeasible (fmA A) (fmB A b) := by
   obtain ⟨x, hx⟩ := hfeas
@@ -304,6 +325,9 @@ If a solution `x'` of the reduced system exists, construct an `x_last`
 such that `Fin.snoc x' x_last` solves the original `(n+1)`-variable
 system. -/
 
+/--
+@isnad1 id=isfeasib.1h5v.s8.54f41db88d29 from=translated src=- shape=d494935f vocab=c25234b6
+-/
 theorem feasible_of_fm_feasible (A : I → Fin (n+1) → 𝕜) (b : I → 𝕜)
     (hred : IsFeasible (fmA A) (fmB A b)) : IsFeasible A b := by
   obtain ⟨x', hx'⟩ := hred
@@ -399,10 +423,16 @@ def liftCoeff (A : I → Fin (n+1) → 𝕜) (idx : FMRowIndex A) (i : I) : 𝕜
       (if p.val = i then -A q.val (Fin.last n) else 0)
       + (if q.val = i then A p.val (Fin.last n) else 0)
 
+/--
+@isnad1 id=eq.0h6v.s7.c85b020b8fee from=translated src=- shape=0016c8f3 vocab=e0ea7eec
+-/
 theorem liftCoeff_inl (A : I → Fin (n+1) → 𝕜) (k : ZeroRows A)
     (i : I) :
     liftCoeff A (Sum.inl k) i = if k.val = i then 1 else 0 := rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.9265c3b26d67 from=translated src=- shape=8a263419 vocab=c818f32e
+-/
 theorem liftCoeff_inr (A : I → Fin (n+1) → 𝕜)
     (p : PosRows A) (q : NegRows A) (i : I) :
     liftCoeff A (Sum.inr (p, q)) i
@@ -414,7 +444,9 @@ def liftCert (A : I → Fin (n+1) → 𝕜) (u' : FMRowIndex A → 𝕜)
     (i : I) : 𝕜 :=
   ∑ idx, liftCoeff A idx i * u' idx
 
-/-- Pointwise nonneg lift.-/
+/-- Pointwise nonneg lift.
+@isnad1 id=le.1h6v.s7.3bc1677872fd from=translated src=- shape=3e8fae3a vocab=1859f08b
+-/
 theorem liftCert_nonneg (A : I → Fin (n+1) → 𝕜) {u' : FMRowIndex A → 𝕜}
     (hu' : ∀ idx, 0 ≤ u' idx) (i : I) : 0 ≤ liftCert A u' i := by
   apply Finset.sum_nonneg
@@ -517,7 +549,9 @@ private theorem liftCert_rhs (A : I → Fin (n+1) → 𝕜) (b : I → 𝕜)
   · simp [liftCoeff_weighted_inr]
 
 /-- **Farkas certificate lift**: if `u'` certifies the reduced system,
-`liftCert A u'` certifies the original.-/
+`liftCert A u'` certifies the original.
+@isnad1 id=hascerti.1h5v.s8.19301fdcf3f9 from=translated src=- shape=d494935f vocab=51b8aa0b
+-/
 theorem fm_cert_lift (A : I → Fin (n+1) → 𝕜) (b : I → 𝕜)
     (hred : HasCertificate (fmA A) (fmB A b)) : HasCertificate A b := by
   obtain ⟨u', hu'_nn, hu'_zero, hu'_pos⟩ := hred
@@ -602,7 +636,9 @@ certificate set `T = {u ≥ 0 | uᵀA = 0, ⟨u, b⟩ > 0}` is nonempty.
 
 Combines `feas_cert_disjoint` (disjointness) with the existence direction
 proved by Fourier-Motzkin elimination + induction on the number of
-variables (`theorem_of_alternative_aux`).-/
+variables (`theorem_of_alternative_aux`).
+@isnad1 id=iff.0h5v.s6.e68be432ea3a from=translated src=- shape=b37081e9 vocab=37e8cae0
+-/
 theorem theorem_of_alternative {I : Type*} [Fintype I] [DecidableEq I] {n : ℕ}
     (A : I → Fin n → 𝕜) (b : I → 𝕜) :
     ¬ IsFeasible A b ↔ HasCertificate A b :=

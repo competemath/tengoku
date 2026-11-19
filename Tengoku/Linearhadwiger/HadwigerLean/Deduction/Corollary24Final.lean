@@ -15,7 +15,9 @@ import Tengoku.Seed.Tactic
 namespace HadwigerLean.Deduction
 
 /-- The top-scale woven conclusion implies the advertised chromatic bound.
-The outer induction supplies the `hW` premise.-/
+The outer induction supplies the `hW` premise.
+@isnad1 id=lt.4h5v.s7.47e6a792977c from=translated src=- shape=bfc28263 vocab=24f727ce
+-/
 theorem cor24_final_of_top_woven
     {V : Type*} [Fintype V] (G : SimpleGraph V)
     (t T d : ℕ)

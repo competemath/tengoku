@@ -15,7 +15,9 @@ namespace Linkedness
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- The strengthened numerical criterion holds for the `5k`-minimum-degree,
-`7k`-vertex component extracted in Appendix D.-/
+`7k`-vertex component extracted in Appendix D.
+@isnad1 id=klinked.2h3v.s6.82233620c37c from=translated src=- shape=68c105ed vocab=f1f24b73
+-/
 theorem kLinked_of_five_k_degree_seven_k_order (G : SimpleGraph V)
     [DecidableRel G.Adj] (k : ℕ)
     (hdegree : ∀ v, 5 * k ≤ G.degree v)
@@ -25,7 +27,9 @@ theorem kLinked_of_five_k_degree_seven_k_order (G : SimpleGraph V)
   omega
 
 /-- A `16k`-connected graph of order at most `29k` is linked directly by
-the common-neighbor criterion.-/
+the common-neighbor criterion.
+@isnad1 id=klinked.2h3v.s5.2d1a73b0a2fd from=translated src=- shape=2fd6551b vocab=696c6112
+-/
 theorem kLinked_of_connected_small_order (G : SimpleGraph V)
     [DecidableRel G.Adj] (k : ℕ)
     (hconn : VertexConnected G (16 * k))

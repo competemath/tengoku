@@ -15,11 +15,17 @@ noncomputable def torsoRootFinset {G : SimpleGraph V}
   classical
   exact Finset.univ.filter (fun u : S.left => (u : V) ∈ X)
 
+/--
+@isnad1 id=iff.0h5v.s6.10d8c5aad7b0 from=translated src=- shape=b57c3c6f vocab=cd2f98c5
+-/
 @[simp] theorem mem_torsoRootFinset {G : SimpleGraph V}
     (S : VertexSeparation G) (X : Finset V) (u : S.left) :
     u ∈ torsoRootFinset S X ↔ (u : V) ∈ X := by
   simp [torsoRootFinset]
 
+/--
+@isnad1 id=eq.1h4v.s5.8076ee62a246 from=translated src=- shape=628633b9 vocab=f20c656c
+-/
 theorem torsoRootFinset_card {G : SimpleGraph V}
     (S : VertexSeparation G) (X : Finset V)
     (hX : (X : Set V) ⊆ S.left) :
@@ -36,7 +42,9 @@ theorem torsoRootFinset_card {G : SimpleGraph V}
     exact hc
   simpa only [Nat.card_coe_set_eq, Set.ncard_coe_finset] using hc'
 
-/-- A proper far shore makes the near side smaller than the whole graph.-/
+/-- A proper far shore makes the near side smaller than the whole graph.
+@isnad1 id=lt.1h3v.s5.39b3b665ea90 from=translated src=- shape=af43750e vocab=1f6f722c
+-/
 theorem left_card_lt_of_strictRight_nonempty
     {G : SimpleGraph V} (S : VertexSeparation G)
     (hfar : S.strictRight.Nonempty) :

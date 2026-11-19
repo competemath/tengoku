@@ -5,7 +5,9 @@ import Tengoku.Linearhadwiger.HadwigerLean.Graph.Linkedness.CoreFarFan
 namespace HadwigerLean
 namespace Linkedness
 
-/-- The first visit to the far side of a separation lies in its adhesion.-/
+/-- The first visit to the far side of a separation lies in its adhesion.
+@isnad1 id=mem.1h7v.s6.bc8cd75d2a9d from=translated src=- shape=0590fe28 vocab=979dcca4
+-/
 theorem FirstHit.finish_mem_separator_of_right
     {V : Type*} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} (S : VertexSeparation G) [Fintype S.right]
@@ -22,7 +24,9 @@ theorem FirstHit.finish_mem_separator_of_right
   exact ⟨hleft F.finish (F.path : G.Walk s F.finish).end_mem_support,
     by simpa using F.finish_mem⟩
 
-/-- Trim a path to its first far-side vertex; the endpoint is on the adhesion.-/
+/-- Trim a path to its first far-side vertex; the endpoint is on the adhesion.
+@isnad1 id=ex.2h6v.s6.21d0c91ca71a from=translated src=- shape=5679ba40 vocab=979dcca4
+-/
 theorem exists_first_right_hit_in_separator
     {V : Type*} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} (S : VertexSeparation G) [Fintype S.right]

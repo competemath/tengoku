@@ -27,7 +27,9 @@ noncomputable def IndexedLinkage.reverse {ι V : Type*} {G : SimpleGraph V}
     rw [pathVertexSet_reverse (L.path i), pathVertexSet_reverse (L.path j)]
     exact L.disjoint hij
 
-/-- Trim a path at its first vertex in a set, given any hit.-/
+/-- Trim a path at its first vertex in a set, given any hit.
+@isnad1 id=nonempty.1h6v.s5.f816b98421e4 from=translated src=- shape=638cb9c9 vocab=28e1e08f
+-/
 theorem FirstHit.exists_of_hit
     {V : Type*} [DecidableEq V] {G : SimpleGraph V} {s t : V}
     (p : G.Path s t) (J : Finset V)
@@ -53,7 +55,9 @@ theorem FirstHit.exists_of_hit
       exact hfirst x hxJ hx
   }⟩
 
-/-- Trim a disjoint family at first hits, allowing the old finishes to lie outside the hit set.-/
+/-- Trim a disjoint family at first hits, allowing the old finishes to lie outside the hit set.
+@isnad1 id=ex.1h6v.s7.d2ad81b6b826 from=translated src=- shape=b54607f1 vocab=c1ff6950
+-/
 theorem IndexedLinkage.trim_to_first_hit_of_hit
     {ι V : Type*} [DecidableEq V]
     {G : SimpleGraph V} {P : IndexedPairs ι V}

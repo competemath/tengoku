@@ -25,7 +25,9 @@ private theorem nonedgePair_not_subset_singleton (G : SimpleGraph V)
   have hp := p.property.1
   simp [hp] at hcard
 
-/-- Every feasible pair-dual vertex price is at most one.-/
+/-- Every feasible pair-dual vertex price is at most one.
+@isnad1 id=le.1h5v.s5.d3c4be59c397 from=translated src=- shape=37612b7d vocab=6daebff2
+-/
 theorem pairDual_vertex_le_one (G : SimpleGraph V)
     {a : V → ℝ} {b : NonedgePair G → ℝ}
     (hab : IsPairDualFeasible G a b) (v : V) : a v ≤ 1 := by
@@ -43,7 +45,9 @@ theorem pairDual_vertex_le_one (G : SimpleGraph V)
   simpa using h
 
 /-- Paper equation (penalty): the total dual penalty times its tolerance is
-at most the graph order.-/
+at most the graph order.
+@isnad1 id=le.3h6v.s6.838cddea58fa from=translated src=- shape=dc254733 vocab=2d3159ec
+-/
 theorem pairDual_penalty_le_order (G : SimpleGraph V) (δ : ℝ)
     {x : StableSet G → ℝ} {a : V → ℝ}
     {b : NonedgePair G → ℝ}
@@ -67,6 +71,9 @@ noncomputable def incidentPenalty (G : SimpleGraph V)
     (b : NonedgePair G → ℝ) (v : V) : ℝ :=
   ∑ p : NonedgePair G, if v ∈ p.1 then b p else 0
 
+/--
+@isnad1 id=le.1h4v.s5.f44a35f823a3 from=translated src=- shape=c6eef917 vocab=99bd1495
+-/
 theorem incidentPenalty_nonneg (G : SimpleGraph V)
     {b : NonedgePair G → ℝ} (hb : ∀ p, 0 ≤ b p) (v : V) :
     0 ≤ incidentPenalty G b v := by
@@ -77,7 +84,9 @@ theorem incidentPenalty_nonneg (G : SimpleGraph V)
   · exact hb p
   · exact le_rfl
 
-/-- Each unordered pair contributes its penalty at exactly two vertices.-/
+/-- Each unordered pair contributes its penalty at exactly two vertices.
+@isnad1 id=eq.0h3v.s6.577da840510c from=translated src=- shape=a6bd18d6 vocab=ddecd7aa
+-/
 theorem sum_incidentPenalty (G : SimpleGraph V)
     (b : NonedgePair G → ℝ) :
     (∑ v : V, incidentPenalty G b v) =
@@ -105,6 +114,9 @@ noncomputable def heavyVertices (G : SimpleGraph V)
   classical
   exact Finset.univ.filter (fun v => θ < incidentPenalty G b v)
 
+/--
+@isnad1 id=le.1h4v.s6.2c04d3f20f56 from=translated src=- shape=3a56cac6 vocab=a9820ae7
+-/
 theorem heavyVertices_card_mul_le_sum (G : SimpleGraph V)
     (b : NonedgePair G → ℝ) (θ : ℝ)
     (hb : ∀ p, 0 ≤ b p) :
@@ -124,7 +136,9 @@ theorem heavyVertices_card_mul_le_sum (G : SimpleGraph V)
       · intro v _ _
         exact incidentPenalty_nonneg G hb v
 
-/-- The dual penalty bound controls the number of high-penalty vertices.-/
+/-- The dual penalty bound controls the number of high-penalty vertices.
+@isnad1 id=le.5h7v.s7.4e1f62a30b7d from=translated src=- shape=7d777ac7 vocab=2afe144c
+-/
 theorem heavyVertices_card_le (G : SimpleGraph V)
     (δ γ : ℝ) (hδ : 0 < δ) (hγ : 0 < γ)
     {x : StableSet G → ℝ} {a : V → ℝ}
@@ -167,6 +181,9 @@ noncomputable def penaltyGraph (G : SimpleGraph V)
     exact huu.1 rfl⟩
 
 omit [Fintype V] in
+/--
+@isnad1 id=le.0h5v.s5.aa1534cbaa90 from=translated src=- shape=8f7abbb2 vocab=efd40e85
+-/
 theorem penaltyGraph_le_compl (G : SimpleGraph V)
     (b : NonedgePair G → ℝ) (X : Finset V) (cutoff : ℝ) :
     penaltyGraph G b X cutoff ≤ Gᶜ := by
@@ -183,6 +200,9 @@ noncomputable def selectedIncidentPairs (G : SimpleGraph V)
   classical
   exact Finset.univ.filter (fun p => v ∈ p.1 ∧ cutoff ≤ b p)
 
+/--
+@isnad1 id=le.1h5v.s6.3212b89fe5d4 from=translated src=- shape=669b0693 vocab=0e65808c
+-/
 theorem selectedIncidentPairs_card_mul_le (G : SimpleGraph V)
     (b : NonedgePair G → ℝ) (v : V) (cutoff : ℝ)
     (hb : ∀ p, 0 ≤ b p) :
@@ -214,7 +234,9 @@ noncomputable instance penaltyGraph_neighborFintype (G : SimpleGraph V)
     Fintype ((penaltyGraph G b X cutoff).neighborSet v) := by
   classical
   infer_instance
-/-- Neighbors in the penalty graph inject into selected penalty pairs.-/
+/-- Neighbors in the penalty graph inject into selected penalty pairs.
+@isnad1 id=le.0h6v.s5.a63d690dd7dc from=translated src=- shape=ceaa731d vocab=c40918fe
+-/
 theorem penaltyGraph_degree_le_selectedPairs_card (G : SimpleGraph V)
     (b : NonedgePair G → ℝ) (X : Finset V) (cutoff : ℝ)
     (v : V) :
@@ -251,6 +273,9 @@ theorem penaltyGraph_degree_le_selectedPairs_card (G : SimpleGraph V)
   change (F.neighborFinset v).card ≤ P.card
   exact Finset.card_le_card_of_injective hf
 
+/--
+@isnad1 id=le.2h6v.s6.b587f27e6fd2 from=translated src=- shape=524fea14 vocab=8cf53113
+-/
 theorem penaltyGraph_degree_mul_le_incidentPenalty (G : SimpleGraph V)
     (b : NonedgePair G → ℝ) (X : Finset V) (cutoff : ℝ)
     (v : V) (hb : ∀ p, 0 ≤ b p) (hcutoff : 0 ≤ cutoff) :
@@ -264,6 +289,9 @@ theorem penaltyGraph_degree_mul_le_incidentPenalty (G : SimpleGraph V)
   exact (mul_le_mul_of_nonneg_right hcast hcutoff).trans
     (selectedIncidentPairs_card_mul_le G b v cutoff hb)
 
+/--
+@isnad1 id=eq.1h6v.s5.b56c0be0b949 from=translated src=- shape=7dc01848 vocab=59f55235
+-/
 theorem penaltyGraph_degree_zero_of_mem (G : SimpleGraph V)
     (b : NonedgePair G → ℝ) (X : Finset V) (cutoff : ℝ)
     (v : V) (hv : v ∈ X) :
@@ -275,7 +303,9 @@ theorem penaltyGraph_degree_zero_of_mem (G : SimpleGraph V)
   obtain ⟨_, p, _, hnot, _, _⟩ := hadj
   exact hnot hv
 
-/-- Real-valued maximum-degree estimate before the final ceiling operation.-/
+/-- Real-valued maximum-degree estimate before the final ceiling operation.
+@isnad1 id=le.3h6v.s6.509571fdcfc3 from=translated src=- shape=dc377a1c vocab=6b22d9b7
+-/
 theorem penaltyGraph_degree_le_ratio (G : SimpleGraph V)
     (b : NonedgePair G → ℝ) (θ cutoff : ℝ)
     (hb : ∀ p, 0 ≤ b p) (hθ : 0 ≤ θ) (hcutoff : 0 < cutoff)
@@ -306,6 +336,9 @@ noncomputable instance penaltyGraph_decidableRel (G : SimpleGraph V)
     DecidableRel (penaltyGraph G b X cutoff).Adj := by
   classical
   infer_instance
+/--
+@isnad1 id=le.3h5v.s6.b069ef311363 from=translated src=- shape=b404092d vocab=6debcdcc
+-/
 theorem penaltyGraph_maxDegree_le_ceil (G : SimpleGraph V)
     (b : NonedgePair G → ℝ) (θ cutoff : ℝ)
     (hb : ∀ p, 0 ≤ b p) (hθ : 0 ≤ θ) (hcutoff : 0 < cutoff) :
@@ -320,7 +353,9 @@ theorem penaltyGraph_maxDegree_le_ceil (G : SimpleGraph V)
     Nat.le_ceil _
   exact_mod_cast hdegree.trans hceil
 
-/-- The pair-dual inequality also holds for the empty independent set.-/
+/-- The pair-dual inequality also holds for the empty independent set.
+@isnad1 id=le.2h5v.s7.f0e9b67fb110 from=translated src=- shape=6fd70852 vocab=4ddb8e13
+-/
 theorem pairDual_sum_le_one_add (G : SimpleGraph V)
     {a : V → ℝ} {b : NonedgePair G → ℝ}
     (hab : IsPairDualFeasible G a b) (s : Finset V)
@@ -352,7 +387,9 @@ noncomputable def containedPairs (G : SimpleGraph V)
   classical
   exact Finset.univ.filter (fun p => p.1 ⊆ s)
 
-/-- Contained nonedge pairs inject into all two-element subsets.-/
+/-- Contained nonedge pairs inject into all two-element subsets.
+@isnad1 id=le.0h3v.s5.338b26e69672 from=translated src=- shape=38506fbf vocab=d609b6b9
+-/
 theorem containedPairs_card_le_choose (G : SimpleGraph V)
     (s : Finset V) :
     (containedPairs G s).card ≤ Nat.choose s.card 2 := by
@@ -370,7 +407,9 @@ theorem containedPairs_card_le_choose (G : SimpleGraph V)
     Finset.card_le_card_of_injOn (fun p : NonedgePair G => p.1)
       hmap hinj
 
-/-- A pointwise bound on penalties gives a binomial bound on their sum.-/
+/-- A pointwise bound on penalties gives a binomial bound on their sum.
+@isnad1 id=le.2h5v.s7.1b630c0eb61b from=translated src=- shape=1c6a7b52 vocab=3d40e1de
+-/
 theorem pairPenalty_sum_le_choose (G : SimpleGraph V)
     (b : NonedgePair G → ℝ) (s : Finset V) (cutoff : ℝ)
     (hcutoff : 0 ≤ cutoff)
@@ -393,7 +432,9 @@ theorem pairPenalty_sum_le_choose (G : SimpleGraph V)
       mul_le_mul_of_nonneg_right hcard hcutoff
 
 omit [Fintype V] in
-/-- Every pair of a stable set in the penalty graph has small penalty.-/
+/-- Every pair of a stable set in the penalty graph has small penalty.
+@isnad1 id=lt.3h7v.s6.ca3daa6c3780 from=translated src=- shape=11c1b4b7 vocab=55097f22
+-/
 theorem pairPenalty_lt_of_penaltyGraph_indep (G : SimpleGraph V)
     (b : NonedgePair G → ℝ) (X s : Finset V) (cutoff : ℝ)
     (hs : (penaltyGraph G b X cutoff).IsIndepSet (s : Set V))
@@ -411,7 +452,9 @@ theorem pairPenalty_lt_of_penaltyGraph_indep (G : SimpleGraph V)
   exact hs hu hv huv hadj
 
 /-- The pair dual gives a feasible fractional dual after discarding the heavy
-vertices and adding all large-penalty nonedges.-/
+vertices and adding all large-penalty nonedges.
+@isnad1 id=isfracti.4h7v.s7.a69e349e366e from=translated src=- shape=8beb6f52 vocab=5bfa0814
+-/
 theorem retainedPairDual_feasible (G : SimpleGraph V)
     {a : V → ℝ} {b : NonedgePair G → ℝ}
     (hab : IsPairDualFeasible G a b)
@@ -475,7 +518,9 @@ theorem retainedPairDual_feasible (G : SimpleGraph V)
     exact (div_le_iff₀ hden).2 (by simpa using hsum')
 
 /-- Discarding at most one unit of vertex price per heavy vertex gives a
-quantitative lower bound on the augmented graph's fractional chromatic number.-/
+quantitative lower bound on the augmented graph's fractional chromatic number.
+@isnad1 id=le.4h7v.s7.a78e565afcbf from=translated src=- shape=a9ee002d vocab=cb964d8f
+-/
 theorem retainedPairDual_value_bound (G : SimpleGraph V)
     {a : V → ℝ} {b : NonedgePair G → ℝ}
     (hab : IsPairDualFeasible G a b)
@@ -519,7 +564,9 @@ theorem retainedPairDual_value_bound (G : SimpleGraph V)
     _ ≤ (1 + γ) * fractionalChromaticNumber H :=
       mul_le_mul_of_nonneg_left hdual hden.le
 
-/-- Weak duality for the concrete pair-constrained coloring predicates.-/
+/-- Weak duality for the concrete pair-constrained coloring predicates.
+@isnad1 id=le.2h6v.s5.37af58e6f868 from=translated src=- shape=1dd5594f vocab=9ecfa729
+-/
 theorem pairDual_weak_duality (G : SimpleGraph V) (δ : ℝ)
     {x : StableSet G → ℝ} {a : V → ℝ}
     {b : NonedgePair G → ℝ}
@@ -536,7 +583,9 @@ theorem pairDual_weak_duality (G : SimpleGraph V) (δ : ℝ)
 
 /-- The augmentation lemma, conditional only on the separate low-pair-load
 rounding theorem. All LP, penalty-graph, and quantitative dual steps are
-proved here.-/
+proved here.
+@isnad1 id=ex.5h5v.s8.cf3b56e1c116 from=translated src=- shape=aa2616a2 vocab=68633ef7
+-/
 theorem exists_boundedDegree_augmentation_from_rounding
     (G : SimpleGraph V) (δ γ : ℝ) (m : ℕ)
     (hδ : 0 < δ) (hγ : 0 < γ)
@@ -637,7 +686,9 @@ theorem exists_boundedDegree_augmentation_from_rounding
     linarith
 
 /-- Flexible version of augmentation: any integer degree cap above the real
-estimate suffices. This keeps ceiling arithmetic out of later arguments.-/
+estimate suffices. This keeps ceiling arithmetic out of later arguments.
+@isnad1 id=ex.6h6v.s8.89051a0d95a2 from=translated src=- shape=e8c10f3c vocab=3c6358fa
+-/
 theorem exists_boundedDegree_augmentation_of_cap
     (G : SimpleGraph V) (δ γ : ℝ) (m d : ℕ)
     (hδ : 0 < δ) (hγ : 0 < γ)

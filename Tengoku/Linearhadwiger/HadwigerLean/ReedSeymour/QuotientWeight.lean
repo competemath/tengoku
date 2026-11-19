@@ -25,11 +25,17 @@ noncomputable def owner (P : ConnectedPartition G I) (v : V) : I :=
   Classical.choose (P.cover v)
 
 omit [Fintype V] [Fintype I] in
+/--
+@isnad1 id=mem.0h5v.s5.8e378e361b2e from=translated src=- shape=1e55f177 vocab=49fe8821
+-/
 theorem owner_mem (P : ConnectedPartition G I) (v : V) :
     v ∈ P.block (P.owner v) :=
   Classical.choose_spec (P.cover v)
 
 omit [Fintype V] [Fintype I] in
+/--
+@isnad1 id=iff.0h6v.s5.f26a9adb3a77 from=translated src=- shape=e21569e2 vocab=49fe8821
+-/
 theorem mem_block_iff_owner_eq (P : ConnectedPartition G I) (v : V) (i : I) :
     v ∈ P.block i ↔ P.owner v = i := by
   obtain ⟨j, hj, huniq⟩ := P.existsUnique_block v
@@ -41,7 +47,9 @@ theorem mem_block_iff_owner_eq (P : ConnectedPartition G I) (v : V) (i : I) :
     rw [← h]
     exact P.owner_mem v
 
-/-- The weights of partition blocks sum to the weight of the graph.-/
+/-- The weights of partition blocks sum to the weight of the graph.
+@isnad1 id=eq.0h5v.s5.c1c103a56aea from=translated src=- shape=ce30759e vocab=a2bd4571
+-/
 theorem sum_setWeight_blocks (P : ConnectedPartition G I) (w : V → ℝ) :
     (∑ i, setWeight w (P.block i)) = ∑ v, w v := by
   classical
@@ -57,6 +65,9 @@ def classYolk {C : Type*} (P : ConnectedPartition G I)
   {v | v ∈ Y (P.owner v) ∧ color (P.owner v) = c}
 
 omit [Fintype V] [Fintype I] in
+/--
+@isnad1 id=isindeps.2h8v.s6.8b408cfa098c from=translated src=- shape=00bd3ef3 vocab=7b5a4d30
+-/
 theorem classYolk_independent {C : Type*} (P : ConnectedPartition G I)
     (Y : I → Set V) (hY : ∀ i, G.IsIndepSet (Y i))
     (color : I → C)
@@ -71,6 +82,9 @@ theorem classYolk_independent {C : Type*} (P : ConnectedPartition G I)
       ⟨hsame, v, P.owner_mem v, u, P.owner_mem u, hadj⟩
     exact (hcolor hq) (hv.2.trans hu.2.symm)
 
+/--
+@isnad1 id=eq.1h9v.s6.f9bebda181fe from=translated src=- shape=9a5958c3 vocab=a25a4e98
+-/
 theorem sum_setWeight_yolks_color {C : Type*} [DecidableEq C]
     (P : ConnectedPartition G I) (w : V → ℝ)
     (Y : I → Set V) (hY : ∀ i, Y i ⊆ P.block i)
@@ -114,7 +128,9 @@ variable {V I : Type*} [Fintype V] [Fintype I] [Nonempty I]
   {G : SimpleGraph V}
 
 /-- A colored touching quotient of an egg partition yields the weighted stable
-set required in Reed--Seymour's LP-duality argument.-/
+set required in Reed--Seymour's LP-duality argument.
+@isnad1 id=ex.2h6v.s6.8cf9ccde4b3c from=translated src=- shape=6c60933f vocab=1b143199
+-/
 theorem exists_weighted_stable_set_of_colored_egg_partition
     (P : ConnectedPartition G I) (w : V → ℝ)
     (hEgg : ∀ i, IsEgg G w (P.block i))
@@ -155,18 +171,25 @@ noncomputable def setFinset {U : Type*} [Fintype U] (S : Set U) : Finset U := by
   classical
   exact Finset.univ.filter (fun v => v ∈ S)
 
+/--
+@isnad1 id=iff.0h3v.s5.21db6b597ba3 from=translated src=- shape=51b12b4b vocab=b0616114
+-/
 @[simp] theorem mem_setFinset {U : Type*} [Fintype U] (S : Set U) (v : U) :
     v ∈ setFinset S ↔ v ∈ S := by
   classical
   simp [setFinset]
 
-/-- A vertex-set weight equals the corresponding finite sum.-/
+/-- A vertex-set weight equals the corresponding finite sum.
+@isnad1 id=eq.0h3v.s5.7a8045ac7884 from=translated src=- shape=95f8b347 vocab=869cd1ca
+-/
 theorem setWeight_eq_sum_toFinset {U : Type*} [Fintype U]
     (w : U → ℝ) (S : Set U) :
     setWeight w S = ∑ v ∈ setFinset S, w v := by
   classical
   simp [setWeight, setFinset, Finset.sum_filter]
-/-- Finset formulation of the weighted stable-set extraction.-/
+/-- Finset formulation of the weighted stable-set extraction.
+@isnad1 id=ex.2h6v.s6.c7e1564f2575 from=translated src=- shape=356ba5f5 vocab=6559d905
+-/
 theorem exists_weighted_stable_finset_of_colored_egg_partition
     (P : ConnectedPartition G I) (w : V → ℝ)
     (hEgg : ∀ i, IsEgg G w (P.block i))

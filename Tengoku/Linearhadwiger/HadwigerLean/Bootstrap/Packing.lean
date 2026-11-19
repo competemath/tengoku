@@ -65,7 +65,9 @@ private theorem goodBlock_of_induce {V : Type u} [Fintype V]
       (induceInduceIso G R (s : Set R)).symm.toHom hbip
 
 /-- The absence of connected bipartite induced (k)-sets is inherited by
-induced subgraphs.-/
+induced subgraphs.
+@isnad1 id=nolargec.1h4v.s4.b230e49b80e2 from=translated src=- shape=71d7043d vocab=4a5d1b4a
+-/
 theorem noLargeConnectedBipartite_induce {V : Type u} [Fintype V]
     (G : SimpleGraph V) (R : Set V) (k : ℕ)
     (h : NoLargeConnectedBipartite G k) :
@@ -245,7 +247,9 @@ private theorem exists_maximal_goodPacking {V : Type u} [Fintype V]
   exact (Nat.not_lt_of_ge hle hlt).elim
 
 /-- Paper Lemma 12: pack disjoint connected bipartite induced (k)-sets,
-contract them to a smaller minor, and leave a remainder with no such set.-/
+contract them to a smaller minor, and leave a remainder with no such set.
+@isnad1 id=ex.1h3v.s8.3b73f39244c7 from=translated src=- shape=5ed97ea3 vocab=4de1da7b
+-/
 theorem exists_packing {V : Type u} [Fintype V]
     (G : SimpleGraph V) (k : ℕ) (hk : 2 ≤ k) :
     ∃ (P : Finset (Finset V)) (W R : Set V) (Q : SimpleGraph P),

@@ -77,30 +77,48 @@ def induce (U : Finset V) : IndexedHypergraph V E where
     exact Finset.subset_inter (H.edge_subset e heH) heU
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.1h4v.s5.c1a8143b0648 from=translated src=- shape=1716cd40 vocab=0807075f
+-/
 @[simp] theorem restrictEdges_vertices (F : Finset E) (hF : F ⊆ H.edges) :
     (H.restrictEdges F hF).vertices = H.vertices := rfl
 
 omit [DecidableEq V] in
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.1h4v.s5.9ba7564fe293 from=translated src=- shape=918ae7e8 vocab=3f3c8e5b
+-/
 @[simp] theorem restrictEdges_edges (F : Finset E) (hF : F ⊆ H.edges) :
     (H.restrictEdges F hF).edges = F := rfl
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.1h5v.s5.33d2fef2667e from=translated src=- shape=a00a3324 vocab=39c7357f
+-/
 @[simp] theorem restrictEdges_edge (F : Finset E) (hF : F ⊆ H.edges) (e : E) :
     (H.restrictEdges F hF).edge e = H.edge e := rfl
 
+/--
+@isnad1 id=le.1h5v.s5.4d2b378d0d80 from=translated src=- shape=f6e04f3d vocab=059eacb2
+-/
 theorem restrictEdges_degree_le (F : Finset E) (hF : F ⊆ H.edges) (v : V) :
     (H.restrictEdges F hF).degree v ≤ H.degree v := by
   unfold degree
   simp only [restrictEdges_edges]
   exact Finset.card_le_card (Finset.filter_subset_filter _ hF)
 
+/--
+@isnad1 id=le.1h6v.s5.326b834dd1f4 from=translated src=- shape=a37fb23e vocab=c40a88f6
+-/
 theorem restrictEdges_codegree_le (F : Finset E) (hF : F ⊆ H.edges) (u v : V) :
     (H.restrictEdges F hF).codegree u v ≤ H.codegree u v := by
   unfold codegree
   simp only [restrictEdges_edges]
   exact Finset.card_le_card (Finset.filter_subset_filter _ hF)
 
+/--
+@isnad1 id=eq.1h4v.s5.4ebb73d4d399 from=translated src=- shape=a20296a8 vocab=6833de3a
+-/
 theorem degree_eq_zero_of_not_mem {v : V} (hv : v ∉ H.vertices) : H.degree v = 0 := by
   classical
   unfold degree
@@ -109,9 +127,15 @@ theorem degree_eq_zero_of_not_mem {v : V} (hv : v ∉ H.vertices) : H.degree v =
   intro e heH hve
   exact hv (H.edge_subset e heH hve)
 
+/--
+@isnad1 id=le.1h4v.s5.fe738f7a2632 from=translated src=- shape=2a52620b vocab=39d30907
+-/
 theorem degree_le_maxDegree {v : V} (hv : v ∈ H.vertices) :
     H.degree v ≤ H.maxDegree := Finset.le_sup hv
 
+/--
+@isnad1 id=le.3h5v.s6.6181f797aaeb from=translated src=- shape=f990ec3c vocab=0be0ba9c
+-/
 theorem codegree_le_maxCodegree {u v : V}
     (hu : u ∈ H.vertices) (hv : v ∈ H.vertices) (hne : u ≠ v) :
     H.codegree u v ≤ H.maxCodegree := by
@@ -121,7 +145,9 @@ theorem codegree_le_maxCodegree {u v : V}
     Finset.le_sup (Finset.mem_erase.mpr ⟨hne.symm, hv⟩)
   exact hinner.trans (Finset.le_sup (f := fun w => (H.vertices.erase w).sup (H.codegree w)) hu)
 
-/-- An active edge of uniform rank at least two gives a positive codegree.-/
+/-- An active edge of uniform rank at least two gives a positive codegree.
+@isnad1 id=lt.3h4v.s5.69eac702cb71 from=translated src=- shape=582f7845 vocab=8dd3cd4d
+-/
 theorem maxCodegree_pos_of_maxDegree_pos (H : IndexedHypergraph V E)
     {r : ℕ} (hr : 2 ≤ r) (hunif : H.IsUniform r)
     (hdegree : 0 < H.maxDegree) : 0 < H.maxCodegree := by
@@ -140,6 +166,9 @@ theorem maxCodegree_pos_of_maxDegree_pos (H : IndexedHypergraph V E)
     exact ⟨e, Finset.mem_filter.mpr ⟨he, hu, hv⟩⟩
   exact lt_of_lt_of_le hcodeg
     (H.codegree_le_maxCodegree (hsub hu) (hsub hv) huv)
+/--
+@isnad1 id=le.0h5v.s4.46617a2f75a8 from=translated src=- shape=e1b2ecfa vocab=88a4184a
+-/
 theorem codegree_le_degree_left (u v : V) : H.codegree u v ≤ H.degree u := by
   unfold codegree degree
   exact Finset.card_le_card (by
@@ -147,6 +176,9 @@ theorem codegree_le_degree_left (u v : V) : H.codegree u v ≤ H.degree u := by
     exact Finset.mem_filter.mpr ⟨(Finset.mem_filter.mp he).1,
       (Finset.mem_filter.mp he).2.1⟩)
 
+/--
+@isnad1 id=le.0h5v.s4.626db11b7280 from=translated src=- shape=f48073c8 vocab=88a4184a
+-/
 theorem codegree_le_degree_right (u v : V) : H.codegree u v ≤ H.degree v := by
   unfold codegree degree
   exact Finset.card_le_card (by
@@ -154,7 +186,9 @@ theorem codegree_le_degree_right (u v : V) : H.codegree u v ≤ H.degree v := by
     exact Finset.mem_filter.mpr ⟨(Finset.mem_filter.mp he).1,
       (Finset.mem_filter.mp he).2.2⟩)
 
-/-- Counting incidences first by vertex and then by edge copy.-/
+/-- Counting incidences first by vertex and then by edge copy.
+@isnad1 id=eq.0h3v.s5.e5dde31248fd from=translated src=- shape=3d321014 vocab=25871517
+-/
 theorem sum_degrees_eq_sum_edge_card :
     H.vertices.sum H.degree = H.edges.sum (fun e => (H.edge e).card) := by
   classical
@@ -183,7 +217,9 @@ theorem sum_degrees_eq_sum_edge_card :
           (Finset.card_filter (fun v => v ∈ H.edge e) H.vertices).symm
         _ = (H.edge e).card := congrArg Finset.card hfilter
 
-/-- The incidence count is r times the number of active copies.-/
+/-- The incidence count is r times the number of active copies.
+@isnad1 id=eq.1h4v.s5.66324d935767 from=translated src=- shape=db0f25fd vocab=e84d9cd9
+-/
 theorem sum_degrees_uniform {r : ℕ} (hunif : H.IsUniform r) :
     H.vertices.sum H.degree = r * H.edges.card := by
   rw [H.sum_degrees_eq_sum_edge_card]
@@ -195,7 +231,9 @@ theorem sum_degrees_uniform {r : ℕ} (hunif : H.IsUniform r) :
       exact hunif e he
     _ = r * H.edges.card := by simp [mul_comm]
 
-/-- Count pairs consisting of an edge copy through v and a vertex on it.-/
+/-- Count pairs consisting of an edge copy through v and a vertex on it.
+@isnad1 id=eq.0h4v.s6.cce309da08eb from=translated src=- shape=e6c1e003 vocab=338a8fec
+-/
 theorem sum_codegrees_eq_sum_incident_edge_card (v : V) :
     H.vertices.sum (H.codegree v) =
       (H.edges.filter (fun e => v ∈ H.edge e)).sum (fun e => (H.edge e).card) := by
@@ -234,7 +272,9 @@ theorem sum_codegrees_eq_sum_incident_edge_card (v : V) :
       rw [Finset.sum_ite]
       simp
 
-/-- Total codegree at v, including the diagonal, is r times its degree.-/
+/-- Total codegree at v, including the diagonal, is r times its degree.
+@isnad1 id=eq.1h5v.s5.d1d9856b354e from=translated src=- shape=9ffc824b vocab=81311995
+-/
 theorem sum_codegrees_uniform {r : ℕ} (hunif : H.IsUniform r) (v : V) :
     H.vertices.sum (H.codegree v) = r * H.degree v := by
   rw [H.sum_codegrees_eq_sum_incident_edge_card]
@@ -246,7 +286,9 @@ theorem sum_codegrees_uniform {r : ℕ} (hunif : H.IsUniform r) (v : V) :
       exact hunif e (Finset.mem_filter.mp he).1
     _ = r * H.degree v := by simp [degree, mul_comm]
 
-/-- Off-diagonal codegrees account for the other vertices on incident edges.-/
+/-- Off-diagonal codegrees account for the other vertices on incident edges.
+@isnad1 id=eq.2h5v.s6.e1dffa3636ff from=translated src=- shape=93359fce vocab=45db8686
+-/
 theorem sum_codegrees_offdiag_add_degree {r : ℕ}
     (hunif : H.IsUniform r) {v : V} (hv : v ∈ H.vertices) :
     (H.vertices.erase v).sum (H.codegree v) + H.degree v =
@@ -260,7 +302,9 @@ theorem sum_codegrees_offdiag_add_degree {r : ℕ}
       exact Finset.sum_erase_add H.vertices (H.codegree v) hv
     _ = r * H.degree v := H.sum_codegrees_uniform hunif v
 /-- The overlapping-edge contribution to the variance is controlled by
-maximum codegree and degree.-/
+maximum codegree and degree.
+@isnad1 id=le.4h7v.s6.1042695348d5 from=translated src=- shape=fb03d454 vocab=7885a4ca
+-/
 theorem sum_codegree_sq_le {r B D : ℕ} (hunif : H.IsUniform r)
     {v : V} (hv : v ∈ H.vertices)
     (hB : H.maxCodegree ≤ B) (hD : H.degree v ≤ D) :
@@ -285,7 +329,9 @@ theorem sum_codegree_sq_le {r B D : ℕ} (hunif : H.IsUniform r)
     _ ≤ B * (r * H.degree v) := Nat.mul_le_mul_left B hoff
     _ ≤ B * (r * D) :=
       Nat.mul_le_mul_left B (Nat.mul_le_mul_left r hD)
-/-- The paper's total degree deficit, expressed without truncated subtraction.-/
+/-- The paper's total degree deficit, expressed without truncated subtraction.
+@isnad1 id=eq.2h5v.s6.e98de6472266 from=translated src=- shape=c4def6d5 vocab=adaccb5f
+-/
 theorem degreeDeficit_add_edges {r D : ℕ} (hunif : H.IsUniform r)
     (hD : ∀ v ∈ H.vertices, H.degree v ≤ D) :
     H.degreeDeficit D + r * H.edges.card = H.vertices.card * D := by
@@ -302,7 +348,9 @@ theorem degreeDeficit_add_edges {r D : ℕ} (hunif : H.IsUniform r)
       _ = H.vertices.card * D := by simp
   rwa [H.sum_degrees_uniform hunif] at hsum
 
-/-- A uniform matching covers exactly r vertices per selected copy.-/
+/-- A uniform matching covers exactly r vertices per selected copy.
+@isnad1 id=eq.2h5v.s5.f0645d9251b7 from=translated src=- shape=1e227e48 vocab=6dfebb2a
+-/
 theorem covered_card_of_matching {r : ℕ} (hunif : H.IsUniform r)
     {M : Finset E} (hM : H.IsMatching M) :
     (H.covered M).card = r * M.card := by
@@ -320,7 +368,9 @@ theorem covered_card_of_matching {r : ℕ} (hunif : H.IsUniform r)
 section Trimming
 variable [DecidableEq E]
 
-/-- Removing an incident copy lowers a vertex degree by exactly one.-/
+/-- Removing an incident copy lowers a vertex degree by exactly one.
+@isnad1 id=eq.2h5v.s6.9be360b54d9b from=translated src=- shape=8261847c vocab=aee261f7
+-/
 theorem degree_restrict_erase_add_one {e : E} (he : e ∈ H.edges)
     {v : V} (hve : v ∈ H.edge e) :
     (H.restrictEdges (H.edges.erase e) (Finset.erase_subset e H.edges)).degree v + 1 =
@@ -330,7 +380,9 @@ theorem degree_restrict_erase_add_one {e : E} (he : e ∈ H.edges)
   simp only [restrictEdges_edges, Finset.filter_erase]
   exact Finset.card_erase_add_one (Finset.mem_filter.mpr ⟨he, hve⟩)
 
-/-- Removing an edge incident to an overfull vertex strictly lowers total excess.-/
+/-- Removing an edge incident to an overfull vertex strictly lowers total excess.
+@isnad1 id=lt.4h6v.s6.0cbb289e17b2 from=translated src=- shape=513ca80b vocab=d1d46db2
+-/
 theorem degreeExcess_restrict_erase_lt {D : ℕ} {e : E} (he : e ∈ H.edges)
     {v : V} (hv : v ∈ H.vertices) (hve : v ∈ H.edge e)
     (hover : D < H.degree v) :
@@ -347,35 +399,59 @@ theorem degreeExcess_restrict_erase_lt {D : ℕ} {e : E} (he : e ∈ H.edges)
   exact Finset.sum_lt_sum hle ⟨v, hv, hvlt⟩
 end Trimming
 
+/--
+@isnad1 id=eq.0h4v.s5.774f443cf14b from=translated src=- shape=9673d9cf vocab=63836099
+-/
 @[simp] theorem induce_vertices (U : Finset V) :
     (H.induce U).vertices = H.vertices ∩ U := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.9510f8bc4f63 from=translated src=- shape=a8613bcb vocab=94037b26
+-/
 @[simp] theorem induce_edges (U : Finset V) :
     (H.induce U).edges = H.edges.filter (fun e => H.edge e ⊆ U) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.7cb5988bb74c from=translated src=- shape=7050f0ce vocab=6793ac96
+-/
 @[simp] theorem induce_edge (U : Finset V) (e : E) :
     (H.induce U).edge e = H.edge e := rfl
 
+/--
+@isnad1 id=le.0h4v.s5.b65aa4cc48f7 from=translated src=- shape=f35d3e15 vocab=26ccbd39
+-/
 theorem induce_edges_subset (U : Finset V) :
     (H.induce U).edges ⊆ H.edges := Finset.filter_subset _ _
 
+/--
+@isnad1 id=isunifor.1h5v.s5.16c385f03c6c from=translated src=- shape=307a0080 vocab=fd67483f
+-/
 theorem induce_uniform {r : ℕ} (hunif : H.IsUniform r) (U : Finset V) :
     (H.induce U).IsUniform r := by
   intro e he
   exact hunif e (H.induce_edges_subset U he)
 
+/--
+@isnad1 id=le.0h5v.s5.1ba559982fb8 from=translated src=- shape=3c3fce56 vocab=536589a1
+-/
 theorem induce_degree_le (U : Finset V) (v : V) :
     (H.induce U).degree v ≤ H.degree v := by
   unfold degree
   simp only [induce_edges]
   exact Finset.card_le_card (Finset.filter_subset_filter _ (H.induce_edges_subset U))
 
+/--
+@isnad1 id=le.0h6v.s5.9878fa0015d8 from=translated src=- shape=566d5662 vocab=34b8b5e6
+-/
 theorem induce_codegree_le (U : Finset V) (u v : V) :
     (H.induce U).codegree u v ≤ H.codegree u v := by
   unfold codegree
   simp only [induce_edges]
   exact Finset.card_le_card (Finset.filter_subset_filter _ (H.induce_edges_subset U))
 
+/--
+@isnad1 id=le.1h4v.s5.7c5ea167dd50 from=translated src=- shape=5e80002e vocab=e8b34f4d
+-/
 theorem covered_subset_vertices {M : Finset E} (hM : M ⊆ H.edges) :
     H.covered M ⊆ H.vertices := by
   intro v hv

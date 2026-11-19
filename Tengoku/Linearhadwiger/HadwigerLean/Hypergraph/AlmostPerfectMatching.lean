@@ -38,12 +38,21 @@ def waste : Finset V :=
 /-- The untrimmed hypergraph on surviving vertices.-/
 def nextBase : IndexedHypergraph V E := H.induce R.survivors
 
+/--
+@isnad1 id=eq.0h4v.s5.6b738fea15c7 from=translated src=- shape=5661ddfc vocab=d64df48f
+-/
 @[simp] theorem nextBase_vertices : R.nextBase.vertices = R.survivors := by
   simp [nextBase, Finset.inter_eq_right.mpr R.survivors_subset]
 
+/--
+@isnad1 id=le.0h4v.s5.fcc18b69ca03 from=translated src=- shape=babad631 vocab=4d0fac26
+-/
 theorem accepted_covered_subset : H.covered R.accepted ⊆ H.vertices :=
   H.covered_subset_vertices R.accepted_matching.1
 
+/--
+@isnad1 id=eq.0h4v.s6.9376aaa880dd from=translated src=- shape=22e9d2dc vocab=389375fd
+-/
 theorem waste_partition_card :
     R.survivors.card + (H.covered R.accepted).card + R.waste.card =
       H.vertices.card := by
@@ -60,7 +69,9 @@ theorem waste_partition_card :
 section Union
 variable [DecidableEq E]
 
-/-- A matching found among survivors extends the accepted matching.-/
+/-- A matching found among survivors extends the accepted matching.
+@isnad1 id=ismatchi.1h5v.s5.8549f9295e67 from=translated src=- shape=f077b6ca vocab=632ec4c9
+-/
 theorem matching_union_next {N : Finset E}
     (hN : R.nextBase.IsMatching N) :
     H.IsMatching (R.accepted ∪ N) := by
@@ -94,7 +105,9 @@ theorem matching_union_next {N : Finset E}
       · exact hN.2 heN hfN hne
 
 /-- The vertices left uncovered after adding a later matching split into
-survivors still uncovered and waste from this round.-/
+survivors still uncovered and waste from this round.
+@isnad1 id=eq.1h5v.s6.ec141fcece14 from=translated src=- shape=c1524609 vocab=89f819b7
+-/
 theorem uncovered_partition_card {N : Finset E}
     (hN : N ⊆ R.nextBase.edges) :
     (H.covered (R.accepted ∪ N)).card +
@@ -134,6 +147,9 @@ noncomputable def rate (H : IndexedHypergraph V E) (a : ℝ) (D : ℕ) :
       if v ∈ H.vertices then a * (1 - (H.degree v : ℝ) / (D : ℝ)) else 0
 
 omit [Fintype V] [Fintype E] in
+/--
+@isnad1 id=le.3h6v.s6.b7716dccd884 from=translated src=- shape=6e46d770 vocab=478cda7b
+-/
 theorem rate_nonneg (H : IndexedHypergraph V E)
     {a : ℝ} (ha : 0 ≤ a) {D : ℕ} (hD : 0 < D)
     (hcap : ∀ v ∈ H.vertices, H.degree v ≤ D)
@@ -156,6 +172,9 @@ theorem rate_nonneg (H : IndexedHypergraph V E)
       · simp [rate, hv]
 
 omit [Fintype V] [Fintype E] in
+/--
+@isnad1 id=and.3h6v.s6.9e9afe7eb828 from=translated src=- shape=57890df3 vocab=69adafe7
+-/
 theorem markProbability_bounds (H : IndexedHypergraph V E)
     {a : ℝ} (ha : 0 ≤ a) {D : ℕ} (hD : 0 < D)
     (hcap : ∀ v ∈ H.vertices, H.degree v ≤ D)
@@ -174,6 +193,9 @@ def vertexSurvives (H : IndexedHypergraph V E)
     ∀ e ∈ H.edges, v ∈ H.edge e → ω (Sum.inl e) = false
 
 omit [Fintype V] [Fintype E] in
+/--
+@isnad1 id=iff.0h5v.s6.2836751a8e3e from=translated src=- shape=ffcc129f vocab=065b4be2
+-/
 theorem vertexSurvives_iff_all_false (H : IndexedHypergraph V E)
     (ω : E ⊕ V → Bool) (v : V) :
     vertexSurvives H ω v ↔ ∀ i ∈ vertexLabels H v, ω i = false := by
@@ -196,6 +218,9 @@ theorem vertexSurvives_iff_all_false (H : IndexedHypergraph V E)
         ⟨e, Finset.mem_filter.mpr ⟨he, hve⟩, rfl⟩
 
 omit [Fintype V] [Fintype E] in
+/--
+@isnad1 id=eq.2h6v.s6.db6817199715 from=translated src=- shape=0854e8f9 vocab=ea1b7a50
+-/
 theorem sum_vertexLabels_rate (H : IndexedHypergraph V E)
     (a : ℝ) {D : ℕ} (hD : 0 < D)
     {v : V} (hv : v ∈ H.vertices) :
@@ -231,6 +256,9 @@ theorem sum_vertexLabels_rate (H : IndexedHypergraph V E)
   have hDc : (D : ℝ) ≠ 0 := by exact_mod_cast (Nat.ne_of_gt hD)
   field_simp
   ring
+/--
+@isnad1 id=eq.2h6v.s6.178ba6f8aef0 from=translated src=- shape=5770b6cd vocab=00d89119
+-/
 theorem prob_vertexSurvives (H : IndexedHypergraph V E)
     (a : ℝ) {D : ℕ} (hD : 0 < D)
     {v : V} (hv : v ∈ H.vertices) :
@@ -270,6 +298,9 @@ noncomputable def acceptedEdges (H : IndexedHypergraph V E)
   exact H.edges.filter (isolatedMarked H ω)
 
 omit [DecidableEq V] [Fintype V] [Fintype E] [DecidableEq E] in
+/--
+@isnad1 id=ismatchi.0h4v.s4.31b5d1ea16c7 from=translated src=- shape=c7bef7ca vocab=07474a89
+-/
 theorem acceptedEdges_matching (H : IndexedHypergraph V E)
     (ω : E ⊕ V → Bool) :
     H.IsMatching (acceptedEdges H ω) := by
@@ -286,6 +317,9 @@ theorem acceptedEdges_matching (H : IndexedHypergraph V E)
       (Finset.mem_filter.mp hf').2.1
 
 omit [Fintype V] [Fintype E] [DecidableEq E] in
+/--
+@isnad1 id=disjoint.0h4v.s5.5bab72821004 from=translated src=- shape=5c915bdd vocab=62445d03
+-/
 theorem surviving_disjoint_accepted (H : IndexedHypergraph V E)
     (ω : E ⊕ V → Bool) :
     Disjoint (survivingVertices H ω) (H.covered (acceptedEdges H ω)) := by
@@ -314,6 +348,9 @@ noncomputable def sampledRound (H : IndexedHypergraph V E)
   accepted_matching := acceptedEdges_matching H ω
   survivors_disjoint_accepted := surviving_disjoint_accepted H ω
 omit [DecidableEq V] [Fintype V] [Fintype E] [DecidableEq E] in
+/--
+@isnad1 id=eq.0h4v.s4.997337059914 from=translated src=- shape=83df5242 vocab=5c2c452f
+-/
 theorem survivorCount_eq_card (H : IndexedHypergraph V E)
     (ω : E ⊕ V → Bool) :
     survivorCount H ω = (survivingVertices H ω).card := by
@@ -321,7 +358,9 @@ theorem survivorCount_eq_card (H : IndexedHypergraph V E)
   simp only [survivorCount, survivingVertices, FiniteBernoulli.eventIndicator]
   rw [Finset.card_filter]
   norm_cast
-/-- Every active vertex survives with the same probability exp(-a).-/
+/-- Every active vertex survives with the same probability exp(-a).
+@isnad1 id=eq.1h5v.s6.b4344571988b from=translated src=- shape=d8e46616 vocab=a4ad2460
+-/
 theorem expect_survivorCount (H : IndexedHypergraph V E)
     (a : ℝ) {D : ℕ} (hD : 0 < D) :
     FiniteBernoulli.expect
@@ -378,6 +417,9 @@ noncomputable def markedPairs (H : IndexedHypergraph V E)
     ω (Sum.inl p.1) = true ∧ ω (Sum.inl p.2) = true)
 
 omit [Fintype V] [Fintype E] in
+/--
+@isnad1 id=eq.0h4v.s5.304b890a9ce1 from=translated src=- shape=9c4ea965 vocab=336ad76b
+-/
 theorem collidingFirstEdges_eq_image_markedPairs
     (H : IndexedHypergraph V E) (ω : E ⊕ V → Bool) :
     collidingFirstEdges H ω = (markedPairs H ω).image Prod.fst := by
@@ -422,6 +464,9 @@ theorem collidingFirstEdges_eq_image_markedPairs
     simpa [collidingFirstEdges] using he'
 
 omit [Fintype V] [Fintype E] in
+/--
+@isnad1 id=le.0h4v.s5.4787195ce5a6 from=translated src=- shape=fb20ff9b vocab=780e8dc0
+-/
 theorem card_collidingFirstEdges_le_markedPairs
     (H : IndexedHypergraph V E) (ω : E ⊕ V → Bool) :
     (collidingFirstEdges H ω).card ≤ (markedPairs H ω).card := by
@@ -435,6 +480,9 @@ noncomputable def markedPairCount (H : IndexedHypergraph V E)
       {ω | ω (Sum.inl p.1) = true ∧ ω (Sum.inl p.2) = true} ω)
 
 omit [Fintype V] [Fintype E] in
+/--
+@isnad1 id=eq.0h4v.s5.ed4912a8544c from=translated src=- shape=c7efb845 vocab=3de007a6
+-/
 theorem markedPairCount_eq_card (H : IndexedHypergraph V E)
     (ω : E ⊕ V → Bool) :
     markedPairCount H ω = ((markedPairs H ω).card : ℝ) := by
@@ -443,6 +491,9 @@ theorem markedPairCount_eq_card (H : IndexedHypergraph V E)
   rw [Finset.card_filter]
   norm_cast
 
+/--
+@isnad1 id=eq.0h5v.s7.ee44cef53c79 from=translated src=- shape=ae0502d9 vocab=62861b44
+-/
 theorem expect_markedPairCount (H : IndexedHypergraph V E)
     (a : ℝ) (D : ℕ) :
     FiniteBernoulli.expect
@@ -464,6 +515,9 @@ theorem expect_markedPairCount (H : IndexedHypergraph V E)
   exact FiniteBernoulli.prob_two_true _
     (by intro h; exact hne (Sum.inl_injective h))
 omit [Fintype V] [Fintype E] in
+/--
+@isnad1 id=le.0h6v.s5.a05e52e26843 from=translated src=- shape=fd87b4bb vocab=9e7bc975
+-/
 theorem markProbability_le_rate (H : IndexedHypergraph V E)
     (a : ℝ) (D : ℕ) (i : E ⊕ V) :
     FiniteBernoulli.expMarkProbability (rate H a D) i ≤
@@ -472,6 +526,9 @@ theorem markProbability_le_rate (H : IndexedHypergraph V E)
   have h := Real.add_one_le_exp (-(rate H a D i))
   linarith
 
+/--
+@isnad1 id=le.3h5v.s7.1bcf138a61d3 from=translated src=- shape=a3cfaf10 vocab=f4327275
+-/
 theorem expect_markedPairCount_le (H : IndexedHypergraph V E)
     {a : ℝ} (ha : 0 ≤ a) {D : ℕ} (hD : 0 < D)
     (hcap : ∀ v ∈ H.vertices, H.degree v ≤ D) :
@@ -520,7 +577,9 @@ theorem expect_markedPairCount_le (H : IndexedHypergraph V E)
     _ = (intersectingPairs H).card * (a / (D : ℝ)) ^ 2 := by
       simp [nsmul_eq_mul]
 omit [Fintype V] [Fintype E] in
-/-- A wasted vertex has a private mark or lies on a colliding marked edge.-/
+/-- A wasted vertex has a private mark or lies on a colliding marked edge.
+@isnad1 id=le.0h4v.s6.e8e63de8b09e from=translated src=- shape=29190adf vocab=a4fbc716
+-/
 theorem waste_subset_private_union_colliding (H : IndexedHypergraph V E)
     (ω : E ⊕ V → Bool) :
     (sampledRound H ω).waste ⊆
@@ -579,6 +638,9 @@ theorem waste_subset_private_union_colliding (H : IndexedHypergraph V E)
     apply Finset.mem_filter.mpr
     exact ⟨he, hemark, f, hf, hfe, hfmark, hinter⟩
 omit [Fintype V] [Fintype E] in
+/--
+@isnad1 id=le.1h5v.s6.c037cf941fef from=translated src=- shape=53800e62 vocab=35edf116
+-/
 theorem waste_card_le_private_add_colliding (H : IndexedHypergraph V E)
     {r : ℕ} (hunif : H.IsUniform r) (ω : E ⊕ V → Bool) :
     (sampledRound H ω).waste.card ≤
@@ -606,6 +668,9 @@ theorem waste_card_le_private_add_colliding (H : IndexedHypergraph V E)
     (privateMarkedVertices H ω) (H.covered (collidingFirstEdges H ω))
   omega
 omit [Fintype V] [Fintype E] in
+/--
+@isnad1 id=le.1h5v.s6.42ec99cb0ee6 from=translated src=- shape=227f9446 vocab=065081ba
+-/
 theorem waste_card_le_private_add_pairs (H : IndexedHypergraph V E)
     {r : ℕ} (hunif : H.IsUniform r) (ω : E ⊕ V → Bool) :
     (sampledRound H ω).waste.card ≤
@@ -614,7 +679,9 @@ theorem waste_card_le_private_add_pairs (H : IndexedHypergraph V E)
   have h₂ := card_collidingFirstEdges_le_markedPairs H ω
   have hmul := Nat.mul_le_mul_left r h₂
   omega
-/-- Expected actual number of surviving vertices in one round.-/
+/-- Expected actual number of surviving vertices in one round.
+@isnad1 id=eq.1h5v.s6.e5264b35abee from=translated src=- shape=f3cff345 vocab=f65f0564
+-/
 theorem expect_survivingVertices_card (H : IndexedHypergraph V E)
     (a : ℝ) {D : ℕ} (hD : 0 < D) :
     FiniteBernoulli.expect
@@ -640,6 +707,9 @@ noncomputable def privateMarkCount (H : IndexedHypergraph V E)
   H.vertices.sum (fun v => if ω (Sum.inr v) then 1 else 0)
 
 omit [DecidableEq V] [Fintype V] [Fintype E] [DecidableEq E] in
+/--
+@isnad1 id=eq.0h4v.s4.5033ad058da1 from=translated src=- shape=83df5242 vocab=c030d64d
+-/
 theorem privateMarkCount_eq_card (H : IndexedHypergraph V E)
     (ω : E ⊕ V → Bool) :
     privateMarkCount H ω = ((privateMarkedVertices H ω).card : ℝ) := by
@@ -648,6 +718,9 @@ theorem privateMarkCount_eq_card (H : IndexedHypergraph V E)
   rw [Finset.card_filter]
   norm_cast
 
+/--
+@isnad1 id=eq.0h5v.s6.753a5cce01df from=translated src=- shape=be2b4196 vocab=3243eeae
+-/
 theorem expect_privateMarkCount (H : IndexedHypergraph V E)
     (a : ℝ) (D : ℕ) :
     FiniteBernoulli.expect
@@ -663,6 +736,9 @@ theorem expect_privateMarkCount (H : IndexedHypergraph V E)
   exact FiniteBernoulli.expect_mark _ (Sum.inr v)
 
 omit [Fintype V] [Fintype E] in
+/--
+@isnad1 id=eq.2h5v.s6.7492194eef0f from=translated src=- shape=9f51d6f0 vocab=71b34e0f
+-/
 theorem sum_privateRate_eq_deficit (H : IndexedHypergraph V E)
     (a : ℝ) {D : ℕ} (hD : 0 < D)
     (hcap : ∀ v ∈ H.vertices, H.degree v ≤ D) :
@@ -684,6 +760,9 @@ theorem sum_privateRate_eq_deficit (H : IndexedHypergraph V E)
     _ = (a / (D : ℝ)) * (H.degreeDeficit D : ℝ) := by
       simp [IndexedHypergraph.degreeDeficit]
 
+/--
+@isnad1 id=le.2h5v.s7.1cfb194a5b3e from=translated src=- shape=1b6738eb vocab=1f683fef
+-/
 theorem expect_privateMarkCount_le (H : IndexedHypergraph V E)
     (a : ℝ) {D : ℕ} (hD : 0 < D)
     (hcap : ∀ v ∈ H.vertices, H.degree v ≤ D) :
@@ -741,7 +820,9 @@ private theorem expect_const (p : E ⊕ V → ℝ) (c : ℝ) :
   rw [← Finset.sum_mul]
   simp [FiniteBernoulli.sum_weight]
 
-/-- A finite marking configuration has value no greater than its mean.-/
+/-- A finite marking configuration has value no greater than its mean.
+@isnad1 id=ex.1h4v.s6.667719a7a449 from=translated src=- shape=de7d9f78 vocab=c8b9179b
+-/
 theorem exists_le_expect (p : E ⊕ V → ℝ)
     (hp : ∀ i, 0 ≤ p i ∧ p i ≤ 1)
     (X : (E ⊕ V → Bool) → ℝ) :
@@ -764,6 +845,9 @@ def setSurvives (H : IndexedHypergraph V E)
   ∀ v ∈ U, vertexSurvives H ω v
 
 omit [Fintype V] [Fintype E] in
+/--
+@isnad1 id=iff.0h5v.s6.368dba7866e1 from=translated src=- shape=1ed97da5 vocab=0dd18939
+-/
 theorem setSurvives_iff_all_false (H : IndexedHypergraph V E)
     (ω : E ⊕ V → Bool) (U : Finset V) :
     setSurvives H ω U ↔ ∀ i ∈ setLabels H U, ω i = false := by
@@ -778,6 +862,9 @@ theorem setSurvives_iff_all_false (H : IndexedHypergraph V E)
     intro i hi
     exact hs i ⟨v, hv, hi⟩
 
+/--
+@isnad1 id=eq.0h6v.s6.4e60a194c1ff from=translated src=- shape=832379ff vocab=90d5fef3
+-/
 theorem prob_setSurvives (H : IndexedHypergraph V E)
     (a : ℝ) (D : ℕ) (U : Finset V) :
     FiniteBernoulli.prob
@@ -811,6 +898,9 @@ private theorem sum_biUnion_le {κ ι : Type*} [DecidableEq ι]
           add_le_add_right ih _
 
 omit [Fintype V] [Fintype E] in
+/--
+@isnad1 id=le.4h6v.s6.d5f1bc4e94e0 from=translated src=- shape=3e5a7370 vocab=17a1f827
+-/
 theorem sum_setLabels_rate_le (H : IndexedHypergraph V E)
     {a : ℝ} (ha : 0 ≤ a) {D : ℕ} (hD : 0 < D)
     (hcap : ∀ v ∈ H.vertices, H.degree v ≤ D)
@@ -828,7 +918,9 @@ theorem sum_setLabels_rate_le (H : IndexedHypergraph V E)
       exact sum_vertexLabels_rate H a hD (hU hv)
     _ = (U.card : ℝ) * a := by simp
 
-/-- Positive association of no-mark events yields an edge-set survival lower bound.-/
+/-- Positive association of no-mark events yields an edge-set survival lower bound.
+@isnad1 id=le.4h6v.s7.7ff7670e2052 from=translated src=- shape=79a349e5 vocab=ab449c5c
+-/
 theorem prob_setSurvives_ge (H : IndexedHypergraph V E)
     {a : ℝ} (ha : 0 ≤ a) {D : ℕ} (hD : 0 < D)
     (hcap : ∀ v ∈ H.vertices, H.degree v ≤ D)
@@ -849,6 +941,9 @@ noncomputable def inducedEdgeCount (H : IndexedHypergraph V E)
 
 omit [Fintype V] [Fintype E] in
 omit [DecidableEq V] [DecidableEq E] in
+/--
+@isnad1 id=iff.1h5v.s6.b5c484f4ea83 from=translated src=- shape=f0506cfb vocab=57d6238b
+-/
 theorem edge_subset_survivors_iff (H : IndexedHypergraph V E)
     (ω : E ⊕ V → Bool) {e : E} (he : e ∈ H.edges) :
     H.edge e ⊆ survivingVertices H ω ↔
@@ -862,6 +957,9 @@ theorem edge_subset_survivors_iff (H : IndexedHypergraph V E)
       ⟨H.edge_subset e he hv, hs v hv⟩
 
 omit [Fintype V] [Fintype E] [DecidableEq E] in
+/--
+@isnad1 id=eq.0h4v.s5.3536dee77efc from=translated src=- shape=5815db27 vocab=facb599b
+-/
 theorem inducedEdgeCount_eq_card (H : IndexedHypergraph V E)
     (ω : E ⊕ V → Bool) :
     inducedEdgeCount H ω =
@@ -875,6 +973,9 @@ theorem inducedEdgeCount_eq_card (H : IndexedHypergraph V E)
   intro e he
   simp only [Set.mem_ofPred_eq, ← edge_subset_survivors_iff H ω he]
 
+/--
+@isnad1 id=le.4h6v.s7.8c97933f176a from=translated src=- shape=8d00ca40 vocab=75310ee3
+-/
 theorem expect_inducedEdgeCount_ge (H : IndexedHypergraph V E)
     {r D : ℕ} (hunif : H.IsUniform r)
     (hcap : ∀ v ∈ H.vertices, H.degree v ≤ D)
@@ -901,6 +1002,9 @@ theorem expect_inducedEdgeCount_ge (H : IndexedHypergraph V E)
       simpa [hunif e he] using
         (prob_setSurvives_ge H ha hD hcap hsub)
 omit [Fintype V] [Fintype E] in
+/--
+@isnad1 id=eq.1h5v.s7.da146a2cd94a from=translated src=- shape=052bbae0 vocab=4e76cead
+-/
 theorem vertexLabels_inter (H : IndexedHypergraph V E)
     {u v : V} (huv : u ≠ v) :
     vertexLabels H u ∩ vertexLabels H v =
@@ -952,6 +1056,9 @@ theorem vertexLabels_inter (H : IndexedHypergraph V E)
         cases heq
 
 omit [Fintype V] [Fintype E] in
+/--
+@isnad1 id=eq.1h7v.s6.a419e5cd6d40 from=translated src=- shape=34a94144 vocab=3a64998e
+-/
 theorem sum_vertexLabels_inter_rate (H : IndexedHypergraph V E)
     (a : ℝ) (D : ℕ) {u v : V} (huv : u ≠ v) :
     (vertexLabels H u ∩ vertexLabels H v).sum (rate H a D) =
@@ -972,6 +1079,9 @@ theorem sum_vertexLabels_inter_rate (H : IndexedHypergraph V E)
     _ = (H.codegree u v : ℝ) * (a / (D : ℝ)) := by
       simp [IndexedHypergraph.codegree, nsmul_eq_mul]
 omit [Fintype V] [Fintype E] in
+/--
+@isnad1 id=eq.0h5v.s6.a5a4ec8d50f4 from=translated src=- shape=a0cfcc62 vocab=ad2aeb2e
+-/
 theorem vertexLabels_inter_setLabels (H : IndexedHypergraph V E)
     (v : V) (U : Finset V) :
     vertexLabels H v ∩ setLabels H U =
@@ -986,6 +1096,9 @@ theorem vertexLabels_inter_setLabels (H : IndexedHypergraph V E)
     exact ⟨hiv, u, hu, hiu⟩
 
 omit [Fintype V] [Fintype E] in
+/--
+@isnad1 id=le.7h8v.s8.14d898876255 from=translated src=- shape=400cce29 vocab=bce2fe39
+-/
 theorem sum_vertexLabels_inter_setLabels_le
     (H : IndexedHypergraph V E)
     {a : ℝ} (ha : 0 ≤ a) {D : ℕ} (hD : 0 < D)
@@ -1018,7 +1131,9 @@ theorem sum_vertexLabels_inter_setLabels_le
         (div_nonneg ha (by positivity))
     _ = (U.card : ℝ) * ((B : ℝ) * (a / (D : ℝ))) := by simp
 omit [Fintype V] [Fintype E] in
-/-- A bounded codegree limits the repeated labels in a joint survival event.-/
+/-- A bounded codegree limits the repeated labels in a joint survival event.
+@isnad1 id=le.5h7v.s7.ea4ff23ca1ff from=translated src=- shape=6a1c54ca vocab=228656a0
+-/
 theorem sum_setLabels_rate_lower (H : IndexedHypergraph V E)
     {a : ℝ} (ha : 0 ≤ a) {D : ℕ} (hD : 0 < D)
     (hcap : ∀ v ∈ H.vertices, H.degree v ≤ D)
@@ -1056,6 +1171,9 @@ theorem sum_setLabels_rate_lower (H : IndexedHypergraph V E)
       rw [hset, Finset.card_insert_of_notMem hvU]
       push_cast
       nlinarith
+/--
+@isnad1 id=le.5h7v.s8.ff04675a4a12 from=translated src=- shape=35c5416f vocab=be504a8f
+-/
 theorem prob_setSurvives_le (H : IndexedHypergraph V E)
     {a : ℝ} (ha : 0 ≤ a) {D : ℕ} (hD : 0 < D)
     (hcap : ∀ v ∈ H.vertices, H.degree v ≤ D)
@@ -1081,6 +1199,9 @@ noncomputable def inducedDegreeCount (H : IndexedHypergraph V E)
       {ω | setSurvives H ω (H.edge e)} ω)
 
 omit [Fintype V] [Fintype E] [DecidableEq E] in
+/--
+@isnad1 id=eq.0h5v.s5.373f3c7890f2 from=translated src=- shape=21430c1f vocab=c76c3290
+-/
 theorem inducedDegreeCount_eq_degree (H : IndexedHypergraph V E)
     (v : V) (ω : E ⊕ V → Bool) :
     inducedDegreeCount H v ω =
@@ -1095,6 +1216,9 @@ theorem inducedDegreeCount_eq_degree (H : IndexedHypergraph V E)
   have heH : e ∈ H.edges := (Finset.mem_filter.mp he).1
   simp only [Set.mem_ofPred_eq, ← edge_subset_survivors_iff H ω heH]
 
+/--
+@isnad1 id=le.5h8v.s8.269dfcf24ae8 from=translated src=- shape=92cb7760 vocab=b80f2b04
+-/
 theorem expect_inducedDegreeCount_le (H : IndexedHypergraph V E)
     {r D B : ℕ} (hunif : H.IsUniform r)
     (hcap : ∀ v ∈ H.vertices, H.degree v ≤ D)
@@ -1133,6 +1257,9 @@ theorem expect_inducedDegreeCount_le (H : IndexedHypergraph V E)
         simp [IndexedHypergraph.degree]
 omit [Fintype V] [Fintype E] in
 omit [DecidableEq E] in
+/--
+@isnad1 id=iff.0h6v.s5.d6f1da8085be from=translated src=- shape=ceca38f6 vocab=e7b3fbb7
+-/
 theorem setSurvives_union (H : IndexedHypergraph V E)
     (ω : E ⊕ V → Bool) (U W : Finset V) :
     setSurvives H ω (U ∪ W) ↔
@@ -1150,6 +1277,9 @@ theorem setSurvives_union (H : IndexedHypergraph V E)
     · exact hW v hv
 
 omit [Fintype V] [Fintype E] [DecidableEq E] in
+/--
+@isnad1 id=eq.0h6v.s6.d98fad175bb9 from=translated src=- shape=2b26abc3 vocab=13bb1341
+-/
 theorem indicator_setSurvives_mul (H : IndexedHypergraph V E)
     (ω : E ⊕ V → Bool) (U W : Finset V) :
     FiniteBernoulli.eventIndicator
@@ -1172,6 +1302,9 @@ theorem indicator_setSurvives_mul (H : IndexedHypergraph V E)
       exact hU ((setSurvives_union H ω U W).mp h).1
     simp [FiniteBernoulli.eventIndicator, hU, hUW]
 
+/--
+@isnad1 id=eq.0h6v.s7.96b9a280f750 from=translated src=- shape=27a9a072 vocab=41b5f4fe
+-/
 theorem expect_inducedDegreeCount_sq (H : IndexedHypergraph V E)
     (a : ℝ) (D : ℕ) (v : V) :
     FiniteBernoulli.expect
@@ -1236,6 +1369,9 @@ noncomputable def doublyIntersectingPairs (H : IndexedHypergraph V E)
       u ∈ H.edge p.1 ∧ u ∈ H.edge p.2)
 
 omit [Fintype V] [Fintype E] in
+/--
+@isnad1 id=le.4h7v.s6.6d5076f8d660 from=translated src=- shape=abbadb16 vocab=2d5201e4
+-/
 theorem card_doublyIntersectingPairs_le (H : IndexedHypergraph V E)
     {r B D : ℕ} (hunif : H.IsUniform r)
     {v : V} (hv : v ∈ H.vertices)
@@ -1276,6 +1412,9 @@ theorem card_doublyIntersectingPairs_le (H : IndexedHypergraph V E)
       H.sum_codegree_sq_le hunif hv hB hD
 omit [Fintype V] [Fintype E] in
 omit [DecidableEq E] in
+/--
+@isnad1 id=eq.4h7v.s7.49f32c1b9f56 from=translated src=- shape=af5f3b14 vocab=6714e837
+-/
 theorem union_card_of_good_incident_pair (H : IndexedHypergraph V E)
     {r : ℕ} (hunif : H.IsUniform r)
     {v : V} {e f : E}
@@ -1310,6 +1449,9 @@ theorem union_card_of_good_incident_pair (H : IndexedHypergraph V E)
   have hcount := Finset.card_union_add_card_inter (H.edge e) (H.edge f)
   rw [hinter, Finset.card_singleton, hunif e heH, hunif f hfH] at hcount
   omega
+/--
+@isnad1 id=le.4h8v.s7.540f7b63a223 from=translated src=- shape=2c2db74a vocab=8a8fe78f
+-/
 theorem prob_incident_pair_le_vertex (H : IndexedHypergraph V E)
     {a : ℝ} (ha : 0 ≤ a) {D : ℕ} (hD : 0 < D)
     (hcap : ∀ v ∈ H.vertices, H.degree v ≤ D)
@@ -1337,6 +1479,9 @@ theorem prob_incident_pair_le_vertex (H : IndexedHypergraph V E)
           exact hω v (Finset.mem_union_left _ hve)
     _ = Real.exp (-a) := prob_vertexSurvives H a hD hv
 
+/--
+@isnad1 id=le.8h10v.s8.95629327e227 from=translated src=- shape=605b9e7d vocab=85f159ab
+-/
 theorem prob_good_incident_pair_le (H : IndexedHypergraph V E)
     {r B D : ℕ} (hunif : H.IsUniform r)
     (hcap : ∀ v ∈ H.vertices, H.degree v ≤ D)
@@ -1363,6 +1508,9 @@ theorem prob_good_incident_pair_le (H : IndexedHypergraph V E)
     Finset.union_subset (H.edge_subset e heH) (H.edge_subset f hfH)
   simpa [hcard] using
     (prob_setSurvives_le H ha hD hcap hcodeg hsub)
+/--
+@isnad1 id=le.5h8v.s8.f935f572e132 from=translated src=- shape=884a8faf vocab=027b954e
+-/
 theorem expect_inducedDegreeCount_sq_le_raw (H : IndexedHypergraph V E)
     {r B D : ℕ} (hunif : H.IsUniform r)
     (hcap : ∀ v ∈ H.vertices, H.degree v ≤ D)
@@ -1443,6 +1591,9 @@ theorem expect_inducedDegreeCount_sq_le_raw (H : IndexedHypergraph V E)
           ((doublyIntersectingPairs H v).card : ℝ) * q := by
       rw [Finset.sum_add_distrib, hsum]
       simp [Finset.card_product, pow_two, C, q]
+/--
+@isnad1 id=le.6h8v.s8.b34ea5995f1c from=translated src=- shape=dbad4fd4 vocab=398527fd
+-/
 theorem expect_inducedDegreeCount_sq_le (H : IndexedHypergraph V E)
     {r B D : ℕ} (hunif : H.IsUniform r)
     (hcap : ∀ v ∈ H.vertices, H.degree v ≤ D)
@@ -1494,6 +1645,9 @@ theorem expect_inducedDegreeCount_sq_le (H : IndexedHypergraph V E)
       apply add_le_add
       · exact mul_le_mul_of_nonneg_right hdegreeSq (Real.exp_nonneg _)
       · exact mul_le_mul_of_nonneg_right hbad (Real.exp_nonneg _)
+/--
+@isnad1 id=le.4h7v.s7.677cda8ea3f9 from=translated src=- shape=27716b02 vocab=dd3d40fb
+-/
 theorem expect_inducedDegreeCount_ge (H : IndexedHypergraph V E)
     {r D : ℕ} (hunif : H.IsUniform r)
     (hcap : ∀ v ∈ H.vertices, H.degree v ≤ D)
@@ -1523,6 +1677,9 @@ theorem expect_inducedDegreeCount_ge (H : IndexedHypergraph V E)
         (prob_setSurvives_ge H ha hD hcap
           (H.edge_subset e heH))
 omit [Fintype V] [Fintype E] [DecidableEq E] in
+/--
+@isnad1 id=eq.1h5v.s5.1b61b7624353 from=translated src=- shape=4dad2b03 vocab=fcc86b57
+-/
 theorem inducedDegreeCount_zero_of_not_vertexSurvives
     (H : IndexedHypergraph V E) (v : V) (ω : E ⊕ V → Bool)
     (hnot : ¬ vertexSurvives H ω v) :
@@ -1538,6 +1695,9 @@ theorem inducedDegreeCount_zero_of_not_vertexSurvives
   simp [FiniteBernoulli.eventIndicator, hnotEdge]
 
 omit [Fintype V] [Fintype E] [DecidableEq E] in
+/--
+@isnad1 id=eq.0h5v.s6.ca1fd8ac470b from=translated src=- shape=e4a34cd1 vocab=e6e27ac2
+-/
 theorem inducedDegreeCount_mul_vertexIndicator
     (H : IndexedHypergraph V E) (v : V) (ω : E ⊕ V → Bool) :
     inducedDegreeCount H v ω *
@@ -1551,6 +1711,9 @@ theorem inducedDegreeCount_mul_vertexIndicator
     simp [FiniteBernoulli.eventIndicator, hv, hz]
 
 omit [DecidableEq V] [Fintype V] [Fintype E] [DecidableEq E] in
+/--
+@isnad1 id=eq.0h5v.s6.23aaee07b854 from=translated src=- shape=a61a6637 vocab=bc7d226c
+-/
 theorem vertexIndicator_sq (H : IndexedHypergraph V E)
     (v : V) (ω : E ⊕ V → Bool) :
     (FiniteBernoulli.eventIndicator
@@ -1562,6 +1725,9 @@ theorem vertexIndicator_sq (H : IndexedHypergraph V E)
   · simp [FiniteBernoulli.eventIndicator, hv]
   · simp [FiniteBernoulli.eventIndicator, hv]
 
+/--
+@isnad1 id=eq.2h7v.s8.bf575e151c8f from=translated src=- shape=bc3b090a vocab=3d0148ea
+-/
 theorem expect_centered_inducedDegreeCount_sq
     (H : IndexedHypergraph V E) (a c : ℝ)
     {D : ℕ} (hD : 0 < D) {v : V} (hv : v ∈ H.vertices) :
@@ -1616,6 +1782,9 @@ theorem expect_centered_inducedDegreeCount_sq
             (prob_vertexSurvives H a hD hv)
       rw [hI]
       ring
+/--
+@isnad1 id=le.7h9v.s9.dc3a41e7e5cc from=translated src=- shape=348fd024 vocab=b0c6a4b6
+-/
 theorem expect_centered_inducedDegreeCount_sq_le_raw
     (H : IndexedHypergraph V E)
     {r B D : ℕ} (hunif : H.IsUniform r)
@@ -1658,7 +1827,9 @@ theorem expect_centered_inducedDegreeCount_sq_le_raw
     mul_le_mul_of_nonpos_left hfirst hnegative
   rw [expect_centered_inducedDegreeCount_sq H a c hD hv]
   linarith
-/-- Center at the degree predicted by independent vertex survival.-/
+/-- Center at the degree predicted by independent vertex survival.
+@isnad1 id=other.7h8v.s8.a92aa9e70bc6 from=translated src=- shape=0a6d426b vocab=39c08d49
+-/
 theorem expect_centered_inducedDegreeCount_sq_le
     (H : IndexedHypergraph V E)
     {r B D : ℕ} (hr : 1 ≤ r) (hunif : H.IsUniform r)
@@ -1748,6 +1919,9 @@ theorem expect_centered_inducedDegreeCount_sq_le
           ((doublyIntersectingPairs H v).card : ℝ) * q := by
       rw [hexp3, ← hqc]
       nlinarith [hqc2]
+/--
+@isnad1 id=other.8h8v.s9.4bbe268585f0 from=translated src=- shape=5501b7f4 vocab=39c08d49
+-/
 theorem expect_centered_inducedDegreeCount_sq_le_linear
     (H : IndexedHypergraph V E)
     {r B D : ℕ} (hr : 1 ≤ r) (hunif : H.IsUniform r)
@@ -1808,6 +1982,9 @@ theorem expect_centered_inducedDegreeCount_sq_le_linear
         ((doublyIntersectingPairs H v).card : ℝ) * Real.exp (-a) := by
       exact add_le_add_left
         (mul_le_mul_of_nonneg_left hexpGap hcoeff) _
+/--
+@isnad1 id=other.8h8v.s8.2a97195d9bb9 from=translated src=- shape=125e3340 vocab=21ad0471
+-/
 theorem expect_centered_inducedDegreeCount_sq_le_global
     (H : IndexedHypergraph V E)
     {r B D : ℕ} (hr : 1 ≤ r) (hunif : H.IsUniform r)
@@ -1893,7 +2070,9 @@ theorem expect_centered_inducedDegreeCount_sq_le_global
         (mul_le_mul_of_nonneg_right hcoeff hmult) hbadTerm
 omit [Fintype V] [Fintype E] [DecidableEq E] in
 /-- A unit of integer rounding plus centered deviation pays for a vertex's
-positive degree excess after the survivor step.-/
+positive degree excess after the survivor step.
+@isnad1 id=le.1h7v.s7.b88c63b5b1f1 from=translated src=- shape=54ae81ed vocab=6a141dd5
+-/
 theorem vertex_degreeExcess_le_abs_centered
     (H : IndexedHypergraph V E) (Dnext : ℕ)
     (ω : E ⊕ V → Bool) (v : V) (c : ℝ)
@@ -1941,6 +2120,9 @@ theorem vertex_degreeExcess_le_abs_centered
     rw [hI]
     simp
 omit [Fintype V] [Fintype E] [DecidableEq E] in
+/--
+@isnad1 id=eq.0h5v.s6.8b62393e70e9 from=translated src=- shape=f8a9bf83 vocab=bdc79433
+-/
 theorem induced_degreeExcess_eq_indicator_sum
     (H : IndexedHypergraph V E) (Dnext : ℕ)
     (ω : E ⊕ V → Bool) :
@@ -1975,6 +2157,9 @@ theorem induced_degreeExcess_eq_indicator_sum
       by_cases hs : vertexSurvives H ω v
       · simp [FiniteBernoulli.eventIndicator, hs]
       · simp [FiniteBernoulli.eventIndicator, hs]
+/--
+@isnad1 id=other.9h9v.s9.0e9816516510 from=translated src=- shape=b7cc2cc1 vocab=576ea5ad
+-/
 theorem expect_vertex_degreeExcess_le (H : IndexedHypergraph V E)
     {r B D Dnext : ℕ} (hr : 1 ≤ r) (hunif : H.IsUniform r)
     (hcap : ∀ v ∈ H.vertices, H.degree v ≤ D)
@@ -2049,7 +2234,9 @@ theorem expect_vertex_degreeExcess_le (H : IndexedHypergraph V E)
     _ ≤ Real.sqrt M + Real.exp (-a) := by
       rw [hI]
       linarith
-/-- Expected total degree excess in the induced survivor hypergraph.-/
+/-- Expected total degree excess in the induced survivor hypergraph.
+@isnad1 id=other.8h8v.s8.c94110a970ae from=translated src=- shape=3302e644 vocab=162bb87c
+-/
 theorem expect_induced_degreeExcess_le (H : IndexedHypergraph V E)
     {r B D Dnext : ℕ} (hr : 1 ≤ r) (hunif : H.IsUniform r)
     (hcap : ∀ v ∈ H.vertices, H.degree v ≤ D)
@@ -2165,7 +2352,9 @@ noncomputable def MatchingState.potential
       ((s.residual.degreeDeficit (D i) : ℝ) / (D i : ℝ)) +
     (s.wasted : ℝ)
 omit [Fintype V] [Fintype E] [DecidableEq E] in
-/-- The residual and initial hypergraphs interpret every edge-copy label identically.-/
+/-- The residual and initial hypergraphs interpret every edge-copy label identically.
+@isnad1 id=eq.0h9v.s5.3533c98791b6 from=translated src=- shape=8a62165e vocab=2a716297
+-/
 theorem MatchingState.covered_eq
     {H₀ : IndexedHypergraph V E} {r B : ℕ} {D : ℕ → ℕ} {i : ℕ}
     (s : MatchingState H₀ r B D i) (F : Finset E) :
@@ -2173,7 +2362,9 @@ theorem MatchingState.covered_eq
   simp only [IndexedHypergraph.covered, s.edge_eq]
 
 omit [Fintype V] [Fintype E] [DecidableEq E] in
-/-- A residual matching remains a matching in the original hypergraph.-/
+/-- A residual matching remains a matching in the original hypergraph.
+@isnad1 id=ismatchi.1h9v.s5.6727c7e73cdb from=translated src=- shape=46fac62f vocab=5eeaa23b
+-/
 theorem MatchingState.lift_matching
     {H₀ : IndexedHypergraph V E} {r B : ℕ} {D : ℕ → ℕ} {i : ℕ}
     (s : MatchingState H₀ r B D i) {F : Finset E}
@@ -2210,7 +2401,9 @@ private theorem matching_union_of_disjoint_covered
       · exact hF.2 heF hfF hne
 
 omit [Fintype V] [Fintype E] in
-/-- Extend the accumulated matching by a matching in the current residual.-/
+/-- Extend the accumulated matching by a matching in the current residual.
+@isnad1 id=ismatchi.1h9v.s6.ed7f30fe96b0 from=translated src=- shape=46ee3094 vocab=2e687825
+-/
 theorem MatchingState.matching_union
     {H₀ : IndexedHypergraph V E} {r B : ℕ} {D : ℕ → ℕ} {i : ℕ}
     (s : MatchingState H₀ r B D i) {F : Finset E}
@@ -2225,7 +2418,9 @@ theorem MatchingState.matching_union
       s.residual_disjoint_accepted.symm)
 
 /-- A coarse bound for the square-root error under degree-ratio and
-half-life estimates.-/
+half-life estimates.
+@isnad1 id=le.9h6v.s8.594b6de08d84 from=translated src=- shape=29b80682 vocab=64707ff4
+-/
 theorem one_round_error_le_eight
     {r B D Dnext : ℕ} (hr : 2 ≤ r) (hB : 1 ≤ B)
     (hD : 0 < D)
@@ -2311,7 +2506,9 @@ theorem one_round_error_le_eight
     nlinarith
   simpa only [R, d, C, k, M] using hfirst.trans hlast
 /-- Integer floors retain at least half the current cap and at least the exact
-exponential survival scale when `a r ≤ 1/100` and `a D ≥ 4`.-/
+exponential survival scale when `a r ≤ 1/100` and `a D ≥ 4`.
+@isnad1 id=and.5h4v.s7.50bb1d6738e0 from=translated src=- shape=3a4a2974 vocab=508b2914
+-/
 
 theorem floor_decay_bounds
     {r D Dnext : ℕ} {a : ℝ}
@@ -2407,7 +2604,9 @@ structure MatchingSchedule (r B T : ℕ) (D : ℕ → ℕ)
         Real.exp (-a)) ≤ δ * (D (i + 1) : ℝ)
 
 /-- Build a matching schedule from simple cap decay and codegree-ratio
-bounds. Only one scalar smallness check and one scalar error budget remain.-/
+bounds. Only one scalar smallness check and one scalar error budget remain.
+@isnad1 id=matching.14h7v.s9.e146cc392134 from=translated src=- shape=bdd1dbfc vocab=e978c207
+-/
 theorem matchingSchedule_of_degree_bounds
     {r B T : ℕ} {D : ℕ → ℕ} {a δ b : ℝ}
     (hr : 2 ≤ r) (hB : 1 ≤ B)
@@ -2458,7 +2657,9 @@ theorem matchingSchedule_of_degree_bounds
       (Nat.cast_nonneg (D (i + 1)) : (0 : ℝ) ≤ D (i + 1))
     exact hround.trans (by nlinarith [hscale])
 /-- A floor recurrence supplies both half-degree preservation and the
-exponential lower cap once `a D_i ≥ 4`.-/
+exponential lower cap once `a D_i ≥ 4`.
+@isnad1 id=matching.13h7v.s8.62de611553fa from=translated src=- shape=d66458fb vocab=e978c207
+-/
 theorem matchingSchedule_of_floor_bounds
     {r B T : ℕ} {D : ℕ → ℕ} {a δ b : ℝ}
     (hr : 2 ≤ r) (hB : 1 ≤ B)
@@ -2496,7 +2697,9 @@ theorem matchingSchedule_of_floor_bounds
 
 omit [Fintype V] [Fintype E] [DecidableEq E] in
 /-- Near-regular minimum degree bounds the initial deficit after
-normalizing by the maximum degree.-/
+normalizing by the maximum degree.
+@isnad1 id=le.3h5v.s7.4f15d294b205 from=translated src=- shape=0abaa3e3 vocab=bee0719d
+-/
 theorem normalized_degreeDeficit_le
     (H : IndexedHypergraph V E) {D : ℕ} (hD : 0 < D)
     (hcap : ∀ v ∈ H.vertices, H.degree v ≤ D)
@@ -2519,7 +2722,9 @@ theorem normalized_degreeDeficit_le
   have hDreal : (0 : ℝ) < D := by exact_mod_cast hD
   exact (div_le_iff₀ hDreal).mpr hsum'
 /-- A coarse initial-potential budget, separating survivor decay, cumulative
-waste/deficit error, and the initial degree shortfall.-/
+waste/deficit error, and the initial degree shortfall.
+@isnad1 id=le.12h10v.s8.ac0f0addaf1e from=translated src=- shape=6d390d8b vocab=763ea40c
+-/
 theorem initial_potential_budget
     (T : ℕ) (N z₀ q δ a β L μ ξ : ℝ)
     (hN : 0 ≤ N) (hμ : 0 ≤ μ)

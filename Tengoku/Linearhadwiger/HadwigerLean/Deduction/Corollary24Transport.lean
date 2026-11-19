@@ -30,7 +30,9 @@ noncomputable def inducedPreimageIso
       exact e.map_rel_iff
   }
 
-/-- Chromatic separability is invariant under a graph isomorphism.-/
+/-- Chromatic separability is invariant under a graph isomorphism.
+@isnad1 id=chromati.1h6v.s5.6c880712ff94 from=translated src=- shape=d2e2ff7c vocab=cb3e08e9
+-/
 theorem chromaticSeparable_of_iso
     {V : Type u} {W : Type v} [Fintype V] [Fintype W]
     {G : SimpleGraph V} {H : SimpleGraph W}
@@ -59,7 +61,9 @@ theorem chromaticSeparable_of_iso
   · simpa only [hχ, hχA] using hA
   · simpa only [hχ, hχB] using hB
 
-/-- The Corollary 24 separation premise passes to every induced graph.-/
+/-- The Corollary 24 separation premise passes to every induced graph.
+@isnad1 id=outersep.1h5v.s5.0b3debeb9575 from=translated src=- shape=1a674b4b vocab=d6d90e6d
+-/
 theorem outerSeparation_induce
     {V : Type u} [Fintype V]
     (G : SimpleGraph V) (T d : ℕ)

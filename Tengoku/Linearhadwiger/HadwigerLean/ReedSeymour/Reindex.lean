@@ -15,7 +15,9 @@ variable {V I J : Type*} [Fintype V] [Fintype I] [DecidableEq I]
   [Fintype J] [DecidableEq J] {G : SimpleGraph V}
 
 omit [DecidableEq I] [DecidableEq J] in
-/-- The partial egg invariant is preserved by a bijection of block labels.-/
+/-- The partial egg invariant is preserved by a bijection of block labels.
+@isnad1 id=ispartia.1h7v.s5.63a2d9d55288 from=translated src=- shape=f4f7828e vocab=145c8922
+-/
 theorem ConnectedPartition.isPartialEggDecomposition_relabel
     (P : ConnectedPartition G I) (e : J ≃ I) (w : V → ℝ)
     (hP : IsPartialEggDecomposition P w) :
@@ -43,7 +45,9 @@ theorem ConnectedPartition.isPartialEggDecomposition_relabel
 
 omit [DecidableEq I] in
 /-- Reindex a finite partial egg decomposition by `Fin n`, retaining its
-egg support exactly.-/
+egg support exactly.
+@isnad1 id=ex.1h5v.s6.29230a181645 from=translated src=- shape=e8727c0b vocab=a90699a5
+-/
 theorem ConnectedPartition.exists_fin_relabel
     (P : ConnectedPartition G I) (w : V → ℝ)
     (hP : IsPartialEggDecomposition P w) :

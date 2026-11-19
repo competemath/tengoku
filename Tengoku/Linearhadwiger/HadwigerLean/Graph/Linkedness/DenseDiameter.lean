@@ -63,7 +63,9 @@ private theorem reachable_exists_shortestPath
   exact w.length_bypass_le_length.trans hwle
 
 /-- In a graph on at most `14k` vertices of minimum degree at least `5k`,
-any two vertices in the same component have a path of length at most five.-/
+any two vertices in the same component have a path of length at most five.
+@isnad1 id=ex.3h5v.s7.8fea456dcd10 from=translated src=- shape=4737640f vocab=a57e55f4
+-/
 theorem dense_reachable_path_length_le_five
     {V : Type*} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj] (k : ℕ)

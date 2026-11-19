@@ -63,7 +63,9 @@ def glueLeft {V : Type*} [Fintype V]
       · exact S.no_cross hxSL hxNotSR hySR hySL hxy
     · exact crossT hySL hyTR
 
-/-- The original strict far shore remains strictly far after gluing.-/
+/-- The original strict far shore remains strictly far after gluing.
+@isnad1 id=mem.2h5v.s7.30061a9c0650 from=translated src=- shape=24c6a4bf vocab=dc82a15f
+-/
 theorem strictRight_glueLeft {V : Type*} [Fintype V]
     {G : SimpleGraph V} (S : VertexSeparation G)
     (T : VertexSeparation (G.induce S.left))

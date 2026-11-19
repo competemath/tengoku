@@ -140,6 +140,9 @@ private theorem eraseStable?_not_mem (G : SimpleGraph V) (v : V)
   rw [eraseStable?_some G v S T h]
   simp
 
+/--
+@isnad1 id=le.3h6v.s6.73cf74545adc from=translated src=- shape=246d7cb3 vocab=8dc1b810
+-/
 theorem deleteVertexWeight_nonneg (G : SimpleGraph V) (v : V)
     (x : StableSet G → ℝ) (t : ℝ)
     (hx : ∀ S, 0 ≤ x S) (ht0 : 0 ≤ t) (ht1 : t ≤ 1)
@@ -159,6 +162,9 @@ theorem deleteVertexWeight_nonneg (G : SimpleGraph V) (v : V)
     · exact le_rfl
   exact add_nonneg hbase hmass
 
+/--
+@isnad1 id=eq.0h5v.s6.eb4a6de8debf from=translated src=- shape=a69bb5f2 vocab=d78fa859
+-/
 theorem vertexLoad_deleteVertexWeight_self (G : SimpleGraph V) (v : V)
     (x : StableSet G → ℝ) (t : ℝ) :
     vertexLoad G (deleteVertexWeight G v x t) v =
@@ -177,6 +183,9 @@ theorem vertexLoad_deleteVertexWeight_self (G : SimpleGraph V) (v : V)
         simp [hv, hn]
   · simp [hv]
 
+/--
+@isnad1 id=eq.1h6v.s5.a4c8db09c46a from=translated src=- shape=f4bdabb2 vocab=2b2e0bb8
+-/
 theorem vertexLoad_deleteVertexWeight_other (G : SimpleGraph V)
     (v u : V) (huv : u ≠ v) (x : StableSet G → ℝ) (t : ℝ) :
     vertexLoad G (deleteVertexWeight G v x t) u =
@@ -233,6 +242,9 @@ private theorem sum_deleteVertexWeight_filter_le (G : SimpleGraph V) (v : V)
           · simp [hv, hPT, hPS]
   · simp [hv]
 
+/--
+@isnad1 id=le.2h5v.s6.a42696a3e5d2 from=translated src=- shape=608f4a98 vocab=c82486fa
+-/
 theorem fractionalCost_deleteVertexWeight_le (G : SimpleGraph V) (v : V)
     (x : StableSet G → ℝ) (t : ℝ)
     (hx : ∀ S, 0 ≤ x S) (ht : 0 ≤ t) :
@@ -244,6 +256,9 @@ theorem fractionalCost_deleteVertexWeight_le (G : SimpleGraph V) (v : V)
     (fun _ : StableSet G => True) hx ht
     (by intro S T h htrue; trivial)
 
+/--
+@isnad1 id=le.2h6v.s6.640f478ae4db from=translated src=- shape=88bd77de vocab=9ff9ab73
+-/
 theorem pairLoad_deleteVertexWeight_le (G : SimpleGraph V) (v : V)
     (x : StableSet G → ℝ) (t : ℝ) (p : Finset V)
     (hx : ∀ S, 0 ≤ x S) (ht : 0 ≤ t) :
@@ -256,6 +271,9 @@ theorem pairLoad_deleteVertexWeight_le (G : SimpleGraph V) (v : V)
   rw [eraseStable?_some G v S T hT] at hp
   exact hp.trans (Finset.erase_subset v S.1)
 
+/--
+@isnad1 id=ispairco.4h6v.s6.49768c63b87c from=translated src=- shape=951d06b2 vocab=ddfee213
+-/
 theorem isPairConstrainedColoring_deleteVertexWeight
     (G : SimpleGraph V) (v : V) (x : StableSet G → ℝ)
     (δ t : ℝ) (hx : IsPairConstrainedColoring G δ x)
@@ -276,6 +294,9 @@ theorem isPairConstrainedColoring_deleteVertexWeight
     exact (pairLoad_deleteVertexWeight_le G v x t p hx.1.1 ht0).trans
       (hx.2 p)
 
+/--
+@isnad1 id=ex.1h5v.s6.11d1cab6d362 from=translated src=- shape=ccc962c4 vocab=73e208fa
+-/
 theorem exists_pairConstrained_normalize_vertex (G : SimpleGraph V)
     (v : V) (x : StableSet G → ℝ) (δ : ℝ)
     (hx : IsPairConstrainedColoring G δ x) :
@@ -308,7 +329,9 @@ theorem exists_pairConstrained_normalize_vertex (G : SimpleGraph V)
     exact vertexLoad_deleteVertexWeight_other G v u huv x t
   · exact fractionalCost_deleteVertexWeight_le G v x t hx.1.1 ht0
 
-/-- Normalize every vertex in a finite set while preserving the LP constraints.-/
+/-- Normalize every vertex in a finite set while preserving the LP constraints.
+@isnad1 id=ex.1h5v.s6.1a0672333add from=translated src=- shape=ee1f993c vocab=baad71e9
+-/
 theorem exists_pairConstrained_exact_on (G : SimpleGraph V)
     (δ : ℝ) (x : StableSet G → ℝ)
     (hx : IsPairConstrainedColoring G δ x) (s : Finset V) :
@@ -338,7 +361,9 @@ theorem exists_pairConstrained_exact_on (G : SimpleGraph V)
         exact hyS u hus
 
 /-- Any feasible pair-constrained coloring can be made exact at every vertex
-without increasing its cost.-/
+without increasing its cost.
+@isnad1 id=ex.1h4v.s6.2be54480abd4 from=translated src=- shape=dae58594 vocab=73e208fa
+-/
 theorem exists_pairConstrained_exact (G : SimpleGraph V)
     (δ : ℝ) (x : StableSet G → ℝ)
     (hx : IsPairConstrainedColoring G δ x) :
@@ -351,7 +376,9 @@ theorem exists_pairConstrained_exact (G : SimpleGraph V)
   exact ⟨y, hy, (by intro v; exact hload v (Finset.mem_univ v)), hcost⟩
 
 /-- The attained pair-constrained LP optimum can be chosen with all vertex
-loads equal to one, as required by the rounding lemma.-/
+loads equal to one, as required by the rounding lemma.
+@isnad1 id=ex.1h3v.s6.dea853401a28 from=translated src=- shape=54af8d89 vocab=73e208fa
+-/
 theorem exists_pairConstrained_exact_minimizer (G : SimpleGraph V)
     {δ : ℝ} (hδ : 0 ≤ δ) :
     ∃ x : StableSet G → ℝ,

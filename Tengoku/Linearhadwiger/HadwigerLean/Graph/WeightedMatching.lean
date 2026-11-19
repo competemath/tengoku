@@ -34,16 +34,23 @@ variable {V : Type u} {I : Type v} {G : SimpleGraph V}
 def branch (M : IndexedMatching G I) (i : I) : Set V :=
   {M.endpoint i false, M.endpoint i true}
 
+/--
+@isnad1 id=iff.0h6v.s5.98af82b58b07 from=translated src=- shape=b3f8e772 vocab=8867fe2e
+-/
 @[simp] theorem mem_branch (M : IndexedMatching G I) (i : I) (x : V) :
     x ∈ M.branch i ↔ x = M.endpoint i false ∨ x = M.endpoint i true := by
   simp [branch]
 
-/-- Every matching edge is a connected branch set.-/
+/-- Every matching edge is a connected branch set.
+@isnad1 id=connecte.0h5v.s5.e7f6b2d7c8a6 from=translated src=- shape=91cb3ee4 vocab=8cf473e3
+-/
 theorem branch_connected (M : IndexedMatching G I) (i : I) :
     (G.induce (M.branch i)).Connected := by
   exact G.induce_pair_connected_of_adj (M.adjacent i)
 
-/-- Distinct matching edges have disjoint vertex sets.-/
+/-- Distinct matching edges have disjoint vertex sets.
+@isnad1 id=pairwise.0h4v.s6.f36f027b8dfc from=translated src=- shape=1f680cf5 vocab=3e35ed23
+-/
 theorem branch_disjoint (M : IndexedMatching G I) :
     Pairwise fun i j => Disjoint (M.branch i) (M.branch j) := by
   intro i j hij
@@ -71,6 +78,9 @@ def quotient (M : IndexedMatching G I) : SimpleGraph I where
     intro i hii
     exact hii.1 rfl⟩
 
+/--
+@isnad1 id=iff.0h6v.s5.f2fe23ef006c from=translated src=- shape=174e4e89 vocab=77bb9bb0
+-/
 theorem quotient_adj_iff (M : IndexedMatching G I) (i j : I) :
     M.quotient.Adj i j ↔
       i ≠ j ∧ ∃ a b : Bool, G.Adj (M.endpoint i a) (M.endpoint j b) :=
@@ -88,9 +98,15 @@ def quotientMinorModel (M : IndexedMatching G I) : MinorModel M.quotient G where
     · cases a <;> simp [branch]
     · cases b <;> simp [branch]
 
+/--
+@isnad1 id=isminor.0h4v.s4.6408e14bbbce from=translated src=- shape=be0665ee vocab=d58b1b48
+-/
 theorem quotient_isMinor (M : IndexedMatching G I) : IsMinor M.quotient G :=
   ⟨M.quotientMinorModel⟩
 
+/--
+@isnad1 id=le.0h4v.s5.5ba524394255 from=translated src=- shape=acfcea30 vocab=5e2184f7
+-/
 theorem quotient_cliqueMinorNumber_le [Fintype V] [Fintype I]
     (M : IndexedMatching G I) :
     cliqueMinorNumber M.quotient ≤ cliqueMinorNumber G :=
@@ -115,6 +131,9 @@ def edgeGraph (M : IndexedMatching G I) : SimpleGraph V where
     · exact (M.adjacent i).ne (h.1.symm.trans h.2)
     · exact (M.adjacent i).ne (h.2.symm.trans h.1)⟩
 
+/--
+@isnad1 id=le.0h4v.s4.d9305ff8a7b4 from=translated src=- shape=7e320875 vocab=7b8641b6
+-/
 theorem edgeGraph_le (M : IndexedMatching G I) : M.edgeGraph ≤ G := by
   intro x y h
   obtain ⟨i, h⟩ := h
@@ -122,10 +141,16 @@ theorem edgeGraph_le (M : IndexedMatching G I) : M.edgeGraph ≤ G := by
   · exact M.adjacent i
   · exact (M.adjacent i).symm
 
+/--
+@isnad1 id=adj.0h5v.s5.dacda102681d from=translated src=- shape=e2fb0faa vocab=4aee1468
+-/
 theorem edgeGraph_adj_endpoints (M : IndexedMatching G I) (i : I) :
     M.edgeGraph.Adj (M.endpoint i false) (M.endpoint i true) :=
   ⟨i, Or.inl ⟨rfl, rfl⟩⟩
 
+/--
+@isnad1 id=eq.1h6v.s5.42488a681bbe from=translated src=- shape=6e977453 vocab=4aee1468
+-/
 theorem edgeGraph_unique_of_left (M : IndexedMatching G I)
     (i : I) {v : V} (h : M.edgeGraph.Adj (M.endpoint i false) v) :
     v = M.endpoint i true := by
@@ -136,6 +161,9 @@ theorem edgeGraph_unique_of_left (M : IndexedMatching G I)
   · have hij : (i, false) = (j, true) := M.injective hright
     exact (Bool.false_ne_true (congrArg Prod.snd hij)).elim
 
+/--
+@isnad1 id=eq.1h6v.s5.52ae0ce71c84 from=translated src=- shape=6e977453 vocab=4aee1468
+-/
 theorem edgeGraph_unique_of_right (M : IndexedMatching G I)
     (i : I) {v : V} (h : M.edgeGraph.Adj (M.endpoint i true) v) :
     v = M.endpoint i false := by
@@ -145,6 +173,9 @@ theorem edgeGraph_unique_of_right (M : IndexedMatching G I)
     exact (Bool.false_ne_true (congrArg Prod.snd hij).symm).elim
   · have hij : (i, true) = (j, true) := M.injective hright
     exact (congrArg (fun p : I × Bool => M.endpoint p.1 false) hij).symm
+/--
+@isnad1 id=eq.2h7v.s5.b211f61c3798 from=translated src=- shape=94a1ab4f vocab=ddde48cf
+-/
 theorem edgeGraph_adj_unique (M : IndexedMatching G I)
     {x y z : V} (hxy : M.edgeGraph.Adj x y)
     (hxz : M.edgeGraph.Adj x z) : y = z := by
@@ -153,6 +184,9 @@ theorem edgeGraph_adj_unique (M : IndexedMatching G I)
   · exact (M.edgeGraph_unique_of_left i hxz).symm
   · exact (M.edgeGraph_unique_of_right i hxz).symm
 
+/--
+@isnad1 id=le.0h5v.s6.95d7b6bb20c4 from=translated src=- shape=ae1ab50d vocab=84e5a300
+-/
 theorem edgeGraph_degree_le_one [Fintype V] [DecidableEq V]
     (M : IndexedMatching G I) [DecidableRel M.edgeGraph.Adj] (x : V) :
     M.edgeGraph.degree x ≤ 1 := by
@@ -161,7 +195,9 @@ theorem edgeGraph_degree_le_one [Fintype V] [DecidableEq V]
   exact M.edgeGraph_adj_unique (by simpa using hy) (by simpa using hz)
 end IndexedMatching
 
-/-- A finite forest with an edge has a leaf, even if it is disconnected.-/
+/-- A finite forest with an edge has a leaf, even if it is disconnected.
+@isnad1 id=ex.2h4v.s6.a493ccaef184 from=translated src=- shape=bb1b7f02 vocab=aa5e482b
+-/
 theorem forest_exists_degree_one {V : Type*} [Fintype V]
     (H : SimpleGraph V) [DecidableRel H.Adj] (hforest : H.IsAcyclic)
     {u v : V} (huv : H.Adj u v) :
@@ -187,7 +223,9 @@ theorem forest_exists_degree_one {V : Type*} [Fintype V]
     (huniq ⟨z, hz⟩ ((C.toSimpleGraph_adj x.property hz).mpr hxz))
 /-- If matching edges stay outside cycles after replacing D by a spanning
 forest, then a matching pair has a D-isolated endpoint. This is the peeling
-step behind the independent transversal.-/
+step behind the independent transversal.
+@isnad1 id=ex.3h3v.s6.8ff6e3f8a802 from=translated src=- shape=e5655eec vocab=840a9528
+-/
 theorem exists_isolated_of_perfect_matching_forest
     {V : Type*} [Fintype V] [Nonempty V]
     (D P : SimpleGraph V)
@@ -228,7 +266,9 @@ def NoMatchingEdgeCycle {V : Type*} (D P : SimpleGraph V) : Prop :=
     ∀ e ∈ c.edges, e ∉ P.edgeSet
 
 /-- The paper's cycle condition makes a spanning forest of D together with
-the matching edges acyclic.-/
+the matching edges acyclic.
+@isnad1 id=isacycli.3h4v.s5.e698d1e5f101 from=translated src=- shape=2729ad11 vocab=44ca09a9
+-/
 theorem forest_union_acyclic_of_no_matching_cycle
     {V : Type*} (D P : SimpleGraph V)
     (hcycles : NoMatchingEdgeCycle D P)
@@ -249,7 +289,9 @@ theorem forest_union_acyclic_of_no_matching_cycle
   exact hFforest (c.transfer F hFedges) (hc.transfer hFedges)
 
 /-- A perfect matching whose edges are all absent from cycles of D+P has a
-pair with a D-isolated endpoint.-/
+pair with a D-isolated endpoint.
+@isnad1 id=ex.3h3v.s5.b16ed7f79d04 from=translated src=- shape=dceede5b vocab=655cb27c
+-/
 theorem exists_isolated_of_no_matching_cycle
     {V : Type*} [Fintype V] [Nonempty V]
     (D P : SimpleGraph V)
@@ -270,17 +312,25 @@ def spanningInduce {V : Type*} (G : SimpleGraph V) (s : Finset V) : SimpleGraph 
     intro x h
     exact G.loopless.irrefl x h.2.2⟩
 
+/--
+@isnad1 id=iff.0h5v.s5.7a7a7d0c1aa1 from=translated src=- shape=2bf9d143 vocab=d368b40d
+-/
 @[simp] theorem spanningInduce_adj_iff {V : Type*} (G : SimpleGraph V)
     (s : Finset V) (x y : V) :
     (spanningInduce G s).Adj x y ↔ x ∈ s ∧ y ∈ s ∧ G.Adj x y :=
   Iff.rfl
 
+/--
+@isnad1 id=le.0h3v.s4.7f9e983f4ab1 from=translated src=- shape=9be8bb50 vocab=845c4e65
+-/
 theorem spanningInduce_le {V : Type*} (G : SimpleGraph V) (s : Finset V) :
     spanningInduce G s ≤ G := by
   intro x y h
   exact h.2.2
 
-/-- The no-matching-cycle condition is inherited by spanning subgraphs.-/
+/-- The no-matching-cycle condition is inherited by spanning subgraphs.
+@isnad1 id=nomatchi.3h5v.s5.9809a8876717 from=translated src=- shape=3f0e76e7 vocab=eabf4fec
+-/
 theorem NoMatchingEdgeCycle.mono
     {V : Type*} {D P D' P' : SimpleGraph V}
     (h : NoMatchingEdgeCycle D P) (hD : D' ≤ D) (hP : P' ≤ P) :
@@ -292,7 +342,9 @@ theorem NoMatchingEdgeCycle.mono
   intro heP'
   exact hnot (SimpleGraph.edgeSet_mono hP heP')
 /-- Peeling with the graph vertex type fixed. All edges are supported on s,
-and vertices of s are paired by P.-/
+and vertices of s are paired by P.
+@isnad1 id=ex.6h4v.s7.c8538c4b5d95 from=translated src=- shape=f6c47e20 vocab=de7e15eb
+-/
 theorem exists_isolated_on_support
     {V : Type*} [Fintype V] (D P : SimpleGraph V) (s : Finset V)
     (hs : s.Nonempty)
@@ -333,7 +385,9 @@ theorem exists_isolated_on_support
   | nil => exact hDxt.ne rfl
   | cons h _ => exact hFisolated _ h
 /-- Deleting both ends of one perfect-matching pair preserves any union of
-matching pairs.-/
+matching pairs.
+@isnad1 id=mem.5h7v.s7.ef1d542bd3da from=translated src=- shape=fe9ef3ec vocab=c667cc88
+-/
 theorem perfect_matching_closed_sdiff_pair
     {V : Type*} [DecidableEq V] (P : SimpleGraph V)
     (hperfect : ∀ a : V, ∃! b : V, P.Adj a b)
@@ -369,7 +423,9 @@ theorem perfect_matching_closed_sdiff_pair
   exact Finset.mem_sdiff.mpr ⟨hbs, by simp [hbx, hby]⟩
 /-- Independent transversal of a perfect matching under the paper's
 no-matching-edge-cycle condition. The auxiliary set may be any union of
-matching pairs, which gives the induction invariant.-/
+matching pairs, which gives the induction invariant.
+@isnad1 id=ex.4h4v.s7.3e3a3179d79e from=translated src=- shape=f67277a6 vocab=0cf982b9
+-/
 theorem independent_transversal_on
     {V : Type*} [Fintype V] [DecidableEq V]
     (D P : SimpleGraph V)
@@ -479,7 +535,9 @@ theorem independent_transversal_on
         simp at ha
   exact aux s hclosed
 /-- Independent transversal of every pair of a perfect matching, in the
-precise form of Lemma "Independent transversal" in the paper.-/
+precise form of Lemma "Independent transversal" in the paper.
+@isnad1 id=ex.3h3v.s6.25a46fc3d30d from=translated src=- shape=510558e2 vocab=d3dfecc7
+-/
 theorem independent_transversal
     {V : Type*} [Fintype V] [DecidableEq V]
     (D P : SimpleGraph V)
@@ -493,20 +551,27 @@ theorem independent_transversal
       (Finset.univ : Finset V) (by simp)
   exact ⟨T, hTindep, fun a b hab => hTcross a b hab (Finset.mem_univ a)⟩
 /-- Extended distance excludes all short walks, including across disconnected
-components, where ordinary natural-valued distance would be zero.-/
+components, where ordinary natural-valued distance would be zero.
+@isnad1 id=lt.1h6v.s5.a75e48647567 from=translated src=- shape=9b6f8d2e vocab=40d49ff4
+-/
 theorem length_gt_of_edist_gt
     {V : Type*} (J : SimpleGraph V) {u v : V} {r : ℕ}
     (h : (r : ℕ∞) < J.edist u v) (p : J.Walk u v) :
     r < p.length := by
   exact_mod_cast h.trans_le p.edist_le
 
+/--
+@isnad1 id=not.1h4v.s4.cab79f8321b9 from=translated src=- shape=46a6f111 vocab=ae930ed3
+-/
 theorem not_adj_of_edist_gt_one
     {V : Type*} (J : SimpleGraph V) {u v : V}
     (h : (1 : ℕ∞) < J.edist u v) :
     ¬ J.Adj u v := by
   intro hadj
   exact (not_lt_of_ge (SimpleGraph.edist_le hadj.toWalk)) h
-/-- A simple cycle uses no more vertices than the ambient finite graph.-/
+/-- A simple cycle uses no more vertices than the ambient finite graph.
+@isnad1 id=le.1h4v.s5.9eaee7898b7e from=translated src=- shape=35e93474 vocab=d4ecef72
+-/
 theorem cycle_length_le_card
     {V : Type*} [Fintype V] {J : SimpleGraph V}
     {u : V} {c : J.Walk u u} (hc : c.IsCycle) :
@@ -515,7 +580,9 @@ theorem cycle_length_le_card
   simpa [List.length_tail, c.length_support] using h
 
 /-- A global exclusion of cycles through a matching edge up to the graph
-order implies the unrestricted cycle condition.-/
+order implies the unrestricted cycle condition.
+@isnad1 id=nomatchi.2h4v.s6.1c91e3f3a4bc from=translated src=- shape=b17ecd69 vocab=d0cf29ac
+-/
 theorem no_matching_edge_cycle_of_short_excluded
     {V : Type*} [Fintype V] (D P : SimpleGraph V) (r : ℕ)
     (hcard : Fintype.card V ≤ r)
@@ -532,6 +599,9 @@ def walkReach {V : Type*} [Fintype V] [DecidableEq V]
   | 0 => {u}
   | n + 1 => (J.neighborFinset u).biUnion fun v => walkReach J v n
 
+/--
+@isnad1 id=mem.0h5v.s5.ce72a72faeee from=translated src=- shape=0dfcb1f8 vocab=132b4849
+-/
 theorem mem_walkReach_of_walk
     {V : Type*} [Fintype V] [DecidableEq V]
     {J : SimpleGraph V} [DecidableRel J.Adj]
@@ -543,6 +613,9 @@ theorem mem_walkReach_of_walk
     simp only [SimpleGraph.Walk.length_cons, walkReach, Finset.mem_biUnion]
     exact ⟨w, by simpa using huw, ih⟩
 
+/--
+@isnad1 id=le.1h5v.s6.9fdd22dba293 from=translated src=- shape=26793c77 vocab=747252a6
+-/
 theorem card_walkReach_le_pow
     {V : Type*} [Fintype V] [DecidableEq V]
     (J : SimpleGraph V) [DecidableRel J.Adj] (k : ℕ)
@@ -573,6 +646,9 @@ def walkBall {V : Type*} [Fintype V] [DecidableEq V]
     (J : SimpleGraph V) [DecidableRel J.Adj] (u : V) (r : ℕ) : Finset V :=
   (Finset.range (r + 1)).biUnion fun n => walkReach J u n
 
+/--
+@isnad1 id=le.1h5v.s6.a2f62e58e0c5 from=translated src=- shape=33ffed71 vocab=f862fe84
+-/
 theorem card_walkBall_le_sum_pow
     {V : Type*} [Fintype V] [DecidableEq V]
     (J : SimpleGraph V) [DecidableRel J.Adj] (k r : ℕ)
@@ -587,6 +663,9 @@ theorem card_walkBall_le_sum_pow
           intro n _
           exact card_walkReach_le_pow J k hdegree n u
 
+/--
+@isnad1 id=mem.1h5v.s5.2d189cd3ec29 from=translated src=- shape=420a672d vocab=ddfbaa0e
+-/
 theorem mem_walkBall_of_edist_le
     {V : Type*} [Fintype V] [DecidableEq V]
     (J : SimpleGraph V) [DecidableRel J.Adj]
@@ -601,6 +680,9 @@ theorem mem_walkBall_of_edist_le
     ⟨p.length, Finset.mem_range.mpr (Nat.lt_succ_of_le hlen),
       mem_walkReach_of_walk p⟩
 
+/--
+@isnad1 id=le.1h5v.s7.1085110868e0 from=translated src=- shape=1292c570 vocab=e4697cc9
+-/
 theorem card_edist_ball_le_sum_pow
     {V : Type*} [Fintype V] [DecidableEq V]
     (J : SimpleGraph V) [DecidableRel J.Adj] (k r : ℕ)
@@ -616,7 +698,9 @@ theorem card_edist_ball_le_sum_pow
     _ ≤ ∑ n ∈ Finset.range (r + 1), k ^ n :=
       card_walkBall_le_sum_pow J k r hdegree u
 
-/-- Degrees are subadditive under the union of two spanning graphs.-/
+/-- Degrees are subadditive under the union of two spanning graphs.
+@isnad1 id=le.0h4v.s7.bbe9f8d19280 from=translated src=- shape=e975f1bb vocab=0058d8b9
+-/
 theorem degree_sup_le
     {V : Type*} [Fintype V] [DecidableEq V]
     (D P : SimpleGraph V) [DecidableRel D.Adj] [DecidableRel P.Adj]
@@ -639,6 +723,9 @@ theorem degree_sup_le
       Finset.card_union_le _ _
     _ = D.degree x + P.degree x := rfl
 
+/--
+@isnad1 id=le.1h7v.s7.b4311896f3d6 from=translated src=- shape=c8a6dd23 vocab=be36e279
+-/
 theorem IndexedMatching.degree_sup_edgeGraph_le
     {V : Type*} {I : Type*} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} (M : IndexedMatching G I)
@@ -658,7 +745,9 @@ def laterNeighbors {V : Type*} [DecidableEq V]
   s.filter fun y => G.Adj x y ∧ time x < time y
 
 /-- An ordered set with at most B later neighbors per vertex has an
-independent subset of at least a 1/(B+1) fraction of its vertices.-/
+independent subset of at least a 1/(B+1) fraction of its vertices.
+@isnad1 id=ex.2h5v.s6.9cee074fafb1 from=translated src=- shape=81cb5620 vocab=29a9149f
+-/
 theorem exists_large_independent_of_later_neighbors
     {V : Type*} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj]
@@ -737,7 +826,9 @@ theorem exists_large_independent_of_later_neighbors
   exact aux s (Finset.Subset.refl s)
 
 /-- Independence number converts the ordered-neighborhood certificate to
-the numerical bound used for unmatched vertices and threshold crossings.-/
+the numerical bound used for unmatched vertices and threshold crossings.
+@isnad1 id=le.3h6v.s6.a5cdab98e045 from=translated src=- shape=631d4c62 vocab=55258e75
+-/
 theorem card_le_independence_mul_succ_of_later_neighbors
     {V : Type*} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj]
@@ -756,7 +847,9 @@ theorem card_le_independence_mul_succ_of_later_neighbors
 
 /-- Final-graph distance certificates bound a time-ordered exceptional set.
 A greedy construction will supply the distance premise for unmatched vertices
-and, threshold by threshold, for the high ends of crossing matching edges.-/
+and, threshold by threshold, for the high ends of crossing matching edges.
+@isnad1 id=le.4h8v.s7.9cbc4e7b1e5a from=translated src=- shape=72148325 vocab=57f3a549
+-/
 theorem card_le_of_later_adj_edist_le
     {V : Type*} [Fintype V] [DecidableEq V]
     (G J : SimpleGraph V) [DecidableRel G.Adj] [DecidableRel J.Adj]
@@ -789,6 +882,9 @@ noncomputable def crossingHigh
     fun i => w (M.endpoint i true) ≤ a ∧ a < w (M.endpoint i false)).image
       (fun i => M.endpoint i false)
 
+/--
+@isnad1 id=iff.0h7v.s6.4144c7c829a9 from=translated src=- shape=776e7043 vocab=a2cf5fe9
+-/
 theorem mem_crossingHigh
     {V I : Type*} [Fintype I] [DecidableEq V]
     {G : SimpleGraph V} (M : IndexedMatching G I)
@@ -799,6 +895,9 @@ theorem mem_crossingHigh
   classical
   simp [crossingHigh, and_assoc, eq_comm]
 
+/--
+@isnad1 id=injectiv.0h4v.s4.6d86ea6e034b from=translated src=- shape=09f7bdeb vocab=9bdc136d
+-/
 theorem IndexedMatching.endpoint_left_injective
     {V I : Type*} {G : SimpleGraph V}
     (M : IndexedMatching G I) :
@@ -808,6 +907,9 @@ theorem IndexedMatching.endpoint_left_injective
     (fun p : I × Bool => M.endpoint p.1 p.2) (i, false) =
       (fun p : I × Bool => M.endpoint p.1 p.2) (j, false) from h))
 
+/--
+@isnad1 id=eq.0h6v.s6.23b1a881aba1 from=translated src=- shape=c9be74db vocab=f0fc2b26
+-/
 theorem crossingHigh_card_eq
     {V I : Type*} [Fintype I] [DecidableEq V]
     {G : SimpleGraph V} (M : IndexedMatching G I)
@@ -819,7 +921,9 @@ theorem crossingHigh_card_eq
   exact Finset.card_image_of_injective _ M.endpoint_left_injective
 
 /-- Every threshold crossing set has the paper's cardinal bound once later
-adjacent high endpoints are certified to lie in the final radius-r ball.-/
+adjacent high endpoints are certified to lie in the final radius-r ball.
+@isnad1 id=le.4h11v.s8.f12df036e999 from=translated src=- shape=28f9f55d vocab=98ee88be
+-/
 theorem crossingHigh_card_le
     {V I : Type*} [Fintype V] [Fintype I] [DecidableEq V]
     (G D : SimpleGraph V) [DecidableRel G.Adj] [DecidableRel D.Adj]
@@ -847,7 +951,9 @@ theorem crossingHigh_card_le
   exact hclose a i j hilow hihigh hjlow hjhigh hlt hadj
 
 /-- Finite layer cake: if at most C intervals cover each threshold in
-[0,1], their total length is at most C.-/
+[0,1], their total length is at most C.
+@isnad1 id=le.4h4v.s7.51d9e2d01f45 from=translated src=- shape=adcabf53 vocab=dcba20e7
+-/
 theorem sum_interval_lengths_le_of_overlap
     {I : Type*} [Fintype I]
     (lo hi : I → ℝ) (C : ℕ)
@@ -904,7 +1010,9 @@ theorem sum_interval_lengths_le_of_overlap
       simp
 
 /-- The layer-cake weight-loss estimate for a pair-indexed matching, supplied
-with a uniform bound on threshold crossing edges.-/
+with a uniform bound on threshold crossing edges.
+@isnad1 id=le.3h6v.s7.0cab5a908967 from=translated src=- shape=551aa533 vocab=006b1a8c
+-/
 theorem IndexedMatching.weight_loss_le_of_crossing_bound
     {V I : Type*} [Fintype I] [DecidableEq V]
     {G : SimpleGraph V} (M : IndexedMatching G I)
@@ -927,7 +1035,9 @@ theorem IndexedMatching.weight_loss_le_of_crossing_bound
   simpa only [abs_of_nonneg, sub_nonneg.mpr, horder] using hraw
 
 /-- The bounded weight-loss conclusion from final-graph neighborhood
-certificates for all threshold crossing sets.-/
+certificates for all threshold crossing sets.
+@isnad1 id=le.6h10v.s8.f7186cbccc79 from=translated src=- shape=58053858 vocab=66fd5a1c
+-/
 theorem IndexedMatching.weight_loss_le_of_later_crossings_close
     {V I : Type*} [Fintype V] [Fintype I] [DecidableEq V]
     (G D : SimpleGraph V) [DecidableRel G.Adj] [DecidableRel D.Adj]
@@ -954,7 +1064,9 @@ theorem IndexedMatching.weight_loss_le_of_later_crossings_close
     halpha hdegree hclose a
 
 /-- Deleting a matching pair preserves a set closed under matching partners;
-global perfection is unnecessary.-/
+global perfection is unnecessary.
+@isnad1 id=mem.5h7v.s7.fd8c00ba8e3e from=translated src=- shape=e1b96872 vocab=be0e9a2c
+-/
 theorem matching_closed_sdiff_pair
     {V : Type*} [DecidableEq V] (P : SimpleGraph V)
     (hunique : ∀ a b c, P.Adj a b → P.Adj a c → b = c)
@@ -984,7 +1096,9 @@ theorem matching_closed_sdiff_pair
   exact Finset.mem_sdiff.mpr ⟨hbs, by simp [hbx, hby]⟩
 
 /-- Independent transversal on a matching-closed subset, assuming matching
-perfection only on that subset. This is suited to partial matchings.-/
+perfection only on that subset. This is suited to partial matchings.
+@isnad1 id=ex.5h4v.s7.d35d21d72cbc from=translated src=- shape=3166b3b2 vocab=a15976a7
+-/
 theorem independent_transversal_on_partial
     {V : Type*} [Fintype V] [DecidableEq V]
     (D P : SimpleGraph V)
@@ -1102,6 +1216,9 @@ noncomputable def IndexedMatching.pairVertices
   classical
   exact S.biUnion fun i => {M.endpoint i false, M.endpoint i true}
 
+/--
+@isnad1 id=iff.0h6v.s6.2e96f5e7a0c6 from=translated src=- shape=32d59a2b vocab=d2f3a187
+-/
 theorem IndexedMatching.mem_pairVertices
     {V I : Type*} [DecidableEq V]
     {G : SimpleGraph V} (M : IndexedMatching G I)
@@ -1111,6 +1228,9 @@ theorem IndexedMatching.mem_pairVertices
   classical
   simp [IndexedMatching.pairVertices, Finset.mem_biUnion]
 
+/--
+@isnad1 id=ex.1h6v.s5.dc6437cb0926 from=translated src=- shape=7e072d95 vocab=a3c3203a
+-/
 theorem IndexedMatching.pairVertices_perfect
     {V I : Type*} [DecidableEq V]
     {G : SimpleGraph V} (M : IndexedMatching G I)
@@ -1123,6 +1243,9 @@ theorem IndexedMatching.pairVertices_perfect
   · subst x
     exact ⟨M.endpoint i false, (M.edgeGraph_adj_endpoints i).symm⟩
 
+/--
+@isnad1 id=mem.2h7v.s6.ca8b12fe5248 from=translated src=- shape=d43fb34b vocab=a3c3203a
+-/
 theorem IndexedMatching.pairVertices_closed
     {V I : Type*} [DecidableEq V]
     {G : SimpleGraph V} (M : IndexedMatching G I)
@@ -1139,7 +1262,9 @@ theorem IndexedMatching.pairVertices_closed
       ⟨i, hi, Or.inl (M.edgeGraph_unique_of_right i hxy)⟩
 
 /-- The partial-matching transversal lemma specialized to a family of
-indexed matching edges.-/
+indexed matching edges.
+@isnad1 id=ex.2h6v.s7.dc4878a0c817 from=translated src=- shape=2f17742e vocab=b043972d
+-/
 theorem IndexedMatching.independent_transversal_pairs
     {V I : Type*} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} (M : IndexedMatching G I)
@@ -1161,7 +1286,9 @@ theorem IndexedMatching.independent_transversal_pairs
   apply hTcross _ _ (M.edgeGraph_adj_endpoints i)
   exact (M.mem_pairVertices S _).mpr ⟨i, hi, Or.inl rfl⟩
 
-/-- Adding graph edges can only decrease extended distance.-/
+/-- Adding graph edges can only decrease extended distance.
+@isnad1 id=le.1h5v.s5.e7f9df105d9d from=translated src=- shape=6bbd25c9 vocab=fc44d86d
+-/
 theorem edist_antitone
     {V : Type*} {J K : SimpleGraph V}
     (hJK : J ≤ K) (x y : V) :
@@ -1176,7 +1303,9 @@ theorem edist_antitone
       _ = J.edist x y := hp
 
 /-- A cycle in a graph whose edges stay inside s uses at most s.card
-vertices. The graph may retain additional isolated ambient vertices.-/
+vertices. The graph may retain additional isolated ambient vertices.
+@isnad1 id=le.2h5v.s6.e0653140915c from=translated src=- shape=df4ca5a3 vocab=b8294fe5
+-/
 theorem cycle_length_le_edge_support
     {V : Type*} [DecidableEq V]
     (J : SimpleGraph V) (s : Finset V)
@@ -1198,7 +1327,9 @@ theorem cycle_length_le_edge_support
   simpa [List.length_tail, c.length_support] using hcard
 
 /-- Excluding matching-edge cycles up to the support size gives the unrestricted
-cycle condition after restricting both graphs to that support.-/
+cycle condition after restricting both graphs to that support.
+@isnad1 id=nomatchi.2h5v.s6.d95df18dfefd from=translated src=- shape=82549fd3 vocab=839c9768
+-/
 theorem no_matching_edge_cycle_spanningInduce_of_short
     {V : Type*} [DecidableEq V]
     (D P : SimpleGraph V) (s : Finset V) (L : ℕ)
@@ -1228,6 +1359,9 @@ theorem no_matching_edge_cycle_spanningInduce_of_short
   intro heP
   exact hnot (SimpleGraph.edgeSet_mono (spanningInduce_le P s) heP)
 
+/--
+@isnad1 id=le.0h5v.s5.9dd8802c907b from=translated src=- shape=c5dd7c6c vocab=c9415f63
+-/
 theorem IndexedMatching.pairVertices_card_le_two_mul
     {V I : Type*} [DecidableEq V]
     {G : SimpleGraph V} (M : IndexedMatching G I)
@@ -1247,7 +1381,9 @@ theorem IndexedMatching.pairVertices_card_le_two_mul
     _ = 2 * S.card := by simp [Nat.mul_comm]
 
 /-- The paper's bounded-cycle condition suffices for a selected family of
-matching pairs whenever their support has at most L vertices.-/
+matching pairs whenever their support has at most L vertices.
+@isnad1 id=ex.3h7v.s7.9c980cfdb38d from=translated src=- shape=a93bfaaf vocab=59ab8d9f
+-/
 theorem IndexedMatching.independent_transversal_pairs_of_short
     {V I : Type*} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} (M : IndexedMatching G I)
@@ -1300,7 +1436,9 @@ theorem IndexedMatching.independent_transversal_pairs_of_short
 lemma. The before graph is the full-vertex graph used when each selected
 vertex was processed; the final matching graph contains every before graph.
 The two local premises state the unmatched ineligibility rule and the
-maximum-weight eligible-partner rule.-/
+maximum-weight eligible-partner rule.
+@isnad1 id=and.8h12v.s9.288350423df6 from=translated src=- shape=7f85cd61 vocab=ec21769c
+-/
 theorem matching_bounds_of_greedy_trace
     {V I : Type*} [Fintype V] [Fintype I] [DecidableEq V]
     (G D : SimpleGraph V) [DecidableRel G.Adj] [DecidableRel D.Adj]
@@ -1365,6 +1503,9 @@ noncomputable def eligiblePartners
   exact (R.erase v).filter fun u =>
     G.Adj v u ∧ (r : ℕ∞) < (D ⊔ P).edist v u
 
+/--
+@isnad1 id=iff.0h8v.s6.4eb1f29a39d6 from=translated src=- shape=00ea5105 vocab=02657bc0
+-/
 theorem mem_eligiblePartners
     {V : Type*} [Fintype V] [DecidableEq V]
     (G D P : SimpleGraph V) (R : Finset V) (r : ℕ) (v u : V) :
@@ -1389,6 +1530,9 @@ structure GreedyChoice
     | some u => u ∈ eligiblePartners G D P R r selected ∧
         ∀ x ∈ eligiblePartners G D P R r selected, w x ≤ w u
 
+/--
+@isnad1 id=nonempty.1h7v.s5.2c4f89f95457 from=translated src=- shape=4158eab2 vocab=1e0918f3
+-/
 theorem exists_greedyChoice
     {V : Type*} [Fintype V] [DecidableEq V]
     (G D P : SimpleGraph V) (R : Finset V) (hR : R.Nonempty)
@@ -1407,6 +1551,9 @@ theorem exists_greedyChoice
       dsimp only
       exact hEempty⟩⟩
 
+/--
+@isnad1 id=and.1h9v.s7.b8b95d29a8f3 from=translated src=- shape=29839b1d vocab=fc529c10
+-/
 theorem GreedyChoice.partner_mem_unprocessed
     {V : Type*} [Fintype V] [DecidableEq V]
     {G D P : SimpleGraph V} {R : Finset V}
@@ -1419,6 +1566,9 @@ theorem GreedyChoice.partner_mem_unprocessed
   rw [hpartner] at h
   exact (mem_eligiblePartners G D P R r c.selected u).mp h.1
 
+/--
+@isnad1 id=le.1h9v.s6.e870d95c94ac from=translated src=- shape=77d917f3 vocab=92f9ebd6
+-/
 theorem GreedyChoice.selected_weight_ge_partner
     {V : Type*} [Fintype V] [DecidableEq V]
     {G D P : SimpleGraph V} {R : Finset V}
@@ -1429,7 +1579,9 @@ theorem GreedyChoice.selected_weight_ge_partner
   c.selected_max u (c.partner_mem_unprocessed hpartner).1
 
 /-- If no partner is chosen, every remaining G-neighbor lies in the
-current radius-r ball.-/
+current radius-r ball.
+@isnad1 id=le.3h9v.s6.b0f920f80cf8 from=translated src=- shape=5dee2786 vocab=be300dbe
+-/
 theorem GreedyChoice.unmatched_neighbor_close
     {V : Type*} [Fintype V] [DecidableEq V]
     {G D P : SimpleGraph V} {R : Finset V}
@@ -1449,7 +1601,9 @@ theorem GreedyChoice.unmatched_neighbor_close
   simp at hyeligible
 
 /-- A later unprocessed neighbor heavier than the chosen partner must have
-been ineligible at this step.-/
+been ineligible at this step.
+@isnad1 id=le.4h10v.s6.fadbce40c36a from=translated src=- shape=7155050d vocab=5e85c374
+-/
 theorem GreedyChoice.heavier_neighbor_close
     {V : Type*} [Fintype V] [DecidableEq V]
     {G D P : SimpleGraph V} {R : Finset V}
@@ -1499,6 +1653,9 @@ def weightedGreedyAdvanceWithChoice
         unmatched := st.unmatched
         history := st.history ++ [(c.selected, some u, st.matching)] }
 
+/--
+@isnad1 id=lt.0h7v.s5.2eb42161c7dc from=translated src=- shape=ef66d7ec vocab=52716a28
+-/
 theorem weightedGreedyAdvanceWithChoice_card_lt
     {V : Type*} [Fintype V] [DecidableEq V]
     {G D : SimpleGraph V} {w : V → ℝ} {r : ℕ}
@@ -1529,6 +1686,9 @@ noncomputable def weightedGreedyAdvance
     (Classical.choice
       (exists_greedyChoice G D st.matching st.unprocessed hR w r))
 
+/--
+@isnad1 id=lt.1h6v.s5.e9bebe5b7956 from=translated src=- shape=632fc43e vocab=221ca198
+-/
 theorem weightedGreedyAdvance_card_lt
     {V : Type*} [Fintype V] [DecidableEq V]
     (G D : SimpleGraph V) (w : V → ℝ) (r : ℕ)
@@ -1548,6 +1708,9 @@ noncomputable def weightedGreedyRun
         weightedGreedyRun G D w r n (weightedGreedyAdvance G D w r st hR)
       else st
 
+/--
+@isnad1 id=eq.1h7v.s5.0d9fa8a2bc08 from=translated src=- shape=3940b9b7 vocab=cd304e80
+-/
 theorem weightedGreedyRun_unprocessed_empty
     {V : Type*} [Fintype V] [DecidableEq V]
     (G D : SimpleGraph V) (w : V → ℝ) (r : ℕ)
@@ -1587,6 +1750,9 @@ noncomputable def weightedGreedyFullRun
     WeightedGreedyState V :=
   weightedGreedyRun G D w r (Fintype.card V) weightedGreedyInitial
 
+/--
+@isnad1 id=eq.0h5v.s5.51d2daccff2b from=translated src=- shape=563f4f8f vocab=688ea628
+-/
 theorem weightedGreedyFullRun_unprocessed_empty
     {V : Type*} [Fintype V] [DecidableEq V]
     (G D : SimpleGraph V) (w : V → ℝ) (r : ℕ) :
@@ -1594,6 +1760,9 @@ theorem weightedGreedyFullRun_unprocessed_empty
   apply weightedGreedyRun_unprocessed_empty
   simp [weightedGreedyInitial]
 
+/--
+@isnad1 id=iff.0h5v.s5.c0ffd223995f from=translated src=- shape=17ba70de vocab=f2df08bd
+-/
 theorem singletonEdgeGraph_adj_iff
     {V : Type*} (u v a b : V) :
     (singletonEdgeGraph u v).Adj a b ↔
@@ -1601,6 +1770,9 @@ theorem singletonEdgeGraph_adj_iff
   simp [singletonEdgeGraph, SimpleGraph.fromEdgeSet_adj,
     Prod.mk.injEq]
 
+/--
+@isnad1 id=le.1h4v.s4.118c64bf1273 from=translated src=- shape=35a124e0 vocab=4824a653
+-/
 theorem singletonEdgeGraph_le_of_adj
     {V : Type*} (G : SimpleGraph V) {u v : V}
     (huv : G.Adj u v) :
@@ -1611,6 +1783,9 @@ theorem singletonEdgeGraph_le_of_adj
   · exact huv
   · exact huv.symm
 
+/--
+@isnad1 id=le.1h7v.s6.6de3daeb5f2b from=translated src=- shape=8f1bc765 vocab=79c8d085
+-/
 theorem weightedGreedyAdvanceWithChoice_matching_le
     {V : Type*} [Fintype V] [DecidableEq V]
     {G D : SimpleGraph V} {w : V → ℝ} {r : ℕ}
@@ -1627,6 +1802,9 @@ theorem weightedGreedyAdvanceWithChoice_matching_le
       simpa [weightedGreedyAdvanceWithChoice, h] using
         (sup_le hP (singletonEdgeGraph_le_of_adj G hadj))
 
+/--
+@isnad1 id=le.2h6v.s5.162db3f71f45 from=translated src=- shape=c95c0061 vocab=f6cb91a7
+-/
 theorem weightedGreedyAdvance_matching_le
     {V : Type*} [Fintype V] [DecidableEq V]
     (G D : SimpleGraph V) (w : V → ℝ) (r : ℕ)
@@ -1635,6 +1813,9 @@ theorem weightedGreedyAdvance_matching_le
     (weightedGreedyAdvance G D w r st hR).matching ≤ G :=
   weightedGreedyAdvanceWithChoice_matching_le st _ hP
 
+/--
+@isnad1 id=le.1h7v.s5.c8123717ecac from=translated src=- shape=8d1e0e9a vocab=9a812839
+-/
 theorem weightedGreedyRun_matching_le
     {V : Type*} [Fintype V] [DecidableEq V]
     (G D : SimpleGraph V) (w : V → ℝ) (r n : ℕ)
@@ -1650,6 +1831,9 @@ theorem weightedGreedyRun_matching_le
             (weightedGreedyAdvance_matching_le G D w r st hR hP)
       · simpa [weightedGreedyRun, hR] using hP
 
+/--
+@isnad1 id=le.0h5v.s5.659728bcfe4a from=translated src=- shape=9ff1b896 vocab=2d9b136a
+-/
 theorem weightedGreedyFullRun_matching_le
     {V : Type*} [Fintype V] [DecidableEq V]
     (G D : SimpleGraph V) (w : V → ℝ) (r : ℕ) :
@@ -1657,7 +1841,9 @@ theorem weightedGreedyFullRun_matching_le
   apply weightedGreedyRun_matching_le
   simp [weightedGreedyInitial]
 
-/-- The graph made from one proper pair has at most one neighbor per vertex.-/
+/-- The graph made from one proper pair has at most one neighbor per vertex.
+@isnad1 id=eq.3h6v.s5.9060db20277e from=translated src=- shape=37b6a7f4 vocab=f2df08bd
+-/
 theorem singletonEdgeGraph_adj_unique
     {V : Type*} {u v x y z : V} (huv : u ≠ v)
     (hxy : (singletonEdgeGraph u v).Adj x y)
@@ -1679,6 +1865,9 @@ def WeightedGreedyState.IsMatchingState
   (∀ x ∈ st.unprocessed, ∀ y, ¬st.matching.Adj x y) ∧
     ∀ x y z, st.matching.Adj x y → st.matching.Adj x z → y = z
 
+/--
+@isnad1 id=ismatchi.0h1v.s3.37863df3d461 from=translated src=- shape=84bfdc15 vocab=8aaf063b
+-/
 theorem weightedGreedyInitial_isMatchingState
     {V : Type*} [Fintype V] :
     (weightedGreedyInitial (V := V)).IsMatchingState := by
@@ -1688,6 +1877,9 @@ theorem weightedGreedyInitial_isMatchingState
   · intro x y z h
     exact False.elim h
 
+/--
+@isnad1 id=ismatchi.1h7v.s5.db657e94eb9c from=translated src=- shape=67968da7 vocab=730db8b7
+-/
 theorem weightedGreedyAdvanceWithChoice_isMatchingState
     {V : Type*} [Fintype V] [DecidableEq V]
     {G D : SimpleGraph V} {w : V → ℝ} {r : ℕ}
@@ -1739,6 +1931,9 @@ theorem weightedGreedyAdvanceWithChoice_isMatchingState
             · exact False.elim (hvIsolated z hPxz)
             · exact False.elim (huIsolated z hPxz)
           · exact singletonEdgeGraph_adj_unique hne hExy hExz
+/--
+@isnad1 id=ismatchi.2h6v.s5.1d224644c633 from=translated src=- shape=b06e98d9 vocab=572e701c
+-/
 theorem weightedGreedyAdvance_isMatchingState
     {V : Type*} [Fintype V] [DecidableEq V]
     (G D : SimpleGraph V) (w : V → ℝ) (r : ℕ)
@@ -1747,6 +1942,9 @@ theorem weightedGreedyAdvance_isMatchingState
     (weightedGreedyAdvance G D w r st hR).IsMatchingState :=
   weightedGreedyAdvanceWithChoice_isMatchingState st _ hstate
 
+/--
+@isnad1 id=ismatchi.1h7v.s5.0507b9e3e1db from=translated src=- shape=8ca1536d vocab=00e68fbe
+-/
 theorem weightedGreedyRun_isMatchingState
     {V : Type*} [Fintype V] [DecidableEq V]
     (G D : SimpleGraph V) (w : V → ℝ) (r n : ℕ)
@@ -1762,6 +1960,9 @@ theorem weightedGreedyRun_isMatchingState
             (weightedGreedyAdvance_isMatchingState G D w r st hR hstate)
       · simpa [weightedGreedyRun, hR] using hstate
 
+/--
+@isnad1 id=ismatchi.0h5v.s4.769f7bb2ddf2 from=translated src=- shape=2cf41a7a vocab=f9c48a0e
+-/
 theorem weightedGreedyFullRun_isMatchingState
     {V : Type*} [Fintype V] [DecidableEq V]
     (G D : SimpleGraph V) (w : V → ℝ) (r : ℕ) :
@@ -1773,6 +1974,9 @@ noncomputable def matchingEdgeEndpoint {V : Type*} {P : SimpleGraph V}
     (e : P.edgeSet) (b : Bool) : V :=
   if b then e.val.out.2 else e.val.out.1
 
+/--
+@isnad1 id=adj.0h3v.s4.0942e200455b from=translated src=- shape=24bd7eaf vocab=b021d1b8
+-/
 theorem matchingEdgeEndpoint_adj
     {V : Type*} (P : SimpleGraph V) (e : P.edgeSet) :
     P.Adj (matchingEdgeEndpoint e false) (matchingEdgeEndpoint e true) := by
@@ -1780,6 +1984,9 @@ theorem matchingEdgeEndpoint_adj
   apply (P.mem_edgeSet).mp
   simpa only [Sym2.mk, e.val.out_eq] using e.property
 
+/--
+@isnad1 id=eq.0h4v.s5.038eb5fd199f from=translated src=- shape=7523a371 vocab=974e4359
+-/
 theorem matchingEdgeEndpoint_pair
     {V : Type*} {P : SimpleGraph V}
     (e : P.edgeSet) (b : Bool) :
@@ -1823,6 +2030,9 @@ noncomputable def indexedMatchingOfUnique
     have hbc : b = c := by
       cases b <;> cases c <;> simp_all [matchingEdgeEndpoint]
     exact Prod.ext rfl hbc
+/--
+@isnad1 id=eq.2h3v.s5.18e5fe32b5de from=translated src=- shape=02da8eda vocab=63774022
+-/
 theorem indexedMatchingOfUnique_edgeGraph_eq
     {V : Type*} (G P : SimpleGraph V) (hPG : P ≤ G)
     (hunique : ∀ x y z, P.Adj x y → P.Adj x z → y = z) :
@@ -1851,6 +2061,9 @@ noncomputable def weightedGreedyFullMatching
     (weightedGreedyFullRun_matching_le G D w r)
     (weightedGreedyFullRun_isMatchingState G D w r).2
 
+/--
+@isnad1 id=eq.0h5v.s5.87cb7e139372 from=translated src=- shape=867b85f9 vocab=dc29a780
+-/
 theorem weightedGreedyFullMatching_edgeGraph_eq
     {V : Type*} [Fintype V] [DecidableEq V]
     (G D : SimpleGraph V) (w : V → ℝ) (r : ℕ) :
@@ -1859,7 +2072,9 @@ theorem weightedGreedyFullMatching_edgeGraph_eq
   indexedMatchingOfUnique_edgeGraph_eq G _
     (weightedGreedyFullRun_matching_le G D w r)
     (weightedGreedyFullRun_isMatchingState G D w r).2
-/-- A chosen eligible edge cannot already belong to D when r ≥ 1.-/
+/-- A chosen eligible edge cannot already belong to D when r ≥ 1.
+@isnad1 id=not.2h9v.s6.6a1939c9b10e from=translated src=- shape=8f13d911 vocab=77a9d168
+-/
 theorem GreedyChoice.partner_not_D_adj
     {V : Type*} [Fintype V] [DecidableEq V]
     {G D P : SimpleGraph V} {R : Finset V}
@@ -1875,6 +2090,9 @@ theorem GreedyChoice.partner_not_D_adj
   have hr' : (1 : ℕ∞) ≤ (r : ℕ∞) := by exact_mod_cast hr
   exact (not_lt_of_ge hr') hlt
 
+/--
+@isnad1 id=not.3h9v.s6.ef1f20aa234b from=translated src=- shape=6e47b31a vocab=8b4a45e5
+-/
 theorem weightedGreedyAdvanceWithChoice_disjoint
     {V : Type*} [Fintype V] [DecidableEq V]
     {G D : SimpleGraph V} {w : V → ℝ} {r : ℕ}
@@ -1902,6 +2120,9 @@ theorem weightedGreedyAdvanceWithChoice_disjoint
         · exact hnew hD
         · exact hnew' hD
 
+/--
+@isnad1 id=not.3h9v.s6.af1ecf9beb4d from=translated src=- shape=10c90fd3 vocab=7511dc79
+-/
 theorem weightedGreedyRun_disjoint
     {V : Type*} [Fintype V] [DecidableEq V]
     (G D : SimpleGraph V) (w : V → ℝ) (r n : ℕ)
@@ -1918,6 +2139,9 @@ theorem weightedGreedyRun_disjoint
             (weightedGreedyAdvanceWithChoice_disjoint st _ hr hdisj)
       · simpa [weightedGreedyRun, hR] using hdisj
 
+/--
+@isnad1 id=not.2h7v.s6.5e7b12e4aef8 from=translated src=- shape=ccc66ce8 vocab=e304ef99
+-/
 theorem weightedGreedyFullMatching_disjoint
     {V : Type*} [Fintype V] [DecidableEq V]
     (G D : SimpleGraph V) (w : V → ℝ) (r : ℕ)
@@ -1936,6 +2160,9 @@ def WeightedGreedyState.IsCoverageState
   (∀ x ∈ st.unmatched, ∀ y, ¬st.matching.Adj x y) ∧
   Disjoint st.unprocessed st.unmatched
 
+/--
+@isnad1 id=iscovera.0h1v.s3.a4392f974c7b from=translated src=- shape=84bfdc15 vocab=c05499db
+-/
 theorem weightedGreedyInitial_isCoverageState
     {V : Type*} [Fintype V] :
     (weightedGreedyInitial (V := V)).IsCoverageState := by
@@ -1948,6 +2175,9 @@ theorem weightedGreedyInitial_isCoverageState
     simp [weightedGreedyInitial] at hx
   · simp [weightedGreedyInitial]
 
+/--
+@isnad1 id=iscovera.2h7v.s5.341ab94c10a1 from=translated src=- shape=ee4106ba vocab=b3cf55f8
+-/
 theorem weightedGreedyAdvanceWithChoice_isCoverageState
     {V : Type*} [Fintype V] [DecidableEq V]
     {G D : SimpleGraph V} {w : V → ℝ} {r : ℕ}
@@ -2022,6 +2252,9 @@ theorem weightedGreedyAdvanceWithChoice_isCoverageState
         intro x hxR hxX
         exact Finset.disjoint_left.mp hdisj
           (Finset.mem_of_mem_erase (Finset.mem_of_mem_erase hxR)) hxX
+/--
+@isnad1 id=iscovera.2h7v.s5.7f8c8a48ef27 from=translated src=- shape=25125f9d vocab=81a7e99a
+-/
 theorem weightedGreedyRun_isCoverageState
     {V : Type*} [Fintype V] [DecidableEq V]
     (G D : SimpleGraph V) (w : V → ℝ) (r n : ℕ)
@@ -2039,6 +2272,9 @@ theorem weightedGreedyRun_isCoverageState
             (weightedGreedyAdvanceWithChoice_isCoverageState st _ hmatch hcover)
       · simpa [weightedGreedyRun, hR] using hcover
 
+/--
+@isnad1 id=iscovera.0h5v.s4.75217399c685 from=translated src=- shape=2cf41a7a vocab=e30c49b1
+-/
 theorem weightedGreedyFullRun_isCoverageState
     {V : Type*} [Fintype V] [DecidableEq V]
     (G D : SimpleGraph V) (w : V → ℝ) (r : ℕ) :
@@ -2047,6 +2283,9 @@ theorem weightedGreedyFullRun_isCoverageState
     weightedGreedyInitial weightedGreedyInitial_isMatchingState
     weightedGreedyInitial_isCoverageState
 
+/--
+@isnad1 id=iff.0h6v.s5.bc998e859ac5 from=translated src=- shape=7dc16871 vocab=2862af59
+-/
 theorem weightedGreedyFullRun_mem_unmatched_iff
     {V : Type*} [Fintype V] [DecidableEq V]
     (G D : SimpleGraph V) (w : V → ℝ) (r : ℕ) (x : V) :
@@ -2085,6 +2324,9 @@ def IndexedMatching.flipBy
       · exact hbc
     exact Prod.ext rfl hbc'
 
+/--
+@isnad1 id=eq.0h5v.s5.a753861af7b1 from=translated src=- shape=103a8415 vocab=493869a4
+-/
 theorem IndexedMatching.flipBy_edgeGraph_eq
     {V I : Type*} {G : SimpleGraph V}
     (M : IndexedMatching G I) (flip : I → Bool) :
@@ -2111,6 +2353,9 @@ noncomputable def IndexedMatching.orientByWeight
     (M : IndexedMatching G I) (w : V → ℝ) : IndexedMatching G I :=
   M.flipBy fun i => decide (w (M.endpoint i false) < w (M.endpoint i true))
 
+/--
+@isnad1 id=le.0h6v.s5.16e077c867e6 from=translated src=- shape=a3b177a2 vocab=7efd5ab2
+-/
 theorem IndexedMatching.orientByWeight_order
     {V I : Type*} {G : SimpleGraph V}
     (M : IndexedMatching G I) (w : V → ℝ) (i : I) :
@@ -2122,6 +2367,9 @@ theorem IndexedMatching.orientByWeight_order
   · simpa [IndexedMatching.orientByWeight, IndexedMatching.flipBy, h] using
       (le_of_not_gt h)
 
+/--
+@isnad1 id=eq.0h5v.s5.28a520e9abd2 from=translated src=- shape=95d5d6ff vocab=9f41dac8
+-/
 theorem IndexedMatching.orientByWeight_edgeGraph_eq
     {V I : Type*} {G : SimpleGraph V}
     (M : IndexedMatching G I) (w : V → ℝ) :
@@ -2134,6 +2382,9 @@ noncomputable def weightedGreedyFullMatchingSorted
     IndexedMatching G (weightedGreedyFullRun G D w r).matching.edgeSet :=
   (weightedGreedyFullMatching G D w r).orientByWeight w
 
+/--
+@isnad1 id=le.0h6v.s6.62fdb2f5faee from=translated src=- shape=7a00b7fb vocab=be4df63b
+-/
 theorem weightedGreedyFullMatchingSorted_order
     {V : Type*} [Fintype V] [DecidableEq V]
     (G D : SimpleGraph V) (w : V → ℝ) (r : ℕ)
@@ -2142,6 +2393,9 @@ theorem weightedGreedyFullMatchingSorted_order
       w ((weightedGreedyFullMatchingSorted G D w r).endpoint i false) :=
   (weightedGreedyFullMatching G D w r).orientByWeight_order w i
 
+/--
+@isnad1 id=eq.0h5v.s5.609c6d2bb948 from=translated src=- shape=867b85f9 vocab=5d45bba4
+-/
 theorem weightedGreedyFullMatchingSorted_edgeGraph_eq
     {V : Type*} [Fintype V] [DecidableEq V]
     (G D : SimpleGraph V) (w : V → ℝ) (r : ℕ) :
@@ -2162,6 +2416,9 @@ def WeightedGreedyState.IsProcessPartition
     {V : Type*} (st : WeightedGreedyState V) : Prop :=
   ∀ x, x ∈ st.unprocessed ↔ x ∉ st.processedVertices
 
+/--
+@isnad1 id=isproces.0h1v.s3.546968ba7ee8 from=translated src=- shape=84bfdc15 vocab=a0bd1901
+-/
 theorem weightedGreedyInitial_isProcessPartition
     {V : Type*} [Fintype V] :
     (weightedGreedyInitial (V := V)).IsProcessPartition := by
@@ -2169,6 +2426,9 @@ theorem weightedGreedyInitial_isProcessPartition
   simp [
     WeightedGreedyState.processedVertices, weightedGreedyInitial]
 
+/--
+@isnad1 id=isproces.1h7v.s5.3312a55ac367 from=translated src=- shape=67968da7 vocab=f67a0bea
+-/
 theorem weightedGreedyAdvanceWithChoice_isProcessPartition
     {V : Type*} [Fintype V] [DecidableEq V]
     {G D : SimpleGraph V} {w : V → ℝ} {r : ℕ}
@@ -2197,6 +2457,9 @@ theorem weightedGreedyAdvanceWithChoice_isProcessPartition
         List.mem_append, List.mem_cons, List.not_mem_nil, or_false,
         not_or, hpartition x]
       tauto
+/--
+@isnad1 id=isproces.1h7v.s5.65224b82a5cd from=translated src=- shape=8ca1536d vocab=97f35635
+-/
 theorem weightedGreedyRun_isProcessPartition
     {V : Type*} [Fintype V] [DecidableEq V]
     (G D : SimpleGraph V) (w : V → ℝ) (r n : ℕ)
@@ -2212,6 +2475,9 @@ theorem weightedGreedyRun_isProcessPartition
             (weightedGreedyAdvanceWithChoice_isProcessPartition st _ hpartition)
       · simpa [weightedGreedyRun, hR] using hpartition
 
+/--
+@isnad1 id=isproces.0h5v.s4.5e9e0eb129e7 from=translated src=- shape=2cf41a7a vocab=b10c1023
+-/
 theorem weightedGreedyFullRun_isProcessPartition
     {V : Type*} [Fintype V] [DecidableEq V]
     (G D : SimpleGraph V) (w : V → ℝ) (r : ℕ) :
@@ -2219,6 +2485,9 @@ theorem weightedGreedyFullRun_isProcessPartition
   weightedGreedyRun_isProcessPartition G D w r (Fintype.card V)
     weightedGreedyInitial weightedGreedyInitial_isProcessPartition
 
+/--
+@isnad1 id=mem.0h6v.s5.d22d466ded6e from=translated src=- shape=79021ba9 vocab=0be10709
+-/
 theorem weightedGreedyFullRun_mem_processedVertices
     {V : Type*} [Fintype V] [DecidableEq V]
     (G D : SimpleGraph V) (w : V → ℝ) (r : ℕ) (x : V) :
@@ -2234,6 +2503,9 @@ noncomputable def weightedGreedyFullRun_time
     (G D : SimpleGraph V) (w : V → ℝ) (r : ℕ) (x : V) : ℕ :=
   (weightedGreedyFullRun G D w r).processedVertices.idxOf x
 
+/--
+@isnad1 id=injectiv.0h5v.s4.7d54b579572c from=translated src=- shape=6943b286 vocab=ece3b4dc
+-/
 theorem weightedGreedyFullRun_time_injective
     {V : Type*} [Fintype V] [DecidableEq V]
     (G D : SimpleGraph V) (w : V → ℝ) (r : ℕ) :
@@ -2241,6 +2513,9 @@ theorem weightedGreedyFullRun_time_injective
   intro x y h
   exact (List.idxOf_inj
     (weightedGreedyFullRun_mem_processedVertices G D w r x)).mp h
+/--
+@isnad1 id=isprefix.0h7v.s5.448475dce1b6 from=translated src=- shape=21013df3 vocab=68877d9a
+-/
 theorem weightedGreedyAdvanceWithChoice_processed_prefix
     {V : Type*} [Fintype V] [DecidableEq V]
     {G D : SimpleGraph V} {w : V → ℝ} {r : ℕ}
@@ -2264,6 +2539,9 @@ theorem weightedGreedyAdvanceWithChoice_processed_prefix
       rw [hproc]
       exact List.prefix_append _ _
 
+/--
+@isnad1 id=isprefix.0h7v.s5.bef0128965e7 from=translated src=- shape=d054fb60 vocab=7f727398
+-/
 theorem weightedGreedyRun_processed_prefix
     {V : Type*} [Fintype V] [DecidableEq V]
     (G D : SimpleGraph V) (w : V → ℝ) (r n : ℕ)
@@ -2281,7 +2559,9 @@ theorem weightedGreedyRun_processed_prefix
           hstep.trans (ih (weightedGreedyAdvance G D w r st hR))
       · simp [weightedGreedyRun, hR]
 /-- In any later extension of a greedy history, the chosen vertex precedes
-every vertex still unprocessed after its step.-/
+every vertex still unprocessed after its step.
+@isnad1 id=lt.3h9v.s6.557a392a73bb from=translated src=- shape=eee96a58 vocab=94c787e8
+-/
 theorem weightedGreedyAdvanceWithChoice_selected_time_lt
     {V : Type*} [Fintype V] [DecidableEq V]
     {G D : SimpleGraph V} {w : V → ℝ} {r : ℕ}
@@ -2317,7 +2597,9 @@ theorem weightedGreedyAdvanceWithChoice_selected_time_lt
       omega
     exact hyNot ((hprefix.mem_iff_idxOf_lt_length y).mpr hlt)
   exact hvlt.trans_le hyge
-/-- Matching edges are only added during a greedy step.-/
+/-- Matching edges are only added during a greedy step.
+@isnad1 id=le.0h7v.s5.82826cde2d85 from=translated src=- shape=960de367 vocab=79c8d085
+-/
 theorem weightedGreedyAdvanceWithChoice_matching_mono
     {V : Type*} [Fintype V] [DecidableEq V]
     {G D : SimpleGraph V} {w : V → ℝ} {r : ℕ}
@@ -2329,6 +2611,9 @@ theorem weightedGreedyAdvanceWithChoice_matching_mono
   | some u =>
       simp [weightedGreedyAdvanceWithChoice, h]
 
+/--
+@isnad1 id=le.0h7v.s5.de4d4a4047be from=translated src=- shape=39674f04 vocab=9a812839
+-/
 theorem weightedGreedyRun_matching_mono
     {V : Type*} [Fintype V] [DecidableEq V]
     (G D : SimpleGraph V) (w : V → ℝ) (r n : ℕ)
@@ -2346,7 +2631,9 @@ theorem weightedGreedyRun_matching_mono
       · simp [weightedGreedyRun, hR]
 
 /-- A vertex occurring after the chosen vertex in a final extension was
-still unprocessed when that choice was made.-/
+still unprocessed when that choice was made.
+@isnad1 id=mem.3h9v.s6.0d6fcd5e4761 from=translated src=- shape=ca0ddbb7 vocab=440d6d9a
+-/
 theorem GreedyChoice.later_unprocessed_of_prefix
     {V : Type*} [Fintype V] [DecidableEq V]
     {G D : SimpleGraph V} {w : V → ℝ} {r : ℕ}
@@ -2376,7 +2663,9 @@ theorem GreedyChoice.later_unprocessed_of_prefix
     exact hvNot ((hprefix.mem_iff_idxOf_lt_length c.selected).mpr hvlt)
   omega
 /-- The local ineligibility rule remains valid as a distance bound in any
-later matching graph.-/
+later matching graph.
+@isnad1 id=le.6h9v.s7.b561fd4a61c4 from=translated src=- shape=7707c268 vocab=52e961e4
+-/
 theorem GreedyChoice.unmatched_neighbor_close_final
     {V : Type*} [Fintype V] [DecidableEq V]
     {G D : SimpleGraph V} {w : V → ℝ} {r : ℕ}
@@ -2397,7 +2686,9 @@ theorem GreedyChoice.unmatched_neighbor_close_final
     (c.unmatched_neighbor_close hpartner hyR hadj)
 
 /-- The maximum-weight partner rule also persists in every later matching
-graph.-/
+graph.
+@isnad1 id=le.7h10v.s7.d486795670f0 from=translated src=- shape=ece4c9cf vocab=6c07d368
+-/
 theorem GreedyChoice.heavier_neighbor_close_final
     {V : Type*} [Fintype V] [DecidableEq V]
     {G D : SimpleGraph V} {w : V → ℝ} {r : ℕ}
@@ -2418,7 +2709,9 @@ theorem GreedyChoice.heavier_neighbor_close_final
   exact (edist_antitone (sup_le_sup le_rfl hgraph) c.selected y).trans
     (c.heavier_neighbor_close hpartner hyR hadj hweight)
 /-- Every newly set-aside vertex satisfies the unmatched-neighbor distance
-rule in any final extension of the run.-/
+rule in any final extension of the run.
+@isnad1 id=le.7h10v.s7.753809a297dd from=translated src=- shape=6e6077c5 vocab=5900b691
+-/
 theorem weightedGreedyRun_unmatched_close_final
     {V : Type*} [Fintype V] [DecidableEq V]
     (G D : SimpleGraph V) (w : V → ℝ) (r n : ℕ)
@@ -2473,6 +2766,9 @@ theorem weightedGreedyRun_unmatched_close_final
         rw [hrun] at hx
         exact (hxnew hx).elim
 
+/--
+@isnad1 id=le.3h7v.s6.c7e534be06ca from=translated src=- shape=7083d875 vocab=c1fed448
+-/
 theorem weightedGreedyFullRun_unmatched_close
     {V : Type*} [Fintype V] [DecidableEq V]
     (G D : SimpleGraph V) (w : V → ℝ) (r : ℕ)
@@ -2490,7 +2786,9 @@ theorem weightedGreedyFullRun_unmatched_close
     (by simp [weightedGreedyInitial]) hlt hadj
 /-- A matching edge newly inserted by the run has its strictly heavier
 endpoint selected first; its later, heavier G-neighbors are close in any
-final extension.-/
+final extension.
+@isnad1 id=le.9h11v.s7.7491a3fac056 from=translated src=- shape=3660ec47 vocab=a608ffac
+-/
 theorem weightedGreedyRun_strict_pair_close_final
     {V : Type*} [Fintype V] [DecidableEq V]
     (G D : SimpleGraph V) (w : V → ℝ) (r n : ℕ)
@@ -2553,6 +2851,9 @@ theorem weightedGreedyRun_strict_pair_close_final
         rw [hrun] at hpair
         exact (hold hpair).elim
 
+/--
+@isnad1 id=le.5h8v.s6.ab742a32d002 from=translated src=- shape=ca02c6f3 vocab=4cfee78f
+-/
 theorem weightedGreedyFullRun_strict_pair_close
     {V : Type*} [Fintype V] [DecidableEq V]
     (G D : SimpleGraph V) (w : V → ℝ) (r : ℕ)
@@ -2574,7 +2875,9 @@ private noncomputable instance finiteGreedyEdgeSet
     {V : Type*} [Fintype V] (P : SimpleGraph V) : Fintype P.edgeSet :=
   Fintype.ofFinite _
 /-- The completed greedy matching satisfies both quantitative conclusions of
-the weighted matching lemma; the cycle condition is proved separately.-/
+the weighted matching lemma; the cycle condition is proved separately.
+@isnad1 id=and.3h7v.s8.2f9191fb92f5 from=translated src=- shape=853cd252 vocab=9beefaa0
+-/
 theorem weightedGreedyFullMatchingSorted_bounds
     {V : Type*} [Fintype V] [DecidableEq V]
     (G D : SimpleGraph V) [DecidableRel G.Adj] [DecidableRel D.Adj]
@@ -2619,7 +2922,9 @@ theorem weightedGreedyFullMatchingSorted_bounds
     before (fun _ => le_rfl) d r m halpha hdegree w hweight
     (weightedGreedyFullMatchingSorted_order G D w r) hXclose hPclose
 /-- Removing any edge of a simple cycle leaves an alternate walk whose
-length is at most one less than the cycle length.-/
+length is at most one less than the cycle length.
+@isnad1 id=ex.2h6v.s7.a8bcfbe48696 from=translated src=- shape=9ba1fa43 vocab=640d6f82
+-/
 theorem cycle_edge_alternative_walk
     {V : Type*} [Fintype V] [DecidableEq V]
     (J : SimpleGraph V) {a u v : V}
@@ -2694,7 +2999,9 @@ theorem cycle_edge_alternative_walk
       (SimpleGraph.Hom.ofLE hdel)
   omega
 /-- Adding an edge whose endpoints were farther than r apart creates no
-cycle of length at most r+1 using that new edge.-/
+cycle of length at most r+1 using that new edge.
+@isnad1 id=not.3h7v.s6.ceeaff6a4aba from=translated src=- shape=65493709 vocab=ef670dc9
+-/
 theorem no_short_cycle_contains_far_new_edge
     {V : Type*} [Fintype V] [DecidableEq V]
     (H : SimpleGraph V) (u v : V) (r : ℕ)
@@ -2726,7 +3033,9 @@ theorem no_short_cycle_contains_far_new_edge
       _ ≤ (r : ℕ∞) := by exact_mod_cast hlenp
   exact (not_lt_of_ge hdist) hfar
 /-- Short cycles containing a marked edge remain excluded when a far edge
-is added to both the graph and the marked-edge graph.-/
+is added to both the graph and the marked-edge graph.
+@isnad1 id=not.5h9v.s7.b37ec6996f32 from=translated src=- shape=3001bbc4 vocab=684a51dc
+-/
 theorem no_short_marked_cycle_sup_far_edge
     {V : Type*} [Fintype V] [DecidableEq V]
     (H P : SimpleGraph V) (u v : V) (r : ℕ)
@@ -2771,6 +3080,9 @@ def WeightedGreedyState.NoShortMatchingCycle
     c.IsCycle → c.length ≤ r + 1 →
       ∀ e ∈ c.edges, e ∉ st.matching.edgeSet
 
+/--
+@isnad1 id=noshortm.0h3v.s4.bd7550561f93 from=translated src=- shape=62cf7bec vocab=ee2a452e
+-/
 theorem weightedGreedyInitial_noShortMatchingCycle
     {V : Type*} [Fintype V]
     (D : SimpleGraph V) (r : ℕ) :
@@ -2778,6 +3090,9 @@ theorem weightedGreedyInitial_noShortMatchingCycle
   intro a c hc hlen e he
   simp [weightedGreedyInitial]
 
+/--
+@isnad1 id=noshortm.1h7v.s5.0b57c777aeac from=translated src=- shape=5e10e897 vocab=2ba81e6a
+-/
 theorem weightedGreedyAdvanceWithChoice_noShortMatchingCycle
     {V : Type*} [Fintype V] [DecidableEq V]
     {G D : SimpleGraph V} {w : V → ℝ} {r : ℕ}
@@ -2809,6 +3124,9 @@ theorem weightedGreedyAdvanceWithChoice_noShortMatchingCycle
       rw [hassoc] at hnew
       exact hnew
 
+/--
+@isnad1 id=noshortm.1h7v.s5.61c6a07a4e9a from=translated src=- shape=17b9f30f vocab=96002144
+-/
 theorem weightedGreedyRun_noShortMatchingCycle
     {V : Type*} [Fintype V] [DecidableEq V]
     (G D : SimpleGraph V) (w : V → ℝ) (r n : ℕ)
@@ -2824,13 +3142,18 @@ theorem weightedGreedyRun_noShortMatchingCycle
             (weightedGreedyAdvanceWithChoice_noShortMatchingCycle st _ hshort)
       · simpa [weightedGreedyRun, hR] using hshort
 
+/--
+@isnad1 id=noshortm.0h5v.s5.5e4e2470357b from=translated src=- shape=f62077b1 vocab=1f6553e9
+-/
 theorem weightedGreedyFullRun_noShortMatchingCycle
     {V : Type*} [Fintype V] [DecidableEq V]
     (G D : SimpleGraph V) (w : V → ℝ) (r : ℕ) :
     (weightedGreedyFullRun G D w r).NoShortMatchingCycle D r :=
   weightedGreedyRun_noShortMatchingCycle G D w r (Fintype.card V)
     weightedGreedyInitial (weightedGreedyInitial_noShortMatchingCycle D r)
-/-- The checked short-cycle conclusion stated for the indexed greedy matching.-/
+/-- The checked short-cycle conclusion stated for the indexed greedy matching.
+@isnad1 id=not.3h8v.s7.723fff6d6276 from=translated src=- shape=018bf2bf vocab=060c1e25
+-/
 theorem weightedGreedyFullMatchingSorted_noShortMatchingCycle
     {V : Type*} [Fintype V] [DecidableEq V]
     (G D : SimpleGraph V) (w : V → ℝ) (r : ℕ) :

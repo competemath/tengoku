@@ -42,7 +42,9 @@ def IndexedLinkage.mono_graph {ι : Type*} {G H : SimpleGraph V}
     simpa only [pathVertexSet, SimpleGraph.Path.map, SimpleGraph.Walk.support_mapLe_eq_support]
       using L.disjoint hij
 
-/-- Adding edges does not alter the vertices of existing linkage paths.-/
+/-- Adding edges does not alter the vertices of existing linkage paths.
+@isnad1 id=interior.2h7v.s5.5fc7c185c8c2 from=translated src=- shape=a08f07af vocab=1d3e0886
+-/
 theorem InteriorsAvoid.mono_graph {ι : Type*} {G H : SimpleGraph V}
     {P : IndexedPairs ι V} (hGH : G ≤ H) (L : IndexedLinkage G P)
     (X : Finset V) (hL : InteriorsAvoid L X) :
@@ -52,14 +54,18 @@ theorem InteriorsAvoid.mono_graph {ι : Type*} {G H : SimpleGraph V}
     simpa only [IndexedLinkage.mono_graph, pathVertexSet, SimpleGraph.Path.map,
       SimpleGraph.Walk.support_mapLe_eq_support] using hv) hroot
 
-/-- Rooted linkedness is monotone under graph edge addition.-/
+/-- Rooted linkedness is monotone under graph edge addition.
+@isnad1 id=rootedli.2h4v.s5.fb0d5ccb950d from=translated src=- shape=56e0d4e2 vocab=2e6de8c5
+-/
 theorem RootedLinked.mono_graph {G H : SimpleGraph V}
     (hGH : G ≤ H) (X : Finset V) (hG : RootedLinked G X) :
     RootedLinked H X := by
   intro n P hP hne hX
   obtain ⟨L,hL⟩ := hG n P hP hne hX
   exact ⟨IndexedLinkage.mono_graph hGH L, InteriorsAvoid.mono_graph hGH L X hL⟩
-/-- Rooted linkedness of an induced graph transfers to the ambient graph when all roots lie inside the induced set.-/
+/-- Rooted linkedness of an induced graph transfers to the ambient graph when all roots lie inside the induced set.
+@isnad1 id=rootedli.3h5v.s6.0098f4547f91 from=translated src=- shape=a4d1f36c vocab=434318b3
+-/
 theorem RootedLinked.of_induce (G : SimpleGraph V)
     (S : Set V) (X : Finset V) (Y : Finset S)
     (hXS : (X : Set V) ⊆ S)
@@ -137,7 +143,9 @@ theorem RootedLinked.of_induce (G : SimpleGraph V)
   have hterm' : (u : V) ∈ P.terminals i := (hterm_iff i u).mp hterm
   simpa [hval] using hterm'
 
-/-- A rooted linkage path never traverses an edge joining another prescribed pair of roots.-/
+/-- A rooted linkage path never traverses an edge joining another prescribed pair of roots.
+@isnad1 id=not.5h9v.s7.a4af2f65423a from=translated src=- shape=152ec338 vocab=154666b6
+-/
 theorem InteriorsAvoid.other_root_edge_not_used
     {G : SimpleGraph V} {ι : Type*} {P : IndexedPairs ι V}
     (L : IndexedLinkage G P) (X : Finset V) (hL : InteriorsAvoid L X)
@@ -162,7 +170,9 @@ theorem InteriorsAvoid.other_root_edge_not_used
   · exact hother (by rw [hu,hv])
   · exact hother (by rw [hu,hv,Sym2.eq_swap])
   · exact huv (hu.trans hv.symm)
-/-- A rooted linkage transfers to a graph missing one root edge when that edge is not a prescribed pair and all other edges remain.-/
+/-- A rooted linkage transfers to a graph missing one root edge when that edge is not a prescribed pair and all other edges remain.
+@isnad1 id=ex.6h9v.s7.869c59e157eb from=translated src=- shape=9c8d19aa vocab=c10ff69e
+-/
 theorem InteriorsAvoid.transfer_avoiding_root_edge
     {G H : SimpleGraph V} {ι : Type*} {P : IndexedPairs ι V}
     (L : IndexedLinkage H P) (X : Finset V) (hL : InteriorsAvoid L X)
@@ -208,12 +218,18 @@ noncomputable def terminalFinset {ι : Type*} [Fintype ι]
   classical
   exact (Finset.univ.image P.start) ∪ (Finset.univ.image P.finish)
 
+/--
+@isnad1 id=iff.0h4v.s5.d298c2678318 from=translated src=- shape=c3d9eb44 vocab=c079a3eb
+-/
 @[simp] theorem mem_terminalFinset {ι : Type*} [Fintype ι]
     (P : IndexedPairs ι V) (v : V) :
     v ∈ terminalFinset P ↔ (∃ i, P.start i = v) ∨ (∃ i, P.finish i = v) := by
   classical
   simp [terminalFinset]
 
+/--
+@isnad1 id=le.0h4v.s5.f4e568391618 from=translated src=- shape=74cf752d vocab=99a2dcd4
+-/
 theorem terminals_subset_terminalFinset {ι : Type*} [Fintype ι]
     (P : IndexedPairs ι V) (i : ι) :
     P.terminals i ⊆ (terminalFinset P : Set V) := by
@@ -222,6 +238,9 @@ theorem terminals_subset_terminalFinset {ι : Type*} [Fintype ι]
   · exact (mem_terminalFinset P _).mpr (Or.inl ⟨i, rfl⟩)
   · exact (mem_terminalFinset P _).mpr (Or.inr ⟨i, rfl⟩)
 
+/--
+@isnad1 id=le.0h3v.s5.1e1b473f2b1e from=translated src=- shape=ab065aaa vocab=f1cc846f
+-/
 theorem terminalFinset_card_le {ι : Type*} [Fintype ι]
     (P : IndexedPairs ι V) :
     (terminalFinset P).card ≤ 2 * Fintype.card ι := by
@@ -240,7 +259,9 @@ theorem terminalFinset_card_le {ι : Type*} [Fintype ι]
     _ = 2 * Fintype.card ι := by omega
 
 /-- A family of `k` disjoint nontrivial terminal pairs uses exactly `2k`
-distinct vertices.-/
+distinct vertices.
+@isnad1 id=eq.2h3v.s6.4920b4230d57 from=translated src=- shape=3fe1823a vocab=e4349afe
+-/
 theorem terminalFinset_card_eq_two_mul (k : ℕ)
     (P : IndexedPairs (Fin k) V) (hP : P.DisjointTerminals)
     (hne : ∀ i, P.start i ≠ P.finish i) :
@@ -268,7 +289,9 @@ theorem terminalFinset_card_eq_two_mul (k : ℕ)
   simp
   omega
 /-- Uniform rooted linkedness for all root sets of size at most `2k`
-implies ordinary `k`-linkedness.-/
+implies ordinary `k`-linkedness.
+@isnad1 id=klinked.1h3v.s5.3ad6b357a491 from=translated src=- shape=0085bea9 vocab=97e66f9c
+-/
 theorem kLinked_of_rootedLinked (G : SimpleGraph V) (k : ℕ)
     (h : ∀ X : Finset V, X.card ≤ 2 * k → RootedLinked G X) :
     KLinked G k := by
@@ -278,7 +301,9 @@ theorem kLinked_of_rootedLinked (G : SimpleGraph V) (k : ℕ)
     k P hP hne (terminals_subset_terminalFinset P)
   exact ⟨L⟩
 
-/-- Vertex connectivity forces the expected lower bound on every degree.-/
+/-- Vertex connectivity forces the expected lower bound on every degree.
+@isnad1 id=le.1h4v.s5.f7fd8ef82981 from=translated src=- shape=050d7dc6 vocab=e352cb16
+-/
 theorem degree_ge_of_vertexConnected {G : SimpleGraph V} [DecidableRel G.Adj]
     {r : ℕ} (hconn : VertexConnected G r) (v : V) :
     r ≤ G.degree v := by
@@ -311,6 +336,9 @@ theorem degree_ge_of_vertexConnected {G : SimpleGraph V} [DecidableRel G.Adj]
     exact w.property hw
   exact hconnected.preconnected.not_isIsolated vv hisolated
 
+/--
+@isnad1 id=eq.0h3v.s4.6616a7a8d379 from=translated src=- shape=93f79142 vocab=07dbb054
+-/
 theorem incidenceSetCount_eq_finsetCount (G : SimpleGraph V)
     (S : Finset V) :
     edgeIncidenceSetCount G (S : Set V) = edgeIncidenceCount G S := by
@@ -344,7 +372,9 @@ theorem incidenceSetCount_eq_finsetCount (G : SimpleGraph V)
             simp [SimpleGraph.mem_edgeFinset]
           exact hcard.trans hsame
 
-/-- Handshaking turns a uniform degree bound into an edge-count bound.-/
+/-- Handshaking turns a uniform degree bound into an edge-count bound.
+@isnad1 id=le.1h3v.s6.4006e8a9d1f4 from=translated src=- shape=f657a287 vocab=85895c94
+-/
 theorem edgeCount_lower_of_minDegree (G : SimpleGraph V) [DecidableRel G.Adj]
     (r : ℕ) (hdeg : ∀ v, 2 * r ≤ G.degree v) :
     r * Fintype.card V ≤ edgeCount G := by
@@ -356,7 +386,9 @@ theorem edgeCount_lower_of_minDegree (G : SimpleGraph V) [DecidableRel G.Adj]
   rw [sum_degree_eq_two_edgeCount] at hsum
   nlinarith
 
-/-- Every edge either meets the complement of `X` or lies inside `X`.-/
+/-- Every edge either meets the complement of `X` or lies inside `X`.
+@isnad1 id=le.0h3v.s5.43bbb1145060 from=translated src=- shape=f751eb2e vocab=aaaefe5c
+-/
 theorem edgeCount_le_incidence_add_internal (G : SimpleGraph V) (X : Finset V) :
     edgeCount G ≤ edgeIncidenceCount G Xᶜ + (X.card + 1).choose 2 := by
   classical
@@ -376,6 +408,9 @@ theorem edgeCount_le_incidence_add_internal (G : SimpleGraph V) (X : Finset V) :
   rw [edgeCount_eq_card_edgeFinset, Finset.card_sym2] at *
   omega
 
+/--
+@isnad1 id=lt.1h1v.s6.02a00e81aadd from=translated src=- shape=e6350890 vocab=aa8bf1e6
+-/
 theorem choose_two_internal_lt (k : ℕ) (hk : 0 < k) :
     (2 * k + 1).choose 2 < (8 * k) * (2 * k) := by
   rw [Nat.choose_two_right]
@@ -384,7 +419,9 @@ theorem choose_two_internal_lt (k : ℕ) (hk : 0 < k) :
   have hmul : (2 * k + 1) * (2 * k) = 2 * (k * (2 * k + 1)) := by ring
   rw [hmul, Nat.mul_div_cancel_left] <;> norm_num
   nlinarith
-/-- The global massed-pair incidence inequality for exactly `2k` roots.-/
+/-- The global massed-pair incidence inequality for exactly `2k` roots.
+@isnad1 id=lt.3h4v.s7.f05069a5983f from=translated src=- shape=ffd9cdfd vocab=03144d61
+-/
 theorem global_incidence_of_vertexConnected (G : SimpleGraph V) [DecidableRel G.Adj] (k : ℕ)
     (hk : 0 < k) (hconn : VertexConnected G (16 * k))
     (X : Finset V) (hX : X.card = 2 * k) :
@@ -421,7 +458,9 @@ theorem global_incidence_of_vertexConnected (G : SimpleGraph V) [DecidableRel G.
   rw [hinc]
   exact_mod_cast hnat
 
-/-- Every root of a massed pair has a neighbor outside the root set.-/
+/-- Every root of a massed pair has a neighbor outside the root set.
+@isnad1 id=ex.2h5v.s6.3f7a2b68cb37 from=translated src=- shape=ea276bcf vocab=ec2daa60
+-/
 theorem root_has_outside_neighbor (G : SimpleGraph V) (X : Finset V)
     (α : ℝ) (hm : MassedPair G (X : Set V) α)
     (x : V) (hx : x ∈ X) :
@@ -475,7 +514,9 @@ theorem root_has_outside_neighbor (G : SimpleGraph V) (X : Finset V)
   rw [hstrict] at hshore
   exact (not_lt_of_ge hshore) hm.global
 
-/-- Common neighbors along one edge bound a root outside degree.-/
+/-- Common neighbors along one edge bound a root outside degree.
+@isnad1 id=le.5h6v.s7.83837714ad34 from=translated src=- shape=18181c16 vocab=3cd90b2d
+-/
 theorem root_outdegree_of_common_neighbors (G : SimpleGraph V) [DecidableRel G.Adj]
     (X : Finset V) (x v : V) (r : ℕ)
     (hr : 0 < r) (hx : x ∈ X) (hv : v ∉ X) (hAdj : G.Adj x v)
@@ -512,7 +553,9 @@ theorem root_outdegree_of_common_neighbors (G : SimpleGraph V) [DecidableRel G.A
   change r - 1 ≤ C.card at hcommon
   omega
 
-/-- The numerical root-degree estimate (D.4), assuming the edge common-neighbor bound.-/
+/-- The numerical root-degree estimate (D.4), assuming the edge common-neighbor bound.
+@isnad1 id=le.5h5v.s8.9a14b2542469 from=translated src=- shape=e8994f8e vocab=04a3f49a
+-/
 theorem root_outdegree_ge_six_k (G : SimpleGraph V) [DecidableRel G.Adj]
     (X : Finset V) (k : ℕ) (hk : 0 < k)
     (hX : X.card ≤ 2 * k)
@@ -532,15 +575,24 @@ variable {I : Type*} {G : SimpleGraph V}
 noncomputable def partitionIndex (P : ConnectedPartition G I) (x : V) : I :=
   Classical.choose (P.existsUnique_block x)
 
+/--
+@isnad1 id=mem.0h5v.s5.415fa2060ea6 from=translated src=- shape=633c314d vocab=768c7943
+-/
 theorem partitionIndex_mem (P : ConnectedPartition G I) (x : V) :
     x ∈ P.block (partitionIndex P x) :=
   (Classical.choose_spec (P.existsUnique_block x)).1
 
+/--
+@isnad1 id=eq.1h6v.s5.7763f54b2942 from=translated src=- shape=be324223 vocab=768c7943
+-/
 theorem partitionIndex_eq_of_mem (P : ConnectedPartition G I)
     (x : V) (i : I) (h : x ∈ P.block i) :
     partitionIndex P x = i :=
   ((Classical.choose_spec (P.existsUnique_block x)).2 i h).symm
 
+/--
+@isnad1 id=or.1h6v.s5.28f452601c40 from=translated src=- shape=c7a77000 vocab=8f2d3f60
+-/
 theorem partitionIndex_adj (P : ConnectedPartition G I)
     {x y : V} (hxy : G.Adj x y) :
     partitionIndex P x = partitionIndex P y ∨
@@ -569,6 +621,9 @@ def partitionPullbackSeparation (P : ConnectedPartition G I)
       exact hxR (heq.symm ▸ hyR)
     · exact S.no_cross hxL hxR hyR hyL hadj
 
+/--
+@isnad1 id=eq.0h5v.s5.cc1342f69e52 from=translated src=- shape=ac1cf178 vocab=e23102be
+-/
 theorem partitionPullbackSeparation_separator (P : ConnectedPartition G I)
     (S : VertexSeparation P.touchingQuotient) :
     (partitionPullbackSeparation P S).separator =
@@ -578,6 +633,9 @@ theorem partitionPullbackSeparation_separator (P : ConnectedPartition G I)
 
 end Partition
 
+/--
+@isnad1 id=eq.3h5v.s6.222b1d09ff65 from=translated src=- shape=a95c6830 vocab=175f55eb
+-/
 theorem edgeContraction_index_some {G : SimpleGraph V} {a b : V}
     (hab : G.Adj a b) (x : V) (hxa : x ≠ a) (hxb : x ≠ b) :
     partitionIndex (edgeContractionPartition G hab) x =
@@ -585,6 +643,9 @@ theorem edgeContraction_index_some {G : SimpleGraph V} {a b : V}
   apply partitionIndex_eq_of_mem
   simp [edgeContractionPartition, edgeContractionBlock]
 
+/--
+@isnad1 id=eq.3h6v.s6.b7ce2cafb19d from=translated src=- shape=4cddaa6b vocab=345a23f8
+-/
 theorem edgeContraction_index_inj_away {G : SimpleGraph V} {a b : V}
     (hab : G.Adj a b) {x y : V}
     (hx : partitionIndex (edgeContractionPartition G hab) x ≠ none)
@@ -628,7 +689,9 @@ private theorem quotient_edgeWitness (P : ConnectedPartition G I)
   exact e.1.out_eq
 
 /-- The edge incidence of a quotient shore is at most that of its
-preimage in the original graph, by an injective choice of edge witnesses.-/
+preimage in the original graph, by an injective choice of edge witnesses.
+@isnad1 id=le.0h5v.s5.80d5f82c19e4 from=translated src=- shape=14d90efa vocab=d29e481e
+-/
 theorem quotient_incidence_le_original
     (P : ConnectedPartition G I) (B : Set I) :
     edgeIncidenceSetCount P.touchingQuotient B ≤
@@ -666,7 +729,9 @@ theorem quotient_incidence_le_original
 end QuotientIncidence
 
 /-- An edge contraction preserves the cardinality of any vertex set not
-containing the contracted vertex when pulled back to the original graph.-/
+containing the contracted vertex when pulled back to the original graph.
+@isnad1 id=eq.2h5v.s6.124bfa5fd6a7 from=translated src=- shape=86f0ccd7 vocab=24f64aee
+-/
 theorem edgeContraction_preimage_card_away {G : SimpleGraph V} {a b : V}
     (hab : G.Adj a b) (B : Set (EdgeContractionVertex a b))
     (hnone : none ∉ B) :
@@ -701,12 +766,18 @@ theorem edgeContraction_preimage_card_away {G : SimpleGraph V} {a b : V}
   rw [Nat.card_eq_fintype_card, Nat.card_eq_fintype_card]
   exact Fintype.card_congr (Equiv.ofBijective f ⟨hinj, hsurj⟩)
 
+/--
+@isnad1 id=eq.1h4v.s5.de922f210f96 from=translated src=- shape=24897771 vocab=345a23f8
+-/
 theorem edgeContraction_index_left {G : SimpleGraph V} {a b : V}
     (hab : G.Adj a b) :
     partitionIndex (edgeContractionPartition G hab) a = none := by
   apply partitionIndex_eq_of_mem
   simp [edgeContractionPartition, edgeContractionBlock]
 
+/--
+@isnad1 id=eq.1h4v.s5.79e34d3d4227 from=translated src=- shape=5795b84a vocab=345a23f8
+-/
 theorem edgeContraction_index_right {G : SimpleGraph V} {a b : V}
     (hab : G.Adj a b) :
     partitionIndex (edgeContractionPartition G hab) b = none := by
@@ -714,7 +785,9 @@ theorem edgeContraction_index_right {G : SimpleGraph V} {a b : V}
   simp [edgeContractionPartition, edgeContractionBlock]
 
 /-- A set containing the contracted vertex has one extra vertex in its
-pullback: that vertex splits into the two original endpoints.-/
+pullback: that vertex splits into the two original endpoints.
+@isnad1 id=eq.2h5v.s6.f9a04308e95f from=translated src=- shape=e969e390 vocab=596471bc
+-/
 theorem edgeContraction_preimage_card_of_mem_contract {G : SimpleGraph V} {a b : V}
     (hab : G.Adj a b) (B : Set (EdgeContractionVertex a b))
     (hnone : none ∈ B) :
@@ -767,7 +840,9 @@ theorem edgeContraction_preimage_card_of_mem_contract {G : SimpleGraph V} {a b :
   rw [hU, Set.ncard_union_eq hdis, hpair]
   omega
 
-/-- Contracting an edge with an endpoint outside the root set keeps all roots distinct.-/
+/-- Contracting an edge with an endpoint outside the root set keeps all roots distinct.
+@isnad1 id=injon.2h5v.s6.69bdb997993c from=translated src=- shape=9ef5c307 vocab=fc9f3311
+-/
 theorem edgeContraction_index_injOn_roots {G : SimpleGraph V} {a b : V}
     (hab : G.Adj a b) (X : Finset V) (hb : b ∉ X) :
     Set.InjOn (partitionIndex (edgeContractionPartition G hab)) (X : Set V) := by
@@ -790,7 +865,9 @@ theorem edgeContraction_index_injOn_roots {G : SimpleGraph V} {a b : V}
 
 /-- Numerical core of (D.2): when contraction destroys strict mass and costs
 `1 + c + ε` incidences with `ε ≤ 1`, the endpoints have at least `λ-1`
-common neighbors.-/
+common neighbors.
+@isnad1 id=le.5h6v.s6.f84f7cfeb506 from=translated src=- shape=7ee4ef78 vocab=19aefd93
+-/
 theorem common_neighbor_lower_of_mass_drop
     (m before after c ε r : ℕ) (hm : 0 < m)
     (hbefore : r * m < before)
@@ -851,7 +928,9 @@ noncomputable def edgeContraction_rootInduceIso {G : SimpleGraph V} {a b : V}
   exact edgeContraction_adj_some_some (G := G) hab _ _
 
 /-- Contracting an edge disjoint from the roots drops the exterior incidence
-count by exactly one plus the number of common neighbors.-/
+count by exactly one plus the number of common neighbors.
+@isnad1 id=other.3h5v.s8.3584fe03ddbb from=translated src=- shape=de2e70ce vocab=ee533560
+-/
 theorem edgeContraction_incidence_drop_outside {G : SimpleGraph V} [DecidableRel G.Adj]
     {a b : V} (hab : G.Adj a b)
     (X : Finset V) (ha : a ∉ X) (hb : b ∉ X) :
@@ -883,7 +962,9 @@ theorem edgeContraction_incidence_drop_outside {G : SimpleGraph V} [DecidableRel
 
 /-- The exterior-edge case of (D.2): if contracting an edge disjoint from
 the roots destroys the strict global mass inequality, then its endpoints
-have at least `r-1` common neighbors.-/
+have at least `r-1` common neighbors.
+@isnad1 id=other.4h6v.s7.19a95acdac44 from=translated src=- shape=d77c7a70 vocab=0a6af3fd
+-/
 theorem common_neighbors_ge_of_exterior_contraction_mass_failure {G : SimpleGraph V} [DecidableRel G.Adj]
     {a b : V} (hab : G.Adj a b) (X : Finset V)
     (ha : a ∉ X) (hb : b ∉ X) (r : ℕ)
@@ -1135,7 +1216,9 @@ private theorem edgeContraction_rootEpsilon_card (G : SimpleGraph V) [DecidableR
   rw [Finset.inter_comm B A] at h2
   omega
 
-/-- The extra root-edge loss at a contraction is at most one when each root has at most one missing root neighbor.-/
+/-- The extra root-edge loss at a contraction is at most one when each root has at most one missing root neighbor.
+@isnad1 id=le.2h5v.s7.8bd92ead974d from=translated src=- shape=ebf354aa vocab=c064347e
+-/
 theorem edgeContraction_rootEpsilon_le_one (G : SimpleGraph V) [DecidableRel G.Adj]
     (X : Finset V) (a b : V) (ha : a ∈ X)
     (hmissing : ∀ x ∈ X, (X.erase x \ G.neighborFinset x).card ≤ 1) :
@@ -1184,7 +1267,9 @@ private theorem edgeContraction_internal_root_add_epsilon {G : SimpleGraph V} [D
     simpa [Q] using hdQ
   omega
 
-/-- Exact incidence loss for an edge contraction with one endpoint in the root set.-/
+/-- Exact incidence loss for an edge contraction with one endpoint in the root set.
+@isnad1 id=other.3h5v.s9.18785ad857cb from=translated src=- shape=396328ca vocab=861be2b8
+-/
 theorem edgeContraction_incidence_drop_root {G : SimpleGraph V} [DecidableRel G.Adj]
     {a b : V} (hab : G.Adj a b)
     (X : Finset V) (ha : a ∈ X) (hb : b ∉ X) :
@@ -1219,7 +1304,9 @@ theorem edgeContraction_incidence_drop_root {G : SimpleGraph V} [DecidableRel G.
       ((G.neighborFinset b ∩ X.erase a) \ G.neighborFinset a).card = edgeIncidenceCount G Xᶜ
   omega
 
-/-- Contracting a root-outside edge decreases the number of outside vertices by one.-/
+/-- Contracting a root-outside edge decreases the number of outside vertices by one.
+@isnad1 id=other.3h5v.s7.6ff3df6740f2 from=translated src=- shape=4b46b0e9 vocab=2b56704c
+-/
 theorem edgeContraction_root_compl_card {G : SimpleGraph V} {a b : V}
     (hab : G.Adj a b) (X : Finset V) (ha : a ∈ X) (hb : b ∉ X) :
     let P := edgeContractionPartition G hab
@@ -1261,7 +1348,9 @@ theorem edgeContraction_root_compl_card {G : SimpleGraph V} {a b : V}
     exact Set.ncard_sdiff_singleton_add_one (by simpa using hb)
   omega
 
-/-- Root-outside case of (D.2): failure of strict global mass after contraction forces many common neighbors.-/
+/-- Root-outside case of (D.2): failure of strict global mass after contraction forces many common neighbors.
+@isnad1 id=other.5h6v.s8.3d23414cc2ea from=translated src=- shape=5065a130 vocab=6ca02849
+-/
 theorem common_neighbors_ge_of_root_contraction_mass_failure {G : SimpleGraph V} [DecidableRel G.Adj]
     {a b : V} (hab : G.Adj a b) (X : Finset V)
     (ha : a ∈ X) (hb : b ∉ X) (r : ℕ)
@@ -1319,7 +1408,9 @@ private theorem add_root_edge_other_edge_old {G : SimpleGraph V} (u v : V) :
   · simp only [SimpleGraph.edgeSet_fromEdgeSet, Set.mem_sdiff, Set.mem_singleton_iff] at h
     exact False.elim (hne h.1)
 
-/-- Adding a root edge that is not a prescribed pair cannot link a fixed bad pairing.-/
+/-- Adding a root edge that is not a prescribed pair cannot link a fixed bad pairing.
+@isnad1 id=not.5h7v.s7.471669cda713 from=translated src=- shape=77ec86dc vocab=0b0991f5
+-/
 theorem fixed_pair_nonlinked_add_other_root_edge
     {G : SimpleGraph V} {ι : Type*} {P : IndexedPairs ι V}
     (X : Finset V) (u v : V) (huX : u ∈ X) (hvX : v ∈ X) (huv : u ≠ v)
@@ -1332,7 +1423,9 @@ theorem fixed_pair_nonlinked_add_other_root_edge
     (add_root_edge_other_edge_old u v)
   exact hbad ⟨L',hL'⟩
 
-/-- Two nested graphs have the same incidence count on S when every edge of the larger graph meeting S already lies in the smaller graph.-/
+/-- Two nested graphs have the same incidence count on S when every edge of the larger graph meeting S already lies in the smaller graph.
+@isnad1 id=eq.2h4v.s6.a07cde42f09e from=translated src=- shape=ee7bde83 vocab=6b39db48
+-/
 theorem incidence_eq_of_agree_on_incident_edges
     {G H : SimpleGraph V} (S : Set V) (hGH : G ≤ H)
     (hHG : ∀ e ∈ H.edgeSet, (∃ w ∈ S, w ∈ (e : Sym2 V)) → e ∈ G.edgeSet) :
@@ -1349,7 +1442,9 @@ theorem incidence_eq_of_agree_on_incident_edges
   have hge := edgeIncidenceSetCount_mono hGH S
   omega
 
-/-- A new edge joining two roots does not change edge incidence away from them.-/
+/-- A new edge joining two roots does not change edge incidence away from them.
+@isnad1 id=eq.2h5v.s6.3685b1bf2387 from=translated src=- shape=b3ae8a72 vocab=f5d4f118
+-/
 theorem incidence_add_root_edge
     {G : SimpleGraph V} (S : Set V) (u v : V)
     (hu : u ∉ S) (hv : v ∉ S) :
@@ -1366,7 +1461,9 @@ theorem incidence_add_root_edge
     · exact hv (hwv ▸ hwS)
   exact add_root_edge_other_edge_old u v e heH hne
 
-/-- Adding an edge inside the root set preserves both massed-pair inequalities.-/
+/-- Adding an edge inside the root set preserves both massed-pair inequalities.
+@isnad1 id=massedpa.3h6v.s6.9261d11b021e from=translated src=- shape=54b8983e vocab=4177cdf0
+-/
 theorem massed_add_root_edge
     {G : SimpleGraph V} (X : Finset V) (α : ℝ)
     (hm : MassedPair G (X : Set V) α)
@@ -1402,7 +1499,9 @@ theorem massed_add_root_edge
     change edgeIncidenceSetCount H S.strictRight = edgeIncidenceSetCount G T.strictRight at hcount
     rw [hcount]
     exact hshore
-/-- If every missing root edge is a prescribed pair, each root has at most one missing root neighbor.-/
+/-- If every missing root edge is a prescribed pair, each root has at most one missing root neighbor.
+@isnad1 id=le.3h6v.s7.6692d6bef10b from=translated src=- shape=39c8f9e2 vocab=c80241d8
+-/
 theorem root_at_most_one_nonedge_of_pairable
     {G : SimpleGraph V} [DecidableRel G.Adj]
     (X : Finset V) {ι : Type*} (P : IndexedPairs ι V)
@@ -1442,7 +1541,9 @@ theorem root_at_most_one_nonedge_of_pairable
   · exact h.2
   · exact False.elim (huv h.2.symm)
 
-/-- In an edge-maximal massed counterexample, a root has at most one nonneighbor among the roots.-/
+/-- In an edge-maximal massed counterexample, a root has at most one nonneighbor among the roots.
+@isnad1 id=le.5h7v.s8.8b77527be29d from=translated src=- shape=22fa514b vocab=99ebd39b
+-/
 theorem root_missing_le_one_of_edge_maximal_bad_pair
     {G : SimpleGraph V} [DecidableRel G.Adj]
     (X : Finset V) (α : ℝ) (hm : MassedPair G (X : Set V) α)
@@ -1464,7 +1565,9 @@ theorem root_missing_le_one_of_edge_maximal_bad_pair
   have hmH := massed_add_root_edge X α hm x y hx hy
   exact hbadH (hmax x hx y hy hxy hnxy hmH)
 
-/-- If the contracted vertex lies in the adhesion and expansion is still smaller than the root set, the quotient shore inequality holds.-/
+/-- If the contracted vertex lies in the adhesion and expansion is still smaller than the root set, the quotient shore inequality holds.
+@isnad1 id=le.5h7v.s7.f2d9d22f0783 from=translated src=- shape=535f208a vocab=bccf2873
+-/
 theorem edgeContraction_shore_separator_small {G : SimpleGraph V} {a b : V}
     (hab : G.Adj a b) (X : Finset V) (α : ℝ)
     (hm : MassedPair G (X : Set V) α)
@@ -1505,7 +1608,9 @@ theorem edgeContraction_shore_separator_small {G : SimpleGraph V} {a b : V}
   exact hincR.trans hshore
 
 /-- The common-neighbor bound (D.2) for any edge meeting the outside of the roots,
-provided its contraction fails the strict global mass condition.-/
+provided its contraction fails the strict global mass condition.
+@isnad1 id=other.4h6v.s8.63919c0fe413 from=translated src=- shape=d27a17ea vocab=6ca02849
+-/
 theorem common_neighbors_ge_of_contraction_mass_failure {G : SimpleGraph V}
     [DecidableRel G.Adj] {a b : V} (hab : G.Adj a b)
     (X : Finset V) (hb : b ∉ X) (r : ℕ)
@@ -1523,7 +1628,9 @@ theorem common_neighbors_ge_of_contraction_mass_failure {G : SimpleGraph V}
   · exact common_neighbors_ge_of_exterior_contraction_mass_failure hab X ha hb r hm
       hfail
 
-/-- Adding edges only among roots leaves incidence counts unchanged on sets disjoint from the roots.-/
+/-- Adding edges only among roots leaves incidence counts unchanged on sets disjoint from the roots.
+@isnad1 id=eq.3h5v.s6.e54a7487f108 from=translated src=- shape=87224c9c vocab=41c8f318
+-/
 theorem incidence_eq_of_root_extension
     {G H : SimpleGraph V} (X : Finset V) (S : Set V)
     (hGH : G ≤ H)
@@ -1543,7 +1650,9 @@ theorem incidence_eq_of_root_extension
       · exact False.elim ((Set.disjoint_left.mp hSX) hwS (hwu ▸ huX))
       · exact False.elim ((Set.disjoint_left.mp hSX) hwS (hwv ▸ hvX))
 
-/-- Arbitrary edge additions wholly inside the root set preserve massedness.-/
+/-- Arbitrary edge additions wholly inside the root set preserve massedness.
+@isnad1 id=massedpa.3h5v.s6.d93d67950b61 from=translated src=- shape=48f9625f vocab=8f3fd86e
+-/
 theorem massed_of_root_extension
     {G H : SimpleGraph V} (X : Finset V) (α : ℝ)
     (hGH : G ≤ H)
@@ -1575,7 +1684,9 @@ theorem massed_of_root_extension
     rw [hcount]
     exact hshore
 
-/-- Edges added among roots outside the prescribed pairs cannot repair a fixed bad pairing.-/
+/-- Edges added among roots outside the prescribed pairs cannot repair a fixed bad pairing.
+@isnad1 id=not.2h6v.s7.8d8bfdf91530 from=translated src=- shape=281d8c18 vocab=90ebe4d8
+-/
 theorem fixed_pair_nonlinked_of_root_extension
     {G H : SimpleGraph V} (X : Finset V) {ι : Type*}
     (P : IndexedPairs ι V)
@@ -1636,7 +1747,9 @@ def rootPairSaturation (G : SimpleGraph V) (X : Finset V)
     · exact G.irrefl hG
     · exact hNew.1 rfl
 
-/-- Root-pair saturation preserves both massedness and failure of the fixed pairing.-/
+/-- Root-pair saturation preserves both massedness and failure of the fixed pairing.
+@isnad1 id=and.2h6v.s6.93239746fefa from=translated src=- shape=e658251e vocab=b7cdcaf4
+-/
 theorem rootPairSaturation_massed_bad
     {G : SimpleGraph V} (X : Finset V) {ι : Type*} (P : IndexedPairs ι V)
     (α : ℝ) (hm : MassedPair G (X : Set V) α)
@@ -1659,7 +1772,9 @@ theorem rootPairSaturation_massed_bad
     ⟨h.1,h.2.1⟩) hm,
     fixed_pair_nonlinked_of_root_extension X P hnew hbad⟩
 
-/-- Every root of the saturated graph has at most one nonneighbor in the root set.-/
+/-- Every root of the saturated graph has at most one nonneighbor in the root set.
+@isnad1 id=le.2h6v.s6.1002c327ee69 from=translated src=- shape=10123cab vocab=41a19114
+-/
 theorem rootPairSaturation_missing
     (G : SimpleGraph V) (X : Finset V) {ι : Type*} (P : IndexedPairs ι V)
     (hP : P.DisjointTerminals)
@@ -1677,6 +1792,9 @@ theorem rootPairSaturation_missing
   have hAdj : H.Adj x y := Or.inr ⟨hxy,hx,hy,hother⟩
   exact hnxy hAdj
 
+/--
+@isnad1 id=eq.1h4v.s6.ec52d1eb3974 from=translated src=- shape=6da3474f vocab=b863612f
+-/
 theorem incidence_induce_eq_of_support_subset
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (S : Set V) [Fintype S] (hSupport : G.support ⊆ S) (U : Finset S) :
@@ -1745,7 +1863,9 @@ theorem incidence_induce_eq_of_support_subset
       rw [Finset.card_map]
     _ = _ := congrArg Finset.card hfilter
 
-/-- Incidence counts in an induced graph agree with ambient counts when all edges survive.-/
+/-- Incidence counts in an induced graph agree with ambient counts when all edges survive.
+@isnad1 id=eq.1h4v.s6.e1d2c2bc7eb0 from=translated src=- shape=50a2c673 vocab=6db5d1c8
+-/
 theorem incidenceSetCount_induce_eq_of_support_subset
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (S : Set V) [Fintype S] (hSupport : G.support ⊆ S) (U : Set S) :
@@ -1800,6 +1920,9 @@ def liftInducedSeparation (G : SimpleGraph V) (S : Set V)
       exact hyNotL (Or.inr ⟨⟨y,hyS⟩,h,rfl⟩)
     exact A.no_cross hxA hxNotA hyA hyNotA hxy
 
+/--
+@isnad1 id=eq.1h4v.s6.4cb6149f63ac from=translated src=- shape=4ae02eb5 vocab=32493445
+-/
 theorem liftInducedSeparation_separator (G : SimpleGraph V) (S : Set V)
     (hSupport : G.support ⊆ S) (A : VertexSeparation (G.induce S)) :
     (liftInducedSeparation G S hSupport A).separator =
@@ -1818,6 +1941,9 @@ theorem liftInducedSeparation_separator (G : SimpleGraph V) (S : Set V)
   · rintro ⟨u,⟨huL,huR⟩,huv⟩
     exact ⟨Or.inr ⟨u,huL,huv⟩,⟨u,huR,huv⟩⟩
 
+/--
+@isnad1 id=eq.1h4v.s6.4e8322f14018 from=translated src=- shape=4ae02eb5 vocab=5ee79aa3
+-/
 theorem liftInducedSeparation_strictRight (G : SimpleGraph V) (S : Set V)
     (hSupport : G.support ⊆ S) (A : VertexSeparation (G.induce S)) :
     (liftInducedSeparation G S hSupport A).strictRight =
@@ -1837,7 +1963,9 @@ theorem liftInducedSeparation_strictRight (G : SimpleGraph V) (S : Set V)
     · have hwu : w = u := Subtype.val_injective (hwv.trans huv.symm)
       exact huNotL (hwu ▸ hwL)
 
-/-- Removing vertices outside the support does not change edge incidence on a set.-/
+/-- Removing vertices outside the support does not change edge incidence on a set.
+@isnad1 id=eq.1h4v.s5.d3e4a2358bd9 from=translated src=- shape=f168bf3d vocab=8dfaf71b
+-/
 theorem incidence_inter_support_subset
     (G : SimpleGraph V) (S : Set V) (hSupport : G.support ⊆ S)
     (U : Set V) :
@@ -1860,7 +1988,9 @@ theorem incidence_inter_support_subset
   unfold edgeIncidenceSetCount
   exact congrArg (fun T : Set G.edgeSet => Nat.card T) hEq
 
-/-- Deleting unsupported vertices preserves the massed pair invariant.-/
+/-- Deleting unsupported vertices preserves the massed pair invariant.
+@isnad1 id=massedpa.4h5v.s6.778608dccb5a from=translated src=- shape=a909e6e8 vocab=45334930
+-/
 theorem massed_induce_support_subset
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (S R : Set V) [Fintype S]
@@ -1926,7 +2056,9 @@ theorem massed_induce_support_subset
     rw [hinc]
     exact hshore
 
-/-- Removing an isolated nonroot vertex preserves massedness.-/
+/-- Removing an isolated nonroot vertex preserves massedness.
+@isnad1 id=massedpa.4h5v.s7.271332ce7c0f from=translated src=- shape=99f6fbd6 vocab=2eb2694b
+-/
 theorem massed_delete_isolated
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (X : Finset V) (α : ℝ) (hα : 0 ≤ α)
@@ -1945,7 +2077,9 @@ theorem massed_delete_isolated
     exact hz (hEq ▸ hv)
 
 /-- A nonlinked massed pair has no isolated outside vertex if all one-vertex
-massed deletions are linked.-/
+massed deletions are linked.
+@isnad1 id=ex.5h5v.s8.629d22791bc9 from=translated src=- shape=ad31155f vocab=c33b6dc7
+-/
 theorem outside_has_neighbor_of_linked_vertex_deletions
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (X : Finset V) (α : ℝ) (hα : 0 ≤ α)
@@ -1976,7 +2110,9 @@ theorem outside_has_neighbor_of_linked_vertex_deletions
     simp [Y]
   exact hbad (RootedLinked.of_induce G S X Y hXS hY hlinked)
 
-/-- A root set with fewer than two vertices has no nontrivial pairing.-/
+/-- A root set with fewer than two vertices has no nontrivial pairing.
+@isnad1 id=rootedli.1h3v.s4.b40881f12c55 from=translated src=- shape=b5094f06 vocab=b3b88e4d
+-/
 theorem rootedLinked_of_card_le_one (G : SimpleGraph V) (X : Finset V)
     (hX : X.card ≤ 1) : RootedLinked G X := by
   intro n P _ hne hPX
@@ -2003,14 +2139,18 @@ theorem rootedLinked_of_card_le_one (G : SimpleGraph V) (X : Finset V)
   }
   exact ⟨L, by intro i; exact Fin.elim0 i⟩
 
-/-- Any failure of rooted linkedness uses at least two roots.-/
+/-- Any failure of rooted linkedness uses at least two roots.
+@isnad1 id=le.1h3v.s4.9f2a78d2544f from=translated src=- shape=71624d58 vocab=b3b88e4d
+-/
 theorem root_card_ge_two_of_not_rootedLinked (G : SimpleGraph V) (X : Finset V)
     (hbad : ¬ RootedLinked G X) : 2 ≤ X.card := by
   by_contra h
   have hX : X.card ≤ 1 := by omega
   exact hbad (rootedLinked_of_card_le_one G X hX)
 
-/-- Failure of rooted linkedness is witnessed by one finite prescribed pairing.-/
+/-- Failure of rooted linkedness is witnessed by one finite prescribed pairing.
+@isnad1 id=ex.1h3v.s6.02b8a67629a3 from=translated src=- shape=d6f3b713 vocab=79fd49a3
+-/
 theorem exists_bad_pairing_of_not_rootedLinked
     (G : SimpleGraph V) (X : Finset V)
     (hbad : ¬ RootedLinked G X) :
@@ -2023,7 +2163,9 @@ theorem exists_bad_pairing_of_not_rootedLinked
   obtain ⟨n, P, hP, hne, hX, hno⟩ := hbad
   exact ⟨n, P, hP, hne, hX, by rintro ⟨L, hL⟩; exact hno L hL⟩
 
-/-- A neighbor of a strict far-side vertex remains in the right side.-/
+/-- A neighbor of a strict far-side vertex remains in the right side.
+@isnad1 id=mem.2h5v.s5.608eed5ac661 from=translated src=- shape=1cbe4a05 vocab=9df10450
+-/
 theorem VertexSeparation.adj_right_of_strictRight
     {G : SimpleGraph V} (S : VertexSeparation G)
     {u v : V} (hu : u ∈ S.strictRight) (hAdj : G.Adj u v) :
@@ -2038,7 +2180,9 @@ theorem VertexSeparation.adj_right_of_strictRight
   exact S.no_cross hvL hvR hu.1 hu.2 hAdj.symm
 
 /-- Edge incidence on a strict far-side set is unchanged by restricting to
-the right side of a separation.-/
+the right side of a separation.
+@isnad1 id=eq.1h4v.s7.4ee3283be1c5 from=translated src=- shape=5c6df630 vocab=9fbc7d99
+-/
 theorem incidenceCount_induce_right
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (S : VertexSeparation G) [Fintype S.right]
@@ -2114,7 +2258,9 @@ theorem incidenceCount_induce_right
       rw [Finset.card_map]
     _ = _ := congrArg Finset.card hfilter
 
-/-- Set-level incidence equality on a separation's strict far shore.-/
+/-- Set-level incidence equality on a separation's strict far shore.
+@isnad1 id=eq.1h4v.s7.d4f3ec71117d from=translated src=- shape=90d3c309 vocab=5c2b17ce
+-/
 theorem incidenceSetCount_induce_right
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (S : VertexSeparation G) [Fintype S.right]
@@ -2137,7 +2283,9 @@ theorem incidenceSetCount_induce_right
   exact hU u (by simpa [T] using hu)
 
 /-- A dense far shore becomes the global mass condition after restricting
-to the far-side induced graph and rooting its separator.-/
+to the far-side induced graph and rooting its separator.
+@isnad1 id=other.1h4v.s7.27cf9479bde2 from=translated src=- shape=980fa826 vocab=c3d44560
+-/
 theorem dense_far_shore_induced_global
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (S : VertexSeparation G) [Fintype S.right] (α : ℝ)
@@ -2213,7 +2361,9 @@ def glueRightInduced {G : SimpleGraph V}
       have h : xw = ⟨x,hxS⟩ := Subtype.val_injective hxEq
       exact crossT hxS (by simpa [h] using hxT)
 
-/-- The glued boundary is the image of the right-side boundary.-/
+/-- The glued boundary is the image of the right-side boundary.
+@isnad1 id=eq.1h4v.s7.d6c9275f6adf from=translated src=- shape=84a02130 vocab=4677c13a
+-/
 theorem glueRightInduced_separator {G : SimpleGraph V}
     (S : VertexSeparation G) (T : VertexSeparation (G.induce S.right))
     (hBoundary : ∀ u : S.right, (u : V) ∈ S.left → u ∈ T.left) :
@@ -2231,7 +2381,9 @@ theorem glueRightInduced_separator {G : SimpleGraph V}
   · rintro ⟨u,⟨huL,huR⟩,huEq⟩
     exact ⟨Or.inr ⟨u,huL,huEq⟩,⟨u,huR,huEq⟩⟩
 
-/-- Gluing preserves adhesion order.-/
+/-- Gluing preserves adhesion order.
+@isnad1 id=eq.1h4v.s7.ff62a352c363 from=translated src=- shape=55af3880 vocab=37c7fab9
+-/
 theorem glueRightInduced_separator_card {G : SimpleGraph V}
     (S : VertexSeparation G) (T : VertexSeparation (G.induce S.right))
     (hBoundary : ∀ u : S.right, (u : V) ∈ S.left → u ∈ T.left) :
@@ -2243,7 +2395,9 @@ theorem glueRightInduced_separator_card {G : SimpleGraph V}
     Nat.card_coe_set_eq]
 
 /-- The strict far shore of the glued separation is exactly the image of
-the induced strict far shore.-/
+the induced strict far shore.
+@isnad1 id=eq.1h4v.s7.8d9530e9fa16 from=translated src=- shape=84a02130 vocab=ae8907df
+-/
 theorem glueRightInduced_strictRight {G : SimpleGraph V}
     (S : VertexSeparation G) (T : VertexSeparation (G.induce S.right))
     (hBoundary : ∀ u : S.right, (u : V) ∈ S.left → u ∈ T.left) :
@@ -2263,7 +2417,9 @@ theorem glueRightInduced_strictRight {G : SimpleGraph V}
     · have hwu : w = u := Subtype.val_injective (hwEq.trans huEq.symm)
       exact huNotL (hwu ▸ hwL)
 
-/-- Lower adhesion makes the glued right side a proper subset of the old one.-/
+/-- Lower adhesion makes the glued right side a proper subset of the old one.
+@isnad1 id=and.2h4v.s7.915456b74642 from=translated src=- shape=f4ab20a5 vocab=803089e1
+-/
 theorem glueRightInduced_right_proper {G : SimpleGraph V}
     (S : VertexSeparation G) (T : VertexSeparation (G.induce S.right))
     (hBoundary : ∀ u : S.right, (u : V) ∈ S.left → u ∈ T.left)
@@ -2298,7 +2454,9 @@ theorem glueRightInduced_right_proper {G : SimpleGraph V}
     exact huNotRight (hEq ▸ hw)
 
 /-- A violating shore minimal by right-side inclusion induces a smaller
-massed pair rooted at its adhesion.-/
+massed pair rooted at its adhesion.
+@isnad1 id=massedpa.4h5v.s7.1f88a7591a3e from=translated src=- shape=cb44d68d vocab=61df194e
+-/
 theorem massed_far_shore_of_minimal_violation
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (R : Set V) (α : ℝ)
@@ -2358,7 +2516,9 @@ theorem massed_far_shore_of_minimal_violation
     rw [hinc]
     exact hbound
 
-/-- Among dense violating shores, choose one with inclusion-minimal right side.-/
+/-- Among dense violating shores, choose one with inclusion-minimal right side.
+@isnad1 id=ex.1h4v.s7.17a7eb38e30c from=translated src=- shape=73f0abdd vocab=94ea4b7f
+-/
 theorem exists_minimal_violating_shore
     (G : SimpleGraph V) (R : Set V) (α : ℝ)
     (hex : ∃ S : VertexSeparation G,
@@ -2402,7 +2562,9 @@ theorem exists_minimal_violating_shore
   have hmin : Nat.find hP ≤ Nat.card Q.right := Nat.find_min' hP hQ
   omega
 
-/-- A dense shore with adhesion at most the original root order inherits massedness.-/
+/-- A dense shore with adhesion at most the original root order inherits massedness.
+@isnad1 id=massedpa.4h5v.s7.1a22dd82ccbf from=translated src=- shape=89995055 vocab=61df194e
+-/
 theorem massed_induced_far_shore_of_adhesion_le
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (R : Set V) (α : ℝ)
@@ -2462,6 +2624,9 @@ noncomputable def separationBoundaryFinset
   letI : Fintype S.right := Fintype.ofFinite S.right
   exact Finset.univ.filter (fun u : S.right => (u : V) ∈ S.left)
 
+/--
+@isnad1 id=iff.0h4v.s6.e534a80f8a85 from=translated src=- shape=536d9f7b vocab=570a6c20
+-/
 @[simp] theorem mem_separationBoundaryFinset
     {G : SimpleGraph V} (S : VertexSeparation G) (u : S.right) :
     u ∈ separationBoundaryFinset S ↔ (u : V) ∈ S.left := by
@@ -2475,7 +2640,9 @@ def NoRigidSeparation (G : SimpleGraph V) (R : Set V) : Prop :=
     Nat.card S.separator ≤ Nat.card R →
     ¬ RootedLinked (G.induce S.right) (separationBoundaryFinset S)
 
-/-- Any separation of order below the root set omits a root from its right side.-/
+/-- Any separation of order below the root set omits a root from its right side.
+@isnad1 id=lt.2h4v.s5.99599e949223 from=translated src=- shape=e6059d57 vocab=b49f9173
+-/
 theorem right_card_lt_of_root_sep {G : SimpleGraph V}
     (R : Set V) (S : VertexSeparation G)
     (hroot : R ⊆ S.left)
@@ -2500,7 +2667,9 @@ theorem right_card_lt_of_root_sep {G : SimpleGraph V}
   change S.right.ncard < Fintype.card V
   simpa only [Set.ncard_univ, Nat.card_eq_fintype_card] using hc
 
-/-- A smaller massed-pair principle makes the minimal dense violating shore linked.-/
+/-- A smaller massed-pair principle makes the minimal dense violating shore linked.
+@isnad1 id=ex.2h4v.s8.a57d4a5f23f4 from=translated src=- shape=98b5a23f vocab=0d9884fb
+-/
 theorem exists_linked_minimal_violating_shore
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (R : Set V) (α : ℝ)
@@ -2530,7 +2699,9 @@ theorem exists_linked_minimal_violating_shore
   exact ⟨S,hroot,hsep,hdense,
     hsmall S (right_card_lt_of_root_sep R S hroot hsep) hsep hmS⟩
 
-/-- A clique lies entirely on one closed side of every vertex separation.-/
+/-- A clique lies entirely on one closed side of every vertex separation.
+@isnad1 id=or.1h4v.s5.13c25486904a from=translated src=- shape=9911a0bd vocab=2c9ed674
+-/
 theorem clique_on_one_separation_side
     {G : SimpleGraph V} (C : Set V)
     (hclique : C.Pairwise G.Adj)

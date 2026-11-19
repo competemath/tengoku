@@ -12,7 +12,9 @@ open HadwigerLean.Bootstrap
 universe u
 
 /-- Once the logarithmic window of Theorem 4 fits into a local linear bound,
-Theorem 4 supplies a large-order linear bound.-/
+Theorem 4 supplies a large-order linear bound.
+@isnad1 id=ex.3h1v.s7.e6503ebed502 from=translated src=- shape=28f6d4b7 vocab=dfa85abf
+-/
 theorem large_linear_of_local_and_window
     (h4 : Theorem4Statement.{u}) (α : ℝ)
     (hlocal : LocalLinearBound.{u} α)
@@ -52,7 +54,9 @@ theorem large_linear_of_local_and_window
     convert hbound using 1 <;> push_cast <;> ring
   exact_mod_cast hcast
 
-/-- The same bound holds for every excluded complete-minor order at least two.-/
+/-- The same bound holds for every excluded complete-minor order at least two.
+@isnad1 id=ex.3h1v.s7.9ce441cd8eaa from=translated src=- shape=5444f5f5 vocab=dfa85abf
+-/
 theorem linear_of_local_and_window
     (h4 : Theorem4Statement.{u}) (α : ℝ)
     (hlocal : LocalLinearBound.{u} α)

@@ -16,7 +16,9 @@ variable {V : Type*} [Fintype V] {G : SimpleGraph V} {w : V → ℝ}
 
 /-- If opposite sides of a bipartite connector avoid the yolks of two eggs,
 one of the eggs can absorb the connector. The path argument supplies the
-connectivity and no-cross-edge hypotheses at the application point.-/
+connectivity and no-cross-edge hypotheses at the application point.
+@isnad1 id=or.12h10v.s8.254a4e7cfc5b from=translated src=- shape=7230fe7a vocab=d8f169f0
+-/
 theorem egg_absorbs_bipartite_connector
     {X₁ X₂ U A B Y₁ Y₂ : Set V}
     (hY₁ : IsYolk G w X₁ Y₁) (hY₂ : IsYolk G w X₂ Y₂)

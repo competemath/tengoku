@@ -39,7 +39,9 @@ noncomputable def chordless_path_support_bicoloring
   exact ((SimpleGraph.pathGraph.bicoloring (p.length + 1)).comap
     hp.pathGraphIsoToSubgraph.symm.toHom).comap e.toHom
 
-/-- Restricting a walk to an induced graph preserves its length.-/
+/-- Restricting a walk to an induced graph preserves its length.
+@isnad1 id=eq.1h6v.s6.22a053b7e854 from=translated src=- shape=857ec441 vocab=f6ddad3a
+-/
 theorem walk_induce_length {s : Set V}
     (p : G.Walk a b) (hs : ∀ v, v ∈ p.support → v ∈ s) :
     (p.induce s hs).length = p.length := by
@@ -54,7 +56,9 @@ theorem walk_induce_length {s : Set V}
       simpa only [SimpleGraph.Walk.induce_cons, SimpleGraph.Walk.length_cons]
         using congrArg Nat.succ (ih hs')
 /-- For an odd induced path, the endpoint colors in its induced-support
-bicoloring are opposite.-/
+bicoloring are opposite.
+@isnad1 id=other.3h5v.s8.d6030d1aedb9 from=translated src=- shape=f90a4bce vocab=603877e4
+-/
 theorem chordless_odd_path_end_colors_ne
     (p : G.Walk a b) (hp : p.IsPath) (hchord : p.IsChordless)
     (hodd : Odd p.length) :
@@ -73,7 +77,9 @@ theorem chordless_odd_path_end_colors_ne
     cases hcb : c ⟨b, p.end_mem_support⟩ <;>
     simp_all
 /-- An odd induced path has a Boolean coloring of its induced support
-with different colors at its endpoints.-/
+with different colors at its endpoints.
+@isnad1 id=ex.3h5v.s8.67989084e4e2 from=translated src=- shape=31d55e56 vocab=a1dd7fb7
+-/
 theorem exists_chordless_odd_path_bicoloring
     (p : G.Walk a b) (hp : p.IsPath) (hchord : p.IsChordless)
     (hodd : Odd p.length) :

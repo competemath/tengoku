@@ -25,7 +25,9 @@ noncomputable instance remainingSetFintype (s : Finset V) :
   infer_instance
 
 omit [Fintype V] in
-/-- One stable set costs at most one color.-/
+/-- One stable set costs at most one color.
+@isnad1 id=colorabl.2h4v.s5.623294a16d60 from=translated src=- shape=b87e4061 vocab=da7f357d
+-/
 theorem colorable_delete_stable_set (G : SimpleGraph V)
     (s : Finset V) (hs : G.IsIndepSet (s : Set V))
     (k : ℕ) (hc : (G.induce (remainingSet s)).Colorable k) :
@@ -50,6 +52,9 @@ theorem colorable_delete_stable_set (G : SimpleGraph V)
         exact Fin.succ_injective k (by simpa [f, hv, hw] using h)
   exact ⟨SimpleGraph.Coloring.mk f hproper⟩
 
+/--
+@isnad1 id=le.1h3v.s5.e63fe669a646 from=translated src=- shape=c7b6797d vocab=b4831e5b
+-/
 theorem chromatic_le_delete_stable_set (G : SimpleGraph V)
     (s : Finset V) (hs : G.IsIndepSet (s : Set V)) :
     chromatic G ≤ chromatic (G.induce (remainingSet s)) + 1 := by
@@ -60,7 +65,9 @@ theorem chromatic_le_delete_stable_set (G : SimpleGraph V)
 omit [Fintype V] [DecidableEq V] in
 /-- A residual coloring plus one fresh color per stable covering block
 colors the whole graph. Blocks may overlap; the chosen block for each vertex
-is enough for properness.-/
+is enough for properness.
+@isnad1 id=colorabl.3h6v.s6.1264b2c8e5fb from=translated src=- shape=cea9f985 vocab=5875231e
+-/
 theorem colorable_of_stable_cover (G : SimpleGraph V)
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     (J : Set V) (block : ι → Finset V)
@@ -114,7 +121,9 @@ noncomputable def allStablePackings (G : SimpleGraph V) (m : ℕ) :
   classical
   exact Finset.univ.filter (IsStablePacking G m)
 
-/-- A maximum-cardinality packing leaves no stable set of size m+1.-/
+/-- A maximum-cardinality packing leaves no stable set of size m+1.
+@isnad1 id=ex.0h3v.s6.504e396aca14 from=translated src=- shape=acbcfce4 vocab=6bcb0eda
+-/
 theorem exists_maximal_stable_packing (G : SimpleGraph V) (m : ℕ) :
     ∃ P : Finset (Finset V),
       IsStablePacking G m P ∧
@@ -168,7 +177,9 @@ theorem exists_maximal_stable_packing (G : SimpleGraph V) (m : ℕ) :
   omega
 
 /-- The number of removed blocks is bounded by n/(m+1), without introducing
-a floor into the statement.-/
+a floor into the statement.
+@isnad1 id=le.1h4v.s5.5ea7db06570f from=translated src=- shape=92d10d70 vocab=566e66d5
+-/
 theorem stablePacking_count_bound (G : SimpleGraph V) (m : ℕ)
     (P : Finset (Finset V)) (hP : IsStablePacking G m P) :
     P.card * (m + 1) ≤ Fintype.card V := by
@@ -189,7 +200,9 @@ theorem stablePacking_count_bound (G : SimpleGraph V) (m : ℕ)
   exact Finset.card_le_card (Finset.subset_univ _)
 
 /-- If the remainder contains no stable set of size m+1, its induced
-graph has independence number at most m.-/
+graph has independence number at most m.
+@isnad1 id=le.1h4v.s6.26cdec44425f from=translated src=- shape=b2ff3df4 vocab=d84f6af8
+-/
 theorem independenceNumber_remainder_le (G : SimpleGraph V) (m : ℕ)
     (P : Finset (Finset V))
     (hmax : ∀ s : Finset V,
@@ -230,7 +243,9 @@ theorem independenceNumber_remainder_le (G : SimpleGraph V) (m : ℕ)
   exact hmax s hscard hsG hsJ
 
 /-- A stable packing plus an induced-remainder coloring colors the whole
-graph with one additional color for each removed block.-/
+graph with one additional color for each removed block.
+@isnad1 id=le.1h4v.s6.b0c376c93899 from=translated src=- shape=8a0cdc65 vocab=d702350e
+-/
 theorem chromatic_le_packing_remainder (G : SimpleGraph V) (m : ℕ)
     (P : Finset (Finset V)) (hP : IsStablePacking G m P) :
     chromatic G ≤ P.card +
@@ -260,7 +275,9 @@ theorem chromatic_le_packing_remainder (G : SimpleGraph V) (m : ℕ)
   exact (chromatic_le_iff_colorable G _).2 hc'
 
 /-- The complete structural peeling lemma. The quantitative proof only
-needs to bound the number of removed blocks and analyze the residual graph.-/
+needs to bound the number of removed blocks and analyze the residual graph.
+@isnad1 id=ex.0h3v.s7.96f5e7f96539 from=translated src=- shape=b8fd5975 vocab=2798d74d
+-/
 theorem exists_stable_peeling (G : SimpleGraph V) (m : ℕ) :
     ∃ P : Finset (Finset V),
       IsStablePacking G m P ∧
@@ -277,7 +294,9 @@ theorem exists_stable_peeling (G : SimpleGraph V) (m : ℕ) :
 
 /-- Generic final reduction: a bound for all induced residual graphs with
 independence number at most m extends to every graph, at the cost εn/2.
-Only the real inequality 2/ε ≤ m+1 is needed.-/
+Only the real inequality 2/ε ≤ m+1 is needed.
+@isnad1 id=le.3h5v.s8.262a016bca3a from=translated src=- shape=6c79dd19 vocab=66effd7d
+-/
 theorem chromatic_bound_of_bounded_induced
     (G : SimpleGraph V) (m : ℕ) (ε B : ℝ)
     (hε : 0 < ε)

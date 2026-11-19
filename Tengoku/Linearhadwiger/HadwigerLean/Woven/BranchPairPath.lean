@@ -18,7 +18,9 @@ namespace RootedMinorModel
 variable {W : Type u} {V : Type v} {H : SimpleGraph W}
   {G : SimpleGraph V} {root : W → V}
 
-/-- Join roots of adjacent branches inside their union.-/
+/-- Join roots of adjacent branches inside their union.
+@isnad1 id=ex.1h8v.s6.da5b1cb77086 from=translated src=- shape=bc5ca0e3 vocab=a38a1984
+-/
 theorem exists_pairPath (M : RootedMinorModel H G root)
     {i j : W} (hij : H.Adj i j) :
     ∃ p : G.Path (root i) (root j),
@@ -47,7 +49,9 @@ noncomputable def pairPath (M : RootedMinorModel H G root)
     {i j : W} (hij : H.Adj i j) : G.Path (root i) (root j) :=
   Classical.choose (M.exists_pairPath hij)
 
-/-- Every vertex of the pair path lies in one of its two branches.-/
+/-- Every vertex of the pair path lies in one of its two branches.
+@isnad1 id=le.1h8v.s6.2a1f8b7588cb from=translated src=- shape=c386c120 vocab=89ec9734
+-/
 theorem pairPath_vertices_subset (M : RootedMinorModel H G root)
     {i j : W} (hij : H.Adj i j) :
     pathVertexSet (M.pairPath hij) ⊆ M.branch i ∪ M.branch j :=

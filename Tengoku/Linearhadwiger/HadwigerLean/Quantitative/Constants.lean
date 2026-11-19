@@ -47,14 +47,23 @@ noncomputable def A (ε : ℝ) : ℕ :=
 noncomputable def Aepsilon (ε : ℝ) : ℝ :=
   (100 / ε) ^ (2000 / ε ^ 2)
 
+/--
+@isnad1 id=lt.1h1v.s4.f027bac240cc from=translated src=- shape=35bd48ee vocab=a5fff4bf
+-/
 theorem gamma_pos {ε : ℝ} (hε : 0 < ε) : 0 < gamma ε := by
   unfold gamma
   positivity
 
+/--
+@isnad1 id=eq.0h1v.s5.537a470e0478 from=translated src=- shape=02ea9248 vocab=a6deadef
+-/
 theorem three_gamma (ε : ℝ) : 3 * gamma ε = ε / 2 := by
   unfold gamma
   ring
 
+/--
+@isnad1 id=le.2h1v.s5.706e9e27dea6 from=translated src=- shape=5a366a18 vocab=83dbd37b
+-/
 theorem m_ge_two {ε : ℝ} (hε : 0 < ε) (hε1 : ε ≤ 1) :
     2 ≤ m ε := by
   have hfrac : (2 : ℝ) ≤ 2 / ε := by
@@ -64,12 +73,18 @@ theorem m_ge_two {ε : ℝ} (hε : 0 < ε) (hε1 : ε ≤ 1) :
     hfrac.trans (Nat.le_ceil (2 / ε))
   exact_mod_cast hceil
 
+/--
+@isnad1 id=le.2h1v.s5.8f76820e5033 from=translated src=- shape=5a366a18 vocab=feaaf80d
+-/
 theorem r_ge_four {ε : ℝ} (hε : 0 < ε) (hε1 : ε ≤ 1) :
     4 ≤ r ε := by
   have hm : 2 ≤ m ε := m_ge_two hε hε1
   unfold r
   omega
 
+/--
+@isnad1 id=lt.1h1v.s4.019b91a88ed8 from=translated src=- shape=35bd48ee vocab=1d7c3b6e
+-/
 theorem mu_pos {ε : ℝ} (hε : 0 < ε) : 0 < mu ε := by
   have hr : 0 < (r ε : ℝ) := by
     unfold r
@@ -77,6 +92,9 @@ theorem mu_pos {ε : ℝ} (hε : 0 < ε) : 0 < mu ε := by
   unfold mu
   positivity
 
+/--
+@isnad1 id=le.2h1v.s5.140b4b2f7dd6 from=translated src=- shape=1317b60f vocab=0c48f4af
+-/
 theorem mu_le_one {ε : ℝ} (hε : 0 < ε) (hε1 : ε ≤ 1) :
     mu ε ≤ 1 := by
   have hr : (4 : ℝ) ≤ (r ε : ℝ) := by
@@ -90,7 +108,9 @@ theorem mu_le_one {ε : ℝ} (hε : 0 < ε) (hε1 : ε ≤ 1) :
     nlinarith
   unfold mu
   exact pow_le_one₀ (div_pos hε hden).le hbase
-/-- Substituting δ=μ/4 and γ=ε/6 gives precisely the argument of d's ceiling.-/
+/-- Substituting δ=μ/4 and γ=ε/6 gives precisely the argument of d's ceiling.
+@isnad1 id=eq.3h3v.s7.72c995c0019c from=translated src=- shape=ae2e145b vocab=0e79e5cc
+-/
 theorem augmentation_degree_ratio (ε μ : ℝ) (m : ℕ)
     (hε : 0 < ε) (hμ : 0 < μ) (hm : 2 ≤ m) :
     (2 / ((μ / 4) * (ε / 6))) /
@@ -101,6 +121,9 @@ theorem augmentation_degree_ratio (ε μ : ℝ) (m : ℕ)
   field_simp
   ring
 
+/--
+@isnad1 id=le.2h1v.s5.7e5cbb537eb0 from=translated src=- shape=ffb117c0 vocab=a1ee866d
+-/
 theorem m_le_three_div {ε : ℝ} (hε : 0 < ε) (hε1 : ε ≤ 1) :
     (m ε : ℝ) ≤ 3 / ε := by
   have hceil : (m ε : ℝ) < 2 / ε + 1 := by
@@ -114,6 +137,9 @@ theorem m_le_three_div {ε : ℝ} (hε : 0 < ε) (hε1 : ε ≤ 1) :
     _ ≤ 2 / ε + 1 / ε := by linarith
     _ = 3 / ε := by ring
 
+/--
+@isnad1 id=le.2h1v.s5.dd71c6d630c4 from=translated src=- shape=ffb117c0 vocab=88b887a0
+-/
 theorem r_le_five_div {ε : ℝ} (hε : 0 < ε) (hε1 : ε ≤ 1) :
     (r ε : ℝ) ≤ 5 / ε := by
   have hm := m_le_three_div hε hε1
@@ -127,7 +153,9 @@ theorem r_le_five_div {ε : ℝ} (hε : 0 < ε) (hε1 : ε ≤ 1) :
     _ = 5 / ε := by ring
 
 /-- The augmentation lemma with the paper's choices of μ, γ, and d.
-The remaining assumption is the exact low-pair-load rounding theorem.-/
+The remaining assumption is the exact low-pair-load rounding theorem.
+@isnad1 id=ex.4h3v.s7.f2953084fe4e from=translated src=- shape=43f665fd vocab=3ea4510d
+-/
 theorem exists_augmentation_at_theorem2_parameters
     (G : SimpleGraph V) [Fintype V] [DecidableEq V]
     (ε : ℝ) (hε : 0 < ε) (hε1 : ε ≤ 1)
@@ -168,7 +196,9 @@ theorem exists_augmentation_at_theorem2_parameters
 
 /-- The final Theorem 2 statement follows from the bounded-independence
 case on induced subgraphs. This keeps the final peeling argument separate
-from matching, rounding, and robust fractional coloring.-/
+from matching, rounding, and robust fractional coloring.
+@isnad1 id=le.3h3v.s7.0a1ffc30fe70 from=translated src=- shape=b25ffbc1 vocab=259f6ab7
+-/
 theorem quantitative_bound_of_bounded_induced
     (G : SimpleGraph V) [Fintype V] [DecidableEq V]
     (ε : ℝ) (hε : 0 < ε) (_hε1 : ε ≤ 1)
@@ -188,7 +218,9 @@ theorem quantitative_bound_of_bounded_induced
 
 /-- The bounded-independence portion of Theorem 2, conditional on the
 rounding and robust-fractional statements still being developed. Small
-graphs are handled by the n0 term in A.-/
+graphs are handled by the n0 term in A.
+@isnad1 id=le.5h3v.s8.d4b0ebe362f9 from=translated src=- shape=1e94b10e vocab=a96d2d38
+-/
 theorem bounded_independence_from_rounding_and_robust
     (G : SimpleGraph V) [Fintype V] [DecidableEq V]
     (ε : ℝ) (hε : 0 < ε) (hε1 : ε ≤ 1)
@@ -234,7 +266,9 @@ theorem bounded_independence_from_rounding_and_robust
 
 /-- It suffices to establish the bounded-independence estimate with the
 intermediate additive constant A, then prove the standalone numerical
-estimate A ≤ Aepsilon.-/
+estimate A ≤ Aepsilon.
+@isnad1 id=le.4h3v.s7.f6ceab1be9b9 from=translated src=- shape=3e45a533 vocab=baf25b5c
+-/
 theorem quantitative_bound_of_bounded_induced_A
     (G : SimpleGraph V) [Fintype V] [DecidableEq V]
     (ε : ℝ) (hε : 0 < ε) (hε1 : ε ≤ 1)
@@ -252,7 +286,9 @@ theorem quantitative_bound_of_bounded_induced_A
   have hJ := hsmall J hα
   linarith
 
-/-- A coarse geometric-sum estimate, useful for the robust additive term.-/
+/-- A coarse geometric-sum estimate, useful for the robust additive term.
+@isnad1 id=le.1h2v.s5.c5995f183e85 from=translated src=- shape=0247f6d3 vocab=189addcf
+-/
 theorem sum_powers_le_card_mul_pow (D k : ℕ) (hD : 1 ≤ D) :
     (∑ j ∈ Finset.range k, D ^ j) ≤ k * D ^ k := by
   calc
@@ -263,6 +299,9 @@ theorem sum_powers_le_card_mul_pow (D k : ℕ) (hD : 1 ≤ D) :
       exact pow_le_pow_right₀ hD (Nat.le_of_lt (Finset.mem_range.mp hj))
     _ = k * D ^ k := by simp
 
+/--
+@isnad1 id=le.0h1v.s6.ee0a022ae06b from=translated src=- shape=03b69c93 vocab=498c0b49
+-/
 theorem robustAdditive_le_simple (ε : ℝ) :
     robustAdditive ε ≤
       (2 * m ε + (2 * m ε) ^ 2) *
@@ -283,6 +322,9 @@ theorem robustAdditive_le_simple (ε : ℝ) :
     _ ≤ k * D ^ k + k ^ 2 * D ^ k := by omega
     _ = (k + k ^ 2) * D ^ k := by ring
 
+/--
+@isnad1 id=le.2h1v.s6.20639e1bac8e from=translated src=- shape=6998a3a0 vocab=1b5af726
+-/
 theorem choose_m_le_square (ε : ℝ) (hε : 0 < ε)
     (hε1 : ε ≤ 1) :
     (Nat.choose (m ε) 2 : ℝ) ≤
@@ -298,7 +340,9 @@ theorem choose_m_le_square (ε : ℝ) (hε : 0 < ε)
   nlinarith
 
 /-- The paper's convenient coarse cap for d+1; exact ceilings disappear
-after this estimate.-/
+after this estimate.
+@isnad1 id=le.2h1v.s6.678fdf9327e1 from=translated src=- shape=599ee7e8 vocab=8b50d911
+-/
 theorem d_add_one_le_coarse {ε : ℝ}
     (hε : 0 < ε) (hε1 : ε ≤ 1) :
     (d ε + 1 : ℕ) ≤ (1298 : ℝ) / (mu ε * ε ^ 4) := by
@@ -353,7 +397,9 @@ theorem d_add_one_le_coarse {ε : ℝ}
   linarith [harg, hceil, htwo, hsum]
 
 /-- The reciprocal of the rounding parameter is bounded by a power of
-`100 / ε`; this is the main exponential estimate for the final constant.-/
+`100 / ε`; this is the main exponential estimate for the final constant.
+@isnad1 id=le.2h1v.s6.6908561c8002 from=translated src=- shape=4e570137 vocab=b4fa292a
+-/
 theorem mu_inv_le_power {ε : ℝ} (hε : 0 < ε) (hε1 : ε ≤ 1) :
     (mu ε)⁻¹ ≤ (100 / ε) ^ (300 / ε) := by
   let R : ℝ := 100 / ε
@@ -400,7 +446,9 @@ theorem mu_inv_le_power {ε : ℝ} (hε : 0 < ε) (hε1 : ε ≤ 1) :
     _ ≤ R ^ (300 / ε) := Real.rpow_le_rpow_of_exponent_le hR1 hexp
     _ = (100 / ε) ^ (300 / ε) := rfl
 
-/-- A convenient power bound for the augmentation degree cap.-/
+/-- A convenient power bound for the augmentation degree cap.
+@isnad1 id=le.2h1v.s6.974c3776cb86 from=translated src=- shape=3b19bd96 vocab=7dbacb39
+-/
 theorem d_add_one_le_power {ε : ℝ} (hε : 0 < ε) (hε1 : ε ≤ 1) :
     (d ε + 1 : ℕ) ≤ (100 / ε) ^ (304 / ε) := by
   let R : ℝ := 100 / ε
@@ -440,7 +488,9 @@ theorem d_add_one_le_power {ε : ℝ} (hε : 0 < ε) (hε1 : ε ≤ 1) :
     _ = (100 / ε) ^ (304 / ε) := rfl
 
 /-- The robust fractional-coloring additive term fits well below the final
-explicit exponential allowance.-/
+explicit exponential allowance.
+@isnad1 id=le.2h1v.s6.93e9098a9f70 from=translated src=- shape=9d4adf84 vocab=a4168f51
+-/
 theorem robustAdditive_le_power {ε : ℝ} (hε : 0 < ε) (hε1 : ε ≤ 1) :
     (robustAdditive ε : ℝ) ≤ (100 / ε) ^ (1826 / ε ^ 2) := by
   let R : ℝ := 100 / ε
@@ -526,7 +576,9 @@ theorem robustAdditive_le_power {ε : ℝ} (hε : 0 < ε) (hε1 : ε ≤ 1) :
     _ = (100 / ε) ^ (1826 / ε ^ 2) := rfl
 
 /-- The small-order threshold is dominated by a much smaller power than
-the allowance in Theorem 2.-/
+the allowance in Theorem 2.
+@isnad1 id=le.2h1v.s6.3eb9d2b0e278 from=translated src=- shape=9d4adf84 vocab=1c1cc5aa
+-/
 theorem n0_le_power {ε : ℝ} (hε : 0 < ε) (hε1 : ε ≤ 1) :
     (n0 ε : ℝ) ≤ (100 / ε) ^ (1208 / ε ^ 2) := by
   let R : ℝ := 100 / ε
@@ -640,7 +692,9 @@ theorem n0_le_power {ε : ℝ} (hε : 0 < ε) (hε1 : ε ≤ 1) :
     _ = (100 / ε) ^ (1208 / ε ^ 2) := rfl
 
 /-- The explicit constant chosen in the paper dominates both intermediate
-additive terms.-/
+additive terms.
+@isnad1 id=le.2h1v.s5.595232205174 from=translated src=- shape=78e2c6ba vocab=e1d3291a
+-/
 theorem A_le_Aepsilon {ε : ℝ} (hε : 0 < ε) (hε1 : ε ≤ 1) :
     (A ε : ℝ) ≤ Aepsilon ε := by
   have hR1 : (1 : ℝ) ≤ 100 / ε := by

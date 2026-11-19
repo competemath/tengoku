@@ -10,7 +10,9 @@ namespace HadwigerLean.Deduction
 
 open Filter
 
-/-- The quotient-order exponent identity used after packing.-/
+/-- The quotient-order exponent identity used after packing.
+@isnad1 id=eq.1h2v.s6.0a9bde22c77b from=translated src=- shape=4866d2de vocab=f3a5b989
+-/
 theorem bootstrap_order_power (α x : ℝ) (hx : 0 < x) :
     x ^ (4 * α / 3) = x ^ (α / 3) * x ^ α := by
   calc
@@ -19,7 +21,9 @@ theorem bootstrap_order_power (α x : ℝ) (hx : 0 < x) :
 
 /-- Uniform numerical parameters at every outer-recursion scale. The
 assumptions `t ≤ T` and the strict scale cutoff are the only parts of the
-least-power-of-three condition needed for these estimates.-/
+least-power-of-three condition needed for these estimates.
+@isnad1 id=ex.1h2v.s8.684f9ee402db from=translated src=- shape=3abc973c vocab=95a83abd
+-/
 theorem eventual_bootstrap_parameters {α : ℝ} (hα : 0 < α) (t₀ : ℕ) :
     ∃ T₀ : ℕ, 3 ≤ T₀ ∧
       ∀ (t T a : ℕ), T₀ ≤ t → t ≤ T →

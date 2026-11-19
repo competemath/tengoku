@@ -50,16 +50,25 @@ def primalSublevel (r : ℝ) : Set (Col → ℝ) :=
   {x | P.PrimalFeasible x ∧ P.primalValue x ≤ r}
 
 omit [Fintype Row] in
+/--
+@isnad1 id=continuo.0h3v.s5.518396aea29f from=translated src=- shape=2b63ed1a vocab=de30ee25
+-/
 theorem continuous_primalValue : Continuous P.primalValue := by
   unfold primalValue
   fun_prop
 
 omit [Fintype Row] in
+/--
+@isnad1 id=continuo.0h4v.s6.d931f6f10ae2 from=translated src=- shape=34807d08 vocab=56a197fe
+-/
 theorem continuous_rowValue (i : Row) :
     Continuous (fun x : Col → ℝ => ∑ j, P.A i j * x j) := by
   fun_prop
 
 omit [Fintype Row] in
+/--
+@isnad1 id=isclosed.0h3v.s5.4bfed2155fe6 from=translated src=- shape=89d3df1c vocab=563d270e
+-/
 theorem isClosed_primalFeasible : IsClosed {x : Col → ℝ | P.PrimalFeasible x} := by
   unfold PrimalFeasible
   apply IsClosed.inter
@@ -75,13 +84,18 @@ theorem isClosed_primalFeasible : IsClosed {x : Col → ℝ | P.PrimalFeasible x
         (P.continuous_rowValue i))
 
 omit [Fintype Row] in
+/--
+@isnad1 id=isclosed.0h4v.s5.69676be4d405 from=translated src=- shape=fedc9bbe vocab=af15ae58
+-/
 theorem isClosed_primalSublevel (r : ℝ) : IsClosed (P.primalSublevel r) := by
   unfold primalSublevel
   exact P.isClosed_primalFeasible.inter
     (isClosed_le P.continuous_primalValue continuous_const)
 
 omit [Fintype Row] in
-/-- Strictly positive costs make every primal sublevel compact.-/
+/-- Strictly positive costs make every primal sublevel compact.
+@isnad1 id=iscompac.1h4v.s5.e0eb2ef22a3f from=translated src=- shape=5849f722 vocab=f9dab461
+-/
 theorem isCompact_primalSublevel (hc : ∀ j, 0 < P.c j) (r : ℝ) :
     IsCompact (P.primalSublevel r) := by
   classical
@@ -96,7 +110,9 @@ theorem isCompact_primalSublevel (hc : ∀ j, 0 < P.c j) (r : ℝ) :
       (fun k _ => mul_nonneg (le_of_lt (hc k)) (hx.1.1 k)) (Finset.mem_univ j)
   exact (le_div_iff₀ (hc j)).2 (by simpa [mul_comm] using hsingle.trans hx.2)
 omit [Fintype Row] in
-/-- A feasible covering LP with strictly positive costs attains its minimum.-/
+/-- A feasible covering LP with strictly positive costs attains its minimum.
+@isnad1 id=ex.2h4v.s6.1253d7bf41d0 from=translated src=- shape=5a09597c vocab=289f4341
+-/
 theorem exists_primal_minimizer (hc : ∀ j, 0 < P.c j)
     {x₀ : Col → ℝ} (hx₀ : P.PrimalFeasible x₀) :
     ∃ x, P.PrimalFeasible x ∧
@@ -111,7 +127,9 @@ theorem exists_primal_minimizer (hc : ∀ j, 0 < P.c j)
   by_cases hcost : P.primalValue z ≤ P.primalValue x₀
   · exact hmin ⟨hz, hcost⟩
   · exact hx.2.trans (le_of_lt (lt_of_not_ge hcost))
-/-- Every dual feasible value is at most every primal feasible value.-/
+/-- Every dual feasible value is at most every primal feasible value.
+@isnad1 id=le.2h5v.s5.d1ad7344aba9 from=translated src=- shape=441bfdd1 vocab=286ced1a
+-/
 theorem weak_duality {x : Col → ℝ} {y : Row → ℝ}
     (hx : P.PrimalFeasible x) (hy : P.DualFeasible y) :
     P.dualValue y ≤ P.primalValue x := by
@@ -146,6 +164,9 @@ private theorem toFin_row_sum (x : Fin (Fintype.card Col) → ℝ) (i : Row) :
       (fun j => by simp))
 
 omit [Fintype Row] in
+/--
+@isnad1 id=iff.0h4v.s6.de4aee42a4e2 from=translated src=- shape=89e62e58 vocab=dc641f89
+-/
 theorem toFin_primal_iff (x : Fin (Fintype.card Col) → ℝ) :
     P.toFin.PrimalFeasible x ↔
       P.PrimalFeasible (fun j => x ((Fintype.equivFin Col) j)) := by
@@ -164,6 +185,9 @@ theorem toFin_primal_iff (x : Fin (Fintype.card Col) → ℝ) :
       rw [P.toFin_row_sum x i]
       exact hx.2 i
 
+/--
+@isnad1 id=iff.0h4v.s5.ef537aaaf6c7 from=translated src=- shape=4cf913ad vocab=18c1ea08
+-/
 theorem toFin_dual_iff (y : Row → ℝ) :
     P.toFin.DualFeasible y ↔ P.DualFeasible y := by
   classical
@@ -176,6 +200,9 @@ theorem toFin_dual_iff (y : Row → ℝ) :
     simpa [toFin] using hy.2 ((Fintype.equivFin Col).symm j)
 
 omit [Fintype Row] in
+/--
+@isnad1 id=eq.0h4v.s6.55f661205003 from=translated src=- shape=cdff936a vocab=fe3e7351
+-/
 theorem toFin_primalValue (x : Fin (Fintype.card Col) → ℝ) :
     P.toFin.primalValue x =
       P.primalValue (fun j => x ((Fintype.equivFin Col) j)) := by
@@ -186,7 +213,9 @@ theorem toFin_primalValue (x : Fin (Fintype.card Col) → ℝ) :
       (fun j : Fin (Fintype.card Col) => P.c (e j) * x j)
       (fun j : Col => P.c j * x (e.symm j))
       (fun j => by simp))
-/-- A lower bound on every feasible primal point has an attained dual certificate.-/
+/-- A lower bound on every feasible primal point has an attained dual certificate.
+@isnad1 id=ex.2h4v.s6.b67ae26ee47a from=translated src=- shape=62b74bc5 vocab=286ced1a
+-/
 theorem exists_dual_ge (d : ℝ)
     (hfeas : ∃ x, P.PrimalFeasible x)
     (hbound : ∀ x, P.PrimalFeasible x → d ≤ P.primalValue x) :
@@ -219,7 +248,9 @@ theorem exists_dual_ge (d : ℝ)
   refine ⟨y, (P.toFin_dual_iff y).1 hyQ, ?_⟩
   simpa [Q, toFin, dualValue, mul_comm] using hval
 
-/-- Under positive costs, a feasible LP has attained equal primal and dual optima.-/
+/-- Under positive costs, a feasible LP has attained equal primal and dual optima.
+@isnad1 id=ex.2h4v.s6.39cd4984141e from=translated src=- shape=ab9104c3 vocab=c876d72b
+-/
 theorem exists_primal_dual_optima (hc : ∀ j, 0 < P.c j)
     {x₀ : Col → ℝ} (hx₀ : P.PrimalFeasible x₀) :
     ∃ x y, P.PrimalFeasible x ∧ P.DualFeasible y ∧

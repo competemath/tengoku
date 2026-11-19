@@ -7,7 +7,9 @@ namespace Linkedness
 
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
-/-- Replacing each torso excursion by a path in the rigid far side preserves disjoint paths.-/
+/-- Replacing each torso excursion by a path in the rigid far side preserves disjoint paths.
+@isnad1 id=ex.1h7v.s10.b5c6a9274053 from=translated src=- shape=1292c373 vocab=b41f0ffa
+-/
 theorem torso_linkage_splice_given_crossing
     (G : SimpleGraph V) (S : VertexSeparation G)
     {ι : Type*} {P : IndexedPairs ι S.left}
@@ -174,7 +176,9 @@ theorem torso_linkage_splice_given_crossing
     · exact Or.inr ⟨hi, by simpa only [F,dite_eq_left hi] using hF⟩
     · simp [F,hi] at hF
 
-/-- Splicing also preserves avoidance of all near-side roots.-/
+/-- Splicing also preserves avoidance of all near-side roots.
+@isnad1 id=ex.4h9v.s8.af3075663b9b from=translated src=- shape=8c701689 vocab=2bb38173
+-/
 theorem torso_linkage_splice_rooted
     (G : SimpleGraph V) (S : VertexSeparation G)
     {ι : Type*} {P : IndexedPairs ι S.left}
@@ -207,7 +211,9 @@ theorem torso_linkage_splice_rooted
   · exact Or.inl (hux.symm.trans (congrArg Subtype.val heq))
   · exact Or.inr (hux.symm.trans (congrArg Subtype.val heq))
 /-- Rooted linkedness of the completed near side and of the original far side
-implies rooted linkedness in the whole graph.-/
+implies rooted linkedness in the whole graph.
+@isnad1 id=rootedli.4h5v.s7.44e6048a9236 from=translated src=- shape=d2deca0e vocab=0db78a6f
+-/
 theorem rootedLinked_of_torso_and_far
     (G : SimpleGraph V) (S : VertexSeparation G)
     (X : Finset V) (Y : Finset S.left)

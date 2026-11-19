@@ -30,7 +30,9 @@ private theorem neighborFinset_disjoint_of_two_lt_dist
   omega
 
 /-- A finite connected graph with minimum degree above two fifths of its
-order has diameter at most five.-/
+order has diameter at most five.
+@isnad1 id=le.2h4v.s6.1bddb79c9e81 from=translated src=- shape=f88c27f7 vocab=af9373b0
+-/
 theorem dist_le_five_of_min_degree_gt_two_fifths
     {V : Type*} [Fintype V] (G : SimpleGraph V) [DecidableRel G.Adj]
     (hconn : G.Connected)

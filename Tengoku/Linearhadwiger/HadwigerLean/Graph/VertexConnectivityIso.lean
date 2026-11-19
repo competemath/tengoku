@@ -9,7 +9,9 @@ import Tengoku.Seed.Tactic
 
 namespace HadwigerLean
 
-/-- Graph isomorphisms preserve vertex degree.-/
+/-- Graph isomorphisms preserve vertex degree.
+@isnad1 id=eq.0h6v.s7.37d3e43f6378 from=translated src=- shape=064e08a0 vocab=d2135d8e
+-/
 theorem degree_eq_of_iso
     {V W : Type*} [Fintype V] [Fintype W]
     {G : SimpleGraph V} {H : SimpleGraph W}

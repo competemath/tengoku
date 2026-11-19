@@ -10,7 +10,9 @@ import Tengoku.Seed.Tactic
 namespace HadwigerLean
 namespace Linkedness
 
-/-- `k`-linkedness is invariant under graph isomorphism.-/
+/-- `k`-linkedness is invariant under graph isomorphism.
+@isnad1 id=klinked.1h6v.s4.e346beddcf69 from=translated src=- shape=1880b659 vocab=b757df76
+-/
 theorem kLinked_of_iso
     {V W : Type*} {G : SimpleGraph V} {H : SimpleGraph W}
     (e : G ≃g H) (k : ℕ) (hG : KLinked G k) : KLinked H k := by
@@ -66,7 +68,9 @@ theorem kLinked_of_iso
   exact ⟨M⟩
 
 /-- Passing from an induced graph of an induced graph to the corresponding
-induced graph of the original graph preserves linkedness.-/
+induced graph of the original graph preserves linkedness.
+@isnad1 id=klinked.1h5v.s6.705118df66bf from=translated src=- shape=2e4493c4 vocab=e92d4360
+-/
 theorem kLinked_induce_image_of_nested
     {V : Type*} (G : SimpleGraph V) (R : Set V) (S : Set R)
     (k : ℕ) (h : KLinked ((G.induce R).induce S) k) :

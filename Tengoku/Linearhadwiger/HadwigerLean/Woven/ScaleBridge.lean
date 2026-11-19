@@ -16,7 +16,9 @@ namespace Woven
 
 open Bootstrap
 
-/-- The defining equation for an indexed scale.-/
+/-- The defining equation for an indexed scale.
+@isnad1 id=eq.1h2v.s6.447b7ae32652 from=translated src=- shape=3c634c94 vocab=7e18e119
+-/
 theorem outerScale_mul_identity (m i : ℕ) (hi : i ≤ m) :
     3 ^ i * outerScale m i = 2 ^ i * 3 ^ m := by
   have hsum : i + (m - i) = m := Nat.add_sub_of_le hi
@@ -27,13 +29,17 @@ theorem outerScale_mul_identity (m i : ℕ) (hi : i ≤ m) :
     _ = 2 ^ i * 3 ^ m := by rw [← pow_add, hsum]
 
 /-- Every indexed scale in the finite recursion is an outer scale in
-the endpoint theorem's definition.-/
+the endpoint theorem's definition.
+@isnad1 id=isouters.1h2v.s5.966ec2908528 from=translated src=- shape=bd324b1a vocab=37bab9b0
+-/
 theorem outerScale_isOuterScale (m i : ℕ) (hi : i ≤ m) :
     IsOuterScale (3 ^ m) (outerScale m i) :=
   ⟨i, outerScale_mul_identity m i hi⟩
 
 /-- At an index within the finite recursion, the scale equation has
-exactly the expected solution.-/
+exactly the expected solution.
+@isnad1 id=eq.2h3v.s6.f62765c37fdf from=translated src=- shape=8a9759ad vocab=7e18e119
+-/
 theorem outerScale_eq_of_isOuterScale_index (m i a : ℕ)
     (hi : i ≤ m) (h : 3 ^ i * a = 2 ^ i * 3 ^ m) :
     a = outerScale m i := by
@@ -43,7 +49,9 @@ theorem outerScale_eq_of_isOuterScale_index (m i a : ℕ)
   exact mul_left_cancel₀ (by positivity) heq
 
 /-- No later index can satisfy the integer outer-scale equation for a
-power-of-three top scale.-/
+power-of-three top scale.
+@isnad1 id=le.1h3v.s6.069e5c1c0610 from=translated src=- shape=3e3c3327 vocab=45880164
+-/
 theorem outerScale_index_le (m i a : ℕ)
     (h : 3 ^ i * a = 2 ^ i * 3 ^ m) : i ≤ m := by
   by_cases hi : i = 0
@@ -57,7 +65,9 @@ theorem outerScale_index_le (m i a : ℕ)
   exact (Nat.pow_dvd_pow_iff_le_right (by omega)).mp hpow
 
 /-- Every integer outer scale of a power-of-three top scale belongs to
-the finite sequence used in the downward induction.-/
+the finite sequence used in the downward induction.
+@isnad1 id=iff.0h2v.s5.56f6aa45eeb5 from=translated src=- shape=902772bd vocab=37bab9b0
+-/
 theorem isOuterScale_iff_exists_index (m a : ℕ) :
     IsOuterScale (3 ^ m) a ↔
       ∃ i : ℕ, i ≤ m ∧ a = outerScale m i := by

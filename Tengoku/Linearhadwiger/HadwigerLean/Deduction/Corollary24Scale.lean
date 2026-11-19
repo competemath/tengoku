@@ -24,7 +24,9 @@ private theorem twice_mul_four_pow_le_nine_pow
         _ = 9 ^ (m + 1) := by rw [pow_succ]; ring
 
 /-- For top scale `T=3^m≥3`, the final integer scale `2^m` is at most
-`T/√(log T)`.-/
+`T/√(log T)`.
+@isnad1 id=le.2h2v.s6.1e97e443ea41 from=translated src=- shape=dbbbace3 vocab=fb65748b
+-/
 theorem cor24_outerScale_last_le_top_div_sqrt_log
     (m T : ℕ) (hT : T = 3 ^ m) (hlarge : 3 ≤ T) :
     (HadwigerLean.Woven.outerScale m m : ℝ) ≤

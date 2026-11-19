@@ -18,7 +18,9 @@ universe u
 
 variable {V : Type u} [Fintype V]
 
-/-- Any edge gives a `K₂` minor with singleton branch sets.-/
+/-- Any edge gives a `K₂` minor with singleton branch sets.
+@isnad1 id=hascliqu.1h4v.s4.cd9725bb107f from=translated src=- shape=fa02b003 vocab=7977c166
+-/
 theorem hasCliqueMinor_two_of_adj (G : SimpleGraph V) {a b : V}
     (hab : G.Adj a b) : HasCliqueMinor G 2 := by
   classical
@@ -41,7 +43,9 @@ theorem hasCliqueMinor_two_of_adj (G : SimpleGraph V) {a b : V}
       exact ⟨f i, by simp, f j, by simp, hadj (by simpa using hij)⟩
   }⟩
 
-/-- The `r=2` case of the clique-density theorem needs only positivity.-/
+/-- The `r=2` case of the clique-density theorem needs only positivity.
+@isnad1 id=hascliqu.1h2v.s4.defb7dd1eae2 from=translated src=- shape=58916c22 vocab=36ffc667
+-/
 theorem hasCliqueMinor_two_of_edgeDensity_pos (G : SimpleGraph V)
     (hdense : 0 < edgeDensity G) : HasCliqueMinor G 2 := by
   classical
@@ -59,7 +63,9 @@ theorem hasCliqueMinor_two_of_edgeDensity_pos (G : SimpleGraph V)
     exact hasCliqueMinor_two_of_adj G hab
 
 /-- The first exponential-density case: a graph with at least one edge per
-vertex has a triangle minor.-/
+vertex has a triangle minor.
+@isnad1 id=hascliqu.2h2v.s5.a83d16fd7030 from=translated src=- shape=3c01ea1a vocab=6ab7b724
+-/
 theorem hasCliqueMinor_three_of_edges_ge_card (G : SimpleGraph V)
     (hnonempty : 0 < Fintype.card V)
     (hdense : Fintype.card V ≤ edgeCount G) :
@@ -87,7 +93,9 @@ theorem hasCliqueMinor_three_of_edges_ge_card (G : SimpleGraph V)
     hasCliqueMinor_succ_of_neighbor_minor H v htwo
   exact hasCliqueMinor_of_minor hminor hthree
 /-- The exponential-density clique-minor bound used for the finite range of
-the quantitative theorem. The induction itself is valid for every `r ≥ 3`.-/
+the quantitative theorem. The induction itself is valid for every `r ≥ 3`.
+@isnad1 id=hascliqu.3h3v.s6.c107cc6e3828 from=translated src=- shape=270206dd vocab=3e34ecb8
+-/
 theorem hasCliqueMinor_of_exponential_edges (r : ℕ) :
     ∀ {X : Type u} [Fintype X] (G : SimpleGraph X),
       3 ≤ r → 0 < Fintype.card X →
@@ -134,7 +142,9 @@ theorem hasCliqueMinor_of_exponential_edges (r : ℕ) :
       rw [hrstep] at hHminor
       exact hasCliqueMinor_of_minor hminor hHminor
 /-- Appendix E's finite-range comparison, using certified logarithm bounds
-for `log 2` and `log 3`.-/
+for `log 2` and `log 3`.
+@isnad1 id=le.2h1v.s6.3a317411954a from=translated src=- shape=b8277ec4 vocab=934040ea
+-/
 theorem small_order_power_le_density_threshold (r : ℕ)
     (hr3 : 3 ≤ r) (hr12 : r ≤ 12) :
     (2 ^ (r - 3) : ℝ) ≤ 30 * (r : ℝ) * Real.sqrt (Real.log (r : ℝ)) := by
@@ -173,7 +183,9 @@ theorem small_order_power_le_density_threshold (r : ℕ)
     norm_num
     nlinarith
 /-- The coefficient-30 clique-minor theorem for the finite range
-`3 ≤ r ≤ 12`.-/
+`3 ≤ r ≤ 12`.
+@isnad1 id=hascliqu.3h3v.s6.9d12bb0d7978 from=translated src=- shape=6be582cb vocab=c15745af
+-/
 theorem hasCliqueMinor_of_edgeDensity_ge_small
     (G : SimpleGraph V) (r : ℕ) (hr3 : 3 ≤ r) (hr12 : r ≤ 12)
     (hdense : 30 * (r : ℝ) * Real.sqrt (Real.log (r : ℝ)) ≤
@@ -194,7 +206,9 @@ theorem hasCliqueMinor_of_edgeDensity_ge_small
     edgeCount_ge_card_mul_of_edgeDensity_ge G _ hpowNat
   exact hasCliqueMinor_of_exponential_edges r G hr3 hpositive hcount
 
-/-- The coefficient-30 theorem also holds at `r=2`.-/
+/-- The coefficient-30 theorem also holds at `r=2`.
+@isnad1 id=hascliqu.1h2v.s6.0bbc8c11ca16 from=translated src=- shape=e3853411 vocab=60f61cd4
+-/
 theorem hasCliqueMinor_two_of_edgeDensity_ge_threshold
     (G : SimpleGraph V)
     (hdense : 30 * (2 : ℝ) * Real.sqrt (Real.log (2 : ℝ)) ≤
@@ -209,7 +223,9 @@ theorem hasCliqueMinor_two_of_edgeDensity_ge_threshold
   exact hasCliqueMinor_two_of_edgeDensity_pos G hpos
 
 /-- Appendix E's numerical finite-range case, including the edge case
-`r=2`.-/
+`r=2`.
+@isnad1 id=hascliqu.3h3v.s6.e950762048f8 from=translated src=- shape=6be582cb vocab=c15745af
+-/
 theorem hasCliqueMinor_of_edgeDensity_ge_twelve
     (G : SimpleGraph V) (r : ℕ) (hr2 : 2 ≤ r) (hr12 : r ≤ 12)
     (hdense : 30 * (r : ℝ) * Real.sqrt (Real.log (r : ℝ)) ≤

@@ -10,7 +10,9 @@ namespace Linkedness
 
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
-/-- A torso path meeting the completed adhesion in at most one vertex uses no artificial edge.-/
+/-- A torso path meeting the completed adhesion in at most one vertex uses no artificial edge.
+@isnad1 id=ex.1h7v.s7.44cb9c763d49 from=translated src=- shape=3195c4a3 vocab=9016b4be
+-/
 theorem torso_path_transfer_of_unique_boundary
     (G : SimpleGraph V) (S : VertexSeparation G)
     {s t z : S.left} (p : (torsoGraph G S).Path s t)
@@ -41,12 +43,17 @@ noncomputable def torsoBoundaryFinset (G : SimpleGraph V)
   letI : Fintype S.left := Fintype.ofFinite S.left
   exact Finset.univ.filter (fun u : S.left => (u : V) ∈ S.right)
 
+/--
+@isnad1 id=iff.0h4v.s6.37d644c5b768 from=translated src=- shape=536d9f7b vocab=fd245a06
+-/
 @[simp] theorem mem_torsoBoundaryFinset (G : SimpleGraph V)
     (S : VertexSeparation G) (u : S.left) :
     u ∈ torsoBoundaryFinset G S ↔ (u : V) ∈ S.right := by
   simp [torsoBoundaryFinset]
 
-/-- Choose a first hit whenever a path meets the target set.-/
+/-- Choose a first hit whenever a path meets the target set.
+@isnad1 id=nonempty.1h6v.s5.f816b98421e4 from=translated src=- shape=638cb9c9 vocab=28e1e08f
+-/
 theorem FirstHit.exists_of_support_hit
     {W : Type*} [DecidableEq W] {H : SimpleGraph W} {s t : W}
     (p : H.Path s t) (J : Finset W)
@@ -87,7 +94,9 @@ structure TorsoPathEnds (G : SimpleGraph V) (S : VertexSeparation G)
   suffix_unique : ∀ x ∈ pathVertexSet suffixPath,
     (x : V) ∈ S.right → x = last
 
-/-- Trim from both endpoints at the first encounter with the adhesion.-/
+/-- Trim from both endpoints at the first encounter with the adhesion.
+@isnad1 id=nonempty.1h6v.s7.4d3b90d689d1 from=translated src=- shape=9278d3cf vocab=17127119
+-/
 theorem TorsoPathEnds.exists_of_boundary_hit
     (G : SimpleGraph V) (S : VertexSeparation G)
     {s t : S.left} (p : (torsoGraph G S).Path s t)
@@ -144,21 +153,27 @@ theorem TorsoPathEnds.exists_of_boundary_hit
       intro x hx hxZ
       exact hBunique x (hqB ▸ (hrevG qB x).mp hx) hxZ
   }⟩
-/-- The selected first adhesion vertex lies on the original torso path.-/
+/-- The selected first adhesion vertex lies on the original torso path.
+@isnad1 id=mem.0h7v.s6.828ac7996d5d from=translated src=- shape=fdbaae20 vocab=e735142c
+-/
 theorem TorsoPathEnds.first_mem_path
     (G : SimpleGraph V) (S : VertexSeparation G)
     {s t : S.left} {p : (torsoGraph G S).Path s t}
     (E : TorsoPathEnds G S p) : E.first ∈ pathVertexSet p :=
   E.prefix_subset (pathVertexSet.finish_mem E.prefixPath)
 
-/-- The selected last adhesion vertex lies on the original torso path.-/
+/-- The selected last adhesion vertex lies on the original torso path.
+@isnad1 id=mem.0h7v.s6.bdcdd988013d from=translated src=- shape=fdbaae20 vocab=ada27e7e
+-/
 theorem TorsoPathEnds.last_mem_path
     (G : SimpleGraph V) (S : VertexSeparation G)
     {s t : S.left} {p : (torsoGraph G S).Path s t}
     (E : TorsoPathEnds G S p) : E.last ∈ pathVertexSet p :=
   E.suffix_subset (pathVertexSet.start_mem E.suffixPath)
 
-/-- A torso path missing the adhesion transfers unchanged to the near-side graph.-/
+/-- A torso path missing the adhesion transfers unchanged to the near-side graph.
+@isnad1 id=ex.1h6v.s7.be1ec59cb060 from=translated src=- shape=3b531cb7 vocab=9016b4be
+-/
 theorem torso_path_transfer_of_no_boundary
     (G : SimpleGraph V) (S : VertexSeparation G)
     {s t : S.left} (p : (torsoGraph G S).Path s t)

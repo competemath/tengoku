@@ -14,7 +14,9 @@ namespace Linkedness
 
 /-- A core of order at most `7k` and minimum degree at least `5k`
 links every pairing of at most `2k` prescribed roots while avoiding all
-other roots.-/
+other roots.
+@isnad1 id=rootedli.3h4v.s6.3f5455f6e0fa from=translated src=- shape=10386e0e vocab=a024dce3
+-/
 theorem rootedLinked_of_five_mul_degree_seven_mul_order
     {V : Type*} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj] (k : ℕ)

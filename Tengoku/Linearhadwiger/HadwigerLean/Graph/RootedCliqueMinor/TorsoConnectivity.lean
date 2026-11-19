@@ -19,7 +19,9 @@ variable {V : Type*} [Fintype V] [DecidableEq V]
   {G : SimpleGraph V} (S : VertexSeparation G)
 
 /-- A nonempty strict left side makes the right torso strictly smaller
-than the original finite graph.-/
+than the original finite graph.
+@isnad1 id=lt.1h3v.s5.d37f52fc0116 from=translated src=- shape=b444d85b vocab=05c714cb
+-/
 theorem right_order_lt_of_strictLeft_nonempty
     [Fintype S.right] (hleft : S.strictLeft.Nonempty) :
     Fintype.card S.right < Fintype.card V := by

@@ -15,7 +15,9 @@ namespace HadwigerLean
 universe u
 
 /-- A vertex complete to an induced subgraph extends any clique minor there
-by a singleton branch.-/
+by a singleton branch.
+@isnad1 id=hascliqu.3h5v.s6.db02b3cfc578 from=translated src=- shape=37de760c vocab=86efd3eb
+-/
 theorem hasCliqueMinor_succ_of_universal_set {V : Type u} {G : SimpleGraph V}
     (v : V) (S : Set V) (hv : v ∉ S)
     (hcomplete : ∀ x ∈ S, G.Adj v x) {n : ℕ}
@@ -79,7 +81,9 @@ theorem hasCliqueMinor_succ_of_universal_set {V : Type u} {G : SimpleGraph V}
         exact hij.ne (congrArg Fin.succ heq)
 
 /-- A clique minor inside a vertex neighborhood can be enlarged using that
-vertex as one more branch.-/
+vertex as one more branch.
+@isnad1 id=hascliqu.1h4v.s5.16487924ac4a from=translated src=- shape=a0b1ca85 vocab=ae107e3e
+-/
 theorem hasCliqueMinor_succ_of_neighbor_minor {V : Type u}
     (G : SimpleGraph V) (v : V) {n : ℕ}
     (hminor : HasCliqueMinor (G.induce (G.neighborSet v)) n) :

@@ -18,7 +18,9 @@ structure FirstHit {V : Type*} {G : SimpleGraph V} {s t : V}
   path_subset : pathVertexSet path ⊆ pathVertexSet p
   unique_hit : ∀ x ∈ pathVertexSet path, x ∈ J → x = finish
 
-/-- The prefix ending at the first visit to a set.-/
+/-- The prefix ending at the first visit to a set.
+@isnad1 id=nonempty.1h6v.s5.b36b220eceac from=translated src=- shape=694f5e66 vocab=da44c426
+-/
 theorem FirstHit.exists_of_finish_mem
     {V : Type*} [DecidableEq V] {G : SimpleGraph V} {s t : V}
     (p : G.Path s t) (J : Finset V) (ht : t ∈ J) :
@@ -43,7 +45,9 @@ theorem FirstHit.exists_of_finish_mem
   }⟩
 
 /-- Trimming each path of a disjoint family preserves disjointness and
-ensures that every trimmed path meets the target only at its finish.-/
+ensures that every trimmed path meets the target only at its finish.
+@isnad1 id=ex.1h6v.s7.ee919c228dc0 from=translated src=- shape=bd50e1b3 vocab=c1ff6950
+-/
 theorem IndexedLinkage.trim_to_first_hit
     {ι V : Type*} [DecidableEq V]
     {G : SimpleGraph V} {P : IndexedPairs ι V}

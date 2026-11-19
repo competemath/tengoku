@@ -9,7 +9,9 @@ namespace Linkedness
 
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
-/-- The `Fin n` formulation of rooted linkedness applies to every finite index type.-/
+/-- The `Fin n` formulation of rooted linkedness applies to every finite index type.
+@isnad1 id=ex.4h5v.s6.857320354914 from=translated src=- shape=bdd2a6ca vocab=b1c50f8d
+-/
 theorem RootedLinked.linkage_finite {G : SimpleGraph V}
     (X : Finset V) (h : RootedLinked G X)
     {ι : Type*} [Fintype ι]
@@ -51,7 +53,9 @@ theorem RootedLinked.linkage_finite {G : SimpleGraph V}
   change v = P.start i ∨ v = P.finish i
   simpa [e.apply_symm_apply i] using hm
 
-/-- Equal-endpoint pairs may be represented by singleton paths.-/
+/-- Equal-endpoint pairs may be represented by singleton paths.
+@isnad1 id=ex.3h5v.s6.f115b52c36c1 from=translated src=- shape=7d737ff7 vocab=6989f811
+-/
 theorem RootedLinked.linkage_finite_allow_equal {G : SimpleGraph V}
     (X : Finset V) (h : RootedLinked G X)
     {ι : Type*} [Fintype ι]

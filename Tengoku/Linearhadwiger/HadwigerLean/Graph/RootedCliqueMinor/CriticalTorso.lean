@@ -36,6 +36,9 @@ noncomputable def VertexSeparation.restrictCompletedRootModel_at_roots
   · intro i j hij
     simpa only [hxrange] using N.adjacent hij
 
+/--
+@isnad1 id=eq.3h10v.s7.47fa966f07a7 from=translated src=- shape=f19dba1f vocab=60761b4b
+-/
 @[simp] theorem VertexSeparation.restrictCompletedRootModel_at_roots_branch
     {V W : Type*} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} (S : VertexSeparation G)

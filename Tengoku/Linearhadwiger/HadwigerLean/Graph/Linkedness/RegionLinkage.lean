@@ -11,7 +11,9 @@ namespace HadwigerLean
 namespace Linkedness
 
 /-- A connected induced region containing both endpoints contains a path
-between them whose support remains in that region.-/
+between them whose support remains in that region.
+@isnad1 id=ex.3h5v.s5.b6ae992179a0 from=translated src=- shape=f5d5d27d vocab=29c38ae9
+-/
 theorem exists_path_in_connected_region
     {V : Type*} {G : SimpleGraph V} {s t : V} (R : Set V)
     (hR : (G.induce R).Connected) (hs : s ∈ R) (ht : t ∈ R) :
@@ -29,7 +31,9 @@ theorem exists_path_in_connected_region
   obtain ⟨q, _, hq⟩ := List.mem_map.mp hz
   exact hq ▸ q.property
 
-/-- Two connected induced regions sharing a vertex have connected union.-/
+/-- Two connected induced regions sharing a vertex have connected union.
+@isnad1 id=connecte.4h5v.s6.0f28311a1ce1 from=translated src=- shape=fe3c4437 vocab=36447108
+-/
 theorem connected_induce_union_of_common
     {V : Type*} {G : SimpleGraph V} {A B : Set V}
     (hA : (G.induce A).Connected) (hB : (G.induce B).Connected)
@@ -61,7 +65,9 @@ theorem connected_induce_union_of_common
     · exact reachB hyB
   exact hx.trans hy.symm
 /-- Pairwise disjoint connected regions containing their respective terminal
-pairs yield an indexed linkage.-/
+pairs yield an indexed linkage.
+@isnad1 id=ex.4h5v.s7.21cf236f5191 from=translated src=- shape=3afb61ed vocab=74847b4a
+-/
 theorem exists_linkage_of_disjoint_connected_regions
     {ι V : Type*} {G : SimpleGraph V} (P : IndexedPairs ι V)
     (R : ι → Set V)

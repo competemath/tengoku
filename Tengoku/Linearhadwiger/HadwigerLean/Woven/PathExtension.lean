@@ -28,7 +28,9 @@ noncomputable def extendInducedPath {V : Type v} {G : SimpleGraph V}
     ((q : G.Walk u.1 w.1).append (SimpleGraph.Walk.cons ht SimpleGraph.Walk.nil))).toPath
 
 /-- The extended path uses only the original terminal vertices and vertices
-of the inner path.-/
+of the inner path.
+@isnad1 id=le.2h8v.s7.e67a6019a950 from=translated src=- shape=b771a58f vocab=20fd6f80
+-/
 theorem extendInducedPath_vertices_subset {V : Type v} {G : SimpleGraph V}
     (S : Set V) {s t : V} (u w : S)
     (p : (G.induce S).Path u w)

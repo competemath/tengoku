@@ -221,6 +221,9 @@ private theorem hasVertexConnected_induce [DecidableEq V] (G : SimpleGraph V)
   refine ⟨W, instW, f.trans (Function.Embedding.subtype (· ∈ (S : Set V))), ?_⟩
   exact hf
 
+/--
+@isnad1 id=eq.0h3v.s6.2a6e2357c511 from=translated src=- shape=14d1e49b vocab=028d44fd
+-/
 theorem edgeCount_induce_compl_singleton_add_degree [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj] (v : V) :
     edgeCount (G.induce ({v} : Set V)ᶜ) + G.degree v = edgeCount G := by
@@ -301,6 +304,9 @@ private theorem mader_density_large_order (G : SimpleGraph V) (k : ℕ)
   have hpos : 0 < k * Fintype.card V := Nat.mul_pos (by omega) hn
   nlinarith
 
+/--
+@isnad1 id=eq.0h2v.s6.0c1cab72d7fa from=translated src=- shape=783f8d09 vocab=d5ce6b94
+-/
 theorem card_compl_singleton_eq_sub_one [DecidableEq V] (v : V) :
     Fintype.card ↥(({v} : Set V)ᶜ) = Fintype.card V - 1 := by
   classical
@@ -429,7 +435,9 @@ private theorem mader_extremal (k : ℕ) (hk : 2 ≤ k) :
       hedges.trans hbound
     exact False.elim (Nat.not_succ_le_self _ hcontra)
 
-/-- Lowering the requested vertex connectivity of an induced witness.-/
+/-- Lowering the requested vertex connectivity of an induced witness.
+@isnad1 id=hasverte.2h4v.s4.9b8df3c856b9 from=translated src=- shape=2c566000 vocab=51b8b08c
+-/
 theorem HasVertexConnectedInducedSubgraph.of_le {G : SimpleGraph V} {k m : ℕ}
     (h : HasVertexConnectedInducedSubgraph G k) (hm : m ≤ k) :
     HasVertexConnectedInducedSubgraph G m := by
@@ -438,7 +446,9 @@ theorem HasVertexConnectedInducedSubgraph.of_le {G : SimpleGraph V} {k m : ℕ}
 
 /-- The needed Mader form in the edge-per-vertex convention: a nonempty
 finite graph with at least `2k` edges per vertex has a `k`-connected induced
-subgraph. The witness is carried by an injective parametrization.-/
+subgraph. The witness is carried by an injective parametrization.
+@isnad1 id=hasverte.3h3v.s6.b34a42f2df2c from=translated src=- shape=9676ff9f vocab=63c72c57
+-/
 theorem hasVertexConnectedInducedSubgraph_of_edges_ge
     (G : SimpleGraph V) (k : ℕ) (hk : 1 ≤ k)
     (hn : 0 < Fintype.card V)
@@ -463,7 +473,9 @@ theorem hasVertexConnectedInducedSubgraph_of_edges_ge
       mader_extremal 2 (by omega) (Fintype.card V) G rfl (by omega) hthreshold
     exact htwo.of_le (by omega)
 
-/-- The edge-density formulation of the Mader lemma used in Section 8.-/
+/-- The edge-density formulation of the Mader lemma used in Section 8.
+@isnad1 id=hasverte.2h3v.s5.2e9666e986fc from=translated src=- shape=9c24ea09 vocab=3ad13530
+-/
 theorem hasVertexConnectedInducedSubgraph_of_edgeDensity_ge
     (G : SimpleGraph V) (k : ℕ) (hk : 1 ≤ k)
     (hdense : (2 * k : ℝ) ≤ edgeDensity G) :
