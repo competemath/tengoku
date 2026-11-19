@@ -163,6 +163,7 @@ import Tengoku.BrownianMotion
 import Tengoku.MagicSquaresFieldsLean
 import Tengoku.NsP23
 import Tengoku.Etingofrepresentationtheory
+import Tengoku.OddcyclegoodmanLean
 import Tengoku.NpcompletenessLean4
 import Tengoku.MeanFourier
 import Tengoku.LanaOka
