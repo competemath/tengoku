@@ -1,0 +1,13 @@
+{
+ "bundle_sha256": "61027b0aff20de456894ed4ee5f29da52e0c180e0f22f3a45d177f48eeaa06ba",
+ "factory_changes": {
+  "inert lines removed": 107,
+  "modules changed": 66
+ },
+ "gate2_unjudged": [],
+ "library": "nikoghosyan-conjecture",
+ "lint_mode": "proposed",
+ "modules": 71,
+ "part": 1,
+ "theorems": 1821
+}

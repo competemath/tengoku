@@ -1,0 +1,1 @@
+-- NikoghosyanConjecture: a factory bundle (data/intake/nikoghosyan-conjecture). This file only marks the library for Tengoku/All.lean.
