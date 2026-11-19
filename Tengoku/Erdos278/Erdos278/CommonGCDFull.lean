@@ -11,6 +11,9 @@ namespace Erdos278
 open Finset
 variable {ι : Type*} [DecidableEq ι]
 
+/--
+@isnad1 id=eq.1h4v.s5.9f611634c3f4 from=translated src=- shape=97a0aeee vocab=0e885b6e
+-/
 theorem lcm_scale_nonempty (s : Finset ι) (hs : s.Nonempty)
     (g : ℕ) (b : ι → ℕ) :
     s.lcm (fun i => g * b i) = g * s.lcm b := by
@@ -24,6 +27,9 @@ theorem lcm_scale_nonempty (s : Finset ι) (hs : s.Nonempty)
       subst s
       simp
 
+/--
+@isnad1 id=iff.1h6v.s6.992163362161 from=translated src=- shape=36b9ef9b vocab=de5c53bd
+-/
 theorem common_gcd_compatible_iff (g : ℕ) (b : ι → ℕ)
     (hc : ∀ i j, i ≠ j → (b i).Coprime (b j))
     (part : ι → Fin g) (i j : ι) :
@@ -38,6 +44,9 @@ theorem common_gcd_compatible_iff (g : ℕ) (b : ι → ℕ)
     rw [Nat.mod_eq_of_lt (part i).isLt, Nat.mod_eq_of_lt (part j).isLt]
     exact Fin.ext_iff.symm
 
+/--
+@isnad1 id=eq.1h4v.s8.8f120d0e0195 from=translated src=- shape=6b9a84aa vocab=44c035f8
+-/
 theorem sum_monochromatic_nonempty {κ : Type*} [Fintype κ] [DecidableEq κ]
     (s : Finset ι) (hs : s.Nonempty) (part : ι → κ) :
     (∑ t : κ, if (∀ i ∈ s, part i = t) then (1 : ℚ) else 0) =
@@ -55,6 +64,9 @@ theorem sum_monochromatic_nonempty {κ : Type*} [Fintype κ] [DecidableEq κ]
     simp [h]
   · simp
 
+/--
+@isnad1 id=eq.0h6v.s7.082db81a45b4 from=translated src=- shape=6efc916f vocab=96f7b68a
+-/
 theorem fiber_product_expansion {κ : Type*} [DecidableEq κ]
     (s : Finset ι) (b : ι → ℕ) (part : ι → κ) (t : κ) :
     (∏ i ∈ s with part i = t, (1 - (1 : ℚ) / b i)) =
@@ -74,7 +86,9 @@ theorem fiber_product_expansion {κ : Type*} [DecidableEq κ]
   simp [div_eq_mul_inv]
 
 /-- The full fiber product formula of section 11, for every residue assignment
-to the g labeled parts. Neither g nor the factors have to be prime.-/
+to the g labeled parts. Neither g nor the factors have to be prime.
+@isnad1 id=eq.3h5v.s7.f337eef8bdfc from=translated src=- shape=a3cbc1bc vocab=2478ab2e
+-/
 theorem common_gcd_uncovered_formula (s : Finset ι) (g : ℕ) (hg : 0 < g)
     (b : ι → ℕ) (hb : ∀ i ∈ s, 0 < b i)
     (hc : ∀ i j, i ≠ j → (b i).Coprime (b j)) (part : ι → Fin g) :
@@ -120,7 +134,9 @@ noncomputable def partitionCost (g : ℕ) (b : ι → ℕ) (part : ι → Fin g)
   (∑ t : Fin g, ∏ i ∈ univ with part i = t, (1 - (1 : ℚ) / b i)) / g
 
 /-- The entire set of achievable uncovered densities is exactly the set of
-values of the product expression in (11.1).-/
+values of the product expression in (11.1).
+@isnad1 id=iff.3h4v.s6.040227a4d564 from=translated src=- shape=ff3089ca vocab=55471b3c
+-/
 theorem common_gcd_product_optimization (g : ℕ) (hg : 0 < g)
     (b : ι → ℕ) (hb : ∀ i, 0 < b i)
     (hc : ∀ i j, i ≠ j → (b i).Coprime (b j)) (u : ℚ) :
@@ -143,7 +159,9 @@ theorem common_gcd_product_optimization (g : ℕ) (hg : 0 < g)
       (common_gcd_uncovered_formula univ g hg b (fun i _ => hb i) hc part).trans hp⟩
 
 /-- Formula (11.1) with both optima attained: a maximum-density residue choice
-and a minimizing partition have exactly complementary objective values.-/
+and a minimizing partition have exactly complementary objective values.
+@isnad1 id=ex.3h3v.s7.738727e60357 from=translated src=- shape=465b3151 vocab=7f0e8439
+-/
 theorem common_gcd_optimum_product_formula (g : ℕ) (hg : 0 < g)
     (b : ι → ℕ) (hb : ∀ i, 0 < b i)
     (hc : ∀ i j, i ≠ j → (b i).Coprime (b j)) :

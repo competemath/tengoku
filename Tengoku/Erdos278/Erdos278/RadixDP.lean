@@ -26,6 +26,9 @@ def radixSeparation {r : ℕ} {β : Type*} [Fintype β]
   univ.biUnion (fun c : RadixCoordinate e =>
     separationMask (radixSupport e c) (u c.1 c.2.val))
 
+/--
+@isnad1 id=iff.2h5v.s6.07fad1b827b1 from=translated src=- shape=5d957225 vocab=9dcd724a
+-/
 theorem radix_dp_digits {r : ℕ} {β : Type*} [Fintype β]
     (hr : 0 < r) (b : β → ℕ) (e : Fin r → β → ℕ)
     (hb : ∀ j, 0 < b j) (H : SeparationMask r) :
@@ -50,6 +53,9 @@ theorem radix_dp_digits {r : ℕ} {β : Type*} [Fintype β]
 def incompatibilityMask {r : ℕ} (n : Fin r → ℕ) (a : Fin r → ℤ) :
     SeparationMask r := univ.filter (fun p => ¬ Compatible n a p.1.1 p.1.2)
 
+/--
+@isnad1 id=eq.3h6v.s7.aa23dbc61830 from=translated src=- shape=3c1df462 vocab=a3e2a1de
+-/
 theorem radix_separation_eq_mask {r : ℕ} {β : Type*} [Fintype β] [DecidableEq β]
     (b : β → ℕ) (e : Fin r → β → ℕ) (hb : ∀ j, 0 < b j)
     (hc : Pairwise (fun j k => (b j).Coprime (b k)))
@@ -72,7 +78,9 @@ theorem radix_separation_eq_mask {r : ℕ} {β : Type*} [Fintype β] [DecidableE
     exact ⟨⟨j, ⟨t, ht⟩⟩, hi, hh, hne⟩
 
 /-- End-to-end realizable-state theorem for the finite coprime radix representation.
-Both directions construct their witnesses; realizability is not a hypothesis.-/
+Both directions construct their witnesses; realizability is not a hypothesis.
+@isnad1 id=iff.3h5v.s6.1b463014c828 from=translated src=- shape=6b99b575 vocab=29d5789f
+-/
 theorem radix_dp_realizable_exact {r : ℕ} {β : Type*} [Fintype β] [DecidableEq β]
     (hr : 0 < r) (b : β → ℕ) (e : Fin r → β → ℕ) (hb : ∀ j, 0 < b j)
     (hc : Pairwise (fun j k => (b j).Coprime (b k))) (H : SeparationMask r) :

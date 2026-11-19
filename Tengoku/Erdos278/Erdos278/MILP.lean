@@ -11,6 +11,9 @@ open Finset
 def pairConstraint (d t q y : ℤ) : Prop :=
   1 - y ≤ t - d * q ∧ t - d * q ≤ (d - 1) * (1 - y)
 
+/--
+@isnad1 id=iff.2h3v.s5.28d7a8090e5c from=translated src=- shape=3fde68b8 vocab=9943a70f
+-/
 theorem pair_constraint_exact (d t y : ℤ) (hd : 0 < d) (hy : y = 0 ∨ y = 1) :
     (∃ q : ℤ, pairConstraint d t q y) ↔ (y = 1 ↔ d ∣ t) := by
   rcases hy with rfl | rfl
@@ -40,7 +43,9 @@ theorem pair_constraint_exact (d t y : ℤ) (hd : 0 < d) (hy : y = 0 ∨ y = 1) 
     · rintro ⟨q, rfl⟩
       exact ⟨q, by simp [pairConstraint]⟩
 
-/-- Section 7: the nonedge remainder encoding, including negative differences.-/
+/-- Section 7: the nonedge remainder encoding, including negative differences.
+@isnad1 id=iff.1h2v.s6.7200025cdf32 from=translated src=- shape=47e548a4 vocab=a48449d2
+-/
 theorem nonedge_remainder_exact (d t : ℤ) (hd : 0 < d) :
     (∃ q s : ℤ, t = d * q + s ∧ 1 ≤ s ∧ s ≤ d - 1) ↔ ¬d ∣ t := by
   have h := pair_constraint_exact d t 0 hd (Or.inl rfl)
@@ -56,6 +61,9 @@ theorem nonedge_remainder_exact (d t : ℤ) (hd : 0 < d) :
 def andConstraints {α : Type*} [Fintype α] (y : α → ℝ) (z : ℝ) : Prop :=
   0 ≤ z ∧ z ≤ 1 ∧ (∀ e, z ≤ y e) ∧ 1 - ∑ e, (1 - y e) ≤ z
 
+/--
+@isnad1 id=iff.1h3v.s6.edf903f07276 from=translated src=- shape=355eaaf7 vocab=99732105
+-/
 theorem continuous_clique_indicator {α : Type*} [Fintype α]
     (y : α → ℝ) (hy : ∀ e, y e = 0 ∨ y e = 1) (z : ℝ) :
     andConstraints y z ↔ z = if (∀ e, y e = 1) then 1 else 0 := by

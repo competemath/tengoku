@@ -29,6 +29,9 @@ noncomputable def graphValue (s : Finset ι) (n : ι → ℕ) (G : ι → ι →
     if (∀ i ∈ t.1, ∀ j ∈ t.1, G i j) then
       (-1 : ℚ) ^ (t.1.card + 1) / (t.1.lcm n : ℕ) else 0
 
+/--
+@isnad1 id=eq.1h3v.s5.17ee19c0f4b2 from=translated src=- shape=a351bbe7 vocab=2104100b
+-/
 theorem residue_card_mul (m k : ℕ) (hm : 0 < m) (a : ℤ) :
     (residueFinset (m * k) m a).card = k := by
   have hmQ : (m : ℚ) ≠ 0 := by positivity
@@ -43,6 +46,9 @@ theorem residue_card_mul (m k : ℕ) (hm : 0 < m) (a : ℤ) :
     Int.ceil_natCast_add, add_sub_cancel_right, max_eq_left (Int.natCast_nonneg k)] at hcard
   exact_mod_cast hcard
 
+/--
+@isnad1 id=eq.3h3v.s6.d8ff3a6b9a66 from=translated src=- shape=37c16947 vocab=c17f224a
+-/
 theorem residue_ratio (m L : ℕ) (hm : 0 < m) (hL : 0 < L)
     (hd : m ∣ L) (a : ℤ) :
     ((residueFinset L m a).card : ℚ) / L = 1 / m := by
@@ -55,6 +61,9 @@ theorem residue_ratio (m L : ℕ) (hm : 0 < m) (hL : 0 < L)
   push_cast
   field_simp
 
+/--
+@isnad1 id=eq.3h5v.s7.6b686fa325b0 from=translated src=- shape=bd3f2070 vocab=387dee49
+-/
 theorem intersection_ratio (s t : Finset ι) (ht : t.Nonempty) (hts : t ⊆ s)
     (n : ι → ℕ) (hn : ∀ i ∈ s, 0 < n i) (a : ι → ℤ) :
     ((t.inf' ht (fun i => residueFinset (s.lcm n) (n i) (a i))).card : ℚ) /
@@ -89,7 +98,9 @@ theorem intersection_ratio (s t : Finset ι) (ht : t.Nonempty) (hts : t ⊆ s)
       exact (mem_filter.mp ((Finset.mem_inf' ht).mp hz i hi)).2
     simp [heq, hc]
 
-/-- Theorem A: the actual finite-period density is the weighted clique value.-/
+/-- Theorem A: the actual finite-period density is the weighted clique value.
+@isnad1 id=eq.1h4v.s5.51f194d599fb from=translated src=- shape=5c2821f1 vocab=cdce40fb
+-/
 theorem density_eq_graphValue (s : Finset ι) (n : ι → ℕ)
     (hn : ∀ i ∈ s, 0 < n i) (a : ι → ℤ) :
     density s n a = graphValue s n (Compatible n a) := by
@@ -119,6 +130,9 @@ theorem density_eq_graphValue (s : Finset ι) (n : ι → ℕ)
     rw [ite_eq_right hc']
     simp
 
+/--
+@isnad1 id=eq.2h5v.s6.dd9eca890c15 from=translated src=- shape=2ab4f1a3 vocab=0ffb0e9c
+-/
 theorem density_eq_of_compatible (s : Finset ι) (n : ι → ℕ)
     (hn : ∀ i ∈ s, 0 < n i) (a b : ι → ℤ)
     (h : ∀ i j, Compatible n a i j ↔ Compatible n b i j) :
@@ -132,7 +146,9 @@ def Realizable (n : ι → ℕ) (G : ι → ι → Prop) : Prop :=
   ∃ a : ι → ℤ, ∀ i j, G i j ↔ Compatible n a i j
 
 /-- Theorem C, stated as equality of all attainable values, stronger than just
-equality of the maxima.-/
+equality of the maxima.
+@isnad1 id=iff.1h4v.s6.fe2157061077 from=translated src=- shape=d56f2f1b vocab=47205105
+-/
 theorem graph_optimization_exact (s : Finset ι) (n : ι → ℕ)
     (hn : ∀ i ∈ s, 0 < n i) (d : ℚ) :
     (∃ a, density s n a = d) ↔

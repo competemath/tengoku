@@ -8,13 +8,18 @@ namespace Erdos278
 open Finset
 
 /-- Multiplying each modulus by a factor private to that modulus preserves
-all pairwise gcds. The factors need not be prime.-/
+all pairwise gcds. The factors need not be prime.
+@isnad1 id=eq.3h4v.s5.d90477fcf005 from=translated src=- shape=eebea22a vocab=1b82cff7
+-/
 theorem private_factors_gcd (a b u v : ℕ)
     (hub : u.Coprime b) (hva : v.Coprime a) (huv : u.Coprime v) :
     (a * u).gcd (b * v) = a.gcd b := by
   rw [Nat.Coprime.gcd_mul_right_cancel a (hub.mul_right huv),
     Nat.Coprime.gcd_mul_right_cancel_right b hva]
 
+/--
+@isnad1 id=iff.2h6v.s6.91f701cf5ae5 from=translated src=- shape=85bf9c34 vocab=46446f16
+-/
 theorem private_factors_compatibility {ι : Type*} (n t : ι → ℕ)
     (hbase : ∀ i j, (t i).Coprime (n j))
     (htags : ∀ i j, i ≠ j → (t i).Coprime (t j))
@@ -27,6 +32,9 @@ theorem private_factors_compatibility {ι : Type*} (n t : ι → ℕ)
     rw [private_factors_gcd (n i) (n j) (t i) (t j)
       (hbase i j) (hbase j i) (htags i j hij)]
 
+/--
+@isnad1 id=injectiv.3h3v.s6.98171a33edb9 from=translated src=- shape=e99b4c85 vocab=73ed74a3
+-/
 theorem private_factors_injective {ι : Type*} (n t : ι → ℕ)
     (hbase : ∀ i j, (t i).Coprime (n j))
     (htags : ∀ i j, i ≠ j → (t i).Coprime (t j)) (ht : ∀ i, 1 < t i) :
@@ -48,6 +56,9 @@ def taggingScale {r : ℕ} (n : Fin r → ℕ) : ℕ := r.factorial * ∏ i, n i
 def separationTag {r : ℕ} (n : Fin r → ℕ) (i : Fin r) : ℕ :=
   1 + (i.val + 1) * taggingScale n
 
+/--
+@isnad1 id=coprime.1h3v.s5.a4c1baf2aeca from=translated src=- shape=080a1fd4 vocab=895da5be
+-/
 theorem affine_tags_coprime (K i j : ℕ) (hdiff : j - i ∣ K) :
     (1 + i * K).Coprime (1 + j * K) := by
   let a := 1 + i * K
@@ -65,6 +76,9 @@ theorem affine_tags_coprime (K i j : ℕ) (hdiff : j - i ∣ K) :
   have hsmall : d ∣ j - i := hdK.dvd_of_dvd_mul_right hdiff'
   exact Nat.eq_one_of_dvd_coprimes haK hda (hsmall.trans hdiff)
 
+/--
+@isnad1 id=coprime.1h4v.s4.8600e9aee954 from=translated src=- shape=0714bb5e vocab=87ec0c82
+-/
 theorem separation_tags_coprime {r : ℕ} (n : Fin r → ℕ) (i j : Fin r) (hij : i ≠ j) :
     (separationTag n i).Coprime (separationTag n j) := by
   have hlt (i j : Fin r) (hij : i < j) :
@@ -78,6 +92,9 @@ theorem separation_tags_coprime {r : ℕ} (n : Fin r → ℕ) (i j : Fin r) (hij
   · exact (hij h).elim
   · exact (hlt j i h).symm
 
+/--
+@isnad1 id=coprime.0h4v.s4.d95b509b248a from=translated src=- shape=bc52ac4e vocab=87ec0c82
+-/
 theorem separation_tags_avoid_moduli {r : ℕ} (n : Fin r → ℕ) (i j : Fin r) :
     (separationTag n i).Coprime (n j) := by
   have hprod : n j ∣ ∏ k, n k := Finset.dvd_prod_of_mem n (mem_univ j)
@@ -85,6 +102,9 @@ theorem separation_tags_avoid_moduli {r : ℕ} (n : Fin r → ℕ) (i j : Fin r)
   apply Nat.Coprime.of_dvd_right hd
   simp [separationTag]
 
+/--
+@isnad1 id=lt.1h3v.s5.087a060dff66 from=translated src=- shape=34473035 vocab=95eec918
+-/
 theorem separation_tags_gt_one {r : ℕ} (n : Fin r → ℕ) (hn : ∀ i, 0 < n i) (i : Fin r) :
     1 < separationTag n i := by
   have hK : 0 < taggingScale n :=
@@ -97,7 +117,9 @@ theorem separation_tags_gt_one {r : ℕ} (n : Fin r → ℕ) (hn : ∀ i, 0 < n 
 /-- Every positive list can be replaced by positive, pairwise distinct moduli
 with exactly the same intersection graph for every integer residue tuple.
 The explicit factors are 1+(i+1)*r!*product(n). This does not preserve densities,
-but it does preserve pairwise-disjoint feasibility.-/
+but it does preserve pairwise-disjoint feasibility.
+@isnad1 id=ex.1h2v.s6.8678185fad7f from=translated src=- shape=651ad0ba vocab=ef235bbd
+-/
 theorem distinct_moduli_preserving_compatibility {r : ℕ} (n : Fin r → ℕ)
     (hn : ∀ i, 0 < n i) :
     ∃ m : Fin r → ℕ, (∀ i, 0 < m i) ∧ Function.Injective m ∧

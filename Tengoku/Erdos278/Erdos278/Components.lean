@@ -11,6 +11,9 @@ namespace Erdos278
 open Finset
 variable {ι : Type*} [DecidableEq ι]
 
+/--
+@isnad1 id=eq.1h4v.s6.5cbcb75b0b9f from=translated src=- shape=74af0bd9 vocab=427bbc7a
+-/
 theorem sum_powerset_disjoint_union (s t : Finset ι) (hd : Disjoint s t)
     (f : Finset ι → ℚ) :
     ∑ u ∈ (s ∪ t).powerset, f u =
@@ -24,6 +27,9 @@ theorem sum_powerset_disjoint_union (s t : Finset ι) (hd : Disjoint s t)
       sum_powerset_insert hi, ih hst, ih hst]
     simp only [insert_union]
 
+/--
+@isnad1 id=coprime.1h4v.s6.9c900ed77604 from=translated src=- shape=5ad6b4a8 vocab=ca8280de
+-/
 theorem cross_coprime_lcms (s t : Finset ι) (n : ι → ℕ)
     (hc : ∀ i ∈ s, ∀ j ∈ t, (n i).Coprime (n j)) :
     (s.lcm n).Coprime (t.lcm n) := by
@@ -33,6 +39,9 @@ theorem cross_coprime_lcms (s t : Finset ι) (n : ι → ℕ)
   rw [Nat.coprime_prod_right_iff]
   exact hc i hi
 
+/--
+@isnad1 id=iff.1h5v.s6.1743e683a3d6 from=translated src=- shape=32c1a490 vocab=9dc5fe85
+-/
 theorem clique_union_of_cross_coprime (s t : Finset ι) (n : ι → ℕ) (a : ι → ℤ)
     (hc : ∀ i ∈ s, ∀ j ∈ t, (n i).Coprime (n j)) :
     IsClique n a (s ∪ t) ↔ IsClique n a s ∧ IsClique n a t := by
@@ -51,6 +60,9 @@ theorem clique_union_of_cross_coprime (s t : Finset ι) (n : ι → ℕ) (a : ι
       simp [Int.ModEq]
     · exact ht i hi j hj
 
+/--
+@isnad1 id=eq.2h5v.s6.ba1c2e610cf7 from=translated src=- shape=07c4022e vocab=b5a819b4
+-/
 theorem uncoveredTerm_union (s t : Finset ι) (hd : Disjoint s t)
     (n : ι → ℕ) (a : ι → ℤ)
     (hc : ∀ i ∈ s, ∀ j ∈ t, (n i).Coprime (n j)) :
@@ -71,7 +83,9 @@ theorem uncoveredTerm_union (s t : Finset ι) (hd : Disjoint s t)
     simp [hs, ht, hu]
 
 /-- Section 10: uncovered density factors across independent components.
-This holds for every choice of residues, before taking the optimum.-/
+This holds for every choice of residues, before taking the optimum.
+@isnad1 id=eq.3h5v.s7.6fcd4cee00b9 from=translated src=- shape=3ccf0aee vocab=d12a797a
+-/
 theorem uncovered_component_factorization (s t : Finset ι) (hd : Disjoint s t)
     (n : ι → ℕ) (hn : ∀ i ∈ s ∪ t, 0 < n i) (a : ι → ℤ)
     (hc : ∀ i ∈ s, ∀ j ∈ t, (n i).Coprime (n j)) :
@@ -89,6 +103,9 @@ theorem uncovered_component_factorization (s t : Finset ι) (hd : Disjoint s t)
   exact uncoveredTerm_union u v (hd.mono hus hvt) n a
     (fun i hi j hj => hc i (hus hi) j (hvt hj))
 
+/--
+@isnad1 id=and.1h4v.s6.2341861651f0 from=translated src=- shape=5ee1953f vocab=d3907d84
+-/
 theorem density_bounds (s : Finset ι) (n : ι → ℕ)
     (hn : ∀ i ∈ s, 0 < n i) (a : ι → ℤ) :
     0 ≤ density s n a ∧ density s n a ≤ 1 := by
@@ -107,6 +124,9 @@ theorem density_bounds (s : Finset ι) (n : ι → ℕ)
     apply (div_le_iff₀ hLR).mpr
     simpa using (show ((coveredFinset s n a).card : ℚ) ≤ (s.lcm n : ℕ) by exact_mod_cast hcard)
 
+/--
+@isnad1 id=eq.1h5v.s5.220fe8d55aac from=translated src=- shape=f1ffe706 vocab=d6c3e5d5
+-/
 theorem density_congr_on (s : Finset ι) (n : ι → ℕ) (a b : ι → ℤ)
     (hab : ∀ i ∈ s, a i = b i) : density s n a = density s n b := by
   have heq : coveredFinset s n a = coveredFinset s n b := by
@@ -117,7 +137,9 @@ theorem density_congr_on (s : Finset ι) (n : ι → ℕ) (a b : ι → ℤ)
   simp only [density, heq]
 
 /-- Optimal solutions on two independent components can be chosen independently
-and glued. Iterating gives the component-product optimum in section 10.-/
+and glued. Iterating gives the component-product optimum in section 10.
+@isnad1 id=ex.5h6v.s7.3d75910f2d84 from=translated src=- shape=02ea410d vocab=32767f5a
+-/
 theorem component_optima_glue (s t : Finset ι) (hd : Disjoint s t)
     (n : ι → ℕ) (hn : ∀ i ∈ s ∪ t, 0 < n i)
     (hc : ∀ i ∈ s, ∀ j ∈ t, (n i).Coprime (n j))

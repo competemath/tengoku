@@ -11,7 +11,9 @@ open Finset
 variable {ι : Type*} [DecidableEq ι] [Fintype ι]
 
 /-- In the common pairwise-gcd case, no information beyond the assignment
-to g fibers can affect the union density.-/
+to g fibers can affect the union density.
+@isnad1 id=eq.3h5v.s6.e74e3eea4661 from=translated src=- shape=cc42bcf7 vocab=0b35aec9
+-/
 theorem common_gcd_density_depends_on_partition (n : ι → ℕ)
     (hn : ∀ i, 0 < n i) (g : ℕ)
     (hg : ∀ i j, i ≠ j → (n i).gcd (n j) = g)
@@ -27,7 +29,9 @@ theorem common_gcd_density_depends_on_partition (n : ι → ℕ)
       fun h => (hp i).trans (h.trans (hp j).symm)⟩
 
 /-- Every partition into g labeled parts occurs, and the entire set of
-attainable densities equals the set obtained from those assignments.-/
+attainable densities equals the set obtained from those assignments.
+@isnad1 id=iff.3h4v.s6.409a5f905ac4 from=translated src=- shape=19dfab03 vocab=7685aaab
+-/
 theorem common_gcd_partition_optimization (n : ι → ℕ) (hn : ∀ i, 0 < n i)
     (g : ℕ) (hg0 : 0 < g) (hg : ∀ i j, i ≠ j → (n i).gcd (n j) = g) (d : ℚ) :
     (∃ a : ι → ℤ, density univ n a = d) ↔
@@ -43,7 +47,9 @@ theorem common_gcd_partition_optimization (n : ι → ℕ) (hn : ∀ i, 0 < n i)
     exact ⟨fun i => (part i : ℤ), hp⟩
 
 /-- Dividing out a common pairwise gcd really leaves pairwise coprime factors.
-It does not require g to be coprime to any of those factors.-/
+It does not require g to be coprime to any of those factors.
+@isnad1 id=coprime.3h5v.s6.d9e4e2a332d2 from=translated src=- shape=7e161c14 vocab=4abdb090
+-/
 theorem common_gcd_factors_coprime (g : ℕ) (hg : 0 < g) (b : ι → ℕ)
     (h : ∀ i j, i ≠ j → (g * b i).gcd (g * b j) = g) :
     ∀ i j, i ≠ j → (b i).Coprime (b j) := by
@@ -54,7 +60,9 @@ theorem common_gcd_factors_coprime (g : ℕ) (hg : 0 < g) (b : ι → ℕ)
   nlinarith
 
 /-- Coprimality of g and each factor is genuinely unnecessary, as g=2,
-factors 2 and 3 demonstrate.-/
+factors 2 and 3 demonstrate.
+@isnad1 id=and.0h0v.s5.02fe3e3bfe7f from=translated src=- shape=96bf0841 vocab=e37f5754
+-/
 theorem common_gcd_need_not_be_coprime_to_factors :
     Nat.gcd 4 6 = 2 ∧ Nat.Coprime 2 3 ∧ ¬Nat.Coprime 2 2 := by decide
 

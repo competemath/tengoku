@@ -10,6 +10,9 @@ open Finset
 def prescribedPair (d t q : ℤ) (edge : Bool) : Prop :=
   if edge then t = d * q else 1 ≤ t - d * q ∧ t - d * q ≤ d - 1
 
+/--
+@isnad1 id=iff.1h3v.s5.43efe9a9314e from=translated src=- shape=01066dc4 vocab=39790645
+-/
 theorem prescribed_pair_exact (d t : ℤ) (hd : 0 < d) (edge : Bool) :
     (∃ q, prescribedPair d t q edge) ↔ (edge = true ↔ d ∣ t) := by
   cases edge with
@@ -40,6 +43,9 @@ def FixedGraphFeasible {r : ℕ} (n : Fin r → ℕ) (i₀ : Fin r)
     ∀ e, prescribedPair ((n e.1.1).gcd (n e.1.2))
       (x e.1.1 - x e.1.2) (q e) (G e)
 
+/--
+@isnad1 id=iff.1h4v.s7.a1b703fa56f5 from=translated src=- shape=4ef26b30 vocab=71fe96d9
+-/
 theorem fixed_graph_feasible_iff {r : ℕ} (n : Fin r → ℕ)
     (hn : ∀ i, 0 < n i) (i₀ : Fin r) (G : PairIndex r → Bool) :
     (∃ a : Fin r → ℤ, ∀ e, G e = true ↔ Compatible n a e.1.1 e.1.2) ↔
@@ -71,7 +77,9 @@ theorem fixed_graph_feasible_iff {r : ℕ} (n : Fin r → ℕ)
     exact h.trans (compatible_iff_dvd n x e.1.1 e.1.2).symm
 
 /-- The fixed-graph route needs r-1 residue variables and one quotient per pair.
-The finite graph enumeration is outside the integer program.-/
+The finite graph enumeration is outside the integer program.
+@isnad1 id=eq.0h2v.s7.419d49849a66 from=translated src=- shape=903e117f vocab=1f4479df
+-/
 theorem fixed_graph_integer_count {r : ℕ} (i₀ : Fin r) :
     ((univ : Finset (Fin r)).erase i₀).card + Fintype.card (PairIndex r) =
       r - 1 + r * (r - 1) / 2 := by
@@ -85,7 +93,9 @@ def pairGCDPeriod {r : ℕ} (n : Fin r → ℕ) : ℕ :=
 
 /-- Exact comparison with gcd(n_i, H), where H is the lcm of all pairwise gcds.
 This identity is useful for comparing the candidate's compression with the
-quantity in O'Bryant (2006), Lemma 5, rather than claiming it as a new quantity.-/
+quantity in O'Bryant (2006), Lemma 5, rather than claiming it as a new quantity.
+@isnad1 id=eq.1h3v.s5.5490e7297dee from=translated src=- shape=e021d9a6 vocab=c057f1c6
+-/
 theorem interaction_eq_gcd_pair_period {r : ℕ} (n : Fin r → ℕ)
     (hn : ∀ i, 0 < n i) (i : Fin r) :
     interactionModulus n i = (n i).gcd (pairGCDPeriod n) := by

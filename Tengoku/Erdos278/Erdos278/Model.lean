@@ -12,6 +12,9 @@ abbrev CliqueIndex (r : ℕ) := ↥((univ : Finset (Fin r)).powerset.filter (·.
 abbrev InternalPair {r : ℕ} (s : Finset (Fin r)) :=
   {e : PairIndex r // e.1.1 ∈ s ∧ e.1.2 ∈ s}
 
+/--
+@isnad1 id=iff.0h4v.s8.a03ab97c647b from=translated src=- shape=39a5bf50 vocab=9c3006cd
+-/
 theorem clique_iff_internal_pairs {r : ℕ} (s : Finset (Fin r))
     (n : Fin r → ℕ) (x : Fin r → ℤ) :
     IsClique n x s ↔ ∀ e : InternalPair s, Compatible n x e.1.1.1 e.1.1.2 := by
@@ -41,6 +44,9 @@ def ModelFeasible {r : ℕ} (n : Fin r → ℕ) (i₀ : Fin r)
 noncomputable def modelObjective {r : ℕ} (n : Fin r → ℕ) (z : CliqueIndex r → ℝ) : ℝ :=
   ∑ S, ((-1 : ℝ) ^ (S.1.card + 1) / (S.1.lcm n : ℕ)) * z S
 
+/--
+@isnad1 id=iff.3h6v.s8.aeed8119c56b from=translated src=- shape=23d50f60 vocab=0c90648e
+-/
 theorem model_pair_correct {r : ℕ} (n : Fin r → ℕ) (hn : ∀ i, 0 < n i)
     (x : Fin r → ℤ) (q y : PairIndex r → ℤ)
     (hy : ∀ e, y e = 0 ∨ y e = 1)
@@ -52,6 +58,9 @@ theorem model_pair_correct {r : ℕ} (n : Fin r → ℕ) (hn : ∀ i, 0 < n i)
   exact ((pair_constraint_exact _ _ _ hd (hy e)).mp ⟨q e, hq e⟩).trans
     (compatible_iff_dvd n x e.1.1 e.1.2).symm
 
+/--
+@isnad1 id=iff.1h5v.s7.2c7595710adb from=translated src=- shape=26311d83 vocab=727b116b
+-/
 theorem internal_edges_iff_clique {r : ℕ} (s : Finset (Fin r))
     (n : Fin r → ℕ) (x : Fin r → ℤ) (y : PairIndex r → ℤ)
     (hy : ∀ e, y e = 1 ↔ Compatible n x e.1.1 e.1.2) :

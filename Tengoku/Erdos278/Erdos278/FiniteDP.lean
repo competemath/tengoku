@@ -12,6 +12,9 @@ noncomputable def finiteSeparationDP {r : ℕ} {C : Type*} [Fintype C]
   separationDP (fun t => if ht : t < Fintype.card C then
     choices ((Fintype.equivFin C).symm ⟨t, ht⟩) else {∅}) (Fintype.card C)
 
+/--
+@isnad1 id=iff.0h4v.s7.9951a3b00d97 from=translated src=- shape=ff32b849 vocab=d1656370
+-/
 theorem finite_separation_dp_exact {r : ℕ} {C : Type*} [Fintype C]
     (choices : C → Finset (SeparationMask r)) (H : SeparationMask r) :
     H ∈ finiteSeparationDP choices ↔
@@ -50,7 +53,9 @@ theorem finite_separation_dp_exact {r : ℕ} {C : Type*} [Fintype C]
       · rintro ⟨t, ht, he⟩
         exact ⟨enc.symm ⟨t, ht⟩, by simpa [g, ht] using he⟩
 
-/-- Exact partial-coding DP, with an alphabet allowed to vary by coordinate.-/
+/-- Exact partial-coding DP, with an alphabet allowed to vary by coordinate.
+@isnad1 id=iff.2h5v.s7.909a19e805b5 from=translated src=- shape=b3315054 vocab=074a3278
+-/
 theorem coordinate_dp_exact {r : ℕ} {C : Type*} [Fintype C]
     (hr : 0 < r) (V : C → Finset (Fin r)) (b : C → ℕ)
     (hb : ∀ c, 0 < b c) (H : SeparationMask r) :

@@ -7,6 +7,9 @@ namespace Erdos278
 
 open Finset
 
+/--
+@isnad1 id=iff.0h4v.s6.a0a6701796dc from=translated src=- shape=0c76a20c vocab=6511c506
+-/
 theorem union_card_eq_iff_pairwise_disjoint {ι α : Type*}
     [DecidableEq ι] [DecidableEq α] (s : Finset ι) (t : ι → Finset α) :
     (s.biUnion t).card = ∑ i ∈ s, (t i).card ↔
@@ -37,6 +40,9 @@ theorem union_card_eq_iff_pairwise_disjoint {ι α : Type*}
   · intro h
     exact Finset.card_biUnion h
 
+/--
+@isnad1 id=iff.3h5v.s5.3de2239d5078 from=translated src=- shape=b481ecba vocab=ca9f3951
+-/
 theorem residue_disjoint_iff (L m n : ℕ) (hL : 0 < L)
     (hm : m ∣ L) (hn : n ∣ L) (a b : ℤ) :
     Disjoint (residueFinset L m a) (residueFinset L n b) ↔
@@ -62,6 +68,9 @@ theorem residue_disjoint_iff (L m n : ℕ) (hL : 0 < L)
     exact hc ((hwma.of_dvd (Int.natCast_dvd_natCast.mpr (Nat.gcd_dvd_left m n))).symm.trans
       (hwnb.of_dvd (Int.natCast_dvd_natCast.mpr (Nat.gcd_dvd_right m n))))
 
+/--
+@isnad1 id=eq.3h5v.s7.a27fb4ddf730 from=translated src=- shape=1fdede4e vocab=d23874e9
+-/
 theorem reciprocal_sum_as_card_sum {ι : Type*} [DecidableEq ι]
     (s : Finset ι) (n : ι → ℕ) (a : ι → ℤ) (hn : ∀ i ∈ s, 0 < n i)
     (L : ℕ) (hL : 0 < L) (hd : ∀ i ∈ s, n i ∣ L) :
@@ -72,6 +81,9 @@ theorem reciprocal_sum_as_card_sum {ι : Type*} [DecidableEq ι]
   intro i hi
   exact (residue_ratio (n i) L (hn i hi) hL (hd i hi) (a i)).symm
 
+/--
+@isnad1 id=le.1h4v.s6.82e5c47e7f4c from=translated src=- shape=5dbbc58c vocab=ed54bbef
+-/
 theorem density_le_reciprocal_sum {ι : Type*} [DecidableEq ι]
     (s : Finset ι) (n : ι → ℕ) (hn : ∀ i ∈ s, 0 < n i) (a : ι → ℤ) :
     density s n a ≤ ∑ i ∈ s, (1 : ℚ) / n i := by
@@ -84,7 +96,9 @@ theorem density_le_reciprocal_sum {ι : Type*} [DecidableEq ι]
     (t := fun i => residueFinset (s.lcm n) (n i) (a i)))
 
 /-- Equality in the union bound is exactly pairwise incompatibility.
-This is proved from cardinalities, not from cancellation of alternating sums.-/
+This is proved from cardinalities, not from cancellation of alternating sums.
+@isnad1 id=iff.1h4v.s6.c4c39c4d874b from=translated src=- shape=3cdd24d8 vocab=ab361314
+-/
 theorem density_eq_reciprocal_sum_iff {ι : Type*} [DecidableEq ι]
     (s : Finset ι) (n : ι → ℕ) (hn : ∀ i ∈ s, 0 < n i) (a : ι → ℤ) :
     density s n a = ∑ i ∈ s, (1 : ℚ) / n i ↔
@@ -109,6 +123,9 @@ theorem density_eq_reciprocal_sum_iff {ι : Type*} [DecidableEq ι]
   · intro h i hi j hj hij
     exact (residue_disjoint_iff _ _ _ hL (dvd_lcm hi) (dvd_lcm hj) _ _).mpr (h i hi j hj hij)
 
+/--
+@isnad1 id=iff.1h3v.s7.41e3fa2ac48b from=translated src=- shape=fd28e9ee vocab=508cd70a
+-/
 theorem maximum_attains_union_bound_iff {ι : Type*} [DecidableEq ι]
     (s : Finset ι) (n : ι → ℕ) (hn : ∀ i ∈ s, 0 < n i) :
     (∃ a, (∀ b, density s n b ≤ density s n a) ∧
@@ -127,7 +144,9 @@ theorem maximum_attains_union_bound_iff {ι : Type*} [DecidableEq ι]
 /-- Arithmetic correctness of the reduction from disjoint feasibility for a
 positive list to upper-bound attainment for pairwise distinct positive moduli.
 Polynomial construction time and the external NP-hardness theorem are not
-represented by this theorem.-/
+represented by this theorem.
+@isnad1 id=ex.1h2v.s7.c82b41544225 from=translated src=- shape=6d208bed vocab=a4177670
+-/
 theorem distinct_union_bound_reduction {r : ℕ} (n : Fin r → ℕ)
     (hn : ∀ i, 0 < n i) :
     ∃ m : Fin r → ℕ, (∀ i, 0 < m i) ∧ Function.Injective m ∧

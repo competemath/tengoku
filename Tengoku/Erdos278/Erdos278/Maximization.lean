@@ -10,6 +10,9 @@ namespace Erdos278
 open Finset
 variable {ι : Type*} [DecidableEq ι] [Fintype ι]
 
+/--
+@isnad1 id=ex.1h3v.s6.3d66fffda146 from=translated src=- shape=5bb595ca vocab=ab4fa750
+-/
 theorem canonical_representatives (n : ι → ℕ) (hn : ∀ i, 0 < n i) (a : ι → ℤ) :
     ∃ b : (i : ι) → Fin (n i), ∀ i, (b i : ℤ) = a i % n i := by
   let b : (i : ι) → Fin (n i) := fun i => ⟨(a i % n i).toNat, by
@@ -24,7 +27,9 @@ theorem canonical_representatives (n : ι → ℕ) (hn : ∀ i, 0 < n i) (a : ι
   exact Int.toNat_of_nonneg (Int.emod_nonneg _ (by exact_mod_cast (hn i).ne'))
 
 /-- An optimal residue tuple exists. This is an existence theorem over all
-integer representatives, proved by reduction to a finite search space.-/
+integer representatives, proved by reduction to a finite search space.
+@isnad1 id=ex.1h2v.s5.a024bd315e38 from=translated src=- shape=5810639e vocab=59f58e10
+-/
 theorem maximum_attained (n : ι → ℕ) (hn : ∀ i, 0 < n i) :
     ∃ a : ι → ℤ, ∀ b : ι → ℤ, density univ n b ≤ density univ n a := by
   classical
@@ -43,7 +48,9 @@ theorem maximum_attained (n : ι → ℕ) (hn : ∀ i, 0 < n i) :
   exact ha c (mem_univ _)
 
 /-- Translation symmetry and minimal interaction compression can be imposed
-simultaneously, including x i₀ = 0 and all bounds 0 ≤ x i < M i.-/
+simultaneously, including x i₀ = 0 and all bounds 0 ≤ x i < M i.
+@isnad1 id=ex.1h4v.s6.75913e91bf5f from=translated src=- shape=d7c354ff vocab=dbb3387f
+-/
 theorem normalized_compressed_witness (n : ι → ℕ) (hn : ∀ i, 0 < n i)
     (a : ι → ℤ) (i₀ : ι) :
     ∃ x : ι → ℤ, x i₀ = 0 ∧

@@ -12,6 +12,9 @@ def maskGraph {r : ℕ} (H : SeparationMask r) (i j : Fin r) : Prop :=
   ∀ p : PairIndex r,
     ((p.1.1 = i ∧ p.1.2 = j) ∨ (p.1.1 = j ∧ p.1.2 = i)) → p ∉ H
 
+/--
+@isnad1 id=iff.0h5v.s5.e8f1e98e671b from=translated src=- shape=2c46f4e7 vocab=2e6db190
+-/
 theorem mask_graph_exact {r : ℕ} (n : Fin r → ℕ) (a : Fin r → ℤ) (i j : Fin r) :
     maskGraph (incompatibilityMask n a) i j ↔ Compatible n a i j := by
   classical
@@ -36,6 +39,9 @@ theorem mask_graph_exact {r : ℕ} (n : Fin r → ℕ) (a : Fin r → ℤ) (i j 
 noncomputable def maskDensity {r : ℕ} (n : Fin r → ℕ) (H : SeparationMask r) : ℚ :=
   graphValue univ n (maskGraph H)
 
+/--
+@isnad1 id=eq.1h3v.s5.0bf2dcf8e101 from=translated src=- shape=f8ddc096 vocab=a61a68bf
+-/
 theorem mask_density_exact {r : ℕ} (n : Fin r → ℕ) (hn : ∀ i, 0 < n i)
     (a : Fin r → ℤ) :
     maskDensity n (incompatibilityMask n a) = density univ n a := by
@@ -46,7 +52,9 @@ theorem mask_density_exact {r : ℕ} (n : Fin r → ℕ) (hn : ∀ i, 0 < n i)
   exact propext (mask_graph_exact n a i j)
 
 /-- The DP attains exactly the original density values, given a checked radix
-representation. No assumption about an optimal graph or a digit encoder is used.-/
+representation. No assumption about an optimal graph or a digit encoder is used.
+@isnad1 id=iff.4h6v.s7.f0656bf7ef4e from=translated src=- shape=fda91736 vocab=a5cde103
+-/
 theorem radix_dp_density_exact {r : ℕ} {β : Type*} [Fintype β] [DecidableEq β]
     (hr : 0 < r) (n : Fin r → ℕ) (b : β → ℕ) (e : Fin r → β → ℕ)
     (hb : ∀ j, 0 < b j) (hc : Pairwise (fun j k => (b j).Coprime (b k)))
@@ -68,7 +76,9 @@ theorem radix_dp_density_exact {r : ℕ} {β : Type*} [Fintype β] [DecidableEq 
     exact ⟨a, by rw [heq]⟩
 
 /-- Maximizing the finite DP objective gives an attained global optimum of
-the original density, and every maximizing DP state has an integer witness.-/
+the original density, and every maximizing DP state has an integer witness.
+@isnad1 id=ex.4h5v.s7.3c75405f529a from=translated src=- shape=1fed19b5 vocab=57de1a8c
+-/
 theorem radix_dp_maximum {r : ℕ} {β : Type*} [Fintype β] [DecidableEq β]
     (hr : 0 < r) (n : Fin r → ℕ) (b : β → ℕ) (e : Fin r → β → ℕ)
     (hb : ∀ j, 0 < b j) (hc : Pairwise (fun j k => (b j).Coprime (b k)))

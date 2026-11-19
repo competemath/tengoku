@@ -13,6 +13,9 @@ def pairIndexEquiv (r : ℕ) : PairIndex r ≃ (Σ j : Fin r, Fin j.val) where
   left_inv _ := rfl
   right_inv _ := rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.abb84e1b9bc0 from=translated src=- shape=c1e80e1b vocab=b774b276
+-/
 theorem twice_pair_count (r : ℕ) :
     2 * Fintype.card (PairIndex r) = r * (r - 1) := by
   rw [Fintype.card_congr (pairIndexEquiv r), Fintype.card_sigma]
@@ -23,7 +26,9 @@ theorem twice_pair_count (r : ℕ) :
   exact Finset.sum_range_id_mul_two r
 
 /-- The free x coordinates, one quotient and one binary coordinate per
-unordered pair total exactly r²-1 for a nonempty family.-/
+unordered pair total exactly r²-1 for a nonempty family.
+@isnad1 id=eq.0h2v.s7.fc14984b31c0 from=translated src=- shape=83621177 vocab=1d9cdd8c
+-/
 theorem integer_variable_count {r : ℕ} (i₀ : Fin r) :
     ((univ : Finset (Fin r)).erase i₀).card +
       Fintype.card (PairIndex r) + Fintype.card (PairIndex r) = r^2 - 1 := by
@@ -35,7 +40,9 @@ theorem integer_variable_count {r : ℕ} (i₀ : Fin r) :
   have hsqeq : r^2 - 1 + 1 = r^2 := Nat.sub_add_cancel hsq
   nlinarith
 
-/-- At most 2m vertices are incident to a set of m interacting pairs.-/
+/-- At most 2m vertices are incident to a set of m interacting pairs.
+@isnad1 id=le.0h2v.s7.e1859ec124ba from=translated src=- shape=d768482c vocab=46919df1
+-/
 theorem interacting_vertices_bound {r : ℕ} (edges : Finset (PairIndex r)) :
     (edges.biUnion (fun e => {e.1.1, e.1.2})).card ≤ 2 * edges.card := by
   calc
@@ -45,6 +52,9 @@ theorem interacting_vertices_bound {r : ℕ} (edges : Finset (PairIndex r)) :
       simp [hne])
     _ = 2 * edges.card := by simp [Nat.mul_comm]
 
+/--
+@isnad1 id=ex.1h3v.s7.8a752f0db881 from=translated src=- shape=f6c62268 vocab=eb4ab3b7
+-/
 theorem objective_coefficients_integral {r : ℕ} (n : Fin r → ℕ)
     (hn : ∀ i, 0 < n i) (S : CliqueIndex r) :
     ∃ k : ℤ, (((univ : Finset (Fin r)).lcm n : ℕ) : ℚ) *

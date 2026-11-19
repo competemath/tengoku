@@ -11,6 +11,9 @@ namespace Erdos278
 
 open Finset Filter Topology
 
+/--
+@isnad1 id=eq.1h3v.s5.385e9d4eaa7c from=translated src=- shape=aa739d58 vocab=cf63c460
+-/
 theorem periodic_count_mul (p : ℕ → Prop) [DecidablePred p] (L : ℕ)
     (hp : Function.Periodic p L) (k : ℕ) :
     Nat.count p (k * L) = k * Nat.count p L := by
@@ -21,6 +24,9 @@ theorem periodic_count_mul (p : ℕ → Prop) [DecidablePred p] (L : ℕ)
     simp only [hp.funext, ih]
     ring
 
+/--
+@isnad1 id=eq.1h3v.s6.ff313e8c1f8b from=translated src=- shape=42570455 vocab=8375496f
+-/
 theorem periodic_count_decomposition (p : ℕ → Prop) [DecidablePred p] (L N : ℕ)
     (hp : Function.Periodic p L) :
     Nat.count p N = (N / L) * Nat.count p L + Nat.count p (N % L) := by
@@ -32,6 +38,9 @@ theorem periodic_count_decomposition (p : ℕ → Prop) [DecidablePred p] (L N :
   rw [Nat.count_add, periodic_count_mul p L hp]
   simp only [hshift]
 
+/--
+@isnad1 id=le.3h3v.s6.7b8bbcfea882 from=translated src=- shape=48438ede vocab=329a24f8
+-/
 theorem periodic_density_error (p : ℕ → Prop) [DecidablePred p]
     (L : ℕ) (hL : 0 < L) (hp : Function.Periodic p L) (N : ℕ) (hN : 0 < N) :
     |(Nat.count p N : ℝ) / N - (Nat.count p L : ℝ) / L| ≤ (L : ℝ) / N := by
@@ -65,7 +74,9 @@ theorem periodic_density_error (p : ℕ → Prop) [DecidablePred p]
       div_le_div_of_nonneg_right hb (by positivity)
     _ = (L : ℝ) / N := by field_simp
 
-/-- The finite-period fraction is the ordinary one-sided natural density.-/
+/-- The finite-period fraction is the ordinary one-sided natural density.
+@isnad1 id=tendsto.2h2v.s6.aa37c0e8d4e2 from=translated src=- shape=01293969 vocab=e63a8fe6
+-/
 theorem periodic_density_tendsto (p : ℕ → Prop) [DecidablePred p]
     (L : ℕ) (hL : 0 < L) (hp : Function.Periodic p L) :
     Tendsto (fun N : ℕ => (Nat.count p N : ℝ) / N) atTop
@@ -95,6 +106,9 @@ instance coveredNatDecidable (s : Finset ι) (n : ι → ℕ) (a : ι → ℤ) :
   unfold CoveredNat
   infer_instance
 
+/--
+@isnad1 id=periodic.0h4v.s5.4a61cd8f0ccd from=translated src=- shape=627cd45e vocab=a122abeb
+-/
 theorem coveredNat_periodic (s : Finset ι) (n : ι → ℕ) (a : ι → ℤ) :
     Function.Periodic (CoveredNat s n a) (s.lcm n) := by
   intro k
@@ -108,6 +122,9 @@ theorem coveredNat_periodic (s : Finset ι) (n : ι → ℕ) (a : ι → ℤ) :
   exact ⟨fun ⟨i, hi, h⟩ => ⟨i, hi, (hc i hi).symm.trans h⟩,
     fun ⟨i, hi, h⟩ => ⟨i, hi, (hc i hi).trans h⟩⟩
 
+/--
+@isnad1 id=eq.0h4v.s5.c4a11fd79bf0 from=translated src=- shape=7b7ff8c6 vocab=9e297656
+-/
 theorem count_coveredNat_period (s : Finset ι) (n : ι → ℕ) (a : ι → ℤ) :
     Nat.count (CoveredNat s n a) (s.lcm n) = (coveredFinset s n a).card := by
   rw [Nat.count_eq_card_filter_range]
@@ -125,7 +142,9 @@ theorem count_coveredNat_period (s : Finset ι) (n : ι → ℕ) (a : ι → ℤ
   rw [← heq, card_map]
 
 /-- Density in `Density.lean` is not merely a definition chosen to match the
-graph formula: the ordinary counting ratios converge to it.-/
+graph formula: the ordinary counting ratios converge to it.
+@isnad1 id=tendsto.1h4v.s6.72d9c38e10bc from=translated src=- shape=725d6995 vocab=b712002a
+-/
 theorem density_is_natural_density (s : Finset ι) (n : ι → ℕ)
     (hn : ∀ i ∈ s, 0 < n i) (a : ι → ℤ) :
     Tendsto (fun N : ℕ => (Nat.count (CoveredNat s n a) N : ℝ) / N) atTop

@@ -14,6 +14,9 @@ def intersectionWeight (n : ι → ℕ) (a : ι → ℤ) (s : Finset ι) : ℚ :
 def uncoveredTerm (n : ι → ℕ) (a : ι → ℤ) (s : Finset ι) : ℚ :=
   (-1 : ℚ) ^ s.card * intersectionWeight n a s
 
+/--
+@isnad1 id=eq.1h4v.s6.39f9ac360b08 from=translated src=- shape=4768c5cb vocab=cc4c0e85
+-/
 theorem uncovered_eq_powerset (s : Finset ι) (n : ι → ℕ)
     (hn : ∀ i ∈ s, 0 < n i) (a : ι → ℤ) :
     1 - density s n a = ∑ t ∈ s.powerset, uncoveredTerm n a t := by
@@ -50,7 +53,9 @@ theorem uncovered_eq_powerset (s : Finset ι) (n : ι → ℕ)
   rw [hmain]
   linarith
 
-/-- The independent/coprime special case, including the empty family.-/
+/-- The independent/coprime special case, including the empty family.
+@isnad1 id=eq.2h4v.s7.11744ecf58f8 from=translated src=- shape=c0714beb vocab=61f2beb1
+-/
 theorem coprime_uncovered_product (s : Finset ι) (n : ι → ℕ)
     (hn : ∀ i ∈ s, 0 < n i) (a : ι → ℤ)
     (hc : ∀ i ∈ s, ∀ j ∈ s, i ≠ j → (n i).Coprime (n j)) :

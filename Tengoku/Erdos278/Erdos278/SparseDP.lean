@@ -14,10 +14,16 @@ def interactionPairs {r : ℕ} (n : Fin r → ℕ) : Finset (PairIndex r) :=
 def interactionVertices {r : ℕ} (n : Fin r → ℕ) : Finset (Fin r) :=
   (interactionPairs n).biUnion (fun p => {p.1.1, p.1.2})
 
+/--
+@isnad1 id=le.0h2v.s5.23b6be16c777 from=translated src=- shape=acc18135 vocab=531f0fb9
+-/
 theorem interaction_vertices_card {r : ℕ} (n : Fin r → ℕ) :
     (interactionVertices n).card ≤ 2 * (interactionPairs n).card :=
   interacting_vertices_bound _
 
+/--
+@isnad1 id=coprime.3h4v.s5.5b867d4ec194 from=translated src=- shape=0e3ba39f vocab=3b95d65d
+-/
 theorem isolated_vertex_coprime {r : ℕ} (n : Fin r → ℕ)
     (hn : ∀ i, 0 < n i) {i j : Fin r}
     (hi : i ∉ interactionVertices n) (hij : i ≠ j) :
@@ -34,7 +40,9 @@ theorem isolated_vertex_coprime {r : ℕ} (n : Fin r → ℕ)
       by simpa [interactionPairs, Nat.gcd_comm] using hg, by simp⟩
 
 /-- Removing every isolated modulus preserves the objective up to an explicit
-nonnegative factor, for every residue choice, including modulus one.-/
+nonnegative factor, for every residue choice, including modulus one.
+@isnad1 id=eq.1h3v.s7.c31f59d9591f from=translated src=- shape=ef86a81e vocab=d310849d
+-/
 theorem isolated_vertices_factorization {r : ℕ} (n : Fin r → ℕ)
     (hn : ∀ i, 0 < n i) (a : Fin r → ℤ) :
     1 - density univ n a = (1 - density (interactionVertices n) n a) *
@@ -55,7 +63,9 @@ theorem isolated_vertices_factorization {r : ℕ} (n : Fin r → ℕ)
   exact hf
 
 /-- A maximum on the nonisolated vertices is already a maximum on all vertices.
-The residues on isolated vertices can be chosen arbitrarily.-/
+The residues on isolated vertices can be chosen arbitrarily.
+@isnad1 id=le.2h4v.s6.2c59245f093d from=translated src=- shape=14c7f242 vocab=5e71b1eb
+-/
 theorem isolated_optimum_lift {r : ℕ} (n : Fin r → ℕ)
     (hn : ∀ i, 0 < n i) (a : Fin r → ℤ)
     (ha : ∀ x, density (interactionVertices n) n x ≤
@@ -71,7 +81,9 @@ theorem isolated_optimum_lift {r : ℕ} (n : Fin r → ℕ)
   have hfx := isolated_vertices_factorization n hn x
   linarith
 
-/-- A family of masks on m permitted edges has at most 2^m members.-/
+/-- A family of masks on m permitted edges has at most 2^m members.
+@isnad1 id=le.1h3v.s6.816003b38486 from=translated src=- shape=8e59fcda vocab=4247ec8e
+-/
 theorem supported_masks_card_bound {r : ℕ}
     (R : Finset (SeparationMask r)) (E : SeparationMask r)
     (hE : ∀ H ∈ R, H ⊆ E) : R.card ≤ 2 ^ E.card := by
@@ -79,6 +91,9 @@ theorem supported_masks_card_bound {r : ℕ}
     _ ≤ E.powerset.card := card_le_card (fun H hH => mem_powerset.mpr (hE H hH))
     _ = _ := card_powerset E
 
+/--
+@isnad1 id=le.2h5v.s7.345d30edd09e from=translated src=- shape=0deb13bf vocab=a05a4595
+-/
 theorem local_masks_supported {r : ℕ} (V : Finset (Fin r)) (b : ℕ)
     (E : SeparationMask r)
     (hV : ∀ p : PairIndex r, p.1.1 ∈ V → p.1.2 ∈ V → p ∈ E)
@@ -88,12 +103,18 @@ theorem local_masks_supported {r : ℕ} (V : Finset (Fin r)) (b : ℕ)
   obtain ⟨_, hi, hj, _⟩ := mem_filter.mp hp
   exact hV p hi hj
 
+/--
+@isnad1 id=le.1h4v.s7.e694e446c136 from=translated src=- shape=76047041 vocab=6ffd8b8a
+-/
 theorem local_masks_sparse_card_bound {r : ℕ} (V : Finset (Fin r)) (b : ℕ)
     (E : SeparationMask r)
     (hV : ∀ p : PairIndex r, p.1.1 ∈ V → p.1.2 ∈ V → p ∈ E) :
     (localSeparationMasks V b).card ≤ 2 ^ E.card :=
   supported_masks_card_bound _ E (local_masks_supported V b E hV)
 
+/--
+@isnad1 id=le.2h5v.s6.12c464639114 from=translated src=- shape=003e3eb0 vocab=a4ffd5c5
+-/
 theorem separation_dp_supported {r : ℕ}
     (choices : ℕ → Finset (SeparationMask r)) (k : ℕ) (E : SeparationMask r)
     (hE : ∀ t < k, ∀ H ∈ choices t, H ⊆ E)
@@ -103,13 +124,18 @@ theorem separation_dp_supported {r : ℕ}
   obtain ⟨t, ht, hp⟩ := mem_biUnion.mp hp
   exact hE t (mem_range.mp ht) (f t) (hf t (mem_range.mp ht)) hp
 
+/--
+@isnad1 id=le.1h4v.s6.cf21b5204644 from=translated src=- shape=c5fc8843 vocab=9c91ce09
+-/
 theorem separation_dp_sparse_state_bound {r : ℕ}
     (choices : ℕ → Finset (SeparationMask r)) (k : ℕ) (E : SeparationMask r)
     (hE : ∀ t < k, ∀ H ∈ choices t, H ⊆ E) :
     (separationDP choices k).card ≤ 2 ^ E.card :=
   supported_masks_card_bound _ E (separation_dp_supported choices k E hE)
 
-/-- All candidate transitions, including candidates discarded as duplicates.-/
+/-- All candidate transitions, including candidates discarded as duplicates.
+@isnad1 id=le.1h4v.s7.8065a2cceb96 from=translated src=- shape=4e2ecece vocab=430f7710
+-/
 theorem separation_total_sparse_candidate_bound {r : ℕ}
     (choices : ℕ → Finset (SeparationMask r)) (d : ℕ) (E : SeparationMask r)
     (hE : ∀ t < d, ∀ H ∈ choices t, H ⊆ E) :
@@ -138,6 +164,9 @@ noncomputable def finiteSeparationCandidateCount {r : ℕ} {C : Type*} [Fintype 
     (separationDP (finiteSeparationSchedule choices) t ×ˢ
       finiteSeparationSchedule choices t).card
 
+/--
+@isnad1 id=le.2h6v.s6.0076aa0ee5bd from=translated src=- shape=e5b10b9e vocab=d4fa256b
+-/
 theorem finite_schedule_supported {r : ℕ} {C : Type*} [Fintype C]
     (choices : C → Finset (SeparationMask r)) (E : SeparationMask r)
     (hE : ∀ c, ∀ H ∈ choices c, H ⊆ E) (t : ℕ)
@@ -148,6 +177,9 @@ theorem finite_schedule_supported {r : ℕ} {C : Type*} [Fintype C]
   · have hh : H = ∅ := by simpa [finiteSeparationSchedule, ht] using hH
     simp [hh]
 
+/--
+@isnad1 id=le.1h4v.s6.e2d2081cc2b1 from=translated src=- shape=6c4120ed vocab=a330014d
+-/
 theorem finite_separation_dp_sparse_state_bound {r : ℕ} {C : Type*} [Fintype C]
     (choices : C → Finset (SeparationMask r)) (E : SeparationMask r)
     (hE : ∀ c, ∀ H ∈ choices c, H ⊆ E) :
@@ -155,6 +187,9 @@ theorem finite_separation_dp_sparse_state_bound {r : ℕ} {C : Type*} [Fintype C
   separation_dp_sparse_state_bound (finiteSeparationSchedule choices) _ E
     (fun t _ => finite_schedule_supported choices E hE t)
 
+/--
+@isnad1 id=le.1h4v.s6.f0011c0110b5 from=translated src=- shape=9fa22d25 vocab=4b1cec8c
+-/
 theorem finite_separation_sparse_candidate_bound {r : ℕ} {C : Type*} [Fintype C]
     (choices : C → Finset (SeparationMask r)) (E : SeparationMask r)
     (hE : ∀ c, ∀ H ∈ choices c, H ⊆ E) :
@@ -162,7 +197,9 @@ theorem finite_separation_sparse_candidate_bound {r : ℕ} {C : Type*} [Fintype 
   separation_total_sparse_candidate_bound (finiteSeparationSchedule choices) _ E
     (fun t _ => finite_schedule_supported choices E hE t)
 
-/-- A shared digit has a base greater than one dividing both input moduli.-/
+/-- A shared digit has a base greater than one dividing both input moduli.
+@isnad1 id=mem.4h7v.s7.4544f529c861 from=translated src=- shape=057009d8 vocab=6bd43e8d
+-/
 theorem radix_support_interaction {r : ℕ} {β : Type*} [Fintype β]
     (n : Fin r → ℕ) (b : β → ℕ) (e : Fin r → β → ℕ)
     (hb : ∀ j, 2 ≤ b j) (hrep : ∀ i, radixModulus b (e i) = n i)
@@ -182,6 +219,9 @@ theorem radix_support_interaction {r : ℕ} {β : Type*} [Fintype β]
   exact mem_filter.mpr ⟨mem_univ _, lt_of_lt_of_le (by omega : 1 < b c.1)
     (Nat.le_of_dvd (Nat.gcd_pos_of_pos_left _ hni) hd)⟩
 
+/--
+@isnad1 id=le.2h5v.s6.293f6adcc70f from=translated src=- shape=b7a0e965 vocab=b184c71c
+-/
 theorem radix_dp_sparse_state_bound {r : ℕ} {β : Type*} [Fintype β]
     (n : Fin r → ℕ) (b : β → ℕ) (e : Fin r → β → ℕ)
     (hb : ∀ j, 2 ≤ b j) (hrep : ∀ i, radixModulus b (e i) = n i) :
@@ -189,6 +229,9 @@ theorem radix_dp_sparse_state_bound {r : ℕ} {β : Type*} [Fintype β]
   finite_separation_dp_sparse_state_bound _ _ (fun c =>
     local_masks_supported _ _ _ (radix_support_interaction n b e hb hrep c))
 
+/--
+@isnad1 id=le.2h5v.s7.ae59bee26e85 from=translated src=- shape=04a14c4f vocab=484e7abc
+-/
 theorem radix_dp_sparse_candidate_bound {r : ℕ} {β : Type*} [Fintype β]
     (n : Fin r → ℕ) (b : β → ℕ) (e : Fin r → β → ℕ)
     (hb : ∀ j, 2 ≤ b j) (hrep : ∀ i, radixModulus b (e i) = n i) :
@@ -202,7 +245,9 @@ theorem radix_dp_sparse_candidate_bound {r : ℕ} {β : Type*} [Fintype β]
         local_masks_supported _ _ _ (radix_support_interaction n b e hb hrep c))
 
 /-- Number of graph/subset pairs inspected after isolated vertices are removed.
-This is a cardinality bound, not a bit-cost analysis of objective evaluation.-/
+This is a cardinality bound, not a bit-cost analysis of objective evaluation.
+@isnad1 id=le.1h3v.s6.06f58af697b3 from=translated src=- shape=003a058d vocab=faf59a63
+-/
 theorem sparse_objective_candidate_bound {r : ℕ} (n : Fin r → ℕ)
     (R : Finset (SeparationMask r)) (hR : R.card ≤ 2 ^ (interactionPairs n).card) :
     (R ×ˢ (interactionVertices n).powerset).card ≤ 2 ^ (3 * (interactionPairs n).card) := by
@@ -214,7 +259,9 @@ theorem sparse_objective_candidate_bound {r : ℕ} (n : Fin r → ℕ)
     _ = _ := by rw [← pow_add]; congr 1; omega
 
 /-- Sparse bounds hold for every positive input, without a supplied radix certificate.
-The prime representation establishes existence, not an efficient factorization.-/
+The prime representation establishes existence, not an efficient factorization.
+@isnad1 id=and.1h2v.s8.e5d00cd5763f from=translated src=- shape=c7ecde1e vocab=58002fb4
+-/
 theorem prime_dp_sparse_bounds {r : ℕ} (n : Fin r → ℕ) (hn : ∀ i, 0 < n i) :
     (primeDP n).card ≤ 2 ^ (interactionPairs n).card ∧
     finiteSeparationCandidateCount (fun c : RadixCoordinate (inputPrimeExponents n) =>

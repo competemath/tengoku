@@ -6,7 +6,9 @@ import Tengoku.Seed.Data.Fintype.EquivFin
 namespace Erdos278
 
 /-- Every fiber with at most p children admits p distinct digit labels.
-The ordered pair of parent and digit uniquely identifies the child.-/
+The ordered pair of parent and digit uniquely identifies the child.
+@isnad1 id=ex.1h4v.s6.be1f27a486d7 from=translated src=- shape=5fb28243 vocab=580b91ef
+-/
 theorem fiber_digits {P C : Type*} [Fintype C] [DecidableEq P]
     (parent : C → P) (p : ℕ)
     (h : ∀ b, Fintype.card {c : C // parent c = b} ≤ p) :
@@ -43,7 +45,9 @@ def towerCode {B : ℕ → Type*} (parent : ∀ k, B (k+1) → B k)
   | k+1, c => towerCode parent digit k (parent k c) + p^k * (digit k c).val
 
 /-- The repaired local realizability theorem, in a representation by block
-types and parent maps. Refinement is the existence of those parent maps.-/
+types and parent maps. Refinement is the existence of those parent maps.
+@isnad1 id=iff.1h3v.s6.a26079fc3509 from=translated src=- shape=73d70ce5 vocab=425c1818
+-/
 theorem corrected_tower_realizability (B : ℕ → Type*)
     [∀ k, Fintype (B k)] [∀ k, DecidableEq (B k)] [Subsingleton (B 0)]
     (parent : ∀ k, B (k+1) → B k) (p : ℕ) (hp : 0 < p) :
@@ -109,7 +113,9 @@ theorem corrected_tower_realizability (B : ℕ → Type*)
     simpa using Fintype.card_le_of_injective enc he
 
 /-- Any realization has at most p first-level blocks. This is the missing
-root-capacity condition in the previous manuscript.-/
+root-capacity condition in the previous manuscript.
+@isnad1 id=le.1h3v.s5.8507e152715c from=translated src=- shape=2d247a5f vocab=f895d03c
+-/
 theorem root_capacity (B : ℕ → Type*) [Fintype (B 1)]
     (parent : ∀ k, B (k+1) → B k) (p : ℕ)
     (h : TowerRealized B parent p) : Fintype.card (B 1) ≤ p := by
@@ -119,7 +125,9 @@ theorem root_capacity (B : ℕ → Type*) [Fintype (B 1)]
   simpa using Fintype.card_le_of_injective f hinj
 
 /-- Coherence along a vertex's path: its chosen terminal residue induces the
-prescribed block at every shallower level. Paths may stop at different depths.-/
+prescribed block at every shallower level. Paths may stop at different depths.
+@isnad1 id=eq.4h7v.s7.94dedfd55608 from=translated src=- shape=b44cbcf5 vocab=372b12ee
+-/
 theorem tower_path_residue {B : ℕ → Type*} {parent : ∀ k, B (k+1) → B k}
     {p : ℕ} (code : ∀ k, B k → ℕ)
     (hb : ∀ k b, code k b < p^k)
@@ -142,7 +150,9 @@ theorem tower_path_residue {B : ℕ → Type*} {parent : ∀ k, B (k+1) → B k}
   exact aux d hk le_rfl
 
 /-- Terminal residues agree mod p^k exactly when the two paths occupy the
-same level-k block, even when their terminal depths differ.-/
+same level-k block, even when their terminal depths differ.
+@isnad1 id=iff.7h9v.s8.0ce4bac34fc7 from=translated src=- shape=0778ccd9 vocab=1c48f4cb
+-/
 theorem tower_paths_agree_iff {B : ℕ → Type*} {parent : ∀ k, B (k+1) → B k}
     {p : ℕ} (code : ∀ k, B k → ℕ)
     (hb : ∀ k b, code k b < p^k) (hi : ∀ k, Function.Injective (code k))
@@ -160,7 +170,9 @@ theorem tower_paths_agree_iff {B : ℕ → Type*} {parent : ∀ k, B (k+1) → B
   exact (hi k).eq_iff
 
 /-- Local coordinates with pairwise coprime moduli have no gluing obstruction.
-Applied to distinct prime powers, this is the global CRT step in section 5.-/
+Applied to distinct prime powers, this is the global CRT step in section 5.
+@isnad1 id=ex.2h4v.s6.d91c0996f347 from=translated src=- shape=21d32bb1 vocab=67717ba0
+-/
 theorem coprime_local_gluing {α : Type*} [DecidableEq α]
     (s : Finset α) (n : α → ℕ) (hn : ∀ i ∈ s, n i ≠ 0) (a : α → ℤ)
     (hc : ∀ i ∈ s, ∀ j ∈ s, i ≠ j → (n i).Coprime (n j)) :
@@ -173,6 +185,9 @@ theorem coprime_local_gluing {α : Type*} [DecidableEq α]
     rw [(hc i hi j hj hij).gcd_eq_one]
     simp [Int.ModEq]
 
+/--
+@isnad1 id=not.0h0v.s5.ea005119545f from=translated src=- shape=1b402510 vocab=658a211e
+-/
 theorem three_blocks_cannot_fit_two_residues :
     ¬ ∃ a : Fin 3 → Fin 2, Function.Injective a := by
   rintro ⟨a, ha⟩

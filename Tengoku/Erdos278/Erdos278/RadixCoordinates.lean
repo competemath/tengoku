@@ -12,6 +12,9 @@ def radixPrefix (b : ℕ) (u : ℕ → Fin b) : ℕ → ℕ
   | 0 => 0
   | k+1 => radixPrefix b u k + b^k * (u k).val
 
+/--
+@isnad1 id=lt.1h3v.s5.da9b07d530ef from=translated src=- shape=0b9a9ac9 vocab=759c6218
+-/
 theorem radix_prefix_bound {b : ℕ} (hb : 0 < b) (u : ℕ → Fin b) (k : ℕ) :
     radixPrefix b u k < b^k := by
   induction k with
@@ -22,12 +25,18 @@ theorem radix_prefix_bound {b : ℕ} (hb : 0 < b) (u : ℕ → Fin b) (k : ℕ) 
     simp only [radixPrefix, pow_succ]
     nlinarith
 
+/--
+@isnad1 id=eq.1h3v.s5.bd0a67f3435f from=translated src=- shape=b651431f vocab=ef0ecda3
+-/
 theorem radix_prefix_step_mod {b : ℕ} (hb : 0 < b)
     (u : ℕ → Fin b) (k : ℕ) :
     radixPrefix b u (k+1) % b^k = radixPrefix b u k := by
   rw [radixPrefix, Nat.add_mul_mod_self_left,
     Nat.mod_eq_of_lt (radix_prefix_bound hb u k)]
 
+/--
+@isnad1 id=eq.2h4v.s5.d5467d73659c from=translated src=- shape=8b2c88d0 vocab=54327635
+-/
 theorem radix_prefix_mod {b : ℕ} (hb : 0 < b)
     (u : ℕ → Fin b) {k d : ℕ} (hkd : k ≤ d) :
     radixPrefix b u d % b^k = radixPrefix b u k := by
@@ -37,6 +46,9 @@ theorem radix_prefix_mod {b : ℕ} (hb : 0 < b)
     rw [← Nat.mod_mod_of_dvd (radixPrefix b u (d+1)) (pow_dvd_pow b hkd),
       radix_prefix_step_mod hb, ih]
 
+/--
+@isnad1 id=iff.1h4v.s5.d2c7be5b5dfd from=translated src=- shape=075a7e76 vocab=cab85cf8
+-/
 theorem radix_prefix_eq_iff {b : ℕ} (hb : 0 < b)
     (u v : ℕ → Fin b) (k : ℕ) :
     radixPrefix b u k = radixPrefix b v k ↔ ∀ t < k, u t = v t := by
@@ -61,7 +73,9 @@ theorem radix_prefix_eq_iff {b : ℕ} (hb : 0 < b)
       simp only [radixPrefix, ih.mpr (fun t ht => h t (by omega)), h k (by omega)]
 
 /-- Every natural residue has a full digit sequence with that prefix.
-This is an existence result; it does not assume a correct digit encoder.-/
+This is an existence result; it does not assume a correct digit encoder.
+@isnad1 id=ex.1h3v.s5.ec8313ef5d43 from=translated src=- shape=42326ceb vocab=4c53cd7e
+-/
 theorem radix_prefix_represents {b : ℕ} (hb : 0 < b) (a k : ℕ) :
     ∃ u : ℕ → Fin b, radixPrefix b u k = a % b^k := by
   induction k generalizing a with
@@ -78,7 +92,9 @@ theorem radix_prefix_represents {b : ℕ} (hb : 0 < b) (a k : ℕ) :
     rw [pow_succ]
     exact Nat.mod_mul.symm
 
-/-- Equality at a shared digit depth is precisely modular equality.-/
+/-- Equality at a shared digit depth is precisely modular equality.
+@isnad1 id=iff.3h6v.s6.b5240772bd8e from=translated src=- shape=f13e7d25 vocab=d93d9738
+-/
 theorem radix_prefix_modEq_iff {b : ℕ} (hb : 0 < b)
     (u v : ℕ → Fin b) {k d e : ℕ} (hkd : k ≤ d) (hke : k ≤ e) :
     (radixPrefix b u d : ℤ) ≡ (radixPrefix b v e : ℤ) [ZMOD b^k] ↔
