@@ -133,6 +133,7 @@ import Tengoku.AdianRabin
 import Tengoku.LeanCommutator
 import Tengoku.Leancert
 import Tengoku.QuadraticAlgebras
+import Tengoku.Erdos1091Lean
 import Tengoku.QuotientSubmoduleEquidistribution
 import Tengoku.Roundedrootsums
 import Tengoku.ChandraFurstLipton
