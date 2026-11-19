@@ -19,6 +19,9 @@ variable {Omega : Type u} [MeasurableSpace Omega]
 variable {mu : Measure Omega} [IsProbabilityMeasure mu]
 variable {W : Omega → Omega → Real}
 
+/--
+@isnad1 id=good.1h3v.s4.27230a35db5c from=translated src=- shape=4894df6c vocab=9d55f5b6
+-/
 lemma good_col_of_goodK {K : Omega → Omega → Real} (hK : GoodK K) (y : Omega) :
     Good (fun x => K x y) := by
   obtain ⟨C, hC0, hKC⟩ := hK.bdd
@@ -26,6 +29,9 @@ lemma good_col_of_goodK {K : Omega → Omega → Real} (hK : GoodK K) (y : Omega
     (measurable_id.prodMk measurable_const)).stronglyMeasurable,
     ⟨C, hC0, fun x => hKC x y⟩⟩
 
+/--
+@isnad1 id=eq.2h4v.s5.8cc7fa27fafc from=translated src=- shape=15affd66 vocab=bc129e89
+-/
 lemma mean_kernelOp_eq_pairing_degree
     (hW : IsGraphon W mu) {f : Omega → Real} (hf : Good f) :
     mean mu (kernelOp W mu f) = pairing mu f (degree W mu) := by
@@ -38,6 +44,9 @@ lemma mean_kernelOp_eq_pairing_degree
       rw [kernelOp_one hW]
       rfl
 
+/--
+@isnad1 id=eq.3h5v.s6.24090fc681a2 from=translated src=- shape=1321d201 vocab=0ddc5cc3
+-/
 lemma kernelOp_eq_pairing_degCentered_add_centered
     (hW : IsGraphon W mu) {f : Omega → Real} (hf : Good f)
     (hf0 : mean mu f = 0) (x : Omega) :
@@ -73,6 +82,9 @@ lemma kernelOp_eq_pairing_degCentered_add_centered
   linarith
 
 omit [IsProbabilityMeasure mu] in
+/--
+@isnad1 id=eq.1h5v.s5.5842554c2538 from=translated src=- shape=4f8e9c4f vocab=a08de1f7
+-/
 lemma kernelOp_const_eq_mul_degree
     (_hW : IsGraphon W mu) (c : Real) (x : Omega) :
     kernelOp W mu (fun _ : Omega => c) x = c * degree W mu x := by
@@ -80,6 +92,9 @@ lemma kernelOp_const_eq_mul_degree
   rw [← integral_const_mul]
   exact integral_congr_ae (ae_of_all _ fun z => by ring)
 
+/--
+@isnad1 id=eq.4h5v.s7.e71cf35d8f37 from=translated src=- shape=bd8f0ea0 vocab=711ab163
+-/
 lemma kernelOp_goodK_symm {K : Omega → Omega → Real}
     (hK : GoodK K) (hKsymm : ∀ x y, K x y = K y x)
     {f k : Omega → Real} (hf : Good f) (hk : Good k) :
@@ -126,6 +141,9 @@ lemma kernelOp_goodK_symm {K : Omega → Omega → Real}
       integral_integral_swap hInt
     _ = ∫ y, f y * kernelOp K mu k y ∂mu := by simp_rw [hR]
 
+/--
+@isnad1 id=eq.3h4v.s6.10b4627a215e from=translated src=- shape=a7c31646 vocab=935ecb58
+-/
 lemma mean_kernelOp_centeredKernel_eq_zero {K : Omega → Omega → Real}
     (hK : GoodK K) (hKsymm : ∀ x y, K x y = K y x)
     {f : Omega → Real} (hf : Good f) :
@@ -157,6 +175,9 @@ lemma mean_kernelOp_centeredKernel_eq_zero {K : Omega → Omega → Real}
         rw [hrow]
         ring
 
+/--
+@isnad1 id=eq.9h7v.s7.d16a7dfda59d from=translated src=- shape=4fe39243 vocab=a7184516
+-/
 lemma centeredKernel_eq_body_of_block_decomposition
     {M B : Omega → Omega → Real} {a : Real}
     {X Y : Omega → Real}
@@ -223,6 +244,9 @@ lemma centeredKernel_eq_body_of_block_decomposition
   rw [hdecomp x y, hdegree x, hdegree y, hedge, hXY y]
   ring
 
+/--
+@isnad1 id=goodk.2h3v.s5.614420ad1af8 from=translated src=- shape=94710602 vocab=4591a457
+-/
 lemma goodK_rankOne {f g : Omega → Real} (hf : Good f) (hg : Good g) :
     GoodK (fun x y => f x * g y) := by
   obtain ⟨Cf, hCf0, hCf⟩ := hf.bdd
@@ -234,6 +258,9 @@ lemma goodK_rankOne {f g : Omega → Real} (hf : Good f) (hg : Good g) :
   exact mul_le_mul (hCf x) (hCg y) (abs_nonneg _)
     (le_trans (abs_nonneg _) (hCf x))
 
+/--
+@isnad1 id=eq.2h5v.s6.e31f10b889a3 from=translated src=- shape=ee34613a vocab=0f1ec7fe
+-/
 lemma integral_comp_centeredKernel_row_eq_zero
     {K L : Omega → Omega → Real} (hK : GoodK K) (hL : GoodK L)
     (x : Omega) :
@@ -256,6 +283,9 @@ lemma integral_comp_centeredKernel_row_eq_zero
   rw [hDone] at hx
   simpa [kernelOp] using hx
 
+/--
+@isnad1 id=eq.4h5v.s6.3e74d91a1ff1 from=translated src=- shape=d46198e9 vocab=0f1ec7fe
+-/
 lemma integral_comp_centeredKernel_col_eq_zero
     {K L : Omega → Omega → Real} (hK : GoodK K) (hL : GoodK L)
     (hKsymm : ∀ x y, K x y = K y x)
@@ -278,6 +308,9 @@ lemma integral_comp_centeredKernel_col_eq_zero
             comp_symm_swap hCsymm hDsymm y x)
     _ = 0 := integral_comp_centeredKernel_row_eq_zero hL hK y
 
+/--
+@isnad1 id=eq.3h6v.s7.f48f89e6ec79 from=translated src=- shape=dc6f0564 vocab=fe873250
+-/
 lemma comp_graphon_block_formula
     (hW : IsGraphon W mu) {K : Omega → Omega → Real}
     (hK : GoodK K) (hKsymm : ∀ x y, K x y = K y x)
@@ -329,6 +362,9 @@ lemma comp_graphon_block_formula
   dsimp [c, f1]
   ring
 
+/--
+@isnad1 id=eq.1h4v.s6.fc106bdc0c8a from=translated src=- shape=ec99a3ee vocab=e7183210
+-/
 theorem centeredKernel_compPow_succ (hW : IsGraphon W mu) (n : Nat) :
     centeredKernel (compPow mu W (n + 1)) mu =
       fun x y =>
@@ -422,6 +458,9 @@ theorem centeredKernel_compPow_succ (hW : IsGraphon W mu) (n : Nat) :
     (mu := mu) hMsymm hX hY hB hX0 hY0 hBrow hBcol hdecomp
   simpa [M, B, g, h, C, D, K] using hcenter
 
+/--
+@isnad1 id=eq.2h5v.s6.3084c189d358 from=translated src=- shape=2200e4ef vocab=6e50267c
+-/
 lemma comp_centeredKernel_rankOne_compressIter
     (hW : IsGraphon W mu) (j : Nat) {f : Omega → Real} (_hf : Good f) :
     comp mu (centeredKernel W mu)
@@ -444,6 +483,9 @@ lemma comp_centeredKernel_rankOne_compressIter
   simp only [sub_zero]
   rfl
 
+/--
+@isnad1 id=eq.2h6v.s6.922d75c8e2ac from=translated src=- shape=7aa3b8ce vocab=296d41a0
+-/
 lemma comp_finset_sum_right_goodK {ι : Type*} (s : Finset ι)
     {K : Omega → Omega → Real} (hK : GoodK K)
     (L : ι → Omega → Omega → Real)
@@ -471,6 +513,9 @@ lemma comp_finset_sum_right_goodK {ι : Type*} (s : Finset ι)
       funext x y
       rw [Finset.sum_insert ha]
 
+/--
+@isnad1 id=eq.1h4v.s6.801090ca1456 from=translated src=- shape=76f3240d vocab=5eb52f33
+-/
 theorem centeredKernel_compPow_expansion (hW : IsGraphon W mu) (n : Nat) :
     centeredKernel (compPow mu W n) mu = fun x y =>
       compPow mu (centeredKernel W mu) n x y +
@@ -547,12 +592,18 @@ theorem centeredKernel_compPow_expansion (hW : IsGraphon W mu) (n : Nat) :
       rw [hlastxy]
       ring
 
+/--
+@isnad1 id=eq.1h4v.s5.85a30f9c5a1c from=translated src=- shape=69d5a1c2 vocab=fa34478e
+-/
 lemma edgeDensity_compPow_eq_pathDensity (hW : IsGraphon W mu) (n : Nat) :
     edgeDensity (compPow mu W n) mu = pathDensity W mu (n + 1) := by
   unfold edgeDensity pathDensity
   rw [show degree (compPow mu W n) mu = pathIter W mu (n + 1) by
     exact rowsum_compPow hW n]
 
+/--
+@isnad1 id=eq.1h4v.s6.843f677a0536 from=translated src=- shape=80d0b991 vocab=af7193f9
+-/
 lemma degCentered_compPow_eq_centeredPathIter
     (hW : IsGraphon W mu) (n : Nat) :
     degCentered (compPow mu W n) mu = fun x =>
@@ -562,6 +613,9 @@ lemma degCentered_compPow_eq_centeredPathIter
   rw [congrFun (rowsum_compPow hW n) x,
     edgeDensity_compPow_eq_pathDensity hW n]
 
+/--
+@isnad1 id=eq.1h5v.s7.8bb153ccafe1 from=translated src=- shape=6c9712bb vocab=3e618d32
+-/
 lemma integral_compressIter_mul_degCentered_compPow
     (hW : IsGraphon W mu) (a t : Nat) :
     (∫ x, compressIter W mu a x *
@@ -610,6 +664,9 @@ lemma integral_compressIter_mul_degCentered_compPow
   intro k hk
   rw [integral_const_mul, moment hW k a]
 
+/--
+@isnad1 id=eq.1h4v.s7.8696063a651f from=translated src=- shape=3c6e0d53 vocab=a4d3aabd
+-/
 theorem trace_compPow_eq_pathDensity_add_centeredTrace_add_atoms
     (hW : IsGraphon W mu) (n : Nat) :
     trace mu (compPow mu W n) =
@@ -660,6 +717,9 @@ theorem trace_compPow_eq_pathDensity_add_centeredTrace_add_atoms
       rw [edgeDensity_compPow_eq_pathDensity hW n, htrace']
       ring
 
+/--
+@isnad1 id=eq.0h3v.s7.fba3971a68af from=translated src=- shape=7c768059 vocab=7f068e31
+-/
 lemma coeff_mk_mul_mk (s x : Nat → Real) (n : Nat) :
     PowerSeries.coeff n (PowerSeries.mk s * PowerSeries.mk x) =
       ∑ i ∈ Finset.range (n + 1), s i * x (n - i) := by
@@ -677,6 +737,9 @@ noncomputable def graphonPathDensitySeries (_hW : IsGraphon W mu) :
     PowerSeries Real :=
   PowerSeries.mk (pathDensity W mu)
 
+/--
+@isnad1 id=eq.0h2v.s6.b9bb45854ec4 from=translated src=- shape=d6536989 vocab=a9fc3bcc
+-/
 lemma sum_range_sum_range_sub (F : Nat → Real) (N : Nat) :
     (∑ t ∈ Finset.range N,
         ∑ k ∈ Finset.range (t + 1), F (t - k)) =
@@ -717,6 +780,9 @@ lemma sum_range_sum_range_sub (F : Nat → Real) (N : Nat) :
               ((N + 1 - r : Nat) : Real) * F r) +
             ((N + 1 - N : Nat) : Real) * F N := by norm_num
 
+/--
+@isnad1 id=eq.1h4v.s7.7f3fa9d4e331 from=translated src=- shape=420b6167 vocab=783af36f
+-/
 theorem trace_atoms_eq_weighted_moments
     (hW : IsGraphon W mu) (n : Nat) :
     (∑ t ∈ Finset.range n,

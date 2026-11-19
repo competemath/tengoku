@@ -16,6 +16,9 @@ private noncomputable def Fform (m r : ℕ) (q ℓ : ℝ) : ℝ → ℝ :=
         * ((q * x + ℓ * (1 - x)) ^ (m - 2 * r) + ((1 - q) * x + (-ℓ) * (1 - x)) ^ (m - 2 * r))
       - x * (q * x + ℓ * (1 - x)) ^ (m - 2 * r - 1))
 
+/--
+@isnad1 id=integrab.3h4v.s6.305e9498ed1b from=translated src=- shape=ac0e5dc2 vocab=eb93fabc
+-/
 lemma kernelIntegrand_integrableOn {m r : ℕ} (hr : r ≠ 0) (hn : 1 ≤ m - 2 * r) (q ℓ : ℝ)
     (hl : 0 < ℓ) : IntegrableOn (kernelIntegrand m r q ℓ) (Set.Ioi 0) := by
 

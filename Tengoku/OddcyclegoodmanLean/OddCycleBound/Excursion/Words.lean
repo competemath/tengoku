@@ -43,16 +43,28 @@ def numMarks (w : Fin (n + 1) → Bool) : ℕ := (marks w).card
 /-- Rotation: the cyclic word `w` read from position `j`.-/
 def rot (j : Fin (n + 1)) (w : Fin (n + 1) → Bool) : Fin (n + 1) → Bool := fun i => w (i + j)
 
+/--
+@isnad1 id=iff.0h4v.s7.0c15f4f9489c from=translated src=- shape=619691de vocab=69bbd252
+-/
 lemma isMark_rot (j i : Fin (n + 1)) (w : Fin (n + 1) → Bool) :
     IsMark (rot j w) i ↔ IsMark w (i + j) := by
   simp only [IsMark, rot, sub_add_eq_add_sub]
 
+/--
+@isnad1 id=eq.0h4v.s7.033e0afd7b16 from=translated src=- shape=6cfb243d vocab=ccb296bd
+-/
 lemma rot_rot (i j : Fin (n + 1)) (w : Fin (n + 1) → Bool) : rot i (rot j w) = rot (j + i) w := by
   funext x; simp only [rot]; congr 1; abel
 
+/--
+@isnad1 id=eq.0h2v.s6.b4d2385359fb from=translated src=- shape=3336dfc2 vocab=ccb296bd
+-/
 lemma rot_zero (w : Fin (n + 1) → Bool) : rot 0 w = w := by
   funext x; simp [rot]
 
+/--
+@isnad1 id=eq.0h3v.s5.fb2f17fcc142 from=translated src=- shape=3a4d025b vocab=9b6ec35c
+-/
 lemma numMarks_rot (j : Fin (n + 1)) (w : Fin (n + 1) → Bool) :
     numMarks (rot j w) = numMarks w := by
   unfold numMarks marks
@@ -109,6 +121,9 @@ def listsOf (s : Finset α) : ℕ → Finset (List α)
   | 0 => {[]}
   | r + 1 => (s ×ˢ listsOf s r).image fun p => p.1 :: p.2
 
+/--
+@isnad1 id=iff.0h4v.s6.282fbab57646 from=translated src=- shape=cdf61110 vocab=8336ee3c
+-/
 lemma mem_listsOf {s : Finset α} : ∀ {r : ℕ} {l : List α},
     l ∈ listsOf s r ↔ l.length = r ∧ ∀ x ∈ l, x ∈ s
   | 0, l => by cases l <;> simp [listsOf]
@@ -124,6 +139,9 @@ lemma mem_listsOf {s : Finset α} : ∀ {r : ℕ} {l : List α},
           · rintro ⟨hlen, ha, hl⟩
             exact ⟨a, l, ⟨ha, mem_listsOf.mpr ⟨by omega, hl⟩⟩, rfl, rfl⟩
 
+/--
+@isnad1 id=eq.0h5v.s6.8213eae45303 from=translated src=- shape=2bf38b49 vocab=51180691
+-/
 lemma sum_listsOf_succ {β : Type*} [AddCommMonoid β] (s : Finset α) (r : ℕ)
     (G : List α → β) :
     ∑ l ∈ listsOf s (r + 1), G l = ∑ a ∈ s, ∑ l ∈ listsOf s r, G (a :: l) := by
@@ -137,15 +155,23 @@ end Lists
 /-- All words of length `L`.-/
 def allWords (L : ℕ) : Finset (List Bool) := listsOf univ L
 
+/--
+@isnad1 id=iff.0h2v.s4.3dd366e72f70 from=translated src=- shape=4df08e09 vocab=bde47a33
+-/
 lemma mem_allWords {L : ℕ} {l : List Bool} : l ∈ allWords L ↔ l.length = L := by
   simp [allWords, mem_listsOf]
 
+/--
+@isnad1 id=eq.0h3v.s6.494772b60201 from=translated src=- shape=0e4968c6 vocab=4d2d89b1
+-/
 lemma sum_allWords_succ {β : Type*} [AddCommMonoid β] (L : ℕ) (G : List Bool → β) :
     ∑ l ∈ allWords (L + 1), G l = ∑ l ∈ allWords L, (G (false :: l) + G (true :: l)) := by
   rw [allWords, sum_listsOf_succ, Fintype.sum_bool, ← Finset.sum_add_distrib]
   refine Finset.sum_congr rfl fun l _ => add_comm _ _
 
-/-- Sums over cyclic words `Fin L → Bool` are sums over lists of length `L`.-/
+/-- Sums over cyclic words `Fin L → Bool` are sums over lists of length `L`.
+@isnad1 id=eq.0h3v.s6.32d74c9ad3f3 from=translated src=- shape=1aa740f7 vocab=89bbcbef
+-/
 lemma sum_fin_eq_sum_allWords {β : Type*} [AddCommMonoid β] :
     ∀ (L : ℕ) (G : List Bool → β), ∑ w : Fin L → Bool, G (List.ofFn w) = ∑ l ∈ allWords L, G l
   | 0, G => by simp [allWords, listsOf]
@@ -169,16 +195,31 @@ def blockWord (t : List (ℕ × ℕ)) : List Bool := t.flatMap blk
 /-- The total excess `∑ (αᵢ + βᵢ)` of a block-length tuple.-/
 def excess (t : List (ℕ × ℕ)) : ℕ := (t.map fun p => p.1 + p.2).sum
 
+/--
+@isnad1 id=eq.0h0v.s3.635c056916dd from=translated src=- shape=ec35f9df vocab=47a1a404
+-/
 @[simp] lemma blockWord_nil : blockWord [] = [] := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.aa05c5af8530 from=translated src=- shape=f4d9f142 vocab=e9a096ff
+-/
 @[simp] lemma blockWord_cons (p : ℕ × ℕ) (t : List (ℕ × ℕ)) :
     blockWord (p :: t) = blk p ++ blockWord t := by simp [blockWord]
 
+/--
+@isnad1 id=eq.0h0v.s3.7949ff53fdbe from=translated src=- shape=9b0cc7f6 vocab=fff72fb3
+-/
 @[simp] lemma excess_nil : excess [] = 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.82d9efa0cddc from=translated src=- shape=03797bc9 vocab=8466cb97
+-/
 @[simp] lemma excess_cons (p : ℕ × ℕ) (t : List (ℕ × ℕ)) :
     excess (p :: t) = p.1 + p.2 + excess t := by simp [excess]
 
+/--
+@isnad1 id=eq.0h1v.s5.5ebbb684c1f9 from=translated src=- shape=e6133613 vocab=2f9b9e3c
+-/
 lemma length_blockWord : ∀ t : List (ℕ × ℕ), (blockWord t).length = excess t + 2 * t.length
   | [] => rfl
   | p :: t => by
@@ -186,13 +227,18 @@ lemma length_blockWord : ∀ t : List (ℕ × ℕ), (blockWord t).length = exces
         length_blockWord t, excess_cons, List.length_cons]
       ring
 
+/--
+@isnad1 id=ne.0h2v.s5.bc3c522a896a from=translated src=- shape=b036c8ef vocab=ed0f7b49
+-/
 lemma head?_blockWord_append (t : List (ℕ × ℕ)) (a : ℕ) :
     (blockWord t ++ List.replicate a false).head? ≠ some true := by
   cases t with
   | nil => cases a <;> simp [List.replicate_succ]
   | cons p t => simp [blk, List.replicate_succ]
 
-/-- Splitting off a maximal run.-/
+/-- Splitting off a maximal run.
+@isnad1 id=ex.0h2v.s5.4e0a3fd57f2f from=translated src=- shape=27cd0df1 vocab=7e63ea2f
+-/
 lemma exists_run (a : Bool) : ∀ l : List Bool,
     ∃ k l', l = List.replicate k a ++ l' ∧ l'.head? ≠ some a
   | [] => ⟨0, [], by simp⟩
@@ -202,7 +248,9 @@ lemma exists_run (a : Bool) : ∀ l : List Bool,
         exact ⟨k + 1, l', by rw [hl, hb]; simp [List.replicate_succ], hl'⟩
       · exact ⟨0, b :: l, by simp, by simpa using hb⟩
 
-/-- Uniqueness of a maximal run.-/
+/-- Uniqueness of a maximal run.
+@isnad1 id=and.3h5v.s6.374219c1be19 from=translated src=- shape=a3121b36 vocab=7e63ea2f
+-/
 lemma run_unique (a : Bool) : ∀ (k k' : ℕ) (l l' : List Bool),
     l.head? ≠ some a → l'.head? ≠ some a →
     List.replicate k a ++ l = List.replicate k' a ++ l' → k = k' ∧ l = l'
@@ -218,7 +266,9 @@ lemma run_unique (a : Bool) : ∀ (k k' : ℕ) (l l' : List Bool),
       obtain ⟨h1, h2⟩ := run_unique a k k' l l' hl hl' h
       exact ⟨by rw [h1], h2⟩
 
-/-- **Run-length decoding.** Every word not starting with `Q` is `blockWord t ++ P^a`.-/
+/-- **Run-length decoding.** Every word not starting with `Q` is `blockWord t ++ P^a`.
+@isnad1 id=ex.2h2v.s5.adfaa9925530 from=translated src=- shape=c6713ef0 vocab=b7562b5d
+-/
 lemma exists_blockWord : ∀ (L : ℕ) (l : List Bool), l.length ≤ L → l.head? ≠ some true →
     ∃ t a, l = blockWord t ++ List.replicate a false
   | L, l, hL, hl => by
@@ -248,6 +298,9 @@ lemma exists_blockWord : ∀ (L : ℕ) (l : List Bool), l.length ≤ L → l.hea
           simp only [blockWord_cons, blk, Nat.sub_add_cancel (Nat.one_le_iff_ne_zero.mpr hk),
             Nat.sub_add_cancel (Nat.one_le_iff_ne_zero.mpr hk'), List.append_assoc]
 
+/--
+@isnad1 id=and.1h4v.s6.9a4880c68a3d from=translated src=- shape=368bb2f6 vocab=cfc9bba0
+-/
 lemma blockWord_append_injective : ∀ (t t' : List (ℕ × ℕ)) (a a' : ℕ),
     blockWord t ++ List.replicate a false = blockWord t' ++ List.replicate a' false →
       t = t' ∧ a = a'

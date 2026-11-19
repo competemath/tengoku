@@ -11,6 +11,9 @@ variable {U : Ω → Ω → ℝ}
 
 noncomputable def pairing (μ : Measure Ω) (f g : Ω → ℝ) : ℝ := ∫ x, f x * g x ∂μ
 
+/--
+@isnad1 id=good.1h4v.s5.4c51dbcc983d from=translated src=- shape=c680d783 vocab=f8c8caa4
+-/
 lemma good_pathIter (hU : IsGraphon U μ) : ∀ n, Good (pathIter U μ n)
   | 0 => good_one
   | (n + 1) => good_kernelOp hU (good_pathIter hU n)
@@ -18,17 +21,29 @@ lemma good_pathIter (hU : IsGraphon U μ) : ∀ n, Good (pathIter U μ n)
 def compl (U : Ω → Ω → ℝ) : Ω → Ω → ℝ := fun x y => 1 - U x y
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=eq.0h4v.s5.e848c2d20311 from=translated src=- shape=772f1d93 vocab=d68bed68
+-/
 lemma compl_eq_onesKernel_sub (x y : Ω) : compl U x y = onesKernel x y - U x y := by simp [compl, onesKernel]
 
 omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=goodk.1h3v.s4.3e10e9db8a55 from=translated src=- shape=d99ec10f vocab=4df90e4b
+-/
 lemma goodK_compl (hU : IsGraphon U μ) : GoodK (compl U) := by
   refine ⟨measurable_const.sub hU.meas, ⟨1, zero_le_one, fun x y => ?_⟩⟩
   rw [compl, abs_le]; constructor <;> nlinarith [hU.nonneg x y, hU.le_one x y]
 
 omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=eq.1h5v.s5.3ac4f67171af from=translated src=- shape=12df1379 vocab=5e3d6a89
+-/
 lemma compl_symm (hU : IsGraphon U μ) (x y : Ω) : compl U x y = compl U y x := by
   simp only [compl, hU.symm x y]
 
+/--
+@isnad1 id=eq.1h4v.s5.88f13a82ab12 from=translated src=- shape=aad96ba7 vocab=654fe6d7
+-/
 lemma compPow_comm_U (hU : IsGraphon U μ) : ∀ n,
     comp μ (compPow μ U n) U = comp μ U (compPow μ U n) := by
   have hGU : GoodK U := goodK_of_isGraphon hU
@@ -39,11 +54,17 @@ lemma compPow_comm_U (hU : IsGraphon U μ) : ∀ n,
       show comp μ (comp μ U (compPow μ U k)) U = comp μ U (comp μ U (compPow μ U k))
       rw [comp_assoc hGU (goodK_compPow hGU k) hGU, ih]
 
+/--
+@isnad1 id=eq.1h4v.s5.6710fa7fce1d from=translated src=- shape=242eb57a vocab=fb6b93c8
+-/
 lemma comp_compPow_U (hU : IsGraphon U μ) (n : ℕ) :
     comp μ (compPow μ U n) U = compPow μ U (n + 1) := by
   rw [compPow_comm_U hU]; rfl
 
 omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=eq.0h4v.s6.09b23fdd628b from=translated src=- shape=5acdc18b vocab=f5f0b608
+-/
 lemma trace_comp_rowBroadcast (f : Ω → ℝ) (R : Ω → Ω → ℝ) :
     trace μ (comp μ (fun x _ => f x) R) = ∫ x, f x * (∫ z, R z x ∂μ) ∂μ := by
   show ∫ x, comp μ (fun x _ => f x) R x x ∂μ = ∫ x, f x * (∫ z, R z x ∂μ) ∂μ
@@ -58,6 +79,9 @@ noncomputable def complIter (U : Ω → Ω → ℝ) (μ : Measure Ω) : ℕ → 
   | 0 => fun _ => 1
   | (n + 1) => fun x => mean μ (complIter U μ n) - kernelOp U μ (complIter U μ n) x
 
+/--
+@isnad1 id=good.1h4v.s5.6673c32f1de9 from=translated src=- shape=c680d783 vocab=59cfa37f
+-/
 lemma good_complIter (hU : IsGraphon U μ) : ∀ n, Good (complIter U μ n)
   | 0 => good_one
   | (n + 1) => by
@@ -71,6 +95,9 @@ omit [IsProbabilityMeasure μ] in
 private lemma abs_compl_le_one (hU : IsGraphon U μ) (x z : Ω) : |compl U x z| ≤ 1 := by
   rw [compl, abs_le]; constructor <;> nlinarith [hU.nonneg x z, hU.le_one x z]
 
+/--
+@isnad1 id=eq.1h4v.s6.f043cc561623 from=translated src=- shape=18ab1b31 vocab=362bd257
+-/
 lemma rowsum_complPow (hU : IsGraphon U μ) : ∀ n,
     (fun x => ∫ y, compPow μ (compl U) n x y ∂μ) = complIter U μ (n + 1) := by
   have hGW : GoodK (compl U) := goodK_compl hU
@@ -119,6 +146,9 @@ lemma rowsum_complPow (hU : IsGraphon U μ) : ∀ n,
               rfl
 
 omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=eq.2h6v.s6.f66ddecf0815 from=translated src=- shape=db6817ea vocab=a8fc2c79
+-/
 lemma comp_symm_swap {K L : Ω → Ω → ℝ} (hsK : ∀ x y, K x y = K y x)
     (hsL : ∀ x y, L x y = L y x) (x y : Ω) : comp μ K L y x = comp μ L K x y := by
   simp only [comp]
@@ -126,6 +156,9 @@ lemma comp_symm_swap {K L : Ω → Ω → ℝ} (hsK : ∀ x y, K x y = K y x)
   show K y z * L z x = L x z * K z y
   rw [hsK y z, hsL z x]; ring
 
+/--
+@isnad1 id=eq.1h4v.s5.5fa2e1a9c56f from=translated src=- shape=ae2d05d5 vocab=eb01fbc8
+-/
 lemma compPow_comm {K : Ω → Ω → ℝ} (hK : GoodK K) : ∀ n,
     comp μ (compPow μ K n) K = comp μ K (compPow μ K n)
   | 0 => rfl
@@ -133,6 +166,9 @@ lemma compPow_comm {K : Ω → Ω → ℝ} (hK : GoodK K) : ∀ n,
       show comp μ (comp μ K (compPow μ K n)) K = comp μ K (comp μ K (compPow μ K n))
       rw [comp_assoc hK (goodK_compPow hK n) hK, compPow_comm hK n]
 
+/--
+@isnad1 id=eq.2h6v.s6.9359236a1ca4 from=translated src=- shape=520d0a58 vocab=9c61555c
+-/
 lemma compPow_symm {K : Ω → Ω → ℝ} (hK : GoodK K) (hsymm : ∀ x y, K x y = K y x) :
     ∀ (n) (x y : Ω), compPow μ K n x y = compPow μ K n y x
   | 0, x, y => hsymm x y
@@ -141,6 +177,9 @@ lemma compPow_symm {K : Ω → Ω → ℝ} (hK : GoodK K) (hsymm : ∀ x y, K x 
       show comp μ K (compPow μ K n) x y = comp μ K (compPow μ K n) y x
       rw [comp_symm_swap hsymm ih x y, compPow_comm hK n]
 
+/--
+@isnad1 id=eq.1h4v.s6.dcd229bc46b5 from=translated src=- shape=88d2f907 vocab=70fc3d22
+-/
 lemma comp_compPow_compl (hU : IsGraphon U μ) (a : ℕ) :
     comp μ (compPow μ U a) (compl U) = fun x y => pathIter U μ (a + 1) x - compPow μ U (a + 1) x y := by
   have hGU := goodK_of_isGraphon hU
@@ -154,6 +193,9 @@ lemma comp_compPow_compl (hU : IsGraphon U μ) (a : ℕ) :
       = pathIter U μ (a + 1) x - compPow μ U (a + 1) x y
   rw [congrFun (rowsum_compPow hU a) x]
 
+/--
+@isnad1 id=eq.1h4v.s6.b8276a1c5268 from=translated src=- shape=25e25db0 vocab=362bd257
+-/
 lemma colsum_compPow_compl (hU : IsGraphon U μ) (b : ℕ) :
     (fun x => ∫ z, compPow μ (compl U) b z x ∂μ) = complIter U μ (b + 1) := by
   have h : (fun x => ∫ z, compPow μ (compl U) b z x ∂μ)
@@ -166,6 +208,9 @@ lemma colsum_compPow_compl (hU : IsGraphon U μ) (b : ℕ) :
 noncomputable def mixedTrace (U : Ω → Ω → ℝ) (μ : Measure Ω) (a b : ℕ) : ℝ :=
   trace μ (comp μ (compPow μ U a) (compPow μ (compl U) b))
 
+/--
+@isnad1 id=eq.1h5v.s6.549d196d692f from=translated src=- shape=a41c5af9 vocab=963fe440
+-/
 lemma mixedTrace_succ (hU : IsGraphon U μ) (a b : ℕ) :
     mixedTrace U μ a (b + 1)
       = pairing μ (pathIter U μ (a + 1)) (complIter U μ (b + 1)) - mixedTrace U μ (a + 1) b := by
@@ -189,6 +234,9 @@ lemma mixedTrace_succ (hU : IsGraphon U μ) (a b : ℕ) :
       = pathIter U μ (a + 1) x * complIter U μ (b + 1) x
   rw [congrFun (colsum_compPow_compl hU b) x]
 
+/--
+@isnad1 id=eq.1h4v.s6.bb42827deea2 from=translated src=- shape=6f24e425 vocab=c4b26196
+-/
 lemma mixedTrace_zero (hU : IsGraphon U μ) (a : ℕ) :
     mixedTrace U μ a 0 = pathDensity U μ (a + 1) - trace μ (compPow μ U (a + 1)) := by
   have hGU := goodK_of_isGraphon hU
@@ -198,11 +246,17 @@ lemma mixedTrace_zero (hU : IsGraphon U μ) (a : ℕ) :
     trace_sub (goodK_comp (goodK_compPow hGU a) goodK_onesKernel) (goodK_comp (goodK_compPow hGU a) hGU),
     trace_comp_onesKernel_right, doubleMean_compPow hU a, comp_compPow_U hU]
 
+/--
+@isnad1 id=eq.2h4v.s6.8638a4d24f7d from=translated src=- shape=78469f59 vocab=c62d1b5c
+-/
 lemma comp_compl_left (hU : IsGraphon U μ) {L : Ω → Ω → ℝ} (hL : GoodK L) :
     comp μ (compl U) L = fun x y => comp μ onesKernel L x y - comp μ U L x y := by
   have hWeq : compl U = fun x y => onesKernel x y - U x y := by funext x y; rw [compl_eq_onesKernel_sub]
   rw [hWeq]; exact comp_sub_left goodK_onesKernel (goodK_of_isGraphon hU) hL
 
+/--
+@isnad1 id=eq.1h4v.s6.ac4f6892901c from=translated src=- shape=f0e0a0a8 vocab=5b508911
+-/
 lemma complTrace_peel (hU : IsGraphon U μ) (m : ℕ) :
     trace μ (compPow μ (compl U) (m + 1)) = doubleMean μ (compPow μ (compl U) m) - mixedTrace U μ 0 m := by
   have hGU := goodK_of_isGraphon hU
@@ -213,11 +267,17 @@ lemma complTrace_peel (hU : IsGraphon U μ) (m : ℕ) :
     trace_comp_onesKernel (goodK_compPow hGW m)]
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s6.7c22898544bd from=translated src=- shape=c3125c28 vocab=42a6d1af
+-/
 lemma doubleMean_complPow (hU : IsGraphon U μ) (n : ℕ) :
     doubleMean μ (compPow μ (compl U) n) = mean μ (complIter U μ (n + 1)) := by
   rw [doubleMean, show (fun x => ∫ y, compPow μ (compl U) n x y ∂μ) = complIter U μ (n + 1) from rowsum_complPow hU n]
   rfl
 
+/--
+@isnad1 id=eq.3h5v.s6.319bd536bed1 from=translated src=- shape=cbbd279c vocab=dc508665
+-/
 lemma kernelOp_selfadj (hU : IsGraphon U μ) {f g : Ω → ℝ} (hf : Good f) (hg : Good g) :
     ∫ x, kernelOp U μ f x * g x ∂μ = ∫ x, f x * kernelOp U μ g x ∂μ := by
   have hGU := goodK_of_isGraphon hU
@@ -248,9 +308,15 @@ lemma kernelOp_selfadj (hU : IsGraphon U μ) {f g : Ω → ℝ} (hf : Good f) (h
         rw [hU.symm x y]; ring
 
 omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=eq.1h3v.s5.2e6f417b29b8 from=translated src=- shape=754afb8c vocab=e6e74668
+-/
 lemma pathIter_one (hU : IsGraphon U μ) : pathIter U μ 1 = degree U μ := by
   show kernelOp U μ (fun _ => 1) = degree U μ; exact kernelOp_one hU
 
+/--
+@isnad1 id=eq.2h4v.s5.db12fc48c71f from=translated src=- shape=505c35ac vocab=61388b0f
+-/
 lemma mean_kernelOp_eq (hU : IsGraphon U μ) {f : Ω → ℝ} (hf : Good f) :
     mean μ (kernelOp U μ f) = pairing μ (pathIter U μ 1) f := by
   have h1 : mean μ (kernelOp U μ f) = ∫ x, kernelOp U μ f x * 1 ∂μ := by simp [mean]
@@ -262,13 +328,22 @@ lemma mean_kernelOp_eq (hU : IsGraphon U μ) {f : Ω → ℝ} (hf : Good f) :
 
 omit [IsProbabilityMeasure μ] in
 
+/--
+@isnad1 id=eq.0h4v.s5.444b52e7b213 from=translated src=- shape=684f7e9e vocab=12e14a5c
+-/
 lemma pairing_pathIter_zero (v : Ω → ℝ) : pairing μ (pathIter U μ 0) v = mean μ v := by
   simp only [pairing, pathIter, one_mul, mean]
 
 omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=le.1h3v.s5.9e74f8a8ad83 from=translated src=- shape=2791fd9e vocab=c84c66b6
+-/
 lemma edgeDensity_nonneg (hU : IsGraphon U μ) : 0 ≤ edgeDensity U μ :=
   integral_nonneg fun x => integral_nonneg fun y => hU.nonneg x y
 
+/--
+@isnad1 id=le.1h3v.s5.8c92ae0b507d from=translated src=- shape=d79d2092 vocab=30f73d90
+-/
 lemma edgeDensity_le_one (hU : IsGraphon U μ) : edgeDensity U μ ≤ 1 := by
   rw [edgeDensity, mean]
   calc ∫ x, degree U μ x ∂μ ≤ ∫ _x, (1:ℝ) ∂μ := by
@@ -283,6 +358,9 @@ lemma edgeDensity_le_one (hU : IsGraphon U μ) : edgeDensity U μ ≤ 1 := by
     _ = 1 := by simp
 
 omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=isgrapho.1h3v.s4.e89429a5c769 from=translated src=- shape=e5e0f354 vocab=5e3d6a89
+-/
 lemma isGraphon_compl (hU : IsGraphon U μ) : IsGraphon (compl U) μ where
   meas := by
     have h : Function.uncurry (compl U) = fun p : Ω × Ω => 1 - U p.1 p.2 := rfl

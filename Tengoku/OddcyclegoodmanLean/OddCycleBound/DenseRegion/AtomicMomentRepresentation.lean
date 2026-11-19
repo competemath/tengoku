@@ -13,8 +13,14 @@ def linearIter (T : E →ₗ[ℝ] E) : ℕ → E → E
   | 0 => id
   | j + 1 => fun x => T (linearIter T j x)
 
+/--
+@isnad1 id=eq.0h3v.s6.e3332bfcbe7a from=translated src=- shape=5c5bb28b vocab=880ebbf2
+-/
 @[simp] lemma linearIter_zero (T : E →ₗ[ℝ] E) (x : E) : linearIter T 0 x = x := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.496c928f7dc6 from=translated src=- shape=85264300 vocab=d56eb422
+-/
 lemma linearIter_succ (T : E →ₗ[ℝ] E) (j : ℕ) (x : E) :
     linearIter T (j + 1) x = T (linearIter T j x) := rfl
 
@@ -29,9 +35,15 @@ noncomputable def finiteAtomWeight (T : E →ₗ[ℝ] E) (hT : T.IsSymmetric) (g
     Fin (Module.finrank ℝ E) → ℝ := fun i =>
   inner ℝ g (hT.eigenvectorBasis rfl i) ^ 2
 
+/--
+@isnad1 id=le.1h4v.s7.7ce895a550ec from=translated src=- shape=d9f42186 vocab=0479baa6
+-/
 lemma finiteAtomWeight_nonneg (T : E →ₗ[ℝ] E) (hT : T.IsSymmetric) (g : E) (i) :
     0 ≤ finiteAtomWeight T hT g i := sq_nonneg _
 
+/--
+@isnad1 id=eq.1h5v.s9.c0c72d408a92 from=translated src=- shape=a670df1e vocab=92bdd1f2
+-/
 lemma inner_eigenvector_linearIter (T : E →ₗ[ℝ] E) (hT : T.IsSymmetric)
     (g : E) (j : ℕ) (i : Fin (Module.finrank ℝ E)) :
     inner ℝ (hT.eigenvectorBasis rfl i) (linearIter T j g) =
@@ -46,6 +58,9 @@ lemma inner_eigenvector_linearIter (T : E →ₗ[ℝ] E) (hT : T.IsSymmetric)
         heigen, real_inner_smul_left, ih]
       ring
 
+/--
+@isnad1 id=eq.1h4v.s7.20a6604a4795 from=translated src=- shape=01b0b86c vocab=8e9421b9
+-/
 theorem inner_linearIter_eq_atomicMoment (T : E →ₗ[ℝ] E) (hT : T.IsSymmetric)
     (g : E) (j : ℕ) :
     inner ℝ g (linearIter T j g) =

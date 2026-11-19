@@ -21,6 +21,9 @@ variable {Omega : Type u} [MeasurableSpace Omega]
 variable {mu : Measure Omega} [IsProbabilityMeasure mu]
 variable {K : Omega → Omega → Real}
 
+/--
+@isnad1 id=eq.4h6v.s8.52f57a641b58 from=translated src=- shape=d640c390 vocab=a9136c7d
+-/
 lemma kernelOpGoodKCLM_iter_goodL2_eq_compPow
     (hK : GoodK K) {C : Real} (hC0 : 0 ≤ C)
     (hKC : ∀ x y, |K x y| ≤ C)
@@ -32,6 +35,9 @@ lemma kernelOpGoodKCLM_iter_goodL2_eq_compPow
   rw [← kernelOpL2OfGoodK_compPow_eq_goodL2_iter_succ
     (mu := mu) hK hf n]
 
+/--
+@isnad1 id=eq.4h5v.s8.e6f1cac00b7b from=translated src=- shape=6edbd01e vocab=2ee69688
+-/
 lemma trace_compPow_eq_integral_row_inner_goodK_clmIter
     (hK : GoodK K) {C : Real} (hC0 : 0 ≤ C)
     (hKC : ∀ x y, |K x y| ≤ C)
@@ -109,6 +115,9 @@ variable {Omega : Type u} [MeasurableSpace Omega]
 variable {mu : Measure Omega} [IsProbabilityMeasure mu]
 variable {W : Omega → Omega → Real}
 
+/--
+@isnad1 id=le.1h4v.s5.ab0ad9e6233b from=translated src=- shape=5e8be34f vocab=14efc1ad
+-/
 theorem abs_centeredEigenvalue_le_four (hW : IsGraphon W mu)
     (i : CenteredEigenIndex hW) :
     |centeredEigenvalue hW i| ≤ 4 := by

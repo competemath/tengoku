@@ -36,6 +36,9 @@ noncomputable def leadingEigenvalueShapeB (mu : Measure Omega)
 def leadingEigenvalueResidual (a b : Real) (phi : Omega -> Real) : Omega -> Real :=
   (fun x => |phi x|) - (fun _ => a) - b • phi
 
+/--
+@isnad1 id=good.1h2v.s4.9af003a7fbce from=translated src=- shape=5b50d80c vocab=aed2ef1d
+-/
 lemma good_leadingEigenvaluePos {phi : Omega -> Real} (hphi : Good phi) :
     Good (leadingEigenvaluePos phi) := by
   let h := good_smul ((2 : Real)⁻¹)
@@ -46,17 +49,26 @@ lemma good_leadingEigenvaluePos {phi : Omega -> Real} (hphi : Good phi) :
   ring
 
 omit [MeasurableSpace Omega] in
+/--
+@isnad1 id=le.0h3v.s4.d60bf88a9cfd from=translated src=- shape=2e66be8c vocab=32578433
+-/
 lemma leadingEigenvaluePos_nonneg (phi : Omega -> Real) (x : Omega) :
     0 <= leadingEigenvaluePos phi x := by
   unfold leadingEigenvaluePos
   nlinarith [neg_le_abs (phi x)]
 
 omit [MeasurableSpace Omega] in
+/--
+@isnad1 id=le.0h3v.s4.fb8f70043c80 from=translated src=- shape=0a21d9da vocab=32578433
+-/
 lemma le_leadingEigenvaluePos (phi : Omega -> Real) (x : Omega) :
     phi x <= leadingEigenvaluePos phi x := by
   unfold leadingEigenvaluePos
   nlinarith [le_abs_self (phi x)]
 
+/--
+@isnad1 id=good.1h4v.s4.4329661e77a3 from=translated src=- shape=c91a68be vocab=450cd834
+-/
 lemma good_leadingEigenvalueResidual {phi : Omega -> Real} (hphi : Good phi)
     (a b : Real) :
     Good (leadingEigenvalueResidual a b phi) := by
@@ -65,6 +77,9 @@ lemma good_leadingEigenvalueResidual {phi : Omega -> Real} (hphi : Good phi)
     (good_sub (good_abs hphi) (good_const (Omega := Omega) a))
     (good_smul b hphi)
 
+/--
+@isnad1 id=eq.3h4v.s13.d9825717e889 from=translated src=- shape=2d8b79e4 vocab=f64f92f1
+-/
 theorem centeredGraphonOp_compl_goodL2_eq_neg
     (hW : IsGraphon W mu) {f : Omega -> Real} (hf : Good f)
     (hmean : mean mu f = 0) :
@@ -100,6 +115,9 @@ theorem centeredGraphonOp_compl_goodL2_eq_neg
         (P (goodL2 (mu := mu) hf)))
   rw [hcenter, hkernel, map_neg]
 
+/--
+@isnad1 id=other.4h5v.s13.1b4ecee49e93 from=translated src=- shape=6c933385 vocab=086f41ab
+-/
 theorem kernelOpCLM_compl_leading_eigenvalue_eq_hub_add
     (hW : IsGraphon W mu) (i : CenteredEigenIndex hW)
     {phi : Omega -> Real} (hphi : Good phi)

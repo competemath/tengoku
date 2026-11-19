@@ -9,6 +9,9 @@ namespace OddCycleBound
 variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
 variable {U : Ω → Ω → ℝ}
 
+/--
+@isnad1 id=eq.1h4v.s6.41dd4183ff28 from=translated src=- shape=97ad1542 vocab=1b947bf3
+-/
 lemma pathDensity_succ_aux (hU : IsGraphon U μ) (n : ℕ) :
     pathDensity U μ (n + 1) = edgeDensity U μ * pathDensity U μ n + pairing μ (compressIter U μ 0) (pathIter U μ n) := by
   have e1 : mean μ (kernelOp U μ (pathIter U μ n)) = ∫ x, pathIter U μ n x * degree U μ x ∂μ := by
@@ -28,6 +31,9 @@ lemma pathDensity_succ_aux (hU : IsGraphon U μ) (n : ℕ) :
   show ∫ x, pathIter U μ n x * compressIter U μ 0 x ∂μ = pairing μ (compressIter U μ 0) (pathIter U μ n)
   simp only [pairing]; exact integral_congr_ae (ae_of_all _ fun x => by ring)
 
+/--
+@isnad1 id=eq.1h4v.s5.374cce79016e from=translated src=- shape=c7c81ec4 vocab=3a137447
+-/
 lemma pairing_compressIter_pathIter_zero (hU : IsGraphon U μ) (k : ℕ) :
     pairing μ (compressIter U μ k) (pathIter U μ 0) = 0 := by
   show ∫ x, compressIter U μ k x * pathIter U μ 0 x ∂μ = 0
@@ -35,6 +41,9 @@ lemma pairing_compressIter_pathIter_zero (hU : IsGraphon U μ) (k : ℕ) :
     show compressIter U μ k x * pathIter U μ 0 x = compressIter U μ k x; show compressIter U μ k x * 1 = _; ring)]
   exact mean_compressIter hU k
 
+/--
+@isnad1 id=eq.1h5v.s6.bbbda760e3fc from=translated src=- shape=6bb2e9ab vocab=f5d70b3b
+-/
 lemma pairing_compressIter_pathIter_succ (hU : IsGraphon U μ) (k n : ℕ) :
     pairing μ (compressIter U μ k) (pathIter U μ (n + 1))
       = specMoment U μ k * pathDensity U μ n + pairing μ (compressIter U μ (k + 1)) (pathIter U μ n) := by
@@ -52,6 +61,9 @@ lemma pairing_compressIter_pathIter_succ (hU : IsGraphon U μ) (k n : ℕ) :
     integral_const_mul]
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s6.810c4d19b198 from=translated src=- shape=6e221da0 vocab=fe4be262
+-/
 lemma pairing_compressIter_pathIter_closed (hU : IsGraphon U μ) : ∀ (n k : ℕ),
     pairing μ (compressIter U μ k) (pathIter U μ n)
       = ∑ i ∈ Finset.range n, specMoment U μ (k + i) * pathDensity U μ (n - 1 - i) := by
@@ -74,6 +86,9 @@ lemma pairing_compressIter_pathIter_closed (hU : IsGraphon U μ) : ∀ (n k : �
       simp only [Nat.add_zero, b1]
       ring
 
+/--
+@isnad1 id=eq.1h4v.s6.6b54375d3f08 from=translated src=- shape=f47e46b8 vocab=e28e89ef
+-/
 lemma pathDensity_succ (hU : IsGraphon U μ) (n : ℕ) :
     pathDensity U μ (n + 1)
       = edgeDensity U μ * pathDensity U μ n + ∑ i ∈ Finset.range n, specMoment U μ i * pathDensity U μ (n - 1 - i) := by

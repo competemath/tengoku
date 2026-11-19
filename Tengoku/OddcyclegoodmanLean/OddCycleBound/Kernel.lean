@@ -27,14 +27,23 @@ def onesKernel : Ω → Ω → ℝ := fun _ _ => 1
 
 noncomputable def doubleMean (μ : Measure Ω) (M : Ω → Ω → ℝ) : ℝ := ∫ x, ∫ y, M x y ∂μ ∂μ
 
+/--
+@isnad1 id=goodk.0h1v.s3.a6819bcea3ef from=translated src=- shape=84bfdc15 vocab=2b66bb82
+-/
 lemma goodK_onesKernel : GoodK (onesKernel (Ω := Ω)) :=
   ⟨measurable_const, ⟨1, zero_le_one, fun _ _ => by simp [onesKernel]⟩⟩
 
 omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=goodk.1h3v.s4.c799e0013f77 from=translated src=- shape=30af67df vocab=6dc07766
+-/
 lemma goodK_of_isGraphon {U : Ω → Ω → ℝ} (hU : IsGraphon U μ) : GoodK U :=
   ⟨hU.meas, ⟨1, zero_le_one, fun x y => by
     rw [abs_of_nonneg (hU.nonneg x y)]; exact hU.le_one x y⟩⟩
 
+/--
+@isnad1 id=eq.0h2v.s6.b86ff64ed27e from=translated src=- shape=07863efa vocab=ec238351
+-/
 lemma simpleFunc_eq_finset_sum_range_indicator
     {α : Type*} [MeasurableSpace α] (S : SimpleFunc α ℝ) :
     (fun x => S x) =
@@ -54,6 +63,9 @@ lemma simpleFunc_eq_finset_sum_range_indicator
   · intro hnot
     exact (hnot hxmem).elim
 
+/--
+@isnad1 id=le.0h4v.s6.7cf0e64be976 from=translated src=- shape=459d72c9 vocab=597aab2a
+-/
 lemma abs_indicator_one_sub_indicator_one_le_indicator_symmDiff
     {α : Type*} (A B : Set α) (x : α) :
     |A.indicator (fun _ : α => (1 : ℝ)) x -
@@ -74,6 +86,9 @@ lemma abs_indicator_one_sub_indicator_one_le_indicator_symmDiff
       simp [Set.mem_symmDiff, hA, hB]
     simp [Set.indicator_of_notMem, hA, hB, hx]
 
+/--
+@isnad1 id=le.0h7v.s7.953e0850a185 from=translated src=- shape=2434fb7c vocab=043c33ae
+-/
 lemma abs_finset_weighted_indicator_sum_sub_le
     {α ι : Type*} (s : Finset ι) (c : ι → ℝ)
     (A B : ι → Set α) (x : α) :
@@ -105,6 +120,9 @@ lemma abs_finset_weighted_indicator_sum_sub_le
               (A i) (B i) x)
             (abs_nonneg _)
 
+/--
+@isnad1 id=le.0h7v.s7.f7b9f608751c from=translated src=- shape=573aa083 vocab=312a2b0c
+-/
 lemma sq_finset_weighted_indicator_sum_sub_le_badSet
     {α ι : Type*} (s : Finset ι) (c : ι → ℝ)
     (A B : ι → Set α) (x : α) :
@@ -178,6 +196,9 @@ lemma sq_finset_weighted_indicator_sum_sub_le_badSet
       rw [hterm i hi]
     simp [Bad, hsum, Set.indicator_of_notMem hxBad]
 
+/--
+@isnad1 id=le.2h7v.s8.471618bdf637 from=translated src=- shape=ad1f5c5a vocab=9b5d6ea2
+-/
 lemma integral_sq_finset_weighted_indicator_sum_sub_le_badSet
     {α ι : Type*} [MeasurableSpace α] {ν : Measure α} [IsFiniteMeasure ν]
     (s : Finset ι) (c : ι → ℝ)
@@ -238,6 +259,9 @@ lemma integral_sq_finset_weighted_indicator_sum_sub_le_badSet
   rw [hg_eq] at hmono
   simpa [f, C, Bad] using hmono
 
+/--
+@isnad1 id=le.2h7v.s8.df3cab429a99 from=translated src=- shape=9048e737 vocab=de272965
+-/
 lemma integral_sq_finset_weighted_indicator_sum_sub_le_sum_symmDiff
     {α ι : Type*} [MeasurableSpace α] {ν : Measure α} [IsFiniteMeasure ν]
     (s : Finset ι) (c : ι → ℝ)
@@ -269,6 +293,9 @@ lemma integral_sq_finset_weighted_indicator_sum_sub_le_sum_symmDiff
     (mul_le_mul_of_nonneg_left hmeasure
       (sq_nonneg (s.sum fun i => |c i|)))
 
+/--
+@isnad1 id=le.1h4v.s7.f14873aba172 from=translated src=- shape=44dea032 vocab=b404be39
+-/
 lemma integral_sq_simpleFunc_sub_levelSet_replacements_le_sum_symmDiff
     {α : Type*} [MeasurableSpace α] {ν : Measure α} [IsFiniteMeasure ν]
     (S : SimpleFunc α ℝ) (T : ℝ → Set α)
@@ -294,6 +321,9 @@ lemma integral_sq_simpleFunc_sub_levelSet_replacements_le_sum_symmDiff
     exact congrFun (simpleFunc_eq_finset_sum_range_indicator S) x
   simpa [hS_point] using hbase
 
+/--
+@isnad1 id=le.2h5v.s8.e86ff9e937ba from=translated src=- shape=541c8cf3 vocab=d91ca5af
+-/
 lemma integral_sq_simpleFunc_sub_levelSet_replacements_le_uniform_symmDiff
     {α : Type*} [MeasurableSpace α] {ν : Measure α} [IsFiniteMeasure ν]
     (S : SimpleFunc α ℝ) (T : ℝ → Set α)
@@ -331,6 +361,9 @@ lemma integral_sq_simpleFunc_sub_levelSet_replacements_le_uniform_symmDiff
         ((SimpleFunc.range S).card * η) := by
           rw [Finset.sum_const, nsmul_eq_mul]
 
+/--
+@isnad1 id=eq.1h5v.s7.9a23aac80935 from=translated src=- shape=d328d5cb vocab=7c9aae6f
+-/
 lemma indicator_biUnion_finset_one_eq_sum_indicator
     {α ι : Type*} (s : Finset ι) (A : ι → Set α)
     (hdisj : (s : Set ι).PairwiseDisjoint A) (x : α) :
@@ -369,6 +402,9 @@ lemma indicator_biUnion_finset_one_eq_sum_indicator
       exact hx ⟨i, hi, hmem⟩
     simp [Set.indicator_of_notMem hxi]
 
+/--
+@isnad1 id=eq.0h4v.s7.1144e1328a84 from=translated src=- shape=06b3de4f vocab=07042b65
+-/
 lemma finpartition_sup_indicator_one_eq_sum_parts_indicator
     {α : Type*} {s : Set α} (P : Finpartition s) (x : α) :
     (P.parts.sup id).indicator (fun _ : α => (1 : ℝ)) x =
@@ -377,6 +413,9 @@ lemma finpartition_sup_indicator_one_eq_sum_parts_indicator
   exact indicator_biUnion_finset_one_eq_sum_indicator
     P.parts (fun p : Set α => p) P.disjoint x
 
+/--
+@isnad1 id=good.1h2v.s4.d83728c7648e from=translated src=- shape=6007adc5 vocab=21ca2cfe
+-/
 lemma good_indicator_one {s : Set Ω} (hs : MeasurableSet s) :
     Good (s.indicator fun _ : Ω => (1 : ℝ)) := by
   refine ⟨stronglyMeasurable_const.indicator hs, 1, zero_le_one, fun x => ?_⟩
@@ -384,6 +423,9 @@ lemma good_indicator_one {s : Set Ω} (hs : MeasurableSet s) :
   · simp [Set.indicator_of_mem hx]
   · simp [Set.indicator_of_notMem hx]
 
+/--
+@isnad1 id=goodk.2h3v.s5.614420ad1af8 from=translated src=- shape=94710602 vocab=4591a457
+-/
 lemma goodK_separable {a b : Ω → ℝ} (ha : Good a) (hb : Good b) :
     GoodK (fun x y => a x * b y) := by
   obtain ⟨Ca, hCa0, hCa⟩ := ha.bdd
@@ -394,6 +436,9 @@ lemma goodK_separable {a b : Ω → ℝ} (ha : Good a) (hb : Good b) :
   · rw [abs_mul]
     exact mul_le_mul (hCa x) (hCb y) (abs_nonneg _) hCa0
 
+/--
+@isnad1 id=eq.0h6v.s6.be79a25fd68c from=translated src=- shape=653e5c1c vocab=a9b91cde
+-/
 lemma indicator_prod_one_eq_mul_indicator_one
     {α β : Type*} (s : Set α) (t : Set β) (x : α) (y : β) :
     (s ×ˢ t).indicator (fun _ : α × β => (1 : ℝ)) (x, y) =
@@ -416,9 +461,15 @@ lemma indicator_prod_one_eq_mul_indicator_one
       exact hx hmem.1
     simp [Set.indicator_of_notMem, hx, hy, hxy]
 
+/--
+@isnad1 id=goodk.0h1v.s4.b3ff6d9d0b34 from=translated src=- shape=73696d3c vocab=d24c7583
+-/
 lemma goodK_zero : GoodK (fun _x _y : Ω => (0 : ℝ)) :=
   ⟨measurable_const, 0, le_rfl, fun _ _ => by simp⟩
 
+/--
+@isnad1 id=goodk.2h3v.s5.7bb7e164e269 from=translated src=- shape=71704a98 vocab=c5acba47
+-/
 lemma goodK_add {K L : Ω → Ω → ℝ} (hK : GoodK K) (hL : GoodK L) :
     GoodK (fun x y => K x y + L x y) := by
   obtain ⟨CK, hCK0, hCK⟩ := hK.bdd
@@ -426,6 +477,9 @@ lemma goodK_add {K L : Ω → Ω → ℝ} (hK : GoodK K) (hL : GoodK L) :
   refine ⟨hK.meas.add hL.meas, CK + CL, add_nonneg hCK0 hCL0, fun x y => ?_⟩
   exact (abs_add_le _ _).trans (add_le_add (hCK x y) (hCL x y))
 
+/--
+@isnad1 id=goodk.1h4v.s5.168586d8da66 from=translated src=- shape=5244ad2e vocab=9ca4e2c9
+-/
 lemma goodK_finset_sum {ι : Type*} (s : Finset ι) (K : ι → Ω → Ω → ℝ)
     (hK : ∀ i ∈ s, GoodK (K i)) :
     GoodK (fun x y => ∑ i ∈ s, K i x y) := by
@@ -440,6 +494,9 @@ lemma goodK_finset_sum {ι : Type*} (s : Finset ι) (K : ι → Ω → Ω → �
       exact ih fun i hi => hK i (by simp [hi])
     simpa [Finset.sum_insert ha] using goodK_add hKa hsum
 
+/--
+@isnad1 id=goodk.2h6v.s7.8cd723296aea from=translated src=- shape=74205bd9 vocab=22dc78c3
+-/
 lemma goodK_finset_weighted_rectIndicator_sum {ι : Type*} (s : Finset ι)
     (c : ι → ℝ) (A B : ι → Set Ω)
     (hA : ∀ i ∈ s, MeasurableSet (A i))
@@ -461,6 +518,9 @@ lemma goodK_finset_weighted_rectIndicator_sum {ι : Type*} (s : Finset ι)
       (good_indicator_one (Ω := Ω) (hB i hi))
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=eq.0h6v.s7.3ebbc6384ef6 from=translated src=- shape=1a26d38d vocab=640eaf75
+-/
 lemma finset_weighted_rectIndicator_sum_eq_separable_sum {ι : Type*} (s : Finset ι)
     (c : ι → ℝ) (A B : ι → Set Ω) :
     (fun x y =>
@@ -482,6 +542,9 @@ def measurableRectangles (Ω : Type*) [MeasurableSpace Ω] : Set (Set (Ω × Ω)
   Set.image2 (fun s t : Set Ω => s ×ˢ t)
     {s : Set Ω | MeasurableSet s} {t : Set Ω | MeasurableSet t}
 
+/--
+@isnad1 id=mem.2h3v.s5.275ae2837288 from=translated src=- shape=d83adbfd vocab=145029b5
+-/
 lemma measurableRectangles.mem {s t : Set Ω}
     (hs : MeasurableSet s) (ht : MeasurableSet t) :
     s ×ˢ t ∈ measurableRectangles Ω :=
@@ -491,6 +554,9 @@ noncomputable def measurableRectangles.left
     {R : Set (Ω × Ω)} (hR : R ∈ measurableRectangles Ω) : Set Ω :=
   Classical.choose hR
 
+/--
+@isnad1 id=measurab.1h2v.s5.0b33b3363792 from=translated src=- shape=3386ba97 vocab=9dee9f1a
+-/
 lemma measurableRectangles.left_meas
     {R : Set (Ω × Ω)} (hR : R ∈ measurableRectangles Ω) :
     MeasurableSet (measurableRectangles.left (Ω := Ω) hR) :=
@@ -500,23 +566,35 @@ noncomputable def measurableRectangles.right
     {R : Set (Ω × Ω)} (hR : R ∈ measurableRectangles Ω) : Set Ω :=
   Classical.choose (Classical.choose_spec hR).2
 
+/--
+@isnad1 id=measurab.1h2v.s5.a5be3359ed5d from=translated src=- shape=3386ba97 vocab=d553b63d
+-/
 lemma measurableRectangles.right_meas
     {R : Set (Ω × Ω)} (hR : R ∈ measurableRectangles Ω) :
     MeasurableSet (measurableRectangles.right (Ω := Ω) hR) :=
   (Classical.choose_spec (Classical.choose_spec hR).2).1
 
+/--
+@isnad1 id=eq.1h2v.s5.497ea280a411 from=translated src=- shape=0b50e633 vocab=c88bf407
+-/
 lemma measurableRectangles.prod_eq
     {R : Set (Ω × Ω)} (hR : R ∈ measurableRectangles Ω) :
     measurableRectangles.left (Ω := Ω) hR ×ˢ
       measurableRectangles.right (Ω := Ω) hR = R :=
   (Classical.choose_spec (Classical.choose_spec hR).2).2
 
+/--
+@isnad1 id=measurab.1h2v.s5.9e478d82873d from=translated src=- shape=501da498 vocab=d8677423
+-/
 lemma measurableSet_of_mem_measurableRectangles
     {R : Set (Ω × Ω)} (hR : R ∈ measurableRectangles Ω) :
     MeasurableSet R := by
   rcases hR with ⟨s, hs, t, ht, rfl⟩
   exact hs.prod ht
 
+/--
+@isnad1 id=measurab.1h3v.s8.7b2cac9b1c69 from=translated src=- shape=d48e548b vocab=e6d3e854
+-/
 lemma measurableSet_finpartition_sup_of_measurableRectangles
     {t : Set (Ω × Ω)} (P : Finpartition t)
     (hP : ↑P.parts ⊆ measurableRectangles Ω) :
@@ -525,6 +603,9 @@ lemma measurableSet_finpartition_sup_of_measurableRectangles
   exact MeasurableSet.biUnion P.parts.finite_toSet.countable
     fun R hR => measurableSet_of_mem_measurableRectangles (Ω := Ω) (hP hR)
 
+/--
+@isnad1 id=mem.0h1v.s5.0ea4649ccb6b from=translated src=- shape=95a04cab vocab=9a998949
+-/
 lemma measurableRectangles_empty :
     (∅ : Set (Ω × Ω)) ∈ measurableRectangles Ω := by
   simpa using
@@ -532,6 +613,9 @@ lemma measurableRectangles_empty :
       (s := (∅ : Set Ω)) (t := (∅ : Set Ω))
       MeasurableSet.empty MeasurableSet.empty)
 
+/--
+@isnad1 id=mem.0h1v.s4.0318666ba58b from=translated src=- shape=a0cf574a vocab=3891e9f0
+-/
 lemma measurableRectangles_univ :
     (Set.univ : Set (Ω × Ω)) ∈ measurableRectangles Ω := by
   simpa [Set.univ_prod_univ] using
@@ -539,6 +623,9 @@ lemma measurableRectangles_univ :
       (s := (Set.univ : Set Ω)) (t := (Set.univ : Set Ω))
       MeasurableSet.univ MeasurableSet.univ)
 
+/--
+@isnad1 id=mem.2h3v.s6.74b42cd23d7b from=translated src=- shape=748baaf4 vocab=8aa3d38e
+-/
 lemma measurableRectangles_inter_mem
     {A B : Set (Ω × Ω)}
     (hA : A ∈ measurableRectangles Ω) (hB : B ∈ measurableRectangles Ω) :
@@ -550,6 +637,9 @@ lemma measurableRectangles_inter_mem
       (s := s ∩ u) (t := t ∩ v)
       (hs.inter hu) (ht.inter hv))
 
+/--
+@isnad1 id=ex.2h3v.s7.98d4fca8896d from=translated src=- shape=76ef7ca4 vocab=3ac06950
+-/
 lemma measurableRectangles_sdiff_eq_sUnion
     {A B : Set (Ω × Ω)}
     (hA : A ∈ measurableRectangles Ω) (hB : B ∈ measurableRectangles Ω) :
@@ -589,18 +679,27 @@ lemma measurableRectangles_sdiff_eq_sUnion
     simp [R₀, R₁]
     tauto
 
+/--
+@isnad1 id=issetsem.0h1v.s3.72eec62f1ac7 from=translated src=- shape=81b2ef95 vocab=15e4dc9c
+-/
 theorem isSetSemiring_measurableRectangles :
     IsSetSemiring (measurableRectangles Ω) where
   empty_mem := measurableRectangles_empty (Ω := Ω)
   inter_mem := fun _ hs _ ht => measurableRectangles_inter_mem hs ht
   sdiff_eq_sUnion' := fun _ hs _ ht => measurableRectangles_sdiff_eq_sUnion hs ht
 
+/--
+@isnad1 id=eq.0h1v.s4.f0b70c9114a6 from=translated src=- shape=0b920d29 vocab=26f89a76
+-/
 lemma generateFrom_measurableRectangles :
     MeasurableSpace.generateFrom (measurableRectangles Ω) =
       (inferInstance : MeasurableSpace (Ω × Ω)) := by
   simpa [measurableRectangles] using
     (generateFrom_prod (α := Ω) (β := Ω))
 
+/--
+@isnad1 id=ex.2h4v.s8.9dc46e03a9bd from=translated src=- shape=f6e45c98 vocab=123d7fe3
+-/
 lemma exists_prod_measure_symmDiff_lt_supClosure_measurableRectangles
     (μ : Measure Ω) [IsFiniteMeasure μ]
     {s : Set (Ω × Ω)} (hs : MeasurableSet s)
@@ -622,6 +721,9 @@ lemma exists_prod_measure_symmDiff_lt_supClosure_measurableRectangles
       isSetSemiring_measurableRectangles hcover
       (by rw [eq_comm, generateFrom_measurableRectangles]) hs hε
 
+/--
+@isnad1 id=ex.2h4v.s8.8ff3a7689ccd from=translated src=- shape=bac63029 vocab=273fbd5d
+-/
 lemma exists_finpartition_measurableRectangles_symmDiff_lt
     (μ : Measure Ω) [IsFiniteMeasure μ]
     {s : Set (Ω × Ω)} (hs : MeasurableSet s)
@@ -634,6 +736,9 @@ lemma exists_finpartition_measurableRectangles_symmDiff_lt
     ⟨P, hP⟩
   exact ⟨t, P, hP, hμt⟩
 
+/--
+@isnad1 id=ex.1h3v.s9.48c77294d4d1 from=translated src=- shape=69d9c6fc vocab=287ae859
+-/
 lemma exists_rectIndicator_sum_eq_finpartition_sup
     {t : Set (Ω × Ω)} (P : Finpartition t)
     (hP : ↑P.parts ⊆ measurableRectangles Ω) :
@@ -690,6 +795,9 @@ lemma exists_rectIndicator_sum_eq_finpartition_sup
             (B R).indicator (fun _ : Ω => (1 : ℝ)) y := by
             simp [A, B, hrect]
 
+/--
+@isnad1 id=ex.1h4v.s10.2dfda09a1816 from=translated src=- shape=28e29be5 vocab=2d531c3a
+-/
 lemma exists_finpartition_sup_rectIndicator_finiteRank_data
     {t : Set (Ω × Ω)} (P : Finpartition t)
     (hP : ↑P.parts ⊆ measurableRectangles Ω) (c : ℝ) :
@@ -765,6 +873,9 @@ lemma exists_finpartition_sup_rectIndicator_finiteRank_data
   · intro R hR
     exact good_indicator_one (Ω := Ω) (hB R hR)
 
+/--
+@isnad1 id=goodk.1h4v.s8.433a56d0767d from=translated src=- shape=facc90c9 vocab=309ea347
+-/
 lemma goodK_simpleFunc_rectangular_replacement
     (S : SimpleFunc (Ω × Ω) ℝ)
     (T : ℝ → Set (Ω × Ω))
@@ -785,6 +896,9 @@ lemma goodK_simpleFunc_rectangular_replacement
     ⟨_A, _B, _hA, _hB, hGoodK, _hbound, _hsep, _ha, _hb⟩
   simpa [(P c hc).sup_parts] using hGoodK
 
+/--
+@isnad1 id=le.1h6v.s8.a878023d0485 from=translated src=- shape=2bd1135a vocab=c34ab432
+-/
 lemma abs_simpleFunc_rectangular_replacement_le
     (S : SimpleFunc (Ω × Ω) ℝ)
     (T : ℝ → Set (Ω × Ω))
@@ -807,6 +921,9 @@ lemma abs_simpleFunc_rectangular_replacement_le
     ⟨_A, _B, _hA, _hB, _hGoodK, hbound, _hsep, _ha, _hb⟩
   simpa [(P c hc).sup_parts] using hbound x y
 
+/--
+@isnad1 id=ex.1h4v.s8.6ce1cba247c4 from=translated src=- shape=f956021d vocab=d9cd72bf
+-/
 lemma exists_simpleFunc_rectangular_replacement_finiteRank_data
     (S : SimpleFunc (Ω × Ω) ℝ)
     (T : ℝ → Set (Ω × Ω))
@@ -941,6 +1058,9 @@ lemma exists_simpleFunc_rectangular_replacement_finiteRank_data
                   (B j.1 j.2.1).indicator
                     (fun _ : Ω => (1 : ℝ)) y)).symm
 
+/--
+@isnad1 id=le.2h6v.s9.2aaff1a66fc1 from=translated src=- shape=1eca0185 vocab=2a306d3d
+-/
 lemma integral_sq_simpleFunc_sub_rectangular_levelSet_replacements_le_uniform_symmDiff
     (μ : Measure Ω) [IsFiniteMeasure μ]
     (S : SimpleFunc (Ω × Ω) ℝ)
@@ -967,6 +1087,9 @@ lemma integral_sq_simpleFunc_sub_rectangular_levelSet_replacements_le_uniform_sy
   exact measurableSet_finpartition_sup_of_measurableRectangles
     (Ω := Ω) (P c hc) (hP c hc)
 
+/--
+@isnad1 id=ex.1h4v.s8.d8775ed8c7b4 from=translated src=- shape=4c7aff96 vocab=a4f2ec99
+-/
 lemma exists_rectangular_levelSet_replacements_uniform_symmDiff
     (μ : Measure Ω) [IsFiniteMeasure μ]
     (S : SimpleFunc (Ω × Ω) ℝ)
@@ -1007,6 +1130,9 @@ lemma exists_rectangular_levelSet_replacements_uniform_symmDiff
       ENNReal.toReal_le_of_le_ofReal hη.le hle
     simpa [symmDiff_comm] using hreal
 
+/--
+@isnad1 id=ex.1h4v.s9.d05abec3127c from=translated src=- shape=62946c1a vocab=2a8dcd07
+-/
 lemma exists_rectangular_levelSet_replacements_integral_sq_bound
     (μ : Measure Ω) [IsFiniteMeasure μ]
     (S : SimpleFunc (Ω × Ω) ℝ)
@@ -1030,6 +1156,9 @@ lemma exists_rectangular_levelSet_replacements_integral_sq_bound
     integral_sq_simpleFunc_sub_rectangular_levelSet_replacements_le_uniform_symmDiff
       (Ω := Ω) μ S T P hP herr
 
+/--
+@isnad1 id=ex.1h4v.s8.f5fdf752af08 from=translated src=- shape=0bbc5939 vocab=2fa2c1bb
+-/
 lemma exists_simpleFunc_rectangular_finiteRank_data_integral_sq_bound
     (μ : Measure Ω) [IsFiniteMeasure μ]
     (S : SimpleFunc (Ω × Ω) ℝ)
@@ -1072,6 +1201,9 @@ lemma exists_simpleFunc_rectangular_finiteRank_data_integral_sq_bound
     _ ≤ ((SimpleFunc.range S).sum fun c => |c|) ^ 2 *
           ((SimpleFunc.range S).card * η) := hInt
 
+/--
+@isnad1 id=integrab.2h6v.s6.a24eb8e59d41 from=translated src=- shape=167b2afc vocab=1076fed1
+-/
 lemma integrable_KL {K L : Ω → Ω → ℝ} (hK : GoodK K) (hL : GoodK L) (x y : Ω) :
     Integrable (fun z => K x z * L z y) μ := by
   obtain ⟨Ck, _, hCk⟩ := hK.bdd
@@ -1083,6 +1215,9 @@ lemma integrable_KL {K L : Ω → Ω → ℝ} (hK : GoodK K) (hL : GoodK L) (x y
   rw [Real.norm_eq_abs, abs_mul]
   exact mul_le_mul (hCk x z) (hCl z y) (abs_nonneg _) (le_trans (abs_nonneg _) (hCk x z))
 
+/--
+@isnad1 id=goodk.2h4v.s5.007b52550404 from=translated src=- shape=edcdb05b vocab=326791f9
+-/
 lemma goodK_comp {K L : Ω → Ω → ℝ} (hK : GoodK K) (hL : GoodK L) : GoodK (comp μ K L) := by
   obtain ⟨Ck, hCk0, hCk⟩ := hK.bdd
   obtain ⟨Cl, hCl0, hCl⟩ := hL.bdd
@@ -1103,6 +1238,9 @@ lemma goodK_comp {K L : Ω → Ω → ℝ} (hK : GoodK K) (hL : GoodK L) : GoodK
           exact mul_le_mul (hCk x z) (hCl z y) (abs_nonneg _) hCk0
       _ = Ck * Cl := by simp
 
+/--
+@isnad1 id=integrab.1h4v.s5.b1d6743b5d25 from=translated src=- shape=a2f5a80f vocab=fc254a39
+-/
 lemma GoodK.integrable_row {K : Ω → Ω → ℝ} (hK : GoodK K) (x : Ω) :
     Integrable (fun y => K x y) μ := by
   obtain ⟨C, _, hC⟩ := hK.bdd
@@ -1110,6 +1248,9 @@ lemma GoodK.integrable_row {K : Ω → Ω → ℝ} (hK : GoodK K) (x : Ω) :
   exact (integrable_const C).mono' hm.aestronglyMeasurable
     (ae_of_all _ fun y => by rw [Real.norm_eq_abs]; exact hC x y)
 
+/--
+@isnad1 id=integrab.1h4v.s5.b33e5e87e3bd from=translated src=- shape=e1b9597f vocab=fc254a39
+-/
 lemma GoodK.integrable_col {K : Ω → Ω → ℝ} (hK : GoodK K) (y : Ω) :
     Integrable (fun x => K x y) μ := by
   obtain ⟨C, _, hC⟩ := hK.bdd
@@ -1117,16 +1258,25 @@ lemma GoodK.integrable_col {K : Ω → Ω → ℝ} (hK : GoodK K) (y : Ω) :
   exact (integrable_const C).mono' hm.aestronglyMeasurable
     (ae_of_all _ fun x => by rw [Real.norm_eq_abs]; exact hC x y)
 
+/--
+@isnad1 id=integrab.1h3v.s6.72e3e7550925 from=translated src=- shape=e06dc8bb vocab=982abbae
+-/
 lemma GoodK.integrable_prod {K : Ω → Ω → ℝ} (hK : GoodK K) :
     Integrable (Function.uncurry K) (μ.prod μ) := by
   obtain ⟨C, _, hC⟩ := hK.bdd
   exact (integrable_const C).mono' hK.meas.aestronglyMeasurable
     (ae_of_all _ fun p => by rw [Real.norm_eq_abs]; exact hC p.1 p.2)
 
+/--
+@isnad1 id=strongly.1h3v.s5.b240f56c9653 from=translated src=- shape=d2eda008 vocab=dbfd2fe2
+-/
 lemma GoodK.colsum_stronglyMeasurable {K : Ω → Ω → ℝ} (hK : GoodK K) :
     StronglyMeasurable (fun y => ∫ x, K x y ∂μ) :=
   (show StronglyMeasurable (Function.uncurry K) from hK.meas.stronglyMeasurable).integral_prod_left
 
+/--
+@isnad1 id=integrab.1h3v.s6.feb4886ab91a from=translated src=- shape=fbe42e7b vocab=0d890121
+-/
 lemma GoodK.colsum_integrable {K : Ω → Ω → ℝ} (hK : GoodK K) :
     Integrable (fun y => ∫ x, K x y ∂μ) μ := by
   obtain ⟨C, _, hC⟩ := hK.bdd
@@ -1137,6 +1287,9 @@ lemma GoodK.colsum_integrable {K : Ω → Ω → ℝ} (hK : GoodK K) :
     _ ≤ ∫ _x, C ∂μ := integral_mono (hK.integrable_col y).abs (integrable_const C) (fun x => hC x y)
     _ = C := by simp
 
+/--
+@isnad1 id=eq.3h5v.s6.54c81374b5e3 from=translated src=- shape=fccf8437 vocab=b8b5847b
+-/
 lemma comp_add_left {K₁ K₂ L : Ω → Ω → ℝ} (hK₁ : GoodK K₁) (hK₂ : GoodK K₂) (hL : GoodK L) :
     comp μ (fun x y => K₁ x y + K₂ x y) L = fun x y => comp μ K₁ L x y + comp μ K₂ L x y := by
   funext x y
@@ -1144,6 +1297,9 @@ lemma comp_add_left {K₁ K₂ L : Ω → Ω → ℝ} (hK₁ : GoodK K₁) (hK�
   rw [← integral_add (integrable_KL hK₁ hL x y) (integrable_KL hK₂ hL x y)]
   exact integral_congr_ae (ae_of_all _ fun z => by ring)
 
+/--
+@isnad1 id=eq.3h5v.s6.0d7ab3a6652b from=translated src=- shape=7a8de136 vocab=b8b5847b
+-/
 lemma comp_add_right {K L₁ L₂ : Ω → Ω → ℝ} (hK : GoodK K) (hL₁ : GoodK L₁) (hL₂ : GoodK L₂) :
     comp μ K (fun x y => L₁ x y + L₂ x y) = fun x y => comp μ K L₁ x y + comp μ K L₂ x y := by
   funext x y
@@ -1152,6 +1308,9 @@ lemma comp_add_right {K L₁ L₂ : Ω → Ω → ℝ} (hK : GoodK K) (hL₁ : G
   exact integral_congr_ae (ae_of_all _ fun z => by ring)
 
 omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=eq.0h5v.s6.02dd67a4f656 from=translated src=- shape=d1d5126a vocab=cc7f7d6f
+-/
 lemma comp_smul_right (c : ℝ) (K L : Ω → Ω → ℝ) :
     comp μ K (fun x y => c * L x y) = fun x y => c * comp μ K L x y := by
   funext x y
@@ -1160,11 +1319,17 @@ lemma comp_smul_right (c : ℝ) (K L : Ω → Ω → ℝ) :
   exact integral_congr_ae (ae_of_all _ fun z => by ring)
 
 omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=eq.0h4v.s5.0019c1c8bf4b from=translated src=- shape=2ce894f7 vocab=3951a3e0
+-/
 lemma comp_neg_left (K L : Ω → Ω → ℝ) :
     comp μ (fun x y => -K x y) L = fun x y => -comp μ K L x y := by
   funext x y; simp only [comp]; rw [← integral_neg]
   exact integral_congr_ae (ae_of_all _ fun z => by ring)
 
+/--
+@isnad1 id=eq.3h5v.s6.2be8ac39e16b from=translated src=- shape=fccf8437 vocab=1693aeb0
+-/
 lemma comp_sub_left {K₁ K₂ L : Ω → Ω → ℝ} (hK₁ : GoodK K₁) (hK₂ : GoodK K₂) (hL : GoodK L) :
     comp μ (fun x y => K₁ x y - K₂ x y) L = fun x y => comp μ K₁ L x y - comp μ K₂ L x y := by
   funext x y
@@ -1172,6 +1337,9 @@ lemma comp_sub_left {K₁ K₂ L : Ω → Ω → ℝ} (hK₁ : GoodK K₁) (hK�
   rw [← integral_sub (integrable_KL hK₁ hL x y) (integrable_KL hK₂ hL x y)]
   exact integral_congr_ae (ae_of_all _ fun z => by ring)
 
+/--
+@isnad1 id=eq.3h5v.s6.e471c7952c93 from=translated src=- shape=7a8de136 vocab=1693aeb0
+-/
 lemma comp_sub_right {K L₁ L₂ : Ω → Ω → ℝ} (hK : GoodK K) (hL₁ : GoodK L₁) (hL₂ : GoodK L₂) :
     comp μ K (fun x y => L₁ x y - L₂ x y) = fun x y => comp μ K L₁ x y - comp μ K L₂ x y := by
   funext x y
@@ -1180,10 +1348,16 @@ lemma comp_sub_right {K L₁ L₂ : Ω → Ω → ℝ} (hK : GoodK K) (hL₁ : G
   exact integral_congr_ae (ae_of_all _ fun z => by ring)
 
 omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=eq.0h3v.s5.9ced124cfbc7 from=translated src=- shape=f124a9c2 vocab=cc8de04f
+-/
 lemma comp_onesKernel_right (M : Ω → Ω → ℝ) :
     comp μ M onesKernel = fun x _ => ∫ z, M x z ∂μ := by
   funext x y; simp [comp, onesKernel]
 
+/--
+@isnad1 id=eq.3h5v.s6.ada2395365b6 from=translated src=- shape=50ea21fd vocab=326791f9
+-/
 lemma comp_assoc {K L M : Ω → Ω → ℝ} (hK : GoodK K) (hL : GoodK L) (hM : GoodK M) :
     comp μ (comp μ K L) M = comp μ K (comp μ L M) := by
   funext x y
@@ -1218,12 +1392,18 @@ noncomputable def compPow (μ : Measure Ω) (K : Ω → Ω → ℝ) : ℕ → (�
   | 0 => K
   | (n + 1) => comp μ K (compPow μ K n)
 
+/--
+@isnad1 id=goodk.1h4v.s5.31b59becfa0e from=translated src=- shape=1fb111c8 vocab=9c61555c
+-/
 lemma goodK_compPow {K : Ω → Ω → ℝ} (hK : GoodK K) : ∀ n, GoodK (compPow μ K n)
   | 0 => hK
   | (n + 1) => goodK_comp hK (goodK_compPow hK n)
 
 noncomputable def trace (μ : Measure Ω) (K : Ω → Ω → ℝ) : ℝ := ∫ x, K x x ∂μ
 
+/--
+@isnad1 id=eq.2h4v.s5.bdd99a18ef24 from=translated src=- shape=8cae3984 vocab=93afe9dd
+-/
 lemma trace_comp_comm {A B : Ω → Ω → ℝ} (hA : GoodK A) (hB : GoodK B) :
     trace μ (comp μ A B) = trace μ (comp μ B A) := by
   obtain ⟨Ca, _, hCa⟩ := hA.bdd
@@ -1241,6 +1421,9 @@ lemma trace_comp_comm {A B : Ω → Ω → ℝ} (hA : GoodK A) (hB : GoodK B) :
   refine integral_congr_ae (ae_of_all _ fun x => integral_congr_ae (ae_of_all _ fun z => ?_))
   ring
 
+/--
+@isnad1 id=eq.1h3v.s5.442b4d26b302 from=translated src=- shape=3edb1ebe vocab=78b64ff3
+-/
 lemma trace_comp_onesKernel {M : Ω → Ω → ℝ} (hM : GoodK M) : trace μ (comp μ onesKernel M) = doubleMean μ M := by
   have hint : Integrable (Function.uncurry fun x z => M z x) (μ.prod μ) := by
     obtain ⟨C, _, hC⟩ := hM.bdd
@@ -1253,10 +1436,16 @@ lemma trace_comp_onesKernel {M : Ω → Ω → ℝ} (hM : GoodK M) : trace μ (c
   rw [integral_integral_swap hint]; rfl
 
 omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=eq.0h3v.s5.5180129269e2 from=translated src=- shape=c46f29f6 vocab=ab46dced
+-/
 lemma trace_comp_onesKernel_right {M : Ω → Ω → ℝ} : trace μ (comp μ M onesKernel) = doubleMean μ M := by
   show ∫ x, comp μ M onesKernel x x ∂μ = doubleMean μ M
   simp only [comp, onesKernel, mul_one]; rfl
 
+/--
+@isnad1 id=integrab.1h3v.s5.3fa61ced8bcd from=translated src=- shape=b67c101d vocab=fc254a39
+-/
 lemma GoodK.diag_integrable {K : Ω → Ω → ℝ} (hK : GoodK K) :
     Integrable (fun x => K x x) μ := by
   obtain ⟨C, _, hC⟩ := hK.bdd
@@ -1264,11 +1453,17 @@ lemma GoodK.diag_integrable {K : Ω → Ω → ℝ} (hK : GoodK K) :
   exact (integrable_const C).mono' hm.aestronglyMeasurable
     (ae_of_all _ fun x => by rw [Real.norm_eq_abs]; exact hC x x)
 
+/--
+@isnad1 id=eq.2h4v.s6.1a320e5e9894 from=translated src=- shape=ab2dad40 vocab=c11cadf3
+-/
 lemma trace_sub {A B : Ω → Ω → ℝ} (hA : GoodK A) (hB : GoodK B) :
     trace μ (fun x y => A x y - B x y) = trace μ A - trace μ B := by
   show ∫ x, (A x x - B x x) ∂μ = (∫ x, A x x ∂μ) - ∫ x, B x x ∂μ
   exact integral_sub hA.diag_integrable hB.diag_integrable
 
+/--
+@isnad1 id=goodk.1h2v.s4.924efb2320e4 from=translated src=- shape=1a1a96c5 vocab=9d55f5b6
+-/
 lemma goodK_rowBroadcast {f : Ω → ℝ} (hf : Good f) : GoodK (fun _x _y => f _x) := by
   obtain ⟨C, hC0, hC⟩ := hf.bdd
   exact ⟨hf.meas.measurable.comp measurable_fst, ⟨C, hC0, fun x _ => hC x⟩⟩

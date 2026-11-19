@@ -13,6 +13,9 @@ variable (P : AdmissibleParams)
 
 end AdmissibleParams
 
+/--
+@isnad1 id=le.1h1v.s6.1d63f1c199a0 from=translated src=- shape=315c0117 vocab=848325a4
+-/
 theorem log_lower_bound {v : ℝ} (hv : 0 ≤ v) : 2 * v / (v + 2) ≤ Real.log (1 + v) := by
   have hHD : ∀ x : ℝ, 0 ≤ x →
       HasDerivAt (fun t => Real.log (1 + t) - 2 * t / (t + 2))
@@ -53,6 +56,9 @@ namespace AdmissibleParams
 
 variable (P : AdmissibleParams)
 
+/--
+@isnad1 id=lt.0h1v.s5.1c028bb81d90 from=translated src=- shape=cfaf030c vocab=bcd5b355
+-/
 theorem alpha_lower : 1 / (2 + P.chartV) < P.alpha := by
   have hv2 : (0 : ℝ) < 2 + P.chartV := by linarith [P.chartV_pos]
   have hpα : P.p = (1 + P.chartV) * P.alpha := by
@@ -63,6 +69,9 @@ theorem alpha_lower : 1 / (2 + P.chartV) < P.alpha := by
   rw [div_lt_iff₀ hv2]
   nlinarith [P.alpha_gt_q, hpα, hq]
 
+/--
+@isnad1 id=lt.0h1v.s5.57f2336b88e0 from=translated src=- shape=dd5046c9 vocab=45435ee7
+-/
 theorem cxi_crude : 1 / Real.sqrt (2 * (2 + P.chartV)) < P.chartCxi := by
   have hv2 : (0 : ℝ) < 2 + P.chartV := by linarith [P.chartV_pos]
   have hs : 0 < Real.sqrt (2 * (2 + P.chartV)) := Real.sqrt_pos.2 (by positivity)

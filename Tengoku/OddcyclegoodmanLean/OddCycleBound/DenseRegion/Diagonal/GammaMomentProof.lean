@@ -19,6 +19,9 @@ private lemma pow_exp_pow_int_b (r a d : ℕ) (_ha : r - 1 ≤ a) (b : ℝ) :
     (fun y _ => ?_) measurableSet_Ioi
   rw [show a + 1 - 1 = a from by omega, show (1 : ℝ) * y + -b = y - b from by ring]
 
+/--
+@isnad1 id=eq.0h3v.s6.62622b76b556 from=translated src=- shape=ad9c395a vocab=3ca51481
+-/
 lemma Mb_explicit (r : ℕ) (b : ℝ) (k : ℕ) :
     Mb r b k = ∑ i ∈ Finset.range (k + 1),
       (Nat.choose k i : ℝ) * (-b) ^ (k - i) * (Nat.factorial (r - 1 + i) : ℝ) := by
@@ -52,6 +55,9 @@ private lemma gExp_y_mul_b (r : ℕ) (hr : 1 ≤ r) (b : ℝ) (k : ℕ) :
     gExp_const_mul r b (fun y => (y - b) ^ k)]
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s6.d3561bab4f5e from=translated src=- shape=106a1c2d vocab=a9d420ac
+-/
 lemma Mb_recurrence (r : ℕ) (hr : 1 ≤ r) (b : ℝ) (k : ℕ) :
     Mb r b (k + 1) = ((r : ℝ) + k - b) * Mb r b k + (k : ℝ) * b * Mb r b (k - 1) := by
   set g : ℝ → ℝ := fun y => y ^ r * Real.exp (-y) * (y - b) ^ k with hg
@@ -117,6 +123,9 @@ lemma Mb_recurrence (r : ℕ) (hr : 1 ≤ r) (b : ℝ) (k : ℕ) :
   · rw [show k - 1 + 1 = k from by omega] at hsplit
     linear_combination hsplit
 
+/--
+@isnad1 id=hasderiv.0h3v.s6.625235b1d2b6 from=translated src=- shape=cc570188 vocab=7bcabeba
+-/
 lemma Mb_hasDeriv (r : ℕ) (b : ℝ) (k : ℕ) :
     HasDerivAt (fun b => Mb r b k) (-(k : ℝ) * Mb r b (k - 1)) b := by
 
@@ -167,6 +176,9 @@ noncomputable def Hb (r j : ℕ) (b : ℝ) : ℝ :=
 noncomputable def Hb' (r j : ℕ) (b : ℝ) : ℝ :=
   3 * (j : ℝ) * Mb r b (2 * j) + (j : ℝ) * (3 * b - 5 * (r : ℝ) - 8 * (j : ℝ)) * Mb r b (2 * j - 1)
 
+/--
+@isnad1 id=hasderiv.2h3v.s6.bff1d27a89ff from=translated src=- shape=5d5e2f6d vocab=69aab7a3
+-/
 lemma Hb_hasDeriv (r j : ℕ) (hr : 1 ≤ r) (hj : 1 ≤ j) (b : ℝ) :
     HasDerivAt (fun b => Hb r j b) (Hb' r j b) b := by
   have hfun : (fun b => Hb r j b)
@@ -191,6 +203,9 @@ lemma Hb_hasDeriv (r j : ℕ) (hr : 1 ≤ r) (hj : 1 ≤ j) (b : ℝ) :
   rw [hdeq]
   exact hraw
 
+/--
+@isnad1 id=eq.1h3v.s7.af151d06005e from=translated src=- shape=102d7e50 vocab=279990a2
+-/
 lemma Hb_cross (r j : ℕ) (β : ℝ) (hz : Hb r j β = 0) :
     3 * β * Hb' r j β
       = Mb r β (2 * j)
@@ -199,6 +214,9 @@ lemma Hb_cross (r j : ℕ) (β : ℝ) (hz : Hb r j β = 0) :
   unfold Hb'
   linear_combination (5 * (r : ℝ) + 8 * (j : ℝ) - 3 * β) * hz
 
+/--
+@isnad1 id=lt.1h3v.s5.4f19ed7d13cc from=translated src=- shape=961b2fe6 vocab=4047c1b3
+-/
 lemma Mb_pos_even (r j : ℕ) (_hr : 1 ≤ r) (b : ℝ) : 0 < Mb r b (2 * j) := by
   have hMb : Mb r b (2 * j)
       = ∫ y in Set.Ioi (0 : ℝ), y ^ (r - 1) * Real.exp (-y) * (y - b) ^ (2 * j) := rfl
@@ -235,11 +253,17 @@ lemma Mb_pos_even (r j : ℕ) (_hr : 1 ≤ r) (b : ℝ) : 0 < Mb r b (2 * j) := 
 noncomputable def bstar (r j : ℕ) : ℝ :=
   ((r : ℝ) + j) * (5 * (r : ℝ) + 8 * (j : ℝ)) / (3 * ((r : ℝ) + 4 * (j : ℝ)))
 
+/--
+@isnad1 id=lt.1h2v.s4.ee09f561ca28 from=translated src=- shape=e3349857 vocab=2c2890a3
+-/
 lemma bstar_pos (r j : ℕ) (hr : 1 ≤ r) : 0 < bstar r j := by
   have hr1 : (1 : ℝ) ≤ r := by exact_mod_cast hr
   have hjnn : (0 : ℝ) ≤ j := Nat.cast_nonneg j
   unfold bstar; positivity
 
+/--
+@isnad1 id=eq.1h3v.s7.8f335b2b6b19 from=translated src=- shape=faedd7e6 vocab=d7abc8e9
+-/
 lemma cross_bracket (r j : ℕ) (hr : 1 ≤ r) (β : ℝ) :
     3 * ((r : ℝ) + 4 * (j : ℝ)) * β - ((r : ℝ) + (j : ℝ)) * (5 * (r : ℝ) + 8 * (j : ℝ))
       = 3 * ((r : ℝ) + 4 * (j : ℝ)) * (β - bstar r j) := by
@@ -276,6 +300,9 @@ private lemma slope_pos_left {f : ℝ → ℝ} {f' x : ℝ} (hf : HasDerivAt f f
   · linarith
   · linarith
 
+/--
+@isnad1 id=le.4h3v.s6.f983a52fc47d from=translated src=- shape=96931de4 vocab=f0026d98
+-/
 lemma Hb_nonneg (r j : ℕ) (hr : 1 ≤ r) (hj : 1 ≤ j)
     (hbstar : 0 < Hb r j (bstar r j)) (b : ℝ) (hb : 0 < b) : 0 ≤ Hb r j b := by
   by_contra hcon
@@ -381,6 +408,9 @@ lemma Hb_nonneg (r j : ℕ) (hr : 1 ≤ r) (hj : 1 ≤ j)
     obtain ⟨y, hya, hyb⟩ := (hlt_left.and hgt_left).exists
     linarith
 
+/--
+@isnad1 id=le.4h3v.s7.ca6d7e4d88b4 from=translated src=- shape=781d9d56 vocab=52ba7b4a
+-/
 theorem gamma_moment_bound (r : ℕ) (hr : 1 ≤ r)
     (hbstar_hyp : ∀ j : ℕ, 1 ≤ j → 0 < Hb r j (bstar r j)) :
     ∀ (j : ℕ), 1 ≤ j → ∀ z : ℝ, 0 ≤ z →
@@ -442,20 +472,32 @@ private lemma cast_add4_pos (r j : ℕ) (hr : 1 ≤ r) : (0 : ℝ) < (r : ℝ) +
   have h2 : (0 : ℝ) ≤ (j : ℝ) := by positivity
   linarith
 
+/--
+@isnad1 id=eq.1h2v.s5.417ae9031147 from=translated src=- shape=ec5d8fc1 vocab=b06e1ae7
+-/
 lemma cd_mul (r j : ℕ) (hr : 1 ≤ r) : cc r j * dd r j = 2 * (j : ℝ) * bstar r j := by
   have h := (cast_add_pos r j hr).ne'
   unfold cc dd; field_simp
 
+/--
+@isnad1 id=eq.1h2v.s6.12201ee3e779 from=translated src=- shape=7c7c6cb6 vocab=9052caec
+-/
 lemma bstar_sub_dd (r j : ℕ) (hr : 1 ≤ r) :
     bstar r j - dd r j = (r : ℝ) * ((r : ℝ) + j) / ((r : ℝ) + 4 * (j : ℝ)) := by
   have h := (cast_add4_pos r j hr).ne'
   unfold bstar dd; field_simp; ring
 
+/--
+@isnad1 id=eq.1h2v.s6.b8eea827abbd from=translated src=- shape=b79e4f57 vocab=b7b39322
+-/
 lemma cc_sub_dd (r j : ℕ) (hr : 1 ≤ r) : cc r j - dd r j = (r : ℝ) + 2 * (j : ℝ) - bstar r j := by
   have h := (cast_add_pos r j hr).ne'
   have h4 := (cast_add4_pos r j hr).ne'
   unfold cc dd bstar; field_simp; ring
 
+/--
+@isnad1 id=hasderiv.2h3v.s7.b88f0db20402 from=translated src=- shape=8da30b41 vocab=d7d7a431
+-/
 lemma Gg_hasDeriv (r j : ℕ) (hr : 1 ≤ r) (hj : 1 ≤ j) (x : ℝ) :
     HasDerivAt (Gg r j)
       (x ^ (2 * j - 1) * (x + bstar r j) ^ (r - 1) * Real.exp (-x)
@@ -484,6 +526,9 @@ lemma Gg_hasDeriv (r j : ℕ) (hr : 1 ≤ r) (hj : 1 ≤ j) (x : ℝ) :
   rw [show Gg r j = fun x => x ^ (2 * j) * (x + bstar r j) ^ r * Real.exp (-x) from rfl, htgt]
   exact hraw
 
+/--
+@isnad1 id=eq.2h3v.s7.ca2be05534a8 from=translated src=- shape=31b75b62 vocab=7177b14e
+-/
 lemma Hb_integral_form (r j : ℕ) (_hr : 1 ≤ r) (hj : 1 ≤ j) (b : ℝ) :
     Hb r j b = ∫ y in Set.Ioi (0 : ℝ),
       y ^ (r - 1) * Real.exp (-y)
@@ -504,6 +549,9 @@ lemma Hb_integral_form (r j : ℕ) (_hr : 1 ≤ r) (hj : 1 ≤ j) (b : ℝ) :
     rw [← pow_succ]; congr 1; omega
   rw [hpow]; ring
 
+/--
+@isnad1 id=lt.1h2v.s4.cb994ff89e48 from=translated src=- shape=678da05f vocab=c19cedc3
+-/
 lemma dd_lt_bstar (r j : ℕ) (hr : 1 ≤ r) : dd r j < bstar r j := by
   have h := bstar_sub_dd r j hr
   have h1 : (1 : ℝ) ≤ (r : ℝ) := by exact_mod_cast hr
@@ -512,11 +560,17 @@ lemma dd_lt_bstar (r j : ℕ) (hr : 1 ≤ r) : dd r j < bstar r j := by
   have hnum : 0 < (r : ℝ) * ((r : ℝ) + j) / ((r : ℝ) + 4 * (j : ℝ)) := by positivity
   linarith
 
+/--
+@isnad1 id=eq.1h2v.s4.22c6f58d5f2d from=translated src=- shape=c36f83eb vocab=2f258922
+-/
 lemma Gg_neg_bstar (r j : ℕ) (hr : 1 ≤ r) : Gg r j (-(bstar r j)) = 0 := by
   unfold Gg
   rw [show -(bstar r j) + bstar r j = 0 from by ring, zero_pow (show r ≠ 0 by omega)]
   ring
 
+/--
+@isnad1 id=tendsto.0h2v.s4.9dda16baea72 from=translated src=- shape=6ce139b3 vocab=38e0303b
+-/
 lemma Gg_tendsto (r j : ℕ) : Filter.Tendsto (Gg r j) Filter.atTop (nhds 0) := by
   have hsum : Gg r j = fun x => ∑ i ∈ Finset.range (r + 1),
       (Nat.choose r i : ℝ) * (bstar r j) ^ (r - i) * (x ^ (2 * j + i) * Real.exp (-x)) := by
@@ -529,18 +583,30 @@ lemma Gg_tendsto (r j : ℕ) : Filter.Tendsto (Gg r j) Filter.atTop (nhds 0) := 
   simpa using (Real.tendsto_pow_mul_exp_neg_atTop_nhds_zero (2 * j + i)).const_mul
     ((Nat.choose r i : ℝ) * (bstar r j) ^ (r - i))
 
+/--
+@isnad1 id=analytic.0h3v.s5.2325f4664822 from=translated src=- shape=6e3afc3f vocab=07e1ea69
+-/
 lemma Gg_analyticAt (r j : ℕ) (x : ℝ) : AnalyticAt ℝ (Gg r j) x := by
   unfold Gg; fun_prop
 
+/--
+@isnad1 id=analytic.0h2v.s6.3e1af7e40ef4 from=translated src=- shape=d1714f0e vocab=506e75cb
+-/
 lemma dslope_Gg_analyticAt (r j : ℕ) :
     AnalyticAt ℝ (dslope (Gg r j) (-(dd r j))) (-(dd r j)) := by
   obtain ⟨p, hp⟩ := Gg_analyticAt r j (-(dd r j))
   exact hp.has_fpower_series_dslope_fslope.analyticAt
 
+/--
+@isnad1 id=differen.0h2v.s6.d9dc61cc1ef8 from=translated src=- shape=d1714f0e vocab=66d480a7
+-/
 lemma dslope_Gg_differentiableAt (r j : ℕ) :
     DifferentiableAt ℝ (dslope (Gg r j) (-(dd r j))) (-(dd r j)) :=
   (dslope_Gg_analyticAt r j).differentiableAt
 
+/--
+@isnad1 id=tendsto.0h2v.s5.e9daf6e4323c from=translated src=- shape=7c2d3c3d vocab=27bbbfce
+-/
 lemma dslope_Gg_tendsto (r j : ℕ) :
     Tendsto (dslope (Gg r j) (-(dd r j))) atTop (𝓝 0) := by
   have hev : dslope (Gg r j) (-(dd r j)) =ᶠ[atTop]
@@ -554,6 +620,9 @@ lemma dslope_Gg_tendsto (r j : ℕ) :
     tendsto_atTop_add_const_right atTop (dd r j) tendsto_id
   exact hnum.div_atTop hden
 
+/--
+@isnad1 id=eq.1h2v.s6.2afc77b68941 from=translated src=- shape=5537d4d9 vocab=4fd7634e
+-/
 lemma dslope_Gg_neg_b (r j : ℕ) (hr : 1 ≤ r) :
     dslope (Gg r j) (-(dd r j)) (-(bstar r j))
       = Gg r j (-(dd r j)) / (bstar r j - dd r j) := by
@@ -562,6 +631,9 @@ lemma dslope_Gg_neg_b (r j : ℕ) (hr : 1 ≤ r) :
   rw [dslope_of_ne _ hne, slope_def_field, Gg_neg_bstar r j hr,
       show -(bstar r j) - -(dd r j) = -(bstar r j - dd r j) from by ring, zero_sub, neg_div_neg_eq]
 
+/--
+@isnad1 id=hasderiv.3h3v.s8.764806bbe14a from=translated src=- shape=33f40b6b vocab=3cdce33b
+-/
 lemma dslope_Gg_hasDerivAt_ne (r j : ℕ) (hr : 1 ≤ r) (hj : 1 ≤ j) {x : ℝ}
     (hx : x ≠ -(dd r j)) :
     HasDerivAt (dslope (Gg r j) (-(dd r j)))
@@ -575,22 +647,34 @@ lemma dslope_Gg_hasDerivAt_ne (r j : ℕ) (hr : 1 ≤ r) (hj : 1 ≤ j) {x : ℝ
   filter_upwards [dslope_eventuallyEq_slope_of_ne (Gg r j) hx] with y hy
   rw [hy, slope_def_field, show y - -(dd r j) = y + dd r j from by ring, Pi.div_apply]
 
+/--
+@isnad1 id=eq.3h3v.s8.dd89b34d9fa1 from=translated src=- shape=19b52dcd vocab=d5ff464e
+-/
 lemma deriv_dslope_Gg_eq (r j : ℕ) (hr : 1 ≤ r) (hj : 1 ≤ j) {x : ℝ} (hx : x ≠ -(dd r j)) :
     deriv (dslope (Gg r j) (-(dd r j))) x
       = (x ^ (2 * j - 1) * (x + bstar r j) ^ (r - 1) * Real.exp (-x) * (cc r j - x) * (x + dd r j)
           * (x + dd r j) - (Gg r j x - Gg r j (-(dd r j))) * 1) / (x + dd r j) ^ 2 :=
   (dslope_Gg_hasDerivAt_ne r j hr hj hx).deriv
 
+/--
+@isnad1 id=continuo.0h2v.s6.2284ee022fcc from=translated src=- shape=8af630c9 vocab=d4a58b4d
+-/
 lemma deriv_dslope_Gg_continuousAt_neg_dd (r j : ℕ) :
     ContinuousAt (deriv (dslope (Gg r j) (-(dd r j)))) (-(dd r j)) :=
   (dslope_Gg_analyticAt r j).deriv.continuousAt
 
+/--
+@isnad1 id=integrab.0h2v.s5.44c5cb0f5136 from=translated src=- shape=08c8c4b9 vocab=29884973
+-/
 lemma Gg_integrableOn_Ioi0 (r j : ℕ) : MeasureTheory.IntegrableOn (Gg r j) (Set.Ioi (0 : ℝ)) := by
   refine MeasureTheory.IntegrableOn.congr_fun
     (gExp_affinePow_integrableOn (2 * j + 1) r 1 (bstar r j)) (fun y _ => ?_) measurableSet_Ioi
   unfold Gg
   rw [show 2 * j + 1 - 1 = 2 * j from by omega]; ring
 
+/--
+@isnad1 id=integrab.1h2v.s7.82c5399ce023 from=translated src=- shape=3888712a vocab=5708afad
+-/
 lemma GgExpr0_integrableOn_Ioi0 (r j : ℕ) (hj : 1 ≤ j) :
     MeasureTheory.IntegrableOn
       (fun x => x ^ (2 * j - 1) * (x + bstar r j) ^ (r - 1) * Real.exp (-x) * (cc r j - x))
@@ -602,6 +686,9 @@ lemma GgExpr0_integrableOn_Ioi0 (r j : ℕ) (hj : 1 ≤ j) :
   rw [show x ^ (2 * j) = x ^ (2 * j - 1) * x from by rw [← pow_succ]; congr 1; omega]
   ring
 
+/--
+@isnad1 id=integrab.1h2v.s6.817b52d50d99 from=translated src=- shape=504f79c7 vocab=265a9919
+-/
 lemma inv_sq_shift_integrableOn (r j : ℕ) (hr : 1 ≤ r) :
     MeasureTheory.IntegrableOn (fun x : ℝ => (x + dd r j)⁻¹ ^ 2) (Set.Ioi (0 : ℝ)) := by
   have hr1 : (1 : ℝ) ≤ (r : ℝ) := by exact_mod_cast hr
@@ -625,6 +712,9 @@ lemma inv_sq_shift_integrableOn (r j : ℕ) (hr : 1 ≤ r) :
   exact ((hcont.locallyIntegrableOn measurableSet_Ici).integrableOn_of_isBigO_atTop hbigO
     hgint).mono_set Set.Ioi_subset_Ici_self
 
+/--
+@isnad1 id=continuo.2h3v.s6.8ba006454c92 from=translated src=- shape=2148e4cc vocab=69f968f7
+-/
 lemma deriv_dslope_Gg_continuousOn (r j : ℕ) (hr : 1 ≤ r) (hj : 1 ≤ j) (a : ℝ) :
     ContinuousOn (deriv (dslope (Gg r j) (-(dd r j)))) (Set.Ici a) := by
   have hGgc : Continuous (Gg r j) := by unfold Gg; fun_prop
@@ -644,6 +734,9 @@ lemma deriv_dslope_Gg_continuousOn (r j : ℕ) (hr : 1 ≤ r) (hj : 1 ≤ j) (a 
     filter_upwards [compl_singleton_mem_nhds hxd] with y hy
     exact (deriv_dslope_Gg_eq r j hr hj hy).symm
 
+/--
+@isnad1 id=integrab.2h2v.s6.f7885c68fbac from=translated src=- shape=19adf3c0 vocab=6219cd95
+-/
 lemma deriv_dslope_Gg_integrableOn_Ioi0 (r j : ℕ) (hr : 1 ≤ r) (hj : 1 ≤ j) :
     MeasureTheory.IntegrableOn (deriv (dslope (Gg r j) (-(dd r j)))) (Set.Ioi (0 : ℝ)) := by
   have hdd : (0 : ℝ) < dd r j := by
@@ -677,12 +770,18 @@ lemma deriv_dslope_Gg_integrableOn_Ioi0 (r j : ℕ) (hr : 1 ≤ r) (hj : 1 ≤ j
   unfold Gg
   field_simp
 
+/--
+@isnad1 id=differen.0h3v.s6.7dcaf63c1422 from=translated src=- shape=e0aa8e9d vocab=66d480a7
+-/
 lemma dslope_Gg_differentiableAt_all (r j : ℕ) (x : ℝ) :
     DifferentiableAt ℝ (dslope (Gg r j) (-(dd r j))) x := by
   by_cases hxd : x = -(dd r j)
   · subst hxd; exact dslope_Gg_differentiableAt r j
   · exact (differentiableAt_dslope_of_ne hxd).mpr (Gg_analyticAt r j x).differentiableAt
 
+/--
+@isnad1 id=integrab.2h2v.s6.26114b821a13 from=translated src=- shape=3490a4c7 vocab=e961594e
+-/
 lemma deriv_dslope_Gg_integrableOn (r j : ℕ) (hr : 1 ≤ r) (hj : 1 ≤ j) :
     MeasureTheory.IntegrableOn (deriv (dslope (Gg r j) (-(dd r j)))) (Set.Ioi (-(bstar r j))) := by
   have hb : -(bstar r j) ≤ 0 := by have := bstar_pos r j hr; linarith
@@ -692,6 +791,9 @@ lemma deriv_dslope_Gg_integrableOn (r j : ℕ) (hr : 1 ≤ r) (hj : 1 ≤ j) :
   exact (((deriv_dslope_Gg_continuousOn r j hr hj (-(bstar r j))).mono
     Set.Icc_subset_Ici_self).integrableOn_Icc).mono_set Set.Ioc_subset_Icc_self
 
+/--
+@isnad1 id=eq.2h2v.s7.eb8fded0c2f5 from=translated src=- shape=a54f1f89 vocab=fdf57779
+-/
 lemma dslope_Gg_ftc (r j : ℕ) (hr : 1 ≤ r) (hj : 1 ≤ j) :
     ∫ x in Set.Ioi (-(bstar r j)), deriv (dslope (Gg r j) (-(dd r j))) x
       = -(Gg r j (-(dd r j)) / (bstar r j - dd r j)) := by
@@ -706,6 +808,9 @@ lemma dslope_Gg_ftc (r j : ℕ) (hr : 1 ≤ r) (hj : 1 ≤ j) :
       (deriv_dslope_Gg_integrableOn r j hr hj) (dslope_Gg_tendsto r j),
     dslope_Gg_neg_b r j hr, zero_sub]
 
+/--
+@isnad1 id=integrab.2h2v.s7.0d62bc78a217 from=translated src=- shape=7e264958 vocab=5708afad
+-/
 lemma GgExpr0_integrableOn (r j : ℕ) (hr : 1 ≤ r) (hj : 1 ≤ j) :
     MeasureTheory.IntegrableOn
       (fun x => x ^ (2 * j - 1) * (x + bstar r j) ^ (r - 1) * Real.exp (-x) * (cc r j - x))
@@ -719,6 +824,9 @@ lemma GgExpr0_integrableOn (r j : ℕ) (hr : 1 ≤ r) (hj : 1 ≤ j) :
       (Set.Icc (-(bstar r j)) 0) := by fun_prop
   exact hcont.integrableOn_Icc.mono_set Set.Ioc_subset_Icc_self
 
+/--
+@isnad1 id=eq.2h2v.s7.cd466458a34e from=translated src=- shape=0f07378a vocab=daf4b6b9
+-/
 lemma Hb_bstar_eq (r j : ℕ) (hr : 1 ≤ r) (hj : 1 ≤ j) :
     Hb r j (bstar r j)
       = -(Real.exp (-(bstar r j)) * ((r : ℝ) + j))
@@ -741,6 +849,9 @@ lemma Hb_bstar_eq (r j : ℕ) (hr : 1 ≤ r) (hj : 1 ≤ j) :
   linear_combination
     ((x + b) ^ (r - 1) * Real.exp (-x) * Real.exp (-b) * x ^ (2 * j - 1)) * hcc
 
+/--
+@isnad1 id=eq.3h3v.s8.1a86cda8ae50 from=translated src=- shape=1f1e905e vocab=d5ff464e
+-/
 lemma deriv_dslope_Gg_eq_add (r j : ℕ) (hr : 1 ≤ r) (hj : 1 ≤ j) {x : ℝ} (hx : x ≠ -(dd r j)) :
     deriv (dslope (Gg r j) (-(dd r j))) x
       = x ^ (2 * j - 1) * (x + bstar r j) ^ (r - 1) * Real.exp (-x) * (cc r j - x)
@@ -749,6 +860,9 @@ lemma deriv_dslope_Gg_eq_add (r j : ℕ) (hr : 1 ≤ r) (hj : 1 ≤ j) {x : ℝ}
   have hxd : x + dd r j ≠ 0 := fun h => hx (by linarith)
   unfold Gg; field_simp; ring
 
+/--
+@isnad1 id=lt.3h2v.s6.49c9b219217a from=translated src=- shape=446a3424 vocab=8a47d20c
+-/
 lemma Hb_bstar_pos_of_max (r j : ℕ) (hr : 1 ≤ r) (hj : 1 ≤ j)
     (hmax : ∀ x ∈ Set.Ioi (-(bstar r j)), Gg r j x ≤ Gg r j (-(dd r j))) :
     0 < Hb r j (bstar r j) := by
@@ -804,6 +918,9 @@ lemma Hb_bstar_pos_of_max (r j : ℕ) (hr : 1 ≤ r) (hj : 1 ≤ j)
   have hg0d : 0 < Gg r j (-(dd r j)) / (b - dd r j) := by positivity
   nlinarith [mul_pos hexp hg0d, mul_nonneg hexp.le hJnn]
 
+/--
+@isnad1 id=lt.2h2v.s5.fd63aa8f796d from=translated src=- shape=603a042a vocab=3cfe5dfa
+-/
 lemma cc_pos (r j : ℕ) (hr : 1 ≤ r) (hj : 1 ≤ j) : 0 < cc r j := by
   unfold cc
   have h1 : (1 : ℝ) ≤ (r : ℝ) := by exact_mod_cast hr
@@ -811,14 +928,23 @@ lemma cc_pos (r j : ℕ) (hr : 1 ≤ r) (hj : 1 ≤ j) : 0 < cc r j := by
   have hb := bstar_pos r j hr
   positivity
 
+/--
+@isnad1 id=differen.0h2v.s5.aff098937cf9 from=translated src=- shape=feb27325 vocab=651fb2b6
+-/
 lemma Gg_differentiable (r j : ℕ) : Differentiable ℝ (Gg r j) :=
   fun x => (Gg_analyticAt r j x).differentiableAt
 
+/--
+@isnad1 id=eq.2h3v.s7.f7382163e528 from=translated src=- shape=e3ea2f79 vocab=e241cb5f
+-/
 lemma deriv_Gg_eq (r j : ℕ) (hr : 1 ≤ r) (hj : 1 ≤ j) (x : ℝ) :
     deriv (Gg r j) x
       = x ^ (2 * j - 1) * (x + bstar r j) ^ (r - 1) * Real.exp (-x) * (cc r j - x) * (x + dd r j) :=
   (Gg_hasDeriv r j hr hj x).deriv
 
+/--
+@isnad1 id=le.4h3v.s6.c1340b793719 from=translated src=- shape=7a3be14e vocab=89527fc4
+-/
 lemma Gg_le_neg_dd_of_cc_le (r j : ℕ) (hr : 1 ≤ r) (hj : 1 ≤ j)
     (hcc : Gg r j (cc r j) ≤ Gg r j (-(dd r j))) :
     ∀ x ∈ Set.Ioi (-(bstar r j)), Gg r j x ≤ Gg r j (-(dd r j)) := by
@@ -884,10 +1010,16 @@ lemma Gg_le_neg_dd_of_cc_le (r j : ℕ) (hr : 1 ≤ r) (hj : 1 ≤ j)
       · exact le_trans (hmono2 ⟨h0, hc'⟩ ⟨le_of_lt hc, le_refl _⟩ hc') hcc
       · exact le_trans (hanti2 Set.self_mem_Ici hc' hc') hcc
 
+/--
+@isnad1 id=lt.3h2v.s5.7daf35277dc8 from=translated src=- shape=ced3b347 vocab=f8d180f2
+-/
 lemma Hb_bstar_pos_of_cc_le (r j : ℕ) (hr : 1 ≤ r) (hj : 1 ≤ j)
     (hcc : Gg r j (cc r j) ≤ Gg r j (-(dd r j))) : 0 < Hb r j (bstar r j) :=
   Hb_bstar_pos_of_max r j hr hj (Gg_le_neg_dd_of_cc_le r j hr hj hcc)
 
+/--
+@isnad1 id=le.3h2v.s7.7283e00aa03f from=translated src=- shape=0b984a77 vocab=03504b8a
+-/
 lemma Gg_cc_le_neg_dd (r j : ℕ) (hr : 1 ≤ r) (hj : 1 ≤ j)
     (hL : 2 * (j : ℝ) * Real.log (cc r j) + (r : ℝ) * Real.log (cc r j + bstar r j) - cc r j
         ≤ 2 * (j : ℝ) * Real.log (dd r j) + (r : ℝ) * Real.log (bstar r j - dd r j) + dd r j) :
@@ -923,6 +1055,9 @@ lemma Gg_cc_le_neg_dd (r j : ℕ) (hr : 1 ≤ r) (hj : 1 ≤ j)
     push_cast; ring
   rw [hlogcc, hlogdd]; exact hL
 
+/--
+@isnad1 id=le.2h2v.s7.799201fc3b82 from=translated src=- shape=35bbd0e0 vocab=0fc24e15
+-/
 lemma hL_of_Lexpr (r j : ℕ) (hr : 1 ≤ r) (hj : 1 ≤ j) :
     2 * (j : ℝ) * Real.log (cc r j) + (r : ℝ) * Real.log (cc r j + bstar r j) - cc r j
       ≤ 2 * (j : ℝ) * Real.log (dd r j) + (r : ℝ) * Real.log (bstar r j - dd r j) + dd r j := by
@@ -967,9 +1102,15 @@ lemma hL_of_Lexpr (r j : ℕ) (hr : 1 ≤ r) (hj : 1 ≤ j) :
   rw [← hmul] at hneg
   linarith
 
+/--
+@isnad1 id=lt.2h2v.s5.60b3fa6dce3d from=translated src=- shape=e6bbf401 vocab=f0026d98
+-/
 lemma Hb_bstar_pos (r j : ℕ) (hr : 1 ≤ r) (hj : 1 ≤ j) : 0 < Hb r j (bstar r j) :=
   Hb_bstar_pos_of_cc_le r j hr hj (Gg_cc_le_neg_dd r j hr hj (hL_of_Lexpr r j hr hj))
 
+/--
+@isnad1 id=le.3h3v.s7.32ef59736cf6 from=translated src=- shape=1245bd9a vocab=fd9cab6b
+-/
 theorem gamma_moment_inequality (r : ℕ) (hr : 1 ≤ r) :
     ∀ (j : ℕ), 1 ≤ j → ∀ z : ℝ, 0 ≤ z →
       3 * (j : ℝ) * gExp r (fun y => (z * y - 1) ^ (2 * j - 1))

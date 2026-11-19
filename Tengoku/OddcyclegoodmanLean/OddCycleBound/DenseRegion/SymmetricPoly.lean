@@ -13,12 +13,21 @@ def hsym : List ℝ → ℕ → ℝ
   | [], (_ + 1) => 0
   | (x :: xs), d => ∑ j ∈ Finset.range (d + 1), x ^ j * hsym xs (d - j)
 
+/--
+@isnad1 id=eq.0h3v.s6.20437b9db65e from=translated src=- shape=ce0ab58b vocab=28aeddfa
+-/
 lemma hsym_cons (x : ℝ) (xs : List ℝ) (d : ℕ) :
     hsym (x :: xs) d = ∑ j ∈ Finset.range (d + 1), x ^ j * hsym xs (d - j) := rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.977ab61a199f from=translated src=- shape=c379ec76 vocab=bfd789b7
+-/
 @[simp] lemma hsym_nil (d : ℕ) : hsym [] d = if d = 0 then 1 else 0 := by
   cases d <;> rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.27b3fab0d6b5 from=translated src=- shape=969340aa vocab=3fae4fcb
+-/
 lemma hsym_append (ys : List ℝ) : ∀ (xs : List ℝ) (d : ℕ),
     hsym (xs ++ ys) d = ∑ j ∈ Finset.range (d + 1), hsym xs j * hsym ys (d - j)
   | [], d => by
@@ -53,6 +62,9 @@ lemma hsym_append (ys : List ℝ) : ∀ (xs : List ℝ) (d : ℕ),
         rw [show j + i - j = i from by omega, show d - j - i = d - (j + i) from by omega]
         ring
 
+/--
+@isnad1 id=eq.0h2v.s6.53718e09c8de from=translated src=- shape=653aa462 vocab=7a05e5cf
+-/
 lemma sum_choose_hockey (k : ℕ) : ∀ d,
     ∑ i ∈ Finset.range (d + 1), Nat.choose (i + k) k = Nat.choose (d + k + 1) (k + 1)
   | 0 => by simp
@@ -62,6 +74,9 @@ lemma sum_choose_hockey (k : ℕ) : ∀ d,
         Nat.choose_succ_succ (d + k + 1) k, show d + 1 + k = d + k + 1 from by omega]
       ring
 
+/--
+@isnad1 id=eq.0h3v.s5.dacef10c5d5f from=translated src=- shape=d0322318 vocab=6a0aedbf
+-/
 lemma hsym_replicate (a : ℝ) : ∀ (k d : ℕ),
     hsym (List.replicate (k + 1) a) d = (Nat.choose (d + k) k : ℝ) * a ^ d
   | 0, d => by
@@ -99,6 +114,9 @@ lemma hsym_replicate (a : ℝ) : ∀ (k d : ℕ),
           show d + (k + 1) = d + k + 1 from by omega]
       rw [hcast]
 
+/--
+@isnad1 id=eq.0h4v.s6.509963131acb from=translated src=- shape=03a045fb vocab=2910dd5c
+-/
 lemma hsym_replicate_append (a : ℝ) (ys : List ℝ) (k d : ℕ) :
     hsym (List.replicate (k + 1) a ++ ys) d
       = ∑ j ∈ Finset.range (d + 1),
@@ -114,9 +132,15 @@ lemma hsym_replicate_append (a : ℝ) (ys : List ℝ) (k d : ℕ) :
   simp only [Finset.mem_range] at hj
   rw [hsym_replicate a k, show d - (d - j) = j from by omega]
 
+/--
+@isnad1 id=eq.0h2v.s4.63785fbeca5e from=translated src=- shape=a7ed394e vocab=942640ce
+-/
 @[simp] lemma hsym_singleton (a : ℝ) (d : ℕ) : hsym [a] d = a ^ d := by
   simpa using hsym_replicate a 0 d
 
+/--
+@isnad1 id=eq.0h2v.s5.bbfc17674dcb from=translated src=- shape=4eaf76e3 vocab=23eecd02
+-/
 lemma hsym_map_neg : ∀ (xs : List ℝ) (d : ℕ),
     hsym (xs.map (fun x => -x)) d = (-1 : ℝ) ^ d * hsym xs d
   | [], d => by cases d <;> simp
@@ -129,6 +153,9 @@ lemma hsym_map_neg : ∀ (xs : List ℝ) (d : ℕ),
           rw [← pow_add, show j + (d - j) = d from by omega]]
       ring
 
+/--
+@isnad1 id=eq.0h5v.s7.c6f0b5d41430 from=translated src=- shape=822f2a03 vocab=2910dd5c
+-/
 lemma hsym_replicate_append_replicate (a ℓ : ℝ) (s k d : ℕ) :
     hsym (List.replicate (k + 1) a ++ List.replicate (s + 1) ℓ) d
       = ∑ j ∈ Finset.range (d + 1),
@@ -149,16 +176,25 @@ noncomputable def multiKernel (m r : ℕ) (q : ℝ) (L : List ℝ) : ℝ :=
         + hsym (List.replicate r q ++ L) (m - 2 * r))
     - hsym (List.replicate (r + 1) q ++ L) (m - 2 * r - 1)
 
+/--
+@isnad1 id=eq.0h4v.s4.2b31662417ca from=translated src=- shape=1185161c vocab=402b8e42
+-/
 lemma diagKernel_eq_multiKernel (m r : ℕ) (q ℓ : ℝ) :
     diagKernel m r q ℓ = multiKernel m r q (List.replicate r ℓ) := by
   unfold diagKernel multiKernel
   rw [List.map_replicate]
 
+/--
+@isnad1 id=eq.1h3v.s6.248cdb5371e3 from=translated src=- shape=3908b99f vocab=34bf9662
+-/
 lemma hsym_replicate' (a : ℝ) {r : ℕ} (hr : r ≠ 0) (d : ℕ) :
     hsym (List.replicate r a) d = (Nat.choose (d + (r - 1)) (r - 1) : ℝ) * a ^ d := by
   obtain ⟨s, rfl⟩ := Nat.exists_eq_succ_of_ne_zero hr
   simpa using hsym_replicate a s d
 
+/--
+@isnad1 id=eq.1h4v.s7.4d5dd34ec856 from=translated src=- shape=a90a2ca7 vocab=2910dd5c
+-/
 lemma hsym_replicate_append' (a : ℝ) {r : ℕ} (hr : r ≠ 0) (ys : List ℝ) (d : ℕ) :
     hsym (List.replicate r a ++ ys) d
       = ∑ j ∈ Finset.range (d + 1),
@@ -173,6 +209,9 @@ noncomputable def kerB (m r : ℕ) (q : ℝ) (j : ℕ) : ℝ :=
     - (if j < m - 2 * r then
         (Nat.choose (m - 2 * r - 1 - j + r) r : ℝ) * q ^ (m - 2 * r - 1 - j) else 0)
 
+/--
+@isnad1 id=eq.2h4v.s6.5050834abc11 from=translated src=- shape=ed086f55 vocab=1c88cd65
+-/
 lemma multiKernel_expand {m r : ℕ} (hr : r ≠ 0) (hn : 1 ≤ m - 2 * r) (q : ℝ) (L : List ℝ) :
     multiKernel m r q L
       = ∑ j ∈ Finset.range (m - 2 * r + 1), kerB m r q j * hsym L j := by
@@ -197,6 +236,9 @@ lemma multiKernel_expand {m r : ℕ} (hr : r ≠ 0) (hn : 1 ≤ m - 2 * r) (q : 
   simp only [kerB, ← hndef]
   ring
 
+/--
+@isnad1 id=eq.2h4v.s7.cbcd078ef377 from=translated src=- shape=1a0a7a84 vocab=a7097321
+-/
 lemma diagKernel_expand {m r : ℕ} (hr : r ≠ 0) (hn : 1 ≤ m - 2 * r) (q ℓ : ℝ) :
     diagKernel m r q ℓ
       = ∑ j ∈ Finset.range (m - 2 * r + 1),

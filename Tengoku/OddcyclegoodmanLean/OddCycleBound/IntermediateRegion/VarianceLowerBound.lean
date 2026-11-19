@@ -19,6 +19,9 @@ variable {Omega : Type u} [MeasurableSpace Omega]
 variable {mu : Measure Omega} [IsProbabilityMeasure mu]
 variable {W : Omega -> Omega -> Real}
 
+/--
+@isnad1 id=le.3h4v.s7.c60c83f8ccf1 from=translated src=- shape=e1569c56 vocab=9ffe3419
+-/
 lemma two_mul_abs_integral_mul_kernelOp_le_integral_abs_sq
     (hW : IsGraphon W mu) {f : Omega -> Real} (hf : Good f)
     (hmean : mean mu f = 0) :
@@ -73,6 +76,9 @@ lemma two_mul_abs_integral_mul_kernelOp_le_integral_abs_sq
             ring
   linarith
 
+/--
+@isnad1 id=eq.2h4v.s14.ca85c0cb909e from=translated src=- shape=eb477cc7 vocab=a7e21246
+-/
 lemma inner_kernelOpCLM_eq_centeredGraphonOp_of_centered
     (hW : IsGraphon W mu) {v : Lp Real 2 mu}
     (hv : centerProjection (Omega := Omega) (mu := mu) v = v) :
@@ -87,6 +93,9 @@ lemma inner_kernelOpCLM_eq_centeredGraphonOp_of_centered
           (centerProjection (Omega := Omega) (mu := mu) v)))
   rw [hv, ← hP.apply_clm, hv]
 
+/--
+@isnad1 id=ex.2h4v.s8.eb2964c1f618 from=translated src=- shape=c1da24f9 vocab=f88832ca
+-/
 theorem exists_leadingEigenvalueEigenfunction_with_abs_sq_ge
     (hW : IsGraphon W mu) (i : CenteredEigenIndex hW)
     (halpha : 0 < complementEigenvalue hW i) :
@@ -129,6 +138,9 @@ theorem exists_leadingEigenvalueEigenfunction_with_abs_sq_ge
   rw [hpair, hsign, abs_neg, abs_of_pos halpha] at hsharp
   exact ⟨phi, hphi, hrep, hmean, hnorm, hsharp⟩
 
+/--
+@isnad1 id=le.4h5v.s12.7f16e2767339 from=translated src=- shape=e4b09424 vocab=29fde099
+-/
 theorem complementCompression_quadratic_le_leading_eigenvalue
     (hW : IsGraphon W mu) (i : CenteredEigenIndex hW)
     (hqthird : (1 : Real) / 3 < 1 - edgeDensity W mu)
@@ -198,6 +210,9 @@ theorem complementCompression_quadratic_le_leading_eigenvalue
   rw [htopEq] at hweighted
   exact hweighted.trans (mul_le_mul_of_nonneg_left hbessel halpha0)
 
+/--
+@isnad1 id=eq.1h3v.s13.0ff030259877 from=translated src=- shape=24317251 vocab=e63388dc
+-/
 lemma centerProjection_kernelOpCLM_one_eq_centeredDegreeL2
     (hW : IsGraphon W mu) :
     centerProjection (Omega := Omega) (mu := mu)
@@ -216,6 +231,9 @@ lemma centerProjection_kernelOpCLM_one_eq_centeredDegreeL2
   exact ae_of_all _ fun x => by
     simp [degCentered, degree, edgeDensity, mean, kernelOp]
 
+/--
+@isnad1 id=eq.3h6v.s14.5e569f0f440a from=translated src=- shape=68265d66 vocab=a4bb7f3f
+-/
 theorem graphon_quadratic_block
     (hW : IsGraphon W mu) {v h : Lp Real 2 mu} {a : Real}
     (hv : v = a • oneL2 (Omega := Omega) mu + h)
@@ -259,6 +277,9 @@ theorem graphon_quadratic_block
   rw [hhub, hcross, hcross', hbody]
   ring
 
+/--
+@isnad1 id=eq.1h3v.s8.07dd61ceef11 from=translated src=- shape=d6ebef82 vocab=5bbb4241
+-/
 theorem centeredDegreeL2_compl_eq_neg (hW : IsGraphon W mu) :
     centeredDegreeL2 (isGraphon_compl hW) = -centeredDegreeL2 hW := by
   let hU := good_degCentered (isGraphon_compl hW)
@@ -277,6 +298,9 @@ theorem centeredDegreeL2_compl_eq_neg (hW : IsGraphon W mu) :
   rw [hL2, goodL2_smul (-1 : Real) hG]
   simp
 
+/--
+@isnad1 id=eq.3h4v.s13.fe8b1ea72dd7 from=translated src=- shape=26e63bd1 vocab=de286c16
+-/
 theorem inner_centeredGraphonOp_compl_goodL2_eq_neg
     (hW : IsGraphon W mu) {f : Omega -> Real} (hf : Good f)
     (hmean : mean mu f = 0) :
@@ -304,6 +328,9 @@ theorem inner_centeredGraphonOp_compl_goodL2_eq_neg
           ring
     _ = -(∫ x, f x * kernelOp W mu f x ∂mu) := by rw [integral_neg]
 
+/--
+@isnad1 id=eq.4h5v.s12.b0c9a87154b9 from=translated src=- shape=580d0e38 vocab=94adfb3a
+-/
 theorem inner_centeredEigenmode_kernelOp_compl_eq
     (hW : IsGraphon W mu) (i : CenteredEigenIndex hW)
     {phi : Omega -> Real} (hphi : Good phi)
@@ -353,6 +380,9 @@ theorem inner_centeredEigenmode_kernelOp_compl_eq
           rw [hWpair]
           rfl
 
+/--
+@isnad1 id=le.6h4v.s8.f9f783c63bad from=translated src=- shape=2305d83e vocab=baf4a9e8
+-/
 lemma variance_lower_bound_of_coupling
     {q alpha a G : Real}
     (hqalpha : q < alpha) (halphaPos : 0 < alpha)
@@ -396,6 +426,9 @@ lemma variance_lower_bound_of_coupling
     exact mul_le_mul_of_nonneg_left (by linarith) (by positivity)
   nlinarith
 
+/--
+@isnad1 id=and.3h4v.s8.27e5508ffb2f from=translated src=- shape=853f3419 vocab=b515e1b4
+-/
 theorem leading_eigenvalue_variance_lower_bound_and_lt_half
     (hW : IsGraphon W mu) (i : CenteredEigenIndex hW)
     (hqthird : (1 : Real) / 3 < 1 - edgeDensity W mu)
@@ -526,6 +559,9 @@ theorem leading_eigenvalue_variance_lower_bound_and_lt_half
   · exact variance_lower_bound_of_coupling hfront halphaPos ha0 haSq haSqOne hcoupling
   · simpa [alpha] using halphaHalf
 
+/--
+@isnad1 id=lt.3h4v.s7.8bb05a681a1d from=translated src=- shape=fc7ec452 vocab=1d36fb37
+-/
 theorem complement_leading_eigenvalue_lt_half
     (hW : IsGraphon W mu) (i : CenteredEigenIndex hW)
     (hqthird : (1 : Real) / 3 < 1 - edgeDensity W mu)

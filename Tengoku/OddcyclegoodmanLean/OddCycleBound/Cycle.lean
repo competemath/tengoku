@@ -9,6 +9,9 @@ namespace OddCycleBound
 variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
 variable {U : Ω → Ω → ℝ}
 
+/--
+@isnad1 id=eq.1h4v.s6.9e755863ac01 from=translated src=- shape=fb4e1fa7 vocab=bd8efdf5
+-/
 lemma rowsum_compPow (hU : IsGraphon U μ) : ∀ n,
     (fun x => ∫ y, compPow μ U n x y ∂μ) = pathIter U μ (n + 1) := by
   have hGU : GoodK U := goodK_of_isGraphon hU
@@ -50,11 +53,17 @@ lemma rowsum_compPow (hU : IsGraphon U μ) : ∀ n,
               rw [ihz]
         _ = pathIter U μ (k + 2) x := rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.6c1a1d52fdd6 from=translated src=- shape=fa918fd6 vocab=2dc4b152
+-/
 lemma doubleMean_compPow (hU : IsGraphon U μ) (n : ℕ) : doubleMean μ (compPow μ U n) = pathDensity U μ (n + 1) := by
   rw [doubleMean, show (fun x => ∫ y, compPow μ U n x y ∂μ) = pathIter U μ (n + 1) from rowsum_compPow hU n]
   rfl
 
 omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=le.1h6v.s5.a34adc3b51b7 from=translated src=- shape=0085ca5b vocab=0d389d45
+-/
 lemma compPow_nonneg (hU : IsGraphon U μ) : ∀ (n) (x y : Ω), 0 ≤ compPow μ U n x y
   | 0, x, y => hU.nonneg x y
   | (n + 1), x, y => by
@@ -64,6 +73,9 @@ lemma compPow_nonneg (hU : IsGraphon U μ) : ∀ (n) (x y : Ω), 0 ≤ compPow �
 
 noncomputable def cycleDensity (μ : Measure Ω) (U : Ω → Ω → ℝ) (m : ℕ) : ℝ := trace μ (compPow μ U (m - 1))
 
+/--
+@isnad1 id=le.1h4v.s6.efde7e4f7732 from=translated src=- shape=bae8e937 vocab=5434da24
+-/
 lemma edge_deletion_general (hU : IsGraphon U μ) (k : ℕ) :
     cycleDensity μ U (k + 2) ≤ pathDensity U μ (k + 1) := by
   have hGU : GoodK U := goodK_of_isGraphon hU

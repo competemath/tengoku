@@ -18,6 +18,9 @@ variable {Omega : Type u} [MeasurableSpace Omega]
 variable {mu : Measure Omega} [IsProbabilityMeasure mu]
 variable {K : Omega → Omega → Real}
 
+/--
+@isnad1 id=good.1h3v.s5.0107475b12ca from=translated src=- shape=8cfc412f vocab=e8690847
+-/
 lemma good_degCentered_of_goodK (hK : GoodK K) :
     Good (degCentered K mu) := by
   have hdegree : Good (degree K mu) := by
@@ -29,6 +32,9 @@ lemma good_degCentered_of_goodK (hK : GoodK K) :
   exact good_sub hdegree
     (OddCycleBound.DenseRegion.good_const (Omega := Omega) (edgeDensity K mu))
 
+/--
+@isnad1 id=eq.1h3v.s5.ca3a3227fd24 from=translated src=- shape=5c4fd67d vocab=83df70ba
+-/
 lemma mean_degCentered_of_goodK (hK : GoodK K) :
     mean mu (degCentered K mu) = 0 := by
   have hdegree : Good (degree K mu) := by
@@ -39,6 +45,9 @@ lemma mean_degCentered_of_goodK (hK : GoodK K) :
     exact good_kernelOp_goodK (mu := mu) hK good_one
   simp [mean, degCentered, edgeDensity, integral_sub, hdegree.integrable]
 
+/--
+@isnad1 id=goodk.1h3v.s5.741978fe06c7 from=translated src=- shape=1ef70e5d vocab=9075e40f
+-/
 lemma centeredKernel_goodK_of_goodK (hK : GoodK K) :
     GoodK (centeredKernel K mu) := by
   have hdegree : Good (degree K mu) := by
@@ -93,12 +102,18 @@ lemma centeredKernel_goodK_of_goodK (hK : GoodK K) :
       _ = 3 * C + |edgeDensity K mu| := by ring
 
 omit [IsProbabilityMeasure mu] in
+/--
+@isnad1 id=eq.0h5v.s6.b68f31fd5842 from=translated src=- shape=b3130f08 vocab=8b4769b3
+-/
 theorem kernel_eq_block_decomposition (K : Omega → Omega → Real) (x y : Omega) :
     K x y = edgeDensity K mu + degCentered K mu x +
       degCentered K mu y + centeredKernel K mu x y := by
   unfold degCentered centeredKernel
   ring
 
+/--
+@isnad1 id=eq.1h4v.s5.3fd2b6cf5a4b from=translated src=- shape=8921801a vocab=68fcadbc
+-/
 theorem integral_centeredKernel_row (hK : GoodK K) (x : Omega) :
     ∫ y, centeredKernel K mu x y ∂mu = 0 := by
   have hdegree : Good (degree K mu) := by
@@ -137,6 +152,9 @@ theorem integral_centeredKernel_row (hK : GoodK K) (x : Omega) :
     _ = 0 := by
       simp [degree, edgeDensity, mean]
 
+/--
+@isnad1 id=eq.2h4v.s6.8696e2b03681 from=translated src=- shape=86ea2529 vocab=68fcadbc
+-/
 theorem integral_centeredKernel_col
     (hK : GoodK K) (hsymm : ∀ x y, K x y = K y x) (y : Omega) :
     ∫ x, centeredKernel K mu x y ∂mu = 0 := by
@@ -151,6 +169,9 @@ theorem integral_centeredKernel_col
           exact integral_congr_ae (ae_of_all _ fun x => hcentSymm x y)
     _ = 0 := integral_centeredKernel_row hK y
 
+/--
+@isnad1 id=eq.1h3v.s5.00dbca060c23 from=translated src=- shape=b646de78 vocab=c87d8656
+-/
 theorem trace_centeredKernel (hK : GoodK K) :
     trace mu (centeredKernel K mu) = trace mu K - edgeDensity K mu := by
   have hg := good_degCentered_of_goodK (mu := mu) hK
@@ -190,6 +211,9 @@ theorem trace_centeredKernel (hK : GoodK K) :
           rw [hmean]
           ring
 
+/--
+@isnad1 id=eq.1h3v.s5.ee40c50e9b75 from=translated src=- shape=70a8c1c8 vocab=44205b37
+-/
 theorem trace_eq_edgeDensity_add_centeredTrace (hK : GoodK K) :
     trace mu K = edgeDensity K mu + trace mu (centeredKernel K mu) := by
   rw [trace_centeredKernel hK]

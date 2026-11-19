@@ -31,6 +31,9 @@ abbrev NonzeroEigenIndex (T : E →L[Real] E) : Type :=
     Fin (Module.finrank Real
       (Module.End.eigenspace (T : Module.End Real E) lambda.1))
 
+/--
+@isnad1 id=finitedi.1h3v.s9.fbfa1fb1b1d4 from=translated src=- shape=c3bda919 vocab=03b1c6e9
+-/
 theorem nonzeroEigenspace_finiteDimensional
     (T : E →L[Real] E) (hcompact : IsCompactOperator T)
     (lambda : {lambda : Real // lambda ≠ 0}) :
@@ -60,11 +63,17 @@ noncomputable def nonzeroEigenmode
       Module.End.eigenspace (T : Module.End Real E) i.1.1) : E)
 
 omit [CompleteSpace E] in
+/--
+@isnad1 id=ne.0h3v.s6.6be9d37d7e48 from=translated src=- shape=81a0eab8 vocab=c292b6f9
+-/
 theorem nonzeroEigenvalue_ne
     (T : E →L[Real] E) (i : NonzeroEigenIndex T) :
     nonzeroEigenvalue T i ≠ 0 :=
   i.1.2
 
+/--
+@isnad1 id=countabl.2h2v.s8.4f911f7551b1 from=translated src=- shape=59420652 vocab=1be86c42
+-/
 theorem nonzeroEigenIndex_countable
     (T : E →L[Real] E) (hcompact : IsCompactOperator T)
     (hsymm : T.IsSymmetric) :
@@ -72,6 +81,9 @@ theorem nonzeroEigenIndex_countable
   exact compactSelfAdjoint_countable_nonzero_eigenspace_finIndex
     T hcompact hsymm
 
+/--
+@isnad1 id=orthonor.2h2v.s8.f8b113635ac0 from=translated src=- shape=97f268ed vocab=397085f6
+-/
 theorem nonzeroEigenmode_orthonormal
     (T : E →L[Real] E) (hcompact : IsCompactOperator T)
     (hsymm : T.IsSymmetric) :
@@ -84,6 +96,9 @@ theorem nonzeroEigenmode_orthonormal
   exact compactSelfAdjoint_nonzero_eigenspace_hilbertBasis_orthonormal
     T hsymm (nonzeroEigenspaceBasis T hcompact)
 
+/--
+@isnad1 id=eq.1h3v.s9.6eb9f6dc3948 from=translated src=- shape=40f56db2 vocab=4fb0421b
+-/
 theorem nonzeroEigenmode_diagonal
     (T : E →L[Real] E) (hcompact : IsCompactOperator T)
     (i : NonzeroEigenIndex T) :
@@ -92,6 +107,9 @@ theorem nonzeroEigenmode_diagonal
   exact Module.End.mem_eigenspace_iff.mp
     (nonzeroEigenspaceBasis T hcompact i.1 i.2).property
 
+/--
+@isnad1 id=mem.2h3v.s8.182e76e194f8 from=translated src=- shape=2b275c83 vocab=162e546d
+-/
 theorem nonzeroEigenmode_mem_zeroEigenOrthogonal
     (T : E →L[Real] E) (hcompact : IsCompactOperator T)
     (hsymm : T.IsSymmetric) (i : NonzeroEigenIndex T) :
@@ -113,6 +131,9 @@ noncomputable def nonzeroEigenmodeSubspace
   ⟨nonzeroEigenmode T hcompact i,
     nonzeroEigenmode_mem_zeroEigenOrthogonal T hcompact hsymm i⟩
 
+/--
+@isnad1 id=eq.2h2v.s11.db9e80f275a0 from=translated src=- shape=1224ce14 vocab=ff41e036
+-/
 theorem nonzeroEigenmodeSubspace_dense
     (T : E →L[Real] E) (hcompact : IsCompactOperator T)
     (hsymm : T.IsSymmetric) :
@@ -135,6 +156,9 @@ theorem nonzeroEigenmodeSubspace_dense
   · exact ⟨i, Subtype.ext rfl⟩
   · exact ⟨i, Subtype.ext rfl⟩
 
+/--
+@isnad1 id=orthonor.2h2v.s8.69c55998761c from=translated src=- shape=7e7e4487 vocab=7004142c
+-/
 theorem nonzeroEigenmodeSubspace_orthonormal
     (T : E →L[Real] E) (hcompact : IsCompactOperator T)
     (hsymm : T.IsSymmetric) :
@@ -153,6 +177,9 @@ noncomputable def nonzeroSpectralHilbertBasis
     (nonzeroEigenmodeSubspace_orthonormal T hcompact hsymm)
     (nonzeroEigenmodeSubspace_dense T hcompact hsymm)
 
+/--
+@isnad1 id=eq.2h3v.s9.f624013a1954 from=translated src=- shape=b8f622b8 vocab=816f896d
+-/
 @[simp]
 theorem coe_nonzeroSpectralHilbertBasis
     (T : E →L[Real] E) (hcompact : IsCompactOperator T)
@@ -167,12 +194,18 @@ theorem coe_nonzeroSpectralHilbertBasis
     (congrFun hfun i)
 
 omit [CompleteSpace E] in
+/--
+@isnad1 id=mem.1h3v.s8.6c37bd42c922 from=translated src=- shape=0db4029d vocab=8ce06158
+-/
 theorem apply_mem_zeroEigenOrthogonal
     (T : E →L[Real] E) (hsymm : T.IsSymmetric) (f : E) :
     T f ∈ zeroEigenOrthogonal T := by
   exact symmetric_range_le_orthogonal_zero_eigenspace hsymm
     (LinearMap.mem_range.mpr ⟨f, rfl⟩)
 
+/--
+@isnad1 id=hassum.2h3v.s9.8c4af80dad0e from=translated src=- shape=7dd59d45 vocab=42504d19
+-/
 theorem compactSelfAdjoint_action_expansion
     (T : E →L[Real] E) (hcompact : IsCompactOperator T)
     (hsymm : T.IsSymmetric) (f : E) :
@@ -235,6 +268,9 @@ noncomputable def centeredEigenmode (hW : IsGraphon W mu)
   nonzeroEigenmode (OddCycleBound.DenseRegion.centeredGraphonOp hW)
     (centeredGraphonOp_isCompact hW) i
 
+/--
+@isnad1 id=orthonor.1h3v.s8.04f99c380dbe from=translated src=- shape=0ceead6f vocab=79abf21f
+-/
 theorem centeredEigenmode_orthonormal (hW : IsGraphon W mu) :
     Orthonormal Real (centeredEigenmode hW) := by
   exact nonzeroEigenmode_orthonormal
@@ -242,6 +278,9 @@ theorem centeredEigenmode_orthonormal (hW : IsGraphon W mu) :
     (centeredGraphonOp_isCompact hW)
     (OddCycleBound.DenseRegion.centeredGraphonOp_isSymmetric hW)
 
+/--
+@isnad1 id=eq.1h4v.s13.e26ebbed879e from=translated src=- shape=a16d9fa3 vocab=89d73c57
+-/
 theorem centeredEigenmode_diagonal (hW : IsGraphon W mu)
     (i : CenteredEigenIndex hW) :
     OddCycleBound.DenseRegion.centeredGraphonOp hW (centeredEigenmode hW i) =
@@ -250,6 +289,9 @@ theorem centeredEigenmode_diagonal (hW : IsGraphon W mu)
     (OddCycleBound.DenseRegion.centeredGraphonOp hW)
     (centeredGraphonOp_isCompact hW) i
 
+/--
+@isnad1 id=hassum.1h4v.s13.8d78d0e82b32 from=translated src=- shape=9a2f2509 vocab=e0449056
+-/
 theorem centeredGraphonOp_action_expansion (hW : IsGraphon W mu)
     (f : Lp Real 2 mu) :
     HasSum
@@ -262,6 +304,9 @@ theorem centeredGraphonOp_action_expansion (hW : IsGraphon W mu)
     (centeredGraphonOp_isCompact hW)
     (OddCycleBound.DenseRegion.centeredGraphonOp_isSymmetric hW) f
 
+/--
+@isnad1 id=le.1h4v.s6.9d605af80e18 from=translated src=- shape=bf12f8ef vocab=3be0673e
+-/
 theorem centeredEigenvalue_finite_square_bound (hW : IsGraphon W mu)
     (s : Finset (CenteredEigenIndex hW)) :
     s.sum (fun i => centeredEigenvalue hW i ^ 2) ≤

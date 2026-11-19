@@ -25,10 +25,16 @@ noncomputable def centeredKernel (W : Omega -> Omega -> Real) (mu : Measure Omeg
   fun x y => W x y - degree W mu x - degree W mu y + edgeDensity W mu
 
 omit [IsProbabilityMeasure mu] in
+/--
+@isnad1 id=le.1h4v.s5.9ddd0f8247a6 from=translated src=- shape=96de4722 vocab=fe3efe1e
+-/
 lemma degree_nonneg (hW : IsGraphon W mu) (x : Omega) :
     0 <= degree W mu x := by
   exact integral_nonneg fun y => hW.nonneg x y
 
+/--
+@isnad1 id=le.1h4v.s5.dd675cf5ca33 from=translated src=- shape=a5644b1d vocab=76d26e87
+-/
 lemma degree_le_one (hW : IsGraphon W mu) (x : Omega) :
     degree W mu x <= 1 := by
   rw [degree]
@@ -40,6 +46,9 @@ lemma degree_le_one (hW : IsGraphon W mu) (x : Omega) :
         (fun y => hW.le_one x y)
     _ = 1 := by simp
 
+/--
+@isnad1 id=goodk.1h3v.s5.da3fd80f008a from=translated src=- shape=8883064b vocab=2a46f01e
+-/
 lemma centeredKernel_goodK (hW : IsGraphon W mu) :
     GoodK (centeredKernel W mu) := by
   have hrow : GoodK (fun x _y => degree W mu x) :=
@@ -57,12 +66,18 @@ lemma centeredKernel_goodK (hW : IsGraphon W mu) :
     (goodK_sub (goodK_sub (goodK_of_isGraphon hW) hrow) hcol) hconst
 
 omit [IsProbabilityMeasure mu] in
+/--
+@isnad1 id=eq.1h5v.s5.7b0270557fc7 from=translated src=- shape=d6a9c958 vocab=a077453b
+-/
 lemma centeredKernel_symm (hW : IsGraphon W mu) (x y : Omega) :
     centeredKernel W mu x y = centeredKernel W mu y x := by
   unfold centeredKernel
   rw [hW.symm x y]
   ring
 
+/--
+@isnad1 id=le.1h5v.s5.eaee6484beb4 from=translated src=- shape=c798d470 vocab=6488123a
+-/
 lemma abs_centeredKernel_le_four (hW : IsGraphon W mu) (x y : Omega) :
     |centeredKernel W mu x y| <= 4 := by
   have hWx0 := hW.nonneg x y
@@ -76,11 +91,17 @@ lemma abs_centeredKernel_le_four (hW : IsGraphon W mu) (x y : Omega) :
   rw [abs_le]
   constructor <;> unfold centeredKernel <;> linarith
 
+/--
+@isnad1 id=iscompac.1h3v.s12.7f2713335425 from=translated src=- shape=b1f42abb vocab=681047f0
+-/
 theorem kernelOpCLM_isCompact (hW : IsGraphon W mu) :
     IsCompactOperator (kernelOpCLM (mu := mu) hW) := by
   exact canonicalGraphonCompact_of_hilbertSchmidtFiniteRankApproxFor
     (mu := mu) hW (graphonHilbertSchmidtFiniteRankApproxFor (mu := mu) hW)
 
+/--
+@isnad1 id=iscompac.1h3v.s12.694ed6a44174 from=translated src=- shape=b1f42abb vocab=1734e11d
+-/
 theorem centeredGraphonOp_isCompact (hW : IsGraphon W mu) :
     IsCompactOperator (centeredGraphonOp hW) := by
   unfold centeredGraphonOp

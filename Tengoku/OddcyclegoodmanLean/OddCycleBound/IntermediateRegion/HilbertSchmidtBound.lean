@@ -129,6 +129,9 @@ private lemma centeredKernel_row_square
       rw [hKpoint y]
     _ = _ := hs
 
+/--
+@isnad1 id=eq.1h3v.s7.a0195d4b48c9 from=translated src=- shape=b9ce57d2 vocab=0fca55ca
+-/
 theorem centeredKernel_energy_identity (hW : IsGraphon W mu) :
     kernelSqNorm mu (centeredKernel W mu) +
           2 * (∫ x, degCentered W mu x * degCentered W mu x ∂mu) +
@@ -213,6 +216,9 @@ theorem centeredKernel_energy_identity (hW : IsGraphon W mu) :
   rw [hkernel, hvar]
   ring
 
+/--
+@isnad1 id=le.1h3v.s5.bd0dd3b12fd2 from=translated src=- shape=62d9c823 vocab=38ca0a1a
+-/
 theorem kernelSqNorm_le_edgeDensity (hW : IsGraphon W mu) :
     kernelSqNorm mu W <= edgeDensity W mu := by
   have hrowEnergy : Integrable (fun x => ∫ y, W x y * W x y ∂mu) mu := by
@@ -231,6 +237,9 @@ theorem kernelSqNorm_le_edgeDensity (hW : IsGraphon W mu) :
   have h1 := hW.le_one x y
   nlinarith
 
+/--
+@isnad1 id=le.1h3v.s8.dcdef42154ad from=translated src=- shape=3c0ccb92 vocab=b2811dcb
+-/
 theorem centeredKernel_hilbertSchmidt_bound (hW : IsGraphon W mu) :
     kernelSqNorm mu (centeredKernel W mu) +
         2 * ‖DenseRegion.centeredDegreeL2 hW‖ ^ 2 <=

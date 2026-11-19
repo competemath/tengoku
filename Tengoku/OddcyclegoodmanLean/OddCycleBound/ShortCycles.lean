@@ -19,6 +19,9 @@ namespace OddCycleBound
 
 variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ] {W : Ω → Ω → ℝ}
 
+/--
+@isnad1 id=and.1h1v.s5.0ca9a3dc8ace from=translated src=- shape=b973a148 vocab=28094244
+-/
 lemma odd_of_short {m : ℕ} (hm : m = 3 ∨ m = 5 ∨ m = 7) : Odd m ∧ 3 ≤ m := by
   rcases hm with rfl | rfl | rfl
   exacts [⟨⟨1, rfl⟩, le_rfl⟩, ⟨⟨2, rfl⟩, by norm_num⟩, ⟨⟨3, rfl⟩, by norm_num⟩]

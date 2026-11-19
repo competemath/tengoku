@@ -56,13 +56,22 @@ noncomputable def listKer (V : Ω → Ω → ℝ) (μ : Measure Ω) : List Bool 
   | b :: l => wordKer V μ b l
 
 omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=eq.0h5v.s5.144e2b6e384c from=translated src=- shape=016dea13 vocab=93b9cf78
+-/
 lemma kerP_add_kerQ (x y : Ω) : kerP V μ x y + kerQ V μ x y = V x y := by
   simp only [kerP, kerQ]; ring
 
+/--
+@isnad1 id=goodk.1h3v.s5.3b7153a64b77 from=translated src=- shape=8883064b vocab=1048a653
+-/
 lemma goodK_kerP (hV : IsGraphon V μ) : GoodK (kerP V μ) := by
   obtain ⟨C, hC0, hC⟩ := (good_degree hV).bdd
   exact ⟨(good_degree hV).meas.measurable.comp measurable_snd, ⟨C, hC0, fun _ y => hC y⟩⟩
 
+/--
+@isnad1 id=goodk.1h3v.s5.58abb4df6589 from=translated src=- shape=8883064b vocab=f0623f78
+-/
 lemma goodK_kerQ (hV : IsGraphon V μ) : GoodK (kerQ V μ) := by
   obtain ⟨C, hC0, hC⟩ := (good_degree hV).bdd
   refine ⟨hV.meas.sub ((good_degree hV).meas.measurable.comp measurable_snd),
@@ -73,21 +82,33 @@ lemma goodK_kerQ (hV : IsGraphon V μ) : GoodK (kerQ V μ) := by
   calc |V x y - degree V μ y| ≤ |V x y| + |degree V μ y| := abs_sub _ _
     _ ≤ 1 + C := add_le_add h1 (hC y)
 
+/--
+@isnad1 id=goodk.1h4v.s5.9417f7a6e05c from=translated src=- shape=c680d783 vocab=789c18a1
+-/
 lemma goodK_letterKer (hV : IsGraphon V μ) (b : Bool) : GoodK (letterKer V μ b) := by
   cases b
   · exact goodK_kerP hV
   · exact goodK_kerQ hV
 
+/--
+@isnad1 id=goodk.1h5v.s5.767c7eff0724 from=translated src=- shape=2c7be1b8 vocab=aebff621
+-/
 lemma goodK_wordKer (hV : IsGraphon V μ) : ∀ (b : Bool) (l : List Bool), GoodK (wordKer V μ b l)
   | b, [] => goodK_letterKer hV b
   | b, c :: l => goodK_comp (goodK_letterKer hV b) (goodK_wordKer hV c l)
 
+/--
+@isnad1 id=goodk.1h4v.s5.6e6b9accac09 from=translated src=- shape=b485e9ab vocab=289c500a
+-/
 lemma goodK_listKer (hV : IsGraphon V μ) : ∀ l : List Bool, GoodK (listKer V μ l)
   | [] => goodK_zero
   | b :: l => goodK_wordKer hV b l
 
 /-! ### Kernel algebra over finite sums -/
 
+/--
+@isnad1 id=eq.2h6v.s6.922d75c8e2ac from=translated src=- shape=7aa3b8ce vocab=296d41a0
+-/
 lemma comp_finset_sum_right {ι : Type*} (s : Finset ι) {K : Ω → Ω → ℝ} (hK : GoodK K)
     {L : ι → Ω → Ω → ℝ} (hL : ∀ i ∈ s, GoodK (L i)) :
     comp μ K (fun x y => ∑ i ∈ s, L i x y) = fun x y => ∑ i ∈ s, comp μ K (L i) x y := by
@@ -95,6 +116,9 @@ lemma comp_finset_sum_right {ι : Type*} (s : Finset ι) {K : Ω → Ω → ℝ}
   simp only [comp, Finset.mul_sum]
   exact integral_finsetSum s fun i hi => integrable_KL hK (hL i hi) x y
 
+/--
+@isnad1 id=eq.1h5v.s6.dbccf5eefe54 from=translated src=- shape=1fb9e2c8 vocab=1d7b2121
+-/
 lemma trace_finset_sum {ι : Type*} (s : Finset ι) {L : ι → Ω → Ω → ℝ}
     (hL : ∀ i ∈ s, GoodK (L i)) :
     trace μ (fun x y => ∑ i ∈ s, L i x y) = ∑ i ∈ s, trace μ (L i) := by
@@ -103,6 +127,9 @@ lemma trace_finset_sum {ι : Type*} (s : Finset ι) {L : ι → Ω → Ω → �
 
 /-! ### Expansion of kernel powers over words -/
 
+/--
+@isnad1 id=eq.2h4v.s6.e41ddb8c45bc from=translated src=- shape=7970cb40 vocab=277a87aa
+-/
 lemma comp_eq_kerP_add_kerQ (hV : IsGraphon V μ) {L : Ω → Ω → ℝ} (hL : GoodK L) :
     comp μ V L = fun x y => comp μ (kerP V μ) L x y + comp μ (kerQ V μ) L x y := by
   rw [← comp_add_left (goodK_kerP hV) (goodK_kerQ hV) hL]
@@ -111,11 +138,16 @@ lemma comp_eq_kerP_add_kerQ (hV : IsGraphon V μ) {L : Ω → Ω → ℝ} (hL : 
   exact (kerP_add_kerQ x y).symm
 
 omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=eq.0h6v.s5.6b6c62019374 from=translated src=- shape=5480b5ad vocab=cb70e6a3
+-/
 lemma listKer_cons_cons (b c : Bool) (l : List Bool) :
     listKer V μ (b :: c :: l) = comp μ (letterKer V μ b) (listKer V μ (c :: l)) := rfl
 
 /-- **Equation `eq:trace-projection-expansion`** at the level of kernels: the `(n+1)`-fold kernel
-product of `V` is the sum, over all words of length `n + 1`, of the word kernels.-/
+product of `V` is the sum, over all words of length `n + 1`, of the word kernels.
+@isnad1 id=eq.1h4v.s6.4ecd381813c4 from=translated src=- shape=526238e8 vocab=6cfabda9
+-/
 theorem compPow_eq_sum_listKer (hV : IsGraphon V μ) : ∀ n : ℕ,
     compPow μ V n = fun x y => ∑ w ∈ allWords (n + 1), listKer V μ w x y
   | 0 => by
@@ -140,7 +172,9 @@ theorem compPow_eq_sum_listKer (hV : IsGraphon V μ) : ∀ n : ℕ,
       rw [listKer_cons_cons, listKer_cons_cons, comp_eq_kerP_add_kerQ hV (goodK_listKer hV _)]
       rfl
 
-/-- The cycle density as a sum over words (`eq:trace-projection-expansion`).-/
+/-- The cycle density as a sum over words (`eq:trace-projection-expansion`).
+@isnad1 id=eq.2h4v.s6.1bbe63cf446a from=translated src=- shape=eb845dc5 vocab=5476117c
+-/
 theorem cycleDensity_eq_sum_words (hV : IsGraphon V μ) {m : ℕ} (hm : 1 ≤ m) :
     cycleDensity μ V m = ∑ w ∈ allWords m, trace μ (listKer V μ w) := by
   obtain ⟨n, rfl⟩ : ∃ n, m = n + 1 := ⟨m - 1, by omega⟩
@@ -149,6 +183,9 @@ theorem cycleDensity_eq_sum_words (hV : IsGraphon V μ) {m : ℕ} (hm : 1 ≤ m)
 
 /-! ### Cyclicity of the trace -/
 
+/--
+@isnad1 id=eq.1h6v.s6.005336257efb from=translated src=- shape=627f93f0 vocab=670b3bbd
+-/
 lemma wordKer_append_single (hV : IsGraphon V μ) (b : Bool) :
     ∀ (c : Bool) (l : List Bool),
       wordKer V μ c (l ++ [b]) = comp μ (wordKer V μ c l) (letterKer V μ b)
@@ -159,6 +196,9 @@ lemma wordKer_append_single (hV : IsGraphon V μ) (b : Bool) :
         (goodK_wordKer hV d l) (goodK_letterKer hV b)]
       rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.1248edb0b446 from=translated src=- shape=51b4af84 vocab=096ac673
+-/
 lemma trace_listKer_rotate_one (hV : IsGraphon V μ) (l : List Bool) :
     trace μ (listKer V μ (l.rotate 1)) = trace μ (listKer V μ l) := by
   match l with
@@ -171,12 +211,18 @@ lemma trace_listKer_rotate_one (hV : IsGraphon V μ) (l : List Bool) :
       rw [wordKer_append_single hV b c l,
         trace_comp_comm (goodK_wordKer hV c l) (goodK_letterKer hV b)]
 
+/--
+@isnad1 id=eq.0h2v.s6.4ea1de252e3d from=translated src=- shape=22ac6953 vocab=373d36aa
+-/
 lemma ofFn_rot_one {n : ℕ} (v : Fin (n + 1) → Bool) :
     List.ofFn (rot 1 v) = (List.ofFn v).rotate 1 := by
   rw [List.ofFn_succ' (rot 1 v), List.ofFn_succ, List.rotate_cons_succ, List.rotate_zero,
     List.concat_eq_append]
   simp only [rot, Fin.coeSucc_eq_succ, Fin.last_add_one]
 
+/--
+@isnad1 id=eq.1h6v.s6.64555384bfa2 from=translated src=- shape=c8255a75 vocab=75984bf2
+-/
 lemma trace_listKer_ofFn_rot (hV : IsGraphon V μ) {n : ℕ} (j : Fin (n + 1))
     (v : Fin (n + 1) → Bool) :
     trace μ (listKer V μ (List.ofFn (rot j v))) = trace μ (listKer V μ (List.ofFn v)) := by
@@ -193,17 +239,26 @@ noncomputable def applyWord (V : Ω → Ω → ℝ) (μ : Measure Ω) : List Boo
   | b :: l, f => kernelOp (letterKer V μ b) μ (applyWord V μ l f)
 
 omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=eq.0h6v.s5.f78f5396da08 from=translated src=- shape=d9f238e8 vocab=86f8c16b
+-/
 lemma applyWord_append (l₁ l₂ : List Bool) (f : Ω → ℝ) :
     applyWord V μ (l₁ ++ l₂) f = applyWord V μ l₁ (applyWord V μ l₂ f) := by
   induction l₁ with
   | nil => rfl
   | cons b l₁ ih => simp only [List.cons_append, applyWord, ih]
 
+/--
+@isnad1 id=good.2h5v.s5.fab0dfcb621f from=translated src=- shape=5df3c36f vocab=aff7cd39
+-/
 lemma good_applyWord (hV : IsGraphon V μ) {f : Ω → ℝ} (hf : Good f) :
     ∀ l : List Bool, Good (applyWord V μ l f)
   | [] => hf
   | b :: l => Spectral.L2Kernel.good_kernelOp_goodK (goodK_letterKer hV b) (good_applyWord hV hf l)
 
+/--
+@isnad1 id=eq.2h5v.s6.fee1829ad346 from=translated src=- shape=06b9dc2a vocab=0db4a3b5
+-/
 lemma integral_comp_row' {K L : Ω → Ω → ℝ} (hK : GoodK K) (hL : GoodK L) (x : Ω) :
     ∫ y, comp μ K L x y ∂μ = kernelOp K μ (fun z => ∫ y, L z y ∂μ) x := by
   obtain ⟨CK, _, hCK⟩ := hK.bdd
@@ -221,7 +276,9 @@ lemma integral_comp_row' {K L : Ω → Ω → ℝ} (hK : GoodK K) (hL : GoodK L)
         integral_congr_ae (ae_of_all _ fun z => integral_const_mul _ _)
     _ = kernelOp K μ (fun z => ∫ y, L z y ∂μ) x := rfl
 
-/-- Row sums of word kernels are words applied to the constant function `1`.-/
+/-- Row sums of word kernels are words applied to the constant function `1`.
+@isnad1 id=eq.1h5v.s6.6278c8b21482 from=translated src=- shape=74f08a1e vocab=bcd0c70f
+-/
 lemma rowIntegral_wordKer (hV : IsGraphon V μ) : ∀ (b : Bool) (l : List Bool),
     (fun x => ∫ y, wordKer V μ b l x y ∂μ) = applyWord V μ (b :: l) (fun _ => 1)
   | b, [] => by
@@ -235,11 +292,16 @@ lemma rowIntegral_wordKer (hV : IsGraphon V μ) : ∀ (b : Bool) (l : List Bool)
       rfl
 
 omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=eq.0h4v.s6.7464ecaf5322 from=translated src=- shape=1aec6df5 vocab=fbec43a3
+-/
 lemma kernelOp_kerP (f : Ω → ℝ) :
     kernelOp (kerP V μ) μ f = fun _ => ∫ y, degree V μ y * f y ∂μ := rfl
 
 /-- `P M_V` acting on functions: `f ↦ (∫ d_V f) · 1`. The trace of a word that starts with `P`
-is the constant value of the word applied to `1`.-/
+is the constant value of the word applied to `1`.
+@isnad1 id=eq.1h4v.s6.b8eb8f0993cb from=translated src=- shape=aa3a2617 vocab=9c4a9c3a
+-/
 lemma applyWord_false_cons (hV : IsGraphon V μ) (l : List Bool) :
     applyWord V μ (false :: l) (fun _ => 1) = fun _ => trace μ (listKer V μ (false :: l)) := by
   funext x
@@ -267,7 +329,9 @@ lemma applyWord_false_cons (hV : IsGraphon V μ) (l : List Bool) :
       rw [integral_integral_swap hint]
       exact integral_congr_ae (ae_of_all _ fun z => (integral_const_mul _ _).symm)
 
-/-- `Q M_V` acting on functions is the compression `f ↦ T_V f - (∫ T_V f) 1`.-/
+/-- `Q M_V` acting on functions is the compression `f ↦ T_V f - (∫ T_V f) 1`.
+@isnad1 id=eq.2h4v.s5.1b612b9ba12f from=translated src=- shape=7edf2b8f vocab=6ef1e69d
+-/
 lemma kernelOp_kerQ (hV : IsGraphon V μ) {f : Ω → ℝ} (hf : Good f) :
     kernelOp (kerQ V μ) μ f = compress V μ f := by
   funext x
@@ -282,6 +346,9 @@ lemma kernelOp_kerQ (hV : IsGraphon V μ) {f : Ω → ℝ} (hf : Good f) :
   rw [e, integral_sub (integrable_Uf hV hf x) ((good_degree hV).mul hf).integrable, h1]
   rfl
 
+/--
+@isnad1 id=eq.2h5v.s6.f86753df37a1 from=translated src=- shape=e04a0006 vocab=925466e0
+-/
 lemma kernelOp_eq_kerP_add_kerQ (hV : IsGraphon V μ) {f : Ω → ℝ} (hf : Good f) (x : Ω) :
     kernelOp V μ f x = kernelOp (kerP V μ) μ f x + kernelOp (kerQ V μ) μ f x := by
   simp only [kernelOp]
@@ -293,6 +360,9 @@ lemma kernelOp_eq_kerP_add_kerQ (hV : IsGraphon V μ) {f : Ω → ℝ} (hf : Goo
 /-! ### Block evaluation -/
 
 omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=eq.1h5v.s6.486f82c33b33 from=translated src=- shape=e27edcc6 vocab=7a230147
+-/
 lemma applyWord_replicate_false (hV : IsGraphon V μ) (c : ℝ) : ∀ a : ℕ,
     applyWord V μ (List.replicate a false) (fun _ => c) = fun _ => edgeDensity V μ ^ a * c
   | 0 => by funext x; simp [applyWord]
@@ -306,6 +376,9 @@ lemma applyWord_replicate_false (hV : IsGraphon V μ) (c : ℝ) : ∀ a : ℕ,
       ring
 
 omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=eq.1h3v.s5.237d8c1258ad from=translated src=- shape=b1012db8 vocab=95f29ef5
+-/
 lemma compress_one (hV : IsGraphon V μ) :
     compress V μ (fun _ => 1) = compressIter V μ 0 := by
   funext x
@@ -313,7 +386,9 @@ lemma compress_one (hV : IsGraphon V μ) :
   rw [kernelOp_one hV]
   rfl
 
-/-- A `Q`-block of length `β + 1`, applied to a constant `c`, gives `c · A^β g`.-/
+/-- A `Q`-block of length `β + 1`, applied to a constant `c`, gives `c · A^β g`.
+@isnad1 id=eq.1h5v.s6.a270a37dbe20 from=translated src=- shape=1d416471 vocab=75b319db
+-/
 lemma applyWord_replicate_true (hV : IsGraphon V μ) (c : ℝ) : ∀ β : ℕ,
     applyWord V μ (List.replicate (β + 1) true) (fun _ => c) =
       fun x => c * compressIter V μ β x
@@ -331,7 +406,9 @@ lemma applyWord_replicate_true (hV : IsGraphon V μ) (c : ℝ) : ∀ β : ℕ,
       rfl
 
 /-- The block identity `P M_V (Q M_V)^{β+1}` on a constant `c`: the excursion contributes
-`gᵀ A^β g = specMoment V μ β`.-/
+`gᵀ A^β g = specMoment V μ β`.
+@isnad1 id=eq.1h5v.s6.030db313495a from=translated src=- shape=a9ff1401 vocab=4560c889
+-/
 lemma kernelOp_kerP_compressIter (hV : IsGraphon V μ) (c : ℝ) (β : ℕ) :
     kernelOp (kerP V μ) μ (fun x => c * compressIter V μ β x) =
       fun _ => c * specMoment V μ β := by
@@ -349,7 +426,9 @@ lemma kernelOp_kerP_compressIter (hV : IsGraphon V μ) (c : ℝ) (β : ℕ) :
   show c * (edgeDensity V μ * 0) + c * specMoment V μ β = _
   ring
 
-/-- The pair of blocks `P^{α+1} Q^{β+1}` multiplies a constant by `q^α · gᵀ A^β g`.-/
+/-- The pair of blocks `P^{α+1} Q^{β+1}` multiplies a constant by `q^α · gᵀ A^β g`.
+@isnad1 id=eq.1h5v.s6.b13dcd6a8216 from=translated src=- shape=ec7401d9 vocab=164ad2af
+-/
 lemma applyWord_blk (hV : IsGraphon V μ) (p : ℕ × ℕ) (c : ℝ) :
     applyWord V μ (blk p) (fun _ => c) =
       fun _ => edgeDensity V μ ^ p.1 * specMoment V μ p.2 * c := by
@@ -361,7 +440,9 @@ lemma applyWord_blk (hV : IsGraphon V μ) (p : ℕ × ℕ) (c : ℝ) :
   funext x; ring
 
 /-- **Equation `eq:excursion-length-weight`** in vector form: the word `blockWord t ++ P^a`
-applied to `1` is the constant `q^a ∏ q^{αᵢ} gᵀ A^{βᵢ} g`.-/
+applied to `1` is the constant `q^a ∏ q^{αᵢ} gᵀ A^{βᵢ} g`.
+@isnad1 id=eq.1h5v.s6.acfd338a7864 from=translated src=- shape=2ad7d01a vocab=d3fd1116
+-/
 lemma applyWord_blockWord (hV : IsGraphon V μ) (a : ℕ) : ∀ t : List (ℕ × ℕ),
     applyWord V μ (blockWord t ++ List.replicate a false) (fun _ => 1) =
       fun _ => edgeDensity V μ ^ a * tupleWeight (edgeDensity V μ) (specMoment V μ) t

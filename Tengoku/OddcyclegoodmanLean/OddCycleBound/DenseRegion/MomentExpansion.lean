@@ -11,6 +11,9 @@ namespace OddCycleBound.DenseRegion
 variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
 variable {U W : Ω → Ω → ℝ}
 
+/--
+@isnad1 id=eq.2h5v.s6.30241f453e3e from=translated src=- shape=693029db vocab=6e688c88
+-/
 lemma kernelOp_compl (hU : IsGraphon U μ) {f : Ω → ℝ} (hf : Good f) (x : Ω) :
     kernelOp (compl U) μ f x = mean μ f - kernelOp U μ f x := by
   have hfun : (fun y => compl U x y * f y) = (fun y => f y - U x y * f y) := by
@@ -22,6 +25,9 @@ lemma kernelOp_compl (hU : IsGraphon U μ) {f : Ω → ℝ} (hf : Good f) (x : �
 private lemma integral_const_prob (c : ℝ) : (∫ (_ : Ω), c ∂μ) = c := by simp
 
 omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=eq.0h6v.s5.82a0387f6975 from=translated src=- shape=ca638c28 vocab=7f1a6dd5
+-/
 lemma kernelOp_const_mul (c : ℝ) (f : Ω → ℝ) (x : Ω) :
     kernelOp U μ (fun y => c * f y) x = c * kernelOp U μ f x := by
   show (∫ y, U x y * (c * f y) ∂μ) = c * ∫ y, U x y * f y ∂μ
@@ -29,6 +35,9 @@ lemma kernelOp_const_mul (c : ℝ) (f : Ω → ℝ) (x : Ω) :
   exact integral_congr_ae (ae_of_all _ fun y => by ring)
 
 omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=eq.0h5v.s5.4fa64de46340 from=translated src=- shape=880b9906 vocab=260b73a9
+-/
 lemma compress_const_mul (c : ℝ) (f : Ω → ℝ) :
     compress W μ (fun y => c * f y) = fun x => c * compress W μ f x := by
   funext x
@@ -41,6 +50,9 @@ lemma compress_const_mul (c : ℝ) (f : Ω → ℝ) :
     rfl
   rw [hmean]; ring
 
+/--
+@isnad1 id=eq.1h4v.s5.845ef3aaefd9 from=translated src=- shape=a6595fa2 vocab=86291000
+-/
 lemma degree_compl (hW : IsGraphon W μ) (x : Ω) :
     degree (compl W) μ x = 1 - degree W μ x := by
   show ∫ y, compl W x y ∂μ = 1 - degree W μ x
@@ -49,6 +61,9 @@ lemma degree_compl (hW : IsGraphon W μ) (x : Ω) :
     integral_const_prob]
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s5.f0415876c2d1 from=translated src=- shape=fad64ace vocab=0a2ad13a
+-/
 lemma edgeDensity_compl (hW : IsGraphon W μ) :
     edgeDensity (compl W) μ = 1 - edgeDensity W μ := by
   show mean μ (degree (compl W) μ) = 1 - edgeDensity W μ
@@ -58,12 +73,18 @@ lemma edgeDensity_compl (hW : IsGraphon W μ) :
   rw [integral_sub (integrable_const 1) (good_degree hW).integrable, integral_const_prob]
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s5.cf4ebd19572a from=translated src=- shape=a67285a7 vocab=ddd259ce
+-/
 lemma degCentered_compl (hW : IsGraphon W μ) :
     degCentered (compl W) μ = fun x => - degCentered W μ x := by
   funext x
   show degree (compl W) μ x - edgeDensity (compl W) μ = -(degree W μ x - edgeDensity W μ)
   rw [degree_compl hW x, edgeDensity_compl hW]; ring
 
+/--
+@isnad1 id=eq.2h4v.s5.5893254bf99c from=translated src=- shape=210121c9 vocab=e8b01eca
+-/
 lemma compress_compl (hW : IsGraphon W μ) {f : Ω → ℝ} (hf : Good f) :
     compress (compl W) μ f = fun x => - compress W μ f x := by
   funext x
@@ -78,6 +99,9 @@ lemma compress_compl (hW : IsGraphon W μ) {f : Ω → ℝ} (hf : Good f) :
     rfl
   rw [hk x, hmean]; ring
 
+/--
+@isnad1 id=eq.1h4v.s6.75932dfec96b from=translated src=- shape=f92d2d2a vocab=a6daa3f0
+-/
 lemma pathIter_expansion (hU : IsGraphon U μ) (a : ℕ) :
     pathIter U μ a
       = fun z => pathDensity U μ a

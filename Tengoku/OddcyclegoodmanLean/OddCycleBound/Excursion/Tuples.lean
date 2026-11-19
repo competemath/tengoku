@@ -24,6 +24,9 @@ open DenseRegion
 /-- The convolution `(f ⋆ g)(n) = ∑_{i ≤ n} f(i) g(n - i)`.-/
 def conv (f g : ℕ → ℝ) (n : ℕ) : ℝ := ∑ i ∈ range (n + 1), f i * g (n - i)
 
+/--
+@isnad1 id=eq.0h2v.s4.fd5fe1012daa from=translated src=- shape=be98463e vocab=c7cb5df1
+-/
 lemma conv_comm (f g : ℕ → ℝ) : conv f g = conv g f := by
   funext n
   unfold conv
@@ -32,6 +35,9 @@ lemma conv_comm (f g : ℕ → ℝ) : conv f g = conv g f := by
   rw [Finset.mem_range] at hi
   rw [show n + 1 - 1 - i = n - i by omega, show n - (n - i) = i by omega, mul_comm]
 
+/--
+@isnad1 id=eq.0h3v.s4.a1065adcf6b6 from=translated src=- shape=c00327da vocab=c7cb5df1
+-/
 lemma conv_assoc (f g h : ℕ → ℝ) : conv (conv f g) h = conv f (conv g h) := by
   funext n
   simp only [conv, Finset.sum_mul, Finset.mul_sum]
@@ -58,18 +64,29 @@ lemma conv_assoc (f g h : ℕ → ℝ) : conv (conv f g) h = conv f (conv g h) :
     rw [show n - j - (i - j) = n - i by omega]
     ring
 
+/--
+@isnad1 id=eq.0h3v.s4.bab8f3d7e159 from=translated src=- shape=2f241a9d vocab=c7cb5df1
+-/
 lemma conv_left_comm (f g h : ℕ → ℝ) : conv f (conv g h) = conv g (conv f h) := by
   rw [← conv_assoc, conv_comm f g, conv_assoc]
 
+/--
+@isnad1 id=eq.0h4v.s5.650d3ec391e4 from=translated src=- shape=7fd19d0d vocab=c7cb5df1
+-/
 lemma conv_conv_conv_comm (a b c d : ℕ → ℝ) :
     conv a (conv b (conv c d)) = conv (conv a c) (conv b d) := by
   rw [conv_left_comm b c d, conv_assoc]
 
-/-- `h_d(y, x₁, …, x_k) = ∑_i y^i h_{d-i}(x₁, …, x_k)`.-/
+/-- `h_d(y, x₁, …, x_k) = ∑_i y^i h_{d-i}(x₁, …, x_k)`.
+@isnad1 id=eq.0h2v.s5.ba0828932243 from=translated src=- shape=bdbbd436 vocab=f3894879
+-/
 lemma hsym_cons_eq_conv (y : ℝ) (L : List ℝ) :
     (fun d => hsym (y :: L) d) = conv (fun i => y ^ i) (fun d => hsym L d) := by
   funext d; rw [hsym_cons]; rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.71f47cbe1811 from=translated src=- shape=0a999293 vocab=11bf549a
+-/
 lemma momentConv_succ_eq_conv (s : ℕ → ℝ) (r : ℕ) :
     momentConv s (r + 1) = conv s (momentConv s r) := by
   funext j; rw [momentConv_succ]; rfl
@@ -80,6 +97,9 @@ lemma momentConv_succ_eq_conv (s : ℕ → ℝ) (r : ℕ) :
 def tuples (r N : ℕ) : Finset (List (ℕ × ℕ)) :=
   (listsOf (range (N + 1) ×ˢ range (N + 1)) r).filter fun t => excess t = N
 
+/--
+@isnad1 id=le.1h2v.s5.53279a39c9b4 from=translated src=- shape=b533e644 vocab=31d5f76a
+-/
 lemma le_excess_of_mem {t : List (ℕ × ℕ)} {p : ℕ × ℕ} (hp : p ∈ t) : p.1 + p.2 ≤ excess t := by
   induction t with
   | nil => simp at hp
@@ -89,6 +109,9 @@ lemma le_excess_of_mem {t : List (ℕ × ℕ)} {p : ℕ × ℕ} (hp : p ∈ t) :
       · omega
       · have := ih hp; omega
 
+/--
+@isnad1 id=iff.1h4v.s7.497287cbbfe4 from=translated src=- shape=e79ea331 vocab=8a4d0a1d
+-/
 lemma mem_listsOf_filter_excess {r N M : ℕ} (hM : M ≤ N) {t : List (ℕ × ℕ)} :
     t ∈ (listsOf (range (N + 1) ×ˢ range (N + 1)) r).filter (fun t => excess t = M) ↔
       t.length = r ∧ excess t = M := by
@@ -101,10 +124,16 @@ lemma mem_listsOf_filter_excess {r N M : ℕ} (hM : M ≤ N) {t : List (ℕ × �
     simp only [Finset.mem_product, Finset.mem_range]
     omega
 
+/--
+@isnad1 id=iff.0h3v.s5.737248f14e21 from=translated src=- shape=44dfb0c9 vocab=826d0c41
+-/
 lemma mem_tuples {r N : ℕ} {t : List (ℕ × ℕ)} :
     t ∈ tuples r N ↔ t.length = r ∧ excess t = N :=
   mem_listsOf_filter_excess le_rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.a42ea71ee1fb from=translated src=- shape=8c2e7be0 vocab=f9c55837
+-/
 lemma sum_tuples_succ (r N : ℕ) (G : List (ℕ × ℕ) → ℝ) :
     ∑ t ∈ tuples (r + 1) N, G t =
       ∑ a ∈ range (N + 1), ∑ b ∈ range (N - a + 1),
@@ -142,8 +171,14 @@ lemma sum_tuples_succ (r N : ℕ) (G : List (ℕ × ℕ) → ℝ) :
 noncomputable def tupleWeight (q : ℝ) (s : ℕ → ℝ) (t : List (ℕ × ℕ)) : ℝ :=
   (t.map fun p => q ^ p.1 * s p.2).prod
 
+/--
+@isnad1 id=eq.0h2v.s4.987f9fad9e39 from=translated src=- shape=3d6457f6 vocab=0775db01
+-/
 @[simp] lemma tupleWeight_nil (q : ℝ) (s : ℕ → ℝ) : tupleWeight q s [] = 1 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.98bf0a86a658 from=translated src=- shape=e7e73610 vocab=a07c27a6
+-/
 @[simp] lemma tupleWeight_cons (q : ℝ) (s : ℕ → ℝ) (p : ℕ × ℕ) (t : List (ℕ × ℕ)) :
     tupleWeight q s (p :: t) = q ^ p.1 * s p.2 * tupleWeight q s t := by
   simp [tupleWeight]
@@ -152,6 +187,9 @@ noncomputable def tupleWeight (q : ℝ) (s : ℕ → ℝ) (t : List (ℕ × ℕ)
 noncomputable def tupleSum (q : ℝ) (s : ℕ → ℝ) (r N : ℕ) : ℝ :=
   ∑ t ∈ tuples r N, tupleWeight q s t
 
+/--
+@isnad1 id=eq.0h3v.s5.7249f0447840 from=translated src=- shape=c19841cb vocab=d3cf60ab
+-/
 lemma tupleSum_zero (q : ℝ) (s : ℕ → ℝ) (N : ℕ) :
     tupleSum q s 0 N = if N = 0 then 1 else 0 := by
   unfold tupleSum
@@ -169,6 +207,9 @@ lemma tupleSum_zero (q : ℝ) (s : ℕ → ℝ) (N : ℕ) :
     obtain ⟨rfl, h⟩ := ht
     exact absurd h.symm hN
 
+/--
+@isnad1 id=eq.0h3v.s5.b9537d56d81e from=translated src=- shape=cee2ba21 vocab=66126a6d
+-/
 lemma tupleSum_succ (q : ℝ) (s : ℕ → ℝ) (r : ℕ) :
     tupleSum q s (r + 1) = conv (fun i => q ^ i) (conv s (tupleSum q s r)) := by
   funext N
@@ -183,7 +224,9 @@ lemma tupleSum_succ (q : ℝ) (s : ℕ → ℝ) (r : ℕ) :
   ring
 
 /-- **The tuple sum.** `∑_{(α,β) ∈ tuples r N} q^{∑α} ∏ s(βᵢ) = ∑_j h_{N-j}(q^{×r}) ·
-momentConv s r j`.-/
+momentConv s r j`.
+@isnad1 id=eq.0h3v.s4.833ae776bc6c from=translated src=- shape=fc22726d vocab=82d923f1
+-/
 theorem tupleSum_eq (q : ℝ) (s : ℕ → ℝ) : ∀ r : ℕ,
     tupleSum q s r = conv (fun d => hsym (List.replicate r q) d) (momentConv s r)
   | 0 => by
@@ -201,7 +244,9 @@ theorem tupleSum_eq (q : ℝ) (s : ℕ → ℝ) : ∀ r : ℕ,
 
 /-! ### The bijections between words and tuples -/
 
-/-- Linear words from `P` to `Q` with `r` `Q`-blocks are `blockWord t` with `t ∈ tuples r N`.-/
+/-- Linear words from `P` to `Q` with `r` `Q`-blocks are `blockWord t` with `t ∈ tuples r N`.
+@isnad1 id=ex.2h1v.s5.d106c9db6049 from=translated src=- shape=db65c253 vocab=6e37cbea
+-/
 lemma blockWord_of_pq {l : List Bool} (hl : l.head? = some false) (hl' : l.getLast? = some true) :
     ∃ t, t ≠ [] ∧ l = blockWord t := by
   obtain ⟨t, a, rfl⟩ := exists_blockWord l.length l le_rfl (by rw [hl]; simp)

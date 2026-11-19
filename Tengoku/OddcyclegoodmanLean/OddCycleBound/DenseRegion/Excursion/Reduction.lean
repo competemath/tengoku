@@ -29,6 +29,9 @@ variable {V W : Ω → Ω → ℝ}
 
 /-! ### Evaluation of traces of words -/
 
+/--
+@isnad1 id=eq.1h5v.s6.ee7ca5ce24a0 from=translated src=- shape=0fdf595a vocab=9c4a9c3a
+-/
 lemma trace_listKer_false_cons (hV : IsGraphon V μ) (l : List Bool) (x : Ω) :
     trace μ (listKer V μ (false :: l)) = applyWord V μ (false :: l) (fun _ => 1) x := by
   rw [applyWord_false_cons hV l]
@@ -37,13 +40,18 @@ lemma trace_listKer_false_cons (hV : IsGraphon V μ) (l : List Bool) (x : Ω) :
 
 /-! ### Path densities by excursions (Lemma 3.2) -/
 
+/--
+@isnad1 id=eq.2h7v.s6.7f9c37cd619c from=translated src=- shape=b96b9f25 vocab=8652b297
+-/
 lemma kernelOp_finset_sum (hV : IsGraphon V μ) {ι : Type*} (s : Finset ι) {f : ι → Ω → ℝ}
     (hf : ∀ i ∈ s, Good (f i)) (x : Ω) :
     kernelOp V μ (fun y => ∑ i ∈ s, f i y) x = ∑ i ∈ s, kernelOp V μ (f i) x := by
   simp only [kernelOp, Finset.mul_sum]
   exact integral_finsetSum s fun i hi => integrable_Uf hV (hf i hi) x
 
-/-- The path expansion over words: `T_V^k 1 = ∑_{words of length k} (R₁ M_V ⋯ R_k M_V) 1`.-/
+/-- The path expansion over words: `T_V^k 1 = ∑_{words of length k} (R₁ M_V ⋯ R_k M_V) 1`.
+@isnad1 id=eq.1h4v.s6.3cbbb30523ee from=translated src=- shape=bf01f576 vocab=68b65a0f
+-/
 lemma pathIter_eq_sum_words (hV : IsGraphon V μ) : ∀ k : ℕ,
     pathIter V μ k = fun x => ∑ w ∈ allWords k, applyWord V μ w (fun _ => 1) x
   | 0 => by
@@ -58,18 +66,27 @@ lemma pathIter_eq_sum_words (hV : IsGraphon V μ) : ∀ k : ℕ,
       rw [kernelOp_eq_kerP_add_kerQ hV (good_applyWord hV good_one w)]
       rfl
 
+/--
+@isnad1 id=eq.2h4v.s5.ba69e0b20474 from=translated src=- shape=2f0e80c3 vocab=133f1376
+-/
 lemma mean_compress (hV : IsGraphon V μ) {f : Ω → ℝ} (hf : Good f) :
     mean μ (compress V μ f) = 0 := by
   unfold mean compress
   rw [integral_sub (good_kernelOp hV hf).integrable (integrable_const _)]
   simp [mean]
 
+/--
+@isnad1 id=eq.1h4v.s5.e0ae243b11b4 from=translated src=- shape=948d5fdf vocab=24646202
+-/
 lemma mean_applyWord_true_cons (hV : IsGraphon V μ) (l : List Bool) :
     mean μ (applyWord V μ (true :: l) (fun _ => 1)) = 0 := by
   show mean μ (kernelOp (kerQ V μ) μ (applyWord V μ l fun _ => 1)) = 0
   rw [kernelOp_kerQ hV (good_applyWord hV good_one l)]
   exact mean_compress hV (good_applyWord hV good_one l)
 
+/--
+@isnad1 id=eq.0h3v.s6.246180760452 from=translated src=- shape=9007e332 vocab=016d3beb
+-/
 lemma sum_range_ite_le (K c : ℕ) (f : ℕ → ℝ) :
     ∑ N ∈ Finset.range (K + 1), (if c + N ≤ K then f N else 0) =
       if c ≤ K then ∑ N ∈ Finset.range (K - c + 1), f N else 0 := by
@@ -81,7 +98,9 @@ lemma sum_range_ite_le (K c : ℕ) (f : ℕ → ℝ) :
     simp only [Finset.mem_filter] at hN; omega
 
 /-- **Lemma 3.2** (`lem:path-excursions`), in moment form:
-`t(P_k, V) = ∑_{r, 2r ≤ k} ∑_j h_{k-2r-j}(q^{×(r+1)}) · momentConv s r j`.-/
+`t(P_k, V) = ∑_{r, 2r ≤ k} ∑_j h_{k-2r-j}(q^{×(r+1)}) · momentConv s r j`.
+@isnad1 id=eq.1h4v.s7.26a258afa4a6 from=translated src=- shape=461c7995 vocab=4f651925
+-/
 theorem pathDensity_excursions (hV : IsGraphon V μ) (k : ℕ) :
     pathDensity V μ k = ∑ r ∈ Finset.range (k + 1),
       if 2 * r ≤ k then
@@ -128,6 +147,9 @@ theorem pathDensity_excursions (hV : IsGraphon V μ) (k : ℕ) :
 
 /-! ### The reduction to excursion polynomials (Lemma 3.3) -/
 
+/--
+@isnad1 id=eq.0h2v.s7.4732114f7d84 from=translated src=- shape=b4fa1155 vocab=396020f1
+-/
 lemma sum_range_ite_two_mul_le (R : ℕ) (f : ℕ → ℝ) :
     ∑ k ∈ Finset.range (2 * R + 1), (if 2 * (k + 1) ≤ 2 * R + 1 then f k else 0) =
       ∑ k ∈ Finset.range R, f k := by
@@ -137,6 +159,9 @@ lemma sum_range_ite_two_mul_le (R : ℕ) (f : ℕ → ℝ) :
   simp only [Finset.mem_filter, Finset.mem_range]
   omega
 
+/--
+@isnad1 id=eq.0h2v.s7.1e8fbb2244d2 from=translated src=- shape=e55b3f5c vocab=396020f1
+-/
 lemma sum_range_ite_two_mul_le' (R : ℕ) (f : ℕ → ℝ) :
     ∑ r ∈ Finset.range (2 * R + 1), (if 2 * r ≤ 2 * R then f r else 0) =
       f 0 + ∑ k ∈ Finset.range R, f (k + 1) := by

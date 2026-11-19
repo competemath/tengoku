@@ -18,15 +18,24 @@ noncomputable def formalNegLogBase : PowerSeries Real :=
 noncomputable def formalNegLog (u : PowerSeries Real) : PowerSeries Real :=
   formalNegLogBase.subst u
 
+/--
+@isnad1 id=eq.0h1v.s6.db52c249c197 from=translated src=- shape=576d7920 vocab=97059d51
+-/
 @[simp] theorem coeff_formalNegLogBase (n : Nat) :
     PowerSeries.coeff n formalNegLogBase =
       if n = 0 then 0 else (n : Real)⁻¹ := by
   simp [formalNegLogBase]
 
+/--
+@isnad1 id=eq.0h0v.s5.cdfb09ed99d1 from=translated src=- shape=8b3e5d3e vocab=96a664f7
+-/
 @[simp] theorem constantCoeff_formalNegLogBase :
     PowerSeries.constantCoeff formalNegLogBase = 0 := by
   simp [← PowerSeries.coeff_zero_eq_constantCoeff_apply]
 
+/--
+@isnad1 id=eq.0h3v.s6.92d47fa9e9e8 from=translated src=- shape=a7fda069 vocab=afb94b40
+-/
 theorem coeff_mk_pow_eq_momentConv (s : Nat → Real) : ∀ r n : Nat,
     PowerSeries.coeff n ((PowerSeries.mk s) ^ r) = momentConv s r n
   | 0, n => by
@@ -37,6 +46,9 @@ theorem coeff_mk_pow_eq_momentConv (s : Nat → Real) : ∀ r n : Nat,
       exact Finset.Nat.sum_antidiagonal_eq_sum_range_succ
         (fun i j => s i * momentConv s r j) n
 
+/--
+@isnad1 id=eq.2h3v.s5.2ee2af53eae3 from=translated src=- shape=3206225b vocab=3957f4d6
+-/
 theorem momentConv_eq_zero_of_lt
     {s : Nat → Real} (hs0 : s 0 = 0) : ∀ {r n : Nat}, n < r →
       momentConv s r n = 0
@@ -57,6 +69,9 @@ theorem momentConv_eq_zero_of_lt
         rw [momentConv_eq_zero_of_lt hs0 hnkr]
         simp
 
+/--
+@isnad1 id=eq.1h2v.s7.95c58d3deb41 from=translated src=- shape=807cab8c vocab=6cdef109
+-/
 theorem coeff_formalNegLog_mk
     {s : Nat → Real} (hs0 : s 0 = 0) (m : Nat) :
     PowerSeries.coeff m (formalNegLog (PowerSeries.mk s)) =
@@ -91,6 +106,9 @@ theorem coeff_formalNegLog_mk
         momentConv_eq_zero_of_lt hs0 hmd]
     exact hd (by simp [hzero])
 
+/--
+@isnad1 id=eq.0h0v.s7.f5a501991d33 from=translated src=- shape=c0a9c158 vocab=40ffeaaa
+-/
 theorem derivative_formalNegLogBase :
     PowerSeries.derivative Real formalNegLogBase =
       PowerSeries.mk (fun _ : Nat => (1 : Real)) := by
@@ -103,6 +121,9 @@ theorem derivative_formalNegLogBase :
   push_cast
   rfl
 
+/--
+@isnad1 id=eq.1h1v.s6.3a977305d040 from=translated src=- shape=651a13c6 vocab=3ac1565b
+-/
 theorem subst_geom_eq_inv_one_sub
     {u : PowerSeries Real} (hu0 : PowerSeries.constantCoeff u = 0) :
     (PowerSeries.mk (fun _ : Nat => (1 : Real))).subst u = (1 - u)⁻¹ := by
@@ -122,6 +143,9 @@ theorem subst_geom_eq_inv_one_sub
   rw [← PowerSeries.coe_substAlgHom hu]
   exact map_one _
 
+/--
+@isnad1 id=eq.1h1v.s6.d6feb3ca7b60 from=translated src=- shape=003f7608 vocab=a56f2b73
+-/
 @[simp] theorem constantCoeff_formalNegLog
     {u : PowerSeries Real} (hu0 : PowerSeries.constantCoeff u = 0) :
     PowerSeries.constantCoeff (formalNegLog u) = 0 := by
@@ -135,6 +159,9 @@ noncomputable def unsignedUCoeff
     ∑ j ∈ Finset.range (n - 1), p ^ (n - 2 - j) * s j
   else 0
 
+/--
+@isnad1 id=eq.0h2v.s4.c3f8f7743ac3 from=translated src=- shape=093dbb48 vocab=057ea05e
+-/
 @[simp] theorem unsignedUCoeff_zero (p : Real) (s : Nat → Real) :
     unsignedUCoeff p s 0 = 0 := by simp [unsignedUCoeff]
 

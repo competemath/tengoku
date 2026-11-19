@@ -8,6 +8,9 @@ namespace OddCycleBound.DenseRegion
 
 noncomputable def An (n : ℕ) (u : ℝ) : ℝ := u ^ n + (1 - u) ^ n
 
+/--
+@isnad1 id=eq.0h3v.s8.ce3f9983f854 from=translated src=- shape=08f9275a vocab=5926fcfe
+-/
 lemma rho_derivative (t r : ℕ) (u : ℝ) :
     (2 * (t : ℝ) + 1) * rho (2 * t + 1) (2 * t + 1 + 2 * r) u
       = 2 * (r : ℝ) * An (2 * t + 1) u
@@ -23,11 +26,17 @@ lemma rho_derivative (t r : ℕ) (u : ℝ) :
 noncomputable def aCoef (t j : ℕ) : ℝ :=
   2 * (Nat.choose (2 * t + 1) (2 * j) : ℝ) * (1 / 2 : ℝ) ^ (2 * t + 1 - 2 * j)
 
+/--
+@isnad1 id=lt.1h2v.s4.c30c335684dc from=translated src=- shape=430b0ef9 vocab=b11b9a54
+-/
 lemma aCoef_pos (t j : ℕ) (hj : j ≤ t) : 0 < aCoef t j := by
   have hc : 0 < (Nat.choose (2 * t + 1) (2 * j) : ℝ) := by
     exact_mod_cast Nat.choose_pos (show 2 * j ≤ 2 * t + 1 from by omega)
   unfold aCoef; positivity
 
+/--
+@isnad1 id=eq.0h2v.s6.fff791496916 from=translated src=- shape=7b266970 vocab=37df85ec
+-/
 lemma An_half_expansion (t : ℕ) (v : ℝ) :
     An (2 * t + 1) (1 / 2 + v) = ∑ j ∈ Finset.range (t + 1), aCoef t j * v ^ (2 * j) := by
   classical
@@ -71,6 +80,9 @@ lemma An_half_expansion (t : ℕ) (v : ℝ) :
     ring
   rw [hexp, hreindex, Finset.sum_congr rfl hterm]
 
+/--
+@isnad1 id=eq.0h2v.s8.f33f34af7f11 from=translated src=- shape=27b5587d vocab=d529ca57
+-/
 lemma An_deriv_half_expansion (t : ℕ) (v : ℝ) :
     (2 * (t : ℝ) + 1) * ((1 / 2 + v) ^ (2 * t) - (1 / 2 - v) ^ (2 * t))
       = ∑ j ∈ Finset.range (t + 1), (2 * (j : ℝ)) * aCoef t j * v ^ (2 * j - 1) := by
@@ -123,6 +135,9 @@ lemma An_deriv_half_expansion (t : ℕ) (v : ℝ) :
       linear_combination (2 * (1 / 2 : ℝ) ^ (2 * t + 1 - 2 * j) * v ^ (2 * j - 1)) * hchoose
   rw [hexp, hreindex, Finset.sum_congr rfl hterm]
 
+/--
+@isnad1 id=eq.0h3v.s8.95185e898086 from=translated src=- shape=31acda69 vocab=1e9c04b2
+-/
 lemma rho_centered (t r : ℕ) (v : ℝ) :
     (2 * (t : ℝ) + 1) * rho (2 * t + 1) (2 * t + 1 + 2 * r) (1 / 2 + v)
       = ∑ j ∈ Finset.range (t + 1),

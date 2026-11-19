@@ -22,6 +22,9 @@ def complementEigenvalue (hW : IsGraphon W mu)
     (i : CenteredEigenIndex hW) : Real :=
   -centeredEigenvalue hW i
 
+/--
+@isnad1 id=eq.4h5v.s7.6a9a2240f634 from=translated src=- shape=e704b657 vocab=1d36fb37
+-/
 theorem complement_leading_eigenvalue_unique
     (hW : IsGraphon W mu)
     (hq : (1 : Real) / 3 < 1 - edgeDensity W mu)
@@ -51,6 +54,9 @@ theorem complement_leading_eigenvalue_unique
   dsimp [complementEigenvalue] at hiSq hjSq
   nlinarith
 
+/--
+@isnad1 id=eq.0h2v.s12.94758ff1dd49 from=translated src=- shape=88571b37 vocab=2ca34b36
+-/
 lemma centerProjection_oneL2 :
     centerProjection (Omega := Omega) (mu := mu)
         (oneL2 (Omega := Omega) mu) = 0 := by
@@ -58,6 +64,9 @@ lemma centerProjection_oneL2 :
   simp only [sub_apply, one_apply_eq_self, InnerProductSpace.rankOne_apply]
   rw [inner_oneL2_oneL2, one_smul, sub_self]
 
+/--
+@isnad1 id=eq.1h4v.s7.e4375a9d4251 from=translated src=- shape=d87b5736 vocab=cf06b03b
+-/
 theorem inner_oneL2_centeredEigenmode_eq_zero
     (hW : IsGraphon W mu) (i : CenteredEigenIndex hW) :
     inner Real (oneL2 (Omega := Omega) mu) (centeredEigenmode hW i) = 0 := by
@@ -77,6 +86,9 @@ theorem inner_oneL2_centeredEigenmode_eq_zero
     exact nonzeroEigenvalue_ne (centeredGraphonOp hW) i
   exact (mul_eq_zero.mp hzero).resolve_left hne
 
+/--
+@isnad1 id=hasgoodr.1h4v.s5.1fce975e9ca4 from=translated src=- shape=f80a55ac vocab=e9fd9640
+-/
 theorem centeredEigenmode_hasGoodRepresentative
     (hW : IsGraphon W mu) (i : CenteredEigenIndex hW) :
     OddCycleBound.Spectral.InfiniteSpectral.HasGoodRepresentative (mu := mu)
@@ -106,6 +118,9 @@ theorem centeredEigenmode_hasGoodRepresentative
     OddCycleBound.Spectral.InfiniteSpectral.hasGoodRepresentative_of_nonzero_eigenmode_and_good_operator_image
       hf himage hdiag hne
 
+/--
+@isnad1 id=ex.1h4v.s8.05108925a68a from=translated src=- shape=5fd6c69c vocab=39c2d9a7
+-/
 theorem exists_good_centeredEigenfunction
     (hW : IsGraphon W mu) (i : CenteredEigenIndex hW) :
     ∃ (phi : Omega → Real), ∃ hphi : Good phi,

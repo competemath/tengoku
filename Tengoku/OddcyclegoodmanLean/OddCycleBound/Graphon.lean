@@ -21,11 +21,17 @@ structure Good (f : Ω → ℝ) : Prop where
   meas : StronglyMeasurable f
   bdd : ∃ C, 0 ≤ C ∧ ∀ x, |f x| ≤ C
 
+/--
+@isnad1 id=integrab.1h3v.s5.5e9cdffd992a from=translated src=- shape=4c60f492 vocab=2e50cd3a
+-/
 lemma Good.integrable {f : Ω → ℝ} (hf : Good f) : Integrable f μ := by
   obtain ⟨C, _, hC⟩ := hf.bdd
   refine (integrable_const C).mono' hf.meas.aestronglyMeasurable (ae_of_all _ ?_)
   intro x; simpa [Real.norm_eq_abs] using hC x
 
+/--
+@isnad1 id=good.2h3v.s5.abf40893c529 from=translated src=- shape=e7bce992 vocab=302af2fb
+-/
 lemma Good.mul {f k : Ω → ℝ} (hf : Good f) (hk : Good k) : Good (fun x => f x * k x) := by
   obtain ⟨Cf, hCf0, hCf⟩ := hf.bdd
   obtain ⟨Ck, hCk0, hCk⟩ := hk.bdd
@@ -40,8 +46,14 @@ noncomputable def kernelOp (U : Ω → Ω → ℝ) (μ : Measure Ω) (f : Ω →
 
 noncomputable def mean (μ : Measure Ω) (f : Ω → ℝ) : ℝ := ∫ x, f x ∂μ
 
+/--
+@isnad1 id=eq.0h3v.s4.92bb8e686bbd from=translated src=- shape=15764bb3 vocab=03b73225
+-/
 lemma mean_const (c : ℝ) : mean μ (fun _ => c) = c := by simp [mean]
 
+/--
+@isnad1 id=good.2h4v.s5.25290d06c6d8 from=translated src=- shape=c77b720d vocab=03fc6e17
+-/
 lemma good_kernelOp (hU : IsGraphon U μ) {f : Ω → ℝ} (hf : Good f) : Good (kernelOp U μ f) := by
   obtain ⟨C, hC0, hC⟩ := hf.bdd
   refine ⟨?_, ⟨C, hC0, fun x => ?_⟩⟩
@@ -79,26 +91,41 @@ noncomputable def compressIter (U : Ω → Ω → ℝ) (μ : Measure Ω) : ℕ �
 noncomputable def specMoment (U : Ω → Ω → ℝ) (μ : Measure Ω) (j : ℕ) : ℝ :=
   ∫ x, degCentered U μ x * compressIter U μ j x ∂μ
 
+/--
+@isnad1 id=good.1h3v.s5.6f696c17f249 from=translated src=- shape=8883064b vocab=9d84bc80
+-/
 lemma good_degree (hU : IsGraphon U μ) : Good (degree U μ) := by
   have h : degree U μ = kernelOp U μ (fun _ => 1) := by funext x; simp [degree, kernelOp]
   rw [h]; exact good_kernelOp hU ⟨stronglyMeasurable_const, ⟨1, zero_le_one, fun _ => by norm_num⟩⟩
 
+/--
+@isnad1 id=good.1h3v.s5.13b4f7dd4acd from=translated src=- shape=8883064b vocab=6dacef55
+-/
 lemma good_degCentered (hU : IsGraphon U μ) : Good (degCentered U μ) := by
   obtain ⟨C, hC0, hC⟩ := (good_degree hU).bdd
   refine ⟨(good_degree hU).meas.sub stronglyMeasurable_const,
     ⟨C + |edgeDensity U μ|, add_nonneg hC0 (abs_nonneg _), fun x => ?_⟩⟩
   exact (abs_sub_le' _ _).trans (by linarith [hC x])
 
+/--
+@isnad1 id=good.2h4v.s5.a43738f59e0b from=translated src=- shape=c77b720d vocab=678adf98
+-/
 lemma good_compress (hU : IsGraphon U μ) {f : Ω → ℝ} (hf : Good f) : Good (compress U μ f) := by
   obtain ⟨C, hC0, hC⟩ := (good_kernelOp hU hf).bdd
   refine ⟨(good_kernelOp hU hf).meas.sub stronglyMeasurable_const,
     ⟨C + |mean μ (kernelOp U μ f)|, add_nonneg hC0 (abs_nonneg _), fun x => ?_⟩⟩
   exact (abs_sub_le' _ _).trans (by linarith [hC x])
 
+/--
+@isnad1 id=good.1h4v.s5.38a4f417150d from=translated src=- shape=c680d783 vocab=13ad3174
+-/
 lemma good_compressIter (hU : IsGraphon U μ) : ∀ k, Good (compressIter U μ k)
   | 0 => good_degCentered hU
   | (k + 1) => good_compress hU (good_compressIter hU k)
 
+/--
+@isnad1 id=eq.1h4v.s5.71544b992f43 from=translated src=- shape=b00e313d vocab=6606f48d
+-/
 lemma mean_compressIter (hU : IsGraphon U μ) : ∀ k, mean μ (compressIter U μ k) = 0
   | 0 => by
       show ∫ x, degCentered U μ x ∂μ = 0
@@ -113,6 +140,9 @@ lemma mean_compressIter (hU : IsGraphon U μ) : ∀ k, mean μ (compressIter U �
       show mean μ (kernelOp U μ (compressIter U μ k)) - mean μ (fun _ => mean μ (kernelOp U μ (compressIter U μ k))) = 0
       rw [mean_const]; ring
 
+/--
+@isnad1 id=eq.3h5v.s6.319bd536bed1 from=translated src=- shape=cbbd279c vocab=dc508665
+-/
 lemma kernelOp_symm (hU : IsGraphon U μ) {f k : Ω → ℝ} (hf : Good f) (hk : Good k) :
     ∫ x, kernelOp U μ f x * k x ∂μ = ∫ x, f x * kernelOp U μ k x ∂μ := by
   obtain ⟨Cf, hCf0, hCf⟩ := hf.bdd
@@ -141,6 +171,9 @@ lemma kernelOp_symm (hU : IsGraphon U μ) {f k : Ω → ℝ} (hf : Good f) (hk :
     _ = ∫ y, ∫ x, U x y * f y * k x ∂μ ∂μ := integral_integral_swap hInt
     _ = ∫ y, f y * kernelOp U μ k y ∂μ := by simp_rw [hR]
 
+/--
+@isnad1 id=eq.5h5v.s7.e1a0dd386d09 from=translated src=- shape=412e0f25 vocab=8841343f
+-/
 lemma compress_symm (hU : IsGraphon U μ) {f k : Ω → ℝ} (hf : Good f) (hk : Good k)
     (hf0 : mean μ f = 0) (hk0 : mean μ k = 0) :
     ∫ x, compress U μ f x * k x ∂μ = ∫ x, f x * compress U μ k x ∂μ := by
@@ -168,6 +201,9 @@ lemma compress_symm (hU : IsGraphon U μ) {f k : Ω → ℝ} (hf : Good f) (hk :
             rw [hf0']; ring
   rw [e1, e2, kernelOp_symm hU hf hk]
 
+/--
+@isnad1 id=eq.1h5v.s6.166533a060a5 from=translated src=- shape=9f60ab5a vocab=c68c68e6
+-/
 lemma moment (hU : IsGraphon U μ) : ∀ (j i : ℕ),
     ∫ x, compressIter U μ i x * compressIter U μ j x ∂μ = specMoment U μ (i + j) := by
   intro j

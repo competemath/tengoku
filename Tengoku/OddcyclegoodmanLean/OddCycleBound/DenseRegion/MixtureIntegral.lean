@@ -9,6 +9,9 @@ open scoped BigOperators
 
 namespace OddCycleBound.DenseRegion
 
+/--
+@isnad1 id=eq.0h2v.s7.cae2269afe07 from=translated src=- shape=65161285 vocab=8daa55f5
+-/
 lemma beta_nat : ∀ (i k : ℕ),
     (∫ t in (0:ℝ)..1, t ^ i * (1 - t) ^ k)
       = (Nat.factorial i * Nat.factorial k : ℝ) / (Nat.factorial (i + k + 1))
@@ -72,6 +75,9 @@ noncomputable def dirExp : List ℝ → (ℝ → ℝ) → ℝ
         ((b :: L).length : ℝ) * (1 - t) ^ ((b :: L).length - 1)
           * dirExp (b :: L) (fun x => f (t * a + (1 - t) * x))
 
+/--
+@isnad1 id=le.3h4v.s6.bbdfb12bad6f from=translated src=- shape=ce85338a vocab=5ce56b72
+-/
 lemma dirExp_nonneg : ∀ (L : List ℝ) (f : ℝ → ℝ) (a b : ℝ), a ≤ b →
     (∀ x ∈ Set.Icc a b, 0 ≤ f x) → (∀ x ∈ L, x ∈ Set.Icc a b) → 0 ≤ dirExp L f
   | [], f, a, b, _, _, _ => by simp [dirExp]
@@ -91,6 +97,9 @@ lemma dirExp_nonneg : ∀ (L : List ℝ) (f : ℝ → ℝ) (a b : ℝ), a ≤ b 
         intro x hx
         exact hf _ ⟨by nlinarith [hc.1, hx.1], by nlinarith [hc.2, hx.2]⟩
 
+/--
+@isnad1 id=continuo.1h3v.s5.e9a7a1180f58 from=translated src=- shape=397c9cde vocab=c2a71886
+-/
 lemma dirExp_param_continuous : ∀ (L : List ℝ) {X : Type} [TopologicalSpace X] (F : X → ℝ → ℝ),
     Continuous (Function.uncurry F) → Continuous (fun w => dirExp L (fun x => F w x))
   | [], _, _, _, _ => by simp only [dirExp]; exact continuous_const
@@ -110,13 +119,22 @@ lemma dirExp_param_continuous : ∀ (L : List ℝ) {X : Type} [TopologicalSpace 
           ((d :: L).length : ℝ) * (1 - p.2) ^ ((d :: L).length - 1)) := by fun_prop
       exact hρ.mul hrec
 
+/--
+@isnad1 id=eq.0h2v.s4.a5262ea001fb from=translated src=- shape=9975ce89 vocab=9cd15a92
+-/
 @[simp] lemma dirExp_singleton (c : ℝ) (f : ℝ → ℝ) : dirExp [c] f = f c := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.52ca043525bd from=translated src=- shape=8c514440 vocab=8cf1d15f
+-/
 lemma dirExp_cons_cons (c d : ℝ) (L : List ℝ) (f : ℝ → ℝ) :
     dirExp (c :: d :: L) f
       = ∫ t in (0:ℝ)..1, ((d :: L).length : ℝ) * (1 - t) ^ ((d :: L).length - 1)
           * dirExp (d :: L) (fun x => f (t * c + (1 - t) * x)) := rfl
 
+/--
+@isnad1 id=interval.1h3v.s7.238ce92f0833 from=translated src=- shape=982dbedc vocab=657e5ddb
+-/
 lemma dirExp_intervalIntegrable (T : List ℝ) (c : ℝ) (f : ℝ → ℝ) (hf : Continuous f) :
     IntervalIntegrable
       (fun t => (T.length : ℝ) * (1 - t) ^ (T.length - 1) * dirExp T (fun x => f (t * c + (1 - t) * x)))
@@ -126,6 +144,9 @@ lemma dirExp_intervalIntegrable (T : List ℝ) (c : ℝ) (f : ℝ → ℝ) (hf :
   exact Continuous.intervalIntegrable
     ((by fun_prop : Continuous (fun t : ℝ => (T.length : ℝ) * (1 - t) ^ (T.length - 1))).mul hpc) _ _
 
+/--
+@isnad1 id=eq.0h1v.s4.82b5b6d9f663 from=translated src=- shape=a9b381d3 vocab=592ae1eb
+-/
 lemma dirExp_zero : ∀ (L : List ℝ), dirExp L (fun _ => 0) = 0
   | [] => rfl
   | [_] => rfl
@@ -133,6 +154,9 @@ lemma dirExp_zero : ∀ (L : List ℝ), dirExp L (fun _ => 0) = 0
       rw [dirExp_cons_cons]
       simp only [dirExp_zero (d :: L), mul_zero, intervalIntegral.integral_zero]
 
+/--
+@isnad1 id=eq.0h3v.s5.74b4a951d817 from=translated src=- shape=e651d454 vocab=0fa9725f
+-/
 lemma dirExp_smul : ∀ (L : List ℝ) (a : ℝ) (f : ℝ → ℝ),
     dirExp L (fun x => a * f x) = a * dirExp L f
   | [], a, f => by simp [dirExp]
@@ -143,6 +167,9 @@ lemma dirExp_smul : ∀ (L : List ℝ) (a : ℝ) (f : ℝ → ℝ),
       rw [dirExp_smul (d :: L) a (fun x => f (t * c + (1 - t) * x))]
       ring
 
+/--
+@isnad1 id=eq.2h3v.s6.12d684788823 from=translated src=- shape=332eafba vocab=18e38c01
+-/
 lemma dirExp_add : ∀ (L : List ℝ) (f g : ℝ → ℝ), Continuous f → Continuous g →
     dirExp L (fun x => f x + g x) = dirExp L f + dirExp L g
   | [], f, g, _, _ => by simp [dirExp]
@@ -156,6 +183,9 @@ lemma dirExp_add : ∀ (L : List ℝ) (f g : ℝ → ℝ), Continuous f → Cont
         (by fun_prop) (by fun_prop)]
       ring
 
+/--
+@isnad1 id=eq.1h4v.s5.fc283c4e3f56 from=translated src=- shape=3cacfd46 vocab=53f8fde7
+-/
 lemma dirExp_finset_sum {ι : Type*} (L : List ℝ) (s : Finset ι) (F : ι → ℝ → ℝ)
     (hF : ∀ i, Continuous (F i)) :
     dirExp L (fun x => ∑ i ∈ s, F i x) = ∑ i ∈ s, dirExp L (F i) := by
@@ -168,6 +198,9 @@ lemma dirExp_finset_sum {ι : Type*} (L : List ℝ) (s : Finset ι) (F : ι → 
             funext x; rw [Finset.sum_insert ha],
         dirExp_add L (F a) (fun x => ∑ i ∈ s, F i x) (hF a) hcs, ih, Finset.sum_insert ha]
 
+/--
+@isnad1 id=eq.1h2v.s6.4add794a270c from=translated src=- shape=dfbec6d2 vocab=612c3698
+-/
 lemma dirExp_pow : ∀ (L : List ℝ), L ≠ [] → ∀ (j : ℕ),
     dirExp L (fun x => x ^ j)
       = hsym L j / (Nat.choose (j + (L.length - 1)) (L.length - 1) : ℝ)
@@ -258,6 +291,9 @@ lemma dirExp_pow : ∀ (L : List ℝ), L ≠ [] → ∀ (j : ℕ),
         rw [hinner t, Finset.mul_sum]]
       rw [Finset.sum_congr rfl hterm, hsym_cons, Finset.sum_div]
 
+/--
+@isnad1 id=eq.3h4v.s6.8f046802d4d6 from=translated src=- shape=72726bb6 vocab=830b00fb
+-/
 lemma multiKernel_eq_dirExp {m r : ℕ} (hr : r ≠ 0) (hn : 1 ≤ m - 2 * r) (q : ℝ) (L : List ℝ)
     (hLlen : L.length = r) :
     multiKernel m r q L = dirExp L (fun x => diagKernel m r q x) := by
@@ -277,6 +313,9 @@ lemma multiKernel_eq_dirExp {m r : ℕ} (hr : r ≠ 0) (hn : 1 ≤ m - 2 * r) (q
     dirExp_smul L _ (fun x => x ^ j), dirExp_pow L hLne j, hLlen]
   field_simp
 
+/--
+@isnad1 id=le.5h4v.s7.f3a37d652838 from=translated src=- shape=324cfaef vocab=2f10de1b
+-/
 theorem multiKernel_nonneg {m r : ℕ} (hr : r ≠ 0) (hn : 1 ≤ m - 2 * r) (q : ℝ) (L : List ℝ)
     (hLlen : L.length = r)
     (hdiag : ∀ ℓ ∈ Set.Icc (-(1:ℝ) / 2) (1 / 2), 0 ≤ diagKernel m r q ℓ)

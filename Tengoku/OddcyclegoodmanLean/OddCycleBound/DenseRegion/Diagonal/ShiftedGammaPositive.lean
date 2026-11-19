@@ -8,6 +8,9 @@ open scoped BigOperators
 
 namespace OddCycleBound.DenseRegion
 
+/--
+@isnad1 id=le.5h4v.s8.aa6cfa7173d4 from=translated src=- shape=223ffa92 vocab=619e6e4d
+-/
 theorem shifted_gamma_positive_of_moment_bound (t r : ℕ) (hr : 1 ≤ r)
     (hmoment : ∀ j : ℕ, 1 ≤ j → ∀ z : ℝ, 0 ≤ z →
       3 * (j : ℝ) * gExp r (fun y => (z * y - 1) ^ (2 * j - 1))

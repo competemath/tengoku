@@ -16,10 +16,19 @@ noncomputable def Cexpr (t : ℝ) : ℝ := (32 * t ^ 2 + 25 * t + 2) / (3 * (1 +
 
 noncomputable def Lexpr (t : ℝ) : ℝ := 2 * t * Real.log (Aexpr t) + Real.log (Bexpr t) - Cexpr t
 
+/--
+@isnad1 id=lt.1h1v.s4.1d782af32826 from=translated src=- shape=35bd48ee vocab=e4b4a416
+-/
 lemma Aexpr_pos {t : ℝ} (ht : 0 < t) : 0 < Aexpr t := by unfold Aexpr; positivity
 
+/--
+@isnad1 id=lt.1h1v.s4.0f3fa91224b9 from=translated src=- shape=35bd48ee vocab=e86b764d
+-/
 lemma Bexpr_pos {t : ℝ} (ht : 0 < t) : 0 < Bexpr t := by unfold Bexpr; positivity
 
+/--
+@isnad1 id=hasderiv.1h1v.s7.a48db7d0e244 from=translated src=- shape=4386d996 vocab=7f438198
+-/
 lemma Cexpr_hasDerivAt {t : ℝ} (ht : 0 < t) :
     HasDerivAt Cexpr ((128 * t ^ 2 + 64 * t + 17) / (3 * (1 + 4 * t) ^ 2)) t := by
   have hden0 : (3 : ℝ) * (1 + 4 * t) ≠ 0 := by positivity
@@ -35,6 +44,9 @@ lemma Cexpr_hasDerivAt {t : ℝ} (ht : 0 < t) :
   rw [hkey, hkey2, mul_div_mul_left _ _ (by norm_num : (3 : ℝ) ≠ 0)] at hquot
   exact hquot
 
+/--
+@isnad1 id=eq.1h1v.s7.103430318391 from=translated src=- shape=5b9b053a vocab=1a36784e
+-/
 lemma Aexpr_log {t : ℝ} (ht : 0 < t) :
     Real.log (Aexpr t) = Real.log 3 + Real.log t + Real.log (5 + 8 * t)
       - Real.log 2 - Real.log (1 + t) - Real.log (1 + 4 * t) := by
@@ -46,6 +58,9 @@ lemma Aexpr_log {t : ℝ} (ht : 0 < t) :
       Real.log_mul (by positivity) (by positivity)]
   ring
 
+/--
+@isnad1 id=eq.1h1v.s6.d213bebe84a4 from=translated src=- shape=852ec1c0 vocab=5fd2b105
+-/
 lemma Bexpr_log {t : ℝ} (ht : 0 < t) :
     Real.log (Bexpr t) = Real.log (1 + 4 * t) + Real.log (5 + 8 * t)
       - Real.log 3 - Real.log (1 + t) := by
@@ -55,6 +70,9 @@ lemma Bexpr_log {t : ℝ} (ht : 0 < t) :
       Real.log_mul (by positivity) (by positivity)]
   ring
 
+/--
+@isnad1 id=hasderiv.1h1v.s9.6f25d9f0f961 from=translated src=- shape=9aedee40 vocab=88c21a1b
+-/
 lemma Lexpr_hasDerivAt {t : ℝ} (ht : 0 < t) :
     HasDerivAt Lexpr
       (2 * (Real.log 3 + Real.log t + Real.log (5 + 8 * t) - Real.log 2 - Real.log (1 + t)
@@ -110,6 +128,9 @@ lemma Lexpr_hasDerivAt {t : ℝ} (ht : 0 < t) :
         - (128 * t ^ 2 + 64 * t + 17) / (3 * (1 + 4 * t) ^ 2)) := by ring
   rw [← key]; exact hLraw
 
+/--
+@isnad1 id=hasderiv.1h1v.s8.ffd20de57b9d from=translated src=- shape=43fd91b7 vocab=c324adbf
+-/
 lemma Lexpr_hasDerivAt' {t : ℝ} (ht : 0 < t) :
     HasDerivAt Lexpr (2 * Real.log (Aexpr t)
       - ((32 * t ^ 2 + 16 * t - 7) * (32 * t ^ 2 + 25 * t + 2))
@@ -129,6 +150,9 @@ lemma Lexpr_hasDerivAt' {t : ℝ} (ht : 0 < t) :
     rw [Aexpr_log ht]; field_simp; ring
   rw [heq]; exact Lexpr_hasDerivAt ht
 
+/--
+@isnad1 id=lt.1h1v.s6.02111bad67e9 from=translated src=- shape=066bb2d8 vocab=c4b0321a
+-/
 lemma Lprime_neg_of_ge_threehalf {t : ℝ} (ht : 3 / 2 ≤ t) : deriv Lexpr t < 0 := by
   have ht0 : (0 : ℝ) < t := by linarith
   have h1t : (0 : ℝ) < 1 + t := by linarith
@@ -160,6 +184,9 @@ lemma Lprime_neg_of_ge_threehalf {t : ℝ} (ht : 3 / 2 ≤ t) : deriv Lexpr t < 
       mul_pos (mul_pos ht0 ht0) ht0]
   linarith [htan, hrat]
 
+/--
+@isnad1 id=lt.0h0v.s5.fcf9efa79b89 from=translated src=- shape=d4f6e56f vocab=26a59d5f
+-/
 lemma log_thirteen_lt : Real.log 13 < 13 / 5 := by
   have h13 : Real.log 13 = 4 * Real.log 2 + Real.log (13 / 16) := by
     rw [show (13 : ℝ) = 2 ^ 4 * (13 / 16) from by norm_num,
@@ -169,6 +196,9 @@ lemma log_thirteen_lt : Real.log 13 < 13 / 5 := by
   have h2 := Real.log_two_lt_d9
   rw [h13]; nlinarith [hle, h2]
 
+/--
+@isnad1 id=lt.2h1v.s5.5a0690505c92 from=translated src=- shape=3b8719b6 vocab=6436dacc
+-/
 lemma Lexpr_neg_on_Icc {t : ℝ} (ht1 : 1 ≤ t) (ht2 : t ≤ 3 / 2) : Lexpr t < 0 := by
   have ht0 : (0 : ℝ) < t := by linarith
   have hA0 : 0 < Aexpr t := Aexpr_pos ht0
@@ -204,6 +234,9 @@ lemma Lexpr_neg_on_Icc {t : ℝ} (ht1 : 1 ≤ t) (ht2 : t ≤ 3 / 2) : Lexpr t <
       mul_nonneg (mul_nonneg (sub_nonneg.mpr ht1) (sub_nonneg.mpr ht2)) ht0.le]
   linarith [hLbound, hcneg]
 
+/--
+@isnad1 id=lt.1h1v.s5.6c583be30028 from=translated src=- shape=c1676f1c vocab=6436dacc
+-/
 lemma Lexpr_neg_of_ge_threehalf {t : ℝ} (ht : 3 / 2 ≤ t) : Lexpr t < 0 := by
   have hanti : AntitoneOn Lexpr (Set.Ici (3 / 2)) := by
     apply antitoneOn_of_deriv_nonpos (convex_Ici _)
@@ -217,6 +250,9 @@ lemma Lexpr_neg_of_ge_threehalf {t : ℝ} (ht : 3 / 2 ≤ t) : Lexpr t < 0 := by
   exact lt_of_le_of_lt (hanti Set.self_mem_Ici (Set.mem_Ici.mpr ht) ht)
     (Lexpr_neg_on_Icc (by norm_num) (le_refl _))
 
+/--
+@isnad1 id=lt.2h1v.s5.5569c872dd18 from=translated src=- shape=425c3051 vocab=6436dacc
+-/
 lemma Lexpr_neg_on_half_one {t : ℝ} (ht1 : 1 / 2 ≤ t) (ht2 : t ≤ 1) : Lexpr t < 0 := by
   have ht0 : (0 : ℝ) < t := by linarith
   have hA0 : 0 < Aexpr t := Aexpr_pos ht0
@@ -252,6 +288,9 @@ lemma Lexpr_neg_on_half_one {t : ℝ} (ht1 : 1 / 2 ≤ t) (ht2 : t ≤ 1) : Lexp
       sq_nonneg (2 * t - 1)]
   linarith [hLbound, hcneg]
 
+/--
+@isnad1 id=lt.2h1v.s6.19c7b2cbc9fa from=translated src=- shape=57731283 vocab=6436dacc
+-/
 lemma Lexpr_neg_on_quarter_half {t : ℝ} (ht1 : 1 / 4 ≤ t) (ht2 : t ≤ 1 / 2) : Lexpr t < 0 := by
   have ht0 : (0 : ℝ) < t := by linarith
   have hA0 : 0 < Aexpr t := Aexpr_pos ht0
@@ -282,6 +321,9 @@ lemma Lexpr_neg_on_quarter_half {t : ℝ} (ht1 : 1 / 4 ≤ t) (ht2 : t ≤ 1 / 2
       sq_nonneg (2 * t - 1)]
   linarith [hLbound, hcneg]
 
+/--
+@isnad1 id=lt.2h1v.s5.5594d26f4ee7 from=translated src=- shape=50ae018f vocab=6436dacc
+-/
 lemma Lexpr_neg_on_zero_quarter {t : ℝ} (ht0 : 0 < t) (ht2 : t ≤ 1 / 4) : Lexpr t < 0 := by
   have hA0 : 0 < Aexpr t := Aexpr_pos ht0
   have hB0 : 0 < Bexpr t := Bexpr_pos ht0
@@ -309,6 +351,9 @@ lemma Lexpr_neg_on_zero_quarter {t : ℝ} (ht0 : 0 < t) (ht2 : t ≤ 1 / 4) : Le
       mul_nonneg (sub_nonneg.mpr ht2) ht0.le]
   linarith [hLbound, hcneg]
 
+/--
+@isnad1 id=lt.1h1v.s4.9dbc50bfd76a from=translated src=- shape=3965f485 vocab=fbb2ee25
+-/
 theorem Lexpr_neg {t : ℝ} (ht : 0 < t) : Lexpr t < 0 := by
   rcases le_total t (1 / 4) with h | h
   · exact Lexpr_neg_on_zero_quarter ht h

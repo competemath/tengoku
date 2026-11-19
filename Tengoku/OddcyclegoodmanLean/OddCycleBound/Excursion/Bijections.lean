@@ -26,6 +26,9 @@ def qpCount : List Bool → ℕ
   | [_] => 0
   | a :: b :: l => (if a = true ∧ b = false then 1 else 0) + qpCount (b :: l)
 
+/--
+@isnad1 id=eq.0h2v.s6.dc7c01acebf0 from=translated src=- shape=285753a9 vocab=d370257b
+-/
 lemma qpCount_append : ∀ l₁ l₂ : List Bool, qpCount (l₁ ++ l₂) =
     qpCount l₁ + qpCount l₂ +
       (if l₁.getLast? = some true ∧ l₂.head? = some false then 1 else 0)
@@ -40,6 +43,9 @@ lemma qpCount_append : ∀ l₁ l₂ : List Bool, qpCount (l₁ ++ l₂) =
       rw [← List.cons_append, qpCount_append (b :: l₁) l₂, List.getLast?_cons_cons]
       ring
 
+/--
+@isnad1 id=eq.0h2v.s4.79474be2a5b3 from=translated src=- shape=d10a75e8 vocab=4647c5c2
+-/
 lemma qpCount_replicate (a : Bool) : ∀ k, qpCount (List.replicate k a) = 0
   | 0 => rfl
   | 1 => rfl
@@ -48,20 +54,35 @@ lemma qpCount_replicate (a : Bool) : ∀ k, qpCount (List.replicate k a) = 0
         qpCount_replicate a (k + 1)]
       cases a <;> simp
 
+/--
+@isnad1 id=eq.0h2v.s4.f25519af44dd from=translated src=- shape=7d0cf695 vocab=02a4d166
+-/
 lemma getLast?_replicate_succ (a : Bool) (k : ℕ) :
     (List.replicate (k + 1) a).getLast? = some a := by
   rw [List.replicate_succ', List.getLast?_concat]
 
+/--
+@isnad1 id=eq.0h1v.s3.93970ddb9620 from=translated src=- shape=9a27ce44 vocab=cd07a3b6
+-/
 lemma qpCount_blk (p : ℕ × ℕ) : qpCount (blk p) = 0 := by
   rw [blk, qpCount_append, qpCount_replicate, qpCount_replicate, getLast?_replicate_succ]
   simp
 
+/--
+@isnad1 id=eq.0h1v.s3.e2119e88b359 from=translated src=- shape=4613b990 vocab=9b120121
+-/
 lemma getLast?_blk (p : ℕ × ℕ) : (blk p).getLast? = some true := by
   rw [blk, List.getLast?_append_of_ne_nil _ (by simp), getLast?_replicate_succ]
 
+/--
+@isnad1 id=eq.0h2v.s4.54b62e289501 from=translated src=- shape=b55b1678 vocab=5adba1c3
+-/
 lemma head?_blk_append (p : ℕ × ℕ) (l : List Bool) : (blk p ++ l).head? = some false := by
   simp [blk, List.replicate_succ]
 
+/--
+@isnad1 id=eq.1h1v.s4.cab0d29076e1 from=translated src=- shape=8ea78c51 vocab=1a5c0159
+-/
 lemma getLast?_blockWord : ∀ {t : List (ℕ × ℕ)}, t ≠ [] → (blockWord t).getLast? = some true
   | [p], _ => by simp [getLast?_blk]
   | p :: p' :: t, _ => by
@@ -69,6 +90,9 @@ lemma getLast?_blockWord : ∀ {t : List (ℕ × ℕ)}, t ≠ [] → (blockWord 
       · exact getLast?_blockWord (List.cons_ne_nil _ _)
       · simp [blk]
 
+/--
+@isnad1 id=eq.1h1v.s5.30f67e288925 from=translated src=- shape=a74e3249 vocab=85cc7570
+-/
 lemma qpCount_blockWord : ∀ {t : List (ℕ × ℕ)}, t ≠ [] → qpCount (blockWord t) + 1 = t.length
   | [p], _ => by simp [qpCount_blk]
   | p :: p' :: t, _ => by
@@ -83,16 +107,25 @@ def IsPQ (l : List Bool) : Prop := l.head? = some false ∧ l.getLast? = some tr
 
 instance : DecidablePred IsPQ := fun _ => inferInstanceAs (Decidable (_ ∧ _))
 
+/--
+@isnad1 id=ispq.1h1v.s4.ad0546ffebac from=translated src=- shape=8998d09b vocab=e90ed4fd
+-/
 lemma isPQ_blockWord {t : List (ℕ × ℕ)} (ht : t ≠ []) : IsPQ (blockWord t) := by
   obtain ⟨p, t', rfl⟩ := List.exists_cons_of_ne_nil ht
   exact ⟨by rw [blockWord_cons, head?_blk_append], getLast?_blockWord ht⟩
 
 /-! ### Marks of cyclic words and boundaries of linear words -/
 
+/--
+@isnad1 id=eq.0h2v.s5.f05e34b67ee9 from=translated src=- shape=9db48b31 vocab=55a9426f
+-/
 lemma getLast?_ofFn {n : ℕ} (v : Fin (n + 1) → Bool) :
     (List.ofFn v).getLast? = some (v (Fin.last n)) := by
   rw [List.ofFn_succ', List.concat_eq_append, List.getLast?_concat]
 
+/--
+@isnad1 id=eq.0h2v.s6.efddbd2285f5 from=translated src=- shape=fa06db85 vocab=2dfb4566
+-/
 lemma sum_lin_qp : ∀ {n : ℕ} (v : Fin (n + 1) → Bool),
     (∑ i : Fin n, if v i.castSucc = true ∧ v i.succ = false then 1 else 0) =
       qpCount (List.ofFn v)
@@ -108,7 +141,9 @@ lemma sum_lin_qp : ∀ {n : ℕ} (v : Fin (n + 1) → Bool),
 
 /-! ### The bijections -/
 
-/-- **Linear words `P … Q` with `r` `Q`-blocks biject with block-length tuples.**-/
+/-- **Linear words `P … Q` with `r` `Q`-blocks biject with block-length tuples.**
+@isnad1 id=eq.2h3v.s7.e235ebe263d5 from=translated src=- shape=27bf582d vocab=b0b0b0d2
+-/
 theorem sum_pq_eq_sum_tuples {L r : ℕ} (hr : 1 ≤ r) (h2r : 2 * r ≤ L) (H : List Bool → ℝ) :
     ∑ l ∈ (allWords L).filter (fun l => IsPQ l ∧ qpCount l + 1 = r), H l =
       ∑ t ∈ tuples r (L - 2 * r), H (blockWord t) := by
@@ -134,7 +169,9 @@ theorem sum_pq_eq_sum_tuples {L r : ℕ} (hr : 1 ≤ r) (h2r : 2 * r ≤ L) (H :
     exact ⟨hqp, by omega⟩
 
 /-- **Linear words not starting with `Q` biject with pairs (block-length tuple, final
-`P`-block).**-/
+`P`-block).**
+@isnad1 id=eq.0h2v.s7.2dfa6e473ed4 from=translated src=- shape=57117071 vocab=fc73ccd7
+-/
 theorem sum_head_ne_true_eq (L : ℕ) (H : List Bool → ℝ) :
     ∑ l ∈ (allWords L).filter (fun l => l.head? ≠ some true), H l =
       ∑ r ∈ range (L + 1), ∑ N ∈ range (L + 1),

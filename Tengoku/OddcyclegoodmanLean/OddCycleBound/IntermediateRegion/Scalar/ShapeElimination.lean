@@ -12,6 +12,9 @@ noncomputable def shapeThreshold
     (alpha q L z K : Real) : Real :=
   ((alpha - q) * z + (alpha - L) * K) / (2 * Real.sqrt z)
 
+/--
+@isnad1 id=le.6h5v.s7.770180ddde30 from=translated src=- shape=3cdd471c vocab=00556b22
+-/
 theorem shapeThreshold_lower
     {alpha q L z K : Real}
     (halpha : 0 < alpha)

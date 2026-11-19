@@ -10,6 +10,9 @@ namespace AdmissibleParams
 
 variable (P : AdmissibleParams)
 
+/--
+@isnad1 id=lt.0h1v.s3.6df165fe0fbe from=translated src=- shape=b70c6bb1 vocab=f82d0a54
+-/
 theorem L_lt_q : P.L < P.q := by
   have hpq : P.p * P.q - P.alpha ^ 2 < P.q ^ 2 := by
     have halphaSq : P.q ^ 2 < P.alpha ^ 2 :=

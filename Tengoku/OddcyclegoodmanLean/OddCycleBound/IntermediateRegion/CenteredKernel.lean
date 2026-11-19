@@ -21,10 +21,16 @@ def centeredInput (mu : Measure Omega) (f : Omega -> Real) : Omega -> Real :=
   fun x => f x - mean mu f
 
 omit [IsProbabilityMeasure mu] in
+/--
+@isnad1 id=good.1h3v.s4.07c186907b2a from=translated src=- shape=e78d908f vocab=a982a408
+-/
 lemma good_centeredInput {f : Omega -> Real} (hf : Good f) :
     Good (centeredInput mu f) := by
   exact good_sub hf (DenseRegion.good_const (Omega := Omega) (mean mu f))
 
+/--
+@isnad1 id=eq.1h3v.s5.aa3067232aaf from=translated src=- shape=666a1921 vocab=c1889b71
+-/
 lemma mean_centeredInput {f : Omega -> Real} (hf : Good f) :
     mean mu (centeredInput mu f) = 0 := by
   unfold centeredInput mean
@@ -36,6 +42,9 @@ noncomputable def centeredKernelOp (hW : IsGraphon W mu) :
   kernelOpGoodKCLM (mu := mu) (centeredKernel_goodK hW)
     (by norm_num : (0 : Real) <= 4) (abs_centeredKernel_le_four hW)
 
+/--
+@isnad1 id=eq.2h5v.s5.1c94d7fdded3 from=translated src=- shape=46651e91 vocab=64a46bd1
+-/
 lemma kernelOp_centeredKernel_eq_compress_centeredInput
     (hW : IsGraphon W mu) {f : Omega -> Real} (hf : Good f) (x : Omega) :
     kernelOp (centeredKernel W mu) mu f x =
@@ -137,6 +146,9 @@ lemma kernelOp_centeredKernel_eq_compress_centeredInput
   dsimp [c]
   ring
 
+/--
+@isnad1 id=eq.2h4v.s12.e04c2cf954d1 from=translated src=- shape=92949466 vocab=19c93030
+-/
 lemma centeredGraphonOp_apply_goodL2
     (hW : IsGraphon W mu) {f : Omega -> Real} (hf : Good f) :
     centeredGraphonOp hW (goodL2 (mu := mu) hf) =
@@ -176,6 +188,9 @@ lemma centeredGraphonOp_apply_goodL2
     (good_memLp_two (good_compress hW hfc))
     (ae_of_all _ fun _ => by rfl)
 
+/--
+@isnad1 id=eq.2h4v.s13.97a5884d2d13 from=translated src=- shape=2974c860 vocab=84b28a66
+-/
 lemma centeredKernelOp_apply_goodL2
     (hW : IsGraphon W mu) {f : Omega -> Real} (hf : Good f) :
     centeredKernelOp hW (goodL2 (mu := mu) hf) =
@@ -189,6 +204,9 @@ lemma centeredKernelOp_apply_goodL2
     (good_memLp_two (good_compress hW (good_centeredInput (mu := mu) hf)))
     (ae_of_all _ fun x => kernelOp_centeredKernel_eq_compress_centeredInput hW hf x)
 
+/--
+@isnad1 id=eq.1h3v.s11.1af0ff99d329 from=translated src=- shape=95f00871 vocab=79be8fa5
+-/
 theorem centeredKernelOp_eq_centeredGraphonOp (hW : IsGraphon W mu) :
     centeredKernelOp hW = centeredGraphonOp hW := by
   apply ContinuousLinearMap.ext (R₁ := Real)

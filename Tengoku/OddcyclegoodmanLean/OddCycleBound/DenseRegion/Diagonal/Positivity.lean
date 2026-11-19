@@ -12,6 +12,9 @@ abbrev DiagKernelPosEll : Prop :=
   ∀ {m r t : ℕ}, 1 ≤ r → m - 2 * r = 2 * t + 1 → ∀ {q ℓ : ℝ},
     0 ≤ q → q ≤ 1 / 3 → 0 < ℓ → 0 ≤ diagKernel m r q ℓ
 
+/--
+@isnad1 id=le.7h4v.s7.36311debebb9 from=translated src=- shape=da1a05a8 vocab=af48a301
+-/
 theorem diagKernel_nonneg_uniform (hpos : DiagKernelPosEll)
     {m r : ℕ} (hm : Odd m) (hr : 1 ≤ r) (hres : 2 * r < m) {q ℓ : ℝ}
     (hq0 : 0 ≤ q) (hq : q ≤ 1 / 3) (_hℓ : ℓ ∈ Set.Icc (-(1 : ℝ) / 2) (1 / 2)) :

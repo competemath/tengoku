@@ -27,15 +27,24 @@ variable {U : Ω → Ω → ℝ}
 def SameNbhd (μ : Measure Ω) (U : Ω → Ω → ℝ) (x y : Ω) : Prop := ∀ᵐ z ∂μ, U x z = U y z
 
 omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=samenbhd.1h5v.s5.213607277606 from=translated src=- shape=37c1ccbd vocab=736f01c3
+-/
 lemma SameNbhd.symm {x y : Ω} (h : SameNbhd μ U x y) : SameNbhd μ U y x :=
   h.mono fun _ hz => hz.symm
 
 omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=samenbhd.2h6v.s5.046735439f45 from=translated src=- shape=1f4368d4 vocab=736f01c3
+-/
 lemma SameNbhd.trans {x y z : Ω} (h1 : SameNbhd μ U x y) (h2 : SameNbhd μ U y z) :
     SameNbhd μ U x z := by
   filter_upwards [h1, h2] with w hw1 hw2
   rw [hw1, hw2]
 
+/--
+@isnad1 id=measurab.1h3v.s6.6da9d9c6c058 from=translated src=- shape=0258669d vocab=3669d7d6
+-/
 lemma measurableSet_sameNbhd (hU : Measurable (Function.uncurry U)) :
     MeasurableSet {p : Ω × Ω | SameNbhd μ U p.1 p.2} := by
   set D : Set ((Ω × Ω) × Ω) := {r | U r.1.1 r.2 ≠ U r.1.2 r.2} with hDdef
@@ -58,11 +67,17 @@ lemma measurableSet_sameNbhd (hU : Measurable (Function.uncurry U)) :
 /-- The neighbourhood class of `x`.-/
 def nbhdClass (μ : Measure Ω) (U : Ω → Ω → ℝ) (x : Ω) : Set Ω := {y | SameNbhd μ U x y}
 
+/--
+@isnad1 id=measurab.1h4v.s5.080e903c7dbb from=translated src=- shape=d934c252 vocab=9f276c26
+-/
 lemma measurableSet_nbhdClass (hU : Measurable (Function.uncurry U)) (x : Ω) :
     MeasurableSet (nbhdClass μ U x) :=
   measurable_prodMk_left (measurableSet_sameNbhd (μ := μ) hU)
 
 omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=disjoint.1h5v.s6.897dcc750977 from=translated src=- shape=61d2cd1d vocab=88e22d6b
+-/
 lemma disjoint_nbhdClass {x y : Ω} (h : ¬ SameNbhd μ U x y) :
     Disjoint (nbhdClass μ U x) (nbhdClass μ U y) := by
   rw [Set.disjoint_left]
@@ -71,7 +86,9 @@ lemma disjoint_nbhdClass {x y : Ω} (h : ¬ SameNbhd μ U x y) :
 
 open Classical in
 /-- Under the hypotheses of the clique decomposition, `U` is a.e. the indicator of the relation
-`SameNbhd`.-/
+`SameNbhd`.
+@isnad1 id=eventual.5h4v.s8.645390986e73 from=translated src=- shape=13be35f5 vocab=393e3b47
+-/
 lemma ae_eq_ite_sameNbhd (hU : IsGraphon U μ) {q : ℝ} (hq : 0 < q)
     (hdeg : ∀ᵐ x ∂μ, degree U μ x = q)
     (h01 : ∀ᵐ p ∂(μ.prod μ), U p.1 p.2 = 0 ∨ U p.1 p.2 = 1)
@@ -136,6 +153,9 @@ lemma ae_eq_ite_sameNbhd (hU : IsGraphon U μ) {q : ℝ} (hq : 0 < q)
     have := pow_eq_zero_iff two_ne_zero |>.mp this
     linarith
 
+/--
+@isnad1 id=eventual.5h4v.s7.279e7df0c225 from=translated src=- shape=42ca4845 vocab=4d5973ec
+-/
 lemma ae_measureReal_nbhdClass (hU : IsGraphon U μ) {q : ℝ} (hq : 0 < q)
     (hdeg : ∀ᵐ x ∂μ, degree U μ x = q)
     (h01 : ∀ᵐ p ∂(μ.prod μ), U p.1 p.2 = 0 ∨ U p.1 p.2 = 1)
@@ -158,6 +178,9 @@ def GoodFamily (q : ℝ) (n : ℕ) : Prop :=
   ∃ e : Fin n → Ω, (∀ i, μ.real (nbhdClass μ U (e i)) = q) ∧
     Pairwise fun i j => ¬ SameNbhd μ U (e i) (e j)
 
+/--
+@isnad1 id=eq.3h6v.s6.b8945c62ffee from=translated src=- shape=4e3ce279 vocab=bdd2217d
+-/
 lemma measureReal_iUnion_family (hU : Measurable (Function.uncurry U)) {q : ℝ} {n : ℕ}
     {e : Fin n → Ω} (he : ∀ i, μ.real (nbhdClass μ U (e i)) = q)
     (hdist : Pairwise fun i j => ¬ SameNbhd μ U (e i) (e j)) :
@@ -166,6 +189,9 @@ lemma measureReal_iUnion_family (hU : Measurable (Function.uncurry U)) {q : ℝ}
     (fun i => measurableSet_nbhdClass hU (e i))]
   simp [he]
 
+/--
+@isnad1 id=le.2h5v.s6.bcb57143e6da from=translated src=- shape=d98b216f vocab=c056118e
+-/
 lemma GoodFamily.card_mul_le (hU : Measurable (Function.uncurry U)) {q : ℝ} {n : ℕ}
     (h : GoodFamily μ U q n) : (n : ℝ) * q ≤ 1 := by
   obtain ⟨e, he, hdist⟩ := h

@@ -8,6 +8,9 @@ open MeasureTheory
 
 namespace OddCycleBound.DenseRegion
 
+/--
+@isnad1 id=diagkern.0h0v.s0.7b96ba202ff4 from=translated src=- shape=45709ebd vocab=7b96ba20
+-/
 theorem diagKernelPosEll_unconditional : DiagKernelPosEll :=
   diagKernel_nonneg_pos_ell gamma_moment_inequality
 

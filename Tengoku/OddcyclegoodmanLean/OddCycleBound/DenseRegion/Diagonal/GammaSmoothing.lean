@@ -11,6 +11,9 @@ open scoped BigOperators
 
 namespace OddCycleBound.DenseRegion
 
+/--
+@isnad1 id=integrab.1h2v.s6.5eb950fdd432 from=translated src=- shape=cfcf02bd vocab=701c7a50
+-/
 lemma powExpMul_integrableOn (m : ℕ) (w : ℝ) (hw : 0 < w) :
     IntegrableOn (fun T => T ^ (m - 1) * Real.exp (-(w * T))) (Set.Ioi (0 : ℝ)) := by
   have hg : IntegrableOn (fun x => x ^ (m - 1) * Real.exp (-x)) (Set.Ioi (0 : ℝ)) := by
@@ -28,6 +31,9 @@ lemma powExpMul_integrableOn (m : ℕ) (w : ℝ) (hw : 0 < w) :
   have hwne : (w ^ (m - 1) : ℝ) ≠ 0 := by positivity
   rw [mul_pow, ← mul_assoc, ← mul_assoc, inv_mul_cancel₀ hwne, one_mul]
 
+/--
+@isnad1 id=eq.2h5v.s7.2de8d23fbbed from=translated src=- shape=cfb8da87 vocab=6c871ec5
+-/
 lemma smoothing_inner (n m r : ℕ) (hr : 1 ≤ r) (q T : ℝ) (hT : 0 < T) :
     ∫ s in Set.Ioi (0 : ℝ), s ^ (r - 1) * rho n m (q + s) * Real.exp (-(T * s))
       = (T ^ r)⁻¹ * gExp r (fun y => rho n m (q + y / T)) := by
@@ -50,6 +56,9 @@ lemma smoothing_inner (n m r : ℕ) (hr : 1 ≤ r) (q T : ℝ) (hT : 0 < T) :
   have hTr : (T ^ r : ℝ) = T ^ (r - 1) * T := by rw [← pow_succ]; congr 1; omega
   rw [hTr, mul_inv, mul_assoc, ← hcomp, ← mul_assoc, inv_mul_cancel₀ hne, one_mul]
 
+/--
+@isnad1 id=integrab.3h4v.s8.39c537ff1ba9 from=translated src=- shape=75e7fa06 vocab=330362ac
+-/
 lemma smoothing_jointIntegrable {m r : ℕ} (hr : 1 ≤ r) (hn : 1 ≤ m - 2 * r) (q ℓ : ℝ) (hl : 0 < ℓ) :
     Integrable (Function.uncurry (fun s T => s ^ (r - 1) * rho (m - 2 * r) m (q + s)
         * (T ^ (m - 1) * Real.exp (-((ℓ + s) * T)))))
@@ -89,6 +98,9 @@ lemma smoothing_jointIntegrable {m r : ℕ} (hr : 1 ≤ r) (hn : 1 ≤ m - 2 * r
       norm_div, Real.norm_of_nonneg (pow_nonneg hℓs.le m)]
     ring
 
+/--
+@isnad1 id=le.6h5v.s8.078a78478977 from=translated src=- shape=872eea4b vocab=cd96c157
+-/
 theorem kernelIntegral_nonneg {m r t : ℕ} (hr : 1 ≤ r) (ht : m - 2 * r = 2 * t + 1)
     (hmoment : ∀ j : ℕ, 1 ≤ j → ∀ z : ℝ, 0 ≤ z →
       3 * (j : ℝ) * gExp r (fun y => (z * y - 1) ^ (2 * j - 1))
@@ -140,6 +152,9 @@ theorem kernelIntegral_nonneg {m r t : ℕ} (hr : 1 ≤ r) (ht : m - 2 * r = 2 *
   rw [hfun]
   exact shifted_gamma_positive_of_moment_bound t r hr hmoment q (1 / T) hq0 hq (by positivity)
 
+/--
+@isnad1 id=diagkern.1h0v.s7.9cdc9afd400f from=translated src=- shape=6d7ecf20 vocab=a97e1c1c
+-/
 theorem diagKernel_nonneg_pos_ell
     (hmoment : ∀ r : ℕ, 1 ≤ r → ∀ j : ℕ, 1 ≤ j → ∀ z : ℝ, 0 ≤ z →
       3 * (j : ℝ) * gExp r (fun y => (z * y - 1) ^ (2 * j - 1))

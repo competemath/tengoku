@@ -8,6 +8,9 @@ open scoped BigOperators
 
 namespace OddCycleBound.DenseRegion
 
+/--
+@isnad1 id=eq.0h5v.s8.869a4b33858d from=translated src=- shape=82ec197f vocab=f4860d52
+-/
 lemma beta_binom_pow (a b : ℕ) (c d : ℝ) (k : ℕ) :
     (∫ x in (0:ℝ)..1, x ^ a * (1 - x) ^ b * (c * x + d * (1 - x)) ^ k)
       = ∑ i ∈ Finset.range (k + 1),
@@ -33,6 +36,9 @@ lemma beta_binom_pow (a b : ℕ) (c d : ℝ) (k : ℕ) :
   rw [Finset.mem_range, Nat.lt_succ_iff] at hi
   rw [intervalIntegral.integral_const_mul, beta_nat (a + i) (b + (k - i))]
 
+/--
+@isnad1 id=eq.0h5v.s8.b68c235c1eef from=translated src=- shape=bb5f7183 vocab=95987e96
+-/
 lemma beta_hsym (a b : ℕ) (c d : ℝ) (k : ℕ) :
     (∫ x in (0:ℝ)..1, x ^ a * (1 - x) ^ b * (c * x + d * (1 - x)) ^ k)
       = (Nat.factorial a * Nat.factorial b * Nat.factorial k : ℝ) / Nat.factorial (a + b + k + 1)
@@ -76,6 +82,9 @@ private lemma choose_fact_cancel {m r : ℕ} (hr : r ≠ 0) (hn : 1 ≤ m - 2 * 
   rw [show m - 1 - (2 * r - 1) = m - 2 * r from by omega] at h
   exact_mod_cast h
 
+/--
+@isnad1 id=eq.2h2v.s7.2817e93b04ce from=translated src=- shape=5cca325a vocab=756ef923
+-/
 lemma Cmr_K_eq {m r : ℕ} (hr : r ≠ 0) (hn : 1 ≤ m - 2 * r) :
     Cmr m r * ((m : ℝ) / ((m - 2 * r : ℕ) : ℝ))
         * ((Nat.factorial (r - 1) * Nat.factorial (r - 1) * Nat.factorial (m - 2 * r) : ℝ)
@@ -90,6 +99,9 @@ lemma Cmr_K_eq {m r : ℕ} (hr : r ≠ 0) (hn : 1 ≤ m - 2 * r) :
   field_simp
   linear_combination (m : ℝ) * hchoose
 
+/--
+@isnad1 id=eq.2h2v.s7.267d495f8582 from=translated src=- shape=65543e81 vocab=756ef923
+-/
 lemma Cmr_K3_eq {m r : ℕ} (hr : r ≠ 0) (hn : 1 ≤ m - 2 * r) :
     Cmr m r * ((Nat.factorial r * Nat.factorial (r - 1) * Nat.factorial (m - 2 * r - 1) : ℝ)
         / Nat.factorial (m - 1))
@@ -109,6 +121,9 @@ lemma Cmr_K3_eq {m r : ℕ} (hr : r ≠ 0) (hn : 1 ≤ m - 2 * r) :
   field_simp
   linear_combination hchoose
 
+/--
+@isnad1 id=eq.2h4v.s8.9be94c1835fb from=translated src=- shape=24088e16 vocab=3ec29abe
+-/
 lemma gform_eq {m r : ℕ} (hr : r ≠ 0) (hn : 1 ≤ m - 2 * r) (q ℓ : ℝ) :
     diagKernel m r q ℓ
       = Cmr m r * ∫ x in (0:ℝ)..1, x ^ (r - 1) * (1 - x) ^ (r - 1)
@@ -165,6 +180,9 @@ lemma gform_eq {m r : ℕ} (hr : r ≠ 0) (hn : 1 ≤ m - 2 * r) (q ℓ : ℝ) :
       - hsym (List.replicate r (1 - q) ++ List.replicate r (-ℓ)) (m - 2 * r)) * Cmr_K_eq hr hn
     + hsym (List.replicate (r + 1) q ++ List.replicate r ℓ) (m - 2 * r - 1) * Cmr_K3_eq hr hn
 
+/--
+@isnad1 id=lt.2h2v.s5.00ed363468bd from=translated src=- shape=cc55dc97 vocab=ce5c8346
+-/
 lemma Cmr_pos {m r : ℕ} (hr : r ≠ 0) (hn : 1 ≤ m - 2 * r) : 0 < Cmr m r := by
   have hc : 0 < (Nat.choose (m - 1) (2 * r - 1) : ℝ) :=
     mod_cast Nat.choose_pos (show 2 * r - 1 ≤ m - 1 from by omega)
@@ -175,6 +193,9 @@ lemma Cmr_pos {m r : ℕ} (hr : r ≠ 0) (hn : 1 ≤ m - 2 * r) : 0 < Cmr m r :=
   unfold Cmr
   exact div_pos (mul_pos (div_pos (mul_pos hc hn0) hr0) hf1) (by positivity)
 
+/--
+@isnad1 id=eq.2h5v.s8.26a8c9d2fed4 from=translated src=- shape=7defcd7c vocab=a4154407
+-/
 lemma bracket_eq_rho {m r : ℕ} (hn : 1 ≤ m - 2 * r) (q ℓ x : ℝ) (hx : x ≠ 0) :
     ((m : ℝ) / ((m - 2 * r : ℕ) : ℝ))
         * ((q * x + ℓ * (1 - x)) ^ (m - 2 * r) + ((1 - q) * x + (-ℓ) * (1 - x)) ^ (m - 2 * r))
@@ -196,6 +217,9 @@ lemma bracket_eq_rho {m r : ℕ} (hn : 1 ≤ m - 2 * r) (q ℓ x : ℝ) (hx : x 
           + x ^ n * (1 - (q * x + ℓ * (1 - x)) / x) ^ n)
         - x ^ n * ((q * x + ℓ * (1 - x)) / x) ^ (n - 1) from by ring, h1, h2, h3]
 
+/--
+@isnad1 id=le.3h5v.s7.f99f9ec82330 from=translated src=- shape=967c4aaf vocab=8ba776ab
+-/
 lemma diagKernel_nonneg_of_rho {m r t : ℕ} (hr : r ≠ 0) (ht : m - 2 * r = 2 * t + 1) (q ℓ : ℝ)
     (hrho : ∀ x, 0 < x → x ≤ 1 → 0 ≤ rho (2 * t + 1) m ((q * x + ℓ * (1 - x)) / x)) :
     0 ≤ diagKernel m r q ℓ := by
@@ -213,11 +237,17 @@ lemma diagKernel_nonneg_of_rho {m r t : ℕ} (hr : r ≠ 0) (ht : m - 2 * r = 2 
   · rw [bracket_eq_rho hn q ℓ x (ne_of_gt hx0), ht]
     exact mul_nonneg (pow_nonneg (le_of_lt hx0) _) (hrho x hx0 hx.2)
 
+/--
+@isnad1 id=le.3h5v.s6.61f55ee45590 from=translated src=- shape=74df34bc vocab=ea1ef95a
+-/
 theorem diagKernel_nonneg_two_r_ge {m r t : ℕ} (hr : r ≠ 0) (ht : m - 2 * r = 2 * t + 1)
     (h2r : 2 * t + 1 ≤ 2 * r) (q ℓ : ℝ) : 0 ≤ diagKernel m r q ℓ := by
   refine diagKernel_nonneg_of_rho hr ht q ℓ (fun x _ _ => ?_)
   exact rho_empty t m (by exact_mod_cast (show 2 * (2 * t + 1) ≤ m from by omega)) _
 
+/--
+@isnad1 id=le.4h5v.s6.3bff0fbb8d38 from=translated src=- shape=f881079a vocab=40f4c799
+-/
 theorem diagKernel_nonneg_le_zero {m r t : ℕ} (hr : r ≠ 0) (ht : m - 2 * r = 2 * t + 1)
     (q ℓ : ℝ) (hq : q ≤ 1 / 2) (hl : ℓ ≤ 0) : 0 ≤ diagKernel m r q ℓ := by
   refine diagKernel_nonneg_of_rho hr ht q ℓ (fun x hx0 hx1 => ?_)

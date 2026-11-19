@@ -11,6 +11,9 @@ namespace OddCycleBound.DenseRegion
 noncomputable def rho (n m : ℕ) (u : ℝ) : ℝ :=
   (m / n : ℝ) * (u ^ n + (1 - u) ^ n) - u ^ (n - 1)
 
+/--
+@isnad1 id=eq.0h3v.s8.3148ca15c2d8 from=translated src=- shape=e983ab88 vocab=01a05bbf
+-/
 lemma rho_rearrange1 (t m : ℕ) (u : ℝ) :
     rho (2 * t + 1) m u
       = (m : ℝ) / (2 * (t : ℝ) + 1) * (1 - u) * ((1 - u) ^ (2 * t) - u ^ (2 * t))
@@ -21,6 +24,9 @@ lemma rho_rearrange1 (t m : ℕ) (u : ℝ) :
   rw [pow_succ u (2 * t), pow_succ (1 - u) (2 * t)]
   ring
 
+/--
+@isnad1 id=le.2h3v.s6.69b94846977e from=translated src=- shape=aaec747f vocab=da00e0c9
+-/
 lemma rho_window_left (t m : ℕ) (hm : (2 * (t : ℝ) + 1) ≤ (m : ℝ)) (u : ℝ) (hu : u ≤ 1 / 2) :
     0 ≤ rho (2 * t + 1) m u := by
   rw [rho_rearrange1]
@@ -36,6 +42,9 @@ lemma rho_window_left (t m : ℕ) (hm : (2 * (t : ℝ) + 1) ≤ (m : ℝ)) (u : 
     mul_nonneg (by linarith) (by rw [pow_mul]; exact pow_nonneg (sq_nonneg u) t)
   linarith
 
+/--
+@isnad1 id=eq.0h3v.s7.f8efa3888f35 from=translated src=- shape=12dde872 vocab=01a05bbf
+-/
 lemma rho_rearrange2 (t m : ℕ) (u : ℝ) :
     rho (2 * t + 1) m u
       = (m : ℝ) / (2 * (t : ℝ) + 1) * (1 - u) ^ (2 * t + 1)
@@ -46,6 +55,9 @@ lemma rho_rearrange2 (t m : ℕ) (u : ℝ) :
   rw [pow_succ u (2 * t)]
   ring
 
+/--
+@isnad1 id=le.2h3v.s7.285428f97449 from=translated src=- shape=c8d830ef vocab=ce0edb44
+-/
 lemma rho_window_right (t m : ℕ) (hm : (2 * (t : ℝ) + 1) ≤ (m : ℝ)) (u : ℝ)
     (hu : (2 * (t : ℝ) + 1) ≤ (m : ℝ) * u) : 0 ≤ rho (2 * t + 1) m u := by
   have hn1 : (0 : ℝ) < 2 * (t : ℝ) + 1 := by positivity
@@ -79,6 +91,9 @@ lemma rho_window_right (t m : ℕ) (hm : (2 * (t : ℝ) + 1) ≤ (m : ℝ)) (u :
     push_cast
     nlinarith [hmn, hD, mul_nonneg (sub_nonneg.mpr hmn) hDpos]
 
+/--
+@isnad1 id=le.1h3v.s6.a7edb4dbb913 from=translated src=- shape=b8c022fc vocab=ce0edb44
+-/
 lemma rho_empty (t m : ℕ) (hm : 2 * (2 * (t : ℝ) + 1) ≤ (m : ℝ)) (u : ℝ) :
     0 ≤ rho (2 * t + 1) m u := by
   have ht : (0 : ℝ) ≤ (t : ℝ) := Nat.cast_nonneg t

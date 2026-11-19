@@ -31,11 +31,17 @@ end Numerical
 variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
 variable {U : Ω → Ω → ℝ}
 
+/--
+@isnad1 id=eq.1h4v.s5.4e6e311793ce from=translated src=- shape=ef0421d1 vocab=b6f193df
+-/
 lemma edgeDensity_of_regular {q : ℝ}
     (hdeg : ∀ᵐ x ∂μ, degree U μ x = q) : edgeDensity U μ = q := by
   rw [edgeDensity, mean, integral_congr_ae hdeg]
   simp
 
+/--
+@isnad1 id=eq.1h3v.s6.bbf040370e50 from=translated src=- shape=61cbda6e vocab=bd333bcc
+-/
 lemma integral_prod_eq_edgeDensity (hU : IsGraphon U μ) :
     ∫ p, U p.1 p.2 ∂(μ.prod μ) = edgeDensity U μ := by
   have hint : Integrable (fun p : Ω × Ω => U p.1 p.2) (μ.prod μ) :=
@@ -43,6 +49,9 @@ lemma integral_prod_eq_edgeDensity (hU : IsGraphon U μ) :
   rw [integral_prod _ hint]
   rfl
 
+/--
+@isnad1 id=le.1h3v.s5.f10d5f4ae9db from=translated src=- shape=c86f05de vocab=84fa1920
+-/
 lemma hsInner_self_le_edgeDensity (hU : IsGraphon U μ) :
     hsInner μ U U ≤ edgeDensity U μ := by
   have hGU := goodK_of_isGraphon hU
@@ -53,6 +62,9 @@ lemma hsInner_self_le_edgeDensity (hU : IsGraphon U μ) :
   show U p.1 p.2 * U p.1 p.2 ≤ U p.1 p.2
   nlinarith
 
+/--
+@isnad1 id=eventual.2h3v.s6.740b41f51bcf from=translated src=- shape=624a2b3e vocab=a04af8a8
+-/
 lemma zero_or_one_of_hsInner_self_eq (hU : IsGraphon U μ)
     (h : hsInner μ U U = edgeDensity U μ) :
     ∀ᵐ p ∂(μ.prod μ), U p.1 p.2 = 0 ∨ U p.1 p.2 = 1 := by

@@ -24,6 +24,9 @@ def completePartite (k : ℕ) : Fin k → Fin k → ℝ := fun i j => if i = j t
 /-- The uniform probability measure on `Fin k`.-/
 noncomputable def uniformFin (k : ℕ) : Measure (Fin k) := (k : ℝ≥0∞)⁻¹ • Measure.count
 
+/--
+@isnad1 id=isgrapho.0h1v.s3.2579eaec8c0c from=translated src=- shape=ca92e646 vocab=7dda4a9d
+-/
 lemma isGraphon_completePartite (k : ℕ) : IsGraphon (completePartite k) (uniformFin k) where
   meas := measurable_of_finite _
   nonneg i j := by unfold completePartite; split_ifs <;> norm_num

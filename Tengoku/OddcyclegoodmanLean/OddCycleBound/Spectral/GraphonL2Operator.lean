@@ -22,6 +22,9 @@ variable {Omega : Type u} [MeasurableSpace Omega] {mu : Measure Omega}
 variable [IsProbabilityMeasure mu]
 variable {W : Omega -> Omega -> Real}
 
+/--
+@isnad1 id=memlp.1h3v.s6.e06e20619229 from=translated src=- shape=6ff9b21f vocab=f653c04f
+-/
 lemma good_memLp_two {f : Omega -> Real} (hf : Good f) :
     MemLp f 2 mu := by
   obtain ⟨C, _hC0, hC⟩ := hf.bdd
@@ -29,18 +32,27 @@ lemma good_memLp_two {f : Omega -> Real} (hf : Good f) :
     (ae_of_all _ fun x => by
       simpa [Real.norm_eq_abs] using hC x)
 
+/--
+@isnad1 id=good.1h2v.s4.0a04a916402d from=translated src=- shape=d73c887a vocab=67dcd420
+-/
 lemma good_abs {f : Omega -> Real} (hf : Good f) :
     Good (fun x => |f x|) := by
   obtain ⟨C, hC0, hC⟩ := hf.bdd
   refine ⟨continuous_abs.comp_stronglyMeasurable hf.meas, ⟨C, hC0, fun x => ?_⟩⟩
   simpa [abs_abs] using hC x
 
+/--
+@isnad1 id=good.1h2v.s4.35608b39d7f1 from=translated src=- shape=d73c887a vocab=2275fe4a
+-/
 lemma good_neg {f : Omega -> Real} (hf : Good f) :
     Good (fun x => - f x) := by
   obtain ⟨C, hC0, hC⟩ := hf.bdd
   refine ⟨hf.meas.neg, C, hC0, fun x => ?_⟩
   simpa using hC x
 
+/--
+@isnad1 id=good.2h3v.s5.73ffbd0948f2 from=translated src=- shape=e7bce992 vocab=a8ffae14
+-/
 lemma good_sub {f g : Omega -> Real} (hf : Good f) (hg : Good g) :
     Good (fun x => f x - g x) := by
   obtain ⟨Cf, hCf0, hCf⟩ := hf.bdd
@@ -54,10 +66,16 @@ def goodL2 {f : Omega -> Real} (hf : Good f) :
     Lp Real 2 mu :=
   (good_memLp_two hf).toLp f
 
+/--
+@isnad1 id=eventual.1h3v.s7.9e8239254d27 from=translated src=- shape=66d5664d vocab=d714e79d
+-/
 lemma goodL2_ae_eq {f : Omega -> Real} (hf : Good f) :
     (goodL2 (mu := mu) hf : Omega -> Real) =ᵐ[mu] f :=
   MemLp.coeFn_toLp (good_memLp_two hf)
 
+/--
+@isnad1 id=eq.2h4v.s8.de65fa4ee258 from=translated src=- shape=001151e9 vocab=25940c79
+-/
 lemma inner_goodL2_eq_integral_mul {f g : Omega -> Real}
     (hf : Good f) (hg : Good g) :
     inner Real (goodL2 (mu := mu) hf) (goodL2 (mu := mu) hg) =
@@ -70,6 +88,9 @@ lemma inner_goodL2_eq_integral_mul {f g : Omega -> Real}
   rw [hfx, hgx]
   simp [RCLike.inner_apply, mul_comm]
 
+/--
+@isnad1 id=eq.1h3v.s8.9cb002eeb2d0 from=translated src=- shape=97bae290 vocab=34f94db9
+-/
 lemma norm_goodL2_sq_eq_integral_mul {f : Omega -> Real}
     (hf : Good f) :
     ‖goodL2 (mu := mu) hf‖ ^ 2 =
@@ -77,6 +98,9 @@ lemma norm_goodL2_sq_eq_integral_mul {f : Omega -> Real}
   rw [← real_inner_self_eq_norm_sq]
   exact inner_goodL2_eq_integral_mul hf hf
 
+/--
+@isnad1 id=eq.2h4v.s10.d62ecbb36292 from=translated src=- shape=38914f0e vocab=d46ad0ce
+-/
 lemma goodL2_sub {f g : Omega -> Real}
     (hf : Good f) (hg : Good g) :
     goodL2 (mu := mu) (good_sub hf hg) =
@@ -92,6 +116,9 @@ lemma goodL2_sub {f g : Omega -> Real}
     _ = goodL2 (mu := mu) hf - goodL2 (mu := mu) hg := by
           exact MemLp.toLp_sub (good_memLp_two hf) (good_memLp_two hg)
 
+/--
+@isnad1 id=eq.1h3v.s8.72df8767705e from=translated src=- shape=f3be5e18 vocab=aeea98c5
+-/
 lemma goodL2_abs {f : Omega -> Real} (hf : Good f) :
     goodL2 (mu := mu) (good_abs hf) =
       |goodL2 (mu := mu) hf| := by
@@ -101,6 +128,9 @@ lemma goodL2_abs {f : Omega -> Real} (hf : Good f) :
     goodL2_ae_eq (mu := mu) hf] with x hgood hLp hbase
   rw [hgood, hLp, hbase]
 
+/--
+@isnad1 id=eq.1h4v.s11.439762719218 from=translated src=- shape=ae940935 vocab=e5089b14
+-/
 lemma goodL2_smul (c : Real) {f : Omega -> Real} (hf : Good f) :
     goodL2 (mu := mu) (good_smul c hf) =
       c • goodL2 (mu := mu) hf := by
@@ -119,11 +149,17 @@ def oneL2 (mu : Measure Omega) [IsProbabilityMeasure mu] :
     Lp Real 2 mu :=
   (memLp_const (1 : Real)).toLp (fun _ : Omega => 1)
 
+/--
+@isnad1 id=eventual.0h2v.s7.7174c3a89284 from=translated src=- shape=5ce2f297 vocab=840ee49d
+-/
 lemma oneL2_ae_eq_one :
     (oneL2 (Omega := Omega) mu : Omega -> Real) =ᵐ[mu]
       fun _ : Omega => 1 :=
   MemLp.coeFn_toLp (memLp_const (1 : Real))
 
+/--
+@isnad1 id=eq.0h2v.s7.270cdc3bff07 from=translated src=- shape=6594fe98 vocab=2b1a4f6a
+-/
 lemma goodL2_one_eq_oneL2 :
     goodL2 (mu := mu) (good_one (Ω := Omega)) =
       oneL2 (Omega := Omega) mu := by
@@ -132,6 +168,9 @@ lemma goodL2_one_eq_oneL2 :
     (memLp_const (1 : Real))
     (ae_of_all _ fun _ => rfl)
 
+/--
+@isnad1 id=memlp.1h3v.s6.3a56631ed2c0 from=translated src=- shape=26e24470 vocab=c4631707
+-/
 lemma degree_memLp_two (hW : IsGraphon W mu) :
     MemLp (degree W mu) 2 mu :=
   good_memLp_two (good_degree hW)
@@ -140,12 +179,18 @@ def degreeL2 (hW : IsGraphon W mu) : Lp Real 2 mu :=
   (degree_memLp_two hW).toLp (degree W mu)
 
 omit [IsProbabilityMeasure mu] in
+/--
+@isnad1 id=le.1h5v.s5.f32822d0d810 from=translated src=- shape=c7c54887 vocab=3849e258
+-/
 lemma graphon_abs_le_one (hW : IsGraphon W mu) :
     forall x y, |W x y| <= 1 := by
   intro x y
   rw [abs_of_nonneg (hW.nonneg x y)]
   exact hW.le_one x y
 
+/--
+@isnad1 id=good.2h4v.s5.fe1418e3470e from=translated src=- shape=37ae2534 vocab=5c41a44d
+-/
 lemma good_kernelOp_goodK {K : Omega -> Omega -> Real}
     (hK : GoodK K) {f : Omega -> Real} (hf : Good f) :
     Good (kernelOp K mu f) := by
@@ -177,6 +222,9 @@ lemma good_kernelOp_goodK {K : Omega -> Omega -> Real}
           exact mul_le_mul (hCK x y) (hCf y) (abs_nonneg _) hCK0
       _ = CK * Cf := by simp
 
+/--
+@isnad1 id=memlp.2h4v.s6.4ad19cdc3b93 from=translated src=- shape=d5dff2f6 vocab=7d0fd0ee
+-/
 lemma kernelOpGoodK_memLp_two {K : Omega -> Omega -> Real}
     (hK : GoodK K) {f : Omega -> Real} (hf : Good f) :
     MemLp (kernelOp K mu f) 2 mu :=
@@ -187,12 +235,18 @@ def kernelOpL2OfGoodK {K : Omega -> Omega -> Real}
     Lp Real 2 mu :=
   (kernelOpGoodK_memLp_two (mu := mu) hK hf).toLp (kernelOp K mu f)
 
+/--
+@isnad1 id=eventual.2h4v.s8.b3213910e54a from=translated src=- shape=4a51e8bc vocab=5553e13a
+-/
 lemma kernelOpL2OfGoodK_ae_eq {K : Omega -> Omega -> Real}
     (hK : GoodK K) {f : Omega -> Real} (hf : Good f) :
     (kernelOpL2OfGoodK (mu := mu) hK hf : Omega -> Real) =ᵐ[mu]
       kernelOp K mu f :=
   MemLp.coeFn_toLp (kernelOpGoodK_memLp_two (mu := mu) hK hf)
 
+/--
+@isnad1 id=integrab.2h5v.s6.7cd0a38f5cbb from=translated src=- shape=101d485c vocab=9180146e
+-/
 lemma integrable_Kf {K : Omega -> Omega -> Real} (hK : GoodK K)
     {f : Omega -> Real} (hf : Good f) (x : Omega) :
     Integrable (fun y => K x y * f y) mu := by
@@ -208,6 +262,9 @@ lemma integrable_Kf {K : Omega -> Omega -> Real} (hK : GoodK K)
   exact mul_le_mul (hCK x y) (hCf y) (abs_nonneg _) hCK0
 
 omit [IsProbabilityMeasure mu] in
+/--
+@isnad1 id=eq.1h5v.s5.9562198fd691 from=translated src=- shape=68a288b7 vocab=ca5b8956
+-/
 lemma kernelOpGoodK_congr_ae {K : Omega -> Omega -> Real}
     {f g : Omega -> Real} (hfg : f =ᵐ[mu] g) :
     kernelOp K mu f = kernelOp K mu g := by
@@ -218,11 +275,17 @@ lemma kernelOpGoodK_congr_ae {K : Omega -> Omega -> Real}
   rw [hy]
 
 omit [IsProbabilityMeasure mu] in
+/--
+@isnad1 id=eq.0h4v.s5.d3ffa2a2b94e from=translated src=- shape=2ddef6d1 vocab=7e00ff48
+-/
 lemma comp_rowBroadcast_eq_kernelOp {K : Omega -> Omega -> Real}
     (f : Omega -> Real) :
     comp mu K (fun z _y => f z) = fun x _y => kernelOp K mu f x := by
   rfl
 
+/--
+@isnad1 id=eq.3h5v.s6.cad5deed6035 from=translated src=- shape=fb6cf2ff vocab=87802c47
+-/
 lemma kernelOp_comp_eq_kernelOp_kernelOp {K L : Omega -> Omega -> Real}
     (hK : GoodK K) (hL : GoodK L)
     {f : Omega -> Real} (hf : Good f) :
@@ -249,6 +312,9 @@ noncomputable def kernelOpIter (mu : Measure Omega)
   | 0, f => f
   | n + 1, f => kernelOp K mu (kernelOpIter mu K n f)
 
+/--
+@isnad1 id=good.2h5v.s5.3cb02afbdf0f from=translated src=- shape=97a5987b vocab=f0fb1c66
+-/
 lemma good_kernelOpIter_goodK {K : Omega -> Omega -> Real}
     (hK : GoodK K) {f : Omega -> Real} (hf : Good f) :
     forall n, Good (kernelOpIter mu K n f)
@@ -257,6 +323,9 @@ lemma good_kernelOpIter_goodK {K : Omega -> Omega -> Real}
       good_kernelOp_goodK (mu := mu) hK
         (good_kernelOpIter_goodK hK hf n)
 
+/--
+@isnad1 id=eq.2h5v.s6.329c131fec34 from=translated src=- shape=0772a13a vocab=2e89ddc5
+-/
 lemma kernelOp_compPow_eq_kernelOpIter_succ
     {K : Omega -> Omega -> Real}
     (hK : GoodK K) {f : Omega -> Real} (hf : Good f) :
@@ -278,6 +347,9 @@ lemma kernelOp_compPow_eq_kernelOpIter_succ
         _ =
               kernelOpIter mu K (n + 2) f := rfl
 
+/--
+@isnad1 id=eq.2h5v.s8.a5729d067ee4 from=translated src=- shape=ffd3b186 vocab=986ef063
+-/
 lemma kernelOpL2OfGoodK_compPow_eq_goodL2_iter_succ
     {K : Omega -> Omega -> Real}
     (hK : GoodK K) {f : Omega -> Real} (hf : Good f) (n : Nat) :
@@ -293,6 +365,9 @@ lemma kernelOpL2OfGoodK_compPow_eq_goodL2_iter_succ
       congrFun (kernelOp_compPow_eq_kernelOpIter_succ
         (mu := mu) hK hf n) x)
 
+/--
+@isnad1 id=goodk.2h3v.s5.f43e5c91aa1e from=translated src=- shape=71704a98 vocab=3b3df24a
+-/
 lemma goodK_sub {K L : Omega -> Omega -> Real}
     (hK : GoodK K) (hL : GoodK L) :
     GoodK (fun x y => K x y - L x y) := by
@@ -304,6 +379,9 @@ lemma goodK_sub {K L : Omega -> Omega -> Real}
     |K x y - L x y| <= |K x y| + |L x y| := abs_sub _ _
     _ <= CK + CL := add_le_add (hCK x y) (hCL x y)
 
+/--
+@isnad1 id=eq.4h5v.s8.972e0a4536f4 from=translated src=- shape=056d46f9 vocab=ee8b2dfa
+-/
 lemma kernelOpL2OfGoodK_congr {K : Omega -> Omega -> Real}
     (hK : GoodK K)
     {f g : Omega -> Real} (hf : Good f) (hg : Good g)
@@ -314,6 +392,9 @@ lemma kernelOpL2OfGoodK_congr {K : Omega -> Omega -> Real}
   exact ae_of_all _ fun x =>
     congrFun (kernelOpGoodK_congr_ae (mu := mu) (K := K) hfg) x
 
+/--
+@isnad1 id=eq.3h6v.s6.f15b75fe9352 from=translated src=- shape=cba100db vocab=4c1d78a6
+-/
 lemma kernelOpGoodK_add' {K : Omega -> Omega -> Real}
     (hK : GoodK K) {f g : Omega -> Real}
     (hf : Good f) (hg : Good g) (x : Omega) :
@@ -325,6 +406,9 @@ lemma kernelOpGoodK_add' {K : Omega -> Omega -> Real}
   exact integral_congr_ae (ae_of_all _ fun y => by ring)
 
 omit [IsProbabilityMeasure mu] in
+/--
+@isnad1 id=eq.0h6v.s6.f04067ec736a from=translated src=- shape=17657479 vocab=2217cdcf
+-/
 lemma kernelOpGoodK_smul' {K : Omega -> Omega -> Real}
     (c : Real) (f : Omega -> Real) (x : Omega) :
     kernelOp K mu (c • f) x = c * kernelOp K mu f x := by
@@ -332,6 +416,9 @@ lemma kernelOpGoodK_smul' {K : Omega -> Omega -> Real}
   rw [← integral_const_mul]
   exact integral_congr_ae (ae_of_all _ fun y => by ring)
 
+/--
+@isnad1 id=eq.3h6v.s6.3bbe138cf5fc from=translated src=- shape=6b666ffe vocab=df2e1d91
+-/
 lemma kernelOpGoodK_sub_kernel' {K L : Omega -> Omega -> Real}
     (hK : GoodK K) (hL : GoodK L) {f : Omega -> Real}
     (hf : Good f) (x : Omega) :
@@ -343,6 +430,9 @@ lemma kernelOpGoodK_sub_kernel' {K L : Omega -> Omega -> Real}
     (integrable_Kf (mu := mu) hL hf x)]
   exact integral_congr_ae (ae_of_all _ fun y => by ring)
 
+/--
+@isnad1 id=eq.3h5v.s10.e7cb6455c01a from=translated src=- shape=2f597a7e vocab=0dc7599e
+-/
 lemma kernelOpL2OfGoodK_add {K : Omega -> Omega -> Real}
     (hK : GoodK K)
     {f g : Omega -> Real} (hf : Good f) (hg : Good g) :
@@ -367,6 +457,9 @@ lemma kernelOpL2OfGoodK_add {K : Omega -> Omega -> Real}
             (kernelOpGoodK_memLp_two (mu := mu) hK hf)
             (kernelOpGoodK_memLp_two (mu := mu) hK hg)
 
+/--
+@isnad1 id=eq.2h5v.s11.fb90dc721717 from=translated src=- shape=407e385b vocab=474688ed
+-/
 lemma kernelOpL2OfGoodK_smul {K : Omega -> Omega -> Real}
     (hK : GoodK K)
     (c : Real) {f : Omega -> Real} (hf : Good f) :
@@ -385,6 +478,9 @@ lemma kernelOpL2OfGoodK_smul {K : Omega -> Omega -> Real}
           exact MemLp.toLp_const_smul c
             (kernelOpGoodK_memLp_two (mu := mu) hK hf)
 
+/--
+@isnad1 id=eq.3h5v.s10.68e90b434e88 from=translated src=- shape=69589768 vocab=8f2e8d11
+-/
 lemma kernelOpL2OfGoodK_sub_input {K : Omega -> Omega -> Real}
     (hK : GoodK K)
     {f g : Omega -> Real} (hf : Good f) (hg : Good g) :
@@ -418,6 +514,9 @@ lemma kernelOpL2OfGoodK_sub_input {K : Omega -> Omega -> Real}
           rw [hneg, kernelOpL2OfGoodK_smul (mu := mu) hK (-1) hg]
           simp [sub_eq_add_neg]
 
+/--
+@isnad1 id=eq.3h5v.s10.1c9df6f12e32 from=translated src=- shape=3e28b38e vocab=8a12f992
+-/
 lemma kernelOpL2OfGoodK_sub_kernel {K L : Omega -> Omega -> Real}
     (hK : GoodK K) (hL : GoodK L)
     {f : Omega -> Real} (hf : Good f) :
@@ -444,6 +543,9 @@ lemma kernelOpL2OfGoodK_sub_kernel {K L : Omega -> Omega -> Real}
             (kernelOpGoodK_memLp_two (mu := mu) hK hf)
             (kernelOpGoodK_memLp_two (mu := mu) hL hf)
 
+/--
+@isnad1 id=le.4h6v.s6.df00ebc52d80 from=translated src=- shape=0767713b vocab=2d4fcc93
+-/
 lemma abs_kernelOpGoodK_le_const_integral_abs
     {K : Omega -> Omega -> Real} (hK : GoodK K)
     {C : Real} (hC0 : 0 <= C) (hKC : forall x y, |K x y| <= C)
@@ -471,6 +573,9 @@ lemma abs_kernelOpGoodK_le_const_integral_abs
     _ = C * ∫ y, |f y| ∂mu := by
         rw [integral_const_mul]
 
+/--
+@isnad1 id=eq.2h4v.s8.6884ea90f4c0 from=translated src=- shape=f8c7b998 vocab=86556288
+-/
 lemma norm_kernelOpL2OfGoodK_sq_eq_integral_mul
     {K : Omega -> Omega -> Real} (hK : GoodK K)
     {f : Omega -> Real} (hf : Good f) :
@@ -480,6 +585,9 @@ lemma norm_kernelOpL2OfGoodK_sq_eq_integral_mul
     (mu := mu) (good_kernelOp_goodK (mu := mu) hK hf)]
   rfl
 
+/--
+@isnad1 id=memlp.2h4v.s6.586e088c68a6 from=translated src=- shape=c5e5512b vocab=ac99453b
+-/
 lemma kernelOp_memLp_two (hW : IsGraphon W mu)
     {f : Omega -> Real} (hf : Good f) :
     MemLp (kernelOp W mu f) 2 mu :=
@@ -490,12 +598,18 @@ def kernelOpL2OfGood (hW : IsGraphon W mu)
     Lp Real 2 mu :=
   (kernelOp_memLp_two hW hf).toLp (kernelOp W mu f)
 
+/--
+@isnad1 id=eventual.2h4v.s8.6b2bb57c6b58 from=translated src=- shape=4ac86dcd vocab=612ed747
+-/
 lemma kernelOpL2OfGood_ae_eq (hW : IsGraphon W mu)
     {f : Omega -> Real} (hf : Good f) :
     (kernelOpL2OfGood (mu := mu) hW hf : Omega -> Real) =ᵐ[mu]
       kernelOp W mu f :=
   MemLp.coeFn_toLp (kernelOp_memLp_two hW hf)
 
+/--
+@isnad1 id=eq.2h4v.s7.ea3fb2418fa2 from=translated src=- shape=8a903259 vocab=315fa6de
+-/
 lemma kernelOpL2OfGood_eq_kernelOpL2OfGoodK
     (hW : IsGraphon W mu)
     {f : Omega -> Real} (hf : Good f) :
@@ -504,6 +618,9 @@ lemma kernelOpL2OfGood_eq_kernelOpL2OfGoodK
   apply MemLp.toLp_congr
   exact ae_of_all _ fun _ => rfl
 
+/--
+@isnad1 id=le.2h5v.s6.5f975c2af584 from=translated src=- shape=b82e5bff vocab=055ceb2b
+-/
 lemma abs_kernelOp_le_integral_abs (hW : IsGraphon W mu)
     {f : Omega -> Real} (hf : Good f) (x : Omega) :
     |kernelOp W mu f x| <= ∫ y, |f y| ∂mu := by
@@ -520,6 +637,9 @@ lemma abs_kernelOp_le_integral_abs (hW : IsGraphon W mu)
           rw [abs_mul, abs_of_nonneg (hW.nonneg x y)]
           exact mul_le_of_le_one_left (abs_nonneg (f y)) (hW.le_one x y)
 
+/--
+@isnad1 id=le.2h5v.s6.4673075dfba9 from=translated src=- shape=2c5a12e4 vocab=841c0c4d
+-/
 lemma abs_kernelOp_le_kernelOp_abs (hW : IsGraphon W mu)
     {f : Omega -> Real} (hf : Good f) (x : Omega) :
     |kernelOp W mu f x| <=
@@ -538,6 +658,9 @@ lemma abs_kernelOp_le_kernelOp_abs (hW : IsGraphon W mu)
           change |W x y * f y| <= W x y * |f y|
           rw [abs_mul, abs_of_nonneg (hW.nonneg x y)]
 
+/--
+@isnad1 id=eq.2h4v.s8.ecfcce52b4f6 from=translated src=- shape=87b5cf7c vocab=b322f94b
+-/
 lemma norm_kernelOpL2OfGood_sq_eq_integral_mul
     (hW : IsGraphon W mu)
     {f : Omega -> Real} (hf : Good f) :
@@ -546,6 +669,9 @@ lemma norm_kernelOpL2OfGood_sq_eq_integral_mul
   rw [← norm_goodL2_sq_eq_integral_mul (mu := mu) (good_kernelOp hW hf)]
   rfl
 
+/--
+@isnad1 id=le.2h4v.s8.2e1eb2551c6e from=translated src=- shape=e660e293 vocab=51b9bd80
+-/
 lemma norm_kernelOpL2OfGood_sq_le_integral_abs_sq
     (hW : IsGraphon W mu)
     {f : Omega -> Real} (hf : Good f) :
@@ -576,6 +702,9 @@ lemma norm_kernelOpL2OfGood_sq_le_integral_abs_sq
         <= ∫ _x : Omega, A * A ∂mu := hmono
     _ = A ^ 2 := by simp [A, pow_two]
 
+/--
+@isnad1 id=le.1h3v.s6.dbd87df4df5e from=translated src=- shape=3b6673fb vocab=62274403
+-/
 lemma integral_abs_sq_le_integral_mul_self
     {f : Omega -> Real} (hf : Good f) :
     (∫ x, |f x| ∂mu) ^ 2 <= ∫ x, f x * f x ∂mu := by
@@ -604,6 +733,9 @@ lemma integral_abs_sq_le_integral_mul_self
   rw [honeabs, honeone, habsabs] at hcs
   simpa [pow_two] using hcs
 
+/--
+@isnad1 id=le.4h5v.s9.9e594d0e59f1 from=translated src=- shape=22f1939c vocab=a2877d8d
+-/
 lemma norm_kernelOpL2OfGoodK_sq_le_const_mul_norm_goodL2_sq
     {K : Omega -> Omega -> Real} (hK : GoodK K)
     {C : Real} (hC0 : 0 <= C) (hKC : forall x y, |K x y| <= C)
@@ -644,6 +776,9 @@ lemma norm_kernelOpL2OfGoodK_sq_le_const_mul_norm_goodL2_sq
           rw [norm_goodL2_sq_eq_integral_mul (mu := mu) hf]
           exact mul_le_mul_of_nonneg_left hA (sq_nonneg C)
 
+/--
+@isnad1 id=le.4h5v.s8.6c3dc06773a2 from=translated src=- shape=a4bf23e1 vocab=128c91d6
+-/
 lemma norm_kernelOpL2OfGoodK_le_const_mul_norm_goodL2
     {K : Omega -> Omega -> Real} (hK : GoodK K)
     {C : Real} (hC0 : 0 <= C) (hKC : forall x y, |K x y| <= C)
@@ -661,6 +796,9 @@ lemma norm_kernelOpL2OfGoodK_le_const_mul_norm_goodL2
     mul_nonneg hC0 (norm_nonneg _)
   exact le_of_sq_le_sq hsq' hrhs0
 
+/--
+@isnad1 id=le.5h6v.s11.887fc8846df6 from=translated src=- shape=5ce753e9 vocab=87fd2c92
+-/
 lemma norm_kernelOpL2OfGoodK_sub_le_const_mul_norm_goodL2_sub
     {K : Omega -> Omega -> Real} (hK : GoodK K)
     {C : Real} (hC0 : 0 <= C) (hKC : forall x y, |K x y| <= C)
@@ -687,6 +825,9 @@ noncomputable def kernelSqNorm (mu : Measure Omega)
     (K : Omega -> Omega -> Real) : Real :=
   ∫ x, ∫ y, K x y * K x y ∂mu ∂mu
 
+/--
+@isnad1 id=integrab.1h3v.s6.a2a8d07c7d79 from=translated src=- shape=510c0396 vocab=a7126426
+-/
 lemma integrable_uncurry_mul_self_of_goodK {K : Omega -> Omega -> Real}
     (hK : GoodK K) :
     Integrable
@@ -701,6 +842,9 @@ lemma integrable_uncurry_mul_self_of_goodK {K : Omega -> Omega -> Real}
   rw [Real.norm_eq_abs, abs_mul]
   exact mul_le_mul (hC p.1 p.2) (hC p.1 p.2) (abs_nonneg _) hC0
 
+/--
+@isnad1 id=eq.1h3v.s6.c2aec83e6ca0 from=translated src=- shape=5534cdcd vocab=8f5cbd0e
+-/
 lemma kernelSqNorm_eq_integral_prod_of_goodK {K : Omega -> Omega -> Real}
     (hK : GoodK K) :
     kernelSqNorm mu K =
@@ -710,6 +854,9 @@ lemma kernelSqNorm_eq_integral_prod_of_goodK {K : Omega -> Omega -> Real}
     (fun p : Omega × Omega => K p.1 p.2 * K p.1 p.2)
     (integrable_uncurry_mul_self_of_goodK (mu := mu) hK)).symm
 
+/--
+@isnad1 id=memlp.1h3v.s6.944e0afc05b8 from=translated src=- shape=fe444346 vocab=5553c9f6
+-/
 lemma goodK_memLp_prod_two {K : Omega -> Omega -> Real}
     (hK : GoodK K) :
     MemLp (Function.uncurry K) 2 (mu.prod mu) := by
@@ -719,6 +866,9 @@ lemma goodK_memLp_prod_two {K : Omega -> Omega -> Real}
       rw [Real.norm_eq_abs]
       exact hC p.1 p.2)
 
+/--
+@isnad1 id=eq.1h3v.s6.3e2d48e99eb4 from=translated src=- shape=956b8ba2 vocab=59fe92b4
+-/
 lemma lpNorm_two_eq_sqrt_integral_sq
     {α : Type*} [MeasurableSpace α] {ν : Measure α}
     {f : α -> Real} (hf : AEStronglyMeasurable f ν) :
@@ -732,6 +882,9 @@ lemma lpNorm_two_eq_sqrt_integral_sq
       simp [Real.norm_eq_abs, abs_mul_abs_self, sq]
   · norm_num
 
+/--
+@isnad1 id=lt.3h4v.s6.d58991885668 from=translated src=- shape=188790ac vocab=fe2e9c14
+-/
 lemma lpNorm_two_lt_of_integral_sq_lt
     {α : Type*} [MeasurableSpace α] {ν : Measure α}
     {f : α -> Real} (hf : AEStronglyMeasurable f ν)
@@ -743,6 +896,9 @@ lemma lpNorm_two_lt_of_integral_sq_lt
     (integral_nonneg fun x => mul_self_nonneg (f x))
     hε.le).2 hsmall
 
+/--
+@isnad1 id=eq.1h3v.s6.af583808da93 from=translated src=- shape=80e02d48 vocab=62f4773c
+-/
 lemma lpNorm_uncurry_two_eq_sqrt_kernelSqNorm_of_goodK
     {K : Omega -> Omega -> Real} (hK : GoodK K) :
     lpNorm (Function.uncurry K) 2 (mu.prod mu) =
@@ -758,6 +914,9 @@ lemma lpNorm_uncurry_two_eq_sqrt_kernelSqNorm_of_goodK
       simp [Function.uncurry, Real.norm_eq_abs, abs_mul_abs_self, sq]
   · norm_num
 
+/--
+@isnad1 id=eq.2h4v.s7.aa23931cbf6a from=translated src=- shape=03dbb5f6 vocab=485f18ff
+-/
 lemma lpNorm_uncurry_sub_two_eq_sqrt_kernelSqNorm_sub_of_goodK
     {K L : Omega -> Omega -> Real} (hK : GoodK K) (hL : GoodK L) :
     lpNorm (Function.uncurry K - Function.uncurry L) 2 (mu.prod mu) =
@@ -772,6 +931,9 @@ lemma lpNorm_uncurry_sub_two_eq_sqrt_kernelSqNorm_sub_of_goodK
         lpNorm_uncurry_two_eq_sqrt_kernelSqNorm_of_goodK
           (mu := mu) (goodK_sub hK hL)
 
+/--
+@isnad1 id=ex.2h4v.s8.b5851c4d8faa from=translated src=- shape=00f77e15 vocab=68c1a777
+-/
 lemma exists_simpleFunc_eLpNorm_uncurry_sub_lt_of_goodK
     {K : Omega -> Omega -> Real} (hK : GoodK K)
     {ε : ℝ≥0∞} (hε : ε ≠ 0) :
@@ -782,6 +944,9 @@ lemma exists_simpleFunc_eLpNorm_uncurry_sub_lt_of_goodK
   exact (goodK_memLp_prod_two (mu := mu) hK).exists_simpleFunc_eLpNorm_sub_lt
     htop hε
 
+/--
+@isnad1 id=ex.2h4v.s8.ed5a3c400eb5 from=translated src=- shape=66326902 vocab=6120a1b6
+-/
 lemma exists_simpleFunc_lpNorm_uncurry_sub_lt_of_goodK
     {K : Omega -> Omega -> Real} (hK : GoodK K)
     {δ : Real} (hδ : 0 < δ) :
@@ -799,6 +964,9 @@ lemma exists_simpleFunc_lpNorm_uncurry_sub_lt_of_goodK
   rw [← MeasureTheory.toReal_eLpNorm hSM]
   exact ENNReal.toReal_lt_of_lt_ofReal hSlt
 
+/--
+@isnad1 id=ex.2h4v.s7.8c1514f922aa from=translated src=- shape=d548ef3f vocab=b3b8e44b
+-/
 lemma exists_finiteRank_kernel_lpNorm_uncurry_sub_lt_of_goodK
     {K0 : Omega -> Omega -> Real} (hK0 : GoodK K0)
     {ε : Real} (hε : 0 < ε) :
@@ -891,6 +1059,9 @@ lemma exists_finiteRank_kernel_lpNorm_uncurry_sub_lt_of_goodK
             (mu.prod mu) := htri
     _ < ε := by linarith
 
+/--
+@isnad1 id=ex.2h4v.s7.1006f63d3e9c from=translated src=- shape=c4e4c9f2 vocab=5fa6b4ab
+-/
 lemma exists_finiteRank_kernel_sqrt_kernelSqNorm_sub_lt_of_goodK
     {K0 : Omega -> Omega -> Real} (hK0 : GoodK K0)
     {ε : Real} (hε : 0 < ε) :
@@ -913,6 +1084,9 @@ lemma exists_finiteRank_kernel_sqrt_kernelSqNorm_sub_lt_of_goodK
     (mu := mu) hK hK0]
   exact hlt
 
+/--
+@isnad1 id=good.1h3v.s4.d73c6dc9fc1b from=translated src=- shape=489868df vocab=9d55f5b6
+-/
 lemma goodK_row {K : Omega -> Omega -> Real}
     (hK : GoodK K) (x : Omega) :
     Good (fun y => K x y) := by
@@ -920,6 +1094,9 @@ lemma goodK_row {K : Omega -> Omega -> Real}
   exact ⟨(hK.meas.comp measurable_prodMk_left).stronglyMeasurable,
     C, hC0, fun y => hC x y⟩
 
+/--
+@isnad1 id=good.1h3v.s5.dbcd461cac6a from=translated src=- shape=b5e74e3b vocab=e204b4fc
+-/
 lemma good_kernelSqRow {K : Omega -> Omega -> Real}
     (hK : GoodK K) :
     Good (fun x => ∫ y, K x y * K x y ∂mu) := by
@@ -945,12 +1122,18 @@ lemma good_kernelSqRow {K : Omega -> Omega -> Real}
       _ = C * C := by simp
 
 omit [IsProbabilityMeasure mu] in
+/--
+@isnad1 id=le.0h3v.s4.79cc5e2b1cd3 from=translated src=- shape=261090db vocab=0b46372a
+-/
 lemma kernelSqNorm_nonneg {K : Omega -> Omega -> Real} :
     0 <= kernelSqNorm mu K := by
   unfold kernelSqNorm
   exact integral_nonneg fun x =>
     integral_nonneg fun y => mul_self_nonneg (K x y)
 
+/--
+@isnad1 id=le.2h5v.s7.8ed38e8bf2f1 from=translated src=- shape=2300c34f vocab=60eb55cb
+-/
 lemma kernelOpGoodK_apply_mul_self_le_rowSq_mul_integral
     {K : Omega -> Omega -> Real} (hK : GoodK K)
     {f : Omega -> Real} (hf : Good f) (x : Omega) :
@@ -975,6 +1158,9 @@ lemma kernelOpGoodK_apply_mul_self_le_rowSq_mul_integral
   rw [hrowf, hrowrow, hff] at hcs
   simpa [kernelOp] using hcs
 
+/--
+@isnad1 id=le.2h4v.s8.56bb706ee9d9 from=translated src=- shape=979f0f1b vocab=6a9c5680
+-/
 lemma norm_kernelOpL2OfGoodK_sq_le_kernelSqNorm_mul_norm_goodL2_sq
     {K : Omega -> Omega -> Real} (hK : GoodK K)
     {f : Omega -> Real} (hf : Good f) :
@@ -1003,6 +1189,9 @@ lemma norm_kernelOpL2OfGoodK_sq_le_kernelSqNorm_mul_norm_goodL2_sq
     _ = kernelSqNorm mu K * ‖goodL2 (mu := mu) hf‖ ^ 2 := by
           simp [kernelSqNorm, hBnorm]
 
+/--
+@isnad1 id=eq.1h5v.s9.97ad264c45ca from=translated src=- shape=c9e39e6e vocab=af7f94a4
+-/
 lemma inner_goodK_row_l2_eq_kernelOp
     {K : Omega -> Omega -> Real} (hK : GoodK K)
     (f : Lp Real 2 mu) (x : Omega) :
@@ -1015,6 +1204,9 @@ lemma inner_goodK_row_l2_eq_kernelOp
   rw [hy]
   simp [RCLike.inner_apply, mul_comm]
 
+/--
+@isnad1 id=integrab.1h3v.s8.aedab7f5e259 from=translated src=- shape=2140798a vocab=4fd40b95
+-/
 lemma integrable_goodK_row_inner_self
     {K : Omega -> Omega -> Real} (hK : GoodK K) :
     Integrable (fun x : Omega =>
@@ -1027,6 +1219,9 @@ lemma integrable_goodK_row_inner_self
         (goodL2 (mu := mu) (goodK_row hK x))
     rw [inner_goodL2_eq_integral_mul (goodK_row hK x) (goodK_row hK x)]
 
+/--
+@isnad1 id=eq.1h3v.s8.d2fe0c2ea5f5 from=translated src=- shape=5e93da47 vocab=66f1d307
+-/
 lemma integral_goodK_row_inner_self_eq_kernelSqNorm
     {K : Omega -> Omega -> Real} (hK : GoodK K) :
     (∫ x, inner Real (goodL2 (mu := mu) (goodK_row hK x))
@@ -1039,6 +1234,9 @@ lemma integral_goodK_row_inner_self_eq_kernelSqNorm
     ∫ y, K x y * K x y ∂mu
   rw [inner_goodL2_eq_integral_mul (goodK_row hK x) (goodK_row hK x)]
 
+/--
+@isnad1 id=le.2h4v.s8.63621164cf3a from=translated src=- shape=533de1b1 vocab=b0deb2c9
+-/
 lemma norm_kernelOpL2OfGoodK_le_sqrt_kernelSqNorm_mul_norm_goodL2
     {K : Omega -> Omega -> Real} (hK : GoodK K)
     {f : Omega -> Real} (hf : Good f) :
@@ -1056,6 +1254,9 @@ lemma norm_kernelOpL2OfGoodK_le_sqrt_kernelSqNorm_mul_norm_goodL2
   exact le_of_sq_le_sq hsq'
     (mul_nonneg (Real.sqrt_nonneg _) (norm_nonneg _))
 
+/--
+@isnad1 id=le.2h4v.s8.2002f5f65ced from=translated src=- shape=c543a698 vocab=3bc4aa99
+-/
 lemma norm_kernelOpL2OfGood_sq_le_norm_goodL2_sq
     (hW : IsGraphon W mu)
     {f : Omega -> Real} (hf : Good f) :
@@ -1070,6 +1271,9 @@ lemma norm_kernelOpL2OfGood_sq_le_norm_goodL2_sq
     _ = ‖goodL2 (mu := mu) hf‖ ^ 2 := by
           rw [norm_goodL2_sq_eq_integral_mul]
 
+/--
+@isnad1 id=le.2h4v.s8.e822fe709817 from=translated src=- shape=4fa0857f vocab=12402931
+-/
 lemma norm_kernelOpL2OfGood_le_norm_goodL2
     (hW : IsGraphon W mu)
     {f : Omega -> Real} (hf : Good f) :
@@ -1080,6 +1284,9 @@ lemma norm_kernelOpL2OfGood_le_norm_goodL2
     (norm_nonneg _)
 
 omit [IsProbabilityMeasure mu] in
+/--
+@isnad1 id=eq.1h5v.s5.9562198fd691 from=translated src=- shape=68a288b7 vocab=ca5b8956
+-/
 lemma kernelOp_congr_ae {f g : Omega -> Real}
     (hfg : f =ᵐ[mu] g) :
     kernelOp W mu f = kernelOp W mu g := by
@@ -1089,6 +1296,9 @@ lemma kernelOp_congr_ae {f g : Omega -> Real}
   filter_upwards [hfg] with y hy
   rw [hy]
 
+/--
+@isnad1 id=eq.4h5v.s8.bdc32020e380 from=translated src=- shape=c222a495 vocab=31e9a247
+-/
 lemma kernelOpL2OfGood_congr (hW : IsGraphon W mu)
     {f g : Omega -> Real} (hf : Good f) (hg : Good g)
     (hfg : f =ᵐ[mu] g) :
@@ -1097,6 +1307,9 @@ lemma kernelOpL2OfGood_congr (hW : IsGraphon W mu)
   apply MemLp.toLp_congr
   exact ae_of_all _ fun x => congrFun (kernelOp_congr_ae (mu := mu) (W := W) hfg) x
 
+/--
+@isnad1 id=eq.3h5v.s10.30c99224cb75 from=translated src=- shape=3b315d94 vocab=b9d7523a
+-/
 lemma kernelOpL2OfGood_add (hW : IsGraphon W mu)
     {f g : Omega -> Real} (hf : Good f) (hg : Good g) :
     kernelOpL2OfGood (mu := mu) hW (good_add hf hg) =
@@ -1117,6 +1330,9 @@ lemma kernelOpL2OfGood_add (hW : IsGraphon W mu)
           exact MemLp.toLp_add
             (kernelOp_memLp_two hW hf) (kernelOp_memLp_two hW hg)
 
+/--
+@isnad1 id=eq.2h5v.s11.c22105628be5 from=translated src=- shape=d0930511 vocab=17939292
+-/
 lemma kernelOpL2OfGood_smul (hW : IsGraphon W mu)
     (c : Real) {f : Omega -> Real} (hf : Good f) :
     kernelOpL2OfGood (mu := mu) hW (good_smul c hf) =
@@ -1134,6 +1350,9 @@ lemma kernelOpL2OfGood_smul (hW : IsGraphon W mu)
           exact MemLp.toLp_const_smul c (kernelOp_memLp_two hW hf)
 
 omit [IsProbabilityMeasure mu] in
+/--
+@isnad1 id=good.0h3v.s10.1c19d51c34e5 from=translated src=- shape=7011777f vocab=f84c97e9
+-/
 lemma simpleFunc_good (s : Lp.simpleFunc Real 2 mu) :
     Good (Lp.simpleFunc.toSimpleFunc s) := by
   obtain ⟨C, hC⟩ :=
@@ -1144,6 +1363,9 @@ lemma simpleFunc_good (s : Lp.simpleFunc Real 2 mu) :
     simpa [Real.norm_eq_abs] using hC x
   exact hx.trans (le_max_left _ _)
 
+/--
+@isnad1 id=eq.0h3v.s11.671f89dc326e from=translated src=- shape=f10025a5 vocab=65f9911c
+-/
 lemma goodL2_simpleFunc_eq_coe (s : Lp.simpleFunc Real 2 mu) :
     goodL2 (mu := mu) (simpleFunc_good (mu := mu) s) =
       (s : Lp Real 2 mu) := by
@@ -1161,6 +1383,9 @@ lemma goodL2_simpleFunc_eq_coe (s : Lp.simpleFunc Real 2 mu) :
               (Lp.simpleFunc.toLp_toSimpleFunc s)
           simpa using h
 
+/--
+@isnad1 id=denseran.0h2v.s9.d79306eccbfb from=translated src=- shape=0396d10b vocab=1f3143db
+-/
 lemma denseRange_goodL2 :
     DenseRange
       (fun f : {f : Omega -> Real // Good f} =>
@@ -1202,6 +1427,9 @@ def kernelOpGoodKSimple {K : Omega -> Omega -> Real}
     Lp Real 2 mu :=
   kernelOpL2OfGoodK (mu := mu) hK (simpleFunc_good (mu := mu) s)
 
+/--
+@isnad1 id=eq.1h4v.s10.bd8ddfb066b1 from=translated src=- shape=a9099b30 vocab=615659eb
+-/
 lemma kernelOpSimple_eq_kernelOpGoodKSimple
     (hW : IsGraphon W mu)
     (s : Lp.simpleFunc Real 2 mu) :
@@ -1211,6 +1439,9 @@ lemma kernelOpSimple_eq_kernelOpGoodKSimple
     kernelOpL2OfGood_eq_kernelOpL2OfGoodK
       (mu := mu) hW (simpleFunc_good (mu := mu) s)
 
+/--
+@isnad1 id=eq.1h5v.s13.ef60e38e247b from=translated src=- shape=5b06ce84 vocab=45a6e5f9
+-/
 lemma kernelOpGoodKSimple_add {K : Omega -> Omega -> Real}
     (hK : GoodK K)
     (s t : Lp.simpleFunc Real 2 mu) :
@@ -1235,6 +1466,9 @@ lemma kernelOpGoodKSimple_add {K : Omega -> Omega -> Real}
             (simpleFunc_good (mu := mu) s)
             (simpleFunc_good (mu := mu) t)
 
+/--
+@isnad1 id=eq.1h5v.s13.c49cabdae7ec from=translated src=- shape=2fe5e63d vocab=85f097c2
+-/
 lemma kernelOpGoodKSimple_smul {K : Omega -> Omega -> Real}
     (hK : GoodK K)
     (c : Real) (s : Lp.simpleFunc Real 2 mu) :
@@ -1253,6 +1487,9 @@ lemma kernelOpGoodKSimple_smul {K : Omega -> Omega -> Real}
           exact kernelOpL2OfGoodK_smul (mu := mu) hK c
             (simpleFunc_good (mu := mu) s)
 
+/--
+@isnad1 id=eq.2h5v.s11.b1afa62fa168 from=translated src=- shape=d35fe167 vocab=d13477a0
+-/
 lemma kernelOpGoodKSimple_sub_kernel {K L : Omega -> Omega -> Real}
     (hK : GoodK K) (hL : GoodK L)
     (s : Lp.simpleFunc Real 2 mu) :
@@ -1263,6 +1500,9 @@ lemma kernelOpGoodKSimple_sub_kernel {K L : Omega -> Omega -> Real}
     kernelOpL2OfGoodK_sub_kernel (mu := mu) hK hL
       (simpleFunc_good (mu := mu) s)
 
+/--
+@isnad1 id=le.3h5v.s11.3e9ba4b2bb5a from=translated src=- shape=c3ff5eb6 vocab=054a9260
+-/
 lemma norm_kernelOpGoodKSimple_le {K : Omega -> Omega -> Real}
     (hK : GoodK K)
     {C : Real} (hC0 : 0 <= C) (hKC : forall x y, |K x y| <= C)
@@ -1273,6 +1513,9 @@ lemma norm_kernelOpGoodKSimple_le {K : Omega -> Omega -> Real}
     norm_kernelOpL2OfGoodK_le_const_mul_norm_goodL2
       (mu := mu) hK hC0 hKC (simpleFunc_good (mu := mu) s)
 
+/--
+@isnad1 id=le.1h4v.s11.cb4756092539 from=translated src=- shape=de712ce9 vocab=4faa87c9
+-/
 lemma norm_kernelOpGoodKSimple_le_sqrt_kernelSqNorm
     {K : Omega -> Omega -> Real} (hK : GoodK K)
     (s : Lp.simpleFunc Real 2 mu) :
@@ -1299,6 +1542,9 @@ def kernelOpGoodKSimpleCLM {K : Omega -> Omega -> Real}
         C * ‖(s : Lp Real 2 mu)‖
       exact norm_kernelOpGoodKSimple_le (mu := mu) hK hC0 hKC s)
 
+/--
+@isnad1 id=le.3h4v.s13.7fe3e2df399c from=translated src=- shape=13d707e8 vocab=67750c38
+-/
 lemma norm_kernelOpGoodKSimpleCLM_le {K : Omega -> Omega -> Real}
     (hK : GoodK K)
     {C : Real} (hC0 : 0 <= C) (hKC : forall x y, |K x y| <= C) :
@@ -1306,6 +1552,9 @@ lemma norm_kernelOpGoodKSimpleCLM_le {K : Omega -> Omega -> Real}
   LinearMap.mkContinuous_norm_le
     (kernelOpGoodKSimpleLinearMap (mu := mu) hK) hC0 _
 
+/--
+@isnad1 id=le.3h4v.s13.a57274a57032 from=translated src=- shape=ed2c8e65 vocab=7d55584c
+-/
 lemma norm_kernelOpGoodKSimpleCLM_le_sqrt_kernelSqNorm
     {K : Omega -> Omega -> Real}
     (hK : GoodK K)
@@ -1320,6 +1569,9 @@ lemma norm_kernelOpGoodKSimpleCLM_le_sqrt_kernelSqNorm
     Real.sqrt (kernelSqNorm mu K) * ‖(s : Lp Real 2 mu)‖
   exact norm_kernelOpGoodKSimple_le_sqrt_kernelSqNorm (mu := mu) hK s
 
+/--
+@isnad1 id=eq.1h5v.s13.03d1476fbab5 from=translated src=- shape=bb988010 vocab=82243ddd
+-/
 lemma kernelOpSimple_add (hW : IsGraphon W mu)
     (s t : Lp.simpleFunc Real 2 mu) :
     kernelOpSimple (mu := mu) hW (s + t) =
@@ -1343,6 +1595,9 @@ lemma kernelOpSimple_add (hW : IsGraphon W mu)
             (simpleFunc_good (mu := mu) s)
             (simpleFunc_good (mu := mu) t)
 
+/--
+@isnad1 id=eq.1h5v.s13.fd38844725cb from=translated src=- shape=62bd0270 vocab=9b558444
+-/
 lemma kernelOpSimple_smul (hW : IsGraphon W mu)
     (c : Real) (s : Lp.simpleFunc Real 2 mu) :
     kernelOpSimple (mu := mu) hW (c • s) =
@@ -1359,6 +1614,9 @@ lemma kernelOpSimple_smul (hW : IsGraphon W mu)
     _ = c • kernelOpSimple (mu := mu) hW s := by
           exact kernelOpL2OfGood_smul hW c (simpleFunc_good (mu := mu) s)
 
+/--
+@isnad1 id=le.1h4v.s11.e05ea251366e from=translated src=- shape=3a073668 vocab=e9bb3f8d
+-/
 lemma norm_kernelOpSimple_le (hW : IsGraphon W mu)
     (s : Lp.simpleFunc Real 2 mu) :
     ‖kernelOpSimple (mu := mu) hW s‖ <= ‖(s : Lp Real 2 mu)‖ := by
@@ -1397,6 +1655,9 @@ noncomputable def clmIter
   | 0, f => f
   | n + 1, f => T (clmIter T n f)
 
+/--
+@isnad1 id=eq.3h5v.s13.d27a923fbfe1 from=translated src=- shape=c8af6acf vocab=8d0df83f
+-/
 lemma kernelOpGoodKCLM_simpleFunc {K : Omega -> Omega -> Real}
     (hK : GoodK K)
     {C : Real} (hC0 : 0 <= C) (hKC : forall x y, |K x y| <= C)
@@ -1418,6 +1679,9 @@ lemma kernelOpGoodKCLM_simpleFunc {K : Omega -> Omega -> Real}
         (μ := mu))
       s
 
+/--
+@isnad1 id=eq.4h5v.s12.08ed2e18fedb from=translated src=- shape=ff445f0a vocab=74f912f3
+-/
 lemma kernelOpGoodKCLM_goodL2 {K : Omega -> Omega -> Real}
     (hK : GoodK K)
     {C : Real} (hC0 : 0 <= C) (hKC : forall x y, |K x y| <= C)
@@ -1457,6 +1721,9 @@ lemma kernelOpGoodKCLM_goodL2 {K : Omega -> Omega -> Real}
     exact norm_eq_zero.mp (le_antisymm hnorm (norm_nonneg _))
   exact sub_eq_zero.mp hzero
 
+/--
+@isnad1 id=eq.4h6v.s8.f1097e8f3a76 from=translated src=- shape=b3dde155 vocab=84c6198b
+-/
 lemma kernelOpGoodKCLM_iter_goodL2 {K : Omega -> Omega -> Real}
     (hK : GoodK K)
     {C : Real} (hC0 : 0 <= C) (hKC : forall x y, |K x y| <= C)
@@ -1492,6 +1759,9 @@ lemma kernelOpGoodKCLM_iter_goodL2 {K : Omega -> Omega -> Real}
               goodL2 (mu := mu)
                 (good_kernelOpIter_goodK (mu := mu) hK hf (n + 1)) := rfl
 
+/--
+@isnad1 id=le.3h4v.s11.77161f906f3d from=translated src=- shape=33ac2830 vocab=8bcbc91a
+-/
 lemma norm_kernelOpGoodKCLM_le {K : Omega -> Omega -> Real}
     (hK : GoodK K)
     {C : Real} (hC0 : 0 <= C) (hKC : forall x y, |K x y| <= C) :
@@ -1521,6 +1791,9 @@ lemma norm_kernelOpGoodKCLM_le {K : Omega -> Omega -> Real}
           exact norm_kernelOpGoodKSimpleCLM_le
             (mu := mu) hK hC0 hKC
 
+/--
+@isnad1 id=le.3h4v.s11.9375572e9c90 from=translated src=- shape=e547d526 vocab=eaa961c7
+-/
 lemma norm_kernelOpGoodKCLM_le_sqrt_kernelSqNorm
     {K : Omega -> Omega -> Real}
     (hK : GoodK K)
@@ -1552,6 +1825,9 @@ lemma norm_kernelOpGoodKCLM_le_sqrt_kernelSqNorm
           exact norm_kernelOpGoodKSimpleCLM_le_sqrt_kernelSqNorm
             (mu := mu) hK hC0 hKC
 
+/--
+@isnad1 id=eq.8h7v.s13.4cb0df8afea0 from=translated src=- shape=16df358f vocab=74b3606b
+-/
 lemma kernelOpGoodKCLM_sub_kernel {K L : Omega -> Omega -> Real}
     (hK : GoodK K) (hL : GoodK L)
     {CK CL C : Real}
@@ -1618,6 +1894,9 @@ lemma kernelOpGoodKCLM_sub_kernel {K L : Omega -> Omega -> Real}
       hcomp
   simpa [kernelOpGoodKCLM] using huniq
 
+/--
+@isnad1 id=le.8h7v.s13.7457fd31c0f7 from=translated src=- shape=c9ba2109 vocab=79deab70
+-/
 lemma norm_kernelOpGoodKCLM_sub_le_sqrt_kernelSqNorm
     {K L : Omega -> Omega -> Real}
     (hK : GoodK K) (hL : GoodK L)
@@ -1637,6 +1916,9 @@ def kernelOpCLM (hW : IsGraphon W mu) :
     Lp Real 2 mu →L[Real] Lp Real 2 mu :=
   (kernelOpSimpleCLM (mu := mu) hW).extend (simpleFuncToL2 (mu := mu))
 
+/--
+@isnad1 id=eq.1h4v.s13.ba94c692fd82 from=translated src=- shape=2edbb869 vocab=d52d071d
+-/
 lemma kernelOpCLM_simpleFunc (hW : IsGraphon W mu)
     (s : Lp.simpleFunc Real 2 mu) :
     kernelOpCLM (mu := mu) hW (s : Lp Real 2 mu) =
@@ -1655,6 +1937,9 @@ lemma kernelOpCLM_simpleFunc (hW : IsGraphon W mu)
         (μ := mu))
       s
 
+/--
+@isnad1 id=eq.1h3v.s11.b0bcf7a0b38a from=translated src=- shape=7df613cb vocab=4ffa9ea9
+-/
 lemma kernelOpCLM_eq_kernelOpGoodKCLM (hW : IsGraphon W mu) :
     kernelOpCLM (mu := mu) hW =
       kernelOpGoodKCLM (mu := mu) (goodK_of_isGraphon hW)
@@ -1692,6 +1977,9 @@ lemma kernelOpCLM_eq_kernelOpGoodKCLM (hW : IsGraphon W mu) :
       hcomp
   simpa [kernelOpGoodKCLM, hK, hKC] using huniq.symm
 
+/--
+@isnad1 id=eq.2h4v.s12.6435269fac50 from=translated src=- shape=713801ae vocab=1290d529
+-/
 lemma kernelOpCLM_goodL2 (hW : IsGraphon W mu)
     {f : Omega -> Real} (hf : Good f) :
     kernelOpCLM (mu := mu) hW (goodL2 (mu := mu) hf) =
@@ -1708,6 +1996,9 @@ def oneSimpleL2 :
     ((SimpleFunc.const Omega (1 : Real)).memLp_of_isFiniteMeasure
       (2 : ENNReal) mu)
 
+/--
+@isnad1 id=eq.0h2v.s10.47809008b5f6 from=translated src=- shape=b943bb9e vocab=64204ab1
+-/
 lemma oneSimpleL2_coe_eq_oneL2 :
     (oneSimpleL2 (Omega := Omega) (mu := mu) : Lp Real 2 mu) =
       oneL2 (Omega := Omega) mu := by
@@ -1726,16 +2017,25 @@ lemma oneSimpleL2_coe_eq_oneL2 :
     _ = oneL2 (Omega := Omega) mu := rfl
 
 omit [IsProbabilityMeasure mu] in
+/--
+@isnad1 id=eq.0h3v.s5.7b4a3b388927 from=translated src=- shape=5ae0fec6 vocab=ea4eabec
+-/
 lemma kernelOp_one_eq_degree :
     kernelOp W mu (fun _ : Omega => 1) = degree W mu := by
   funext x
   simp [kernelOp, degree]
 
 omit [IsProbabilityMeasure mu] in
+/--
+@isnad1 id=eq.0h3v.s5.a1e48db3d008 from=translated src=- shape=f2a84baa vocab=e7b211be
+-/
 lemma integral_one_mul_degree_eq_edgeDensity :
     (∫ x, (1 : Real) * degree W mu x ∂mu) = edgeDensity W mu := by
   simp [edgeDensity, mean]
 
+/--
+@isnad1 id=eq.1h3v.s7.92ec3ecf1ad2 from=translated src=- shape=aaf8fba6 vocab=f929a810
+-/
 lemma kernelOpL2OfGood_one_eq_degreeL2 (hW : IsGraphon W mu) :
     kernelOpL2OfGood (mu := mu) hW (good_one (Ω := Omega)) =
       degreeL2 hW := by
@@ -1744,6 +2044,9 @@ lemma kernelOpL2OfGood_one_eq_degreeL2 (hW : IsGraphon W mu) :
     (degree_memLp_two hW)
     (ae_of_all _ fun x => congrFun (kernelOp_one_eq_degree (mu := mu) (W := W)) x)
 
+/--
+@isnad1 id=eq.1h3v.s7.0b068a769f59 from=translated src=- shape=b66481dc vocab=fa498bb0
+-/
 lemma kernelOpSimple_one_eq_degreeL2 (hW : IsGraphon W mu) :
     kernelOpSimple (mu := mu) hW (oneSimpleL2 (Omega := Omega) (mu := mu)) =
       degreeL2 hW := by
@@ -1761,6 +2064,9 @@ lemma kernelOpSimple_one_eq_degreeL2 (hW : IsGraphon W mu) :
                 (2 : ENNReal) mu))
     _ = degreeL2 hW := kernelOpL2OfGood_one_eq_degreeL2 hW
 
+/--
+@isnad1 id=eq.1h3v.s12.2a32f8088699 from=translated src=- shape=3dc1a7af vocab=e5cb96e4
+-/
 lemma kernelOpCLM_one_eq_degreeL2 (hW : IsGraphon W mu) :
     kernelOpCLM (mu := mu) hW (oneL2 (Omega := Omega) mu) =
       degreeL2 hW := by
@@ -1768,6 +2074,9 @@ lemma kernelOpCLM_one_eq_degreeL2 (hW : IsGraphon W mu) :
   rw [kernelOpCLM_simpleFunc hW]
   exact kernelOpSimple_one_eq_degreeL2 hW
 
+/--
+@isnad1 id=eq.3h5v.s8.ead11a940d61 from=translated src=- shape=ba578e82 vocab=1dab8130
+-/
 lemma inner_goodL2_kernelOpL2OfGood_eq_integral
     (hW : IsGraphon W mu)
     {f g : Omega -> Real} (hf : Good f) (hg : Good g) :
@@ -1782,6 +2091,9 @@ lemma inner_goodL2_kernelOpL2OfGood_eq_integral
   rw [hgx, hkfx]
   simp [RCLike.inner_apply, mul_comm]
 
+/--
+@isnad1 id=eq.3h5v.s8.2251196aaf50 from=translated src=- shape=9629018e vocab=1dab8130
+-/
 lemma inner_kernelOpL2OfGood_goodL2_eq_integral
     (hW : IsGraphon W mu)
     {f g : Omega -> Real} (hf : Good f) (hg : Good g) :
@@ -1796,6 +2108,9 @@ lemma inner_kernelOpL2OfGood_goodL2_eq_integral
   rw [hkfx, hgx]
   simp [RCLike.inner_apply, mul_comm]
 
+/--
+@isnad1 id=le.2h4v.s8.2f3729826dcb from=translated src=- shape=b00d8f2a vocab=1c5e94d1
+-/
 lemma abs_inner_goodL2_kernelOpL2OfGood_self_le_abs
     (hW : IsGraphon W mu)
     {f : Omega -> Real} (hf : Good f) :
@@ -1821,6 +2136,9 @@ lemma abs_inner_goodL2_kernelOpL2OfGood_self_le_abs
           exact mul_le_mul_of_nonneg_left
             (abs_kernelOp_le_kernelOp_abs hW hf x) (abs_nonneg (f x))
 
+/--
+@isnad1 id=le.2h4v.s13.77389bf49429 from=translated src=- shape=f82ed795 vocab=91de1845
+-/
 lemma abs_inner_goodL2_kernelOpCLM_self_le_abs
     (hW : IsGraphon W mu)
     {f : Omega -> Real} (hf : Good f) :
@@ -1834,6 +2152,9 @@ lemma abs_inner_goodL2_kernelOpCLM_self_le_abs
   rw [kernelOpCLM_goodL2 (mu := mu) hW (good_abs hf)]
   exact abs_inner_goodL2_kernelOpL2OfGood_self_le_abs (mu := mu) hW hf
 
+/--
+@isnad1 id=eq.3h5v.s8.7734dc99c1d6 from=translated src=- shape=c65edfeb vocab=01e8cb7a
+-/
 lemma kernelOpL2OfGood_selfadj (hW : IsGraphon W mu)
     {f g : Omega -> Real} (hf : Good f) (hg : Good g) :
     inner Real (kernelOpL2OfGood (mu := mu) hW hf)
@@ -1844,6 +2165,9 @@ lemma kernelOpL2OfGood_selfadj (hW : IsGraphon W mu)
     inner_goodL2_kernelOpL2OfGood_eq_integral hW hg hf]
   exact kernelOp_symm hW hf hg
 
+/--
+@isnad1 id=issymmet.1h3v.s11.171f7a65266f from=translated src=- shape=841eb4ed vocab=df913897
+-/
 lemma kernelOpCLM_isSymmetric (hW : IsGraphon W mu) :
     (kernelOpCLM (mu := mu) hW :
       Lp Real 2 mu →ₗ[Real] Lp Real 2 mu).IsSymmetric := by
@@ -1869,6 +2193,9 @@ lemma kernelOpCLM_isSymmetric (hW : IsGraphon W mu) :
     simpa [goodL2_simpleFunc_eq_coe (mu := mu) s,
       goodL2_simpleFunc_eq_coe (mu := mu) t] using h
 
+/--
+@isnad1 id=eq.1h3v.s7.e1a27a37123e from=translated src=- shape=eeadec43 vocab=49481d8f
+-/
 lemma inner_oneL2_degreeL2_eq_edgeDensity
     (hW : IsGraphon W mu) :
     inner Real (oneL2 (Omega := Omega) mu) (degreeL2 hW) =
@@ -1891,6 +2218,9 @@ lemma inner_oneL2_degreeL2_eq_edgeDensity
           simp
     _ = edgeDensity W mu := integral_one_mul_degree_eq_edgeDensity
 
+/--
+@isnad1 id=eq.0h2v.s7.215b0588520f from=translated src=- shape=284e2e93 vocab=944bb727
+-/
 lemma inner_oneL2_oneL2 :
     inner Real (oneL2 (Omega := Omega) mu) (oneL2 (Omega := Omega) mu) =
       1 := by
@@ -1907,6 +2237,9 @@ lemma inner_oneL2_oneL2 :
           simp
     _ = 1 := by simp
 
+/--
+@isnad1 id=eq.0h2v.s7.8b02b421ab63 from=translated src=- shape=bc306a4d vocab=89973d8e
+-/
 lemma norm_oneL2_sq :
     ‖oneL2 (Omega := Omega) mu‖ ^ 2 = 1 := by
   rw [← real_inner_self_eq_norm_sq, inner_oneL2_oneL2]

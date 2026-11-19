@@ -19,6 +19,9 @@ variable {Omega : Type u} [MeasurableSpace Omega]
 variable {mu : Measure Omega} [IsProbabilityMeasure mu]
 variable {W : Omega -> Omega -> Real}
 
+/--
+@isnad1 id=eq.0h4v.s7.86a0a0a18fb2 from=translated src=- shape=558664ef vocab=94c13b2c
+-/
 lemma linearIter_toLinearMap_eq_opIter
     {E : Type*} [NormedAddCommGroup E] [InnerProductSpace Real E]
     (T : E →L[Real] E) (n : Nat) (v : E) :

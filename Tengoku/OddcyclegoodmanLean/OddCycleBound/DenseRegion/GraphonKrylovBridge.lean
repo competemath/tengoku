@@ -20,15 +20,24 @@ variable {Omega : Type u} [MeasurableSpace Omega]
 variable {mu : Measure Omega} [IsProbabilityMeasure mu]
 variable {W : Omega → Omega → ℝ}
 
+/--
+@isnad1 id=eq.1h3v.s7.2046557db43e from=translated src=- shape=f3820536 vocab=aa8a2940
+-/
 lemma inner_oneL2_goodL2_eq_mean {f : Omega → ℝ} (hf : Good f) :
     inner ℝ (oneL2 (Omega := Omega) mu) (goodL2 (mu := mu) hf) = mean mu f := by
   rw [← goodL2_one_eq_oneL2 (Omega := Omega) (mu := mu),
     inner_goodL2_eq_integral_mul]
   simp [mean]
 
+/--
+@isnad1 id=good.0h2v.s3.b88c2110a2b8 from=translated src=- shape=ab6ac2c4 vocab=48def5ae
+-/
 lemma good_const (c : ℝ) : Good (fun _ : Omega => c) := by
   exact ⟨stronglyMeasurable_const, ⟨|c|, abs_nonneg c, fun _ => le_rfl⟩⟩
 
+/--
+@isnad1 id=eq.0h3v.s11.0788baef3cbe from=translated src=- shape=87bf0b36 vocab=8bf902ce
+-/
 lemma goodL2_const (c : ℝ) :
     goodL2 (mu := mu) (good_const (Omega := Omega) c) =
       c • oneL2 (Omega := Omega) mu := by
@@ -44,6 +53,9 @@ noncomputable def centerProjection :
   1 - InnerProductSpace.rankOne ℝ
     (oneL2 (Omega := Omega) mu) (oneL2 (Omega := Omega) mu)
 
+/--
+@isnad1 id=eq.1h3v.s12.25f4ebe5811f from=translated src=- shape=f54018ab vocab=156e5728
+-/
 lemma centerProjection_apply_goodL2 {f : Omega → ℝ} (hf : Good f) :
     centerProjection (Omega := Omega) (mu := mu) (goodL2 (mu := mu) hf) =
       goodL2 (mu := mu)
@@ -53,6 +65,9 @@ lemma centerProjection_apply_goodL2 {f : Omega → ℝ} (hf : Good f) :
   rw [inner_oneL2_goodL2_eq_mean hf,
     goodL2_sub hf (good_const (Omega := Omega) (mean mu f)), goodL2_const]
 
+/--
+@isnad1 id=eq.2h3v.s12.79d69ec78d40 from=translated src=- shape=6a8587c1 vocab=65fccc9e
+-/
 lemma centerProjection_apply_of_mean_zero {f : Omega → ℝ} (hf : Good f)
     (hmean : mean mu f = 0) :
     centerProjection (Omega := Omega) (mu := mu) (goodL2 (mu := mu) hf) =
@@ -62,6 +77,9 @@ lemma centerProjection_apply_of_mean_zero {f : Omega → ℝ} (hf : Good f)
     inner_oneL2_goodL2_eq_mean hf, hmean, zero_smul,
     sub_zero]
 
+/--
+@isnad1 id=eq.2h4v.s12.4a3e06b3f946 from=translated src=- shape=182bee7d vocab=4d4528b1
+-/
 lemma kernelOpCLM_goodL2_eq_goodL2 (hW : IsGraphon W mu)
     {f : Omega → ℝ} (hf : Good f) :
     kernelOpCLM (mu := mu) hW (goodL2 (mu := mu) hf) =
@@ -78,11 +96,17 @@ noncomputable def centeredGraphonOp (hW : IsGraphon W mu) :
     ((kernelOpCLM (mu := mu) hW).comp
       (centerProjection (Omega := Omega) (mu := mu)))
 
+/--
+@isnad1 id=issymmet.0h2v.s11.2fb27f95bd8e from=translated src=- shape=d31dfa74 vocab=fe693572
+-/
 lemma centerProjection_isSymmetric :
     (centerProjection (Omega := Omega) (mu := mu)).toLinearMap.IsSymmetric := by
   exact LinearMap.IsSymmetric.sub LinearMap.IsSymmetric.one
     (InnerProductSpace.isSymmetric_rankOne_self (oneL2 (Omega := Omega) mu))
 
+/--
+@isnad1 id=issymmet.0h2v.s11.eeba72c3eec7 from=translated src=- shape=d31dfa74 vocab=1602a855
+-/
 lemma centerProjection_isSymmetricProjection :
     (centerProjection (Omega := Omega) (mu := mu)).toLinearMap.IsSymmetricProjection := by
   have hone : ‖oneL2 (Omega := Omega) mu‖ = 1 := by
@@ -100,6 +124,9 @@ lemma centerProjection_isSymmetricProjection :
   simpa only [centerProjection, ContinuousLinearMap.toLinearMap_sub,
     ContinuousLinearMap.toLinearMap_one] using hQ.sub_of_range_le_range hI hQI
 
+/--
+@isnad1 id=le.0h3v.s12.b24c8389ff9f from=translated src=- shape=031217c3 vocab=72b5fb8e
+-/
 lemma norm_centerProjection_apply_le (f : Lp ℝ 2 mu) :
     ‖centerProjection (Omega := Omega) (mu := mu) f‖ ≤ ‖f‖ := by
   let P := (centerProjection (Omega := Omega) (mu := mu)).toLinearMap
@@ -117,6 +144,9 @@ lemma norm_centerProjection_apply_le (f : Lp ℝ 2 mu) :
   change ‖P f‖ ≤ ‖f‖
   nlinarith [norm_nonneg (P f), norm_nonneg f]
 
+/--
+@isnad1 id=issymmet.1h3v.s11.3a5743c4f38f from=translated src=- shape=841eb4ed vocab=5eaf5244
+-/
 lemma centeredGraphonOp_isSymmetric (hW : IsGraphon W mu) :
     (centeredGraphonOp hW).toLinearMap.IsSymmetric := by
   intro f g
@@ -141,6 +171,9 @@ lemma centeredGraphonOp_isSymmetric (hW : IsGraphon W mu) :
           (centerProjection (Omega := Omega) (mu := mu) g)) := hT.apply_clm _ _
     _ = _ := hP.apply_clm _ _
 
+/--
+@isnad1 id=eq.3h4v.s12.ff72445d475f from=translated src=- shape=d3dfabc1 vocab=5beab70f
+-/
 lemma centeredGraphonOp_apply_mean_zero_goodL2 (hW : IsGraphon W mu)
     {f : Omega → ℝ} (hf : Good f) (hmean : mean mu f = 0) :
     centeredGraphonOp hW (goodL2 (mu := mu) hf) =
@@ -162,6 +195,9 @@ lemma centeredGraphonOp_apply_mean_zero_goodL2 (hW : IsGraphon W mu)
 noncomputable def centeredDegreeL2 (hW : IsGraphon W mu) : Lp ℝ 2 mu :=
   goodL2 (mu := mu) (good_degCentered hW)
 
+/--
+@isnad1 id=eq.1h4v.s11.a71aee5ed9e9 from=translated src=- shape=1fe528b0 vocab=31e03e6a
+-/
 theorem linearIter_centeredGraphonOp (hW : IsGraphon W mu) : ∀ j : ℕ,
     linearIter (centeredGraphonOp hW).toLinearMap j (centeredDegreeL2 hW) =
       goodL2 (mu := mu) (good_compressIter hW j)
@@ -171,6 +207,9 @@ theorem linearIter_centeredGraphonOp (hW : IsGraphon W mu) : ∀ j : ℕ,
       exact centeredGraphonOp_apply_mean_zero_goodL2 hW
         (good_compressIter hW j) (mean_compressIter hW j)
 
+/--
+@isnad1 id=eq.1h4v.s11.b746252ec03d from=translated src=- shape=83b393db vocab=f575129a
+-/
 theorem inner_linearIter_centeredGraphonOp_eq_specMoment (hW : IsGraphon W mu) (j : ℕ) :
     inner ℝ (centeredDegreeL2 hW)
         (linearIter (centeredGraphonOp hW).toLinearMap j (centeredDegreeL2 hW)) =
@@ -193,10 +232,16 @@ noncomputable def graphonAtomWeight (hW : IsGraphon W mu) (d : ℕ) :
     (krylovCompression_isSymmetric _ _ _ (centeredGraphonOp_isSymmetric hW))
     (krylovVector (centeredGraphonOp hW) (centeredDegreeL2 hW) d)
 
+/--
+@isnad1 id=le.1h5v.s13.f46c5137f57f from=translated src=- shape=08e1a9ec vocab=6c590224
+-/
 lemma graphonAtomWeight_nonneg (hW : IsGraphon W mu) (d : ℕ) (i) :
     0 ≤ graphonAtomWeight hW d i := by
   exact finiteAtomWeight_nonneg _ _ _ i
 
+/--
+@isnad1 id=eq.2h5v.s14.0c25c72d2a5f from=translated src=- shape=be9006da vocab=e1379cc1
+-/
 theorem specMoment_eq_graphonAtomicMoment (hW : IsGraphon W mu)
     {d j : ℕ} (hj : j ≤ d) :
     specMoment W mu j =
@@ -207,6 +252,9 @@ theorem specMoment_eq_graphonAtomicMoment (hW : IsGraphon W mu)
       (centeredGraphonOp hW) (centeredDegreeL2 hW)
       (centeredGraphonOp_isSymmetric hW) hj
 
+/--
+@isnad1 id=mem.2h5v.s13.1cbea413cd44 from=translated src=- shape=9fdf9373 vocab=5130a2bb
+-/
 theorem graphonAtomEigenvalue_mem_halfInterval_of_norm (hW : IsGraphon W mu) (d : ℕ)
     (hnorm : ‖centeredGraphonOp hW‖ ≤ (1 : ℝ) / 2) (i) :
     graphonAtomEigenvalue hW d i ∈ Set.Icc (-(1 : ℝ) / 2) (1 / 2) := by
@@ -214,6 +262,9 @@ theorem graphonAtomEigenvalue_mem_halfInterval_of_norm (hW : IsGraphon W mu) (d 
     (centeredGraphonOp hW) (centeredDegreeL2 hW) d
     (centeredGraphonOp_isSymmetric hW) hnorm i
 
+/--
+@isnad1 id=le.3h4v.s7.a4f2dfcbbc54 from=translated src=- shape=d6f8921d vocab=daba37bb
+-/
 lemma abs_integral_mul_kernelOp_le_half (hW : IsGraphon W mu)
     {f : Omega → ℝ} (hf : Good f) (hmean : mean mu f = 0) :
     |∫ x, f x * kernelOp W mu f x ∂mu| ≤
@@ -268,6 +319,9 @@ lemma abs_integral_mul_kernelOp_le_half (hW : IsGraphon W mu)
   have hL1 := integral_abs_sq_le_integral_mul_self (mu := mu) hf
   linarith
 
+/--
+@isnad1 id=le.2h4v.s12.5bace421cb95 from=translated src=- shape=9b3917c6 vocab=6556b12f
+-/
 lemma abs_inner_centeredGraphonOp_goodL2_le_half (hW : IsGraphon W mu)
     {f : Omega → ℝ} (hf : Good f) :
     |inner ℝ (goodL2 (mu := mu) hf)
@@ -307,6 +361,9 @@ lemma abs_inner_centeredGraphonOp_goodL2_le_half (hW : IsGraphon W mu)
     hP]
   linarith
 
+/--
+@isnad1 id=le.1h4v.s12.2a7b242e89e6 from=translated src=- shape=a8ce75a6 vocab=251cfe39
+-/
 lemma abs_inner_centeredGraphonOp_self_le_half (hW : IsGraphon W mu)
     (f : Lp ℝ 2 mu) :
     |inner ℝ f (centeredGraphonOp hW f)| ≤ (1 : ℝ) / 2 * ‖f‖ ^ 2 := by
@@ -324,6 +381,9 @@ lemma abs_inner_centeredGraphonOp_self_le_half (hW : IsGraphon W mu)
       dsimp [p]
       exact abs_inner_centeredGraphonOp_goodL2_le_half (mu := mu) hW hg)
 
+/--
+@isnad1 id=le.1h3v.s11.32a462a2f039 from=translated src=- shape=693488a7 vocab=edb6ddc5
+-/
 theorem norm_centeredGraphonOp_le_half (hW : IsGraphon W mu) :
     ‖centeredGraphonOp hW‖ ≤ (1 : ℝ) / 2 := by
   rw [(centeredGraphonOp hW).norm_eq_iSup_rayleighQuotient
@@ -339,11 +399,17 @@ theorem norm_centeredGraphonOp_le_half (hW : IsGraphon W mu) :
   rw [div_le_iff₀ hnorm]
   simpa only [real_inner_comm, mul_assoc] using hquad
 
+/--
+@isnad1 id=mem.1h5v.s13.c5379d033a4b from=translated src=- shape=bcc2ebe3 vocab=781f30a8
+-/
 theorem graphonAtomEigenvalue_mem_halfInterval (hW : IsGraphon W mu) (d : ℕ) (i) :
     graphonAtomEigenvalue hW d i ∈ Set.Icc (-(1 : ℝ) / 2) (1 / 2) := by
   exact graphonAtomEigenvalue_mem_halfInterval_of_norm hW d
     (norm_centeredGraphonOp_le_half hW) i
 
+/--
+@isnad1 id=eq.1h5v.s14.5ffc3edb4773 from=translated src=- shape=0e37a508 vocab=199523eb
+-/
 theorem momentPhi_specMoment_eq_graphonAtomicMoment (hW : IsGraphon W mu)
     (m : ℕ) (q : ℝ) :
     momentPhi m q (specMoment W mu) =
@@ -354,7 +420,9 @@ theorem momentPhi_specMoment_eq_graphonAtomicMoment (hW : IsGraphon W mu)
   exact specMoment_eq_graphonAtomicMoment hW hj
 
 /-- Lemma 3.3: `Φ_m ≥ 0` as soon as every excursion polynomial `P_{m,r}` is nonnegative on
-`[-1/2, 1/2]^r`.-/
+`[-1/2, 1/2]^r`.
+@isnad1 id=le.4h5v.s7.97172c24e631 from=translated src=- shape=5050cf7b vocab=6781c6f0
+-/
 theorem momentPhi_specMoment_nonneg' {m : ℕ} (hm : Odd m) (hm3 : 3 ≤ m)
     (hW : IsGraphon W mu) (q : ℝ)
     (hP : ∀ r, 1 ≤ r ∧ 2 * r < m → ∀ L : List ℝ, L.length = r →
@@ -367,6 +435,9 @@ theorem momentPhi_specMoment_nonneg' {m : ℕ} (hm : Odd m) (hm3 : 3 ≤ m)
     (graphonAtomEigenvalue_mem_halfInterval hW m)
     (fun r hr hrm => hP r ⟨hr, hrm⟩)
 
+/--
+@isnad1 id=le.4h5v.s7.568e76148a3c from=translated src=- shape=c24a9f07 vocab=621a7e49
+-/
 theorem momentPhi_specMoment_nonneg {m : ℕ} (hm : Odd m) (hm3 : 3 ≤ m)
     (hW : IsGraphon W mu) (q : ℝ)
     (hdiag : ∀ r, 1 ≤ r ∧ 2 * r < m →

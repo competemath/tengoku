@@ -32,6 +32,9 @@ structure CompactSelfAdjointSkeleton (T : E →L[𝕜] E) : Prop where
   zero_iff_only_zero_eigenvalue :
     (∀ μ : 𝕜, HasEigenvalue (T : End 𝕜 E) μ -> μ = 0) ↔ T = 0
 
+/--
+@isnad1 id=compacts.2h3v.s9.a70044c54190 from=translated src=- shape=42b3201c vocab=9fdcc723
+-/
 theorem compactSelfAdjointSkeleton
     {T : E →L[𝕜] E}
     (hcompact : IsCompactOperator T)
@@ -53,6 +56,9 @@ theorem compactSelfAdjointSkeleton
 
 omit [CompleteSpace E] in
 
+/--
+@isnad1 id=le.1h3v.s9.d1b6f9d09751 from=translated src=- shape=22446b18 vocab=094aa486
+-/
 theorem symmetric_range_le_orthogonal_zero_eigenspace
     {T : E →L[𝕜] E}
     (hsymm : T.IsSymmetric) :
@@ -69,6 +75,9 @@ theorem symmetric_range_le_orthogonal_zero_eigenspace
       simpa using (hsymm u x).symm
     _ = 0 := by simp [hTu]
 
+/--
+@isnad1 id=eq.2h3v.s10.beca43187c9d from=translated src=- shape=a70a1c13 vocab=d5889a8b
+-/
 theorem compactSelfAdjoint_nonzero_iSup_orthogonal_inf_zero_eigenspace_orthogonal_eq_bot
     {T : E →L[𝕜] E}
     (hcompact : IsCompactOperator T)
@@ -117,6 +126,9 @@ variable {H : Type*} [NormedAddCommGroup H] [InnerProductSpace Real H]
 
 omit [CompleteSpace H] in
 
+/--
+@isnad1 id=eq.4h6v.s8.549e474a5580 from=translated src=- shape=207f26bc vocab=c8d21a96
+-/
 theorem selfAdjoint_eigenvectors_orthogonal_of_ne
     {T : H →L[Real] H}
     (hsymm : T.IsSymmetric)
@@ -174,6 +186,9 @@ private lemma le_dist_smul_orthonormal_of_le_abs
 
 omit [CompleteSpace H] in
 
+/--
+@isnad1 id=false.6h6v.s9.f8572d707062 from=translated src=- shape=4716e35c vocab=d8f0d1c2
+-/
 theorem compactOperator_no_orthonormal_eigen_subsequence_bounded_away
     {T : H →L[Real] H}
     (hcompact : IsCompactOperator T)
@@ -251,6 +266,9 @@ private theorem exists_unit_eigenvector_of_hasEigenvalue
 
 omit [CompleteSpace H] in
 
+/--
+@isnad1 id=false.6h4v.s8.ca4633bf34da from=translated src=- shape=b8ab7773 vocab=383ec1f7
+-/
 theorem compactSelfAdjoint_no_distinct_eigenvalue_sequence_bounded_away
     {T : H →L[Real] H}
     (hcompact : IsCompactOperator T)
@@ -289,6 +307,9 @@ theorem compactSelfAdjoint_no_distinct_eigenvalue_sequence_bounded_away
 
 omit [CompleteSpace H] in
 
+/--
+@isnad1 id=finite.3h3v.s8.687b5fcbd188 from=translated src=- shape=2c7f174e vocab=20ed55ce
+-/
 theorem compactSelfAdjoint_finite_eigenvalues_abs_ge
     {T : H →L[Real] H}
     (hcompact : IsCompactOperator T)
@@ -324,6 +345,9 @@ theorem compactSelfAdjoint_finite_eigenvalues_abs_ge
 
 omit [CompleteSpace H] in
 
+/--
+@isnad1 id=countabl.2h2v.s8.2e2d71be9332 from=translated src=- shape=f44a21cf vocab=df58aeb0
+-/
 theorem compactSelfAdjoint_countable_nonzero_eigenvalues
     {T : H →L[Real] H}
     (hcompact : IsCompactOperator T)
@@ -352,6 +376,9 @@ theorem compactSelfAdjoint_countable_nonzero_eigenvalues
 end Real
 
 
+/--
+@isnad1 id=iscompac.0h6v.s9.5639e9cdcdff from=translated src=- shape=e85d06c7 vocab=f8c75ba6
+-/
 theorem isCompactOperator_of_range_le_finiteDimensional
     {F : Type*} [NormedAddCommGroup F] [NormedSpace 𝕜 F]
     {T : ContinuousLinearMap (RingHom.id 𝕜) E F} {V : Submodule 𝕜 F}
@@ -372,6 +399,9 @@ theorem isCompactOperator_of_range_le_finiteDimensional
       exact Exists.intro (TV x) (And.intro hx rfl)
 
 
+/--
+@isnad1 id=iscompac.1h9v.s10.bd341c5dc2e2 from=translated src=- shape=910e3a13 vocab=005ded54
+-/
 theorem isCompactOperator_of_tendsto_finiteDimensional_range
     {I F : Type*} [NormedAddCommGroup F] [NormedSpace 𝕜 F]
     [CompleteSpace F]
@@ -398,6 +428,9 @@ variable {Omega : Type u} [MeasurableSpace Omega] {mu : Measure Omega}
 variable [IsProbabilityMeasure mu] {W : Omega -> Omega -> Real}
 
 
+/--
+@isnad1 id=mem.4h7v.s11.77b1c507d44f from=translated src=- shape=e2898b46 vocab=05962c1b
+-/
 theorem kernelOpGoodKSimple_mem_span_of_finiteRank
     {ι : Type*} [Fintype ι]
     {K : Omega -> Omega -> Real}
@@ -495,6 +528,9 @@ theorem kernelOpGoodKSimple_mem_span_of_finiteRank
   exact hv
 
 
+/--
+@isnad1 id=mem.6h8v.s12.bfb93a35fb3a from=translated src=- shape=a08c87e5 vocab=e27ce4b1
+-/
 theorem kernelOpGoodKCLM_mem_span_of_finiteRank
     {ι : Type*} [Fintype ι]
     {K : Omega -> Omega -> Real}
@@ -537,6 +573,9 @@ theorem kernelOpGoodKCLM_mem_span_of_finiteRank
       (mu := mu) hK ha hb hsep s
 
 
+/--
+@isnad1 id=iscompac.5h9v.s14.1dcc319a86a1 from=translated src=- shape=a9bc479e vocab=84386d38
+-/
 theorem canonicalGraphonCompact_of_hilbertSchmidt_finiteDimensional_approx
     {I : Type*} {l : Filter I} [l.NeBot]
     (hW : IsGraphon W mu)
@@ -602,6 +641,9 @@ theorem canonicalGraphonCompact_of_hilbertSchmidt_finiteDimensional_approx
     (hT := hTendsto) V hV
 
 
+/--
+@isnad1 id=iscompac.8h10v.s12.3610e47bb770 from=translated src=- shape=276122ba vocab=6ac4694f
+-/
 theorem canonicalGraphonCompact_of_hilbertSchmidt_finiteRank_approx
     {I : Type*} {l : Filter I} [l.NeBot]
     (hW : IsGraphon W mu)
@@ -662,6 +704,9 @@ def GraphonHilbertSchmidtFiniteRankApproxFor
               (fun x y => K i x y - W x y)))
         l (nhds 0)
 
+/--
+@isnad1 id=graphonh.1h3v.s5.50daa4b49b42 from=translated src=- shape=63e152a8 vocab=36d07191
+-/
 theorem graphonHilbertSchmidtFiniteRankApproxFor
     (hW : IsGraphon W mu) :
     GraphonHilbertSchmidtFiniteRankApproxFor (mu := mu) hW := by
@@ -723,6 +768,9 @@ theorem graphonHilbertSchmidtFiniteRankApproxFor
     simpa [Function.comp_def, up]
       using hNat
 
+/--
+@isnad1 id=iscompac.2h3v.s12.abd604b1ac8b from=translated src=- shape=6fe9832a vocab=893102b9
+-/
 theorem canonicalGraphonCompact_of_hilbertSchmidtFiniteRankApproxFor
     (hW : IsGraphon W mu)
     (happrox : GraphonHilbertSchmidtFiniteRankApproxFor (mu := mu) hW) :

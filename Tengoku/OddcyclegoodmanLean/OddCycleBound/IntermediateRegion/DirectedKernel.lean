@@ -12,6 +12,9 @@ noncomputable def directedKernel
     (p : Real) (m : Nat) (lambda : Real) : Real :=
   oneSidedGeom p m (-lambda)
 
+/--
+@isnad1 id=eq.3h3v.s6.e029037dcc41 from=translated src=- shape=5d8534cf vocab=298f40ff
+-/
 theorem directedKernel_mul_add
     {p lambda : Real} {m : Nat} (hm : Odd m) (hm2 : 2 <= m)
     (hlower : -p <= lambda) :
@@ -23,6 +26,9 @@ theorem directedKernel_mul_add
     (p := p) (lambda := -lambda) hm2 (by linarith)
   simpa [directedKernel, heven.neg_pow] using hgeom
 
+/--
+@isnad1 id=le.3h3v.s6.d63ad2f1e69b from=translated src=- shape=988423c1 vocab=5bcffee6
+-/
 theorem directedKernel_zero_le_of_nonpos
     {p lambda : Real} {m : Nat} (hp : 0 <= p) (hlambda : lambda <= 0)
     (hm2 : 2 <= m) :
@@ -38,6 +44,9 @@ theorem directedKernel_zero_le_of_nonpos
     (fun j _ => mul_nonneg (pow_nonneg hp _)
       (pow_nonneg (by linarith) _)) hzeroMem
 
+/--
+@isnad1 id=le.4h3v.s6.fc6dd89377f3 from=translated src=- shape=8ac3a456 vocab=bb831d52
+-/
 theorem directedKernel_le_zero_value
     {p L : Real} {m : Nat} (hp : 0 < p) (hL : 0 <= L)
     (hm : Odd m) (hm2 : 2 <= m) :
@@ -57,6 +66,9 @@ theorem directedKernel_le_zero_value
     nlinarith [pow_nonneg (le_of_lt hp) (m - 2)]
   exact le_of_mul_le_mul_right hproduct hden
 
+/--
+@isnad1 id=le.5h4v.s5.8fd1b6bd7f73 from=translated src=- shape=7cebbc22 vocab=f3250f73
+-/
 theorem directedKernel_anti_on_nonneg
     {p lambda L : Real} {m : Nat}
     (hp : 0 < p) (hlambda : 0 <= lambda) (hle : lambda <= L)
@@ -108,6 +120,9 @@ theorem directedKernel_anti_on_nonneg
     mul_pos (by linarith) (by linarith)
   exact le_of_mul_le_mul_right hproduct hden
 
+/--
+@isnad1 id=le.5h4v.s6.a6471fe578f0 from=translated src=- shape=e156fed5 vocab=7d447731
+-/
 theorem directedKernel_safe_lower_bound
     {p lambda L : Real} {m : Nat}
     (hp : 0 < p) (hL : 0 <= L)

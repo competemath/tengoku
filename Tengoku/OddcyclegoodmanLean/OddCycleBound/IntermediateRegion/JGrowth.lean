@@ -10,6 +10,9 @@ namespace OddCycleBound.IntermediateRegion
 
 open Real
 
+/--
+@isnad1 id=le.1h1v.s5.be70603441c0 from=translated src=- shape=2b3c353e vocab=71ad43e6
+-/
 theorem log_one_sub_le_neg {s : ℝ} (hs : s < 1) : Real.log (1 - s) ≤ -s := by
   have h : Real.log (1 - s) ≤ (1 - s) - 1 := Real.log_le_sub_one_of_pos (by linarith)
   linarith [h]
