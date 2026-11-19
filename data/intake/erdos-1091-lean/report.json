@@ -1,0 +1,13 @@
+{
+ "bundle_sha256": "7afdcfa35bbd46d33f7bae442d60442046bbabbe086c356ff0f97252911ed0fe",
+ "factory_changes": {
+  "inert lines removed": 8,
+  "modules changed": 2
+ },
+ "gate2_unjudged": [],
+ "library": "erdos-1091-lean",
+ "lint_mode": "proposed",
+ "modules": 7,
+ "part": 1,
+ "theorems": 112
+}
