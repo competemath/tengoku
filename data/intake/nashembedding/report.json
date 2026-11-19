@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "4d777c2e4b95a7d4e142a00127e3a311e50f59bbbe94d1b8214a3c7a264a98f7",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "nashembedding",
+ "lint_mode": "proposed",
+ "modules": 33,
+ "part": 1,
+ "theorems": 327
+}
