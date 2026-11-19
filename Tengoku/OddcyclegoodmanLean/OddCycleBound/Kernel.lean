@@ -1,0 +1,1471 @@
+import Tengoku.OddcyclegoodmanLean.OddCycleBound.PathDensity
+import Tengoku.Seed.Data.Fintype.Sigma
+import Tengoku.Seed.Data.Fintype.Sets
+import Tengoku.Seed.MeasureTheory.Function.SimpleFunc
+import Tengoku.Seed.MeasureTheory.Measure.MeasuredSets
+import Tengoku.Seed.MeasureTheory.Measure.Real
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+open MeasureTheory
+open scoped BigOperators ENNReal symmDiff
+
+namespace OddCycleBound
+
+universe u
+
+variable {Ω : Type u} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
+
+structure GoodK (K : Ω → Ω → ℝ) : Prop where
+  meas : Measurable (Function.uncurry K)
+  bdd : ∃ C, 0 ≤ C ∧ ∀ x y, |K x y| ≤ C
+
+noncomputable def comp (μ : Measure Ω) (K L : Ω → Ω → ℝ) : Ω → Ω → ℝ :=
+  fun x y => ∫ z, K x z * L z y ∂μ
+
+def onesKernel : Ω → Ω → ℝ := fun _ _ => 1
+
+noncomputable def doubleMean (μ : Measure Ω) (M : Ω → Ω → ℝ) : ℝ := ∫ x, ∫ y, M x y ∂μ ∂μ
+
+/--
+@isnad1 id=goodk.0h1v.s3.a6819bcea3ef from=translated src=- shape=84bfdc15 vocab=2b66bb82
+-/
+lemma goodK_onesKernel : GoodK (onesKernel (Ω := Ω)) :=
+  ⟨measurable_const, ⟨1, zero_le_one, fun _ _ => by simp [onesKernel]⟩⟩
+
+omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=goodk.1h3v.s4.c799e0013f77 from=translated src=- shape=30af67df vocab=6dc07766
+-/
+lemma goodK_of_isGraphon {U : Ω → Ω → ℝ} (hU : IsGraphon U μ) : GoodK U :=
+  ⟨hU.meas, ⟨1, zero_le_one, fun x y => by
+    rw [abs_of_nonneg (hU.nonneg x y)]; exact hU.le_one x y⟩⟩
+
+/--
+@isnad1 id=eq.0h2v.s6.b86ff64ed27e from=translated src=- shape=07863efa vocab=ec238351
+-/
+lemma simpleFunc_eq_finset_sum_range_indicator
+    {α : Type*} [MeasurableSpace α] (S : SimpleFunc α ℝ) :
+    (fun x => S x) =
+      fun x =>
+        (SimpleFunc.range S).sum fun c =>
+          c * ((S ⁻¹' {c}).indicator (fun _ : α => (1 : ℝ)) x) := by
+  funext x
+  classical
+  have hxmem : S x ∈ SimpleFunc.range S := S.mem_range_self x
+  rw [Finset.sum_eq_single (S x)]
+  · simp [Set.indicator_of_mem]
+  · intro c _hc hne
+    have hxnot : x ∉ S ⁻¹' {c} := by
+      intro hx
+      exact hne (by simpa using hx.symm)
+    simp [Set.indicator_of_notMem hxnot]
+  · intro hnot
+    exact (hnot hxmem).elim
+
+/--
+@isnad1 id=le.0h4v.s6.7cf0e64be976 from=translated src=- shape=459d72c9 vocab=597aab2a
+-/
+lemma abs_indicator_one_sub_indicator_one_le_indicator_symmDiff
+    {α : Type*} (A B : Set α) (x : α) :
+    |A.indicator (fun _ : α => (1 : ℝ)) x -
+        B.indicator (fun _ : α => (1 : ℝ)) x| ≤
+      (A ∆ B).indicator (fun _ : α => (1 : ℝ)) x := by
+  classical
+  by_cases hA : x ∈ A <;> by_cases hB : x ∈ B
+  · have hx : x ∉ A ∆ B := by
+      simp [Set.mem_symmDiff, hA, hB]
+    simp [Set.indicator_of_notMem, hA, hB, hx]
+  · have hx : x ∈ A ∆ B := by
+      simp [Set.mem_symmDiff, hA, hB]
+    simp [Set.indicator_of_mem, Set.indicator_of_notMem, hA, hB, hx]
+  · have hx : x ∈ A ∆ B := by
+      simp [Set.mem_symmDiff, hA, hB]
+    simp [Set.indicator_of_mem, Set.indicator_of_notMem, hA, hB, hx]
+  · have hx : x ∉ A ∆ B := by
+      simp [Set.mem_symmDiff, hA, hB]
+    simp [Set.indicator_of_notMem, hA, hB, hx]
+
+/--
+@isnad1 id=le.0h7v.s7.953e0850a185 from=translated src=- shape=2434fb7c vocab=043c33ae
+-/
+lemma abs_finset_weighted_indicator_sum_sub_le
+    {α ι : Type*} (s : Finset ι) (c : ι → ℝ)
+    (A B : ι → Set α) (x : α) :
+    |(s.sum fun i => c i *
+          (A i).indicator (fun _ : α => (1 : ℝ)) x) -
+        (s.sum fun i => c i *
+          (B i).indicator (fun _ : α => (1 : ℝ)) x)| ≤
+      s.sum fun i => |c i| *
+        ((A i ∆ B i).indicator (fun _ : α => (1 : ℝ)) x) := by
+  classical
+  rw [← Finset.sum_sub_distrib]
+  refine (Finset.abs_sum_le_sum_abs
+    (fun i =>
+      c i * (A i).indicator (fun _ : α => (1 : ℝ)) x -
+        c i * (B i).indicator (fun _ : α => (1 : ℝ)) x) s).trans ?_
+  refine Finset.sum_le_sum ?_
+  intro i hi
+  calc
+    |c i * (A i).indicator (fun _ : α => (1 : ℝ)) x -
+        c i * (B i).indicator (fun _ : α => (1 : ℝ)) x|
+        = |c i| *
+            |(A i).indicator (fun _ : α => (1 : ℝ)) x -
+              (B i).indicator (fun _ : α => (1 : ℝ)) x| := by
+          rw [← mul_sub, abs_mul]
+    _ ≤ |c i| *
+          ((A i ∆ B i).indicator (fun _ : α => (1 : ℝ)) x) := by
+          exact mul_le_mul_of_nonneg_left
+            (abs_indicator_one_sub_indicator_one_le_indicator_symmDiff
+              (A i) (B i) x)
+            (abs_nonneg _)
+
+/--
+@isnad1 id=le.0h7v.s7.f7b9f608751c from=translated src=- shape=573aa083 vocab=312a2b0c
+-/
+lemma sq_finset_weighted_indicator_sum_sub_le_badSet
+    {α ι : Type*} (s : Finset ι) (c : ι → ℝ)
+    (A B : ι → Set α) (x : α) :
+    ((s.sum fun i => c i *
+          (A i).indicator (fun _ : α => (1 : ℝ)) x) -
+        (s.sum fun i => c i *
+          (B i).indicator (fun _ : α => (1 : ℝ)) x)) ^ 2 ≤
+      (s.sum fun i => |c i|) ^ 2 *
+        ({y : α | ∃ i ∈ s, y ∈ A i ∆ B i}.indicator
+          (fun _ : α => (1 : ℝ)) x) := by
+  classical
+  let D : ℝ :=
+    (s.sum fun i => c i *
+      (A i).indicator (fun _ : α => (1 : ℝ)) x) -
+      (s.sum fun i => c i *
+        (B i).indicator (fun _ : α => (1 : ℝ)) x)
+  let C : ℝ := s.sum fun i => |c i|
+  let Bad : Set α := {y : α | ∃ i ∈ s, y ∈ A i ∆ B i}
+  have hC0 : 0 ≤ C := by
+    dsimp [C]
+    exact Finset.sum_nonneg fun i _ => abs_nonneg (c i)
+  by_cases hxBad : x ∈ Bad
+  · have habsD : |D| ≤ C := by
+      dsimp [D, C]
+      calc
+        |(s.sum fun i => c i *
+              (A i).indicator (fun _ : α => (1 : ℝ)) x) -
+            (s.sum fun i => c i *
+              (B i).indicator (fun _ : α => (1 : ℝ)) x)|
+            ≤ s.sum fun i => |c i| *
+                ((A i ∆ B i).indicator (fun _ : α => (1 : ℝ)) x) :=
+              abs_finset_weighted_indicator_sum_sub_le s c A B x
+        _ ≤ s.sum fun i => |c i| := by
+              refine Finset.sum_le_sum ?_
+              intro i hi
+              have hind :
+                  ((A i ∆ B i).indicator (fun _ : α => (1 : ℝ)) x) ≤ 1 := by
+                by_cases hx : x ∈ A i ∆ B i
+                · simp [Set.indicator_of_mem hx]
+                · simp [Set.indicator_of_notMem hx]
+              simpa [mul_one] using
+                mul_le_mul_of_nonneg_left hind (abs_nonneg (c i))
+    have hsq : D ^ 2 ≤ C ^ 2 := by
+      rw [← sq_abs D]
+      nlinarith [abs_nonneg D, hC0, habsD]
+    simpa [D, C, Bad, Set.indicator_of_mem hxBad] using hsq
+  · have hterm :
+        ∀ i ∈ s,
+          (A i).indicator (fun _ : α => (1 : ℝ)) x =
+            (B i).indicator (fun _ : α => (1 : ℝ)) x := by
+      intro i hi
+      have hnot : x ∉ A i ∆ B i := by
+        intro hx
+        exact hxBad ⟨i, hi, hx⟩
+      by_cases hA : x ∈ A i <;> by_cases hB : x ∈ B i
+      · simp [Set.indicator_of_mem, hA, hB]
+      · have hx : x ∈ A i ∆ B i := by
+          simp [Set.mem_symmDiff, hA, hB]
+        exact (hnot hx).elim
+      · have hx : x ∈ A i ∆ B i := by
+          simp [Set.mem_symmDiff, hA, hB]
+        exact (hnot hx).elim
+      · simp [Set.indicator_of_notMem, hA, hB]
+    have hsum :
+        (s.sum fun i => c i *
+            (A i).indicator (fun _ : α => (1 : ℝ)) x) =
+          (s.sum fun i => c i *
+            (B i).indicator (fun _ : α => (1 : ℝ)) x) := by
+      refine Finset.sum_congr rfl ?_
+      intro i hi
+      rw [hterm i hi]
+    simp [Bad, hsum, Set.indicator_of_notMem hxBad]
+
+/--
+@isnad1 id=le.2h7v.s8.471618bdf637 from=translated src=- shape=ad1f5c5a vocab=9b5d6ea2
+-/
+lemma integral_sq_finset_weighted_indicator_sum_sub_le_badSet
+    {α ι : Type*} [MeasurableSpace α] {ν : Measure α} [IsFiniteMeasure ν]
+    (s : Finset ι) (c : ι → ℝ)
+    (A B : ι → Set α)
+    (hA : ∀ i ∈ s, MeasurableSet (A i))
+    (hB : ∀ i ∈ s, MeasurableSet (B i)) :
+    ∫ x : α,
+        ((s.sum fun i => c i *
+              (A i).indicator (fun _ : α => (1 : ℝ)) x) -
+            (s.sum fun i => c i *
+              (B i).indicator (fun _ : α => (1 : ℝ)) x)) ^ 2 ∂ν
+      ≤ (s.sum fun i => |c i|) ^ 2 *
+        ν.real {x : α | ∃ i ∈ s, x ∈ A i ∆ B i} := by
+  classical
+  let Bad : Set α := {x : α | ∃ i ∈ s, x ∈ A i ∆ B i}
+  let C : ℝ := s.sum fun i => |c i|
+  let f : α → ℝ := fun x =>
+    ((s.sum fun i => c i *
+          (A i).indicator (fun _ : α => (1 : ℝ)) x) -
+        (s.sum fun i => c i *
+          (B i).indicator (fun _ : α => (1 : ℝ)) x)) ^ 2
+  let g : α → ℝ := fun x =>
+    C ^ 2 * Bad.indicator (fun _ : α => (1 : ℝ)) x
+  have hBad : MeasurableSet Bad := by
+    have hBad' : MeasurableSet (⋃ i ∈ s, A i ∆ B i) := by
+      refine Finset.measurableSet_biUnion s ?_
+      intro i hi
+      rw [Set.symmDiff_def]
+      exact ((hA i hi).diff (hB i hi)).union ((hB i hi).diff (hA i hi))
+    convert hBad' using 1
+    ext x
+    simp [Bad]
+  have hf_nonneg : 0 ≤ᵐ[ν] f := by
+    exact ae_of_all _ fun x => sq_nonneg _
+  have hg_int : Integrable g ν := by
+    have hg_eq : g = Bad.indicator (fun _ : α => C ^ 2) := by
+      funext x
+      by_cases hx : x ∈ Bad
+      · simp [g, Set.indicator_of_mem hx]
+      · simp [g, Set.indicator_of_notMem hx]
+    rw [hg_eq]
+    exact (integrable_const (C ^ 2)).indicator hBad
+  have hfg : f ≤ᵐ[ν] g := by
+    exact ae_of_all _ fun x => by
+      dsimp [f, g, C, Bad]
+      exact sq_finset_weighted_indicator_sum_sub_le_badSet s c A B x
+  have hmono : ∫ x, f x ∂ν ≤ ∫ x, g x ∂ν :=
+    integral_mono_of_nonneg hf_nonneg hg_int hfg
+  have hg_eq : (∫ x, g x ∂ν) =
+      C ^ 2 * ν.real Bad := by
+    have hg_fun : g = Bad.indicator (fun _ : α => C ^ 2) := by
+      funext x
+      by_cases hx : x ∈ Bad
+      · simp [g, Set.indicator_of_mem hx]
+      · simp [g, Set.indicator_of_notMem hx]
+    rw [hg_fun, integral_indicator_const (C ^ 2) hBad]
+    simp [mul_comm]
+  rw [hg_eq] at hmono
+  simpa [f, C, Bad] using hmono
+
+/--
+@isnad1 id=le.2h7v.s8.df3cab429a99 from=translated src=- shape=9048e737 vocab=de272965
+-/
+lemma integral_sq_finset_weighted_indicator_sum_sub_le_sum_symmDiff
+    {α ι : Type*} [MeasurableSpace α] {ν : Measure α} [IsFiniteMeasure ν]
+    (s : Finset ι) (c : ι → ℝ)
+    (A B : ι → Set α)
+    (hA : ∀ i ∈ s, MeasurableSet (A i))
+    (hB : ∀ i ∈ s, MeasurableSet (B i)) :
+    ∫ x : α,
+        ((s.sum fun i => c i *
+              (A i).indicator (fun _ : α => (1 : ℝ)) x) -
+            (s.sum fun i => c i *
+              (B i).indicator (fun _ : α => (1 : ℝ)) x)) ^ 2 ∂ν
+      ≤ (s.sum fun i => |c i|) ^ 2 *
+        (s.sum fun i => ν.real (A i ∆ B i)) := by
+  classical
+  let Bad : Set α := {x : α | ∃ i ∈ s, x ∈ A i ∆ B i}
+  have hbase :=
+    integral_sq_finset_weighted_indicator_sum_sub_le_badSet
+      (ν := ν) s c A B hA hB
+  have hmeasure : ν.real Bad ≤ s.sum fun i => ν.real (A i ∆ B i) := by
+    have h :=
+      measureReal_biUnion_finset_le (μ := ν) s
+        (fun i => A i ∆ B i)
+    have hBad_eq : Bad = ⋃ i ∈ s, A i ∆ B i := by
+      ext x
+      simp [Bad]
+    rw [hBad_eq]
+    exact h
+  exact hbase.trans
+    (mul_le_mul_of_nonneg_left hmeasure
+      (sq_nonneg (s.sum fun i => |c i|)))
+
+/--
+@isnad1 id=le.1h4v.s7.f14873aba172 from=translated src=- shape=44dea032 vocab=b404be39
+-/
+lemma integral_sq_simpleFunc_sub_levelSet_replacements_le_sum_symmDiff
+    {α : Type*} [MeasurableSpace α] {ν : Measure α} [IsFiniteMeasure ν]
+    (S : SimpleFunc α ℝ) (T : ℝ → Set α)
+    (hT : ∀ c ∈ SimpleFunc.range S, MeasurableSet (T c)) :
+    ∫ x : α,
+        (S x -
+          ((SimpleFunc.range S).sum fun c =>
+            c * (T c).indicator (fun _ : α => (1 : ℝ)) x)) ^ 2 ∂ν
+      ≤ ((SimpleFunc.range S).sum fun c => |c|) ^ 2 *
+        ((SimpleFunc.range S).sum fun c =>
+          ν.real ((S ⁻¹' {c}) ∆ T c)) := by
+  classical
+  have hbase :=
+    integral_sq_finset_weighted_indicator_sum_sub_le_sum_symmDiff
+      (ν := ν) (SimpleFunc.range S) (fun c : ℝ => c)
+      (fun c : ℝ => S ⁻¹' {c}) T
+      (fun c _hc => S.measurableSet_fiber c) hT
+  have hS_point : ∀ x : α,
+      S x =
+        (SimpleFunc.range S).sum fun c =>
+          c * ((S ⁻¹' {c}).indicator (fun _ : α => (1 : ℝ)) x) := by
+    intro x
+    exact congrFun (simpleFunc_eq_finset_sum_range_indicator S) x
+  simpa [hS_point] using hbase
+
+/--
+@isnad1 id=le.2h5v.s8.e86ff9e937ba from=translated src=- shape=541c8cf3 vocab=d91ca5af
+-/
+lemma integral_sq_simpleFunc_sub_levelSet_replacements_le_uniform_symmDiff
+    {α : Type*} [MeasurableSpace α] {ν : Measure α} [IsFiniteMeasure ν]
+    (S : SimpleFunc α ℝ) (T : ℝ → Set α)
+    (hT : ∀ c ∈ SimpleFunc.range S, MeasurableSet (T c))
+    {η : ℝ}
+    (hη : ∀ c ∈ SimpleFunc.range S, ν.real ((S ⁻¹' {c}) ∆ T c) ≤ η) :
+    ∫ x : α,
+        (S x -
+          ((SimpleFunc.range S).sum fun c =>
+            c * (T c).indicator (fun _ : α => (1 : ℝ)) x)) ^ 2 ∂ν
+      ≤ ((SimpleFunc.range S).sum fun c => |c|) ^ 2 *
+        ((SimpleFunc.range S).card * η) := by
+  classical
+  have hbase :=
+    integral_sq_simpleFunc_sub_levelSet_replacements_le_sum_symmDiff
+      (ν := ν) S T hT
+  have hsum :
+      (SimpleFunc.range S).sum
+          (fun c => ν.real ((S ⁻¹' {c}) ∆ T c))
+        ≤ (SimpleFunc.range S).sum (fun _c => η) :=
+    Finset.sum_le_sum hη
+  calc
+    ∫ x : α,
+        (S x -
+          ((SimpleFunc.range S).sum fun c =>
+            c * (T c).indicator (fun _ : α => (1 : ℝ)) x)) ^ 2 ∂ν
+        ≤ ((SimpleFunc.range S).sum fun c => |c|) ^ 2 *
+          ((SimpleFunc.range S).sum fun c =>
+            ν.real ((S ⁻¹' {c}) ∆ T c)) := hbase
+    _ ≤ ((SimpleFunc.range S).sum fun c => |c|) ^ 2 *
+        ((SimpleFunc.range S).sum fun _c => η) := by
+          exact mul_le_mul_of_nonneg_left hsum
+            (sq_nonneg ((SimpleFunc.range S).sum fun c => |c|))
+    _ = ((SimpleFunc.range S).sum fun c => |c|) ^ 2 *
+        ((SimpleFunc.range S).card * η) := by
+          rw [Finset.sum_const, nsmul_eq_mul]
+
+/--
+@isnad1 id=eq.1h5v.s7.9a23aac80935 from=translated src=- shape=d328d5cb vocab=7c9aae6f
+-/
+lemma indicator_biUnion_finset_one_eq_sum_indicator
+    {α ι : Type*} (s : Finset ι) (A : ι → Set α)
+    (hdisj : (s : Set ι).PairwiseDisjoint A) (x : α) :
+    ((s.sup A).indicator (fun _ : α => (1 : ℝ)) x) =
+      s.sum fun i => (A i).indicator (fun _ : α => (1 : ℝ)) x := by
+  classical
+  by_cases hx : ∃ i ∈ s, x ∈ A i
+  · rcases hx with ⟨i, hi, hxi⟩
+    have hleft : x ∈ s.sup A := by
+      rw [Finset.sup_set_eq_biUnion]
+      exact Set.mem_iUnion.2
+        ⟨i, Set.mem_iUnion.2 ⟨hi, hxi⟩⟩
+    rw [Set.indicator_of_mem hleft]
+    rw [Finset.sum_eq_single i]
+    · simp [Set.indicator_of_mem hxi]
+    · intro j hj hji
+      have hxj : x ∉ A j := by
+        intro hxj
+        have hd : Disjoint (A i) (A j) := hdisj hi hj hji.symm
+        exact (Set.disjoint_left.mp hd hxi hxj)
+      simp [Set.indicator_of_notMem hxj]
+    · intro hnot
+      exact (hnot hi).elim
+  · have hleft_sup : x ∉ s.sup A := by
+      rw [Finset.sup_set_eq_biUnion]
+      intro hxmem
+      rcases Set.mem_iUnion.1 hxmem with ⟨i, hxi'⟩
+      rcases Set.mem_iUnion.1 hxi' with ⟨hi, hxi⟩
+      exact hx ⟨i, hi, hxi⟩
+    rw [Set.indicator_of_notMem hleft_sup]
+    symm
+    refine Finset.sum_eq_zero ?_
+    intro i hi
+    have hxi : x ∉ A i := by
+      intro hmem
+      exact hx ⟨i, hi, hmem⟩
+    simp [Set.indicator_of_notMem hxi]
+
+/--
+@isnad1 id=eq.0h4v.s7.1144e1328a84 from=translated src=- shape=06b3de4f vocab=07042b65
+-/
+lemma finpartition_sup_indicator_one_eq_sum_parts_indicator
+    {α : Type*} {s : Set α} (P : Finpartition s) (x : α) :
+    (P.parts.sup id).indicator (fun _ : α => (1 : ℝ)) x =
+      P.parts.sum fun p => p.indicator (fun _ : α => (1 : ℝ)) x := by
+  classical
+  exact indicator_biUnion_finset_one_eq_sum_indicator
+    P.parts (fun p : Set α => p) P.disjoint x
+
+/--
+@isnad1 id=good.1h2v.s4.d83728c7648e from=translated src=- shape=6007adc5 vocab=21ca2cfe
+-/
+lemma good_indicator_one {s : Set Ω} (hs : MeasurableSet s) :
+    Good (s.indicator fun _ : Ω => (1 : ℝ)) := by
+  refine ⟨stronglyMeasurable_const.indicator hs, 1, zero_le_one, fun x => ?_⟩
+  by_cases hx : x ∈ s
+  · simp [Set.indicator_of_mem hx]
+  · simp [Set.indicator_of_notMem hx]
+
+/--
+@isnad1 id=goodk.2h3v.s5.614420ad1af8 from=translated src=- shape=94710602 vocab=4591a457
+-/
+lemma goodK_separable {a b : Ω → ℝ} (ha : Good a) (hb : Good b) :
+    GoodK (fun x y => a x * b y) := by
+  obtain ⟨Ca, hCa0, hCa⟩ := ha.bdd
+  obtain ⟨Cb, hCb0, hCb⟩ := hb.bdd
+  refine ⟨?_, Ca * Cb, mul_nonneg hCa0 hCb0, fun x y => ?_⟩
+  · exact ((ha.meas.comp_measurable measurable_fst).mul
+      (hb.meas.comp_measurable measurable_snd)).measurable
+  · rw [abs_mul]
+    exact mul_le_mul (hCa x) (hCb y) (abs_nonneg _) hCa0
+
+/--
+@isnad1 id=eq.0h6v.s6.be79a25fd68c from=translated src=- shape=653e5c1c vocab=a9b91cde
+-/
+lemma indicator_prod_one_eq_mul_indicator_one
+    {α β : Type*} (s : Set α) (t : Set β) (x : α) (y : β) :
+    (s ×ˢ t).indicator (fun _ : α × β => (1 : ℝ)) (x, y) =
+      s.indicator (fun _ : α => (1 : ℝ)) x *
+        t.indicator (fun _ : β => (1 : ℝ)) y := by
+  classical
+  by_cases hx : x ∈ s <;> by_cases hy : y ∈ t
+  · have hxy : (x, y) ∈ s ×ˢ t := ⟨hx, hy⟩
+    simp [Set.indicator_of_mem, hx, hy, hxy]
+  · have hxy : (x, y) ∉ s ×ˢ t := by
+      intro hmem
+      exact hy hmem.2
+    simp [Set.indicator_of_notMem, hx, hy, hxy]
+  · have hxy : (x, y) ∉ s ×ˢ t := by
+      intro hmem
+      exact hx hmem.1
+    simp [Set.indicator_of_notMem, hx, hy, hxy]
+  · have hxy : (x, y) ∉ s ×ˢ t := by
+      intro hmem
+      exact hx hmem.1
+    simp [Set.indicator_of_notMem, hx, hy, hxy]
+
+/--
+@isnad1 id=goodk.0h1v.s4.b3ff6d9d0b34 from=translated src=- shape=73696d3c vocab=d24c7583
+-/
+lemma goodK_zero : GoodK (fun _x _y : Ω => (0 : ℝ)) :=
+  ⟨measurable_const, 0, le_rfl, fun _ _ => by simp⟩
+
+/--
+@isnad1 id=goodk.2h3v.s5.7bb7e164e269 from=translated src=- shape=71704a98 vocab=c5acba47
+-/
+lemma goodK_add {K L : Ω → Ω → ℝ} (hK : GoodK K) (hL : GoodK L) :
+    GoodK (fun x y => K x y + L x y) := by
+  obtain ⟨CK, hCK0, hCK⟩ := hK.bdd
+  obtain ⟨CL, hCL0, hCL⟩ := hL.bdd
+  refine ⟨hK.meas.add hL.meas, CK + CL, add_nonneg hCK0 hCL0, fun x y => ?_⟩
+  exact (abs_add_le _ _).trans (add_le_add (hCK x y) (hCL x y))
+
+/--
+@isnad1 id=goodk.1h4v.s5.168586d8da66 from=translated src=- shape=5244ad2e vocab=9ca4e2c9
+-/
+lemma goodK_finset_sum {ι : Type*} (s : Finset ι) (K : ι → Ω → Ω → ℝ)
+    (hK : ∀ i ∈ s, GoodK (K i)) :
+    GoodK (fun x y => ∑ i ∈ s, K i x y) := by
+  classical
+  revert hK
+  refine Finset.induction_on s ?base ?step
+  · intro _hK
+    simpa using (goodK_zero (Ω := Ω))
+  · intro a s ha ih hK
+    have hKa : GoodK (K a) := hK a (by simp)
+    have hsum : GoodK (fun x y => ∑ i ∈ s, K i x y) := by
+      exact ih fun i hi => hK i (by simp [hi])
+    simpa [Finset.sum_insert ha] using goodK_add hKa hsum
+
+/--
+@isnad1 id=goodk.2h6v.s7.8cd723296aea from=translated src=- shape=74205bd9 vocab=22dc78c3
+-/
+lemma goodK_finset_weighted_rectIndicator_sum {ι : Type*} (s : Finset ι)
+    (c : ι → ℝ) (A B : ι → Set Ω)
+    (hA : ∀ i ∈ s, MeasurableSet (A i))
+    (hB : ∀ i ∈ s, MeasurableSet (B i)) :
+    GoodK (fun x y =>
+      ∑ i ∈ s,
+        c i *
+          ((A i).indicator (fun _ : Ω => (1 : ℝ)) x *
+            (B i).indicator (fun _ : Ω => (1 : ℝ)) y)) := by
+  refine goodK_finset_sum s
+    (fun i x y =>
+      c i *
+        ((A i).indicator (fun _ : Ω => (1 : ℝ)) x *
+          (B i).indicator (fun _ : Ω => (1 : ℝ)) y)) ?_
+  intro i hi
+  simpa [mul_assoc] using
+    goodK_separable
+      (good_smul (c i) (good_indicator_one (Ω := Ω) (hA i hi)))
+      (good_indicator_one (Ω := Ω) (hB i hi))
+
+omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=eq.0h6v.s7.3ebbc6384ef6 from=translated src=- shape=1a26d38d vocab=640eaf75
+-/
+lemma finset_weighted_rectIndicator_sum_eq_separable_sum {ι : Type*} (s : Finset ι)
+    (c : ι → ℝ) (A B : ι → Set Ω) :
+    (fun x y =>
+      ∑ i ∈ s,
+        c i *
+          ((A i).indicator (fun _ : Ω => (1 : ℝ)) x *
+            (B i).indicator (fun _ : Ω => (1 : ℝ)) y))
+      =
+    fun x y =>
+      ∑ i ∈ s,
+        (c i • (A i).indicator (fun _ : Ω => (1 : ℝ)) : Ω → ℝ) x *
+          (B i).indicator (fun _ : Ω => (1 : ℝ)) y := by
+  funext x y
+  refine Finset.sum_congr rfl ?_
+  intro i hi
+  simp [mul_assoc]
+
+def measurableRectangles (Ω : Type*) [MeasurableSpace Ω] : Set (Set (Ω × Ω)) :=
+  Set.image2 (fun s t : Set Ω => s ×ˢ t)
+    {s : Set Ω | MeasurableSet s} {t : Set Ω | MeasurableSet t}
+
+/--
+@isnad1 id=mem.2h3v.s5.275ae2837288 from=translated src=- shape=d83adbfd vocab=145029b5
+-/
+lemma measurableRectangles.mem {s t : Set Ω}
+    (hs : MeasurableSet s) (ht : MeasurableSet t) :
+    s ×ˢ t ∈ measurableRectangles Ω :=
+  ⟨s, hs, t, ht, rfl⟩
+
+noncomputable def measurableRectangles.left
+    {R : Set (Ω × Ω)} (hR : R ∈ measurableRectangles Ω) : Set Ω :=
+  Classical.choose hR
+
+/--
+@isnad1 id=measurab.1h2v.s5.0b33b3363792 from=translated src=- shape=3386ba97 vocab=9dee9f1a
+-/
+lemma measurableRectangles.left_meas
+    {R : Set (Ω × Ω)} (hR : R ∈ measurableRectangles Ω) :
+    MeasurableSet (measurableRectangles.left (Ω := Ω) hR) :=
+  (Classical.choose_spec hR).1
+
+noncomputable def measurableRectangles.right
+    {R : Set (Ω × Ω)} (hR : R ∈ measurableRectangles Ω) : Set Ω :=
+  Classical.choose (Classical.choose_spec hR).2
+
+/--
+@isnad1 id=measurab.1h2v.s5.a5be3359ed5d from=translated src=- shape=3386ba97 vocab=d553b63d
+-/
+lemma measurableRectangles.right_meas
+    {R : Set (Ω × Ω)} (hR : R ∈ measurableRectangles Ω) :
+    MeasurableSet (measurableRectangles.right (Ω := Ω) hR) :=
+  (Classical.choose_spec (Classical.choose_spec hR).2).1
+
+/--
+@isnad1 id=eq.1h2v.s5.497ea280a411 from=translated src=- shape=0b50e633 vocab=c88bf407
+-/
+lemma measurableRectangles.prod_eq
+    {R : Set (Ω × Ω)} (hR : R ∈ measurableRectangles Ω) :
+    measurableRectangles.left (Ω := Ω) hR ×ˢ
+      measurableRectangles.right (Ω := Ω) hR = R :=
+  (Classical.choose_spec (Classical.choose_spec hR).2).2
+
+/--
+@isnad1 id=measurab.1h2v.s5.9e478d82873d from=translated src=- shape=501da498 vocab=d8677423
+-/
+lemma measurableSet_of_mem_measurableRectangles
+    {R : Set (Ω × Ω)} (hR : R ∈ measurableRectangles Ω) :
+    MeasurableSet R := by
+  rcases hR with ⟨s, hs, t, ht, rfl⟩
+  exact hs.prod ht
+
+/--
+@isnad1 id=measurab.1h3v.s8.7b2cac9b1c69 from=translated src=- shape=d48e548b vocab=e6d3e854
+-/
+lemma measurableSet_finpartition_sup_of_measurableRectangles
+    {t : Set (Ω × Ω)} (P : Finpartition t)
+    (hP : ↑P.parts ⊆ measurableRectangles Ω) :
+    MeasurableSet (P.parts.sup id) := by
+  rw [Finset.sup_set_eq_biUnion]
+  exact MeasurableSet.biUnion P.parts.finite_toSet.countable
+    fun R hR => measurableSet_of_mem_measurableRectangles (Ω := Ω) (hP hR)
+
+/--
+@isnad1 id=mem.0h1v.s5.0ea4649ccb6b from=translated src=- shape=95a04cab vocab=9a998949
+-/
+lemma measurableRectangles_empty :
+    (∅ : Set (Ω × Ω)) ∈ measurableRectangles Ω := by
+  simpa using
+    (measurableRectangles.mem (Ω := Ω)
+      (s := (∅ : Set Ω)) (t := (∅ : Set Ω))
+      MeasurableSet.empty MeasurableSet.empty)
+
+/--
+@isnad1 id=mem.0h1v.s4.0318666ba58b from=translated src=- shape=a0cf574a vocab=3891e9f0
+-/
+lemma measurableRectangles_univ :
+    (Set.univ : Set (Ω × Ω)) ∈ measurableRectangles Ω := by
+  simpa [Set.univ_prod_univ] using
+    (measurableRectangles.mem (Ω := Ω)
+      (s := (Set.univ : Set Ω)) (t := (Set.univ : Set Ω))
+      MeasurableSet.univ MeasurableSet.univ)
+
+/--
+@isnad1 id=mem.2h3v.s6.74b42cd23d7b from=translated src=- shape=748baaf4 vocab=8aa3d38e
+-/
+lemma measurableRectangles_inter_mem
+    {A B : Set (Ω × Ω)}
+    (hA : A ∈ measurableRectangles Ω) (hB : B ∈ measurableRectangles Ω) :
+    A ∩ B ∈ measurableRectangles Ω := by
+  rcases hA with ⟨s, hs, t, ht, rfl⟩
+  rcases hB with ⟨u, hu, v, hv, rfl⟩
+  simpa [Set.prod_inter_prod] using
+    (measurableRectangles.mem (Ω := Ω)
+      (s := s ∩ u) (t := t ∩ v)
+      (hs.inter hu) (ht.inter hv))
+
+/--
+@isnad1 id=ex.2h3v.s7.98d4fca8896d from=translated src=- shape=76ef7ca4 vocab=3ac06950
+-/
+lemma measurableRectangles_sdiff_eq_sUnion
+    {A B : Set (Ω × Ω)}
+    (hA : A ∈ measurableRectangles Ω) (hB : B ∈ measurableRectangles Ω) :
+    ∃ I : Finset (Set (Ω × Ω)),
+      ↑I ⊆ measurableRectangles Ω ∧
+        (I : Set (Set (Ω × Ω))).PairwiseDisjoint id ∧
+          A \ B = ⋃₀ (I : Set (Set (Ω × Ω))) := by
+  classical
+  rcases hA with ⟨s, hs, t, ht, rfl⟩
+  rcases hB with ⟨u, hu, v, hv, rfl⟩
+  let R₀ : Set (Ω × Ω) := (s \ u) ×ˢ t
+  let R₁ : Set (Ω × Ω) := (s ∩ u) ×ˢ (t \ v)
+  refine ⟨{R₀, R₁}, ?_, ?_, ?_⟩
+  · intro R hR
+    simp only [Finset.mem_coe, Finset.mem_insert, Finset.mem_singleton] at hR
+    rcases hR with rfl | rfl
+    · exact measurableRectangles.mem (Ω := Ω) (hs.diff hu) ht
+    · exact measurableRectangles.mem (Ω := Ω) (hs.inter hu) (ht.diff hv)
+  · rw [Set.PairwiseDisjoint, Set.Pairwise]
+    intro a ha b hb hne
+    simp only [Finset.mem_coe, Finset.mem_insert, Finset.mem_singleton] at ha hb
+    rcases ha with rfl | rfl <;> rcases hb with rfl | rfl
+    · exact (hne rfl).elim
+    · change Disjoint R₀ R₁
+      rw [Set.disjoint_iff_inter_eq_empty]
+      ext x
+      simp [R₀, R₁]
+      tauto
+    · change Disjoint R₁ R₀
+      rw [Set.disjoint_iff_inter_eq_empty]
+      ext x
+      simp [R₀, R₁]
+      tauto
+    · exact (hne rfl).elim
+  · rw [Set.prod_sdiff_prod]
+    ext x
+    simp [R₀, R₁]
+    tauto
+
+/--
+@isnad1 id=issetsem.0h1v.s3.72eec62f1ac7 from=translated src=- shape=81b2ef95 vocab=15e4dc9c
+-/
+theorem isSetSemiring_measurableRectangles :
+    IsSetSemiring (measurableRectangles Ω) where
+  empty_mem := measurableRectangles_empty (Ω := Ω)
+  inter_mem := fun _ hs _ ht => measurableRectangles_inter_mem hs ht
+  sdiff_eq_sUnion' := fun _ hs _ ht => measurableRectangles_sdiff_eq_sUnion hs ht
+
+/--
+@isnad1 id=eq.0h1v.s4.f0b70c9114a6 from=translated src=- shape=0b920d29 vocab=26f89a76
+-/
+lemma generateFrom_measurableRectangles :
+    MeasurableSpace.generateFrom (measurableRectangles Ω) =
+      (inferInstance : MeasurableSpace (Ω × Ω)) := by
+  simpa [measurableRectangles] using
+    (generateFrom_prod (α := Ω) (β := Ω))
+
+/--
+@isnad1 id=ex.2h4v.s8.9dc46e03a9bd from=translated src=- shape=f6e45c98 vocab=123d7fe3
+-/
+lemma exists_prod_measure_symmDiff_lt_supClosure_measurableRectangles
+    (μ : Measure Ω) [IsFiniteMeasure μ]
+    {s : Set (Ω × Ω)} (hs : MeasurableSet s)
+    {ε : ℝ≥0∞} (hε : 0 < ε) :
+    ∃ t ∈ supClosure (measurableRectangles Ω),
+      μ.prod μ (t ∆ s) < ε := by
+  have hcover :
+      ∃ D : Set (Set (Ω × Ω)),
+        D.Countable ∧ D ⊆ measurableRectangles Ω ∧
+          μ.prod μ (⋃₀ D)ᶜ = 0 := by
+    refine ⟨{Set.univ}, Set.countable_singleton _, ?_, ?_⟩
+    · intro t ht
+      simpa using ht ▸ measurableRectangles_univ (Ω := Ω)
+    · simp
+  exact
+    exists_measure_symmDiff_lt_of_generateFrom_isSetSemiring
+      (μ := μ.prod μ)
+      (mα := inferInstance)
+      isSetSemiring_measurableRectangles hcover
+      (by rw [eq_comm, generateFrom_measurableRectangles]) hs hε
+
+/--
+@isnad1 id=ex.2h4v.s8.8ff3a7689ccd from=translated src=- shape=bac63029 vocab=273fbd5d
+-/
+lemma exists_finpartition_measurableRectangles_symmDiff_lt
+    (μ : Measure Ω) [IsFiniteMeasure μ]
+    {s : Set (Ω × Ω)} (hs : MeasurableSet s)
+    {ε : ℝ≥0∞} (hε : 0 < ε) :
+    ∃ t, ∃ P : Finpartition t,
+      ↑P.parts ⊆ measurableRectangles Ω ∧ μ.prod μ (t ∆ s) < ε := by
+  rcases exists_prod_measure_symmDiff_lt_supClosure_measurableRectangles
+      (Ω := Ω) μ hs hε with ⟨t, ht, hμt⟩
+  rcases (isSetSemiring_measurableRectangles (Ω := Ω)).mem_supClosure_iff.mp ht with
+    ⟨P, hP⟩
+  exact ⟨t, P, hP, hμt⟩
+
+/--
+@isnad1 id=ex.1h3v.s9.48c77294d4d1 from=translated src=- shape=69d9c6fc vocab=287ae859
+-/
+lemma exists_rectIndicator_sum_eq_finpartition_sup
+    {t : Set (Ω × Ω)} (P : Finpartition t)
+    (hP : ↑P.parts ⊆ measurableRectangles Ω) :
+    ∃ A B : Set (Ω × Ω) → Set Ω,
+      (∀ R ∈ P.parts, MeasurableSet (A R)) ∧
+      (∀ R ∈ P.parts, MeasurableSet (B R)) ∧
+      (fun x y =>
+          (P.parts.sup id).indicator
+            (fun _ : Ω × Ω => (1 : ℝ)) (x, y))
+        =
+        fun x y =>
+          P.parts.sum fun R =>
+            (A R).indicator (fun _ : Ω => (1 : ℝ)) x *
+              (B R).indicator (fun _ : Ω => (1 : ℝ)) y := by
+  classical
+  let A : Set (Ω × Ω) → Set Ω := fun R =>
+    if hR : R ∈ measurableRectangles Ω then
+      measurableRectangles.left (Ω := Ω) hR
+    else ∅
+  let B : Set (Ω × Ω) → Set Ω := fun R =>
+    if hR : R ∈ measurableRectangles Ω then
+      measurableRectangles.right (Ω := Ω) hR
+    else ∅
+  refine ⟨A, B, ?_, ?_, ?_⟩
+  · intro R hR
+    have hrect : R ∈ measurableRectangles Ω := hP hR
+    simp [A, hrect, measurableRectangles.left_meas]
+  · intro R hR
+    have hrect : R ∈ measurableRectangles Ω := hP hR
+    simp [B, hrect, measurableRectangles.right_meas]
+  · funext x y
+    rw [finpartition_sup_indicator_one_eq_sum_parts_indicator P (x, y)]
+    refine Finset.sum_congr rfl ?_
+    intro R hR
+    have hrect : R ∈ measurableRectangles Ω := hP hR
+    have hprod := measurableRectangles.prod_eq (Ω := Ω) hrect
+    calc
+      R.indicator (fun _ : Ω × Ω => (1 : ℝ)) (x, y)
+          =
+        (measurableRectangles.left (Ω := Ω) hrect ×ˢ
+          measurableRectangles.right (Ω := Ω) hrect).indicator
+            (fun _ : Ω × Ω => (1 : ℝ)) (x, y) := by
+            rw [hprod]
+      _ =
+          (measurableRectangles.left (Ω := Ω) hrect).indicator
+              (fun _ : Ω => (1 : ℝ)) x *
+            (measurableRectangles.right (Ω := Ω) hrect).indicator
+              (fun _ : Ω => (1 : ℝ)) y := by
+            exact indicator_prod_one_eq_mul_indicator_one
+              (measurableRectangles.left (Ω := Ω) hrect)
+              (measurableRectangles.right (Ω := Ω) hrect) x y
+      _ =
+          (A R).indicator (fun _ : Ω => (1 : ℝ)) x *
+            (B R).indicator (fun _ : Ω => (1 : ℝ)) y := by
+            simp [A, B, hrect]
+
+/--
+@isnad1 id=ex.1h4v.s10.2dfda09a1816 from=translated src=- shape=28e29be5 vocab=2d531c3a
+-/
+lemma exists_finpartition_sup_rectIndicator_finiteRank_data
+    {t : Set (Ω × Ω)} (P : Finpartition t)
+    (hP : ↑P.parts ⊆ measurableRectangles Ω) (c : ℝ) :
+    ∃ A B : Set (Ω × Ω) → Set Ω,
+      (∀ R ∈ P.parts, MeasurableSet (A R)) ∧
+      (∀ R ∈ P.parts, MeasurableSet (B R)) ∧
+      GoodK
+        (fun x y =>
+          c * (P.parts.sup id).indicator
+            (fun _ : Ω × Ω => (1 : ℝ)) (x, y)) ∧
+      (∀ x y,
+        |c * (P.parts.sup id).indicator
+            (fun _ : Ω × Ω => (1 : ℝ)) (x, y)| ≤ |c|) ∧
+      (∀ x y,
+        c * (P.parts.sup id).indicator
+            (fun _ : Ω × Ω => (1 : ℝ)) (x, y) =
+          P.parts.sum fun R =>
+            (c • (A R).indicator (fun _ : Ω => (1 : ℝ)) : Ω → ℝ) x *
+              (B R).indicator (fun _ : Ω => (1 : ℝ)) y) ∧
+      (∀ R ∈ P.parts,
+        Good (c • (A R).indicator (fun _ : Ω => (1 : ℝ)) : Ω → ℝ)) ∧
+      (∀ R ∈ P.parts,
+        Good ((B R).indicator (fun _ : Ω => (1 : ℝ)) : Ω → ℝ)) := by
+  classical
+  rcases exists_rectIndicator_sum_eq_finpartition_sup
+      (Ω := Ω) P hP with ⟨A, B, hA, hB, hsum⟩
+  refine ⟨A, B, hA, hB, ?_, ?_, ?_, ?_, ?_⟩
+  · have hKsum :
+        GoodK
+          (fun x y =>
+            P.parts.sum fun R =>
+              c * ((A R).indicator (fun _ : Ω => (1 : ℝ)) x *
+                (B R).indicator (fun _ : Ω => (1 : ℝ)) y)) :=
+      goodK_finset_weighted_rectIndicator_sum
+        (Ω := Ω) P.parts (fun _ : Set (Ω × Ω) => c) A B hA hB
+    convert hKsum using 2
+    funext y
+    rw [congrFun (congrFun hsum _) y, Finset.mul_sum]
+  · intro x y
+    have hind :
+        |(P.parts.sup id).indicator
+            (fun _ : Ω × Ω => (1 : ℝ)) (x, y)| ≤ 1 := by
+      by_cases hxy : ∃ R ∈ P.parts, (x, y) ∈ R
+      · simp [Set.indicator, hxy]
+      · simp [Set.indicator, hxy]
+    rw [abs_mul]
+    exact mul_le_of_le_one_right (abs_nonneg c) hind
+  · intro x y
+    calc
+      c * (P.parts.sup id).indicator
+          (fun _ : Ω × Ω => (1 : ℝ)) (x, y)
+          =
+        c *
+          (P.parts.sum fun R =>
+            (A R).indicator (fun _ : Ω => (1 : ℝ)) x *
+              (B R).indicator (fun _ : Ω => (1 : ℝ)) y) := by
+            rw [congrFun (congrFun hsum x) y]
+      _ =
+          P.parts.sum fun R =>
+            c * ((A R).indicator (fun _ : Ω => (1 : ℝ)) x *
+              (B R).indicator (fun _ : Ω => (1 : ℝ)) y) := by
+            rw [Finset.mul_sum]
+      _ =
+          P.parts.sum fun R =>
+            (c • (A R).indicator (fun _ : Ω => (1 : ℝ)) : Ω → ℝ) x *
+              (B R).indicator (fun _ : Ω => (1 : ℝ)) y := by
+            exact congrFun
+              (congrFun
+                (finset_weighted_rectIndicator_sum_eq_separable_sum
+                  (Ω := Ω) P.parts (fun _ : Set (Ω × Ω) => c) A B) x) y
+  · intro R hR
+    exact good_smul c (good_indicator_one (Ω := Ω) (hA R hR))
+  · intro R hR
+    exact good_indicator_one (Ω := Ω) (hB R hR)
+
+/--
+@isnad1 id=goodk.1h4v.s8.433a56d0767d from=translated src=- shape=facc90c9 vocab=309ea347
+-/
+lemma goodK_simpleFunc_rectangular_replacement
+    (S : SimpleFunc (Ω × Ω) ℝ)
+    (T : ℝ → Set (Ω × Ω))
+    (P : ∀ c, c ∈ SimpleFunc.range S → Finpartition (T c))
+    (hP : ∀ c (hc : c ∈ SimpleFunc.range S),
+      ↑(P c hc).parts ⊆ measurableRectangles Ω) :
+    GoodK
+      (fun x y =>
+        (SimpleFunc.range S).sum fun c =>
+          c * (T c).indicator (fun _ : Ω × Ω => (1 : ℝ)) (x, y)) := by
+  classical
+  refine goodK_finset_sum (Ω := Ω) (SimpleFunc.range S)
+    (fun c x y =>
+      c * (T c).indicator (fun _ : Ω × Ω => (1 : ℝ)) (x, y)) ?_
+  intro c hc
+  rcases exists_finpartition_sup_rectIndicator_finiteRank_data
+      (Ω := Ω) (P c hc) (hP c hc) c with
+    ⟨_A, _B, _hA, _hB, hGoodK, _hbound, _hsep, _ha, _hb⟩
+  simpa [(P c hc).sup_parts] using hGoodK
+
+/--
+@isnad1 id=le.1h6v.s8.a878023d0485 from=translated src=- shape=2bd1135a vocab=c34ab432
+-/
+lemma abs_simpleFunc_rectangular_replacement_le
+    (S : SimpleFunc (Ω × Ω) ℝ)
+    (T : ℝ → Set (Ω × Ω))
+    (P : ∀ c, c ∈ SimpleFunc.range S → Finpartition (T c))
+    (hP : ∀ c (hc : c ∈ SimpleFunc.range S),
+      ↑(P c hc).parts ⊆ measurableRectangles Ω)
+    (x y : Ω) :
+    |(SimpleFunc.range S).sum fun c =>
+        c * (T c).indicator (fun _ : Ω × Ω => (1 : ℝ)) (x, y)|
+      ≤ (SimpleFunc.range S).sum fun c => |c| := by
+  classical
+  refine (Finset.abs_sum_le_sum_abs
+    (fun c =>
+      c * (T c).indicator (fun _ : Ω × Ω => (1 : ℝ)) (x, y))
+    (SimpleFunc.range S)).trans ?_
+  refine Finset.sum_le_sum ?_
+  intro c hc
+  rcases exists_finpartition_sup_rectIndicator_finiteRank_data
+      (Ω := Ω) (P c hc) (hP c hc) c with
+    ⟨_A, _B, _hA, _hB, _hGoodK, hbound, _hsep, _ha, _hb⟩
+  simpa [(P c hc).sup_parts] using hbound x y
+
+/--
+@isnad1 id=ex.1h4v.s8.6ce1cba247c4 from=translated src=- shape=f956021d vocab=d9cd72bf
+-/
+lemma exists_simpleFunc_rectangular_replacement_finiteRank_data
+    (S : SimpleFunc (Ω × Ω) ℝ)
+    (T : ℝ → Set (Ω × Ω))
+    (P : ∀ c, c ∈ SimpleFunc.range S → Finpartition (T c))
+    (hP : ∀ c (hc : c ∈ SimpleFunc.range S),
+      ↑(P c hc).parts ⊆ measurableRectangles Ω) :
+    ∃ J : Type u, ∃ hJ : Fintype J,
+    ∃ K : Ω → Ω → ℝ, ∃ Bnd : ℝ,
+    ∃ a b : J → Ω → ℝ,
+      (∀ x y,
+        K x y =
+          (SimpleFunc.range S).sum fun c =>
+            c * (T c).indicator (fun _ : Ω × Ω => (1 : ℝ)) (x, y)) ∧
+      GoodK K ∧
+      0 ≤ Bnd ∧
+      (∀ x y, |K x y| ≤ Bnd) ∧
+      (∀ j, Good (a j)) ∧
+      (∀ j, Good (b j)) ∧
+      (∀ j, (Set.range (a j)).Finite) ∧
+      (∀ j, (Set.range (b j)).Finite) ∧
+      (∀ x y, K x y = (@Finset.univ J hJ).sum
+        (fun j : J => a j x * b j y)) := by
+  classical
+  let Cidx := {c // c ∈ SimpleFunc.range S}
+  have hdata :
+      ∀ c : Cidx,
+        ∃ A B : Set (Ω × Ω) → Set Ω,
+          (∀ R ∈ (P c.1 c.2).parts, MeasurableSet (A R)) ∧
+          (∀ R ∈ (P c.1 c.2).parts, MeasurableSet (B R)) ∧
+          GoodK
+            (fun x y =>
+              c.1 * ((P c.1 c.2).parts.sup id).indicator
+                (fun _ : Ω × Ω => (1 : ℝ)) (x, y)) ∧
+          (∀ x y,
+            |c.1 * ((P c.1 c.2).parts.sup id).indicator
+              (fun _ : Ω × Ω => (1 : ℝ)) (x, y)| ≤ |c.1|) ∧
+          (∀ x y,
+            c.1 * ((P c.1 c.2).parts.sup id).indicator
+              (fun _ : Ω × Ω => (1 : ℝ)) (x, y) =
+              (P c.1 c.2).parts.sum fun R =>
+                (c.1 • (A R).indicator (fun _ : Ω => (1 : ℝ)) : Ω → ℝ) x *
+                  (B R).indicator (fun _ : Ω => (1 : ℝ)) y) ∧
+          (∀ R ∈ (P c.1 c.2).parts,
+            Good (c.1 • (A R).indicator (fun _ : Ω => (1 : ℝ)) : Ω → ℝ)) ∧
+          (∀ R ∈ (P c.1 c.2).parts,
+            Good ((B R).indicator (fun _ : Ω => (1 : ℝ)) : Ω → ℝ)) := by
+    intro c
+    exact exists_finpartition_sup_rectIndicator_finiteRank_data
+      (Ω := Ω) (P c.1 c.2) (hP c.1 c.2) c.1
+  choose A B hA hB hGood hBound hSep ha hb using hdata
+  let Ridx := fun c : Cidx =>
+    {R : Set (Ω × Ω) // R ∈ (P c.1 c.2).parts}
+  let J := Sigma Ridx
+  letI : Fintype Cidx := Finset.Subtype.fintype (SimpleFunc.range S)
+  letI : ∀ c : Cidx, Fintype (Ridx c) := fun c =>
+    Finset.Subtype.fintype ((P c.1 c.2).parts)
+  let hJ : Fintype J := inferInstance
+  let K : Ω → Ω → ℝ := fun x y =>
+    (SimpleFunc.range S).sum fun c =>
+      c * (T c).indicator (fun _ : Ω × Ω => (1 : ℝ)) (x, y)
+  let Bnd : ℝ := (SimpleFunc.range S).sum fun c => |c|
+  let a : J → Ω → ℝ := fun j =>
+    (j.1.1 • (A j.1 j.2.1).indicator (fun _ : Ω => (1 : ℝ)) : Ω → ℝ)
+  let b : J → Ω → ℝ := fun j =>
+    (B j.1 j.2.1).indicator (fun _ : Ω => (1 : ℝ))
+  refine ⟨J, hJ, K, Bnd, a, b, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
+  · intro x y
+    rfl
+  · dsimp [K]
+    exact goodK_simpleFunc_rectangular_replacement (Ω := Ω) S T P hP
+  · dsimp [Bnd]
+    exact Finset.sum_nonneg fun c _hc => abs_nonneg c
+  · intro x y
+    dsimp [K, Bnd]
+    exact abs_simpleFunc_rectangular_replacement_le (Ω := Ω) S T P hP x y
+  · intro j
+    dsimp [a]
+    exact ha j.1 j.2.1 j.2.2
+  · intro j
+    dsimp [b]
+    exact hb j.1 j.2.1 j.2.2
+  · intro j
+    refine (Set.finite_singleton (0 : ℝ)).insert (j.1.1 : ℝ) |>.subset ?_
+    rintro z ⟨x, rfl⟩
+    dsimp [a]
+    by_cases hx : x ∈ A j.1 j.2.1 <;> simp [Set.indicator, hx]
+  · intro j
+    refine (Set.finite_singleton (0 : ℝ)).insert (1 : ℝ) |>.subset ?_
+    rintro z ⟨x, rfl⟩
+    dsimp [b]
+    by_cases hx : x ∈ B j.1 j.2.1 <;> simp [Set.indicator, hx]
+  · intro x y
+    dsimp [K, a, b, J, Ridx]
+    calc
+      ((SimpleFunc.range S).sum fun c =>
+          c * (T c).indicator (fun _ : Ω × Ω => (1 : ℝ)) (x, y))
+          =
+        (∑ c : Cidx,
+          c.1 * (T c.1).indicator (fun _ : Ω × Ω => (1 : ℝ)) (x, y)) := by
+            exact (Finset.sum_coe_sort (SimpleFunc.range S)
+              (fun c =>
+                c * (T c).indicator (fun _ : Ω × Ω => (1 : ℝ)) (x, y))).symm
+      _ =
+        (∑ c : Cidx,
+          ((P c.1 c.2).parts.sum fun R =>
+            (c.1 • (A c R).indicator (fun _ : Ω => (1 : ℝ)) : Ω → ℝ) x *
+              (B c R).indicator (fun _ : Ω => (1 : ℝ)) y)) := by
+            refine Finset.sum_congr rfl ?_
+            intro c _hc
+            simpa [(P c.1 c.2).sup_parts] using hSep c x y
+      _ =
+        (∑ c : Cidx,
+          ∑ R : {R : Set (Ω × Ω) // R ∈ (P c.1 c.2).parts},
+            (c.1 • (A c R.1).indicator (fun _ : Ω => (1 : ℝ)) : Ω → ℝ) x *
+              (B c R.1).indicator (fun _ : Ω => (1 : ℝ)) y) := by
+            refine Finset.sum_congr rfl ?_
+            intro c _hc
+            exact (Finset.sum_coe_sort ((P c.1 c.2).parts)
+              (fun R =>
+                (c.1 • (A c R).indicator (fun _ : Ω => (1 : ℝ)) : Ω → ℝ) x *
+                  (B c R).indicator (fun _ : Ω => (1 : ℝ)) y)).symm
+      _ =
+        (∑ j : Sigma (fun c : Cidx =>
+            {R : Set (Ω × Ω) // R ∈ (P c.1 c.2).parts}),
+          (j.1.1 • (A j.1 j.2.1).indicator (fun _ : Ω => (1 : ℝ)) : Ω → ℝ) x *
+            (B j.1 j.2.1).indicator (fun _ : Ω => (1 : ℝ)) y) := by
+            exact (Fintype.sum_sigma
+              (fun j : Sigma (fun c : Cidx =>
+                {R : Set (Ω × Ω) // R ∈ (P c.1 c.2).parts}) =>
+                (j.1.1 • (A j.1 j.2.1).indicator
+                    (fun _ : Ω => (1 : ℝ)) : Ω → ℝ) x *
+                  (B j.1 j.2.1).indicator
+                    (fun _ : Ω => (1 : ℝ)) y)).symm
+
+/--
+@isnad1 id=le.2h6v.s9.2aaff1a66fc1 from=translated src=- shape=1eca0185 vocab=2a306d3d
+-/
+lemma integral_sq_simpleFunc_sub_rectangular_levelSet_replacements_le_uniform_symmDiff
+    (μ : Measure Ω) [IsFiniteMeasure μ]
+    (S : SimpleFunc (Ω × Ω) ℝ)
+    (T : ℝ → Set (Ω × Ω))
+    (P : ∀ c, c ∈ SimpleFunc.range S → Finpartition (T c))
+    (hP : ∀ c (hc : c ∈ SimpleFunc.range S),
+      ↑(P c hc).parts ⊆ measurableRectangles Ω)
+    {η : ℝ}
+    (hη : ∀ c ∈ SimpleFunc.range S,
+      (μ.prod μ).real ((S ⁻¹' {c}) ∆ T c) ≤ η) :
+    ∫ p : Ω × Ω,
+        (S p -
+          ((SimpleFunc.range S).sum fun c =>
+            c * (T c).indicator (fun _ : Ω × Ω => (1 : ℝ)) p)) ^ 2
+        ∂(μ.prod μ)
+      ≤ ((SimpleFunc.range S).sum fun c => |c|) ^ 2 *
+        ((SimpleFunc.range S).card * η) := by
+  classical
+  refine
+    integral_sq_simpleFunc_sub_levelSet_replacements_le_uniform_symmDiff
+      (ν := μ.prod μ) S T ?_ hη
+  intro c hc
+  rw [← (P c hc).sup_parts]
+  exact measurableSet_finpartition_sup_of_measurableRectangles
+    (Ω := Ω) (P c hc) (hP c hc)
+
+/--
+@isnad1 id=ex.1h4v.s8.d8775ed8c7b4 from=translated src=- shape=4c7aff96 vocab=a4f2ec99
+-/
+lemma exists_rectangular_levelSet_replacements_uniform_symmDiff
+    (μ : Measure Ω) [IsFiniteMeasure μ]
+    (S : SimpleFunc (Ω × Ω) ℝ)
+    {η : ℝ} (hη : 0 < η) :
+    ∃ T : ℝ → Set (Ω × Ω),
+    ∃ P : ∀ c, c ∈ SimpleFunc.range S → Finpartition (T c),
+      (∀ c (hc : c ∈ SimpleFunc.range S),
+        ↑(P c hc).parts ⊆ measurableRectangles Ω) ∧
+      (∀ c ∈ SimpleFunc.range S,
+        (μ.prod μ).real ((S ⁻¹' {c}) ∆ T c) ≤ η) := by
+  classical
+  have hex :
+      ∀ c ∈ SimpleFunc.range S,
+        ∃ t, ∃ P : Finpartition t,
+          ↑P.parts ⊆ measurableRectangles Ω ∧
+          μ.prod μ (t ∆ (S ⁻¹' {c})) < ENNReal.ofReal η := by
+    intro c _hc
+    exact exists_finpartition_measurableRectangles_symmDiff_lt
+      (Ω := Ω) μ (S.measurableSet_fiber c)
+      (ENNReal.ofReal_pos.mpr hη)
+  choose Tatom Patom hrect herr using hex
+  let T : ℝ → Set (Ω × Ω) := fun c =>
+    if hc : c ∈ SimpleFunc.range S then Tatom c hc else ∅
+  let P : ∀ c, c ∈ SimpleFunc.range S → Finpartition (T c) := fun c hc =>
+    (Patom c hc).copy (by dsimp [T]; rw [dite_eq_left hc])
+  refine ⟨T, P, ?_, ?_⟩
+  · intro c hc
+    dsimp [P]
+    simpa using hrect c hc
+  · intro c hc
+    have hlt : μ.prod μ (T c ∆ (S ⁻¹' {c})) < ENNReal.ofReal η := by
+      dsimp [T]
+      rw [dite_eq_left hc]
+      exact herr c hc
+    have hle : μ.prod μ (T c ∆ (S ⁻¹' {c})) ≤ ENNReal.ofReal η := le_of_lt hlt
+    have hreal :
+        (μ.prod μ).real (T c ∆ (S ⁻¹' {c})) ≤ η :=
+      ENNReal.toReal_le_of_le_ofReal hη.le hle
+    simpa [symmDiff_comm] using hreal
+
+/--
+@isnad1 id=ex.1h4v.s9.d05abec3127c from=translated src=- shape=62946c1a vocab=2a8dcd07
+-/
+lemma exists_rectangular_levelSet_replacements_integral_sq_bound
+    (μ : Measure Ω) [IsFiniteMeasure μ]
+    (S : SimpleFunc (Ω × Ω) ℝ)
+    {η : ℝ} (hη : 0 < η) :
+    ∃ T : ℝ → Set (Ω × Ω),
+    ∃ P : ∀ c, c ∈ SimpleFunc.range S → Finpartition (T c),
+      (∀ c (hc : c ∈ SimpleFunc.range S),
+        ↑(P c hc).parts ⊆ measurableRectangles Ω) ∧
+      (∫ p : Ω × Ω,
+          (S p -
+            ((SimpleFunc.range S).sum fun c =>
+              c * (T c).indicator (fun _ : Ω × Ω => (1 : ℝ)) p)) ^ 2
+          ∂(μ.prod μ)
+        ≤ ((SimpleFunc.range S).sum fun c => |c|) ^ 2 *
+          ((SimpleFunc.range S).card * η)) := by
+  classical
+  rcases exists_rectangular_levelSet_replacements_uniform_symmDiff
+      (Ω := Ω) μ S hη with ⟨T, P, hP, herr⟩
+  refine ⟨T, P, hP, ?_⟩
+  exact
+    integral_sq_simpleFunc_sub_rectangular_levelSet_replacements_le_uniform_symmDiff
+      (Ω := Ω) μ S T P hP herr
+
+/--
+@isnad1 id=ex.1h4v.s8.f5fdf752af08 from=translated src=- shape=0bbc5939 vocab=2fa2c1bb
+-/
+lemma exists_simpleFunc_rectangular_finiteRank_data_integral_sq_bound
+    (μ : Measure Ω) [IsFiniteMeasure μ]
+    (S : SimpleFunc (Ω × Ω) ℝ)
+    {η : ℝ} (hη : 0 < η) :
+    ∃ J : Type u, ∃ hJ : Fintype J,
+    ∃ K : Ω → Ω → ℝ, ∃ Bnd : ℝ,
+    ∃ a b : J → Ω → ℝ,
+      GoodK K ∧
+      0 ≤ Bnd ∧
+      (∀ x y, |K x y| ≤ Bnd) ∧
+      (∀ j, Good (a j)) ∧
+      (∀ j, Good (b j)) ∧
+      (∀ j, (Set.range (a j)).Finite) ∧
+      (∀ j, (Set.range (b j)).Finite) ∧
+      (∀ x y, K x y = (@Finset.univ J hJ).sum
+        (fun j : J => a j x * b j y)) ∧
+      (∫ p : Ω × Ω, (S p - K p.1 p.2) ^ 2 ∂(μ.prod μ)
+        ≤ ((SimpleFunc.range S).sum fun c => |c|) ^ 2 *
+          ((SimpleFunc.range S).card * η)) := by
+  classical
+  rcases exists_rectangular_levelSet_replacements_integral_sq_bound
+      (Ω := Ω) μ S hη with
+    ⟨T, P, hP, hInt⟩
+  rcases exists_simpleFunc_rectangular_replacement_finiteRank_data
+      (Ω := Ω) S T P hP with
+    ⟨J, hJ, K, Bnd, a, b, hKdef, hK, hB0, hKB, ha, hb, hfa, hfb, hsep⟩
+  refine ⟨J, hJ, K, Bnd, a, b, hK, hB0, hKB, ha, hb, hfa, hfb, hsep, ?_⟩
+  calc
+    ∫ p : Ω × Ω, (S p - K p.1 p.2) ^ 2 ∂(μ.prod μ)
+        =
+      ∫ p : Ω × Ω,
+        (S p -
+          ((SimpleFunc.range S).sum fun c =>
+            c * (T c).indicator (fun _ : Ω × Ω => (1 : ℝ)) p)) ^ 2
+        ∂(μ.prod μ) := by
+          apply integral_congr_ae
+          exact ae_of_all _ fun p => by
+            simpa using
+              congrArg (fun z : ℝ => (S p - z) ^ 2) (hKdef p.1 p.2)
+    _ ≤ ((SimpleFunc.range S).sum fun c => |c|) ^ 2 *
+          ((SimpleFunc.range S).card * η) := hInt
+
+/--
+@isnad1 id=integrab.2h6v.s6.a24eb8e59d41 from=translated src=- shape=167b2afc vocab=1076fed1
+-/
+lemma integrable_KL {K L : Ω → Ω → ℝ} (hK : GoodK K) (hL : GoodK L) (x y : Ω) :
+    Integrable (fun z => K x z * L z y) μ := by
+  obtain ⟨Ck, _, hCk⟩ := hK.bdd
+  obtain ⟨Cl, hCl0, hCl⟩ := hL.bdd
+  have hmK : Measurable (fun z => K x z) := hK.meas.comp (measurable_prodMk_left)
+  have hmL : Measurable (fun z => L z y) := hL.meas.comp (measurable_id.prodMk measurable_const)
+  refine (integrable_const (Ck * Cl)).mono' (hmK.mul hmL).aestronglyMeasurable (ae_of_all _ ?_)
+  intro z
+  rw [Real.norm_eq_abs, abs_mul]
+  exact mul_le_mul (hCk x z) (hCl z y) (abs_nonneg _) (le_trans (abs_nonneg _) (hCk x z))
+
+/--
+@isnad1 id=goodk.2h4v.s5.007b52550404 from=translated src=- shape=edcdb05b vocab=326791f9
+-/
+lemma goodK_comp {K L : Ω → Ω → ℝ} (hK : GoodK K) (hL : GoodK L) : GoodK (comp μ K L) := by
+  obtain ⟨Ck, hCk0, hCk⟩ := hK.bdd
+  obtain ⟨Cl, hCl0, hCl⟩ := hL.bdd
+  refine ⟨?_, ⟨Ck * Cl, mul_nonneg hCk0 hCl0, fun x y => ?_⟩⟩
+  ·
+    have hSM : StronglyMeasurable (fun q : (Ω × Ω) × Ω => K q.1.1 q.2 * L q.2 q.1.2) := by
+      have h1 : Measurable (fun q : (Ω × Ω) × Ω => K q.1.1 q.2) :=
+        hK.meas.comp ((measurable_fst.comp measurable_fst).prodMk measurable_snd)
+      have h2 : Measurable (fun q : (Ω × Ω) × Ω => L q.2 q.1.2) :=
+        hL.meas.comp (measurable_snd.prodMk (measurable_snd.comp measurable_fst))
+      exact (h1.mul h2).stronglyMeasurable
+    exact (hSM.integral_prod_right').measurable
+  ·
+    calc |comp μ K L x y| ≤ ∫ z, |K x z * L z y| ∂μ := abs_integral_le_integral_abs
+      _ ≤ ∫ _z, Ck * Cl ∂μ := by
+          refine integral_mono (integrable_KL hK hL x y).abs (integrable_const _) (fun z => ?_)
+          rw [abs_mul]
+          exact mul_le_mul (hCk x z) (hCl z y) (abs_nonneg _) hCk0
+      _ = Ck * Cl := by simp
+
+/--
+@isnad1 id=integrab.1h4v.s5.b1d6743b5d25 from=translated src=- shape=a2f5a80f vocab=fc254a39
+-/
+lemma GoodK.integrable_row {K : Ω → Ω → ℝ} (hK : GoodK K) (x : Ω) :
+    Integrable (fun y => K x y) μ := by
+  obtain ⟨C, _, hC⟩ := hK.bdd
+  have hm : Measurable (fun y => K x y) := hK.meas.comp measurable_prodMk_left
+  exact (integrable_const C).mono' hm.aestronglyMeasurable
+    (ae_of_all _ fun y => by rw [Real.norm_eq_abs]; exact hC x y)
+
+/--
+@isnad1 id=integrab.1h4v.s5.b33e5e87e3bd from=translated src=- shape=e1b9597f vocab=fc254a39
+-/
+lemma GoodK.integrable_col {K : Ω → Ω → ℝ} (hK : GoodK K) (y : Ω) :
+    Integrable (fun x => K x y) μ := by
+  obtain ⟨C, _, hC⟩ := hK.bdd
+  have hm : Measurable (fun x => K x y) := hK.meas.comp (measurable_id.prodMk measurable_const)
+  exact (integrable_const C).mono' hm.aestronglyMeasurable
+    (ae_of_all _ fun x => by rw [Real.norm_eq_abs]; exact hC x y)
+
+/--
+@isnad1 id=integrab.1h3v.s6.72e3e7550925 from=translated src=- shape=e06dc8bb vocab=982abbae
+-/
+lemma GoodK.integrable_prod {K : Ω → Ω → ℝ} (hK : GoodK K) :
+    Integrable (Function.uncurry K) (μ.prod μ) := by
+  obtain ⟨C, _, hC⟩ := hK.bdd
+  exact (integrable_const C).mono' hK.meas.aestronglyMeasurable
+    (ae_of_all _ fun p => by rw [Real.norm_eq_abs]; exact hC p.1 p.2)
+
+/--
+@isnad1 id=strongly.1h3v.s5.b240f56c9653 from=translated src=- shape=d2eda008 vocab=dbfd2fe2
+-/
+lemma GoodK.colsum_stronglyMeasurable {K : Ω → Ω → ℝ} (hK : GoodK K) :
+    StronglyMeasurable (fun y => ∫ x, K x y ∂μ) :=
+  (show StronglyMeasurable (Function.uncurry K) from hK.meas.stronglyMeasurable).integral_prod_left
+
+/--
+@isnad1 id=integrab.1h3v.s6.feb4886ab91a from=translated src=- shape=fbe42e7b vocab=0d890121
+-/
+lemma GoodK.colsum_integrable {K : Ω → Ω → ℝ} (hK : GoodK K) :
+    Integrable (fun y => ∫ x, K x y ∂μ) μ := by
+  obtain ⟨C, _, hC⟩ := hK.bdd
+  refine (integrable_const C).mono' hK.colsum_stronglyMeasurable.aestronglyMeasurable
+    (ae_of_all _ fun y => ?_)
+  rw [Real.norm_eq_abs]
+  calc |∫ x, K x y ∂μ| ≤ ∫ x, |K x y| ∂μ := abs_integral_le_integral_abs
+    _ ≤ ∫ _x, C ∂μ := integral_mono (hK.integrable_col y).abs (integrable_const C) (fun x => hC x y)
+    _ = C := by simp
+
+/--
+@isnad1 id=eq.3h5v.s6.54c81374b5e3 from=translated src=- shape=fccf8437 vocab=b8b5847b
+-/
+lemma comp_add_left {K₁ K₂ L : Ω → Ω → ℝ} (hK₁ : GoodK K₁) (hK₂ : GoodK K₂) (hL : GoodK L) :
+    comp μ (fun x y => K₁ x y + K₂ x y) L = fun x y => comp μ K₁ L x y + comp μ K₂ L x y := by
+  funext x y
+  simp only [comp]
+  rw [← integral_add (integrable_KL hK₁ hL x y) (integrable_KL hK₂ hL x y)]
+  exact integral_congr_ae (ae_of_all _ fun z => by ring)
+
+/--
+@isnad1 id=eq.3h5v.s6.0d7ab3a6652b from=translated src=- shape=7a8de136 vocab=b8b5847b
+-/
+lemma comp_add_right {K L₁ L₂ : Ω → Ω → ℝ} (hK : GoodK K) (hL₁ : GoodK L₁) (hL₂ : GoodK L₂) :
+    comp μ K (fun x y => L₁ x y + L₂ x y) = fun x y => comp μ K L₁ x y + comp μ K L₂ x y := by
+  funext x y
+  simp only [comp]
+  rw [← integral_add (integrable_KL hK hL₁ x y) (integrable_KL hK hL₂ x y)]
+  exact integral_congr_ae (ae_of_all _ fun z => by ring)
+
+omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=eq.0h5v.s6.02dd67a4f656 from=translated src=- shape=d1d5126a vocab=cc7f7d6f
+-/
+lemma comp_smul_right (c : ℝ) (K L : Ω → Ω → ℝ) :
+    comp μ K (fun x y => c * L x y) = fun x y => c * comp μ K L x y := by
+  funext x y
+  simp only [comp]
+  rw [← integral_const_mul]
+  exact integral_congr_ae (ae_of_all _ fun z => by ring)
+
+omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=eq.0h4v.s5.0019c1c8bf4b from=translated src=- shape=2ce894f7 vocab=3951a3e0
+-/
+lemma comp_neg_left (K L : Ω → Ω → ℝ) :
+    comp μ (fun x y => -K x y) L = fun x y => -comp μ K L x y := by
+  funext x y; simp only [comp]; rw [← integral_neg]
+  exact integral_congr_ae (ae_of_all _ fun z => by ring)
+
+/--
+@isnad1 id=eq.3h5v.s6.2be8ac39e16b from=translated src=- shape=fccf8437 vocab=1693aeb0
+-/
+lemma comp_sub_left {K₁ K₂ L : Ω → Ω → ℝ} (hK₁ : GoodK K₁) (hK₂ : GoodK K₂) (hL : GoodK L) :
+    comp μ (fun x y => K₁ x y - K₂ x y) L = fun x y => comp μ K₁ L x y - comp μ K₂ L x y := by
+  funext x y
+  simp only [comp]
+  rw [← integral_sub (integrable_KL hK₁ hL x y) (integrable_KL hK₂ hL x y)]
+  exact integral_congr_ae (ae_of_all _ fun z => by ring)
+
+/--
+@isnad1 id=eq.3h5v.s6.e471c7952c93 from=translated src=- shape=7a8de136 vocab=1693aeb0
+-/
+lemma comp_sub_right {K L₁ L₂ : Ω → Ω → ℝ} (hK : GoodK K) (hL₁ : GoodK L₁) (hL₂ : GoodK L₂) :
+    comp μ K (fun x y => L₁ x y - L₂ x y) = fun x y => comp μ K L₁ x y - comp μ K L₂ x y := by
+  funext x y
+  simp only [comp]
+  rw [← integral_sub (integrable_KL hK hL₁ x y) (integrable_KL hK hL₂ x y)]
+  exact integral_congr_ae (ae_of_all _ fun z => by ring)
+
+omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=eq.0h3v.s5.9ced124cfbc7 from=translated src=- shape=f124a9c2 vocab=cc8de04f
+-/
+lemma comp_onesKernel_right (M : Ω → Ω → ℝ) :
+    comp μ M onesKernel = fun x _ => ∫ z, M x z ∂μ := by
+  funext x y; simp [comp, onesKernel]
+
+/--
+@isnad1 id=eq.3h5v.s6.ada2395365b6 from=translated src=- shape=50ea21fd vocab=326791f9
+-/
+lemma comp_assoc {K L M : Ω → Ω → ℝ} (hK : GoodK K) (hL : GoodK L) (hM : GoodK M) :
+    comp μ (comp μ K L) M = comp μ K (comp μ L M) := by
+  funext x y
+  obtain ⟨Ck, _, hCk⟩ := hK.bdd
+  obtain ⟨Cl, _, hCl⟩ := hL.bdd
+  obtain ⟨Cm, _, hCm⟩ := hM.bdd
+  have hSM : StronglyMeasurable (Function.uncurry fun w z => K x z * L z w * M w y) := by
+    have h1 : Measurable (fun p : Ω × Ω => K x p.2) := hK.meas.comp (measurable_const.prodMk measurable_snd)
+    have h2 : Measurable (fun p : Ω × Ω => L p.2 p.1) := hL.meas.comp (measurable_snd.prodMk measurable_fst)
+    have h3 : Measurable (fun p : Ω × Ω => M p.1 y) := hM.meas.comp (measurable_fst.prodMk measurable_const)
+    exact ((h1.mul h2).mul h3).stronglyMeasurable
+  have hInt : Integrable (Function.uncurry fun w z => K x z * L z w * M w y) (μ.prod μ) := by
+    refine (integrable_const (Ck * Cl * Cm)).mono' hSM.aestronglyMeasurable (ae_of_all _ ?_)
+    rintro ⟨w, z⟩
+    simp only [Function.uncurry, Real.norm_eq_abs, abs_mul]
+    exact mul_le_mul (mul_le_mul (hCk x z) (hCl z w) (abs_nonneg _) (le_trans (abs_nonneg _) (hCk x z)))
+      (hCm w y) (abs_nonneg _)
+      (mul_nonneg (le_trans (abs_nonneg _) (hCk x z)) (le_trans (abs_nonneg _) (hCl z w)))
+  have hL1 : ∀ w, comp μ K L x w * M w y = ∫ z, K x z * L z w * M w y ∂μ := by
+    intro w; simp only [comp]; rw [← integral_mul_const]
+  have hR1 : ∀ z, K x z * comp μ L M z y = ∫ w, K x z * L z w * M w y ∂μ := by
+    intro z; simp only [comp]; rw [← integral_const_mul]
+    exact integral_congr_ae (ae_of_all _ fun w => by ring)
+  calc comp μ (comp μ K L) M x y
+      = ∫ w, comp μ K L x w * M w y ∂μ := rfl
+    _ = ∫ w, ∫ z, K x z * L z w * M w y ∂μ ∂μ := integral_congr_ae (ae_of_all _ hL1)
+    _ = ∫ z, ∫ w, K x z * L z w * M w y ∂μ ∂μ := integral_integral_swap hInt
+    _ = ∫ z, K x z * comp μ L M z y ∂μ := (integral_congr_ae (ae_of_all _ hR1)).symm
+    _ = comp μ K (comp μ L M) x y := rfl
+
+noncomputable def compPow (μ : Measure Ω) (K : Ω → Ω → ℝ) : ℕ → (Ω → Ω → ℝ)
+  | 0 => K
+  | (n + 1) => comp μ K (compPow μ K n)
+
+/--
+@isnad1 id=goodk.1h4v.s5.31b59becfa0e from=translated src=- shape=1fb111c8 vocab=9c61555c
+-/
+lemma goodK_compPow {K : Ω → Ω → ℝ} (hK : GoodK K) : ∀ n, GoodK (compPow μ K n)
+  | 0 => hK
+  | (n + 1) => goodK_comp hK (goodK_compPow hK n)
+
+noncomputable def trace (μ : Measure Ω) (K : Ω → Ω → ℝ) : ℝ := ∫ x, K x x ∂μ
+
+/--
+@isnad1 id=eq.2h4v.s5.bdd99a18ef24 from=translated src=- shape=8cae3984 vocab=93afe9dd
+-/
+lemma trace_comp_comm {A B : Ω → Ω → ℝ} (hA : GoodK A) (hB : GoodK B) :
+    trace μ (comp μ A B) = trace μ (comp μ B A) := by
+  obtain ⟨Ca, _, hCa⟩ := hA.bdd
+  obtain ⟨Cb, _, hCb⟩ := hB.bdd
+  have hint : Integrable (Function.uncurry fun x z => A x z * B z x) (μ.prod μ) := by
+    have hm : Measurable (Function.uncurry fun x z => A x z * B z x) :=
+      (hA.meas.comp (measurable_fst.prodMk measurable_snd)).mul
+        (hB.meas.comp (measurable_snd.prodMk measurable_fst))
+    refine (integrable_const (Ca * Cb)).mono' hm.aestronglyMeasurable (ae_of_all _ fun p => ?_)
+    simp only [Function.uncurry, Real.norm_eq_abs, abs_mul]
+    exact mul_le_mul (hCa p.1 p.2) (hCb p.2 p.1) (abs_nonneg _) (le_trans (abs_nonneg _) (hCa p.1 p.2))
+  have h1 : trace μ (comp μ A B) = ∫ x, ∫ z, A x z * B z x ∂μ ∂μ := rfl
+  have h2 : trace μ (comp μ B A) = ∫ x, ∫ z, B x z * A z x ∂μ ∂μ := rfl
+  rw [h1, h2, integral_integral_swap hint]
+  refine integral_congr_ae (ae_of_all _ fun x => integral_congr_ae (ae_of_all _ fun z => ?_))
+  ring
+
+/--
+@isnad1 id=eq.1h3v.s5.442b4d26b302 from=translated src=- shape=3edb1ebe vocab=78b64ff3
+-/
+lemma trace_comp_onesKernel {M : Ω → Ω → ℝ} (hM : GoodK M) : trace μ (comp μ onesKernel M) = doubleMean μ M := by
+  have hint : Integrable (Function.uncurry fun x z => M z x) (μ.prod μ) := by
+    obtain ⟨C, _, hC⟩ := hM.bdd
+    have hm : Measurable (Function.uncurry fun x z => M z x) :=
+      hM.meas.comp (measurable_snd.prodMk measurable_fst)
+    exact (integrable_const C).mono' hm.aestronglyMeasurable
+      (ae_of_all _ fun p => by rw [Real.norm_eq_abs]; exact hC p.2 p.1)
+  show ∫ x, comp μ onesKernel M x x ∂μ = doubleMean μ M
+  simp only [comp, onesKernel, one_mul]
+  rw [integral_integral_swap hint]; rfl
+
+omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=eq.0h3v.s5.5180129269e2 from=translated src=- shape=c46f29f6 vocab=ab46dced
+-/
+lemma trace_comp_onesKernel_right {M : Ω → Ω → ℝ} : trace μ (comp μ M onesKernel) = doubleMean μ M := by
+  show ∫ x, comp μ M onesKernel x x ∂μ = doubleMean μ M
+  simp only [comp, onesKernel, mul_one]; rfl
+
+/--
+@isnad1 id=integrab.1h3v.s5.3fa61ced8bcd from=translated src=- shape=b67c101d vocab=fc254a39
+-/
+lemma GoodK.diag_integrable {K : Ω → Ω → ℝ} (hK : GoodK K) :
+    Integrable (fun x => K x x) μ := by
+  obtain ⟨C, _, hC⟩ := hK.bdd
+  have hm : Measurable (fun x => K x x) := hK.meas.comp (measurable_id.prodMk measurable_id)
+  exact (integrable_const C).mono' hm.aestronglyMeasurable
+    (ae_of_all _ fun x => by rw [Real.norm_eq_abs]; exact hC x x)
+
+/--
+@isnad1 id=eq.2h4v.s6.1a320e5e9894 from=translated src=- shape=ab2dad40 vocab=c11cadf3
+-/
+lemma trace_sub {A B : Ω → Ω → ℝ} (hA : GoodK A) (hB : GoodK B) :
+    trace μ (fun x y => A x y - B x y) = trace μ A - trace μ B := by
+  show ∫ x, (A x x - B x x) ∂μ = (∫ x, A x x ∂μ) - ∫ x, B x x ∂μ
+  exact integral_sub hA.diag_integrable hB.diag_integrable
+
+/--
+@isnad1 id=goodk.1h2v.s4.924efb2320e4 from=translated src=- shape=1a1a96c5 vocab=9d55f5b6
+-/
+lemma goodK_rowBroadcast {f : Ω → ℝ} (hf : Good f) : GoodK (fun _x _y => f _x) := by
+  obtain ⟨C, hC0, hC⟩ := hf.bdd
+  exact ⟨hf.meas.measurable.comp measurable_fst, ⟨C, hC0, fun x _ => hC x⟩⟩
+
+end OddCycleBound

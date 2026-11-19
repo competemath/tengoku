@@ -1,0 +1,13 @@
+{
+ "bundle_sha256": "1e551160da58680156a49a9ef1a8e53ec0f01cea884f693c58ada8d964945d94",
+ "factory_changes": {
+  "inert lines removed": 6,
+  "modules changed": 1
+ },
+ "gate2_unjudged": [],
+ "library": "oddcyclegoodman-lean",
+ "lint_mode": "proposed",
+ "modules": 79,
+ "part": 1,
+ "theorems": 594
+}
