@@ -1,0 +1,1 @@
+-- Nkbesicovitch: a factory bundle (data/intake/nkbesicovitch). This file only marks the library for Tengoku/All.lean.

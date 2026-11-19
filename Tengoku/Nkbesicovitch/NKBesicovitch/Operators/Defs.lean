@@ -1,0 +1,59 @@
+/-
+Copyright (c) 2026 Yongxi Lin. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Yongxi Lin
+-/
+module
+
+public import Tengoku.Nkbesicovitch.NKBesicovitch.Grassmannian.Basic
+public import Tengoku.Nkbesicovitch.NKBesicovitch.Geometry.Disks
+public import Tengoku.Seed.MeasureTheory.Integral.Lebesgue.Basic
+public import Tengoku.Seed.Topology.MetricSpace.Thickening
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Nonnegative disk and plate maximal operators
+
+Integrals and suprema take values in the extended nonnegative reals. A plate is
+the open delta-neighborhood of a closed unit disk. Analytic bounds will require
+positive delta and establish that every normalizing volume is positive and finite.
+-/
+
+@[expose] public section
+
+open MeasureTheory Set
+open scoped ENNReal
+
+namespace NKBesicovitch
+
+variable {n k : ℕ}
+
+/-- The open delta-neighborhood of a radius-one disk.-/
+def plate (δ : ℝ) (V : Submodule ℝ (EuclideanSpace ℝ (Fin n))) (a : EuclideanSpace ℝ (Fin n)) :
+    Set (EuclideanSpace ℝ (Fin n)) :=
+  Metric.thickening δ (unitDisk V a)
+
+/-- The average of a nonnegative function over a unit disk in its intrinsic volume.-/
+noncomputable def diskAverage (f : EuclideanSpace ℝ (Fin n) → ℝ≥0∞) (V : Grassmannian n k)
+    (a : EuclideanSpace ℝ (Fin n)) :
+    ℝ≥0∞ :=
+  (∫⁻ v in Metric.closedBall (0 : V.val) 1, f (a + v)) /
+    volume (Metric.closedBall (0 : V.val) 1)
+
+/-- The supremum of the normalized unit-disk integrals in a fixed direction.-/
+noncomputable def diskMaximal (f : EuclideanSpace ℝ (Fin n) → ℝ≥0∞) (V : Grassmannian n k) : ℝ≥0∞ :=
+  ⨆ a : EuclideanSpace ℝ (Fin n), diskAverage f V a
+
+/-- The supremum of averages over thickened unit disks in a fixed direction.-/
+noncomputable def plateMaximal (δ : ℝ) (f : EuclideanSpace ℝ (Fin n) → ℝ≥0∞)
+    (V : Grassmannian n k) :
+    ℝ≥0∞ :=
+  ⨆ a : EuclideanSpace ℝ (Fin n), (∫⁻ x in plate δ V.val a, f x) / volume (plate δ V.val a)
+
+/-- The nonnegative local X-ray transform in slope-intercept coordinates.-/
+noncomputable def localXRay (f : EuclideanSpace ℝ (Fin n) × ℝ → ℝ≥0∞)
+    (ξ x : EuclideanSpace ℝ (Fin n)) : ℝ≥0∞ :=
+  ∫⁻ t in Icc (0 : ℝ) 1, f (x + t • ξ, t)
+
+end NKBesicovitch
