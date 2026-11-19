@@ -165,7 +165,9 @@ Everything general about *strong transformations at a point* — the spelling br
 `naturality_comp_assoc_core` — moved to `Biyoneda/StrongTransLemmas.lean` on 2026-09-07, which
 this file imports.  What is left below is `evaluationPseudo`'s own coherence. -/
 
-/-- Evaluation of an identity 1-morphism of the product: the second factor contributes nothing.-/
+/-- Evaluation of an identity 1-morphism of the product: the second factor contributes nothing.
+@isnad1 id=eq.0h3v.s8.a73534fbe220 from=translated src=- shape=c643a8fd vocab=0523d3a7
+-/
 lemma evalMap_id_id (x : C) (F : C ⥤ᵖ Cat.{w, v}) : evalMap (𝟙 x) (𝟙 F) = F.map (𝟙 x) := rfl
 
 /-! ### Shape lemmas for `evalMapComp`
@@ -174,7 +176,9 @@ A nested `≪≫` does not distribute on its own, so the constraint iso is opaqu
 its `hom` and `inv` are named.  Both of these are needed before any of the five cores can be
 attacked componentwise. -/
 
-/-- `evalMapComp`'s forward direction, with the `≪≫` chain distributed.-/
+/-- `evalMapComp`'s forward direction, with the `≪≫` chain distributed.
+@isnad1 id=eq.0h11v.s15.8553e519a595 from=translated src=- shape=838d6b83 vocab=fed9e8f8
+-/
 lemma evalMapComp_hom (u : x ⟶ y) (α : F ⟶ G) (v : y ⟶ z) (β : G ⟶ H) :
     (evalMapComp u α v β).hom
       = (F.mapComp u v).hom ▷ (α.app z ≫ β.app z) ≫
@@ -184,7 +188,9 @@ lemma evalMapComp_hom (u : x ⟶ y) (α : F ⟶ G) (v : y ⟶ z) (β : G ⟶ H) 
           (α_ (α.app y) (G.map v) (β.app z)).hom) ≫
         (α_ (F.map u) (α.app y) (G.map v ≫ β.app z)).inv := rfl
 
-/-- `evalMapComp`'s inverse direction, with the `≪≫` chain distributed.-/
+/-- `evalMapComp`'s inverse direction, with the `≪≫` chain distributed.
+@isnad1 id=eq.0h11v.s15.79c646522db0 from=translated src=- shape=d21746df vocab=fed9e8f8
+-/
 lemma evalMapComp_inv (u : x ⟶ y) (α : F ⟶ G) (v : y ⟶ z) (β : G ⟶ H) :
     (evalMapComp u α v β).inv
       = (α_ (F.map u) (α.app y) (G.map v ≫ β.app z)).hom ≫
@@ -196,7 +202,9 @@ lemma evalMapComp_inv (u : x ⟶ y) (α : F ⟶ G) (v : y ⟶ z) (β : G ⟶ H) 
   simp [evalMapComp]
 
 /-- The other filling of the `map₂` square, by interchange.  Sometimes the more convenient
-orientation: it puts the modification component leftmost.-/
+orientation: it puts the modification component leftmost.
+@isnad1 id=eq.0h11v.s11.f2933d03dcbb from=translated src=- shape=52845779 vocab=71534cca
+-/
 lemma evalMap₂_eq_exchange {u u' : x ⟶ y} {α α' : F ⟶ G} (σ : u ⟶ u') (Γ : α ⟶ α') :
     evalMap₂ σ Γ = (F.map u ◁ Γ.as.app y) ≫ (F.map₂ σ ▷ α'.app y) := by
   simp [whisker_exchange]
@@ -208,7 +216,9 @@ lemma evalMap₂_eq_exchange {u u' : x ⟶ y} {α α' : F ⟶ G} (σ : u ⟶ u')
 the normalisation.  These four are the same facts already specialised, so no rewrite can put the
 bad spelling back.  All four are `rfl`, which is only possible because of the bridges above. -/
 
-/-- `evalMapComp` with an identity in the first slot, already normalised.-/
+/-- `evalMapComp` with an identity in the first slot, already normalised.
+@isnad1 id=eq.0h7v.s15.dd5c0d2c9e89 from=translated src=- shape=b463bf8a vocab=469187a7
+-/
 lemma evalMapComp_id_left_hom (u : x ⟶ y) (α : F ⟶ G) :
     (evalMapComp (𝟙 x) (𝟙 F) u α).hom
       = (F.mapComp (𝟙 x) u).hom ▷ (𝟙 (F.obj y) ≫ α.app y) ≫
@@ -218,7 +228,9 @@ lemma evalMapComp_id_left_hom (u : x ⟶ y) (α : F ⟶ G) :
           (α_ (𝟙 (F.obj x)) (F.map u) (α.app y)).hom) ≫
         (α_ (F.map (𝟙 x)) (𝟙 (F.obj x)) (F.map u ≫ α.app y)).inv := rfl
 
-/-- `evalMapComp` with an identity in the second slot, already normalised.-/
+/-- `evalMapComp` with an identity in the second slot, already normalised.
+@isnad1 id=eq.0h7v.s15.a6b554ceee4d from=translated src=- shape=03b96472 vocab=60a86bdd
+-/
 lemma evalMapComp_id_right_hom (u : x ⟶ y) (α : F ⟶ G) :
     (evalMapComp u α (𝟙 y) (𝟙 G)).hom
       = (F.mapComp u (𝟙 y)).hom ▷ (α.app y ≫ 𝟙 (G.obj y)) ≫
@@ -228,13 +240,17 @@ lemma evalMapComp_id_right_hom (u : x ⟶ y) (α : F ⟶ G) :
           (α_ (α.app y) (G.map (𝟙 y)) (𝟙 (G.obj y))).hom) ≫
         (α_ (F.map u) (α.app y) (G.map (𝟙 y) ≫ 𝟙 (G.obj y))).inv := rfl
 
-/-- The left-hand side of `eval_left_unitor`, already normalised.-/
+/-- The left-hand side of `eval_left_unitor`, already normalised.
+@isnad1 id=eq.0h7v.s12.bd7b5f736989 from=translated src=- shape=90b410df vocab=ff19f06d
+-/
 lemma evalMap₂_leftUnitor (u : x ⟶ y) (α : F ⟶ G) :
     evalMap₂ (λ_ u).hom (λ_ α).hom
       = F.map₂ (λ_ u).hom ▷ (𝟙 (F.obj y) ≫ α.app y) ≫
         F.map u ◁ (λ_ (α.app y)).hom := rfl
 
-/-- The left-hand side of `eval_right_unitor`, already normalised.-/
+/-- The left-hand side of `eval_right_unitor`, already normalised.
+@isnad1 id=eq.0h7v.s12.c0d7b7e845be from=translated src=- shape=6bf8bfeb vocab=539f50c0
+-/
 lemma evalMap₂_rightUnitor (u : x ⟶ y) (α : F ⟶ G) :
     evalMap₂ (ρ_ u).hom (ρ_ α).hom
       = F.map₂ (ρ_ u).hom ▷ (α.app y ≫ 𝟙 (G.obj y)) ≫
@@ -259,7 +275,9 @@ This is the move that breaks the wall.  The `cat_*` lemmas above say `(λ_ f).ho
 firing one leaves the goal internally inconsistent at reducible transparency (see the note on
 those lemmas).  Writing the identities into the *statement* instead means nothing has to fire:
 the bridge is `rfl`, and `simp` then finishes on a goal that is already in the fibre and no
-longer contains a unitor to stumble over.-/
+longer contains a unitor to stumble over.
+@isnad1 id=eq.0h8v.s16.021a2dc63fea from=translated src=- shape=7e611d45 vocab=85d4854b
+-/
 lemma eval_left_unitor_rhs_app (u : x ⟶ y) (α : F ⟶ G) (Z : ↑(F.obj x)) :
     (((F.mapComp (𝟙 x) u).hom ▷ (𝟙 (F.obj y) ≫ α.app y) ≫
         (α_ (F.map (𝟙 x)) (F.map u) (𝟙 (F.obj y) ≫ α.app y)).hom ≫
@@ -285,7 +303,9 @@ The proof shape that works -- and that the other four cores should follow -- is:
 4. let `simp` finish, now that no unitor has to be rewritten.
 
 Step 3 is the one that matters.  Earlier attempts normalised the unitors away with
-`simp only [Cat.leftUnitor_hom_eq_id, ...]` first and were dead on arrival.-/
+`simp only [Cat.leftUnitor_hom_eq_id, ...]` first and were dead on arrival.
+@isnad1 id=eq.0h7v.s12.b0878152cdb8 from=translated src=- shape=91a32bae vocab=536ad62a
+-/
 lemma eval_left_unitor (u : x ⟶ y) (α : F ⟶ G) :
     evalMap₂ (λ_ u).hom (λ_ α).hom
       = (evalMapComp (𝟙 x) (𝟙 F) u α).hom ≫
@@ -301,7 +321,9 @@ generated by the `to_app` attribute applied in `Biyoneda/ForMathlib.lean` — wi
 oriented the other way, so uses take a `.symm` or a `←`. -/
 
 /-- The right-hand side of `eval_right_unitor`, distributed at a point.  Companion of
-`eval_left_unitor_rhs_app`; see the note there for why the identities stay in the statement.-/
+`eval_left_unitor_rhs_app`; see the note there for why the identities stay in the statement.
+@isnad1 id=eq.0h8v.s16.a636c7c56ab0 from=translated src=- shape=9b61034e vocab=c9ef33c0
+-/
 lemma eval_right_unitor_rhs_app (u : x ⟶ y) (α : F ⟶ G) (Z : ↑(F.obj x)) :
     (((F.mapComp u (𝟙 y)).hom ▷ (α.app y ≫ 𝟙 (G.obj y)) ≫
         (α_ (F.map u) (F.map (𝟙 y)) (α.app y ≫ 𝟙 (G.obj y))).hom ≫
@@ -322,7 +344,9 @@ lemma eval_right_unitor_rhs_app (u : x ⟶ y) (α : F ⟶ G) (Z : ↑(F.obj x)) 
 Same four-step shape as `eval_left_unitor`, with one extra ingredient: unlike the left unitor
 this one has genuine content beyond `F.map₂_right_unitor`, namely `α.naturality_id` -- which
 `simp` picks up from `StrongTrans.naturality_id_app` once the bridge has cleared the unitors
-out of the way.-/
+out of the way.
+@isnad1 id=eq.0h7v.s12.98302f1af826 from=translated src=- shape=e0b36c45 vocab=5ac36fb8
+-/
 lemma eval_right_unitor (u : x ⟶ y) (α : F ⟶ G) :
     evalMap₂ (ρ_ u).hom (ρ_ α).hom
       = (evalMapComp u α (𝟙 y) (𝟙 G)).hom ≫
@@ -340,7 +364,9 @@ produce on its own: it reduces everything around them and then stops at
 `(evalMapComp _ _ _ _).hom.toNatTrans.app Z`.  Both carry `Cat`'s associators as the identities
 they definitionally are, per the recipe on `eval_left_unitor`. -/
 
-/-- `evalMapComp`'s forward direction at a point.-/
+/-- `evalMapComp`'s forward direction at a point.
+@isnad1 id=eq.0h12v.s15.3e2d9bee2cef from=translated src=- shape=d2e3df1a vocab=0f6f87aa
+-/
 lemma evalMapComp_hom_app (u : x ⟶ y) (α : F ⟶ G) (v : y ⟶ z) (β : G ⟶ H) (Z : ↑(F.obj x)) :
     (evalMapComp u α v β).hom.toNatTrans.app Z
       = (α.app z ≫ β.app z).toFunctor.map ((F.mapComp u v).hom.toNatTrans.app Z) ≫
@@ -351,7 +377,9 @@ lemma evalMapComp_hom_app (u : x ⟶ y) (α : F ⟶ G) (v : y ⟶ z) (β : G ⟶
 
 /-- `evalMapComp`'s inverse direction at a point.  Unlike the forward one this is not `rfl`
 from the definition -- `evalMapComp_inv` has to distribute the `≪≫` chain first -- so it is
-`congrArg` of that, then a `rfl` bridge.-/
+`congrArg` of that, then a `rfl` bridge.
+@isnad1 id=eq.0h12v.s15.ef869a8d1196 from=translated src=- shape=ae407b30 vocab=335106f8
+-/
 lemma evalMapComp_inv_app (u : x ⟶ y) (α : F ⟶ G) (v : y ⟶ z) (β : G ⟶ H) (Z : ↑(F.obj x)) :
     (evalMapComp u α v β).inv.toNatTrans.app Z
       = (𝟙 _) ≫
@@ -384,7 +412,9 @@ way, so uses take a `.symm`.  The **inverse** form is generated too
 Follows the `eval_left_unitor` recipe with the general bridges above.  Note the `rw` rather
 than a `simp` argument for `naturality_naturality_conj_app`: as a simp lemma it also fires on the
 right-hand side's `β'` and the two sides diverge.  `rw` takes the first occurrence, which is
-the left-hand side's `F.map₂ σ`, and that is the only one that needs rewriting.-/
+the left-hand side's `F.map₂ σ`, and that is the only one that needs rewriting.
+@isnad1 id=eq.0h15v.s13.b3a34e9bc297 from=translated src=- shape=72783317 vocab=50718dce
+-/
 lemma eval_whisker_left (u : x ⟶ y) (α : F ⟶ G) {v v' : y ⟶ z} {β β' : G ⟶ H}
     (σ : v ⟶ v') (Γ : β ⟶ β') :
     evalMap₂ (u ◁ σ) (α ◁ Γ)
@@ -409,7 +439,9 @@ ending in Mathlib's `naturality_comp_inv_app`.
 
 Note the `rw` rather than a `simp` argument for `naturality_naturality_conj_app`: as a simp lemma
 it also fires on the right-hand side's `β'` and the two sides diverge.  `rw` takes the first
-occurrence, which is the left-hand side's `F.map₂ σ`, and that is the only one that needs it.-/
+occurrence, which is the left-hand side's `F.map₂ σ`, and that is the only one that needs it.
+@isnad1 id=eq.0h15v.s13.42af35b6a119 from=translated src=- shape=101c89d0 vocab=c7df1f7d
+-/
 lemma eval_whisker_right {u u' : x ⟶ y} {α α' : F ⟶ G} (σ : u ⟶ u') (Γ : α ⟶ α')
     (v : y ⟶ z) (β : G ⟶ H) :
     evalMap₂ (σ ▷ v) (Γ ▷ β)
@@ -455,7 +487,9 @@ identity it is.
 Why it is needed at all: left to itself `simp` normalises `_ ▷ evalMap v β` with
 `whiskerRight_comp`, which *introduces* `Cat` associators, and then cannot remove them again --
 the whole right-hand side then sits as one un-splittable block.  Bridging before `simp` runs
-avoids creating the obstruction rather than fighting it.-/
+avoids creating the obstruction rather than fighting it.
+@isnad1 id=eq.0h16v.s16.d97e271dc27c from=translated src=- shape=0104df55 vocab=7670c3a5
+-/
 lemma eval_associator_rhs_app (s : x ⟶ y) (δ : F ⟶ G) (u : y ⟶ z) (α : G ⟶ H)
     (v : z ⟶ t) (β : H ⟶ E) (Z : ↑(F.obj x)) :
     ((evalMapComp (s ≫ u) (δ ≫ α) v β).hom ≫
@@ -483,7 +517,9 @@ The one thing that had to be got right is the ORDER.  `simp` left to itself norm
 `_ ▷ evalMap v β` with `whiskerRight_comp`, which *introduces* `Cat` associators it then cannot
 remove, leaving the whole right-hand side as one un-splittable block -- which is exactly what
 the earlier parking note described.  Bridging first avoids creating the obstruction instead of
-fighting it.-/
+fighting it.
+@isnad1 id=eq.0h15v.s14.8ef5a0c9ddb5 from=translated src=- shape=27b12219 vocab=76793d7d
+-/
 lemma eval_associator (s : x ⟶ y) (δ : F ⟶ G) (u : y ⟶ z) (α : G ⟶ H)
     (v : z ⟶ t) (β : H ⟶ E) :
     evalMap₂ (α_ s u v).hom (α_ δ α β).hom
@@ -569,21 +605,29 @@ section Assembly
 
 variable {x y : C × (C ⥤ᵖ Cat.{w, v})}
 
-/-- `evaluationPseudo`'s hom-functor is `evalHom`, definitionally.-/
+/-- `evaluationPseudo`'s hom-functor is `evalHom`, definitionally.
+@isnad1 id=eq.0h3v.s10.78fd53898e21 from=translated src=- shape=12c6ee13 vocab=e45a102d
+-/
 lemma evaluationPseudo_mapFunctor (x y : C × (C ⥤ᵖ Cat.{w, v})) :
     (evaluationPseudo (C := C)).toPrelaxFunctor.mapFunctor x y = evalHom x y := rfl
 
-/-- `evaluationPseudo.map` is `evalHom`'s action on objects.-/
+/-- `evaluationPseudo.map` is `evalHom`'s action on objects.
+@isnad1 id=eq.0h4v.s10.635c8f138b3b from=translated src=- shape=ce94b0d7 vocab=8620bbe7
+-/
 lemma evaluationPseudo_map_eq (f : x ⟶ y) :
     (evaluationPseudo (C := C)).map f = (evalHom x y).obj f := rfl
 
 /-- `evaluationPseudo.map₂` is `evalHom`'s action on morphisms.  This is the useful direction:
 it puts the two-morphism field under a functor, so `Functor.map_id` / `Functor.map_comp` and the
-`Functor.uncurry` simp set apply to it.-/
+`Functor.uncurry` simp set apply to it.
+@isnad1 id=eq.0h6v.s11.e3997dce6ff5 from=translated src=- shape=9ae93448 vocab=6ba7bdb5
+-/
 lemma evaluationPseudo_map₂_eq {f g : x ⟶ y} (η : f ⟶ g) :
     (evaluationPseudo (C := C)).map₂ η = (evalHom x y).map η := rfl
 
-/-- The pseudofunctor variable, evaluated at a fixed object, agrees with `evalAt`.-/
+/-- The pseudofunctor variable, evaluated at a fixed object, agrees with `evalAt`.
+@isnad1 id=eq.0h3v.s9.0a9e083dc873 from=translated src=- shape=4007cdc3 vocab=ad036f87
+-/
 lemma evaluationPseudo_obj_eq_evalAt (a : C) (F : C ⥤ᵖ Cat.{w, v}) :
     (evaluationPseudo (C := C)).obj (a, F) = (evalAt a).obj F := rfl
 
@@ -608,30 +652,42 @@ section API
 
 variable {x y : C × (C ⥤ᵖ Cat.{w, v})}
 
-/-- `evaluationPseudo` on objects: `(c, F) ↦ F.obj c`.-/
+/-- `evaluationPseudo` on objects: `(c, F) ↦ F.obj c`.
+@isnad1 id=eq.0h2v.s8.eb395a43e0d0 from=translated src=- shape=41742cb2 vocab=14627b68
+-/
 lemma evaluationPseudo_obj (x : C × (C ⥤ᵖ Cat.{w, v})) :
     (evaluationPseudo (C := C)).obj x = x.2.obj x.1 := rfl
 
-/-- `evaluationPseudo` on 1-morphisms, on Mathlib's diagonal.-/
+/-- `evaluationPseudo` on 1-morphisms, on Mathlib's diagonal.
+@isnad1 id=eq.0h4v.s10.b6d17fafd016 from=translated src=- shape=aaa6d012 vocab=a7f6de1d
+-/
 lemma evaluationPseudo_map (f : x ⟶ y) :
     (evaluationPseudo (C := C)).map f = x.2.map f.1 ≫ f.2.app y.1 := rfl
 
-/-- `evaluationPseudo`'s unit coherence is that of the first component.-/
+/-- `evaluationPseudo`'s unit coherence is that of the first component.
+@isnad1 id=eq.0h2v.s10.6c5fd08c4f1a from=translated src=- shape=8f78577f vocab=3b9c4aed
+-/
 lemma evaluationPseudo_mapId (x : C × (C ⥤ᵖ Cat.{w, v})) :
     (evaluationPseudo (C := C)).mapId x = x.2.mapId x.1 := rfl
 
-/-- Point form of `evaluationPseudo_map`.-/
+/-- Point form of `evaluationPseudo_map`.
+@isnad1 id=eq.0h5v.s11.f8ac9ec0451c from=translated src=- shape=776bd4cf vocab=89a1c1d9
+-/
 lemma evaluationPseudo_map_obj (f : x ⟶ y) (Z : ↑(x.2.obj x.1)) :
     ((evaluationPseudo (C := C)).map f).toFunctor.obj Z
       = (f.2.app y.1).toFunctor.obj ((x.2.map f.1).toFunctor.obj Z) := rfl
 
-/-- Component of `evaluationPseudo.map₂`.-/
+/-- Component of `evaluationPseudo.map₂`.
+@isnad1 id=eq.0h7v.s14.4021f2e5d0ff from=translated src=- shape=b075d317 vocab=34170f43
+-/
 lemma evaluationPseudo_map₂_app {f g : x ⟶ y} (η : f ⟶ g) (Z : ↑(x.2.obj x.1)) :
     ((evaluationPseudo (C := C)).map₂ η).toNatTrans.app Z
       = (f.2.app y.1).toFunctor.map ((x.2.map₂ η.1).toNatTrans.app Z) ≫
         (η.2.as.app y.1).toNatTrans.app ((x.2.map g.1).toFunctor.obj Z) := rfl
 
-/-- Component of `evaluationPseudo.mapId`.-/
+/-- Component of `evaluationPseudo.mapId`.
+@isnad1 id=eq.0h3v.s13.539333f1668c from=translated src=- shape=cbb67a09 vocab=bcf1572f
+-/
 lemma evaluationPseudo_mapId_hom_app (x : C × (C ⥤ᵖ Cat.{w, v})) (Z : ↑(x.2.obj x.1)) :
     ((evaluationPseudo (C := C)).mapId x).hom.toNatTrans.app Z
       = (x.2.mapId x.1).hom.toNatTrans.app Z := rfl
@@ -643,7 +699,9 @@ Cosmetic regression from the diagonal switch, recorded deliberately: on the prev
 the `mapComp` factor was whiskered on the *right* and so appeared as a bare component
 `(c.2.mapComp f.1 g.1).hom.app _`.  Here it is whiskered on the left, so it appears under a
 `Functor.map`.  Nothing depends on this, but it is one more `Functor.map` for the folding
-cascades in the coherence proofs to see past.-/
+cascades in the coherence proofs to see past.
+@isnad1 id=eq.0h7v.s15.3bcd34416b50 from=translated src=- shape=7814266b vocab=adebde6e
+-/
 lemma evaluationPseudo_mapComp_hom_app {a b c : C × (C ⥤ᵖ Cat.{w, v})} (f : a ⟶ b) (g : b ⟶ c)
     (Z : ↑(a.2.obj a.1)) :
     ((evaluationPseudo (C := C)).mapComp f g).hom.toNatTrans.app Z
@@ -662,7 +720,9 @@ lemma evaluationPseudo_mapComp_hom_app {a b c : C × (C ⥤ᵖ Cat.{w, v})} (f :
   simp
   rfl
 
-/-- Inverse form of `evaluationPseudo_mapComp_hom_app`.-/
+/-- Inverse form of `evaluationPseudo_mapComp_hom_app`.
+@isnad1 id=eq.0h7v.s15.c0216bdcdfcc from=translated src=- shape=3c6c7202 vocab=5805bdb8
+-/
 lemma evaluationPseudo_mapComp_inv_app {a b c : C × (C ⥤ᵖ Cat.{w, v})} (f : a ⟶ b) (g : b ⟶ c)
     (Z : ↑(a.2.obj a.1)) :
     ((evaluationPseudo (C := C)).mapComp f g).inv.toNatTrans.app Z

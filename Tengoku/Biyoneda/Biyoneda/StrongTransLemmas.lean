@@ -56,6 +56,9 @@ universe u v w
 variable {C : Type u} [Bicategory.{w, v} C]
 variable {x y z t : C} {E F G H : C ⥤ᵖ Cat.{w, v}}
 
+/--
+@isnad1 id=eq.0h5v.s8.d8e9d1d463dc from=translated src=- shape=bfea9d62 vocab=a956683a
+-/
 lemma cat_unitor_block {X Y Z : Cat.{v, u}} (f : X ⟶ Y) (g : Y ⟶ Z) :
     ((ρ_ f).hom ≫ (λ_ f).inv) ▷ g = 𝟙 (f ≫ g) := by aesop_cat
 
@@ -74,46 +77,68 @@ They are deliberately **not** `@[simp]`: as rewrite rules in the wrong phase the
 the ambient simp set.  Mathlib has `StrongTrans.categoryStruct_id_app` and friends, but stated
 in the dot-notation form, which is exactly the form that does not fire here. -/
 
-/-- `StrongTrans.categoryStruct_id_app` in the spelling that elaborates.-/
+/-- `StrongTrans.categoryStruct_id_app` in the spelling that elaborates.
+@isnad1 id=eq.0h3v.s8.77a2ed1c9a88 from=translated src=- shape=0685a241 vocab=9f0ada10
+-/
 lemma strongTrans_id_app (F : C ⥤ᵖ Cat.{w, v}) (a : C) :
     StrongTrans.app (𝟙 F) a = 𝟙 (F.obj a) := rfl
 
-/-- `StrongTrans.comp_app` in the spelling that elaborates.-/
+/-- `StrongTrans.comp_app` in the spelling that elaborates.
+@isnad1 id=eq.0h7v.s9.0926891638ae from=translated src=- shape=5140e328 vocab=fe9abce0
+-/
 lemma strongTrans_comp_app (η : F ⟶ G) (θ : G ⟶ H) (a : C) :
     StrongTrans.app (η ≫ θ) a = StrongTrans.app η a ≫ StrongTrans.app θ a := rfl
 
-/-- The left unitor of the pseudofunctor bicategory, componentwise.-/
+/-- The left unitor of the pseudofunctor bicategory, componentwise.
+@isnad1 id=eq.0h5v.s11.82b7ecf15d3c from=translated src=- shape=5ede720b vocab=4c54ddc8
+-/
 lemma strongTrans_leftUnitor_app (α : F ⟶ G) (a : C) :
     ((λ_ α).hom).as.app a = (λ_ (StrongTrans.app α a)).hom := rfl
 
-/-- The right unitor of the pseudofunctor bicategory, componentwise.-/
+/-- The right unitor of the pseudofunctor bicategory, componentwise.
+@isnad1 id=eq.0h5v.s11.eb4f31b21a7c from=translated src=- shape=38904a49 vocab=5be081b5
+-/
 lemma strongTrans_rightUnitor_app (α : F ⟶ G) (a : C) :
     ((ρ_ α).hom).as.app a = (ρ_ (StrongTrans.app α a)).hom := rfl
 
-/-- The naturality constraint of the identity strong transformation.-/
+/-- The naturality constraint of the identity strong transformation.
+@isnad1 id=eq.0h5v.s12.265aefe50448 from=translated src=- shape=5280ac7d vocab=49291daa
+-/
 lemma strongTrans_id_naturality_hom (F : C ⥤ᵖ Cat.{w, v}) (u : x ⟶ y) :
     (StrongTrans.naturality (𝟙 F) u).hom = (ρ_ (F.map u)).hom ≫ (λ_ (F.map u)).inv := rfl
 
 /-- The identity strong transformation's naturality, whiskered, is the identity 2-cell.
 The RHS spelling is pinned to the normalised form; without that pin the `𝟙 _` elaborates at the
-un-normalised type and nothing matches.-/
+un-normalised type and nothing matches.
+@isnad1 id=eq.0h7v.s12.4458bffcf15b from=translated src=- shape=e76f0e3c vocab=fe4ac45c
+-/
 lemma strongTrans_id_naturality_whiskerRight (u : x ⟶ y) (α : F ⟶ G) :
     ((StrongTrans.naturality (𝟙 F) u) ▷ᵢ α.app y).hom = 𝟙 (F.map u ≫ α.app y) := by
   simp only [whiskerRightIso_hom, strongTrans_id_naturality_hom]
   exact cat_unitor_block (F.map u) (α.app y)
 
+/--
+@isnad1 id=eq.0h5v.s7.3aa0732b907e from=translated src=- shape=bcce1dff vocab=75dcc5a1
+-/
 lemma cat_whiskerLeft_leftUnitor {X Y Z : Cat.{v, u}} (f : X ⟶ Y) (g : Y ⟶ Z) :
     f ◁ (λ_ g).hom = 𝟙 (f ≫ g) := by aesop_cat
 
+/--
+@isnad1 id=eq.0h6v.s11.d680b7b2a9be from=translated src=- shape=185a64f0 vocab=f31288eb
+-/
 lemma strongTrans_id_app_toFunctor_map (F : C ⥤ᵖ Cat.{w, v}) (a : C)
     {p q : ↑(F.obj a)} (h : p ⟶ q) : ((StrongTrans.app (𝟙 F) a)).toFunctor.map h = h := rfl
 
-/-- Component form of `strongTrans_id_naturality_whiskerRight`.-/
+/-- Component form of `strongTrans_id_naturality_whiskerRight`.
+@isnad1 id=eq.0h8v.s13.7b3ee7da0785 from=translated src=- shape=6e46d0c4 vocab=f6deac2e
+-/
 lemma strongTrans_id_naturality_whiskerRight_app (u : x ⟶ y) (α : F ⟶ G) (W : ↑(F.obj x)) :
     ((StrongTrans.naturality (𝟙 F) u) ▷ᵢ α.app y).hom.toNatTrans.app W = 𝟙 _ := by
   rw [strongTrans_id_naturality_whiskerRight]; aesop_cat
 
-/-- Component form of `cat_whiskerLeft_leftUnitor`.-/
+/-- Component form of `cat_whiskerLeft_leftUnitor`.
+@isnad1 id=eq.0h6v.s8.172973ac2bf1 from=translated src=- shape=909ad314 vocab=42330202
+-/
 lemma cat_whiskerLeft_leftUnitor_app {X' Y' Z' : Cat.{v, u}} (f : X' ⟶ Y') (g : Y' ⟶ Z')
     (W : ↑X') : (f ◁ (λ_ g).hom).toNatTrans.app W = 𝟙 _ := by
   rw [cat_whiskerLeft_leftUnitor]; aesop_cat
@@ -126,7 +151,9 @@ first, because
 without looping against the forward rule.  So the fold has to be named.  Taking the cancellation
 as a hypothesis rather than an `Iso` keeps the statement first-order: the goals here spell the
 pair as `(…).inv.toNatTrans.app Z`, whose head is `NatTrans.app`, so an `e.inv`-shaped pattern
-would never unify.-/
+would never unify.
+@isnad1 id=eq.1h7v.s7.cb7e2b5d35cb from=translated src=- shape=390804b6 vocab=cec80497
+-/
 @[reassoc]
 lemma map_comp_cancel {D E : Type*} [Category D] [Category E] (P : D ⥤ E) {a b : D}
     (A : a ⟶ b) (B : b ⟶ a) (h : A ≫ B = 𝟙 a) :
@@ -138,7 +165,9 @@ lemma map_comp_cancel {D E : Type*} [Category D] [Category E] (P : D ⥤ E) {a b
 `(δ ≫ α).naturality f` is an associator sandwich around `δ`'s and `α`'s; in `Cat` the three
 associators are identities definitionally, so this is `rfl` once they are written in, and the
 padding comes off with `simp`.  Without it the composite's naturality sits in the goal as an
-opaque five-factor block that no distribution lemma will touch.-/
+opaque five-factor block that no distribution lemma will touch.
+@isnad1 id=eq.0h10v.s14.70c2cb5b4841 from=translated src=- shape=331ff4e4 vocab=46b20e7a
+-/
 lemma strongTrans_comp_naturality_app (δ : F ⟶ G) (α : G ⟶ H) {a b : C} (f : a ⟶ b)
     (W : ↑(F.obj a)) :
     ((δ ≫ α).naturality f).hom.toNatTrans.app W
@@ -152,7 +181,9 @@ lemma strongTrans_comp_naturality_app (δ : F ⟶ G) (α : G ⟶ H) {a b : C} (f
 /-- Fold two nested `.map` layers across a composition.  The one-layer version is
 `← Functor.map_comp`, which cannot be a simp lemma (wrong direction, loops against the forward
 rule); this is its two-layer companion, and `@[reassoc]` supplies the right-associated form the
-goals actually carry.-/
+goals actually carry.
+@isnad1 id=eq.0h10v.s7.8ee620c21436 from=translated src=- shape=2398f45c vocab=b8d28825
+-/
 @[reassoc]
 lemma map_map_comp {D E W : Type*} [Category D] [Category E] [Category W]
     (Q : D ⥤ E) (P : E ⥤ W) {a b c : D} (A : a ⟶ b) (B : b ⟶ c) :
@@ -161,7 +192,9 @@ lemma map_map_comp {D E W : Type*} [Category D] [Category E] [Category W]
 
 /-- Slide a morphism through `α.naturality v` and cancel the pair: the conjugation form for the
 naturality **isomorphism** itself, as opposed to `naturality_naturality_conj_app`, which is the
-one for `map₂`.  This is what collapses the `hom … inv` sandwich the associator core produces.-/
+one for `map₂`.  This is what collapses the `hom … inv` sandwich the associator core produces.
+@isnad1 id=eq.0h10v.s14.d0acc3537d63 from=translated src=- shape=af9ef0c0 vocab=573865de
+-/
 @[reassoc]
 lemma strongTrans_naturality_slide (α : G ⟶ H) {a b : C} (v : a ⟶ b) {W W' : ↑(G.obj a)}
     (m : W ⟶ W') :
@@ -176,7 +209,9 @@ lemma strongTrans_naturality_slide (α : G ⟶ H) {a b : C} (v : a ⟶ b) {W W' 
 
 /-- The naturality of a **composite** strong transformation at a point, in inverse form.
 `strongTrans_comp_naturality_app` gives the forward direction; inverting a composite reverses
-it, and the cleanest way to say so is to invert the whole `Iso` rather than the equation.-/
+it, and the cleanest way to say so is to invert the whole `Iso` rather than the equation.
+@isnad1 id=eq.0h10v.s14.0b90d4f6e533 from=translated src=- shape=f69529be vocab=d160f97e
+-/
 lemma strongTrans_comp_naturality_inv_app (δ : F ⟶ G) (α : G ⟶ H) {a b : C} (f : a ⟶ b)
     (W : ↑(F.obj a)) :
     ((δ ≫ α).naturality f).inv.toNatTrans.app W
@@ -198,7 +233,9 @@ constraints.  Both `naturality_comp` obligations of the Yoneda equivalence come 
 The proof is four moves: `simp` turns `F.map₂ (α_ u v W).hom` into `F`'s own `mapComp`
 associativity (`map₂_associator`); then three applications of Mathlib's
 `naturality_comp_inv_app`, each followed by the `hom`/`inv` cancellations it exposes,
-strip the `G`-side coherences; what is left is one naturality square of `(α.naturality W).inv`.-/
+strip the `G`-side coherences; what is left is one naturality square of `(α.naturality W).inv`.
+@isnad1 id=eq.0h12v.s16.7081d453a728 from=translated src=- shape=d3dcfe9b vocab=e2d65aa2
+-/
 lemma naturality_comp_assoc_core (α : F ⟶ G) {p q r s : C} (u : p ⟶ q) (v : q ⟶ r) (W : r ⟶ s)
     (x : ↑(F.obj p)) :
     ((G.map W).toFunctor.map ((α.naturality (u ≫ v)).hom.toNatTrans.app x) ≫
@@ -246,7 +283,9 @@ lemma naturality_comp_assoc_core (α : F ⟶ G) {p q r s : C} (u : p ⟶ q) (v :
     (α.naturality W).inv.toNatTrans.naturality _
   rw [reassoc_of% hfin]
 
-/-- The same conjugation for a modification's naturality.-/
+/-- The same conjugation for a modification's naturality.
+@isnad1 id=eq.0h10v.s14.a096df421890 from=translated src=- shape=b966bedc vocab=67073f38
+-/
 lemma modification_naturality_conj {α α' : F ⟶ G} (Γ : α ⟶ α') {a b : C} (f : a ⟶ b)
     (W : ↑(F.obj a)) :
     (Γ.as.app b).toNatTrans.app ((F.map f).toFunctor.obj W)
