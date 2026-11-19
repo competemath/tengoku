@@ -158,6 +158,7 @@ import Tengoku.GrothendieckRiemannRoch
 import Tengoku.Automatatheory
 import Tengoku.TutteHomotopyLean
 import Tengoku.BrownianMotion
+import Tengoku.MagicSquaresFieldsLean
 import Tengoku.NsP23
 import Tengoku.Etingofrepresentationtheory
 import Tengoku.NpcompletenessLean4
