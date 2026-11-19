@@ -54,7 +54,9 @@ private theorem square_minor_lower (hodd : ringChar F ≠ 2)
       (abs_le.mp (hlarge s (by omega))).1
 
 /-- The subset expansion with an arbitrary bound for the character sums
-on three or more factors. Linear sums vanish and pair sums cost at most one.-/
+on three or more factors. Linear sums vanish and pair sums cost at most one.
+@isnad1 id=le.4h3v.s8.fd378568c5b6 from=translated src=- shape=62d5adba vocab=c0a52113
+-/
 theorem affineSquareWeight_sum_lower_with_error
     (hodd : ringChar F ≠ 2) (error : ℕ → ℝ)
     (coeff : Fin 8 → F) (hinj : Function.Injective coeff)
@@ -84,7 +86,9 @@ theorem affineSquareWeight_sum_lower_with_error
       square_minor_lower hodd error coeff hinj hnonzero hlarge s
 
 /-- Expansion of all 256 subsets gives the paper's exact constants:
-28 quadratic contributions and 741 in the higher-degree Weil terms.-/
+28 quadratic contributions and 741 in the higher-degree Weil terms.
+@isnad1 id=le.4h2v.s7.57547810246b from=translated src=- shape=62b99816 vocab=fc8412c9
+-/
 theorem affineSquareWeight_sum_lower
     (hodd : ringChar F ≠ 2) (hWeil : HasSplitQuadraticWeilBound F)
     (coeff : Fin 8 → F) (hinj : Function.Injective coeff)
@@ -106,7 +110,9 @@ theorem affineSquareWeight_sum_lower
     simpa only [Fintype.card_coe, hprod] using h
 
 /-- The product indicator is dominated by the actual square indicator,
-including parameters where one or more affine forms vanish.-/
+including parameters where one or more affine forms vanish.
+@isnad1 id=le.0h3v.s8.366de57cac7f from=translated src=- shape=b4119c04 vocab=529baa49
+-/
 theorem affineSquareWeight_le_indicator (coeff : Fin 8 → F) (t : F) :
     affineSquareWeight coeff t ≤
       if ∀ i, IsSquare (1 + coeff i * t) then (256 : ℝ) else 0 := by
@@ -139,6 +145,9 @@ def centerOneNoncenterCoeff (b : F) (i : Fin 8) : F :=
   centerOneCoeff b ((4 : Fin 9).succAbove i)
 
 omit [DecidableEq F] in
+/--
+@isnad1 id=iff.0h3v.s6.bab4c6cea325 from=translated src=- shape=0d786b98 vocab=b33ab31f
+-/
 theorem noncenter_squares_iff_mem (b t : F) :
     (∀ i, IsSquare (1 + centerOneNoncenterCoeff b i * t)) ↔
       t ∈ centerOnePowerParameters 2 b := by
@@ -156,7 +165,9 @@ theorem noncenter_squares_iff_mem (b t : F) :
 
 /-- **Section 7 counting estimate from the sharp quadratic Weil bound.**
 This proves the previously separate counting interface, including the
-optimized constants 28 and 741 and all zero-parameter corrections.-/
+optimized constants 28 and 741 and all zero-parameter corrections.
+@isnad1 id=hascente.2h1v.s5.bfb2ac911bc6 from=translated src=- shape=79da5d5f vocab=a9c1b8c1
+-/
 theorem hasCenterOneSquareCountBound_of_weil
     (hodd : ringChar F ≠ 2) (hWeil : HasSplitQuadraticWeilBound F) :
     HasCenterOneSquareCountBound F := by
@@ -179,7 +190,9 @@ theorem hasCenterOneSquareCountBound_of_weil
       simp [mul_comm]
 
 /-- The square existence theorem now takes only the sharp Weil theorem
-as its analytic input; no independent counting assumption is needed.-/
+as its analytic input; no independent counting assumption is needed.
+@isnad1 id=ex.3h1v.s6.664262107213 from=translated src=- shape=cb8d36e0 vocab=66bba117
+-/
 theorem exists_centerOne_magic_of_squares_of_weil
     (hodd : ringChar F ≠ 2) (hWeil : HasSplitQuadraticWeilBound F)
     (hq : 553736 ≤ Fintype.card F) :

@@ -13,7 +13,9 @@ variable {F : Type*} [Field F] [Fintype F] [DecidableEq F]
 -/
 
 omit [Fintype F] in
-/-- A parameter outside `centerOneBadT b` is nonzero.-/
+/-- A parameter outside `centerOneBadT b` is nonzero.
+@isnad1 id=ne.1h3v.s5.a7fbbe29c5b1 from=translated src=- shape=f324efa8 vocab=527246e6
+-/
 theorem ne_zero_of_not_mem_centerOneBadT
     {b t : F}
     (ht : t ∉ centerOneBadT b) :
@@ -34,7 +36,9 @@ theorem eq_bad_parameter_of_linear_eq_zero
   linear_combination hzero
 
 omit [Fintype F] in
-/-- Outside the bad set, no non-center entry can vanish.-/
+/-- Outside the bad set, no non-center entry can vanish.
+@isnad1 id=ne.3h4v.s7.d9dbfd5d3956 from=translated src=- shape=55c62e8d vocab=563f66a5
+-/
 theorem centerOne_linear_ne_zero_of_not_bad
     {b t : F}
     (hb : CenterOneGoodB b)

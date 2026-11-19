@@ -28,6 +28,9 @@ def centerOneForbiddenB : Finset F :=
   {0, 1, -1, 2, -2, (1 : F) / 2, -(1 : F) / 2}
 
 omit [Fintype F] in
+/--
+@isnad1 id=iff.0h2v.s8.76476b8a38bc from=translated src=- shape=ac7798e5 vocab=44df0eb4
+-/
 @[simp]
 theorem mem_centerOneForbiddenB (b : F) :
     b ∈ (centerOneForbiddenB : Finset F) ↔
@@ -36,7 +39,9 @@ theorem mem_centerOneForbiddenB (b : F) :
   simp [centerOneForbiddenB, or_assoc, or_comm]
 
 omit [Fintype F] in
-/-- There are at most seven forbidden values.-/
+/-- There are at most seven forbidden values.
+@isnad1 id=le.0h1v.s4.885d4bc074f3 from=translated src=- shape=1e8b59d0 vocab=be164fc9
+-/
 theorem centerOneForbiddenB_card_le :
     (centerOneForbiddenB : Finset F).card ≤ 7 := by
   classical
@@ -62,7 +67,9 @@ theorem centerOneForbiddenB_card_le :
     _ = 7 := by simp
 
 /-- If the field has more than seven elements, some `b` lies outside the
-explicit forbidden set.-/
+explicit forbidden set.
+@isnad1 id=ex.1h1v.s5.a5034fa6427a from=translated src=- shape=ad9587ca vocab=b0fbba19
+-/
 theorem exists_not_mem_centerOneForbiddenB
     (hq : 7 < Fintype.card F) :
     ∃ b : F, b ∉ (centerOneForbiddenB : Finset F) := by

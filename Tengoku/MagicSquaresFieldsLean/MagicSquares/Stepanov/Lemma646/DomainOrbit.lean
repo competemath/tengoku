@@ -28,12 +28,18 @@ noncomputable def domainOrbitProduct
   ∏ j ∈ Finset.range m, domainOrbitFactor zeta A j
 
 omit [IsDomain R] in
+/--
+@isnad1 id=eq.0h3v.s5.4daa242786b5 from=translated src=- shape=26e5eae9 vocab=bb9095e2
+-/
 @[simp]
 theorem domainOrbitFactor_zero (zeta : R) (A : Polynomial R) :
     domainOrbitFactor zeta A 0 = A := by
   simp [domainOrbitFactor]
 
 omit [IsDomain R] in
+/--
+@isnad1 id=eq.0h4v.s7.01a9c08611ea from=translated src=- shape=7b73ce7f vocab=1fdd5a4a
+-/
 theorem domainOrbitFactor_comp_scale
     (zeta : R) (A : Polynomial R) (j : ℕ) :
     (domainOrbitFactor zeta A j).comp (C zeta * X) =
@@ -42,6 +48,9 @@ theorem domainOrbitFactor_comp_scale
   ring_nf
 
 omit [IsDomain R] in
+/--
+@isnad1 id=eq.1h4v.s5.efb69b43d004 from=translated src=- shape=86f5c142 vocab=caea5cc5
+-/
 theorem domainOrbitFactor_period
     {m : ℕ} {zeta : R}
     (hzeta : IsPrimitiveRoot zeta m)
@@ -49,6 +58,9 @@ theorem domainOrbitFactor_period
     domainOrbitFactor zeta A m = domainOrbitFactor zeta A 0 := by
   simp [domainOrbitFactor, hzeta.pow_eq_one]
 
+/--
+@isnad1 id=eq.2h3v.s6.de5e3bce627d from=translated src=- shape=82e269aa vocab=825b8f9f
+-/
 theorem domain_prod_range_shift_eq
     {M : Type*} [CommMonoidWithZero M] [IsRightCancelMulZero M]
     (m : ℕ) (f : ℕ → M)
@@ -68,6 +80,9 @@ theorem domain_prod_range_shift_eq
       _ = (∏ j ∈ Finset.range m, f j) * f 0 := by rw [hperiod]
   exact mul_right_cancel₀ h0 hmul
 
+/--
+@isnad1 id=eq.1h4v.s7.d2d59b270e4e from=translated src=- shape=9ed9ff9a vocab=9e183f87
+-/
 theorem domainOrbitProduct_scale_invariant
     {m : ℕ} {zeta : R}
     (hzeta : IsPrimitiveRoot zeta m)
@@ -93,6 +108,9 @@ theorem domainOrbitProduct_scale_invariant
             exact domainOrbitFactor_comp_scale zeta A j
       _ = ∏ j ∈ Finset.range m, domainOrbitFactor zeta A j := hshift
 
+/--
+@isnad1 id=ex.2h4v.s7.76a62d58a379 from=translated src=- shape=930bb92f vocab=791b47f4
+-/
 theorem domainOrbitProduct_exists_comp_X_pow
     {m : ℕ} {zeta : R}
     (hm : 0 < m)
@@ -104,6 +122,9 @@ theorem domainOrbitProduct_exists_comp_X_pow
     (R := R) hm hzeta
       (domainOrbitProduct_scale_invariant hzeta A)
 
+/--
+@isnad1 id=le.0h4v.s5.3a64f0e8371e from=translated src=- shape=f87ce68b vocab=f97f5b62
+-/
 theorem domainOrbitProduct_natDegree_le
     (m : ℕ) (zeta : R) (A : Polynomial R) :
     (domainOrbitProduct m zeta A).natDegree ≤ m * A.natDegree := by

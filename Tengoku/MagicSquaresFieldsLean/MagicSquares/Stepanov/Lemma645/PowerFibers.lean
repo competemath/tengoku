@@ -19,6 +19,9 @@ Summing these fibers counts the actual pairs `(x,y)` satisfying `y^m=f(x)`.
 -/
 
 omit [DecidableEq F] in
+/--
+@isnad1 id=lt.1h2v.s5.c48118a3fa3f from=translated src=- shape=9f14070e vocab=2f27bbe8
+-/
 theorem stepanovPowerExponent_pos {m : ℕ} (hmq : m ∣ Fintype.card F - 1) :
     0 < (Fintype.card F - 1) / m := by
   have hq := Fintype.one_lt_card (α := F)
@@ -31,6 +34,9 @@ theorem stepanovPowerExponent_pos {m : ℕ} (hmq : m ∣ Fintype.card F - 1) :
   exact Nat.div_pos (Nat.le_of_dvd (by omega) hmq) hm
 
 omit [DecidableEq F] in
+/--
+@isnad1 id=iff.3h3v.s7.6fce1f4cea85 from=translated src=- shape=f4154de8 vocab=1d1ad123
+-/
 theorem exists_pow_eq_iff_stepanovPower
     {m : ℕ} (hm : 0 < m) (hmq : m ∣ Fintype.card F - 1)
     {a : F} (ha : a ≠ 0) :
@@ -56,6 +62,9 @@ theorem exists_pow_eq_iff_stepanovPower
     refine ⟨zeta ^ (j / m), ?_⟩
     rw [← pow_mul, Nat.div_mul_cancel hjdiv, hja]
 
+/--
+@isnad1 id=eq.4h4v.s7.3374b3278eba from=translated src=- shape=fce7a08c vocab=af7b813e
+-/
 theorem card_power_fiber_of_exists
     {m : ℕ} (hm : 0 < m) {zeta : F} (hzeta : IsPrimitiveRoot zeta m)
     {a : F} (ha : a ≠ 0) (hex : ∃ y : F, y ^ m = a) :
@@ -72,6 +81,9 @@ theorem card_power_fiber_of_exists
   rw [hset, Finset.card_image_of_injOn, Finset.card_range]
   exact hzeta.injOn_pow_mul halpha0
 
+/--
+@isnad1 id=eq.2h3v.s8.f3a05cff3200 from=translated src=- shape=e8536db5 vocab=e43e21a1
+-/
 theorem card_power_fiber
     {m : ℕ} (hm : 0 < m) (hmq : m ∣ Fintype.card F - 1) (a : F) :
     (Finset.univ.filter (fun y : F => y ^ m = a)).card =
@@ -96,13 +108,18 @@ theorem card_power_fiber
 noncomputable def stepanovSolutionCount (m : ℕ) (f : Polynomial F) : ℕ :=
   (Finset.univ.filter (fun xy : F × F => xy.2 ^ m = eval xy.1 f)).card
 
+/--
+@isnad1 id=eq.0h3v.s6.c7509b0a6943 from=translated src=- shape=8ad2225d vocab=3f0ee787
+-/
 theorem stepanovSolutionCount_eq_sum (m : ℕ) (f : Polynomial F) :
     stepanovSolutionCount m f =
       ∑ x : F, (Finset.univ.filter (fun y : F => y ^ m = eval x f)).card := by
   simp only [stepanovSolutionCount, Finset.card_eq_sum_ones, Finset.sum_filter]
   rw [← Finset.univ_product_univ, Finset.sum_product]
 
-/-- The solution-count identity in Lemma 6.45, with no assumed fiber count.-/
+/-- The solution-count identity in Lemma 6.45, with no assumed fiber count.
+@isnad1 id=eq.2h3v.s6.d037e2170260 from=translated src=- shape=88e4a956 vocab=f6562a52
+-/
 theorem ln97_6_45_solutions {m : ℕ} (hm : 0 < m)
     (hmq : m ∣ Fintype.card F - 1) (f : Polynomial F) :
     stepanovSolutionCount m f = (stepanovT0 f).card + m * (stepanovT1 m f).card := by

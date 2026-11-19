@@ -18,12 +18,18 @@ noncomputable def centerZeroPowerWeight (n d : ℕ) (x : F) : ℝ :=
     powerIndicatorNumerator n d (x + 1)
 
 omit [Fintype F] in
+/--
+@isnad1 id=le.0h4v.s4.34f86685d2c0 from=translated src=- shape=b9165939 vocab=64033b25
+-/
 theorem centerZeroPowerWeight_nonneg (n d : ℕ) (x : F) :
     0 ≤ centerZeroPowerWeight n d x :=
   mul_nonneg (mul_nonneg (powerIndicatorNumerator_nonneg _ _ _)
     (powerIndicatorNumerator_nonneg _ _ _)) (powerIndicatorNumerator_nonneg _ _ _)
 
 omit [Fintype F] in
+/--
+@isnad1 id=le.1h4v.s5.d5aed5f331ab from=translated src=- shape=d8815f34 vocab=00f3fa9d
+-/
 theorem centerZeroPowerWeight_le {n d : ℕ} (hd : 0 < d) (x : F) :
     centerZeroPowerWeight n d x ≤ (d : ℝ) ^ 3 := by
   have hpair := mul_le_mul (powerIndicatorNumerator_le (n := n) hd (x - 1))
@@ -36,7 +42,9 @@ theorem centerZeroPowerWeight_le {n d : ℕ} (hd : 0 < d) (x : F) :
 
 omit [Fintype F] in
 /-- Each of the three zero locations contributes at most `d^2`, rather
-than the general bound `d^3`.-/
+than the general bound `d^3`.
+@isnad1 id=le.2h4v.s7.6fdf9e2e9adc from=translated src=- shape=46fcf4ae vocab=3fa811d5
+-/
 theorem centerZeroPowerWeight_le_at_zero {n d : ℕ} (hd : 0 < d) {x : F}
     (hx : x = -1 ∨ x = 0 ∨ x = 1) :
     centerZeroPowerWeight n d x ≤ (d : ℝ) ^ 2 := by
@@ -54,6 +62,9 @@ theorem centerZeroPowerWeight_le_at_zero {n d : ℕ} (hd : 0 < d) {x : F}
   · simpa only [centerZeroPowerWeight, sub_self, hz, one_mul] using hp 1 (1 + 1)
 
 omit [Fintype F] in
+/--
+@isnad1 id=and.2h4v.s7.735b8339f528 from=translated src=- shape=79ff20b0 vocab=988432a9
+-/
 theorem centerZeroPowerWeight_ne_zero_forces_powers {n d : ℕ} (hn : 0 < n)
     {x : F} (hw : centerZeroPowerWeight n d x ≠ 0) :
     IsNthPower n (x - 1) ∧ IsNthPower n x ∧ IsNthPower n (x + 1) := by
@@ -71,7 +82,9 @@ theorem centerZeroPowerWeight_ne_zero_forces_powers {n d : ℕ} (hn : 0 < n)
 
 omit [Fintype F] in
 /-- The seven excluded parameters cost at most `4*d^3+3*d^2` in total.
-Overlaps in small characteristic can only decrease this bound.-/
+Overlaps in small characteristic can only decrease this bound.
+@isnad1 id=le.1h3v.s6.1309e6d07050 from=translated src=- shape=e258fbbd vocab=428e87e0
+-/
 theorem centerZeroPowerWeight_bad_sum_le {n d : ℕ} (hd : 0 < d) :
     (∑ x ∈ (centerZeroBadValues : Finset F), centerZeroPowerWeight n d x) ≤
       4 * (d : ℝ) ^ 3 + 3 * (d : ℝ) ^ 2 := by

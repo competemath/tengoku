@@ -23,7 +23,9 @@ proof, via the alternative choice `M = ceil(sqrt(q/m))`.
 -/
 
 /-- A coarse square-root consequence of `q ≥ 100 m k^2`:
-`sqrt(q/m) ≥ 10k`, written without division.-/
+`sqrt(q/m) ≥ 10k`, written without division.
+@isnad1 id=le.3h3v.s6.5a007105207d from=translated src=- shape=0a291ba4 vocab=117eaa13
+-/
 theorem sqrt_q_over_m_ge_ten_k
     (q m k : ℝ)
     (hq : 100 * m * k ^ 2 ≤ q)
@@ -49,7 +51,9 @@ theorem sqrt_q_over_m_ge_ten_k
   nlinarith
 
 /-- The book also uses the weaker bound
-`sqrt(q/m) ≥ k+1`; it follows once `k ≥ 1`.-/
+`sqrt(q/m) ≥ k+1`; it follows once `k ≥ 1`.
+@isnad1 id=le.3h3v.s6.db921c22b92e from=translated src=- shape=29a31f18 vocab=d44e7500
+-/
 theorem sqrt_q_over_m_ge_k_add_one
     (q m k : ℝ)
     (hq : 100 * m * k ^ 2 ≤ q)
@@ -62,7 +66,9 @@ theorem sqrt_q_over_m_ge_k_add_one
   linarith
 
 /-- The shifted-square hypothesis required by Lemma 6.52 is automatic
-for the ideal real choice `M = sqrt(2q/m)-3`.-/
+for the ideal real choice `M = sqrt(2q/m)-3`.
+@isnad1 id=eq.2h2v.s7.1fc2d51609ed from=translated src=- shape=5a62edd2 vocab=e7d2045c
+-/
 theorem shifted_square_of_sqrt_choice
     (q m : ℝ)
     (hm : 0 < m)

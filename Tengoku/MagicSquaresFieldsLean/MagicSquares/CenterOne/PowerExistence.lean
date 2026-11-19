@@ -14,7 +14,9 @@ variable {F : Type*} [Field F] [Fintype F] [DecidableEq F]
 -/
 
 /-- The Section 14 numerical hypothesis forces more than nine power-good
-parameters.-/
+parameters.
+@isnad1 id=ex.5h3v.s7.8a2d24f52718 from=translated src=- shape=8a7ae866 vocab=6d297147
+-/
 theorem centerOne_power_parameters_card_gt_nine
     (n d : ℕ)
     (hd : 0 < d)
@@ -47,7 +49,9 @@ specialized character-sum estimate `HasCenterOnePowerCountBound`.
 
 The statement uses an explicit positive index `d`; in the paper one takes
 `d = gcd(n, q-1)`. `CenterOne.SharpPowerExistence` supplies the proved
-counting estimate and gives the unconditional theorem.-/
+counting estimate and gives the unconditional theorem.
+@isnad1 id=ex.5h3v.s7.cfe848d7321a from=translated src=- shape=b0fd7718 vocab=f264aab7
+-/
 theorem exists_centerOne_magic_of_powers
     (n d : ℕ)
     (hd : 0 < d)
@@ -67,7 +71,9 @@ theorem exists_centerOne_magic_of_powers
   exact exists_centerOne_magic_of_powers_of_parameter
     (F := F) n hb htpow htbad
 
-/-- The same theorem in `n`-Parker language.-/
+/-- The same theorem in `n`-Parker language.
+@isnad1 id=not.5h3v.s7.eec4a3332fb3 from=translated src=- shape=eda038b2 vocab=22ec8a96
+-/
 theorem not_isNParker_of_centerOne_bound
     (n d : ℕ)
     (hd : 0 < d)

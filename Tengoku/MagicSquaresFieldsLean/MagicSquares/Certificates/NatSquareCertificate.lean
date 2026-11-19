@@ -49,7 +49,9 @@ private theorem cast_line_eq {q a b c d e f : ℕ}
   simpa only [Nat.cast_add] using (ZMod.natCast_eq_natCast_iff' _ _ q).mpr h
 
 /-- Soundness of the small arithmetic checker. This proof does not trust the
-program that discovered or exported the certificate.-/
+program that discovered or exported the certificate.
+@isnad1 id=ismagico.1h1v.s4.b5eea23f910d from=translated src=- shape=45682d38 vocab=c73b6eed
+-/
 theorem valid_sound {c : NatSquareCertificate} (hc : c.Valid) :
     IsMagicOfPowers 2 c.square := by
   rcases hc with ⟨_, hd, hm⟩
@@ -69,14 +71,18 @@ theorem valid_sound {c : NatSquareCertificate} (hc : c.Valid) :
 def checkAll (data : List NatSquareCertificate) : Bool :=
   data.all (fun c => decide c.Valid)
 
-/-- Every record in an accepted batch gives an actual magic square of squares.-/
+/-- Every record in an accepted batch gives an actual magic square of squares.
+@isnad1 id=not.2h2v.s4.a9c8c1c2742f from=translated src=- shape=311607a2 vocab=580fa3f3
+-/
 theorem not_isParker_of_mem {data : List NatSquareCertificate}
     (hcheck : checkAll data = true) {c : NatSquareCertificate} (hc : c ∈ data) :
     ¬ IsParker (ZMod c.q) := by
   have hv : c.Valid := of_decide_eq_true (List.all_eq_true.mp hcheck c hc)
   exact fun h => h ⟨c.square, valid_sound hv⟩
 
-/-- Batch certificates transfer to every field of the corresponding prime size.-/
+/-- Batch certificates transfer to every field of the corresponding prime size.
+@isnad1 id=not.3h3v.s5.7b506b4fa3a4 from=translated src=- shape=ebed4a47 vocab=910b08e7
+-/
 theorem not_isParker_of_prime_card {data : List NatSquareCertificate}
     (hcheck : checkAll data = true) {c : NatSquareCertificate} (hc : c ∈ data)
     [Fact c.q.Prime] {F : Type*} [Field F] [Fintype F]

@@ -12,7 +12,9 @@ open Polynomial IntermediateField
 /-- Over a field containing a root of `-1` of every positive order,
 the usual prime-power obstruction is the complete Kummer irreducibility
 criterion. This includes rational functions over algebraically closed
-constant fields and handles even exponents as well as odd exponents.-/
+constant fields and handles even exponents as well as odd exponents.
+@isnad1 id=irreduci.3h3v.s8.04de6b4292e0 from=translated src=- shape=7df318c5 vocab=ddd05af8
+-/
 theorem X_pow_sub_C_irreducible_of_roots_neg_one
     {K : Type*} [Field K] {m : ℕ} (hm : 0 < m)
     (hneg : ∀ n : ℕ, 0 < n → ∃ u : K, u ^ n = -1)
@@ -50,7 +52,9 @@ theorem X_pow_sub_C_irreducible_of_roots_neg_one
 
 variable {F : Type*} [Field F]
 
-/-- Root multiplicity is multiplied by a positive polynomial power.-/
+/-- Root multiplicity is multiplied by a positive polynomial power.
+@isnad1 id=eq.1h4v.s7.19834245214b from=translated src=- shape=29fd7c15 vocab=348aa158
+-/
 theorem rootMultiplicity_pow_of_ne_zero (f : Polynomial F) (hf : f ≠ 0) (a : F) (n : ℕ) :
     (f ^ n).rootMultiplicity a = n * f.rootMultiplicity a := by
   induction n with
@@ -60,7 +64,9 @@ theorem rootMultiplicity_pow_of_ne_zero (f : Polynomial F) (hf : f ≠ 0) (a : F
     ring
 
 /-- A rational-function power can only have root multiplicities divisible
-by its exponent, even when its expression initially has a denominator.-/
+by its exponent, even when its expression initially has a denominator.
+@isnad1 id=dvd.3h5v.s8.7890b14e5b74 from=translated src=- shape=3da76de9 vocab=1740454a
+-/
 theorem dvd_rootMultiplicity_of_ratFunc_pow
     {f : Polynomial F} (hf : f ≠ 0) {n : ℕ} (hn : 0 < n)
     (b : RatFunc F) (hb : b ^ n = algebraMap (Polynomial F) (RatFunc F) f) (a : F) :
@@ -87,7 +93,9 @@ theorem dvd_rootMultiplicity_of_ratFunc_pow
 
 /-- The sufficient direction of LN97 Lemma 6.54, stated by prime divisors
 of the Kummer exponent. The root witnessing nondivisibility may differ
-for different prime divisors.-/
+for different prime divisors.
+@isnad1 id=irreduci.3h3v.s7.118db27c9dca from=translated src=- shape=fadb48d9 vocab=103ab96c
+-/
 theorem kummer_irreducible_of_root_multiplicities [IsAlgClosed F]
     {m : ℕ} (hm : 0 < m) (f : Polynomial F) (hf : f ≠ 0)
     (hroot : ∀ p : ℕ, p.Prime → p ∣ m → ∃ a : F, ¬ p ∣ f.rootMultiplicity a) :
@@ -105,7 +113,9 @@ theorem kummer_irreducible_of_root_multiplicities [IsAlgClosed F]
     exact ha (dvd_rootMultiplicity_of_ratFunc_pow hf hp.pos b hb a)
 
 /-- Root multiplicities computed in the base field also establish
-absolute irreducibility over its algebraic closure.-/
+absolute irreducibility over its algebraic closure.
+@isnad1 id=kummerab.3h3v.s6.ea96ef012928 from=translated src=- shape=a8ec394b vocab=b2feff4d
+-/
 theorem kummerAbsolutelyIrreducible_of_root_multiplicities
     {m : ℕ} (hm : 0 < m) (f : Polynomial F) (hf : f ≠ 0)
     (hroot : ∀ p : ℕ, p.Prime → p ∣ m → ∃ a : F, ¬ p ∣ f.rootMultiplicity a) :
@@ -117,7 +127,9 @@ theorem kummerAbsolutelyIrreducible_of_root_multiplicities
   rwa [← eq_rootMultiplicity_map (algebraMap F (AlgebraicClosure F)).injective a]
 
 /-- Exact multiplicities in a product of distinct linear factors with
-arbitrary natural exponents.-/
+arbitrary natural exponents.
+@isnad1 id=eq.2h6v.s8.84152445fefc from=translated src=- shape=649c35a8 vocab=722e7599
+-/
 theorem rootMultiplicity_prod_distinct_linear_powers
     {ι : Type*} [DecidableEq ι] (s : Finset ι) (roots : ι → F) (exponents : ι → ℕ)
     (hinj : Set.InjOn roots s) {j : ι} (hj : j ∈ s) :
@@ -140,7 +152,9 @@ theorem rootMultiplicity_prod_distinct_linear_powers
     rootMultiplicity_eq_zero hrest, rootMultiplicity_X_sub_C_pow, zero_add]
 
 /-- The split multiplicity criterion in a form suited to the character
-sum proof. No prime divisor of `m` may divide every root multiplicity.-/
+sum proof. No prime divisor of `m` may divide every root multiplicity.
+@isnad1 id=kummerab.3h5v.s8.2fb40d084961 from=translated src=- shape=f9a452b4 vocab=3a5ad916
+-/
 theorem kummerAbsolutelyIrreducible_prod_distinct_linear_powers
     {m r : ℕ} (hm : 0 < m) (roots : Fin r → F) (hinj : Function.Injective roots)
     (exponents : Fin r → ℕ)
@@ -155,7 +169,9 @@ theorem kummerAbsolutelyIrreducible_prod_distinct_linear_powers
       (fun _ _ _ _ h => hinj h) (Finset.mem_univ i)]
 
 /-- Multiplying the right side of a Kummer equation by a nonzero constant
-preserves absolute irreducibility.-/
+preserves absolute irreducibility.
+@isnad1 id=kummerab.3h4v.s7.2ffd0f813cc5 from=translated src=- shape=41c1ec72 vocab=d9335c33
+-/
 theorem KummerAbsolutelyIrreducible.const_mul
     {m : ℕ} (hm : 0 < m) {f : Polynomial F} (hirr : KummerAbsolutelyIrreducible m f)
     {c : F} (hc : c ≠ 0) : KummerAbsolutelyIrreducible m (C c * f) := by

@@ -22,11 +22,17 @@ variable {F : Type*} [Field F]
 /-- First special polynomial, `X-1`.-/
 noncomputable def theorem653B1 : Polynomial F := X - 1
 
+/--
+@isnad1 id=monic.0h1v.s4.f20cab0bcb29 from=translated src=- shape=84bfdc15 vocab=50f01f7f
+-/
 @[simp] theorem theorem653B1_monic :
     (theorem653B1 : Polynomial F).Monic := by
   simpa [theorem653B1] using
     (Polynomial.monic_X_sub_C (1 : F))
 
+/--
+@isnad1 id=eq.0h1v.s4.a5a02c3880df from=translated src=- shape=a4033e76 vocab=d93f1070
+-/
 @[simp] theorem theorem653B1_natDegree :
     (theorem653B1 : Polynomial F).natDegree = 1 := by
   simpa [theorem653B1] using
@@ -36,7 +42,9 @@ noncomputable def theorem653B1 : Polynomial F := X - 1
 noncomputable def theorem653B2 (m : ℕ) : Polynomial F :=
   geometricPolynomial (F := F) m
 
-/-- For `m>1`, the geometric polynomial has degree `m-1`.-/
+/-- For `m>1`, the geometric polynomial has degree `m-1`.
+@isnad1 id=eq.1h2v.s5.018e994c7989 from=translated src=- shape=ad3dea49 vocab=4f28e867
+-/
 theorem theorem653B2_natDegree
     (m : ℕ) (hm : 1 < m) :
     (theorem653B2 (F := F) m).natDegree = m - 1 := by

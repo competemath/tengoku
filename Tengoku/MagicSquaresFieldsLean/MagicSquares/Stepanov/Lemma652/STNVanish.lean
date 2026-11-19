@@ -22,7 +22,9 @@ for which `B(g(c))=0`, the corresponding double sum in (6.25) vanishes.
 
 omit [Fintype F] [DecidableEq F] in
 /-- Vanishing of all `s_t` forces the reduced double sum to vanish at
-any point whose `g(c)` is a root of `B`.-/
+any point whose `g(c)` is a root of `B`.
+@isnad1 id=eq.5h8v.s8.9dc2533a49d0 from=translated src=- shape=e3c80e40 vocab=7635a57c
+-/
 theorem eval_doubleSum_eq_zero_of_stepanovSTN_eq_zero
     {m r u : ℕ}
     (B : Polynomial F)
@@ -53,7 +55,9 @@ theorem eval_doubleSum_eq_zero_of_stepanovSTN_eq_zero
 
 omit [DecidableEq F] in
 /-- The exact Frobenius-evaluation form arising from (6.25): the factor
-`(c^q)^j` may be replaced by `c^j`.-/
+`(c^q)^j` may be replaced by `c^j`.
+@isnad1 id=eq.5h8v.s8.bfe733ff9328 from=translated src=- shape=4c721e8b vocab=d743430d
+-/
 theorem eval_doubleSum_frobenius_eq_zero_of_stepanovSTN_eq_zero
     {m r u : ℕ}
     (B : Polynomial F)

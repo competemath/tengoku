@@ -10,7 +10,9 @@ open Polynomial
 variable {F : Type*} [Field F]
 
 /-- A simple root makes `Y^m - f(X)` Eisenstein at the corresponding
-linear prime in `F[X]`. This works in every characteristic.-/
+linear prime in `F[X]`. This works in every characteristic.
+@isnad1 id=irreduci.2h4v.s6.78cf772f00ad from=translated src=- shape=b8dc7b8f vocab=c73003d9
+-/
 theorem kummerPolynomial_irreducible_of_simple_root
     {m : ℕ} (hm : 0 < m) {f : Polynomial F} {a : F}
     (ha : f.rootMultiplicity a = 1) : Irreducible (kummerPolynomial m f) := by
@@ -51,7 +53,9 @@ theorem kummerPolynomial_irreducible_of_simple_root
   exact he.irreducible hP hmonic.isPrimitive (by omega)
 
 /-- The simple-root case of LN97 Lemma 6.54, over the algebraic closure.
-It is enough for the split squarefree polynomials in Section 7.-/
+It is enough for the split squarefree polynomials in Section 7.
+@isnad1 id=kummerab.2h4v.s5.f472ecaa75bc from=translated src=- shape=e3d40ee0 vocab=371c9e5e
+-/
 theorem kummerAbsolutelyIrreducible_of_simple_root
     {m : ℕ} (hm : 0 < m) {f : Polynomial F} {a : F}
     (ha : f.rootMultiplicity a = 1) : KummerAbsolutelyIrreducible m f := by
@@ -60,7 +64,9 @@ theorem kummerAbsolutelyIrreducible_of_simple_root
   rw [← eq_rootMultiplicity_map (algebraMap F (AlgebraicClosure F)).injective a]
   exact ha
 
-/-- Every factor in a product of distinct linear factors is a simple root.-/
+/-- Every factor in a product of distinct linear factors is a simple root.
+@isnad1 id=eq.2h5v.s7.55a2fc7a1e2a from=translated src=- shape=c25b9338 vocab=f63d6bbe
+-/
 theorem rootMultiplicity_prod_distinct_linear
     {ι : Type*} [DecidableEq ι] (s : Finset ι) (roots : ι → F)
     (hinj : Set.InjOn roots s) {j : ι} (hj : j ∈ s) :
@@ -81,7 +87,9 @@ theorem rootMultiplicity_prod_distinct_linear
     rootMultiplicity_eq_zero hrest, rootMultiplicity_X_sub_C_self, zero_add]
 
 /-- The split squarefree polynomials used in Section 7 automatically
-satisfy the absolute irreducibility hypothesis of Theorem 6.53.-/
+satisfy the absolute irreducibility hypothesis of Theorem 6.53.
+@isnad1 id=kummerab.3h4v.s7.45249aae9120 from=translated src=- shape=a315c4f2 vocab=a6bb5a4b
+-/
 theorem kummerAbsolutelyIrreducible_prod_distinct_linear
     {m r : ℕ} (hm : 0 < m) (hr : 0 < r) (roots : Fin r → F)
     (hinj : Function.Injective roots) :

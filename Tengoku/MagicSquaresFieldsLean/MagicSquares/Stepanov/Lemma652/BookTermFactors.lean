@@ -46,14 +46,18 @@ noncomputable def stepanovBookDerivativeCoeffLinear
     (stepanovInnerLinear (F := F) i j)
 
 /-- The exponent arithmetic that keeps `g^i = f^(s*i)` outside the
-new factor after differentiation.-/
+new factor after differentiation.
+@isnad1 id=eq.1h4v.s6.8e319290c3fe from=translated src=- shape=f3f93665 vocab=e3ba5ca3
+-/
 theorem book_factor_exponent
     {M n s i : ℕ}
     (hn : n ≤ M) :
     M + s * i - n = (M - n) + s * i := by
   omega
 
-/-- **LN97 (6.24), literal factorization.**-/
+/-- **LN97 (6.24), literal factorization.**
+@isnad1 id=eq.2h11v.s10.b6d7adcd59f2 from=translated src=- shape=3d1de1f7 vocab=6e0c367f
+-/
 theorem stepanovBookDerivativeCoeff_spec
     {m u D M : ℕ}
     (f : Polynomial F) (s : ℕ)
@@ -106,7 +110,9 @@ theorem stepanovBookDerivativeCoeff_spec
           ring
 
 /-- The important degree estimate from (6.24): there is no `i*deg g`
-term, because `g^i` remains outside `e_{ijn}`.-/
+term, because `g^i` remains outside `e_{ijn}`.
+@isnad1 id=le.2h11v.s8.2ff6fdcd9b37 from=translated src=- shape=e1096f9d vocab=64f76325
+-/
 theorem stepanovBookDerivativeCoeff_natDegree_le
     {m u D M : ℕ}
     (f : Polynomial F) (s : ℕ)

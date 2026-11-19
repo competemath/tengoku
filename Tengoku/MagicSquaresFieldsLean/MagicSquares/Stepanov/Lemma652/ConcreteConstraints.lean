@@ -62,7 +62,9 @@ noncomputable def stepanovCoefficientConstraints
     (stepanovSTNFamilyLinear (r := r) B data)
 
 /-- If `Emax + u ≤ N`, kernel membership in the coefficient system
-forces every polynomial `s_{t,n}` to vanish identically.-/
+forces every polynomial `s_{t,n}` to vanish identically.
+@isnad1 id=eq.2h15v.s10.c706f0096375 from=translated src=- shape=a0a7e493 vocab=204d7004
+-/
 theorem stepanovSTN_eq_zero_of_coefficientConstraints_eq_zero
     {m r u D M Emax N : ℕ}
     {f g : Polynomial F}
@@ -94,7 +96,9 @@ theorem stepanovSTN_eq_zero_of_coefficientConstraints_eq_zero
   · exact hv
 
 /-- Kernel membership therefore gives the Hasse-derivative vanishing
-required by Lemma 6.51 at every point with `B(g(c))=0`.-/
+required by Lemma 6.51 at every point with `B(g(c))=0`.
+@isnad1 id=eq.7h15v.s9.0296c4cc9af4 from=translated src=- shape=497b85e8 vocab=4a8c4000
+-/
 theorem hasse_vanish_of_coefficientConstraints_eq_zero
     {m r u D M Emax N : ℕ}
     {f g : Polynomial F}

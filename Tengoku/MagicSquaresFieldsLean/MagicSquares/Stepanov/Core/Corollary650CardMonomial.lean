@@ -21,7 +21,9 @@ The positive-order case is exactly the Frobenius-monomial lemma already
 proved in `StepanovCorollary650`; the zero-order case is simp.
 -/
 
-/-- Termwise finite-field-cardinality version of Corollary 6.50.-/
+/-- Termwise finite-field-cardinality version of Corollary 6.50.
+@isnad1 id=eq.1h4v.s10.9c9b3e06747e from=translated src=- shape=25f38267 vocab=798f4e4e
+-/
 theorem hasseDeriv_mul_cardMonomial
     (n : ℕ)
     (hnlt : n < Fintype.card F)

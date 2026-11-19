@@ -33,6 +33,9 @@ has `X`-degree at most `D`.-/
 def CoeffNatDegreeLE (D : ℕ) (P : Polynomial (Polynomial F)) : Prop :=
   ∀ n, (P.coeff n).natDegree ≤ D
 
+/--
+@isnad1 id=coeffnat.2h5v.s7.0bd994c92317 from=translated src=- shape=b2644ff9 vocab=3a15521b
+-/
 theorem coeffNatDegreeLE_mul
     {D E : ℕ} {P Q : Polynomial (Polynomial F)}
     (hP : CoeffNatDegreeLE D P)
@@ -45,6 +48,9 @@ theorem coeffNatDegreeLE_mul
   exact le_trans Polynomial.natDegree_mul_le
     (Nat.add_le_add (hP ij.1) (hQ ij.2))
 
+/--
+@isnad1 id=coeffnat.1h5v.s7.001251da3acb from=translated src=- shape=37b268e9 vocab=a1418bfc
+-/
 theorem coeffNatDegreeLE_finset_prod
     {ι : Type*} (s : Finset ι)
     (P : ι → Polynomial (Polynomial F)) {D : ℕ}
@@ -72,6 +78,9 @@ theorem coeffNatDegreeLE_finset_prod
       rw [Finset.prod_insert hi]
       simpa [Finset.card_insert_of_notMem hi, Nat.succ_mul, Nat.add_comm] using hmul
 
+/--
+@isnad1 id=coeffnat.1h4v.s5.1347c2ffd394 from=translated src=- shape=1cbcb18b vocab=3681b80e
+-/
 theorem firstBlockPolynomial_coeffNatDegreeLE
     {m D : ℕ} (a : Fin m → Polynomial F)
     (ha : ∀ i, (a i).natDegree ≤ D) :
@@ -86,6 +95,9 @@ theorem firstBlockPolynomial_coeffNatDegreeLE
   · simpa using ha i
   · simp
 
+/--
+@isnad1 id=coeffnat.1h6v.s7.1c79b98f28c8 from=translated src=- shape=b164047f vocab=abff373a
+-/
 theorem firstBlockOrbitFactor_coeffNatDegreeLE
     {m D : ℕ} (zeta : F) (a : Fin m → Polynomial F)
     (ha : ∀ i, (a i).natDegree ≤ D) (j : ℕ) :
@@ -109,7 +121,9 @@ theorem firstBlockOrbitFactor_coeffNatDegreeLE
 
 /-- Coefficientwise form of the degree assertion implicit in LN97 (6.19):
 every `X`-polynomial coefficient of the full orbit product has degree at most
-`m * D`.-/
+`m * D`.
+@isnad1 id=coeffnat.1h5v.s5.69d6ec0aa067 from=translated src=- shape=a0198f3f vocab=53226873
+-/
 theorem firstBlockOrbitProduct_coeffNatDegreeLE
     {m D : ℕ} (zeta : F) (a : Fin m → Polynomial F)
     (ha : ∀ i, (a i).natDegree ≤ D) :
@@ -126,7 +140,9 @@ theorem firstBlockOrbitProduct_coeffNatDegreeLE
 /-- The coefficientwise `X`-degree bound for the contracted polynomial
 `G` in (6.19).  This is the estimate needed in
 
-`m (q / m - k) + (m - 1) k < q`.-/
+`m (q / m - k) + (m - 1) k < q`.
+@isnad1 id=le.2h6v.s6.8c823d49ecaf from=translated src=- shape=c2110612 vocab=bce6dea3
+-/
 theorem firstBlockSymmetric_coeff_natDegree_le
     {m D : ℕ} (hm : 0 < m) (zeta : F)
     (a : Fin m → Polynomial F)

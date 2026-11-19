@@ -56,21 +56,36 @@ noncomputable def monicOfCoeffsEquiv (n : ℕ) :
     (Fin n → F) ≃ {p : Polynomial F // p.Monic ∧ p.natDegree = n} :=
   (degreeLTEquiv F n).symm.toEquiv.trans (monicEquivDegreeLT n).symm
 
+/--
+@isnad1 id=eq.0h3v.s8.20249a8c3c74 from=translated src=- shape=d538acc3 vocab=f6728bd5
+-/
 @[simp]
 theorem monicOfCoeffsEquiv_val (n : ℕ) (v : Fin n → F) :
     (monicOfCoeffsEquiv n v).1 = monicOfCoeffs n v := rfl
 
+/--
+@isnad1 id=monic.0h3v.s4.cfe108891222 from=translated src=- shape=d798f006 vocab=4da80157
+-/
 theorem monicOfCoeffs_monic (n : ℕ) (v : Fin n → F) : (monicOfCoeffs n v).Monic :=
   (monicOfCoeffsEquiv n v).2.1
 
+/--
+@isnad1 id=eq.0h3v.s4.8c65ce12de83 from=translated src=- shape=833ca3e9 vocab=dc05dc7a
+-/
 @[simp]
 theorem monicOfCoeffs_natDegree (n : ℕ) (v : Fin n → F) :
     (monicOfCoeffs n v).natDegree = n := (monicOfCoeffsEquiv n v).2.2
 
+/--
+@isnad1 id=eq.0h2v.s5.d2ed108f61ab from=translated src=- shape=6a8a44be vocab=67d7a1c5
+-/
 @[simp]
 theorem monicOfCoeffs_zero (v : Fin 0 → F) : monicOfCoeffs 0 v = 1 := by
   simp [monicOfCoeffs, degreeLTEquiv]
 
+/--
+@isnad1 id=eq.0h2v.s7.4e052905e247 from=translated src=- shape=58d807f7 vocab=8e081a9c
+-/
 @[simp]
 theorem monicOfCoeffs_one (v : Fin 1 → F) : monicOfCoeffs 1 v = X + C (v 0) := by
   simp [monicOfCoeffs, degreeLTEquiv]
@@ -89,11 +104,17 @@ noncomputable def splitEvaluationWeight {r : ℕ} (roots : Fin r → F)
     (chars : Fin r → MulChar F ℂ) (g : Polynomial F) : ℂ :=
   ∏ i, chars i (g.eval (roots i))
 
+/--
+@isnad1 id=eq.0h4v.s6.816131b0e485 from=translated src=- shape=234c5168 vocab=e774c117
+-/
 @[simp]
 theorem splitEvaluationWeight_one {r : ℕ} (roots : Fin r → F)
     (chars : Fin r → MulChar F ℂ) : splitEvaluationWeight roots chars 1 = 1 := by
   simp [splitEvaluationWeight]
 
+/--
+@isnad1 id=eq.0h6v.s7.ce10f0011e40 from=translated src=- shape=6d5e505a vocab=44cf169f
+-/
 theorem splitEvaluationWeight_mul {r : ℕ} (roots : Fin r → F)
     (chars : Fin r → MulChar F ℂ) (g h : Polynomial F) :
     splitEvaluationWeight roots chars (g * h) =
@@ -101,7 +122,9 @@ theorem splitEvaluationWeight_mul {r : ℕ} (roots : Fin r → F)
   simp [splitEvaluationWeight, Finset.prod_mul_distrib]
 
 /-- For `n ≥ r`, rescale exactly one of the root evaluations while
-permuting the set of all monic degree-`n` polynomials.-/
+permuting the set of all monic degree-`n` polynomials.
+@isnad1 id=ex.2h6v.s7.f1c6e1a41f38 from=translated src=- shape=75617bdb vocab=d0e63dec
+-/
 theorem exists_monic_rescale {r n : ℕ} (roots : Fin r → F)
     (hinj : Function.Injective roots) (hn : r ≤ n) (j : Fin r) (u : Fˣ) :
     ∃ e : (Fin n → F) ≃ (Fin n → F), ∀ v i,
@@ -147,7 +170,9 @@ variable [Fintype F]
 
 /-- Cancellation of the sum of evaluation weights in every degree at least
 the number of distinct roots, provided one root character is nontrivial.
-This is the split case of the cancellation step (5.22) in LN97 5.39.-/
+This is the split case of the cancellation step (5.22) in LN97 5.39.
+@isnad1 id=eq.3h5v.s7.0ea121331de1 from=translated src=- shape=542eb8f3 vocab=62bda428
+-/
 theorem sum_splitEvaluationWeight_monic_eq_zero {r n : ℕ}
     (roots : Fin r → F) (hinj : Function.Injective roots)
     (chars : Fin r → MulChar F ℂ) (hn : r ≤ n)

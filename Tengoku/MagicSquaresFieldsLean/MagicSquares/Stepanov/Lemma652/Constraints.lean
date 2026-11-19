@@ -59,6 +59,9 @@ noncomputable def polynomialFamilyCoeffConstraints
     funext idx
     simp
 
+/--
+@isnad1 id=eq.0h10v.s10.84529c61e5f2 from=translated src=- shape=1d5e49f0 vocab=dd7a4deb
+-/
 @[simp]
 theorem polynomialFamilyCoeffConstraints_apply
     {r M N : ℕ}
@@ -70,7 +73,9 @@ theorem polynomialFamilyCoeffConstraints_apply
   rfl
 
 /-- A polynomial of degree at most `N` is zero if its first `N+1`
-coefficients are all zero.-/
+coefficients are all zero.
+@isnad1 id=eq.2h3v.s7.71654bf2a2e8 from=translated src=- shape=caa489ee vocab=7a228405
+-/
 theorem polynomial_eq_zero_of_coeff_window_eq_zero
     (P : Polynomial F) (N : ℕ)
     (hdeg : P.natDegree ≤ N)
@@ -86,7 +91,9 @@ theorem polynomial_eq_zero_of_coeff_window_eq_zero
         j (Nat.lt_of_not_ge hj)
 
 /-- Therefore vanishing of the scalar constraint vector forces all
-`s_{t,n}` to vanish, provided their degree bound is known.-/
+`s_{t,n}` to vanish, provided their degree bound is known.
+@isnad1 id=eq.2h9v.s10.94d6b593bc15 from=translated src=- shape=96ad2266 vocab=35015a2c
+-/
 theorem polynomialFamily_eq_zero_of_constraints_eq_zero
     {r M N : ℕ}
     (S : V →ₗ[F] (Fin r → Fin M → Polynomial F))
@@ -103,7 +110,9 @@ theorem polynomialFamily_eq_zero_of_constraints_eq_zero
   simpa using h
 
 /-- The exact number of scalar coefficient constraints is
-`r M (N+1)`.-/
+`r M (N+1)`.
+@isnad1 id=eq.0h4v.s6.6ce41265a53e from=translated src=- shape=49c4cfcc vocab=cd8284fc
+-/
 theorem stepanovConstraintSpace_finrank
     (F : Type*) [Field F]
     (r M N : ℕ) :
@@ -120,7 +129,9 @@ theorem stepanovConstraintSpace_finrank
 of Lemma 6.52.
 
 The left side is the number of coefficient equations; the right side is
-the number of scalar unknowns `e_{ij,l}`.-/
+the number of scalar unknowns `e_{ij,l}`.
+@isnad1 id=ex.1h8v.s9.51227fe6b0b9 from=translated src=- shape=c0b13883 vocab=080728ca
+-/
 theorem exists_nonzero_stepanovUnknown_in_kernel
     {m u D r M N : ℕ}
     (T :

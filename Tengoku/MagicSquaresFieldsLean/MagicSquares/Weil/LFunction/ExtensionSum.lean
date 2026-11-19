@@ -13,7 +13,9 @@ open Polynomial IntermediateField
 variable {F E : Type*} [Field F] [Field E] [Algebra F E] [FiniteDimensional F E]
 
 /-- The norm of an algebraic element, expressed through its minimal
-polynomial and the relative degree of its generated subfield.-/
+polynomial and the relative degree of its generated subfield.
+@isnad1 id=eq.0h3v.s8.1f49ffbe13b0 from=translated src=- shape=193707d0 vocab=e7834cdd
+-/
 theorem norm_eq_minpoly_constant (x : E) :
     Algebra.norm F x =
       ((-1 : F) ^ (minpoly F x).natDegree * (minpoly F x).coeff 0) ^
@@ -29,7 +31,9 @@ theorem norm_eq_minpoly_constant (x : E) :
     adjoin.powerBasis_gen, IntermediateField.minpoly_gen]
 
 /-- The norm of `x-a` is the signed evaluation of the minimal polynomial
-of `x`, raised to the number of repetitions of its conjugates in `E`.-/
+of `x`, raised to the number of repetitions of its conjugates in `E`.
+@isnad1 id=eq.0h4v.s8.ec649d5aff39 from=translated src=- shape=1206aa53 vocab=f6095a1a
+-/
 theorem norm_sub_algebraMap_eq_minpoly_eval (x : E) (a : F) :
     Algebra.norm F (x - algebraMap F E a) =
       ((-1 : F) ^ (minpoly F x).natDegree * (minpoly F x).eval a) ^
@@ -48,7 +52,9 @@ noncomputable def splitExtensionSum {r : ℕ} (roots : Fin r → F)
 
 omit [Fintype F] in
 /-- The summand is the weight of the minimal polynomial raised to the
-relative extension degree. This includes points where a character vanishes.-/
+relative extension degree. This includes points where a character vanishes.
+@isnad1 id=eq.0h6v.s8.5e398ba98a0e from=translated src=- shape=9c721cd5 vocab=a83474fa
+-/
 theorem splitExtensionSummand_eq_minpoly_weight {r : ℕ} (roots : Fin r → F)
     (chars : Fin r → MulChar F ℂ) (x : E) :
     (∏ i, normLift (E := E) (chars i) (x - algebraMap F E (roots i))) =
@@ -65,7 +71,9 @@ noncomputable def extensionMinimalPolynomials : Finset (Polynomial F) := by
 
 omit [Fintype F] in
 /-- A polynomial occurs as a minimal polynomial in `E` exactly when it is
-monic irreducible and its degree divides the extension degree.-/
+monic irreducible and its degree divides the extension degree.
+@isnad1 id=iff.0h3v.s7.94d4cd672126 from=translated src=- shape=a1104a4d vocab=e288b928
+-/
 theorem mem_extensionMinimalPolynomials_iff (p : Polynomial F) :
     p ∈ extensionMinimalPolynomials (F := F) (E := E) ↔
       p.Monic ∧ Irreducible p ∧ p.natDegree ∣ Module.finrank F E := by
@@ -87,7 +95,9 @@ theorem mem_extensionMinimalPolynomials_iff (p : Polynomial F) :
     simpa only [hmon.leadingCoeff, inv_one, C_1, mul_one] using he.symm
 
 /-- In a finite field extension, every represented minimal polynomial has
-exactly its degree many roots.-/
+exactly its degree many roots.
+@isnad1 id=eq.1h3v.s7.6a9ffcb6db5b from=translated src=- shape=f192df5b vocab=7e23c094
+-/
 theorem card_minpoly_fiber (p : Polynomial F)
     (hp : p ∈ extensionMinimalPolynomials (F := F) (E := E)) :
     (Finset.univ.filter (fun x : E => minpoly F x = p)).card = p.natDegree := by
@@ -117,7 +127,9 @@ theorem card_minpoly_fiber (p : Polynomial F)
     natDegree_map]
 
 /-- Group the actual extension-field sum by minimal polynomials. Each
-irreducible contributes its degree times its weight to the relative power.-/
+irreducible contributes its degree times its weight to the relative power.
+@isnad1 id=eq.0h5v.s7.6d65ca2d8928 from=translated src=- shape=e14bc6e1 vocab=87dbdea8
+-/
 theorem splitExtensionSum_eq_sum_minpoly_weights {r : ℕ} (roots : Fin r → F)
     (chars : Fin r → MulChar F ℂ) :
     splitExtensionSum (E := E) roots chars =

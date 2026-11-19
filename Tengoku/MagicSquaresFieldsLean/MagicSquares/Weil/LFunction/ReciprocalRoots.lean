@@ -11,7 +11,9 @@ open scoped BigOperators
 
 /-- A complex polynomial with constant coefficient one factors into
 `1 - alpha*T`, with exactly its degree many factors. The `alpha` values
-are the reciprocals of its roots.-/
+are the reciprocals of its roots.
+@isnad1 id=ex.1h1v.s7.4d1c0f5abc14 from=translated src=- shape=1a919fd9 vocab=4a4abd7d
+-/
 theorem exists_reciprocal_roots (P : Polynomial ℂ) (hP : P.coeff 0 = 1) :
     ∃ (d : ℕ) (alpha : Fin d → ℂ), d = P.natDegree ∧
       P = ∏ i, (1 - C (alpha i) * X) := by
@@ -58,7 +60,9 @@ theorem exists_reciprocal_roots (P : Polynomial ℂ) (hP : P.coeff 0 = 1) :
 variable {F : Type*} [Field F] [Fintype F]
 
 /-- The finite L-polynomial constructed from the actual monic character
-sums has at most `r-1` reciprocal roots. No character-sum estimate is assumed.-/
+sums has at most `r-1` reciprocal roots. No character-sum estimate is assumed.
+@isnad1 id=ex.2h4v.s8.ca2e3ebab958 from=translated src=- shape=61788871 vocab=92863dbb
+-/
 theorem splitLPolynomial_exists_reciprocal_roots {r : ℕ} (roots : Fin r → F)
     (hinj : Function.Injective roots) (chars : Fin r → MulChar F ℂ)
     (hchars : ∃ j, chars j ≠ 1) :

@@ -13,6 +13,9 @@ irreducible with character weight `a`.-/
 noncomputable def eulerFactor (d : ℕ) (a : ℂ) : PowerSeries ℂ :=
   1 - PowerSeries.C a * PowerSeries.X ^ d
 
+/--
+@isnad1 id=eq.1h2v.s5.4a826000647a from=translated src=- shape=65ff9a34 vocab=d614c5c9
+-/
 theorem eulerFactor_constantCoeff {d : ℕ} (hd : 0 < d) (a : ℂ) :
     PowerSeries.constantCoeff (eulerFactor d a) = 1 := by
   simp [eulerFactor, Nat.ne_of_gt hd]

@@ -15,7 +15,9 @@ def centerOneC1 (d : ℕ) : ℝ :=
   (d : ℝ) ^ 7 * (7 * (d : ℝ) - 8) + 1
 
 /-- Expanded form of `C₁`, matching the contribution grouped by support size
-`r = 2,...,8`.-/
+`r = 2,...,8`.
+@isnad1 id=eq.0h1v.s8.cdacee3d3eeb from=translated src=- shape=2a28a2e9 vocab=73e453c2
+-/
 theorem centerOneC1_expanded (d : ℕ) :
     centerOneC1 d =
       28 * ((d : ℝ) - 1) ^ 2 +
@@ -28,10 +30,16 @@ theorem centerOneC1_expanded (d : ℕ) :
   unfold centerOneC1
   ring
 
+/--
+@isnad1 id=eq.0h0v.s3.6cf8779b8647 from=translated src=- shape=1ac31801 vocab=7c609b11
+-/
 @[simp]
 theorem centerOneC1_one : centerOneC1 1 = 0 := by
   norm_num [centerOneC1]
 
+/--
+@isnad1 id=eq.0h0v.s4.7da0c097afb8 from=translated src=- shape=1ac31801 vocab=7c609b11
+-/
 @[simp]
 theorem centerOneC1_two : centerOneC1 2 = 769 := by
   norm_num [centerOneC1]

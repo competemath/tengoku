@@ -10,6 +10,9 @@ set_option maxHeartbeats 0
 
 namespace MagicSquares.Certificates
 
+/--
+@isnad1 id=ismagico.0h0v.s6.d2c18c132eec from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_11 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 11)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -17,6 +20,9 @@ theorem cube_witness_11 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 11)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.a0f353009bb3 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_17 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 17)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -24,6 +30,9 @@ theorem cube_witness_17 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 17)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.0838bad290e8 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_23 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 23)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -31,6 +40,9 @@ theorem cube_witness_23 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 23)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.4bd90f378c6c from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_29 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 29)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -38,6 +50,9 @@ theorem cube_witness_29 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 29)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.31a43a339558 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_41 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 41)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -45,6 +60,9 @@ theorem cube_witness_41 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 41)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.38193f303a8f from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_47 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 47)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -52,6 +70,9 @@ theorem cube_witness_47 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 47)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.7c60f925ee28 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_53 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 53)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -59,6 +80,9 @@ theorem cube_witness_53 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 53)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.fc709f31cd97 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_59 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 59)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -66,6 +90,9 @@ theorem cube_witness_59 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 59)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.de5c6fb6bda4 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_71 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 71)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -73,6 +100,9 @@ theorem cube_witness_71 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 71)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.bb9e48bcf336 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_73 :
     IsMagicOfPowers 3 (Square3.centerZero (8 : ZMod 73)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -80,6 +110,9 @@ theorem cube_witness_73 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (8 : ZMod 73)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.2fd9a9a2211f from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_83 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 83)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -87,6 +120,9 @@ theorem cube_witness_83 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 83)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.676957db674e from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_89 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 89)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -94,6 +130,9 @@ theorem cube_witness_89 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 89)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.7949304fb3b6 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_97 :
     IsMagicOfPowers 3 (Square3.centerZero (19 : ZMod 97)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -101,6 +140,9 @@ theorem cube_witness_97 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (19 : ZMod 97)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.c9c4d1e9ebe4 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_101 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 101)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -108,6 +150,9 @@ theorem cube_witness_101 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 101)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.54939326954e from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_103 :
     IsMagicOfPowers 3 (Square3.centerZero (9 : ZMod 103)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -115,6 +160,9 @@ theorem cube_witness_103 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (9 : ZMod 103)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.c2ba82e26c1f from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_107 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 107)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -122,6 +170,9 @@ theorem cube_witness_107 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 107)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.672f84fc864a from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_109 :
     IsMagicOfPowers 3 (Square3.centerZero (33 : ZMod 109)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -129,6 +180,9 @@ theorem cube_witness_109 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (33 : ZMod 109)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.7f05fe7b9334 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_113 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 113)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -136,6 +190,9 @@ theorem cube_witness_113 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 113)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.0f6a1e94b06c from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_131 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 131)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -143,6 +200,9 @@ theorem cube_witness_131 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 131)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.1347826d6d8e from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_137 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 137)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -150,6 +210,9 @@ theorem cube_witness_137 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 137)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.08047510e368 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_139 :
     IsMagicOfPowers 3 (Square3.centerZero (63 : ZMod 139)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -157,6 +220,9 @@ theorem cube_witness_139 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (63 : ZMod 139)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.f3b411a41528 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_149 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 149)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -164,6 +230,9 @@ theorem cube_witness_149 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 149)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.27b9d68d932f from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_151 :
     IsMagicOfPowers 3 (Square3.centerZero (27 : ZMod 151)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -171,6 +240,9 @@ theorem cube_witness_151 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (27 : ZMod 151)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.1393b64b350b from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_157 :
     IsMagicOfPowers 3 (Square3.centerZero (28 : ZMod 157)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -178,6 +250,9 @@ theorem cube_witness_157 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (28 : ZMod 157)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.0d98163f7088 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_163 :
     IsMagicOfPowers 3 (Square3.centerZero (22 : ZMod 163)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -185,6 +260,9 @@ theorem cube_witness_163 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (22 : ZMod 163)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.80a5b1ec7bd5 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_167 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 167)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -192,6 +270,9 @@ theorem cube_witness_167 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 167)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.a598f5a451a3 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_173 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 173)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -199,6 +280,9 @@ theorem cube_witness_173 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 173)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.1eddf03374b9 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_179 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 179)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -206,6 +290,9 @@ theorem cube_witness_179 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 179)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.069fbc072f70 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_181 :
     IsMagicOfPowers 3 (Square3.centerZero (6 : ZMod 181)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -213,6 +300,9 @@ theorem cube_witness_181 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (6 : ZMod 181)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.c26279920f78 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_191 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 191)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -220,6 +310,9 @@ theorem cube_witness_191 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 191)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.eefa683f81b6 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_193 :
     IsMagicOfPowers 3 (Square3.centerZero (68 : ZMod 193)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -227,6 +320,9 @@ theorem cube_witness_193 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (68 : ZMod 193)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.893e22740e33 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_197 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 197)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -234,6 +330,9 @@ theorem cube_witness_197 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 197)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.aebf612da591 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_199 :
     IsMagicOfPowers 3 (Square3.centerZero (60 : ZMod 199)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -241,6 +340,9 @@ theorem cube_witness_199 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (60 : ZMod 199)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.868e93d88e50 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_211 :
     IsMagicOfPowers 3 (Square3.centerZero (12 : ZMod 211)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -248,6 +350,9 @@ theorem cube_witness_211 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (12 : ZMod 211)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.a77a2b2ecc3c from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_223 :
     IsMagicOfPowers 3 (Square3.centerZero (14 : ZMod 223)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -255,6 +360,9 @@ theorem cube_witness_223 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (14 : ZMod 223)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.939ded82193e from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_227 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 227)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -262,6 +370,9 @@ theorem cube_witness_227 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 227)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.3aa0a8c698ed from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_229 :
     IsMagicOfPowers 3 (Square3.centerZero (16 : ZMod 229)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -269,6 +380,9 @@ theorem cube_witness_229 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (16 : ZMod 229)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.1183df928fad from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_233 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 233)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -276,6 +390,9 @@ theorem cube_witness_233 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 233)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.b4ae0fd49640 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_239 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 239)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -283,6 +400,9 @@ theorem cube_witness_239 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 239)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.8ba7da9e6c19 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_241 :
     IsMagicOfPowers 3 (Square3.centerZero (26 : ZMod 241)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -290,6 +410,9 @@ theorem cube_witness_241 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (26 : ZMod 241)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.baadaf9e2a10 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_251 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 251)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -297,6 +420,9 @@ theorem cube_witness_251 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 251)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.d76b114d1a9e from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_257 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 257)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -304,6 +430,9 @@ theorem cube_witness_257 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 257)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.9779a5cc611d from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_263 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 263)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -311,6 +440,9 @@ theorem cube_witness_263 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 263)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.fe282ee53cf0 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_269 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 269)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -318,6 +450,9 @@ theorem cube_witness_269 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 269)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.40310ddc0b4f from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_271 :
     IsMagicOfPowers 3 (Square3.centerZero (9 : ZMod 271)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -325,6 +460,9 @@ theorem cube_witness_271 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (9 : ZMod 271)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.485045c7e8f3 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_277 :
     IsMagicOfPowers 3 (Square3.centerZero (60 : ZMod 277)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -332,6 +470,9 @@ theorem cube_witness_277 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (60 : ZMod 277)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.b2b016b93475 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_281 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 281)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -339,6 +480,9 @@ theorem cube_witness_281 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 281)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s7.343e0c7554e8 from=translated src=- shape=65aead1a vocab=d2101c32
+-/
 theorem cube_witness_283 :
     IsMagicOfPowers 3 (Square3.centerOne (28 : ZMod 283) 31) := by
   refine ⟨Square3.centerOne_isMagic _ _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -346,6 +490,9 @@ theorem cube_witness_283 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerOne (28 : ZMod 283) 31).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.5d67f735a456 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_293 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 293)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -353,6 +500,9 @@ theorem cube_witness_293 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 293)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.63e19cda4ed4 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_307 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 307)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -360,6 +510,9 @@ theorem cube_witness_307 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 307)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.c94078b5ebec from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_311 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 311)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -367,6 +520,9 @@ theorem cube_witness_311 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 311)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.d75d761c91ae from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_313 :
     IsMagicOfPowers 3 (Square3.centerZero (6 : ZMod 313)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -374,6 +530,9 @@ theorem cube_witness_313 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (6 : ZMod 313)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.90773a189666 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_317 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 317)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -381,6 +540,9 @@ theorem cube_witness_317 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 317)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.4ccc7e526ea5 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_331 :
     IsMagicOfPowers 3 (Square3.centerZero (116 : ZMod 331)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -388,6 +550,9 @@ theorem cube_witness_331 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (116 : ZMod 331)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.ee7a02d1447b from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_337 :
     IsMagicOfPowers 3 (Square3.centerZero (6 : ZMod 337)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -395,6 +560,9 @@ theorem cube_witness_337 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (6 : ZMod 337)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.dac1da11736c from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_347 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 347)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -402,6 +570,9 @@ theorem cube_witness_347 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 347)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.a205d84f558f from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_349 :
     IsMagicOfPowers 3 (Square3.centerZero (36 : ZMod 349)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -409,6 +580,9 @@ theorem cube_witness_349 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (36 : ZMod 349)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.b0427bca4de0 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_353 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 353)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -416,6 +590,9 @@ theorem cube_witness_353 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 353)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.c8a5317fc3e3 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_359 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 359)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -423,6 +600,9 @@ theorem cube_witness_359 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 359)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.2b7a704f2030 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_367 :
     IsMagicOfPowers 3 (Square3.centerZero (8 : ZMod 367)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -430,6 +610,9 @@ theorem cube_witness_367 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (8 : ZMod 367)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.dc7e0d8c3773 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_373 :
     IsMagicOfPowers 3 (Square3.centerZero (18 : ZMod 373)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -437,6 +620,9 @@ theorem cube_witness_373 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (18 : ZMod 373)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.44bf06ce5f07 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_379 :
     IsMagicOfPowers 3 (Square3.centerZero (40 : ZMod 379)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -444,6 +630,9 @@ theorem cube_witness_379 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (40 : ZMod 379)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.d4046de18acb from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_383 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 383)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -451,6 +640,9 @@ theorem cube_witness_383 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 383)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.d2c697f45fcf from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_389 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 389)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -458,6 +650,9 @@ theorem cube_witness_389 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 389)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.2e1827ba20ab from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_397 :
     IsMagicOfPowers 3 (Square3.centerZero (16 : ZMod 397)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -465,6 +660,9 @@ theorem cube_witness_397 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (16 : ZMod 397)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.1864e083d53c from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_401 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 401)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -472,6 +670,9 @@ theorem cube_witness_401 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 401)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.9bf00aceaa8f from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_409 :
     IsMagicOfPowers 3 (Square3.centerZero (64 : ZMod 409)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -479,6 +680,9 @@ theorem cube_witness_409 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (64 : ZMod 409)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.31e995f48e80 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_419 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 419)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -486,6 +690,9 @@ theorem cube_witness_419 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 419)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.9e5c5c6ddd1c from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_421 :
     IsMagicOfPowers 3 (Square3.centerZero (7 : ZMod 421)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -493,6 +700,9 @@ theorem cube_witness_421 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (7 : ZMod 421)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.e46f75050fd8 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_431 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 431)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -500,6 +710,9 @@ theorem cube_witness_431 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 431)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.28e99c208094 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_433 :
     IsMagicOfPowers 3 (Square3.centerZero (74 : ZMod 433)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -507,6 +720,9 @@ theorem cube_witness_433 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (74 : ZMod 433)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.175d22802180 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_439 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 439)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -514,6 +730,9 @@ theorem cube_witness_439 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 439)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.e8ccbb36ab80 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_443 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 443)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -521,6 +740,9 @@ theorem cube_witness_443 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 443)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.e189c052ed56 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_449 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 449)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -528,6 +750,9 @@ theorem cube_witness_449 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 449)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.664b0adb7a32 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_457 :
     IsMagicOfPowers 3 (Square3.centerZero (21 : ZMod 457)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -535,6 +760,9 @@ theorem cube_witness_457 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (21 : ZMod 457)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.85f33057b7dc from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_461 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 461)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -542,6 +770,9 @@ theorem cube_witness_461 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 461)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.bb31d193941f from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_463 :
     IsMagicOfPowers 3 (Square3.centerZero (56 : ZMod 463)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -549,6 +780,9 @@ theorem cube_witness_463 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (56 : ZMod 463)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.9dcd5cbc1f8d from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_467 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 467)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -556,6 +790,9 @@ theorem cube_witness_467 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 467)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.a10315d57270 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_479 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 479)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -563,6 +800,9 @@ theorem cube_witness_479 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 479)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.de37cac9d3ed from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_487 :
     IsMagicOfPowers 3 (Square3.centerZero (26 : ZMod 487)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -570,6 +810,9 @@ theorem cube_witness_487 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (26 : ZMod 487)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.763fd4b9b2ea from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_491 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 491)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -577,6 +820,9 @@ theorem cube_witness_491 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 491)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.2095263937c9 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_499 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 499)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -584,6 +830,9 @@ theorem cube_witness_499 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 499)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.82b0892ad8a4 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_503 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 503)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -591,6 +840,9 @@ theorem cube_witness_503 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 503)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.80cea654ee90 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_509 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 509)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -598,6 +850,9 @@ theorem cube_witness_509 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 509)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.436723c88d7f from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_521 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 521)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -605,6 +860,9 @@ theorem cube_witness_521 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 521)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.4b76405c0db6 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_523 :
     IsMagicOfPowers 3 (Square3.centerZero (42 : ZMod 523)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -612,6 +870,9 @@ theorem cube_witness_523 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (42 : ZMod 523)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.2219659b37c2 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_541 :
     IsMagicOfPowers 3 (Square3.centerZero (7 : ZMod 541)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -619,6 +880,9 @@ theorem cube_witness_541 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (7 : ZMod 541)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.5eac6d52554b from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_547 :
     IsMagicOfPowers 3 (Square3.centerZero (9 : ZMod 547)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -626,6 +890,9 @@ theorem cube_witness_547 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (9 : ZMod 547)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.288e30a9b190 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_557 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 557)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -633,6 +900,9 @@ theorem cube_witness_557 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 557)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.40f686e047f8 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_563 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 563)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -640,6 +910,9 @@ theorem cube_witness_563 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 563)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.a7d697ee8168 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_569 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 569)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -647,6 +920,9 @@ theorem cube_witness_569 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 569)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.776039ea7486 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_571 :
     IsMagicOfPowers 3 (Square3.centerZero (7 : ZMod 571)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -654,6 +930,9 @@ theorem cube_witness_571 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (7 : ZMod 571)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.f795eae450ff from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_577 :
     IsMagicOfPowers 3 (Square3.centerZero (87 : ZMod 577)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -661,6 +940,9 @@ theorem cube_witness_577 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (87 : ZMod 577)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.90962905bb8e from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_587 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 587)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -668,6 +950,9 @@ theorem cube_witness_587 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 587)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.6f9151766231 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_593 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 593)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -675,6 +960,9 @@ theorem cube_witness_593 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 593)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.670a3881e44e from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_599 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 599)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -682,6 +970,9 @@ theorem cube_witness_599 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 599)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.7e4ea4fbe766 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_601 :
     IsMagicOfPowers 3 (Square3.centerZero (63 : ZMod 601)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -689,6 +980,9 @@ theorem cube_witness_601 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (63 : ZMod 601)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.4124f329ca42 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_607 :
     IsMagicOfPowers 3 (Square3.centerZero (7 : ZMod 607)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -696,6 +990,9 @@ theorem cube_witness_607 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (7 : ZMod 607)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.17fd4382ef7d from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_613 :
     IsMagicOfPowers 3 (Square3.centerZero (9 : ZMod 613)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -703,6 +1000,9 @@ theorem cube_witness_613 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (9 : ZMod 613)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.d6736435bf84 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_617 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 617)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -710,6 +1010,9 @@ theorem cube_witness_617 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 617)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.30a9e5ab87ba from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_619 :
     IsMagicOfPowers 3 (Square3.centerZero (43 : ZMod 619)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -717,6 +1020,9 @@ theorem cube_witness_619 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (43 : ZMod 619)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.ab82cfbc7e54 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_631 :
     IsMagicOfPowers 3 (Square3.centerZero (39 : ZMod 631)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -724,6 +1030,9 @@ theorem cube_witness_631 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (39 : ZMod 631)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.adbd79bd69e6 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_641 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 641)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -731,6 +1040,9 @@ theorem cube_witness_641 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 641)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.c188388dd031 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_643 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 643)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -738,6 +1050,9 @@ theorem cube_witness_643 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 643)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.0f977bcaf4b1 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_647 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 647)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -745,6 +1060,9 @@ theorem cube_witness_647 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 647)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.c94fd7ec229d from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_653 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 653)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -752,6 +1070,9 @@ theorem cube_witness_653 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 653)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.d2b02a2a4eb1 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_659 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 659)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -759,6 +1080,9 @@ theorem cube_witness_659 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 659)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.e0117cf109a7 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_661 :
     IsMagicOfPowers 3 (Square3.centerZero (8 : ZMod 661)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -766,6 +1090,9 @@ theorem cube_witness_661 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (8 : ZMod 661)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.57733a38da2f from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_673 :
     IsMagicOfPowers 3 (Square3.centerZero (79 : ZMod 673)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -773,6 +1100,9 @@ theorem cube_witness_673 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (79 : ZMod 673)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.b3067dc3953e from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_677 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 677)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -780,6 +1110,9 @@ theorem cube_witness_677 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 677)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.ae31584a55b5 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_683 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 683)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -787,6 +1120,9 @@ theorem cube_witness_683 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 683)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.09ddffc763da from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_691 :
     IsMagicOfPowers 3 (Square3.centerZero (20 : ZMod 691)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -794,6 +1130,9 @@ theorem cube_witness_691 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (20 : ZMod 691)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.3e6311d426eb from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_701 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 701)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -801,6 +1140,9 @@ theorem cube_witness_701 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 701)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.edc41d0622e3 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_709 :
     IsMagicOfPowers 3 (Square3.centerZero (124 : ZMod 709)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -808,6 +1150,9 @@ theorem cube_witness_709 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (124 : ZMod 709)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.036f256d6eb7 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_719 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 719)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -815,6 +1160,9 @@ theorem cube_witness_719 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 719)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.4502287687a8 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_727 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 727)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -822,6 +1170,9 @@ theorem cube_witness_727 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 727)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.2195493b2eab from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_733 :
     IsMagicOfPowers 3 (Square3.centerZero (39 : ZMod 733)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -829,6 +1180,9 @@ theorem cube_witness_733 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (39 : ZMod 733)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.9d3e7a4fd6f2 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_739 :
     IsMagicOfPowers 3 (Square3.centerZero (26 : ZMod 739)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -836,6 +1190,9 @@ theorem cube_witness_739 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (26 : ZMod 739)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.839d2f8ab275 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_743 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 743)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -843,6 +1200,9 @@ theorem cube_witness_743 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 743)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.7adf1f71d88f from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_751 :
     IsMagicOfPowers 3 (Square3.centerZero (7 : ZMod 751)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -850,6 +1210,9 @@ theorem cube_witness_751 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (7 : ZMod 751)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.4cff268987e3 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_757 :
     IsMagicOfPowers 3 (Square3.centerZero (27 : ZMod 757)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -857,6 +1220,9 @@ theorem cube_witness_757 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (27 : ZMod 757)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.361256e74e43 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_761 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 761)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -864,6 +1230,9 @@ theorem cube_witness_761 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 761)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.bcb30828db12 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_769 :
     IsMagicOfPowers 3 (Square3.centerZero (26 : ZMod 769)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -871,6 +1240,9 @@ theorem cube_witness_769 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (26 : ZMod 769)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.7a60ef67729f from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_773 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 773)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -878,6 +1250,9 @@ theorem cube_witness_773 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 773)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.5c96d4c80f60 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_787 :
     IsMagicOfPowers 3 (Square3.centerZero (71 : ZMod 787)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -885,6 +1260,9 @@ theorem cube_witness_787 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (71 : ZMod 787)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.19870017655b from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_797 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 797)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -892,6 +1270,9 @@ theorem cube_witness_797 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 797)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.4c0965129533 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_809 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 809)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -899,6 +1280,9 @@ theorem cube_witness_809 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 809)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.e83d40a89927 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_811 :
     IsMagicOfPowers 3 (Square3.centerZero (15 : ZMod 811)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -906,6 +1290,9 @@ theorem cube_witness_811 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (15 : ZMod 811)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.aaccaf20d840 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_821 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 821)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -913,6 +1300,9 @@ theorem cube_witness_821 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 821)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.0fc1cb2eebd2 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_823 :
     IsMagicOfPowers 3 (Square3.centerZero (26 : ZMod 823)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -920,6 +1310,9 @@ theorem cube_witness_823 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (26 : ZMod 823)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.ad3a478968e4 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_827 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 827)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -927,6 +1320,9 @@ theorem cube_witness_827 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 827)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.6bb489f5b5b5 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_829 :
     IsMagicOfPowers 3 (Square3.centerZero (11 : ZMod 829)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -934,6 +1330,9 @@ theorem cube_witness_829 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (11 : ZMod 829)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.87d0385adb87 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_839 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 839)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -941,6 +1340,9 @@ theorem cube_witness_839 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 839)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.935882f56350 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_853 :
     IsMagicOfPowers 3 (Square3.centerZero (8 : ZMod 853)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -948,6 +1350,9 @@ theorem cube_witness_853 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (8 : ZMod 853)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.377bdc56a40d from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_857 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 857)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -955,6 +1360,9 @@ theorem cube_witness_857 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 857)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.d380d74e1e5d from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_859 :
     IsMagicOfPowers 3 (Square3.centerZero (35 : ZMod 859)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -962,6 +1370,9 @@ theorem cube_witness_859 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (35 : ZMod 859)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.057c391407c3 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_863 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 863)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -969,6 +1380,9 @@ theorem cube_witness_863 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 863)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.8d61d0ec2d38 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_877 :
     IsMagicOfPowers 3 (Square3.centerZero (27 : ZMod 877)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -976,6 +1390,9 @@ theorem cube_witness_877 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (27 : ZMod 877)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.9b1070454d0c from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_881 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 881)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -983,6 +1400,9 @@ theorem cube_witness_881 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 881)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.e0c31ec1cc63 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_883 :
     IsMagicOfPowers 3 (Square3.centerZero (46 : ZMod 883)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -990,6 +1410,9 @@ theorem cube_witness_883 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (46 : ZMod 883)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.b7ebcc4093c2 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_887 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 887)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -997,6 +1420,9 @@ theorem cube_witness_887 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 887)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.73c00ce03a07 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_907 :
     IsMagicOfPowers 3 (Square3.centerZero (11 : ZMod 907)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -1004,6 +1430,9 @@ theorem cube_witness_907 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (11 : ZMod 907)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.0eea72ba4b6d from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_911 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 911)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -1011,6 +1440,9 @@ theorem cube_witness_911 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 911)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.89df8e1366e2 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_919 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 919)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -1018,6 +1450,9 @@ theorem cube_witness_919 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 919)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.e3d2223fa59f from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_929 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 929)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -1025,6 +1460,9 @@ theorem cube_witness_929 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 929)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.8d4ac24ae369 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_937 :
     IsMagicOfPowers 3 (Square3.centerZero (64 : ZMod 937)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -1032,6 +1470,9 @@ theorem cube_witness_937 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (64 : ZMod 937)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.8f66d23e70d4 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_941 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 941)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -1039,6 +1480,9 @@ theorem cube_witness_941 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 941)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.d48904c8e549 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_947 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 947)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -1046,6 +1490,9 @@ theorem cube_witness_947 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 947)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.e8471eecdc52 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_953 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 953)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -1053,6 +1500,9 @@ theorem cube_witness_953 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 953)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.1c31e24b6e99 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_967 :
     IsMagicOfPowers 3 (Square3.centerZero (9 : ZMod 967)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -1060,6 +1510,9 @@ theorem cube_witness_967 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (9 : ZMod 967)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.6bdaac0ca962 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_971 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 971)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -1067,6 +1520,9 @@ theorem cube_witness_971 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 971)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.71fa1655b73e from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_977 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 977)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -1074,6 +1530,9 @@ theorem cube_witness_977 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 977)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.fe17f889b070 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_983 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 983)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -1081,6 +1540,9 @@ theorem cube_witness_983 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 983)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.38636cc589f2 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_991 :
     IsMagicOfPowers 3 (Square3.centerZero (78 : ZMod 991)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -1088,6 +1550,9 @@ theorem cube_witness_991 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (78 : ZMod 991)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.629f5ba12df6 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_997 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 997)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -1095,6 +1560,9 @@ theorem cube_witness_997 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 997)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.08b845e06315 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_1009 :
     IsMagicOfPowers 3 (Square3.centerZero (43 : ZMod 1009)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -1102,6 +1570,9 @@ theorem cube_witness_1009 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (43 : ZMod 1009)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.c76147e66dcc from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_1013 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 1013)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -1109,6 +1580,9 @@ theorem cube_witness_1013 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 1013)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.a8f3c30f074e from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_1019 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 1019)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -1116,6 +1590,9 @@ theorem cube_witness_1019 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 1019)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.f9f02895eebc from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_1021 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 1021)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -1123,6 +1600,9 @@ theorem cube_witness_1021 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 1021)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.4503f202a1ea from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_1031 :
     IsMagicOfPowers 3 (Square3.centerZero (3 : ZMod 1031)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -1130,6 +1610,9 @@ theorem cube_witness_1031 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (3 : ZMod 1031)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.74a1da5dfc33 from=translated src=- shape=f237798e vocab=77095a9f
+-/
 theorem cube_witness_1033 :
     IsMagicOfPowers 3 (Square3.centerZero (7 : ZMod 1033)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -1137,36 +1620,54 @@ theorem cube_witness_1033 :
   have hroots : ∀ k, roots k ^ 3 = (Square3.centerZero (7 : ZMod 1033)).entries k := by decide +kernel
   exact fun k => ⟨roots k, hroots k⟩
 
+/--
+@isnad1 id=ismagico.0h0v.s6.66d88fd76670 from=translated src=- shape=f237798e vocab=bff5d2de
+-/
 theorem square_witness_29 : letI : Fact (Nat.Prime 29) := ⟨by decide⟩;
     IsMagicOfPowers 2 (Square3.centerZero (5 : ZMod 29)) := by
   letI : Fact (Nat.Prime 29) := ⟨by decide⟩
   apply (normalizedPowerConditions_iff (by decide : 0 < 2) (Square3.centerZero_isMagic _)).mp
   decide +kernel
 
+/--
+@isnad1 id=ismagico.0h0v.s6.b945e57627bc from=translated src=- shape=f237798e vocab=bff5d2de
+-/
 theorem square_witness_37 : letI : Fact (Nat.Prime 37) := ⟨by decide⟩;
     IsMagicOfPowers 2 (Square3.centerZero (10 : ZMod 37)) := by
   letI : Fact (Nat.Prime 37) := ⟨by decide⟩
   apply (normalizedPowerConditions_iff (by decide : 0 < 2) (Square3.centerZero_isMagic _)).mp
   decide +kernel
 
+/--
+@isnad1 id=ismagico.0h0v.s6.8b92f0cedee2 from=translated src=- shape=f237798e vocab=bff5d2de
+-/
 theorem square_witness_41 : letI : Fact (Nat.Prime 41) := ⟨by decide⟩;
     IsMagicOfPowers 2 (Square3.centerZero (9 : ZMod 41)) := by
   letI : Fact (Nat.Prime 41) := ⟨by decide⟩
   apply (normalizedPowerConditions_iff (by decide : 0 < 2) (Square3.centerZero_isMagic _)).mp
   decide +kernel
 
+/--
+@isnad1 id=ismagico.0h0v.s6.6f86b0d9bf0f from=translated src=- shape=f237798e vocab=bff5d2de
+-/
 theorem square_witness_53 : letI : Fact (Nat.Prime 53) := ⟨by decide⟩;
     IsMagicOfPowers 2 (Square3.centerZero (10 : ZMod 53)) := by
   letI : Fact (Nat.Prime 53) := ⟨by decide⟩
   apply (normalizedPowerConditions_iff (by decide : 0 < 2) (Square3.centerZero_isMagic _)).mp
   decide +kernel
 
+/--
+@isnad1 id=ismagico.0h0v.s6.4d27346bce3a from=translated src=- shape=f237798e vocab=bff5d2de
+-/
 theorem square_witness_61 : letI : Fact (Nat.Prime 61) := ⟨by decide⟩;
     IsMagicOfPowers 2 (Square3.centerZero (4 : ZMod 61)) := by
   letI : Fact (Nat.Prime 61) := ⟨by decide⟩
   apply (normalizedPowerConditions_iff (by decide : 0 < 2) (Square3.centerZero_isMagic _)).mp
   decide +kernel
 
+/--
+@isnad1 id=ismagico.0h0v.s6.02b0823f95d4 from=translated src=- shape=f237798e vocab=bff5d2de
+-/
 theorem square_witness_73 : letI : Fact (Nat.Prime 73) := ⟨by decide⟩;
     IsMagicOfPowers 2 (Square3.centerZero (3 : ZMod 73)) := by
   letI : Fact (Nat.Prime 73) := ⟨by decide⟩

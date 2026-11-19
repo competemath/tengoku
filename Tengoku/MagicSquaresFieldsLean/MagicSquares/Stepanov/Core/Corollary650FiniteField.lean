@@ -23,7 +23,9 @@ prime, so this file packages the exact specialization used in Lemma 6.52.
 /-- **LN97 Corollary 6.50, finite-field-cardinality form.**
 
 For `0 < n < |F|`, differentiating after substituting `y = X^|F|`
-is the same as taking the coefficientwise Hasse derivative first.-/
+is the same as taking the coefficientwise Hasse derivative first.
+@isnad1 id=eq.2h3v.s8.1b565c9be5d6 from=translated src=- shape=9ea7a089 vocab=fef077a7
+-/
 theorem ln97_6_50_finiteField
     (n : ℕ)
     (hnpos : 0 < n)
@@ -39,7 +41,9 @@ theorem ln97_6_50_finiteField
   simpa [hcard] using h
 
 /-- The order-zero case of Corollary 6.50, which is needed because
-Lemma 6.52 imposes derivative conditions for `0 ≤ n < M`.-/
+Lemma 6.52 imposes derivative conditions for `0 ≤ n < M`.
+@isnad1 id=eq.0h2v.s8.fcab077a1f08 from=translated src=- shape=e9a7d061 vocab=51dd6f27
+-/
 theorem ln97_6_50_finiteField_zero
     (v : Polynomial (Polynomial F)) :
     (hasseDeriv 0) (substYXPow (Fintype.card F) v) =

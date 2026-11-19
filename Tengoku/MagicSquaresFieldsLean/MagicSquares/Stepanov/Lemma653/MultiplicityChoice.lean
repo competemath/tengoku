@@ -17,6 +17,9 @@ This avoids a second square root in the rounding argument.
 noncomputable def theorem653Multiplicity (q m : ℕ) : ℕ :=
   ⌈Real.sqrt ((q : ℝ) / m)⌉₊
 
+/--
+@isnad1 id=and.3h3v.s7.665580c6ff74 from=translated src=- shape=993afb76 vocab=9dc2efe6
+-/
 theorem theorem653Multiplicity_spec {q m k : ℕ}
     (hm : 0 < m) (hk : 0 < k) (hq : 100 * m * k ^ 2 ≤ q) :
     k + 1 ≤ theorem653Multiplicity q m ∧

@@ -27,7 +27,9 @@ set_option maxHeartbeats 2000000
 
 omit [Fintype F] in
 /-- The paper's seven exclusions imply the coefficient injectivity needed for
-all later center-one constructions.-/
+all later center-one constructions.
+@isnad1 id=centeron.2h2v.s5.ff3bcc2aaa58 from=translated src=- shape=4ab2ec2f vocab=edc1bdca
+-/
 theorem centerOneGoodB_of_not_mem_forbidden
     (hodd : ringChar F ≠ 2)
     {b : F}
@@ -104,7 +106,9 @@ theorem centerOneGoodB_of_not_mem_forbidden
 end admissibleProof
 
 /-- For every odd finite field with more than seven elements there is a good
-coefficient parameter `b`.-/
+coefficient parameter `b`.
+@isnad1 id=ex.2h1v.s5.74f4a3788e21 from=translated src=- shape=6a9d2740 vocab=c050899b
+-/
 theorem exists_centerOneGoodB
     (hodd : ringChar F ≠ 2)
     (hq : 7 < Fintype.card F) :

@@ -55,7 +55,9 @@ noncomputable def stepanovAuxiliary
 
 omit [Fintype F] [DecidableEq F] in
 /-- `BlockRelation` is exactly the assertion that the Stepanov bracket
-vanishes.  This small bridge keeps the later Lemma 6.52 code readable.-/
+vanishes.  This small bridge keeps the later Lemma 6.52 code readable.
+@isnad1 id=iff.0h5v.s6.8813c6c8fb37 from=translated src=- shape=627794dc vocab=e9e15a61
+-/
 theorem blockRelation_iff_stepanovBracket_eq_zero
     {m q : ℕ} (g : Polynomial F)
     (E : Fin m → Polynomial (Polynomial F)) :
@@ -67,7 +69,9 @@ omit [Fintype F] [DecidableEq F] in
 nontrivial coefficient family cannot have zero Stepanov bracket.
 
 This is the formal version of the sentence on p. 308 that `h = 0` would,
-by Lemma 6.46, force all the coefficients `e_{ij}` to vanish.-/
+by Lemma 6.46, force all the coefficients `e_{ij}` to vanish.
+@isnad1 id=ne.3h6v.s7.5e9a4aa438f5 from=translated src=- shape=8d54374e vocab=6aa8dfe6
+-/
 theorem stepanovBracket_ne_zero_of_nontrivial_coefficients
     {m q D : ℕ} {g : Polynomial F}
     (hind : QuotientPowerIndependent (F := F) m q D g)
@@ -85,7 +89,9 @@ theorem stepanovBracket_ne_zero_of_nontrivial_coefficients
 
 omit [Fintype F] [DecidableEq F] in
 /-- Consequently, if `f` is nonzero and the coefficient family is
-nontrivial, then the whole auxiliary polynomial (6.22) is nonzero.-/
+nontrivial, then the whole auxiliary polynomial (6.22) is nonzero.
+@isnad1 id=ne.4h8v.s8.cf0ee4bd2567 from=translated src=- shape=19b36395 vocab=3c038a0c
+-/
 theorem stepanovAuxiliary_ne_zero_of_nontrivial_coefficients
     {m q D M : ℕ} {f g : Polynomial F}
     (hf : f ≠ 0)
@@ -101,7 +107,9 @@ theorem stepanovAuxiliary_ne_zero_of_nontrivial_coefficients
 
 omit [Fintype F] [DecidableEq F] in
 /-- A direct Lemma 6.51 wrapper for the auxiliary polynomial: if the first
-`M` Hasse derivatives vanish at `c`, then `(X-c)^M` divides `h`.-/
+`M` Hasse derivatives vanish at `c`, then `(X-c)^M` divides `h`.
+@isnad1 id=dvd.1h8v.s9.6aa786fbc79a from=translated src=- shape=ac09ccdb vocab=cbebddd9
+-/
 theorem stepanovAuxiliary_pow_dvd_of_hasse_vanish
     {m q M : ℕ}
     (f g : Polynomial F)
@@ -120,7 +128,9 @@ vanishing of the first `M` Hasse derivatives makes `c` a root of the
 auxiliary polynomial with multiplicity at least `M`.
 
 This is the exact endpoint needed after the linear system in the proof of
-LN97 Lemma 6.52 has been solved.-/
+LN97 Lemma 6.52 has been solved.
+@isnad1 id=le.5h9v.s9.e7e0d831b091 from=translated src=- shape=b2a8ae83 vocab=b79544a8
+-/
 theorem stepanovAuxiliary_rootMultiplicity_of_quotientPowerIndependent
     {m q D M : ℕ} {f g : Polynomial F}
     (hf : f ≠ 0)

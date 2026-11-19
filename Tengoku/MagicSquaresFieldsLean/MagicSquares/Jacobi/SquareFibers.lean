@@ -24,7 +24,9 @@ the Jacobi-sum calculation.
 -/
 
 /-- Fiberwise summation through the squaring map, with the fiber cardinality
-written using the complex quadratic character.-/
+written using the complex quadratic character.
+@isnad1 id=eq.1h2v.s7.6d028606e249 from=translated src=- shape=8a658c89 vocab=f8fe07bd
+-/
 theorem sum_over_squares_via_quadraticCharC
     (hodd : ringChar F ≠ 2)
     (f : F → ℂ) :

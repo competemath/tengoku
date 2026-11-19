@@ -14,7 +14,9 @@ variable {F : Type*} [Field F] [Fintype F] [DecidableEq F]
 noncomputable def splitPowerWeight {r : ℕ} (n d : ℕ) (roots : Fin r → F) (t : F) : ℝ :=
   ∏ i, powerIndicatorNumerator n d (t - roots i)
 
-/-- Exact character expansion for an arbitrary finite family of roots.-/
+/-- Exact character expansion for an arbitrary finite family of roots.
+@isnad1 id=eq.4h6v.s8.29ef0dde626d from=translated src=- shape=202773ca vocab=6f3ac201
+-/
 theorem splitPowerWeight_sum_expand {r n d : ℕ} (hn : 0 < n) (hd : 0 < d)
     (chi : MulChar F ℂ) (horder : orderOf chi = d)
     (hdgcd : d = powerIndex n (Fintype.card F)) (roots : Fin r → F) :

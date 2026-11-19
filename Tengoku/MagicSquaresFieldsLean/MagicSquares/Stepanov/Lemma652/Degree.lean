@@ -32,7 +32,9 @@ polynomial (6.22).
 -/
 
 omit [Fintype F] in
-/-- A zero-safe natural-degree bound for products.-/
+/-- A zero-safe natural-degree bound for products.
+@isnad1 id=le.0h3v.s6.c5314c5f60f0 from=translated src=- shape=39731974 vocab=a1d4d51b
+-/
 theorem natDegree_mul_le_add
     (P Q : Polynomial F) :
     (P * Q).natDegree ≤ P.natDegree + Q.natDegree := by
@@ -49,7 +51,9 @@ omit [Fintype F] in
 
 If every coefficient polynomial has degree at most `D` and the outer
 degree is at most `u`, then substituting the outer variable by `X^q`
-has degree at most `D + q*u`.-/
+has degree at most `D + q*u`.
+@isnad1 id=le.2h5v.s7.f6ae8291e8c2 from=translated src=- shape=9c2f1733 vocab=1dfef806
+-/
 theorem blockEval_natDegree_le
     (q D u : ℕ)
     (E : Polynomial (Polynomial F))
@@ -81,7 +85,9 @@ theorem blockEval_natDegree_le
 omit [Fintype F] in
 /-- Degree bound for the bracket in (6.22).
 
-`G` is any chosen upper bound for `deg g`.-/
+`G` is any chosen upper bound for `deg g`.
+@isnad1 id=le.3h8v.s7.17079b17cf48 from=translated src=- shape=afc2a755 vocab=799fa091
+-/
 theorem stepanovBracket_natDegree_le
     {m : ℕ}
     (q D u G : ℕ)
@@ -121,7 +127,9 @@ omit [Fintype F] in
 
 If `K` bounds `deg f` and `G` bounds `deg g`, then
 
-    deg h ≤ M*K + D + q*u + (m-1)*G.-/
+    deg h ≤ M*K + D + q*u + (m-1)*G.
+@isnad1 id=le.4h11v.s7.56d0f4cd7d4e from=translated src=- shape=9260a5df vocab=af451f1e
+-/
 theorem stepanovAuxiliary_natDegree_le
     {m : ℕ}
     (q M D u K G : ℕ)

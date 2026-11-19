@@ -20,11 +20,17 @@ assumptions.  Applying (6.28) to `X-1` and the geometric polynomial yields
 the two bounds used in the numerical proof.
 -/
 
+/--
+@isnad1 id=eq.0h3v.s5.859cea3001e0 from=translated src=- shape=24f3f0f8 vocab=a9465340
+-/
 theorem stepanovFullT_B1 (m : ℕ) (f : Polynomial F) :
     stepanovFullT m f theorem653B1 = stepanovT0 f ∪ stepanovT1 m f := by
   ext c
   simp [stepanovFullT, theorem653B1, Polynomial.IsRoot, sub_eq_zero]
 
+/--
+@isnad1 id=eq.0h3v.s5.33bcd19bd757 from=translated src=- shape=01508680 vocab=dd1c0922
+-/
 theorem stepanovFullT_B2 (m : ℕ) (f : Polynomial F) :
     stepanovFullT m f (theorem653B2 m) = stepanovT0 f ∪ stepanovT2 m f := by
   ext c

@@ -11,7 +11,9 @@ open Polynomial
 
 variable {F : Type*} [Field F] [Fintype F] [DecidableEq F]
 
-/-- Every value of a complex multiplicative character has norm at most one.-/
+/-- Every value of a complex multiplicative character has norm at most one.
+@isnad1 id=le.0h3v.s6.e39855a80220 from=translated src=- shape=4b09d837 vocab=122ff3e2
+-/
 theorem mulChar_norm_le_one (chi : MulChar F ℂ) (x : F) : ‖chi x‖ ≤ 1 := by
   by_cases hx : x = 0
   · simp [hx, MulChar.map_zero]
@@ -20,7 +22,9 @@ theorem mulChar_norm_le_one (chi : MulChar F ℂ) (x : F) : ‖chi x‖ ≤ 1 :=
     rw [← heq, Complex.norm_eq_one_of_mem_rootsOfUnity hzeta]
 
 /-- Character-weighted power fibers recover the character value. Summing
-all nonzero twists avoids choosing representatives of the power cosets.-/
+all nonzero twists avoids choosing representatives of the power cosets.
+@isnad1 id=eq.3h4v.s9.ea36f6b6048b from=translated src=- shape=719d215b vocab=7fe4c77c
+-/
 theorem character_weighted_power_fibers
     {m : ℕ} (hm : 0 < m) (chi : MulChar F ℂ) (hchi : chi ≠ 1) (hpow : chi ^ m = 1)
     (z : F) :
@@ -77,7 +81,9 @@ theorem character_weighted_power_fibers
   simp [sub_mul]
 
 /-- The character sum is an average of centered point counts of the
-nonzero constant twists of the Kummer equation.-/
+nonzero constant twists of the Kummer equation.
+@isnad1 id=eq.3h4v.s9.e058c29ee0cb from=translated src=- shape=30a63a10 vocab=ad75a6ba
+-/
 theorem character_sum_eq_weighted_twist_counts
     {m : ℕ} (hm : 0 < m) (chi : MulChar F ℂ) (hchi : chi ≠ 1) (hpow : chi ^ m = 1)
     (f : Polynomial F) :

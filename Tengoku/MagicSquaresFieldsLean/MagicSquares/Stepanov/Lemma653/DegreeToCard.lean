@@ -20,6 +20,9 @@ This tiny bridge will be used repeatedly for the two choices of `B` in
 Theorem 6.53.
 -/
 
+/--
+@isnad1 id=lt.3h5v.s6.9d949654ca79 from=translated src=- shape=7088ade3 vocab=e977e4fc
+-/
 theorem card_mul_lt_of_multiplicity_and_natDegree_lt
     (h : Polynomial F) (T : Finset F)
     (M D : ℕ)

@@ -8,7 +8,9 @@ variable {F : Type*} [Field F]
 
 /-- A negative certificate needs only finite supersets of the powers and
 of the possible center-one offsets. Every supplied inclusion and every
-remaining collision must be proved; the lists themselves are untrusted data.-/
+remaining collision must be proved; the lists themselves are untrusted data.
+@isnad1 id=isnparke.4h4v.s8.3907776acdd6 from=translated src=- shape=f3872aca vocab=7c22f03e
+-/
 theorem isNParker_of_finite_supersets (n : ℕ) (powers offsets : List F)
     (hpowers : ∀ x : F, x ^ n ∈ powers)
     (hoffsets : ∀ u : F, 1 + u ∈ powers → 1 - u ∈ powers → u ∈ offsets)
@@ -57,7 +59,9 @@ theorem isNParker_of_finite_supersets (n : ℕ) (powers offsets : List F)
     · exact h.2.1
 
 /-- Boolean list folds force the finite certificate checker to visit only the
-supplied parameters, rather than all pairs of field elements.-/
+supplied parameters, rather than all pairs of field elements.
+@isnad1 id=isnparke.4h4v.s10.67aac3ff2d21 from=translated src=- shape=6d554ed6 vocab=a6f4da3d
+-/
 theorem isNParker_of_finite_supersets_bool [DecidableEq F]
     (n : ℕ) (powers offsets : List F)
     (hpowers : ∀ x : F, x ^ n ∈ powers)

@@ -16,7 +16,9 @@ variable {F : Type*} [Field F]
 This is the exact finite-power reduction used on p. 306 of LN97 6.52.
 -/
 
-/-- Evaluation form of the power-reduction identity.-/
+/-- Evaluation form of the power-reduction identity.
+@isnad1 id=eq.4h5v.s7.50585e0e828d from=translated src=- shape=dde9469e vocab=eda6d11b
+-/
 theorem pow_eq_sum_powerReductionCoeff
     (B : Polynomial F) (i r : ℕ) (c : F)
     (hB : B.Monic)
@@ -35,7 +37,9 @@ theorem pow_eq_sum_powerReductionCoeff
     (F := F) B i c hc] at heval
   simpa [Polynomial.eval_finsetSum, Polynomial.eval_monomial] using heval
 
-/-- The same identity with the two sides oriented as in the book.-/
+/-- The same identity with the two sides oriented as in the book.
+@isnad1 id=eq.4h5v.s7.8496fbdff15c from=translated src=- shape=3e036064 vocab=eda6d11b
+-/
 theorem sum_powerReductionCoeff_eq_pow
     (B : Polynomial F) (i r : ℕ) (c : F)
     (hB : B.Monic)

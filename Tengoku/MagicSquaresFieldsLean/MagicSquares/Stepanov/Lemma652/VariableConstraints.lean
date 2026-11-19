@@ -31,6 +31,9 @@ noncomputable def polynomialFamilyVariableConstraints
   map_add' := by intro x y; funext idx; simp
   map_smul' := by intro a x; funext idx; simp
 
+/--
+@isnad1 id=eq.2h9v.s10.d375076c7abb from=translated src=- shape=83d0ee62 vocab=923f921d
+-/
 theorem polynomialFamily_eq_zero_of_variableConstraints_eq_zero
     {r M : ℕ} (N : Fin M → ℕ)
     (S : V →ₗ[F] (Fin r → Fin M → Polynomial F)) (v : V)
@@ -42,6 +45,9 @@ theorem polynomialFamily_eq_zero_of_variableConstraints_eq_zero
   intro l
   exact congrFun hz ⟨n, t, l⟩
 
+/--
+@isnad1 id=eq.0h4v.s6.f6cef7bbda32 from=translated src=- shape=abeafd34 vocab=be45ff17
+-/
 theorem stepanovVariableConstraintSpace_finrank
     (F : Type*) [Field F] (r M : ℕ) (N : Fin M → ℕ) :
     Module.finrank F (StepanovVariableConstraintSpace F r M N) =
@@ -49,6 +55,9 @@ theorem stepanovVariableConstraintSpace_finrank
   rw [Module.finrank_pi]
   simp [StepanovVariableConstraintIndex, ← Finset.mul_sum]
 
+/--
+@isnad1 id=ex.1h8v.s9.9c244c816928 from=translated src=- shape=b8728d79 vocab=d8bf0a7a
+-/
 theorem exists_nonzero_stepanovUnknown_in_variable_kernel
     {m u D r M : ℕ} {N : Fin M → ℕ}
     (T : StepanovUnknowns F m u D →ₗ[F]

@@ -28,19 +28,31 @@ noncomputable def quadraticCharC
     MulChar F ℂ :=
   (quadraticChar F).ringHomComp (Int.castRingHom ℂ)
 
+/--
+@isnad1 id=eq.0h2v.s6.fad22afbc0d5 from=translated src=- shape=1d1a5f71 vocab=9b9e5e5c
+-/
 @[simp]
 theorem quadraticCharC_apply (x : F) :
     quadraticCharC F x = (quadraticChar F x : ℂ) := by
   simp [quadraticCharC]
 
+/--
+@isnad1 id=isquadra.0h1v.s4.cc82e45c7b33 from=translated src=- shape=76f3b442 vocab=f9961993
+-/
 theorem quadraticCharC_isQuadratic :
     (quadraticCharC F).IsQuadratic := by
   exact (quadraticChar_isQuadratic F).comp (Int.castRingHom ℂ)
 
+/--
+@isnad1 id=eq.0h1v.s7.1d97e31ed707 from=translated src=- shape=68b86322 vocab=ecc9f440
+-/
 theorem quadraticCharC_sq_eq_one :
     quadraticCharC F ^ 2 = 1 := by
   exact (quadraticCharC_isQuadratic (F := F)).sq_eq_one
 
+/--
+@isnad1 id=ne.1h1v.s6.d8ab75e63f64 from=translated src=- shape=38e6bc32 vocab=422ccf49
+-/
 theorem quadraticCharC_ne_one
     (hodd : ringChar F ≠ 2) :
     quadraticCharC F ≠ 1 := by
@@ -83,7 +95,9 @@ private theorem mulChar_value_eq_neg_one_of_sq_eq_one
 
 omit [DecidableEq F] in
 /-- Over a finite field there is at most one nontrivial complex quadratic
-multiplicative character.-/
+multiplicative character.
+@isnad1 id=eq.4h3v.s9.27f8b20e2dd6 from=translated src=- shape=679154a3 vocab=ca285d4e
+-/
 theorem mulChar_eq_of_sq_eq_one_of_ne_one
     (χ ψ : MulChar F ℂ)
     (hχsq : χ ^ 2 = 1)
@@ -100,7 +114,9 @@ theorem mulChar_eq_of_sq_eq_one_of_ne_one
 
 omit [DecidableEq F] in
 /-- If `#F ≡ 1 (mod 4)`, there is a complex multiplicative character
-of exact order four.-/
+of exact order four.
+@isnad1 id=ex.1h1v.s7.624eeea85e10 from=translated src=- shape=ef1b18be vocab=1685b6d8
+-/
 theorem exists_quartic_mulChar
     (hqmod : Fintype.card F % 4 = 1) :
     ∃ chi4 : MulChar F ℂ, orderOf chi4 = 4 := by
@@ -110,6 +126,9 @@ theorem exists_quartic_mulChar
     F hdiv (Complex.isPrimitiveRoot_exp 4 (by norm_num))
 
 omit [Fintype F] [DecidableEq F] in
+/--
+@isnad1 id=ne.1h2v.s7.c485a9f24913 from=translated src=- shape=05196bb8 vocab=89d41e0a
+-/
 theorem quartic_ne_one
     {chi4 : MulChar F ℂ}
     (hchi4 : orderOf chi4 = 4) :
@@ -121,6 +140,9 @@ theorem quartic_ne_one
   omega
 
 omit [Fintype F] [DecidableEq F] in
+/--
+@isnad1 id=ne.1h2v.s8.bb1d500e86d7 from=translated src=- shape=89a30e83 vocab=e59860ae
+-/
 theorem quartic_sq_ne_one
     {chi4 : MulChar F ℂ}
     (hchi4 : orderOf chi4 = 4) :
@@ -132,6 +154,9 @@ theorem quartic_sq_ne_one
   norm_num at hdvd
 
 omit [Fintype F] [DecidableEq F] in
+/--
+@isnad1 id=ne.1h2v.s8.085a11bce14d from=translated src=- shape=89a30e83 vocab=e59860ae
+-/
 theorem quartic_cube_ne_one
     {chi4 : MulChar F ℂ}
     (hchi4 : orderOf chi4 = 4) :
@@ -143,6 +168,9 @@ theorem quartic_cube_ne_one
   norm_num at hdvd
 
 omit [Fintype F] [DecidableEq F] in
+/--
+@isnad1 id=eq.1h2v.s8.e72d361515a3 from=translated src=- shape=06c102d4 vocab=e59860ae
+-/
 theorem quartic_fourth_eq_one
     {chi4 : MulChar F ℂ}
     (hchi4 : orderOf chi4 = 4) :
@@ -150,7 +178,9 @@ theorem quartic_fourth_eq_one
   have h := pow_orderOf_eq_one chi4
   simpa [hchi4] using h
 
-/-- The square of any quartic character is the complex quadratic character.-/
+/-- The square of any quartic character is the complex quadratic character.
+@isnad1 id=eq.2h2v.s8.1117e3229ab1 from=translated src=- shape=530221fc vocab=8de0cc08
+-/
 theorem quartic_sq_eq_quadraticCharC
     (hodd : ringChar F ≠ 2)
     {chi4 : MulChar F ℂ}
@@ -168,7 +198,9 @@ theorem quartic_sq_eq_quadraticCharC
   · exact quadraticCharC_ne_one (F := F) hodd
 
 /-- In the `q ≡ 1 (mod 4)` case the complex quadratic character takes
-the value `1` at `-1`.-/
+the value `1` at `-1`.
+@isnad1 id=eq.2h1v.s7.49ffae6c0c83 from=translated src=- shape=d80d7912 vocab=7670c971
+-/
 theorem quadraticCharC_neg_one_eq_one_of_card_mod_four_one
     (_hodd : ringChar F ≠ 2)
     (hqmod : Fintype.card F % 4 = 1) :

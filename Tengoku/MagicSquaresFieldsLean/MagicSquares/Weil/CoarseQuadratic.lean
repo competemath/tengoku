@@ -12,7 +12,9 @@ variable {F : Type*} [Field F] [Fintype F] [DecidableEq F]
 
 /-- The quadratic character sum is exactly the error term in the point
 count for `y² = f(x)`. Zeros of `f` are included with their correct fiber
-cardinality one.-/
+cardinality one.
+@isnad1 id=eq.1h2v.s6.d4d9505fae45 from=translated src=- shape=c86237c2 vocab=a69246e2
+-/
 theorem quadratic_sum_eq_solutionCount_sub_card
     (hodd : ringChar F ≠ 2) (f : Polynomial F) :
     (∑ x : F, quadraticChar F (f.eval x)) =

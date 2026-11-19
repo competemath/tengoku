@@ -72,7 +72,9 @@ def HasSplitPowerMultiplicativeWeilBound (F : Type*)
 
 /-- The exponent form implies the squarefree form by taking all exponents
 equal to one. The positivity hypothesis rules out the empty-product
-counterexample.-/
+counterexample.
+@isnad1 id=hassplit.1h1v.s4.e9d055bda147 from=translated src=- shape=7ddc04c7 vocab=4bdab20f
+-/
 theorem HasSplitPowerMultiplicativeWeilBound.squarefree
     (h : HasSplitPowerMultiplicativeWeilBound F) :
     HasSplitMultiplicativeWeilBound F := by
@@ -83,7 +85,9 @@ theorem HasSplitPowerMultiplicativeWeilBound.squarefree
     ⟨⟨0, hr⟩, horder⟩
 
 /-- Specialization to the nontrivial quadratic character requires odd
-characteristic.-/
+characteristic.
+@isnad1 id=hassplit.2h1v.s5.e6f2e9afa685 from=translated src=- shape=2221b9e8 vocab=882ba686
+-/
 theorem HasSplitMultiplicativeWeilBound.quadratic
     (h : HasSplitMultiplicativeWeilBound F) (hodd : ringChar F ≠ 2) :
     HasSplitQuadraticWeilBound F := by

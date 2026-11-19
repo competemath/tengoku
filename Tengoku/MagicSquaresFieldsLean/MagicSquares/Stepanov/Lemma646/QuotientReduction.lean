@@ -31,6 +31,9 @@ noncomputable def firstBlockCleared {m : ℕ}
   ∑ i ∈ Finset.range m,
     (firstBlockSymmetric zeta a).coeff i * C (f.eval 0) ^ i * f ^ (m - 1 - i)
 
+/--
+@isnad1 id=le.2h6v.s7.b01cfb91a76e from=translated src=- shape=e5286437 vocab=84e45ad3
+-/
 theorem firstBlockCleared_natDegree_le
     {m D : ℕ} (hm : 0 < m) (zeta : F)
     (a : Fin m → Polynomial F) (ha : ∀ i, (a i).natDegree ≤ D)
@@ -52,7 +55,9 @@ theorem firstBlockCleared_natDegree_le
       Nat.add_le_add_left (Nat.mul_le_mul_right _ (Nat.sub_le _ _)) _
 
 /-- The exponent rearrangement used before applying Frobenius.  This
-identity holds in the quotient ring even when `x` is not a unit.-/
+identity holds in the quotient ring even when `x` is not a unit.
+@isnad1 id=eq.2h5v.s7.0975bfd13840 from=translated src=- shape=65042300 vocab=281cfdc8
+-/
 theorem pow_mul_card_sub_one_pow
     {R : Type*} [CommMonoid R] (x : R) {q n i : ℕ}
     (hq : 0 < q) (hi : i ≤ n) :
@@ -64,7 +69,9 @@ theorem pow_mul_card_sub_one_pow
   nlinarith
 
 /-- The degree budget in the book, with natural-number subtraction made
-explicit: `k` must fit in `q / m` and must be positive.-/
+explicit: `k` must fit in `q / m` and must be positive.
+@isnad1 id=lt.3h3v.s6.423ae795ed79 from=translated src=- shape=918a1017 vocab=91c4bd75
+-/
 theorem firstBlock_degree_budget {q m k : ℕ}
     (hm : 0 < m) (hk : 0 < k) (hkq : k ≤ q / m) :
     m * (q / m - k) + (m - 1) * k < q := by
@@ -73,7 +80,9 @@ theorem firstBlock_degree_budget {q m k : ℕ}
   have hm' : m - 1 + 1 = m := Nat.sub_add_cancel hm
   nlinarith
 
-/-- Clearing denominators commutes with mapping into any field.-/
+/-- Clearing denominators commutes with mapping into any field.
+@isnad1 id=eq.3h7v.s9.6f824ccc83cd from=translated src=- shape=771fbbf7 vocab=e1e3b44d
+-/
 theorem firstBlockCleared_map_eq_mul_eval₂
     {K : Type*} [Field K] (phi : Polynomial F →+* K)
     {m : ℕ} (hm : 0 < m) {zeta : F} (hzeta : IsPrimitiveRoot zeta m)
@@ -93,7 +102,9 @@ theorem firstBlockCleared_map_eq_mul_eval₂
 
 variable [Fintype F]
 
-/-- Frobenius in `F[X]/(X^q)`: `f(X)^q` reduces to `f(0)`.-/
+/-- Frobenius in `F[X]/(X^q)`: `f(X)^q` reduces to `f(0)`.
+@isnad1 id=eq.0h2v.s9.9d513f8b2309 from=translated src=- shape=11b94d68 vocab=d1efdc8b
+-/
 theorem XCardMk_pow_card (f : Polynomial F) :
     (XCardMk F) (f ^ Fintype.card F) = (XCardMk F) (C (f.eval 0)) := by
   have hh :
@@ -108,7 +119,9 @@ theorem XCardMk_pow_card (f : Polynomial F) :
   exact DFunLike.congr_fun hh f
 
 /-- Contracting the orbit identity turns the first-block quotient relation
-into an evaluation of `G` at `g^m`.-/
+into an evaluation of `G` at `g^m`.
+@isnad1 id=eq.3h5v.s10.cab8cb21169e from=translated src=- shape=ff33fe61 vocab=6cfbf058
+-/
 theorem firstBlockSymmetric_quotient_eval_eq_zero
     {m : ℕ} (hm : 0 < m) {zeta : F} (hzeta : IsPrimitiveRoot zeta m)
     (a : Fin m → Polynomial F) (g : Polynomial F)
@@ -121,7 +134,9 @@ theorem firstBlockSymmetric_quotient_eval_eq_zero
   rw [firstBlockOrbit_eq_symmetric_comp hm hzeta, eval_map, eval₂_comp] at hB
   simpa using hB
 
-/-- The cleared expression vanishes modulo `X^q`.-/
+/-- The cleared expression vanishes modulo `X^q`.
+@isnad1 id=eq.4h5v.s10.fdef9c34d1f0 from=translated src=- shape=b59540d9 vocab=5651ec9d
+-/
 theorem firstBlockCleared_quotient_eq_zero
     {m : ℕ} (hm : 0 < m) (hmq : m ∣ Fintype.card F - 1)
     {zeta : F} (hzeta : IsPrimitiveRoot zeta m)
@@ -162,7 +177,9 @@ theorem eq_zero_of_XCardMk_eq_zero {P : Polynomial F}
     (AdjoinRoot.mk_eq_zero.mp hzero)
   simpa using hdeg
 
-/-- The polynomial equality immediately preceding LN97 (6.20).-/
+/-- The polynomial equality immediately preceding LN97 (6.20).
+@isnad1 id=eq.6h6v.s10.6e7a4337d50b from=translated src=- shape=4a6eb2a2 vocab=a8b42c1a
+-/
 theorem firstBlockCleared_eq_zero
     {m D : ℕ} (hm : 0 < m) (hmq : m ∣ Fintype.card F - 1)
     {zeta : F} (hzeta : IsPrimitiveRoot zeta m)
@@ -179,7 +196,9 @@ theorem firstBlockCleared_eq_zero
 /-- **LN97 (6.20)** as an evaluation in `F(X)`.  The coefficients are
 the actual contraction coefficients from (6.19), and the argument is
 `f(0) / f`.  The nonzero-constant-term hypothesis used later in the book
-is not needed until the Kummer-root step; here `f ≠ 0` suffices.-/
+is not needed until the Kummer-root step; here `f ≠ 0` suffices.
+@isnad1 id=eq.7h6v.s11.ddd73be54da8 from=translated src=- shape=6f4dbb3a vocab=f716c376
+-/
 theorem ln97_6_20
     {m D : ℕ} (hm : 0 < m) (hmq : m ∣ Fintype.card F - 1)
     {zeta : F} (hzeta : IsPrimitiveRoot zeta m)
@@ -199,7 +218,9 @@ theorem ln97_6_20
   rw [hzero, map_zero] at hmap
   exact (mul_eq_zero.mp hmap.symm).resolve_left (pow_ne_zero _ hf')
 
-/-- The displayed finite-sum form of LN97 (6.20).-/
+/-- The displayed finite-sum form of LN97 (6.20).
+@isnad1 id=eq.7h6v.s11.5676e9760abe from=translated src=- shape=55698ac5 vocab=f55ce8ca
+-/
 theorem ln97_6_20_sum
     {m D : ℕ} (hm : 0 < m) (hmq : m ∣ Fintype.card F - 1)
     {zeta : F} (hzeta : IsPrimitiveRoot zeta m)

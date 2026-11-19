@@ -26,6 +26,9 @@ noncomputable def firstBlockPolynomial
   ∑ i : Fin m, C (a i) * X ^ (i : ℕ)
 
 omit [IsDomain R] in
+/--
+@isnad1 id=eq.0h4v.s6.0ecc6e557eb7 from=translated src=- shape=5d1a998d vocab=f0abdb6f
+-/
 theorem eval_firstBlockPolynomial
     {m : ℕ} (a : Fin m → R) (y : R) :
     eval y (firstBlockPolynomial a) =
@@ -40,6 +43,9 @@ theorem eval_firstBlockPolynomial
   intro i hi
   simp
 
+/--
+@isnad1 id=le.1h3v.s5.6bb7ff9ad6d5 from=translated src=- shape=89c9106a vocab=b06a13bc
+-/
 theorem firstBlockPolynomial_natDegree_le
     {m : ℕ} (hm : 0 < m)
     (a : Fin m → R) :
@@ -55,6 +61,9 @@ theorem firstBlockPolynomial_natDegree_le
     _ ≤ m - 1 := by omega
 
 omit [IsDomain R] in
+/--
+@isnad1 id=eq.0h5v.s6.5ae0c17f0ff4 from=translated src=- shape=2a14a96e vocab=97932298
+-/
 theorem map_firstBlockPolynomial
     {S : Type*} [CommRing S]
     {m : ℕ}

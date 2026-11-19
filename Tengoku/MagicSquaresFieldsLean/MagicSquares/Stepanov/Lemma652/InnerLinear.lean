@@ -41,6 +41,9 @@ noncomputable def stepanovInnerLinear
   (Polynomial.ofFn (D + 1)).comp
     (stepanovCoefficientSlice (F := F) i j)
 
+/--
+@isnad1 id=eq.0h7v.s8.9ee17e9c48a3 from=translated src=- shape=e90c5f5c vocab=4f2775ab
+-/
 @[simp]
 theorem stepanovInnerLinear_apply
     {m u D : ℕ}

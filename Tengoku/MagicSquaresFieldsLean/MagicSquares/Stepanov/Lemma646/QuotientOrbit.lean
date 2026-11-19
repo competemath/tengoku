@@ -35,6 +35,9 @@ noncomputable def XCardMk (F : Type*) [Field F] [Fintype F] :
 
 variable {F : Type*} [Field F] [Fintype F]
 
+/--
+@isnad1 id=eq.1h4v.s10.e0f29396b71c from=translated src=- shape=c8430279 vocab=7275b7c9
+-/
 theorem mapped_firstBlockPolynomial_eval_eq_zero
     {m : ℕ}
     (a : Fin m → Polynomial F)
@@ -53,7 +56,9 @@ theorem mapped_firstBlockPolynomial_eval_eq_zero
 
 If the mapped first-block polynomial vanishes at `y`, then the mapped orbit
 product vanishes there, because the `j = 0` factor is exactly the original
-first-block polynomial.-/
+first-block polynomial.
+@isnad1 id=eq.2h7v.s7.76ccc71ec763 from=translated src=- shape=e35043c5 vocab=cdc80afb
+-/
 theorem map_orbit_eval_zero_of_map_A_eval_zero
     {R S : Type*} [CommRing R] [IsDomain R] [CommRing S]
     {m : ℕ}

@@ -11,7 +11,9 @@ variable {K : Type*} [Field K]
 /-- Hasse derivatives commute with translation.
 
 This is the formal device that lets us reduce LN97 Corollary 6.48
-from `(X - c)^t` to the monomial `X^t`.-/
+from `(X - c)^t` to the monomial `X^t`.
+@isnad1 id=eq.0h4v.s10.8bb7599ca40c from=translated src=- shape=cefb239c vocab=b1db4b3b
+-/
 theorem hasseDeriv_taylor_comm
     (n : ℕ) (c : K) (f : Polynomial K) :
     (hasseDeriv n) ((taylor c) f) =
@@ -34,7 +36,9 @@ For `c ∈ K`,
 `E^(n)((x-c)^t) = (t choose n) (x-c)^(t-n)`.
 
 This is stated exactly as a polynomial identity, so it is valid in every
-characteristic; the binomial coefficient is interpreted in `K`.-/
+characteristic; the binomial coefficient is interpreted in `K`.
+@isnad1 id=eq.0h4v.s9.9b8f8c58f7f0 from=translated src=- shape=c8d705ab vocab=371d36b3
+-/
 theorem ln97_6_48
     (c : K) (n t : ℕ) :
     (hasseDeriv n) ((X - C c) ^ t) =
@@ -48,7 +52,9 @@ theorem ln97_6_48
   simp [Polynomial.taylor_monomial, sub_eq_add_neg]
 
 /-- The degree loss under a Hasse derivative, used in the estimate following
-LN97 Corollary 6.49.  Mathlib already contains this fundamental estimate.-/
+LN97 Corollary 6.49.  Mathlib already contains this fundamental estimate.
+@isnad1 id=le.0h3v.s8.274059b7cbbe from=translated src=- shape=3f9952b3 vocab=0b08276d
+-/
 theorem hasseDeriv_natDegree_le
     (f : Polynomial K) (n : ℕ) :
     ((hasseDeriv n) f).natDegree ≤ f.natDegree - n := by

@@ -21,11 +21,16 @@ def map (f : R → S) (M : Square3 R) : Square3 S where
   h := f M.h
   i := f M.i
 
+/--
+@isnad1 id=eq.0h5v.s5.41dba2c3c5df from=translated src=- shape=e3f524e5 vocab=9e38f5c2
+-/
 @[simp] theorem map_entries (f : R → S) (M : Square3 R) (k : Fin 9) :
     (M.map f).entries k = f (M.entries k) := by
   fin_cases k <;> rfl
 
-/-- An injective ring homomorphism transports a magic square of powers.-/
+/-- An injective ring homomorphism transports a magic square of powers.
+@isnad1 id=ismagico.2h5v.s7.90aebd702cba from=translated src=- shape=5f894914 vocab=e28ae4af
+-/
 theorem map_isMagicOfPowers [CommRing R] [CommRing S]
     (f : R →+* S) (hf : Function.Injective f) {n : ℕ} {M : Square3 R}
     (hM : IsMagicOfPowers n M) : IsMagicOfPowers n (M.map f) := by
@@ -43,7 +48,9 @@ theorem map_isMagicOfPowers [CommRing R] [CommRing S]
 
 end Square3
 
-/-- Existence is unchanged by a field isomorphism.-/
+/-- Existence is unchanged by a field isomorphism.
+@isnad1 id=iff.0h4v.s6.70e014db4a2a from=translated src=- shape=f1551d4e vocab=941873a3
+-/
 theorem exists_magic_of_powers_iff_of_ringEquiv {F K : Type*}
     [CommRing F] [CommRing K] (e : F ≃+* K) (n : ℕ) :
     (∃ M : Square3 F, IsMagicOfPowers n M) ↔
@@ -54,18 +61,24 @@ theorem exists_magic_of_powers_iff_of_ringEquiv {F K : Type*}
   · rintro ⟨M, hM⟩
     exact ⟨M.map e.symm, Square3.map_isMagicOfPowers e.symm.toRingHom e.symm.injective hM⟩
 
-/-- The Parker property is an invariant of field isomorphism.-/
+/-- The Parker property is an invariant of field isomorphism.
+@isnad1 id=iff.0h4v.s5.30aaf9387a14 from=translated src=- shape=c8ab110d vocab=18215ce8
+-/
 theorem isNParker_iff_of_ringEquiv {F K : Type*} [CommRing F] [CommRing K]
     (e : F ≃+* K) (n : ℕ) : IsNParker F n ↔ IsNParker K n := by
   exact not_congr (exists_magic_of_powers_iff_of_ringEquiv e n)
 
-/-- Concrete finite-field certificates apply to every field of the same size.-/
+/-- Concrete finite-field certificates apply to every field of the same size.
+@isnad1 id=iff.1h3v.s5.c4813f22f631 from=translated src=- shape=b3ccf2d7 vocab=4623f7b8
+-/
 theorem isNParker_iff_of_card_eq {F K : Type*} [Field F] [Field K]
     [Fintype F] [Fintype K] (hcard : Fintype.card F = Fintype.card K) (n : ℕ) :
     IsNParker F n ↔ IsNParker K n :=
   isNParker_iff_of_ringEquiv (FiniteField.ringEquivOfCardEq hcard) n
 
-/-- A prime-field certificate gives a uniform theorem at that prime cardinality.-/
+/-- A prime-field certificate gives a uniform theorem at that prime cardinality.
+@isnad1 id=iff.1h3v.s5.49d185d18c2b from=translated src=- shape=975d8990 vocab=672356c8
+-/
 theorem isNParker_iff_zmod_of_card_eq {F : Type*} [Field F] [Fintype F]
     {p : ℕ} [Fact p.Prime] (hcard : Fintype.card F = p) (n : ℕ) :
     IsNParker F n ↔ IsNParker (ZMod p) n :=

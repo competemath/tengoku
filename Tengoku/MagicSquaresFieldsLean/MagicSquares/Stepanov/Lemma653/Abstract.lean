@@ -15,7 +15,9 @@ This theorem isolates exactly what remains after Lemma 6.52 supplies
 (6.28) for the two choices of `B`.
 -/
 
-/-- Abstract numerical form of LN97 Theorem 6.53.-/
+/-- Abstract numerical form of LN97 Theorem 6.53.
+@isnad1 id=lt.3h2v.s8.4ba93c9b64ac from=translated src=- shape=d3fda934 vocab=0f33bc5f
+-/
 theorem ln97_6_53_from_two_T_bounds
     (C : Lemma645Counts)
     (k : ℝ)

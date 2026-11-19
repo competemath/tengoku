@@ -22,7 +22,9 @@ The theorem below proves exactly the implication used in the book.
 -/
 
 /-- The hypothesis `(M+3)^2 ≤ 2q/m`, with denominators cleared,
-implies the weaker quadratic inequality `M^2+6M ≤ 2q/m`.-/
+implies the weaker quadratic inequality `M^2+6M ≤ 2q/m`.
+@isnad1 id=le.1h3v.s6.6725fd48e56c from=translated src=- shape=7dd676d1 vocab=f96c6fce
+-/
 theorem ln97_6_52_shifted_square_implies_quadratic
     (M q m : ℕ)
     (hshift : (M + 3) ^ 2 * m ≤ 2 * q) :
@@ -33,7 +35,9 @@ theorem ln97_6_52_shifted_square_implies_quadratic
 
 /-- A convenient factored version of the same estimate.  It is useful
 after the common positive factors `r` and `k+1` have been restored in
-the coefficient-count comparison.-/
+the coefficient-count comparison.
+@isnad1 id=le.1h5v.s7.8978aa175c99 from=translated src=- shape=e9bfb150 vocab=f96c6fce
+-/
 theorem ln97_6_52_shifted_square_implies_scaled_quadratic
     (M q m r k : ℕ)
     (hshift : (M + 3) ^ 2 * m ≤ 2 * q) :

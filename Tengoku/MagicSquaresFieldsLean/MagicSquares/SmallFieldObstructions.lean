@@ -8,7 +8,9 @@ namespace MagicSquares
 variable {F : Type*} [Field F] [Fintype F] [DecidableEq F]
 
 omit [DecidableEq F] in
-/-- Nine distinct entries require at least nine elements in the field.-/
+/-- Nine distinct entries require at least nine elements in the field.
+@isnad1 id=isnparke.1h2v.s4.2bd0832658c8 from=translated src=- shape=778dd496 vocab=c6144738
+-/
 theorem isNParker_of_card_lt_nine (n : ℕ) (hq : Fintype.card F < 9) : IsNParker F n := by
   rintro ⟨M, _, hdist, _⟩
   have hcard : 9 ≤ Fintype.card F := by
@@ -17,7 +19,9 @@ theorem isNParker_of_card_lt_nine (n : ℕ) (hq : Fintype.card F < 9) : IsNParke
 
 /-- If the power subgroup has fewer than eight nonzero elements, a magic
 square cannot have nine distinct power entries. The polynomial root bound
-proves this without choosing a concrete model of the finite field.-/
+proves this without choosing a concrete model of the finite field.
+@isnad1 id=isnparke.2h2v.s6.6a0e5d45199b from=translated src=- shape=30811880 vocab=e396c2d8
+-/
 theorem isNParker_of_power_index_bound {n : ℕ} (hn : 0 < n)
     (hsmall : (Fintype.card F - 1) / powerIndex n (Fintype.card F) < 8) :
     IsNParker F n := by
@@ -48,7 +52,9 @@ theorem isNParker_of_power_index_bound {n : ℕ} (hn : 0 < n)
   · rw [hdeg, Fintype.card_fin]
     omega
 
-/-- The small cube exceptions follow uniformly from the power-count obstruction.-/
+/-- The small cube exceptions follow uniformly from the power-count obstruction.
+@isnad1 id=isnparke.1h1v.s6.a8a69bbdaa9b from=translated src=- shape=5e6d157f vocab=7a768a10
+-/
 theorem cubeParker_of_card_small
     (hq : Fintype.card F = 3 ∨ Fintype.card F = 5 ∨ Fintype.card F = 7 ∨
       Fintype.card F = 13 ∨ Fintype.card F = 19) : IsNParker F 3 := by
@@ -56,7 +62,9 @@ theorem cubeParker_of_card_small
   all_goals apply isNParker_of_power_index_bound (by norm_num : 0 < 3)
   all_goals norm_num [hq, powerIndex, Nat.gcd]
 
-/-- The first six odd square exceptions need no exhaustive search.-/
+/-- The first six odd square exceptions need no exhaustive search.
+@isnad1 id=isparker.1h1v.s6.3696facb81bc from=translated src=- shape=b596af68 vocab=85081268
+-/
 theorem squareParker_of_card_small
     (hq : Fintype.card F = 3 ∨ Fintype.card F = 5 ∨ Fintype.card F = 7 ∨
       Fintype.card F = 9 ∨ Fintype.card F = 11 ∨ Fintype.card F = 13) : IsParker F := by

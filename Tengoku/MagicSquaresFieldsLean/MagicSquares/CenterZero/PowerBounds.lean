@@ -7,7 +7,9 @@ namespace MagicSquares
 /-- A uniform sufficient bound of order `n^6` when `-1` is an `n`-th power.-/
 def centerZeroPowerBound (n : ℕ) : ℕ := (6 * n ^ 3 + 6) ^ 2
 
-/-- A simple uniform upper bound for the exact center-zero constant.-/
+/-- A simple uniform upper bound for the exact center-zero constant.
+@isnad1 id=le.2h2v.s5.ef88757bd41d from=translated src=- shape=5c7b8f05 vocab=7ca9fa87
+-/
 theorem centerZeroC0_le_three_pow {n d : ℕ} (hn : 0 < n) (hdn : d ≤ n) :
     centerZeroC0 d ≤ 3 * (n : ℝ) ^ 3 := by
   have hpow : (d : ℝ) ^ 3 ≤ (n : ℝ) ^ 3 := by
@@ -17,7 +19,9 @@ theorem centerZeroC0_le_three_pow {n d : ℕ} (hn : 0 < n) (hdn : d ≤ n) :
   unfold centerZeroC0
   nlinarith
 
-/-- The explicit order-`n^6` bound implies the exact Section 12 inequality.-/
+/-- The explicit order-`n^6` bound implies the exact Section 12 inequality.
+@isnad1 id=lt.4h3v.s7.cbac661bfc1e from=translated src=- shape=dea57267 vocab=36804eb6
+-/
 theorem centerZero_power_inequality_of_bound {n d q : ℕ}
     (hn : 0 < n) (hd : 0 < d) (hdn : d ≤ n) (hq : centerZeroPowerBound n < q) :
     4 * (d : ℝ) ^ 3 + 3 * (d : ℝ) ^ 2 <

@@ -10,7 +10,9 @@ open Polynomial
 variable {F : Type*} [Field F] [Fintype F]
 
 /-- The untruncated monic generating series is the finite split
-L-polynomial, by the coefficient cancellation theorem.-/
+L-polynomial, by the coefficient cancellation theorem.
+@isnad1 id=eq.2h4v.s7.8ed93786c3c8 from=translated src=- shape=3cdd3452 vocab=03ffaf34
+-/
 theorem splitLPolynomial_eq_monicSeries {r : ℕ} (roots : Fin r → F)
     (hinj : Function.Injective roots) (chars : Fin r → MulChar F ℂ)
     (hchars : ∃ j, chars j ≠ 1) :

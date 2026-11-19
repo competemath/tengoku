@@ -28,6 +28,9 @@ def checkFrom (q : ℕ) : List Q3Step → Bool
   | [] => true
   | s :: rest => decide (s.Valid q) && checkFrom (q + 4) rest
 
+/--
+@isnad1 id=valid.2h3v.s6.6ec0fc3281e2 from=translated src=- shape=4d85b12f vocab=3c134063
+-/
 theorem valid_at {data : List Q3Step} {q : ℕ} (h : checkFrom q data = true)
     {k : ℕ} (hk : k < data.length) : (data[k]).Valid (q + 4 * k) := by
   induction data generalizing q k with
@@ -42,7 +45,9 @@ theorem valid_at {data : List Q3Step} {q : ℕ} (h : checkFrom q data = true)
       simpa [Nat.mul_succ, Nat.add_assoc, Nat.add_comm, Nat.add_left_comm] using hv
 
 /-- Soundness needs no primality computation: a supplied proper divisor
-rules out a prime, and a witness gives a square by the previous checker.-/
+rules out a prime, and a witness gives a square by the previous checker.
+@isnad1 id=ex.3h2v.s5.a0e14933a01d from=translated src=- shape=f4c9bbfd vocab=5febef0f
+-/
 theorem valid_sound {s : Q3Step} {q : ℕ} (h : s.Valid q)
     (hp : q.Prime) (he : q ∉ q3Exceptions) :
     ∃ M : Square3 (ZMod q), IsMagicOfPowers 2 M := by
@@ -60,6 +65,9 @@ end Q3Step
 def Q3Covered (lo hi : ℕ) : Prop := ∀ q, lo ≤ q → q < hi → q % 4 = 3 →
     q.Prime → q ∉ q3Exceptions → ∃ M : Square3 (ZMod q), IsMagicOfPowers 2 M
 
+/--
+@isnad1 id=q3covere.2h2v.s5.b256cc33252a from=translated src=- shape=d556de25 vocab=78074284
+-/
 theorem q3Covered_of_check {lo : ℕ} {data : List Q3Step}
     (h : Q3Step.checkFrom lo data = true) (hl : lo % 4 = 3) :
     Q3Covered lo (lo + 4 * data.length) := by
@@ -71,6 +79,9 @@ theorem q3Covered_of_check {lo : ℕ} {data : List Q3Step}
   rw [hq] at hv
   exact Q3Step.valid_sound hv hp he
 
+/--
+@isnad1 id=q3covere.2h3v.s4.455787d76387 from=translated src=- shape=0bc0c4a6 vocab=68deb83d
+-/
 theorem q3Covered_union {a b c : ℕ} (hab : Q3Covered a b) (hbc : Q3Covered b c) :
     Q3Covered a c := by
   intro q ha hc hm hp he

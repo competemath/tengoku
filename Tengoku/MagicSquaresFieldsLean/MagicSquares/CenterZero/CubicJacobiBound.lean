@@ -19,7 +19,9 @@ Section 6 argument.
 -/
 
 /-- The complexified cubic quadratic-character sum has norm at most
-`2 sqrt(#F)` when `#F ≡ 1 (mod 4)`.-/
+`2 sqrt(#F)` when `#F ≡ 1 (mod 4)`.
+@isnad1 id=le.2h1v.s7.89e20287814e from=translated src=- shape=c9e690bc vocab=8362dc6c
+-/
 theorem cubic_quadratic_sum_norm_le
     (hodd : ringChar F ≠ 2)
     (hqmod : Fintype.card F % 4 = 1) :
@@ -93,7 +95,9 @@ theorem cubic_quadratic_sum_norm_le
           ring
 
 /-- Real/integer form of the same bound, matching the existing
-`HasCenterZeroCubicWeilBound` interface.-/
+`HasCenterZeroCubicWeilBound` interface.
+@isnad1 id=le.2h1v.s7.5a227e684389 from=translated src=- shape=b2bdd355 vocab=ee9cd39f
+-/
 theorem centerZeroCubicCharacterSum_abs_le
     (hodd : ringChar F ≠ 2)
     (hqmod : Fintype.card F % 4 = 1) :
@@ -114,7 +118,9 @@ theorem centerZeroCubicCharacterSum_abs_le
   exact hnorm
 
 /-- The formerly explicit cubic Weil hypothesis used by the center-zero
-proof is automatic in the `q ≡ 1 (mod 4)` case.-/
+proof is automatic in the `q ≡ 1 (mod 4)` case.
+@isnad1 id=hascente.2h1v.s5.eb8fd76c76fb from=translated src=- shape=aad56ed2 vocab=ea23a823
+-/
 theorem centerZeroCubicWeilBound_of_card_mod_four_one
     (hodd : ringChar F ≠ 2)
     (hqmod : Fintype.card F % 4 = 1) :

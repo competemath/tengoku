@@ -59,14 +59,22 @@ noncomputable def blockTail :
   | 0, E => E
   | r + 1, E => (blockTail r E).divX
 
+/--
+@isnad1 id=eq.0h2v.s5.486b1a86b94b from=translated src=- shape=91042db7 vocab=9e074255
+-/
 @[simp] theorem blockTail_zero (E : Polynomial (Polynomial F)) :
     blockTail 0 E = E := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.7055a8cea005 from=translated src=- shape=41611b18 vocab=a901e470
+-/
 @[simp] theorem blockTail_succ (r : ℕ) (E : Polynomial (Polynomial F)) :
     blockTail (r + 1) E = (blockTail r E).divX := rfl
 
 /-- The coefficient in position `j` after removing `r` blocks is the
-original coefficient in position `r+j`.-/
+original coefficient in position `r+j`.
+@isnad1 id=eq.0h4v.s6.9c679304a7b7 from=translated src=- shape=d38359ef vocab=3ab2a9b9
+-/
 theorem blockTail_coeff (r j : ℕ) (E : Polynomial (Polynomial F)) :
     (blockTail r E).coeff j = E.coeff (r + j) := by
   induction r generalizing j with
@@ -83,7 +91,9 @@ theorem blockTail_coeff (r j : ℕ) (E : Polynomial (Polynomial F)) :
               omega
 
 /-- If the constant block vanishes, evaluating after removing that block
-just factors one `X^q` from the result.-/
+just factors one `X^q` from the result.
+@isnad1 id=eq.1h3v.s8.4a9bb0237606 from=translated src=- shape=c3df7251 vocab=1774fad3
+-/
 theorem blockEval_eq_blockEval_divX_mul
     (q : ℕ) (E : Polynomial (Polynomial F))
     (h0 : E.coeff 0 = 0) :
@@ -99,7 +109,9 @@ theorem blockEval_eq_blockEval_divX_mul
       simp [blockEval, Polynomial.eval_mul]
 
 /-- Once every constant block is zero, the relation can be divided by
-the common factor `X^q`.-/
+the common factor `X^q`.
+@isnad1 id=blockrel.2h5v.s7.43a2119de2b2 from=translated src=- shape=9986caad vocab=7527fc71
+-/
 theorem blockRelation_divX
     {m q : ℕ} (g : Polynomial F)
     (E : Fin m → Polynomial (Polynomial F))
@@ -126,7 +138,9 @@ theorem blockRelation_divX
   exact (mul_eq_zero.mp hprod).resolve_right hX
 
 /-- Modulo `X^q`, evaluating a block polynomial at `X^q` retains only
-its constant block.-/
+its constant block.
+@isnad1 id=eq.0h3v.s11.bf5b56461324 from=translated src=- shape=54656abf vocab=847a750e
+-/
 theorem adjoinRoot_mk_blockEval
     (q : ℕ) (E : Polynomial (Polynomial F)) :
     (AdjoinRoot.mk (X ^ q : Polynomial F)) (blockEval q E) =
@@ -162,7 +176,9 @@ def QuotientPowerIndependent
     ∀ i, a i = 0
 
 /-- Quotient power-independence implies the first-block vanishing step
-for an arbitrary family of block polynomials.-/
+for an arbitrary family of block polynomials.
+@isnad1 id=eq.3h7v.s7.42774eb7b348 from=translated src=- shape=d6f75d51 vocab=9ef005d2
+-/
 theorem firstBlock_vanishes_of_quotientPowerIndependent
     {m q D : ℕ} {g : Polynomial F}
     (hind : QuotientPowerIndependent (F := F) m q D g)
@@ -182,7 +198,9 @@ theorem firstBlock_vanishes_of_quotientPowerIndependent
     simpa [map_mul, map_pow, adjoinRoot_mk_blockEval (F := F)] using hmap
 
 /-- The relation remains true after removing any prescribed number of
-base-q blocks.-/
+base-q blocks.
+@isnad1 id=blockrel.3h7v.s6.289140281587 from=translated src=- shape=962760bd vocab=cc95768b
+-/
 theorem blockRelation_blockTail
     {m q D : ℕ} {g : Polynomial F}
     (hind : QuotientPowerIndependent (F := F) m q D g)
@@ -209,7 +227,9 @@ theorem blockRelation_blockTail
 
 Assuming the first-block independence supplied by the
 irreducibility/Kummer argument, every coefficient block is zero.
-This is the recursive part of the lemma on pp. 302--303.-/
+This is the recursive part of the lemma on pp. 302--303.
+@isnad1 id=eq.3h7v.s7.6cb50c58fe7d from=translated src=- shape=c8d24d1b vocab=9ef005d2
+-/
 theorem ln97_6_46_of_quotientPowerIndependent
     {m q D : ℕ} {g : Polynomial F}
     (hind : QuotientPowerIndependent (F := F) m q D g)

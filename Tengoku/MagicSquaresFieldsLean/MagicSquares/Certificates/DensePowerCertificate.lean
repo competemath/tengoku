@@ -22,6 +22,9 @@ def checkPow [DecidableEq R] (f r : List R) : List (PowStep R) → Bool
     eqCheck (mul (mul r r) (if s.bit then [0, 1] else [1]))
       (add s.value (mul f s.quotient)) && checkPow f s.value rest
 
+/--
+@isnad1 id=eq.3h8v.s7.d855b2355f96 from=translated src=- shape=1b39d58c vocab=ad8ce3b3
+-/
 theorem checkPow_sound [DecidableEq R] (h : R →+* S) (x : S)
     {f r : List R} {steps : List (PowStep R)} (hc : checkPow f r steps = true)
     (hf : eval h x f = 0) {n : ℕ} (hr : eval h x r = x ^ n) :
@@ -39,7 +42,9 @@ theorem checkPow_sound [DecidableEq R] (h : R →+* S) (x : S)
         mul_comm, mul_left_comm, mul_assoc] using hz.symm
 
 /-- A short modular-power trace proves the defining polynomial divides
-`X^q-X`; no irreducibility assumption is needed for positive certificates.-/
+`X^q-X`; no irreducibility assumption is needed for positive certificates.
+@isnad1 id=dvd.1h3v.s7.a896cc38d8d0 from=translated src=- shape=77b0cf7b vocab=b95e4b7a
+-/
 theorem dvd_X_pow_sub_X_of_check [DecidableEq R] {f : List R}
     {steps : List (PowStep R)} (hc : checkPow f [1] steps = true) :
     poly f ∣ (Polynomial.X ^ exponent 0 steps - Polynomial.X : Polynomial R) := by

@@ -48,7 +48,9 @@ noncomputable def substYXPow
     Polynomial K :=
   eval (X ^ q) v
 
-/-- A natural number divisible by the characteristic casts to zero.-/
+/-- A natural number divisible by the characteristic casts to zero.
+@isnad1 id=eq.1h3v.s5.3d543a89723a from=translated src=- shape=c330e99e vocab=d904b55f
+-/
 theorem natCast_eq_zero_of_char_dvd
     {p a : ℕ} [CharP K p] (hpa : p ∣ a) :
     (a : K) = 0 := by
@@ -56,7 +58,9 @@ theorem natCast_eq_zero_of_char_dvd
   rw [Nat.cast_mul, CharP.cast_eq_zero K p, zero_mul]
 
 /-- Every interior binomial coefficient of `p^s` vanishes in
-characteristic `p`.-/
+characteristic `p`.
+@isnad1 id=eq.3h4v.s6.eab4e3af174f from=translated src=- shape=502a7bf1 vocab=c1132cbd
+-/
 theorem primePow_choose_cast_eq_zero
     {p s n : ℕ} [CharP K p]
     (hp : Nat.Prime p)
@@ -67,7 +71,9 @@ theorem primePow_choose_cast_eq_zero
   exact hp.dvd_choose_pow hn0 hnq
 
 /-- The key calculation in the proof of LN97 6.50:
-for `0 < n < p^s`, the `n`th Hasse derivative of `X^(p^s)` is zero.-/
+for `0 < n < p^s`, the `n`th Hasse derivative of `X^(p^s)` is zero.
+@isnad1 id=eq.3h4v.s8.d367aebdad9d from=translated src=- shape=ce486897 vocab=4321a8f7
+-/
 theorem ln97_6_50_X_primePow
     {p s n : ℕ} [CharP K p]
     (hp : Nat.Prime p)
@@ -90,7 +96,9 @@ For `0 < n < p^s`,
     E^(n)((X^(p^s))^r) = 0.
 
 This is the fact LN97 uses when treating `X^(p^s)` as a new variable
-that is constant for hyperderivatives of order below `p^s`.-/
+that is constant for hyperderivatives of order below `p^s`.
+@isnad1 id=eq.3h5v.s9.373494bea87a from=translated src=- shape=211d2790 vocab=4321a8f7
+-/
 theorem hasseDeriv_frobeniusMonomial_eq_zero
     {p s n : ℕ} [CharP K p]
     (hp : Nat.Prime p)
@@ -125,7 +133,9 @@ theorem hasseDeriv_frobeniusMonomial_eq_zero
 differentiation of order below `p^s`.
 
 This is the monomial form of the "partial derivative in `x` only"
-statement in Corollary 6.50.-/
+statement in Corollary 6.50.
+@isnad1 id=eq.3h6v.s10.fba7cfcb0a8b from=translated src=- shape=1248f227 vocab=85ae87ae
+-/
 theorem hasseDeriv_mul_frobeniusMonomial
     {p s n : ℕ} [CharP K p]
     (hp : Nat.Prime p)
@@ -170,7 +180,9 @@ theorem hasseDeriv_mul_frobeniusMonomial
   simpa [Polynomial.hasseDeriv_zero'] using hsingle
 
 /-- Evaluating the coefficientwise partial Hasse derivative gives the
-expected coefficient sum.-/
+expected coefficient sum.
+@isnad1 id=eq.0h4v.s9.808949c68024 from=translated src=- shape=b3169058 vocab=7a35a9b5
+-/
 theorem eval_partialHasseX
     (n q : ℕ) (v : Polynomial (Polynomial K)) :
     eval (X ^ q) (partialHasseX n v) =
@@ -193,7 +205,9 @@ taking the `n`th Hasse derivative in the `x` variable coefficientwise
 and then substituting `y = x^(p^s)`:
 
     E^(n)(v(x, x^(p^s)))
-      = (E_x^(n) v)(x, x^(p^s)).-/
+      = (E_x^(n) v)(x, x^(p^s)).
+@isnad1 id=eq.3h5v.s8.6d478de3517d from=translated src=- shape=e981c338 vocab=ea82994a
+-/
 theorem ln97_6_50
     {p s n : ℕ} [CharP K p]
     (hp : Nat.Prime p)

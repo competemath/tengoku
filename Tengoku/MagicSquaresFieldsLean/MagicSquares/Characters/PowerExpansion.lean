@@ -12,12 +12,17 @@ open scoped BigOperators Classical
 def powerExponentSupport {r d : ℕ} (e : Fin r → Fin d) : Finset (Fin r) :=
   Finset.univ.filter (fun i => (e i : ℕ) ≠ 0)
 
+/--
+@isnad1 id=iff.0h4v.s5.940f6c6e4dca from=translated src=- shape=3e03c83e vocab=2d6da650
+-/
 @[simp]
 theorem mem_powerExponentSupport {r d : ℕ} (e : Fin r → Fin d) (i : Fin r) :
     i ∈ powerExponentSupport e ↔ (e i : ℕ) ≠ 0 := by
   simp [powerExponentSupport]
 
-/-- There is exactly one empty-support exponent vector.-/
+/-- There is exactly one empty-support exponent vector.
+@isnad1 id=iff.1h3v.s5.e0a8b6cdbcda from=translated src=- shape=1134470e vocab=1e5ce65a
+-/
 theorem powerExponentSupport_eq_empty_iff {r d : ℕ} (hd : 0 < d)
     (e : Fin r → Fin d) :
     powerExponentSupport e = ∅ ↔ e = fun _ => ⟨0, hd⟩ := by
@@ -58,7 +63,9 @@ private theorem sum_nonzero_coordinate {r d : ℕ} (hd : 0 < d) (i : Fin r) :
       simp [hcard]
       ring
 
-/-- The total sharp Weil cost for any number of distinct roots.-/
+/-- The total sharp Weil cost for any number of distinct roots.
+@isnad1 id=eq.1h2v.s7.2e145cdaaa17 from=translated src=- shape=2d412487 vocab=6bb33140
+-/
 theorem sum_powerExponentSupport_cost_general {r d : ℕ} (hd : 0 < d) :
     (∑ e : Fin r → Fin d, ((powerExponentSupport e).card - 1 : ℕ)) =
       (r : ℝ) * (d : ℝ) ^ (r - 1) * ((d : ℝ) - 1) - (d : ℝ) ^ r + 1 := by
@@ -88,7 +95,9 @@ theorem sum_powerExponentSupport_cost_general {r d : ℕ} (hd : 0 < d) :
   simp [z]
   ring
 
-/-- The eight-factor specialization gives the Section 14 constant.-/
+/-- The eight-factor specialization gives the Section 14 constant.
+@isnad1 id=eq.1h1v.s6.b673f52d0b99 from=translated src=- shape=0851f741 vocab=fc9a9794
+-/
 theorem sum_powerExponentSupport_cost {d : ℕ} (hd : 0 < d) :
     (∑ e : Fin 8 → Fin d, ((powerExponentSupport e).card - 1 : ℕ)) =
       centerOneC1 d := by

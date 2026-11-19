@@ -35,7 +35,9 @@ noncomputable def powerReductionCoeff
   (powerRemainder B i).coeff t
 
 /-- If `c` is a root of `B`, reduction modulo `B` does not change the
-value at `c`.-/
+value at `c`.
+@isnad1 id=eq.1h4v.s6.29916e2a77d2 from=translated src=- shape=1baa6826 vocab=8e7d5244
+-/
 theorem eval_powerRemainder_eq_pow_of_isRoot
     (B : Polynomial F) (i : ℕ) (c : F)
     (hc : B.IsRoot c) :
@@ -49,7 +51,9 @@ theorem eval_powerRemainder_eq_pow_of_isRoot
   simpa [powerRemainder, Polynomial.aeval_def] using h
 
 /-- For a nonconstant monic `B`, every power remainder has degree
-strictly smaller than `deg B`.-/
+strictly smaller than `deg B`.
+@isnad1 id=lt.2h3v.s6.ba60960034f2 from=translated src=- shape=0cdeb1ca vocab=0b98a059
+-/
 theorem powerRemainder_natDegree_lt
     (B : Polynomial F) (i : ℕ)
     (hB : B.Monic)
@@ -59,7 +63,9 @@ theorem powerRemainder_natDegree_lt
     (X ^ i : Polynomial F) hB hB1
 
 /-- If `B` is monic of natural degree `r > 0`, the remainder has
-natural degree `< r`.-/
+natural degree `< r`.
+@isnad1 id=lt.3h4v.s6.1cea0897fa44 from=translated src=- shape=db59768a vocab=0b98a059
+-/
 theorem powerRemainder_natDegree_lt_of_natDegree_eq
     (B : Polynomial F) (i r : ℕ)
     (hB : B.Monic)
@@ -75,7 +81,9 @@ theorem powerRemainder_natDegree_lt_of_natDegree_eq
     powerRemainder_natDegree_lt (F := F) B i hB hB1
 
 /-- Finite coefficient expansion of the remainder in the basis
-`1,X,...,X^(r-1)`.-/
+`1,X,...,X^(r-1)`.
+@isnad1 id=eq.3h4v.s8.1dcb85852c65 from=translated src=- shape=207a9549 vocab=06ecddfe
+-/
 theorem powerRemainder_eq_sum_range
     (B : Polynomial F) (i r : ℕ)
     (hB : B.Monic)

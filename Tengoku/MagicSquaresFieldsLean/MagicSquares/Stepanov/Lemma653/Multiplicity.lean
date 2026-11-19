@@ -27,7 +27,9 @@ writes all finite sums as `Finset.sum ...` explicitly.
 -/
 
 /-- If every point of `T` is a root of `h` with multiplicity at least
-`M > 0`, then `M * |T| ≤ natDegree h`.-/
+`M > 0`, then `M * |T| ≤ natDegree h`.
+@isnad1 id=le.2h4v.s6.fa59d7865d20 from=translated src=- shape=4c69ccd8 vocab=e977e4fc
+-/
 theorem card_mul_le_natDegree_of_rootMultiplicity
     (h : Polynomial F) (T : Finset F) (M : ℕ)
     (hM : 0 < M)

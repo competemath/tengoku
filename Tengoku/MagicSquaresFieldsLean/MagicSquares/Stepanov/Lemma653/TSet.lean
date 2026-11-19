@@ -24,6 +24,9 @@ noncomputable def stepanovT
   classical
   exact Finset.univ.filter (fun c => B.IsRoot (eval c g))
 
+/--
+@isnad1 id=iff.0h4v.s6.d1222a739da7 from=translated src=- shape=c6eba0ba vocab=641f5821
+-/
 @[simp] theorem mem_stepanovT
     (B g : Polynomial F) (c : F) :
     c ∈ stepanovT B g ↔ B.IsRoot (eval c g) := by
@@ -31,7 +34,9 @@ noncomputable def stepanovT
   simp [stepanovT]
 
 /-- Directly convert a Lemma-6.52 auxiliary polynomial into the basic
-multiplicity count `M |T| ≤ deg h`.-/
+multiplicity count `M |T| ≤ deg h`.
+@isnad1 id=le.2h5v.s6.0daf27c94902 from=translated src=- shape=6c1e9c04 vocab=a1f365c1
+-/
 theorem stepanovT_card_mul_le_natDegree
     (B g h : Polynomial F)
     (M : ℕ)

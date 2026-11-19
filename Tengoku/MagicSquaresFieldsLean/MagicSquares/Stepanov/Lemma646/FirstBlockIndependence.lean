@@ -24,7 +24,9 @@ The normalized Kummer irreducibility hypothesis is explicit here.
 -/
 
 /-- A degree-`m` nonzero element has no nonzero polynomial relation of
-degree below `m` in its inverse.  Reflection clears the inverse powers.-/
+degree below `m` in its inverse.  Reflection clears the inverse powers.
+@isnad1 id=eq.5h5v.s7.a1ebca4fb70e from=translated src=- shape=8248e4ae vocab=e9179d60
+-/
 theorem polynomial_eq_zero_of_eval₂_inv_eq_zero
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     {m : ℕ} (hm : 0 < m) (Y : L) (hY : Y ≠ 0)
@@ -43,6 +45,9 @@ theorem polynomial_eq_zero_of_eval₂_inv_eq_zero
 
 variable {F : Type*} [Field F]
 
+/--
+@isnad1 id=eq.0h4v.s6.428a8836287a from=translated src=- shape=d3122a3c vocab=4532e5e6
+-/
 theorem firstBlockPolynomial_coeff_fin {m : ℕ} (a : Fin m → Polynomial F) (i : Fin m) :
     (firstBlockPolynomial a).coeff (i : ℕ) = a i := by
   classical
@@ -54,7 +59,9 @@ theorem firstBlockPolynomial_coeff_fin {m : ℕ} (a : Fin m → Polynomial F) (i
     simp [hne]
   · simp
 
-/-- The polynomial version of the zero-orbit-factor step on LN97 p.303.-/
+/-- The polynomial version of the zero-orbit-factor step on LN97 p.303.
+@isnad1 id=eq.5h7v.s8.852aab1118c0 from=translated src=- shape=ed4c6924 vocab=608096b7
+-/
 theorem firstBlock_vanishes_of_inverse_root_orbit
     {L : Type*} [Field L] [Algebra (RatFunc F) L]
     {m : ℕ} (hm : 0 < m) {zeta : F} (hzeta : IsPrimitiveRoot zeta m)
@@ -102,7 +109,9 @@ noncomputable def normalizedKummerBase (f : Polynomial F) : Polynomial F :=
 variable [Fintype F]
 
 /-- The roots of unity required by the orbit construction exist because
-the multiplicative group of a finite field is cyclic.-/
+the multiplicative group of a finite field is cyclic.
+@isnad1 id=ex.2h2v.s5.809b43399152 from=translated src=- shape=3da16856 vocab=0ec7d182
+-/
 theorem exists_primitiveRoot_of_dvd_card_sub_one
     {m : ℕ} (_hm : 0 < m) (hmq : m ∣ Fintype.card F - 1) :
     ∃ zeta : F, IsPrimitiveRoot zeta m := by
@@ -116,7 +125,9 @@ theorem exists_primitiveRoot_of_dvd_card_sub_one
       (Nat.div_mul_cancel hmq).symm⟩
 
 /-- The first-block independence needed by `Core`, now derived from a
-degree-`m` root of the normalized Kummer polynomial.-/
+degree-`m` root of the normalized Kummer polynomial.
+@isnad1 id=quotient.5h6v.s8.0c0678858c25 from=translated src=- shape=05c7b052 vocab=65577ee8
+-/
 theorem quotientPowerIndependent_of_kummerRootData
     {m D : ℕ} (hm : 0 < m) (hmq : m ∣ Fintype.card F - 1)
     {zeta : F} (hzeta : IsPrimitiveRoot zeta m)
@@ -156,7 +167,9 @@ theorem quotientPowerIndependent_of_kummerRootData
   exact hG
 
 /-- Gauss's lemma and the new reduction discharge the quotient-independence
-interface from explicit irreducibility of the normalized Kummer polynomial.-/
+interface from explicit irreducibility of the normalized Kummer polynomial.
+@isnad1 id=quotient.6h5v.s8.de3767ca5311 from=translated src=- shape=c1ead74e vocab=9036343e
+-/
 theorem quotientPowerIndependent_of_normalized_irreducible
     {m D : ℕ} (hm : 0 < m) (hmq : m ∣ Fintype.card F - 1)
     {zeta : F} (hzeta : IsPrimitiveRoot zeta m)
@@ -170,7 +183,9 @@ theorem quotientPowerIndependent_of_normalized_irreducible
 
 /-- LN97 Lemma 6.46 for `f(0) ≠ 0`, with the
 normalized irreducibility hypothesis exposed instead of an assumed
-`QuotientPowerIndependent` interface.-/
+`QuotientPowerIndependent` interface.
+@isnad1 id=eq.8h7v.s8.edb224df9e2d from=translated src=- shape=9dc2b474 vocab=5cd3c649
+-/
 theorem ln97_6_46_of_normalized_irreducible
     {m D : ℕ} (hm : 0 < m) (hmq : m ∣ Fintype.card F - 1)
     {zeta : F} (hzeta : IsPrimitiveRoot zeta m)
@@ -187,7 +202,9 @@ theorem ln97_6_46_of_normalized_irreducible
 
 /-- The nonzero-constant case with the book's degree allowance
 `D = q / m - deg f`.  Primitive roots and the strict degree budget are
-derived internally.  Normalized Kummer irreducibility remains explicit.-/
+derived internally.  Normalized Kummer irreducibility remains explicit.
+@isnad1 id=eq.8h5v.s8.e5d8613d6284 from=translated src=- shape=dd3c5f6f vocab=4569fc2e
+-/
 theorem ln97_6_46_nonzero_constant
     {m : ℕ} (hm : 0 < m) (hmq : m ∣ Fintype.card F - 1)
     (f : Polynomial F) (hf0 : f.eval 0 ≠ 0)

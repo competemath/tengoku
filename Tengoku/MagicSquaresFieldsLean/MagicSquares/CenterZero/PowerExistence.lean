@@ -18,7 +18,9 @@ namespace MagicSquares
 variable {F : Type*} [Field F] [Fintype F] [DecidableEq F]
 
 omit [Fintype F] [DecidableEq F] in
-/-- Products of powers are powers.-/
+/-- Products of powers are powers.
+@isnad1 id=isnthpow.2h4v.s6.ea8d2dac98e9 from=translated src=- shape=fb7bd740 vocab=01c8198d
+-/
 theorem IsNthPower.mul {n : ℕ} {a b : F}
     (ha : IsNthPower n a) (hb : IsNthPower n b) : IsNthPower n (a * b) := by
   obtain ⟨x, rfl⟩ := ha
@@ -26,7 +28,9 @@ theorem IsNthPower.mul {n : ℕ} {a b : F}
   exact ⟨x * y, mul_pow x y n⟩
 
 omit [Fintype F] [DecidableEq F] in
-/-- The sign condition makes every entry of the center-zero family a power.-/
+/-- The sign condition makes every entry of the center-zero family a power.
+@isnad1 id=isnthpow.5h4v.s7.a58401749c91 from=translated src=- shape=d9d2491b vocab=f6208dfb
+-/
 theorem centerZero_all_entries_are_powers {n : ℕ} (hn : 0 < n) (x : F)
     (hneg : IsNthPower n (-1 : F))
     (hxm : IsNthPower n (x - 1)) (hx : IsNthPower n x)
@@ -42,7 +46,9 @@ theorem centerZero_all_entries_are_powers {n : ℕ} (hn : 0 < n) (x : F)
   fin_cases k <;> simp [Square3.entries, hnegx, hnegxm, hnegxp, hneg, hxm, hx, hxp, hzero, hone]
 
 omit [Fintype F] [DecidableEq F] in
-/-- In particular the sign condition is automatic for odd exponents.-/
+/-- In particular the sign condition is automatic for odd exponents.
+@isnad1 id=isnthpow.1h2v.s5.e0bd480378ea from=translated src=- shape=c4d7943c vocab=09f57355
+-/
 theorem isNthPower_neg_one_of_odd {n : ℕ} (hn : Odd n) :
     IsNthPower n (-1 : F) := ⟨-1, hn.neg_one_pow⟩
 

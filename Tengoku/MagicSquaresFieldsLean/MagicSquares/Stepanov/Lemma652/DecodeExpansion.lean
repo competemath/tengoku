@@ -22,7 +22,9 @@ back into the literal finite sum from equation (6.22).
 
 omit [Fintype F] in
 /-- Evaluation of a decoded outer polynomial is the expected finite
-sum over its `u+1` coefficients.-/
+sum over its `u+1` coefficients.
+@isnad1 id=eq.0h7v.s8.98a2fb5720f6 from=translated src=- shape=f1281f34 vocab=48848641
+-/
 theorem blockEval_stepanovDecode
     {m u D q : ℕ}
     (v : StepanovUnknowns F m u D)
@@ -40,7 +42,9 @@ theorem blockEval_stepanovDecode
 
 omit [Fintype F] in
 /-- The complete auxiliary polynomial with decoded coefficients is the
-literal double sum of (6.22).-/
+literal double sum of (6.22).
+@isnad1 id=eq.0h9v.s9.dbbf1a667b59 from=translated src=- shape=e1e97806 vocab=beefd096
+-/
 theorem stepanovAuxiliary_decode_eq_doubleSum
     {m u D q M : ℕ}
     (f g : Polynomial F)

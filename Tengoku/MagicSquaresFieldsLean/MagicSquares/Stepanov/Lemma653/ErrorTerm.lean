@@ -10,7 +10,9 @@ namespace LN97
 # Rewriting the error term in Theorem 6.53
 -/
 
-/-- `m * (4 k sqrt(m) sqrt(q)) = 4 k (m sqrt(m)) sqrt(q)`.-/
+/-- `m * (4 k sqrt(m) sqrt(q)) = 4 k (m sqrt(m)) sqrt(q)`.
+@isnad1 id=eq.0h3v.s6.ccafda9526ee from=translated src=- shape=d0ac0229 vocab=733e2c61
+-/
 theorem theorem653_error_rewrite
     (m k q : ℝ) :
     m * (4 * k * Real.sqrt m * Real.sqrt q) =
@@ -18,7 +20,9 @@ theorem theorem653_error_rewrite
   ring
 
 /-- For nonnegative `m`, the factor `m*sqrt(m)` is the usual
-`m^(3/2)` appearing in LN97 Theorem 6.53.-/
+`m^(3/2)` appearing in LN97 Theorem 6.53.
+@isnad1 id=eq.1h1v.s5.c2c4d01d77cb from=translated src=- shape=025340bf vocab=72659d50
+-/
 theorem mul_sqrt_eq_rpow_three_halves
     (m : ℝ) (hm : 0 ≤ m) :
     m * Real.sqrt m = m ^ (3 / 2 : ℝ) := by

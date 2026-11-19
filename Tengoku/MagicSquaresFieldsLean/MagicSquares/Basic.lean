@@ -45,7 +45,9 @@ def parametrized [Ring R] (E U V : R) : Square3 R where
   h := E + U + V
   i := E - U
 
-/-- Every square in the universal family is magic, with magic sum `3 * E`.-/
+/-- Every square in the universal family is magic, with magic sum `3 * E`.
+@isnad1 id=ismagic.0h4v.s4.2af3b03cde14 from=translated src=- shape=c50995b3 vocab=8d5f09be
+-/
 theorem parametrized_isMagic [CommRing R] (E U V : R) :
     IsMagic (parametrized E U V) := by
   unfold IsMagic parametrized
@@ -63,13 +65,17 @@ theorem parametrized_isMagic [CommRing R] (E U V : R) :
   · ring
   · ring
 
-/-- The common magic sum is three times the center entry.  This is Theorem 2.1.-/
+/-- The common magic sum is three times the center entry.  This is Theorem 2.1.
+@isnad1 id=eq.1h2v.s6.ba21cb657d6f from=translated src=- shape=d06983c8 vocab=cb005611
+-/
 theorem magicSum_eq_three_center [CommRing R] (M : Square3 R) (hM : IsMagic M) :
     M.a + M.b + M.c = 3 * M.e := by
   rcases hM with ⟨hr2, hr3, hc1, hc2, hc3, hd1, hd2⟩
   linear_combination hc2 + hd1 + hd2 - hr3
 
-/-- Opposite corner entries add to twice the center.-/
+/-- Opposite corner entries add to twice the center.
+@isnad1 id=eq.1h2v.s6.0886329a2502 from=translated src=- shape=4f400209 vocab=7ef278d0
+-/
 theorem a_add_i_eq_two_center [CommRing R] (M : Square3 R) (hM : IsMagic M) :
     M.a + M.i = 2 * M.e := by
   rcases hM with ⟨hr2, hr3, hc1, hc2, hc3, hd1, hd2⟩
@@ -77,7 +83,9 @@ theorem a_add_i_eq_two_center [CommRing R] (M : Square3 R) (hM : IsMagic M) :
     linear_combination hc2 + hd1 + hd2 - hr3
   linear_combination hs - hd1
 
-/-- The second pair of opposite entries adds to twice the center.-/
+/-- The second pair of opposite entries adds to twice the center.
+@isnad1 id=eq.1h2v.s6.f5e4ee9e49d2 from=translated src=- shape=4f400209 vocab=f2565366
+-/
 theorem b_add_h_eq_two_center [CommRing R] (M : Square3 R) (hM : IsMagic M) :
     M.b + M.h = 2 * M.e := by
   rcases hM with ⟨hr2, hr3, hc1, hc2, hc3, hd1, hd2⟩
@@ -85,7 +93,9 @@ theorem b_add_h_eq_two_center [CommRing R] (M : Square3 R) (hM : IsMagic M) :
     linear_combination hc2 + hd1 + hd2 - hr3
   linear_combination hs - hc2
 
-/-- The third pair of opposite entries adds to twice the center.-/
+/-- The third pair of opposite entries adds to twice the center.
+@isnad1 id=eq.1h2v.s6.90a1910b0488 from=translated src=- shape=4f400209 vocab=44de154c
+-/
 theorem c_add_g_eq_two_center [CommRing R] (M : Square3 R) (hM : IsMagic M) :
     M.c + M.g = 2 * M.e := by
   rcases hM with ⟨hr2, hr3, hc1, hc2, hc3, hd1, hd2⟩
@@ -93,7 +103,9 @@ theorem c_add_g_eq_two_center [CommRing R] (M : Square3 R) (hM : IsMagic M) :
     linear_combination hc2 + hd1 + hd2 - hr3
   linear_combination hs - hd2
 
-/-- The fourth pair of opposite entries adds to twice the center.-/
+/-- The fourth pair of opposite entries adds to twice the center.
+@isnad1 id=eq.1h2v.s6.fdbfbdf5aac4 from=translated src=- shape=4f400209 vocab=5607f6e0
+-/
 theorem d_add_f_eq_two_center [CommRing R] (M : Square3 R) (hM : IsMagic M) :
     M.d + M.f = 2 * M.e := by
   rcases hM with ⟨hr2, hr3, hc1, hc2, hc3, hd1, hd2⟩
@@ -102,7 +114,9 @@ theorem d_add_f_eq_two_center [CommRing R] (M : Square3 R) (hM : IsMagic M) :
   linear_combination hs - hr2
 
 /-- Converse direction of Proposition 1: every 3 × 3 magic square has the
-universal form, with `U = A - E` and `V = C - E`.-/
+universal form, with `U = A - E` and `V = C - E`.
+@isnad1 id=eq.1h2v.s6.8120118b45d8 from=translated src=- shape=422d178c vocab=3d10baa1
+-/
 theorem universal_form [CommRing R] (M : Square3 R) (hM : IsMagic M) :
     M = parametrized M.e (M.a - M.e) (M.c - M.e) := by
   rcases hM with ⟨hr2, hr3, hc1, hc2, hc3, hd1, hd2⟩

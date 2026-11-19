@@ -35,20 +35,26 @@ def CenterOneGoodB (b : R) : Prop :=
   Function.Injective (centerOneCoeff b)
 
 /-- Every entry of the center-one line is `1 + λ t` for the corresponding
-coefficient `λ`.-/
+coefficient `λ`.
+@isnad1 id=eq.0h4v.s6.f0835b0581a0 from=translated src=- shape=6f84ec97 vocab=01ed6ede
+-/
 theorem centerOneLine_entry_formula (t b : R) (k : Fin 9) :
     (centerOneLine t b).entries k = 1 + centerOneCoeff b k * t := by
   fin_cases k <;>
     simp [centerOneCoeff, entries, centerOneLine, centerOne, parametrized] <;>
     ring
 
-/-- The center-one line is automatically magic.-/
+/-- The center-one line is automatically magic.
+@isnad1 id=ismagic.0h3v.s4.6d236fda5dd0 from=translated src=- shape=ce8ffaa7 vocab=b35a0137
+-/
 theorem centerOneLine_isMagic (t b : R) :
     (centerOneLine t b).IsMagic := by
   simpa [centerOneLine] using centerOne_isMagic t (b * t)
 
 /-- Once the coefficient map is injective, every nonzero parameter `t`
-gives nine distinct entries.-/
+gives nine distinct entries.
+@isnad1 id=pairwise.2h3v.s5.c7a514a76135 from=translated src=- shape=8ac05c46 vocab=86a10c77
+-/
 theorem centerOneLine_pairwiseDistinct
     [IsDomain R]
     {t b : R}
@@ -66,7 +72,9 @@ theorem centerOneLine_pairwiseDistinct
   exact hb hcoeff
 
 /-- A good coefficient parameter has nonzero coefficient at every
-non-center position.-/
+non-center position.
+@isnad1 id=ne.2h3v.s6.1826b0913eef from=translated src=- shape=6a0c16d0 vocab=726a7035
+-/
 theorem centerOneCoeff_ne_zero_of_good
     {b : R}
     (hb : CenterOneGoodB b)

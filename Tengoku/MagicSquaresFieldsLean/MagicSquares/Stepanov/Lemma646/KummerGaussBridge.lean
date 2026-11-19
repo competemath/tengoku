@@ -45,6 +45,9 @@ noncomputable def kummerRatFuncPolynomial
     (m : ℕ) (f : Polynomial F) : Polynomial (RatFunc F) :=
   X ^ m - C ((algebraMap (Polynomial F) (RatFunc F)) f)
 
+/--
+@isnad1 id=eq.0h3v.s7.8d8177b2cb0b from=translated src=- shape=ca958b40 vocab=798a8392
+-/
 @[simp]
 theorem map_kummerPolynomial
     (m : ℕ) (f : Polynomial F) :
@@ -53,11 +56,17 @@ theorem map_kummerPolynomial
       kummerRatFuncPolynomial m f := by
   simp [kummerPolynomial, kummerRatFuncPolynomial]
 
+/--
+@isnad1 id=monic.1h3v.s5.da137614a4d4 from=translated src=- shape=b43ac694 vocab=5c1dcd5b
+-/
 theorem kummerPolynomial_monic
     {m : ℕ} (hm : 0 < m) (f : Polynomial F) :
     (kummerPolynomial m f).Monic := by
   exact Polynomial.monic_X_pow_sub_C f (Nat.ne_of_gt hm)
 
+/--
+@isnad1 id=monic.1h3v.s5.6958a37efc62 from=translated src=- shape=5fd30579 vocab=e480e034
+-/
 theorem kummerRatFuncPolynomial_monic
     {m : ℕ} (hm : 0 < m) (f : Polynomial F) :
     (kummerRatFuncPolynomial m f).Monic := by
@@ -66,7 +75,9 @@ theorem kummerRatFuncPolynomial_monic
     (Nat.ne_of_gt hm)
 
 /-- Gauss's lemma: irreducibility in `(F[X])[Y]` implies irreducibility
-of the same monic polynomial in `F(X)[Y]`.-/
+of the same monic polynomial in `F(X)[Y]`.
+@isnad1 id=irreduci.2h3v.s7.ca0af80d8816 from=translated src=- shape=5914ac69 vocab=861cd218
+-/
 theorem kummerRatFuncPolynomial_irreducible
     {m : ℕ} (hm : 0 < m) {f : Polynomial F}
     (hirr : Irreducible (kummerPolynomial m f)) :

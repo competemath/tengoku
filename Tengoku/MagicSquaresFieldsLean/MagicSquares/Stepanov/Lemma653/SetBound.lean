@@ -24,6 +24,9 @@ union, with the chosen integer multiplicity, gives (6.28).
 noncomputable def stepanovFullT (m : ℕ) (f B : Polynomial F) : Finset F :=
   stepanovT0 f ∪ stepanovT B (stepanovG m f)
 
+/--
+@isnad1 id=iff.0h5v.s6.720dbfac0e55 from=translated src=- shape=377bde9d vocab=b71e3375
+-/
 @[simp] theorem mem_stepanovFullT (m : ℕ) (f B : Polynomial F) (c : F) :
     c ∈ stepanovFullT m f B ↔
       f.IsRoot c ∨ B.IsRoot (eval c (stepanovG m f)) := by

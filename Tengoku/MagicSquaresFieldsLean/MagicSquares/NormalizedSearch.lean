@@ -8,7 +8,9 @@ namespace MagicSquares
 variable {F : Type*} [Field F] [Fintype F] [DecidableEq F]
 
 omit [Fintype F] [DecidableEq F] in
-/-- Inversion preserves the power condition.-/
+/-- Inversion preserves the power condition.
+@isnad1 id=isnthpow.1h3v.s5.7ee516498d9e from=translated src=- shape=09f887e1 vocab=4ef18796
+-/
 theorem IsNthPower.inv {n : ℕ} {a : F} (ha : IsNthPower n a) :
     IsNthPower n a⁻¹ := by
   obtain ⟨x, rfl⟩ := ha
@@ -29,11 +31,17 @@ def scale (s : F) (M : Square3 F) : Square3 F where
   i := s * M.i
 
 omit [Fintype F] [DecidableEq F] in
+/--
+@isnad1 id=eq.0h4v.s5.f9f3942b5c1b from=translated src=- shape=8d484e16 vocab=87f4fde4
+-/
 @[simp] theorem scale_entries (s : F) (M : Square3 F) (k : Fin 9) :
     (scale s M).entries k = s * M.entries k := by
   fin_cases k <;> rfl
 
 omit [Fintype F] [DecidableEq F] in
+/--
+@isnad1 id=ismagic.1h3v.s5.6f97bd426ab3 from=translated src=- shape=46d37d77 vocab=c37bf0b4
+-/
 theorem scale_isMagic {M : Square3 F} (hM : M.IsMagic) (s : F) :
     (scale s M).IsMagic := by
   rcases hM with ⟨h1, h2, h3, h4, h5, h6, h7⟩
@@ -54,6 +62,9 @@ theorem scale_isMagic {M : Square3 F} (hM : M.IsMagic) (s : F) :
     linear_combination s * h7
 
 omit [Fintype F] [DecidableEq F] in
+/--
+@isnad1 id=ismagico.3h4v.s6.acdde6e3d8d9 from=translated src=- shape=5e570a42 vocab=96e6621f
+-/
 theorem scale_isMagicOfPowers {n : ℕ} {M : Square3 F} (hM : IsMagicOfPowers n M)
     {s : F} (hs : s ≠ 0) (hsp : IsNthPower n s) :
     IsMagicOfPowers n (scale s M) := by
@@ -70,7 +81,9 @@ end Square3
 omit [Fintype F] [DecidableEq F] in
 /-- **Section 8 normalization is complete.** Every distinct magic square
 of powers can be scaled into the center-zero one-parameter family or the
-center-one two-parameter family, preserving the power condition.-/
+center-one two-parameter family, preserving the power condition.
+@isnad1 id=iff.0h2v.s5.6e17a8d48e0f from=translated src=- shape=44f7702b vocab=0473beb3
+-/
 theorem exists_magic_of_powers_iff_normalized (n : ℕ) :
     (∃ M : Square3 F, IsMagicOfPowers n M) ↔
       (∃ x : F, IsMagicOfPowers n (Square3.centerZero x)) ∨
@@ -108,7 +121,9 @@ theorem exists_magic_of_powers_iff_normalized (n : ℕ) :
     · exact ⟨Square3.centerOne u v, huv⟩
 
 omit [Fintype F] [DecidableEq F] in
-/-- Exhausting the normalized families is sufficient to certify a Parker field.-/
+/-- Exhausting the normalized families is sufficient to certify a Parker field.
+@isnad1 id=iff.0h2v.s5.8b88c641e82e from=translated src=- shape=33661e92 vocab=e4628ec6
+-/
 theorem isNParker_iff_normalized_fail (n : ℕ) :
     IsNParker F n ↔
       (∀ x : F, ¬ IsMagicOfPowers n (Square3.centerZero x)) ∧
@@ -118,7 +133,9 @@ theorem isNParker_iff_normalized_fail (n : ℕ) :
 
 omit [Fintype F] [DecidableEq F] in
 /-- With a sign obstruction, the complete center-one search alone certifies
-nonexistence; no center-zero distinct square can have the power condition.-/
+nonexistence; no center-zero distinct square can have the power condition.
+@isnad1 id=iff.1h2v.s6.9b0976504e2f from=translated src=- shape=8850197d vocab=abac7634
+-/
 theorem isNParker_iff_centerOne_fail_of_sign_obstruction {n : ℕ}
     (hneg : ¬ IsNthPower n (-1 : F)) :
     IsNParker F n ↔ ∀ u v : F, ¬ IsMagicOfPowers n (Square3.centerOne u v) := by
@@ -145,7 +162,9 @@ def normalizedPowerSearchSucceeds (n : ℕ) : Bool :=
   decide ((∃ x : F, normalizedPowerConditions n (Square3.centerZero x)) ∨
     (∃ u v : F, normalizedPowerConditions n (Square3.centerOne u v)))
 
-/-- The arithmetic entry test is equivalent to the power predicate on magic squares.-/
+/-- The arithmetic entry test is equivalent to the power predicate on magic squares.
+@isnad1 id=iff.2h3v.s5.f5aae2c0d149 from=translated src=- shape=102188e7 vocab=822ef4b7
+-/
 theorem normalizedPowerConditions_iff {n : ℕ} (hn : 0 < n)
     {M : Square3 F} (hM : M.IsMagic) :
     normalizedPowerConditions n M ↔ IsMagicOfPowers n M := by
@@ -153,7 +172,9 @@ theorem normalizedPowerConditions_iff {n : ℕ} (hn : 0 < n)
     ← isNthPower_iff_zero_or_pow_eq_one hn, hM, true_and, Square3.PairwiseDistinct]
 
 /-- **Algorithm 2 is sound and complete.** A failed normalized finite search
-is a proof of the Parker property, once its Boolean result is certified.-/
+is a proof of the Parker property, once its Boolean result is certified.
+@isnad1 id=iff.1h2v.s5.7fb8ed0cf339 from=translated src=- shape=912e66b5 vocab=e7380e0f
+-/
 theorem normalizedPowerSearchSucceeds_eq_true_iff {n : ℕ} (hn : 0 < n) :
     normalizedPowerSearchSucceeds (F := F) n = true ↔
       ∃ M : Square3 F, IsMagicOfPowers n M := by
@@ -162,7 +183,9 @@ theorem normalizedPowerSearchSucceeds_eq_true_iff {n : ℕ} (hn : 0 < n) :
   simp only [normalizedPowerConditions_iff hn (Square3.centerZero_isMagic _),
     normalizedPowerConditions_iff hn (Square3.centerOne_isMagic _ _)]
 
-/-- A kernel-checked false result of the finite search certifies an exception.-/
+/-- A kernel-checked false result of the finite search certifies an exception.
+@isnad1 id=iff.1h2v.s5.f2a642189486 from=translated src=- shape=7fe17123 vocab=ea6c31f2
+-/
 theorem isNParker_iff_normalizedPowerSearch_eq_false {n : ℕ} (hn : 0 < n) :
     IsNParker F n ↔ normalizedPowerSearchSucceeds (F := F) n = false := by
   rw [IsNParker, ← normalizedPowerSearchSucceeds_eq_true_iff hn]

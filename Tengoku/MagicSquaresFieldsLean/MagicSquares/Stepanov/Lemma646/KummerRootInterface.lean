@@ -41,6 +41,9 @@ structure KummerRootData (m : ℕ) (f : Polynomial F) where
 attribute [instance] KummerRootData.instFieldL
 attribute [instance] KummerRootData.instAlgebra
 
+/--
+@isnad1 id=eq.1h6v.s9.e8176050804b from=translated src=- shape=03ec1aa0 vocab=f68b60be
+-/
 theorem KummerRootData.coefficients_zero
     {m : ℕ} {f : Polynomial F}
     (K : KummerRootData m f)

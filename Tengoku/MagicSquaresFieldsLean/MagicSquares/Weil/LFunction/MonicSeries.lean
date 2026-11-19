@@ -14,6 +14,9 @@ an ordering on the finite field.-/
 noncomputable def monicPolynomials (n : ℕ) : Finset (Polynomial F) :=
   Finset.univ.image (monicOfCoeffs n)
 
+/--
+@isnad1 id=iff.0h3v.s6.1fb94c81e8c5 from=translated src=- shape=48cac884 vocab=7e98904d
+-/
 @[simp]
 theorem mem_monicPolynomials (n : ℕ) (g : Polynomial F) :
     g ∈ monicPolynomials n ↔ g.Monic ∧ g.natDegree = n := by
@@ -25,6 +28,9 @@ theorem mem_monicPolynomials (n : ℕ) (g : Polynomial F) :
     obtain ⟨v, hv⟩ := (monicOfCoeffsEquiv (F := F) n).surjective ⟨g, hg⟩
     exact Finset.mem_image.mpr ⟨v, Finset.mem_univ _, congrArg Subtype.val hv⟩
 
+/--
+@isnad1 id=eq.0h3v.s6.4abe8eac398c from=translated src=- shape=101c2df8 vocab=b3c97372
+-/
 theorem sum_monicPolynomials (n : ℕ) (f : Polynomial F → ℂ) :
     ∑ g ∈ monicPolynomials n, f g = ∑ v : Fin n → F, f (monicOfCoeffs n v) := by
   apply Finset.sum_image
@@ -32,6 +38,9 @@ theorem sum_monicPolynomials (n : ℕ) (f : Polynomial F → ℂ) :
   apply (monicOfCoeffsEquiv n).injective
   exact Subtype.ext h
 
+/--
+@isnad1 id=eq.0h1v.s6.6f2443335683 from=translated src=- shape=5f989be4 vocab=e8cd1860
+-/
 @[simp]
 theorem monicPolynomials_zero : monicPolynomials (F := F) 0 = {1} := by
   ext g
@@ -49,6 +58,9 @@ noncomputable def avoidingSeries (w : Polynomial F → ℂ) (S : Finset (Polynom
   PowerSeries.mk (fun n =>
     ∑ g ∈ (monicPolynomials n).filter (fun g => ∀ p ∈ S, ¬ p ∣ g), w g)
 
+/--
+@isnad1 id=eq.0h4v.s9.a26f3592a7ff from=translated src=- shape=ccac73a9 vocab=7968a132
+-/
 @[simp]
 theorem avoidingSeries_coeff (w : Polynomial F → ℂ) (S : Finset (Polynomial F)) (n : ℕ) :
     PowerSeries.coeff n (avoidingSeries w S) =
@@ -80,7 +92,9 @@ private theorem avoiding_mul_iff (S : Finset (Polynomial F)) (p h : Polynomial F
     · exact hav q hq hqh
 
 /-- Multiplication by a new irreducible identifies the excluded terms
-with the same weighted monic enumeration in a lower degree.-/
+with the same weighted monic enumeration in a lower degree.
+@isnad1 id=eq.5h5v.s10.a8e052b17f96 from=translated src=- shape=8478508d vocab=acb9def3
+-/
 theorem sum_monic_divisible_avoiding
     (w : Polynomial F → ℂ)
     (hw : ∀ g h : Polynomial F, g.Monic → h.Monic → w (g * h) = w g * w h)
@@ -121,7 +135,9 @@ theorem sum_monic_divisible_avoiding
     exact (hdn (hgmon.2 ▸ natDegree_le_of_dvd hdvd hgmon.1.ne_zero)).elim
 
 /-- Removing one irreducible divisor multiplies the generating series
-by its Euler denominator.-/
+by its Euler denominator.
+@isnad1 id=eq.5h4v.s8.84f3f68de46e from=translated src=- shape=f8ffd6ff vocab=9e447ccc
+-/
 theorem avoidingSeries_insert
     (w : Polynomial F → ℂ)
     (hw : ∀ g h : Polynomial F, g.Monic → h.Monic → w (g * h) = w g * w h)
@@ -152,7 +168,9 @@ theorem avoidingSeries_insert
   · rw [ite_eq_right hd] at hsplit ⊢
     simpa only [mul_zero, sub_zero, zero_add] using hsplit
 
-/-- Simultaneously remove a finite collection of irreducibles.-/
+/-- Simultaneously remove a finite collection of irreducibles.
+@isnad1 id=eq.2h3v.s8.2c30aa6bf6bc from=translated src=- shape=02d37a8a vocab=d3556d85
+-/
 theorem avoidingSeries_eq_prod_mul
     (w : Polynomial F → ℂ)
     (hw : ∀ g h : Polynomial F, g.Monic → h.Monic → w (g * h) = w g * w h)
@@ -167,7 +185,9 @@ theorem avoidingSeries_eq_prod_mul
     rw [avoidingSeries_insert w hw S hS' p hp'.1 hp'.2 hp,
       ih hS', Finset.prod_insert hp, mul_assoc]
 
-/-- The constant coefficient survives every prime exclusion.-/
+/-- The constant coefficient survives every prime exclusion.
+@isnad1 id=eq.2h3v.s7.de03bafb39c4 from=translated src=- shape=ba1d9b3d vocab=3e6662c4
+-/
 theorem avoidingSeries_constantCoeff (w : Polynomial F → ℂ) (hw1 : w 1 = 1)
     (S : Finset (Polynomial F)) (hS : ∀ q ∈ S, Irreducible q) :
     PowerSeries.constantCoeff (avoidingSeries w S) = 1 := by
@@ -181,6 +201,9 @@ theorem avoidingSeries_constantCoeff (w : Polynomial F → ℂ) (hw1 : w 1 = 1)
 noncomputable def monicIrreduciblesThrough (n : ℕ) : Finset (Polynomial F) :=
   ((Finset.range (n + 1)).biUnion (fun d => monicPolynomials d)).filter Irreducible
 
+/--
+@isnad1 id=iff.0h3v.s7.ac116ddc7e3b from=translated src=- shape=6928c397 vocab=ee9bf93c
+-/
 @[simp]
 theorem mem_monicIrreduciblesThrough (n : ℕ) (p : Polynomial F) :
     p ∈ monicIrreduciblesThrough n ↔ p.Monic ∧ Irreducible p ∧ p.natDegree ≤ n := by
@@ -193,7 +216,9 @@ theorem mem_monicIrreduciblesThrough (n : ℕ) (p : Polynomial F) :
     exact ⟨⟨p.natDegree, by omega, hm, rfl⟩, hi⟩
 
 /-- No positive-degree monic polynomial of degree at most `n` survives
-exclusion of all irreducibles through degree `n`.-/
+exclusion of all irreducibles through degree `n`.
+@isnad1 id=eq.2h4v.s7.1cb16486e164 from=translated src=- shape=8b33d507 vocab=d9bcc3b8
+-/
 theorem avoidingSeries_coeff_eq_zero (w : Polynomial F → ℂ) {n k : ℕ}
     (hk : 0 < k) (hkn : k ≤ n) :
     PowerSeries.coeff k (avoidingSeries w (monicIrreduciblesThrough n)) = 0 := by
@@ -213,7 +238,9 @@ theorem avoidingSeries_coeff_eq_zero (w : Polynomial F → ℂ) {n k : ℕ}
     ((mem_monicIrreduciblesThrough n p).mpr ⟨hmon, hirr, hpn⟩) hdvd).elim
 
 /-- Vanishing through degree `n` forces the first `n` logarithmic
- derivative coefficients to vanish.-/
+ derivative coefficients to vanish.
+@isnad1 id=eq.2h2v.s7.f89a8a19ea59 from=translated src=- shape=c37fe25a vocab=2d730490
+-/
 theorem logDerivative_coeff_eq_zero_of_initial_vanishing (P : PowerSeries ℂ)
     {n : ℕ} (hn : 0 < n) (hP : ∀ k, 0 < k → k ≤ n → PowerSeries.coeff k P = 0) :
     PowerSeries.coeff (n - 1) (formalLogDerivative P) = 0 := by

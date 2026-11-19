@@ -22,7 +22,9 @@ private theorem inverseCertificate27_correct : ∀ x : Field27,
     x ≠ 0 → x * inverseCertificate27 x = 1 := by
   decide +kernel
 
-/-- Every nonzero coordinate vector has a certified multiplicative inverse.-/
+/-- Every nonzero coordinate vector has a certified multiplicative inverse.
+@isnad1 id=isfield.0h0v.s7.61c419132d94 from=translated src=- shape=49959d42 vocab=e1695cf7
+-/
 theorem field27_isField : IsField Field27 where
   exists_pair_ne := ⟨0, 1, by decide⟩
   mul_comm := mul_comm
@@ -30,7 +32,9 @@ theorem field27_isField : IsField Field27 where
 
 noncomputable instance : Field Field27 := field27_isField.toField
 
-/-- Exhaustive normalized negative certificate over the field of order 27.-/
+/-- Exhaustive normalized negative certificate over the field of order 27.
+@isnad1 id=isnparke.0h0v.s7.9e29ef7aef4e from=translated src=- shape=aa0f4b0e vocab=a1af086a
+-/
 theorem square_parker_27 : IsNParker Field27 2 := by
   let powers : List Field27 := [⟨0, 0, 0⟩, ⟨0, 0, 1⟩, ⟨0, 1, 0⟩, ⟨0, 1, 1⟩, ⟨0, 2, 1⟩, ⟨1, 0, 0⟩, ⟨1, 1, 0⟩, ⟨1, 1, 1⟩, ⟨1, 1, 2⟩, ⟨1, 2, 1⟩, ⟨1, 2, 2⟩, ⟨2, 0, 1⟩, ⟨2, 0, 2⟩, ⟨2, 1, 0⟩]
   let offsets : List Field27 := [⟨0, 0, 0⟩, ⟨2, 0, 1⟩, ⟨0, 1, 1⟩, ⟨0, 2, 1⟩, ⟨1, 0, 2⟩, ⟨0, 1, 2⟩, ⟨0, 2, 2⟩]
@@ -53,7 +57,9 @@ private theorem inverseCertificate343_correct : ∀ x : Field343,
     x ≠ 0 → x * inverseCertificate343 x = 1 := by
   decide +kernel
 
-/-- Every nonzero coordinate vector has a certified multiplicative inverse.-/
+/-- Every nonzero coordinate vector has a certified multiplicative inverse.
+@isnad1 id=isfield.0h0v.s6.3d36c7839233 from=translated src=- shape=49959d42 vocab=babc0d57
+-/
 theorem field343_isField : IsField Field343 where
   exists_pair_ne := ⟨0, 1, by decide⟩
   mul_comm := mul_comm
@@ -61,7 +67,9 @@ theorem field343_isField : IsField Field343 where
 
 noncomputable instance : Field Field343 := field343_isField.toField
 
-/-- Exhaustive normalized negative certificate over the field of order 343.-/
+/-- Exhaustive normalized negative certificate over the field of order 343.
+@isnad1 id=isnparke.0h0v.s6.1982607b3b55 from=translated src=- shape=aa0f4b0e vocab=9537964a
+-/
 theorem cube_parker_343 : IsNParker Field343 3 := by
   let powers : List Field343 := [⟨0, 0, 0⟩, ⟨0, 1, 1⟩, ⟨0, 1, 2⟩, ⟨0, 1, 4⟩, ⟨0, 2, 1⟩, ⟨0, 2, 2⟩, ⟨0, 2, 4⟩, ⟨0, 3, 3⟩, ⟨0, 3, 5⟩, ⟨0, 3, 6⟩, ⟨0, 4, 1⟩, ⟨0, 4, 2⟩, ⟨0, 4, 4⟩, ⟨0, 5, 3⟩, ⟨0, 5, 5⟩, ⟨0, 5, 6⟩, ⟨0, 6, 3⟩, ⟨0, 6, 5⟩, ⟨0, 6, 6⟩, ⟨1, 0, 0⟩, ⟨1, 1, 1⟩, ⟨1, 2, 4⟩, ⟨1, 3, 0⟩, ⟨1, 3, 1⟩, ⟨1, 3, 4⟩, ⟨1, 3, 6⟩, ⟨1, 4, 2⟩, ⟨1, 5, 0⟩, ⟨1, 5, 1⟩, ⟨1, 5, 2⟩, ⟨1, 5, 5⟩, ⟨1, 6, 0⟩, ⟨1, 6, 2⟩, ⟨1, 6, 3⟩, ⟨1, 6, 4⟩, ⟨2, 0, 0⟩, ⟨2, 1, 4⟩, ⟨2, 2, 2⟩, ⟨2, 3, 0⟩, ⟨2, 3, 2⟩, ⟨2, 3, 3⟩, ⟨2, 3, 4⟩, ⟨2, 4, 1⟩, ⟨2, 5, 0⟩, ⟨2, 5, 1⟩, ⟨2, 5, 4⟩, ⟨2, 5, 6⟩, ⟨2, 6, 0⟩, ⟨2, 6, 1⟩, ⟨2, 6, 2⟩, ⟨2, 6, 5⟩, ⟨3, 0, 0⟩, ⟨3, 1, 0⟩, ⟨3, 1, 1⟩, ⟨3, 1, 3⟩, ⟨3, 1, 6⟩, ⟨3, 2, 0⟩, ⟨3, 2, 3⟩, ⟨3, 2, 4⟩, ⟨3, 2, 5⟩, ⟨3, 3, 3⟩, ⟨3, 4, 0⟩, ⟨3, 4, 2⟩, ⟨3, 4, 5⟩, ⟨3, 4, 6⟩, ⟨3, 5, 6⟩, ⟨3, 6, 5⟩, ⟨4, 0, 0⟩, ⟨4, 1, 2⟩, ⟨4, 2, 1⟩, ⟨4, 3, 0⟩, ⟨4, 3, 1⟩, ⟨4, 3, 2⟩, ⟨4, 3, 5⟩, ⟨4, 4, 4⟩, ⟨4, 5, 0⟩, ⟨4, 5, 2⟩, ⟨4, 5, 3⟩, ⟨4, 5, 4⟩, ⟨4, 6, 0⟩, ⟨4, 6, 1⟩, ⟨4, 6, 4⟩, ⟨4, 6, 6⟩, ⟨5, 0, 0⟩, ⟨5, 1, 0⟩, ⟨5, 1, 2⟩, ⟨5, 1, 5⟩, ⟨5, 1, 6⟩, ⟨5, 2, 0⟩, ⟨5, 2, 1⟩, ⟨5, 2, 3⟩, ⟨5, 2, 6⟩, ⟨5, 3, 6⟩, ⟨5, 4, 0⟩, ⟨5, 4, 3⟩, ⟨5, 4, 4⟩, ⟨5, 4, 5⟩, ⟨5, 5, 5⟩, ⟨5, 6, 3⟩, ⟨6, 0, 0⟩, ⟨6, 1, 0⟩, ⟨6, 1, 3⟩, ⟨6, 1, 4⟩, ⟨6, 1, 5⟩, ⟨6, 2, 0⟩, ⟨6, 2, 2⟩, ⟨6, 2, 5⟩, ⟨6, 2, 6⟩, ⟨6, 3, 5⟩, ⟨6, 4, 0⟩, ⟨6, 4, 1⟩, ⟨6, 4, 3⟩, ⟨6, 4, 6⟩, ⟨6, 5, 3⟩, ⟨6, 6, 6⟩]
   let offsets : List Field343 := [⟨0, 0, 0⟩, ⟨1, 0, 0⟩, ⟨2, 0, 0⟩, ⟨3, 0, 0⟩, ⟨4, 0, 0⟩, ⟨5, 0, 0⟩, ⟨6, 0, 0⟩, ⟨4, 1, 0⟩, ⟨4, 2, 0⟩, ⟨3, 3, 0⟩, ⟨4, 4, 0⟩, ⟨3, 5, 0⟩, ⟨3, 6, 0⟩, ⟨2, 1, 1⟩, ⟨6, 2, 1⟩, ⟨1, 4, 1⟩, ⟨3, 6, 1⟩, ⟨6, 1, 2⟩, ⟨1, 2, 2⟩, ⟨3, 3, 2⟩, ⟨2, 4, 2⟩, ⟨4, 2, 3⟩, ⟨1, 3, 3⟩, ⟨5, 5, 3⟩, ⟨6, 6, 3⟩, ⟨1, 1, 4⟩, ⟨2, 2, 4⟩, ⟨6, 4, 4⟩, ⟨3, 5, 4⟩, ⟨5, 3, 5⟩, ⟨4, 4, 5⟩, ⟨6, 5, 5⟩, ⟨1, 6, 5⟩, ⟨4, 1, 6⟩, ⟨6, 3, 6⟩, ⟨1, 5, 6⟩, ⟨5, 6, 6⟩]

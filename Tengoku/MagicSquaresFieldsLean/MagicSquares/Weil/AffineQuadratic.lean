@@ -9,13 +9,17 @@ open scoped BigOperators
 
 variable {F : Type*} [Field F] [Fintype F] [DecidableEq F]
 
-/-- The real absolute value of the quadratic character is at most one.-/
+/-- The real absolute value of the quadratic character is at most one.
+@isnad1 id=le.0h2v.s5.31c593d9dc13 from=translated src=- shape=e7b0a4c6 vocab=0bcd64c4
+-/
 theorem quadraticChar_abs_le_one (a : F) : |(quadraticChar F a : ℝ)| ≤ 1 := by
   by_cases ha : a = 0
   · simp [ha]
   · rcases quadraticChar_dichotomy ha with h | h <;> simp [h]
 
-/-- Factoring the leading coefficients out of a product of affine forms.-/
+/-- Factoring the leading coefficients out of a product of affine forms.
+@isnad1 id=eq.1h3v.s8.64d42cf5974e from=translated src=- shape=d3701991 vocab=d091dbda
+-/
 theorem quadraticChar_affine_product_sum {ι : Type*} [Fintype ι]
     (coeff : ι → F) (hcoeff : ∀ i, coeff i ≠ 0) :
     (∑ t : F, quadraticChar F (∏ i, (1 + coeff i * t))) =
@@ -30,7 +34,9 @@ theorem quadraticChar_affine_product_sum {ι : Type*} [Fintype ι]
   intro i _
   simp [sub_neg_eq_add, mul_add, mul_inv_cancel₀ (hcoeff i), add_comm]
 
-/-- A single nonconstant affine quadratic-character sum vanishes.-/
+/-- A single nonconstant affine quadratic-character sum vanishes.
+@isnad1 id=eq.2h2v.s7.92d0a577fb9b from=translated src=- shape=59b9747e vocab=13207fad
+-/
 theorem quadraticChar_affine_sum (hodd : ringChar F ≠ 2)
     {a : F} (ha : a ≠ 0) :
     ∑ t : F, quadraticChar F (1 + a * t) = 0 := by
@@ -39,7 +45,9 @@ theorem quadraticChar_affine_sum (hodd : ringChar F ≠ 2)
   simp_rw [hfactor, map_mul, ← Finset.mul_sum,
     quadraticChar_linear_shift_sum hodd, mul_zero]
 
-/-- Exact quadratic contribution of two distinct nonconstant affine forms.-/
+/-- Exact quadratic contribution of two distinct nonconstant affine forms.
+@isnad1 id=eq.4h3v.s8.250759bbad0a from=translated src=- shape=891ee562 vocab=275268f7
+-/
 theorem quadraticChar_affine_pair_sum (hodd : ringChar F ≠ 2)
     {a b : F} (ha : a ≠ 0) (hb : b ≠ 0) (hab : a ≠ b) :
     ∑ t : F, quadraticChar F ((1 + a * t) * (1 + b * t)) =
@@ -60,7 +68,9 @@ theorem quadraticChar_affine_pair_sum (hodd : ringChar F ≠ 2)
   ring
 
 /-- The sharp split bound transfers to any nonempty family of distinct,
-nonzero affine coefficients.-/
+nonzero affine coefficients.
+@isnad1 id=le.4h3v.s7.63c48f5a4908 from=translated src=- shape=8077d83f vocab=fa0379b2
+-/
 theorem HasSplitQuadraticWeilBound.affine
     (hWeil : HasSplitQuadraticWeilBound F)
     {ι : Type*} [Fintype ι] (coeff : ι → F)

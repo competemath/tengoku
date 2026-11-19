@@ -61,7 +61,9 @@ noncomputable def stepanovDecode
   (Polynomial.ofFn (u + 1))
     (fun j : Fin (u + 1) => stepanovInnerPolynomial v i j)
 
-/-- Every reconstructed `e_{ij}` has degree at most `D`.-/
+/-- Every reconstructed `e_{ij}` has degree at most `D`.
+@isnad1 id=le.0h7v.s5.4e8c241da977 from=translated src=- shape=9030560f vocab=a65887da
+-/
 theorem stepanovInnerPolynomial_natDegree_le
     {m u D : ℕ}
     (v : StepanovUnknowns F m u D)
@@ -75,7 +77,9 @@ theorem stepanovInnerPolynomial_natDegree_le
         (fun l : Fin (D + 1) => v (i, (j, l))))
   omega
 
-/-- Each block polynomial has outer degree at most `u`.-/
+/-- Each block polynomial has outer degree at most `u`.
+@isnad1 id=le.0h6v.s5.2e67400c89ba from=translated src=- shape=203a9dc3 vocab=170d553e
+-/
 theorem stepanovDecode_natDegree_le
     {m u D : ℕ}
     (v : StepanovUnknowns F m u D)
@@ -90,7 +94,9 @@ theorem stepanovDecode_natDegree_le
   omega
 
 /-- All coefficients of a decoded block have inner degree at most `D`,
-including coefficients beyond the outer cutoff (which are zero).-/
+including coefficients beyond the outer cutoff (which are zero).
+@isnad1 id=le.0h7v.s6.b22d7a66e0ea from=translated src=- shape=1dd2c81c vocab=5545061a
+-/
 theorem stepanovDecode_coeff_natDegree_le
     {m u D : ℕ}
     (v : StepanovUnknowns F m u D)
@@ -113,7 +119,9 @@ theorem stepanovDecode_coeff_natDegree_le
     simp
 
 /-- If one decoded block is zero, then every scalar coefficient in that
-`i`-slice of the unknown vector is zero.-/
+`i`-slice of the unknown vector is zero.
+@isnad1 id=eq.1h8v.s7.e303363f68db from=translated src=- shape=7aaffb48 vocab=953bb9a0
+-/
 theorem stepanovUnknown_slice_eq_zero_of_decode_eq_zero
     {m u D : ℕ}
     (v : StepanovUnknowns F m u D)
@@ -138,7 +146,9 @@ theorem stepanovUnknown_slice_eq_zero_of_decode_eq_zero
 
 /-- A nonzero scalar coefficient vector decodes to a nontrivial family
 of block polynomials.  This is the nonvanishing input needed by the
-abstract Lemma 6.52 assembly already in the project.-/
+abstract Lemma 6.52 assembly already in the project.
+@isnad1 id=ex.1h5v.s7.eaa15db08171 from=translated src=- shape=0d9884cb vocab=aba5d743
+-/
 theorem exists_stepanovDecode_ne_zero_of_ne_zero
     {m u D : ℕ}
     (v : StepanovUnknowns F m u D)
@@ -156,7 +166,9 @@ theorem exists_stepanovDecode_ne_zero_of_ne_zero
 
 /-- The dimension of the literal unknown coefficient space is exactly
 `m (u+1) (D+1)`, i.e. the quantity `A` before any lower estimate is
-applied.-/
+applied.
+@isnad1 id=eq.0h4v.s6.0c3a17b96f57 from=translated src=- shape=5c5bdb4d vocab=6578d092
+-/
 theorem stepanovUnknowns_finrank
     (F : Type*) [Field F]
     (m u D : ℕ) :

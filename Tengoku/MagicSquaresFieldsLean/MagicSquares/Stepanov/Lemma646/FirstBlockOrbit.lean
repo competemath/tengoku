@@ -29,12 +29,18 @@ noncomputable def firstBlockSymmetric
     Polynomial (Polynomial F) :=
   Polynomial.contract m (firstBlockOrbitProduct zeta a)
 
+/--
+@isnad1 id=isprimit.1h3v.s7.58c9146a0ad3 from=translated src=- shape=e4c712d0 vocab=6b73eac2
+-/
 theorem C_isPrimitiveRoot
     {m : ℕ} {zeta : F}
     (hzeta : IsPrimitiveRoot zeta m) :
     IsPrimitiveRoot (Polynomial.C zeta) m := by
   exact hzeta.map_of_injective Polynomial.C_injective
 
+/--
+@isnad1 id=eq.1h4v.s9.06d3fd626e8c from=translated src=- shape=948162b4 vocab=26143760
+-/
 theorem firstBlockOrbitProduct_scale_invariant
     {m : ℕ} {zeta : F}
     (hzeta : IsPrimitiveRoot zeta m)
@@ -46,6 +52,9 @@ theorem firstBlockOrbitProduct_scale_invariant
     (R := Polynomial F) (C_isPrimitiveRoot hzeta)
       (firstBlockPolynomial a)
 
+/--
+@isnad1 id=eq.2h4v.s7.17d5be6b3bee from=translated src=- shape=5adbe1ef vocab=be1df95f
+-/
 theorem firstBlockOrbit_eq_symmetric_comp
     {m : ℕ} {zeta : F}
     (hm : 0 < m)
@@ -61,6 +70,9 @@ theorem firstBlockOrbit_eq_symmetric_comp
   rw [Polynomial.expand_eq_comp_X_pow] at h
   exact h.symm
 
+/--
+@isnad1 id=le.2h4v.s6.dd61fd38614c from=translated src=- shape=1586ec03 vocab=83ace780
+-/
 theorem firstBlockSymmetric_natDegree_le
     {m : ℕ} {zeta : F}
     (hm : 0 < m)

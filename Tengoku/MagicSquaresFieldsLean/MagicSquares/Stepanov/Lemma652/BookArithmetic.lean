@@ -19,6 +19,9 @@ and then simplify the auxiliary polynomial's degree to the stated bound.
 def stepanovEquationCount (r M D k u : ℕ) : ℕ :=
   r * ∑ n ∈ Finset.range M, (D + n * (k - 1) + u + 1)
 
+/--
+@isnad1 id=eq.0h4v.s7.541814a95b42 from=translated src=- shape=7fd10351 vocab=fa4996af
+-/
 theorem twice_sum_linear (M D k u : ℕ) :
     2 * (∑ n ∈ Finset.range M, (D + n * k + u + 1)) + k * M =
       2 * M * (D + u + 1) + k * M ^ 2 := by
@@ -28,7 +31,9 @@ theorem twice_sum_linear (M D k u : ℕ) :
       rw [Finset.sum_range_succ]
       nlinarith
 
-/-- The shifted-square condition also controls the integer quotient.-/
+/-- The shifted-square condition also controls the integer quotient.
+@isnad1 id=le.2h3v.s7.b420c2b2d541 from=translated src=- shape=b0330e86 vocab=dc46af4e
+-/
 theorem ln97_6_52_quadratic_floor {q m M : ℕ} (hm : 0 < m)
     (hshift : (M + 3) ^ 2 * m ≤ 2 * q) :
     M ^ 2 + 6 * M ≤ 2 * (q / m) := by
@@ -38,6 +43,9 @@ theorem ln97_6_52_quadratic_floor {q m M : ℕ} (hm : 0 < m)
     nlinarith
   exact Nat.le_of_mul_le_mul_right hmul hm
 
+/--
+@isnad1 id=and.4h4v.s6.575e279be86c from=translated src=- shape=6e9cf95b vocab=dc46af4e
+-/
 theorem ln97_6_52_parameter_bounds {q m k M : ℕ}
     (hm : 0 < m) (hk : 0 < k) (hM : k + 1 ≤ M)
     (hshift : (M + 3) ^ 2 * m ≤ 2 * q) :
@@ -47,7 +55,9 @@ theorem ln97_6_52_parameter_bounds {q m k M : ℕ}
   exact ⟨by omega, hMfloor.trans (Nat.div_le_self q m)⟩
 
 /-- The literal coefficient count is strictly smaller than the number
-of unknowns, with no additional dimension assumption.-/
+of unknowns, with no additional dimension assumption.
+@isnad1 id=lt.6h5v.s7.e1ffcff83999 from=translated src=- shape=81892500 vocab=d7335482
+-/
 theorem ln97_6_52_equationCount_lt_unknowns {q m r k M : ℕ}
     (hm : 0 < m) (hr : 0 < r) (hrm : r < m)
     (hk : 0 < k) (hM : k + 1 ≤ M)
@@ -104,7 +114,9 @@ theorem ln97_6_52_equationCount_lt_unknowns {q m r k M : ℕ}
   exact_mod_cast h
 
 /-- The degree estimate on p.308, with its positive denominator cleared.
-The weaker bound `M ≤ q` already suffices for the stated constant `4`.-/
+The weaker bound `M ≤ q` already suffices for the stated constant `4`.
+@isnad1 id=lt.5h5v.s7.5d1da13d6deb from=translated src=- shape=314aca93 vocab=2bb5e61f
+-/
 theorem ln97_6_52_auxiliary_degree_bound {q m r k M : ℕ}
     (hq : 0 < q) (hm : 0 < m) (hrm : r < m) (hk : 0 < k)
     (hM : M ≤ q) :

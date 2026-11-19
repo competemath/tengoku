@@ -24,7 +24,9 @@ natural degree.
 -/
 
 /-- A nonzero polynomial of degree strictly smaller than the cardinality
-of a finite field cannot vanish at every field element.-/
+of a finite field cannot vanish at every field element.
+@isnad1 id=ex.2h2v.s6.23c56e6058be from=translated src=- shape=6e00e53c vocab=c71ef627
+-/
 theorem exists_eval_ne_zero_of_natDegree_lt_card
     (P : Polynomial F)
     (hP : P ≠ 0)
@@ -47,7 +49,9 @@ theorem exists_eval_ne_zero_of_natDegree_lt_card
 
 /-- The precise translation step needed in Lemma 6.46:
 there is a translate with nonzero constant coefficient, and its degree
-is unchanged.-/
+is unchanged.
+@isnad1 id=ex.2h2v.s9.a3c56cfd7b2a from=translated src=- shape=86e8b9f7 vocab=40a6794e
+-/
 theorem exists_taylor_constant_ne_zero_same_natDegree
     (P : Polynomial F)
     (hP : P ≠ 0)
@@ -62,7 +66,9 @@ theorem exists_taylor_constant_ne_zero_same_natDegree
   · simpa using hc
   · exact Polynomial.natDegree_taylor P c
 
-/-- In particular, the translated polynomial itself is nonzero.-/
+/-- In particular, the translated polynomial itself is nonzero.
+@isnad1 id=ex.2h2v.s9.31c0affc16f5 from=translated src=- shape=a395b7d0 vocab=40a6794e
+-/
 theorem exists_taylor_nonzero_constant
     (P : Polynomial F)
     (hP : P ≠ 0)

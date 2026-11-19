@@ -25,7 +25,9 @@ provided
 which itself follows from `(M+3)^2 ≤ 2Q`.
 -/
 
-/-- The middle inequality on p. 307.-/
+/-- The middle inequality on p. 307.
+@isnad1 id=le.4h4v.s8.fe19e035f74d from=translated src=- shape=24cfed24 vocab=08db80dc
+-/
 theorem ln97_6_52_count_middle_comparison
     (r k M Q : ℚ)
     (hr : 0 ≤ r)
@@ -50,7 +52,9 @@ theorem ln97_6_52_count_middle_comparison
   nlinarith [hs, hkm]
 
 /-- Equations (6.26) and (6.27), together with the quadratic condition,
-imply `S < A`.-/
+imply `S < A`.
+@isnad1 id=lt.6h6v.s8.ff33a77e4ee3 from=translated src=- shape=e1996bb0 vocab=1eba5f99
+-/
 theorem ln97_6_52_S_lt_A_of_bounds
     (S A r k M Q : ℚ)
     (hr : 0 ≤ r)
@@ -71,14 +75,18 @@ theorem ln97_6_52_S_lt_A_of_bounds
   linarith
 
 /-- The book's stated hypothesis `(M+3)^2 ≤ 2Q` implies the quadratic
-condition used in the comparison.-/
+condition used in the comparison.
+@isnad1 id=le.1h2v.s6.7facb79ebbff from=translated src=- shape=cbb95c37 vocab=ab2f6e4f
+-/
 theorem ln97_6_52_rational_shifted_square_implies_quadratic
     (M Q : ℚ)
     (hshift : (M + 3) ^ 2 ≤ 2 * Q) :
     M ^ 2 + 6 * M ≤ 2 * Q := by
   nlinarith
 
-/-- Full p. 307 comparison directly from the shifted-square hypothesis.-/
+/-- Full p. 307 comparison directly from the shifted-square hypothesis.
+@isnad1 id=lt.6h6v.s8.36c452b9de57 from=translated src=- shape=e0b0a32a vocab=1eba5f99
+-/
 theorem ln97_6_52_S_lt_A_of_shifted_square
     (S A r k M Q : ℚ)
     (hr : 0 ≤ r)

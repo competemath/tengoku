@@ -43,7 +43,9 @@ noncomputable def hassePowerTermLinear
   (hasseDeriv n).comp
     ((LinearMap.mulLeft F (f ^ M)).comp w)
 
-/-- Multiplication by a nonzero power of `f` is injective.-/
+/-- Multiplication by a nonzero power of `f` is injective.
+@isnad1 id=injectiv.1h4v.s8.9b93369f4734 from=translated src=- shape=fd6fe840 vocab=553ab75b
+-/
 theorem residualPowerMulLinear_injective
     (f : Polynomial F) (M n : ℕ)
     (hf : f ≠ 0) :
@@ -54,7 +56,9 @@ theorem residualPowerMulLinear_injective
   exact mul_left_cancel₀ (pow_ne_zero _ hf) hab
 
 /-- The derivative map lands in the range of multiplication by
-`f^(M-n)`, by Corollary 6.49.-/
+`f^(M-n)`, by Corollary 6.49.
+@isnad1 id=mem.3h7v.s9.8975c4bd9293 from=translated src=- shape=1f8ec677 vocab=8bb0b817
+-/
 theorem hassePowerTermLinear_mem_range
     (f : Polynomial F) (M n : ℕ)
     (hnt : n ≤ M)
@@ -86,7 +90,9 @@ noncomputable def hassePowerFactorLinear
     (hassePowerTermLinear_mem_range
       (F := F) f M n hnt hf hfdeg w)
 
-/-- Defining identity for the canonical linear factor.-/
+/-- Defining identity for the canonical linear factor.
+@isnad1 id=eq.3h7v.s10.6371e74da771 from=translated src=- shape=846be06a vocab=2a50dccd
+-/
 theorem hassePowerFactorLinear_spec
     (f : Polynomial F) (M n : ℕ)
     (hnt : n ≤ M)
@@ -106,7 +112,9 @@ theorem hassePowerFactorLinear_spec
     v
   exact h.symm
 
-/-- Degree estimate inherited from Corollary 6.49.-/
+/-- Degree estimate inherited from Corollary 6.49.
+@isnad1 id=le.4h8v.s9.70ebc3cd9493 from=translated src=- shape=4e232265 vocab=e32e32f4
+-/
 theorem hassePowerFactorLinear_natDegree_le
     (f : Polynomial F) (M n W : ℕ)
     (hnt : n ≤ M)

@@ -12,7 +12,9 @@ variable {F : Type*} [Field F] [Fintype F] [DecidableEq F]
 
 omit [DecidableEq F] in
 /-- The kernel of a character of order `d` consists exactly of the
-nonzero `d`-th powers.-/
+nonzero `d`-th powers.
+@isnad1 id=iff.1h3v.s7.e6bb5a56d2bd from=translated src=- shape=6d26aae1 vocab=50272d3b
+-/
 theorem mulChar_eq_one_iff_power_order (chi : MulChar F ℂ) {x : F} (hx : x ≠ 0) :
     chi x = 1 ↔ IsNthPower (orderOf chi) x := by
   constructor
@@ -41,7 +43,9 @@ theorem mulChar_eq_one_iff_power_order (chi : MulChar F ℂ) {x : F} (hx : x ≠
 
 omit [DecidableEq F] in
 /-- Bézout's identity identifies `n`-th powers with `gcd(n,q-1)`-th
-powers in the unit group.-/
+powers in the unit group.
+@isnad1 id=iff.2h3v.s6.5a3e63e8522d from=translated src=- shape=e3cb0fd2 vocab=4ceed21c
+-/
 theorem isNthPower_powerIndex_iff {n : ℕ} (hn : 0 < n) {x : F} (hx : x ≠ 0) :
     IsNthPower (powerIndex n (Fintype.card F)) x ↔ IsNthPower n x := by
   let q := Fintype.card F - 1
@@ -74,7 +78,9 @@ theorem isNthPower_powerIndex_iff {n : ℕ} (hn : 0 < n) {x : F} (hx : x ≠ 0) 
     rw [← pow_mul, Nat.div_mul_cancel (Nat.gcd_dvd_left n q)]
 
 omit [DecidableEq F] in
-/-- A character of order `gcd(n,q-1)` detects nonzero `n`-th powers.-/
+/-- A character of order `gcd(n,q-1)` detects nonzero `n`-th powers.
+@isnad1 id=iff.3h4v.s7.3f6f6b185c51 from=translated src=- shape=443b6e41 vocab=1f2d62f9
+-/
 theorem mulChar_eq_one_iff_nthPower {n : ℕ} (hn : 0 < n) (chi : MulChar F ℂ)
     (horder : orderOf chi = powerIndex n (Fintype.card F)) {x : F} (hx : x ≠ 0) :
     chi x = 1 ↔ IsNthPower n x := by
@@ -86,7 +92,9 @@ noncomputable def powerIndicatorNumerator (n d : ℕ) (x : F) : ℝ :=
   if x = 0 then 1 else if IsNthPower n x then d else 0
 
 /-- Exact geometric-series identity, with the paper's convention that
-the zeroth character power is one even at zero.-/
+the zeroth character power is one even at zero.
+@isnad1 id=eq.4h5v.s7.fd4a301a26a3 from=translated src=- shape=c0fd2325 vocab=a74891bf
+-/
 theorem sum_character_powers_eq_indicator
     {n d : ℕ} (hn : 0 < n) (hd : 0 < d) (chi : MulChar F ℂ)
     (horder : orderOf chi = d) (hdgcd : d = powerIndex n (Fintype.card F)) (x : F) :
@@ -108,12 +116,18 @@ theorem sum_character_powers_eq_indicator
       simp [powerIndicatorNumerator, hx, hpower]
 
 omit [Fintype F] in
+/--
+@isnad1 id=le.0h4v.s4.4a06639a8737 from=translated src=- shape=b9165939 vocab=7001e6b7
+-/
 theorem powerIndicatorNumerator_nonneg (n d : ℕ) (x : F) :
     0 ≤ powerIndicatorNumerator n d x := by
   unfold powerIndicatorNumerator
   split_ifs <;> positivity
 
 omit [Fintype F] in
+/--
+@isnad1 id=le.1h4v.s5.e314659f4433 from=translated src=- shape=fe6454ea vocab=552e3a17
+-/
 theorem powerIndicatorNumerator_le {n d : ℕ} (hd : 0 < d) (x : F) :
     powerIndicatorNumerator n d x ≤ d := by
   unfold powerIndicatorNumerator
@@ -121,7 +135,9 @@ theorem powerIndicatorNumerator_le {n d : ℕ} (hd : 0 < d) (x : F) :
   exact_mod_cast hd
 
 omit [Fintype F] in
-/-- Positive indicator weight certifies an actual power, including zero.-/
+/-- Positive indicator weight certifies an actual power, including zero.
+@isnad1 id=eq.2h4v.s5.557c6420c8bf from=translated src=- shape=ff9a6010 vocab=39b50ada
+-/
 theorem powerIndicatorNumerator_eq_zero_of_not_power {n d : ℕ} (hn : 0 < n) {x : F}
     (hx : ¬ IsNthPower n x) : powerIndicatorNumerator n d x = 0 := by
   have hx0 : x ≠ 0 := by

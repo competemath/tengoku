@@ -24,6 +24,9 @@ def mul : List R → List R → List R
   | [], _ => []
   | a :: p, q => add (scale a q) (0 :: mul p q)
 
+/--
+@isnad1 id=eq.0h6v.s6.ff26b062e815 from=translated src=- shape=7d71cfaa vocab=94de53de
+-/
 @[simp] theorem eval_add (h : R →+* S) (x : S) (p q : List R) :
     eval h x (add p q) = eval h x p + eval h x q := by
   induction p generalizing q with
@@ -33,21 +36,33 @@ def mul : List R → List R → List R
     | nil => simp [add, eval]
     | cons b q => simp [add, eval, ih]; ring
 
+/--
+@isnad1 id=eq.0h5v.s6.4dc828f0e50c from=translated src=- shape=10f03723 vocab=73c8bef2
+-/
 @[simp] theorem eval_neg (h : R →+* S) (x : S) (p : List R) :
     eval h x (neg p) = -eval h x p := by
   induction p with
   | nil => simp [neg, eval]
   | cons a p ih => simp [neg, eval, neg] at ih ⊢; rw [ih]; ring
 
+/--
+@isnad1 id=eq.0h6v.s6.5015f69800ed from=translated src=- shape=7d71cfaa vocab=49178311
+-/
 @[simp] theorem eval_sub (h : R →+* S) (x : S) (p q : List R) :
     eval h x (sub p q) = eval h x p - eval h x q := by simp [sub, sub_eq_add_neg]
 
+/--
+@isnad1 id=eq.0h6v.s6.c18daa9b32b8 from=translated src=- shape=5cdbd099 vocab=31fae6c5
+-/
 @[simp] theorem eval_scale (h : R →+* S) (x : S) (a : R) (p : List R) :
     eval h x (scale a p) = h a * eval h x p := by
   induction p with
   | nil => simp [scale, eval]
   | cons b p ih => simp only [scale, List.map_cons, eval, map_mul] at ih ⊢; rw [ih]; ring
 
+/--
+@isnad1 id=eq.0h6v.s6.f9b23eb71511 from=translated src=- shape=7d71cfaa vocab=37a4495f
+-/
 @[simp] theorem eval_mul (h : R →+* S) (x : S) (p q : List R) :
     eval h x (mul p q) = eval h x p * eval h x q := by
   induction p with
@@ -58,6 +73,9 @@ def mul : List R → List R → List R
 def eqCheck [DecidableEq R] (p q : List R) : Bool :=
   (sub p q).all (fun a => decide (a = 0))
 
+/--
+@isnad1 id=eq.1h5v.s6.fa8f32af22a7 from=translated src=- shape=c5800bc2 vocab=5f87537f
+-/
 theorem eval_zero_of_all [DecidableEq R] (h : R →+* S) (x : S) (p : List R)
     (hp : p.all (fun a => decide (a = 0)) = true) : eval h x p = 0 := by
   induction p with
@@ -66,6 +84,9 @@ theorem eval_zero_of_all [DecidableEq R] (h : R →+* S) (x : S) (p : List R)
     simp only [List.all_cons, Bool.and_eq_true, decide_eq_true_eq] at hp
     simp [eval, hp.1, ih hp.2]
 
+/--
+@isnad1 id=eq.1h6v.s6.2f19eeb9f0b1 from=translated src=- shape=de3ec919 vocab=7a8d0899
+-/
 theorem eqCheck_sound [DecidableEq R] (h : R →+* S) (x : S) {p q : List R}
     (hc : eqCheck p q = true) : eval h x p = eval h x q := by
   have hz := eval_zero_of_all h x (sub p q) hc
@@ -74,6 +95,9 @@ theorem eqCheck_sound [DecidableEq R] (h : R →+* S) (x : S) {p q : List R}
 /-- Polynomial represented by the coefficient list.-/
 noncomputable def poly (p : List R) : Polynomial R := eval Polynomial.C Polynomial.X p
 
+/--
+@isnad1 id=eq.0h5v.s5.0142fa74ef99 from=translated src=- shape=a3748525 vocab=867d3379
+-/
 @[simp] theorem eval_poly (h : R →+* S) (x : S) (p : List R) :
     Polynomial.eval₂ h x (poly p) = eval h x p := by
   induction p with

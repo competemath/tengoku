@@ -34,7 +34,9 @@ private theorem le_of_powers_bounded {a B K : ℝ} (hB : 0 < B)
 
 /-- **LN97 Lemma 6.55.** A uniform exponential bound on all positive
 power sums bounds the norm of every member of the finite family.
-Repeated values are allowed.-/
+Repeated values are allowed.
+@isnad1 id=le.2h5v.s6.9361cac1a098 from=translated src=- shape=dcd35aaa vocab=55c9deef
+-/
 theorem ln97_6_55 {ι : Type*} [Fintype ι] (omega : ι → ℂ)
     {B C : ℝ} (hB : 0 < B)
     (hbound : ∀ s : ℕ, 0 < s → ‖∑ i, omega i ^ s‖ ≤ C * B ^ s)
@@ -99,7 +101,9 @@ theorem ln97_6_55 {ι : Type*} [Fintype ι] (omega : ι → ℂ)
 
 /-- It suffices to control positive powers along any fixed arithmetic
 subsequence. This is the form used after passing to a sufficiently large
-finite extension in LN97 Theorem 6.56.-/
+finite extension in LN97 Theorem 6.56.
+@isnad1 id=le.3h6v.s7.927fe125e0b7 from=translated src=- shape=dcf57954 vocab=55c9deef
+-/
 theorem ln97_6_55_of_multiples {ι : Type*} [Fintype ι] (omega : ι → ℂ)
     {B C : ℝ} (hB : 0 < B) {r : ℕ} (hr : 0 < r)
     (hbound : ∀ s : ℕ, 0 < s →
@@ -113,7 +117,9 @@ theorem ln97_6_55_of_multiples {ι : Type*} [Fintype ι] (omega : ι → ℂ)
 /-- Once an extension-field character sum has a finite power-sum
 representation, a uniform coarse bound on its extensions gives the sharp
 bound for its first sum. The representation and extension estimates remain
-explicit hypotheses; this lemma does not assert they have been constructed.-/
+explicit hypotheses; this lemma does not assert they have been constructed.
+@isnad1 id=le.3h5v.s7.9e10cdfa9b1e from=translated src=- shape=863897ba vocab=fe5ca5eb
+-/
 theorem norm_sum_le_of_powerSum_bound {ι : Type*} [Fintype ι]
     (omega : ι → ℂ) {B C : ℝ} (hB : 0 < B) {r : ℕ} (hr : 0 < r)
     (hbound : ∀ s : ℕ, 0 < s →

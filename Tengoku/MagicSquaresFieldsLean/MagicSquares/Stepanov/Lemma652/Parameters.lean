@@ -25,7 +25,9 @@ def stepanovU (r m M k : ℕ) : ℕ :=
   (r * (M + k + 1)) / m
 
 /-- Lower-side floor inequality:
-`u*m ≤ r*(M+k+1)`.-/
+`u*m ≤ r*(M+k+1)`.
+@isnad1 id=le.0h4v.s5.2ab55967a39d from=translated src=- shape=7eee58c7 vocab=f3a9dc12
+-/
 theorem stepanovU_mul_le
     (r m M k : ℕ) :
     stepanovU r m M k * m
@@ -34,7 +36,9 @@ theorem stepanovU_mul_le
     Nat.div_mul_le_self (r * (M + k + 1)) m
 
 /-- Upper-side floor inequality:
-`r*(M+k+1) < (u+1)*m`, provided `m>0`.-/
+`r*(M+k+1) < (u+1)*m`, provided `m>0`.
+@isnad1 id=lt.1h4v.s6.ccb9b6b85472 from=translated src=- shape=01426a27 vocab=cebe9d22
+-/
 theorem lt_stepanovU_succ_mul
     (r m M k : ℕ)
     (hm : 0 < m) :

@@ -24,7 +24,9 @@ is complex conjugation.  Hence `‖J(χ,φ)‖² = #F`.
 
 omit [DecidableEq F] in
 /-- Complex conjugation of a Jacobi sum is the Jacobi sum of the inverse
-characters.-/
+characters.
+@isnad1 id=eq.0h3v.s7.6472467757b9 from=translated src=- shape=26b56280 vocab=8d8a395e
+-/
 theorem star_jacobiSum
     (χ φ : MulChar F ℂ) :
     star (jacobiSum χ φ) =
@@ -32,7 +34,9 @@ theorem star_jacobiSum
   simp [jacobiSum, MulChar.star_apply']
 
 omit [DecidableEq F] in
-/-- A nondegenerate complex Jacobi sum over `F` has norm `sqrt (#F)`.-/
+/-- A nondegenerate complex Jacobi sum over `F` has norm `sqrt (#F)`.
+@isnad1 id=eq.3h3v.s8.fbb275b77b0a from=translated src=- shape=c6b707dc vocab=58896b55
+-/
 theorem jacobiSum_norm_eq_sqrt_card
     {χ φ : MulChar F ℂ}
     (hχ : χ ≠ 1)

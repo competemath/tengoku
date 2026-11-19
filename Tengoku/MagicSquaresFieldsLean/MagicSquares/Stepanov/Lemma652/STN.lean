@@ -45,7 +45,9 @@ omit [Fintype F] in
 `deg s_{t,n} ≤ Edeg + u`.
 
 Taking `Edeg = q/m + n(k-1) - 1` gives the bound immediately below
-equation (6.25) in LN97.-/
+equation (6.25) in LN97.
+@isnad1 id=le.1h8v.s6.7e332cbc5bc6 from=translated src=- shape=298185ec vocab=ba49b90e
+-/
 theorem stepanovSTN_natDegree_le
     {m r u Edeg : ℕ}
     (b : Fin r → Fin m → F)

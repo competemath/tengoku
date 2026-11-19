@@ -15,7 +15,9 @@ variable {F : Type*} [Field F] [Fintype F] [DecidableEq F]
 -/
 
 /-- The optimized Section 7 estimate gives more than nine square-good
-parameters once `q ≥ 553736`.-/
+parameters once `q ≥ 553736`.
+@isnad1 id=ex.3h1v.s6.54dfd811d75e from=translated src=- shape=3b99c9da vocab=b0a88a27
+-/
 theorem centerOne_square_parameters_card_gt_nine
     (hodd : ringChar F ≠ 2)
     (hCount : HasCenterOneSquareCountBound F)
@@ -42,7 +44,9 @@ theorem centerOne_square_parameters_card_gt_nine
   exact ⟨b, hb, hcard⟩
 
 /-- Section 7 existence theorem, with its analytic Weil estimate isolated as
-`HasCenterOneSquareCountBound F`.-/
+`HasCenterOneSquareCountBound F`.
+@isnad1 id=ex.3h1v.s6.f63fc254813a from=translated src=- shape=cb8d36e0 vocab=8625f764
+-/
 theorem exists_centerOne_magic_of_squares_of_count_bound
     (hodd : ringChar F ≠ 2)
     (hCount : HasCenterOneSquareCountBound F)
@@ -56,7 +60,9 @@ theorem exists_centerOne_magic_of_squares_of_count_bound
   exact exists_centerOne_magic_of_powers_of_parameter
     (F := F) 2 hb htpow htbad
 
-/-- Consequently the field is not Parker.-/
+/-- Consequently the field is not Parker.
+@isnad1 id=not.3h1v.s5.c65a53a88db0 from=translated src=- shape=6d28b8e4 vocab=98338786
+-/
 theorem not_isParker_of_centerOne_bound
     (hodd : ringChar F ≠ 2)
     (hCount : HasCenterOneSquareCountBound F)

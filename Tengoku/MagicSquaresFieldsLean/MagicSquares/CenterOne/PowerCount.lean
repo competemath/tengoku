@@ -15,7 +15,9 @@ variable {F : Type*} [Field F] [Fintype F] [DecidableEq F]
 noncomputable def affinePowerWeight (n d : ℕ) (coeff : Fin 8 → F) (t : F) : ℝ :=
   ∏ i, powerIndicatorNumerator n d (1 + coeff i * t)
 
-/-- Exact expansion into the `d^8` character sums.-/
+/-- Exact expansion into the `d^8` character sums.
+@isnad1 id=eq.4h5v.s8.86ab73fd21e6 from=translated src=- shape=a2132d66 vocab=44f034c6
+-/
 theorem affinePowerWeight_sum_expand {n d : ℕ} (hn : 0 < n) (hd : 0 < d)
     (chi : MulChar F ℂ) (horder : orderOf chi = d)
     (hdgcd : d = powerIndex n (Fintype.card F)) (coeff : Fin 8 → F) :
@@ -38,7 +40,9 @@ theorem affinePowerWeight_sum_expand {n d : ℕ} (hn : 0 < n) (hd : 0 < d)
 
 omit [Fintype F] in
 /-- The weighted indicator is dominated by the exact power indicator,
-including all parameters where an entry vanishes.-/
+including all parameters where an entry vanishes.
+@isnad1 id=le.2h5v.s8.cf79896d356f from=translated src=- shape=a62f138e vocab=806a5aea
+-/
 theorem affinePowerWeight_le_indicator {n d : ℕ} (hn : 0 < n) (hd : 0 < d)
     (coeff : Fin 8 → F) (t : F) :
     affinePowerWeight n d coeff t ≤
@@ -64,6 +68,9 @@ theorem affinePowerWeight_le_indicator {n d : ℕ} (hn : 0 < n) (hd : 0 < d)
 namespace Square3
 
 omit [DecidableEq F] in
+/--
+@isnad1 id=iff.0h4v.s6.bdff40a449b2 from=translated src=- shape=67d469c5 vocab=79d70b1e
+-/
 theorem noncenter_powers_iff_mem (n : ℕ) (b t : F) :
     (∀ i, IsNthPower n (1 + centerOneNoncenterCoeff b i * t)) ↔
       t ∈ centerOnePowerParameters n b := by

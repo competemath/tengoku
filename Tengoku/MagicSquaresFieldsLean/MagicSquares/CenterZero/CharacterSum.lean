@@ -16,7 +16,9 @@ expansion.-/
 def centerZeroWeight (x : F) : ℤ :=
   (1 + χ (x - 1)) * (1 + χ x) * (1 + χ (x + 1))
 
-/-- Pointwise expansion of the Section 6 indicator numerator.-/
+/-- Pointwise expansion of the Section 6 indicator numerator.
+@isnad1 id=eq.0h2v.s9.8d1bc7a574c1 from=translated src=- shape=704cce2c vocab=bdb457f7
+-/
 theorem centerZeroWeight_expand (x : F) :
     centerZeroWeight x =
       1 + χ (x - 1) + χ x + χ (x + 1) +
@@ -32,7 +34,9 @@ theorem centerZeroWeight_expand (x : F) :
 `Σ_x W(x) = q - 3 + Σ_x χ((x-1)x(x+1))`.
 
 This is the formal counterpart of the calculation on pp. 8--9 of the paper.
-The three quadratic sums are discharged by `quadraticChar_two_root_sum`.-/
+The three quadratic sums are discharged by `quadraticChar_two_root_sum`.
+@isnad1 id=eq.1h1v.s7.49830fdd9dc6 from=translated src=- shape=871e9e9f vocab=2602bf48
+-/
 theorem centerZeroWeight_sum_identity (hodd : ringChar F ≠ 2) :
     ∑ x : F, centerZeroWeight x =
       (Fintype.card F : ℤ) - 3 +
@@ -79,7 +83,9 @@ theorem centerZeroWeight_sum_identity (hodd : ringChar F ≠ 2) :
 
 /-- Applying only the cubic Weil interface gives the lower bound used in
 Section 6.  Everything in this theorem except the explicit hypothesis `hWeil`
-is elementary/mathlib character theory.-/
+is elementary/mathlib character theory.
+@isnad1 id=le.2h1v.s6.804f48b3ad92 from=translated src=- shape=85e2c4d9 vocab=8512f24a
+-/
 theorem centerZeroWeight_sum_lower_bound
     (hodd : ringChar F ≠ 2)
     (hWeil : HasCenterZeroCubicWeilBound F) :
@@ -106,7 +112,9 @@ theorem centerZeroWeight_sum_lower_bound
 
 /-- Thus the unnormalized indicator sum is already larger than `56 = 7*8`
 whenever `q ≥ 77`.  The only remaining Section 6 step is the finite
-seven-bad-values/distinctness argument.-/
+seven-bad-values/distinctness argument.
+@isnad1 id=lt.3h1v.s6.6fa0cb8a5677 from=translated src=- shape=5160162a vocab=5a07a601
+-/
 theorem centerZeroWeight_sum_gt_56
     (hodd : ringChar F ≠ 2)
     (hWeil : HasCenterZeroCubicWeilBound F)

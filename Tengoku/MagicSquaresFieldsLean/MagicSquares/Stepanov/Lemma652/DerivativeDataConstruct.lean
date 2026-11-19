@@ -40,7 +40,9 @@ noncomputable def stepanovBookEDerivLinear
     simp
 
 omit [Fintype F] in
-/-- Uniform degree bound for all `e_{ijn}` with `n<M`.-/
+/-- Uniform degree bound for all `e_{ijn}` with `n<M`.
+@isnad1 id=le.3h12v.s10.80f5ae96a0da from=translated src=- shape=c5d8462f vocab=90a7ee72
+-/
 theorem stepanovBookEDeriv_degree_le
     {m u D M K : ℕ}
     (f : Polynomial F) (s : ℕ)

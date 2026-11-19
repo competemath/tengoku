@@ -25,6 +25,9 @@ Translation of the inner variable is a polynomial-ring automorphism.
 def KummerAbsolutelyIrreducible (m : ℕ) (f : Polynomial F) : Prop :=
   Irreducible (kummerPolynomial m (f.map (algebraMap F (AlgebraicClosure F))))
 
+/--
+@isnad1 id=irreduci.3h4v.s8.8b5e470b1f7d from=translated src=- shape=9aeaa80a vocab=15cfdfbc
+-/
 theorem kummer_irreducible_normalize_of_isAlgClosed
     [IsAlgClosed F] {m : ℕ} (hm : 0 < m)
     (f : Polynomial F) (a : F) (ha : a ≠ 0)
@@ -53,7 +56,9 @@ theorem kummer_irreducible_normalize_of_isAlgClosed
     ((isUnit_iff_ne_zero.mpr ha).map Polynomial.C |>.map Polynomial.C)).mp he
 
 /-- The normalization hypothesis in the first-block theorem follows from
-absolute irreducibility of the original Kummer polynomial.-/
+absolute irreducibility of the original Kummer polynomial.
+@isnad1 id=irreduci.3h3v.s7.1e1219947ad5 from=translated src=- shape=4548e632 vocab=d1170df0
+-/
 theorem KummerAbsolutelyIrreducible.normalized_irreducible
     {m : ℕ} {f : Polynomial F} (hirr : KummerAbsolutelyIrreducible m f)
     (hm : 0 < m) (hf0 : f.eval 0 ≠ 0) :

@@ -8,6 +8,9 @@ set_option maxRecDepth 100000
 namespace MagicSquares.Certificates
 open DensePolynomial Polynomial
 
+/--
+@isnad1 id=fact.0h0v.s2.15e87fe6585e from=translated src=- shape=8d7dbbf6 vocab=c1c9ca6d
+-/
 local instance q3Extension343_prime : Fact (Nat.Prime 7) := ⟨by norm_num⟩
 
 def q3Extension343 : ExtensionSquareCertificate (ZMod 7) where
@@ -44,15 +47,24 @@ def q3Extension343 : ExtensionSquareCertificate (ZMod 7) where
     ⟨true, [6], [4]⟩,
     ⟨true, [0, 1], []⟩]
 
+/--
+@isnad1 id=valid.0h0v.s4.f353e78bc248 from=translated src=- shape=06f63001 vocab=73c35a0c
+-/
 theorem q3Extension343_checked : q3Extension343.Valid := by
   decide +kernel
 
+/--
+@isnad1 id=ne.0h0v.s5.92d1bbaff954 from=translated src=- shape=987d0d8b vocab=d65d5627
+-/
 theorem q3Extension343_degree : (poly q3Extension343.modulus).degree ≠ 0 := by
   intro h
   have hz : (poly q3Extension343.modulus).coeff 3 = 0 :=
     Polynomial.coeff_eq_zero_of_degree_lt (by rw [h]; norm_num)
   norm_num [q3Extension343, poly, DensePolynomial.eval, Polynomial.coeff_X_mul, Polynomial.coeff_one, Polynomial.coeff_natCast_ite] at hz
 
+/--
+@isnad1 id=not.1h1v.s4.4d1b4fa28844 from=translated src=- shape=a3262089 vocab=abf65a23
+-/
 theorem not_squareParker_of_card_343 {F : Type*} [Field F] [Fintype F]
     (hcard : Fintype.card F = 343) : ¬ IsParker F := by
   intro h

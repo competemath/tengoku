@@ -7,7 +7,9 @@ namespace MagicSquares
 variable {F : Type*} [Field F] [Fintype F] [DecidableEq F]
 
 /-- **Algorithm 1, nonzero case.** The exact finite-field power membership
-test uses one exponentiation, with exponent `(q-1)/gcd(n,q-1)`.-/
+test uses one exponentiation, with exponent `(q-1)/gcd(n,q-1)`.
+@isnad1 id=iff.2h3v.s6.93a6af44b03a from=translated src=- shape=433b835d vocab=4b4df0a4
+-/
 theorem isNthPower_iff_pow_card_sub_one_div_eq_one {n : ℕ} (hn : 0 < n)
     {x : F} (hx : x ≠ 0) :
     IsNthPower n x ↔ x ^ ((Fintype.card F - 1) / powerIndex n (Fintype.card F)) = 1 := by
@@ -52,7 +54,9 @@ theorem isNthPower_iff_pow_card_sub_one_div_eq_one {n : ℕ} (hn : 0 < n)
   rw [hleft, hright, ← orderOf_dvd_iff_pow_eq_one, hgorder, ← hmul]
   exact (Nat.mul_dvd_mul_iff_right hc).symm
 
-/-- **Algorithm 1**, including the convention that zero is a power.-/
+/-- **Algorithm 1**, including the convention that zero is a power.
+@isnad1 id=iff.1h3v.s6.29f618e76fae from=translated src=- shape=5a4b6635 vocab=4b4df0a4
+-/
 theorem isNthPower_iff_zero_or_pow_eq_one {n : ℕ} (hn : 0 < n) (x : F) :
     IsNthPower n x ↔ x = 0 ∨
       x ^ ((Fintype.card F - 1) / powerIndex n (Fintype.card F)) = 1 := by

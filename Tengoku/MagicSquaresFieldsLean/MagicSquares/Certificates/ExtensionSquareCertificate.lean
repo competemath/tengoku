@@ -41,7 +41,9 @@ instance (c : ExtensionSquareCertificate R) : Decidable c.Valid := by
   infer_instance
 
 /-- All entries, roots, line sums and distinctness follow from exact
-coefficient identities at any root of the defining polynomial.-/
+coefficient identities at any root of the defining polynomial.
+@isnad1 id=ismagico.2h5v.s6.5b0f72cd37bc from=translated src=- shape=f6156604 vocab=b1f55061
+-/
 theorem valid_sound [CommRing S] [Nontrivial S] (h : R →+* S) (x : S)
     {c : ExtensionSquareCertificate R} (hc : c.Valid) (hf : eval h x c.modulus = 0) :
     IsMagicOfPowers 2 (c.entries.map (eval h x)) := by
@@ -67,7 +69,9 @@ theorem valid_sound [CommRing S] [Nontrivial S] (h : R →+* S) (x : S)
     simpa [eval_mul, eval_add, hf, pow_two, Square3.map_entries] using hi
 
 /-- Existence of a root follows from the checked divisibility in `X^q-X`,
-which splits over every field with `q` elements.-/
+which splits over every field with `q` elements.
+@isnad1 id=ex.4h4v.s7.5ad260f9e2c0 from=translated src=- shape=dc6aedea vocab=ba7efc99
+-/
 theorem exists_magic_of_card {p d : ℕ} [Fact p.Prime]
     {F : Type*} [Field F] [Fintype F]
     {c : ExtensionSquareCertificate (ZMod p)} (hc : c.Valid)

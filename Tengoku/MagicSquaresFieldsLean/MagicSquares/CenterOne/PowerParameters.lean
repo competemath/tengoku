@@ -25,6 +25,9 @@ noncomputable def centerOnePowerParameters (n : ℕ) (b : F) : Finset F := by
     ∀ k : Fin 9, IsNthPower n (1 + centerOneCoeff b k * t))
 
 omit [DecidableEq F] in
+/--
+@isnad1 id=iff.0h4v.s6.a38395080d20 from=translated src=- shape=7d2fd878 vocab=c62d71d8
+-/
 @[simp]
 theorem mem_centerOnePowerParameters
     (n : ℕ) (b t : F) :
@@ -34,7 +37,9 @@ theorem mem_centerOnePowerParameters
   simp [centerOnePowerParameters]
 
 /-- More than nine power-good parameters force one outside the at-most-nine
-bad parameter set.-/
+bad parameter set.
+@isnad1 id=ex.1h3v.s6.450f73d0adf9 from=translated src=- shape=1cfe34ec vocab=67734ef5
+-/
 theorem exists_power_parameter_outside_bad
     {n : ℕ} {b : F}
     (hcard : 9 < (centerOnePowerParameters n b).card) :
@@ -51,7 +56,9 @@ theorem exists_power_parameter_outside_bad
   have hbadcard := centerOneBadT_card_le b
   omega
 
-/-- A power-good parameter outside the bad set gives the desired magic square.-/
+/-- A power-good parameter outside the bad set gives the desired magic square.
+@isnad1 id=ex.3h4v.s6.8ff006972313 from=translated src=- shape=5b78cb3e vocab=6f764a3a
+-/
 theorem exists_centerOne_magic_of_powers_of_parameter
     (n : ℕ)
     {b t : F}

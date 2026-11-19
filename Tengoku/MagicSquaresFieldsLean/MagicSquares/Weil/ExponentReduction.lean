@@ -9,7 +9,9 @@ open scoped BigOperators Classical
 
 /-- Removing the common divisor of the character order and all exponents
 leaves a nontrivial character and primitive multiplicities. The evaluated
-character product is unchanged, including at zero.-/
+character product is unchanged, including at zero.
+@isnad1 id=ex.2h4v.s9.823fb882a7c3 from=translated src=- shape=1f75288e vocab=7e0580c2
+-/
 theorem exists_primitive_exponent_reduction
     {F : Type*} [Field F] [Fintype F]
     {r : ℕ} (chi : MulChar F ℂ) (exponents : Fin r → ℕ)

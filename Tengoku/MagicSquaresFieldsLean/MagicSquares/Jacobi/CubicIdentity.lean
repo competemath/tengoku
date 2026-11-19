@@ -26,7 +26,9 @@ gives
 when `η(-1)=1`.
 -/
 
-/-- The exact Jacobi-sum identity for the cubic Section 6 sum.-/
+/-- The exact Jacobi-sum identity for the cubic Section 6 sum.
+@isnad1 id=eq.3h2v.s8.a70cb8da0956 from=translated src=- shape=f0cd754a vocab=fe8fbae1
+-/
 theorem cubic_quadratic_sum_eq_two_jacobiSums
     (hodd : ringChar F ≠ 2)
     (hqmod : Fintype.card F % 4 = 1)

@@ -29,7 +29,9 @@ sums. This is less brittle than asking `rw [map_sum]` to decide how far
 to descend into the nested sums.
 -/
 
-/-- Polynomial identity (6.25), before evaluating at a field element.-/
+/-- Polynomial identity (6.25), before evaluating at a field element.
+@isnad1 id=eq.3h9v.s10.38341c6cf82c from=translated src=- shape=dbaa08f0 vocab=7d90d048
+-/
 theorem stepanovDerivativeExpansion
     {m u D M : ℕ}
     (f : Polynomial F) (s : ℕ)

@@ -30,7 +30,9 @@ natural number known to lie in `Finset.range r` into an element of
 -/
 
 omit [Fintype F] [DecidableEq F] in
-/-- The power-reduction identity indexed directly by `Fin r`.-/
+/-- The power-reduction identity indexed directly by `Fin r`.
+@isnad1 id=eq.4h5v.s7.54b955d02fb1 from=translated src=- shape=aa14c61b vocab=eb4be895
+-/
 theorem pow_eq_sum_fin_powerReductionCoeff
     {r : ℕ}
     (B : Polynomial F) (i : ℕ) (c : F)
@@ -47,7 +49,9 @@ theorem pow_eq_sum_fin_powerReductionCoeff
 
 omit [Fintype F] [DecidableEq F] in
 /-- Evaluating `s_{t,n}` gives the scalar coefficient appearing after
-the power-reduction regrouping.-/
+the power-reduction regrouping.
+@isnad1 id=eq.0h8v.s7.32ee81662b17 from=translated src=- shape=cfb100e9 vocab=bcc94f99
+-/
 theorem eval_stepanovSTN
     {m r u : ℕ}
     (b : Fin r → Fin m → F)
@@ -70,7 +74,9 @@ theorem eval_stepanovSTN
 omit [Fintype F] [DecidableEq F] in
 /-- Regroup the double sum after replacing every `z^i` by its
 `B`-remainder expansion.  This is the finite-sum algebra immediately
-following equation (6.25) on LN97 p. 306.-/
+following equation (6.25) on LN97 p. 306.
+@isnad1 id=eq.4h8v.s8.af0b3ef89f02 from=translated src=- shape=ae984827 vocab=7635a57c
+-/
 theorem sum_e_mul_pow_eq_sum_STN_mul_pow
     {m r u : ℕ}
     (B : Polynomial F)

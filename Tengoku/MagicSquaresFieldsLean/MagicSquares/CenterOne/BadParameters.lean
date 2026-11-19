@@ -22,7 +22,9 @@ def centerOneBadT (b : F) : Finset F :=
   Finset.univ.image (fun k : Fin 9 => (-1 : F) / centerOneCoeff b k)
 
 omit [Fintype F] in
-/-- There are at most nine discarded parameters.-/
+/-- There are at most nine discarded parameters.
+@isnad1 id=le.0h2v.s4.5f2d3ffa2521 from=translated src=- shape=6cdb3b85 vocab=5c201bb0
+-/
 theorem centerOneBadT_card_le (b : F) :
     (centerOneBadT b).card ≤ 9 := by
   classical
@@ -33,7 +35,9 @@ theorem centerOneBadT_card_le (b : F) :
 
 omit [Fintype F] in
 /-- Zero is always among the discarded parameters (via the center
-coefficient `0`).-/
+coefficient `0`).
+@isnad1 id=mem.0h2v.s5.a5ac20b0107a from=translated src=- shape=9674f620 vocab=527246e6
+-/
 theorem zero_mem_centerOneBadT (b : F) :
     0 ∈ centerOneBadT b := by
   classical

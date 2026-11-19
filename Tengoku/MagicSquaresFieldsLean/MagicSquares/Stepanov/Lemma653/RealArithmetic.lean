@@ -26,7 +26,9 @@ Since the actual parameter `m` is a positive natural number, the upper
 bound uses the explicit real hypothesis `1 ≤ m`.
 -/
 
-/-- Upper half of (6.29).-/
+/-- Upper half of (6.29).
+@isnad1 id=lt.5h6v.s6.dc117e7ed005 from=translated src=- shape=9bd8957d vocab=b1824736
+-/
 theorem theorem653_upper_arithmetic
     (q m N t0 t1 A : ℝ)
     (hm : 0 < m)
@@ -49,7 +51,9 @@ theorem theorem653_upper_arithmetic
     nlinarith
   linarith
 
-/-- Lower half from the second choice of `B`.-/
+/-- Lower half from the second choice of `B`.
+@isnad1 id=lt.5h7v.s7.0e3fcb289090 from=translated src=- shape=19e42b1e vocab=1b82c742
+-/
 theorem theorem653_lower_arithmetic
     (q m N t0 t1 t2 A : ℝ)
     (hm : 0 < m)
@@ -71,7 +75,9 @@ theorem theorem653_lower_arithmetic
   nlinarith
 
 /-- Combine the two one-sided estimates into the absolute-value form of
-Theorem 6.53.-/
+Theorem 6.53.
+@isnad1 id=lt.7h7v.s7.c92df7bd7f4b from=translated src=- shape=9e1122bd vocab=0a332ff7
+-/
 theorem theorem653_abs_arithmetic
     (q m N t0 t1 t2 A : ℝ)
     (hm : 0 < m)

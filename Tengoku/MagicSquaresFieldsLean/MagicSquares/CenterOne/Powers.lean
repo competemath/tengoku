@@ -15,13 +15,18 @@ The center entry is `1`, hence is automatically an `n`th power.  The
 remaining problem is to make the eight values `1 + λt` into `n`th powers.
 -/
 
+/--
+@isnad1 id=isnthpow.0h2v.s4.f073b539dbef from=translated src=- shape=182f3df2 vocab=3a623a90
+-/
 theorem one_isNthPower (n : ℕ) :
     IsNthPower n (1 : R) := by
   refine ⟨1, ?_⟩
   simp
 
 /-- If all nine linear forms `1 + λt` are `n`th powers, then the
-center-one line is a magic square of distinct `n`th powers.-/
+center-one line is a magic square of distinct `n`th powers.
+@isnad1 id=ismagico.3h4v.s6.0ad0add78c77 from=translated src=- shape=8057e023 vocab=4be2bf8c
+-/
 theorem centerOneLine_isMagicOfPowers
     [IsDomain R]
     (n : ℕ)
@@ -37,7 +42,9 @@ theorem centerOneLine_isMagicOfPowers
   exact hp k
 
 /-- It is enough to check only the eight non-center entries, since the
-center is `1`.-/
+center is `1`.
+@isnad1 id=ismagico.3h4v.s7.e8933e60c19f from=translated src=- shape=cb20f280 vocab=4be2bf8c
+-/
 theorem centerOneLine_isMagicOfPowers_of_noncenter
     [IsDomain R]
     (n : ℕ)

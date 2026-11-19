@@ -20,6 +20,9 @@ lemmas at exactly the generality needed for that bivariate step.
 
 variable {R : Type*} [CommRing R] [IsDomain R]
 
+/--
+@isnad1 id=eq.3h5v.s7.5620482a1fbb from=translated src=- shape=1a9f7516 vocab=c79595b3
+-/
 theorem coeff_eq_zero_of_primitiveRoot_scale_invariant_domain
     {m n : ℕ} {zeta : R} {B : Polynomial R}
     (hzeta : IsPrimitiveRoot zeta m)
@@ -37,6 +40,9 @@ theorem coeff_eq_zero_of_primitiveRoot_scale_invariant_domain
     simpa using hc
   exact hpow hzpow
 
+/--
+@isnad1 id=eq.3h4v.s8.8d3d6aaa6ffb from=translated src=- shape=1e21cdc4 vocab=10c7c3f0
+-/
 theorem expand_contract_eq_of_primitiveRoot_scale_invariant_domain
     {m : ℕ} {zeta : R} {B : Polynomial R}
     (hm : 0 < m)
@@ -56,6 +62,9 @@ theorem expand_contract_eq_of_primitiveRoot_scale_invariant_domain
         (R := R) hzeta hinv hdvd
     simpa using hz.symm
 
+/--
+@isnad1 id=ex.3h4v.s8.efb08eac552c from=translated src=- shape=61652b8f vocab=5b90a7f8
+-/
 theorem exists_comp_X_pow_of_primitiveRoot_scale_invariant_domain
     {m : ℕ} {zeta : R} {B : Polynomial R}
     (hm : 0 < m)
@@ -69,6 +78,9 @@ theorem exists_comp_X_pow_of_primitiveRoot_scale_invariant_domain
   rw [Polynomial.expand_eq_comp_X_pow] at h
   exact h.symm
 
+/--
+@isnad1 id=eq.3h4v.s7.815adc3a669b from=translated src=- shape=0fdefb72 vocab=ce78b72b
+-/
 theorem natDegree_contract_mul_eq_of_primitiveRoot_scale_invariant_domain
     {m : ℕ} {zeta : R} {B : Polynomial R}
     (hm : 0 < m)

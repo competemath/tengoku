@@ -11,7 +11,9 @@ local notation "χ" => quadraticChar F
 
 omit [Fintype F] [DecidableEq F] in
 /-- For exponent two, our `IsNthPower` predicate is exactly mathlib's
-`IsSquare`.-/
+`IsSquare`.
+@isnad1 id=iff.0h2v.s5.1a297ec7e8d0 from=translated src=- shape=1b1fedbb vocab=444c9658
+-/
 theorem isNthPower_two_iff_isSquare (x : F) :
     IsNthPower 2 x ↔ IsSquare x := by
   constructor
@@ -25,7 +27,9 @@ theorem isNthPower_two_iff_isSquare (x : F) :
 /-- A nonzero Section 6 weight, away from the three zero locations, forces
 all three quadratic characters to equal `1`.  This is the exact formal
 version of the statement that the product indicator is either zero or one
-away from `x = -1, 0, 1`.-/
+away from `x = -1, 0, 1`.
+@isnad1 id=and.4h2v.s8.a538c1494840 from=translated src=- shape=9a19f32d vocab=c1e46c32
+-/
 theorem centerZeroWeight_ne_zero_forces_char_one
     (x : F)
     (hxm1 : x ≠ 1)
@@ -78,7 +82,9 @@ theorem centerZeroWeight_ne_zero_forces_char_one
       simp [h]
   exact ⟨hc1, hc2, hc3⟩
 
-/-- Consequently the three consecutive elements are nonzero squares.-/
+/-- Consequently the three consecutive elements are nonzero squares.
+@isnad1 id=and.4h2v.s7.e74205efa27a from=translated src=- shape=111715a0 vocab=0a15668b
+-/
 theorem centerZeroWeight_ne_zero_forces_squares
     (x : F)
     (hxm1 : x ≠ 1)
@@ -102,7 +108,9 @@ theorem centerZeroWeight_ne_zero_forces_squares
 omit [Fintype F] [DecidableEq F] in
 /-- If `-1`, `x-1`, `x`, and `x+1` are squares, then every entry of the
 center-zero family is a square.  This isolates the sign argument in
-Section 6 from the later distinctness/counting argument.-/
+Section 6 from the later distinctness/counting argument.
+@isnad1 id=isnthpow.4h3v.s7.9be0f0ea1db5 from=translated src=- shape=48e7cf9c vocab=62206b94
+-/
 theorem centerZero_all_entries_are_squares
     (x : F)
     (hneg : IsSquare (-1 : F))

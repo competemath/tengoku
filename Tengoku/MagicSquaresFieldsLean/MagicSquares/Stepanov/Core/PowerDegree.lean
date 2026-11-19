@@ -20,7 +20,9 @@ and
 `natDegree w₁ ≤ natDegree w + n * (natDegree f - 1)`.
 
 The nonconstant hypothesis is exactly what makes the book's expression
-`deg f - 1` a natural number without ambiguity.-/
+`deg f - 1` a natural number without ambiguity.
+@isnad1 id=ex.3h5v.s9.10ce25c7df5a from=translated src=- shape=e8690320 vocab=eeb7b043
+-/
 theorem ln97_6_49
     (w f : Polynomial K) (t n : ℕ)
     (hnt : n ≤ t)

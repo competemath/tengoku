@@ -27,7 +27,9 @@ hyperderivative.
 /-- For every `t,n`, taking the `n`th Hasse derivative of `f^t` can
 remove at most `n` copies of `f`.
 
-The use of `t - n` makes the statement valid without assuming `n ≤ t`.-/
+The use of `t - n` makes the statement valid without assuming `n ≤ t`.
+@isnad1 id=dvd.0h4v.s9.9b7fb3d9a8b5 from=translated src=- shape=2378096b vocab=9c2ba4f5
+-/
 theorem hasseDeriv_pow_factor_dvd
     (f : Polynomial K) (t n : ℕ) :
     f ^ (t - n) ∣ (hasseDeriv n) (f ^ t) := by
@@ -79,7 +81,9 @@ For `n ≤ t` there is a polynomial `w₁` such that
 
 The degree estimate on `w₁` is added in the next step; isolating the
 factorization first makes the Stepanov argument substantially easier to
-debug in Lean.-/
+debug in Lean.
+@isnad1 id=ex.1h5v.s9.e3f92000691e from=translated src=- shape=65218f97 vocab=0f4c0023
+-/
 theorem ln97_6_49_factor
     (w f : Polynomial K) (t n : ℕ) (hnt : n ≤ t) :
     ∃ w₁ : Polynomial K,

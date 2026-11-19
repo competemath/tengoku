@@ -9,7 +9,9 @@ open scoped BigOperators Classical
 variable {F : Type*} [Field F] [Fintype F] [DecidableEq F]
 
 /-- The sharp bound for distinct roots transfers to nonconstant affine
-forms with positive exponents.-/
+forms with positive exponents.
+@isnad1 id=le.7h5v.s8.61d1635d266d from=translated src=- shape=84ac4874 vocab=48d409cd
+-/
 theorem HasSplitPowerMultiplicativeWeilBound.affine
     (hWeil : HasSplitPowerMultiplicativeWeilBound F)
     {ι : Type*} [Fintype ι] (coeff : ι → F) (exponents : ι → ℕ)

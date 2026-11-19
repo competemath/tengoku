@@ -54,16 +54,25 @@ noncomputable def stepanovT2 (m : ℕ) (f : Polynomial F) : Finset F := by
   exact Finset.univ.filter
     (fun c => eval (eval c (stepanovG m f)) (geometricPolynomial (F := F) m) = 0)
 
+/--
+@isnad1 id=iff.0h3v.s6.3a124df07e83 from=translated src=- shape=74051b82 vocab=d4712b41
+-/
 @[simp] theorem mem_stepanovT0 (f : Polynomial F) (c : F) :
     c ∈ stepanovT0 f ↔ eval c f = 0 := by
   classical
   simp [stepanovT0]
 
+/--
+@isnad1 id=iff.0h4v.s6.0da37193dba5 from=translated src=- shape=6079d508 vocab=6e0c0e8b
+-/
 @[simp] theorem mem_stepanovT1 (m : ℕ) (f : Polynomial F) (c : F) :
     c ∈ stepanovT1 m f ↔ eval c (stepanovG m f) = 1 := by
   classical
   simp [stepanovT1]
 
+/--
+@isnad1 id=iff.0h4v.s6.263c696ac5fe from=translated src=- shape=758fcb3f vocab=176affea
+-/
 @[simp] theorem mem_stepanovT2 (m : ℕ) (f : Polynomial F) (c : F) :
     c ∈ stepanovT2 m f ↔
       eval (eval c (stepanovG m f)) (geometricPolynomial (F := F) m) = 0 := by

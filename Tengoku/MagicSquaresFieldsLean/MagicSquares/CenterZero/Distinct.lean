@@ -15,6 +15,9 @@ def centerZeroBadValues : Finset F :=
   [(-2 : F), (-1 : F), (-1 : F) / 2, 0, (1 : F) / 2, 1, 2].toFinset
 
 omit [Fintype F] in
+/--
+@isnad1 id=iff.0h2v.s8.e8472524c735 from=translated src=- shape=07a559ba vocab=21c4bfeb
+-/
 @[simp] theorem mem_centerZeroBadValues (x : F) :
     x ∈ (centerZeroBadValues : Finset F) ↔
       x = -2 ∨ x = -1 ∨ x = (-1 : F) / 2 ∨ x = 0 ∨
@@ -23,7 +26,9 @@ omit [Fintype F] in
 
 omit [Fintype F] in
 /-- There are at most seven exceptional values. In small characteristics
-some of them can coincide, which only makes this estimate stronger.-/
+some of them can coincide, which only makes this estimate stronger.
+@isnad1 id=le.0h1v.s4.8d1f742a231e from=translated src=- shape=1e8b59d0 vocab=fced0ca0
+-/
 theorem centerZeroBadValues_card_le :
     (centerZeroBadValues : Finset F).card ≤ 7 := by
   simpa [centerZeroBadValues] using
@@ -46,7 +51,9 @@ omit [Fintype F] in
 /-- A collision among two distinct entries of `M₀(x)` forces `x` to be one
 of the seven exceptional values listed in Section 6. This version proves
 the 36 unordered entry inequalities explicitly, avoiding tactic search over
-the seven exceptional values.-/
+the seven exceptional values.
+@isnad1 id=pairwise.2h2v.s5.7c5099fa3f89 from=translated src=- shape=b3648e30 vocab=33189146
+-/
 theorem centerZero_pairwiseDistinct_of_not_mem_bad
     (hodd : ringChar F ≠ 2)
     {x : F}
@@ -257,7 +264,9 @@ theorem centerZero_pairwiseDistinct_of_not_mem_bad
   rw [hentries]
   exact hLnodup.injective_get
 
-/-- Each factor `1 + χ(y)` is one of `0,1,2`.-/
+/-- Each factor `1 + χ(y)` is one of `0,1,2`.
+@isnad1 id=or.0h2v.s7.7d2a2db2f1a1 from=translated src=- shape=f8e4f169 vocab=cb4f6fe7
+-/
 theorem one_add_quadraticChar_cases (y : F) :
     1 + χ y = 0 ∨ 1 + χ y = 1 ∨ 1 + χ y = 2 := by
   by_cases hy : y = 0
@@ -271,7 +280,9 @@ theorem one_add_quadraticChar_cases (y : F) :
       simp [h]
 
 /-- Hence the unnormalized center-zero indicator has values between `0` and
-`8`.-/
+`8`.
+@isnad1 id=and.0h2v.s5.167fec4167af from=translated src=- shape=ac45f7e1 vocab=0077e110
+-/
 theorem centerZeroWeight_bounds (x : F) :
     0 ≤ centerZeroWeight x ∧ centerZeroWeight x ≤ 8 := by
   rcases one_add_quadraticChar_cases (F := F) (x - 1) with h1 | h1 | h1 <;>
@@ -282,7 +293,9 @@ theorem centerZeroWeight_bounds (x : F) :
   rw [h1, h2, h3] <;> norm_num
 
 /-- If the total weight is greater than `7·8 = 56`, then some nonzero-weight
-parameter lies outside the seven exceptional values.-/
+parameter lies outside the seven exceptional values.
+@isnad1 id=ex.1h1v.s6.6d07ec78e81a from=translated src=- shape=6d68c552 vocab=b393166b
+-/
 theorem exists_good_centerZero_parameter_of_sum_gt_56
     (hsum : 56 < ((∑ x : F, centerZeroWeight x : ℤ) : ℝ)) :
     ∃ x : F, x ∉ (centerZeroBadValues : Finset F) ∧ centerZeroWeight x ≠ 0 := by
@@ -325,7 +338,9 @@ theorem exists_good_centerZero_parameter_of_sum_gt_56
 
 /-- Section 6, with the single cubic Weil estimate still explicit as a
 hypothesis: if `q ≥ 77` and `-1` is a square, the center-zero family contains
-a distinct magic square of squares.-/
+a distinct magic square of squares.
+@isnad1 id=ex.4h1v.s6.cb8969e4ceec from=translated src=- shape=84e577b1 vocab=68f43ae3
+-/
 theorem exists_centerZero_magic_of_squares_of_card_ge_77
     (hodd : ringChar F ≠ 2)
     (hneg : IsSquare (-1 : F))
@@ -352,7 +367,9 @@ theorem exists_centerZero_magic_of_squares_of_card_ge_77
   refine ⟨Square3.centerZero x, ?_, hdistinct, hpowers⟩
   exact Square3.centerZero_isMagic x
 
-/-- The paper's congruence formulation of the preceding theorem.-/
+/-- The paper's congruence formulation of the preceding theorem.
+@isnad1 id=ex.4h1v.s6.4b5879f53e69 from=translated src=- shape=53e93a68 vocab=1bca52b8
+-/
 theorem exists_centerZero_magic_of_squares_of_card_mod_four_one
     (hodd : ringChar F ≠ 2)
     (hWeil : HasCenterZeroCubicWeilBound F)
