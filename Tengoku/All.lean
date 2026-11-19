@@ -190,6 +190,7 @@ import Tengoku.DuistermaatVanDerKallenNonvanishing
 import Tengoku.Tauceti
 import Tengoku.Fagin
 import Tengoku.BtcVerified
+import Tengoku.Erdos260
 import Tengoku.Leaninfotheory
 import Tengoku.ZkevmClean
 import Tengoku.LanaBelyi
