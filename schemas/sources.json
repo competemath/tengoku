@@ -272,8 +272,7 @@
     "https://github.com/SpencerWoolfson/biyoneda",
     "https://github.com/yoshiyoyoyo44/erdos278",
     "https://github.com/Janzert/nice-numbers-lean",
-    "https://github.com/Zelaron/bezout-counterexample-lean",
-    "https://github.com/GiulianoBasso/ProjectionConstants-lean"
+    "https://github.com/Zelaron/bezout-counterexample-lean"
   ],
   "licences": {
     "https://github.com/leanprover-community/mathlib4": "Apache-2.0",
@@ -558,8 +557,7 @@
     "https://github.com/SpencerWoolfson/biyoneda": "Apache-2.0",
     "https://github.com/yoshiyoyoyo44/erdos278": "MIT",
     "https://github.com/Janzert/nice-numbers-lean": "MIT",
-    "https://github.com/Zelaron/bezout-counterexample-lean": "MIT",
-    "https://github.com/GiulianoBasso/ProjectionConstants-lean": "Apache-2.0"
+    "https://github.com/Zelaron/bezout-counterexample-lean": "MIT"
   },
   "corpora": {
     "equational-theories": {
@@ -2751,13 +2749,6 @@
       "commit": "9eda7550c5b8e890bcc2e987556331704a035800",
       "roots": [
         "BezoutCounterexample"
-      ]
-    },
-    "projectionconstants-lean": {
-      "repo": "https://github.com/GiulianoBasso/ProjectionConstants-lean",
-      "commit": "103de55445c5dd71ca313af6727ebfab16bc5328",
-      "roots": [
-        "ProjectionConstants"
       ]
     }
   },
